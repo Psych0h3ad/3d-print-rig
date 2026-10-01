@@ -3,7 +3,7 @@ import {loadFrameMods,withFrameMods} from './frame-mods.js?v=frame-mods-v1';
 import {setupLighting} from './lighting.js?v=frame-lighting-v1';
 import {setupAccessories} from './accessories.js?v=frame-mods-v1';
 import {setupGrid} from './grid-control.js?v=grid-v1';
-import {setupProbeMounts} from './probe-mounts.js?v=probes-v1';
+import {setupProbeMounts} from './probe-mounts.js?v=clearance-v1';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=bundle-v2';

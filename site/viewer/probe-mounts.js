@@ -25,6 +25,7 @@ export async function setupProbeMounts(catalog,{load,setHidden,update}){
   try{
    const row=await state.apply(id);select.value=id;
    status.textContent=row.module?`${row.label} · ノズルより ${row.coil_nozzle_gap_mm.toFixed(2)} mm上 · 絶縁スペーサー ${row.spacer_mm.toFixed(1)} mm × 2${row.metal_keepout_collisions?.length?'。ベルト固定ねじが金属除外領域に入ります。取付検証未完了。':''}`:row.label;
+   if(Number.isFinite(row.minimum_probe_bed_clearance_at_nozzle_contact_mm))status.textContent+=` ／ ノズル接触時の最下部／ベッド間隔 ${row.minimum_probe_bed_clearance_at_nozzle_contact_mm.toFixed(3)} mm`;
    status.classList.toggle('notice',!!row.metal_keepout_collisions?.length);
    const url=new URL(location.href);url.searchParams.set('probe',id);history.replaceState(null,'',url);update();
   }catch(e){select.value=state.id;status.textContent='プローブを読み込めませんでした。直前の構成を表示中。';console.error(e)}

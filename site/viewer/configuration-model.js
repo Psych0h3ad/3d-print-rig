@@ -5,7 +5,10 @@ export function resolveVariant(catalog,selection,changed){
  const candidates=catalog.variants.filter(v=>!changed||v[changed]===selection[changed]);
  let best=null,bestScore=-1;
  for(const v of candidates){
-  const score=dimensions.reduce((n,k,i)=>n+(v[k]===selection[k]?2**(dimensions.length-i):0),0);
+  const conflict=v.fit?.probe?.height_passed===false||v.fit?.probe?.physical_passed===false;
+  const changingHead=changed&&changed!=='probe';
+  let score=dimensions.reduce((n,k,i)=>n+(v[k]===selection[k]&&!(k==='probe'&&changingHead&&conflict)?2**(dimensions.length-i):0),0);
+  if(changingHead&&conflict)score-=1;
   if(score>bestScore){best=v;bestScore=score}
  }
  return best;

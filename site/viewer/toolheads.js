@@ -2,10 +2,11 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=bundle-v2';
-import {setupConfigurations} from './configurations.js?v=probes-v1';
+import {setupConfigurations} from './configurations.js?v=clearance-v1';
 import {setupPublicInfo} from './public-info.js?v=mounts-v5';
 import {setupRenderExport} from './render-export.js';
 import {headPlan,partKey,headCombinationCount} from './head-assembly.js';
+import {probeCheck,probeMetrics,probeGuide} from './probe-checks.js?v=clearance-v1';
 
 const $=s=>document.querySelector(s),stage=$('#stage'),scene=new THREE.Scene();
 scene.background=new THREE.Color('#edf1f5');
@@ -22,8 +23,9 @@ for(const [position,intensity] of [[[.4,.6,.6],2.6],[[-.4,.2,-.3],1.8]]){
  const light=new THREE.DirectionalLight('#ffffff',intensity);light.position.set(...position);scene.add(light);
 }
 const bench=new THREE.Group();scene.add(bench);
+const heightGuides=new THREE.Group(),keepoutGuide=new THREE.Group();bench.add(heightGuides,keepoutGuide);
 const loader=new GLTFLoader(),cached=new Map();
-let catalog,dirty=true,view='iso',bounds=new THREE.Box3(),ready=false;
+let catalog,dirty=true,view='iso',bounds=new THREE.Box3(),ready=false,currentVariant;
 const presets={black_red:['#24272c','#e32636'],white_teal:['#f0f1ed','#008f95'],ivory_orange:['#e9dfca','#f07824'],purple:['#30343b','#9d5ce2']};
 let colors={base:'#24272c',accent:'#e32636'};
 const validColor=c=>typeof c==='string'&&/^#[0-9a-f]{6}$/iu.test(c);
@@ -79,6 +81,31 @@ async function asset(id){
  cached.set(id,promise);return promise;
 }
 const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);
+function clearGuide(group){for(const child of [...group.children]){child.geometry?.dispose();for(const material of (Array.isArray(child.material)?child.material:[child.material]))material?.dispose();group.remove(child)}}
+function inspection(variant){
+ currentVariant=variant;const check=probeCheck(variant),guide=probeGuide(variant),p=variant.fit?.probe;
+ $('#inspectionState').textContent=check.label;$('#inspectionState').dataset.state=check.state;$('#inspectionState').classList.toggle('notice',check.warning);
+ $('#probeMetrics').replaceChildren(...probeMetrics(variant).flatMap(([label,value])=>{const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=label;dd.textContent=value;return [dt,dd]}));
+ const notes=[...check.lines];if(!p&&!notes.length)notes.push('このキャリッジ・ホットエンドに登録済みのプローブから選択できます。未検証のマウントは表示しません。');
+ if(p?.metal_keepout_verified===true&&!p.metal_keepout_collisions?.length)notes.push('基準姿勢の本体干渉・コイル高さ・金属除外領域を確認済み。');
+ $('#inspectionNotes').replaceChildren(...notes.map(note=>{const li=document.createElement('li');li.textContent=note;return li}));
+ clearGuide(heightGuides);clearGuide(keepoutGuide);
+ $('#showProbeHeights').disabled=!guide;$('#showKeepout').disabled=!guide?.keepout;
+ $('#guideHint').textContent=guide?'青：ノズル接触面　緑（条件外は赤）：コイル底面。'+(guide.keepout?'橙：金属除外領域の外接枠。干渉判定には元のCAD形状を使用。':'付属基板の金属領域は未特定です。'):'';
+ if(guide){
+  for(const [center,color] of [[guide.nozzle,'#2685ba'],[guide.coil,check.state==='height-conflict'?'#c65336':'#29936a']]){
+   const plane=new THREE.Mesh(new THREE.PlaneGeometry(.075,.065),new THREE.MeshBasicMaterial({color,opacity:.16,transparent:true,depthWrite:false,side:THREE.DoubleSide}));plane.rotation.x=-Math.PI/2;plane.position.copy(point(center));heightGuides.add(plane);
+  }
+  const [a,b]=guide.dimension,segments=[a,b,[a[0]-3,a[1],a[2]],[a[0]+3,a[1],a[2]],[b[0]-3,b[1],b[2]],[b[0]+3,b[1],b[2]]];
+  const line=new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(segments.map(point)),new THREE.LineBasicMaterial({color:check.state==='height-conflict'?'#c65336':'#218f65',depthTest:false}));line.renderOrder=10;heightGuides.add(line);
+  if(guide.keepout){const [lo,hi]=guide.keepout,size=hi.map((n,i)=>(n-lo[i])*.001),center=hi.map((n,i)=>(n+lo[i])/2),geometry=new THREE.BoxGeometry(size[0],size[2],size[1]);
+   const box=new THREE.Mesh(geometry,new THREE.MeshBasicMaterial({color:'#d88425',opacity:.12,transparent:true,depthWrite:false,side:THREE.DoubleSide}));box.position.copy(point(center));keepoutGuide.add(box);
+   const edges=new THREE.LineSegments(new THREE.EdgesGeometry(geometry),new THREE.LineBasicMaterial({color:'#b46c1c',transparent:true,opacity:.8}));edges.position.copy(box.position);keepoutGuide.add(edges);
+  }
+ }
+ heightGuides.visible=!!guide&&$('#showProbeHeights').checked;keepoutGuide.visible=!!guide?.keepout&&$('#showKeepout').checked;dirty=true;
+}
+for(const id of ['showProbeHeights','showKeepout'])$('#'+id).onchange=()=>{if(currentVariant)inspection(currentVariant)};
 function visibleBounds(){
  bench.position.set(0,0,0);bench.updateMatrixWorld(true);const box=new THREE.Box3();
  for(const p of cached.values()){const a=p.loaded;if(!a?.root.visible)continue;for(const r of a.meshes){if(!r.mesh.visible)continue;r.mesh.geometry.computeBoundingBox();box.union(r.mesh.geometry.boundingBox.clone().applyMatrix4(r.mesh.matrixWorld))}}
@@ -90,13 +117,13 @@ function visibleBounds(){
  Object.assign($('#headDimensions').dataset,{widthMm:size.x,depthMm:size.z,heightMm:size.y});
 }
 function fit(next=view){
- view=next;const direction={iso:[1,.65,1.4],front:[0,0,1],back:[0,0,-1],side:[1,0,0]}[view]||[1,.65,1.4];
+ view=next;const direction={iso:[1,.65,1.4],front:[0,0,1],back:[0,0,-1],side:[1,0,0],bottom:[0,-1,0]}[view]||[1,.65,1.4];
  const fov=THREE.MathUtils.degToRad(camera.fov),horizontal=2*Math.atan(Math.tan(fov/2)*camera.aspect);
  const distance=bounds.getSize(new THREE.Vector3()).length()/2/Math.sin(Math.min(fov,horizontal)/2)*1.12;
- camera.up.set(0,1,0);camera.position.fromArray(direction).normalize().multiplyScalar(distance);controls.target.set(0,0,0);controls.update();
- for(const id of ['iso','front','back','side'])$('#'+id).setAttribute('aria-pressed',String(view===id));dirty=true;
+ camera.up.set(...(view==='bottom'?[0,0,-1]:[0,1,0]));camera.position.fromArray(direction).normalize().multiplyScalar(distance);controls.target.set(0,0,0);controls.update();
+ for(const id of ['iso','front','back','side','bottom'])$('#'+id).setAttribute('aria-pressed',String(view===id));dirty=true;
 }
-for(const id of ['iso','front','back','side'])$('#'+id).onclick=()=>{if(ready)fit(id)};
+for(const id of ['iso','front','back','side','bottom'])$('#'+id).onclick=()=>{if(ready)fit(id)};
 $('#fit').onclick=()=>{if(ready)fit()};
 async function install(variant){
  const plan=headPlan(variant),ids=[plan.base,...plan.modules.map(m=>m.id)];
@@ -108,7 +135,7 @@ async function install(variant){
   const base=await asset(plan.base);base.root.position.copy(point(plan.translation));base.root.visible=true;
   for(const r of base.meshes)r.mesh.visible=!plan.hidden.has(r.key);
   for(const module of plan.modules){const a=await asset(module.id),hidden=new Set(module.hidden_keys||[]);a.root.position.copy(point(module.translation_mm));a.root.visible=true;for(const r of a.meshes)r.mesh.visible=!hidden.has(r.key)}
-  appearance();visibleBounds();ready=true;fit();
+  appearance();inspection(variant);visibleBounds();ready=true;fit();
   const count=ids.reduce((n,id)=>n+cached.get(id).loaded.meshes.filter(r=>r.mesh.visible).length,0);
   Object.assign(document.body.dataset,{variant:variant.id,headParts:String(count),headAssets:JSON.stringify(ids),assetStatus:'ready'});
   const link=new URL('./',location.href);link.searchParams.set('configuration',variant.id);$('#printerLink').href=link;
@@ -122,7 +149,7 @@ setupRenderExport({renderer,scene,camera,name:'3D_Print_Rig_Toolhead',afterRende
 setupPublicInfo({includeDownloads:false});
 try{
  const response=await fetch('../TOOLHEAD_CONFIGURATIONS.json',{cache:'no-cache'});if(!response.ok)throw Error('ヘッドの構成データを取得できません');catalog=await response.json();
- $('#combinationCount').textContent=`SB / Xol · ${headCombinationCount(catalog)}通りのヘッド構成 · 6 / 9 mmキャリッジ`;
+ $('#combinationCount').textContent=`SB / Xol · ${headCombinationCount(catalog)}通りのヘッド構成 · プローブを含め${catalog.variants.length}構成`;
  await setupConfigurations(catalog,install,{presentation:'toolhead'});
  if(!ready)throw Error('ヘッドのCADを表示できませんでした');
 }catch(e){$('#loading').hidden=false;$('#loading').textContent=e.message;document.body.dataset.assetStatus='error';console.error(e)}

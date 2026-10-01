@@ -1,0 +1,25 @@
+import assert from 'node:assert/strict';
+import {probeCheck,probeMetrics,probeGuide,probeOptionSuffix} from '../site/viewer/probe-checks.js';
+import {resolveVariant,importedVariant} from '../site/viewer/configuration-model.js';
+const v6={id:'awd__sb__v6__cw2__kit_cartographer',gantry:'awd',toolhead:'sb',hotend:'v6',extruder:'cw2',probe:'kit_cartographer',fit:{nozzle_mm:[0,-28.76,312.1],probe:{coil_bottom_mm:[0,-3.71,314.6],coil_nozzle_gap_mm:2.5,minimum_probe_bed_clearance_at_nozzle_contact_mm:.85,height_passed:false,physical_passed:true,metal_keepout_verified:false}}};
+assert.equal(probeCheck(v6).state,'height-conflict');assert(probeCheck(v6).warning);
+assert(probeOptionSuffix(v6).includes('高さ'));assert(probeMetrics(v6).some(([label,value])=>label==='最下部／ベッド'&&value==='0.850 mm'));
+const guide=probeGuide(v6);assert.equal(guide.dimension[1][2]-guide.dimension[0][2],2.5);assert.deepEqual(guide.nozzle,[0,-28.76,312.1]);assert.equal(guide.keepout,null);
+const none={...v6,id:'awd__sb__v6__cw2',probe:'none',fit:{nozzle_mm:v6.fit.nozzle_mm,probe_candidates:[{id:'kit_cartographer',height_passed:false,coil_nozzle_gap_mm:2.5}]}};
+assert.equal(probeGuide(none),null);assert.equal(probeCheck(none).state,'none');assert(probeCheck(none).lines[0].includes('2.500'));assert.deepEqual(probeMetrics(none),[]);
+const hf={...v6,id:'awd__sb__hf__cw2',hotend:'hf',fit:{...v6.fit,probe:{...v6.fit.probe,coil_nozzle_gap_mm:3,height_passed:true}}};
+assert.equal(probeCheck(hf).state,'unverified');assert(probeCheck(hf).lines[0].includes('未確認'));
+const catalog={variants:[none,v6,hf]};
+assert.equal(resolveVariant(catalog,{...hf,hotend:'v6'},'hotend'),none);
+assert.equal(resolveVariant({variants:[v6,none,hf]},{...hf,hotend:'v6'},'hotend'),none);
+// Deliberate conflict previews are preserved only when selected or imported.
+assert.equal(resolveVariant(catalog,{...none,probe:'kit_cartographer'},'probe'),v6);
+assert.equal(importedVariant(catalog,{configuration:v6.id}),v6);
+assert.equal(importedVariant(catalog,{configuration:none.id}),none);
+const fit={...v6,fit:{...v6.fit,probe:{...v6.fit.probe,height_passed:true,metal_keepout_verified:true,metal_keepout_bounds_mm:[[-10,-15,315],[10,5,325]],metal_keepout_collisions:[{existing:'heatsink',volume_mm3:.2}]}}};
+assert.equal(probeCheck(fit).state,'metal-conflict');assert(probeOptionSuffix(fit).includes('金属'));assert.deepEqual(probeGuide(fit).keepout,[[-10,-15,315],[10,5,325]]);
+assert.equal(probeCheck({...fit,fit:{probe:{...fit.fit.probe,metal_keepout_collisions:[]}}}).state,'geometry-checked');
+assert.equal(probeGuide({...fit,fit:{...fit.fit,nozzle_mm:[NaN,0,0]}}),null);
+assert.equal(probeCheck({...fit,fit:{probe:{physical_passed:false}}}).state,'body-conflict');
+assert.equal(probeOptionSuffix(undefined),'');
+console.log('Probe clearance passed: height/physical/metal conditions, bed clearance metrics, native-coordinate guides, safe hotend changes and explicit conflict previews.');
