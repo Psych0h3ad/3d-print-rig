@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="3Dプリンターの構成、Mod、配色、機構を確認するコミュニティビューアー。原作者と使用版を記録して公開準備中。">
+  <title>3D Print Rig — プリンター構成ビューアー</title>
+  <link rel="stylesheet" href="./publication.css">
+  <script type="module" src="./publication.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">本文へ移動</a>
+  <header class="site-header wrap">
+    <a class="wordmark" href="./" aria-label="3D Print Rig ホーム"><span class="mark">3PR</span><strong>3D Print Rig</strong></a>
+    <nav aria-label="ページ内ナビゲーション"><a href="#configurations">対応構成</a><a href="#sources">出典</a></nav>
+  </header>
+  <main id="main" class="wrap">
+    <section class="hero" aria-labelledby="title">
+      <div>
+        <p class="eyebrow">COMMUNITY PRINTER CONFIGURATOR <span>公開準備中</span></p>
+        <h1 id="title">構成を試す。<br>機構を見る。</h1>
+        <p class="intro">ツールヘッド、ガントリー、配色、照明。<br>3Dプリンターの組み合わせを、ブラウザーで確認する。</p>
+        <div class="hero-actions"><a class="primary" href="./viewer/">ローカルビューアーを開く <span aria-hidden="true">↗</span></a><a href="#sources">原作者と使用版を見る <span aria-hidden="true">↓</span></a></div>
+        <p class="release-note">今回の配布はソースコードと出典情報です。<br>3Dモデルは同梱していません。公開条件を確認できたデータから順に追加します。</p>
+      </div>
+      <div class="spec-sheet">
+        <div class="sheet-heading"><span>DEVELOPMENT BUILD</span><span>01 / 構成</span></div>
+        <h2>Trident / 350</h2>
+        <dl><div><dt>ガントリー</dt><dd>CNC AWD <b>9 mm</b><br>R2 XY <b>6 mm</b></dd></div><div><dt>ツールヘッド</dt><dd>Stealthburner / Xol</dd></div><div><dt>ホットエンド</dt><dd>Rapido 2 UHF・HF<br>Revo Voron</dd></div><div><dt>押出機</dt><dd>CW2 / Sherpa Mini / Orbiter 2</dd></div></dl>
+        <p class="sheet-footer"><strong>18</strong><span>開発版で確認済みの構成<br>対応する組み合わせのみ選択</span></p>
+      </div>
+    </section>
+    <section id="configurations" class="section" aria-labelledby="config-title">
+      <div class="section-heading"><p class="eyebrow">01 / MACHINES</p><h2 id="config-title">開発版の対応範囲</h2></div>
+      <div class="table-scroll"><table><caption class="sr-only">開発版の機種ごとの対応状況</caption><thead><tr><th scope="col">機種</th><th scope="col">構成</th><th scope="col">確認できること</th></tr></thead><tbody><tr><th scope="row">SIBOOR Trident 350</th><td>AWD / R2 XY、SB / Xol</td><td>構成・配色・Disco照明・可動経路・PNG出力</td></tr><tr><th scope="row">VORON V2.4 350</th><td>プリントR2基準、SB / CW2 / Revo</td><td>配色・固定ベッドと4Zガントリー・PNG出力</td></tr></tbody></table></div>
+      <p class="note">V2.4の表示モデルはSIBOOR AUG CNCキットとは異なります。可動表示は経路プレビューで、全域の衝突・熱・押出の検証は含みません。</p>
+    </section>
+    <section id="sources" class="section" aria-labelledby="source-title">
+      <div class="section-heading"><p class="eyebrow">02 / PROVENANCE</p><h2 id="source-title">原作者と使用版</h2></div>
+      <p class="section-intro">原設計、使用した取得物、参照した版を区別して記録しています。<br>各モデルには原作者のライセンスが適用されます。</p>
+      <details class="sources-list"><summary>出典一覧 <span id="sourceCount"></span></summary><div id="sourceList" aria-live="polite"><p>出典情報を読み込んでいます。</p></div></details>
+      <noscript><p>出典情報は <a href="./PUBLIC_CATALOG.json">PUBLIC_CATALOG.json</a> に保存しています。</p></noscript>
+    </section>
+    <section class="section" aria-labelledby="download-title">
+      <div class="section-heading"><p class="eyebrow">03 / DEFAULT CAD</p><h2 id="download-title">標準構成のSTEP</h2></div>
+      <p class="section-intro">メーカー／VORONの標準構成を対象に、ダウンロードを準備しています。<br>画面で選んだMod・配色・姿勢は含みません。</p>
+      <div id="defaultDownloads" class="download-links" aria-live="polite"></div>
+      <p class="note">SIBOOR Trident 300 / 350、AUG CNC 300 / 350、VORON両機種の300 / 350は、公開条件・データ準備・検証の状況をカタログに記録しています。</p>
+    </section>
+    <section class="section local-setup" aria-labelledby="setup-title">
+      <div class="section-heading"><p class="eyebrow">04 / LOCAL USE</p><h2 id="setup-title">手元のモデルで使う</h2></div>
+      <p>既存の開発出力をローカルに取り込むと、ビューアーを起動できます。導入方法と必要ファイルはソース配布のREADMEに記載しています。</p>
+      <details><summary>起動コマンド</summary><pre><code>python scripts/import_local_assets.py /path/to/existing/output
+python -m http.server 8874 --bind 127.0.0.1 --directory site</code></pre><p class="note">Python 3.10以降を使用します。インポート処理は外部へのアップロードを行いません。</p></details>
+    </section>
+  </main>
+  <footer class="wrap site-footer"><span>3D Print Rig <small>名称は仮称です。</small></span><span>非公式コミュニティプロジェクト · Original viewer code: MIT</span></footer>
+</body>
+</html>

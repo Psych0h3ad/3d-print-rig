@@ -1,0 +1,34 @@
+# Geometry is not part of the initial source publication.
+*.glb
+*.gltf
+*.bin
+*.step
+*.stp
+*.ste
+*.p21
+*.stpz
+*.brep
+*.stl
+*.xbf
+*.f3d
+*.zip
+*.7z
+*.gz
+*.partial
+*.report.json
+
+# Locally imported assembly metadata.
+/site/*.json
+!/site/PUBLIC_CATALOG.json
+/site/modules/
+/site/machines/
+/site/defaults/
+/site/exports/
+
+__pycache__/
+*.pyc
+*.log
+.env
+.env.*
+.DS_Store
+Thumbs.db
