@@ -8,13 +8,13 @@ read=lambda n:json.loads((O/n).read_text(encoding='utf8'))
 stock=read('assembly_manifest.json');xol=read('XOL_MOD.json');r2=read('modules/trident_r2_gantry_350.json')
 registry=json.loads((R/'site/MOD_REGISTRY.json').read_text(encoding='utf8'))
 headgroup='03_Stock_Stealthburner_CW2_Rapido2_UHF'
-mods=['trident_r2_gantry_350','trident_r2_sb_carriage','xol_clips_6mm','xol_revo_voron','sb_revo_voron','xol_orbiter2','xol_rapido2_hf','sb_rapido2_hf','xol_standard_probe','sb_cartographer_short','trident_bedfans']
-mods=sorted(set(mods)|{m['asset'] for h in registry['hotends'] for m in h['mounts'].values() if m['asset']})
+mods=['trident_r2_gantry_350','trident_r2_sb_carriage','xol_clips_6mm','xol_revo_voron','sb_revo_voron','xol_orbiter2','xol_sherpa2_short','xol_sherpa2_long','xol_rapido2_hf','sb_rapido2_hf','xol_standard_probe','sb_cartographer_short','trident_bedfans']
+mods=sorted(set(mods)|{m['asset'] for h in registry['hotends'] for m in h['mounts'].values() if m['asset']}|{'xol_feed_tube_'+h['id'] for h in registry['hotends'] if 'xol' in h['mounts']})
 catalog=dict(schema='siboor-configurations-v2',model=stock.get('model','SIBOOR Trident 350'),
  gantries=[dict(id='siboor_awd',label='SIBOOR CNC AWD · 9 mm',belt_width_mm=9,xy_motors=4),dict(id='trident_r2',label='VORON Trident R2 · 6 mm',belt_width_mm=6,xy_motors=2)],
  toolheads=[dict(id='stealthburner',label='Stealthburner (SB)'),dict(id='xol',label='Xol')],
  hotends=[dict(id=h['id'],label=h['label']) for h in registry['hotends']],
- extruders=[dict(id='cw2',label='Clockwork 2'),dict(id='sherpa_mini',label='Sherpa Mini'),dict(id='orbiter2',label='Orbiter 2.0')],
+ extruders=[dict(id='cw2',label='Clockwork 2'),dict(id='sherpa_mini',label='Sherpa Mini · r16'),dict(id='sherpa_mini_r2_short',label='Sherpa Mini R2 · Short idler'),dict(id='sherpa_mini_r2_long',label='Sherpa Mini R2 · Long idler'),dict(id='orbiter2',label='Orbiter 2.0')],
  accessories=[dict(id='trident_bedfans',label='ベッドファン · 5015 × 2',module='trident_bedfans',notes='ベッド側フレームに固定。Z移動に追従します。')],
  assets={m:dict(meta='modules/'+m+'.json',glb='modules/'+m+'.glb',step='modules/'+m+'.step') for m in mods},variants=[],
  sources=[dict(label='Trident R2',url='https://github.com/VoronDesign/Voron-Trident'),dict(label='Stealthburner',url='https://github.com/VoronDesign/Voron-Stealthburner'),dict(label='Xol',url='https://github.com/Armchair-Heavy-Industries/Xol-Toolhead'),dict(label='Rapido 2',url='https://github.com/Phaetus/Rapido-2'),dict(label='Orbiter 2',url='https://www.orbiterprojects.com/orbiter-v2-0/'),dict(label='Trident Bed Fans',url='https://github.com/VoronDesign/VoronUsers/tree/8e5067f4f6457da8a552983dd210ec48c40be2ca/printer_mods/CannedBass/Trident_Bed_Fans')])
@@ -37,9 +37,13 @@ for g,t,hotend in itertools.product(['siboor_awd','trident_r2'],['stealthburner'
    if h!='rapido2_uhf':
     xhide.update(p['key'] for p in xol['parts'] if p['key'].startswith('xol_rapido_') or p['key'] in ['xol_Rapido2UHF_Mount','xol_probe_module','xol_224','xol_232','xol_233','xol_234'])
     add(mount['asset'],offset);add('xol_standard_probe',offset)
-   if e=='orbiter2':
+   if e=='orbiter2' or e.startswith('sherpa_mini_r2_'):
     xhide.update(p['key'] for p in xol['parts'] if p['key'].startswith('xol_') and p['key'][4:].isdigit() and 298<=int(p['key'][4:])<=1156)
-    add('xol_orbiter2',offset);notes.append('Orbiter用CAN基板と専用ブラケットは未取付です。')
+    if e=='orbiter2':add('xol_orbiter2',offset)
+    else:
+     # The Sherpa mounting plate remains; replace the complete r16 extruder.
+     xhide.discard('xol_299');xhide.add('xol_229');add('xol_sherpa2_'+e.rsplit('_',1)[1],offset);add('xol_feed_tube_'+h,offset)
+    notes.append('押出機用CAN基板と専用ブラケットは未取付です。')
    notes.append('プローブは対応する印刷ブラケットまで。付属Cartographer基板は専用アダプター待ちです。')
    if g=='trident_r2':notes.append('Xol公式は標準フロントアイドラーとの前隅での干渉を案内しています。BFI等への交換を検討してください。')
    if g=='siboor_awd':notes.append('9 mmベルト端部の最終位置調整と全域干渉確認は残っています。')

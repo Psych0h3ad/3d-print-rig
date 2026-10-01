@@ -14,6 +14,9 @@ assert.equal(fan.root.visible,true);assert.deepEqual(fan.root.position.value,[0,
 await assert.rejects(state.apply({accessories:['other']}));
 assert.equal(fan.root.visible,true);assert.deepEqual(state.saved(),{accessories:['bedfans']});
 await state.apply({});assert.equal(fan.root.visible,false);assert.equal(updates,2);
+catalog.accessories[0].translation_mm=[0,-.0000011205679,.3000000000021];
+await state.apply({accessories:['bedfans']});
+assert.deepEqual(fan.root.position.value,[0,.3000000000021/1000,.0000011205679/1000]);
 assert.throws(()=>accessoryIds(catalog,{accessories:['https://example.com/model.glb']}));
 assert.throws(()=>accessoryIds(catalog,{accessories:'bedfans'}));
 console.log('Accessory selection passed: toggle, head switch, JSON round trip, failed asset preservation and whitelist.');

@@ -39,7 +39,7 @@ export async function setupConfigurations(catalog,install,{presentation='printer
  for(const row of catalog.sources){const a=document.createElement('a');a.href=row.url;a.textContent=row.label;a.target='_blank';a.rel='noopener';$('#modSources').append(a,document.createTextNode('　'))}
  $('#saveConfiguration').onclick=()=>{
   if(!actual||busy)return;
-  const data={schema:'3d-print-rig-configuration-v1',machine:'siboor_trident_350',configuration:actual.id,selection:Object.fromEntries(ids.map(k=>[k,actual[k]])),...getExtras()};
+  const data={schema:'3d-print-rig-configuration-v1',machine:catalog.machine_id||'siboor_trident_350',configuration:actual.id,selection:Object.fromEntries(ids.map(k=>[k,actual[k]])),...getExtras()};
   const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=actual.id+'.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
  };
  const input=$('#configurationFile');$('#loadConfiguration').onclick=()=>input.click();

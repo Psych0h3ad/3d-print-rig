@@ -2,12 +2,12 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {dimensions,resolveVariant,choicesFor,importedVariant} from '../site/viewer/configuration-model.js';
 const registry=JSON.parse(await readFile(new URL('../site/MOD_REGISTRY.json',import.meta.url),'utf8'));
-const catalog={gantries:[{id:'siboor_awd'},{id:'trident_r2'}],toolheads:[{id:'stealthburner'},{id:'xol'}],hotends:registry.hotends,extruders:[{id:'cw2'},{id:'sherpa_mini'},{id:'orbiter2'}],variants:[]};
+const catalog={gantries:[{id:'siboor_awd'},{id:'trident_r2'}],toolheads:[{id:'stealthburner'},{id:'xol'}],hotends:registry.hotends,extruders:[...new Set(Object.values(registry.toolhead_extruders).flat())].map(id=>({id})),variants:[]};
 for(const g of catalog.gantries)for(const t of catalog.toolheads)for(const h of registry.hotends){
  if(!h.mounts[t.id])continue;
  for(const e of registry.toolhead_extruders[t.id])catalog.variants.push({id:[g.id,t.id,h.id,e].join('__'),gantry:g.id,toolhead:t.id,hotend:h.id,extruder:e});
 }
-assert.equal(catalog.variants.length,36);
+assert.equal(catalog.variants.length,60);
 for(const v of catalog.variants){
  assert.equal(resolveVariant(catalog,v),v);
  for(const dimension of dimensions)for(const choice of choicesFor(catalog,v,dimension)){
@@ -31,4 +31,8 @@ const restricted={...catalog,variants:catalog.variants.filter(v=>!(v.gantry==='t
 const sf=restricted.variants.find(v=>v.hotend==='dragon_sf'&&v.toolhead==='xol');
 assert(!choicesFor(restricted,sf,'extruder').some(e=>e.id==='orbiter2'));
 assert(!choicesFor(restricted,{...sf,gantry:'trident_r2'},'hotend').some(h=>h.id==='dragon_hf'));
-console.log('Configuration selection passed: 36 registered combinations, restricted mounts, dependent choices, JSON imports.');
+const vanilla={...catalog,machine_id:'voron_trident_350',gantries:catalog.gantries.filter(g=>g.id==='trident_r2'),variants:catalog.variants.filter(v=>v.gantry==='trident_r2')};
+assert.equal(vanilla.variants.length,30);
+assert.equal(importedVariant(vanilla,{machine:'voron_trident_350',configuration:vanilla.variants[0].id}),vanilla.variants[0]);
+assert.throws(()=>importedVariant(vanilla,{machine:'siboor_trident_350',configuration:vanilla.variants[0].id}));
+console.log('Configuration selection passed: 60 kit and 30 vanilla combinations, restricted mounts, dependent choices, machine-specific JSON imports.');

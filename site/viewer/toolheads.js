@@ -2,8 +2,8 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=bundle-v2';
-import {setupConfigurations} from './configurations.js?v=mounts-v4';
-import {setupPublicInfo} from './public-info.js?v=mounts-v4';
+import {setupConfigurations} from './configurations.js?v=mounts-v5';
+import {setupPublicInfo} from './public-info.js?v=mounts-v5';
 import {setupRenderExport} from './render-export.js';
 import {headPlan,partKey,headCombinationCount} from './head-assembly.js';
 

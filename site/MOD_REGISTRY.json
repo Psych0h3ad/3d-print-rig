@@ -9,7 +9,7 @@
     {"id":"dragon_uhf","label":"Dragon UHF","interface":"dragon-m2.5-8mm-circle","mounts":{"xol":{"asset":"xol_dragon_uhf","label":"Xol / Dragon UHF"}}},
     {"id":"v6","label":"E3D V6 · 1.75 mm","interface":"v6-groove-12mm","mounts":{"stealthburner":{"asset":"sb_v6","label":"SB / V6 · CW2"}}}
   ],
-  "toolhead_extruders": {"stealthburner":["cw2"],"xol":["sherpa_mini","orbiter2"]},
+  "toolhead_extruders": {"stealthburner":["cw2"],"xol":["sherpa_mini","sherpa_mini_r2_short","sherpa_mini_r2_long","orbiter2"]},
   "validation_scope": ["専用マウントのCADと部品の配置","6 / 9 mmベルト用キャリッジの選択"],
   "not_simulated": ["全可動域の衝突判定","熱・流量・電気特性"]
 }

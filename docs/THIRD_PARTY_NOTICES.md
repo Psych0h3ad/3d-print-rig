@@ -36,7 +36,7 @@
 作者：VoronDesign
 配布元・参考元：https://github.com/VoronDesign/Voron-Trident/tree/a8628f48546948ce1fc15511b7765b7f31f80722
 版：a8628f48546948ce1fc15511b7765b7f31f80722
-適用範囲：R2 XYガントリー350への置換。SIBOORのZ機構は残っています。
+適用範囲：独立した標準Trident 350の筐体・フレーム・3Z・ベッド・パネル、および6 mm XYガントリー。SIBOORのR2交換ガントリーにも使用。
 ライセンス：GPL-3.0
 変更：配置・表示用三角形化・配色の調整。機種ごとの変更履歴を検証記録に保存。
 原文：../site/licenses/voron_trident/LICENSE
@@ -159,8 +159,8 @@ SIBOORのキットマニュアルが原設計を参照。使用したSTLの版�
 
 作者：Anlin / Annex Engineering
 配布元・参考元：https://github.com/Annex-Engineering/Sherpa_Mini-Extruder/tree/e95e98dcb83f523c33f022acfd5be4893082ae3c
-版：e95e98dcb83f523c33f022acfd5be4893082ae3c / 原設計の参考commit。使用形状はXol Assembly Guide 20240615内蔵版（XOL_SOURCE_FILES.jsonのSHA256）。Annex適用版は未照合。
-適用範囲：Xolに含まれるSherpa Miniの原作者クレジット。参考commitから形状を追加取得していません。
+版：e95e98dcb83f523c33f022acfd5be4893082ae3c / Xol内蔵r16と、同commitのCAD/sherpa_mini_release_2_rev1.STEP（Release 2 Rev1 / a3 r17）。取得SHA256: 4191b448e17622d4d29d95c8d5237f4a4f4c74aef5d128862d2f7b83e5192ea2。
+適用範囲：Xol内蔵r16と、Annex原本のSherpa Mini Release 2 Rev1。Short/Long idler・K frontを分離して配置。
 ライセンス：ANNEX ENGINEERING HARDWARE AND SOFTWARE EULA（別条件）
 変更：Xol由来の形状を配置・表示用三角形化・配色。
 原設計は独自の非商用ライセンスを参照します。XolのCCと一括扱いせず、組込み版の適用条件・再配布条件を公開前に照合します。参照したライセンス版: 3d70dee4f4bbef3ab149159d68260d5b848d1152
@@ -176,7 +176,7 @@ SIBOORのキットマニュアルが原設計を参照。使用したSTLの版�
 
 - 今後のAUG CNC取付・組合せ公開：参照したChaoticlab V2.0のLICENSE.mdはCC BY-NC-ND 4.0です。改変した組合せの公開条件を確認する必要があります。現在の表示モデルにはCNC Kit V2の形状を取り込んでいません。
 
-- VORON Trident R2 / V2.4 R2の300/350：公式全体CADは250基準です。4種の全体再構成・書出し・STEP再読込検証が未完了です。TridentのR2交換ガントリーはSIBOORのZ機構を残すため代用しません。V2.4 350基準モデルは可動配線などを除外しているため標準機として代用しません。
+- VORON Trident R2 / V2.4 R2の300/350標準STEP：公式全体CADは250基準です。Trident 350の表示モデルは独立した筐体・3Z・ベッドと交換式ヘッドを組み合わせていますが、完成標準STEPのダウンロードには登録していません。300/350の完成標準STEPの再読込検証は未完了です。V2.4 350基準モデルは可動配線などを除外しているため、完成標準STEPとして代用しません。
 
 - Xol / Orbiter 2.0：取得LICENSE.txtはAttribution–NonCommercial–ShareAlikeを記載しますが、版番号が明記されていません。根拠なしにCCの版番号を決めません。
 
@@ -217,7 +217,24 @@ SIBOORのキットマニュアルが原設計を参照。使用したSTLの版�
 作者：CannedBass（原案: Andrew Ellis）
 配布元：https://github.com/VoronDesign/VoronUsers/tree/8e5067f4f6457da8a552983dd210ec48c40be2ca/printer_mods/CannedBass/Trident_Bed_Fans
 版：8e5067f4f6457da8a552983dd210ec48c40be2ca / 5015_Bed_Fan_Mount_Trident.step SHA256: 6b9c20ce3fddab6870f77e9c6dbf0d2e5a0cf7391931c0537e8d0299966c1717
-適用範囲：SIBOOR Trident 350のベッド支持フレームに5015ブロワー2基を追加。
+適用範囲：SIBOOR / VORON Trident 350のベッド支持フレームに5015ブロワー2基を追加。
 ライセンス：GPL-3.0
-変更：原本のファン・印刷マウント・ねじ・インサートを配置。キット由来のM3 Tナットを追加し、ベッドのZ移動へ登録。
+変更：作者の装着写真に合わせて吸入口を下へ向け、機種ごとの取付面に配置。M3 Tナットを追加し、ベッドのZ移動へ登録。装着時のZ表示範囲は0〜230 mm。
 原文：../site/licenses/trident_bedfans/LICENSE.md
+
+## 部品単体の参考CAD
+
+ライブラリの各モデルに原本URL・commit（ある場合）・取得ファイル名・SHA256・配布条件を記載します。プリンターへの組付けが未確認の部品も単体で表示します。
+
+- Trianglelab: Dragon ACE HF / Volcano、Rapido ACE HF / UHF-MZE。メーカー配布の本体参考CAD。
+- Phaetus: Dragonfly BMS 6/7フィン。取得commit 791f6e2131595211c33c55ab37f44f84d7247c46。READMEはpersonal use only / commercial use prohibited。
+- E3D製品参考CAD: Revo Voron、Revo Voron PZ・コントローラー。Revo MicroはPrintables model 717580の配布参考CAD（CC BY-NC-ND 4.0）。
+- Slice Engineering: Copperhead screw / groove mount。配布元と取得版を各モデルに記載。
+- Bondtech: LGX Lite Simplified V6。本体参考CAD。
+- Annex Engineering: Sherpa Mini Release 2 Rev1。独自EULAを個別に保持し、K frontとShort/Long idlerを選択。
+
+単体ライブラリの変換は、ソリッドの寸法・体積を保持した表示用変換です。専用マウントのない部品を組付け済みとして表示しません。
+
+## Galileo 2 / G2E 単体
+
+作者：JaredC01。取得commit 98f8a37944d7277cd37231776400553cc402219f。配布元 https://github.com/JaredC01/Galileo2 。GPL-3.0（原文：../site/licenses/galileo2/LICENSE）。標準PTFE入口・3穴チェーンアンカーを選択し、CAN基板は省略。SB/CNCへの取付には未解決の接触があるため、単体ライブラリのみへ登録。

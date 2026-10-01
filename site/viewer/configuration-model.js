@@ -19,7 +19,7 @@ export function choicesFor(catalog,variant,dimension){
 }
 
 export function importedVariant(catalog,data){
- if(data.machine&&data.machine!=='siboor_trident_350')throw Error('この構成は別のマシン用です。');
+ if(data.machine&&data.machine!==(catalog.machine_id||'siboor_trident_350'))throw Error('この構成は別のマシン用です。');
  const id=data.configuration||data.id;
  const variant=catalog.variants.find(v=>v.id===id);
  if(!variant)throw Error('この構成のCADは登録されていません。');

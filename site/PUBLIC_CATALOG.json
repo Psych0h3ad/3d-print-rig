@@ -1,5 +1,5 @@
 {
-  "viewer_version": "2026-10-01-public-viewer-4",
+  "viewer_version": "2026-10-01-public-viewer-5",
   "sources": [
     {
       "id": "siboor_trident",
@@ -43,11 +43,12 @@
       "author": "VoronDesign",
       "commit": "a8628f48546948ce1fc15511b7765b7f31f80722",
       "url": "https://github.com/VoronDesign/Voron-Trident/tree/a8628f48546948ce1fc15511b7765b7f31f80722",
-      "scope": "R2 XYガントリー350への置換。SIBOORのZ機構は残っています。",
+      "scope": "独立した標準Trident 350の筐体・フレーム・3Z・ベッド・パネル、および6 mm XYガントリー。SIBOORのR2ガントリー交換にも使用。",
       "license": "GPL-3.0",
-      "changes": "配置・表示用三角形化・配色の調整。機種ごとの変更履歴を検証記録に保存。",
+      "changes": "公式250 mm CADの剛体部品を再配置。押出材・パネル・ベッドを350 mm寸法へ延長し、サイズ別の印刷部品を選択。Zレールとステッパーは原寸。",
       "license_url": "../licenses/voron_trident/LICENSE",
-      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "version": "CAD/contents/trident_assembly.step / SHA256 416eda4e9212b894ed6f78ad3a6af55757115ebfcc4c18db933743d97dd48ccf"
     },
     {
       "id": "voron_v24",
@@ -200,13 +201,13 @@
       "repository": "Annex-Engineering/Sherpa_Mini-Extruder",
       "author": "Anlin / Annex Engineering",
       "commit": "e95e98dcb83f523c33f022acfd5be4893082ae3c",
-      "version": "原設計の参考commit。使用形状はXol Assembly Guide 20240615内蔵版（XOL_SOURCE_FILES.jsonのSHA256）。Annex適用版は未照合。",
+      "version": "r16: Xol Assembly Guide 20240615。Release 2 Rev1: CAD/sherpa_mini_release_2_rev1.STEP / SHA256 4191b448e17622d4d29d95c8d5237f4a4f4c74aef5d128862d2f7b83e5192ea2",
       "url": "https://github.com/Annex-Engineering/Sherpa_Mini-Extruder/tree/e95e98dcb83f523c33f022acfd5be4893082ae3c",
       "license": "ANNEX ENGINEERING HARDWARE AND SOFTWARE EULA（別条件）",
       "license_url": "../licenses/annex_license/LICENSE.md",
-      "scope": "Xolに含まれるSherpa Miniの原作者クレジット。参考commitから形状を追加取得していません。",
-      "changes": "Xol由来の形状を配置・表示用三角形化・配色。",
-      "notice": "原設計は独自の非商用ライセンスを参照します。XolのCCと一括扱いせず、組込み版の適用条件・再配布条件を公開前に照合します。参照したライセンス版: 3d70dee4f4bbef3ab149159d68260d5b848d1152"
+      "scope": "Xol内蔵r16と、AnnexのRelease 2 Rev1 / a3 r17（Short/Long idler・K front）の押出機本体・モーター・内部部品。",
+      "changes": "取付穴軸に合わせた剛体配置。前面・アームの代替部品を分離。対応ホットエンドごとに参考PTFEの端面を調整。",
+      "notice": "Annexの独自EULAを個別に保持します。CAN基板・専用ブラケットは含みません。PTFEの端面は取付プレビューであり、製作用の切断長を指定していません。"
     },
     {
       "id": "dragon_st",
@@ -262,8 +263,19 @@
       "license_url": "../licenses/trident_bedfans/LICENSE.md",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
       "version": "5015_Bed_Fan_Mount_Trident.step SHA256: 6b9c20ce3fddab6870f77e9c6dbf0d2e5a0cf7391931c0537e8d0299966c1717",
-      "changes": "原本のファン・印刷マウント・ねじ・インサートを配置。キット由来のM3 Tナットを追加し、ベッドのZ移動へ登録。",
-      "notice": "ビューアーのZ移動0〜230 mmとドア0°・90°・110°で配置を確認。配線とKlipperマクロは含みません。"
+      "changes": "作者の装着写真に合わせ、ファン・マウント・固定具一式を反転して吸入口を下へ配置。M3 Tナットを追加。通常TridentとSIBOORの取付梁それぞれに位置合わせ。",
+      "notice": "ベッドに追従。装着時のZ表示範囲は0〜230 mm。取付・下降経路をCADで確認。配線とKlipperマクロは含みません。"
+    },
+    {
+      "id": "native_component_library",
+      "label": "ホットエンド・押出機の部品CAD",
+      "author": "Trianglelab / Phaetus / E3D reference sources / Slice Engineering / Bondtech / Annex Engineering",
+      "url": "https://psych0h3ad.github.io/3d-print-rig/viewer/components.html",
+      "scope": "部品単体の参考CAD。原本ソリッドの寸法・体積を保持。対応マウントが確認できた構成とは別に表示。",
+      "license": "部品ごとの配布条件をライブラリに表示。原本のURL・版・SHA256を各モデルで案内。",
+      "changes": "原本CADを形状ごとに読み込み、表示用三角形化・剛体回転・配色。メーカー部品の形状変更なし。",
+      "version": "2026-10-01-components-1",
+      "notice": "単体CADの登録は、SB・Xolへの取付互換性の保証ではありません。Revo MicroはPrintablesで配布された参考CADです。"
     }
   ],
   "defaults": [
@@ -288,5 +300,5 @@
       "release_verified": true
     }
   ],
-  "model_source_url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v4/viewer-sources.zip"
+  "model_source_url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v5/viewer-sources.zip"
 }

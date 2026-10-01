@@ -13,7 +13,7 @@ export class AccessorySelection{
   this.selected=new Set(ids);this.refresh();this.update();
  }
  refresh(){
-  for(const [id,asset] of this.loaded){asset.root.userData.headModule=false;asset.root.position.set(0,0,0);asset.root.visible=this.selected.has(id)}
+  for(const [id,asset] of this.loaded){const p=this.catalog.accessories.find(row=>row.id===id).translation_mm||[0,0,0];asset.root.userData.headModule=false;asset.root.position.set(p[0]/1000,p[2]/1000,-p[1]/1000||0);asset.root.visible=this.selected.has(id)}
  }
  saved(){return {accessories:[...this.selected]}}
 }

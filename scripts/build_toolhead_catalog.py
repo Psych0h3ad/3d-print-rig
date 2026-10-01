@@ -104,7 +104,7 @@ def main():
                     source_sha256=hashlib.sha256(source.read_bytes()).hexdigest(),
                     geometry_operation='Select original head nodes and copy their geometry buffers unchanged',
                     parts=[dict(key=p['key'], name=p['name'], bounds_mm=p['bounds_mm'],
-                                appearance_role=roles.get(p['key'])) for p in parts])
+                                appearance_role=roles.get(p['key']),motion=p.get('motion','xy')) for p in parts])
     (destination/'sb_stock.json').write_text(json.dumps(metadata, ensure_ascii=False, indent=2), encoding='utf8')
     head = copy.deepcopy(catalog)
     head['schema'] = '3d-print-rig-toolheads-v1'

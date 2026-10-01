@@ -32,8 +32,12 @@ def main():
         'XOL_MOD.json', 'Xol_SherpaMini_Rapido2UHF_AWD9.glb',
         'machines/siboor_v24_350/assembly_manifest.json',
         'machines/siboor_v24_350/machine_profile.json', 'machines/siboor_v24_350/model.glb',
+        'machines/voron_trident_350/assembly_manifest.json', 'machines/voron_trident_350/model.glb',
+        'machines/voron_trident_350/machine_profile.json', 'machines/voron_trident_350/configurations.json',
+        'COMPONENT_LIBRARY.json',
     }
-    for asset in catalog['assets'].values():
+    library=json.loads(safe_source(source,'COMPONENT_LIBRARY.json').read_text(encoding='utf8'))
+    for asset in list(catalog['assets'].values())+list(library['assets'].values()):
         for key in ('meta', 'glb'):
             name = asset[key]
             expected = '.json' if key == 'meta' else '.glb'

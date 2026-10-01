@@ -3,7 +3,7 @@ import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=bundle-v2';
 import {createV24Adapter} from './v24_adapter.mjs?v=interface-review-2';
-import {setupMachineNavigation} from './machines.js?v=machines-v1';
+import {setupMachineNavigation} from './machines.js?v=machines-v2';
 import {setupRenderExport} from './render-export.js?v=public-v5';
 import {setupPublicInfo} from './public-info.js?v=workbench-v1';
 setupMachineNavigation('siboor_v24_350');

@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {createTridentMotion} from '../site/viewer/trident-motion.mjs';
+const profile={machine_id:'voron_trident_350',kinematics:'trident',display_reference_xyz_mm:[175,175,0],display_limits_mm:{X:[0,350],Y:[0,350],Z:[0,250]}};
+const position=(x=0,y=0,z=0)=>({x,y,z,clone(){return position(this.x,this.y,this.z)},set(x,y,z){Object.assign(this,{x,y,z})}});
+const rows=[['bed','z'],['fuse','z'],['guide_block','z'],['leadnut','z'],['rail','fixed'],['motor','fixed'],['head','xy'],['beam','y'],['tube','reference_flexible']].map(([key,motion])=>({key,motion}));
+const meshes=rows.map(row=>({isMesh:true,userData:{part_key:row.key},position:position(),visible:true}));
+const motion=createTridentMotion(profile);motion.register({traverse:fn=>meshes.forEach(fn)},{parts:rows});
+motion.setPose({x:250,y:200,z:150});
+for(const key of ['bed','fuse','guide_block','leadnut'])assert.equal(meshes.find(m=>m.userData.part_key===key).position.y,-.15);
+for(const key of ['rail','motor']){const p=meshes.find(m=>m.userData.part_key===key).position;assert.deepEqual([p.x,p.y,p.z],[0,0,0]);}
+assert.equal(meshes[6].position.x,.075);assert.equal(meshes[6].position.z,-.025);assert.equal(meshes[7].position.x,0);assert.equal(meshes[7].position.z,-.025);assert.equal(meshes[8].visible,false);
+motion.setPose({x:175,y:175,z:0});assert(meshes[8].visible);assert.equal(meshes[0].position.y,0);
+assert.equal(motion.setPose({x:500,y:-20,z:300}).z,250);
+assert.throws(()=>motion.setPose({x:'bad',y:0,z:0}));
+assert.throws(()=>createTridentMotion({...profile,machine_id:'siboor_trident_350'}));
+console.log('Independent Trident motion passed: bed, fuse, guide blocks and nuts follow Z; rails and motors remain fixed.');
