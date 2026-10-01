@@ -81,7 +81,7 @@
     {
       "path": "site/ASSET_BUNDLE.json",
       "bytes": 228,
-      "sha256": "cc53e4731926d7a74b9a4916dbcd80fb2a4f41b7d7ce045ab7d37aa127cfed3c"
+      "sha256": "032548e6db7b7d4ad5bd50a1ba4befc6766f2559dd248a52e8e14e2b4f6e9338"
     },
     {
       "path": "site/MOD_REGISTRY.json",
@@ -90,8 +90,8 @@
     },
     {
       "path": "site/PUBLIC_CATALOG.json",
-      "bytes": 16703,
-      "sha256": "84d4a9aad9dde23d406b1d886742b85c1672e9e55a106f45f057b2a6a67d0640"
+      "bytes": 16864,
+      "sha256": "78c220af5f7596137c005aa78e835b117ace408d667f06147205aace77ae0567"
     },
     {
       "path": "site/index.html",
