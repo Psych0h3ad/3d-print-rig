@@ -14,6 +14,9 @@ export function createV24Adapter(root,manifest,profile){
   let flexibleVisible=true;
   function setPose(pose){
     const v=['x','y','z'].map(k=>Number(pose[k]));if(v.some(x=>!Number.isFinite(x)))throw new Error('Non-finite pose');
+    for(const [i,a] of ['X','Y','Z'].entries()){
+      const [min,max]=profile.display_limits_mm[a];v[i]=Math.max(min,Math.min(max,v[i]));
+    }
     const delta=v.map((x,i)=>x-profile.display_reference_xyz_mm[i]);
     const atReference=delta.every(x=>Math.abs(x)<1e-5);
     for(const [key,o] of nodes){
@@ -25,7 +28,8 @@ export function createV24Adapter(root,manifest,profile){
   }
   function setFlexibleVisible(value){flexibleVisible=Boolean(value)}
   function setEnclosureVisible(value){
-    for(const [key,o] of nodes)if(records.get(key).group==='V24_Enclosure')o.visible=Boolean(value);
+    const surfaces=new Set(profile.panel_surface_keys||[]);
+    for(const [key,o] of nodes)if(records.get(key).panel_surface||surfaces.has(key))o.visible=Boolean(value);
   }
   function setPalette(palette){
     for(const [key,o] of nodes){

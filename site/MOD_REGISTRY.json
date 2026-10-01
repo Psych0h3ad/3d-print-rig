@@ -1,0 +1,15 @@
+{
+  "schema": "3d-print-rig-mod-registry-v1",
+  "hotends": [
+    {"id":"rapido2_uhf","label":"Rapido 2 UHF","interface":"four-bolt","mounts":{"stealthburner":{"asset":null,"label":"SIBOOR SB / Rapido 2 UHF"},"xol":{"asset":null,"label":"Xol / Rapido 2 UHF"}}},
+    {"id":"rapido2_hf","label":"Rapido 2 HF","interface":"four-bolt","mounts":{"stealthburner":{"asset":"sb_rapido2_hf","label":"SB / Rapido V2 HF · CW2"},"xol":{"asset":"xol_rapido2_hf","label":"Xol / Rapido V2 HF"}}},
+    {"id":"revo_voron","label":"Revo Voron","interface":"revo-voron","mounts":{"stealthburner":{"asset":"sb_revo_voron","label":"SB / Revo Voron · CW2"},"xol":{"asset":"xol_revo_voron","label":"Xol / Revo Voron"}}},
+    {"id":"dragon_sf","label":"Dragon SF / ST","interface":"dragon-m2.5-8mm-circle","mounts":{"stealthburner":{"asset":"sb_dragon_sf","label":"SB / Dragon · CW2"},"xol":{"asset":"xol_dragon_sf","label":"Xol / Dragon SF–HF"}}},
+    {"id":"dragon_hf","label":"Dragon HF","interface":"dragon-m2.5-8mm-circle","mounts":{"stealthburner":{"asset":"sb_dragon_hf","label":"SB / Dragon · CW2"},"xol":{"asset":"xol_dragon_hf","label":"Xol / Dragon SF–HF"}}},
+    {"id":"dragon_uhf","label":"Dragon UHF","interface":"dragon-m2.5-8mm-circle","mounts":{"xol":{"asset":"xol_dragon_uhf","label":"Xol / Dragon UHF"}}},
+    {"id":"v6","label":"E3D V6 · 1.75 mm","interface":"v6-groove-12mm","mounts":{"stealthburner":{"asset":"sb_v6","label":"SB / V6 · CW2"}}}
+  ],
+  "toolhead_extruders": {"stealthburner":["cw2"],"xol":["sherpa_mini","orbiter2"]},
+  "validation_scope": ["専用マウントのCADと部品の配置","6 / 9 mmベルト用キャリッジの選択"],
+  "not_simulated": ["全可動域の衝突判定","熱・流量・電気特性"]
+}

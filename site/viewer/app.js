@@ -1,13 +1,13 @@
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js';
+import {loadModel} from './model-loader.js?v=bundle-v2';
 import {setupLighting} from './lighting.js?v=disco-v2';
 import {setupFlexible} from './flexible.js?v=public-v5';
-import {setupConfigurations} from './configurations.js?v=combinations-v10';
+import {setupConfigurations} from './configurations.js?v=workbench-v1';
 import {setupAppearance} from './appearance.js?v=public-v5';
 import {setupRenderExport} from './render-export.js?v=public-v5';
-import {setupPublicInfo} from './public-info.js?v=public-v5';
+import {setupPublicInfo} from './public-info.js?v=workbench-v1';
 const $=s=>document.querySelector(s),scene=new THREE.Scene();
 scene.background=new THREE.Color('#edf1f5');
 const stage=$('#stage');
@@ -55,7 +55,7 @@ function registerModule(root,metadata){
 async function asset(id){
  if(assets.has(id))return assets.get(id);
  const spec=id==='xol'?{meta:'XOL_MOD.json',glb:'Xol_SherpaMini_Rapido2UHF_AWD9.glb'}:catalog.assets[id];
- const promise=Promise.all([fetch('../'+spec.meta).then(r=>{if(!r.ok)throw Error(spec.meta);return r.json()}),loadGLB('../'+spec.glb)]).then(([meta,g])=>{model.add(g.scene);g.scene.visible=false;const meshes=registerModule(g.scene,meta);const result={meta,root:g.scene,meshes};assetRoots.set(id,result);if(id==='xol'){xolMeta=meta;xolScene=g.scene}return result}).catch(e=>{assets.delete(id);throw e});assets.set(id,promise);return promise;
+ const promise=Promise.all([fetch('../'+spec.meta,{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error(spec.meta);return r.json()}),loadGLB('../'+spec.glb)]).then(([meta,g])=>{model.add(g.scene);g.scene.visible=false;const meshes=registerModule(g.scene,meta);const result={meta,root:g.scene,meshes};assetRoots.set(id,result);if(id==='xol'){xolMeta=meta;xolScene=g.scene}return result}).catch(e=>{assets.delete(id);throw e});assets.set(id,promise);return promise;
 }
 function showHead(){
  if(!activeConfig)return;const shown=$('#head').checked,removed=new Set(activeConfig.removed_stock_keys);
@@ -70,6 +70,7 @@ function showHead(){
 }
 async function installConfiguration(v){
  const required=[...new Set(v.modules.map(m=>m.id)),...(v.toolhead==='xol'?['xol']:[])];await Promise.all(required.map(asset));
+ const headLink=new URL('./toolheads.html',location.href);headLink.searchParams.set('configuration',v.id);$('#toolheadLink').href=headLink;
  stop();unfocus();activeConfig=v;installed=v.toolhead==='xol'?'xol':'stock';
  for(const a of assetRoots.values()){a.root.visible=false;a.root.position.set(0,0,0);for(const o of a.meshes)o.visible=true}
  groups[stockHeadGroup].position.copy(cadPoint(v.head_translation_mm));
@@ -162,7 +163,7 @@ async function loadGLB(url){
  throw last;
 }
 setupPublicInfo();
-Promise.all([fetch('../assembly_manifest.json').then(r=>r.json()),fetch('../flexible_routes.json').then(r=>r.json()),loadModel(new GLTFLoader(),'../SIBOOR_Trident_350.glb',p=>{$('#loading').textContent=p.total?'読み込み '+Math.round(p.loaded/p.total*100)+'%':'3Dモデルを読み込み中…'}),loadGLB('../Endstop_Mechanisms.glb'),fetch('../COLOR_OPTIONS.json').then(r=>r.json()),fetch('../ASSEMBLY_CONFIGURATIONS.json').then(r=>r.json()),fetch('../R2_ENDSTOP_REGISTRATION.json').then(r=>r.json())]).then(async([manifest,routes,g,endstops,colorOptions,configs,r2Meta])=>{
+Promise.all([fetch('../assembly_manifest.json',{cache:'no-cache'}).then(r=>r.json()),fetch('../flexible_routes.json',{cache:'no-cache'}).then(r=>r.json()),loadModel(new GLTFLoader(),'../SIBOOR_Trident_350.glb',p=>{$('#loading').textContent=p.total?'読み込み '+Math.round(p.loaded/p.total*100)+'%':'3Dモデルを読み込み中…'}),loadGLB('../Endstop_Mechanisms.glb'),fetch('../COLOR_OPTIONS.json',{cache:'no-cache'}).then(r=>r.json()),fetch('../ASSEMBLY_CONFIGURATIONS.json',{cache:'no-cache'}).then(r=>r.json()),fetch('../R2_ENDSTOP_REGISTRATION.json',{cache:'no-cache'}).then(r=>r.json())]).then(async([manifest,routes,g,endstops,colorOptions,configs,r2Meta])=>{
  registration=manifest.motion_preview.endstop_registration;catalog=configs;r2Registration=r2Meta;stockRows=manifest.parts;
  refX=registration.switches.X.cad_reference_display_coordinate_mm;refY=registration.switches.Y.cad_reference_display_coordinate_mm;
  const lookup=new Map(manifest.parts.map(r=>[r.key,r]));model=g.scene;model.add(endstops.scene);scene.add(model);

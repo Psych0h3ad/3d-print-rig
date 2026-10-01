@@ -1,5 +1,5 @@
 {
-  "viewer_version": "2026-10-01-public-viewer-1",
+  "viewer_version": "2026-10-01-public-viewer-2",
   "sources": [
     {
       "id": "siboor_trident",
@@ -58,7 +58,7 @@
       "url": "https://github.com/VoronDesign/Voron-2/tree/a192410e27ea345644ae5c4b29b4c9c40cbe1a73",
       "scope": "250の公式アセンブリから構築したV2.4 350基準モデル。",
       "license": "GPL-3.0",
-      "changes": "配置・表示用三角形化・配色の調整。機種ごとの変更履歴を検証記録に保存。",
+      "changes": "350 mm寸法への再配置。選択部品の重複を除き、スカート・ラッチ・固定具・ベッドの取付面を調整。",
       "license_url": "../licenses/voron_v24/LICENSE",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
     },
@@ -69,7 +69,7 @@
       "author": "VoronDesign",
       "commit": "8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b",
       "url": "https://github.com/VoronDesign/Voron-Stealthburner/tree/8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b",
-      "scope": "SBの追加ホットエンド取付、CW2修復用形状。",
+      "scope": "SBのRevo Voron・Rapido HF・Dragon SF/HF・V6用CW2マウント、前面本体、CW2修復用形状。",
       "license": "GPL-3.0",
       "changes": "配置・表示用三角形化・配色の調整。機種ごとの変更履歴を検証記録に保存。",
       "license_url": "../licenses/stealthburner/LICENSE",
@@ -82,7 +82,7 @@
       "author": "Armchair-Heavy-Industries",
       "commit": "c00b13ef851d38fef6e295e18296650e1ca50d7e",
       "url": "https://github.com/Armchair-Heavy-Industries/Xol-Toolhead/tree/c00b13ef851d38fef6e295e18296650e1ca50d7e",
-      "scope": "Xol本体、6/9 mmクランプ、Revo/Rapido取付、押出機マウント。",
+      "scope": "Xol本体、6/9 mmクランプ、Revo/Rapido/Dragon用マウント、Dragon UHF、押出機マウント。",
       "license": "CC BY-NC-SA 4.0（部品別例外あり）",
       "changes": "配置・表示用三角形化・配色の調整。機種ごとの変更履歴を検証記録に保存。",
       "license_url": "../licenses/xol/LICENSE",
@@ -207,6 +207,48 @@
       "scope": "Xolに含まれるSherpa Miniの原作者クレジット。参考commitから形状を追加取得していません。",
       "changes": "Xol由来の形状を配置・表示用三角形化・配色。",
       "notice": "原設計は独自の非商用ライセンスを参照します。XolのCCと一括扱いせず、組込み版の適用条件・再配布条件を公開前に照合します。参照したライセンス版: 3d70dee4f4bbef3ab149159d68260d5b848d1152"
+    },
+    {
+      "id": "dragon_st",
+      "label": "Phaetus Dragon SF / ST",
+      "repository": "Phaetus/Dragon-ST",
+      "author": "Phaetus",
+      "commit": "00bcd5c833634a5bf1db4af16baadc1ee57d254e",
+      "url": "https://github.com/Phaetus/Dragon-ST/tree/00bcd5c833634a5bf1db4af16baadc1ee57d254e",
+      "scope": "SB / Xolに対応するメーカー形状。",
+      "license": "README: personal use only / commercial use prohibited",
+      "license_url": "../licenses/dragon_st/README.md",
+      "license_sha256": "8c4d1a31bffe51d54a701fa47def2a76c812c414c979ba2c3fe195d5ebe0bfb1",
+      "version": "取得STEP SHA256: c04c6e0b9840307214a64afa795ca76d4a479e9dba802c01ed21273f7f2e6ef2",
+      "changes": "V6変換アダプターを除外し、専用4本ボルトのマウントに配置。表示用三角形化・部位別配色。"
+    },
+    {
+      "id": "dragon_hf",
+      "label": "Phaetus Dragon HF",
+      "repository": "Phaetus/Dragon-HF",
+      "author": "Phaetus",
+      "commit": "b2a8a226539c826e9543f87b136d7d26afa7cccf",
+      "url": "https://github.com/Phaetus/Dragon-HF/tree/b2a8a226539c826e9543f87b136d7d26afa7cccf",
+      "scope": "SB / Xolに対応するメーカー形状。",
+      "license": "README: personal use only / commercial use prohibited",
+      "license_url": "../licenses/dragon_hf/README.md",
+      "license_sha256": "8c4d1a31bffe51d54a701fa47def2a76c812c414c979ba2c3fe195d5ebe0bfb1",
+      "version": "取得STEP SHA256: 8e23c8a9f3c6f1d9d28d3691e87bbad11917efbcc957043b956ebd7817ef9a5a",
+      "changes": "V6変換アダプターを除外し、専用4本ボルトのマウントに配置。表示用三角形化・部位別配色。"
+    },
+    {
+      "id": "afterburner",
+      "label": "VORON Afterburner / E3D V6 CAD",
+      "repository": "VoronDesign/Voron-Afterburner",
+      "author": "VoronDesign / E3D",
+      "commit": "9ebb6bc38ac3a73d513c1d4beb0f88e9061c9073",
+      "url": "https://github.com/VoronDesign/Voron-Afterburner/tree/9ebb6bc38ac3a73d513c1d4beb0f88e9061c9073",
+      "scope": "公式アセンブリ内の1.75 mm V6本体、ノズル、ヒーター、ヒートブレーク。SB用マウントと組合せ。",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/afterburner/LICENSE",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "version": "Afterburner_Assembly.step SHA256: 00613b8e448d663dee0673cfb1a9c2b826e33fc4e6dfdb56ba88d2e28e664eb5",
+      "changes": "V6構成部品を抽出し、SBの取付規格に配置。表示用三角形化・配色。"
     }
   ],
   "defaults": [
@@ -231,5 +273,5 @@
       "release_verified": true
     }
   ],
-  "model_source_url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v1/viewer-sources.zip"
+  "model_source_url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v2/viewer-sources.zip"
 }

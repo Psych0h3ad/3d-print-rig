@@ -20,8 +20,8 @@
     },
     {
       "path": ".gitignore",
-      "bytes": 398,
-      "sha256": "a5dc5798d224b109898391361a39f465e9a6148be7eada635c7253aab93758bc"
+      "bytes": 440,
+      "sha256": "c8cd4d6bc8ba22e6ae9d5cba74d40d3eece3628925a10acc944d33e46ccefdda"
     },
     {
       "path": "LICENSE",
@@ -35,8 +35,13 @@
     },
     {
       "path": "docs/THIRD_PARTY_NOTICES.md",
-      "bytes": 12177,
-      "sha256": "d134dd45cea0bfa05e84458d6656a85cdfc6029f9232d219fd39dfd6bf492f33"
+      "bytes": 14018,
+      "sha256": "9324f4274f1990520117e4785a69685e2d9341cfd574827d8457263e6543be4b"
+    },
+    {
+      "path": "scripts/build_configuration_catalog.py",
+      "bytes": 5779,
+      "sha256": "700c204ff644311ceb241e0ba8217fc7fda22809a4fa4f62cc8128a2f3062c3a"
     },
     {
       "path": "scripts/build_site.py",
@@ -44,14 +49,29 @@
       "sha256": "02fe1cc9651ab1175362562a679f55dceb8179171917f427d85ca63b978fd9b9"
     },
     {
+      "path": "scripts/build_toolhead_catalog.py",
+      "bytes": 7179,
+      "sha256": "feb244cd6d3174c1f894d595e2b7a0f2bdb9baceba06220e0ab7d8fc0d04966a"
+    },
+    {
       "path": "scripts/check_repository.py",
-      "bytes": 4656,
-      "sha256": "c9457ecf01c40fdb970aa9fbf948342fe5e584ff4e5e7680a9680a81d6539166"
+      "bytes": 4845,
+      "sha256": "cdf0154580b92b7ff7d078ca0b41fd401b6ab1a22bb8c53e6e3667cc09408777"
     },
     {
       "path": "scripts/import_local_assets.py",
-      "bytes": 2232,
-      "sha256": "ab62b002715afa66918445ece1d8ed7e754c8627b15d656de53673bdfcd6296d"
+      "bytes": 2325,
+      "sha256": "22d256091e23826f819a88b70ead7fb81ebdddccb164f6e78a7ee7064d44decb"
+    },
+    {
+      "path": "scripts/test_configurations.mjs",
+      "bytes": 2689,
+      "sha256": "e00d5d610899a760f71ec56a8cddf8cab41dbf1458276a8df42a40c0e8bada0c"
+    },
+    {
+      "path": "scripts/test_v24_adapter.mjs",
+      "bytes": 2707,
+      "sha256": "209ff238b1daa9784ed8b7474a77ec2e72dfe808f7f17a38a2db4beb1cf966c6"
     },
     {
       "path": "scripts/update_inventory.py",
@@ -60,18 +80,28 @@
     },
     {
       "path": "site/ASSET_BUNDLE.json",
-      "bytes": 227,
-      "sha256": "1437e93f021e549873e7ca181ed1216985a228df3de7fe875c378b3c98adf490"
+      "bytes": 228,
+      "sha256": "cc53e4731926d7a74b9a4916dbcd80fb2a4f41b7d7ce045ab7d37aa127cfed3c"
+    },
+    {
+      "path": "site/MOD_REGISTRY.json",
+      "bytes": 1740,
+      "sha256": "d8e12a50b8e07757f35261c4aaeee0f6fad50d476ae104f8bc278257557b3f28"
     },
     {
       "path": "site/PUBLIC_CATALOG.json",
-      "bytes": 14018,
-      "sha256": "f20bcb23b7cf9dff7b44c6405cf143eb597db9d1992eb18e6c03390f061cdd16"
+      "bytes": 16703,
+      "sha256": "84d4a9aad9dde23d406b1d886742b85c1672e9e55a106f45f057b2a6a67d0640"
     },
     {
       "path": "site/index.html",
       "bytes": 334,
       "sha256": "bb09e96a90880e9ee9eed859d6f2b11c55f4f563f11c185cc9387c7dea3ba0d6"
+    },
+    {
+      "path": "site/licenses/afterburner/LICENSE",
+      "bytes": 35149,
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
     },
     {
       "path": "site/licenses/annex_license/LICENSE.md",
@@ -92,6 +122,16 @@
       "path": "site/licenses/disco/LICENSE.md",
       "bytes": 35149,
       "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "site/licenses/dragon_hf/README.md",
+      "bytes": 1093,
+      "sha256": "8c4d1a31bffe51d54a701fa47def2a76c812c414c979ba2c3fe195d5ebe0bfb1"
+    },
+    {
+      "path": "site/licenses/dragon_st/README.md",
+      "bytes": 1093,
+      "sha256": "8c4d1a31bffe51d54a701fa47def2a76c812c414c979ba2c3fe195d5ebe0bfb1"
     },
     {
       "path": "site/licenses/fumepack/LICENSE",
@@ -130,8 +170,8 @@
     },
     {
       "path": "site/viewer/app.js",
-      "bytes": 23446,
-      "sha256": "e45310f1af9ac3686d03926aad92dbcb82101e5d40d19ccb26b23d5e33f89ecf"
+      "bytes": 23711,
+      "sha256": "cd14900cc5bac9f4624be7fca918bd274b6b6173f1ed767887b32cda7c55ee15"
     },
     {
       "path": "site/viewer/appearance.js",
@@ -140,18 +180,23 @@
     },
     {
       "path": "site/viewer/asset-availability.js",
-      "bytes": 2293,
-      "sha256": "a2aa2bf476404c268aedd1d56857b1e46ecd69d577d1957539258fa6cf2a680d"
+      "bytes": 2342,
+      "sha256": "b7dcb15ff1669dba6439b2ea650522586af0cbd230d950d2269b0c333ade22ed"
     },
     {
       "path": "site/viewer/bootstrap.js",
-      "bytes": 530,
-      "sha256": "1ec81ae3ad1445fc65fa702e7fc4c7dc5eff4c9319ab87611961eca6dc8e3d6f"
+      "bytes": 542,
+      "sha256": "0e36e0de161bfaf458a25f08ae890d6f8eac98fb89646e865d2fd1aca9b58ad7"
+    },
+    {
+      "path": "site/viewer/configuration-model.js",
+      "bytes": 1244,
+      "sha256": "6de127439d1d145ee0d6510cbb1e1ad3a2d3edd11739926db9311ff34064b1d4"
     },
     {
       "path": "site/viewer/configurations.js",
-      "bytes": 2851,
-      "sha256": "c515148722b765935f9265fd6cd8f3d03e79f4bcca91a6647e5e0a21d27fad47"
+      "bytes": 4289,
+      "sha256": "25d89958a44cd0aadaf736cc057c10c59a2e10f99d0d85113d7a6b9c985fddb8"
     },
     {
       "path": "site/viewer/flexible.js",
@@ -159,9 +204,14 @@
       "sha256": "2c603b7d1a80dbee4ac75fde1dadf62e6031d0efea3de1b8acc1dbb2b28fae24"
     },
     {
+      "path": "site/viewer/head-assembly.js",
+      "bytes": 618,
+      "sha256": "9b2d169ec4c1ab62d30ac8fff46d19f6a61a904010fdc66dfa1054c2690e1ea9"
+    },
+    {
       "path": "site/viewer/index.html",
-      "bytes": 6749,
-      "sha256": "e2b434d9d54998869cb27b0dd1b77447569e944f36b737d8d4441c9885cee23e"
+      "bytes": 7292,
+      "sha256": "7dcc6c32e07c7a87ca71ae6bc22f5340673b65d4c0c195ab7f5865438e670824"
     },
     {
       "path": "site/viewer/lighting.js",
@@ -175,13 +225,13 @@
     },
     {
       "path": "site/viewer/model-loader.js",
-      "bytes": 1232,
-      "sha256": "08911793735f6eee2a69742eeab9b59ef319f664fe85137c15a895755212bc50"
+      "bytes": 1408,
+      "sha256": "8dfa2d3c909a9e7683b51b0b4a0207812209951e77b1eb2d6044de88d9b4a405"
     },
     {
       "path": "site/viewer/public-info.js",
-      "bytes": 3398,
-      "sha256": "2f219f333d0daa0dc5f4f4bbe237284074ee974957c1b32c9b91b7429dfdd141"
+      "bytes": 3477,
+      "sha256": "553d17ed54e57ccf17078b15f18bada8693cdd094e9d7865a2976d237577a9fc"
     },
     {
       "path": "site/viewer/render-export.js",
@@ -189,24 +239,39 @@
       "sha256": "178a0775689bf43e6a4f97209566670aad4feac037a9483ca9d2d629081e4f77"
     },
     {
+      "path": "site/viewer/toolheads.css",
+      "bytes": 1352,
+      "sha256": "761fbc3bb968c74c156b662f1b6908ecc5b094a4afbcb712c3acb1bf3a0ca72f"
+    },
+    {
+      "path": "site/viewer/toolheads.html",
+      "bytes": 3566,
+      "sha256": "865b214fb658f79fe52759dc14ebaa0fdd7b4ba4006f8dba91a2ca5d8e08c7b6"
+    },
+    {
+      "path": "site/viewer/toolheads.js",
+      "bytes": 9253,
+      "sha256": "cddcd5fd604b8c47a43119e5fbd1d1cc9684ae42f10a480bc929111302e7dc4b"
+    },
+    {
       "path": "site/viewer/v24-app.js",
-      "bytes": 8116,
-      "sha256": "27ea42c33ff8e975cd3f322c40d8399669c0424228926adaf00eedd5e9311bbf"
+      "bytes": 8253,
+      "sha256": "4976692abdaddbda4bf524d6813726b3a608d8f7246d2be16aad8d633fa79c7c"
     },
     {
       "path": "site/viewer/v24-bootstrap.js",
-      "bytes": 325,
-      "sha256": "9bad82a9f0e89dd86839d2b7fa1dd00923bad82198e023c6ae8547414fd99b0a"
+      "bytes": 340,
+      "sha256": "c92530a1261a35613317240ea5d8f06b6bb920cb1af8642796b220c3af3fb098"
     },
     {
       "path": "site/viewer/v24.html",
-      "bytes": 4059,
-      "sha256": "79d61b9a5569ae694ddd7194fc1cbdfd675f7ac064cb3353fed7b4d6d6f1a0c7"
+      "bytes": 4230,
+      "sha256": "9431e723ef097dc4ab7490bafa376a0445833cb4654afa10c599ad02c328f45c"
     },
     {
       "path": "site/viewer/v24_adapter.mjs",
-      "bytes": 2316,
-      "sha256": "a1f0e9b715e9db47eca5ad917796bfc36fa31306e2ce9e9d90abb0c3f9a90281"
+      "bytes": 2530,
+      "sha256": "cfd20323fd599ee6718fa6e10194afc6c4346d2dc36f4af3f7106cddb3803a60"
     },
     {
       "path": "site/viewer/vendor/BufferGeometryUtils.js",
@@ -255,8 +320,8 @@
     },
     {
       "path": "site/viewer/viewer.css",
-      "bytes": 7891,
-      "sha256": "01cd9b430b5cffcf00a2f1354b82aabdcaba089cd0e754bbe701f4264a381ee0"
+      "bytes": 8199,
+      "sha256": "9d158d32b759f0c32d02c678d106f7effd2add3338a4eb0121728a659aa67e7a"
     }
   ]
 }

@@ -181,3 +181,33 @@ SIBOORのキットマニュアルが原設計を参照。使用したSTLの版�
 - Xol / Orbiter 2.0：取得LICENSE.txtはAttribution–NonCommercial–ShareAlikeを記載しますが、版番号が明記されていません。根拠なしにCCの版番号を決めません。
 
 - Xol内蔵のSherpa Mini：原設計はANNEX ENGINEERING HARDWARE AND SOFTWARE EULAを参照します。XolのCCで一括再許諾しません。Xol Assembly Guide 20240615内蔵版の適用条件と、原作者のパーツを含めたビューアー配信条件が未照合です。
+
+## Phaetus Dragon SF / ST
+
+作者：Phaetus
+配布元・参考元：https://github.com/Phaetus/Dragon-ST/tree/00bcd5c833634a5bf1db4af16baadc1ee57d254e
+版：00bcd5c833634a5bf1db4af16baadc1ee57d254e / 取得STEP SHA256: c04c6e0b9840307214a64afa795ca76d4a479e9dba802c01ed21273f7f2e6ef2
+適用範囲：SB / Xolに対応するメーカー形状。
+ライセンス：README: personal use only / commercial use prohibited
+変更：V6変換アダプターを除外し、専用4本ボルトのマウントに配置。表示用三角形化・部位別配色。
+原文：../site/licenses/dragon_st/README.md
+
+## Phaetus Dragon HF
+
+作者：Phaetus
+配布元・参考元：https://github.com/Phaetus/Dragon-HF/tree/b2a8a226539c826e9543f87b136d7d26afa7cccf
+版：b2a8a226539c826e9543f87b136d7d26afa7cccf / 取得STEP SHA256: 8e23c8a9f3c6f1d9d28d3691e87bbad11917efbcc957043b956ebd7817ef9a5a
+適用範囲：SB / Xolに対応するメーカー形状。
+ライセンス：README: personal use only / commercial use prohibited
+変更：V6変換アダプターを除外し、専用4本ボルトのマウントに配置。表示用三角形化・部位別配色。
+原文：../site/licenses/dragon_hf/README.md
+
+## VORON Afterburner / E3D V6 CAD
+
+作者：VoronDesign / E3D
+配布元・参考元：https://github.com/VoronDesign/Voron-Afterburner/tree/9ebb6bc38ac3a73d513c1d4beb0f88e9061c9073
+版：9ebb6bc38ac3a73d513c1d4beb0f88e9061c9073 / Afterburner_Assembly.step SHA256: 00613b8e448d663dee0673cfb1a9c2b826e33fc4e6dfdb56ba88d2e28e664eb5
+適用範囲：公式アセンブリ内の1.75 mm V6本体、ノズル、ヒーター、ヒートブレーク。SB用マウントと組合せ。
+ライセンス：GPL-3.0
+変更：V6構成部品を抽出し、SBの取付規格に配置。表示用三角形化・配色。
+原文：../site/licenses/afterburner/LICENSE

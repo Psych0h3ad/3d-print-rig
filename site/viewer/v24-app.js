@@ -1,11 +1,11 @@
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js';
-import {createV24Adapter} from './v24_adapter.mjs';
+import {loadModel} from './model-loader.js?v=bundle-v2';
+import {createV24Adapter} from './v24_adapter.mjs?v=interface-review-2';
 import {setupMachineNavigation} from './machines.js?v=machines-v1';
 import {setupRenderExport} from './render-export.js?v=public-v5';
-import {setupPublicInfo} from './public-info.js?v=public-v5';
+import {setupPublicInfo} from './public-info.js?v=workbench-v1';
 setupMachineNavigation('siboor_v24_350');
 setupPublicInfo();
 const $=s=>document.querySelector(s),stage=$('#stage'),status=$('#status');
@@ -13,7 +13,7 @@ const assetRoot='../machines/siboor_v24_350/';
 const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));stage.append(renderer.domElement);
 renderer.setClearColor('#edf1f4');renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.25;
 const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(38,1,.005,10);camera.position.set(.98,.83,1.4);
-const orbit=new OrbitControls(camera,renderer.domElement);orbit.target.set(0,.22,0);orbit.enableDamping=false;
+const orbit=new OrbitControls(camera,renderer.domElement);orbit.target.set(0,.22,0);orbit.enableDamping=false;orbit.update();
 scene.add(new THREE.HemisphereLight('#ffffff','#8996a0',2));
 for(const [position,power] of [[[.6,1,-.8],3],[[-.8,.5,.3],2],[[.2,.8,.7],2]]){const l=new THREE.DirectionalLight('#ffffff',power);l.position.set(...position);scene.add(l)}
 const grid=new THREE.GridHelper(1.2,24,'#adbcc6','#d2dce2');grid.position.y=-.096;scene.add(grid);
@@ -21,8 +21,8 @@ let adapter,profile,pose,renderPending=false,frames=0;
 function render(){if(renderPending)return;renderPending=true;requestAnimationFrame(()=>{renderPending=false;renderer.render(scene,camera);document.body.dataset.renderedFrames=++frames})}
 function resize(){const b=stage.getBoundingClientRect();renderer.setSize(b.width,b.height,false);camera.aspect=b.width/b.height;camera.updateProjectionMatrix();render()}
 orbit.addEventListener('change',render);new ResizeObserver(resize).observe(stage);
-for(const [id,pos] of [['iso',[.98,.83,1.4]],['front',[0,.24,1.65]],['top',[.001,1.8,.001]]])$('#'+id).onclick=()=>{camera.position.set(...pos);orbit.target.set(0,.22,0);orbit.update();render()};
-$('#focusHead').onclick=()=>{if(!adapter)return;const box=new THREE.Box3();for(const [key,node] of adapter.nodes)if(adapter.records.get(key).group===profile.head_group)box.expandByObject(node);if(box.isEmpty())return;box.getCenter(orbit.target);camera.position.copy(orbit.target).add(new THREE.Vector3(.15,.08,.3));orbit.update();document.body.dataset.focusTarget=JSON.stringify(orbit.target.toArray());render()};
+for(const [id,pos] of [['iso',[.98,.83,1.4]],['front',[0,.24,1.65]],['top',[0,1.8,0]]])$('#'+id).onclick=()=>{camera.up.set(0,id==='top'?0:1,id==='top'?-1:0);camera.position.set(...pos);orbit.target.set(0,.22,0);orbit.update();render()};
+$('#focusHead').onclick=()=>{if(!adapter)return;const box=new THREE.Box3();for(const [key,node] of adapter.nodes)if(adapter.records.get(key).group===profile.head_group)box.expandByObject(node);if(box.isEmpty())return;camera.up.set(0,1,0);box.getCenter(orbit.target);camera.position.copy(orbit.target).add(new THREE.Vector3(.15,.08,.3));orbit.update();document.body.dataset.focusTarget=JSON.stringify(orbit.target.toArray());render()};
 function applyPose(){if(!adapter)return;
  pose=adapter.setPose({x:Number($('#x').value),y:Number($('#y').value),z:Number($('#z').value)});
  for(const a of ['x','y','z'])$('#'+a+'v').textContent=Number($('#'+a).value).toFixed(1)+' mm';
@@ -33,7 +33,7 @@ function applyPose(){if(!adapter)return;
  $('#motionStatus').textContent='ベッド固定 · 4ZガイドとガントリーがZ＋へ追従';render();
 }
 try{
- const getJSON=async name=>{const r=await fetch(assetRoot+name);if(!r.ok)throw Error(name);return r.json()};
+ const getJSON=async name=>{const r=await fetch(assetRoot+name,{cache:'no-cache'});if(!r.ok)throw Error(name);return r.json()};
  const [manifest,machine,gltf]=await Promise.all([getJSON('assembly_manifest.json'),getJSON('machine_profile.json'),loadModel(new GLTFLoader(),assetRoot+'model.glb')]);
  profile=machine;scene.add(gltf.scene);adapter=createV24Adapter(gltf.scene,manifest,profile);
  const protectedMaterials=[],originals=new Map();
@@ -73,5 +73,5 @@ try{
  document.body.dataset.xyBeltWidthMm=profile.xy_belt_width_mm;document.body.dataset.zBeltWidthMm=profile.z_belt_width_mm;
  $('#beltWidths').textContent=`XYベルト ${profile.xy_belt_width_mm} mm ／ Zベルト ${profile.z_belt_width_mm} mm`;
  const url=new URL(location.href);url.searchParams.set('configuration',profile.available_configurations[0].id);history.replaceState(null,'',url);
- status.textContent=manifest.parts.length.toLocaleString()+' 部品 · 固定ベッド / 4Zガントリー';applyPose();resize();
+ $('#badge').textContent='V2.4 R2 / 350 · '+manifest.parts.length.toLocaleString()+' PARTS';status.hidden=true;applyPose();resize();
 }catch(e){status.textContent='読込エラー: '+e.message;document.body.dataset.error=e.message;console.error(e)}

@@ -21,7 +21,9 @@
 /site/*.json
 !/site/PUBLIC_CATALOG.json
 !/site/ASSET_BUNDLE.json
+!/site/MOD_REGISTRY.json
 /site/modules/
+/site/toolheads/
 /site/machines/
 /site/defaults/
 /site/exports/

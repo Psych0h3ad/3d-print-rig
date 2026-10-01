@@ -28,6 +28,7 @@ def main():
         'assembly_manifest.json', 'flexible_routes.json', 'SIBOOR_Trident_350.glb',
         'Endstop_Mechanisms.glb', 'COLOR_OPTIONS.json', 'ASSEMBLY_CONFIGURATIONS.json',
         'R2_ENDSTOP_REGISTRATION.json', 'DISCO_MOD.json', 'Disco_on_a_Stick_XXL_350.glb',
+        'TOOLHEAD_CONFIGURATIONS.json', 'toolheads/sb_stock.glb', 'toolheads/sb_stock.json',
         'XOL_MOD.json', 'Xol_SherpaMini_Rapido2UHF_AWD9.glb',
         'machines/siboor_v24_350/assembly_manifest.json',
         'machines/siboor_v24_350/machine_profile.json', 'machines/siboor_v24_350/model.glb',
