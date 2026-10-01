@@ -5,6 +5,6 @@ if(requested&&requested!=='siboor_trident_350'&&machinePage(requested)){
  const next=new URL(machinePage(requested),location.href);next.search=location.search;location.replace(next);
 }else{
  setupMachineNavigation('siboor_trident_350');
- if(await machineAssetsAvailable('siboor_trident_350'))await import('./app.js?v=mounts-v5');
+ if(await machineAssetsAvailable('siboor_trident_350'))await import('./app.js?v=frame-mods-v1');
  else await showMissingAssets();
 }

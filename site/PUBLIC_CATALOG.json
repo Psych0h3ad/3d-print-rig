@@ -1,5 +1,5 @@
 {
-  "viewer_version": "2026-10-01-public-viewer-5",
+  "viewer_version": "2026-10-02-public-viewer-6",
   "sources": [
     {
       "id": "siboor_trident",
@@ -109,9 +109,9 @@
       "author": "bartlammers / BLAMM!（VoronDesign/Voron-Hardware）",
       "commit": "5e5fca5761380576a8bb77f7301cdee90afa0e6e",
       "url": "https://github.com/VoronDesign/Voron-Hardware/tree/5e5fca5761380576a8bb77f7301cdee90afa0e6e",
-      "scope": "基板・2020ブラケット。左右に2本、50灯。",
+      "scope": "SIBOOR / VORON Trident 350とVORON V2.4 350の上部側面2020フレームに取り付ける照明。",
       "license": "GPL-3.0",
-      "changes": "配置・表示用三角形化・配色の調整。機種ごとの変更履歴を検証記録に保存。",
+      "changes": "公式PCBと2020ブラケットを固定フレームへ配置。V2.4は上部フレームが30 mm高いため取付をZ+30 mm。定性的なRGB発光・明るさ・暗室表示。",
       "license_url": "../licenses/disco/LICENSE.md",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
     },
@@ -276,6 +276,20 @@
       "changes": "原本CADを形状ごとに読み込み、表示用三角形化・剛体回転・配色。メーカー部品の形状変更なし。",
       "version": "2026-10-01-components-1",
       "notice": "単体CADの登録は、SB・Xolへの取付互換性の保証ではありません。Revo MicroはPrintablesで配布された参考CADです。"
+    },
+    {
+      "id": "sturdy_handles",
+      "label": "Sturdy Handles · M5原設計",
+      "repository": "VoronDesign/VoronUsers",
+      "author": "jeoje",
+      "commit": "8e5067f4f6457da8a552983dd210ec48c40be2ca",
+      "url": "https://github.com/VoronDesign/VoronUsers/tree/8e5067f4f6457da8a552983dd210ec48c40be2ca/printer_mods/jeoje/Sturdy_Handles",
+      "scope": "3機種の上部左右2020フレームに固定するハンドル本体2個。締結部品の形状は省略。M3派生版とは別設計。",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/sturdy_handles/LICENSE.md",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "version": "V2.4 Handles v9 / mod_version 1 / sturdy_handles.step SHA256: a1b006652e8a1005e7b4871fc089cb373136cacf3cd197d80b76f946c644caec",
+      "changes": "Trim 2.6133 mm3 per handle at the native VORON 2020 profile contact lips; other native geometry retained. No load capacity simulation."
     }
   ],
   "defaults": [
@@ -300,5 +314,5 @@
       "release_verified": true
     }
   ],
-  "model_source_url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v5/viewer-sources.zip"
+  "model_source_url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v6/viewer-sources.zip"
 }

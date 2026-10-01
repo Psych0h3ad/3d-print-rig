@@ -238,3 +238,9 @@ SIBOORのキットマニュアルが原設計を参照。使用したSTLの版�
 ## Galileo 2 / G2E 単体
 
 作者：JaredC01。取得commit 98f8a37944d7277cd37231776400553cc402219f。配布元 https://github.com/JaredC01/Galileo2 。GPL-3.0（原文：../site/licenses/galileo2/LICENSE）。標準PTFE入口・3穴チェーンアンカーを選択し、CAN基板は省略。SB/CNCへの取付には未解決の接触があるため、単体ライブラリのみへ登録。
+
+## 機種別の固定フレームMod
+
+Disco XXLはSIBOOR / VORON Trident 350ではZ480 mm、VORON V2.4 350ではZ510 mmの上部2020フレーム下面に配置。V2.4のZガントリーとは別の固定フレームへ登録し、LEDと光源を同じ配置に保ちます。
+
+Sturdy Handlesの作者はjeoje。配布元 https://github.com/VoronDesign/VoronUsers/tree/8e5067f4f6457da8a552983dd210ec48c40be2ca/printer_mods/jeoje/Sturdy_Handles 。取得commit 8e5067f4f6457da8a552983dd210ec48c40be2ca / 原本SHA256 a1b006652e8a1005e7b4871fc089cb373136cacf3cd197d80b76f946c644caec 。GPL-3.0（原文: ../site/licenses/sturdy_handles/LICENSE.md）。M5原設計の本体2個を表示し、参考押出材と印刷台上の複製を除外。標準2020プロファイルとの接触リップを約2.6133 mm³／個だけ逃がすフィット調整を実施。取付軸と外寸を保ち、締結部品は省略。作者BOMは各ハンドルにM5x12 SHCSとM5 Tナットを各2個。強度・耐荷重は計算していません。

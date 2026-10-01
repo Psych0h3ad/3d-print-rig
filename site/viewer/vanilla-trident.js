@@ -1,4 +1,7 @@
 import * as THREE from 'three';
+import {loadFrameMods,withFrameMods} from './frame-mods.js?v=frame-mods-v1';
+import {setupLighting} from './lighting.js?v=frame-lighting-v1';
+import {setupGrid} from './grid-control.js?v=grid-v1';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js';
@@ -14,12 +17,13 @@ const $=s=>document.querySelector(s),stage=$('#stage'),renderer=new THREE.WebGLR
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor('#edf1f4');renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.2;stage.append(renderer.domElement);
 const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(38,1,.005,10),controls=new OrbitControls(camera,renderer.domElement);
 camera.position.set(.98,.83,1.4);controls.target.set(0,.22,0);controls.update();
-scene.add(new THREE.HemisphereLight('#ffffff','#8996a0',2));
-for(const [p,power] of [[[.6,1,-.8],3],[[-.8,.5,.3],2],[[.2,.8,.7],2]]){const light=new THREE.DirectionalLight('#ffffff',power);light.position.set(...p);scene.add(light)}
-const grid=new THREE.GridHelper(1.2,24,'#adbcc6','#d2dce2');grid.position.y=-.096;scene.add(grid);
 let pending=false,frames=0,motion,catalog,profile,current,active,accessories;
 const cached=new Map(),meshes=[],palette={base:'#24272c',accent:'#e32636',frame:'#25282d'};
 function render(){if(pending)return;pending=true;requestAnimationFrame(()=>{pending=false;renderer.render(scene,camera);document.body.dataset.renderedFrames=++frames})}
+setupGrid(scene,render);
+const frameMods=await loadFrameMods('voron_trident_350');
+const lighting=setupLighting(scene,renderer,{registration:frameMods.disco,machine:'voron_trident_350',update:render});
+$('#focusDisco').onclick=()=>{camera.up.set(0,1,0);controls.target.set(-.244,.47,0);camera.position.set(-.1,.4,.32);controls.update();render()};
 function resize(){const b=stage.getBoundingClientRect();renderer.setSize(b.width,b.height,false);camera.aspect=b.width/b.height;camera.updateProjectionMatrix();render()}
 controls.addEventListener('change',render);new ResizeObserver(resize).observe(stage);
 const point=p=>new THREE.Vector3(p[0]/1000,p[2]/1000,-p[1]/1000);
@@ -62,7 +66,7 @@ async function install(variant){const plan=headPlan(variant),required=['trident_
 try{
  const getJSON=async path=>{const r=await fetch('../'+path,{cache:'no-cache'});if(!r.ok)throw Error(path);return r.json()};
  [profile,catalog]=await Promise.all([getJSON('machines/voron_trident_350/machine_profile.json'),getJSON('machines/voron_trident_350/configurations.json')]);
- motion=createTridentMotion(profile);const [base,g]=await Promise.all([getJSON(profile.base_assets.meta),loadModel(new GLTFLoader(),'../'+profile.base_assets.glb)]);scene.add(g.scene);register(g.scene,base);
+ catalog=withFrameMods(catalog,frameMods);motion=createTridentMotion(profile);const [base,g]=await Promise.all([getJSON(profile.base_assets.meta),loadModel(new GLTFLoader(),'../'+profile.base_assets.glb)]);scene.add(g.scene);register(g.scene,base);
  for(const [i,a] of ['x','y','z'].entries()){const limits=profile.display_limits_mm[a.toUpperCase()];$('#'+a).min=limits[0];$('#'+a).max=limits[1];$('#'+a).value=profile.display_reference_xyz_mm[i];$('#'+a).disabled=false;$('#'+a).oninput=applyPose}
  $('#reset').disabled=false;$('#reset').onclick=()=>{for(const [i,a] of ['x','y','z'].entries())$('#'+a).value=profile.display_reference_xyz_mm[i];applyPose()};
  const key='3d-print-rig-vanilla-trident-palette',valid=v=>typeof v==='string'&&/^#[0-9a-f]{6}$/i.test(v);
@@ -70,6 +74,7 @@ try{
  const update=()=>{paletteApply();for(const r of ['base','accent','frame']){$('#'+r).value=palette[r];$('#'+r+'Hex').value=palette[r];$('#'+r+'Hex').removeAttribute('aria-invalid')}$('#frameFinish').value=palette.frame==='#b9bec4'?'silver':palette.frame==='#25282d'?'black':'custom';try{localStorage.setItem(key,JSON.stringify(palette))}catch{}$('#paletteStatus').textContent='機種別の配色'};
  for(const r of ['base','accent','frame']){$('#'+r).disabled=false;$('#'+r+'Hex').disabled=false;$('#'+r).oninput=e=>{palette[r]=e.target.value;update()};$('#'+r+'Hex').onchange=e=>{if(valid(e.target.value)){palette[r]=e.target.value;update()}else e.target.setAttribute('aria-invalid','true')}}
  $('#frameFinish').disabled=false;$('#frameFinish').onchange=e=>{palette.frame=e.target.value==='silver'?'#b9bec4':'#25282d';update()};
+ const disco=await lighting.whenReady;disco?.traverse(mesh=>{if(mesh.isMesh&&mesh.userData.led_role==='bracket')meshes.push({mesh,role:'base'})});
  $('#resetPalette').disabled=false;$('#resetPalette').onclick=()=>{Object.assign(palette,{base:'#24272c',accent:'#e32636',frame:'#25282d'});update()};update();
  $('#enclosure').onchange=e=>{for(const r of meshes)if(r.panel)r.mesh.visible=e.target.checked;render()};$('#belts').onchange=applyPose;
  accessories=setupAccessories(catalog,{load:asset,update:applyPose});await setupConfigurations(catalog,install,accessories);

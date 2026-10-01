@@ -1,4 +1,8 @@
 import * as THREE from 'three';
+import {loadFrameMods,withFrameMods} from './frame-mods.js?v=frame-mods-v1';
+import {setupLighting} from './lighting.js?v=frame-lighting-v1';
+import {setupAccessories} from './accessories.js?v=frame-mods-v1';
+import {setupGrid} from './grid-control.js?v=grid-v1';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=bundle-v2';
@@ -14,11 +18,12 @@ const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(
 renderer.setClearColor('#edf1f4');renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.25;
 const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(38,1,.005,10);camera.position.set(.98,.83,1.4);
 const orbit=new OrbitControls(camera,renderer.domElement);orbit.target.set(0,.22,0);orbit.enableDamping=false;orbit.update();
-scene.add(new THREE.HemisphereLight('#ffffff','#8996a0',2));
-for(const [position,power] of [[[.6,1,-.8],3],[[-.8,.5,.3],2],[[.2,.8,.7],2]]){const l=new THREE.DirectionalLight('#ffffff',power);l.position.set(...position);scene.add(l)}
-const grid=new THREE.GridHelper(1.2,24,'#adbcc6','#d2dce2');grid.position.y=-.096;scene.add(grid);
 let adapter,profile,pose,renderPending=false,frames=0;
 function render(){if(renderPending)return;renderPending=true;requestAnimationFrame(()=>{renderPending=false;renderer.render(scene,camera);document.body.dataset.renderedFrames=++frames})}
+setupGrid(scene,render);
+const frameMods=await loadFrameMods('siboor_v24_350');
+const lighting=setupLighting(scene,renderer,{registration:frameMods.disco,machine:'siboor_v24_350',update:render});
+$('#focusDisco').onclick=()=>{camera.up.set(0,1,0);orbit.target.set(-.244,.50,0);camera.position.set(-.1,.43,.32);orbit.update();render()};
 function resize(){const b=stage.getBoundingClientRect();renderer.setSize(b.width,b.height,false);camera.aspect=b.width/b.height;camera.updateProjectionMatrix();render()}
 orbit.addEventListener('change',render);new ResizeObserver(resize).observe(stage);
 for(const [id,pos] of [['iso',[.98,.83,1.4]],['front',[0,.24,1.65]],['top',[0,1.8,0]]])$('#'+id).onclick=()=>{camera.up.set(0,id==='top'?0:1,id==='top'?-1:0);camera.position.set(...pos);orbit.target.set(0,.22,0);orbit.update();render()};
@@ -49,10 +54,25 @@ try{
  $('#belts').onchange=()=>{adapter.setFlexibleVisible($('#belts').checked);applyPose()};
  const valid=v=>typeof v==='string'&&/^#[0-9a-f]{6}$/i.test(v),storageKey=profile.appearance.storage_key;
  let palette={base:null,accent:null,frame:null};
+ const modMeshes=[],modAssets=new Map();
+ function loadAccessory(id){
+  if(modAssets.has(id))return modAssets.get(id);
+  const promise=loadAccessoryModel(id).catch(e=>{modAssets.delete(id);throw e});modAssets.set(id,promise);return promise;
+ }
+ async function loadAccessoryModel(id){
+  const spec=frameMods.assets[id];if(!spec)throw Error('未登録のMod');
+  const [meta,g]=await Promise.all([fetch('../'+spec.meta).then(r=>{if(!r.ok)throw Error(spec.meta);return r.json()}),loadModel(new GLTFLoader(),'../'+spec.glb)]);
+  const lookup=new Map(meta.parts.map(p=>[p.key,p]));g.scene.visible=false;scene.add(g.scene);
+  g.scene.traverse(mesh=>{if(!mesh.isMesh)return;const row=lookup.get(mesh.userData.part_key||mesh.name);if(!row||row.motion!=='fixed')throw Error('フレームModの取付先が不正です');mesh.material=mesh.material.clone();mesh.material.side=THREE.DoubleSide;modMeshes.push({mesh,role:row.appearance_role,color:mesh.material.color.clone()})});
+  applyPalette();return {root:g.scene,meta};
+ }
+ const modCatalog=withFrameMods({assets:{},accessories:[]},frameMods);
+ setupAccessories(modCatalog,{load:loadAccessory,update:applyPose});
  try{const saved=JSON.parse(localStorage.getItem(storageKey)||'null');if(saved?.machine_id===profile.machine_id)for(const r of ['base','accent','frame'])if(valid(saved.colors?.[r]))palette[r]=saved.colors[r]}catch{}
  function applyPalette(){
   for(const [material,color] of originals)material.color.copy(color);
   adapter.setPalette(palette);
+  for(const {mesh,role,color} of modMeshes){mesh.material.color.copy(color);if(palette[role])mesh.material.color.set(palette[role])}
   for(const role of ['base','accent','frame']){const value=palette[role]||profile.appearance.palette_defaults[role];$('#'+role).value=value;$('#'+role+'Hex').value=value;$('#'+role+'Hex').removeAttribute('aria-invalid');document.body.dataset[role+'Color']=palette[role]||'original'}
   document.body.dataset.protectedChanges=String(protectedMaterials.filter(m=>!m.color.equals(originals.get(m))).length);
   $('#paletteStatus').textContent=Object.values(palette).some(Boolean)?'この機種の配色を保存済み':'標準CADの配色';render();
@@ -64,6 +84,7 @@ try{
   $('#'+role).oninput=()=>{palette[role]=$('#'+role).value;applyPalette();savePalette()};
   $('#'+role+'Hex').oninput=()=>{const v=$('#'+role+'Hex').value;if(!valid(v)){$('#'+role+'Hex').setAttribute('aria-invalid','true');return}palette[role]=v.toLowerCase();applyPalette();savePalette()};
  }
+ const disco=await lighting.whenReady;disco?.traverse(mesh=>{if(mesh.isMesh&&mesh.userData.led_role==='bracket')modMeshes.push({mesh,role:'base',color:mesh.material.color.clone()})});
  $('#resetPalette').disabled=false;$('#resetPalette').onclick=()=>{palette={base:null,accent:null,frame:null};applyPalette();savePalette()};applyPalette();
  $('#frameFinish').onchange=e=>{if(e.target.value==='custom')return;palette.frame=e.target.value==='silver'?'#b9bec4':'#25282d';applyPalette();savePalette()};
  setupRenderExport({renderer,scene,camera,afterRender:render,name:'VORON_V24_R2_350_Reference'});

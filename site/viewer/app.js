@@ -2,10 +2,12 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=bundle-v2';
-import {setupLighting} from './lighting.js?v=disco-v2';
+import {loadFrameMods,withFrameMods} from './frame-mods.js?v=frame-mods-v1';
+import {setupGrid} from './grid-control.js?v=grid-v1';
+import {setupLighting} from './lighting.js?v=frame-lighting-v1';
 import {setupFlexible} from './flexible.js?v=public-v5';
 import {setupConfigurations} from './configurations.js?v=mounts-v5';
-import {setupAccessories} from './accessories.js?v=mods-v5';
+import {setupAccessories} from './accessories.js?v=frame-mods-v1';
 import {setupAppearance} from './appearance.js?v=public-v5';
 import {setupRenderExport} from './render-export.js?v=public-v5';
 import {setupPublicInfo} from './public-info.js?v=mounts-v5';
@@ -24,7 +26,9 @@ const controls=new OrbitControls(camera,renderer.domElement);controls.target.set
 let renderRequested=true,lastMotionFrame=0,renderedFrames=0;
 controls.addEventListener('change',()=>{renderRequested=true});
 for(const event of ['click','input','change'])document.addEventListener(event,()=>{renderRequested=true},true);
-const lighting=setupLighting(scene,renderer);
+setupGrid(scene,()=>{renderRequested=true});
+const frameMods=await loadFrameMods('siboor_trident_350');
+const lighting=setupLighting(scene,renderer,{registration:frameMods.disco,update:()=>{renderRequested=true}});
 $('#focusDisco').onclick=()=>{unfocus();stop();for(const o of allMeshes){o.material.opacity=.035;o.material.transparent=true;o.material.depthWrite=false}camera.position.set(.10,.24,.38);controls.target.set(-.243,.472,0);controls.update()};
 let model,pivot,mode=null,start=0,ready=false,registration,refX=0,refY=0,current={x:0,y:0,z:0},homeStart,focusAxis=null,flexible;
 const levers={},plungers={};
@@ -165,7 +169,7 @@ async function loadGLB(url){
 }
 setupPublicInfo();
 Promise.all([fetch('../assembly_manifest.json',{cache:'no-cache'}).then(r=>r.json()),fetch('../flexible_routes.json',{cache:'no-cache'}).then(r=>r.json()),loadModel(new GLTFLoader(),'../SIBOOR_Trident_350.glb',p=>{$('#loading').textContent=p.total?'読み込み '+Math.round(p.loaded/p.total*100)+'%':'3Dモデルを読み込み中…'}),loadGLB('../Endstop_Mechanisms.glb'),fetch('../COLOR_OPTIONS.json',{cache:'no-cache'}).then(r=>r.json()),fetch('../ASSEMBLY_CONFIGURATIONS.json',{cache:'no-cache'}).then(r=>r.json()),fetch('../R2_ENDSTOP_REGISTRATION.json',{cache:'no-cache'}).then(r=>r.json())]).then(async([manifest,routes,g,endstops,colorOptions,configs,r2Meta])=>{
- registration=manifest.motion_preview.endstop_registration;catalog=configs;r2Registration=r2Meta;stockRows=manifest.parts;
+ registration=manifest.motion_preview.endstop_registration;catalog=withFrameMods(configs,frameMods);r2Registration=r2Meta;stockRows=manifest.parts;
  refX=registration.switches.X.cad_reference_display_coordinate_mm;refY=registration.switches.Y.cad_reference_display_coordinate_mm;
  const lookup=new Map(manifest.parts.map(r=>[r.key,r]));model=g.scene;model.add(endstops.scene);scene.add(model);
  model.traverse(o=>{

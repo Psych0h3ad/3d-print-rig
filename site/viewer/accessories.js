@@ -25,7 +25,7 @@ export function setupAccessories(catalog,{load,update}){
  function sync(){for(const [id,input] of inputs){input.checked=state.selected.has(id);input.disabled=busy}}
  async function apply(data){
   if(busy)throw Error('追加Modを読み込み中です。');busy=true;sync();status.textContent='追加Modを読み込み中…';
-  try{await state.apply(data);status.textContent=state.selected.size?'ベッドに固定 · Z移動に追従':'追加Modなし'}
+  try{await state.apply(data);status.textContent=state.selected.size?[...state.selected].map(id=>catalog.accessories.find(row=>row.id===id).label).join(' ／ '):'追加Modなし'}
   catch(e){status.textContent='追加Modを読み込めませんでした。';throw e}
   finally{busy=false;sync()}
  }
