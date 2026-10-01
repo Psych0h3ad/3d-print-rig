@@ -297,7 +297,7 @@ R2印刷キャリッジの内側面に0.002 mm幅の局所的な逃げを追加�
 
 作者：Monolith3D。配布元：https://github.com/Monolith3D/Monolith_Gantry/tree/5b729c2f96bdbd24ea180a80476364727444c038。使用commit：5b729c2f96bdbd24ea180a80476364727444c038。
 
-適用範囲：350 mmガントリー単体。Trident/V2.4、Printed/Sheet metal、2WD/AWD、6/9 mmの16構成。
+適用範囲：250/350 mmガントリー単体。Trident/V2.4、Printed/Sheet metal、2WD/AWD、6/9 mmの32構成。
 
 配布条件：CC BY-NC-SA 4.0。原文：[LICENSE](../site/licenses/monolith_gantry/LICENSE)。
 
@@ -350,3 +350,44 @@ R2印刷キャリッジの内側面に0.002 mm幅の局所的な逃げを追加�
 変更：原寸の表示用変換・配色。
 
 READMEが原設計のhttps://github.com/3DPrintingMods/VoronTrident-AluminumG を案内しています。使用形状は上記Vitalii版commit。
+
+
+Monolithのベルトは原本の切断端・経路外形を保持し、2 mm周期の独立した可視化用歯列を作成。STEPでは半歯ごとの曲線面として表現。製造用のGT2歯形仕様・切断長・弾性伸びは再現しません。通常TridentとSIBOORの延長区間は、それぞれの原本の歯付き区間を繰り返して構成。
+
+### StealthChanger V1.1 / BT123 Split Keeper
+
+作者：DraftShift。配布元：https://github.com/DraftShift/StealthChanger/tree/50e3c769297b273ac390fb33b455aa7f4dfe3099。使用commit：50e3c769297b273ac390fb33b455aa7f4dfe3099。
+
+適用範囲：MGN12接続部、9種の専用バックプレート、6/9 mmと反転経路の4仕様。BT123の9 mm・Monolith専用Keeperを使用。
+
+配布条件：GPL-3.0。原文：[LICENSE](../site/licenses/stealthchanger/LICENSE)。
+
+変更：原本の選択肢・構築用ボディ・印刷サポートを分離。表示用変換・配色。修復箇所は各モジュールのnative_repair/native_repairsへ記録。
+
+### ModularDock
+
+作者：DraftShift。配布元：https://github.com/DraftShift/ModularDock/tree/597fad34f3a1233ed1c182ec221a8da9ba68ac33。使用commit：597fad34f3a1233ed1c182ec221a8da9ba68ac33。
+
+適用範囲：8種のドックを原本の別組立として表示。バックプレートへのドッキング・機体取付は未登録。
+
+Xolのベースは同commitのSTLs/XOL/Base.stlを使用し、元の2020ドック前面・ベース外形へ剛体配置。原寸STLから生成したソリッドを使用し、ベースと周囲の印刷部品の交差を確認。元ファイルのハッシュ・姿勢はモジュールのsource_recordsとxol_base_registrationへ記録。
+
+配布条件：GPL-3.0。原文：[LICENSE](../site/licenses/modular_dock/LICENSE)。
+
+変更：原本の選択肢・構築用ボディ・印刷サポートを分離。表示用変換・配色。修復箇所は各モジュールのnative_repair/native_repairsへ記録。
+
+### TapChanger
+
+作者：viesturz。配布元：https://github.com/viesturz/tapchanger/tree/a7b19f99a2ef520485082251917403a5bfd542cd。使用commit：a7b19f99a2ef520485082251917403a5bfd542cd。
+
+適用範囲：Rods / Plates / Liftbar、SB・MiniSB・Dragon Burner・Xolを原本の別構成として表示。Xolは実験版。
+
+配布条件：GPL-3.0。原文：[LICENSE](../site/licenses/tapchanger/LICENSE)。
+
+変更：原本の選択肢・構築用ボディ・印刷サポートを分離。表示用変換・配色。修復箇所は各モジュールのnative_repair/native_repairsへ記録。
+
+StealthChangerのBT123 Split Keeperは同リポジトリ内のUserMods/BT123を使用。STLの原寸の輪郭・空洞を保持してCAD化。V1.1シャトルの不正なM3穴へ0.00001 mmの半径余裕を追加。TapChangerの不正なtrimには最大0.005 mmのネイティブ許容値を復元。Dragon Burnerのtrimは原本STEPから再生成し、全1405頂点を0.00001 mm以内で保持。体積差は0.509 mm³（約0.0019%）。各設計の版・元ファイル・ハッシュ・変更量は配布メタデータに記録。
+
+A4T・Xolの原本バックプレートでは下側参考ピンだけが印刷部品の穴軸からY方向へ0.1 mmずれていたため、ピンを原寸のまま-0.1 mm剛体移動。3本のピンとブッシュの軸を照合して組立全体の姿勢を登録。印刷部品の形状とピン寸法は変更しません。
+
+TapChanger SB/Rodsの参考ホットエンドとCW2本体は、STEPの読み戻しで無効になるtrimを有理NURBS表現と再生成したパラメーター曲線で修復。全1026頂点を0.00001 mm以内で保持し、外形差は0.000001 mm未満。体積の評価差はそれぞれ+0.1145 mm³・-0.2070 mm³（最大約0.003%）。再出力したSTEPを再度読み込み、有効なソリッドとして確認。

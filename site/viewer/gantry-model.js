@@ -1,4 +1,4 @@
-export const gantryDimensions=['machine','build','belt_width_mm','xy_motors'];
+export const gantryDimensions=['size_mm','machine','build','belt_width_mm','xy_motors'];
 export function gantryChoice(catalog,selection){
  const matches=catalog.variants.filter(v=>gantryDimensions.every(k=>String(v[k])===String(selection[k])));
  if(matches.length!==1)throw Error('このガントリー構成は登録されていません');

@@ -34,13 +34,14 @@ def main():
         'machines/siboor_v24_350/machine_profile.json', 'machines/siboor_v24_350/model.glb',
         'machines/voron_trident_350/assembly_manifest.json', 'machines/voron_trident_350/model.glb',
         'machines/voron_trident_350/machine_profile.json', 'machines/voron_trident_350/configurations.json',
-        'COMPONENT_LIBRARY.json', 'MACHINE_MODS.json', 'V24_PROBES.json', 'GANTRY_CONFIGURATIONS.json',
+        'COMPONENT_LIBRARY.json', 'MACHINE_MODS.json', 'V24_PROBES.json', 'GANTRY_CONFIGURATIONS.json', 'TOOLCHANGER_CONFIGURATIONS.json',
     }
     library=json.loads(safe_source(source,'COMPONENT_LIBRARY.json').read_text(encoding='utf8'))
     frame_mods=json.loads(safe_source(source,'MACHINE_MODS.json').read_text(encoding='utf8'))
     heads=json.loads(safe_source(source,'TOOLHEAD_CONFIGURATIONS.json').read_text(encoding='utf8'))
     gantries=json.loads(safe_source(source,'GANTRY_CONFIGURATIONS.json').read_text(encoding='utf8'))
-    for asset in list(catalog['assets'].values())+list(library['assets'].values())+list(frame_mods['assets'].values())+list(heads['assets'].values())+list(gantries['assets'].values()):
+    changers=json.loads(safe_source(source,'TOOLCHANGER_CONFIGURATIONS.json').read_text(encoding='utf8'))
+    for asset in list(catalog['assets'].values())+list(library['assets'].values())+list(frame_mods['assets'].values())+list(heads['assets'].values())+list(gantries['assets'].values())+list(changers['assets'].values()):
         for key in ('meta', 'glb'):
             name = asset[key]
             expected = '.json' if key == 'meta' else '.glb'

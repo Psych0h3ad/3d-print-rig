@@ -1,5 +1,5 @@
 {
-  "viewer_version": "2026-10-02-public-viewer-9",
+  "viewer_version": "2026-10-02-public-viewer-10",
   "sources": [
     {
       "id": "siboor_trident",
@@ -338,11 +338,11 @@
       "author": "Monolith3D",
       "commit": "5b729c2f96bdbd24ea180a80476364727444c038",
       "url": "https://github.com/Monolith3D/Monolith_Gantry/tree/5b729c2f96bdbd24ea180a80476364727444c038",
-      "scope": "350 mmガントリー単体。Trident/V2.4、Printed/Sheet metal、2WD/AWD、6/9 mmの16構成。",
+      "scope": "250/350 mmガントリー単体。VT/V2・Printed/Sheet metal・6/9 mm・2WD/AWDの32構成。",
       "license": "CC BY-NC-SA 4.0",
       "license_url": "../licenses/monolith_gantry/LICENSE",
       "license_sha256": "9e502ba75fd0fd30cea5497b438a4bc12f07f02bc932a7a6041fd6a18b8f46a0",
-      "changes": "コーナーを剛体移動。梁・ベルトの直線部を延長し、レール穴周期を繰返し。微小な不正スペーサー面を実測プロファイルで修復。 Hybrid Zの円錐面は、形状を保持した有理NURBS表現でSTEPの読み戻しを修復。",
+      "changes": "剛体部品は原寸で配置。レール穴周期を保持して長さを変更。原本の切断端を残して2 mm周期の独立した歯列表示を追加。歯形は可視化用で製造仕様ではありません。",
       "notice": "ガントリーの設計データはCC BY-NC-SA 4.0。別リポジトリのクランプはGPL-3.0。ビューアーコードのGPLを全モデルへ一括適用しません。"
     },
     {
@@ -397,6 +397,48 @@
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
       "changes": "原寸の表示用変換・配色。",
       "notice": "READMEが原設計のhttps://github.com/3DPrintingMods/VoronTrident-AluminumG を案内しています。使用形状は上記Vitalii版commit。"
+    },
+    {
+      "id": "stealthchanger",
+      "label": "StealthChanger V1.1 / BT123 Split Keeper",
+      "repository": "DraftShift/StealthChanger",
+      "author": "DraftShift",
+      "commit": "50e3c769297b273ac390fb33b455aa7f4dfe3099",
+      "url": "https://github.com/DraftShift/StealthChanger/tree/50e3c769297b273ac390fb33b455aa7f4dfe3099",
+      "scope": "MGN12接続部、9種の専用バックプレート、6/9 mmと反転経路の4仕様。BT123の9 mm・Monolith専用Keeperを使用。",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/stealthchanger/LICENSE",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "version": "Pinned source CAD / V1.1",
+      "changes": "原本の選択肢・構築用ボディ・印刷サポートを分離。表示用変換・配色。修復箇所は各モジュールのnative_repair/native_repairsへ記録。"
+    },
+    {
+      "id": "modular_dock",
+      "label": "ModularDock",
+      "repository": "DraftShift/ModularDock",
+      "author": "DraftShift",
+      "commit": "597fad34f3a1233ed1c182ec221a8da9ba68ac33",
+      "url": "https://github.com/DraftShift/ModularDock/tree/597fad34f3a1233ed1c182ec221a8da9ba68ac33",
+      "scope": "8種のドックを原本の別組立として表示。バックプレートへのドッキング・機体取付は未登録。",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/modular_dock/LICENSE",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "version": "Pinned source CAD",
+      "changes": "原本の選択肢・構築用ボディ・印刷サポートを分離。表示用変換・配色。修復箇所は各モジュールのnative_repair/native_repairsへ記録。"
+    },
+    {
+      "id": "tapchanger",
+      "label": "TapChanger",
+      "repository": "viesturz/tapchanger",
+      "author": "viesturz",
+      "commit": "a7b19f99a2ef520485082251917403a5bfd542cd",
+      "url": "https://github.com/viesturz/tapchanger/tree/a7b19f99a2ef520485082251917403a5bfd542cd",
+      "scope": "Rods / Plates / Liftbar、SB・MiniSB・Dragon Burner・Xolを原本の別構成として表示。Xolは実験版。",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/tapchanger/LICENSE",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "version": "Pinned source CAD",
+      "changes": "原本の選択肢・構築用ボディ・印刷サポートを分離。表示用変換・配色。修復箇所は各モジュールのnative_repair/native_repairsへ記録。"
     }
   ],
   "defaults": [
@@ -417,9 +459,9 @@
       "size": 350,
       "configuration": "CNC AWD / SB / CW2 / Rapido 2 UHF",
       "revision": "JUNE",
-      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v1/siboor-trident-june-350.step.zip",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v10/siboor-trident-june-350.step.zip",
       "release_verified": true
     }
   ],
-  "model_source_url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v7/viewer-sources.zip"
+  "model_source_url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v10/viewer-sources.zip"
 }
