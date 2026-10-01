@@ -209,5 +209,27 @@
       "notice": "原設計は独自の非商用ライセンスを参照します。XolのCCと一括扱いせず、組込み版の適用条件・再配布条件を公開前に照合します。参照したライセンス版: 3d70dee4f4bbef3ab149159d68260d5b848d1152"
     }
   ],
-  "defaults": []
+  "defaults": [
+    {
+      "id": "siboor_trident_300",
+      "brand": "SIBOOR",
+      "model": "Trident",
+      "size": 300,
+      "configuration": "CNC AWD / SB / CW2 / Rapido 2 UHF",
+      "revision": "JUNE",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v1/siboor-trident-june-300.step.zip",
+      "release_verified": true
+    },
+    {
+      "id": "siboor_trident_350",
+      "brand": "SIBOOR",
+      "model": "Trident",
+      "size": 350,
+      "configuration": "CNC AWD / SB / CW2 / Rapido 2 UHF",
+      "revision": "JUNE",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v1/siboor-trident-june-350.step.zip",
+      "release_verified": true
+    }
+  ],
+  "model_source_url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v1/viewer-sources.zip"
 }

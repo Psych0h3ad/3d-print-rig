@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
+import {loadModel} from './model-loader.js';
 import {createV24Adapter} from './v24_adapter.mjs';
 import {setupMachineNavigation} from './machines.js?v=machines-v1';
 import {setupRenderExport} from './render-export.js?v=public-v5';
@@ -33,7 +34,7 @@ function applyPose(){if(!adapter)return;
 }
 try{
  const getJSON=async name=>{const r=await fetch(assetRoot+name);if(!r.ok)throw Error(name);return r.json()};
- const [manifest,machine,gltf]=await Promise.all([getJSON('assembly_manifest.json'),getJSON('machine_profile.json'),new GLTFLoader().loadAsync(assetRoot+'model.glb')]);
+ const [manifest,machine,gltf]=await Promise.all([getJSON('assembly_manifest.json'),getJSON('machine_profile.json'),loadModel(new GLTFLoader(),assetRoot+'model.glb')]);
  profile=machine;scene.add(gltf.scene);adapter=createV24Adapter(gltf.scene,manifest,profile);
  const protectedMaterials=[],originals=new Map();
  for(const [key,node] of adapter.nodes){node.traverse(mesh=>{if(!mesh.isMesh)return;mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();

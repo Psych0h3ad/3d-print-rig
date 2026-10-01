@@ -1,4 +1,5 @@
 import {setupPublicInfo} from './public-info.js?v=public-v5';
+import {modelURL} from './model-loader.js';
 
 const files={
   siboor_trident_350:['../assembly_manifest.json','../ASSEMBLY_CONFIGURATIONS.json','../SIBOOR_Trident_350.glb'],
@@ -6,7 +7,7 @@ const files={
 };
 export async function machineAssetsAvailable(machine){
   const results=await Promise.all(files[machine].map(async path=>{
-    try{return (await fetch(path,{method:'HEAD'})).ok;}catch{return false;}
+    try{const url=path.endsWith('.glb')?await modelURL(path):path;const response=await fetch(url,{method:'HEAD'});return response.ok||url!==path&&(await fetch(path,{method:'HEAD'})).ok;}catch{return false;}
   }));
   return results.every(Boolean);
 }

@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
+import {loadModel} from './model-loader.js';
 import {RoomEnvironment} from './vendor/RoomEnvironment.js';
 import {RectAreaLightUniformsLib} from './vendor/RectAreaLightUniformsLib.js';
 
@@ -39,7 +40,7 @@ export function setupLighting(scene,renderer){
  }
  for(const id of ['ledMod','ledPower','night','ledLevel','ledColor'])$('#'+id).addEventListener('input',apply);
  $('#nightOn').onclick=()=>{$('#ledMod').checked=true;$('#ledPower').checked=true;$('#night').checked=true;if(+$('#ledLevel').value===0)$('#ledLevel').value=75;apply()};
- const whenReady=Promise.all([fetch('../DISCO_MOD.json').then(r=>r.json()),new Promise((resolve,reject)=>new GLTFLoader().load('../Disco_on_a_Stick_XXL_350.glb',resolve,undefined,reject))]).then(([data,g])=>{
+ const whenReady=Promise.all([fetch('../DISCO_MOD.json').then(r=>r.json()),loadModel(new GLTFLoader(),'../Disco_on_a_Stick_XXL_350.glb')]).then(([data,g])=>{
   mod=g.scene;mod.name='Disco_on_a_Stick_XXL';scene.add(mod);
   mod.traverse(o=>{if(!o.isMesh)return;o.material=o.material.clone();if(o.userData.led_role==='LED'){o.material.roughness=.35;emitters.push(o)}});
   for(const spec of data.lights){

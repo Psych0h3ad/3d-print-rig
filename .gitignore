@@ -20,6 +20,7 @@
 # Locally imported assembly metadata.
 /site/*.json
 !/site/PUBLIC_CATALOG.json
+!/site/ASSET_BUNDLE.json
 /site/modules/
 /site/machines/
 /site/defaults/

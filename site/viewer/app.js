@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
+import {loadModel} from './model-loader.js';
 import {setupLighting} from './lighting.js?v=disco-v2';
 import {setupFlexible} from './flexible.js?v=public-v5';
 import {setupConfigurations} from './configurations.js?v=combinations-v10';
@@ -157,11 +158,11 @@ function focusSwitch(axis){
  controls.update();callout.textContent=axis+'スイッチ · レバー'+(registration.switches[axis].homing_angle_deg||6)+'°押下（周辺を透過）';callout.style.display='block';
 }
 async function loadGLB(url){
- let last;for(let attempt=0;attempt<3;attempt++){try{return await new GLTFLoader().loadAsync(url+(attempt?(url.includes('?')?'&':'?')+'retry='+attempt:''))}catch(e){last=e}}
+ let last;for(let attempt=0;attempt<3;attempt++){try{return await loadModel(new GLTFLoader(),url+(attempt?(url.includes('?')?'&':'?')+'retry='+attempt:''))}catch(e){last=e}}
  throw last;
 }
 setupPublicInfo();
-Promise.all([fetch('../assembly_manifest.json').then(r=>r.json()),fetch('../flexible_routes.json').then(r=>r.json()),new Promise((resolve,reject)=>new GLTFLoader().load('../SIBOOR_Trident_350.glb',resolve,p=>{$('#loading').textContent=p.total?'読み込み '+Math.round(p.loaded/p.total*100)+'%':'3Dモデルを読み込み中…'},reject)),loadGLB('../Endstop_Mechanisms.glb'),fetch('../COLOR_OPTIONS.json').then(r=>r.json()),fetch('../ASSEMBLY_CONFIGURATIONS.json').then(r=>r.json()),fetch('../R2_ENDSTOP_REGISTRATION.json').then(r=>r.json())]).then(async([manifest,routes,g,endstops,colorOptions,configs,r2Meta])=>{
+Promise.all([fetch('../assembly_manifest.json').then(r=>r.json()),fetch('../flexible_routes.json').then(r=>r.json()),loadModel(new GLTFLoader(),'../SIBOOR_Trident_350.glb',p=>{$('#loading').textContent=p.total?'読み込み '+Math.round(p.loaded/p.total*100)+'%':'3Dモデルを読み込み中…'}),loadGLB('../Endstop_Mechanisms.glb'),fetch('../COLOR_OPTIONS.json').then(r=>r.json()),fetch('../ASSEMBLY_CONFIGURATIONS.json').then(r=>r.json()),fetch('../R2_ENDSTOP_REGISTRATION.json').then(r=>r.json())]).then(async([manifest,routes,g,endstops,colorOptions,configs,r2Meta])=>{
  registration=manifest.motion_preview.endstop_registration;catalog=configs;r2Registration=r2Meta;stockRows=manifest.parts;
  refX=registration.switches.X.cad_reference_display_coordinate_mm;refY=registration.switches.Y.cad_reference_display_coordinate_mm;
  const lookup=new Map(manifest.parts.map(r=>[r.key,r]));model=g.scene;model.add(endstops.scene);scene.add(model);
