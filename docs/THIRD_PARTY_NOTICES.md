@@ -211,3 +211,13 @@ SIBOORのキットマニュアルが原設計を参照。使用したSTLの版�
 ライセンス：GPL-3.0
 変更：V6構成部品を抽出し、SBの取付規格に配置。表示用三角形化・配色。
 原文：../site/licenses/afterburner/LICENSE
+
+## Trident Bed Fans
+
+作者：CannedBass（原案: Andrew Ellis）
+配布元：https://github.com/VoronDesign/VoronUsers/tree/8e5067f4f6457da8a552983dd210ec48c40be2ca/printer_mods/CannedBass/Trident_Bed_Fans
+版：8e5067f4f6457da8a552983dd210ec48c40be2ca / 5015_Bed_Fan_Mount_Trident.step SHA256: 6b9c20ce3fddab6870f77e9c6dbf0d2e5a0cf7391931c0537e8d0299966c1717
+適用範囲：SIBOOR Trident 350のベッド支持フレームに5015ブロワー2基を追加。
+ライセンス：GPL-3.0
+変更：原本のファン・印刷マウント・ねじ・インサートを配置。キット由来のM3 Tナットを追加し、ベッドのZ移動へ登録。
+原文：../site/licenses/trident_bedfans/LICENSE.md

@@ -77,6 +77,7 @@ def main():
         raise SystemExit('\n'.join(errors))
     subprocess.run(['node', str(ROOT/'scripts/test_configurations.mjs')], cwd=ROOT, check=True)
     subprocess.run(['node', str(ROOT/'scripts/test_v24_adapter.mjs')], cwd=ROOT, check=True)
+    subprocess.run(['node', str(ROOT/'scripts/test_accessories.mjs')], cwd=ROOT, check=True)
     print(f'Publication check passed: {len(paths)} tracked files, {len(commits)} commits checked; no geometry/private-path/credential signatures; JS syntax valid.')
 
 if __name__ == '__main__':

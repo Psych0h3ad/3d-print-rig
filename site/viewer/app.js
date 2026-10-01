@@ -4,10 +4,11 @@ import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=bundle-v2';
 import {setupLighting} from './lighting.js?v=disco-v2';
 import {setupFlexible} from './flexible.js?v=public-v5';
-import {setupConfigurations} from './configurations.js?v=workbench-v1';
+import {setupConfigurations} from './configurations.js?v=mounts-v4';
+import {setupAccessories} from './accessories.js';
 import {setupAppearance} from './appearance.js?v=public-v5';
 import {setupRenderExport} from './render-export.js?v=public-v5';
-import {setupPublicInfo} from './public-info.js?v=workbench-v1';
+import {setupPublicInfo} from './public-info.js?v=mounts-v4';
 const $=s=>document.querySelector(s),scene=new THREE.Scene();
 scene.background=new THREE.Color('#edf1f5');
 const stage=$('#stage');
@@ -30,7 +31,7 @@ const levers={},plungers={};
 const groups={},moving={y:[],xy:[],z:[],reference_flexible:[]},panes=[],parts=new Map();
 const allMeshes=[];
 let installed='stock',stockRegistration,stockRefX,stockLeverX,stockPlungerX,xolMeta,xolScene;
-let activeConfig,catalog,r2Registration,appearance,stockRows;
+let activeConfig,catalog,r2Registration,appearance,stockRows,accessories;
 const assetRoots=new Map(),assets=new Map(),xolMechanisms={},stockSwitchMeshes=[],r2Belts=[];
 const stockHeadGroup='03_Stock_Stealthburner_CW2_Rapido2_UHF';
 const cadPoint=p=>new THREE.Vector3(p[0]/1000,p[2]/1000,-p[1]/1000);
@@ -75,7 +76,7 @@ async function installConfiguration(v){
  for(const a of assetRoots.values()){a.root.visible=false;a.root.position.set(0,0,0);for(const o of a.meshes)o.visible=true}
  groups[stockHeadGroup].position.copy(cadPoint(v.head_translation_mm));
  if(installed==='xol'){xolScene.visible=true;xolScene.position.copy(cadPoint(v.head_translation_mm));const hidden=new Set(v.hidden_xol_keys);xolScene.traverse(o=>{if(o.isMesh)o.visible=!hidden.has(o.userData.originalKey)})}
- for(const m of v.modules){const a=assetRoots.get(m.id);a.root.visible=true;a.root.position.copy(cadPoint(m.translation_mm));a.root.userData.headModule=m.id!=='trident_r2_gantry_350'}
+ for(const m of v.modules){const a=assetRoots.get(m.id),hidden=new Set(m.hidden_keys||[]);a.root.visible=true;a.root.position.copy(cadPoint(m.translation_mm));a.root.userData.headModule=m.id!=='trident_r2_gantry_350';for(const mesh of a.meshes)mesh.visible=!hidden.has(mesh.userData.originalKey)}
  registration=v.gantry==='trident_r2'?{switches:r2Registration.heads[v.toolhead==='xol'&&v.hotend!=='rapido2_uhf'?'xol_standard':v.toolhead]}:{...stockRegistration,switches:{...stockRegistration.switches,X:installed==='xol'?xolMeta.X_registration:stockRegistration.switches.X}};
  refX=registration.switches.X.cad_reference_display_coordinate_mm;refY=registration.switches.Y.cad_reference_display_coordinate_mm;
  for(const a of ['X','Y']){const r=registration.switches[a];levers[a]=allMeshes.find(o=>o.name===r.lever_mesh_name);plungers[a]=allMeshes.find(o=>o.name===r.plunger_mesh_name);if(!levers[a]||!plungers[a])throw Error('Missing '+a+' mechanism')}
@@ -84,7 +85,7 @@ async function installConfiguration(v){
  $('#headNotes').textContent=v.notes.filter(x=>!x.startsWith('SIBOOR')&&!x.startsWith('ベルト')).join(' ');
  $('#badge').textContent=`${v.gantry==='trident_r2'?'TRIDENT R2':'SIBOOR CNC AWD'} · ${v.xy_motors} XY MOTORS · ${v.belt_width_mm} mm BELTS`;
  $('#machineSubtitle').textContent=`SIBOOR JUNE本体 · ${v.gantry==='trident_r2'?'VORON R2':'CNC AWD'} / ${v.belt_width_mm} mm`;
- showHead();setPose(refX,refY,current.z);
+ accessories?.refresh();showHead();setPose(refX,refY,current.z);
 }
 const guideMeshes=[],guideRails=[];
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
@@ -183,7 +184,8 @@ Promise.all([fetch('../assembly_manifest.json',{cache:'no-cache'}).then(r=>r.jso
  flexible=setupFlexible(scene,allMeshes,manifest,routes);appearance=setupAppearance(allMeshes,await lighting.whenReady,colorOptions);
  const door=groups['09_ClickyClacky_Door'];if(door){pivot=new THREE.Group();pivot.position.set(-.26205,0,.2565);scene.add(pivot);pivot.attach(door)}
  for(const s of ['#door','#x','#y','#z','#demo','#reset','#home','#focusX','#focusY','#releaseSwitch','#focusZ'])$(s).disabled=false;
- ready=true;$('#loading').remove();await setupConfigurations(catalog,installConfiguration);
+ accessories=setupAccessories(catalog,{load:asset,update:()=>setPose(current.x,current.y,current.z)});
+ ready=true;$('#loading').remove();await setupConfigurations(catalog,installConfiguration,accessories);
  setupRenderExport({renderer,scene,camera,beforeRender:stop,afterRender:()=>{renderRequested=true},name:'Trident_350'});
 }).catch(e=>{if($('#loading'))$('#loading').textContent='モデルを読み込めませんでした。'+e.message;console.error(e)});
 $('#door').oninput=e=>{$('#angle').textContent=e.target.value+'°';if(pivot)pivot.rotation.y=-THREE.MathUtils.degToRad(+e.target.value)};

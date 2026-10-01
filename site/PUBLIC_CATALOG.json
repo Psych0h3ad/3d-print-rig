@@ -1,5 +1,5 @@
 {
-  "viewer_version": "2026-10-01-public-viewer-3",
+  "viewer_version": "2026-10-01-public-viewer-4",
   "sources": [
     {
       "id": "siboor_trident",
@@ -249,6 +249,21 @@
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
       "version": "Afterburner_Assembly.step SHA256: 00613b8e448d663dee0673cfb1a9c2b826e33fc4e6dfdb56ba88d2e28e664eb5",
       "changes": "V6構成部品を抽出し、SBの取付規格に配置。表示用三角形化・配色。"
+    },
+    {
+      "id": "trident_bedfans",
+      "label": "Trident Bed Fans",
+      "repository": "VoronDesign/VoronUsers",
+      "author": "CannedBass（原案: Andrew Ellis）",
+      "commit": "8e5067f4f6457da8a552983dd210ec48c40be2ca",
+      "url": "https://github.com/VoronDesign/VoronUsers/tree/8e5067f4f6457da8a552983dd210ec48c40be2ca/printer_mods/CannedBass/Trident_Bed_Fans",
+      "scope": "SIBOOR Trident 350のベッド支持フレームに5015ブロワー2基を追加。",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/trident_bedfans/LICENSE.md",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "version": "5015_Bed_Fan_Mount_Trident.step SHA256: 6b9c20ce3fddab6870f77e9c6dbf0d2e5a0cf7391931c0537e8d0299966c1717",
+      "changes": "原本のファン・印刷マウント・ねじ・インサートを配置。キット由来のM3 Tナットを追加し、ベッドのZ移動へ登録。",
+      "notice": "ビューアーのZ移動0〜230 mmとドア0°・90°・110°で配置を確認。配線とKlipperマクロは含みません。"
     }
   ],
   "defaults": [
@@ -273,5 +288,5 @@
       "release_verified": true
     }
   ],
-  "model_source_url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v3/viewer-sources.zip"
+  "model_source_url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v4/viewer-sources.zip"
 }

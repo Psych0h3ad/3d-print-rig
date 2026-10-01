@@ -2,8 +2,8 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=bundle-v2';
-import {setupConfigurations} from './configurations.js?v=workbench-v1';
-import {setupPublicInfo} from './public-info.js?v=workbench-v1';
+import {setupConfigurations} from './configurations.js?v=mounts-v4';
+import {setupPublicInfo} from './public-info.js?v=mounts-v4';
 import {setupRenderExport} from './render-export.js';
 import {headPlan,partKey,headCombinationCount} from './head-assembly.js';
 
@@ -107,7 +107,7 @@ async function install(variant){
   for(const p of cached.values()){const a=p.loaded;if(a){a.root.visible=false;for(const r of a.meshes)r.mesh.visible=true}}
   const base=await asset(plan.base);base.root.position.copy(point(plan.translation));base.root.visible=true;
   for(const r of base.meshes)r.mesh.visible=!plan.hidden.has(r.key);
-  for(const module of plan.modules){const a=await asset(module.id);a.root.position.copy(point(module.translation_mm));a.root.visible=true}
+  for(const module of plan.modules){const a=await asset(module.id),hidden=new Set(module.hidden_keys||[]);a.root.position.copy(point(module.translation_mm));a.root.visible=true;for(const r of a.meshes)r.mesh.visible=!hidden.has(r.key)}
   appearance();visibleBounds();ready=true;fit();
   const count=ids.reduce((n,id)=>n+cached.get(id).loaded.meshes.filter(r=>r.mesh.visible).length,0);
   Object.assign(document.body.dataset,{variant:variant.id,headParts:String(count),headAssets:JSON.stringify(ids),assetStatus:'ready'});
