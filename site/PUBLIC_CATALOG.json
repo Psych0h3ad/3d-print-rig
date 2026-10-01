@@ -32,7 +32,7 @@
       "author": "Lzhikai",
       "commit": "e3569bf1dca2e5056a3d4612620255e81cec91f9",
       "url": "https://github.com/Lzhikai/SIBOOR-Voron-2.4-AUG/tree/e3569bf1dca2e5056a3d4612620255e81cec91f9",
-      "scope": "採用予定キットの仕様・マニュアル参照のみ。CNC形状は未導入。",
+      "scope": "キットの仕様・マニュアル参照のみ。CNC形状は未導入。",
       "license": "再配布条件の明記を確認できず / 公開前に確認が必要",
       "changes": "資料参照のみ。形状の変更・追加なし。"
     },
@@ -209,124 +209,5 @@
       "notice": "原設計は独自の非商用ライセンスを参照します。XolのCCと一括扱いせず、組込み版の適用条件・再配布条件を公開前に照合します。参照したライセンス版: 3d70dee4f4bbef3ab149159d68260d5b848d1152"
     }
   ],
-  "defaults": [
-    {
-      "id": "siboor_trident_300",
-      "brand": "SIBOOR",
-      "model": "Trident",
-      "size": 300,
-      "configuration": "CNC AWD / SB / CW2 / Rapido 2 UHF",
-      "revision": "JUNE",
-      "status_label": "公開条件の確認待ち",
-      "url": null,
-      "note": "ローカル用CADあり。再配布条件の確認前は公開リンクを有効にしません。",
-      "bytes": 428261820
-    },
-    {
-      "id": "siboor_trident_350",
-      "brand": "SIBOOR",
-      "model": "Trident",
-      "size": 350,
-      "configuration": "CNC AWD / SB / CW2 / Rapido 2 UHF",
-      "revision": "JUNE",
-      "status_label": "公開条件の確認待ち",
-      "url": null,
-      "note": "ローカル用CADあり。再配布条件の確認前は公開リンクを有効にしません。",
-      "bytes": 1602883253
-    },
-    {
-      "id": "siboor_v24_300",
-      "brand": "SIBOOR",
-      "model": "V2.4 AUG CNC",
-      "size": 300,
-      "configuration": "AUG CNC / SB（キット部品の照合待ち）",
-      "revision": "AUG CNC Kit V2",
-      "status_label": "CNC CAD・公開条件の確認待ち",
-      "url": null,
-      "note": "プリントR2モデルは代用しません。"
-    },
-    {
-      "id": "siboor_v24_350",
-      "brand": "SIBOOR",
-      "model": "V2.4 AUG CNC",
-      "size": 350,
-      "configuration": "AUG CNC / SB（キット部品の照合待ち）",
-      "revision": "AUG CNC Kit V2",
-      "status_label": "CNC CAD・公開条件の確認待ち",
-      "url": null,
-      "note": "プリントR2モデルは代用しません。"
-    },
-    {
-      "id": "voron_trident_250",
-      "brand": "VORON",
-      "model": "Trident R2",
-      "size": 250,
-      "configuration": "公式CAD標準構成",
-      "revision": "R2",
-      "status_label": "配布準備中",
-      "note": "標準構成の配布版を検証中です。原設計と使用版は出典一覧を参照してください。",
-      "upstream": true,
-      "source_url": "https://github.com/VoronDesign/Voron-Trident/raw/a8628f48546948ce1fc15511b7765b7f31f80722/CAD/trident_assembly.step.zip",
-      "url": null
-    },
-    {
-      "id": "voron_trident_300",
-      "brand": "VORON",
-      "model": "Trident R2",
-      "size": 300,
-      "configuration": "公式CAD標準構成",
-      "revision": "R2",
-      "status_label": "全体CADの再構成待ち",
-      "url": null,
-      "note": "公式全体CADは250基準。サイズ別の全体再構成・STEP検証が未完了です。"
-    },
-    {
-      "id": "voron_trident_350",
-      "brand": "VORON",
-      "model": "Trident R2",
-      "size": 350,
-      "configuration": "公式CAD標準構成",
-      "revision": "R2",
-      "status_label": "全体CADの再構成待ち",
-      "url": null,
-      "note": "公式全体CADは250基準。サイズ別の全体再構成・STEP検証が未完了です。"
-    },
-    {
-      "id": "voron_v24_250",
-      "brand": "VORON",
-      "model": "V2.4 R2",
-      "size": 250,
-      "configuration": "公式CAD標準構成",
-      "revision": "R2",
-      "status_label": "配布準備中",
-      "note": "標準構成の配布版を検証中です。原設計と使用版は出典一覧を参照してください。",
-      "upstream": true,
-      "source_url": "https://github.com/VoronDesign/Voron-2/raw/a192410e27ea345644ae5c4b29b4c9c40cbe1a73/CAD/Voron_2.4r2_Assembly_STEP.zip",
-      "url": null
-    },
-    {
-      "id": "voron_v24_300",
-      "brand": "VORON",
-      "model": "V2.4 R2",
-      "size": 300,
-      "configuration": "公式CAD標準構成",
-      "revision": "R2",
-      "status_label": "全体CADの再構成待ち",
-      "url": null,
-      "note": "公式全体CADは250基準。サイズ別の全体再構成・STEP検証が未完了です。"
-    },
-    {
-      "id": "voron_v24_350",
-      "brand": "VORON",
-      "model": "V2.4 R2",
-      "size": 350,
-      "configuration": "公式CAD標準構成",
-      "revision": "R2",
-      "status_label": "全体CADの再構成待ち",
-      "url": null,
-      "note": "公式全体CADは250基準。サイズ別の全体再構成・STEP検証が未完了です。"
-    }
-  ],
-  "publication_note": "公開準備中：SIBOOR・Phaetusの再配布条件と、CNCキットの組込み条件は未解決です。非商用目的だけで全データの公開許可が得られるとは扱いません。",
-  "download_note": "標準構成の実データを検証し、配布条件を確認してから有効にします。未検証のサイズとAUG CNCキットは準備中です。"
+  "defaults": []
 }

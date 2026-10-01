@@ -2,7 +2,6 @@
 
 各CAD・Modのライセンスは個別に適用されます。ビューアー全体や全モデルを一括でGPLまたはMITとして扱いません。
 使用形状の取得版と、原設計を照合した参考commitを区別しています。SIBOOR取得CADの版はSHA256で識別します。
-公開準備は未完了です。公開可否の確認状況はPUBLICATION_STATUS.jsonに保存しています。
 
 ## SIBOOR Trident JUNE / ClickyClacky・FumePack
 
@@ -28,7 +27,7 @@
 作者：Lzhikai
 配布元・参考元：https://github.com/Lzhikai/SIBOOR-Voron-2.4-AUG/tree/e3569bf1dca2e5056a3d4612620255e81cec91f9
 版：e3569bf1dca2e5056a3d4612620255e81cec91f9
-適用範囲：採用予定キットの仕様・マニュアル参照のみ。CNC形状は未導入。
+適用範囲：キットの仕様・マニュアル参照のみ。CNC形状は未導入。
 ライセンス：再配布条件の明記を確認できず / 公開前に確認が必要
 変更：資料参照のみ。形状の変更・追加なし。
 
