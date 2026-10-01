@@ -32,6 +32,6 @@ async function install(id){if(busy)return;const item=catalog.items.find(p=>p.id=
 for(const id of ['iso','front','side'])$('#'+id).onclick=()=>{view=id;fit()};$('#fit').onclick=fit;
 setupPublicInfo({includeDownloads:false});setupRenderExport({renderer,scene,camera,name:'3D_Print_Rig_Component',afterRender:()=>{dirty=true}});
 try{const r=await fetch('../COMPONENT_LIBRARY.json',{cache:'no-cache'});if(!r.ok)throw Error('部品カタログを取得できません');catalog=await r.json();
- for(const [kind,label] of [['hotend','ホットエンド'],['extruder','押出機'],['electronics','基板']]){const group=document.createElement('optgroup');group.label=label;for(const item of catalog.items.filter(p=>p.kind===kind)){const option=document.createElement('option');option.value=item.id;option.textContent=item.label;group.append(option)}$('#component').append(group)}
+ for(const [kind,label] of [['hotend','ホットエンド'],['extruder','押出機'],['electronics','基板'],['carriage','キャリッジ / ベルトクランプ'],['gantry','ガントリー']]){const group=document.createElement('optgroup');group.label=label;for(const item of catalog.items.filter(p=>p.kind===kind)){const option=document.createElement('option');option.value=item.id;option.textContent=item.label;group.append(option)}$('#component').append(group)}
  $('#component').onchange=e=>install(e.target.value);const wanted=new URLSearchParams(location.search).get('component');await install(catalog.items.some(p=>p.id===wanted)?wanted:catalog.items[0].id);
 }catch(e){$('#loading').textContent=e.message;console.error(e)}resize();

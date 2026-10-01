@@ -291,3 +291,62 @@ R2のSB下側ベルト固定ねじ・インサートを公式キャリッジの�
 Xol / Dragon SF–HFではBeacon RevD、Cartographer V1–V3・V4の金属除外領域とヒートシンクが交差します。これらは部品本体の配置を比較するための構成で、金属干渉を注意表示し実機の適合を保証しません。
 
 R2印刷キャリッジの内側面に0.002 mm幅の局所的な逃げを追加し、STEP保存・読み戻し後の輪郭エラーを修正。UHFで元CADのベッド面がノズルを越える構成は、表示上の基準ベッド位置を下げて0.2 mmの間隔を確保。ベッド・ガイドブロック・付属部品へ同じ移動量を適用します。実機のZオフセット設定は含みません。
+
+
+### Monolith Gantry R1
+
+作者：Monolith3D。配布元：https://github.com/Monolith3D/Monolith_Gantry/tree/5b729c2f96bdbd24ea180a80476364727444c038。使用commit：5b729c2f96bdbd24ea180a80476364727444c038。
+
+適用範囲：350 mmガントリー単体。Trident/V2.4、Printed/Sheet metal、2WD/AWD、6/9 mmの16構成。
+
+配布条件：CC BY-NC-SA 4.0。原文：[LICENSE](../site/licenses/monolith_gantry/LICENSE)。
+
+変更：コーナーを剛体移動。梁・ベルトの直線部を延長し、レール穴周期を繰返し。微小な不正スペーサー面を実測プロファイルで修復。Hybrid Zの円錐面は形状を保持した有理NURBS表現へ変換し、STEP読み戻しの形状エラーを修復。
+
+ガントリーの設計データはCC BY-NC-SA 4.0。別リポジトリのクランプはGPL-3.0。ビューアーコードのGPLを全モデルへ一括適用しません。
+
+
+### Monolith Belt Clamps
+
+作者：Monolith3D。配布元：https://github.com/Monolith3D/Toolheads_for_Monolith/tree/e205bff37e405bfbeb40fe2d8f46dbeda45c7b73。使用commit：e205bff37e405bfbeb40fe2d8f46dbeda45c7b73。
+
+適用範囲：Milled・SLMクランプの部品単体CAD。ガントリーとは別のライセンス。
+
+配布条件：GPL-3.0。原文：[LICENSE](../site/licenses/monolith_toolheads/LICENSE)。
+
+変更：原寸の表示用変換・配色。ヘッドへの取付は未登録。
+
+
+### MetalTap
+
+作者：Vitalii3D-xyz。配布元：https://github.com/Vitalii3D-xyz/MetalTap/tree/62603ad970bc9fd836c8d8f24eed7e084a324a43。使用commit：62603ad970bc9fd836c8d8f24eed7e084a324a43。
+
+適用範囲：配線式光学センサーとOptoTap式の原本組立を別表示。
+
+配布条件：GPL-3.0。原文：[LICENSE](../site/licenses/vitalii_metal_tap/LICENSE)。
+
+変更：重複していたセンサー・アダプターの選択肢を分離。原寸の表示用変換・配色。機体への取付・TAP動作は未検証。
+
+
+### Vitalii Lightweight X Carriage
+
+作者：Vitalii3D-xyz。配布元：https://github.com/Vitalii3D-xyz/VoronLightweightXCarriage/tree/8dce8deed9f481724058dfef3fe2beecdd8897e1。使用commit：8dce8deed9f481724058dfef3fe2beecdd8897e1。
+
+適用範囲：SB・Xol用キャリッジ原本。SBは6ホットエンドの比較用試着を登録。
+
+配布条件：GPL-3.0。原文：[LICENSE](../site/licenses/vitalii_lightweight/LICENSE)。
+
+変更：MGN12/SB穴軸で剛体配置。SIBOOR由来CW2カバー等とのCAD干渉を表示。プローブ用スペーサーと機体全域は未検証。
+
+
+### DoubleT / Vitalii V2.4 Aluminum Gantry
+
+作者：DoubleT / thiagolocatelli / 3DPrintingMods（原設計）、Vitalii3D-xyz（V2.4版）。配布元：https://github.com/Vitalii3D-xyz/DoubleT-2.4AluminumG/tree/8c4ed183c02db7814ed02d234e20bfdea77dd892。使用commit：8c4ed183c02db7814ed02d234e20bfdea77dd892。
+
+適用範囲：AB・XY・フロントアイドラーの原本組立。梁・モーター・ベルトを含まない。350 mm機への置換は未登録。
+
+配布条件：GPL-3.0。原文：[LICENSE](../site/licenses/vitalii_doublet/LICENSE)。
+
+変更：原寸の表示用変換・配色。
+
+READMEが原設計のhttps://github.com/3DPrintingMods/VoronTrident-AluminumG を案内しています。使用形状は上記Vitalii版commit。

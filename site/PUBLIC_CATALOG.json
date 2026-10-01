@@ -1,5 +1,5 @@
 {
-  "viewer_version": "2026-10-02-public-viewer-8",
+  "viewer_version": "2026-10-02-public-viewer-9",
   "sources": [
     {
       "id": "siboor_trident",
@@ -330,6 +330,73 @@
       "version": "beacon_sb_xcarriage.STEP SHA256 ed6ea6778deb604c0c23eeeffc5f07b482e0f0b80c4c813c59a2309a56a58a9f",
       "changes": "原寸の左右キャリッジを登録し、2.8 mm絶縁スペーサーとM3締結部品を追加。メーカーの金属除外領域と交差する組み合わせは注意を表示。",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "id": "monolith_gantry",
+      "label": "Monolith Gantry R1",
+      "repository": "Monolith3D/Monolith_Gantry",
+      "author": "Monolith3D",
+      "commit": "5b729c2f96bdbd24ea180a80476364727444c038",
+      "url": "https://github.com/Monolith3D/Monolith_Gantry/tree/5b729c2f96bdbd24ea180a80476364727444c038",
+      "scope": "350 mmガントリー単体。Trident/V2.4、Printed/Sheet metal、2WD/AWD、6/9 mmの16構成。",
+      "license": "CC BY-NC-SA 4.0",
+      "license_url": "../licenses/monolith_gantry/LICENSE",
+      "license_sha256": "9e502ba75fd0fd30cea5497b438a4bc12f07f02bc932a7a6041fd6a18b8f46a0",
+      "changes": "コーナーを剛体移動。梁・ベルトの直線部を延長し、レール穴周期を繰返し。微小な不正スペーサー面を実測プロファイルで修復。 Hybrid Zの円錐面は、形状を保持した有理NURBS表現でSTEPの読み戻しを修復。",
+      "notice": "ガントリーの設計データはCC BY-NC-SA 4.0。別リポジトリのクランプはGPL-3.0。ビューアーコードのGPLを全モデルへ一括適用しません。"
+    },
+    {
+      "id": "monolith_toolheads",
+      "label": "Monolith Belt Clamps",
+      "repository": "Monolith3D/Toolheads_for_Monolith",
+      "author": "Monolith3D",
+      "commit": "e205bff37e405bfbeb40fe2d8f46dbeda45c7b73",
+      "url": "https://github.com/Monolith3D/Toolheads_for_Monolith/tree/e205bff37e405bfbeb40fe2d8f46dbeda45c7b73",
+      "scope": "Milled・SLMクランプの部品単体CAD。ガントリーとは別のライセンス。",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/monolith_toolheads/LICENSE",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "changes": "原寸の表示用変換・配色。ヘッドへの取付は未登録。"
+    },
+    {
+      "id": "vitalii_metal_tap",
+      "label": "MetalTap",
+      "repository": "Vitalii3D-xyz/MetalTap",
+      "author": "Vitalii3D-xyz",
+      "commit": "62603ad970bc9fd836c8d8f24eed7e084a324a43",
+      "url": "https://github.com/Vitalii3D-xyz/MetalTap/tree/62603ad970bc9fd836c8d8f24eed7e084a324a43",
+      "scope": "配線式光学センサーとOptoTap式の原本組立を別表示。",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/vitalii_metal_tap/LICENSE",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "changes": "重複していたセンサー・アダプターの選択肢を分離。原寸の表示用変換・配色。機体への取付・TAP動作は未検証。"
+    },
+    {
+      "id": "vitalii_lightweight",
+      "label": "Vitalii Lightweight X Carriage",
+      "repository": "Vitalii3D-xyz/VoronLightweightXCarriage",
+      "author": "Vitalii3D-xyz",
+      "commit": "8dce8deed9f481724058dfef3fe2beecdd8897e1",
+      "url": "https://github.com/Vitalii3D-xyz/VoronLightweightXCarriage/tree/8dce8deed9f481724058dfef3fe2beecdd8897e1",
+      "scope": "SB・Xol用キャリッジ原本。SBは6ホットエンドの比較用試着を登録。",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/vitalii_lightweight/LICENSE",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "changes": "MGN12/SB穴軸で剛体配置。SIBOOR由来CW2カバー等とのCAD干渉を表示。プローブ用スペーサーと機体全域は未検証。"
+    },
+    {
+      "id": "vitalii_doublet",
+      "label": "DoubleT / Vitalii V2.4 Aluminum Gantry",
+      "repository": "Vitalii3D-xyz/DoubleT-2.4AluminumG",
+      "author": "DoubleT / thiagolocatelli / 3DPrintingMods（原設計）、Vitalii3D-xyz（V2.4版）",
+      "commit": "8c4ed183c02db7814ed02d234e20bfdea77dd892",
+      "url": "https://github.com/Vitalii3D-xyz/DoubleT-2.4AluminumG/tree/8c4ed183c02db7814ed02d234e20bfdea77dd892",
+      "scope": "AB・XY・フロントアイドラーの原本組立。梁・モーター・ベルトを含まない。350 mm機への置換は未登録。",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/vitalii_doublet/LICENSE",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "changes": "原寸の表示用変換・配色。",
+      "notice": "READMEが原設計のhttps://github.com/3DPrintingMods/VoronTrident-AluminumG を案内しています。使用形状は上記Vitalii版commit。"
     }
   ],
   "defaults": [

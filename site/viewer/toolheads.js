@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=bundle-v2';
-import {setupConfigurations} from './configurations.js?v=clearance-v1';
+import {setupConfigurations} from './configurations.js?v=carriages-v1';
 import {setupPublicInfo} from './public-info.js?v=mounts-v5';
 import {setupRenderExport} from './render-export.js';
 import {headPlan,partKey,headCombinationCount} from './head-assembly.js';
@@ -84,9 +84,10 @@ const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);
 function clearGuide(group){for(const child of [...group.children]){child.geometry?.dispose();for(const material of (Array.isArray(child.material)?child.material:[child.material]))material?.dispose();group.remove(child)}}
 function inspection(variant){
  currentVariant=variant;const check=probeCheck(variant),guide=probeGuide(variant),p=variant.fit?.probe;
- $('#inspectionState').textContent=check.label;$('#inspectionState').dataset.state=check.state;$('#inspectionState').classList.toggle('notice',check.warning);
+ const carriageConflict=variant.fit?.carriage_native_body_passed===false;
+ $('#inspectionState').textContent=carriageConflict?'キャリッジ試着：本体干渉あり':check.label;$('#inspectionState').dataset.state=carriageConflict?'carriage-conflict':check.state;$('#inspectionState').classList.toggle('notice',check.warning||carriageConflict);
  $('#probeMetrics').replaceChildren(...probeMetrics(variant).flatMap(([label,value])=>{const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=label;dd.textContent=value;return [dt,dd]}));
- const notes=[...check.lines];if(!p&&!notes.length)notes.push('このキャリッジ・ホットエンドに登録済みのプローブから選択できます。未検証のマウントは表示しません。');
+ const notes=[...check.lines,...(variant.fit?.carriage_native_body_collisions||[]).map(c=>`${c.label}：交差体積 ${c.volume_mm3.toFixed(3)} mm³。ピンクの部分は元CADの交差形状。`)];if(!p&&!notes.length)notes.push('このキャリッジ・ホットエンドに登録済みのプローブから選択できます。未検証のマウントは表示しません。');
  if(p?.metal_keepout_verified===true&&!p.metal_keepout_collisions?.length)notes.push('基準姿勢の本体干渉・コイル高さ・金属除外領域を確認済み。');
  $('#inspectionNotes').replaceChildren(...notes.map(note=>{const li=document.createElement('li');li.textContent=note;return li}));
  clearGuide(heightGuides);clearGuide(keepoutGuide);
@@ -126,7 +127,7 @@ function fit(next=view){
 for(const id of ['iso','front','back','side','bottom'])$('#'+id).onclick=()=>{if(ready)fit(id)};
 $('#fit').onclick=()=>{if(ready)fit()};
 async function install(variant){
- const plan=headPlan(variant),ids=[plan.base,...plan.modules.map(m=>m.id)];
+ const plan=headPlan(variant),ids=[plan.base,...plan.modules.map(m=>m.id),...(variant.inspection_module?[variant.inspection_module]:[])];
  $('#loading').hidden=false;$('#loading').textContent='選択したヘッドを読み込み中…';
  try{
   // Load before mutating visibility, so failures leave the installed head intact.
@@ -135,10 +136,11 @@ async function install(variant){
   const base=await asset(plan.base);base.root.position.copy(point(plan.translation));base.root.visible=true;
   for(const r of base.meshes)r.mesh.visible=!plan.hidden.has(r.key);
   for(const module of plan.modules){const a=await asset(module.id),hidden=new Set(module.hidden_keys||[]);a.root.position.copy(point(module.translation_mm));a.root.visible=true;for(const r of a.meshes)r.mesh.visible=!hidden.has(r.key)}
+  if(variant.inspection_module){const a=await asset(variant.inspection_module);a.root.position.set(0,0,0);a.root.visible=true;for(const row of a.meshes){row.mesh.renderOrder=20;for(const material of row.materials){material.depthTest=false;material.depthWrite=false;material.transparent=true;material.opacity=.82}}}
   appearance();inspection(variant);visibleBounds();ready=true;fit();
-  const count=ids.reduce((n,id)=>n+cached.get(id).loaded.meshes.filter(r=>r.mesh.visible).length,0);
+  const count=[plan.base,...plan.modules.map(m=>m.id)].reduce((n,id)=>n+cached.get(id).loaded.meshes.filter(r=>r.mesh.visible).length,0);
   Object.assign(document.body.dataset,{variant:variant.id,headParts:String(count),headAssets:JSON.stringify(ids),assetStatus:'ready'});
-  const link=new URL('./',location.href);link.searchParams.set('configuration',variant.id);$('#printerLink').href=link;
+  const link=new URL('./',location.href);link.searchParams.set('configuration',variant.id);$('#printerLink').href=link;$('#printerLink').hidden=!!variant.head_only;
  }finally{$('#loading').hidden=true}
 }
 function resize(){const width=Math.max(stage.clientWidth,1),height=Math.max(stage.clientHeight,1);renderer.setSize(width,height);camera.aspect=width/height;camera.updateProjectionMatrix();if(ready)fit();dirty=true}
