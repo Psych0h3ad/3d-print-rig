@@ -116,7 +116,7 @@ def main():
     for variant in head['variants']:
         variant['modules'] = [m for m in variant['modules'] if m['id'] != 'trident_r2_gantry_350']
         variant['removed_stock_keys'] = sorted(keys & set(variant['removed_stock_keys']))
-        variant['notes'] = [n for n in variant['notes'] if 'CAN' in n or 'プローブ' in n or 'Cartographer' in n]
+        variant['notes'] = [n for n in variant['notes'] if 'CAN' in n or 'プローブ' in n or 'Cartographer' in n or '金属' in n]
     used = {m['id'] for v in head['variants'] for m in v['modules']}
     head['assets'] = {k: v for k, v in head['assets'].items() if k in used}
     head['unique_head_combinations'] = len({(v['toolhead'], v['hotend'], v['extruder']) for v in head['variants']})

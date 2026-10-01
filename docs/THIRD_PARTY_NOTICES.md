@@ -244,3 +244,50 @@ SIBOORのキットマニュアルが原設計を参照。使用したSTLの版�
 Disco XXLはSIBOOR / VORON Trident 350ではZ480 mm、VORON V2.4 350ではZ510 mmの上部2020フレーム下面に配置。V2.4のZガントリーとは別の固定フレームへ登録し、LEDと光源を同じ配置に保ちます。
 
 Sturdy Handlesの作者はjeoje。配布元 https://github.com/VoronDesign/VoronUsers/tree/8e5067f4f6457da8a552983dd210ec48c40be2ca/printer_mods/jeoje/Sturdy_Handles 。取得commit 8e5067f4f6457da8a552983dd210ec48c40be2ca / 原本SHA256 a1b006652e8a1005e7b4871fc089cb373136cacf3cd197d80b76f946c644caec 。GPL-3.0（原文: ../site/licenses/sturdy_handles/LICENSE.md）。M5原設計の本体2個を表示し、参考押出材と印刷台上の複製を除外。標準2020プロファイルとの接触リップを約2.6133 mm³／個だけ逃がすフィット調整を実施。取付軸と外寸を保ち、締結部品は省略。作者BOMは各ハンドルにM5x12 SHCSとM5 Tナットを各2個。強度・耐荷重は計算していません。
+
+
+## 選択できるベッドプローブ
+
+### Beacon RevD / RevH
+
+作者：Beacon。配布元：https://github.com/beacon3d/docs/tree/bb8e34c6fd7fb3b200c3a2688fee9f4ce8c76278/mcad/beacon。取得commit：bb8e34c6fd7fb3b200c3a2688fee9f4ce8c76278。
+
+版：RevD SHA256 186f190756af36c45ed8ed55347c8a6bef18a8a1b7b5569e1fef73486c025bd7 / RevH SHA256 248898016e4b03f387b32c5cb73e6c124ae0039d84a4b0b5fe651eea07460470。
+
+適用範囲：メーカーのNormal基板参考CAD。XolとSB用マウントへ剛体配置。干渉確認用の領域は実物部品として表示しません。
+
+配布条件：MIT（Molex sub-assemblyには原文中の別条件が適用）
+
+変更：表示用変換・剛体配置・配色。実体ソリッドの寸法と体積を保持。
+
+### Cartographer V1–V3 / V4
+
+作者：Cartographer3D。配布元：https://github.com/Cartographer3D/cartographer-probe/tree/bf01749f16f239b5310aaf03e96b18e9dfb9b832/STEP/Cartographer%20Probes。取得commit：bf01749f16f239b5310aaf03e96b18e9dfb9b832。
+
+版：V1–V3 SHA256 05ae752f2e0deb8f8927d9dec9d6432fd127d24d89f03a425d90fea450b2498f / V4 SHA256 7496da4afc02fd3bfe8eec6fcdee32f5b6c41682f26b159305d24595222e6111。
+
+適用範囲：Standard基板のメーカー参考CAD。Xol・SBの構成比較に使用。
+
+配布条件：取得したSTEPの再配布ライセンス表記なし。VORONやビューアーのGPLをこの基板へ適用しません。
+
+変更：表示用変換・剛体配置・配色。基板の実体ソリッドを保持。シルク表面と参考領域を実物の部品数へ加えません。
+
+### Stealthburner Beacon carriage
+
+作者：Trails / ANNEX Engineering Team。配布元：https://github.com/Annex-Engineering/Annex-Engineering_User_Mods/tree/c73acdda56535898fb3aef6b62998388e0c51670/Printers/Non_Annex_Printers/VORON_Printers/VORON_V2dot4/annex_dev-stealthburner_beacon_x_carriage。取得commit：c73acdda56535898fb3aef6b62998388e0c51670。
+
+版：beacon_sb_xcarriage.STEP SHA256 ed6ea6778deb604c0c23eeeffc5f07b482e0f0b80c4c813c59a2309a56a58a9f。
+
+適用範囲：MGN12H用のSB左右キャリッジ。CW2 / Revo / R2とV2.4の比較用。
+
+配布条件：GPL-3.0
+
+変更：原寸の左右キャリッジを登録し、2.8 mm絶縁スペーサーとM3締結部品を追加。メーカーの金属除外領域と交差する組み合わせは注意を表示。
+
+XolマウントはArmchair Heavy Industriesの同じc00b13ef851d38fef6e295e18296650e1ca50d7e版。基板の外形・部品寸法は保持し、印刷マウントだけの小さな接触を0.15 mmの局所的な逃げで修正した構成を含みます。元データのフィレット端で自己交差する輪郭には0.05 mm厚の局所的な逃げを加え、STEPの読み戻しでも有効なソリッドになるよう修正。変更量は各モジュールのbracket_removed_volume_mm3とstep_repair_reliefsへ記録。UHFと通常ホットエンドでブラケットを交換し、Revo構成では0.3 mmの絶縁スペーサーを使用。V4 UHFでは0.1 mmの絶縁スペーサーを使用。
+
+R2のSB下側ベルト固定ねじ・インサートを公式キャリッジの穴軸へ2.000294 mm移動。SB/Revoの一部プローブではこの固定ねじと金属除外領域が交差するため、構成選択に「金属干渉あり」を表示。基板本体が接触しないことと、センサーの実機動作の適合は別に判定します。
+
+Xol / Dragon SF–HFではBeacon RevD、Cartographer V1–V3・V4の金属除外領域とヒートシンクが交差します。これらは部品本体の配置を比較するための構成で、金属干渉を注意表示し実機の適合を保証しません。
+
+R2印刷キャリッジの内側面に0.002 mm幅の局所的な逃げを追加し、STEP保存・読み戻し後の輪郭エラーを修正。UHFで元CADのベッド面がノズルを越える構成は、表示上の基準ベッド位置を下げて0.2 mmの間隔を確保。ベッド・ガイドブロック・付属部品へ同じ移動量を適用します。実機のZオフセット設定は含みません。

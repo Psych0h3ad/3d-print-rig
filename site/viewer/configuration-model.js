@@ -1,4 +1,4 @@
-export const dimensions=['gantry','toolhead','hotend','extruder'];
+export const dimensions=['gantry','toolhead','hotend','extruder','probe'];
 
 // The changed choice has priority; all results must have installed CAD.
 export function resolveVariant(catalog,selection,changed){
@@ -14,7 +14,8 @@ export function resolveVariant(catalog,selection,changed){
 export function choicesFor(catalog,variant,dimension){
  const prefix=dimensions.slice(0,dimensions.indexOf(dimension));
  const candidates=catalog.variants.filter(v=>prefix.every(k=>v[k]===variant[k]));
- const key={gantry:'gantries',toolhead:'toolheads',hotend:'hotends',extruder:'extruders'}[dimension];
+ const key={gantry:'gantries',toolhead:'toolheads',hotend:'hotends',extruder:'extruders',probe:'probes'}[dimension];
+ if(!catalog[key])return [];
  return catalog[key].filter(row=>candidates.some(v=>v[dimension]===row.id));
 }
 

@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {ProbeMountSelection} from '../site/viewer/probe-mounts.js';
+const positions=[];
+const asset={root:{visible:false,position:{set:(...p)=>positions.push(p)}},meta:{parts:Array(11)}};
+const hidden=new Set();
+const catalog={probes:[{id:'stock',stock:true},{id:'none',hidden_stock_keys:['sensor','bolt']},{id:'beacon',module:'beacon',translation_mm:[1,2,-224],hidden_stock_keys:['sensor','bolt','frame']},{id:'failed',module:'failed',translation_mm:[0,0,0],hidden_stock_keys:['frame']}]};
+const state=new ProbeMountSelection(catalog,async id=>{if(id==='failed')throw Error('load failed');return asset},(keys,value)=>{for(const key of keys)if(value)hidden.add(key);else hidden.delete(key)});
+await state.apply('beacon');assert(asset.root.visible);assert.equal(state.partDelta(),8);
+assert.deepEqual([...hidden],['sensor','bolt','frame']);
+state.setPose([350,-179,330]);assert.deepEqual(positions.at(-1),[.351,.106,.177]);
+await assert.rejects(state.apply('failed'));assert.equal(state.id,'beacon');assert(asset.root.visible);assert.equal(hidden.size,3);
+await state.apply('none');assert(!asset.root.visible);assert.deepEqual([...hidden],['sensor','bolt']);assert.equal(state.partDelta(),-2);
+await state.apply('stock');assert.equal(hidden.size,0);assert.equal(state.partDelta(),0);
+assert.throws(()=>state.setPose([NaN,0,0]));await assert.rejects(state.apply('unknown'));
+console.log('Probe mounts passed: V2.4 XYZ travel, stock restoration, exact visibility/counts and failed-load rollback.');

@@ -1,4 +1,4 @@
-import {dimensions as ids,resolveVariant,choicesFor,importedVariant} from './configuration-model.js';
+import {dimensions as ids,resolveVariant,choicesFor,importedVariant} from './configuration-model.js?v=probes-v1';
 
 export async function setupConfigurations(catalog,install,{presentation='printer',getExtras=()=>({}),applyExtras=async()=>{},validateExtras=()=>{}}={}){
  const $=s=>document.querySelector(s);
@@ -8,21 +8,23 @@ export async function setupConfigurations(catalog,install,{presentation='printer
  if(!initial)throw Error('構成のCADが登録されていません。');
  function menus(v){
   for(const id of ids){
-   const select=$('#'+id+'Config');select.replaceChildren(...choicesFor(catalog,v,id).map(row=>{const option=document.createElement('option');option.value=row.id;option.textContent=row.label;return option}));select.value=v[id];
+   const select=$('#'+id+'Config');select.replaceChildren(...choicesFor(catalog,v,id).map(row=>{const option=document.createElement('option');option.value=row.id;const candidate=id==='probe'?catalog.variants.find(c=>['gantry','toolhead','hotend','extruder'].every(k=>c[k]===v[k])&&c.probe===row.id):null;option.textContent=row.label+(candidate?.fit?.probe?.metal_keepout_collisions?.length?' · 金属干渉あり':'');return option}));select.value=v[id];
   }
  }
  function commit(v){
   actual=v;menus(v);
   const url=new URL(location.href);url.searchParams.set('configuration',v.id);history.replaceState(null,'',url);
-  $('#configSummary').textContent=ids.map((id,i)=>catalog[['gantries','toolheads','hotends','extruders'][i]].find(row=>row.id===v[id]).label).join(' ／ ');
+  $('#configSummary').textContent=ids.map((id,i)=>catalog[['gantries','toolheads','hotends','extruders','probes'][i]].find(row=>row.id===v[id]).label).join(' ／ ');
   $('#configRequirements').replaceChildren(...v.notes.map(note=>{const li=document.createElement('li');li.textContent=note;return li}));
   const rows=[`専用マウント：${v.fit?.mount||'登録済みCAD'}`,`選択可能な構成：${catalog.variants.length}通り`];
   if(presentation==='printer'&&v.fit?.nozzle_mm)rows.push(`基準姿勢のノズル位置：X ${v.fit.nozzle_mm[0].toFixed(2)} / Y ${v.fit.nozzle_mm[1].toFixed(2)} / Z ${v.fit.nozzle_mm[2].toFixed(2)} mm`);
+  if(presentation==='printer'&&v.fit?.bed_reference_drop_mm)rows.push(`基準ベッド位置を ${v.fit.bed_reference_drop_mm.toFixed(2)} mm下げて表示（ノズル先端と0.2 mmの間隔）`);
   if(v.fit?.mount_hotend_overlap_mm3!=null)rows.push(`マウント／ホットエンドの交差体積：${v.fit.mount_hotend_overlap_mm3.toFixed(3)} mm³`);
-  if(v.fit?.probe)rows.push(`Cartographerのコイル底面：ノズルより ${v.fit.probe.coil_nozzle_gap_mm.toFixed(2)} mm上`);
+  if(v.fit?.probe){const p=v.fit.probe;rows.push(`${p.label||'プローブ'}のコイル底面：ノズルより ${p.coil_nozzle_gap_mm.toFixed(2)} mm上`);if(p.offset_xy_mm)rows.push(`ノズルからのオフセット：X ${p.offset_xy_mm[0].toFixed(2)} / Y ${p.offset_xy_mm[1].toFixed(2)} mm`);if(p.spacer_mm)rows.push(`取付に必要な絶縁スペーサー：${p.spacer_mm.toFixed(1)} mm × 2`)}
   rows.push(presentation==='toolhead'?'マウントと部品配置のCADプレビュー。プリンター全域の干渉判定は含みません。':'全可動域の衝突、熱・流量・電気特性は未検証。');
   $('#mountInfo')?.replaceChildren(...rows.map(row=>{const li=document.createElement('li');li.textContent=row;return li}));
   $('#configStatus').textContent=presentation==='toolhead'?`3D切替済み · ${v.belt_width_mm} mmキャリッジ`:`3D切替済み · ${v.xy_motors}モーター · ${v.belt_width_mm} mmベルト`;
+  const interference=!!v.fit?.probe?.metal_keepout_collisions?.length;if(interference)$('#configStatus').textContent+=' ／ 金属干渉あり';$('#configStatus').classList.toggle('notice',interference);
   $('#configStatus').dataset.variant=v.id;
  }
  async function refresh(v,extraData){

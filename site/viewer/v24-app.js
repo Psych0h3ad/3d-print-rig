@@ -3,6 +3,7 @@ import {loadFrameMods,withFrameMods} from './frame-mods.js?v=frame-mods-v1';
 import {setupLighting} from './lighting.js?v=frame-lighting-v1';
 import {setupAccessories} from './accessories.js?v=frame-mods-v1';
 import {setupGrid} from './grid-control.js?v=grid-v1';
+import {setupProbeMounts} from './probe-mounts.js?v=probes-v1';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=bundle-v2';
@@ -18,7 +19,7 @@ const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(
 renderer.setClearColor('#edf1f4');renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.25;
 const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(38,1,.005,10);camera.position.set(.98,.83,1.4);
 const orbit=new OrbitControls(camera,renderer.domElement);orbit.target.set(0,.22,0);orbit.enableDamping=false;orbit.update();
-let adapter,profile,pose,renderPending=false,frames=0;
+let adapter,profile,pose,probeMounts,renderPending=false,frames=0;
 function render(){if(renderPending)return;renderPending=true;requestAnimationFrame(()=>{renderPending=false;renderer.render(scene,camera);document.body.dataset.renderedFrames=++frames})}
 setupGrid(scene,render);
 const frameMods=await loadFrameMods('siboor_v24_350');
@@ -30,8 +31,11 @@ for(const [id,pos] of [['iso',[.98,.83,1.4]],['front',[0,.24,1.65]],['top',[0,1.
 $('#focusHead').onclick=()=>{if(!adapter)return;const box=new THREE.Box3();for(const [key,node] of adapter.nodes)if(adapter.records.get(key).group===profile.head_group)box.expandByObject(node);if(box.isEmpty())return;camera.up.set(0,1,0);box.getCenter(orbit.target);camera.position.copy(orbit.target).add(new THREE.Vector3(.15,.08,.3));orbit.update();document.body.dataset.focusTarget=JSON.stringify(orbit.target.toArray());render()};
 function applyPose(){if(!adapter)return;
  pose=adapter.setPose({x:Number($('#x').value),y:Number($('#y').value),z:Number($('#z').value)});
+ probeMounts?.setPose(pose.cad_delta_xyz_mm);
  for(const a of ['x','y','z'])$('#'+a+'v').textContent=Number($('#'+a).value).toFixed(1)+' mm';
- const p=adapter.getSummary();document.body.dataset.ready='true';document.body.dataset.parts=p.part_count;
+ const p=adapter.getSummary();document.body.dataset.ready='true';document.body.dataset.parts=p.part_count+(probeMounts?.partDelta()||0);
+ $('#badge').textContent='V2.4 R2 / 350 · '+Number(document.body.dataset.parts).toLocaleString()+' PARTS';
+ if(probeMounts){const link=new URL('./toolheads.html',location.href);link.searchParams.set('configuration','trident_r2__stealthburner__revo_voron__cw2'+(['stock_panasonic','none'].includes(probeMounts.id)?'':'__'+probeMounts.id));$('#toolheadLink').href=link.href}
  document.body.dataset.pose=JSON.stringify(pose);document.body.dataset.fixedBed=JSON.stringify(p.fixed_bed_keys.map(k=>adapter.nodes.get(k).position.toArray()));
  document.body.dataset.zGuidePositions=JSON.stringify(p.z_guide_block_keys.map(k=>adapter.nodes.get(k).position.toArray()));
  document.body.dataset.flexibleVisible=String(pose.atReference&&$('#belts').checked);
@@ -41,6 +45,7 @@ try{
  const getJSON=async name=>{const r=await fetch(assetRoot+name,{cache:'no-cache'});if(!r.ok)throw Error(name);return r.json()};
  const [manifest,machine,gltf]=await Promise.all([getJSON('assembly_manifest.json'),getJSON('machine_profile.json'),loadModel(new GLTFLoader(),assetRoot+'model.glb')]);
  profile=machine;scene.add(gltf.scene);adapter=createV24Adapter(gltf.scene,manifest,profile);
+ const probeResponse=await fetch('../V24_PROBES.json',{cache:'no-cache'});if(!probeResponse.ok)throw Error('プローブ構成を取得できません');const probeCatalog=await probeResponse.json();
  const protectedMaterials=[],originals=new Map();
  for(const [key,node] of adapter.nodes){node.traverse(mesh=>{if(!mesh.isMesh)return;mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();
   for(const m of Array.isArray(mesh.material)?mesh.material:[mesh.material]){originals.set(m,m.color.clone());if(!adapter.records.get(key).appearance_role)protectedMaterials.push(m);if(m.transparent)m.depthWrite=false}
@@ -60,19 +65,20 @@ try{
   const promise=loadAccessoryModel(id).catch(e=>{modAssets.delete(id);throw e});modAssets.set(id,promise);return promise;
  }
  async function loadAccessoryModel(id){
-  const spec=frameMods.assets[id];if(!spec)throw Error('未登録のMod');
+  const spec=frameMods.assets[id]||probeCatalog.assets[id];if(!spec)throw Error('未登録のMod');
   const [meta,g]=await Promise.all([fetch('../'+spec.meta).then(r=>{if(!r.ok)throw Error(spec.meta);return r.json()}),loadModel(new GLTFLoader(),'../'+spec.glb)]);
   const lookup=new Map(meta.parts.map(p=>[p.key,p]));g.scene.visible=false;scene.add(g.scene);
-  g.scene.traverse(mesh=>{if(!mesh.isMesh)return;const row=lookup.get(mesh.userData.part_key||mesh.name);if(!row||row.motion!=='fixed')throw Error('フレームModの取付先が不正です');mesh.material=mesh.material.clone();mesh.material.side=THREE.DoubleSide;modMeshes.push({mesh,role:row.appearance_role,color:mesh.material.color.clone()})});
+  g.scene.traverse(mesh=>{if(!mesh.isMesh)return;const row=lookup.get(mesh.userData.part_key||mesh.name);if(!row||row.motion!==(probeCatalog.assets[id]?'xy':'fixed'))throw Error('Modの取付先が不正です');mesh.material=mesh.material.clone();mesh.material.side=THREE.DoubleSide;modMeshes.push({mesh,role:row.appearance_role,color:mesh.material.color.clone()})});
   applyPalette();return {root:g.scene,meta};
  }
  const modCatalog=withFrameMods({assets:{},accessories:[]},frameMods);
  setupAccessories(modCatalog,{load:loadAccessory,update:applyPose});
+ probeMounts=await setupProbeMounts(probeCatalog,{load:loadAccessory,setHidden:(keys,hidden)=>{for(const key of keys){const node=adapter.nodes.get(key);if(!node)throw Error('プローブ交換部品がありません: '+key);node.visible=!hidden}},update:applyPose});
  try{const saved=JSON.parse(localStorage.getItem(storageKey)||'null');if(saved?.machine_id===profile.machine_id)for(const r of ['base','accent','frame'])if(valid(saved.colors?.[r]))palette[r]=saved.colors[r]}catch{}
  function applyPalette(){
   for(const [material,color] of originals)material.color.copy(color);
   adapter.setPalette(palette);
-  for(const {mesh,role,color} of modMeshes){mesh.material.color.copy(color);if(palette[role])mesh.material.color.set(palette[role])}
+  for(const {mesh,role,color} of modMeshes){mesh.material.color.copy(color);if(role)mesh.material.color.set(palette[role]||profile.appearance.palette_defaults[role])}
   for(const role of ['base','accent','frame']){const value=palette[role]||profile.appearance.palette_defaults[role];$('#'+role).value=value;$('#'+role+'Hex').value=value;$('#'+role+'Hex').removeAttribute('aria-invalid');document.body.dataset[role+'Color']=palette[role]||'original'}
   document.body.dataset.protectedChanges=String(protectedMaterials.filter(m=>!m.color.equals(originals.get(m))).length);
   $('#paletteStatus').textContent=Object.values(palette).some(Boolean)?'この機種の配色を保存済み':'標準CADの配色';render();

@@ -1,5 +1,5 @@
 {
-  "viewer_version": "2026-10-02-public-viewer-6",
+  "viewer_version": "2026-10-02-public-viewer-7",
   "sources": [
     {
       "id": "siboor_trident",
@@ -83,9 +83,9 @@
       "author": "Armchair-Heavy-Industries",
       "commit": "c00b13ef851d38fef6e295e18296650e1ca50d7e",
       "url": "https://github.com/Armchair-Heavy-Industries/Xol-Toolhead/tree/c00b13ef851d38fef6e295e18296650e1ca50d7e",
-      "scope": "Xol本体、6/9 mmクランプ、Revo/Rapido/Dragon用マウント、Dragon UHF、押出機マウント。",
+      "scope": "Xol本体、6/9 mmクランプ、Revo/Rapido/Dragon用マウント、Dragon UHF、押出機マウント。 Cartographer V1–V3/V4・Beacon RevD/RevH用のNormal/UHFマウント。",
       "license": "CC BY-NC-SA 4.0（部品別例外あり）",
-      "changes": "配置・表示用三角形化・配色の調整。機種ごとの変更履歴を検証記録に保存。",
+      "changes": "配置・表示用三角形化・配色の調整。機種ごとの変更履歴を検証記録に保存。 対象基板の寸法に合わせて一部の印刷マウントへ局所的な部品逃げを追加。必要な絶縁スペーサーは構成ごとに表示。 共有マウントのフィレット端の自己交差には0.05 mm厚の局所的な逃げを追加し、STEP読み戻しで有効性を確認。 プローブ基板のコネクタをホットエンドから離す方向に配置。",
       "license_url": "../licenses/xol/LICENSE",
       "license_sha256": "57e1f486c22021dd2fb38a96463d7261e02df3235c2d35ce5c104abb17a5df4b",
       "notice": "G2SA / WWG2はGPL、Annex DFAは別ライセンス。現在の構成には含めていません。GPLとCCの適用範囲を部品単位で保持します。"
@@ -290,6 +290,46 @@
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
       "version": "V2.4 Handles v9 / mod_version 1 / sturdy_handles.step SHA256: a1b006652e8a1005e7b4871fc089cb373136cacf3cd197d80b76f946c644caec",
       "changes": "Trim 2.6133 mm3 per handle at the native VORON 2020 profile contact lips; other native geometry retained. No load capacity simulation."
+    },
+    {
+      "id": "beacon_probes",
+      "label": "Beacon RevD / RevH",
+      "repository": "beacon3d/docs",
+      "author": "Beacon",
+      "commit": "bb8e34c6fd7fb3b200c3a2688fee9f4ce8c76278",
+      "url": "https://github.com/beacon3d/docs/tree/bb8e34c6fd7fb3b200c3a2688fee9f4ce8c76278/mcad/beacon",
+      "scope": "メーカーのNormal基板参考CAD。XolとSB用マウントへ剛体配置。干渉確認用の領域は実物部品として表示しません。",
+      "license": "MIT（Molex sub-assemblyには原文中の別条件が適用）",
+      "license_url": "../licenses/beacon/LICENSE",
+      "version": "RevD SHA256 186f190756af36c45ed8ed55347c8a6bef18a8a1b7b5569e1fef73486c025bd7 / RevH SHA256 248898016e4b03f387b32c5cb73e6c124ae0039d84a4b0b5fe651eea07460470",
+      "changes": "表示用変換・剛体配置・配色。実体ソリッドの寸法と体積を保持。",
+      "license_sha256": "b160d37b90d3106c68c42d4d3773e7b2e42a56fdf4961b712e5ac394994b94fe"
+    },
+    {
+      "id": "cartographer_probes",
+      "label": "Cartographer V1–V3 / V4",
+      "repository": "Cartographer3D/cartographer-probe",
+      "author": "Cartographer3D",
+      "commit": "bf01749f16f239b5310aaf03e96b18e9dfb9b832",
+      "url": "https://github.com/Cartographer3D/cartographer-probe/tree/bf01749f16f239b5310aaf03e96b18e9dfb9b832/STEP/Cartographer%20Probes",
+      "scope": "Standard基板のメーカー参考CAD。Xol・SBの構成比較に使用。",
+      "license": "取得したSTEPの再配布ライセンス表記なし。VORONやビューアーのGPLをこの基板へ適用しません。",
+      "version": "V1–V3 SHA256 05ae752f2e0deb8f8927d9dec9d6432fd127d24d89f03a425d90fea450b2498f / V4 SHA256 7496da4afc02fd3bfe8eec6fcdee32f5b6c41682f26b159305d24595222e6111",
+      "changes": "表示用変換・剛体配置・配色。基板の実体ソリッドを保持。シルク表面と参考領域を実物の部品数へ加えません。"
+    },
+    {
+      "id": "annex_sb_beacon",
+      "label": "Stealthburner Beacon carriage",
+      "repository": "Annex-Engineering/Annex-Engineering_User_Mods",
+      "author": "Trails / ANNEX Engineering Team",
+      "commit": "c73acdda56535898fb3aef6b62998388e0c51670",
+      "url": "https://github.com/Annex-Engineering/Annex-Engineering_User_Mods/tree/c73acdda56535898fb3aef6b62998388e0c51670/Printers/Non_Annex_Printers/VORON_Printers/VORON_V2dot4/annex_dev-stealthburner_beacon_x_carriage",
+      "scope": "MGN12H用のSB左右キャリッジ。CW2 / Revo / R2とV2.4の比較用。",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/annex_sb_beacon/LICENSE.md",
+      "version": "beacon_sb_xcarriage.STEP SHA256 ed6ea6778deb604c0c23eeeffc5f07b482e0f0b80c4c813c59a2309a56a58a9f",
+      "changes": "原寸の左右キャリッジを登録し、2.8 mm絶縁スペーサーとM3締結部品を追加。メーカーの金属除外領域と交差する組み合わせは注意を表示。",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
     }
   ],
   "defaults": [
@@ -314,5 +354,5 @@
       "release_verified": true
     }
   ],
-  "model_source_url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v6/viewer-sources.zip"
+  "model_source_url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v7/viewer-sources.zip"
 }

@@ -6,7 +6,7 @@ import {loadFrameMods,withFrameMods} from './frame-mods.js?v=frame-mods-v1';
 import {setupGrid} from './grid-control.js?v=grid-v1';
 import {setupLighting} from './lighting.js?v=frame-lighting-v1';
 import {setupFlexible} from './flexible.js?v=public-v5';
-import {setupConfigurations} from './configurations.js?v=mounts-v5';
+import {setupConfigurations} from './configurations.js?v=probes-v1';
 import {setupAccessories} from './accessories.js?v=frame-mods-v1';
 import {setupAppearance} from './appearance.js?v=public-v5';
 import {setupRenderExport} from './render-export.js?v=public-v5';
@@ -111,15 +111,17 @@ function leverPose(axis,value,dx,dy){
 }
 function setPose(x,y,z){
  renderRequested=true;
- x=clamp(x,0,350);y=clamp(y,0,360);z=clamp(z,0,230);current={x,y,z};
+ const bedReferenceDrop=activeConfig?.fit?.bed_reference_drop_mm||0,zMax=230-bedReferenceDrop;
+ x=clamp(x,0,350);y=clamp(y,0,360);z=clamp(z,0,zMax);current={x,y,z};$('#z').max=zMax;
  const dx=x-refX,dy=y-refY;
+ const bedDown=z+bedReferenceDrop;
  for(const o of moving.y)o.position.z=-dy/1000;
  for(const o of moving.xy){o.position.x=dx/1000;o.position.z=-dy/1000}
- for(const o of moving.z)o.position.y=-z/1000;
- const drift=Math.max(0,...guideMeshes.map(o=>Math.abs(o.position.y+z/1000)))*1000,railShift=Math.max(0,...guideRails.map(o=>Math.abs(o.position.y)))*1000;
+ for(const o of moving.z)o.position.y=-bedDown/1000;
+ const drift=Math.max(0,...guideMeshes.map(o=>Math.abs(o.position.y+bedDown/1000)))*1000,railShift=Math.max(0,...guideRails.map(o=>Math.abs(o.position.y)))*1000;
  $('#zGuideStatus').textContent=`Zガイドブロック3箇所 · ${drift<.001&&railShift<.001?'ベッドに追従':'追従を確認してください'}`;
  $('#zGuideStatus').dataset.maxDriftMm=drift.toFixed(6);$('#zGuideStatus').dataset.railShiftMm=railShift.toFixed(6);
- const rest=Math.abs(dx)+Math.abs(dy)+Math.abs(z)<.001;
+ const rest=Math.abs(dx)+Math.abs(dy)+Math.abs(bedDown)<.001;
  for(const o of moving.reference_flexible)o.visible=rest&&$('#cables').checked;
  for(const[a,v]of [['x',x],['y',y],['z',z]]){$('#'+a).value=v;$('#'+a+'v').textContent=v.toFixed(1)+' mm'}
  const hitX=x>registration.switches.X.first_contact_display_coordinate_mm,hitY=y>registration.switches.Y.first_contact_display_coordinate_mm;
@@ -129,7 +131,7 @@ function setPose(x,y,z){
  const r2=activeConfig?.gantry==='trident_r2';
  let variant=null;
  if(installed==='xol'||r2){const inlet=installed==='xol'?(activeConfig.extruder==='orbiter2'?[-.09999426211,-24.11,427.2598619]:xolMeta.filament_inlet_mm):[-.05,-28.76,414];const off=activeConfig.head_translation_mm;variant={id:activeConfig.id,includeStockBelts:!r2,filament_inlet_mm:inlet.map((n,i)=>n+off[i]),can_inlet_mm:[-.1,18,438].map((n,i)=>n+off[i])}}
- const routing=flexible.update(dx,dy,z,$('#cables').checked,variant);
+ const routing=flexible.update(dx,dy,bedDown,$('#cables').checked,variant);
  if(r2){for(const key of ['580','Upper_Belt'])parts.get(key).visible=false;for(const {mesh,attr,original,weights} of r2Belts){mesh.visible=$('#cables').checked;for(let i=0;i<attr.count;i++){attr.array[3*i]=original[3*i]+dx*weights[2*i]/1000;attr.array[3*i+2]=original[3*i+2]-dy*weights[2*i+1]/1000}attr.needsUpdate=true;mesh.geometry.computeBoundingSphere()}}
  $('#routing').textContent=!$('#cables').checked?'ベルト・配線：非表示':variant?`${activeConfig.belt_width_mm} mmベルト・PTFE経路プレビュー ／ ヘッド用チェーン未取付`:rest?'CAD基準姿勢 · 元の配線形状':routing.chainRouteValid?'経路プレビュー · ベルト・PTFE・47リンク追従':'経路プレビュー · ベルト・PTFE追従 ／ チェーンは経路範囲外';
  $('#routing').dataset.chain=String(routing.chain);$('#routing').dataset.belts=String(routing.belts);$('#routing').dataset.ptfe=String(routing.ptfe);

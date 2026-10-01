@@ -6,11 +6,11 @@ import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js';
 import {setupMachineNavigation} from './machines.js?v=machines-v2';
-import {setupConfigurations} from './configurations.js';
+import {setupConfigurations} from './configurations.js?v=probes-v1';
 import {setupAccessories} from './accessories.js';
 import {setupPublicInfo} from './public-info.js';
 import {setupRenderExport} from './render-export.js';
-import {createTridentMotion} from './trident-motion.mjs';
+import {createTridentMotion} from './trident-motion.mjs?v=probes-v1';
 import {headPlan,partKey} from './head-assembly.js';
 setupMachineNavigation('voron_trident_350');setupPublicInfo();
 const $=s=>document.querySelector(s),stage=$('#stage'),renderer=new THREE.WebGLRenderer({antialias:true});
@@ -44,7 +44,7 @@ async function asset(id){if(cached.has(id))return cached.get(id);
 }
 function applyPose(){if(!motion)return;
  const selected=accessories?.getExtras().accessories||[];
- const zMax=Math.min(profile.display_limits_mm.Z[1],...selected.map(id=>catalog.accessories.find(a=>a.id===id).z_max_mm??profile.display_limits_mm.Z[1]));
+ const zMax=Math.min(profile.display_limits_mm.Z[1],...selected.map(id=>catalog.accessories.find(a=>a.id===id).z_max_mm??profile.display_limits_mm.Z[1]))-(active?.fit.bed_reference_drop_mm||0);
  $('#z').max=zMax;if(Number($('#z').value)>zMax)$('#z').value=zMax;
  current=motion.setPose({x:$('#x').value,y:$('#y').value,z:$('#z').value});
  for(const a of ['x','y','z'])$('#'+a+'v').textContent=current[a].toFixed(1)+' mm';
@@ -58,7 +58,7 @@ async function install(variant){const plan=headPlan(variant),required=['trident_
  const base=await asset(plan.base);base.root.visible=true;base.root.position.copy(point(plan.translation));for(const r of base.records)r.mesh.visible=!plan.hidden.has(r.key);
  for(const module of plan.modules){const a=await asset(module.id),hidden=new Set(module.hidden_keys||[]);a.root.visible=true;a.root.position.copy(point(module.translation_mm));for(const r of a.records)r.mesh.visible=!hidden.has(r.key)}
  const endstops=await fetch('../R2_ENDSTOP_REGISTRATION.json').then(r=>r.json()),ref=endstops.heads[variant.toolhead==='xol'?(variant.hotend==='rapido2_uhf'?'xol':'xol_standard'):'stealthburner'];
- motion.setReference([ref.X.cad_reference_display_coordinate_mm,ref.Y.cad_reference_display_coordinate_mm,0]);active=variant;accessories?.refresh();applyPose();
+ motion.setReference([ref.X.cad_reference_display_coordinate_mm,ref.Y.cad_reference_display_coordinate_mm,0]);motion.setBedReferenceDrop(variant.fit.bed_reference_drop_mm||0);active=variant;accessories?.refresh();applyPose();
  const url=new URL('./toolheads.html',location.href);url.searchParams.set('configuration',variant.id);$('#toolheadLink').href=url;
  $('#badge').textContent='VORON TRIDENT 350 · XY 6 mm';document.body.dataset.configuration=variant.id;
  document.body.dataset.ready='true';

@@ -34,7 +34,7 @@ def main():
         'machines/siboor_v24_350/machine_profile.json', 'machines/siboor_v24_350/model.glb',
         'machines/voron_trident_350/assembly_manifest.json', 'machines/voron_trident_350/model.glb',
         'machines/voron_trident_350/machine_profile.json', 'machines/voron_trident_350/configurations.json',
-        'COMPONENT_LIBRARY.json', 'MACHINE_MODS.json',
+        'COMPONENT_LIBRARY.json', 'MACHINE_MODS.json', 'V24_PROBES.json',
     }
     library=json.loads(safe_source(source,'COMPONENT_LIBRARY.json').read_text(encoding='utf8'))
     frame_mods=json.loads(safe_source(source,'MACHINE_MODS.json').read_text(encoding='utf8'))

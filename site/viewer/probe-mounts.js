@@ -1,0 +1,36 @@
+// Probe assemblies move with the toolhead, independently of fixed frame mods.
+export class ProbeMountSelection{
+ constructor(catalog,load,setHidden){this.catalog=catalog;this.load=load;this.setHidden=setHidden;this.assets=new Map();this.id=catalog.probes[0].id;this.delta=[0,0,0]}
+ async apply(id){
+  const row=this.catalog.probes.find(p=>p.id===id);if(!row)throw Error('未登録のプローブです。');
+  let asset;if(row.module){asset=await this.load(row.module);this.assets.set(row.module,asset)}
+  for(const a of this.assets.values())a.root.visible=false;
+  const all=[...new Set(this.catalog.probes.flatMap(p=>p.hidden_stock_keys||[]))];
+  this.setHidden(all,false);this.setHidden(row.hidden_stock_keys||[],true);
+  this.id=id;if(asset)asset.root.visible=true;this.setPose(this.delta);return row;
+ }
+ setPose(delta){
+  if(!Array.isArray(delta)||delta.length!==3||delta.some(v=>!Number.isFinite(v)))throw Error('無効なヘッド位置です。');
+  this.delta=delta.slice();const row=this.catalog.probes.find(p=>p.id===this.id),a=this.assets.get(row.module);
+  if(!a)return;const p=row.translation_mm.map((v,i)=>v+delta[i]);a.root.position.set(p[0]/1000,p[2]/1000,-p[1]/1000);
+ }
+ partDelta(){const row=this.catalog.probes.find(p=>p.id===this.id);return (this.assets.get(row.module)?.meta.parts.length||0)-(row.hidden_stock_keys?.length||0)}
+}
+export async function setupProbeMounts(catalog,{load,setHidden,update}){
+ const select=document.querySelector('#probeConfig'),status=document.querySelector('#probeStatus');
+ const state=new ProbeMountSelection(catalog,load,setHidden);let busy=false;
+ select.replaceChildren(...catalog.probes.map(row=>{const o=document.createElement('option');o.value=row.id;o.textContent=row.label;return o}));
+ async function apply(id){
+  if(busy)return;busy=true;select.disabled=true;
+  try{
+   const row=await state.apply(id);select.value=id;
+   status.textContent=row.module?`${row.label} · ノズルより ${row.coil_nozzle_gap_mm.toFixed(2)} mm上 · 絶縁スペーサー ${row.spacer_mm.toFixed(1)} mm × 2${row.metal_keepout_collisions?.length?'。ベルト固定ねじが金属除外領域に入ります。取付検証未完了。':''}`:row.label;
+   status.classList.toggle('notice',!!row.metal_keepout_collisions?.length);
+   const url=new URL(location.href);url.searchParams.set('probe',id);history.replaceState(null,'',url);update();
+  }catch(e){select.value=state.id;status.textContent='プローブを読み込めませんでした。直前の構成を表示中。';console.error(e)}
+  finally{busy=false;select.disabled=false}
+ }
+ select.onchange=()=>apply(select.value);
+ const requested=new URLSearchParams(location.search).get('probe');await apply(catalog.probes.some(p=>p.id===requested)?requested:state.id);
+ return state;
+}

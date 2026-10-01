@@ -71,5 +71,7 @@ for g,t,hotend in itertools.product(['siboor_awd','trident_r2'],['stealthburner'
     mount_hotend_overlap_mm3=geometry.get('mount_hotend_overlap_mm3'),
     probe=dict(id='cartographer_standard',mount='CNC direct / M3x6',coil_nozzle_gap_mm=probe['coil_bottom_z_mm']-nozzle[2],geometry_revision=probe['geometry_revision']) if probe and nozzle else None,
     scope=registry['validation_scope'],not_simulated=registry['not_simulated'])))
+from probe_configurations import expand_probes
+catalog=expand_probes(catalog,O)
 (O/'ASSEMBLY_CONFIGURATIONS.json').write_text(json.dumps(catalog,ensure_ascii=False,indent=2),encoding='utf8')
 print('Catalog:',len(catalog['variants']),'actual configurations')
