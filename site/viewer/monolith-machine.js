@@ -15,7 +15,8 @@ export async function loadMonolithData(){
  return machineData;
 }
 export async function loadMonolithMachines(catalog,headData){
- const [gantries,registrations,routes]=await loadMonolithData(),result=withMonolithMachines(catalog,headData.heads,headData.registry,gantries,registrations);
+ let data;try{data=await loadMonolithData()}catch(error){return {...catalog,monolith_unavailable:error.message}}
+ const [gantries,registrations,routes]=data,result=withMonolithMachines(catalog,headData.heads,headData.registry,gantries,registrations);
  if(result.monolith)result.monolith.belt_routes=routes;
  return result;
 }

@@ -52,3 +52,12 @@ export function monolithConfigurationRequest(catalog,search){
  const matching=catalog.variants.filter(v=>v.machine_gantry?.id===g),head=q.get('head_configuration');
  return matching.find(v=>v.source_head_configuration===head)||matching.find(v=>v.mount==='fixed')||matching[0]||null;
 }
+
+export function monolithDisplayLimits(original,reference,variant){
+ const limits=clone(original),range=variant?.machine_gantry?.z_delta_limits_mm;
+ if(!range)return limits;
+ if(range.length!==2||!range.every(Number.isFinite)||range[0]>range[1])throw Error('MonolithのZガイド可動範囲が不正です');
+ limits.Z=[Math.max(original.Z[0],reference[2]+range[0]),Math.min(original.Z[1],reference[2]+range[1])];
+ if(limits.Z[0]>limits.Z[1])throw Error('このヘッドとZジョイントでは機体の表示範囲に届きません');
+ return limits;
+}

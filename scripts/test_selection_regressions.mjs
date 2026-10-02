@@ -40,3 +40,13 @@ nodes=dom();let broken=false;controller=await setupConfigurations(catalog,async(
 broken=true;await controller.selectVariant(installed.id);assert.equal(controller.current,null);assert.equal(nodes.get('#saveConfiguration').disabled,true);assert.equal(nodes.get('#configStatus').dataset.variant,undefined);assert.doesNotMatch(nodes.get('#configStatus').textContent,/直前の構成を表示中/);
 console.error=savedError;
 console.log('Selection regressions: source links, unchanged probe, component-first choices, Monolith probe retention, unknown URL and honest rollback status passed.');
+
+// A workbench query selects a standalone gantry, not a machine registration.
+nodes=dom('?gantry=monolith_v2_printed_9_awd_300');let shared;
+globalThis.history={replaceState(_a,_b,url){shared=new URL(url)}};
+controller=await setupConfigurations({...catalog,machine_id:'monolith_workbench'},async()=>{});
+assert.doesNotMatch(nodes.get('#configStatus').textContent,/ガントリーはこの機体に未登録/);
+assert.equal(shared.searchParams.get('gantry'),'monolith_v2_printed_9_awd_300');
+nodes=dom('?gantry=missing');controller=await setupConfigurations(catalog,async()=>{});
+assert.match(nodes.get('#configStatus').textContent,/ガントリーはこの機体に未登録/);
+console.log('Standalone gantry links keep their query and do not falsely report missing machine registration.');

@@ -23,7 +23,7 @@ export async function setupConfigurations(catalog,install,{presentation='printer
   actual=v;menus(v);
   const headLabel=$('#machineHeadLabel');if(headLabel)headLabel.textContent=['toolhead','extruder','hotend'].map(id=>catalog[collections[id]].find(row=>row.id===v[id])?.label||v[id]).join(' / ');
   renderProductLinks(productTarget,{hotend:v.hotend,toolhead:v.toolhead,extruder:v.extruder});
-  const url=new URL(location.href);url.searchParams.delete('mount');url.searchParams.delete('gantry');url.searchParams.delete('head_configuration');url.searchParams.set('configuration',v.id);history.replaceState(null,'',url);
+  const url=new URL(location.href);url.searchParams.delete('mount');if(catalog.machine_id!=='monolith_workbench'){url.searchParams.delete('gantry');url.searchParams.delete('head_configuration')}url.searchParams.set('configuration',v.id);history.replaceState(null,'',url);
   $('#configSummary').textContent=ids.map(id=>catalog[collections[id]].find(row=>row.id===v[id]).label).join(' ／ ');
   $('#configRequirements').replaceChildren(...v.notes.map(note=>{const li=document.createElement('li');li.textContent=note;return li}));
   const rows=[`専用マウント：${v.fit?.mount||'登録済みCAD'}`,`選択可能な構成：${catalog.variants.length}通り`];
@@ -74,7 +74,7 @@ export async function setupConfigurations(catalog,install,{presentation='printer
   catch(e){$('#configStatus').textContent=e.message}
  };
  menus(initial);await refresh(initial);
- if(actual&&query.get('gantry')&&!requestedId&&!gantryRequest){$('#configStatus').textContent='指定されたガントリーはこの機体に未登録です。現在の表示：'+$('#configSummary').textContent;$('#configStatus').classList.add('notice')}
+ if(actual&&catalog.machine_id!=='monolith_workbench'&&query.get('gantry')&&!requestedId&&!gantryRequest){$('#configStatus').textContent='指定されたガントリーはこの機体に未登録です。現在の表示：'+$('#configSummary').textContent;$('#configStatus').classList.add('notice')}
  if(actual&&requestedId&&!matched){$('#configStatus').textContent='指定された構成はこの機種に未登録です。現在の表示：'+$('#configSummary').textContent;$('#configStatus').classList.add('notice')}
  return {selectVariant:async(id,extras)=>{const v=configurationById(catalog,id);if(!v)throw Error('構成のCADが未登録です。');if(extras)validateExtras({...extras,configuration:v.id});return refresh(v,extras)},get current(){return actual},get busy(){return busy}};
 }

@@ -32,6 +32,7 @@ The machine registration contract is:
       "stock_hidden_keys": [],
       "bed_min_xy_mm": [0, 0],
       "datum_checks": {},
+      "z_delta_limits_mm": [-40, 240],
       "hidden_module_keys": [],
       "part_offsets_mm": {},
       "gantry_ids": [],
@@ -46,6 +47,9 @@ from Monolith's native assembly coordinates into machine CAD coordinates.
 `bed_min_xy_mm` is required for Trident's display coordinates. Optional
 `gantry_ids` limits choices; omit it to expose all matching native assemblies.
 Optional `gantries[id]` overrides machine registration fields per configuration.
+`z_delta_limits_mm` bounds V2 gantry displacement from the registered reference
+pose. The head nozzle offset converts those stops to display Z limits; the
+slider, adapter and G-code preview use the same restricted range.
 `stock_hidden_keys` must include the replaced head, XY assembly and, for V2,
 the original Z joints/blocks that are replaced by Monolith's double joints.
 `hidden_module_keys` can omit native reference frame members when the machine

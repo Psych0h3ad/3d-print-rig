@@ -189,7 +189,7 @@ renderer.setAnimationLoop(()=>{controls.update();if(dirty){renderer.render(scene
 setupRenderExport({renderer,scene,camera,controls,name:'3D_Print_Rig_Toolhead',afterRender:()=>{dirty=true}});
 setupPublicInfo({includeDownloads:false});
 try{
- const headData=await loadMachineHeadCatalog();catalog=headData.heads;machineRegistry=headData.registry;const [gantries,registrations]=await loadMonolithData();machineRegistry.monolith={gantries,registrations};
+ const headData=await loadMachineHeadCatalog();catalog=headData.heads;machineRegistry=headData.registry;const monolithData=await loadMonolithData().catch(()=>null);if(monolithData){const [gantries,registrations]=monolithData;machineRegistry.monolith={gantries,registrations}}
  $('#combinationCount').textContent=`${catalog.toolheads.length}種類のヘッド · ${catalog.extruders.length}種類の押出機 · ${headCombinationCount(catalog)}通りのヘッド構成`;
  // Earlier standalone files used the first printer's ID; keep them readable.
  catalog={...catalog,dimensions:headBuilderDimensions,machine_id:'toolhead',import_machine_ids:['siboor_trident_350']};

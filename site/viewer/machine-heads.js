@@ -1,3 +1,4 @@
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=monolith-machine-1';
 import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=monolith-machine-1';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
@@ -54,29 +55,33 @@ export function createMachineHeads(scene,catalog,{render=()=>{}}={}){
  function focus(camera,controls){if(!current)return false;rig.updateMatrixWorld(true);const box=new THREE.Box3(),visible=o=>o.visible&&(!o.parent||visible(o.parent));rig.traverse(o=>{if(o.isMesh&&visible(o))box.expandByObject(o)});if(box.isEmpty())return false;camera.up.set(0,1,0);box.getCenter(controls.target);camera.position.copy(controls.target).add(new THREE.Vector3(.13,.07,.25));controls.update();render();return true}
  return {install,setBank,setDelta,setPalette,setVisible,focus,get active(){return current},get bankState(){return bankState},gantry,rig,bankRig,cache};
 }
-export function ensureMachineHeadControls({gantry=false}={}){
+export function ensureMachineHeadControls({gantry=false,monolithUnavailable}={}){
  let panel=document.querySelector('#configurationControls');
  if(!panel){panel=document.createElement('details');panel.id='configurationControls';panel.open=true;panel.innerHTML='<summary>ヘッド構成</summary><p id="configStatus" class="status" aria-live="polite"></p><p id="configSummary"></p><details><summary>取付条件・確認範囲</summary><ul id="mountInfo" class="foot"></ul><ul id="configRequirements" class="foot"></ul><p id="modSources" class="foot"></p><div class="buttons"><button id="saveConfiguration">構成を保存</button><button id="loadConfiguration">構成を読み込む</button></div><input id="configurationFile" type="file" accept=".json,application/json" hidden></details>';document.querySelector('aside h1').nextElementSibling.after(panel)}
  const status=panel.querySelector('#configStatus');
  for(const [key,label] of [...(gantry?[['gantry','ガントリー']]:[]),['toolhead','ツールヘッド'],['mount','取付 / 交換方式'],['extruder','押出機'],['hotend','ホットエンド'],['carriage','キャリッジ'],['probe','ベッドプローブ'],['board','ツールヘッド基板'],['cooling','冷却']]){
   if(document.querySelector('#'+key+'Config'))continue;const caption=document.createElement('label'),select=document.createElement('select');select.id=key+'Config';caption.htmlFor=select.id;caption.textContent=label;select.disabled=true;status.before(caption,select);
  }
+ if(monolithUnavailable){const message=document.createElement('p');message.className='foot notice';message.textContent=monolithUnavailable+'。標準ガントリーは引き続き選択できます。';panel.append(message)}
  if(gantry){panel.querySelector('summary').textContent='ガントリー・ヘッド構成';const head=document.querySelector('#toolheadConfig'),mount=document.querySelector('#mountConfig');head.previousElementSibling.before(mount.previousElementSibling,mount)}
  return panel;
 }
 export async function setupV24MachineHeads({machine,profile,adapter,scene,render,applyPose,beforeInstall=async()=>{},stockProbes=[],onChange=()=>{}}){
  const data=await loadMachineHeadCatalog(),{heads,registry,bank}=data;let catalog=v24HeadCatalog(heads,registry,machine);const binding=registry.machines[machine];catalog.bank_data=bank;if(!binding)throw Error('機種のヘッド取付データがありません');
- const stock={reference:[...profile.display_reference_xyz_mm],tip:[...profile.nozzle_tip_mm]};
+ const stock={reference:[...profile.display_reference_xyz_mm],tip:[...profile.nozzle_tip_mm],limits:JSON.parse(JSON.stringify(profile.display_limits_mm)),clearance:document.querySelector('#clearanceStatus')?.textContent};
  const probes=stockProbes.length?stockProbes:[{id:'stock_panasonic',label:'標準Panasonic'},{id:'none',label:'プローブなし',hidden_stock_keys:binding.stock_probe_keys||[]}];
  for(const p of probes)if(!catalog.probes.some(v=>v.id===p.id))catalog.probes.push({id:p.id,label:p.label});
  const baseline=probes.map(p=>({id:(profile.available_configurations?.[0]?.id||'stock')+'__'+p.id,toolhead:'stealthburner',mount:'fixed',extruder:'cw2',hotend:'revo_voron',gantry:'machine_gantry',carriage:'standard',probe:p.id,board:'none',cooling:'source',belt_width_mm:6,xy_motors:binding.xy_motors,modules:[],baseline_probe:p.id,notes:['元の機体CADの標準ヘッド。'],fit:{nozzle_mm:stock.tip,...(stockProbeFit(p)?{probe:stockProbeFit(p)}:{})}}));catalog.variants.unshift(...baseline);
- catalog=await loadMonolithMachines(catalog,data);catalog.bank_data=bank;const rig=createMachineHeads(scene,catalog,{render}),gantryVisibility=stockGantryVisibility(adapter.nodes);
- const panel=ensureMachineHeadControls({gantry:true}),toolBank=setupChangerBank({catalog,rig,data:bank});let custom=false,baselineHidden=new Set(),installed=false;
+ catalog=await loadMonolithMachines(catalog,data);catalog.dimensions=['gantry','mount','toolhead','extruder','hotend','carriage','probe','board','cooling'];catalog.bank_data=bank;const rig=createMachineHeads(scene,catalog,{render}),gantryVisibility=stockGantryVisibility(adapter.nodes);
+ const panel=ensureMachineHeadControls({gantry:true,monolithUnavailable:catalog.monolith_unavailable}),toolBank=setupChangerBank({catalog,rig,data:bank});let custom=false,baselineHidden=new Set(),installed=false;
  function visibility(){for(const key of binding.stock_head_keys){const node=adapter.nodes.get(key);if(node)node.visible=!custom&&!baselineHidden.has(key)}if(custom)for(const [key,node] of adapter.nodes)if(adapter.records.get(key).motion==='reference_flexible'&&!/^Z Belt(?: \(\d+\))?$/.test(adapter.records.get(key).name||''))node.visible=false}
  async function install(v){
   await beforeInstall(v);await toolBank.install(v);gantryVisibility.install(v);custom=!!v.machine_head;baselineHidden=new Set(probes.find(p=>p.id===v.baseline_probe)?.hidden_stock_keys||[]);
   if(custom){profile.nozzle_tip_mm=[...v.machine_head.nozzle_mm];profile.display_reference_xyz_mm=[profile.nozzle_tip_mm[0]-profile.bed_surface_min_xy_mm[0],profile.nozzle_tip_mm[1]-profile.bed_surface_min_xy_mm[1],profile.nozzle_tip_mm[2]-profile.bed_top_world_z_mm]}
   else{profile.nozzle_tip_mm=[...stock.tip];profile.display_reference_xyz_mm=[...stock.reference]}
+  profile.display_limits_mm=monolithDisplayLimits(stock.limits,profile.display_reference_xyz_mm,v);
+  for(const axis of ['x','y','z']){const input=document.querySelector('#'+axis),[min,max]=profile.display_limits_mm[axis.toUpperCase()];input.min=min;input.max=max;input.value=Math.max(min,Math.min(max,Number(input.value)))}
+  const clearance=document.querySelector('#clearanceStatus');if(clearance)clearance.textContent=v.machine_gantry?.z_delta_limits_mm?'Monolith · Zガイド8個をレール内に保つ表示範囲：Z '+profile.display_limits_mm.Z.map(n=>n.toFixed(1)).join('–')+' mm。':stock.clearance;
   onChange(v);applyPose();visibility();gantryVisibility.update();installed=true;const link=document.querySelector('#toolheadLink');if(link){const url=new URL('./toolheads.html',location.href);url.searchParams.set('configuration',v.source_head_configuration||'trident_r2__stealthburner__revo_voron__cw2');link.href=url.href}
  }
  const query=new URLSearchParams(location.search),requestedProbe=query.get('probe');

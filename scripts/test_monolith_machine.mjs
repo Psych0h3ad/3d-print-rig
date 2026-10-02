@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {withMonolithMachines,monolithPartDelta,monolithConfigurationRequest} from '../site/viewer/monolith-machine-model.mjs';
+import {withMonolithMachines,monolithPartDelta,monolithConfigurationRequest,monolithDisplayLimits} from '../site/viewer/monolith-machine-model.mjs';
 import {monolithBeltRoute,monolithBeltGeometry} from '../site/viewer/monolith-belts.mjs';
 import {choicesFor,resolveVariant,importedVariant} from '../site/viewer/configuration-model.js';
 import {headPrinterLink} from '../site/viewer/head-navigation.mjs';
@@ -52,3 +52,11 @@ for(const machine of Object.keys(registrations.machines)){
  assert.deepEqual(bankChoices(catalog,{},selected.gantry),[],'Standard frame docks must not be borrowed by Monolith');
 }
 console.log(`Monolith: ${poses} native belt poses, watertight strips, fixed/SC choices, 48 gantries, 6 machine catalogs, save/restore, links and distinct bearing motion passed.`);
+
+const full={X:[0,350],Y:[0,350],Z:[0,350]},rail={machine_gantry:{z_delta_limits_mm:[-40,240]}};
+assert.deepEqual(monolithDisplayLimits(full,[175,175,38],rail).Z,[0,278]);
+assert.deepEqual(monolithDisplayLimits(full,[175,175,48],rail).Z,[8,288]);
+assert.deepEqual(monolithDisplayLimits(full,[175,175,38],null),full);
+assert.deepEqual(full.Z,[0,350]);
+assert.throws(()=>monolithDisplayLimits(full,[175,175,500],{machine_gantry:{z_delta_limits_mm:[0,10]}}),/表示範囲/);
+console.log('Head-dependent Z limits preserve both native guide stops and restore the stock range.');

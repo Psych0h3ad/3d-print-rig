@@ -60,8 +60,8 @@
     },
     {
       "path": "docs/MONOLITH_MACHINE.md",
-      "bytes": 4212,
-      "sha256": "3fb1d853a078dc395105ad9fc789e679c32c5aa048690d82187ea6f0baf3aa1d"
+      "bytes": 4472,
+      "sha256": "20bdf643225f4eb97ac39f603b606a2472c91ba5e2ae5202601c13620fdcbc1e"
     },
     {
       "path": "docs/MOTION_AUDIT.md",
@@ -115,8 +115,8 @@
     },
     {
       "path": "scripts/audit_monolith_motion.mjs",
-      "bytes": 4355,
-      "sha256": "264bdbfa6913a398de0d84acd83f176957b77b670d4d5d9cb4354c3ca9c03ee8"
+      "bytes": 5506,
+      "sha256": "24053829ef864cea8d37c2d918b638b2776074e99f55529c45f431db7250649c"
     },
     {
       "path": "scripts/audit_monolith_mounts.mjs",
@@ -310,8 +310,8 @@
     },
     {
       "path": "scripts/test_monolith_machine.mjs",
-      "bytes": 6327,
-      "sha256": "9dbe4a0ef767cf5e8ee7b3e8828bdac31eb999e58ae87ec05203de120dcd52a7"
+      "bytes": 6923,
+      "sha256": "44b6e51d07da7ff0fba9db0fc35829861f482c856bcde8761a181ea3dfdb7c1d"
     },
     {
       "path": "scripts/test_probe_clearance.mjs",
@@ -335,8 +335,8 @@
     },
     {
       "path": "scripts/test_selection_regressions.mjs",
-      "bytes": 4543,
-      "sha256": "f3e4f2a0c88ded96e8c1f00fdf5a5d3ad6c2442b30cf00da9013bce04f54d120"
+      "bytes": 5335,
+      "sha256": "6757cd5644490bae78437537ba4b6bdae2ad8f015e2c50a78be8ce4b12661e51"
     },
     {
       "path": "scripts/test_toolchangers.mjs",
@@ -840,8 +840,8 @@
     },
     {
       "path": "site/viewer/app.js",
-      "bytes": 28005,
-      "sha256": "a22e557c956b0108cee4cee41383d3ea11d28ce114b3be5768c87abdd02989c4"
+      "bytes": 28054,
+      "sha256": "081b61b04e04f207ca952c115abec2eb4c85911cd90c022846613354f8e8412d"
     },
     {
       "path": "site/viewer/appearance-role.mjs",
@@ -925,8 +925,8 @@
     },
     {
       "path": "site/viewer/configurations.js",
-      "bytes": 10271,
-      "sha256": "540eced3f4ae6890463fd5985088b15dca89eb0814cb943ea8104e08882ad93e"
+      "bytes": 10360,
+      "sha256": "a1f6853da524bb161dcf8cc267e143b16d87aaa078b4a7a6a9435cf3c9efa1de"
     },
     {
       "path": "site/viewer/embedded-boards.mjs",
@@ -955,8 +955,8 @@
     },
     {
       "path": "site/viewer/gantries.js",
-      "bytes": 11359,
-      "sha256": "cc61ce82f949d4a746ddd7efa07dc8e968dd63f602b31a92fd0fe4badf49ae79"
+      "bytes": 11391,
+      "sha256": "4bea668cbac5ebd200bd9bf1f60e459e9b5cfdcdc6c31ac3c9132f976a74abe9"
     },
     {
       "path": "site/viewer/gantry-model.js",
@@ -1025,8 +1025,8 @@
     },
     {
       "path": "site/viewer/machine-heads.js",
-      "bytes": 12620,
-      "sha256": "108bc05f6e8eb277dc2235e823fb0121578075e7dd36cb6d9a635d7eedf406d8"
+      "bytes": 13850,
+      "sha256": "cab429f9c371482ecb497fdb4ed9be6e28cfe2ef1c6c587b9e0d778f5a8a55a1"
     },
     {
       "path": "site/viewer/machines.js",
@@ -1080,13 +1080,13 @@
     },
     {
       "path": "site/viewer/monolith-machine-model.mjs",
-      "bytes": 3672,
-      "sha256": "ce83d762653987fa5e8149c8793aeba1ae536c6408a390f5bb72de394b34cfb5"
+      "bytes": 4229,
+      "sha256": "41efe50afb0ac32341ea075c86497a6bc379aa8c2896d3695b1905fe5e03932f"
     },
     {
       "path": "site/viewer/monolith-machine.js",
-      "bytes": 5848,
-      "sha256": "ba7d6aff0641fc7f6e3537fce16815222e631ed2b28df4d697285be73aa769c4"
+      "bytes": 5941,
+      "sha256": "1dc0c2b2139bff33793b6ed1c37852c9b1647c27f385115b81b88224ee8fd9e8"
     },
     {
       "path": "site/viewer/probe-checks.js",
@@ -1150,8 +1150,8 @@
     },
     {
       "path": "site/viewer/toolheads.js",
-      "bytes": 19387,
-      "sha256": "a574f418abb1dcf54ca03ca383ae64e0d522832488425703d295db708df85d24"
+      "bytes": 19452,
+      "sha256": "efaa2572153a5675ed630b023bba22e2900b269f2eaefae17c488f9e484184bc"
     },
     {
       "path": "site/viewer/trident-belts.mjs",
@@ -1235,8 +1235,8 @@
     },
     {
       "path": "site/viewer/vanilla-trident.js",
-      "bytes": 13251,
-      "sha256": "5c727319e4b94ae481a1b9db465b935298b7d9d3a93070c3b4639fd3368f4866"
+      "bytes": 13300,
+      "sha256": "0202fc2319bafd07b1d09a0b3d24e2546fa836ebc7d867dc8f46aaa8953bf038"
     },
     {
       "path": "site/viewer/vendor/BufferGeometryUtils.js",
