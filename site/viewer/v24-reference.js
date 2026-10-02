@@ -1,16 +1,16 @@
-import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=public-v18';
-import {appearanceRole} from './appearance-role.mjs?v=public-v18';
+import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=public-v18-motion1';
+import {appearanceRole} from './appearance-role.mjs?v=public-v18-motion1';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=public-v18';
-import {createV24Adapter} from './v24_matrix_adapter.mjs?v=public-v18';
-import {setupMachineNavigation} from './machines.js?v=public-v18';
-import {setupGrid} from './grid-control.js?v=public-v18';
-import {setupRenderExport} from './render-export.js?v=public-v18';
-import {setupPublicInfo} from './public-info.js?v=public-v18';
-import {setupGcodePanel} from './gcode-panel.js?v=public-v18';
-import {setupV24MachineHeads} from './machine-heads.js?v=public-v18';
+import {loadModel} from './model-loader.js?v=public-v18-motion1';
+import {createV24Adapter} from './v24_matrix_adapter.mjs?v=public-v18-motion1';
+import {setupMachineNavigation} from './machines.js?v=public-v18-motion1';
+import {setupGrid} from './grid-control.js?v=public-v18-motion1';
+import {setupRenderExport} from './render-export.js?v=public-v18-motion1';
+import {setupPublicInfo} from './public-info.js?v=public-v18-motion1';
+import {setupGcodePanel} from './gcode-panel.js?v=public-v18-motion1';
+import {setupV24MachineHeads} from './machine-heads.js?v=public-v18-motion1';
 const $=s=>document.querySelector(s),ids=[250,300,350].flatMap(size=>['printed','ldo_cnc'].map(structure=>`voron_v24_${size}_${structure}`));
 const wanted=new URLSearchParams(location.search).get('machine'),id=ids.includes(wanted)?wanted:ids[0];
 setupMachineNavigation(id);setupPublicInfo({includeDownloads:false});
@@ -26,7 +26,7 @@ function view(name){camera.up.set(0,name==='top'?0:1,name==='top'?-1:0);orbit.ta
 for(const name of ['iso','front','top'])$('#'+name).onclick=()=>view(name);view('iso');
 $('#focusHead').onclick=()=>{if(!adapter||machineHeads?.focus(camera,orbit))return;const box=new THREE.Box3();for(const [key,node] of adapter.nodes)if(adapter.records.get(key).group===profile.head_group)box.expandByObject(node);if(box.isEmpty())return;camera.up.set(0,1,0);box.getCenter(orbit.target);camera.position.copy(orbit.target).add(new THREE.Vector3(.1,.06,.2));orbit.update();render()};
 function applyPose(){if(!adapter)return;const pose=adapter.setPose(Object.fromEntries(['x','y','z'].map(a=>[a,Number($('#'+a).value)])));machineHeads?.update(pose);for(const a of ['x','y','z'])$('#'+a+'v').textContent=Number($('#'+a).value).toFixed(2)+' mm';
- $('#motionStatus').textContent='ベッド固定 · X/Yヘッドと4Zガイド・ガントリーがZ＋へ追従';document.body.dataset.pose=JSON.stringify(pose);document.body.dataset.flexibleVisible=String(pose.atReference&&$('#belts').checked);render();}
+ $('#motionStatus').textContent='ベッド固定 · X/Yヘッドと4Zガイド・ガントリーがZ＋へ追従';document.body.dataset.pose=JSON.stringify(pose);document.body.dataset.flexibleVisible=String(pose.flexible_visible_count>0);render();}
 try{
  const root='../machines/'+id+'/',json=async name=>{const r=await fetch(root+name,{cache:'no-cache'});if(!r.ok)throw Error(name+'の読込に失敗');return r.json()};
  const [manifest,p,g]=await Promise.all([json('assembly_manifest.json'),json('machine_profile.json'),loadModel(new GLTFLoader(),root+'model.glb')]);

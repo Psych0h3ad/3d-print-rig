@@ -1,21 +1,21 @@
-import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=public-v18';
-import {appearanceRole} from './appearance-role.mjs?v=public-v18';
+import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=public-v18-motion1';
+import {appearanceRole} from './appearance-role.mjs?v=public-v18-motion1';
 import * as THREE from 'three';
-import {loadFrameMods,withFrameMods} from './frame-mods.js?v=public-v18';
-import {setupLighting} from './lighting.js?v=public-v18';
-import {setupGrid} from './grid-control.js?v=public-v18';
+import {loadFrameMods,withFrameMods} from './frame-mods.js?v=public-v18-motion1';
+import {setupLighting} from './lighting.js?v=public-v18-motion1';
+import {setupGrid} from './grid-control.js?v=public-v18-motion1';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=public-v18';
-import {setupMachineNavigation} from './machines.js?v=public-v18';
-import {setupConfigurations} from './configurations.js?v=public-v18';
-import {setupAccessories} from './accessories.js?v=public-v18';
-import {setupPublicInfo} from './public-info.js?v=public-v18';
-import {setupRenderExport} from './render-export.js?v=public-v18';
-import {createTridentMotion} from './trident-motion.mjs?v=public-v18';
-import {headPlan,partKey} from './head-assembly.js?v=public-v18';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=public-v18';
-import {expandedPrinterCatalog} from './machine-head-model.mjs?v=public-v18';
+import {loadModel} from './model-loader.js?v=public-v18-motion1';
+import {setupMachineNavigation} from './machines.js?v=public-v18-motion1';
+import {setupConfigurations} from './configurations.js?v=public-v18-motion1';
+import {setupAccessories} from './accessories.js?v=public-v18-motion1';
+import {setupPublicInfo} from './public-info.js?v=public-v18-motion1';
+import {setupRenderExport} from './render-export.js?v=public-v18-motion1';
+import {createTridentMotion} from './trident-motion.mjs?v=public-v18-motion1';
+import {headPlan,partKey} from './head-assembly.js?v=public-v18-motion1';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=public-v18-motion1';
+import {expandedPrinterCatalog} from './machine-head-model.mjs?v=public-v18-motion1';
 setupMachineNavigation('voron_trident_350');setupPublicInfo();
 const $=s=>document.querySelector(s),stage=$('#stage'),renderer=new THREE.WebGLRenderer({antialias:true});
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor('#edf1f4');renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.2;stage.append(renderer.domElement);
@@ -50,23 +50,22 @@ function applyPose(){if(!motion)return;
  const selected=accessories?.getExtras().accessories||[];
  const zMax=Math.min(profile.display_limits_mm.Z[1],...selected.map(id=>catalog.accessories.find(a=>a.id===id).z_max_mm??profile.display_limits_mm.Z[1]))-(active?.fit.bed_reference_drop_mm||0);
  $('#z').max=zMax;if(Number($('#z').value)>zMax)$('#z').value=zMax;
- current=motion.setPose({x:$('#x').value,y:$('#y').value,z:$('#z').value});
+ current=motion.setPose({x:$('#x').value,y:$('#y').value,z:$('#z').value},{flexibleVisible:$('#belts').checked,toolheadReference:!active?.machine_head});
  installedHeads?.setDelta([current.dx,current.dy,0]);
  for(const a of ['x','y','z'])$('#'+a+'v').textContent=current[a].toFixed(1)+' mm';
- for(const [mesh,{row}] of motion.entries){if(active?.machine_head&&(row.motion==='reference_flexible'||mesh.userData.flex_belt))mesh.visible=false;else if(row.motion==='reference_flexible')mesh.visible=mesh.visible&&$('#belts').checked}
  document.body.dataset.pose=JSON.stringify(current);document.body.dataset.zGuidePositions=JSON.stringify(profile.z_guide_block_keys.map(k=>{const entry=[...motion.entries].find(([mesh,{row}])=>row.key===k);return entry?.[0].position.toArray()}));
- $('#motionStatus').textContent='ベッド・サーミスタ・3Zガイドが下降に追従'+(zMax<250?' · ベッドファン装着時はZ 230 mmまで':'');render();
+ $('#motionStatus').textContent='ベッド・サーミスタ・3Zガイドが下降に追従'+(zMax<250?' · ベッドファン装着時はZ 230 mmまで':'')+'。XYベルトは滑らかな経路表示。ベッドチェーンの屈曲と歯・テンションの再現は未対応。';render();
 }
 async function install(variant){const plan=headPlan(variant),required=variant.machine_head?['trident_r2_gantry_350']:['trident_r2_gantry_350',plan.base,...plan.modules.map(m=>m.id)];await Promise.all(required.map(asset));await installedHeads.install(variant);
  for(const promise of cached.values()){const a=await promise;a.root.visible=false;a.root.position.set(0,0,0);for(const r of a.records)r.mesh.visible=true}
  const gantry=await asset('trident_r2_gantry_350');gantry.root.visible=true;
  if(variant.machine_head){
-  const refs=await fetch('../R2_ENDSTOP_REGISTRATION.json?v=public-v18').then(r=>r.json()),ref=refs.heads.stealthburner;motion.setReference([ref.X.cad_reference_display_coordinate_mm,ref.Y.cad_reference_display_coordinate_mm,0]);motion.setBedReferenceDrop(variant.fit.bed_reference_drop_mm||0);active=variant;accessories?.refresh();paletteApply();applyPose();
+  const refs=await fetch('../R2_ENDSTOP_REGISTRATION.json?v=public-v18-motion1').then(r=>r.json()),ref=refs.heads.stealthburner;motion.setReference([ref.X.cad_reference_display_coordinate_mm,ref.Y.cad_reference_display_coordinate_mm,0]);motion.setBedReferenceDrop(variant.fit.bed_reference_drop_mm||0);active=variant;accessories?.refresh();paletteApply();applyPose();
   const url=new URL('./toolheads.html',location.href);url.searchParams.set('configuration',variant.source_head_configuration);$('#toolheadLink').href=url.href;document.body.dataset.configuration=variant.id;document.body.dataset.ready='true';return;
  }
  const base=await asset(plan.base);base.root.visible=true;base.root.position.copy(point(plan.translation));for(const r of base.records)r.mesh.visible=!plan.hidden.has(r.key);
  for(const module of plan.modules){const a=await asset(module.id),hidden=new Set(module.hidden_keys||[]);a.root.visible=true;a.root.position.copy(point(module.translation_mm));for(const r of a.records)r.mesh.visible=!hidden.has(r.key)}
- const endstops=await fetch('../R2_ENDSTOP_REGISTRATION.json?v=public-v18').then(r=>r.json()),ref=endstops.heads[variant.toolhead==='xol'?(variant.hotend==='rapido2_uhf'?'xol':'xol_standard'):'stealthburner'];
+ const endstops=await fetch('../R2_ENDSTOP_REGISTRATION.json?v=public-v18-motion1').then(r=>r.json()),ref=endstops.heads[variant.toolhead==='xol'?(variant.hotend==='rapido2_uhf'?'xol':'xol_standard'):'stealthburner'];
  motion.setReference([ref.X.cad_reference_display_coordinate_mm,ref.Y.cad_reference_display_coordinate_mm,0]);motion.setBedReferenceDrop(variant.fit.bed_reference_drop_mm||0);active=variant;accessories?.refresh();applyPose();
  const url=new URL('./toolheads.html',location.href);url.searchParams.set('configuration',variant.id);$('#toolheadLink').href=url;
  $('#badge').textContent='VORON TRIDENT 350 · XY 6 mm';document.body.dataset.configuration=variant.id;

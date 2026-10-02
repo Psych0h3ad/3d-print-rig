@@ -1,4 +1,5 @@
-import {appearanceRole} from './appearance-role.mjs?v=public-v18';
+import {v24FlexibleState} from './v24-flexible.mjs?v=public-v18-motion1';
+import {appearanceRole} from './appearance-role.mjs?v=public-v18-motion1';
 /** Separate V2.4 kinematic adapter. CAD vertices already contain world placement. */
 export function createV24Adapter(root,manifest,profile){
   if(manifest.machine_id!==profile.machine_id||profile.machine_id!=='siboor_v24_350')throw new Error('V2.4 profile mismatch');
@@ -23,9 +24,9 @@ export function createV24Adapter(root,manifest,profile){
     for(const [key,o] of nodes){
       const r=records.get(key),t=['X','Y','Z'].map((a,i)=>r.motion_axes.includes(a)?delta[i]:0),base=origins.get(key);
       o.position.set(base.x+t[0]/1000,base.y+t[2]/1000,base.z-t[1]/1000);
-      if(r.motion==='reference_flexible')o.visible=flexibleVisible&&atReference;
+      if(r.motion==='reference_flexible'){const state=v24FlexibleState(r,delta,flexibleVisible);o.visible=state.visible;o.position.y=base.y+state.z/1000;}
     }
-    return {display_xyz_mm:v,cad_delta_xyz_mm:delta,atReference};
+    return {display_xyz_mm:v,cad_delta_xyz_mm:delta,atReference,flexible_visible_count:[...nodes].filter(([k,o])=>records.get(k).motion==='reference_flexible'&&o.visible).length};
   }
   function setFlexibleVisible(value){flexibleVisible=Boolean(value)}
   function setEnclosureVisible(value){

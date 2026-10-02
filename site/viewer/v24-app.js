@@ -1,19 +1,19 @@
-import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=public-v18';
-import {appearanceRole} from './appearance-role.mjs?v=public-v18';
+import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=public-v18-motion1';
+import {appearanceRole} from './appearance-role.mjs?v=public-v18-motion1';
 import * as THREE from 'three';
-import {loadFrameMods,withFrameMods} from './frame-mods.js?v=public-v18';
-import {setupLighting} from './lighting.js?v=public-v18';
-import {setupAccessories} from './accessories.js?v=public-v18';
-import {setupGrid} from './grid-control.js?v=public-v18';
-import {setupProbeMounts} from './probe-mounts.js?v=public-v18';
+import {loadFrameMods,withFrameMods} from './frame-mods.js?v=public-v18-motion1';
+import {setupLighting} from './lighting.js?v=public-v18-motion1';
+import {setupAccessories} from './accessories.js?v=public-v18-motion1';
+import {setupGrid} from './grid-control.js?v=public-v18-motion1';
+import {setupProbeMounts} from './probe-mounts.js?v=public-v18-motion1';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=public-v18';
-import {createV24Adapter} from './v24_adapter.mjs?v=public-v18';
-import {setupMachineNavigation} from './machines.js?v=public-v18';
-import {setupRenderExport} from './render-export.js?v=public-v18';
-import {setupPublicInfo} from './public-info.js?v=public-v18';
-import {setupV24MachineHeads} from './machine-heads.js?v=public-v18';
+import {loadModel} from './model-loader.js?v=public-v18-motion1';
+import {createV24Adapter} from './v24_adapter.mjs?v=public-v18-motion1';
+import {setupMachineNavigation} from './machines.js?v=public-v18-motion1';
+import {setupRenderExport} from './render-export.js?v=public-v18-motion1';
+import {setupPublicInfo} from './public-info.js?v=public-v18-motion1';
+import {setupV24MachineHeads} from './machine-heads.js?v=public-v18-motion1';
 setupMachineNavigation('siboor_v24_350');
 setupPublicInfo();
 const $=s=>document.querySelector(s),stage=$('#stage'),status=$('#status');
@@ -42,14 +42,14 @@ function applyPose(){if(!adapter)return;
  if(probeMounts&&!machineHeads?.custom){const link=new URL('./toolheads.html',location.href);link.searchParams.set('configuration','trident_r2__stealthburner__revo_voron__cw2'+(['stock_panasonic','none'].includes(probeMounts.id)?'':'__'+probeMounts.id));$('#toolheadLink').href=link.href}
  document.body.dataset.pose=JSON.stringify(pose);document.body.dataset.fixedBed=JSON.stringify(p.fixed_bed_keys.map(k=>adapter.nodes.get(k).position.toArray()));
  document.body.dataset.zGuidePositions=JSON.stringify(p.z_guide_block_keys.map(k=>adapter.nodes.get(k).position.toArray()));
- document.body.dataset.flexibleVisible=String(pose.atReference&&$('#belts').checked);
+ document.body.dataset.flexibleVisible=String(pose.flexible_visible_count>0);
  $('#motionStatus').textContent='ベッド固定 · 4ZガイドとガントリーがZ＋へ追従';render();
 }
 try{
  const getJSON=async name=>{const r=await fetch(assetRoot+name,{cache:'no-cache'});if(!r.ok)throw Error(name);return r.json()};
  const [manifest,machine,gltf]=await Promise.all([getJSON('assembly_manifest.json'),getJSON('machine_profile.json'),loadModel(new GLTFLoader(),assetRoot+'model.glb')]);
  profile=machine;scene.add(gltf.scene);adapter=createV24Adapter(gltf.scene,manifest,profile);
- const probeResponse=await fetch('../V24_PROBES.json?v=public-v18',{cache:'no-cache'});if(!probeResponse.ok)throw Error('プローブ構成を取得できません');const probeCatalog=await probeResponse.json();
+ const probeResponse=await fetch('../V24_PROBES.json?v=public-v18-motion1',{cache:'no-cache'});if(!probeResponse.ok)throw Error('プローブ構成を取得できません');const probeCatalog=await probeResponse.json();
  const protectedMaterials=[],originals=new Map();
  for(const [key,node] of adapter.nodes){node.traverse(mesh=>{if(!mesh.isMesh)return;mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();
   for(const m of Array.isArray(mesh.material)?mesh.material:[mesh.material]){originals.set(m,m.color.clone());if(!appearanceRole(adapter.records.get(key)))protectedMaterials.push(m);if(m.transparent)m.depthWrite=false}

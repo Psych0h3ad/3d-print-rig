@@ -1,10 +1,10 @@
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=public-v18';
-import {appearanceRole} from './appearance-role.mjs?v=public-v18';
-import {partKey} from './head-assembly.js?v=public-v18';
-import {v24HeadCatalog} from './machine-head-model.mjs?v=public-v18';
-import {setupConfigurations} from './configurations.js?v=public-v18';
+import {loadModel} from './model-loader.js?v=public-v18-motion1';
+import {appearanceRole} from './appearance-role.mjs?v=public-v18-motion1';
+import {partKey} from './head-assembly.js?v=public-v18-motion1';
+import {v24HeadCatalog} from './machine-head-model.mjs?v=public-v18-motion1';
+import {setupConfigurations} from './configurations.js?v=public-v18-motion1';
 const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);
 export async function loadMachineHeadCatalog(){
  const get=async name=>{const r=await fetch('../'+name,{cache:'no-cache'});if(!r.ok)throw Error('ヘッドの取付データを取得できません');return r.json()};
@@ -48,7 +48,7 @@ export async function setupV24MachineHeads({machine,profile,adapter,scene,render
  for(const p of probes)if(!catalog.probes.some(v=>v.id===p.id))catalog.probes.push({id:p.id,label:p.label});
  const baseline=probes.map(p=>({id:(profile.available_configurations?.[0]?.id||'stock')+'__'+p.id,toolhead:'stealthburner',mount:'fixed',extruder:'cw2',hotend:'revo_voron',gantry:'machine_gantry',carriage:'standard',probe:p.id,board:'none',cooling:'source',belt_width_mm:6,xy_motors:binding.xy_motors,modules:[],baseline_probe:p.id,notes:['元の機体CADの標準ヘッド。'],fit:{nozzle_mm:stock.tip}}));catalog.variants.unshift(...baseline);
  const panel=ensureMachineHeadControls();let custom=false,baselineHidden=new Set(),installed=false;
- function visibility(){for(const key of binding.stock_head_keys){const node=adapter.nodes.get(key);if(node)node.visible=!custom&&!baselineHidden.has(key)}if(custom)for(const [key,node] of adapter.nodes)if(adapter.records.get(key).motion==='reference_flexible')node.visible=false}
+ function visibility(){for(const key of binding.stock_head_keys){const node=adapter.nodes.get(key);if(node)node.visible=!custom&&!baselineHidden.has(key)}if(custom)for(const [key,node] of adapter.nodes)if(adapter.records.get(key).motion==='reference_flexible'&&!/^Z Belt(?: \(\d+\))?$/.test(adapter.records.get(key).name||''))node.visible=false}
  async function install(v){
   await beforeInstall(v);await rig.install(v);custom=!!v.machine_head;baselineHidden=new Set(probes.find(p=>p.id===v.baseline_probe)?.hidden_stock_keys||[]);
   if(custom){profile.nozzle_tip_mm=[...v.machine_head.nozzle_mm];profile.display_reference_xyz_mm=[profile.nozzle_tip_mm[0]-profile.bed_surface_min_xy_mm[0],profile.nozzle_tip_mm[1]-profile.bed_surface_min_xy_mm[1],profile.nozzle_tip_mm[2]-profile.bed_top_world_z_mm]}
