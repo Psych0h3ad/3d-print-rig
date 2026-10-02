@@ -1,26 +1,26 @@
-import {loadMonolithMachines} from './monolith-machine.js?v=combinations-1';
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=combinations-1';
-import {bankBedReferenceDrop} from './changer-bank-model.mjs?v=combinations-1';
-import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=combinations-1';
+import {loadMonolithMachines} from './monolith-machine.js?v=ratrig-stock-1';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=ratrig-stock-1';
+import {bankBedReferenceDrop} from './changer-bank-model.mjs?v=ratrig-stock-1';
+import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=ratrig-stock-1';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=combinations-1';
-import {loadFrameMods,withFrameMods} from './frame-mods.js?v=combinations-1';
-import {setupGrid} from './grid-control.js?v=combinations-1';
-import {setupLighting} from './lighting.js?v=combinations-1';
-import {setupFlexible} from './flexible.js?v=combinations-1';
+import {loadModel} from './model-loader.js?v=ratrig-stock-1';
+import {loadFrameMods,withFrameMods} from './frame-mods.js?v=ratrig-stock-1';
+import {setupGrid} from './grid-control.js?v=ratrig-stock-1';
+import {setupLighting} from './lighting.js?v=ratrig-stock-1';
+import {setupFlexible} from './flexible.js?v=ratrig-stock-1';
 import {createBedChain} from './bed-chain.mjs?v=public-v25';
-import {setupConfigurations} from './configurations.js?v=combinations-1';
-import {setupAccessories} from './accessories.js?v=combinations-1';
-import {setupAppearance} from './appearance.js?v=combinations-1';
-import {setupRenderExport} from './render-export.js?v=combinations-1';
-import {setupPublicInfo} from './public-info.js?v=combinations-1';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=combinations-1';
-import {setupChangerBank} from './changer-bank.js?v=combinations-1';
-import {expandedPrinterCatalog} from './machine-head-model.mjs?v=combinations-1';
-import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=combinations-1';
-import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=combinations-1';
+import {setupConfigurations} from './configurations.js?v=ratrig-stock-1';
+import {setupAccessories} from './accessories.js?v=ratrig-stock-1';
+import {setupAppearance} from './appearance.js?v=ratrig-stock-1';
+import {setupRenderExport} from './render-export.js?v=ratrig-stock-1';
+import {setupPublicInfo} from './public-info.js?v=ratrig-stock-1';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=ratrig-stock-1';
+import {setupChangerBank} from './changer-bank.js?v=ratrig-stock-1';
+import {expandedPrinterCatalog} from './machine-head-model.mjs?v=ratrig-stock-1';
+import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=ratrig-stock-1';
+import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=ratrig-stock-1';
 const $=s=>document.querySelector(s),scene=new THREE.Scene();
 scene.background=new THREE.Color('#edf1f5');
 const stage=$('#stage');
@@ -191,7 +191,7 @@ async function loadGLB(url){
  throw last;
 }
 setupPublicInfo();
-Promise.all([fetch('../assembly_manifest.json?v=combinations-1',{cache:'no-cache'}).then(r=>r.json()),fetch('../flexible_routes.json?v=combinations-1',{cache:'no-cache'}).then(r=>r.json()),loadModel(new GLTFLoader(),'../SIBOOR_Trident_350.glb',p=>{$('#loading').textContent=p.total?'読み込み '+Math.round(p.loaded/p.total*100)+'%':'3Dモデルを読み込み中…'}),loadGLB('../Endstop_Mechanisms.glb'),fetch('../COLOR_OPTIONS.json?v=combinations-1',{cache:'no-cache'}).then(r=>r.json()),fetch('../ASSEMBLY_CONFIGURATIONS.json?v=combinations-1',{cache:'no-cache'}).then(r=>r.json()),fetch('../R2_ENDSTOP_REGISTRATION.json?v=combinations-1',{cache:'no-cache'}).then(r=>r.json())]).then(async([manifest,routes,g,endstops,colorOptions,configs,r2Meta])=>{
+Promise.all([fetch('../assembly_manifest.json?v=ratrig-stock-1',{cache:'no-cache'}).then(r=>r.json()),fetch('../flexible_routes.json?v=ratrig-stock-1',{cache:'no-cache'}).then(r=>r.json()),loadModel(new GLTFLoader(),'../SIBOOR_Trident_350.glb',p=>{$('#loading').textContent=p.total?'読み込み '+Math.round(p.loaded/p.total*100)+'%':'3Dモデルを読み込み中…'}),loadGLB('../Endstop_Mechanisms.glb'),fetch('../COLOR_OPTIONS.json?v=ratrig-stock-1',{cache:'no-cache'}).then(r=>r.json()),fetch('../ASSEMBLY_CONFIGURATIONS.json?v=ratrig-stock-1',{cache:'no-cache'}).then(r=>r.json()),fetch('../R2_ENDSTOP_REGISTRATION.json?v=ratrig-stock-1',{cache:'no-cache'}).then(r=>r.json())]).then(async([manifest,routes,g,endstops,colorOptions,configs,r2Meta])=>{
  const headData=await loadMachineHeadCatalog();registration=manifest.motion_preview.endstop_registration;catalog=await loadMonolithMachines(expandedPrinterCatalog(withFrameMods(configs,frameMods),headData.heads,headData.registry,'siboor_trident_350'),headData);catalog.bank_data=headData.bank;installedHeads=createMachineHeads(scene,{...catalog,base_assets:headData.heads.base_assets},{render:()=>{renderRequested=true}});ensureMachineHeadControls({gantry:true,monolithUnavailable:catalog.monolith_unavailable});r2Registration=r2Meta;stockRows=manifest.parts;
  refX=registration.switches.X.cad_reference_display_coordinate_mm;refY=registration.switches.Y.cad_reference_display_coordinate_mm;
  const lookup=new Map(manifest.parts.map(r=>[r.key,r]));model=g.scene;model.add(endstops.scene);scene.add(model);

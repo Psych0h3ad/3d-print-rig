@@ -1,0 +1,1192 @@
+{
+  "version": "ratrig-v1",
+  "base_url": "https://psych0h3ad.github.io/3d-print-rig-ratrig-models/",
+  "local_directory": "ratrig-assets",
+  "stock_only": true,
+  "machines": [
+    {
+      "id": "ratrig_vcore_40_300_corexy",
+      "title": "Rat Rig V-Core 4.0 300 corexy",
+      "series": "v-core-4-0",
+      "size_mm": 300,
+      "mode": "corexy",
+      "tool_count": 1,
+      "source_kind": "official_with_documented_adjustments",
+      "native_import_file": "assembly.validated.step",
+      "assembled_parts": 2239,
+      "native_solids": 3384,
+      "files": {
+        "machine_profile.json": {
+          "path": "machines/ratrig_vcore_40_300_corexy/machine_profile.json",
+          "bytes": 2224,
+          "sha256": "e359c0baf07b1fb01cd2f629224dee9a3a42c7dc03f5b65c3262f4a1a1052e7c"
+        },
+        "assembly_manifest.json": {
+          "path": "machines/ratrig_vcore_40_300_corexy/assembly_manifest.json",
+          "bytes": 1674213,
+          "sha256": "5de530a097557e4a89eae7828250b48140f62792f3176ff0a9a464d64bb55d9c"
+        },
+        "flexible_routes.json": {
+          "path": "machines/ratrig_vcore_40_300_corexy/flexible_routes.json",
+          "bytes": 80296,
+          "sha256": "24288fe499775617b8ddfc931dcde47907fb59db37e894e9f925b3830f570f72"
+        },
+        "SOURCE_REVISION.json": {
+          "path": "machines/ratrig_vcore_40_300_corexy/SOURCE_REVISION.json",
+          "bytes": 738,
+          "sha256": "73ca74b23abfb72e10c31bd91b6aaebdc74fed8db8b1a5339f9f19f9b313ab43"
+        },
+        "model.glb": {
+          "path": "machines/ratrig_vcore_40_300_corexy/model.glb.gz",
+          "bytes": 28484441,
+          "sha256": "f9c2fd64a1c0b1bc62e9b17a46ad873cbc57484f8ce9d0abc94428a96eaa8cb0",
+          "encoding": "gzip",
+          "decoded_bytes": 88507028,
+          "decoded_sha256": "dfb5aaeca2cb274932ae4a9f8c59a7a76114f3d6c6c41dc9c814223b33d2a8b6"
+        }
+      },
+      "source": {
+        "machine_id": "ratrig_vcore_40_300_corexy",
+        "series": "v-core-4-0",
+        "size_mm": 300,
+        "mode": "corexy",
+        "share_url": "https://ratrig.autodesk360.com/shares/public/SH512d4QTec90decfa6e20ef9398651ee78c",
+        "official_files_url": "https://wiki.ratrig.com/en/products/v-core-4-0/files",
+        "title": "Rat Rig V-Core 4.0 - 300 - CoreXY",
+        "status": "official_step_downloaded",
+        "version_urn": "urn:adsk.wipprod:fs.file:vf.MkelNfgqQRyLctY6NoNw7g?version=12",
+        "source_version": "12",
+        "file": "sources/ratrig/ratrig_vcore_40_300_corexy/assembly.step",
+        "bytes": 126338896,
+        "sha256": "500dabc9db3200fc14c4023d20be48e9052b13090833c28a142243394622eb8a",
+        "license_basis": "Rat Rig Wiki siteConfig contentLicense=ccbyncsa; retain attribution",
+        "motion_verified": false,
+        "import_ready": false
+      },
+      "native_archive": {
+        "name": "ratrig-40-300-cad.zip",
+        "bytes": 563290345,
+        "sha256": "7208c29161f485791bb2922e987555a1392719983ad57308397b7b38e8231f18",
+        "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v31/ratrig-40-300-cad.zip"
+      }
+    },
+    {
+      "id": "ratrig_vcore_40_300_hybrid",
+      "title": "Rat Rig V-Core 4.0 300 hybrid",
+      "series": "v-core-4-0",
+      "size_mm": 300,
+      "mode": "hybrid",
+      "tool_count": 1,
+      "source_kind": "official_with_documented_adjustments",
+      "native_import_file": "assembly.validated.step",
+      "assembled_parts": 2324,
+      "native_solids": 3470,
+      "files": {
+        "machine_profile.json": {
+          "path": "machines/ratrig_vcore_40_300_hybrid/machine_profile.json",
+          "bytes": 2247,
+          "sha256": "7282c0fce83623d6926abb71315fe88970299a98e472d30da97ff79166ee579f"
+        },
+        "assembly_manifest.json": {
+          "path": "machines/ratrig_vcore_40_300_hybrid/assembly_manifest.json",
+          "bytes": 1763301,
+          "sha256": "28bb926243e042d18027d0319578fcd618287286d96b5fbb15af58d72ab85162"
+        },
+        "flexible_routes.json": {
+          "path": "machines/ratrig_vcore_40_300_hybrid/flexible_routes.json",
+          "bytes": 116670,
+          "sha256": "b09fc306dcc0e99f1a498e0b8986b97a100db291bec47cceead127c31d382ebd"
+        },
+        "SOURCE_REVISION.json": {
+          "path": "machines/ratrig_vcore_40_300_hybrid/SOURCE_REVISION.json",
+          "bytes": 738,
+          "sha256": "9acc5235cb4a029b6a4c3d6271185d8dd8d065440dc17d583c0f064eb867a53c"
+        },
+        "model.glb": {
+          "path": "machines/ratrig_vcore_40_300_hybrid/model.glb.gz",
+          "bytes": 29078816,
+          "sha256": "08a4b294e3172fb200c568bfe4d6f87a04da2f34749fdb478874233066d7b7ba",
+          "encoding": "gzip",
+          "decoded_bytes": 90775124,
+          "decoded_sha256": "125705129bc1fe73416d661df8dc928291f2a090a03ef662459bf6275f53031b"
+        }
+      },
+      "source": {
+        "machine_id": "ratrig_vcore_40_300_hybrid",
+        "series": "v-core-4-0",
+        "size_mm": 300,
+        "mode": "hybrid",
+        "share_url": "https://ratrig.autodesk360.com/shares/public/SH512d4QTec90decfa6e940e9d4fab7e1eb6",
+        "official_files_url": "https://wiki.ratrig.com/en/products/v-core-4-0/files",
+        "title": "Rat Rig V-Core 4.0 - 300 - Hybrid",
+        "status": "official_step_downloaded",
+        "version_urn": "urn:adsk.wipprod:fs.file:vf.diB_TlZyRqaNcyrC14i36A?version=12",
+        "source_version": "12",
+        "file": "sources/ratrig/ratrig_vcore_40_300_hybrid/assembly.step",
+        "bytes": 126689056,
+        "sha256": "97cdd18b6cd955bc539f059c215702a133e13f7755b896dd5fa8db7ecdc97897",
+        "license_basis": "Rat Rig Wiki siteConfig contentLicense=ccbyncsa; retain attribution",
+        "motion_verified": false,
+        "import_ready": false
+      },
+      "native_archive": {
+        "name": "ratrig-40-300-cad.zip",
+        "bytes": 563290345,
+        "sha256": "7208c29161f485791bb2922e987555a1392719983ad57308397b7b38e8231f18",
+        "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v31/ratrig-40-300-cad.zip"
+      }
+    },
+    {
+      "id": "ratrig_vcore_40_300_idex",
+      "title": "Rat Rig V-Core 4.0 300 idex",
+      "series": "v-core-4-0",
+      "size_mm": 300,
+      "mode": "idex",
+      "tool_count": 2,
+      "source_kind": "explicit_derived",
+      "native_import_file": "assembly.step",
+      "assembled_parts": 3049,
+      "native_solids": 4921,
+      "files": {
+        "machine_profile.json": {
+          "path": "machines/ratrig_vcore_40_300_idex/machine_profile.json",
+          "bytes": 2302,
+          "sha256": "46e7d4daebd391883a31de74e4ee099da799ea36ea1811550cfb0efc80f9dcd8"
+        },
+        "assembly_manifest.json": {
+          "path": "machines/ratrig_vcore_40_300_idex/assembly_manifest.json",
+          "bytes": 3091719,
+          "sha256": "b13702d299873da775a7b83bede0df2dd1505d6c7de02571b4f582a69bf97434"
+        },
+        "flexible_routes.json": {
+          "path": "machines/ratrig_vcore_40_300_idex/flexible_routes.json",
+          "bytes": 150272,
+          "sha256": "382c0e9937803efe70801adf85e87e34b9df73c79e803b3b46d78de4f23c1ccd"
+        },
+        "SOURCE_REVISION.json": {
+          "path": "machines/ratrig_vcore_40_300_idex/SOURCE_REVISION.json",
+          "bytes": 623,
+          "sha256": "d8688e4e56120c704f560973922d7f1f3deba6280dcfa0d24982e8ca9c61abf3"
+        },
+        "model.glb": {
+          "path": "machines/ratrig_vcore_40_300_idex/model.glb.gz",
+          "bytes": 34515530,
+          "sha256": "da5c6fe5b095bd650252f396e705f487ceae24532a979288905ce1e8885e8096",
+          "encoding": "gzip",
+          "decoded_bytes": 109759176,
+          "decoded_sha256": "16f57d28b27602be3effa8b5c797b3d59f4ce07025aa59c9e84de91a08b10427"
+        }
+      },
+      "source": {
+        "machine_id": "ratrig_vcore_40_300_idex",
+        "status": "explicit_derived_assembly",
+        "sha256": "0f7a65be5fee33f068708d78063f38a81d2c52f7744cf04147f9cf1002437136",
+        "source_assemblies": {
+          "300_hybrid": "97cdd18b6cd955bc539f059c215702a133e13f7755b896dd5fa8db7ecdc97897",
+          "400_hybrid": "1913c644c315cb9518ec6a0bfc8fd142f1136412c9dbdfff6ac21a2087e6c877",
+          "400_idex": "ae0fd6e67d6a53cdef9afab1bd77a7527953b6992b2c9f1b787fd01af706662d"
+        },
+        "official_link_issue": "Official 300 IDEX link resolves to 400 CoreXY; preserved in SOURCE_MISMATCH.json",
+        "hardware_fit_verified": false,
+        "native_export": "shared local definitions and exact instance transforms"
+      },
+      "native_archive": {
+        "name": "ratrig-40-300-cad.zip",
+        "bytes": 563290345,
+        "sha256": "7208c29161f485791bb2922e987555a1392719983ad57308397b7b38e8231f18",
+        "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v31/ratrig-40-300-cad.zip"
+      }
+    },
+    {
+      "id": "ratrig_vcore_40_400_corexy",
+      "title": "Rat Rig V-Core 4.0 400 corexy",
+      "series": "v-core-4-0",
+      "size_mm": 400,
+      "mode": "corexy",
+      "tool_count": 1,
+      "source_kind": "official_with_documented_adjustments",
+      "native_import_file": "assembly.validated.step",
+      "assembled_parts": 2275,
+      "native_solids": 3420,
+      "files": {
+        "machine_profile.json": {
+          "path": "machines/ratrig_vcore_40_400_corexy/machine_profile.json",
+          "bytes": 2224,
+          "sha256": "2af7b9fbce03ba5c668e79ca6b629b8072426aea730a6f53f65d52ed16229aa1"
+        },
+        "assembly_manifest.json": {
+          "path": "machines/ratrig_vcore_40_400_corexy/assembly_manifest.json",
+          "bytes": 1727117,
+          "sha256": "a6faec25171947cca022d50edf69a370a66526d41c366fea364efe86deca6f9e"
+        },
+        "flexible_routes.json": {
+          "path": "machines/ratrig_vcore_40_400_corexy/flexible_routes.json",
+          "bytes": 85233,
+          "sha256": "108031d41e57a4be6e7c56a8c5c69b662306cd6e383d86fabe0749d08080ad49"
+        },
+        "SOURCE_REVISION.json": {
+          "path": "machines/ratrig_vcore_40_400_corexy/SOURCE_REVISION.json",
+          "bytes": 738,
+          "sha256": "e7040ed055756ad23a3d68f1d06b897c4d79610bd3138cc1e49aafbb3c8271a8"
+        },
+        "model.glb": {
+          "path": "machines/ratrig_vcore_40_400_corexy/model.glb.gz",
+          "bytes": 29909720,
+          "sha256": "0ae81a21cc786e865da656edc5adbd8b6b6c6e307dfc69381437b4485786ac64",
+          "encoding": "gzip",
+          "decoded_bytes": 91750680,
+          "decoded_sha256": "cedf78d3a15e5bcfbbdebef6a3b48d2aafc2f516ac701177472c6eb504bff2b7"
+        }
+      },
+      "source": {
+        "machine_id": "ratrig_vcore_40_400_corexy",
+        "series": "v-core-4-0",
+        "size_mm": 400,
+        "mode": "corexy",
+        "share_url": "https://ratrig.autodesk360.com/shares/public/SH512d4QTec90decfa6e0ad8bfee3a9d9f48",
+        "official_files_url": "https://wiki.ratrig.com/en/products/v-core-4-0/files",
+        "title": "Rat Rig V-Core 4.0 - 400 - CoreXY",
+        "status": "official_step_downloaded",
+        "version_urn": "urn:adsk.wipprod:fs.file:vf.Y53U3_2uRvKB3FSOC5soWw?version=13",
+        "source_version": "13",
+        "file": "sources/ratrig/ratrig_vcore_40_400_corexy/assembly.step",
+        "bytes": 132323471,
+        "sha256": "d996b9f3505117a0cbb15bcada4c97fa0778b660a784f4b7eb0a4c7c15492b3b",
+        "license_basis": "Rat Rig Wiki siteConfig contentLicense=ccbyncsa; retain attribution",
+        "motion_verified": false,
+        "import_ready": false
+      },
+      "native_archive": {
+        "name": "ratrig-40-400-cad.zip",
+        "bytes": 638618118,
+        "sha256": "300426a9711a1288888eac71eb5cbd6c30b3649ac87c5925186dfd1dd7085ea5",
+        "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v31/ratrig-40-400-cad.zip"
+      }
+    },
+    {
+      "id": "ratrig_vcore_40_400_hybrid",
+      "title": "Rat Rig V-Core 4.0 400 hybrid",
+      "series": "v-core-4-0",
+      "size_mm": 400,
+      "mode": "hybrid",
+      "tool_count": 1,
+      "source_kind": "official_with_documented_adjustments",
+      "native_import_file": "assembly.validated.step",
+      "assembled_parts": 2360,
+      "native_solids": 3506,
+      "files": {
+        "machine_profile.json": {
+          "path": "machines/ratrig_vcore_40_400_hybrid/machine_profile.json",
+          "bytes": 2242,
+          "sha256": "894b2be93dd459805a827cf6f7342d6cd33bbcffcb349e64bbca437e0e4433e1"
+        },
+        "assembly_manifest.json": {
+          "path": "machines/ratrig_vcore_40_400_hybrid/assembly_manifest.json",
+          "bytes": 1789630,
+          "sha256": "75f77fcf7d2308301044e356ceb2f58de666282c3e5d8e37177b5df50b8f5083"
+        },
+        "flexible_routes.json": {
+          "path": "machines/ratrig_vcore_40_400_hybrid/flexible_routes.json",
+          "bytes": 120680,
+          "sha256": "3fd614107c23549764e84879229e4703a9016856c14cd3a8b7b5f9dc552c78d1"
+        },
+        "SOURCE_REVISION.json": {
+          "path": "machines/ratrig_vcore_40_400_hybrid/SOURCE_REVISION.json",
+          "bytes": 738,
+          "sha256": "81bd75406cea28ace3e47f58a94c4c0672e8f79ca97a5206fee5f72a1f68c0d8"
+        },
+        "model.glb": {
+          "path": "machines/ratrig_vcore_40_400_hybrid/model.glb.gz",
+          "bytes": 30438145,
+          "sha256": "7c7bb58c9c28cfd51c048b2b24e6b5af542d3eae28ff9e74f3a6f7e65cfad98f",
+          "encoding": "gzip",
+          "decoded_bytes": 93836904,
+          "decoded_sha256": "b2ca97bc05ef65eff019d886a8069b89f1f7958a6a5fa4ec5f27598459e9ed06"
+        }
+      },
+      "source": {
+        "machine_id": "ratrig_vcore_40_400_hybrid",
+        "series": "v-core-4-0",
+        "size_mm": 400,
+        "mode": "hybrid",
+        "share_url": "https://ratrig.autodesk360.com/shares/public/SH512d4QTec90decfa6ef0ddf1c595051446",
+        "official_files_url": "https://wiki.ratrig.com/en/products/v-core-4-0/files",
+        "title": "Rat Rig V-Core 4.0 - 400 - Hybrid",
+        "status": "official_step_downloaded",
+        "version_urn": "urn:adsk.wipprod:fs.file:vf.2-zrUfzSQ4-SfYwseSTepA?version=12",
+        "source_version": "12",
+        "file": "sources/ratrig/ratrig_vcore_40_400_hybrid/assembly.step",
+        "bytes": 132684077,
+        "sha256": "1913c644c315cb9518ec6a0bfc8fd142f1136412c9dbdfff6ac21a2087e6c877",
+        "license_basis": "Rat Rig Wiki siteConfig contentLicense=ccbyncsa; retain attribution",
+        "motion_verified": false,
+        "import_ready": false
+      },
+      "native_archive": {
+        "name": "ratrig-40-400-cad.zip",
+        "bytes": 638618118,
+        "sha256": "300426a9711a1288888eac71eb5cbd6c30b3649ac87c5925186dfd1dd7085ea5",
+        "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v31/ratrig-40-400-cad.zip"
+      }
+    },
+    {
+      "id": "ratrig_vcore_40_400_idex",
+      "title": "Rat Rig V-Core 4.0 400 idex",
+      "series": "v-core-4-0",
+      "size_mm": 400,
+      "mode": "idex",
+      "tool_count": 2,
+      "source_kind": "official_with_documented_adjustments",
+      "native_import_file": "assembly.validated.step",
+      "assembled_parts": 3079,
+      "native_solids": 4950,
+      "files": {
+        "machine_profile.json": {
+          "path": "machines/ratrig_vcore_40_400_idex/machine_profile.json",
+          "bytes": 2331,
+          "sha256": "e0e9a39c70bcfd3ba2bbf9e5a7b48611b48e4f7e6a70dfd5cfc37bd7577bee21"
+        },
+        "assembly_manifest.json": {
+          "path": "machines/ratrig_vcore_40_400_idex/assembly_manifest.json",
+          "bytes": 2358975,
+          "sha256": "c215260e3f81fe9c3684c143687124de52e8df4f63b7393e8f57ed17e328c08f"
+        },
+        "flexible_routes.json": {
+          "path": "machines/ratrig_vcore_40_400_idex/flexible_routes.json",
+          "bytes": 153951,
+          "sha256": "f49997cf76fb976b1a68f5a39ff6202dacda13a80b0aa7a05d9bfa6b0e900c5c"
+        },
+        "SOURCE_REVISION.json": {
+          "path": "machines/ratrig_vcore_40_400_idex/SOURCE_REVISION.json",
+          "bytes": 728,
+          "sha256": "8d9a99704157613a9cd6d396990897cde3dae26eed26f073184429c0aad4ff22"
+        },
+        "model.glb": {
+          "path": "machines/ratrig_vcore_40_400_idex/model.glb.gz",
+          "bytes": 35496085,
+          "sha256": "3c234b0f5b0ab50fdef18560feab0254f0e9cec0f5f980487d6305bb943a9186",
+          "encoding": "gzip",
+          "decoded_bytes": 112022604,
+          "decoded_sha256": "b41565379c61be88ff04988bd7c3742318129da04620ca5aa264c441a2a19bde"
+        }
+      },
+      "source": {
+        "machine_id": "ratrig_vcore_40_400_idex",
+        "series": "v-core-4-0",
+        "size_mm": 400,
+        "mode": "idex",
+        "share_url": "https://ratrig.autodesk360.com/shares/public/SH286ddQT78850c0d8a4b001733d89db1906",
+        "official_files_url": "https://wiki.ratrig.com/en/products/v-core-4-0/files",
+        "title": "Rat Rig V-Core 4.0 - 400 - IDEX",
+        "status": "official_step_downloaded",
+        "version_urn": "urn:adsk.wipprod:fs.file:vf.o_-yR6v8QDS7jIethIJGUQ?version=7",
+        "source_version": "7",
+        "file": "sources/ratrig/ratrig_vcore_40_400_idex/assembly.step",
+        "bytes": 155355693,
+        "sha256": "ae0fd6e67d6a53cdef9afab1bd77a7527953b6992b2c9f1b787fd01af706662d",
+        "license_basis": "Rat Rig Wiki siteConfig contentLicense=ccbyncsa; retain attribution",
+        "motion_verified": false,
+        "import_ready": false
+      },
+      "native_archive": {
+        "name": "ratrig-40-400-cad.zip",
+        "bytes": 638618118,
+        "sha256": "300426a9711a1288888eac71eb5cbd6c30b3649ac87c5925186dfd1dd7085ea5",
+        "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v31/ratrig-40-400-cad.zip"
+      }
+    },
+    {
+      "id": "ratrig_vcore_40_500_corexy",
+      "title": "Rat Rig V-Core 4.0 500 corexy",
+      "series": "v-core-4-0",
+      "size_mm": 500,
+      "mode": "corexy",
+      "tool_count": 1,
+      "source_kind": "official_with_documented_adjustments",
+      "native_import_file": "assembly.validated.step",
+      "assembled_parts": 2299,
+      "native_solids": 3444,
+      "files": {
+        "machine_profile.json": {
+          "path": "machines/ratrig_vcore_40_500_corexy/machine_profile.json",
+          "bytes": 2223,
+          "sha256": "71fb1fb5b6ae34519e6b2480949341a9758282ce1319f043f071b4eb34b07052"
+        },
+        "assembly_manifest.json": {
+          "path": "machines/ratrig_vcore_40_500_corexy/assembly_manifest.json",
+          "bytes": 1747537,
+          "sha256": "5cdb8df68e548b350abef6ee8dd33fd1bb1cfd57b01544ca96ffb9c27b1da8af"
+        },
+        "flexible_routes.json": {
+          "path": "machines/ratrig_vcore_40_500_corexy/flexible_routes.json",
+          "bytes": 89516,
+          "sha256": "22273bea72ccd6a85fea428378e0acb454e7bf71623d96cfd8ec150d4f04ec03"
+        },
+        "SOURCE_REVISION.json": {
+          "path": "machines/ratrig_vcore_40_500_corexy/SOURCE_REVISION.json",
+          "bytes": 738,
+          "sha256": "3f768293b24609d547c7a825f3945e030ac4d3eb1552de24e57b1da1c27e0553"
+        },
+        "model.glb": {
+          "path": "machines/ratrig_vcore_40_500_corexy/model.glb.gz",
+          "bytes": 30242665,
+          "sha256": "7034d30d6b1cf6f5280b784c15889a18031b612cf573cd2f3583d5e8a5d34022",
+          "encoding": "gzip",
+          "decoded_bytes": 92117456,
+          "decoded_sha256": "1b90e0423e78a64a26c5ecc2c91f51616d8d060fbd34431af0b53f15ed5886fc"
+        }
+      },
+      "source": {
+        "machine_id": "ratrig_vcore_40_500_corexy",
+        "series": "v-core-4-0",
+        "size_mm": 500,
+        "mode": "corexy",
+        "share_url": "https://ratrig.autodesk360.com/shares/public/SH512d4QTec90decfa6ef0e15235f2674595",
+        "official_files_url": "https://wiki.ratrig.com/en/products/v-core-4-0/files",
+        "title": "Rat Rig V-Core 4.0 - 500 - CoreXY",
+        "status": "official_step_downloaded",
+        "version_urn": "urn:adsk.wipprod:fs.file:vf.kOZHgv3TQVmGQoxzsxg6Cw?version=12",
+        "source_version": "12",
+        "file": "sources/ratrig/ratrig_vcore_40_500_corexy/assembly.step",
+        "bytes": 138844160,
+        "sha256": "b80fbf071f0ffe7104e58895003f7ae288407c14c39aa7dfd17f6041c4477b84",
+        "license_basis": "Rat Rig Wiki siteConfig contentLicense=ccbyncsa; retain attribution",
+        "motion_verified": false,
+        "import_ready": false
+      },
+      "native_archive": {
+        "name": "ratrig-40-500-cad.zip",
+        "bytes": 692978253,
+        "sha256": "78aedb94ac4e1387e1abbe962a3f43a1391cb581f8a32342aea506d53cf9e82e",
+        "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v31/ratrig-40-500-cad.zip"
+      }
+    },
+    {
+      "id": "ratrig_vcore_40_500_hybrid",
+      "title": "Rat Rig V-Core 4.0 500 hybrid",
+      "series": "v-core-4-0",
+      "size_mm": 500,
+      "mode": "hybrid",
+      "tool_count": 1,
+      "source_kind": "official_with_documented_adjustments",
+      "native_import_file": "assembly.validated.step",
+      "assembled_parts": 2384,
+      "native_solids": 3530,
+      "files": {
+        "machine_profile.json": {
+          "path": "machines/ratrig_vcore_40_500_hybrid/machine_profile.json",
+          "bytes": 2245,
+          "sha256": "b53d3d130e88ba3bddc5bb36b534f3af8f3ffd428eea8174b5aca980ae309f11"
+        },
+        "assembly_manifest.json": {
+          "path": "machines/ratrig_vcore_40_500_hybrid/assembly_manifest.json",
+          "bytes": 1809723,
+          "sha256": "601dd31329464f39d3e70acba0d0084d586471fc31411f245848f4c1391917a7"
+        },
+        "flexible_routes.json": {
+          "path": "machines/ratrig_vcore_40_500_hybrid/flexible_routes.json",
+          "bytes": 124867,
+          "sha256": "36abdff64ca5c8f6161b13480769699d2551f450e3e187f55ad6b51260696410"
+        },
+        "SOURCE_REVISION.json": {
+          "path": "machines/ratrig_vcore_40_500_hybrid/SOURCE_REVISION.json",
+          "bytes": 738,
+          "sha256": "3f8b71ed5f0bc8af2402d37e67820238a4b6dbcdc2a1f628176324b61f5031d8"
+        },
+        "model.glb": {
+          "path": "machines/ratrig_vcore_40_500_hybrid/model.glb.gz",
+          "bytes": 31355043,
+          "sha256": "a5e9b9d151bc5687b9c0fa312769177d1f04607e470d494369e4bcdcca973bda",
+          "encoding": "gzip",
+          "decoded_bytes": 95873064,
+          "decoded_sha256": "c352ee0188f76528d9bc3ddf8ca8da341206ac91ea4080bc62bbcbd5f9fbd297"
+        }
+      },
+      "source": {
+        "machine_id": "ratrig_vcore_40_500_hybrid",
+        "series": "v-core-4-0",
+        "size_mm": 500,
+        "mode": "hybrid",
+        "share_url": "https://ratrig.autodesk360.com/shares/public/SH512d4QTec90decfa6ebab46cdb8438916c",
+        "official_files_url": "https://wiki.ratrig.com/en/products/v-core-4-0/files",
+        "title": "Rat Rig V-Core 4.0 - 500 - Hybrid",
+        "status": "official_step_downloaded",
+        "version_urn": "urn:adsk.wipprod:fs.file:vf.W--33iWeRCOh41iu8Ob4Hg?version=12",
+        "source_version": "12",
+        "file": "sources/ratrig/ratrig_vcore_40_500_hybrid/assembly.step",
+        "bytes": 139203876,
+        "sha256": "134f2a00a0c653913d014f922ecbf62f307d83f5d52cb740076f682d7ccb29c6",
+        "license_basis": "Rat Rig Wiki siteConfig contentLicense=ccbyncsa; retain attribution",
+        "motion_verified": false,
+        "import_ready": false
+      },
+      "native_archive": {
+        "name": "ratrig-40-500-cad.zip",
+        "bytes": 692978253,
+        "sha256": "78aedb94ac4e1387e1abbe962a3f43a1391cb581f8a32342aea506d53cf9e82e",
+        "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v31/ratrig-40-500-cad.zip"
+      }
+    },
+    {
+      "id": "ratrig_vcore_40_500_idex",
+      "title": "Rat Rig V-Core 4.0 500 idex",
+      "series": "v-core-4-0",
+      "size_mm": 500,
+      "mode": "idex",
+      "tool_count": 2,
+      "source_kind": "official_with_documented_adjustments",
+      "native_import_file": "assembly.validated.step",
+      "assembled_parts": 3103,
+      "native_solids": 4974,
+      "files": {
+        "machine_profile.json": {
+          "path": "machines/ratrig_vcore_40_500_idex/machine_profile.json",
+          "bytes": 2358,
+          "sha256": "59c441594dcc936bc80d99bcb81324320d8daea5e6dad1760253ba2d5e0bbc06"
+        },
+        "assembly_manifest.json": {
+          "path": "machines/ratrig_vcore_40_500_idex/assembly_manifest.json",
+          "bytes": 2380204,
+          "sha256": "e33129fa302509c117dd55cf0c7638adc2b077f674a659b97bdeddd15864804c"
+        },
+        "flexible_routes.json": {
+          "path": "machines/ratrig_vcore_40_500_idex/flexible_routes.json",
+          "bytes": 163422,
+          "sha256": "672a344e95076ce1fbee2c8d85353eb6e47d00ab51ddd6a7faea07b977141469"
+        },
+        "SOURCE_REVISION.json": {
+          "path": "machines/ratrig_vcore_40_500_idex/SOURCE_REVISION.json",
+          "bytes": 728,
+          "sha256": "0a18d044ad8f8bbb29757e35a5f5b5c7734710b55492a9afc8a4d755ce2a7e11"
+        },
+        "model.glb": {
+          "path": "machines/ratrig_vcore_40_500_idex/model.glb.gz",
+          "bytes": 36569866,
+          "sha256": "8ec58e720d261c180f46d6e28ffc06c32063f4a439049c9712d1e5bde97e6972",
+          "encoding": "gzip",
+          "decoded_bytes": 113740200,
+          "decoded_sha256": "5667d489ad6a27f61e2e5bfd5418582745aac3faae62248dc1d320104cec0bca"
+        }
+      },
+      "source": {
+        "machine_id": "ratrig_vcore_40_500_idex",
+        "series": "v-core-4-0",
+        "size_mm": 500,
+        "mode": "idex",
+        "share_url": "https://ratrig.autodesk360.com/shares/public/SH286ddQT78850c0d8a497a122768f32151b",
+        "official_files_url": "https://wiki.ratrig.com/en/products/v-core-4-0/files",
+        "title": "Rat Rig V-Core 4.0 - 500 - IDEX",
+        "status": "official_step_downloaded",
+        "version_urn": "urn:adsk.wipprod:fs.file:vf.zyHzRPhMQquugqq7r2bOYA?version=7",
+        "source_version": "7",
+        "file": "sources/ratrig/ratrig_vcore_40_500_idex/assembly.step",
+        "bytes": 161876556,
+        "sha256": "81df2dd19699b6e94726cc8652306d4f507c23c4c7432a867d167828754c0dce",
+        "license_basis": "Rat Rig Wiki siteConfig contentLicense=ccbyncsa; retain attribution",
+        "motion_verified": false,
+        "import_ready": false
+      },
+      "native_archive": {
+        "name": "ratrig-40-500-cad.zip",
+        "bytes": 692978253,
+        "sha256": "78aedb94ac4e1387e1abbe962a3f43a1391cb581f8a32342aea506d53cf9e82e",
+        "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v31/ratrig-40-500-cad.zip"
+      }
+    },
+    {
+      "id": "ratrig_vcore_41_300_corexy",
+      "title": "Rat Rig V-Core 4.1 300 corexy",
+      "series": "v-core-4-1",
+      "size_mm": 300,
+      "mode": "corexy",
+      "tool_count": 1,
+      "source_kind": "official_with_documented_adjustments",
+      "native_import_file": "assembly.validated.step",
+      "assembled_parts": 2006,
+      "native_solids": 2700,
+      "files": {
+        "machine_profile.json": {
+          "path": "machines/ratrig_vcore_41_300_corexy/machine_profile.json",
+          "bytes": 2260,
+          "sha256": "1e154c8bde709ecd5688580717efd322e77b30d108d91d5ee6aee94f390c3f18"
+        },
+        "assembly_manifest.json": {
+          "path": "machines/ratrig_vcore_41_300_corexy/assembly_manifest.json",
+          "bytes": 1523044,
+          "sha256": "387a5b4d1304ff1fef1be327f8ec7250722efae874fb315a30116b036ed138f6"
+        },
+        "flexible_routes.json": {
+          "path": "machines/ratrig_vcore_41_300_corexy/flexible_routes.json",
+          "bytes": 60087,
+          "sha256": "08d48a203fffd014845a139336c68d99ddac7e8a99abfd0088adaa9208adf912"
+        },
+        "SOURCE_REVISION.json": {
+          "path": "machines/ratrig_vcore_41_300_corexy/SOURCE_REVISION.json",
+          "bytes": 731,
+          "sha256": "f6a84088387f89abbaddc48344ae9b954d167ae0b4e8066cb4884e5bb3625514"
+        },
+        "model.glb": {
+          "path": "machines/ratrig_vcore_41_300_corexy/model.glb.gz",
+          "bytes": 24839581,
+          "sha256": "f8778b1f12d703f8025d64f1afad38cc6ee5ee42879d154b3b32013670db2e47",
+          "encoding": "gzip",
+          "decoded_bytes": 78985436,
+          "decoded_sha256": "aac48dc8f9ec3c57653f243ba1b7fda102e556f2d2a3e8a8167aa21f3e443be8"
+        }
+      },
+      "source": {
+        "machine_id": "ratrig_vcore_41_300_corexy",
+        "series": "v-core-4-1",
+        "size_mm": 300,
+        "mode": "corexy",
+        "share_url": "https://ratrig.autodesk360.com/g/shares/SH90d2dQT28d5b6028111415497e7d77b589",
+        "official_files_url": "https://wiki.ratrig.com/en/products/v-core-4-1/files",
+        "title": "Rat Rig V-Core 4.1 - 300 - CoreXY",
+        "status": "official_step_downloaded",
+        "version_urn": "urn:adsk.wipprod:fs.file:vf.eamaH6RvS-as9Mb5yLOCEQ?version=3",
+        "source_version": "3",
+        "file": "sources/ratrig/ratrig_vcore_41_300_corexy/assembly.step",
+        "bytes": 125023902,
+        "sha256": "c9f775a78447698225c60246d35147543571026d275874225fbebc7eb68f10bd",
+        "license_basis": "Rat Rig Wiki siteConfig contentLicense=ccbyncsa; retain attribution",
+        "motion_verified": false,
+        "import_ready": false
+      },
+      "native_archive": {
+        "name": "ratrig-41-300-cad.zip",
+        "bytes": 539208884,
+        "sha256": "76b10ccc4596446a1eeca5ce245bd8e54bc1f25d4a7e96722a4692a89edcf076",
+        "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v31/ratrig-41-300-cad.zip"
+      }
+    },
+    {
+      "id": "ratrig_vcore_41_300_hybrid",
+      "title": "Rat Rig V-Core 4.1 300 hybrid",
+      "series": "v-core-4-1",
+      "size_mm": 300,
+      "mode": "hybrid",
+      "tool_count": 1,
+      "source_kind": "official_with_documented_adjustments",
+      "native_import_file": "assembly.validated.step",
+      "assembled_parts": 2093,
+      "native_solids": 2792,
+      "files": {
+        "machine_profile.json": {
+          "path": "machines/ratrig_vcore_41_300_hybrid/machine_profile.json",
+          "bytes": 2281,
+          "sha256": "a6395004a23229130e3fd53870433286a9a420e174a45ae43fe78eee64c97c03"
+        },
+        "assembly_manifest.json": {
+          "path": "machines/ratrig_vcore_41_300_hybrid/assembly_manifest.json",
+          "bytes": 1585442,
+          "sha256": "fe38f77829ebd83f3c9e528e74c1d37829e5b41cb8c598f58b4de8652fb7ef6b"
+        },
+        "flexible_routes.json": {
+          "path": "machines/ratrig_vcore_41_300_hybrid/flexible_routes.json",
+          "bytes": 95660,
+          "sha256": "cb3040a60daa2c9a0ac2760c53880f929b8e8f220fedfe8f0c63db8ee801f860"
+        },
+        "SOURCE_REVISION.json": {
+          "path": "machines/ratrig_vcore_41_300_hybrid/SOURCE_REVISION.json",
+          "bytes": 731,
+          "sha256": "54a15c81b1b8b70b32ed9eda4b027b54b807447c4d02883b22d0fb1146caef71"
+        },
+        "model.glb": {
+          "path": "machines/ratrig_vcore_41_300_hybrid/model.glb.gz",
+          "bytes": 25398260,
+          "sha256": "2f23a94fbc0af033bc64938b8fc92f5451a393baee81f33559256d58737170d2",
+          "encoding": "gzip",
+          "decoded_bytes": 81247812,
+          "decoded_sha256": "9642e9a716271296176c5a11d7da26ea65f768cdd5fee282609fab41065ccddb"
+        }
+      },
+      "source": {
+        "machine_id": "ratrig_vcore_41_300_hybrid",
+        "series": "v-core-4-1",
+        "size_mm": 300,
+        "mode": "hybrid",
+        "share_url": "https://ratrig.autodesk360.com/g/shares/SH90d2dQT28d5b602811a78705f540380cf6",
+        "official_files_url": "https://wiki.ratrig.com/en/products/v-core-4-1/files",
+        "title": "Rat Rig V-Core 4.1 - 300 - Hybrid",
+        "status": "official_step_downloaded",
+        "version_urn": "urn:adsk.wipprod:fs.file:vf.uSRASwfVQ6euuPMkFsxehg?version=3",
+        "source_version": "3",
+        "file": "sources/ratrig/ratrig_vcore_41_300_hybrid/assembly.step",
+        "bytes": 125378087,
+        "sha256": "67d5fb7ec00a3c762655be2fdaa36078459a07d697ab8374493f3c261382c81b",
+        "license_basis": "Rat Rig Wiki siteConfig contentLicense=ccbyncsa; retain attribution",
+        "motion_verified": false,
+        "import_ready": false
+      },
+      "native_archive": {
+        "name": "ratrig-41-300-cad.zip",
+        "bytes": 539208884,
+        "sha256": "76b10ccc4596446a1eeca5ce245bd8e54bc1f25d4a7e96722a4692a89edcf076",
+        "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v31/ratrig-41-300-cad.zip"
+      }
+    },
+    {
+      "id": "ratrig_vcore_41_300_idex",
+      "title": "Rat Rig V-Core 4.1 300 idex",
+      "series": "v-core-4-1",
+      "size_mm": 300,
+      "mode": "idex",
+      "tool_count": 2,
+      "source_kind": "official_with_documented_adjustments",
+      "native_import_file": "assembly.validated.step",
+      "assembled_parts": 2640,
+      "native_solids": 3610,
+      "files": {
+        "machine_profile.json": {
+          "path": "machines/ratrig_vcore_41_300_idex/machine_profile.json",
+          "bytes": 2371,
+          "sha256": "2538eea85a3d3fdd9adf9051a9d40d8d427f91cf850eb7083b6eeac03bddb568"
+        },
+        "assembly_manifest.json": {
+          "path": "machines/ratrig_vcore_41_300_idex/assembly_manifest.json",
+          "bytes": 2010495,
+          "sha256": "8f3ebd8a3f95a4efb13533859d85e05127d9330cc2e7c1cb827c3a6cd4ba9678"
+        },
+        "flexible_routes.json": {
+          "path": "machines/ratrig_vcore_41_300_idex/flexible_routes.json",
+          "bytes": 122344,
+          "sha256": "28b3442b33ac6bc435240c3b43943ca37a70422ec531cf76996eefe805db5e56"
+        },
+        "SOURCE_REVISION.json": {
+          "path": "machines/ratrig_vcore_41_300_idex/SOURCE_REVISION.json",
+          "bytes": 723,
+          "sha256": "e6cfd84d068abcdc525138bb90cfbfb9a669c8d15dc995b6cd4bb47ce641573b"
+        },
+        "model.glb": {
+          "path": "machines/ratrig_vcore_41_300_idex/model.glb.gz",
+          "bytes": 31882216,
+          "sha256": "aae1a2a6799071b61c83b29af44cef3ac4f65af0e0f6e524c2752b772fbcb29d",
+          "encoding": "gzip",
+          "decoded_bytes": 100397484,
+          "decoded_sha256": "4328f885ab485f25157d4e25cb2c6d921a2843a0ddce85e619b2f3b1b01f1caa"
+        }
+      },
+      "source": {
+        "machine_id": "ratrig_vcore_41_300_idex",
+        "series": "v-core-4-1",
+        "size_mm": 300,
+        "mode": "idex",
+        "share_url": "https://ratrig.autodesk360.com/g/shares/SH90d2dQT28d5b6028112b157a4a367d4e11",
+        "official_files_url": "https://wiki.ratrig.com/en/products/v-core-4-1/files",
+        "title": "Rat Rig V-Core 4.1 - 300 - IDEX",
+        "status": "official_step_downloaded",
+        "version_urn": "urn:adsk.wipprod:fs.file:vf.vqV0oG0BR-KSMJ4_PJ7YmA?version=3",
+        "source_version": "3",
+        "file": "sources/ratrig/ratrig_vcore_41_300_idex/assembly.step",
+        "bytes": 136467714,
+        "sha256": "b03749664cc130773d694a6a33330a5481e8613b819a03e1f8f7c725e1e1e8a6",
+        "license_basis": "Rat Rig Wiki siteConfig contentLicense=ccbyncsa; retain attribution",
+        "motion_verified": false,
+        "import_ready": false
+      },
+      "native_archive": {
+        "name": "ratrig-41-300-cad.zip",
+        "bytes": 539208884,
+        "sha256": "76b10ccc4596446a1eeca5ce245bd8e54bc1f25d4a7e96722a4692a89edcf076",
+        "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v31/ratrig-41-300-cad.zip"
+      }
+    },
+    {
+      "id": "ratrig_vcore_41_400_corexy",
+      "title": "Rat Rig V-Core 4.1 400 corexy",
+      "series": "v-core-4-1",
+      "size_mm": 400,
+      "mode": "corexy",
+      "tool_count": 1,
+      "source_kind": "official_with_documented_adjustments",
+      "native_import_file": "assembly.validated.step",
+      "assembled_parts": 2042,
+      "native_solids": 2736,
+      "files": {
+        "machine_profile.json": {
+          "path": "machines/ratrig_vcore_41_400_corexy/machine_profile.json",
+          "bytes": 2256,
+          "sha256": "acc9c1470cdc666243d0b045c4d2f6939684e4c4143205856379afbaede85e5a"
+        },
+        "assembly_manifest.json": {
+          "path": "machines/ratrig_vcore_41_400_corexy/assembly_manifest.json",
+          "bytes": 1549568,
+          "sha256": "c449d8cf4d7cf64807cb92a39d2dbec0bb4c30874aee6e205b7fb4109aecdde8"
+        },
+        "flexible_routes.json": {
+          "path": "machines/ratrig_vcore_41_400_corexy/flexible_routes.json",
+          "bytes": 63497,
+          "sha256": "820013c18742433c030a96e8fd9d16d2c0d5828556bbfdfec95fa2541765888a"
+        },
+        "SOURCE_REVISION.json": {
+          "path": "machines/ratrig_vcore_41_400_corexy/SOURCE_REVISION.json",
+          "bytes": 731,
+          "sha256": "9ee77967e7e574a1f08cb3435b74545e2557a7f1063f1eaeee2fa752710cb28a"
+        },
+        "model.glb": {
+          "path": "machines/ratrig_vcore_41_400_corexy/model.glb.gz",
+          "bytes": 25802235,
+          "sha256": "800fa1b5a85303b9c6437fc1e9e3b13ec36df98b90ce0d18b4ae54fe891e2290",
+          "encoding": "gzip",
+          "decoded_bytes": 81189216,
+          "decoded_sha256": "1797f6a03cdf2a051ee94f1cbe91e5d9d4e78bf068979f4ef182ef518f9734e9"
+        }
+      },
+      "source": {
+        "machine_id": "ratrig_vcore_41_400_corexy",
+        "series": "v-core-4-1",
+        "size_mm": 400,
+        "mode": "corexy",
+        "share_url": "https://ratrig.autodesk360.com/g/shares/SH90d2dQT28d5b60281102c9f551e6834ee8",
+        "official_files_url": "https://wiki.ratrig.com/en/products/v-core-4-1/files",
+        "title": "Rat Rig V-Core 4.1 - 400 - CoreXY",
+        "status": "official_step_downloaded",
+        "version_urn": "urn:adsk.wipprod:fs.file:vf.rnr1GcehQTa_FLwjSaqPZw?version=3",
+        "source_version": "3",
+        "file": "sources/ratrig/ratrig_vcore_41_400_corexy/assembly.step",
+        "bytes": 131063262,
+        "sha256": "839b64255254ed4e9dcdd91dda068950be54f013b857c15afd07fd744ed6e195",
+        "license_basis": "Rat Rig Wiki siteConfig contentLicense=ccbyncsa; retain attribution",
+        "motion_verified": false,
+        "import_ready": false
+      },
+      "native_archive": {
+        "name": "ratrig-41-400-cad.zip",
+        "bytes": 590192642,
+        "sha256": "b139ce1289bea6b6bfe1a788c21755a744aecbf68f17bf36b2e814ec7280d0c3",
+        "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v31/ratrig-41-400-cad.zip"
+      }
+    },
+    {
+      "id": "ratrig_vcore_41_400_hybrid",
+      "title": "Rat Rig V-Core 4.1 400 hybrid",
+      "series": "v-core-4-1",
+      "size_mm": 400,
+      "mode": "hybrid",
+      "tool_count": 1,
+      "source_kind": "official_with_documented_adjustments",
+      "native_import_file": "assembly.validated.step",
+      "assembled_parts": 2128,
+      "native_solids": 2828,
+      "files": {
+        "machine_profile.json": {
+          "path": "machines/ratrig_vcore_41_400_hybrid/machine_profile.json",
+          "bytes": 2277,
+          "sha256": "3de8bd6fa40f2395c26dea878894025a389045fbdac3a439f66616dda4513a3a"
+        },
+        "assembly_manifest.json": {
+          "path": "machines/ratrig_vcore_41_400_hybrid/assembly_manifest.json",
+          "bytes": 1612963,
+          "sha256": "c05daa3c16c37de847b3678768f8a440d04337681f1269a4a3956c9be8f1321e"
+        },
+        "flexible_routes.json": {
+          "path": "machines/ratrig_vcore_41_400_hybrid/flexible_routes.json",
+          "bytes": 69008,
+          "sha256": "b2b79b2e9af5e01ee0cea64f6a5559590550fc303cffb16ee5adc09a73c2d04e"
+        },
+        "SOURCE_REVISION.json": {
+          "path": "machines/ratrig_vcore_41_400_hybrid/SOURCE_REVISION.json",
+          "bytes": 731,
+          "sha256": "25b8e5edba065e903d1476ced592432b869692b347295ac5ff7ce9d5d33b5b7d"
+        },
+        "model.glb": {
+          "path": "machines/ratrig_vcore_41_400_hybrid/model.glb.gz",
+          "bytes": 26467219,
+          "sha256": "3ca8d844e73c2a617c685d58b98576d2c823449781a87c5fab887a34d8cb0479",
+          "encoding": "gzip",
+          "decoded_bytes": 83831180,
+          "decoded_sha256": "9ee09292ad7f5a1cd22ecc70b4dc351d2f42b88353fca26b0266326fc0195e39"
+        }
+      },
+      "source": {
+        "machine_id": "ratrig_vcore_41_400_hybrid",
+        "series": "v-core-4-1",
+        "size_mm": 400,
+        "mode": "hybrid",
+        "share_url": "https://ratrig.autodesk360.com/g/shares/SH90d2dQT28d5b6028110c651398b71f9756",
+        "official_files_url": "https://wiki.ratrig.com/en/products/v-core-4-1/files",
+        "title": "Rat Rig V-Core 4.1 - 400 - Hybrid",
+        "status": "official_step_downloaded",
+        "version_urn": "urn:adsk.wipprod:fs.file:vf.c8vKPRYES2yj0KObCo7iew?version=4",
+        "source_version": "4",
+        "file": "sources/ratrig/ratrig_vcore_41_400_hybrid/assembly.step",
+        "bytes": 131412460,
+        "sha256": "f121d0bd42cca11ca88ba57e0fdbda257f28a36dea7c8607a98c9e7566653273",
+        "license_basis": "Rat Rig Wiki siteConfig contentLicense=ccbyncsa; retain attribution",
+        "motion_verified": false,
+        "import_ready": false
+      },
+      "native_archive": {
+        "name": "ratrig-41-400-cad.zip",
+        "bytes": 590192642,
+        "sha256": "b139ce1289bea6b6bfe1a788c21755a744aecbf68f17bf36b2e814ec7280d0c3",
+        "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v31/ratrig-41-400-cad.zip"
+      }
+    },
+    {
+      "id": "ratrig_vcore_41_400_idex",
+      "title": "Rat Rig V-Core 4.1 400 idex",
+      "series": "v-core-4-1",
+      "size_mm": 400,
+      "mode": "idex",
+      "tool_count": 2,
+      "source_kind": "official_with_documented_adjustments",
+      "native_import_file": "assembly.validated.step",
+      "assembled_parts": 2676,
+      "native_solids": 3646,
+      "files": {
+        "machine_profile.json": {
+          "path": "machines/ratrig_vcore_41_400_idex/machine_profile.json",
+          "bytes": 2354,
+          "sha256": "254a51b0d608eb54cd27b831aadc6a7b0dc376e0e700f14db81a618572152660"
+        },
+        "assembly_manifest.json": {
+          "path": "machines/ratrig_vcore_41_400_idex/assembly_manifest.json",
+          "bytes": 2035263,
+          "sha256": "08ad21ac70787c878a5ce4d50f414602a29ac7bc57f1db386c1d56b26c952e9f"
+        },
+        "flexible_routes.json": {
+          "path": "machines/ratrig_vcore_41_400_idex/flexible_routes.json",
+          "bytes": 131068,
+          "sha256": "c44a9c52d2c3405225e5f1021c40b0a617eacf97d69c01d9fc53a67b4a2dddb6"
+        },
+        "SOURCE_REVISION.json": {
+          "path": "machines/ratrig_vcore_41_400_idex/SOURCE_REVISION.json",
+          "bytes": 723,
+          "sha256": "17728e0c670ce9a7df3ce7c77894712bc6fb2b4911e350452db8b5220490120b"
+        },
+        "model.glb": {
+          "path": "machines/ratrig_vcore_41_400_idex/model.glb.gz",
+          "bytes": 32965078,
+          "sha256": "50b684aa40405bd7ebb36bfe08c116781fe3ea8e06658b39c97c55fd0d726a14",
+          "encoding": "gzip",
+          "decoded_bytes": 103115688,
+          "decoded_sha256": "b1d9ce88b7c1e8d94b84081dda180b734f404a6d7c49a3834682ea62fe5f4eb6"
+        }
+      },
+      "source": {
+        "machine_id": "ratrig_vcore_41_400_idex",
+        "series": "v-core-4-1",
+        "size_mm": 400,
+        "mode": "idex",
+        "share_url": "https://ratrig.autodesk360.com/g/shares/SH90d2dQT28d5b602811aa0068420537def5",
+        "official_files_url": "https://wiki.ratrig.com/en/products/v-core-4-1/files",
+        "title": "Rat Rig V-Core 4.1 - 400 - IDEX",
+        "status": "official_step_downloaded",
+        "version_urn": "urn:adsk.wipprod:fs.file:vf.sT7q2QedRnuCr3mq0HLZSw?version=3",
+        "source_version": "3",
+        "file": "sources/ratrig/ratrig_vcore_41_400_idex/assembly.step",
+        "bytes": 142510943,
+        "sha256": "a84580b716f9c946c027b04ee330ed700f7c35f6a3fe9c9d7c9aca7c6db0ff7a",
+        "license_basis": "Rat Rig Wiki siteConfig contentLicense=ccbyncsa; retain attribution",
+        "motion_verified": false,
+        "import_ready": false
+      },
+      "native_archive": {
+        "name": "ratrig-41-400-cad.zip",
+        "bytes": 590192642,
+        "sha256": "b139ce1289bea6b6bfe1a788c21755a744aecbf68f17bf36b2e814ec7280d0c3",
+        "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v31/ratrig-41-400-cad.zip"
+      }
+    },
+    {
+      "id": "ratrig_vcore_41_500_corexy",
+      "title": "Rat Rig V-Core 4.1 500 corexy",
+      "series": "v-core-4-1",
+      "size_mm": 500,
+      "mode": "corexy",
+      "tool_count": 1,
+      "source_kind": "official_with_documented_adjustments",
+      "native_import_file": "assembly.validated.step",
+      "assembled_parts": 2066,
+      "native_solids": 2760,
+      "files": {
+        "machine_profile.json": {
+          "path": "machines/ratrig_vcore_41_500_corexy/machine_profile.json",
+          "bytes": 2259,
+          "sha256": "1aa782d896649e824f9115137136a10f58921eb938645bef5ec2add77842c57c"
+        },
+        "assembly_manifest.json": {
+          "path": "machines/ratrig_vcore_41_500_corexy/assembly_manifest.json",
+          "bytes": 1565938,
+          "sha256": "042cdd96663e0a3a58fd445970e9af1f63bd9c08c99c6d9ca4bdb71d9a8258f8"
+        },
+        "flexible_routes.json": {
+          "path": "machines/ratrig_vcore_41_500_corexy/flexible_routes.json",
+          "bytes": 67301,
+          "sha256": "e91ff3a2124e38d37a23d1e7aacc21f7fd926fa9a35546525873481992c26bfc"
+        },
+        "SOURCE_REVISION.json": {
+          "path": "machines/ratrig_vcore_41_500_corexy/SOURCE_REVISION.json",
+          "bytes": 731,
+          "sha256": "1efbdc1ab6b816908369f18edbd404ba1b23af027b3423f6f62b27bc026d09a1"
+        },
+        "model.glb": {
+          "path": "machines/ratrig_vcore_41_500_corexy/model.glb.gz",
+          "bytes": 26727940,
+          "sha256": "99c8586c2297340abf5f49464dddaf5ee7fc4aff6bfedcd5be54492da35af7a8",
+          "encoding": "gzip",
+          "decoded_bytes": 83062164,
+          "decoded_sha256": "856eed23ee1a8f56dd2d242808cbbfd9fef8abb83f9f4a8afb905709c76f55ce"
+        }
+      },
+      "source": {
+        "machine_id": "ratrig_vcore_41_500_corexy",
+        "series": "v-core-4-1",
+        "size_mm": 500,
+        "mode": "corexy",
+        "share_url": "https://ratrig.autodesk360.com/g/shares/SH90d2dQT28d5b602811a69b68b94ab28a29",
+        "official_files_url": "https://wiki.ratrig.com/en/products/v-core-4-1/files",
+        "title": "Rat Rig V-Core 4.1 - 500 - CoreXY",
+        "status": "official_step_downloaded",
+        "version_urn": "urn:adsk.wipprod:fs.file:vf.9ONODtsDQ1mfn0mrKf5pJA?version=3",
+        "source_version": "3",
+        "file": "sources/ratrig/ratrig_vcore_41_500_corexy/assembly.step",
+        "bytes": 137541389,
+        "sha256": "69aab2dfc075ac617ecf3820c7e0bed3a4723d523635f72db3f024de90fd605f",
+        "license_basis": "Rat Rig Wiki siteConfig contentLicense=ccbyncsa; retain attribution",
+        "motion_verified": false,
+        "import_ready": false
+      },
+      "native_archive": {
+        "name": "ratrig-41-500-cad.zip",
+        "bytes": 643965183,
+        "sha256": "24c3ebdd259038458845ca41c5f348128420e66a6ac02cc567fb11ce357b65e4",
+        "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v31/ratrig-41-500-cad.zip"
+      }
+    },
+    {
+      "id": "ratrig_vcore_41_500_hybrid",
+      "title": "Rat Rig V-Core 4.1 500 hybrid",
+      "series": "v-core-4-1",
+      "size_mm": 500,
+      "mode": "hybrid",
+      "tool_count": 1,
+      "source_kind": "official_with_documented_adjustments",
+      "native_import_file": "assembly.validated.step",
+      "assembled_parts": 2153,
+      "native_solids": 2852,
+      "files": {
+        "machine_profile.json": {
+          "path": "machines/ratrig_vcore_41_500_hybrid/machine_profile.json",
+          "bytes": 2280,
+          "sha256": "3cf5752a9bd3d3d668cb4a87571b3c9e57c2126976fa3a1f05e80c0cf36d59f6"
+        },
+        "assembly_manifest.json": {
+          "path": "machines/ratrig_vcore_41_500_hybrid/assembly_manifest.json",
+          "bytes": 1628666,
+          "sha256": "2f4d7bdb02a659c8c964ad6b4dcdba5faf4bc3272c9408932648177707cffd56"
+        },
+        "flexible_routes.json": {
+          "path": "machines/ratrig_vcore_41_500_hybrid/flexible_routes.json",
+          "bytes": 102834,
+          "sha256": "24f507e7adbb5fc5927b5b783e48080d401220c5a4368364aa7b8600a69e1e75"
+        },
+        "SOURCE_REVISION.json": {
+          "path": "machines/ratrig_vcore_41_500_hybrid/SOURCE_REVISION.json",
+          "bytes": 731,
+          "sha256": "35a0d85089b594a06b99600d86d3907f814bf148f46fd46982fee2674b3d06ba"
+        },
+        "model.glb": {
+          "path": "machines/ratrig_vcore_41_500_hybrid/model.glb.gz",
+          "bytes": 27360510,
+          "sha256": "4b55fd029f6192f916265da1ad8de54ccb3f688e23ca1e5da6df1857a4a5497a",
+          "encoding": "gzip",
+          "decoded_bytes": 85540660,
+          "decoded_sha256": "f2de1ea8733e099f302340ad660dc505baa07627215c7d9839d3e1ebeb670dd4"
+        }
+      },
+      "source": {
+        "machine_id": "ratrig_vcore_41_500_hybrid",
+        "series": "v-core-4-1",
+        "size_mm": 500,
+        "mode": "hybrid",
+        "share_url": "https://ratrig.autodesk360.com/g/shares/SH90d2dQT28d5b60281179970b16f8bbcca5",
+        "official_files_url": "https://wiki.ratrig.com/en/products/v-core-4-1/files",
+        "title": "Rat Rig V-Core 4.1 - 500 - Hybrid",
+        "status": "official_step_downloaded",
+        "version_urn": "urn:adsk.wipprod:fs.file:vf.MoQ8YdNQT0Oeu3sCrsbN0A?version=3",
+        "source_version": "3",
+        "file": "sources/ratrig/ratrig_vcore_41_500_hybrid/assembly.step",
+        "bytes": 137896117,
+        "sha256": "44821bb9b2ce22c93a6980f9d8aba986d8d3ac4b0c1c2fa6a126b74d1cd959dd",
+        "license_basis": "Rat Rig Wiki siteConfig contentLicense=ccbyncsa; retain attribution",
+        "motion_verified": false,
+        "import_ready": false
+      },
+      "native_archive": {
+        "name": "ratrig-41-500-cad.zip",
+        "bytes": 643965183,
+        "sha256": "24c3ebdd259038458845ca41c5f348128420e66a6ac02cc567fb11ce357b65e4",
+        "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v31/ratrig-41-500-cad.zip"
+      }
+    },
+    {
+      "id": "ratrig_vcore_41_500_idex",
+      "title": "Rat Rig V-Core 4.1 500 idex",
+      "series": "v-core-4-1",
+      "size_mm": 500,
+      "mode": "idex",
+      "tool_count": 2,
+      "source_kind": "official_with_documented_adjustments",
+      "native_import_file": "assembly.validated.step",
+      "assembled_parts": 2700,
+      "native_solids": 3670,
+      "files": {
+        "machine_profile.json": {
+          "path": "machines/ratrig_vcore_41_500_idex/machine_profile.json",
+          "bytes": 2343,
+          "sha256": "8dc0e721b2d2a69bf555899acb721cb1b381ff627136c5bef15c042f72b40325"
+        },
+        "assembly_manifest.json": {
+          "path": "machines/ratrig_vcore_41_500_idex/assembly_manifest.json",
+          "bytes": 2053039,
+          "sha256": "75610fa0e4a933a0d3cc77ba7999efbf5829ac8f8110db4649f0e9bb7672a84d"
+        },
+        "flexible_routes.json": {
+          "path": "machines/ratrig_vcore_41_500_idex/flexible_routes.json",
+          "bytes": 138481,
+          "sha256": "727ebfd3773c073fb118887c99ecb4dcee7af2ae33184745b4a28098b0037a2c"
+        },
+        "SOURCE_REVISION.json": {
+          "path": "machines/ratrig_vcore_41_500_idex/SOURCE_REVISION.json",
+          "bytes": 723,
+          "sha256": "cb82f9976aeca1b835ab235ee2fcec41f2a8f708b763870be8e82f98e13ca918"
+        },
+        "model.glb": {
+          "path": "machines/ratrig_vcore_41_500_idex/model.glb.gz",
+          "bytes": 33679556,
+          "sha256": "7f235db377381bba075f51522d37874307c1a501df5a5cde0403ea7cfc9b2152",
+          "encoding": "gzip",
+          "decoded_bytes": 104351824,
+          "decoded_sha256": "e199087d12dee961f1c2e08b7f96e4dfd95adf52ef5210536f5d6ec0e5904a07"
+        }
+      },
+      "source": {
+        "machine_id": "ratrig_vcore_41_500_idex",
+        "series": "v-core-4-1",
+        "size_mm": 500,
+        "mode": "idex",
+        "share_url": "https://ratrig.autodesk360.com/g/shares/SH90d2dQT28d5b602811ff4a29f9c9628522",
+        "official_files_url": "https://wiki.ratrig.com/en/products/v-core-4-1/files",
+        "title": "Rat Rig V-Core 4.1 - 500 - IDEX",
+        "status": "official_step_downloaded",
+        "version_urn": "urn:adsk.wipprod:fs.file:vf.9z6sveKbRpqsqyvBYr7Z2g?version=3",
+        "source_version": "3",
+        "file": "sources/ratrig/ratrig_vcore_41_500_idex/assembly.step",
+        "bytes": 148986065,
+        "sha256": "70c935fb2cc13d7f5480f34949cd4f22f8dfb34a5448787f22ae7c6fac7206b2",
+        "license_basis": "Rat Rig Wiki siteConfig contentLicense=ccbyncsa; retain attribution",
+        "motion_verified": false,
+        "import_ready": false
+      },
+      "native_archive": {
+        "name": "ratrig-41-500-cad.zip",
+        "bytes": 643965183,
+        "sha256": "24c3ebdd259038458845ca41c5f348128420e66a6ac02cc567fb11ce357b65e4",
+        "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v31/ratrig-41-500-cad.zip"
+      }
+    }
+  ],
+  "capability_scope": "CAD and Cartesian/lighting/expanded-trace preview; no physical firmware certification"
+}

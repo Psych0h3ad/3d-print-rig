@@ -1,0 +1,2046 @@
+{
+  "ratrig_vcore_40_300_corexy": {
+    "schema_version": 1,
+    "machine_id": "ratrig_vcore_40_300_corexy",
+    "title": "Rat Rig V-Core 4.0 300 corexy",
+    "series": "v-core-4-0",
+    "size_mm": 300,
+    "mode": "corexy",
+    "coordinate_mapping": "[x,z,-y]*0.001",
+    "build_origin_mm": [
+      -150.00000000000006,
+      -198.0000000000001,
+      471.44000000000005
+    ],
+    "nozzle_reference_mm": [
+      [
+        -3.3802734916710264e-13,
+        -43.225999999999715,
+        471.44000000002984
+      ]
+    ],
+    "reference_pose": {
+      "x0": 149.99999999999972,
+      "x1": null,
+      "y": 154.7740000000004,
+      "z": 2.97859514830634e-11
+    },
+    "print_volume_mm": [
+      300,
+      300,
+      300
+    ],
+    "limits": {
+      "x0": [
+        -59.6,
+        357.8
+      ],
+      "x1": null,
+      "y": [
+        -14.35,
+        300.0
+      ],
+      "z": [
+        0,
+        300.0
+      ],
+      "source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4/300.cfg",
+      "safe_distance_mm": 70,
+      "safe_distance_source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4/v-core-4.cfg"
+    },
+    "gantry_reference_y_mm": -16.42599999999981,
+    "frame_ceiling_mm": 781.1400000999989,
+    "print_surface_assumption": "1.5 mm magnetic sheet and spring steel above authored bare bed plate",
+    "lights": {
+      "chamber": {
+        "keys": [
+          "rr_02217",
+          "rr_02228"
+        ],
+        "default": 0.5
+      },
+      "vaoc": {
+        "keys": [],
+        "default": 0
+      }
+    },
+    "appearance": {
+      "storage_key": "3dprig-ratrig_vcore_40_300_corexy",
+      "palette_defaults": {
+        "base": "#22a744",
+        "accent": "#a2e34d",
+        "frame": "#171a1d"
+      }
+    },
+    "supported_motion_modes": [
+      "independent"
+    ],
+    "firmware_emulation": false,
+    "hardware_motion_verified": false,
+    "import_ready": true,
+    "native_import_file": "assembly.validated.step",
+    "cad_source_kind": "official_with_documented_adjustments",
+    "simulator_capabilities": {
+      "cartesian_pose": true,
+      "idex_copy_mirror": false,
+      "belt_route_following": true,
+      "inextensible_service_route_proposal": true,
+      "chamber_lighting": true,
+      "vaoc_lighting": false,
+      "rigid_bed_z": true,
+      "independent_z_tilt": false,
+      "firmware_macros": false,
+      "homing": false,
+      "probing": false,
+      "thermal": false,
+      "belt_teeth": false,
+      "belt_tension": false,
+      "physical_cable_stiffness": false,
+      "continuous_cable_preview": true,
+      "cable_physical_inextensibility": false,
+      "cable_obstacle_collision": false,
+      "continuous_frame_panel_clearance": true,
+      "full_rigid_collision": false,
+      "expanded_trace_regression": true,
+      "full_firmware_macros": false
+    },
+    "assembled_part_count": 2239,
+    "cable_route_policy": "continuous_kinematic",
+    "import_ready_scope": "Native CAD import and tested software Cartesian/lighting/expanded-trace preview only"
+  },
+  "ratrig_vcore_40_300_hybrid": {
+    "schema_version": 1,
+    "machine_id": "ratrig_vcore_40_300_hybrid",
+    "title": "Rat Rig V-Core 4.0 300 hybrid",
+    "series": "v-core-4-0",
+    "size_mm": 300,
+    "mode": "hybrid",
+    "coordinate_mapping": "[x,z,-y]*0.001",
+    "build_origin_mm": [
+      -149.99999999999767,
+      -197.99999999999778,
+      471.44000000000005
+    ],
+    "nozzle_reference_mm": [
+      [
+        1.2229973977984088e-12,
+        -43.22639989226114,
+        471.44000000002995
+      ]
+    ],
+    "reference_pose": {
+      "x0": 149.9999999999989,
+      "x1": null,
+      "y": 154.77360010773663,
+      "z": 2.9899638320785016e-11
+    },
+    "print_volume_mm": [
+      300,
+      300,
+      300
+    ],
+    "limits": {
+      "x0": [
+        -59.6,
+        357.8
+      ],
+      "x1": null,
+      "y": [
+        -14.35,
+        300.0
+      ],
+      "z": [
+        0,
+        300.0
+      ],
+      "source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4-hybrid/300.cfg",
+      "safe_distance_mm": 70,
+      "safe_distance_source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4-hybrid/v-core-4-hybrid.cfg"
+    },
+    "gantry_reference_y_mm": -16.426399892261216,
+    "frame_ceiling_mm": 781.1400000999989,
+    "print_surface_assumption": "1.5 mm magnetic sheet and spring steel above authored bare bed plate",
+    "lights": {
+      "chamber": {
+        "keys": [
+          "rr_02302",
+          "rr_02313"
+        ],
+        "default": 0.5
+      },
+      "vaoc": {
+        "keys": [],
+        "default": 0
+      }
+    },
+    "appearance": {
+      "storage_key": "3dprig-ratrig_vcore_40_300_hybrid",
+      "palette_defaults": {
+        "base": "#22a744",
+        "accent": "#a2e34d",
+        "frame": "#171a1d"
+      }
+    },
+    "supported_motion_modes": [
+      "independent"
+    ],
+    "firmware_emulation": false,
+    "hardware_motion_verified": false,
+    "import_ready": true,
+    "native_import_file": "assembly.validated.step",
+    "cad_source_kind": "official_with_documented_adjustments",
+    "simulator_capabilities": {
+      "cartesian_pose": true,
+      "idex_copy_mirror": false,
+      "belt_route_following": true,
+      "inextensible_service_route_proposal": true,
+      "chamber_lighting": true,
+      "vaoc_lighting": false,
+      "rigid_bed_z": true,
+      "independent_z_tilt": false,
+      "firmware_macros": false,
+      "homing": false,
+      "probing": false,
+      "thermal": false,
+      "belt_teeth": false,
+      "belt_tension": false,
+      "physical_cable_stiffness": false,
+      "continuous_cable_preview": true,
+      "cable_physical_inextensibility": false,
+      "cable_obstacle_collision": false,
+      "continuous_frame_panel_clearance": true,
+      "full_rigid_collision": false,
+      "expanded_trace_regression": true,
+      "full_firmware_macros": false
+    },
+    "assembled_part_count": 2324,
+    "cable_route_policy": "continuous_kinematic",
+    "import_ready_scope": "Native CAD import and tested software Cartesian/lighting/expanded-trace preview only"
+  },
+  "ratrig_vcore_40_300_idex": {
+    "schema_version": 1,
+    "machine_id": "ratrig_vcore_40_300_idex",
+    "title": "Rat Rig V-Core 4.0 300 idex",
+    "series": "v-core-4-0",
+    "size_mm": 300,
+    "mode": "idex",
+    "coordinate_mapping": "[x,z,-y]*0.001",
+    "build_origin_mm": [
+      -149.99999999999767,
+      -197.99999999999778,
+      471.44000000000005
+    ],
+    "nozzle_reference_mm": [
+      [
+        -209.7999993220638,
+        -43.22639935942455,
+        471.44000000003
+      ],
+      [
+        209.79999999998537,
+        -43.22639935942344,
+        471.4400000000301
+      ]
+    ],
+    "reference_pose": {
+      "x0": -59.79999932206613,
+      "x1": 359.799999999983,
+      "y": 154.77360064057325,
+      "z": 2.9956481739645824e-11
+    },
+    "print_volume_mm": [
+      300,
+      300,
+      300
+    ],
+    "limits": {
+      "x0": [
+        -59.6,
+        300.0
+      ],
+      "x1": [
+        0.0,
+        359.6
+      ],
+      "y": [
+        -14.35,
+        333.65
+      ],
+      "z": [
+        -7.0,
+        300.0
+      ],
+      "source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4-idex/300.cfg",
+      "safe_distance_mm": 70,
+      "safe_distance_source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4-idex/v-core-4-idex.cfg"
+    },
+    "gantry_reference_y_mm": -16.426399892261216,
+    "frame_ceiling_mm": 781.1400000999989,
+    "print_surface_assumption": "1.5 mm magnetic sheet and spring steel above authored bare bed plate",
+    "lights": {
+      "chamber": {
+        "keys": [
+          "rr_01106",
+          "rr_01117"
+        ],
+        "default": 0.5
+      },
+      "vaoc": {
+        "keys": [
+          "rr_02779"
+        ],
+        "default": 0
+      }
+    },
+    "appearance": {
+      "storage_key": "3dprig-ratrig_vcore_40_300_idex",
+      "palette_defaults": {
+        "base": "#22a744",
+        "accent": "#a2e34d",
+        "frame": "#171a1d"
+      }
+    },
+    "supported_motion_modes": [
+      "independent",
+      "copy",
+      "mirror"
+    ],
+    "firmware_emulation": false,
+    "hardware_motion_verified": false,
+    "import_ready": true,
+    "native_import_file": "assembly.step",
+    "cad_source_kind": "explicit_derived",
+    "simulator_capabilities": {
+      "cartesian_pose": true,
+      "idex_copy_mirror": true,
+      "belt_route_following": true,
+      "inextensible_service_route_proposal": true,
+      "chamber_lighting": true,
+      "vaoc_lighting": true,
+      "rigid_bed_z": true,
+      "independent_z_tilt": false,
+      "firmware_macros": false,
+      "homing": false,
+      "probing": false,
+      "thermal": false,
+      "belt_teeth": false,
+      "belt_tension": false,
+      "physical_cable_stiffness": false,
+      "continuous_cable_preview": true,
+      "cable_physical_inextensibility": false,
+      "cable_obstacle_collision": false,
+      "continuous_frame_panel_clearance": true,
+      "full_rigid_collision": false,
+      "expanded_trace_regression": true,
+      "full_firmware_macros": false
+    },
+    "assembled_part_count": 3049,
+    "cable_route_policy": "continuous_kinematic",
+    "import_ready_scope": "Native CAD import and tested software Cartesian/lighting/expanded-trace preview only"
+  },
+  "ratrig_vcore_40_400_corexy": {
+    "schema_version": 1,
+    "machine_id": "ratrig_vcore_40_400_corexy",
+    "title": "Rat Rig V-Core 4.0 400 corexy",
+    "series": "v-core-4-0",
+    "size_mm": 400,
+    "mode": "corexy",
+    "coordinate_mapping": "[x,z,-y]*0.001",
+    "build_origin_mm": [
+      -200.00000000000335,
+      -247.99999999999991,
+      571.4400000000002
+    ],
+    "nozzle_reference_mm": [
+      [
+        6.779361101365983e-07,
+        -43.22639935942425,
+        571.4400000000301
+      ]
+    ],
+    "reference_pose": {
+      "x0": 200.00000067793945,
+      "x1": null,
+      "y": 204.77360064057567,
+      "z": 2.9899638320785016e-11
+    },
+    "print_volume_mm": [
+      400,
+      400,
+      400
+    ],
+    "limits": {
+      "x0": [
+        -59.6,
+        457.8
+      ],
+      "x1": null,
+      "y": [
+        -14.35,
+        400.0
+      ],
+      "z": [
+        0,
+        400.0
+      ],
+      "source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4/400.cfg",
+      "safe_distance_mm": 70,
+      "safe_distance_source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4/v-core-4.cfg"
+    },
+    "gantry_reference_y_mm": -16.426399359424316,
+    "frame_ceiling_mm": 881.1400000999989,
+    "print_surface_assumption": "1.5 mm magnetic sheet and spring steel above authored bare bed plate",
+    "lights": {
+      "chamber": {
+        "keys": [
+          "rr_02253",
+          "rr_02264"
+        ],
+        "default": 0.5
+      },
+      "vaoc": {
+        "keys": [],
+        "default": 0
+      }
+    },
+    "appearance": {
+      "storage_key": "3dprig-ratrig_vcore_40_400_corexy",
+      "palette_defaults": {
+        "base": "#22a744",
+        "accent": "#a2e34d",
+        "frame": "#171a1d"
+      }
+    },
+    "supported_motion_modes": [
+      "independent"
+    ],
+    "firmware_emulation": false,
+    "hardware_motion_verified": false,
+    "import_ready": true,
+    "native_import_file": "assembly.validated.step",
+    "cad_source_kind": "official_with_documented_adjustments",
+    "simulator_capabilities": {
+      "cartesian_pose": true,
+      "idex_copy_mirror": false,
+      "belt_route_following": true,
+      "inextensible_service_route_proposal": true,
+      "chamber_lighting": true,
+      "vaoc_lighting": false,
+      "rigid_bed_z": true,
+      "independent_z_tilt": false,
+      "firmware_macros": false,
+      "homing": false,
+      "probing": false,
+      "thermal": false,
+      "belt_teeth": false,
+      "belt_tension": false,
+      "physical_cable_stiffness": false,
+      "continuous_cable_preview": true,
+      "cable_physical_inextensibility": false,
+      "cable_obstacle_collision": false,
+      "continuous_frame_panel_clearance": true,
+      "full_rigid_collision": false,
+      "expanded_trace_regression": true,
+      "full_firmware_macros": false
+    },
+    "assembled_part_count": 2275,
+    "cable_route_policy": "continuous_kinematic",
+    "import_ready_scope": "Native CAD import and tested software Cartesian/lighting/expanded-trace preview only"
+  },
+  "ratrig_vcore_40_400_hybrid": {
+    "schema_version": 1,
+    "machine_id": "ratrig_vcore_40_400_hybrid",
+    "title": "Rat Rig V-Core 4.0 400 hybrid",
+    "series": "v-core-4-0",
+    "size_mm": 400,
+    "mode": "hybrid",
+    "coordinate_mapping": "[x,z,-y]*0.001",
+    "build_origin_mm": [
+      -199.99999999999733,
+      -247.99999999999721,
+      571.440000000001
+    ],
+    "nozzle_reference_mm": [
+      [
+        -1.4337879841730405e-11,
+        -43.22639935942414,
+        571.44000000003
+      ]
+    ],
+    "reference_pose": {
+      "x0": 199.999999999983,
+      "x1": null,
+      "y": 204.77360064057308,
+      "z": 2.8990143619012088e-11
+    },
+    "print_volume_mm": [
+      400,
+      400,
+      400
+    ],
+    "limits": {
+      "x0": [
+        -59.6,
+        457.8
+      ],
+      "x1": null,
+      "y": [
+        -14.35,
+        400.0
+      ],
+      "z": [
+        0,
+        400.0
+      ],
+      "source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4-hybrid/400.cfg",
+      "safe_distance_mm": 70,
+      "safe_distance_source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4-hybrid/v-core-4-hybrid.cfg"
+    },
+    "gantry_reference_y_mm": -16.426399359424416,
+    "frame_ceiling_mm": 881.1400000999989,
+    "print_surface_assumption": "1.5 mm magnetic sheet and spring steel above authored bare bed plate",
+    "lights": {
+      "chamber": {
+        "keys": [
+          "rr_02338",
+          "rr_02349"
+        ],
+        "default": 0.5
+      },
+      "vaoc": {
+        "keys": [],
+        "default": 0
+      }
+    },
+    "appearance": {
+      "storage_key": "3dprig-ratrig_vcore_40_400_hybrid",
+      "palette_defaults": {
+        "base": "#22a744",
+        "accent": "#a2e34d",
+        "frame": "#171a1d"
+      }
+    },
+    "supported_motion_modes": [
+      "independent"
+    ],
+    "firmware_emulation": false,
+    "hardware_motion_verified": false,
+    "import_ready": true,
+    "native_import_file": "assembly.validated.step",
+    "cad_source_kind": "official_with_documented_adjustments",
+    "simulator_capabilities": {
+      "cartesian_pose": true,
+      "idex_copy_mirror": false,
+      "belt_route_following": true,
+      "inextensible_service_route_proposal": true,
+      "chamber_lighting": true,
+      "vaoc_lighting": false,
+      "rigid_bed_z": true,
+      "independent_z_tilt": false,
+      "firmware_macros": false,
+      "homing": false,
+      "probing": false,
+      "thermal": false,
+      "belt_teeth": false,
+      "belt_tension": false,
+      "physical_cable_stiffness": false,
+      "continuous_cable_preview": true,
+      "cable_physical_inextensibility": false,
+      "cable_obstacle_collision": false,
+      "continuous_frame_panel_clearance": true,
+      "full_rigid_collision": false,
+      "expanded_trace_regression": true,
+      "full_firmware_macros": false
+    },
+    "assembled_part_count": 2360,
+    "cable_route_policy": "continuous_kinematic",
+    "import_ready_scope": "Native CAD import and tested software Cartesian/lighting/expanded-trace preview only"
+  },
+  "ratrig_vcore_40_400_idex": {
+    "schema_version": 1,
+    "machine_id": "ratrig_vcore_40_400_idex",
+    "title": "Rat Rig V-Core 4.0 400 idex",
+    "series": "v-core-4-0",
+    "size_mm": 400,
+    "mode": "idex",
+    "coordinate_mapping": "[x,z,-y]*0.001",
+    "build_origin_mm": [
+      -199.99999999999733,
+      -247.99999999999721,
+      571.440000000001
+    ],
+    "nozzle_reference_mm": [
+      [
+        -259.7999993220638,
+        -43.22639935942455,
+        571.44000000003
+      ],
+      [
+        259.7999999999854,
+        -43.22639935942344,
+        571.4400000000301
+      ]
+    ],
+    "reference_pose": {
+      "x0": -59.79999932206647,
+      "x1": 459.79999999998273,
+      "y": 204.77360064057268,
+      "z": 2.8990143619012088e-11
+    },
+    "print_volume_mm": [
+      400,
+      400,
+      400
+    ],
+    "limits": {
+      "x0": [
+        -59.6,
+        400.0
+      ],
+      "x1": [
+        0.0,
+        459.6
+      ],
+      "y": [
+        -14.35,
+        433.65
+      ],
+      "z": [
+        -7.0,
+        400.0
+      ],
+      "source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4-idex/400.cfg",
+      "safe_distance_mm": 70,
+      "safe_distance_source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4-idex/v-core-4-idex.cfg"
+    },
+    "gantry_reference_y_mm": -16.426399359424416,
+    "frame_ceiling_mm": 881.1400000999989,
+    "print_surface_assumption": "1.5 mm magnetic sheet and spring steel above authored bare bed plate",
+    "lights": {
+      "chamber": {
+        "keys": [
+          "rr_03057",
+          "rr_03068"
+        ],
+        "default": 0.5
+      },
+      "vaoc": {
+        "keys": [
+          "rr_02790"
+        ],
+        "default": 0
+      }
+    },
+    "appearance": {
+      "storage_key": "3dprig-ratrig_vcore_40_400_idex",
+      "palette_defaults": {
+        "base": "#22a744",
+        "accent": "#a2e34d",
+        "frame": "#171a1d"
+      }
+    },
+    "supported_motion_modes": [
+      "independent",
+      "copy",
+      "mirror"
+    ],
+    "firmware_emulation": false,
+    "hardware_motion_verified": false,
+    "import_ready": true,
+    "native_import_file": "assembly.validated.step",
+    "cad_source_kind": "official_with_documented_adjustments",
+    "simulator_capabilities": {
+      "cartesian_pose": true,
+      "idex_copy_mirror": true,
+      "belt_route_following": true,
+      "inextensible_service_route_proposal": true,
+      "chamber_lighting": true,
+      "vaoc_lighting": true,
+      "rigid_bed_z": true,
+      "independent_z_tilt": false,
+      "firmware_macros": false,
+      "homing": false,
+      "probing": false,
+      "thermal": false,
+      "belt_teeth": false,
+      "belt_tension": false,
+      "physical_cable_stiffness": false,
+      "continuous_cable_preview": true,
+      "cable_physical_inextensibility": false,
+      "cable_obstacle_collision": false,
+      "continuous_frame_panel_clearance": true,
+      "full_rigid_collision": false,
+      "expanded_trace_regression": true,
+      "full_firmware_macros": false
+    },
+    "assembled_part_count": 3079,
+    "cable_route_policy": "continuous_kinematic",
+    "import_ready_scope": "Native CAD import and tested software Cartesian/lighting/expanded-trace preview only"
+  },
+  "ratrig_vcore_40_500_corexy": {
+    "schema_version": 1,
+    "machine_id": "ratrig_vcore_40_500_corexy",
+    "title": "Rat Rig V-Core 4.0 500 corexy",
+    "series": "v-core-4-0",
+    "size_mm": 500,
+    "mode": "corexy",
+    "coordinate_mapping": "[x,z,-y]*0.001",
+    "build_origin_mm": [
+      -250.0000000000038,
+      -297.9999999999997,
+      671.4400000000002
+    ],
+    "nozzle_reference_mm": [
+      [
+        -1.4403412490482381e-11,
+        -43.226399359179645,
+        671.4400000000305
+      ]
+    ],
+    "reference_pose": {
+      "x0": 249.9999999999894,
+      "x1": null,
+      "y": 254.77360064082006,
+      "z": 3.035438567167148e-11
+    },
+    "print_volume_mm": [
+      500,
+      500,
+      500
+    ],
+    "limits": {
+      "x0": [
+        -59.6,
+        557.8
+      ],
+      "x1": null,
+      "y": [
+        -14.35,
+        500.0
+      ],
+      "z": [
+        0,
+        500.0
+      ],
+      "source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4/500.cfg",
+      "safe_distance_mm": 70,
+      "safe_distance_source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4/v-core-4.cfg"
+    },
+    "gantry_reference_y_mm": -16.426399359179875,
+    "frame_ceiling_mm": 981.1400000999989,
+    "print_surface_assumption": "1.5 mm magnetic sheet and spring steel above authored bare bed plate",
+    "lights": {
+      "chamber": {
+        "keys": [
+          "rr_02277",
+          "rr_02288"
+        ],
+        "default": 0.5
+      },
+      "vaoc": {
+        "keys": [],
+        "default": 0
+      }
+    },
+    "appearance": {
+      "storage_key": "3dprig-ratrig_vcore_40_500_corexy",
+      "palette_defaults": {
+        "base": "#22a744",
+        "accent": "#a2e34d",
+        "frame": "#171a1d"
+      }
+    },
+    "supported_motion_modes": [
+      "independent"
+    ],
+    "firmware_emulation": false,
+    "hardware_motion_verified": false,
+    "import_ready": true,
+    "native_import_file": "assembly.validated.step",
+    "cad_source_kind": "official_with_documented_adjustments",
+    "simulator_capabilities": {
+      "cartesian_pose": true,
+      "idex_copy_mirror": false,
+      "belt_route_following": true,
+      "inextensible_service_route_proposal": true,
+      "chamber_lighting": true,
+      "vaoc_lighting": false,
+      "rigid_bed_z": true,
+      "independent_z_tilt": false,
+      "firmware_macros": false,
+      "homing": false,
+      "probing": false,
+      "thermal": false,
+      "belt_teeth": false,
+      "belt_tension": false,
+      "physical_cable_stiffness": false,
+      "continuous_cable_preview": true,
+      "cable_physical_inextensibility": false,
+      "cable_obstacle_collision": false,
+      "continuous_frame_panel_clearance": true,
+      "full_rigid_collision": false,
+      "expanded_trace_regression": true,
+      "full_firmware_macros": false
+    },
+    "assembled_part_count": 2299,
+    "cable_route_policy": "continuous_kinematic",
+    "import_ready_scope": "Native CAD import and tested software Cartesian/lighting/expanded-trace preview only"
+  },
+  "ratrig_vcore_40_500_hybrid": {
+    "schema_version": 1,
+    "machine_id": "ratrig_vcore_40_500_hybrid",
+    "title": "Rat Rig V-Core 4.0 500 hybrid",
+    "series": "v-core-4-0",
+    "size_mm": 500,
+    "mode": "hybrid",
+    "coordinate_mapping": "[x,z,-y]*0.001",
+    "build_origin_mm": [
+      -250.00000000000512,
+      -297.9999999999995,
+      671.4400000000002
+    ],
+    "nozzle_reference_mm": [
+      [
+        -1.4656825232661763e-11,
+        -43.226399359179744,
+        671.440000000032
+      ]
+    ],
+    "reference_pose": {
+      "x0": 249.99999999999045,
+      "x1": null,
+      "y": 254.77360064081975,
+      "z": 3.183231456205249e-11
+    },
+    "print_volume_mm": [
+      500,
+      500,
+      500
+    ],
+    "limits": {
+      "x0": [
+        -59.6,
+        557.8
+      ],
+      "x1": null,
+      "y": [
+        -14.35,
+        500.0
+      ],
+      "z": [
+        0,
+        500.0
+      ],
+      "source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4-hybrid/500.cfg",
+      "safe_distance_mm": 70,
+      "safe_distance_source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4-hybrid/v-core-4-hybrid.cfg"
+    },
+    "gantry_reference_y_mm": -16.426399359179875,
+    "frame_ceiling_mm": 981.1400000999989,
+    "print_surface_assumption": "1.5 mm magnetic sheet and spring steel above authored bare bed plate",
+    "lights": {
+      "chamber": {
+        "keys": [
+          "rr_02362",
+          "rr_02373"
+        ],
+        "default": 0.5
+      },
+      "vaoc": {
+        "keys": [],
+        "default": 0
+      }
+    },
+    "appearance": {
+      "storage_key": "3dprig-ratrig_vcore_40_500_hybrid",
+      "palette_defaults": {
+        "base": "#22a744",
+        "accent": "#a2e34d",
+        "frame": "#171a1d"
+      }
+    },
+    "supported_motion_modes": [
+      "independent"
+    ],
+    "firmware_emulation": false,
+    "hardware_motion_verified": false,
+    "import_ready": true,
+    "native_import_file": "assembly.validated.step",
+    "cad_source_kind": "official_with_documented_adjustments",
+    "simulator_capabilities": {
+      "cartesian_pose": true,
+      "idex_copy_mirror": false,
+      "belt_route_following": true,
+      "inextensible_service_route_proposal": true,
+      "chamber_lighting": true,
+      "vaoc_lighting": false,
+      "rigid_bed_z": true,
+      "independent_z_tilt": false,
+      "firmware_macros": false,
+      "homing": false,
+      "probing": false,
+      "thermal": false,
+      "belt_teeth": false,
+      "belt_tension": false,
+      "physical_cable_stiffness": false,
+      "continuous_cable_preview": true,
+      "cable_physical_inextensibility": false,
+      "cable_obstacle_collision": false,
+      "continuous_frame_panel_clearance": true,
+      "full_rigid_collision": false,
+      "expanded_trace_regression": true,
+      "full_firmware_macros": false
+    },
+    "assembled_part_count": 2384,
+    "cable_route_policy": "continuous_kinematic",
+    "import_ready_scope": "Native CAD import and tested software Cartesian/lighting/expanded-trace preview only"
+  },
+  "ratrig_vcore_40_500_idex": {
+    "schema_version": 1,
+    "machine_id": "ratrig_vcore_40_500_idex",
+    "title": "Rat Rig V-Core 4.0 500 idex",
+    "series": "v-core-4-0",
+    "size_mm": 500,
+    "mode": "idex",
+    "coordinate_mapping": "[x,z,-y]*0.001",
+    "build_origin_mm": [
+      -250.00000000000512,
+      -297.9999999999995,
+      671.4400000000002
+    ],
+    "nozzle_reference_mm": [
+      [
+        -309.80000000001473,
+        -43.22639935917924,
+        671.440000000032
+      ],
+      [
+        309.79999999998523,
+        -43.22639935918024,
+        671.4400000000311
+      ]
+    ],
+    "reference_pose": {
+      "x0": -59.80000000000962,
+      "x1": 559.7999999999904,
+      "y": 254.77360064082023,
+      "z": 3.183231456205249e-11
+    },
+    "print_volume_mm": [
+      500,
+      500,
+      500
+    ],
+    "limits": {
+      "x0": [
+        -59.6,
+        500.0
+      ],
+      "x1": [
+        0.0,
+        559.6
+      ],
+      "y": [
+        -14.35,
+        534.0
+      ],
+      "z": [
+        -7.0,
+        500.0
+      ],
+      "source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4-idex/500.cfg",
+      "safe_distance_mm": 70,
+      "safe_distance_source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4-idex/v-core-4-idex.cfg"
+    },
+    "gantry_reference_y_mm": -16.426399359179875,
+    "frame_ceiling_mm": 981.1400000999989,
+    "print_surface_assumption": "1.5 mm magnetic sheet and spring steel above authored bare bed plate",
+    "lights": {
+      "chamber": {
+        "keys": [
+          "rr_03081",
+          "rr_03092"
+        ],
+        "default": 0.5
+      },
+      "vaoc": {
+        "keys": [
+          "rr_02814"
+        ],
+        "default": 0
+      }
+    },
+    "appearance": {
+      "storage_key": "3dprig-ratrig_vcore_40_500_idex",
+      "palette_defaults": {
+        "base": "#22a744",
+        "accent": "#a2e34d",
+        "frame": "#171a1d"
+      }
+    },
+    "supported_motion_modes": [
+      "independent",
+      "copy",
+      "mirror"
+    ],
+    "firmware_emulation": false,
+    "hardware_motion_verified": false,
+    "import_ready": true,
+    "native_import_file": "assembly.validated.step",
+    "cad_source_kind": "official_with_documented_adjustments",
+    "simulator_capabilities": {
+      "cartesian_pose": true,
+      "idex_copy_mirror": true,
+      "belt_route_following": true,
+      "inextensible_service_route_proposal": true,
+      "chamber_lighting": true,
+      "vaoc_lighting": true,
+      "rigid_bed_z": true,
+      "independent_z_tilt": false,
+      "firmware_macros": false,
+      "homing": false,
+      "probing": false,
+      "thermal": false,
+      "belt_teeth": false,
+      "belt_tension": false,
+      "physical_cable_stiffness": false,
+      "continuous_cable_preview": true,
+      "cable_physical_inextensibility": false,
+      "cable_obstacle_collision": false,
+      "continuous_frame_panel_clearance": true,
+      "full_rigid_collision": false,
+      "expanded_trace_regression": true,
+      "full_firmware_macros": false
+    },
+    "assembled_part_count": 3103,
+    "cable_route_policy": "continuous_kinematic",
+    "native_export_revision": 3,
+    "import_ready_scope": "Native CAD import and tested software Cartesian/lighting/expanded-trace preview only"
+  },
+  "ratrig_vcore_41_300_corexy": {
+    "schema_version": 1,
+    "machine_id": "ratrig_vcore_41_300_corexy",
+    "title": "Rat Rig V-Core 4.1 300 corexy",
+    "series": "v-core-4-1",
+    "size_mm": 300,
+    "mode": "corexy",
+    "coordinate_mapping": "[x,z,-y]*0.001",
+    "build_origin_mm": [
+      -149.99999999999977,
+      -197.9999999999982,
+      471.4400000000011
+    ],
+    "nozzle_reference_mm": [
+      [
+        -1.7841356661198182e-05,
+        -47.99977535919703,
+        471.439999999943
+      ]
+    ],
+    "reference_pose": {
+      "x0": 149.99998215864312,
+      "x1": null,
+      "y": 150.00022464080118,
+      "z": -5.809397407574579e-11
+    },
+    "print_volume_mm": [
+      300,
+      300,
+      300
+    ],
+    "limits": {
+      "x0": [
+        -60.6,
+        359.55
+      ],
+      "x1": null,
+      "y": [
+        -14.35,
+        300.0
+      ],
+      "z": [
+        0,
+        300.0
+      ],
+      "source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4-1/300.cfg",
+      "safe_distance_mm": 61.85,
+      "safe_distance_source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4-1/v-core-4-1.cfg"
+    },
+    "gantry_reference_y_mm": -21.19977535919721,
+    "frame_ceiling_mm": 781.1400000999989,
+    "print_surface_assumption": "1.5 mm magnetic sheet and spring steel above authored bare bed plate",
+    "lights": {
+      "chamber": {
+        "keys": [
+          "rr_01235",
+          "rr_01246"
+        ],
+        "default": 0.5
+      },
+      "vaoc": {
+        "keys": [],
+        "default": 0
+      }
+    },
+    "appearance": {
+      "storage_key": "3dprig-ratrig_vcore_41_300_corexy",
+      "palette_defaults": {
+        "base": "#22a744",
+        "accent": "#a2e34d",
+        "frame": "#171a1d"
+      }
+    },
+    "supported_motion_modes": [
+      "independent"
+    ],
+    "firmware_emulation": false,
+    "hardware_motion_verified": false,
+    "import_ready": true,
+    "native_import_file": "assembly.validated.step",
+    "cad_source_kind": "official_with_documented_adjustments",
+    "simulator_capabilities": {
+      "cartesian_pose": true,
+      "idex_copy_mirror": false,
+      "belt_route_following": true,
+      "inextensible_service_route_proposal": true,
+      "chamber_lighting": true,
+      "vaoc_lighting": false,
+      "rigid_bed_z": true,
+      "independent_z_tilt": false,
+      "firmware_macros": false,
+      "homing": false,
+      "probing": false,
+      "thermal": false,
+      "belt_teeth": false,
+      "belt_tension": false,
+      "physical_cable_stiffness": false,
+      "continuous_cable_preview": true,
+      "cable_physical_inextensibility": false,
+      "cable_obstacle_collision": false,
+      "continuous_frame_panel_clearance": true,
+      "full_rigid_collision": false,
+      "expanded_trace_regression": true,
+      "full_firmware_macros": false
+    },
+    "assembled_part_count": 2006,
+    "cable_route_policy": "continuous_kinematic",
+    "native_export_revision": 4,
+    "import_ready_scope": "Native CAD import and tested software Cartesian/lighting/expanded-trace preview only"
+  },
+  "ratrig_vcore_41_300_hybrid": {
+    "schema_version": 1,
+    "machine_id": "ratrig_vcore_41_300_hybrid",
+    "title": "Rat Rig V-Core 4.1 300 hybrid",
+    "series": "v-core-4-1",
+    "size_mm": 300,
+    "mode": "hybrid",
+    "coordinate_mapping": "[x,z,-y]*0.001",
+    "build_origin_mm": [
+      -150.00000000000017,
+      -197.9999999999998,
+      471.4400000000001
+    ],
+    "nozzle_reference_mm": [
+      [
+        -1.784135663925046e-05,
+        -47.99977535919693,
+        471.439999999943
+      ]
+    ],
+    "reference_pose": {
+      "x0": 149.99998215864352,
+      "x1": null,
+      "y": 150.00022464080286,
+      "z": -5.7127635955112055e-11
+    },
+    "print_volume_mm": [
+      300,
+      300,
+      300
+    ],
+    "limits": {
+      "x0": [
+        -60.6,
+        359.55
+      ],
+      "x1": null,
+      "y": [
+        -14.35,
+        300.0
+      ],
+      "z": [
+        0,
+        300.0
+      ],
+      "source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4-1-hybrid/300.cfg",
+      "safe_distance_mm": 61.85,
+      "safe_distance_source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4-1-hybrid/v-core-4-1-hybrid.cfg"
+    },
+    "gantry_reference_y_mm": -21.19977535919726,
+    "frame_ceiling_mm": 781.1400000999989,
+    "print_surface_assumption": "1.5 mm magnetic sheet and spring steel above authored bare bed plate",
+    "lights": {
+      "chamber": {
+        "keys": [
+          "rr_01319",
+          "rr_01330"
+        ],
+        "default": 0.5
+      },
+      "vaoc": {
+        "keys": [],
+        "default": 0
+      }
+    },
+    "appearance": {
+      "storage_key": "3dprig-ratrig_vcore_41_300_hybrid",
+      "palette_defaults": {
+        "base": "#22a744",
+        "accent": "#a2e34d",
+        "frame": "#171a1d"
+      }
+    },
+    "supported_motion_modes": [
+      "independent"
+    ],
+    "firmware_emulation": false,
+    "hardware_motion_verified": false,
+    "import_ready": true,
+    "native_import_file": "assembly.validated.step",
+    "cad_source_kind": "official_with_documented_adjustments",
+    "simulator_capabilities": {
+      "cartesian_pose": true,
+      "idex_copy_mirror": false,
+      "belt_route_following": true,
+      "inextensible_service_route_proposal": true,
+      "chamber_lighting": true,
+      "vaoc_lighting": false,
+      "rigid_bed_z": true,
+      "independent_z_tilt": false,
+      "firmware_macros": false,
+      "homing": false,
+      "probing": false,
+      "thermal": false,
+      "belt_teeth": false,
+      "belt_tension": false,
+      "physical_cable_stiffness": false,
+      "continuous_cable_preview": true,
+      "cable_physical_inextensibility": false,
+      "cable_obstacle_collision": false,
+      "continuous_frame_panel_clearance": true,
+      "full_rigid_collision": false,
+      "expanded_trace_regression": true,
+      "full_firmware_macros": false
+    },
+    "assembled_part_count": 2093,
+    "cable_route_policy": "continuous_kinematic",
+    "native_export_revision": 4,
+    "import_ready_scope": "Native CAD import and tested software Cartesian/lighting/expanded-trace preview only"
+  },
+  "ratrig_vcore_41_300_idex": {
+    "schema_version": 1,
+    "machine_id": "ratrig_vcore_41_300_idex",
+    "title": "Rat Rig V-Core 4.1 300 idex",
+    "series": "v-core-4-1",
+    "size_mm": 300,
+    "mode": "idex",
+    "coordinate_mapping": "[x,z,-y]*0.001",
+    "build_origin_mm": [
+      -149.99999999999977,
+      -197.9999999999982,
+      471.4400000000011
+    ],
+    "nozzle_reference_mm": [
+      [
+        -209.7999999999991,
+        -47.99999935918814,
+        471.44000000003007
+      ],
+      [
+        209.8000000000007,
+        -47.99999935918763,
+        471.44000000003007
+      ]
+    ],
+    "reference_pose": {
+      "x0": -59.79999999999933,
+      "x1": 359.80000000000047,
+      "y": 150.00000064081007,
+      "z": 2.8990143619012088e-11
+    },
+    "print_volume_mm": [
+      300,
+      300,
+      300
+    ],
+    "limits": {
+      "x0": [
+        -60.6,
+        300.0
+      ],
+      "x1": [
+        0.0,
+        360.6
+      ],
+      "y": [
+        -14.35,
+        333.65
+      ],
+      "z": [
+        -7.0,
+        300.0
+      ],
+      "source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4-1-idex/300.cfg",
+      "safe_distance_mm": 61.85,
+      "safe_distance_source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4-1-idex/v-core-4-1-idex.cfg"
+    },
+    "gantry_reference_y_mm": -21.199999359188112,
+    "frame_ceiling_mm": 781.1400000999989,
+    "print_surface_assumption": "1.5 mm magnetic sheet and spring steel above authored bare bed plate",
+    "lights": {
+      "chamber": {
+        "keys": [
+          "rr_01575",
+          "rr_01586"
+        ],
+        "default": 0.5
+      },
+      "vaoc": {
+        "keys": [
+          "rr_01597"
+        ],
+        "default": 0
+      }
+    },
+    "appearance": {
+      "storage_key": "3dprig-ratrig_vcore_41_300_idex",
+      "palette_defaults": {
+        "base": "#22a744",
+        "accent": "#a2e34d",
+        "frame": "#171a1d"
+      }
+    },
+    "supported_motion_modes": [
+      "independent",
+      "copy",
+      "mirror"
+    ],
+    "firmware_emulation": false,
+    "hardware_motion_verified": false,
+    "import_ready": true,
+    "native_import_file": "assembly.validated.step",
+    "cad_source_kind": "official_with_documented_adjustments",
+    "simulator_capabilities": {
+      "cartesian_pose": true,
+      "idex_copy_mirror": true,
+      "belt_route_following": true,
+      "inextensible_service_route_proposal": true,
+      "chamber_lighting": true,
+      "vaoc_lighting": true,
+      "rigid_bed_z": true,
+      "independent_z_tilt": false,
+      "firmware_macros": false,
+      "homing": false,
+      "probing": false,
+      "thermal": false,
+      "belt_teeth": false,
+      "belt_tension": false,
+      "physical_cable_stiffness": false,
+      "continuous_cable_preview": true,
+      "cable_physical_inextensibility": false,
+      "cable_obstacle_collision": false,
+      "continuous_frame_panel_clearance": true,
+      "full_rigid_collision": false,
+      "expanded_trace_regression": true,
+      "full_firmware_macros": false
+    },
+    "assembled_part_count": 2640,
+    "cable_route_policy": "continuous_kinematic",
+    "native_export_revision": 5,
+    "import_ready_scope": "Native CAD import and tested software Cartesian/lighting/expanded-trace preview only"
+  },
+  "ratrig_vcore_41_400_corexy": {
+    "schema_version": 1,
+    "machine_id": "ratrig_vcore_41_400_corexy",
+    "title": "Rat Rig V-Core 4.1 400 corexy",
+    "series": "v-core-4-1",
+    "size_mm": 400,
+    "mode": "corexy",
+    "coordinate_mapping": "[x,z,-y]*0.001",
+    "build_origin_mm": [
+      -199.99999999999926,
+      -247.9999999999984,
+      571.4400000000002
+    ],
+    "nozzle_reference_mm": [
+      [
+        -1.5347445536662008e-11,
+        -47.99999935925163,
+        571.44000000003
+      ]
+    ],
+    "reference_pose": {
+      "x0": 199.9999999999839,
+      "x1": null,
+      "y": 200.00000064074678,
+      "z": 2.97859514830634e-11
+    },
+    "print_volume_mm": [
+      400,
+      400,
+      400
+    ],
+    "limits": {
+      "x0": [
+        -60.6,
+        459.55
+      ],
+      "x1": null,
+      "y": [
+        -14.35,
+        400.0
+      ],
+      "z": [
+        0,
+        400.0
+      ],
+      "source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4-1/400.cfg",
+      "safe_distance_mm": 61.85,
+      "safe_distance_source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4-1/v-core-4-1.cfg"
+    },
+    "gantry_reference_y_mm": -21.19999935925196,
+    "frame_ceiling_mm": 881.1400000999989,
+    "print_surface_assumption": "1.5 mm magnetic sheet and spring steel above authored bare bed plate",
+    "lights": {
+      "chamber": {
+        "keys": [
+          "rr_01270",
+          "rr_01281"
+        ],
+        "default": 0.5
+      },
+      "vaoc": {
+        "keys": [],
+        "default": 0
+      }
+    },
+    "appearance": {
+      "storage_key": "3dprig-ratrig_vcore_41_400_corexy",
+      "palette_defaults": {
+        "base": "#22a744",
+        "accent": "#a2e34d",
+        "frame": "#171a1d"
+      }
+    },
+    "supported_motion_modes": [
+      "independent"
+    ],
+    "firmware_emulation": false,
+    "hardware_motion_verified": false,
+    "import_ready": true,
+    "native_import_file": "assembly.validated.step",
+    "cad_source_kind": "official_with_documented_adjustments",
+    "simulator_capabilities": {
+      "cartesian_pose": true,
+      "idex_copy_mirror": false,
+      "belt_route_following": true,
+      "inextensible_service_route_proposal": true,
+      "chamber_lighting": true,
+      "vaoc_lighting": false,
+      "rigid_bed_z": true,
+      "independent_z_tilt": false,
+      "firmware_macros": false,
+      "homing": false,
+      "probing": false,
+      "thermal": false,
+      "belt_teeth": false,
+      "belt_tension": false,
+      "physical_cable_stiffness": false,
+      "continuous_cable_preview": true,
+      "cable_physical_inextensibility": false,
+      "cable_obstacle_collision": false,
+      "continuous_frame_panel_clearance": true,
+      "full_rigid_collision": false,
+      "expanded_trace_regression": true,
+      "full_firmware_macros": false
+    },
+    "assembled_part_count": 2042,
+    "cable_route_policy": "continuous_kinematic",
+    "native_export_revision": 4,
+    "import_ready_scope": "Native CAD import and tested software Cartesian/lighting/expanded-trace preview only"
+  },
+  "ratrig_vcore_41_400_hybrid": {
+    "schema_version": 1,
+    "machine_id": "ratrig_vcore_41_400_hybrid",
+    "title": "Rat Rig V-Core 4.1 400 hybrid",
+    "series": "v-core-4-1",
+    "size_mm": 400,
+    "mode": "hybrid",
+    "coordinate_mapping": "[x,z,-y]*0.001",
+    "build_origin_mm": [
+      -199.99999999999926,
+      -247.9999999999984,
+      571.4400000000002
+    ],
+    "nozzle_reference_mm": [
+      [
+        -1.541035354879483e-11,
+        -47.99999935925183,
+        571.44000000003
+      ]
+    ],
+    "reference_pose": {
+      "x0": 199.99999999998386,
+      "x1": null,
+      "y": 200.00000064074658,
+      "z": 2.97859514830634e-11
+    },
+    "print_volume_mm": [
+      400,
+      400,
+      400
+    ],
+    "limits": {
+      "x0": [
+        -60.6,
+        459.55
+      ],
+      "x1": null,
+      "y": [
+        -14.35,
+        400.0
+      ],
+      "z": [
+        0,
+        400.0
+      ],
+      "source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4-1-hybrid/400.cfg",
+      "safe_distance_mm": 61.85,
+      "safe_distance_source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4-1-hybrid/v-core-4-1-hybrid.cfg"
+    },
+    "gantry_reference_y_mm": -21.19999935925196,
+    "frame_ceiling_mm": 881.1400000999989,
+    "print_surface_assumption": "1.5 mm magnetic sheet and spring steel above authored bare bed plate",
+    "lights": {
+      "chamber": {
+        "keys": [
+          "rr_01355",
+          "rr_01366"
+        ],
+        "default": 0.5
+      },
+      "vaoc": {
+        "keys": [],
+        "default": 0
+      }
+    },
+    "appearance": {
+      "storage_key": "3dprig-ratrig_vcore_41_400_hybrid",
+      "palette_defaults": {
+        "base": "#22a744",
+        "accent": "#a2e34d",
+        "frame": "#171a1d"
+      }
+    },
+    "supported_motion_modes": [
+      "independent"
+    ],
+    "firmware_emulation": false,
+    "hardware_motion_verified": false,
+    "import_ready": true,
+    "native_import_file": "assembly.validated.step",
+    "cad_source_kind": "official_with_documented_adjustments",
+    "simulator_capabilities": {
+      "cartesian_pose": true,
+      "idex_copy_mirror": false,
+      "belt_route_following": true,
+      "inextensible_service_route_proposal": true,
+      "chamber_lighting": true,
+      "vaoc_lighting": false,
+      "rigid_bed_z": true,
+      "independent_z_tilt": false,
+      "firmware_macros": false,
+      "homing": false,
+      "probing": false,
+      "thermal": false,
+      "belt_teeth": false,
+      "belt_tension": false,
+      "physical_cable_stiffness": false,
+      "continuous_cable_preview": true,
+      "cable_physical_inextensibility": false,
+      "cable_obstacle_collision": false,
+      "continuous_frame_panel_clearance": true,
+      "full_rigid_collision": false,
+      "expanded_trace_regression": true,
+      "full_firmware_macros": false
+    },
+    "assembled_part_count": 2128,
+    "cable_route_policy": "continuous_kinematic",
+    "native_export_revision": 4,
+    "import_ready_scope": "Native CAD import and tested software Cartesian/lighting/expanded-trace preview only"
+  },
+  "ratrig_vcore_41_400_idex": {
+    "schema_version": 1,
+    "machine_id": "ratrig_vcore_41_400_idex",
+    "title": "Rat Rig V-Core 4.1 400 idex",
+    "series": "v-core-4-1",
+    "size_mm": 400,
+    "mode": "idex",
+    "coordinate_mapping": "[x,z,-y]*0.001",
+    "build_origin_mm": [
+      -199.99999999999994,
+      -248.0000000000001,
+      571.44
+    ],
+    "nozzle_reference_mm": [
+      [
+        -259.8000000000154,
+        -47.999999359246935,
+        571.44000000003
+      ],
+      [
+        259.7999999999847,
+        -47.99999935924633,
+        571.44000000003
+      ]
+    ],
+    "reference_pose": {
+      "x0": -59.80000000001547,
+      "x1": 459.79999999998466,
+      "y": 200.00000064075317,
+      "z": 2.9899638320785016e-11
+    },
+    "print_volume_mm": [
+      400,
+      400,
+      400
+    ],
+    "limits": {
+      "x0": [
+        -60.6,
+        400.0
+      ],
+      "x1": [
+        0.0,
+        460.6
+      ],
+      "y": [
+        -14.35,
+        433.65
+      ],
+      "z": [
+        -7.0,
+        400.0
+      ],
+      "source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4-1-idex/400.cfg",
+      "safe_distance_mm": 61.85,
+      "safe_distance_source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4-1-idex/v-core-4-1-idex.cfg"
+    },
+    "gantry_reference_y_mm": -21.19999935924691,
+    "frame_ceiling_mm": 881.1400000999989,
+    "print_surface_assumption": "1.5 mm magnetic sheet and spring steel above authored bare bed plate",
+    "lights": {
+      "chamber": {
+        "keys": [
+          "rr_01611",
+          "rr_01622"
+        ],
+        "default": 0.5
+      },
+      "vaoc": {
+        "keys": [
+          "rr_01633"
+        ],
+        "default": 0
+      }
+    },
+    "appearance": {
+      "storage_key": "3dprig-ratrig_vcore_41_400_idex",
+      "palette_defaults": {
+        "base": "#22a744",
+        "accent": "#a2e34d",
+        "frame": "#171a1d"
+      }
+    },
+    "supported_motion_modes": [
+      "independent",
+      "copy",
+      "mirror"
+    ],
+    "firmware_emulation": false,
+    "hardware_motion_verified": false,
+    "import_ready": true,
+    "native_import_file": "assembly.validated.step",
+    "cad_source_kind": "official_with_documented_adjustments",
+    "simulator_capabilities": {
+      "cartesian_pose": true,
+      "idex_copy_mirror": true,
+      "belt_route_following": true,
+      "inextensible_service_route_proposal": true,
+      "chamber_lighting": true,
+      "vaoc_lighting": true,
+      "rigid_bed_z": true,
+      "independent_z_tilt": false,
+      "firmware_macros": false,
+      "homing": false,
+      "probing": false,
+      "thermal": false,
+      "belt_teeth": false,
+      "belt_tension": false,
+      "physical_cable_stiffness": false,
+      "continuous_cable_preview": true,
+      "cable_physical_inextensibility": false,
+      "cable_obstacle_collision": false,
+      "continuous_frame_panel_clearance": true,
+      "full_rigid_collision": false,
+      "expanded_trace_regression": true,
+      "full_firmware_macros": false
+    },
+    "assembled_part_count": 2676,
+    "cable_route_policy": "continuous_kinematic",
+    "native_export_revision": 5,
+    "import_ready_scope": "Native CAD import and tested software Cartesian/lighting/expanded-trace preview only"
+  },
+  "ratrig_vcore_41_500_corexy": {
+    "schema_version": 1,
+    "machine_id": "ratrig_vcore_41_500_corexy",
+    "title": "Rat Rig V-Core 4.1 500 corexy",
+    "series": "v-core-4-1",
+    "size_mm": 500,
+    "mode": "corexy",
+    "coordinate_mapping": "[x,z,-y]*0.001",
+    "build_origin_mm": [
+      -249.99999999999886,
+      -297.9999999999989,
+      671.4400000000003
+    ],
+    "nozzle_reference_mm": [
+      [
+        -1.5586802681877288e-11,
+        -47.999999359346035,
+        671.440000000031
+      ]
+    ],
+    "reference_pose": {
+      "x0": 249.9999999999833,
+      "x1": null,
+      "y": 250.0000006406529,
+      "z": 3.069544618483633e-11
+    },
+    "print_volume_mm": [
+      500,
+      500,
+      500
+    ],
+    "limits": {
+      "x0": [
+        -60.6,
+        559.55
+      ],
+      "x1": null,
+      "y": [
+        -14.35,
+        500.0
+      ],
+      "z": [
+        0,
+        500.0
+      ],
+      "source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4-1/500.cfg",
+      "safe_distance_mm": 61.85,
+      "safe_distance_source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4-1/v-core-4-1.cfg"
+    },
+    "gantry_reference_y_mm": -21.199999359346126,
+    "frame_ceiling_mm": 981.1400000999989,
+    "print_surface_assumption": "1.5 mm magnetic sheet and spring steel above authored bare bed plate",
+    "lights": {
+      "chamber": {
+        "keys": [
+          "rr_01294",
+          "rr_01305"
+        ],
+        "default": 0.5
+      },
+      "vaoc": {
+        "keys": [],
+        "default": 0
+      }
+    },
+    "appearance": {
+      "storage_key": "3dprig-ratrig_vcore_41_500_corexy",
+      "palette_defaults": {
+        "base": "#22a744",
+        "accent": "#a2e34d",
+        "frame": "#171a1d"
+      }
+    },
+    "supported_motion_modes": [
+      "independent"
+    ],
+    "firmware_emulation": false,
+    "hardware_motion_verified": false,
+    "import_ready": true,
+    "native_import_file": "assembly.validated.step",
+    "cad_source_kind": "official_with_documented_adjustments",
+    "simulator_capabilities": {
+      "cartesian_pose": true,
+      "idex_copy_mirror": false,
+      "belt_route_following": true,
+      "inextensible_service_route_proposal": true,
+      "chamber_lighting": true,
+      "vaoc_lighting": false,
+      "rigid_bed_z": true,
+      "independent_z_tilt": false,
+      "firmware_macros": false,
+      "homing": false,
+      "probing": false,
+      "thermal": false,
+      "belt_teeth": false,
+      "belt_tension": false,
+      "physical_cable_stiffness": false,
+      "continuous_cable_preview": true,
+      "cable_physical_inextensibility": false,
+      "cable_obstacle_collision": false,
+      "continuous_frame_panel_clearance": true,
+      "full_rigid_collision": false,
+      "expanded_trace_regression": true,
+      "full_firmware_macros": false
+    },
+    "assembled_part_count": 2066,
+    "cable_route_policy": "continuous_kinematic",
+    "native_export_revision": 4,
+    "import_ready_scope": "Native CAD import and tested software Cartesian/lighting/expanded-trace preview only"
+  },
+  "ratrig_vcore_41_500_hybrid": {
+    "schema_version": 1,
+    "machine_id": "ratrig_vcore_41_500_hybrid",
+    "title": "Rat Rig V-Core 4.1 500 hybrid",
+    "series": "v-core-4-1",
+    "size_mm": 500,
+    "mode": "hybrid",
+    "coordinate_mapping": "[x,z,-y]*0.001",
+    "build_origin_mm": [
+      -250.0000000000004,
+      -298.0000000000002,
+      671.4400000000003
+    ],
+    "nozzle_reference_mm": [
+      [
+        -1.5564292910053013e-11,
+        -47.999999359346035,
+        671.440000000031
+      ]
+    ],
+    "reference_pose": {
+      "x0": 249.99999999998482,
+      "x1": null,
+      "y": 250.0000006406542,
+      "z": 3.069544618483633e-11
+    },
+    "print_volume_mm": [
+      500,
+      500,
+      500
+    ],
+    "limits": {
+      "x0": [
+        -60.6,
+        559.55
+      ],
+      "x1": null,
+      "y": [
+        -14.35,
+        500.0
+      ],
+      "z": [
+        0,
+        500.0
+      ],
+      "source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4-1-hybrid/500.cfg",
+      "safe_distance_mm": 61.85,
+      "safe_distance_source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4-1-hybrid/v-core-4-1-hybrid.cfg"
+    },
+    "gantry_reference_y_mm": -21.199999359346126,
+    "frame_ceiling_mm": 981.1400000999989,
+    "print_surface_assumption": "1.5 mm magnetic sheet and spring steel above authored bare bed plate",
+    "lights": {
+      "chamber": {
+        "keys": [
+          "rr_01379",
+          "rr_01390"
+        ],
+        "default": 0.5
+      },
+      "vaoc": {
+        "keys": [],
+        "default": 0
+      }
+    },
+    "appearance": {
+      "storage_key": "3dprig-ratrig_vcore_41_500_hybrid",
+      "palette_defaults": {
+        "base": "#22a744",
+        "accent": "#a2e34d",
+        "frame": "#171a1d"
+      }
+    },
+    "supported_motion_modes": [
+      "independent"
+    ],
+    "firmware_emulation": false,
+    "hardware_motion_verified": false,
+    "import_ready": true,
+    "native_import_file": "assembly.validated.step",
+    "cad_source_kind": "official_with_documented_adjustments",
+    "simulator_capabilities": {
+      "cartesian_pose": true,
+      "idex_copy_mirror": false,
+      "belt_route_following": true,
+      "inextensible_service_route_proposal": true,
+      "chamber_lighting": true,
+      "vaoc_lighting": false,
+      "rigid_bed_z": true,
+      "independent_z_tilt": false,
+      "firmware_macros": false,
+      "homing": false,
+      "probing": false,
+      "thermal": false,
+      "belt_teeth": false,
+      "belt_tension": false,
+      "physical_cable_stiffness": false,
+      "continuous_cable_preview": true,
+      "cable_physical_inextensibility": false,
+      "cable_obstacle_collision": false,
+      "continuous_frame_panel_clearance": true,
+      "full_rigid_collision": false,
+      "expanded_trace_regression": true,
+      "full_firmware_macros": false
+    },
+    "assembled_part_count": 2153,
+    "cable_route_policy": "continuous_kinematic",
+    "native_export_revision": 4,
+    "import_ready_scope": "Native CAD import and tested software Cartesian/lighting/expanded-trace preview only"
+  },
+  "ratrig_vcore_41_500_idex": {
+    "schema_version": 1,
+    "machine_id": "ratrig_vcore_41_500_idex",
+    "title": "Rat Rig V-Core 4.1 500 idex",
+    "series": "v-core-4-1",
+    "size_mm": 500,
+    "mode": "idex",
+    "coordinate_mapping": "[x,z,-y]*0.001",
+    "build_origin_mm": [
+      -250.0000000000004,
+      -298.0,
+      671.44
+    ],
+    "nozzle_reference_mm": [
+      [
+        -309.80000000001536,
+        -47.99999935925733,
+        671.440000000031
+      ],
+      [
+        309.79999999998466,
+        -47.99999935925833,
+        671.4400000000306
+      ]
+    ],
+    "reference_pose": {
+      "x0": -59.80000000001496,
+      "x1": 559.7999999999851,
+      "y": 250.00000064074266,
+      "z": 3.092281986027956e-11
+    },
+    "print_volume_mm": [
+      500,
+      500,
+      500
+    ],
+    "limits": {
+      "x0": [
+        -60.6,
+        500.0
+      ],
+      "x1": [
+        0.0,
+        560.6
+      ],
+      "y": [
+        -14.35,
+        534.0
+      ],
+      "z": [
+        -7.0,
+        500.0
+      ],
+      "source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4-1-idex/500.cfg",
+      "safe_distance_mm": 61.85,
+      "safe_distance_source_file": "sources/ratrig/ratos_configurator/configuration/printers/v-core-4-1-idex/v-core-4-1-idex.cfg"
+    },
+    "gantry_reference_y_mm": -21.199999359257927,
+    "frame_ceiling_mm": 981.1400000999989,
+    "print_surface_assumption": "1.5 mm magnetic sheet and spring steel above authored bare bed plate",
+    "lights": {
+      "chamber": {
+        "keys": [
+          "rr_01635",
+          "rr_01646"
+        ],
+        "default": 0.5
+      },
+      "vaoc": {
+        "keys": [
+          "rr_01657"
+        ],
+        "default": 0
+      }
+    },
+    "appearance": {
+      "storage_key": "3dprig-ratrig_vcore_41_500_idex",
+      "palette_defaults": {
+        "base": "#22a744",
+        "accent": "#a2e34d",
+        "frame": "#171a1d"
+      }
+    },
+    "supported_motion_modes": [
+      "independent",
+      "copy",
+      "mirror"
+    ],
+    "firmware_emulation": false,
+    "hardware_motion_verified": false,
+    "import_ready": true,
+    "native_import_file": "assembly.validated.step",
+    "cad_source_kind": "official_with_documented_adjustments",
+    "simulator_capabilities": {
+      "cartesian_pose": true,
+      "idex_copy_mirror": true,
+      "belt_route_following": true,
+      "inextensible_service_route_proposal": true,
+      "chamber_lighting": true,
+      "vaoc_lighting": true,
+      "rigid_bed_z": true,
+      "independent_z_tilt": false,
+      "firmware_macros": false,
+      "homing": false,
+      "probing": false,
+      "thermal": false,
+      "belt_teeth": false,
+      "belt_tension": false,
+      "physical_cable_stiffness": false,
+      "continuous_cable_preview": true,
+      "cable_physical_inextensibility": false,
+      "cable_obstacle_collision": false,
+      "continuous_frame_panel_clearance": true,
+      "full_rigid_collision": false,
+      "expanded_trace_regression": true,
+      "full_firmware_macros": false
+    },
+    "assembled_part_count": 2700,
+    "cable_route_policy": "continuous_kinematic",
+    "native_export_revision": 5,
+    "import_ready_scope": "Native CAD import and tested software Cartesian/lighting/expanded-trace preview only"
+  }
+}

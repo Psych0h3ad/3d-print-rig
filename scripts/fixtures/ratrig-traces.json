@@ -1,0 +1,5532 @@
+{
+  "schema_version": 1,
+  "scope": "Supported pre-expanded Cartesian/LED/dual-carriage trace regression. No Jinja evaluation, extrusion, homing, thermal or hardware execution.",
+  "records": [
+    {
+      "machine_id": "ratrig_vcore_40_300_corexy",
+      "name": "coordinates_and_white_chamber_light",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G21",
+        "G90",
+        "G1 X30 Y40 Z50 F600",
+        "G91",
+        "G1 X5 Y-10 Z-5",
+        "G90",
+        "SET_LED LED=chamber WHITE=0.3"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_40_300_corexy",
+        "pose": {
+          "x0": 35,
+          "x1": null,
+          "y": 30,
+          "z": 45
+        },
+        "mode": "independent",
+        "copy_offset_mm": 150,
+        "mirror_sum_mm": 300,
+        "lights": {
+          "chamber": 0.3,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": 600,
+        "rig": {
+          "machine_id": "ratrig_vcore_40_300_corexy",
+          "pose": {
+            "x0": 35,
+            "x1": null,
+            "y": 30,
+            "z": 45
+          },
+          "mode": "independent",
+          "copy_offset_mm": 150,
+          "mirror_sum_mm": 300,
+          "lights": {
+            "chamber": 0.3,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_300_corexy",
+      "name": "saved_cartesian_return",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G90",
+        "SAVE_GCODE_STATE NAME=fixture",
+        "G1 X50 Y60 Z70 F600",
+        "RESTORE_GCODE_STATE NAME=fixture MOVE=1 MOVE_SPEED=10"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_40_300_corexy",
+        "pose": {
+          "x0": 20,
+          "x1": null,
+          "y": 20,
+          "z": 30
+        },
+        "mode": "independent",
+        "copy_offset_mm": 150,
+        "mirror_sum_mm": 300,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_40_300_corexy",
+          "pose": {
+            "x0": 20,
+            "x1": null,
+            "y": 20,
+            "z": 30
+          },
+          "mode": "independent",
+          "copy_offset_mm": 150,
+          "mirror_sum_mm": 300,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_300_corexy",
+      "name": "reject_G28",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G28"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_300_corexy",
+      "name": "reject_T0",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "T0"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_300_corexy",
+      "name": "reject_G1 E1",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 E1"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_300_corexy",
+      "name": "reject_M104 S200",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "M104 S200"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_300_corexy",
+      "name": "reject_{% if tool %}",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "{% if tool %}"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_300_corexy",
+      "name": "reject_G1 X99999",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 X99999"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_300_corexy",
+      "name": "reject_SET_LED LED=chamber WHITE=2",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "SET_LED LED=chamber WHITE=2"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_300_hybrid",
+      "name": "coordinates_and_white_chamber_light",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G21",
+        "G90",
+        "G1 X30 Y40 Z50 F600",
+        "G91",
+        "G1 X5 Y-10 Z-5",
+        "G90",
+        "SET_LED LED=chamber WHITE=0.3"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_40_300_hybrid",
+        "pose": {
+          "x0": 35,
+          "x1": null,
+          "y": 30,
+          "z": 45
+        },
+        "mode": "independent",
+        "copy_offset_mm": 150,
+        "mirror_sum_mm": 300,
+        "lights": {
+          "chamber": 0.3,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": 600,
+        "rig": {
+          "machine_id": "ratrig_vcore_40_300_hybrid",
+          "pose": {
+            "x0": 35,
+            "x1": null,
+            "y": 30,
+            "z": 45
+          },
+          "mode": "independent",
+          "copy_offset_mm": 150,
+          "mirror_sum_mm": 300,
+          "lights": {
+            "chamber": 0.3,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_300_hybrid",
+      "name": "saved_cartesian_return",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G90",
+        "SAVE_GCODE_STATE NAME=fixture",
+        "G1 X50 Y60 Z70 F600",
+        "RESTORE_GCODE_STATE NAME=fixture MOVE=1 MOVE_SPEED=10"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_40_300_hybrid",
+        "pose": {
+          "x0": 20,
+          "x1": null,
+          "y": 20,
+          "z": 30
+        },
+        "mode": "independent",
+        "copy_offset_mm": 150,
+        "mirror_sum_mm": 300,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_40_300_hybrid",
+          "pose": {
+            "x0": 20,
+            "x1": null,
+            "y": 20,
+            "z": 30
+          },
+          "mode": "independent",
+          "copy_offset_mm": 150,
+          "mirror_sum_mm": 300,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_300_hybrid",
+      "name": "reject_G28",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G28"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_300_hybrid",
+      "name": "reject_T0",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "T0"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_300_hybrid",
+      "name": "reject_G1 E1",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 E1"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_300_hybrid",
+      "name": "reject_M104 S200",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "M104 S200"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_300_hybrid",
+      "name": "reject_{% if tool %}",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "{% if tool %}"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_300_hybrid",
+      "name": "reject_G1 X99999",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 X99999"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_300_hybrid",
+      "name": "reject_SET_LED LED=chamber WHITE=2",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "SET_LED LED=chamber WHITE=2"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_300_idex",
+      "name": "coordinates_and_white_chamber_light",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 250,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G21",
+        "G90",
+        "G1 X30 Y40 Z50 F600",
+        "G91",
+        "G1 X5 Y-10 Z-5",
+        "G90",
+        "SET_LED LED=chamber WHITE=0.3"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_40_300_idex",
+        "pose": {
+          "x0": 35,
+          "x1": 250,
+          "y": 30,
+          "z": 45
+        },
+        "mode": "independent",
+        "copy_offset_mm": 150,
+        "mirror_sum_mm": 300,
+        "lights": {
+          "chamber": 0.3,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": 600,
+        "rig": {
+          "machine_id": "ratrig_vcore_40_300_idex",
+          "pose": {
+            "x0": 35,
+            "x1": 250,
+            "y": 30,
+            "z": 45
+          },
+          "mode": "independent",
+          "copy_offset_mm": 150,
+          "mirror_sum_mm": 300,
+          "lights": {
+            "chamber": 0.3,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_300_idex",
+      "name": "saved_cartesian_return",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 250,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G90",
+        "SAVE_GCODE_STATE NAME=fixture",
+        "G1 X50 Y60 Z70 F600",
+        "RESTORE_GCODE_STATE NAME=fixture MOVE=1 MOVE_SPEED=10"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_40_300_idex",
+        "pose": {
+          "x0": 20,
+          "x1": 250,
+          "y": 20,
+          "z": 30
+        },
+        "mode": "independent",
+        "copy_offset_mm": 150,
+        "mirror_sum_mm": 300,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_40_300_idex",
+          "pose": {
+            "x0": 20,
+            "x1": 250,
+            "y": 20,
+            "z": 30
+          },
+          "mode": "independent",
+          "copy_offset_mm": 150,
+          "mirror_sum_mm": 300,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_300_idex",
+      "name": "extruder_selection_keeps_carriage",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 250,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "ACTIVATE_EXTRUDER EXTRUDER=extruder1",
+        "G90",
+        "G1 X30"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_40_300_idex",
+        "pose": {
+          "x0": 30,
+          "x1": 250,
+          "y": 20,
+          "z": 30
+        },
+        "mode": "independent",
+        "copy_offset_mm": 150,
+        "mirror_sum_mm": 300,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 1,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_40_300_idex",
+          "pose": {
+            "x0": 30,
+            "x1": 250,
+            "y": 20,
+            "z": 30
+          },
+          "mode": "independent",
+          "copy_offset_mm": 150,
+          "mirror_sum_mm": 300,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_300_idex",
+      "name": "copy_from_current_relative_offset",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 250,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G90",
+        "SET_DUAL_CARRIAGE CARRIAGE=1 MODE=COPY",
+        "G1 X30 Y40 Z50"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_40_300_idex",
+        "pose": {
+          "x0": 30,
+          "x1": 260,
+          "y": 40,
+          "z": 50
+        },
+        "mode": "copy",
+        "copy_offset_mm": 230,
+        "mirror_sum_mm": 270,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_40_300_idex",
+          "pose": {
+            "x0": 30,
+            "x1": 260,
+            "y": 40,
+            "z": 50
+          },
+          "mode": "copy",
+          "copy_offset_mm": 230,
+          "mirror_sum_mm": 270,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_300_idex",
+      "name": "mirror_from_current_relative_origin",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 250,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G90",
+        "SET_DUAL_CARRIAGE CARRIAGE=1 MODE=MIRROR",
+        "G1 X30 Y40 Z50",
+        "SET_LED LED=vaoc WHITE=1"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_40_300_idex",
+        "pose": {
+          "x0": 30,
+          "x1": 240,
+          "y": 40,
+          "z": 50
+        },
+        "mode": "mirror",
+        "copy_offset_mm": 230,
+        "mirror_sum_mm": 270,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 1
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_40_300_idex",
+          "pose": {
+            "x0": 30,
+            "x1": 240,
+            "y": 40,
+            "z": 50
+          },
+          "mode": "mirror",
+          "copy_offset_mm": 230,
+          "mirror_sum_mm": 270,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 1
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_300_idex",
+      "name": "primary_right_carriage",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 250,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "SET_DUAL_CARRIAGE CARRIAGE=1",
+        "G90",
+        "G1 X270 Y40 Z50"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_40_300_idex",
+        "pose": {
+          "x0": 20,
+          "x1": 270,
+          "y": 40,
+          "z": 50
+        },
+        "mode": "independent",
+        "copy_offset_mm": 150,
+        "mirror_sum_mm": 300,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 1,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_40_300_idex",
+          "pose": {
+            "x0": 20,
+            "x1": 270,
+            "y": 40,
+            "z": 50
+          },
+          "mode": "independent",
+          "copy_offset_mm": 150,
+          "mirror_sum_mm": 300,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_300_idex",
+      "name": "reject_G28",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 250,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G28"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_300_idex",
+      "name": "reject_T0",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 250,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "T0"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_300_idex",
+      "name": "reject_G1 E1",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 250,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 E1"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_300_idex",
+      "name": "reject_M104 S200",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 250,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "M104 S200"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_300_idex",
+      "name": "reject_{% if tool %}",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 250,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "{% if tool %}"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_300_idex",
+      "name": "reject_G1 X99999",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 250,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 X99999"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_300_idex",
+      "name": "reject_SET_LED LED=chamber WHITE=2",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 250,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "SET_LED LED=chamber WHITE=2"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_400_corexy",
+      "name": "coordinates_and_white_chamber_light",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G21",
+        "G90",
+        "G1 X30 Y40 Z50 F600",
+        "G91",
+        "G1 X5 Y-10 Z-5",
+        "G90",
+        "SET_LED LED=chamber WHITE=0.3"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_40_400_corexy",
+        "pose": {
+          "x0": 35,
+          "x1": null,
+          "y": 30,
+          "z": 45
+        },
+        "mode": "independent",
+        "copy_offset_mm": 200,
+        "mirror_sum_mm": 400,
+        "lights": {
+          "chamber": 0.3,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": 600,
+        "rig": {
+          "machine_id": "ratrig_vcore_40_400_corexy",
+          "pose": {
+            "x0": 35,
+            "x1": null,
+            "y": 30,
+            "z": 45
+          },
+          "mode": "independent",
+          "copy_offset_mm": 200,
+          "mirror_sum_mm": 400,
+          "lights": {
+            "chamber": 0.3,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_400_corexy",
+      "name": "saved_cartesian_return",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G90",
+        "SAVE_GCODE_STATE NAME=fixture",
+        "G1 X50 Y60 Z70 F600",
+        "RESTORE_GCODE_STATE NAME=fixture MOVE=1 MOVE_SPEED=10"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_40_400_corexy",
+        "pose": {
+          "x0": 20,
+          "x1": null,
+          "y": 20,
+          "z": 30
+        },
+        "mode": "independent",
+        "copy_offset_mm": 200,
+        "mirror_sum_mm": 400,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_40_400_corexy",
+          "pose": {
+            "x0": 20,
+            "x1": null,
+            "y": 20,
+            "z": 30
+          },
+          "mode": "independent",
+          "copy_offset_mm": 200,
+          "mirror_sum_mm": 400,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_400_corexy",
+      "name": "reject_G28",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G28"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_400_corexy",
+      "name": "reject_T0",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "T0"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_400_corexy",
+      "name": "reject_G1 E1",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 E1"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_400_corexy",
+      "name": "reject_M104 S200",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "M104 S200"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_400_corexy",
+      "name": "reject_{% if tool %}",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "{% if tool %}"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_400_corexy",
+      "name": "reject_G1 X99999",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 X99999"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_400_corexy",
+      "name": "reject_SET_LED LED=chamber WHITE=2",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "SET_LED LED=chamber WHITE=2"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_400_hybrid",
+      "name": "coordinates_and_white_chamber_light",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G21",
+        "G90",
+        "G1 X30 Y40 Z50 F600",
+        "G91",
+        "G1 X5 Y-10 Z-5",
+        "G90",
+        "SET_LED LED=chamber WHITE=0.3"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_40_400_hybrid",
+        "pose": {
+          "x0": 35,
+          "x1": null,
+          "y": 30,
+          "z": 45
+        },
+        "mode": "independent",
+        "copy_offset_mm": 200,
+        "mirror_sum_mm": 400,
+        "lights": {
+          "chamber": 0.3,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": 600,
+        "rig": {
+          "machine_id": "ratrig_vcore_40_400_hybrid",
+          "pose": {
+            "x0": 35,
+            "x1": null,
+            "y": 30,
+            "z": 45
+          },
+          "mode": "independent",
+          "copy_offset_mm": 200,
+          "mirror_sum_mm": 400,
+          "lights": {
+            "chamber": 0.3,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_400_hybrid",
+      "name": "saved_cartesian_return",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G90",
+        "SAVE_GCODE_STATE NAME=fixture",
+        "G1 X50 Y60 Z70 F600",
+        "RESTORE_GCODE_STATE NAME=fixture MOVE=1 MOVE_SPEED=10"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_40_400_hybrid",
+        "pose": {
+          "x0": 20,
+          "x1": null,
+          "y": 20,
+          "z": 30
+        },
+        "mode": "independent",
+        "copy_offset_mm": 200,
+        "mirror_sum_mm": 400,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_40_400_hybrid",
+          "pose": {
+            "x0": 20,
+            "x1": null,
+            "y": 20,
+            "z": 30
+          },
+          "mode": "independent",
+          "copy_offset_mm": 200,
+          "mirror_sum_mm": 400,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_400_hybrid",
+      "name": "reject_G28",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G28"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_400_hybrid",
+      "name": "reject_T0",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "T0"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_400_hybrid",
+      "name": "reject_G1 E1",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 E1"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_400_hybrid",
+      "name": "reject_M104 S200",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "M104 S200"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_400_hybrid",
+      "name": "reject_{% if tool %}",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "{% if tool %}"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_400_hybrid",
+      "name": "reject_G1 X99999",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 X99999"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_400_hybrid",
+      "name": "reject_SET_LED LED=chamber WHITE=2",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "SET_LED LED=chamber WHITE=2"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_400_idex",
+      "name": "coordinates_and_white_chamber_light",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 350,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G21",
+        "G90",
+        "G1 X30 Y40 Z50 F600",
+        "G91",
+        "G1 X5 Y-10 Z-5",
+        "G90",
+        "SET_LED LED=chamber WHITE=0.3"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_40_400_idex",
+        "pose": {
+          "x0": 35,
+          "x1": 350,
+          "y": 30,
+          "z": 45
+        },
+        "mode": "independent",
+        "copy_offset_mm": 200,
+        "mirror_sum_mm": 400,
+        "lights": {
+          "chamber": 0.3,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": 600,
+        "rig": {
+          "machine_id": "ratrig_vcore_40_400_idex",
+          "pose": {
+            "x0": 35,
+            "x1": 350,
+            "y": 30,
+            "z": 45
+          },
+          "mode": "independent",
+          "copy_offset_mm": 200,
+          "mirror_sum_mm": 400,
+          "lights": {
+            "chamber": 0.3,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_400_idex",
+      "name": "saved_cartesian_return",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 350,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G90",
+        "SAVE_GCODE_STATE NAME=fixture",
+        "G1 X50 Y60 Z70 F600",
+        "RESTORE_GCODE_STATE NAME=fixture MOVE=1 MOVE_SPEED=10"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_40_400_idex",
+        "pose": {
+          "x0": 20,
+          "x1": 350,
+          "y": 20,
+          "z": 30
+        },
+        "mode": "independent",
+        "copy_offset_mm": 200,
+        "mirror_sum_mm": 400,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_40_400_idex",
+          "pose": {
+            "x0": 20,
+            "x1": 350,
+            "y": 20,
+            "z": 30
+          },
+          "mode": "independent",
+          "copy_offset_mm": 200,
+          "mirror_sum_mm": 400,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_400_idex",
+      "name": "extruder_selection_keeps_carriage",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 350,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "ACTIVATE_EXTRUDER EXTRUDER=extruder1",
+        "G90",
+        "G1 X30"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_40_400_idex",
+        "pose": {
+          "x0": 30,
+          "x1": 350,
+          "y": 20,
+          "z": 30
+        },
+        "mode": "independent",
+        "copy_offset_mm": 200,
+        "mirror_sum_mm": 400,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 1,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_40_400_idex",
+          "pose": {
+            "x0": 30,
+            "x1": 350,
+            "y": 20,
+            "z": 30
+          },
+          "mode": "independent",
+          "copy_offset_mm": 200,
+          "mirror_sum_mm": 400,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_400_idex",
+      "name": "copy_from_current_relative_offset",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 350,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G90",
+        "SET_DUAL_CARRIAGE CARRIAGE=1 MODE=COPY",
+        "G1 X30 Y40 Z50"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_40_400_idex",
+        "pose": {
+          "x0": 30,
+          "x1": 360,
+          "y": 40,
+          "z": 50
+        },
+        "mode": "copy",
+        "copy_offset_mm": 330,
+        "mirror_sum_mm": 370,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_40_400_idex",
+          "pose": {
+            "x0": 30,
+            "x1": 360,
+            "y": 40,
+            "z": 50
+          },
+          "mode": "copy",
+          "copy_offset_mm": 330,
+          "mirror_sum_mm": 370,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_400_idex",
+      "name": "mirror_from_current_relative_origin",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 350,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G90",
+        "SET_DUAL_CARRIAGE CARRIAGE=1 MODE=MIRROR",
+        "G1 X30 Y40 Z50",
+        "SET_LED LED=vaoc WHITE=1"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_40_400_idex",
+        "pose": {
+          "x0": 30,
+          "x1": 340,
+          "y": 40,
+          "z": 50
+        },
+        "mode": "mirror",
+        "copy_offset_mm": 330,
+        "mirror_sum_mm": 370,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 1
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_40_400_idex",
+          "pose": {
+            "x0": 30,
+            "x1": 340,
+            "y": 40,
+            "z": 50
+          },
+          "mode": "mirror",
+          "copy_offset_mm": 330,
+          "mirror_sum_mm": 370,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 1
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_400_idex",
+      "name": "primary_right_carriage",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 350,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "SET_DUAL_CARRIAGE CARRIAGE=1",
+        "G90",
+        "G1 X370 Y40 Z50"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_40_400_idex",
+        "pose": {
+          "x0": 20,
+          "x1": 370,
+          "y": 40,
+          "z": 50
+        },
+        "mode": "independent",
+        "copy_offset_mm": 200,
+        "mirror_sum_mm": 400,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 1,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_40_400_idex",
+          "pose": {
+            "x0": 20,
+            "x1": 370,
+            "y": 40,
+            "z": 50
+          },
+          "mode": "independent",
+          "copy_offset_mm": 200,
+          "mirror_sum_mm": 400,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_400_idex",
+      "name": "reject_G28",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 350,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G28"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_400_idex",
+      "name": "reject_T0",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 350,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "T0"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_400_idex",
+      "name": "reject_G1 E1",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 350,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 E1"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_400_idex",
+      "name": "reject_M104 S200",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 350,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "M104 S200"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_400_idex",
+      "name": "reject_{% if tool %}",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 350,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "{% if tool %}"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_400_idex",
+      "name": "reject_G1 X99999",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 350,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 X99999"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_400_idex",
+      "name": "reject_SET_LED LED=chamber WHITE=2",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 350,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "SET_LED LED=chamber WHITE=2"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_500_corexy",
+      "name": "coordinates_and_white_chamber_light",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G21",
+        "G90",
+        "G1 X30 Y40 Z50 F600",
+        "G91",
+        "G1 X5 Y-10 Z-5",
+        "G90",
+        "SET_LED LED=chamber WHITE=0.3"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_40_500_corexy",
+        "pose": {
+          "x0": 35,
+          "x1": null,
+          "y": 30,
+          "z": 45
+        },
+        "mode": "independent",
+        "copy_offset_mm": 250,
+        "mirror_sum_mm": 500,
+        "lights": {
+          "chamber": 0.3,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": 600,
+        "rig": {
+          "machine_id": "ratrig_vcore_40_500_corexy",
+          "pose": {
+            "x0": 35,
+            "x1": null,
+            "y": 30,
+            "z": 45
+          },
+          "mode": "independent",
+          "copy_offset_mm": 250,
+          "mirror_sum_mm": 500,
+          "lights": {
+            "chamber": 0.3,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_500_corexy",
+      "name": "saved_cartesian_return",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G90",
+        "SAVE_GCODE_STATE NAME=fixture",
+        "G1 X50 Y60 Z70 F600",
+        "RESTORE_GCODE_STATE NAME=fixture MOVE=1 MOVE_SPEED=10"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_40_500_corexy",
+        "pose": {
+          "x0": 20,
+          "x1": null,
+          "y": 20,
+          "z": 30
+        },
+        "mode": "independent",
+        "copy_offset_mm": 250,
+        "mirror_sum_mm": 500,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_40_500_corexy",
+          "pose": {
+            "x0": 20,
+            "x1": null,
+            "y": 20,
+            "z": 30
+          },
+          "mode": "independent",
+          "copy_offset_mm": 250,
+          "mirror_sum_mm": 500,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_500_corexy",
+      "name": "reject_G28",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G28"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_500_corexy",
+      "name": "reject_T0",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "T0"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_500_corexy",
+      "name": "reject_G1 E1",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 E1"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_500_corexy",
+      "name": "reject_M104 S200",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "M104 S200"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_500_corexy",
+      "name": "reject_{% if tool %}",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "{% if tool %}"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_500_corexy",
+      "name": "reject_G1 X99999",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 X99999"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_500_corexy",
+      "name": "reject_SET_LED LED=chamber WHITE=2",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "SET_LED LED=chamber WHITE=2"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_500_hybrid",
+      "name": "coordinates_and_white_chamber_light",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G21",
+        "G90",
+        "G1 X30 Y40 Z50 F600",
+        "G91",
+        "G1 X5 Y-10 Z-5",
+        "G90",
+        "SET_LED LED=chamber WHITE=0.3"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_40_500_hybrid",
+        "pose": {
+          "x0": 35,
+          "x1": null,
+          "y": 30,
+          "z": 45
+        },
+        "mode": "independent",
+        "copy_offset_mm": 250,
+        "mirror_sum_mm": 500,
+        "lights": {
+          "chamber": 0.3,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": 600,
+        "rig": {
+          "machine_id": "ratrig_vcore_40_500_hybrid",
+          "pose": {
+            "x0": 35,
+            "x1": null,
+            "y": 30,
+            "z": 45
+          },
+          "mode": "independent",
+          "copy_offset_mm": 250,
+          "mirror_sum_mm": 500,
+          "lights": {
+            "chamber": 0.3,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_500_hybrid",
+      "name": "saved_cartesian_return",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G90",
+        "SAVE_GCODE_STATE NAME=fixture",
+        "G1 X50 Y60 Z70 F600",
+        "RESTORE_GCODE_STATE NAME=fixture MOVE=1 MOVE_SPEED=10"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_40_500_hybrid",
+        "pose": {
+          "x0": 20,
+          "x1": null,
+          "y": 20,
+          "z": 30
+        },
+        "mode": "independent",
+        "copy_offset_mm": 250,
+        "mirror_sum_mm": 500,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_40_500_hybrid",
+          "pose": {
+            "x0": 20,
+            "x1": null,
+            "y": 20,
+            "z": 30
+          },
+          "mode": "independent",
+          "copy_offset_mm": 250,
+          "mirror_sum_mm": 500,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_500_hybrid",
+      "name": "reject_G28",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G28"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_500_hybrid",
+      "name": "reject_T0",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "T0"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_500_hybrid",
+      "name": "reject_G1 E1",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 E1"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_500_hybrid",
+      "name": "reject_M104 S200",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "M104 S200"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_500_hybrid",
+      "name": "reject_{% if tool %}",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "{% if tool %}"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_500_hybrid",
+      "name": "reject_G1 X99999",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 X99999"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_500_hybrid",
+      "name": "reject_SET_LED LED=chamber WHITE=2",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "SET_LED LED=chamber WHITE=2"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_500_idex",
+      "name": "coordinates_and_white_chamber_light",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 450,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G21",
+        "G90",
+        "G1 X30 Y40 Z50 F600",
+        "G91",
+        "G1 X5 Y-10 Z-5",
+        "G90",
+        "SET_LED LED=chamber WHITE=0.3"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_40_500_idex",
+        "pose": {
+          "x0": 35,
+          "x1": 450,
+          "y": 30,
+          "z": 45
+        },
+        "mode": "independent",
+        "copy_offset_mm": 250,
+        "mirror_sum_mm": 500,
+        "lights": {
+          "chamber": 0.3,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": 600,
+        "rig": {
+          "machine_id": "ratrig_vcore_40_500_idex",
+          "pose": {
+            "x0": 35,
+            "x1": 450,
+            "y": 30,
+            "z": 45
+          },
+          "mode": "independent",
+          "copy_offset_mm": 250,
+          "mirror_sum_mm": 500,
+          "lights": {
+            "chamber": 0.3,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_500_idex",
+      "name": "saved_cartesian_return",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 450,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G90",
+        "SAVE_GCODE_STATE NAME=fixture",
+        "G1 X50 Y60 Z70 F600",
+        "RESTORE_GCODE_STATE NAME=fixture MOVE=1 MOVE_SPEED=10"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_40_500_idex",
+        "pose": {
+          "x0": 20,
+          "x1": 450,
+          "y": 20,
+          "z": 30
+        },
+        "mode": "independent",
+        "copy_offset_mm": 250,
+        "mirror_sum_mm": 500,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_40_500_idex",
+          "pose": {
+            "x0": 20,
+            "x1": 450,
+            "y": 20,
+            "z": 30
+          },
+          "mode": "independent",
+          "copy_offset_mm": 250,
+          "mirror_sum_mm": 500,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_500_idex",
+      "name": "extruder_selection_keeps_carriage",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 450,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "ACTIVATE_EXTRUDER EXTRUDER=extruder1",
+        "G90",
+        "G1 X30"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_40_500_idex",
+        "pose": {
+          "x0": 30,
+          "x1": 450,
+          "y": 20,
+          "z": 30
+        },
+        "mode": "independent",
+        "copy_offset_mm": 250,
+        "mirror_sum_mm": 500,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 1,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_40_500_idex",
+          "pose": {
+            "x0": 30,
+            "x1": 450,
+            "y": 20,
+            "z": 30
+          },
+          "mode": "independent",
+          "copy_offset_mm": 250,
+          "mirror_sum_mm": 500,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_500_idex",
+      "name": "copy_from_current_relative_offset",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 450,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G90",
+        "SET_DUAL_CARRIAGE CARRIAGE=1 MODE=COPY",
+        "G1 X30 Y40 Z50"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_40_500_idex",
+        "pose": {
+          "x0": 30,
+          "x1": 460,
+          "y": 40,
+          "z": 50
+        },
+        "mode": "copy",
+        "copy_offset_mm": 430,
+        "mirror_sum_mm": 470,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_40_500_idex",
+          "pose": {
+            "x0": 30,
+            "x1": 460,
+            "y": 40,
+            "z": 50
+          },
+          "mode": "copy",
+          "copy_offset_mm": 430,
+          "mirror_sum_mm": 470,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_500_idex",
+      "name": "mirror_from_current_relative_origin",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 450,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G90",
+        "SET_DUAL_CARRIAGE CARRIAGE=1 MODE=MIRROR",
+        "G1 X30 Y40 Z50",
+        "SET_LED LED=vaoc WHITE=1"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_40_500_idex",
+        "pose": {
+          "x0": 30,
+          "x1": 440,
+          "y": 40,
+          "z": 50
+        },
+        "mode": "mirror",
+        "copy_offset_mm": 430,
+        "mirror_sum_mm": 470,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 1
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_40_500_idex",
+          "pose": {
+            "x0": 30,
+            "x1": 440,
+            "y": 40,
+            "z": 50
+          },
+          "mode": "mirror",
+          "copy_offset_mm": 430,
+          "mirror_sum_mm": 470,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 1
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_500_idex",
+      "name": "primary_right_carriage",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 450,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "SET_DUAL_CARRIAGE CARRIAGE=1",
+        "G90",
+        "G1 X470 Y40 Z50"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_40_500_idex",
+        "pose": {
+          "x0": 20,
+          "x1": 470,
+          "y": 40,
+          "z": 50
+        },
+        "mode": "independent",
+        "copy_offset_mm": 250,
+        "mirror_sum_mm": 500,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 1,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_40_500_idex",
+          "pose": {
+            "x0": 20,
+            "x1": 470,
+            "y": 40,
+            "z": 50
+          },
+          "mode": "independent",
+          "copy_offset_mm": 250,
+          "mirror_sum_mm": 500,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_500_idex",
+      "name": "reject_G28",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 450,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G28"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_500_idex",
+      "name": "reject_T0",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 450,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "T0"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_500_idex",
+      "name": "reject_G1 E1",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 450,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 E1"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_500_idex",
+      "name": "reject_M104 S200",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 450,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "M104 S200"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_500_idex",
+      "name": "reject_{% if tool %}",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 450,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "{% if tool %}"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_500_idex",
+      "name": "reject_G1 X99999",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 450,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 X99999"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_40_500_idex",
+      "name": "reject_SET_LED LED=chamber WHITE=2",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 450,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "SET_LED LED=chamber WHITE=2"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_300_corexy",
+      "name": "coordinates_and_white_chamber_light",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G21",
+        "G90",
+        "G1 X30 Y40 Z50 F600",
+        "G91",
+        "G1 X5 Y-10 Z-5",
+        "G90",
+        "SET_LED LED=chamber WHITE=0.3"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_41_300_corexy",
+        "pose": {
+          "x0": 35,
+          "x1": null,
+          "y": 30,
+          "z": 45
+        },
+        "mode": "independent",
+        "copy_offset_mm": 150,
+        "mirror_sum_mm": 300,
+        "lights": {
+          "chamber": 0.3,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": 600,
+        "rig": {
+          "machine_id": "ratrig_vcore_41_300_corexy",
+          "pose": {
+            "x0": 35,
+            "x1": null,
+            "y": 30,
+            "z": 45
+          },
+          "mode": "independent",
+          "copy_offset_mm": 150,
+          "mirror_sum_mm": 300,
+          "lights": {
+            "chamber": 0.3,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_300_corexy",
+      "name": "saved_cartesian_return",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G90",
+        "SAVE_GCODE_STATE NAME=fixture",
+        "G1 X50 Y60 Z70 F600",
+        "RESTORE_GCODE_STATE NAME=fixture MOVE=1 MOVE_SPEED=10"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_41_300_corexy",
+        "pose": {
+          "x0": 20,
+          "x1": null,
+          "y": 20,
+          "z": 30
+        },
+        "mode": "independent",
+        "copy_offset_mm": 150,
+        "mirror_sum_mm": 300,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_41_300_corexy",
+          "pose": {
+            "x0": 20,
+            "x1": null,
+            "y": 20,
+            "z": 30
+          },
+          "mode": "independent",
+          "copy_offset_mm": 150,
+          "mirror_sum_mm": 300,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_300_corexy",
+      "name": "reject_G28",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G28"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_300_corexy",
+      "name": "reject_T0",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "T0"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_300_corexy",
+      "name": "reject_G1 E1",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 E1"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_300_corexy",
+      "name": "reject_M104 S200",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "M104 S200"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_300_corexy",
+      "name": "reject_{% if tool %}",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "{% if tool %}"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_300_corexy",
+      "name": "reject_G1 X99999",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 X99999"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_300_corexy",
+      "name": "reject_SET_LED LED=chamber WHITE=2",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "SET_LED LED=chamber WHITE=2"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_300_hybrid",
+      "name": "coordinates_and_white_chamber_light",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G21",
+        "G90",
+        "G1 X30 Y40 Z50 F600",
+        "G91",
+        "G1 X5 Y-10 Z-5",
+        "G90",
+        "SET_LED LED=chamber WHITE=0.3"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_41_300_hybrid",
+        "pose": {
+          "x0": 35,
+          "x1": null,
+          "y": 30,
+          "z": 45
+        },
+        "mode": "independent",
+        "copy_offset_mm": 150,
+        "mirror_sum_mm": 300,
+        "lights": {
+          "chamber": 0.3,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": 600,
+        "rig": {
+          "machine_id": "ratrig_vcore_41_300_hybrid",
+          "pose": {
+            "x0": 35,
+            "x1": null,
+            "y": 30,
+            "z": 45
+          },
+          "mode": "independent",
+          "copy_offset_mm": 150,
+          "mirror_sum_mm": 300,
+          "lights": {
+            "chamber": 0.3,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_300_hybrid",
+      "name": "saved_cartesian_return",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G90",
+        "SAVE_GCODE_STATE NAME=fixture",
+        "G1 X50 Y60 Z70 F600",
+        "RESTORE_GCODE_STATE NAME=fixture MOVE=1 MOVE_SPEED=10"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_41_300_hybrid",
+        "pose": {
+          "x0": 20,
+          "x1": null,
+          "y": 20,
+          "z": 30
+        },
+        "mode": "independent",
+        "copy_offset_mm": 150,
+        "mirror_sum_mm": 300,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_41_300_hybrid",
+          "pose": {
+            "x0": 20,
+            "x1": null,
+            "y": 20,
+            "z": 30
+          },
+          "mode": "independent",
+          "copy_offset_mm": 150,
+          "mirror_sum_mm": 300,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_300_hybrid",
+      "name": "reject_G28",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G28"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_300_hybrid",
+      "name": "reject_T0",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "T0"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_300_hybrid",
+      "name": "reject_G1 E1",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 E1"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_300_hybrid",
+      "name": "reject_M104 S200",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "M104 S200"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_300_hybrid",
+      "name": "reject_{% if tool %}",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "{% if tool %}"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_300_hybrid",
+      "name": "reject_G1 X99999",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 X99999"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_300_hybrid",
+      "name": "reject_SET_LED LED=chamber WHITE=2",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "SET_LED LED=chamber WHITE=2"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_300_idex",
+      "name": "coordinates_and_white_chamber_light",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 250,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G21",
+        "G90",
+        "G1 X30 Y40 Z50 F600",
+        "G91",
+        "G1 X5 Y-10 Z-5",
+        "G90",
+        "SET_LED LED=chamber WHITE=0.3"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_41_300_idex",
+        "pose": {
+          "x0": 35,
+          "x1": 250,
+          "y": 30,
+          "z": 45
+        },
+        "mode": "independent",
+        "copy_offset_mm": 150,
+        "mirror_sum_mm": 300,
+        "lights": {
+          "chamber": 0.3,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": 600,
+        "rig": {
+          "machine_id": "ratrig_vcore_41_300_idex",
+          "pose": {
+            "x0": 35,
+            "x1": 250,
+            "y": 30,
+            "z": 45
+          },
+          "mode": "independent",
+          "copy_offset_mm": 150,
+          "mirror_sum_mm": 300,
+          "lights": {
+            "chamber": 0.3,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_300_idex",
+      "name": "saved_cartesian_return",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 250,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G90",
+        "SAVE_GCODE_STATE NAME=fixture",
+        "G1 X50 Y60 Z70 F600",
+        "RESTORE_GCODE_STATE NAME=fixture MOVE=1 MOVE_SPEED=10"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_41_300_idex",
+        "pose": {
+          "x0": 20,
+          "x1": 250,
+          "y": 20,
+          "z": 30
+        },
+        "mode": "independent",
+        "copy_offset_mm": 150,
+        "mirror_sum_mm": 300,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_41_300_idex",
+          "pose": {
+            "x0": 20,
+            "x1": 250,
+            "y": 20,
+            "z": 30
+          },
+          "mode": "independent",
+          "copy_offset_mm": 150,
+          "mirror_sum_mm": 300,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_300_idex",
+      "name": "extruder_selection_keeps_carriage",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 250,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "ACTIVATE_EXTRUDER EXTRUDER=extruder1",
+        "G90",
+        "G1 X30"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_41_300_idex",
+        "pose": {
+          "x0": 30,
+          "x1": 250,
+          "y": 20,
+          "z": 30
+        },
+        "mode": "independent",
+        "copy_offset_mm": 150,
+        "mirror_sum_mm": 300,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 1,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_41_300_idex",
+          "pose": {
+            "x0": 30,
+            "x1": 250,
+            "y": 20,
+            "z": 30
+          },
+          "mode": "independent",
+          "copy_offset_mm": 150,
+          "mirror_sum_mm": 300,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_300_idex",
+      "name": "copy_from_current_relative_offset",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 250,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G90",
+        "SET_DUAL_CARRIAGE CARRIAGE=1 MODE=COPY",
+        "G1 X30 Y40 Z50"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_41_300_idex",
+        "pose": {
+          "x0": 30,
+          "x1": 260,
+          "y": 40,
+          "z": 50
+        },
+        "mode": "copy",
+        "copy_offset_mm": 230,
+        "mirror_sum_mm": 270,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_41_300_idex",
+          "pose": {
+            "x0": 30,
+            "x1": 260,
+            "y": 40,
+            "z": 50
+          },
+          "mode": "copy",
+          "copy_offset_mm": 230,
+          "mirror_sum_mm": 270,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_300_idex",
+      "name": "mirror_from_current_relative_origin",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 250,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G90",
+        "SET_DUAL_CARRIAGE CARRIAGE=1 MODE=MIRROR",
+        "G1 X30 Y40 Z50",
+        "SET_LED LED=vaoc WHITE=1"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_41_300_idex",
+        "pose": {
+          "x0": 30,
+          "x1": 240,
+          "y": 40,
+          "z": 50
+        },
+        "mode": "mirror",
+        "copy_offset_mm": 230,
+        "mirror_sum_mm": 270,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 1
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_41_300_idex",
+          "pose": {
+            "x0": 30,
+            "x1": 240,
+            "y": 40,
+            "z": 50
+          },
+          "mode": "mirror",
+          "copy_offset_mm": 230,
+          "mirror_sum_mm": 270,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 1
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_300_idex",
+      "name": "primary_right_carriage",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 250,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "SET_DUAL_CARRIAGE CARRIAGE=1",
+        "G90",
+        "G1 X270 Y40 Z50"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_41_300_idex",
+        "pose": {
+          "x0": 20,
+          "x1": 270,
+          "y": 40,
+          "z": 50
+        },
+        "mode": "independent",
+        "copy_offset_mm": 150,
+        "mirror_sum_mm": 300,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 1,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_41_300_idex",
+          "pose": {
+            "x0": 20,
+            "x1": 270,
+            "y": 40,
+            "z": 50
+          },
+          "mode": "independent",
+          "copy_offset_mm": 150,
+          "mirror_sum_mm": 300,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_300_idex",
+      "name": "reject_G28",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 250,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G28"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_300_idex",
+      "name": "reject_T0",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 250,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "T0"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_300_idex",
+      "name": "reject_G1 E1",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 250,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 E1"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_300_idex",
+      "name": "reject_M104 S200",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 250,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "M104 S200"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_300_idex",
+      "name": "reject_{% if tool %}",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 250,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "{% if tool %}"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_300_idex",
+      "name": "reject_G1 X99999",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 250,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 X99999"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_300_idex",
+      "name": "reject_SET_LED LED=chamber WHITE=2",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 250,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "SET_LED LED=chamber WHITE=2"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_400_corexy",
+      "name": "coordinates_and_white_chamber_light",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G21",
+        "G90",
+        "G1 X30 Y40 Z50 F600",
+        "G91",
+        "G1 X5 Y-10 Z-5",
+        "G90",
+        "SET_LED LED=chamber WHITE=0.3"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_41_400_corexy",
+        "pose": {
+          "x0": 35,
+          "x1": null,
+          "y": 30,
+          "z": 45
+        },
+        "mode": "independent",
+        "copy_offset_mm": 200,
+        "mirror_sum_mm": 400,
+        "lights": {
+          "chamber": 0.3,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": 600,
+        "rig": {
+          "machine_id": "ratrig_vcore_41_400_corexy",
+          "pose": {
+            "x0": 35,
+            "x1": null,
+            "y": 30,
+            "z": 45
+          },
+          "mode": "independent",
+          "copy_offset_mm": 200,
+          "mirror_sum_mm": 400,
+          "lights": {
+            "chamber": 0.3,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_400_corexy",
+      "name": "saved_cartesian_return",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G90",
+        "SAVE_GCODE_STATE NAME=fixture",
+        "G1 X50 Y60 Z70 F600",
+        "RESTORE_GCODE_STATE NAME=fixture MOVE=1 MOVE_SPEED=10"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_41_400_corexy",
+        "pose": {
+          "x0": 20,
+          "x1": null,
+          "y": 20,
+          "z": 30
+        },
+        "mode": "independent",
+        "copy_offset_mm": 200,
+        "mirror_sum_mm": 400,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_41_400_corexy",
+          "pose": {
+            "x0": 20,
+            "x1": null,
+            "y": 20,
+            "z": 30
+          },
+          "mode": "independent",
+          "copy_offset_mm": 200,
+          "mirror_sum_mm": 400,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_400_corexy",
+      "name": "reject_G28",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G28"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_400_corexy",
+      "name": "reject_T0",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "T0"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_400_corexy",
+      "name": "reject_G1 E1",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 E1"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_400_corexy",
+      "name": "reject_M104 S200",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "M104 S200"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_400_corexy",
+      "name": "reject_{% if tool %}",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "{% if tool %}"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_400_corexy",
+      "name": "reject_G1 X99999",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 X99999"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_400_corexy",
+      "name": "reject_SET_LED LED=chamber WHITE=2",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "SET_LED LED=chamber WHITE=2"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_400_hybrid",
+      "name": "coordinates_and_white_chamber_light",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G21",
+        "G90",
+        "G1 X30 Y40 Z50 F600",
+        "G91",
+        "G1 X5 Y-10 Z-5",
+        "G90",
+        "SET_LED LED=chamber WHITE=0.3"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_41_400_hybrid",
+        "pose": {
+          "x0": 35,
+          "x1": null,
+          "y": 30,
+          "z": 45
+        },
+        "mode": "independent",
+        "copy_offset_mm": 200,
+        "mirror_sum_mm": 400,
+        "lights": {
+          "chamber": 0.3,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": 600,
+        "rig": {
+          "machine_id": "ratrig_vcore_41_400_hybrid",
+          "pose": {
+            "x0": 35,
+            "x1": null,
+            "y": 30,
+            "z": 45
+          },
+          "mode": "independent",
+          "copy_offset_mm": 200,
+          "mirror_sum_mm": 400,
+          "lights": {
+            "chamber": 0.3,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_400_hybrid",
+      "name": "saved_cartesian_return",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G90",
+        "SAVE_GCODE_STATE NAME=fixture",
+        "G1 X50 Y60 Z70 F600",
+        "RESTORE_GCODE_STATE NAME=fixture MOVE=1 MOVE_SPEED=10"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_41_400_hybrid",
+        "pose": {
+          "x0": 20,
+          "x1": null,
+          "y": 20,
+          "z": 30
+        },
+        "mode": "independent",
+        "copy_offset_mm": 200,
+        "mirror_sum_mm": 400,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_41_400_hybrid",
+          "pose": {
+            "x0": 20,
+            "x1": null,
+            "y": 20,
+            "z": 30
+          },
+          "mode": "independent",
+          "copy_offset_mm": 200,
+          "mirror_sum_mm": 400,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_400_hybrid",
+      "name": "reject_G28",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G28"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_400_hybrid",
+      "name": "reject_T0",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "T0"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_400_hybrid",
+      "name": "reject_G1 E1",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 E1"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_400_hybrid",
+      "name": "reject_M104 S200",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "M104 S200"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_400_hybrid",
+      "name": "reject_{% if tool %}",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "{% if tool %}"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_400_hybrid",
+      "name": "reject_G1 X99999",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 X99999"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_400_hybrid",
+      "name": "reject_SET_LED LED=chamber WHITE=2",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "SET_LED LED=chamber WHITE=2"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_400_idex",
+      "name": "coordinates_and_white_chamber_light",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 350,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G21",
+        "G90",
+        "G1 X30 Y40 Z50 F600",
+        "G91",
+        "G1 X5 Y-10 Z-5",
+        "G90",
+        "SET_LED LED=chamber WHITE=0.3"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_41_400_idex",
+        "pose": {
+          "x0": 35,
+          "x1": 350,
+          "y": 30,
+          "z": 45
+        },
+        "mode": "independent",
+        "copy_offset_mm": 200,
+        "mirror_sum_mm": 400,
+        "lights": {
+          "chamber": 0.3,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": 600,
+        "rig": {
+          "machine_id": "ratrig_vcore_41_400_idex",
+          "pose": {
+            "x0": 35,
+            "x1": 350,
+            "y": 30,
+            "z": 45
+          },
+          "mode": "independent",
+          "copy_offset_mm": 200,
+          "mirror_sum_mm": 400,
+          "lights": {
+            "chamber": 0.3,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_400_idex",
+      "name": "saved_cartesian_return",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 350,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G90",
+        "SAVE_GCODE_STATE NAME=fixture",
+        "G1 X50 Y60 Z70 F600",
+        "RESTORE_GCODE_STATE NAME=fixture MOVE=1 MOVE_SPEED=10"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_41_400_idex",
+        "pose": {
+          "x0": 20,
+          "x1": 350,
+          "y": 20,
+          "z": 30
+        },
+        "mode": "independent",
+        "copy_offset_mm": 200,
+        "mirror_sum_mm": 400,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_41_400_idex",
+          "pose": {
+            "x0": 20,
+            "x1": 350,
+            "y": 20,
+            "z": 30
+          },
+          "mode": "independent",
+          "copy_offset_mm": 200,
+          "mirror_sum_mm": 400,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_400_idex",
+      "name": "extruder_selection_keeps_carriage",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 350,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "ACTIVATE_EXTRUDER EXTRUDER=extruder1",
+        "G90",
+        "G1 X30"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_41_400_idex",
+        "pose": {
+          "x0": 30,
+          "x1": 350,
+          "y": 20,
+          "z": 30
+        },
+        "mode": "independent",
+        "copy_offset_mm": 200,
+        "mirror_sum_mm": 400,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 1,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_41_400_idex",
+          "pose": {
+            "x0": 30,
+            "x1": 350,
+            "y": 20,
+            "z": 30
+          },
+          "mode": "independent",
+          "copy_offset_mm": 200,
+          "mirror_sum_mm": 400,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_400_idex",
+      "name": "copy_from_current_relative_offset",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 350,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G90",
+        "SET_DUAL_CARRIAGE CARRIAGE=1 MODE=COPY",
+        "G1 X30 Y40 Z50"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_41_400_idex",
+        "pose": {
+          "x0": 30,
+          "x1": 360,
+          "y": 40,
+          "z": 50
+        },
+        "mode": "copy",
+        "copy_offset_mm": 330,
+        "mirror_sum_mm": 370,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_41_400_idex",
+          "pose": {
+            "x0": 30,
+            "x1": 360,
+            "y": 40,
+            "z": 50
+          },
+          "mode": "copy",
+          "copy_offset_mm": 330,
+          "mirror_sum_mm": 370,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_400_idex",
+      "name": "mirror_from_current_relative_origin",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 350,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G90",
+        "SET_DUAL_CARRIAGE CARRIAGE=1 MODE=MIRROR",
+        "G1 X30 Y40 Z50",
+        "SET_LED LED=vaoc WHITE=1"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_41_400_idex",
+        "pose": {
+          "x0": 30,
+          "x1": 340,
+          "y": 40,
+          "z": 50
+        },
+        "mode": "mirror",
+        "copy_offset_mm": 330,
+        "mirror_sum_mm": 370,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 1
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_41_400_idex",
+          "pose": {
+            "x0": 30,
+            "x1": 340,
+            "y": 40,
+            "z": 50
+          },
+          "mode": "mirror",
+          "copy_offset_mm": 330,
+          "mirror_sum_mm": 370,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 1
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_400_idex",
+      "name": "primary_right_carriage",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 350,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "SET_DUAL_CARRIAGE CARRIAGE=1",
+        "G90",
+        "G1 X370 Y40 Z50"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_41_400_idex",
+        "pose": {
+          "x0": 20,
+          "x1": 370,
+          "y": 40,
+          "z": 50
+        },
+        "mode": "independent",
+        "copy_offset_mm": 200,
+        "mirror_sum_mm": 400,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 1,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_41_400_idex",
+          "pose": {
+            "x0": 20,
+            "x1": 370,
+            "y": 40,
+            "z": 50
+          },
+          "mode": "independent",
+          "copy_offset_mm": 200,
+          "mirror_sum_mm": 400,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_400_idex",
+      "name": "reject_G28",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 350,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G28"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_400_idex",
+      "name": "reject_T0",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 350,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "T0"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_400_idex",
+      "name": "reject_G1 E1",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 350,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 E1"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_400_idex",
+      "name": "reject_M104 S200",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 350,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "M104 S200"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_400_idex",
+      "name": "reject_{% if tool %}",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 350,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "{% if tool %}"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_400_idex",
+      "name": "reject_G1 X99999",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 350,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 X99999"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_400_idex",
+      "name": "reject_SET_LED LED=chamber WHITE=2",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 350,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "SET_LED LED=chamber WHITE=2"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_500_corexy",
+      "name": "coordinates_and_white_chamber_light",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G21",
+        "G90",
+        "G1 X30 Y40 Z50 F600",
+        "G91",
+        "G1 X5 Y-10 Z-5",
+        "G90",
+        "SET_LED LED=chamber WHITE=0.3"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_41_500_corexy",
+        "pose": {
+          "x0": 35,
+          "x1": null,
+          "y": 30,
+          "z": 45
+        },
+        "mode": "independent",
+        "copy_offset_mm": 250,
+        "mirror_sum_mm": 500,
+        "lights": {
+          "chamber": 0.3,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": 600,
+        "rig": {
+          "machine_id": "ratrig_vcore_41_500_corexy",
+          "pose": {
+            "x0": 35,
+            "x1": null,
+            "y": 30,
+            "z": 45
+          },
+          "mode": "independent",
+          "copy_offset_mm": 250,
+          "mirror_sum_mm": 500,
+          "lights": {
+            "chamber": 0.3,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_500_corexy",
+      "name": "saved_cartesian_return",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G90",
+        "SAVE_GCODE_STATE NAME=fixture",
+        "G1 X50 Y60 Z70 F600",
+        "RESTORE_GCODE_STATE NAME=fixture MOVE=1 MOVE_SPEED=10"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_41_500_corexy",
+        "pose": {
+          "x0": 20,
+          "x1": null,
+          "y": 20,
+          "z": 30
+        },
+        "mode": "independent",
+        "copy_offset_mm": 250,
+        "mirror_sum_mm": 500,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_41_500_corexy",
+          "pose": {
+            "x0": 20,
+            "x1": null,
+            "y": 20,
+            "z": 30
+          },
+          "mode": "independent",
+          "copy_offset_mm": 250,
+          "mirror_sum_mm": 500,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_500_corexy",
+      "name": "reject_G28",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G28"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_500_corexy",
+      "name": "reject_T0",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "T0"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_500_corexy",
+      "name": "reject_G1 E1",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 E1"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_500_corexy",
+      "name": "reject_M104 S200",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "M104 S200"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_500_corexy",
+      "name": "reject_{% if tool %}",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "{% if tool %}"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_500_corexy",
+      "name": "reject_G1 X99999",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 X99999"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_500_corexy",
+      "name": "reject_SET_LED LED=chamber WHITE=2",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "SET_LED LED=chamber WHITE=2"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_500_hybrid",
+      "name": "coordinates_and_white_chamber_light",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G21",
+        "G90",
+        "G1 X30 Y40 Z50 F600",
+        "G91",
+        "G1 X5 Y-10 Z-5",
+        "G90",
+        "SET_LED LED=chamber WHITE=0.3"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_41_500_hybrid",
+        "pose": {
+          "x0": 35,
+          "x1": null,
+          "y": 30,
+          "z": 45
+        },
+        "mode": "independent",
+        "copy_offset_mm": 250,
+        "mirror_sum_mm": 500,
+        "lights": {
+          "chamber": 0.3,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": 600,
+        "rig": {
+          "machine_id": "ratrig_vcore_41_500_hybrid",
+          "pose": {
+            "x0": 35,
+            "x1": null,
+            "y": 30,
+            "z": 45
+          },
+          "mode": "independent",
+          "copy_offset_mm": 250,
+          "mirror_sum_mm": 500,
+          "lights": {
+            "chamber": 0.3,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_500_hybrid",
+      "name": "saved_cartesian_return",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G90",
+        "SAVE_GCODE_STATE NAME=fixture",
+        "G1 X50 Y60 Z70 F600",
+        "RESTORE_GCODE_STATE NAME=fixture MOVE=1 MOVE_SPEED=10"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_41_500_hybrid",
+        "pose": {
+          "x0": 20,
+          "x1": null,
+          "y": 20,
+          "z": 30
+        },
+        "mode": "independent",
+        "copy_offset_mm": 250,
+        "mirror_sum_mm": 500,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_41_500_hybrid",
+          "pose": {
+            "x0": 20,
+            "x1": null,
+            "y": 20,
+            "z": 30
+          },
+          "mode": "independent",
+          "copy_offset_mm": 250,
+          "mirror_sum_mm": 500,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_500_hybrid",
+      "name": "reject_G28",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G28"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_500_hybrid",
+      "name": "reject_T0",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "T0"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_500_hybrid",
+      "name": "reject_G1 E1",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 E1"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_500_hybrid",
+      "name": "reject_M104 S200",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "M104 S200"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_500_hybrid",
+      "name": "reject_{% if tool %}",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "{% if tool %}"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_500_hybrid",
+      "name": "reject_G1 X99999",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 X99999"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_500_hybrid",
+      "name": "reject_SET_LED LED=chamber WHITE=2",
+      "initial_pose": {
+        "x0": 20,
+        "x1": null,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "SET_LED LED=chamber WHITE=2"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_500_idex",
+      "name": "coordinates_and_white_chamber_light",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 450,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G21",
+        "G90",
+        "G1 X30 Y40 Z50 F600",
+        "G91",
+        "G1 X5 Y-10 Z-5",
+        "G90",
+        "SET_LED LED=chamber WHITE=0.3"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_41_500_idex",
+        "pose": {
+          "x0": 35,
+          "x1": 450,
+          "y": 30,
+          "z": 45
+        },
+        "mode": "independent",
+        "copy_offset_mm": 250,
+        "mirror_sum_mm": 500,
+        "lights": {
+          "chamber": 0.3,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": 600,
+        "rig": {
+          "machine_id": "ratrig_vcore_41_500_idex",
+          "pose": {
+            "x0": 35,
+            "x1": 450,
+            "y": 30,
+            "z": 45
+          },
+          "mode": "independent",
+          "copy_offset_mm": 250,
+          "mirror_sum_mm": 500,
+          "lights": {
+            "chamber": 0.3,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_500_idex",
+      "name": "saved_cartesian_return",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 450,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G90",
+        "SAVE_GCODE_STATE NAME=fixture",
+        "G1 X50 Y60 Z70 F600",
+        "RESTORE_GCODE_STATE NAME=fixture MOVE=1 MOVE_SPEED=10"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_41_500_idex",
+        "pose": {
+          "x0": 20,
+          "x1": 450,
+          "y": 20,
+          "z": 30
+        },
+        "mode": "independent",
+        "copy_offset_mm": 250,
+        "mirror_sum_mm": 500,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_41_500_idex",
+          "pose": {
+            "x0": 20,
+            "x1": 450,
+            "y": 20,
+            "z": 30
+          },
+          "mode": "independent",
+          "copy_offset_mm": 250,
+          "mirror_sum_mm": 500,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_500_idex",
+      "name": "extruder_selection_keeps_carriage",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 450,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "ACTIVATE_EXTRUDER EXTRUDER=extruder1",
+        "G90",
+        "G1 X30"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_41_500_idex",
+        "pose": {
+          "x0": 30,
+          "x1": 450,
+          "y": 20,
+          "z": 30
+        },
+        "mode": "independent",
+        "copy_offset_mm": 250,
+        "mirror_sum_mm": 500,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 1,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_41_500_idex",
+          "pose": {
+            "x0": 30,
+            "x1": 450,
+            "y": 20,
+            "z": 30
+          },
+          "mode": "independent",
+          "copy_offset_mm": 250,
+          "mirror_sum_mm": 500,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_500_idex",
+      "name": "copy_from_current_relative_offset",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 450,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G90",
+        "SET_DUAL_CARRIAGE CARRIAGE=1 MODE=COPY",
+        "G1 X30 Y40 Z50"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_41_500_idex",
+        "pose": {
+          "x0": 30,
+          "x1": 460,
+          "y": 40,
+          "z": 50
+        },
+        "mode": "copy",
+        "copy_offset_mm": 430,
+        "mirror_sum_mm": 470,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_41_500_idex",
+          "pose": {
+            "x0": 30,
+            "x1": 460,
+            "y": 40,
+            "z": 50
+          },
+          "mode": "copy",
+          "copy_offset_mm": 430,
+          "mirror_sum_mm": 470,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_500_idex",
+      "name": "mirror_from_current_relative_origin",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 450,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G90",
+        "SET_DUAL_CARRIAGE CARRIAGE=1 MODE=MIRROR",
+        "G1 X30 Y40 Z50",
+        "SET_LED LED=vaoc WHITE=1"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_41_500_idex",
+        "pose": {
+          "x0": 30,
+          "x1": 440,
+          "y": 40,
+          "z": 50
+        },
+        "mode": "mirror",
+        "copy_offset_mm": 430,
+        "mirror_sum_mm": 470,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 1
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 0,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_41_500_idex",
+          "pose": {
+            "x0": 30,
+            "x1": 440,
+            "y": 40,
+            "z": 50
+          },
+          "mode": "mirror",
+          "copy_offset_mm": 430,
+          "mirror_sum_mm": 470,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 1
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_500_idex",
+      "name": "primary_right_carriage",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 450,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "SET_DUAL_CARRIAGE CARRIAGE=1",
+        "G90",
+        "G1 X470 Y40 Z50"
+      ],
+      "expected_rig_state": {
+        "machine_id": "ratrig_vcore_41_500_idex",
+        "pose": {
+          "x0": 20,
+          "x1": 470,
+          "y": 40,
+          "z": 50
+        },
+        "mode": "independent",
+        "copy_offset_mm": 250,
+        "mirror_sum_mm": 500,
+        "lights": {
+          "chamber": 0.5,
+          "vaoc": 0
+        }
+      },
+      "expected_gcode_state": {
+        "absolute": true,
+        "tool": 0,
+        "carriage": 1,
+        "offset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        },
+        "feedrate": null,
+        "rig": {
+          "machine_id": "ratrig_vcore_41_500_idex",
+          "pose": {
+            "x0": 20,
+            "x1": 470,
+            "y": 40,
+            "z": 50
+          },
+          "mode": "independent",
+          "copy_offset_mm": 250,
+          "mirror_sum_mm": 500,
+          "lights": {
+            "chamber": 0.5,
+            "vaoc": 0
+          }
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_500_idex",
+      "name": "reject_G28",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 450,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G28"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_500_idex",
+      "name": "reject_T0",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 450,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "T0"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_500_idex",
+      "name": "reject_G1 E1",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 450,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 E1"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_500_idex",
+      "name": "reject_M104 S200",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 450,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "M104 S200"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_500_idex",
+      "name": "reject_{% if tool %}",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 450,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "{% if tool %}"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_500_idex",
+      "name": "reject_G1 X99999",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 450,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "G1 X99999"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    },
+    {
+      "machine_id": "ratrig_vcore_41_500_idex",
+      "name": "reject_SET_LED LED=chamber WHITE=2",
+      "initial_pose": {
+        "x0": 20,
+        "x1": 450,
+        "y": 20,
+        "z": 30
+      },
+      "commands": [
+        "SET_LED LED=chamber WHITE=2"
+      ],
+      "expected": "error_without_state_change",
+      "status": "passed"
+    }
+  ]
+}

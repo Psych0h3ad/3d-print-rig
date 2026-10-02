@@ -1,4 +1,9 @@
+import {ratRigMessages,ratRigTemplates} from './ratrig-messages-en.mjs?v=ratrig-stock-1';
 export const messages = {
+ ...ratRigMessages,
+ "梁・レール・駆動部・専用ベルト経路のCAD組立。サイズと機種に合うガントリーを選び、専用キャリッジ付きヘッドと一緒にプリンターへ組み込めます。": "CAD assembly of beams, rails, drives and dedicated belt routes. Select a gantry for the printer family and size, then install it with a head on its dedicated carriage.",
+ "プリンターに組み込む": "Install in a printer",
+ "機体": "Printer",
  "SB · 組み合わせとプローブ取付部品": "SB · combinations and probe mounting parts",
 
  "ノズル高さに合わせた絶縁スペーサーでR2用プローブを取付。本体・ねじのクリアランスとコイル高さを確認。金属除外領域の干渉と元構成の制限は別途表示。": "R2 probe fitted with insulating spacers sized for the nozzle height. Body/screw clearance and coil height inspected; metal keepout conflicts and original assembly limitations reported separately.",
@@ -1136,6 +1141,7 @@ export const messages = {
 };
 
 export const templates = {
+ ...ratRigTemplates,
  "· ベッド基準位置の移動 {0} mm": "· Bed reference movement: {0} mm",
  "Zガイド上端で停止。ノズルまで {0} mm残るため、この取付位置では印刷できません。": "Stopped at the Z rail limit, with {0} mm still below the nozzle. This mounting position cannot print.",
  "ノズル接触面へのベッド移動 {0} mm。": "Bed movement to nozzle contact plane: {0} mm.",

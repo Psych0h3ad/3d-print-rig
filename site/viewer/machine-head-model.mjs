@@ -1,8 +1,8 @@
-import {headPlan} from './head-assembly.js?v=combinations-1';
+import {headPlan} from './head-assembly.js?v=ratrig-stock-1';
 
-import {translatedProbeFit} from './probe-checks.js?v=combinations-1';
+import {translatedProbeFit} from './probe-checks.js?v=ratrig-stock-1';
 
-import {withEmbeddedBoards} from './embedded-boards.mjs?v=combinations-1';
+import {withEmbeddedBoards} from './embedded-boards.mjs?v=ratrig-stock-1';
 
 const clone=value=>JSON.parse(JSON.stringify(value));
 const add=(a,b)=>a.map((v,i)=>v+b[i]);

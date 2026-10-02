@@ -1,4 +1,4 @@
-const bundleInfo=fetch(new URL('../ASSET_BUNDLE.json?v=combinations-1',import.meta.url),{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null);
+const bundleInfo=fetch(new URL('../ASSET_BUNDLE.json?v=ratrig-stock-1',import.meta.url),{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null);
 
 export async function modelURL(path){
  const url=new URL(path,location.href),info=await bundleInfo;

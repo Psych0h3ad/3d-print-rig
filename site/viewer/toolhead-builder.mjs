@@ -1,7 +1,7 @@
-import {collections,catalogDimensions} from './configuration-model.js?v=combinations-1';
-import {headPlan} from './head-assembly.js?v=combinations-1';
-import {appearanceRole} from './appearance-role.mjs?v=combinations-1';
-import {probeHasConflict} from './probe-checks.js?v=combinations-1';
+import {collections,catalogDimensions} from './configuration-model.js?v=ratrig-stock-1';
+import {headPlan} from './head-assembly.js?v=ratrig-stock-1';
+import {appearanceRole} from './appearance-role.mjs?v=ratrig-stock-1';
+import {probeHasConflict} from './probe-checks.js?v=ratrig-stock-1';
 
 const labels={toolhead:'ヘッド',extruder:'押出機',hotend:'ホットエンド',cooling:'冷却',mount:'取付・交換機構',gantry:'キャリッジ / ベルト幅',carriage:'キャリッジ本体',probe:'プローブ',board:'基板'};
 export function builderCandidates(catalog,filters={}){

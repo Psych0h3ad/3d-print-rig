@@ -1,5 +1,5 @@
 {
-  "viewer_version": "public-v30",
+  "viewer_version": "public-v31",
   "sources": [
     {
       "id": "siboor_trident",
@@ -1046,6 +1046,32 @@
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
       "version": "120: R1 v4 body + registered RC8 AntHead; 180: R1 RC8 root v98",
       "changes": "Placed native assemblies, display-only XYZ motion groups and material roles. Source-pose flexible parts only. Original contact candidates and rail limits remain disclosed. Not an exact LDO kit; LDO references remain uninstalled."
+    },
+    {
+      "id": "ratrig_vcore_4-0",
+      "label": "Rat Rig V-Core 4.0 stock assemblies",
+      "author": "Rat Rig; adaptations: 3D Print Rig",
+      "url": "https://wiki.ratrig.com/en/products/v-core-4-0/files",
+      "repository": "Rat Rig official CAD",
+      "version": "Per-machine official share revision / URN in RATRIG_ASSETS.json",
+      "scope": "300/400/500 mm CoreXY, Hybrid and IDEX stock assemblies; native CAD and Cartesian/light preview.",
+      "license": "CC BY-NC-SA 4.0 for vendor CAD and adaptations; component-specific terms retained.",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "changes": "Documented local topology/orientation adjustments and motion/appearance grouping. Original and prepared BREP retained. 4.0 300 IDEX is derived from official 300 Hybrid and official IDEX modules.",
+      "notice": "1.5 mm print sheet assumption; continuous cable preview with proposed service loops. No complete moving-body collision or firmware/hardware certification. Software license does not relicense CAD."
+    },
+    {
+      "id": "ratrig_vcore_4-1",
+      "label": "Rat Rig V-Core 4.1 stock assemblies",
+      "author": "Rat Rig; adaptations: 3D Print Rig",
+      "url": "https://wiki.ratrig.com/en/products/v-core-4-1/files",
+      "repository": "Rat Rig official CAD",
+      "version": "Per-machine official share revision / URN in RATRIG_ASSETS.json",
+      "scope": "300/400/500 mm CoreXY, Hybrid and IDEX stock assemblies; native CAD and Cartesian/light preview.",
+      "license": "CC BY-NC-SA 4.0 for vendor CAD and adaptations; component-specific terms retained.",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "changes": "Documented local topology/orientation adjustments and motion/appearance grouping. Original and prepared BREP retained. 4.0 300 IDEX is derived from official 300 Hybrid and official IDEX modules.",
+      "notice": "1.5 mm print sheet assumption; continuous cable preview with proposed service loops. No complete moving-body collision or firmware/hardware certification. Software license does not relicense CAD."
     }
   ],
   "defaults": [
@@ -1142,6 +1168,42 @@
     {
       "label": "SB · 組み合わせとプローブ取付部品",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v30/viewer-sb-probe-mounts.zip"
+    },
+    {
+      "label": "Rat Rig V / Core 40 / 300 mm · CoreXY/Hybrid/IDEX",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v31/ratrig-40-300-cad.zip",
+      "bytes": 563290345,
+      "sha256": "7208c29161f485791bb2922e987555a1392719983ad57308397b7b38e8231f18"
+    },
+    {
+      "label": "Rat Rig V / Core 40 / 400 mm · CoreXY/Hybrid/IDEX",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v31/ratrig-40-400-cad.zip",
+      "bytes": 638618118,
+      "sha256": "300426a9711a1288888eac71eb5cbd6c30b3649ac87c5925186dfd1dd7085ea5"
+    },
+    {
+      "label": "Rat Rig V / Core 40 / 500 mm · CoreXY/Hybrid/IDEX",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v31/ratrig-40-500-cad.zip",
+      "bytes": 692978253,
+      "sha256": "78aedb94ac4e1387e1abbe962a3f43a1391cb581f8a32342aea506d53cf9e82e"
+    },
+    {
+      "label": "Rat Rig V / Core 41 / 300 mm · CoreXY/Hybrid/IDEX",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v31/ratrig-41-300-cad.zip",
+      "bytes": 539208884,
+      "sha256": "76b10ccc4596446a1eeca5ce245bd8e54bc1f25d4a7e96722a4692a89edcf076"
+    },
+    {
+      "label": "Rat Rig V / Core 41 / 400 mm · CoreXY/Hybrid/IDEX",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v31/ratrig-41-400-cad.zip",
+      "bytes": 590192642,
+      "sha256": "b139ce1289bea6b6bfe1a788c21755a744aecbf68f17bf36b2e814ec7280d0c3"
+    },
+    {
+      "label": "Rat Rig V / Core 41 / 500 mm · CoreXY/Hybrid/IDEX",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v31/ratrig-41-500-cad.zip",
+      "bytes": 643965183,
+      "sha256": "24c3ebdd259038458845ca41c5f348128420e66a6ac02cc567fb11ce357b65e4"
     }
   ]
 }

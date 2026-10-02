@@ -1,4 +1,5 @@
-import {renderProductLinks} from './product-links.js?v=combinations-1';
+import {renderProductLinks} from './product-links.js?v=ratrig-stock-1';
+import {ratRigMachines} from './ratrig-machines.mjs?v=ratrig-stock-1';
 export const machineChoices=[
  {id:'siboor_trident_350',label:'SIBOOR Trident 350 · CNC AWD',page:'./'},
  ...[250,300,350].map(size=>({id:`voron_trident_${size}`,label:`VORON Trident ${size} · 標準プリント構造`,page:'./trident.html'})),
@@ -17,10 +18,12 @@ export const machineChoices=[
  {id:'fysetc_v24_250_pro',label:'FYSETC V2.4 R2 Pro · 公式CAD / 250',page:'./kit-reference.html'},
  ...[300,350].map(size=>({id:`fysetc_v24_${size}_pro`,label:`FYSETC V2.4 R2 Pro ${size} · サイズ別CAD未取得`,available:false,unavailable_reason:'取得した公式CADは250 mm基準です。このサイズの組立データは未登録です。'})),
  ...[250,300,350].map(size=>({id:`fysetc_trident_${size}`,label:`FYSETC Trident ${size} · 組立CAD未取得`,available:false,unavailable_reason:'FYSETC公式Trident資料を確認しましたが、組立CADはまだ取得できていません。'})),
+ ...ratRigMachines,
 ];
-const vendors={voron:'VORON / 標準',siboor:'SIBOOR',ldo:'LDO',fysetc:'FYSETC',pfa:'Printers for Ants'};
-const families={trident:'VORON Trident',v24:'VORON V2.4',v0:'VORON V0',micron:'Micron'};
+const vendors={voron:'VORON / 標準',siboor:'SIBOOR',ldo:'LDO',fysetc:'FYSETC',pfa:'Printers for Ants',ratrig:'Rat Rig'};
+const families={trident:'VORON Trident',v24:'VORON V2.4',v0:'VORON V0',micron:'Micron',vcore4:'V-Core 4'};
 for(const row of machineChoices){
+ if(row.family&&row.vendor&&row.size)continue;
  row.family=row.id.startsWith('micron_')?'micron':row.id.includes('trident')?'trident':row.id.includes('v24')?'v24':'v0';
  row.vendor=row.id.startsWith('micron_')?'pfa':row.id.startsWith('fysetc_')?'fysetc':row.id==='siboor_v24_350'?'voron':row.id.startsWith('siboor_')?'siboor':row.id.endsWith('_ldo_cnc')?'ldo':'voron';
  row.size=Number(row.id.match(/(?:^|_)(120|180|250|300|350)(?:_|$)/)?.[1]);

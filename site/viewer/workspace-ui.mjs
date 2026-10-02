@@ -1,5 +1,5 @@
 // Shared presentation layer. Existing controls, IDs and CAD controllers stay intact.
-import {setupLanguage,originalText} from './i18n.mjs?v=combinations-1';
+import {setupLanguage,originalText} from './i18n.mjs?v=ratrig-stock-1';
 const $ = selector => document.querySelector(selector);
 const node = (tag, className, text) => {
   const element = document.createElement(tag);

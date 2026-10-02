@@ -1,18 +1,18 @@
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=combinations-1';
-import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=combinations-1';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=ratrig-stock-1';
+import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=ratrig-stock-1';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=combinations-1';
-import {appearanceRole} from './appearance-role.mjs?v=combinations-1';
-import {partKey} from './head-assembly.js?v=combinations-1';
-import {v24HeadCatalog} from './machine-head-model.mjs?v=combinations-1';
-import {setupConfigurations} from './configurations.js?v=combinations-1';
+import {loadModel} from './model-loader.js?v=ratrig-stock-1';
+import {appearanceRole} from './appearance-role.mjs?v=ratrig-stock-1';
+import {partKey} from './head-assembly.js?v=ratrig-stock-1';
+import {v24HeadCatalog} from './machine-head-model.mjs?v=ratrig-stock-1';
+import {setupConfigurations} from './configurations.js?v=ratrig-stock-1';
 
-import {stockProbeFit} from './probe-mounts.js?v=combinations-1';
+import {stockProbeFit} from './probe-mounts.js?v=ratrig-stock-1';
 
-import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs?v=combinations-1';
-import {bankPlan} from './changer-bank-model.mjs?v=combinations-1';
-import {setupChangerBank} from './changer-bank.js?v=combinations-1';
+import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs?v=ratrig-stock-1';
+import {bankPlan} from './changer-bank-model.mjs?v=ratrig-stock-1';
+import {setupChangerBank} from './changer-bank.js?v=ratrig-stock-1';
 
 const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);
 export async function loadMachineHeadCatalog(){

@@ -1,0 +1,200 @@
+export const ratRigMachines=[
+  {
+    "id": "ratrig_vcore_40_300_corexy",
+    "label": "Rat Rig V-Core 4.0 300 · CoreXY",
+    "page": "./ratrig.html",
+    "family": "vcore4",
+    "vendor": "ratrig",
+    "size": 300,
+    "series": "v-core-4-0",
+    "mode": "corexy",
+    "stock_only": true
+  },
+  {
+    "id": "ratrig_vcore_40_300_hybrid",
+    "label": "Rat Rig V-Core 4.0 300 · Hybrid",
+    "page": "./ratrig.html",
+    "family": "vcore4",
+    "vendor": "ratrig",
+    "size": 300,
+    "series": "v-core-4-0",
+    "mode": "hybrid",
+    "stock_only": true
+  },
+  {
+    "id": "ratrig_vcore_40_300_idex",
+    "label": "Rat Rig V-Core 4.0 300 · IDEX",
+    "page": "./ratrig.html",
+    "family": "vcore4",
+    "vendor": "ratrig",
+    "size": 300,
+    "series": "v-core-4-0",
+    "mode": "idex",
+    "stock_only": true
+  },
+  {
+    "id": "ratrig_vcore_40_400_corexy",
+    "label": "Rat Rig V-Core 4.0 400 · CoreXY",
+    "page": "./ratrig.html",
+    "family": "vcore4",
+    "vendor": "ratrig",
+    "size": 400,
+    "series": "v-core-4-0",
+    "mode": "corexy",
+    "stock_only": true
+  },
+  {
+    "id": "ratrig_vcore_40_400_hybrid",
+    "label": "Rat Rig V-Core 4.0 400 · Hybrid",
+    "page": "./ratrig.html",
+    "family": "vcore4",
+    "vendor": "ratrig",
+    "size": 400,
+    "series": "v-core-4-0",
+    "mode": "hybrid",
+    "stock_only": true
+  },
+  {
+    "id": "ratrig_vcore_40_400_idex",
+    "label": "Rat Rig V-Core 4.0 400 · IDEX",
+    "page": "./ratrig.html",
+    "family": "vcore4",
+    "vendor": "ratrig",
+    "size": 400,
+    "series": "v-core-4-0",
+    "mode": "idex",
+    "stock_only": true
+  },
+  {
+    "id": "ratrig_vcore_40_500_corexy",
+    "label": "Rat Rig V-Core 4.0 500 · CoreXY",
+    "page": "./ratrig.html",
+    "family": "vcore4",
+    "vendor": "ratrig",
+    "size": 500,
+    "series": "v-core-4-0",
+    "mode": "corexy",
+    "stock_only": true
+  },
+  {
+    "id": "ratrig_vcore_40_500_hybrid",
+    "label": "Rat Rig V-Core 4.0 500 · Hybrid",
+    "page": "./ratrig.html",
+    "family": "vcore4",
+    "vendor": "ratrig",
+    "size": 500,
+    "series": "v-core-4-0",
+    "mode": "hybrid",
+    "stock_only": true
+  },
+  {
+    "id": "ratrig_vcore_40_500_idex",
+    "label": "Rat Rig V-Core 4.0 500 · IDEX",
+    "page": "./ratrig.html",
+    "family": "vcore4",
+    "vendor": "ratrig",
+    "size": 500,
+    "series": "v-core-4-0",
+    "mode": "idex",
+    "stock_only": true
+  },
+  {
+    "id": "ratrig_vcore_41_300_corexy",
+    "label": "Rat Rig V-Core 4.1 300 · CoreXY",
+    "page": "./ratrig.html",
+    "family": "vcore4",
+    "vendor": "ratrig",
+    "size": 300,
+    "series": "v-core-4-1",
+    "mode": "corexy",
+    "stock_only": true
+  },
+  {
+    "id": "ratrig_vcore_41_300_hybrid",
+    "label": "Rat Rig V-Core 4.1 300 · Hybrid",
+    "page": "./ratrig.html",
+    "family": "vcore4",
+    "vendor": "ratrig",
+    "size": 300,
+    "series": "v-core-4-1",
+    "mode": "hybrid",
+    "stock_only": true
+  },
+  {
+    "id": "ratrig_vcore_41_300_idex",
+    "label": "Rat Rig V-Core 4.1 300 · IDEX",
+    "page": "./ratrig.html",
+    "family": "vcore4",
+    "vendor": "ratrig",
+    "size": 300,
+    "series": "v-core-4-1",
+    "mode": "idex",
+    "stock_only": true
+  },
+  {
+    "id": "ratrig_vcore_41_400_corexy",
+    "label": "Rat Rig V-Core 4.1 400 · CoreXY",
+    "page": "./ratrig.html",
+    "family": "vcore4",
+    "vendor": "ratrig",
+    "size": 400,
+    "series": "v-core-4-1",
+    "mode": "corexy",
+    "stock_only": true
+  },
+  {
+    "id": "ratrig_vcore_41_400_hybrid",
+    "label": "Rat Rig V-Core 4.1 400 · Hybrid",
+    "page": "./ratrig.html",
+    "family": "vcore4",
+    "vendor": "ratrig",
+    "size": 400,
+    "series": "v-core-4-1",
+    "mode": "hybrid",
+    "stock_only": true
+  },
+  {
+    "id": "ratrig_vcore_41_400_idex",
+    "label": "Rat Rig V-Core 4.1 400 · IDEX",
+    "page": "./ratrig.html",
+    "family": "vcore4",
+    "vendor": "ratrig",
+    "size": 400,
+    "series": "v-core-4-1",
+    "mode": "idex",
+    "stock_only": true
+  },
+  {
+    "id": "ratrig_vcore_41_500_corexy",
+    "label": "Rat Rig V-Core 4.1 500 · CoreXY",
+    "page": "./ratrig.html",
+    "family": "vcore4",
+    "vendor": "ratrig",
+    "size": 500,
+    "series": "v-core-4-1",
+    "mode": "corexy",
+    "stock_only": true
+  },
+  {
+    "id": "ratrig_vcore_41_500_hybrid",
+    "label": "Rat Rig V-Core 4.1 500 · Hybrid",
+    "page": "./ratrig.html",
+    "family": "vcore4",
+    "vendor": "ratrig",
+    "size": 500,
+    "series": "v-core-4-1",
+    "mode": "hybrid",
+    "stock_only": true
+  },
+  {
+    "id": "ratrig_vcore_41_500_idex",
+    "label": "Rat Rig V-Core 4.1 500 · IDEX",
+    "page": "./ratrig.html",
+    "family": "vcore4",
+    "vendor": "ratrig",
+    "size": 500,
+    "series": "v-core-4-1",
+    "mode": "idex",
+    "stock_only": true
+  }
+];
