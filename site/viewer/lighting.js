@@ -1,10 +1,10 @@
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=ratrig-stock-1';
+import {loadModel} from './model-loader.js?v=probe-travel-32';
 import {RoomEnvironment} from './vendor/RoomEnvironment.js';
 import {RectAreaLightUniformsLib} from './vendor/RectAreaLightUniformsLib.js';
-import {lightingState} from './lighting-state.mjs?v=ratrig-stock-1';
-import {ledSample,ledEffects,createLedAnimator} from './lighting-animation.mjs?v=ratrig-stock-1';
+import {lightingState} from './lighting-state.mjs?v=probe-travel-32';
+import {ledSample,ledEffects,createLedAnimator} from './lighting-animation.mjs?v=probe-travel-32';
 
 export function setupLighting(scene,renderer,{registration={meta:'DISCO_MOD.json',glb:'Disco_on_a_Stick_XXL_350.glb',translation_mm:[0,0,0]},machine='siboor_trident_350',update=()=>{}}={}){
  const $=s=>document.querySelector(s);

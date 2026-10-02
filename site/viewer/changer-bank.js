@@ -1,4 +1,4 @@
-import {bankChoices,bankCapacity,normalizeBank,initialBank,readBankURL,bankBedReferenceDrop,bankSystem,bankSource,bankSpec,variantBankSystem,bankStateForVariant} from './changer-bank-model.mjs?v=ratrig-stock-1';
+import {bankChoices,bankCapacity,normalizeBank,initialBank,readBankURL,bankBedReferenceDrop,bankSystem,bankSource,bankSpec,variantBankSystem,bankStateForVariant} from './changer-bank-model.mjs?v=probe-travel-32';
 
 export function setupChangerBank({catalog,rig,data,extras={},before=document.querySelector('#configurationControls')}){
  if(!before)throw Error('ツールバンクの表示先がありません');

@@ -1,10 +1,10 @@
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=ratrig-stock-1';
-import {partKey} from './head-assembly.js?v=ratrig-stock-1';
-import {appearanceRole} from './appearance-role.mjs?v=ratrig-stock-1';
-import {withMonolithMachines,monolithPartDelta} from './monolith-machine-model.mjs?v=ratrig-stock-1';
-import {monolithBeltRoute,monolithBeltGeometry,monolithBeltTravelLimits} from './monolith-belts.mjs?v=ratrig-stock-1';
+import {loadModel} from './model-loader.js?v=probe-travel-32';
+import {partKey} from './head-assembly.js?v=probe-travel-32';
+import {appearanceRole} from './appearance-role.mjs?v=probe-travel-32';
+import {withMonolithMachines,monolithPartDelta} from './monolith-machine-model.mjs?v=probe-travel-32';
+import {monolithBeltRoute,monolithBeltGeometry,monolithBeltTravelLimits} from './monolith-belts.mjs?v=probe-travel-32';
 
 const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);
 let machineData;

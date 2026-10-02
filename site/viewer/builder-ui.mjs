@@ -1,5 +1,5 @@
-import {builderGroups,builderManifest,builderURL} from './toolhead-builder.mjs?v=ratrig-stock-1';
-import {monolithCompanion} from './monolith-head-model.mjs?v=ratrig-stock-1';
+import {builderGroups,builderManifest,builderURL} from './toolhead-builder.mjs?v=probe-travel-32';
+import {monolithCompanion} from './monolith-head-model.mjs?v=probe-travel-32';
 
 export function setupHeadBuilder(catalog,{getVariant,getMetadata,getExtras,pins,selectVariant,isBusy}){
  const $=id=>document.getElementById(id);

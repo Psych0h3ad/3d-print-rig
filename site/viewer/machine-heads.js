@@ -1,23 +1,32 @@
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=ratrig-stock-1';
-import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=ratrig-stock-1';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=probe-travel-32';
+import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=probe-travel-32';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=ratrig-stock-1';
-import {appearanceRole} from './appearance-role.mjs?v=ratrig-stock-1';
-import {partKey} from './head-assembly.js?v=ratrig-stock-1';
-import {v24HeadCatalog} from './machine-head-model.mjs?v=ratrig-stock-1';
-import {setupConfigurations} from './configurations.js?v=ratrig-stock-1';
+import {loadModel} from './model-loader.js?v=probe-travel-32';
+import {appearanceRole} from './appearance-role.mjs?v=probe-travel-32';
+import {partKey} from './head-assembly.js?v=probe-travel-32';
+import {v24HeadCatalog} from './machine-head-model.mjs?v=probe-travel-32';
+import {setupConfigurations} from './configurations.js?v=probe-travel-32';
 
-import {stockProbeFit} from './probe-mounts.js?v=ratrig-stock-1';
+import {stockProbeFit} from './probe-mounts.js?v=probe-travel-32';
 
-import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs?v=ratrig-stock-1';
-import {bankPlan} from './changer-bank-model.mjs?v=ratrig-stock-1';
-import {setupChangerBank} from './changer-bank.js?v=ratrig-stock-1';
+import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs?v=probe-travel-32';
+import {bankPlan} from './changer-bank-model.mjs?v=probe-travel-32';
+import {setupChangerBank} from './changer-bank.js?v=probe-travel-32';
+import {contentSHA256,acceptedMountValidation} from './mount-validation.mjs?v=probe-travel-32';
 
 const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);
-export async function loadMachineHeadCatalog(){
- const get=async name=>{const r=await fetch('../'+name,{cache:'no-cache'});if(!r.ok)throw Error('ヘッドの取付データを取得できません');return r.json()};
- const [heads,registry,bank]=await Promise.all([get('TOOLHEAD_CONFIGURATIONS.json'),get('MACHINE_HEAD_REGISTRATIONS.json'),get('TOOLCHANGER_BANK.json')]);heads.assets={...heads.assets,...bank.assets};const board=[xolEmbeddedBoard(await get(heads.base_assets.xol.meta)),sbEmbeddedBoard(await get(heads.base_assets.stealthburner.meta))];return {heads:withEmbeddedBoards(heads,board),registry,bank};
+export async function loadMachineHeadCatalog(machine){
+ const hashes={};
+ const get=async name=>{const r=await fetch('../'+name,{cache:'no-cache'});if(!r.ok)throw Error('ヘッドの取付データを取得できません');const text=await r.text();try{hashes[name]=await contentSHA256(text)}catch{/* Unsupported hashing leaves mounting evidence unverified. */}return JSON.parse(text)};
+ const [heads,registry,bank]=await Promise.all([get('TOOLHEAD_CONFIGURATIONS.json'),get('MACHINE_HEAD_REGISTRATIONS.json'),get('TOOLCHANGER_BANK.json')]);
+ if(machine){
+  try{
+   const evidence=await get('MOUNT_VALIDATION.json'),target=evidence.machines?.[machine];
+   if(target){const [bundle]=await Promise.all([get('ASSET_BUNDLE.json'),...Object.keys(target.input_sha256).map(get)]);registry.probe_travel_validation=acceptedMountValidation(evidence,hashes,bundle,machine)}
+  }catch{/* Missing or stale evidence leaves the original unverified state. */}
+ }
+ heads.assets={...heads.assets,...bank.assets};const board=[xolEmbeddedBoard(await get(heads.base_assets.xol.meta)),sbEmbeddedBoard(await get(heads.base_assets.stealthburner.meta))];return {heads:withEmbeddedBoards(heads,board),registry,bank};
 }
 export function createMachineHeads(scene,catalog,{render=()=>{}}={}){
  const gantry=createMonolithGantry(scene,catalog);
@@ -67,7 +76,7 @@ export function ensureMachineHeadControls({gantry=false,monolithUnavailable}={})
  return panel;
 }
 export async function setupV24MachineHeads({machine,profile,adapter,scene,render,applyPose,beforeInstall=async()=>{},stockProbes=[],onChange=()=>{}}){
- const data=await loadMachineHeadCatalog(),{heads,registry,bank}=data;let catalog=v24HeadCatalog(heads,registry,machine);const binding=registry.machines[machine];catalog.bank_data=bank;if(!binding)throw Error('機種のヘッド取付データがありません');
+ const data=await loadMachineHeadCatalog(machine),{heads,registry,bank}=data;let catalog=v24HeadCatalog(heads,registry,machine);const binding=registry.machines[machine];catalog.bank_data=bank;if(!binding)throw Error('機種のヘッド取付データがありません');
  const stock={reference:[...profile.display_reference_xyz_mm],tip:[...profile.nozzle_tip_mm],limits:JSON.parse(JSON.stringify(profile.display_limits_mm)),clearance:document.querySelector('#clearanceStatus')?.textContent};
  const probes=stockProbes.length?stockProbes:[{id:'stock_panasonic',label:'標準Panasonic'},{id:'none',label:'プローブなし',hidden_stock_keys:binding.stock_probe_keys||[]}];
  for(const p of probes)if(!catalog.probes.some(v=>v.id===p.id))catalog.probes.push({id:p.id,label:p.label});

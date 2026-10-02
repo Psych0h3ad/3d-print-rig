@@ -1,27 +1,27 @@
-import {loadMonolithMachines,stockGantryVisibility} from './monolith-machine.js?v=ratrig-stock-1';
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=ratrig-stock-1';
-import {bankBedReferenceDrop} from './changer-bank-model.mjs?v=ratrig-stock-1';
-import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=ratrig-stock-1';
-import {appearanceRole} from './appearance-role.mjs?v=ratrig-stock-1';
+import {loadMonolithMachines,stockGantryVisibility} from './monolith-machine.js?v=probe-travel-32';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=probe-travel-32';
+import {bankBedReferenceDrop} from './changer-bank-model.mjs?v=probe-travel-32';
+import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=probe-travel-32';
+import {appearanceRole} from './appearance-role.mjs?v=probe-travel-32';
 import * as THREE from 'three';
-import {loadFrameMods,withFrameMods} from './frame-mods.js?v=ratrig-stock-1';
-import {setupLighting} from './lighting.js?v=ratrig-stock-1';
-import {setupGrid} from './grid-control.js?v=ratrig-stock-1';
+import {loadFrameMods,withFrameMods} from './frame-mods.js?v=probe-travel-32';
+import {setupLighting} from './lighting.js?v=probe-travel-32';
+import {setupGrid} from './grid-control.js?v=probe-travel-32';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=ratrig-stock-1';
-import {setupMachineNavigation} from './machines.js?v=ratrig-stock-1';
-import {setupConfigurations} from './configurations.js?v=ratrig-stock-1';
-import {setupAccessories} from './accessories.js?v=ratrig-stock-1';
-import {setupPublicInfo} from './public-info.js?v=ratrig-stock-1';
-import {setupRenderExport} from './render-export.js?v=ratrig-stock-1';
-import {createTridentMotion} from './trident-motion.mjs?v=ratrig-stock-1';
-import {headPlan,partKey} from './head-assembly.js?v=ratrig-stock-1';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=ratrig-stock-1';
-import {setupChangerBank} from './changer-bank.js?v=ratrig-stock-1';
-import {expandedPrinterCatalog} from './machine-head-model.mjs?v=ratrig-stock-1';
-import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=ratrig-stock-1';
-import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=ratrig-stock-1';
+import {loadModel} from './model-loader.js?v=probe-travel-32';
+import {setupMachineNavigation} from './machines.js?v=probe-travel-32';
+import {setupConfigurations} from './configurations.js?v=probe-travel-32';
+import {setupAccessories} from './accessories.js?v=probe-travel-32';
+import {setupPublicInfo} from './public-info.js?v=probe-travel-32';
+import {setupRenderExport} from './render-export.js?v=probe-travel-32';
+import {createTridentMotion} from './trident-motion.mjs?v=probe-travel-32';
+import {headPlan,partKey} from './head-assembly.js?v=probe-travel-32';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=probe-travel-32';
+import {setupChangerBank} from './changer-bank.js?v=probe-travel-32';
+import {expandedPrinterCatalog} from './machine-head-model.mjs?v=probe-travel-32';
+import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=probe-travel-32';
+import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=probe-travel-32';
 const requestedMachine=new URL(location.href).searchParams.get('machine');
 const machine=/^voron_trident_(250|300|350)$/.test(requestedMachine)?requestedMachine:'voron_trident_350',size=Number(machine.split('_').at(-1)),gantryId='trident_r2_gantry_'+size,referenceOffset=(size-350)/2;
 setupMachineNavigation(machine);document.querySelector('h1').textContent='Trident / '+size;setupPublicInfo();
@@ -74,12 +74,12 @@ async function install(variant){program?.invalidate();const plan=headPlan(varian
  if(!variant.machine_gantry){const gantry=await asset(gantryId);gantry.root.visible=true;}
  $('#badge').textContent=`VORON TRIDENT ${size} · ${variant.machine_gantry?'Monolith · ':''}XY ${variant.belt_width_mm} mm`;
  if(variant.machine_head){
-  const refs=await fetch('../R2_ENDSTOP_REGISTRATION.json?v=ratrig-stock-1').then(r=>r.json()),ref=refs.heads.stealthburner;motion.setReference(variant.machine_gantry?[...variant.machine_head.nozzle_mm.slice(0,2).map((n,i)=>n-variant.machine_gantry.bed_min_xy_mm[i]),0]:[ref.X.cad_reference_display_coordinate_mm+referenceOffset,ref.Y.cad_reference_display_coordinate_mm+referenceOffset,0]);motion.setBedReferenceDrop(variant.fit.bed_reference_drop_mm||0);active=variant;accessories?.refresh();paletteApply();applyPose();
+  const refs=await fetch('../R2_ENDSTOP_REGISTRATION.json?v=probe-travel-32').then(r=>r.json()),ref=refs.heads.stealthburner;motion.setReference(variant.machine_gantry?[...variant.machine_head.nozzle_mm.slice(0,2).map((n,i)=>n-variant.machine_gantry.bed_min_xy_mm[i]),0]:[ref.X.cad_reference_display_coordinate_mm+referenceOffset,ref.Y.cad_reference_display_coordinate_mm+referenceOffset,0]);motion.setBedReferenceDrop(variant.fit.bed_reference_drop_mm||0);active=variant;accessories?.refresh();paletteApply();applyPose();
   const url=new URL('./toolheads.html',location.href);url.searchParams.set('configuration',variant.source_head_configuration);$('#toolheadLink').href=url.href;document.body.dataset.configuration=variant.id;document.body.dataset.ready='true';return;
  }
  const base=await asset(plan.base);base.root.visible=true;base.root.position.copy(point(plan.translation));for(const r of base.records)r.mesh.visible=!plan.hidden.has(r.key);
  for(const module of plan.modules){const a=await asset(module.id),hidden=new Set(module.hidden_keys||[]);a.root.visible=true;a.root.position.copy(point(module.translation_mm));for(const r of a.records)r.mesh.visible=!hidden.has(r.key)}
- const endstops=await fetch('../R2_ENDSTOP_REGISTRATION.json?v=ratrig-stock-1').then(r=>r.json()),ref=endstops.heads[variant.toolhead==='xol'?(variant.hotend==='rapido2_uhf'?'xol':'xol_standard'):'stealthburner'];
+ const endstops=await fetch('../R2_ENDSTOP_REGISTRATION.json?v=probe-travel-32').then(r=>r.json()),ref=endstops.heads[variant.toolhead==='xol'?(variant.hotend==='rapido2_uhf'?'xol':'xol_standard'):'stealthburner'];
  motion.setReference([ref.X.cad_reference_display_coordinate_mm+referenceOffset,ref.Y.cad_reference_display_coordinate_mm+referenceOffset,0]);motion.setBedReferenceDrop(variant.fit.bed_reference_drop_mm||0);active=variant;accessories?.refresh();applyPose();
  const url=new URL('./toolheads.html',location.href);url.searchParams.set('configuration',variant.id);$('#toolheadLink').href=url;
  $('#badge').textContent=`VORON TRIDENT ${size} · XY 6 mm`;document.body.dataset.configuration=variant.id;

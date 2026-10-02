@@ -1,5 +1,5 @@
-import {appearanceRole} from './appearance-role.mjs?v=ratrig-stock-1';
-import {createV0Belts} from './v0-belts.mjs?v=ratrig-stock-1';
+import {appearanceRole} from './appearance-role.mjs?v=probe-travel-32';
+import {createV0Belts} from './v0-belts.mjs?v=probe-travel-32';
 /** V0: fixed-Z CoreXY gantry, Y beam, XY toolhead, single downward-moving bed. */
 export const cadToGlb = ([x,y,z]) => [x/1000,z/1000,-y/1000];
 export function poseDelta(profile, pose, {allowFirmwareOvertravel=false,requireClearanceEnvelope=false}={}) {

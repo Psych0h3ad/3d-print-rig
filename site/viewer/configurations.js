@@ -1,7 +1,7 @@
-import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=ratrig-stock-1';
-import {catalogDimensions,collections,resolveVariant,choicesFor,choiceChanges,importedVariant,configurationById} from './configuration-model.js?v=ratrig-stock-1';
-import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=ratrig-stock-1';
-import {renderProductLinks} from './product-links.js?v=ratrig-stock-1';
+import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=probe-travel-32';
+import {catalogDimensions,collections,resolveVariant,choicesFor,choiceChanges,importedVariant,configurationById} from './configuration-model.js?v=probe-travel-32';
+import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=probe-travel-32';
+import {renderProductLinks} from './product-links.js?v=probe-travel-32';
 
 export async function setupConfigurations(catalog,install,{presentation='printer',getExtras=()=>({}),applyExtras=async()=>{},validateExtras=()=>{},onSettled=()=>{}}={}){
  const $=s=>document.querySelector(s);

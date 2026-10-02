@@ -24,6 +24,7 @@ export function translatedProbeFit(probe,shift){
  const result={...probe};
  if(point(probe.coil_bottom_mm))result.coil_bottom_mm=probe.coil_bottom_mm.map((v,i)=>v+shift[i]);
  if(Array.isArray(probe.metal_keepout_bounds_mm))result.metal_keepout_bounds_mm=probe.metal_keepout_bounds_mm.map(p=>point(p)?p.map((v,i)=>v+shift[i]):p);
+ delete result.rigid_machine_travel;
  result.machine_environment_verified=false;return result;
 }
 export function probeCheck(variant){
@@ -49,7 +50,11 @@ export function probeCheck(variant){
  else if(a.metal){state='metal-conflict';label='金属除外領域に干渉'}
  else if(!a.measuredChecks){state='unverified';label='原本プローブ · 取付条件未確認';lines.push('形状の表示だけでは取付適合を判定できません。コイル基準面・設置高さ・本体干渉を確認してください。')}
  if(!a.metalVerified){if(state==='geometry-checked'){state='unverified';label='形状・高さ確認済み／金属領域未確認'}lines.push('付属基板の金属除外領域は未確認です。')}
- if(p.machine_environment_verified===false){if(state==='geometry-checked'){state='unverified';label='ヘッド内の検査のみ／機体側未検証'}lines.push('機体への移設後、周辺フレーム・ベルト・全可動域の干渉は未検証です。')}
+ if(p.rigid_machine_travel?.state==='clear'){
+  if(state==='geometry-checked'){state='rigid-travel-checked';label='プローブの剛体可動域確認済み'}
+  lines.push('プローブ本体・マウント・ねじと標準機体の剛体部品、および機体側の金属除外領域をXYZ表示範囲全域で照合済み。');
+  lines.push('追加Mod・ヘッド本体・可動ベルト・配線・ホーミング・ドッキング・実機センシングはこの検査に含みません。');
+ }else if(p.machine_environment_verified===false){if(state==='geometry-checked'){state='unverified';label='ヘッド内の検査のみ／機体側未検証'}lines.push('機体への移設後、周辺フレーム・ベルト・全可動域の干渉は未検証です。')}
  lines.push(...(p.notes||[]));
  return {state,label,warning:state!=='geometry-checked',lines};
 }
@@ -72,6 +77,7 @@ export function probeMetrics(variant){
  if(Number.isFinite(p.minimum_probe_bed_clearance_at_nozzle_contact_mm))rows.push(['最下部／ベッド',`${mm(p.minimum_probe_bed_clearance_at_nozzle_contact_mm)} mm`]);
  if(p.spacer_mm)rows.push(['絶縁スペーサー',`${p.spacer_mm.toFixed(1)} mm × 2`]);
  if(p.nearest_hotend_to_board)rows.push(['基板／ホットエンド',`${mm(p.nearest_hotend_to_board.distance_mm)} mm`]);
+ if(p.rigid_machine_travel?.state==='clear')rows.push(['機体側／剛体可動域','確認済み（プローブ）']);
  return rows;
 }
 export function probeGuide(variant){

@@ -1,6 +1,6 @@
-import {monolithHeadCatalog} from './monolith-head-model.mjs?v=ratrig-stock-1';
-import {machinePage} from './machines.js?v=ratrig-stock-1';
-import {machineHeadVariants} from './machine-head-model.mjs?v=ratrig-stock-1';
+import {monolithHeadCatalog} from './monolith-head-model.mjs?v=probe-travel-32';
+import {machinePage} from './machines.js?v=probe-travel-32';
+import {machineHeadVariants} from './machine-head-model.mjs?v=probe-travel-32';
 
 export function headPrinterLink(variant,registry,href){
  const source=new URL(href),preferred=source.searchParams.get('return_machine');

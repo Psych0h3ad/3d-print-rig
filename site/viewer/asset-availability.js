@@ -1,8 +1,8 @@
-import {setupPublicInfo} from './public-info.js?v=ratrig-stock-1';
-import {modelURL} from './model-loader.js?v=ratrig-stock-1';
+import {setupPublicInfo} from './public-info.js?v=probe-travel-32';
+import {modelURL} from './model-loader.js?v=probe-travel-32';
 
 const files={
-  siboor_trident_350:['../assembly_manifest.json?v=ratrig-stock-1','../ASSEMBLY_CONFIGURATIONS.json?v=ratrig-stock-1','../SIBOOR_Trident_350.glb'],
+  siboor_trident_350:['../assembly_manifest.json?v=probe-travel-32','../ASSEMBLY_CONFIGURATIONS.json?v=probe-travel-32','../SIBOOR_Trident_350.glb'],
   siboor_v24_350:['../machines/siboor_v24_350/assembly_manifest.json','../machines/siboor_v24_350/machine_profile.json','../machines/siboor_v24_350/model.glb'],
 };
 export async function machineAssetsAvailable(machine){

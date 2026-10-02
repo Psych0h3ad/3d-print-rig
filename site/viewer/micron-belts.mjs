@@ -1,4 +1,4 @@
-import {circleBeltRoute,beltGeometry} from './v0-belts.mjs?v=ratrig-stock-1';
+import {circleBeltRoute,beltGeometry} from './v0-belts.mjs?v=probe-travel-32';
 
 // Original RC8 belt-face arcs, CAD mm: PrintersForAnts/Micron f76aa287.
 // Each loop has two Y-moving contacts; every XY contact follows the Z gantry.

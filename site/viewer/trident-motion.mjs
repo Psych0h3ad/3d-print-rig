@@ -1,4 +1,4 @@
-import {createTridentBelts} from './trident-belts.mjs?v=ratrig-stock-1';
+import {createTridentBelts} from './trident-belts.mjs?v=probe-travel-32';
 import {createBedChain,isTridentBedChain} from './bed-chain.mjs?v=public-v25';
 /** Independent Trident bed motion. Vertices carry their CAD placements. */
 export function createTridentMotion(profile){

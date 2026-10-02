@@ -1,6 +1,13 @@
-import {ratRigMessages,ratRigTemplates} from './ratrig-messages-en.mjs?v=ratrig-stock-1';
+import {ratRigMessages,ratRigTemplates} from './ratrig-messages-en.mjs?v=probe-travel-32';
 export const messages = {
  ...ratRigMessages,
+ "プローブの剛体可動域確認済み": "Probe rigid-body travel checked",
+ "プローブ本体・マウント・ねじと標準機体の剛体部品、および機体側の金属除外領域をXYZ表示範囲全域で照合済み。": "Probe body, mount and screws checked against stock rigid machine parts, including the machine-side metal keepout, throughout the displayed XYZ travel.",
+ "追加Mod・ヘッド本体・可動ベルト・配線・ホーミング・ドッキング・実機センシングはこの検査に含みません。": "Additional mods, head body, moving belts, cables, homing, docking and physical sensing are outside this check.",
+ "機体側／剛体可動域": "Machine / rigid-body travel",
+ "確認済み（プローブ）": "Checked (probe)",
+ "MGN12の取付軸で機体に配置。ヘッド全体の可動域・ホーミング接点・配線・ドッキングは未検証。": "Placed on the printer using MGN12 mounting axes. Complete head travel, homing contacts, cables and docking remain unverified.",
+ "MGN12の取付面と4本の穴軸でVORON機体へ配置。プローブはヘッド内の取付形状・高さを確認。": "Placed on the VORON machine using the MGN12 face and four screw axes. Probe mounting and height inspected within the head.",
  "梁・レール・駆動部・専用ベルト経路のCAD組立。サイズと機種に合うガントリーを選び、専用キャリッジ付きヘッドと一緒にプリンターへ組み込めます。": "CAD assembly of beams, rails, drives and dedicated belt routes. Select a gantry for the printer family and size, then install it with a head on its dedicated carriage.",
  "プリンターに組み込む": "Install in a printer",
  "機体": "Printer",
