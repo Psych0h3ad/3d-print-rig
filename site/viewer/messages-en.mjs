@@ -1098,7 +1098,10 @@ export const messages = {
  "Monolithベルト：非表示": "Monolith belts: hidden",
  "ベッド固定 · ヘッドXY・MonolithガントリーとZガイド8個がZ＋へ追従": "Fixed bed · XY head, Monolith gantry and eight Z bearings follow positive Z",
  "250/300/350 mm、VT/V2、Printed/Sheet metal、6/9 mm、2WD/AWDの48構成。Trident4機種とV2.4の7機種へ固定Sphinx・専用StealthChangerを配置。": "48 gantries: 250/300/350 mm, VT/V2, printed/sheet metal, 6/9 mm and 2WD/AWD. Fixed Sphinx and dedicated StealthChanger carriers are registered in four Trident and seven V2.4 views.",
- "剛体部品は原寸で配置。梁の断面とレール穴周期を保持して長さを変更。ネジは実測した各穴軸へ配置。V2のYガイド位置とNP後梁のM5/Tスロット基準を登録。ガイドのレール内包含からヘッド別XYZ表示範囲を計算。可動ベルトは原本経路を保つ滑らかな帯で、クランプ内部・歯・張力・全域干渉・ドッキングは未検証。": "Rigid hardware retains its original dimensions. Beam sections and rail-hole periods are preserved, with screws on measured hole axes. V2 Y-bearing poses and NP rear-frame M5/T-slot datums are registered. Native rail containment sets head-dependent XYZ limits. Moving belts retain source paths as smooth strips; internal clamp returns, teeth, tension, full travel collisions and docking are unverified."
+ "剛体部品は原寸で配置。梁の断面とレール穴周期を保持して長さを変更。ネジは実測した各穴軸へ配置。V2のYガイド位置とNP後梁のM5/Tスロット基準を登録。ガイドのレール内包含からヘッド別XYZ表示範囲を計算。可動ベルトは原本経路を保つ滑らかな帯で、クランプ内部・歯・張力・全域干渉・ドッキングは未検証。": "Rigid hardware retains its original dimensions. Beam sections and rail-hole periods are preserved, with screws on measured hole axes. V2 Y-bearing poses and NP rear-frame M5/T-slot datums are registered. Native rail containment sets head-dependent XYZ limits. Moving belts retain source paths as smooth strips; internal clamp returns, teeth, tension, full travel collisions and docking are unverified.",
+ "ベッド固定 · Monolithの8個のZガイドとガントリーがZ＋へ追従": "Fixed bed · the Monolith gantry and eight Z bearings follow positive Z",
+ "MonolithのXYベルトはヘッド・Y軸・ガントリーの移動に追従します。クランプ内部・歯・張力は未再現です。": "Monolith XY belts follow the head, Y beam and gantry. Internal clamp returns, teeth and tension are not simulated.",
+ "ベッド固定 · Monolithの8個のZガイド・ガントリー・XYベルトが追従": "Fixed bed · eight Monolith Z bearings, gantry and XY belts follow motion"
 };
 
 export const templates = {
@@ -1182,5 +1185,6 @@ export const templates = {
  "· ドックとの接触を避けるベッド表示補正 {0} mm": "· Bed preview lowered {0} mm to avoid dock contact",
  "ベッド表示補正 {0} mm。ドッキング動作は未検証。": "Bed preview lowered {0} mm. Docking motion remains unverified.",
  "Monolithの{0}ガイド可動範囲が不正です": "Monolith {0} guide limits are invalid",
- "このヘッドとガイドでは機体の表示範囲に届きません": "This head and guide assembly cannot reach the printer display range"
+ "このヘッドとガイドでは機体の表示範囲に届きません": "This head and guide assembly cannot reach the printer display range",
+ "Zを上げるとMonolithガントリーと8個のガイドブロックが上がります。XY {0} mm。": "Raising Z moves the Monolith gantry and all eight guide blocks. XY belts: {0} mm."
 };

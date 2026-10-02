@@ -1040,8 +1040,8 @@
     },
     {
       "path": "site/viewer/messages-en.mjs",
-      "bytes": 141192,
-      "sha256": "a6f7ad4b665053ea2296fb9679aed080dc0959cf473928c4cacbbe3cb0a2699f"
+      "bytes": 141982,
+      "sha256": "0c4e3d98cfb9c176e73eecd93b7b96dbbe3533e3c377105a2d87f88f3353416b"
     },
     {
       "path": "site/viewer/micron-adapter.mjs",
