@@ -36,7 +36,10 @@ const metal={...clear,id:'metal',fit:{...clear.fit,probe:{...clear.fit.probe,met
 const without={...clear,id:'without',probe:'none',fit:{nozzle_mm:clear.fit.nozzle_mm}};
 for(const conflict of [bed,metal]){
  assert(probeHasConflict(conflict));assert(probeCheck(conflict).warning);
- const choices={variants:[conflict,without]};assert.equal(resolveVariant(choices,{...conflict,hotend:'hf'},'hotend'),without);
+ const choices={variants:[conflict,without]};
+ // A different source ID models a real head change; unchanged selection stays explicit.
+ assert.equal(resolveVariant(choices,{...conflict,id:'previous',hotend:'hf'},'hotend'),without);
+ assert.equal(resolveVariant(choices,conflict,'hotend'),conflict);
  assert.equal(resolveVariant(choices,{...without,probe:'kit_cartographer'},'probe'),conflict);
  assert.equal(importedVariant(choices,{configuration:conflict.id}),conflict);
 }

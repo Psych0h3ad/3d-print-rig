@@ -1,10 +1,17 @@
-import {probeHasConflict} from './probe-checks.js?v=public-v18-probe1';
+import {probeHasConflict} from './probe-checks.js?v=public-v19';
 export const dimensions=['gantry','toolhead','carriage','hotend','extruder','probe'];
 export const collections={gantry:'gantries',toolhead:'toolheads',mount:'mounts',carriage:'carriages',hotend:'hotends',extruder:'extruders',probe:'probes',board:'boards',cooling:'cooling_options'};
 export const catalogDimensions=catalog=>catalog.dimensions||dimensions;
+// Match registered source IDs used by standalone head links; never guess an ID.
+export function configurationById(catalog,id){
+ return catalog.variants.find(v=>v.id===id)||catalog.variants.find(v=>v.source_head_configuration===id);
+}
+export const headBuilderDimensions=['toolhead','extruder','hotend','cooling','mount','gantry','carriage','probe','board'];
 
 // The changed choice has priority; all results must have installed CAD.
 export function resolveVariant(catalog,selection,changed){
+ const exact=catalog.variants.find(v=>catalogDimensions(catalog).every(k=>v[k]===selection[k]));
+ if(exact&&(!changed||exact.id===selection.id))return exact;
  const candidates=catalog.variants.filter(v=>!changed||v[changed]===selection[changed]);
  let best=null,bestScore=-1;
  for(const v of candidates){

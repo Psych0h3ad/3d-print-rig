@@ -1,14 +1,14 @@
-import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=public-v18-probe1';
-import {appearanceRole} from './appearance-role.mjs?v=public-v18-probe1';
+import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=public-v19';
+import {appearanceRole} from './appearance-role.mjs?v=public-v19';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=public-v18-probe1';
-import {createV0Adapter} from './v0_adapter.mjs?v=public-v18-probe1';
-import {setupMachineNavigation} from './machines.js?v=public-v18-probe1';
-import {setupGrid} from './grid-control.js?v=public-v18-probe1';
-import {setupRenderExport} from './render-export.js?v=public-v18-probe1';
-import {setupPublicInfo} from './public-info.js?v=public-v18-probe1';
+import {loadModel} from './model-loader.js?v=public-v19';
+import {createV0Adapter} from './v0_adapter.mjs?v=public-v19';
+import {setupMachineNavigation} from './machines.js?v=public-v19';
+import {setupGrid} from './grid-control.js?v=public-v19';
+import {setupRenderExport} from './render-export.js?v=public-v19';
+import {setupPublicInfo} from './public-info.js?v=public-v19';
 const $=s=>document.querySelector(s),ids=['voron_v02r1_120','voron_v02_120'];
 const wanted=new URLSearchParams(location.search).get('machine'),id=ids.includes(wanted)?wanted:ids[0];
 setupMachineNavigation(id);setupPublicInfo({includeDownloads:false});
@@ -29,7 +29,7 @@ function applyPose(){if(!adapter)return;const pose=adapter.setPose(Object.fromEn
  document.body.dataset.pose=JSON.stringify(pose);document.body.dataset.flexibleVisible=String(pose.belts_visible);document.body.dataset.chainVisible=String(pose.chain_visible);render();}
 try{
  const root='../machines/'+id+'/',json=async name=>{const r=await fetch(root+name,{cache:'no-cache'});if(!r.ok)throw Error(name+'の読込に失敗');return r.json()};
- const [manifest,p,g,library]=await Promise.all([json('assembly_manifest.json'),json('machine_profile.json'),loadModel(new GLTFLoader(),root+'model.glb'),fetch('../COMPONENT_LIBRARY.json?v=public-v18-probe1',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('Modカタログ');return r.json()})]);
+ const [manifest,p,g,library]=await Promise.all([json('assembly_manifest.json'),json('machine_profile.json'),loadModel(new GLTFLoader(),root+'model.glb'),fetch('../COMPONENT_LIBRARY.json?v=public-v19',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('Modカタログ');return r.json()})]);
  profile=p;scene.add(g.scene);adapter=createV0Adapter(g.scene,manifest,profile);const originals=new Map(),protectedMaterials=[];
  for(const [key,node] of adapter.nodes)node.traverse(mesh=>{if(!mesh.isMesh)return;mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();for(const material of Array.isArray(mesh.material)?mesh.material:[mesh.material]){originals.set(material,material.color.clone());if(!appearanceRole(adapter.records.get(key)))protectedMaterials.push(material);if(material.transparent)material.depthWrite=false}});
  $('#machineTitle').textContent=id==='voron_v02r1_120'?'V0.2r1 / 120':'V0.2 / 120';$('#badge').textContent=$('#machineTitle').textContent+' · '+manifest.parts.length.toLocaleString()+' PARTS';

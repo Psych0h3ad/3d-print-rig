@@ -1,5 +1,9 @@
-import {headPlan} from './head-assembly.js?v=public-v18-probe1';
-import {translatedProbeFit} from './probe-checks.js?v=public-v18-probe1';
+import {headPlan} from './head-assembly.js?v=public-v19';
+
+import {translatedProbeFit} from './probe-checks.js?v=public-v19';
+
+import {withEmbeddedBoards} from './embedded-boards.mjs?v=public-v19';
+
 const clone=value=>JSON.parse(JSON.stringify(value));
 const add=(a,b)=>a.map((v,i)=>v+b[i]);
 export function installedHeadPlan(variant,registry,target){
@@ -23,19 +27,21 @@ export function machineHeadVariants(heads,registry,machine,gantry){
  return heads.variants.filter(v=>
   (v.mount==='fixed'&&['trident_r2','siboor_awd'].includes(v.gantry)&&v.carriage==='standard'&&['stealthburner','xol'].includes(v.toolhead))||
   (v.toolhead==='crowncooler'&&v.registration_source==='crowncooler'&&target.belt_width_mm===6)||
+  (v.toolhead==='sphinx'&&v.registration_source==='sphinx_voron'&&target.belt_width_mm===6)||
   (v.mount==='stealthchanger'&&v.gantry==='sc_standard_'+target.belt_width_mm&&['stealthburner','xol','jabberwocky'].includes(v.toolhead))||
   (v.toolhead==='indx'&&target.belt_width_mm===6)
  ).filter(v=>v.belt_width_mm===target.belt_width_mm).map(v=>{
   const n=clone(v);n.source_head_configuration=v.id;n.machine_head=installedHeadPlan(v,registry,target);n.id='installed__'+(gantry||machine)+'__'+v.id;n.gantry=gantry||'machine_gantry';n.xy_motors=target.xy_motors;
-  n.fit={...n.fit,nozzle_mm:n.machine_head.nozzle_mm,bed_reference_drop_mm:0,machine_mount:{kind:'MGN12H 20 x 20 mm',axis_error_mm:Math.max(target.axis_error_mm||0,v.mount==='stealthchanger'?(registry.mount_verification?.stealthchanger?.axis_error_mm||0):v.toolhead==='indx'?(registry.mount_verification?.indx?.axis_error_mm||0):0),docking_registered:false,full_travel_verified:false}};
+  n.fit={...n.fit,nozzle_mm:n.machine_head.nozzle_mm,bed_reference_drop_mm:0,machine_mount:{kind:'MGN12H 20 x 20 mm',axis_error_mm:Math.max(target.axis_error_mm||0,v.mount==='stealthchanger'?(registry.mount_verification?.stealthchanger?.axis_error_mm||0):v.toolhead==='indx'?(registry.mount_verification?.indx?.axis_error_mm||0):(registry.mount_verification?.[v.registration_source]?.axis_error_mm||0)),docking_registered:false,full_travel_verified:false}};
   if(n.fit.probe)n.fit.probe=translatedProbeFit(n.fit.probe,n.machine_head.translation_delta_mm);
   n.notes=[...n.notes.filter(t=>!t.includes('プリンター全体への装着')),'MGN12の取付軸で機体に配置。全域の干渉・ホーミング接点・配線・ドッキングは未検証。'];
   if(v.toolhead==='indx')n.notes.push('INDXはレール取付のプレビュー。ベルト固定具・機体側ドックは未登録。');
+  if(v.toolhead==='sphinx')n.notes.push('MGN12の取付面と4本の穴軸でVORON機体へ配置。センサー・全可動域は未検証。');
   return n;
  });
 }
 export function expandedPrinterCatalog(current,heads,registry,machine){
- const result=clone(current);result.dimensions=['gantry','toolhead','mount','extruder','hotend','carriage','probe','board','cooling'];
+ const result=clone(withEmbeddedBoards(current,heads.embedded_board));result.machine_id=machine;result.dimensions=['gantry','toolhead','mount','extruder','hotend','carriage','probe','board','cooling'];
  for(const v of result.variants){v.mount||='fixed';v.carriage||='standard';v.board||='none';v.cooling||='source'}
  for(const field of ['toolheads','mounts','extruders','hotends','carriages','probes','boards','cooling_options']){
   result[field]||=[];for(const row of heads[field]||[]){const existing=result[field].find(r=>r.id===row.id);if(existing)Object.assign(existing,clone(row));else result[field].push(clone(row));}

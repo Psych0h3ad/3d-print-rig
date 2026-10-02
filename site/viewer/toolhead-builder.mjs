@@ -1,7 +1,7 @@
-import {collections,catalogDimensions} from './configuration-model.js?v=public-v18-probe1';
-import {headPlan} from './head-assembly.js?v=public-v18-probe1';
-import {appearanceRole} from './appearance-role.mjs?v=public-v18-probe1';
-import {probeHasConflict} from './probe-checks.js?v=public-v18-probe1';
+import {collections,catalogDimensions} from './configuration-model.js?v=public-v19';
+import {headPlan} from './head-assembly.js?v=public-v19';
+import {appearanceRole} from './appearance-role.mjs?v=public-v19';
+import {probeHasConflict} from './probe-checks.js?v=public-v19';
 
 const labels={toolhead:'ヘッド',extruder:'押出機',hotend:'ホットエンド',cooling:'冷却',mount:'取付・交換機構',gantry:'キャリッジ / ベルト幅',carriage:'キャリッジ本体',probe:'プローブ',board:'基板'};
 export function builderCandidates(catalog,filters={}){

@@ -1,15 +1,16 @@
-import {catalogDimensions,collections,resolveVariant,choicesFor,importedVariant} from './configuration-model.js?v=public-v18-probe1';
-import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=public-v18-probe1';
-import {renderProductLinks} from './product-links.js?v=public-v18-probe1';
+import {catalogDimensions,collections,resolveVariant,choicesFor,importedVariant,configurationById} from './configuration-model.js?v=public-v19';
+import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=public-v19';
+import {renderProductLinks} from './product-links.js?v=public-v19';
 
 export async function setupConfigurations(catalog,install,{presentation='printer',getExtras=()=>({}),applyExtras=async()=>{},validateExtras=()=>{},onSettled=()=>{}}={}){
  const $=s=>document.querySelector(s);
  let productTarget=$('#headProductLinks');if(!productTarget){productTarget=document.createElement('div');productTarget.id='configurationProductLinks';$('#configStatus').after(productTarget)}
  const ids=catalogDimensions(catalog).filter(id=>catalog[collections[id]]&&$('#'+id+'Config'));
- const selection=()=>Object.fromEntries(ids.map(k=>[k,$('#'+k+'Config').value]));
+ const selection=()=>({...Object.fromEntries(ids.map(k=>[k,$('#'+k+'Config').value])),id:actual?.id});
  let actual,busy=false;
  const query=new URLSearchParams(location.search);
- const requested=catalog.variants.find(v=>v.id===query.get('configuration'))||catalog.variants[0];
+ const requestedId=query.get('configuration'),matched=configurationById(catalog,requestedId);
+ const requested=matched||catalog.variants[0];
  const initial=query.get('mount')?resolveVariant(catalog,{...requested,mount:query.get('mount')},'mount'):requested;
  if(!initial)throw Error('構成のCADが登録されていません。');
  function menus(v){
@@ -19,6 +20,7 @@ export async function setupConfigurations(catalog,install,{presentation='printer
  }
  function commit(v){
   actual=v;menus(v);
+  const headLabel=$('#machineHeadLabel');if(headLabel)headLabel.textContent=['toolhead','extruder','hotend'].map(id=>catalog[collections[id]].find(row=>row.id===v[id])?.label||v[id]).join(' / ');
   renderProductLinks(productTarget,{hotend:v.hotend,toolhead:v.toolhead,extruder:v.extruder});
   const url=new URL(location.href);url.searchParams.delete('mount');url.searchParams.set('configuration',v.id);history.replaceState(null,'',url);
   $('#configSummary').textContent=ids.map(id=>catalog[collections[id]].find(row=>row.id===v[id]).label).join(' ／ ');
@@ -43,18 +45,20 @@ export async function setupConfigurations(catalog,install,{presentation='printer
    rows.push(label,...native.notes);$('#mountInfo')?.replaceChildren(...rows.map(row=>{const li=document.createElement('li');li.textContent=row;return li}));
   }
   $('#configStatus').dataset.variant=v.id;
+  const headLink=$('#toolheadLink');if(presentation==='printer'&&headLink&&catalog.machine_id){const u=new URL(headLink.href,location.href);u.searchParams.set('return_machine',catalog.machine_id);u.searchParams.set('return_configuration',v.id);u.searchParams.set('return_head',u.searchParams.get('configuration'));headLink.href=u.href}
  }
- async function refresh(v,extraData){
+ async function refresh(v,extraData,adjustment){
   if(busy||!v)return;busy=true;const previousExtras=getExtras();
   for(const k of ids)$('#'+k+'Config').disabled=true;
   for(const id of ['loadConfiguration','saveConfiguration'])$('#'+id).disabled=true;
   $('#configStatus').textContent='選択したCADを読み込み中…';
-  try{await install(v);if(extraData)await applyExtras(extraData);commit(v)}catch(e){
-   if(actual){try{await install(actual);if(extraData)await applyExtras(previousExtras)}catch(restore){console.error(restore)}menus(actual)}
-   $('#configStatus').textContent='切替に失敗しました。直前の構成を表示中。';console.error(e);
-  }finally{busy=false;for(const k of ids)$('#'+k+'Config').disabled=false;for(const id of ['loadConfiguration','saveConfiguration'])$('#'+id).disabled=false;onSettled(actual)}
+  try{await install(v);if(extraData)await applyExtras(extraData);commit(v);if(adjustment){$('#configStatus').textContent+=' ／ 登録済みの組み合わせに合わせて変更：'+adjustment;$('#configStatus').classList.add('notice')}}catch(e){
+   let restored=false;if(actual){try{await install(actual);if(extraData)await applyExtras(previousExtras);restored=true}catch(restore){console.error(restore)}menus(actual)}
+   if(!restored){actual=null;delete $('#configStatus').dataset.variant}
+   $('#configStatus').textContent=restored?'切替に失敗しました。直前の構成を表示中。':'CADの読み込みに失敗しました。構成を選び直して再試行してください。';$('#configStatus').classList.add('notice');console.error(e);
+  }finally{busy=false;for(const k of ids)$('#'+k+'Config').disabled=false;$('#loadConfiguration').disabled=false;$('#saveConfiguration').disabled=!actual;onSettled(actual)}
  }
- for(const k of ids)$('#'+k+'Config').onchange=()=>refresh(resolveVariant(catalog,selection(),k));
+ for(const k of ids)$('#'+k+'Config').onchange=()=>{const wanted=selection(),next=resolveVariant(catalog,wanted,k);const changes=next?ids.filter(id=>id!==k&&next[id]!==wanted[id]).map(id=>catalog[collections[id]].find(row=>row.id===next[id])?.label).filter(Boolean):[];return refresh(next,undefined,changes.join(' ／ '))};
  for(const row of catalog.sources){const a=document.createElement('a');a.href=row.url;a.textContent=row.label;a.target='_blank';a.rel='noopener';$('#modSources').append(a,document.createTextNode('　'))}
  $('#saveConfiguration').onclick=()=>{
   if(!actual||busy)return;
@@ -68,5 +72,6 @@ export async function setupConfigurations(catalog,install,{presentation='printer
   catch(e){$('#configStatus').textContent=e.message}
  };
  menus(initial);await refresh(initial);
+ if(actual&&requestedId&&!matched){$('#configStatus').textContent='指定された構成はこの機種に未登録です。現在の表示：'+$('#configSummary').textContent;$('#configStatus').classList.add('notice')}
  return {selectVariant:async id=>{const v=catalog.variants.find(row=>row.id===id);if(!v)throw Error('構成のCADが未登録です。');await refresh(v)},get current(){return actual},get busy(){return busy}};
 }

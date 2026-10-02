@@ -1,5 +1,5 @@
 {
-  "viewer_version": "public-v18-probe1",
+  "viewer_version": "public-v19",
   "sources": [
     {
       "id": "siboor_trident",
@@ -659,7 +659,7 @@
       "license": "CC-BY-NC-SA-4.0",
       "license_url": "../licenses/sphinx/LICENSE",
       "license_sha256": "9e502ba75fd0fd30cea5497b438a4bc12f07f02bc932a7a6041fd6a18b8f46a0",
-      "scope": "tLW printable assemblies only; selected mounting patterns. Hardware not fitted.",
+      "scope": "Source tLW printable assemblies; original Sherpa Mini Release 2 standard-front hardware and Tricorn Long / acquired Rapido 2 UHF registered at native interfaces. Four 6 mm VORON machine-head previews. Other printable-only patterns remain references.",
       "changes": "Original dimensions retained. Source alternatives selected, display colors and triangle geometry generated. Board placement uses native screw-hole axes; kinematics and printer-wide fit excluded."
     },
     {
@@ -1063,6 +1063,10 @@
     {
       "label": "Chube / Tricorn · メーカーCADと専用取付部品",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v18/viewer-hotend-sources.zip"
+    },
+    {
+      "label": "Sphinx tLW · 組付け部品と取付登録",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v19/viewer-sphinx-sources.zip"
     }
   ]
 }

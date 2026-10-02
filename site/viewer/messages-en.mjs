@@ -1,5 +1,18 @@
 // English presentation strings. Source identifiers and CAD metadata remain unchanged.
 export const messages = {
+ "作者のtLW取付部品にSherpa Mini R2とホットエンド本体を装着。": "Author tLW mounting parts fitted with Sherpa Mini R2 and hotend hardware.",
+ "Sherpaは標準フロントを使用。Kフロントは本体と干渉するため選択対象外。": "Sherpa uses the standard front. K-front intersects the original head body and is excluded.",
+ "CPAPダクトは装着。送風機・ホース・基板・プローブ・取付ねじ・配線は未装着。": "CPAP ducts fitted; blower, hose, board, probe, mounting screws and wiring absent.",
+ "原寸の取付面とねじ穴を照合。機体全可動域の適合は未検証。": "Native mating planes and screw axes checked. Full printer travel remains unverified.",
+ "Sherpa Miniは印刷ハウジングのRelease 2。CNC製品の形状ではありません。": "Sherpa Mini uses the printed Release 2 housing; it does not represent a CNC product.",
+ "Rapido 2 UHFは取得済みSIBOORキットCADの本体を使用。加熱部の接続部品が当たらない取付方向。": "Rapido 2 UHF hardware comes from the acquired SIBOOR kit CAD, oriented to clear the heater connection parts.",
+ "PTFEは取付面間の4 / 2 mm参照形状。差込み量と製作時のカット長は未指定。": "PTFE is a 4 / 2 mm reference between mating planes; insertion allowance and production cut length are unspecified.",
+ "Sphinx tLW · 本体・ホットエンド・押出機": "Sphinx tLW · body, hotend and extruder",
+ "MGN12の取付面と4本の穴軸でVORON機体へ配置。センサー・全可動域は未検証。": "Placed on the VORON machine using the MGN12 mating plane and four screw axes. Sensor and full-travel fit remain unverified.",
+ "Sphinx / VORON · 6 mm取付参照": "Sphinx / VORON · 6 mm mount reference",
+ "Sphinx tLW · 組付け部品と取付登録": "Sphinx tLW · assembled parts and mounting registrations",
+
+
  "ノズルより": "Above nozzle by",
  "選択したプローブの取付基準とクリアランスは未検証です。": "The selected probe mounting datum and clearances are unverified.",
  "選択したプローブの取付条件未確認": "Selected probe mounting conditions unverified",
@@ -14,6 +27,15 @@ export const messages = {
  "。XYベルトは滑らかな経路表示。ベッドチェーンの屈曲と歯・テンションの再現は未対応。": ". XY belts use a smooth routing preview. Bed-chain articulation, teeth and tension are not simulated.",
  "XYベルトは滑らかな経路プレビュー。歯・固定部のカット・テンション、ホーミング接点、配線の屈曲と全域干渉の自動判定は未対応です。": "XY belts use a smooth routing preview. Teeth, clamp cuts, tension, homing contacts, cable articulation and full-travel collision detection are not simulated.",
  "ベルト・参考配線": "Belts / reference wiring",
+
+ "この構成をプリンターで見る": "View this configuration on a printer",
+ "マシン一覧（取付CAD未登録）": "Printers (mount CAD not registered)",
+ "Mellow SHT36 V2 · 原本内蔵": "Mellow SHT36 V2 · source assembly",
+ "BTT EBB2209 · 原本内蔵": "BTT EBB2209 · source assembly",
+ "CADの読み込みに失敗しました。構成を選び直して再試行してください。": "CAD loading failed. Select a configuration to retry.",
+ "指定された構成はこの機種に未登録です。現在の表示：{0}": "The requested configuration is not registered for this printer. Displaying: {0}",
+ "登録済みの組み合わせに合わせて変更：{0}": "Adjusted to a registered combination: {0}",
+
  "3Dアセンブリ": "3D assembly",
  "FYSETC 3Dアセンブリ": "FYSETC 3D assembly",
  "V0 3Dアセンブリ": "V0 3D assembly",

@@ -1,4 +1,4 @@
-import {installedHeadPlan} from './machine-head-model.mjs?v=public-v18-probe1';
+import {installedHeadPlan} from './machine-head-model.mjs?v=public-v19';
 export function monolithHeadCatalog(heads,registry,gantries){
  if(!registry.sources.stealthchanger_monolith||!registry.monolith_target)throw Error('Monolithの取付基準が未登録です');
  const variants=[];
@@ -13,5 +13,5 @@ export function monolithHeadCatalog(heads,registry,gantries){
  return {...heads,machine_id:'monolith_workbench',dimensions:['gantry','toolhead','mount','extruder','hotend','carriage','probe','board','cooling'],gantries:gantries.variants.map(g=>({id:g.id,label:`${g.machine} / ${g.size_mm} · ${g.build} · ${g.belt_width_mm} mm · ${g.xy_motors===4?'AWD':'2WD'}`})),variants,assets:{...heads.assets,...heads.base_assets,...registry.assets}};
 }
 export function monolithCompanion(heads,variant){
- return heads.variants.find(v=>v.mount==='stealthchanger'&&v.gantry==='sc_monolith_'+variant.belt_width_mm&&['toolhead','extruder','hotend','board','cooling'].every(k=>v[k]===variant[k]));
+ return heads.variants.find(v=>v.mount==='stealthchanger'&&v.gantry==='sc_monolith_'+variant.belt_width_mm&&['toolhead','extruder','hotend','board','cooling','probe'].every(k=>v[k]===variant[k]));
 }

@@ -1,15 +1,19 @@
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=public-v18-probe1';
-import {appearanceRole} from './appearance-role.mjs?v=public-v18-probe1';
-import {partKey} from './head-assembly.js?v=public-v18-probe1';
-import {v24HeadCatalog} from './machine-head-model.mjs?v=public-v18-probe1';
-import {setupConfigurations} from './configurations.js?v=public-v18-probe1';
-import {stockProbeFit} from './probe-mounts.js?v=public-v18-probe1';
+import {loadModel} from './model-loader.js?v=public-v19';
+import {appearanceRole} from './appearance-role.mjs?v=public-v19';
+import {partKey} from './head-assembly.js?v=public-v19';
+import {v24HeadCatalog} from './machine-head-model.mjs?v=public-v19';
+import {setupConfigurations} from './configurations.js?v=public-v19';
+
+import {stockProbeFit} from './probe-mounts.js?v=public-v19';
+
+import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs?v=public-v19';
+
 const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);
 export async function loadMachineHeadCatalog(){
  const get=async name=>{const r=await fetch('../'+name,{cache:'no-cache'});if(!r.ok)throw Error('ヘッドの取付データを取得できません');return r.json()};
- const [heads,registry]=await Promise.all([get('TOOLHEAD_CONFIGURATIONS.json'),get('MACHINE_HEAD_REGISTRATIONS.json')]);return {heads,registry};
+ const [heads,registry]=await Promise.all([get('TOOLHEAD_CONFIGURATIONS.json'),get('MACHINE_HEAD_REGISTRATIONS.json')]);const board=[xolEmbeddedBoard(await get(heads.base_assets.xol.meta)),sbEmbeddedBoard(await get(heads.base_assets.stealthburner.meta))];return {heads:withEmbeddedBoards(heads,board),registry};
 }
 export function createMachineHeads(scene,catalog,{render=()=>{}}={}){
  const cache=new Map(),rig=new THREE.Group();rig.name='Installed_Machine_Head';scene.add(rig);let current=null,palette={base:'#24272c',accent:'#e32636'},delta=[0,0,0];

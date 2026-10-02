@@ -13,6 +13,6 @@ for name in sorted(filter(None, NAMES)):
     data = (ROOT / name).read_bytes().replace(b'\r\n', b'\n')
     rows.append(dict(path=name, bytes=len(data), sha256=hashlib.sha256(data).hexdigest()))
 inventory = dict(scope='All tracked source and license files; CAD, mesh, private inputs and execution reports excluded.',
-    newline_policy='Hashes use canonical LF, matching Git blobs.', upstream_viewer_version='public-v18-probe1', files=rows)
+    newline_policy='Hashes use canonical LF, matching Git blobs.', upstream_viewer_version='public-v19', files=rows)
 (ROOT/'docs/SOURCE_INVENTORY.json').write_text(json.dumps(inventory,indent=2)+'\n',encoding='utf-8')
 print(f'Source inventory updated: {len(rows)} files.')

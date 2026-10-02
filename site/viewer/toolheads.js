@@ -1,16 +1,20 @@
-import {appearanceRole} from './appearance-role.mjs?v=public-v18-probe1';
+import {loadMachineHeadCatalog} from './machine-heads.js?v=public-v19';
+import {headPrinterLink} from './head-navigation.mjs?v=public-v19';
+import {headBuilderDimensions} from './configuration-model.js?v=public-v19';
+let machineRegistry;
+import {appearanceRole} from './appearance-role.mjs?v=public-v19';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=public-v18-probe1';
-import {setupConfigurations} from './configurations.js?v=public-v18-probe1';
-import {setupPublicInfo} from './public-info.js?v=public-v18-probe1';
-import {setupRenderExport} from './render-export.js?v=public-v18-probe1';
-import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=public-v18-probe1';
-import {probeCheck,probeMetrics,probeGuide,headInspectionState} from './probe-checks.js?v=public-v18-probe1';
-import {renderProductLinks} from './product-links.js?v=public-v18-probe1';
-import {setupHeadBuilder} from './builder-ui.mjs?v=public-v18-probe1';
-import {validateBuilderExtras} from './toolhead-builder.mjs?v=public-v18-probe1';
+import {loadModel} from './model-loader.js?v=public-v19';
+import {setupConfigurations} from './configurations.js?v=public-v19';
+import {setupPublicInfo} from './public-info.js?v=public-v19';
+import {setupRenderExport} from './render-export.js?v=public-v19';
+import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=public-v19';
+import {probeCheck,probeMetrics,probeGuide,headInspectionState} from './probe-checks.js?v=public-v19';
+import {renderProductLinks} from './product-links.js?v=public-v19';
+import {setupHeadBuilder} from './builder-ui.mjs?v=public-v19';
+import {validateBuilderExtras} from './toolhead-builder.mjs?v=public-v19';
 
 const $=s=>document.querySelector(s),stage=$('#stage'),scene=new THREE.Scene();
 scene.background=new THREE.Color('#edf1f5');
@@ -157,7 +161,7 @@ async function install(variant){
   appearance();inspection(variant);visibleBounds();ready=true;fit();
   const count=[plan.base,...plan.modules.map(m=>m.id)].reduce((n,id)=>{const a=cached.get(id).loaded;return n+(a.root.visible?a.meshes.filter(r=>r.mesh.visible).length:0)},0);
   Object.assign(document.body.dataset,{variant:variant.id,headParts:String(count),headAssets:JSON.stringify(ids),assetStatus:'ready'});
-  const link=new URL('./',location.href);if(!variant.head_only)link.searchParams.set('configuration',variant.id);$('#printerLink').href=link;$('#printerLink').hidden=false;$('#printerLink').textContent=variant.head_only?'マシンを見る':'プリンター全体';
+  const link=headPrinterLink(variant,machineRegistry,location.href);$('#printerLink').href=link.url;$('#printerLink').hidden=false;$('#printerLink').textContent=link.registered?'この構成をプリンターで見る':'マシン一覧（取付CAD未登録）';
  }finally{$('#loading').hidden=true}
 }
 function changerDisplay(){
@@ -180,12 +184,12 @@ renderer.setAnimationLoop(()=>{controls.update();if(dirty){renderer.render(scene
 setupRenderExport({renderer,scene,camera,controls,name:'3D_Print_Rig_Toolhead',afterRender:()=>{dirty=true}});
 setupPublicInfo({includeDownloads:false});
 try{
- const response=await fetch('../TOOLHEAD_CONFIGURATIONS.json?v=public-v18-probe1',{cache:'no-cache'});if(!response.ok)throw Error('ヘッドの構成データを取得できません');catalog=await response.json();
+ const headData=await loadMachineHeadCatalog();catalog=headData.heads;machineRegistry=headData.registry;
  $('#combinationCount').textContent=`${catalog.toolheads.length}種類のヘッド · ${catalog.extruders.length}種類の押出機 · ${headCombinationCount(catalog)}通りのヘッド構成`;
  // Earlier standalone files used the first printer's ID; keep them readable.
- catalog={...catalog,machine_id:'toolhead',import_machine_ids:['siboor_trident_350']};
+ catalog={...catalog,dimensions:headBuilderDimensions,machine_id:'toolhead',import_machine_ids:['siboor_trident_350']};
  const controller=await setupConfigurations(catalog,install,{presentation:'toolhead',getExtras:extras,applyExtras:restoreExtras,validateExtras:validateBuilderExtras,onSettled:()=>builder?.update()});
  if(!ready)throw Error('ヘッドのCADを表示できませんでした');
- let pins=[];try{const r=await fetch('../PUBLIC_CATALOG.json?v=public-v18-probe1');if(r.ok)pins=(await r.json()).sources||[]}catch{}
+ let pins=[];try{const r=await fetch('../PUBLIC_CATALOG.json?v=public-v19');if(r.ok)pins=(await r.json()).sources||[]}catch{}
  builder=setupHeadBuilder(catalog,{getVariant:()=>currentVariant,getMetadata:()=>new Map([...cached].filter(([,p])=>p.loaded).map(([id,p])=>[id,p.loaded.meta])),getExtras:extras,pins,selectVariant:id=>controller.selectVariant(id),isBusy:()=>controller.busy});
 }catch(e){$('#loading').hidden=false;$('#loading').textContent=e.message;document.body.dataset.assetStatus='error';console.error(e)}

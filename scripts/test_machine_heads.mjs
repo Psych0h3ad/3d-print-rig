@@ -43,3 +43,8 @@ const placed=machineHeadVariants({...heads,variants:[probed]},registry,'six')[0]
 assert.deepEqual(placed.fit.probe.coil_bottom_mm,[0,-27,93]);assert.deepEqual(placed.fit.probe.metal_keepout_bounds_mm,[[-10,-37,95],[10,-17,115]]);
 assert.equal(placed.fit.probe.coil_bottom_mm[2]-placed.fit.nozzle_mm[2],3);assert.equal(placed.fit.probe.machine_environment_verified,false);
 assert.deepEqual(probed.fit.probe.coil_bottom_mm,[0,-10,-37]);
+// Author Sphinx tLW has its own rail plane and only registered 6 mm clamps.
+registry.sources.sphinx_voron={origin_mm:[0,-7.5,0],axis_error_mm:.00083};
+const sphinx=head('sphinx_native','sphinx','fixed','sphinx_voron',6);sphinx.registration_source='sphinx_voron';sphinx.base_asset='sphinx_original';sphinx.head_only=true;sphinx.extruder='sherpa_r2_standard_short';sphinx.hotend='tricorn';sphinx.carriage='source';sphinx.fit.nozzle_mm=[0,-17.5,-84.5];sphinx.modules=[{id:'sherpa_original',translation_mm:[0,0,0],role:'tool'},{id:'hotend_original',translation_mm:[0,0,0],role:'tool'}];
+const sphinxHeads={...heads,variants:[sphinx]};const sphinxPlaced=machineHeadVariants(sphinxHeads,registry,'six');assert.equal(sphinxPlaced.length,1);assert.deepEqual(sphinxPlaced[0].machine_head.translation,[0,.5,136]);assert.deepEqual(sphinxPlaced[0].machine_head.nozzle_mm,[0,-17,51.5]);assert.equal(sphinxPlaced[0].probe,'none');assert.equal(sphinxPlaced[0].machine_head.modules.length,2);assert.equal(sphinxPlaced[0].source_head_configuration,'sphinx_native');assert.equal(machineHeadVariants(sphinxHeads,registry,'nine','awd').length,0);
+assert.deepEqual(sphinx.fit.nozzle_mm,[0,-17.5,-84.5]);
