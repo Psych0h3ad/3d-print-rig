@@ -1,4 +1,4 @@
-import {installedHeadPlan} from './machine-head-model.mjs?v=public-v17-en1';
+import {installedHeadPlan} from './machine-head-model.mjs?v=public-v17-en2';
 export function monolithHeadCatalog(heads,registry,gantries){
  if(!registry.sources.stealthchanger_monolith||!registry.monolith_target)throw Error('Monolithの取付基準が未登録です');
  const variants=[];

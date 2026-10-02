@@ -1,10 +1,10 @@
-import {messages,templates} from './messages-en.mjs?v=public-v17-en1';
+import {messages,templates} from './messages-en.mjs?v=public-v17-en2';
 
 const normalize=text=>text.trim().replace(/\s+/gu,' ');
 const escape=text=>text.replace(/[.*+?^${}()|[\]\\]/gu,'\\$&');
 const patterns=Object.entries(templates).map(([source,target])=>{
  const keys=[];let last=0,expression='';
- for(const match of source.matchAll(/\{(\d+)\}/gu)){expression+=escape(source.slice(last,match.index))+'(.+?)';keys.push(match[1]);last=match.index+match[0].length}
+ for(const match of source.matchAll(/\{(\d+)\}/gu)){expression+=escape(source.slice(last,match.index))+'(.*?)';keys.push(match[1]);last=match.index+match[0].length}
  expression+=escape(source.slice(last));return {test:new RegExp('^'+expression+'$','u'),keys,target,specificity:source.replace(/\{\d+\}/gu,'').length};
 }).sort((a,b)=>b.specificity-a.specificity);
 const fragments=Object.keys(messages).filter(s=>s.length>1&&/[\u3040-\u30ff\u3400-\u9fff]/u.test(s)).sort((a,b)=>b.length-a.length);

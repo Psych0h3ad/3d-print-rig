@@ -20,6 +20,9 @@ assert.equal(translate('Stealthburner · 24構成'),'Stealthburner · 24 configu
 assert.equal(translate('PNG作成済み · 2048 × 1536 px'),'PNG ready · 2048 × 1536 px');
 assert.equal(translate('選択可能な構成：1062通り'),'Available configurations: 1062');
 assert.equal(translate('Beacon Rev Dのコイル底面：未計測'),'Beacon Rev D coil bottom: unmeasured');
+assert.equal(translate('Cartographer V4 · ノズルより 2.80 mm上 · 絶縁スペーサー 2.8 mm × 2'),'Cartographer V4 · 2.80 mm above nozzle · insulating spacers 2.8 mm × 2');
+assert.equal(translate('Cartographer V4 · ノズルより 2.80 mm上 · 絶縁スペーサー 2.8 mm × 2。ベルト固定ねじが金属除外領域に入ります。取付検証未完了。'),'Cartographer V4 · 2.80 mm above nozzle · insulating spacers 2.8 mm × 2. Belt clamp screws enter the metal keepout. Mounting checks are incomplete.');
+assert(!/[\u3040-\u30ff\u3400-\u9fff]/u.test(translate('Cartographer V4 · ノズルより 2.80 mm上 · 絶縁スペーサー 2.8 mm × 2 ／ ノズル接触時の最下部／ベッド間隔 0.125 mm')));
 assert.equal(translate('本体の交差 12組。最大 114.957 mm³。'),'Body intersections: 12 pairs. Maximum 114.957 mm³.');
 assert.match(translate('サポート省略モデル：原本に含まれる印刷用サポートを除外。本体の寸法と原本座標を保持しています。'),/^Support-omitted model:/u);
 const url=new URL(languageURL('https://example.test/viewer/toolheads.html?configuration=x&base=abcdef#mount','en'));

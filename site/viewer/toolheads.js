@@ -1,16 +1,16 @@
-import {appearanceRole} from './appearance-role.mjs?v=public-v17-en1';
+import {appearanceRole} from './appearance-role.mjs?v=public-v17-en2';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=public-v17-en1';
-import {setupConfigurations} from './configurations.js?v=public-v17-en1';
-import {setupPublicInfo} from './public-info.js?v=public-v17-en1';
-import {setupRenderExport} from './render-export.js?v=public-v17-en1';
-import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=public-v17-en1';
-import {probeCheck,probeMetrics,probeGuide} from './probe-checks.js?v=public-v17-en1';
-import {renderProductLinks} from './product-links.js?v=public-v17-en1';
-import {setupHeadBuilder} from './builder-ui.mjs?v=public-v17-en1';
-import {validateBuilderExtras} from './toolhead-builder.mjs?v=public-v17-en1';
+import {loadModel} from './model-loader.js?v=public-v17-en2';
+import {setupConfigurations} from './configurations.js?v=public-v17-en2';
+import {setupPublicInfo} from './public-info.js?v=public-v17-en2';
+import {setupRenderExport} from './render-export.js?v=public-v17-en2';
+import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=public-v17-en2';
+import {probeCheck,probeMetrics,probeGuide} from './probe-checks.js?v=public-v17-en2';
+import {renderProductLinks} from './product-links.js?v=public-v17-en2';
+import {setupHeadBuilder} from './builder-ui.mjs?v=public-v17-en2';
+import {validateBuilderExtras} from './toolhead-builder.mjs?v=public-v17-en2';
 
 const $=s=>document.querySelector(s),stage=$('#stage'),scene=new THREE.Scene();
 scene.background=new THREE.Color('#edf1f5');
@@ -181,12 +181,12 @@ renderer.setAnimationLoop(()=>{controls.update();if(dirty){renderer.render(scene
 setupRenderExport({renderer,scene,camera,controls,name:'3D_Print_Rig_Toolhead',afterRender:()=>{dirty=true}});
 setupPublicInfo({includeDownloads:false});
 try{
- const response=await fetch('../TOOLHEAD_CONFIGURATIONS.json?v=public-v17-en1',{cache:'no-cache'});if(!response.ok)throw Error('ヘッドの構成データを取得できません');catalog=await response.json();
+ const response=await fetch('../TOOLHEAD_CONFIGURATIONS.json?v=public-v17-en2',{cache:'no-cache'});if(!response.ok)throw Error('ヘッドの構成データを取得できません');catalog=await response.json();
  $('#combinationCount').textContent=`${catalog.toolheads.length}種類のヘッド · ${catalog.extruders.length}種類の押出機 · ${headCombinationCount(catalog)}通りのヘッド構成`;
  // Earlier standalone files used the first printer's ID; keep them readable.
  catalog={...catalog,machine_id:'toolhead',import_machine_ids:['siboor_trident_350']};
  const controller=await setupConfigurations(catalog,install,{presentation:'toolhead',getExtras:extras,applyExtras:restoreExtras,validateExtras:validateBuilderExtras,onSettled:()=>builder?.update()});
  if(!ready)throw Error('ヘッドのCADを表示できませんでした');
- let pins=[];try{const r=await fetch('../PUBLIC_CATALOG.json?v=public-v17-en1');if(r.ok)pins=(await r.json()).sources||[]}catch{}
+ let pins=[];try{const r=await fetch('../PUBLIC_CATALOG.json?v=public-v17-en2');if(r.ok)pins=(await r.json()).sources||[]}catch{}
  builder=setupHeadBuilder(catalog,{getVariant:()=>currentVariant,getMetadata:()=>new Map([...cached].filter(([,p])=>p.loaded).map(([id,p])=>[id,p.loaded.meta])),getExtras:extras,pins,selectVariant:id=>controller.selectVariant(id),isBusy:()=>controller.busy});
 }catch(e){$('#loading').hidden=false;$('#loading').textContent=e.message;document.body.dataset.assetStatus='error';console.error(e)}
