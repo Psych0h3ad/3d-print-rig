@@ -1,8 +1,8 @@
-import {headPlan} from './head-assembly.js?v=public-v20';
+import {headPlan} from './head-assembly.js?v=public-v21';
 
-import {translatedProbeFit} from './probe-checks.js?v=public-v20';
+import {translatedProbeFit} from './probe-checks.js?v=public-v21';
 
-import {withEmbeddedBoards} from './embedded-boards.mjs?v=public-v20';
+import {withEmbeddedBoards} from './embedded-boards.mjs?v=public-v21';
 
 const clone=value=>JSON.parse(JSON.stringify(value));
 const add=(a,b)=>a.map((v,i)=>v+b[i]);
@@ -28,6 +28,7 @@ export function machineHeadVariants(heads,registry,machine,gantry){
   (v.mount==='fixed'&&['trident_r2','siboor_awd'].includes(v.gantry)&&v.carriage==='standard'&&['stealthburner','xol'].includes(v.toolhead))||
   (v.toolhead==='crowncooler'&&v.registration_source==='crowncooler'&&target.belt_width_mm===6)||
   (v.toolhead==='sphinx'&&v.registration_source==='sphinx_voron'&&target.belt_width_mm===6)||
+  (['filamatrix','madmax'].includes(v.mount)&&['filamatrix','madmax_xol'].includes(v.registration_source)&&target.belt_width_mm===6)||
   (v.mount==='stealthchanger'&&v.gantry==='sc_standard_'+target.belt_width_mm&&['stealthburner','xol','jabberwocky'].includes(v.toolhead))||
   (v.toolhead==='indx'&&target.belt_width_mm===6)
  ).filter(v=>v.belt_width_mm===target.belt_width_mm).map(v=>{

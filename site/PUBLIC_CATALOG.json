@@ -1,5 +1,5 @@
 {
-  "viewer_version": "public-v19",
+  "viewer_version": "public-v21",
   "sources": [
     {
       "id": "siboor_trident",
@@ -1003,6 +1003,34 @@
       "scope": "Dedicated Compact CW2 front/rear cartridge, separate from the common SB source assembly.",
       "changes": "Preserve body geometry; restore invalid native trims within 0.001 mm; rigid cartridge placement and palette.",
       "version": "2ed9882a5537565766b2db7d038dfbd788242b8cd81ca9e67dc05ff87935cf76"
+    },
+    {
+      "id": "filamatrix",
+      "label": "FilamATrix / Filametrix derivative",
+      "repository": "thunderkeys/FilamATrix",
+      "author": "thunderkeys, ArmoredTurtle, sorted01, IRTrail, VORON Design, JaredC01",
+      "commit": "eefd18fe21a0bcfcb08b4f6f3735ef200cbcb4a3",
+      "url": "https://github.com/thunderkeys/FilamATrix/tree/eefd18fe21a0bcfcb08b4f6f3735ef200cbcb4a3",
+      "license": "GPL-3.0; embedded component terms retained",
+      "license_url": "../licenses/filamatrix/LICENSE",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "scope": "Native cutter assemblies and registered 6 mm VORON mounting",
+      "changes": "Separate alternatives; rigid pose; display palette. Detached CW2 arm print support omitted.",
+      "notice": "Cutter actuation, docking paths, wiring and full printer travel are unverified."
+    },
+    {
+      "id": "madmax",
+      "label": "MadMax",
+      "repository": "zruncho3d/madmax",
+      "author": "zruncho3d and credited contributors; Xol-A4T user Mod by andrewmcgr",
+      "commit": "277a63cbb696f937fbf9d883a8d8c46a658cd6d9",
+      "url": "https://github.com/zruncho3d/madmax/tree/277a63cbb696f937fbf9d883a8d8c46a658cd6d9",
+      "license": "GPL-3.0; embedded component terms retained",
+      "license_url": "../licenses/madmax/LICENSE",
+      "license_sha256": "5576a91fe9ee4b3ebc0c6e527144449711e497594a93830e2bd7206424910d7b",
+      "scope": "MGN9/MGN12 Maxwell interfaces and Xol-A4T user Mod; registered Xol 6 mm mounting",
+      "changes": "Separate rail interfaces; original hardware; dedicated Xol plate; rigid pose only.",
+      "notice": "Cutter actuation, docking paths, wiring and full printer travel are unverified."
     }
   ],
   "defaults": [
@@ -1067,6 +1095,10 @@
     {
       "label": "Sphinx tLW · 組付け部品と取付登録",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v19/viewer-sphinx-sources.zip"
+    },
+    {
+      "label": "Cutters and MadMax",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v21/viewer-cutters-madmax-sources.zip"
     }
   ]
 }

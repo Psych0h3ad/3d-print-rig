@@ -1,5 +1,5 @@
-import {machinePage} from './machines.js?v=public-v20';
-import {machineHeadVariants} from './machine-head-model.mjs?v=public-v20';
+import {machinePage} from './machines.js?v=public-v21';
+import {machineHeadVariants} from './machine-head-model.mjs?v=public-v21';
 
 export function headPrinterLink(variant,registry,href){
  const source=new URL(href),preferred=source.searchParams.get('return_machine');

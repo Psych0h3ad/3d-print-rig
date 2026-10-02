@@ -989,7 +989,29 @@ export const messages = {
  "使用中のヘッドとツールバンクが一致しません。": "The active head does not match the tool bank.",
  "ツールバンクのURLが長すぎます。": "The tool-bank URL is too long.",
  "ドックの部品対応が不正です": "Invalid dock part mapping",
- "ヘッドを切り替えられませんでした。": "Could not switch the head."
+ "ヘッドを切り替えられませんでした。": "Could not switch the head.",
+ "Filametrix派生のFilamATrix。作者のv5組立CADから専用ボディ・カッター・刃・バネを選択。": "FilamATrix, a credited Filametrix derivative. Dedicated bodies, cutter, blade and spring from the original v5 assembly CAD.",
+ "通常SBのマウントと押出機ボディを専用品へ交換。Rapido直付け用の溝付きアダプター・未配索のリード線参照は省略。": "Dedicated mounts and extruder bodies replace ordinary SB parts. Optional Rapido groove adapters and unrouted heater leads are omitted for direct mounting.",
+ "CW2アームの独立した印刷サポートを除いたモデルです。原寸の実部品を保持。": "Support-omitted model: the detached CW2 arm print support is excluded. Production bodies retain native dimensions.",
+ "プローブ・基板・配線・切断動作は未検証。ガントリー側の押し当てピンは機体へ未装着。": "Probe, electronics, wiring and cutting motion are unverified. The gantry depressor is not installed on the machine.",
+ "FilamATrix · 専用押出機ボディとフィラメントカッター": "FilamATrix · Dedicated extruder bodies and filament cutter",
+ "作者のMadMax / MGN12HとAndrewmcgrのXol-A4T専用プレート・ドックブラケットを装着。": "Original MadMax / MGN12H interface with Andrewmcgr Xol-A4T plate and dock bracket.",
+ "Xol / Sherpa Mini / Rapido 2 UHFの原本完成ヘッドを使用。SHT36基板と標準の基板ブラケットは未装着。": "Original complete Xol / Sherpa Mini / Rapido 2 UHF assembly. SHT36 board and ordinary board bracket are not installed.",
+ "通常の6 mm経路用。9 mm・Monolith反転用のベルト保持具は未登録。": "Standard 6 mm belt routing. 9 mm and inverted Monolith belt keepers are not registered.",
+ "ドックは別置きの参照。機体側への取付・自動ドッキング・全可動域は未検証。": "Separate dock reference. Frame installation, automatic docking and full travel remain unverified.",
+ "MadMax · Xol完成ヘッド / 6 mm MGN12H": "MadMax · Complete Xol head / 6 mm MGN12H",
+ "固定 / FilamATrix カッター": "Fixed / FilamATrix cutter",
+ "FilamATrix / 標準SB · 6 mm": "FilamATrix / Standard SB · 6 mm",
+ "FilamATrix 専用のヘッド部品": "Dedicated FilamATrix head parts",
+ "MadMax v11のMGN9H専用キャリッジとMaxwell結合プレート。": "MadMax v11 MGN9H carriage and Maxwell coupling plate.",
+ "MadMax v11のMGN12H専用キャリッジとMaxwell結合プレート。": "MadMax v11 MGN12H carriage and Maxwell coupling plate.",
+ "Dragon Burner / AntHead用の取付部品。ヘッド前面・ホットエンド・押出機はこの参照組立には含みません。": "Dragon Burner / AntHead mounting interface. Front head, hotend and extruder are absent from this reference assembly.",
+ "ベルト保持具は6 mm。センサー動作・ドッキングは未検証。": "6 mm belt keepers. Sensor motion and docking are unverified.",
+ "Andrewmcgrの専用プレート・キャリッジ・ドックブラケット。XolとA4T向け。": "Andrewmcgr dedicated plate, carriage and dock bracket for Xol and A4T.",
+ "ここでは交換機構のみを表示。完成Xolはヘッド単体ページで選択できます。": "Coupling interface shown here. The complete Xol is available on the toolhead page.",
+ "Cartographer / Beacon用の取付穴はありますが、基板・コイル高さ・金属除外領域は未検証。": "Cartographer / Beacon mounting holes are present; boards, coil height and metal keepout remain unverified.",
+ "作者の組立CAD。機体への取付位置・全可動域・自動動作は未検証。": "Original-author assembly CAD. Machine mounting, full travel and automated motion remain unverified.",
+ "原本の静止姿勢で本体を検査。ねじ締結・切断ストローク・全可動域は未検証。": "Bodies checked at the original static pose. Thread engagement, cutting stroke and full travel remain unverified."
 };
 export const templates = {
  "{0} · {1}構成": "{0} · {1} configurations",
@@ -1063,5 +1085,7 @@ export const templates = {
  "{0}部品": "{0} parts",
  "{0}のコイル底面：未計測": "{0} coil bottom: unmeasured",
  "ドック {0}": "Dock {0}",
- "ドック {0}基 · T{1}をガントリーに装着。残りは固定ドックで待機。": "{0} docks · T{1} installed on the gantry. Other tools remain in fixed docks."
+ "ドック {0}基 · T{1}をガントリーに装着。残りは固定ドックで待機。": "{0} docks · T{1} installed on the gantry. Other tools remain in fixed docks.",
+ "· ドックとの接触を避けるベッド表示補正 {0} mm": "· Bed preview lowered {0} mm to avoid dock contact",
+ "ベッド表示補正 {0} mm。ドッキング動作は未検証。": "Bed preview lowered {0} mm. Docking motion remains unverified."
 };

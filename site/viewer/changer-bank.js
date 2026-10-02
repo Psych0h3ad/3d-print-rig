@@ -1,4 +1,4 @@
-import {bankChoices,bankCapacity,normalizeBank,initialBank,readBankURL} from './changer-bank-model.mjs?v=public-v20';
+import {bankChoices,bankCapacity,normalizeBank,initialBank,readBankURL,bankBedReferenceDrop} from './changer-bank-model.mjs?v=public-v21';
 
 export function setupChangerBank({catalog,rig,data,extras={}}){
  let controller,state=initialBank(catalog,data,catalog.variants[0]?.gantry),busy=false,previousGantry=catalog.variants[0]?.gantry,urlState,urlError;try{urlState=readBankURL(location.search)}catch(e){urlError=e}
@@ -15,6 +15,7 @@ export function setupChangerBank({catalog,rig,data,extras={}}){
   state.tools.forEach((value,i)=>add('ドック '+(i+1),'bankTool'+i,choices.map(v=>[source(v),label(v)]),value,e=>{const tools=[...state.tools];tools[i]=e.target.value;return select({...state,tools})}));
   add('使用中のヘッド','bankActive',state.tools.map((id,i)=>[i,'T'+i+' · '+label(choices.find(v=>source(v)===id))]),state.active,e=>select({...state,active:Number(e.target.value)}));
   status.textContent=state.enabled?'ドック '+state.tools.length+'基 · T'+state.active+'をガントリーに装着。残りは固定ドックで待機。':'ツールバンクはオフです。通常のヘッド構成を選べます。';
+  const down=bankBedReferenceDrop(catalog,data,state,controller?.current);if(state.enabled&&down>0)status.append(Object.assign(document.createElement('span'),{textContent:` ベッド表示補正 ${down.toFixed(2)} mm。ドッキング動作は未検証。`}));
  }
  async function select(next){if(!controller||busy||controller.busy)return;busy=true;menus();let error;try{next=normalizeBank(next,catalog,data,controller.current.gantry);const v=bankChoices(catalog,data,controller.current.gantry).find(v=>source(v)===next.tools[next.active]);const applied=await controller.selectVariant(next.enabled?v.id:controller.current.id,{...extras.getExtras?.(),tool_bank:next});if(applied===false)throw Error('ヘッドを切り替えられませんでした。')}catch(e){error=e}finally{busy=false;menus();if(error)status.textContent=error.message}}
  enabled.onchange=e=>select({...state,enabled:e.target.checked});

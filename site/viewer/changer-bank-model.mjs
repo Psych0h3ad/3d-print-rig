@@ -4,6 +4,16 @@ export function bankChoices(catalog,data,gantry){
  return data.profiles.map(p=>catalog.variants.find(v=>v.machine_head&&v.mount==='stealthchanger'&&(!gantry||v.gantry===gantry)&&Object.entries(p.selection).every(([k,value])=>v[k]===value))).filter(Boolean);
 }
 export function bankCapacity(data,machine){return data.machines[machine]?.capacity||0}
+// Trident moves its bed, while the top-mounted docks stay fixed. Retain
+// native dock geometry and limit the preview's highest bed position.
+export function bankBedReferenceDrop(catalog,data,state,variant){
+ const base=Math.max(0,variant?.fit?.bed_reference_drop_mm||0);
+ if(!state?.enabled)return base;
+ const bed=data.machines[catalog.machine_id]?.bed_clearance;
+ if(!bed)return base;
+ normalizeBank(state,catalog,data,variant?.gantry);
+ return Math.max(base,bed.minimum_reference_drop_mm);
+}
 export function normalizeBank(state,catalog,data,gantry){
  const capacity=bankCapacity(data,catalog.machine_id),choices=bankChoices(catalog,data,gantry);
  if(!state||typeof state.enabled!=='boolean'||!Array.isArray(state.tools)||!Number.isInteger(state.active)||state.tools.length<1||state.tools.length>capacity||state.active<0||state.active>=state.tools.length)throw Error('ツールバンクの台数または使用中のヘッドが不正です。');

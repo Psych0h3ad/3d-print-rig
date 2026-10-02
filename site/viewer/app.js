@@ -1,20 +1,21 @@
-import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=public-v20';
+import {bankBedReferenceDrop} from './changer-bank-model.mjs?v=public-v21';
+import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=public-v21';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=public-v20';
-import {loadFrameMods,withFrameMods} from './frame-mods.js?v=public-v20';
-import {setupGrid} from './grid-control.js?v=public-v20';
-import {setupLighting} from './lighting.js?v=public-v20';
-import {setupFlexible} from './flexible.js?v=public-v20';
-import {setupConfigurations} from './configurations.js?v=public-v20';
-import {setupAccessories} from './accessories.js?v=public-v20';
-import {setupAppearance} from './appearance.js?v=public-v20';
-import {setupRenderExport} from './render-export.js?v=public-v20';
-import {setupPublicInfo} from './public-info.js?v=public-v20';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=public-v20';
-import {setupChangerBank} from './changer-bank.js?v=public-v20';
-import {expandedPrinterCatalog} from './machine-head-model.mjs?v=public-v20';
+import {loadModel} from './model-loader.js?v=public-v21';
+import {loadFrameMods,withFrameMods} from './frame-mods.js?v=public-v21';
+import {setupGrid} from './grid-control.js?v=public-v21';
+import {setupLighting} from './lighting.js?v=public-v21';
+import {setupFlexible} from './flexible.js?v=public-v21';
+import {setupConfigurations} from './configurations.js?v=public-v21';
+import {setupAccessories} from './accessories.js?v=public-v21';
+import {setupAppearance} from './appearance.js?v=public-v21';
+import {setupRenderExport} from './render-export.js?v=public-v21';
+import {setupPublicInfo} from './public-info.js?v=public-v21';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=public-v21';
+import {setupChangerBank} from './changer-bank.js?v=public-v21';
+import {expandedPrinterCatalog} from './machine-head-model.mjs?v=public-v21';
 const $=s=>document.querySelector(s),scene=new THREE.Scene();
 scene.background=new THREE.Color('#edf1f5');
 const stage=$('#stage');
@@ -118,7 +119,7 @@ function leverPose(axis,value,dx,dy){
 }
 function setPose(x,y,z){
  renderRequested=true;
- const bedReferenceDrop=activeConfig?.fit?.bed_reference_drop_mm||0,zMax=230-bedReferenceDrop;
+ const bedReferenceDrop=bankBedReferenceDrop(catalog,catalog.bank_data,installedHeads?.bankState,activeConfig),zMax=230-bedReferenceDrop;
  x=clamp(x,0,350);y=clamp(y,0,360);z=clamp(z,0,zMax);current={x,y,z};$('#z').max=zMax;
  const dx=x-refX,dy=y-refY;
  const bedDown=z+bedReferenceDrop;
@@ -127,7 +128,7 @@ function setPose(x,y,z){
  for(const o of moving.z)o.position.y=-bedDown/1000;
  const drift=Math.max(0,...guideMeshes.map(o=>Math.abs(o.position.y+bedDown/1000)))*1000,railShift=Math.max(0,...guideRails.map(o=>Math.abs(o.position.y)))*1000;
  $('#zGuideStatus').textContent=`Zガイドブロック3箇所 · ${drift<.001&&railShift<.001?'ベッドに追従':'追従を確認してください'}`;
- $('#zGuideStatus').dataset.maxDriftMm=drift.toFixed(6);$('#zGuideStatus').dataset.railShiftMm=railShift.toFixed(6);
+ $('#zGuideStatus').dataset.maxDriftMm=drift.toFixed(6);$('#zGuideStatus').dataset.bedReferenceDropMm=bedReferenceDrop.toFixed(6);if(installedHeads?.bankState?.enabled&&bedReferenceDrop>0)$('#zGuideStatus').append(Object.assign(document.createElement('span'),{textContent:` · ドックとの接触を避けるベッド表示補正 ${bedReferenceDrop.toFixed(2)} mm`}));$('#zGuideStatus').dataset.railShiftMm=railShift.toFixed(6);
  const rest=Math.abs(dx)+Math.abs(dy)+Math.abs(bedDown)<.001;
  for(const o of moving.reference_flexible)o.visible=rest&&$('#cables').checked;
  for(const[a,v]of [['x',x],['y',y],['z',z]]){$('#'+a).value=v;$('#'+a+'v').textContent=v.toFixed(1)+' mm'}
@@ -179,7 +180,7 @@ async function loadGLB(url){
  throw last;
 }
 setupPublicInfo();
-Promise.all([fetch('../assembly_manifest.json?v=public-v20',{cache:'no-cache'}).then(r=>r.json()),fetch('../flexible_routes.json?v=public-v20',{cache:'no-cache'}).then(r=>r.json()),loadModel(new GLTFLoader(),'../SIBOOR_Trident_350.glb',p=>{$('#loading').textContent=p.total?'読み込み '+Math.round(p.loaded/p.total*100)+'%':'3Dモデルを読み込み中…'}),loadGLB('../Endstop_Mechanisms.glb'),fetch('../COLOR_OPTIONS.json?v=public-v20',{cache:'no-cache'}).then(r=>r.json()),fetch('../ASSEMBLY_CONFIGURATIONS.json?v=public-v20',{cache:'no-cache'}).then(r=>r.json()),fetch('../R2_ENDSTOP_REGISTRATION.json?v=public-v20',{cache:'no-cache'}).then(r=>r.json())]).then(async([manifest,routes,g,endstops,colorOptions,configs,r2Meta])=>{
+Promise.all([fetch('../assembly_manifest.json?v=public-v21',{cache:'no-cache'}).then(r=>r.json()),fetch('../flexible_routes.json?v=public-v21',{cache:'no-cache'}).then(r=>r.json()),loadModel(new GLTFLoader(),'../SIBOOR_Trident_350.glb',p=>{$('#loading').textContent=p.total?'読み込み '+Math.round(p.loaded/p.total*100)+'%':'3Dモデルを読み込み中…'}),loadGLB('../Endstop_Mechanisms.glb'),fetch('../COLOR_OPTIONS.json?v=public-v21',{cache:'no-cache'}).then(r=>r.json()),fetch('../ASSEMBLY_CONFIGURATIONS.json?v=public-v21',{cache:'no-cache'}).then(r=>r.json()),fetch('../R2_ENDSTOP_REGISTRATION.json?v=public-v21',{cache:'no-cache'}).then(r=>r.json())]).then(async([manifest,routes,g,endstops,colorOptions,configs,r2Meta])=>{
  const headData=await loadMachineHeadCatalog();registration=manifest.motion_preview.endstop_registration;catalog=expandedPrinterCatalog(withFrameMods(configs,frameMods),headData.heads,headData.registry,'siboor_trident_350');catalog.bank_data=headData.bank;installedHeads=createMachineHeads(scene,{...catalog,base_assets:headData.heads.base_assets},{render:()=>{renderRequested=true}});ensureMachineHeadControls();r2Registration=r2Meta;stockRows=manifest.parts;
  refX=registration.switches.X.cad_reference_display_coordinate_mm;refY=registration.switches.Y.cad_reference_display_coordinate_mm;
  const lookup=new Map(manifest.parts.map(r=>[r.key,r]));model=g.scene;model.add(endstops.scene);scene.add(model);
@@ -200,7 +201,7 @@ Promise.all([fetch('../assembly_manifest.json?v=public-v20',{cache:'no-cache'}).
  const door=groups['09_ClickyClacky_Door'];if(door){pivot=new THREE.Group();pivot.position.set(-.26205,0,.2565);scene.add(pivot);pivot.attach(door)}
  for(const s of ['#door','#x','#y','#z','#demo','#reset','#home','#focusX','#focusY','#releaseSwitch','#focusZ'])$(s).disabled=false;
  accessories=setupAccessories(catalog,{load:asset,update:()=>setPose(current.x,current.y,current.z)});
- toolBank=setupChangerBank({catalog,rig:installedHeads,data:headData.bank,extras:accessories});ready=true;$('#loading').remove();await toolBank.bind(await setupConfigurations(catalog,installConfiguration,toolBank.options));
+ toolBank=setupChangerBank({catalog,rig:installedHeads,data:headData.bank,extras:{...accessories,onSettled:()=>setPose(current.x,current.y,current.z)}});ready=true;$('#loading').remove();await toolBank.bind(await setupConfigurations(catalog,installConfiguration,toolBank.options));
  setupRenderExport({renderer,scene,camera,controls,beforeRender:stop,afterRender:()=>{renderRequested=true},name:'Trident_350'});
 }).catch(e=>{if($('#loading'))$('#loading').textContent='モデルを読み込めませんでした。'+e.message;console.error(e)});
 $('#door').oninput=e=>{$('#angle').textContent=e.target.value+'°';if(pivot)pivot.rotation.y=-THREE.MathUtils.degToRad(+e.target.value)};

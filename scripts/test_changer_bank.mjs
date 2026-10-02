@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {bankChoices,initialBank,normalizeBank,bankPlan,readBankURL} from '../site/viewer/changer-bank-model.mjs';
+import {bankChoices,initialBank,normalizeBank,bankPlan,readBankURL,bankBedReferenceDrop} from '../site/viewer/changer-bank-model.mjs';
 const profiles=['xol','jabberwocky'].map(toolhead=>({selection:{toolhead,hotend:'hot',extruder:'drive',probe:'none',board:'none',cooling:'source'},dock:'dock_'+toolhead,park_translation_mm:[0,68,73]}));
 const data={pitch_mm:90,nine_mm_forward_mm:5.6,profiles,machines:{printer:{capacity:4,center_x_mm:0,translation_mm:[0,-240,330]}},fixture_assets:['nuts']};
 const variants=[6,9].flatMap(belt_width_mm=>profiles.map(p=>({id:'installed_'+belt_width_mm+'_'+p.selection.toolhead,source_head_configuration:'source_'+belt_width_mm+'_'+p.selection.toolhead,mount:'stealthchanger',gantry:'g'+belt_width_mm,belt_width_mm,...p.selection,machine_head:{base:p.selection.toolhead,translation:[1,2,3],translation_delta_mm:[1,2,3],hidden:['support'],modules:[{id:'front',translation_mm:[1,2,3],role:'tool'},{id:'shuttle',translation_mm:[1,2,3],role:'shuttle'}]}})));
@@ -18,3 +18,6 @@ for(const width of [6,9]){
 }
 assert.equal(JSON.stringify({catalog,data}),snapshot);assert.equal(readBankURL('?lang=en'),null);assert.deepEqual(readBankURL('?tools='+encodeURIComponent('{"enabled":false}')),{enabled:false});assert.throws(()=>readBankURL('?tools=bad'));assert.throws(()=>readBankURL('?tools='+'a'.repeat(4097)));
 console.log('Changer bank counts, mixed/repeated heads, active exclusion, belt datum correction, round trips and invalid state rejection passed.');
+
+const bedData=structuredClone(data);bedData.machines.printer.bed_clearance={minimum_reference_drop_mm:1.0973};const v=variants[0],state={...initialBank(catalog,bedData,v.gantry),enabled:true};
+assert.equal(bankBedReferenceDrop(catalog,bedData,state,v),1.0973);assert.equal(bankBedReferenceDrop(catalog,bedData,{...state,enabled:false},v),0);assert.equal(bankBedReferenceDrop(catalog,data,state,v),0);assert.equal(bankBedReferenceDrop(catalog,bedData,state,{...v,fit:{bed_reference_drop_mm:3}}),3);assert.throws(()=>bankBedReferenceDrop(catalog,bedData,{...state,active:99},v));console.log("Trident dock bed limit, original nozzle drop, toggle restoration and invalid states passed.");
