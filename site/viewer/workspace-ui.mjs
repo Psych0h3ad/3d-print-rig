@@ -1,5 +1,5 @@
 // Shared presentation layer. Existing controls, IDs and CAD controllers stay intact.
-import {setupLanguage,originalText} from './i18n.mjs?v=madmax-trident-1';
+import {setupLanguage,originalText} from './i18n.mjs?v=monolith-machine-1';
 const $ = selector => document.querySelector(selector);
 const node = (tag, className, text) => {
   const element = document.createElement(tag);

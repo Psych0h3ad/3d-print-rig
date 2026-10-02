@@ -81,7 +81,7 @@ export async function setupV24MachineHeads({machine,profile,adapter,scene,render
   else{profile.nozzle_tip_mm=[...stock.tip];profile.display_reference_xyz_mm=[...stock.reference]}
   profile.display_limits_mm=monolithDisplayLimits(stock.limits,profile.display_reference_xyz_mm,v);
   for(const axis of ['x','y','z']){const input=document.querySelector('#'+axis),[min,max]=profile.display_limits_mm[axis.toUpperCase()];input.min=min;input.max=max;input.value=Math.max(min,Math.min(max,Number(input.value)))}
-  const clearance=document.querySelector('#clearanceStatus');if(clearance)clearance.textContent=v.machine_gantry?.z_delta_limits_mm?'Monolith · Zガイド8個をレール内に保つ表示範囲：Z '+profile.display_limits_mm.Z.map(n=>n.toFixed(1)).join('–')+' mm。':stock.clearance;
+  const clearance=document.querySelector('#clearanceStatus');if(clearance)clearance.textContent=v.machine_gantry?.z_delta_limits_mm?'Monolith · '+['X','Y','Z'].map(a=>a+' '+profile.display_limits_mm[a].map(n=>n.toFixed(1)).join('–')).join(' / ')+' mm':stock.clearance;
   onChange(v);applyPose();visibility();gantryVisibility.update();installed=true;const link=document.querySelector('#toolheadLink');if(link){const url=new URL('./toolheads.html',location.href);url.searchParams.set('configuration',v.source_head_configuration||'trident_r2__stealthburner__revo_voron__cw2');link.href=url.href}
  }
  const query=new URLSearchParams(location.search),requestedProbe=query.get('probe');
