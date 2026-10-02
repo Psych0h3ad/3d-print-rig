@@ -19,5 +19,13 @@ for(const width of [6,9]){
 assert.equal(JSON.stringify({catalog,data}),snapshot);assert.equal(readBankURL('?lang=en'),null);assert.deepEqual(readBankURL('?tools='+encodeURIComponent('{"enabled":false}')),{enabled:false});assert.throws(()=>readBankURL('?tools=bad'));assert.throws(()=>readBankURL('?tools='+'a'.repeat(4097)));
 console.log('Changer bank counts, mixed/repeated heads, active exclusion, belt datum correction, round trips and invalid state rejection passed.');
 
-const bedData=structuredClone(data);bedData.machines.printer.bed_clearance={minimum_reference_drop_mm:1.0973};const v=variants[0],state={...initialBank(catalog,bedData,v.gantry),enabled:true};
-assert.equal(bankBedReferenceDrop(catalog,bedData,state,v),1.0973);assert.equal(bankBedReferenceDrop(catalog,bedData,{...state,enabled:false},v),0);assert.equal(bankBedReferenceDrop(catalog,data,state,v),0);assert.equal(bankBedReferenceDrop(catalog,bedData,state,{...v,fit:{bed_reference_drop_mm:3}}),3);assert.throws(()=>bankBedReferenceDrop(catalog,bedData,{...state,active:99},v));console.log("Trident dock bed limit, original nozzle drop, toggle restoration and invalid states passed.");
+const bedData=structuredClone(data);bedData.machines.printer.bed_reference_top_mm=303.25;const v={...variants[0],fit:{nozzle_mm:[0,0,318.75]}},state={...initialBank(catalog,bedData,v.gantry),enabled:true};
+assert.equal(bankBedReferenceDrop(catalog,bedData,state,v),-15.5);assert.equal(bankBedReferenceDrop(catalog,bedData,{...state,enabled:false},v),-15.5);assert.equal(bankBedReferenceDrop(catalog,data,state,v),0);assert.equal(bankBedReferenceDrop(catalog,data,state,{...v,fit:{bed_reference_drop_mm:3}}),3);
+console.log("Trident bed endpoint uses the actual nozzle plane; bank toggles do not silently cap printing height.");
+bedData.machines.printer.bed_max_up_mm=9.3;
+assert.equal(bankBedReferenceDrop(catalog,bedData,state,v),-9.3);
+assert.equal(bankBedReferenceDrop(catalog,bedData,{...state,enabled:false},v),-9.3);
+bedData.machines.printer.bank_permitted=false;bedData.machines.printer.printing_blocked_reason='Bed collision';
+assert.throws(()=>bankPlan(state,catalog,bedData,v),/Bed collision/);
+assert.equal(bankPlan({...state,enabled:false},catalog,bedData,v).instances.length,0);
+console.log('Native Z rail limit is respected; incompatible Trident docks are rejected, including saved states.');

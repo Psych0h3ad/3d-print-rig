@@ -1,6 +1,6 @@
-import {catalogDimensions,collections,resolveVariant,choicesFor,importedVariant,configurationById} from './configuration-model.js?v=public-v21';
-import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=public-v21';
-import {renderProductLinks} from './product-links.js?v=public-v21';
+import {catalogDimensions,collections,resolveVariant,choicesFor,importedVariant,configurationById} from './configuration-model.js?v=public-v22';
+import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=public-v22';
+import {renderProductLinks} from './product-links.js?v=public-v22';
 
 export async function setupConfigurations(catalog,install,{presentation='printer',getExtras=()=>({}),applyExtras=async()=>{},validateExtras=()=>{},onSettled=()=>{}}={}){
  const $=s=>document.querySelector(s);
@@ -29,7 +29,7 @@ export async function setupConfigurations(catalog,install,{presentation='printer
   if(presentation==='printer'&&v.fit?.nozzle_mm)rows.push(`基準姿勢のノズル位置：X ${v.fit.nozzle_mm[0].toFixed(2)} / Y ${v.fit.nozzle_mm[1].toFixed(2)} / Z ${v.fit.nozzle_mm[2].toFixed(2)} mm`);
   if(presentation==='printer'&&v.fit?.bed_reference_drop_mm)rows.push(`基準ベッド位置を ${v.fit.bed_reference_drop_mm.toFixed(2)} mm下げて表示（ノズル先端と0.2 mmの間隔）`);
   if(v.fit?.mount_hotend_overlap_mm3!=null)rows.push(`マウント／ホットエンドの交差体積：${v.fit.mount_hotend_overlap_mm3.toFixed(3)} mm³`);
-  if(v.fit?.machine_mount){const m=v.fit.machine_mount;rows.push(`機体取付：${m.kind}。取付穴の軸ずれ ${m.axis_error_mm.toFixed(4)} mm。`);rows.push('機体側ドック・ホーミング接点・全可動域は未検証。');if(v.toolhead==='indx')rows.push('INDX：ベルト固定具とドックが未登録。レール取付の比較表示。')}
+  if(v.fit?.machine_mount){const m=v.fit.machine_mount;rows.push(`機体取付：${m.kind}。取付穴の軸ずれ ${m.axis_error_mm.toFixed(4)} mm。`);rows.push('機体側ドック・ホーミング接点・全可動域は未検証。');if(v.toolhead==='indx')rows.push('INDX：受動ツールとドックを選択可能。ベルト固定具・交換経路は未検証。')}
   if(v.fit?.probe){const p=v.fit.probe;rows.push(Number.isFinite(p.coil_nozzle_gap_mm)?`${p.label||'プローブ'}のコイル底面：ノズルより ${p.coil_nozzle_gap_mm.toFixed(2)} mm上`:`${p.label||'プローブ'}のコイル底面：未計測`);if(p.offset_xy_mm)rows.push(`ノズルからのオフセット：X ${p.offset_xy_mm[0].toFixed(2)} / Y ${p.offset_xy_mm[1].toFixed(2)} mm`);if(p.spacer_mm)rows.push(`取付に必要な絶縁スペーサー：${p.spacer_mm.toFixed(1)} mm × 2`)}
   const check=probeCheck(v);rows.push(...check.lines);if(v.fit?.probe?.minimum_probe_bed_clearance_at_nozzle_contact_mm!=null)rows.push(`ノズル接触時のプローブ最下部／ベッド間隔：${v.fit.probe.minimum_probe_bed_clearance_at_nozzle_contact_mm.toFixed(3)} mm`);
   rows.push(presentation==='toolhead'?'マウントと部品配置のCADプレビュー。プリンター全域の干渉判定は含みません。':'全可動域の衝突、熱・流量・電気特性は未検証。');
@@ -53,7 +53,7 @@ export async function setupConfigurations(catalog,install,{presentation='printer
   for(const id of ['loadConfiguration','saveConfiguration'])$('#'+id).disabled=true;
   $('#configStatus').textContent='選択したCADを読み込み中…';
   try{await install(v);if(extraData)await applyExtras(extraData);commit(v);success=true;if(adjustment){$('#configStatus').textContent+=' ／ 登録済みの組み合わせに合わせて変更：'+adjustment;$('#configStatus').classList.add('notice')}}catch(e){
-   let restored=false;if(actual){try{await install(actual);if(extraData)await applyExtras(previousExtras);restored=true}catch(restore){console.error(restore)}menus(actual)}
+   let restored=false;if(actual){try{await install(actual);await applyExtras(previousExtras);restored=true}catch(restore){console.error(restore)}menus(actual)}
    if(!restored){actual=null;delete $('#configStatus').dataset.variant}
    $('#configStatus').textContent=restored?'切替に失敗しました。直前の構成を表示中。':'CADの読み込みに失敗しました。構成を選び直して再試行してください。';$('#configStatus').classList.add('notice');console.error(e);
   }finally{busy=false;for(const k of ids)$('#'+k+'Config').disabled=false;$('#loadConfiguration').disabled=false;$('#saveConfiguration').disabled=!actual;onSettled(actual)}

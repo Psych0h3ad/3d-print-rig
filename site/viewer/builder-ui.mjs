@@ -1,5 +1,5 @@
-import {builderGroups,builderManifest,builderURL} from './toolhead-builder.mjs?v=public-v21';
-import {monolithCompanion} from './monolith-head-model.mjs?v=public-v21';
+import {builderGroups,builderManifest,builderURL} from './toolhead-builder.mjs?v=public-v22';
+import {monolithCompanion} from './monolith-head-model.mjs?v=public-v22';
 
 export function setupHeadBuilder(catalog,{getVariant,getMetadata,getExtras,pins,selectVariant,isBusy}){
  const $=id=>document.getElementById(id);
@@ -24,7 +24,7 @@ export function setupHeadBuilder(catalog,{getVariant,getMetadata,getExtras,pins,
   $('buildSelection').replaceChildren(...manifest.selection.flatMap(r=>{const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=r.label;dd.textContent=r.value;return [dt,dd]}));
   $('buildPartCount').textContent=`表示中 ${manifest.displayed_instances}点 · 印刷部品 ${manifest.printed_instances}点`;
   const companion=monolithCompanion(catalog,v);$('buildMonolith').hidden=!companion;
-  if(companion){const u=new URL('./gantries.html',location.href);u.searchParams.set('head_configuration',companion.id);$('buildMonolith').href=u.href}
+  if(companion){const u=new URL('./gantries.html',location.href);u.searchParams.set('head_configuration',companion.id);const back=new URL(location.href).searchParams.get('return_gantry');if(back&&/^monolith_(vt|v2)_(printed|sheet_metal)_(6|9)_(2wd|awd)_(250|350)$/.test(back)){const width=companion.mount==='fixed'?back:back.replace(/_(6|9)_(2wd|awd)_/,'_'+companion.belt_width_mm+'_$2_');u.searchParams.set('gantry',width)}$('buildMonolith').href=u.href}
   $('buildModules').replaceChildren(...manifest.modules.map(m=>{
    const d=document.createElement('details'),s=document.createElement('summary');s.textContent=`${m.id} · ${m.parts.length}点`;d.append(s);
    for(const source of m.sources){const p=document.createElement('p'),a=document.createElement('a');a.href=source.url;a.target='_blank';a.rel='noopener';a.textContent='原本・取付説明 ↗';p.append(a);if(source.commit){const code=document.createElement('code');code.textContent=source.commit.slice(0,12);code.title=source.commit;p.append(' · ',code)}if(source.license)p.append(document.createElement('br'),source.license);d.append(p)}

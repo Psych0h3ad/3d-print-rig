@@ -1,4 +1,4 @@
-import {createTridentBelts} from './trident-belts.mjs?v=public-v21';
+import {createTridentBelts} from './trident-belts.mjs?v=public-v22';
 /** Independent Trident bed motion. Vertices carry their CAD placements. */
 export function createTridentMotion(profile){
  if(profile.kinematics!=='trident'||profile.machine_id!=='voron_trident_350')throw Error('Trident profile mismatch');
@@ -12,9 +12,9 @@ export function createTridentMotion(profile){
   if(metadata.id==='trident_r2_gantry_350'&&!belts.some(b=>b.root===root))belts.push({root,...createTridentBelts(root,metadata)});
  }
  function setReference(value){reference=[...value]}
- function setBedReferenceDrop(value){if(!Number.isFinite(value)||value<0||value>profile.display_limits_mm.Z[1])throw Error('Invalid bed reference');bedReferenceDrop=value}
+ function setBedReferenceDrop(value){if(!Number.isFinite(value)||value< -40||value>profile.display_limits_mm.Z[1])throw Error('Invalid bed reference');bedReferenceDrop=value}
  function setPose(pose,{flexibleVisible=true,toolheadReference=true}={}){
-  const xyz=['x','y','z'].map((a,i)=>{const v=Number(pose[a]);if(!Number.isFinite(v))throw Error('Non-finite pose');const limits=profile.display_limits_mm[a.toUpperCase()];return Math.max(limits[0],Math.min(limits[1]-(a==='z'?bedReferenceDrop:0),v))});
+  const xyz=['x','y','z'].map((a,i)=>{const v=Number(pose[a]);if(!Number.isFinite(v))throw Error('Non-finite pose');const limits=profile.display_limits_mm[a.toUpperCase()];return Math.max(limits[0],Math.min(limits[1]-(a==='z'?Math.max(0,bedReferenceDrop):0),v))});
   const dx=xyz[0]-reference[0],dy=xyz[1]-reference[1],down=xyz[2]+bedReferenceDrop;
   for(const [mesh,{row,origin}] of entries){const motion=row.motion;
    mesh.position.set(origin.x+(motion==='xy'?dx/1000:0),origin.y-(motion==='z'?down/1000:0),origin.z-(['xy','y'].includes(motion)?dy/1000:0));

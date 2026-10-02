@@ -1,20 +1,21 @@
-import {loadMachineHeadCatalog} from './machine-heads.js?v=public-v21';
-import {headPrinterLink} from './head-navigation.mjs?v=public-v21';
-import {headBuilderDimensions} from './configuration-model.js?v=public-v21';
-let machineRegistry;
-import {appearanceRole} from './appearance-role.mjs?v=public-v21';
+import {setupChangerBank} from './changer-bank.js?v=public-v22';
+import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=public-v22';
+import {headPrinterLink} from './head-navigation.mjs?v=public-v22';
+import {headBuilderDimensions} from './configuration-model.js?v=public-v22';
+let machineRegistry,toolBank,bankRig;
+import {appearanceRole} from './appearance-role.mjs?v=public-v22';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=public-v21';
-import {setupConfigurations} from './configurations.js?v=public-v21';
-import {setupPublicInfo} from './public-info.js?v=public-v21';
-import {setupRenderExport} from './render-export.js?v=public-v21';
-import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=public-v21';
-import {probeCheck,probeMetrics,probeGuide,headInspectionState} from './probe-checks.js?v=public-v21';
-import {renderProductLinks} from './product-links.js?v=public-v21';
-import {setupHeadBuilder} from './builder-ui.mjs?v=public-v21';
-import {validateBuilderExtras} from './toolhead-builder.mjs?v=public-v21';
+import {loadModel} from './model-loader.js?v=public-v22';
+import {setupConfigurations} from './configurations.js?v=public-v22';
+import {setupPublicInfo} from './public-info.js?v=public-v22';
+import {setupRenderExport} from './render-export.js?v=public-v22';
+import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=public-v22';
+import {probeCheck,probeMetrics,probeGuide,headInspectionState} from './probe-checks.js?v=public-v22';
+import {renderProductLinks} from './product-links.js?v=public-v22';
+import {setupHeadBuilder} from './builder-ui.mjs?v=public-v22';
+import {validateBuilderExtras} from './toolhead-builder.mjs?v=public-v22';
 
 const $=s=>document.querySelector(s),stage=$('#stage'),scene=new THREE.Scene();
 scene.background=new THREE.Color('#edf1f5');
@@ -65,6 +66,7 @@ function appearance(){
  for(const role of ['base','accent']){$('#'+role+'Color').value=colors[role];$('#'+role+'Hex').value=colors[role];$('#'+role+'Hex').removeAttribute('aria-invalid')}
  const matching=Object.entries(presets).find(([,p])=>p[0]===colors.base&&p[1]===colors.accent);
  $('#headPreset').value=matching?.[0]||'custom';
+ bankRig?.setPalette(colors);
  $('#headPaletteStatus').textContent=`ベース ${base}点 · アクセント ${accent}点`;
  Object.assign($('#headPaletteStatus').dataset,{base:colors.base,accent:colors.accent,protectedChanges:String(protectedChanges),transparent:String($('#seeInside').checked)});
  dirty=true;
@@ -130,6 +132,7 @@ function visibleBounds(){
  bench.position.set(0,0,0);bench.updateMatrixWorld(true);const box=new THREE.Box3();
  for(const p of cached.values()){const a=p.loaded;if(!a?.root.visible)continue;for(const r of a.meshes){if(!r.mesh.visible)continue;r.mesh.geometry.computeBoundingBox();box.union(r.mesh.geometry.boundingBox.clone().applyMatrix4(r.mesh.matrixWorld))}}
  if(box.isEmpty())throw Error('表示するヘッド部品がありません');
+ if(bankRig){bankRig.bankRig.updateMatrixWorld(true);bankRig.bankRig.traverse(o=>{if(o.isMesh&&o.visible)box.expandByObject(o)})}
  const center=box.getCenter(new THREE.Vector3());bench.position.copy(center).negate();bench.updateMatrixWorld(true);
  bounds=box.clone().translate(center.negate());
  const size=box.getSize(new THREE.Vector3()).multiplyScalar(1000);
@@ -149,6 +152,7 @@ async function install(variant){
  const plan=headPlan(variant),ids=[plan.base,...plan.modules.map(m=>m.id),...(variant.inspection_module?[variant.inspection_module]:[])];
  $('#loading').hidden=false;$('#loading').textContent='選択したヘッドを読み込み中…';
  try{
+  await toolBank?.install(variant);
   // Load before mutating visibility, so failures leave the installed head intact.
   await Promise.all(ids.map(asset));
   for(const p of cached.values()){const a=p.loaded;if(a){a.root.visible=false;for(const r of a.meshes)r.mesh.visible=true}}
@@ -157,7 +161,7 @@ async function install(variant){
   for(const module of plan.modules){const a=await asset(module.id),hidden=new Set(module.hidden_keys||[]);a.root.position.copy(point(module.translation_mm));a.root.visible=true;for(const r of a.meshes)r.mesh.visible=!hidden.has(r.key)}
   if(variant.inspection_module){const a=await asset(variant.inspection_module);a.root.position.set(0,0,0);a.root.visible=true;for(const row of a.meshes){row.mesh.renderOrder=20;for(const material of row.materials){material.depthTest=false;material.depthWrite=false;material.transparent=true;material.opacity=.82}}}
   currentVariant=variant;$('#headProbeTravel').value=0;$('#headExplode').value=0;
- $('#changerControls').hidden=!['stealthchanger','tapchanger','indx','madmax'].includes(variant.mount);$('#headProbeTravel').disabled=variant.mount!=='stealthchanger';$('#headExplode').disabled=variant.mount!=='stealthchanger';changerDisplay();
+ $('#changerControls').hidden=!['stealthchanger','tapchanger','madmax'].includes(variant.mount);$('#headProbeTravel').disabled=variant.mount!=='stealthchanger';$('#headExplode').disabled=variant.mount!=='stealthchanger';changerDisplay();
   appearance();inspection(variant);visibleBounds();ready=true;fit();
   const count=[plan.base,...plan.modules.map(m=>m.id)].reduce((n,id)=>{const a=cached.get(id).loaded;return n+(a.root.visible?a.meshes.filter(r=>r.mesh.visible).length:0)},0);
   Object.assign(document.body.dataset,{variant:variant.id,headParts:String(count),headAssets:JSON.stringify(ids),assetStatus:'ready'});
@@ -168,7 +172,7 @@ function changerDisplay(){
  if(!currentVariant)return;const v=currentVariant,plan=headPlan(v),state={probe:$('#headProbeTravel').value,explode:$('#headExplode').value};
  $('#headProbeValue').textContent=Number(state.probe).toFixed(1)+' mm';
  const base=cached.get(plan.base)?.loaded;if(base)base.root.position.copy(point(headPlacement(v,{translation_mm:plan.translation,role:'tool'},state)));
- if(base)for(const row of base.meshes){if(row.component==='dock')row.mesh.visible=$('#headShowDock').checked;if(row.component==='shuttle_reference')row.mesh.visible=$('#headShowRail').checked}
+ if(base)for(const row of base.meshes){if(row.component==='dock')row.mesh.visible=$('#headShowDock').checked&&!plan.hidden.has(row.key);if(row.component==='shuttle_reference')row.mesh.visible=$('#headShowRail').checked}
  for(const entry of plan.modules){const a=cached.get(entry.id)?.loaded;if(!a)continue;
   a.root.position.copy(point(headPlacement(v,entry,state)));a.root.visible=entry.role!=='dock'||$('#headShowDock').checked;
   for(const row of a.meshes)if(row.component==='rail_reference')row.mesh.visible=$('#headShowRail').checked;
@@ -188,8 +192,12 @@ try{
  $('#combinationCount').textContent=`${catalog.toolheads.length}種類のヘッド · ${catalog.extruders.length}種類の押出機 · ${headCombinationCount(catalog)}通りのヘッド構成`;
  // Earlier standalone files used the first printer's ID; keep them readable.
  catalog={...catalog,dimensions:headBuilderDimensions,machine_id:'toolhead',import_machine_ids:['siboor_trident_350']};
- const controller=await setupConfigurations(catalog,install,{presentation:'toolhead',getExtras:extras,applyExtras:restoreExtras,validateExtras:validateBuilderExtras,onSettled:()=>builder?.update()});
+ const bankCatalog={...catalog,bank_data:headData.bank,variants:catalog.variants.map(v=>{const p=headPlan(v);return {...v,machine_head:{base:p.base,translation:p.translation,translation_delta_mm:[0,0,0],hidden:[...p.hidden],modules:p.modules.filter(m=>m.role!=='dock')}}})};
+ bankRig=createMachineHeads(bench,bankCatalog,{render:()=>{dirty=true}});bankRig.setVisible(false);
+ const bankAdapter={get active(){return bankRig.active},async install(v,state){await bankRig.install(bankCatalog.variants.find(p=>p.id===v.id),state)},async setBank(state){await bankRig.setBank(state)}};
+ toolBank=setupChangerBank({catalog:bankCatalog,rig:bankAdapter,data:headData.bank,extras:{presentation:'toolhead',getExtras:extras,applyExtras:restoreExtras,validateExtras:validateBuilderExtras,onSettled:()=>{builder?.update();if(ready){appearance();visibleBounds();fit()}}}});
+ const controller=await setupConfigurations(catalog,install,toolBank.options);await toolBank.bind(controller);
  if(!ready)throw Error('ヘッドのCADを表示できませんでした');
- let pins=[];try{const r=await fetch('../PUBLIC_CATALOG.json?v=public-v21');if(r.ok)pins=(await r.json()).sources||[]}catch{}
- builder=setupHeadBuilder(catalog,{getVariant:()=>currentVariant,getMetadata:()=>new Map([...cached].filter(([,p])=>p.loaded).map(([id,p])=>[id,p.loaded.meta])),getExtras:extras,pins,selectVariant:id=>controller.selectVariant(id),isBusy:()=>controller.busy});
+ let pins=[];try{const r=await fetch('../PUBLIC_CATALOG.json?v=public-v22');if(r.ok)pins=(await r.json()).sources||[]}catch{}
+ builder=setupHeadBuilder(catalog,{getVariant:()=>currentVariant,getMetadata:()=>new Map([...cached].filter(([,p])=>p.loaded).map(([id,p])=>[id,p.loaded.meta])),getExtras:()=>toolBank.options.getExtras(),pins,selectVariant:id=>controller.selectVariant(id),isBusy:()=>controller.busy});
 }catch(e){$('#loading').hidden=false;$('#loading').textContent=e.message;document.body.dataset.assetStatus='error';console.error(e)}

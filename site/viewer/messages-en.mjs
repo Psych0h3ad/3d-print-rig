@@ -1013,7 +1013,31 @@ export const messages = {
  "作者の組立CAD。機体への取付位置・全可動域・自動動作は未検証。": "Original-author assembly CAD. Machine mounting, full travel and automated motion remain unverified.",
  "原本の静止姿勢で本体を検査。ねじ締結・切断ストローク・全可動域は未検証。": "Bodies checked at the original static pose. Thread engagement, cutting stroke and full travel remain unverified."
 };
+Object.assign(messages,{
+ "取付部":"Mounting interface",
+ "Split KeeperのMGN接触面と4本の穴軸で配置。シャトルとKeeperの接触を原本CADで照合。":"Registered to the Split Keeper MGN mating face and four hole axes. Shuttle/keeper contact checked in native CAD.",
+ "通常固定式：SphinxのMGN接触面・4本の穴軸・6/9 mmベルト溝を原本CADで照合。":"Fixed mount: Sphinx MGN mating face, four hole axes and 6/9 mm belt grooves checked in native CAD.",
+ "この標準ドックはTridentのベッドがノズル高さへ上がると干渉するため選べません。水平交換専用のバックプレート・カウル・ドックが必要です。":"This standard dock is unavailable on Trident: it collides with the bed at printing height. Dedicated backplates, cowls and docks for horizontal tool changes are required.",
+ "このTrident原本ではノズル接触前にZガイドの端を越えます。専用キャリッジとZ機構の対応が必要です。工具バンクは取付比較です。":"On this Trident source model the Z blocks leave their rails before nozzle contact. A compatible carriage and Z mechanism are required. The tool bank is a mounting reference.",
+ "ベルト表示はヘッド入口まで。クランプ内部の折返し経路は未登録。":"Belts end at the toolhead entrance. Return routing inside the clamp is not registered.",
+ "ツールバンク":"Tool bank","INDX・受動ツール":"INDX · passive tools","受動ツールとドックを取り付ける":"Install passive tools and docks","工具数":"Number of tools","装着中の工具":"Mounted tool",
+ "Smart Headは1台。選択中の工具はSmart Headに装着し、残りは専用ドックで待機します。各ノズルの外形はBondtechの共通参照モデルです。":"One Smart Head. The selected tool is mounted; the others wait in dedicated docks. Nozzle variants share Bondtech's reference outer geometry.",
+ "原本の2020用ドック・磁石・バネ・受動ツール。41 mm間隔。追加の前面2020クロスバーが必要です。端部締結・外装・全可動域・自動ドッキング経路は未検証。":"Original 2020 dock, magnets, spring and passive tools at 41 mm pitch. An additional front 2020 crossbar is required. End fasteners, enclosure, full travel and automatic docking remain unverified.",
+ "Tridentの固定Zガントリーに標準の垂直交換ドックは適合しません。ベッドがノズル面へ到達する前にドックへ干渉します。水平交換専用ドックは未登録です。":"The standard vertical-change dock does not fit Trident's fixed-Z gantry. The bed hits the dock before reaching the nozzle plane. A compatible horizontal-change dock is not registered.",
+ "INDXの受動ツールと2020用ドックを表示。追加クロスバーと専用締結が必要。ベルト固定具・交換経路は未検証。":"INDX passive tools and 2020 docks shown. Additional crossbar and fasteners required. Belt retention and tool-change paths unverified.",
+ "INDX：受動ツールとドックを選択可能。ベルト固定具・交換経路は未検証。":"INDX: passive tools and docks selectable. Belt retention and tool-change paths unverified.",
+ "Bondtech原本のSmart Head＋受動ツール。ノズル仕様は共通の外形参照で、穴径・CHT内部形状を個別に再現していません。4010ファン本体・内部電子部品の詳細は原本にありません。":"Bondtech's Smart Head and passive tool reference. Nozzle variants share the outer shape; bore sizes and CHT internal geometry are not individually modeled. The source lacks 4010 fan motors and internal electronics detail.",
+ "Smart Headは1台。受動ツールを交換するINDX専用構造。通常のホットエンド・押出機とは交換できません。":"One Smart Head with interchangeable INDX passive tools. Conventional hotends and extruders cannot replace them.",
+ "装着工具は閉状態。開状態の選択はドック内の原本姿勢の比較で、交換動作のシミュレーションではありません。":"The mounted tool is closed. The open option compares the source pose; it does not simulate tool changes.",
+ "INDX · 原本ノズル参照":"INDX · source nozzle reference","工具 T":"Tool T"
+});
+
 export const templates = {
+ "· ベッド基準位置の移動 {0} mm":"· Bed reference movement: {0} mm",
+ "Zガイド上端で停止。ノズルまで {0} mm残るため、この取付位置では印刷できません。":"Stopped at the Z rail limit, with {0} mm still below the nozzle. This mounting position cannot print.",
+ "ノズル接触面へのベッド移動 {0} mm。":"Bed movement to nozzle contact plane: {0} mm.",
+ "· ノズル接触面へのベッド移動 {0} mm":"· Bed movement to nozzle contact plane: {0} mm",
+ "工具 T{0}":"Tool T{0}",
  "{0} · {1}構成": "{0} · {1} configurations",
  "{0} · {1}点": "{0} · {1} parts",
  "{0} · ノズルより {1} mm上 · 絶縁スペーサー {2} mm × 2{3}": "{0} · {1} mm above nozzle · insulating spacers {2} mm × 2{3}",

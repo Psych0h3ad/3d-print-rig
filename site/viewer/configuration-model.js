@@ -1,4 +1,4 @@
-import {probeHasConflict} from './probe-checks.js?v=public-v21';
+import {probeHasConflict} from './probe-checks.js?v=public-v22';
 export const dimensions=['gantry','toolhead','carriage','hotend','extruder','probe'];
 export const collections={gantry:'gantries',toolhead:'toolheads',mount:'mounts',carriage:'carriages',hotend:'hotends',extruder:'extruders',probe:'probes',board:'boards',cooling:'cooling_options'};
 export const catalogDimensions=catalog=>catalog.dimensions||dimensions;

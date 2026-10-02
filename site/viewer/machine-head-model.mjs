@@ -1,8 +1,8 @@
-import {headPlan} from './head-assembly.js?v=public-v21';
+import {headPlan} from './head-assembly.js?v=public-v22';
 
-import {translatedProbeFit} from './probe-checks.js?v=public-v21';
+import {translatedProbeFit} from './probe-checks.js?v=public-v22';
 
-import {withEmbeddedBoards} from './embedded-boards.mjs?v=public-v21';
+import {withEmbeddedBoards} from './embedded-boards.mjs?v=public-v22';
 
 const clone=value=>JSON.parse(JSON.stringify(value));
 const add=(a,b)=>a.map((v,i)=>v+b[i]);
@@ -36,7 +36,7 @@ export function machineHeadVariants(heads,registry,machine,gantry){
   n.fit={...n.fit,nozzle_mm:n.machine_head.nozzle_mm,bed_reference_drop_mm:0,machine_mount:{kind:'MGN12H 20 x 20 mm',axis_error_mm:Math.max(target.axis_error_mm||0,v.mount==='stealthchanger'?(registry.mount_verification?.stealthchanger?.axis_error_mm||0):v.toolhead==='indx'?(registry.mount_verification?.indx?.axis_error_mm||0):(registry.mount_verification?.[v.registration_source]?.axis_error_mm||0)),docking_registered:false,full_travel_verified:false}};
   if(n.fit.probe)n.fit.probe=translatedProbeFit(n.fit.probe,n.machine_head.translation_delta_mm);
   n.notes=[...n.notes.filter(t=>!t.includes('プリンター全体への装着')),'MGN12の取付軸で機体に配置。全域の干渉・ホーミング接点・配線・ドッキングは未検証。'];
-  if(v.toolhead==='indx')n.notes.push('INDXはレール取付のプレビュー。ベルト固定具・機体側ドックは未登録。');
+  if(v.toolhead==='indx')n.notes.push('INDXの受動ツールと2020用ドックを表示。追加クロスバーと専用締結が必要。ベルト固定具・交換経路は未検証。');
   if(v.toolhead==='sphinx')n.notes.push('MGN12の取付面と4本の穴軸でVORON機体へ配置。センサー・全可動域は未検証。');
   return n;
  });

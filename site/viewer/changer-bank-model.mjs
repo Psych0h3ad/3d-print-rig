@@ -1,36 +1,49 @@
 // A frame-mounted bank uses original dock geometry and registered parked heads.
 const copy=value=>JSON.parse(JSON.stringify(value));
-export function bankChoices(catalog,data,gantry){
+export function bankSource(v,system){return system==='indx'?v.hotend:v.source_head_configuration||v.id}
+export function bankSystem(state){return state?.system==='indx'?'indx':'stealthchanger'}
+export function bankSpec(data,system){return system==='indx'?data.indx:data}
+export function bankChoices(catalog,data,gantry,system='stealthchanger',cooling='4010'){
+ if(system==='indx')return (data.indx?.tool_options||[]).map(p=>catalog.variants.find(v=>v.toolhead==='indx'&&v.hotend===p.id&&v.cooling===cooling&&(!gantry||v.gantry===gantry))).filter(Boolean);
  return data.profiles.map(p=>catalog.variants.find(v=>v.machine_head&&v.mount==='stealthchanger'&&(!gantry||v.gantry===gantry)&&Object.entries(p.selection).every(([k,value])=>v[k]===value))).filter(Boolean);
 }
-export function bankCapacity(data,machine){return data.machines[machine]?.capacity||0}
-// Trident moves its bed, while the top-mounted docks stay fixed. Retain
-// native dock geometry and limit the preview's highest bed position.
+export function bankCapacity(data,machine,system='stealthchanger'){return bankSpec(data,system)?.machines[machine]?.capacity||0}
+// A signed offset brings the bed toward the nozzle, bounded by the native
+// Z rail/carriage envelope. Dock interference must never lower this datum.
 export function bankBedReferenceDrop(catalog,data,state,variant){
- const base=Math.max(0,variant?.fit?.bed_reference_drop_mm||0);
- if(!state?.enabled)return base;
- const bed=data.machines[catalog.machine_id]?.bed_clearance;
- if(!bed)return base;
- normalizeBank(state,catalog,data,variant?.gantry);
- return Math.max(base,bed.minimum_reference_drop_mm);
+ const mount=data.machines[catalog.machine_id],nozzle=variant?.fit?.nozzle_mm?.[2],top=mount?.bed_reference_top_mm;
+ // Signed bed offset: the bed must rise to the actual nozzle plane at Z=0.
+ const base=Number.isFinite(nozzle)&&Number.isFinite(top)?top-nozzle:(variant?.fit?.bed_reference_drop_mm||0);
+ return Number.isFinite(mount?.bed_max_up_mm)?Math.max(base,-mount.bed_max_up_mm):base;
 }
 export function normalizeBank(state,catalog,data,gantry){
- const capacity=bankCapacity(data,catalog.machine_id),choices=bankChoices(catalog,data,gantry);
+ const system=bankSystem(state),capacity=bankCapacity(data,catalog.machine_id,system);
+ let choices=bankChoices(catalog,data,gantry,system);if(!state?.enabled&&!choices.length)choices=bankChoices(catalog,data,undefined,system);
  if(!state||typeof state.enabled!=='boolean'||!Array.isArray(state.tools)||!Number.isInteger(state.active)||state.tools.length<1||state.tools.length>capacity||state.active<0||state.active>=state.tools.length)throw Error('ツールバンクの台数または使用中のヘッドが不正です。');
+ const mount=bankSpec(data,system)?.machines[catalog.machine_id];
+ if(state.enabled&&mount?.bank_permitted===false)throw Error(mount.printing_blocked_reason);
  const tools=state.tools.map(id=>{
-  const v=choices.find(v=>v.id===id||v.source_head_configuration===id);if(!v)throw Error('この機体に登録されていないドック構成です。');return v.source_head_configuration||v.id;
+  const v=choices.find(v=>v.id===id||v.source_head_configuration===id||system==='indx'&&v.hotend===id);if(!v)throw Error('この機体に登録されていないドック構成です。');return bankSource(v,system);
  });
- return {enabled:state.enabled,active:state.active,tools};
+ return {enabled:state.enabled,active:state.active,tools,...(system==='indx'?{system}: {})};
 }
-export function initialBank(catalog,data,gantry){
- const choices=bankChoices(catalog,data,gantry);if(!choices.length)throw Error('この機体のドック構成は未登録です。');
- return {enabled:false,active:0,tools:Array.from({length:Math.min(3,bankCapacity(data,catalog.machine_id))},(_,i)=>choices[i%choices.length].source_head_configuration||choices[i%choices.length].id)};
+export function initialBank(catalog,data,gantry,system='stealthchanger'){
+ let choices=bankChoices(catalog,data,gantry,system);if(!choices.length)choices=bankChoices(catalog,data,undefined,system);if(!choices.length)throw Error('この機体のドック構成は未登録です。');
+ return {enabled:false,active:0,tools:Array.from({length:Math.min(3,bankCapacity(data,catalog.machine_id,system))},(_,i)=>bankSource(choices[i%choices.length],system)),...(system==='indx'?{system}: {})};
 }
 export function bankPlan(state,catalog,data,activeVariant){
  const normalized=normalizeBank(state,catalog,data,activeVariant?.gantry);if(!normalized.enabled)return {state:normalized,instances:[]};
- const choices=bankChoices(catalog,data,activeVariant?.gantry),selected=choices.find(v=>(v.source_head_configuration||v.id)===normalized.tools[normalized.active]);
+ const system=bankSystem(normalized),spec=bankSpec(data,system),choices=bankChoices(catalog,data,activeVariant?.gantry,system,activeVariant?.cooling),selected=choices.find(v=>bankSource(v,system)===normalized.tools[normalized.active]);
  if(selected?.id!==activeVariant?.id)throw Error('使用中のヘッドとツールバンクが一致しません。');
- const mount=data.machines[catalog.machine_id],instances=[];
+ const mount=spec.machines[catalog.machine_id],instances=[];
+ if(system==='indx'){
+  if(mount.fixture_asset)instances.push({id:mount.fixture_asset,translation_mm:mount.translation_mm,slot:-1,kind:'fixture'});
+  normalized.tools.forEach((id,slot)=>{
+   const t=[mount.center_x_mm+(slot-(normalized.tools.length-1)/2)*spec.pitch_mm,mount.translation_mm[1],mount.translation_mm[2]];
+   instances.push({id:spec.dock_asset,translation_mm:t,slot,kind:'dock'});
+   if(slot!==normalized.active)instances.push({id:spec.parked_asset,translation_mm:t,slot,kind:'tool'});
+  });return {state:normalized,instances};
+ }
  normalized.tools.forEach((id,slot)=>{
   const v=choices.find(v=>(v.source_head_configuration||v.id)===id),p=data.profiles.find(p=>Object.entries(p.selection).every(([k,value])=>v[k]===value));
   const center=mount.center_x_mm+(slot-(normalized.tools.length-1)/2)*data.pitch_mm,anchor=[center,mount.translation_mm[1],mount.translation_mm[2]];

@@ -1,5 +1,5 @@
 {
-  "viewer_version": "public-v21",
+  "viewer_version": "public-v22",
   "sources": [
     {
       "id": "siboor_trident",
@@ -410,7 +410,7 @@
       "license_url": "../licenses/stealthchanger/LICENSE",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
       "version": "Pinned source CAD / V1.1",
-      "changes": "原本の選択肢・構築用ボディ・印刷サポートを分離。表示用変換・配色。修復箇所は各モジュールのnative_repair/native_repairsへ記録。"
+      "changes": "原本の選択肢・構築用ボディ・印刷サポートを分離。表示用変換・配色。修復箇所は各モジュールのnative_repair/native_repairsへ記録。 Monolith split keepers and reference rail/block align to the native block mating plane. Standard bank disabled on Trident after nozzle-plane bed collision checks."
     },
     {
       "id": "modular_dock",
@@ -646,8 +646,9 @@
       "license": "GPL-3.0",
       "license_url": "../licenses/indx/LICENSE",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
-      "scope": "Official simplified Smart Head, nozzle open/closed references, alternate cooling and external Link.",
-      "changes": "Original dimensions retained. Source alternatives selected, display colors and triangle geometry generated. Board placement uses native screw-hole axes; kinematics and printer-wide fit excluded."
+      "scope": "One Smart Head, installed and parked passive tools, original 2020 community docks, source 4010/CPAP poses and per-slot nozzle references.",
+      "changes": "Original bodies retained; parked tool translated 8 mm onto dock magnet faces. Seven nozzle specifications share the simplified outer geometry. Additional Voron 2020 crossbar and generic MGN12 placement remain references.",
+      "notice": "Trident generic mounting cannot reach nozzle contact within the native Z rail envelope. Dedicated conversion parts, end fasteners, enclosure, belt retention and automatic docking paths are unverified."
     },
     {
       "id": "sphinx",
@@ -659,7 +660,7 @@
       "license": "CC-BY-NC-SA-4.0",
       "license_url": "../licenses/sphinx/LICENSE",
       "license_sha256": "9e502ba75fd0fd30cea5497b438a4bc12f07f02bc932a7a6041fd6a18b8f46a0",
-      "scope": "Source tLW printable assemblies; original Sherpa Mini Release 2 standard-front hardware and Tricorn Long / acquired Rapido 2 UHF registered at native interfaces. Four 6 mm VORON machine-head previews. Other printable-only patterns remain references.",
+      "scope": "Source tLW printable assemblies; original Sherpa Mini Release 2 standard-front hardware and Tricorn Long / acquired Rapido 2 UHF registered at native interfaces. Four 6 mm VORON machine-head previews. Other printable-only patterns remain references. Four complete Monolith head choices register to the native MGN12 face/axes for all 32 gantry selections (128 configurations), with belt preview stopping at the head entrance.",
       "changes": "Original dimensions retained. Source alternatives selected, display colors and triangle geometry generated. Board placement uses native screw-hole axes; kinematics and printer-wide fit excluded."
     },
     {

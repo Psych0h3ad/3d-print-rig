@@ -16,7 +16,7 @@ assert.throws(()=>createTridentMotion({...profile,machine_id:'siboor_trident_350
 motion.setBedReferenceDrop(1.97);motion.setPose({x:175,y:175,z:0});
 for(const key of ['bed','fuse','guide_block','leadnut'])assert.equal(meshes.find(m=>m.userData.part_key===key).position.y,-.00197);
 for(const key of ['rail','motor','head'])assert.equal(meshes.find(m=>m.userData.part_key===key).position.y,0);
-assert(!meshes[8].visible);assert.throws(()=>motion.setBedReferenceDrop(NaN));assert.throws(()=>motion.setBedReferenceDrop(-1));
+assert(!meshes[8].visible);assert.throws(()=>motion.setBedReferenceDrop(NaN));assert.throws(()=>motion.setBedReferenceDrop(-41));
 assert.equal(motion.setPose({x:175,y:175,z:250}).bed_down_mm,250);assert.throws(()=>motion.setBedReferenceDrop(300));
 motion.setBedReferenceDrop(0);motion.setPose({x:175,y:175,z:0});assert.equal(meshes[0].position.y,0);assert(meshes[8].visible);
 console.log('Independent Trident motion passed: bed, fuse, guide blocks and nuts follow Z; rails and motors remain fixed.');
@@ -26,3 +26,5 @@ motion.setPose({x:0,y:0,z:0},{toolheadReference:false});assert(chain.visible);as
 motion.setPose({x:0,y:0,z:1});assert(!chain.visible);
 motion.setPose({x:0,y:0,z:0},{flexibleVisible:false});assert(!chain.visible);
 motion.setPose({x:350,y:350,z:0});assert(chain.visible);
+
+motion.setBedReferenceDrop(-12);const raised=motion.setPose({x:0,y:0,z:0});assert.equal(raised.bed_down_mm,-12);assert.equal(motion.setPose({x:0,y:0,z:999}).z,250);

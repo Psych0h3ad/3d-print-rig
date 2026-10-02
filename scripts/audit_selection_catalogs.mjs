@@ -13,7 +13,7 @@ const catalogs={heads,kit:expandedPrinterCatalog(assembly,heads,registry,'siboor
 const vanilla=read('machines/voron_trident_350/configurations.json');
 catalogs.trident=expandedPrinterCatalog(vanilla,heads,registry,'voron_trident_350');
 for(const machine of Object.keys(registry.machines).filter(id=>/v24/.test(id)))catalogs[machine]=v24HeadCatalog(heads,registry,machine);
-const report={catalogs:[],failures:[],sameGeometry:[],unusedOptions:[],missingAssets:[],invalidHiddenKeys:[],unreachable:[],nonIdempotent:[],linkLosses:[]};
+const report={catalogs:[],failures:[],sameGeometry:[],declaredReferenceGeometry:[],unusedOptions:[],missingAssets:[],invalidHiddenKeys:[],unreachable:[],nonIdempotent:[],linkLosses:[]};
 const metadata=new Map();
 function signature(c,v){
  const p=v.machine_head||headPlan(v),entries=[{id:p.base,translation_mm:p.translation,hidden_keys:[...p.hidden]},...p.modules];
@@ -50,7 +50,7 @@ for(const [name,c] of Object.entries(catalogs)){
  }
  const reached=new Set([c.variants[0].id]),queue=[c.variants[0].id];for(let i=0;i<queue.length;i++)for(const id of edges.get(queue[i])||[])if(!reached.has(id)){reached.add(id);queue.push(id)}
  for(const v of c.variants)if(!reached.has(v.id))report.unreachable.push([name,v.id,'no-menu-path']);
- for(const vs of groups.values())if(vs.length>1){const changed=dims.filter(d=>new Set(vs.map(v=>v[d])).size>1);if(changed.length)report.sameGeometry.push({catalog:name,changed,ids:vs.map(v=>v.id)})}
+ for(const vs of groups.values())if(vs.length>1){const changed=dims.filter(d=>new Set(vs.map(v=>v[d])).size>1);if(changed.length){const row={catalog:name,changed,ids:vs.map(v=>v.id)};if(changed.every(d=>d==='hotend')&&vs.every(v=>v.toolhead==='indx'&&v.reference_geometry_family==='indx_passive_tool_external'&&v.individual_nozzle_bore_geometry===false))report.declaredReferenceGeometry.push(row);else report.sameGeometry.push(row)}}
  for(const d of dims)for(const row of c[collections[d]]||[])if(!c.variants.some(v=>v[d]===row.id))report.unusedOptions.push([name,d,row.id]);
  report.catalogs.push({name,variants:c.variants.length,transitions,geometrySignatures:groups.size});
 }
