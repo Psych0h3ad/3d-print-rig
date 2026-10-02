@@ -89,6 +89,7 @@ def main():
     subprocess.run(['node', str(ROOT/'scripts/test_machine_navigation.mjs')], cwd=ROOT, check=True)
     subprocess.run(['node', str(ROOT/'scripts/test_appearance_roles.mjs')], cwd=ROOT, check=True)
     subprocess.run(['node', str(ROOT/'scripts/test_export_camera.mjs')], cwd=ROOT, check=True)
+    subprocess.run(['node', str(ROOT/'scripts/test_responsive_camera.mjs')], cwd=ROOT, check=True)
     subprocess.run(['node', str(ROOT/'scripts/test_gcode_preview.mjs')], cwd=ROOT, check=True)
     subprocess.run(['node', str(ROOT/'scripts/test_machine_heads.mjs')], cwd=ROOT, check=True)
     subprocess.run(['node', str(ROOT/'scripts/test_head_builder.mjs')], cwd=ROOT, check=True)

@@ -1,4 +1,4 @@
-import {headPlan} from './head-assembly.js?v=public-v16';
+import {headPlan} from './head-assembly.js?v=public-v17';
 const clone=value=>JSON.parse(JSON.stringify(value));
 const add=(a,b)=>a.map((v,i)=>v+b[i]);
 export function installedHeadPlan(variant,registry,target){

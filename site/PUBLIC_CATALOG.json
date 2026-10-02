@@ -1,5 +1,5 @@
 {
-  "viewer_version": "public-v16",
+  "viewer_version": "public-v17",
   "sources": [
     {
       "id": "siboor_trident",
@@ -881,6 +881,90 @@
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
       "scope": "Papilio Lite belt drive embedded in the credited AntHead user Mod; no additional geometry substituted.",
       "changes": "Original embedded belt and pulley geometry retained."
+    },
+    {
+      "id": "ahi_archetype",
+      "label": "Armchair Heavy Industries / Archetype",
+      "repository": "Armchair-Heavy-Industries/Archetype",
+      "author": "Armchair Heavy Industries",
+      "commit": "152709791048d67aab45ea7b774cc16c2a25efd0",
+      "url": "https://github.com/Armchair-Heavy-Industries/Archetype/tree/152709791048d67aab45ea7b774cc16c2a25efd0",
+      "license": "CC-BY-NC-SA-4.0",
+      "license_url": "../licenses/ahi_archetype/LICENSE",
+      "license_sha256": "019cf2317db286f24a9f0494cbdbb5c491292f6d2ac7d59c94ae0f78e4964df0",
+      "scope": "Selected native head assemblies and/or original printable part references. Hardware assembly and printer registration are separate.",
+      "changes": "Select mutually exclusive native alternatives, omit manufacturing/construction supports, tessellate for display and assign printed-part palette. Original dimensions and native poses retained.",
+      "notice": "Each original design retains its own license. Embedded hardware retains its original terms. Archetype source archive identifies v22, not the latest printable STL revision."
+    },
+    {
+      "id": "ahi_a4t",
+      "label": "Armchair Heavy Industries / A4T",
+      "repository": "Armchair-Heavy-Industries/A4T",
+      "author": "Armchair Heavy Industries",
+      "commit": "e1fc27113bb3061458f528db837d517c35e0b88a",
+      "url": "https://github.com/Armchair-Heavy-Industries/A4T/tree/e1fc27113bb3061458f528db837d517c35e0b88a",
+      "license": "CC-BY-NC-SA-4.0",
+      "license_url": "../licenses/ahi_a4t/LICENSE",
+      "license_sha256": "9e502ba75fd0fd30cea5497b438a4bc12f07f02bc932a7a6041fd6a18b8f46a0",
+      "scope": "Selected native head assemblies and/or original printable part references. Hardware assembly and printer registration are separate.",
+      "changes": "Select mutually exclusive native alternatives, omit manufacturing/construction supports, tessellate for display and assign printed-part palette. Original dimensions and native poses retained.",
+      "notice": "Each original design retains its own license. Embedded hardware retains its original terms. Archetype source archive identifies v22, not the latest printable STL revision."
+    },
+    {
+      "id": "ahi_escapement",
+      "label": "Armchair Heavy Industries / Escapement",
+      "repository": "Armchair-Heavy-Industries/Escapement",
+      "author": "Armchair Heavy Industries",
+      "commit": "d1c5f5759689e90e0259ba87ba51f0aff4600700",
+      "url": "https://github.com/Armchair-Heavy-Industries/Escapement/tree/d1c5f5759689e90e0259ba87ba51f0aff4600700",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/ahi_escapement/LICENSE",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "scope": "Selected native head assemblies and/or original printable part references. Hardware assembly and printer registration are separate.",
+      "changes": "Select mutually exclusive native alternatives, omit manufacturing/construction supports, tessellate for display and assign printed-part palette. Original dimensions and native poses retained.",
+      "notice": "Each original design retains its own license. Embedded hardware retains its original terms. Archetype source archive identifies v22, not the latest printable STL revision."
+    },
+    {
+      "id": "ahi_sharketype",
+      "label": "Armchair Heavy Industries / Sharketype",
+      "repository": "Armchair-Heavy-Industries/Sharketype",
+      "author": "Armchair Heavy Industries",
+      "commit": "4bb5c9ac905f9c9497376938ada0b4d81a1c14e8",
+      "url": "https://github.com/Armchair-Heavy-Industries/Sharketype/tree/4bb5c9ac905f9c9497376938ada0b4d81a1c14e8",
+      "license": "CC-BY-NC-SA-4.0",
+      "license_url": "../licenses/ahi_sharketype/LICENSE",
+      "license_sha256": "769578e0688a622bad4a6b52406e1770a5e8b0be7cfdf034b564d7298b773294",
+      "scope": "Selected native head assemblies and/or original printable part references. Hardware assembly and printer registration are separate.",
+      "changes": "Select mutually exclusive native alternatives, omit manufacturing/construction supports, tessellate for display and assign printed-part palette. Original dimensions and native poses retained.",
+      "notice": "Each original design retains its own license. Embedded hardware retains its original terms. Archetype source archive identifies v22, not the latest printable STL revision."
+    },
+    {
+      "id": "ahi_trailhead_xy_joints",
+      "label": "Armchair Heavy Industries / Trailhead-XY-Joints",
+      "repository": "Armchair-Heavy-Industries/Trailhead-XY-Joints",
+      "author": "Armchair Heavy Industries",
+      "commit": "4db7d43243bc062770d7d2c80fe34ef12d3f7712",
+      "url": "https://github.com/Armchair-Heavy-Industries/Trailhead-XY-Joints/tree/4db7d43243bc062770d7d2c80fe34ef12d3f7712",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/ahi_trailhead_xy_joints/LICENSE",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "scope": "Selected native head assemblies and/or original printable part references. Hardware assembly and printer registration are separate.",
+      "changes": "Select mutually exclusive native alternatives, omit manufacturing/construction supports, tessellate for display and assign printed-part palette. Original dimensions and native poses retained.",
+      "notice": "Each original design retains its own license. Embedded hardware retains its original terms. Archetype source archive identifies v22, not the latest printable STL revision."
+    },
+    {
+      "id": "ahi_adxl_mounts",
+      "label": "Armchair Heavy Industries / ADXL-Mounts",
+      "repository": "Armchair-Heavy-Industries/ADXL-Mounts",
+      "author": "Armchair Heavy Industries",
+      "commit": "ca43dbebf7612535773cf8db3a1dabcad308a255",
+      "url": "https://github.com/Armchair-Heavy-Industries/ADXL-Mounts/tree/ca43dbebf7612535773cf8db3a1dabcad308a255",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/ahi_adxl_mounts/LICENSE",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "scope": "Selected native head assemblies and/or original printable part references. Hardware assembly and printer registration are separate.",
+      "changes": "Select mutually exclusive native alternatives, omit manufacturing/construction supports, tessellate for display and assign printed-part palette. Original dimensions and native poses retained.",
+      "notice": "Each original design retains its own license. Embedded hardware retains its original terms. Archetype source archive identifies v22, not the latest printable STL revision."
     }
   ],
   "defaults": [
@@ -933,6 +1017,10 @@
     {
       "label": "SB extruders / CPAP / CrownCooler / AntHead native sources",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v16/viewer-head-sources.zip"
+    },
+    {
+      "label": "Armchair / Archetype・A4T・Escapement・Sharketype・Trailhead・ADXL",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v17/viewer-armchair-sources.zip"
     }
   ]
 }

@@ -1,12 +1,13 @@
-import {appearanceRole} from './appearance-role.mjs?v=public-v16';
+import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=public-v17';
+import {appearanceRole} from './appearance-role.mjs?v=public-v17';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=public-v16';
-import {setupMachineNavigation} from './machines.js?v=public-v16';
-import {setupGrid} from './grid-control.js?v=public-v16';
-import {setupRenderExport} from './render-export.js?v=public-v16';
-import {setupPublicInfo} from './public-info.js?v=public-v16';
+import {loadModel} from './model-loader.js?v=public-v17';
+import {setupMachineNavigation} from './machines.js?v=public-v17';
+import {setupGrid} from './grid-control.js?v=public-v17';
+import {setupRenderExport} from './render-export.js?v=public-v17';
+import {setupPublicInfo} from './public-info.js?v=public-v17';
 const $=s=>document.querySelector(s),id='fysetc_v24_250_pro',stage=$('#stage');
 setupMachineNavigation(id);setupPublicInfo({includeDownloads:false});
 const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));renderer.setClearColor('#edf1f4');renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);
@@ -16,7 +17,7 @@ let pending=false,box;
 function render(){if(pending)return;pending=true;requestAnimationFrame(()=>{pending=false;renderer.render(scene,camera)})}
 const grid=setupGrid(scene,render);
 function view(name){if(!box)return;const center=box.getCenter(new THREE.Vector3()),radius=box.getSize(new THREE.Vector3()).length()/2,distance=radius/Math.sin(Math.min(THREE.MathUtils.degToRad(38),2*Math.atan(Math.tan(THREE.MathUtils.degToRad(19))*camera.aspect))/2)*1.12;orbit.target.copy(center);camera.up.set(0,name==='top'?0:1,name==='top'?-1:0);camera.position.copy(center).add(new THREE.Vector3(...({iso:[1,.65,1.4],front:[0,0,1],top:[0,1,0]}[name])).normalize().multiplyScalar(distance));orbit.update();render()}
-function resize(){const b=stage.getBoundingClientRect();renderer.setSize(b.width,b.height,false);camera.aspect=b.width/b.height;camera.updateProjectionMatrix();render()}
+function resize(){const b=stage.getBoundingClientRect();renderer.setSize(b.width,b.height,false);setResponsiveAspect(camera,orbit,b.width,b.height);render()}
 new ResizeObserver(resize).observe(stage);orbit.addEventListener('change',render);for(const n of ['iso','front','top'])$('#'+n).onclick=()=>view(n);
 try{
  const root='../machines/'+id+'/',[meta,g]=await Promise.all([fetch(root+'assembly_manifest.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('部品表');return r.json()}),loadModel(new GLTFLoader(),root+'model.glb')]);

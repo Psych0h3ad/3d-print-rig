@@ -1,15 +1,16 @@
-import {appearanceRole} from './appearance-role.mjs?v=public-v16';
+import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=public-v17';
+import {appearanceRole} from './appearance-role.mjs?v=public-v17';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=public-v16';
-import {createV24Adapter} from './v24_matrix_adapter.mjs?v=public-v16';
-import {setupMachineNavigation} from './machines.js?v=public-v16';
-import {setupGrid} from './grid-control.js?v=public-v16';
-import {setupRenderExport} from './render-export.js?v=public-v16';
-import {setupPublicInfo} from './public-info.js?v=public-v16';
-import {setupGcodePanel} from './gcode-panel.js?v=public-v16';
-import {setupV24MachineHeads} from './machine-heads.js?v=public-v16';
+import {loadModel} from './model-loader.js?v=public-v17';
+import {createV24Adapter} from './v24_matrix_adapter.mjs?v=public-v17';
+import {setupMachineNavigation} from './machines.js?v=public-v17';
+import {setupGrid} from './grid-control.js?v=public-v17';
+import {setupRenderExport} from './render-export.js?v=public-v17';
+import {setupPublicInfo} from './public-info.js?v=public-v17';
+import {setupGcodePanel} from './gcode-panel.js?v=public-v17';
+import {setupV24MachineHeads} from './machine-heads.js?v=public-v17';
 const $=s=>document.querySelector(s),ids=[250,300,350].flatMap(size=>['printed','ldo_cnc'].map(structure=>`voron_v24_${size}_${structure}`));
 const wanted=new URLSearchParams(location.search).get('machine'),id=ids.includes(wanted)?wanted:ids[0];
 setupMachineNavigation(id);setupPublicInfo({includeDownloads:false});
@@ -19,9 +20,9 @@ for(const pos of [[.4,.6,.5],[-.3,.2,-.4]]){const light=new THREE.DirectionalLig
 let adapter,profile,pending=false,machineHeads,program;
 function render(){if(pending)return;pending=true;requestAnimationFrame(()=>{pending=false;renderer.render(scene,camera)})}
 const grid=setupGrid(scene,render);grid.position.y=-.096;
-function resize(){const b=stage.getBoundingClientRect();renderer.setSize(b.width,b.height,false);camera.aspect=b.width/b.height;camera.updateProjectionMatrix();render()}
+function resize(){const b=stage.getBoundingClientRect();renderer.setSize(b.width,b.height,false);setResponsiveAspect(camera,orbit,b.width,b.height);render()}
 new ResizeObserver(resize).observe(stage);orbit.addEventListener('change',render);
-function view(name){camera.up.set(0,name==='top'?0:1,name==='top'?-1:0);orbit.target.set(0,.22,0);camera.position.set(...({iso:[.98,.83,1.4],front:[0,.24,1.65],top:[0,1.8,0]}[name]));orbit.update();render()}
+function view(name){camera.up.set(0,name==='top'?0:1,name==='top'?-1:0);orbit.target.set(0,.22,0);camera.position.set(...({iso:[.98,.83,1.4],front:[0,.24,1.65],top:[0,1.8,0]}[name]));frameResponsiveView(camera,orbit);render()}
 for(const name of ['iso','front','top'])$('#'+name).onclick=()=>view(name);view('iso');
 $('#focusHead').onclick=()=>{if(!adapter||machineHeads?.focus(camera,orbit))return;const box=new THREE.Box3();for(const [key,node] of adapter.nodes)if(adapter.records.get(key).group===profile.head_group)box.expandByObject(node);if(box.isEmpty())return;camera.up.set(0,1,0);box.getCenter(orbit.target);camera.position.copy(orbit.target).add(new THREE.Vector3(.1,.06,.2));orbit.update();render()};
 function applyPose(){if(!adapter)return;const pose=adapter.setPose(Object.fromEntries(['x','y','z'].map(a=>[a,Number($('#'+a).value)])));machineHeads?.update(pose);for(const a of ['x','y','z'])$('#'+a+'v').textContent=Number($('#'+a).value).toFixed(2)+' mm';

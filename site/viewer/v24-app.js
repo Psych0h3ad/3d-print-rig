@@ -1,18 +1,19 @@
-import {appearanceRole} from './appearance-role.mjs?v=public-v16';
+import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=public-v17';
+import {appearanceRole} from './appearance-role.mjs?v=public-v17';
 import * as THREE from 'three';
-import {loadFrameMods,withFrameMods} from './frame-mods.js?v=public-v16';
-import {setupLighting} from './lighting.js?v=public-v16';
-import {setupAccessories} from './accessories.js?v=public-v16';
-import {setupGrid} from './grid-control.js?v=public-v16';
-import {setupProbeMounts} from './probe-mounts.js?v=public-v16';
+import {loadFrameMods,withFrameMods} from './frame-mods.js?v=public-v17';
+import {setupLighting} from './lighting.js?v=public-v17';
+import {setupAccessories} from './accessories.js?v=public-v17';
+import {setupGrid} from './grid-control.js?v=public-v17';
+import {setupProbeMounts} from './probe-mounts.js?v=public-v17';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=public-v16';
-import {createV24Adapter} from './v24_adapter.mjs?v=public-v16';
-import {setupMachineNavigation} from './machines.js?v=public-v16';
-import {setupRenderExport} from './render-export.js?v=public-v16';
-import {setupPublicInfo} from './public-info.js?v=public-v16';
-import {setupV24MachineHeads} from './machine-heads.js?v=public-v16';
+import {loadModel} from './model-loader.js?v=public-v17';
+import {createV24Adapter} from './v24_adapter.mjs?v=public-v17';
+import {setupMachineNavigation} from './machines.js?v=public-v17';
+import {setupRenderExport} from './render-export.js?v=public-v17';
+import {setupPublicInfo} from './public-info.js?v=public-v17';
+import {setupV24MachineHeads} from './machine-heads.js?v=public-v17';
 setupMachineNavigation('siboor_v24_350');
 setupPublicInfo();
 const $=s=>document.querySelector(s),stage=$('#stage'),status=$('#status');
@@ -27,9 +28,9 @@ setupGrid(scene,render);
 const frameMods=await loadFrameMods('siboor_v24_350');
 const lighting=setupLighting(scene,renderer,{registration:frameMods.disco,machine:'siboor_v24_350',update:render});
 $('#focusDisco').onclick=()=>{lighting.focus(camera,orbit);render()};
-function resize(){const b=stage.getBoundingClientRect();renderer.setSize(b.width,b.height,false);camera.aspect=b.width/b.height;camera.updateProjectionMatrix();render()}
+function resize(){const b=stage.getBoundingClientRect();renderer.setSize(b.width,b.height,false);setResponsiveAspect(camera,orbit,b.width,b.height);render()}
 orbit.addEventListener('change',render);new ResizeObserver(resize).observe(stage);
-for(const [id,pos] of [['iso',[.98,.83,1.4]],['front',[0,.24,1.65]],['top',[0,1.8,0]]])$('#'+id).onclick=()=>{camera.up.set(0,id==='top'?0:1,id==='top'?-1:0);camera.position.set(...pos);orbit.target.set(0,.22,0);orbit.update();render()};
+for(const [id,pos] of [['iso',[.98,.83,1.4]],['front',[0,.24,1.65]],['top',[0,1.8,0]]])$('#'+id).onclick=()=>{camera.up.set(0,id==='top'?0:1,id==='top'?-1:0);camera.position.set(...pos);orbit.target.set(0,.22,0);frameResponsiveView(camera,orbit);render()};
 $('#focusHead').onclick=()=>{if(!adapter||machineHeads?.focus(camera,orbit))return;const box=new THREE.Box3();for(const [key,node] of adapter.nodes)if(adapter.records.get(key).group===profile.head_group)box.expandByObject(node);if(box.isEmpty())return;camera.up.set(0,1,0);box.getCenter(orbit.target);camera.position.copy(orbit.target).add(new THREE.Vector3(.15,.08,.3));orbit.update();document.body.dataset.focusTarget=JSON.stringify(orbit.target.toArray());render()};
 function applyPose(){if(!adapter)return;
  pose=adapter.setPose({x:Number($('#x').value),y:Number($('#y').value),z:Number($('#z').value)});
@@ -48,7 +49,7 @@ try{
  const getJSON=async name=>{const r=await fetch(assetRoot+name,{cache:'no-cache'});if(!r.ok)throw Error(name);return r.json()};
  const [manifest,machine,gltf]=await Promise.all([getJSON('assembly_manifest.json'),getJSON('machine_profile.json'),loadModel(new GLTFLoader(),assetRoot+'model.glb')]);
  profile=machine;scene.add(gltf.scene);adapter=createV24Adapter(gltf.scene,manifest,profile);
- const probeResponse=await fetch('../V24_PROBES.json?v=public-v16',{cache:'no-cache'});if(!probeResponse.ok)throw Error('プローブ構成を取得できません');const probeCatalog=await probeResponse.json();
+ const probeResponse=await fetch('../V24_PROBES.json?v=public-v17',{cache:'no-cache'});if(!probeResponse.ok)throw Error('プローブ構成を取得できません');const probeCatalog=await probeResponse.json();
  const protectedMaterials=[],originals=new Map();
  for(const [key,node] of adapter.nodes){node.traverse(mesh=>{if(!mesh.isMesh)return;mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();
   for(const m of Array.isArray(mesh.material)?mesh.material:[mesh.material]){originals.set(m,m.color.clone());if(!appearanceRole(adapter.records.get(key)))protectedMaterials.push(m);if(m.transparent)m.depthWrite=false}

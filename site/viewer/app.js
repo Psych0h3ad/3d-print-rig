@@ -1,18 +1,19 @@
+import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=public-v17';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=public-v16';
-import {loadFrameMods,withFrameMods} from './frame-mods.js?v=public-v16';
-import {setupGrid} from './grid-control.js?v=public-v16';
-import {setupLighting} from './lighting.js?v=public-v16';
-import {setupFlexible} from './flexible.js?v=public-v16';
-import {setupConfigurations} from './configurations.js?v=public-v16';
-import {setupAccessories} from './accessories.js?v=public-v16';
-import {setupAppearance} from './appearance.js?v=public-v16';
-import {setupRenderExport} from './render-export.js?v=public-v16';
-import {setupPublicInfo} from './public-info.js?v=public-v16';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=public-v16';
-import {expandedPrinterCatalog} from './machine-head-model.mjs?v=public-v16';
+import {loadModel} from './model-loader.js?v=public-v17';
+import {loadFrameMods,withFrameMods} from './frame-mods.js?v=public-v17';
+import {setupGrid} from './grid-control.js?v=public-v17';
+import {setupLighting} from './lighting.js?v=public-v17';
+import {setupFlexible} from './flexible.js?v=public-v17';
+import {setupConfigurations} from './configurations.js?v=public-v17';
+import {setupAccessories} from './accessories.js?v=public-v17';
+import {setupAppearance} from './appearance.js?v=public-v17';
+import {setupRenderExport} from './render-export.js?v=public-v17';
+import {setupPublicInfo} from './public-info.js?v=public-v17';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=public-v17';
+import {expandedPrinterCatalog} from './machine-head-model.mjs?v=public-v17';
 const $=s=>document.querySelector(s),scene=new THREE.Scene();
 scene.background=new THREE.Color('#edf1f5');
 const stage=$('#stage');
@@ -24,7 +25,7 @@ renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.
 stage.appendChild(renderer.domElement);
 const camera=new THREE.PerspectiveCamera(35,viewWidth()/viewHeight(),.002,100);
 camera.position.set(1.05,.78,1.18);
-const controls=new OrbitControls(camera,renderer.domElement);controls.target.set(0,.22,0);controls.enableDamping=true;
+const controls=new OrbitControls(camera,renderer.domElement);controls.target.set(0,.22,0);controls.enableDamping=true;frameResponsiveView(camera,controls);
 let renderRequested=true,lastMotionFrame=0,renderedFrames=0;
 controls.addEventListener('change',()=>{renderRequested=true});
 for(const event of ['click','input','change'])document.addEventListener(event,()=>{renderRequested=true},true);
@@ -177,7 +178,7 @@ async function loadGLB(url){
  throw last;
 }
 setupPublicInfo();
-Promise.all([fetch('../assembly_manifest.json?v=public-v16',{cache:'no-cache'}).then(r=>r.json()),fetch('../flexible_routes.json?v=public-v16',{cache:'no-cache'}).then(r=>r.json()),loadModel(new GLTFLoader(),'../SIBOOR_Trident_350.glb',p=>{$('#loading').textContent=p.total?'読み込み '+Math.round(p.loaded/p.total*100)+'%':'3Dモデルを読み込み中…'}),loadGLB('../Endstop_Mechanisms.glb'),fetch('../COLOR_OPTIONS.json?v=public-v16',{cache:'no-cache'}).then(r=>r.json()),fetch('../ASSEMBLY_CONFIGURATIONS.json?v=public-v16',{cache:'no-cache'}).then(r=>r.json()),fetch('../R2_ENDSTOP_REGISTRATION.json?v=public-v16',{cache:'no-cache'}).then(r=>r.json())]).then(async([manifest,routes,g,endstops,colorOptions,configs,r2Meta])=>{
+Promise.all([fetch('../assembly_manifest.json?v=public-v17',{cache:'no-cache'}).then(r=>r.json()),fetch('../flexible_routes.json?v=public-v17',{cache:'no-cache'}).then(r=>r.json()),loadModel(new GLTFLoader(),'../SIBOOR_Trident_350.glb',p=>{$('#loading').textContent=p.total?'読み込み '+Math.round(p.loaded/p.total*100)+'%':'3Dモデルを読み込み中…'}),loadGLB('../Endstop_Mechanisms.glb'),fetch('../COLOR_OPTIONS.json?v=public-v17',{cache:'no-cache'}).then(r=>r.json()),fetch('../ASSEMBLY_CONFIGURATIONS.json?v=public-v17',{cache:'no-cache'}).then(r=>r.json()),fetch('../R2_ENDSTOP_REGISTRATION.json?v=public-v17',{cache:'no-cache'}).then(r=>r.json())]).then(async([manifest,routes,g,endstops,colorOptions,configs,r2Meta])=>{
  const headData=await loadMachineHeadCatalog();registration=manifest.motion_preview.endstop_registration;catalog=expandedPrinterCatalog(withFrameMods(configs,frameMods),headData.heads,headData.registry,'siboor_trident_350');installedHeads=createMachineHeads(scene,{...catalog,base_assets:headData.heads.base_assets},{render:()=>{renderRequested=true}});ensureMachineHeadControls();r2Registration=r2Meta;stockRows=manifest.parts;
  refX=registration.switches.X.cad_reference_display_coordinate_mm;refY=registration.switches.Y.cad_reference_display_coordinate_mm;
  const lookup=new Map(manifest.parts.map(r=>[r.key,r]));model=g.scene;model.add(endstops.scene);scene.add(model);
@@ -228,9 +229,9 @@ $('#releaseSwitch').onclick=()=>{stop();if(focusAxis==='Z')focusSwitch('X');cons
 $('#panels').onchange=e=>{for(const p of panes)p.visible=e.target.checked};
 $('#head').onchange=()=>{showHead();setPose(current.x,current.y,current.z)};
 $('#cables').onchange=()=>setPose(current.x,current.y,current.z);
-for(const[id,p]of [['iso',[1.05,.78,1.18]],['front',[0,.24,1.65]],['top',[.001,1.8,.001]]])$('#'+id).onclick=()=>{unfocus();camera.position.set(...p);controls.target.set(0,.22,0);controls.update()};
+for(const[id,p]of [['iso',[1.05,.78,1.18]],['front',[0,.24,1.65]],['top',[.001,1.8,.001]]])$('#'+id).onclick=()=>{unfocus();camera.position.set(...p);controls.target.set(0,.22,0);frameResponsiveView(camera,controls)};
 $('#nightOn').addEventListener('click',()=>{unfocus();camera.position.set(0,.24,1.65);controls.target.set(0,.22,0);controls.update()});
-new ResizeObserver(()=>{renderRequested=true;camera.aspect=viewWidth()/viewHeight();camera.updateProjectionMatrix();renderer.setSize(viewWidth(),viewHeight())}).observe(stage);
+new ResizeObserver(()=>{renderRequested=true;setResponsiveAspect(camera,controls,viewWidth(),viewHeight());renderer.setSize(viewWidth(),viewHeight())}).observe(stage);
 renderer.setAnimationLoop(t=>{
  if(mode&&t-lastMotionFrame<1000/24)return;if(mode)lastMotionFrame=t;
  if(ready&&mode==='demo'){const phase=((t-start)/18000)%1;setPose(refX+110*Math.sin(phase*Math.PI*2),refY+95*Math.sin(phase*Math.PI*4),50*(1-Math.cos(phase*Math.PI*2)))}

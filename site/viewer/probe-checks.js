@@ -8,9 +8,11 @@ export function probeCheck(variant){
  }
  const lines=[];let state='geometry-checked',label='形状・高さ確認済み';
  if(p.physical_passed===false){state='body-conflict';label='部品干渉あり';lines.push('プローブと周辺部品が干渉しています。')}
- else if(p.height_passed===false){state='height-conflict';label='コイル高さ条件外';lines.push(`現在 ${mm(p.coil_nozzle_gap_mm)} mm ／ 指定2.600〜3.000 mm。現マウントでの取付対応を保証しないプレビューです。`)}
+ else if(p.height_passed===false){state='height-conflict';label='コイル高さ条件外';const range=Array.isArray(p.height_range_mm)?p.height_range_mm.map(mm).join('〜'):'2.600〜3.000';lines.push(`現在 ${mm(p.coil_nozzle_gap_mm)} mm ／ 指定${range} mm。現マウントでの取付対応を保証しないプレビューです。`)}
+ else if(p.physical_passed!==true||p.height_passed!==true){state='unverified';label='原本プローブ · 取付条件未確認';lines.push('形状の表示だけでは取付適合を判定できません。コイル基準面・設置高さ・本体干渉を確認してください。')}
  else if(p.metal_keepout_collisions?.length){state='metal-conflict';label='金属除外領域に干渉';lines.push('取付対応を保証しないプレビューです。ホットエンド／ベルト固定ねじが金属除外領域に入ります。')}
- if(p.metal_keepout_verified===false){if(state==='geometry-checked'){state='unverified';label='形状・高さ確認済み／金属領域未確認'}lines.push('付属基板の世代と金属除外領域は未確認です。')}
+ if(p.metal_keepout_verified===false){if(state==='geometry-checked'){state='unverified';label='形状・高さ確認済み／金属領域未確認'}lines.push('付属基板の金属除外領域は未確認です。')}
+ lines.push(...(p.notes||[]));
  return {state,label,warning:state!=='geometry-checked',lines};
 }
 export function probeOptionSuffix(variant){
@@ -20,8 +22,10 @@ export function probeOptionSuffix(variant){
  return p.metal_keepout_collisions?.length?' · 金属干渉あり':'';
 }
 export function probeMetrics(variant){
- const p=variant.fit?.probe;if(!p)return [];
- const rows=[['コイル／ノズル',`${mm(p.coil_nozzle_gap_mm)} mm`]];
+ const clearance=variant.fit?.complete_head_native?.cooling_bed_clearance_at_nozzle_contact_mm;
+ const rows=Number.isFinite(clearance)?[['冷却部／接触面',`${clearance.toFixed(2)} mm（参考）`]]:[];
+ const p=variant.fit?.probe;if(!p)return rows;
+ rows.unshift(['コイル／ノズル',`${mm(p.coil_nozzle_gap_mm)} mm`]);
  if(Number.isFinite(p.minimum_probe_bed_clearance_at_nozzle_contact_mm))rows.push(['最下部／ベッド',`${mm(p.minimum_probe_bed_clearance_at_nozzle_contact_mm)} mm`]);
  if(p.spacer_mm)rows.push(['絶縁スペーサー',`${p.spacer_mm.toFixed(1)} mm × 2`]);
  if(p.nearest_hotend_to_board)rows.push(['基板／ホットエンド',`${mm(p.nearest_hotend_to_board.distance_mm)} mm`]);

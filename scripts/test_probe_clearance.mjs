@@ -22,4 +22,11 @@ assert.equal(probeCheck({...fit,fit:{probe:{...fit.fit.probe,metal_keepout_colli
 assert.equal(probeGuide({...fit,fit:{...fit.fit,nozzle_mm:[NaN,0,0]}}),null);
 assert.equal(probeCheck({...fit,fit:{probe:{physical_passed:false}}}).state,'body-conflict');
 assert.equal(probeOptionSuffix(undefined),'');
+const nativeBeacon={fit:{nozzle_mm:[0,-16,-40.5],probe:{id:'beacon',height_passed:null,physical_passed:null,metal_keepout_verified:false,minimum_probe_bed_clearance_at_nozzle_contact_mm:1.1,notes:['Beacon Rev Dの原本姿勢']}}};
+assert.equal(probeCheck(nativeBeacon).state,'unverified');assert(probeCheck(nativeBeacon).warning);
+assert(probeCheck(nativeBeacon).lines.some(s=>s.includes('Beacon Rev D')));
+assert.equal(probeGuide(nativeBeacon),null);
+assert(probeMetrics(nativeBeacon).some(([label,value])=>label==='コイル／ノズル'&&value==='未計測 mm'));
+assert(!probeCheck(nativeBeacon).lines.join('').includes('2.600'));
+assert.deepEqual(probeMetrics({fit:{complete_head_native:{cooling_bed_clearance_at_nozzle_contact_mm:2.354}}}),[['冷却部／接触面','2.35 mm（参考）']]);
 console.log('Probe clearance passed: height/physical/metal conditions, bed clearance metrics, native-coordinate guides, safe hotend changes and explicit conflict previews.');
