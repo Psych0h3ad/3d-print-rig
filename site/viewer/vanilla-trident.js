@@ -1,4 +1,5 @@
-import {bankBedReferenceDrop} from './changer-bank-model.mjs?v=madmax-trident-1';
+import {loadMonolithMachines,stockGantryVisibility} from './monolith-machine.js?v=monolith-machine-1';
+import {bankBedReferenceDrop} from './changer-bank-model.mjs?v=monolith-machine-1';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=public-v24';
 import {appearanceRole} from './appearance-role.mjs?v=public-v24';
 import * as THREE from 'three';
@@ -8,15 +9,15 @@ import {setupGrid} from './grid-control.js?v=public-v24';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=public-v24';
-import {setupMachineNavigation} from './machines.js?v=public-v24';
-import {setupConfigurations} from './configurations.js?v=public-v24';
+import {setupMachineNavigation} from './machines.js?v=monolith-machine-1';
+import {setupConfigurations} from './configurations.js?v=monolith-machine-1';
 import {setupAccessories} from './accessories.js?v=public-v24';
 import {setupPublicInfo} from './public-info.js?v=public-v24';
 import {setupRenderExport} from './render-export.js?v=public-v24';
 import {createTridentMotion} from './trident-motion.mjs?v=public-v25';
 import {headPlan,partKey} from './head-assembly.js?v=public-v24';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=madmax-trident-1';
-import {setupChangerBank} from './changer-bank.js?v=madmax-trident-1';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=monolith-machine-1';
+import {setupChangerBank} from './changer-bank.js?v=monolith-machine-1';
 import {expandedPrinterCatalog} from './machine-head-model.mjs?v=public-v24';
 const requestedMachine=new URL(location.href).searchParams.get('machine');
 const machine=/^voron_trident_(250|300|350)$/.test(requestedMachine)?requestedMachine:'voron_trident_350',size=Number(machine.split('_').at(-1)),gantryId='trident_r2_gantry_'+size,referenceOffset=(size-350)/2;
@@ -25,7 +26,7 @@ const $=s=>document.querySelector(s),stage=$('#stage'),renderer=new THREE.WebGLR
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor('#edf1f4');renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.2;stage.append(renderer.domElement);
 const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(38,1,.005,10),controls=new OrbitControls(camera,renderer.domElement);
 camera.position.set(.98,.83,1.4);controls.target.set(0,.22,0);controls.update();
-let pending=false,frames=0,motion,catalog,profile,current,active,accessories,installedHeads,toolBank;
+let pending=false,frames=0,motion,catalog,profile,current,active,accessories,installedHeads,toolBank,gantryVisibility;
 const cached=new Map(),meshes=[],palette={base:'#24272c',accent:'#e32636',frame:'#25282d'};
 function render(){if(pending)return;pending=true;requestAnimationFrame(()=>{pending=false;renderer.render(scene,camera);document.body.dataset.renderedFrames=++frames})}
 setupGrid(scene,render);
@@ -56,17 +57,17 @@ function applyPose(){if(!motion)return;
  const zMax=Math.min(profile.display_limits_mm.Z[1],...selected.map(id=>catalog.accessories.find(a=>a.id===id).z_max_mm??profile.display_limits_mm.Z[1]))-Math.max(0,bedReferenceDrop);
  $('#z').max=zMax;if(Number($('#z').value)>zMax)$('#z').value=zMax;
  current=motion.setPose({x:$('#x').value,y:$('#y').value,z:$('#z').value},{flexibleVisible:$('#belts').checked,toolheadReference:!active?.machine_head});
- installedHeads?.setDelta([current.dx,current.dy,0]);
+ installedHeads?.setDelta([current.dx,current.dy,0]);installedHeads?.gantry.setFlexibleVisible($('#belts').checked);gantryVisibility?.update();
  for(const a of ['x','y','z'])$('#'+a+'v').textContent=current[a].toFixed(1)+' mm';
  document.body.dataset.pose=JSON.stringify(current);document.body.dataset.zGuidePositions=JSON.stringify(profile.z_guide_block_keys.map(k=>{const entry=[...motion.entries].find(([mesh,{row}])=>row.key===k);return entry?.[0].position.toArray()}));
  $('#motionStatus').textContent='ベッド・サーミスタ・3Zガイドが下降に追従'+(selected.some(id=>(catalog.accessories.find(a=>a.id===id).z_max_mm??250)<250)?' · ベッドファン装着時はZ 230 mmまで':'')+'。XYベルトは滑らかな経路表示。ベッドチェーンは20リンクが追従。歯・テンションの再現は未対応。';if(Math.abs(bedReferenceDrop)>.001)$('#motionStatus').append(Object.assign(document.createElement('span'),{textContent:` · ベッド基準位置の移動 ${(-bedReferenceDrop).toFixed(2)} mm`}));document.body.dataset.bedReferenceDropMm=bedReferenceDrop.toFixed(6);render();
 }
-async function install(variant){const plan=headPlan(variant),required=variant.machine_head?[gantryId]:[gantryId,plan.base,...plan.modules.map(m=>m.id)];await Promise.all(required.map(asset));await toolBank.install(variant);
+async function install(variant){const plan=headPlan(variant),required=variant.machine_gantry?[]:variant.machine_head?[gantryId]:[gantryId,plan.base,...plan.modules.map(m=>m.id)];await Promise.all(required.map(asset));await toolBank.install(variant);gantryVisibility.install(variant);
  for(const promise of cached.values()){const a=await promise;a.root.visible=false;a.root.position.set(0,0,0);for(const r of a.records)r.mesh.visible=true}
- const gantry=await asset(gantryId);gantry.root.visible=true;
- $('#badge').textContent=`VORON TRIDENT ${size} · XY 6 mm`;
+ if(!variant.machine_gantry){const gantry=await asset(gantryId);gantry.root.visible=true;}
+ $('#badge').textContent=`VORON TRIDENT ${size} · ${variant.machine_gantry?'Monolith · ':''}XY ${variant.belt_width_mm} mm`;
  if(variant.machine_head){
-  const refs=await fetch('../R2_ENDSTOP_REGISTRATION.json?v=public-v24').then(r=>r.json()),ref=refs.heads.stealthburner;motion.setReference([ref.X.cad_reference_display_coordinate_mm+referenceOffset,ref.Y.cad_reference_display_coordinate_mm+referenceOffset,0]);motion.setBedReferenceDrop(variant.fit.bed_reference_drop_mm||0);active=variant;accessories?.refresh();paletteApply();applyPose();
+  const refs=await fetch('../R2_ENDSTOP_REGISTRATION.json?v=public-v24').then(r=>r.json()),ref=refs.heads.stealthburner;motion.setReference(variant.machine_gantry?[...variant.machine_head.nozzle_mm.slice(0,2).map((n,i)=>n-variant.machine_gantry.bed_min_xy_mm[i]),0]:[ref.X.cad_reference_display_coordinate_mm+referenceOffset,ref.Y.cad_reference_display_coordinate_mm+referenceOffset,0]);motion.setBedReferenceDrop(variant.fit.bed_reference_drop_mm||0);active=variant;accessories?.refresh();paletteApply();applyPose();
   const url=new URL('./toolheads.html',location.href);url.searchParams.set('configuration',variant.source_head_configuration);$('#toolheadLink').href=url.href;document.body.dataset.configuration=variant.id;document.body.dataset.ready='true';return;
  }
  const base=await asset(plan.base);base.root.visible=true;base.root.position.copy(point(plan.translation));for(const r of base.records)r.mesh.visible=!plan.hidden.has(r.key);
@@ -80,7 +81,7 @@ async function install(variant){const plan=headPlan(variant),required=variant.ma
 try{
  const getJSON=async path=>{const r=await fetch('../'+path,{cache:'no-cache'});if(!r.ok)throw Error(path);return r.json()};
  [profile,catalog]=await Promise.all([getJSON(`machines/${machine}/machine_profile.json`),getJSON(`machines/${machine}/configurations.json`)]);
- const headData=await loadMachineHeadCatalog();catalog=expandedPrinterCatalog(withFrameMods(catalog,frameMods),headData.heads,headData.registry,machine);catalog.bank_data=headData.bank;installedHeads=createMachineHeads(scene,{...catalog,base_assets:headData.heads.base_assets},{render});ensureMachineHeadControls();motion=createTridentMotion(profile);const [base,g]=await Promise.all([getJSON(profile.base_assets.meta),loadModel(new GLTFLoader(),'../'+profile.base_assets.glb)]);scene.add(g.scene);register(g.scene,base);
+ const headData=await loadMachineHeadCatalog();catalog=await loadMonolithMachines(expandedPrinterCatalog(withFrameMods(catalog,frameMods),headData.heads,headData.registry,machine),headData);catalog.bank_data=headData.bank;installedHeads=createMachineHeads(scene,{...catalog,base_assets:headData.heads.base_assets},{render});ensureMachineHeadControls({gantry:true});motion=createTridentMotion(profile);const [base,g]=await Promise.all([getJSON(profile.base_assets.meta),loadModel(new GLTFLoader(),'../'+profile.base_assets.glb)]);scene.add(g.scene);register(g.scene,base);gantryVisibility=stockGantryVisibility(new Map(meshes.map(r=>[r.key,r.mesh])));
  for(const [i,a] of ['x','y','z'].entries()){const limits=profile.display_limits_mm[a.toUpperCase()];$('#'+a).min=limits[0];$('#'+a).max=limits[1];$('#'+a).value=profile.display_reference_xyz_mm[i];$('#'+a).disabled=false;$('#'+a).oninput=applyPose}
  $('#reset').disabled=false;$('#reset').onclick=()=>{for(const [i,a] of ['x','y','z'].entries())$('#'+a).value=profile.display_reference_xyz_mm[i];applyPose()};
  const key='3d-print-rig-vanilla-trident-palette-'+machine,valid=v=>typeof v==='string'&&/^#[0-9a-f]{6}$/i.test(v);

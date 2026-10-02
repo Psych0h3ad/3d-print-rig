@@ -16,6 +16,7 @@ export function bankSpec(data,system){
  return {machines:Object.fromEntries(Object.keys(data.machines).map(id=>[id,{capacity:1,bank_permitted:false,docking_registered:false,docking_unregistered_reason:'MadMaxの機体側ドックは未登録です。現在は単独ヘッドの装着表示です。'}]))};
 }
 export function bankChoices(catalog,data,gantry,system='stealthchanger',cooling='4010'){
+ if(gantry?.startsWith('monolith_'))return [];
  if(system==='indx')return (data.indx?.tool_options||[]).map(p=>catalog.variants.find(v=>v.toolhead==='indx'&&v.hotend===p.id&&v.cooling===cooling&&(!gantry||v.gantry===gantry))).filter(Boolean);
  if(system==='madmax')return catalog.variants.filter(v=>v.machine_head&&v.mount==='madmax'&&v.registration_source==='madmax_xol'&&(!gantry||v.gantry===gantry));
  return data.profiles.map(p=>catalog.variants.find(v=>v.machine_head&&v.mount==='stealthchanger'&&(!gantry||v.gantry===gantry)&&Object.entries(p.selection).every(([k,value])=>v[k]===value))).filter(Boolean);

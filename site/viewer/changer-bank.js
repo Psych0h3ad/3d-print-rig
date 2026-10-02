@@ -1,4 +1,4 @@
-import {bankChoices,bankCapacity,normalizeBank,initialBank,readBankURL,bankBedReferenceDrop,bankSystem,bankSource,bankSpec,variantBankSystem,bankStateForVariant} from './changer-bank-model.mjs?v=madmax-trident-1';
+import {bankChoices,bankCapacity,normalizeBank,initialBank,readBankURL,bankBedReferenceDrop,bankSystem,bankSource,bankSpec,variantBankSystem,bankStateForVariant} from './changer-bank-model.mjs?v=monolith-machine-1';
 
 export function setupChangerBank({catalog,rig,data,extras={},before=document.querySelector('#configurationControls')}){
  if(!before)throw Error('ツールバンクの表示先がありません');
@@ -11,7 +11,7 @@ export function setupChangerBank({catalog,rig,data,extras={},before=document.que
  const label=v=>v?.toolhead==='indx'?catalog.hotends.find(r=>r.id===v.hotend)?.label:[v?.toolhead==='xol'?'Xol':v?.toolhead==='stealthburner'?'Stealthburner':'JabberWocky',catalog.extruders.find(r=>r.id===v?.extruder)?.label,catalog.hotends.find(r=>r.id===v?.hotend)?.label].join(' / ');
  function choices(variant=controller?.current){return bankChoices(catalog,data,variant?.gantry||previousGantry,bankSystem(state),variant?.toolhead==='indx'?variant.cooling:'4010')}
  function menus(){
-  const system=bankSystem(state),indx=system==='indx',madmax=system==='madmax',opts=choices(),spec=bankSpec(data,system),mount=spec.machines[catalog.machine_id];
+  const system=bankSystem(state),indx=system==='indx',madmax=system==='madmax',opts=choices(),spec=bankSpec(data,system),mount=spec.machines[catalog.machine_id],monolith=!!controller?.current?.machine_gantry;
   fields.replaceChildren();fields.hidden=!state.enabled;enabled.checked=state.enabled;enabled.disabled=!controller||busy||controller.busy||!opts.length||mount?.bank_permitted===false;
   panel.querySelector('#bankTitle').textContent=indx?'INDX・受動ツール':madmax?'MadMax・XY交換':'StealthChanger・ツールバンク';
   panel.querySelector('#bankToggleLabel').textContent=indx?'受動ツールとドックを取り付ける':madmax?'XY交換用ドックを取り付ける':'機体にドックと複数ヘッドを取り付ける';
@@ -27,7 +27,8 @@ export function setupChangerBank({catalog,rig,data,extras={},before=document.que
   state.tools.forEach((value,i)=>add((indx?'工具 T':'ドック ')+(indx?i:i+1),'bankTool'+i,opts.map(v=>[bankSource(v,system),label(v)]),value,e=>{const tools=[...state.tools];tools[i]=e.target.value;return select({...state,tools})}));
   add(indx?'装着中の工具':'使用中のヘッド','bankActive',state.tools.map((id,i)=>[i,'T'+i+' · '+label(opts.find(v=>bankSource(v,system)===id))]),state.active,e=>select({...state,active:Number(e.target.value)}));
   status.textContent=madmax?'MadMaxヘッド装着中。XY交換用ドックは機体に未登録です。':state.enabled?`ドック ${state.tools.length}基 · T${state.active}をガントリーに装着。残りは固定ドックで待機。`:'ツールバンクはオフです。通常のヘッド構成を選べます。';
-  const unregistered=mount?.docking_registered===false,blocked=!unregistered&&(mount?.bank_permitted===false||state.enabled&&mount?.print_setup_verified===false);status.classList.toggle('notice',blocked||unregistered);if(blocked)status.append(Object.assign(document.createElement('span'),{textContent:' '+mount.printing_blocked_reason}));
+  if(monolith){panel.querySelector('#bankTitle').textContent='Monolith・ヘッド交換';panel.querySelector('#bankHelp').textContent='固定式はSphinx、交換式はMonolith専用StealthChangerを選択できます。機体側のドックと交換動作は未登録です。';panel.querySelector('#bankScope').textContent='選択したMonolithガントリーと専用キャリッジを機体に配置。通常ガントリー用のドックは表示しません。';status.textContent='ヘッド装着とXYベルトの動きを表示中。Monolith用ドックは未登録です。'}
+  const unregistered=monolith||mount?.docking_registered===false,blocked=!unregistered&&(mount?.bank_permitted===false||state.enabled&&mount?.print_setup_verified===false);status.classList.toggle('notice',blocked||unregistered);if(blocked)status.append(Object.assign(document.createElement('span'),{textContent:' '+mount.printing_blocked_reason}));
   const down=bankBedReferenceDrop(catalog,data,state,controller?.current),top=data.machines[catalog.machine_id]?.bed_reference_top_mm,nozzle=controller?.current?.fit?.nozzle_mm?.[2],gap=nozzle-(top-down);
   if(Number.isFinite(gap)&&gap>.01)status.append(Object.assign(document.createElement('span'),{textContent:` Zガイド上端で停止。ノズルまで ${gap.toFixed(2)} mm残るため、この取付位置では印刷できません。`}));
   else if(Number.isFinite(down)&&Math.abs(down)>.001)status.append(Object.assign(document.createElement('span'),{textContent:` ノズル接触面へのベッド移動 ${(-down).toFixed(2)} mm。`}));

@@ -1,6 +1,7 @@
-import {setupChangerBank} from './changer-bank.js?v=madmax-trident-1';
-import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=madmax-trident-1';
-import {headPrinterLink} from './head-navigation.mjs?v=public-v24';
+import {loadMonolithData} from './monolith-machine.js?v=monolith-machine-1';
+import {setupChangerBank} from './changer-bank.js?v=monolith-machine-1';
+import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=monolith-machine-1';
+import {headPrinterLink} from './head-navigation.mjs?v=monolith-machine-1';
 import {headBuilderDimensions} from './configuration-model.js?v=public-v24';
 let machineRegistry,toolBank,bankRig;
 import {appearanceRole} from './appearance-role.mjs?v=public-v24';
@@ -8,7 +9,7 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=public-v24';
-import {setupConfigurations} from './configurations.js?v=public-v24';
+import {setupConfigurations} from './configurations.js?v=monolith-machine-1';
 import {setupPublicInfo} from './public-info.js?v=public-v24';
 import {setupRenderExport} from './render-export.js?v=public-v24';
 import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=public-v24';
@@ -188,7 +189,7 @@ renderer.setAnimationLoop(()=>{controls.update();if(dirty){renderer.render(scene
 setupRenderExport({renderer,scene,camera,controls,name:'3D_Print_Rig_Toolhead',afterRender:()=>{dirty=true}});
 setupPublicInfo({includeDownloads:false});
 try{
- const headData=await loadMachineHeadCatalog();catalog=headData.heads;machineRegistry=headData.registry;
+ const headData=await loadMachineHeadCatalog();catalog=headData.heads;machineRegistry=headData.registry;const [gantries,registrations]=await loadMonolithData();machineRegistry.monolith={gantries,registrations};
  $('#combinationCount').textContent=`${catalog.toolheads.length}種類のヘッド · ${catalog.extruders.length}種類の押出機 · ${headCombinationCount(catalog)}通りのヘッド構成`;
  // Earlier standalone files used the first printer's ID; keep them readable.
  catalog={...catalog,dimensions:headBuilderDimensions,machine_id:'toolhead',import_machine_ids:['siboor_trident_350']};

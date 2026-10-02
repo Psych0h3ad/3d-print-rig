@@ -67,7 +67,7 @@ export function setupMachineNavigation(machine){
   try{localStorage.setItem('3d-print-rig-last-configuration-'+machine,new URL(location.href).searchParams.get('configuration')||'')}catch{}
   const target=new URL(page,location.href);target.searchParams.set('machine',choice.id);
   const language=new URL(location.href).searchParams.get('lang');if(['ja','en'].includes(language))target.searchParams.set('lang',language);
-  try{const previous=localStorage.getItem('3d-print-rig-last-configuration-'+choice.id);if(previous&&previous.length<200)target.searchParams.set('configuration',previous)}catch{}
+  try{const previous=localStorage.getItem('3d-print-rig-last-configuration-'+choice.id);if(previous&&previous.length<1024)target.searchParams.set('configuration',previous)}catch{}
   if(choice.id!==machine)location.assign(target);
  }
  for(const [key,element] of Object.entries(controls))element.addEventListener('change',()=>choose(resolveMachine({...choice,[key]:key==='size'?Number(element.value):element.value},key)));

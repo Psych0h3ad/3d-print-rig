@@ -4,7 +4,7 @@ import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=public-v24';
 import {createMicronAdapter} from './micron-adapter.mjs?v=public-v25';
 import {mountAssemblyDownload} from './assembly-downloads.mjs?v=public-v24';
-import {setupMachineNavigation} from './machines.js?v=public-v24';
+import {setupMachineNavigation} from './machines.js?v=monolith-machine-1';
 import {setupGrid} from './grid-control.js?v=public-v24';
 import {setupRenderExport} from './render-export.js?v=public-v24';
 import {setupPublicInfo} from './public-info.js?v=public-v24';

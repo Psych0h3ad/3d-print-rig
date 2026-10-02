@@ -1,4 +1,5 @@
-import {bankBedReferenceDrop} from './changer-bank-model.mjs?v=madmax-trident-1';
+import {loadMonolithMachines} from './monolith-machine.js?v=monolith-machine-1';
+import {bankBedReferenceDrop} from './changer-bank-model.mjs?v=monolith-machine-1';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=public-v24';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
@@ -9,13 +10,13 @@ import {setupGrid} from './grid-control.js?v=public-v24';
 import {setupLighting} from './lighting.js?v=public-v24';
 import {setupFlexible} from './flexible.js?v=public-v24';
 import {createBedChain} from './bed-chain.mjs?v=public-v25';
-import {setupConfigurations} from './configurations.js?v=public-v24';
+import {setupConfigurations} from './configurations.js?v=monolith-machine-1';
 import {setupAccessories} from './accessories.js?v=public-v24';
 import {setupAppearance} from './appearance.js?v=public-v24';
 import {setupRenderExport} from './render-export.js?v=public-v24';
 import {setupPublicInfo} from './public-info.js?v=public-v24';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=madmax-trident-1';
-import {setupChangerBank} from './changer-bank.js?v=madmax-trident-1';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=monolith-machine-1';
+import {setupChangerBank} from './changer-bank.js?v=monolith-machine-1';
 import {expandedPrinterCatalog} from './machine-head-model.mjs?v=public-v24';
 const $=s=>document.querySelector(s),scene=new THREE.Scene();
 scene.background=new THREE.Color('#edf1f5');
@@ -91,13 +92,13 @@ async function installConfiguration(v){
  for(const m of v.modules){const a=assetRoots.get(m.id),hidden=new Set(m.hidden_keys||[]);a.root.visible=true;a.root.position.copy(cadPoint(m.translation_mm));a.root.userData.headModule=m.id!=='trident_r2_gantry_350';for(const mesh of a.meshes)mesh.visible=!hidden.has(mesh.userData.originalKey)}
  registration=v.gantry==='trident_r2'?{switches:r2Registration.heads[v.machine_head?'stealthburner':v.toolhead==='xol'&&v.hotend!=='rapido2_uhf'?'xol_standard':v.toolhead]}:{...stockRegistration,switches:{...stockRegistration.switches,X:installed==='xol'?xolMeta.X_registration:stockRegistration.switches.X}};
  for(const id of ['home','focusX','focusY','releaseSwitch'])$('#'+id).disabled=!!v.machine_head;
- refX=registration.switches.X.cad_reference_display_coordinate_mm;refY=registration.switches.Y.cad_reference_display_coordinate_mm;
+ refX=registration.switches.X.cad_reference_display_coordinate_mm;refY=registration.switches.Y.cad_reference_display_coordinate_mm;if(v.machine_gantry){refX=v.machine_head.nozzle_mm[0]-v.machine_gantry.bed_min_xy_mm[0];refY=v.machine_head.nozzle_mm[1]-v.machine_gantry.bed_min_xy_mm[1];}
  for(const a of ['X','Y']){const r=registration.switches[a];levers[a]=allMeshes.find(o=>o.name===r.lever_mesh_name);plungers[a]=allMeshes.find(o=>o.name===r.plunger_mesh_name);if(!levers[a]||!plungers[a])throw Error('Missing '+a+' mechanism')}
  $('#headStatus').textContent=[catalog.toolheads.find(x=>x.id===v.toolhead).label,catalog.hotends.find(x=>x.id===v.hotend).label,catalog.extruders.find(x=>x.id===v.extruder).label].join(' · ');
  $('#headStatus').dataset.gantryGeometryRevision=v.gantry==='trident_r2'?assetRoots.get('trident_r2_gantry_350').meta.geometry_revision:'stock-original';
  $('#headNotes').textContent=v.notes.filter(x=>!x.startsWith('SIBOOR')&&!x.startsWith('ベルト')).join(' ');
- $('#badge').textContent=`${v.gantry==='trident_r2'?'TRIDENT R2':'SIBOOR CNC AWD'} · ${v.xy_motors} XY MOTORS · ${v.belt_width_mm} mm BELTS`;
- $('#machineSubtitle').textContent=`SIBOOR JUNE本体 · ${v.gantry==='trident_r2'?'VORON R2':'CNC AWD'} / ${v.belt_width_mm} mm`;
+ $('#badge').textContent=`${v.machine_gantry?'Monolith':v.gantry==='trident_r2'?'TRIDENT R2':'SIBOOR CNC AWD'} · ${v.xy_motors} XY MOTORS · ${v.belt_width_mm} mm BELTS`;
+ $('#machineSubtitle').textContent=`SIBOOR JUNE本体 · ${v.machine_gantry?'Monolith':v.gantry==='trident_r2'?'VORON R2':'CNC AWD'} / ${v.belt_width_mm} mm`;
  accessories?.refresh();showHead();setPose(refX,refY,current.z);
 }
 const guideMeshes=[],guideRails=[];
@@ -134,8 +135,8 @@ function setPose(x,y,z){
  for(const o of moving.reference_flexible)if(!o.userData.bedChain)o.visible=rest&&$('#cables').checked;
  const chainState=bedChain.update(bedDown,$('#cables').checked);$('#routing').dataset.bedChain=String(chainState.visible);$('#routing').dataset.bedChainLinks=chainState.links;$('#routing').dataset.bedChainEndpointErrorMm=chainState.endpoint_error_mm;
  for(const[a,v]of [['x',x],['y',y],['z',z]]){$('#'+a).value=v;$('#'+a+'v').textContent=v.toFixed(1)+' mm'}
- installedHeads?.setDelta([dx,dy,0]);installedHeads?.setPalette(appearance?.colors()||{});
- if(activeConfig?.machine_head){flexible.update(dx,dy,bedDown,false,null);for(const row of r2Belts)row.mesh.visible=false;$('#status').textContent='ヘッドの取付・移動を比較中。ホーミング接点は未登録。';$('#status').style.background='#eff5f7';$('#routing').textContent='このヘッドのベルト・配線経路は未登録。';$('#headStatus').dataset.installed=installed;$('#headStatus').dataset.variant=activeConfig.id;showHead();return}
+ installedHeads?.setDelta([dx,dy,0]);installedHeads?.gantry.setFlexibleVisible($('#cables').checked);installedHeads?.setPalette(appearance?.colors()||{});
+ if(activeConfig?.machine_head){flexible.update(dx,dy,bedDown,false,null);for(const row of r2Belts)row.mesh.visible=false;$('#status').textContent='ヘッドの取付・移動を比較中。ホーミング接点は未登録。';$('#status').style.background='#eff5f7';$('#routing').textContent=activeConfig.machine_gantry?($('#cables').checked?'MonolithベルトがXY移動に追従。歯・張力・配線は未再現。':'Monolithベルト：非表示'):'このヘッドのベルト・配線経路は未登録。';$('#headStatus').dataset.installed=installed;$('#headStatus').dataset.variant=activeConfig.id;showHead();return}
  const hitX=x>registration.switches.X.first_contact_display_coordinate_mm,hitY=y>registration.switches.Y.first_contact_display_coordinate_mm;
  $('#status').textContent=`X ${leverPose('X',x,dx,dy)} ／ Y ${leverPose('Y',y,dx,dy)}`;
  $('#status').dataset.xAngle=levers.X.userData.depressionDeg.toFixed(4);$('#status').dataset.yAngle=levers.Y.userData.depressionDeg.toFixed(4);
@@ -183,7 +184,7 @@ async function loadGLB(url){
 }
 setupPublicInfo();
 Promise.all([fetch('../assembly_manifest.json?v=public-v24',{cache:'no-cache'}).then(r=>r.json()),fetch('../flexible_routes.json?v=public-v24',{cache:'no-cache'}).then(r=>r.json()),loadModel(new GLTFLoader(),'../SIBOOR_Trident_350.glb',p=>{$('#loading').textContent=p.total?'読み込み '+Math.round(p.loaded/p.total*100)+'%':'3Dモデルを読み込み中…'}),loadGLB('../Endstop_Mechanisms.glb'),fetch('../COLOR_OPTIONS.json?v=public-v24',{cache:'no-cache'}).then(r=>r.json()),fetch('../ASSEMBLY_CONFIGURATIONS.json?v=public-v24',{cache:'no-cache'}).then(r=>r.json()),fetch('../R2_ENDSTOP_REGISTRATION.json?v=public-v24',{cache:'no-cache'}).then(r=>r.json())]).then(async([manifest,routes,g,endstops,colorOptions,configs,r2Meta])=>{
- const headData=await loadMachineHeadCatalog();registration=manifest.motion_preview.endstop_registration;catalog=expandedPrinterCatalog(withFrameMods(configs,frameMods),headData.heads,headData.registry,'siboor_trident_350');catalog.bank_data=headData.bank;installedHeads=createMachineHeads(scene,{...catalog,base_assets:headData.heads.base_assets},{render:()=>{renderRequested=true}});ensureMachineHeadControls();r2Registration=r2Meta;stockRows=manifest.parts;
+ const headData=await loadMachineHeadCatalog();registration=manifest.motion_preview.endstop_registration;catalog=await loadMonolithMachines(expandedPrinterCatalog(withFrameMods(configs,frameMods),headData.heads,headData.registry,'siboor_trident_350'),headData);catalog.bank_data=headData.bank;installedHeads=createMachineHeads(scene,{...catalog,base_assets:headData.heads.base_assets},{render:()=>{renderRequested=true}});ensureMachineHeadControls({gantry:true});r2Registration=r2Meta;stockRows=manifest.parts;
  refX=registration.switches.X.cad_reference_display_coordinate_mm;refY=registration.switches.Y.cad_reference_display_coordinate_mm;
  const lookup=new Map(manifest.parts.map(r=>[r.key,r]));model=g.scene;model.add(endstops.scene);scene.add(model);
  model.traverse(o=>{

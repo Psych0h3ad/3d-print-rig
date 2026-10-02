@@ -1,0 +1,39 @@
+import * as THREE from './vendor/three.module.js';
+
+const distance=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]);
+const placed=(p,size,dx,dy)=>[p[0]+(Math.abs(p[0])>75?Math.sign(p[0])*(size-250)/2:dx),p[1]+(Math.abs(p[1])>100?Math.sign(p[1])*(size-250)/2:dy)];
+
+// The source has open ends at the head and Y-moving idlers. Only straight
+// spans change length; pulley arcs remain rigid and retain their native radii.
+export function monolithBeltRoute(source,size,dx=0,dy=0,cut){
+ const points=[],normals=[],segments=[];let length=0;
+ for(const [i,segment] of source.segments.entries()){
+  const p=segment.points.map(v=>placed(v,size,dx,dy));
+  if(cut&&i===0)p[0][0]=(segment.points[0][0]<0?cut.x_mm[0]:cut.x_mm[1])+dx;
+  if(cut&&i===source.segments.length-1)p[2][0]=(segment.points[2][0]<0?cut.x_mm[0]:cut.x_mm[1])+dx;
+  if(segment.kind==='line'){
+   const len=distance(p[0],p[2]);if(len<.001)throw Error('Monolithのベルト直線長が範囲外です');
+   const normal=[-(p[2][1]-p[0][1])/len,(p[2][0]-p[0][0])/len];
+   points.push(p[0],p[2]);normals.push(normal,normal);length+=len;segments.push({...segment,points:p,length:len});
+  }else{
+   const center=placed(segment.center,size,0,dy),angle=Math.atan2(p[0][1]-center[1],p[0][0]-center[0]),steps=Math.max(2,Math.ceil(segment.sweep*segment.radius/.65));
+   for(let j=0;j<=steps;j++){const a=angle+segment.turn*segment.sweep*j/steps,c=Math.cos(a),s=Math.sin(a);points.push([center[0]+segment.radius*c,center[1]+segment.radius*s]);normals.push([-c*segment.turn,-s*segment.turn])}
+   length+=segment.sweep*segment.radius;segments.push({...segment,center,points:p});
+  }
+ }
+ // A line and the next arc share an endpoint. Average the duplicate's normal
+ // and keep one ring so joins remain watertight without zero-area quads.
+ const clean=[],n=[];
+ for(let i=0;i<points.length;i++)if(clean.length&&distance(clean.at(-1),points[i])<.00001){const a=n.at(-1),b=normals[i],l=Math.hypot(a[0]+b[0],a[1]+b[1]);if(l<1.9)throw Error('Monolithのベルト接線が連続していません');n[n.length-1]=[(a[0]+b[0])/l,(a[1]+b[1])/l]}else{clean.push(points[i]);n.push(normals[i])}
+ return {points:clean,normals:n,length,segments,z:source.z,width:source.width,thickness:source.thickness};
+}
+
+export function monolithBeltGeometry(route){
+ const vertices=[],indices=[];
+ for(let i=0;i<route.points.length;i++)for(const [side,height] of [[-1,-1],[1,-1],[1,1],[-1,1]]){
+  const p=route.points[i],n=route.normals[i];vertices.push((p[0]+side*n[0]*route.thickness/2)/1000,(route.z+height*route.width/2)/1000,-(p[1]+side*n[1]*route.thickness/2)/1000);
+ }
+ for(let i=0;i<route.points.length-1;i++)for(let j=0;j<4;j++){const a=i*4+j,b=i*4+(j+1)%4,c=b+4,d=a+4;indices.push(a,b,c,a,c,d)}
+ const end=(route.points.length-1)*4;indices.push(0,2,1,0,3,2,end,end+1,end+2,end,end+2,end+3);
+ const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));g.setIndex(indices);g.computeVertexNormals();g.computeBoundingSphere();return g;
+}
