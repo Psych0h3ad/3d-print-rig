@@ -1,16 +1,18 @@
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=public-v14';
-import {loadFrameMods,withFrameMods} from './frame-mods.js?v=public-v14';
-import {setupGrid} from './grid-control.js?v=public-v14';
-import {setupLighting} from './lighting.js?v=public-v14';
-import {setupFlexible} from './flexible.js?v=public-v14';
-import {setupConfigurations} from './configurations.js?v=public-v14';
-import {setupAccessories} from './accessories.js?v=public-v14';
-import {setupAppearance} from './appearance.js?v=public-v14';
-import {setupRenderExport} from './render-export.js?v=public-v14';
-import {setupPublicInfo} from './public-info.js?v=public-v14';
+import {loadModel} from './model-loader.js?v=public-v15';
+import {loadFrameMods,withFrameMods} from './frame-mods.js?v=public-v15';
+import {setupGrid} from './grid-control.js?v=public-v15';
+import {setupLighting} from './lighting.js?v=public-v15';
+import {setupFlexible} from './flexible.js?v=public-v15';
+import {setupConfigurations} from './configurations.js?v=public-v15';
+import {setupAccessories} from './accessories.js?v=public-v15';
+import {setupAppearance} from './appearance.js?v=public-v15';
+import {setupRenderExport} from './render-export.js?v=public-v15';
+import {setupPublicInfo} from './public-info.js?v=public-v15';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=public-v15';
+import {expandedPrinterCatalog} from './machine-head-model.mjs?v=public-v15';
 const $=s=>document.querySelector(s),scene=new THREE.Scene();
 scene.background=new THREE.Color('#edf1f5');
 const stage=$('#stage');
@@ -35,7 +37,7 @@ const levers={},plungers={};
 const groups={},moving={y:[],xy:[],z:[],reference_flexible:[]},panes=[],parts=new Map();
 const allMeshes=[];
 let installed='stock',stockRegistration,stockRefX,stockLeverX,stockPlungerX,xolMeta,xolScene;
-let activeConfig,catalog,r2Registration,appearance,stockRows,accessories;
+let activeConfig,catalog,r2Registration,appearance,stockRows,accessories,installedHeads;
 const assetRoots=new Map(),assets=new Map(),xolMechanisms={},stockSwitchMeshes=[],r2Belts=[];
 const stockHeadGroup='03_Stock_Stealthburner_CW2_Rapido2_UHF';
 const cadPoint=p=>new THREE.Vector3(p[0]/1000,p[2]/1000,-p[1]/1000);
@@ -69,19 +71,22 @@ function showHead(){
  if(k==='480')o.visible=o.visible&&installed==='stock'&&activeConfig.gantry==='siboor_awd'&&shown;
  }
  groups[stockHeadGroup].visible=installed==='stock'&&shown;
+ installedHeads?.setVisible(shown);
  if(xolScene)xolScene.visible=installed==='xol'&&shown;
  for(const p of panes)p.visible=$('#panels').checked;
  for(const m of activeConfig.modules){const a=assetRoots.get(m.id);if(a?.root.userData.headModule)a.root.visible=shown}
+ if(activeConfig.machine_head){for(const o of moving.reference_flexible)o.visible=false;for(const key of ['580','Upper_Belt','PTFE_tube','CAN_cable'])if(parts.has(key))parts.get(key).visible=false}
 }
 async function installConfiguration(v){
- const required=[...new Set(v.modules.map(m=>m.id)),...(v.toolhead==='xol'?['xol']:[])];await Promise.all(required.map(asset));
- const headLink=new URL('./toolheads.html',location.href);headLink.searchParams.set('configuration',v.id);$('#toolheadLink').href=headLink;
- stop();unfocus();activeConfig=v;installed=v.toolhead==='xol'?'xol':'stock';
+ const required=[...new Set(v.modules.map(m=>m.id)),...(!v.machine_head&&v.toolhead==='xol'?['xol']:[])];await Promise.all(required.map(asset));await installedHeads.install(v);
+ const headLink=new URL('./toolheads.html',location.href);headLink.searchParams.set('configuration',v.source_head_configuration||v.id);$('#toolheadLink').href=headLink;
+ stop();unfocus();activeConfig=v;installed=v.machine_head?'generic':v.toolhead==='xol'?'xol':'stock';
  for(const a of assetRoots.values()){a.root.visible=false;a.root.position.set(0,0,0);for(const o of a.meshes)o.visible=true}
  groups[stockHeadGroup].position.copy(cadPoint(v.head_translation_mm));
  if(installed==='xol'){xolScene.visible=true;xolScene.position.copy(cadPoint(v.head_translation_mm));const hidden=new Set(v.hidden_xol_keys);xolScene.traverse(o=>{if(o.isMesh)o.visible=!hidden.has(o.userData.originalKey)})}
  for(const m of v.modules){const a=assetRoots.get(m.id),hidden=new Set(m.hidden_keys||[]);a.root.visible=true;a.root.position.copy(cadPoint(m.translation_mm));a.root.userData.headModule=m.id!=='trident_r2_gantry_350';for(const mesh of a.meshes)mesh.visible=!hidden.has(mesh.userData.originalKey)}
- registration=v.gantry==='trident_r2'?{switches:r2Registration.heads[v.toolhead==='xol'&&v.hotend!=='rapido2_uhf'?'xol_standard':v.toolhead]}:{...stockRegistration,switches:{...stockRegistration.switches,X:installed==='xol'?xolMeta.X_registration:stockRegistration.switches.X}};
+ registration=v.gantry==='trident_r2'?{switches:r2Registration.heads[v.machine_head?'stealthburner':v.toolhead==='xol'&&v.hotend!=='rapido2_uhf'?'xol_standard':v.toolhead]}:{...stockRegistration,switches:{...stockRegistration.switches,X:installed==='xol'?xolMeta.X_registration:stockRegistration.switches.X}};
+ for(const id of ['home','focusX','focusY','releaseSwitch'])$('#'+id).disabled=!!v.machine_head;
  refX=registration.switches.X.cad_reference_display_coordinate_mm;refY=registration.switches.Y.cad_reference_display_coordinate_mm;
  for(const a of ['X','Y']){const r=registration.switches[a];levers[a]=allMeshes.find(o=>o.name===r.lever_mesh_name);plungers[a]=allMeshes.find(o=>o.name===r.plunger_mesh_name);if(!levers[a]||!plungers[a])throw Error('Missing '+a+' mechanism')}
  $('#headStatus').textContent=[catalog.toolheads.find(x=>x.id===v.toolhead).label,catalog.hotends.find(x=>x.id===v.hotend).label,catalog.extruders.find(x=>x.id===v.extruder).label].join(' · ');
@@ -124,6 +129,8 @@ function setPose(x,y,z){
  const rest=Math.abs(dx)+Math.abs(dy)+Math.abs(bedDown)<.001;
  for(const o of moving.reference_flexible)o.visible=rest&&$('#cables').checked;
  for(const[a,v]of [['x',x],['y',y],['z',z]]){$('#'+a).value=v;$('#'+a+'v').textContent=v.toFixed(1)+' mm'}
+ installedHeads?.setDelta([dx,dy,0]);installedHeads?.setPalette(appearance?.colors()||{});
+ if(activeConfig?.machine_head){flexible.update(dx,dy,bedDown,false,null);for(const row of r2Belts)row.mesh.visible=false;$('#status').textContent='ヘッドの取付・移動を比較中。ホーミング接点は未登録。';$('#status').style.background='#eff5f7';$('#routing').textContent='このヘッドのベルト・配線経路は未登録。';$('#headStatus').dataset.installed=installed;$('#headStatus').dataset.variant=activeConfig.id;showHead();return}
  const hitX=x>registration.switches.X.first_contact_display_coordinate_mm,hitY=y>registration.switches.Y.first_contact_display_coordinate_mm;
  $('#status').textContent=`X ${leverPose('X',x,dx,dy)} ／ Y ${leverPose('Y',y,dx,dy)}`;
  $('#status').dataset.xAngle=levers.X.userData.depressionDeg.toFixed(4);$('#status').dataset.yAngle=levers.Y.userData.depressionDeg.toFixed(4);
@@ -170,8 +177,8 @@ async function loadGLB(url){
  throw last;
 }
 setupPublicInfo();
-Promise.all([fetch('../assembly_manifest.json?v=public-v14',{cache:'no-cache'}).then(r=>r.json()),fetch('../flexible_routes.json?v=public-v14',{cache:'no-cache'}).then(r=>r.json()),loadModel(new GLTFLoader(),'../SIBOOR_Trident_350.glb',p=>{$('#loading').textContent=p.total?'読み込み '+Math.round(p.loaded/p.total*100)+'%':'3Dモデルを読み込み中…'}),loadGLB('../Endstop_Mechanisms.glb'),fetch('../COLOR_OPTIONS.json?v=public-v14',{cache:'no-cache'}).then(r=>r.json()),fetch('../ASSEMBLY_CONFIGURATIONS.json?v=public-v14',{cache:'no-cache'}).then(r=>r.json()),fetch('../R2_ENDSTOP_REGISTRATION.json?v=public-v14',{cache:'no-cache'}).then(r=>r.json())]).then(async([manifest,routes,g,endstops,colorOptions,configs,r2Meta])=>{
- registration=manifest.motion_preview.endstop_registration;catalog=withFrameMods(configs,frameMods);r2Registration=r2Meta;stockRows=manifest.parts;
+Promise.all([fetch('../assembly_manifest.json?v=public-v15',{cache:'no-cache'}).then(r=>r.json()),fetch('../flexible_routes.json?v=public-v15',{cache:'no-cache'}).then(r=>r.json()),loadModel(new GLTFLoader(),'../SIBOOR_Trident_350.glb',p=>{$('#loading').textContent=p.total?'読み込み '+Math.round(p.loaded/p.total*100)+'%':'3Dモデルを読み込み中…'}),loadGLB('../Endstop_Mechanisms.glb'),fetch('../COLOR_OPTIONS.json?v=public-v15',{cache:'no-cache'}).then(r=>r.json()),fetch('../ASSEMBLY_CONFIGURATIONS.json?v=public-v15',{cache:'no-cache'}).then(r=>r.json()),fetch('../R2_ENDSTOP_REGISTRATION.json?v=public-v15',{cache:'no-cache'}).then(r=>r.json())]).then(async([manifest,routes,g,endstops,colorOptions,configs,r2Meta])=>{
+ const headData=await loadMachineHeadCatalog();registration=manifest.motion_preview.endstop_registration;catalog=expandedPrinterCatalog(withFrameMods(configs,frameMods),headData.heads,headData.registry,'siboor_trident_350');installedHeads=createMachineHeads(scene,{...catalog,base_assets:headData.heads.base_assets},{render:()=>{renderRequested=true}});ensureMachineHeadControls();r2Registration=r2Meta;stockRows=manifest.parts;
  refX=registration.switches.X.cad_reference_display_coordinate_mm;refY=registration.switches.Y.cad_reference_display_coordinate_mm;
  const lookup=new Map(manifest.parts.map(r=>[r.key,r]));model=g.scene;model.add(endstops.scene);scene.add(model);
  model.traverse(o=>{
@@ -201,7 +208,7 @@ $('#reset').onclick=()=>{stop();unfocus();setPose(refX,refY,0);$('#door').value=
 $('#demo').onclick=()=>{if(mode==='demo'){stop();return}stop();unfocus();mode='demo';start=performance.now();$('#demo').textContent='デモを停止'};
 $('#home').onclick=()=>{if(mode==='home'){stop();return}stop();unfocus();homeStart={...current};mode='home';start=performance.now();$('#home').textContent='終端へ移動中…'};
 $('#focusX').onclick=()=>focusSwitch('X');$('#focusY').onclick=()=>focusSwitch('Y');
-$('#focusHead').onclick=()=>{if(!ready)return;stop();unfocus();const dx=(current.x-refX)/1000,dy=-(current.y-refY)/1000;controls.target.set(dx,.367,dy+.025);camera.position.copy(controls.target).add(new THREE.Vector3(.16,.10,.29));controls.update()};
+$('#focusHead').onclick=()=>{if(!ready)return;stop();unfocus();if(installedHeads?.focus(camera,controls))return;const dx=(current.x-refX)/1000,dy=-(current.y-refY)/1000;controls.target.set(dx,.367,dy+.025);camera.position.copy(controls.target).add(new THREE.Vector3(.16,.10,.29));controls.update()};
 $('#focusZ').onclick=()=>{
  stop();unfocus();setPose(refX,refY,150);focusAxis='Z';
  for(const o of allMeshes){
@@ -236,5 +243,5 @@ renderer.setAnimationLoop(t=>{
  }
  controls.update();
  if(focusAxis){const p=marker.position.clone().project(camera);callout.style.left=(sidebarWidth()+(p.x+1)*viewWidth()/2+12)+'px';callout.style.top=(stage.getBoundingClientRect().top+(1-p.y)*viewHeight()/2-30)+'px'}
- if(renderRequested){renderer.render(scene,camera);renderRequested=false;$('#badge').dataset.renderedFrames=++renderedFrames}
+ if(renderRequested){installedHeads?.setPalette(appearance?.colors()||{});renderer.render(scene,camera);renderRequested=false;$('#badge').dataset.renderedFrames=++renderedFrames}
 });

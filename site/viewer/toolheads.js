@@ -1,14 +1,14 @@
-import {appearanceRole} from './appearance-role.mjs?v=public-v14';
+import {appearanceRole} from './appearance-role.mjs?v=public-v15';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=public-v14';
-import {setupConfigurations} from './configurations.js?v=public-v14';
-import {setupPublicInfo} from './public-info.js?v=public-v14';
-import {setupRenderExport} from './render-export.js?v=public-v14';
-import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=public-v14';
-import {probeCheck,probeMetrics,probeGuide} from './probe-checks.js?v=public-v14';
-import {renderProductLinks} from './product-links.js?v=public-v14';
+import {loadModel} from './model-loader.js?v=public-v15';
+import {setupConfigurations} from './configurations.js?v=public-v15';
+import {setupPublicInfo} from './public-info.js?v=public-v15';
+import {setupRenderExport} from './render-export.js?v=public-v15';
+import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=public-v15';
+import {probeCheck,probeMetrics,probeGuide} from './probe-checks.js?v=public-v15';
+import {renderProductLinks} from './product-links.js?v=public-v15';
 
 const $=s=>document.querySelector(s),stage=$('#stage'),scene=new THREE.Scene();
 scene.background=new THREE.Color('#edf1f5');
@@ -172,7 +172,7 @@ renderer.setAnimationLoop(()=>{controls.update();if(dirty){renderer.render(scene
 setupRenderExport({renderer,scene,camera,controls,name:'3D_Print_Rig_Toolhead',afterRender:()=>{dirty=true}});
 setupPublicInfo({includeDownloads:false});
 try{
- const response=await fetch('../TOOLHEAD_CONFIGURATIONS.json?v=public-v14',{cache:'no-cache'});if(!response.ok)throw Error('ヘッドの構成データを取得できません');catalog=await response.json();
+ const response=await fetch('../TOOLHEAD_CONFIGURATIONS.json?v=public-v15',{cache:'no-cache'});if(!response.ok)throw Error('ヘッドの構成データを取得できません');catalog=await response.json();
  $('#combinationCount').textContent=`${catalog.toolheads.length}種類のヘッド · ${catalog.extruders.length}種類の押出機 · ${headCombinationCount(catalog)}通りのヘッド構成`;
  await setupConfigurations(catalog,install,{presentation:'toolhead'});
  if(!ready)throw Error('ヘッドのCADを表示できませんでした');

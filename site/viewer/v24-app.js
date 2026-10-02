@@ -1,17 +1,18 @@
-import {appearanceRole} from './appearance-role.mjs?v=public-v14';
+import {appearanceRole} from './appearance-role.mjs?v=public-v15';
 import * as THREE from 'three';
-import {loadFrameMods,withFrameMods} from './frame-mods.js?v=public-v14';
-import {setupLighting} from './lighting.js?v=public-v14';
-import {setupAccessories} from './accessories.js?v=public-v14';
-import {setupGrid} from './grid-control.js?v=public-v14';
-import {setupProbeMounts} from './probe-mounts.js?v=public-v14';
+import {loadFrameMods,withFrameMods} from './frame-mods.js?v=public-v15';
+import {setupLighting} from './lighting.js?v=public-v15';
+import {setupAccessories} from './accessories.js?v=public-v15';
+import {setupGrid} from './grid-control.js?v=public-v15';
+import {setupProbeMounts} from './probe-mounts.js?v=public-v15';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=public-v14';
-import {createV24Adapter} from './v24_adapter.mjs?v=public-v14';
-import {setupMachineNavigation} from './machines.js?v=public-v14';
-import {setupRenderExport} from './render-export.js?v=public-v14';
-import {setupPublicInfo} from './public-info.js?v=public-v14';
+import {loadModel} from './model-loader.js?v=public-v15';
+import {createV24Adapter} from './v24_adapter.mjs?v=public-v15';
+import {setupMachineNavigation} from './machines.js?v=public-v15';
+import {setupRenderExport} from './render-export.js?v=public-v15';
+import {setupPublicInfo} from './public-info.js?v=public-v15';
+import {setupV24MachineHeads} from './machine-heads.js?v=public-v15';
 setupMachineNavigation('siboor_v24_350');
 setupPublicInfo();
 const $=s=>document.querySelector(s),stage=$('#stage'),status=$('#status');
@@ -20,7 +21,7 @@ const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(
 renderer.setClearColor('#edf1f4');renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.25;
 const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(38,1,.005,10);camera.position.set(.98,.83,1.4);
 const orbit=new OrbitControls(camera,renderer.domElement);orbit.target.set(0,.22,0);orbit.enableDamping=false;orbit.update();
-let adapter,profile,pose,probeMounts,renderPending=false,frames=0;
+let adapter,profile,pose,probeMounts,machineHeads,renderPending=false,frames=0;
 function render(){if(renderPending)return;renderPending=true;requestAnimationFrame(()=>{renderPending=false;renderer.render(scene,camera);document.body.dataset.renderedFrames=++frames})}
 setupGrid(scene,render);
 const frameMods=await loadFrameMods('siboor_v24_350');
@@ -29,14 +30,15 @@ $('#focusDisco').onclick=()=>{lighting.focus(camera,orbit);render()};
 function resize(){const b=stage.getBoundingClientRect();renderer.setSize(b.width,b.height,false);camera.aspect=b.width/b.height;camera.updateProjectionMatrix();render()}
 orbit.addEventListener('change',render);new ResizeObserver(resize).observe(stage);
 for(const [id,pos] of [['iso',[.98,.83,1.4]],['front',[0,.24,1.65]],['top',[0,1.8,0]]])$('#'+id).onclick=()=>{camera.up.set(0,id==='top'?0:1,id==='top'?-1:0);camera.position.set(...pos);orbit.target.set(0,.22,0);orbit.update();render()};
-$('#focusHead').onclick=()=>{if(!adapter)return;const box=new THREE.Box3();for(const [key,node] of adapter.nodes)if(adapter.records.get(key).group===profile.head_group)box.expandByObject(node);if(box.isEmpty())return;camera.up.set(0,1,0);box.getCenter(orbit.target);camera.position.copy(orbit.target).add(new THREE.Vector3(.15,.08,.3));orbit.update();document.body.dataset.focusTarget=JSON.stringify(orbit.target.toArray());render()};
+$('#focusHead').onclick=()=>{if(!adapter||machineHeads?.focus(camera,orbit))return;const box=new THREE.Box3();for(const [key,node] of adapter.nodes)if(adapter.records.get(key).group===profile.head_group)box.expandByObject(node);if(box.isEmpty())return;camera.up.set(0,1,0);box.getCenter(orbit.target);camera.position.copy(orbit.target).add(new THREE.Vector3(.15,.08,.3));orbit.update();document.body.dataset.focusTarget=JSON.stringify(orbit.target.toArray());render()};
 function applyPose(){if(!adapter)return;
  pose=adapter.setPose({x:Number($('#x').value),y:Number($('#y').value),z:Number($('#z').value)});
+ machineHeads?.update(pose);
  probeMounts?.setPose(pose.cad_delta_xyz_mm);
  for(const a of ['x','y','z'])$('#'+a+'v').textContent=Number($('#'+a).value).toFixed(1)+' mm';
  const p=adapter.getSummary();document.body.dataset.ready='true';document.body.dataset.parts=p.part_count+(probeMounts?.partDelta()||0);
  $('#badge').textContent='V2.4 R2 / 350 · '+Number(document.body.dataset.parts).toLocaleString()+' PARTS';
- if(probeMounts){const link=new URL('./toolheads.html',location.href);link.searchParams.set('configuration','trident_r2__stealthburner__revo_voron__cw2'+(['stock_panasonic','none'].includes(probeMounts.id)?'':'__'+probeMounts.id));$('#toolheadLink').href=link.href}
+ if(probeMounts&&!machineHeads?.custom){const link=new URL('./toolheads.html',location.href);link.searchParams.set('configuration','trident_r2__stealthburner__revo_voron__cw2'+(['stock_panasonic','none'].includes(probeMounts.id)?'':'__'+probeMounts.id));$('#toolheadLink').href=link.href}
  document.body.dataset.pose=JSON.stringify(pose);document.body.dataset.fixedBed=JSON.stringify(p.fixed_bed_keys.map(k=>adapter.nodes.get(k).position.toArray()));
  document.body.dataset.zGuidePositions=JSON.stringify(p.z_guide_block_keys.map(k=>adapter.nodes.get(k).position.toArray()));
  document.body.dataset.flexibleVisible=String(pose.atReference&&$('#belts').checked);
@@ -46,7 +48,7 @@ try{
  const getJSON=async name=>{const r=await fetch(assetRoot+name,{cache:'no-cache'});if(!r.ok)throw Error(name);return r.json()};
  const [manifest,machine,gltf]=await Promise.all([getJSON('assembly_manifest.json'),getJSON('machine_profile.json'),loadModel(new GLTFLoader(),assetRoot+'model.glb')]);
  profile=machine;scene.add(gltf.scene);adapter=createV24Adapter(gltf.scene,manifest,profile);
- const probeResponse=await fetch('../V24_PROBES.json?v=public-v14',{cache:'no-cache'});if(!probeResponse.ok)throw Error('プローブ構成を取得できません');const probeCatalog=await probeResponse.json();
+ const probeResponse=await fetch('../V24_PROBES.json?v=public-v15',{cache:'no-cache'});if(!probeResponse.ok)throw Error('プローブ構成を取得できません');const probeCatalog=await probeResponse.json();
  const protectedMaterials=[],originals=new Map();
  for(const [key,node] of adapter.nodes){node.traverse(mesh=>{if(!mesh.isMesh)return;mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();
   for(const m of Array.isArray(mesh.material)?mesh.material:[mesh.material]){originals.set(m,m.color.clone());if(!appearanceRole(adapter.records.get(key)))protectedMaterials.push(m);if(m.transparent)m.depthWrite=false}
@@ -74,11 +76,13 @@ try{
  }
  const modCatalog=withFrameMods({assets:{},accessories:[]},frameMods);
  setupAccessories(modCatalog,{load:loadAccessory,update:applyPose});
- probeMounts=await setupProbeMounts(probeCatalog,{load:loadAccessory,setHidden:(keys,hidden)=>{for(const key of keys){const node=adapter.nodes.get(key);if(!node)throw Error('プローブ交換部品がありません: '+key);node.visible=!hidden}},update:applyPose});
+ const stockProbe=$('#probeConfig');stockProbe.id='stockProbeConfig';document.querySelector('label[for="probeConfig"]').htmlFor='stockProbeConfig';
+ probeMounts=await setupProbeMounts(probeCatalog,{selectId:'stockProbeConfig',load:loadAccessory,setHidden:(keys,hidden)=>{for(const key of keys){const node=adapter.nodes.get(key);if(!node)throw Error('プローブ交換部品がありません: '+key);node.visible=!hidden}},update:applyPose});
  try{const saved=JSON.parse(localStorage.getItem(storageKey)||'null');if(saved?.machine_id===profile.machine_id)for(const r of ['base','accent','frame'])if(valid(saved.colors?.[r]))palette[r]=saved.colors[r]}catch{}
  function applyPalette(){
   for(const [material,color] of originals)material.color.copy(color);
   adapter.setPalette(palette);
+  machineHeads?.setPalette(Object.fromEntries(Object.entries(palette).map(([r,c])=>[r,c||profile.appearance.palette_defaults[r]])));
   for(const {mesh,role,color} of modMeshes){mesh.material.color.copy(color);if(role)mesh.material.color.set(palette[role]||profile.appearance.palette_defaults[role])}
   for(const role of ['base','accent','frame']){const value=palette[role]||profile.appearance.palette_defaults[role];$('#'+role).value=value;$('#'+role+'Hex').value=value;$('#'+role+'Hex').removeAttribute('aria-invalid');document.body.dataset[role+'Color']=palette[role]||'original'}
   document.body.dataset.protectedChanges=String(protectedMaterials.filter(m=>!m.color.equals(originals.get(m))).length);
@@ -94,12 +98,12 @@ try{
  const disco=await lighting.whenReady;disco?.traverse(mesh=>{if(mesh.isMesh&&mesh.userData.led_role==='bracket')modMeshes.push({mesh,role:'base',color:mesh.material.color.clone()})});
  $('#resetPalette').disabled=false;$('#resetPalette').onclick=()=>{palette={base:null,accent:null,frame:null};applyPalette();savePalette()};applyPalette();
  $('#frameFinish').onchange=e=>{if(e.target.value==='custom')return;palette.frame=e.target.value==='silver'?'#b9bec4':'#25282d';applyPalette();savePalette()};
+ machineHeads=await setupV24MachineHeads({machine:'siboor_v24_350',profile,adapter,scene,render,applyPose,stockProbes:probeCatalog.probes,beforeInstall:async v=>{await probeMounts.apply(v.baseline_probe||'none')},onChange:()=>applyPalette()});stockProbe.closest('details').hidden=true;applyPalette();
  setupRenderExport({renderer,scene,camera,controls:orbit,afterRender:render,name:'VORON_V24_R2_350_Reference'});
  document.body.dataset.geometryRevision=profile.geometry_revision;document.body.dataset.panelsVisible=String($('#enclosure').checked);
  document.body.dataset.endstopStatus=profile.endstop_registration_or_pending.status;
  document.body.dataset.qglStatus=profile.qgl.independent_corner_tilt;
  document.body.dataset.xyBeltWidthMm=profile.xy_belt_width_mm;document.body.dataset.zBeltWidthMm=profile.z_belt_width_mm;
  $('#beltWidths').textContent=`XYベルト ${profile.xy_belt_width_mm} mm ／ Zベルト ${profile.z_belt_width_mm} mm`;
- const url=new URL(location.href);url.searchParams.set('configuration',profile.available_configurations[0].id);history.replaceState(null,'',url);
  $('#badge').textContent='V2.4 R2 / 350 · '+manifest.parts.length.toLocaleString()+' PARTS';status.hidden=true;applyPose();resize();
 }catch(e){status.textContent='読込エラー: '+e.message;document.body.dataset.error=e.message;console.error(e)}

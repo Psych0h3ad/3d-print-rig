@@ -1,4 +1,4 @@
-import {appearanceRole} from './appearance-role.mjs?v=public-v14';
+import {appearanceRole} from './appearance-role.mjs?v=public-v15';
 /** Separate V2.4 kinematic adapter. CAD vertices already contain world placement. */
 export function createV24Adapter(root,manifest,profile){
   if(manifest.machine_id!==profile.machine_id||profile.machine_id!=='siboor_v24_350')throw new Error('V2.4 profile mismatch');

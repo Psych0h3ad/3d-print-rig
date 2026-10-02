@@ -1,5 +1,5 @@
 {
-  "viewer_version": "public-v14",
+  "viewer_version": "public-v15",
   "sources": [
     {
       "id": "siboor_trident",
@@ -856,6 +856,10 @@
     {
       "label": "Cleaning / purge fixtures and pinned settings",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v14/viewer-cleaning-sources.zip"
+    },
+    {
+      "label": "MGN12 machine-head registrations and INDX rail fasteners",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v15/viewer-mount-sources.zip"
     }
   ]
 }

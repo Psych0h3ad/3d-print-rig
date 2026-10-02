@@ -1,29 +1,30 @@
-import {appearanceRole} from './appearance-role.mjs?v=public-v14';
+import {appearanceRole} from './appearance-role.mjs?v=public-v15';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=public-v14';
-import {createV24Adapter} from './v24_matrix_adapter.mjs?v=public-v14';
-import {setupMachineNavigation} from './machines.js?v=public-v14';
-import {setupGrid} from './grid-control.js?v=public-v14';
-import {setupRenderExport} from './render-export.js?v=public-v14';
-import {setupPublicInfo} from './public-info.js?v=public-v14';
-import {setupGcodePanel} from './gcode-panel.js?v=public-v14';
+import {loadModel} from './model-loader.js?v=public-v15';
+import {createV24Adapter} from './v24_matrix_adapter.mjs?v=public-v15';
+import {setupMachineNavigation} from './machines.js?v=public-v15';
+import {setupGrid} from './grid-control.js?v=public-v15';
+import {setupRenderExport} from './render-export.js?v=public-v15';
+import {setupPublicInfo} from './public-info.js?v=public-v15';
+import {setupGcodePanel} from './gcode-panel.js?v=public-v15';
+import {setupV24MachineHeads} from './machine-heads.js?v=public-v15';
 const $=s=>document.querySelector(s),ids=[250,300,350].flatMap(size=>['printed','ldo_cnc'].map(structure=>`voron_v24_${size}_${structure}`));
 const wanted=new URLSearchParams(location.search).get('machine'),id=ids.includes(wanted)?wanted:ids[0];
 setupMachineNavigation(id);setupPublicInfo({includeDownloads:false});
 const stage=$('#stage'),renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));renderer.setClearColor('#edf1f4');renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);
 const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(38,1,.001,10),orbit=new OrbitControls(camera,renderer.domElement);scene.add(new THREE.HemisphereLight('#ffffff','#6c7981',2.4));
 for(const pos of [[.4,.6,.5],[-.3,.2,-.4]]){const light=new THREE.DirectionalLight('#ffffff',2);light.position.set(...pos);scene.add(light)}
-let adapter,profile,pending=false;
+let adapter,profile,pending=false,machineHeads,program;
 function render(){if(pending)return;pending=true;requestAnimationFrame(()=>{pending=false;renderer.render(scene,camera)})}
 const grid=setupGrid(scene,render);grid.position.y=-.096;
 function resize(){const b=stage.getBoundingClientRect();renderer.setSize(b.width,b.height,false);camera.aspect=b.width/b.height;camera.updateProjectionMatrix();render()}
 new ResizeObserver(resize).observe(stage);orbit.addEventListener('change',render);
 function view(name){camera.up.set(0,name==='top'?0:1,name==='top'?-1:0);orbit.target.set(0,.22,0);camera.position.set(...({iso:[.98,.83,1.4],front:[0,.24,1.65],top:[0,1.8,0]}[name]));orbit.update();render()}
 for(const name of ['iso','front','top'])$('#'+name).onclick=()=>view(name);view('iso');
-$('#focusHead').onclick=()=>{if(!adapter)return;const box=new THREE.Box3();for(const [key,node] of adapter.nodes)if(adapter.records.get(key).group===profile.head_group)box.expandByObject(node);if(box.isEmpty())return;camera.up.set(0,1,0);box.getCenter(orbit.target);camera.position.copy(orbit.target).add(new THREE.Vector3(.1,.06,.2));orbit.update();render()};
-function applyPose(){if(!adapter)return;const pose=adapter.setPose(Object.fromEntries(['x','y','z'].map(a=>[a,Number($('#'+a).value)])));for(const a of ['x','y','z'])$('#'+a+'v').textContent=Number($('#'+a).value).toFixed(2)+' mm';
+$('#focusHead').onclick=()=>{if(!adapter||machineHeads?.focus(camera,orbit))return;const box=new THREE.Box3();for(const [key,node] of adapter.nodes)if(adapter.records.get(key).group===profile.head_group)box.expandByObject(node);if(box.isEmpty())return;camera.up.set(0,1,0);box.getCenter(orbit.target);camera.position.copy(orbit.target).add(new THREE.Vector3(.1,.06,.2));orbit.update();render()};
+function applyPose(){if(!adapter)return;const pose=adapter.setPose(Object.fromEntries(['x','y','z'].map(a=>[a,Number($('#'+a).value)])));machineHeads?.update(pose);for(const a of ['x','y','z'])$('#'+a+'v').textContent=Number($('#'+a).value).toFixed(2)+' mm';
  $('#motionStatus').textContent='ベッド固定 · X/Yヘッドと4Zガイド・ガントリーがZ＋へ追従';document.body.dataset.pose=JSON.stringify(pose);document.body.dataset.flexibleVisible=String(pose.atReference&&$('#belts').checked);render();}
 try{
  const root='../machines/'+id+'/',json=async name=>{const r=await fetch(root+name,{cache:'no-cache'});if(!r.ok)throw Error(name+'の読込に失敗');return r.json()};
@@ -35,10 +36,11 @@ try{
  for(const [i,a] of ['x','y','z'].entries()){$('#'+a).min=limits[a.toUpperCase()][0];$('#'+a).max=limits[a.toUpperCase()][1];$('#'+a).value=profile.display_reference_xyz_mm[i];$('#'+a).disabled=false;$('#'+a).oninput=applyPose}
  $('#reset').disabled=false;$('#reset').onclick=()=>{for(const [i,a] of ['x','y','z'].entries())$('#'+a).value=profile.display_reference_xyz_mm[i];applyPose()};$('#belts').onchange=()=>{adapter.setFlexibleVisible($('#belts').checked);applyPose()};$('#enclosure').onchange=()=>{adapter.setEnclosureVisible($('#enclosure').checked);render()};
  const valid=v=>typeof v==='string'&&/^#[0-9a-f]{6}$/i.test(v);let palette={base:null,accent:null,frame:null};try{const saved=JSON.parse(localStorage.getItem(profile.appearance.storage_key)||'null');if(saved?.machine_id===id)for(const role of Object.keys(palette))if(valid(saved.colors?.[role]))palette[role]=saved.colors[role]}catch{}
- function applyPalette(){for(const [m,c] of originals)m.color.copy(c);adapter.setPalette(palette);for(const role of Object.keys(palette)){const v=palette[role]||profile.appearance.palette_defaults[role];$('#'+role).value=v;$('#'+role+'Hex').value=v;$('#'+role+'Hex').removeAttribute('aria-invalid')}$('#frameFinish').value=palette.frame==='#b9bec4'?'silver':!palette.frame||palette.frame===profile.appearance.palette_defaults.frame?'black':'custom';document.body.dataset.protectedChanges=String(protectedMaterials.filter(m=>!m.color.equals(originals.get(m))).length);$('#paletteStatus').textContent=Object.values(palette).some(Boolean)?'この機種の配色':'標準CADの配色';render()}
+ function applyPalette(){for(const [m,c] of originals)m.color.copy(c);adapter.setPalette(palette);machineHeads?.setPalette(Object.fromEntries(Object.entries(palette).map(([r,c])=>[r,c||profile.appearance.palette_defaults[r]])));for(const role of Object.keys(palette)){const v=palette[role]||profile.appearance.palette_defaults[role];$('#'+role).value=v;$('#'+role+'Hex').value=v;$('#'+role+'Hex').removeAttribute('aria-invalid')}$('#frameFinish').value=palette.frame==='#b9bec4'?'silver':!palette.frame||palette.frame===profile.appearance.palette_defaults.frame?'black':'custom';document.body.dataset.protectedChanges=String(protectedMaterials.filter(m=>!m.color.equals(originals.get(m))).length);$('#paletteStatus').textContent=Object.values(palette).some(Boolean)?'この機種の配色':'標準CADの配色';render()}
  function save(){try{localStorage.setItem(profile.appearance.storage_key,JSON.stringify({machine_id:id,colors:palette}))}catch{}}
  for(const role of Object.keys(palette)){$('#'+role).disabled=false;$('#'+role+'Hex').disabled=false;$('#'+role).oninput=()=>{palette[role]=$('#'+role).value;applyPalette();save()};$('#'+role+'Hex').oninput=()=>{const v=$('#'+role+'Hex').value;if(!valid(v)){$('#'+role+'Hex').setAttribute('aria-invalid','true');return}palette[role]=v;applyPalette();save()}}
  $('#frameFinish').disabled=false;$('#frameFinish').onchange=()=>{if($('#frameFinish').value==='custom')return;palette.frame=$('#frameFinish').value==='silver'?'#b9bec4':profile.appearance.palette_defaults.frame;applyPalette();save()};$('#resetPalette').disabled=false;$('#resetPalette').onclick=()=>{palette={base:null,accent:null,frame:null};applyPalette();save()};applyPalette();
- const program=setupGcodePanel({container:document.querySelector('aside'),profile,adapter,scene,render,setPose:xyz=>{for(const [i,a] of ['x','y','z'].entries())$('#'+a).value=xyz[i];applyPose()}});for(const a of ['x','y','z'])$('#'+a).addEventListener('input',program.invalidate);$('#reset').addEventListener('click',program.invalidate);
+ machineHeads=await setupV24MachineHeads({machine:id,profile,adapter,scene,render,applyPose,onChange:()=>program?.invalidate()});applyPalette();
+ program=setupGcodePanel({container:document.querySelector('aside'),profile,adapter,scene,render,setPose:xyz=>{for(const [i,a] of ['x','y','z'].entries())$('#'+a).value=xyz[i];applyPose()}});for(const a of ['x','y','z'])$('#'+a).addEventListener('input',program.invalidate);$('#reset').addEventListener('click',program.invalidate);
  setupRenderExport({renderer,scene,camera,controls:orbit,name:id,afterRender:render});$('#status').hidden=true;document.body.dataset.ready='true';document.body.dataset.parts=String(manifest.parts.length);applyPose();resize();
 }catch(e){$('#status').textContent='読込エラー: '+e.message;document.body.dataset.error=e.message;console.error(e)}

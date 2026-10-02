@@ -1,6 +1,6 @@
-import {catalogDimensions,collections,resolveVariant,choicesFor,importedVariant} from './configuration-model.js?v=public-v14';
-import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=public-v14';
-import {renderProductLinks} from './product-links.js?v=public-v14';
+import {catalogDimensions,collections,resolveVariant,choicesFor,importedVariant} from './configuration-model.js?v=public-v15';
+import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=public-v15';
+import {renderProductLinks} from './product-links.js?v=public-v15';
 
 export async function setupConfigurations(catalog,install,{presentation='printer',getExtras=()=>({}),applyExtras=async()=>{},validateExtras=()=>{}}={}){
  const $=s=>document.querySelector(s);
@@ -27,6 +27,7 @@ export async function setupConfigurations(catalog,install,{presentation='printer
   if(presentation==='printer'&&v.fit?.nozzle_mm)rows.push(`基準姿勢のノズル位置：X ${v.fit.nozzle_mm[0].toFixed(2)} / Y ${v.fit.nozzle_mm[1].toFixed(2)} / Z ${v.fit.nozzle_mm[2].toFixed(2)} mm`);
   if(presentation==='printer'&&v.fit?.bed_reference_drop_mm)rows.push(`基準ベッド位置を ${v.fit.bed_reference_drop_mm.toFixed(2)} mm下げて表示（ノズル先端と0.2 mmの間隔）`);
   if(v.fit?.mount_hotend_overlap_mm3!=null)rows.push(`マウント／ホットエンドの交差体積：${v.fit.mount_hotend_overlap_mm3.toFixed(3)} mm³`);
+  if(v.fit?.machine_mount){const m=v.fit.machine_mount;rows.push(`機体取付：${m.kind}。取付穴の軸ずれ ${m.axis_error_mm.toFixed(4)} mm。`);rows.push('機体側ドック・ホーミング接点・全可動域は未検証。');if(v.toolhead==='indx')rows.push('INDX：ベルト固定具とドックが未登録。レール取付の比較表示。')}
   if(v.fit?.probe){const p=v.fit.probe;rows.push(`${p.label||'プローブ'}のコイル底面：ノズルより ${p.coil_nozzle_gap_mm.toFixed(2)} mm上`);if(p.offset_xy_mm)rows.push(`ノズルからのオフセット：X ${p.offset_xy_mm[0].toFixed(2)} / Y ${p.offset_xy_mm[1].toFixed(2)} mm`);if(p.spacer_mm)rows.push(`取付に必要な絶縁スペーサー：${p.spacer_mm.toFixed(1)} mm × 2`)}
   const check=probeCheck(v);rows.push(...check.lines);if(v.fit?.probe?.minimum_probe_bed_clearance_at_nozzle_contact_mm!=null)rows.push(`ノズル接触時のプローブ最下部／ベッド間隔：${v.fit.probe.minimum_probe_bed_clearance_at_nozzle_contact_mm.toFixed(3)} mm`);
   rows.push(presentation==='toolhead'?'マウントと部品配置のCADプレビュー。プリンター全域の干渉判定は含みません。':'全可動域の衝突、熱・流量・電気特性は未検証。');

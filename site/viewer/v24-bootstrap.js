@@ -1,7 +1,7 @@
-import {setupMachineNavigation} from './machines.js?v=public-v14';
-import {machineAssetsAvailable,showMissingAssets} from './asset-availability.js?v=public-v14';
+import {setupMachineNavigation} from './machines.js?v=public-v15';
+import {machineAssetsAvailable,showMissingAssets} from './asset-availability.js?v=public-v15';
 if(await machineAssetsAvailable('siboor_v24_350')){
-  await import('./v24-app.js?v=public-v14');
+  await import('./v24-app.js?v=public-v15');
 }else{
   setupMachineNavigation('siboor_v24_350');await showMissingAssets();
 }

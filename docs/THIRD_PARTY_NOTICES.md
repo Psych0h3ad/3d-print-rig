@@ -451,3 +451,12 @@ Native complete PCB models use each manufacturer’s source version. Unknown man
 The displayed cleaning assemblies preserve native reference coordinates. Alternative bodies, construction bodies and omitted hardware are recorded per module. Invalid Goose mounting leaves are excluded from display; original editable CAD remains in the source archive. The independent preview handles a bounded set of coordinate commands and stops at unsupported commands. Feed-based durations do not include acceleration, extrusion safety or temperature behavior.
 
 Printed appearance corrections are explicit part identities in `site/viewer/appearance-role.mjs`; they change display colors only. Stock SB and R2 printed parts share these assignments across pages. Hardware and transparent LED lenses retain their own materials.
+
+
+### Machine head registration / MGN12
+
+V2.4 250/300/350のR2・LDO CNC参照、およびTrident 350の登録ガントリーへ、元のMGN12H固定穴（20 × 20 mm）を基準にヘッドを配置。固定SB/Xolと、6/9 mmに対応するStealthChangerのSB/Xol/JabberWockyを使用。上記の各原本commitと部品ごとのライセンスを維持。参照用リニアガイド・ドック・旧ヘッドは重複表示しない。形状は原寸を維持。
+
+INDXは6 mm機体のレール取付プレビュー。取付板の5 mm厚に対し、Voron Tridentの元CADのM3x8ねじ4本を剛体移動して使用。ねじはVoronDesign/Voron-Tridentの既載commit、GPL-3.0。レール穴、ねじ軸、取付板とブロックの登録姿勢を照合。ベルト固定具、機体側ドック、ホーミング接点、全移動域の接触は未登録・未検証。プリント可能な完成構成とは扱わない。
+
+追加のネイティブねじと取付登録データは独立したsource archiveに収録。他のヘッド・交換機構の原本は既載source archiveに継続収録。

@@ -16,8 +16,8 @@ export class ProbeMountSelection{
  }
  partDelta(){const row=this.catalog.probes.find(p=>p.id===this.id);return (this.assets.get(row.module)?.meta.parts.length||0)-(row.hidden_stock_keys?.length||0)}
 }
-export async function setupProbeMounts(catalog,{load,setHidden,update}){
- const select=document.querySelector('#probeConfig'),status=document.querySelector('#probeStatus');
+export async function setupProbeMounts(catalog,{load,setHidden,update,selectId='probeConfig'}){
+ const select=document.querySelector('#'+selectId),status=document.querySelector('#probeStatus');
  const state=new ProbeMountSelection(catalog,load,setHidden);let busy=false;
  select.replaceChildren(...catalog.probes.map(row=>{const o=document.createElement('option');o.value=row.id;o.textContent=row.label;return o}));
  async function apply(id){
