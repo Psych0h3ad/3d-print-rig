@@ -1,6 +1,7 @@
-import {collections,catalogDimensions} from './configuration-model.js?v=public-v18-motion1';
-import {headPlan} from './head-assembly.js?v=public-v18-motion1';
-import {appearanceRole} from './appearance-role.mjs?v=public-v18-motion1';
+import {collections,catalogDimensions} from './configuration-model.js?v=public-v18-probe1';
+import {headPlan} from './head-assembly.js?v=public-v18-probe1';
+import {appearanceRole} from './appearance-role.mjs?v=public-v18-probe1';
+import {probeHasConflict} from './probe-checks.js?v=public-v18-probe1';
 
 const labels={toolhead:'ヘッド',extruder:'押出機',hotend:'ホットエンド',cooling:'冷却',mount:'取付・交換機構',gantry:'キャリッジ / ベルト幅',carriage:'キャリッジ本体',probe:'プローブ',board:'基板'};
 export function builderCandidates(catalog,filters={}){
@@ -12,7 +13,7 @@ export function builderGroups(catalog,filters={},currentId){
   if(!groups.has(v.toolhead))groups.set(v.toolhead,{id:v.toolhead,label:catalog.toolheads.find(t=>t.id===v.toolhead).label,variants:[]});
   groups.get(v.toolhead).variants.push(v);
  }
- return [...groups.values()].map(g=>({...g,count:g.variants.length,variant:g.variants.find(v=>v.id===currentId)||g.variants[0]}));
+ return [...groups.values()].map(g=>({...g,count:g.variants.length,variant:g.variants.find(v=>v.id===currentId)||g.variants.find(v=>!probeHasConflict(v))||g.variants[0]}));
 }
 function https(value){try{const u=new URL(value);return u.protocol==='https:'?u.href:null}catch{return null}}
 function sources(meta,pins){

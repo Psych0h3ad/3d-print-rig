@@ -1,8 +1,8 @@
-import {setupPublicInfo} from './public-info.js?v=public-v18-motion1';
-import {modelURL} from './model-loader.js?v=public-v18-motion1';
+import {setupPublicInfo} from './public-info.js?v=public-v18-probe1';
+import {modelURL} from './model-loader.js?v=public-v18-probe1';
 
 const files={
-  siboor_trident_350:['../assembly_manifest.json?v=public-v18-motion1','../ASSEMBLY_CONFIGURATIONS.json?v=public-v18-motion1','../SIBOOR_Trident_350.glb'],
+  siboor_trident_350:['../assembly_manifest.json?v=public-v18-probe1','../ASSEMBLY_CONFIGURATIONS.json?v=public-v18-probe1','../SIBOOR_Trident_350.glb'],
   siboor_v24_350:['../machines/siboor_v24_350/assembly_manifest.json','../machines/siboor_v24_350/machine_profile.json','../machines/siboor_v24_350/model.glb'],
 };
 export async function machineAssetsAvailable(machine){

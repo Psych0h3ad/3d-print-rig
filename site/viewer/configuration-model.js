@@ -1,3 +1,4 @@
+import {probeHasConflict} from './probe-checks.js?v=public-v18-probe1';
 export const dimensions=['gantry','toolhead','carriage','hotend','extruder','probe'];
 export const collections={gantry:'gantries',toolhead:'toolheads',mount:'mounts',carriage:'carriages',hotend:'hotends',extruder:'extruders',probe:'probes',board:'boards',cooling:'cooling_options'};
 export const catalogDimensions=catalog=>catalog.dimensions||dimensions;
@@ -7,7 +8,7 @@ export function resolveVariant(catalog,selection,changed){
  const candidates=catalog.variants.filter(v=>!changed||v[changed]===selection[changed]);
  let best=null,bestScore=-1;
  for(const v of candidates){
-  const conflict=v.fit?.probe?.height_passed===false||v.fit?.probe?.physical_passed===false;
+  const conflict=probeHasConflict(v);
   const changingHead=changed&&changed!=='probe';
   const order=catalogDimensions(catalog);
   let score=order.reduce((n,k,i)=>n+(v[k]===selection[k]&&!(k==='probe'&&changingHead&&conflict)?2**(order.length-i):0),0);

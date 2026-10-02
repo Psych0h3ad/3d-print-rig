@@ -38,3 +38,8 @@ const crown=head('crown','crowncooler','fixed','head_mgn12',6);crown.registratio
 const crownPlan=installedHeadPlan(crown,registry,target);assert.deepEqual(crownPlan.translation,[0,-21.5,136]);assert.deepEqual(crownPlan.nozzle_mm,[0,-36.1,76.6]);
 const newHeads={...heads,variants:[...heads.variants,crown]};assert(machineHeadVariants(newHeads,registry,'six').some(v=>v.toolhead==='crowncooler'));assert(!machineHeadVariants(newHeads,registry,'nine','awd').some(v=>v.toolhead==='crowncooler'));
 console.log('Machine head rail placement, belt widths, native nozzle fallback, preserved stock configurations and dependent choices passed.');
+const probed={...sc6,id:'sc6_probe',probe:'beacon',fit:{...sc6.fit,probe:{coil_bottom_mm:[0,-10,-37],coil_nozzle_gap_mm:3,metal_keepout_bounds_mm:[[-10,-20,-35],[10,0,-15]]}}};
+const placed=machineHeadVariants({...heads,variants:[probed]},registry,'six')[0];
+assert.deepEqual(placed.fit.probe.coil_bottom_mm,[0,-27,93]);assert.deepEqual(placed.fit.probe.metal_keepout_bounds_mm,[[-10,-37,95],[10,-17,115]]);
+assert.equal(placed.fit.probe.coil_bottom_mm[2]-placed.fit.nozzle_mm[2],3);assert.equal(placed.fit.probe.machine_environment_verified,false);
+assert.deepEqual(probed.fit.probe.coil_bottom_mm,[0,-10,-37]);

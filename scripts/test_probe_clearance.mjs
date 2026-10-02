@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
-import {probeCheck,probeMetrics,probeGuide,probeOptionSuffix} from '../site/viewer/probe-checks.js';
+import {probeCheck,probeMetrics,probeGuide,probeOptionSuffix,probeHasConflict,translatedProbeFit,headInspectionState} from '../site/viewer/probe-checks.js';
+import {probeMountSummary} from '../site/viewer/probe-mounts.js';
 import {resolveVariant,importedVariant} from '../site/viewer/configuration-model.js';
 const v6={id:'awd__sb__v6__cw2__kit_cartographer',gantry:'awd',toolhead:'sb',hotend:'v6',extruder:'cw2',probe:'kit_cartographer',fit:{nozzle_mm:[0,-28.76,312.1],probe:{coil_bottom_mm:[0,-3.71,314.6],coil_nozzle_gap_mm:2.5,minimum_probe_bed_clearance_at_nozzle_contact_mm:.85,height_passed:false,physical_passed:true,metal_keepout_verified:false}}};
 assert.equal(probeCheck(v6).state,'height-conflict');assert(probeCheck(v6).warning);
@@ -7,7 +8,7 @@ assert(probeOptionSuffix(v6).includes('高さ'));assert(probeMetrics(v6).some(([
 const guide=probeGuide(v6);assert.equal(guide.dimension[1][2]-guide.dimension[0][2],2.5);assert.deepEqual(guide.nozzle,[0,-28.76,312.1]);assert.equal(guide.keepout,null);
 const none={...v6,id:'awd__sb__v6__cw2',probe:'none',fit:{nozzle_mm:v6.fit.nozzle_mm,probe_candidates:[{id:'kit_cartographer',height_passed:false,coil_nozzle_gap_mm:2.5}]}};
 assert.equal(probeGuide(none),null);assert.equal(probeCheck(none).state,'none');assert(probeCheck(none).lines[0].includes('2.500'));assert.deepEqual(probeMetrics(none),[]);
-const hf={...v6,id:'awd__sb__hf__cw2',hotend:'hf',fit:{...v6.fit,probe:{...v6.fit.probe,coil_nozzle_gap_mm:3,height_passed:true}}};
+const hf={...v6,id:'awd__sb__hf__cw2',hotend:'hf',fit:{...v6.fit,probe:{...v6.fit.probe,coil_bottom_mm:[0,-3.71,315.1],coil_nozzle_gap_mm:3,height_passed:true}}};
 assert.equal(probeCheck(hf).state,'unverified');assert(probeCheck(hf).lines[0].includes('未確認'));
 const catalog={variants:[none,v6,hf]};
 assert.equal(resolveVariant(catalog,{...hf,hotend:'v6'},'hotend'),none);
@@ -16,7 +17,7 @@ assert.equal(resolveVariant({variants:[v6,none,hf]},{...hf,hotend:'v6'},'hotend'
 assert.equal(resolveVariant(catalog,{...none,probe:'kit_cartographer'},'probe'),v6);
 assert.equal(importedVariant(catalog,{configuration:v6.id}),v6);
 assert.equal(importedVariant(catalog,{configuration:none.id}),none);
-const fit={...v6,fit:{...v6.fit,probe:{...v6.fit.probe,height_passed:true,metal_keepout_verified:true,metal_keepout_bounds_mm:[[-10,-15,315],[10,5,325]],metal_keepout_collisions:[{existing:'heatsink',volume_mm3:.2}]}}};
+const fit={...hf,fit:{...hf.fit,probe:{...hf.fit.probe,height_passed:true,metal_keepout_verified:true,metal_keepout_bounds_mm:[[-10,-15,315],[10,5,325]],metal_keepout_collisions:[{existing:'heatsink',volume_mm3:.2}]}}};
 assert.equal(probeCheck(fit).state,'metal-conflict');assert(probeOptionSuffix(fit).includes('金属'));assert.deepEqual(probeGuide(fit).keepout,[[-10,-15,315],[10,5,325]]);
 assert.equal(probeCheck({...fit,fit:{probe:{...fit.fit.probe,metal_keepout_collisions:[]}}}).state,'geometry-checked');
 assert.equal(probeGuide({...fit,fit:{...fit.fit,nozzle_mm:[NaN,0,0]}}),null);
@@ -29,4 +30,31 @@ assert.equal(probeGuide(nativeBeacon),null);
 assert(probeMetrics(nativeBeacon).some(([label,value])=>label==='コイル／ノズル'&&value==='未計測 mm'));
 assert(!probeCheck(nativeBeacon).lines.join('').includes('2.600'));
 assert.deepEqual(probeMetrics({fit:{complete_head_native:{cooling_bed_clearance_at_nozzle_contact_mm:2.354}}}),[['冷却部／接触面','2.35 mm（参考）']]);
+const clear={...hf,id:'clear',fit:{...hf.fit,probe:{...hf.fit.probe,metal_keepout_verified:true}}};
+const bed={...clear,id:'bed',fit:{...clear.fit,probe:{...clear.fit.probe,minimum_probe_bed_clearance_at_nozzle_contact_mm:0}}};
+const metal={...clear,id:'metal',fit:{...clear.fit,probe:{...clear.fit.probe,metal_keepout_collisions:[{existing:'cnc',volume_mm3:.1}]}}};
+const without={...clear,id:'without',probe:'none',fit:{nozzle_mm:clear.fit.nozzle_mm}};
+for(const conflict of [bed,metal]){
+ assert(probeHasConflict(conflict));assert(probeCheck(conflict).warning);
+ const choices={variants:[conflict,without]};assert.equal(resolveVariant(choices,{...conflict,hotend:'hf'},'hotend'),without);
+ assert.equal(resolveVariant(choices,{...without,probe:'kit_cartographer'},'probe'),conflict);
+ assert.equal(importedVariant(choices,{configuration:conflict.id}),conflict);
+}
+assert.equal(probeCheck(bed).state,'bed-conflict');
+assert.equal(probeCheck({...clear,fit:{probe:{...clear.fit.probe,metal_keepout_verified:undefined}}}).state,'unverified');
+assert.equal(probeCheck({...clear,fit:{probe:{...clear.fit.probe,coil_nozzle_gap_mm:null}}}).state,'unverified');
+const shifted=translatedProbeFit(fit.fit.probe,[10,-20,300]);
+assert.deepEqual(shifted.coil_bottom_mm,[10,-23.71,615.1]);assert.deepEqual(shifted.metal_keepout_bounds_mm,[[0,-35,615],[20,-15,625]]);
+assert.deepEqual(fit.fit.probe.coil_bottom_mm,[0,-3.71,315.1]);
+assert(probeCheck({...fit,fit:{...fit.fit,nozzle_mm:[10,-48.76,612.1],probe:shifted}}).state!=='datum-conflict');
+assert.equal(probeCheck({...fit,fit:{...fit.fit,nozzle_mm:[10,-48.76,612.1]}}).state,'datum-conflict');
+const beaconOutsideCartographer={probe:'beacon_revh',fit:{probe:{coil_nozzle_gap_mm:3.1,height_passed:false,physical_passed:true,metal_keepout_verified:true}}};
+assert(!probeCheck(beaconOutsideCartographer).lines.join('').includes('2.600'));assert(probeCheck(beaconOutsideCartographer).warning);
+const multiple={...bed,fit:{...bed.fit,probe:{...bed.fit.probe,physical_passed:false,height_passed:false,metal_keepout_collisions:[{}]}}};
+assert(probeCheck(multiple).lines.length>=4);
+const unknownSummary=probeMountSummary({id:'beacon',label:'Beacon',module:'reference',coil_nozzle_gap_mm:null,spacer_mm:null});assert(unknownSummary.warning);assert(!unknownSummary.text.includes('NaN'));
+const otherwiseClear={...nativeBeacon,fit:{...nativeBeacon.fit,complete_head_native:{state:'clear'}}};
+assert(headInspectionState(otherwiseClear).warning);assert.equal(headInspectionState(otherwiseClear).state,'unverified');assert(headInspectionState(otherwiseClear).label.includes('未確認'));
+assert.equal(headInspectionState({...otherwiseClear,fit:{...otherwiseClear.fit,carriage_native_body_passed:false}}).state,'carriage-conflict');
+assert.equal(probeCheck({probe:'unknown_sensor'}).state,'unverified');assert.equal(probeCheck({probe:'none'}).state,'none');
 console.log('Probe clearance passed: height/physical/metal conditions, bed clearance metrics, native-coordinate guides, safe hotend changes and explicit conflict previews.');

@@ -1,3 +1,13 @@
+import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=public-v18-probe1';
+export function stockProbeFit(row){return row.module?{...row,id:row.id,physical_passed:row.physical_passed??null,height_passed:row.height_passed??null,metal_keepout_verified:row.metal_keepout_verified??false}:null}
+export function probeMountSummary(row){
+ if(!row.module){const check=probeCheck({probe:row.id});return {text:row.label+(check.warning?' ／ '+check.label:''),warning:check.warning}}
+ const check=probeCheck({probe:row.id,fit:{probe:stockProbeFit(row)}}),lines=[row.label];
+ if(Number.isFinite(row.coil_nozzle_gap_mm))lines.push(`ノズルより ${row.coil_nozzle_gap_mm.toFixed(2)} mm上`);
+ if(Number.isFinite(row.spacer_mm)&&row.spacer_mm>0)lines.push(`絶縁スペーサー ${row.spacer_mm.toFixed(1)} mm × 2`);
+ if(Number.isFinite(row.minimum_probe_bed_clearance_at_nozzle_contact_mm))lines.push(`ノズル接触時の最下部／ベッド間隔 ${row.minimum_probe_bed_clearance_at_nozzle_contact_mm.toFixed(3)} mm`);
+ return {text:lines.join(' · ')+' ／ '+check.label+(check.lines.length?'。'+check.lines.join(' '):''),warning:check.warning};
+}
 // Probe assemblies move with the toolhead, independently of fixed frame mods.
 export class ProbeMountSelection{
  constructor(catalog,load,setHidden){this.catalog=catalog;this.load=load;this.setHidden=setHidden;this.assets=new Map();this.id=catalog.probes[0].id;this.delta=[0,0,0]}
@@ -19,14 +29,12 @@ export class ProbeMountSelection{
 export async function setupProbeMounts(catalog,{load,setHidden,update,selectId='probeConfig'}){
  const select=document.querySelector('#'+selectId),status=document.querySelector('#probeStatus');
  const state=new ProbeMountSelection(catalog,load,setHidden);let busy=false;
- select.replaceChildren(...catalog.probes.map(row=>{const o=document.createElement('option');o.value=row.id;o.textContent=row.label;return o}));
+ select.replaceChildren(...catalog.probes.map(row=>{const o=document.createElement('option');o.value=row.id;o.textContent=row.label+probeOptionSuffix({probe:row.id,fit:{probe:stockProbeFit(row)}});return o}));
  async function apply(id){
   if(busy)return;busy=true;select.disabled=true;
   try{
    const row=await state.apply(id);select.value=id;
-   status.textContent=row.module?`${row.label} · ノズルより ${row.coil_nozzle_gap_mm.toFixed(2)} mm上 · 絶縁スペーサー ${row.spacer_mm.toFixed(1)} mm × 2${row.metal_keepout_collisions?.length?'。ベルト固定ねじが金属除外領域に入ります。取付検証未完了。':''}`:row.label;
-   if(Number.isFinite(row.minimum_probe_bed_clearance_at_nozzle_contact_mm))status.textContent+=` ／ ノズル接触時の最下部／ベッド間隔 ${row.minimum_probe_bed_clearance_at_nozzle_contact_mm.toFixed(3)} mm`;
-   status.classList.toggle('notice',!!row.metal_keepout_collisions?.length);
+   const summary=probeMountSummary(row);status.textContent=summary.text;status.classList.toggle('notice',summary.warning);
    const url=new URL(location.href);url.searchParams.set('probe',id);history.replaceState(null,'',url);update();
   }catch(e){select.value=state.id;status.textContent='プローブを読み込めませんでした。直前の構成を表示中。';console.error(e)}
   finally{busy=false;select.disabled=false}

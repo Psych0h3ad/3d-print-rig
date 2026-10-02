@@ -1,5 +1,15 @@
 // English presentation strings. Source identifiers and CAD metadata remain unchanged.
 export const messages = {
+ "ノズルより": "Above nozzle by",
+ "選択したプローブの取付基準とクリアランスは未検証です。": "The selected probe mounting datum and clearances are unverified.",
+ "選択したプローブの取付条件未確認": "Selected probe mounting conditions unverified",
+ "機体への移設後、周辺フレーム・ベルト・全可動域の干渉は未検証です。": "After moving the head to another printer, surrounding frame, belt and full-travel clearances are unverified.",
+ "ヘッド内の検査のみ／機体側未検証": "Head-local checks only / printer environment unverified",
+ "取付座標の不整合": "Inconsistent mounting coordinates",
+ "プローブ最下部がベッドに接触": "Probe lowest point touches the bed",
+ "登録マウントの高さ条件外です。センサー固有の設置条件を確認してください。": "Outside the registered mount height conditions. Check the installation requirements for this sensor.",
+ "コイルとノズルの座標が登録済みの高さと一致しません。取付条件を再検証してください。": "Coil and nozzle coordinates disagree with the registered height. Recheck the mounting conditions.",
+ "ノズル接触時にプローブ本体・マウント・ねじがベッドへ接触します。": "The probe body, mount or screws touch the bed when the nozzle makes contact.",
  "専用マウントを持つSB・Xol構成に切替。": "Switch between SB / Xol configurations with dedicated mounts.",
  "。XYベルトは滑らかな経路表示。ベッドチェーンの屈曲と歯・テンションの再現は未対応。": ". XY belts use a smooth routing preview. Bed-chain articulation, teeth and tension are not simulated.",
  "XYベルトは滑らかな経路プレビュー。歯・固定部のカット・テンション、ホーミング接点、配線の屈曲と全域干渉の自動判定は未対応です。": "XY belts use a smooth routing preview. Teeth, clamp cuts, tension, homing contacts, cable articulation and full-travel collision detection are not simulated.",
