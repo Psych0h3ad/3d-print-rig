@@ -1,4 +1,4 @@
-import {bankChoices,bankCapacity,normalizeBank,initialBank,readBankURL,bankBedReferenceDrop,bankSystem,bankSource,bankSpec} from './changer-bank-model.mjs?v=public-v22';
+import {bankChoices,bankCapacity,normalizeBank,initialBank,readBankURL,bankBedReferenceDrop,bankSystem,bankSource,bankSpec} from './changer-bank-model.mjs?v=public-v23';
 
 export function setupChangerBank({catalog,rig,data,extras={}}){
  let controller,state=initialBank(catalog,data,catalog.variants[0]?.gantry),busy=false,previousGantry=catalog.variants[0]?.gantry,urlState,urlError;
@@ -16,6 +16,7 @@ export function setupChangerBank({catalog,rig,data,extras={}}){
   panel.querySelector('#bankToggleLabel').textContent=indx?'受動ツールとドックを取り付ける':'機体にドックと複数ヘッドを取り付ける';
   panel.querySelector('#bankHelp').textContent=indx?'Smart Headは1台。選択中の工具はSmart Headに装着し、残りは専用ドックで待機します。各ノズルの外形はBondtechの共通参照モデルです。':'待機姿勢の登録済み構成：Xol / Sherpa Mini / Rapido 2 UHF、JabberWocky / Conch。同じヘッドも複数配置できます。SBは原本ドックに干渉するため、単独の装着表示で選べます。';
   panel.querySelector('#bankScope').textContent=indx?'原本の2020用ドック・磁石・バネ・受動ツール。41 mm間隔。追加の前面2020クロスバーが必要です。端部締結・外装・全可動域・自動ドッキング経路は未検証。':'元作者のModularDockを上部2020フレームに配置。待機ヘッドとドック本体の交差を検査。追加補強・締結部品・ドア・全可動域・自動ドッキング経路は未検証。実機の製作保証ではありません。';
+  if(!indx&&mount?.bank_permitted===false)panel.querySelector('#bankHelp').textContent='Tridentはヘッド側にZ移動がなく、通常の固定ドックでは交換できません。水平交換専用品か、ドックを上下させるLiftbarの取付が必要です。現在は単独ヘッドの取付参照です。';
   const add=(caption,id,options,value,change)=>{const l=document.createElement('label'),s=document.createElement('select');l.htmlFor=id;l.textContent=caption;s.id=id;for(const [id,text]of options){const o=document.createElement('option');o.value=String(id);o.textContent=String(text);s.append(o)}s.value=String(value);s.disabled=busy||controller?.busy||!state.enabled;s.onchange=change;fields.append(l,s);return s};
   add(indx?'工具数':'設置する台数','bankCount',Array.from({length:bankCapacity(data,catalog.machine_id,system)},(_,i)=>[i+1,String(i+1)]),state.tools.length,e=>{const n=Number(e.target.value),tools=state.tools.slice(0,n);while(tools.length<n)tools.push(bankSource(opts[tools.length%opts.length],system));return select({...state,tools,active:Math.min(state.active,n-1)})});
   state.tools.forEach((value,i)=>add((indx?'工具 T':'ドック ')+(indx?i:i+1),'bankTool'+i,opts.map(v=>[bankSource(v,system),label(v)]),value,e=>{const tools=[...state.tools];tools[i]=e.target.value;return select({...state,tools})}));

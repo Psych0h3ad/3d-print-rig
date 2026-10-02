@@ -1,5 +1,5 @@
 {
-  "viewer_version": "public-v22",
+  "viewer_version": "public-v23",
   "sources": [
     {
       "id": "siboor_trident",
@@ -59,7 +59,7 @@
       "url": "https://github.com/VoronDesign/Voron-2/tree/a192410e27ea345644ae5c4b29b4c9c40cbe1a73",
       "scope": "250の公式アセンブリから構築したV2.4 350基準モデル。",
       "license": "GPL-3.0",
-      "changes": "350 mm寸法への再配置。選択部品の重複を除き、スカート・ラッチ・固定具・ベッドの取付面を調整。 Zレール固定用ナットをM3へ交換してレール裏の溝へ配置。XYを含む68組のレール固定ナットをボルト軸に合わせて調整。",
+      "changes": "350 mm寸法への再配置。選択部品の重複を除き、スカート・ラッチ・固定具・ベッドの取付面を調整。 Zレール固定用ナットをM3へ交換してレール裏の溝へ配置。XYを含む68組のレール固定ナットをボルト軸に合わせて調整。 Complete 250/300/350 upper and lower latch groups are registered to the door seam and native magnet recesses.",
       "license_url": "../licenses/voron_v24/LICENSE",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
     },
@@ -1032,6 +1032,20 @@
       "scope": "MGN9/MGN12 Maxwell interfaces and Xol-A4T user Mod; registered Xol 6 mm mounting",
       "changes": "Separate rail interfaces; original hardware; dedicated Xol plate; rigid pose only.",
       "notice": "Cutter actuation, docking paths, wiring and full printer travel are unverified."
+    },
+    {
+      "id": "micron",
+      "label": "Micron R1 / Micron Plus R1",
+      "repository": "PrintersForAnts/Micron",
+      "author": "Printers for Ants / Micron contributors",
+      "commit": "f76aa28767211ddfee2e30290aadcea3c45f8513",
+      "url": "https://github.com/PrintersForAnts/Micron/tree/f76aa28767211ddfee2e30290aadcea3c45f8513",
+      "scope": "Micron 120 / Micron Plus 180 · AntHead / Wristwatch G2 / Revo Voron",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/micron/LICENSE",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "version": "120: R1 v4 body + registered RC8 AntHead; 180: R1 RC8 root v98",
+      "changes": "Placed native assemblies, display-only XYZ motion groups and material roles. Source-pose flexible parts only. Original contact candidates and rail limits remain disclosed. Not an exact LDO kit; LDO references remain uninstalled."
     }
   ],
   "defaults": [
@@ -1090,7 +1104,7 @@
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v17/viewer-armchair-sources.zip"
     },
     {
-      "label": "Chube / Tricorn · メーカーCADと専用取付部品",
+      "label": "Chube / Tricorn manufacturer CAD and dedicated mounts",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v18/viewer-hotend-sources.zip"
     },
     {
@@ -1100,6 +1114,18 @@
     {
       "label": "Cutters and MadMax",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v21/viewer-cutters-madmax-sources.zip"
+    },
+    {
+      "label": "Micron / Micron Plus native sources",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v23/viewer-micron-sources.zip"
+    },
+    {
+      "label": "V2.4 door latch placements",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v23/viewer-v24-door-sources.zip"
+    },
+    {
+      "label": "INDX and Monolith mounting interfaces",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v22/viewer-indx-mount-sources.zip"
     }
   ]
 }

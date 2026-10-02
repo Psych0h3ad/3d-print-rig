@@ -1,4 +1,4 @@
-import {renderProductLinks} from './product-links.js?v=public-v22';
+import {renderProductLinks} from './product-links.js?v=public-v23';
 export const machineChoices=[
  {id:'siboor_trident_350',label:'SIBOOR Trident 350 · CNC AWD',page:'./'},
  {id:'voron_trident_350',label:'VORON Trident 350 · 標準プリント構造',page:'./trident.html'},
@@ -11,17 +11,19 @@ export const machineChoices=[
  {id:'voron_v24_350_ldo_cnc',label:'VORON V2.4 350 · LDO CNC AWD参照',page:'./v24-reference.html'},
  {id:'voron_v02r1_120',label:'VORON V0.2r1 120 · Mini Stealthburner',page:'./v0.html'},
  {id:'voron_v02_120',label:'VORON V0.2 120 · Mini Stealthburner',page:'./v0.html'},
+ {id:'micron_r1_120',label:'Micron 120 · R1 / AntHead / WWG2 / Revo Voron',page:'./micron.html'},
+ {id:'micron_plus_r1_180',label:'Micron Plus 180 · R1 RC8 / AntHead / WWG2 / Revo Voron',page:'./micron.html'},
  {id:'siboor_v24_aug_350',label:'SIBOOR V2.4 AUG CNC 350 · CAD未取得',available:false},
  {id:'fysetc_v24_250_pro',label:'FYSETC V2.4 R2 Pro · 公式CAD / 250',page:'./kit-reference.html'},
  ...[300,350].map(size=>({id:`fysetc_v24_${size}_pro`,label:`FYSETC V2.4 R2 Pro ${size} · サイズ別CAD未取得`,available:false,unavailable_reason:'取得した公式CADは250 mm基準です。このサイズの組立データは未登録です。'})),
  ...[250,300,350].map(size=>({id:`fysetc_trident_${size}`,label:`FYSETC Trident ${size} · 組立CAD未取得`,available:false,unavailable_reason:'FYSETC公式Trident資料を確認しましたが、組立CADはまだ取得できていません。'})),
 ];
-const vendors={voron:'VORON / 標準',siboor:'SIBOOR',ldo:'LDO',fysetc:'FYSETC'};
-const families={trident:'VORON Trident',v24:'VORON V2.4',v0:'VORON V0'};
+const vendors={voron:'VORON / 標準',siboor:'SIBOOR',ldo:'LDO',fysetc:'FYSETC',pfa:'Printers for Ants'};
+const families={trident:'VORON Trident',v24:'VORON V2.4',v0:'VORON V0',micron:'Micron'};
 for(const row of machineChoices){
- row.family=row.id.includes('trident')?'trident':row.id.includes('v24')?'v24':'v0';
- row.vendor=row.id.startsWith('fysetc_')?'fysetc':row.id==='siboor_v24_350'?'voron':row.id.startsWith('siboor_')?'siboor':row.id.endsWith('_ldo_cnc')?'ldo':'voron';
- row.size=Number(row.id.match(/(?:^|_)(120|250|300|350)(?:_|$)/)?.[1]);
+ row.family=row.id.startsWith('micron_')?'micron':row.id.includes('trident')?'trident':row.id.includes('v24')?'v24':'v0';
+ row.vendor=row.id.startsWith('micron_')?'pfa':row.id.startsWith('fysetc_')?'fysetc':row.id==='siboor_v24_350'?'voron':row.id.startsWith('siboor_')?'siboor':row.id.endsWith('_ldo_cnc')?'ldo':'voron';
+ row.size=Number(row.id.match(/(?:^|_)(120|180|250|300|350)(?:_|$)/)?.[1]);
 }
 export const machineFamilies=families;
 export const machineVendors=vendors;

@@ -1,4 +1,4 @@
-import {setupProductDirectory} from './product-links.js?v=public-v22';
+import {setupProductDirectory} from './product-links.js?v=public-v23';
 const $=s=>document.querySelector(s);
 function dialog(id,title){const d=document.createElement('dialog');d.id=id;d.innerHTML=`<div class="dialog-head"><h2>${title}</h2><button class="close" aria-label="閉じる">×</button></div><div class="dialog-body"></div>`;document.body.append(d);d.querySelector('.close').onclick=()=>d.close();return d}
 const node=(tag,text)=>{const n=document.createElement(tag);n.textContent=text;return n};
@@ -11,7 +11,7 @@ export async function setupPublicInfo({includeDownloads=true}={}){
  sb.append(node('p','コミュニティCADを組み合わせた非公式ビューアーです。各データの作者・ライセンスは個別に適用されます。'));
  db.append(node('p','STEPはメーカー／VORONの標準構成のみ。画面で選んだMod・色・可動姿勢は含みません。'));
  try{
-  const response=await fetch('../PUBLIC_CATALOG.json?v=public-v22',{cache:'no-cache'});if(!response.ok)throw Error('カタログを取得できません');const catalog=await response.json();
+  const response=await fetch('../PUBLIC_CATALOG.json?v=public-v23',{cache:'no-cache'});if(!response.ok)throw Error('カタログを取得できません');const catalog=await response.json();
   sb.append(node('p','ビューアー版：'+catalog.viewer_version));
   if(catalog.model_source_url)sb.append(link('表示モデルの編集用データ',catalog.model_source_url));
   for(const archive of catalog.source_archives||[]){const p=node('p','');p.append(link('編集用データ：'+archive.label,archive.url));sb.append(p)}

@@ -1,6 +1,6 @@
-import {catalogDimensions,collections,resolveVariant,choicesFor,importedVariant,configurationById} from './configuration-model.js?v=public-v22';
-import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=public-v22';
-import {renderProductLinks} from './product-links.js?v=public-v22';
+import {catalogDimensions,collections,resolveVariant,choicesFor,importedVariant,configurationById} from './configuration-model.js?v=public-v23';
+import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=public-v23';
+import {renderProductLinks} from './product-links.js?v=public-v23';
 
 export async function setupConfigurations(catalog,install,{presentation='printer',getExtras=()=>({}),applyExtras=async()=>{},validateExtras=()=>{},onSettled=()=>{}}={}){
  const $=s=>document.querySelector(s);

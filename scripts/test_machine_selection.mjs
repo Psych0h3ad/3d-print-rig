@@ -5,7 +5,7 @@ import {machineChoices,machineFamilies,machineVendors,machineOptions,resolveMach
 assert.equal(new Set(machineChoices.map(m=>m.id)).size,machineChoices.length);
 let transitions=0;
 for(const m of machineChoices){
- assert(machineFamilies[m.family]&&machineVendors[m.vendor]&&[120,250,300,350].includes(m.size));
+ assert(machineFamilies[m.family]&&machineVendors[m.vendor]&&[120,180,250,300,350].includes(m.size));
  for(const dimension of ['family','vendor','size','id']){
   assert(machineOptions(m,dimension).includes(m[dimension]));
   for(const value of machineOptions(m,dimension)){

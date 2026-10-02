@@ -1,8 +1,8 @@
-import {headPlan} from './head-assembly.js?v=public-v22';
+import {headPlan} from './head-assembly.js?v=public-v23';
 
-import {translatedProbeFit} from './probe-checks.js?v=public-v22';
+import {translatedProbeFit} from './probe-checks.js?v=public-v23';
 
-import {withEmbeddedBoards} from './embedded-boards.mjs?v=public-v22';
+import {withEmbeddedBoards} from './embedded-boards.mjs?v=public-v23';
 
 const clone=value=>JSON.parse(JSON.stringify(value));
 const add=(a,b)=>a.map((v,i)=>v+b[i]);

@@ -1,5 +1,32 @@
 // English presentation strings. Source identifiers and CAD metadata remain unchanged.
 export const messages = {
+ "Chube / Tricorn · メーカーCADと専用取付部品": "Chube / Tricorn \u00b7 Manufacturer CAD and dedicated mounts",
+ "ShenLin / GKD Team（AWD原案：aTinyShellScript・DoubleT）": "ShenLin / GKD Team (original AWD design: aTinyShellScript, DoubleT)",
+
+ "メーカーCADと専用取付部品": "Manufacturer CAD and dedicated mounting parts",
+ "原案・前身": "Original design and predecessors",
+ "AWD原案": "Original AWD design",
+ "原案:": "Original design:",
+ "V2.4版": "V2.4 edition",
+
+ "接点ホーミング、独立QGL、可動配線と全機体の掃引干渉は未検証です。": "Contact homing, independent QGL, moving cables and whole-machine swept collisions remain unverified.",
+ "ホーミング接点とドアの角度変更は未登録。": "Homing contacts and door rotation are not registered.",
+ "Micron 3Dアセンブリ": "Micron 3D assembly",
+ "表示範囲": "Display range",
+ "の読込に失敗": " failed to load",
+
+ "Tridentはヘッド側にZ移動がなく、通常の固定ドックでは交換できません。水平交換専用品か、ドックを上下させるLiftbarの取付が必要です。現在は単独ヘッドの取付参照です。": "Trident has no head-side Z motion, so the standard fixed dock cannot exchange tools. A dedicated horizontal system or moving Liftbar is required. This currently shows a single installed-head reference.",
+ "Printers for Antsの元CADを基準にした構成です。LDOキット同一モデルではありません。180はOctopus / Meanwell UHP-200。LDO専用部品・基板・電源の参照は未取付です。": "Configuration based on the original Printers for Ants CAD, not an exact LDO kit. The 180 example uses Octopus / Meanwell UHP-200. LDO-specific parts, boards and power supply references are uninstalled.",
+ "LDO公式構成との差を確認 ↗": "Compare with the official LDO configuration ↗",
+ "固定ベッドと、Zガントリー・YZビーム・XYZヘッドの配置を確認できます。": "Inspect the fixed bed, Z gantry, YZ beam and XYZ head.",
+ "ベルト・曲がるケーブルは基準姿勢の参照です。Plusの固定金具とPUGクランプは対応する軸に追従します。": "Belts and flexible cables are source-pose references. The Plus fixed brackets and PUG clamp follow their respective axes.",
+ "柔軟部品の参照を表示": "Show flexible part references",
+ "ベッド固定 · Zガントリー・YZビーム・XYZヘッド": "Fixed bed · Z gantry · YZ beam · XYZ head",
+ "レール内の表示上限です。干渉なし可動域ではありません。": "Display limits retain guide containment; they are not a collision-free travel envelope.",
+ "STEPカタログの読込に失敗": "Failed to load the STEP catalog",
+ "Assy STEP をダウンロード": "Download Assy STEP",
+ "元の設計・ライセンス": "Original design and license",
+ "部品 · ZIP": "parts · ZIP",
  "作者のtLW取付部品にSherpa Mini R2とホットエンド本体を装着。": "Author tLW mounting parts fitted with Sherpa Mini R2 and hotend hardware.",
  "Sherpaは標準フロントを使用。Kフロントは本体と干渉するため選択対象外。": "Sherpa uses the standard front. K-front intersects the original head body and is excluded.",
  "CPAPダクトは装着。送風機・ホース・基板・プローブ・取付ねじ・配線は未装着。": "CPAP ducts fitted; blower, hose, board, probe, mounting screws and wiring absent.",

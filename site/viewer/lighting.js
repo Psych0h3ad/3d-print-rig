@@ -1,9 +1,9 @@
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=public-v22';
+import {loadModel} from './model-loader.js?v=public-v23';
 import {RoomEnvironment} from './vendor/RoomEnvironment.js';
 import {RectAreaLightUniformsLib} from './vendor/RectAreaLightUniformsLib.js';
-import {lightingState} from './lighting-state.mjs?v=public-v22';
+import {lightingState} from './lighting-state.mjs?v=public-v23';
 
 export function setupLighting(scene,renderer,{registration={meta:'DISCO_MOD.json',glb:'Disco_on_a_Stick_XXL_350.glb',translation_mm:[0,0,0]},machine='siboor_trident_350',update=()=>{}}={}){
  const $=s=>document.querySelector(s);
