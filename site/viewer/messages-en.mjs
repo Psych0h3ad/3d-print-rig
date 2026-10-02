@@ -11,8 +11,6 @@ export const messages = {
  "MGN12の取付面と4本の穴軸でVORON機体へ配置。センサー・全可動域は未検証。": "Placed on the VORON machine using the MGN12 mating plane and four screw axes. Sensor and full-travel fit remain unverified.",
  "Sphinx / VORON · 6 mm取付参照": "Sphinx / VORON · 6 mm mount reference",
  "Sphinx tLW · 組付け部品と取付登録": "Sphinx tLW · assembled parts and mounting registrations",
-
-
  "ノズルより": "Above nozzle by",
  "選択したプローブの取付基準とクリアランスは未検証です。": "The selected probe mounting datum and clearances are unverified.",
  "選択したプローブの取付条件未確認": "Selected probe mounting conditions unverified",
@@ -27,7 +25,6 @@ export const messages = {
  "。XYベルトは滑らかな経路表示。ベッドチェーンの屈曲と歯・テンションの再現は未対応。": ". XY belts use a smooth routing preview. Bed-chain articulation, teeth and tension are not simulated.",
  "XYベルトは滑らかな経路プレビュー。歯・固定部のカット・テンション、ホーミング接点、配線の屈曲と全域干渉の自動判定は未対応です。": "XY belts use a smooth routing preview. Teeth, clamp cuts, tension, homing contacts, cable articulation and full-travel collision detection are not simulated.",
  "ベルト・参考配線": "Belts / reference wiring",
-
  "この構成をプリンターで見る": "View this configuration on a printer",
  "マシン一覧（取付CAD未登録）": "Printers (mount CAD not registered)",
  "Mellow SHT36 V2 · 原本内蔵": "Mellow SHT36 V2 · source assembly",
@@ -35,7 +32,6 @@ export const messages = {
  "CADの読み込みに失敗しました。構成を選び直して再試行してください。": "CAD loading failed. Select a configuration to retry.",
  "指定された構成はこの機種に未登録です。現在の表示：{0}": "The requested configuration is not registered for this printer. Displaying: {0}",
  "登録済みの組み合わせに合わせて変更：{0}": "Adjusted to a registered combination: {0}",
-
  "3Dアセンブリ": "3D assembly",
  "FYSETC 3Dアセンブリ": "FYSETC 3D assembly",
  "V0 3Dアセンブリ": "V0 3D assembly",
@@ -978,7 +974,22 @@ export const messages = {
  "メーカーの組込み用CAD。SB CW2とA4Tの専用取付部品はヘッド単体ページで比較できます。": "Manufacturer integration CAD. Compare dedicated SB CW2 and A4T mounting parts on the toolhead page.",
  "Air／Conductionの開いた組込み参照面と共通外形。完成ソリッドではなく、ヘッド・機体への取付は未登録です。": "Open Air / Conduction integration surfaces and their common envelope. This is an incomplete reference without registered head or printer mounting.",
  "メーカーCADのLongを個別に表示。Sphinxへの組付けはヘッド単体ページ。READMEの寸法表記との差を保持しています。": "Separate manufacturer Long CAD. View the Sphinx mounting assembly on the toolhead page. Differences from README dimensions are retained.",
- "メーカーCADのShortを個別に表示。専用ヘッドマウントは未登録。Longを縮めた形状ではありません。": "Separate manufacturer Short CAD. No dedicated head mount is registered. Original Short geometry is preserved."
+ "メーカーCADのShortを個別に表示。専用ヘッドマウントは未登録。Longを縮めた形状ではありません。": "Separate manufacturer Short CAD. No dedicated head mount is registered. Original Short geometry is preserved.",
+ "StealthChanger・ツールバンク": "StealthChanger tool bank",
+ "機体にドックと複数ヘッドを取り付ける": "Install docks and multiple heads on the machine",
+ "設置する台数": "Number of tools",
+ "使用中のヘッド": "Active tool",
+ "ドックの確認範囲": "Dock verification scope",
+ "待機姿勢の登録済み構成：Xol / Sherpa Mini / Rapido 2 UHF、JabberWocky / Conch。同じヘッドも複数配置できます。SBは原本ドックに干渉するため、単独の装着表示で選べます。": "Registered parked assemblies: Xol / Sherpa Mini / Rapido 2 UHF and JabberWocky / Conch. Repeated heads are supported. SB intersects the original dock and remains available as a single installed head.",
+ "元作者のModularDockを上部2020フレームに配置。待機ヘッドとドック本体の交差を検査。追加補強・締結部品・ドア・全可動域・自動ドッキング経路は未検証。実機の製作保証ではありません。": "Original-author ModularDock on the top 2020 frame. Parked head bodies were checked against dock bodies. Additional bracing, fastening, doors, full travel and automatic docking paths remain unverified. This is not a build certification.",
+ "ツールバンクはオフです。通常のヘッド構成を選べます。": "Tool bank is off. Select a normal single-head configuration.",
+ "ツールバンクの台数または使用中のヘッドが不正です。": "Invalid tool-bank count or active tool.",
+ "この機体に登録されていないドック構成です。": "This dock assembly is not registered for this machine.",
+ "この機体のドック構成は未登録です。": "No dock assemblies are registered for this machine.",
+ "使用中のヘッドとツールバンクが一致しません。": "The active head does not match the tool bank.",
+ "ツールバンクのURLが長すぎます。": "The tool-bank URL is too long.",
+ "ドックの部品対応が不正です": "Invalid dock part mapping",
+ "ヘッドを切り替えられませんでした。": "Could not switch the head."
 };
 export const templates = {
  "{0} · {1}構成": "{0} · {1} configurations",
@@ -1050,5 +1061,7 @@ export const templates = {
  "{0}行目 · {1}": "Line {0} · {1}",
  "{0}を見る ↗": "View {0} ↗",
  "{0}部品": "{0} parts",
- "{0}のコイル底面：未計測": "{0} coil bottom: unmeasured"
+ "{0}のコイル底面：未計測": "{0} coil bottom: unmeasured",
+ "ドック {0}": "Dock {0}",
+ "ドック {0}基 · T{1}をガントリーに装着。残りは固定ドックで待機。": "{0} docks · T{1} installed on the gantry. Other tools remain in fixed docks."
 };

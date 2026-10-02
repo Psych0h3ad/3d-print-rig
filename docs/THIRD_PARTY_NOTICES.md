@@ -3,6 +3,12 @@
 各CAD・Modのライセンスは個別に適用されます。ビューアー全体や全モデルを一括でGPLまたはMITとして扱いません。
 使用形状の取得版と、原設計を照合した参考commitを区別しています。SIBOOR取得CADの版はSHA256で識別します。
 
+## StealthChangerの複数ドック表示
+
+DraftShift/StealthChanger `50e3c769297b273ac390fb33b455aa7f4dfe3099`、DraftShift/ModularDock `597fad34f3a1233ed1c182ec221a8da9ba68ac33` の原本形状を使用（GPL-3.0）。上部2020へのM5後入れナットはVoronDesign/Voron-Trident `a8628f48546948ce1fc15511b7765b7f31f80722` の原本を回転・配置（GPL-3.0）。形状寸法は保持しています。各ヘッド・ホットエンド・押出機の条件はそれぞれの項目を参照。
+
+Xol / Sherpa Mini / Rapido 2 UHFとJabberWocky / Conchの待機配置を登録。SBは原本ドックとの干渉により待機配置には含めません。底側クロスバーの締結部品は上部取付表示から除外。追加の補強・保持用ハードウェア・配線・ドア・全可動域・自動ドッキングは未検証です。[配置と検証範囲](CHANGER_BANK.md)に原本版と編集可能なソースの案内があります。
+
 ## SIBOOR Trident JUNE / ClickyClacky・FumePack
 
 作者：Lzhikai

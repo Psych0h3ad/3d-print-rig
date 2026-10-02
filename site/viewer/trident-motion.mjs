@@ -1,4 +1,4 @@
-import {createTridentBelts} from './trident-belts.mjs?v=public-v19';
+import {createTridentBelts} from './trident-belts.mjs?v=public-v20';
 /** Independent Trident bed motion. Vertices carry their CAD placements. */
 export function createTridentMotion(profile){
  if(profile.kinematics!=='trident'||profile.machine_id!=='voron_trident_350')throw Error('Trident profile mismatch');

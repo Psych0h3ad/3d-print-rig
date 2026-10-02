@@ -1,5 +1,5 @@
 // Shared presentation layer. Existing controls, IDs and CAD controllers stay intact.
-import {setupLanguage,originalText} from './i18n.mjs?v=public-v19';
+import {setupLanguage,originalText} from './i18n.mjs?v=public-v20';
 const $ = selector => document.querySelector(selector);
 const node = (tag, className, text) => {
   const element = document.createElement(tag);
@@ -191,7 +191,7 @@ function setupWorkspace() {
   function organizeAdvancedFields() {
     const configuration = $('#configurationControls');
     if (configuration) {
-      const fields = ['mountConfig', 'carriageConfig', 'boardConfig', 'coolingConfig']
+      const fields = ['carriageConfig', 'boardConfig', 'coolingConfig']
         .map(id => $(`#${id}`)).filter(element => element?.parentElement === configuration);
       if (fields.length) {
         let advanced = $('#advancedConfiguration');

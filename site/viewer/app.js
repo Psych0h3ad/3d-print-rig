@@ -1,19 +1,20 @@
-import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=public-v19';
+import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=public-v20';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=public-v19';
-import {loadFrameMods,withFrameMods} from './frame-mods.js?v=public-v19';
-import {setupGrid} from './grid-control.js?v=public-v19';
-import {setupLighting} from './lighting.js?v=public-v19';
-import {setupFlexible} from './flexible.js?v=public-v19';
-import {setupConfigurations} from './configurations.js?v=public-v19';
-import {setupAccessories} from './accessories.js?v=public-v19';
-import {setupAppearance} from './appearance.js?v=public-v19';
-import {setupRenderExport} from './render-export.js?v=public-v19';
-import {setupPublicInfo} from './public-info.js?v=public-v19';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=public-v19';
-import {expandedPrinterCatalog} from './machine-head-model.mjs?v=public-v19';
+import {loadModel} from './model-loader.js?v=public-v20';
+import {loadFrameMods,withFrameMods} from './frame-mods.js?v=public-v20';
+import {setupGrid} from './grid-control.js?v=public-v20';
+import {setupLighting} from './lighting.js?v=public-v20';
+import {setupFlexible} from './flexible.js?v=public-v20';
+import {setupConfigurations} from './configurations.js?v=public-v20';
+import {setupAccessories} from './accessories.js?v=public-v20';
+import {setupAppearance} from './appearance.js?v=public-v20';
+import {setupRenderExport} from './render-export.js?v=public-v20';
+import {setupPublicInfo} from './public-info.js?v=public-v20';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=public-v20';
+import {setupChangerBank} from './changer-bank.js?v=public-v20';
+import {expandedPrinterCatalog} from './machine-head-model.mjs?v=public-v20';
 const $=s=>document.querySelector(s),scene=new THREE.Scene();
 scene.background=new THREE.Color('#edf1f5');
 const stage=$('#stage');
@@ -38,7 +39,7 @@ const levers={},plungers={};
 const groups={},moving={y:[],xy:[],z:[],reference_flexible:[]},panes=[],parts=new Map();
 const allMeshes=[];
 let installed='stock',stockRegistration,stockRefX,stockLeverX,stockPlungerX,xolMeta,xolScene;
-let activeConfig,catalog,r2Registration,appearance,stockRows,accessories,installedHeads;
+let activeConfig,catalog,r2Registration,appearance,stockRows,accessories,installedHeads,toolBank;
 const assetRoots=new Map(),assets=new Map(),xolMechanisms={},stockSwitchMeshes=[],r2Belts=[];
 const stockHeadGroup='03_Stock_Stealthburner_CW2_Rapido2_UHF';
 const cadPoint=p=>new THREE.Vector3(p[0]/1000,p[2]/1000,-p[1]/1000);
@@ -79,7 +80,7 @@ function showHead(){
  if(activeConfig.machine_head){for(const o of moving.reference_flexible)o.visible=false;for(const key of ['580','Upper_Belt','PTFE_tube','CAN_cable'])if(parts.has(key))parts.get(key).visible=false}
 }
 async function installConfiguration(v){
- const required=[...new Set(v.modules.map(m=>m.id)),...(!v.machine_head&&v.toolhead==='xol'?['xol']:[])];await Promise.all(required.map(asset));await installedHeads.install(v);
+ const required=[...new Set(v.modules.map(m=>m.id)),...(!v.machine_head&&v.toolhead==='xol'?['xol']:[])];await Promise.all(required.map(asset));await toolBank.install(v);
  const headLink=new URL('./toolheads.html',location.href);headLink.searchParams.set('configuration',v.source_head_configuration||v.id);$('#toolheadLink').href=headLink;
  stop();unfocus();activeConfig=v;installed=v.machine_head?'generic':v.toolhead==='xol'?'xol':'stock';
  for(const a of assetRoots.values()){a.root.visible=false;a.root.position.set(0,0,0);for(const o of a.meshes)o.visible=true}
@@ -178,8 +179,8 @@ async function loadGLB(url){
  throw last;
 }
 setupPublicInfo();
-Promise.all([fetch('../assembly_manifest.json?v=public-v19',{cache:'no-cache'}).then(r=>r.json()),fetch('../flexible_routes.json?v=public-v19',{cache:'no-cache'}).then(r=>r.json()),loadModel(new GLTFLoader(),'../SIBOOR_Trident_350.glb',p=>{$('#loading').textContent=p.total?'読み込み '+Math.round(p.loaded/p.total*100)+'%':'3Dモデルを読み込み中…'}),loadGLB('../Endstop_Mechanisms.glb'),fetch('../COLOR_OPTIONS.json?v=public-v19',{cache:'no-cache'}).then(r=>r.json()),fetch('../ASSEMBLY_CONFIGURATIONS.json?v=public-v19',{cache:'no-cache'}).then(r=>r.json()),fetch('../R2_ENDSTOP_REGISTRATION.json?v=public-v19',{cache:'no-cache'}).then(r=>r.json())]).then(async([manifest,routes,g,endstops,colorOptions,configs,r2Meta])=>{
- const headData=await loadMachineHeadCatalog();registration=manifest.motion_preview.endstop_registration;catalog=expandedPrinterCatalog(withFrameMods(configs,frameMods),headData.heads,headData.registry,'siboor_trident_350');installedHeads=createMachineHeads(scene,{...catalog,base_assets:headData.heads.base_assets},{render:()=>{renderRequested=true}});ensureMachineHeadControls();r2Registration=r2Meta;stockRows=manifest.parts;
+Promise.all([fetch('../assembly_manifest.json?v=public-v20',{cache:'no-cache'}).then(r=>r.json()),fetch('../flexible_routes.json?v=public-v20',{cache:'no-cache'}).then(r=>r.json()),loadModel(new GLTFLoader(),'../SIBOOR_Trident_350.glb',p=>{$('#loading').textContent=p.total?'読み込み '+Math.round(p.loaded/p.total*100)+'%':'3Dモデルを読み込み中…'}),loadGLB('../Endstop_Mechanisms.glb'),fetch('../COLOR_OPTIONS.json?v=public-v20',{cache:'no-cache'}).then(r=>r.json()),fetch('../ASSEMBLY_CONFIGURATIONS.json?v=public-v20',{cache:'no-cache'}).then(r=>r.json()),fetch('../R2_ENDSTOP_REGISTRATION.json?v=public-v20',{cache:'no-cache'}).then(r=>r.json())]).then(async([manifest,routes,g,endstops,colorOptions,configs,r2Meta])=>{
+ const headData=await loadMachineHeadCatalog();registration=manifest.motion_preview.endstop_registration;catalog=expandedPrinterCatalog(withFrameMods(configs,frameMods),headData.heads,headData.registry,'siboor_trident_350');catalog.bank_data=headData.bank;installedHeads=createMachineHeads(scene,{...catalog,base_assets:headData.heads.base_assets},{render:()=>{renderRequested=true}});ensureMachineHeadControls();r2Registration=r2Meta;stockRows=manifest.parts;
  refX=registration.switches.X.cad_reference_display_coordinate_mm;refY=registration.switches.Y.cad_reference_display_coordinate_mm;
  const lookup=new Map(manifest.parts.map(r=>[r.key,r]));model=g.scene;model.add(endstops.scene);scene.add(model);
  model.traverse(o=>{
@@ -199,7 +200,7 @@ Promise.all([fetch('../assembly_manifest.json?v=public-v19',{cache:'no-cache'}).
  const door=groups['09_ClickyClacky_Door'];if(door){pivot=new THREE.Group();pivot.position.set(-.26205,0,.2565);scene.add(pivot);pivot.attach(door)}
  for(const s of ['#door','#x','#y','#z','#demo','#reset','#home','#focusX','#focusY','#releaseSwitch','#focusZ'])$(s).disabled=false;
  accessories=setupAccessories(catalog,{load:asset,update:()=>setPose(current.x,current.y,current.z)});
- ready=true;$('#loading').remove();await setupConfigurations(catalog,installConfiguration,accessories);
+ toolBank=setupChangerBank({catalog,rig:installedHeads,data:headData.bank,extras:accessories});ready=true;$('#loading').remove();await toolBank.bind(await setupConfigurations(catalog,installConfiguration,toolBank.options));
  setupRenderExport({renderer,scene,camera,controls,beforeRender:stop,afterRender:()=>{renderRequested=true},name:'Trident_350'});
 }).catch(e=>{if($('#loading'))$('#loading').textContent='モデルを読み込めませんでした。'+e.message;console.error(e)});
 $('#door').oninput=e=>{$('#angle').textContent=e.target.value+'°';if(pivot)pivot.rotation.y=-THREE.MathUtils.degToRad(+e.target.value)};

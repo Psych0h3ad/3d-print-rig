@@ -1,27 +1,28 @@
-import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=public-v19';
-import {appearanceRole} from './appearance-role.mjs?v=public-v19';
+import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=public-v20';
+import {appearanceRole} from './appearance-role.mjs?v=public-v20';
 import * as THREE from 'three';
-import {loadFrameMods,withFrameMods} from './frame-mods.js?v=public-v19';
-import {setupLighting} from './lighting.js?v=public-v19';
-import {setupGrid} from './grid-control.js?v=public-v19';
+import {loadFrameMods,withFrameMods} from './frame-mods.js?v=public-v20';
+import {setupLighting} from './lighting.js?v=public-v20';
+import {setupGrid} from './grid-control.js?v=public-v20';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=public-v19';
-import {setupMachineNavigation} from './machines.js?v=public-v19';
-import {setupConfigurations} from './configurations.js?v=public-v19';
-import {setupAccessories} from './accessories.js?v=public-v19';
-import {setupPublicInfo} from './public-info.js?v=public-v19';
-import {setupRenderExport} from './render-export.js?v=public-v19';
-import {createTridentMotion} from './trident-motion.mjs?v=public-v19';
-import {headPlan,partKey} from './head-assembly.js?v=public-v19';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=public-v19';
-import {expandedPrinterCatalog} from './machine-head-model.mjs?v=public-v19';
+import {loadModel} from './model-loader.js?v=public-v20';
+import {setupMachineNavigation} from './machines.js?v=public-v20';
+import {setupConfigurations} from './configurations.js?v=public-v20';
+import {setupAccessories} from './accessories.js?v=public-v20';
+import {setupPublicInfo} from './public-info.js?v=public-v20';
+import {setupRenderExport} from './render-export.js?v=public-v20';
+import {createTridentMotion} from './trident-motion.mjs?v=public-v20';
+import {headPlan,partKey} from './head-assembly.js?v=public-v20';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=public-v20';
+import {setupChangerBank} from './changer-bank.js?v=public-v20';
+import {expandedPrinterCatalog} from './machine-head-model.mjs?v=public-v20';
 setupMachineNavigation('voron_trident_350');setupPublicInfo();
 const $=s=>document.querySelector(s),stage=$('#stage'),renderer=new THREE.WebGLRenderer({antialias:true});
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor('#edf1f4');renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.2;stage.append(renderer.domElement);
 const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(38,1,.005,10),controls=new OrbitControls(camera,renderer.domElement);
 camera.position.set(.98,.83,1.4);controls.target.set(0,.22,0);controls.update();
-let pending=false,frames=0,motion,catalog,profile,current,active,accessories,installedHeads;
+let pending=false,frames=0,motion,catalog,profile,current,active,accessories,installedHeads,toolBank;
 const cached=new Map(),meshes=[],palette={base:'#24272c',accent:'#e32636',frame:'#25282d'};
 function render(){if(pending)return;pending=true;requestAnimationFrame(()=>{pending=false;renderer.render(scene,camera);document.body.dataset.renderedFrames=++frames})}
 setupGrid(scene,render);
@@ -56,16 +57,16 @@ function applyPose(){if(!motion)return;
  document.body.dataset.pose=JSON.stringify(current);document.body.dataset.zGuidePositions=JSON.stringify(profile.z_guide_block_keys.map(k=>{const entry=[...motion.entries].find(([mesh,{row}])=>row.key===k);return entry?.[0].position.toArray()}));
  $('#motionStatus').textContent='ベッド・サーミスタ・3Zガイドが下降に追従'+(zMax<250?' · ベッドファン装着時はZ 230 mmまで':'')+'。XYベルトは滑らかな経路表示。ベッドチェーンの屈曲と歯・テンションの再現は未対応。';render();
 }
-async function install(variant){const plan=headPlan(variant),required=variant.machine_head?['trident_r2_gantry_350']:['trident_r2_gantry_350',plan.base,...plan.modules.map(m=>m.id)];await Promise.all(required.map(asset));await installedHeads.install(variant);
+async function install(variant){const plan=headPlan(variant),required=variant.machine_head?['trident_r2_gantry_350']:['trident_r2_gantry_350',plan.base,...plan.modules.map(m=>m.id)];await Promise.all(required.map(asset));await toolBank.install(variant);
  for(const promise of cached.values()){const a=await promise;a.root.visible=false;a.root.position.set(0,0,0);for(const r of a.records)r.mesh.visible=true}
  const gantry=await asset('trident_r2_gantry_350');gantry.root.visible=true;
  if(variant.machine_head){
-  const refs=await fetch('../R2_ENDSTOP_REGISTRATION.json?v=public-v19').then(r=>r.json()),ref=refs.heads.stealthburner;motion.setReference([ref.X.cad_reference_display_coordinate_mm,ref.Y.cad_reference_display_coordinate_mm,0]);motion.setBedReferenceDrop(variant.fit.bed_reference_drop_mm||0);active=variant;accessories?.refresh();paletteApply();applyPose();
+  const refs=await fetch('../R2_ENDSTOP_REGISTRATION.json?v=public-v20').then(r=>r.json()),ref=refs.heads.stealthburner;motion.setReference([ref.X.cad_reference_display_coordinate_mm,ref.Y.cad_reference_display_coordinate_mm,0]);motion.setBedReferenceDrop(variant.fit.bed_reference_drop_mm||0);active=variant;accessories?.refresh();paletteApply();applyPose();
   const url=new URL('./toolheads.html',location.href);url.searchParams.set('configuration',variant.source_head_configuration);$('#toolheadLink').href=url.href;document.body.dataset.configuration=variant.id;document.body.dataset.ready='true';return;
  }
  const base=await asset(plan.base);base.root.visible=true;base.root.position.copy(point(plan.translation));for(const r of base.records)r.mesh.visible=!plan.hidden.has(r.key);
  for(const module of plan.modules){const a=await asset(module.id),hidden=new Set(module.hidden_keys||[]);a.root.visible=true;a.root.position.copy(point(module.translation_mm));for(const r of a.records)r.mesh.visible=!hidden.has(r.key)}
- const endstops=await fetch('../R2_ENDSTOP_REGISTRATION.json?v=public-v19').then(r=>r.json()),ref=endstops.heads[variant.toolhead==='xol'?(variant.hotend==='rapido2_uhf'?'xol':'xol_standard'):'stealthburner'];
+ const endstops=await fetch('../R2_ENDSTOP_REGISTRATION.json?v=public-v20').then(r=>r.json()),ref=endstops.heads[variant.toolhead==='xol'?(variant.hotend==='rapido2_uhf'?'xol':'xol_standard'):'stealthburner'];
  motion.setReference([ref.X.cad_reference_display_coordinate_mm,ref.Y.cad_reference_display_coordinate_mm,0]);motion.setBedReferenceDrop(variant.fit.bed_reference_drop_mm||0);active=variant;accessories?.refresh();applyPose();
  const url=new URL('./toolheads.html',location.href);url.searchParams.set('configuration',variant.id);$('#toolheadLink').href=url;
  $('#badge').textContent='VORON TRIDENT 350 · XY 6 mm';document.body.dataset.configuration=variant.id;
@@ -74,7 +75,7 @@ async function install(variant){const plan=headPlan(variant),required=variant.ma
 try{
  const getJSON=async path=>{const r=await fetch('../'+path,{cache:'no-cache'});if(!r.ok)throw Error(path);return r.json()};
  [profile,catalog]=await Promise.all([getJSON('machines/voron_trident_350/machine_profile.json'),getJSON('machines/voron_trident_350/configurations.json')]);
- const headData=await loadMachineHeadCatalog();catalog=expandedPrinterCatalog(withFrameMods(catalog,frameMods),headData.heads,headData.registry,'voron_trident_350');installedHeads=createMachineHeads(scene,{...catalog,base_assets:headData.heads.base_assets},{render});ensureMachineHeadControls();motion=createTridentMotion(profile);const [base,g]=await Promise.all([getJSON(profile.base_assets.meta),loadModel(new GLTFLoader(),'../'+profile.base_assets.glb)]);scene.add(g.scene);register(g.scene,base);
+ const headData=await loadMachineHeadCatalog();catalog=expandedPrinterCatalog(withFrameMods(catalog,frameMods),headData.heads,headData.registry,'voron_trident_350');catalog.bank_data=headData.bank;installedHeads=createMachineHeads(scene,{...catalog,base_assets:headData.heads.base_assets},{render});ensureMachineHeadControls();motion=createTridentMotion(profile);const [base,g]=await Promise.all([getJSON(profile.base_assets.meta),loadModel(new GLTFLoader(),'../'+profile.base_assets.glb)]);scene.add(g.scene);register(g.scene,base);
  for(const [i,a] of ['x','y','z'].entries()){const limits=profile.display_limits_mm[a.toUpperCase()];$('#'+a).min=limits[0];$('#'+a).max=limits[1];$('#'+a).value=profile.display_reference_xyz_mm[i];$('#'+a).disabled=false;$('#'+a).oninput=applyPose}
  $('#reset').disabled=false;$('#reset').onclick=()=>{for(const [i,a] of ['x','y','z'].entries())$('#'+a).value=profile.display_reference_xyz_mm[i];applyPose()};
  const key='3d-print-rig-vanilla-trident-palette',valid=v=>typeof v==='string'&&/^#[0-9a-f]{6}$/i.test(v);
@@ -85,7 +86,7 @@ try{
  const disco=await lighting.whenReady;disco?.traverse(mesh=>{if(mesh.isMesh&&mesh.userData.led_role==='bracket')meshes.push({mesh,role:'base'})});
  $('#resetPalette').disabled=false;$('#resetPalette').onclick=()=>{Object.assign(palette,{base:'#24272c',accent:'#e32636',frame:'#25282d'});update()};update();
  $('#enclosure').onchange=e=>{for(const r of meshes)if(r.panel)r.mesh.visible=e.target.checked;render()};$('#belts').onchange=applyPose;
- accessories=setupAccessories(catalog,{load:asset,update:applyPose});await setupConfigurations(catalog,install,accessories);
+ accessories=setupAccessories(catalog,{load:asset,update:applyPose});toolBank=setupChangerBank({catalog,rig:installedHeads,data:headData.bank,extras:accessories});await toolBank.bind(await setupConfigurations(catalog,install,toolBank.options));
  if(!active)throw Error('構成のCADを表示できませんでした');
  $('#status').hidden=true;setupRenderExport({renderer,scene,camera,controls,afterRender:render,name:'VORON_Trident_350'});resize();
 }catch(e){$('#status').textContent='読込エラー: '+e.message;document.body.dataset.error=e.message;console.error(e)}
