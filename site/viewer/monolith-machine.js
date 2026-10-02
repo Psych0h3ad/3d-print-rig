@@ -4,7 +4,7 @@ import {loadModel} from './model-loader.js?v=public-v24';
 import {partKey} from './head-assembly.js?v=public-v24';
 import {appearanceRole} from './appearance-role.mjs?v=public-v24';
 import {withMonolithMachines,monolithPartDelta} from './monolith-machine-model.mjs?v=monolith-machine-1';
-import {monolithBeltRoute,monolithBeltGeometry} from './monolith-belts.mjs?v=monolith-machine-1';
+import {monolithBeltRoute,monolithBeltGeometry,monolithBeltTravelLimits} from './monolith-belts.mjs?v=monolith-machine-1';
 
 const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);
 let machineData;
@@ -17,7 +17,18 @@ export async function loadMonolithData(){
 export async function loadMonolithMachines(catalog,headData){
  let data;try{data=await loadMonolithData()}catch(error){return {...catalog,monolith_unavailable:error.message}}
  const [gantries,registrations,routes]=data,result=withMonolithMachines(catalog,headData.heads,headData.registry,gantries,registrations);
- if(result.monolith)result.monolith.belt_routes=routes;
+ if(result.monolith){
+  result.monolith.belt_routes=routes;
+  for(const variant of result.variants.filter(v=>v.machine_gantry)){
+   const g=variant.machine_gantry,sources=g.modules.filter(id=>id.startsWith('monolith_belts_')).flatMap(id=>routes.routes[id.replace(/_(250|300|350)$/,'')]||[]);
+   if(!sources.length)throw Error('Monolithのベルト経路が未登録です');
+   const belt=monolithBeltTravelLimits(sources,g.size_mm,variant.fit?.machine_mount?.belt_preview_cut);
+   for(const key of ['x_delta_limits_mm','y_delta_limits_mm']){
+    const guide=g[key]||[-Infinity,Infinity];g[key]=[Math.max(guide[0],belt[key][0]),Math.min(guide[1],belt[key][1])];
+    if(!g[key].every(Number.isFinite)||g[key][0]>g[key][1])throw Error('Monolithのベルト可動範囲が不正です');
+   }
+  }
+ }
  return result;
 }
 

@@ -3,6 +3,29 @@ import * as THREE from './vendor/three.module.js';
 const distance=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]);
 const placed=(p,size,dx,dy)=>[p[0]+(Math.abs(p[0])>75?Math.sign(p[0])*(size-250)/2:dx),p[1]+(Math.abs(p[1])>100?Math.sign(p[1])*(size-250)/2:dy)];
 
+// Keep each straight span in its native direction. Rail travel alone can put
+// a head clamp beyond an idler and reverse the belt at the edge of travel.
+export function monolithBeltTravelLimits(sources,size,cut){
+ const limits=[[-Infinity,Infinity],[-Infinity,Infinity]],minimum=.01;
+ for(const source of sources)for(const [index,segment]of source.segments.entries()){
+  if(segment.kind!=='line')continue;
+  const a=segment.points[0],b=segment.points[2],length=distance(a,b),direction=[(b[0]-a[0])/length,(b[1]-a[1])/length];
+  const span=(dx,dy)=>{
+   const p=placed(a,size,dx,dy),q=placed(b,size,dx,dy);
+   if(cut&&index===0)p[0]=(a[0]<0?cut.x_mm[0]:cut.x_mm[1])+dx;
+   if(cut&&index===source.segments.length-1)q[0]=(b[0]<0?cut.x_mm[0]:cut.x_mm[1])+dx;
+   return (q[0]-p[0])*direction[0]+(q[1]-p[1])*direction[1];
+  };
+  const rest=span(0,0),slope=[span(1,0)-rest,span(0,1)-rest];
+  if(slope.filter(v=>Math.abs(v)>1e-8).length>1)throw Error('Monolithの斜めベルト制限は未登録です');
+  for(const [axis,value]of slope.entries())if(Math.abs(value)>1e-8){
+   const bound=(minimum-rest)/value;
+   if(value>0)limits[axis][0]=Math.max(limits[axis][0],bound);else limits[axis][1]=Math.min(limits[axis][1],bound);
+  }
+ }
+ return {x_delta_limits_mm:limits[0],y_delta_limits_mm:limits[1]};
+}
+
 // The source has open ends at the head and Y-moving idlers. Only straight
 // spans change length; pulley arcs remain rigid and retain their native radii.
 export function monolithBeltRoute(source,size,dx=0,dy=0,cut){

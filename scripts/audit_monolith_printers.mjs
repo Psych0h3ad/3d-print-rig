@@ -27,7 +27,7 @@ for(const [machine,binding] of Object.entries(bindings.machines)){
  const current=v2?v24HeadCatalog(data.heads,data.registry,machine):expandedPrinterCatalog(await read(siboor?'ASSEMBLY_CONFIGURATIONS.json':`machines/${machine}/configurations.json`),data.heads,data.registry,machine);
  const catalog=await loadMonolithMachines(current,data);catalog.bank_data=data.bank;assert(catalog.monolith);const rig=createMachineHeads(scene,catalog);
  const registered=catalog.variants.filter(v=>v.machine_gantry),gantries=[...new Set(registered.map(v=>v.gantry))];assert.equal(gantries.length,8);
- let installed=0,contained=0;
+ let installed=0,contained=0,xyContained=0;
  for(const gantry of gantries)for(const mount of ['fixed','stealthchanger']){
   const variant=registered.find(v=>v.gantry===gantry&&v.mount===mount);assert(variant);
   assert.equal(importedVariant(catalog,{machine,configuration:variant.id}),variant);
@@ -35,9 +35,25 @@ for(const [machine,binding] of Object.entries(bindings.machines)){
   assert.equal(resolveVariant(catalog,{...variant,mount:mount==='fixed'?'stealthchanger':'fixed'},'mount').gantry,gantry);
   rig.setDelta([0,0,0]);await rig.install(variant);visibility.install(variant);installed++;
   for(const key of binding.stock_hidden_keys)assert.equal(nodes.get(key).visible,false);
-  const z=v2?variant.machine_head.nozzle_mm[2]-profile.bed_top_world_z_mm:0,reference=[0,0,z],limits=v2?monolithDisplayLimits(profile.display_limits_mm,reference,variant):{Z:[0,0]};
-  for(const zDisplay of limits.Z){
-   const delta=[17,-23,v2?zDisplay-z:0];rig.setDelta(delta);scene.updateMatrixWorld(true);
+  const z=v2?variant.machine_head.nozzle_mm[2]-profile.bed_top_world_z_mm:0,reference=[...variant.machine_head.nozzle_mm.slice(0,2).map((n,i)=>n-binding.bed_min_xy_mm[i]),z],limits=v2?monolithDisplayLimits(profile.display_limits_mm,reference,variant):{Z:[0,0]};
+  const nativeLimits=variant.machine_gantry;
+  assert.equal(nativeLimits.x_delta_limits_mm?.length,2,machine+' missing native X travel');
+  assert.equal(nativeLimits.y_delta_limits_mm?.length,2,machine+' missing native Y travel');
+  for(const x of nativeLimits.x_delta_limits_mm)for(const y of nativeLimits.y_delta_limits_mm)for(const zDisplay of limits.Z){
+   const delta=[x,y,v2?zDisplay-z:0];rig.setDelta(delta);scene.updateMatrixWorld(true);
+   for(const id of nativeLimits.modules.filter(id=>/^monolith_[xy]_frame_/.test(id))){
+    const a=rig.gantry.cache.get(id).loaded,isX=id.startsWith('monolith_x_'),axis=isX?'x':'z';
+    const rails=a.entries.filter(e=>{
+     const size=new THREE.Box3().setFromObject(e.mesh).getSize(new THREE.Vector3());
+     return size[axis]>.2&&size.y<.014&&(isX?size.z<.014:size.x<.01);
+    });
+    assert.equal(rails.length,isX?1:2,id+' native rail identification');
+    for(const e of a.entries.filter(e=>e.row.name===(isX?'_MGN12H':'_MGN9H'))){
+     const box=new THREE.Box3().setFromObject(e.mesh),center=box.getCenter(new THREE.Vector3());
+     const rail=rails.map(r=>new THREE.Box3().setFromObject(r.mesh)).sort((a,b)=>Math.abs(a.getCenter(new THREE.Vector3()).x-center.x)-Math.abs(b.getCenter(new THREE.Vector3()).x-center.x))[0];
+     assert(box.min[axis]>=rail.min[axis]-.00002&&box.max[axis]<=rail.max[axis]+.00002,machine+' '+gantry+' '+e.row.key+' escaped native '+axis+' rail');xyContained++;
+    }
+   }
    if(v2)for(const id of variant.machine_gantry.modules.filter(id=>id.startsWith('monolith_z_'))){const a=rig.gantry.cache.get(id).loaded;
     for(const e of a.entries.filter(e=>e.row.name==='_MGN9H')){
      const contact=variant.machine_gantry.datum_checks.contacts.find(c=>c.block_key===e.row.key);assert(contact);
@@ -48,7 +64,7 @@ for(const [machine,binding] of Object.entries(bindings.machines)){
   }
   await rig.install(null);visibility.install(null);assert.equal(rig.gantry.root.visible,false);for(const [key,visible] of original)assert.equal(nodes.get(key).visible,visible);
  }
- const result={machine,gantries:gantries.length,installed,guideContainmentChecks:contained,removedStockParts:binding.stock_hidden_keys.length};results.push(result);console.log(JSON.stringify(result));
+ const result={machine,gantries:gantries.length,installed,guideContainmentChecks:contained,xyContainmentChecks:xyContained,removedStockParts:binding.stock_hidden_keys.length};results.push(result);console.log(JSON.stringify(result));
  scene.traverse(o=>{if(o.isMesh){o.geometry.dispose();for(const m of Array.isArray(o.material)?o.material:[o.material])m.dispose()}});scene.clear();
 }
-const result={passed:true,nativeRevision:bindings.geometry_revision,machines:results,installations:results.reduce((n,r)=>n+r.installed,0),guideContainmentChecks:results.reduce((n,r)=>n+r.guideContainmentChecks,0)};await fs.writeFile(report,JSON.stringify(result,null,2));console.log(JSON.stringify({passed:true,machines:results.length,installations:result.installations,guideContainmentChecks:result.guideContainmentChecks}));
+const result={passed:true,nativeRevision:bindings.geometry_revision,machines:results,installations:results.reduce((n,r)=>n+r.installed,0),guideContainmentChecks:results.reduce((n,r)=>n+r.guideContainmentChecks,0),xyContainmentChecks:results.reduce((n,r)=>n+r.xyContainmentChecks,0)};await fs.writeFile(report,JSON.stringify(result,null,2));console.log(JSON.stringify({passed:true,machines:results.length,installations:result.installations,guideContainmentChecks:result.guideContainmentChecks,xyContainmentChecks:result.xyContainmentChecks}));

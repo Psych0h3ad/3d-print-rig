@@ -108,6 +108,8 @@ StealthChanger heads. It checks that every removed stock part exists, restores
 the original assembly, retains configuration selections and saved IDs, and
 keeps all eight V2 Z blocks inside their fixed rails at both travel limits.
 The formal native-v3 registration passed 176 installs across 11 machines and
-1,792 Z block/rail containment checks. Native mating-axis and fastener reports
+7,168 Z block/rail and 4,224 XY block/rail containment checks at all eight
+travel corners. The belt span direction also constrains the XY endpoints;
+384 derived belt endpoint routes retain tangent direction and constant length. Native mating-axis and fastener reports
 remain separate from renderer checks; whole-machine collision, tension and
 docking are not certified.

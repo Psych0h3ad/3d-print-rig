@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {withMonolithMachines,monolithPartDelta,monolithConfigurationRequest,monolithDisplayLimits} from '../site/viewer/monolith-machine-model.mjs';
-import {monolithBeltRoute,monolithBeltGeometry} from '../site/viewer/monolith-belts.mjs';
+import {monolithBeltRoute,monolithBeltGeometry,monolithBeltTravelLimits} from '../site/viewer/monolith-belts.mjs';
 import {choicesFor,resolveVariant,importedVariant} from '../site/viewer/configuration-model.js';
 import {headPrinterLink} from '../site/viewer/head-navigation.mjs';
 import {bankChoices} from '../site/viewer/changer-bank-model.mjs';
@@ -67,3 +67,15 @@ assert.deepEqual(sphinxLimits.X,[0,350]);
 assert.deepEqual(monolithDisplayLimits(full,[175,177.9,0],xyRails).Y,[0,350]);
 assert.deepEqual(monolithDisplayLimits(full,[175,205.5,0],null),full);
 console.log('Head-dependent XY limits keep complete bearings in their rails and restore the stock ranges.');
+
+let beltEnds=0;
+for(const sources of Object.values(routes.routes))for(const size of [250,300,350])for(const cut of [null,{x_mm:[-25.2,25.2]}]){
+ const limits=monolithBeltTravelLimits(sources,size,cut);
+ for(const x of limits.x_delta_limits_mm)for(const y of limits.y_delta_limits_mm)for(const source of sources){
+  const route=monolithBeltRoute(source,size,x,y,cut),reference=monolithBeltRoute(source,size,0,0,cut);
+  near(route.length,reference.length,1e-6);beltEnds++;
+ }
+}
+const edgeSources=routes.routes.monolith_belts_vt_9_awd,edgeCut={x_mm:[-25.2,25.2]},edgeLimits=monolithBeltTravelLimits(edgeSources,350,edgeCut);
+assert.throws(()=>{for(const source of edgeSources)monolithBeltRoute(source,350,edgeLimits.x_delta_limits_mm[1]+1,0,edgeCut)},/接線/);
+console.log(`Belt travel endpoints: ${beltEnds} routes preserve tangent direction and length at all derived XY limits.`);
