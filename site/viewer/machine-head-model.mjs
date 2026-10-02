@@ -1,8 +1,8 @@
-import {headPlan} from './head-assembly.js?v=public-v24';
+import {headPlan} from './head-assembly.js?v=sphinx-components-1';
 
-import {translatedProbeFit} from './probe-checks.js?v=public-v24';
+import {translatedProbeFit} from './probe-checks.js?v=sphinx-components-1';
 
-import {withEmbeddedBoards} from './embedded-boards.mjs?v=public-v24';
+import {withEmbeddedBoards} from './embedded-boards.mjs?v=sphinx-components-1';
 
 const clone=value=>JSON.parse(JSON.stringify(value));
 const add=(a,b)=>a.map((v,i)=>v+b[i]);
@@ -37,7 +37,7 @@ export function machineHeadVariants(heads,registry,machine,gantry){
   if(n.fit.probe)n.fit.probe=translatedProbeFit(n.fit.probe,n.machine_head.translation_delta_mm);
   n.notes=[...n.notes.filter(t=>!t.includes('プリンター全体への装着')),'MGN12の取付軸で機体に配置。全域の干渉・ホーミング接点・配線・ドッキングは未検証。'];
   if(v.toolhead==='indx')n.notes.push('INDXの受動ツールと2020用ドックを表示。追加クロスバーと専用締結が必要。ベルト固定具・交換経路は未検証。');
-  if(v.toolhead==='sphinx')n.notes.push('MGN12の取付面と4本の穴軸でVORON機体へ配置。センサー・全可動域は未検証。');
+  if(v.toolhead==='sphinx')n.notes.push('MGN12の取付面と4本の穴軸でVORON機体へ配置。プローブはヘッド内の取付形状・高さを確認。機体全可動域は未検証。');
   return n;
  });
 }

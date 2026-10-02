@@ -30,3 +30,15 @@ const planes=monolithBeltClip({fit:{machine_mount:{belt_preview_cut:{x_mm:[-25.2
 const clipped=([x,y,z])=>planes.every(([n,c])=>n[0]*x*.001+n[1]*z*.001-n[2]*y*.001+c<0);
 assert(clipped([10,-1,8]));assert(!clipped([26,-1,8]));assert(!clipped([0,200,8]));assert(!clipped([0,-200,8]));
 assert.deepEqual(monolithBeltClip({mount:'stealthchanger'}),[]);
+// Sensor datums follow both the head/carriage registration and the later
+// gantry-to-printer translation, exactly like their physical module.
+import {withMonolithMachines} from '../site/viewer/monolith-machine-model.mjs';
+const sensor={id:'cartographer_v4',coil_bottom_mm:[-.2746,7.0845,-81.8754],coil_nozzle_gap_mm:2.6246,metal_keepout_bounds_mm:[[-12,-5,-80.3],[11,19,-60.3]],physical_passed:true,height_passed:true,metal_keepout_verified:true,minimum_probe_bed_clearance_at_nozzle_contact_mm:.891};
+const sensorHead={...fixed,id:'sphinx_probe',probe:'cartographer_v4',fit:{...fixed.fit,probe:sensor},modules:[...fixed.modules,{id:'sphinx_hotend_fan_2510',translation_mm:[0,0,0]},{id:'sphinx_cartographer_v4',translation_mm:[0,0,0]}]};
+const sensorHeads={...expanded,variants:[sensorHead],probes:[{id:'cartographer_v4'}]};
+const workbench=monolithHeadCatalog(sensorHeads,mountedRegistry,gantries);
+for(const v of workbench.variants){assert.deepEqual(v.fit.probe.coil_bottom_mm,[-.2746,15.0845,-81.8754]);assert.deepEqual(v.machine_head.modules.at(-1).translation_mm,[0,8,0]);assert(Math.abs(v.fit.probe.coil_bottom_mm[2]-v.fit.nozzle_mm[2]-sensor.coil_nozzle_gap_mm)<1e-9)}
+const machine='fixture',g=gantries.variants[0],shift=[2,5,320];
+const printer=withMonolithMachines({machine_id:machine,gantries:[],variants:[],assets:{},sources:[]},sensorHeads,mountedRegistry,{...gantries,source:{url:'https://example.test/native'}},{machines:{[machine]:{family:g.machine,size_mm:g.size_mm,gantry_ids:[g.id],translation_mm:shift}}});
+const attached=printer.variants[0];assert.deepEqual(attached.fit.probe.coil_bottom_mm,[1.7254,20.0845,238.1246]);assert.deepEqual(attached.machine_head.modules.at(-1).translation_mm,[2,13,320]);assert.deepEqual(sensorHead.fit.probe.coil_bottom_mm,sensor.coil_bottom_mm);assert.equal(attached.fit.probe.machine_environment_verified,false);
+console.log('Sphinx sensor coordinates and physical modules remain aligned through workbench and printer registration.');

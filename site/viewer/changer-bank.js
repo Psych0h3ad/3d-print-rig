@@ -1,4 +1,4 @@
-import {bankChoices,bankCapacity,normalizeBank,initialBank,readBankURL,bankBedReferenceDrop,bankSystem,bankSource,bankSpec,variantBankSystem,bankStateForVariant} from './changer-bank-model.mjs?v=monolith-machine-1';
+import {bankChoices,bankCapacity,normalizeBank,initialBank,readBankURL,bankBedReferenceDrop,bankSystem,bankSource,bankSpec,variantBankSystem,bankStateForVariant} from './changer-bank-model.mjs?v=sphinx-components-1';
 
 export function setupChangerBank({catalog,rig,data,extras={},before=document.querySelector('#configurationControls')}){
  if(!before)throw Error('ツールバンクの表示先がありません');

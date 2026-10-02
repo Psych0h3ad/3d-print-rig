@@ -1,7 +1,7 @@
-import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=monolith-machine-1';
-import {catalogDimensions,collections,resolveVariant,choicesFor,importedVariant,configurationById} from './configuration-model.js?v=public-v24';
-import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=public-v24';
-import {renderProductLinks} from './product-links.js?v=public-v24';
+import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=sphinx-components-1';
+import {catalogDimensions,collections,resolveVariant,choicesFor,importedVariant,configurationById} from './configuration-model.js?v=sphinx-components-1';
+import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=sphinx-components-1';
+import {renderProductLinks} from './product-links.js?v=sphinx-components-1';
 
 export async function setupConfigurations(catalog,install,{presentation='printer',getExtras=()=>({}),applyExtras=async()=>{},validateExtras=()=>{},onSettled=()=>{}}={}){
  const $=s=>document.querySelector(s);

@@ -1,5 +1,5 @@
 {
-  "viewer_version": "public-v27",
+  "viewer_version": "public-v29",
   "sources": [
     {
       "id": "siboor_trident",
@@ -660,8 +660,8 @@
       "license": "CC-BY-NC-SA-4.0",
       "license_url": "../licenses/sphinx/LICENSE",
       "license_sha256": "9e502ba75fd0fd30cea5497b438a4bc12f07f02bc932a7a6041fd6a18b8f46a0",
-      "scope": "Source tLW printable assemblies; original Sherpa Mini Release 2 standard-front hardware and Tricorn Long / acquired Rapido 2 UHF registered at native interfaces. Four 6 mm VORON machine-head previews. Other printable-only patterns remain references. Four complete Monolith head choices register to the native MGN12 face/axes for all 32 gantry selections (128 configurations), with belt preview stopping at the head entrance.",
-      "changes": "Original dimensions retained. Source alternatives selected, display colors and triangle geometry generated. Board placement uses native screw-hole axes; kinematics and printer-wide fit excluded."
+      "scope": "Native tLW printable assemblies with Sherpa Mini Release 2, Tricorn Long or acquired Rapido 2 UHF hardware. Add a native 2510 axial fan to all patterns and Beacon RevH / Cartographer V4 with original 31.6 mm hole registration to assembled VORON and Monolith heads. Static head body, coil height and manufacturer metal keepout inspected; complete printer travel and cable clearance are not certified.",
+      "changes": "Original dimensions retained. Fan registered to the native front plane and four axes; probes registered to the integrated underside seat. Manufacturer inspection volumes excluded from displayed parts. Separate component versions and licenses retained."
     },
     {
       "id": "chirpy_heads",
@@ -1134,6 +1134,10 @@
     {
       "label": "Monolith 300 mm assemblies and machine mounting datums",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v27/viewer-monolith-sources.zip"
+    },
+    {
+      "label": "Sphinx tLW · ファンとプローブの取付",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v29/viewer-sphinx-components.zip"
     }
   ]
 }

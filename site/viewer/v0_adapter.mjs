@@ -1,5 +1,5 @@
-import {appearanceRole} from './appearance-role.mjs?v=public-v24';
-import {createV0Belts} from './v0-belts.mjs?v=public-v24';
+import {appearanceRole} from './appearance-role.mjs?v=sphinx-components-1';
+import {createV0Belts} from './v0-belts.mjs?v=sphinx-components-1';
 /** V0: fixed-Z CoreXY gantry, Y beam, XY toolhead, single downward-moving bed. */
 export const cadToGlb = ([x,y,z]) => [x/1000,z/1000,-y/1000];
 export function poseDelta(profile, pose, {allowFirmwareOvertravel=false,requireClearanceEnvelope=false}={}) {

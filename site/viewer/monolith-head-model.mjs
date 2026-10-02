@@ -1,4 +1,5 @@
-import {installedHeadPlan} from './machine-head-model.mjs?v=public-v24';
+import {installedHeadPlan} from './machine-head-model.mjs?v=sphinx-components-1';
+import {translatedProbeFit} from './probe-checks.js?v=sphinx-components-1';
 const completeSphinx=v=>v.mount==='fixed'&&v.gantry==='sphinx_monolith'&&v.fit?.nozzle_mm?.every(Number.isFinite)&&['extruder','hotend'].every(k=>v.modules.some(m=>m.id===v.fit?.complete_head_native?.[k]));
 export function monolithHeadCatalog(heads,registry,gantries){
  if(!registry.sources.stealthchanger_monolith||!registry.monolith_target)throw Error('Monolithの取付基準が未登録です');
@@ -9,6 +10,7 @@ export function monolithHeadCatalog(heads,registry,gantries){
   if(!changer&&!fixed)continue;
   const v=JSON.parse(JSON.stringify(source));v.registration_source=changer?'stealthchanger_monolith':source.base_asset;v.belt_width_mm=g.belt_width_mm;
   v.machine_head=installedHeadPlan(v,registry,{...registry.monolith_target,belt_width_mm:g.belt_width_mm,xy_motors:g.xy_motors});
+  if(v.fit?.probe)v.fit.probe=translatedProbeFit(v.fit.probe,v.machine_head.translation_delta_mm);
   v.source_head_configuration=source.id;v.gantry=g.id;v.xy_motors=g.xy_motors;v.id='monolith_installed__'+g.id+'__'+source.id;
   v.fit={...v.fit,nozzle_mm:v.machine_head.nozzle_mm,machine_mount:{kind:'Monolith MGN12H / 専用反転ベルトクランプ',axis_error_mm:Math.max(registry.monolith_target.axis_error_mm,registry.sources[v.registration_source].axis_error_mm||0),full_travel_verified:false,docking_registered:false}};
   if(fixed)v.fit.machine_mount.belt_preview_cut=registry.sources[v.registration_source].belt_preview_cut;

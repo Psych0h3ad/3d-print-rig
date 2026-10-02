@@ -1,5 +1,5 @@
-import {monolithHeadCatalog} from './monolith-head-model.mjs?v=public-v24';
-import {translatedProbeFit} from './probe-checks.js?v=public-v24';
+import {monolithHeadCatalog} from './monolith-head-model.mjs?v=sphinx-components-1';
+import {translatedProbeFit} from './probe-checks.js?v=sphinx-components-1';
 
 const clone=value=>JSON.parse(JSON.stringify(value));
 const add=(a,b)=>a.map((v,i)=>v+b[i]);

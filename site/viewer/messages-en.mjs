@@ -1,4 +1,11 @@
 export const messages = {
+ "CPAPダクト・2510ホットエンドファンを装着。外部送風機・ホース・基板・配線・ファン締結は未装着。": "CPAP ducts and 2510 hotend fan fitted. External blower, hose, board, wiring and fan fasteners are absent.",
+ "作者の一体型取付面と31.6 mmの穴軸でプローブを装着。金属除外領域とノズル接触時の高さを確認。": "Probe fitted at the author’s integrated seat and 31.6 mm screw axes. Metal keepout and height at nozzle contact checked.",
+ "Sphinx tLW · 本体・ホットエンド・押出機・冷却ファン": "Sphinx tLW · body, hotend, extruder and cooling fan",
+ "ヘッド内の静止姿勢を検査。機体全域・配線・プロービング動作は未検証。": "Static head pose inspected; full machine travel, cables and probing motion are unverified.",
+ "MGN12の取付面と4本の穴軸でVORON機体へ配置。プローブはヘッド内の取付形状・高さを確認。機体全可動域は未検証。": "Placed on the VORON machine using the MGN12 face and four screw axes. Probe mounting and height inspected within the head; complete machine travel is unverified.",
+ "Sphinx tLW · ファンとプローブの取付": "Sphinx tLW · fan and probe mounting",
+
  "ツールバンクの表示先がありません": "The tool bank insertion point is missing.",
  "選んだ原本・バリエーションだけを表示します。": "Only the selected source or variant is displayed.",
  "用途": "Category",
