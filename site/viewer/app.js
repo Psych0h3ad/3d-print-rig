@@ -1,16 +1,16 @@
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=bundle-v2';
-import {loadFrameMods,withFrameMods} from './frame-mods.js?v=frame-mods-v1';
-import {setupGrid} from './grid-control.js?v=grid-v1';
-import {setupLighting} from './lighting.js?v=frame-lighting-v1';
-import {setupFlexible} from './flexible.js?v=public-v5';
-import {setupConfigurations} from './configurations.js?v=heads-v13';
-import {setupAccessories} from './accessories.js?v=frame-mods-v1';
-import {setupAppearance} from './appearance.js?v=public-v5';
-import {setupRenderExport} from './render-export.js?v=public-v5';
-import {setupPublicInfo} from './public-info.js?v=public-v13';
+import {loadModel} from './model-loader.js?v=public-v14';
+import {loadFrameMods,withFrameMods} from './frame-mods.js?v=public-v14';
+import {setupGrid} from './grid-control.js?v=public-v14';
+import {setupLighting} from './lighting.js?v=public-v14';
+import {setupFlexible} from './flexible.js?v=public-v14';
+import {setupConfigurations} from './configurations.js?v=public-v14';
+import {setupAccessories} from './accessories.js?v=public-v14';
+import {setupAppearance} from './appearance.js?v=public-v14';
+import {setupRenderExport} from './render-export.js?v=public-v14';
+import {setupPublicInfo} from './public-info.js?v=public-v14';
 const $=s=>document.querySelector(s),scene=new THREE.Scene();
 scene.background=new THREE.Color('#edf1f5');
 const stage=$('#stage');
@@ -29,7 +29,7 @@ for(const event of ['click','input','change'])document.addEventListener(event,()
 setupGrid(scene,()=>{renderRequested=true});
 const frameMods=await loadFrameMods('siboor_trident_350');
 const lighting=setupLighting(scene,renderer,{registration:frameMods.disco,update:()=>{renderRequested=true}});
-$('#focusDisco').onclick=()=>{unfocus();stop();for(const o of allMeshes){o.material.opacity=.035;o.material.transparent=true;o.material.depthWrite=false}camera.position.set(.10,.24,.38);controls.target.set(-.243,.472,0);controls.update()};
+$('#focusDisco').onclick=()=>{unfocus();stop();lighting.focus(camera,controls);renderRequested=true};
 let model,pivot,mode=null,start=0,ready=false,registration,refX=0,refY=0,current={x:0,y:0,z:0},homeStart,focusAxis=null,flexible;
 const levers={},plungers={};
 const groups={},moving={y:[],xy:[],z:[],reference_flexible:[]},panes=[],parts=new Map();
@@ -170,7 +170,7 @@ async function loadGLB(url){
  throw last;
 }
 setupPublicInfo();
-Promise.all([fetch('../assembly_manifest.json',{cache:'no-cache'}).then(r=>r.json()),fetch('../flexible_routes.json',{cache:'no-cache'}).then(r=>r.json()),loadModel(new GLTFLoader(),'../SIBOOR_Trident_350.glb',p=>{$('#loading').textContent=p.total?'読み込み '+Math.round(p.loaded/p.total*100)+'%':'3Dモデルを読み込み中…'}),loadGLB('../Endstop_Mechanisms.glb'),fetch('../COLOR_OPTIONS.json',{cache:'no-cache'}).then(r=>r.json()),fetch('../ASSEMBLY_CONFIGURATIONS.json',{cache:'no-cache'}).then(r=>r.json()),fetch('../R2_ENDSTOP_REGISTRATION.json',{cache:'no-cache'}).then(r=>r.json())]).then(async([manifest,routes,g,endstops,colorOptions,configs,r2Meta])=>{
+Promise.all([fetch('../assembly_manifest.json?v=public-v14',{cache:'no-cache'}).then(r=>r.json()),fetch('../flexible_routes.json?v=public-v14',{cache:'no-cache'}).then(r=>r.json()),loadModel(new GLTFLoader(),'../SIBOOR_Trident_350.glb',p=>{$('#loading').textContent=p.total?'読み込み '+Math.round(p.loaded/p.total*100)+'%':'3Dモデルを読み込み中…'}),loadGLB('../Endstop_Mechanisms.glb'),fetch('../COLOR_OPTIONS.json?v=public-v14',{cache:'no-cache'}).then(r=>r.json()),fetch('../ASSEMBLY_CONFIGURATIONS.json?v=public-v14',{cache:'no-cache'}).then(r=>r.json()),fetch('../R2_ENDSTOP_REGISTRATION.json?v=public-v14',{cache:'no-cache'}).then(r=>r.json())]).then(async([manifest,routes,g,endstops,colorOptions,configs,r2Meta])=>{
  registration=manifest.motion_preview.endstop_registration;catalog=withFrameMods(configs,frameMods);r2Registration=r2Meta;stockRows=manifest.parts;
  refX=registration.switches.X.cad_reference_display_coordinate_mm;refY=registration.switches.Y.cad_reference_display_coordinate_mm;
  const lookup=new Map(manifest.parts.map(r=>[r.key,r]));model=g.scene;model.add(endstops.scene);scene.add(model);
@@ -192,7 +192,7 @@ Promise.all([fetch('../assembly_manifest.json',{cache:'no-cache'}).then(r=>r.jso
  for(const s of ['#door','#x','#y','#z','#demo','#reset','#home','#focusX','#focusY','#releaseSwitch','#focusZ'])$(s).disabled=false;
  accessories=setupAccessories(catalog,{load:asset,update:()=>setPose(current.x,current.y,current.z)});
  ready=true;$('#loading').remove();await setupConfigurations(catalog,installConfiguration,accessories);
- setupRenderExport({renderer,scene,camera,beforeRender:stop,afterRender:()=>{renderRequested=true},name:'Trident_350'});
+ setupRenderExport({renderer,scene,camera,controls,beforeRender:stop,afterRender:()=>{renderRequested=true},name:'Trident_350'});
 }).catch(e=>{if($('#loading'))$('#loading').textContent='モデルを読み込めませんでした。'+e.message;console.error(e)});
 $('#door').oninput=e=>{$('#angle').textContent=e.target.value+'°';if(pivot)pivot.rotation.y=-THREE.MathUtils.degToRad(+e.target.value)};
 function unfocus(){focusAxis=null;marker.visible=false;callout.style.display='none';for(const o of allMeshes){o.material.opacity=o.userData.baseOpacity;o.material.transparent=o.userData.baseTransparent;o.material.depthWrite=!o.userData.baseTransparent;o.renderOrder=o.userData.baseTransparent?2:0}}

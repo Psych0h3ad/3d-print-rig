@@ -1,8 +1,10 @@
-import {catalogDimensions,collections,resolveVariant,choicesFor,importedVariant} from './configuration-model.js?v=heads-v13';
-import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=clearance-v1';
+import {catalogDimensions,collections,resolveVariant,choicesFor,importedVariant} from './configuration-model.js?v=public-v14';
+import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=public-v14';
+import {renderProductLinks} from './product-links.js?v=public-v14';
 
 export async function setupConfigurations(catalog,install,{presentation='printer',getExtras=()=>({}),applyExtras=async()=>{},validateExtras=()=>{}}={}){
  const $=s=>document.querySelector(s);
+ let productTarget=$('#headProductLinks');if(!productTarget){productTarget=document.createElement('div');productTarget.id='configurationProductLinks';$('#configStatus').after(productTarget)}
  const ids=catalogDimensions(catalog).filter(id=>catalog[collections[id]]&&$('#'+id+'Config'));
  const selection=()=>Object.fromEntries(ids.map(k=>[k,$('#'+k+'Config').value]));
  let actual,busy=false;
@@ -17,6 +19,7 @@ export async function setupConfigurations(catalog,install,{presentation='printer
  }
  function commit(v){
   actual=v;menus(v);
+  renderProductLinks(productTarget,{hotend:v.hotend,toolhead:v.toolhead});
   const url=new URL(location.href);url.searchParams.delete('mount');url.searchParams.set('configuration',v.id);history.replaceState(null,'',url);
   $('#configSummary').textContent=ids.map(id=>catalog[collections[id]].find(row=>row.id===v[id]).label).join(' ／ ');
   $('#configRequirements').replaceChildren(...v.notes.map(note=>{const li=document.createElement('li');li.textContent=note;return li}));

@@ -1,3 +1,4 @@
+import {appearanceRole} from './appearance-role.mjs?v=public-v14';
 /** Separate V2.4 kinematic adapter. CAD vertices already contain world placement. */
 export function createV24Adapter(root,manifest,profile){
   if(manifest.machine_id!==profile.machine_id||!profile.machine_id.startsWith('voron_v24_'))throw new Error('V2.4 profile mismatch');
@@ -31,7 +32,7 @@ export function createV24Adapter(root,manifest,profile){
   }
   function setPalette(palette){
     for(const [key,o] of nodes){
-      const role=records.get(key).appearance_role,color=palette[role];if(!color)continue;
+      const role=appearanceRole(records.get(key)),color=palette[role];if(!color)continue;
       o.traverse(n=>{if(n.isMesh)for(const m of Array.isArray(n.material)?n.material:[n.material])m.color.set(color)});
     }
   }

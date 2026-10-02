@@ -1,12 +1,14 @@
+import {appearanceRole} from './appearance-role.mjs?v=public-v14';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=bundle-v2';
-import {setupConfigurations} from './configurations.js?v=heads-v13';
-import {setupPublicInfo} from './public-info.js?v=public-v13';
-import {setupRenderExport} from './render-export.js';
-import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=heads-v13';
-import {probeCheck,probeMetrics,probeGuide} from './probe-checks.js?v=clearance-v1';
+import {loadModel} from './model-loader.js?v=public-v14';
+import {setupConfigurations} from './configurations.js?v=public-v14';
+import {setupPublicInfo} from './public-info.js?v=public-v14';
+import {setupRenderExport} from './render-export.js?v=public-v14';
+import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=public-v14';
+import {probeCheck,probeMetrics,probeGuide} from './probe-checks.js?v=public-v14';
+import {renderProductLinks} from './product-links.js?v=public-v14';
 
 const $=s=>document.querySelector(s),stage=$('#stage'),scene=new THREE.Scene();
 scene.background=new THREE.Color('#edf1f5');
@@ -70,7 +72,7 @@ async function asset(id){
   const lookup=new Map(meta.parts.map(p=>[p.key,p])),root=model.scene,meshes=[];
   root.visible=false;bench.add(root);
   root.traverse(mesh=>{if(!mesh.isMesh)return;
-   const key=partKey(mesh),role=lookup.get(key)?.appearance_role||mesh.userData.appearance_role;
+   const key=partKey(mesh),role=appearanceRole(lookup.get(key))||mesh.userData.appearance_role;
    mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();
    const materials=Array.isArray(mesh.material)?mesh.material:[mesh.material];
    for(const material of materials){material.side=THREE.DoubleSide;if(material.transparent)material.depthWrite=false}
@@ -85,6 +87,7 @@ function clearGuide(group){for(const child of [...group.children]){child.geometr
 function inspection(variant){
  currentVariant=variant;const check=probeCheck(variant),guide=probeGuide(variant),p=variant.fit?.probe;
  $('#assemblyScope').hidden=!variant.display_scope;$('#assemblyScope').textContent=variant.display_scope||'';
+ renderProductLinks($('#headProductLinks'),{hotend:variant.hotend,toolhead:variant.toolhead});
  const carriageConflict=variant.fit?.carriage_native_body_passed===false;
  $('#inspectionState').textContent=carriageConflict?'キャリッジ試着：本体干渉あり':check.label;$('#inspectionState').dataset.state=carriageConflict?'carriage-conflict':check.state;$('#inspectionState').classList.toggle('notice',check.warning||carriageConflict);
  $('#probeMetrics').replaceChildren(...probeMetrics(variant).flatMap(([label,value])=>{const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=label;dd.textContent=value;return [dt,dd]}));
@@ -122,10 +125,10 @@ function visibleBounds(){
  Object.assign($('#headDimensions').dataset,{widthMm:size.x,depthMm:size.z,heightMm:size.y});
 }
 function fit(next=view){
- view=next;const direction={iso:[1,.65,1.4],front:[0,0,1],back:[0,0,-1],side:[1,0,0],bottom:[0,-1,0]}[view]||[1,.65,1.4];
+ view=next;const direction=view==='custom'?camera.position.clone().sub(controls.target).toArray():{iso:[1,.65,1.4],front:[0,0,1],back:[0,0,-1],side:[1,0,0],bottom:[0,-1,0]}[view]||[1,.65,1.4];
  const fov=THREE.MathUtils.degToRad(camera.fov),horizontal=2*Math.atan(Math.tan(fov/2)*camera.aspect);
  const distance=bounds.getSize(new THREE.Vector3()).length()/2/Math.sin(Math.min(fov,horizontal)/2)*1.12;
- camera.up.set(...(view==='bottom'?[0,0,-1]:[0,1,0]));camera.position.fromArray(direction).normalize().multiplyScalar(distance);controls.target.set(0,0,0);controls.update();
+ if(view!=='custom')camera.up.set(...(view==='bottom'?[0,0,-1]:[0,1,0]));camera.position.fromArray(direction).normalize().multiplyScalar(distance);controls.target.set(0,0,0);controls.update();
  for(const id of ['iso','front','back','side','bottom'])$('#'+id).setAttribute('aria-pressed',String(view===id));dirty=true;
 }
 for(const id of ['iso','front','back','side','bottom'])$('#'+id).onclick=()=>{if(ready)fit(id)};
@@ -164,12 +167,12 @@ for(const id of ['headProbeTravel','headExplode'])$('#'+id).oninput=changerDispl
 for(const id of ['headShowDock','headShowRail'])$('#'+id).onchange=()=>{changerDisplay();if(ready){visibleBounds();fit()}};
 function resize(){const width=Math.max(stage.clientWidth,1),height=Math.max(stage.clientHeight,1);renderer.setSize(width,height);camera.aspect=width/height;camera.updateProjectionMatrix();if(ready)fit();dirty=true}
 new ResizeObserver(resize).observe(stage);resize();
-controls.addEventListener('change',()=>{dirty=true});
+controls.addEventListener('start',()=>{view='custom'});controls.addEventListener('change',()=>{dirty=true});
 renderer.setAnimationLoop(()=>{controls.update();if(dirty){renderer.render(scene,camera);dirty=false}});
-setupRenderExport({renderer,scene,camera,name:'3D_Print_Rig_Toolhead',afterRender:()=>{dirty=true}});
+setupRenderExport({renderer,scene,camera,controls,name:'3D_Print_Rig_Toolhead',afterRender:()=>{dirty=true}});
 setupPublicInfo({includeDownloads:false});
 try{
- const response=await fetch('../TOOLHEAD_CONFIGURATIONS.json',{cache:'no-cache'});if(!response.ok)throw Error('ヘッドの構成データを取得できません');catalog=await response.json();
+ const response=await fetch('../TOOLHEAD_CONFIGURATIONS.json?v=public-v14',{cache:'no-cache'});if(!response.ok)throw Error('ヘッドの構成データを取得できません');catalog=await response.json();
  $('#combinationCount').textContent=`${catalog.toolheads.length}種類のヘッド · ${catalog.extruders.length}種類の押出機 · ${headCombinationCount(catalog)}通りのヘッド構成`;
  await setupConfigurations(catalog,install,{presentation:'toolhead'});
  if(!ready)throw Error('ヘッドのCADを表示できませんでした');

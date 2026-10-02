@@ -1,10 +1,10 @@
-import {setupMachineNavigation,machinePage} from './machines.js?v=machines-v4';
-import {machineAssetsAvailable,showMissingAssets} from './asset-availability.js?v=public-v13';
+import {setupMachineNavigation,machinePage} from './machines.js?v=public-v14';
+import {machineAssetsAvailable,showMissingAssets} from './asset-availability.js?v=public-v14';
 const requested=new URLSearchParams(location.search).get('machine');
 if(requested&&requested!=='siboor_trident_350'&&machinePage(requested)){
  const next=new URL(machinePage(requested),location.href);next.search=location.search;location.replace(next);
 }else{
  setupMachineNavigation('siboor_trident_350');
- if(await machineAssetsAvailable('siboor_trident_350'))await import('./app.js?v=public-v13');
+ if(await machineAssetsAvailable('siboor_trident_350'))await import('./app.js?v=public-v14');
  else await showMissingAssets();
 }

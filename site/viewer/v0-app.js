@@ -1,12 +1,13 @@
+import {appearanceRole} from './appearance-role.mjs?v=public-v14';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=bundle-v2';
-import {createV0Adapter} from './v0_adapter.mjs?v=public-v13';
-import {setupMachineNavigation} from './machines.js?v=machines-v4';
-import {setupGrid} from './grid-control.js?v=grid-v1';
-import {setupRenderExport} from './render-export.js?v=public-v5';
-import {setupPublicInfo} from './public-info.js?v=public-v13';
+import {loadModel} from './model-loader.js?v=public-v14';
+import {createV0Adapter} from './v0_adapter.mjs?v=public-v14';
+import {setupMachineNavigation} from './machines.js?v=public-v14';
+import {setupGrid} from './grid-control.js?v=public-v14';
+import {setupRenderExport} from './render-export.js?v=public-v14';
+import {setupPublicInfo} from './public-info.js?v=public-v14';
 const $=s=>document.querySelector(s),ids=['voron_v02r1_120','voron_v02_120'];
 const wanted=new URLSearchParams(location.search).get('machine'),id=ids.includes(wanted)?wanted:ids[0];
 setupMachineNavigation(id);setupPublicInfo({includeDownloads:false});
@@ -25,9 +26,9 @@ function applyPose(){if(!adapter)return;const pose=adapter.setPose(Object.fromEn
  $('#motionStatus').textContent=pose.within_sampled_clearance_envelope?'X/YヘッドとZベッドを配置中':'格子点で確認した範囲の外です。公称端の接触を確認する姿勢です。';document.body.dataset.pose=JSON.stringify(pose);document.body.dataset.flexibleVisible=String(pose.atReference&&$('#belts').checked);render();}
 try{
  const root='../machines/'+id+'/',json=async name=>{const r=await fetch(root+name,{cache:'no-cache'});if(!r.ok)throw Error(name+'の読込に失敗');return r.json()};
- const [manifest,p,g,library]=await Promise.all([json('assembly_manifest.json'),json('machine_profile.json'),loadModel(new GLTFLoader(),root+'model.glb'),fetch('../COMPONENT_LIBRARY.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('Modカタログ');return r.json()})]);
+ const [manifest,p,g,library]=await Promise.all([json('assembly_manifest.json'),json('machine_profile.json'),loadModel(new GLTFLoader(),root+'model.glb'),fetch('../COMPONENT_LIBRARY.json?v=public-v14',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('Modカタログ');return r.json()})]);
  profile=p;scene.add(g.scene);adapter=createV0Adapter(g.scene,manifest,profile);const originals=new Map(),protectedMaterials=[];
- for(const [key,node] of adapter.nodes)node.traverse(mesh=>{if(!mesh.isMesh)return;mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();for(const material of Array.isArray(mesh.material)?mesh.material:[mesh.material]){originals.set(material,material.color.clone());if(!adapter.records.get(key).appearance_role)protectedMaterials.push(material);if(material.transparent)material.depthWrite=false}});
+ for(const [key,node] of adapter.nodes)node.traverse(mesh=>{if(!mesh.isMesh)return;mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();for(const material of Array.isArray(mesh.material)?mesh.material:[mesh.material]){originals.set(material,material.color.clone());if(!appearanceRole(adapter.records.get(key)))protectedMaterials.push(material);if(material.transparent)material.depthWrite=false}});
  $('#machineTitle').textContent=id==='voron_v02r1_120'?'V0.2r1 / 120':'V0.2 / 120';$('#badge').textContent=$('#machineTitle').textContent+' · '+manifest.parts.length.toLocaleString()+' PARTS';
  const limits=profile.sampled_clearance_limits_mm;$('#clearanceStatus').textContent=`CAD格子点の確認範囲 X 0–${limits.X[1]} / Y 0–${limits.Y[1]} / Z 0–${limits.Z[1]} mm`;
  for(const [i,a] of ['x','y','z'].entries()){$('#'+a).value=profile.display_reference_xyz_mm[i];$('#'+a).disabled=false;$('#'+a).oninput=applyPose}
@@ -38,5 +39,5 @@ try{
  function save(){try{localStorage.setItem(profile.appearance.storage_key,JSON.stringify({machine_id:id,colors:palette}))}catch{}}
  for(const role of Object.keys(palette)){$('#'+role).disabled=false;$('#'+role+'Hex').disabled=false;$('#'+role).oninput=()=>{palette[role]=$('#'+role).value;applyPalette();save()};$('#'+role+'Hex').oninput=()=>{const v=$('#'+role+'Hex').value;if(!valid(v)){$('#'+role+'Hex').setAttribute('aria-invalid','true');return}palette[role]=v;applyPalette();save()}}
  $('#frameFinish').disabled=false;$('#frameFinish').onchange=()=>{if($('#frameFinish').value==='custom')return;palette.frame=$('#frameFinish').value==='silver'?'#b9bec4':'#0e0f11';applyPalette();save()};$('#resetPalette').disabled=false;$('#resetPalette').onclick=()=>{palette={base:null,accent:null,frame:null};applyPalette();save()};applyPalette();
- setupRenderExport({renderer,scene,camera,name:id,afterRender:render});$('#status').hidden=true;document.body.dataset.ready='true';document.body.dataset.parts=String(manifest.parts.length);applyPose();resize();
+ setupRenderExport({renderer,scene,camera,controls:orbit,name:id,afterRender:render});$('#status').hidden=true;document.body.dataset.ready='true';document.body.dataset.parts=String(manifest.parts.length);applyPose();resize();
 }catch(e){$('#status').textContent='読込エラー: '+e.message;document.body.dataset.error=e.message;console.error(e)}

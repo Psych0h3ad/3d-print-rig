@@ -1,16 +1,17 @@
+import {appearanceRole} from './appearance-role.mjs?v=public-v14';
 import * as THREE from 'three';
-import {loadFrameMods,withFrameMods} from './frame-mods.js?v=frame-mods-v1';
-import {setupLighting} from './lighting.js?v=frame-lighting-v1';
-import {setupAccessories} from './accessories.js?v=frame-mods-v1';
-import {setupGrid} from './grid-control.js?v=grid-v1';
-import {setupProbeMounts} from './probe-mounts.js?v=clearance-v1';
+import {loadFrameMods,withFrameMods} from './frame-mods.js?v=public-v14';
+import {setupLighting} from './lighting.js?v=public-v14';
+import {setupAccessories} from './accessories.js?v=public-v14';
+import {setupGrid} from './grid-control.js?v=public-v14';
+import {setupProbeMounts} from './probe-mounts.js?v=public-v14';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=bundle-v2';
-import {createV24Adapter} from './v24_adapter.mjs?v=interface-review-2';
-import {setupMachineNavigation} from './machines.js?v=machines-v4';
-import {setupRenderExport} from './render-export.js?v=public-v5';
-import {setupPublicInfo} from './public-info.js?v=public-v13';
+import {loadModel} from './model-loader.js?v=public-v14';
+import {createV24Adapter} from './v24_adapter.mjs?v=public-v14';
+import {setupMachineNavigation} from './machines.js?v=public-v14';
+import {setupRenderExport} from './render-export.js?v=public-v14';
+import {setupPublicInfo} from './public-info.js?v=public-v14';
 setupMachineNavigation('siboor_v24_350');
 setupPublicInfo();
 const $=s=>document.querySelector(s),stage=$('#stage'),status=$('#status');
@@ -24,7 +25,7 @@ function render(){if(renderPending)return;renderPending=true;requestAnimationFra
 setupGrid(scene,render);
 const frameMods=await loadFrameMods('siboor_v24_350');
 const lighting=setupLighting(scene,renderer,{registration:frameMods.disco,machine:'siboor_v24_350',update:render});
-$('#focusDisco').onclick=()=>{camera.up.set(0,1,0);orbit.target.set(-.244,.50,0);camera.position.set(-.1,.43,.32);orbit.update();render()};
+$('#focusDisco').onclick=()=>{lighting.focus(camera,orbit);render()};
 function resize(){const b=stage.getBoundingClientRect();renderer.setSize(b.width,b.height,false);camera.aspect=b.width/b.height;camera.updateProjectionMatrix();render()}
 orbit.addEventListener('change',render);new ResizeObserver(resize).observe(stage);
 for(const [id,pos] of [['iso',[.98,.83,1.4]],['front',[0,.24,1.65]],['top',[0,1.8,0]]])$('#'+id).onclick=()=>{camera.up.set(0,id==='top'?0:1,id==='top'?-1:0);camera.position.set(...pos);orbit.target.set(0,.22,0);orbit.update();render()};
@@ -45,10 +46,10 @@ try{
  const getJSON=async name=>{const r=await fetch(assetRoot+name,{cache:'no-cache'});if(!r.ok)throw Error(name);return r.json()};
  const [manifest,machine,gltf]=await Promise.all([getJSON('assembly_manifest.json'),getJSON('machine_profile.json'),loadModel(new GLTFLoader(),assetRoot+'model.glb')]);
  profile=machine;scene.add(gltf.scene);adapter=createV24Adapter(gltf.scene,manifest,profile);
- const probeResponse=await fetch('../V24_PROBES.json',{cache:'no-cache'});if(!probeResponse.ok)throw Error('プローブ構成を取得できません');const probeCatalog=await probeResponse.json();
+ const probeResponse=await fetch('../V24_PROBES.json?v=public-v14',{cache:'no-cache'});if(!probeResponse.ok)throw Error('プローブ構成を取得できません');const probeCatalog=await probeResponse.json();
  const protectedMaterials=[],originals=new Map();
  for(const [key,node] of adapter.nodes){node.traverse(mesh=>{if(!mesh.isMesh)return;mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();
-  for(const m of Array.isArray(mesh.material)?mesh.material:[mesh.material]){originals.set(m,m.color.clone());if(!adapter.records.get(key).appearance_role)protectedMaterials.push(m);if(m.transparent)m.depthWrite=false}
+  for(const m of Array.isArray(mesh.material)?mesh.material:[mesh.material]){originals.set(m,m.color.clone());if(!appearanceRole(adapter.records.get(key)))protectedMaterials.push(m);if(m.transparent)m.depthWrite=false}
  });}
  adapter.setEnclosureVisible($('#enclosure').checked);
  for(const [i,a] of ['x','y','z'].entries()){
@@ -68,7 +69,7 @@ try{
   const spec=frameMods.assets[id]||probeCatalog.assets[id];if(!spec)throw Error('未登録のMod');
   const [meta,g]=await Promise.all([fetch('../'+spec.meta).then(r=>{if(!r.ok)throw Error(spec.meta);return r.json()}),loadModel(new GLTFLoader(),'../'+spec.glb)]);
   const lookup=new Map(meta.parts.map(p=>[p.key,p]));g.scene.visible=false;scene.add(g.scene);
-  g.scene.traverse(mesh=>{if(!mesh.isMesh)return;const row=lookup.get(mesh.userData.part_key||mesh.name);if(!row||row.motion!==(probeCatalog.assets[id]?'xy':'fixed'))throw Error('Modの取付先が不正です');mesh.material=mesh.material.clone();mesh.material.side=THREE.DoubleSide;modMeshes.push({mesh,role:row.appearance_role,color:mesh.material.color.clone()})});
+  g.scene.traverse(mesh=>{if(!mesh.isMesh)return;const row=lookup.get(mesh.userData.part_key||mesh.name);if(!row||row.motion!==(probeCatalog.assets[id]?'xy':'fixed'))throw Error('Modの取付先が不正です');mesh.material=mesh.material.clone();mesh.material.side=THREE.DoubleSide;modMeshes.push({mesh,role:appearanceRole(row),color:mesh.material.color.clone()})});
   applyPalette();return {root:g.scene,meta};
  }
  const modCatalog=withFrameMods({assets:{},accessories:[]},frameMods);
@@ -93,7 +94,7 @@ try{
  const disco=await lighting.whenReady;disco?.traverse(mesh=>{if(mesh.isMesh&&mesh.userData.led_role==='bracket')modMeshes.push({mesh,role:'base',color:mesh.material.color.clone()})});
  $('#resetPalette').disabled=false;$('#resetPalette').onclick=()=>{palette={base:null,accent:null,frame:null};applyPalette();savePalette()};applyPalette();
  $('#frameFinish').onchange=e=>{if(e.target.value==='custom')return;palette.frame=e.target.value==='silver'?'#b9bec4':'#25282d';applyPalette();savePalette()};
- setupRenderExport({renderer,scene,camera,afterRender:render,name:'VORON_V24_R2_350_Reference'});
+ setupRenderExport({renderer,scene,camera,controls:orbit,afterRender:render,name:'VORON_V24_R2_350_Reference'});
  document.body.dataset.geometryRevision=profile.geometry_revision;document.body.dataset.panelsVisible=String($('#enclosure').checked);
  document.body.dataset.endstopStatus=profile.endstop_registration_or_pending.status;
  document.body.dataset.qglStatus=profile.qgl.independent_corner_tilt;

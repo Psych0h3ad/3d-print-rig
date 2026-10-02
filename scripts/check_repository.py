@@ -85,6 +85,11 @@ def main():
     subprocess.run(['node', str(ROOT/'scripts/test_workbenches.mjs')], cwd=ROOT, check=True)
     subprocess.run(['node', str(ROOT/'scripts/test_toolchangers.mjs')], cwd=ROOT, check=True)
     subprocess.run(['node', str(ROOT/'scripts/test_machine_selection.mjs')], cwd=ROOT, check=True)
+    subprocess.run(['node', str(ROOT/'scripts/test_product_links.mjs')], cwd=ROOT, check=True)
+    subprocess.run(['node', str(ROOT/'scripts/test_machine_navigation.mjs')], cwd=ROOT, check=True)
+    subprocess.run(['node', str(ROOT/'scripts/test_appearance_roles.mjs')], cwd=ROOT, check=True)
+    subprocess.run(['node', str(ROOT/'scripts/test_export_camera.mjs')], cwd=ROOT, check=True)
+    subprocess.run(['node', str(ROOT/'scripts/test_gcode_preview.mjs')], cwd=ROOT, check=True)
     print(f'Publication check passed: {len(paths)} tracked files, {len(commits)} commits checked; no geometry/private-path/credential signatures; JS syntax valid.')
 
 if __name__ == '__main__':

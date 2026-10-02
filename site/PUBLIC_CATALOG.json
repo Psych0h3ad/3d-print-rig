@@ -1,5 +1,5 @@
 {
-  "viewer_version": "public-v13",
+  "viewer_version": "public-v14",
   "sources": [
     {
       "id": "siboor_trident",
@@ -752,6 +752,66 @@
       "license_sha256": "6636d1c6e60708915ab639608b6c43c399ac99588283912a1466252df7eeb357",
       "scope": "Repository inspected; complete assembly CAD not found. No substitute geometry registered.",
       "changes": "Original dimensions retained. Source alternatives selected, display colors and triangle geometry generated. Board placement uses native screw-hole axes; kinematics and printer-wide fit excluded."
+    },
+    {
+      "id": "blobifier",
+      "label": "Blobifier / Stepper Blobifier",
+      "repository": "Carrot-collective/Blobifier",
+      "author": "Carrot-collective",
+      "commit": "eee6c46f05d63742a608f8dd54d91501e61657e1",
+      "url": "https://github.com/Carrot-collective/Blobifier/tree/eee6c46f05d63742a608f8dd54d91501e61657e1",
+      "scope": "Displayed native cleaning fixture reference selections; no printer mounting or contact geometry registered.",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/blobifier/LICENSE",
+      "changes": "Native alternatives selected separately, display conversion and printed-part palette assignments."
+    },
+    {
+      "id": "goose",
+      "label": "Goose Belt Purger / AT brush",
+      "repository": "Graylag-PD/Goose-Belt-Purger",
+      "author": "Graylag-PD",
+      "commit": "8384e56e294dca7d49810c7e8d1b057dcc97e0f8",
+      "url": "https://github.com/Graylag-PD/Goose-Belt-Purger/tree/8384e56e294dca7d49810c7e8d1b057dcc97e0f8",
+      "scope": "Displayed native cleaning fixture reference selections; no printer mounting or contact geometry registered.",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/goose/LICENSE",
+      "changes": "Native alternatives selected separately, display conversion and printed-part palette assignments."
+    },
+    {
+      "id": "unified_bucket",
+      "label": "Unified Purge Bucket",
+      "repository": "OrnithopterX/Unified-Purge-Bucket",
+      "author": "OrnithopterX",
+      "commit": "d0713aeaa14527d9671219fdc3f08132bce4dd47",
+      "url": "https://github.com/OrnithopterX/Unified-Purge-Bucket/tree/d0713aeaa14527d9671219fdc3f08132bce4dd47",
+      "scope": "Displayed native cleaning fixture reference selections; no printer mounting or contact geometry registered.",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/unified_bucket/LICENSE",
+      "changes": "Native alternatives selected separately, display conversion and printed-part palette assignments."
+    },
+    {
+      "id": "decontaminator",
+      "label": "Decontaminator Rev4",
+      "repository": "VoronDesign/VoronUsers",
+      "author": "VoronDesign",
+      "commit": "8e5067f4f6457da8a552983dd210ec48c40be2ca",
+      "url": "https://github.com/VoronDesign/VoronUsers/tree/8e5067f4f6457da8a552983dd210ec48c40be2ca",
+      "scope": "Displayed native cleaning fixture reference selections; no printer mounting or contact geometry registered.",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/decontaminator/LICENSE.md",
+      "changes": "Native alternatives selected separately, display conversion and printed-part palette assignments."
+    },
+    {
+      "id": "klipper_coordinates",
+      "label": "Klipper coordinate semantics",
+      "repository": "Klipper3d/klipper",
+      "author": "Klipper3d",
+      "commit": "461c4e3722c3a897fba1c6b3f0780a5315043842",
+      "url": "https://github.com/Klipper3d/klipper/tree/461c4e3722c3a897fba1c6b3f0780a5315043842",
+      "scope": "Pinned implementation used only to verify the independently written offline coordinate preview. No Klipper runtime, Jinja evaluation or hardware I/O is embedded.",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/klipper_coordinates/COPYING",
+      "changes": "Reference code unchanged; coordinate preview is independently implemented."
     }
   ],
   "defaults": [
@@ -792,6 +852,10 @@
     {
       "label": "Lineux・INDX・追加ヘッド・基板・FYSETC参照",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v13/viewer-head-sources.zip"
+    },
+    {
+      "label": "Cleaning / purge fixtures and pinned settings",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v14/viewer-cleaning-sources.zip"
     }
   ]
 }

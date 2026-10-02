@@ -5,3 +5,7 @@
 .purchase-link{display:flex;flex-direction:column;align-items:flex-start;gap:3px;padding:12px 0 0}.purchase-link a{font-size:12px}.purchase-link small{font-size:10px}
 
 .workbench-link{display:block;font-size:11px;padding:0 0 14px;text-decoration:none;border-bottom:1px solid var(--line);margin-bottom:15px}
+
+[hidden]{display:none!important}.render-options input[type=number]{width:100%;min-height:34px;padding:7px 9px;border:1px solid var(--line);border-radius:3px;background:var(--paper);color:inherit}header .header-actions{flex-wrap:wrap}#showMachine{width:100%;margin-top:10px}
+
+body{grid-template-rows:auto minmax(0,1fr)}header{min-height:60px;padding-top:8px;padding-bottom:8px}.header-actions{justify-content:flex-end}textarea{display:block;width:100%;resize:vertical;max-height:40vh;min-height:100px;padding:8px;border:1px solid var(--line);border-radius:3px;font:11px/1.5 ui-monospace,Consolas,monospace;color:inherit;background:var(--paper)}@media(max-width:540px){body{grid-template-rows:auto minmax(0,1fr)}header{min-height:54px}}

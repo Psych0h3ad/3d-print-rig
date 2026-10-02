@@ -1,3 +1,4 @@
+import {renderProductLinks} from './product-links.js?v=public-v14';
 export const machineChoices=[
  {id:'siboor_trident_350',label:'SIBOOR Trident 350 · CNC AWD',page:'./'},
  {id:'voron_trident_350',label:'VORON Trident 350 · 標準プリント構造',page:'./trident.html'},
@@ -39,33 +40,37 @@ export function resolveMachine(selection,changed){
 export function machinePage(id){return machineChoices.find(row=>row.id===id&&row.available!==false)?.page}
 export function setupMachineNavigation(machine){
  const select=document.querySelector('#machineConfig');
+ if(!select)throw Error('マシン選択欄がありません');if(select.dataset.initialized==='true')return;select.dataset.initialized='true';
  const current=machineChoices.find(row=>row.id===machine);if(!current)throw Error('未登録のマシン');
- let choice=current;
+ let choice=current,navigating=false;
  const controls={};
  for(const [key,label] of [['family','機種'],['vendor','ベンダー'],['size','造形サイズ']]){
   const element=document.createElement('select'),caption=document.createElement('label');element.id='machine'+key[0].toUpperCase()+key.slice(1);caption.htmlFor=element.id;caption.textContent=label;select.before(caption,element);controls[key]=element;
  }
  const caption=document.querySelector('label[for="machineConfig"]');if(caption){caption.textContent='仕様';select.before(caption)}
  const status=document.createElement('p');status.className='foot';status.setAttribute('aria-live','polite');select.after(status);
+ const products=document.createElement('div');products.id='machineProductLinks';status.after(products);
+ const show=document.createElement('button');show.id='showMachine';show.textContent='このマシンを表示';show.className='primary';status.before(show);
  function menus(){
   for(const [key,element] of Object.entries({...controls,id:select})){
    element.replaceChildren(...machineOptions(choice,key).map(value=>{const option=document.createElement('option');option.value=String(value);option.textContent=key==='family'?families[value]:key==='vendor'?vendors[value]:key==='size'?value+' mm':machineChoices.find(row=>row.id===value).label;return option}));element.value=String(choice[key]);
   }
-  status.textContent=choice.available===false?(choice.unavailable_reason||'この仕様の組立CADは未登録です。')+' 現在の表示：'+current.label+'。':'';status.classList.toggle('notice',choice.available===false);
+  status.textContent=choice.available===false?(choice.unavailable_reason||'この仕様の組立CADは未登録です。')+' 現在の表示：'+current.label+'。':choice.id===machine?'表示中：'+current.label:'選択中：'+choice.label+'。ボタンで表示を切り替えます。';status.classList.toggle('notice',choice.available===false);
+  show.disabled=choice.available===false||choice.id===machine;
+  renderProductLinks(products,{machine:choice.id});
  }
- function navigate(next){
-  if(!next)return;choice=next;menus();const page=machinePage(choice.id);if(!page)return;
+ function choose(next){if(!next)return;choice=next;menus()}
+ function navigate(){
+  const page=machinePage(choice.id);if(navigating||!page||choice.id===machine)return;navigating=true;show.disabled=true;for(const element of Object.values({...controls,id:select}))element.disabled=true;show.textContent='読み込み中…';status.textContent=choice.label+'を読み込み中…';
   try{localStorage.setItem('3d-print-rig-last-configuration-'+machine,new URL(location.href).searchParams.get('configuration')||'')}catch{}
   const target=new URL(page,location.href);target.searchParams.set('machine',choice.id);
   try{const previous=localStorage.getItem('3d-print-rig-last-configuration-'+choice.id);if(previous&&previous.length<200)target.searchParams.set('configuration',previous)}catch{}
   if(choice.id!==machine)location.assign(target);
  }
- for(const [key,element] of Object.entries(controls))element.addEventListener('change',()=>navigate(resolveMachine({...choice,[key]:key==='size'?Number(element.value):element.value},key)));
+ for(const [key,element] of Object.entries(controls))element.addEventListener('change',()=>choose(resolveMachine({...choice,[key]:key==='size'?Number(element.value):element.value},key)));
+ show.onclick=navigate;
  menus();
  document.body.dataset.machineId=machine;
  const url=new URL(location.href);url.searchParams.set('machine',machine);history.replaceState(null,'',url);
- select.addEventListener('change',()=>{
-  try{localStorage.setItem('3d-print-rig-last-configuration-'+machine,new URL(location.href).searchParams.get('configuration')||'')}catch{}
-  navigate(machineChoices.find(row=>row.id===select.value));
- });
+ select.addEventListener('change',()=>choose(machineChoices.find(row=>row.id===select.value)));
 }

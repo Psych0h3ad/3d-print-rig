@@ -1,12 +1,14 @@
+import {appearanceRole} from './appearance-role.mjs?v=public-v14';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=bundle-v2';
-import {createV24Adapter} from './v24_matrix_adapter.mjs?v=public-v13';
-import {setupMachineNavigation} from './machines.js?v=machines-v4';
-import {setupGrid} from './grid-control.js?v=grid-v1';
-import {setupRenderExport} from './render-export.js?v=public-v5';
-import {setupPublicInfo} from './public-info.js?v=public-v13';
+import {loadModel} from './model-loader.js?v=public-v14';
+import {createV24Adapter} from './v24_matrix_adapter.mjs?v=public-v14';
+import {setupMachineNavigation} from './machines.js?v=public-v14';
+import {setupGrid} from './grid-control.js?v=public-v14';
+import {setupRenderExport} from './render-export.js?v=public-v14';
+import {setupPublicInfo} from './public-info.js?v=public-v14';
+import {setupGcodePanel} from './gcode-panel.js?v=public-v14';
 const $=s=>document.querySelector(s),ids=[250,300,350].flatMap(size=>['printed','ldo_cnc'].map(structure=>`voron_v24_${size}_${structure}`));
 const wanted=new URLSearchParams(location.search).get('machine'),id=ids.includes(wanted)?wanted:ids[0];
 setupMachineNavigation(id);setupPublicInfo({includeDownloads:false});
@@ -27,7 +29,7 @@ try{
  const root='../machines/'+id+'/',json=async name=>{const r=await fetch(root+name,{cache:'no-cache'});if(!r.ok)throw Error(name+'の読込に失敗');return r.json()};
  const [manifest,p,g]=await Promise.all([json('assembly_manifest.json'),json('machine_profile.json'),loadModel(new GLTFLoader(),root+'model.glb')]);
  profile=p;scene.add(g.scene);adapter=createV24Adapter(g.scene,manifest,profile);const originals=new Map(),protectedMaterials=[];
- for(const [key,node] of adapter.nodes)node.traverse(mesh=>{if(!mesh.isMesh)return;mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();for(const material of Array.isArray(mesh.material)?mesh.material:[mesh.material]){originals.set(material,material.color.clone());if(!adapter.records.get(key).appearance_role)protectedMaterials.push(material);if(material.transparent)material.depthWrite=false}});
+ for(const [key,node] of adapter.nodes)node.traverse(mesh=>{if(!mesh.isMesh)return;mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();for(const material of Array.isArray(mesh.material)?mesh.material:[mesh.material]){originals.set(material,material.color.clone());if(!appearanceRole(adapter.records.get(key)))protectedMaterials.push(material);if(material.transparent)material.depthWrite=false}});
  $('#machineTitle').textContent=`V2.4 / ${profile.size_mm}`;$('#structureLabel').textContent=profile.cnc?'LDO CNC AWD参照 · XY/Zジョイントは元設計のプリント構造':'R2標準プリント構造';$('#badge').textContent=$('#machineTitle').textContent+' · '+manifest.parts.length.toLocaleString()+' PARTS';
  const limits=profile.display_limits_mm;$('#clearanceStatus').textContent=`表示範囲 X ${limits.X.join('–')} / Y ${limits.Y.join('–')} / Z ${limits.Z.join('–')} mm`+(profile.cnc?'。前駆動ユニットとの干渉を避けるため、全X幅の比較ではY前端を56 mmに制限しています。':'');
  for(const [i,a] of ['x','y','z'].entries()){$('#'+a).min=limits[a.toUpperCase()][0];$('#'+a).max=limits[a.toUpperCase()][1];$('#'+a).value=profile.display_reference_xyz_mm[i];$('#'+a).disabled=false;$('#'+a).oninput=applyPose}
@@ -37,5 +39,6 @@ try{
  function save(){try{localStorage.setItem(profile.appearance.storage_key,JSON.stringify({machine_id:id,colors:palette}))}catch{}}
  for(const role of Object.keys(palette)){$('#'+role).disabled=false;$('#'+role+'Hex').disabled=false;$('#'+role).oninput=()=>{palette[role]=$('#'+role).value;applyPalette();save()};$('#'+role+'Hex').oninput=()=>{const v=$('#'+role+'Hex').value;if(!valid(v)){$('#'+role+'Hex').setAttribute('aria-invalid','true');return}palette[role]=v;applyPalette();save()}}
  $('#frameFinish').disabled=false;$('#frameFinish').onchange=()=>{if($('#frameFinish').value==='custom')return;palette.frame=$('#frameFinish').value==='silver'?'#b9bec4':profile.appearance.palette_defaults.frame;applyPalette();save()};$('#resetPalette').disabled=false;$('#resetPalette').onclick=()=>{palette={base:null,accent:null,frame:null};applyPalette();save()};applyPalette();
- setupRenderExport({renderer,scene,camera,name:id,afterRender:render});$('#status').hidden=true;document.body.dataset.ready='true';document.body.dataset.parts=String(manifest.parts.length);applyPose();resize();
+ const program=setupGcodePanel({container:document.querySelector('aside'),profile,adapter,scene,render,setPose:xyz=>{for(const [i,a] of ['x','y','z'].entries())$('#'+a).value=xyz[i];applyPose()}});for(const a of ['x','y','z'])$('#'+a).addEventListener('input',program.invalidate);$('#reset').addEventListener('click',program.invalidate);
+ setupRenderExport({renderer,scene,camera,controls:orbit,name:id,afterRender:render});$('#status').hidden=true;document.body.dataset.ready='true';document.body.dataset.parts=String(manifest.parts.length);applyPose();resize();
 }catch(e){$('#status').textContent='読込エラー: '+e.message;document.body.dataset.error=e.message;console.error(e)}
