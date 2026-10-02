@@ -1,6 +1,6 @@
 import {catalogDimensions,collections,resolveVariant,choicesFor,importedVariant} from './configuration-model.js?v=public-v16';
 import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=public-v16';
-import {renderProductLinks} from './product-links.js?v=public-v16';
+import {renderProductLinks} from './product-links.js?v=public-v16-products-1';
 
 export async function setupConfigurations(catalog,install,{presentation='printer',getExtras=()=>({}),applyExtras=async()=>{},validateExtras=()=>{},onSettled=()=>{}}={}){
  const $=s=>document.querySelector(s);
@@ -19,7 +19,7 @@ export async function setupConfigurations(catalog,install,{presentation='printer
  }
  function commit(v){
   actual=v;menus(v);
-  renderProductLinks(productTarget,{hotend:v.hotend,toolhead:v.toolhead});
+  renderProductLinks(productTarget,{hotend:v.hotend,toolhead:v.toolhead,extruder:v.extruder});
   const url=new URL(location.href);url.searchParams.delete('mount');url.searchParams.set('configuration',v.id);history.replaceState(null,'',url);
   $('#configSummary').textContent=ids.map(id=>catalog[collections[id]].find(row=>row.id===v[id]).label).join(' ／ ');
   $('#configRequirements').replaceChildren(...v.notes.map(note=>{const li=document.createElement('li');li.textContent=note;return li}));

@@ -8,7 +8,7 @@ import {setupPublicInfo} from './public-info.js?v=public-v16';
 import {setupRenderExport} from './render-export.js?v=public-v16';
 import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=public-v16';
 import {probeCheck,probeMetrics,probeGuide} from './probe-checks.js?v=public-v16';
-import {renderProductLinks} from './product-links.js?v=public-v16';
+import {renderProductLinks} from './product-links.js?v=public-v16-products-1';
 import {setupHeadBuilder} from './builder-ui.mjs?v=public-v16';
 import {validateBuilderExtras} from './toolhead-builder.mjs?v=public-v16';
 
@@ -96,7 +96,7 @@ function clearGuide(group){for(const child of [...group.children]){child.geometr
 function inspection(variant){
  currentVariant=variant;const check=probeCheck(variant),guide=probeGuide(variant),p=variant.fit?.probe;
  $('#assemblyScope').hidden=!variant.display_scope;$('#assemblyScope').textContent=variant.display_scope||'';
- renderProductLinks($('#headProductLinks'),{hotend:variant.hotend,toolhead:variant.toolhead});
+ renderProductLinks($('#headProductLinks'),{hotend:variant.hotend,toolhead:variant.toolhead,extruder:variant.extruder});
  const carriageConflict=variant.fit?.carriage_native_body_passed===false;
  $('#inspectionState').textContent=carriageConflict?'キャリッジ試着：本体干渉あり':check.label;$('#inspectionState').dataset.state=carriageConflict?'carriage-conflict':check.state;$('#inspectionState').classList.toggle('notice',check.warning||carriageConflict);
  $('#probeMetrics').replaceChildren(...probeMetrics(variant).flatMap(([label,value])=>{const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=label;dd.textContent=value;return [dt,dd]}));

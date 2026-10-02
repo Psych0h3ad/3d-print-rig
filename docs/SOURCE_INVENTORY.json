@@ -140,8 +140,8 @@
     },
     {
       "path": "scripts/test_product_links.mjs",
-      "bytes": 1398,
-      "sha256": "a9020a434af4b85384a181becc751d6441531c3473cb81e66e08f056e1550435"
+      "bytes": 1665,
+      "sha256": "52bcd743bd09ad91610621c6ba948287c8cd178a5bff47f9dc5b205951fce7ec"
     },
     {
       "path": "scripts/test_toolchangers.mjs",
@@ -640,8 +640,8 @@
     },
     {
       "path": "site/viewer/configurations.js",
-      "bytes": 7993,
-      "sha256": "c52b8d558e8cc41c32fbe82036cd21807805d23804878ecb51628c74f46fdc65"
+      "bytes": 8024,
+      "sha256": "5979859b1ce9eafd7e9f04cdd035269a2b40d8fcb11d5ade7496d844c09ccfac"
     },
     {
       "path": "site/viewer/export-camera.mjs",
@@ -755,13 +755,13 @@
     },
     {
       "path": "site/viewer/product-links.js",
-      "bytes": 3149,
-      "sha256": "1862c8d28941af86814dcf76087924879093fbcfe86349e09505b55bbfb968b3"
+      "bytes": 3332,
+      "sha256": "d2d44656d49a0cd90661acee20a8163fc0f2f190a9f0cb9ad5340f1d31f82567"
     },
     {
       "path": "site/viewer/public-info.js",
-      "bytes": 3740,
-      "sha256": "e72b9ec0e0d6bd3fe0c8f53f4571a028fdfa53794a57493eca6e3b52960b8f99"
+      "bytes": 3751,
+      "sha256": "cdaedc5d96be0de4c589ffb8f92cfca9c35bdc3e5dd130e97ef78fa1550aaacf"
     },
     {
       "path": "site/viewer/render-export.js",
@@ -800,8 +800,8 @@
     },
     {
       "path": "site/viewer/toolheads.js",
-      "bytes": 18369,
-      "sha256": "ba960f51392b3f5a8caf56f7c352f7610644a05500fde6f2a1668137a7be6c62"
+      "bytes": 18406,
+      "sha256": "2dc500b2bb29a6eecf7bf10a92cc726f9235cdf13364a67bb94ab71fde8fd1da"
     },
     {
       "path": "site/viewer/trident-motion.mjs",
