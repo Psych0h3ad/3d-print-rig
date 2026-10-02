@@ -1,10 +1,10 @@
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=sphinx-components-1';
-import {partKey} from './head-assembly.js?v=sphinx-components-1';
-import {appearanceRole} from './appearance-role.mjs?v=sphinx-components-1';
-import {withMonolithMachines,monolithPartDelta} from './monolith-machine-model.mjs?v=sphinx-components-1';
-import {monolithBeltRoute,monolithBeltGeometry,monolithBeltTravelLimits} from './monolith-belts.mjs?v=sphinx-components-1';
+import {loadModel} from './model-loader.js?v=combinations-1';
+import {partKey} from './head-assembly.js?v=combinations-1';
+import {appearanceRole} from './appearance-role.mjs?v=combinations-1';
+import {withMonolithMachines,monolithPartDelta} from './monolith-machine-model.mjs?v=combinations-1';
+import {monolithBeltRoute,monolithBeltGeometry,monolithBeltTravelLimits} from './monolith-belts.mjs?v=combinations-1';
 
 const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);
 let machineData;

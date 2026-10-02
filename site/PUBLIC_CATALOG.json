@@ -1,5 +1,5 @@
 {
-  "viewer_version": "public-v29",
+  "viewer_version": "public-v30",
   "sources": [
     {
       "id": "siboor_trident",
@@ -1138,6 +1138,10 @@
     {
       "label": "Sphinx tLW · ファンとプローブの取付",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v29/viewer-sphinx-components.zip"
+    },
+    {
+      "label": "SB · 組み合わせとプローブ取付部品",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v30/viewer-sb-probe-mounts.zip"
     }
   ]
 }

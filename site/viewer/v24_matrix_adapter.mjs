@@ -1,5 +1,5 @@
-import {v24FlexibleState} from './v24-flexible.mjs?v=sphinx-components-1';
-import {appearanceRole} from './appearance-role.mjs?v=sphinx-components-1';
+import {v24FlexibleState} from './v24-flexible.mjs?v=combinations-1';
+import {appearanceRole} from './appearance-role.mjs?v=combinations-1';
 /** Separate V2.4 kinematic adapter. CAD vertices already contain world placement. */
 export function createV24Adapter(root,manifest,profile){
   if(manifest.machine_id!==profile.machine_id||!profile.machine_id.startsWith('voron_v24_'))throw new Error('V2.4 profile mismatch');

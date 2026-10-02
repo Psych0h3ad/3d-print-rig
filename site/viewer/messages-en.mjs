@@ -1,4 +1,11 @@
 export const messages = {
+ "SB · 組み合わせとプローブ取付部品": "SB · combinations and probe mounting parts",
+
+ "ノズル高さに合わせた絶縁スペーサーでR2用プローブを取付。本体・ねじのクリアランスとコイル高さを確認。金属除外領域の干渉と元構成の制限は別途表示。": "R2 probe fitted with insulating spacers sized for the nozzle height. Body/screw clearance and coil height inspected; metal keepout conflicts and original assembly limitations reported separately.",
+
+ "登録済みのSB押出機・冷却部と専用プローブ取付を組み合わせ。プローブ追加による本体交差と金属除外領域を再検査。元構成の干渉・未検証項目は保持。": "Registered SB extruder and cooling assembly combined with its dedicated probe mounting. Additional body and metal keepout interactions inspected; existing assembly conflicts and unverified conditions retained.",
+ "組み合わせ変更あり": "Companion changes required",
+
  "CPAPダクト・2510ホットエンドファンを装着。外部送風機・ホース・基板・配線・ファン締結は未装着。": "CPAP ducts and 2510 hotend fan fitted. External blower, hose, board, wiring and fan fasteners are absent.",
  "作者の一体型取付面と31.6 mmの穴軸でプローブを装着。金属除外領域とノズル接触時の高さを確認。": "Probe fitted at the author’s integrated seat and 31.6 mm screw axes. Metal keepout and height at nozzle contact checked.",
  "Sphinx tLW · 本体・ホットエンド・押出機・冷却ファン": "Sphinx tLW · body, hotend, extruder and cooling fan",

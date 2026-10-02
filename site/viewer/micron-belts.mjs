@@ -1,4 +1,4 @@
-import {circleBeltRoute,beltGeometry} from './v0-belts.mjs?v=sphinx-components-1';
+import {circleBeltRoute,beltGeometry} from './v0-belts.mjs?v=combinations-1';
 
 // Original RC8 belt-face arcs, CAD mm: PrintersForAnts/Micron f76aa287.
 // Each loop has two Y-moving contacts; every XY contact follows the Z gantry.

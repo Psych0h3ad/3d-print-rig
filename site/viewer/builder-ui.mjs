@@ -1,5 +1,5 @@
-import {builderGroups,builderManifest,builderURL} from './toolhead-builder.mjs?v=sphinx-components-1';
-import {monolithCompanion} from './monolith-head-model.mjs?v=sphinx-components-1';
+import {builderGroups,builderManifest,builderURL} from './toolhead-builder.mjs?v=combinations-1';
+import {monolithCompanion} from './monolith-head-model.mjs?v=combinations-1';
 
 export function setupHeadBuilder(catalog,{getVariant,getMetadata,getExtras,pins,selectVariant,isBusy}){
  const $=id=>document.getElementById(id);

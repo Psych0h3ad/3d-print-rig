@@ -1,22 +1,22 @@
-import {loadMonolithData} from './monolith-machine.js?v=sphinx-components-1';
-import {setupChangerBank} from './changer-bank.js?v=sphinx-components-1';
-import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=sphinx-components-1';
-import {headPrinterLink} from './head-navigation.mjs?v=sphinx-components-1';
-import {headBuilderDimensions} from './configuration-model.js?v=sphinx-components-1';
+import {loadMonolithData} from './monolith-machine.js?v=combinations-1';
+import {setupChangerBank} from './changer-bank.js?v=combinations-1';
+import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=combinations-1';
+import {headPrinterLink} from './head-navigation.mjs?v=combinations-1';
+import {headBuilderDimensions} from './configuration-model.js?v=combinations-1';
 let machineRegistry,toolBank,bankRig;
-import {appearanceRole} from './appearance-role.mjs?v=sphinx-components-1';
+import {appearanceRole} from './appearance-role.mjs?v=combinations-1';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=sphinx-components-1';
-import {setupConfigurations} from './configurations.js?v=sphinx-components-1';
-import {setupPublicInfo} from './public-info.js?v=sphinx-components-1';
-import {setupRenderExport} from './render-export.js?v=sphinx-components-1';
-import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=sphinx-components-1';
-import {probeCheck,probeMetrics,probeGuide,headInspectionState} from './probe-checks.js?v=sphinx-components-1';
-import {renderProductLinks} from './product-links.js?v=sphinx-components-1';
-import {setupHeadBuilder} from './builder-ui.mjs?v=sphinx-components-1';
-import {validateBuilderExtras} from './toolhead-builder.mjs?v=sphinx-components-1';
+import {loadModel} from './model-loader.js?v=combinations-1';
+import {setupConfigurations} from './configurations.js?v=combinations-1';
+import {setupPublicInfo} from './public-info.js?v=combinations-1';
+import {setupRenderExport} from './render-export.js?v=combinations-1';
+import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=combinations-1';
+import {probeCheck,probeMetrics,probeGuide,headInspectionState} from './probe-checks.js?v=combinations-1';
+import {renderProductLinks} from './product-links.js?v=combinations-1';
+import {setupHeadBuilder} from './builder-ui.mjs?v=combinations-1';
+import {validateBuilderExtras} from './toolhead-builder.mjs?v=combinations-1';
 
 const $=s=>document.querySelector(s),stage=$('#stage'),scene=new THREE.Scene();
 scene.background=new THREE.Color('#edf1f5');
@@ -199,6 +199,6 @@ try{
  toolBank=setupChangerBank({before:$('#assemblyScope'),catalog:bankCatalog,rig:bankAdapter,data:headData.bank,extras:{presentation:'toolhead',getExtras:extras,applyExtras:restoreExtras,validateExtras:validateBuilderExtras,onSettled:()=>{builder?.update();if(ready){appearance();visibleBounds();fit()}}}});
  const controller=await setupConfigurations(catalog,install,toolBank.options);await toolBank.bind(controller);
  if(!ready)throw Error('ヘッドのCADを表示できませんでした');
- let pins=[];try{const r=await fetch('../PUBLIC_CATALOG.json?v=sphinx-components-1');if(r.ok)pins=(await r.json()).sources||[]}catch{}
+ let pins=[];try{const r=await fetch('../PUBLIC_CATALOG.json?v=combinations-1');if(r.ok)pins=(await r.json()).sources||[]}catch{}
  builder=setupHeadBuilder(catalog,{getVariant:()=>currentVariant,getMetadata:()=>new Map([...cached].filter(([,p])=>p.loaded).map(([id,p])=>[id,p.loaded.meta])),getExtras:()=>toolBank.options.getExtras(),pins,selectVariant:id=>controller.selectVariant(id),isBusy:()=>controller.busy});
 }catch(e){$('#loading').hidden=false;$('#loading').textContent=e.message;document.body.dataset.assetStatus='error';console.error(e)}

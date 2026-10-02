@@ -1,4 +1,4 @@
-import {renderProductLinks} from './product-links.js?v=sphinx-components-1';
+import {renderProductLinks} from './product-links.js?v=combinations-1';
 export const machineChoices=[
  {id:'siboor_trident_350',label:'SIBOOR Trident 350 · CNC AWD',page:'./'},
  ...[250,300,350].map(size=>({id:`voron_trident_${size}`,label:`VORON Trident ${size} · 標準プリント構造`,page:'./trident.html'})),

@@ -1,7 +1,7 @@
-import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=sphinx-components-1';
-import {catalogDimensions,collections,resolveVariant,choicesFor,importedVariant,configurationById} from './configuration-model.js?v=sphinx-components-1';
-import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=sphinx-components-1';
-import {renderProductLinks} from './product-links.js?v=sphinx-components-1';
+import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=combinations-1';
+import {catalogDimensions,collections,resolveVariant,choicesFor,choiceChanges,importedVariant,configurationById} from './configuration-model.js?v=combinations-1';
+import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=combinations-1';
+import {renderProductLinks} from './product-links.js?v=combinations-1';
 
 export async function setupConfigurations(catalog,install,{presentation='printer',getExtras=()=>({}),applyExtras=async()=>{},validateExtras=()=>{},onSettled=()=>{}}={}){
  const $=s=>document.querySelector(s);
@@ -16,7 +16,7 @@ export async function setupConfigurations(catalog,install,{presentation='printer
  if(!initial)throw Error('構成のCADが登録されていません。');
  function menus(v){
   for(const id of ids){
-   const select=$('#'+id+'Config');select.replaceChildren(...choicesFor(catalog,v,id).map(row=>{const option=document.createElement('option');option.value=row.id;const candidate=id==='probe'?catalog.variants.find(c=>ids.filter(k=>k!=='probe').every(k=>c[k]===v[k])&&c.probe===row.id):null;option.textContent=row.label+probeOptionSuffix(candidate);return option}));select.value=v[id];
+   const select=$('#'+id+'Config');select.replaceChildren(...choicesFor(catalog,v,id).map(row=>{const option=document.createElement('option');option.value=row.id;const candidate=resolveVariant(catalog,{...v,[id]:row.id},id),changes=choiceChanges(catalog,v,id,row.id);option.textContent=row.label+(id==='probe'?probeOptionSuffix(candidate):'')+(changes.length?' · 組み合わせ変更あり':'');option.dataset.changes=JSON.stringify(changes);option.title=changes.map(k=>catalog[collections[k]]?.find(r=>r.id===candidate[k])?.label||candidate[k]).join(' ／ ');return option}));select.value=v[id];
   }
  }
  function commit(v){

@@ -29,7 +29,8 @@ assert.throws(()=>importedVariant(catalog,{configuration:'unregistered',modules:
 // Test a future gantry restriction and an extruder-specific hotend together.
 const restricted={...catalog,variants:catalog.variants.filter(v=>!(v.gantry==='trident_r2'&&v.hotend==='dragon_hf')&&!(v.hotend==='dragon_sf'&&v.extruder==='orbiter2'))};
 const sf=restricted.variants.find(v=>v.hotend==='dragon_sf'&&v.toolhead==='xol');
-assert(!choicesFor(restricted,sf,'extruder').some(e=>e.id==='orbiter2'));
+assert(choicesFor(restricted,sf,'extruder').some(e=>e.id==='orbiter2'));
+assert.notEqual(resolveVariant(restricted,{...sf,extruder:'orbiter2'},'extruder').hotend,'dragon_sf');
 assert(!choicesFor(restricted,{...sf,gantry:'trident_r2'},'hotend').some(h=>h.id==='dragon_hf'));
 const vanilla={...catalog,machine_id:'voron_trident_350',gantries:catalog.gantries.filter(g=>g.id==='trident_r2'),variants:catalog.variants.filter(v=>v.gantry==='trident_r2')};
 assert.equal(vanilla.variants.length,30);

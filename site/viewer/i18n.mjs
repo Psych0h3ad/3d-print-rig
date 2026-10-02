@@ -1,4 +1,4 @@
-import {messages,templates} from './messages-en.mjs?v=sphinx-components-1';
+import {messages,templates} from './messages-en.mjs?v=combinations-1';
 
 const normalize=text=>text.trim().replace(/\s+/gu,' ');
 const escape=text=>text.replace(/[.*+?^${}()|[\]\\]/gu,'\\$&');
