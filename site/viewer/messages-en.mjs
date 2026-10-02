@@ -658,6 +658,8 @@ export const messages = {
  "Tridentの固定ガントリー": "Trident fixed gantry",
  "VORON / 標準": "VORON / standard",
  "VORON Trident 350 · 標準プリント構造": "VORON Trident 350 · standard printed structure",
+ "VORON Trident 250 · 標準プリント構造": "VORON Trident 250 · standard printed structure",
+ "VORON Trident 300 · 標準プリント構造": "VORON Trident 300 · standard printed structure",
  "VORON V2.4 250 · LDO CNC AWD参照": "VORON V2.4 250 · LDO CNC AWD reference",
  "VORON V2.4 250 · R2標準プリント構造": "VORON V2.4 250 · standard R2 printed structure",
  "VORON V2.4 300 · LDO CNC AWD参照": "VORON V2.4 300 · LDO CNC AWD reference",

@@ -1,5 +1,5 @@
 {
-  "viewer_version": "public-v23",
+  "viewer_version": "public-v24",
   "sources": [
     {
       "id": "siboor_trident",
@@ -43,9 +43,9 @@
       "author": "VoronDesign",
       "commit": "a8628f48546948ce1fc15511b7765b7f31f80722",
       "url": "https://github.com/VoronDesign/Voron-Trident/tree/a8628f48546948ce1fc15511b7765b7f31f80722",
-      "scope": "独立した標準Trident 350の筐体・フレーム・3Z・ベッド・パネル、および6 mm XYガントリー。SIBOORのR2ガントリー交換にも使用。",
+      "scope": "Independent standard Trident 250 / 300 / 350 chassis, fixed frame, three Z guides, moving bed and 6 mm R2 gantries.",
       "license": "GPL-3.0",
-      "changes": "公式250 mm CADの剛体部品を再配置。押出材・パネル・ベッドを350 mm寸法へ延長し、サイズ別の印刷部品を選択。Zレールとステッパーは原寸。",
+      "changes": "Rigid native hardware retains its dimensions. Size-specific rails preserve native periodic hole pitch and fixing axes. Extrusions, bed and panels use central or perimeter inserts. Static mounting references and native Z limits remain disclosed.",
       "license_url": "../licenses/voron_trident/LICENSE",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
       "version": "CAD/contents/trident_assembly.step / SHA256 416eda4e9212b894ed6f78ad3a6af55757115ebfcc4c18db933743d97dd48ccf"
@@ -1126,6 +1126,10 @@
     {
       "label": "INDX and Monolith mounting interfaces",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v22/viewer-indx-mount-sources.zip"
+    },
+    {
+      "label": "Trident 250 / 300 native sources",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v24/viewer-trident-size-sources.zip"
     }
   ]
 }

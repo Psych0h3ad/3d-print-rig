@@ -1,6 +1,11 @@
 import assert from 'node:assert/strict';
 import {createTridentMotion} from '../site/viewer/trident-motion.mjs';
 const profile={machine_id:'voron_trident_350',kinematics:'trident',display_reference_xyz_mm:[175,175,0],display_limits_mm:{X:[0,350],Y:[0,350],Z:[0,250]}};
+for(const size of [250,300,350]){
+ const m=createTridentMotion({...profile,machine_id:'voron_trident_'+size,display_reference_xyz_mm:[size/2,size/2,0],display_limits_mm:{X:[0,size],Y:[0,size],Z:[0,250]}});
+ const pose=m.setPose({x:999,y:-999,z:999});assert.equal(pose.x,size);assert.equal(pose.y,0);assert.equal(pose.z,250);
+ assert.throws(()=>m.register({}, {id:'trident_r2_gantry_'+(size===350?250:350)}),/size mismatch/);
+}
 const position=(x=0,y=0,z=0)=>({x,y,z,clone(){return position(this.x,this.y,this.z)},set(x,y,z){Object.assign(this,{x,y,z})}});
 const rows=[['bed','z'],['fuse','z'],['guide_block','z'],['leadnut','z'],['rail','fixed'],['motor','fixed'],['head','xy'],['beam','y'],['tube','reference_flexible']].map(([key,motion])=>({key,motion}));
 const meshes=rows.map(row=>({isMesh:true,userData:{part_key:row.key},position:position(),visible:true}));

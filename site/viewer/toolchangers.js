@@ -1,11 +1,11 @@
-import {appearanceRole} from './appearance-role.mjs?v=public-v23';
+import {appearanceRole} from './appearance-role.mjs?v=public-v24';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=public-v23';
-import {setupPublicInfo} from './public-info.js?v=public-v23';
-import {setupRenderExport} from './render-export.js?v=public-v23';
-import {changerDimensions,changerChoice,changerChoices,changerPlacement} from './toolchanger-model.js?v=public-v23';
+import {loadModel} from './model-loader.js?v=public-v24';
+import {setupPublicInfo} from './public-info.js?v=public-v24';
+import {setupRenderExport} from './render-export.js?v=public-v24';
+import {changerDimensions,changerChoice,changerChoices,changerPlacement} from './toolchanger-model.js?v=public-v24';
 const $=s=>document.querySelector(s),stage=$('#stage'),scene=new THREE.Scene(),bench=new THREE.Group();scene.add(bench);scene.background=new THREE.Color('#edf1f5');
 const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);
 const camera=new THREE.PerspectiveCamera(38,1,.0001,20),controls=new OrbitControls(camera,renderer.domElement);scene.add(new THREE.HemisphereLight('#ffffff','#687781',2.4));
@@ -41,4 +41,4 @@ async function install(v){
 }
 function resize(){const b=stage.getBoundingClientRect();renderer.setSize(Math.max(b.width,1),Math.max(b.height,1));camera.aspect=Math.max(b.width,1)/Math.max(b.height,1);camera.updateProjectionMatrix();fit();dirty=true}new ResizeObserver(resize).observe(stage);controls.addEventListener('change',()=>{dirty=true});renderer.setAnimationLoop(()=>{if(dirty){renderer.render(scene,camera);dirty=false}});
 setupPublicInfo({includeDownloads:false});setupRenderExport({renderer,scene,camera,controls,name:'3D_Print_Rig_Toolchanger',afterRender:()=>{dirty=true}});
-try{const r=await fetch('../TOOLCHANGER_CONFIGURATIONS.json?v=public-v23',{cache:'no-cache'});if(!r.ok)throw Error('交換機構カタログを取得できません');catalog=await r.json();for(const k of changerDimensions)$('#'+k).onchange=()=>install(changerChoice(catalog,Object.fromEntries(changerDimensions.map(k=>[k,$('#'+k).value])),k));for(const s of catalog.sources){const a=document.createElement('a');a.textContent=s.repository+' · '+s.commit.slice(0,12);a.href=s.url+'/tree/'+s.commit;a.target='_blank';a.rel='noopener';$('#changerSources').append(a,document.createElement('br'))}const wanted=new URLSearchParams(location.search).get('changer');await install(catalog.variants.find(v=>v.id===wanted)||catalog.variants.find(v=>v.id==='stealthchanger_standard_6_stealthburner')||catalog.variants[0])}catch(e){$('#loading').textContent=e.message;console.error(e)}resize();
+try{const r=await fetch('../TOOLCHANGER_CONFIGURATIONS.json?v=public-v24',{cache:'no-cache'});if(!r.ok)throw Error('交換機構カタログを取得できません');catalog=await r.json();for(const k of changerDimensions)$('#'+k).onchange=()=>install(changerChoice(catalog,Object.fromEntries(changerDimensions.map(k=>[k,$('#'+k).value])),k));for(const s of catalog.sources){const a=document.createElement('a');a.textContent=s.repository+' · '+s.commit.slice(0,12);a.href=s.url+'/tree/'+s.commit;a.target='_blank';a.rel='noopener';$('#changerSources').append(a,document.createElement('br'))}const wanted=new URLSearchParams(location.search).get('changer');await install(catalog.variants.find(v=>v.id===wanted)||catalog.variants.find(v=>v.id==='stealthchanger_standard_6_stealthburner')||catalog.variants[0])}catch(e){$('#loading').textContent=e.message;console.error(e)}resize();

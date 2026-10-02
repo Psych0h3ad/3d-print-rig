@@ -1,8 +1,8 @@
-import {headPlan} from './head-assembly.js?v=public-v23';
+import {headPlan} from './head-assembly.js?v=public-v24';
 
-import {translatedProbeFit} from './probe-checks.js?v=public-v23';
+import {translatedProbeFit} from './probe-checks.js?v=public-v24';
 
-import {withEmbeddedBoards} from './embedded-boards.mjs?v=public-v23';
+import {withEmbeddedBoards} from './embedded-boards.mjs?v=public-v24';
 
 const clone=value=>JSON.parse(JSON.stringify(value));
 const add=(a,b)=>a.map((v,i)=>v+b[i]);
@@ -52,7 +52,7 @@ export function expandedPrinterCatalog(current,heads,registry,machine){
   for(const variant of machineHeadVariants(heads,registry,machine,gantry.id)){
    if(result.variants.some(v=>result.dimensions.every(field=>v[field]===variant[field])))continue;
    variant.removed_stock_keys=[...new Set([...foundation.removed_stock_keys,...Array.from({length:168},(_,i)=>String(i+412)),'surface_422'])];
-   variant.modules=foundation.modules.filter(m=>m.id==='trident_r2_gantry_350');
+   variant.modules=foundation.modules.filter(m=>/^trident_r2_gantry_(250|300|350)$/.test(m.id));
    if(variant.fit.nozzle_mm&&Number.isFinite(result.bed_reference_top_mm))variant.fit.bed_reference_drop_mm=Math.max(0,result.bed_reference_top_mm-variant.fit.nozzle_mm[2]+.2);
    result.variants.push(variant);
   }

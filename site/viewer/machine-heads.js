@@ -1,16 +1,16 @@
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=public-v23';
-import {appearanceRole} from './appearance-role.mjs?v=public-v23';
-import {partKey} from './head-assembly.js?v=public-v23';
-import {v24HeadCatalog} from './machine-head-model.mjs?v=public-v23';
-import {setupConfigurations} from './configurations.js?v=public-v23';
+import {loadModel} from './model-loader.js?v=public-v24';
+import {appearanceRole} from './appearance-role.mjs?v=public-v24';
+import {partKey} from './head-assembly.js?v=public-v24';
+import {v24HeadCatalog} from './machine-head-model.mjs?v=public-v24';
+import {setupConfigurations} from './configurations.js?v=public-v24';
 
-import {stockProbeFit} from './probe-mounts.js?v=public-v23';
+import {stockProbeFit} from './probe-mounts.js?v=public-v24';
 
-import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs?v=public-v23';
-import {bankPlan} from './changer-bank-model.mjs?v=public-v23';
-import {setupChangerBank} from './changer-bank.js?v=public-v23';
+import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs?v=public-v24';
+import {bankPlan} from './changer-bank-model.mjs?v=public-v24';
+import {setupChangerBank} from './changer-bank.js?v=public-v24';
 
 const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);
 export async function loadMachineHeadCatalog(){

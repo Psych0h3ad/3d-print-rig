@@ -1,4 +1,4 @@
-import {messages,templates} from './messages-en.mjs?v=public-v23';
+import {messages,templates} from './messages-en.mjs?v=public-v24';
 
 const normalize=text=>text.trim().replace(/\s+/gu,' ');
 const escape=text=>text.replace(/[.*+?^${}()|[\]\\]/gu,'\\$&');

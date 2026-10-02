@@ -7,6 +7,10 @@ for(const name of ['Cable Cover','Fan Grill B (1)','PCB_Spacer','D2F_Endstop_Pod
 for(const name of ['Heatsink','NEMA17 Black','2020 Drop-in T-nut, M3','PCB','MGN9H','Panasonic GX-H15A'])assert.equal(appearanceRole({key:'v24_00100',name}),null);assert.equal(appearanceRole({key:'different_cad',name:'Cable Cover'}),null);
 for(const installed of [false,true])for(const power of [false,true])for(const night of [false,true])for(const ready of [false,true])for(const level of [0,75,100]){const state=lightingState({installed,power,night,ready,level});assert.equal(state.on,installed&&power&&ready&&level>0);assert.equal(state.installed,installed&&ready);assert.equal(state.night,night);assert.equal(state.adjustDisabled,!installed||!power||!ready)}
 assert.equal(lightingState({installed:true,power:true,night:true,level:75,ready:true,failed:true}).on,false);
+for(const name of ['Front Idler A Top','Z Bearing Block Bottom (1) (2)','Z Belt Drive B (3)','Middle_Fan_Support_ v1(Mirror)','PSU_Stabilizer','bottom_panel_hinge_x2'])assert.equal(appearanceRole({key:'v24_00327',name}),'base');
+for(const name of ['Z Belt Clamp Upper (2) (1)','Z Belt Clamp Lower','Belt Tensioner','Belt_Guard','Door Handle B'])assert.equal(appearanceRole({key:'v24_00327',name}),'accent');
+for(const name of ['LED_Diffuser','Rubber Foot','GT2 20T Pulley','Z Belt','Foam Tape (1mm)'])assert.equal(appearanceRole({key:'v24_00327',name}),null);
+assert.equal(appearanceRole({key:'ldo_cnc_00327',name:'Front Idler A Top'}),null);
 for(const name of ['M3 Threaded Insert (14) (1)','2020 Drop-in T-nut, M3 (17)','Motor','PCB','Heatsink','Nylon Washer (Thumbscrew)'])assert.equal(appearanceRole({key:'fysetc_v24_250_pro_1',name,appearance_role:'accent'}),null);
 for(const name of ['B Drive Frame Lower','B Drive Frame Upper','Octopus Bracket','XY Joint - Right-12'])assert.equal(appearanceRole({key:'fysetc_v24_250_pro_1',name}),'base');
 console.log('Printed identity assignments and 48 lighting state transitions passed; hardware remains protected.');

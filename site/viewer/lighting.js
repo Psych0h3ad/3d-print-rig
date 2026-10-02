@@ -1,9 +1,9 @@
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=public-v23';
+import {loadModel} from './model-loader.js?v=public-v24';
 import {RoomEnvironment} from './vendor/RoomEnvironment.js';
 import {RectAreaLightUniformsLib} from './vendor/RectAreaLightUniformsLib.js';
-import {lightingState} from './lighting-state.mjs?v=public-v23';
+import {lightingState} from './lighting-state.mjs?v=public-v24';
 
 export function setupLighting(scene,renderer,{registration={meta:'DISCO_MOD.json',glb:'Disco_on_a_Stick_XXL_350.glb',translation_mm:[0,0,0]},machine='siboor_trident_350',update=()=>{}}={}){
  const $=s=>document.querySelector(s);
@@ -52,7 +52,7 @@ export function setupLighting(scene,renderer,{registration={meta:'DISCO_MOD.json
  $('#nightOn').onclick=()=>{$('#ledMod').checked=true;$('#ledPower').checked=true;$('#night').checked=true;if(+$('#ledLevel').value===0)$('#ledLevel').value=75;save();apply()};
  const whenReady=Promise.all([fetch('../'+registration.meta).then(r=>{if(!r.ok)throw Error('Disco取付データ');return r.json()}),loadModel(new GLTFLoader(),'../'+registration.glb)]).then(([data,g])=>{
   mod=g.scene;mod.name='Disco_on_a_Stick_XXL';rig.add(mod);
-  mod.traverse(o=>{if(!o.isMesh)return;o.material=Array.isArray(o.material)?o.material.map(m=>m.clone()):o.material.clone();if(o.userData.led_role==='LED'){for(const m of Array.isArray(o.material)?o.material:[o.material])m.roughness=.35;emitters.push(o)}});
+  mod.traverse(o=>{if(!o.isMesh)return;const shift=registration.side_translation_mm?.[o.userData.side];if(shift)o.position.add(viewVector(shift).multiplyScalar(.001));o.material=Array.isArray(o.material)?o.material.map(m=>m.clone()):o.material.clone();if(o.userData.led_role==='LED'){for(const m of Array.isArray(o.material)?o.material:[o.material])m.roughness=.35;emitters.push(o)}});
   if(emitters.length!==data.leds_per_stick*data.stick_count)throw Error('Disco LED部品数の不一致');
   for(const spec of data.lights){
    const u=viewVector(spec.along),n=viewVector(spec.normal),v=new THREE.Vector3().crossVectors(n,u);
@@ -61,7 +61,7 @@ export function setupLighting(scene,renderer,{registration={meta:'DISCO_MOD.json
    if(members.length!==data.leds_per_stick)throw Error('Disco左右のLED登録不一致');members.forEach((o,i)=>o.userData.t=i/Math.max(1,members.length-1));
    for(let i=0;i<3;i++){
     const light=new THREE.RectAreaLight(0xffffff,0,spec.length_mm/3000,spec.width_mm/1000);
-    light.position.copy(viewVector(spec.center_mm).multiplyScalar(.001)).addScaledVector(u,(i-1)*spec.length_mm/3000);
+    light.position.copy(viewVector(spec.center_mm.map((v,j)=>v+(registration.side_translation_mm?.[spec.side]?.[j]||0))).multiplyScalar(.001)).addScaledVector(u,(i-1)*spec.length_mm/3000);
     light.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(u,v.clone().negate(),n.clone().negate()));
     light.userData.t=(i+.5)/3;rig.add(light);lights.push(light);
    }

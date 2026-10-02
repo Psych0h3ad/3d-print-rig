@@ -3,6 +3,8 @@ import {access} from 'node:fs/promises';
 import path from 'node:path';
 import {machineChoices,machineFamilies,machineVendors,machineOptions,resolveMachine,machinePage} from '../site/viewer/machines.js';
 assert.equal(new Set(machineChoices.map(m=>m.id)).size,machineChoices.length);
+assert.deepEqual(machineOptions({family:'trident',vendor:'voron'},'size'),[250,300,350]);
+for(const size of [250,300,350])assert.equal(machinePage('voron_trident_'+size),'./trident.html');
 let transitions=0;
 for(const m of machineChoices){
  assert(machineFamilies[m.family]&&machineVendors[m.vendor]&&[120,180,250,300,350].includes(m.size));
