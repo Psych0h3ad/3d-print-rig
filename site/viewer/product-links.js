@@ -7,6 +7,7 @@ export const affiliateProducts=[
  {id:'chc_xl',label:'CHC XL · Air / WC',url:'https://s.click.aliexpress.com/e/_c4qTFxgd',hotends:['goliath_chcxl']},
  {id:'a4t_kit',label:'A4T ツールヘッドキット',url:'https://s.click.aliexpress.com/e/_c2xgq2gp',toolheads:['a4t']},
  {id:'orbiter2_5',label:'Orbiter V2.5',url:'https://s.click.aliexpress.com/e/_c3oH1VAD',components:['orbiter2_5'],extruders:['orbiter2_5']},
+ {id:'mellow_led_bars',label:'Mellow LEDバー · RGB / 白色 · 370 / 270 / 158 mm',url:'https://s.click.aliexpress.com/e/_c4rVd33L'},
 ];
 export function productsFor({machine,component,hotend,toolhead,extruder}={}){
  return affiliateProducts.filter(p=>p.machines?.includes(machine)||p.components?.includes(component)||p.hotends?.includes(hotend)||p.toolheads?.includes(toolhead)||p.extruders?.includes(extruder));

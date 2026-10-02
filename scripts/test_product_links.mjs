@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {affiliateProducts,productsFor} from '../site/viewer/product-links.js';
-assert.equal(affiliateProducts.length,8);assert.equal(new Set(affiliateProducts.map(p=>p.id)).size,8);
+assert.equal(affiliateProducts.length,9);assert.equal(new Set(affiliateProducts.map(p=>p.id)).size,9);
 for(const p of affiliateProducts){const u=new URL(p.url);assert.equal(u.protocol,'https:');assert.equal(u.hostname,'s.click.aliexpress.com');assert(u.pathname.startsWith('/e/'))}
 assert.deepEqual(productsFor({machine:'siboor_trident_350'}).map(p=>p.id),['siboor_trident']);
 assert.deepEqual(productsFor({machine:'fysetc_v24_250_pro'}).map(p=>p.id),['fysetc_v24_pro']);
@@ -12,4 +12,6 @@ assert.deepEqual(productsFor({hotend:'goliath_chcxl'}).map(p=>p.id),['chc_xl']);
 assert.equal(productsFor({component:'orbiter2_5'})[0].url,'https://s.click.aliexpress.com/e/_c3oH1VAD');
 assert.deepEqual(productsFor({extruder:'orbiter2_5'}).map(p=>p.id),['orbiter2_5']);
 assert.deepEqual(productsFor({component:'orbiter2',extruder:'orbiter2'}),[]);
+assert.equal(affiliateProducts.find(p=>p.id==='mellow_led_bars').url,'https://s.click.aliexpress.com/e/_c4rVd33L');
+assert.deepEqual(productsFor({component:'disco'}),[]);
 console.log('Product links: exact machine/component matches, separate HF/UHF PT1000 links, no Rapido2 or VORON substitutions.');

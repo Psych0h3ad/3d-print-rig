@@ -8,7 +8,7 @@ import {setupPublicInfo} from './public-info.js?v=public-v16';
 import {setupRenderExport} from './render-export.js?v=public-v16';
 import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=public-v16';
 import {probeCheck,probeMetrics,probeGuide} from './probe-checks.js?v=public-v16';
-import {renderProductLinks} from './product-links.js?v=public-v16-products-1';
+import {renderProductLinks} from './product-links.js?v=public-v16-products-2';
 import {setupHeadBuilder} from './builder-ui.mjs?v=public-v16';
 import {validateBuilderExtras} from './toolhead-builder.mjs?v=public-v16';
 
