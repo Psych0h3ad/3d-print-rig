@@ -38,12 +38,12 @@ function applyPose(){if(!adapter)return;
  probeMounts?.setPose(pose.cad_delta_xyz_mm);
  for(const a of ['x','y','z'])$('#'+a+'v').textContent=Number($('#'+a).value).toFixed(1)+' mm';
  const p=adapter.getSummary();document.body.dataset.ready='true';document.body.dataset.parts=p.part_count+(probeMounts?.partDelta()||0);
- $('#badge').textContent='V2.4 R2 / 350 · '+Number(document.body.dataset.parts).toLocaleString()+' PARTS';
+ $('#badge').textContent=machineHeads?.monolith?'V2.4 / 350 · Monolith '+machineHeads.variant.belt_width_mm+' mm':'V2.4 R2 / 350 · '+Number(document.body.dataset.parts).toLocaleString()+' PARTS';
  if(probeMounts&&!machineHeads?.custom){const link=new URL('./toolheads.html',location.href);link.searchParams.set('configuration','trident_r2__stealthburner__revo_voron__cw2'+(['stock_panasonic','none'].includes(probeMounts.id)?'':'__'+probeMounts.id));$('#toolheadLink').href=link.href}
  document.body.dataset.pose=JSON.stringify(pose);document.body.dataset.fixedBed=JSON.stringify(p.fixed_bed_keys.map(k=>adapter.nodes.get(k).position.toArray()));
  document.body.dataset.zGuidePositions=JSON.stringify(p.z_guide_block_keys.map(k=>adapter.nodes.get(k).position.toArray()));
  document.body.dataset.flexibleVisible=String(pose.flexible_visible_count>0);
- $('#motionStatus').textContent='ベッド固定 · 4ZガイドとガントリーがZ＋へ追従';render();
+ $('#motionStatus').textContent=machineHeads?.monolith?'ベッド固定 · Monolithの8個のZガイド・ガントリー・XYベルトが追従':'ベッド固定 · 4ZガイドとガントリーがZ＋へ追従';$('#beltWidths').textContent=`XYベルト ${machineHeads?.variant?.belt_width_mm||profile.xy_belt_width_mm} mm ／ Zベルト ${profile.z_belt_width_mm} mm`;render();
 }
 try{
  const getJSON=async name=>{const r=await fetch(assetRoot+name,{cache:'no-cache'});if(!r.ok)throw Error(name);return r.json()};

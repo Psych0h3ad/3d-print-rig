@@ -91,7 +91,7 @@ registration and guide containment are verified separately in the matching
 model-source archive.
 
 `node --experimental-loader ./scripts/three-test-loader.mjs
-scripts/audit_monolith_motion.mjs ASSET_BUNDLE OVERLAY REPORT` exercises the
+scripts/audit_monolith_motion.mjs ASSET_BUNDLE OVERLAY REPORT NATIVE_OVERLAY` exercises the
 production renderer against exported GLBs. It checks actual part translations,
 palette propagation/protected colors, belt visibility and complete removal.
 It does not certify the printer mounting datum. Verify that separately against
@@ -100,3 +100,14 @@ native mating surfaces/axes, then inspect complete machines in the browser.
 Before publishing, verify stock → Monolith → stock, fixed ↔ SC, base/accent/frame
 colors, XYZ motion, belt/enclosure toggles, saved configuration restoration and
 workbench → printer → builder → printer links for each registered machine.
+
+`node --experimental-loader ./scripts/three-test-loader.mjs
+scripts/audit_monolith_printers.mjs ASSET_BUNDLE OVERLAY NATIVE_OVERLAY REPORT`
+loads each complete printer and installs all matching gantries with fixed and
+StealthChanger heads. It checks that every removed stock part exists, restores
+the original assembly, retains configuration selections and saved IDs, and
+keeps all eight V2 Z blocks inside their fixed rails at both travel limits.
+The formal native-v3 registration passed 176 installs across 11 machines and
+1,792 Z block/rail containment checks. Native mating-axis and fastener reports
+remain separate from renderer checks; whole-machine collision, tension and
+docking are not certified.

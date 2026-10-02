@@ -88,5 +88,5 @@ export async function setupV24MachineHeads({machine,profile,adapter,scene,render
  if(!catalog.variants.some(v=>v.id===query.get('configuration'))&&requestedProbe){const preferred=baseline.find(v=>v.probe===requestedProbe);if(preferred){catalog.variants=catalog.variants.filter(v=>v!==preferred);catalog.variants.unshift(preferred)}}
  await toolBank.bind(await setupConfigurations(catalog,install,toolBank.options));
  if(!installed)throw Error('ヘッド構成を表示できませんでした');
- return {rig,panel,catalog,update:pose=>{rig.setDelta(pose.cad_delta_xyz_mm);rig.gantry.setFlexibleVisible(document.querySelector('#belts')?.checked??true);visibility();gantryVisibility.update()},setPalette:value=>rig.setPalette(value),focus:(camera,controls)=>rig.focus(camera,controls),get custom(){return custom}};
+ return {rig,panel,catalog,update:pose=>{rig.setDelta(pose.cad_delta_xyz_mm);rig.gantry.setFlexibleVisible(document.querySelector('#belts')?.checked??true);visibility();gantryVisibility.update()},setPalette:value=>rig.setPalette(value),focus:(camera,controls)=>rig.focus(camera,controls),get custom(){return custom},get monolith(){return !!rig.gantry.active},get variant(){return rig.active}};
 }

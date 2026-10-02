@@ -2,9 +2,9 @@ import {bankChoices,bankCapacity,normalizeBank,initialBank,readBankURL,bankBedRe
 
 export function setupChangerBank({catalog,rig,data,extras={},before=document.querySelector('#configurationControls')}){
  if(!before)throw Error('ツールバンクの表示先がありません');
- let controller,state=initialBank(catalog,data,catalog.variants[0]?.gantry),busy=false,previousGantry=catalog.variants[0]?.gantry,urlState,urlError;
+ let controller,state=initialBank(catalog,data,catalog.variants[0]?.gantry),busy=false,previousGantry=catalog.variants[0]?.gantry,urlState,urlError,wasMonolith=false;
  try{urlState=readBankURL(location.search)}catch(e){urlError=e}
- const panel=document.createElement('details');panel.id='changerBank';panel.open=true;
+ const panel=document.createElement('details');panel.id='changerBank';panel.open=false;
  panel.innerHTML='<summary id="bankTitle">ツールバンク</summary><label class="bank-toggle"><input id="bankEnabled" type="checkbox"><span id="bankToggleLabel">機体にドックと複数ヘッドを取り付ける</span></label><div id="bankFields"></div><p id="bankStatus" class="foot" aria-live="polite"></p><p id="bankHelp" class="foot"></p><button id="bankAlternative" type="button" hidden>MadMax / Xolに切り替える</button><details><summary>ドックの確認範囲</summary><p id="bankScope" class="foot"></p></details>';
  before.before(panel);
  const enabled=panel.querySelector('#bankEnabled'),fields=panel.querySelector('#bankFields'),status=panel.querySelector('#bankStatus');
@@ -32,6 +32,7 @@ export function setupChangerBank({catalog,rig,data,extras={},before=document.que
   const down=bankBedReferenceDrop(catalog,data,state,controller?.current),top=data.machines[catalog.machine_id]?.bed_reference_top_mm,nozzle=controller?.current?.fit?.nozzle_mm?.[2],gap=nozzle-(top-down);
   if(Number.isFinite(gap)&&gap>.01)status.append(Object.assign(document.createElement('span'),{textContent:` Zガイド上端で停止。ノズルまで ${gap.toFixed(2)} mm残るため、この取付位置では印刷できません。`}));
   else if(Number.isFinite(down)&&Math.abs(down)>.001)status.append(Object.assign(document.createElement('span'),{textContent:` ノズル接触面へのベッド移動 ${(-down).toFixed(2)} mm。`}));
+  if(monolith&&!wasMonolith&&!(gap>.01))panel.open=false;if(state.enabled||gap>.01)panel.open=true;wasMonolith=monolith;
   panel.dataset.system=system;panel.dataset.printingSetup=unregistered?'unregistered':blocked?'blocked':'unverified';
  }
  async function select(next){

@@ -10,7 +10,7 @@ const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);
 let machineData;
 export async function loadMonolithData(){
  machineData||=Promise.all(['GANTRY_CONFIGURATIONS.json','MONOLITH_MACHINE_REGISTRATIONS.json','MONOLITH_BELT_ROUTES.json'].map(async name=>{
-  const response=await fetch('../'+name,{cache:'no-cache'});if(!response.ok)throw Error('Monolithの機体データを取得できません：'+name);return response.json();
+  const response=await fetch('../'+name,{cache:'no-cache'});if(!response.ok)throw Error('Monolithの機体データを取得できません');return response.json();
  })).catch(error=>{machineData=null;throw error});
  return machineData;
 }
@@ -27,7 +27,7 @@ export function createMonolithGantry(scene,catalog){
  async function asset(id){
   if(cache.has(id))return cache.get(id);
   const spec=catalog.assets[id];if(!spec)throw Error('未登録のMonolith部品：'+id);
-  const promise=Promise.all([fetch('../'+spec.meta).then(r=>{if(!r.ok)throw Error(spec.meta);return r.json()}),loadModel(new GLTFLoader(),'../'+spec.glb)]).then(([meta,g])=>{
+  const promise=Promise.all([fetch('../'+spec.meta,{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error(spec.meta);return r.json()}),loadModel(new GLTFLoader(),'../'+spec.glb)]).then(([meta,g])=>{
    const rows=new Map(meta.parts.map(p=>[String(p.key),p])),entries=[];g.scene.visible=false;
    g.scene.traverse(mesh=>{if(!mesh.isMesh)return;const row=rows.get(String(partKey(mesh)));if(!row)throw Error('Monolithの部品対応が不正です');
     mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();

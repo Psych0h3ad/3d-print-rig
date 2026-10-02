@@ -10,7 +10,8 @@ export function withMonolithMachines(current,heads,headRegistry,gantries,registr
  if(!compatible.length)return current;
  const result=clone(current),bench=monolithHeadCatalog(heads,headRegistry,{...gantries,variants:compatible});
  result.dimensions=['gantry','mount','toolhead','extruder','hotend','carriage','probe','board','cooling'];
- result.gantries.push(...bench.gantries.map(g=>({...g,label:'Monolith · '+g.label.replace('printed','プリント').replace('sheet_metal','板金')})));
+ for(const g of result.gantries)if(g.id==='machine_gantry')g.label=current.machine_id.endsWith('_ldo_cnc')?'機体標準 · LDO CNC AWD':'機体標準 · VORON V2.4';
+ result.gantries.push(...bench.gantries.map(g=>({...g,label:'Monolith · '+g.label.replace(binding.family+' / '+binding.size_mm+' · ','').replace('printed','プリント').replace('sheet_metal','板金')})));
  result.assets={...result.assets,...bench.assets,...gantries.assets};
  result.monolith={gantries:compatible,binding};
  for(const source of bench.variants){
@@ -25,7 +26,7 @@ export function withMonolithMachines(current,heads,headRegistry,gantries,registr
   v.fit.nozzle_mm=[...plan.nozzle_mm];v.fit.bed_reference_drop_mm=0;
   if(v.fit.probe)v.fit.probe=translatedProbeFit(v.fit.probe,shift);
   v.fit.machine_gantry={family:g.machine,datum_checks:mount.datum_checks};
-  v.notes=v.notes.filter(n=>!n.includes('機体フレーム・ドック'));
+  v.notes=[...v.notes.filter(n=>!n.includes('機体フレーム・ドック')),...(mount.notes||[])];
   v.notes.push('Monolithを機体の取付基準に配置。固定式はSphinx、交換式は専用StealthChangerから選べます。','XYベルトは元CADから抽出した経路がヘッドとY軸に追従。クランプ内部・歯・張力・ドッキング・全域の干渉は未検証。');
   result.variants.push(v);
  }
