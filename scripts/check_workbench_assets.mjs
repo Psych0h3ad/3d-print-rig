@@ -7,7 +7,7 @@ import {headPlan,headPlacement} from '../site/viewer/head-assembly.js';
 import {changerDimensions,changerChoice,changerChoices,changerPlacement} from '../site/viewer/toolchanger-model.js';
 const root=path.resolve(process.argv[2]||'site'),read=async f=>JSON.parse(await readFile(path.join(root,f),'utf8'));
 const gantries=await read('GANTRY_CONFIGURATIONS.json'),heads=await read('TOOLHEAD_CONFIGURATIONS.json'),library=await read('COMPONENT_LIBRARY.json'),changers=await read('TOOLCHANGER_CONFIGURATIONS.json');
-assert.equal(gantries.variants.length,32);assert.equal(heads.variants.length,594);assert.equal(heads.toolheads.length,4);assert.equal(heads.extruders.length,10);assert.equal(library.items.length,23);assert.equal(changers.variants.length,43);
+assert.equal(gantries.variants.length,32);assert.equal(heads.variants.length,594);assert.equal(heads.toolheads.length,4);assert.equal(heads.extruders.length,10);assert.equal(library.items.length,41);assert.equal(changers.variants.length,43);
 for(const catalog of [gantries,heads,library,changers])for(const asset of Object.values(catalog.assets)){await access(path.join(root,asset.meta));try{await access(path.join(root,asset.glb))}catch{await access(path.join(root,asset.glb+'.gz'))}const meta=await read(asset.meta);assert(meta.parts.length>0)}
 let gantryTransitions=0;
 for(const v of gantries.variants){
@@ -39,4 +39,6 @@ for(const head of heads.toolheads)assert(heads.variants.some(v=>v.toolhead===hea
 for(const extruder of heads.extruders)assert(heads.variants.some(v=>v.extruder===extruder.id));
 assert.equal(heads.variants.filter(v=>v.mount==='stealthchanger').length,196);
 assert.equal(heads.variants.filter(v=>v.mount==='tapchanger').length,3);
-console.log(JSON.stringify({monolith_assemblies:32,toolchanger_assemblies:43,head_variants:heads.variants.length,complete_stealthchanger_heads:196,complete_tapchanger_source_assemblies:3,library_items:23,gantry_choice_transitions:gantryTransitions,head_choice_transitions:transitions,toolchanger_choice_transitions:changerTransitions,browser_ui_review:false}));
+console.log(JSON.stringify({monolith_assemblies:32,toolchanger_assemblies:43,head_variants:heads.variants.length,complete_stealthchanger_heads:196,complete_tapchanger_source_assemblies:3,library_items:41,gantry_choice_transitions:gantryTransitions,head_choice_transitions:transitions,toolchanger_choice_transitions:changerTransitions,browser_ui_review:false}));
+
+let machineCount=0,machineParts=0;for(const file of ['V0_MACHINES.json','V24_MACHINES.json']){const registry=await read(file);for(const m of registry.machines){const meta=await read(m.meta),profile=await read(m.profile);assert.equal(meta.machine_id,m.id);assert.equal(profile.machine_id,m.id);assert(meta.parts.length>1000);try{await access(path.join(root,m.glb))}catch{await access(path.join(root,m.glb+'.gz'))}machineCount++;machineParts+=meta.parts.length}}assert.equal(machineCount,8);assert.equal(machineParts,11611);console.log(JSON.stringify({new_machine_references:machineCount,native_machine_parts:machineParts}));

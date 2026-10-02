@@ -1,5 +1,5 @@
 {
-  "viewer_version": "2026-10-02-public-viewer-11",
+  "viewer_version": "public-v12",
   "sources": [
     {
       "id": "siboor_trident",
@@ -467,6 +467,160 @@
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
       "version": "Pinned native CAD",
       "changes": "標準ギアと専用取付を選択し代替部品を分離。G2E/R2キャリッジの干渉を構成情報へ記録。原寸の表示用変換・配色。"
+    },
+    {
+      "id": "v0_voron_v02r1",
+      "label": "VoronDesign/Voron-0",
+      "repository": "VoronDesign/Voron-0",
+      "author": "VoronDesign",
+      "commit": "a53fc87562fd630c846af38d7de850c894dc3d85",
+      "version": "Voron0.2r1",
+      "url": "https://github.com/VoronDesign/Voron-0/tree/a53fc87562fd630c846af38d7de850c894dc3d85",
+      "scope": "V0 stock assemblies and original Mod component library",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/v0_voron_v02r1/LICENSE",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "changes": "Original dimensions retained; native assembly placement and rigid motion registered for the stock machines. Mod parts remain an uninstalled reference library."
+    },
+    {
+      "id": "v0_voron_v02",
+      "label": "VoronDesign/Voron-0",
+      "repository": "VoronDesign/Voron-0",
+      "author": "VoronDesign",
+      "commit": "a4d02db92a7dd71e8f2c72d6f74f6bc3b9d020c8",
+      "version": "Voron0.2",
+      "url": "https://github.com/VoronDesign/Voron-0/tree/a4d02db92a7dd71e8f2c72d6f74f6bc3b9d020c8",
+      "scope": "V0 stock assemblies and original Mod component library",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/v0_voron_v02/LICENSE",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "changes": "Original dimensions retained; native assembly placement and rigid motion registered for the stock machines. Mod parts remain an uninstalled reference library."
+    },
+    {
+      "id": "v0_dragon_burner",
+      "label": "chirpy2605/voron",
+      "repository": "chirpy2605/voron",
+      "author": "chirpy2605",
+      "commit": "cc2e749d09d7f24418f9f8c73c90bcefb1e29584",
+      "version": "main",
+      "url": "https://github.com/chirpy2605/voron/tree/cc2e749d09d7f24418f9f8c73c90bcefb1e29584",
+      "scope": "V0 stock assemblies and original Mod component library",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/v0_dragon_burner/LICENSE",
+      "license_sha256": "605e9047a563c5c8396ffb18232aa4304ec56586aee537c45064c6fb425e44ad",
+      "changes": "Original dimensions retained; native assembly placement and rigid motion registered for the stock machines. Mod parts remain an uninstalled reference library."
+    },
+    {
+      "id": "v0_kirigami",
+      "label": "christophmuellerorg/voron_0_kirigami_bed",
+      "repository": "christophmuellerorg/voron_0_kirigami_bed",
+      "author": "christophmuellerorg",
+      "commit": "70f0d9dc6186b6221332fb10eb46427437c7602d",
+      "version": "master",
+      "url": "https://github.com/christophmuellerorg/voron_0_kirigami_bed/tree/70f0d9dc6186b6221332fb10eb46427437c7602d",
+      "scope": "V0 stock assemblies and original Mod component library",
+      "license": "CC-BY-SA-4.0 or GPL-3.0 (sheet metal); GPL-3.0 (derived plastic)",
+      "license_url": "../licenses/v0_kirigami/Readme.md",
+      "license_sha256": "34ea60e6a4a8a9a7291ba8f399d25014620ef18d9b03c6a00d57e5e0dd8d0569",
+      "changes": "Original dimensions retained; native assembly placement and rigid motion registered for the stock machines. Mod parts remain an uninstalled reference library."
+    },
+    {
+      "id": "v0_zeroclick",
+      "label": "zruncho3d/ZeroClick",
+      "repository": "zruncho3d/ZeroClick",
+      "author": "zruncho3d",
+      "commit": "15a5d084ef9ea179b5a695fca5706c417b2433d6",
+      "version": "main",
+      "url": "https://github.com/zruncho3d/ZeroClick/tree/15a5d084ef9ea179b5a695fca5706c417b2433d6",
+      "scope": "V0 stock assemblies and original Mod component library",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/v0_zeroclick/LICENSE",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "changes": "Original dimensions retained; native assembly placement and rigid motion registered for the stock machines. Mod parts remain an uninstalled reference library."
+    },
+    {
+      "id": "v0_stealth_handles",
+      "label": "MapleLeafMakers/V0_Stealth_Handles",
+      "repository": "MapleLeafMakers/V0_Stealth_Handles",
+      "author": "MapleLeafMakers",
+      "commit": "55107e204e805705c2ffecff02a147f004e95eb2",
+      "version": "main",
+      "url": "https://github.com/MapleLeafMakers/V0_Stealth_Handles/tree/55107e204e805705c2ffecff02a147f004e95eb2",
+      "scope": "V0 stock assemblies and original Mod component library",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/v0_stealth_handles/LICENSE.md",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "changes": "Original dimensions retained; native assembly placement and rigid motion registered for the stock machines. Mod parts remain an uninstalled reference library."
+    },
+    {
+      "id": "v0_mini_fridge",
+      "label": "TheVoronModder/MiniFridge",
+      "repository": "TheVoronModder/MiniFridge",
+      "author": "TheVoronModder",
+      "commit": "fc745d40f45a3a63afa98443eb7064d68bdbe79a",
+      "version": "main",
+      "url": "https://github.com/TheVoronModder/MiniFridge/tree/fc745d40f45a3a63afa98443eb7064d68bdbe79a",
+      "scope": "V0 stock assemblies and original Mod component library",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/v0_mini_fridge/LICENSE",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "changes": "Original dimensions retained; native assembly placement and rigid motion registered for the stock machines. Mod parts remain an uninstalled reference library."
+    },
+    {
+      "id": "v0_ldo_v02r1",
+      "label": "MotorDynamicsLab/LDOVoron0",
+      "repository": "MotorDynamicsLab/LDOVoron0",
+      "author": "MotorDynamicsLab",
+      "commit": "4c543a41f25372adbd4c650e5aab1d722c46461a",
+      "version": "v02r1",
+      "url": "https://github.com/MotorDynamicsLab/LDOVoron0/tree/4c543a41f25372adbd4c650e5aab1d722c46461a",
+      "scope": "V0 stock assemblies and original Mod component library",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/v0_ldo_v02r1/LICENSE",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "changes": "Original dimensions retained; native assembly placement and rigid motion registered for the stock machines. Mod parts remain an uninstalled reference library."
+    },
+    {
+      "id": "v0_voron_hardware",
+      "label": "VoronDesign/Voron-Hardware",
+      "repository": "VoronDesign/Voron-Hardware",
+      "author": "VoronDesign",
+      "commit": "5e5fca5761380576a8bb77f7301cdee90afa0e6e",
+      "version": "master",
+      "url": "https://github.com/VoronDesign/Voron-Hardware/tree/5e5fca5761380576a8bb77f7301cdee90afa0e6e",
+      "scope": "V0 stock assemblies and original Mod component library",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/v0_voron_hardware/LICENSE.md",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "changes": "Original dimensions retained; native assembly placement and rigid motion registered for the stock machines. Mod parts remain an uninstalled reference library."
+    },
+    {
+      "id": "v0_tulip",
+      "label": "Amekyras/tulip",
+      "repository": "Amekyras/tulip",
+      "author": "Amekyras",
+      "commit": "3c463c9c45f30cc270b58dd5e62aef010c4e9ad3",
+      "version": "main",
+      "url": "https://github.com/Amekyras/tulip/tree/3c463c9c45f30cc270b58dd5e62aef010c4e9ad3",
+      "scope": "V0 stock assemblies and original Mod component library",
+      "license": "AGPL-3.0",
+      "license_url": "../licenses/v0_tulip/LICENSE",
+      "license_sha256": "8486a10c4393cee1c25392769ddd3b2d6c242d6ec7928e1414efff7dfb2f07ef",
+      "changes": "Original dimensions retained; native assembly placement and rigid motion registered for the stock machines. Mod parts remain an uninstalled reference library."
+    },
+    {
+      "id": "ldo_cnc_awd",
+      "label": "LDO CNC AWD / V2.4 size references",
+      "repository": "VCProjects/LDO_AWD",
+      "author": "LDO / VCProjects and VoronDesign",
+      "commit": "946c81462a966bab11b8b9722dad83876d2b8b59",
+      "url": "https://github.com/VCProjects/LDO_AWD/tree/946c81462a966bab11b8b9722dad83876d2b8b59",
+      "scope": "V2.4 250/300/350: 211 native CNC drive parts with original printed XY/Z joints. Full-X reference motion starts at Y=56 mm. Separate from SIBOOR AUG/ChaoticLab kits.",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/ldo_cnc_awd/LICENSE",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "version": "Pinned native drive CAD with size-specific assembly",
+      "changes": "Sections, rail pitch periods and individual plate dimensions adjusted; rigid hardware translated without whole-machine scaling. Kit identity and continuous swept clearance remain unverified."
     }
   ],
   "defaults": [
@@ -491,5 +645,18 @@
       "release_verified": true
     }
   ],
-  "model_source_url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v11/viewer-sources.zip"
+  "source_archives": [
+    {
+      "label": "Trident・V2.4・ヘッド・交換機構",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v11/viewer-sources.zip"
+    },
+    {
+      "label": "V0.2・V0.2r1・V0 Mod",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v12/viewer-v0-sources.zip"
+    },
+    {
+      "label": "V2.4 250・300・350 / R2・LDO CNC AWD",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v12/viewer-v24-sources.zip"
+    }
+  ]
 }

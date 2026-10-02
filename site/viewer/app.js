@@ -10,7 +10,7 @@ import {setupConfigurations} from './configurations.js?v=heads-v11';
 import {setupAccessories} from './accessories.js?v=frame-mods-v1';
 import {setupAppearance} from './appearance.js?v=public-v5';
 import {setupRenderExport} from './render-export.js?v=public-v5';
-import {setupPublicInfo} from './public-info.js?v=mounts-v5';
+import {setupPublicInfo} from './public-info.js?v=public-v12';
 const $=s=>document.querySelector(s),scene=new THREE.Scene();
 scene.background=new THREE.Color('#edf1f5');
 const stage=$('#stage');

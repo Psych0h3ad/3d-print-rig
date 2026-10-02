@@ -3,7 +3,7 @@ import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=bundle-v2';
 import {setupConfigurations} from './configurations.js?v=heads-v11';
-import {setupPublicInfo} from './public-info.js?v=mounts-v5';
+import {setupPublicInfo} from './public-info.js?v=public-v12';
 import {setupRenderExport} from './render-export.js';
 import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=heads-v11';
 import {probeCheck,probeMetrics,probeGuide} from './probe-checks.js?v=clearance-v1';

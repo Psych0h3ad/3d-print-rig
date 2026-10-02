@@ -5,7 +5,7 @@ import {setupGrid} from './grid-control.js?v=grid-v1';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js';
-import {setupMachineNavigation} from './machines.js?v=machines-v2';
+import {setupMachineNavigation} from './machines.js?v=machines-v3';
 import {setupConfigurations} from './configurations.js?v=heads-v11';
 import {setupAccessories} from './accessories.js';
 import {setupPublicInfo} from './public-info.js';

@@ -1,4 +1,4 @@
-import {setupPublicInfo} from './public-info.js?v=workbench-v1';
+import {setupPublicInfo} from './public-info.js?v=public-v12';
 import {modelURL} from './model-loader.js?v=bundle-v2';
 
 const files={

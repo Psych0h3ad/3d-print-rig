@@ -12,6 +12,7 @@ export async function setupPublicInfo({includeDownloads=true}={}){
   const response=await fetch('../PUBLIC_CATALOG.json',{cache:'no-cache'});if(!response.ok)throw Error('カタログを取得できません');const catalog=await response.json();
   sb.append(node('p','ビューアー版：'+catalog.viewer_version));
   if(catalog.model_source_url)sb.append(link('表示モデルの編集用データ',catalog.model_source_url));
+  for(const archive of catalog.source_archives||[]){const p=node('p','');p.append(link('編集用データ：'+archive.label,archive.url));sb.append(p)}
   for(const s of catalog.sources){const row=node('article','');row.className='source-item';row.append(node('strong',s.label),node('p',s.author),link(s.repository||'配布元',s.url));
    const version=node('p','');version.append(node('code',[s.commit,s.version].filter(Boolean).join(' / ')));row.append(version,node('p','適用範囲：'+s.scope),node('p',s.license),node('p',s.changes));
    if(s.license_url)row.append(link('ライセンス原文',s.license_url));if(s.notice)row.append(node('p',s.notice));sb.append(row)}

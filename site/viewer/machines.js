@@ -1,7 +1,15 @@
 export const machineChoices=[
  {id:'siboor_trident_350',label:'SIBOOR Trident 350 · CNC AWD',page:'./'},
  {id:'voron_trident_350',label:'VORON Trident 350 · 標準プリント構造',page:'./trident.html'},
- {id:'siboor_v24_350',label:'VORON V2.4 350 · R2標準プリント構造',page:'./v24.html'},
+ {id:'siboor_v24_350',label:'VORON V2.4 350 · Modを比較',page:'./v24.html'},
+ {id:'voron_v24_250_printed',label:'VORON V2.4 250 · R2標準プリント構造',page:'./v24-reference.html'},
+ {id:'voron_v24_250_ldo_cnc',label:'VORON V2.4 250 · LDO CNC AWD参照',page:'./v24-reference.html'},
+ {id:'voron_v24_300_printed',label:'VORON V2.4 300 · R2標準プリント構造',page:'./v24-reference.html'},
+ {id:'voron_v24_300_ldo_cnc',label:'VORON V2.4 300 · LDO CNC AWD参照',page:'./v24-reference.html'},
+ {id:'voron_v24_350_printed',label:'VORON V2.4 350 · R2標準プリント構造',page:'./v24-reference.html'},
+ {id:'voron_v24_350_ldo_cnc',label:'VORON V2.4 350 · LDO CNC AWD参照',page:'./v24-reference.html'},
+ {id:'voron_v02r1_120',label:'VORON V0.2r1 120 · Mini Stealthburner',page:'./v0.html'},
+ {id:'voron_v02_120',label:'VORON V0.2 120 · Mini Stealthburner',page:'./v0.html'},
  {id:'siboor_v24_aug_350',label:'SIBOOR V2.4 AUG CNC 350 · CAD未取得',available:false},
 ];
 export function machinePage(id){return machineChoices.find(row=>row.id===id&&row.available!==false)?.page}

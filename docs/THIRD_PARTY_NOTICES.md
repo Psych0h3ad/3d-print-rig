@@ -405,3 +405,22 @@ SB用CW2、Galileo 2、Xol各押出機は取付軸を合わせた原寸の部品
 TapChanger SB/Rods、Mini SB/Rods、Mini SB/Platesはviesturz/tapchangerの原本完成組立を使用。別置きのシャトル・ドックは元位置を保持し、異なる改訂間の接続適合を保証しない。
 
 STEPで再出力時に不安定になる面の表現は、元の頂点と外形を照合したうえで修復。使用版・形状ハッシュ・修復記録は配布メタデータへ収録。
+
+## V0 assemblies and component references
+
+- [VoronDesign/Voron-0](https://github.com/VoronDesign/Voron-0/tree/a53fc87562fd630c846af38d7de850c894dc3d85) — `a53fc87562fd630c846af38d7de850c894dc3d85` (Voron0.2r1); GPL-3.0. License/README: `site/licenses/v0_voron_v02r1/`.
+- [VoronDesign/Voron-0](https://github.com/VoronDesign/Voron-0/tree/a4d02db92a7dd71e8f2c72d6f74f6bc3b9d020c8) — `a4d02db92a7dd71e8f2c72d6f74f6bc3b9d020c8` (Voron0.2); GPL-3.0. License/README: `site/licenses/v0_voron_v02/`.
+- [chirpy2605/voron](https://github.com/chirpy2605/voron/tree/cc2e749d09d7f24418f9f8c73c90bcefb1e29584) — `cc2e749d09d7f24418f9f8c73c90bcefb1e29584` (main); GPL-3.0. License/README: `site/licenses/v0_dragon_burner/`.
+- [christophmuellerorg/voron_0_kirigami_bed](https://github.com/christophmuellerorg/voron_0_kirigami_bed/tree/70f0d9dc6186b6221332fb10eb46427437c7602d) — `70f0d9dc6186b6221332fb10eb46427437c7602d` (master); CC-BY-SA-4.0 or GPL-3.0 (sheet metal); GPL-3.0 (derived plastic). License/README: `site/licenses/v0_kirigami/`.
+- [zruncho3d/ZeroClick](https://github.com/zruncho3d/ZeroClick/tree/15a5d084ef9ea179b5a695fca5706c417b2433d6) — `15a5d084ef9ea179b5a695fca5706c417b2433d6` (main); GPL-3.0. License/README: `site/licenses/v0_zeroclick/`.
+- [MapleLeafMakers/V0_Stealth_Handles](https://github.com/MapleLeafMakers/V0_Stealth_Handles/tree/55107e204e805705c2ffecff02a147f004e95eb2) — `55107e204e805705c2ffecff02a147f004e95eb2` (main); GPL-3.0. License/README: `site/licenses/v0_stealth_handles/`.
+- [TheVoronModder/MiniFridge](https://github.com/TheVoronModder/MiniFridge/tree/fc745d40f45a3a63afa98443eb7064d68bdbe79a) — `fc745d40f45a3a63afa98443eb7064d68bdbe79a` (main); GPL-3.0. License/README: `site/licenses/v0_mini_fridge/`.
+- [MotorDynamicsLab/LDOVoron0](https://github.com/MotorDynamicsLab/LDOVoron0/tree/4c543a41f25372adbd4c650e5aab1d722c46461a) — `4c543a41f25372adbd4c650e5aab1d722c46461a` (v02r1); GPL-3.0. License/README: `site/licenses/v0_ldo_v02r1/`.
+- [VoronDesign/Voron-Hardware](https://github.com/VoronDesign/Voron-Hardware/tree/5e5fca5761380576a8bb77f7301cdee90afa0e6e) — `5e5fca5761380576a8bb77f7301cdee90afa0e6e` (master); GPL-3.0. License/README: `site/licenses/v0_voron_hardware/`.
+- [Amekyras/tulip](https://github.com/Amekyras/tulip/tree/3c463c9c45f30cc270b58dd5e62aef010c4e9ad3) — `3c463c9c45f30cc270b58dd5e62aef010c4e9ad3` (main); AGPL-3.0. License/README: `site/licenses/v0_tulip/`.
+
+Stock V0.2 and V0.2r1 use native placement, colors, transparent panels and single-Z bed motion. The finite CAD clearance grid is distinct from nominal travel and measured machine limits. Mod sources include invalid leaves and repair/exclusion records; library geometry does not assert an installed configuration. Original editable CAD/STL and attribution files are provided in the V0 source archive.
+
+## V2.4 size and LDO CNC references
+
+[VCProjects/LDO_AWD](https://github.com/VCProjects/LDO_AWD/tree/946c81462a966bab11b8b9722dad83876d2b8b59), commit `946c81462a966bab11b8b9722dad83876d2b8b59`, GPLv3. Original license and README: `site/licenses/ldo_cnc_awd/`. These size-specific assemblies retain VoronDesign R2 printed XY/Z joints and use 211 native CNC drive parts. They are LDO references, not kit-identical SIBOOR AUG or ChaoticLab models. Individual extrusion/rail/plate dimensions are adjusted; hardware is not globally scaled. Editable parts, manifests, original CAD and provenance are in the V2.4 source archive.
