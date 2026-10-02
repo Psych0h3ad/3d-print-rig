@@ -1,4 +1,6 @@
 export const dimensions=['gantry','toolhead','carriage','hotend','extruder','probe'];
+export const collections={gantry:'gantries',toolhead:'toolheads',mount:'mounts',carriage:'carriages',hotend:'hotends',extruder:'extruders',probe:'probes'};
+export const catalogDimensions=catalog=>catalog.dimensions||dimensions;
 
 // The changed choice has priority; all results must have installed CAD.
 export function resolveVariant(catalog,selection,changed){
@@ -7,7 +9,8 @@ export function resolveVariant(catalog,selection,changed){
  for(const v of candidates){
   const conflict=v.fit?.probe?.height_passed===false||v.fit?.probe?.physical_passed===false;
   const changingHead=changed&&changed!=='probe';
-  let score=dimensions.reduce((n,k,i)=>n+(v[k]===selection[k]&&!(k==='probe'&&changingHead&&conflict)?2**(dimensions.length-i):0),0);
+  const order=catalogDimensions(catalog);
+  let score=order.reduce((n,k,i)=>n+(v[k]===selection[k]&&!(k==='probe'&&changingHead&&conflict)?2**(order.length-i):0),0);
   if(changingHead&&conflict)score-=1;
   if(score>bestScore){best=v;bestScore=score}
  }
@@ -15,9 +18,9 @@ export function resolveVariant(catalog,selection,changed){
 }
 
 export function choicesFor(catalog,variant,dimension){
- const prefix=dimensions.slice(0,dimensions.indexOf(dimension));
+ const order=catalogDimensions(catalog),prefix=order.slice(0,order.indexOf(dimension));
  const candidates=catalog.variants.filter(v=>prefix.every(k=>v[k]===variant[k]));
- const key={gantry:'gantries',toolhead:'toolheads',carriage:'carriages',hotend:'hotends',extruder:'extruders',probe:'probes'}[dimension];
+ const key=collections[dimension];
  if(!catalog[key])return [];
  return catalog[key].filter(row=>candidates.some(v=>v[dimension]===row.id));
 }

@@ -6,7 +6,7 @@ import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js';
 import {setupMachineNavigation} from './machines.js?v=machines-v2';
-import {setupConfigurations} from './configurations.js?v=carriages-v1';
+import {setupConfigurations} from './configurations.js?v=heads-v11';
 import {setupAccessories} from './accessories.js';
 import {setupPublicInfo} from './public-info.js';
 import {setupRenderExport} from './render-export.js';

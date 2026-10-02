@@ -237,7 +237,7 @@ SIBOORのキットマニュアルが原設計を参照。使用したSTLの版�
 
 ## Galileo 2 / G2E 単体
 
-作者：JaredC01。取得commit 98f8a37944d7277cd37231776400553cc402219f。配布元 https://github.com/JaredC01/Galileo2 。GPL-3.0（原文：../site/licenses/galileo2/LICENSE）。標準PTFE入口・3穴チェーンアンカーを選択し、CAN基板は省略。SB/CNCへの取付には未解決の接触があるため、単体ライブラリのみへ登録。
+作者：JaredC01。取得commit 98f8a37944d7277cd37231776400553cc402219f。配布元 https://github.com/JaredC01/Galileo2 。GPL-3.0（原文：../site/licenses/galileo2/LICENSE）。標準PTFE入口・3穴チェーンアンカーを選択し、CAN基板は省略。SB/R2の比較用構成と専用マウントを使うXol/G2SA構成も登録。干渉が残る組み合わせは構成ごとに交差体積を表示。CNCへのG2E取付は未登録。
 
 ## 機種別の固定フレームMod
 
@@ -391,3 +391,17 @@ StealthChangerのBT123 Split Keeperは同リポジトリ内のUserMods/BT123を�
 A4T・Xolの原本バックプレートでは下側参考ピンだけが印刷部品の穴軸からY方向へ0.1 mmずれていたため、ピンを原寸のまま-0.1 mm剛体移動。3本のピンとブッシュの軸を照合して組立全体の姿勢を登録。印刷部品の形状とピン寸法は変更しません。
 
 TapChanger SB/Rodsの参考ホットエンドとCW2本体は、STEPの読み戻しで無効になるtrimを有理NURBS表現と再生成したパラメーター曲線で修復。全1026頂点を0.00001 mm以内で保持し、外形差は0.000001 mm未満。体積の評価差はそれぞれ+0.1145 mm³・-0.2070 mm³（最大約0.003%）。再出力したSTEPを再度読み込み、有効なソリッドとして確認。
+
+### JabberWocky Rev82 / completed toolheads
+
+作者：kinematicdigit。配布元：https://github.com/kinematicdigit/Jabberwocky/tree/6a80220dccd343f6071043eac15a0db634559ebe。使用commit：6a80220dccd343f6071043eac15a0db634559ebe。
+
+配布条件：CC-BY-SA-4.0。原文：[LICENSE.md](../site/licenses/jabberwocky/LICENSE.md)。完成ヘッド、専用Compound driveとConchは原寸のまま使用。外部配線参照、印刷サポート、代替プローブを省略。StealthChangerでは光学センサーと干渉する標準NH36ブラケットと基板を省略し、機械部だけを表示。
+
+Galileo 2 G2SAの内部部品はJaredC01/Galileo2、commit 98f8a37944d7277cd37231776400553cc402219f、GPL-3.0。Xol用前面部品とG2SA/LGX Lite専用マウントはArmchair-Heavy-Industries/Xol-Toolhead、commit c00b13ef851d38fef6e295e18296650e1ca50d7e、CC-BY-NC-SA-4.0。各部品の配布条件は個別に適用。LGX Lite本体はライブラリのメーカー参考CADを使用。専用マウントの後側固定穴へ位置合わせ。LGX用PTFEは出口面より手前で切断。
+
+SB用CW2、Galileo 2、Xol各押出機は取付軸を合わせた原寸の部品として表示。重なりは隠したり縮小せず、ネイティブ形状の交差体積を構成情報へ記録。微小な交差も適合済みとは扱わない。StealthChangerのプローブ変位はバックプレートとヘッドを一緒に移動する表示。自動ドッキングとプリンター全可動域は含まない。
+
+TapChanger SB/Rods、Mini SB/Rods、Mini SB/Platesはviesturz/tapchangerの原本完成組立を使用。別置きのシャトル・ドックは元位置を保持し、異なる改訂間の接続適合を保証しない。
+
+STEPで再出力時に不安定になる面の表現は、元の頂点と外形を照合したうえで修復。使用版・形状ハッシュ・修復記録は配布メタデータへ収録。

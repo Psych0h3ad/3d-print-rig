@@ -2,10 +2,10 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=bundle-v2';
-import {setupConfigurations} from './configurations.js?v=carriages-v1';
+import {setupConfigurations} from './configurations.js?v=heads-v11';
 import {setupPublicInfo} from './public-info.js?v=mounts-v5';
 import {setupRenderExport} from './render-export.js';
-import {headPlan,partKey,headCombinationCount} from './head-assembly.js';
+import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=heads-v11';
 import {probeCheck,probeMetrics,probeGuide} from './probe-checks.js?v=clearance-v1';
 
 const $=s=>document.querySelector(s),stage=$('#stage'),scene=new THREE.Scene();
@@ -74,7 +74,7 @@ async function asset(id){
    mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();
    const materials=Array.isArray(mesh.material)?mesh.material:[mesh.material];
    for(const material of materials){material.side=THREE.DoubleSide;if(material.transparent)material.depthWrite=false}
-   meshes.push({mesh,key,role,materials,originals:materials.map(m=>({opacity:m.opacity,transparent:m.transparent,color:m.color.clone()}))});
+   meshes.push({mesh,key,role,component:lookup.get(key)?.component,materials,originals:materials.map(m=>({opacity:m.opacity,transparent:m.transparent,color:m.color.clone()}))});
   });
   const result={root,meshes};promise.loaded=result;return result;
  }).catch(e=>{cached.delete(id);throw e});
@@ -87,7 +87,10 @@ function inspection(variant){
  const carriageConflict=variant.fit?.carriage_native_body_passed===false;
  $('#inspectionState').textContent=carriageConflict?'キャリッジ試着：本体干渉あり':check.label;$('#inspectionState').dataset.state=carriageConflict?'carriage-conflict':check.state;$('#inspectionState').classList.toggle('notice',check.warning||carriageConflict);
  $('#probeMetrics').replaceChildren(...probeMetrics(variant).flatMap(([label,value])=>{const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=label;dd.textContent=value;return [dt,dd]}));
- const notes=[...check.lines,...(variant.fit?.carriage_native_body_collisions||[]).map(c=>`${c.label}：交差体積 ${c.volume_mm3.toFixed(3)} mm³。ピンクの部分は元CADの交差形状。`)];if(!p&&!notes.length)notes.push('このキャリッジ・ホットエンドに登録済みのプローブから選択できます。未検証のマウントは表示しません。');
+ const native=variant.fit?.complete_head_native;
+ if(native){$('#inspectionState').textContent={collision:'本体干渉あり · 比較用',contact:'原本CADに微小な交差あり',clear:'検査姿勢の本体交差なし',reference:'原本組立 · 接続未検証'}[native.state];$('#inspectionState').dataset.state=native.state;$('#inspectionState').classList.toggle('notice',native.state!=='clear')}
+ const notes=[...check.lines,...(native?.notes||[]),...(variant.fit?.carriage_native_body_collisions||[]).map(c=>`${c.label}：交差体積 ${c.volume_mm3.toFixed(3)} mm³。ピンクの部分は元CADの交差形状。`)];if(!p&&!notes.length)notes.push('このキャリッジ・ホットエンドに登録済みのプローブから選択できます。未検証のマウントは表示しません。');
+ if(variant.mount==='stealthchanger')notes.unshift('StealthChangerのOptoTap式プローブ機構を表示。スライダーでヘッド・バックプレートを一緒に0–3 mm動かせます。');
  if(p?.metal_keepout_verified===true&&!p.metal_keepout_collisions?.length)notes.push('基準姿勢の本体干渉・コイル高さ・金属除外領域を確認済み。');
  $('#inspectionNotes').replaceChildren(...notes.map(note=>{const li=document.createElement('li');li.textContent=note;return li}));
  clearGuide(heightGuides);clearGuide(keepoutGuide);
@@ -125,7 +128,7 @@ function fit(next=view){
  for(const id of ['iso','front','back','side','bottom'])$('#'+id).setAttribute('aria-pressed',String(view===id));dirty=true;
 }
 for(const id of ['iso','front','back','side','bottom'])$('#'+id).onclick=()=>{if(ready)fit(id)};
-$('#fit').onclick=()=>{if(ready)fit()};
+$('#fit').onclick=()=>{if(ready){visibleBounds();fit()}};
 async function install(variant){
  const plan=headPlan(variant),ids=[plan.base,...plan.modules.map(m=>m.id),...(variant.inspection_module?[variant.inspection_module]:[])];
  $('#loading').hidden=false;$('#loading').textContent='選択したヘッドを読み込み中…';
@@ -133,16 +136,31 @@ async function install(variant){
   // Load before mutating visibility, so failures leave the installed head intact.
   await Promise.all(ids.map(asset));
   for(const p of cached.values()){const a=p.loaded;if(a){a.root.visible=false;for(const r of a.meshes)r.mesh.visible=true}}
-  const base=await asset(plan.base);base.root.position.copy(point(plan.translation));base.root.visible=true;
+  const base=await asset(plan.base);base.root.position.copy(point(headPlacement(variant,{translation_mm:plan.translation,role:'tool'})));base.root.visible=true;
   for(const r of base.meshes)r.mesh.visible=!plan.hidden.has(r.key);
   for(const module of plan.modules){const a=await asset(module.id),hidden=new Set(module.hidden_keys||[]);a.root.position.copy(point(module.translation_mm));a.root.visible=true;for(const r of a.meshes)r.mesh.visible=!hidden.has(r.key)}
   if(variant.inspection_module){const a=await asset(variant.inspection_module);a.root.position.set(0,0,0);a.root.visible=true;for(const row of a.meshes){row.mesh.renderOrder=20;for(const material of row.materials){material.depthTest=false;material.depthWrite=false;material.transparent=true;material.opacity=.82}}}
+  currentVariant=variant;$('#headProbeTravel').value=0;$('#headExplode').value=0;
+  $('#changerControls').hidden=variant.mount==='fixed';$('#headProbeTravel').disabled=variant.mount!=='stealthchanger';$('#headExplode').disabled=variant.mount!=='stealthchanger';changerDisplay();
   appearance();inspection(variant);visibleBounds();ready=true;fit();
-  const count=[plan.base,...plan.modules.map(m=>m.id)].reduce((n,id)=>n+cached.get(id).loaded.meshes.filter(r=>r.mesh.visible).length,0);
+  const count=[plan.base,...plan.modules.map(m=>m.id)].reduce((n,id)=>{const a=cached.get(id).loaded;return n+(a.root.visible?a.meshes.filter(r=>r.mesh.visible).length:0)},0);
   Object.assign(document.body.dataset,{variant:variant.id,headParts:String(count),headAssets:JSON.stringify(ids),assetStatus:'ready'});
   const link=new URL('./',location.href);link.searchParams.set('configuration',variant.id);$('#printerLink').href=link;$('#printerLink').hidden=!!variant.head_only;
  }finally{$('#loading').hidden=true}
 }
+function changerDisplay(){
+ if(!currentVariant)return;const v=currentVariant,plan=headPlan(v),state={probe:$('#headProbeTravel').value,explode:$('#headExplode').value};
+ $('#headProbeValue').textContent=Number(state.probe).toFixed(1)+' mm';
+ const base=cached.get(plan.base)?.loaded;if(base)base.root.position.copy(point(headPlacement(v,{translation_mm:plan.translation,role:'tool'},state)));
+ if(base)for(const row of base.meshes){if(row.component==='dock')row.mesh.visible=$('#headShowDock').checked;if(row.component==='shuttle_reference')row.mesh.visible=$('#headShowRail').checked}
+ for(const entry of plan.modules){const a=cached.get(entry.id)?.loaded;if(!a)continue;
+  a.root.position.copy(point(headPlacement(v,entry,state)));a.root.visible=entry.role!=='dock'||$('#headShowDock').checked;
+  for(const row of a.meshes)if(row.component==='rail_reference')row.mesh.visible=$('#headShowRail').checked;
+ }
+ dirty=true;
+}
+for(const id of ['headProbeTravel','headExplode'])$('#'+id).oninput=changerDisplay;
+for(const id of ['headShowDock','headShowRail'])$('#'+id).onchange=()=>{changerDisplay();if(ready){visibleBounds();fit()}};
 function resize(){const width=Math.max(stage.clientWidth,1),height=Math.max(stage.clientHeight,1);renderer.setSize(width,height);camera.aspect=width/height;camera.updateProjectionMatrix();if(ready)fit();dirty=true}
 new ResizeObserver(resize).observe(stage);resize();
 controls.addEventListener('change',()=>{dirty=true});
@@ -151,7 +169,7 @@ setupRenderExport({renderer,scene,camera,name:'3D_Print_Rig_Toolhead',afterRende
 setupPublicInfo({includeDownloads:false});
 try{
  const response=await fetch('../TOOLHEAD_CONFIGURATIONS.json',{cache:'no-cache'});if(!response.ok)throw Error('ヘッドの構成データを取得できません');catalog=await response.json();
- $('#combinationCount').textContent=`SB / Xol · ${headCombinationCount(catalog)}通りのヘッド構成 · プローブを含め${catalog.variants.length}構成`;
+ $('#combinationCount').textContent=`${catalog.toolheads.length}種類のヘッド · ${catalog.extruders.length}種類の押出機 · ${headCombinationCount(catalog)}通りのヘッド構成`;
  await setupConfigurations(catalog,install,{presentation:'toolhead'});
  if(!ready)throw Error('ヘッドのCADを表示できませんでした');
 }catch(e){$('#loading').hidden=false;$('#loading').textContent=e.message;document.body.dataset.assetStatus='error';console.error(e)}

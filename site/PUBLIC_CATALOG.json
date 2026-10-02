@@ -1,5 +1,5 @@
 {
-  "viewer_version": "2026-10-02-public-viewer-10",
+  "viewer_version": "2026-10-02-public-viewer-11",
   "sources": [
     {
       "id": "siboor_trident",
@@ -83,7 +83,7 @@
       "author": "Armchair-Heavy-Industries",
       "commit": "c00b13ef851d38fef6e295e18296650e1ca50d7e",
       "url": "https://github.com/Armchair-Heavy-Industries/Xol-Toolhead/tree/c00b13ef851d38fef6e295e18296650e1ca50d7e",
-      "scope": "Xol本体、6/9 mmクランプ、Revo/Rapido/Dragon用マウント、Dragon UHF、押出機マウント。 Cartographer V1–V3/V4・Beacon RevD/RevH用のNormal/UHFマウント。",
+      "scope": "Xol本体、6/9 mmクランプ、Revo/Rapido/Dragon用マウント、Dragon UHF、押出機マウント。 Cartographer V1–V3/V4・Beacon RevD/RevH用のNormal/UHFマウント。 Galileo 2 G2SAおよびLGX Lite用の専用マウント。LGX本体はメーカー参考CAD。",
       "license": "CC BY-NC-SA 4.0（部品別例外あり）",
       "changes": "配置・表示用三角形化・配色の調整。機種ごとの変更履歴を検証記録に保存。 対象基板の寸法に合わせて一部の印刷マウントへ局所的な部品逃げを追加。必要な絶縁スペーサーは構成ごとに表示。 共有マウントのフィレット端の自己交差には0.05 mm厚の局所的な逃げを追加し、STEP読み戻しで有効性を確認。 プローブ基板のコネクタをホットエンドから離す方向に配置。",
       "license_url": "../licenses/xol/LICENSE",
@@ -405,7 +405,7 @@
       "author": "DraftShift",
       "commit": "50e3c769297b273ac390fb33b455aa7f4dfe3099",
       "url": "https://github.com/DraftShift/StealthChanger/tree/50e3c769297b273ac390fb33b455aa7f4dfe3099",
-      "scope": "MGN12接続部、9種の専用バックプレート、6/9 mmと反転経路の4仕様。BT123の9 mm・Monolith専用Keeperを使用。",
+      "scope": "MGN12接続部、9種の専用バックプレート、6/9 mmと反転経路の4仕様。BT123の9 mm・Monolith専用Keeperを使用。 SB・Xol・JabberWockyの完成ヘッドへ剛体配置。XolのShort/Medium代替形状とサポートを分離。全196構成の登録姿勢で本体交差を計測。",
       "license": "GPL-3.0",
       "license_url": "../licenses/stealthchanger/LICENSE",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
@@ -439,6 +439,34 @@
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
       "version": "Pinned source CAD",
       "changes": "原本の選択肢・構築用ボディ・印刷サポートを分離。表示用変換・配色。修復箇所は各モジュールのnative_repair/native_repairsへ記録。"
+    },
+    {
+      "id": "jabberwocky",
+      "label": "JabberWocky Rev82",
+      "repository": "kinematicdigit/Jabberwocky",
+      "author": "kinematicdigit",
+      "commit": "6a80220dccd343f6071043eac15a0db634559ebe",
+      "url": "https://github.com/kinematicdigit/Jabberwocky/tree/6a80220dccd343f6071043eac15a0db634559ebe",
+      "scope": "Rev82の完成ヘッド、Conch、専用Compound drive、NH36。MGN12とStealthChangerの機械部を別構成で表示。",
+      "license": "CC-BY-SA-4.0",
+      "license_url": "../licenses/jabberwocky/LICENSE.md",
+      "license_sha256": "cfac79c9c81810c0aadda0a03c526d886401762ea7f98c699d81ab4b9a74e9fd",
+      "version": "Pinned native CAD",
+      "changes": "原本の印刷サポート、代替プローブ、長い外部配線を分離。SCでは標準NH36取付を省略。寸法を保持して表示用変換・配色。"
+    },
+    {
+      "id": "galileo2_installed",
+      "label": "Galileo 2 / G2E・G2SA",
+      "repository": "JaredC01/Galileo2",
+      "author": "JaredC01",
+      "commit": "98f8a37944d7277cd37231776400553cc402219f",
+      "url": "https://github.com/JaredC01/Galileo2/tree/98f8a37944d7277cd37231776400553cc402219f",
+      "scope": "SB用G2Eの比較構成、Xol専用G2SAマウント・前面部品の組立。",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/galileo2/LICENSE",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "version": "Pinned native CAD",
+      "changes": "標準ギアと専用取付を選択し代替部品を分離。G2E/R2キャリッジの干渉を構成情報へ記録。原寸の表示用変換・配色。"
     }
   ],
   "defaults": [
@@ -463,5 +491,5 @@
       "release_verified": true
     }
   ],
-  "model_source_url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v10/viewer-sources.zip"
+  "model_source_url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v11/viewer-sources.zip"
 }

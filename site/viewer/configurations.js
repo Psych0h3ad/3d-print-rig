@@ -1,13 +1,14 @@
-import {dimensions,resolveVariant,choicesFor,importedVariant} from './configuration-model.js?v=carriages-v1';
+import {catalogDimensions,collections,resolveVariant,choicesFor,importedVariant} from './configuration-model.js?v=heads-v11';
 import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=clearance-v1';
 
 export async function setupConfigurations(catalog,install,{presentation='printer',getExtras=()=>({}),applyExtras=async()=>{},validateExtras=()=>{}}={}){
  const $=s=>document.querySelector(s);
- const ids=dimensions.filter(id=>id!=='carriage'||catalog.carriages&&$('#carriageConfig'));
- const collections={gantry:'gantries',toolhead:'toolheads',carriage:'carriages',hotend:'hotends',extruder:'extruders',probe:'probes'};
+ const ids=catalogDimensions(catalog).filter(id=>catalog[collections[id]]&&$('#'+id+'Config'));
  const selection=()=>Object.fromEntries(ids.map(k=>[k,$('#'+k+'Config').value]));
  let actual,busy=false;
- const initial=catalog.variants.find(v=>v.id===new URLSearchParams(location.search).get('configuration'))||catalog.variants[0];
+ const query=new URLSearchParams(location.search);
+ const requested=catalog.variants.find(v=>v.id===query.get('configuration'))||catalog.variants[0];
+ const initial=query.get('mount')?resolveVariant(catalog,{...requested,mount:query.get('mount')},'mount'):requested;
  if(!initial)throw Error('構成のCADが登録されていません。');
  function menus(v){
   for(const id of ids){
@@ -16,7 +17,7 @@ export async function setupConfigurations(catalog,install,{presentation='printer
  }
  function commit(v){
   actual=v;menus(v);
-  const url=new URL(location.href);url.searchParams.set('configuration',v.id);history.replaceState(null,'',url);
+  const url=new URL(location.href);url.searchParams.delete('mount');url.searchParams.set('configuration',v.id);history.replaceState(null,'',url);
   $('#configSummary').textContent=ids.map(id=>catalog[collections[id]].find(row=>row.id===v[id]).label).join(' ／ ');
   $('#configRequirements').replaceChildren(...v.notes.map(note=>{const li=document.createElement('li');li.textContent=note;return li}));
   const rows=[`専用マウント：${v.fit?.mount||'登録済みCAD'}`,`選択可能な構成：${catalog.variants.length}通り`];
@@ -30,6 +31,12 @@ export async function setupConfigurations(catalog,install,{presentation='printer
   $('#configStatus').textContent=presentation==='toolhead'?`3D切替済み · ${v.belt_width_mm} mmキャリッジ`:`3D切替済み · ${v.xy_motors}モーター · ${v.belt_width_mm} mmベルト`;
   if(check.warning)$('#configStatus').textContent+=' ／ '+check.label;$('#configStatus').classList.toggle('notice',check.warning);
   if(v.fit?.carriage_native_body_passed===false){$('#configStatus').textContent='比較用の試着 · 本体干渉あり · 6 mm';$('#configStatus').classList.add('notice')}
+  const native=v.fit?.complete_head_native;
+  if(native){
+   const label={collision:'CAD干渉あり · 比較用',contact:'CADに微小な交差あり',clear:'検査姿勢の本体交差なし',reference:'原本組立 · 接続未検証'}[native.state];
+   $('#configStatus').textContent+=' ／ '+label;$('#configStatus').classList.toggle('notice',check.warning||native.state!=='clear');
+   rows.push(label,...native.notes);$('#mountInfo')?.replaceChildren(...rows.map(row=>{const li=document.createElement('li');li.textContent=row;return li}));
+  }
   $('#configStatus').dataset.variant=v.id;
  }
  async function refresh(v,extraData){
