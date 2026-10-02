@@ -36,5 +36,5 @@ export function createV0Adapter(root,manifest,profile){
   function setFlexibleVisible(v){flexibleVisible=Boolean(v);if(lastPose)setPose(lastPose);}
   function setEnclosureVisible(v){for(const [k,o] of nodes)if(records.get(k).group==='V0_Enclosure')o.visible=Boolean(v);}
   function setPalette(palette){for(const [k,o] of nodes){const color=palette[records.get(k).appearance_role];if(!color)continue;o.traverse(n=>{if(n.isMesh)for(const m of Array.isArray(n.material)?n.material:[n.material])m.color.set(color);});}}
-  return {nodes,records,belts,setPose,setFlexibleVisible,setEnclosureVisible,setPalette,getSummary:()=>({machine_id:profile.machine_id,part_count:nodes.size,motion_counts:manifest.parts.reduce((a,r)=>(a[r.motion]=(a[r.motion]||0)+1,a),{})})};
+  return {nodes,records,belts,setPose,setFlexibleVisible,setEnclosureVisible,setPalette,getPose:()=>lastPose?['x','y','z'].map(a=>Number(lastPose[a])):[...profile.display_reference_xyz_mm],getSummary:()=>({machine_id:profile.machine_id,part_count:nodes.size,motion_counts:manifest.parts.reduce((a,r)=>(a[r.motion]=(a[r.motion]||0)+1,a),{})})};
 }

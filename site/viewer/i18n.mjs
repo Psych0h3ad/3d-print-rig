@@ -1,4 +1,4 @@
-import {messages,templates} from './messages-en.mjs?v=monolith-machine-1';
+import {messages,templates} from './messages-en.mjs?v=simulation-1';
 
 const normalize=text=>text.trim().replace(/\s+/gu,' ');
 const escape=text=>text.replace(/[.*+?^${}()|[\]\\]/gu,'\\$&');

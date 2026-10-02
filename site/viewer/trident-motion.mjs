@@ -30,5 +30,5 @@ export function createTridentMotion(profile){
   const chains=bedChains.map(c=>c.update(down,flexibleVisible));
   return {x:xyz[0],y:xyz[1],z:xyz[2],dx,dy,bed_down_mm:down,bed_chain_visible:chains.some(c=>c.visible),bed_chains:chains,belt_route_lengths_mm:belts.flatMap(b=>b.entries.map(e=>e.route.length))};
  }
- return {register,setReference,setBedReferenceDrop,setPose,entries,belts,bedChains};
+ return {register,setReference,setBedReferenceDrop,setPose,entries,belts,bedChains,getReference:()=>[...reference]};
 }

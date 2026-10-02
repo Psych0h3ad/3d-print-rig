@@ -66,6 +66,7 @@ export function createMicronAdapter(root, manifest, profile) {
     }
   }
   return {nodes, records, belts, setPose, setFlexibleVisible, setEnclosureVisible, setPalette,
+    getPose:()=>lastPose?['x','y','z'].map(a=>lastPose[a]):[...profile.display_reference_xyz_mm],
     getSummary: () => ({machine_id: profile.machine_id, part_count: nodes.size,
       motion_counts: manifest.parts.reduce((a,p) => (a[p.motion] = (a[p.motion] ?? 0) + 1,a),{})})};
 }

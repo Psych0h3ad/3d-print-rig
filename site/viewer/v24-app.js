@@ -2,14 +2,15 @@ import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v
 import {appearanceRole} from './appearance-role.mjs?v=public-v24';
 import * as THREE from 'three';
 import {loadFrameMods,withFrameMods} from './frame-mods.js?v=public-v24';
-import {setupLighting} from './lighting.js?v=public-v24';
+import {setupLighting} from './lighting.js?v=simulation-1';
+import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=simulation-1';
 import {setupAccessories} from './accessories.js?v=public-v24';
 import {setupGrid} from './grid-control.js?v=public-v24';
 import {setupProbeMounts} from './probe-mounts.js?v=public-v24';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=public-v24';
-import {createV24Adapter} from './v24_adapter.mjs?v=public-v24';
+import {createV24Adapter} from './v24_adapter.mjs?v=simulation-1';
 import {setupMachineNavigation} from './machines.js?v=monolith-machine-1';
 import {setupRenderExport} from './render-export.js?v=public-v24';
 import {setupPublicInfo} from './public-info.js?v=public-v24';
@@ -22,7 +23,7 @@ const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(
 renderer.setClearColor('#edf1f4');renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.25;
 const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(38,1,.005,10);camera.position.set(.98,.83,1.4);
 const orbit=new OrbitControls(camera,renderer.domElement);orbit.target.set(0,.22,0);orbit.enableDamping=false;orbit.update();
-let adapter,profile,pose,probeMounts,machineHeads,renderPending=false,frames=0;
+let adapter,profile,pose,probeMounts,machineHeads,program,renderPending=false,frames=0;
 function render(){if(renderPending)return;renderPending=true;requestAnimationFrame(()=>{renderPending=false;renderer.render(scene,camera);document.body.dataset.renderedFrames=++frames})}
 setupGrid(scene,render);
 const frameMods=await loadFrameMods('siboor_v24_350');
@@ -99,7 +100,8 @@ try{
  const disco=await lighting.whenReady;disco?.traverse(mesh=>{if(mesh.isMesh&&mesh.userData.led_role==='bracket')modMeshes.push({mesh,role:'base',color:mesh.material.color.clone()})});
  $('#resetPalette').disabled=false;$('#resetPalette').onclick=()=>{palette={base:null,accent:null,frame:null};applyPalette();savePalette()};applyPalette();
  $('#frameFinish').onchange=e=>{if(e.target.value==='custom')return;palette.frame=e.target.value==='silver'?'#b9bec4':'#25282d';applyPalette();savePalette()};
- machineHeads=await setupV24MachineHeads({machine:'siboor_v24_350',profile,adapter,scene,render,applyPose,stockProbes:probeCatalog.probes,beforeInstall:async v=>{await probeMounts.apply(v.baseline_probe||'none')},onChange:()=>applyPalette()});stockProbe.closest('details').hidden=true;applyPalette();
+ machineHeads=await setupV24MachineHeads({machine:'siboor_v24_350',profile,adapter,scene,render,applyPose,stockProbes:probeCatalog.probes,beforeInstall:async v=>{program?.invalidate();await probeMounts.apply(v.baseline_probe||'none')},onChange:()=>{program?.invalidate();applyPalette()}});stockProbe.closest('details').hidden=true;applyPalette();
+ program=setupGcodePanel({container:document.querySelector('aside'),profile,adapter,scene,render,getLimits:displayedMachineLimits,getContext:()=>machineHeads.variant?.id||'stock',setPose:xyz=>{for(const [i,a]of ['x','y','z'].entries())$('#'+a).value=xyz[i];applyPose()}});
  setupRenderExport({renderer,scene,camera,controls:orbit,afterRender:render,name:'VORON_V24_R2_350_Reference'});
  document.body.dataset.geometryRevision=profile.geometry_revision;document.body.dataset.panelsVisible=String($('#enclosure').checked);
  document.body.dataset.endstopStatus=profile.endstop_registration_or_pending.status;

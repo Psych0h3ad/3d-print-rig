@@ -1101,7 +1101,24 @@ export const messages = {
  "剛体部品は原寸で配置。梁の断面とレール穴周期を保持して長さを変更。ネジは実測した各穴軸へ配置。V2のYガイド位置とNP後梁のM5/Tスロット基準を登録。ガイドのレール内包含からヘッド別XYZ表示範囲を計算。可動ベルトは原本経路を保つ滑らかな帯で、クランプ内部・歯・張力・全域干渉・ドッキングは未検証。": "Rigid hardware retains its original dimensions. Beam sections and rail-hole periods are preserved, with screws on measured hole axes. V2 Y-bearing poses and NP rear-frame M5/T-slot datums are registered. Native rail containment sets head-dependent XYZ limits. Moving belts retain source paths as smooth strips; internal clamp returns, teeth, tension, full travel collisions and docking are unverified.",
  "ベッド固定 · Monolithの8個のZガイドとガントリーがZ＋へ追従": "Fixed bed · the Monolith gantry and eight Z bearings follow positive Z",
  "MonolithのXYベルトはヘッド・Y軸・ガントリーの移動に追従します。クランプ内部・歯・張力は未再現です。": "Monolith XY belts follow the head, Y beam and gantry. Internal clamp returns, teeth and tension are not simulated.",
- "ベッド固定 · Monolithの8個のZガイド・ガントリー・XYベルトが追従": "Fixed bed · eight Monolith Z bearings, gantry and XY belts follow motion"
+ "ベッド固定 · Monolithの8個のZガイド・ガントリー・XYベルトが追従": "Fixed bed · eight Monolith Z bearings, gantry and XY belts follow motion",
+ "発光パターン": "LED pattern",
+ "色の流れ": "Flow",
+ "呼吸": "Breathing",
+ "チェイス": "Chase",
+ "発光の速度": "Effect speed",
+ "G-codeの再生": "G-code playback",
+ "現在の構成とXYZから、移動を3Dで再生。": "Play movements in 3D from the current configuration and XYZ position.",
+ "再生位置": "Playback position",
+ "G-codeの再生時刻": "G-code playback time",
+ "対応する命令": "Supported commands",
+ "KlipperのG-code仕様": "Klipper G-code specification",
+ "現在の構成と位置から軌跡を再計算してください": "Recalculate the path from the current configuration and position.",
+ "再生できる軌跡と有限の時刻が必要です": "A complete program and finite time are required.",
+ "機体の可動範囲が変わりました。軌跡を再計算してください": "Machine motion limits changed. Recalculate the path.",
+ "ノズルの座標が不正です": "Invalid nozzle coordinates.",
+ "再生速度が不正です": "Invalid playback speed.",
+ "一時停止": "Pause"
 };
 
 export const templates = {

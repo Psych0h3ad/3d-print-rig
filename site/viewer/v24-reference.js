@@ -9,7 +9,7 @@ import {setupMachineNavigation} from './machines.js?v=monolith-machine-1';
 import {setupGrid} from './grid-control.js?v=public-v24';
 import {setupRenderExport} from './render-export.js?v=public-v24';
 import {setupPublicInfo} from './public-info.js?v=public-v24';
-import {setupGcodePanel} from './gcode-panel.js?v=public-v24';
+import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=simulation-1';
 import {setupV24MachineHeads} from './machine-heads.js?v=monolith-machine-1';
 const $=s=>document.querySelector(s),ids=[250,300,350].flatMap(size=>['printed','ldo_cnc'].map(structure=>`voron_v24_${size}_${structure}`));
 const wanted=new URLSearchParams(location.search).get('machine'),id=ids.includes(wanted)?wanted:ids[0];
@@ -41,7 +41,7 @@ try{
  function save(){try{localStorage.setItem(profile.appearance.storage_key,JSON.stringify({machine_id:id,colors:palette}))}catch{}}
  for(const role of Object.keys(palette)){$('#'+role).disabled=false;$('#'+role+'Hex').disabled=false;$('#'+role).oninput=()=>{palette[role]=$('#'+role).value;applyPalette();save()};$('#'+role+'Hex').oninput=()=>{const v=$('#'+role+'Hex').value;if(!valid(v)){$('#'+role+'Hex').setAttribute('aria-invalid','true');return}palette[role]=v;applyPalette();save()}}
  $('#frameFinish').disabled=false;$('#frameFinish').onchange=()=>{if($('#frameFinish').value==='custom')return;palette.frame=$('#frameFinish').value==='silver'?'#b9bec4':profile.appearance.palette_defaults.frame;applyPalette();save()};$('#resetPalette').disabled=false;$('#resetPalette').onclick=()=>{palette={base:null,accent:null,frame:null};applyPalette();save()};applyPalette();
- machineHeads=await setupV24MachineHeads({machine:id,profile,adapter,scene,render,applyPose,onChange:v=>{program?.invalidate();$('#badge').textContent=$('#machineTitle').textContent+(v.machine_gantry?' · Monolith '+v.belt_width_mm+' mm':v.machine_head?' · ヘッド交換プレビュー':' · '+manifest.parts.length.toLocaleString()+' PARTS')}});applyPalette();
- program=setupGcodePanel({container:document.querySelector('aside'),profile,adapter,scene,render,setPose:xyz=>{for(const [i,a] of ['x','y','z'].entries())$('#'+a).value=xyz[i];applyPose()}});for(const a of ['x','y','z'])$('#'+a).addEventListener('input',program.invalidate);$('#reset').addEventListener('click',program.invalidate);
+ machineHeads=await setupV24MachineHeads({machine:id,profile,adapter,scene,render,applyPose,beforeInstall:()=>program?.invalidate(),onChange:v=>{program?.invalidate();$('#badge').textContent=$('#machineTitle').textContent+(v.machine_gantry?' · Monolith '+v.belt_width_mm+' mm':v.machine_head?' · ヘッド交換プレビュー':' · '+manifest.parts.length.toLocaleString()+' PARTS')}});applyPalette();
+ program=setupGcodePanel({container:document.querySelector('aside'),profile,adapter,scene,render,getLimits:displayedMachineLimits,getContext:()=>machineHeads.variant?.id||'stock',setPose:xyz=>{for(const [i,a] of ['x','y','z'].entries())$('#'+a).value=xyz[i];applyPose()}});
  setupRenderExport({renderer,scene,camera,controls:orbit,name:id,afterRender:render});$('#status').hidden=true;document.body.dataset.ready='true';document.body.dataset.parts=String(manifest.parts.length);applyPose();resize();
 }catch(e){$('#status').textContent='読込エラー: '+e.message;document.body.dataset.error=e.message;console.error(e)}

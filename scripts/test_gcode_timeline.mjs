@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import {compileGcode} from '../site/viewer/gcode-preview.mjs';
+import {sampleGcode,programPoint,programPathOffset} from '../site/viewer/gcode-timeline.mjs';
+const p=compileGcode('G90\nM83\nG1 X10 E2 F600\nG4 P2000\nG91\nG1 Y10 E2\nG92 E0',{initial:[0,0,0],limits:{X:[0,100],Y:[0,100],Z:[0,100]}});
+assert(p.complete);assert.equal(p.duration_s,4);
+assert.deepEqual(sampleGcode(p,.5).position,[5,0,0,1]);
+assert.deepEqual(sampleGcode(p,1).position,[10,0,0,2]);
+assert.deepEqual(sampleGcode(p,2).position,[10,0,0,2]);
+assert.deepEqual(sampleGcode(p,3.5).position,[10,5,0,3]);
+assert.deepEqual(sampleGcode(p,99).position,[10,10,0,4]);assert(sampleGcode(p,99).done);
+assert.deepEqual(sampleGcode(p,-1).position,[0,0,0,0]);assert.throws(()=>sampleGcode(p,NaN));
+assert.throws(()=>sampleGcode(compileGcode('G28',{initial:[0,0,0],limits:{X:[0,1],Y:[0,1],Z:[0,1]}}),0));
+const frame={nozzle_mm:[0,-30,303],reference_xyz_mm:[175,175,0],moving_bed_z:true},xyz=[185,180,20];
+assert.deepEqual(programPoint(frame,xyz),[10,-25,323]);assert.deepEqual(programPathOffset(frame,xyz),[0,0,-20]);
+assert.deepEqual(programPoint(frame,xyz).map((v,i)=>v+programPathOffset(frame,xyz)[i]),[10,-25,303]);
+assert.deepEqual(programPathOffset({...frame,moving_bed_z:false},xyz),[0,0,0]);
+const saved=JSON.stringify(p);for(let i=0;i<1000;i++)sampleGcode(p,(i%401)/100);assert.equal(JSON.stringify(p),saved);
+console.log('G-code timeline: continuous XYZE, dwell, zero-time states, random seeks, atomic errors and moving-bed path frame passed.');

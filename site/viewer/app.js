@@ -8,7 +8,7 @@ import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=public-v24';
 import {loadFrameMods,withFrameMods} from './frame-mods.js?v=public-v24';
 import {setupGrid} from './grid-control.js?v=public-v24';
-import {setupLighting} from './lighting.js?v=public-v24';
+import {setupLighting} from './lighting.js?v=simulation-1';
 import {setupFlexible} from './flexible.js?v=public-v24';
 import {createBedChain} from './bed-chain.mjs?v=public-v25';
 import {setupConfigurations} from './configurations.js?v=monolith-machine-1';
@@ -19,6 +19,8 @@ import {setupPublicInfo} from './public-info.js?v=public-v24';
 import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=monolith-machine-1';
 import {setupChangerBank} from './changer-bank.js?v=monolith-machine-1';
 import {expandedPrinterCatalog} from './machine-head-model.mjs?v=public-v24';
+import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=simulation-1';
+import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=simulation-1';
 const $=s=>document.querySelector(s),scene=new THREE.Scene();
 scene.background=new THREE.Color('#edf1f5');
 const stage=$('#stage');
@@ -43,7 +45,7 @@ const levers={},plungers={};
 const groups={},moving={y:[],xy:[],z:[],reference_flexible:[]},panes=[],parts=new Map();
 const allMeshes=[];
 let installed='stock',stockRegistration,stockRefX,stockLeverX,stockPlungerX,xolMeta,xolScene;
-let activeConfig,catalog,r2Registration,appearance,stockRows,accessories,installedHeads,toolBank;
+let activeConfig,catalog,r2Registration,appearance,stockRows,accessories,installedHeads,toolBank,program;
 const assetRoots=new Map(),assets=new Map(),xolMechanisms={},stockSwitchMeshes=[],r2Belts=[];
 const stockHeadGroup='03_Stock_Stealthburner_CW2_Rapido2_UHF';
 const cadPoint=p=>new THREE.Vector3(p[0]/1000,p[2]/1000,-p[1]/1000);
@@ -84,6 +86,7 @@ function showHead(){
  if(activeConfig.machine_head){for(const o of moving.reference_flexible)if(!o.userData.bedChain)o.visible=false;for(const key of ['580','Upper_Belt','PTFE_tube','CAN_cable'])if(parts.has(key))parts.get(key).visible=false}
 }
 async function installConfiguration(v){
+ program?.invalidate();
  const required=[...new Set(v.modules.map(m=>m.id)),...(!v.machine_head&&v.toolhead==='xol'?['xol']:[])];await Promise.all(required.map(asset));await toolBank.install(v);
  const headLink=new URL('./toolheads.html',location.href);headLink.searchParams.set('configuration',v.source_head_configuration||v.id);$('#toolheadLink').href=headLink;
  stop();unfocus();activeConfig=v;installed=v.machine_head?'generic':v.toolhead==='xol'?'xol':'stock';
@@ -125,6 +128,7 @@ function setPose(x,y,z){
  const bedReferenceDrop=bankBedReferenceDrop(catalog,catalog.bank_data,installedHeads?.bankState,activeConfig),zMax=230-Math.max(0,bedReferenceDrop);
  const limits=monolithDisplayLimits({X:[0,350],Y:[0,360],Z:[0,zMax]},[refX,refY,0],activeConfig);
  x=clamp(x,...limits.X);y=clamp(y,...limits.Y);z=clamp(z,...limits.Z);current={x,y,z};
+ program?.updatePath([x,y,z]);
  for(const a of ['x','y','z']){const range=limits[a.toUpperCase()];$('#'+a).min=range[0];$('#'+a).max=range[1]}
  const dx=x-refX,dy=y-refY;
  const bedDown=z+bedReferenceDrop;
@@ -172,6 +176,7 @@ function setPose(x,y,z){
 const callout=document.createElement('div');callout.style.cssText='display:none;position:absolute;z-index:1;padding:8px 12px;border:1px solid #dc9a37;background:#fff8e8ee;border-radius:7px;color:#825318;pointer-events:none;font-size:12px';document.body.appendChild(callout);
 const marker=new THREE.Mesh(new THREE.SphereGeometry(.00065,16,12),new THREE.MeshBasicMaterial({color:0xf4a934,depthTest:false,transparent:true,opacity:.8}));marker.visible=false;marker.renderOrder=10;scene.add(marker);
 function focusSwitch(axis){
+ program?.invalidate();
  stop();unfocus();setPose(axis==='X'?350:refX,360,current.z);focusAxis=axis;
  const highlighted=new Set([registration.switches[axis].switch_key,...registration.switches[axis].actuator_keys,...(activeConfig.gantry==='trident_r2'&&installed==='xol'?['xol_probe_module','xol_standard_probe_bracket']:[])]);
  for(const o of allMeshes){if(o.userData.partKey===registration.switches[axis].switch_key||o===levers[axis]||o===plungers[axis])continue;o.material.opacity=Math.min(o.userData.baseOpacity,highlighted.has(o.userData.partKey)?.4:.022);o.material.transparent=true;o.material.depthWrite=false;o.renderOrder=1}
@@ -209,17 +214,20 @@ Promise.all([fetch('../assembly_manifest.json?v=public-v24',{cache:'no-cache'}).
  for(const s of ['#door','#x','#y','#z','#demo','#reset','#home','#focusX','#focusY','#releaseSwitch','#focusZ'])$(s).disabled=false;
  accessories=setupAccessories(catalog,{load:asset,update:()=>setPose(current.x,current.y,current.z)});
  toolBank=setupChangerBank({catalog,rig:installedHeads,data:headData.bank,extras:{...accessories,onSettled:()=>setPose(current.x,current.y,current.z)}});ready=true;$('#loading').remove();await toolBank.bind(await setupConfigurations(catalog,installConfiguration,toolBank.options));
+ const programFrame=()=>({nozzle_mm:activeConfig.fit.nozzle_mm,reference_xyz_mm:[refX,refY,0],moving_bed_z:true});
+ program=setupGcodePanel({container:document.querySelector('aside'),scene,render:()=>{renderRequested=true},getPose:()=>[current.x,current.y,current.z],getLimits:displayedMachineLimits,toNozzle:xyz=>programPoint(programFrame(),xyz),pathOffset:xyz=>programPathOffset(programFrame(),xyz),getContext:()=>({configuration:activeConfig.id,bank:installedHeads.bankState}),setPose:xyz=>setPose(...xyz),beforePlayback:()=>{stop();unfocus()}});
  setupRenderExport({renderer,scene,camera,controls,beforeRender:stop,afterRender:()=>{renderRequested=true},name:'Trident_350'});
 }).catch(e=>{if($('#loading'))$('#loading').textContent='モデルを読み込めませんでした。'+e.message;console.error(e)});
 $('#door').oninput=e=>{$('#angle').textContent=e.target.value+'°';if(pivot)pivot.rotation.y=-THREE.MathUtils.degToRad(+e.target.value)};
 function unfocus(){focusAxis=null;marker.visible=false;callout.style.display='none';for(const o of allMeshes){o.material.opacity=o.userData.baseOpacity;o.material.transparent=o.userData.baseTransparent;o.material.depthWrite=!o.userData.baseTransparent;o.renderOrder=o.userData.baseTransparent?2:0}}
 for(const a of ['x','y','z'])$('#'+a).oninput=()=>{stop();unfocus();setPose(+$('#x').value,+$('#y').value,+$('#z').value)};
 $('#reset').onclick=()=>{stop();unfocus();setPose(refX,refY,0);$('#door').value=0;$('#angle').textContent='0°';if(pivot)pivot.rotation.y=0};
-$('#demo').onclick=()=>{if(mode==='demo'){stop();return}stop();unfocus();mode='demo';start=performance.now();$('#demo').textContent='デモを停止'};
-$('#home').onclick=()=>{if(mode==='home'){stop();return}stop();unfocus();homeStart={...current};mode='home';start=performance.now();$('#home').textContent='終端へ移動中…'};
+$('#demo').onclick=()=>{program?.invalidate();if(mode==='demo'){stop();return}stop();unfocus();mode='demo';start=performance.now();$('#demo').textContent='デモを停止'};
+$('#home').onclick=()=>{program?.invalidate();if(mode==='home'){stop();return}stop();unfocus();homeStart={...current};mode='home';start=performance.now();$('#home').textContent='終端へ移動中…'};
 $('#focusX').onclick=()=>focusSwitch('X');$('#focusY').onclick=()=>focusSwitch('Y');
 $('#focusHead').onclick=()=>{if(!ready)return;stop();unfocus();if(installedHeads?.focus(camera,controls))return;const dx=(current.x-refX)/1000,dy=-(current.y-refY)/1000;controls.target.set(dx,.367,dy+.025);camera.position.copy(controls.target).add(new THREE.Vector3(.16,.10,.29));controls.update()};
 $('#focusZ').onclick=()=>{
+ program?.invalidate();
  stop();unfocus();setPose(refX,refY,150);focusAxis='Z';
  for(const o of allMeshes){
   if(!o.geometry.boundingBox)o.geometry.computeBoundingBox();
@@ -234,7 +242,7 @@ $('#focusZ').onclick=()=>{
  camera.position.copy(target).add(new THREE.Vector3(.11,.05,.13));controls.update();
  callout.textContent='Zガイド · ベッド150 mm下降（周辺を透過）';callout.style.display='block';
 };
-$('#releaseSwitch').onclick=()=>{stop();if(focusAxis==='Z')focusSwitch('X');const a=focusAxis==='Y'?'Y':'X',r=registration.switches[a];setPose(a==='X'?r.first_contact_display_coordinate_mm-1:refX,a==='Y'?r.first_contact_display_coordinate_mm-1:360,current.z);marker.visible=false;callout.textContent=a+'スイッチ · 押下直前（1 mm手前）';};
+$('#releaseSwitch').onclick=()=>{program?.invalidate();stop();if(focusAxis==='Z')focusSwitch('X');const a=focusAxis==='Y'?'Y':'X',r=registration.switches[a];setPose(a==='X'?r.first_contact_display_coordinate_mm-1:refX,a==='Y'?r.first_contact_display_coordinate_mm-1:360,current.z);marker.visible=false;callout.textContent=a+'スイッチ · 押下直前（1 mm手前）';};
 $('#panels').onchange=e=>{for(const p of panes)p.visible=e.target.checked};
 $('#head').onchange=()=>{showHead();setPose(current.x,current.y,current.z)};
 $('#cables').onchange=()=>setPose(current.x,current.y,current.z);
