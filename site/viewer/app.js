@@ -1,4 +1,5 @@
 import {loadMonolithMachines} from './monolith-machine.js?v=monolith-machine-1';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=monolith-machine-1';
 import {bankBedReferenceDrop} from './changer-bank-model.mjs?v=monolith-machine-1';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=public-v24';
 import * as THREE from 'three';
@@ -122,7 +123,9 @@ function leverPose(axis,value,dx,dy){
 function setPose(x,y,z){
  renderRequested=true;
  const bedReferenceDrop=bankBedReferenceDrop(catalog,catalog.bank_data,installedHeads?.bankState,activeConfig),zMax=230-Math.max(0,bedReferenceDrop);
- x=clamp(x,0,350);y=clamp(y,0,360);z=clamp(z,0,zMax);current={x,y,z};$('#z').max=zMax;
+ const limits=monolithDisplayLimits({X:[0,350],Y:[0,360],Z:[0,zMax]},[refX,refY,0],activeConfig);
+ x=clamp(x,...limits.X);y=clamp(y,...limits.Y);z=clamp(z,...limits.Z);current={x,y,z};
+ for(const a of ['x','y','z']){const range=limits[a.toUpperCase()];$('#'+a).min=range[0];$('#'+a).max=range[1]}
  const dx=x-refX,dy=y-refY;
  const bedDown=z+bedReferenceDrop;
  for(const o of moving.y)o.position.z=-dy/1000;

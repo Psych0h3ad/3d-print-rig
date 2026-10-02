@@ -1,5 +1,5 @@
 {
-  "viewer_version": "public-v24",
+  "viewer_version": "public-v27",
   "sources": [
     {
       "id": "siboor_trident",
@@ -338,11 +338,11 @@
       "author": "Monolith3D",
       "commit": "5b729c2f96bdbd24ea180a80476364727444c038",
       "url": "https://github.com/Monolith3D/Monolith_Gantry/tree/5b729c2f96bdbd24ea180a80476364727444c038",
-      "scope": "250/350 mmガントリー単体。VT/V2・Printed/Sheet metal・6/9 mm・2WD/AWDの32構成。",
+      "scope": "250/300/350 mm、VT/V2、Printed/Sheet metal、6/9 mm、2WD/AWDの48構成。Trident4機種とV2.4の7機種へ固定Sphinx・専用StealthChangerを配置。",
       "license": "CC BY-NC-SA 4.0",
       "license_url": "../licenses/monolith_gantry/LICENSE",
       "license_sha256": "9e502ba75fd0fd30cea5497b438a4bc12f07f02bc932a7a6041fd6a18b8f46a0",
-      "changes": "剛体部品は原寸で配置。レール穴周期を保持して長さを変更。原本の切断端を残して2 mm周期の独立した歯列表示を追加。歯形は可視化用で製造仕様ではありません。",
+      "changes": "剛体部品は原寸で配置。梁の断面とレール穴周期を保持して長さを変更。ネジは実測した各穴軸へ配置。V2のYガイド位置とNP後梁のM5/Tスロット基準を登録。ガイドのレール内包含からヘッド別XYZ表示範囲を計算。可動ベルトは原本経路を保つ滑らかな帯で、クランプ内部・歯・張力・全域干渉・ドッキングは未検証。",
       "notice": "ガントリーの設計データはCC BY-NC-SA 4.0。別リポジトリのクランプはGPL-3.0。ビューアーコードのGPLを全モデルへ一括適用しません。"
     },
     {
@@ -1130,6 +1130,10 @@
     {
       "label": "Trident 250 / 300 native sources",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v24/viewer-trident-size-sources.zip"
+    },
+    {
+      "label": "Monolith 300 mm assemblies and machine mounting datums",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v27/viewer-monolith-sources.zip"
     }
   ]
 }

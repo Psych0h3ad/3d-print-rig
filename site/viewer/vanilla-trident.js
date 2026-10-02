@@ -1,4 +1,5 @@
 import {loadMonolithMachines,stockGantryVisibility} from './monolith-machine.js?v=monolith-machine-1';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=monolith-machine-1';
 import {bankBedReferenceDrop} from './changer-bank-model.mjs?v=monolith-machine-1';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=public-v24';
 import {appearanceRole} from './appearance-role.mjs?v=public-v24';
@@ -26,7 +27,7 @@ const $=s=>document.querySelector(s),stage=$('#stage'),renderer=new THREE.WebGLR
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor('#edf1f4');renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.2;stage.append(renderer.domElement);
 const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(38,1,.005,10),controls=new OrbitControls(camera,renderer.domElement);
 camera.position.set(.98,.83,1.4);controls.target.set(0,.22,0);controls.update();
-let pending=false,frames=0,motion,catalog,profile,current,active,accessories,installedHeads,toolBank,gantryVisibility;
+let pending=false,frames=0,motion,catalog,profile,originalLimits,current,active,accessories,installedHeads,toolBank,gantryVisibility;
 const cached=new Map(),meshes=[],palette={base:'#24272c',accent:'#e32636',frame:'#25282d'};
 function render(){if(pending)return;pending=true;requestAnimationFrame(()=>{pending=false;renderer.render(scene,camera);document.body.dataset.renderedFrames=++frames})}
 setupGrid(scene,render);
@@ -52,13 +53,16 @@ async function asset(id){if(cached.has(id))return cached.get(id);
  }).catch(e=>{cached.delete(id);throw e});cached.set(id,promise);return promise;
 }
 function applyPose(){if(!motion)return;
+ const reference=active?.machine_gantry?[...active.machine_head.nozzle_mm.slice(0,2).map((n,i)=>n-active.machine_gantry.bed_min_xy_mm[i]),0]:profile.display_reference_xyz_mm;
+ profile.display_limits_mm=monolithDisplayLimits(originalLimits||profile.display_limits_mm,reference,active);
+ for(const a of ['x','y','z']){const range=profile.display_limits_mm[a.toUpperCase()];$('#'+a).min=range[0];$('#'+a).max=range[1]}
  const selected=accessories?.getExtras().accessories||[];
  const bedReferenceDrop=bankBedReferenceDrop(catalog,catalog.bank_data,installedHeads?.bankState,active);motion.setBedReferenceDrop(bedReferenceDrop);
  const zMax=Math.min(profile.display_limits_mm.Z[1],...selected.map(id=>catalog.accessories.find(a=>a.id===id).z_max_mm??profile.display_limits_mm.Z[1]))-Math.max(0,bedReferenceDrop);
  $('#z').max=zMax;if(Number($('#z').value)>zMax)$('#z').value=zMax;
  current=motion.setPose({x:$('#x').value,y:$('#y').value,z:$('#z').value},{flexibleVisible:$('#belts').checked,toolheadReference:!active?.machine_head});
  installedHeads?.setDelta([current.dx,current.dy,0]);installedHeads?.gantry.setFlexibleVisible($('#belts').checked);gantryVisibility?.update();
- for(const a of ['x','y','z'])$('#'+a+'v').textContent=current[a].toFixed(1)+' mm';
+ for(const a of ['x','y','z']){$('#'+a).value=current[a];$('#'+a+'v').textContent=current[a].toFixed(1)+' mm'}
  document.body.dataset.pose=JSON.stringify(current);document.body.dataset.zGuidePositions=JSON.stringify(profile.z_guide_block_keys.map(k=>{const entry=[...motion.entries].find(([mesh,{row}])=>row.key===k);return entry?.[0].position.toArray()}));
  $('#motionStatus').textContent='ベッド・サーミスタ・3Zガイドが下降に追従'+(selected.some(id=>(catalog.accessories.find(a=>a.id===id).z_max_mm??250)<250)?' · ベッドファン装着時はZ 230 mmまで':'')+'。XYベルトは滑らかな経路表示。ベッドチェーンは20リンクが追従。歯・テンションの再現は未対応。';if(Math.abs(bedReferenceDrop)>.001)$('#motionStatus').append(Object.assign(document.createElement('span'),{textContent:` · ベッド基準位置の移動 ${(-bedReferenceDrop).toFixed(2)} mm`}));document.body.dataset.bedReferenceDropMm=bedReferenceDrop.toFixed(6);render();
 }
@@ -81,6 +85,7 @@ async function install(variant){const plan=headPlan(variant),required=variant.ma
 try{
  const getJSON=async path=>{const r=await fetch('../'+path,{cache:'no-cache'});if(!r.ok)throw Error(path);return r.json()};
  [profile,catalog]=await Promise.all([getJSON(`machines/${machine}/machine_profile.json`),getJSON(`machines/${machine}/configurations.json`)]);
+ originalLimits=JSON.parse(JSON.stringify(profile.display_limits_mm));
  const headData=await loadMachineHeadCatalog();catalog=await loadMonolithMachines(expandedPrinterCatalog(withFrameMods(catalog,frameMods),headData.heads,headData.registry,machine),headData);catalog.bank_data=headData.bank;installedHeads=createMachineHeads(scene,{...catalog,base_assets:headData.heads.base_assets},{render});ensureMachineHeadControls({gantry:true,monolithUnavailable:catalog.monolith_unavailable});motion=createTridentMotion(profile);const [base,g]=await Promise.all([getJSON(profile.base_assets.meta),loadModel(new GLTFLoader(),'../'+profile.base_assets.glb)]);scene.add(g.scene);register(g.scene,base);gantryVisibility=stockGantryVisibility(new Map(meshes.map(r=>[r.key,r.mesh])));
  for(const [i,a] of ['x','y','z'].entries()){const limits=profile.display_limits_mm[a.toUpperCase()];$('#'+a).min=limits[0];$('#'+a).max=limits[1];$('#'+a).value=profile.display_reference_xyz_mm[i];$('#'+a).disabled=false;$('#'+a).oninput=applyPose}
  $('#reset').disabled=false;$('#reset').onclick=()=>{for(const [i,a] of ['x','y','z'].entries())$('#'+a).value=profile.display_reference_xyz_mm[i];applyPose()};

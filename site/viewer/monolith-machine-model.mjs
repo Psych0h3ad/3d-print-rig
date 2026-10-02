@@ -54,10 +54,12 @@ export function monolithConfigurationRequest(catalog,search){
 }
 
 export function monolithDisplayLimits(original,reference,variant){
- const limits=clone(original),range=variant?.machine_gantry?.z_delta_limits_mm;
- if(!range)return limits;
- if(range.length!==2||!range.every(Number.isFinite)||range[0]>range[1])throw Error('MonolithのZガイド可動範囲が不正です');
- limits.Z=[Math.max(original.Z[0],reference[2]+range[0]),Math.min(original.Z[1],reference[2]+range[1])];
- if(limits.Z[0]>limits.Z[1])throw Error('このヘッドとZジョイントでは機体の表示範囲に届きません');
+ const limits=clone(original);
+ for(const [i,axis]of ['X','Y','Z'].entries()){
+  const range=variant?.machine_gantry?.[axis.toLowerCase()+'_delta_limits_mm'];if(!range)continue;
+  if(range.length!==2||!range.every(Number.isFinite)||range[0]>range[1])throw Error('Monolithの'+axis+'ガイド可動範囲が不正です');
+  limits[axis]=[Math.max(original[axis][0],reference[i]+range[0]),Math.min(original[axis][1],reference[i]+range[1])];
+  if(limits[axis][0]>limits[axis][1])throw Error('このヘッドとガイドでは機体の表示範囲に届きません');
+ }
  return limits;
 }

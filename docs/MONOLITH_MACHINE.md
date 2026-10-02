@@ -32,6 +32,8 @@ The machine registration contract is:
       "stock_hidden_keys": [],
       "bed_min_xy_mm": [0, 0],
       "datum_checks": {},
+      "x_delta_limits_mm": [-170, 170],
+      "y_delta_limits_mm": [-180, 165],
       "z_delta_limits_mm": [-40, 240],
       "hidden_module_keys": [],
       "part_offsets_mm": {},
@@ -47,9 +49,12 @@ from Monolith's native assembly coordinates into machine CAD coordinates.
 `bed_min_xy_mm` is required for Trident's display coordinates. Optional
 `gantry_ids` limits choices; omit it to expose all matching native assemblies.
 Optional `gantries[id]` overrides machine registration fields per configuration.
-`z_delta_limits_mm` bounds V2 gantry displacement from the registered reference
-pose. The head nozzle offset converts those stops to display Z limits; the
-slider, adapter and G-code preview use the same restricted range.
+`x_delta_limits_mm` and `y_delta_limits_mm` keep complete bearing blocks inside
+their native rails. `z_delta_limits_mm` bounds V2 gantry displacement from the
+registered reference pose, retaining all eight blocks. The actual head nozzle
+offset converts these stops to display coordinates. Sliders and adapters use
+the same restricted ranges; V2 G-code preview uses the adapter's limits.
+Changing back to a stock gantry restores the original machine limits.
 `stock_hidden_keys` must include the replaced head, XY assembly and, for V2,
 the original Z joints/blocks that are replaced by Monolith's double joints.
 `hidden_module_keys` can omit native reference frame members when the machine
@@ -78,8 +83,12 @@ bundled [license](../site/licenses/monolith_gantry/LICENSE).
 `node scripts/test_monolith_machine.mjs` checks native open belt routes at 864
 poses, constant path length, closed strip topology, widths, native arc radii,
 head endpoints, catalog filtering, fixed/SC switching, saved configurations,
-builder links and individual bearing motion. The 300 mm route test validates
-the motion algorithm; it does not create or certify a 300 mm native assembly.
+builder links and individual bearing motion. Native 300 mm assemblies extend
+constant frame sections and repeat full rail-hole periods; Y rail ends are
+trimmed equally to 350 mm with 20 mm hole pitch. Original fasteners occupy each
+measured hole axis. Native mating planes/axes, NP rear-drive screw/T-slot
+registration and guide containment are verified separately in the matching
+model-source archive.
 
 `node --experimental-loader ./scripts/three-test-loader.mjs
 scripts/audit_monolith_motion.mjs ASSET_BUNDLE OVERLAY REPORT` exercises the

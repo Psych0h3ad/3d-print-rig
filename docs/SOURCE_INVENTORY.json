@@ -60,8 +60,8 @@
     },
     {
       "path": "docs/MONOLITH_MACHINE.md",
-      "bytes": 4472,
-      "sha256": "20bdf643225f4eb97ac39f603b606a2472c91ba5e2ae5202601c13620fdcbc1e"
+      "bytes": 5036,
+      "sha256": "36caee7c1ab0088fb5dc6220fd79248c03b4c8cb9b64892fd6c007da4a3d63ee"
     },
     {
       "path": "docs/MOTION_AUDIT.md",
@@ -310,8 +310,8 @@
     },
     {
       "path": "scripts/test_monolith_machine.mjs",
-      "bytes": 6923,
-      "sha256": "44b6e51d07da7ff0fba9db0fc35829861f482c856bcde8761a181ea3dfdb7c1d"
+      "bytes": 7450,
+      "sha256": "a09fc4814d76c3ae7f1502a09fb998b27eb129ea38e4e8fbe75bba4de54a2bf2"
     },
     {
       "path": "scripts/test_probe_clearance.mjs",
@@ -381,7 +381,7 @@
     {
       "path": "site/ASSET_BUNDLE.json",
       "bytes": 229,
-      "sha256": "75065599a25bb8d7d8802de3c604397b6d8f36e50585782c2d23664f1314df6c"
+      "sha256": "d4701c6b911e7fbeaab469a78157d425f5d321f1bc5d1da1e8e70bcb27e7af32"
     },
     {
       "path": "site/MOD_REGISTRY.json",
@@ -390,8 +390,8 @@
     },
     {
       "path": "site/PUBLIC_CATALOG.json",
-      "bytes": 74468,
-      "sha256": "26c0a94ffa55459b894d2b6831ea3877a0a2c1dd3f46237aabc555035be3ce62"
+      "bytes": 74936,
+      "sha256": "511051cfd15d7864ab774cef51f2cc59373371fb49dc5b1415c7e671e0cbce86"
     },
     {
       "path": "site/index.html",
@@ -840,8 +840,8 @@
     },
     {
       "path": "site/viewer/app.js",
-      "bytes": 28054,
-      "sha256": "081b61b04e04f207ca952c115abec2eb4c85911cd90c022846613354f8e8412d"
+      "bytes": 28353,
+      "sha256": "338634c96b8a6954e83e5fd630cde3ac3d19ca46cc74fc192018f9dfe92bce66"
     },
     {
       "path": "site/viewer/appearance-role.mjs",
@@ -1080,8 +1080,8 @@
     },
     {
       "path": "site/viewer/monolith-machine-model.mjs",
-      "bytes": 4229,
-      "sha256": "41efe50afb0ac32341ea075c86497a6bc379aa8c2896d3695b1905fe5e03932f"
+      "bytes": 4327,
+      "sha256": "c0008e1853d2cedddf14a766b65da0c58d52c39ca40e676cbdbf8d13f697eb45"
     },
     {
       "path": "site/viewer/monolith-machine.js",
@@ -1235,8 +1235,8 @@
     },
     {
       "path": "site/viewer/vanilla-trident.js",
-      "bytes": 13300,
-      "sha256": "0202fc2319bafd07b1d09a0b3d24e2546fa836ebc7d867dc8f46aaa8953bf038"
+      "bytes": 13918,
+      "sha256": "a1ec203ce70477b60d20a8f4bd3a84d73a724448b90790c6aa35604a74738c50"
     },
     {
       "path": "site/viewer/vendor/BufferGeometryUtils.js",
