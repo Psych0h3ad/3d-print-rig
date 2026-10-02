@@ -1,4 +1,4 @@
-import {catalogDimensions,collections,resolveVariant,choicesFor,importedVariant} from './configuration-model.js?v=heads-v11';
+import {catalogDimensions,collections,resolveVariant,choicesFor,importedVariant} from './configuration-model.js?v=heads-v13';
 import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=clearance-v1';
 
 export async function setupConfigurations(catalog,install,{presentation='printer',getExtras=()=>({}),applyExtras=async()=>{},validateExtras=()=>{}}={}){
@@ -32,6 +32,7 @@ export async function setupConfigurations(catalog,install,{presentation='printer
   if(check.warning)$('#configStatus').textContent+=' ／ '+check.label;$('#configStatus').classList.toggle('notice',check.warning);
   if(v.fit?.carriage_native_body_passed===false){$('#configStatus').textContent='比較用の試着 · 本体干渉あり · 6 mm';$('#configStatus').classList.add('notice')}
   const native=v.fit?.complete_head_native;
+  if(v.display_scope){$('#configStatus').textContent='参照CADの切替済み';rows.push(v.display_scope);$('#configStatus').classList.add('notice')}
   if(native){
    const label={collision:'CAD干渉あり · 比較用',contact:'CADに微小な交差あり',clear:'検査姿勢の本体交差なし',reference:'原本組立 · 接続未検証'}[native.state];
    $('#configStatus').textContent+=' ／ '+label;$('#configStatus').classList.toggle('notice',check.warning||native.state!=='clear');

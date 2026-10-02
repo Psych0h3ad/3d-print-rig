@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=bundle-v2';
-import {setupPublicInfo} from './public-info.js?v=public-v12';
+import {setupPublicInfo} from './public-info.js?v=public-v13';
 import {setupRenderExport} from './render-export.js';
 import {changerDimensions,changerChoice,changerChoices,changerPlacement} from './toolchanger-model.js';
 const $=s=>document.querySelector(s),stage=$('#stage'),scene=new THREE.Scene(),bench=new THREE.Group();scene.add(bench);scene.background=new THREE.Color('#edf1f5');

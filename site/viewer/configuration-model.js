@@ -1,5 +1,5 @@
 export const dimensions=['gantry','toolhead','carriage','hotend','extruder','probe'];
-export const collections={gantry:'gantries',toolhead:'toolheads',mount:'mounts',carriage:'carriages',hotend:'hotends',extruder:'extruders',probe:'probes'};
+export const collections={gantry:'gantries',toolhead:'toolheads',mount:'mounts',carriage:'carriages',hotend:'hotends',extruder:'extruders',probe:'probes',board:'boards',cooling:'cooling_options'};
 export const catalogDimensions=catalog=>catalog.dimensions||dimensions;
 
 // The changed choice has priority; all results must have installed CAD.

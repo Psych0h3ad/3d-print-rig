@@ -2,10 +2,10 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=bundle-v2';
-import {setupConfigurations} from './configurations.js?v=heads-v11';
-import {setupPublicInfo} from './public-info.js?v=public-v12';
+import {setupConfigurations} from './configurations.js?v=heads-v13';
+import {setupPublicInfo} from './public-info.js?v=public-v13';
 import {setupRenderExport} from './render-export.js';
-import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=heads-v11';
+import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=heads-v13';
 import {probeCheck,probeMetrics,probeGuide} from './probe-checks.js?v=clearance-v1';
 
 const $=s=>document.querySelector(s),stage=$('#stage'),scene=new THREE.Scene();
@@ -84,12 +84,13 @@ const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);
 function clearGuide(group){for(const child of [...group.children]){child.geometry?.dispose();for(const material of (Array.isArray(child.material)?child.material:[child.material]))material?.dispose();group.remove(child)}}
 function inspection(variant){
  currentVariant=variant;const check=probeCheck(variant),guide=probeGuide(variant),p=variant.fit?.probe;
+ $('#assemblyScope').hidden=!variant.display_scope;$('#assemblyScope').textContent=variant.display_scope||'';
  const carriageConflict=variant.fit?.carriage_native_body_passed===false;
  $('#inspectionState').textContent=carriageConflict?'キャリッジ試着：本体干渉あり':check.label;$('#inspectionState').dataset.state=carriageConflict?'carriage-conflict':check.state;$('#inspectionState').classList.toggle('notice',check.warning||carriageConflict);
  $('#probeMetrics').replaceChildren(...probeMetrics(variant).flatMap(([label,value])=>{const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=label;dd.textContent=value;return [dt,dd]}));
  const native=variant.fit?.complete_head_native;
  if(native){$('#inspectionState').textContent={collision:'本体干渉あり · 比較用',contact:'原本CADに微小な交差あり',clear:'検査姿勢の本体交差なし',reference:'原本組立 · 接続未検証'}[native.state];$('#inspectionState').dataset.state=native.state;$('#inspectionState').classList.toggle('notice',native.state!=='clear')}
- const notes=[...check.lines,...(native?.notes||[]),...(variant.fit?.carriage_native_body_collisions||[]).map(c=>`${c.label}：交差体積 ${c.volume_mm3.toFixed(3)} mm³。ピンクの部分は元CADの交差形状。`)];if(!p&&!notes.length)notes.push('このキャリッジ・ホットエンドに登録済みのプローブから選択できます。未検証のマウントは表示しません。');
+ const notes=[...check.lines,...(native?.notes||[]),...(native?.body_collisions||[]).map(c=>`${c.a_name} / ${c.b_name}：交差体積 ${c.overlap_mm3.toFixed(3)} mm³。`),...(variant.fit?.carriage_native_body_collisions||[]).map(c=>`${c.label}：交差体積 ${c.volume_mm3.toFixed(3)} mm³。ピンクの部分は元CADの交差形状。`)];if(!p&&!notes.length&&!variant.display_scope)notes.push('このキャリッジ・ホットエンドに登録済みのプローブから選択できます。未検証のマウントは表示しません。');
  if(variant.mount==='stealthchanger')notes.unshift('StealthChangerのOptoTap式プローブ機構を表示。スライダーでヘッド・バックプレートを一緒に0–3 mm動かせます。');
  if(p?.metal_keepout_verified===true&&!p.metal_keepout_collisions?.length)notes.push('基準姿勢の本体干渉・コイル高さ・金属除外領域を確認済み。');
  $('#inspectionNotes').replaceChildren(...notes.map(note=>{const li=document.createElement('li');li.textContent=note;return li}));
@@ -141,11 +142,11 @@ async function install(variant){
   for(const module of plan.modules){const a=await asset(module.id),hidden=new Set(module.hidden_keys||[]);a.root.position.copy(point(module.translation_mm));a.root.visible=true;for(const r of a.meshes)r.mesh.visible=!hidden.has(r.key)}
   if(variant.inspection_module){const a=await asset(variant.inspection_module);a.root.position.set(0,0,0);a.root.visible=true;for(const row of a.meshes){row.mesh.renderOrder=20;for(const material of row.materials){material.depthTest=false;material.depthWrite=false;material.transparent=true;material.opacity=.82}}}
   currentVariant=variant;$('#headProbeTravel').value=0;$('#headExplode').value=0;
-  $('#changerControls').hidden=variant.mount==='fixed';$('#headProbeTravel').disabled=variant.mount!=='stealthchanger';$('#headExplode').disabled=variant.mount!=='stealthchanger';changerDisplay();
+ $('#changerControls').hidden=!['stealthchanger','tapchanger','indx'].includes(variant.mount);$('#headProbeTravel').disabled=variant.mount!=='stealthchanger';$('#headExplode').disabled=variant.mount!=='stealthchanger';changerDisplay();
   appearance();inspection(variant);visibleBounds();ready=true;fit();
   const count=[plan.base,...plan.modules.map(m=>m.id)].reduce((n,id)=>{const a=cached.get(id).loaded;return n+(a.root.visible?a.meshes.filter(r=>r.mesh.visible).length:0)},0);
   Object.assign(document.body.dataset,{variant:variant.id,headParts:String(count),headAssets:JSON.stringify(ids),assetStatus:'ready'});
-  const link=new URL('./',location.href);link.searchParams.set('configuration',variant.id);$('#printerLink').href=link;$('#printerLink').hidden=!!variant.head_only;
+  const link=new URL('./',location.href);if(!variant.head_only)link.searchParams.set('configuration',variant.id);$('#printerLink').href=link;$('#printerLink').hidden=false;$('#printerLink').textContent=variant.head_only?'マシンを見る':'プリンター全体';
  }finally{$('#loading').hidden=true}
 }
 function changerDisplay(){

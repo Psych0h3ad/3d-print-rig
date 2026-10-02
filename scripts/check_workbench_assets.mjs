@@ -7,7 +7,7 @@ import {headPlan,headPlacement} from '../site/viewer/head-assembly.js';
 import {changerDimensions,changerChoice,changerChoices,changerPlacement} from '../site/viewer/toolchanger-model.js';
 const root=path.resolve(process.argv[2]||'site'),read=async f=>JSON.parse(await readFile(path.join(root,f),'utf8'));
 const gantries=await read('GANTRY_CONFIGURATIONS.json'),heads=await read('TOOLHEAD_CONFIGURATIONS.json'),library=await read('COMPONENT_LIBRARY.json'),changers=await read('TOOLCHANGER_CONFIGURATIONS.json');
-assert.equal(gantries.variants.length,32);assert.equal(heads.variants.length,594);assert.equal(heads.toolheads.length,4);assert.equal(heads.extruders.length,10);assert.equal(library.items.length,41);assert.equal(changers.variants.length,43);
+assert.equal(gantries.variants.length,32);assert.equal(heads.variants.length,692);assert.equal(heads.toolheads.length,10);assert.equal(heads.extruders.length,13);assert.equal(library.items.length,46);assert.equal(changers.variants.length,43);
 for(const catalog of [gantries,heads,library,changers])for(const asset of Object.values(catalog.assets)){await access(path.join(root,asset.meta));try{await access(path.join(root,asset.glb))}catch{await access(path.join(root,asset.glb+'.gz'))}const meta=await read(asset.meta);assert(meta.parts.length>0)}
 let gantryTransitions=0;
 for(const v of gantries.variants){
@@ -39,6 +39,28 @@ for(const head of heads.toolheads)assert(heads.variants.some(v=>v.toolhead===hea
 for(const extruder of heads.extruders)assert(heads.variants.some(v=>v.extruder===extruder.id));
 assert.equal(heads.variants.filter(v=>v.mount==='stealthchanger').length,196);
 assert.equal(heads.variants.filter(v=>v.mount==='tapchanger').length,3);
-console.log(JSON.stringify({monolith_assemblies:32,toolchanger_assemblies:43,head_variants:heads.variants.length,complete_stealthchanger_heads:196,complete_tapchanger_source_assemblies:3,library_items:41,gantry_choice_transitions:gantryTransitions,head_choice_transitions:transitions,toolchanger_choice_transitions:changerTransitions,browser_ui_review:false}));
+console.log(JSON.stringify({monolith_assemblies:32,toolchanger_assemblies:43,head_variants:heads.variants.length,complete_stealthchanger_heads:196,complete_tapchanger_source_assemblies:3,library_items:library.items.length,gantry_choice_transitions:gantryTransitions,head_choice_transitions:transitions,toolchanger_choice_transitions:changerTransitions,browser_ui_review:false}));
 
-let machineCount=0,machineParts=0;for(const file of ['V0_MACHINES.json','V24_MACHINES.json']){const registry=await read(file);for(const m of registry.machines){const meta=await read(m.meta),profile=await read(m.profile);assert.equal(meta.machine_id,m.id);assert.equal(profile.machine_id,m.id);assert(meta.parts.length>1000);try{await access(path.join(root,m.glb))}catch{await access(path.join(root,m.glb+'.gz'))}machineCount++;machineParts+=meta.parts.length}}assert.equal(machineCount,8);assert.equal(machineParts,11611);console.log(JSON.stringify({new_machine_references:machineCount,native_machine_parts:machineParts}));
+let machineCount=0,machineParts=0,railMounts=0;
+const frameForRail={298:299,414:415,440:441,1074:1075,1093:1094,1112:1113,1131:1132};
+for(const file of ['V0_MACHINES.json','V24_MACHINES.json','KIT_MACHINES.json']){
+ const registry=await read(file);
+ for(const m of registry.machines){
+  const meta=await read(m.meta),profile=await read(m.profile);assert.equal(meta.machine_id,m.id);assert.equal(profile.machine_id,m.id);assert(meta.parts.length>1000);
+  try{await access(path.join(root,m.glb))}catch{await access(path.join(root,m.glb+'.gz'))}
+  if(file==='V24_MACHINES.json'){
+   const rows=new Map(meta.parts.map(r=>[r.key,r]));let count=0;
+   for(const nut of meta.parts.filter(r=>r.key.includes('_tnut_'))){
+    const [,rail,index]=nut.key.match(/^v24_rail(\d+)_tnut_(\d+)$/),railKey=`v24_${rail.padStart(5,'0')}`,frameKey=`v24_${String(frameForRail[rail]).padStart(5,'0')}`,boltKey=`v24_rail${rail}_bolt_${index}`;
+    assert(nut.name.includes('M3'));assert.equal(nut.rail_mount?.thread,'M3');assert.equal(nut.rail_mount.rail_key,railKey);assert.equal(nut.rail_mount.bolt_key,boltKey);
+    assert.equal(nut.method,'native_m3_nut_registered_to_rail_screw');assert.deepEqual(nut.motion_axes,rows.get(railKey).motion_axes);assert.deepEqual(nut.motion_axes,rows.get(boltKey).motion_axes);
+    const frame=rows.get(frameKey);for(let a=0;a<3;a++){assert(nut.bounds_mm[0][a]>=frame.bounds_mm[0][a]-.001);assert(nut.bounds_mm[1][a]<=frame.bounds_mm[1][a]+.001)}
+    count++;
+   }
+   assert.equal(count,{250:54,300:61,350:68}[m.size_mm]);railMounts+=count;
+  }
+  machineCount++;machineParts+=meta.parts.length;
+ }
+}
+assert.equal(machineCount,9);assert.equal(machineParts,12999);assert.equal(railMounts,366);
+console.log(JSON.stringify({new_machine_references:machineCount,native_machine_parts:machineParts,registered_M3_rail_mounts:railMounts}));

@@ -1,5 +1,5 @@
 {
-  "viewer_version": "public-v12",
+  "viewer_version": "public-v13",
   "sources": [
     {
       "id": "siboor_trident",
@@ -620,7 +620,138 @@
       "license_url": "../licenses/ldo_cnc_awd/LICENSE",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
       "version": "Pinned native drive CAD with size-specific assembly",
-      "changes": "Sections, rail pitch periods and individual plate dimensions adjusted; rigid hardware translated without whole-machine scaling. Kit identity and continuous swept clearance remain unverified."
+      "changes": "Size-specific native assemblies; all seven rail mounting sets use native M3 nuts registered to the screws and the extrusion slots behind the rails. Coaxial alignment, thread engagement, containment, native intersections and matching motion axes are verified per assembly. Kit identity and continuous swept clearance remain unverified."
+    },
+    {
+      "id": "lineux",
+      "label": "3dfiyMyLife/Lineux-Toolchanger",
+      "repository": "3dfiyMyLife/Lineux-Toolchanger",
+      "author": "3dfiyMyLife",
+      "commit": "033836a9984ec543c6bb61394352f6f029d251c0",
+      "url": "https://github.com/3dfiyMyLife/Lineux-Toolchanger/tree/033836a9984ec543c6bb61394352f6f029d251c0",
+      "license": "GPL-3.0 (Lineux printed parts); embedded original component terms",
+      "license_url": "../licenses/lineux/LICENSE",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "scope": "Tiga native head assemblies and original dedicated extruder brackets; older incompatible carrier is not attached. Archived Dragon Burner v36 remains a separate source assembly.",
+      "changes": "Original dimensions retained. Source alternatives selected, display colors and triangle geometry generated. Board placement uses native screw-hole axes; kinematics and printer-wide fit excluded.",
+      "notice": "Embedded extruder, hotend and manufacturer reference CAD retain their individual original licenses and conditions. The Lineux GPL does not replace Annex, Orbiter or manufacturer terms."
+    },
+    {
+      "id": "indx",
+      "label": "BondtechAB/INDX",
+      "repository": "BondtechAB/INDX",
+      "author": "BondtechAB",
+      "commit": "da2036945ca0d09f44704f78f1681497bcca6b48",
+      "url": "https://github.com/BondtechAB/INDX/tree/da2036945ca0d09f44704f78f1681497bcca6b48",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/indx/LICENSE",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "scope": "Official simplified Smart Head, nozzle open/closed references, alternate cooling and external Link.",
+      "changes": "Original dimensions retained. Source alternatives selected, display colors and triangle geometry generated. Board placement uses native screw-hole axes; kinematics and printer-wide fit excluded."
+    },
+    {
+      "id": "sphinx",
+      "label": "riley-github/Sphinx-Toolhead",
+      "repository": "riley-github/Sphinx-Toolhead",
+      "author": "riley-github",
+      "commit": "74ce5f58fcb06aea2ddcbb48b09610cbbfbfa180",
+      "url": "https://github.com/riley-github/Sphinx-Toolhead/tree/74ce5f58fcb06aea2ddcbb48b09610cbbfbfa180",
+      "license": "CC-BY-NC-SA-4.0",
+      "license_url": "../licenses/sphinx/LICENSE",
+      "license_sha256": "9e502ba75fd0fd30cea5497b438a4bc12f07f02bc932a7a6041fd6a18b8f46a0",
+      "scope": "tLW printable assemblies only; selected mounting patterns. Hardware not fitted.",
+      "changes": "Original dimensions retained. Source alternatives selected, display colors and triangle geometry generated. Board placement uses native screw-hole axes; kinematics and printer-wide fit excluded."
+    },
+    {
+      "id": "chirpy_heads",
+      "label": "chirpy2605/voron",
+      "repository": "chirpy2605/voron",
+      "author": "chirpy2605",
+      "commit": "cc2e749d09d7f24418f9f8c73c90bcefb1e29584",
+      "url": "https://github.com/chirpy2605/voron/tree/cc2e749d09d7f24418f9f8c73c90bcefb1e29584",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/chirpy_heads/LICENSE",
+      "license_sha256": "605e9047a563c5c8396ffb18232aa4304ec56586aee537c45064c6fb425e44ad",
+      "scope": "Selected Dragon Burner v8, Rapid Burner v8 and Yavoth v1 printable assemblies; hardware not fitted.",
+      "changes": "Original dimensions retained. Source alternatives selected, display colors and triangle geometry generated. Board placement uses native screw-hole axes; kinematics and printer-wide fit excluded."
+    },
+    {
+      "id": "ebb36",
+      "label": "bigtreetech/EBB",
+      "repository": "bigtreetech/EBB",
+      "author": "bigtreetech",
+      "commit": "2b839d629b174dc1da4f470cd703e5b5fcb43cbe",
+      "url": "https://github.com/bigtreetech/EBB/tree/2b839d629b174dc1da4f470cd703e5b5fcb43cbe",
+      "license": "Explicit repository license not found",
+      "license_url": "../licenses/ebb36/README.md",
+      "license_sha256": "ee600543a2cf419a466ba15673dec6bd56c9b3ffa1423d4fb0f400c67468e3dc",
+      "scope": "EBB36 CAN V1.1 native PCB and components.",
+      "changes": "Original dimensions retained. Source alternatives selected, display colors and triangle geometry generated. Board placement uses native screw-hole axes; kinematics and printer-wide fit excluded."
+    },
+    {
+      "id": "h36_v13",
+      "label": "FYSETC/H36_Combo",
+      "repository": "FYSETC/H36_Combo",
+      "author": "FYSETC",
+      "commit": "02d45de847669560eeac9b83d0ee8fc5d6876733",
+      "url": "https://github.com/FYSETC/H36_Combo/tree/02d45de847669560eeac9b83d0ee8fc5d6876733",
+      "license": "Explicit repository license not found",
+      "license_url": "../licenses/h36_v13/README.md",
+      "license_sha256": "98ba98c96a0cbda7b9b5bb57ff74a6d7ebb94d6243088ad565b33299af5aa265",
+      "scope": "H36 V1.3 native PCB and components.",
+      "changes": "Original dimensions retained. Source alternatives selected, display colors and triangle geometry generated. Board placement uses native screw-hole axes; kinematics and printer-wide fit excluded."
+    },
+    {
+      "id": "h36_v2",
+      "label": "FYSETC/H36_Combo_V2",
+      "repository": "FYSETC/H36_Combo_V2",
+      "author": "FYSETC",
+      "commit": "b4a081d3550016eb35b675a9869c067e01315675",
+      "url": "https://github.com/FYSETC/H36_Combo_V2/tree/b4a081d3550016eb35b675a9869c067e01315675",
+      "license": "Explicit repository license not found",
+      "license_url": "../licenses/h36_v2/README.md",
+      "license_sha256": "5e503b9809f995980a1200d573762a9a10bf6d3fd90c64a9d1e247807774c01c",
+      "scope": "H36 V2.0 native PCB and components.",
+      "changes": "Original dimensions retained. Source alternatives selected, display colors and triangle geometry generated. Board placement uses native screw-hole axes; kinematics and printer-wide fit excluded."
+    },
+    {
+      "id": "nh36",
+      "label": "MotorDynamicsLab/Nitehawk-36",
+      "repository": "MotorDynamicsLab/Nitehawk-36",
+      "author": "MotorDynamicsLab",
+      "commit": "feae221a011b71557e052a52fef90ecce21b2477",
+      "url": "https://github.com/MotorDynamicsLab/Nitehawk-36/tree/feae221a011b71557e052a52fef90ecce21b2477",
+      "license": "Explicit repository license not found",
+      "license_url": "../licenses/nh36/README.md",
+      "license_sha256": "73f90b59560a3d1414398943628f51779f193f6bd2c2912307bea1fee50abdf1",
+      "scope": "Nitehawk-36 V1.4 native PCB and components.",
+      "changes": "Original dimensions retained. Source alternatives selected, display colors and triangle geometry generated. Board placement uses native screw-hole axes; kinematics and printer-wide fit excluded."
+    },
+    {
+      "id": "fysetc_v24_pro",
+      "label": "FYSETC/FYSETC-VORON-2.4-R2-Pro",
+      "repository": "FYSETC/FYSETC-VORON-2.4-R2-Pro",
+      "author": "FYSETC",
+      "commit": "32e1a2626c3419a95ad026e2280996c576e358c3",
+      "url": "https://github.com/FYSETC/FYSETC-VORON-2.4-R2-Pro/tree/32e1a2626c3419a95ad026e2280996c576e358c3",
+      "license": "Individual original-part licenses / explicit kit CAD license not found",
+      "license_url": "../licenses/fysetc_v24_pro/README.md",
+      "license_sha256": "44858cf89fb437219c5535215dc65af2b8fc29ebcd89b02dd2b42f0f7cb892ab",
+      "scope": "Official full reference CAD at 250 mm. Rigid reference pose only; current kit revision and interactive Mod fit are unverified.",
+      "changes": "Original dimensions retained. Source alternatives selected, display colors and triangle geometry generated. Board placement uses native screw-hole axes; kinematics and printer-wide fit excluded."
+    },
+    {
+      "id": "fysetc_trident",
+      "label": "FYSETC/FYSETC-Voron-Trident",
+      "repository": "FYSETC/FYSETC-Voron-Trident",
+      "author": "FYSETC",
+      "commit": "867e9a3254d2a236f6f6219986824adc8dbf0b9b",
+      "url": "https://github.com/FYSETC/FYSETC-Voron-Trident/tree/867e9a3254d2a236f6f6219986824adc8dbf0b9b",
+      "license": "Reference documentation only",
+      "license_url": "../licenses/fysetc_trident/README.md",
+      "license_sha256": "6636d1c6e60708915ab639608b6c43c399ac99588283912a1466252df7eeb357",
+      "scope": "Repository inspected; complete assembly CAD not found. No substitute geometry registered.",
+      "changes": "Original dimensions retained. Source alternatives selected, display colors and triangle geometry generated. Board placement uses native screw-hole axes; kinematics and printer-wide fit excluded."
     }
   ],
   "defaults": [
@@ -656,7 +787,11 @@
     },
     {
       "label": "V2.4 250・300・350 / R2・LDO CNC AWD",
-      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v12/viewer-v24-sources.zip"
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v13/viewer-v24-sources.zip"
+    },
+    {
+      "label": "Lineux・INDX・追加ヘッド・基板・FYSETC参照",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v13/viewer-head-sources.zip"
     }
   ]
 }

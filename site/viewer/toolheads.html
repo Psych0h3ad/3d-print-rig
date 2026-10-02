@@ -9,6 +9,9 @@
 <label for="gantryConfig">キャリッジ / ベルト幅</label><select id="gantryConfig" disabled></select>
 <label for="carriageConfig">キャリッジ本体</label><select id="carriageConfig" disabled></select>
 <label for="probeConfig">ベッドプローブ</label><select id="probeConfig" disabled></select>
+<label for="boardConfig">ツールヘッド基板</label><select id="boardConfig" disabled></select>
+<label for="coolingConfig">冷却・外装仕様</label><select id="coolingConfig" disabled></select>
+<p class="foot notice" id="assemblyScope" hidden></p>
 <p class="status" id="configStatus" aria-live="polite">CADを読み込み中…</p><p id="configSummary" hidden></p>
 <details id="changerControls" hidden open><summary>交換機構の表示</summary><label for="headProbeTravel">プローブ変位 <output id="headProbeValue">0 mm</output></label><input id="headProbeTravel" type="range" min="0" max="3" step="0.1" value="0"><label for="headExplode">ヘッドを引き離す</label><input id="headExplode" type="range" min="0" max="50" step="1" value="0"><label><input id="headShowDock" type="checkbox">ドックの別組立を表示</label><label><input id="headShowRail" type="checkbox">レール・梁の取付参照を表示</label></details>
 <details open class="inspection-panel"><summary>取付チェック</summary><p id="inspectionState" class="check-state" aria-live="polite"></p><dl id="probeMetrics" class="probe-metrics"></dl><ul id="inspectionNotes" class="foot"></ul>
@@ -19,4 +22,4 @@
 <label><input id="seeInside" type="checkbox">外装を透かして内部を見る</label><p class="foot" id="headPaletteStatus"></p></details>
 <details><summary>マウント・構成</summary><ul class="foot" id="mountInfo"></ul><ul class="foot" id="configRequirements"></ul><div class="buttons"><button id="saveConfiguration">構成を保存</button><button id="loadConfiguration">構成を読み込む</button></div><input id="configurationFile" type="file" accept=".json,application/json" hidden><p class="foot" id="modSources"></p></details>
 </aside><section id="stage" aria-label="ツールヘッドの3Dアセンブリ"><nav class="view-tools" aria-label="視点"><button id="iso">斜め</button><button id="front">正面</button><button id="back">背面</button><button id="side">側面</button><button id="bottom">底面</button><button id="fit">全体を表示</button></nav><div id="loading" role="status">ヘッドのCADを読み込み中…</div><div class="view-meta"><span id="headDimensions"></span><span class="hint">ドラッグ：回転　ホイール：拡大</span></div></section></main>
-<script type="module" src="./toolheads.js?v=public-v12"></script></body></html>
+<script type="module" src="./toolheads.js?v=public-v13"></script></body></html>
