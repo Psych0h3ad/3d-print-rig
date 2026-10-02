@@ -7,9 +7,20 @@ const accents=new Set(['Cable Cover','PCB_Spacer','XY Cable Chain Bridge - 2 Hol
 // LDO replacement aluminium, rail blocks, fans and optical diffusers stay fixed.
 const v24PrintedBase=new Set(['Front Idler A Bottom','Front Idler A Top','Front Idler B Top','Front Idler B Bottom','Z Bearing Block Top','Z Bearing Block Bottom','Z Bearing Block Top HallEffect','Z Belt Drive A','Z Belt Drive B','PSU_Stabilizer','Middle_Fan_Support_','Middle_Fan_Support_ v1(Mirror)','bottom_panel_hinge_x2','Bowden Tube Holder']);
 const v24PrintedAccent=new Set(['Z Belt Clamp Upper','Z Belt Clamp Lower','Belt Tensioner','Belt_Guard','Door Handle A','Door Handle B']);
+// Micron R1 / RC8 native leaves matched to the author's STL library.
+const micronBase=new Set(['A_Drive_Frame_Lower','A_Drive_Frame_Upper','B_Drive_Frame_Lower','B_Drive_Frame_Upper','AB_Drive_Top_Bearing_Retainer','Idler_Body','Bowden_Tube_Holder_Twist_Lock','Twist_Lock','TwistLock','Main Handle','Top Hinge Leaf','Bottom Hinge Leaf','Top Left Corner','Bottom Left Corner','Hinge Barrel','Spool_Holder_Bar','Bowden Tube Entry Rear ECAS','Octopus Bracket','Raspberry_Bracket','Front_Body','Tension_Arm','Rear_Plate','Board_Spacer_Micron','LED_Carrier','Light_Shield_Micron','PUG','M2_Hex_Adapter','180 M2 Hexnut adapter_shorter','Door Hinge']);
+const micronAccent=new Set(['Toothed_Idler_Carrier','Toothed_Idler_Carrier_Pinned','Belt_Clamp_A','Belt_Clamp_B','Sensorless_Yendstop_plug','Keystone Blank','Bezel','Magnet Insert','Railstop','Thermistor Chain Anchor','PG9_Umbilical_Z_Chain_3_Hole','Extruder_Knob','Door_Latch','Handle_Mini-1']);
 export function appearanceRole(part){
  if(!part)return null;const key=String(part.key),name=(part.name||'').replace(/(?:\s*\(\d+\)|\s+v\d+|:\d+)+$/g,'').trim();
  if(sbBase.has(key))return 'base';if(sbAccent.has(key))return 'accent';
+ if(/^m(?:120(?:_head)?|180)_\d+$/.test(key)&&part.source?.repository==='PrintersForAnts/Micron'){
+  if(micronBase.has(name))return 'base';if(micronAccent.has(name))return 'accent';
+  if(['Rear_Gantry_Extrusion','X_Extrusion'].includes(name))return 'frame';
+  if(name==='SOLID'){
+   const path=(part.source.assembly_path||[]).join('/');
+   if(/(?:CornerTwistLock|TwistLockCenter|DIN_Mount|Wago DIN Clip|WAGO_221-413_1515):?/.test(path))return /TwistLock/.test(path)?'accent':'base';
+  }
+ }
  if(/^fysetc_v24_250_pro_\d+$/.test(key)){
   if(/(?:^M\d+\b|Threaded Insert|Drop-in T-nut|Nylon Washer|^Motor$|^PCB$|^Heatsink$|^NEMA|^PRODUCT_NAME|^Rubber Foot)/i.test(name))return null;
   const nativeName=name.replace(/-\d+$/,'');if(printedR2.has(nativeName))return accents.has(nativeName)?'accent':'base';

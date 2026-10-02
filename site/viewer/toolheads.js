@@ -1,4 +1,4 @@
-import {setupChangerBank} from './changer-bank.js?v=public-v24';
+import {setupChangerBank} from './changer-bank.js?v=head-bank-anchor-1';
 import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=public-v24';
 import {headPrinterLink} from './head-navigation.mjs?v=public-v24';
 import {headBuilderDimensions} from './configuration-model.js?v=public-v24';
@@ -195,7 +195,7 @@ try{
  const bankCatalog={...catalog,bank_data:headData.bank,variants:catalog.variants.map(v=>{const p=headPlan(v);return {...v,machine_head:{base:p.base,translation:p.translation,translation_delta_mm:[0,0,0],hidden:[...p.hidden],modules:p.modules.filter(m=>m.role!=='dock')}}})};
  bankRig=createMachineHeads(bench,bankCatalog,{render:()=>{dirty=true}});bankRig.setVisible(false);
  const bankAdapter={get active(){return bankRig.active},async install(v,state){await bankRig.install(bankCatalog.variants.find(p=>p.id===v.id),state)},async setBank(state){await bankRig.setBank(state)}};
- toolBank=setupChangerBank({catalog:bankCatalog,rig:bankAdapter,data:headData.bank,extras:{presentation:'toolhead',getExtras:extras,applyExtras:restoreExtras,validateExtras:validateBuilderExtras,onSettled:()=>{builder?.update();if(ready){appearance();visibleBounds();fit()}}}});
+ toolBank=setupChangerBank({before:$('#assemblyScope'),catalog:bankCatalog,rig:bankAdapter,data:headData.bank,extras:{presentation:'toolhead',getExtras:extras,applyExtras:restoreExtras,validateExtras:validateBuilderExtras,onSettled:()=>{builder?.update();if(ready){appearance();visibleBounds();fit()}}}});
  const controller=await setupConfigurations(catalog,install,toolBank.options);await toolBank.bind(controller);
  if(!ready)throw Error('ヘッドのCADを表示できませんでした');
  let pins=[];try{const r=await fetch('../PUBLIC_CATALOG.json?v=public-v24');if(r.ok)pins=(await r.json()).sources||[]}catch{}

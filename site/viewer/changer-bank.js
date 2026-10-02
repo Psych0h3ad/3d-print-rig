@@ -1,11 +1,12 @@
 import {bankChoices,bankCapacity,normalizeBank,initialBank,readBankURL,bankBedReferenceDrop,bankSystem,bankSource,bankSpec} from './changer-bank-model.mjs?v=public-v24';
 
-export function setupChangerBank({catalog,rig,data,extras={}}){
+export function setupChangerBank({catalog,rig,data,extras={},before=document.querySelector('#configurationControls')}){
+ if(!before)throw Error('ツールバンクの表示先がありません');
  let controller,state=initialBank(catalog,data,catalog.variants[0]?.gantry),busy=false,previousGantry=catalog.variants[0]?.gantry,urlState,urlError;
  try{urlState=readBankURL(location.search)}catch(e){urlError=e}
  const panel=document.createElement('details');panel.id='changerBank';panel.open=true;
  panel.innerHTML='<summary id="bankTitle">ツールバンク</summary><label class="bank-toggle"><input id="bankEnabled" type="checkbox"><span id="bankToggleLabel">機体にドックと複数ヘッドを取り付ける</span></label><div id="bankFields"></div><p id="bankStatus" class="foot" aria-live="polite"></p><p id="bankHelp" class="foot"></p><details><summary>ドックの確認範囲</summary><p id="bankScope" class="foot"></p></details>';
- document.querySelector('#configurationControls').before(panel);
+ before.before(panel);
  const enabled=panel.querySelector('#bankEnabled'),fields=panel.querySelector('#bankFields'),status=panel.querySelector('#bankStatus');
  const label=v=>v?.toolhead==='indx'?catalog.hotends.find(r=>r.id===v.hotend)?.label:[v?.toolhead==='xol'?'Xol':v?.toolhead==='stealthburner'?'Stealthburner':'JabberWocky',catalog.extruders.find(r=>r.id===v?.extruder)?.label,catalog.hotends.find(r=>r.id===v?.hotend)?.label].join(' / ');
  function choices(variant=controller?.current){return bankChoices(catalog,data,variant?.gantry||previousGantry,bankSystem(state),variant?.toolhead==='indx'?variant.cooling:'4010')}

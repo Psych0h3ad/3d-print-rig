@@ -1,4 +1,6 @@
 /** Micron: fixed bed, Z gantry, Y X-beam, XYZ toolhead. Baked CAD placement. */
+import {appearanceRole} from './appearance-role.mjs?v=public-v25';
+import {createMicronBelts} from './micron-belts.mjs?v=public-v25';
 export const cadToGlb = ([x,y,z]) => [x / 1000, z / 1000, -y / 1000];
 export const corexyDelta = ([x,y]) => ({a_mm: x + y, b_mm: x - y});
 export const corexyInverse = (a,b) => [(a + b) / 2, (a - b) / 2];
@@ -22,7 +24,7 @@ export function partTranslation(part, delta) {
 
 export function createMicronAdapter(root, manifest, profile) {
   if (manifest.machine_id !== profile.machine_id || !/^micron(_plus)?_r1_(120|180)$/.test(profile.machine_id)) throw new Error('Micron profile mismatch');
-  const records = new Map(manifest.parts.map(p => [p.key,p]));
+  const records = new Map(manifest.parts.map(p => [p.key,{...p,appearance_role:appearanceRole(p)}]));
   if (records.size !== manifest.parts.length) throw new Error('Duplicate part key');
   const nodes = new Map();
   root.traverse(o => {
@@ -35,6 +37,7 @@ export function createMicronAdapter(root, manifest, profile) {
   const missing = [...records.keys()].filter(k => !nodes.has(k));
   if (missing.length) throw new Error(`Missing ${missing.length} parts`);
   const origins = new Map([...nodes].map(([k,o]) => [k,o.position.clone()]));
+  const belts=createMicronBelts(nodes,records,profile);
   let lastPose, flexibleVisible = true, enclosureVisible = true;
   function setPose(pose, options) {
     const delta = poseDelta(profile,pose,options);
@@ -42,15 +45,16 @@ export function createMicronAdapter(root, manifest, profile) {
     for (const [key,o] of nodes) {
       const row = records.get(key), d = partTranslation(row,delta).glb_m, origin = origins.get(key);
       o.position.set(origin.x + d[0],origin.y + d[1],origin.z + d[2]);
-      if (row.motion === 'reference_flexible') o.visible = flexibleVisible && atReference;
+      if (row.motion === 'reference_flexible'&&!belts.keys.has(key)) o.visible = flexibleVisible && atReference;
       else if (row.group === 'Micron_Enclosure') o.visible = enclosureVisible;
     }
+    const beltState=belts.update(delta,flexibleVisible);
     lastPose = {...pose};
     const envelope = profile.sampled_clearance_limits_mm;
     const within = Boolean(envelope) && ['x','y','z'].every((a,i) => pose[a] >= envelope['XYZ'[i]][0] && pose[a] <= envelope['XYZ'[i]][1]);
     return {xyz_mm: ['x','y','z'].map(a => pose[a]), cad_delta_xyz_mm: delta,
       corexy_delta: corexyDelta(delta), common_z_motor_delta_mm: delta[2],
-      within_sampled_clearance_envelope: within, atReference,
+      within_sampled_clearance_envelope: within, atReference,belts:beltState,
       independent_z_leveling: 'pending; common Z translation only'};
   }
   function setFlexibleVisible(value) {flexibleVisible = Boolean(value); if (lastPose) setPose(lastPose);}
@@ -61,7 +65,7 @@ export function createMicronAdapter(root, manifest, profile) {
       o.traverse(n => {if (n.isMesh) for (const mat of Array.isArray(n.material) ? n.material : [n.material]) mat.color.set(color);});
     }
   }
-  return {nodes, records, setPose, setFlexibleVisible, setEnclosureVisible, setPalette,
+  return {nodes, records, belts, setPose, setFlexibleVisible, setEnclosureVisible, setPalette,
     getSummary: () => ({machine_id: profile.machine_id, part_count: nodes.size,
       motion_counts: manifest.parts.reduce((a,p) => (a[p.motion] = (a[p.motion] ?? 0) + 1,a),{})})};
 }

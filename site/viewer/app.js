@@ -8,6 +8,7 @@ import {loadFrameMods,withFrameMods} from './frame-mods.js?v=public-v24';
 import {setupGrid} from './grid-control.js?v=public-v24';
 import {setupLighting} from './lighting.js?v=public-v24';
 import {setupFlexible} from './flexible.js?v=public-v24';
+import {createBedChain} from './bed-chain.mjs?v=public-v25';
 import {setupConfigurations} from './configurations.js?v=public-v24';
 import {setupAccessories} from './accessories.js?v=public-v24';
 import {setupAppearance} from './appearance.js?v=public-v24';
@@ -35,7 +36,7 @@ setupGrid(scene,()=>{renderRequested=true});
 const frameMods=await loadFrameMods('siboor_trident_350');
 const lighting=setupLighting(scene,renderer,{registration:frameMods.disco,update:()=>{renderRequested=true}});
 $('#focusDisco').onclick=()=>{unfocus();stop();lighting.focus(camera,controls);renderRequested=true};
-let model,pivot,mode=null,start=0,ready=false,registration,refX=0,refY=0,current={x:0,y:0,z:0},homeStart,focusAxis=null,flexible;
+let model,pivot,mode=null,start=0,ready=false,registration,refX=0,refY=0,current={x:0,y:0,z:0},homeStart,focusAxis=null,flexible,bedChain;
 const levers={},plungers={};
 const groups={},moving={y:[],xy:[],z:[],reference_flexible:[]},panes=[],parts=new Map();
 const allMeshes=[];
@@ -69,7 +70,7 @@ async function asset(id){
 }
 function showHead(){
  if(!activeConfig)return;const shown=$('#head').checked,removed=new Set(activeConfig.removed_stock_keys);
- for(const o of allMeshes){if(!o.userData.stock)continue;const k=o.userData.originalKey||o.userData.partKey;
+ for(const o of allMeshes){if(!o.userData.stock||o.userData.bedChain)continue;const k=o.userData.originalKey||o.userData.partKey;
  o.visible=!removed.has(k)&&!(o.userData.stockGroup===stockHeadGroup&&!shown)&&o.name!=='P480__Switch_Housing'&&o.name!=='P408__Switch_Housing';
  if(k==='480')o.visible=o.visible&&installed==='stock'&&activeConfig.gantry==='siboor_awd'&&shown;
  }
@@ -78,7 +79,7 @@ function showHead(){
  if(xolScene)xolScene.visible=installed==='xol'&&shown;
  for(const p of panes)p.visible=$('#panels').checked;
  for(const m of activeConfig.modules){const a=assetRoots.get(m.id);if(a?.root.userData.headModule)a.root.visible=shown}
- if(activeConfig.machine_head){for(const o of moving.reference_flexible)o.visible=false;for(const key of ['580','Upper_Belt','PTFE_tube','CAN_cable'])if(parts.has(key))parts.get(key).visible=false}
+ if(activeConfig.machine_head){for(const o of moving.reference_flexible)if(!o.userData.bedChain)o.visible=false;for(const key of ['580','Upper_Belt','PTFE_tube','CAN_cable'])if(parts.has(key))parts.get(key).visible=false}
 }
 async function installConfiguration(v){
  const required=[...new Set(v.modules.map(m=>m.id)),...(!v.machine_head&&v.toolhead==='xol'?['xol']:[])];await Promise.all(required.map(asset));await toolBank.install(v);
@@ -130,7 +131,8 @@ function setPose(x,y,z){
  $('#zGuideStatus').textContent=`Zガイドブロック3箇所 · ${drift<.001&&railShift<.001?'ベッドに追従':'追従を確認してください'}`;
  $('#zGuideStatus').dataset.maxDriftMm=drift.toFixed(6);$('#zGuideStatus').dataset.bedReferenceDropMm=bedReferenceDrop.toFixed(6);if(Math.abs(bedReferenceDrop)>.001)$('#zGuideStatus').append(Object.assign(document.createElement('span'),{textContent:` · ベッド基準位置の移動 ${(-bedReferenceDrop).toFixed(2)} mm`}));$('#zGuideStatus').dataset.railShiftMm=railShift.toFixed(6);
  const rest=Math.abs(dx)+Math.abs(dy)+Math.abs(bedDown)<.001;
- for(const o of moving.reference_flexible)o.visible=rest&&$('#cables').checked;
+ for(const o of moving.reference_flexible)if(!o.userData.bedChain)o.visible=rest&&$('#cables').checked;
+ const chainState=bedChain.update(bedDown,$('#cables').checked);$('#routing').dataset.bedChain=String(chainState.visible);$('#routing').dataset.bedChainLinks=chainState.links;$('#routing').dataset.bedChainEndpointErrorMm=chainState.endpoint_error_mm;
  for(const[a,v]of [['x',x],['y',y],['z',z]]){$('#'+a).value=v;$('#'+a+'v').textContent=v.toFixed(1)+' mm'}
  installedHeads?.setDelta([dx,dy,0]);installedHeads?.setPalette(appearance?.colors()||{});
  if(activeConfig?.machine_head){flexible.update(dx,dy,bedDown,false,null);for(const row of r2Belts)row.mesh.visible=false;$('#status').textContent='ヘッドの取付・移動を比較中。ホーミング接点は未登録。';$('#status').style.background='#eff5f7';$('#routing').textContent='このヘッドのベルト・配線経路は未登録。';$('#headStatus').dataset.installed=installed;$('#headStatus').dataset.variant=activeConfig.id;showHead();return}
@@ -197,6 +199,7 @@ Promise.all([fetch('../assembly_manifest.json?v=public-v24',{cache:'no-cache'}).
  o.material.side=THREE.DoubleSide;if(o.material.transparent){o.material.depthWrite=false;o.renderOrder=2}
  });
  stockRegistration=registration;stockRefX=refX;stockLeverX=levers.X;stockPlungerX=plungers.X;
+ bedChain=createBedChain(model,manifest);for(const e of bedChain.entries)e.mesh.userData.bedChain=true;
  flexible=setupFlexible(scene,allMeshes,manifest,routes);appearance=setupAppearance(allMeshes,await lighting.whenReady,colorOptions);
  const door=groups['09_ClickyClacky_Door'];if(door){pivot=new THREE.Group();pivot.position.set(-.26205,0,.2565);scene.add(pivot);pivot.attach(door)}
  for(const s of ['#door','#x','#y','#z','#demo','#reset','#home','#focusX','#focusY','#releaseSwitch','#focusZ'])$(s).disabled=false;

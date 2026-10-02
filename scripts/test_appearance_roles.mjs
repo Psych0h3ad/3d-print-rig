@@ -14,3 +14,9 @@ assert.equal(appearanceRole({key:'ldo_cnc_00327',name:'Front Idler A Top'}),null
 for(const name of ['M3 Threaded Insert (14) (1)','2020 Drop-in T-nut, M3 (17)','Motor','PCB','Heatsink','Nylon Washer (Thumbscrew)'])assert.equal(appearanceRole({key:'fysetc_v24_250_pro_1',name,appearance_role:'accent'}),null);
 for(const name of ['B Drive Frame Lower','B Drive Frame Upper','Octopus Bracket','XY Joint - Right-12'])assert.equal(appearanceRole({key:'fysetc_v24_250_pro_1',name}),'base');
 console.log('Printed identity assignments and 48 lighting state transitions passed; hardware remains protected.');
+const micron=(name,key='m180_01617')=>({key,name,source:{repository:'PrintersForAnts/Micron'}});
+for(const name of ['A_Drive_Frame_Upper v7','B_Drive_Frame_Lower v10','AB_Drive_Top_Bearing_Retainer v5','Rear_Plate v1','Front_Body v6','Board_Spacer_Micron','Main Handle v3','Hinge Barrel v19'])assert.equal(appearanceRole(micron(name)),'base');
+for(const name of ['Belt_Clamp_A v2','Belt_Clamp_B v2','Toothed_Idler_Carrier_Pinned v1','Extruder_Knob v2','Bezel v2','Railstop v1'])assert.equal(appearanceRole(micron(name)),'accent');
+for(const name of ['Rear_Gantry_Extrusion','X_Extrusion'])assert.equal(appearanceRole(micron(name)),'frame');
+for(const name of ['PG9_Gland v2','Diffuser_Micron v9','GT2_16T_Pulley v2','Powge_64T_Pulley v1','Revo Voron','2510 Axial Fan','M3 Threaded Insert v5','MGN7-220mm v1','PCB'])assert.equal(appearanceRole(micron(name)),null);
+assert.equal(appearanceRole({...micron('Rear_Plate v1'),source:{repository:'another/assembly'}}),null);

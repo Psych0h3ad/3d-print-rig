@@ -14,8 +14,10 @@ are checked against the part table before routing. Source back-contact radii
 are 6.5 mm at F695 bearings and 6.742203 mm at the toothed pulley/idler.
 The latter is the **outer belt back**, not a nominal pulley pitch radius.
 The smooth envelope uses centre radii 7.19 / 6.052203 mm respectively. No V0
-coordinates or resized V0 paths are used. Trident bed-chain visibility depends
-on Z only and is independent of toolhead selection. Toolhead reference wiring
+coordinates or resized V0 paths are used. Trident bed chains use 20 separate native rigid links. Their 17 mm hinge pitch
+and both endpoint pivots remain fixed in length while the bed endpoint follows
+Z and nozzle-height offsets. They remain visible with custom heads and multiple
+INDX docks; only the explicit belt/wiring checkbox hides them. Toolhead reference wiring
 still requires its original pose and head.
 
 For V2.4 printed/CNC 250/300/350 and SIBOOR 350, the four fixed Z loops stay
@@ -70,3 +72,18 @@ testing; no browser visual review is claimed.
 Existing finite-grid V0 contacts at nominal Y/Z limits remain: V0.2 candidate
 Y ≤119.07 / Z ≤116.96 mm; V0.2r1 Y ≤119.12 / Z ≤117.17 mm. These are not
 continuous swept-volume checks or real-printer endstop guarantees.
+
+The bed-chain route test covers 1,482 positions from a 40 mm raised datum to
+330 mm bed descent. Actual GLB checks cover SIBOOR 350 and vanilla
+250/300/350 at 4,648 poses, with maximum native hinge separation 0.011084 mm
+(the original assembly already has this sub-0.012 mm offset). Link geometry,
+scale, fixed anchor and CAD reset are preserved. Offline production UI tests
+switch INDX tool counts 1, 3 and the size-specific maximum, active tools, bank
+on/off, Z, reference reset and explicit visibility on all four machines.
+These checks do not establish cable clearance or an executable tool exchange.
+
+Micron Plus XY tests cover 708 routes with tangent continuity, 6 mm width and
+length drift below 0.02 mm, retaining sub-0.1 mm offsets from the RC8 source
+pulley placements. Actual Micron 120/Plus geometry checks cover 54 XYZ poses;
+Z belts remain fixed and Plus XY belts follow Y/Z. Color, reset and belt
+checkboxes are checked through the production controller using an offline DOM.
