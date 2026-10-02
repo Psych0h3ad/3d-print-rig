@@ -5,7 +5,7 @@ import {loadModel} from './model-loader.js?v=public-v16';
 import {setupPublicInfo} from './public-info.js?v=public-v16';
 import {setupRenderExport} from './render-export.js?v=public-v16';
 import {partNodes,selectPart,visibleBounds} from './component-selection.js?v=public-v16';
-import {renderProductLinks} from './product-links.js?v=public-v16';
+import {renderProductLinks} from './product-links.js?v=public-v16-products-3';
 const $=s=>document.querySelector(s),stage=$('#stage'),renderer=new THREE.WebGLRenderer({antialias:true});
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor('#edf1f5');renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);
 const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(38,1,.0001,20),controls=new OrbitControls(camera,renderer.domElement);

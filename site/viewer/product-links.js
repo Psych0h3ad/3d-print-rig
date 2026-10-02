@@ -8,6 +8,7 @@ export const affiliateProducts=[
  {id:'a4t_kit',label:'A4T ツールヘッドキット',url:'https://s.click.aliexpress.com/e/_c2xgq2gp',toolheads:['a4t']},
  {id:'orbiter2_5',label:'Orbiter V2.5',url:'https://s.click.aliexpress.com/e/_c3oH1VAD',components:['orbiter2_5'],extruders:['orbiter2_5']},
  {id:'mellow_led_bars',label:'Mellow LEDバー · RGB / 白色 · 370 / 270 / 158 mm',url:'https://s.click.aliexpress.com/e/_c4rVd33L'},
+ {id:'klicky_probe',label:'Klicky Probe',url:'https://s.click.aliexpress.com/e/_c3W9lGa5',components:['klicky_probe']},
 ];
 export function productsFor({machine,component,hotend,toolhead,extruder}={}){
  return affiliateProducts.filter(p=>p.machines?.includes(machine)||p.components?.includes(component)||p.hotends?.includes(hotend)||p.toolheads?.includes(toolhead)||p.extruders?.includes(extruder));
