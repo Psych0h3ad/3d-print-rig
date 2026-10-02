@@ -13,6 +13,8 @@ The independent CW2 cutter-arm bridge support is omitted. Its native solid volum
 
 MadMax's MGN9H and MGN12H Maxwell interfaces are separate choices on the toolchanger page. The Dragon Burner / AntHead interface entries show coupling parts, rather than asserting that a completed hotend and extruder are installed. Andrewmcgr's Xol / A4T plate uses its own carriage and dock bracket. The completed Xol head is a separate head-selector entry. The source rail attachment and Xol plate axes are registered without scaling. No 9 mm or Monolith inverted belt keeper is inferred from the 6 mm clamp.
 
+MadMax supports Trident: the original design uses XY-only exchanges with gantry-attached docks, without a Liftbar. The upstream README lists completed Trident builds, and Andrewmcgr's Xol/A4T modification documents testing on Trident 350. This differs from the standard StealthChanger fixed-dock arrangement, which cannot be exchanged by a Trident head without a horizontal conversion or moving docks. The MadMax selector and saved state use a distinct exchange system. Its unregistered machine dock bank is shown separately from the standard StealthChanger bed-collision restriction. On 6 mm Trident configurations, the bank panel links directly to the registered MadMax Xol head.
+
 FilamATrix and the registered MadMax Xol assembly can be placed on the available VORON Trident and V2.4 6 mm machine references. They are not offered on SIBOOR AWD 9 mm. Their static head bodies and attachment datums are checked separately from printer-wide travel. Door clearance, wires, sensor keepouts, continuous cutter stroke, docking paths and physical operation remain unverified. MadMax docks are separate references, not a multi-tool bank installed on the frame.
 
 Sources:

@@ -6,7 +6,7 @@ import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=public-v24';
 import {setupPublicInfo} from './public-info.js?v=public-v24';
 import {setupRenderExport} from './render-export.js?v=public-v24';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=public-v24';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=madmax-trident-1';
 import {monolithHeadCatalog} from './monolith-head-model.mjs?v=public-v24';
 import {setupConfigurations} from './configurations.js?v=public-v24';
 import {resolveVariant} from './configuration-model.js?v=public-v24';

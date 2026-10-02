@@ -1,4 +1,4 @@
-import {bankBedReferenceDrop} from './changer-bank-model.mjs?v=public-v24';
+import {bankBedReferenceDrop} from './changer-bank-model.mjs?v=madmax-trident-1';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=public-v24';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
@@ -14,8 +14,8 @@ import {setupAccessories} from './accessories.js?v=public-v24';
 import {setupAppearance} from './appearance.js?v=public-v24';
 import {setupRenderExport} from './render-export.js?v=public-v24';
 import {setupPublicInfo} from './public-info.js?v=public-v24';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=public-v24';
-import {setupChangerBank} from './changer-bank.js?v=public-v24';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=madmax-trident-1';
+import {setupChangerBank} from './changer-bank.js?v=madmax-trident-1';
 import {expandedPrinterCatalog} from './machine-head-model.mjs?v=public-v24';
 const $=s=>document.querySelector(s),scene=new THREE.Scene();
 scene.background=new THREE.Color('#edf1f5');

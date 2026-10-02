@@ -1,5 +1,5 @@
-import {setupChangerBank} from './changer-bank.js?v=head-bank-anchor-1';
-import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=public-v24';
+import {setupChangerBank} from './changer-bank.js?v=madmax-trident-1';
+import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=madmax-trident-1';
 import {headPrinterLink} from './head-navigation.mjs?v=public-v24';
 import {headBuilderDimensions} from './configuration-model.js?v=public-v24';
 let machineRegistry,toolBank,bankRig;

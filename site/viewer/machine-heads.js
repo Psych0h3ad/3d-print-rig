@@ -9,8 +9,8 @@ import {setupConfigurations} from './configurations.js?v=public-v24';
 import {stockProbeFit} from './probe-mounts.js?v=public-v24';
 
 import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs?v=public-v24';
-import {bankPlan} from './changer-bank-model.mjs?v=public-v24';
-import {setupChangerBank} from './changer-bank.js?v=public-v24';
+import {bankPlan} from './changer-bank-model.mjs?v=madmax-trident-1';
+import {setupChangerBank} from './changer-bank.js?v=madmax-trident-1';
 
 const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);
 export async function loadMachineHeadCatalog(){

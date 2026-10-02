@@ -1,10 +1,23 @@
 // A frame-mounted bank uses original dock geometry and registered parked heads.
 const copy=value=>JSON.parse(JSON.stringify(value));
 export function bankSource(v,system){return system==='indx'?v.hotend:v.source_head_configuration||v.id}
-export function bankSystem(state){return state?.system==='indx'?'indx':'stealthchanger'}
-export function bankSpec(data,system){return system==='indx'?data.indx:data}
+export function bankSystem(state){
+ const system=state?.system||'stealthchanger';
+ if(!['stealthchanger','indx','madmax'].includes(system))throw Error('未登録のツール交換方式です。');
+ return system;
+}
+export function variantBankSystem(variant){return variant?.toolhead==='indx'?'indx':variant?.mount==='madmax'?'madmax':'stealthchanger'}
+export function bankSpec(data,system){
+ if(system==='indx')return data.indx;
+ if(system!=='madmax')return data;
+ // The native MadMax head is registered, but there is no machine-mounted
+ // dock bank in this release. A disabled single-tool state can be saved;
+ // never borrow StealthChanger fixtures or its Trident collision verdict.
+ return {machines:Object.fromEntries(Object.keys(data.machines).map(id=>[id,{capacity:1,bank_permitted:false,docking_registered:false,docking_unregistered_reason:'MadMaxの機体側ドックは未登録です。現在は単独ヘッドの装着表示です。'}]))};
+}
 export function bankChoices(catalog,data,gantry,system='stealthchanger',cooling='4010'){
  if(system==='indx')return (data.indx?.tool_options||[]).map(p=>catalog.variants.find(v=>v.toolhead==='indx'&&v.hotend===p.id&&v.cooling===cooling&&(!gantry||v.gantry===gantry))).filter(Boolean);
+ if(system==='madmax')return catalog.variants.filter(v=>v.machine_head&&v.mount==='madmax'&&v.registration_source==='madmax_xol'&&(!gantry||v.gantry===gantry));
  return data.profiles.map(p=>catalog.variants.find(v=>v.machine_head&&v.mount==='stealthchanger'&&(!gantry||v.gantry===gantry)&&Object.entries(p.selection).every(([k,value])=>v[k]===value))).filter(Boolean);
 }
 export function bankCapacity(data,machine,system='stealthchanger'){return bankSpec(data,system)?.machines[machine]?.capacity||0}
@@ -21,15 +34,24 @@ export function normalizeBank(state,catalog,data,gantry){
  let choices=bankChoices(catalog,data,gantry,system);if(!state?.enabled&&!choices.length)choices=bankChoices(catalog,data,undefined,system);
  if(!state||typeof state.enabled!=='boolean'||!Array.isArray(state.tools)||!Number.isInteger(state.active)||state.tools.length<1||state.tools.length>capacity||state.active<0||state.active>=state.tools.length)throw Error('ツールバンクの台数または使用中のヘッドが不正です。');
  const mount=bankSpec(data,system)?.machines[catalog.machine_id];
- if(state.enabled&&mount?.bank_permitted===false)throw Error(mount.printing_blocked_reason);
+ if(state.enabled&&mount?.bank_permitted===false)throw Error(mount.docking_unregistered_reason||mount.printing_blocked_reason);
  const tools=state.tools.map(id=>{
   const v=choices.find(v=>v.id===id||v.source_head_configuration===id||system==='indx'&&v.hotend===id);if(!v)throw Error('この機体に登録されていないドック構成です。');return bankSource(v,system);
  });
- return {enabled:state.enabled,active:state.active,tools,...(system==='indx'?{system}: {})};
+ return {enabled:state.enabled,active:state.active,tools,...(system!=='stealthchanger'?{system}: {})};
 }
 export function initialBank(catalog,data,gantry,system='stealthchanger'){
  let choices=bankChoices(catalog,data,gantry,system);if(!choices.length)choices=bankChoices(catalog,data,undefined,system);if(!choices.length)throw Error('この機体のドック構成は未登録です。');
- return {enabled:false,active:0,tools:Array.from({length:Math.min(3,bankCapacity(data,catalog.machine_id,system))},(_,i)=>bankSource(choices[i%choices.length],system)),...(system==='indx'?{system}: {})};
+ return {enabled:false,active:0,tools:Array.from({length:Math.min(3,bankCapacity(data,catalog.machine_id,system))},(_,i)=>bankSource(choices[i%choices.length],system)),...(system!=='stealthchanger'?{system}: {})};
+}
+export function bankStateForVariant(state,variant,catalog,data){
+ // Older MadMax files inherited the disabled StealthChanger bank by default.
+ if(variant?.mount==='madmax'&&state?.enabled===false&&state.system===undefined){
+  if(!Array.isArray(state.tools)||!state.tools.length||state.tools.length>bankCapacity(data,catalog.machine_id)||!state.tools.every(id=>typeof id==='string')||!Number.isInteger(state.active)||state.active<0||state.active>=state.tools.length)throw Error('ツールバンクの台数または使用中のヘッドが不正です。');
+  return initialBank(catalog,data,variant.gantry,'madmax');
+ }
+ if((variant?.mount==='madmax')!==(bankSystem(state)==='madmax'))throw Error('構成とツール交換方式が一致しません。');
+ return state;
 }
 export function bankPlan(state,catalog,data,activeVariant){
  const normalized=normalizeBank(state,catalog,data,activeVariant?.gantry);if(!normalized.enabled)return {state:normalized,instances:[]};

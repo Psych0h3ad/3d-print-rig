@@ -1,4 +1,4 @@
-import {bankBedReferenceDrop} from './changer-bank-model.mjs?v=public-v24';
+import {bankBedReferenceDrop} from './changer-bank-model.mjs?v=madmax-trident-1';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=public-v24';
 import {appearanceRole} from './appearance-role.mjs?v=public-v24';
 import * as THREE from 'three';
@@ -15,8 +15,8 @@ import {setupPublicInfo} from './public-info.js?v=public-v24';
 import {setupRenderExport} from './render-export.js?v=public-v24';
 import {createTridentMotion} from './trident-motion.mjs?v=public-v25';
 import {headPlan,partKey} from './head-assembly.js?v=public-v24';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=public-v24';
-import {setupChangerBank} from './changer-bank.js?v=public-v24';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=madmax-trident-1';
+import {setupChangerBank} from './changer-bank.js?v=madmax-trident-1';
 import {expandedPrinterCatalog} from './machine-head-model.mjs?v=public-v24';
 const requestedMachine=new URL(location.href).searchParams.get('machine');
 const machine=/^voron_trident_(250|300|350)$/.test(requestedMachine)?requestedMachine:'voron_trident_350',size=Number(machine.split('_').at(-1)),gantryId='trident_r2_gantry_'+size,referenceOffset=(size-350)/2;
