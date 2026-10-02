@@ -1,4 +1,4 @@
-import {renderProductLinks} from './product-links.js?v=public-v17';
+import {renderProductLinks} from './product-links.js?v=public-v17-en1';
 export const machineChoices=[
  {id:'siboor_trident_350',label:'SIBOOR Trident 350 · CNC AWD',page:'./'},
  {id:'voron_trident_350',label:'VORON Trident 350 · 標準プリント構造',page:'./trident.html'},
@@ -64,6 +64,7 @@ export function setupMachineNavigation(machine){
   const page=machinePage(choice.id);if(navigating||!page||choice.id===machine)return;navigating=true;show.disabled=true;for(const element of Object.values({...controls,id:select}))element.disabled=true;show.textContent='読み込み中…';status.textContent=choice.label+'を読み込み中…';
   try{localStorage.setItem('3d-print-rig-last-configuration-'+machine,new URL(location.href).searchParams.get('configuration')||'')}catch{}
   const target=new URL(page,location.href);target.searchParams.set('machine',choice.id);
+  const language=new URL(location.href).searchParams.get('lang');if(['ja','en'].includes(language))target.searchParams.set('lang',language);
   try{const previous=localStorage.getItem('3d-print-rig-last-configuration-'+choice.id);if(previous&&previous.length<200)target.searchParams.set('configuration',previous)}catch{}
   if(choice.id!==machine)location.assign(target);
  }

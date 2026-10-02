@@ -1,5 +1,5 @@
-import {builderGroups,builderManifest,builderURL} from './toolhead-builder.mjs?v=public-v17';
-import {monolithCompanion} from './monolith-head-model.mjs?v=public-v17';
+import {builderGroups,builderManifest,builderURL} from './toolhead-builder.mjs?v=public-v17-en1';
+import {monolithCompanion} from './monolith-head-model.mjs?v=public-v17-en1';
 
 export function setupHeadBuilder(catalog,{getVariant,getMetadata,getExtras,pins,selectVariant,isBusy}){
  const $=id=>document.getElementById(id);

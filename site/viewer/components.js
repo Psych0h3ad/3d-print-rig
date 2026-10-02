@@ -1,11 +1,11 @@
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=public-v17';
-import {setupPublicInfo} from './public-info.js?v=public-v17';
-import {setupRenderExport} from './render-export.js?v=public-v17';
-import {partNodes,selectPart,visibleBounds} from './component-selection.js?v=public-v17';
-import {renderProductLinks} from './product-links.js?v=public-v17';
+import {loadModel} from './model-loader.js?v=public-v17-en1';
+import {setupPublicInfo} from './public-info.js?v=public-v17-en1';
+import {setupRenderExport} from './render-export.js?v=public-v17-en1';
+import {partNodes,selectPart,visibleBounds} from './component-selection.js?v=public-v17-en1';
+import {renderProductLinks} from './product-links.js?v=public-v17-en1';
 const $=s=>document.querySelector(s),stage=$('#stage'),renderer=new THREE.WebGLRenderer({antialias:true});
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor('#edf1f5');renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);
 const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(38,1,.0001,20),controls=new OrbitControls(camera,renderer.domElement);
@@ -23,7 +23,7 @@ const paragraph=text=>{const p=document.createElement('p');p.textContent=text;re
 async function install(id){if(busy)return;const item=catalog.items.find(p=>p.id===id);if(!item)throw Error('未登録の部品です');busy=true;$('#component').disabled=true;$('#loading').hidden=false;
  try{const spec=catalog.assets[item.module];if(!cached.has(item.module)){const g=await loadModel(new GLTFLoader(),'../'+spec.glb);g.scene.visible=false;g.scene.traverse(m=>{if(m.isMesh){m.material=Array.isArray(m.material)?m.material.map(v=>v.clone()):m.material.clone();for(const material of Array.isArray(m.material)?m.material:[m.material])material.side=THREE.DoubleSide}});let meta=null,nodes=null;if(item.select_parts){const r=await fetch('../'+spec.meta,{cache:'no-cache'});if(!r.ok)throw Error('部品一覧の取得に失敗しました');meta=await r.json();nodes=partNodes(g.scene,meta.parts)}scene.add(g.scene);cached.set(item.module,{root:g.scene,meta,nodes})}
   if(current)current.visible=false;const entry=cached.get(item.module);current=entry.root;current.visible=true;$('#component').value=item.id;
-  const part=$('#componentPart');part.replaceChildren();$('#componentPartOptions').hidden=!item.select_parts;
+  const part=$('#componentPart');part.setAttribute('data-i18n','off');part.replaceChildren();$('#componentPartOptions').hidden=!item.select_parts;
   if(item.select_parts){for(const row of entry.meta.parts){const option=document.createElement('option');option.value=row.key;option.textContent=row.name;part.append(option)}const wanted=new URLSearchParams(location.search).get('part');part.value=entry.nodes.has(wanted)?wanted:entry.meta.parts.find(p=>/cowl|main.?body/i.test(p.name))?.key||entry.meta.parts[0].key;selectPart(entry.nodes,part.value);part.onchange=()=>{selectPart(entry.nodes,part.value);const url=new URL(location.href);url.searchParams.set('part',part.value);history.replaceState(null,'',url);document.body.dataset.componentPart=part.value;fit()}}
   fit();
   const details=$('#componentDetails');details.replaceChildren(paragraph(item.manufacturer),paragraph(`${item.representation==='STL'?'STL原本の印刷部品':item.solids+'ソリッド'} · ${item.source_version}`));
@@ -36,7 +36,7 @@ async function install(id){if(busy)return;const item=catalog.items.find(p=>p.id=
 }
 for(const id of ['iso','front','side'])$('#'+id).onclick=()=>{view=id;fit()};$('#fit').onclick=fit;
 setupPublicInfo({includeDownloads:false});setupRenderExport({renderer,scene,camera,controls,name:'3D_Print_Rig_Component',afterRender:()=>{dirty=true}});
-try{const r=await fetch('../COMPONENT_LIBRARY.json?v=public-v17',{cache:'no-cache'});if(!r.ok)throw Error('部品カタログを取得できません');catalog=await r.json();
+try{const r=await fetch('../COMPONENT_LIBRARY.json?v=public-v17-en1',{cache:'no-cache'});if(!r.ok)throw Error('部品カタログを取得できません');catalog=await r.json();
  for(const [kind,label] of [['hotend','ホットエンド'],['extruder','押出機'],['electronics','基板'],['carriage','キャリッジ / ベルトクランプ'],['gantry','ガントリー'],['mod','Mod / ヘッドの原本部品']]){const group=document.createElement('optgroup');group.label=label;for(const item of catalog.items.filter(p=>p.kind===kind)){const option=document.createElement('option');option.value=item.id;option.textContent=item.label;group.append(option)}$('#component').append(group)}
  $('#component').onchange=e=>install(e.target.value);const wanted=new URLSearchParams(location.search).get('component');await install(catalog.items.some(p=>p.id===wanted)?wanted:catalog.items[0].id);
 }catch(e){$('#loading').textContent=e.message;console.error(e)}resize();

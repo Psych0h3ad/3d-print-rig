@@ -46,3 +46,11 @@ nodes.get('#saveConfiguration').onclick();const saved=await(await fetch(download
 const changed={...saved,head_builder:{...extras,palette:{base:'#f0f1ed',accent:'#9d5ce2'}}},input=nodes.get('#configurationFile');input.files=[{size:500,text:async()=>JSON.stringify(changed)}];await input.onchange();assert.deepEqual(palette,changed.head_builder);
 input.files=[{size:20,text:async()=>'{'}];await input.onchange();assert.equal(shown,next.id);assert(!control.busy);
 console.log('Head Builder controller passed: URL restore, selection, failed-load rollback, enabled controls, standalone save/load and malformed-file retention.');
+// Original Beacon references may not have a measured coil datum.
+const beaconReference={...next,id:next.id+'_beacon_reference',fit:{probe:{label:'Beacon Rev D',coil_nozzle_gap_mm:null,physical_passed:null,height_passed:null,metal_keepout_verified:false,notes:[]}}};
+controlled.variants.push(beaconReference);await control.selectVariant(beaconReference.id);
+assert.equal(control.current.id,beaconReference.id,'An unmeasured coil must not break a valid CAD selection');
+assert(nodes.get('#mountInfo').children.some(li=>li.textContent==='Beacon Rev Dのコイル底面：未計測'));
+assert.match(nodes.get('#configStatus').textContent,/取付条件未確認/u);
+assert(!control.busy);
+console.log('Unmeasured Beacon controller passed: CAD remains selectable and mounting conditions remain unverified.');

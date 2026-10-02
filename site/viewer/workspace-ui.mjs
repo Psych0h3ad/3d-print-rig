@@ -1,4 +1,5 @@
 // Shared presentation layer. Existing controls, IDs and CAD controllers stay intact.
+import {setupLanguage,originalText} from './i18n.mjs?v=public-v17-en1';
 const $ = selector => document.querySelector(selector);
 const node = (tag, className, text) => {
   const element = document.createElement(tag);
@@ -147,7 +148,7 @@ function setupWorkspace() {
     activate(available[next][0], true);
   });
   function category(element) {
-    const text = element.querySelector(':scope > summary')?.textContent || '';
+    const text = originalText(element.querySelector(':scope > summary'));
     if (/動作|G-code|接触|交換機構の表示|取付チェック/.test(text)) return 'inspect';
     if (/色|素材|照明|表示/.test(text)) return 'appearance';
     if (/原本|出典|使用版|カタログ|選択した構成と部品|マウント・構成/.test(text)) return 'reference';
@@ -211,7 +212,7 @@ function setupWorkspace() {
       const legend = fieldset.querySelector('legend');
       if (!legend?.textContent.startsWith('2')) continue;
       const advanced = node('details', 'panel-section advanced-configuration');
-      advanced.append(node('summary', '', legend.textContent));
+      advanced.append(node('summary', '', originalText(legend)));
       legend.remove();
       advanced.append(...fieldset.childNodes);
       fieldset.replaceWith(advanced);
@@ -274,3 +275,4 @@ function setupWorkspace() {
 }
 
 setupWorkspace();
+setupLanguage();
