@@ -1,5 +1,5 @@
 {
-  "viewer_version": "public-v17-en2",
+  "viewer_version": "public-v18",
   "sources": [
     {
       "id": "siboor_trident",
@@ -965,6 +965,44 @@
       "scope": "Selected native head assemblies and/or original printable part references. Hardware assembly and printer registration are separate.",
       "changes": "Select mutually exclusive native alternatives, omit manufacturing/construction supports, tessellate for display and assign printed-part palette. Original dimensions and native poses retained.",
       "notice": "Each original design retains its own license. Embedded hardware retains its original terms. Archetype source archive identifies v22, not the latest printable STL revision."
+    },
+    {
+      "id": "tricorn_hotend",
+      "label": "Tricorn hotend / Long・Short",
+      "repository": "tricornhotend/tricornhotend.com",
+      "author": "Tricorn / okuhno",
+      "commit": "f168fa61d58885fe6a146c9e7d3626e430822a00",
+      "url": "https://github.com/tricornhotend/tricornhotend.com/tree/f168fa61d58885fe6a146c9e7d3626e430822a00",
+      "license": "CC0-1.0",
+      "license_url": "../licenses/tricorn/CC0-1.0.txt",
+      "version": "Tricorn Hotends.step SHA256: 98888ea1a5b13d46d73ff5218bec625743d9560431f3a69822fd4e9ab21de638",
+      "scope": "Pinned Long and Short native CAD; separate silver Long alternative excluded. Long is registered to Sphinx original mounts.",
+      "changes": "Separate source alternatives, apply rigid native transforms, tessellate and retain original dimensions.",
+      "notice": "README length figures differ from pinned CAD. Thermistor and wiring are absent. Earlier source revisions used different terms."
+    },
+    {
+      "id": "chube_hotend",
+      "label": "Chube / Compact・Air・Conduction",
+      "author": "Luke’s Laboratory / Chube",
+      "url": "https://chubehotend.com/integrations",
+      "license": "メーカー配布資料：再配布条件の明記なし",
+      "license_url": "../licenses/chube/NOTICE.txt",
+      "version": "Manufacturer integration references; file SHA256 pinned in modules.",
+      "scope": "Compact with dedicated SB CW2 and A4T mounts. Air/Conduction open integration surfaces are separate part references.",
+      "changes": "Rigid datum placement, source surface selection, tessellation and display palette. Manufacturer integration body overlaps retained.",
+      "notice": "No permissive license is assigned to these manufacturer references. Mount designs retain their own GPL-3.0 or CC-BY-NC-SA-4.0 terms."
+    },
+    {
+      "id": "sb_chube_compact_mount",
+      "label": "Stealthburner / Chube Compact CW2 mount",
+      "repository": "VoronDesign/Voron-Stealthburner",
+      "author": "VoronDesign",
+      "commit": "8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b",
+      "url": "https://github.com/VoronDesign/Voron-Stealthburner/tree/8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b/CAD/Printheads",
+      "license": "GPL-3.0",
+      "scope": "Dedicated Compact CW2 front/rear cartridge, separate from the common SB source assembly.",
+      "changes": "Preserve body geometry; restore invalid native trims within 0.001 mm; rigid cartridge placement and palette.",
+      "version": "2ed9882a5537565766b2db7d038dfbd788242b8cd81ca9e67dc05ff87935cf76"
     }
   ],
   "defaults": [
@@ -1021,6 +1059,10 @@
     {
       "label": "Armchair / Archetype・A4T・Escapement・Sharketype・Trailhead・ADXL",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v17/viewer-armchair-sources.zip"
+    },
+    {
+      "label": "Chube / Tricorn · メーカーCADと専用取付部品",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v18/viewer-hotend-sources.zip"
     }
   ]
 }

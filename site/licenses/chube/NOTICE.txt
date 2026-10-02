@@ -1,0 +1,7 @@
+Chube manufacturer integration references
+
+Source: https://chubehotend.com/integrations
+Compact: Chube_Compact_integration_assembly.STEP
+Air / Conduction: CHUBE_INTEGRATION_REVA.step
+
+The publicly provided manufacturer integration references do not state redistribution terms in the retrieved documentation. They remain manufacturer-owned references; no GPL, Creative Commons or other permissive license is assigned to their hotend geometry. Consult the manufacturer for further use. SB mount designs retain VoronDesign GPL-3.0 terms. A4T mount designs retain Armchair Heavy Industries CC-BY-NC-SA-4.0 terms. The selected A4T display omits six separate source manufacturing supports and retains the body dimensions.
