@@ -1,5 +1,5 @@
 {
-  "viewer_version": "public-v15",
+  "viewer_version": "public-v16",
   "sources": [
     {
       "id": "siboor_trident",
@@ -812,6 +812,75 @@
       "license": "GPL-3.0",
       "license_url": "../licenses/klipper_coordinates/COPYING",
       "changes": "Reference code unchanged; coordinate preview is independently implemented."
+    },
+    {
+      "id": "stealthorbiter",
+      "label": "sneakytreesnake/StealthOrbiter",
+      "repository": "sneakytreesnake/StealthOrbiter",
+      "author": "sneakytreesnake",
+      "commit": "ff8b4a25a61a37ae45e17add0fcce7d9b76f9864",
+      "url": "https://github.com/sneakytreesnake/StealthOrbiter/tree/ff8b4a25a61a37ae45e17add0fcce7d9b76f9864",
+      "license": "GPL-3.0 for original Mod parts; embedded manufacturer component terms retained",
+      "license_url": "../licenses/stealthorbiter/LICENSE.md",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "scope": "SB extruder mount and CPAP reference selections; original dimensions retained",
+      "changes": "Rigid mounting registration, original alternative selection and display palette. Body intersections reported per configuration.",
+      "notice": "Embedded Orbiter V2 mockup and the original simplified Bondtech LGX Lite manufacturer reference retain their original terms. No separate manufacturer redistribution license was supplied for the LGX Lite reference; the Mod GPL does not replace component terms."
+    },
+    {
+      "id": "bondtech_sb",
+      "label": "BondtechAB/Voron",
+      "repository": "BondtechAB/Voron",
+      "author": "BondtechAB",
+      "commit": "1a0fe2449545ca532ca9a74f7d9736d42ad4b120",
+      "url": "https://github.com/BondtechAB/Voron/tree/1a0fe2449545ca532ca9a74f7d9736d42ad4b120",
+      "license": "GPL-3.0 for original Mod parts; embedded manufacturer component terms retained",
+      "license_url": "../licenses/bondtech_sb/LICENSE",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "scope": "SB extruder mount and CPAP reference selections; original dimensions retained",
+      "changes": "Rigid mounting registration, original alternative selection and display palette. Body intersections reported per configuration.",
+      "notice": "Embedded Orbiter V2 mockup and the original simplified Bondtech LGX Lite manufacturer reference retain their original terms. No separate manufacturer redistribution license was supplied for the LGX Lite reference; the Mod GPL does not replace component terms."
+    },
+    {
+      "id": "crowncooler",
+      "label": "sneakytreesnake/CrownCooler",
+      "repository": "sneakytreesnake/CrownCooler",
+      "author": "sneakytreesnake",
+      "commit": "c60990e9af0551b5309aee0eea1a374045cc3db7",
+      "url": "https://github.com/sneakytreesnake/CrownCooler/tree/c60990e9af0551b5309aee0eea1a374045cc3db7",
+      "license": "GPL-3.0 for original design; embedded component terms retained",
+      "license_url": "../licenses/crowncooler/LICENSE",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "scope": "Native CPAP + Orbiter reference head; MGN12 6 mm registration.",
+      "changes": "Original assembly alternatives selected, rigid pose, display palette. Original dimensions retained; native rail bolt 16 moved +6.6 mm Y to its mating seat for CrownCooler.",
+      "notice": "Embedded original hardware and manufacturer references retain their own original terms. Full printer travel and physical compatibility are not certified."
+    },
+    {
+      "id": "anthead",
+      "label": "PrintersForAnts/AntHead",
+      "repository": "PrintersForAnts/AntHead",
+      "author": "PrintersForAnts",
+      "commit": "249f64302ed1f159e79e3ee07682fea8e0644288",
+      "url": "https://github.com/PrintersForAnts/AntHead/tree/249f64302ed1f159e79e3ee07682fea8e0644288",
+      "license": "GPL-3.0 for original design; embedded component terms retained",
+      "license_url": "../licenses/anthead/LICENSE",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "scope": "Papilio Lite standard and developmental Leafcutter native assembly selections.",
+      "changes": "Original assembly alternatives selected, rigid pose, display palette. Original dimensions retained; native rail bolt 16 moved +6.6 mm Y to its mating seat for CrownCooler.",
+      "notice": "Embedded original hardware and manufacturer references retain their own original terms. Full printer travel and physical compatibility are not certified."
+    },
+    {
+      "id": "papilio",
+      "label": "Papilio Belt Extruder",
+      "repository": "theFPVgeek/Papilio-Belt-Extruder",
+      "author": "theFPVgeek / kevinakasam",
+      "commit": "939907cfca6d2c88d3f49f9633278825d0e1af8d",
+      "url": "https://github.com/theFPVgeek/Papilio-Belt-Extruder/tree/939907cfca6d2c88d3f49f9633278825d0e1af8d",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/papilio/LICENSE",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "scope": "Papilio Lite belt drive embedded in the credited AntHead user Mod; no additional geometry substituted.",
+      "changes": "Original embedded belt and pulley geometry retained."
     }
   ],
   "defaults": [
@@ -860,6 +929,10 @@
     {
       "label": "MGN12 machine-head registrations and INDX rail fasteners",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v15/viewer-mount-sources.zip"
+    },
+    {
+      "label": "SB extruders / CPAP / CrownCooler / AntHead native sources",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v16/viewer-head-sources.zip"
     }
   ]
 }

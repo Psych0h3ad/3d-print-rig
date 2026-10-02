@@ -1,4 +1,4 @@
-import {appearanceRole} from './appearance-role.mjs?v=public-v15';
+import {appearanceRole} from './appearance-role.mjs?v=public-v16';
 /** V0: fixed-Z CoreXY gantry, Y beam, XY toolhead, single downward-moving bed. */
 export const cadToGlb = ([x,y,z]) => [x/1000,z/1000,-y/1000];
 export function poseDelta(profile, pose, {allowFirmwareOvertravel=false,requireClearanceEnvelope=false}={}) {

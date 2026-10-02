@@ -1,14 +1,16 @@
-import {appearanceRole} from './appearance-role.mjs?v=public-v15';
+import {appearanceRole} from './appearance-role.mjs?v=public-v16';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=public-v15';
-import {setupConfigurations} from './configurations.js?v=public-v15';
-import {setupPublicInfo} from './public-info.js?v=public-v15';
-import {setupRenderExport} from './render-export.js?v=public-v15';
-import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=public-v15';
-import {probeCheck,probeMetrics,probeGuide} from './probe-checks.js?v=public-v15';
-import {renderProductLinks} from './product-links.js?v=public-v15';
+import {loadModel} from './model-loader.js?v=public-v16';
+import {setupConfigurations} from './configurations.js?v=public-v16';
+import {setupPublicInfo} from './public-info.js?v=public-v16';
+import {setupRenderExport} from './render-export.js?v=public-v16';
+import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=public-v16';
+import {probeCheck,probeMetrics,probeGuide} from './probe-checks.js?v=public-v16';
+import {renderProductLinks} from './product-links.js?v=public-v16';
+import {setupHeadBuilder} from './builder-ui.mjs?v=public-v16';
+import {validateBuilderExtras} from './toolhead-builder.mjs?v=public-v16';
 
 const $=s=>document.querySelector(s),stage=$('#stage'),scene=new THREE.Scene();
 scene.background=new THREE.Color('#edf1f5');
@@ -27,11 +29,18 @@ for(const [position,intensity] of [[[.4,.6,.6],2.6],[[-.4,.2,-.3],1.8]]){
 const bench=new THREE.Group();scene.add(bench);
 const heightGuides=new THREE.Group(),keepoutGuide=new THREE.Group();bench.add(heightGuides,keepoutGuide);
 const loader=new GLTFLoader(),cached=new Map();
-let catalog,dirty=true,view='iso',bounds=new THREE.Box3(),ready=false,currentVariant;
+let catalog,builder,dirty=true,view='iso',bounds=new THREE.Box3(),ready=false,currentVariant;
 const presets={black_red:['#24272c','#e32636'],white_teal:['#f0f1ed','#008f95'],ivory_orange:['#e9dfca','#f07824'],purple:['#30343b','#9d5ce2']};
 let colors={base:'#24272c',accent:'#e32636'};
 const validColor=c=>typeof c==='string'&&/^#[0-9a-f]{6}$/iu.test(c);
 try{const saved=JSON.parse(localStorage.getItem('3d-print-rig-head-palette')||'null');if(validColor(saved?.base)&&validColor(saved?.accent))colors=saved}catch{}
+const paletteQuery=new URLSearchParams(location.search);
+for(const role of ['base','accent']){const value='#'+paletteQuery.get(role);if(validColor(value))colors[role]=value}
+const extras=()=>({head_builder:{palette:{...colors},see_inside:$('#seeInside').checked,dock:$('#headShowDock').checked,rail:$('#headShowRail').checked}});
+async function restoreExtras(data){
+ if(!data.head_builder)return;validateBuilderExtras(data);const b=data.head_builder;colors={...b.palette};
+ $('#seeInside').checked=b.see_inside;$('#headShowDock').checked=b.dock;$('#headShowRail').checked=b.rail;saveColors();changerDisplay();visibleBounds();fit();
+}
 
 function appearance(){
  let base=0,accent=0,protectedChanges=0;
@@ -78,7 +87,7 @@ async function asset(id){
    for(const material of materials){material.side=THREE.DoubleSide;if(material.transparent)material.depthWrite=false}
    meshes.push({mesh,key,role,component:lookup.get(key)?.component,materials,originals:materials.map(m=>({opacity:m.opacity,transparent:m.transparent,color:m.color.clone()}))});
   });
-  const result={root,meshes};promise.loaded=result;return result;
+ const result={root,meshes,meta};promise.loaded=result;return result;
  }).catch(e=>{cached.delete(id);throw e});
  cached.set(id,promise);return promise;
 }
@@ -92,7 +101,7 @@ function inspection(variant){
  $('#inspectionState').textContent=carriageConflict?'キャリッジ試着：本体干渉あり':check.label;$('#inspectionState').dataset.state=carriageConflict?'carriage-conflict':check.state;$('#inspectionState').classList.toggle('notice',check.warning||carriageConflict);
  $('#probeMetrics').replaceChildren(...probeMetrics(variant).flatMap(([label,value])=>{const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=label;dd.textContent=value;return [dt,dd]}));
  const native=variant.fit?.complete_head_native;
- if(native){$('#inspectionState').textContent={collision:'本体干渉あり · 比較用',contact:'原本CADに微小な交差あり',clear:'検査姿勢の本体交差なし',reference:'原本組立 · 接続未検証'}[native.state];$('#inspectionState').dataset.state=native.state;$('#inspectionState').classList.toggle('notice',native.state!=='clear')}
+ if(native){$('#inspectionState').textContent={collision:'本体干渉あり · 比較用',contact:'原本CADに微小な交差あり',clear:'検査姿勢の本体交差なし',reference:native.unresolved_pairs?.length?'一部の交差判定が未確定':'原本組立 · 接続未検証'}[native.state];$('#inspectionState').dataset.state=native.state;$('#inspectionState').classList.toggle('notice',native.state!=='clear')}
  const notes=[...check.lines,...(native?.notes||[]),...(native?.body_collisions||[]).map(c=>`${c.a_name} / ${c.b_name}：交差体積 ${c.overlap_mm3.toFixed(3)} mm³。`),...(variant.fit?.carriage_native_body_collisions||[]).map(c=>`${c.label}：交差体積 ${c.volume_mm3.toFixed(3)} mm³。ピンクの部分は元CADの交差形状。`)];if(!p&&!notes.length&&!variant.display_scope)notes.push('このキャリッジ・ホットエンドに登録済みのプローブから選択できます。未検証のマウントは表示しません。');
  if(variant.mount==='stealthchanger')notes.unshift('StealthChangerのOptoTap式プローブ機構を表示。スライダーでヘッド・バックプレートを一緒に0–3 mm動かせます。');
  if(p?.metal_keepout_verified===true&&!p.metal_keepout_collisions?.length)notes.push('基準姿勢の本体干渉・コイル高さ・金属除外領域を確認済み。');
@@ -161,7 +170,7 @@ function changerDisplay(){
   a.root.position.copy(point(headPlacement(v,entry,state)));a.root.visible=entry.role!=='dock'||$('#headShowDock').checked;
   for(const row of a.meshes)if(row.component==='rail_reference')row.mesh.visible=$('#headShowRail').checked;
  }
- dirty=true;
+ builder?.update();dirty=true;
 }
 for(const id of ['headProbeTravel','headExplode'])$('#'+id).oninput=changerDisplay;
 for(const id of ['headShowDock','headShowRail'])$('#'+id).onchange=()=>{changerDisplay();if(ready){visibleBounds();fit()}};
@@ -172,8 +181,12 @@ renderer.setAnimationLoop(()=>{controls.update();if(dirty){renderer.render(scene
 setupRenderExport({renderer,scene,camera,controls,name:'3D_Print_Rig_Toolhead',afterRender:()=>{dirty=true}});
 setupPublicInfo({includeDownloads:false});
 try{
- const response=await fetch('../TOOLHEAD_CONFIGURATIONS.json?v=public-v15',{cache:'no-cache'});if(!response.ok)throw Error('ヘッドの構成データを取得できません');catalog=await response.json();
+ const response=await fetch('../TOOLHEAD_CONFIGURATIONS.json?v=public-v16',{cache:'no-cache'});if(!response.ok)throw Error('ヘッドの構成データを取得できません');catalog=await response.json();
  $('#combinationCount').textContent=`${catalog.toolheads.length}種類のヘッド · ${catalog.extruders.length}種類の押出機 · ${headCombinationCount(catalog)}通りのヘッド構成`;
- await setupConfigurations(catalog,install,{presentation:'toolhead'});
+ // Earlier standalone files used the first printer's ID; keep them readable.
+ catalog={...catalog,machine_id:'toolhead',import_machine_ids:['siboor_trident_350']};
+ const controller=await setupConfigurations(catalog,install,{presentation:'toolhead',getExtras:extras,applyExtras:restoreExtras,validateExtras:validateBuilderExtras,onSettled:()=>builder?.update()});
  if(!ready)throw Error('ヘッドのCADを表示できませんでした');
+ let pins=[];try{const r=await fetch('../PUBLIC_CATALOG.json?v=public-v16');if(r.ok)pins=(await r.json()).sources||[]}catch{}
+ builder=setupHeadBuilder(catalog,{getVariant:()=>currentVariant,getMetadata:()=>new Map([...cached].filter(([,p])=>p.loaded).map(([id,p])=>[id,p.loaded.meta])),getExtras:extras,pins,selectVariant:id=>controller.selectVariant(id),isBusy:()=>controller.busy});
 }catch(e){$('#loading').hidden=false;$('#loading').textContent=e.message;document.body.dataset.assetStatus='error';console.error(e)}

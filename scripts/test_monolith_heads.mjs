@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import {monolithHeadCatalog,monolithCompanion} from '../site/viewer/monolith-head-model.mjs';
+const heads={variants:[],assets:{},base_assets:{},toolheads:[{id:'sb'}]};
+for(const width of [6,9])for(const type of ['standard','monolith'])heads.variants.push({id:type+width,toolhead:'sb',extruder:'cw2',hotend:'revo',board:'none',cooling:'source',mount:'stealthchanger',gantry:'sc_'+type+'_'+width,belt_width_mm:width,head_translation_mm:[.2,-4,-353],base_asset:'sb',modules:[{id:'changer_sc_core_'+type+'_'+width,translation_mm:[0,0,0],role:'shuttle'},{id:'dock',role:'dock',translation_mm:[0,0,0]}],base_hidden_keys:[],notes:[],fit:{nozzle_mm:[.2,-33,-50]}});
+const registry={sources:{stealthchanger_monolith:{origin_mm:[.2,5.7,5.6]}},monolith_target:{origin_mm:[0,.5,0],axis_error_mm:.000001}};
+const gantries={variants:[]};for(const size of [250,350])for(const machine of ['VT','V2'])for(const build of ['printed','sheet_metal'])for(const width of [6,9])for(const motors of [2,4])gantries.variants.push({id:[size,machine,build,width,motors].join('_'),size_mm:size,machine,build,belt_width_mm:width,xy_motors:motors,notes:[]});
+const c=monolithHeadCatalog(heads,registry,gantries);assert.equal(c.variants.length,32);assert.equal(c.gantries.length,32);
+for(const v of c.variants){assert(v.source_head_configuration.startsWith('monolith'));assert.equal(v.machine_head.modules.length,1);assert.equal(v.machine_head.modules[0].id,'changer_sc_core_monolith_'+v.belt_width_mm);assert.deepEqual(v.machine_head.translation,[0,-9.2,-358.6]);assert.equal(v.fit.machine_mount.docking_registered,false)}
+assert.equal(monolithCompanion(heads,heads.variants[0]).id,'monolith6');assert.equal(monolithCompanion(heads,{...heads.variants[0],hotend:'missing'}),undefined);assert.throws(()=>monolithHeadCatalog(heads,{sources:{}},gantries));
+console.log('Monolith head selection passed: all 32 gantries, dedicated 6/9 mm carriers, native datum, omitted docks and exact component companions.');

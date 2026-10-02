@@ -1,18 +1,18 @@
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=public-v15';
-import {loadFrameMods,withFrameMods} from './frame-mods.js?v=public-v15';
-import {setupGrid} from './grid-control.js?v=public-v15';
-import {setupLighting} from './lighting.js?v=public-v15';
-import {setupFlexible} from './flexible.js?v=public-v15';
-import {setupConfigurations} from './configurations.js?v=public-v15';
-import {setupAccessories} from './accessories.js?v=public-v15';
-import {setupAppearance} from './appearance.js?v=public-v15';
-import {setupRenderExport} from './render-export.js?v=public-v15';
-import {setupPublicInfo} from './public-info.js?v=public-v15';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=public-v15';
-import {expandedPrinterCatalog} from './machine-head-model.mjs?v=public-v15';
+import {loadModel} from './model-loader.js?v=public-v16';
+import {loadFrameMods,withFrameMods} from './frame-mods.js?v=public-v16';
+import {setupGrid} from './grid-control.js?v=public-v16';
+import {setupLighting} from './lighting.js?v=public-v16';
+import {setupFlexible} from './flexible.js?v=public-v16';
+import {setupConfigurations} from './configurations.js?v=public-v16';
+import {setupAccessories} from './accessories.js?v=public-v16';
+import {setupAppearance} from './appearance.js?v=public-v16';
+import {setupRenderExport} from './render-export.js?v=public-v16';
+import {setupPublicInfo} from './public-info.js?v=public-v16';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=public-v16';
+import {expandedPrinterCatalog} from './machine-head-model.mjs?v=public-v16';
 const $=s=>document.querySelector(s),scene=new THREE.Scene();
 scene.background=new THREE.Color('#edf1f5');
 const stage=$('#stage');
@@ -177,7 +177,7 @@ async function loadGLB(url){
  throw last;
 }
 setupPublicInfo();
-Promise.all([fetch('../assembly_manifest.json?v=public-v15',{cache:'no-cache'}).then(r=>r.json()),fetch('../flexible_routes.json?v=public-v15',{cache:'no-cache'}).then(r=>r.json()),loadModel(new GLTFLoader(),'../SIBOOR_Trident_350.glb',p=>{$('#loading').textContent=p.total?'読み込み '+Math.round(p.loaded/p.total*100)+'%':'3Dモデルを読み込み中…'}),loadGLB('../Endstop_Mechanisms.glb'),fetch('../COLOR_OPTIONS.json?v=public-v15',{cache:'no-cache'}).then(r=>r.json()),fetch('../ASSEMBLY_CONFIGURATIONS.json?v=public-v15',{cache:'no-cache'}).then(r=>r.json()),fetch('../R2_ENDSTOP_REGISTRATION.json?v=public-v15',{cache:'no-cache'}).then(r=>r.json())]).then(async([manifest,routes,g,endstops,colorOptions,configs,r2Meta])=>{
+Promise.all([fetch('../assembly_manifest.json?v=public-v16',{cache:'no-cache'}).then(r=>r.json()),fetch('../flexible_routes.json?v=public-v16',{cache:'no-cache'}).then(r=>r.json()),loadModel(new GLTFLoader(),'../SIBOOR_Trident_350.glb',p=>{$('#loading').textContent=p.total?'読み込み '+Math.round(p.loaded/p.total*100)+'%':'3Dモデルを読み込み中…'}),loadGLB('../Endstop_Mechanisms.glb'),fetch('../COLOR_OPTIONS.json?v=public-v16',{cache:'no-cache'}).then(r=>r.json()),fetch('../ASSEMBLY_CONFIGURATIONS.json?v=public-v16',{cache:'no-cache'}).then(r=>r.json()),fetch('../R2_ENDSTOP_REGISTRATION.json?v=public-v16',{cache:'no-cache'}).then(r=>r.json())]).then(async([manifest,routes,g,endstops,colorOptions,configs,r2Meta])=>{
  const headData=await loadMachineHeadCatalog();registration=manifest.motion_preview.endstop_registration;catalog=expandedPrinterCatalog(withFrameMods(configs,frameMods),headData.heads,headData.registry,'siboor_trident_350');installedHeads=createMachineHeads(scene,{...catalog,base_assets:headData.heads.base_assets},{render:()=>{renderRequested=true}});ensureMachineHeadControls();r2Registration=r2Meta;stockRows=manifest.parts;
  refX=registration.switches.X.cad_reference_display_coordinate_mm;refY=registration.switches.Y.cad_reference_display_coordinate_mm;
  const lookup=new Map(manifest.parts.map(r=>[r.key,r]));model=g.scene;model.add(endstops.scene);scene.add(model);

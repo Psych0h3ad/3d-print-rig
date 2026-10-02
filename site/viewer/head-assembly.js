@@ -22,5 +22,5 @@ export function partKey(mesh){
 }
 
 export function headCombinationCount(catalog){
- return new Set(catalog.variants.map(v=>[v.toolhead,v.hotend,v.extruder].join('__'))).size;
+ return new Set(catalog.variants.map(v=>[v.toolhead,v.hotend,v.extruder,v.cooling||'source'].join('__'))).size;
 }

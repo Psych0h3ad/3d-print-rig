@@ -1,4 +1,4 @@
-import {renderProductLinks} from './product-links.js?v=public-v15';
+import {renderProductLinks} from './product-links.js?v=public-v16';
 export const machineChoices=[
  {id:'siboor_trident_350',label:'SIBOOR Trident 350 · CNC AWD',page:'./'},
  {id:'voron_trident_350',label:'VORON Trident 350 · 標準プリント構造',page:'./trident.html'},

@@ -1,12 +1,13 @@
-import {headPlan} from './head-assembly.js?v=public-v15';
+import {headPlan} from './head-assembly.js?v=public-v16';
 const clone=value=>JSON.parse(JSON.stringify(value));
 const add=(a,b)=>a.map((v,i)=>v+b[i]);
 export function installedHeadPlan(variant,registry,target){
  const plan=headPlan(variant);let anchor;
- if(variant.mount==='stealthchanger')anchor=registry.sources.stealthchanger.origin_mm;
+ if(variant.registration_source)anchor=registry.sources[variant.registration_source].origin_mm;
+ else if(variant.mount==='stealthchanger')anchor=registry.sources.stealthchanger.origin_mm;
  else if(variant.toolhead==='indx')anchor=registry.sources.indx.origin_mm;
  else if(variant.toolhead==='xol')anchor=add(registry.sources.kit_fixed.origin_mm,variant.head_translation_mm);
- else anchor=registry.sources.r2_fixed.origin_mm;
+ else anchor=registry.sources[variant.gantry==='siboor_awd'?'kit_fixed':'r2_fixed'].origin_mm;
  const shift=target.origin_mm.map((v,i)=>v-anchor[i]);
  const modules=plan.modules.filter(m=>m.role!=='dock').map(m=>({...m,translation_mm:add(m.translation_mm||variant.head_translation_mm,shift)}));
  if(variant.toolhead==='indx')modules.push({id:'head_indx_rail_fasteners',translation_mm:shift,role:'tool'});
@@ -19,7 +20,8 @@ export function machineHeadVariants(heads,registry,machine,gantry){
  const binding=registry.machines[machine];if(!binding)return [];
  const target=binding.gantries?binding.gantries[gantry]:binding;if(!target)return [];
  return heads.variants.filter(v=>
-  (v.mount==='fixed'&&v.gantry==='trident_r2'&&v.carriage==='standard'&&['stealthburner','xol'].includes(v.toolhead))||
+  (v.mount==='fixed'&&['trident_r2','siboor_awd'].includes(v.gantry)&&v.carriage==='standard'&&['stealthburner','xol'].includes(v.toolhead))||
+  (v.toolhead==='crowncooler'&&v.registration_source==='crowncooler'&&target.belt_width_mm===6)||
   (v.mount==='stealthchanger'&&v.gantry==='sc_standard_'+target.belt_width_mm&&['stealthburner','xol','jabberwocky'].includes(v.toolhead))||
   (v.toolhead==='indx'&&target.belt_width_mm===6)
  ).filter(v=>v.belt_width_mm===target.belt_width_mm).map(v=>{
@@ -34,11 +36,12 @@ export function expandedPrinterCatalog(current,heads,registry,machine){
  const result=clone(current);result.dimensions=['gantry','toolhead','mount','extruder','hotend','carriage','probe','board','cooling'];
  for(const v of result.variants){v.mount||='fixed';v.carriage||='standard';v.board||='none';v.cooling||='source'}
  for(const field of ['toolheads','mounts','extruders','hotends','carriages','probes','boards','cooling_options']){
-  result[field]||=[];for(const row of heads[field]||[])if(!result[field].some(r=>r.id===row.id))result[field].push(clone(row));
+  result[field]||=[];for(const row of heads[field]||[]){const existing=result[field].find(r=>r.id===row.id);if(existing)Object.assign(existing,clone(row));else result[field].push(clone(row));}
  }
  for(const gantry of result.gantries){
   const foundation=result.variants.find(v=>v.gantry===gantry.id&&v.toolhead==='stealthburner'&&v.extruder==='cw2');if(!foundation)continue;
-  for(const variant of machineHeadVariants(heads,registry,machine,gantry.id).filter(v=>v.mount!=='fixed')){
+  for(const variant of machineHeadVariants(heads,registry,machine,gantry.id)){
+   if(result.variants.some(v=>result.dimensions.every(field=>v[field]===variant[field])))continue;
    variant.removed_stock_keys=[...new Set([...foundation.removed_stock_keys,...Array.from({length:168},(_,i)=>String(i+412)),'surface_422'])];
    variant.modules=foundation.modules.filter(m=>m.id==='trident_r2_gantry_350');
    if(variant.fit.nozzle_mm&&Number.isFinite(result.bed_reference_top_mm))variant.fit.bed_reference_drop_mm=Math.max(0,result.bed_reference_top_mm-variant.fit.nozzle_mm[2]+.2);

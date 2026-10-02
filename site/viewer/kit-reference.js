@@ -1,12 +1,12 @@
-import {appearanceRole} from './appearance-role.mjs?v=public-v15';
+import {appearanceRole} from './appearance-role.mjs?v=public-v16';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=public-v15';
-import {setupMachineNavigation} from './machines.js?v=public-v15';
-import {setupGrid} from './grid-control.js?v=public-v15';
-import {setupRenderExport} from './render-export.js?v=public-v15';
-import {setupPublicInfo} from './public-info.js?v=public-v15';
+import {loadModel} from './model-loader.js?v=public-v16';
+import {setupMachineNavigation} from './machines.js?v=public-v16';
+import {setupGrid} from './grid-control.js?v=public-v16';
+import {setupRenderExport} from './render-export.js?v=public-v16';
+import {setupPublicInfo} from './public-info.js?v=public-v16';
 const $=s=>document.querySelector(s),id='fysetc_v24_250_pro',stage=$('#stage');
 setupMachineNavigation(id);setupPublicInfo({includeDownloads:false});
 const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));renderer.setClearColor('#edf1f4');renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);

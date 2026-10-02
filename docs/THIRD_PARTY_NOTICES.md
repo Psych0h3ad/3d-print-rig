@@ -460,3 +460,29 @@ V2.4 250/300/350のR2・LDO CNC参照、およびTrident 350の登録ガント�
 INDXは6 mm機体のレール取付プレビュー。取付板の5 mm厚に対し、Voron Tridentの元CADのM3x8ねじ4本を剛体移動して使用。ねじはVoronDesign/Voron-Tridentの既載commit、GPL-3.0。レール穴、ねじ軸、取付板とブロックの登録姿勢を照合。ベルト固定具、機体側ドック、ホーミング接点、全移動域の接触は未登録・未検証。プリント可能な完成構成とは扱わない。
 
 追加のネイティブねじと取付登録データは独立したsource archiveに収録。他のヘッド・交換機構の原本は既載source archiveに継続収録。
+
+
+### Stealthburner extruder and CPAP references
+
+- [StealthOrbiter](https://github.com/sneakytreesnake/StealthOrbiter/tree/ff8b4a25a61a37ae45e17add0fcce7d9b76f9864), `ff8b4a25a61a37ae45e17add0fcce7d9b76f9864`, GPL-3.0. Standard V3 mount, original Orbiter V2 mockup and lever-cut SB front. The front retains the author's 3MF triangle geometry and two source seam edges; no analytic STEP conversion is asserted. Optional SHT36 assembly omitted. Existing 5015 fan reference overlaps are shown as comparison conflicts. UHF-specific front and conflicting Orbiter/CPAP combinations are not registered.
+- [BondtechAB/Voron](https://github.com/BondtechAB/Voron/tree/1a0fe2449545ca532ca9a74f7d9736d42ad4b120), `1a0fe2449545ca532ca9a74f7d9736d42ad4b120`, GPL-3.0 for the LGX Lite CW2/SB mount, cover and standard CPAP front/hose mount. PCB alternatives and coincident alternative fasteners are omitted. MOS-PLUS/UHF fronts are separate designs and are not substituted. External blower and hose are not installed. Original upstream credits, including criticaldistance and ByThorsThunder, remain in the included README.
+
+The LGX Lite drive uses Bondtech's original simplified V6 reference at `https://www.bondtech.se/downloads/STEP/LGX-Lite-Simplified-V6.step.zip`, SHA-256 `5a052105cd9b78044cb397479800c854428bf22ee965423858bbc9a3fce4d619`. Its four native mounting axes establish its pose. No separate redistribution license was supplied for this manufacturer reference. The Mod GPL does not replace manufacturer or other embedded component terms.
+
+The existing Galileo 2 G2E and original pinned source remain in use. Its extruder placement is corrected by -0.2 mm in Y to match the original assembled carriage; the hotend and nozzle are unchanged. Source volume and topology are retained. Intersections are reported per configuration using triangle solids and bounded analytic CAD operations where tessellation seams prevent a solid test. Unresolved tests and remaining overlaps are displayed. This does not certify swept travel, threaded retention, docking, hose routing or electrical/airflow operation.
+
+## CrownCooler and AntHead Papilio references
+
+Discovery: [Awesome-Toolheads](https://github.com/SartorialGrunt0/Awesome-Toolheads/tree/60af9d19039bd37eb0934280b35e0b376d15f79b) by SartorialGrunt0. This index is used to locate original designs; compatibility is established separately.
+
+- [sneakytreesnake/CrownCooler](https://github.com/sneakytreesnake/CrownCooler/tree/c60990e9af0551b5309aee0eea1a374045cc3db7), GPL-3.0 for original design; embedded component terms retained. Local license: `site/licenses/crowncooler/LICENSE`. Native CPAP + Orbiter reference head; MGN12 6 mm registration.
+- [PrintersForAnts/AntHead](https://github.com/PrintersForAnts/AntHead/tree/249f64302ed1f159e79e3ee07682fea8e0644288), GPL-3.0 for original design; embedded component terms retained. Local license: `site/licenses/anthead/LICENSE`. Papilio Lite standard and developmental Leafcutter native assembly selections.
+- [Papilio Belt Extruder](https://github.com/theFPVgeek/Papilio-Belt-Extruder/tree/939907cfca6d2c88d3f49f9633278825d0e1af8d), GPL-3.0. Local license: `site/licenses/papilio/LICENSE`. Papilio Lite belt drive embedded in the credited AntHead user Mod; no additional geometry substituted.
+
+The AntHead Papilio Mod credits hartk and kevinakasam. Original source alternatives and construction bodies are selected in module metadata. Two CrownCooler carriage faces have native tolerance repairs with volume changes below 0.001 mm³. One rail screw uses a recorded rigid correction to the matching seat. The AntHead 2510 fan is registered at its native 20 mm bore axes and hotend-mount face; its small source pose offset is recorded in the module metadata. No machine-wide travel, wiring, airflow or cutter operation is certified. Corresponding native module sources and attribution are in the v16 source archive.
+
+## Component discovery and Head Builder
+
+SartorialGrunt0's indices were consulted to locate original designs: [Awesome-Toolheads](https://github.com/SartorialGrunt0/Awesome-Toolheads/tree/60af9d19039bd37eb0934280b35e0b376d15f79b), [Awesome-Extruders](https://github.com/SartorialGrunt0/Awesome-Extruders/tree/ed451da4ab176daa55259d8e62707bb700b79793), and [Awesome-Hotends](https://github.com/SartorialGrunt0/Awesome-Hotends/tree/914a1f57f4414b9098300edecdcaf9885af37d97). The component-first workflow was informed by [ToolheadBuilder](https://github.com/SartorialGrunt0/ToolheadBuilder/tree/7793af41c330b57d78860624deb8f27e0fabf0b7). This viewer's Builder code is independently implemented. Upstream code, descriptions and component metadata are not redistributed from those indices. Shared mounting patterns are discovery hints; only this viewer's registered assemblies produce 3D choices. Module sources and their licenses remain attributed individually. Visible CAD instance counts are not purchasing quantities.
+
+The Monolith workbench joins its 32 native gantry assemblies to registered StealthChanger heads with dedicated inverted-belt keepers. Four native MGN12 bore axes and the shuttle rear datum plane register the head to the native Monolith block, with a measured axis error below 0.00001 mm. Reference rails, blocks and docks in the head module are hidden to avoid duplicate hardware. This is a gantry/head comparison; complete printer-frame replacement, belt tension, docking and full travel remain unverified.

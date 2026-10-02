@@ -21,5 +21,20 @@ const old={...heads,machine_id:'nine',gantries:[{id:'awd'}],variants:[{...fixed,
 const expanded=expandedPrinterCatalog(old,heads,registry,'nine');assert.equal(expanded.variants.length,2);assert.equal(expanded.variants[0].id,'stock');assert(expanded.variants[1].removed_stock_keys.includes('412'));assert(!expanded.variants[1].removed_stock_keys.includes('202'));assert.equal(expanded.variants[1].belt_width_mm,9);
 assert.deepEqual(choicesFor(expanded,expanded.variants[0],'toolhead').map(v=>v.id),['stealthburner','jabberwocky']);assert.equal(resolveVariant(expanded,{...expanded.variants[0],toolhead:'jabberwocky'},'toolhead').source_head_configuration,'sc9');
 assert.equal(JSON.stringify(heads),snapshot);assert.equal(old.variants.length,1);
+// Native kit SB and R2 SB use different rail origins. A fixed extruder or
+// cooling option must reach machine menus without duplicating an old pose.
+const kit=head('kit_orbiter','stealthburner','fixed','siboor_awd',9);kit.extruder='orbiter2';kit.fit.nozzle_mm=[0,-29,303];
+const kitPlan=installedHeadPlan(kit,registry,registry.machines.nine.gantries.awd);assert.deepEqual(kitPlan.translation,[0,0,0]);assert.deepEqual(kitPlan.nozzle_mm,[0,-29,303]);
+const extra={...heads,variants:[...heads.variants,kit],extruders:[...heads.extruders,{id:'orbiter2',label:'SB Orbiter'}]};
+const withFixed=expandedPrinterCatalog(old,extra,registry,'nine');assert.equal(withFixed.variants.length,3);assert(withFixed.variants.some(v=>v.extruder==='orbiter2'&&v.mount==='fixed'&&v.machine_head));
+assert.equal(resolveVariant(withFixed,{...withFixed.variants[0],extruder:'orbiter2'},'extruder').source_head_configuration,'kit_orbiter');
+const duplicate={...kit,id:'other_source_id',extruder:'cw2'};assert.equal(expandedPrinterCatalog(old,{...extra,variants:[...extra.variants,duplicate]},registry,'nine').variants.length,3);
+const recollection=expandedPrinterCatalog({...old,extruders:[{id:'drive',label:'old'}]},extra,registry,'nine');assert.equal(recollection.extruders.find(r=>r.id==='orbiter2').label,'SB Orbiter');
 assert.throws(()=>installedHeadPlan({...fixed,toolhead:'unknown',base_asset:'unknown'},registry,target),/ノズル/);
+// A source head with its own rail datum must use that datum and retain
+// its original belt-width scope when offered on another printer.
+registry.sources.crowncooler={origin_mm:[0,14.5,0]};
+const crown=head('crown','crowncooler','fixed','head_mgn12',6);crown.registration_source='crowncooler';crown.base_asset='native_crown';crown.fit.nozzle_mm=[0,-14.6,-59.4];
+const crownPlan=installedHeadPlan(crown,registry,target);assert.deepEqual(crownPlan.translation,[0,-21.5,136]);assert.deepEqual(crownPlan.nozzle_mm,[0,-36.1,76.6]);
+const newHeads={...heads,variants:[...heads.variants,crown]};assert(machineHeadVariants(newHeads,registry,'six').some(v=>v.toolhead==='crowncooler'));assert(!machineHeadVariants(newHeads,registry,'nine','awd').some(v=>v.toolhead==='crowncooler'));
 console.log('Machine head rail placement, belt widths, native nozzle fallback, preserved stock configurations and dependent choices passed.');

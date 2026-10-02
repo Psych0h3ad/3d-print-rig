@@ -1,8 +1,8 @@
-import {catalogDimensions,collections,resolveVariant,choicesFor,importedVariant} from './configuration-model.js?v=public-v15';
-import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=public-v15';
-import {renderProductLinks} from './product-links.js?v=public-v15';
+import {catalogDimensions,collections,resolveVariant,choicesFor,importedVariant} from './configuration-model.js?v=public-v16';
+import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=public-v16';
+import {renderProductLinks} from './product-links.js?v=public-v16';
 
-export async function setupConfigurations(catalog,install,{presentation='printer',getExtras=()=>({}),applyExtras=async()=>{},validateExtras=()=>{}}={}){
+export async function setupConfigurations(catalog,install,{presentation='printer',getExtras=()=>({}),applyExtras=async()=>{},validateExtras=()=>{},onSettled=()=>{}}={}){
  const $=s=>document.querySelector(s);
  let productTarget=$('#headProductLinks');if(!productTarget){productTarget=document.createElement('div');productTarget.id='configurationProductLinks';$('#configStatus').after(productTarget)}
  const ids=catalogDimensions(catalog).filter(id=>catalog[collections[id]]&&$('#'+id+'Config'));
@@ -38,7 +38,7 @@ export async function setupConfigurations(catalog,install,{presentation='printer
   const native=v.fit?.complete_head_native;
   if(v.display_scope){$('#configStatus').textContent='参照CADの切替済み';rows.push(v.display_scope);$('#configStatus').classList.add('notice')}
   if(native){
-   const label={collision:'CAD干渉あり · 比較用',contact:'CADに微小な交差あり',clear:'検査姿勢の本体交差なし',reference:'原本組立 · 接続未検証'}[native.state];
+   const label=native.state==='reference'&&native.unresolved_pairs?.length?'一部の交差判定が未確定':{collision:'CAD干渉あり · 比較用',contact:'CADに微小な交差あり',clear:'検査姿勢の本体交差なし',reference:'原本組立 · 接続未検証'}[native.state];
    $('#configStatus').textContent+=' ／ '+label;$('#configStatus').classList.toggle('notice',check.warning||native.state!=='clear');
    rows.push(label,...native.notes);$('#mountInfo')?.replaceChildren(...rows.map(row=>{const li=document.createElement('li');li.textContent=row;return li}));
   }
@@ -52,7 +52,7 @@ export async function setupConfigurations(catalog,install,{presentation='printer
   try{await install(v);if(extraData)await applyExtras(extraData);commit(v)}catch(e){
    if(actual){try{await install(actual);if(extraData)await applyExtras(previousExtras)}catch(restore){console.error(restore)}menus(actual)}
    $('#configStatus').textContent='切替に失敗しました。直前の構成を表示中。';console.error(e);
-  }finally{busy=false;for(const k of ids)$('#'+k+'Config').disabled=false;for(const id of ['loadConfiguration','saveConfiguration'])$('#'+id).disabled=false}
+  }finally{busy=false;for(const k of ids)$('#'+k+'Config').disabled=false;for(const id of ['loadConfiguration','saveConfiguration'])$('#'+id).disabled=false;onSettled(actual)}
  }
  for(const k of ids)$('#'+k+'Config').onchange=()=>refresh(resolveVariant(catalog,selection(),k));
  for(const row of catalog.sources){const a=document.createElement('a');a.href=row.url;a.textContent=row.label;a.target='_blank';a.rel='noopener';$('#modSources').append(a,document.createTextNode('　'))}
@@ -68,4 +68,5 @@ export async function setupConfigurations(catalog,install,{presentation='printer
   catch(e){$('#configStatus').textContent=e.message}
  };
  menus(initial);await refresh(initial);
+ return {selectVariant:async id=>{const v=catalog.variants.find(row=>row.id===id);if(!v)throw Error('構成のCADが未登録です。');await refresh(v)},get current(){return actual},get busy(){return busy}};
 }

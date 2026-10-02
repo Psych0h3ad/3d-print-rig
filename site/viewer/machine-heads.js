@@ -1,10 +1,10 @@
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=public-v15';
-import {appearanceRole} from './appearance-role.mjs?v=public-v15';
-import {partKey} from './head-assembly.js?v=public-v15';
-import {v24HeadCatalog} from './machine-head-model.mjs?v=public-v15';
-import {setupConfigurations} from './configurations.js?v=public-v15';
+import {loadModel} from './model-loader.js?v=public-v16';
+import {appearanceRole} from './appearance-role.mjs?v=public-v16';
+import {partKey} from './head-assembly.js?v=public-v16';
+import {v24HeadCatalog} from './machine-head-model.mjs?v=public-v16';
+import {setupConfigurations} from './configurations.js?v=public-v16';
 const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);
 export async function loadMachineHeadCatalog(){
  const get=async name=>{const r=await fetch('../'+name,{cache:'no-cache'});if(!r.ok)throw Error('ヘッドの取付データを取得できません');return r.json()};
