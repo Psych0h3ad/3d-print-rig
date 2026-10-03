@@ -1,5 +1,5 @@
 {
-  "viewer_version": "viewer-v45",
+  "viewer_version": "viewer-v46",
   "sources": [
     {
       "id": "siboor_trident",
@@ -1438,11 +1438,11 @@
     },
     {
       "label": "Trident Stealth Skirts · 原本と取付データ",
-      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v45/viewer-stealth-skirts-sources.zip"
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v46/viewer-stealth-skirts-sources.zip"
     },
     {
       "label": "Sphinx · V3 7040／9290 とSingle Inletの原本",
-      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v45/viewer-sphinx-generations-sources.zip"
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v46/viewer-sphinx-generations-sources.zip"
     }
   ]
 }

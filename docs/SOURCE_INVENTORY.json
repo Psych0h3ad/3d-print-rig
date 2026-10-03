@@ -1,7 +1,7 @@
 {
   "scope": "All tracked source and license files; CAD, mesh, private inputs and execution reports excluded.",
   "newline_policy": "Hashes use canonical LF, matching Git blobs.",
-  "upstream_viewer_version": "viewer-v45",
+  "upstream_viewer_version": "viewer-v46",
   "files": [
     {
       "path": ".gitattributes",
@@ -521,7 +521,7 @@
     {
       "path": "site/ASSET_BUNDLE.json",
       "bytes": 229,
-      "sha256": "b8f3d90333a8bf71de5eedb8acb7459cb91352da32a20b1d771be8b1abfdcfde"
+      "sha256": "eea6fc3eb0496ada7a6c7afe6437c580a6a607cd0ed3fd546da18862de1506b1"
     },
     {
       "path": "site/CROSSANT_ASSETS.json",
@@ -530,8 +530,8 @@
     },
     {
       "path": "site/HEAD_VALIDATION.json",
-      "bytes": 8062134,
-      "sha256": "922e706c499d7b621617d402df1c2bc42b14f025445856c52b41a69f41f3230f"
+      "bytes": 8062147,
+      "sha256": "0bac191207d87f4412470c809000d1688da159e087f746e2c92da49e8ad1434d"
     },
     {
       "path": "site/MOD_REGISTRY.json",
@@ -540,13 +540,13 @@
     },
     {
       "path": "site/MOUNT_VALIDATION.json",
-      "bytes": 172464,
-      "sha256": "a1a4ac1a126064a375e12b1b396896c030874291b0823e0fb57cf582b51ca93d"
+      "bytes": 172477,
+      "sha256": "6a66c352a647099dbe381464919a1a8138cd6ff9870ea640b074c700193ac60a"
     },
     {
       "path": "site/PUBLIC_CATALOG.json",
       "bytes": 92653,
-      "sha256": "194024b4083edfadf1451998712d51b4b6bc30de3519dcfb23209cdafc69f64a"
+      "sha256": "68167a5f90eeb215413e1df246533144aafd11e4a7813d4f4913cbd2734d3692"
     },
     {
       "path": "site/RATRIG_ASSETS.json",
