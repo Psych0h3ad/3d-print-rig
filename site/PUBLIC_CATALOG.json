@@ -1,5 +1,5 @@
 {
-  "viewer_version": "viewer-v44",
+  "viewer_version": "viewer-v45",
   "sources": [
     {
       "id": "siboor_trident",
@@ -660,8 +660,8 @@
       "license": "CC-BY-NC-SA-4.0",
       "license_url": "../licenses/sphinx/LICENSE",
       "license_sha256": "9e502ba75fd0fd30cea5497b438a4bc12f07f02bc932a7a6041fd6a18b8f46a0",
-      "scope": "Native tLW printable assemblies with Sherpa Mini Release 2, Tricorn Long or acquired Rapido 2 UHF hardware. Add a native 2510 axial fan to all patterns and Beacon RevH / Cartographer V4 with original 31.6 mm hole registration to assembled VORON and Monolith heads. Static head body, coil height and manufacturer metal keepout inspected; complete printer travel and cable clearance are not certified.",
-      "changes": "Original dimensions retained. The axial fan mounts on the native rear seat, aligned with four finite 7 mm insert bores and the open passage toward the heatsink. Probes use the integrated underside seat. Manufacturer inspection volumes are excluded from displayed parts. Separate component versions and licenses are retained."
+      "scope": "Native tLW printable assemblies with Sherpa Mini Release 2, Tricorn Long or acquired Rapido 2 UHF hardware. Add a native 2510 axial fan to all patterns and Beacon RevH / Cartographer V4 with original 31.6 mm hole registration to assembled VORON and Monolith heads. Static head body, coil height and manufacturer metal keepout inspected; complete printer travel and cable clearance are not certified. Archived V3 WS7040 / WS9290 adds 10 dedicated native hardware combinations on standard VORON 6 mm mounts; archived Single Inlet Orbiter is a head-only reference with source motor/bracket interference and missing axial cooling.",
+      "changes": "Original dimensions retained. The axial fan mounts on the native rear seat, aligned with four finite 7 mm insert bores and the open passage toward the heatsink. Probes use the integrated underside seat. Manufacturer inspection volumes are excluded from displayed parts. Separate component versions and licenses are retained. V3 uses its own measured rail and fan seats. Tricorn and Goliath rigid orientations avoid native body intersections. Single Inlet omits only source reference rail/frame and duplicate bracket. No integrated print supports are removed."
     },
     {
       "id": "chirpy_heads",
@@ -1100,6 +1100,19 @@
       "changes": "Unscaled native CAD web meshes and rigid Sphinx placements. Short coolant inspection volume omitted; two invalid source solids retained as references.",
       "scope": "Air and Water standalone components and 24 Sphinx combinations: VORON/Monolith, Sherpa R2 short/long idler, none/Beacon/Cartographer. Short WC extruder assembly is a component reference only.",
       "notice": "NC terms remain in effect. Static geometry checks do not certify full machine travel or thermal/water circuit behavior."
+    },
+    {
+      "id": "trident_stealth_skirts",
+      "label": "Trident Stealth Skirts · PrintStructor",
+      "author": "PrintStructor",
+      "url": "https://www.printables.com/model/670769-voron-trident-stealth-skirts-cheese-grater-honeyco",
+      "version": "Model 670769 · 2024-05-05",
+      "sha256": "c840e43fc44933b583b23d2350abf222572c3af1ae79378797dd0cd8455a10d7",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/stealth_skirts/LICENSE",
+      "scope": "VORON Trident 250 / 300 / 350 · Cheese Grater and Honeycomb original STL panels with source feet, fans, screen and filtered inlet.",
+      "changes": "Native rigid frame placement and palette roles; standard skirts and associated fasteners replaced. Native VORON M3 slot nuts placed at measured new skirt axes.",
+      "notice": "Source hardware is a reference. Electrical operation and kit-specific compatibility are not certified."
     }
   ],
   "defaults": [
@@ -1422,6 +1435,14 @@
     {
       "label": "Goliath · 原本CADとSphinx取付",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v44/viewer-goliath-sources.zip"
+    },
+    {
+      "label": "Trident Stealth Skirts · 原本と取付データ",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v45/viewer-stealth-skirts-sources.zip"
+    },
+    {
+      "label": "Sphinx · V3 7040／9290 とSingle Inletの原本",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v45/viewer-sphinx-generations-sources.zip"
     }
   ]
 }

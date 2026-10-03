@@ -1,6 +1,24 @@
 import {v0Messages,v0Templates} from './v0-messages-en.mjs?v=v0-mounts-38';
 import {ratRigMessages,ratRigTemplates} from './ratrig-messages-en.mjs?v=trident-clearance-35';
 export const messages = {
+ "作者の旧V3専用ボディ・ダクトに、実物寸法のホットエンド、Sherpa Mini R2と2510冷却ファンを装着。": "Author archived V3 body and duct fitted with native hotend hardware, Sherpa Mini R2 and a 2510 cooling fan.",
+ "V3の取付面と4本のMGN12H穴軸を照合。6 mmベルト用。tLWやMonolithの取付座標とは別です。": "V3 mating plane and four MGN12H bore axes checked. For 6 mm belts; distinct from tLW and Monolith mounting coordinates.",
+ "WS7040／9290用ダクトを表示。送風機・ホース、ヘッド基板、取付ねじ、配線は未装着。": "WS7040 / 9290 duct displayed. Blower, hose, toolboard, mounting screws and wiring are absent.",
+ "原寸と座面を保持し、ホットエンドの取付方向で本体干渉を回避。静止姿勢の検査で、全可動域・熱特性は未検証。": "Native dimensions and seats retained; hotend orientation avoids body intersections. Static pose checks do not certify full travel or thermal behavior.",
+ "原本Single InletのOrbiter 2・Tricorn・Beaconをそのまま表示。MGN参照レール・フレームと重複ブラケットのみ省略。": "Original Single Inlet Orbiter 2 / Tricorn / Beacon assembly displayed; only the reference rail, extrusion and duplicate bracket are omitted.",
+ "原本のモーターとMGNブラケットに最大16.932 mm³の干渉があります。機体の取付選択肢には登録していません。": "The source motor intersects the MGN bracket by up to 16.932 mm³. This reference is excluded from machine mounting choices.",
+ "原本にはホットエンド冷却ファンがありません。Beaconは原本の形状と位置を保持し、現行版への差替えや金属除外領域の適合を推定していません。": "The original assembly lacks a hotend cooling fan. Beacon retains the source shape and position; current revision substitution and metal keepout compatibility are not inferred.",
+ "Sphinx · V3 7040／9290 とSingle Inletの原本": "Sphinx · V3 7040 / 9290 and original Single Inlet assemblies",
+ "Beacon · Sphinx原本内蔵参照": "Beacon · embedded Sphinx source reference",
+ "V3 · WS7040ダクト + 2510": "V3 · WS7040 duct + 2510",
+ "V3 · WS9290ダクト + 2510": "V3 · WS9290 duct + 2510",
+ "Single Inlet · 原本Orbiter組立": "Single Inlet · source Orbiter assembly",
+ "Rapido原本の接続部と印刷ボディに0.101／0.078 mm³の微小な交差があります。": "Native Rapido connector bodies retain 0.101 / 0.078 mm³ minor intersections with the printed body.",
+
+ "原作者の足・4基の6020ファン・PiTFT50 V2.1・フィルター付き電源口を含む外装組立。標準外装と関連ネジ・ナットを置換。配線・電気特性は未再現。": "Author assembly with feet, four 6020 fans, PiTFT50 V2.1 and filtered power inlet. Replaces stock skirts and their screws/nuts. Wiring and electrical behavior are not simulated.",
+ "同時に選べない外装Modが含まれています。": "Mutually exclusive exterior mods cannot be selected together.",
+ "Trident Stealth Skirts · 原本と取付データ": "Trident Stealth Skirts · source and mounting data",
+
  "Goliathの公式空冷CADと、背面の2510冷却ファンを装着。": "Official Goliath air-cooled CAD with the rear 2510 cooling fan fitted.",
  "Goliathの公式水冷CADと継手を装着。空冷ファンは省略。水冷回路・ホースは未装着。": "Official Goliath water-cooled CAD and fittings. Air cooling fan omitted; water circuit and hoses are absent.",
  "原本のSherpaモーターとブラケットに約0.0195 mm³の接触が残ります。": "The original Sherpa motor and bracket retain an approximately 0.0195 mm³ contact.",

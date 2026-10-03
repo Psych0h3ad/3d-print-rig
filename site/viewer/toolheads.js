@@ -1,7 +1,7 @@
-import {loadMonolithData} from './monolith-machine.js?v=sc-seats-39';
+import {loadMonolithData} from './monolith-machine.js?v=sphinx-skirts-45';
 import {setupChangerBank} from './changer-bank.js?v=trident-clearance-35';
-import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=v24-belts-43';
-import {headPrinterLink} from './head-navigation.mjs?v=sc-seats-39';
+import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=sphinx-skirts-45';
+import {headPrinterLink} from './head-navigation.mjs?v=sphinx-skirts-45';
 import {headBuilderDimensions} from './configuration-model.js?v=trident-clearance-35';
 let machineRegistry,toolBank,bankRig;
 import {appearanceRole} from './appearance-role.mjs?v=trident-clearance-35';
@@ -9,13 +9,13 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=touch-37';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=trident-clearance-35';
-import {setupConfigurations} from './configurations.js?v=sc-seats-39';
+import {setupConfigurations} from './configurations.js?v=sphinx-skirts-45';
 import {setupPublicInfo} from './public-info.js?v=standard-step-42';
 import {setupRenderExport} from './render-export.js?v=trident-clearance-35';
 import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=trident-clearance-35';
 import {probeCheck,probeMetrics,probeGuide,headInspectionState} from './probe-checks.js?v=trident-clearance-35';
 import {renderProductLinks} from './product-links.js?v=trident-clearance-35';
-import {setupHeadBuilder} from './builder-ui.mjs?v=sc-seats-39';
+import {setupHeadBuilder} from './builder-ui.mjs?v=sphinx-skirts-45';
 import {validateBuilderExtras} from './toolhead-builder.mjs?v=trident-clearance-35';
 
 const $=s=>document.querySelector(s),stage=$('#stage'),scene=new THREE.Scene();

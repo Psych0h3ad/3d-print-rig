@@ -1,5 +1,5 @@
-import {loadMonolithMachines} from './monolith-machine.js?v=sc-seats-39';
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=sc-seats-39';
+import {loadMonolithMachines} from './monolith-machine.js?v=sphinx-skirts-45';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=sphinx-skirts-45';
 import {bankBedReferenceDrop} from './changer-bank-model.mjs?v=trident-clearance-35';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=trident-clearance-35';
 import * as THREE from 'three';
@@ -11,14 +11,14 @@ import {setupGrid} from './grid-control.js?v=trident-clearance-35';
 import {setupLighting} from './lighting.js?v=trident-clearance-35';
 import {setupFlexible} from './flexible.js?v=trident-clearance-35';
 import {createBedChain} from './bed-chain.mjs?v=public-v25';
-import {setupConfigurations} from './configurations.js?v=sc-seats-39';
-import {setupAccessories} from './accessories.js?v=trident-clearance-35';
+import {setupConfigurations} from './configurations.js?v=sphinx-skirts-45';
+import {setupAccessories} from './accessories.js?v=sphinx-skirts-45';
 import {setupAppearance} from './appearance.js?v=trident-clearance-35';
 import {setupRenderExport} from './render-export.js?v=trident-clearance-35';
 import {setupPublicInfo} from './public-info.js?v=standard-step-42';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=v24-belts-43';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=sphinx-skirts-45';
 import {setupChangerBank} from './changer-bank.js?v=trident-clearance-35';
-import {expandedPrinterCatalog} from './machine-head-model.mjs?v=sc-seats-39';
+import {expandedPrinterCatalog} from './machine-head-model.mjs?v=sphinx-skirts-45';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=trident-clearance-35';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=trident-clearance-35';
 import {createHeadMarkers} from './head-markers.mjs?v=trident-clearance-35';
@@ -215,7 +215,7 @@ Promise.all([fetch('../assembly_manifest.json?v=trident-clearance-35',{cache:'no
  flexible=setupFlexible(scene,allMeshes,manifest,routes);appearance=setupAppearance(allMeshes,await lighting.whenReady,colorOptions);
  const door=groups['09_ClickyClacky_Door'];if(door){pivot=new THREE.Group();pivot.position.set(-.26205,0,.2565);scene.add(pivot);pivot.attach(door)}
  for(const s of ['#door','#x','#y','#z','#demo','#reset','#home','#focusX','#focusY','#releaseSwitch','#focusZ'])$(s).disabled=false;
- accessories=setupAccessories(catalog,{load:asset,update:()=>setPose(current.x,current.y,current.z)});
+ accessories=setupAccessories(catalog,{load:asset,update:()=>setPose(current.x,current.y,current.z),stockNodes:parts});
  headMarkers=createHeadMarkers(scene,{rig:installedHeads,fixture:key=>parts.get(key),render:()=>{renderRequested=true},setPose:xyz=>{program?.invalidate();stop();unfocus();if(xyz.some((n,i)=>n<Number($('#'+['x','y','z'][i]).min)-1e-7||n>Number($('#'+['x','y','z'][i]).max)+1e-7))return false;$('#head').checked=true;$('#panels').checked=true;showHead();setPose(...xyz);return true}});
  toolBank=setupChangerBank({catalog,rig:installedHeads,data:headData.bank,extras:{...accessories,onSettled:()=>setPose(current.x,current.y,current.z)}});ready=true;$('#loading').remove();await toolBank.bind(await setupConfigurations(catalog,installConfiguration,{...toolBank.options,inspectPose:headMarkers.inspect}));
  const programFrame=()=>({nozzle_mm:activeConfig.fit.nozzle_mm,reference_xyz_mm:[refX,refY,0],moving_bed_z:true});

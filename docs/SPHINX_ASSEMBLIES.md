@@ -19,3 +19,21 @@ Beacon's MIT and embedded connector exceptions, and Cartographer's acquired CAD 
 Native modules, source identifiers and registration data are provided in the separate Sphinx source archive. The standard-machine STEP download policy is unchanged.
 
 Dedicated Goliath Air/Water assemblies, sensor heights, water-cooling differences and the separate Short WC reference are documented in [Goliath](GOLIATH.md).
+
+## Archived V3 and Single Inlet
+
+The same [pinned author repository](https://github.com/riley-github/Sphinx-Toolhead/tree/74ce5f58fcb06aea2ddcbb48b09610cbbfbfa180) supplies these archived generations separately from current tLW. Select Sphinx, then choose V3 WS7040 / WS9290 in Cooling. Ten new hardware combinations are available on the head page and standard 6 mm VORON machine mounts:
+
+| Author body | Hardware hotend | Extruder alternatives |
+| --- | --- | --- |
+| Tricorn 7040 / 9290 | Tricorn Long | Sherpa Mini R2 Standard Short / Long |
+| Goliath / CHC XL 7040 / 9290 | Goliath Air | Sherpa Mini R2 Standard Short / Long |
+| Rapido UHF Sherpa 9290 | Acquired Rapido 2 UHF | Sherpa Mini R2 Standard Short / Long |
+
+V3 uses its own measured MGN12H plane and four 20 × 20 mm bore axes. The native block contacts the bracket without body intersection. Tricorn rotates 90 degrees and Goliath 270 degrees about the cold-end axis relative to initial registration, preserving dimensions and seats. All eight resulting native hotend/body/extruder/fan assemblies clear static body checks. Rapido retains minor 0.101 / 0.078 mm³ connector/body intersections, explicitly shown as source CAD contact. Alternative quarter-turn orientations create larger intersections and are excluded. Printed-body clearance at nozzle contact is about 1.90 mm (Tricorn), 5.15 mm (Goliath), 2.40 mm (Rapido).
+
+V3’s 2510 hotend fan uses its own seat, distinct from tLW. Native plane, lower screw axes and body clearance are checked; upper holes retain author slots. Tricorn uses the matching archived Rapido/Tricorn bracket, with native body contact. Remote WS blowers, hoses, toolboards, mounting screws and wiring are absent. V3 probe substitutions, Monolith and 9 mm clamps are not inferred. Full-machine travel and thermal behavior remain unverified.
+
+Single Inlet on the head page preserves the author’s Orbiter 2 / Tricorn / Beacon source assembly. Only its reference rail, extrusion and exact duplicate bracket are omitted. The original motor intersects the MGN bracket by up to 16.932 mm³ and the native assembly lacks an axial hotend fan. Source Beacon shape/position is retained without assigning modern mounting or metal-keepout certification. This incomplete reference is marked and excluded from machine choices. Current tLW Orbiter support remains work in progress upstream.
+
+The v45 source archive supplies pinned files, native placed parts, registrations and scoped geometric reports. No integrated print supports are removed. Sphinx CC BY-NC-SA 4.0, Annex EULA, Orbiter CC BY-NC-SA, Tricorn CC0, Goliath CC BY-NC 4.0 and fan terms remain separate. Existing tLW variants and mounting evidence are preserved.

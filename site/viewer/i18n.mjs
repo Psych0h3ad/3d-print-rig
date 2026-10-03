@@ -1,4 +1,4 @@
-import {messages,templates} from './messages-en.mjs?v=goliath-44';
+import {messages,templates} from './messages-en.mjs?v=sphinx-skirts-45';
 
 const normalize=text=>text.trim().replace(/\s+/gu,' ');
 const escape=text=>text.replace(/[.*+?^${}()|[\]\\]/gu,'\\$&');

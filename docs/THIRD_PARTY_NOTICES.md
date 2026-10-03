@@ -556,3 +556,9 @@ The v24 archive retains [VoronDesign/Voron-Trident](https://github.com/VoronDesi
 Selected V0 Mod installation transforms and replacement identities are documented in `docs/V0_INSTALLATIONS.md`. The original source dimensions, provenance and license terms are retained. Stealth Handles require stock-panel clearance; Picobilical is a mounting-plate view.
 
 The MIT-licensed Three.js OrbitControls include local pointer-cancellation and capture-loss recovery changes. The original license notices are retained.
+
+## Viewer v45 additions
+
+[Trident Stealth Skirts](STEALTH_SKIRTS.md) uses PrintStructor model 670769, updated 2024-05-05, under GPL-3.0. Original preferred editable CAD/STLs, native registrations and remix credits are supplied separately in the release source archive. VORON hardware retains its original terms.
+
+[Sphinx archived generations](SPHINX_ASSEMBLIES.md#archived-v3-and-single-inlet) come from riley-github/Sphinx-Toolhead commit 74ce5f58fcb06aea2ddcbb48b09610cbbfbfa180. Separate component licenses remain in force. Ten V3 static assemblies and one incomplete Single Inlet reference are documented with distinct checks and limitations.

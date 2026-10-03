@@ -1,0 +1,7 @@
+Trident Stealth Skirts · Cheese Grater and Honeycomb
+Author: PrintStructor. Model 670769; upstream update 2024-05-05.
+https://www.printables.com/model/670769-voron-trident-stealth-skirts-cheese-grater-honeyco
+License: GPL-3.0, as displayed by the original model. Original CAD and STL dimensions retained.
+Changes: rigid native frame registration; separate 250/300/350 size meshes and style panels; relocated native VORON M3 slot nuts; base/accent palette roles. Original CAD reference assembly supplies feet, four fans, PiTFT50 V2.1 and filtered inlet. Original STL surfaces supply the current panels, including original holes; no integrated supports are removed. Wiring and electrical operation are not simulated.
+Remix credits: VORON Design; Maverick V0.2 Stealth Skirts; Ken226 screen mount; CHAOSDRUCKER Cheese Grater inspiration. Embedded hardware and screen geometry remain source references without inferred manufacturer certification. Original editable CAD and STL files with transformations are supplied in the source archive.
+Registered for VORON Trident 250/300/350. SIBOOR AWD corner motor / modified front frame compatibility is not inferred.

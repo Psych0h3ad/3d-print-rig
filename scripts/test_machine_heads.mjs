@@ -50,3 +50,14 @@ registry.sources.sphinx_voron={origin_mm:[0,-7.5,0],axis_error_mm:.00083};
 const sphinx=head('sphinx_native','sphinx','fixed','sphinx_voron',6);sphinx.registration_source='sphinx_voron';sphinx.base_asset='sphinx_original';sphinx.head_only=true;sphinx.extruder='sherpa_r2_standard_short';sphinx.hotend='tricorn';sphinx.carriage='source';sphinx.fit.nozzle_mm=[0,-17.5,-84.5];sphinx.modules=[{id:'sherpa_original',translation_mm:[0,0,0],role:'tool'},{id:'hotend_original',translation_mm:[0,0,0],role:'tool'}];
 const sphinxHeads={...heads,variants:[sphinx]};const sphinxPlaced=machineHeadVariants(sphinxHeads,registry,'six');assert.equal(sphinxPlaced.length,1);assert.deepEqual(sphinxPlaced[0].machine_head.translation,[0,.5,136]);assert.deepEqual(sphinxPlaced[0].machine_head.nozzle_mm,[0,-17,51.5]);assert.equal(sphinxPlaced[0].probe,'none');assert.equal(sphinxPlaced[0].machine_head.modules.length,2);assert.equal(sphinxPlaced[0].source_head_configuration,'sphinx_native');assert.equal(machineHeadVariants(sphinxHeads,registry,'nine','awd').length,0);
 assert.deepEqual(sphinx.fit.nozzle_mm,[0,-17.5,-84.5]);
+// Archived generations have distinct native planes. An unregistered name or
+// the incomplete single-inlet source assembly must not reach machine menus.
+registry.sources.sphinx_v3_tricorn_7040={origin_mm:[0,14.3,62.75],axis_error_mm:2e-8};
+const v3={...sphinx,id:'v3',registration_source:'sphinx_v3_tricorn_7040',cooling:'v3_ws7040',fit:{nozzle_mm:[0,0,0]}};
+const legacy={...v3,id:'legacy',registration_source:'sphinx_single_inlet'};
+const missing={...v3,id:'missing_v3',registration_source:'sphinx_v3_missing'};
+const generations={...heads,variants:[sphinx,v3,legacy,missing]};
+const placedV3=machineHeadVariants(generations,registry,'six');
+assert.deepEqual(placedV3.map(v=>v.source_head_configuration),['sphinx_native','v3']);
+assert.deepEqual(placedV3[1].machine_head.nozzle_mm,[0,-21.3,73.25]);
+assert.equal(machineHeadVariants(generations,registry,'nine','awd').length,0);

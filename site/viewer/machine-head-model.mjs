@@ -29,7 +29,7 @@ export function machineHeadVariants(heads,registry,machine,gantry){
  return heads.variants.filter(v=>
   (v.mount==='fixed'&&['trident_r2','siboor_awd'].includes(v.gantry)&&v.carriage==='standard'&&['stealthburner','xol'].includes(v.toolhead))||
   (v.toolhead==='crowncooler'&&v.registration_source==='crowncooler'&&target.belt_width_mm===6)||
-  (v.toolhead==='sphinx'&&v.registration_source==='sphinx_voron'&&target.belt_width_mm===6)||
+  (v.toolhead==='sphinx'&&(v.registration_source==='sphinx_voron'||(v.registration_source?.startsWith('sphinx_v3_')&&registry.sources[v.registration_source]))&&target.belt_width_mm===6)||
   (['filamatrix','madmax'].includes(v.mount)&&['filamatrix','madmax_xol'].includes(v.registration_source)&&target.belt_width_mm===6)||
   (v.mount==='stealthchanger'&&v.gantry==='sc_standard_'+target.belt_width_mm&&['stealthburner','xol','jabberwocky'].includes(v.toolhead))||
   (v.toolhead==='indx'&&target.belt_width_mm===6)
