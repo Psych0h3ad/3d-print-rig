@@ -1,7 +1,9 @@
 import {v0Messages,v0Templates} from './v0-messages-en.mjs?v=v0-mounts-38';
 import {ratRigMessages,ratRigTemplates} from './ratrig-messages-en.mjs?v=trident-clearance-35';
 import {e3ngMessages} from './e3ng-messages-en.mjs?v=e3ng-48';
+import {yudxMessages} from './yudx-messages-en.mjs?v=yudx-49';
 export const messages = {
+ ...yudxMessages,
  ...e3ngMessages,
  "上側のネジ頭とシャトル穴に約0.087 mmの半径方向の食い込みが残っています。機械的な取付適合は未確定です。": "Upper screw heads still overlap the shuttle counterbores by about 0.087 mm radially. Mechanical mounting compatibility is unconfirmed.",
  "固定ネジの穴底を修正 · ネジ頭と穴に干渉あり": "Fixing depth corrected · screw head / counterbore interference",

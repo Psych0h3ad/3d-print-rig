@@ -1,0 +1,5 @@
+.toolhead-viewer #changerSpec {
+  grid-template-columns: minmax(92px, 34%) minmax(0, 1fr);
+  align-items: start;
+}
+#changerSpec dt, #changerSpec dd { min-width: 0; }

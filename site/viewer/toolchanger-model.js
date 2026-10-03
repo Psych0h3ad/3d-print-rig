@@ -15,6 +15,11 @@ export function changerPlacement(variant,entry,{probe=0,explode=0}={}){
  if(!Number.isFinite(probe)||!Number.isFinite(explode)||explode<0||explode>50)throw Error('表示変位が範囲外です');
  if(probe&&(!variant.probe_travel_mm||probe<variant.probe_travel_mm[0]||probe>variant.probe_travel_mm[1]))throw Error('この機構のストロークは未登録です');
  const p=[...entry.translation_mm];
- if(entry.role==='tool'){p[1]-=explode;p[2]+=probe+explode/2}
+ if(entry.role==='tool'){
+  const direction=entry.explode_vector_mm||[0,-1,.5];
+  if(!Array.isArray(direction)||direction.length!==3||!direction.every(Number.isFinite))throw Error('分解表示の方向が不正です');
+  for(let i=0;i<3;i++)p[i]+=direction[i]*explode;
+  p[2]+=probe;
+ }
  return p;
 }

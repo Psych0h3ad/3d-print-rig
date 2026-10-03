@@ -1,5 +1,5 @@
 {
-  "viewer_version": "viewer-v48",
+  "viewer_version": "viewer-v49",
   "sources": [
     {
       "id": "siboor_trident",
@@ -1128,6 +1128,19 @@
       "changes": "Tessellation and printed-part display palette. Native placed dimensions retained. Alternative assemblies selected independently. One invalid source EBB42 leaf remains disclosed; no mechanical fit or executable tool exchange certification.",
       "version": "CAD/E3NG_Toolchanger.step; native E3NG_ToolChanger_MOD1 v10",
       "notice": "Noncommercial/share-alike CAD conditions remain separate from application code. Original E3NG files: https://rh3d.xyz/ ; RH3D/E3NG reference commit 095edee85eb7c813bdcdc25489f05e884cccad91."
+    },
+    {
+      "id": "yudx",
+      "label": "YUDX · MGN12Hヘッド・専用押出機・ドック",
+      "repository": "dumplinglab/YUDX-tool-changer",
+      "author": "dumpling / Dumpling lab",
+      "commit": "9b0f1b3d48d2bde63a0e042524a494e89a94ca4b",
+      "url": "https://github.com/dumplinglab/YUDX-tool-changer/tree/9b0f1b3d48d2bde63a0e042524a494e89a94ca4b",
+      "scope": "148部品の原本組立。交換ヘッド・専用押出機・空のドック1台を含む参照CAD。機体取付と交換経路は未検証。",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/yudx/LICENSE",
+      "changes": "原本の配置・寸法を保持して三角形化。部品単位の配色と分解表示。ソリッド修復・スケール変更はなし。",
+      "notice": "最新版CADを使用。作者のBOM・組立PDFは未更新です。付属G-codeはRRF用でKlipperマクロは未提供。"
     }
   ],
   "defaults": [
@@ -1462,6 +1475,10 @@
     {
       "label": "StealthChanger native fixing depth and attachment references",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v47/viewer-stealthchanger-mounts.zip"
+    },
+    {
+      "label": "YUDX · CAD sources",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v49/viewer-yudx-sources.zip"
     }
   ]
 }

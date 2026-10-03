@@ -25,4 +25,12 @@ assert.throws(()=>changerChoice(c,{system:'missing'},'system'));
 assert.throws(()=>changerChoice(c,{toolhead:'unknown'},'toolhead'));
 assert.equal(changerChoice(c,{...c.variants[0],system:'tapchanger'},'system').interface,'source');
 assert.equal(changerChoice(c,{...c.variants.at(-1),system:'stealthchanger'},'system').system,'stealthchanger');
+// YUDX separates the hotend horizontally, with no invented probing stroke.
+const yudx={id:'yudx_assembly',system:'yudx',interface:'yudx_mgn12',toolhead:'yudx_assembly',probe_travel_mm:null,modules:[{id:'yudx',role:'tool',translation_mm:[0,0,0],explode_vector_mm:[0,-1,0]}]};
+c.assets.yudx={meta:'yudx.json',glb:'yudx.glb'};c.variants.push(yudx);
+assert.equal(changerChoice(c,{...c.variants[0],system:'yudx'},'system'),yudx);
+assert.deepEqual(changerChoices(c,yudx,'interface'),['yudx_mgn12']);
+for(const explode of [0,1,25,50])assert.deepEqual(changerPlacement(yudx,yudx.modules[0],{explode}),[0,explode===0?0:-explode,0]);
+assert.throws(()=>changerPlacement(yudx,yudx.modules[0],{probe:1}));
+assert.throws(()=>changerPlacement(yudx,{...yudx.modules[0],explode_vector_mm:[0,NaN,0]},{explode:1}));
 console.log('Toolchanger selections, asset completeness and declared probe/explode motion passed.');

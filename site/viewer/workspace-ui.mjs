@@ -1,5 +1,5 @@
 // Shared presentation layer. Existing controls, IDs and CAD controllers stay intact.
-import {setupLanguage,originalText} from './i18n.mjs?v=e3ng-48';
+import {setupLanguage,originalText} from './i18n.mjs?v=yudx-49';
 import {printerWorkspaceURL,workspaceReturnKey} from './workspace-return.mjs?v=crossant-36';
 import {setupWorkspaceSharing} from './workspace-share.mjs?v=sharing-1';
 import {lockInspectorHorizontalScroll} from './workspace-scroll.mjs?v=inspector-width-1';
