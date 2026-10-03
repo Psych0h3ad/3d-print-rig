@@ -1,5 +1,5 @@
 {
-  "viewer_version": "viewer-v46",
+  "viewer_version": "viewer-v47",
   "sources": [
     {
       "id": "siboor_trident",
@@ -1443,6 +1443,10 @@
     {
       "label": "Sphinx · V3 7040／9290 とSingle Inletの原本",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v46/viewer-sphinx-generations-sources.zip"
+    },
+    {
+      "label": "StealthChanger native fixing depth and attachment references",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v47/viewer-stealthchanger-mounts.zip"
     }
   ]
 }

@@ -1,6 +1,16 @@
 import {v0Messages,v0Templates} from './v0-messages-en.mjs?v=v0-mounts-38';
 import {ratRigMessages,ratRigTemplates} from './ratrig-messages-en.mjs?v=trident-clearance-35';
 export const messages = {
+ "上側のネジ頭とシャトル穴に約0.087 mmの半径方向の食い込みが残っています。機械的な取付適合は未確定です。": "Upper screw heads still overlap the shuttle counterbores by about 0.087 mm radially. Mechanical mounting compatibility is unconfirmed.",
+ "固定ネジの穴底を修正 · ネジ頭と穴に干渉あり": "Fixing depth corrected · screw head / counterbore interference",
+ "ピンとバックプレートの登録姿勢を確認": "Registered pin and backplate poses checked",
+ "MGN12H → Keeper → シャトル": "MGN12H → Keeper → shuttle",
+ "固定ネジ": "Fixing screws",
+ "0 / 1.5 / 3 mmの3姿勢。連続可動は未確認": "Three poses at 0 / 1.5 / 3 mm. Continuous travel is unverified.",
+ "印刷版シャトルとKeeperを選択した構成です。ヘッド側の3本のピンをシャトルのブッシュへ接続します。": "Printed shuttle with a Keeper. The three tool-side pins engage the shuttle bushes.",
+ "磁石・予圧調整・ベルト保持・荷重・実行可能な交換経路は未検証です。": "Magnets, preload, belt retention, loads and executable tool-change paths are unverified.",
+ "固定ネジの穴軸・頭の座面・モデルの穴底との隙間を確認。実機のねじ深さ・保持強度の認証ではありません。": "Fixing screw axes, nominal head-seat planes and modeled hole-end gaps checked. Actual tap depth and retention strength are not certified.",
+ "MonolithのM3×14はCADの穴深さに合う原寸部品を選択。作者の推奨締結仕様としては扱いません。": "Monolith M3×14 uses native hardware selected for the modeled hole depth. This is not an upstream hardware recommendation.",
  "作者の旧V3専用ボディ・ダクトに、実物寸法のホットエンド、Sherpa Mini R2と2510冷却ファンを装着。": "Author archived V3 body and duct fitted with native hotend hardware, Sherpa Mini R2 and a 2510 cooling fan.",
  "V3の取付面と4本のMGN12H穴軸を照合。6 mmベルト用。tLWやMonolithの取付座標とは別です。": "V3 mating plane and four MGN12H bore axes checked. For 6 mm belts; distinct from tLW and Monolith mounting coordinates.",
  "WS7040／9290用ダクトを表示。送風機・ホース、ヘッド基板、取付ねじ、配線は未装着。": "WS7040 / 9290 duct displayed. Blower, hose, toolboard, mounting screws and wiring are absent.",

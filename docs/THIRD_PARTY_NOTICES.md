@@ -562,3 +562,7 @@ The MIT-licensed Three.js OrbitControls include local pointer-cancellation and c
 [Trident Stealth Skirts](STEALTH_SKIRTS.md) uses PrintStructor model 670769, updated 2024-05-05, under GPL-3.0. Original preferred editable CAD/STLs, native registrations and remix credits are supplied separately in the release source archive. VORON hardware retains its original terms.
 
 [Sphinx archived generations](SPHINX_ASSEMBLIES.md#archived-v3-and-single-inlet) come from riley-github/Sphinx-Toolhead commit 74ce5f58fcb06aea2ddcbb48b09610cbbfbfa180. Separate component licenses remain in force. Ten V3 static assemblies and one incomplete Single Inlet reference are documented with distinct checks and limitations.
+
+## StealthChanger fixing references
+
+The four printed-shuttle/Keeper modules use native M3×12 bolt geometry from [DraftShift/StealthChanger](https://github.com/DraftShift/StealthChanger/tree/50e3c769297b273ac390fb33b455aa7f4dfe3099) DragonBurner backplate CAD and native M3×14 geometry from [PrintersForAnts/AntHead](https://github.com/PrintersForAnts/AntHead/tree/249f64302ed1f159e79e3ee07682fea8e0644288) Papilio assembly CAD. GPL-3.0 and embedded component terms remain applicable. Original preferred CAD, current editable assemblies, native bodies and retained licenses accompany viewer-v47. Printed source geometry is unchanged. Monolith's selected bolt length is a CAD depth reference; residual head/counterbore interference and unverified mechanical requirements are disclosed in [attachment scope](STEALTHCHANGER_MOUNTS.md).

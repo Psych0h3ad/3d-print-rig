@@ -1,5 +1,7 @@
 # StealthChanger bank
 
+The active printed V1.1 head uses a measured Keeper/shuttle attachment to the MGN12H block. Fixing depth, pin engagement and the limits of this reference are described in [StealthChanger attachment scope](STEALTHCHANGER_MOUNTS.md); a registered dock layout does not certify those mechanical interfaces or an exchange path.
+
 V2.4 machine pages offer a frame-mounted ModularDock bank and a single active StealthChanger V1.1 head. Choose one to three tools on 250 mm V2.4 references, or one to four on the registered 300/350 mm V2.4 references. Individual slots accept Xol / Sherpa Mini / Rapido 2 UHF or JabberWocky / Conch. Repeated heads and mixed banks are supported. Tool selection moves only the active head with the gantry; other heads and all docks stay attached to the fixed frame, including during V2.4 Z motion. The standalone workbench also offers these source bank layouts. [INDX tools](INDX.md) use a separate bank with one Smart Head.
 
 Save/load configuration JSON includes `tool_bank`. Shared URLs include `tools`, containing the enabled state, active index and source configuration for each slot. Unknown, off-machine, over-capacity and invalid active-index states are rejected. Changing to an unregistered parked-head combination disables the bank and retains the normal single-head viewer. The main head selector still offers the other registered hotend/extruder combinations, including SB; the mount selector is visible outside advanced settings.

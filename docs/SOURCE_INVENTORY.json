@@ -1,7 +1,7 @@
 {
   "scope": "All tracked source and license files; CAD, mesh, private inputs and execution reports excluded.",
   "newline_policy": "Hashes use canonical LF, matching Git blobs.",
-  "upstream_viewer_version": "viewer-v46",
+  "upstream_viewer_version": "viewer-v47",
   "files": [
     {
       "path": ".gitattributes",
@@ -45,8 +45,8 @@
     },
     {
       "path": "docs/CHANGER_BANK.md",
-      "bytes": 4808,
-      "sha256": "ebc9d2787dad9a76970f1b53f8aa500d3215d9da8973bc1e110fb86505dcec7e"
+      "bytes": 5132,
+      "sha256": "092dd8d3721bcfb6cc0421507d6b7a41564e7cf3a57392805b33afbd2e3e4301"
     },
     {
       "path": "docs/CUTTERS_MADMAX.md",
@@ -80,8 +80,8 @@
     },
     {
       "path": "docs/MOTION_AUDIT.md",
-      "bytes": 7557,
-      "sha256": "65ca7cd4f7fb4d027acff28df5b39847830b5e1c7a7e5e14fab228a28b4b83dd"
+      "bytes": 7746,
+      "sha256": "e1864fd7f5431d372692a1c53a9e1ec837ab544659e3d35dc566e1f13a11129e"
     },
     {
       "path": "docs/PROBE_CLEARANCE.md",
@@ -114,14 +114,19 @@
       "sha256": "9ded9ac0770c6c16b60b268e73dbc8d4ff96cac1812031ad117b5d9747af8072"
     },
     {
+      "path": "docs/STEALTHCHANGER_MOUNTS.md",
+      "bytes": 4299,
+      "sha256": "918ef1ef2adaeaca618c936e0861228213838d45fade6c38ff878cc2f5952607"
+    },
+    {
       "path": "docs/STEALTH_SKIRTS.md",
       "bytes": 1700,
       "sha256": "009b1967af2571dc3f60e3225b131f3b511162c43dc2448736f7ec163be30767"
     },
     {
       "path": "docs/THIRD_PARTY_NOTICES.md",
-      "bytes": 61910,
-      "sha256": "f7c3e0c2f9db023387a38970345a3b59571ddc99d5157e963c5b9762cadb1683"
+      "bytes": 62746,
+      "sha256": "673349927bd712c23aa7b2f344175c7fa64df963ffe1c9fcf80972d3fbd6afb9"
     },
     {
       "path": "docs/TRIDENT_SIZE_COLOR_QA.md",
@@ -521,7 +526,7 @@
     {
       "path": "site/ASSET_BUNDLE.json",
       "bytes": 229,
-      "sha256": "eea6fc3eb0496ada7a6c7afe6437c580a6a607cd0ed3fd546da18862de1506b1"
+      "sha256": "a19a70d3ba13929573bb486f881f58d3aa4cf9b55c4eee36fb1c140c958bc3f6"
     },
     {
       "path": "site/CROSSANT_ASSETS.json",
@@ -530,8 +535,8 @@
     },
     {
       "path": "site/HEAD_VALIDATION.json",
-      "bytes": 8062147,
-      "sha256": "0bac191207d87f4412470c809000d1688da159e087f746e2c92da49e8ad1434d"
+      "bytes": 7038415,
+      "sha256": "12a7cd861891f8ed48a60b4e0033c4d5b49fc294892c1295e5d5966fb2668db6"
     },
     {
       "path": "site/MOD_REGISTRY.json",
@@ -540,13 +545,13 @@
     },
     {
       "path": "site/MOUNT_VALIDATION.json",
-      "bytes": 172477,
-      "sha256": "6a66c352a647099dbe381464919a1a8138cd6ff9870ea640b074c700193ac60a"
+      "bytes": 172490,
+      "sha256": "08696e6bf8622aeaf4f674343f2c3d2784effc87cf140d2fdbb2a738f89013e0"
     },
     {
       "path": "site/PUBLIC_CATALOG.json",
-      "bytes": 92653,
-      "sha256": "68167a5f90eeb215413e1df246533144aafd11e4a7813d4f4913cbd2734d3692"
+      "bytes": 92865,
+      "sha256": "21df4324cd96afb06ffc3f5877a1563f4fcce5efec8e9e63a69b2df2c44c88ce"
     },
     {
       "path": "site/RATRIG_ASSETS.json",
@@ -1295,8 +1300,8 @@
     },
     {
       "path": "site/viewer/messages-en.mjs",
-      "bytes": 161600,
-      "sha256": "f99c16ea6d04ece094d193846a5c92d8485ccb2ead94a4e12060bc637f67c683"
+      "bytes": 163340,
+      "sha256": "baa4ce8d352372f3ab8be375c3164d7a3f5930dbaf3d93f11e39d637ae54f532"
     },
     {
       "path": "site/viewer/micron-adapter.mjs",
@@ -1445,13 +1450,13 @@
     },
     {
       "path": "site/viewer/toolchangers.html",
-      "bytes": 3415,
-      "sha256": "719cafcc56e29e8329bce23dd828d2e6dd079d6f28aaaf7ae4520185f1ca62e2"
+      "bytes": 3411,
+      "sha256": "b895efee25f2ce5535224ead74f9b420dbee1c18c9813199bbc2d4c188de9a5d"
     },
     {
       "path": "site/viewer/toolchangers.js",
-      "bytes": 9003,
-      "sha256": "a7d9e2bfe6deae333fe47d890e0b61cd04ac0b73ce1f2871065926e36315177c"
+      "bytes": 10248,
+      "sha256": "34f5c07b4bb681158636d966c2aca4e2a8bcf6a385e67dc5d4e3d0aa950444f3"
     },
     {
       "path": "site/viewer/toolhead-builder.mjs",
