@@ -1246,3 +1246,47 @@ export const templates = {
  "このヘッドとガイドでは機体の表示範囲に届きません": "This head and guide assembly cannot reach the printer display range",
  "Zを上げるとMonolithガントリーと8個のガイドブロックが上がります。XY {0} mm。": "Raising Z moves the Monolith gantry and all eight guide blocks. XY belts: {0} mm."
 };
+
+Object.assign(messages, {
+ "235 mmプレート · 造形域220 × 220 × 200 mm": "235 mm plate · Build area 220 × 220 × 200 mm",
+ "独立X/Y・4 XYモーター・3 Zモーター": "Independent X/Y · 4 XY motors · 3 Z motors",
+ "元CADのToolhead-WIPを表示しています。GoliathのAir/Waterラベルが混在しています。": "Showing the upstream Toolhead-WIP. Goliath Air/Water labels are mixed in the source.",
+ "Belted-Zは元の組立が未完成です。代替ヘッド・押出機・ホットエンドの取付は未検証です。": "The upstream Belted-Z assembly is incomplete. Alternative toolhead, extruder and hotend installations remain unverified.",
+ "公称範囲で接触を確認": "Inspect contacts in the nominal range",
+ "最小位置": "Minimum position",
+ "最大位置": "Maximum position",
+ "動作を再生": "Play motion",
+ "再生を停止": "Stop playback",
+ "通常再生は剛体の有限サンプル検査範囲です。実機の限界・ホーミング・連続した干渉検査の保証ではありません。": "Normal playback uses a finite sampled rigid-body range. It does not certify physical limits, homing or continuous clearance.",
+ "接触箇所": "Source contacts",
+ "元CADで検出された重なりを、該当姿勢と部品の枠で表示します。スイッチ押込みやゴムの変形は再現しません。": "Display source overlap poses and affected part bounds. Switch actuation and rubber deformation are not simulated.",
+ "接触表示を解除": "Clear contact markers",
+ "ベルト": "Belts",
+ "チェーン配索プレビュー": "Chain routing preview",
+ "21個の元リンク形状を使う固定長の配索プレビューです。ヒンジ軸・リンク接続・配線との干渉は未検証です。": "Fixed-length routing preview using 21 native link shapes. Hinge axes, link mating and cable clearance remain unverified.",
+ "V0.6アーカイブのCAD。元のルート名はV0.5.4です。選択構成・座標正規化・形状修復・左Zナットの位置補正・表示用変換・可動部の割当を含みます。": "CAD from the V0.6 archive; the original root is named V0.5.4. Changes include configuration selection, axis normalization, topology repair, left Z nut placement correction, rendering conversion and motion bindings.",
+ "2,177部品・10参照面。STEP交換ファイルには電子部品2点の読み戻し不具合があるため、ここでは検証したメッシュを使用しています。": "2,177 parts and 10 reference surfaces. Two electronic leaves have readback issues in the auxiliary STEP; this viewer uses the checked meshes.",
+ "電子部品": "Electronics",
+ "スカート": "Skirts",
+ "CPAPハウジング": "CPAP housing",
+ "フィルター": "Filter",
+ "公称範囲には元CADの接触箇所があります。": "The nominal range includes contacts recorded in the source CAD.",
+ "有限サンプル検査範囲：X 0–167.38 / Y 0–220 / Z 0–200 mm": "Finite sampled range: X 0–167.38 / Y 0–220 / Z 0–200 mm",
+ "有限サンプル検査範囲外：元CADの接触を確認してください。": "Outside the finite sampled range: inspect the recorded source contacts.",
+ "Crossantの構成情報が一致しません。": "Crossant configuration identity mismatch.",
+ "Crossantの構成ファイルが不正です。": "Invalid Crossant asset specification.",
+ "Crossantのモデルを取得できません。": "Could not load Crossant model assets.",
+ "Crossantのモデルのハッシュが一致しません。": "Crossant asset checksum mismatch.",
+ "Crossantのモデル構成が不正です。": "Invalid Crossant model structure.",
+ "Crossantのバッファ構成が不正です。": "Invalid Crossant geometry buffers.",
+ "Crossantのバッファ長が一致しません。": "Crossant buffer length mismatch.",
+ "Crossantの未登録バッファです。": "Unregistered Crossant geometry buffer.",
+ "Crossantの部品表を読み込み中…": "Loading Crossant part manifest…",
+ "Crossantの座標が不正です。": "Invalid Crossant coordinates.",
+ "Crossantの表示範囲外です。": "Outside the Crossant display range.",
+ "Crossantの接触部品が不足しています。": "Crossant contact parts are missing."
+});
+Object.assign(templates, {
+ "Crossantの形状を読み込み中… {0} / 7": "Loading Crossant geometry… {0} / 7",
+ "姿勢更新済み · ベルト {0}": "Pose updated · Belts {0}"
+});

@@ -22,6 +22,7 @@
 !/site/PUBLIC_CATALOG.json
 !/site/ASSET_BUNDLE.json
 !/site/RATRIG_ASSETS.json
+!/site/CROSSANT_ASSETS.json
 !/site/MOD_REGISTRY.json
 !/site/MOUNT_VALIDATION.json
 !/site/HEAD_VALIDATION.json

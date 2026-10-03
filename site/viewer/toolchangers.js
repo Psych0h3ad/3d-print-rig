@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=trident-clearance-35';
-import {setupPublicInfo} from './public-info.js?v=trident-clearance-35';
+import {setupPublicInfo} from './public-info.js?v=crossant-36';
 import {setupRenderExport} from './render-export.js?v=trident-clearance-35';
 import {changerDimensions,changerChoice,changerChoices,changerPlacement} from './toolchanger-model.js?v=trident-clearance-35';
 const $=s=>document.querySelector(s),stage=$('#stage'),scene=new THREE.Scene(),bench=new THREE.Group();scene.add(bench);scene.background=new THREE.Color('#edf1f5');

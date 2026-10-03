@@ -10,7 +10,7 @@ import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=trident-clearance-35';
 import {setupConfigurations} from './configurations.js?v=trident-clearance-35';
-import {setupPublicInfo} from './public-info.js?v=trident-clearance-35';
+import {setupPublicInfo} from './public-info.js?v=crossant-36';
 import {setupRenderExport} from './render-export.js?v=trident-clearance-35';
 import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=trident-clearance-35';
 import {probeCheck,probeMetrics,probeGuide,headInspectionState} from './probe-checks.js?v=trident-clearance-35';
@@ -199,6 +199,6 @@ try{
  toolBank=setupChangerBank({before:$('#assemblyScope'),catalog:bankCatalog,rig:bankAdapter,data:headData.bank,extras:{presentation:'toolhead',getExtras:extras,applyExtras:restoreExtras,validateExtras:validateBuilderExtras,onSettled:()=>{builder?.update();if(ready){appearance();visibleBounds();fit()}}}});
  const controller=await setupConfigurations(catalog,install,toolBank.options);await toolBank.bind(controller);
  if(!ready)throw Error('ヘッドのCADを表示できませんでした');
- let pins=[];try{const r=await fetch('../PUBLIC_CATALOG.json?v=trident-clearance-35');if(r.ok)pins=(await r.json()).sources||[]}catch{}
+ let pins=[];try{const r=await fetch('../PUBLIC_CATALOG.json?v=crossant-36');if(r.ok)pins=(await r.json()).sources||[]}catch{}
  builder=setupHeadBuilder(catalog,{getVariant:()=>currentVariant,getMetadata:()=>new Map([...cached].filter(([,p])=>p.loaded).map(([id,p])=>[id,p.loaded.meta])),getExtras:()=>toolBank.options.getExtras(),pins,selectVariant:id=>controller.selectVariant(id),isBusy:()=>controller.busy});
 }catch(e){$('#loading').hidden=false;$('#loading').textContent=e.message;document.body.dataset.assetStatus='error';console.error(e)}

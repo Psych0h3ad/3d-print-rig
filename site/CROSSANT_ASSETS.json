@@ -1,0 +1,111 @@
+{
+  "version": "crossant-v1",
+  "machine_id": "crossant_235_v06_leadscrew",
+  "base_url": "https://psych0h3ad.github.io/3d-print-rig-crossant-models/",
+  "local_directory": "crossant-assets",
+  "parts": 2177,
+  "files": {
+    "model.gltf": {
+      "path": "machines/crossant_235_v06_leadscrew/model.gltf",
+      "bytes": 1997202,
+      "sha256": "f4e560da3b9f8274b508dfc6d9e846ebc5c9e147fccbd16a63c771fba3c13de5"
+    },
+    "geometry_00.bin": {
+      "path": "machines/crossant_235_v06_leadscrew/geometry_00.bin",
+      "bytes": 16758192,
+      "sha256": "b07507c3643f67ec30774ffd3c513c4d21fa94e517ac1375868a26d9a7312eae"
+    },
+    "geometry_01.bin": {
+      "path": "machines/crossant_235_v06_leadscrew/geometry_01.bin",
+      "bytes": 15884412,
+      "sha256": "8dbfbc429545589611e0ff444fe98126f1d9f6f8623ecda536eaf43bd7d38962"
+    },
+    "geometry_02.bin": {
+      "path": "machines/crossant_235_v06_leadscrew/geometry_02.bin",
+      "bytes": 16774284,
+      "sha256": "5460afdcd6e7b937cfa10ab18fd961117852e8fb59f60577f57bb20e078a471a"
+    },
+    "geometry_03.bin": {
+      "path": "machines/crossant_235_v06_leadscrew/geometry_03.bin",
+      "bytes": 16311456,
+      "sha256": "16150608f6fdf184cbef5986f019bdf349643f4bf81c1f924a6f57210d6a95c9"
+    },
+    "geometry_04.bin": {
+      "path": "machines/crossant_235_v06_leadscrew/geometry_04.bin",
+      "bytes": 16703028,
+      "sha256": "0271af27bdd977b9f472b3641eca0c15ed9b919390ac0c58e9c4f7a28e85136f"
+    },
+    "geometry_05.bin": {
+      "path": "machines/crossant_235_v06_leadscrew/geometry_05.bin",
+      "bytes": 16725972,
+      "sha256": "fc49a2530b3bacb1eea87f8af890ce27e95ea16dfc3c6f6b6acccfcfb9318f06"
+    },
+    "geometry_06.bin": {
+      "path": "machines/crossant_235_v06_leadscrew/geometry_06.bin",
+      "bytes": 11594796,
+      "sha256": "c2124613693a575a8e3789b38b5e9114bc6b63a069d98fc1573c001cba2c245a"
+    },
+    "assembly_manifest.json": {
+      "path": "machines/crossant_235_v06_leadscrew/assembly_manifest.json",
+      "bytes": 3401301,
+      "sha256": "61e331947831414f3dd126d087feb21722eec6ee0491f121310dcc8a044e4912"
+    },
+    "machine_profile.json": {
+      "path": "machines/crossant_235_v06_leadscrew/machine_profile.json",
+      "bytes": 5124,
+      "sha256": "2ea1690ea30632ebe0799a5babd99a8571b7a4a528a2533ef27c953c67b32dc9"
+    },
+    "belt_bindings.json": {
+      "path": "machines/crossant_235_v06_leadscrew/belt_bindings.json",
+      "bytes": 9186,
+      "sha256": "cd36339c8001c19c99e7585d9d3c1ed4dd6c208aaafe3859cc3b689b59b89326"
+    },
+    "chain_bindings.json": {
+      "path": "machines/crossant_235_v06_leadscrew/chain_bindings.json",
+      "bytes": 1741,
+      "sha256": "c1468482f74516e97b69d0305ad4952544ae45f813cddde64c9f55c3057f2fb9"
+    },
+    "KNOWN_CONTACTS.json": {
+      "path": "machines/crossant_235_v06_leadscrew/KNOWN_CONTACTS.json",
+      "bytes": 9329,
+      "sha256": "3b36ccd33f610e4f8daaa47fc4b6d18f483bf2c510b6d181d014121ffdd904ed"
+    },
+    "clearance_envelope.json": {
+      "path": "machines/crossant_235_v06_leadscrew/clearance_envelope.json",
+      "bytes": 6105,
+      "sha256": "6d4d811dc5df3ff18c495f9dc2baf1a4ef96c43faffd129a7c4a4ed7aa62fbc4"
+    },
+    "clearance_dense_qa.json": {
+      "path": "machines/crossant_235_v06_leadscrew/clearance_dense_qa.json",
+      "bytes": 166274,
+      "sha256": "18a85b4f5ac50cdd7540e7648af9bde96f65742ebd559b92257058841368ae62"
+    },
+    "guide_span_qa.json": {
+      "path": "machines/crossant_235_v06_leadscrew/guide_span_qa.json",
+      "bytes": 378,
+      "sha256": "f5983d30e7992e023e5ec33f7b618c5ecc61fe0e258a74dabb237152a0b6ca24"
+    },
+    "motion_qa.json": {
+      "path": "machines/crossant_235_v06_leadscrew/motion_qa.json",
+      "bytes": 776,
+      "sha256": "a596ad81a2f91eb0ada56ef5cec675a9e85ec3366f155400ab51a5a513757a30"
+    },
+    "chain_qa.json": {
+      "path": "machines/crossant_235_v06_leadscrew/chain_qa.json",
+      "bytes": 801,
+      "sha256": "25c705acebe2f0b88258dbe4777a868e7e7ce5119cafc0d7db3aaaea41e3cf6c"
+    },
+    "web_gltf_qa.json": {
+      "path": "machines/crossant_235_v06_leadscrew/web_gltf_qa.json",
+      "bytes": 1773,
+      "sha256": "38c56ed3ea6a34996454d7eb1b3cb6bdfa989c82d686f76cda383f5ced3445f3"
+    }
+  },
+  "source": {
+    "repository": "https://github.com/Pole-Engineering/Crossant-235",
+    "commit": "e9409a087233f3ec95354594fe9b9cd9357b4ac5",
+    "archive": "CAD/Crossant V0.6.rar",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  }
+}

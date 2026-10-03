@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=trident-clearance-35';
-import {setupPublicInfo} from './public-info.js?v=trident-clearance-35';
+import {setupPublicInfo} from './public-info.js?v=crossant-36';
 import {setupRenderExport} from './render-export.js?v=trident-clearance-35';
 import {partNodes,selectParts,visibleBounds} from './component-selection.js?v=v0-mod-selection-1';
 import {renderProductLinks} from './product-links.js?v=trident-clearance-35';

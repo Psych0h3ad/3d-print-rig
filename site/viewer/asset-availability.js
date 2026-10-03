@@ -1,4 +1,4 @@
-import {setupPublicInfo} from './public-info.js?v=trident-clearance-35';
+import {setupPublicInfo} from './public-info.js?v=crossant-36';
 import {modelURL} from './model-loader.js?v=trident-clearance-35';
 
 const files={

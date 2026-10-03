@@ -1,0 +1,10 @@
+Source: Crossant-235 by Pole Engineering and contributors.
+https://github.com/Pole-Engineering/Crossant-235
+Revision e9409a087233f3ec95354594fe9b9cd9357b4ac5
+Source README specifies Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International.
+https://creativecommons.org/licenses/by-nc-sa/4.0/
+Model data and derived normalized CAD, mesh and option assets retain this license.
+Changes: selected Leadscrew-Z/Sherpa-Mini configuration, normalized axes, source topology repairs,
+duplicate-variant separation, left-Z-nut placement correction, rendering conversion and motion bindings.
+This preparation is not an upstream release or manufacturer certification.
+Three.js and its bundled example utilities: MIT, see preview/vendor/THREE_LICENSE.txt.

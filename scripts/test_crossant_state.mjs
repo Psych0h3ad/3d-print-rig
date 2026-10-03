@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import {crossantSchema,crossantGroups,validateCrossantState} from '../site/viewer/crossant-state.mjs';
+import {machinePage,machineChoices,machineOptions} from '../site/viewer/machines.js';
+const profile={machine_id:'crossant_235_v06_leadscrew',display_limits_mm:{X:[0,220],Y:[0,220],Z:[0,200]},display_reference_xyz_mm:[81.51854054931088,104.7146036279744,92.77468404496983],sampled_clearance_limits_mm:{X:[0,167.38],Y:[0,220],Z:[0,200]}};
+const s={schema:crossantSchema,machine:profile.machine_id,pose:{x:81.51854054931088,y:104.7146036279744,z:92.77468404496983},nominal:false,palette:{base:'#0e1011',accent:'#f27306',frame:'#090a0c'},groups:Object.fromEntries(crossantGroups.map(k=>[k,true])),belts:true,chain:true,night:false,grid:false,camera:{position:[1,.5,1],target:[0,.3,0],up:[0,1,0]}};
+const original=JSON.stringify(s);validateCrossantState(profile,s);assert.equal(JSON.stringify(s),original);
+validateCrossantState(profile,{...s,pose:{x:220,y:220,z:200},nominal:true});
+for(const bad of [{machine:'voron_trident_250'},{pose:{x:220,y:220,z:200}},{pose:{x:'10',y:0,z:0}},{pose:{x:NaN,y:0,z:0}},{nominal:'true'},{palette:{base:'red',accent:'#123456',frame:'#123456'}},{groups:{}},{belts:'false'},{camera:{position:[0,0,0],target:[0,0,0],up:[0,1,0]}}])assert.throws(()=>validateCrossantState(profile,{...s,...bad}));
+assert.equal(machinePage(profile.machine_id),'./crossant.html');const m=machineChoices.find(m=>m.id===profile.machine_id);assert.deepEqual([m.family,m.vendor,m.size],['crossant','pole',220]);assert.deepEqual(machineOptions(m,'size'),[220]);
+console.log('Crossant: isolated machine identity, 235 mm plate / 220 mm build selection, nominal review scope and atomic saved-state validation passed.');

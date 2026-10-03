@@ -1,6 +1,6 @@
 // Shared presentation layer. Existing controls, IDs and CAD controllers stay intact.
-import {setupLanguage,originalText} from './i18n.mjs?v=ux-refresh-1';
-import {printerWorkspaceURL,workspaceReturnKey} from './workspace-return.mjs?v=ux-refresh-1';
+import {setupLanguage,originalText} from './i18n.mjs?v=crossant-36';
+import {printerWorkspaceURL,workspaceReturnKey} from './workspace-return.mjs?v=crossant-36';
 const $ = selector => document.querySelector(selector);
 const node = (tag, className, text) => {
   const element = document.createElement(tag);

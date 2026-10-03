@@ -1,12 +1,12 @@
 import {loadMonolithData} from './monolith-machine.js?v=trident-clearance-35';
-import {machineChoices,machinePage} from './machines.js?v=trident-clearance-35';
+import {machineChoices,machinePage} from './machines.js?v=crossant-36';
 import {monolithBeltClip} from './monolith-belt-clip.mjs?v=trident-clearance-35';
 import {appearanceRole} from './appearance-role.mjs?v=trident-clearance-35';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=trident-clearance-35';
-import {setupPublicInfo} from './public-info.js?v=trident-clearance-35';
+import {setupPublicInfo} from './public-info.js?v=crossant-36';
 import {setupRenderExport} from './render-export.js?v=trident-clearance-35';
 import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=trident-clearance-35';
 import {monolithHeadCatalog} from './monolith-head-model.mjs?v=trident-clearance-35';

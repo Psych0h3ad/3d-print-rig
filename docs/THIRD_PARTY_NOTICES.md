@@ -547,3 +547,8 @@ The v23 V2.4 door source archive replaces native latch placements for 250/300/35
 ## Trident 250 / 300 native size assemblies
 
 The v24 archive retains [VoronDesign/Voron-Trident](https://github.com/VoronDesign/Voron-Trident/tree/a8628f48546948ce1fc15511b7765b7f31f80722), GPL-3.0, and embedded component credits. Size-specific bases and R2 gantries preserve rigid hardware and native rail hole pitch. Browser handle placements retain their original source author and terms; original native handles remain in the earlier source archive. Existing toolbank limits are unchanged. See [geometry and viewer checks](TRIDENT_SIZE_COLOR_QA.md).
+
+
+## Crossant-235
+
+[Crossant-235 by Pole Engineering and contributors](https://github.com/Pole-Engineering/Crossant-235/tree/e9409a087233f3ec95354594fe9b9cd9357b4ac5) retains [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). Revision `e9409a087233f3ec95354594fe9b9cd9357b4ac5`, V0.6 archive with V0.5.4 root. The selected Leadscrew-Z / Sherpa Mini / source Goliath assembly has 2,177 named native parts and 10 explicit reference surfaces. Changes include axis normalization, source topology repairs, left Z nut placement correction, rendering conversion, source-preserving belt motion and chain routing. The original WIP head, mixed Goliath Air/Water labels, original contact findings, incomplete Belted-Z and unverified alternative mounts remain disclosed. All 3,336 buffer views are byte-identical to the prepared native GLB. Software licensing does not relicense the CAD or meshes. See `site/licenses/crossant/NOTICE.txt` and the separate [model asset repository](https://github.com/Psych0h3ad/3d-print-rig-crossant-models).

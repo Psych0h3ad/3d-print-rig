@@ -1,4 +1,4 @@
-import {machinePage} from './machines.js?v=trident-clearance-35';
+import {machinePage} from './machines.js?v=crossant-36';
 
 export const workspaceReturnKey='3d-print-rig-workspace-return';
 export function printerWorkspaceURL(current,remembered){

@@ -1,4 +1,4 @@
-import {messages,templates} from './messages-en.mjs?v=ux-refresh-1';
+import {messages,templates} from './messages-en.mjs?v=crossant-36';
 
 const normalize=text=>text.trim().replace(/\s+/gu,' ');
 const escape=text=>text.replace(/[.*+?^${}()|[\]\\]/gu,'\\$&');

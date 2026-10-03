@@ -1,5 +1,5 @@
 {
-  "viewer_version": "public-v35",
+  "viewer_version": "viewer-v36",
   "sources": [
     {
       "id": "siboor_trident",
@@ -1072,6 +1072,20 @@
       "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
       "changes": "Documented local topology/orientation adjustments and motion/appearance grouping. Original and prepared BREP retained. 4.0 300 IDEX is derived from official 300 Hybrid and official IDEX modules.",
       "notice": "1.5 mm print sheet assumption; continuous cable preview with proposed service loops. No complete moving-body collision or firmware/hardware certification. Software license does not relicense CAD."
+    },
+    {
+      "id": "crossant235",
+      "repository": "Pole-Engineering/Crossant-235",
+      "commit": "e9409a087233f3ec95354594fe9b9cd9357b4ac5",
+      "license": "CC BY-NC-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "changes": "Selected Leadscrew-Z / Sherpa Mini source configuration; normalized axes, source topology repairs, left Z nut placement correction, sRGB-to-linear web colors, motion bindings and chain routing preview.",
+      "label": "Crossant-235 · Pole Engineering and contributors",
+      "author": "Pole Engineering and contributors; adaptations: 3D Print Rig",
+      "url": "https://github.com/Pole-Engineering/Crossant-235",
+      "version": "V0.6 archive / V0.5.4 root; upstream WIP head",
+      "scope": "Crossant-235 Leadscrew Z / Sherpa Mini / source Goliath; 2,177 native parts.",
+      "notice": "235 mm plate / 220 × 220 × 200 mm nominal build area. WIP head and chain routing are not certified installed fits; original contacts retained. Incomplete Belted-Z is not enabled."
     }
   ],
   "defaults": [
