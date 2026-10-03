@@ -505,8 +505,8 @@
     },
     {
       "path": "site/HEAD_VALIDATION.json",
-      "bytes": 8308847,
-      "sha256": "bd944702a93944f42bb739c52f77381ff00bdd7c767d9eb1f493b6d7a636c491"
+      "bytes": 8289475,
+      "sha256": "0770155ed85594a6581ceda2f6f4ab99be7a40d607a368f6fc1e402198ade0d2"
     },
     {
       "path": "site/MOD_REGISTRY.json",
@@ -516,7 +516,7 @@
     {
       "path": "site/MOUNT_VALIDATION.json",
       "bytes": 162518,
-      "sha256": "949f9b5d53b7b78e3aeab41860708c82c92412a3809e7fae8b35a9a18db96742"
+      "sha256": "69628f199b5ff0b56de6d4283af6ce8b57292549f4005502ce4668f1562c0e3e"
     },
     {
       "path": "site/PUBLIC_CATALOG.json",
