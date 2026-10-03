@@ -9,9 +9,10 @@ export function acceptedHeadValidation(evidence,hashes,bundle,machine){
  if(evidence?.schema!=='3d-print-rig-head-witness-v1'||evidence.model_bundle_sha256!==bundle?.sha256||!target||!Array.isArray(target.records)||!evidence.placements)return null;
  const pins={...evidence.input_sha256,...target.input_sha256};if(Object.keys(pins).length<4)return null;
  for(const[name,digest]of Object.entries(pins))if(hashes[name]!==digest)return null;
- if(target.records.some(r=>!evidence.placements[r.placement]||!Array.isArray(r.source_configurations)||!r.source_configurations.length||!Array.isArray(r.intersections)||r.intersections.some(p=>!point(p.display_xyz_mm)||!Number.isFinite(p.overlap_mm3)||p.overlap_mm3<=.01)))return null;
+ const records=target.records.map(r=>Array.isArray(r.intersection_ids)&&!('intersections'in r)?{...r,intersections:r.intersection_ids.map(id=>evidence.intersection_witnesses?.[id])}:r);
+ if(records.some(r=>!evidence.placements[r.placement]||!Array.isArray(r.source_configurations)||!r.source_configurations.length||!Array.isArray(r.intersections)||r.intersections.some(p=>!p||!point(p.display_xyz_mm)||!Number.isFinite(p.overlap_mm3)||p.overlap_mm3<=.01)))return null;
  if(target.bank_records?.some(r=>!point(r.nozzle_mm)||!point(r.unit_translation_mm)||!point(r.display_xyz_mm)||!Number.isFinite(r.overlap_mm3)||r.overlap_mm3<=.01))return null;
- return {revision:evidence.revision,machine,records:target.records,bank_records:target.bank_records||[],placements:evidence.placements};
+ return {revision:evidence.revision,machine,records,bank_records:target.bank_records||[],placements:evidence.placements};
 }
 export function bankWitnessCheck(data,plan,variant){
  if(!plan?.state?.enabled||variant.machine_gantry)return null;
@@ -22,8 +23,8 @@ export function bankWitnessCheck(data,plan,variant){
 export function applyHeadValidation(variant,registry,machine,gantry){
  if(variant.fit)delete variant.fit.rigid_head_witnesses;
  const data=registry.head_witness_validation;
- if(data?.machine!==machine||variant.machine_gantry||gantry&&gantry!=='machine_gantry')return null;
- const record=data.records.find(r=>r.source_configurations.includes(variant.source_head_configuration)&&data.placements[r.placement]===headPlacementKey(variant.machine_head));
+ if(data?.machine!==machine||variant.machine_gantry)return null;
+ const record=data.records.find(r=>(r.gantry||'machine_gantry')===(gantry||'machine_gantry')&&r.source_configurations.includes(variant.source_head_configuration)&&data.placements[r.placement]===headPlacementKey(variant.machine_head));
  if(!record)return null;
  const check={...record,revision:data.revision,machine};variant.fit.rigid_head_witnesses=check;return check;
 }

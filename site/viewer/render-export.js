@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import {cameraAngles,createExportCamera} from './export-camera.mjs?v=rear-cooling-34';
+import {cameraAngles,createExportCamera} from './export-camera.mjs?v=trident-clearance-35';
 
 // Render the existing scene to an offscreen target: no server, no screenshot
 // of HTML controls, and no change to the interactive canvas resolution.

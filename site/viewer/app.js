@@ -1,26 +1,27 @@
-import {loadMonolithMachines} from './monolith-machine.js?v=rear-cooling-34';
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=rear-cooling-34';
-import {bankBedReferenceDrop} from './changer-bank-model.mjs?v=rear-cooling-34';
-import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=rear-cooling-34';
+import {loadMonolithMachines} from './monolith-machine.js?v=trident-clearance-35';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=trident-clearance-35';
+import {bankBedReferenceDrop} from './changer-bank-model.mjs?v=trident-clearance-35';
+import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=trident-clearance-35';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=rear-cooling-34';
-import {loadFrameMods,withFrameMods} from './frame-mods.js?v=rear-cooling-34';
-import {setupGrid} from './grid-control.js?v=rear-cooling-34';
-import {setupLighting} from './lighting.js?v=rear-cooling-34';
-import {setupFlexible} from './flexible.js?v=rear-cooling-34';
+import {loadModel} from './model-loader.js?v=trident-clearance-35';
+import {loadFrameMods,withFrameMods} from './frame-mods.js?v=trident-clearance-35';
+import {setupGrid} from './grid-control.js?v=trident-clearance-35';
+import {setupLighting} from './lighting.js?v=trident-clearance-35';
+import {setupFlexible} from './flexible.js?v=trident-clearance-35';
 import {createBedChain} from './bed-chain.mjs?v=public-v25';
-import {setupConfigurations} from './configurations.js?v=rear-cooling-34';
-import {setupAccessories} from './accessories.js?v=rear-cooling-34';
-import {setupAppearance} from './appearance.js?v=rear-cooling-34';
-import {setupRenderExport} from './render-export.js?v=rear-cooling-34';
-import {setupPublicInfo} from './public-info.js?v=rear-cooling-34';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=rear-cooling-34';
-import {setupChangerBank} from './changer-bank.js?v=rear-cooling-34';
-import {expandedPrinterCatalog} from './machine-head-model.mjs?v=rear-cooling-34';
-import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=rear-cooling-34';
-import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=rear-cooling-34';
+import {setupConfigurations} from './configurations.js?v=trident-clearance-35';
+import {setupAccessories} from './accessories.js?v=trident-clearance-35';
+import {setupAppearance} from './appearance.js?v=trident-clearance-35';
+import {setupRenderExport} from './render-export.js?v=trident-clearance-35';
+import {setupPublicInfo} from './public-info.js?v=trident-clearance-35';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=trident-clearance-35';
+import {setupChangerBank} from './changer-bank.js?v=trident-clearance-35';
+import {expandedPrinterCatalog} from './machine-head-model.mjs?v=trident-clearance-35';
+import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=trident-clearance-35';
+import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=trident-clearance-35';
+import {createHeadMarkers} from './head-markers.mjs?v=trident-clearance-35';
 const $=s=>document.querySelector(s),scene=new THREE.Scene();
 scene.background=new THREE.Color('#edf1f5');
 const stage=$('#stage');
@@ -45,7 +46,7 @@ const levers={},plungers={};
 const groups={},moving={y:[],xy:[],z:[],reference_flexible:[]},panes=[],parts=new Map();
 const allMeshes=[];
 let installed='stock',stockRegistration,stockRefX,stockLeverX,stockPlungerX,xolMeta,xolScene;
-let activeConfig,catalog,r2Registration,appearance,stockRows,accessories,installedHeads,toolBank,program;
+let activeConfig,catalog,r2Registration,appearance,stockRows,accessories,installedHeads,toolBank,program,headMarkers;
 const assetRoots=new Map(),assets=new Map(),xolMechanisms={},stockSwitchMeshes=[],r2Belts=[];
 const stockHeadGroup='03_Stock_Stealthburner_CW2_Rapido2_UHF';
 const cadPoint=p=>new THREE.Vector3(p[0]/1000,p[2]/1000,-p[1]/1000);
@@ -87,6 +88,7 @@ function showHead(){
 }
 async function installConfiguration(v){
  program?.invalidate();
+ headMarkers?.clear();
  const required=[...new Set(v.modules.map(m=>m.id)),...(!v.machine_head&&v.toolhead==='xol'?['xol']:[])];await Promise.all(required.map(asset));await toolBank.install(v);
  const headLink=new URL('./toolheads.html',location.href);headLink.searchParams.set('configuration',v.source_head_configuration||v.id);$('#toolheadLink').href=headLink;
  stop();unfocus();activeConfig=v;installed=v.machine_head?'generic':v.toolhead==='xol'?'xol':'stock';
@@ -143,6 +145,7 @@ function setPose(x,y,z){
  const chainState=bedChain.update(bedDown,$('#cables').checked);$('#routing').dataset.bedChain=String(chainState.visible);$('#routing').dataset.bedChainLinks=chainState.links;$('#routing').dataset.bedChainEndpointErrorMm=chainState.endpoint_error_mm;
  for(const[a,v]of [['x',x],['y',y],['z',z]]){$('#'+a).value=v;$('#'+a+'v').textContent=v.toFixed(1)+' mm'}
  installedHeads?.setDelta([dx,dy,0]);installedHeads?.gantry.setFlexibleVisible($('#cables').checked);installedHeads?.setPalette(appearance?.colors()||{});
+ headMarkers?.update();
  if(activeConfig?.machine_head){flexible.update(dx,dy,bedDown,false,null);for(const row of r2Belts)row.mesh.visible=false;$('#status').textContent='ヘッドの取付・移動を比較中。ホーミング接点は未登録。';$('#status').style.background='#eff5f7';$('#routing').textContent=activeConfig.machine_gantry?($('#cables').checked?'MonolithベルトがXY移動に追従。歯・張力・配線は未再現。':'Monolithベルト：非表示'):'このヘッドのベルト・配線経路は未登録。';$('#headStatus').dataset.installed=installed;$('#headStatus').dataset.variant=activeConfig.id;showHead();return}
  const hitX=x>registration.switches.X.first_contact_display_coordinate_mm,hitY=y>registration.switches.Y.first_contact_display_coordinate_mm;
  $('#status').textContent=`X ${leverPose('X',x,dx,dy)} ／ Y ${leverPose('Y',y,dx,dy)}`;
@@ -191,8 +194,8 @@ async function loadGLB(url){
  throw last;
 }
 setupPublicInfo();
-Promise.all([fetch('../assembly_manifest.json?v=rear-cooling-34',{cache:'no-cache'}).then(r=>r.json()),fetch('../flexible_routes.json?v=rear-cooling-34',{cache:'no-cache'}).then(r=>r.json()),loadModel(new GLTFLoader(),'../SIBOOR_Trident_350.glb',p=>{$('#loading').textContent=p.total?'読み込み '+Math.round(p.loaded/p.total*100)+'%':'3Dモデルを読み込み中…'}),loadGLB('../Endstop_Mechanisms.glb'),fetch('../COLOR_OPTIONS.json?v=rear-cooling-34',{cache:'no-cache'}).then(r=>r.json()),fetch('../ASSEMBLY_CONFIGURATIONS.json?v=rear-cooling-34',{cache:'no-cache'}).then(r=>r.json()),fetch('../R2_ENDSTOP_REGISTRATION.json?v=rear-cooling-34',{cache:'no-cache'}).then(r=>r.json())]).then(async([manifest,routes,g,endstops,colorOptions,configs,r2Meta])=>{
- const headData=await loadMachineHeadCatalog();registration=manifest.motion_preview.endstop_registration;catalog=await loadMonolithMachines(expandedPrinterCatalog(withFrameMods(configs,frameMods),headData.heads,headData.registry,'siboor_trident_350'),headData);catalog.bank_data=headData.bank;installedHeads=createMachineHeads(scene,{...catalog,base_assets:headData.heads.base_assets},{render:()=>{renderRequested=true}});ensureMachineHeadControls({gantry:true,monolithUnavailable:catalog.monolith_unavailable});r2Registration=r2Meta;stockRows=manifest.parts;
+Promise.all([fetch('../assembly_manifest.json?v=trident-clearance-35',{cache:'no-cache'}).then(r=>r.json()),fetch('../flexible_routes.json?v=trident-clearance-35',{cache:'no-cache'}).then(r=>r.json()),loadModel(new GLTFLoader(),'../SIBOOR_Trident_350.glb',p=>{$('#loading').textContent=p.total?'読み込み '+Math.round(p.loaded/p.total*100)+'%':'3Dモデルを読み込み中…'}),loadGLB('../Endstop_Mechanisms.glb'),fetch('../COLOR_OPTIONS.json?v=trident-clearance-35',{cache:'no-cache'}).then(r=>r.json()),fetch('../ASSEMBLY_CONFIGURATIONS.json?v=trident-clearance-35',{cache:'no-cache'}).then(r=>r.json()),fetch('../R2_ENDSTOP_REGISTRATION.json?v=trident-clearance-35',{cache:'no-cache'}).then(r=>r.json())]).then(async([manifest,routes,g,endstops,colorOptions,configs,r2Meta])=>{
+ const headData=await loadMachineHeadCatalog('siboor_trident_350');registration=manifest.motion_preview.endstop_registration;catalog=await loadMonolithMachines(expandedPrinterCatalog(withFrameMods(configs,frameMods),headData.heads,headData.registry,'siboor_trident_350'),headData);catalog.bank_data=headData.bank;installedHeads=createMachineHeads(scene,{...catalog,base_assets:headData.heads.base_assets},{render:()=>{renderRequested=true}});ensureMachineHeadControls({gantry:true,monolithUnavailable:catalog.monolith_unavailable});r2Registration=r2Meta;stockRows=manifest.parts;
  refX=registration.switches.X.cad_reference_display_coordinate_mm;refY=registration.switches.Y.cad_reference_display_coordinate_mm;
  const lookup=new Map(manifest.parts.map(r=>[r.key,r]));model=g.scene;model.add(endstops.scene);scene.add(model);
  model.traverse(o=>{
@@ -213,7 +216,8 @@ Promise.all([fetch('../assembly_manifest.json?v=rear-cooling-34',{cache:'no-cach
  const door=groups['09_ClickyClacky_Door'];if(door){pivot=new THREE.Group();pivot.position.set(-.26205,0,.2565);scene.add(pivot);pivot.attach(door)}
  for(const s of ['#door','#x','#y','#z','#demo','#reset','#home','#focusX','#focusY','#releaseSwitch','#focusZ'])$(s).disabled=false;
  accessories=setupAccessories(catalog,{load:asset,update:()=>setPose(current.x,current.y,current.z)});
- toolBank=setupChangerBank({catalog,rig:installedHeads,data:headData.bank,extras:{...accessories,onSettled:()=>setPose(current.x,current.y,current.z)}});ready=true;$('#loading').remove();await toolBank.bind(await setupConfigurations(catalog,installConfiguration,toolBank.options));
+ headMarkers=createHeadMarkers(scene,{rig:installedHeads,fixture:key=>parts.get(key),render:()=>{renderRequested=true},setPose:xyz=>{program?.invalidate();stop();unfocus();if(xyz.some((n,i)=>n<Number($('#'+['x','y','z'][i]).min)-1e-7||n>Number($('#'+['x','y','z'][i]).max)+1e-7))return false;$('#head').checked=true;$('#panels').checked=true;showHead();setPose(...xyz);return true}});
+ toolBank=setupChangerBank({catalog,rig:installedHeads,data:headData.bank,extras:{...accessories,onSettled:()=>setPose(current.x,current.y,current.z)}});ready=true;$('#loading').remove();await toolBank.bind(await setupConfigurations(catalog,installConfiguration,{...toolBank.options,inspectPose:headMarkers.inspect}));
  const programFrame=()=>({nozzle_mm:activeConfig.fit.nozzle_mm,reference_xyz_mm:[refX,refY,0],moving_bed_z:true});
  program=setupGcodePanel({container:document.querySelector('aside'),scene,render:()=>{renderRequested=true},getPose:()=>[current.x,current.y,current.z],getLimits:displayedMachineLimits,toNozzle:xyz=>programPoint(programFrame(),xyz),pathOffset:xyz=>programPathOffset(programFrame(),xyz),getContext:()=>({configuration:activeConfig.id,bank:installedHeads.bankState}),setPose:xyz=>setPose(...xyz),beforePlayback:()=>{stop();unfocus()}});
  setupRenderExport({renderer,scene,camera,controls,beforeRender:stop,afterRender:()=>{renderRequested=true},name:'Trident_350'});

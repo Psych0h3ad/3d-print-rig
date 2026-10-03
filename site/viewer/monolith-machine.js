@@ -1,10 +1,10 @@
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=rear-cooling-34';
-import {partKey} from './head-assembly.js?v=rear-cooling-34';
-import {appearanceRole} from './appearance-role.mjs?v=rear-cooling-34';
-import {withMonolithMachines,monolithPartDelta} from './monolith-machine-model.mjs?v=rear-cooling-34';
-import {monolithBeltRoute,monolithBeltGeometry,monolithBeltTravelLimits} from './monolith-belts.mjs?v=rear-cooling-34';
+import {loadModel} from './model-loader.js?v=trident-clearance-35';
+import {partKey} from './head-assembly.js?v=trident-clearance-35';
+import {appearanceRole} from './appearance-role.mjs?v=trident-clearance-35';
+import {withMonolithMachines,monolithPartDelta} from './monolith-machine-model.mjs?v=trident-clearance-35';
+import {monolithBeltRoute,monolithBeltGeometry,monolithBeltTravelLimits} from './monolith-belts.mjs?v=trident-clearance-35';
 
 const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);
 let machineData;

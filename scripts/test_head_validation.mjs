@@ -12,4 +12,11 @@ for(const text of [check.label,...check.lines])assert(!/[\u3040-\u30ff\u3400-\u9
 for(const change of [n=>n.machine_head.translation[1]+=.1,n=>n.machine_head.hidden.push('plate'),n=>n.machine_head.modules[0].translation_mm[2]+=.1,n=>n.machine_gantry={id:'other'},n=>n.source_head_configuration='other']){const n=structuredClone(source);change(n);assert.equal(applyHeadValidation(n,registry,'machine'),null);assert.equal(n.fit.rigid_head_witnesses,undefined)}
 const noHit=structuredClone(v);noHit.fit.rigid_head_witnesses.intersections=[];assert.equal(headWitnessCheck(noHit).state,'machine-head-unverified');assert(headWitnessCheck(noHit).warning);
 const engagement=structuredClone(v);engagement.fit.rigid_head_witnesses.intersections[0].category='mount_interface';assert.equal(headWitnessCheck(engagement).intersections.length,0);assert.equal(headWitnessCheck(engagement).interfaces.length,1);assert(headWitnessCheck(engagement).warning);
+const trident=structuredClone(accepted);trident.records[0].gantry='trident_r2';const tridentRegistry={head_witness_validation:trident};
+assert(applyHeadValidation(structuredClone(source),tridentRegistry,'machine','trident_r2'));
+for(const gantry of [undefined,'machine_gantry','siboor_awd','monolith_awd'])assert.equal(applyHeadValidation(structuredClone(source),tridentRegistry,'machine',gantry),null);
+assert.equal(applyHeadValidation(structuredClone(source),registry,'machine','trident_r2'),null);
+const shared=structuredClone(evidence);shared.intersection_witnesses={one:hit};shared.machines.machine.records[0].intersection_ids=['one'];delete shared.machines.machine.records[0].intersections;
+assert.deepEqual(acceptedHeadValidation(shared,pins,bundle,'machine').records[0].intersections,[hit]);
+shared.machines.machine.records[0].intersection_ids.push('missing');assert.equal(acceptedHeadValidation(shared,pins,bundle,'machine'),null);
 console.log('Native head intersections: exact placement/input pins, visible part changes, stale evidence, changed gantries, interface separation, no false full-travel pass and bilingual scope passed.');

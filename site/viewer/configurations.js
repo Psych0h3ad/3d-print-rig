@@ -1,9 +1,9 @@
-import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=rear-cooling-34';
-import {catalogDimensions,collections,resolveVariant,choicesFor,choiceChanges,importedVariant,configurationById} from './configuration-model.js?v=rear-cooling-34';
-import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=rear-cooling-34';
-import {renderProductLinks} from './product-links.js?v=rear-cooling-34';
-import {headWitnessCheck}from './head-validation.mjs?v=rear-cooling-34';
-import {createHeadInspection}from './head-validation-ui.mjs?v=rear-cooling-34';
+import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=trident-clearance-35';
+import {catalogDimensions,collections,resolveVariant,choicesFor,choiceChanges,importedVariant,configurationById} from './configuration-model.js?v=trident-clearance-35';
+import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=trident-clearance-35';
+import {renderProductLinks} from './product-links.js?v=trident-clearance-35';
+import {headWitnessCheck}from './head-validation.mjs?v=trident-clearance-35';
+import {createHeadInspection}from './head-validation-ui.mjs?v=trident-clearance-35';
 
 export async function setupConfigurations(catalog,install,{presentation='printer',getExtras=()=>({}),applyExtras=async()=>{},validateExtras=()=>{},onSettled=()=>{},inspectPose}={}){
  const $=s=>document.querySelector(s);

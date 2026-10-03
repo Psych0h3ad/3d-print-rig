@@ -1,20 +1,20 @@
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=rear-cooling-34';
-import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=rear-cooling-34';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=trident-clearance-35';
+import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=trident-clearance-35';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=rear-cooling-34';
-import {appearanceRole} from './appearance-role.mjs?v=rear-cooling-34';
-import {partKey} from './head-assembly.js?v=rear-cooling-34';
-import {v24HeadCatalog} from './machine-head-model.mjs?v=rear-cooling-34';
-import {setupConfigurations} from './configurations.js?v=rear-cooling-34';
+import {loadModel} from './model-loader.js?v=trident-clearance-35';
+import {appearanceRole} from './appearance-role.mjs?v=trident-clearance-35';
+import {partKey} from './head-assembly.js?v=trident-clearance-35';
+import {v24HeadCatalog} from './machine-head-model.mjs?v=trident-clearance-35';
+import {setupConfigurations} from './configurations.js?v=trident-clearance-35';
 
-import {stockProbeFit} from './probe-mounts.js?v=rear-cooling-34';
+import {stockProbeFit} from './probe-mounts.js?v=trident-clearance-35';
 
-import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs?v=rear-cooling-34';
-import {bankPlan} from './changer-bank-model.mjs?v=rear-cooling-34';
-import {setupChangerBank} from './changer-bank.js?v=rear-cooling-34';
-import {contentSHA256,acceptedMountValidation} from './mount-validation.mjs?v=rear-cooling-34';
-import {acceptedHeadValidation}from './head-validation.mjs?v=rear-cooling-34';
+import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs?v=trident-clearance-35';
+import {bankPlan} from './changer-bank-model.mjs?v=trident-clearance-35';
+import {setupChangerBank} from './changer-bank.js?v=trident-clearance-35';
+import {contentSHA256,acceptedMountValidation} from './mount-validation.mjs?v=trident-clearance-35';
+import {acceptedHeadValidation}from './head-validation.mjs?v=trident-clearance-35';
 
 const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);
 export async function loadMachineHeadCatalog(machine){

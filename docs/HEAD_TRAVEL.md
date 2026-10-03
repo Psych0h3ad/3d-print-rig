@@ -7,7 +7,7 @@ intersection volume is computed from native CAD, not from the rendered boxes.
 Inspecting a pose invalidates any compiled G-code playback. Switching back to
 the stock head clears the custom-head evidence and bounds.
 
-`HEAD_VALIDATION.json` contains 561 source-configuration installations:
+`HEAD_VALIDATION.json` retains 561 V2.4 source-configuration installations:
 84 complete Sphinx placements across the seven displayed V2.4 contexts, and
 253 Xol / 224 Stealthburner placements on the VORON 350 mm printed R2 context.
 Original embedded PCB and bare-board variants are treated separately. The
@@ -17,6 +17,23 @@ certificate for the rest of the travel. Failed operations remain unresolved.
 The v34 rear cooling placement adds 14 native fan/machine candidate checks;
 none produces a positive volume at the tested pose. Unchanged native files
 and relative translation ranges retain their exact previous pair evidence.
+
+The Trident R2 check adds 48 complete Sphinx installations: twelve each on
+VORON 250/300/350 and SIBOOR 350 with the printed 6 mm gantry. It evaluates
+2,749 distinct native near pairs against the retained base and gantry. Unlike
+the V2.4 check, the head remains at a fixed Z and the bed and Z blocks move
+by the negative sum of the displayed Z and the signed bed datum offset.
+Recorded poses include that datum, the exact XY reference and gantry identity.
+Results from this gantry are not transferred to AWD or Monolith.
+
+The Trident envelopes cover 4,729 native inputs. Ten SIBOOR inputs are surfaces
+or an invalid original shape; five candidate volumetric operations remain
+unresolved. They are not certified as collision-free solids. The production
+GLB checks compare both affected parts at every reported body-intersection
+pose, including moving-bed fixtures. Repeated findings share immutable
+`intersection_witnesses` records; `intersection_ids` resolves the full list
+without discarding individual part pairs. Added accessories may restrict Z;
+a witness outside their current range is refused rather than clamped.
 
 Examples include the Sphinx extruder plate entering an XY-joint screw at the
 right edge, its Sherpa motor entering the roof at maximum Z, and Xol's 4010 fan

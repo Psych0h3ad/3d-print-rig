@@ -1,4 +1,4 @@
-import {circleBeltRoute,beltGeometry,BELT_THICKNESS} from './v0-belts.mjs?v=rear-cooling-34';
+import {circleBeltRoute,beltGeometry,BELT_THICKNESS} from './v0-belts.mjs?v=trident-clearance-35';
 
 // Datums measured on both native R2 belt solids, not resized from V0.
 // F695 back contact R6.5; toothed-pulley outer belt back R6.742203.

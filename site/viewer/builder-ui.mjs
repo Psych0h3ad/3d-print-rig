@@ -1,5 +1,5 @@
-import {builderGroups,builderManifest,builderURL} from './toolhead-builder.mjs?v=rear-cooling-34';
-import {monolithCompanion} from './monolith-head-model.mjs?v=rear-cooling-34';
+import {builderGroups,builderManifest,builderURL} from './toolhead-builder.mjs?v=trident-clearance-35';
+import {monolithCompanion} from './monolith-head-model.mjs?v=trident-clearance-35';
 
 export function setupHeadBuilder(catalog,{getVariant,getMetadata,getExtras,pins,selectVariant,isBusy}){
  const $=id=>document.getElementById(id);

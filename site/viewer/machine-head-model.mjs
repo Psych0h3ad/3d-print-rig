@@ -1,10 +1,10 @@
-import {headPlan} from './head-assembly.js?v=rear-cooling-34';
+import {headPlan} from './head-assembly.js?v=trident-clearance-35';
 
-import {translatedProbeFit} from './probe-checks.js?v=rear-cooling-34';
+import {translatedProbeFit} from './probe-checks.js?v=trident-clearance-35';
 
-import {withEmbeddedBoards} from './embedded-boards.mjs?v=rear-cooling-34';
-import {applyMountValidation} from './mount-validation.mjs?v=rear-cooling-34';
-import {applyHeadValidation} from './head-validation.mjs?v=rear-cooling-34';
+import {withEmbeddedBoards} from './embedded-boards.mjs?v=trident-clearance-35';
+import {applyMountValidation} from './mount-validation.mjs?v=trident-clearance-35';
+import {applyHeadValidation} from './head-validation.mjs?v=trident-clearance-35';
 
 const clone=value=>JSON.parse(JSON.stringify(value));
 const add=(a,b)=>a.map((v,i)=>v+b[i]);

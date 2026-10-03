@@ -1,6 +1,6 @@
-import {monolithHeadCatalog} from './monolith-head-model.mjs?v=rear-cooling-34';
-import {machinePage} from './machines.js?v=rear-cooling-34';
-import {machineHeadVariants} from './machine-head-model.mjs?v=rear-cooling-34';
+import {monolithHeadCatalog} from './monolith-head-model.mjs?v=trident-clearance-35';
+import {machinePage} from './machines.js?v=trident-clearance-35';
+import {machineHeadVariants} from './machine-head-model.mjs?v=trident-clearance-35';
 
 export function headPrinterLink(variant,registry,href){
  const source=new URL(href),preferred=source.searchParams.get('return_machine');

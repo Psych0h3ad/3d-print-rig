@@ -1,5 +1,5 @@
-import {installedHeadPlan} from './machine-head-model.mjs?v=rear-cooling-34';
-import {translatedProbeFit} from './probe-checks.js?v=rear-cooling-34';
+import {installedHeadPlan} from './machine-head-model.mjs?v=trident-clearance-35';
+import {translatedProbeFit} from './probe-checks.js?v=trident-clearance-35';
 const completeSphinx=v=>v.mount==='fixed'&&v.gantry==='sphinx_monolith'&&v.fit?.nozzle_mm?.every(Number.isFinite)&&['extruder','hotend'].every(k=>v.modules.some(m=>m.id===v.fit?.complete_head_native?.[k]));
 export function monolithHeadCatalog(heads,registry,gantries){
  if(!registry.sources.stealthchanger_monolith||!registry.monolith_target)throw Error('Monolithの取付基準が未登録です');

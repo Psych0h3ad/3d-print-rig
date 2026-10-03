@@ -1,4 +1,4 @@
-import {createTridentBelts} from './trident-belts.mjs?v=rear-cooling-34';
+import {createTridentBelts} from './trident-belts.mjs?v=trident-clearance-35';
 import {createBedChain,isTridentBedChain} from './bed-chain.mjs?v=public-v25';
 /** Independent Trident bed motion. Vertices carry their CAD placements. */
 export function createTridentMotion(profile){

@@ -1,11 +1,11 @@
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=rear-cooling-34';
-import {setupPublicInfo} from './public-info.js?v=rear-cooling-34';
-import {setupRenderExport} from './render-export.js?v=rear-cooling-34';
+import {loadModel} from './model-loader.js?v=trident-clearance-35';
+import {setupPublicInfo} from './public-info.js?v=trident-clearance-35';
+import {setupRenderExport} from './render-export.js?v=trident-clearance-35';
 import {partNodes,selectParts,visibleBounds} from './component-selection.js?v=v0-mod-selection-1';
-import {renderProductLinks} from './product-links.js?v=rear-cooling-34';
+import {renderProductLinks} from './product-links.js?v=trident-clearance-35';
 import {componentCategories,componentCategory,componentViews,resolveComponentView,componentViewKeys} from './v0-mod-library.mjs?v=v0-mod-selection-1';
 const $=s=>document.querySelector(s),stage=$('#stage'),renderer=new THREE.WebGLRenderer({antialias:true});
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor('#edf1f5');renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);
@@ -93,7 +93,7 @@ async function install(id,initial=false){
 }
 for(const id of ['iso','front','side'])$('#'+id).onclick=()=>{view=id;fit()};$('#fit').onclick=fit;
 setupPublicInfo({includeDownloads:false});setupRenderExport({renderer,scene,camera,controls,name:'3D_Print_Rig_Component',afterRender:()=>{dirty=true}});
-try{const r=await fetch('../COMPONENT_LIBRARY.json?v=rear-cooling-34',{cache:'no-cache'});if(!r.ok)throw Error('部品カタログを取得できません');catalog=await r.json();
+try{const r=await fetch('../COMPONENT_LIBRARY.json?v=trident-clearance-35',{cache:'no-cache'});if(!r.ok)throw Error('部品カタログを取得できません');catalog=await r.json();
  for(const category of componentCategories.filter(c=>catalog.items.some(p=>componentCategory(p)===c.id)))$('#componentCategory').append(option(category.id,category.label));
  $('#component').onchange=e=>install(e.target.value);
  $('#componentCategory').onchange=e=>{const next=catalog.items.find(p=>componentCategory(p)===e.target.value);install(categoryHistory.get(e.target.value)||next.id)};
