@@ -11,9 +11,12 @@ the stock head clears the custom-head evidence and bounds.
 84 complete Sphinx placements across the seven displayed V2.4 contexts, and
 253 Xol / 224 Stealthburner placements on the VORON 350 mm printed R2 context.
 Original embedded PCB and bare-board variants are treated separately. The
-check includes 5,390 unique near-pair native operations and 492 positive
+check includes 5,404 unique near-pair native operations and 492 positive
 intersection witnesses. A candidate pose with no positive volume is **not** a
 certificate for the rest of the travel. Failed operations remain unresolved.
+The v34 rear cooling placement adds 14 native fan/machine candidate checks;
+none produces a positive volume at the tested pose. Unchanged native files
+and relative translation ranges retain their exact previous pair evidence.
 
 Examples include the Sphinx extruder plate entering an XY-joint screw at the
 right edge, its Sherpa motor entering the roof at maximum Z, and Xol's 4010 fan
