@@ -1,6 +1,17 @@
-import {v0Messages,v0Templates} from './v0-messages-en.mjs?v=v0-mounts-37';
+import {v0Messages,v0Templates} from './v0-messages-en.mjs?v=v0-mounts-38';
 import {ratRigMessages,ratRigTemplates} from './ratrig-messages-en.mjs?v=trident-clearance-35';
 export const messages = {
+  '共有': 'Share',
+  'このページを共有': 'Share this page',
+  '共有リンク': 'Share link',
+  'Xで共有': 'Share on X',
+  '端末で共有': 'More options',
+  'GitHubリポジトリを開く': 'Open the GitHub repository',
+  '作者のXプロフィールを開く': 'Open the author’s X profile',
+  'リンクをコピーしました。': 'Link copied.',
+  'リンクを選択しました。コピーして共有してください。': 'Link selected. Copy it to share.',
+  '共有メニューを開けませんでした。リンクをコピーしてください。': 'Sharing is unavailable. Copy the link instead.',
+
  "現在の追加Modによる可動範囲では、この姿勢を表示できません。": "This pose is outside the travel range allowed by the current additional mods.",
   '部品リスト・共有': 'Parts list and sharing',
   'プリンターを開く': 'Open printer',

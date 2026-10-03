@@ -1,7 +1,7 @@
 import * as THREE from 'three';
-import {cadToGlb} from './v0_adapter.mjs?v=trident-clearance-35';
+import {cadToGlb} from './v0_adapter.mjs?v=v0-mounts-38';
 
-export const v0Slots=[['accelerometer','加速度センサー'],['strain_relief','配線マウント'],['handles','ハンドル'],['tophat','トップハット']];
+export const v0Slots=[['toolhead','ツールヘッド'],['bed','ベッド支持機構'],['carriage','Xキャリッジ'],['accelerometer','加速度センサー'],['strain_relief','配線マウント'],['handles','ハンドル'],['tophat','トップハット']];
 const basis=new THREE.Matrix4().set(1,0,0,0,0,0,1,0,0,-1,0,0,0,0,0,1);
 export function installationMatrix(spec){
  const a=spec.rotation_xyz_deg.map(v=>v*Math.PI/180);
@@ -10,10 +10,14 @@ export function installationMatrix(spec){
  matrix.setPosition(...cadToGlb(spec.translation_mm));return matrix;
 }
 export function validateV0Mods(registry,state){
- if(!state||Object.keys(state).length!==v0Slots.length)throw Error('V0 Mod設定が不正です');
+ if(!state||typeof state!=='object'||Array.isArray(state)||Object.keys(state).some(k=>!v0Slots.some(([slot])=>slot===k)))throw Error('V0 Mod設定が不正です');
+ // Older saved V0 configurations predate the head/bed/carriage selectors.
+ state={toolhead:'stock',bed:'stock',carriage:'stock',...state};
+ if(Object.keys(state).length!==v0Slots.length)throw Error('V0 Mod設定が不正です');
  for(const[slot]of v0Slots){const id=state[slot];if(id==='stock'||slot==='accelerometer'&&id==='none')continue;
   const option=registry.options.find(o=>o.id===id&&o.slot===slot);if(!option)throw Error('このマシンにないV0 Modです: '+id);
   for(const[k,v]of Object.entries(option.requires||{}))if(state[k]!==v)throw Error('取付条件を満たしません: '+option.label);
+  for(const[k,values]of Object.entries(option.conflicts||{}))if(values.includes(state[k]))throw Error('取付条件を満たしません: '+option.label);
  }
  return {...state};
 }
@@ -50,13 +54,15 @@ export async function createV0Installations({scene,adapter,profile,registry,load
   for(const[k,n]of adapter.nodes){if(hidden.has(k))n.visible=false;else if(adapter.records.get(k).motion!=='reference_flexible')n.visible=adapter.records.get(k).group!=='V0_Enclosure'||enclosure;}
   for(const[id,rows]of roots)for(const r of rows)r.wrapper.visible=state[r.option.slot]===id&&(!r.option.enclosure||enclosure);
  }
- function setPose(pose){const d=pose.map((v,i)=>v-profile.display_reference_xyz_mm[i]);for(const rows of roots.values())for(const r of rows){const delta=cadToGlb(r.spec.motion==='xy'?[d[0],d[1],0]:r.spec.motion==='z_bed'?[0,0,-d[2]]:[0,0,0]);r.wrapper.position.copy(r.origin).add(new THREE.Vector3(...delta))}visibility()}
+ function setPose(pose){const d=pose.map((v,i)=>v-profile.display_reference_xyz_mm[i]);for(const rows of roots.values())for(const r of rows){const delta=cadToGlb(r.spec.motion==='xy'?[d[0],d[1],0]:r.spec.motion==='z_bed'?[0,0,-d[2]]:r.spec.motion==='y'?[0,d[1],0]:[0,0,0]);r.wrapper.position.copy(r.origin).add(new THREE.Vector3(...delta))}visibility()}
  function setPalette(colors){palette={...colors};for(const[m,c]of materialOrigins)m.color.copy(c);for(const rows of roots.values())for(const r of rows)r.model.traverse(n=>{
   if(!n.isMesh)return;let p=n;while(p&&!p.userData?.part_key)p=p.parent;
-  const role=r.spec.role||r.spec.roles?.[p?.userData?.part_key];if(palette[role])for(const m of Array.isArray(n.material)?n.material:[n.material])m.color.set(palette[role]);
+  const key=p?.userData?.part_key,role=r.spec.role||r.spec.roles?.[key],color=r.spec.colors?.[key]||palette[role]||profile.appearance?.palette_defaults?.[role];if(color)for(const m of Array.isArray(n.material)?n.material:[n.material])m.color.set(color);
   if(role==='panel')for(const m of Array.isArray(n.material)?n.material:[n.material]){m.transparent=true;m.opacity=.16;m.depthWrite=false;}
+  if(role==='diffuser')for(const m of Array.isArray(n.material)?n.material:[n.material]){m.color.set('#f3f4ed');m.transparent=true;m.opacity=.78;m.depthWrite=false;}
  });}
  let request=0;
  async function setState(next){const value=validateV0Mods(registry,next),sequence=++request;const chosen=registry.options.filter(o=>value[o.slot]===o.id);await Promise.all(chosen.map(prepare));if(sequence!==request||disposed)return false;state=value;setPose(adapter.getPose());setPalette(palette);return true}
- return {registry,roots,setState,getState:()=>({...state}),setPose,setPalette,setEnclosureVisible:v=>{enclosure=Boolean(v);visibility()},getNotes:()=>registry.options.filter(o=>state[o.slot]===o.id).map(o=>o.notes),dispose(){disposed=true;request++;for(const rows of roots.values())for(const r of rows)release(r);roots.clear();cached.clear()}};
+ await Promise.all(registry.options.filter(o=>o.id==='stock').map(prepare));setPose(adapter.getPose());setPalette(palette);
+ return {registry,roots,setState,getState:()=>({...state}),setPose,setPalette,setEnclosureVisible:v=>{enclosure=Boolean(v);visibility()},getNotes:()=>registry.options.filter(o=>state[o.slot]===o.id).flatMap(o=>Array.isArray(o.notes)?o.notes:[o.notes]),dispose(){disposed=true;request++;for(const rows of roots.values())for(const r of rows)release(r);roots.clear();cached.clear()}};
 }

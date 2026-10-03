@@ -1,6 +1,8 @@
 // Shared presentation layer. Existing controls, IDs and CAD controllers stay intact.
-import {setupLanguage,originalText} from './i18n.mjs?v=v0-mounts-37';
+import {setupLanguage,originalText} from './i18n.mjs?v=v0-mounts-38';
 import {printerWorkspaceURL,workspaceReturnKey} from './workspace-return.mjs?v=crossant-36';
+import {setupWorkspaceSharing} from './workspace-share.mjs?v=sharing-1';
+import {lockInspectorHorizontalScroll} from './workspace-scroll.mjs?v=inspector-width-1';
 const $ = selector => document.querySelector(selector);
 const node = (tag, className, text) => {
   const element = document.createElement(tag);
@@ -14,7 +16,9 @@ function setupWorkspace() {
   if (!aside || !stage || !header || document.body.classList.contains('ui-workspace')) return;
   document.body.classList.add('ui-workspace');
   aside.setAttribute('aria-label', '構成と表示の設定');
-
+  const background = node('div', 'cad-background');
+  background.setAttribute('aria-hidden', 'true');
+  stage.append(background);
   const skip = node('a', 'skip-link', '設定へスキップ');
   skip.href = '#inspectorTabs';
   document.body.prepend(skip);
@@ -73,7 +77,7 @@ function setupWorkspace() {
   }
   menu.append(node('hr'));
   const moveActions = () => {
-    for (const button of actions.querySelectorAll(':scope > button:not(#openRender)')) menu.append(button);
+    for (const button of actions.querySelectorAll(':scope > button:not(#openRender):not(#openShare)')) menu.append(button);
   };
   moveActions();
   new MutationObserver(moveActions).observe(actions, { childList: true });
@@ -81,6 +85,7 @@ function setupWorkspace() {
   document.addEventListener('click', event => { if (!more.contains(event.target)) more.open = false; });
   more.addEventListener('keydown', event => { if (event.key === 'Escape') { more.open = false; more.querySelector('summary').focus(); } });
   if ($('#openRender')) $('#openRender').textContent = '画像を書き出す';
+  setupWorkspaceSharing({navigation, actions, menu});
 
   const heading = node('div', 'inspector-heading');
   const title = aside.querySelector('h1');
@@ -129,6 +134,7 @@ function setupWorkspace() {
   tabs.setAttribute('aria-label', '設定カテゴリ');
   tabs.tabIndex = -1;
   const content = node('div', 'inspector-content');
+  const resetHorizontalScroll = lockInspectorHorizontalScroll(content);
   const footer = node('div', 'inspector-footer');
   const groups = new Map();
   let active = 'configuration', userSelectedTab = false;
@@ -157,6 +163,7 @@ function setupWorkspace() {
       panel.hidden = id !== key;
     }
     content.scrollTop = 0;
+    resetHorizontalScroll();
     if (focus) groups.get(key).tab.focus();
   }
   tabs.addEventListener('keydown', event => {
@@ -296,6 +303,11 @@ function setupWorkspace() {
   guide.setAttribute('aria-labelledby', 'guideTitle');
   guide.innerHTML = '<div class="dialog-head"><h2 id="guideTitle">3Dビューの操作</h2><button class="close" aria-label="閉じる">×</button></div><div class="dialog-body"><dl class="guide-keys"><dt>回転</dt><dd>左ドラッグ / 1本指でドラッグ</dd><dt>移動</dt><dd>右ドラッグ / 2本指でドラッグ</dd><dt>拡大・縮小</dt><dd>ホイール / ピンチ</dd><dt>視点を切り替える</dt><dd><kbd>1</kbd> 斜め　<kbd>2</kbd> 正面　<kbd>3</kbd> 上面・側面</dd><dt>ヘッドを拡大</dt><dd><kbd>4</kbd> 対応するマシンで使用</dd></dl><p class="foot">構成・外観・動作は左のタブから。スマートフォンでは画面下の設定をたたむと、3Dを広く表示できます。</p></div>';
   document.body.append(guide);
+  const credits = node('a', 'cad-credits', 'CAD credits');
+  credits.href = './art/credits.html';
+  credits.target = '_blank';
+  credits.rel = 'noopener';
+  guide.querySelector('.dialog-body').append(credits);
   help.onclick = () => guide.showModal();
   guide.querySelector('.close').onclick = () => guide.close();
   document.addEventListener('keydown', event => {

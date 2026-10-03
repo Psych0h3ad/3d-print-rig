@@ -1,4 +1,17 @@
 export const v0Messages={
+ '閉じた純正ドアの前端と公称Z上限では接触があります。ドアの角度とZ取付条件を確認してください。':'Contacts occur with the closed stock door near the front travel end and at the nominal Z maximum. Check the door angle and Z installation conditions.',
+ 'ドア角度が不正です':'Invalid door angle',
+ 'ホーミング接点の校正とトップハットの開閉は未検証。':'Homing calibration and tophat opening are not validated.',
+ 'ベルト経路とZチェーンは移動に追従します。ベルトの歯形・張力と配線の曲げ制限は再現していません。':'Belt routes and the Z chain follow motion. Belt teeth, tension and cable bend limits are not simulated.',
+ 'ベッド支持機構':'Bed support',
+ 'Xキャリッジ':'X carriage',
+ '固定穴と座面を合わせた構成です。取付条件は各選択肢に表示します。':'Configurations use matched mounting holes and seats. Each option lists its installation requirements.',
+ 'サポート省略モデル：Xキャリッジの印刷用サポートを除外。本体の原本寸法を保持。':'Support-omitted model: X-carriage print support removed; the original body dimensions are preserved.',
+ 'サポート省略モデル：熱圧入インサート用Xキャリッジの印刷用サポートを除外。原本の本体と固定穴を保持。':'Support-omitted model: print support removed from the heat-insert carriage; the original body and mounting holes are preserved.',
+ '換装後のノズルとベッドを基準に配置中':'Positioning from the installed nozzle and bed datums',
+ '換装構成の全ストロークは下記の取付確認を参照してください':'Refer to the installation checks for the modified assembly’s travel',
+ 'ベルト経路はXYに追従 · Zチェーン11リンクはベッドに追従':'Belt routes follow XY · the 11-link Z chain follows the bed',
+
  'V0のModを取り付ける':'Install V0 mods',
  '加速度センサー':'Accelerometer',
  '配線マウント':'Wiring mount',
@@ -31,6 +44,11 @@ export const v0Messages={
  'V0ビューを終了しました':'V0 view has been closed',
 };
 export const v0Templates={
+ '{0} · 固定ガントリー・単一Zベッド':'{0} · Fixed gantry / single Z bed',
+ 'Dragon Burner v8{0}・Revo Voron・Sherpa Mini R2（標準フロント）。3010冷却ファンと左右4010ブロワーを装着。ノズル基準は換装後の形状から計算。':'Dragon Burner v8{0}, Revo Voron and Sherpa Mini R2 (standard front), with a 3010 cooling fan and two 4010 blowers. The nozzle datum uses the installed geometry.',
+ 'Rapid Burner v8・Rapido UHF・Sherpa Mini R2（標準フロント）。専用マウントと3010冷却ファン、左右4010ブロワーを使用。ホットエンドを90°回して配線出口をキャリッジから逃がします。':'Rapid Burner v8, Rapido UHF and Sherpa Mini R2 (standard front), with the dedicated mount, a 3010 fan and two 4010 blowers. The hotend is rotated 90° to route the wiring outlet away from the carriage.',
+ 'Kirigami板金・ナットブロック・チェーン取付部へ交換。ベッド3点・スプリング・調整ノブ・リードナットを座面へ配置し、Zベッドに追従。M2×4固定ネジ8本。 5 mmチェーンスペーサーにはM3×12、ワイヤーガイドにはM3×6を使用。':'Replace the bed support with the Kirigami sheet, nut block and chain mount. The bed, three springs, adjustment knobs and leadnut follow Z from their mounting seats. Eight M2×4 rail screws, M3×12 chain-spacer screws and an M3×6 wire-guide screw are included.',
+
  'このマシンにないV0 Modです: {0}':'V0 mod is unavailable for this machine: {0}',
  '取付条件を満たしません: {0}':'Mounting requirements are not met: {0}',
  'Modの部品が不足しています: {0}':'Missing mod parts: {0}',

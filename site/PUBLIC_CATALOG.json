@@ -1,5 +1,5 @@
 {
-  "viewer_version": "viewer-v37",
+  "viewer_version": "viewer-v38",
   "sources": [
     {
       "id": "siboor_trident",
@@ -480,7 +480,7 @@
       "license": "GPL-3.0",
       "license_url": "../licenses/v0_voron_v02r1/LICENSE",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
-      "changes": "Original dimensions retained. Stock machines use native rigid motion. Selected V0 sensor, handle, mounting-plate and enclosure configurations have registered transforms and stock-part replacement; handle/panel interference and incomplete hardware are documented. Other Mod variants remain source references."
+      "changes": "Native main bodies and selected installation parts, original dimensions retained. Independent X-carriage printing support omitted in the installed viewer; source originals remain available."
     },
     {
       "id": "v0_voron_v02",
@@ -494,7 +494,7 @@
       "license": "GPL-3.0",
       "license_url": "../licenses/v0_voron_v02/LICENSE",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
-      "changes": "Original dimensions retained. Stock machines use native rigid motion. Selected V0 sensor, handle, mounting-plate and enclosure configurations have registered transforms and stock-part replacement; handle/panel interference and incomplete hardware are documented. Other Mod variants remain source references."
+      "changes": "Native main bodies and selected installation parts, original dimensions retained. Independent X-carriage printing support omitted in the installed viewer; source originals remain available."
     },
     {
       "id": "v0_dragon_burner",
@@ -508,7 +508,7 @@
       "license": "GPL-3.0",
       "license_url": "../licenses/v0_dragon_burner/LICENSE",
       "license_sha256": "605e9047a563c5c8396ffb18232aa4304ec56586aee537c45064c6fb425e44ad",
-      "changes": "Original dimensions retained. Stock machines use native rigid motion. Selected V0 sensor, handle, mounting-plate and enclosure configurations have registered transforms and stock-part replacement; handle/panel interference and incomplete hardware are documented. Other Mod variants remain source references."
+      "changes": "Native main bodies and selected installation parts, original dimensions retained. Independent X-carriage printing support omitted in the installed viewer; source originals remain available."
     },
     {
       "id": "v0_kirigami",
@@ -1222,6 +1222,12 @@
     {
       "label": "Sphinx tLW · rear hotend cooling",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v34/viewer-sphinx-cooling.zip"
+    },
+    {
+      "label": "V0 carriage display variants / native editable source",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v38/viewer-v0-carriages.zip",
+      "bytes": 1338359,
+      "sha256": "97181c65fb9bce10ed7e8dd8b7208031ee1bc25506641e25f19a2a8351ac7e10"
     }
   ]
 }

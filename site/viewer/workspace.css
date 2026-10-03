@@ -49,15 +49,16 @@ body.ui-workspace {
 .ui-workspace .inspector-tabs > button { position: relative; flex: 1; border: 0; border-radius: 0; background: transparent; min-height: 42px; padding: 8px 4px; color: var(--muted); font-size: 12px; }
 .ui-workspace .inspector-tabs > button[aria-selected=true] { color: var(--accent); font-weight: 650; }
 .inspector-tabs > button[aria-selected=true]::after { content: ''; height: 2px; background: var(--accent); position: absolute; bottom: 0; left: 9px; right: 9px; border-radius: 2px; }
-.inspector-content { min-height: 0; overflow-y: auto; scrollbar-width: thin; flex: 1; overscroll-behavior: contain; padding: 16px 20px 24px; }
-.inspector-panel { min-width: 0; }
+.inspector-content { min-height: 0; min-width: 0; width: 100%; max-width: 100%; overflow-x: hidden; overflow-y: auto; scrollbar-width: thin; flex: 1; overscroll-behavior: contain; padding: 16px 20px 24px; }
+.inspector-panel { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+.inspector-panel details { min-width: 0; max-width: 100%; }
 .ui-workspace .inspector-panel:focus-visible { outline-offset: -2px; }
 .ui-workspace details.panel-section { margin-top: 18px; padding: 15px 0 0; border-top: 1px solid var(--line); }
 .ui-workspace details.panel-section:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
 .ui-workspace summary { gap: 10px; font-size: 12px; line-height: 1.6; }
 .ui-workspace details[open] > summary { margin-bottom: 12px; }
 .ui-workspace details details { margin-top: 12px; padding: 10px 12px; background: #f6f8fa; border-radius: 7px; }
-.ui-workspace select { min-height: 38px; padding: 8px 30px 8px 10px; border-radius: 6px; font-size: 12px; background: var(--paper); text-overflow: ellipsis; }
+.ui-workspace select { min-width: 0; max-width: 100%; min-height: 38px; padding: 8px 30px 8px 10px; border-radius: 6px; font-size: 12px; background: var(--paper); text-overflow: ellipsis; }
 .ui-workspace input[type=number] { width: 100%; min-height: 38px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; font: inherit; background: var(--paper); color: var(--ink); }
 .ui-workspace label { margin: 10px 0 5px; font-weight: 500; font-size: 11px; }
 .ui-workspace label:has(input[type=checkbox]) { min-height: 32px; display: flex; gap: 8px; align-items: center; font-size: 12px; margin: 4px 0; }
@@ -117,11 +118,11 @@ kbd { display: inline-block; padding: 1px 5px; border: 1px solid var(--line); bo
 .ui-workspace :focus-visible { outline: 2px solid #b5373f; outline-offset: 3px; }
 .mobile-panel-toggle { display: none; }
 body.ui-workspace[data-asset-status=missing] aside > * { opacity: 1; pointer-events: auto; }
-body.ui-workspace.night { --paper: #18212b; --line: #34404c; --muted: #a3b2c1; --ink: #e0e7ef; --accent: #ff9198; color: #e0e7ef; }
-.ui-workspace.night .view-tools button[aria-pressed=true] { background: #d4dee9; color: #18212b; }
-.ui-workspace.night .change-machine, .ui-workspace.night details details, .ui-workspace.night .builder-search, .ui-workspace.night .status, .ui-workspace.night .inspector-footer button:first-child { background: #222e3b; }
-.ui-workspace.night .viewer-help { background: var(--paper); }
-.ui-workspace.night .notice { background: #352b20; color: #edc58f; }
+body.ui-workspace:is(.night, :has(#night:checked)) { --paper: #18212b; --line: #34404c; --muted: #a3b2c1; --ink: #e0e7ef; --accent: #ff9198; color: #e0e7ef; }
+.ui-workspace:is(.night, :has(#night:checked)) .view-tools button[aria-pressed=true] { background: #d4dee9; color: #18212b; }
+.ui-workspace:is(.night, :has(#night:checked)) .change-machine, .ui-workspace:is(.night, :has(#night:checked)) details details, .ui-workspace:is(.night, :has(#night:checked)) .builder-search, .ui-workspace:is(.night, :has(#night:checked)) .status, .ui-workspace:is(.night, :has(#night:checked)) .inspector-footer button:first-child { background: #222e3b; }
+.ui-workspace:is(.night, :has(#night:checked)) .viewer-help { background: var(--paper); }
+.ui-workspace:is(.night, :has(#night:checked)) .notice { background: #352b20; color: #edc58f; }
 @media (max-width: 960px) {
   .ui-workspace .workspace { grid-template-columns: 300px minmax(0, 1fr); }
   .inspector-heading { padding: 17px 18px 14px; }
@@ -188,6 +189,135 @@ html[lang=en] .ui-workspace .inspector-heading:has(.change-machine) h1 { padding
  .workspace-nav a { min-height: 40px; }
 }
 
-/* Keep the entire viewport gesture-owned; inspector scrolling remains separate. */
+/* Graphite, porcelain and copper workspace theme. */
+body.ui-workspace {
+ --paper: #fcfdfc;
+ --ink: #26383f;
+ --muted: #63747d;
+ --line: #dbe2e5;
+ --accent: #b8482b;
+ color: var(--ink);
+ background: #e5ebee;
+}
+.ui-workspace > header { background: #1b2b32; border-bottom-color: #34474e; color: #f6f8f6; }
+.ui-workspace .brand-mark { width: 34px; height: 34px; border-radius: 8px; background: #34464c; color: #f6f8f6; }
+.ui-workspace .brand strong { font-family: 'Bahnschrift', 'Arial Narrow', 'Segoe UI', sans-serif; text-transform: uppercase; font-size: 16px; font-weight: 600; letter-spacing: .07em; }
+.ui-workspace .workspace-nav { background: transparent; gap: 24px; }
+.ui-workspace .workspace-nav a { color: #b9c8cd; font-weight: 500; }
+.ui-workspace .workspace-nav a:hover, .ui-workspace .workspace-nav a[aria-current=page] { color: #fff; }
+.ui-workspace .workspace-nav a[aria-current=page]::after { background: #f18b64; height: 3px; }
+.ui-workspace .header-actions .language-picker select,
+.ui-workspace .workspace-more > summary { background: #263b43; border-color: #41565e; color: #eff5f5; }
+.ui-workspace .workspace-more.current-reference > summary { color: #ffb18e; }
+.ui-workspace .workspace-more > summary::after { color: #a5b8c0; }
+.ui-workspace #openRender { background: #b94a2e; border-color: #d16b4a; color: #fff; }
+.ui-workspace #openRender:hover { background: #a73e24; }
+.ui-workspace .workspace { padding: 12px; gap: 12px; }
+.ui-workspace .workspace > aside { border: 1px solid #d0dbe0; border-radius: 12px; box-shadow: 0 3px 14px #233b4810; }
+.ui-workspace .inspector-heading { background: linear-gradient(115deg, #fcfdfc, #f0f4f5); }
+.ui-workspace .inspector-heading h1 { font-family: 'Bahnschrift', 'Segoe UI', 'Yu Gothic UI', sans-serif; font-weight: 600; letter-spacing: -.035em; }
+.ui-workspace .change-machine { background: #fff; border-color: #cbd7db; color: #405a65; }
+.ui-workspace .inspector-tabs { background: #f5f8f8; }
+.ui-workspace .inspector-tabs > button[aria-selected=true] { color: #a4422a; }
+.ui-workspace select { background-color: #fff; border-color: #cfdade; transition: border-color .15s, box-shadow .15s; }
+.ui-workspace select:not(:disabled):hover { border-color: #91a9b4; }
+.ui-workspace select:focus-visible, .ui-workspace input:focus-visible { outline: 2px solid #b94a2e; outline-offset: 2px; }
+.ui-workspace input[type=range], .ui-workspace input[type=checkbox] { accent-color: #b94a2e; }
+.ui-workspace .status { background: #edf3f3; }
+.ui-workspace .inspector-footer { background: #f5f8f8; }
+.ui-workspace .workspace-apply { background: #294550; color: #fff; border: 1px solid #294550; }
+.ui-workspace .workspace-apply:hover { background: #1b3540; }
+.ui-workspace #stage { border: 1px solid #d0dbe0; border-radius: 12px; isolation: isolate; }
+.ui-workspace #stage > canvas { position: relative; z-index: 0; }
+.ui-workspace .cad-background {
+ position: absolute;
+ inset: 0;
+ z-index: 1;
+ pointer-events: none;
+ background: url('./art/cad-background.png') repeat -65px -120px / 1080px 720px;
+ opacity: .34;
+ mask-image: radial-gradient(ellipse 55% 68% at 52% 55%, transparent 50%, #0003 76%, #000 115%);
+}
+.ui-workspace .cad-credits { color: var(--muted); font-size: 11px; }
+.ui-workspace .view-tools { background: #fcfdfcf2; border-color: #d4dee2; box-shadow: 0 4px 16px #233b4812; backdrop-filter: blur(10px); }
+.ui-workspace .view-tools button[aria-pressed=true] { background: #294550; color: #fff; }
+.ui-workspace .viewer-help { border-color: #d4dee2; background: #fcfdfcf2; }
+.ui-workspace .view-meta { z-index: 2; color: #516975; }
+.ui-workspace .view-meta > span:first-child { padding: 4px 8px; border: 1px solid #cbd8df; border-radius: 4px; background: #f8fbfcdd; font-family: ui-monospace, Consolas, monospace; font-size: 9px; letter-spacing: .04em; }
+.ui-workspace .workspace-menu { color: var(--ink); box-shadow: 0 12px 40px #0c202733; }
+.ui-workspace dialog { border-color: #cbd8de; box-shadow: 0 24px 100px #122d3940; }
+.ui-workspace dialog::backdrop { background: #132a3880; }
+.ui-workspace .dialog-head { background: #f1f5f6; }
+.ui-workspace button.primary { background: #294550; border-color: #294550; }
+.ui-workspace :focus-visible { outline-color: #b94a2e; }
+.ui-workspace > header :focus-visible { outline-color: #ffb18e; }
+body.ui-workspace:is(.night, :has(#night:checked)) { --paper: #182830; --ink: #e0ebef; --line: #354b56; --muted: #aec1ca; --accent: #ffa381; background: #101d24; color: var(--ink); color-scheme: dark; }
+.ui-workspace:is(.night, :has(#night:checked)) .workspace > aside, .ui-workspace:is(.night, :has(#night:checked)) #stage { border-color: #354b56; }
+.ui-workspace:is(.night, :has(#night:checked)) .inspector-heading { background: #1d303a; }
+.ui-workspace:is(.night, :has(#night:checked)) .inspector-tabs, .ui-workspace:is(.night, :has(#night:checked)) .inspector-footer, .ui-workspace:is(.night, :has(#night:checked)) .dialog-head { background: #182830; }
+.ui-workspace:is(.night, :has(#night:checked)) select, .ui-workspace:is(.night, :has(#night:checked)) .change-machine, .ui-workspace:is(.night, :has(#night:checked)) .mobile-panel-toggle { color: #e0ebef; background: #233942; border-color: #47606c; }
+.ui-workspace:is(.night, :has(#night:checked)) button:hover, .ui-workspace:is(.night, :has(#night:checked)) .workspace-menu a:hover { background: #2b424e; }
+.ui-workspace:is(.night, :has(#night:checked)) .inspector-tabs > button[aria-selected=true] { color: #ffa381; }
+.ui-workspace:is(.night, :has(#night:checked)) .cad-background { opacity: .21; filter: brightness(2); }
+.ui-workspace:is(.night, :has(#night:checked)) .view-tools, .ui-workspace:is(.night, :has(#night:checked)) .viewer-help { background: #1c303de8; border-color: #354b56; }
+.ui-workspace:is(.night, :has(#night:checked)) .view-tools button[aria-pressed=true] { background: #d4e1e6; color: #18313e; }
+.ui-workspace:is(.night, :has(#night:checked)) .view-meta > span:first-child { background: #182830dd; border-color: #354b56; color: #abc1ce; }
+@media (max-width: 960px) {
+ .ui-workspace .workspace { padding: 8px; gap: 8px; }
+ .ui-workspace .cad-background { background-size: 900px 600px; }
+}
+@media (max-width: 680px) {
+ .ui-workspace .workspace { padding: 0; gap: 0; }
+ .ui-workspace .workspace > aside { border: 1px solid #d0dbe0; border-bottom: 0; border-radius: 16px 16px 0 0; }
+ .ui-workspace #stage { border: 0; border-radius: 0; }
+ .ui-workspace .cad-background { background-size: 780px 520px; background-position: center -110px; opacity: .24; }
+ .ui-workspace .brand strong { font-size: 12px; letter-spacing: .035em; }
+ .ui-workspace .brand-mark { width: 29px; height: 29px; background-size: 24px; }
+ .ui-workspace .view-meta > span:first-child { font-size: 8px; padding: 3px 6px; }
+}
+@media (prefers-reduced-motion: reduce) { .ui-workspace select { transition: none; } }
+
+/* Public links and sharing remain available in the compact header. */
+.workspace-social { display: flex; align-self: center; align-items: center; gap: 14px; margin-left: auto; padding-left: 16px; border-left: 1px solid #41565e; }
+.ui-workspace .workspace-social a { min-height: 30px; font-size: 11px; color: #c9d5da; }
+.ui-workspace #openShare { background: #263b43; border-color: #41565e; color: #eff5f5; font-size: 12px; }
+.ui-workspace .workspace-menu > .mobile-export-shortcut { display: none; }
+.ui-workspace .share-dialog { width: min(520px, calc(100vw - 32px)); }
+.share-page-title { margin: 0 0 16px; font-weight: 600; }
+.ui-workspace #pageShareURL { display: block; width: 100%; box-sizing: border-box; min-height: 42px; border: 1px solid var(--line); border-radius: 6px; padding: 10px; color: var(--ink); background: var(--paper); font: 12px ui-monospace, Consolas, monospace; }
+.share-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+.ui-workspace .share-actions a { display: inline-flex; align-items: center; padding: 8px 12px; border: 1px solid var(--line); border-radius: 7px; color: var(--ink); text-decoration: none; font-size: 12px; }
+.ui-workspace .share-actions a:hover { background: var(--line); }
+.share-actions > [hidden] { display: none; }
+@media (min-width: 901px) and (max-width: 1040px) {
+ body.ui-workspace { grid-template-rows: 100px minmax(0, 1fr); }
+ .ui-workspace > header { display: grid; grid-template-columns: auto 1fr; grid-template-rows: 56px 1fr; column-gap: 12px; row-gap: 0; }
+ .ui-workspace .brand { grid-column: 1; grid-row: 1; }
+ .ui-workspace .header-actions { grid-column: 2; grid-row: 1; justify-self: end; }
+ .workspace-nav { grid-column: 1 / -1; grid-row: 2; }
+}
+@media (max-width: 680px) {
+ .ui-workspace .header-actions > #openRender { display: none; }
+ .ui-workspace .workspace-menu > .mobile-export-shortcut { display: block; }
+ .ui-workspace #openShare { min-height: 34px; font-size: 10px; padding: 7px 9px; }
+ .ui-workspace .workspace-nav { gap: 18px; }
+ .workspace-social { padding-left: 12px; gap: 12px; }
+}
+@media (max-width: 360px) {
+ .ui-workspace .brand strong { font-size: 10px; }
+ .ui-workspace .workspace-nav { gap: 12px; }
+ .ui-workspace .workspace-social a { font-size: 10px; }
+ .workspace-social { padding-left: 8px; gap: 10px; }
+}
+
+/* Keep mobile form fields readable without the native picker zooming the panel.
+   Scope this to form content so the compact navigation is not enlarged. */
+@media (max-width: 680px) {
+  .ui-workspace :is(.inspector-content, .dialog-body) :is(select, textarea, input[type=text], input[type=number], input[type=search], input[type=url]) { font-size: 16px; min-width: 0; max-width: 100%; }
+  .ui-workspace :is(.color-row, .palette-row) input[type=text] { width: 6.5em; }
+  .ui-workspace #pageShareURL { font-size: 16px; }
+}
+
+/* Keep viewport gestures separate from the vertical inspector. */
 .ui-workspace #stage { touch-action: none; overscroll-behavior: contain; user-select: none; -webkit-user-select: none; }
 .ui-workspace #stage > canvas { touch-action: none; }

@@ -1,0 +1,160 @@
+{
+  "method": "Orthographic Freestyle hidden-line render of the registered CAD meshes; no synthesized geometry",
+  "license": "GPL-3.0; original CAD and embedded component credits apply",
+  "bundle": {
+    "encoding": "gzip",
+    "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v34/viewer-models.zip",
+    "bytes": 782963828,
+    "sha256": "3573b593ba9156da112fc8607a9e46ddbbfea069179b9ed5ca13819153787fd5"
+  },
+  "render_script": "scripts/render_cad_background.py",
+  "packing_script": "scripts/pack_cad_background.py",
+  "image_sha256": "a0e750061e24646549b8c34595d96ce03d6610805b64db4bdf060a4d1d67516b",
+  "drawings": [
+    {
+      "id": "v0",
+      "tile_cell": [
+        0,
+        0
+      ],
+      "label": "VORON V0.2r1 / 120",
+      "asset": "machines/voron_v02r1_120/model.glb.gz",
+      "asset_sha256": "6dc9d8149c3f187a19fb16076f1a8132fef55d5d50a447fd40d8b905251e85f1",
+      "groups": "all",
+      "camera_direction_blender_z_up": [
+        0.507020115852356,
+        -0.7605301737785339,
+        0.4056161046028137
+      ],
+      "projection": "orthographic",
+      "transparent_panels": "hidden",
+      "geometry_changes": "none",
+      "renderer": "5.2.2 LTS",
+      "visible_meshes": 1670,
+      "hidden_meshes": 8,
+      "render_sha256": "3a3a0e46e57e48cb479b1f8eb245c69b25a24b920023188691a943a067bd5bad"
+    },
+    {
+      "id": "v24-head",
+      "tile_cell": [
+        1,
+        0
+      ],
+      "label": "VORON V2.4 original toolhead assembly",
+      "asset": "machines/voron_v24_300_printed/model.glb.gz",
+      "asset_sha256": "3c0e280e8bdfb563b5851d76839dec015c756724a299797d7f7849e29895caaa",
+      "groups": [
+        "V24_Toolhead"
+      ],
+      "camera_direction_blender_z_up": [
+        0.507020115852356,
+        -0.7605301737785339,
+        0.4056161046028137
+      ],
+      "projection": "orthographic",
+      "transparent_panels": "hidden",
+      "geometry_changes": "none",
+      "renderer": "5.2.2 LTS",
+      "visible_meshes": 126,
+      "hidden_meshes": 1203,
+      "render_sha256": "9ddd5dd9f712dbb555c105e6385ae56b3a5fb74a281289c3faf6b83e90de1b70"
+    },
+    {
+      "id": "trident",
+      "tile_cell": [
+        2,
+        0
+      ],
+      "label": "VORON Trident / 300",
+      "asset": "machines/voron_trident_300/model.glb.gz",
+      "asset_sha256": "260962f535d0744edfb7f01eceef310043da9642fd1860492dd46dcd0d5a3da6",
+      "groups": "all",
+      "camera_direction_blender_z_up": [
+        0.507020115852356,
+        -0.7605301737785339,
+        0.4056161046028137
+      ],
+      "projection": "orthographic",
+      "transparent_panels": "hidden",
+      "geometry_changes": "none",
+      "renderer": "5.2.2 LTS",
+      "visible_meshes": 851,
+      "hidden_meshes": 5,
+      "render_sha256": "15806139a2767527218538cc6f4d915c7dcf96fdfd1edc49cf2a7a8123a15b8b"
+    },
+    {
+      "id": "v24",
+      "tile_cell": [
+        0,
+        1
+      ],
+      "label": "VORON V2.4 / 300",
+      "asset": "machines/voron_v24_300_printed/model.glb.gz",
+      "asset_sha256": "3c0e280e8bdfb563b5851d76839dec015c756724a299797d7f7849e29895caaa",
+      "groups": "all",
+      "camera_direction_blender_z_up": [
+        0.507020115852356,
+        -0.7605301737785339,
+        0.4056161046028137
+      ],
+      "projection": "orthographic",
+      "transparent_panels": "hidden",
+      "geometry_changes": "none",
+      "renderer": "5.2.2 LTS",
+      "visible_meshes": 1323,
+      "hidden_meshes": 6,
+      "render_sha256": "526f1e99b7558ad2f584ed114d81494e2fd285c62978e1cc08e1041aff7bfe43"
+    },
+    {
+      "id": "v24-gantry",
+      "tile_cell": [
+        1,
+        1
+      ],
+      "label": "VORON V2.4 XY gantry",
+      "asset": "machines/voron_v24_300_printed/model.glb.gz",
+      "asset_sha256": "3c0e280e8bdfb563b5851d76839dec015c756724a299797d7f7849e29895caaa",
+      "groups": [
+        "V24_Gantry",
+        "V24_X_Beam",
+        "V24_Toolhead",
+        "V24_Reference_Belts"
+      ],
+      "camera_direction_blender_z_up": [
+        0.507020115852356,
+        -0.7605301737785339,
+        0.4056161046028137
+      ],
+      "projection": "orthographic",
+      "transparent_panels": "hidden",
+      "geometry_changes": "none",
+      "renderer": "5.2.2 LTS",
+      "visible_meshes": 447,
+      "hidden_meshes": 882,
+      "render_sha256": "095c61c641c469f3fac886693350d67c3b38917272820633a232c693c61cdd26"
+    },
+    {
+      "id": "micron",
+      "tile_cell": [
+        2,
+        1
+      ],
+      "label": "Micron Plus R1 / 180",
+      "asset": "machines/micron_plus_r1_180/model.glb.gz",
+      "asset_sha256": "55b0e2937c358bf0d268fbc608b9022924b4ea932fc0d386ccfdf4581fe50955",
+      "groups": "all",
+      "camera_direction_blender_z_up": [
+        0.507020115852356,
+        -0.7605301737785339,
+        0.4056161046028137
+      ],
+      "projection": "orthographic",
+      "transparent_panels": "hidden",
+      "geometry_changes": "none",
+      "renderer": "5.2.2 LTS",
+      "visible_meshes": 1476,
+      "hidden_meshes": 36,
+      "render_sha256": "734e686baefcce3b3581b34bb6cd9980a1f73e27854d4374be104fb55b94af7b"
+    }
+  ]
+}

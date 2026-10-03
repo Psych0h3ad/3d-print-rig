@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CAD drawing credits · 3D Print Rig</title>
+<style>
+ body{max-width:900px;margin:0 auto;padding:36px 24px 64px;font:15px/1.7 system-ui,sans-serif;color:#26383f;background:#f5f8f8}
+ h1{font-size:28px;line-height:1.2}a{color:#925034}img{display:block;width:100%;background:white;border:1px solid #dbe2e5;border-radius:8px}
+ li{margin:12px 0}code{overflow-wrap:anywhere}small{color:#63747d}
+</style>
+<a href="../">← 3D Print Rig</a>
+<h1>CAD drawing credits</h1>
+<p lang="ja">背景の線画は、登録済みCADのメッシュを正投影し、隠線処理して出力しています。形状の描き起こしや生成補完は行っていません。透明パネルを非表示にし、部品図では指定したアセンブリだけを表示しています。</p>
+<p>The background contains orthographic, hidden-line renders of the actual catalog meshes. Transparent panels are hidden. The toolhead and gantry drawings isolate their original assembly groups. Geometry and relative part placements are preserved; drawings use individual camera scales.</p>
+<img src="./cad-background.png" alt="CAD projections: V0.2r1, V2.4 toolhead, Trident, V2.4, V2.4 gantry, Micron Plus">
+<ul>
+ <li><strong>VORON V0.2r1 / 120</strong> — VoronDesign. <a href="https://github.com/VoronDesign/Voron-0/tree/a53fc87562fd630c846af38d7de850c894dc3d85">Original CAD and credits</a> · <a href="../../licenses/v0_voron_v02r1/LICENSE">GPL-3.0</a>.</li>
+ <li><strong>VORON V2.4 / 300, original toolhead and XY gantry</strong> — VoronDesign. <a href="https://github.com/VoronDesign/Voron-2/tree/a192410e27ea345644ae5c4b29b4c9c40cbe1a73">Original CAD and credits</a> · <a href="../../licenses/voron_v24/LICENSE">GPL-3.0</a>. The catalog adapts the original 250 mm assembly to 300 mm. The installed Stealthburner / CW2 / Revo assembly also uses <a href="https://github.com/VoronDesign/Voron-Stealthburner/tree/8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b">VoronDesign/Voron-Stealthburner</a> (<a href="../../licenses/stealthburner/LICENSE">GPL-3.0</a>).</li>
+ <li><strong>VORON Trident / 300</strong> — VoronDesign. <a href="https://github.com/VoronDesign/Voron-Trident/tree/a8628f48546948ce1fc15511b7765b7f31f80722">Original CAD and credits</a> · <a href="../../licenses/voron_trident/LICENSE">GPL-3.0</a>.</li>
+ <li><strong>Micron Plus R1 / 180</strong> — PrintersForAnts and the component designers credited in the original assembly. <a href="https://github.com/PrintersForAnts/Micron/tree/f76aa28767211ddfee2e30290aadcea3c45f8513">Original CAD and credits</a> · <a href="../../licenses/micron/LICENSE">GPL-3.0</a>.</li>
+</ul>
+<p>Derived drawings retain GPL-3.0 and the original component credits. These decorative source-pose drawings are not manufacturing drawings or clearance validation.</p>
+<p><a href="./cad-background.json">Drawing manifest, hashes and assembly selections</a> · <a href="https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v34/viewer-models.zip">Exact input mesh bundle</a> · <a href="https://github.com/Psych0h3ad/3d-print-rig/tree/main/scripts">Reproduction scripts</a></p>
+<small>Rendered with Blender Freestyle. The viewer loads only this static image, without extra model downloads.</small>
+</html>
