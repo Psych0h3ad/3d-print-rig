@@ -1,5 +1,5 @@
 {
-  "viewer_version": "viewer-v43",
+  "viewer_version": "viewer-v44",
   "sources": [
     {
       "id": "siboor_trident",
@@ -1086,6 +1086,20 @@
       "version": "V0.6 archive / V0.5.4 root; upstream WIP head",
       "scope": "Crossant-235 Leadscrew Z / Sherpa Mini / source Goliath; 2,177 native parts.",
       "notice": "235 mm plate / 220 × 220 × 200 mm nominal build area. WIP head and chain routing are not certified installed fits; original contacts retained. Incomplete Belted-Z is not enabled."
+    },
+    {
+      "id": "goliath",
+      "repository": "VzBoT3D/Goliath",
+      "label": "Goliath · VzBoT / Mellow3D",
+      "author": "VzBoT team; manufactured by Mellow3D",
+      "url": "https://github.com/VzBoT3D/Goliath",
+      "commit": "f49cafc26169a8e766e50aee41ebe81e91cb10e5",
+      "version": "Pinned Air / Water mockups and Short + WC Vz-HextrudORT assembly",
+      "license": "CC-BY-NC-4.0",
+      "license_url": "../licenses/goliath/LICENSE.md",
+      "changes": "Unscaled native CAD web meshes and rigid Sphinx placements. Short coolant inspection volume omitted; two invalid source solids retained as references.",
+      "scope": "Air and Water standalone components and 24 Sphinx combinations: VORON/Monolith, Sherpa R2 short/long idler, none/Beacon/Cartographer. Short WC extruder assembly is a component reference only.",
+      "notice": "NC terms remain in effect. Static geometry checks do not certify full machine travel or thermal/water circuit behavior."
     }
   ],
   "defaults": [
@@ -1404,6 +1418,10 @@
     {
       "label": "Trident spool holder and V2.4 X-beam native fasteners",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v41/viewer-native-fasteners.zip"
+    },
+    {
+      "label": "Goliath · 原本CADとSphinx取付",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v44/viewer-goliath-sources.zip"
     }
   ]
 }

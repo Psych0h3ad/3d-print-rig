@@ -1,5 +1,5 @@
 import {createV0Installations,v0Slots,validateV0Mods,v0TophatMaxAngle} from './v0-installations.mjs?v=v0-mounts-39';
-import {v0ModCategories,componentCategory} from './v0-mod-library.mjs?v=v0-mod-selection-1';
+import {v0ModCategories,componentCategory} from './v0-mod-library.mjs?v=goliath-44';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=trident-clearance-35';
 import {appearanceRole} from './appearance-role.mjs?v=trident-clearance-35';
 import * as THREE from 'three';

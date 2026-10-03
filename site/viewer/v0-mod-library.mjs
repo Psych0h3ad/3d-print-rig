@@ -29,6 +29,7 @@ function group(id,label,parts,assembly=false){return {id,label,parts:uniqueLabel
 // CAD files can contain mutually exclusive variants despite source_assembly.
 export function componentViews(item,parts){
   if(!parts?.length)throw Error('原本の部品がありません');
+  if(['goliath_air','goliath_water','goliath_short_wc'].includes(item.id))return [group('assembly','原本アセンブリ',parts,true)];
   if(item.id==='v0mod_official_bowden'){
     const variants=[['ecas04','ECAS04',/Cowling_ECAS04/,/ECAS Bowden Collet/],['pc4-m6','PC4-M6',/Cowling_PC4_M6/,/PC4_M6_Collet/],['pc4-m10','PC4-M10',/Cowling_PC4_M10/,/M10 Pneumatic Coupler/]];
     const alternative=p=>/Cowling_|ECAS Bowden Collet|PC4_M6_Collet|M10 Pneumatic Coupler/.test((p.source_path||[]).join('/'));

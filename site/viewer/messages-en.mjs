@@ -1,6 +1,17 @@
 import {v0Messages,v0Templates} from './v0-messages-en.mjs?v=v0-mounts-38';
 import {ratRigMessages,ratRigTemplates} from './ratrig-messages-en.mjs?v=trident-clearance-35';
 export const messages = {
+ "Goliathの公式空冷CADと、背面の2510冷却ファンを装着。": "Official Goliath air-cooled CAD with the rear 2510 cooling fan fitted.",
+ "Goliathの公式水冷CADと継手を装着。空冷ファンは省略。水冷回路・ホースは未装着。": "Official Goliath water-cooled CAD and fittings. Air cooling fan omitted; water circuit and hoses are absent.",
+ "原本のSherpaモーターとブラケットに約0.0195 mm³の接触が残ります。": "The original Sherpa motor and bracket retain an approximately 0.0195 mm³ contact.",
+ "作者のGoliath用tLW取付部品に、Mellow製ホットエンドとSherpa Mini R2を装着。": "Mellow hotend and Sherpa Mini R2 fitted to the author’s dedicated Goliath tLW parts.",
+ "Goliath / CHC XL · 印刷マウントのみ": "Goliath / CHC XL · printed mounts only",
+ "Goliath Short + WC Vz-HextrudORT · 原本組立": "Goliath Short + WC Vz-HextrudORT · source assembly",
+ "Goliath · 原本CADとSphinx取付": "Goliath · source CAD and Sphinx mounts",
+ "VzBoT公式の空冷CAD。Sphinx専用マウントで組合せ可能。内部分割のない参照モデルです。": "Official VzBoT air-cooled CAD. Dedicated Sphinx combinations available; native reference with no internal part breakdown.",
+ "VzBoT公式の水冷CADと継手。Sphinx専用マウントで組合せ可能。水冷回路は含みません。": "Official VzBoT water-cooled CAD and fittings. Dedicated Sphinx combinations available; water circuit excluded.",
+ "Short＋水冷Vz-HextrudORTの原本組立。原本に形状不整合のある2部品を含む参考表示。冷却液の検査体積のみ省略。機体取付は未登録。": "Original Short + water-cooled Vz-HextrudORT assembly. Reference view retains two source bodies with geometry inconsistencies. Only the coolant inspection volume is omitted. No printer mount is registered.",
+
  "Zベルトはフレーム側で固定。XYベルトはヘッド・Y軸・ガントリーに追従します。移動時はクランプ内部・歯・張力を省いた経路プレビューです。": "Z belts stay on the frame. XY belts follow the head, Y beam and gantry. During travel, routing is previewed without internal clamp returns, teeth or tension.",
  "このCNC参照モデルはZベルトのみ収録。XYベルトは未収録です。": "This CNC reference model includes Z belts only; XY belts are not included.",
  "フロントドア": "Front door",

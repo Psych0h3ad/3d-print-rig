@@ -1,0 +1,8 @@
+Goliath hotend reference CAD
+
+Design: VzBoT team. Manufacturer: Mellow3D.
+Source: https://github.com/VzBoT3D/Goliath
+Revision: f49cafc26169a8e766e50aee41ebe81e91cb10e5
+License: CC BY-NC 4.0. The original LICENSE.md is retained.
+
+3D Print Rig changes: rigid Sphinx placement and web tessellation of native Air and Water mockups. Short is the native combined WC Vz-HextrudORT reference; the coolant inspection volume is omitted and two invalid original solids remain reference surfaces. Original dimensions are retained. Internal hardware/material boundaries are not inferred. Original authors retain their rights; no manufacturer endorsement is claimed. Sphinx prints, Sherpa extruder, fan and probes retain their separate terms.
