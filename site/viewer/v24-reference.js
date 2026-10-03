@@ -10,7 +10,7 @@ import {setupGrid} from './grid-control.js?v=trident-clearance-35';
 import {setupRenderExport} from './render-export.js?v=trident-clearance-35';
 import {setupPublicInfo} from './public-info.js?v=standard-step-42';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=trident-clearance-35';
-import {setupV24MachineHeads} from './machine-heads.js?v=sphinx-skirts-45';
+import {setupV24MachineHeads} from './machine-heads.js?v=sphinx-report-45';
 const $=s=>document.querySelector(s),ids=[250,300,350].flatMap(size=>['printed','ldo_cnc'].map(structure=>`voron_v24_${size}_${structure}`));
 const wanted=new URLSearchParams(location.search).get('machine'),id=ids.includes(wanted)?wanted:ids[0];
 setupMachineNavigation(id);setupPublicInfo({machineId:id});

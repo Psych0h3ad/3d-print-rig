@@ -1,14 +1,14 @@
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=sphinx-skirts-45';
-import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=sphinx-skirts-45';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=sphinx-report-45';
+import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=sphinx-report-45';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=trident-clearance-35';
 import {appearanceRole} from './appearance-role.mjs?v=trident-clearance-35';
 import {partKey} from './head-assembly.js?v=trident-clearance-35';
-import {v24HeadCatalog} from './machine-head-model.mjs?v=sphinx-skirts-45';
-import {setupConfigurations} from './configurations.js?v=sphinx-skirts-45';
+import {v24HeadCatalog} from './machine-head-model.mjs?v=sphinx-report-45';
+import {setupConfigurations} from './configurations.js?v=sphinx-report-45';
 
-import {stockProbeFit} from './probe-mounts.js?v=trident-clearance-35';
+import {stockProbeFit} from './probe-mounts.js?v=sphinx-report-45';
 
 import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs?v=trident-clearance-35';
 import {bankPlan} from './changer-bank-model.mjs?v=trident-clearance-35';

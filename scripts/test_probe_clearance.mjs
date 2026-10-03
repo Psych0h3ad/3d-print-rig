@@ -61,3 +61,7 @@ assert(headInspectionState(otherwiseClear).warning);assert.equal(headInspectionS
 assert.equal(headInspectionState({...otherwiseClear,fit:{...otherwiseClear.fit,carriage_native_body_passed:false}}).state,'carriage-conflict');
 assert.equal(probeCheck({probe:'unknown_sensor'}).state,'unverified');assert.equal(probeCheck({probe:'none'}).state,'none');
 console.log('Probe clearance passed: height/physical/metal conditions, bed clearance metrics, native-coordinate guides, safe hotend changes and explicit conflict previews.');
+import {headBodyCollisionNotes} from '../site/viewer/probe-checks.js';
+assert.deepEqual(headBodyCollisionNotes(),[]);
+assert.deepEqual(headBodyCollisionNotes([{a:'native_bracket',b:'native_motor',volume_mm3:16.93189577},{a_name:'Sherpa bracket',b_name:'Motor',overlap_mm3:.0195}]),['native_bracket / native_motor：交差体積 16.932 mm³。','Sherpa bracket / Motor：交差体積 0.019 mm³。']);
+assert.match(headBodyCollisionNotes([{a:'unmeasured'}])[0],/未計測/u);

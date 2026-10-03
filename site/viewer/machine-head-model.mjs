@@ -1,6 +1,6 @@
 import {headPlan} from './head-assembly.js?v=trident-clearance-35';
 
-import {translatedProbeFit} from './probe-checks.js?v=trident-clearance-35';
+import {translatedProbeFit} from './probe-checks.js?v=sphinx-report-45';
 
 import {withEmbeddedBoards} from './embedded-boards.mjs?v=trident-clearance-35';
 import {applyMountValidation} from './mount-validation.mjs?v=trident-clearance-35';

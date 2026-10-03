@@ -2,6 +2,11 @@
 const mm=value=>Number.isFinite(value)?value.toFixed(3):'未計測';
 const point=p=>Array.isArray(p)&&p.length===3&&p.every(Number.isFinite);
 const range=r=>Array.isArray(r)&&r.length===2&&r.every(Number.isFinite)&&r[0]<=r[1]?r:null;
+// Native reports from different importers use either overlap_mm3 or volume_mm3.
+// Missing measurements remain explicitly unknown rather than breaking selection.
+export function headBodyCollisionNotes(collisions=[]){
+ return collisions.map(c=>{const v=c.overlap_mm3??c.volume_mm3;return `${c.a_name||c.a||'原本部品'} / ${c.b_name||c.b||'原本部品'}：交差体積 ${Number.isFinite(v)?v.toFixed(3):'未計測'} mm³。`});
+}
 function assessment(variant){
  const p=variant?.fit?.probe;if(!p)return null;
  const nozzle=variant.fit.nozzle_mm,measured=point(nozzle)&&point(p.coil_bottom_mm)?p.coil_bottom_mm[2]-nozzle[2]:null;

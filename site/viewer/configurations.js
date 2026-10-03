@@ -1,6 +1,6 @@
-import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=sphinx-skirts-45';
-import {catalogDimensions,collections,resolveVariant,choicesFor,choiceChanges,importedVariant,configurationById} from './configuration-model.js?v=trident-clearance-35';
-import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=trident-clearance-35';
+import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=sphinx-report-45';
+import {catalogDimensions,collections,resolveVariant,choicesFor,choiceChanges,importedVariant,configurationById} from './configuration-model.js?v=sphinx-report-45';
+import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=sphinx-report-45';
 import {renderProductLinks} from './product-links.js?v=trident-clearance-35';
 import {headWitnessCheck}from './head-validation.mjs?v=trident-clearance-35';
 import {createHeadInspection}from './head-validation-ui.mjs?v=trident-clearance-35';
