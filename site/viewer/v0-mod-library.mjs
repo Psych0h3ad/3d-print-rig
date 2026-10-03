@@ -29,6 +29,11 @@ function group(id,label,parts,assembly=false){return {id,label,parts:uniqueLabel
 // CAD files can contain mutually exclusive variants despite source_assembly.
 export function componentViews(item,parts){
   if(!parts?.length)throw Error('原本の部品がありません');
+  if(item.id==='rapido_x'){
+    const body=parts.filter(p=>p.source_solid===1),adapter=parts.filter(p=>p.source_solid===0);
+    if(body.length!==1||adapter.length!==1)throw Error('Rapido X source body / adapter mismatch');
+    return [group('four-bolt','4本ねじ取付',body,true),group('groove','GrooveMountアダプター付き',parts,true)];
+  }
   if(['goliath_air','goliath_water','goliath_short_wc'].includes(item.id))return [group('assembly','原本アセンブリ',parts,true)];
   if(item.id==='v0mod_official_bowden'){
     const variants=[['ecas04','ECAS04',/Cowling_ECAS04/,/ECAS Bowden Collet/],['pc4-m6','PC4-M6',/Cowling_PC4_M6/,/PC4_M6_Collet/],['pc4-m10','PC4-M10',/Cowling_PC4_M10/,/M10 Pneumatic Coupler/]];

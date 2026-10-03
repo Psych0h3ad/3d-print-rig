@@ -1,0 +1,23 @@
+Phaetus Rapido X
+Repository: https://github.com/Phaetus/Rapido-X
+Revision: bc1207931f3d0f51955f3dc03a226a77a79d6581
+Manufacturer: Phaetus
+
+Rapido X.STEP provides the hotend and a separate GrooveMount adapter.
+Rapido X-voron.3mf provides the dedicated Stealthburner front/rear mounts.
+The source repository contains no explicit CAD redistribution license.
+Public availability does not imply GPL, Creative Commons or unrestricted
+commercial use. All rights remain with the original authors.
+
+The viewer preserves native dimensions and uses rigid placement. The hotend
+body has restored native face trims; its volume changes by less than 0.06 mm3
+and its envelope by less than 0.001 mm. Original and prepared CAD are separate.
+Four-bolt installations omit the separate GrooveMount adapter. The front
+mount remains the original non-watertight triangle mesh. Analytic STEP exports
+exclude the two mesh-only mounts; matching original/placed STL is supplied.
+Slicer project settings are not part of the geometry distribution.
+
+Common SB shell/fans/lights and CW2 retain VoronDesign GPL-3.0 terms.
+Sphinx tLW prints retain their upstream CC-BY-NC-SA-4.0 terms and exceptions.
+These terms apply to their respective parts; they do not relicense Phaetus CAD.
+See the separate source entries and original licenses for those components.

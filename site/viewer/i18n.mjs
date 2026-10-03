@@ -1,4 +1,4 @@
-import {messages,templates} from './messages-en.mjs?v=yudx-49';
+import {messages,templates} from './messages-en.mjs?v=rapido-x-51';
 
 const normalize=text=>text.trim().replace(/\s+/gu,' ');
 const escape=text=>text.replace(/[.*+?^${}()|[\]\\]/gu,'\\$&');

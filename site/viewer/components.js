@@ -6,7 +6,7 @@ import {setupPublicInfo} from './public-info.js?v=standard-step-42';
 import {setupRenderExport} from './render-export.js?v=trident-clearance-35';
 import {partNodes,selectParts,visibleBounds} from './component-selection.js?v=v0-mod-selection-1';
 import {renderProductLinks} from './product-links.js?v=trident-clearance-35';
-import {componentCategories,componentCategory,componentViews,resolveComponentView,componentViewKeys} from './v0-mod-library.mjs?v=goliath-44';
+import {componentCategories,componentCategory,componentViews,resolveComponentView,componentViewKeys} from './v0-mod-library.mjs?v=rapido-x-51';
 const $=s=>document.querySelector(s),stage=$('#stage'),renderer=new THREE.WebGLRenderer({antialias:true});
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor('#edf1f5');renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);
 const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(38,1,.0001,20),controls=new OrbitControls(camera,renderer.domElement);
