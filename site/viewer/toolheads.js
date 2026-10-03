@@ -6,7 +6,7 @@ import {headBuilderDimensions} from './configuration-model.js?v=trident-clearanc
 let machineRegistry,toolBank,bankRig;
 import {appearanceRole} from './appearance-role.mjs?v=trident-clearance-35';
 import * as THREE from 'three';
-import {OrbitControls} from './vendor/OrbitControls.js';
+import {OrbitControls} from './vendor/OrbitControls.js?v=touch-37';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=trident-clearance-35';
 import {setupConfigurations} from './configurations.js?v=trident-clearance-35';

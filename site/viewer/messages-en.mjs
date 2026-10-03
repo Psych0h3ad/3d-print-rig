@@ -1,3 +1,4 @@
+import {v0Messages,v0Templates} from './v0-messages-en.mjs?v=v0-mounts-37';
 import {ratRigMessages,ratRigTemplates} from './ratrig-messages-en.mjs?v=trident-clearance-35';
 export const messages = {
  "現在の追加Modによる可動範囲では、この姿勢を表示できません。": "This pose is outside the travel range allowed by the current additional mods.",
@@ -15,6 +16,7 @@ export const messages = {
  "標準外装を含む検査。追加Mod・柔軟な配線・ホーミング・交換経路は未検証。": "Checks include the stock enclosure. Extra mods, flexible wiring, homing and tool exchange paths remain unverified.",
  "締結部・接点・参考配線の交差候補は別扱いです。機体全体の適合判定には使いません。": "Fastener, switch contact and reference wire intersections are reported separately and do not establish complete machine compatibility.",
  ...ratRigMessages,
+ ...v0Messages,
  "プローブの剛体可動域確認済み": "Probe rigid-body travel checked",
  "プローブ本体・マウント・ねじと標準機体の剛体部品、および機体側の金属除外領域をXYZ表示範囲全域で照合済み。": "Probe body, mount and screws checked against stock rigid machine parts, including the machine-side metal keepout, throughout the displayed XYZ travel.",
  "追加Mod・ヘッド本体・可動ベルト・配線・ホーミング・ドッキング・実機センシングはこの検査に含みません。": "Additional mods, head body, moving belts, cables, homing, docking and physical sensing are outside this check.",
@@ -1163,6 +1165,7 @@ export const messages = {
 
 export const templates = {
  ...ratRigTemplates,
+ ...v0Templates,
  "· ベッド基準位置の移動 {0} mm": "· Bed reference movement: {0} mm",
  "Zガイド上端で停止。ノズルまで {0} mm残るため、この取付位置では印刷できません。": "Stopped at the Z rail limit, with {0} mm still below the nozzle. This mounting position cannot print.",
  "ノズル接触面へのベッド移動 {0} mm。": "Bed movement to nozzle contact plane: {0} mm.",

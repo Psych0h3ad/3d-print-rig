@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import {OrbitControls} from './vendor-r180/OrbitControls.js';
+import {OrbitControls} from './vendor-r180/OrbitControls.js?v=touch-37';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
 import {loadCrossant,disposeCrossant} from './crossant-loader.mjs';
 import {crossantSchema,crossantGroups,validateCrossantState} from './crossant-state.mjs';

@@ -1,0 +1,838 @@
+{
+  "schema": "v0-installations-v1",
+  "version": "v37",
+  "machines": {
+    "voron_v02r1_120": {
+      "options": [
+        {
+          "id": "adxl-0",
+          "slot": "accelerometer",
+          "label": "Adafruit ADXL345 · 19 mm",
+          "attachments": [
+            {
+              "module": "v0mod_official_adxl_mounts",
+              "keys": [
+                "v0mod_official_adxl_mounts_00_00000",
+                "v0mod_official_adxl_mounts_00_00001",
+                "v0mod_official_adxl_mounts_00_00002",
+                "v0mod_official_adxl_mounts_00_00003",
+                "v0mod_official_adxl_mounts_00_00004",
+                "v0mod_official_adxl_mounts_00_00005"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                -0.0018364876295891008,
+                6.321528189801029e-09,
+                -49.20000356215568
+              ],
+              "motion": "xy",
+              "roles": {
+                "v0mod_official_adxl_mounts_00_00000": "base",
+                "v0mod_official_adxl_mounts_00_00001": "hardware",
+                "v0mod_official_adxl_mounts_00_00002": "hardware",
+                "v0mod_official_adxl_mounts_00_00003": "hardware",
+                "v0mod_official_adxl_mounts_00_00004": "base",
+                "v0mod_official_adxl_mounts_00_00005": "base"
+              },
+              "clone": null
+            }
+          ],
+          "replace_keys": [
+            "v02r1_00441",
+            "v02r1_00442",
+            "v02r1_00443",
+            "v02r1_00444",
+            "v02r1_00446",
+            "v02r1_00448"
+          ],
+          "notes": "純正のM3×12固定ネジ2本を継続使用。原本に含まれる参照キャリッジ・ストレインリリーフ・重複ネジは追加しません。"
+        },
+        {
+          "id": "adxl-1",
+          "slot": "accelerometer",
+          "label": "Adafruit LIS3DH",
+          "attachments": [
+            {
+              "module": "v0mod_official_adxl_mounts",
+              "keys": [
+                "v0mod_official_adxl_mounts_01_00000",
+                "v0mod_official_adxl_mounts_01_00001",
+                "v0mod_official_adxl_mounts_01_00002",
+                "v0mod_official_adxl_mounts_01_00003",
+                "v0mod_official_adxl_mounts_01_00004",
+                "v0mod_official_adxl_mounts_01_00005"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                -0.0018364876295891008,
+                6.321528189801029e-09,
+                -49.20000356215568
+              ],
+              "motion": "xy",
+              "roles": {
+                "v0mod_official_adxl_mounts_01_00000": "base",
+                "v0mod_official_adxl_mounts_01_00001": "hardware",
+                "v0mod_official_adxl_mounts_01_00002": "base",
+                "v0mod_official_adxl_mounts_01_00003": "base",
+                "v0mod_official_adxl_mounts_01_00004": "hardware",
+                "v0mod_official_adxl_mounts_01_00005": "hardware"
+              },
+              "clone": null
+            }
+          ],
+          "replace_keys": [
+            "v02r1_00441",
+            "v02r1_00442",
+            "v02r1_00443",
+            "v02r1_00444",
+            "v02r1_00446",
+            "v02r1_00448"
+          ],
+          "notes": "純正のM3×12固定ネジ2本を継続使用。原本に含まれる参照キャリッジ・ストレインリリーフ・重複ネジは追加しません。"
+        },
+        {
+          "id": "adxl-2",
+          "slot": "accelerometer",
+          "label": "Generic ADXL345 · 15.5 mm",
+          "attachments": [
+            {
+              "module": "v0mod_official_adxl_mounts",
+              "keys": [
+                "v0mod_official_adxl_mounts_02_00000",
+                "v0mod_official_adxl_mounts_02_00001",
+                "v0mod_official_adxl_mounts_02_00002",
+                "v0mod_official_adxl_mounts_02_00003",
+                "v0mod_official_adxl_mounts_02_00004",
+                "v0mod_official_adxl_mounts_02_00005"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                -0.0018364876295891008,
+                6.321528189801029e-09,
+                -49.20000356215568
+              ],
+              "motion": "xy",
+              "roles": {
+                "v0mod_official_adxl_mounts_02_00000": "base",
+                "v0mod_official_adxl_mounts_02_00001": "hardware",
+                "v0mod_official_adxl_mounts_02_00002": "hardware",
+                "v0mod_official_adxl_mounts_02_00003": "hardware",
+                "v0mod_official_adxl_mounts_02_00004": "base",
+                "v0mod_official_adxl_mounts_02_00005": "base"
+              },
+              "clone": null
+            }
+          ],
+          "replace_keys": [
+            "v02r1_00441",
+            "v02r1_00442",
+            "v02r1_00443",
+            "v02r1_00444",
+            "v02r1_00446",
+            "v02r1_00448"
+          ],
+          "notes": "純正のM3×12固定ネジ2本を継続使用。原本に含まれる参照キャリッジ・ストレインリリーフ・重複ネジは追加しません。"
+        },
+        {
+          "id": "adxl-3",
+          "slot": "accelerometer",
+          "label": "LDO ADXL345 · 15 mm",
+          "attachments": [
+            {
+              "module": "v0mod_official_adxl_mounts",
+              "keys": [
+                "v0mod_official_adxl_mounts_03_00000",
+                "v0mod_official_adxl_mounts_03_00001",
+                "v0mod_official_adxl_mounts_03_00002",
+                "v0mod_official_adxl_mounts_03_00003",
+                "v0mod_official_adxl_mounts_03_00004",
+                "v0mod_official_adxl_mounts_03_00005"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                -0.0018364876295891008,
+                6.321528189801029e-09,
+                -49.20000356215568
+              ],
+              "motion": "xy",
+              "roles": {
+                "v0mod_official_adxl_mounts_03_00000": "base",
+                "v0mod_official_adxl_mounts_03_00001": "hardware",
+                "v0mod_official_adxl_mounts_03_00002": "base",
+                "v0mod_official_adxl_mounts_03_00003": "base",
+                "v0mod_official_adxl_mounts_03_00004": "hardware",
+                "v0mod_official_adxl_mounts_03_00005": "hardware"
+              },
+              "clone": null
+            }
+          ],
+          "replace_keys": [
+            "v02r1_00441",
+            "v02r1_00442",
+            "v02r1_00443",
+            "v02r1_00444",
+            "v02r1_00446",
+            "v02r1_00448"
+          ],
+          "notes": "純正のM3×12固定ネジ2本を継続使用。原本に含まれる参照キャリッジ・ストレインリリーフ・重複ネジは追加しません。"
+        },
+        {
+          "id": "stealth-handles",
+          "slot": "handles",
+          "label": "Stealth Handles · 左右 / パネル要確認",
+          "attachments": [
+            {
+              "module": "v0mod_stealth_handles",
+              "keys": [
+                "v0mod_stealth_handles_00_00000"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                90,
+                180
+              ],
+              "translation_mm": [
+                -119,
+                12.5,
+                252.0000001000016
+              ],
+              "motion": "fixed",
+              "roles": {
+                "v0mod_stealth_handles_00_00000": "base"
+              },
+              "clone": "left"
+            },
+            {
+              "stock_key": "v02r1_00445",
+              "rotation_xyz_deg": [
+                0,
+                0,
+                90
+              ],
+              "translation_mm": [
+                -103.2745823553885,
+                -12.84999999963904,
+                4.175330054999989
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "handle-bolt--1"
+            },
+            {
+              "module": "v0mod_stealth_handles",
+              "keys": [
+                "v0mod_stealth_handles_00_00000"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                90,
+                0
+              ],
+              "translation_mm": [
+                119,
+                -12.5,
+                252.0000001000016
+              ],
+              "motion": "fixed",
+              "roles": {
+                "v0mod_stealth_handles_00_00000": "base"
+              },
+              "clone": "right"
+            },
+            {
+              "stock_key": "v02r1_00445",
+              "rotation_xyz_deg": [
+                0,
+                0,
+                -90
+              ],
+              "translation_mm": [
+                103.2745823553885,
+                12.84999999963904,
+                4.175330054999989
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "handle-bolt-1"
+            }
+          ],
+          "replace_keys": [
+            "v02r1_00661",
+            "v02r1_00674",
+            "v02r1_00669",
+            "v02r1_00701"
+          ],
+          "fit_condition": "panel-clearance",
+          "notes": "トップ中央クリップと短いネジをM3×12で交換。純正サイドパネルとの干渉が片側約59.6 mm³あります。パネル上端の逃げ加工が必要で、無加工の取付適合とは扱いません。"
+        },
+        {
+          "id": "picobilical-plate",
+          "slot": "strain_relief",
+          "label": "Picobilical · マウントプレート",
+          "attachments": [
+            {
+              "module": "v0mod_picobilical",
+              "keys": [
+                "v0mod_picobilical_00_00000"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                0,
+                6.2894943712,
+                260.851376435787
+              ],
+              "motion": "xy",
+              "roles": {
+                "v0mod_picobilical_00_00000": "base"
+              },
+              "clone": null
+            }
+          ],
+          "replace_keys": [
+            "v02r1_00357"
+          ],
+          "requires": {},
+          "notes": "プレートの取付表示です。基板・コネクター・ハーネスは原本に含まれていません。"
+        },
+        {
+          "id": "cat-flap",
+          "slot": "tophat",
+          "label": "Cat Flap · 80 mm押出フレーム",
+          "attachments": [
+            {
+              "module": "v0mod_tophat_cat_flap",
+              "keys": [
+                "v0mod_tophat_cat_flap_00_00000",
+                "v0mod_tophat_cat_flap_00_00001",
+                "v0mod_tophat_cat_flap_00_00002",
+                "v0mod_tophat_cat_flap_00_00003",
+                "v0mod_tophat_cat_flap_00_00004",
+                "v0mod_tophat_cat_flap_00_00005",
+                "v0mod_tophat_cat_flap_00_00006",
+                "v0mod_tophat_cat_flap_00_00007",
+                "v0mod_tophat_cat_flap_00_00008",
+                "v0mod_tophat_cat_flap_00_00009",
+                "v0mod_tophat_cat_flap_00_00010",
+                "v0mod_tophat_cat_flap_00_00011",
+                "v0mod_tophat_cat_flap_00_00012",
+                "v0mod_tophat_cat_flap_00_00013",
+                "v0mod_tophat_cat_flap_00_00014",
+                "v0mod_tophat_cat_flap_00_00015",
+                "v0mod_tophat_cat_flap_00_00016",
+                "v0mod_tophat_cat_flap_00_00017",
+                "v0mod_tophat_cat_flap_00_00018",
+                "v0mod_tophat_cat_flap_00_00019",
+                "v0mod_tophat_cat_flap_00_00020",
+                "v0mod_tophat_cat_flap_00_00021",
+                "v0mod_tophat_cat_flap_00_00022",
+                "v0mod_tophat_cat_flap_00_00023",
+                "v0mod_tophat_cat_flap_00_00024",
+                "v0mod_tophat_cat_flap_00_00025",
+                "v0mod_tophat_cat_flap_00_00026",
+                "v0mod_tophat_cat_flap_00_00027",
+                "v0mod_tophat_cat_flap_00_00028",
+                "v0mod_tophat_cat_flap_00_00029",
+                "v0mod_tophat_cat_flap_00_00030",
+                "v0mod_tophat_cat_flap_00_00031",
+                "v0mod_tophat_cat_flap_00_00032",
+                "v0mod_tophat_cat_flap_00_00033",
+                "v0mod_tophat_cat_flap_00_00034",
+                "v0mod_tophat_cat_flap_00_00035",
+                "v0mod_tophat_cat_flap_00_00036",
+                "v0mod_tophat_cat_flap_00_00037",
+                "v0mod_tophat_cat_flap_00_00038",
+                "v0mod_tophat_cat_flap_00_00039",
+                "v0mod_tophat_cat_flap_00_00040",
+                "v0mod_tophat_cat_flap_00_00041",
+                "v0mod_tophat_cat_flap_00_00042",
+                "v0mod_tophat_cat_flap_00_00043",
+                "v0mod_tophat_cat_flap_00_00044"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                -0.0018364876295891008,
+                6.321528189801029e-09,
+                -49.20000356215568
+              ],
+              "motion": "fixed",
+              "roles": {
+                "v0mod_tophat_cat_flap_00_00000": "base",
+                "v0mod_tophat_cat_flap_00_00001": "base",
+                "v0mod_tophat_cat_flap_00_00002": "base",
+                "v0mod_tophat_cat_flap_00_00003": "base",
+                "v0mod_tophat_cat_flap_00_00004": "base",
+                "v0mod_tophat_cat_flap_00_00005": "frame",
+                "v0mod_tophat_cat_flap_00_00006": "frame",
+                "v0mod_tophat_cat_flap_00_00007": "frame",
+                "v0mod_tophat_cat_flap_00_00008": "frame",
+                "v0mod_tophat_cat_flap_00_00009": "frame",
+                "v0mod_tophat_cat_flap_00_00010": "frame",
+                "v0mod_tophat_cat_flap_00_00011": "frame",
+                "v0mod_tophat_cat_flap_00_00012": "frame",
+                "v0mod_tophat_cat_flap_00_00013": "hardware",
+                "v0mod_tophat_cat_flap_00_00014": "hardware",
+                "v0mod_tophat_cat_flap_00_00015": "hardware",
+                "v0mod_tophat_cat_flap_00_00016": "hardware",
+                "v0mod_tophat_cat_flap_00_00017": "hardware",
+                "v0mod_tophat_cat_flap_00_00018": "hardware",
+                "v0mod_tophat_cat_flap_00_00019": "hardware",
+                "v0mod_tophat_cat_flap_00_00020": "hardware",
+                "v0mod_tophat_cat_flap_00_00021": "base",
+                "v0mod_tophat_cat_flap_00_00022": "base",
+                "v0mod_tophat_cat_flap_00_00023": "base",
+                "v0mod_tophat_cat_flap_00_00024": "base",
+                "v0mod_tophat_cat_flap_00_00025": "base",
+                "v0mod_tophat_cat_flap_00_00026": "base",
+                "v0mod_tophat_cat_flap_00_00027": "base",
+                "v0mod_tophat_cat_flap_00_00028": "base",
+                "v0mod_tophat_cat_flap_00_00029": "base",
+                "v0mod_tophat_cat_flap_00_00030": "base",
+                "v0mod_tophat_cat_flap_00_00031": "base",
+                "v0mod_tophat_cat_flap_00_00032": "base",
+                "v0mod_tophat_cat_flap_00_00033": "base",
+                "v0mod_tophat_cat_flap_00_00034": "panel",
+                "v0mod_tophat_cat_flap_00_00035": "panel",
+                "v0mod_tophat_cat_flap_00_00036": "panel",
+                "v0mod_tophat_cat_flap_00_00037": "panel",
+                "v0mod_tophat_cat_flap_00_00038": "base",
+                "v0mod_tophat_cat_flap_00_00039": "base",
+                "v0mod_tophat_cat_flap_00_00040": "base",
+                "v0mod_tophat_cat_flap_00_00041": "base",
+                "v0mod_tophat_cat_flap_00_00042": "hardware",
+                "v0mod_tophat_cat_flap_00_00043": "hardware",
+                "v0mod_tophat_cat_flap_00_00044": "panel"
+              },
+              "clone": null
+            }
+          ],
+          "replace_keys": [
+            "v02r1_00792",
+            "v02r1_00793",
+            "v02r1_00794",
+            "v02r1_00795",
+            "v02r1_00796",
+            "v02r1_00797",
+            "v02r1_00798",
+            "v02r1_00799",
+            "v02r1_00800",
+            "v02r1_00801",
+            "v02r1_00802",
+            "v02r1_00803",
+            "v02r1_00804",
+            "v02r1_00805",
+            "v02r1_00806",
+            "v02r1_00807",
+            "v02r1_00808",
+            "v02r1_00809",
+            "v02r1_00810",
+            "v02r1_00811",
+            "v02r1_00812",
+            "v02r1_00813",
+            "v02r1_00814",
+            "v02r1_00815",
+            "v02r1_00816",
+            "v02r1_00817",
+            "v02r1_00818",
+            "v02r1_00819",
+            "v02r1_00820",
+            "v02r1_00821",
+            "v02r1_00822",
+            "v02r1_00823",
+            "v02r1_00824",
+            "v02r1_00825",
+            "v02r1_00826",
+            "v02r1_00827",
+            "v02r1_00828",
+            "v02r1_00829",
+            "v02r1_00830",
+            "v02r1_00831",
+            "v02r1_00832"
+          ],
+          "enclosure": true,
+          "notes": "純正トップハットのフレーム・クリップ・パネルを交換。既存のクリップ固定ネジとナットは継続使用。扉は閉じた原本姿勢、開閉可動は未登録です。"
+        }
+      ]
+    },
+    "voron_v02_120": {
+      "options": [
+        {
+          "id": "adxl-0",
+          "slot": "accelerometer",
+          "label": "Adafruit ADXL345 · 19 mm",
+          "attachments": [
+            {
+              "module": "v0mod_official_adxl_mounts",
+              "keys": [
+                "v0mod_official_adxl_mounts_00_00000",
+                "v0mod_official_adxl_mounts_00_00001",
+                "v0mod_official_adxl_mounts_00_00002",
+                "v0mod_official_adxl_mounts_00_00003",
+                "v0mod_official_adxl_mounts_00_00004",
+                "v0mod_official_adxl_mounts_00_00005"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                -0.0018364876295891008,
+                6.321528189801029e-09,
+                -49.20000356215568
+              ],
+              "motion": "xy",
+              "roles": {
+                "v0mod_official_adxl_mounts_00_00000": "base",
+                "v0mod_official_adxl_mounts_00_00001": "hardware",
+                "v0mod_official_adxl_mounts_00_00002": "hardware",
+                "v0mod_official_adxl_mounts_00_00003": "hardware",
+                "v0mod_official_adxl_mounts_00_00004": "base",
+                "v0mod_official_adxl_mounts_00_00005": "base"
+              },
+              "clone": null
+            }
+          ],
+          "replace_keys": [
+            "v02_00432",
+            "v02_00433",
+            "v02_00434",
+            "v02_00435",
+            "v02_00437",
+            "v02_00439"
+          ],
+          "notes": "純正のM3×12固定ネジ2本を継続使用。原本に含まれる参照キャリッジ・ストレインリリーフ・重複ネジは追加しません。"
+        },
+        {
+          "id": "adxl-1",
+          "slot": "accelerometer",
+          "label": "Adafruit LIS3DH",
+          "attachments": [
+            {
+              "module": "v0mod_official_adxl_mounts",
+              "keys": [
+                "v0mod_official_adxl_mounts_01_00000",
+                "v0mod_official_adxl_mounts_01_00001",
+                "v0mod_official_adxl_mounts_01_00002",
+                "v0mod_official_adxl_mounts_01_00003",
+                "v0mod_official_adxl_mounts_01_00004",
+                "v0mod_official_adxl_mounts_01_00005"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                -0.0018364876295891008,
+                6.321528189801029e-09,
+                -49.20000356215568
+              ],
+              "motion": "xy",
+              "roles": {
+                "v0mod_official_adxl_mounts_01_00000": "base",
+                "v0mod_official_adxl_mounts_01_00001": "hardware",
+                "v0mod_official_adxl_mounts_01_00002": "base",
+                "v0mod_official_adxl_mounts_01_00003": "base",
+                "v0mod_official_adxl_mounts_01_00004": "hardware",
+                "v0mod_official_adxl_mounts_01_00005": "hardware"
+              },
+              "clone": null
+            }
+          ],
+          "replace_keys": [
+            "v02_00432",
+            "v02_00433",
+            "v02_00434",
+            "v02_00435",
+            "v02_00437",
+            "v02_00439"
+          ],
+          "notes": "純正のM3×12固定ネジ2本を継続使用。原本に含まれる参照キャリッジ・ストレインリリーフ・重複ネジは追加しません。"
+        },
+        {
+          "id": "adxl-2",
+          "slot": "accelerometer",
+          "label": "Generic ADXL345 · 15.5 mm",
+          "attachments": [
+            {
+              "module": "v0mod_official_adxl_mounts",
+              "keys": [
+                "v0mod_official_adxl_mounts_02_00000",
+                "v0mod_official_adxl_mounts_02_00001",
+                "v0mod_official_adxl_mounts_02_00002",
+                "v0mod_official_adxl_mounts_02_00003",
+                "v0mod_official_adxl_mounts_02_00004",
+                "v0mod_official_adxl_mounts_02_00005"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                -0.0018364876295891008,
+                6.321528189801029e-09,
+                -49.20000356215568
+              ],
+              "motion": "xy",
+              "roles": {
+                "v0mod_official_adxl_mounts_02_00000": "base",
+                "v0mod_official_adxl_mounts_02_00001": "hardware",
+                "v0mod_official_adxl_mounts_02_00002": "hardware",
+                "v0mod_official_adxl_mounts_02_00003": "hardware",
+                "v0mod_official_adxl_mounts_02_00004": "base",
+                "v0mod_official_adxl_mounts_02_00005": "base"
+              },
+              "clone": null
+            }
+          ],
+          "replace_keys": [
+            "v02_00432",
+            "v02_00433",
+            "v02_00434",
+            "v02_00435",
+            "v02_00437",
+            "v02_00439"
+          ],
+          "notes": "純正のM3×12固定ネジ2本を継続使用。原本に含まれる参照キャリッジ・ストレインリリーフ・重複ネジは追加しません。"
+        },
+        {
+          "id": "adxl-3",
+          "slot": "accelerometer",
+          "label": "LDO ADXL345 · 15 mm",
+          "attachments": [
+            {
+              "module": "v0mod_official_adxl_mounts",
+              "keys": [
+                "v0mod_official_adxl_mounts_03_00000",
+                "v0mod_official_adxl_mounts_03_00001",
+                "v0mod_official_adxl_mounts_03_00002",
+                "v0mod_official_adxl_mounts_03_00003",
+                "v0mod_official_adxl_mounts_03_00004",
+                "v0mod_official_adxl_mounts_03_00005"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                -0.0018364876295891008,
+                6.321528189801029e-09,
+                -49.20000356215568
+              ],
+              "motion": "xy",
+              "roles": {
+                "v0mod_official_adxl_mounts_03_00000": "base",
+                "v0mod_official_adxl_mounts_03_00001": "hardware",
+                "v0mod_official_adxl_mounts_03_00002": "base",
+                "v0mod_official_adxl_mounts_03_00003": "base",
+                "v0mod_official_adxl_mounts_03_00004": "hardware",
+                "v0mod_official_adxl_mounts_03_00005": "hardware"
+              },
+              "clone": null
+            }
+          ],
+          "replace_keys": [
+            "v02_00432",
+            "v02_00433",
+            "v02_00434",
+            "v02_00435",
+            "v02_00437",
+            "v02_00439"
+          ],
+          "notes": "純正のM3×12固定ネジ2本を継続使用。原本に含まれる参照キャリッジ・ストレインリリーフ・重複ネジは追加しません。"
+        },
+        {
+          "id": "stealth-handles",
+          "slot": "handles",
+          "label": "Stealth Handles · 左右 / パネル要確認",
+          "attachments": [
+            {
+              "module": "v0mod_stealth_handles",
+              "keys": [
+                "v0mod_stealth_handles_00_00000"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                90,
+                180
+              ],
+              "translation_mm": [
+                -119,
+                12.5,
+                252.0000001000016
+              ],
+              "motion": "fixed",
+              "roles": {
+                "v0mod_stealth_handles_00_00000": "base"
+              },
+              "clone": "left"
+            },
+            {
+              "stock_key": "v02_00436",
+              "rotation_xyz_deg": [
+                0,
+                0,
+                90
+              ],
+              "translation_mm": [
+                -103.2745823553885,
+                -12.84999999963904,
+                4.175330054999989
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "handle-bolt--1"
+            },
+            {
+              "module": "v0mod_stealth_handles",
+              "keys": [
+                "v0mod_stealth_handles_00_00000"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                90,
+                0
+              ],
+              "translation_mm": [
+                119,
+                -12.5,
+                252.0000001000016
+              ],
+              "motion": "fixed",
+              "roles": {
+                "v0mod_stealth_handles_00_00000": "base"
+              },
+              "clone": "right"
+            },
+            {
+              "stock_key": "v02_00436",
+              "rotation_xyz_deg": [
+                0,
+                0,
+                -90
+              ],
+              "translation_mm": [
+                103.2745823553885,
+                12.84999999963904,
+                4.175330054999989
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "handle-bolt-1"
+            }
+          ],
+          "replace_keys": [
+            "v02_00640",
+            "v02_00653",
+            "v02_00648",
+            "v02_00680"
+          ],
+          "fit_condition": "panel-clearance",
+          "notes": "トップ中央クリップと短いネジをM3×12で交換。純正サイドパネルとの干渉が片側約59.6 mm³あります。パネル上端の逃げ加工が必要で、無加工の取付適合とは扱いません。"
+        },
+        {
+          "id": "picobilical-plate",
+          "slot": "strain_relief",
+          "label": "Picobilical · マウントプレート",
+          "attachments": [
+            {
+              "module": "v0mod_picobilical",
+              "keys": [
+                "v0mod_picobilical_00_00000"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                0,
+                6.2894943712,
+                260.851376435787
+              ],
+              "motion": "xy",
+              "roles": {
+                "v0mod_picobilical_00_00000": "base"
+              },
+              "clone": null
+            }
+          ],
+          "replace_keys": [
+            "v02_00348"
+          ],
+          "requires": {},
+          "notes": "プレートの取付表示です。基板・コネクター・ハーネスは原本に含まれていません。"
+        }
+      ]
+    }
+  },
+  "scope": "Native mounting interfaces; no homing, continuous collision, electrical or load certification.",
+  "sources": {
+    "v0mod_official_adxl_mounts": {
+      "metadata_sha256": "6d143b866cad385d9922b85d788d1053cd59606052896efba6fe99041be6b6d4",
+      "repository": {
+        "id": "voron_v02r1",
+        "repository": "VoronDesign/Voron-0",
+        "url": "https://github.com/VoronDesign/Voron-0",
+        "requested_ref": "Voron0.2r1",
+        "commit": "a53fc87562fd630c846af38d7de850c894dc3d85"
+      }
+    },
+    "v0mod_stealth_handles": {
+      "metadata_sha256": "75e3b196156e101194cf87e657fa30ca4fdb9efc1adb884b0cce34d79b659020",
+      "repository": {
+        "id": "stealth_handles",
+        "repository": "MapleLeafMakers/V0_Stealth_Handles",
+        "url": "https://github.com/MapleLeafMakers/V0_Stealth_Handles",
+        "requested_ref": "main",
+        "commit": "55107e204e805705c2ffecff02a147f004e95eb2"
+      }
+    },
+    "v0mod_picobilical": {
+      "metadata_sha256": "95eadfabf0a972d1a7c07a6896255822b1696aef8b08cba8ecefd48415a9d068",
+      "repository": {
+        "id": "ldo_v02r1",
+        "repository": "MotorDynamicsLab/LDOVoron0",
+        "url": "https://github.com/MotorDynamicsLab/LDOVoron0",
+        "requested_ref": "v02r1",
+        "commit": "4c543a41f25372adbd4c650e5aab1d722c46461a"
+      }
+    },
+    "v0mod_tophat_cat_flap": {
+      "metadata_sha256": "1bbbb5915269c4f27eecfb0680e69e52cde41a9c1be4feb85f212e50645fd105",
+      "repository": {
+        "id": "dragon_burner",
+        "repository": "chirpy2605/voron",
+        "url": "https://github.com/chirpy2605/voron",
+        "requested_ref": "main",
+        "commit": "cc2e749d09d7f24418f9f8c73c90bcefb1e29584"
+      }
+    }
+  }
+}

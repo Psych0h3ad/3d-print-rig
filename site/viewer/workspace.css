@@ -187,3 +187,7 @@ html[lang=en] .ui-workspace .inspector-heading:has(.change-machine) h1 { padding
  .workspace-nav { grid-column: 1 / -1; grid-row: 2; gap: 28px; }
  .workspace-nav a { min-height: 40px; }
 }
+
+/* Keep the entire viewport gesture-owned; inspector scrolling remains separate. */
+.ui-workspace #stage { touch-action: none; overscroll-behavior: contain; user-select: none; -webkit-user-select: none; }
+.ui-workspace #stage > canvas { touch-action: none; }

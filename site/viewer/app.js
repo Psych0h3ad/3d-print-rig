@@ -3,7 +3,7 @@ import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=trident-clea
 import {bankBedReferenceDrop} from './changer-bank-model.mjs?v=trident-clearance-35';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=trident-clearance-35';
 import * as THREE from 'three';
-import {OrbitControls} from './vendor/OrbitControls.js';
+import {OrbitControls} from './vendor/OrbitControls.js?v=touch-37';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=trident-clearance-35';
 import {loadFrameMods,withFrameMods} from './frame-mods.js?v=trident-clearance-35';

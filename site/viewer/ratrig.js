@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import {OrbitControls} from './vendor-r180/OrbitControls.js';
+import {OrbitControls} from './vendor-r180/OrbitControls.js?v=touch-37';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
 import {loadRatRigMachine,disposeRatRig} from './ratrig-loader.mjs?v=trident-clearance-35';
 import {createRatRigGcodePreview} from './ratrig_gcode_preview.mjs';

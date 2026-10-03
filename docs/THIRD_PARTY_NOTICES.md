@@ -552,3 +552,7 @@ The v24 archive retains [VoronDesign/Voron-Trident](https://github.com/VoronDesi
 ## Crossant-235
 
 [Crossant-235 by Pole Engineering and contributors](https://github.com/Pole-Engineering/Crossant-235/tree/e9409a087233f3ec95354594fe9b9cd9357b4ac5) retains [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). Revision `e9409a087233f3ec95354594fe9b9cd9357b4ac5`, V0.6 archive with V0.5.4 root. The selected Leadscrew-Z / Sherpa Mini / source Goliath assembly has 2,177 named native parts and 10 explicit reference surfaces. Changes include axis normalization, source topology repairs, left Z nut placement correction, rendering conversion, source-preserving belt motion and chain routing. The original WIP head, mixed Goliath Air/Water labels, original contact findings, incomplete Belted-Z and unverified alternative mounts remain disclosed. All 3,336 buffer views are byte-identical to the prepared native GLB. Software licensing does not relicense the CAD or meshes. See `site/licenses/crossant/NOTICE.txt` and the separate [model asset repository](https://github.com/Psych0h3ad/3d-print-rig-crossant-models).
+
+Selected V0 Mod installation transforms and replacement identities are documented in `docs/V0_INSTALLATIONS.md`. The original source dimensions, provenance and license terms are retained. Stealth Handles require stock-panel clearance; Picobilical is a mounting-plate view.
+
+The MIT-licensed Three.js OrbitControls include local pointer-cancellation and capture-loss recovery changes. The original license notices are retained.

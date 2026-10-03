@@ -1,7 +1,7 @@
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=trident-clearance-35';
 import {appearanceRole} from './appearance-role.mjs?v=trident-clearance-35';
 import * as THREE from 'three';
-import {OrbitControls} from './vendor/OrbitControls.js';
+import {OrbitControls} from './vendor/OrbitControls.js?v=touch-37';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=trident-clearance-35';
 import {createV24Adapter} from './v24_matrix_adapter.mjs?v=trident-clearance-35';

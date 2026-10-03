@@ -7,7 +7,7 @@ import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=trident
 import {setupAccessories} from './accessories.js?v=trident-clearance-35';
 import {setupGrid} from './grid-control.js?v=trident-clearance-35';
 import {setupProbeMounts} from './probe-mounts.js?v=trident-clearance-35';
-import {OrbitControls} from './vendor/OrbitControls.js';
+import {OrbitControls} from './vendor/OrbitControls.js?v=touch-37';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=trident-clearance-35';
 import {createV24Adapter} from './v24_adapter.mjs?v=trident-clearance-35';

@@ -468,6 +468,7 @@ class OrbitControls extends Controls {
 
 		this.domElement.addEventListener( 'pointerdown', this._onPointerDown );
 		this.domElement.addEventListener( 'pointercancel', this._onPointerUp );
+		this.domElement.addEventListener( 'lostpointercapture', this._onPointerUp );
 
 		this.domElement.addEventListener( 'contextmenu', this._onContextMenu );
 		this.domElement.addEventListener( 'wheel', this._onMouseWheel, { passive: false } );
@@ -485,6 +486,10 @@ class OrbitControls extends Controls {
 		this.domElement.removeEventListener( 'pointermove', this._onPointerMove );
 		this.domElement.removeEventListener( 'pointerup', this._onPointerUp );
 		this.domElement.removeEventListener( 'pointercancel', this._onPointerUp );
+		this.domElement.removeEventListener( 'lostpointercapture', this._onPointerUp );
+		this._pointers.length = 0;
+		this._pointerPositions = {};
+		this.state = _STATE.NONE;
 
 		this.domElement.removeEventListener( 'wheel', this._onMouseWheel );
 		this.domElement.removeEventListener( 'contextmenu', this._onContextMenu );
@@ -1501,13 +1506,20 @@ function onPointerMove( event ) {
 
 function onPointerUp( event ) {
 
+	// Cancellation/capture loss can follow pointer-up; ignore the duplicate.
+	if ( ! this._isTrackingPointer( event ) ) return;
+
 	this._removePointer( event );
 
 	switch ( this._pointers.length ) {
 
 		case 0:
 
-			this.domElement.releasePointerCapture( event.pointerId );
+			if ( this.domElement.hasPointerCapture( event.pointerId ) ) {
+
+				this.domElement.releasePointerCapture( event.pointerId );
+
+			}
 
 			this.domElement.removeEventListener( 'pointermove', this._onPointerMove );
 			this.domElement.removeEventListener( 'pointerup', this._onPointerUp );

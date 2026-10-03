@@ -7,7 +7,7 @@ import * as THREE from 'three';
 import {loadFrameMods,withFrameMods} from './frame-mods.js?v=trident-clearance-35';
 import {setupLighting} from './lighting.js?v=trident-clearance-35';
 import {setupGrid} from './grid-control.js?v=trident-clearance-35';
-import {OrbitControls} from './vendor/OrbitControls.js';
+import {OrbitControls} from './vendor/OrbitControls.js?v=touch-37';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=trident-clearance-35';
 import {setupMachineNavigation} from './machines.js?v=crossant-36';
