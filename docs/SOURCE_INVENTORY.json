@@ -1445,13 +1445,13 @@
     },
     {
       "path": "site/viewer/ratrig.html",
-      "bytes": 6424,
-      "sha256": "6ad0fdb29a1fe6ef938f8436c0250d9d4fa781a02fd09cf411d115e1964686c4"
+      "bytes": 6423,
+      "sha256": "5d605f31705b442b8a49c9ee2fb683963cc41b657abfb88de4945db7c3edf2cb"
     },
     {
       "path": "site/viewer/ratrig.js",
-      "bytes": 14634,
-      "sha256": "95d0c28e1c571e299fe7a28599041cd1ad1434979696f3b6e77a37a44298d2f0"
+      "bytes": 14340,
+      "sha256": "216c189f1dafe8fb3576de9a53a1e398fc422dae14ca8271b78d99a53b6282bf"
     },
     {
       "path": "site/viewer/ratrig_adapter.mjs",

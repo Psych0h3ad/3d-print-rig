@@ -14,7 +14,6 @@ const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(35,1,.01,30),co
 camera.position.set(1.5,1.2,1.5);controls.target.set(0,.4,0);
 const pmrem=new THREE.PMREMGenerator(renderer),environment=pmrem.fromScene(new RoomEnvironment(),.03);scene.environment=environment.texture;
 const ambient=new THREE.HemisphereLight(0xffffff,0x586b80,.25),sun=new THREE.DirectionalLight(0xffffff,1.4);sun.position.set(2,4,3);scene.add(ambient,sun);
-const floor=new THREE.Mesh(new THREE.PlaneGeometry(4,4),new THREE.MeshStandardMaterial({color:0xd6dfdb,roughness:.9}));floor.rotation.x=-Math.PI/2;scene.add(floor);
 const grid=new THREE.GridHelper(4,40,0xa8b8b1,0xc5cec9);grid.visible=false;scene.add(grid);
 let current,index,busy=false,disposed=false,pending,initialSnapshot,frameRequest=null;
 const mutable=['x0','x1','y','z','carriageMode','copyOffset','mirrorSum','applyMode','resetPose','base','accent','frame','resetPalette','chamber','vaoc','night','gridVisible','enclosure','flexible','saveConfiguration','loadConfiguration','runGcode','resetGcode'];
@@ -23,7 +22,7 @@ controls.addEventListener('change',request);
 function resize(){const rect=stage.getBoundingClientRect(),width=Math.max(rect.width,1),height=Math.max(rect.height,1);renderer.setSize(width,height);setResponsiveAspect(camera,controls,width,height);request()}
 const observer=new ResizeObserver(resize);observer.observe(stage);
 function setBusy(value){busy=value;for(const id of mutable)$(id).disabled=value||!current;if(!value&&current)sync()}
-function lighting(){const dark=$('night').checked;scene.background=new THREE.Color(dark?'#04070c':'#edf1f5');scene.environment=dark?null:environment.texture;scene.environmentIntensity=dark?0:.16;renderer.toneMappingExposure=dark?1.35:.9;ambient.intensity=dark?.025:.25;sun.intensity=dark?.025:1.4;floor.material.color.set(dark?'#111a16':'#d6dfdb');request()}
+function lighting(){const dark=$('night').checked;scene.background=new THREE.Color(dark?'#04070c':'#edf1f5');scene.environment=dark?null:environment.texture;scene.environmentIntensity=dark?0:.16;renderer.toneMappingExposure=dark?1.35:.9;ambient.intensity=dark?.025:.25;sun.intensity=dark?.025:1.4;request()}
 function sync(){
  if(!current)return;const s=current.adapter.getSnapshot(),p=current.profile,ranges=ratRigAxisRanges(p,s);
  for(const a of ['x0','x1','y','z'])if(ranges[a]){$(a).min=ranges[a][0];$(a).max=ranges[a][1];$(a).value=s.pose[a];$(a+'v').textContent=s.pose[a].toFixed(2)+' mm';$(a).disabled=busy||a==='x1'&&s.mode!=='independent'}
@@ -62,9 +61,9 @@ export async function loadMachine(id){
  try{
   next=await loadRatRigMachine(index,id,{signal:pending.signal,onProgress:t=>$('status').textContent=t});if(disposed){disposeRatRig(next.root,next.adapter);return}
   scene.add(next.root);if(previous)previous.root.visible=false;current=next;initialSnapshot=current.adapter.getSnapshot();
-  floor.position.y=new THREE.Box3().setFromObject(current.root).min.y-.004;grid.position.y=floor.position.y+.001;provenance();sync();view();$('status').hidden=true;document.body.dataset.assetStatus='ready';document.body.dataset.machineId=id;
+  grid.position.y=new THREE.Box3().setFromObject(current.root).min.y-.003;provenance();sync();view();$('status').hidden=true;document.body.dataset.assetStatus='ready';document.body.dataset.machineId=id;
   const url=new URL(location.href);url.searchParams.set('machine',id);history.replaceState(null,'',url);disposeRatRig(previous?.root,previous?.adapter);return current.adapter.getSummary();
- }catch(e){if(disposed)return;if(next&&current===next){disposeRatRig(next.root,next.adapter);current=previous;initialSnapshot=previousInitial;if(previous){previous.root.visible=true;provenance();floor.position.y=new THREE.Box3().setFromObject(previous.root).min.y-.004;grid.position.y=floor.position.y+.001;camera.position.fromArray(previousView.camera.position);camera.up.fromArray(previousView.camera.up);controls.target.fromArray(previousView.camera.target);camera.lookAt(controls.target);document.body.dataset.machineId=previous.profile.machine_id;sync()}}$('status').textContent=current?'切替に失敗しました。直前の機体を表示中。':'CADを読み込めませんでした。ページを再読み込みしてください。';document.body.dataset.assetStatus=current?'ready':'error';$('motionStatus').textContent=e.message;$('motionStatus').classList.add('notice');throw e}
+ }catch(e){if(disposed)return;if(next&&current===next){disposeRatRig(next.root,next.adapter);current=previous;initialSnapshot=previousInitial;if(previous){previous.root.visible=true;provenance();grid.position.y=new THREE.Box3().setFromObject(previous.root).min.y-.003;camera.position.fromArray(previousView.camera.position);camera.up.fromArray(previousView.camera.up);controls.target.fromArray(previousView.camera.target);camera.lookAt(controls.target);document.body.dataset.machineId=previous.profile.machine_id;sync()}}$('status').textContent=current?'切替に失敗しました。直前の機体を表示中。':'CADを読み込めませんでした。ページを再読み込みしてください。';document.body.dataset.assetStatus=current?'ready':'error';$('motionStatus').textContent=e.message;$('motionStatus').classList.add('notice');throw e}
  finally{pending=null;if(!disposed)setBusy(false)}
 }
 for(const axis of ['x0','x1','y','z'])$(axis).oninput=()=>action(()=>current.adapter.setPose({[axis]:Number($(axis).value)}));
