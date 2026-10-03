@@ -1,13 +1,13 @@
 import * as THREE from 'three';
 import {OrbitControls} from './vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
-import {loadRatRigMachine,disposeRatRig} from './ratrig-loader.mjs?v=head-witness-33';
+import {loadRatRigMachine,disposeRatRig} from './ratrig-loader.mjs?v=rear-cooling-34';
 import {createRatRigGcodePreview} from './ratrig_gcode_preview.mjs';
-import {ratRigSchema,validateRatRigConfiguration,ratRigAxisRanges} from './ratrig-ui-state.mjs?v=head-witness-33';
-import {setupMachineNavigation} from './machines.js?v=head-witness-33';
-import {setupRenderExport} from './render-export.js?v=head-witness-33';
+import {ratRigSchema,validateRatRigConfiguration,ratRigAxisRanges} from './ratrig-ui-state.mjs?v=rear-cooling-34';
+import {setupMachineNavigation} from './machines.js?v=rear-cooling-34';
+import {setupRenderExport} from './render-export.js?v=rear-cooling-34';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
-import {setupPublicInfo} from './public-info.js?v=head-witness-33';
+import {setupPublicInfo} from './public-info.js?v=rear-cooling-34';
 const $=id=>document.getElementById(id),stage=$('stage'),renderer=new THREE.WebGLRenderer({antialias:true});
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.4;stage.append(renderer.domElement);
 const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(35,1,.01,30),controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;
@@ -85,6 +85,6 @@ $('resetGcode').onclick=()=>action(()=>{current.gcode=createRatRigGcodePreview(c
 window.addEventListener('pagehide',()=>{disposed=true;pending?.abort();if(frameRequest!==null)cancelAnimationFrame(frameRequest);frameRequest=null;observer.disconnect();disposeRatRig(current?.root,current?.adapter);current=null;controls.dispose();environment.texture.dispose();pmrem.dispose();renderer.dispose()});
 lighting();
 try{
- const response=await fetch('../RATRIG_ASSETS.json?v=head-witness-33',{cache:'no-cache'});if(!response.ok)throw Error('RatRigのカタログを取得できません。');index=await response.json();
+ const response=await fetch('../RATRIG_ASSETS.json?v=rear-cooling-34',{cache:'no-cache'});if(!response.ok)throw Error('RatRigのカタログを取得できません。');index=await response.json();
  const id=new URLSearchParams(location.search).get('machine')||'ratrig_vcore_41_300_corexy';if(!index.machines.some(r=>r.id===id))throw Error('RatRigの標準構成が未登録です。');setupMachineNavigation(id);await setupPublicInfo({includeDownloads:false});setupRenderExport({renderer,scene,camera,controls,name:id});await loadMachine(id);
 }catch(e){$('status').hidden=false;$('status').textContent=e.message;document.body.dataset.error=e.message;console.error(e)}

@@ -1,7 +1,7 @@
-import {collections,catalogDimensions} from './configuration-model.js?v=head-witness-33';
-import {headPlan} from './head-assembly.js?v=head-witness-33';
-import {appearanceRole} from './appearance-role.mjs?v=head-witness-33';
-import {probeHasConflict} from './probe-checks.js?v=head-witness-33';
+import {collections,catalogDimensions} from './configuration-model.js?v=rear-cooling-34';
+import {headPlan} from './head-assembly.js?v=rear-cooling-34';
+import {appearanceRole} from './appearance-role.mjs?v=rear-cooling-34';
+import {probeHasConflict} from './probe-checks.js?v=rear-cooling-34';
 
 const labels={toolhead:'ヘッド',extruder:'押出機',hotend:'ホットエンド',cooling:'冷却',mount:'取付・交換機構',gantry:'キャリッジ / ベルト幅',carriage:'キャリッジ本体',probe:'プローブ',board:'基板'};
 export function builderCandidates(catalog,filters={}){

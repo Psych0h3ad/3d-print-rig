@@ -1,6 +1,6 @@
-import {monolithHeadCatalog} from './monolith-head-model.mjs?v=head-witness-33';
-import {machinePage} from './machines.js?v=head-witness-33';
-import {machineHeadVariants} from './machine-head-model.mjs?v=head-witness-33';
+import {monolithHeadCatalog} from './monolith-head-model.mjs?v=rear-cooling-34';
+import {machinePage} from './machines.js?v=rear-cooling-34';
+import {machineHeadVariants} from './machine-head-model.mjs?v=rear-cooling-34';
 
 export function headPrinterLink(variant,registry,href){
  const source=new URL(href),preferred=source.searchParams.get('return_machine');

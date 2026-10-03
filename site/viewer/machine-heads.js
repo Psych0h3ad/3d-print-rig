@@ -1,20 +1,20 @@
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=head-witness-33';
-import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=head-witness-33';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=rear-cooling-34';
+import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=rear-cooling-34';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=head-witness-33';
-import {appearanceRole} from './appearance-role.mjs?v=head-witness-33';
-import {partKey} from './head-assembly.js?v=head-witness-33';
-import {v24HeadCatalog} from './machine-head-model.mjs?v=head-witness-33';
-import {setupConfigurations} from './configurations.js?v=head-witness-33';
+import {loadModel} from './model-loader.js?v=rear-cooling-34';
+import {appearanceRole} from './appearance-role.mjs?v=rear-cooling-34';
+import {partKey} from './head-assembly.js?v=rear-cooling-34';
+import {v24HeadCatalog} from './machine-head-model.mjs?v=rear-cooling-34';
+import {setupConfigurations} from './configurations.js?v=rear-cooling-34';
 
-import {stockProbeFit} from './probe-mounts.js?v=head-witness-33';
+import {stockProbeFit} from './probe-mounts.js?v=rear-cooling-34';
 
-import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs?v=head-witness-33';
-import {bankPlan} from './changer-bank-model.mjs?v=head-witness-33';
-import {setupChangerBank} from './changer-bank.js?v=head-witness-33';
-import {contentSHA256,acceptedMountValidation} from './mount-validation.mjs?v=head-witness-33';
-import {acceptedHeadValidation}from './head-validation.mjs?v=head-witness-33';
+import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs?v=rear-cooling-34';
+import {bankPlan} from './changer-bank-model.mjs?v=rear-cooling-34';
+import {setupChangerBank} from './changer-bank.js?v=rear-cooling-34';
+import {contentSHA256,acceptedMountValidation} from './mount-validation.mjs?v=rear-cooling-34';
+import {acceptedHeadValidation}from './head-validation.mjs?v=rear-cooling-34';
 
 const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);
 export async function loadMachineHeadCatalog(machine){

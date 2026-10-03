@@ -1,4 +1,4 @@
-import {messages,templates} from './messages-en.mjs?v=head-witness-33';
+import {messages,templates} from './messages-en.mjs?v=rear-cooling-34';
 
 const normalize=text=>text.trim().replace(/\s+/gu,' ');
 const escape=text=>text.replace(/[.*+?^${}()|[\]\\]/gu,'\\$&');

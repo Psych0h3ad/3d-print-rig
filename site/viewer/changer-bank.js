@@ -1,5 +1,5 @@
-import {bankChoices,bankCapacity,normalizeBank,initialBank,readBankURL,bankBedReferenceDrop,bankSystem,bankSource,bankSpec,variantBankSystem,bankStateForVariant,bankPlan} from './changer-bank-model.mjs?v=head-witness-33';
-import {bankWitnessCheck}from './head-validation.mjs?v=head-witness-33';
+import {bankChoices,bankCapacity,normalizeBank,initialBank,readBankURL,bankBedReferenceDrop,bankSystem,bankSource,bankSpec,variantBankSystem,bankStateForVariant,bankPlan} from './changer-bank-model.mjs?v=rear-cooling-34';
+import {bankWitnessCheck}from './head-validation.mjs?v=rear-cooling-34';
 
 export function setupChangerBank({catalog,rig,data,extras={},before=document.querySelector('#configurationControls'),inspectPose}={}){
  if(!before)throw Error('ツールバンクの表示先がありません');

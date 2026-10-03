@@ -1,5 +1,5 @@
-import {monolithHeadCatalog} from './monolith-head-model.mjs?v=head-witness-33';
-import {translatedProbeFit} from './probe-checks.js?v=head-witness-33';
+import {monolithHeadCatalog} from './monolith-head-model.mjs?v=rear-cooling-34';
+import {translatedProbeFit} from './probe-checks.js?v=rear-cooling-34';
 
 const clone=value=>JSON.parse(JSON.stringify(value));
 const add=(a,b)=>a.map((v,i)=>v+b[i]);

@@ -1,4 +1,4 @@
-import {ratRigMessages,ratRigTemplates} from './ratrig-messages-en.mjs?v=head-witness-33';
+import {ratRigMessages,ratRigTemplates} from './ratrig-messages-en.mjs?v=rear-cooling-34';
 export const messages = {
  "橙の枠は対象部品の外接枠です。体積交差は原本CADで判定しています。": "Orange boxes bound the affected parts. Volumetric intersections are evaluated using native CAD.",
  "体積干渉が未判定の組み合わせを含みます。干渉なしとは扱いません。": "Some volumetric intersection checks are unresolved. These combinations are not treated as clear.",

@@ -1,9 +1,9 @@
 {
  "schema": "3d-print-rig-head-witness-v1",
- "revision": "head-witness-v33",
- "model_bundle_sha256": "3be0e84f19a61f79a5d0d6dd83c54ee986cbaaa20d9a45f2b67b59d5199493ec",
+ "revision": "head-witness-v34",
+ "model_bundle_sha256": "3573b593ba9156da112fc8607a9e46ddbbfea069179b9ed5ca13819153787fd5",
  "input_sha256": {
-  "TOOLHEAD_CONFIGURATIONS.json": "4caca17ffdb7ebebce6b53a7189a378d76b4d7311b77dd5c2ef1bb29a55258e4",
+  "TOOLHEAD_CONFIGURATIONS.json": "76686c4a42dc377fbf6952326ce582fe99ab9a58dca356b755460d493ddde724",
   "MACHINE_HEAD_REGISTRATIONS.json": "7ca212859c4b4d3c916579787df17951b4971b6b658d6fcc5ab002aca5b8bc11",
   "TOOLCHANGER_BANK.json": "f1d3f62e1c5439586dcdf7a90e49b0b1f494dcafb8020ff78352905316fcfed7"
  },
@@ -33,7 +33,7 @@
  ],
  "bank_native_witness_pairs": 5838,
  "bank_conditions": 72,
- "native_witness_pairs": 5390,
+ "native_witness_pairs": 5404,
  "positive_pair_witnesses": 492,
  "checked_configuration_installations": 561,
  "broadphase_pairs": 127072719,
@@ -778,8 +778,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 106,
-     "broadphase_excluded_candidates": 132614,
+     "native_near_pairs_checked": 108,
+     "broadphase_excluded_candidates": 132612,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -1014,8 +1014,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 106,
-     "broadphase_excluded_candidates": 74549,
+     "native_near_pairs_checked": 108,
+     "broadphase_excluded_candidates": 74547,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -1273,8 +1273,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 108,
-     "broadphase_excluded_candidates": 132612,
+     "native_near_pairs_checked": 110,
+     "broadphase_excluded_candidates": 132610,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -1532,8 +1532,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 108,
-     "broadphase_excluded_candidates": 74547,
+     "native_near_pairs_checked": 110,
+     "broadphase_excluded_candidates": 74545,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -1768,8 +1768,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 102,
-     "broadphase_excluded_candidates": 145653,
+     "native_near_pairs_checked": 104,
+     "broadphase_excluded_candidates": 145651,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -2004,8 +2004,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 102,
-     "broadphase_excluded_candidates": 87588,
+     "native_near_pairs_checked": 104,
+     "broadphase_excluded_candidates": 87586,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -2263,8 +2263,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 104,
-     "broadphase_excluded_candidates": 145651,
+     "native_near_pairs_checked": 106,
+     "broadphase_excluded_candidates": 145649,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -2522,8 +2522,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 104,
-     "broadphase_excluded_candidates": 87586,
+     "native_near_pairs_checked": 106,
+     "broadphase_excluded_candidates": 87584,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -2758,8 +2758,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 106,
-     "broadphase_excluded_candidates": 68624,
+     "native_near_pairs_checked": 108,
+     "broadphase_excluded_candidates": 68622,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -3017,8 +3017,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 108,
-     "broadphase_excluded_candidates": 68622,
+     "native_near_pairs_checked": 110,
+     "broadphase_excluded_candidates": 68620,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -3253,8 +3253,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 102,
-     "broadphase_excluded_candidates": 81663,
+     "native_near_pairs_checked": 104,
+     "broadphase_excluded_candidates": 81661,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -3512,8 +3512,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 104,
-     "broadphase_excluded_candidates": 81661,
+     "native_near_pairs_checked": 106,
+     "broadphase_excluded_candidates": 81659,
      "state": "collision",
      "full_travel_verified": false
     }
@@ -3756,8 +3756,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 106,
-     "broadphase_excluded_candidates": 145830,
+     "native_near_pairs_checked": 108,
+     "broadphase_excluded_candidates": 145828,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -3992,8 +3992,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 106,
-     "broadphase_excluded_candidates": 81983,
+     "native_near_pairs_checked": 108,
+     "broadphase_excluded_candidates": 81981,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -4251,8 +4251,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 108,
-     "broadphase_excluded_candidates": 145828,
+     "native_near_pairs_checked": 110,
+     "broadphase_excluded_candidates": 145826,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -4510,8 +4510,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 108,
-     "broadphase_excluded_candidates": 81981,
+     "native_near_pairs_checked": 110,
+     "broadphase_excluded_candidates": 81979,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -4746,8 +4746,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 102,
-     "broadphase_excluded_candidates": 160167,
+     "native_near_pairs_checked": 104,
+     "broadphase_excluded_candidates": 160165,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -4982,8 +4982,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 102,
-     "broadphase_excluded_candidates": 96320,
+     "native_near_pairs_checked": 104,
+     "broadphase_excluded_candidates": 96318,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -5241,8 +5241,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 104,
-     "broadphase_excluded_candidates": 160165,
+     "native_near_pairs_checked": 106,
+     "broadphase_excluded_candidates": 160163,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -5500,8 +5500,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 104,
-     "broadphase_excluded_candidates": 96318,
+     "native_near_pairs_checked": 106,
+     "broadphase_excluded_candidates": 96316,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -5736,8 +5736,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 106,
-     "broadphase_excluded_candidates": 75468,
+     "native_near_pairs_checked": 108,
+     "broadphase_excluded_candidates": 75466,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -5995,8 +5995,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 108,
-     "broadphase_excluded_candidates": 75466,
+     "native_near_pairs_checked": 110,
+     "broadphase_excluded_candidates": 75464,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -6231,8 +6231,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 102,
-     "broadphase_excluded_candidates": 89805,
+     "native_near_pairs_checked": 104,
+     "broadphase_excluded_candidates": 89803,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -6490,8 +6490,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 104,
-     "broadphase_excluded_candidates": 89803,
+     "native_near_pairs_checked": 106,
+     "broadphase_excluded_candidates": 89801,
      "state": "collision",
      "full_travel_verified": false
     }
@@ -6757,8 +6757,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 107,
-     "broadphase_excluded_candidates": 134181,
+     "native_near_pairs_checked": 109,
+     "broadphase_excluded_candidates": 134179,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -7016,8 +7016,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 107,
-     "broadphase_excluded_candidates": 75430,
+     "native_near_pairs_checked": 109,
+     "broadphase_excluded_candidates": 75428,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -7298,8 +7298,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 109,
-     "broadphase_excluded_candidates": 134179,
+     "native_near_pairs_checked": 111,
+     "broadphase_excluded_candidates": 134177,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -7580,8 +7580,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 109,
-     "broadphase_excluded_candidates": 75428,
+     "native_near_pairs_checked": 111,
+     "broadphase_excluded_candidates": 75426,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -7839,8 +7839,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 103,
-     "broadphase_excluded_candidates": 147374,
+     "native_near_pairs_checked": 105,
+     "broadphase_excluded_candidates": 147372,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -8098,8 +8098,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 103,
-     "broadphase_excluded_candidates": 88623,
+     "native_near_pairs_checked": 105,
+     "broadphase_excluded_candidates": 88621,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -8380,8 +8380,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 105,
-     "broadphase_excluded_candidates": 147372,
+     "native_near_pairs_checked": 107,
+     "broadphase_excluded_candidates": 147370,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -8662,8 +8662,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 105,
-     "broadphase_excluded_candidates": 88621,
+     "native_near_pairs_checked": 107,
+     "broadphase_excluded_candidates": 88619,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -8921,8 +8921,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 107,
-     "broadphase_excluded_candidates": 69435,
+     "native_near_pairs_checked": 109,
+     "broadphase_excluded_candidates": 69433,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -9203,8 +9203,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 109,
-     "broadphase_excluded_candidates": 69433,
+     "native_near_pairs_checked": 111,
+     "broadphase_excluded_candidates": 69431,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -9462,8 +9462,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 103,
-     "broadphase_excluded_candidates": 82628,
+     "native_near_pairs_checked": 105,
+     "broadphase_excluded_candidates": 82626,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -9744,8 +9744,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 105,
-     "broadphase_excluded_candidates": 82626,
+     "native_near_pairs_checked": 107,
+     "broadphase_excluded_candidates": 82624,
      "state": "collision",
      "full_travel_verified": false
     }
@@ -10011,8 +10011,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 107,
-     "broadphase_excluded_candidates": 147397,
+     "native_near_pairs_checked": 109,
+     "broadphase_excluded_candidates": 147395,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -10270,8 +10270,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 107,
-     "broadphase_excluded_candidates": 82864,
+     "native_near_pairs_checked": 109,
+     "broadphase_excluded_candidates": 82862,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -10552,8 +10552,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 109,
-     "broadphase_excluded_candidates": 147395,
+     "native_near_pairs_checked": 111,
+     "broadphase_excluded_candidates": 147393,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -10834,8 +10834,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 109,
-     "broadphase_excluded_candidates": 82862,
+     "native_near_pairs_checked": 111,
+     "broadphase_excluded_candidates": 82860,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -11093,8 +11093,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 103,
-     "broadphase_excluded_candidates": 161888,
+     "native_near_pairs_checked": 105,
+     "broadphase_excluded_candidates": 161886,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -11352,8 +11352,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 103,
-     "broadphase_excluded_candidates": 97355,
+     "native_near_pairs_checked": 105,
+     "broadphase_excluded_candidates": 97353,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -11634,8 +11634,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 105,
-     "broadphase_excluded_candidates": 161886,
+     "native_near_pairs_checked": 107,
+     "broadphase_excluded_candidates": 161884,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -11916,8 +11916,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 105,
-     "broadphase_excluded_candidates": 97353,
+     "native_near_pairs_checked": 107,
+     "broadphase_excluded_candidates": 97351,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -12175,8 +12175,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 107,
-     "broadphase_excluded_candidates": 76279,
+     "native_near_pairs_checked": 109,
+     "broadphase_excluded_candidates": 76277,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -12457,8 +12457,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 109,
-     "broadphase_excluded_candidates": 76277,
+     "native_near_pairs_checked": 111,
+     "broadphase_excluded_candidates": 76275,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -12716,8 +12716,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 103,
-     "broadphase_excluded_candidates": 90770,
+     "native_near_pairs_checked": 105,
+     "broadphase_excluded_candidates": 90768,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -12998,8 +12998,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 105,
-     "broadphase_excluded_candidates": 90768,
+     "native_near_pairs_checked": 107,
+     "broadphase_excluded_candidates": 90766,
      "state": "collision",
      "full_travel_verified": false
     }
@@ -13242,8 +13242,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 108,
-     "broadphase_excluded_candidates": 135748,
+     "native_near_pairs_checked": 110,
+     "broadphase_excluded_candidates": 135746,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -13478,8 +13478,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 108,
-     "broadphase_excluded_candidates": 76311,
+     "native_near_pairs_checked": 110,
+     "broadphase_excluded_candidates": 76309,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -13737,8 +13737,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 110,
-     "broadphase_excluded_candidates": 135746,
+     "native_near_pairs_checked": 112,
+     "broadphase_excluded_candidates": 135744,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -13996,8 +13996,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 110,
-     "broadphase_excluded_candidates": 76309,
+     "native_near_pairs_checked": 112,
+     "broadphase_excluded_candidates": 76307,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -14232,8 +14232,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 104,
-     "broadphase_excluded_candidates": 149095,
+     "native_near_pairs_checked": 106,
+     "broadphase_excluded_candidates": 149093,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -14468,8 +14468,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 104,
-     "broadphase_excluded_candidates": 89658,
+     "native_near_pairs_checked": 106,
+     "broadphase_excluded_candidates": 89656,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -14727,8 +14727,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 106,
-     "broadphase_excluded_candidates": 149093,
+     "native_near_pairs_checked": 108,
+     "broadphase_excluded_candidates": 149091,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -14986,8 +14986,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 106,
-     "broadphase_excluded_candidates": 89656,
+     "native_near_pairs_checked": 108,
+     "broadphase_excluded_candidates": 89654,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -15222,8 +15222,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 108,
-     "broadphase_excluded_candidates": 70246,
+     "native_near_pairs_checked": 110,
+     "broadphase_excluded_candidates": 70244,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -15481,8 +15481,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 110,
-     "broadphase_excluded_candidates": 70244,
+     "native_near_pairs_checked": 112,
+     "broadphase_excluded_candidates": 70242,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -15717,8 +15717,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 104,
-     "broadphase_excluded_candidates": 83593,
+     "native_near_pairs_checked": 106,
+     "broadphase_excluded_candidates": 83591,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -15976,8 +15976,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 106,
-     "broadphase_excluded_candidates": 83591,
+     "native_near_pairs_checked": 108,
+     "broadphase_excluded_candidates": 83589,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -185586,8 +185586,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 108,
-     "broadphase_excluded_candidates": 148964,
+     "native_near_pairs_checked": 110,
+     "broadphase_excluded_candidates": 148962,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -185822,8 +185822,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 108,
-     "broadphase_excluded_candidates": 83745,
+     "native_near_pairs_checked": 110,
+     "broadphase_excluded_candidates": 83743,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -186081,8 +186081,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 110,
-     "broadphase_excluded_candidates": 148962,
+     "native_near_pairs_checked": 112,
+     "broadphase_excluded_candidates": 148960,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -186340,8 +186340,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 110,
-     "broadphase_excluded_candidates": 83743,
+     "native_near_pairs_checked": 112,
+     "broadphase_excluded_candidates": 83741,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -186576,8 +186576,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 104,
-     "broadphase_excluded_candidates": 163609,
+     "native_near_pairs_checked": 106,
+     "broadphase_excluded_candidates": 163607,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -186812,8 +186812,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 104,
-     "broadphase_excluded_candidates": 98390,
+     "native_near_pairs_checked": 106,
+     "broadphase_excluded_candidates": 98388,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -187071,8 +187071,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 106,
-     "broadphase_excluded_candidates": 163607,
+     "native_near_pairs_checked": 108,
+     "broadphase_excluded_candidates": 163605,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -187330,8 +187330,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 106,
-     "broadphase_excluded_candidates": 98388,
+     "native_near_pairs_checked": 108,
+     "broadphase_excluded_candidates": 98386,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -187566,8 +187566,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 108,
-     "broadphase_excluded_candidates": 77090,
+     "native_near_pairs_checked": 110,
+     "broadphase_excluded_candidates": 77088,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -187825,8 +187825,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 110,
-     "broadphase_excluded_candidates": 77088,
+     "native_near_pairs_checked": 112,
+     "broadphase_excluded_candidates": 77086,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -188061,8 +188061,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 104,
-     "broadphase_excluded_candidates": 91735,
+     "native_near_pairs_checked": 106,
+     "broadphase_excluded_candidates": 91733,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -188320,8 +188320,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 106,
-     "broadphase_excluded_candidates": 91733,
+     "native_near_pairs_checked": 108,
+     "broadphase_excluded_candidates": 91731,
      "state": "collision",
      "full_travel_verified": false
     }
@@ -188541,8 +188541,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 98,
-     "broadphase_excluded_candidates": 133294,
+     "native_near_pairs_checked": 100,
+     "broadphase_excluded_candidates": 133292,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -188754,8 +188754,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 98,
-     "broadphase_excluded_candidates": 74935,
+     "native_near_pairs_checked": 100,
+     "broadphase_excluded_candidates": 74933,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -188990,8 +188990,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 100,
-     "broadphase_excluded_candidates": 133292,
+     "native_near_pairs_checked": 102,
+     "broadphase_excluded_candidates": 133290,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -189226,8 +189226,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 100,
-     "broadphase_excluded_candidates": 74933,
+     "native_near_pairs_checked": 102,
+     "broadphase_excluded_candidates": 74931,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -189439,8 +189439,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 94,
-     "broadphase_excluded_candidates": 146399,
+     "native_near_pairs_checked": 96,
+     "broadphase_excluded_candidates": 146397,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -189652,8 +189652,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 94,
-     "broadphase_excluded_candidates": 88040,
+     "native_near_pairs_checked": 96,
+     "broadphase_excluded_candidates": 88038,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -189888,8 +189888,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 96,
-     "broadphase_excluded_candidates": 146397,
+     "native_near_pairs_checked": 98,
+     "broadphase_excluded_candidates": 146395,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -190124,8 +190124,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 96,
-     "broadphase_excluded_candidates": 88038,
+     "native_near_pairs_checked": 98,
+     "broadphase_excluded_candidates": 88036,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -190337,8 +190337,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 98,
-     "broadphase_excluded_candidates": 68980,
+     "native_near_pairs_checked": 100,
+     "broadphase_excluded_candidates": 68978,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -190573,8 +190573,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 100,
-     "broadphase_excluded_candidates": 68978,
+     "native_near_pairs_checked": 102,
+     "broadphase_excluded_candidates": 68976,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -190786,8 +190786,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 94,
-     "broadphase_excluded_candidates": 82085,
+     "native_near_pairs_checked": 96,
+     "broadphase_excluded_candidates": 82083,
      "state": "collision",
      "full_travel_verified": false
     },
@@ -191022,8 +191022,8 @@
       }
      ],
      "unresolved_pairs": [],
-     "native_near_pairs_checked": 96,
-     "broadphase_excluded_candidates": 82083,
+     "native_near_pairs_checked": 98,
+     "broadphase_excluded_candidates": 82081,
      "state": "collision",
      "full_travel_verified": false
     }

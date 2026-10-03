@@ -1,4 +1,4 @@
-const bundleInfo=fetch(new URL('../ASSET_BUNDLE.json?v=head-witness-33',import.meta.url),{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null);
+const bundleInfo=fetch(new URL('../ASSET_BUNDLE.json?v=rear-cooling-34',import.meta.url),{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null);
 
 export async function modelURL(path){
  const url=new URL(path,location.href),info=await bundleInfo;

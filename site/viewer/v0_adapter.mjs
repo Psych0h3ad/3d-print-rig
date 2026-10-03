@@ -1,5 +1,5 @@
-import {appearanceRole} from './appearance-role.mjs?v=head-witness-33';
-import {createV0Belts} from './v0-belts.mjs?v=head-witness-33';
+import {appearanceRole} from './appearance-role.mjs?v=rear-cooling-34';
+import {createV0Belts} from './v0-belts.mjs?v=rear-cooling-34';
 /** V0: fixed-Z CoreXY gantry, Y beam, XY toolhead, single downward-moving bed. */
 export const cadToGlb = ([x,y,z]) => [x/1000,z/1000,-y/1000];
 export function poseDelta(profile, pose, {allowFirmwareOvertravel=false,requireClearanceEnvelope=false}={}) {

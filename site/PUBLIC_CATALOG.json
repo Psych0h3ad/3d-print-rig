@@ -1,5 +1,5 @@
 {
-  "viewer_version": "public-v33",
+  "viewer_version": "public-v34",
   "sources": [
     {
       "id": "siboor_trident",
@@ -661,7 +661,7 @@
       "license_url": "../licenses/sphinx/LICENSE",
       "license_sha256": "9e502ba75fd0fd30cea5497b438a4bc12f07f02bc932a7a6041fd6a18b8f46a0",
       "scope": "Native tLW printable assemblies with Sherpa Mini Release 2, Tricorn Long or acquired Rapido 2 UHF hardware. Add a native 2510 axial fan to all patterns and Beacon RevH / Cartographer V4 with original 31.6 mm hole registration to assembled VORON and Monolith heads. Static head body, coil height and manufacturer metal keepout inspected; complete printer travel and cable clearance are not certified.",
-      "changes": "Original dimensions retained. Fan registered to the native front plane and four axes; probes registered to the integrated underside seat. Manufacturer inspection volumes excluded from displayed parts. Separate component versions and licenses retained."
+      "changes": "Original dimensions retained. The axial fan mounts on the native rear seat, aligned with four finite 7 mm insert bores and the open passage toward the heatsink. Probes use the integrated underside seat. Manufacturer inspection volumes are excluded from displayed parts. Separate component versions and licenses are retained."
     },
     {
       "id": "chirpy_heads",
@@ -1204,6 +1204,10 @@
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v31/ratrig-41-500-cad.zip",
       "bytes": 643965183,
       "sha256": "24c3ebdd259038458845ca41c5f348128420e66a6ac02cc567fb11ce357b65e4"
+    },
+    {
+      "label": "Sphinx tLW · rear hotend cooling",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v34/viewer-sphinx-cooling.zip"
     }
   ]
 }

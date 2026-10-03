@@ -1,26 +1,26 @@
-import {loadMonolithMachines} from './monolith-machine.js?v=head-witness-33';
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=head-witness-33';
-import {bankBedReferenceDrop} from './changer-bank-model.mjs?v=head-witness-33';
-import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=head-witness-33';
+import {loadMonolithMachines} from './monolith-machine.js?v=rear-cooling-34';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=rear-cooling-34';
+import {bankBedReferenceDrop} from './changer-bank-model.mjs?v=rear-cooling-34';
+import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=rear-cooling-34';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=head-witness-33';
-import {loadFrameMods,withFrameMods} from './frame-mods.js?v=head-witness-33';
-import {setupGrid} from './grid-control.js?v=head-witness-33';
-import {setupLighting} from './lighting.js?v=head-witness-33';
-import {setupFlexible} from './flexible.js?v=head-witness-33';
+import {loadModel} from './model-loader.js?v=rear-cooling-34';
+import {loadFrameMods,withFrameMods} from './frame-mods.js?v=rear-cooling-34';
+import {setupGrid} from './grid-control.js?v=rear-cooling-34';
+import {setupLighting} from './lighting.js?v=rear-cooling-34';
+import {setupFlexible} from './flexible.js?v=rear-cooling-34';
 import {createBedChain} from './bed-chain.mjs?v=public-v25';
-import {setupConfigurations} from './configurations.js?v=head-witness-33';
-import {setupAccessories} from './accessories.js?v=head-witness-33';
-import {setupAppearance} from './appearance.js?v=head-witness-33';
-import {setupRenderExport} from './render-export.js?v=head-witness-33';
-import {setupPublicInfo} from './public-info.js?v=head-witness-33';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=head-witness-33';
-import {setupChangerBank} from './changer-bank.js?v=head-witness-33';
-import {expandedPrinterCatalog} from './machine-head-model.mjs?v=head-witness-33';
-import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=head-witness-33';
-import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=head-witness-33';
+import {setupConfigurations} from './configurations.js?v=rear-cooling-34';
+import {setupAccessories} from './accessories.js?v=rear-cooling-34';
+import {setupAppearance} from './appearance.js?v=rear-cooling-34';
+import {setupRenderExport} from './render-export.js?v=rear-cooling-34';
+import {setupPublicInfo} from './public-info.js?v=rear-cooling-34';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=rear-cooling-34';
+import {setupChangerBank} from './changer-bank.js?v=rear-cooling-34';
+import {expandedPrinterCatalog} from './machine-head-model.mjs?v=rear-cooling-34';
+import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=rear-cooling-34';
+import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=rear-cooling-34';
 const $=s=>document.querySelector(s),scene=new THREE.Scene();
 scene.background=new THREE.Color('#edf1f5');
 const stage=$('#stage');
@@ -191,7 +191,7 @@ async function loadGLB(url){
  throw last;
 }
 setupPublicInfo();
-Promise.all([fetch('../assembly_manifest.json?v=head-witness-33',{cache:'no-cache'}).then(r=>r.json()),fetch('../flexible_routes.json?v=head-witness-33',{cache:'no-cache'}).then(r=>r.json()),loadModel(new GLTFLoader(),'../SIBOOR_Trident_350.glb',p=>{$('#loading').textContent=p.total?'読み込み '+Math.round(p.loaded/p.total*100)+'%':'3Dモデルを読み込み中…'}),loadGLB('../Endstop_Mechanisms.glb'),fetch('../COLOR_OPTIONS.json?v=head-witness-33',{cache:'no-cache'}).then(r=>r.json()),fetch('../ASSEMBLY_CONFIGURATIONS.json?v=head-witness-33',{cache:'no-cache'}).then(r=>r.json()),fetch('../R2_ENDSTOP_REGISTRATION.json?v=head-witness-33',{cache:'no-cache'}).then(r=>r.json())]).then(async([manifest,routes,g,endstops,colorOptions,configs,r2Meta])=>{
+Promise.all([fetch('../assembly_manifest.json?v=rear-cooling-34',{cache:'no-cache'}).then(r=>r.json()),fetch('../flexible_routes.json?v=rear-cooling-34',{cache:'no-cache'}).then(r=>r.json()),loadModel(new GLTFLoader(),'../SIBOOR_Trident_350.glb',p=>{$('#loading').textContent=p.total?'読み込み '+Math.round(p.loaded/p.total*100)+'%':'3Dモデルを読み込み中…'}),loadGLB('../Endstop_Mechanisms.glb'),fetch('../COLOR_OPTIONS.json?v=rear-cooling-34',{cache:'no-cache'}).then(r=>r.json()),fetch('../ASSEMBLY_CONFIGURATIONS.json?v=rear-cooling-34',{cache:'no-cache'}).then(r=>r.json()),fetch('../R2_ENDSTOP_REGISTRATION.json?v=rear-cooling-34',{cache:'no-cache'}).then(r=>r.json())]).then(async([manifest,routes,g,endstops,colorOptions,configs,r2Meta])=>{
  const headData=await loadMachineHeadCatalog();registration=manifest.motion_preview.endstop_registration;catalog=await loadMonolithMachines(expandedPrinterCatalog(withFrameMods(configs,frameMods),headData.heads,headData.registry,'siboor_trident_350'),headData);catalog.bank_data=headData.bank;installedHeads=createMachineHeads(scene,{...catalog,base_assets:headData.heads.base_assets},{render:()=>{renderRequested=true}});ensureMachineHeadControls({gantry:true,monolithUnavailable:catalog.monolith_unavailable});r2Registration=r2Meta;stockRows=manifest.parts;
  refX=registration.switches.X.cad_reference_display_coordinate_mm;refY=registration.switches.Y.cad_reference_display_coordinate_mm;
  const lookup=new Map(manifest.parts.map(r=>[r.key,r]));model=g.scene;model.add(endstops.scene);scene.add(model);
