@@ -11,6 +11,7 @@ import {appearanceRole} from '../site/viewer/appearance-role.mjs';
 const root=path.resolve(process.argv[2]);
 const read=async f=>JSON.parse(await fs.readFile(path.join(root,f),'utf8'));
 const report=[];
+globalThis.ProgressEvent=class {constructor(type,fields){Object.assign(this,{type},fields)}};
 for(const size of [250,300,350])for(const structure of ['printed','ldo_cnc']){
  const machine=`voron_v24_${size}_${structure}`,dir=`machines/${machine}`;
  const manifest=await read(`${dir}/assembly_manifest.json`),profile=await read(`${dir}/machine_profile.json`);
@@ -19,9 +20,9 @@ for(const size of [250,300,350])for(const structure of ['printed','ldo_cnc']){
  const records=new Map(manifest.parts.map(p=>[p.key,p])),materials=[];
  scene.traverse(o=>{if(!o.isMesh)return;o.material=Array.isArray(o.material)?o.material.map(m=>m.clone()):o.material.clone();let parent=o,key;while(parent&&!key){key=parent.userData.part_key;parent=parent.parent}assert(records.has(key));for(const material of Array.isArray(o.material)?o.material:[o.material])materials.push({material,row:records.get(key),original:material.color.clone()})});
  const adapter=createV24Adapter(scene,manifest,profile);
- for(const palette of [{base:'#2dd4bf',accent:'#ff6b20',frame:'#b9bec4'},{base:'#703cff',accent:'#a1ef20',frame:'#303030'}]){
+ for(const palette of [profile.appearance.palette_defaults,{base:'#2dd4bf',accent:'#ff6b20',frame:'#b9bec4'},{base:'#703cff',accent:'#a1ef20',frame:'#303030'},profile.appearance.palette_defaults]){
   adapter.setPalette(palette);
-  for(const r of materials){const role=appearanceRole(r.row);assert(r.material.color.equals(role?new THREE.Color(palette[role]):r.original),`${machine}: ${r.row.key} ${r.row.name}`)}
+  for(const r of materials){const role=appearanceRole(r.row);assert(r.material.color.equals(role?new THREE.Color(palette[role]):r.original),`${machine}: ${r.row.key} ${r.row.name}`);if(['base','accent'].includes(role)){assert.equal(r.material.metalness,0);assert.equal(r.material.roughness,.72)}}
  }
  // Source identities absent from the old exporter, including repeated suffixes.
  for(const p of manifest.parts.filter(p=>/^v24_/.test(p.key)&&/^(Front Idler [AB] (Top|Bottom)|Z (Bearing Block|Belt Clamp|Belt Drive)|Belt Tensioner|Belt_Guard|Door Handle [AB]|PSU_Stabilizer|Middle_Fan_Support_|bottom_panel_hinge_x2|Bowden Tube Holder)/.test(p.name)))assert(appearanceRole(p),p.key+' missing printed classification');

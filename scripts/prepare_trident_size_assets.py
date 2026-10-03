@@ -99,6 +99,7 @@ for row in rows:
   elif c[0]<-350 or c[0]>-40:delta[0]=outer(0,-195)
  elif top=='Filament_Path:1':
   delta[1]=half
+  if any('Spool Holder' in item for item in path):delta[0]=half
   if 'PTFE_Tube' in name:motion='reference_flexible'
  shift=tuple(delta+np.array([195,-195,520]))
  if k in bed_bolts:

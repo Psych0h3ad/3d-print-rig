@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=touch-37';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=trident-clearance-35';
-import {createMicronAdapter} from './micron-adapter.mjs?v=trident-clearance-35';
+import {createMicronAdapter} from './micron-adapter.mjs?v=motion-colors-41';
 import {mountAssemblyDownload} from './assembly-downloads.mjs?v=trident-clearance-35';
 import {setupMachineNavigation} from './machines.js?v=crossant-36';
 import {setupGrid} from './grid-control.js?v=trident-clearance-35';
@@ -23,7 +23,7 @@ new ResizeObserver(resize).observe(stage);orbit.addEventListener('change',render
 function view(name){camera.up.set(0,name==='top'?0:1,name==='top'?-1:0);orbit.target.set(0,.13,0);camera.position.set(...({iso:[.65,.55,.85],front:[0,.15,1.1],top:[0,1.2,0]}[name]));frameResponsiveView(camera,orbit);render()}
 for(const name of ['iso','front','top'])$('#'+name).onclick=()=>view(name);view('iso');
 $('#focusHead').onclick=()=>{if(!adapter)return;const box=new THREE.Box3();for(const [key,node]of adapter.nodes)if(adapter.records.get(key).group==='Micron_Toolhead')box.expandByObject(node);if(box.isEmpty())return;camera.up.set(0,1,0);box.getCenter(orbit.target);camera.position.copy(orbit.target).add(new THREE.Vector3(.1,.06,.2));orbit.update();render()};
-function applyPose(){if(!adapter)return;const pose=adapter.setPose(Object.fromEntries(['x','y','z'].map(a=>[a,Number($('#'+a).value)])));for(const a of ['x','y','z'])$('#'+a+'v').textContent=Number($('#'+a).value).toFixed(2)+' mm';$('#motionStatus').textContent='ベッド固定 · Zガントリー・YZビーム・XYZヘッド';document.body.dataset.pose=JSON.stringify(pose);document.body.dataset.flexibleVisible=String(pose.atReference&&$('#belts').checked);document.body.dataset.beltsVisible=String(pose.belts.visible);document.body.dataset.xyBeltCount=String(pose.belts.xy_belts);render()}
+function applyPose(){if(!adapter)return;const pose=adapter.setPose(Object.fromEntries(['x','y','z'].map(a=>[a,Number($('#'+a).value)])));for(const a of ['x','y','z'])$('#'+a+'v').textContent=Number($('#'+a).value).toFixed(2)+' mm';$('#motionStatus').textContent='ベッド固定 · Zガントリー・YZビーム・XYZヘッド';document.body.dataset.pose=JSON.stringify(pose);document.body.dataset.flexibleVisible=String(pose.flexible.visible);document.body.dataset.beltsVisible=String(pose.belts.visible);document.body.dataset.xyBeltCount=String(pose.belts.xy_belts);render()}
 try{
  const root='../machines/'+id+'/',json=async name=>{const r=await fetch(root+name,{cache:'no-cache'});if(!r.ok)throw Error(name+'の読込に失敗');return r.json()};
  const [manifest,p,g,downloads]=await Promise.all([json('assembly_manifest.json'),json('machine_profile.json'),loadModel(new GLTFLoader(),root+'model.glb'),fetch('../MICRON_DOWNLOADS.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('STEPカタログの読込に失敗');return r.json()})]);

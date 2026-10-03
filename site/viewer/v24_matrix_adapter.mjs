@@ -34,7 +34,7 @@ export function createV24Adapter(root,manifest,profile){
   function setPalette(palette){
     for(const [key,o] of nodes){
       const role=appearanceRole(records.get(key)),color=palette[role];if(!color)continue;
-      o.traverse(n=>{if(n.isMesh)for(const m of Array.isArray(n.material)?n.material:[n.material])m.color.set(color)});
+      o.traverse(n=>{if(n.isMesh)for(const m of Array.isArray(n.material)?n.material:[n.material]){m.color.set(color);if(role==='base'||role==='accent'){m.metalness=0;m.roughness=.72;}}});
     }
   }
   function getSummary(){return {machine_id:profile.machine_id,part_count:nodes.size,fixed_bed_keys:profile.fixed_bed_keys,

@@ -1,6 +1,10 @@
 import {v0Messages,v0Templates} from './v0-messages-en.mjs?v=v0-mounts-38';
 import {ratRigMessages,ratRigTemplates} from './ratrig-messages-en.mjs?v=trident-clearance-35';
 export const messages = {
+ "SB · 組み合わせとプローブ取付部品": "SB combinations and probe mounting parts",
+ "組み合わせとプローブ取付": "combinations and probe mounting",
+ "Z駆動ベルトは固定位置に表示し、PlusのXYベルトはY/Z軸に追従します。歯・クランプ部のカット・張力は未再現。Plusの18リンクZチェーンは接続軸を保って追従し、ベッド配線は固定、PTFEとヘッド配線は接続端が追従する配索プレビューです。": "Z drive belts stay at their fixed pulleys; Plus XY belts follow Y/Z motion. Teeth, clamp cuts and tension are not modeled. The 18-link Plus Z chain keeps its native hinge spacing, bed wires stay fixed, and PTFE/head wiring use endpoint-following routing previews.",
+ "接点ホーミング、独立QGL、配線の余長・曲げ半径と全機体の掃引干渉は未検証です。": "Contact homing, independent QGL, wiring service length and bend radii, and full-printer swept interference are unverified.",
   '共有': 'Share',
   'このページを共有': 'Share this page',
   '共有リンク': 'Share link',

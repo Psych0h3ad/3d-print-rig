@@ -1,5 +1,5 @@
 {
-  "viewer_version": "viewer-v39",
+  "viewer_version": "viewer-v41",
   "sources": [
     {
       "id": "siboor_trident",
@@ -1232,6 +1232,10 @@
     {
       "label": "StealthChanger Keeper seats and Trident native fasteners",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v39/viewer-native-mounts.zip"
+    },
+    {
+      "label": "Trident spool holder and V2.4 X-beam native fasteners",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v41/viewer-native-fasteners.zip"
     }
   ]
 }
