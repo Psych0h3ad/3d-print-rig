@@ -1,6 +1,6 @@
 {
   "schema": "v0-installations-v1",
-  "version": "v38",
+  "version": "v39",
   "machines": {
     "voron_v02r1_120": {
       "options": [
@@ -313,167 +313,6 @@
           ],
           "requires": {},
           "notes": "プレートの取付表示です。基板・コネクター・ハーネスは原本に含まれていません。"
-        },
-        {
-          "id": "cat-flap",
-          "slot": "tophat",
-          "label": "Cat Flap · 80 mm押出フレーム",
-          "attachments": [
-            {
-              "module": "v0mod_tophat_cat_flap",
-              "keys": [
-                "v0mod_tophat_cat_flap_00_00000",
-                "v0mod_tophat_cat_flap_00_00001",
-                "v0mod_tophat_cat_flap_00_00002",
-                "v0mod_tophat_cat_flap_00_00003",
-                "v0mod_tophat_cat_flap_00_00004",
-                "v0mod_tophat_cat_flap_00_00005",
-                "v0mod_tophat_cat_flap_00_00006",
-                "v0mod_tophat_cat_flap_00_00007",
-                "v0mod_tophat_cat_flap_00_00008",
-                "v0mod_tophat_cat_flap_00_00009",
-                "v0mod_tophat_cat_flap_00_00010",
-                "v0mod_tophat_cat_flap_00_00011",
-                "v0mod_tophat_cat_flap_00_00012",
-                "v0mod_tophat_cat_flap_00_00013",
-                "v0mod_tophat_cat_flap_00_00014",
-                "v0mod_tophat_cat_flap_00_00015",
-                "v0mod_tophat_cat_flap_00_00016",
-                "v0mod_tophat_cat_flap_00_00017",
-                "v0mod_tophat_cat_flap_00_00018",
-                "v0mod_tophat_cat_flap_00_00019",
-                "v0mod_tophat_cat_flap_00_00020",
-                "v0mod_tophat_cat_flap_00_00021",
-                "v0mod_tophat_cat_flap_00_00022",
-                "v0mod_tophat_cat_flap_00_00023",
-                "v0mod_tophat_cat_flap_00_00024",
-                "v0mod_tophat_cat_flap_00_00025",
-                "v0mod_tophat_cat_flap_00_00026",
-                "v0mod_tophat_cat_flap_00_00027",
-                "v0mod_tophat_cat_flap_00_00028",
-                "v0mod_tophat_cat_flap_00_00029",
-                "v0mod_tophat_cat_flap_00_00030",
-                "v0mod_tophat_cat_flap_00_00031",
-                "v0mod_tophat_cat_flap_00_00032",
-                "v0mod_tophat_cat_flap_00_00033",
-                "v0mod_tophat_cat_flap_00_00034",
-                "v0mod_tophat_cat_flap_00_00035",
-                "v0mod_tophat_cat_flap_00_00036",
-                "v0mod_tophat_cat_flap_00_00037",
-                "v0mod_tophat_cat_flap_00_00038",
-                "v0mod_tophat_cat_flap_00_00039",
-                "v0mod_tophat_cat_flap_00_00040",
-                "v0mod_tophat_cat_flap_00_00041",
-                "v0mod_tophat_cat_flap_00_00042",
-                "v0mod_tophat_cat_flap_00_00043",
-                "v0mod_tophat_cat_flap_00_00044"
-              ],
-              "rotation_xyz_deg": [
-                0,
-                0,
-                0
-              ],
-              "translation_mm": [
-                -0.0018364876295891008,
-                6.321528189801029e-09,
-                -49.20000356215568
-              ],
-              "motion": "fixed",
-              "roles": {
-                "v0mod_tophat_cat_flap_00_00000": "base",
-                "v0mod_tophat_cat_flap_00_00001": "base",
-                "v0mod_tophat_cat_flap_00_00002": "base",
-                "v0mod_tophat_cat_flap_00_00003": "base",
-                "v0mod_tophat_cat_flap_00_00004": "base",
-                "v0mod_tophat_cat_flap_00_00005": "frame",
-                "v0mod_tophat_cat_flap_00_00006": "frame",
-                "v0mod_tophat_cat_flap_00_00007": "frame",
-                "v0mod_tophat_cat_flap_00_00008": "frame",
-                "v0mod_tophat_cat_flap_00_00009": "frame",
-                "v0mod_tophat_cat_flap_00_00010": "frame",
-                "v0mod_tophat_cat_flap_00_00011": "frame",
-                "v0mod_tophat_cat_flap_00_00012": "frame",
-                "v0mod_tophat_cat_flap_00_00013": "hardware",
-                "v0mod_tophat_cat_flap_00_00014": "hardware",
-                "v0mod_tophat_cat_flap_00_00015": "hardware",
-                "v0mod_tophat_cat_flap_00_00016": "hardware",
-                "v0mod_tophat_cat_flap_00_00017": "hardware",
-                "v0mod_tophat_cat_flap_00_00018": "hardware",
-                "v0mod_tophat_cat_flap_00_00019": "hardware",
-                "v0mod_tophat_cat_flap_00_00020": "hardware",
-                "v0mod_tophat_cat_flap_00_00021": "base",
-                "v0mod_tophat_cat_flap_00_00022": "base",
-                "v0mod_tophat_cat_flap_00_00023": "base",
-                "v0mod_tophat_cat_flap_00_00024": "base",
-                "v0mod_tophat_cat_flap_00_00025": "base",
-                "v0mod_tophat_cat_flap_00_00026": "base",
-                "v0mod_tophat_cat_flap_00_00027": "base",
-                "v0mod_tophat_cat_flap_00_00028": "base",
-                "v0mod_tophat_cat_flap_00_00029": "base",
-                "v0mod_tophat_cat_flap_00_00030": "base",
-                "v0mod_tophat_cat_flap_00_00031": "base",
-                "v0mod_tophat_cat_flap_00_00032": "base",
-                "v0mod_tophat_cat_flap_00_00033": "base",
-                "v0mod_tophat_cat_flap_00_00034": "panel",
-                "v0mod_tophat_cat_flap_00_00035": "panel",
-                "v0mod_tophat_cat_flap_00_00036": "panel",
-                "v0mod_tophat_cat_flap_00_00037": "panel",
-                "v0mod_tophat_cat_flap_00_00038": "base",
-                "v0mod_tophat_cat_flap_00_00039": "base",
-                "v0mod_tophat_cat_flap_00_00040": "base",
-                "v0mod_tophat_cat_flap_00_00041": "base",
-                "v0mod_tophat_cat_flap_00_00042": "hardware",
-                "v0mod_tophat_cat_flap_00_00043": "hardware",
-                "v0mod_tophat_cat_flap_00_00044": "panel"
-              },
-              "clone": null
-            }
-          ],
-          "replace_keys": [
-            "v02r1_00792",
-            "v02r1_00793",
-            "v02r1_00794",
-            "v02r1_00795",
-            "v02r1_00796",
-            "v02r1_00797",
-            "v02r1_00798",
-            "v02r1_00799",
-            "v02r1_00800",
-            "v02r1_00801",
-            "v02r1_00802",
-            "v02r1_00803",
-            "v02r1_00804",
-            "v02r1_00805",
-            "v02r1_00806",
-            "v02r1_00807",
-            "v02r1_00808",
-            "v02r1_00809",
-            "v02r1_00810",
-            "v02r1_00811",
-            "v02r1_00812",
-            "v02r1_00813",
-            "v02r1_00814",
-            "v02r1_00815",
-            "v02r1_00816",
-            "v02r1_00817",
-            "v02r1_00818",
-            "v02r1_00819",
-            "v02r1_00820",
-            "v02r1_00821",
-            "v02r1_00822",
-            "v02r1_00823",
-            "v02r1_00824",
-            "v02r1_00825",
-            "v02r1_00826",
-            "v02r1_00827",
-            "v02r1_00828",
-            "v02r1_00829",
-            "v02r1_00830",
-            "v02r1_00831",
-            "v02r1_00832"
-          ],
-          "enclosure": true,
-          "notes": "純正トップハットのフレーム・クリップ・パネルを交換。既存のクリップ固定ネジとナットは継続使用。扉は閉じた原本姿勢、開閉可動は未登録です。"
         },
         {
           "id": "stock",
@@ -4045,6 +3884,974 @@
             "Rapid Burner v8・Rapido UHF・Sherpa Mini R2（標準フロント）。専用マウントと3010冷却ファン、左右4010ブロワーを使用。ホットエンドを90°回して配線出口をキャリッジから逃がします。",
             "閉じた純正ドアの前端と公称Z上限では接触があります。ドアの角度とZ取付条件を確認してください。"
           ]
+        },
+        {
+          "id": "cat-flap",
+          "slot": "tophat",
+          "label": "Cat Flap · 80 mm押出フレーム",
+          "attachments": [
+            {
+              "module": "v0mod_tophat_cat_flap",
+              "keys": [
+                "v0mod_tophat_cat_flap_00_00000",
+                "v0mod_tophat_cat_flap_00_00001",
+                "v0mod_tophat_cat_flap_00_00002",
+                "v0mod_tophat_cat_flap_00_00003",
+                "v0mod_tophat_cat_flap_00_00004",
+                "v0mod_tophat_cat_flap_00_00005",
+                "v0mod_tophat_cat_flap_00_00006",
+                "v0mod_tophat_cat_flap_00_00007",
+                "v0mod_tophat_cat_flap_00_00008",
+                "v0mod_tophat_cat_flap_00_00009",
+                "v0mod_tophat_cat_flap_00_00010",
+                "v0mod_tophat_cat_flap_00_00011",
+                "v0mod_tophat_cat_flap_00_00012",
+                "v0mod_tophat_cat_flap_00_00013",
+                "v0mod_tophat_cat_flap_00_00014",
+                "v0mod_tophat_cat_flap_00_00015",
+                "v0mod_tophat_cat_flap_00_00016",
+                "v0mod_tophat_cat_flap_00_00017",
+                "v0mod_tophat_cat_flap_00_00018",
+                "v0mod_tophat_cat_flap_00_00019",
+                "v0mod_tophat_cat_flap_00_00020",
+                "v0mod_tophat_cat_flap_00_00021",
+                "v0mod_tophat_cat_flap_00_00022",
+                "v0mod_tophat_cat_flap_00_00023",
+                "v0mod_tophat_cat_flap_00_00024",
+                "v0mod_tophat_cat_flap_00_00025",
+                "v0mod_tophat_cat_flap_00_00026",
+                "v0mod_tophat_cat_flap_00_00027",
+                "v0mod_tophat_cat_flap_00_00028",
+                "v0mod_tophat_cat_flap_00_00029",
+                "v0mod_tophat_cat_flap_00_00030",
+                "v0mod_tophat_cat_flap_00_00031",
+                "v0mod_tophat_cat_flap_00_00032",
+                "v0mod_tophat_cat_flap_00_00033",
+                "v0mod_tophat_cat_flap_00_00034",
+                "v0mod_tophat_cat_flap_00_00035",
+                "v0mod_tophat_cat_flap_00_00036",
+                "v0mod_tophat_cat_flap_00_00037",
+                "v0mod_tophat_cat_flap_00_00038",
+                "v0mod_tophat_cat_flap_00_00039",
+                "v0mod_tophat_cat_flap_00_00040",
+                "v0mod_tophat_cat_flap_00_00041",
+                "v0mod_tophat_cat_flap_00_00042",
+                "v0mod_tophat_cat_flap_00_00043",
+                "v0mod_tophat_cat_flap_00_00044"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                -0.0018364876295891008,
+                6.321528189801029e-09,
+                -49.20000356215568
+              ],
+              "motion": "fixed",
+              "roles": {
+                "v0mod_tophat_cat_flap_00_00000": "base",
+                "v0mod_tophat_cat_flap_00_00001": "base",
+                "v0mod_tophat_cat_flap_00_00002": "base",
+                "v0mod_tophat_cat_flap_00_00003": "base",
+                "v0mod_tophat_cat_flap_00_00004": "base",
+                "v0mod_tophat_cat_flap_00_00005": "frame",
+                "v0mod_tophat_cat_flap_00_00006": "frame",
+                "v0mod_tophat_cat_flap_00_00007": "frame",
+                "v0mod_tophat_cat_flap_00_00008": "frame",
+                "v0mod_tophat_cat_flap_00_00009": "frame",
+                "v0mod_tophat_cat_flap_00_00010": "frame",
+                "v0mod_tophat_cat_flap_00_00011": "frame",
+                "v0mod_tophat_cat_flap_00_00012": "frame",
+                "v0mod_tophat_cat_flap_00_00013": "hardware",
+                "v0mod_tophat_cat_flap_00_00014": "hardware",
+                "v0mod_tophat_cat_flap_00_00015": "hardware",
+                "v0mod_tophat_cat_flap_00_00016": "hardware",
+                "v0mod_tophat_cat_flap_00_00017": "hardware",
+                "v0mod_tophat_cat_flap_00_00018": "hardware",
+                "v0mod_tophat_cat_flap_00_00019": "hardware",
+                "v0mod_tophat_cat_flap_00_00020": "hardware",
+                "v0mod_tophat_cat_flap_00_00021": "base",
+                "v0mod_tophat_cat_flap_00_00022": "base",
+                "v0mod_tophat_cat_flap_00_00023": "base",
+                "v0mod_tophat_cat_flap_00_00024": "base",
+                "v0mod_tophat_cat_flap_00_00025": "base",
+                "v0mod_tophat_cat_flap_00_00026": "base",
+                "v0mod_tophat_cat_flap_00_00027": "base",
+                "v0mod_tophat_cat_flap_00_00028": "base",
+                "v0mod_tophat_cat_flap_00_00029": "base",
+                "v0mod_tophat_cat_flap_00_00030": "base",
+                "v0mod_tophat_cat_flap_00_00031": "base",
+                "v0mod_tophat_cat_flap_00_00032": "base",
+                "v0mod_tophat_cat_flap_00_00033": "base",
+                "v0mod_tophat_cat_flap_00_00034": "panel",
+                "v0mod_tophat_cat_flap_00_00035": "panel",
+                "v0mod_tophat_cat_flap_00_00036": "panel",
+                "v0mod_tophat_cat_flap_00_00037": "panel",
+                "v0mod_tophat_cat_flap_00_00038": "base",
+                "v0mod_tophat_cat_flap_00_00039": "base",
+                "v0mod_tophat_cat_flap_00_00040": "base",
+                "v0mod_tophat_cat_flap_00_00041": "base",
+                "v0mod_tophat_cat_flap_00_00042": "hardware",
+                "v0mod_tophat_cat_flap_00_00043": "hardware",
+                "v0mod_tophat_cat_flap_00_00044": "panel"
+              },
+              "clone": null,
+              "tophat_moving": true
+            }
+          ],
+          "replace_keys": [
+            "v02r1_00792",
+            "v02r1_00793",
+            "v02r1_00794",
+            "v02r1_00795",
+            "v02r1_00796",
+            "v02r1_00797",
+            "v02r1_00798",
+            "v02r1_00799",
+            "v02r1_00800",
+            "v02r1_00801",
+            "v02r1_00802",
+            "v02r1_00803",
+            "v02r1_00804",
+            "v02r1_00805",
+            "v02r1_00806",
+            "v02r1_00807",
+            "v02r1_00808",
+            "v02r1_00809",
+            "v02r1_00810",
+            "v02r1_00811",
+            "v02r1_00812",
+            "v02r1_00813",
+            "v02r1_00814",
+            "v02r1_00815",
+            "v02r1_00816",
+            "v02r1_00817",
+            "v02r1_00818",
+            "v02r1_00819",
+            "v02r1_00820",
+            "v02r1_00821",
+            "v02r1_00822",
+            "v02r1_00823",
+            "v02r1_00824",
+            "v02r1_00825",
+            "v02r1_00826",
+            "v02r1_00827",
+            "v02r1_00828",
+            "v02r1_00829",
+            "v02r1_00830",
+            "v02r1_00831",
+            "v02r1_00832"
+          ],
+          "enclosure": true,
+          "notes": "純正トップハットのフレーム・クリップ・パネルを交換。既存のクリップ固定ネジとナットは継続使用。Cat Flapの小扉は閉じた原本姿勢です。"
+        },
+        {
+          "id": "lift-off-tophat",
+          "slot": "tophat",
+          "label": "Lift-Off Tophat Hinges",
+          "attachments": [
+            {
+              "module": "v0mod_lift_off_tophat",
+              "keys": [
+                "v0mod_lift_off_tophat_00_00000"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                -0.0018363783639756548,
+                0,
+                -49.20000356215568
+              ],
+              "motion": "fixed",
+              "roles": {
+                "v0mod_lift_off_tophat_00_00000": "base"
+              },
+              "tophat_moving": true
+            },
+            {
+              "module": "v0mod_lift_off_tophat",
+              "keys": [
+                "v0mod_lift_off_tophat_00_00002"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                -0.0018363807299976997,
+                0,
+                -49.20000356215568
+              ],
+              "motion": "fixed",
+              "roles": {
+                "v0mod_lift_off_tophat_00_00002": "base"
+              }
+            },
+            {
+              "module": "v0mod_lift_off_tophat",
+              "keys": [
+                "v0mod_lift_off_tophat_00_00005"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                0.11721865066301973,
+                0,
+                -49.20000356215568
+              ],
+              "motion": "fixed",
+              "roles": {
+                "v0mod_lift_off_tophat_00_00005": "base"
+              }
+            },
+            {
+              "module": "v0mod_lift_off_tophat",
+              "keys": [
+                "v0mod_lift_off_tophat_00_00006"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                -0.40183638074577743,
+                0,
+                -49.20000356215568
+              ],
+              "motion": "fixed",
+              "roles": {
+                "v0mod_lift_off_tophat_00_00006": "base"
+              },
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02r1_00894",
+              "rotation_xyz_deg": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "translation_mm": [
+                1.0686450480079657e-07,
+                -0.6138224265241234,
+                -3.0031383314039886
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-top-bolt-0-0",
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02r1_00902",
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                1.0688771112654649e-07,
+                0,
+                -3.0031383314312734
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-top-nut-0-0",
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02r1_00895",
+              "rotation_xyz_deg": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "translation_mm": [
+                1.0682965978503489e-07,
+                -0.6199366616173876,
+                -3.0031471046895035
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-top-bolt-0-1",
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02r1_00901",
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                1.0683189088922518e-07,
+                0,
+                -3.0031471047156515
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-top-nut-0-1",
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02r1_00897",
+              "rotation_xyz_deg": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "translation_mm": [
+                1.0687642770790262e-07,
+                -0.6138224260538436,
+                -3.003138191933317
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-top-bolt-6-0",
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02r1_00900",
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                1.0687838880585332e-07,
+                0,
+                -3.0031381919604883
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-top-nut-6-0",
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02r1_00896",
+              "rotation_xyz_deg": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "translation_mm": [
+                1.0682072115741903e-07,
+                -0.6199366611439814,
+                -3.003146965218491
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-top-bolt-6-1",
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02r1_00899",
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                1.0682263962280558e-07,
+                0,
+                -3.0031469652447527
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-top-nut-6-1",
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02r1_00270",
+              "rotation_xyz_deg": [
+                0.0,
+                90.0,
+                0.0
+              ],
+              "translation_mm": [
+                -111.88898315551441,
+                137.70851770966576,
+                158.7475546422092
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-pivot-2"
+            },
+            {
+              "module": "ahi_drive_flat_sherpa",
+              "keys": [
+                "ahi_drive_flat_sherpa_187"
+              ],
+              "rotation_xyz_deg": [
+                -2.0991660897659211e-13,
+                -2.0355549961366507e-13,
+                89.99999999999994
+              ],
+              "translation_mm": [
+                69.04631531724779,
+                129.473491750432,
+                225.6099665635885
+              ],
+              "motion": "fixed",
+              "roles": {
+                "ahi_drive_flat_sherpa_187": "hardware"
+              },
+              "clone": "lift-off-heatset-2"
+            },
+            {
+              "stock_key": "v02r1_00270",
+              "rotation_xyz_deg": [
+                0.0,
+                -90.0,
+                0.0
+              ],
+              "translation_mm": [
+                111.88898319196386,
+                137.70851770941343,
+                350.98755498024394
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-pivot-5"
+            },
+            {
+              "module": "ahi_drive_flat_sherpa",
+              "keys": [
+                "ahi_drive_flat_sherpa_187"
+              ],
+              "rotation_xyz_deg": [
+                -2.0991660897659211e-13,
+                -2.0355549961366507e-13,
+                89.99999999999994
+              ],
+              "translation_mm": [
+                -119.93462945991868,
+                129.47349175017968,
+                225.60996690161898
+              ],
+              "motion": "fixed",
+              "roles": {
+                "ahi_drive_flat_sherpa_187": "hardware"
+              },
+              "clone": "lift-off-heatset-5"
+            }
+          ],
+          "replace_keys": [
+            "v02r1_00826",
+            "v02r1_00743",
+            "v02r1_00742",
+            "v02r1_00827",
+            "v02r1_00894",
+            "v02r1_00902",
+            "v02r1_00895",
+            "v02r1_00901",
+            "v02r1_00897",
+            "v02r1_00900",
+            "v02r1_00896",
+            "v02r1_00899",
+            "v02r1_00893",
+            "v02r1_00898",
+            "v02r1_00752",
+            "v02r1_00753"
+          ],
+          "enclosure": true,
+          "notes": [
+            "左右のヒンジとM3×25ピボットネジ、5×4 mmのインサートを組み込み。純正の固定ネジとナットを再使用します。",
+            "ピボットネジは原作者の組立指示どおり締め切らず、ヒンジの回転面に0.2 mmの隙間を残します。",
+            "サポート省略モデルです。原本の独立サポート2部品と参照パネルクリップを省き、主部品の形状は保持しています。",
+            "トップハット全体はヒンジに沿って開閉できます。脱着と270°の取り外し動作は表示していません。"
+          ],
+          "tophat_pivot_mm": [
+            0,
+            125.21801208085,
+            254.86755464222435
+          ],
+          "tophat_max_angle_deg": 110
+        },
+        {
+          "id": "cat-flap-lift-off",
+          "slot": "tophat",
+          "label": "Cat Flap + Lift-Off Hinges",
+          "attachments": [
+            {
+              "module": "v0mod_tophat_cat_flap",
+              "keys": [
+                "v0mod_tophat_cat_flap_00_00000",
+                "v0mod_tophat_cat_flap_00_00001",
+                "v0mod_tophat_cat_flap_00_00002",
+                "v0mod_tophat_cat_flap_00_00003",
+                "v0mod_tophat_cat_flap_00_00004",
+                "v0mod_tophat_cat_flap_00_00005",
+                "v0mod_tophat_cat_flap_00_00006",
+                "v0mod_tophat_cat_flap_00_00007",
+                "v0mod_tophat_cat_flap_00_00008",
+                "v0mod_tophat_cat_flap_00_00009",
+                "v0mod_tophat_cat_flap_00_00010",
+                "v0mod_tophat_cat_flap_00_00011",
+                "v0mod_tophat_cat_flap_00_00012",
+                "v0mod_tophat_cat_flap_00_00013",
+                "v0mod_tophat_cat_flap_00_00014",
+                "v0mod_tophat_cat_flap_00_00015",
+                "v0mod_tophat_cat_flap_00_00016",
+                "v0mod_tophat_cat_flap_00_00017",
+                "v0mod_tophat_cat_flap_00_00018",
+                "v0mod_tophat_cat_flap_00_00019",
+                "v0mod_tophat_cat_flap_00_00020",
+                "v0mod_tophat_cat_flap_00_00021",
+                "v0mod_tophat_cat_flap_00_00022",
+                "v0mod_tophat_cat_flap_00_00023",
+                "v0mod_tophat_cat_flap_00_00024",
+                "v0mod_tophat_cat_flap_00_00025",
+                "v0mod_tophat_cat_flap_00_00026",
+                "v0mod_tophat_cat_flap_00_00027",
+                "v0mod_tophat_cat_flap_00_00028",
+                "v0mod_tophat_cat_flap_00_00029",
+                "v0mod_tophat_cat_flap_00_00030",
+                "v0mod_tophat_cat_flap_00_00031",
+                "v0mod_tophat_cat_flap_00_00034",
+                "v0mod_tophat_cat_flap_00_00035",
+                "v0mod_tophat_cat_flap_00_00036",
+                "v0mod_tophat_cat_flap_00_00037",
+                "v0mod_tophat_cat_flap_00_00038",
+                "v0mod_tophat_cat_flap_00_00039",
+                "v0mod_tophat_cat_flap_00_00040",
+                "v0mod_tophat_cat_flap_00_00041",
+                "v0mod_tophat_cat_flap_00_00042",
+                "v0mod_tophat_cat_flap_00_00043",
+                "v0mod_tophat_cat_flap_00_00044"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                -0.0018364876295891008,
+                6.321528189801029e-09,
+                -49.20000356215568
+              ],
+              "motion": "fixed",
+              "roles": {
+                "v0mod_tophat_cat_flap_00_00000": "base",
+                "v0mod_tophat_cat_flap_00_00001": "base",
+                "v0mod_tophat_cat_flap_00_00002": "base",
+                "v0mod_tophat_cat_flap_00_00003": "base",
+                "v0mod_tophat_cat_flap_00_00004": "base",
+                "v0mod_tophat_cat_flap_00_00005": "frame",
+                "v0mod_tophat_cat_flap_00_00006": "frame",
+                "v0mod_tophat_cat_flap_00_00007": "frame",
+                "v0mod_tophat_cat_flap_00_00008": "frame",
+                "v0mod_tophat_cat_flap_00_00009": "frame",
+                "v0mod_tophat_cat_flap_00_00010": "frame",
+                "v0mod_tophat_cat_flap_00_00011": "frame",
+                "v0mod_tophat_cat_flap_00_00012": "frame",
+                "v0mod_tophat_cat_flap_00_00013": "hardware",
+                "v0mod_tophat_cat_flap_00_00014": "hardware",
+                "v0mod_tophat_cat_flap_00_00015": "hardware",
+                "v0mod_tophat_cat_flap_00_00016": "hardware",
+                "v0mod_tophat_cat_flap_00_00017": "hardware",
+                "v0mod_tophat_cat_flap_00_00018": "hardware",
+                "v0mod_tophat_cat_flap_00_00019": "hardware",
+                "v0mod_tophat_cat_flap_00_00020": "hardware",
+                "v0mod_tophat_cat_flap_00_00021": "base",
+                "v0mod_tophat_cat_flap_00_00022": "base",
+                "v0mod_tophat_cat_flap_00_00023": "base",
+                "v0mod_tophat_cat_flap_00_00024": "base",
+                "v0mod_tophat_cat_flap_00_00025": "base",
+                "v0mod_tophat_cat_flap_00_00026": "base",
+                "v0mod_tophat_cat_flap_00_00027": "base",
+                "v0mod_tophat_cat_flap_00_00028": "base",
+                "v0mod_tophat_cat_flap_00_00029": "base",
+                "v0mod_tophat_cat_flap_00_00030": "base",
+                "v0mod_tophat_cat_flap_00_00031": "base",
+                "v0mod_tophat_cat_flap_00_00034": "panel",
+                "v0mod_tophat_cat_flap_00_00035": "panel",
+                "v0mod_tophat_cat_flap_00_00036": "panel",
+                "v0mod_tophat_cat_flap_00_00037": "panel",
+                "v0mod_tophat_cat_flap_00_00038": "base",
+                "v0mod_tophat_cat_flap_00_00039": "base",
+                "v0mod_tophat_cat_flap_00_00040": "base",
+                "v0mod_tophat_cat_flap_00_00041": "base",
+                "v0mod_tophat_cat_flap_00_00042": "hardware",
+                "v0mod_tophat_cat_flap_00_00043": "hardware",
+                "v0mod_tophat_cat_flap_00_00044": "panel"
+              },
+              "clone": null,
+              "tophat_moving": true
+            },
+            {
+              "module": "v0mod_lift_off_tophat",
+              "keys": [
+                "v0mod_lift_off_tophat_00_00000"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                -0.0018363783639756548,
+                0,
+                -49.20000356215568
+              ],
+              "motion": "fixed",
+              "roles": {
+                "v0mod_lift_off_tophat_00_00000": "base"
+              },
+              "tophat_moving": true
+            },
+            {
+              "module": "v0mod_lift_off_tophat",
+              "keys": [
+                "v0mod_lift_off_tophat_00_00002"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                -0.0018363807299976997,
+                0,
+                -49.20000356215568
+              ],
+              "motion": "fixed",
+              "roles": {
+                "v0mod_lift_off_tophat_00_00002": "base"
+              }
+            },
+            {
+              "module": "v0mod_lift_off_tophat",
+              "keys": [
+                "v0mod_lift_off_tophat_00_00005"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                0.11721865066301973,
+                0,
+                -49.20000356215568
+              ],
+              "motion": "fixed",
+              "roles": {
+                "v0mod_lift_off_tophat_00_00005": "base"
+              }
+            },
+            {
+              "module": "v0mod_lift_off_tophat",
+              "keys": [
+                "v0mod_lift_off_tophat_00_00006"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                -0.40183638074577743,
+                0,
+                -49.20000356215568
+              ],
+              "motion": "fixed",
+              "roles": {
+                "v0mod_lift_off_tophat_00_00006": "base"
+              },
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02r1_00894",
+              "rotation_xyz_deg": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "translation_mm": [
+                1.0686450480079657e-07,
+                -0.6138224265241234,
+                -3.0031383314039886
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-top-bolt-0-0",
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02r1_00902",
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                1.0688771112654649e-07,
+                0,
+                -3.0031383314312734
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-top-nut-0-0",
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02r1_00895",
+              "rotation_xyz_deg": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "translation_mm": [
+                1.0682965978503489e-07,
+                -0.6199366616173876,
+                -3.0031471046895035
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-top-bolt-0-1",
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02r1_00901",
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                1.0683189088922518e-07,
+                0,
+                -3.0031471047156515
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-top-nut-0-1",
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02r1_00897",
+              "rotation_xyz_deg": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "translation_mm": [
+                1.0687642770790262e-07,
+                -0.6138224260538436,
+                -3.003138191933317
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-top-bolt-6-0",
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02r1_00900",
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                1.0687838880585332e-07,
+                0,
+                -3.0031381919604883
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-top-nut-6-0",
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02r1_00896",
+              "rotation_xyz_deg": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "translation_mm": [
+                1.0682072115741903e-07,
+                -0.6199366611439814,
+                -3.003146965218491
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-top-bolt-6-1",
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02r1_00899",
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                1.0682263962280558e-07,
+                0,
+                -3.0031469652447527
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-top-nut-6-1",
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02r1_00270",
+              "rotation_xyz_deg": [
+                0.0,
+                90.0,
+                0.0
+              ],
+              "translation_mm": [
+                -111.88898315551441,
+                137.70851770966576,
+                158.7475546422092
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-pivot-2"
+            },
+            {
+              "module": "ahi_drive_flat_sherpa",
+              "keys": [
+                "ahi_drive_flat_sherpa_187"
+              ],
+              "rotation_xyz_deg": [
+                -2.0991660897659211e-13,
+                -2.0355549961366507e-13,
+                89.99999999999994
+              ],
+              "translation_mm": [
+                69.04631531724779,
+                129.473491750432,
+                225.6099665635885
+              ],
+              "motion": "fixed",
+              "roles": {
+                "ahi_drive_flat_sherpa_187": "hardware"
+              },
+              "clone": "lift-off-heatset-2"
+            },
+            {
+              "stock_key": "v02r1_00270",
+              "rotation_xyz_deg": [
+                0.0,
+                -90.0,
+                0.0
+              ],
+              "translation_mm": [
+                111.88898319196386,
+                137.70851770941343,
+                350.98755498024394
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-pivot-5"
+            },
+            {
+              "module": "ahi_drive_flat_sherpa",
+              "keys": [
+                "ahi_drive_flat_sherpa_187"
+              ],
+              "rotation_xyz_deg": [
+                -2.0991660897659211e-13,
+                -2.0355549961366507e-13,
+                89.99999999999994
+              ],
+              "translation_mm": [
+                -119.93462945991868,
+                129.47349175017968,
+                225.60996690161898
+              ],
+              "motion": "fixed",
+              "roles": {
+                "ahi_drive_flat_sherpa_187": "hardware"
+              },
+              "clone": "lift-off-heatset-5"
+            }
+          ],
+          "replace_keys": [
+            "v02r1_00792",
+            "v02r1_00793",
+            "v02r1_00794",
+            "v02r1_00795",
+            "v02r1_00796",
+            "v02r1_00797",
+            "v02r1_00798",
+            "v02r1_00799",
+            "v02r1_00800",
+            "v02r1_00801",
+            "v02r1_00802",
+            "v02r1_00803",
+            "v02r1_00804",
+            "v02r1_00805",
+            "v02r1_00806",
+            "v02r1_00807",
+            "v02r1_00808",
+            "v02r1_00809",
+            "v02r1_00810",
+            "v02r1_00811",
+            "v02r1_00812",
+            "v02r1_00813",
+            "v02r1_00814",
+            "v02r1_00815",
+            "v02r1_00816",
+            "v02r1_00817",
+            "v02r1_00818",
+            "v02r1_00819",
+            "v02r1_00820",
+            "v02r1_00821",
+            "v02r1_00822",
+            "v02r1_00823",
+            "v02r1_00824",
+            "v02r1_00825",
+            "v02r1_00826",
+            "v02r1_00827",
+            "v02r1_00828",
+            "v02r1_00829",
+            "v02r1_00830",
+            "v02r1_00831",
+            "v02r1_00832",
+            "v02r1_00743",
+            "v02r1_00742",
+            "v02r1_00894",
+            "v02r1_00902",
+            "v02r1_00895",
+            "v02r1_00901",
+            "v02r1_00897",
+            "v02r1_00900",
+            "v02r1_00896",
+            "v02r1_00899",
+            "v02r1_00893",
+            "v02r1_00898",
+            "v02r1_00752",
+            "v02r1_00753"
+          ],
+          "enclosure": true,
+          "notes": [
+            "純正トップハットのフレーム・クリップ・パネルを交換。既存のクリップ固定ネジとナットは継続使用。Cat Flapの小扉は閉じた原本姿勢です。",
+            "左右のヒンジとM3×25ピボットネジ、5×4 mmのインサートを組み込み。純正の固定ネジとナットを再使用します。",
+            "ピボットネジは原作者の組立指示どおり締め切らず、ヒンジの回転面に0.2 mmの隙間を残します。",
+            "サポート省略モデルです。原本の独立サポート2部品と参照パネルクリップを省き、主部品の形状は保持しています。",
+            "トップハット全体はヒンジに沿って開閉できます。脱着と270°の取り外し動作は表示していません。"
+          ],
+          "tophat_pivot_mm": [
+            0,
+            125.21801208085,
+            254.86755464222435
+          ],
+          "tophat_max_angle_deg": 110
         }
       ]
     },
@@ -7928,6 +8735,974 @@
             "Rapid Burner v8・Rapido UHF・Sherpa Mini R2（標準フロント）。専用マウントと3010冷却ファン、左右4010ブロワーを使用。ホットエンドを90°回して配線出口をキャリッジから逃がします。",
             "閉じた純正ドアの前端と公称Z上限では接触があります。ドアの角度とZ取付条件を確認してください。"
           ]
+        },
+        {
+          "id": "cat-flap",
+          "slot": "tophat",
+          "label": "Cat Flap · 80 mm押出フレーム",
+          "attachments": [
+            {
+              "module": "v0mod_tophat_cat_flap",
+              "keys": [
+                "v0mod_tophat_cat_flap_00_00000",
+                "v0mod_tophat_cat_flap_00_00001",
+                "v0mod_tophat_cat_flap_00_00002",
+                "v0mod_tophat_cat_flap_00_00003",
+                "v0mod_tophat_cat_flap_00_00004",
+                "v0mod_tophat_cat_flap_00_00005",
+                "v0mod_tophat_cat_flap_00_00006",
+                "v0mod_tophat_cat_flap_00_00007",
+                "v0mod_tophat_cat_flap_00_00008",
+                "v0mod_tophat_cat_flap_00_00009",
+                "v0mod_tophat_cat_flap_00_00010",
+                "v0mod_tophat_cat_flap_00_00011",
+                "v0mod_tophat_cat_flap_00_00012",
+                "v0mod_tophat_cat_flap_00_00013",
+                "v0mod_tophat_cat_flap_00_00014",
+                "v0mod_tophat_cat_flap_00_00015",
+                "v0mod_tophat_cat_flap_00_00016",
+                "v0mod_tophat_cat_flap_00_00017",
+                "v0mod_tophat_cat_flap_00_00018",
+                "v0mod_tophat_cat_flap_00_00019",
+                "v0mod_tophat_cat_flap_00_00020",
+                "v0mod_tophat_cat_flap_00_00021",
+                "v0mod_tophat_cat_flap_00_00022",
+                "v0mod_tophat_cat_flap_00_00023",
+                "v0mod_tophat_cat_flap_00_00024",
+                "v0mod_tophat_cat_flap_00_00025",
+                "v0mod_tophat_cat_flap_00_00026",
+                "v0mod_tophat_cat_flap_00_00027",
+                "v0mod_tophat_cat_flap_00_00028",
+                "v0mod_tophat_cat_flap_00_00029",
+                "v0mod_tophat_cat_flap_00_00030",
+                "v0mod_tophat_cat_flap_00_00031",
+                "v0mod_tophat_cat_flap_00_00032",
+                "v0mod_tophat_cat_flap_00_00033",
+                "v0mod_tophat_cat_flap_00_00034",
+                "v0mod_tophat_cat_flap_00_00035",
+                "v0mod_tophat_cat_flap_00_00036",
+                "v0mod_tophat_cat_flap_00_00037",
+                "v0mod_tophat_cat_flap_00_00038",
+                "v0mod_tophat_cat_flap_00_00039",
+                "v0mod_tophat_cat_flap_00_00040",
+                "v0mod_tophat_cat_flap_00_00041",
+                "v0mod_tophat_cat_flap_00_00042",
+                "v0mod_tophat_cat_flap_00_00043",
+                "v0mod_tophat_cat_flap_00_00044"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                -0.0018364876295891008,
+                6.321528189801029e-09,
+                -49.20000356215568
+              ],
+              "motion": "fixed",
+              "roles": {
+                "v0mod_tophat_cat_flap_00_00000": "base",
+                "v0mod_tophat_cat_flap_00_00001": "base",
+                "v0mod_tophat_cat_flap_00_00002": "base",
+                "v0mod_tophat_cat_flap_00_00003": "base",
+                "v0mod_tophat_cat_flap_00_00004": "base",
+                "v0mod_tophat_cat_flap_00_00005": "frame",
+                "v0mod_tophat_cat_flap_00_00006": "frame",
+                "v0mod_tophat_cat_flap_00_00007": "frame",
+                "v0mod_tophat_cat_flap_00_00008": "frame",
+                "v0mod_tophat_cat_flap_00_00009": "frame",
+                "v0mod_tophat_cat_flap_00_00010": "frame",
+                "v0mod_tophat_cat_flap_00_00011": "frame",
+                "v0mod_tophat_cat_flap_00_00012": "frame",
+                "v0mod_tophat_cat_flap_00_00013": "hardware",
+                "v0mod_tophat_cat_flap_00_00014": "hardware",
+                "v0mod_tophat_cat_flap_00_00015": "hardware",
+                "v0mod_tophat_cat_flap_00_00016": "hardware",
+                "v0mod_tophat_cat_flap_00_00017": "hardware",
+                "v0mod_tophat_cat_flap_00_00018": "hardware",
+                "v0mod_tophat_cat_flap_00_00019": "hardware",
+                "v0mod_tophat_cat_flap_00_00020": "hardware",
+                "v0mod_tophat_cat_flap_00_00021": "base",
+                "v0mod_tophat_cat_flap_00_00022": "base",
+                "v0mod_tophat_cat_flap_00_00023": "base",
+                "v0mod_tophat_cat_flap_00_00024": "base",
+                "v0mod_tophat_cat_flap_00_00025": "base",
+                "v0mod_tophat_cat_flap_00_00026": "base",
+                "v0mod_tophat_cat_flap_00_00027": "base",
+                "v0mod_tophat_cat_flap_00_00028": "base",
+                "v0mod_tophat_cat_flap_00_00029": "base",
+                "v0mod_tophat_cat_flap_00_00030": "base",
+                "v0mod_tophat_cat_flap_00_00031": "base",
+                "v0mod_tophat_cat_flap_00_00032": "base",
+                "v0mod_tophat_cat_flap_00_00033": "base",
+                "v0mod_tophat_cat_flap_00_00034": "panel",
+                "v0mod_tophat_cat_flap_00_00035": "panel",
+                "v0mod_tophat_cat_flap_00_00036": "panel",
+                "v0mod_tophat_cat_flap_00_00037": "panel",
+                "v0mod_tophat_cat_flap_00_00038": "base",
+                "v0mod_tophat_cat_flap_00_00039": "base",
+                "v0mod_tophat_cat_flap_00_00040": "base",
+                "v0mod_tophat_cat_flap_00_00041": "base",
+                "v0mod_tophat_cat_flap_00_00042": "hardware",
+                "v0mod_tophat_cat_flap_00_00043": "hardware",
+                "v0mod_tophat_cat_flap_00_00044": "panel"
+              },
+              "clone": null,
+              "tophat_moving": true
+            }
+          ],
+          "replace_keys": [
+            "v02_00767",
+            "v02_00768",
+            "v02_00769",
+            "v02_00770",
+            "v02_00771",
+            "v02_00772",
+            "v02_00773",
+            "v02_00774",
+            "v02_00775",
+            "v02_00776",
+            "v02_00777",
+            "v02_00778",
+            "v02_00779",
+            "v02_00780",
+            "v02_00781",
+            "v02_00782",
+            "v02_00783",
+            "v02_00784",
+            "v02_00785",
+            "v02_00786",
+            "v02_00787",
+            "v02_00788",
+            "v02_00789",
+            "v02_00790",
+            "v02_00791",
+            "v02_00792",
+            "v02_00793",
+            "v02_00794",
+            "v02_00795",
+            "v02_00796",
+            "v02_00797",
+            "v02_00798",
+            "v02_00799",
+            "v02_00800",
+            "v02_00801",
+            "v02_00802",
+            "v02_00803",
+            "v02_00804",
+            "v02_00805",
+            "v02_00806",
+            "v02_00807"
+          ],
+          "enclosure": true,
+          "notes": "純正トップハットのフレーム・クリップ・パネルを交換。既存のクリップ固定ネジとナットは継続使用。Cat Flapの小扉は閉じた原本姿勢です。"
+        },
+        {
+          "id": "lift-off-tophat",
+          "slot": "tophat",
+          "label": "Lift-Off Tophat Hinges",
+          "attachments": [
+            {
+              "module": "v0mod_lift_off_tophat",
+              "keys": [
+                "v0mod_lift_off_tophat_00_00000"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                -0.0018363783639756548,
+                0,
+                -49.20000356215568
+              ],
+              "motion": "fixed",
+              "roles": {
+                "v0mod_lift_off_tophat_00_00000": "base"
+              },
+              "tophat_moving": true
+            },
+            {
+              "module": "v0mod_lift_off_tophat",
+              "keys": [
+                "v0mod_lift_off_tophat_00_00002"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                -0.0018363807299976997,
+                0,
+                -49.20000356215568
+              ],
+              "motion": "fixed",
+              "roles": {
+                "v0mod_lift_off_tophat_00_00002": "base"
+              }
+            },
+            {
+              "module": "v0mod_lift_off_tophat",
+              "keys": [
+                "v0mod_lift_off_tophat_00_00005"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                0.11721865066301973,
+                0,
+                -49.20000356215568
+              ],
+              "motion": "fixed",
+              "roles": {
+                "v0mod_lift_off_tophat_00_00005": "base"
+              }
+            },
+            {
+              "module": "v0mod_lift_off_tophat",
+              "keys": [
+                "v0mod_lift_off_tophat_00_00006"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                -0.40183638074577743,
+                0,
+                -49.20000356215568
+              ],
+              "motion": "fixed",
+              "roles": {
+                "v0mod_lift_off_tophat_00_00006": "base"
+              },
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02_00869",
+              "rotation_xyz_deg": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "translation_mm": [
+                1.0686450480079657e-07,
+                -0.6138224265241234,
+                -3.0031383314039886
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-top-bolt-0-0",
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02_00877",
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                1.0688771112654649e-07,
+                0,
+                -3.0031383314312734
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-top-nut-0-0",
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02_00870",
+              "rotation_xyz_deg": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "translation_mm": [
+                1.0682965978503489e-07,
+                -0.6199366616173876,
+                -3.0031471046895035
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-top-bolt-0-1",
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02_00876",
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                1.0683189088922518e-07,
+                0,
+                -3.0031471047156515
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-top-nut-0-1",
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02_00872",
+              "rotation_xyz_deg": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "translation_mm": [
+                1.0687642770790262e-07,
+                -0.6138224260538436,
+                -3.003138191933317
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-top-bolt-6-0",
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02_00875",
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                1.0687838880585332e-07,
+                0,
+                -3.0031381919604883
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-top-nut-6-0",
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02_00871",
+              "rotation_xyz_deg": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "translation_mm": [
+                1.0682072115741903e-07,
+                -0.6199366611439814,
+                -3.003146965218491
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-top-bolt-6-1",
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02_00874",
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                1.0682263962280558e-07,
+                0,
+                -3.0031469652447527
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-top-nut-6-1",
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02_00268",
+              "rotation_xyz_deg": [
+                0.0,
+                90.0,
+                0.0
+              ],
+              "translation_mm": [
+                -111.88898315551441,
+                137.70851770966576,
+                158.7475546422092
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-pivot-2"
+            },
+            {
+              "module": "ahi_drive_flat_sherpa",
+              "keys": [
+                "ahi_drive_flat_sherpa_187"
+              ],
+              "rotation_xyz_deg": [
+                -2.0991660897659211e-13,
+                -2.0355549961366507e-13,
+                89.99999999999994
+              ],
+              "translation_mm": [
+                69.04631531724779,
+                129.473491750432,
+                225.6099665635885
+              ],
+              "motion": "fixed",
+              "roles": {
+                "ahi_drive_flat_sherpa_187": "hardware"
+              },
+              "clone": "lift-off-heatset-2"
+            },
+            {
+              "stock_key": "v02_00268",
+              "rotation_xyz_deg": [
+                0.0,
+                -90.0,
+                0.0
+              ],
+              "translation_mm": [
+                111.88898319196386,
+                137.70851770941343,
+                350.98755498024394
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-pivot-5"
+            },
+            {
+              "module": "ahi_drive_flat_sherpa",
+              "keys": [
+                "ahi_drive_flat_sherpa_187"
+              ],
+              "rotation_xyz_deg": [
+                -2.0991660897659211e-13,
+                -2.0355549961366507e-13,
+                89.99999999999994
+              ],
+              "translation_mm": [
+                -119.93462945991868,
+                129.47349175017968,
+                225.60996690161898
+              ],
+              "motion": "fixed",
+              "roles": {
+                "ahi_drive_flat_sherpa_187": "hardware"
+              },
+              "clone": "lift-off-heatset-5"
+            }
+          ],
+          "replace_keys": [
+            "v02_00801",
+            "v02_00722",
+            "v02_00721",
+            "v02_00802",
+            "v02_00869",
+            "v02_00877",
+            "v02_00870",
+            "v02_00876",
+            "v02_00872",
+            "v02_00875",
+            "v02_00871",
+            "v02_00874",
+            "v02_00868",
+            "v02_00873",
+            "v02_00731",
+            "v02_00732"
+          ],
+          "enclosure": true,
+          "notes": [
+            "左右のヒンジとM3×25ピボットネジ、5×4 mmのインサートを組み込み。純正の固定ネジとナットを再使用します。",
+            "ピボットネジは原作者の組立指示どおり締め切らず、ヒンジの回転面に0.2 mmの隙間を残します。",
+            "サポート省略モデルです。原本の独立サポート2部品と参照パネルクリップを省き、主部品の形状は保持しています。",
+            "トップハット全体はヒンジに沿って開閉できます。脱着と270°の取り外し動作は表示していません。"
+          ],
+          "tophat_pivot_mm": [
+            0,
+            125.21801208085,
+            254.86755464222435
+          ],
+          "tophat_max_angle_deg": 110
+        },
+        {
+          "id": "cat-flap-lift-off",
+          "slot": "tophat",
+          "label": "Cat Flap + Lift-Off Hinges",
+          "attachments": [
+            {
+              "module": "v0mod_tophat_cat_flap",
+              "keys": [
+                "v0mod_tophat_cat_flap_00_00000",
+                "v0mod_tophat_cat_flap_00_00001",
+                "v0mod_tophat_cat_flap_00_00002",
+                "v0mod_tophat_cat_flap_00_00003",
+                "v0mod_tophat_cat_flap_00_00004",
+                "v0mod_tophat_cat_flap_00_00005",
+                "v0mod_tophat_cat_flap_00_00006",
+                "v0mod_tophat_cat_flap_00_00007",
+                "v0mod_tophat_cat_flap_00_00008",
+                "v0mod_tophat_cat_flap_00_00009",
+                "v0mod_tophat_cat_flap_00_00010",
+                "v0mod_tophat_cat_flap_00_00011",
+                "v0mod_tophat_cat_flap_00_00012",
+                "v0mod_tophat_cat_flap_00_00013",
+                "v0mod_tophat_cat_flap_00_00014",
+                "v0mod_tophat_cat_flap_00_00015",
+                "v0mod_tophat_cat_flap_00_00016",
+                "v0mod_tophat_cat_flap_00_00017",
+                "v0mod_tophat_cat_flap_00_00018",
+                "v0mod_tophat_cat_flap_00_00019",
+                "v0mod_tophat_cat_flap_00_00020",
+                "v0mod_tophat_cat_flap_00_00021",
+                "v0mod_tophat_cat_flap_00_00022",
+                "v0mod_tophat_cat_flap_00_00023",
+                "v0mod_tophat_cat_flap_00_00024",
+                "v0mod_tophat_cat_flap_00_00025",
+                "v0mod_tophat_cat_flap_00_00026",
+                "v0mod_tophat_cat_flap_00_00027",
+                "v0mod_tophat_cat_flap_00_00028",
+                "v0mod_tophat_cat_flap_00_00029",
+                "v0mod_tophat_cat_flap_00_00030",
+                "v0mod_tophat_cat_flap_00_00031",
+                "v0mod_tophat_cat_flap_00_00034",
+                "v0mod_tophat_cat_flap_00_00035",
+                "v0mod_tophat_cat_flap_00_00036",
+                "v0mod_tophat_cat_flap_00_00037",
+                "v0mod_tophat_cat_flap_00_00038",
+                "v0mod_tophat_cat_flap_00_00039",
+                "v0mod_tophat_cat_flap_00_00040",
+                "v0mod_tophat_cat_flap_00_00041",
+                "v0mod_tophat_cat_flap_00_00042",
+                "v0mod_tophat_cat_flap_00_00043",
+                "v0mod_tophat_cat_flap_00_00044"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                -0.0018364876295891008,
+                6.321528189801029e-09,
+                -49.20000356215568
+              ],
+              "motion": "fixed",
+              "roles": {
+                "v0mod_tophat_cat_flap_00_00000": "base",
+                "v0mod_tophat_cat_flap_00_00001": "base",
+                "v0mod_tophat_cat_flap_00_00002": "base",
+                "v0mod_tophat_cat_flap_00_00003": "base",
+                "v0mod_tophat_cat_flap_00_00004": "base",
+                "v0mod_tophat_cat_flap_00_00005": "frame",
+                "v0mod_tophat_cat_flap_00_00006": "frame",
+                "v0mod_tophat_cat_flap_00_00007": "frame",
+                "v0mod_tophat_cat_flap_00_00008": "frame",
+                "v0mod_tophat_cat_flap_00_00009": "frame",
+                "v0mod_tophat_cat_flap_00_00010": "frame",
+                "v0mod_tophat_cat_flap_00_00011": "frame",
+                "v0mod_tophat_cat_flap_00_00012": "frame",
+                "v0mod_tophat_cat_flap_00_00013": "hardware",
+                "v0mod_tophat_cat_flap_00_00014": "hardware",
+                "v0mod_tophat_cat_flap_00_00015": "hardware",
+                "v0mod_tophat_cat_flap_00_00016": "hardware",
+                "v0mod_tophat_cat_flap_00_00017": "hardware",
+                "v0mod_tophat_cat_flap_00_00018": "hardware",
+                "v0mod_tophat_cat_flap_00_00019": "hardware",
+                "v0mod_tophat_cat_flap_00_00020": "hardware",
+                "v0mod_tophat_cat_flap_00_00021": "base",
+                "v0mod_tophat_cat_flap_00_00022": "base",
+                "v0mod_tophat_cat_flap_00_00023": "base",
+                "v0mod_tophat_cat_flap_00_00024": "base",
+                "v0mod_tophat_cat_flap_00_00025": "base",
+                "v0mod_tophat_cat_flap_00_00026": "base",
+                "v0mod_tophat_cat_flap_00_00027": "base",
+                "v0mod_tophat_cat_flap_00_00028": "base",
+                "v0mod_tophat_cat_flap_00_00029": "base",
+                "v0mod_tophat_cat_flap_00_00030": "base",
+                "v0mod_tophat_cat_flap_00_00031": "base",
+                "v0mod_tophat_cat_flap_00_00034": "panel",
+                "v0mod_tophat_cat_flap_00_00035": "panel",
+                "v0mod_tophat_cat_flap_00_00036": "panel",
+                "v0mod_tophat_cat_flap_00_00037": "panel",
+                "v0mod_tophat_cat_flap_00_00038": "base",
+                "v0mod_tophat_cat_flap_00_00039": "base",
+                "v0mod_tophat_cat_flap_00_00040": "base",
+                "v0mod_tophat_cat_flap_00_00041": "base",
+                "v0mod_tophat_cat_flap_00_00042": "hardware",
+                "v0mod_tophat_cat_flap_00_00043": "hardware",
+                "v0mod_tophat_cat_flap_00_00044": "panel"
+              },
+              "clone": null,
+              "tophat_moving": true
+            },
+            {
+              "module": "v0mod_lift_off_tophat",
+              "keys": [
+                "v0mod_lift_off_tophat_00_00000"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                -0.0018363783639756548,
+                0,
+                -49.20000356215568
+              ],
+              "motion": "fixed",
+              "roles": {
+                "v0mod_lift_off_tophat_00_00000": "base"
+              },
+              "tophat_moving": true
+            },
+            {
+              "module": "v0mod_lift_off_tophat",
+              "keys": [
+                "v0mod_lift_off_tophat_00_00002"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                -0.0018363807299976997,
+                0,
+                -49.20000356215568
+              ],
+              "motion": "fixed",
+              "roles": {
+                "v0mod_lift_off_tophat_00_00002": "base"
+              }
+            },
+            {
+              "module": "v0mod_lift_off_tophat",
+              "keys": [
+                "v0mod_lift_off_tophat_00_00005"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                0.11721865066301973,
+                0,
+                -49.20000356215568
+              ],
+              "motion": "fixed",
+              "roles": {
+                "v0mod_lift_off_tophat_00_00005": "base"
+              }
+            },
+            {
+              "module": "v0mod_lift_off_tophat",
+              "keys": [
+                "v0mod_lift_off_tophat_00_00006"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                -0.40183638074577743,
+                0,
+                -49.20000356215568
+              ],
+              "motion": "fixed",
+              "roles": {
+                "v0mod_lift_off_tophat_00_00006": "base"
+              },
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02_00869",
+              "rotation_xyz_deg": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "translation_mm": [
+                1.0686450480079657e-07,
+                -0.6138224265241234,
+                -3.0031383314039886
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-top-bolt-0-0",
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02_00877",
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                1.0688771112654649e-07,
+                0,
+                -3.0031383314312734
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-top-nut-0-0",
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02_00870",
+              "rotation_xyz_deg": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "translation_mm": [
+                1.0682965978503489e-07,
+                -0.6199366616173876,
+                -3.0031471046895035
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-top-bolt-0-1",
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02_00876",
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                1.0683189088922518e-07,
+                0,
+                -3.0031471047156515
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-top-nut-0-1",
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02_00872",
+              "rotation_xyz_deg": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "translation_mm": [
+                1.0687642770790262e-07,
+                -0.6138224260538436,
+                -3.003138191933317
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-top-bolt-6-0",
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02_00875",
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                1.0687838880585332e-07,
+                0,
+                -3.0031381919604883
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-top-nut-6-0",
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02_00871",
+              "rotation_xyz_deg": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "translation_mm": [
+                1.0682072115741903e-07,
+                -0.6199366611439814,
+                -3.003146965218491
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-top-bolt-6-1",
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02_00874",
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                1.0682263962280558e-07,
+                0,
+                -3.0031469652447527
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-top-nut-6-1",
+              "tophat_moving": true
+            },
+            {
+              "stock_key": "v02_00268",
+              "rotation_xyz_deg": [
+                0.0,
+                90.0,
+                0.0
+              ],
+              "translation_mm": [
+                -111.88898315551441,
+                137.70851770966576,
+                158.7475546422092
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-pivot-2"
+            },
+            {
+              "module": "ahi_drive_flat_sherpa",
+              "keys": [
+                "ahi_drive_flat_sherpa_187"
+              ],
+              "rotation_xyz_deg": [
+                -2.0991660897659211e-13,
+                -2.0355549961366507e-13,
+                89.99999999999994
+              ],
+              "translation_mm": [
+                69.04631531724779,
+                129.473491750432,
+                225.6099665635885
+              ],
+              "motion": "fixed",
+              "roles": {
+                "ahi_drive_flat_sherpa_187": "hardware"
+              },
+              "clone": "lift-off-heatset-2"
+            },
+            {
+              "stock_key": "v02_00268",
+              "rotation_xyz_deg": [
+                0.0,
+                -90.0,
+                0.0
+              ],
+              "translation_mm": [
+                111.88898319196386,
+                137.70851770941343,
+                350.98755498024394
+              ],
+              "motion": "fixed",
+              "role": "hardware",
+              "clone": "lift-off-pivot-5"
+            },
+            {
+              "module": "ahi_drive_flat_sherpa",
+              "keys": [
+                "ahi_drive_flat_sherpa_187"
+              ],
+              "rotation_xyz_deg": [
+                -2.0991660897659211e-13,
+                -2.0355549961366507e-13,
+                89.99999999999994
+              ],
+              "translation_mm": [
+                -119.93462945991868,
+                129.47349175017968,
+                225.60996690161898
+              ],
+              "motion": "fixed",
+              "roles": {
+                "ahi_drive_flat_sherpa_187": "hardware"
+              },
+              "clone": "lift-off-heatset-5"
+            }
+          ],
+          "replace_keys": [
+            "v02_00767",
+            "v02_00768",
+            "v02_00769",
+            "v02_00770",
+            "v02_00771",
+            "v02_00772",
+            "v02_00773",
+            "v02_00774",
+            "v02_00775",
+            "v02_00776",
+            "v02_00777",
+            "v02_00778",
+            "v02_00779",
+            "v02_00780",
+            "v02_00781",
+            "v02_00782",
+            "v02_00783",
+            "v02_00784",
+            "v02_00785",
+            "v02_00786",
+            "v02_00787",
+            "v02_00788",
+            "v02_00789",
+            "v02_00790",
+            "v02_00791",
+            "v02_00792",
+            "v02_00793",
+            "v02_00794",
+            "v02_00795",
+            "v02_00796",
+            "v02_00797",
+            "v02_00798",
+            "v02_00799",
+            "v02_00800",
+            "v02_00801",
+            "v02_00802",
+            "v02_00803",
+            "v02_00804",
+            "v02_00805",
+            "v02_00806",
+            "v02_00807",
+            "v02_00722",
+            "v02_00721",
+            "v02_00869",
+            "v02_00877",
+            "v02_00870",
+            "v02_00876",
+            "v02_00872",
+            "v02_00875",
+            "v02_00871",
+            "v02_00874",
+            "v02_00868",
+            "v02_00873",
+            "v02_00731",
+            "v02_00732"
+          ],
+          "enclosure": true,
+          "notes": [
+            "純正トップハットのフレーム・クリップ・パネルを交換。既存のクリップ固定ネジとナットは継続使用。Cat Flapの小扉は閉じた原本姿勢です。",
+            "左右のヒンジとM3×25ピボットネジ、5×4 mmのインサートを組み込み。純正の固定ネジとナットを再使用します。",
+            "ピボットネジは原作者の組立指示どおり締め切らず、ヒンジの回転面に0.2 mmの隙間を残します。",
+            "サポート省略モデルです。原本の独立サポート2部品と参照パネルクリップを省き、主部品の形状は保持しています。",
+            "トップハット全体はヒンジに沿って開閉できます。脱着と270°の取り外し動作は表示していません。"
+          ],
+          "tophat_pivot_mm": [
+            0,
+            125.21801208085,
+            254.86755464222435
+          ],
+          "tophat_max_angle_deg": 110
         }
       ]
     }
@@ -8058,6 +9833,24 @@
       "metadata_sha256": "87060349b95fe41259f0bbd2c6bc752a8b2d9eb6157caeeaf9b75878d88046e1",
       "metadata": "modules/ahi_hot_rapido_uhf.json",
       "glb": "modules/ahi_hot_rapido_uhf.glb",
+      "repository": "https://github.com/Armchair-Heavy-Industries/Archetype"
+    },
+    "v0mod_lift_off_tophat": {
+      "metadata_sha256": "f73d036d7035cb4ee2fa6353a9a17c16056e57ca05523dc6aa837a51a9d98a38",
+      "metadata": "modules/v0mod_lift_off_tophat/module.json",
+      "glb": "modules/v0mod_lift_off_tophat/module.glb",
+      "repository": {
+        "id": "dragon_burner",
+        "repository": "chirpy2605/voron",
+        "url": "https://github.com/chirpy2605/voron",
+        "requested_ref": "main",
+        "commit": "cc2e749d09d7f24418f9f8c73c90bcefb1e29584"
+      }
+    },
+    "ahi_drive_flat_sherpa": {
+      "metadata_sha256": "069a7fa90e4a78b2f6c1a04e6ca47d005bb60c638ed36cfb5fa1028fd1417fbb",
+      "metadata": "modules/ahi_drive_flat_sherpa.json",
+      "glb": "modules/ahi_drive_flat_sherpa.glb",
       "repository": "https://github.com/Armchair-Heavy-Industries/Archetype"
     }
   }

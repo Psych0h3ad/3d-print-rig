@@ -1,12 +1,12 @@
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=trident-clearance-35';
-import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=trident-clearance-35';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=sc-seats-39';
+import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=sc-seats-39';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=trident-clearance-35';
 import {appearanceRole} from './appearance-role.mjs?v=trident-clearance-35';
 import {partKey} from './head-assembly.js?v=trident-clearance-35';
-import {v24HeadCatalog} from './machine-head-model.mjs?v=trident-clearance-35';
-import {setupConfigurations} from './configurations.js?v=trident-clearance-35';
+import {v24HeadCatalog} from './machine-head-model.mjs?v=sc-seats-39';
+import {setupConfigurations} from './configurations.js?v=sc-seats-39';
 
 import {stockProbeFit} from './probe-mounts.js?v=trident-clearance-35';
 

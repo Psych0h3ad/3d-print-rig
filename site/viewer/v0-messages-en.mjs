@@ -42,6 +42,15 @@ export const v0Messages={
  'Mod原本のバージョンが一致しません':'Source mod version mismatch',
  'V0 Mod設定が不正です':'Invalid V0 mod settings',
  'V0ビューを終了しました':'V0 view has been closed',
+ "左右のヒンジとM3×25ピボットネジ、5×4 mmのインサートを組み込み。純正の固定ネジとナットを再使用します。":"Includes both hinge pairs, M3×25 pivot screws and 5×4 mm inserts. Reuses the stock mounting screws and nuts.",
+ "ピボットネジは原作者の組立指示どおり締め切らず、ヒンジの回転面に0.2 mmの隙間を残します。":"Following the author’s assembly instructions, the pivot screws are not tightened fully; a 0.2 mm gap remains at the hinge turning face.",
+ "サポート省略モデルです。原本の独立サポート2部品と参照パネルクリップを省き、主部品の形状は保持しています。":"Support-omitted model: excludes two independent print supports and the reference panel clip, retaining the original main-part geometry.",
+ "トップハット全体はヒンジに沿って開閉できます。脱着と270°の取り外し動作は表示していません。":"The complete tophat opens around its hinge. Detachment and the 270° removal motion are not displayed.",
+ "純正トップハットのフレーム・クリップ・パネルを交換。既存のクリップ固定ネジとナットは継続使用。Cat Flapの小扉は閉じた原本姿勢です。":"Replaces the stock tophat frame, clips and panels while reusing their mounting screws and nuts. The small Cat Flap door stays in its closed source pose.",
+ "トップハット全体の開閉を表示します。脱着・Cat Flapの小扉・ホーミング接点の校正は含みません。":"Displays whole-tophat opening. Detachment, the small Cat Flap door and physical homing calibration are not included.",
+ "トップハット角度が不正です":"Invalid tophat angle",
+ 'このヒンジの表示角度を超えています':'The angle exceeds this hinge’s display range',
+ 'トップハット全体を開閉。純正ヒンジは90°、Lift-Offは110°まで。脱着・Cat Flapの小扉・実機ホーミングは含みません。':'Opens the complete tophat: stock hinges up to 90°, Lift-Off up to 110°. Detachment, the small Cat Flap door and physical homing are not included.',
 };
 export const v0Templates={
  '{0} · 固定ガントリー・単一Zベッド':'{0} · Fixed gantry / single Z bed',

@@ -1,4 +1,4 @@
-import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=trident-clearance-35';
+import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=sc-seats-39';
 import {catalogDimensions,collections,resolveVariant,choicesFor,choiceChanges,importedVariant,configurationById} from './configuration-model.js?v=trident-clearance-35';
 import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=trident-clearance-35';
 import {renderProductLinks} from './product-links.js?v=trident-clearance-35';

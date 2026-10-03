@@ -14,6 +14,8 @@ const sc=installedHeadPlan(sc6,registry,target);assert.deepEqual(sc.modules.map(
 const ip=installedHeadPlan(indx,registry,target);assert.deepEqual(ip.nozzle_mm,[0,-41,96]);assert.equal(ip.modules.at(-1).id,'head_indx_rail_fasteners');
 assert.deepEqual(machineHeadVariants(heads,registry,'six').map(v=>v.source_head_configuration),['sb','sc6','indx']);
 assert.deepEqual(machineHeadVariants(heads,registry,'nine','awd').map(v=>v.source_head_configuration),['sc9']);
+registry.sources.stealthchanger_9={origin_mm:[0,4,6]};
+assert.deepEqual(installedHeadPlan(sc9,registry,registry.machines.nine.gantries.awd).translation_delta_mm,[0,-4,354]);
 assert.deepEqual(machineHeadVariants(heads,registry,'missing'),[]);
 assert.deepEqual(machineHeadVariants(heads,registry,'nine','missing'),[]);
 for(const machine of ['six','nine'])for(const v of machineHeadVariants(heads,registry,machine,machine==='nine'?'awd':undefined)){assert(v.machine_head.nozzle_mm.every(Number.isFinite));assert.equal(v.fit.machine_mount.full_travel_verified,false);assert.equal(v.fit.machine_mount.docking_registered,false)}

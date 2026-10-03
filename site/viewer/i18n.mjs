@@ -1,4 +1,4 @@
-import {messages,templates} from './messages-en.mjs?v=v0-mounts-38';
+import {messages,templates} from './messages-en.mjs?v=sc-seats-39';
 
 const normalize=text=>text.trim().replace(/\s+/gu,' ');
 const escape=text=>text.replace(/[.*+?^${}()|[\]\\]/gu,'\\$&');

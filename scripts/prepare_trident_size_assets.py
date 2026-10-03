@@ -1,4 +1,4 @@
-"""Generate independent 250/300 Trident CAD from the pinned native 250 assembly.
+"""Generate independent 250/300/350 Trident CAD from the pinned native 250 assembly.
 Requires CadQuery and a preparation workspace containing module_cad/cad_utils and native BREP files.
 All writes go to --output; the preparation workspace is read-only.
 """
@@ -9,7 +9,7 @@ import cadquery as cq
 parser=argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--cad-root',type=Path,required=True)
 parser.add_argument('--output',type=Path,required=True)
-parser.add_argument('--size',type=int,choices=[250,300],required=True)
+parser.add_argument('--size',type=int,choices=[250,300,350],required=True)
 args=parser.parse_args();R=args.cad_root.resolve();O=args.output.resolve();size=args.size
 if O==R or O.is_relative_to(R):raise ValueError('Output must be outside the source workspace')
 if (O/'machines'/f'voron_trident_{size}').exists():raise ValueError('Size output already exists')
@@ -35,6 +35,15 @@ def rail(s,axis,center,pitch):
     return result
 
 amount=size-250;half=amount/2
+def bore(s,radius):
+    result=[]
+    for face in s.Faces():
+        if face.geomType()!='CYLINDER':continue
+        c=face._geomAdaptor().Cylinder()
+        if abs(c.Radius()-radius)<.0001:result.append((np.array(c.Location().Coord()),np.array(c.Axis().Direction().Coord())))
+    assert result,(radius,'Missing native bore')
+    return result[0]
+bed_bolts={1126:676,1127:675,1128:586,1129:587,1130:554,1131:555,1132:623,1133:622,1134:640,1135:667,1136:644,1137:669,1138:668}
 D=R/'output/received_sources/vanilla_trident'
 rows=json.loads((D/'inventory.json').read_text(encoding='utf8'))
 m=Module('voron_trident_'+str(size)+'_base')
@@ -92,6 +101,11 @@ for row in rows:
   delta[1]=half
   if 'PTFE_Tube' in name:motion='reference_flexible'
  shift=tuple(delta+np.array([195,-195,520]))
+ if k in bed_bolts:
+  bolt_key=bed_bolts[k];source_bolt=cq.Shape.importBrep(str(D/(str(bolt_key)+'.brep')));bolt=m.shapes[m.id+'_'+str(bolt_key)]
+  shift=tuple(np.array(bounds(bolt)).mean(axis=0)-np.array(bounds(source_bolt)).mean(axis=0));placed=s.translate(shift)
+  n,axis=bore(placed,1.543 if 'M3'in name else 2.1);q,_=bore(bolt,1.5 if bolt_key in [640,667,644,669,668]else 2.5);difference=q-n;correction=difference-axis*np.dot(difference,axis)
+  shift=tuple(np.array(shift)+correction);motion='z';method='native_bed_nut_registered_to_paired_screw'
  role='accent' if name.startswith('[a]') else 'frame' if 'Extrusion' in name else 'base' if re.search(r'(?:z_carriage|z_bed|z_chain|skirt|mount|bracket|brace|clip|hinge|ExhaustCover|spool_holder)',name,re.I) else None
  color=row['color'] or [.52,.55,.59]
  if re.search(r'(?i)NEMA|fan|stepper',name):color=[.035,.04,.048]
@@ -117,7 +131,7 @@ shutil.copy2(O/'modules'/(m.id+'.step'),target/'assembly.step')
 I=R/'references/mods/Voron-Trident/CAD/exported/full_parts'
 inv=json.loads((I/'inventory.json').read_text(encoding='utf8'))
 m=Module('trident_r2_gantry_'+str(size));car=Module('trident_r2_sb_carriage')
-skip=set(range(48,53))|{45,55,319,321,320,371,372,374,375,379,380,524,525}|set(range(448,456))|set(range(461,467))|set(range(526,534))
+skip=set(range(48,53))|{45,55,319,321,320,371,372,374,375,379,380,524,525}|set(range(448,456))|set(range(461,467))|set(range(526,534))|set(range(508,514))
 # Chain assemblies and the old full toolhead are not part of the replacement.
 # The dual D2F endstop PCB remains on the right XY joint; the rear bumper is fixed.
 shift=np.array([195.,-195.,520.]);rail_screws=[]
@@ -149,6 +163,8 @@ for p in inv:
         s=rail(s,1,195.5,20);delta[0]=half if c[0]>-195 else -half;method=f'{size+50} mm periodic rail'
     elif k in [535,536]:
         s=expand_edges(expand_edges(s,0,amount,(-300,-90)),1,amount,(100,300)) if amount else s;method='6 mm belt: straight sections inserted; centre clamps retained'
+    elif 514<=k<=520:
+        delta[0]=-half if c[0]<-195 else half;motion='y';method='native_X_joint_nut_in_X_beam_slot'
     else:
         delta[:2]=[-half if c[0]<-195 else half,-half if c[1]<195 else half]
     role='accent' if p['name'].startswith('[a]') else 'base' if any(v in p['name'].lower() for v in ['stepper_lower','stepper_upper','idler_housing','xy_left_lower','xy_left_upper','xy_right_lower','xy_right_upper','circlip']) else 'frame' if 'HFSB5' in p['name'] else None
@@ -173,6 +189,12 @@ for key,axis,pitch,template,prefix in [(390,0,25,461,'X'),(456,1,20,448,'Y1'),(5
         placed=m.add(f'{prefix}_bolt_{j}',p['name'],bolt.translate(tuple(target-(bc-shift))),color=[.52,.55,.59],motion='y' if axis==0 else 'fixed',source_key=str(template))
         error=float(np.linalg.norm(np.cross(np.array(bounds(placed)).mean(axis=0)-point,direction)))
         assert error<.001
+        if axis==0:
+            nut=cq.Shape.importBrep(str(I/'508.brep'));n,_=bore(nut,1.543);q,_=bore(placed,1.5)
+            frame=m.shapes[m.id+'_391'];t=np.array([q[0]-n[0],bounds(frame)[0][1]+1.4-bounds(nut)[0][1],q[2]-n[2]])
+            suffix=str(508+j)if j<6 else f'X_tnut_{j:02d}'
+            m.add(suffix,'2020 Drop-in T-nut, M3',nut.translate(tuple(t)),color=inv[508]['color'],motion='y',source_key='508',
+                rail_mount=dict(rail_key=m.id+'_390',frame_key=m.id+'_391',bolt_key=m.id+f'_X_bolt_{j}',thread='M3'))
     positions=[p[axis] for p,d in axes];length=row['bounds_mm'][1][axis]-row['bounds_mm'][0][axis]
     assert abs(length-(size+50))<.001 and all(abs(x-pitch)<.001 for x in np.diff(positions))
     checks.append(dict(part=row['key'],length_mm=length,pitch_mm=pitch,holes=len(axes),max_bolt_axis_error_mm=error))

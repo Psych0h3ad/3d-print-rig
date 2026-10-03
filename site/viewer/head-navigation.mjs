@@ -1,6 +1,6 @@
-import {monolithHeadCatalog} from './monolith-head-model.mjs?v=trident-clearance-35';
+import {monolithHeadCatalog} from './monolith-head-model.mjs?v=sc-seats-39';
 import {machinePage} from './machines.js?v=crossant-36';
-import {machineHeadVariants} from './machine-head-model.mjs?v=trident-clearance-35';
+import {machineHeadVariants} from './machine-head-model.mjs?v=sc-seats-39';
 
 export function headPrinterLink(variant,registry,href){
  const source=new URL(href),preferred=source.searchParams.get('return_machine');

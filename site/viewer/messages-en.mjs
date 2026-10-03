@@ -162,6 +162,7 @@ export const messages = {
  "0 / 1.5 / 3 mmの変位でヘッド・バックプレートとシャトルの本体交差を検査。": "Checked body intersections between head / backplate and shuttle at 0 / 1.5 / 3 mm displacement.",
  "2020上部フレームに固定。作者の本体2個を表示。M5x12 SHCSとM5 Tナットは各2個／ハンドル、締結部品の形状は省略。M3派生版とは別設計です。": "Fixed to the upper 2020 frame. Displays two original handle bodies. Each handle requires two M5×12 SHCS and two M5 T-nuts; fastener geometry is omitted. Separate design from the M3 derivative.",
  "250 mm用の梁・レール。取付穴の周期とベルト幅を保持。": "Beams and rails for 250 mm. Mounting hole spacing and belt width retained.",
+ "300 mm用の梁・レール。取付穴の周期とベルト幅を保持。": "Beams and rails for 300 mm. Mounting hole spacing and belt width retained.",
  "250/350 mmガントリー単体。VT/V2・Printed/Sheet metal・6/9 mm・2WD/AWDの32構成。": "Standalone 250 / 350 mm gantries. 32 combinations of VT/V2, printed/sheet metal, 6/9 mm and 2WD/AWD.",
  "250の公式アセンブリから構築したV2.4 350基準モデル。": "V2.4 350 reference model built from the official 250 assembly.",
  "2510ファンは20 mmのねじ穴軸と冷却マウントの接触面に位置合わせ。": "2510 fan aligned to the 20 mm screw hole axes and cooling mount contact plane.",

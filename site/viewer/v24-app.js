@@ -14,7 +14,7 @@ import {createV24Adapter} from './v24_adapter.mjs?v=trident-clearance-35';
 import {setupMachineNavigation} from './machines.js?v=crossant-36';
 import {setupRenderExport} from './render-export.js?v=trident-clearance-35';
 import {setupPublicInfo} from './public-info.js?v=crossant-36';
-import {setupV24MachineHeads} from './machine-heads.js?v=trident-clearance-35';
+import {setupV24MachineHeads} from './machine-heads.js?v=sc-seats-39';
 setupMachineNavigation('siboor_v24_350');
 setupPublicInfo();
 const $=s=>document.querySelector(s),stage=$('#stage'),status=$('#status');

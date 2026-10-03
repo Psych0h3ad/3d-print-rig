@@ -1,7 +1,9 @@
 import * as THREE from 'three';
-import {cadToGlb} from './v0_adapter.mjs?v=v0-mounts-38';
+import {cadToGlb} from './v0_adapter.mjs?v=v0-mounts-39';
+import {tophatTransform} from './v0-tophat.mjs?v=v0-mounts-39';
 
 export const v0Slots=[['toolhead','ツールヘッド'],['bed','ベッド支持機構'],['carriage','Xキャリッジ'],['accelerometer','加速度センサー'],['strain_relief','配線マウント'],['handles','ハンドル'],['tophat','トップハット']];
+export function v0TophatMaxAngle(registry,state){return registry.options.find(o=>o.slot==='tophat'&&o.id===state.tophat)?.tophat_max_angle_deg||90}
 const basis=new THREE.Matrix4().set(1,0,0,0,0,0,1,0,0,-1,0,0,0,0,0,1);
 export function installationMatrix(spec){
  const a=spec.rotation_xyz_deg.map(v=>v*Math.PI/180);
@@ -40,7 +42,7 @@ export async function createV0Installations({scene,adapter,profile,registry,load
    }
    model.traverse(n=>{if(!n.isMesh)return;n.material=Array.isArray(n.material)?n.material.map(m=>m.clone()):n.material.clone();for(const m of Array.isArray(n.material)?n.material:[n.material])materialOrigins.set(m,m.color.clone());if(n.material.transparent)n.material.depthWrite=false});
    const wrapper=new THREE.Group();wrapper.name='V0 installed '+option.id+' '+(spec.clone||'');wrapper.userData.v0Installation=option.id;wrapper.applyMatrix4(installationMatrix(spec));wrapper.add(model);wrapper.visible=false;
-   records.push({wrapper,model,spec,origin:wrapper.position.clone(),option});
+   records.push({wrapper,model,spec,origin:wrapper.position.clone(),quaternion:wrapper.quaternion.clone(),option});
   }
   if(disposed)throw Error('V0ビューを終了しました');
   roots.set(option.id,records);for(const r of records)scene.add(r.wrapper);return records;
@@ -54,7 +56,8 @@ export async function createV0Installations({scene,adapter,profile,registry,load
   for(const[k,n]of adapter.nodes){if(hidden.has(k))n.visible=false;else if(adapter.records.get(k).motion!=='reference_flexible')n.visible=adapter.records.get(k).group!=='V0_Enclosure'||enclosure;}
   for(const[id,rows]of roots)for(const r of rows)r.wrapper.visible=state[r.option.slot]===id&&(!r.option.enclosure||enclosure);
  }
- function setPose(pose){const d=pose.map((v,i)=>v-profile.display_reference_xyz_mm[i]);for(const rows of roots.values())for(const r of rows){const delta=cadToGlb(r.spec.motion==='xy'?[d[0],d[1],0]:r.spec.motion==='z_bed'?[0,0,-d[2]]:r.spec.motion==='y'?[0,d[1],0]:[0,0,0]);r.wrapper.position.copy(r.origin).add(new THREE.Vector3(...delta))}visibility()}
+ function setTophatAngle(value){if(value>v0TophatMaxAngle(registry,state))throw Error('このヒンジの表示角度を超えています');const selected=registry.options.find(o=>o.slot==='tophat'&&o.id===state.tophat),pivot=selected?.tophat_pivot_mm,{rotation,offset}=tophatTransform(value,pivot);adapter.setTophatAngle?.(value,pivot);for(const rows of roots.values())for(const r of rows)if(r.spec.tophat_moving){r.wrapper.quaternion.copy(rotation).multiply(r.quaternion);r.wrapper.position.copy(r.origin).applyQuaternion(rotation).add(offset)}}
+ function setPose(pose){const d=pose.map((v,i)=>v-profile.display_reference_xyz_mm[i]);for(const rows of roots.values())for(const r of rows){const delta=cadToGlb(r.spec.motion==='xy'?[d[0],d[1],0]:r.spec.motion==='z_bed'?[0,0,-d[2]]:r.spec.motion==='y'?[0,d[1],0]:[0,0,0]);r.wrapper.position.copy(r.origin).add(new THREE.Vector3(...delta))}setTophatAngle(Math.min(adapter.tophat?.getAngle()||0,v0TophatMaxAngle(registry,state)));visibility()}
  function setPalette(colors){palette={...colors};for(const[m,c]of materialOrigins)m.color.copy(c);for(const rows of roots.values())for(const r of rows)r.model.traverse(n=>{
   if(!n.isMesh)return;let p=n;while(p&&!p.userData?.part_key)p=p.parent;
   const key=p?.userData?.part_key,role=r.spec.role||r.spec.roles?.[key],color=r.spec.colors?.[key]||palette[role]||profile.appearance?.palette_defaults?.[role];if(color)for(const m of Array.isArray(n.material)?n.material:[n.material])m.color.set(color);
@@ -64,5 +67,5 @@ export async function createV0Installations({scene,adapter,profile,registry,load
  let request=0;
  async function setState(next){const value=validateV0Mods(registry,next),sequence=++request;const chosen=registry.options.filter(o=>value[o.slot]===o.id);await Promise.all(chosen.map(prepare));if(sequence!==request||disposed)return false;state=value;setPose(adapter.getPose());setPalette(palette);return true}
  await Promise.all(registry.options.filter(o=>o.id==='stock').map(prepare));setPose(adapter.getPose());setPalette(palette);
- return {registry,roots,setState,getState:()=>({...state}),setPose,setPalette,setEnclosureVisible:v=>{enclosure=Boolean(v);visibility()},getNotes:()=>registry.options.filter(o=>state[o.slot]===o.id).flatMap(o=>Array.isArray(o.notes)?o.notes:[o.notes]),dispose(){disposed=true;request++;for(const rows of roots.values())for(const r of rows)release(r);roots.clear();cached.clear()}};
+ return {registry,roots,setState,getState:()=>({...state}),setPose,setTophatAngle,setPalette,setEnclosureVisible:v=>{enclosure=Boolean(v);visibility()},getNotes:()=>registry.options.filter(o=>state[o.slot]===o.id).flatMap(o=>Array.isArray(o.notes)?o.notes:[o.notes]),dispose(){disposed=true;request++;for(const rows of roots.values())for(const r of rows)release(r);roots.clear();cached.clear()}};
 }

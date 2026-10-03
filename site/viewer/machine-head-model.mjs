@@ -11,7 +11,7 @@ const add=(a,b)=>a.map((v,i)=>v+b[i]);
 export function installedHeadPlan(variant,registry,target){
  const plan=headPlan(variant);let anchor;
  if(variant.registration_source)anchor=registry.sources[variant.registration_source].origin_mm;
- else if(variant.mount==='stealthchanger')anchor=registry.sources.stealthchanger.origin_mm;
+ else if(variant.mount==='stealthchanger')anchor=(registry.sources['stealthchanger_'+variant.belt_width_mm]||registry.sources.stealthchanger).origin_mm;
  else if(variant.toolhead==='indx')anchor=registry.sources.indx.origin_mm;
  else if(variant.toolhead==='xol')anchor=add(registry.sources.kit_fixed.origin_mm,variant.head_translation_mm);
  else anchor=registry.sources[variant.gantry==='siboor_awd'?'kit_fixed':'r2_fixed'].origin_mm;

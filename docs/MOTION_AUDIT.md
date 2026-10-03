@@ -62,7 +62,7 @@ testing; no browser visual review is claimed.
 ## Unverified motion
 
 - V2.4 XY routing, CNC A/B belt assets and cable articulation remain incomplete.
-- V0/Trident bed chains have no articulation away from their source Z pose.
+- Chain link pitch and endpoint routing do not certify cable bend radii or joint stop limits. The eleven native V0 links now articulate around their measured pin axes throughout Z motion; see [V0 installation checks](V0_INSTALLATIONS.md).
 - Existing SIBOOR AWD/R2 per-vertex deformation needs a separate endpoint and
   tooth-spacing audit; these tests do not certify it.
 - FYSETC 250 Pro remains a static reference page.
@@ -87,3 +87,9 @@ length drift below 0.02 mm, retaining sub-0.1 mm offsets from the RC8 source
 pulley placements. Actual Micron 120/Plus geometry checks cover 54 XYZ poses;
 Z belts remain fixed and Plus XY belts follow Y/Z. Color, reset and belt
 checkboxes are checked through the production controller using an offline DOM.
+
+## StealthChanger seats and Trident fasteners
+
+StealthChanger V1.1 standard 6 mm includes the original belt Keeper. The 9 mm BT123 split Keeper seats on the shuttle before its MGN12H screw lands are registered. Both standard widths use four native M3x16 screws; dedicated Monolith Keepers retain M3x20. Four native mounting axes, both Keeper faces and screw seats are checked. Original body dimensions are retained. Stock and Monolith reference rails follow the block; no separate rail displacement is used for probe travel or exploded head views.
+
+Trident 250/300/350 has one native M3 nut behind every 25 mm X-rail fixing, and the seven X-joint nuts move with the X beam. Thirteen bed-support nuts register to their paired original screws and move with the bed. Actual mesh checks cover 2,700 changer placements and 510 nut poses across all three sizes. Mounting faces and relative motion checks do not certify continuous swept clearance, homing or tool exchange. Existing collision witnesses only remain applicable to unchanged head placements and unchanged fixture parts.

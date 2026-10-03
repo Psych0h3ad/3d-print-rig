@@ -1,4 +1,4 @@
-import {createV0Installations,v0Slots,validateV0Mods} from './v0-installations.mjs?v=v0-mounts-38';
+import {createV0Installations,v0Slots,validateV0Mods,v0TophatMaxAngle} from './v0-installations.mjs?v=v0-mounts-39';
 import {v0ModCategories,componentCategory} from './v0-mod-library.mjs?v=v0-mod-selection-1';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=trident-clearance-35';
 import {appearanceRole} from './appearance-role.mjs?v=trident-clearance-35';
@@ -6,7 +6,7 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=touch-37';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=trident-clearance-35';
-import {poseDelta,createV0Adapter} from './v0_adapter.mjs?v=v0-mounts-38';
+import {poseDelta,createV0Adapter} from './v0_adapter.mjs?v=v0-mounts-39';
 import {setupMachineNavigation} from './machines.js?v=crossant-36';
 import {setupGrid} from './grid-control.js?v=trident-clearance-35';
 import {setupRenderExport} from './render-export.js?v=trident-clearance-35';
@@ -34,7 +34,7 @@ function applyPose(){if(!adapter)return;const pose=adapter.setPose(Object.fromEn
  document.body.dataset.pose=JSON.stringify(pose);document.body.dataset.flexibleVisible=String(pose.belts_visible);document.body.dataset.chainVisible=String(pose.chain_visible);render();}
 try{
  const root='../machines/'+id+'/',json=async name=>{const r=await fetch(root+name,{cache:'no-cache'});if(!r.ok)throw Error(name+'の読込に失敗');return r.json()};
- const [manifest,p,g,library,registration]=await Promise.all([json('assembly_manifest.json'),json('machine_profile.json'),loadModel(new GLTFLoader(),root+'model.glb'),fetch('../COMPONENT_LIBRARY.json?v=trident-clearance-35',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('Modカタログ');return r.json()}),fetch('../V0_INSTALLATIONS.json?v=v0-mounts-38',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('V0 Mod取付データ');return r.json()})]);
+ const [manifest,p,g,library,registration]=await Promise.all([json('assembly_manifest.json'),json('machine_profile.json'),loadModel(new GLTFLoader(),root+'model.glb'),fetch('../COMPONENT_LIBRARY.json?v=trident-clearance-35',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('Modカタログ');return r.json()}),fetch('../V0_INSTALLATIONS.json?v=v0-mounts-39',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('V0 Mod取付データ');return r.json()})]);
  profile=p;stockProfile=structuredClone(p);currentManifest=manifest;scene.add(g.scene);adapter=createV0Adapter(g.scene,manifest,profile);const originals=new Map(),protectedMaterials=[];
  for(const [key,node] of adapter.nodes)node.traverse(mesh=>{if(!mesh.isMesh)return;mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();for(const material of Array.isArray(mesh.material)?mesh.material:[mesh.material]){originals.set(material,material.color.clone());if(!appearanceRole(adapter.records.get(key)))protectedMaterials.push(material);if(material.transparent)material.depthWrite=false}});
  $('#machineTitle').textContent=id==='voron_v02r1_120'?'V0.2r1 / 120':'V0.2 / 120';$('#badge').textContent=$('#machineTitle').textContent+' · '+manifest.parts.length.toLocaleString()+' PARTS';
@@ -42,6 +42,7 @@ try{
  for(const [i,a] of ['x','y','z'].entries()){$('#'+a).value=profile.display_reference_xyz_mm[i];$('#'+a).disabled=false;$('#'+a).oninput=applyPose}
  $('#reset').disabled=false;$('#reset').onclick=()=>{for(const [i,a] of ['x','y','z'].entries()){const limits=profile.display_limits_mm['XYZ'[i]];$('#'+a).value=Math.max(limits[0],Math.min(limits[1],profile.display_reference_xyz_mm[i]))}applyPose()};$('#belts').onchange=()=>{adapter.setFlexibleVisible($('#belts').checked);applyPose()};$('#enclosure').onchange=()=>{adapter.setEnclosureVisible($('#enclosure').checked);installations?.setEnclosureVisible($('#enclosure').checked);render()};
  $('#doorAngle').disabled=false;$('#doorAngle').oninput=()=>{adapter.setDoorAngle(Number($('#doorAngle').value));$('#doorAnglev').textContent=Number($('#doorAngle').value).toFixed(0)+'°';render()};$('#doorAngle').oninput();
+ $('#tophatAngle').disabled=false;$('#tophatAngle').oninput=()=>{installations?.setTophatAngle(Number($('#tophatAngle').value));$('#tophatAnglev').textContent=Number($('#tophatAngle').value).toFixed(0)+'°';render()};
  const mods=library.items.filter(m=>m.kind==='mod'&&m.id.startsWith('v0mod_')),modHistory=new Map();
  const option=(id,label)=>{const o=document.createElement('option');o.value=id;o.textContent=label;return o};
  for(const category of v0ModCategories.filter(c=>mods.some(m=>componentCategory(m)===c.id)))$('#modCategory').append(option(category.id,category.label));
@@ -79,7 +80,7 @@ try{
  setupRenderExport({renderer,scene,camera,controls:orbit,name:id,afterRender:render});$('#status').hidden=true;document.body.dataset.ready='true';document.body.dataset.parts=String(manifest.parts.length);applyPose();resize();
 }catch(e){$('#status').textContent='読込エラー: '+e.message;document.body.dataset.error=e.message;console.error(e)}
 
-function refreshMods(){if(!installations)return;const state=installations.getState();for(const[slot]of v0Slots)$('#mod-'+slot).value=state[slot];$('#installationStatus').replaceChildren(...installations.getNotes().map(note=>{const p=document.createElement('p');p.textContent=note;return p}));const selected=installations.registry.options.find(o=>o.id===state.toolhead&&o.slot==='toolhead');$('#headSummary').textContent=(selected?.label||'Mini Stealthburner / 統合BMG / Revo Voron')+' · 固定ガントリー・単一Zベッド';$('#installationStatus').classList.toggle('notice',state.handles==='stealth-handles');document.body.dataset.v0Mods=JSON.stringify(state)}
+function refreshMods(){if(!installations)return;const state=installations.getState();$('#tophatAngle').max=String(v0TophatMaxAngle(installations.registry,state));$('#tophatAngle').value=adapter.tophat.getAngle();$('#tophatAnglev').textContent=adapter.tophat.getAngle().toFixed(0)+'°';for(const[slot]of v0Slots)$('#mod-'+slot).value=state[slot];$('#installationStatus').replaceChildren(...installations.getNotes().map(note=>{const p=document.createElement('p');p.textContent=note;return p}));const selected=installations.registry.options.find(o=>o.id===state.toolhead&&o.slot==='toolhead');$('#headSummary').textContent=(selected?.label||'Mini Stealthburner / 統合BMG / Revo Voron')+' · 固定ガントリー・単一Zベッド';$('#installationStatus').classList.toggle('notice',state.handles==='stealth-handles');document.body.dataset.v0Mods=JSON.stringify(state)}
 function updateDatum({preservePhysicalPose=true}={}){
  const old=profile.display_reference_xyz_mm,pose=adapter.getPose(),state=installations.getState(),head=installations.registry.options.find(o=>o.id===state.toolhead),bed=installations.registry.options.find(o=>o.id===state.bed);
  profile.nozzle_tip_mm=[...(head?.nozzle_tip_mm||stockProfile.nozzle_tip_mm)];profile.bed_top_world_z_mm=bed?.bed_top_mm??stockProfile.bed_top_world_z_mm;
@@ -93,17 +94,18 @@ function updateDatum({preservePhysicalPose=true}={}){
 }
 export async function setV0Mods(state){const request=++modRequest;$('#saveConfiguration').disabled=true;try{$('#installationStatus').textContent='Modを読み込み中…';const applied=await installations.setState(state);if(applied){updateDatum();refreshMods();applyPose()}return applied}catch(e){if(request===modRequest){refreshMods();$('#installationStatus').textContent='取付エラー: '+e.message}throw e}finally{if(request===modRequest)$('#saveConfiguration').disabled=false}}
 export function currentV0(){return {adapter,profile,manifest:currentManifest,installations,scene,camera,orbit}}
-export function captureV0State(){return {schema:'v0-configuration-v1',machine_id:id,mods:installations.getState(),pose:adapter.getPose(),palette:{...palette},enclosure:$('#enclosure').checked,belts:$('#belts').checked,grid:$('#gridVisible').checked,door_angle_deg:adapter.door.getAngle()}}
+export function captureV0State(){return {schema:'v0-configuration-v1',machine_id:id,mods:installations.getState(),pose:adapter.getPose(),palette:{...palette},enclosure:$('#enclosure').checked,belts:$('#belts').checked,grid:$('#gridVisible').checked,door_angle_deg:adapter.door.getAngle(),tophat_angle_deg:adapter.tophat.getAngle()}}
 export async function restoreV0State(value){
  if(value?.schema!=='v0-configuration-v1'||value.machine_id!==id)throw Error('この機種の設定ファイルではありません');
  validateV0Mods(installations.registry,value.mods);if(!Array.isArray(value.pose)||value.pose.length!==3)throw Error('XYZ設定が不正です');poseDelta(profile,Object.fromEntries(['x','y','z'].map((a,i)=>[a,value.pose[i]])));
  if(!value.palette||['base','accent','frame'].some(k=>value.palette[k]!==null&&!/^#[0-9a-f]{6}$/i.test(value.palette[k])))throw Error('色設定が不正です');
  if(['enclosure','belts','grid'].some(k=>typeof value[k]!=='boolean'))throw Error('表示設定が不正です');
  const doorAngle=value.door_angle_deg??0;if(typeof doorAngle!=='number'||!Number.isFinite(doorAngle)||doorAngle<0||doorAngle>110)throw Error('ドア角度が不正です');
+ const tophatAngle=value.tophat_angle_deg??0;if(typeof tophatAngle!=='number'||!Number.isFinite(tophatAngle)||tophatAngle<0||tophatAngle>v0TophatMaxAngle(installations.registry,value.mods))throw Error('トップハット角度が不正です');
  if(!await installations.setState(value.mods))return false;
  updateDatum({preservePhysicalPose:false});
  palette={...value.palette};applyPalette();for(const[i,a]of ['x','y','z'].entries())$('#'+a).value=value.pose[i];
  for(const key of ['enclosure','belts']){$('#'+key).checked=value[key];$('#'+key).onchange()}
- $('#gridVisible').checked=value.grid;$('#gridVisible').onchange();$('#doorAngle').value=doorAngle;$('#doorAngle').oninput();refreshMods();applyPose();return true;
+ $('#gridVisible').checked=value.grid;$('#gridVisible').onchange();$('#doorAngle').value=doorAngle;$('#doorAngle').oninput();$('#tophatAngle').value=tophatAngle;$('#tophatAngle').oninput();refreshMods();applyPose();return true;
 }
 window.addEventListener('pagehide',event=>{if(event.persisted)return;installations?.dispose();orbit.dispose();renderer.dispose();adapter=null;installations=null});
