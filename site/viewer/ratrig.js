@@ -4,7 +4,7 @@ import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
 import {loadRatRigMachine,disposeRatRig} from './ratrig-loader.mjs?v=trident-clearance-35';
 import {createRatRigGcodePreview} from './ratrig_gcode_preview.mjs';
 import {ratRigSchema,validateRatRigConfiguration,ratRigAxisRanges} from './ratrig-ui-state.mjs?v=trident-clearance-35';
-import {setupMachineNavigation} from './machines.js?v=crossant-36';
+import {setupMachineNavigation} from './machines.js?v=e3ng-48';
 import {setupRenderExport} from './render-export.js?v=trident-clearance-35';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {setupPublicInfo} from './public-info.js?v=standard-step-42';

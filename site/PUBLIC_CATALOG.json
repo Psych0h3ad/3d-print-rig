@@ -1,5 +1,5 @@
 {
-  "viewer_version": "viewer-v47",
+  "viewer_version": "viewer-v48",
   "sources": [
     {
       "id": "siboor_trident",
@@ -1113,6 +1113,21 @@
       "scope": "VORON Trident 250 / 300 / 350 · Cheese Grater and Honeycomb original STL panels with source feet, fans, screen and filtered inlet.",
       "changes": "Native rigid frame placement and palette roles; standard skirts and associated fasteners replaced. Native VORON M3 slot nuts placed at measured new skirt axes.",
       "notice": "Source hardware is a reference. Electrical operation and kit-specific compatibility are not certified."
+    },
+    {
+      "id": "e3ng_toolchanger",
+      "label": "E3NG hotend changer · Beta / native MOD1 v10",
+      "repository": "emna2881/E3NG-Toolchanger",
+      "author": "emna2881; E3NG design by RH3D; Nudge by zruncho3d; extruder inspiration by Irbis3D / MedusaHC",
+      "commit": "25d250b3b00b146769373d5a5c3e9e446ebff19c",
+      "url": "https://github.com/emna2881/E3NG-Toolchanger/tree/25d250b3b00b146769373d5a5c3e9e446ebff19c",
+      "license": "CC-BY-NC-SA-4.0",
+      "license_url": "../licenses/e3ng_toolchanger/LICENSE",
+      "license_sha256": "1349a4b6148492b44f629e64eed676612e234fe9a839e4f3b277c1482c8849f1",
+      "scope": "Hotend changer, six native dock slots, EBB36/42 mounts and dedicated Beta/v1.2 gantries. Complete printer CAD is not included.",
+      "changes": "Tessellation and printed-part display palette. Native placed dimensions retained. Alternative assemblies selected independently. One invalid source EBB42 leaf remains disclosed; no mechanical fit or executable tool exchange certification.",
+      "version": "CAD/E3NG_Toolchanger.step; native E3NG_ToolChanger_MOD1 v10",
+      "notice": "Noncommercial/share-alike CAD conditions remain separate from application code. Original E3NG files: https://rh3d.xyz/ ; RH3D/E3NG reference commit 095edee85eb7c813bdcdc25489f05e884cccad91."
     }
   ],
   "defaults": [

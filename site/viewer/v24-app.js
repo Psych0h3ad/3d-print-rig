@@ -11,7 +11,7 @@ import {OrbitControls} from './vendor/OrbitControls.js?v=touch-37';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=trident-clearance-35';
 import {createV24Adapter} from './v24_adapter.mjs?v=v24-belts-43';
-import {setupMachineNavigation} from './machines.js?v=crossant-36';
+import {setupMachineNavigation} from './machines.js?v=e3ng-48';
 import {setupRenderExport} from './render-export.js?v=trident-clearance-35';
 import {setupPublicInfo} from './public-info.js?v=standard-step-42';
 import {setupV24MachineHeads} from './machine-heads.js?v=sphinx-report-45';

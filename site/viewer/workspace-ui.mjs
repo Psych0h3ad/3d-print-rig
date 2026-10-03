@@ -1,5 +1,5 @@
 // Shared presentation layer. Existing controls, IDs and CAD controllers stay intact.
-import {setupLanguage,originalText} from './i18n.mjs?v=sphinx-skirts-45';
+import {setupLanguage,originalText} from './i18n.mjs?v=e3ng-48';
 import {printerWorkspaceURL,workspaceReturnKey} from './workspace-return.mjs?v=crossant-36';
 import {setupWorkspaceSharing} from './workspace-share.mjs?v=sharing-1';
 import {lockInspectorHorizontalScroll} from './workspace-scroll.mjs?v=inspector-width-1';
@@ -70,7 +70,7 @@ function setupWorkspace() {
   const menu = node('div', 'workspace-menu');
   more.append(menu);
   actions.append(more);
-  for (const [label, href] of [['部品CAD','./components.html'],['交換機構','./toolchangers.html']]) {
+  for (const [label, href] of [['部品CAD','./components.html'],['交換機構','./toolchangers.html'],['E3NG','./e3ng.html']]) {
     const link = node('a', '', label); link.href = href;
     if (href.endsWith(page)) link.setAttribute('aria-current', 'page');
     menu.append(link);

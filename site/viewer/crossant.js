@@ -3,7 +3,7 @@ import {OrbitControls} from './vendor-r180/OrbitControls.js?v=touch-37';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
 import {loadCrossant,disposeCrossant} from './crossant-loader.mjs';
 import {crossantSchema,crossantGroups,validateCrossantState} from './crossant-state.mjs';
-import {setupMachineNavigation} from './machines.js?v=crossant-36';
+import {setupMachineNavigation} from './machines.js?v=e3ng-48';
 import {setupRenderExport} from './render-export.js?v=trident-clearance-35';
 import {setupPublicInfo} from './public-info.js?v=standard-step-42';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';

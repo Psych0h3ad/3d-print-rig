@@ -1,4 +1,4 @@
-import {setupMachineNavigation,machinePage} from './machines.js?v=crossant-36';
+import {setupMachineNavigation,machinePage} from './machines.js?v=e3ng-48';
 import {machineAssetsAvailable,showMissingAssets} from './asset-availability.js?v=standard-step-42';
 const requested=new URLSearchParams(location.search).get('machine');
 if(requested&&requested!=='siboor_trident_350'&&machinePage(requested)){

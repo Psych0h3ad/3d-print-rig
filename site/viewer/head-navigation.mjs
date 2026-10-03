@@ -1,5 +1,5 @@
 import {monolithHeadCatalog} from './monolith-head-model.mjs?v=sphinx-report-45';
-import {machinePage} from './machines.js?v=crossant-36';
+import {machinePage} from './machines.js?v=e3ng-48';
 import {machineHeadVariants} from './machine-head-model.mjs?v=sphinx-report-45';
 
 export function headPrinterLink(variant,registry,href){
