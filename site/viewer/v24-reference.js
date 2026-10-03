@@ -4,13 +4,13 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=touch-37';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=trident-clearance-35';
-import {createV24Adapter} from './v24_matrix_adapter.mjs?v=motion-colors-41';
+import {createV24Adapter} from './v24_matrix_adapter.mjs?v=v24-belts-43';
 import {setupMachineNavigation} from './machines.js?v=crossant-36';
 import {setupGrid} from './grid-control.js?v=trident-clearance-35';
 import {setupRenderExport} from './render-export.js?v=trident-clearance-35';
 import {setupPublicInfo} from './public-info.js?v=standard-step-42';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=trident-clearance-35';
-import {setupV24MachineHeads} from './machine-heads.js?v=sc-seats-39';
+import {setupV24MachineHeads} from './machine-heads.js?v=v24-belts-43';
 const $=s=>document.querySelector(s),ids=[250,300,350].flatMap(size=>['printed','ldo_cnc'].map(structure=>`voron_v24_${size}_${structure}`));
 const wanted=new URLSearchParams(location.search).get('machine'),id=ids.includes(wanted)?wanted:ids[0];
 setupMachineNavigation(id);setupPublicInfo({machineId:id});
@@ -26,7 +26,7 @@ function view(name){camera.up.set(0,name==='top'?0:1,name==='top'?-1:0);orbit.ta
 for(const name of ['iso','front','top'])$('#'+name).onclick=()=>view(name);view('iso');
 $('#focusHead').onclick=()=>{if(!adapter||machineHeads?.focus(camera,orbit))return;const box=new THREE.Box3();for(const [key,node] of adapter.nodes)if(adapter.records.get(key).group===profile.head_group)box.expandByObject(node);if(box.isEmpty())return;camera.up.set(0,1,0);box.getCenter(orbit.target);camera.position.copy(orbit.target).add(new THREE.Vector3(.1,.06,.2));orbit.update();render()};
 function applyPose(){if(!adapter)return;const pose=adapter.setPose(Object.fromEntries(['x','y','z'].map(a=>[a,Number($('#'+a).value)])));machineHeads?.update(pose);for(const a of ['x','y','z'])$('#'+a+'v').textContent=Number($('#'+a).value).toFixed(2)+' mm';
- $('#motionStatus').textContent=machineHeads?.monolith?'ベッド固定 · Monolithの8個のZガイドとガントリーがZ＋へ追従':'ベッド固定 · X/Yヘッドと4Zガイド・ガントリーがZ＋へ追従';$('#gantryMotionHelp').textContent=machineHeads?.monolith?'Zを上げるとMonolithガントリーと8個のガイドブロックが上がります。XY '+machineHeads.variant.belt_width_mm+' mm。':'Zを上げるとガントリーと4つのガイドブロックが上がります。XY 6 mm / Z 9 mmベルト。';$('#motionBeltHelp').textContent=machineHeads?.monolith?'MonolithのXYベルトはヘッド・Y軸・ガントリーの移動に追従します。クランプ内部・歯・張力は未再現です。':'Zベルトは全姿勢で表示。XYベルトはXY基準位置でZ移動に追従します。XY移動中の経路は未対応です。';document.body.dataset.pose=JSON.stringify(pose);document.body.dataset.flexibleVisible=String(pose.flexible_visible_count>0);render();}
+ $('#motionStatus').textContent=machineHeads?.monolith?'ベッド固定 · Monolithの8個のZガイドとガントリーがZ＋へ追従':'ベッド固定 · X/Yヘッドと4Zガイド・ガントリーがZ＋へ追従';$('#gantryMotionHelp').textContent=machineHeads?.monolith?'Zを上げるとMonolithガントリーと8個のガイドブロックが上がります。XY '+machineHeads.variant.belt_width_mm+' mm。':'Zを上げるとガントリーと4つのガイドブロックが上がります。XY 6 mm / Z 9 mmベルト。';$('#motionBeltHelp').textContent=machineHeads?.monolith?'MonolithのXYベルトはヘッド・Y軸・ガントリーの移動に追従します。クランプ内部・歯・張力は未再現です。':profile.cnc?'このCNC参照モデルはZベルトのみ収録。XYベルトは未収録です。':'Zベルトはフレーム側で固定。XYベルトはヘッド・Y軸・ガントリーに追従します。移動時はクランプ内部・歯・張力を省いた経路プレビューです。';document.body.dataset.pose=JSON.stringify(pose);document.body.dataset.flexibleVisible=String(pose.flexible_visible_count>0);render();}
 try{
  const root='../machines/'+id+'/',json=async name=>{const r=await fetch(root+name,{cache:'no-cache'});if(!r.ok)throw Error(name+'の読込に失敗');return r.json()};
  const [manifest,p,g]=await Promise.all([json('assembly_manifest.json'),json('machine_profile.json'),loadModel(new GLTFLoader(),root+'model.glb')]);

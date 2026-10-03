@@ -8,7 +8,7 @@ import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=trident-clearance-35';
 import {setupPublicInfo} from './public-info.js?v=standard-step-42';
 import {setupRenderExport} from './render-export.js?v=trident-clearance-35';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=sc-seats-39';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=v24-belts-43';
 import {monolithHeadCatalog} from './monolith-head-model.mjs?v=sc-seats-39';
 import {setupConfigurations} from './configurations.js?v=sc-seats-39';
 import {resolveVariant} from './configuration-model.js?v=trident-clearance-35';

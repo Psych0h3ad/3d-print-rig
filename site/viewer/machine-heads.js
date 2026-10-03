@@ -96,7 +96,7 @@ export async function setupV24MachineHeads({machine,profile,adapter,scene,render
   }render();
  };
  const panel=ensureMachineHeadControls({gantry:true,monolithUnavailable:catalog.monolith_unavailable}),toolBank=setupChangerBank({catalog,rig,data:bank,inspectPose});let custom=false,baselineHidden=new Set(),installed=false;
- function visibility(){for(const key of binding.stock_head_keys){const node=adapter.nodes.get(key);if(node)node.visible=!custom&&!baselineHidden.has(key)}if(custom)for(const [key,node] of adapter.nodes)if(adapter.records.get(key).motion==='reference_flexible'&&!/^Z Belt(?: \(\d+\))?$/.test(adapter.records.get(key).name||''))node.visible=false}
+ function visibility(){for(const key of binding.stock_head_keys){const node=adapter.nodes.get(key);if(node)node.visible=!custom&&!baselineHidden.has(key)}if(custom)for(const [key,node] of adapter.nodes)if(adapter.records.get(key).motion==='reference_flexible'&&!/^(?:[AB]|Z) Belt(?: \(\d+\))?$/.test(adapter.records.get(key).name||''))node.visible=false}
  async function install(v){
   clearMarkers();
   await beforeInstall(v);await toolBank.install(v);gantryVisibility.install(v);custom=!!v.machine_head;baselineHidden=new Set(probes.find(p=>p.id===v.baseline_probe)?.hidden_stock_keys||[]);

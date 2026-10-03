@@ -10,11 +10,11 @@ import {setupProbeMounts} from './probe-mounts.js?v=trident-clearance-35';
 import {OrbitControls} from './vendor/OrbitControls.js?v=touch-37';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=trident-clearance-35';
-import {createV24Adapter} from './v24_adapter.mjs?v=trident-clearance-35';
+import {createV24Adapter} from './v24_adapter.mjs?v=v24-belts-43';
 import {setupMachineNavigation} from './machines.js?v=crossant-36';
 import {setupRenderExport} from './render-export.js?v=trident-clearance-35';
 import {setupPublicInfo} from './public-info.js?v=standard-step-42';
-import {setupV24MachineHeads} from './machine-heads.js?v=sc-seats-39';
+import {setupV24MachineHeads} from './machine-heads.js?v=v24-belts-43';
 setupMachineNavigation('siboor_v24_350');
 setupPublicInfo();
 const $=s=>document.querySelector(s),stage=$('#stage'),status=$('#status');
@@ -44,6 +44,7 @@ function applyPose(){if(!adapter)return;
  document.body.dataset.pose=JSON.stringify(pose);document.body.dataset.fixedBed=JSON.stringify(p.fixed_bed_keys.map(k=>adapter.nodes.get(k).position.toArray()));
  document.body.dataset.zGuidePositions=JSON.stringify(p.z_guide_block_keys.map(k=>adapter.nodes.get(k).position.toArray()));
  document.body.dataset.flexibleVisible=String(pose.flexible_visible_count>0);
+ $('#motionBeltHelp').textContent=machineHeads?.monolith?'MonolithのXYベルトはヘッド・Y軸・ガントリーの移動に追従します。クランプ内部・歯・張力は未再現です。':'Zベルトはフレーム側で固定。XYベルトはヘッド・Y軸・ガントリーに追従します。移動時はクランプ内部・歯・張力を省いた経路プレビューです。';
  $('#motionStatus').textContent=machineHeads?.monolith?'ベッド固定 · Monolithの8個のZガイド・ガントリー・XYベルトが追従':'ベッド固定 · 4ZガイドとガントリーがZ＋へ追従';$('#beltWidths').textContent=`XYベルト ${machineHeads?.variant?.belt_width_mm||profile.xy_belt_width_mm} mm ／ Zベルト ${profile.z_belt_width_mm} mm`;render();
 }
 try{

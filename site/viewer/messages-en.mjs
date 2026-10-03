@@ -1,6 +1,8 @@
 import {v0Messages,v0Templates} from './v0-messages-en.mjs?v=v0-mounts-38';
 import {ratRigMessages,ratRigTemplates} from './ratrig-messages-en.mjs?v=trident-clearance-35';
 export const messages = {
+ "Zベルトはフレーム側で固定。XYベルトはヘッド・Y軸・ガントリーに追従します。移動時はクランプ内部・歯・張力を省いた経路プレビューです。": "Z belts stay on the frame. XY belts follow the head, Y beam and gantry. During travel, routing is previewed without internal clamp returns, teeth or tension.",
+ "このCNC参照モデルはZベルトのみ収録。XYベルトは未収録です。": "This CNC reference model includes Z belts only; XY belts are not included.",
  "フロントドア": "Front door",
  "SB · 組み合わせとプローブ取付部品": "SB combinations and probe mounting parts",
  "組み合わせとプローブ取付": "combinations and probe mounting",

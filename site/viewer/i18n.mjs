@@ -1,4 +1,4 @@
-import {messages,templates} from './messages-en.mjs?v=standard-step-42';
+import {messages,templates} from './messages-en.mjs?v=v24-belts-43';
 
 const normalize=text=>text.trim().replace(/\s+/gu,' ');
 const escape=text=>text.replace(/[.*+?^${}()|[\]\\]/gu,'\\$&');

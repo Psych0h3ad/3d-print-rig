@@ -2,6 +2,6 @@
 // moving their clamps does not change the loop geometry.
 export function v24FlexibleState(row,delta,enabled) {
   if(/^Z Belt(?: \(\d+\))?$/.test(row.name||''))return {visible:Boolean(enabled),z:0};
-  if(/^[AB] Belt$/.test(row.name||''))return {visible:Boolean(enabled)&&Math.abs(delta[0])+Math.abs(delta[1])<1e-5,z:delta[2]};
+  if(/^[AB] Belt$/.test(row.name||''))return {visible:Boolean(enabled),z:delta[2]};
   return {visible:Boolean(enabled)&&delta.every(v=>Math.abs(v)<1e-5),z:0};
 }

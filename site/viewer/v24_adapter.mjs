@@ -1,5 +1,6 @@
-import {v24FlexibleState} from './v24-flexible.mjs?v=trident-clearance-35';
+import {v24FlexibleState} from './v24-flexible.mjs?v=v24-belts-43';
 import {appearanceRole} from './appearance-role.mjs?v=trident-clearance-35';
+import {createV24Belts} from './v24-belts.mjs?v=v24-belts-43';
 /** Separate V2.4 kinematic adapter. CAD vertices already contain world placement. */
 export function createV24Adapter(root,manifest,profile){
   if(manifest.machine_id!==profile.machine_id||profile.machine_id!=='siboor_v24_350')throw new Error('V2.4 profile mismatch');
@@ -13,6 +14,7 @@ export function createV24Adapter(root,manifest,profile){
   });
   const missing=[...records.keys()].filter(k=>!nodes.has(k));if(missing.length)throw new Error(`Missing ${missing.length} V2.4 parts`);
   const origins=new Map([...nodes].map(([k,o])=>[k,o.position.clone()]));
+  const xyBelts=createV24Belts(nodes,manifest,profile);
   let flexibleVisible=true,currentPose=[...profile.display_reference_xyz_mm];
   function setPose(pose){
     const v=['x','y','z'].map(k=>Number(pose[k]));if(v.some(x=>!Number.isFinite(x)))throw new Error('Non-finite pose');
@@ -26,6 +28,7 @@ export function createV24Adapter(root,manifest,profile){
       o.position.set(base.x+t[0]/1000,base.y+t[2]/1000,base.z-t[1]/1000);
       if(r.motion==='reference_flexible'){const state=v24FlexibleState(r,delta,flexibleVisible);o.visible=state.visible;o.position.y=base.y+state.z/1000;}
     }
+    xyBelts.update(delta,flexibleVisible);
     return {display_xyz_mm:v,cad_delta_xyz_mm:delta,atReference,flexible_visible_count:[...nodes].filter(([k,o])=>records.get(k).motion==='reference_flexible'&&o.visible).length};
   }
   function setFlexibleVisible(value){flexibleVisible=Boolean(value)}

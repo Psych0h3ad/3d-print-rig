@@ -53,7 +53,7 @@ for(const name of ['A Belt','B Belt']){
 }
 assert.deepEqual(v24FlexibleState({name:'Z Belt (2)'},[100,100,100],true),{visible:true,z:0});
 assert.deepEqual(v24FlexibleState({name:'A Belt'},[0,0,100],true),{visible:true,z:100});
-assert.equal(v24FlexibleState({name:'A Belt'},[1,0,0],true).visible,false);
+assert.equal(v24FlexibleState({name:'A Belt'},[1,0,0],true).visible,true);
 assert.equal(v24FlexibleState({name:'Z Belt'},[0,0,0],false).visible,false);
 assert.throws(()=>v0BeltCircles({parts:[]},'A Belt'),/registration/);
 assert.throws(()=>circleBeltRoute([{x:0,y:0,r:10,turn:1},{x:1,y:0,r:10,turn:-1}]),/tangent/);

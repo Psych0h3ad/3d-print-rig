@@ -1,6 +1,6 @@
 import {loadMonolithData} from './monolith-machine.js?v=sc-seats-39';
 import {setupChangerBank} from './changer-bank.js?v=trident-clearance-35';
-import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=sc-seats-39';
+import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=v24-belts-43';
 import {headPrinterLink} from './head-navigation.mjs?v=sc-seats-39';
 import {headBuilderDimensions} from './configuration-model.js?v=trident-clearance-35';
 let machineRegistry,toolBank,bankRig;
