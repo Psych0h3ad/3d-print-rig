@@ -1,19 +1,20 @@
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=probe-travel-32';
-import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=probe-travel-32';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=head-witness-33';
+import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=head-witness-33';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=probe-travel-32';
-import {appearanceRole} from './appearance-role.mjs?v=probe-travel-32';
-import {partKey} from './head-assembly.js?v=probe-travel-32';
-import {v24HeadCatalog} from './machine-head-model.mjs?v=probe-travel-32';
-import {setupConfigurations} from './configurations.js?v=probe-travel-32';
+import {loadModel} from './model-loader.js?v=head-witness-33';
+import {appearanceRole} from './appearance-role.mjs?v=head-witness-33';
+import {partKey} from './head-assembly.js?v=head-witness-33';
+import {v24HeadCatalog} from './machine-head-model.mjs?v=head-witness-33';
+import {setupConfigurations} from './configurations.js?v=head-witness-33';
 
-import {stockProbeFit} from './probe-mounts.js?v=probe-travel-32';
+import {stockProbeFit} from './probe-mounts.js?v=head-witness-33';
 
-import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs?v=probe-travel-32';
-import {bankPlan} from './changer-bank-model.mjs?v=probe-travel-32';
-import {setupChangerBank} from './changer-bank.js?v=probe-travel-32';
-import {contentSHA256,acceptedMountValidation} from './mount-validation.mjs?v=probe-travel-32';
+import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs?v=head-witness-33';
+import {bankPlan} from './changer-bank-model.mjs?v=head-witness-33';
+import {setupChangerBank} from './changer-bank.js?v=head-witness-33';
+import {contentSHA256,acceptedMountValidation} from './mount-validation.mjs?v=head-witness-33';
+import {acceptedHeadValidation}from './head-validation.mjs?v=head-witness-33';
 
 const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);
 export async function loadMachineHeadCatalog(machine){
@@ -25,6 +26,10 @@ export async function loadMachineHeadCatalog(machine){
    const evidence=await get('MOUNT_VALIDATION.json'),target=evidence.machines?.[machine];
    if(target){const [bundle]=await Promise.all([get('ASSET_BUNDLE.json'),...Object.keys(target.input_sha256).map(get)]);registry.probe_travel_validation=acceptedMountValidation(evidence,hashes,bundle,machine)}
   }catch{/* Missing or stale evidence leaves the original unverified state. */}
+  try{
+   const evidence=await get('HEAD_VALIDATION.json'),target=evidence.machines?.[machine];
+   if(target){const[bundle]=await Promise.all([get('ASSET_BUNDLE.json'),...Object.keys(target.input_sha256).map(get)]);registry.head_witness_validation=acceptedHeadValidation(evidence,hashes,bundle,machine)}
+  }catch{/* Missing or stale body findings do not prevent loading the catalog. */}
  }
  heads.assets={...heads.assets,...bank.assets};const board=[xolEmbeddedBoard(await get(heads.base_assets.xol.meta)),sbEmbeddedBoard(await get(heads.base_assets.stealthburner.meta))];return {heads:withEmbeddedBoards(heads,board),registry,bank};
 }
@@ -82,9 +87,18 @@ export async function setupV24MachineHeads({machine,profile,adapter,scene,render
  for(const p of probes)if(!catalog.probes.some(v=>v.id===p.id))catalog.probes.push({id:p.id,label:p.label});
  const baseline=probes.map(p=>({id:(profile.available_configurations?.[0]?.id||'stock')+'__'+p.id,toolhead:'stealthburner',mount:'fixed',extruder:'cw2',hotend:'revo_voron',gantry:'machine_gantry',carriage:'standard',probe:p.id,board:'none',cooling:'source',belt_width_mm:6,xy_motors:binding.xy_motors,modules:[],baseline_probe:p.id,notes:['元の機体CADの標準ヘッド。'],fit:{nozzle_mm:stock.tip,...(stockProbeFit(p)?{probe:stockProbeFit(p)}:{})}}));catalog.variants.unshift(...baseline);
  catalog=await loadMonolithMachines(catalog,data);catalog.dimensions=['gantry','mount','toolhead','extruder','hotend','carriage','probe','board','cooling'];catalog.bank_data=bank;const rig=createMachineHeads(scene,catalog,{render}),gantryVisibility=stockGantryVisibility(adapter.nodes);
- const panel=ensureMachineHeadControls({gantry:true,monolithUnavailable:catalog.monolith_unavailable}),toolBank=setupChangerBank({catalog,rig,data:bank});let custom=false,baselineHidden=new Set(),installed=false;
+ const markers=new THREE.Group();markers.name='Native_Intersection_Part_Bounds';scene.add(markers);
+ const clearMarkers=()=>{for(const h of markers.children){h.geometry.dispose();h.material.dispose()}markers.clear()};
+ const inspectPose=(xyz,hit)=>{
+  for(const[i,a]of ['x','y','z'].entries()){const input=document.querySelector('#'+a);input.value=xyz[i];input.dispatchEvent(new window.Event('input',{bubbles:true}))}const enclosure=document.querySelector('#enclosure');if(enclosure&&!enclosure.checked){enclosure.checked=true;enclosure.onchange?.()}applyPose();clearMarkers();
+  if(hit){let head;if(Number.isInteger(hit.slot)){rig.bankRig.traverse(o=>{if(o.isMesh&&String(partKey(o))===hit.head_part&&o.parent?.userData.tool_bank?.slot===hit.slot)head=o});if(!head)for(const root of rig.bankRig.children)if(root.userData.tool_bank?.slot===hit.slot&&root.userData.tool_bank.asset===hit.head_module)root.traverse(o=>{if(o.isMesh&&String(partKey(o))===hit.head_part)head=o})}else head=rig.cache.get(hit.head_module)?.loaded?.entries.find(e=>e.key===hit.head_part)?.mesh;
+   for(const node of [head,adapter.nodes.get(hit.fixture_part)])if(node){const marker=new THREE.BoxHelper(node,'#e98425');marker.userData.intersection_part_bounds=true;markers.add(marker)}
+  }render();
+ };
+ const panel=ensureMachineHeadControls({gantry:true,monolithUnavailable:catalog.monolith_unavailable}),toolBank=setupChangerBank({catalog,rig,data:bank,inspectPose});let custom=false,baselineHidden=new Set(),installed=false;
  function visibility(){for(const key of binding.stock_head_keys){const node=adapter.nodes.get(key);if(node)node.visible=!custom&&!baselineHidden.has(key)}if(custom)for(const [key,node] of adapter.nodes)if(adapter.records.get(key).motion==='reference_flexible'&&!/^Z Belt(?: \(\d+\))?$/.test(adapter.records.get(key).name||''))node.visible=false}
  async function install(v){
+  clearMarkers();
   await beforeInstall(v);await toolBank.install(v);gantryVisibility.install(v);custom=!!v.machine_head;baselineHidden=new Set(probes.find(p=>p.id===v.baseline_probe)?.hidden_stock_keys||[]);
   if(custom){profile.nozzle_tip_mm=[...v.machine_head.nozzle_mm];profile.display_reference_xyz_mm=[profile.nozzle_tip_mm[0]-profile.bed_surface_min_xy_mm[0],profile.nozzle_tip_mm[1]-profile.bed_surface_min_xy_mm[1],profile.nozzle_tip_mm[2]-profile.bed_top_world_z_mm]}
   else{profile.nozzle_tip_mm=[...stock.tip];profile.display_reference_xyz_mm=[...stock.reference]}
@@ -95,7 +109,7 @@ export async function setupV24MachineHeads({machine,profile,adapter,scene,render
  }
  const query=new URLSearchParams(location.search),requestedProbe=query.get('probe');
  if(!catalog.variants.some(v=>v.id===query.get('configuration'))&&requestedProbe){const preferred=baseline.find(v=>v.probe===requestedProbe);if(preferred){catalog.variants=catalog.variants.filter(v=>v!==preferred);catalog.variants.unshift(preferred)}}
- await toolBank.bind(await setupConfigurations(catalog,install,toolBank.options));
+ await toolBank.bind(await setupConfigurations(catalog,install,{...toolBank.options,inspectPose}));
  if(!installed)throw Error('ヘッド構成を表示できませんでした');
- return {rig,panel,catalog,update:pose=>{rig.setDelta(pose.cad_delta_xyz_mm);rig.gantry.setFlexibleVisible(document.querySelector('#belts')?.checked??true);visibility();gantryVisibility.update()},setPalette:value=>rig.setPalette(value),focus:(camera,controls)=>rig.focus(camera,controls),get custom(){return custom},get monolith(){return !!rig.gantry.active},get variant(){return rig.active}};
+ return {rig,panel,catalog,update:pose=>{rig.setDelta(pose.cad_delta_xyz_mm);rig.gantry.setFlexibleVisible(document.querySelector('#belts')?.checked??true);visibility();gantryVisibility.update();for(const marker of markers.children)marker.update()},setPalette:value=>rig.setPalette(value),focus:(camera,controls)=>rig.focus(camera,controls),get custom(){return custom},get monolith(){return !!rig.gantry.active},get variant(){return rig.active}};
 }

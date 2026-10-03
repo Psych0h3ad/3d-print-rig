@@ -1,6 +1,6 @@
-import {monolithHeadCatalog} from './monolith-head-model.mjs?v=probe-travel-32';
-import {machinePage} from './machines.js?v=probe-travel-32';
-import {machineHeadVariants} from './machine-head-model.mjs?v=probe-travel-32';
+import {monolithHeadCatalog} from './monolith-head-model.mjs?v=head-witness-33';
+import {machinePage} from './machines.js?v=head-witness-33';
+import {machineHeadVariants} from './machine-head-model.mjs?v=head-witness-33';
 
 export function headPrinterLink(variant,registry,href){
  const source=new URL(href),preferred=source.searchParams.get('return_machine');

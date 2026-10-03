@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-import {compileGcode,nozzlePoint} from './gcode-preview.mjs?v=probe-travel-32';
-import {sampleGcode} from './gcode-timeline.mjs?v=probe-travel-32';
+import {compileGcode,nozzlePoint} from './gcode-preview.mjs?v=head-witness-33';
+import {sampleGcode} from './gcode-timeline.mjs?v=head-witness-33';
 
 export function displayedMachineLimits(){
  return Object.fromEntries(['X','Y','Z'].map(a=>{const input=document.querySelector('#'+a.toLowerCase());return [a,[Number(input.min),Number(input.max)]]}));

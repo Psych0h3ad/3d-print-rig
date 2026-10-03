@@ -1,10 +1,13 @@
-import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=probe-travel-32';
-import {catalogDimensions,collections,resolveVariant,choicesFor,choiceChanges,importedVariant,configurationById} from './configuration-model.js?v=probe-travel-32';
-import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=probe-travel-32';
-import {renderProductLinks} from './product-links.js?v=probe-travel-32';
+import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=head-witness-33';
+import {catalogDimensions,collections,resolveVariant,choicesFor,choiceChanges,importedVariant,configurationById} from './configuration-model.js?v=head-witness-33';
+import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=head-witness-33';
+import {renderProductLinks} from './product-links.js?v=head-witness-33';
+import {headWitnessCheck}from './head-validation.mjs?v=head-witness-33';
+import {createHeadInspection}from './head-validation-ui.mjs?v=head-witness-33';
 
-export async function setupConfigurations(catalog,install,{presentation='printer',getExtras=()=>({}),applyExtras=async()=>{},validateExtras=()=>{},onSettled=()=>{}}={}){
+export async function setupConfigurations(catalog,install,{presentation='printer',getExtras=()=>({}),applyExtras=async()=>{},validateExtras=()=>{},onSettled=()=>{},inspectPose}={}){
  const $=s=>document.querySelector(s);
+ const inspection=createHeadInspection($('#configStatus'),{setPose:inspectPose});
  let productTarget=$('#headProductLinks');if(!productTarget){productTarget=document.createElement('div');productTarget.id='configurationProductLinks';$('#configStatus').after(productTarget)}
  const ids=catalogDimensions(catalog).filter(id=>catalog[collections[id]]&&$('#'+id+'Config'));
  const selection=()=>({...Object.fromEntries(ids.map(k=>[k,$('#'+k+'Config').value])),id:actual?.id});
@@ -45,6 +48,7 @@ export async function setupConfigurations(catalog,install,{presentation='printer
    $('#configStatus').textContent+=' ／ '+label;$('#configStatus').classList.toggle('notice',check.warning||native.state!=='clear');
    rows.push(label,...native.notes);$('#mountInfo')?.replaceChildren(...rows.map(row=>{const li=document.createElement('li');li.textContent=row;return li}));
   }
+  const body=headWitnessCheck(v);if(body){$('#configStatus').textContent+=' ／ '+body.label;$('#configStatus').classList.add('notice');rows.push(...body.lines);$('#mountInfo')?.replaceChildren(...rows.map(row=>{const li=document.createElement('li');li.textContent=row;return li}))}inspection.update(v);
   $('#configStatus').dataset.variant=v.id;
   const headLink=$('#toolheadLink');if(presentation==='printer'&&headLink&&catalog.machine_id){const u=new URL(headLink.href,location.href);u.searchParams.set('return_machine',catalog.machine_id);u.searchParams.set('return_configuration',v.id);u.searchParams.set('return_head',u.searchParams.get('configuration'));headLink.href=u.href}
  }

@@ -1,5 +1,9 @@
 # Probe mounting and machine travel
 
+Complete-head and parked-tool intersection counterexamples are reported
+separately in [Head travel](HEAD_TRAVEL.md). A probe travel pass does not
+suppress a head-body conflict.
+
 Sphinx Beacon RevH / Cartographer V4 and the registered fixed Xol Beacon
 RevD / RevH / Cartographer V1–V3 / V4 mount assemblies are checked against
 seven displayed V2.4 stock assemblies: VORON printed and LDO CNC reference

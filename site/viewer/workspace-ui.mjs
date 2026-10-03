@@ -1,5 +1,5 @@
 // Shared presentation layer. Existing controls, IDs and CAD controllers stay intact.
-import {setupLanguage,originalText} from './i18n.mjs?v=probe-travel-32';
+import {setupLanguage,originalText} from './i18n.mjs?v=head-witness-33';
 const $ = selector => document.querySelector(selector);
 const node = (tag, className, text) => {
   const element = document.createElement(tag);

@@ -1,22 +1,22 @@
-import {loadMonolithData} from './monolith-machine.js?v=probe-travel-32';
-import {setupChangerBank} from './changer-bank.js?v=probe-travel-32';
-import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=probe-travel-32';
-import {headPrinterLink} from './head-navigation.mjs?v=probe-travel-32';
-import {headBuilderDimensions} from './configuration-model.js?v=probe-travel-32';
+import {loadMonolithData} from './monolith-machine.js?v=head-witness-33';
+import {setupChangerBank} from './changer-bank.js?v=head-witness-33';
+import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=head-witness-33';
+import {headPrinterLink} from './head-navigation.mjs?v=head-witness-33';
+import {headBuilderDimensions} from './configuration-model.js?v=head-witness-33';
 let machineRegistry,toolBank,bankRig;
-import {appearanceRole} from './appearance-role.mjs?v=probe-travel-32';
+import {appearanceRole} from './appearance-role.mjs?v=head-witness-33';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=probe-travel-32';
-import {setupConfigurations} from './configurations.js?v=probe-travel-32';
-import {setupPublicInfo} from './public-info.js?v=probe-travel-32';
-import {setupRenderExport} from './render-export.js?v=probe-travel-32';
-import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=probe-travel-32';
-import {probeCheck,probeMetrics,probeGuide,headInspectionState} from './probe-checks.js?v=probe-travel-32';
-import {renderProductLinks} from './product-links.js?v=probe-travel-32';
-import {setupHeadBuilder} from './builder-ui.mjs?v=probe-travel-32';
-import {validateBuilderExtras} from './toolhead-builder.mjs?v=probe-travel-32';
+import {loadModel} from './model-loader.js?v=head-witness-33';
+import {setupConfigurations} from './configurations.js?v=head-witness-33';
+import {setupPublicInfo} from './public-info.js?v=head-witness-33';
+import {setupRenderExport} from './render-export.js?v=head-witness-33';
+import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=head-witness-33';
+import {probeCheck,probeMetrics,probeGuide,headInspectionState} from './probe-checks.js?v=head-witness-33';
+import {renderProductLinks} from './product-links.js?v=head-witness-33';
+import {setupHeadBuilder} from './builder-ui.mjs?v=head-witness-33';
+import {validateBuilderExtras} from './toolhead-builder.mjs?v=head-witness-33';
 
 const $=s=>document.querySelector(s),stage=$('#stage'),scene=new THREE.Scene();
 scene.background=new THREE.Color('#edf1f5');
@@ -199,6 +199,6 @@ try{
  toolBank=setupChangerBank({before:$('#assemblyScope'),catalog:bankCatalog,rig:bankAdapter,data:headData.bank,extras:{presentation:'toolhead',getExtras:extras,applyExtras:restoreExtras,validateExtras:validateBuilderExtras,onSettled:()=>{builder?.update();if(ready){appearance();visibleBounds();fit()}}}});
  const controller=await setupConfigurations(catalog,install,toolBank.options);await toolBank.bind(controller);
  if(!ready)throw Error('ヘッドのCADを表示できませんでした');
- let pins=[];try{const r=await fetch('../PUBLIC_CATALOG.json?v=probe-travel-32');if(r.ok)pins=(await r.json()).sources||[]}catch{}
+ let pins=[];try{const r=await fetch('../PUBLIC_CATALOG.json?v=head-witness-33');if(r.ok)pins=(await r.json()).sources||[]}catch{}
  builder=setupHeadBuilder(catalog,{getVariant:()=>currentVariant,getMetadata:()=>new Map([...cached].filter(([,p])=>p.loaded).map(([id,p])=>[id,p.loaded.meta])),getExtras:()=>toolBank.options.getExtras(),pins,selectVariant:id=>controller.selectVariant(id),isBusy:()=>controller.busy});
 }catch(e){$('#loading').hidden=false;$('#loading').textContent=e.message;document.body.dataset.assetStatus='error';console.error(e)}

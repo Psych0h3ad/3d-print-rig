@@ -1,5 +1,5 @@
-import {renderProductLinks} from './product-links.js?v=probe-travel-32';
-import {ratRigMachines} from './ratrig-machines.mjs?v=probe-travel-32';
+import {renderProductLinks} from './product-links.js?v=head-witness-33';
+import {ratRigMachines} from './ratrig-machines.mjs?v=head-witness-33';
 export const machineChoices=[
  {id:'siboor_trident_350',label:'SIBOOR Trident 350 · CNC AWD',page:'./'},
  ...[250,300,350].map(size=>({id:`voron_trident_${size}`,label:`VORON Trident ${size} · 標準プリント構造`,page:'./trident.html'})),

@@ -1,4 +1,4 @@
-import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=probe-travel-32';
+import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=head-witness-33';
 export function stockProbeFit(row){return row.module?{...row,id:row.id,physical_passed:row.physical_passed??null,height_passed:row.height_passed??null,metal_keepout_verified:row.metal_keepout_verified??false}:null}
 export function probeMountSummary(row){
  if(!row.module){const check=probeCheck({probe:row.id});return {text:row.label+(check.warning?' ／ '+check.label:''),warning:check.warning}}

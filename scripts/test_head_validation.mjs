@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {headPlacementKey,acceptedHeadValidation,applyHeadValidation,headWitnessCheck}from '../site/viewer/head-validation.mjs';
+import {translate}from '../site/viewer/i18n.mjs';
+const plan={base:'head',translation:[1,2,3],nozzle_mm:[1,2,0],hidden:['ref'],modules:[{id:'hotend',translation_mm:[1,2,3]}]},v={source_head_configuration:'native',toolhead:'sphinx',mount:'fixed',machine_head:plan,fit:{machine_mount:{full_travel_verified:false}}};
+const hit={category:'body',head_module:'head',head_part:'plate',head_name:'Plate',fixture_part:'screw',fixture_name:'Screw',display_xyz_mm:[250,125,40],overlap_mm3:70};
+const record={source_configurations:['native'],placement:'p',intersections:[hit],full_travel_verified:false},evidence={schema:'3d-print-rig-head-witness-v1',revision:'r',model_bundle_sha256:'bundle',input_sha256:{heads:'h',registry:'r'},placements:{p:headPlacementKey(plan)},machines:{machine:{input_sha256:{meta:'m',profile:'p'},records:[record]}}},pins={heads:'h',registry:'r',meta:'m',profile:'p'},bundle={sha256:'bundle'};
+const accepted=acceptedHeadValidation(evidence,pins,bundle,'machine');assert(accepted);
+for(const name of Object.keys(pins))assert.equal(acceptedHeadValidation(evidence,{...pins,[name]:'changed'},bundle,'machine'),null);
+assert.equal(acceptedHeadValidation(evidence,pins,{sha256:'other'},'machine'),null);assert.equal(acceptedHeadValidation(evidence,pins,bundle,'other'),null);
+const registry={head_witness_validation:accepted},source=structuredClone(v);assert(applyHeadValidation(v,registry,'machine'));assert.equal(v.fit.machine_mount.full_travel_verified,false);const check=headWitnessCheck(v);assert.equal(check.state,'machine-head-conflict');assert(check.warning);
+for(const text of [check.label,...check.lines])assert(!/[\u3040-\u30ff\u3400-\u9fff]/u.test(translate(text)),text);
+for(const change of [n=>n.machine_head.translation[1]+=.1,n=>n.machine_head.hidden.push('plate'),n=>n.machine_head.modules[0].translation_mm[2]+=.1,n=>n.machine_gantry={id:'other'},n=>n.source_head_configuration='other']){const n=structuredClone(source);change(n);assert.equal(applyHeadValidation(n,registry,'machine'),null);assert.equal(n.fit.rigid_head_witnesses,undefined)}
+const noHit=structuredClone(v);noHit.fit.rigid_head_witnesses.intersections=[];assert.equal(headWitnessCheck(noHit).state,'machine-head-unverified');assert(headWitnessCheck(noHit).warning);
+const engagement=structuredClone(v);engagement.fit.rigid_head_witnesses.intersections[0].category='mount_interface';assert.equal(headWitnessCheck(engagement).intersections.length,0);assert.equal(headWitnessCheck(engagement).interfaces.length,1);assert(headWitnessCheck(engagement).warning);
+console.log('Native head intersections: exact placement/input pins, visible part changes, stale evidence, changed gantries, interface separation, no false full-travel pass and bilingual scope passed.');

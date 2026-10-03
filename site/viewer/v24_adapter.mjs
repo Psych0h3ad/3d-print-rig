@@ -1,5 +1,5 @@
-import {v24FlexibleState} from './v24-flexible.mjs?v=probe-travel-32';
-import {appearanceRole} from './appearance-role.mjs?v=probe-travel-32';
+import {v24FlexibleState} from './v24-flexible.mjs?v=head-witness-33';
+import {appearanceRole} from './appearance-role.mjs?v=head-witness-33';
 /** Separate V2.4 kinematic adapter. CAD vertices already contain world placement. */
 export function createV24Adapter(root,manifest,profile){
   if(manifest.machine_id!==profile.machine_id||profile.machine_id!=='siboor_v24_350')throw new Error('V2.4 profile mismatch');

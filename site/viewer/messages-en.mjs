@@ -1,5 +1,16 @@
-import {ratRigMessages,ratRigTemplates} from './ratrig-messages-en.mjs?v=probe-travel-32';
+import {ratRigMessages,ratRigTemplates} from './ratrig-messages-en.mjs?v=head-witness-33';
 export const messages = {
+ "橙の枠は対象部品の外接枠です。体積交差は原本CADで判定しています。": "Orange boxes bound the affected parts. Volumetric intersections are evaluated using native CAD.",
+ "体積干渉が未判定の組み合わせを含みます。干渉なしとは扱いません。": "Some volumetric intersection checks are unresolved. These combinations are not treated as clear.",
+ "待機ヘッドと可動ガントリーの体積交差あり。交換経路・全可動域の適合は未確認。": "Parked head intersects the moving gantry. Exchange paths and full travel compatibility remain unverified.",
+ "ヘッドと機体の干渉": "Head / machine intersections",
+ "干渉姿勢を見る": "Show intersection pose",
+ "機体内のヘッド干渉あり": "Head intersects machine parts",
+ "ヘッドの全可動域は未確認": "Full head travel remains unverified",
+ "原本CADで機体側部品との体積交差を確認。比較用の構成です。": "Native CAD has volumetric intersections with machine parts. This configuration is for comparison.",
+ "候補姿勢の交差検査のみ。交差のない姿勢から全可動域の適合は判定しません。": "Only candidate poses inspected. A pose without intersection does not establish full travel compatibility.",
+ "標準外装を含む検査。追加Mod・柔軟な配線・ホーミング・交換経路は未検証。": "Checks include the stock enclosure. Extra mods, flexible wiring, homing and tool exchange paths remain unverified.",
+ "締結部・接点・参考配線の交差候補は別扱いです。機体全体の適合判定には使いません。": "Fastener, switch contact and reference wire intersections are reported separately and do not establish complete machine compatibility.",
  ...ratRigMessages,
  "プローブの剛体可動域確認済み": "Probe rigid-body travel checked",
  "プローブ本体・マウント・ねじと標準機体の剛体部品、および機体側の金属除外領域をXYZ表示範囲全域で照合済み。": "Probe body, mount and screws checked against stock rigid machine parts, including the machine-side metal keepout, throughout the displayed XYZ travel.",

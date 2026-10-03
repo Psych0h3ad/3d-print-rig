@@ -1,6 +1,7 @@
-import {bankChoices,bankCapacity,normalizeBank,initialBank,readBankURL,bankBedReferenceDrop,bankSystem,bankSource,bankSpec,variantBankSystem,bankStateForVariant} from './changer-bank-model.mjs?v=probe-travel-32';
+import {bankChoices,bankCapacity,normalizeBank,initialBank,readBankURL,bankBedReferenceDrop,bankSystem,bankSource,bankSpec,variantBankSystem,bankStateForVariant,bankPlan} from './changer-bank-model.mjs?v=head-witness-33';
+import {bankWitnessCheck}from './head-validation.mjs?v=head-witness-33';
 
-export function setupChangerBank({catalog,rig,data,extras={},before=document.querySelector('#configurationControls')}){
+export function setupChangerBank({catalog,rig,data,extras={},before=document.querySelector('#configurationControls'),inspectPose}={}){
  if(!before)throw Error('ツールバンクの表示先がありません');
  let controller,state=initialBank(catalog,data,catalog.variants[0]?.gantry),busy=false,previousGantry=catalog.variants[0]?.gantry,urlState,urlError,wasMonolith=false;
  try{urlState=readBankURL(location.search)}catch(e){urlError=e}
@@ -34,6 +35,12 @@ export function setupChangerBank({catalog,rig,data,extras={},before=document.que
   else if(Number.isFinite(down)&&Math.abs(down)>.001)status.append(Object.assign(document.createElement('span'),{textContent:` ノズル接触面へのベッド移動 ${(-down).toFixed(2)} mm。`}));
   if(monolith&&!wasMonolith&&!(gap>.01))panel.open=false;if(state.enabled||gap>.01)panel.open=true;wasMonolith=monolith;
   panel.dataset.system=system;panel.dataset.printingSetup=unregistered?'unregistered':blocked?'blocked':'unverified';
+  panel.querySelector('[data-bank-intersection]')?.remove();
+  const installed=rig.active||controller?.current;
+  if(state.enabled&&installed){
+   const hit=bankWitnessCheck(catalog.head_witness_validation,bankPlan(state,catalog,data,installed),installed);
+   if(hit){const detail=document.createElement('div');detail.dataset.bankIntersection='true';detail.className='foot notice';detail.textContent='待機ヘッドと可動ガントリーの体積交差あり。交換経路・全可動域の適合は未確認。';const part=document.createElement('p');part.dataset.part=hit.head_part;part.textContent=`${hit.head_name} / ${hit.fixture_name} · ${hit.overlap_mm3.toFixed(3)} mm³`;detail.append(part);if(inspectPose){const button=document.createElement('button');button.type='button';button.textContent='干渉姿勢を見る';button.onclick=()=>inspectPose(hit.display_xyz_mm,hit);detail.append(button)}status.after(detail)}
+  }
  }
  async function select(next){
   if(!controller||busy||controller.busy)return;busy=true;menus();let error;

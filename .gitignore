@@ -24,6 +24,7 @@
 !/site/RATRIG_ASSETS.json
 !/site/MOD_REGISTRY.json
 !/site/MOUNT_VALIDATION.json
+!/site/HEAD_VALIDATION.json
 /site/modules/
 /site/toolheads/
 /site/machines/

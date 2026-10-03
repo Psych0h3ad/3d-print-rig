@@ -1,9 +1,10 @@
-import {headPlan} from './head-assembly.js?v=probe-travel-32';
+import {headPlan} from './head-assembly.js?v=head-witness-33';
 
-import {translatedProbeFit} from './probe-checks.js?v=probe-travel-32';
+import {translatedProbeFit} from './probe-checks.js?v=head-witness-33';
 
-import {withEmbeddedBoards} from './embedded-boards.mjs?v=probe-travel-32';
-import {applyMountValidation} from './mount-validation.mjs?v=probe-travel-32';
+import {withEmbeddedBoards} from './embedded-boards.mjs?v=head-witness-33';
+import {applyMountValidation} from './mount-validation.mjs?v=head-witness-33';
+import {applyHeadValidation} from './head-validation.mjs?v=head-witness-33';
 
 const clone=value=>JSON.parse(JSON.stringify(value));
 const add=(a,b)=>a.map((v,i)=>v+b[i]);
@@ -37,6 +38,7 @@ export function machineHeadVariants(heads,registry,machine,gantry){
   n.fit={...n.fit,nozzle_mm:n.machine_head.nozzle_mm,bed_reference_drop_mm:0,machine_mount:{kind:'MGN12H 20 x 20 mm',axis_error_mm:Math.max(target.axis_error_mm||0,v.mount==='stealthchanger'?(registry.mount_verification?.stealthchanger?.axis_error_mm||0):v.toolhead==='indx'?(registry.mount_verification?.indx?.axis_error_mm||0):(registry.mount_verification?.[v.registration_source]?.axis_error_mm||0)),docking_registered:false,full_travel_verified:false}};
   if(n.fit.probe)n.fit.probe=translatedProbeFit(n.fit.probe,n.machine_head.translation_delta_mm);
   applyMountValidation(n,registry,machine,gantry);
+  applyHeadValidation(n,registry,machine,gantry);
   n.notes=[...n.notes.filter(t=>!t.includes('プリンター全体への装着')),'MGN12の取付軸で機体に配置。ヘッド全体の可動域・ホーミング接点・配線・ドッキングは未検証。'];
   if(v.toolhead==='indx')n.notes.push('INDXの受動ツールと2020用ドックを表示。追加クロスバーと専用締結が必要。ベルト固定具・交換経路は未検証。');
   if(v.toolhead==='sphinx')n.notes.push('MGN12の取付面と4本の穴軸でVORON機体へ配置。プローブはヘッド内の取付形状・高さを確認。');
@@ -64,6 +66,6 @@ export function expandedPrinterCatalog(current,heads,registry,machine){
  return result;
 }
 export function v24HeadCatalog(heads,registry,machine){
- const variants=machineHeadVariants(heads,registry,machine),result={...heads,variants,machine_id:machine,dimensions:['toolhead','mount','extruder','hotend','carriage','probe','board','cooling'],assets:{...heads.assets,...registry.assets},gantries:[{id:'machine_gantry',label:'現在のガントリー'}]};
+ const variants=machineHeadVariants(heads,registry,machine),result={...heads,variants,machine_id:machine,head_witness_validation:registry.head_witness_validation,dimensions:['toolhead','mount','extruder','hotend','carriage','probe','board','cooling'],assets:{...heads.assets,...registry.assets},gantries:[{id:'machine_gantry',label:'現在のガントリー'}]};
  return result;
 }
