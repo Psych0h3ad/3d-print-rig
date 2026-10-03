@@ -1,4 +1,4 @@
-import {messages,templates} from './messages-en.mjs?v=motion-colors-41';
+import {messages,templates} from './messages-en.mjs?v=standard-step-42';
 
 const normalize=text=>text.trim().replace(/\s+/gu,' ');
 const escape=text=>text.replace(/[.*+?^${}()|[\]\\]/gu,'\\$&');

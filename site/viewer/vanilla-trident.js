@@ -13,7 +13,7 @@ import {loadModel} from './model-loader.js?v=trident-clearance-35';
 import {setupMachineNavigation} from './machines.js?v=crossant-36';
 import {setupConfigurations} from './configurations.js?v=sc-seats-39';
 import {setupAccessories} from './accessories.js?v=trident-clearance-35';
-import {setupPublicInfo} from './public-info.js?v=crossant-36';
+import {setupPublicInfo} from './public-info.js?v=standard-step-42';
 import {setupRenderExport} from './render-export.js?v=trident-clearance-35';
 import {createTridentMotion} from './trident-motion.mjs?v=trident-clearance-35';
 import {headPlan,partKey} from './head-assembly.js?v=trident-clearance-35';
@@ -25,7 +25,7 @@ import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=trident-cle
 import {createHeadMarkers} from './head-markers.mjs?v=trident-clearance-35';
 const requestedMachine=new URL(location.href).searchParams.get('machine');
 const machine=/^voron_trident_(250|300|350)$/.test(requestedMachine)?requestedMachine:'voron_trident_350',size=Number(machine.split('_').at(-1)),gantryId='trident_r2_gantry_'+size,referenceOffset=(size-350)/2;
-setupMachineNavigation(machine);document.querySelector('h1').textContent='Trident / '+size;setupPublicInfo();
+setupMachineNavigation(machine);document.querySelector('h1').textContent='Trident / '+size;setupPublicInfo({machineId:machine});
 const $=s=>document.querySelector(s),stage=$('#stage'),renderer=new THREE.WebGLRenderer({antialias:true});
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor('#edf1f4');renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.2;stage.append(renderer.domElement);
 const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(38,1,.005,10),controls=new OrbitControls(camera,renderer.domElement);

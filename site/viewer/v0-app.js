@@ -10,7 +10,7 @@ import {poseDelta,createV0Adapter} from './v0_adapter.mjs?v=v0-mounts-39';
 import {setupMachineNavigation} from './machines.js?v=crossant-36';
 import {setupGrid} from './grid-control.js?v=trident-clearance-35';
 import {setupRenderExport} from './render-export.js?v=trident-clearance-35';
-import {setupPublicInfo} from './public-info.js?v=crossant-36';
+import {setupPublicInfo} from './public-info.js?v=standard-step-42';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=trident-clearance-35';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=trident-clearance-35';
 const $=s=>document.querySelector(s),ids=['voron_v02r1_120','voron_v02_120'];

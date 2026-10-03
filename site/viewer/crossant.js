@@ -5,7 +5,7 @@ import {loadCrossant,disposeCrossant} from './crossant-loader.mjs';
 import {crossantSchema,crossantGroups,validateCrossantState} from './crossant-state.mjs';
 import {setupMachineNavigation} from './machines.js?v=crossant-36';
 import {setupRenderExport} from './render-export.js?v=trident-clearance-35';
-import {setupPublicInfo} from './public-info.js?v=crossant-36';
+import {setupPublicInfo} from './public-info.js?v=standard-step-42';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 const $=id=>document.getElementById(id),stage=$('stage'),renderer=new THREE.WebGLRenderer({antialias:true});
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=.9;stage.append(renderer.domElement);

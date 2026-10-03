@@ -1,9 +1,10 @@
 import {setupProductDirectory} from './product-links.js?v=trident-clearance-35';
+import {mountAssemblyDownload} from './assembly-downloads.mjs?v=standard-step-42';
 const $=s=>document.querySelector(s);
 function dialog(id,title){const d=document.createElement('dialog');d.id=id;d.innerHTML=`<div class="dialog-head"><h2>${title}</h2><button class="close" aria-label="閉じる">×</button></div><div class="dialog-body"></div>`;document.body.append(d);d.querySelector('.close').onclick=()=>d.close();return d}
 const node=(tag,text)=>{const n=document.createElement(tag);n.textContent=text;return n};
 const link=(text,url)=>{const a=node('a',text);a.href=url;a.target='_blank';a.rel='noopener';return a};
-export async function setupPublicInfo({includeDownloads=true}={}){
+export async function setupPublicInfo({includeDownloads=true,machineId=null}={}){
  setupProductDirectory();
  const sources=dialog('sourcesDialog','出典・ライセンス'),downloads=dialog('downloadsDialog','標準構成のSTEP');
  $('#openSources').onclick=()=>sources.showModal();const downloadButton=$('#openDownloads');downloadButton.hidden=true;downloadButton.onclick=()=>downloads.showModal();
@@ -11,7 +12,8 @@ export async function setupPublicInfo({includeDownloads=true}={}){
  sb.append(node('p','コミュニティCADを組み合わせた非公式ビューアーです。各データの作者・ライセンスは個別に適用されます。'));
  db.append(node('p','STEPはメーカー／VORONの標準構成のみ。画面で選んだMod・色・可動姿勢は含みません。'));
  try{
-  const response=await fetch('../PUBLIC_CATALOG.json?v=crossant-36',{cache:'no-cache'});if(!response.ok)throw Error('カタログを取得できません');const catalog=await response.json();
+  const response=await fetch('../PUBLIC_CATALOG.json?v=standard-step-42',{cache:'no-cache'});if(!response.ok)throw Error('カタログを取得できません');const catalog=await response.json();
+  const assemblyDownload=$('#assemblyDownload');if(machineId&&assemblyDownload)mountAssemblyDownload(assemblyDownload,machineId,catalog);
   sb.append(node('p','ビューアー版：'+catalog.viewer_version));
   if(catalog.model_source_url)sb.append(link('表示モデルの編集用データ',catalog.model_source_url));
   for(const archive of catalog.source_archives||[]){const p=node('p','');p.append(link('編集用データ：'+archive.label,archive.url));sb.append(p)}

@@ -8,12 +8,12 @@ import {createV24Adapter} from './v24_matrix_adapter.mjs?v=motion-colors-41';
 import {setupMachineNavigation} from './machines.js?v=crossant-36';
 import {setupGrid} from './grid-control.js?v=trident-clearance-35';
 import {setupRenderExport} from './render-export.js?v=trident-clearance-35';
-import {setupPublicInfo} from './public-info.js?v=crossant-36';
+import {setupPublicInfo} from './public-info.js?v=standard-step-42';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=trident-clearance-35';
 import {setupV24MachineHeads} from './machine-heads.js?v=sc-seats-39';
 const $=s=>document.querySelector(s),ids=[250,300,350].flatMap(size=>['printed','ldo_cnc'].map(structure=>`voron_v24_${size}_${structure}`));
 const wanted=new URLSearchParams(location.search).get('machine'),id=ids.includes(wanted)?wanted:ids[0];
-setupMachineNavigation(id);setupPublicInfo({includeDownloads:false});
+setupMachineNavigation(id);setupPublicInfo({machineId:id});
 const stage=$('#stage'),renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));renderer.setClearColor('#edf1f4');renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);
 const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(38,1,.001,10),orbit=new OrbitControls(camera,renderer.domElement);scene.add(new THREE.HemisphereLight('#ffffff','#6c7981',2.4));
 for(const pos of [[.4,.6,.5],[-.3,.2,-.4]]){const light=new THREE.DirectionalLight('#ffffff',2);light.position.set(...pos);scene.add(light)}

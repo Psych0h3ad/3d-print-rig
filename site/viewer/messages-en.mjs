@@ -1,6 +1,7 @@
 import {v0Messages,v0Templates} from './v0-messages-en.mjs?v=v0-mounts-38';
 import {ratRigMessages,ratRigTemplates} from './ratrig-messages-en.mjs?v=trident-clearance-35';
 export const messages = {
+ "フロントドア": "Front door",
  "SB · 組み合わせとプローブ取付部品": "SB combinations and probe mounting parts",
  "組み合わせとプローブ取付": "combinations and probe mounting",
  "Z駆動ベルトは固定位置に表示し、PlusのXYベルトはY/Z軸に追従します。歯・クランプ部のカット・張力は未再現。Plusの18リンクZチェーンは接続軸を保って追従し、ベッド配線は固定、PTFEとヘッド配線は接続端が追従する配索プレビューです。": "Z drive belts stay at their fixed pulleys; Plus XY belts follow Y/Z motion. Teeth, clamp cuts and tension are not modeled. The 18-link Plus Z chain keeps its native hinge spacing, bed wires stay fixed, and PTFE/head wiring use endpoint-following routing previews.",
@@ -109,6 +110,7 @@ export const messages = {
  "レール内の表示上限です。干渉なし可動域ではありません。": "Display limits retain guide containment; they are not a collision-free travel envelope.",
  "STEPカタログの読込に失敗": "Failed to load the STEP catalog",
  "Assy STEP をダウンロード": "Download Assy STEP",
+ "標準構成・CAD基準姿勢の組立済みSTEPです。選択中のMod・配色は含みません。": "Assembled STEP in the standard configuration and CAD reference pose. Selected Mods and custom colors are not included.",
  "元の設計・ライセンス": "Original design and license",
  "部品 · ZIP": "parts · ZIP",
  "作者のtLW取付部品にSherpa Mini R2とホットエンド本体を装着。": "Author tLW mounting parts fitted with Sherpa Mini R2 and hotend hardware.",

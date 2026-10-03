@@ -1,5 +1,5 @@
 {
-  "viewer_version": "viewer-v41",
+  "viewer_version": "viewer-v42",
   "sources": [
     {
       "id": "siboor_trident",
@@ -57,7 +57,7 @@
       "author": "VoronDesign",
       "commit": "a192410e27ea345644ae5c4b29b4c9c40cbe1a73",
       "url": "https://github.com/VoronDesign/Voron-2/tree/a192410e27ea345644ae5c4b29b4c9c40cbe1a73",
-      "scope": "250の公式アセンブリから構築したV2.4 350基準モデル。",
+      "scope": "Printed R2 assemblies in 250 / 300 / 350 mm, derived from the official 250 mm assembly.",
       "license": "GPL-3.0",
       "changes": "350 mm寸法への再配置。選択部品の重複を除き、スカート・ラッチ・固定具・ベッドの取付面を調整。 Zレール固定用ナットをM3へ交換してレール裏の溝へ配置。XYを含む68組のレール固定ナットをボルト軸に合わせて調整。 Complete 250/300/350 upper and lower latch groups are registered to the door seam and native magnet recesses.",
       "license_url": "../licenses/voron_v24/LICENSE",
@@ -1108,6 +1108,174 @@
       "revision": "JUNE",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v10/siboor-trident-june-350.step.zip",
       "release_verified": true
+    },
+    {
+      "id": "voron_v24_250_printed",
+      "machine_id": "voron_v24_250_printed",
+      "brand": "VORON",
+      "model": "V2.4",
+      "size": 250,
+      "display_name": "VORON V2.4 R2 250",
+      "configuration": "R2 / Stealthburner / Clockwork 2 / Revo Voron",
+      "revision": "R2",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v42/VORON_V2.4_R2_250_SB_CW2_RevoVoron_Assy_STEP.zip",
+      "upstream_url": "https://github.com/VoronDesign/Voron-2/tree/a192410e27ea345644ae5c4b29b4c9c40cbe1a73",
+      "license": "GPL-3.0",
+      "release_verified": true,
+      "part_count": 1308,
+      "step_zip": {
+        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v42/VORON_V2.4_R2_250_SB_CW2_RevoVoron_Assy_STEP.zip",
+        "filename": "VORON_V2.4_R2_250_SB_CW2_RevoVoron_Assy_STEP.zip",
+        "bytes": 58068830,
+        "sha256": "aaeba8a3494dc6c9f11d6e0621c6d1dc6899035fddca265306f53702896198ea"
+      }
+    },
+    {
+      "id": "voron_v24_300_printed",
+      "machine_id": "voron_v24_300_printed",
+      "brand": "VORON",
+      "model": "V2.4",
+      "size": 300,
+      "display_name": "VORON V2.4 R2 300",
+      "configuration": "R2 / Stealthburner / Clockwork 2 / Revo Voron",
+      "revision": "R2",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v42/VORON_V2.4_R2_300_SB_CW2_RevoVoron_Assy_STEP.zip",
+      "upstream_url": "https://github.com/VoronDesign/Voron-2/tree/a192410e27ea345644ae5c4b29b4c9c40cbe1a73",
+      "license": "GPL-3.0",
+      "release_verified": true,
+      "part_count": 1322,
+      "step_zip": {
+        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v42/VORON_V2.4_R2_300_SB_CW2_RevoVoron_Assy_STEP.zip",
+        "filename": "VORON_V2.4_R2_300_SB_CW2_RevoVoron_Assy_STEP.zip",
+        "bytes": 58520541,
+        "sha256": "c9dff57ccfe923544cc55b1826f5069b767cdcfd0dc8d8af34a380408080f207"
+      }
+    },
+    {
+      "id": "voron_v24_350_printed",
+      "machine_id": "voron_v24_350_printed",
+      "brand": "VORON",
+      "model": "V2.4",
+      "size": 350,
+      "display_name": "VORON V2.4 R2 350",
+      "configuration": "R2 / Stealthburner / Clockwork 2 / Revo Voron",
+      "revision": "R2",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v42/VORON_V2.4_R2_350_SB_CW2_RevoVoron_Assy_STEP.zip",
+      "upstream_url": "https://github.com/VoronDesign/Voron-2/tree/a192410e27ea345644ae5c4b29b4c9c40cbe1a73",
+      "license": "GPL-3.0",
+      "release_verified": true,
+      "part_count": 1336,
+      "step_zip": {
+        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v42/VORON_V2.4_R2_350_SB_CW2_RevoVoron_Assy_STEP.zip",
+        "filename": "VORON_V2.4_R2_350_SB_CW2_RevoVoron_Assy_STEP.zip",
+        "bytes": 58816062,
+        "sha256": "ad4fe88c0b4640f9d9ce97184029158c3773a619b4c51c474be6251570d2cab9"
+      }
+    },
+    {
+      "id": "voron_trident_250",
+      "machine_id": "voron_trident_250",
+      "brand": "VORON",
+      "model": "Trident",
+      "size": 250,
+      "display_name": "VORON Trident R2 250",
+      "configuration": "R2 / Stealthburner / Clockwork 2 / Revo Voron",
+      "revision": "R2",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v42/VORON_Trident_R2_250_SB_CW2_RevoVoron_Assy_STEP.zip",
+      "upstream_url": "https://github.com/VoronDesign/Voron-Trident/tree/a8628f48546948ce1fc15511b7765b7f31f80722",
+      "license": "GPL-3.0 (VORON); retained CW2 component terms not declared",
+      "release_verified": true,
+      "part_count": 1330,
+      "step_zip": {
+        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v42/VORON_Trident_R2_250_SB_CW2_RevoVoron_Assy_STEP.zip",
+        "filename": "VORON_Trident_R2_250_SB_CW2_RevoVoron_Assy_STEP.zip",
+        "bytes": 74535716,
+        "sha256": "aa83f1861f2a2a16fd2e61cd9ed8d2cc9a6bbe0ecc977b03fceed8e2d5087518"
+      }
+    },
+    {
+      "id": "voron_trident_300",
+      "machine_id": "voron_trident_300",
+      "brand": "VORON",
+      "model": "Trident",
+      "size": 300,
+      "display_name": "VORON Trident R2 300",
+      "configuration": "R2 / Stealthburner / Clockwork 2 / Revo Voron",
+      "revision": "R2",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v42/VORON_Trident_R2_300_SB_CW2_RevoVoron_Assy_STEP.zip",
+      "upstream_url": "https://github.com/VoronDesign/Voron-Trident/tree/a8628f48546948ce1fc15511b7765b7f31f80722",
+      "license": "GPL-3.0 (VORON); retained CW2 component terms not declared",
+      "release_verified": true,
+      "part_count": 1340,
+      "step_zip": {
+        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v42/VORON_Trident_R2_300_SB_CW2_RevoVoron_Assy_STEP.zip",
+        "filename": "VORON_Trident_R2_300_SB_CW2_RevoVoron_Assy_STEP.zip",
+        "bytes": 74971939,
+        "sha256": "9f2865020581dc8c627b2c8f39146773d93a1acae03219ad82c7b4478fb1384c"
+      }
+    },
+    {
+      "id": "voron_trident_350",
+      "machine_id": "voron_trident_350",
+      "brand": "VORON",
+      "model": "Trident",
+      "size": 350,
+      "display_name": "VORON Trident R2 350",
+      "configuration": "R2 / Stealthburner / Clockwork 2 / Revo Voron",
+      "revision": "R2",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v42/VORON_Trident_R2_350_SB_CW2_RevoVoron_Assy_STEP.zip",
+      "upstream_url": "https://github.com/VoronDesign/Voron-Trident/tree/a8628f48546948ce1fc15511b7765b7f31f80722",
+      "license": "GPL-3.0 (VORON); retained CW2 component terms not declared",
+      "release_verified": true,
+      "part_count": 1348,
+      "step_zip": {
+        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v42/VORON_Trident_R2_350_SB_CW2_RevoVoron_Assy_STEP.zip",
+        "filename": "VORON_Trident_R2_350_SB_CW2_RevoVoron_Assy_STEP.zip",
+        "bytes": 75682119,
+        "sha256": "0ccf90587588bf83abf4e49349e7682bd02b167cbd19aca2ca43d70c86400778"
+      }
+    },
+    {
+      "id": "micron_r1_120",
+      "machine_id": "micron_r1_120",
+      "brand": "Printers for Ants",
+      "model": "Micron",
+      "size": 120,
+      "display_name": "Micron 120",
+      "configuration": "R1 / AntHead WWG2 / Revo Voron",
+      "revision": "120 R1 v4 body + RC8 head",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v23/Micron_R1_120_AntHead_WWG2_RevoVoron_Assy_STEP.zip",
+      "upstream_url": "https://github.com/PrintersForAnts/Micron/tree/f76aa28767211ddfee2e30290aadcea3c45f8513",
+      "license": "GPL-3.0",
+      "release_verified": true,
+      "part_count": 1074,
+      "step_zip": {
+        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v23/Micron_R1_120_AntHead_WWG2_RevoVoron_Assy_STEP.zip",
+        "filename": "Micron_R1_120_AntHead_WWG2_RevoVoron_Assy_STEP.zip",
+        "bytes": 42522888,
+        "sha256": "9c4de8edcdfbce0a8eac354249c8fa9c82d5b631b97aea4c8b55736eca7cbb70"
+      }
+    },
+    {
+      "id": "micron_plus_r1_180",
+      "machine_id": "micron_plus_r1_180",
+      "brand": "Printers for Ants",
+      "model": "Micron Plus",
+      "size": 180,
+      "display_name": "Micron Plus 180",
+      "configuration": "R1 / AntHead WWG2 / Revo Voron",
+      "revision": "180 R1 RC8, source root v98",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v23/Micron_Plus_R1_180_AntHead_WWG2_RevoVoron_Assy_STEP.zip",
+      "upstream_url": "https://github.com/PrintersForAnts/Micron/tree/f76aa28767211ddfee2e30290aadcea3c45f8513",
+      "license": "GPL-3.0",
+      "release_verified": true,
+      "part_count": 1512,
+      "step_zip": {
+        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v23/Micron_Plus_R1_180_AntHead_WWG2_RevoVoron_Assy_STEP.zip",
+        "filename": "Micron_Plus_R1_180_AntHead_WWG2_RevoVoron_Assy_STEP.zip",
+        "bytes": 62798046,
+        "sha256": "99e67b3030e2cf1c6c7bb91600340db30fbbf8c3ece5fbbf2d6c7b7492290e05"
+      }
     }
   ],
   "source_archives": [
