@@ -1,4 +1,4 @@
-import {messages,templates} from './messages-en.mjs?v=trident-clearance-35';
+import {messages,templates} from './messages-en.mjs?v=ux-refresh-1';
 
 const normalize=text=>text.trim().replace(/\s+/gu,' ');
 const escape=text=>text.replace(/[.*+?^${}()|[\]\\]/gu,'\\$&');

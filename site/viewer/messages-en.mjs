@@ -1,6 +1,8 @@
 import {ratRigMessages,ratRigTemplates} from './ratrig-messages-en.mjs?v=trident-clearance-35';
 export const messages = {
  "現在の追加Modによる可動範囲では、この姿勢を表示できません。": "This pose is outside the travel range allowed by the current additional mods.",
+  '部品リスト・共有': 'Parts list and sharing',
+  'プリンターを開く': 'Open printer',
  "橙の枠は対象部品の外接枠です。体積交差は原本CADで判定しています。": "Orange boxes bound the affected parts. Volumetric intersections are evaluated using native CAD.",
  "体積干渉が未判定の組み合わせを含みます。干渉なしとは扱いません。": "Some volumetric intersection checks are unresolved. These combinations are not treated as clear.",
  "待機ヘッドと可動ガントリーの体積交差あり。交換経路・全可動域の適合は未確認。": "Parked head intersects the moving gantry. Exchange paths and full travel compatibility remain unverified.",

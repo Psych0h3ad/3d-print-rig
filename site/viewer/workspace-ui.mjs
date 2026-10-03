@@ -1,5 +1,6 @@
 // Shared presentation layer. Existing controls, IDs and CAD controllers stay intact.
-import {setupLanguage,originalText} from './i18n.mjs?v=trident-clearance-35';
+import {setupLanguage,originalText} from './i18n.mjs?v=ux-refresh-1';
+import {printerWorkspaceURL,workspaceReturnKey} from './workspace-return.mjs?v=ux-refresh-1';
 const $ = selector => document.querySelector(selector);
 const node = (tag, className, text) => {
   const element = document.createElement(tag);
@@ -19,39 +20,58 @@ function setupWorkspace() {
   document.body.prepend(skip);
 
   const page = location.pathname.split('/').pop() || 'index.html';
-  const machinePage = !['toolheads.html', 'gantries.html', 'cleaning.html', 'components.html', 'toolchangers.html'].includes(page);
+  const machinePage = !['toolheads.html', 'gantries.html', 'components.html', 'toolchangers.html'].includes(page);
+  document.body.dataset.workspaceKind = machinePage ? 'printer' : page.replace('.html', '');
   const navigation = node('nav', 'workspace-nav');
   navigation.setAttribute('aria-label', 'ワークスペース');
   const destinations = [
-    ['マシン', './', machinePage], ['ヘッド', './toolheads.html', page === 'toolheads.html'],
-    ['ガントリー', './gantries.html', page === 'gantries.html'], ['清掃Mod', './cleaning.html', page === 'cleaning.html'],
-    ['部品CAD', './components.html', page === 'components.html'], ['交換機構', './toolchangers.html', page === 'toolchangers.html'],
+    ['プリンター', './', machinePage], ['ツールヘッド', './toolheads.html', page === 'toolheads.html'],
+    ['ガントリー', './gantries.html', page === 'gantries.html'],
   ];
   for (const [label, href, current] of destinations) {
     const link = node('a', '', label);
     link.href = href;
     if (current) link.setAttribute('aria-current', 'page');
     // Preserve links to the currently selected head, including controller updates.
-    if (label === 'ヘッド' && $('#toolheadLink')) {
+    if (label === 'ツールヘッド' && $('#toolheadLink')) {
       const original = $('#toolheadLink');
       link.href = original.href;
       new MutationObserver(() => { link.href = original.href; }).observe(original, { attributes: true, attributeFilter: ['href'] });
     }
+    if (label === 'プリンター') link.id = 'workspacePrinterLink';
     navigation.append(link);
   }
-  header.after(navigation);
-  $('.brand small')?.replaceChildren(document.createTextNode('COMMUNITY CAD WORKSPACE'));
+  header.insertBefore(navigation, $('.header-actions'));
+  if ($('.brand small')) $('.brand small').hidden = true;
+  function rememberPrinter() {
+    let remembered;
+    try {
+      if (machinePage && document.body.dataset.machineId) sessionStorage.setItem(workspaceReturnKey, location.href);
+      remembered = sessionStorage.getItem(workspaceReturnKey);
+    } catch {}
+    const href = printerWorkspaceURL(location.href, remembered), link = $('#workspacePrinterLink');
+    if (link.href !== href) link.href = href;
+  }
+  rememberPrinter();
+  new MutationObserver(rememberPrinter).observe(document.body, {subtree: true, attributes: true, attributeFilter: ['data-machine-id','data-variant']});
   for (const link of header.querySelectorAll('.mode-link')) link.hidden = true;
   for (const link of aside.querySelectorAll(':scope > .workbench-link')) {
-    if (/^(清掃・パージModを比較|Monolithガントリーを組む|ツールヘッド単体を組む|ホットエンド・押出機のCADを確認)/.test(link.textContent)) link.hidden = true;
+    if (/^(Monolithガントリーを組む|ツールヘッド単体を組む|ホットエンド・押出機のCADを確認)/.test(link.textContent)) link.hidden = true;
   }
 
   const actions = $('.header-actions');
   const more = node('details', 'workspace-more');
-  more.append(node('summary', '', '資料・その他'));
+  more.append(node('summary', '', '資料'));
+  if (['components.html','toolchangers.html'].includes(page)) more.classList.add('current-reference');
   const menu = node('div', 'workspace-menu');
   more.append(menu);
   actions.append(more);
+  for (const [label, href] of [['部品CAD','./components.html'],['交換機構','./toolchangers.html']]) {
+    const link = node('a', '', label); link.href = href;
+    if (href.endsWith(page)) link.setAttribute('aria-current', 'page');
+    menu.append(link);
+  }
+  menu.append(node('hr'));
   const moveActions = () => {
     for (const button of actions.querySelectorAll(':scope > button:not(#openRender)')) menu.append(button);
   };
@@ -65,7 +85,7 @@ function setupWorkspace() {
   const heading = node('div', 'inspector-heading');
   const title = aside.querySelector('h1');
   const description = title?.nextElementSibling;
-  heading.append(node('span', 'inspector-eyebrow', machinePage ? 'MACHINE CONFIGURATOR' : 'CAD WORKBENCH'));
+  // The page title and selected model identify the current workspace.
   if (title) heading.append(title);
   if (description?.matches('p.foot')) heading.append(description);
   for (const eyebrow of aside.querySelectorAll(':scope > .eyebrow')) eyebrow.hidden = true;
@@ -111,7 +131,7 @@ function setupWorkspace() {
   const content = node('div', 'inspector-content');
   const footer = node('div', 'inspector-footer');
   const groups = new Map();
-  let active = 'configuration';
+  let active = 'configuration', userSelectedTab = false;
   const labels = { configuration: '構成', appearance: '外観', inspect: machinePage ? '動作' : 'チェック', reference: '資料' };
   for (const [key, label] of Object.entries(labels)) {
     const tab = node('button', '', label);
@@ -126,7 +146,7 @@ function setupWorkspace() {
     groups.set(key, { tab, panel });
     tabs.append(tab);
     content.append(panel);
-    tab.onclick = () => activate(key);
+    tab.onclick = () => { userSelectedTab = true; activate(key); };
   }
   heading.after(tabs, content, footer);
   function activate(key, focus = false) {
@@ -145,19 +165,23 @@ function setupWorkspace() {
     const next = event.key === 'ArrowRight' ? (index + 1) % available.length : event.key === 'ArrowLeft' ? (index - 1 + available.length) % available.length : event.key === 'Home' ? 0 : event.key === 'End' ? available.length - 1 : -1;
     if (next < 0) return;
     event.preventDefault();
+    userSelectedTab = true;
     activate(available[next][0], true);
   });
   function category(element) {
+    if (element.matches('a.workbench-link') && !['buildMonolith','monolithPrinterLink'].includes(element.id)) return 'reference';
     const text = originalText(element.querySelector(':scope > summary'));
+    if (/組立条件|Mod資料|構成を保存/.test(text)) return 'reference';
     if (/動作|G-code|接触|交換機構の表示|取付チェック/.test(text)) return 'inspect';
     if (/色|素材|照明|表示/.test(text)) return 'appearance';
-    if (/原本|出典|使用版|カタログ|選択した構成と部品|マウント・構成/.test(text)) return 'reference';
+    if (/原本|出典|使用版|カタログ|選択した構成と部品|部品リスト・共有|マウント・構成/.test(text)) return 'reference';
     return 'configuration';
   }
   function organize() {
     const candidates = [...aside.children, ...heading.children].filter(element => ![heading, tabs, content, footer].includes(element) && !element.matches('h1, .inspector-eyebrow, .change-machine, .mobile-panel-toggle') && !(heading.contains(element) && element.matches('p.foot')));
     for (const element of candidates) {
       if (element.hidden && element.matches('.eyebrow, .workbench-link')) continue;
+      if (element.id === 'toolheadLink') { element.hidden = true; continue; }
       const key = category(element);
       groups.get(key).panel.append(element);
       if (element.tagName === 'DETAILS') {
@@ -166,6 +190,7 @@ function setupWorkspace() {
         else if (key !== 'reference' && !groups.get(key).panel.querySelector('details[open]')) element.open = true;
       }
     }
+    prioritizeConfiguration();
     // Keep file controls available without opening technical conditions.
     const save = $('#saveConfiguration'), load = $('#loadConfiguration');
     if (save && load && save.parentElement !== footer) {
@@ -173,12 +198,30 @@ function setupWorkspace() {
       save.textContent = '構成を保存';
       load.textContent = '読み込む';
     }
+    for (const id of ['printerLink','monolithPrinterLink']) {
+      const link = $('#'+id);
+      if (link && link.parentElement !== footer) { link.classList.add('workspace-apply'); footer.prepend(link); }
+    }
     footer.hidden = !footer.children.length;
     for (const { tab, panel } of groups.values()) tab.hidden = ![...panel.children].some(element => !element.hidden);
+    if (machinePage && !userSelectedTab) {
+      const configurable = groups.get('configuration').panel.querySelector('select, input:not([type=hidden])');
+      active = configurable ? 'configuration' : 'inspect';
+    }
     if (groups.get(active).tab.hidden) active = [...groups].find(([, group]) => !group.tab.hidden)?.[0] || 'configuration';
-    activate(active);
+    const scroll = content.scrollTop; activate(active); content.scrollTop = scroll;
+  }
+  function prioritizeConfiguration() {
+    const panel = groups.get('configuration').panel, primary = $('#configurationControls');
+    if (machinePage && primary?.parentElement === panel && panel.firstElementChild !== primary) panel.prepend(primary);
+    const bank = $('#changerBank');
+    if (primary?.parentElement === panel && bank?.parentElement === panel && primary.nextElementSibling !== bank) primary.after(bank);
+    if (machinePage && primary?.tagName === 'DETAILS') primary.open = true;
+    const search = panel.querySelector(':scope > .builder-search');
+    if (search && panel.lastElementChild !== search) panel.append(search);
   }
   organize();
+  new MutationObserver(prioritizeConfiguration).observe(groups.get('configuration').panel, {childList:true});
   // New machine-head and G-code panels arrive after asynchronous CAD loading.
   new MutationObserver(organize).observe(aside, { childList: true });
   new MutationObserver(organize).observe(heading, { childList: true });

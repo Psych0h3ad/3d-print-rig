@@ -36,11 +36,12 @@ function sync(){
 }
 function action(fn,status='motionStatus'){if(busy||!current)return false;try{fn();sync();$(status).classList.remove('notice');return true}catch(e){sync();$(status).textContent=e.message;$(status).classList.add('notice');return false}}
 function view(kind='iso'){
- if(!current)return;const box=new THREE.Box3().setFromObject(current.root),center=box.getCenter(new THREE.Vector3()),size=box.getSize(new THREE.Vector3()),d=Math.max(size.x,size.y,size.z)*1.8;
+ if(!current)return;const box=new THREE.Box3().setFromObject(current.root),center=box.getCenter(new THREE.Vector3()),size=box.getSize(new THREE.Vector3()),d=size.length()/2/Math.sin(THREE.MathUtils.degToRad(camera.fov)/2)*1.08;
  if(kind==='head'){
   const headBox=new THREE.Box3();for(const [key,n]of current.adapter.nodes)if(current.adapter.records.get(key).motion==='tool0')headBox.expandByObject(n);if(!headBox.isEmpty())headBox.getCenter(center);
  }
- controls.target.copy(center);camera.up.set(0,1,0);camera.position.copy(center).add(kind==='top'?new THREE.Vector3(0,d,0):kind==='front'?new THREE.Vector3(0,.08,d):kind==='head'?new THREE.Vector3(.18,.12,.26):new THREE.Vector3(d*.7,d*.45,d*.85));if(kind==='top')camera.up.set(0,0,-1);camera.lookAt(center);frameResponsiveView(camera,controls);request();
+ const offset=kind==='head'?new THREE.Vector3(.18,.12,.26):new THREE.Vector3(...(kind==='top'?[0,1,0]:kind==='front'?[0,0,1]:[.7,.45,.85])).normalize().multiplyScalar(d);
+ controls.target.copy(center);camera.up.set(0,1,0);camera.position.copy(center).add(offset);if(kind==='top')camera.up.set(0,0,-1);camera.lookAt(center);frameResponsiveView(camera,controls);request();
 }
 function provenance(){
  const {profile:p,row}=current,version=p.series==='v-core-4-1'?'4.1':'4.0';$('machineTitle').textContent='V-Core '+version+' / '+p.size_mm;$('structureLabel').textContent=p.mode.toUpperCase()+' · '+row.tool_count+' HEADS · 標準構成';
