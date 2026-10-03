@@ -8,10 +8,10 @@ import {setupRenderExport} from './render-export.js?v=trident-clearance-35';
 import {setupPublicInfo} from './public-info.js?v=crossant-36';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 const $=id=>document.getElementById(id),stage=$('stage'),renderer=new THREE.WebGLRenderer({antialias:true});
-renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.3;stage.append(renderer.domElement);
+renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=.9;stage.append(renderer.domElement);
 const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(35,1,.01,30),controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;
 camera.position.set(.8,.6,.8);controls.target.set(0,.25,0);
-const pmrem=new THREE.PMREMGenerator(renderer),environment=pmrem.fromScene(new RoomEnvironment(),.03),ambient=new THREE.HemisphereLight(0xffffff,0x405046,1),sun=new THREE.DirectionalLight(0xffffff,1.6);sun.position.set(2,4,3);scene.add(ambient,sun);
+const pmrem=new THREE.PMREMGenerator(renderer),environment=pmrem.fromScene(new RoomEnvironment(),.03),ambient=new THREE.HemisphereLight(0xffffff,0x586b80,.25),sun=new THREE.DirectionalLight(0xffffff,1.4);sun.position.set(2,4,3);scene.add(ambient,sun);
 const floor=new THREE.Mesh(new THREE.PlaneGeometry(3,3),new THREE.MeshStandardMaterial({color:0xd6dfdb,roughness:.9}));floor.rotation.x=-Math.PI/2;scene.add(floor);const grid=new THREE.GridHelper(3,30,0xa8b8b1,0xc5cec9);grid.visible=false;scene.add(grid);
 let current,frame=null,disposed=false,animation=null,marks=[],state,loaded=false;
 const abort=new AbortController(),mutable=['x','y','z','nominal','resetPose','minPose','maxPose','animatePose','base','accent','frame','resetPalette','night','gridVisible','belts','chain','saveConfiguration','loadConfiguration','clearContact'];
@@ -19,7 +19,7 @@ const request=()=>{if(disposed||frame!==null)return;frame=requestAnimationFrame(
 controls.addEventListener('change',request);
 const observer=new ResizeObserver(()=>{const r=stage.getBoundingClientRect(),w=Math.max(r.width,1),h=Math.max(r.height,1);renderer.setSize(w,h);setResponsiveAspect(camera,controls,w,h);request()});observer.observe(stage);
 const reference=()=>Object.fromEntries(['x','y','z'].map((a,i)=>[a,current.profile.display_reference_xyz_mm[i]]));
-function lighting(){const night=$('night').checked;document.body.classList.toggle('night',night);scene.background=new THREE.Color(night?'#050807':'#e8eef1');scene.environment=night?null:environment.texture;ambient.intensity=night?.025:1;sun.intensity=night?.025:1.6;floor.material.color.set(night?'#111a16':'#d6dfdb');request()}
+function lighting(){const night=$('night').checked;document.body.classList.toggle('night',night);scene.background=new THREE.Color(night?'#04070c':'#edf1f5');scene.environment=night?null:environment.texture;scene.environmentIntensity=night?0:.16;renderer.toneMappingExposure=night?1.35:.9;ambient.intensity=night?.025:.25;sun.intensity=night?.025:1.4;floor.material.color.set(night?'#111a16':'#d6dfdb');request()}
 function range(){return state.nominal?current.profile.display_limits_mm:current.profile.sampled_clearance_limits_mm}
 function stop(){animation=null;if($('animatePose'))$('animatePose').textContent='動作を再生'}
 function clearMarks(){for(const m of marks){m.removeFromParent();m.geometry.dispose();m.material.dispose()}marks=[]}

@@ -9,11 +9,11 @@ import {setupRenderExport} from './render-export.js?v=trident-clearance-35';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {setupPublicInfo} from './public-info.js?v=crossant-36';
 const $=id=>document.getElementById(id),stage=$('stage'),renderer=new THREE.WebGLRenderer({antialias:true});
-renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.4;stage.append(renderer.domElement);
+renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=.9;stage.append(renderer.domElement);
 const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(35,1,.01,30),controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;
 camera.position.set(1.5,1.2,1.5);controls.target.set(0,.4,0);
 const pmrem=new THREE.PMREMGenerator(renderer),environment=pmrem.fromScene(new RoomEnvironment(),.03);scene.environment=environment.texture;
-const ambient=new THREE.HemisphereLight(0xffffff,0x405046,1),sun=new THREE.DirectionalLight(0xffffff,1.6);sun.position.set(2,4,3);scene.add(ambient,sun);
+const ambient=new THREE.HemisphereLight(0xffffff,0x586b80,.25),sun=new THREE.DirectionalLight(0xffffff,1.4);sun.position.set(2,4,3);scene.add(ambient,sun);
 const floor=new THREE.Mesh(new THREE.PlaneGeometry(4,4),new THREE.MeshStandardMaterial({color:0xd6dfdb,roughness:.9}));floor.rotation.x=-Math.PI/2;scene.add(floor);
 const grid=new THREE.GridHelper(4,40,0xa8b8b1,0xc5cec9);grid.visible=false;scene.add(grid);
 let current,index,busy=false,disposed=false,pending,initialSnapshot,frameRequest=null;
@@ -23,7 +23,7 @@ controls.addEventListener('change',request);
 function resize(){const rect=stage.getBoundingClientRect(),width=Math.max(rect.width,1),height=Math.max(rect.height,1);renderer.setSize(width,height);setResponsiveAspect(camera,controls,width,height);request()}
 const observer=new ResizeObserver(resize);observer.observe(stage);
 function setBusy(value){busy=value;for(const id of mutable)$(id).disabled=value||!current;if(!value&&current)sync()}
-function lighting(){const dark=$('night').checked;scene.background=new THREE.Color(dark?'#050807':'#e8eef1');scene.environment=dark?null:environment.texture;ambient.intensity=dark?.025:1;sun.intensity=dark?.025:1.6;floor.material.color.set(dark?'#111a16':'#d6dfdb');request()}
+function lighting(){const dark=$('night').checked;scene.background=new THREE.Color(dark?'#04070c':'#edf1f5');scene.environment=dark?null:environment.texture;scene.environmentIntensity=dark?0:.16;renderer.toneMappingExposure=dark?1.35:.9;ambient.intensity=dark?.025:.25;sun.intensity=dark?.025:1.4;floor.material.color.set(dark?'#111a16':'#d6dfdb');request()}
 function sync(){
  if(!current)return;const s=current.adapter.getSnapshot(),p=current.profile,ranges=ratRigAxisRanges(p,s);
  for(const a of ['x0','x1','y','z'])if(ranges[a]){$(a).min=ranges[a][0];$(a).max=ranges[a][1];$(a).value=s.pose[a];$(a+'v').textContent=s.pose[a].toFixed(2)+' mm';$(a).disabled=busy||a==='x1'&&s.mode!=='independent'}
