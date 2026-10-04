@@ -4,6 +4,24 @@ import {e3ngMessages} from './e3ng-messages-en.mjs?v=machine-scope-52';
 import {yudxMessages} from './yudx-messages-en.mjs?v=yudx-49';
 import {rapidoXMessages} from './rapido-x-messages-en.mjs?v=rapido-x-51';
 export const messages = {
+ "A4T・Sphinx · ネイティブ組立データ": "A4T / Sphinx · native assembly data",
+ "左右の4010ブロワーと2510冷却ファン、Sherpa Miniの実体CAD、ホットエンド、固定ネジを組み付け済み。ファンの排気口は下向き、吸気口は外向き。": "Installed native dual 4010 blowers, a 2510 axial fan, the Sherpa Mini assembly, hotend and mounting screws. Blower outlets face down; intakes face outward.",
+ "原寸の取付面・フィラメント軸・穴位置を検査。メーカー別のファン外形・実配線・機体取付・全可動域は未検証です。": "Full-size mounting planes, filament axis and hole locations checked. Manufacturer-specific fan housings, real wiring, printer installation and full travel remain unchecked.",
+ "LED・逆流防止インサート・ツールヘッド基板・キャリッジは未装着。部品不足と静止CADの接触を検査情報に明記しています。": "LEDs, backflow inhibitors, toolhead board and carriage are absent. Missing parts and static CAD contacts are stated in the checks.",
+ "A4Tは純正VORON前方アイドラーと前隅で干渉する場合があります。BFI/Ramalama等と実機の可動域を確認してください。": "A4T can collide with stock VORON front idlers at the front corners. Check BFI/Ramalama alternatives and actual machine travel.",
+ "サポート省略モデル：カウリング原本の印刷用サポート6個を除外。残る本体の寸法は保持しています。": "Support-omitted model: six printing supports from the original cowling are excluded. The remaining body dimensions are retained.",
+ "Dual 4010 + 2510 · 組立CAD": "Dual 4010 + 2510 \u00b7 assembled CAD",
+ "A4T · Dual 4010 / 2510": "A4T \u00b7 Dual 4010 / 2510",
+ "A4T / Rapido HF · 4010×2 / 2510組立": "A4T / Rapido HF \u00b7 dual 4010 / 2510 assembly",
+ "A4T / Chube Compact · 4010×2 / 2510組立": "A4T / Chube Compact \u00b7 dual 4010 / 2510 assembly",
+
+ "Orbiter 2.0を原寸の取付面へ3.388 mm下げ、モーターだけを軸中心に180度反転。フィラメント軸と2本の底面取付穴を保持。": "Native Orbiter 2.0 lowered 3.388 mm onto its mounting plane; only the motor is rotated 180 degrees about its shaft. Filament axis and both bottom mounting bores are retained.",
+ "作者のOrbiter専用上部サポートを使用。後部ブラケットに局所的な逃げ加工を追加した補正版CADです。原本とは形状が異なります。": "Uses the author's Orbiter top support. Corrected derivative CAD adds local clearance to the rear bracket; its shape differs from the source.",
+ "静止姿勢での外形干渉と座面を検査済み。機体取付、全可動域、柔軟な配線・ホース、Beacon金属除外領域は未検証。": "Static exterior intersections and mounting contact checked. Printer installation, full travel, flexible cables/hoses and Beacon metal keepout remain unchecked.",
+ "原本のTricorn・Beaconを保持。原本にないホットエンド冷却ファンは未装着です。": "Native Tricorn and Beacon retained. The source lacks a hotend cooling fan; one is not installed.",
+ "Single Inlet · Orbiter座面補正": "Single Inlet \u00b7 seated Orbiter",
+ "Sphinx · Single Inlet / Orbiter座面補正": "Sphinx \u00b7 Single Inlet / seated Orbiter",
+
  ...rapidoXMessages,
  ...yudxMessages,
  ...e3ngMessages,

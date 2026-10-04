@@ -1,5 +1,5 @@
 {
-  "viewer_version": "viewer-v51",
+  "viewer_version": "viewer-v53",
   "sources": [
     {
       "id": "siboor_trident",
@@ -660,7 +660,7 @@
       "license": "CC-BY-NC-SA-4.0",
       "license_url": "../licenses/sphinx/LICENSE",
       "license_sha256": "9e502ba75fd0fd30cea5497b438a4bc12f07f02bc932a7a6041fd6a18b8f46a0",
-      "scope": "Native tLW printable assemblies with Sherpa Mini Release 2, Tricorn Long or acquired Rapido 2 UHF hardware. Add a native 2510 axial fan to all patterns and Beacon RevH / Cartographer V4 with original 31.6 mm hole registration to assembled VORON and Monolith heads. Static head body, coil height and manufacturer metal keepout inspected; complete printer travel and cable clearance are not certified. Archived V3 WS7040 / WS9290 adds 10 dedicated native hardware combinations on standard VORON 6 mm mounts; archived Single Inlet Orbiter is a head-only reference with source motor/bracket interference and missing axial cooling.",
+      "scope": "Native tLW printable assemblies with Sherpa Mini Release 2, Tricorn Long or acquired Rapido 2 UHF hardware. Add a native 2510 axial fan to all patterns and Beacon RevH / Cartographer V4 with original 31.6 mm hole registration to assembled VORON and Monolith heads. Static head body, coil height and manufacturer metal keepout inspected; complete printer travel and cable clearance are not certified. Archived V3 WS7040 / WS9290 adds 10 dedicated native hardware combinations on standard VORON 6 mm mounts; archived Single Inlet Orbiter is a head-only reference with corrected Orbiter seating, motor orientation, author Orbiter support and a derivative rear-bracket clearance relief; axial cooling remains absent.",
       "changes": "Original dimensions retained. The axial fan mounts on the native rear seat, aligned with four finite 7 mm insert bores and the open passage toward the heatsink. Probes use the integrated underside seat. Manufacturer inspection volumes are excluded from displayed parts. Separate component versions and licenses are retained. V3 uses its own measured rail and fan seats. Tricorn and Goliath rigid orientations avoid native body intersections. Single Inlet omits only source reference rail/frame and duplicate bracket. No integrated print supports are removed."
     },
     {
@@ -907,7 +907,7 @@
       "license": "CC-BY-NC-SA-4.0",
       "license_url": "../licenses/ahi_a4t/LICENSE",
       "license_sha256": "9e502ba75fd0fd30cea5497b438a4bc12f07f02bc932a7a6041fd6a18b8f46a0",
-      "scope": "Selected native head assemblies and/or original printable part references. Hardware assembly and printer registration are separate.",
+      "scope": "Native standalone A4T mechanical assemblies with dual 4010 blowers, 2510 axial fan, Sherpa Mini and Rapido v1 HF or Chube Compact. Source cowling printing supports are omitted. LED, board and carriage are absent; whole-machine installation and travel are unverified.",
       "changes": "Select mutually exclusive native alternatives, omit manufacturing/construction supports, tessellate for display and assign printed-part palette. Original dimensions and native poses retained.",
       "notice": "Each original design retains its own license. Embedded hardware retains its original terms. Archetype source archive identifies v22, not the latest printable STL revision."
     },
@@ -1498,6 +1498,12 @@
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v51/viewer-rapido-x-sources.zip",
       "bytes": 59515022,
       "sha256": "9d54c3b1c4279653c43b246abcd9a2fc1afac7cf9aa2440677e210f1b521db19"
+    },
+    {
+      "label": "A4T・Sphinx · ネイティブ組立データ",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v53/viewer-a4t-sphinx-native.zip",
+      "bytes": 31136561,
+      "sha256": "f6fe711437cb3daab793216e6d92a309ebf423c9ec33e4bd5589b9d545585c0f"
     }
   ]
 }
