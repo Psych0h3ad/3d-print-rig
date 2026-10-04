@@ -1,0 +1,9 @@
+# Yavoth
+
+The head builder and registered VORON machine menus offer 16 assembled Yavoth v1 previews: Rapido v1 HF/UHF, Sherpa Mini Release 2 Rev1 or Orbiter V2, standard or 5 mm rear-offset cowls, and separate 6/9 mm MGN12H Lite carriages. Actual source extruder, hotend and fan bodies are included. Archived print-only Rapido 2/Revo/Micro references retain their explicit incomplete scope.
+
+Sources are pinned to [chirpy2605/voron cc2e749](https://github.com/chirpy2605/voron/tree/cc2e749d09d7f24418f9f8c73c90bcefb1e29584/V0/Yavoth), with the matching [Alternative Voron Mounts CAD](https://github.com/chirpy2605/voron/tree/cc2e749d09d7f24418f9f8c73c90bcefb1e29584/general/Alternative_Voron_Mounts). Source/license details and native CAD are available through the viewer's references dialog and release archive.
+
+The three upper attachment axes are compared; maximum lateral-axis discrepancy is 0.04025 mm and central-axis discrepancy is 0.17077 mm. Native cowl/carriage intersections remain 3.078 mm³ for 6 mm and 110.456 mm³ for 9 mm. Standard Sherpa configurations also retain rear-housing/carriage intersections of 1.590/3.372 mm³; rear-offset variants avoid those extruder-body intersections. These are comparison previews with visible contact warnings, rather than physical-fit or manufacturing-tolerance certificates.
+
+Lower support, external mounting fasteners, probe, board, wiring and belt tails are absent. The standalone view excludes the rail block; machine views retain the machine's rail block. Full machine travel, homing, belt retention and toolchanging are unverified. The separate manufacturing support of the 6 mm source carriage is omitted and identified in the UI; cowl/carriage body material is retained. Individual CAD licenses remain separate from the viewer software license.

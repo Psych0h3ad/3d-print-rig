@@ -73,3 +73,22 @@ assert.deepEqual(sixA4t.map(v=>v.source_head_configuration),['a4t6']);
 assert.deepEqual(sixA4t[0].machine_head.modules[0].translation_mm,[0,-7,-224]);
 assert.deepEqual(machineHeadVariants(a4tHeads,registry,'nine','awd').map(v=>v.source_head_configuration),['a4t9']);
 assert.equal(sixA4t[0].fit.machine_mount.full_travel_verified,false);
+
+// Yavoth uses width-specific native carriage registrations. Archived printed
+// cowls and unknown registrations must not become installed machine options.
+registry.sources.yavoth_mgn12_6_source={origin_mm:[148,-102,100]};
+registry.sources.yavoth_mgn12_6_rear5={origin_mm:[148,-97,100]};
+registry.sources.yavoth_mgn12_9_source={origin_mm:[148,-102,100]};
+const yavoth=head('yavoth6','yavoth','fixed','yavoth_mgn12_6',6);
+Object.assign(yavoth,{registration_source:'yavoth_mgn12_6_source',carriage:'yavoth_mgn12',hardware_assembled:true,base_asset:'yavoth_cowl',fit:{nozzle_mm:[148,-131,49]},modules:[{id:'native_fans',translation_mm:[0,0,0],role:'tool'}]});
+const rear={...yavoth,id:'yavoth_rear',cooling:'rear5',registration_source:'yavoth_mgn12_6_rear5',modules:[...yavoth.modules,{id:'native_carriage',translation_mm:[0,5,0],role:'tool'}]};
+const y9={...yavoth,id:'yavoth9',belt_width_mm:9,registration_source:'yavoth_mgn12_9_source',gantry:'yavoth_mgn12_9'};
+const prints={...yavoth,id:'yavoth_prints',hardware_assembled:false,registration_source:undefined,carriage:'source',gantry:'printed_source',hotend:'old_hot'};
+const yHeads={...heads,variants:[prints,yavoth,rear,y9,{...yavoth,id:'missing_y',registration_source:'yavoth_unknown'}],toolheads:[{id:'yavoth'}],hotends:[{id:'hot'},{id:'old_hot'}],gantries:[{id:'yavoth_mgn12_6'},{id:'yavoth_mgn12_9'},{id:'printed_source'}],dimensions:['toolhead','extruder','hotend','cooling','mount','gantry','carriage','probe','board']};
+assert.deepEqual(machineHeadVariants(yHeads,registry,'six').map(v=>v.source_head_configuration),['yavoth6','yavoth_rear']);
+assert.deepEqual(machineHeadVariants(yHeads,registry,'nine','awd').map(v=>v.source_head_configuration),['yavoth9']);
+assert.deepEqual(installedHeadPlan(rear,registry,target).nozzle_mm,[0,-41,85]);
+assert.deepEqual(installedHeadPlan(rear,registry,target).modules.at(-1).translation_mm,[-148,95,36]);
+assert.equal(resolveVariant(yHeads,{...prints,id:'previous_sb',toolhead:'yavoth'},'toolhead').hardware_assembled,true);
+assert.equal(resolveVariant(yHeads,{...yavoth,hotend:'old_hot'},'hotend').id,'yavoth_prints');
+assert.deepEqual(yavoth.fit.nozzle_mm,[148,-131,49]);

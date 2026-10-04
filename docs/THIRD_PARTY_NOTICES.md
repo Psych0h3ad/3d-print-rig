@@ -581,3 +581,8 @@ The complete RH3D v1.2 / v1.2S printer assembly is not included. That CAD is dis
 ## Rapido X
 
 [Phaetus/Rapido-X](https://github.com/Phaetus/Rapido-X/tree/bc1207931f3d0f51955f3dc03a226a77a79d6581) supplies the native hotend STEP and dedicated SB front/rear mesh mounts. The repository does not declare an explicit CAD redistribution license; the manufacturer retains its rights. This CAD is not covered by the application license or by the separate GPL-3.0 Voron common parts and CC-BY-NC-SA-4.0 Sphinx printed parts. The original and prepared source geometry, original/placed mount meshes and separate notices accompany the release. [Mounting scope and measured clearance](RAPIDO_X.md) describe the omitted GrooveMount adapter, native-trim preparation, mesh-only SB mounts and static Sphinx checks. No embedded print-support removal is claimed for these two original mount meshes.
+
+## Yavoth assemblies
+
+[Yavoth assembly scope](YAVOTH.md) documents the original chirpy2605 Yavoth v1 cowls and width-specific Alternative Voron Mounts carriages, pinned to cc2e749d09d7f24418f9f8c73c90bcefb1e29584. The preview includes original Sherpa Mini R2, Orbiter V2, Rapido v1 HF/UHF and fan reference bodies. GPL-3.0, CC BY-NC-SA 4.0, the Annex EULA and embedded hardware terms retain their component-specific scopes; no common CAD license is assigned. Native contact measurements, omitted support/fasteners and preferred author CAD accompany the viewer-v59 source archive. See site/licenses/yavoth_assembly/NOTICE.md.
+

@@ -1,4 +1,4 @@
-import {probeHasConflict} from './probe-checks.js?v=sphinx-report-45';
+import {probeHasConflict} from './probe-checks.js?v=ea1aef3e30bf7d11d3cb';
 export const dimensions=['gantry','toolhead','carriage','hotend','extruder','probe'];
 export const collections={gantry:'gantries',toolhead:'toolheads',mount:'mounts',carriage:'carriages',hotend:'hotends',extruder:'extruders',probe:'probes',board:'boards',cooling:'cooling_options'};
 export const catalogDimensions=catalog=>catalog.dimensions||dimensions;
@@ -41,7 +41,10 @@ function candidatesFor(catalog,selection,changed){
 export function resolveVariant(catalog,selection,changed){
  const exact=catalog.variants.find(v=>catalogDimensions(catalog).every(k=>v[k]===selection[k]));
  if(exact&&(!changed||exact.id===selection.id))return exact;
- const candidates=changed?candidatesFor(catalog,selection,changed):catalog.variants;
+ let candidates=changed?candidatesFor(catalog,selection,changed):catalog.variants;
+ // Prefer a hardware assembly when entering a head family that also retains
+ // archived print-only references. Explicit component/reference choices still work.
+ if(changed==='toolhead'&&candidates.some(v=>v.hardware_assembled))candidates=candidates.filter(v=>v.hardware_assembled);
  let best=null,bestScore=-1;
  for(const v of candidates){
   const conflict=probeHasConflict(v);

@@ -6885,6 +6885,38 @@
     "name.stealth_handles": {
       "source_revision": "4bd86e0e11e1ac5c29b7",
       "text": "Stealth Handles"
+    },
+    "yavoth.mount": {
+      "source_revision": "5f207fb06761ebef810b",
+      "text": "Yavoth v1 colocado en un carro MGN12H, con los ejes de fijación superiores comprobados. No incluye soporte inferior, sonda, placa, tornillos de montaje externos ni cableado."
+    },
+    "yavoth.native": {
+      "source_revision": "7d7a24fb5e83c714d92a",
+      "text": "Se conservan y muestran los contactos entre la carcasa y el carro del autor. Los resultados describen intersecciones estáticas del CAD; no certifican tolerancias de fabricación, recorrido completo ni ajuste durante el homing."
+    },
+    "yavoth.hotend": {
+      "source_revision": "6ff3dd3ffddcb2f6bb94",
+      "text": "Utiliza CAD de Rapido v1 a tamaño real. HF y UHF usan componentes originales distintos; la carcasa UHF y los ventiladores 4010 se extienden 8.5 mm más abajo."
+    },
+    "yavoth.support": {
+      "source_revision": "01d53049212d4e464de2",
+      "text": "Se omite el soporte de impresión separado del carro de 6 mm. No se elimina material de la carcasa ni del cuerpo del carro."
+    },
+    "yavoth.carriage": {
+      "source_revision": "139674a480c1681aa91c",
+      "text": "Yavoth / carro MGN12H"
+    },
+    "yavoth.six": {
+      "source_revision": "4bba56a3c40f12880bd7",
+      "text": "Carro Yavoth · 6 mm"
+    },
+    "yavoth.nine": {
+      "source_revision": "da40c34d533ce169311f",
+      "text": "Carro Yavoth · 9 mm"
+    },
+    "yavoth.contact": {
+      "source_revision": "cdd45f1c5fc2d150a3d0",
+      "text": "Intersección en el montaje · solo para comparar"
     }
   }
 }

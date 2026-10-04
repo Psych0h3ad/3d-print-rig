@@ -9,7 +9,7 @@ import {setupLighting} from './lighting.js?v=extra-machines-55';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=workspace-belts-2';
 import {setupAccessories} from './accessories.js?v=workspace-belts-2';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
-import {setupProbeMounts} from './probe-mounts.js?v=extra-machines-55';
+import {setupProbeMounts} from './probe-mounts.js?v=27e8c390d7e6be9db0d5';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=workspace-belts-1';
@@ -17,7 +17,7 @@ import {createV24Adapter} from './v24_adapter.mjs?v=extra-machines-55';
 import {setupMachineNavigation} from './machines.js?v=ec75087acca3b5355dfc';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {setupPublicInfo} from './public-info.js?v=workspace-belts-2';
-import {setupV24MachineHeads} from './machine-heads.js?v=a4t-carriage-57';
+import {setupV24MachineHeads} from './machine-heads.js?v=ee3c5c75dfacf1781828';
 export async function mount(scope){
 setupMachineNavigation('siboor_v24_350');
 setupPublicInfo();

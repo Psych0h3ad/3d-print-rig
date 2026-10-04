@@ -1,5 +1,5 @@
 {
-  "viewer_version": "viewer-v57",
+  "viewer_version": "viewer-v59",
   "sources": [
     {
       "id": "siboor_trident",
@@ -1259,6 +1259,19 @@
       "license_url": "../licenses/a4t_machine/NOTICE.md",
       "license_sha256": "acc8d67bea403a8d962dd4a607483cbf46e8dde6c82b3c85ef99c6481616f1b2",
       "changes": "Rigid native placements; separate 6 and 9 mm clamps; rotate Rapido HF around its filament axis. No scaling or material removal."
+    },
+    {
+      "id": "yavoth_assembly",
+      "label": "Yavoth · assembled 6 / 9 mm previews",
+      "author": "chirpy2605; original embedded component authors",
+      "url": "https://github.com/chirpy2605/voron/tree/cc2e749d09d7f24418f9f8c73c90bcefb1e29584/V0/Yavoth",
+      "commit": "cc2e749d09d7f24418f9f8c73c90bcefb1e29584",
+      "version": "Yavoth v1; Alternative Voron Mounts at the same pinned revision",
+      "scope": "16 fixed-carriage static previews. Contacts and omitted components are documented. No toolchanging or full-travel certification.",
+      "changes": "Rigid native placements, separate 6/9 mm carriages, source manufacturing support omitted for 6 mm. No cowl/carriage body material removed.",
+      "license": "Component-specific licenses and hardware terms retained",
+      "license_url": "../licenses/yavoth_assembly/NOTICE.md",
+      "license_sha256": "0977793ed1cf83b6a0b4ea77603a1ea1e0c270d609b2a643cc6381e3e36a2ecc"
     }
   ],
   "defaults": [
@@ -1627,6 +1640,12 @@
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v57/viewer-a4t-carriage-native.zip",
       "bytes": 8274728,
       "sha256": "fdc39c301f6f8d8d42a8e9d70a17152497a0f1d0f872d9bfa880696a1ae64d88"
+    },
+    {
+      "label": "Yavoth · 組立CAD",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v59/viewer-yavoth-native.zip",
+      "bytes": 34266466,
+      "sha256": "473d107ec047df0a8a1c79601d2ea90c0d8a567f4e77b2210a3669ed2c396ce9"
     }
   ]
 }

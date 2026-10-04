@@ -69,7 +69,7 @@ export function probeOptionSuffix(variant){
 }
 export function headInspectionState(variant){
  const check=probeCheck(variant),native=variant.fit?.complete_head_native,carriage=variant.fit?.carriage_native_body_passed===false;
- let label=native?({collision:'本体干渉あり · 比較用',contact:'原本CADに微小な交差あり',clear:'検査姿勢の本体交差なし',reference:native.unresolved_pairs?.length?'一部の交差判定が未確定':'原本組立 · 接続未検証'}[native.state]||'原本組立 · 接続未検証'):check.label;
+ let label=native?({collision:'本体干渉あり · 比較用',contact:'原本CADに微小な交差あり','attachment-contact':'取付部に交差あり · 比較用',clear:'検査姿勢の本体交差なし',reference:native.unresolved_pairs?.length?'一部の交差判定が未確定':'原本組立 · 接続未検証'}[native.state]||'原本組立 · 接続未検証'):check.label;
  if(native&&variant.fit?.probe)label+=' ／ '+check.label;
  if(carriage)label='キャリッジ試着：本体干渉あり ／ '+label;
  return {label,state:carriage?'carriage-conflict':check.warning?check.state:native?.state||check.state,warning:carriage||check.warning||!!native&&native.state!=='clear'};

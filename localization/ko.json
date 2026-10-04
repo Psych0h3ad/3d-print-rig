@@ -6885,6 +6885,38 @@
     "name.stealth_handles": {
       "source_revision": "4bd86e0e11e1ac5c29b7",
       "text": "Stealth Handles"
+    },
+    "yavoth.mount": {
+      "source_revision": "5f207fb06761ebef810b",
+      "text": "Yavoth v1을 MGN12H 캐리지에 배치하고 상부 장착 구멍의 축을 확인했습니다. 하부 지지대, 프로브, 보드, 외부 고정 나사 및 배선은 포함되지 않습니다."
+    },
+    "yavoth.native": {
+      "source_revision": "7d7a24fb5e83c714d92a",
+      "text": "원작자의 카울과 캐리지 접촉을 유지하여 표시합니다. 결과는 정지 자세의 CAD 교차에 대한 것이며, 제조 공차, 전체 이동 범위 및 원점 복귀 시 적합성을 보증하지 않습니다."
+    },
+    "yavoth.hotend": {
+      "source_revision": "6ff3dd3ffddcb2f6bb94",
+      "text": "Rapido v1의 원치수 CAD를 사용합니다. HF와 UHF는 서로 다른 원본 부품이며, UHF 카울과 4010 팬은 8.5 mm 더 아래로 내려갑니다."
+    },
+    "yavoth.support": {
+      "source_revision": "01d53049212d4e464de2",
+      "text": "6 mm 캐리지의 별도 인쇄 서포트를 제외한 모델입니다. 카울이나 캐리지 본체의 재료는 제거하지 않았습니다."
+    },
+    "yavoth.carriage": {
+      "source_revision": "139674a480c1681aa91c",
+      "text": "Yavoth / MGN12H 캐리지"
+    },
+    "yavoth.six": {
+      "source_revision": "4bba56a3c40f12880bd7",
+      "text": "Yavoth 캐리지 · 6 mm"
+    },
+    "yavoth.nine": {
+      "source_revision": "da40c34d533ce169311f",
+      "text": "Yavoth 캐리지 · 9 mm"
+    },
+    "yavoth.contact": {
+      "source_revision": "cdd45f1c5fc2d150a3d0",
+      "text": "장착부 교차 있음 · 비교용"
     }
   }
 }

@@ -8606,6 +8606,46 @@
       "kind": "message",
       "ja": "Stealth Handles",
       "en": "Stealth Handles"
+    },
+    "yavoth.mount": {
+      "kind": "message",
+      "ja": "Yavoth v1をMGN12Hキャリッジへ配置。上側の取付穴を照合しています。下側の支持部・プローブ・基板・外部固定ネジ・配線は未装着です。",
+      "en": "Yavoth v1 positioned on an MGN12H carriage, with upper attachment axes checked. Lower support, probe, board, external mounting fasteners and wiring are absent."
+    },
+    "yavoth.native": {
+      "kind": "message",
+      "ja": "原作者のカウルとキャリッジの接触を保持して表示。検査結果は静止姿勢のCAD交差であり、実機の公差・全可動域・ホーミングの適合を保証しません。",
+      "en": "Author cowl/carriage contacts are retained and shown. Results describe static CAD intersections; manufacturing tolerances, full travel and homing fit are not certified."
+    },
+    "yavoth.hotend": {
+      "kind": "message",
+      "ja": "Rapido v1の原寸CADを使用。HFとUHFは別の実部品です。UHFのカウルと4010ファンは8.5 mm下がります。",
+      "en": "Uses full-size Rapido v1 CAD. HF and UHF use distinct native hardware; the UHF cowl and 4010 fans extend 8.5 mm lower."
+    },
+    "yavoth.support": {
+      "kind": "message",
+      "ja": "6 mmキャリッジの別体印刷サポートを省いたモデルです。カウルやキャリッジ本体の材料は削除していません。",
+      "en": "The separate printing support of the 6 mm carriage is omitted. No cowl or carriage body material is removed."
+    },
+    "yavoth.carriage": {
+      "kind": "message",
+      "ja": "Yavoth / MGN12Hキャリッジ",
+      "en": "Yavoth / MGN12H carriage"
+    },
+    "yavoth.six": {
+      "kind": "message",
+      "ja": "Yavothキャリッジ · 6 mm",
+      "en": "Yavoth carriage · 6 mm"
+    },
+    "yavoth.nine": {
+      "kind": "message",
+      "ja": "Yavothキャリッジ · 9 mm",
+      "en": "Yavoth carriage · 9 mm"
+    },
+    "yavoth.contact": {
+      "kind": "message",
+      "ja": "取付部に交差あり · 比較用",
+      "en": "Attachment intersection · comparison only"
     }
   }
 }

@@ -1,7 +1,7 @@
 import {headPlan} from './head-assembly.js?v=trident-clearance-35';
 import {withPrinterGantry} from './printer-gantry.mjs?v=workspace-belts-2';
 
-import {translatedProbeFit} from './probe-checks.js?v=sphinx-report-45';
+import {translatedProbeFit} from './probe-checks.js?v=ea1aef3e30bf7d11d3cb';
 
 import {withEmbeddedBoards} from './embedded-boards.mjs?v=trident-clearance-35';
 import {applyMountValidation} from './mount-validation.mjs?v=trident-clearance-35';
@@ -31,6 +31,7 @@ export function machineHeadVariants(heads,registry,machine,gantry){
   (v.mount==='fixed'&&['trident_r2','siboor_awd'].includes(v.gantry)&&v.carriage==='standard'&&['stealthburner','xol'].includes(v.toolhead))||
   (v.toolhead==='crowncooler'&&v.registration_source==='crowncooler'&&target.belt_width_mm===6)||
   (v.toolhead==='a4t'&&v.mount==='fixed'&&v.carriage==='a4t_xol'&&v.registration_source==='a4t_xol_carriage_'+target.belt_width_mm&&registry.sources[v.registration_source])||
+  (v.toolhead==='yavoth'&&v.mount==='fixed'&&v.carriage==='yavoth_mgn12'&&['source','rear5'].includes(v.cooling)&&v.registration_source==='yavoth_mgn12_'+target.belt_width_mm+'_'+v.cooling&&registry.sources[v.registration_source])||
   (v.toolhead==='sphinx'&&(v.registration_source==='sphinx_voron'||(v.registration_source?.startsWith('sphinx_v3_')&&registry.sources[v.registration_source]))&&target.belt_width_mm===6)||
   (['filamatrix','madmax'].includes(v.mount)&&['filamatrix','madmax_xol'].includes(v.registration_source)&&target.belt_width_mm===6)||
   (v.mount==='stealthchanger'&&v.gantry==='sc_standard_'+target.belt_width_mm&&['stealthburner','xol','jabberwocky'].includes(v.toolhead))||

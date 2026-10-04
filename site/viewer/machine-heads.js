@@ -1,15 +1,15 @@
 import {workspaceTask} from './workspace-lifecycle.mjs';
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=a4t-carriage-57';
-import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=a4t-carriage-57';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=a444255dc35e7c15a082';
+import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=00b77b5268c44e283d7a';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=workspace-belts-1';
 import {appearanceRole} from './appearance-role.mjs?v=workspace-belts-1';
 import {partKey} from './head-assembly.js?v=workspace-belts-1';
-import {v24HeadCatalog} from './machine-head-model.mjs?v=a4t-carriage-57';
-import {setupConfigurations} from './configurations.js?v=a4t-carriage-57';
+import {v24HeadCatalog} from './machine-head-model.mjs?v=03db7c7d900ff7f5b2c0';
+import {setupConfigurations} from './configurations.js?v=229aa12eed9703870cbd';
 
-import {stockProbeFit} from './probe-mounts.js?v=extra-machines-55';
+import {stockProbeFit} from './probe-mounts.js?v=27e8c390d7e6be9db0d5';
 
 import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs?v=workspace-belts-1';
 import {bankPlan} from './changer-bank-model.mjs?v=workspace-belts-1';

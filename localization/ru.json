@@ -6885,6 +6885,38 @@
     "name.stealth_handles": {
       "source_revision": "4bd86e0e11e1ac5c29b7",
       "text": "Stealth Handles"
+    },
+    "yavoth.mount": {
+      "source_revision": "5f207fb06761ebef810b",
+      "text": "Yavoth v1 размещён на каретке MGN12H; оси верхних креплений проверены. Нижняя опора, датчик, плата, внешние крепёжные винты и проводка отсутствуют."
+    },
+    "yavoth.native": {
+      "source_revision": "7d7a24fb5e83c714d92a",
+      "text": "Контакты авторского кожуха с кареткой сохранены и показаны. Результаты относятся к пересечениям CAD в неподвижном положении; производственные допуски, полный ход и совместимость при поиске нуля не подтверждены."
+    },
+    "yavoth.hotend": {
+      "source_revision": "6ff3dd3ffddcb2f6bb94",
+      "text": "Используется CAD Rapido v1 в исходном масштабе. HF и UHF содержат разные исходные компоненты; кожух UHF и вентиляторы 4010 расположены на 8.5 mm ниже."
+    },
+    "yavoth.support": {
+      "source_revision": "01d53049212d4e464de2",
+      "text": "Отдельная поддержка для печати каретки 6 mm исключена. Материал кожуха и корпуса каретки не удалён."
+    },
+    "yavoth.carriage": {
+      "source_revision": "139674a480c1681aa91c",
+      "text": "Yavoth / каретка MGN12H"
+    },
+    "yavoth.six": {
+      "source_revision": "4bba56a3c40f12880bd7",
+      "text": "Каретка Yavoth · 6 mm"
+    },
+    "yavoth.nine": {
+      "source_revision": "da40c34d533ce169311f",
+      "text": "Каретка Yavoth · 9 mm"
+    },
+    "yavoth.contact": {
+      "source_revision": "cdd45f1c5fc2d150a3d0",
+      "text": "Пересечение в креплении · только для сравнения"
     }
   }
 }

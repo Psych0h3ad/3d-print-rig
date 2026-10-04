@@ -66,7 +66,7 @@ async function cacheReferences(outputs){
  async function scan(directory){for(const item of await fs.readdir(directory,{withFileTypes:true})){const path=resolve(directory,item.name);if(item.isDirectory())await scan(path);else if(['.mjs','.js','.html'].includes(extname(path)))files.set(path,await fs.readFile(path,'utf8'))}}
  await scan(viewer);
  const changed=new Map(Object.entries(outputs).map(([name,text])=>[fileURLToPath(new URL(name,root)),text]));
-  for(const name of ['languages.mjs','translation-engine.mjs','i18n.mjs','messages-en.mjs','machines.js','head-navigation.mjs','workspace-return.mjs','workspace-layout.mjs','workspace-choices.mjs','workspace-ui.mjs','workspace-router.mjs','workspace.css']){
+  for(const name of ['languages.mjs','translation-engine.mjs','i18n.mjs','messages-en.mjs','machines.js','head-navigation.mjs','machine-head-model.mjs','configuration-model.js','configurations.js','probe-checks.js','toolheads.js','workspace-return.mjs','workspace-layout.mjs','workspace-choices.mjs','workspace-ui.mjs','workspace-router.mjs','workspace.css']){
    const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));
   }
  // Content revisions propagate from dictionaries to their importers and page

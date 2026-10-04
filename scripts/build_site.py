@@ -10,6 +10,8 @@ import zipfile
 from pathlib import Path, PurePosixPath
 
 ROOT = Path(__file__).resolve().parents[1]
+# Retain a 30 MB margin below the published GitHub Pages 1 GB limit.
+MAX_SITE_BYTES = 970_000_000
 
 
 def unpack_assets(archive, target):
@@ -27,7 +29,7 @@ def unpack_assets(archive, target):
             if path.suffix != '.json' and not name.endswith('.glb.gz'):
                 raise ValueError('Unsupported model file.')
             total += row['bytes']
-            if total > 960_000_000 or bundle.getinfo(name).file_size != row['bytes']:
+            if total > MAX_SITE_BYTES or bundle.getinfo(name).file_size != row['bytes']:
                 raise ValueError('Unexpected model bundle size.')
             destination = (target / path).resolve()
             if not destination.is_relative_to(target.resolve()) or destination.exists():
@@ -74,7 +76,7 @@ def main():
             with urllib.request.urlopen(request, timeout=60) as response, archive.open('wb') as output:
                 for chunk in iter(lambda: response.read(1024 * 1024), b''):
                     size += len(chunk)
-                    if size > 960_000_000:
+                    if size > MAX_SITE_BYTES:
                         raise ValueError('Model bundle is too large.')
                     digest.update(chunk)
                     output.write(chunk)
@@ -83,7 +85,7 @@ def main():
             unpack_assets(archive, target)
     (target / '.nojekyll').touch()
     size = sum(path.stat().st_size for path in target.rglob('*') if path.is_file())
-    if size > 960_000_000:
+    if size > MAX_SITE_BYTES:
         raise ValueError('Site exceeds the deployment size budget.')
     print(f'Static viewer built ({size:,} bytes).')
 
