@@ -1,4 +1,4 @@
-import {v0Messages,v0Templates} from './v0-messages-en.mjs?v=workspace-belts-2';
+import {v0Messages,v0Templates} from './v0-messages-en.mjs?v=fysetc-front-54';
 import {ratRigMessages,ratRigTemplates} from './ratrig-messages-en.mjs?v=workspace-belts-2';
 import {e3ngMessages} from './e3ng-messages-en.mjs?v=workspace-belts-2';
 import {yudxMessages} from './yudx-messages-en.mjs?v=workspace-belts-2';

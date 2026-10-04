@@ -1,4 +1,11 @@
 export const v0Messages={
+ 'FYSETC CNC Bed Stealth Front · 3MF原本':'FYSETC CNC Bed Stealth Front · original 3MF',
+ '3MF原本の印刷部品':'Printed parts from the original 3MF',
+ '3MF一覧 SHA256':'3MF file inventory SHA256',
+ 'FYSETC CNC Bed Stealth Frontの部品を見る':'View FYSETC CNC Bed Stealth Front parts',
+ 'FYSETC CNCベッド専用。カバーとロゴの原本を表示します。専用ベッドの固定面・全Z可動域は未検証です。':'For the FYSETC CNC bed only. Displays the source cover and logo parts. Dedicated bed mounting planes and full Z travel remain unverified.',
+ 'サポート省略モデル：六角ロゴ穴の印刷用サポート2個を除外し、カバー本体とロゴの寸法は保持しています。FYSETC CNCベッド専用。原本の3部品を個別表示します。専用CNCベッドの固定面・全Z可動域は未検証のため、機体への取付選択肢には追加していません。この版にNeoPixelはありません。':'Support-omitted model: two printing supports in the hexagonal logo opening are excluded; cover and logo dimensions are retained. For the FYSETC CNC bed only. Displays three source parts individually. Dedicated CNC bed mounting planes and full Z travel are unverified, so this is not a printer installation option. This version has no NeoPixel.',
+ 'Dragon Burner・Rapid Burner・Mailbox・Tulipなどの原本を比較できます。取付済み構成の選択は「V0のModを取り付ける」から。':'Compare source parts for Dragon Burner, Rapid Burner, Mailbox, Tulip and other mods. Choose assembled configurations under Install V0 mods.',
  '閉じた純正ドアの前端と公称Z上限では接触があります。ドアの角度とZ取付条件を確認してください。':'Contacts occur with the closed stock door near the front travel end and at the nominal Z maximum. Check the door angle and Z installation conditions.',
  'ドア角度が不正です':'Invalid door angle',
  'ホーミング接点の校正とトップハットの開閉は未検証。':'Homing calibration and tophat opening are not validated.',

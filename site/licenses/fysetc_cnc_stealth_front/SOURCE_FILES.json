@@ -1,0 +1,17 @@
+[
+  {
+    "path": "fysetc-cnc-aluminium-bed-stealth-front.3mf",
+    "bytes": 25214,
+    "sha256": "6db50d51046c946187f82640c4cc054e791fdda5a0e2972beef8af2f786f33ff"
+  },
+  {
+    "path": "voron-outter.3mf",
+    "bytes": 33000,
+    "sha256": "bdab57a5491ad6a18347604466f5cbd901a22e3bd9173a5b131bcb0c3172a00a"
+  },
+  {
+    "path": "voron-accent.3mf",
+    "bytes": 38655,
+    "sha256": "366d66269f73f04dd9b40bbec7cfbec3e26c986420c9f136350cbd5a5015bb6a"
+  }
+]

@@ -1,6 +1,6 @@
 import {WorkspaceScope, activateScope} from './workspace-lifecycle.mjs';
 import {bindWorkspaceNavigation, setWorkspaceLeaving, workspaceTarget, workspaceURL, replaceWorkspaceURL} from './workspace-navigation.mjs';
-import {setupWorkspace} from './workspace-ui.mjs?v=workspace-belts-2';
+import {setupWorkspace} from './workspace-ui.mjs?v=fysetc-front-54';
 import {applyDisplay} from './display-preferences.mjs';
 import {machinePage} from './machines.js?v=workspace-belts-2';
 

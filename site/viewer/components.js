@@ -11,7 +11,7 @@ import {setupPublicInfo} from './public-info.js?v=workspace-belts-2';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {partNodes,selectParts,visibleBounds} from './component-selection.js?v=workspace-belts-1';
 import {renderProductLinks} from './product-links.js?v=workspace-belts-1';
-import {componentCategories,componentCategory,componentViews,resolveComponentView,componentViewKeys} from './v0-mod-library.mjs?v=workspace-belts-1';
+import {componentCategories,componentCategory,componentViews,resolveComponentView,componentViewKeys} from './v0-mod-library.mjs?v=fysetc-front-54';
 export async function mount(scope){
 const $=s=>document.querySelector(s),stage=$('#stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor('#edf1f5');renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);
@@ -85,7 +85,7 @@ async function install(id,initial=false){return workspaceTask(async()=>{
    $('#componentViewOptions').hidden=true;$('#componentPartOptions').hidden=true;$('#componentSelectionInfo').hidden=true;
    $('#componentStatus').textContent=item.label+' · 部品単体';syncURL();fit();
   }
-  const representation=item.representation==='STL'?'STL原本の印刷部品':item.representation==='integration_surfaces'?'開いた組込み参照面':item.solids+'ソリッド';
+  const representation=item.representation==='3MF'?'3MF原本の印刷部品':item.representation==='STL'?'STL原本の印刷部品':item.representation==='integration_surfaces'?'開いた組込み参照面':item.solids+'ソリッド';
   const details=$('#componentDetails');details.replaceChildren(paragraph(item.manufacturer),paragraph(`${representation} · ${item.source_version}`));
   if(item.source_extents_mm)details.append(paragraph('原本XYZ外寸：'+item.source_extents_mm.map(v=>v.toFixed(2)).join(' × ')+' mm'));
   if(item.source_commit)details.append(paragraph('取得commit：'+item.source_commit));details.append(paragraph((item.source_sha256_label||'原本 SHA256')+'：'+item.source_sha256),paragraph(item.license));

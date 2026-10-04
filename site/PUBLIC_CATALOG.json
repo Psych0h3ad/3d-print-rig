@@ -1,5 +1,5 @@
 {
-  "viewer_version": "viewer-v53",
+  "viewer_version": "viewer-v54",
   "sources": [
     {
       "id": "siboor_trident",
@@ -1154,6 +1154,18 @@
       "license_url": "../licenses/phaetus_rapido_x/NOTICE.txt",
       "version": "Rapido X.STEP SHA256 a6c1130cc38e0c8a96ece2019280a9306657c14cb39252e14094c00dc2b85c21",
       "changes": "Rigid placement and tessellation; separate GrooveMount adapter omitted in four-bolt installations. One source body has restored native face trims with volume change below 0.06 mm3 and envelope change below 0.001 mm. Original non-watertight SB front mesh retained. See RAPIDO_X.md for measured checks and limitations."
+    },
+    {
+      "id": "fysetc_cnc_stealth_front",
+      "label": "V0 · FYSETC CNC Bed Stealth Front",
+      "author": "driftrotor / remix: Maple Leaf Makers",
+      "url": "https://www.printables.com/model/859914-voron-v0-fysetc-cnc-bed-stealth-front",
+      "version": "3MF files 2024-04-28; page updated 2024-05-02; native file hashes in SOURCE_FILES.json",
+      "scope": "Three native 3MF parts displayed individually. FYSETC CNC bed required; printer installation is not registered.",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/fysetc_cnc_stealth_front/LICENSE",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "changes": "Remove the two embedded printing supports from the cover; retain cover and logo dimensions. Omit print-bed transforms and export meshes for display."
     }
   ],
   "defaults": [
@@ -1504,6 +1516,12 @@
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v53/viewer-a4t-sphinx-native.zip",
       "bytes": 31136561,
       "sha256": "f6fe711437cb3daab793216e6d92a309ebf423c9ec33e4bd5589b9d545585c0f"
+    },
+    {
+      "label": "FYSETC CNC Bed Stealth Front · 3MF原本",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v54/viewer-fysetc-stealth-front-native.zip",
+      "bytes": 95912,
+      "sha256": "59ee399a145c65cebc2eb453435cee2f48fbb2214946cb3713fe57eb99532b81"
     }
   ]
 }
