@@ -18,7 +18,7 @@ export const e3ngMessages={
  '本CADの形状と派生表示データには非営利・継承条件が適用されます。アプリのコードとはライセンスを区別します。':'These CAD shapes and derived display data carry noncommercial and share-alike conditions, separately from the application code license.',
  'E3NG v1.2S / Advanced v1.2の公式ファイル':'Official E3NG v1.2S / Advanced v1.2 files',
  'v1.2の機体全体の組立CADは作者の有償配布です。このビューは公開されている交換機構のCADを使用しています。':'The author distributes the complete v1.2 assembly CAD as a paid extra. This view uses the publicly available changer CAD.',
- 'E3NGのホットエンド交換機構 ↗':'E3NG hotend changer ↗',
+ 'E3NGのホットエンド交換機構':'E3NG hotend changer',
  'ツール数':'Tool count', '周辺Mod':'Surrounding mods', 'Yガントリー':'Y gantry',
  '6ツールは推奨構成外':'Six tools exceed the recommended configuration',
  'E3NG交換機構の3D参照':'E3NG changer 3D reference', 'E3NG部品表を取得できません':'Could not load the E3NG parts manifest', 'E3NG部品情報が不足しています':'Missing E3NG part metadata', 'E3NGの部品数が一致しません':'E3NG part count mismatch',

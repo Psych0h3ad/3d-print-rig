@@ -7,10 +7,10 @@ import {OrbitControls} from './vendor/OrbitControls.js?v=touch-37';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=trident-clearance-35';
 import {poseDelta,createV0Adapter} from './v0_adapter.mjs?v=v0-mounts-39';
-import {setupMachineNavigation} from './machines.js?v=machine-scope-52';
+import {setupMachineNavigation} from './machines.js?v=controls-icons-1';
 import {setupGrid} from './grid-control.js?v=trident-clearance-35';
-import {setupRenderExport} from './render-export.js?v=trident-clearance-35';
-import {setupPublicInfo} from './public-info.js?v=standard-step-42';
+import {setupRenderExport} from './render-export.js?v=controls-icons-1';
+import {setupPublicInfo} from './public-info.js?v=controls-icons-1';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=trident-clearance-35';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=trident-clearance-35';
 const $=s=>document.querySelector(s),ids=['voron_v02r1_120','voron_v02_120'];
@@ -46,7 +46,7 @@ try{
  const mods=library.items.filter(m=>m.kind==='mod'&&m.id.startsWith('v0mod_')),modHistory=new Map();
  const option=(id,label)=>{const o=document.createElement('option');o.value=id;o.textContent=label;return o};
  for(const category of v0ModCategories.filter(c=>mods.some(m=>componentCategory(m)===c.id)))$('#modCategory').append(option(category.id,category.label));
- function updateModLink(){const mod=mods.find(m=>m.id===$('#modLibrary').value);modHistory.set($('#modCategory').value,mod.id);$('#modLink').href='./components.html?component='+encodeURIComponent(mod.id);$('#modSelection').textContent=mod.label;$('#modLink').textContent='選んだModの部品・種類を開く ↗'}
+ function updateModLink(){const mod=mods.find(m=>m.id===$('#modLibrary').value);modHistory.set($('#modCategory').value,mod.id);$('#modLink').href='./components.html?component='+encodeURIComponent(mod.id);$('#modSelection').textContent=mod.label;$('#modLink').textContent='選んだModの部品・種類を開く'}
  function updateModOptions(){const selected=modHistory.get($('#modCategory').value),items=mods.filter(m=>componentCategory(m)===$('#modCategory').value);$('#modLibrary').replaceChildren(...items.map(m=>option(m.id,m.label)));$('#modLibrary').value=selected||items[0].id;updateModLink()}
  $('#modCategory').onchange=updateModOptions;$('#modLibrary').onchange=updateModLink;$('#modCategory').disabled=false;$('#modLibrary').disabled=false;updateModOptions();
 

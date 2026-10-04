@@ -51,7 +51,7 @@ export function setupWorkspaceSharing({navigation, actions, menu}) {
   dialog.id = 'pageShareDialog'; dialog.setAttribute('aria-labelledby', 'pageShareTitle');
   const heading = make('div', '', 'dialog-head'), title = make('h2', 'このページを共有');
   title.id = 'pageShareTitle';
-  const close = make('button', '×', 'close'); close.setAttribute('aria-label', '閉じる');
+  const close = make('button', '', 'close'); close.setAttribute('aria-label', '閉じる');
   heading.append(title, close);
   const body = make('div', '', 'dialog-body');
   const selected = make('p', '', 'share-page-title');

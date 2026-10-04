@@ -1,4 +1,4 @@
-import {renderProductLinks} from './product-links.js?v=trident-clearance-35';
+import {renderProductLinks} from './product-links.js?v=controls-icons-1';
 import {ratRigMachines} from './ratrig-machines.mjs?v=trident-clearance-35';
 export const machineChoices=[
  {id:'siboor_trident_350',label:'SIBOOR Trident 350 · CNC AWD',page:'./'},

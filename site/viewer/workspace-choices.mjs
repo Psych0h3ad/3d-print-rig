@@ -1,4 +1,4 @@
-import {translate} from './i18n.mjs?v=workflow-2';
+import {translate} from './i18n.mjs?v=controls-icons-1';
 
 const normalize = value => String(value).normalize('NFKC').toLocaleLowerCase().replace(/\s+/gu, ' ').trim();
 export function matchingChoices(rows, query) {
@@ -33,7 +33,7 @@ export function setupChoiceSearch(panel) {
   dialog.id = 'choiceDialog'; dialog.setAttribute('aria-labelledby', 'choiceTitle');
   const head = make('div', '', 'dialog-head');
   const title = make('h2', '部品を探す'); title.id = 'choiceTitle';
-  const close = make('button', '×', 'close'); close.setAttribute('aria-label', '閉じる');
+  const close = make('button', '', 'close'); close.setAttribute('aria-label', '閉じる');
   head.append(title, close);
   const body = make('div', '', 'dialog-body');
   const hint = make('p', '候補を選ぶと構成に反映します。関連部品が変わる場合は候補に表示します。', 'foot');

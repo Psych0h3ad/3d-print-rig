@@ -1,5 +1,5 @@
 export const yudxMessages={
- 'YUDX交換ヘッドを確認 ↗':'Inspect the YUDX exchangeable hotend ↗',
+ 'YUDX交換ヘッドを確認':'Inspect the YUDX exchangeable hotend',
  'MGN12H · VORON取付参照':'MGN12H · VORON mount reference',
  'MGN12Hヘッド・ドック原本組立':'MGN12H head and dock · original assembly',
  'MGN12Hヘッド':'MGN12H head',

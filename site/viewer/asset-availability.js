@@ -1,4 +1,4 @@
-import {setupPublicInfo} from './public-info.js?v=standard-step-42';
+import {setupPublicInfo} from './public-info.js?v=controls-icons-1';
 import {modelURL} from './model-loader.js?v=trident-clearance-35';
 
 const files={
