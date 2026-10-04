@@ -8646,6 +8646,71 @@
       "kind": "message",
       "ja": "取付部に交差あり · 比較用",
       "en": "Attachment intersection · comparison only"
+    },
+    "ui.just_for_fun": {
+      "kind": "message",
+      "ja": "Just for fun",
+      "en": "Just for fun"
+    },
+    "embed.heading": {
+      "kind": "message",
+      "ja": "サイトに埋め込む · テスト機能",
+      "en": "Embed on your site · Experimental"
+    },
+    "embed.policy": {
+      "kind": "message",
+      "ja": "テスト公開中です。機種・構成を維持して更新を自動反映します。開発中のため、表示や操作が変わる場合があります。",
+      "en": "Experimental feature. Updates apply automatically while retaining the selected machine and configuration. Appearance and controls may change during development."
+    },
+    "embed.theme": {
+      "kind": "message",
+      "ja": "埋め込みの配色",
+      "en": "Embed theme"
+    },
+    "embed.light": {
+      "kind": "message",
+      "ja": "ライト",
+      "en": "Light"
+    },
+    "embed.dark": {
+      "kind": "message",
+      "ja": "ダーク",
+      "en": "Dark"
+    },
+    "embed.auto": {
+      "kind": "message",
+      "ja": "端末に合わせる",
+      "en": "Match device"
+    },
+    "embed.code": {
+      "kind": "message",
+      "ja": "埋め込みコード",
+      "en": "Embed code"
+    },
+    "embed.copy": {
+      "kind": "message",
+      "ja": "コードをコピー",
+      "en": "Copy code"
+    },
+    "embed.preview": {
+      "kind": "message",
+      "ja": "埋め込みをプレビュー",
+      "en": "Preview embed"
+    },
+    "embed.copied": {
+      "kind": "message",
+      "ja": "コードをコピーしました。",
+      "en": "Code copied."
+    },
+    "embed.copy_fallback": {
+      "kind": "message",
+      "ja": "コードを選択しました。コピーしてサイトに貼り付けてください。",
+      "en": "Code selected. Copy it and paste it into your site."
+    },
+    "embed.unavailable": {
+      "kind": "message",
+      "ja": "指定された構成は現在利用できません。元のサイトで確認してください。",
+      "en": "The requested configuration is unavailable. Check the original site."
     }
   }
 }

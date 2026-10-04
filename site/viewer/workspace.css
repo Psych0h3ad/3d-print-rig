@@ -431,3 +431,15 @@ html[data-theme=dark] #stage { background:#101820; }
 #workspaceNavigationStatus[hidden] { display:none; }
 #workspaceNavigationStatus.navigation-error { border-color:#b87552; }
 .workspace[aria-busy=true] { opacity:.65; }
+/* Public embeds keep the real controller and camera controls in a compact stage. */
+.share-embed { margin-top:24px; padding-top:18px; border-top:1px solid var(--line); }
+.share-embed h3 { margin:0 0 8px; font-size:16px; }
+.share-embed textarea { display:block; width:100%; min-width:0; box-sizing:border-box; resize:vertical; font:12px/1.6 monospace; padding:10px; border:1px solid var(--line); border-radius:6px; background:var(--paper); color:var(--ink); margin:8px 0 12px; }
+.share-dialog { max-height:90dvh; }
+.share-dialog .dialog-body { overflow:auto; }
+:root[data-embedded=true] body.ui-workspace { display:block!important; height:100dvh!important; overflow:hidden!important; }
+:root[data-embedded=true] .ui-workspace > header, :root[data-embedded=true] .workspace > aside, :root[data-embedded=true] .workspace-mobile-bar, :root[data-embedded=true] .skip-link { display:none!important; }
+:root[data-embedded=true] .ui-workspace .workspace { display:block!important; height:100dvh!important; min-height:0!important; padding:0!important; }
+:root[data-embedded=true] .ui-workspace #stage { width:100%!important; height:100dvh!important; min-height:0!important; position:relative!important; }
+:root[data-embedded=true] .ui-workspace .view-tools { max-width:calc(100% - 24px); flex-wrap:wrap; }
+:root[data-embedded=true] #workspaceNavigationStatus { max-width:calc(100% - 24px); }

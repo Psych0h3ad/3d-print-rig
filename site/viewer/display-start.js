@@ -1,4 +1,9 @@
 // Run before styles so a saved dark workspace never opens with a white flash.
+const embedDisplayQuery = new URL(location.href).searchParams;
+if (embedDisplayQuery.get('embed') === '1') {
+  document.documentElement.dataset.embedded = 'true';
+  document.documentElement.dataset.theme = embedDisplayQuery.get('embed_theme') === 'dark' ? 'dark' : 'light';
+} else {
 try {
   const key = '3d-print-rig-display-v1';
   let saved = JSON.parse(localStorage.getItem(key) || 'null');
@@ -13,3 +18,4 @@ try {
   }
   if (typeof saved?.dark === 'boolean') document.documentElement.dataset.theme = saved.dark ? 'dark' : 'light';
 } catch {}
+}

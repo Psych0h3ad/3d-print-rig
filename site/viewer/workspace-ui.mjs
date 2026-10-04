@@ -1,13 +1,13 @@
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
-import {setupDisplayPreferences} from './display-preferences.mjs';
+import {setupDisplayPreferences} from './display-preferences.mjs?v=ff4032c3ebd2a3c5539b';
 import {WorkspaceMutationObserver,workspaceListen} from './workspace-lifecycle.mjs';
 // Shared presentation layer. Existing controls, IDs and CAD controllers stay intact.
-import {setupLanguage,originalText,messageSource} from './i18n.mjs?v=3e75ab7655c1827299e1';
+import {setupLanguage,originalText,messageSource} from './i18n.mjs?v=884ed930f47257aaf713';
 import {printerWorkspaceURL,workspaceReturnKey,workspaceKindFor} from './workspace-return.mjs?v=68b3781e7021af6edf72';
-import {setupWorkspaceSharing} from './workspace-share.mjs?v=workspace-belts-2';
+import {setupWorkspaceSharing} from './workspace-share.mjs?v=54d406a01714db98d7f9';
 import {lockInspectorHorizontalScroll} from './workspace-scroll.mjs?v=workspace-belts-1';
-import {setupChoiceSearch} from './workspace-choices.mjs?v=fa47253fac13c73d17c1';
+import {setupChoiceSearch} from './workspace-choices.mjs?v=4ffb967bc779a51e14a4';
 import {setupMobileLayout} from './workspace-layout.mjs?v=4156bfb5b743ea9adb5d';
 const $ = selector => document.querySelector(selector);
 const node = (tag, className, text) => {
@@ -38,6 +38,7 @@ export function setupWorkspace() {
   const destinations = [
     ['ui.printer', './', machinePage], ['ui.toolhead', './toolheads.html', page === 'toolheads.html'],
     ['ui.gantry', './gantries.html', page === 'gantries.html'],
+    ['ui.just_for_fun', '../fun/', false],
   ];
   for (const [id, href, current] of destinations) {
     const link = node('a', '', {id});

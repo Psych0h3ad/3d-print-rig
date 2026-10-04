@@ -6917,6 +6917,58 @@
     "yavoth.contact": {
       "source_revision": "cdd45f1c5fc2d150a3d0",
       "text": "Intersección en el montaje · solo para comparar"
+    },
+    "ui.just_for_fun": {
+      "source_revision": "b8439fe662543da058a3",
+      "text": "Just for fun"
+    },
+    "embed.heading": {
+      "source_revision": "5e69083899a061572c34",
+      "text": "Insertar en tu sitio · Experimental"
+    },
+    "embed.policy": {
+      "source_revision": "6981f718488057137053",
+      "text": "Función experimental. Las actualizaciones se aplican automáticamente conservando la máquina y la configuración elegidas. La apariencia y los controles pueden cambiar durante el desarrollo."
+    },
+    "embed.theme": {
+      "source_revision": "6702e1406cadfddc02ad",
+      "text": "Tema de inserción"
+    },
+    "embed.light": {
+      "source_revision": "23e98a5f3253a6c43dca",
+      "text": "Claro"
+    },
+    "embed.dark": {
+      "source_revision": "31a20704b6024d396c3b",
+      "text": "Oscuro"
+    },
+    "embed.auto": {
+      "source_revision": "7b0bb0c9c4ffb9426e36",
+      "text": "Según el dispositivo"
+    },
+    "embed.code": {
+      "source_revision": "6c6d46875e52b217a456",
+      "text": "Código de inserción"
+    },
+    "embed.copy": {
+      "source_revision": "29336ee20893d5419dba",
+      "text": "Copiar código"
+    },
+    "embed.preview": {
+      "source_revision": "6aa704a0d49b56ad56c4",
+      "text": "Vista previa"
+    },
+    "embed.copied": {
+      "source_revision": "480073949efa8166a046",
+      "text": "Código copiado."
+    },
+    "embed.copy_fallback": {
+      "source_revision": "28d91b15c309e8778d55",
+      "text": "Código seleccionado. Cópialo y pégalo en tu sitio."
+    },
+    "embed.unavailable": {
+      "source_revision": "b8f8e39c88e712f412dc",
+      "text": "La configuración solicitada no está disponible. Consulta el sitio original."
     }
   }
 }
