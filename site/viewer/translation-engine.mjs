@@ -43,9 +43,9 @@ export function createTranslator(definitions,{dictionaries=new Map()}={}){
   return match(input,jp,'en',depth)??input.replace(jpFragments,key=>resolve(sourceIndex.get(key),'en'));
  }
  function translate(text,language='en',depth=0){
-  if(typeof text!=='string'||depth>5||language==='ja')return text;
+  if(typeof text!=='string'||depth>5)return text;
   const source=normalize(text);if(!source)return text;
-  const id=sourceIndex.get(source)||englishIndex.get(source);
+  const id=sourceIndex.get(source)||(language==='ja'?undefined:englishIndex.get(source));
   let result;
   if(id)result=resolve(id,language);
   else if(source.includes(' ／ ')){
@@ -55,6 +55,7 @@ export function createTranslator(definitions,{dictionaries=new Map()}={}){
    const whole=match(source,japanese.test(source)?specificJP:ep,language,depth);
    result=whole??source.split(' ／ ').map(part=>translate(part,language,depth+1)).join(' ／ ');
   }
+  else if(language==='ja')result=japanese.test(source)?match(source,jp,'ja',depth)??source.replace(jpFragments,key=>resolve(sourceIndex.get(key),'ja')):source;
   else if(language==='en')result=japanese.test(source)?english(source,depth):source;
   else{
    const input=japanese.test(source)?english(source,depth):source;

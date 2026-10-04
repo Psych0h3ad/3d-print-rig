@@ -29,6 +29,11 @@ and meaning. Preserve measurements and protected component names listed in
 `localization/glossary.json`. Keep uncertainty and compatibility limits in
 translations; an unverified installation must remain unverified.
 
+The glossary also contains context rules for mechanical terms. For example,
+printer beds, tool banks, carriages and CAD checks must not use translations
+that mean household beds, financial banks, transportation or bank checks.
+Review these rules when adding technical vocabulary.
+
 New shared controls can use `data-i18n-id="ui.configuration"` for static text
 or `formatMessage(id, values, language)` for dynamic text. Existing source
 strings remain supported during migration. Use `originalText` and
@@ -44,5 +49,6 @@ lookup/endonym strings are exempted in `localization/legacy-fragments.json`;
 do not use that file to exempt new interface copy.
 
 At runtime a missing or stale entry falls back to current English text.
+Legacy source aliases resolve revised Japanese wording as well.
 Language selection survives printer/head navigation, saved preference and
 shared URLs. Dictionaries for additional languages load only when selected.

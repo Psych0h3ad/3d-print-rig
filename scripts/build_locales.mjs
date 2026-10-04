@@ -42,6 +42,11 @@ export function validateTranslations(source,dictionaries,glossary={protected_ter
    for(const code of e.en.match(/\b[A-Z][A-Z0-9]*(?:_[A-Z0-9]+)+\b/gu)||[]){
     if(!record.text.includes(code))errors.push({language,id,issue:'command_identifier',code});
    }
+   for(const rule of glossary.context_rules||[]){
+    if(new RegExp(rule.source_pattern,'iu').test(e.en))for(const term of rule.forbidden?.[language]||[]){
+     if(record.text.toLowerCase().includes(term.toLowerCase()))errors.push({language,id,issue:'technical_context',term});
+    }
+   }
    for(const term of glossary.protected_terms||[]){
     const escape=value=>value.replace(/[.*+?^${}()|[\]\\]/gu,'\\$&');
     const pattern=new RegExp('(?<![A-Za-z0-9])'+escape(term)+'(?![A-Za-z0-9])','gu');

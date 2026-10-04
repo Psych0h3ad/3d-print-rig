@@ -160,7 +160,7 @@
     },
     "text.0035": {
       "source_revision": "00333cbb6d8e55910bca",
-      "text": "정적 외부 교차점 및 장착 접점을 확인했습니다. 프린터 설치, 전체 이동, 유연한 케이블/호스 및 Beacon 금속 배제부는 선택되지 않은 상태로 유지됩니다."
+      "text": "정적 외형 교차와 장착 접촉을 검사했습니다. 프린터 장착, 전체 이동 범위, 유연한 케이블/호스 및 Beacon의 금속 이격 금지 영역은 아직 미검증입니다."
     },
     "text.0036": {
       "source_revision": "a5d680cbb1cd486cbcf0",
@@ -376,7 +376,7 @@
     },
     "text.0089": {
       "source_revision": "a9c7e1bde50f65a82c9f",
-      "text": "금속 침대 캐리지용 너지"
+      "text": "금속 베드 캐리지용 Nudge"
     },
     "text.0090": {
       "source_revision": "747a5cd1417e7d95cfb2",
@@ -420,7 +420,7 @@
     },
     "text.0100": {
       "source_revision": "aa5a99461f4d91871e59",
-      "text": "E3NG 디자인: RH3D. 체인저: emna2881. 넛지: zruncho3d. 압출기 영감: Irbis3D / MedusaHC."
+      "text": "E3NG 디자인: RH3D. 체인저: emna2881. Nudge: zruncho3d. 압출기 영감: Irbis3D / MedusaHC."
     },
     "text.0101": {
       "source_revision": "a929509e7ff85d6098b9",
@@ -896,7 +896,7 @@
     },
     "text.0218": {
       "source_revision": "5232e9a0ff8d085cdc4f",
-      "text": "소스 STEP, 원본 BREP, 전체 어셈블리 및 부품별 조정이 유지됩니다. 인쇄 표면은 침대 위에 1.5 mm 시트가 있다고 가정합니다."
+      "text": "소스 STEP, 원본 BREP, 전체 어셈블리 및 부품별 조정이 유지됩니다. 인쇄 표면은 베드 위에 1.5 mm 시트가 있다고 가정합니다."
     },
     "text.0219": {
       "source_revision": "0d85d3acece30eef8638",
@@ -940,27 +940,27 @@
     },
     "text.0229": {
       "source_revision": "83fc9626656c564f7ab6",
-      "text": "보기 FYSETC CNC 침대 팬 및 연결 마운트"
+      "text": "보기 FYSETC CNC 베드 팬 및 연결 마운트"
     },
     "text.0230": {
       "source_revision": "2889c6d30b73142ea39c",
-      "text": "FYSETC CNC 침대용입니다. 소스 커버, 로고 및 팬 마운트를 확인하세요. 작성자의 침대 STEP를 찾았으나 재배포 라이센스가 명시되어 있지 않아 침대 자체는 포함되지 않습니다. 장착 평면과 전체 Z 이동은 검증되지 않았습니다."
+      "text": "FYSETC CNC 베드용입니다. 소스 커버, 로고 및 팬 마운트를 확인하세요. 작성자의 베드 STEP를 찾았으나 재배포 라이센스가 명시되어 있지 않아 베드 자체는 포함되지 않습니다. 장착 평면과 전체 Z 이동은 검증되지 않았습니다."
     },
     "text.0231": {
       "source_revision": "8d2c5caeea088c4143b1",
-      "text": "FYSETC CNC 침대용입니다. 공유 3010 팬 브래킷과 두 개의 연결 마운트를 개별적으로 표시하여 지지대를 제거하지 않고도 소스 크기를 유지합니다. 58 mm 장착 구멍 피치는 작성자의 침대 STEP와 일치합니다. 시트, PCB 및 전체 Z 이동은 검증되지 않았습니다. 침대에는 지정된 재배포 라이센스가 없으므로 프린터 설치가 등록되지 않았습니다. 팬과 PCB는 소스에 포함되지 않습니다."
+      "text": "FYSETC CNC 베드용입니다. 공유 3010 팬 브래킷과 두 개의 연결 마운트를 개별적으로 표시하여 지지대를 제거하지 않고도 소스 크기를 유지합니다. 58 mm 장착 구멍 피치는 작성자의 베드 STEP와 일치합니다. 시트, PCB 및 전체 Z 이동은 검증되지 않았습니다. 베드에는 지정된 재배포 라이센스가 없으므로 프린터 설치가 등록되지 않았습니다. 팬과 PCB는 소스에 포함되지 않습니다."
     },
     "text.0232": {
       "source_revision": "76334825126b413fbf2e",
-      "text": "서포트 생략 모델: 육각형 로고 개구부에서 두 개의 인쇄 서포트을 제외하고 커버와 로고 치수를 유지합니다. 세 개의 소스 부품을 개별적으로 표시합니다. 작성자의 CNC 침대 STEP를 찾았으나 지정된 재배포 라이센스가 없습니다. 장착 평면과 전체 Z 이동은 검증되지 않았습니다. 등록된 프린터 설치가 없습니다. 이 버전에는 NeoPixel이 없습니다."
+      "text": "서포트 생략 모델: 육각형 로고 개구부에서 두 개의 인쇄 서포트를 제외하고 커버와 로고 치수를 유지합니다. 세 개의 소스 부품을 개별적으로 표시합니다. 작성자의 CNC 베드 STEP를 찾았으나 지정된 재배포 라이센스가 없습니다. 장착 평면과 전체 Z 이동은 검증되지 않았습니다. 등록된 프린터 설치가 없습니다. 이 버전에는 NeoPixel이 없습니다."
     },
     "text.0233": {
       "source_revision": "3012e7f0612a5e6ebcb4",
-      "text": "FYSETC CNC 침대 팬 및 연결 마운트 · 오리지널 3MF"
+      "text": "FYSETC CNC 베드 팬 및 연결 마운트 · 오리지널 3MF"
     },
     "text.0234": {
       "source_revision": "ee295f2e0e9fa7f44575",
-      "text": "FYSETC CNC 침대 스텔스 전면 · 오리지널 3MF"
+      "text": "FYSETC CNC 베드 스텔스 전면 · 오리지널 3MF"
     },
     "text.0235": {
       "source_revision": "c444ca5563f6000a19dd",
@@ -972,15 +972,15 @@
     },
     "text.0237": {
       "source_revision": "e1458a26990116422b91",
-      "text": "보기 FYSETC CNC 침대 스텔스 전면 부품"
+      "text": "보기 FYSETC CNC 베드 스텔스 전면 부품"
     },
     "text.0238": {
       "source_revision": "19084afabaaacb95b822",
-      "text": "FYSETC CNC 침대에만 해당됩니다. 소스 커버와 로고 부분을 표시합니다. 전용 침대 장착면과 전체 Z 이동은 아직 확인되지 않았습니다."
+      "text": "FYSETC CNC 베드에만 해당됩니다. 소스 커버와 로고 부분을 표시합니다. 전용 베드 장착면과 전체 Z 이동은 아직 확인되지 않았습니다."
     },
     "text.0239": {
       "source_revision": "310774841b19cf647496",
-      "text": "서포트 생략 모델: 육각형 로고 개구부에 있는 두 개의 인쇄 서포트가 제외됩니다. 표지 및 로고 크기는 유지됩니다. FYSETC CNC 침대에만 해당됩니다. 세 개의 소스 부품을 개별적으로 표시합니다. 전용 CNC 침대 장착 평면과 전체 Z 이동은 검증되지 않았으므로 이는 프린터 설치 옵션이 아닙니다. 이 버전에는 NeoPixel이 없습니다."
+      "text": "서포트 생략 모델: 육각형 로고 개구부에 있는 두 개의 인쇄 서포트가 제외됩니다. 표지 및 로고 크기는 유지됩니다. FYSETC CNC 베드에만 해당됩니다. 세 개의 소스 부품을 개별적으로 표시합니다. 전용 CNC 베드 장착 평면과 전체 Z 이동은 검증되지 않았으므로 이는 프린터 설치 옵션이 아닙니다. 이 버전에는 NeoPixel이 없습니다."
     },
     "text.0240": {
       "source_revision": "1aaaf86c4aaf855ba9b2",
@@ -1004,7 +1004,7 @@
     },
     "text.0245": {
       "source_revision": "1aed19549f65d86f8519",
-      "text": "침대 지지대"
+      "text": "베드 지지대"
     },
     "text.0246": {
       "source_revision": "f33044ecd8f7eb5082c8",
@@ -1032,7 +1032,7 @@
     },
     "text.0252": {
       "source_revision": "f201fe9c87a18de9f278",
-      "text": "벨트 경로는 XY를 따릅니다. · 11-링크 Z 체인은 침대를 따릅니다."
+      "text": "벨트 경로는 XY를 따릅니다. · 11-링크 Z 체인은 베드를 따릅니다."
     },
     "text.0253": {
       "source_revision": "97506245e6ec3dc37197",
@@ -1056,11 +1056,11 @@
     },
     "text.0258": {
       "source_revision": "424cd1b2436919772264",
-      "text": "주식"
+      "text": "기본 사양"
     },
     "text.0259": {
       "source_revision": "51e712f763e2d8b82a7c",
-      "text": "재고 모드 복원"
+      "text": "기본 모드 복원"
     },
     "text.0260": {
       "source_revision": "74f0f3779e8fd1bbfebd",
@@ -1072,7 +1072,7 @@
     },
     "text.0262": {
       "source_revision": "1257b993f95e1c87cf1a",
-      "text": "확인된 장착 기준이 있는 구성을 표시합니다. 등록되지 않은 헤드 및 침대 모드는 소스 CAD로 계속 사용할 수 있습니다. 연속 이동, 원점 복귀 및 배선 호환성은 인증되지 않았습니다."
+      "text": "확인된 장착 기준이 있는 구성을 표시합니다. 등록되지 않은 헤드 및 베드 모드는 소스 CAD로 계속 사용할 수 있습니다. 연속 이동, 원점 복귀 및 배선 호환성은 인증되지 않았습니다."
     },
     "text.0263": {
       "source_revision": "fe52bc325cdf52cc5594",
@@ -1196,7 +1196,7 @@
     },
     "text.0293": {
       "source_revision": "4f81f9621fd11e46a0f6",
-      "text": "표시된 XYZ 이동 전체에 걸쳐 기계측 금속 보호 장치를 포함하여 재고 견고한 기계 부품에 대해 프로브 본체, 마운트 및 나사를 확인합니다."
+      "text": "표시된 XYZ 이동 전체에 걸쳐 기계측 금속 보호 장치를 포함하여 기본 견고한 기계 부품에 대해 프로브 본체, 마운트 및 나사를 확인합니다."
     },
     "text.0294": {
       "source_revision": "44e4e4770305eda3d56f",
@@ -1328,7 +1328,7 @@
     },
     "text.0326": {
       "source_revision": "06f839a5d9bd5b5cce9d",
-      "text": "침대/갠트리"
+      "text": "베드 / 갠트리"
     },
     "text.0327": {
       "source_revision": "3fb95cfd37712510af35",
@@ -1452,7 +1452,7 @@
     },
     "text.0357": {
       "source_revision": "c7b23c4291d385279679",
-      "text": "고정 침대, Z 갠트리, YZ 빔 및 XYZ 헤드를 검사합니다."
+      "text": "고정 베드, Z 갠트리, YZ 빔 및 XYZ 헤드를 검사합니다."
     },
     "text.0358": {
       "source_revision": "44f13bef78b46ac4b076",
@@ -1464,7 +1464,7 @@
     },
     "text.0360": {
       "source_revision": "993dc766500ea6baa80c",
-      "text": "고정 침대 · Z 갠트리 · YZ 빔 · XYZ 헤드"
+      "text": "고정 베드 · Z 갠트리 · YZ 빔 · XYZ 헤드"
     },
     "text.0361": {
       "source_revision": "2a00ba53b8dc4ae6e7f3",
@@ -1560,7 +1560,7 @@
     },
     "text.0384": {
       "source_revision": "8cf657d499dcfe5a13a2",
-      "text": "프로브 가장 낮은 지점이 침대에 닿습니다."
+      "text": "프로브 가장 낮은 지점이 베드에 닿습니다."
     },
     "text.0385": {
       "source_revision": "913c293df6527da2e8c7",
@@ -1736,7 +1736,7 @@
     },
     "text.0428": {
       "source_revision": "18fb821174bcffbcaf82",
-      "text": "350 mm에 대해 위치가 변경되었습니다. 중복된 대체 부품이 생략되었습니다. 스커트, 래치, 패스너 및 침대 장착면이 조정되었습니다. Z 레일 너트는 각 레일 뒤의 슬롯 내부에서 M3 너트로 교체되었습니다. XY를 포함한 모든 68 레일 장착 너트 쌍은 볼트 축에 정렬됩니다."
+      "text": "350 mm에 대해 위치가 변경되었습니다. 중복된 대체 부품이 생략되었습니다. 스커트, 래치, 패스너 및 베드 장착면이 조정되었습니다. Z 레일 너트는 각 레일 뒤의 슬롯 내부에서 M3 너트로 교체되었습니다. XY를 포함한 모든 68 레일 장착 너트 쌍은 볼트 축에 정렬됩니다."
     },
     "text.0429": {
       "source_revision": "21dd57591c930d0c2424",
@@ -1860,7 +1860,7 @@
     },
     "text.0459": {
       "source_revision": "e9572c8e4604e33a9db7",
-      "text": "Beacon Rev D 소스 포즈에서의 비교. 코일 높이와 금속 배제부가 선택 해제되어 있습니다."
+      "text": "Beacon Rev D의 원본 위치 비교입니다. 코일 높이와 금속 이격 금지 영역은 미검증입니다."
     },
     "text.0460": {
       "source_revision": "fa457544dcdeffb2bf1f",
@@ -2208,7 +2208,7 @@
     },
     "text.0546": {
       "source_revision": "eb6dad7b01cef8bafddd",
-      "text": "SIBOOR Trident 350 침대 지지 프레임에 두 개의 5015 송풍기를 추가합니다."
+      "text": "SIBOOR Trident 350 베드 지지 프레임에 두 개의 5015 송풍기를 추가합니다."
     },
     "text.0547": {
       "source_revision": "afdecb1ca984986781ac",
@@ -2224,7 +2224,7 @@
     },
     "text.0550": {
       "source_revision": "aed7afcce4a65e6d1bec",
-      "text": "350 mm 구성은 SIBOOR Z 시스템, 침대 및 인클로저와 결합됩니다."
+      "text": "350 mm 구성은 SIBOOR Z 시스템, 베드 및 인클로저와 결합됩니다."
     },
     "text.0551": {
       "source_revision": "fb5e506e64964fffeeaf",
@@ -2240,7 +2240,7 @@
     },
     "text.0554": {
       "source_revision": "b971c866cd35e2acc994",
-      "text": "SIBOOR와 함께 제공된 보드를 사용합니다. Cartographer 생성 및 금속 배제가 선택 취소되었습니다."
+      "text": "SIBOOR에 포함된 보드를 사용합니다. Cartographer 세대와 금속 이격 금지 영역은 미검증입니다."
     },
     "text.0555": {
       "source_revision": "8bd4fbe919583a129693",
@@ -2520,11 +2520,11 @@
     },
     "text.0624": {
       "source_revision": "c5bd573ab6ff51108111",
-      "text": "침대를 따라갑니다. 팬이 설치된 Z 디스플레이 범위: 0–230 mm. CAD에서 장착 및 하강 경로를 확인했습니다. 배선 및 Klipper 매크로는 포함되지 않습니다."
+      "text": "베드를 따라갑니다. 팬이 설치된 Z 디스플레이 범위: 0–230 mm. CAD에서 장착 및 하강 경로를 확인했습니다. 배선 및 Klipper 매크로는 포함되지 않습니다."
     },
     "text.0625": {
       "source_revision": "094bf8120d4f830d76ef",
-      "text": "침대 선풍기 · 5015 × 2"
+      "text": "베드 팬 · 5015 × 2"
     },
     "text.0626": {
       "source_revision": "dcb9fd470658bd54a62d",
@@ -2536,11 +2536,11 @@
     },
     "text.0628": {
       "source_revision": "81a81daede680ac64e8a",
-      "text": "침대 프레임에 고정되었습니다. Z 움직임을 따릅니다."
+      "text": "베드 프레임에 고정되었습니다. Z 움직임을 따릅니다."
     },
     "text.0629": {
       "source_revision": "c4fde828e7e2801594e4",
-      "text": "침대 프레임에 고정되었습니다. Z 움직임을 따릅니다. · Z 디스플레이는 설치 시 230 mm로 제한됩니다."
+      "text": "베드 프레임에 고정되었습니다. Z 움직임을 따릅니다. · Z 디스플레이는 설치 시 230 mm로 제한됩니다."
     },
     "text.0630": {
       "source_revision": "bd528dec47668c98020b",
@@ -2672,7 +2672,7 @@
     },
     "text.0662": {
       "source_revision": "a6617e002caa4a64fcd4",
-      "text": "원본 Beacon Rev D 및 일치하는 마운트 길이. 코일 데이텀, 설치 높이 및 금속 배제부가 선택 해제되어 있습니다."
+      "text": "원본 Beacon Rev D와 맞는 길이의 마운트입니다. 코일 기준 위치, 장착 높이 및 금속 이격 금지 영역은 미검증입니다."
     },
     "text.0663": {
       "source_revision": "f3d37d6bcd73b52b3b62",
@@ -2848,7 +2848,7 @@
     },
     "text.0706": {
       "source_revision": "36b828352714e468c69b",
-      "text": "재고 Voron 전면 아이들러의 간섭 조건. 원저자는 BFI/Ramalama를 추천합니다."
+      "text": "기본 Voron 전면 아이들러의 간섭 조건. 원저자는 BFI/Ramalama를 추천합니다."
     },
     "text.0707": {
       "source_revision": "4c90539f5f6d09ec8424",
@@ -2888,7 +2888,7 @@
     },
     "text.0716": {
       "source_revision": "b7bb2d1b741b36d65cf4",
-      "text": "독립 표준 Trident 350 인클로저, 프레임, 3Z, 침대, 패널 및 6 mm XY 갠트리. SIBOOR R2 갠트리 교체에도 사용됩니다."
+      "text": "독립 표준 Trident 350 인클로저, 프레임, 3Z, 베드, 패널 및 6 mm XY 갠트리. SIBOOR R2 갠트리 교체에도 사용됩니다."
     },
     "text.0717": {
       "source_revision": "fdb225da8f0c8be92a30",
@@ -2956,7 +2956,7 @@
     },
     "text.0733": {
       "source_revision": "162b1603402775977128",
-      "text": "독립형 참조 CAD. SB/Xol 어셈블리 호환성이 선택 취소되었습니다."
+      "text": "독립 참조 CAD입니다. SB/Xol 조립 호환성은 미검증입니다."
     },
     "text.0734": {
       "source_revision": "7f32525874b1e4674a45",
@@ -3076,7 +3076,7 @@
     },
     "text.0763": {
       "source_revision": "bf2851b3848ceef10417",
-      "text": "표준 VORON 프레임, 3Z 및 이동 침대 / XY 6 mm"
+      "text": "표준 VORON 프레임, 3Z 및 이동 베드 / XY 6 mm"
     },
     "text.0764": {
       "source_revision": "b571422c496b280cb5c7",
@@ -3108,7 +3108,7 @@
     },
     "text.0771": {
       "source_revision": "a63fce2037b34e0f086c",
-      "text": "Z / 침대 하강"
+      "text": "Z / 베드 하강"
     },
     "text.0772": {
       "source_revision": "307c94ee6bf19cd54448",
@@ -3308,11 +3308,11 @@
     },
     "text.0817": {
       "source_revision": "e4560eabcb198c21fa2d",
-      "text": "고정침대 / 4Z 갠트리"
+      "text": "고정베드 / 4Z 갠트리"
     },
     "text.0818": {
       "source_revision": "c72412a44f6f093347b2",
-      "text": "고정 침대 · 4Z 갠트리"
+      "text": "고정 베드 · 4Z 갠트리"
     },
     "text.0819": {
       "source_revision": "aa7d80cb874a1b023636",
@@ -3400,7 +3400,7 @@
     },
     "text.0840": {
       "source_revision": "df1cc87f2335f5a17db7",
-      "text": "이동 침대 / 3Z 선형 가이드"
+      "text": "이동 베드 / 3Z 선형 가이드"
     },
     "text.0841": {
       "source_revision": "73a3d7ed073d3219e4ab",
@@ -3508,7 +3508,7 @@
     },
     "text.0866": {
       "source_revision": "1a40039a16eb8fa8e5e1",
-      "text": "고정 갠트리 · 싱글 Z 침대"
+      "text": "고정 갠트리 · 단일 Z 베드"
     },
     "text.0867": {
       "source_revision": "54c041011e2691a9115c",
@@ -3528,7 +3528,7 @@
     },
     "text.0871": {
       "source_revision": "51802d0e3a7194a9951d",
-      "text": "공칭 120 × 120 × 120 mm. Z를 높이면 침대가 낮아집니다."
+      "text": "공칭 120 × 120 × 120 mm. Z를 높이면 베드가 낮아집니다."
     },
     "ui.configuration": {
       "source_revision": "539672db7129f5efe2af",
@@ -3800,7 +3800,7 @@
     },
     "text.0934": {
       "source_revision": "a83f2b38837544c081a6",
-      "text": "· Z는 침대 팬이 설치된 230 mm로 제한됩니다."
+      "text": "· Z는 베드 팬이 설치된 230 mm로 제한됩니다."
     },
     "text.0935": {
       "source_revision": "0aebf5d570e583151d4b",
@@ -4304,7 +4304,7 @@
     },
     "text.1059": {
       "source_revision": "248a129bc61cb29c3575",
-      "text": "침대를 따라간다"
+      "text": "베드를 따라간다"
     },
     "text.1060": {
       "source_revision": "3958eb6e79414103d4e4",
@@ -4332,7 +4332,7 @@
     },
     "text.1066": {
       "source_revision": "b3ad0196506ab95fb60e",
-      "text": "고정 침대 · 4Z 가이드 및 갠트리가 Z+를 따릅니다."
+      "text": "고정 베드 · 4Z 가이드 및 갠트리가 Z+를 따릅니다."
     },
     "text.1067": {
       "source_revision": "fc90a77e6d9dc7193872",
@@ -4672,7 +4672,7 @@
     },
     "text.1147": {
       "source_revision": "36cd7dd8b69ab033f907",
-      "text": "최저점 / 침대"
+      "text": "최저점 / 베드"
     },
     "text.1148": {
       "source_revision": "a3c3d1b74753178971e6",
@@ -5384,7 +5384,7 @@
     },
     "text.1321": {
       "source_revision": "835371270576bd0d8ff6",
-      "text": "StealthChanger 공구 은행"
+      "text": "StealthChanger 툴 보관대"
     },
     "text.1322": {
       "source_revision": "ed15a0d9beee90a85580",
@@ -5432,7 +5432,7 @@
     },
     "text.1333": {
       "source_revision": "278ecd0e0497c9cd3b10",
-      "text": "도구 은행 URL이 너무 깁니다."
+      "text": "툴 보관대 URL이 너무 깁니다."
     },
     "text.1334": {
       "source_revision": "734c10cbbdb79bb3f734",
@@ -5536,7 +5536,7 @@
     },
     "text.1359": {
       "source_revision": "a441045346c31aea6eb0",
-      "text": "Split Keeper MGN 결합면과 4개의 구멍 축에 등록되어 있습니다. 원본 CAD에서 셔틀/키퍼 연락처가 확인되었습니다."
+      "text": "Split Keeper의 MGN 접촉면과 4개 구멍 축을 기준으로 정렬했습니다. 셔틀과 Keeper의 접촉을 원본 CAD로 확인했습니다."
     },
     "text.1360": {
       "source_revision": "dba685689d9ce4dfc43f",
@@ -5544,7 +5544,7 @@
     },
     "text.1361": {
       "source_revision": "265ea4fad6e3489f4207",
-      "text": "이 표준 도크는 Trident에서는 사용할 수 없습니다. 인쇄 높이에서 침대와 충돌합니다. 수평 도구 교환을 위한 전용 백플레이트, 카울 및 도크가 필요합니다."
+      "text": "이 표준 도크는 Trident에서는 사용할 수 없습니다. 인쇄 높이에서 베드와 충돌합니다. 수평 도구 교환을 위한 전용 백플레이트, 카울 및 도크가 필요합니다."
     },
     "text.1362": {
       "source_revision": "e5a3055d9c6bbefae189",
@@ -5556,7 +5556,7 @@
     },
     "text.1364": {
       "source_revision": "b6a5f86e419d0342a5b7",
-      "text": "도구 은행"
+      "text": "툴 보관대"
     },
     "text.1365": {
       "source_revision": "477d3951c18886029c29",
@@ -5904,7 +5904,7 @@
     },
     "text.1451": {
       "source_revision": "84a572248aa68b4651cb",
-      "text": "X는 머리를 움직입니다. Y는 X 빔과 헤드를 이동합니다. Z는 침대를 낮춥니다."
+      "text": "X는 머리를 움직입니다. Y는 X 빔과 헤드를 이동합니다. Z는 베드를 낮춥니다."
     },
     "text.1452": {
       "source_revision": "868ff5c3efcf5aabefe0",
@@ -6040,7 +6040,7 @@
     },
     "format.0006": {
       "source_revision": "bbf623b57f18ef20d7bb",
-      "text": "{0} · 고정 갠트리 / 싱글 Z 침대"
+      "text": "{0} · 고정 갠트리 / 단일 Z 베드"
     },
     "format.0007": {
       "source_revision": "1a20d531515992c55e8f",
@@ -6052,7 +6052,7 @@
     },
     "format.0009": {
       "source_revision": "f5b7ad500b1011eca50f",
-      "text": "침대 지지대를 Kirigami 시트, 너트 블록 및 체인 마운트로 교체합니다. 침대, 스프링 3개, 조정 손잡이 및 리드너트는 장착 시트에서 Z를 따릅니다. M2×4 레일 나사 8개, M3×12 체인 스페이서 나사 및 M3×6 와이어 가이드 나사 1개가 포함되어 있습니다."
+      "text": "베드 지지대를 Kirigami 시트, 너트 블록 및 체인 마운트로 교체합니다. 베드, 스프링 3개, 조정 손잡이 및 리드너트는 장착 시트에서 Z를 따릅니다. M2×4 레일 나사 8개, M3×12 체인 스페이서 나사 및 M3×6 와이어 가이드 나사 1개가 포함되어 있습니다."
     },
     "format.0010": {
       "source_revision": "f39975a40fac72e327e1",
@@ -6072,7 +6072,7 @@
     },
     "format.0014": {
       "source_revision": "0d22077b19079b27e083",
-      "text": "· 침대 기준 운동: {0} mm"
+      "text": "· 베드 기준 운동: {0} mm"
     },
     "format.0015": {
       "source_revision": "e47d8d4504cefaa4cdf1",
@@ -6172,11 +6172,11 @@
     },
     "format.0039": {
       "source_revision": "aa279f98136682ac5fb1",
-      "text": "3D 어셈블리 전환됨 · {0} mm 캐리지"
+      "text": "3D 모델 전환됨 · {0} mm 캐리지"
     },
     "format.0040": {
       "source_revision": "18ff5245afd2acfb8abb",
-      "text": "3D 어셈블리 스위치 · {0} 모터 · {1} mm 벨트"
+      "text": "3D 모델 전환됨 · 모터 {0}개 · {1} mm 벨트"
     },
     "format.0041": {
       "source_revision": "f9a3fbe6b372ad6f57ed",
@@ -6224,7 +6224,7 @@
     },
     "format.0052": {
       "source_revision": "850d84cafd38bbc0531b",
-      "text": "인쇄된 부품: {0} 베이스, {1} 악센트. {2} 프레임 돌출부(문 및 침대 지지대 포함). Disco 인쇄된 브래킷과 Xol 인쇄된 부품은 선택한 색상을 따릅니다."
+      "text": "인쇄된 부품: {0} 베이스, {1} 악센트. {2} 프레임 돌출부(문 및 베드 지지대 포함). Disco 인쇄된 브래킷과 Xol 인쇄된 부품은 선택한 색상을 따릅니다."
     },
     "format.0053": {
       "source_revision": "25a97280c867872404af",
@@ -6384,7 +6384,7 @@
     },
     "format.0092": {
       "source_revision": "78390b8bef671d26ef8b",
-      "text": "침대 미리보기가 {0} mm로 낮아졌습니다. 도킹 동작은 아직 확인되지 않았습니다."
+      "text": "베드 미리보기가 {0} mm로 낮아졌습니다. 도킹 동작은 아직 확인되지 않았습니다."
     },
     "format.0093": {
       "source_revision": "6cb02dc9ade026e06bb5",
@@ -6448,7 +6448,7 @@
     },
     "fragment.0005": {
       "source_revision": "df27af7cc193124ee25a",
-      "text": "· 침대 기준 운동"
+      "text": "· 베드 기준 운동"
     },
     "fragment.0006": {
       "source_revision": "c1f3fc44b35282fda535",
@@ -6484,7 +6484,7 @@
     },
     "fragment.0014": {
       "source_revision": "e0113b0ebedec11cb3f6",
-      "text": "구성원(문 및 침대 지지대 포함). 인쇄된 Disco 브래킷과 Xol 부품도 팔레트를 따릅니다."
+      "text": "구성원(문 및 베드 지지대 포함). 인쇄된 Disco 브래킷과 Xol 부품도 팔레트를 따릅니다."
     },
     "fragment.0015": {
       "source_revision": "a83facfe0436518ee04f",
@@ -6600,7 +6600,7 @@
     },
     "fragment.0043": {
       "source_revision": "889d3fe6e4c018f0b0a0",
-      "text": "참조 침대 위치:"
+      "text": "참조 베드 위치:"
     },
     "fragment.0044": {
       "source_revision": "1c625f910632e311a7b4",

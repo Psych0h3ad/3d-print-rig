@@ -376,7 +376,7 @@
     },
     "text.0089": {
       "source_revision": "a9c7e1bde50f65a82c9f",
-      "text": "Empujón para carro de cama metálico"
+      "text": "Nudge para carro de cama metálico"
     },
     "text.0090": {
       "source_revision": "747a5cd1417e7d95cfb2",
@@ -420,7 +420,7 @@
     },
     "text.0100": {
       "source_revision": "aa5a99461f4d91871e59",
-      "text": "E3NG diseño: RH3D. Cambiador: emna2881. Empujón: zruncho3d. Inspiración del extrusor: Irbis3D / MedusaHC."
+      "text": "E3NG diseño: RH3D. Cambiador: emna2881. Nudge: zruncho3d. Inspiración del extrusor: Irbis3D / MedusaHC."
     },
     "text.0101": {
       "source_revision": "a929509e7ff85d6098b9",
@@ -1024,7 +1024,7 @@
     },
     "text.0250": {
       "source_revision": "f122207e2736760446cc",
-      "text": "Posicionamiento desde la boquilla instalada y los puntos de referencia del lecho"
+      "text": "Posicionamiento desde la boquilla instalada y los puntos de referencia de la cama"
     },
     "text.0251": {
       "source_revision": "1cd5e2251eb1553bfd90",
@@ -1056,7 +1056,7 @@
     },
     "text.0258": {
       "source_revision": "424cd1b2436919772264",
-      "text": "Valores"
+      "text": "De serie"
     },
     "text.0259": {
       "source_revision": "51e712f763e2d8b82a7c",
@@ -5268,7 +5268,7 @@
     },
     "text.1292": {
       "source_revision": "df863df61d4c5ac468f1",
-      "text": "Punto más bajo/espacio libre del lecho en el contacto de la boquilla"
+      "text": "Punto más bajo/espacio libre de la cama en el contacto de la boquilla"
     },
     "text.1293": {
       "source_revision": "1fba441599da05e4d4d5",
@@ -5584,7 +5584,7 @@
     },
     "text.1371": {
       "source_revision": "e228d057edc86b3b0814",
-      "text": "El dock de cambio vertical estándar no se adapta al pórtico fijo Z del Trident. El lecho golpea el dock antes de llegar al plano de la boquilla. No está registrado un dock de cambio horizontal compatible."
+      "text": "El dock de cambio vertical estándar no se adapta al pórtico fijo Z del Trident. El cama golpea el dock antes de llegar al plano de la boquilla. No está registrado un dock de cambio horizontal compatible."
     },
     "text.1372": {
       "source_revision": "4934c00a30ac78883bde",
@@ -6080,11 +6080,11 @@
     },
     "format.0016": {
       "source_revision": "fd76cfe5dca12e87b3ad",
-      "text": "Movimiento del lecho al plano de contacto de la boquilla: {0} mm."
+      "text": "Movimiento de la cama al plano de contacto de la boquilla: {0} mm."
     },
     "format.0017": {
       "source_revision": "19ed5bbc69ccaaf53a87",
-      "text": "· Movimiento del lecho al plano de contacto de la boquilla: {0} mm"
+      "text": "· Movimiento de la cama al plano de contacto de la boquilla: {0} mm"
     },
     "format.0018": {
       "source_revision": "07d36eca051c1e0b81e4",
@@ -6168,15 +6168,15 @@
     },
     "format.0038": {
       "source_revision": "03b71975e3b49133f623",
-      "text": "/ punto más bajo / espacio libre del lecho en contacto con la boquilla: {0} mm"
+      "text": "/ punto más bajo / espacio libre de la cama en contacto con la boquilla: {0} mm"
     },
     "format.0039": {
       "source_revision": "aa279f98136682ac5fb1",
-      "text": "Conjunto 3D conmutado · Carro {0} mm"
+      "text": "Modelo 3D actualizado · carro de {0} mm"
     },
     "format.0040": {
       "source_revision": "18ff5245afd2acfb8abb",
-      "text": "Conjunto 3D conmutado · Motores {0} · Correas {1} mm"
+      "text": "Modelo 3D actualizado · {0} motores · correas de {1} mm"
     },
     "format.0041": {
       "source_revision": "f9a3fbe6b372ad6f57ed",
@@ -6212,7 +6212,7 @@
     },
     "format.0049": {
       "source_revision": "0ce4cdf9c0406dafc506",
-      "text": "Punto más bajo de la sonda/espacio libre del lecho en el contacto de la boquilla: {0} mm"
+      "text": "Punto más bajo de la sonda/espacio libre de la cama en el contacto de la boquilla: {0} mm"
     },
     "format.0050": {
       "source_revision": "b5da2f03b14cd87269fa",
@@ -6588,7 +6588,7 @@
     },
     "fragment.0040": {
       "source_revision": "a0de130177289b368186",
-      "text": "Espacio entre el punto de sonda más bajo y el lecho en contacto con la boquilla:"
+      "text": "Espacio entre el punto de sonda más bajo y la cama en contacto con la boquilla:"
     },
     "fragment.0041": {
       "source_revision": "9b2259eda65993519ff6",

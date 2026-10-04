@@ -47,6 +47,8 @@ const fixture={clearance:{...newer,revision:sourceRevision(newer)}};
 const translator=createTranslator(fixture,{dictionaries:new Map([['es',{clearance:[oldRevision,'Separación {0} mm.']}],['ko',{}]])});
 assert.equal(translator.formatMessage('clearance',{0:'2.8'},'es'),'Minimum gap 2.8 mm.');
 assert.equal(translator.translate('間隔 2.8 mm。','es'),'Minimum gap 2.8 mm.');
+assert.equal(translator.translate('間隔 2.8 mm。','ja'),'最小間隔 2.8 mm。');
+assert.equal(translator.translate('間隔 2.8 mm。 ／ 原寸','ja'),'最小間隔 2.8 mm。 ／ 原寸');
 assert.equal(translator.formatMessage('clearance',{0:'2.8'},'ko'),'Minimum gap 2.8 mm.');
 assert(translator.diagnostics().fallbacks.includes('es:clearance'));
 const changed=structuredClone(source);changed.entries['ui.configuration'].en='Printer configuration';
@@ -64,5 +66,7 @@ assert(validateTranslations(source,extraLine).some(e=>e.issue==='unexpected_line
 const commandId=Object.keys(source.entries).find(id=>source.entries[id].en.includes('ACTIVATE_EXTRUDER'));
 const alteredCommand=structuredClone(dictionaries);alteredCommand.ko.messages[commandId].text=alteredCommand.ko.messages[commandId].text.replace('ACTIVATE_EXTRUDER','ACTIVAR_EXTRUSOR');
 assert(validateTranslations(source,alteredCommand).some(e=>e.issue==='command_identifier'&&e.id===commandId));
+const wrongContext=structuredClone(dictionaries);wrongContext.ko.messages['text.1364'].text='도구 은행';
+assert(validateTranslations(source,wrongContext,glossary).some(e=>e.issue==='technical_context'&&e.id==='text.1364'));
 assert.equal(definitions['ui.configuration'].revision,sourceRevision(source.entries['ui.configuration']));
 console.log(`Multilingual checks passed: ${checked} complete translations; stable revisions, source aliases, fallback, measurements and configuration links preserved.`);

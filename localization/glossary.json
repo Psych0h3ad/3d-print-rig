@@ -166,6 +166,86 @@
     "INDX Smart Head",
     "Vitalii Lightweight",
     "Stealth Handles",
-    "RatOS"
+    "RatOS",
+    "Nudge"
+  ],
+  "context_rules": [
+    {
+      "source_pattern": "\\bbeds?\\b",
+      "forbidden": {
+        "ko": [
+          "침대"
+        ],
+        "es": [
+          "lecho"
+        ],
+        "ru": [
+          "кроват"
+        ]
+      }
+    },
+    {
+      "source_pattern": "\\bcarriage\\b",
+      "forbidden": {
+        "ko": [
+          "운송"
+        ],
+        "ru": [
+          "коляск"
+        ]
+      }
+    },
+    {
+      "source_pattern": "\\b(?:tool.?bank|bank)\\b",
+      "forbidden": {
+        "ko": [
+          "은행"
+        ]
+      }
+    },
+    {
+      "source_pattern": "\\bstock\\b",
+      "forbidden": {
+        "ko": [
+          "주식"
+        ]
+      }
+    },
+    {
+      "source_pattern": "\\bchecks?\\b",
+      "forbidden": {
+        "ko": [
+          "수표"
+        ],
+        "es": [
+          "cheques"
+        ],
+        "ru": [
+          "чеки",
+          "чеках"
+        ]
+      }
+    },
+    {
+      "source_pattern": "\\bcontact\\b",
+      "forbidden": {
+        "ko": [
+          "연락"
+        ],
+        "ru": [
+          "связаться"
+        ]
+      }
+    },
+    {
+      "source_pattern": "\\bunchecked\\b",
+      "forbidden": {
+        "ko": [
+          "선택 해제",
+          "선택 취소",
+          "선택되지"
+        ]
+      }
+    }
   ]
 }
