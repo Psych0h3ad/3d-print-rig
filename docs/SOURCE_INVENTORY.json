@@ -275,8 +275,8 @@
     },
     {
       "path": "scripts/check_repository.py",
-      "bytes": 10369,
-      "sha256": "30644f62a507d88f0bda9bab5354b69e3f35fb4138c0cb9e9314968e6ecdcf42"
+      "bytes": 10468,
+      "sha256": "ca5d3157b65aed8018c03f9d86dbdfe5be51404454fb33c775fc6c12bc4cf372"
     },
     {
       "path": "scripts/check_ui_catalog.mjs",
@@ -614,6 +614,11 @@
       "sha256": "26303a69a729fd5763cda0431f3953f31d15a386dcc16d654766c7c77b74e6e3"
     },
     {
+      "path": "scripts/test_validation_bundle.mjs",
+      "bytes": 602,
+      "sha256": "dfd61d277d494e835b9fd8be5f6268a901c26c2610819d7e5e8adcc1daf03b52"
+    },
+    {
       "path": "scripts/test_workbenches.mjs",
       "bytes": 2585,
       "sha256": "4273619533f0f8119cac3845143c94afd3552263b9b9b865b4da247ad9568a71"
@@ -675,8 +680,8 @@
     },
     {
       "path": "site/HEAD_VALIDATION.json",
-      "bytes": 7038415,
-      "sha256": "12a7cd861891f8ed48a60b4e0033c4d5b49fc294892c1295e5d5966fb2668db6"
+      "bytes": 7038650,
+      "sha256": "0227d50dce8be985900bc4d14d35ea18bf5b858a675f7373891aa8526cef3141"
     },
     {
       "path": "site/MOD_REGISTRY.json",
@@ -685,8 +690,8 @@
     },
     {
       "path": "site/MOUNT_VALIDATION.json",
-      "bytes": 172490,
-      "sha256": "08696e6bf8622aeaf4f674343f2c3d2784effc87cf140d2fdbb2a738f89013e0"
+      "bytes": 172851,
+      "sha256": "8389c9194b327b3ca02d4088e4407d94315189026a2b8b4915a324d495806afc"
     },
     {
       "path": "site/POSITRON_ASSETS.json",
