@@ -11,7 +11,7 @@ import {setupPublicInfo} from './public-info.js?v=workspace-belts-2';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {partNodes,selectParts,visibleBounds} from './component-selection.js?v=workspace-belts-1';
 import {renderProductLinks} from './product-links.js?v=workspace-belts-1';
-import {componentCategories,componentCategory,componentViews,resolveComponentView,componentViewKeys} from './v0-mod-library.mjs?v=fysetc-front-54';
+import {componentCategories,componentCategory,componentViews,resolveComponentView,componentViewKeys} from './v0-mod-library.mjs?v=fysetc-fans-56';
 export async function mount(scope){
 const $=s=>document.querySelector(s),stage=$('#stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor('#edf1f5');renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);

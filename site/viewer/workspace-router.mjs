@@ -1,6 +1,6 @@
 import {WorkspaceScope, activateScope} from './workspace-lifecycle.mjs';
 import {bindWorkspaceNavigation, setWorkspaceLeaving, workspaceTarget, workspaceURL, replaceWorkspaceURL} from './workspace-navigation.mjs?v=extra-machines-55';
-import {setupWorkspace} from './workspace-ui.mjs?v=extra-machines-55';
+import {setupWorkspace} from './workspace-ui.mjs?v=fysetc-fans-56';
 import {applyDisplay} from './display-preferences.mjs';
 import {machinePage} from './machines.js?v=extra-machines-55';
 

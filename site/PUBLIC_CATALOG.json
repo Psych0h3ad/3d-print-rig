@@ -1,5 +1,5 @@
 {
-  "viewer_version": 55,
+  "viewer_version": "viewer-v56",
   "sources": [
     {
       "id": "siboor_trident",
@@ -1161,7 +1161,7 @@
       "author": "driftrotor / remix: Maple Leaf Makers",
       "url": "https://www.printables.com/model/859914-voron-v0-fysetc-cnc-bed-stealth-front",
       "version": "3MF files 2024-04-28; page updated 2024-05-02; native file hashes in SOURCE_FILES.json",
-      "scope": "Three native 3MF parts displayed individually. FYSETC CNC bed required; printer installation is not registered.",
+      "scope": "Three native 3MF parts displayed individually. Author bed STEP located; its redistribution license is not specified. Front seats and full Z travel are unvalidated; no printer installation is registered.",
       "license": "GPL-3.0",
       "license_url": "../licenses/fysetc_cnc_stealth_front/LICENSE",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
@@ -1235,6 +1235,18 @@
       "scope": "Supplemental Rapido UHF model at the author’s dedicated four-hole mount.",
       "changes": "Native mount and seat registration, simplified mount fasteners.",
       "notice": "Manufacturer heatsink/heater integration surfaces are retained; this does not imply a closed internal solid model."
+    },
+    {
+      "id": "fysetc_cnc_bed_fans",
+      "label": "V0 · FYSETC CNC Bed Fans & Connection Mount",
+      "author": "driftrotor",
+      "url": "https://www.printables.com/model/859647-voron-v0-bed-fans-connection-mount-for-fysetc-cnc",
+      "version": "3MF files 2024-05-01; page updated 2024-05-02; native file hashes in SOURCE_FILES.json",
+      "scope": "Shared 3010 fan bracket and two connection-mount alternatives, displayed separately. Hole pitch checked against the author’s bed STEP; seats, PCB and full Z travel are unvalidated. No printer installation is registered.",
+      "license": "GPL-3.0",
+      "license_url": "../licenses/fysetc_cnc_bed_fans/LICENSE",
+      "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "changes": "Retain full 3MF ModelPart meshes and native dimensions; display the identical fan bracket once. Omit slicer plate transforms. Export display meshes."
     }
   ],
   "defaults": [
@@ -1591,6 +1603,12 @@
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v54/viewer-fysetc-stealth-front-native.zip",
       "bytes": 95912,
       "sha256": "59ee399a145c65cebc2eb453435cee2f48fbb2214946cb3713fe57eb99532b81"
+    },
+    {
+      "label": "FYSETC CNC Bed Fans & Connection Mount · 3MF原本",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v56/viewer-fysetc-bed-fans-native.zip",
+      "bytes": 106481,
+      "sha256": "1c772f302272a67d27fe9f791ec600d9b8d5b4757f7f2b1a295bbdf4b3322b69"
     }
   ]
 }

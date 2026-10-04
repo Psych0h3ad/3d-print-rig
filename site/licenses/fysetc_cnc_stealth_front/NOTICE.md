@@ -17,9 +17,11 @@ retain their native dimensions. No simplification or dimensional scaling.
 Object coordinates are retained; slicer print-bed transforms are not used.
 The three source parts are displayed separately, not as a verified assembly.
 
-This front requires the FYSETC CNC bed. The inspected FYSETC V0.2 Pro
-revision 855bb5fd94389f4a4e8087aed44850ca8513920a has no CNC bed CAD.
-FYSETC V0.1 revision 47bc18e7fb96e17ebfbcec782ae082a9cf198330 contains
-the older printed/extrusion bed, not this CNC support. Mounting planes,
-fasteners and full Z travel are therefore unverified; no printer mount
+This front requires the FYSETC CNC bed. The author's separate bed STEP
+has now been located at https://github.com/Driftrotor/Fysetc-cnc-bed,
+revision af6b7997ad76028205b6e30866bedc0e6ded616d.
+That repository does not specify a redistribution license. Its STEP and
+derived bed geometry are not distributed here, and the Printables front
+license does not apply to the separate bed repository. Front mounting
+planes, hardware and full Z travel remain unverified; no printer mount
 is registered. This original 859914 version has no NeoPixel geometry.

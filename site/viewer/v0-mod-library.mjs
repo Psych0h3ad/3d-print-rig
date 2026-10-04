@@ -4,7 +4,7 @@ export const v0ModCategories = [
   {id:'v0-mount',label:'V0 · マウント・センサー',mods:['official_hotend_mounts','official_adxl_mounts','xcarriage_inserts','zeroclick']},
   {id:'v0-enclosure',label:'V0 · 外装・ドア',mods:['stealth_handles','lift_off_tophat','tip_tophat','tophat_cat_flap','mini_fridge']},
   {id:'v0-wiring',label:'V0 · 配線・基板',mods:['umbilical','picobilical']},
-  {id:'v0-motion',label:'V0 · ベッド・ガントリー',mods:['kirigami','tulip_standard','fysetc_cnc_stealth_front']},
+  {id:'v0-motion',label:'V0 · ベッド・ガントリー',mods:['kirigami','tulip_standard','fysetc_cnc_stealth_front','fysetc_cnc_bed_fans']},
   {id:'v0-cleaning',label:'V0 · ノズル清掃',mods:['nozzle_wiper_v2']},
 ];
 export function componentCategory(item){return v0ModCategories.find(c=>c.mods.some(id=>'v0mod_'+id===item.id))?.id||item.kind}
@@ -30,6 +30,7 @@ function group(id,label,parts,assembly=false){return {id,label,parts:uniqueLabel
 export function componentViews(item,parts){
   if(!parts?.length)throw Error('原本の部品がありません');
   if(item.id==='v0mod_fysetc_cnc_stealth_front')return parts.map(p=>group('file:'+p.source_file,p.name,[p]));
+  if(item.id==='v0mod_fysetc_cnc_bed_fans')return parts.map(p=>group('part:'+p.key,p.name,[p]));
   if(item.id==='rapido_x'){
     const body=parts.filter(p=>p.source_solid===1),adapter=parts.filter(p=>p.source_solid===0);
     if(body.length!==1||adapter.length!==1)throw Error('Rapido X source body / adapter mismatch');

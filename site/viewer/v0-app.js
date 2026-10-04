@@ -3,7 +3,7 @@ ensureWorkspaceEntry(import.meta.url);
 import {setupSceneDisplay} from './display-preferences.mjs';
 import {workspaceFrame,WorkspaceResizeObserver,workspaceTask,workspaceListen} from './workspace-lifecycle.mjs';
 import {createV0Installations,v0Slots,validateV0Mods,v0TophatMaxAngle} from './v0-installations.mjs?v=extra-machines-55';
-import {v0ModCategories,componentCategory} from './v0-mod-library.mjs?v=fysetc-front-54';
+import {v0ModCategories,componentCategory} from './v0-mod-library.mjs?v=fysetc-fans-56';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=workspace-belts-1';
 import {appearanceRole} from './appearance-role.mjs?v=workspace-belts-1';
 import * as THREE from 'three';

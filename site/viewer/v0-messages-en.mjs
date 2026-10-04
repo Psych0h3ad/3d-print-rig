@@ -1,4 +1,9 @@
 export const v0Messages={
+ 'FYSETC CNCベッドのファン・接続マウントを見る':'View FYSETC CNC bed fan and connection mounts',
+ 'FYSETC CNCベッド専用。カバー・ロゴ・ファンマウントの原本を表示します。作者のベッドSTEPは確認済みですが、配布ライセンス未記載のため本体は未収録です。固定面・全Z可動域は未検証です。':'For the FYSETC CNC bed. View the source cover, logos and fan mounts. The author’s bed STEP has been located, but its redistribution license is not specified, so the bed itself is not included. Mounting planes and full Z travel are not validated.',
+ 'FYSETC CNCベッド専用。共通の3010ファン用ブラケットと、左右の接続マウントを個別表示します。原本寸法を保持し、サポートは除外していません。作者のベッドSTEPと固定穴58 mmピッチを照合済み。座面・PCB・全Z可動域は未検証です。ベッド本体の配布ライセンスが未記載のため、機体への取付選択肢は未登録です。ファンと基板は原本に含まれません。':'For the FYSETC CNC bed. Displays the shared 3010 fan bracket and the two connection mounts individually, preserving source dimensions without removing supports. The 58 mm mounting-hole pitch matches the author’s bed STEP. Seats, PCB and full Z travel are unvalidated. The bed has no specified redistribution license, so no printer installation is registered. Fans and the PCB are not included in the source.',
+ 'サポート省略モデル：六角ロゴ穴の印刷用サポート2個を除外し、カバー本体とロゴの寸法は保持しています。FYSETC CNCベッド専用。原本の3部品を個別表示します。作者のベッドSTEPは確認済みですが、配布ライセンス未記載、固定面・全Z可動域も未検証のため機体への取付選択肢は未登録です。この版にNeoPixelはありません。':'Support-omitted model: excludes two print supports in the hexagonal logo opening, preserving cover and logo dimensions. Displays three source parts individually. The author’s CNC bed STEP has been located, but it has no specified redistribution license. Mounting planes and full Z travel are unvalidated; no printer installation is registered. This version has no NeoPixel.',
+ 'FYSETC CNC Bed Fans & Connection Mount · 3MF原本':'FYSETC CNC Bed Fans & Connection Mount · original 3MF',
  'FYSETC CNC Bed Stealth Front · 3MF原本':'FYSETC CNC Bed Stealth Front · original 3MF',
  '3MF原本の印刷部品':'Printed parts from the original 3MF',
  '3MF一覧 SHA256':'3MF file inventory SHA256',
