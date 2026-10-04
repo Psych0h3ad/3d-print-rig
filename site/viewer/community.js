@@ -50,7 +50,7 @@ export async function mount(scope){
  function describe(){if(!current)return;$('machineDescription').textContent=t(descriptions[machine]);$('sourceNotice').hidden=!sourceNotices[machine];$('sourceNotice').textContent=sourceNotices[machine]?t(sourceNotices[machine]):''}
  workspaceListen(window,'rig-language-change',describe);
  try{
-  const response=await fetch('../COMMUNITY_MACHINES_ASSETS.json?v=native-machines-63');if(!response.ok)throw Error('Native catalog unavailable');current=await loadCommunity(await response.json(),machine);scene.add(current.root);
+  const response=await fetch('../COMMUNITY_MACHINES_ASSETS.json?v=native-machines-63b');if(!response.ok)throw Error('Native catalog unavailable');current=await loadCommunity(await response.json(),machine);scene.add(current.root);
   state={schema:communitySchema,machine,axes:{x:0,y:0,z:0},palette:{...current.profile.palette_defaults},references:false,grid:false,night:$('night').checked};
   $('machineTitle').textContent=current.profile.title;document.title=current.profile.title+' · 3D Print Rig';describe();$('machineRevision').textContent=current.profile.source.version;
   $('nativeSource').href=current.profile.source.repository+'/tree/'+current.profile.source.revision;$('nativeSource').textContent=current.profile.source.repository.replace('https://github.com/','')+' · '+current.profile.source.revision.slice(0,12);$('nativeLicense').textContent=current.profile.source.license;

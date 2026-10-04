@@ -660,8 +660,8 @@
     },
     {
       "path": "site/COMMUNITY_MACHINES_ASSETS.json",
-      "bytes": 4655,
-      "sha256": "05f6f8bb64a42791e79836a3654901991345c6d33dc111e2150f7ca5fb4e17f8"
+      "bytes": 4656,
+      "sha256": "a5b652b09364d961c8c077a0068ffa849ab5168fb26ce76f4be214a7ad5b9f48"
     },
     {
       "path": "site/CROSSANT_ASSETS.json",
@@ -2801,12 +2801,12 @@
     {
       "path": "site/viewer/community.html",
       "bytes": 4394,
-      "sha256": "f9c6156b951b1d9db3e79a471f394929f229f0eb41eadb9afb978d7746968cb8"
+      "sha256": "3b42c7b4773b1ee9b6a49172d075ecd093cd276d641fa1ef82d5a753e374ca28"
     },
     {
       "path": "site/viewer/community.js",
-      "bytes": 10300,
-      "sha256": "19672d877a76beb6359585fec9fefde7d7b944747f9e8afbae068ac9b1da5671"
+      "bytes": 10301,
+      "sha256": "d180926a34000ebc6722b4a717bb41cb29ddb115f10bee1affc67dd13062577a"
     },
     {
       "path": "site/viewer/component-selection.js",
