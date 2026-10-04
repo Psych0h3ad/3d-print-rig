@@ -1,7 +1,7 @@
 import {loadMonolithData} from './monolith-machine.js?v=sphinx-report-45';
 import {setupChangerBank} from './changer-bank.js?v=trident-clearance-35';
 import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=sphinx-report-45';
-import {headPrinterLink} from './head-navigation.mjs?v=sphinx-report-45';
+import {headPrinterLink} from './head-navigation.mjs?v=machine-scope-52';
 import {headBuilderDimensions} from './configuration-model.js?v=sphinx-report-45';
 let machineRegistry,toolBank,bankRig;
 import {appearanceRole} from './appearance-role.mjs?v=trident-clearance-35';

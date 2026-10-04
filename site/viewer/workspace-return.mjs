@@ -1,6 +1,10 @@
-import {machinePage} from './machines.js?v=e3ng-48';
+import {machinePage} from './machines.js?v=machine-scope-52';
 
 export const workspaceReturnKey='3d-print-rig-workspace-return';
+export function workspaceKindFor(page){
+ if(page==='e3ng.html')return 'toolchangers';
+ return ['toolheads.html','gantries.html','components.html','toolchangers.html'].includes(page)?page.replace('.html',''):'printer';
+}
 export function printerWorkspaceURL(current,remembered){
  const here=new URL(current),q=here.searchParams;
  const make=(id,configuration)=>{const page=machinePage(id);if(!page)return null;const url=new URL(page,here);url.searchParams.set('machine',id);if(configuration&&configuration.length<1024)url.searchParams.set('configuration',configuration);return url};

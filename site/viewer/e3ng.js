@@ -2,10 +2,9 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=touch-37';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=trident-clearance-35';
-import {setupMachineNavigation} from './machines.js?v=e3ng-48';
 import {setupPublicInfo} from './public-info.js?v=e3ng-48';
 import {setupRenderExport} from './render-export.js?v=trident-clearance-35';
-import {e3ngSelection,e3ngPartVisible,e3ngURL} from './e3ng-model.mjs';
+import {e3ngSelection,e3ngPartVisible,e3ngURL} from './e3ng-model.mjs?v=machine-scope-52';
 const $=s=>document.querySelector(s),stage=$('#stage'),scene=new THREE.Scene();scene.background=new THREE.Color('#edf1f5');
 const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);
 const camera=new THREE.PerspectiveCamera(38,1,.0001,10),controls=new OrbitControls(camera,renderer.domElement);scene.add(new THREE.HemisphereLight('#ffffff','#687781',2.4));
@@ -29,7 +28,7 @@ for(const [key,id] of Object.entries(fields))$('#'+id).onchange=()=>{const eleme
 for(const id of ['base','accent','frame','grid'])$('#'+id).oninput=()=>update();
 for(const id of ['iso','front','back','side'])$('#'+id).onclick=()=>{orientation=id;fit()};$('#fit').onclick=fit;
 function resize(){const b=stage.getBoundingClientRect();renderer.setSize(Math.max(b.width,1),Math.max(b.height,1));camera.aspect=Math.max(b.width,1)/Math.max(b.height,1);camera.updateProjectionMatrix();if(ready)fit({preserveDirection:true});dirty=true}new ResizeObserver(resize).observe(stage);controls.addEventListener('change',()=>{dirty=true});renderer.setAnimationLoop(()=>{if(dirty){renderer.render(scene,camera);dirty=false}});
-setupMachineNavigation('e3ng_toolchanger_230');setupPublicInfo({includeDownloads:false});setupRenderExport({renderer,scene,camera,controls,name:'3D_Print_Rig_E3NG',afterRender:()=>{dirty=true}});
+setupPublicInfo({includeDownloads:false});setupRenderExport({renderer,scene,camera,controls,name:'3D_Print_Rig_E3NG',afterRender:()=>{dirty=true}});
 try{
  const [meta,gltf]=await Promise.all([fetch('../machines/e3ng_toolchanger/assembly_manifest.json?v=e3ng-48').then(r=>{if(!r.ok)throw Error('E3NG部品表を取得できません');return r.json()}),loadModel(new GLTFLoader(),'../machines/e3ng_toolchanger/model.glb')]);
  const lookup=new Map(meta.parts.map(p=>[p.key,p]));gltf.scene.traverse(mesh=>{if(!mesh.isMesh)return;const row=lookup.get(mesh.userData.part_key||mesh.name);if(!row)throw Error('E3NG部品情報が不足しています');mesh.material=mesh.material.clone();mesh.material.side=THREE.DoubleSide;mesh.geometry.computeBoundingBox();meshes.push({mesh,row})});if(meshes.length!==meta.parts.length)throw Error('E3NGの部品数が一致しません');scene.add(gltf.scene);ready=true;for(const id of Object.values(fields))$('#'+id).disabled=false;update({refit:true});$('#loading').hidden=true;document.body.dataset.ready='true';resize();

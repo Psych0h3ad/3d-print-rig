@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {printerWorkspaceURL} from '../site/viewer/workspace-return.mjs';
+import {printerWorkspaceURL,workspaceKindFor} from '../site/viewer/workspace-return.mjs';
 const base='https://example.test/3d-print-rig/viewer/';
 const saved=base+'v24-reference.html?machine=voron_v24_300_printed&configuration=monolith_machine__kept&lang=ja';
 assert.equal(printerWorkspaceURL(base+'toolheads.html?lang=ja',saved),saved);
@@ -16,4 +16,9 @@ assert.equal(printerWorkspaceURL(base+'cleaning.html?lang=ja',saved),saved);
 assert.equal(printerWorkspaceURL(base+'gantries.html?lang=en',saved).includes('voron_v24_300_printed'),true);
 for(const invalid of ['https://other.test/viewer/?machine=siboor_trident_350',base+'toolheads.html?machine=voron_v24_300_printed',base+'?machine=missing','not a URL'])assert.equal(printerWorkspaceURL(base+'components.html',invalid),base);
 assert.equal(printerWorkspaceURL(base+'toolheads.html?return_machine=unknown',saved),saved);
+assert.equal(workspaceKindFor('e3ng.html'),'toolchangers');
+assert.equal(workspaceKindFor('trident.html'),'printer');
+assert.equal(workspaceKindFor('toolheads.html'),'toolheads');
+assert.equal(printerWorkspaceURL(base+'e3ng.html?machine=e3ng_toolchanger_230',saved),saved);
+assert.equal(printerWorkspaceURL(base+'components.html',base+'e3ng.html?machine=e3ng_toolchanger_230'),base);
 console.log('Workspace return links preserve the actual machine, complete configuration and language; invalid references cannot redirect off-site.');

@@ -1,6 +1,6 @@
 // Shared presentation layer. Existing controls, IDs and CAD controllers stay intact.
-import {setupLanguage,originalText} from './i18n.mjs?v=rapido-x-51';
-import {printerWorkspaceURL,workspaceReturnKey} from './workspace-return.mjs?v=crossant-36';
+import {setupLanguage,originalText} from './i18n.mjs?v=machine-scope-52';
+import {printerWorkspaceURL,workspaceReturnKey,workspaceKindFor} from './workspace-return.mjs?v=machine-scope-52';
 import {setupWorkspaceSharing} from './workspace-share.mjs?v=sharing-1';
 import {lockInspectorHorizontalScroll} from './workspace-scroll.mjs?v=inspector-width-1';
 const $ = selector => document.querySelector(selector);
@@ -24,8 +24,8 @@ function setupWorkspace() {
   document.body.prepend(skip);
 
   const page = location.pathname.split('/').pop() || 'index.html';
-  const machinePage = !['toolheads.html', 'gantries.html', 'components.html', 'toolchangers.html'].includes(page);
-  document.body.dataset.workspaceKind = machinePage ? 'printer' : page.replace('.html', '');
+  const kind = workspaceKindFor(page), machinePage = kind === 'printer';
+  document.body.dataset.workspaceKind = kind;
   const navigation = node('nav', 'workspace-nav');
   navigation.setAttribute('aria-label', 'ワークスペース');
   const destinations = [
@@ -66,11 +66,11 @@ function setupWorkspace() {
   const actions = $('.header-actions');
   const more = node('details', 'workspace-more');
   more.append(node('summary', '', '資料'));
-  if (['components.html','toolchangers.html'].includes(page)) more.classList.add('current-reference');
+  if (['components.html','toolchangers.html','e3ng.html'].includes(page)) more.classList.add('current-reference');
   const menu = node('div', 'workspace-menu');
   more.append(menu);
   actions.append(more);
-  for (const [label, href] of [['部品CAD','./components.html'],['交換機構','./toolchangers.html'],['E3NG','./e3ng.html']]) {
+  for (const [label, href] of [['部品CAD','./components.html'],['交換機構','./toolchangers.html'],['E3NG · 交換機構','./e3ng.html']]) {
     const link = node('a', '', label); link.href = href;
     if (href.endsWith(page)) link.setAttribute('aria-current', 'page');
     menu.append(link);

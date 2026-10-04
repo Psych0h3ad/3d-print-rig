@@ -1,6 +1,6 @@
 import {v0Messages,v0Templates} from './v0-messages-en.mjs?v=v0-mounts-38';
 import {ratRigMessages,ratRigTemplates} from './ratrig-messages-en.mjs?v=trident-clearance-35';
-import {e3ngMessages} from './e3ng-messages-en.mjs?v=e3ng-48';
+import {e3ngMessages} from './e3ng-messages-en.mjs?v=machine-scope-52';
 import {yudxMessages} from './yudx-messages-en.mjs?v=yudx-49';
 import {rapidoXMessages} from './rapido-x-messages-en.mjs?v=rapido-x-51';
 export const messages = {

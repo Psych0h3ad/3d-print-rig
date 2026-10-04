@@ -22,4 +22,4 @@ export function e3ngPartVisible(part,selection){
  if(s.view==='dock')return dock;
  return head.has(g)||gantry.has(g)||dock||(g==='nudge'&&s.nudge)||(g==='wiper'&&s.wiper)||(g==='routing'&&s.routing);
 }
-export function e3ngURL(href,selection){const u=new URL(href),s=e3ngSelection(selection);for(const [key,value] of Object.entries(s))u.searchParams.set(key,String(value));return u.href}
+export function e3ngURL(href,selection){const u=new URL(href),s=e3ngSelection(selection);u.searchParams.delete('machine');for(const [key,value] of Object.entries(s))u.searchParams.set(key,String(value));return u.href}

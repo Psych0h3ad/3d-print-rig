@@ -1,4 +1,5 @@
 export const e3ngMessages={
+ 'E3NG · 交換機構':'E3NG · Toolchanger',
  'ホットエンド交換機構と専用ガントリーの原本CAD。機体全体のアセンブリは含みません。':'Original hotend changer and dedicated gantry CAD. The complete printer assembly is not included.',
  'EBB36 · 原本CAD':'EBB36 · original CAD', 'E3NGの構成':'E3NG configuration', '表示対象':'View', '交換機構・周辺部品':'Changer and surrounding components', 'ドック・待機ツール':'Docks and parked tools', '専用ガントリー':'Dedicated gantry',
  '押出機の軸':'Extruder pivot', '3 × 30 mmピン':'3 × 30 mm pin', 'M3 × 25 mmボルト':'M3 × 25 mm bolt', 'アイドラーアーム':'Idler arm', '標準アーム':'Standard arm', 'スリーブ付き':'With sleeve',
@@ -17,9 +18,6 @@ export const e3ngMessages={
  '本CADの形状と派生表示データには非営利・継承条件が適用されます。アプリのコードとはライセンスを区別します。':'These CAD shapes and derived display data carry noncommercial and share-alike conditions, separately from the application code license.',
  'E3NG v1.2S / Advanced v1.2の公式ファイル':'Official E3NG v1.2S / Advanced v1.2 files',
  'v1.2の機体全体の組立CADは作者の有償配布です。このビューは公開されている交換機構のCADを使用しています。':'The author distributes the complete v1.2 assembly CAD as a paid extra. This view uses the publicly available changer CAD.',
- 'E3NG 230 · ホットエンド交換機構・周辺CAD':'E3NG 230 · hotend changer and surrounding CAD',
- 'E3NG v1.2 / v1.2S 230 · 機体全体のCAD未取得':'E3NG v1.2 / v1.2S 230 · complete printer CAD unavailable',
- '機体全体の組立CADは作者の有償配布です。交換機構と周辺部品の公開CADは別の仕様から確認できます。':'The author distributes the complete assembly CAD as a paid extra. Select the separate changer reference to view its public CAD.',
  'E3NGのホットエンド交換機構 ↗':'E3NG hotend changer ↗',
  'ツール数':'Tool count', '周辺Mod':'Surrounding mods', 'Yガントリー':'Y gantry',
  '6ツールは推奨構成外':'Six tools exceed the recommended configuration',

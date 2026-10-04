@@ -1,5 +1,5 @@
 import {loadMonolithData} from './monolith-machine.js?v=sphinx-report-45';
-import {machineChoices,machinePage} from './machines.js?v=e3ng-48';
+import {machineChoices,machinePage} from './machines.js?v=machine-scope-52';
 import {monolithBeltClip} from './monolith-belt-clip.mjs?v=trident-clearance-35';
 import {appearanceRole} from './appearance-role.mjs?v=trident-clearance-35';
 import * as THREE from 'three';

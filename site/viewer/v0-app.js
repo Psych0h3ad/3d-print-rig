@@ -7,7 +7,7 @@ import {OrbitControls} from './vendor/OrbitControls.js?v=touch-37';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=trident-clearance-35';
 import {poseDelta,createV0Adapter} from './v0_adapter.mjs?v=v0-mounts-39';
-import {setupMachineNavigation} from './machines.js?v=e3ng-48';
+import {setupMachineNavigation} from './machines.js?v=machine-scope-52';
 import {setupGrid} from './grid-control.js?v=trident-clearance-35';
 import {setupRenderExport} from './render-export.js?v=trident-clearance-35';
 import {setupPublicInfo} from './public-info.js?v=standard-step-42';
