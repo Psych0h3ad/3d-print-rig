@@ -53,6 +53,7 @@ assert.equal(translate(' \n構成\t '),' \nConfiguration\t ');
 for(const raw of ['constructor','__proto__','G1 X10  Y20\n; hello','NH36','sherpa_mini_v2.step'])assert.equal(translate(raw),raw);
 assert.equal(translate('付属Cartographer：コイル高さ 2.500 mm。指定2.6〜3.0 mm外の取付です。'),'Included Cartographer coil height: 2.500 mm. Outside the specified 2.6–3.0 mm range.');
 assert.equal(translate('Stealthburner · 24構成'),'Stealthburner · 24 configurations');
+assert.equal(translate('FilamATrix 専用のヘッド部品'),'Dedicated FilamATrix head parts');
 assert.equal(translate('PNG作成済み · 2048 × 1536 px'),'PNG ready · 2048 × 1536 px');
 assert.equal(translate('選択可能な構成：1062通り'),'Available configurations: 1062');
 assert.equal(translate('Beacon Rev Dのコイル底面：未計測'),'Beacon Rev D coil bottom: unmeasured');

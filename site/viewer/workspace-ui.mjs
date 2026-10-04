@@ -1,8 +1,10 @@
 // Shared presentation layer. Existing controls, IDs and CAD controllers stay intact.
-import {setupLanguage,originalText} from './i18n.mjs?v=async-labels-53';
+import {setupLanguage,originalText} from './i18n.mjs?v=workflow-1';
 import {printerWorkspaceURL,workspaceReturnKey,workspaceKindFor} from './workspace-return.mjs?v=machine-scope-52';
 import {setupWorkspaceSharing} from './workspace-share.mjs?v=sharing-1';
 import {lockInspectorHorizontalScroll} from './workspace-scroll.mjs?v=inspector-width-1';
+import {setupChoiceSearch} from './workspace-choices.mjs?v=workflow-1';
+import {setupMobileLayout} from './workspace-layout.mjs?v=workflow-1';
 const $ = selector => document.querySelector(selector);
 const node = (tag, className, text) => {
   const element = document.createElement(tag);
@@ -138,6 +140,8 @@ function setupWorkspace() {
   const footer = node('div', 'inspector-footer');
   const groups = new Map();
   let active = 'configuration', userSelectedTab = false;
+  let displayed = active;
+  const scrollPositions = new Map();
   const labels = { configuration: '構成', appearance: '外観', inspect: machinePage ? '動作' : 'チェック', reference: '資料' };
   for (const [key, label] of Object.entries(labels)) {
     const tab = node('button', '', label);
@@ -156,13 +160,15 @@ function setupWorkspace() {
   }
   heading.after(tabs, content, footer);
   function activate(key, focus = false) {
+    scrollPositions.set(displayed, content.scrollTop);
     active = key;
     for (const [id, { tab, panel }] of groups) {
       tab.setAttribute('aria-selected', String(id === key));
       tab.tabIndex = id === key ? 0 : -1;
       panel.hidden = id !== key;
     }
-    content.scrollTop = 0;
+    content.scrollTop = scrollPositions.get(key) || 0;
+    displayed = key;
     resetHorizontalScroll();
     if (focus) groups.get(key).tab.focus();
   }
@@ -185,7 +191,7 @@ function setupWorkspace() {
     return 'configuration';
   }
   function organize() {
-    const candidates = [...aside.children, ...heading.children].filter(element => ![heading, tabs, content, footer].includes(element) && !element.matches('h1, .inspector-eyebrow, .change-machine, .mobile-panel-toggle') && !(heading.contains(element) && element.matches('p.foot')));
+    const candidates = [...aside.children, ...heading.children].filter(element => ![heading, tabs, content, footer].includes(element) && !element.matches('h1, .inspector-eyebrow, .change-machine, .mobile-layout') && !(heading.contains(element) && element.matches('p.foot')));
     for (const element of candidates) {
       if (element.hidden && element.matches('.eyebrow, .workbench-link')) continue;
       if (element.id === 'toolheadLink') { element.hidden = true; continue; }
@@ -216,11 +222,15 @@ function setupWorkspace() {
       active = configurable ? 'configuration' : 'inspect';
     }
     if (groups.get(active).tab.hidden) active = [...groups].find(([, group]) => !group.tab.hidden)?.[0] || 'configuration';
-    const scroll = content.scrollTop; activate(active); content.scrollTop = scroll;
+    activate(active);
   }
   function prioritizeConfiguration() {
     const panel = groups.get('configuration').panel, primary = $('#configurationControls');
-    if (machinePage && primary?.parentElement === panel && panel.firstElementChild !== primary) panel.prepend(primary);
+    const searchEntry = panel.querySelector(':scope > .configuration-search');
+    if (machinePage && primary?.parentElement === panel) {
+      if (searchEntry && searchEntry.nextElementSibling !== primary) searchEntry.after(primary);
+      else if (!searchEntry && panel.firstElementChild !== primary) panel.prepend(primary);
+    }
     const bank = $('#changerBank');
     if (primary?.parentElement === panel && bank?.parentElement === panel && primary.nextElementSibling !== bank) primary.after(bank);
     if (machinePage && primary?.tagName === 'DETAILS') primary.open = true;
@@ -273,16 +283,9 @@ function setupWorkspace() {
     if (records.some(record => [...record.addedNodes].some(element => element.nodeType === 1 && element.matches('select, label, fieldset, #configurationControls')))) organizeAdvancedFields();
   }).observe(aside, { childList: true, subtree: true });
 
-  const mobileToggle = node('button', 'mobile-panel-toggle', 'たたむ');
-  mobileToggle.setAttribute('aria-expanded', 'true');
-  mobileToggle.setAttribute('aria-controls', 'inspectorTabs inspectorContent');
   content.id = 'inspectorContent';
-  heading.append(mobileToggle);
-  mobileToggle.onclick = () => {
-    const collapsed = $('.workspace').classList.toggle('controls-collapsed');
-    mobileToggle.textContent = collapsed ? '設定を開く' : 'たたむ';
-    mobileToggle.setAttribute('aria-expanded', String(!collapsed));
-  };
+  setupMobileLayout({workspace: $('.workspace'), heading, make: node});
+  setupChoiceSearch(groups.get('configuration').panel);
 
   const tools = stage.querySelector('.view-tools');
   if (tools) {
@@ -301,7 +304,7 @@ function setupWorkspace() {
   stage.append(help);
   const guide = node('dialog', 'guide-dialog');
   guide.setAttribute('aria-labelledby', 'guideTitle');
-  guide.innerHTML = '<div class="dialog-head"><h2 id="guideTitle">3Dビューの操作</h2><button class="close" aria-label="閉じる">×</button></div><div class="dialog-body"><dl class="guide-keys"><dt>回転</dt><dd>左ドラッグ / 1本指でドラッグ</dd><dt>移動</dt><dd>右ドラッグ / 2本指でドラッグ</dd><dt>拡大・縮小</dt><dd>ホイール / ピンチ</dd><dt>視点を切り替える</dt><dd><kbd>1</kbd> 斜め　<kbd>2</kbd> 正面　<kbd>3</kbd> 上面・側面</dd><dt>ヘッドを拡大</dt><dd><kbd>4</kbd> 対応するマシンで使用</dd></dl><p class="foot">構成・外観・動作は左のタブから。スマートフォンでは画面下の設定をたたむと、3Dを広く表示できます。</p></div>';
+  guide.innerHTML = '<div class="dialog-head"><h2 id="guideTitle">3Dビューの操作</h2><button class="close" aria-label="閉じる">×</button></div><div class="dialog-body"><dl class="guide-keys"><dt>回転</dt><dd>左ドラッグ / 1本指でドラッグ</dd><dt>移動</dt><dd>右ドラッグ / 2本指でドラッグ</dd><dt>拡大・縮小</dt><dd>ホイール / ピンチ</dd><dt>視点を切り替える</dt><dd><kbd>1</kbd> 斜め　<kbd>2</kbd> 正面　<kbd>3</kbd> 上面・側面</dd><dt>ヘッドを拡大</dt><dd><kbd>4</kbd> 対応するマシンで使用</dd></dl><p class="foot">構成・外観・動作は設定タブから。スマートフォンでは「3Dを広く」「分割」「設定を広く」で画面を切り替えられます。</p></div>';
   document.body.append(guide);
   const credits = node('a', 'cad-credits', 'CAD credits');
   credits.href = './art/credits.html';

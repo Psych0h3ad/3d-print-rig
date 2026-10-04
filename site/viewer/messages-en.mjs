@@ -4,6 +4,23 @@ import {e3ngMessages} from './e3ng-messages-en.mjs?v=machine-scope-52';
 import {yudxMessages} from './yudx-messages-en.mjs?v=yudx-49';
 import {rapidoXMessages} from './rapido-x-messages-en.mjs?v=rapido-x-51';
 export const messages = {
+ "FilamATrix 専用のヘッド部品": "Dedicated FilamATrix head parts",
+ "部品を探す": "Find a component",
+ "画面の使い方": "Workspace layout",
+ "3Dを広く": "3D view",
+ "分割": "Split",
+ "設定を広く": "Settings",
+ "候補を選ぶと構成に反映します。関連部品が変わる場合は候補に表示します。": "Choose an option to update the configuration. Any companion changes are shown with the option.",
+ "項目": "Category",
+ "部品名・仕様で検索": "Search by component or specification",
+ "例：Sphinx、Rapido、9 mm": "e.g. Sphinx, Rapido, 9 mm",
+ "すべての項目": "All categories",
+ "{0}件の候補": "{0} options",
+ "選択中": "Selected",
+ "候補が見つかりません。項目を変えるか、短い部品名で検索してください。": "No options found. Try another category or a shorter component name.",
+ "検索をクリア": "Clear search",
+ "構成・外観・動作は設定タブから。スマートフォンでは「3Dを広く」「分割」「設定を広く」で画面を切り替えられます。": "Use the settings tabs for configuration, appearance and motion. On mobile, switch between 3D view, Split and Settings.",
+
  "A4T・Sphinx · ネイティブ組立データ": "A4T / Sphinx · native assembly data",
  "左右の4010ブロワーと2510冷却ファン、Sherpa Miniの実体CAD、ホットエンド、固定ネジを組み付け済み。ファンの排気口は下向き、吸気口は外向き。": "Installed native dual 4010 blowers, a 2510 axial fan, the Sherpa Mini assembly, hotend and mounting screws. Blower outlets face down; intakes face outward.",
  "原寸の取付面・フィラメント軸・穴位置を検査。メーカー別のファン外形・実配線・機体取付・全可動域は未検証です。": "Full-size mounting planes, filament axis and hole locations checked. Manufacturer-specific fan housings, real wiring, printer installation and full travel remain unchecked.",

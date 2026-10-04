@@ -1,4 +1,4 @@
-import {messages,templates} from './messages-en.mjs?v=native-heads-53';
+import {messages,templates} from './messages-en.mjs?v=workflow-1';
 
 const normalize=text=>text.trim().replace(/\s+/gu,' ');
 const escape=text=>text.replace(/[.*+?^${}()|[\]\\]/gu,'\\$&');

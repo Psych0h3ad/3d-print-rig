@@ -99,6 +99,7 @@ def main():
     subprocess.run(['node', str(ROOT/'scripts/test_workspace_return.mjs')], cwd=ROOT, check=True)
     subprocess.run(['node', str(ROOT/'scripts/test_workspace_share.mjs')], cwd=ROOT, check=True)
     subprocess.run(['node', str(ROOT/'scripts/test_workspace_scroll.mjs')], cwd=ROOT, check=True)
+    subprocess.run(['node', str(ROOT/'scripts/test_workspace_choices.mjs')], cwd=ROOT, check=True)
     subprocess.run(['node', str(ROOT/'scripts/test_crossant_state.mjs')], cwd=ROOT, check=True)
     subprocess.run(['node', str(ROOT/'scripts/test_goliath_components.mjs')], cwd=ROOT, check=True)
     subprocess.run(['node', str(ROOT/'scripts/test_appearance_roles.mjs')], cwd=ROOT, check=True)
