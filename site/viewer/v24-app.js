@@ -1,36 +1,38 @@
-import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=trident-clearance-35';
-import {appearanceRole} from './appearance-role.mjs?v=trident-clearance-35';
+import {workspaceFrame,WorkspaceResizeObserver,workspaceTask} from './workspace-lifecycle.mjs';
+import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=workspace-belts-1';
+import {appearanceRole} from './appearance-role.mjs?v=workspace-belts-1';
 import * as THREE from 'three';
-import {loadFrameMods,withFrameMods} from './frame-mods.js?v=trident-clearance-35';
-import {setupLighting} from './lighting.js?v=trident-clearance-35';
-import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=trident-clearance-35';
-import {setupAccessories} from './accessories.js?v=sphinx-skirts-45';
-import {setupGrid} from './grid-control.js?v=trident-clearance-35';
-import {setupProbeMounts} from './probe-mounts.js?v=sphinx-report-45';
-import {OrbitControls} from './vendor/OrbitControls.js?v=touch-37';
+import {loadFrameMods,withFrameMods} from './frame-mods.js?v=workspace-belts-1';
+import {setupLighting} from './lighting.js?v=workspace-belts-1';
+import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=workspace-belts-1';
+import {setupAccessories} from './accessories.js?v=workspace-belts-1';
+import {setupGrid} from './grid-control.js?v=workspace-belts-1';
+import {setupProbeMounts} from './probe-mounts.js?v=workspace-belts-1';
+import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=trident-clearance-35';
-import {createV24Adapter} from './v24_adapter.mjs?v=v24-belts-43';
-import {setupMachineNavigation} from './machines.js?v=controls-icons-1';
-import {setupRenderExport} from './render-export.js?v=controls-icons-1';
-import {setupPublicInfo} from './public-info.js?v=controls-icons-1';
-import {setupV24MachineHeads} from './machine-heads.js?v=trident-belts-1';
+import {loadModel} from './model-loader.js?v=workspace-belts-1';
+import {createV24Adapter} from './v24_adapter.mjs?v=workspace-belts-1';
+import {setupMachineNavigation} from './machines.js?v=workspace-belts-1';
+import {setupRenderExport} from './render-export.js?v=workspace-belts-1';
+import {setupPublicInfo} from './public-info.js?v=workspace-belts-1';
+import {setupV24MachineHeads} from './machine-heads.js?v=workspace-belts-1';
+export async function mount(scope){
 setupMachineNavigation('siboor_v24_350');
 setupPublicInfo();
 const $=s=>document.querySelector(s),stage=$('#stage'),status=$('#status');
 const assetRoot='../machines/siboor_v24_350/';
-const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));stage.append(renderer.domElement);
+const renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));stage.append(renderer.domElement);
 renderer.setClearColor('#edf1f4');renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.25;
-const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(38,1,.005,10);camera.position.set(.98,.83,1.4);
-const orbit=new OrbitControls(camera,renderer.domElement);orbit.target.set(0,.22,0);orbit.enableDamping=false;orbit.update();
+const scene=scope.scene(new THREE.Scene()),camera=new THREE.PerspectiveCamera(38,1,.005,10);camera.position.set(.98,.83,1.4);
+const orbit=scope.resource(new OrbitControls(camera,renderer.domElement));orbit.target.set(0,.22,0);orbit.enableDamping=false;orbit.update();
 let adapter,profile,pose,probeMounts,machineHeads,program,renderPending=false,frames=0;
-function render(){if(renderPending)return;renderPending=true;requestAnimationFrame(()=>{renderPending=false;renderer.render(scene,camera);document.body.dataset.renderedFrames=++frames})}
+function render(){if(renderPending)return;renderPending=true;workspaceFrame(()=>{renderPending=false;renderer.render(scene,camera);document.body.dataset.renderedFrames=++frames})}
 setupGrid(scene,render);
 const frameMods=await loadFrameMods('siboor_v24_350');
 const lighting=setupLighting(scene,renderer,{registration:frameMods.disco,machine:'siboor_v24_350',update:render});
 $('#focusDisco').onclick=()=>{lighting.focus(camera,orbit);render()};
 function resize(){const b=stage.getBoundingClientRect();renderer.setSize(b.width,b.height,false);setResponsiveAspect(camera,orbit,b.width,b.height);render()}
-orbit.addEventListener('change',render);new ResizeObserver(resize).observe(stage);
+orbit.addEventListener('change',render);new WorkspaceResizeObserver(resize).observe(stage);
 for(const [id,pos] of [['iso',[.98,.83,1.4]],['front',[0,.24,1.65]],['top',[0,1.8,0]]])$('#'+id).onclick=()=>{camera.up.set(0,id==='top'?0:1,id==='top'?-1:0);camera.position.set(...pos);orbit.target.set(0,.22,0);frameResponsiveView(camera,orbit);render()};
 $('#focusHead').onclick=()=>{if(!adapter||machineHeads?.focus(camera,orbit))return;const box=new THREE.Box3();for(const [key,node] of adapter.nodes)if(adapter.records.get(key).group===profile.head_group)box.expandByObject(node);if(box.isEmpty())return;camera.up.set(0,1,0);box.getCenter(orbit.target);camera.position.copy(orbit.target).add(new THREE.Vector3(.15,.08,.3));orbit.update();document.body.dataset.focusTarget=JSON.stringify(orbit.target.toArray());render()};
 function applyPose(){if(!adapter)return;
@@ -48,7 +50,7 @@ function applyPose(){if(!adapter)return;
  $('#motionStatus').textContent=machineHeads?.monolith?'ベッド固定 · Monolithの8個のZガイド・ガントリー・XYベルトが追従':'ベッド固定 · 4ZガイドとガントリーがZ＋へ追従';$('#beltWidths').textContent=`XYベルト ${machineHeads?.variant?.belt_width_mm||profile.xy_belt_width_mm} mm ／ Zベルト ${profile.z_belt_width_mm} mm`;render();
 }
 try{
- const getJSON=async name=>{const r=await fetch(assetRoot+name,{cache:'no-cache'});if(!r.ok)throw Error(name);return r.json()};
+ const getJSON=async name=>{return workspaceTask(async()=>{const r=await fetch(assetRoot+name,{cache:'no-cache'});if(!r.ok)throw Error(name);return r.json()});};
  const [manifest,machine,gltf]=await Promise.all([getJSON('assembly_manifest.json'),getJSON('machine_profile.json'),loadModel(new GLTFLoader(),assetRoot+'model.glb')]);
  profile=machine;scene.add(gltf.scene);adapter=createV24Adapter(gltf.scene,manifest,profile);
  const probeResponse=await fetch('../V24_PROBES.json?v=trident-clearance-35',{cache:'no-cache'});if(!probeResponse.ok)throw Error('プローブ構成を取得できません');const probeCatalog=await probeResponse.json();
@@ -70,13 +72,13 @@ try{
   if(modAssets.has(id))return modAssets.get(id);
   const promise=loadAccessoryModel(id).catch(e=>{modAssets.delete(id);throw e});modAssets.set(id,promise);return promise;
  }
- async function loadAccessoryModel(id){
+ async function loadAccessoryModel(id){return workspaceTask(async()=>{
   const spec=frameMods.assets[id]||probeCatalog.assets[id];if(!spec)throw Error('未登録のMod');
   const [meta,g]=await Promise.all([fetch('../'+spec.meta).then(r=>{if(!r.ok)throw Error(spec.meta);return r.json()}),loadModel(new GLTFLoader(),'../'+spec.glb)]);
   const lookup=new Map(meta.parts.map(p=>[p.key,p]));g.scene.visible=false;scene.add(g.scene);
   g.scene.traverse(mesh=>{if(!mesh.isMesh)return;const row=lookup.get(mesh.userData.part_key||mesh.name);if(!row||row.motion!==(probeCatalog.assets[id]?'xy':'fixed'))throw Error('Modの取付先が不正です');mesh.material=mesh.material.clone();mesh.material.side=THREE.DoubleSide;modMeshes.push({mesh,role:appearanceRole(row),color:mesh.material.color.clone()})});
   applyPalette();return {root:g.scene,meta};
- }
+ });}
  const modCatalog=withFrameMods({assets:{},accessories:[]},frameMods);
  setupAccessories(modCatalog,{load:loadAccessory,update:applyPose});
  const stockProbe=$('#probeConfig');stockProbe.id='stockProbeConfig';document.querySelector('label[for="probeConfig"]').htmlFor='stockProbeConfig';
@@ -101,7 +103,7 @@ try{
  const disco=await lighting.whenReady;disco?.traverse(mesh=>{if(mesh.isMesh&&mesh.userData.led_role==='bracket')modMeshes.push({mesh,role:'base',color:mesh.material.color.clone()})});
  $('#resetPalette').disabled=false;$('#resetPalette').onclick=()=>{palette={base:null,accent:null,frame:null};applyPalette();savePalette()};applyPalette();
  $('#frameFinish').onchange=e=>{if(e.target.value==='custom')return;palette.frame=e.target.value==='silver'?'#b9bec4':'#25282d';applyPalette();savePalette()};
- machineHeads=await setupV24MachineHeads({machine:'siboor_v24_350',profile,adapter,scene,render,applyPose,stockProbes:probeCatalog.probes,beforeInstall:async v=>{program?.invalidate();await probeMounts.apply(v.baseline_probe||'none')},onChange:()=>{program?.invalidate();applyPalette()}});stockProbe.closest('details').hidden=true;applyPalette();
+ machineHeads=await setupV24MachineHeads({machine:'siboor_v24_350',profile,adapter,scene,render,applyPose,stockProbes:probeCatalog.probes,beforeInstall:async v=>{return workspaceTask(async()=>{program?.invalidate();await probeMounts.apply(v.baseline_probe||'none')});},onChange:()=>{program?.invalidate();applyPalette()}});stockProbe.closest('details').hidden=true;applyPalette();
  program=setupGcodePanel({container:document.querySelector('aside'),profile,adapter,scene,render,getLimits:displayedMachineLimits,getContext:()=>machineHeads.variant?.id||'stock',setPose:xyz=>{for(const [i,a]of ['x','y','z'].entries())$('#'+a).value=xyz[i];applyPose()}});
  setupRenderExport({renderer,scene,camera,controls:orbit,afterRender:render,name:'VORON_V24_R2_350_Reference'});
  document.body.dataset.geometryRevision=profile.geometry_revision;document.body.dataset.panelsVisible=String($('#enclosure').checked);
@@ -111,3 +113,5 @@ try{
  $('#beltWidths').textContent=`XYベルト ${profile.xy_belt_width_mm} mm ／ Zベルト ${profile.z_belt_width_mm} mm`;
  $('#badge').textContent='V2.4 R2 / 350 · '+manifest.parts.length.toLocaleString()+' PARTS';status.hidden=true;applyPose();resize();
 }catch(e){status.textContent='読込エラー: '+e.message;document.body.dataset.error=e.message;console.error(e)}
+
+}

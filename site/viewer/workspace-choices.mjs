@@ -1,4 +1,5 @@
-import {translate} from './i18n.mjs?v=trident-belts-1';
+import {WorkspaceMutationObserver,workspaceListen} from './workspace-lifecycle.mjs';
+import {translate} from './i18n.mjs?v=workspace-belts-1';
 
 const normalize = value => String(value).normalize('NFKC').toLocaleLowerCase().replace(/\s+/gu, ' ').trim();
 export function matchingChoices(rows, query) {
@@ -106,10 +107,10 @@ export function setupChoiceSearch(panel) {
   close.onclick = () => dialog.close();
   dialog.addEventListener('close', () => open.focus({preventScroll: true}));
   field.onchange = render; query.oninput = render;
-  new MutationObserver(() => { refreshFields(); if (dialog.open) render(); }).observe(panel, {
+  new WorkspaceMutationObserver(() => { refreshFields(); if (dialog.open) render(); }).observe(panel, {
     subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ['disabled', 'hidden', 'title'],
   });
-  window.addEventListener('rig-language-change', () => { if (dialog.open) { refreshFields(); render(); } });
+  workspaceListen(window,'rig-language-change', () => { if (dialog.open) { refreshFields(); render(); } });
   refreshFields();
   return entry;
 }

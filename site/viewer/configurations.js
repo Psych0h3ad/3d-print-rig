@@ -1,11 +1,13 @@
-import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=trident-belts-1';
-import {catalogDimensions,collections,resolveVariant,choicesFor,choiceChanges,importedVariant,configurationById} from './configuration-model.js?v=sphinx-report-45';
-import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=sphinx-report-45';
-import {renderProductLinks} from './product-links.js?v=controls-icons-1';
-import {headWitnessCheck}from './head-validation.mjs?v=trident-clearance-35';
-import {createHeadInspection}from './head-validation-ui.mjs?v=trident-clearance-35';
+import {replaceWorkspaceURL} from './workspace-navigation.mjs';
+import {workspaceTask} from './workspace-lifecycle.mjs';
+import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=workspace-belts-1';
+import {catalogDimensions,collections,resolveVariant,choicesFor,choiceChanges,importedVariant,configurationById} from './configuration-model.js?v=workspace-belts-1';
+import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=workspace-belts-1';
+import {renderProductLinks} from './product-links.js?v=workspace-belts-1';
+import {headWitnessCheck}from './head-validation.mjs?v=workspace-belts-1';
+import {createHeadInspection}from './head-validation-ui.mjs?v=workspace-belts-1';
 
-export async function setupConfigurations(catalog,install,{presentation='printer',getExtras=()=>({}),applyExtras=async()=>{},validateExtras=()=>{},onSettled=()=>{},inspectPose}={}){
+export async function setupConfigurations(catalog,install,{presentation='printer',getExtras=()=>({}),applyExtras=async()=>{},validateExtras=()=>{},onSettled=()=>{},inspectPose}={}){return workspaceTask(async()=>{
  const $=s=>document.querySelector(s);
  const inspection=createHeadInspection($('#configStatus'),{setPose:inspectPose});
  let productTarget=$('#headProductLinks');if(!productTarget){productTarget=document.createElement('div');productTarget.id='configurationProductLinks';$('#configStatus').after(productTarget)}
@@ -26,7 +28,7 @@ export async function setupConfigurations(catalog,install,{presentation='printer
   actual=v;menus(v);
   const headLabel=$('#machineHeadLabel');if(headLabel)headLabel.textContent=['toolhead','extruder','hotend'].map(id=>catalog[collections[id]].find(row=>row.id===v[id])?.label||v[id]).join(' / ');
   renderProductLinks(productTarget,{hotend:v.hotend,toolhead:v.toolhead,extruder:v.extruder});
-  const url=new URL(location.href);url.searchParams.delete('mount');if(catalog.machine_id!=='monolith_workbench'){url.searchParams.delete('gantry');url.searchParams.delete('head_configuration')}url.searchParams.set('configuration',v.id);history.replaceState(null,'',url);
+  const url=new URL(location.href);url.searchParams.delete('mount');if(catalog.machine_id!=='monolith_workbench'){url.searchParams.delete('gantry');url.searchParams.delete('head_configuration')}url.searchParams.set('configuration',v.id);replaceWorkspaceURL(null,'',url);
   $('#configSummary').textContent=ids.map(id=>catalog[collections[id]].find(row=>row.id===v[id]).label).join(' ／ ');
   $('#configRequirements').replaceChildren(...v.notes.map(note=>{const li=document.createElement('li');li.textContent=note;return li}));
   const rows=[`専用マウント：${v.fit?.mount||'登録済みCAD'}`,`選択可能な構成：${catalog.variants.length}通り`];
@@ -52,7 +54,7 @@ export async function setupConfigurations(catalog,install,{presentation='printer
   $('#configStatus').dataset.variant=v.id;
   const headLink=$('#toolheadLink');if(presentation==='printer'&&headLink&&catalog.machine_id){const u=new URL(headLink.href,location.href);u.searchParams.set('return_machine',catalog.machine_id);u.searchParams.set('return_configuration',v.id);u.searchParams.set('return_head',u.searchParams.get('configuration'));headLink.href=u.href}
  }
- async function refresh(v,extraData,adjustment){
+ async function refresh(v,extraData,adjustment){return workspaceTask(async()=>{
   if(busy||!v)return false;busy=true;const previousExtras=getExtras();let success=false;
   for(const k of ids)$('#'+k+'Config').disabled=true;
   for(const id of ['loadConfiguration','saveConfiguration'])$('#'+id).disabled=true;
@@ -63,7 +65,7 @@ export async function setupConfigurations(catalog,install,{presentation='printer
    $('#configStatus').textContent=restored?'切替に失敗しました。直前の構成を表示中。':'CADの読み込みに失敗しました。構成を選び直して再試行してください。';$('#configStatus').classList.add('notice');console.error(e);
   }finally{busy=false;for(const k of ids)$('#'+k+'Config').disabled=false;$('#loadConfiguration').disabled=false;$('#saveConfiguration').disabled=!actual;onSettled(actual)}
   return success;
- }
+ });}
  for(const k of ids)$('#'+k+'Config').onchange=()=>{const wanted=selection(),next=resolveVariant(catalog,wanted,k);const changes=next?ids.filter(id=>id!==k&&next[id]!==wanted[id]).map(id=>catalog[collections[id]].find(row=>row.id===next[id])?.label).filter(Boolean):[];return refresh(next,undefined,changes.join(' ／ '))};
  for(const row of catalog.sources){const a=document.createElement('a');a.href=row.url;a.textContent=row.label;a.target='_blank';a.rel='noopener';$('#modSources').append(a,document.createTextNode('　'))}
  $('#saveConfiguration').onclick=()=>{
@@ -72,13 +74,13 @@ export async function setupConfigurations(catalog,install,{presentation='printer
   const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=actual.id+'.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
  };
  const input=$('#configurationFile');$('#loadConfiguration').onclick=()=>input.click();
- input.onchange=async()=>{
+ input.onchange=async()=>{return workspaceTask(async()=>{
   const file=input.files[0];input.value='';if(!file||busy)return;
   try{if(file.size>64*1024)throw Error('構成JSONは64 KB以下で指定してください。');const data=JSON.parse(await file.text()),variant=importedVariant(catalog,data);validateExtras(data);await refresh(variant,data)}
   catch(e){$('#configStatus').textContent=e.message}
- };
+ });};
  menus(initial);await refresh(initial);
  if(actual&&catalog.machine_id!=='monolith_workbench'&&query.get('gantry')&&!requestedId&&!gantryRequest){$('#configStatus').textContent='指定されたガントリーはこの機体に未登録です。現在の表示：'+$('#configSummary').textContent;$('#configStatus').classList.add('notice')}
  if(actual&&requestedId&&!matched){$('#configStatus').textContent='指定された構成はこの機種に未登録です。現在の表示：'+$('#configSummary').textContent;$('#configStatus').classList.add('notice')}
- return {selectVariant:async(id,extras)=>{const v=configurationById(catalog,id);if(!v)throw Error('構成のCADが未登録です。');if(extras)validateExtras({...extras,configuration:v.id});return refresh(v,extras)},get current(){return actual},get busy(){return busy}};
-}
+ return {selectVariant:async(id,extras)=>{return workspaceTask(async()=>{const v=configurationById(catalog,id);if(!v)throw Error('構成のCADが未登録です。');if(extras)validateExtras({...extras,configuration:v.id});return refresh(v,extras)});},get current(){return actual},get busy(){return busy}};
+});}

@@ -1,23 +1,26 @@
-import * as THREE from 'three';
-import {OrbitControls} from './vendor-r180/OrbitControls.js?v=touch-37';
+import {rememberDisplayControl} from './display-preferences.mjs';
+import {workspaceFrame,WorkspaceResizeObserver,workspaceTask,workspaceListen} from './workspace-lifecycle.mjs';
+import * as THREE from './vendor-r180/three.module.js';
+import {OrbitControls} from './vendor-r180/OrbitControls.js?v=workspace-belts-1';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
 import {loadCrossant,disposeCrossant} from './crossant-loader.mjs';
 import {crossantSchema,crossantGroups,validateCrossantState} from './crossant-state.mjs';
-import {setupMachineNavigation} from './machines.js?v=controls-icons-1';
-import {setupRenderExport} from './render-export.js?v=controls-icons-1';
-import {setupPublicInfo} from './public-info.js?v=controls-icons-1';
+import {setupMachineNavigation} from './machines.js?v=workspace-belts-1';
+import {setupRenderExport} from './render-export.js?v=workspace-belts-1';
+import {setupPublicInfo} from './public-info.js?v=workspace-belts-1';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
-const $=id=>document.getElementById(id),stage=$('stage'),renderer=new THREE.WebGLRenderer({antialias:true});
+export async function mount(scope){
+const $=id=>document.getElementById(id),stage=$('stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=.9;stage.append(renderer.domElement);
-const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(35,1,.01,30),controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;
+const scene=scope.scene(new THREE.Scene()),camera=new THREE.PerspectiveCamera(35,1,.01,30),controls=scope.resource(new OrbitControls(camera,renderer.domElement));controls.enableDamping=true;
 camera.position.set(.8,.6,.8);controls.target.set(0,.25,0);
 const pmrem=new THREE.PMREMGenerator(renderer),environment=pmrem.fromScene(new RoomEnvironment(),.03),ambient=new THREE.HemisphereLight(0xffffff,0x586b80,.25),sun=new THREE.DirectionalLight(0xffffff,1.4);sun.position.set(2,4,3);scene.add(ambient,sun);
 const floor=new THREE.Mesh(new THREE.PlaneGeometry(3,3),new THREE.MeshStandardMaterial({color:0xd6dfdb,roughness:.9}));floor.rotation.x=-Math.PI/2;scene.add(floor);const grid=new THREE.GridHelper(3,30,0xa8b8b1,0xc5cec9);grid.visible=false;scene.add(grid);
 let current,frame=null,disposed=false,animation=null,marks=[],state,loaded=false;
 const abort=new AbortController(),mutable=['x','y','z','nominal','resetPose','minPose','maxPose','animatePose','base','accent','frame','resetPalette','night','gridVisible','belts','chain','saveConfiguration','loadConfiguration','clearContact'];
-const request=()=>{if(disposed||frame!==null)return;frame=requestAnimationFrame(t=>{frame=null;if(animation!==null)advance(t);controls.update();renderer.render(scene,camera);if(animation!==null)request()})};
+const request=()=>{if(disposed||frame!==null)return;frame=workspaceFrame(t=>{frame=null;if(animation!==null)advance(t);controls.update();renderer.render(scene,camera);if(animation!==null)request()})};
 controls.addEventListener('change',request);
-const observer=new ResizeObserver(()=>{const r=stage.getBoundingClientRect(),w=Math.max(r.width,1),h=Math.max(r.height,1);renderer.setSize(w,h);setResponsiveAspect(camera,controls,w,h);request()});observer.observe(stage);
+const observer=new WorkspaceResizeObserver(()=>{const r=stage.getBoundingClientRect(),w=Math.max(r.width,1),h=Math.max(r.height,1);renderer.setSize(w,h);setResponsiveAspect(camera,controls,w,h);request()});observer.observe(stage);
 const reference=()=>Object.fromEntries(['x','y','z'].map((a,i)=>[a,current.profile.display_reference_xyz_mm[i]]));
 function lighting(){const night=$('night').checked;document.body.classList.toggle('night',night);scene.background=new THREE.Color(night?'#04070c':'#edf1f5');scene.environment=night?null:environment.texture;scene.environmentIntensity=night?0:.16;renderer.toneMappingExposure=night?1.35:.9;ambient.intensity=night?.025:.25;sun.intensity=night?.025:1.4;floor.material.color.set(night?'#111a16':'#d6dfdb');request()}
 function range(){return state.nominal?current.profile.display_limits_mm:current.profile.sampled_clearance_limits_mm}
@@ -32,7 +35,7 @@ function sync(info){
  for(const c of ['base','accent','frame'])$(c).value=state.palette[c];for(const k of ['belts','chain','night'])$(k).checked=state[k];$('gridVisible').checked=state.grid;
  for(const k of crossantGroups)$('group-'+k).checked=state.groups[k];for(const m of marks)m.update();request();return info;
 }
-export function setCrossantPose(pose){
+function setCrossantPose(pose){
  if(!loaded)throw Error('モデルを読み込み中です。');
  for(const [i,a]of ['x','y','z'].entries())if(typeof pose[a]!=='number'||!Number.isFinite(pose[a])||pose[a]<range()['XYZ'[i]][0]||pose[a]>range()['XYZ'[i]][1])throw Error('Crossantの表示範囲外です。');
  return sync(current.adapter.setPose(pose));
@@ -49,13 +52,13 @@ function advance(t){
  if(animation===null)return;const phase=(t-animation)/1000,u=(Math.sin(phase*.7)+1)/2,v=(Math.sin(phase*.53+1)+1)/2,w=(Math.sin(phase*.37+2)+1)/2,r=range();
  try{setCrossantPose({x:r.X[0]+(r.X[1]-r.X[0])*u,y:r.Y[0]+(r.Y[1]-r.Y[0])*v,z:r.Z[0]+(r.Z[1]-r.Z[0])*w})}catch(e){stop();$('motionStatus').textContent=e.message}
 }
-export const currentCrossant=()=>current;
-export function captureCrossantState(){return {...structuredClone(state),schema:crossantSchema,machine:current.profile.machine_id,camera:{position:camera.position.toArray(),target:controls.target.toArray(),up:camera.up.toArray()}}}
-export function restoreCrossantState(data){
+const currentCrossant=()=>current;
+function captureCrossantState(){return {...structuredClone(state),schema:crossantSchema,machine:current.profile.machine_id,camera:{position:camera.position.toArray(),target:controls.target.toArray(),up:camera.up.toArray()}}}
+function restoreCrossantState(data){
  validateCrossantState(current.profile,data);const old=captureCrossantState();stop();
  try{current.adapter.setPose(data.pose)}catch(e){current.adapter.setPose(old.pose);throw e}
  clearMarks();state=structuredClone(data);current.adapter.setPalette(state.palette);current.adapter.setBeltsVisible(state.belts);current.chain.setVisible(state.chain);for(const k of crossantGroups)current.adapter.setGroupVisible(k,state.groups[k]);grid.visible=state.grid;
- camera.position.fromArray(state.camera.position);camera.up.fromArray(state.camera.up);controls.target.fromArray(state.camera.target);camera.lookAt(controls.target);sync();lighting();return captureCrossantState();
+ camera.position.fromArray(state.camera.position);camera.up.fromArray(state.camera.up);controls.target.fromArray(state.camera.target);camera.lookAt(controls.target);sync();lighting();rememberDisplayControl();return captureCrossantState();
 }
 for(const a of ['x','y','z'])$(a).oninput=()=>action(()=>{stop();setCrossantPose({...current.adapter.getPose(),[a]:Number($(a).value)})});
 $('nominal').onchange=()=>action(()=>{stop();state.nominal=$('nominal').checked;const p={...current.adapter.getPose()};for(const[i,a]of ['x','y','z'].entries())p[a]=Math.max(range()['XYZ'[i]][0],Math.min(range()['XYZ'[i]][1],p[a]));clearMarks();setCrossantPose(p)});
@@ -68,14 +71,14 @@ $('gridVisible').onchange=()=>action(()=>{state.grid=$('gridVisible').checked;gr
 for(const [id,kind]of [['iso','iso'],['front','front'],['top','top'],['focusHead','head']])$(id).onclick=()=>view(kind);
 $('clearContact').onclick=clearMarks;
 $('saveConfiguration').onclick=()=>{if(!loaded)return;const url=URL.createObjectURL(new Blob([JSON.stringify(captureCrossantState(),null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=current.profile.machine_id+'.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);$('configurationStatus').textContent='構成JSONを保存しました。'};
-$('loadConfiguration').onclick=()=>$('configurationFile').click();$('configurationFile').onchange=async()=>{const f=$('configurationFile').files?.[0];$('configurationFile').value='';if(!f||!loaded)return;try{if(f.size>64*1024)throw Error('構成JSONは64 KB以下で指定してください。');restoreCrossantState(JSON.parse(await f.text()));$('configurationStatus').textContent='構成JSONを復元しました。';$('configurationStatus').classList.remove('notice')}catch(e){$('configurationStatus').textContent=e.message;$('configurationStatus').classList.add('notice')}};
-window.addEventListener('pagehide',()=>{disposed=true;loaded=false;abort.abort();stop();if(frame!==null)cancelAnimationFrame(frame);clearMarks();observer.disconnect();disposeCrossant(current?.root);current=null;controls.dispose();environment.texture?.dispose();pmrem.dispose();renderer.dispose()});
+$('loadConfiguration').onclick=()=>$('configurationFile').click();$('configurationFile').onchange=async()=>{return workspaceTask(async()=>{const f=$('configurationFile').files?.[0];$('configurationFile').value='';if(!f||!loaded)return;try{if(f.size>64*1024)throw Error('構成JSONは64 KB以下で指定してください。');restoreCrossantState(JSON.parse(await f.text()));$('configurationStatus').textContent='構成JSONを復元しました。';$('configurationStatus').classList.remove('notice')}catch(e){$('configurationStatus').textContent=e.message;$('configurationStatus').classList.add('notice')}});};
+workspaceListen(window,'pagehide',()=>{disposed=true;loaded=false;abort.abort();stop();if(frame!==null)cancelAnimationFrame(frame);clearMarks();observer.disconnect();disposeCrossant(current?.root);current=null;controls.dispose();environment.texture?.dispose();pmrem.dispose();renderer.dispose()});
 lighting();
 try{
  const machine=new URLSearchParams(location.search).get('machine')||'crossant_235_v06_leadscrew';if(machine!=='crossant_235_v06_leadscrew')throw Error('Crossantの構成情報が一致しません。');setupMachineNavigation(machine);
  const response=await fetch('../CROSSANT_ASSETS.json?v=crossant-36',{signal:abort.signal,cache:'no-cache'});if(!response.ok)throw Error('Crossantのモデルを取得できません。');const next=await loadCrossant(await response.json(),{signal:abort.signal,onProgress:t=>$('status').textContent=t});
  if(disposed)disposeCrossant(next.root);else{
-  current=next;scene.add(current.root);state={schema:crossantSchema,machine,pose:reference(),nominal:false,palette:{...current.profile.appearance.palette_defaults},groups:Object.fromEntries(crossantGroups.map(k=>[k,true])),belts:true,chain:true,night:false,grid:false};
+  current=next;scene.add(current.root);state={schema:crossantSchema,machine,pose:reference(),nominal:false,palette:{...current.profile.appearance.palette_defaults},groups:Object.fromEntries(crossantGroups.map(k=>[k,true])),belts:true,chain:true,night:$('night').checked,grid:false};
   for(const [i,k]of crossantGroups.entries()){
    const label=document.createElement('label'),input=document.createElement('input');input.type='checkbox';input.id='group-'+k;input.checked=true;input.onchange=()=>action(()=>{state.groups[k]=input.checked;current.adapter.setGroupVisible(k,input.checked);sync()});label.append(input,['電子部品','スカート','CPAPハウジング','フィルター'][i]);$('groups').append(label);
   }
@@ -84,6 +87,15 @@ try{
    const b=document.createElement('button');b.textContent=c.name_a+' / '+c.name_b;b.dataset.i18n='off';b.onclick=()=>action(()=>{stop();state.nominal=true;clearMarks();setCrossantPose(Object.fromEntries(['x','y','z'].map((a,i)=>[a,c.first_pose_mm[i]])));for(const key of [c.part_a,c.part_b]){const m=new THREE.BoxHelper(current.adapter.nodes.get(key),0xffaa00);scene.add(m);marks.push(m)}view('head')});$('contacts').append(b);
   }
   floor.position.y=new THREE.Box3().setFromObject(current.root).min.y-.004;grid.position.y=floor.position.y+.001;current.adapter.setPalette(state.palette);loaded=true;for(const id of mutable)$(id).disabled=false;sync();view();$('badge').textContent='Crossant-235 · 2,177 PARTS';$('status').hidden=true;document.body.dataset.assetStatus='ready';
-  await setupPublicInfo({includeDownloads:false});setupRenderExport({renderer,scene,camera,controls,name:machine});
+  await setupPublicInfo({includeDownloads:false});setupRenderExport({three:THREE,renderer,scene,camera,controls,name:machine});
  }
 }catch(e){if(!disposed){$('status').hidden=false;$('status').textContent=e.message;document.body.dataset.assetStatus='error';document.body.dataset.error=e.message;console.error(e)}}
+
+instance = {setCrossantPose,currentCrossant,captureCrossantState,restoreCrossantState};
+scope.cleanup(()=>{instance=null});
+}
+let instance;
+export const setCrossantPose=(...args)=>instance?.setCrossantPose(...args);
+export const currentCrossant=(...args)=>instance?.currentCrossant(...args);
+export const captureCrossantState=(...args)=>instance?.captureCrossantState(...args);
+export const restoreCrossantState=(...args)=>instance?.restoreCrossantState(...args);

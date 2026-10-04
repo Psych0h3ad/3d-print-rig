@@ -1,17 +1,18 @@
-import {setupPublicInfo} from './public-info.js?v=controls-icons-1';
-import {modelURL} from './model-loader.js?v=trident-clearance-35';
+import {workspaceTask} from './workspace-lifecycle.mjs';
+import {setupPublicInfo} from './public-info.js?v=workspace-belts-1';
+import {modelURL} from './model-loader.js?v=workspace-belts-1';
 
 const files={
   siboor_trident_350:['../assembly_manifest.json?v=trident-clearance-35','../ASSEMBLY_CONFIGURATIONS.json?v=trident-clearance-35','../SIBOOR_Trident_350.glb'],
   siboor_v24_350:['../machines/siboor_v24_350/assembly_manifest.json','../machines/siboor_v24_350/machine_profile.json','../machines/siboor_v24_350/model.glb'],
 };
-export async function machineAssetsAvailable(machine){
-  const results=await Promise.all(files[machine].map(async path=>{
+export async function machineAssetsAvailable(machine){return workspaceTask(async()=>{
+  const results=await Promise.all(files[machine].map(async path=>{return workspaceTask(async()=>{
     try{const url=path.endsWith('.glb')?await modelURL(path):path;const response=await fetch(url,{method:'HEAD',cache:'no-cache'});return response.ok||url!==path&&(await fetch(path,{method:'HEAD',cache:'no-cache'})).ok;}catch{return false;}
-  }));
+  });}));
   return results.every(Boolean);
-}
-export async function showMissingAssets(){
+});}
+export async function showMissingAssets(){return workspaceTask(async()=>{
   document.body.dataset.assetStatus='missing';
   for(const id of ['loading','status']){const status=document.getElementById(id);if(status)status.remove();}
   const stage=document.querySelector('#stage'),panel=document.createElement('div');panel.className='missing-assets';panel.setAttribute('role','status');
@@ -26,4 +27,4 @@ export async function showMissingAssets(){
   }
   const badge=document.getElementById('badge');if(badge)badge.textContent='SOURCE PREVIEW';
   await setupPublicInfo();
-}
+});}

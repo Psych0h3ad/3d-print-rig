@@ -1,9 +1,10 @@
-import {v0Messages,v0Templates} from './v0-messages-en.mjs?v=trident-belts-1';
-import {ratRigMessages,ratRigTemplates} from './ratrig-messages-en.mjs?v=trident-belts-1';
-import {e3ngMessages} from './e3ng-messages-en.mjs?v=trident-belts-1';
-import {yudxMessages} from './yudx-messages-en.mjs?v=trident-belts-1';
-import {rapidoXMessages} from './rapido-x-messages-en.mjs?v=trident-belts-1';
+import {v0Messages,v0Templates} from './v0-messages-en.mjs?v=workspace-belts-1';
+import {ratRigMessages,ratRigTemplates} from './ratrig-messages-en.mjs?v=workspace-belts-1';
+import {e3ngMessages} from './e3ng-messages-en.mjs?v=workspace-belts-1';
+import {yudxMessages} from './yudx-messages-en.mjs?v=workspace-belts-1';
+import {rapidoXMessages} from './rapido-x-messages-en.mjs?v=workspace-belts-1';
 export const messages = {
+  'ダークモード':'Dark mode',
  "部品を探す": "Find a component",
  "画面の使い方": "Workspace layout",
  "3Dビュー": "3D view",

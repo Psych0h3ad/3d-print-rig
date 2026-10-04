@@ -1,5 +1,7 @@
-import {renderProductLinks} from './product-links.js?v=controls-icons-1';
-import {ratRigMachines} from './ratrig-machines.mjs?v=trident-clearance-35';
+import {replaceWorkspaceURL} from './workspace-navigation.mjs';
+import {navigateWorkspace} from './workspace-navigation.mjs';
+import {renderProductLinks} from './product-links.js?v=workspace-belts-1';
+import {ratRigMachines} from './ratrig-machines.mjs?v=workspace-belts-1';
 export const machineChoices=[
  {id:'siboor_trident_350',label:'SIBOOR Trident 350 · CNC AWD',page:'./'},
  ...[250,300,350].map(size=>({id:`voron_trident_${size}`,label:`VORON Trident ${size} · 標準プリント構造`,page:'./trident.html'})),
@@ -66,18 +68,18 @@ export function setupMachineNavigation(machine){
   renderProductLinks(products,{machine:choice.id});
  }
  function choose(next){if(!next)return;choice=next;menus()}
- function navigate(){
+ async function navigate(){
   const page=machinePage(choice.id);if(navigating||!page||choice.id===machine)return;navigating=true;show.disabled=true;for(const element of Object.values({...controls,id:select}))element.disabled=true;show.textContent='読み込み中…';status.textContent=choice.label+'を読み込み中…';
   try{localStorage.setItem('3d-print-rig-last-configuration-'+machine,new URL(location.href).searchParams.get('configuration')||'')}catch{}
   const target=new URL(page,location.href);target.searchParams.set('machine',choice.id);
   const language=new URL(location.href).searchParams.get('lang');if(['ja','en'].includes(language))target.searchParams.set('lang',language);
   try{const previous=localStorage.getItem('3d-print-rig-last-configuration-'+choice.id);if(previous&&previous.length<1024)target.searchParams.set('configuration',previous)}catch{}
-  if(choice.id!==machine)location.assign(target);
+  try{if(choice.id!==machine)await navigateWorkspace(target)}finally{navigating=false;for(const element of Object.values({...controls,id:select}))element.disabled=false;show.textContent='このマシンを表示';menus()}
  }
  for(const [key,element] of Object.entries(controls))element.addEventListener('change',()=>choose(resolveMachine({...choice,[key]:key==='size'?Number(element.value):element.value},key)));
  show.onclick=navigate;
  menus();
  document.body.dataset.machineId=machine;
- const url=new URL(location.href);url.searchParams.set('machine',machine);history.replaceState(null,'',url);
+ const url=new URL(location.href);url.searchParams.set('machine',machine);replaceWorkspaceURL(null,'',url);
  select.addEventListener('change',()=>choose(machineChoices.find(row=>row.id===select.value)));
 }

@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+import * as THREE from './vendor-r180/three.module.js';
 import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
 import {createRatRigAdapter} from './ratrig_adapter.mjs';
 import {createRatRigGcodePreview} from './ratrig_gcode_preview.mjs';

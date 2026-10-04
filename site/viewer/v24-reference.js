@@ -1,34 +1,37 @@
-import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=trident-clearance-35';
-import {appearanceRole} from './appearance-role.mjs?v=trident-clearance-35';
+import {setupSceneDisplay} from './display-preferences.mjs';
+import {workspaceFrame,WorkspaceResizeObserver,workspaceTask} from './workspace-lifecycle.mjs';
+import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=workspace-belts-1';
+import {appearanceRole} from './appearance-role.mjs?v=workspace-belts-1';
 import * as THREE from 'three';
-import {OrbitControls} from './vendor/OrbitControls.js?v=touch-37';
+import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=trident-clearance-35';
-import {createV24Adapter} from './v24_matrix_adapter.mjs?v=v24-belts-43';
-import {setupMachineNavigation} from './machines.js?v=controls-icons-1';
-import {setupGrid} from './grid-control.js?v=trident-clearance-35';
-import {setupRenderExport} from './render-export.js?v=controls-icons-1';
-import {setupPublicInfo} from './public-info.js?v=controls-icons-1';
-import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=trident-clearance-35';
-import {setupV24MachineHeads} from './machine-heads.js?v=trident-belts-1';
+import {loadModel} from './model-loader.js?v=workspace-belts-1';
+import {createV24Adapter} from './v24_matrix_adapter.mjs?v=workspace-belts-1';
+import {setupMachineNavigation} from './machines.js?v=workspace-belts-1';
+import {setupGrid} from './grid-control.js?v=workspace-belts-1';
+import {setupRenderExport} from './render-export.js?v=workspace-belts-1';
+import {setupPublicInfo} from './public-info.js?v=workspace-belts-1';
+import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=workspace-belts-1';
+import {setupV24MachineHeads} from './machine-heads.js?v=workspace-belts-1';
+export async function mount(scope){
 const $=s=>document.querySelector(s),ids=[250,300,350].flatMap(size=>['printed','ldo_cnc'].map(structure=>`voron_v24_${size}_${structure}`));
 const wanted=new URLSearchParams(location.search).get('machine'),id=ids.includes(wanted)?wanted:ids[0];
 setupMachineNavigation(id);setupPublicInfo({machineId:id});
-const stage=$('#stage'),renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));renderer.setClearColor('#edf1f4');renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);
-const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(38,1,.001,10),orbit=new OrbitControls(camera,renderer.domElement);scene.add(new THREE.HemisphereLight('#ffffff','#6c7981',2.4));
+const stage=$('#stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));renderer.setClearColor('#edf1f4');renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);
+const scene=scope.scene(new THREE.Scene()),camera=new THREE.PerspectiveCamera(38,1,.001,10),orbit=scope.resource(new OrbitControls(camera,renderer.domElement));scene.add(new THREE.HemisphereLight('#ffffff','#6c7981',2.4));
 for(const pos of [[.4,.6,.5],[-.3,.2,-.4]]){const light=new THREE.DirectionalLight('#ffffff',2);light.position.set(...pos);scene.add(light)}
 let adapter,profile,pending=false,machineHeads,program;
-function render(){if(pending)return;pending=true;requestAnimationFrame(()=>{pending=false;renderer.render(scene,camera)})}
+function render(){if(pending)return;pending=true;workspaceFrame(()=>{pending=false;renderer.render(scene,camera)})}
 const grid=setupGrid(scene,render);grid.position.y=-.096;
 function resize(){const b=stage.getBoundingClientRect();renderer.setSize(b.width,b.height,false);setResponsiveAspect(camera,orbit,b.width,b.height);render()}
-new ResizeObserver(resize).observe(stage);orbit.addEventListener('change',render);
+new WorkspaceResizeObserver(resize).observe(stage);orbit.addEventListener('change',render);
 function view(name){camera.up.set(0,name==='top'?0:1,name==='top'?-1:0);orbit.target.set(0,.22,0);camera.position.set(...({iso:[.98,.83,1.4],front:[0,.24,1.65],top:[0,1.8,0]}[name]));frameResponsiveView(camera,orbit);render()}
 for(const name of ['iso','front','top'])$('#'+name).onclick=()=>view(name);view('iso');
 $('#focusHead').onclick=()=>{if(!adapter||machineHeads?.focus(camera,orbit))return;const box=new THREE.Box3();for(const [key,node] of adapter.nodes)if(adapter.records.get(key).group===profile.head_group)box.expandByObject(node);if(box.isEmpty())return;camera.up.set(0,1,0);box.getCenter(orbit.target);camera.position.copy(orbit.target).add(new THREE.Vector3(.1,.06,.2));orbit.update();render()};
 function applyPose(){if(!adapter)return;const pose=adapter.setPose(Object.fromEntries(['x','y','z'].map(a=>[a,Number($('#'+a).value)])));machineHeads?.update(pose);for(const a of ['x','y','z'])$('#'+a+'v').textContent=Number($('#'+a).value).toFixed(2)+' mm';
  $('#motionStatus').textContent=machineHeads?.monolith?'ベッド固定 · Monolithの8個のZガイドとガントリーがZ＋へ追従':'ベッド固定 · X/Yヘッドと4Zガイド・ガントリーがZ＋へ追従';$('#gantryMotionHelp').textContent=machineHeads?.monolith?'Zを上げるとMonolithガントリーと8個のガイドブロックが上がります。XY '+machineHeads.variant.belt_width_mm+' mm。':'Zを上げるとガントリーと4つのガイドブロックが上がります。XY 6 mm / Z 9 mmベルト。';$('#motionBeltHelp').textContent=machineHeads?.monolith?'MonolithのXYベルトはヘッド・Y軸・ガントリーの移動に追従します。クランプ内部・歯・張力は未再現です。':profile.cnc?'このCNC参照モデルはZベルトのみ収録。XYベルトは未収録です。':'Zベルトはフレーム側で固定。XYベルトはヘッド・Y軸・ガントリーに追従します。移動時はクランプ内部・歯・張力を省いた経路プレビューです。';document.body.dataset.pose=JSON.stringify(pose);document.body.dataset.flexibleVisible=String(pose.flexible_visible_count>0);render();}
 try{
- const root='../machines/'+id+'/',json=async name=>{const r=await fetch(root+name,{cache:'no-cache'});if(!r.ok)throw Error(name+'の読込に失敗');return r.json()};
+ const root='../machines/'+id+'/',json=async name=>{return workspaceTask(async()=>{const r=await fetch(root+name,{cache:'no-cache'});if(!r.ok)throw Error(name+'の読込に失敗');return r.json()});};
  const [manifest,p,g]=await Promise.all([json('assembly_manifest.json'),json('machine_profile.json'),loadModel(new GLTFLoader(),root+'model.glb')]);
  profile=p;scene.add(g.scene);adapter=createV24Adapter(g.scene,manifest,profile);const originals=new Map(),protectedMaterials=[];
  for(const [key,node] of adapter.nodes)node.traverse(mesh=>{if(!mesh.isMesh)return;mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();for(const material of Array.isArray(mesh.material)?mesh.material:[mesh.material]){originals.set(material,material.color.clone());if(!appearanceRole(adapter.records.get(key)))protectedMaterials.push(material);if(material.transparent)material.depthWrite=false}});
@@ -45,3 +48,6 @@ try{
  program=setupGcodePanel({container:document.querySelector('aside'),profile,adapter,scene,render,getLimits:displayedMachineLimits,getContext:()=>machineHeads.variant?.id||'stock',setPose:xyz=>{for(const [i,a] of ['x','y','z'].entries())$('#'+a).value=xyz[i];applyPose()}});
  setupRenderExport({renderer,scene,camera,controls:orbit,name:id,afterRender:render});$('#status').hidden=true;document.body.dataset.ready='true';document.body.dataset.parts=String(manifest.parts.length);applyPose();resize();
 }catch(e){$('#status').textContent='読込エラー: '+e.message;document.body.dataset.error=e.message;console.error(e)}
+
+setupSceneDisplay(scene,renderer,camera,scope,THREE);
+}

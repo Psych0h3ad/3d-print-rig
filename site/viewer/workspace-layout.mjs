@@ -6,6 +6,7 @@ export function setupMobileLayout({workspace, heading, make}) {
   const buttons = [];
   const setLayout = layout => {
     workspace.dataset.layout = layout;
+    try { sessionStorage.setItem('3d-print-rig-layout', layout); } catch {}
     for (const button of buttons) button.setAttribute('aria-pressed', String(button.dataset.layout === layout));
   };
   for (const [value, label] of choices) {
@@ -15,7 +16,8 @@ export function setupMobileLayout({workspace, heading, make}) {
     controls.append(button); buttons.push(button);
   }
   heading.append(controls);
-  setLayout('split');
+  let previous; try { previous = sessionStorage.getItem('3d-print-rig-layout'); } catch {}
+  setLayout(['preview','split','settings'].includes(previous) ? previous : 'split');
   // Keyboard access to settings also reopens a hidden inspector.
   document.querySelector('.skip-link')?.addEventListener('click', () => setLayout('settings'));
   return controls;

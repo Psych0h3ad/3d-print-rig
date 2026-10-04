@@ -1,3 +1,4 @@
+import {workspaceTask} from './workspace-lifecycle.mjs';
 export function accessoryIds(catalog,data={}){
  const ids=data.accessories??[];
  if(!Array.isArray(ids)||ids.some(id=>typeof id!=='string'||!catalog.accessories?.some(a=>a.id===id)))throw Error('未登録の追加Modが含まれています。');
@@ -8,13 +9,13 @@ export function accessoryIds(catalog,data={}){
 
 export class AccessorySelection{
  constructor(catalog,load,update,stockNodes=new Map()){this.catalog=catalog;this.load=load;this.update=update;this.stockNodes=stockNodes;this.selected=new Set();this.loaded=new Map();this.stockVisibility=new Map()}
- async apply(data){
+ async apply(data){return workspaceTask(async()=>{
   const ids=accessoryIds(this.catalog,data);
   for(const id of ids)for(const key of this.catalog.accessories.find(a=>a.id===id).hidden_stock_keys||[])if(!this.stockNodes.has(key))throw Error('外装の置換対象が見つかりません：'+key);
-  const loaded=await Promise.all(ids.map(async id=>{const row=this.catalog.accessories.find(a=>a.id===id);return [id,await Promise.all((row.modules||[row.module]).map(module=>this.load(module)))];}));
+  const loaded=await Promise.all(ids.map(async id=>{return workspaceTask(async()=>{const row=this.catalog.accessories.find(a=>a.id===id);return [id,await Promise.all((row.modules||[row.module]).map(module=>this.load(module)))];});}));
   for(const [id,asset] of loaded)this.loaded.set(id,asset);
   this.selected=new Set(ids);this.refresh();this.update();
- }
+ });}
  refresh(){
   const active=new Set();
   for(const id of this.selected){const row=this.catalog.accessories.find(r=>r.id===id);for(const key of row.hidden_stock_keys||[])active.add(key);for(const asset of this.loaded.get(id)||[])active.add(asset)}
@@ -30,16 +31,16 @@ export function setupAccessories(catalog,{load,update,stockNodes}){
  const state=new AccessorySelection(catalog,load,update,stockNodes),inputs=new Map();
  let busy=false;
  function sync(){for(const [id,input] of inputs){input.checked=state.selected.has(id);input.disabled=busy}}
- async function apply(data){
+ async function apply(data){return workspaceTask(async()=>{
   if(busy)throw Error('追加Modを読み込み中です。');busy=true;sync();status.textContent='追加Modを読み込み中…';
   try{await state.apply(data);status.textContent=state.selected.size?[...state.selected].map(id=>catalog.accessories.find(row=>row.id===id).label).join(' ／ '):'追加Modなし'}
   catch(e){status.textContent='追加Modを読み込めませんでした。';throw e}
   finally{busy=false;sync()}
- }
+ });}
  for(const row of catalog.accessories||[]){
   const label=document.createElement('label'),input=document.createElement('input');input.type='checkbox';input.dataset.mod=row.id;
   label.append(input,document.createTextNode(row.label));container.append(label);inputs.set(row.id,input);
-  input.onchange=async()=>{const ids=[...state.selected].filter(id=>id!==row.id&&(!input.checked||!row.exclusive_group||catalog.accessories.find(a=>a.id===id).exclusive_group!==row.exclusive_group));if(input.checked)ids.push(row.id);try{await apply({accessories:ids})}catch(e){console.error(e)}};
+  input.onchange=async()=>{return workspaceTask(async()=>{const ids=[...state.selected].filter(id=>id!==row.id&&(!input.checked||!row.exclusive_group||catalog.accessories.find(a=>a.id===id).exclusive_group!==row.exclusive_group));if(input.checked)ids.push(row.id);try{await apply({accessories:ids})}catch(e){console.error(e)}});};
   const note=document.createElement('p');note.className='foot';note.textContent=row.notes;container.append(note);
  }
  return {refresh:()=>{state.refresh();sync()},getExtras:()=>state.saved(),applyExtras:apply,validateExtras:data=>accessoryIds(catalog,data)};

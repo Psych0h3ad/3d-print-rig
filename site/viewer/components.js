@@ -1,15 +1,19 @@
+import {replaceWorkspaceURL} from './workspace-navigation.mjs';
+import {setupSceneDisplay} from './display-preferences.mjs';
+import {WorkspaceResizeObserver,workspaceTask} from './workspace-lifecycle.mjs';
 import * as THREE from 'three';
-import {OrbitControls} from './vendor/OrbitControls.js?v=touch-37';
+import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=trident-clearance-35';
-import {setupPublicInfo} from './public-info.js?v=controls-icons-1';
-import {setupRenderExport} from './render-export.js?v=controls-icons-1';
-import {partNodes,selectParts,visibleBounds} from './component-selection.js?v=v0-mod-selection-1';
-import {renderProductLinks} from './product-links.js?v=controls-icons-1';
-import {componentCategories,componentCategory,componentViews,resolveComponentView,componentViewKeys} from './v0-mod-library.mjs?v=rapido-x-51';
-const $=s=>document.querySelector(s),stage=$('#stage'),renderer=new THREE.WebGLRenderer({antialias:true});
+import {loadModel} from './model-loader.js?v=workspace-belts-1';
+import {setupPublicInfo} from './public-info.js?v=workspace-belts-1';
+import {setupRenderExport} from './render-export.js?v=workspace-belts-1';
+import {partNodes,selectParts,visibleBounds} from './component-selection.js?v=workspace-belts-1';
+import {renderProductLinks} from './product-links.js?v=workspace-belts-1';
+import {componentCategories,componentCategory,componentViews,resolveComponentView,componentViewKeys} from './v0-mod-library.mjs?v=workspace-belts-1';
+export async function mount(scope){
+const $=s=>document.querySelector(s),stage=$('#stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor('#edf1f5');renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);
-const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(38,1,.0001,20),controls=new OrbitControls(camera,renderer.domElement);
+const scene=scope.scene(new THREE.Scene()),camera=new THREE.PerspectiveCamera(38,1,.0001,20),controls=scope.resource(new OrbitControls(camera,renderer.domElement));
 scene.add(new THREE.HemisphereLight('#ffffff','#6c7981',2.4));
 for(const p of [[.4,.6,.5],[-.3,.2,-.4]]){const light=new THREE.DirectionalLight('#ffffff',2);light.position.set(...p);scene.add(light)}
 const cached=new Map(),remembered=new Map(),categoryHistory=new Map();let catalog,current,currentItem,busy=false,view='iso',dirty=true;
@@ -20,12 +24,12 @@ function fit(){if(!current)return;const box=visibleBounds(current),center=box.ge
  $('#dimensions').textContent=`表示外寸 ${(size.x*1000).toFixed(1)} × ${(size.z*1000).toFixed(1)} × ${(size.y*1000).toFixed(1)} mm`;
 }
 function resize(){const b=stage.getBoundingClientRect();renderer.setSize(b.width,b.height,false);camera.aspect=b.width/b.height;camera.updateProjectionMatrix();fit();dirty=true}
-new ResizeObserver(resize).observe(stage);controls.addEventListener('change',()=>{dirty=true});renderer.setAnimationLoop(()=>{if(dirty){renderer.render(scene,camera);dirty=false}});
+new WorkspaceResizeObserver(resize).observe(stage);controls.addEventListener('change',()=>{dirty=true});renderer.setAnimationLoop(()=>{if(dirty){renderer.render(scene,camera);dirty=false}});
 const paragraph=text=>{const p=document.createElement('p');p.textContent=text;return p};
 function syncURL(selection){
  const url=new URL(location.href);url.searchParams.set('component',currentItem.id);
  for(const key of ['view','part']){const value=key==='view'?selection?.view.id:selection?.part;if(value)url.searchParams.set(key,value);else url.searchParams.delete(key)}
- history.replaceState(null,'',url);document.body.dataset.component=currentItem.id;
+ replaceWorkspaceURL(null,'',url);document.body.dataset.component=currentItem.id;
  document.body.dataset.componentView=selection?.view.id||'';document.body.dataset.componentPart=selection?.part||'';
 }
 function setSelection(entry,wanted={}){
@@ -52,7 +56,7 @@ function componentOptions(category,selected){
  $('#component').replaceChildren(...items.map(p=>option(p.id,p.label)));
  $('#component').value=items.some(p=>p.id===selected)?selected:items[0].id;
 }
-async function install(id,initial=false){
+async function install(id,initial=false){return workspaceTask(async()=>{
  if(busy)return;
  const item=catalog.items.find(p=>p.id===id);if(!item)throw Error('未登録の部品です');
  const previous=currentItem;busy=true;
@@ -90,7 +94,7 @@ async function install(id,initial=false){
   if(previous){currentItem=previous;current=cached.get(previous.module).root;current.visible=true;componentOptions(componentCategory(previous),previous.id);document.body.dataset.ready='true'}
   $('#loading').textContent=e.message;$('#componentStatus').textContent=previous?'読込に失敗しました。直前の部品を表示中。':'読込に失敗しました';console.error(e);
  }finally{busy=false;for(const selector of ['#component','#componentCategory','#componentView','#componentPart'])$(selector).disabled=false}
-}
+});}
 for(const id of ['iso','front','side'])$('#'+id).onclick=()=>{view=id;fit()};$('#fit').onclick=fit;
 setupPublicInfo({includeDownloads:false});setupRenderExport({renderer,scene,camera,controls,name:'3D_Print_Rig_Component',afterRender:()=>{dirty=true}});
 try{const r=await fetch('../COMPONENT_LIBRARY.json?v=trident-clearance-35',{cache:'no-cache'});if(!r.ok)throw Error('部品カタログを取得できません');catalog=await r.json();
@@ -99,3 +103,6 @@ try{const r=await fetch('../COMPONENT_LIBRARY.json?v=trident-clearance-35',{cach
  $('#componentCategory').onchange=e=>{const next=catalog.items.find(p=>componentCategory(p)===e.target.value);install(categoryHistory.get(e.target.value)||next.id)};
  const wanted=new URLSearchParams(location.search).get('component');await install(catalog.items.some(p=>p.id===wanted)?wanted:catalog.items[0].id,true);
 }catch(e){$('#loading').textContent=e.message;console.error(e)}resize();
+
+setupSceneDisplay(scene,renderer,camera,scope,THREE);
+}

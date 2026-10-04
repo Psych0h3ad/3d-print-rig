@@ -153,11 +153,11 @@ kbd { display: inline-block; padding: 1px 5px; border: 1px solid var(--line); bo
 .ui-workspace :focus-visible { outline: 2px solid #b5373f; outline-offset: 3px; }
 .mobile-panel-toggle { display: none; }
 body.ui-workspace[data-asset-status=missing] aside > * { opacity: 1; pointer-events: auto; }
-body.ui-workspace:is(.night, :has(#night:checked)) { --paper: #18212b; --line: #34404c; --muted: #a3b2c1; --ink: #e0e7ef; --accent: #ff9198; color: #e0e7ef; }
-.ui-workspace:is(.night, :has(#night:checked)) .view-tools button[aria-pressed=true] { background: #d4dee9; color: #18212b; }
-.ui-workspace:is(.night, :has(#night:checked)) .change-machine, .ui-workspace:is(.night, :has(#night:checked)) details details, .ui-workspace:is(.night, :has(#night:checked)) .builder-search, .ui-workspace:is(.night, :has(#night:checked)) .status, .ui-workspace:is(.night, :has(#night:checked)) .inspector-footer button:first-child { background: #222e3b; }
-.ui-workspace:is(.night, :has(#night:checked)) .viewer-help { background: var(--paper); }
-.ui-workspace:is(.night, :has(#night:checked)) .notice { background: #352b20; color: #edc58f; }
+body.ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) { --paper: #18212b; --line: #34404c; --muted: #a3b2c1; --ink: #e0e7ef; --accent: #ff9198; color: #e0e7ef; }
+.ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) .view-tools button[aria-pressed=true] { background: #d4dee9; color: #18212b; }
+.ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) .change-machine, .ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) details details, .ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) .builder-search, .ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) .status, .ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) .inspector-footer button:first-child { background: #222e3b; }
+.ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) .viewer-help { background: var(--paper); }
+.ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) .notice { background: #352b20; color: #edc58f; }
 @media (max-width: 960px) {
   .ui-workspace .workspace { grid-template-columns: 300px minmax(0, 1fr); }
   .inspector-heading { padding: 17px 18px 14px; }
@@ -289,17 +289,17 @@ body.ui-workspace {
 .ui-workspace button.primary { background: #294550; border-color: #294550; }
 .ui-workspace :focus-visible { outline-color: #b94a2e; }
 .ui-workspace > header :focus-visible { outline-color: #ffb18e; }
-body.ui-workspace:is(.night, :has(#night:checked)) { --paper: #182830; --ink: #e0ebef; --line: #354b56; --muted: #aec1ca; --accent: #ffa381; background: #101d24; color: var(--ink); color-scheme: dark; }
-.ui-workspace:is(.night, :has(#night:checked)) .workspace > aside, .ui-workspace:is(.night, :has(#night:checked)) #stage { border-color: #354b56; }
-.ui-workspace:is(.night, :has(#night:checked)) .inspector-heading { background: #1d303a; }
-.ui-workspace:is(.night, :has(#night:checked)) .inspector-tabs, .ui-workspace:is(.night, :has(#night:checked)) .inspector-footer, .ui-workspace:is(.night, :has(#night:checked)) .dialog-head { background: #182830; }
-.ui-workspace:is(.night, :has(#night:checked)) select, .ui-workspace:is(.night, :has(#night:checked)) .change-machine, .ui-workspace:is(.night, :has(#night:checked)) .mobile-panel-toggle { color: #e0ebef; background: #233942; border-color: #47606c; }
-.ui-workspace:is(.night, :has(#night:checked)) button:hover, .ui-workspace:is(.night, :has(#night:checked)) .workspace-menu a:hover { background: #2b424e; }
-.ui-workspace:is(.night, :has(#night:checked)) .inspector-tabs > button[aria-selected=true] { color: #ffa381; }
-.ui-workspace:is(.night, :has(#night:checked)) .cad-background { opacity: .21; filter: brightness(2); }
-.ui-workspace:is(.night, :has(#night:checked)) .view-tools, .ui-workspace:is(.night, :has(#night:checked)) .viewer-help { background: #1c303de8; border-color: #354b56; }
-.ui-workspace:is(.night, :has(#night:checked)) .view-tools button[aria-pressed=true] { background: #d4e1e6; color: #18313e; }
-.ui-workspace:is(.night, :has(#night:checked)) .view-meta > span:first-child { background: #182830dd; border-color: #354b56; color: #abc1ce; }
+body.ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) { --paper: #182830; --ink: #e0ebef; --line: #354b56; --muted: #aec1ca; --accent: #ffa381; background: #101d24; color: var(--ink); color-scheme: dark; }
+.ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) .workspace > aside, .ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) #stage { border-color: #354b56; }
+.ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) .inspector-heading { background: #1d303a; }
+.ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) .inspector-tabs, .ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) .inspector-footer, .ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) .dialog-head { background: #182830; }
+.ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) select, .ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) .change-machine, .ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) .mobile-panel-toggle { color: #e0ebef; background: #233942; border-color: #47606c; }
+.ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) button:hover, .ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) .workspace-menu a:hover { background: #2b424e; }
+.ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) .inspector-tabs > button[aria-selected=true] { color: #ffa381; }
+.ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) .cad-background { opacity: .21; filter: brightness(2); }
+.ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) .view-tools, .ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) .viewer-help { background: #1c303de8; border-color: #354b56; }
+.ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) .view-tools button[aria-pressed=true] { background: #d4e1e6; color: #18313e; }
+.ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) .view-meta > span:first-child { background: #182830dd; border-color: #354b56; color: #abc1ce; }
 @media (max-width: 960px) {
  .ui-workspace .workspace { padding: 8px; gap: 8px; }
  .ui-workspace .cad-background { background-size: 900px 600px; }
@@ -422,3 +422,12 @@ body.ui-workspace:is(.night, :has(#night:checked)) { --paper: #182830; --ink: #e
   .ui-workspace .workspace:is([data-layout=settings], [data-layout=preview]) .inspector-heading { grid-template-columns: minmax(0, 1fr) auto minmax(220px, 1fr); }
   .workspace:is([data-layout=settings], [data-layout=preview]) .mobile-layout { grid-column: 3; grid-row: 1; }
 }
+
+/* Shared state is visible before a controller or CAD bundle finishes loading. */
+html[data-theme=dark] { color-scheme:dark; background:#101d24; }
+html[data-theme=dark] body { --paper:#182830; --line:#354b56; --muted:#aec1ca; --ink:#e0ebef; --accent:#ffa381; background:#101d24; color:#e0ebef; }
+html[data-theme=dark] #stage { background:#101820; }
+#workspaceNavigationStatus { position:fixed; z-index:20; left:50%; bottom:max(20px,env(safe-area-inset-bottom)); transform:translateX(-50%); max-width:calc(100vw - 32px); border:1px solid var(--line); background:var(--paper); color:var(--ink); box-shadow:0 8px 32px #0002; border-radius:12px; padding:12px 18px; font-size:13px; pointer-events:none; }
+#workspaceNavigationStatus[hidden] { display:none; }
+#workspaceNavigationStatus.navigation-error { border-color:#b87552; }
+.workspace[aria-busy=true] { opacity:.65; }

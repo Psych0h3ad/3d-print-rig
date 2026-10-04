@@ -1,10 +1,11 @@
-import {setupProductDirectory} from './product-links.js?v=controls-icons-1';
-import {mountAssemblyDownload} from './assembly-downloads.mjs?v=standard-step-42';
+import {workspaceTask} from './workspace-lifecycle.mjs';
+import {setupProductDirectory} from './product-links.js?v=workspace-belts-1';
+import {mountAssemblyDownload} from './assembly-downloads.mjs?v=workspace-belts-1';
 const $=s=>document.querySelector(s);
 function dialog(id,title){const d=document.createElement('dialog');d.id=id;d.innerHTML=`<div class="dialog-head"><h2>${title}</h2><button class="close" aria-label="閉じる"></button></div><div class="dialog-body"></div>`;document.body.append(d);d.querySelector('.close').onclick=()=>d.close();return d}
 const node=(tag,text)=>{const n=document.createElement(tag);n.textContent=text;return n};
 const link=(text,url)=>{const a=node('a',text);a.href=url;a.target='_blank';a.rel='noopener';return a};
-export async function setupPublicInfo({includeDownloads=true,machineId=null}={}){
+export async function setupPublicInfo({includeDownloads=true,machineId=null}={}){return workspaceTask(async()=>{
  setupProductDirectory();
  const sources=dialog('sourcesDialog','出典・ライセンス'),downloads=dialog('downloadsDialog','標準構成のSTEP');
  $('#openSources').onclick=()=>sources.showModal();const downloadButton=$('#openDownloads');downloadButton.hidden=true;downloadButton.onclick=()=>downloads.showModal();
@@ -28,4 +29,4 @@ export async function setupPublicInfo({includeDownloads=true,machineId=null}={})
    const a=link(local&&item.local_url?'ローカルSTEP':item.upstream?'公式データ':'ダウンロード',url);if(!item.upstream||local&&item.local_url){a.removeAttribute('target');a.download=''}action.append(a);
    if(local&&item.local_url&&item.local_note)action.append(node('small',item.local_note));if(item.note)action.append(node('small',item.note));row.append(name,config,action);body.append(row)}table.append(body);if(body.children.length){downloadButton.hidden=false;db.append(table)}document.body.dataset.publicCatalogVersion=catalog.viewer_version;
  }catch(e){sb.append(node('p',e.message));db.append(node('p',e.message))}
-}
+});}

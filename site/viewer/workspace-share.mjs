@@ -1,3 +1,4 @@
+import {workspaceTask,WorkspaceMutationObserver} from './workspace-lifecycle.mjs';
 export const siteLinks = Object.freeze({
   github: 'https://github.com/Psych0h3ad/3d-print-rig',
   x: 'https://www.x.com/YuTR0N',
@@ -75,7 +76,7 @@ export function setupWorkspaceSharing({navigation, actions, menu}) {
   trigger.onclick = () => { refresh(); status.textContent = ''; dialog.showModal(); };
   close.onclick = () => dialog.close();
   input.onclick = () => input.select();
-  copy.onclick = async () => {
+  copy.onclick = async () => {return workspaceTask(async()=>{
     const data = refresh();
     try {
       await navigator.clipboard.writeText(data.url);
@@ -84,16 +85,16 @@ export function setupWorkspaceSharing({navigation, actions, menu}) {
       input.focus(); input.select();
       status.textContent = 'リンクを選択しました。コピーして共有してください。';
     }
-  };
+  });};
   // Refresh at activation time so a changed page state is never shared stale.
   x.onclick = refresh;
-  native.onclick = async () => {
+  native.onclick = async () => {return workspaceTask(async()=>{
     const data = refresh(); status.textContent = '';
     try { await navigator.share(data); }
     catch (error) {
       if (error.name !== 'AbortError') status.textContent = '共有メニューを開けませんでした。リンクをコピーしてください。';
     }
-  };
+  });};
 
   // Keep the narrow header small while retaining image export in its menu.
   const exportButton = document.querySelector('#openRender');
@@ -101,7 +102,7 @@ export function setupWorkspaceSharing({navigation, actions, menu}) {
     const exportShortcut = make('button', '画像を書き出す', 'mobile-export-shortcut');
     exportShortcut.disabled = exportButton.disabled;
     exportShortcut.onclick = () => exportButton.click();
-    new MutationObserver(() => { exportShortcut.disabled = exportButton.disabled; }).observe(exportButton, {attributes: true, attributeFilter: ['disabled']});
+    new WorkspaceMutationObserver(() => { exportShortcut.disabled = exportButton.disabled; }).observe(exportButton, {attributes: true, attributeFilter: ['disabled']});
     menu.prepend(exportShortcut);
   }
 }

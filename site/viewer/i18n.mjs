@@ -1,4 +1,6 @@
-import {messages,templates} from './messages-en.mjs?v=trident-belts-1';
+import {replaceWorkspaceURL} from './workspace-navigation.mjs';
+import {WorkspaceMutationObserver,workspaceListen,onWorkspaceDispose} from './workspace-lifecycle.mjs';
+import {messages,templates} from './messages-en.mjs?v=workspace-belts-1';
 
 const normalize=text=>text.trim().replace(/\s+/gu,' ');
 const escape=text=>text.replace(/[.*+?^${}()|[\]\\]/gu,'\\$&');
@@ -49,7 +51,8 @@ export function setupLanguage({document=globalThis.document,window=globalThis.wi
  label.append(name,select);document.querySelector('.header-actions')?.prepend(label);
  const attributes=['title','placeholder','aria-label','alt'];
  const excluded=element=>element?.closest('script,style,pre,code,textarea,[contenteditable="true"],[data-i18n="off"],[data-part]');
- let observer,pending=false;const dirty=new Set();
+ let observer,pending=false,disposed=false;const dirty=new Set();
+ onWorkspaceDispose(()=>{disposed=true;dirty.clear()});
  function localizeLink(element){
   if(element.tagName!=='A'||!element.hasAttribute('href')||element.hasAttribute('download'))return;
   const href=element.getAttribute('href');if(!href||href.startsWith('#'))return;
@@ -82,17 +85,17 @@ export function setupLanguage({document=globalThis.document,window=globalThis.wi
  function schedule(records){
   collect(records);
   if(pending||!dirty.size)return;pending=true;
-  queueMicrotask(()=>{pending=false;collect(observer.takeRecords());observer.disconnect();const roots=[...dirty].filter(e=>e?.isConnected);dirty.clear();for(const e of roots)if(!roots.some(parent=>parent!==e&&parent.contains(e)))visit(e);observe()});
+  queueMicrotask(()=>{if(disposed)return;pending=false;collect(observer.takeRecords());observer.disconnect();const roots=[...dirty].filter(e=>e?.isConnected);dirty.clear();for(const e of roots)if(!roots.some(parent=>parent!==e&&parent.contains(e)))visit(e);observe()});
  }
- observer=new window.MutationObserver(schedule);
+ observer=new WorkspaceMutationObserver(schedule,window.MutationObserver);
  function setLanguage(value){
   if(!['ja','en'].includes(value))return;
   language=value;try{window.localStorage.setItem('3d-print-rig-language',value)}catch{}
-  window.history.replaceState(null,'',languageURL(window.location.href,value));refresh();
+  replaceWorkspaceURL(null,'',languageURL(window.location.href,value),window.history);refresh();
   window.dispatchEvent(new window.CustomEvent('rig-language-change',{detail:{language:value}}));
  }
  select.addEventListener('change',()=>setLanguage(select.value));
- window.addEventListener('storage',event=>{if(event.key==='3d-print-rig-language'&&['ja','en'].includes(event.newValue)&&event.newValue!==language)setLanguage(event.newValue)});
- window.history.replaceState(null,'',languageURL(window.location.href,language));
+ workspaceListen(window,'storage',event=>{if(event.key==='3d-print-rig-language'&&['ja','en'].includes(event.newValue)&&event.newValue!==language)setLanguage(event.newValue)});
+ replaceWorkspaceURL(null,'',languageURL(window.location.href,language),window.history);
  refresh();return {setLanguage,refresh,get language(){return language},disconnect:()=>observer.disconnect()};
 }

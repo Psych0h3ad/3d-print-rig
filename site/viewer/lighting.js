@@ -1,3 +1,5 @@
+import {readDisplay} from './display-preferences.mjs';
+import {workspaceTask,workspaceListen} from './workspace-lifecycle.mjs';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=trident-clearance-35';
@@ -18,12 +20,13 @@ export function setupLighting(scene,renderer,{registration={meta:'DISCO_MOD.json
  const speed=document.createElement('input');Object.assign(speed,{id:'ledAnimationSpeed',type:'range',min:'0',max:'200',step:'10',value:'100'});
  $('#ledColor').after(effects,effectSelect,speedLabel,speed);
  try{const saved=JSON.parse(localStorage.getItem(storageKey)||'null');
-  for(const [key,id] of [['installed','ledMod'],['power','ledPower'],['night','night']])if(typeof saved?.[key]==='boolean')$('#'+id).checked=saved[key];
+  for(const [key,id] of [['installed','ledMod'],['power','ledPower']])if(typeof saved?.[key]==='boolean')$('#'+id).checked=saved[key];
   if(Number.isFinite(saved?.level)&&saved.level>=0&&saved.level<=100)$('#ledLevel').value=saved.level;
   if(['white','red','blue','rainbow'].includes(saved?.color))$('#ledColor').value=saved.color;
   if(ledEffects.includes(saved?.effect))effectSelect.value=saved.effect;
   if(Number.isFinite(saved?.animationSpeed)&&saved.animationSpeed>=0&&saved.animationSpeed<=200)speed.value=saved.animationSpeed;
  }catch{}
+ $('#night').checked=readDisplay().dark;
  function save(){try{localStorage.setItem(storageKey,JSON.stringify({installed:$('#ledMod').checked,power:$('#ledPower').checked,night:$('#night').checked,level:Number($('#ledLevel').value),color:$('#ledColor').value,effect:effectSelect.value,animationSpeed:Number(speed.value)}))}catch{}}
  RectAreaLightUniformsLib.init();
  const room=new RoomEnvironment(),pmrem=new THREE.PMREMGenerator(renderer),env=pmrem.fromScene(room,.04);
@@ -64,10 +67,10 @@ export function setupLighting(scene,renderer,{registration={meta:'DISCO_MOD.json
   document.body.dataset.discoInstalled=String(installed&&ready);document.body.dataset.discoFramePosition=JSON.stringify(rig.position.toArray());update();
  }
  for(const id of ['ledMod','ledPower','night','ledLevel','ledColor','ledEffect','ledAnimationSpeed'])$('#'+id).addEventListener('input',()=>{save();apply()});
- document.addEventListener('visibilitychange',()=>animator.refresh());
- window.addEventListener('pagehide',e=>e.persisted?animator.stop():animator.dispose());window.addEventListener('pageshow',()=>animator.refresh());
+ workspaceListen(document,'visibilitychange',()=>animator.refresh());
+ workspaceListen(window,'pagehide',e=>e.persisted?animator.stop():animator.dispose());workspaceListen(window,'pageshow',()=>animator.refresh());
  $('#nightOn').onclick=()=>{$('#ledMod').checked=true;$('#ledPower').checked=true;$('#night').checked=true;if(+$('#ledLevel').value===0)$('#ledLevel').value=75;save();apply()};
- const whenReady=Promise.all([fetch('../'+registration.meta).then(r=>{if(!r.ok)throw Error('Disco取付データ');return r.json()}),loadModel(new GLTFLoader(),'../'+registration.glb)]).then(([data,g])=>{
+ const whenReady=workspaceTask(()=>Promise.all([fetch('../'+registration.meta).then(r=>{if(!r.ok)throw Error('Disco取付データ');return r.json()}),loadModel(new GLTFLoader(),'../'+registration.glb)]).then(([data,g])=>{
   mod=g.scene;mod.name='Disco_on_a_Stick_XXL';rig.add(mod);
   mod.traverse(o=>{if(!o.isMesh)return;const shift=registration.side_translation_mm?.[o.userData.side];if(shift)o.position.add(viewVector(shift).multiplyScalar(.001));o.material=Array.isArray(o.material)?o.material.map(m=>m.clone()):o.material.clone();if(o.userData.led_role==='LED'){for(const m of Array.isArray(o.material)?o.material:[o.material])m.roughness=.35;emitters.push(o)}});
   if(emitters.length!==data.leds_per_stick*data.stick_count)throw Error('Disco LED部品数の不一致');
@@ -85,7 +88,7 @@ export function setupLighting(scene,renderer,{registration={meta:'DISCO_MOD.json
   }
   ready=true;for(const id of ['ledMod','ledPower','nightOn','ledLevel','ledColor'])$('#'+id).disabled=false;apply();
   return mod;
- }).catch(e=>{failed=true;if(mod)mod.visible=false;apply();console.error(e)});
+ }).catch(e=>{failed=true;if(mod)mod.visible=false;apply();console.error(e)}));
  apply();
  function focus(camera,controls){if(!ready||!mod)return;rig.updateMatrixWorld(true);const box=new THREE.Box3();mod.traverse(o=>{if(o.isMesh&&o.userData.side==='left')box.expandByObject(o)});if(box.isEmpty())return;camera.up.set(0,1,0);box.getCenter(controls.target);camera.position.copy(controls.target).add(new THREE.Vector3(.16,-.07,.24));controls.update();update()}
  return {apply,whenReady,rig,focus,animator};

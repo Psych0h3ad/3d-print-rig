@@ -1,3 +1,5 @@
+import {replaceWorkspaceURL} from './workspace-navigation.mjs';
+import {workspaceTask} from './workspace-lifecycle.mjs';
 import {bankChoices,bankCapacity,normalizeBank,initialBank,readBankURL,bankBedReferenceDrop,bankSystem,bankSource,bankSpec,variantBankSystem,bankStateForVariant,bankPlan} from './changer-bank-model.mjs?v=trident-clearance-35';
 import {bankWitnessCheck}from './head-validation.mjs?v=trident-clearance-35';
 
@@ -22,7 +24,7 @@ export function setupChangerBank({catalog,rig,data,extras={},before=document.que
   if(madmax){panel.querySelector('#bankHelp').textContent='MadMaxはXY移動だけで交換するため、Tridentでも使える設計です。現在の装着構成はXol / Sherpa Mini / Rapido 2 UHF、MGN12H・6 mmベルトです。';panel.querySelector('#bankScope').textContent='専用キャリッジ・Maxwell結合・Xolプレートを原本CADの取付穴軸で配置。Trident用のドック支持部・待機ヘッド・交換経路は未登録です。9 mm用の保持具はこの6 mm構成に流用しません。'}
   const alternative=panel.querySelector('#bankAlternative'),madmaxVariant=bankChoices(catalog,data,controller?.current?.gantry||previousGantry,'madmax')[0];
   alternative.hidden=system!=='stealthchanger'||mount?.bank_permitted!==false||!madmaxVariant;alternative.disabled=!controller||busy||controller.busy;
-  alternative.onclick=async()=>{if(alternative.disabled||!madmaxVariant)return;await controller.selectVariant(madmaxVariant.id)};
+  alternative.onclick=async()=>{return workspaceTask(async()=>{if(alternative.disabled||!madmaxVariant)return;await controller.selectVariant(madmaxVariant.id)});};
   const add=(caption,id,options,value,change)=>{const l=document.createElement('label'),s=document.createElement('select');l.htmlFor=id;l.textContent=caption;s.id=id;for(const [id,text]of options){const o=document.createElement('option');o.value=String(id);o.textContent=String(text);s.append(o)}s.value=String(value);s.disabled=busy||controller?.busy||!state.enabled;s.onchange=change;fields.append(l,s);return s};
   add(indx?'工具数':'設置する台数','bankCount',Array.from({length:bankCapacity(data,catalog.machine_id,system)},(_,i)=>[i+1,String(i+1)]),state.tools.length,e=>{const n=Number(e.target.value),tools=state.tools.slice(0,n);while(tools.length<n)tools.push(bankSource(opts[tools.length%opts.length],system));return select({...state,tools,active:Math.min(state.active,n-1)})});
   state.tools.forEach((value,i)=>add((indx?'工具 T':'ドック ')+(indx?i:i+1),'bankTool'+i,opts.map(v=>[bankSource(v,system),label(v)]),value,e=>{const tools=[...state.tools];tools[i]=e.target.value;return select({...state,tools})}));
@@ -42,12 +44,12 @@ export function setupChangerBank({catalog,rig,data,extras={},before=document.que
    if(hit){const detail=document.createElement('div');detail.dataset.bankIntersection='true';detail.className='foot notice';detail.textContent='待機ヘッドと可動ガントリーの体積交差あり。交換経路・全可動域の適合は未確認。';const part=document.createElement('p');part.dataset.part=hit.head_part;part.textContent=`${hit.head_name} / ${hit.fixture_name} · ${hit.overlap_mm3.toFixed(3)} mm³`;detail.append(part);if(inspectPose){const button=document.createElement('button');button.type='button';button.textContent='干渉姿勢を見る';button.onclick=()=>inspectPose(hit.display_xyz_mm,hit);detail.append(button)}status.after(detail)}
   }
  }
- async function select(next){
+ async function select(next){return workspaceTask(async()=>{
   if(!controller||busy||controller.busy)return;busy=true;menus();let error;
   try{next=bankStateForVariant(next,controller.current,catalog,data);next=normalizeBank(next,catalog,data,controller.current.gantry);const system=bankSystem(next),v=bankChoices(catalog,data,controller.current.gantry,system,controller.current.toolhead==='indx'?controller.current.cooling:'4010').find(v=>bankSource(v,system)===next.tools[next.active]);const applied=await controller.selectVariant(next.enabled?v.id:controller.current.id,{...extras.getExtras?.(),tool_bank:next});if(applied===false)throw Error('ヘッドを切り替えられませんでした。')}catch(e){error=e}finally{busy=false;menus();if(error)status.textContent=error.message}
- }
+ });}
  enabled.onchange=e=>select({...state,enabled:e.target.checked});
- async function install(variant){
+ async function install(variant){return workspaceTask(async()=>{
   const system=variantBankSystem(variant),oldSystem=bankSystem(state),opts=bankChoices(catalog,data,variant.gantry,system,variant.toolhead==='indx'?variant.cooling:'4010');let next=state;
   if(system!==oldSystem){next=initialBank(catalog,data,variant.gantry,system);next.enabled=system==='indx'}
   else if(!opts.length)next={...state,enabled:false};
@@ -57,7 +59,7 @@ export function setupChangerBank({catalog,rig,data,extras={},before=document.que
   const match=opts.find(v=>v.id===variant.id);if(next.enabled){next={...next,enabled:!!match,tools:[...next.tools]};if(match)next.tools[next.active]=bankSource(match,system)}
   if(bankSpec(data,system)?.machines[catalog.machine_id]?.bank_permitted===false)next={...next,enabled:false};
   await rig.install(variant,next);state=next;previousGantry=variant.gantry;menus();
- }
- const options={...extras,getExtras:()=>({...extras.getExtras?.(),tool_bank:JSON.parse(JSON.stringify(state))}),validateExtras:value=>{extras.validateExtras?.(value);if(value.tool_bank){const variant=catalog.variants.find(v=>v.id===value.configuration)||controller?.current;normalizeBank(bankStateForVariant(value.tool_bank,variant,catalog,data),catalog,data,variant?.gantry||previousGantry)}},applyExtras:async value=>{await extras.applyExtras?.(value);if(value.tool_bank){const next=normalizeBank(bankStateForVariant(value.tool_bank,rig.active,catalog,data),catalog,data,rig.active?.gantry);await rig.setBank(next);state=next;menus()}},onSettled:v=>{extras.onSettled?.(v);menus();if(!v)return;const u=new URL(location.href);if(state.enabled)u.searchParams.set('tools',JSON.stringify(state));else u.searchParams.delete('tools');history.replaceState(null,'',u)}};
- return {install,options,async bind(value){controller=value;menus();if(urlError)status.textContent=urlError.message;else if(urlState)await select(urlState)},get state(){return state}};
+ });}
+ const options={...extras,getExtras:()=>({...extras.getExtras?.(),tool_bank:JSON.parse(JSON.stringify(state))}),validateExtras:value=>{extras.validateExtras?.(value);if(value.tool_bank){const variant=catalog.variants.find(v=>v.id===value.configuration)||controller?.current;normalizeBank(bankStateForVariant(value.tool_bank,variant,catalog,data),catalog,data,variant?.gantry||previousGantry)}},applyExtras:async value=>{return workspaceTask(async()=>{await extras.applyExtras?.(value);if(value.tool_bank){const next=normalizeBank(bankStateForVariant(value.tool_bank,rig.active,catalog,data),catalog,data,rig.active?.gantry);await rig.setBank(next);state=next;menus()}});},onSettled:v=>{extras.onSettled?.(v);menus();if(!v)return;const u=new URL(location.href);if(state.enabled)u.searchParams.set('tools',JSON.stringify(state));else u.searchParams.delete('tools');replaceWorkspaceURL(null,'',u)}};
+ return {install,options,async bind(value){return workspaceTask(async()=>{controller=value;menus();if(urlError)status.textContent=urlError.message;else if(urlState)await select(urlState)});},get state(){return state}};
 }

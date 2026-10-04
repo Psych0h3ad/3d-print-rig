@@ -1,10 +1,12 @@
+import {setupDisplayPreferences} from './display-preferences.mjs';
+import {WorkspaceMutationObserver,workspaceListen} from './workspace-lifecycle.mjs';
 // Shared presentation layer. Existing controls, IDs and CAD controllers stay intact.
-import {setupLanguage,originalText} from './i18n.mjs?v=trident-belts-1';
-import {printerWorkspaceURL,workspaceReturnKey,workspaceKindFor} from './workspace-return.mjs?v=controls-icons-1';
-import {setupWorkspaceSharing} from './workspace-share.mjs?v=controls-icons-1';
-import {lockInspectorHorizontalScroll} from './workspace-scroll.mjs?v=inspector-width-1';
-import {setupChoiceSearch} from './workspace-choices.mjs?v=trident-belts-1';
-import {setupMobileLayout} from './workspace-layout.mjs?v=config-labels-1';
+import {setupLanguage,originalText} from './i18n.mjs?v=workspace-belts-1';
+import {printerWorkspaceURL,workspaceReturnKey,workspaceKindFor} from './workspace-return.mjs?v=workspace-belts-1';
+import {setupWorkspaceSharing} from './workspace-share.mjs?v=workspace-belts-1';
+import {lockInspectorHorizontalScroll} from './workspace-scroll.mjs?v=workspace-belts-1';
+import {setupChoiceSearch} from './workspace-choices.mjs?v=workspace-belts-1';
+import {setupMobileLayout} from './workspace-layout.mjs?v=workspace-belts-1';
 const $ = selector => document.querySelector(selector);
 const node = (tag, className, text) => {
   const element = document.createElement(tag);
@@ -13,7 +15,7 @@ const node = (tag, className, text) => {
   return element;
 };
 
-function setupWorkspace() {
+export function setupWorkspace() {
   const aside = $('.workspace > aside'), stage = $('#stage'), header = $('body > header');
   if (!aside || !stage || !header || document.body.classList.contains('ui-workspace')) return;
   document.body.classList.add('ui-workspace');
@@ -42,7 +44,7 @@ function setupWorkspace() {
     if (label === 'ツールヘッド' && $('#toolheadLink')) {
       const original = $('#toolheadLink');
       link.href = original.href;
-      new MutationObserver(() => { link.href = original.href; }).observe(original, { attributes: true, attributeFilter: ['href'] });
+      new WorkspaceMutationObserver(() => { link.href = original.href; }).observe(original, { attributes: true, attributeFilter: ['href'] });
     }
     if (label === 'プリンター') link.id = 'workspacePrinterLink';
     navigation.append(link);
@@ -59,7 +61,7 @@ function setupWorkspace() {
     if (link.href !== href) link.href = href;
   }
   rememberPrinter();
-  new MutationObserver(rememberPrinter).observe(document.body, {subtree: true, attributes: true, attributeFilter: ['data-machine-id','data-variant']});
+  new WorkspaceMutationObserver(rememberPrinter).observe(document.body, {subtree: true, attributes: true, attributeFilter: ['data-machine-id','data-variant']});
   for (const link of header.querySelectorAll('.mode-link')) link.hidden = true;
   for (const link of aside.querySelectorAll(':scope > .workbench-link')) {
     if (/^(Monolithガントリーを組む|ツールヘッド単体を組む|ホットエンド・押出機のCADを確認)/.test(link.textContent)) link.hidden = true;
@@ -82,9 +84,9 @@ function setupWorkspace() {
     for (const button of actions.querySelectorAll(':scope > button:not(#openRender):not(#openShare)')) menu.append(button);
   };
   moveActions();
-  new MutationObserver(moveActions).observe(actions, { childList: true });
+  new WorkspaceMutationObserver(moveActions).observe(actions, { childList: true });
   menu.addEventListener('click', event => { if (event.target.closest('button')) more.open = false; });
-  document.addEventListener('click', event => { if (!more.contains(event.target)) more.open = false; });
+  workspaceListen(document,'click', event => { if (!more.contains(event.target)) more.open = false; });
   more.addEventListener('keydown', event => { if (event.key === 'Escape') { more.open = false; more.querySelector('summary').focus(); } });
   if ($('#openRender')) $('#openRender').textContent = '画像を書き出す';
   setupWorkspaceSharing({navigation, actions, menu});
@@ -238,12 +240,12 @@ function setupWorkspace() {
     if (search && panel.lastElementChild !== search) panel.append(search);
   }
   organize();
-  new MutationObserver(prioritizeConfiguration).observe(groups.get('configuration').panel, {childList:true});
+  new WorkspaceMutationObserver(prioritizeConfiguration).observe(groups.get('configuration').panel, {childList:true});
   // New machine-head and G-code panels arrive after asynchronous CAD loading.
-  new MutationObserver(organize).observe(aside, { childList: true });
-  new MutationObserver(organize).observe(heading, { childList: true });
+  new WorkspaceMutationObserver(organize).observe(aside, { childList: true });
+  new WorkspaceMutationObserver(organize).observe(heading, { childList: true });
   // Hidden dynamic sections should expose their category when installed.
-  const visibility = new MutationObserver(() => {
+  const visibility = new WorkspaceMutationObserver(() => {
     for (const { tab, panel } of groups.values()) tab.hidden = ![...panel.children].some(element => !element.hidden);
   });
   visibility.observe(content, { subtree: true, attributes: true, attributeFilter: ['hidden'] });
@@ -279,7 +281,7 @@ function setupWorkspace() {
     }
   }
   organizeAdvancedFields();
-  new MutationObserver(records => {
+  new WorkspaceMutationObserver(records => {
     if (records.some(record => [...record.addedNodes].some(element => element.nodeType === 1 && element.matches('select, label, fieldset, #configurationControls')))) organizeAdvancedFields();
   }).observe(aside, { childList: true, subtree: true });
 
@@ -313,7 +315,7 @@ function setupWorkspace() {
   guide.querySelector('.dialog-body').append(credits);
   help.onclick = () => guide.showModal();
   guide.querySelector('.close').onclick = () => guide.close();
-  document.addEventListener('keydown', event => {
+  workspaceListen(document,'keydown', event => {
     if (event.ctrlKey || event.altKey || event.metaKey || event.shiftKey || event.target.closest('input, select, textarea, [contenteditable="true"]') || $('dialog[open]')) return;
     const id = { '1': 'iso', '2': 'front', '3': $('#top') ? 'top' : 'side', '4': 'focusHead' }[event.key];
     if (id && $(`#${id}`) && !$(`#${id}`).disabled) { event.preventDefault(); $(`#${id}`).click(); }
@@ -329,8 +331,7 @@ function setupWorkspace() {
     }
   };
   nameDialogs();
-  new MutationObserver(nameDialogs).observe(document.body, { childList: true });
+  new WorkspaceMutationObserver(nameDialogs).observe(document.body, { childList: true });
+  setupDisplayPreferences();
+  setupLanguage();
 }
-
-setupWorkspace();
-setupLanguage();

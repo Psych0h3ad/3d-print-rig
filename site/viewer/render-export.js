@@ -1,9 +1,10 @@
-import * as THREE from 'three';
+import {workspaceTask,onWorkspaceDispose} from './workspace-lifecycle.mjs';
+import * as DefaultTHREE from 'three';
 import {cameraAngles,createExportCamera} from './export-camera.mjs?v=trident-clearance-35';
 
 // Render the existing scene to an offscreen target: no server, no screenshot
 // of HTML controls, and no change to the interactive canvas resolution.
-export function setupRenderExport({renderer,scene,camera,controls,beforeRender=()=>{},afterRender=()=>{},name='VORON'}){
+export function setupRenderExport({renderer,scene,camera,controls,beforeRender=()=>{},afterRender=()=>{},name='VORON',three:THREE=DefaultTHREE}){
  const $=s=>document.querySelector(s);
  const dialog=document.createElement('dialog');dialog.id='renderDialog';
  dialog.innerHTML=`<div class="dialog-head"><h2>画像を書き出す</h2><button class="close" aria-label="閉じる"></button></div><div class="dialog-body"><p>現在の視点・構成・配色・照明をPNGに保存します。</p><div class="render-options"><div><label for="renderResolution">長辺の解像度</label><select id="renderResolution"><option value="1920">1920 px</option><option value="2560" selected>2560 px</option><option value="3840">3840 px</option></select></div><div><label for="renderBackground">背景</label><select id="renderBackground"><option value="scene">現在の背景</option><option value="transparent">透明</option></select></div></div><p class="foot">画面と同じ縦横比。ブラウザーの3D描画を高解像度化します。光線追跡・実写レンダリングは含みません。</p><button id="saveRender" class="primary">PNGを保存</button><p id="renderStatus" aria-live="polite"></p></div>`;
@@ -12,10 +13,11 @@ export function setupRenderExport({renderer,scene,camera,controls,beforeRender=(
  const preview=document.createElement('img');preview.id='renderPreview';preview.alt='書き出し画像のプレビュー';preview.style.cssText='display:none;max-width:100%;max-height:45vh;margin:12px auto;background:repeating-conic-gradient(#dae0dc 0% 25%,#f3f5f3 0% 50%) 0 0/16px 16px';
  const download=document.createElement('a');download.id='downloadRender';download.textContent='PNGをダウンロード';download.hidden=true;dialog.querySelector('.dialog-body').append(preview,download);
  let imageUrl;document.body.append(dialog);dialog.querySelector('.close').onclick=()=>dialog.close();
+ onWorkspaceDispose(()=>{if(imageUrl)URL.revokeObjectURL(imageUrl)});
  const getTarget=()=>controls?.target?.clone()||camera.position.clone().add(camera.getWorldDirection(new THREE.Vector3()));
  $('#renderView').onchange=()=>{$('#renderAngles').hidden=$('#renderView').value!=='custom'};
  $('#openRender').disabled=false;$('#openRender').onclick=()=>{const angles=cameraAngles(camera,getTarget());$('#renderAzimuth').value=angles.azimuth.toFixed(2);$('#renderElevation').value=angles.elevation.toFixed(2);$('#renderRoll').value=0;$('#renderDistance').value=angles.distanceMm.toFixed(2);dialog.showModal()};
- const exportImage=async()=>{
+ const exportImage=async()=>{return workspaceTask(async()=>{
   const button=$('#saveRender'),status=$('#renderStatus');button.disabled=true;status.textContent='描画中…';
   let target;const oldTarget=renderer.getRenderTarget(),background=scene.background,oldAlpha=renderer.getClearAlpha(),oldColor=renderer.getClearColor(new THREE.Color());
   try{
@@ -41,7 +43,7 @@ export function setupRenderExport({renderer,scene,camera,controls,beforeRender=(
    status.textContent=`PNG作成済み · ${width} × ${height} px`;status.dataset.width=width;status.dataset.height=height;status.dataset.bytes=blob.size;status.dataset.background=$('#renderBackground').value;
   }catch(e){status.textContent='書出エラー: '+e.message;status.dataset.error=e.message;console.error(e)}
   finally{renderer.setRenderTarget(oldTarget);scene.background=background;renderer.setClearColor(oldColor,oldAlpha);target?.dispose();button.disabled=false;afterRender()}
- };
+ });};
  $('#saveRender').onclick=exportImage;
  return {exportImage};
 }

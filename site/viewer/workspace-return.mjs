@@ -1,4 +1,4 @@
-import {machinePage} from './machines.js?v=controls-icons-1';
+import {machinePage} from './machines.js?v=workspace-belts-1';
 
 export const workspaceReturnKey='3d-print-rig-workspace-return';
 export function workspaceKindFor(page){

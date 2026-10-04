@@ -1,5 +1,6 @@
+import {workspaceTask} from './workspace-lifecycle.mjs';
 import {builderGroups,builderManifest,builderURL} from './toolhead-builder.mjs?v=sphinx-report-45';
-import {monolithCompanion} from './monolith-head-model.mjs?v=trident-belts-1';
+import {monolithCompanion} from './monolith-head-model.mjs?v=workspace-belts-1';
 
 export function setupHeadBuilder(catalog,{getVariant,getMetadata,getExtras,pins,selectVariant,isBusy}){
  const $=id=>document.getElementById(id);
@@ -15,7 +16,7 @@ export function setupHeadBuilder(catalog,{getVariant,getMetadata,getExtras,pins,
   $('buildShow').disabled=!groups.length||isBusy();
  }
  for(const id of ['buildExtruder','buildHotend'])$(id).onchange=results;
- $('buildShow').onclick=async()=>{if(isBusy())return;const id=$('buildResult').value;if(!id)return;$('buildShow').disabled=true;try{await selectVariant(id)}finally{results()}};
+ $('buildShow').onclick=async()=>{return workspaceTask(async()=>{if(isBusy())return;const id=$('buildResult').value;if(!id)return;$('buildShow').disabled=true;try{await selectVariant(id)}finally{results()}});};
  let manifest;
  function update(){
   const v=getVariant();if(!v)return;
@@ -39,10 +40,10 @@ export function setupHeadBuilder(catalog,{getVariant,getMetadata,getExtras,pins,
   if(!manifest||isBusy())return;
   const data={...manifest,...getExtras()},url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=manifest.configuration+'-parts.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
  };
- $('buildShare').onclick=async()=>{
+ $('buildShare').onclick=async()=>{return workspaceTask(async()=>{
   if(!getVariant()||isBusy())return;
   const input=$('buildShareURL');input.value=builderURL(location.href,getVariant(),getExtras().head_builder);input.hidden=false;input.select();
   try{await navigator.clipboard.writeText(input.value);$('buildShareStatus').textContent='構成と配色のリンクをコピーしました。'}catch{$('buildShareStatus').textContent='表示されたリンクをコピーしてください。'}
- };
+ });};
  results();update();return {update};
 }

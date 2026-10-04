@@ -1,31 +1,34 @@
-import {loadMonolithData} from './monolith-machine.js?v=trident-belts-1';
-import {setupChangerBank} from './changer-bank.js?v=trident-clearance-35';
-import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=trident-belts-1';
-import {headPrinterLink} from './head-navigation.mjs?v=trident-belts-1';
-import {headBuilderDimensions} from './configuration-model.js?v=sphinx-report-45';
-let machineRegistry,toolBank,bankRig;
-import {appearanceRole} from './appearance-role.mjs?v=trident-clearance-35';
+import {setupSceneDisplay} from './display-preferences.mjs';
+import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
+import {loadMonolithData} from './monolith-machine.js?v=workspace-belts-1';
+import {setupChangerBank} from './changer-bank.js?v=workspace-belts-1';
+import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=workspace-belts-1';
+import {headPrinterLink} from './head-navigation.mjs?v=workspace-belts-1';
+import {headBuilderDimensions} from './configuration-model.js?v=workspace-belts-1';
+import {appearanceRole} from './appearance-role.mjs?v=workspace-belts-1';
 import * as THREE from 'three';
-import {OrbitControls} from './vendor/OrbitControls.js?v=touch-37';
+import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=trident-clearance-35';
-import {setupConfigurations} from './configurations.js?v=trident-belts-1';
-import {setupPublicInfo} from './public-info.js?v=controls-icons-1';
-import {setupRenderExport} from './render-export.js?v=controls-icons-1';
-import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=trident-clearance-35';
-import {probeCheck,probeMetrics,probeGuide,headInspectionState,headBodyCollisionNotes} from './probe-checks.js?v=sphinx-report-45';
-import {renderProductLinks} from './product-links.js?v=controls-icons-1';
-import {setupHeadBuilder} from './builder-ui.mjs?v=trident-belts-1';
-import {validateBuilderExtras} from './toolhead-builder.mjs?v=sphinx-report-45';
+import {loadModel} from './model-loader.js?v=workspace-belts-1';
+import {setupConfigurations} from './configurations.js?v=workspace-belts-1';
+import {setupPublicInfo} from './public-info.js?v=workspace-belts-1';
+import {setupRenderExport} from './render-export.js?v=workspace-belts-1';
+import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=workspace-belts-1';
+import {probeCheck,probeMetrics,probeGuide,headInspectionState,headBodyCollisionNotes} from './probe-checks.js?v=workspace-belts-1';
+import {renderProductLinks} from './product-links.js?v=workspace-belts-1';
+import {setupHeadBuilder} from './builder-ui.mjs?v=workspace-belts-1';
+import {validateBuilderExtras} from './toolhead-builder.mjs?v=workspace-belts-1';
+export async function mount(scope){
+let machineRegistry,toolBank,bankRig;
 
-const $=s=>document.querySelector(s),stage=$('#stage'),scene=new THREE.Scene();
+const $=s=>document.querySelector(s),stage=$('#stage'),scene=scope.scene(new THREE.Scene());
 scene.background=new THREE.Color('#edf1f5');
-const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
+const renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true,alpha:true}));
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.75));
 renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;
 stage.append(renderer.domElement);
 const camera=new THREE.PerspectiveCamera(38,1,.0005,5);
-const controls=new OrbitControls(camera,renderer.domElement);
+const controls=scope.resource(new OrbitControls(camera,renderer.domElement));
 controls.enableDamping=true;controls.minDistance=.025;controls.maxDistance=1.5;
 camera.position.set(.2,.14,.25);
 scene.add(new THREE.HemisphereLight('#ffffff','#687781',2.3));
@@ -43,10 +46,10 @@ try{const saved=JSON.parse(localStorage.getItem('3d-print-rig-head-palette')||'n
 const paletteQuery=new URLSearchParams(location.search);
 for(const role of ['base','accent']){const value='#'+paletteQuery.get(role);if(validColor(value))colors[role]=value}
 const extras=()=>({head_builder:{palette:{...colors},see_inside:$('#seeInside').checked,dock:$('#headShowDock').checked,rail:$('#headShowRail').checked}});
-async function restoreExtras(data){
+async function restoreExtras(data){return workspaceTask(async()=>{
  if(!data.head_builder)return;validateBuilderExtras(data);const b=data.head_builder;colors={...b.palette};
  $('#seeInside').checked=b.see_inside;$('#headShowDock').checked=b.dock;$('#headShowRail').checked=b.rail;saveColors();changerDisplay();visibleBounds();fit();
-}
+});}
 
 function appearance(){
  let base=0,accent=0,protectedChanges=0;
@@ -81,7 +84,7 @@ for(const role of ['base','accent']){
 $('#headPreset').onchange=e=>{const p=presets[e.target.value];if(p){colors={base:p[0],accent:p[1]};saveColors()}};
 $('#seeInside').onchange=appearance;
 
-async function asset(id){
+async function asset(id){return workspaceTask(async()=>{
  if(cached.has(id))return cached.get(id);
  const spec=catalog.base_assets[id]||catalog.assets[id];if(!spec)throw Error('未登録のヘッドCAD: '+id);
  const promise=Promise.all([fetch('../'+spec.meta,{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('CAD部品表を取得できません');return r.json()}),loadModel(loader,'../'+spec.glb)]).then(([meta,model])=>{
@@ -97,7 +100,7 @@ async function asset(id){
  const result={root,meshes,meta};promise.loaded=result;return result;
  }).catch(e=>{cached.delete(id);throw e});
  cached.set(id,promise);return promise;
-}
+});}
 const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);
 function clearGuide(group){for(const child of [...group.children]){child.geometry?.dispose();for(const material of (Array.isArray(child.material)?child.material:[child.material]))material?.dispose();group.remove(child)}}
 function inspection(variant){
@@ -149,7 +152,7 @@ function fit(next=view){
 }
 for(const id of ['iso','front','back','side','bottom'])$('#'+id).onclick=()=>{if(ready)fit(id)};
 $('#fit').onclick=()=>{if(ready){visibleBounds();fit()}};
-async function install(variant){
+async function install(variant){return workspaceTask(async()=>{
  const plan=headPlan(variant),ids=[plan.base,...plan.modules.map(m=>m.id),...(variant.inspection_module?[variant.inspection_module]:[])];
  $('#loading').hidden=false;$('#loading').textContent='選択したヘッドを読み込み中…';
  try{
@@ -168,7 +171,7 @@ async function install(variant){
   Object.assign(document.body.dataset,{variant:variant.id,headParts:String(count),headAssets:JSON.stringify(ids),assetStatus:'ready'});
   const link=headPrinterLink(variant,machineRegistry,location.href);$('#printerLink').href=link.url;$('#printerLink').hidden=false;$('#printerLink').textContent=link.registered?'この構成をプリンターで見る':'マシン一覧（取付CAD未登録）';
  }finally{$('#loading').hidden=true}
-}
+});}
 function changerDisplay(){
  if(!currentVariant)return;const v=currentVariant,plan=headPlan(v),state={probe:$('#headProbeTravel').value,explode:$('#headExplode').value};
  $('#headProbeValue').textContent=Number(state.probe).toFixed(1)+' mm';
@@ -183,7 +186,7 @@ function changerDisplay(){
 for(const id of ['headProbeTravel','headExplode'])$('#'+id).oninput=changerDisplay;
 for(const id of ['headShowDock','headShowRail'])$('#'+id).onchange=()=>{changerDisplay();if(ready){visibleBounds();fit()}};
 function resize(){const width=Math.max(stage.clientWidth,1),height=Math.max(stage.clientHeight,1);renderer.setSize(width,height);camera.aspect=width/height;camera.updateProjectionMatrix();if(ready)fit();dirty=true}
-new ResizeObserver(resize).observe(stage);resize();
+new WorkspaceResizeObserver(resize).observe(stage);resize();
 controls.addEventListener('start',()=>{view='custom'});controls.addEventListener('change',()=>{dirty=true});
 renderer.setAnimationLoop(()=>{controls.update();if(dirty){renderer.render(scene,camera);dirty=false}});
 setupRenderExport({renderer,scene,camera,controls,name:'3D_Print_Rig_Toolhead',afterRender:()=>{dirty=true}});
@@ -195,10 +198,13 @@ try{
  catalog={...catalog,dimensions:headBuilderDimensions,machine_id:'toolhead',import_machine_ids:['siboor_trident_350']};
  const bankCatalog={...catalog,bank_data:headData.bank,variants:catalog.variants.map(v=>{const p=headPlan(v);return {...v,machine_head:{base:p.base,translation:p.translation,translation_delta_mm:[0,0,0],hidden:[...p.hidden],modules:p.modules.filter(m=>m.role!=='dock')}}})};
  bankRig=createMachineHeads(bench,bankCatalog,{render:()=>{dirty=true}});bankRig.setVisible(false);
- const bankAdapter={get active(){return bankRig.active},async install(v,state){await bankRig.install(bankCatalog.variants.find(p=>p.id===v.id),state)},async setBank(state){await bankRig.setBank(state)}};
+ const bankAdapter={get active(){return bankRig.active},async install(v,state){return workspaceTask(async()=>{await bankRig.install(bankCatalog.variants.find(p=>p.id===v.id),state)});},async setBank(state){return workspaceTask(async()=>{await bankRig.setBank(state)});}};
  toolBank=setupChangerBank({before:$('#assemblyScope'),catalog:bankCatalog,rig:bankAdapter,data:headData.bank,extras:{presentation:'toolhead',getExtras:extras,applyExtras:restoreExtras,validateExtras:validateBuilderExtras,onSettled:()=>{builder?.update();if(ready){appearance();visibleBounds();fit()}}}});
  const controller=await setupConfigurations(catalog,install,toolBank.options);await toolBank.bind(controller);
  if(!ready)throw Error('ヘッドのCADを表示できませんでした');
  let pins=[];try{const r=await fetch('../PUBLIC_CATALOG.json?v=crossant-36');if(r.ok)pins=(await r.json()).sources||[]}catch{}
  builder=setupHeadBuilder(catalog,{getVariant:()=>currentVariant,getMetadata:()=>new Map([...cached].filter(([,p])=>p.loaded).map(([id,p])=>[id,p.loaded.meta])),getExtras:()=>toolBank.options.getExtras(),pins,selectVariant:id=>controller.selectVariant(id),isBusy:()=>controller.busy});
 }catch(e){$('#loading').hidden=false;$('#loading').textContent=e.message;document.body.dataset.assetStatus='error';console.error(e)}
+
+setupSceneDisplay(scene,renderer,camera,scope,THREE);
+}

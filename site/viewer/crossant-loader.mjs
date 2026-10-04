@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+import * as THREE from './vendor-r180/three.module.js';
 import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
 import {createCrossantAdapter} from './crossant-adapter.mjs';
 import {createChainPreview} from './crossant-chain_preview.mjs';
