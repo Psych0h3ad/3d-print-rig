@@ -8,3 +8,5 @@ Changes: selected Leadscrew-Z/Sherpa-Mini configuration, normalized axes, source
 duplicate-variant separation, left-Z-nut placement correction, rendering conversion and motion bindings.
 This preparation is not an upstream release or manufacturer certification.
 Three.js and its bundled example utilities: MIT, see preview/vendor/THREE_LICENSE.txt.
+
+DXF covers: Backpack left/right/rear profiles from the same pinned revision, with drawing OCS respected and circular holes/arcs/cutouts retained. Side covers use 2 mm preview spacers for gantry clearance; the rear cover fits the source filter mounting gap on 5 mm spacers. Eight filter holes align to the native M4 axes; rear port registration and source Grommet C placement are corrected. Transparent side panels, opaque rear, selectable display thickness (2/3/4 mm; DXF does not prescribe thickness). Additional panel screws/nuts and physical thread engagement are not certified; front/top DXFs are absent. These changes retain CC BY-NC-SA 4.0.

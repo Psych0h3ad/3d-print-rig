@@ -6917,6 +6917,22 @@
     "yavoth.contact": {
       "source_revision": "cdd45f1c5fc2d150a3d0",
       "text": "장착부 교차 있음 · 비교용"
+    },
+    "crossant.covers.label": {
+      "source_revision": "869b28b5f23216b0308d",
+      "text": "DXF 커버"
+    },
+    "crossant.covers.thickness": {
+      "source_revision": "7080796f02f7a0494191",
+      "text": "커버 두께 (미리 보기)"
+    },
+    "crossant.covers.loading": {
+      "source_revision": "3a310647ea91b4787f27",
+      "text": "Crossant 커버 불러오는 중…"
+    },
+    "crossant.covers.note": {
+      "source_revision": "9197f4ce3ea2a6b28002",
+      "text": "DXF에서 만든 Backpack 커버: 좌우는 투명하고 후면은 불투명합니다. 현재 CAD에 맞춘 스페이서, 필터 구멍 및 케이블 그로밋 위치 보정이 포함됩니다. 두께는 미리 보기 설정입니다. 전면 및 상단 DXF는 없습니다."
     }
   }
 }

@@ -8646,6 +8646,26 @@
       "kind": "message",
       "ja": "取付部に交差あり · 比較用",
       "en": "Attachment intersection · comparison only"
+    },
+    "crossant.covers.label": {
+      "kind": "message",
+      "ja": "DXFカバー",
+      "en": "DXF covers"
+    },
+    "crossant.covers.thickness": {
+      "kind": "message",
+      "ja": "カバーの板厚（表示用）",
+      "en": "Cover thickness (preview)"
+    },
+    "crossant.covers.loading": {
+      "kind": "message",
+      "ja": "Crossantのカバーを読み込み中…",
+      "en": "Loading Crossant covers…"
+    },
+    "crossant.covers.note": {
+      "kind": "message",
+      "ja": "BackpackのDXF由来カバー。左右は透明、背面は不透明。スペーサーと現CADに合わせたフィルター穴・配線グロメットの位置補正を含みます。板厚は表示設定です。前面・天面のDXFは未収録です。",
+      "en": "Backpack covers derived from DXF: transparent sides and an opaque rear. Includes spacers and filter-hole/cable-grommet corrections for the current CAD. Thickness is a preview setting. Front and top DXFs are absent."
     }
   }
 }

@@ -6917,6 +6917,22 @@
     "yavoth.contact": {
       "source_revision": "cdd45f1c5fc2d150a3d0",
       "text": "Пересечение в креплении · только для сравнения"
+    },
+    "crossant.covers.label": {
+      "source_revision": "869b28b5f23216b0308d",
+      "text": "Кожухи из DXF"
+    },
+    "crossant.covers.thickness": {
+      "source_revision": "7080796f02f7a0494191",
+      "text": "Толщина кожухов (предпросмотр)"
+    },
+    "crossant.covers.loading": {
+      "source_revision": "3a310647ea91b4787f27",
+      "text": "Загрузка кожухов Crossant…"
+    },
+    "crossant.covers.note": {
+      "source_revision": "9197f4ce3ea2a6b28002",
+      "text": "Кожухи Backpack из DXF: прозрачные боковые и непрозрачный задний. Добавлены проставки и корректировки отверстий фильтра и кабельного уплотнителя под текущую CAD-модель. Толщина задаётся для предпросмотра. Переднего и верхнего DXF нет."
     }
   }
 }

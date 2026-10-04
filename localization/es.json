@@ -6917,6 +6917,22 @@
     "yavoth.contact": {
       "source_revision": "cdd45f1c5fc2d150a3d0",
       "text": "Intersección en el montaje · solo para comparar"
+    },
+    "crossant.covers.label": {
+      "source_revision": "869b28b5f23216b0308d",
+      "text": "Cubiertas DXF"
+    },
+    "crossant.covers.thickness": {
+      "source_revision": "7080796f02f7a0494191",
+      "text": "Grosor de las cubiertas (vista previa)"
+    },
+    "crossant.covers.loading": {
+      "source_revision": "3a310647ea91b4787f27",
+      "text": "Cargando las cubiertas de Crossant…"
+    },
+    "crossant.covers.note": {
+      "source_revision": "9197f4ce3ea2a6b28002",
+      "text": "Cubiertas Backpack derivadas de DXF: laterales transparentes y parte trasera opaca. Incluyen separadores y ajustes de los orificios del filtro y del pasacables para el CAD actual. El grosor es un ajuste de vista previa. No hay DXF frontal ni superior."
     }
   }
 }

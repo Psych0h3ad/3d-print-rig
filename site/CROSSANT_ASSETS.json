@@ -1,5 +1,5 @@
 {
-  "version": "crossant-v1",
+  "version": "crossant-dxf-covers-v2",
   "machine_id": "crossant_235_v06_leadscrew",
   "base_url": "https://psych0h3ad.github.io/3d-print-rig-crossant-models/",
   "local_directory": "crossant-assets",
@@ -99,6 +99,16 @@
       "path": "machines/crossant_235_v06_leadscrew/web_gltf_qa.json",
       "bytes": 1773,
       "sha256": "38c56ed3ea6a34996454d7eb1b3cb6bdfa989c82d686f76cda383f5ced3445f3"
+    },
+    "covers.glb": {
+      "path": "machines/crossant_235_v06_leadscrew/covers.glb",
+      "bytes": 1207252,
+      "sha256": "829d1a699ece2824c111dc7a6818d1d3dd75d3f4b31e3033a3b16387ed2f51ff"
+    },
+    "covers_manifest.json": {
+      "path": "machines/crossant_235_v06_leadscrew/covers_manifest.json",
+      "bytes": 15515,
+      "sha256": "df968469be7b6ec07dfafc8b628409749b4c61ce232a15516cbdbdbf9721f79e"
     }
   },
   "source": {

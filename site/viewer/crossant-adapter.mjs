@@ -7,12 +7,16 @@ export function poseDelta(profile,pose){
 }
 export function partTranslation(row,delta){return delta.map((x,i)=>row.motion_axes.includes('XYZ'[i])?x*(row.motion_signs?.['XYZ'[i]]??1):0);}
 export function driveTravel(delta){return {x_pair_mm:[delta[0],delta[0]],y_pair_mm:[delta[1],delta[1]],z_leadscrew_turns:[-delta[2]/8,-delta[2]/8,-delta[2]/8],motor_direction_status:'mechanical paired-axis travel; firmware motor polarity uncalibrated'};}
-export function createCrossantAdapter(root,manifest,profile,bindings,{chainPreview=null}={}){
+export function createCrossantAdapter(root,manifest,profile,bindings,{chainPreview=null,placementCorrections={}}={}){
  if(profile.machine_id!=='crossant_235_v06_leadscrew'||manifest.machine_id!==profile.machine_id||bindings.machine_id!==profile.machine_id)throw Error('Crossant profile mismatch');
  const records=new Map(manifest.parts.map(p=>[p.key,p])),nodes=new Map();
  if(records.size!==manifest.parts.length)throw Error('Duplicate Crossant key');
  root.traverse(o=>{const k=o.userData?.part_key;if(records.has(k)&&o.parent?.userData?.part_key!==k){if(nodes.has(k))throw Error('Duplicate node '+k);nodes.set(k,o);}});
  if(nodes.size!==records.size)throw Error('Crossant node coverage mismatch');
+ for(const [k,offset]of Object.entries(placementCorrections)){
+  if(!nodes.has(k)||records.get(k).motion!=='fixed'||!Array.isArray(offset)||offset.length!==3||offset.some(v=>!Number.isFinite(v)))throw Error('Crossant profile mismatch');
+  const d=cadToGlb(offset);nodes.get(k).position.set(...d);
+ }
  const origins=new Map([...nodes].map(([k,o])=>[k,o.position.clone()]));
  const belts=createNativeBelts(nodes,bindings);
  if(chainPreview)for(const [k,o] of nodes)if(records.get(k).motion==='chain_reference')o.visible=false;

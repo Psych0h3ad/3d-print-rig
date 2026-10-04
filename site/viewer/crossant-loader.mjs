@@ -1,7 +1,8 @@
 import * as THREE from './vendor-r180/three.module.js';
 import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
-import {createCrossantAdapter} from './crossant-adapter.mjs';
+import {createCrossantAdapter} from './crossant-adapter.mjs?v=53736f33178907042969';
 import {createChainPreview} from './crossant-chain_preview.mjs';
+import {createCrossantCovers} from './crossant-covers.mjs?v=d512e7e5c32543e4232b';
 const digest=async b=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',b)),v=>v.toString(16).padStart(2,'0')).join('');
 export function disposeCrossant(root){
  if(!root)return;const geometry=new Set(),materials=new Set();
@@ -32,8 +33,12 @@ export async function loadCrossant(index,{signal,onProgress=()=>{}}={}){
   // glTF materials are shared; give each part its own appearance ownership.
   root.traverse(n=>{if(n.isMesh)n.material=Array.isArray(n.material)?n.material.map(m=>m.clone()):n.material.clone()});
   const nodes=new Map();root.traverse(n=>{if(n.userData?.part_key)nodes.set(n.userData.part_key,n)});
-  const chain=createChainPreview(root,nodes,chains,THREE),adapter=createCrossantAdapter(root,manifest,profile,belts,{chainPreview:chain});
+  onProgress('Crossantのカバーを読み込み中…');
+  const [coverManifest,coverBytes]=await Promise.all([checked('covers_manifest.json').then(b=>JSON.parse(new TextDecoder().decode(b))),checked('covers.glb')]);
+  const coverRoot=(await new GLTFLoader().parseAsync(coverBytes.buffer,base.href)).scene;
+  root.add(coverRoot);const covers=createCrossantCovers(coverRoot,coverManifest);
+  const chain=createChainPreview(root,nodes,chains,THREE),adapter=createCrossantAdapter(root,manifest,profile,belts,{chainPreview:chain,placementCorrections:coverManifest.placement_corrections});
   adapter.setPose(Object.fromEntries(['x','y','z'].map((a,i)=>[a,profile.display_reference_xyz_mm[i]])));
-  return {root,manifest,profile,adapter,chain,contacts,index};
+  return {root,manifest,profile,adapter,chain,contacts,index,covers};
  }catch(e){disposeCrossant(root);throw e}finally{for(const url of urls.values())URL.revokeObjectURL(url)}
 }
