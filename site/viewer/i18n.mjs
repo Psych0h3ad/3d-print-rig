@@ -69,13 +69,16 @@ export function setupLanguage({document=globalThis.document,window=globalThis.wi
  const observe=()=>observer.observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:[...attributes,'href']});
  function refresh(){dirty.clear();observer?.disconnect();visit(document.body);document.documentElement.lang=language;select.value=language;observe()}
  // Motion updates only translate their changed labels, not the whole workbench.
- function schedule(records){
+ function collect(records){
   for(const record of records){
    if(record.type==='childList')for(const added of record.addedNodes)dirty.add(added.nodeType===1?added:added.parentElement);
    else dirty.add(record.target.nodeType===1?record.target:record.target.parentElement);
   }
+ }
+ function schedule(records){
+  collect(records);
   if(pending||!dirty.size)return;pending=true;
-  queueMicrotask(()=>{pending=false;observer.disconnect();const roots=[...dirty].filter(e=>e?.isConnected);dirty.clear();for(const e of roots)if(!roots.some(parent=>parent!==e&&parent.contains(e)))visit(e);observe()});
+  queueMicrotask(()=>{pending=false;collect(observer.takeRecords());observer.disconnect();const roots=[...dirty].filter(e=>e?.isConnected);dirty.clear();for(const e of roots)if(!roots.some(parent=>parent!==e&&parent.contains(e)))visit(e);observe()});
  }
  observer=new window.MutationObserver(schedule);
  function setLanguage(value){

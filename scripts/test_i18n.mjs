@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {readFile,readdir} from 'node:fs/promises';
-import {translate,chooseLanguage,languageURL} from '../site/viewer/i18n.mjs';
+import {translate,chooseLanguage,languageURL,setupLanguage} from '../site/viewer/i18n.mjs';
 import {messages,templates} from '../site/viewer/messages-en.mjs';
 import {probeCheck} from '../site/viewer/probe-checks.js';
 import {builderURL} from '../site/viewer/toolhead-builder.mjs';
@@ -11,6 +11,42 @@ assert.equal(chooseLanguage({query:'invalid',stored:'en',languages:['ja']}),'en'
 assert.equal(chooseLanguage({languages:['ja-JP','en-US']}),'ja');
 assert.equal(chooseLanguage({languages:['de-DE','ja']}),'en');
 assert.equal(chooseLanguage(), 'en');
+// A configuration promise can add more labels between the observer callback
+// and its queued translation. Disconnecting must not discard those records.
+class LanguageElement extends EventTarget {
+ constructor(tag='DIV'){super();this.nodeType=1;this.tagName=tag;this.childNodes=[];this.attrs=new Map();this.isConnected=true;}
+ append(...nodes){for(const node of nodes){node.parentElement=this;this.childNodes.push(node)}}
+ prepend(node){node.parentElement=this;this.childNodes.unshift(node)}
+ setAttribute(key,value){this.attrs.set(key,value)}
+ getAttribute(key){return this.attrs.get(key)??null}
+ hasAttribute(key){return this.attrs.has(key)}
+ closest(){return this.attrs.get('data-i18n')==='off'?this:null}
+ contains(node){return this.childNodes.includes(node)||this.childNodes.some(child=>child.nodeType===1&&child.contains(node))}
+}
+let languageObserver;
+class LanguageObserver {
+ constructor(callback){this.callback=callback;this.records=[];languageObserver=this}
+ observe(){}
+ disconnect(){this.records=[]}
+ takeRecords(){return this.records.splice(0)}
+}
+const languageBody=new LanguageElement('BODY');
+const languageDocument={body:languageBody,documentElement:{},getElementById:()=>null,createElement:tag=>new LanguageElement(tag.toUpperCase()),querySelector:()=>null};
+const languageWindow={location:{href:'https://example.test/viewer/toolheads.html?lang=en'},navigator:{languages:['en']},localStorage:{getItem:()=>null,setItem:()=>{}},history:{replaceState(){}},MutationObserver:LanguageObserver,CustomEvent:class{},addEventListener(){},dispatchEvent(){}};
+const languageController=setupLanguage({document:languageDocument,window:languageWindow});
+const firstLabel={nodeType:3,nodeValue:'構成'},lateLabel={nodeType:3,nodeValue:'ホットエンド'};
+const firstContainer=new LanguageElement(),lateContainer=new LanguageElement();
+languageBody.append(firstContainer,lateContainer);
+firstContainer.append(firstLabel);
+languageObserver.callback([{type:'childList',addedNodes:[firstLabel]}]);
+lateContainer.append(lateLabel);
+languageObserver.records.push({type:'childList',addedNodes:[lateLabel]});
+await Promise.resolve();
+assert.equal(firstLabel.nodeValue,'Configuration');
+assert.equal(lateLabel.nodeValue,'Hotend','Labels added during asynchronous configuration switching are also translated');
+languageController.setLanguage('ja');
+assert.equal(firstLabel.nodeValue,'構成');assert.equal(lateLabel.nodeValue,'ホットエンド');
+languageController.disconnect();
 assert.equal(translate('構成','ja'),'構成');
 assert.equal(translate('構成'),'Configuration');
 assert.equal(translate(' \n構成\t '),' \nConfiguration\t ');
