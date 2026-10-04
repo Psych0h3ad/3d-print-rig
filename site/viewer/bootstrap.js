@@ -4,6 +4,6 @@ import {setupMachineNavigation} from './machines.js?v=ec75087acca3b5355dfc';
 import {machineAssetsAvailable,showMissingAssets} from './asset-availability.js?v=workspace-belts-2';
 export async function mount(scope){
  setupMachineNavigation('siboor_trident_350');
- if(await machineAssetsAvailable('siboor_trident_350'))await (await import('./app.js?v=9e6b29e73fa08c443e20')).mount(scope);
+ if(await machineAssetsAvailable('siboor_trident_350'))await (await import('./app.js?v=491cd0e6039860a928fb')).mount(scope);
  else await showMissingAssets();
 }

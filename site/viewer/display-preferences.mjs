@@ -20,6 +20,27 @@ export function saveDisplay(value, storage) {
 export function applyDisplay(dark = readDisplay().dark) {
   document.documentElement.dataset.theme = dark ? 'dark' : 'light';
   document.body.classList.toggle('night', dark);
+  for (const button of document.querySelectorAll('.theme-toggle')) button.setAttribute('aria-pressed', String(dark));
+}
+export function setupHeaderThemeToggle(container, label = 'ダークモード') {
+  if (!container || document.documentElement.dataset.embedded === 'true') return;
+  const button = document.createElement('button');
+  button.type = 'button'; button.id = 'themeToggle'; button.className = 'theme-toggle';
+  button.setAttribute('aria-label', label); button.title = label;
+  const icon = document.createElement('span'); icon.className = 'theme-toggle-icon'; icon.setAttribute('aria-hidden', 'true'); button.append(icon);
+  container.insertBefore(button, container.querySelector('.workspace-more'));
+  button.addEventListener('click', () => {
+    const dark = document.documentElement.dataset.theme !== 'dark';
+    saveDisplay({dark}); applyDisplay(dark);
+    const input = document.querySelector('#night');
+    if (input) {
+      input.checked = dark;
+      input.dispatchEvent(new Event('input', {bubbles: true}));
+      input.dispatchEvent(new Event('change', {bubbles: true}));
+    }
+  });
+  applyDisplay();
+  return button;
 }
 export function rememberDisplayControl() {
   const dark = document.querySelector('#night').checked;

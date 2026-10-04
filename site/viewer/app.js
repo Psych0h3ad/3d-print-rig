@@ -11,7 +11,7 @@ import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=workspace-belts-1';
 import {loadFrameMods,withFrameMods} from './frame-mods.js?v=workspace-belts-1';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
-import {setupLighting} from './lighting.js?v=44a45f57324a1d1496ba';
+import {setupLighting} from './lighting.js?v=16f9cd983dca18754bc2';
 import {setupFlexible} from './flexible.js?v=extra-machines-55';
 import {createBedChain} from './bed-chain.mjs?v=workspace-belts-1';
 import {createPrinterBelts,printerBeltOwner} from './printer-gantry.mjs?v=workspace-belts-2';

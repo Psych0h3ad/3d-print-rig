@@ -1,5 +1,5 @@
 import {sceneLightingState} from './scene-lighting-state.mjs?v=extra-machines-55';
-import {readDisplay} from './display-preferences.mjs?v=ff4032c3ebd2a3c5539b';
+import {readDisplay} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {workspaceTask,workspaceListen} from './workspace-lifecycle.mjs';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';

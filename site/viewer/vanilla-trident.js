@@ -8,7 +8,7 @@ import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v
 import {appearanceRole} from './appearance-role.mjs?v=workspace-belts-1';
 import * as THREE from 'three';
 import {loadFrameMods,withFrameMods} from './frame-mods.js?v=workspace-belts-1';
-import {setupLighting} from './lighting.js?v=44a45f57324a1d1496ba';
+import {setupLighting} from './lighting.js?v=16f9cd983dca18754bc2';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';

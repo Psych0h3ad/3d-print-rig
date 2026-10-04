@@ -1,3 +1,4 @@
+@import url('./theme-toggle.css?v=4e62a8462e0b9ed5c665');
 /* Shared workbench shell; CAD scene and rendering colors remain controller-owned. */
 body.ui-workspace {
   --paper: #fff;
@@ -443,3 +444,13 @@ html[data-theme=dark] #stage { background:#101820; }
 :root[data-embedded=true] .ui-workspace #stage { width:100%!important; height:100dvh!important; min-height:0!important; position:relative!important; }
 :root[data-embedded=true] .ui-workspace .view-tools { max-width:calc(100% - 24px); flex-wrap:wrap; }
 :root[data-embedded=true] #workspaceNavigationStatus { max-width:calc(100% - 24px); }
+
+/* Keep the theme switch directly available even on narrow phones. */
+.ui-workspace .header-actions > #themeToggle{width:44px;min-width:44px;padding:0}
+@media(max-width:480px){
+ .ui-workspace > header{column-gap:6px;padding-left:8px;padding-right:8px}
+ .ui-workspace .header-actions > #openShare,.ui-workspace .workspace-more > summary{font-size:0;width:44px;min-width:44px;padding:0}
+ .ui-workspace #openShare::before{content:'';width:20px;height:20px;background:currentColor;-webkit-mask:url('./icons/share.svg') center/contain no-repeat;mask:url('./icons/share.svg') center/contain no-repeat}
+ .ui-workspace .workspace-more > summary::after{display:none}
+ .ui-workspace .workspace-more > summary::before{content:'';width:3px;height:3px;border-radius:50%;background:currentColor;box-shadow:-6px 0 currentColor,6px 0 currentColor}
+}

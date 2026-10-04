@@ -1,6 +1,6 @@
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
-import {setupSceneDisplay} from './display-preferences.mjs?v=ff4032c3ebd2a3c5539b';
+import {setupSceneDisplay} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {workspaceFrame,WorkspaceResizeObserver,workspaceTask,workspaceListen} from './workspace-lifecycle.mjs';
 import {createV0Installations,v0Slots,validateV0Mods,v0TophatMaxAngle} from './v0-installations.mjs?v=extra-machines-55';
 import {v0ModCategories,componentCategory} from './v0-mod-library.mjs?v=fysetc-fans-56';

@@ -1,7 +1,7 @@
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=extra-machines-55';
-import {setupSceneDisplay} from './display-preferences.mjs?v=ff4032c3ebd2a3c5539b';
+import {setupSceneDisplay} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';

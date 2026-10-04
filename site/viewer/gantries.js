@@ -1,7 +1,7 @@
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=extra-machines-55';
-import {setupSceneDisplay} from './display-preferences.mjs?v=ff4032c3ebd2a3c5539b';
+import {setupSceneDisplay} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {loadMonolithData} from './monolith-machine.js?v=00b77b5268c44e283d7a';
 import {machineChoices,machinePage} from './machines.js?v=ec75087acca3b5355dfc';

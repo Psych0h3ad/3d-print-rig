@@ -64,10 +64,10 @@ export const contentRevision=text=>createHash('sha256').update(text.replace(/\r\
 const digest=contentRevision;
 async function cacheReferences(outputs){
  const viewer=fileURLToPath(new URL('../site/viewer/',import.meta.url)),files=new Map();
- async function scan(directory){for(const item of await fs.readdir(directory,{withFileTypes:true})){const path=resolve(directory,item.name);if(item.isDirectory())await scan(path);else if(['.mjs','.js','.html'].includes(extname(path)))files.set(path,await fs.readFile(path,'utf8'))}}
- await scan(viewer);
+ async function scan(directory){for(const item of await fs.readdir(directory,{withFileTypes:true})){const path=resolve(directory,item.name);if(item.isDirectory())await scan(path);else if(['.mjs','.js','.html','.css'].includes(extname(path)))files.set(path,await fs.readFile(path,'utf8'))}}
+ await scan(viewer);await scan(resolve(viewer,'../fun'));
  const changed=new Map(Object.entries(outputs).map(([name,text])=>[fileURLToPath(new URL(name,root)),text]));
-  for(const name of ['embed-contract.mjs','workspace-share.mjs','display-start.js','display-preferences.mjs','languages.mjs','translation-engine.mjs','i18n.mjs','messages-en.mjs','machines.js','head-navigation.mjs','machine-head-model.mjs','configuration-model.js','configurations.js','probe-checks.js','toolheads.js','crossant-covers.mjs','crossant-adapter.mjs','crossant-loader.mjs','crossant-state.mjs','crossant.js','micron-tube-routes.mjs','micron-flexible.mjs','micron-adapter.mjs','micron.js','workspace-return.mjs','workspace-layout.mjs','workspace-choices.mjs','workspace-ui.mjs','workspace-router.mjs','workspace.css']){
+  for(const name of ['theme-toggle.css','../fun/fun.css','embed-contract.mjs','workspace-share.mjs','display-start.js','display-preferences.mjs','languages.mjs','translation-engine.mjs','i18n.mjs','messages-en.mjs','machines.js','head-navigation.mjs','machine-head-model.mjs','configuration-model.js','configurations.js','probe-checks.js','toolheads.js','crossant-covers.mjs','crossant-adapter.mjs','crossant-loader.mjs','crossant-state.mjs','crossant.js','micron-tube-routes.mjs','micron-flexible.mjs','micron-adapter.mjs','micron.js','workspace-return.mjs','workspace-layout.mjs','workspace-choices.mjs','workspace-ui.mjs','workspace-router.mjs','workspace.css']){
    const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));
   }
  // Content revisions propagate from dictionaries to their importers and page

@@ -1,6 +1,6 @@
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
-import {setupDisplayPreferences} from './display-preferences.mjs?v=ff4032c3ebd2a3c5539b';
+import {setupDisplayPreferences,setupHeaderThemeToggle} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {WorkspaceMutationObserver,workspaceListen} from './workspace-lifecycle.mjs';
 // Shared presentation layer. Existing controls, IDs and CAD controllers stay intact.
 import {setupLanguage,originalText,messageSource} from './i18n.mjs?v=ef22372314882ff9732a';
@@ -85,7 +85,7 @@ export function setupWorkspace() {
   }
   menu.append(node('hr'));
   const moveActions = () => {
-    for (const button of actions.querySelectorAll(':scope > button:not(#openRender):not(#openShare)')) menu.append(button);
+    for (const button of actions.querySelectorAll(':scope > button:not(#openRender):not(#openShare):not(#themeToggle)')) menu.append(button);
   };
   moveActions();
   new WorkspaceMutationObserver(moveActions).observe(actions, { childList: true });
@@ -337,5 +337,6 @@ export function setupWorkspace() {
   nameDialogs();
   new WorkspaceMutationObserver(nameDialogs).observe(document.body, { childList: true });
   setupDisplayPreferences();
+  setupHeaderThemeToggle(actions);
   setupLanguage();
 }

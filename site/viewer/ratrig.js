@@ -1,7 +1,7 @@
 import {sceneLightingState} from './scene-lighting-state.mjs?v=extra-machines-55';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
-import {rememberDisplayControl} from './display-preferences.mjs?v=ff4032c3ebd2a3c5539b';
+import {rememberDisplayControl} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=extra-machines-55';
 import {workspaceFrame,WorkspaceResizeObserver,workspaceTask,workspaceListen} from './workspace-lifecycle.mjs';
 import * as THREE from './vendor-r180/three.module.js';
