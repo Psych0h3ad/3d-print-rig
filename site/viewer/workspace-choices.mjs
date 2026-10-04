@@ -1,4 +1,4 @@
-import {translate} from './i18n.mjs?v=workflow-1';
+import {translate} from './i18n.mjs?v=workflow-2';
 
 const normalize = value => String(value).normalize('NFKC').toLocaleLowerCase().replace(/\s+/gu, ' ').trim();
 export function matchingChoices(rows, query) {

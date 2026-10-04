@@ -1,9 +1,9 @@
 // Shared presentation layer. Existing controls, IDs and CAD controllers stay intact.
-import {setupLanguage,originalText} from './i18n.mjs?v=workflow-1';
+import {setupLanguage,originalText} from './i18n.mjs?v=workflow-2';
 import {printerWorkspaceURL,workspaceReturnKey,workspaceKindFor} from './workspace-return.mjs?v=machine-scope-52';
 import {setupWorkspaceSharing} from './workspace-share.mjs?v=sharing-1';
 import {lockInspectorHorizontalScroll} from './workspace-scroll.mjs?v=inspector-width-1';
-import {setupChoiceSearch} from './workspace-choices.mjs?v=workflow-1';
+import {setupChoiceSearch} from './workspace-choices.mjs?v=workflow-2';
 import {setupMobileLayout} from './workspace-layout.mjs?v=workflow-1';
 const $ = selector => document.querySelector(selector);
 const node = (tag, className, text) => {

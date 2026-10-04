@@ -4,7 +4,6 @@ import {e3ngMessages} from './e3ng-messages-en.mjs?v=machine-scope-52';
 import {yudxMessages} from './yudx-messages-en.mjs?v=yudx-49';
 import {rapidoXMessages} from './rapido-x-messages-en.mjs?v=rapido-x-51';
 export const messages = {
- "FilamATrix 専用のヘッド部品": "Dedicated FilamATrix head parts",
  "部品を探す": "Find a component",
  "画面の使い方": "Workspace layout",
  "3Dを広く": "3D view",

@@ -1,4 +1,4 @@
-import {messages,templates} from './messages-en.mjs?v=workflow-1';
+import {messages,templates} from './messages-en.mjs?v=workflow-2';
 
 const normalize=text=>text.trim().replace(/\s+/gu,' ');
 const escape=text=>text.replace(/[.*+?^${}()|[\]\\]/gu,'\\$&');
@@ -9,14 +9,18 @@ const patterns=Object.entries(templates).map(([source,target])=>{
 }).sort((a,b)=>b.specificity-a.specificity);
 const fragments=Object.keys(messages).filter(s=>s.length>1&&/[\u3040-\u30ff\u3400-\u9fff]/u.test(s)).sort((a,b)=>b.length-a.length);
 const fragmentPattern=new RegExp(fragments.map(escape).join('|'),'gu');
+const namedFragmentPattern=new RegExp(fragments.filter(s=>/[a-z]/iu.test(s)).map(escape).join('|'),'gu');
 
 export function translate(text,language='en',depth=0){
  if(language!=='en'||typeof text!=='string'||depth>5||!/[\u3040-\u30ff\u3400-\u9fff]/u.test(text))return text;
  const source=normalize(text);let result=Object.hasOwn(messages,source)?messages[source]:undefined;
  if(result===undefined){
-  for(const p of patterns){const m=source.match(p.test);if(!m)continue;const values=Object.fromEntries(p.keys.map((key,i)=>[key,translate(m[i+1],'en',depth+1)]));result=p.target.replace(/\{(\d+)\}/gu,(_,key)=>values[key]);break}
+  // Keep known component names together before generic count/list templates
+  // split their punctuation or consume the Japanese suffix of their names.
+  const input=source.replace(namedFragmentPattern,key=>messages[key]);
+  for(const p of patterns){const m=input.match(p.test);if(!m)continue;const values=Object.fromEntries(p.keys.map((key,i)=>[key,translate(m[i+1],'en',depth+1)]));result=p.target.replace(/\{(\d+)\}/gu,(_,key)=>values[key]);break}
+  if(result===undefined)result=input.replace(fragmentPattern,key=>messages[key]);
  }
- if(result===undefined)result=source.replace(fragmentPattern,key=>messages[key]);
  return text.slice(0,text.indexOf(text.trim()))+result+text.slice(text.indexOf(text.trim())+text.trim().length);
 }
 
