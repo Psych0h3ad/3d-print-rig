@@ -2,7 +2,7 @@ export function setupMobileLayout({workspace, heading, make}) {
   const controls = make('div', 'mobile-layout');
   controls.setAttribute('role', 'group');
   controls.setAttribute('aria-label', '画面の使い方');
-  const choices = [['preview', '3Dを広く'], ['split', '分割'], ['settings', '設定を広く']];
+  const choices = [['preview', '3Dビュー'], ['split', '構成画面'], ['settings', '設定画面']];
   const buttons = [];
   const setLayout = layout => {
     workspace.dataset.layout = layout;

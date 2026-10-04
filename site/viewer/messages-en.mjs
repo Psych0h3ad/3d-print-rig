@@ -1,14 +1,14 @@
-import {v0Messages,v0Templates} from './v0-messages-en.mjs?v=controls-icons-1';
-import {ratRigMessages,ratRigTemplates} from './ratrig-messages-en.mjs?v=controls-icons-1';
-import {e3ngMessages} from './e3ng-messages-en.mjs?v=controls-icons-1';
-import {yudxMessages} from './yudx-messages-en.mjs?v=controls-icons-1';
-import {rapidoXMessages} from './rapido-x-messages-en.mjs?v=controls-icons-1';
+import {v0Messages,v0Templates} from './v0-messages-en.mjs?v=config-labels-1';
+import {ratRigMessages,ratRigTemplates} from './ratrig-messages-en.mjs?v=config-labels-1';
+import {e3ngMessages} from './e3ng-messages-en.mjs?v=config-labels-1';
+import {yudxMessages} from './yudx-messages-en.mjs?v=config-labels-1';
+import {rapidoXMessages} from './rapido-x-messages-en.mjs?v=config-labels-1';
 export const messages = {
  "部品を探す": "Find a component",
  "画面の使い方": "Workspace layout",
- "3Dを広く": "3D view",
- "分割": "Split",
- "設定を広く": "Settings",
+ "3Dビュー": "3D view",
+ "構成画面": "Config",
+ "設定画面": "Settings",
  "候補を選ぶと構成に反映します。関連部品が変わる場合は候補に表示します。": "Choose an option to update the configuration. Any companion changes are shown with the option.",
  "項目": "Category",
  "部品名・仕様で検索": "Search by component or specification",
@@ -18,7 +18,7 @@ export const messages = {
  "選択中": "Selected",
  "候補が見つかりません。項目を変えるか、短い部品名で検索してください。": "No options found. Try another category or a shorter component name.",
  "検索をクリア": "Clear search",
- "構成・外観・動作は設定タブから。スマートフォンでは「3Dを広く」「分割」「設定を広く」で画面を切り替えられます。": "Use the settings tabs for configuration, appearance and motion. On mobile, switch between 3D view, Split and Settings.",
+ "構成・外観・動作は設定タブから。スマートフォンでは「3Dビュー」でモデルを広く、「構成画面」で3Dと設定を同時に、「設定画面」で設定を広く表示できます。": "Use the settings tabs for configuration, appearance and motion. On mobile, 3D view expands the model, Config shows the model and settings together, and Settings expands the settings.",
 
  "A4T・Sphinx · ネイティブ組立データ": "A4T / Sphinx · native assembly data",
  "左右の4010ブロワーと2510冷却ファン、Sherpa Miniの実体CAD、ホットエンド、固定ネジを組み付け済み。ファンの排気口は下向き、吸気口は外向き。": "Installed native dual 4010 blowers, a 2510 axial fan, the Sherpa Mini assembly, hotend and mounting screws. Blower outlets face down; intakes face outward.",

@@ -1,10 +1,10 @@
 // Shared presentation layer. Existing controls, IDs and CAD controllers stay intact.
-import {setupLanguage,originalText} from './i18n.mjs?v=controls-icons-1';
+import {setupLanguage,originalText} from './i18n.mjs?v=config-labels-1';
 import {printerWorkspaceURL,workspaceReturnKey,workspaceKindFor} from './workspace-return.mjs?v=controls-icons-1';
 import {setupWorkspaceSharing} from './workspace-share.mjs?v=controls-icons-1';
 import {lockInspectorHorizontalScroll} from './workspace-scroll.mjs?v=inspector-width-1';
-import {setupChoiceSearch} from './workspace-choices.mjs?v=controls-icons-1';
-import {setupMobileLayout} from './workspace-layout.mjs?v=workflow-1';
+import {setupChoiceSearch} from './workspace-choices.mjs?v=config-labels-1';
+import {setupMobileLayout} from './workspace-layout.mjs?v=config-labels-1';
 const $ = selector => document.querySelector(selector);
 const node = (tag, className, text) => {
   const element = document.createElement(tag);
@@ -304,7 +304,7 @@ function setupWorkspace() {
   stage.append(help);
   const guide = node('dialog', 'guide-dialog');
   guide.setAttribute('aria-labelledby', 'guideTitle');
-  guide.innerHTML = '<div class="dialog-head"><h2 id="guideTitle">3Dビューの操作</h2><button class="close" aria-label="閉じる"></button></div><div class="dialog-body"><dl class="guide-keys"><dt>回転</dt><dd>左ドラッグ / 1本指でドラッグ</dd><dt>移動</dt><dd>右ドラッグ / 2本指でドラッグ</dd><dt>拡大・縮小</dt><dd>ホイール / ピンチ</dd><dt>視点を切り替える</dt><dd><kbd>1</kbd> 斜め　<kbd>2</kbd> 正面　<kbd>3</kbd> 上面・側面</dd><dt>ヘッドを拡大</dt><dd><kbd>4</kbd> 対応するマシンで使用</dd></dl><p class="foot">構成・外観・動作は設定タブから。スマートフォンでは「3Dを広く」「分割」「設定を広く」で画面を切り替えられます。</p></div>';
+  guide.innerHTML = '<div class="dialog-head"><h2 id="guideTitle">3Dビューの操作</h2><button class="close" aria-label="閉じる"></button></div><div class="dialog-body"><dl class="guide-keys"><dt>回転</dt><dd>左ドラッグ / 1本指でドラッグ</dd><dt>移動</dt><dd>右ドラッグ / 2本指でドラッグ</dd><dt>拡大・縮小</dt><dd>ホイール / ピンチ</dd><dt>視点を切り替える</dt><dd><kbd>1</kbd> 斜め　<kbd>2</kbd> 正面　<kbd>3</kbd> 上面・側面</dd><dt>ヘッドを拡大</dt><dd><kbd>4</kbd> 対応するマシンで使用</dd></dl><p class="foot">構成・外観・動作は設定タブから。スマートフォンでは「3Dビュー」でモデルを広く、「構成画面」で3Dと設定を同時に、「設定画面」で設定を広く表示できます。</p></div>';
   document.body.append(guide);
   const credits = node('a', 'cad-credits', 'CAD credits');
   credits.href = './art/credits.html';
