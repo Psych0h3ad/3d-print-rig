@@ -1,3 +1,5 @@
+import {ensureWorkspaceEntry} from './workspace-entry.mjs';
+ensureWorkspaceEntry(import.meta.url);
 import {rememberDisplayControl} from './display-preferences.mjs';
 import {workspaceFrame,WorkspaceResizeObserver,workspaceTask,workspaceListen} from './workspace-lifecycle.mjs';
 import * as THREE from './vendor-r180/three.module.js';
@@ -5,9 +7,9 @@ import {OrbitControls} from './vendor-r180/OrbitControls.js?v=workspace-belts-1'
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
 import {loadCrossant,disposeCrossant} from './crossant-loader.mjs';
 import {crossantSchema,crossantGroups,validateCrossantState} from './crossant-state.mjs';
-import {setupMachineNavigation} from './machines.js?v=workspace-belts-1';
-import {setupRenderExport} from './render-export.js?v=workspace-belts-1';
-import {setupPublicInfo} from './public-info.js?v=workspace-belts-1';
+import {setupMachineNavigation} from './machines.js?v=workspace-belts-2';
+import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
+import {setupPublicInfo} from './public-info.js?v=workspace-belts-2';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 export async function mount(scope){
 const $=id=>document.getElementById(id),stage=$('stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));

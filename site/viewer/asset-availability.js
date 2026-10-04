@@ -1,5 +1,5 @@
 import {workspaceTask} from './workspace-lifecycle.mjs';
-import {setupPublicInfo} from './public-info.js?v=workspace-belts-1';
+import {setupPublicInfo} from './public-info.js?v=workspace-belts-2';
 import {modelURL} from './model-loader.js?v=workspace-belts-1';
 
 const files={

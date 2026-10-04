@@ -1,6 +1,6 @@
 import {replaceWorkspaceURL} from './workspace-navigation.mjs';
 import {WorkspaceMutationObserver,workspaceListen,onWorkspaceDispose} from './workspace-lifecycle.mjs';
-import {messages,templates} from './messages-en.mjs?v=workspace-belts-1';
+import {messages,templates} from './messages-en.mjs?v=workspace-belts-2';
 
 const normalize=text=>text.trim().replace(/\s+/gu,' ');
 const escape=text=>text.replace(/[.*+?^${}()|[\]\\]/gu,'\\$&');

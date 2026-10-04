@@ -1,5 +1,5 @@
 import {headPlan} from './head-assembly.js?v=trident-clearance-35';
-import {withPrinterGantry} from './printer-gantry.mjs?v=workspace-belts-1';
+import {withPrinterGantry} from './printer-gantry.mjs?v=workspace-belts-2';
 
 import {translatedProbeFit} from './probe-checks.js?v=sphinx-report-45';
 

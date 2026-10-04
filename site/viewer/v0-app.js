@@ -1,3 +1,5 @@
+import {ensureWorkspaceEntry} from './workspace-entry.mjs';
+ensureWorkspaceEntry(import.meta.url);
 import {setupSceneDisplay} from './display-preferences.mjs';
 import {workspaceFrame,WorkspaceResizeObserver,workspaceTask,workspaceListen} from './workspace-lifecycle.mjs';
 import {createV0Installations,v0Slots,validateV0Mods,v0TophatMaxAngle} from './v0-installations.mjs?v=workspace-belts-1';
@@ -9,11 +11,11 @@ import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=workspace-belts-1';
 import {poseDelta,createV0Adapter} from './v0_adapter.mjs?v=workspace-belts-1';
-import {setupMachineNavigation} from './machines.js?v=workspace-belts-1';
+import {setupMachineNavigation} from './machines.js?v=workspace-belts-2';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
-import {setupRenderExport} from './render-export.js?v=workspace-belts-1';
-import {setupPublicInfo} from './public-info.js?v=workspace-belts-1';
-import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=workspace-belts-1';
+import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
+import {setupPublicInfo} from './public-info.js?v=workspace-belts-2';
+import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=workspace-belts-2';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=workspace-belts-1';
 export async function mount(scope){
 const $=s=>document.querySelector(s),ids=['voron_v02r1_120','voron_v02_120'];

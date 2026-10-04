@@ -4,6 +4,26 @@ import vm from 'node:vm';
 import {WorkspaceScope,activateScope,workspaceTask,workspaceFrame,workspaceListen,WorkspaceMutationObserver} from '../site/viewer/workspace-lifecycle.mjs';
 import {workspacePages,workspaceTarget,bindWorkspaceNavigation,navigateWorkspace,setWorkspaceLeaving,replaceWorkspaceURL} from '../site/viewer/workspace-navigation.mjs';
 import {displayKey,readDisplay,saveDisplay} from '../site/viewer/display-preferences.mjs';
+import {ensureWorkspaceEntry} from '../site/viewer/workspace-entry.mjs';
+
+// A cached pre-router HTML page must recover instead of displaying unmounted
+// controls. Updated HTML and indirect imports must never reload the document.
+function entryFixture({routed=false,scripts=['./bootstrap.js?v=old']}={}) {
+ const replacements=[];
+ const document={documentElement:{dataset:{}},querySelector:()=>routed?{}:null,querySelectorAll:()=>scripts.map(src=>({src}))};
+ const location={href:'https://example.test/3d-print-rig/viewer/?machine=siboor_trident_350&configuration=r2&lang=en#stage',replace:url=>replacements.push(url)};
+ return {document,location,replacements};
+}
+const entryModule='https://example.test/3d-print-rig/viewer/bootstrap.js?v=current';
+const legacy=entryFixture();assert(ensureWorkspaceEntry(entryModule,legacy));
+const recovered=new URL(legacy.replacements[0]);
+assert.equal(recovered.searchParams.get('_viewer'),'20261004');
+assert.equal(recovered.searchParams.get('configuration'),'r2');assert.equal(recovered.searchParams.get('lang'),'en');assert.equal(recovered.hash,'#stage');
+assert.equal(ensureWorkspaceEntry(entryModule,legacy),false);assert.equal(legacy.replacements.length,1);
+for(const fixture of [entryFixture({routed:true}),entryFixture({scripts:['./app.js?v=old']}),entryFixture({scripts:['https://other.test/3d-print-rig/viewer/bootstrap.js']})]) {
+ assert.equal(ensureWorkspaceEntry(entryModule,fixture),false);assert.equal(fixture.replacements.length,0);
+}
+const retry=entryFixture();retry.location.href=recovered.href;assert.equal(ensureWorkspaceEntry(entryModule,retry),false,'A stale intermediary cannot create a reload loop');
 
 const base='https://example.test/3d-print-rig/viewer/trident.html?machine=voron_trident_300&lang=en';
 for(const page of workspacePages) assert(workspaceTarget('./'+page,base),page);

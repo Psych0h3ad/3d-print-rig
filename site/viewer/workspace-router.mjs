@@ -1,8 +1,8 @@
 import {WorkspaceScope, activateScope} from './workspace-lifecycle.mjs';
 import {bindWorkspaceNavigation, setWorkspaceLeaving, workspaceTarget, workspaceURL, replaceWorkspaceURL} from './workspace-navigation.mjs';
-import {setupWorkspace} from './workspace-ui.mjs?v=workspace-belts-1';
+import {setupWorkspace} from './workspace-ui.mjs?v=workspace-belts-2';
 import {applyDisplay} from './display-preferences.mjs';
-import {machinePage} from './machines.js?v=workspace-belts-1';
+import {machinePage} from './machines.js?v=workspace-belts-2';
 
 const controllers = new Set(['bootstrap.js','v24-bootstrap.js','app.js','v24-app.js','vanilla-trident.js','v24-reference.js','v0-app.js','micron.js','kit-reference.js','ratrig.js','crossant.js','toolheads.js','gantries.js','components.js','toolchangers.js','e3ng.js']);
 document.documentElement.dataset.workspaceSession = crypto.randomUUID();

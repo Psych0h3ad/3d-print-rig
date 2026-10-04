@@ -1,3 +1,5 @@
+import {ensureWorkspaceEntry} from './workspace-entry.mjs';
+ensureWorkspaceEntry(import.meta.url);
 import {setupSceneDisplay} from './display-preferences.mjs';
 import {workspaceFrame,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=workspace-belts-1';
@@ -6,10 +8,10 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=workspace-belts-1';
-import {setupMachineNavigation} from './machines.js?v=workspace-belts-1';
+import {setupMachineNavigation} from './machines.js?v=workspace-belts-2';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
-import {setupRenderExport} from './render-export.js?v=workspace-belts-1';
-import {setupPublicInfo} from './public-info.js?v=workspace-belts-1';
+import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
+import {setupPublicInfo} from './public-info.js?v=workspace-belts-2';
 export async function mount(scope){
 const $=s=>document.querySelector(s),id='fysetc_v24_250_pro',stage=$('#stage');
 setupMachineNavigation(id);setupPublicInfo({includeDownloads:false});

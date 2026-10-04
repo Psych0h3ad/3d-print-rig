@@ -1,3 +1,5 @@
+import {ensureWorkspaceEntry} from './workspace-entry.mjs';
+ensureWorkspaceEntry(import.meta.url);
 import {replaceWorkspaceURL} from './workspace-navigation.mjs';
 import {setupSceneDisplay} from './display-preferences.mjs';
 import {WorkspaceResizeObserver,workspaceTask} from './workspace-lifecycle.mjs';
@@ -5,8 +7,8 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=workspace-belts-1';
-import {setupPublicInfo} from './public-info.js?v=workspace-belts-1';
-import {setupRenderExport} from './render-export.js?v=workspace-belts-1';
+import {setupPublicInfo} from './public-info.js?v=workspace-belts-2';
+import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {partNodes,selectParts,visibleBounds} from './component-selection.js?v=workspace-belts-1';
 import {renderProductLinks} from './product-links.js?v=workspace-belts-1';
 import {componentCategories,componentCategory,componentViews,resolveComponentView,componentViewKeys} from './v0-mod-library.mjs?v=workspace-belts-1';

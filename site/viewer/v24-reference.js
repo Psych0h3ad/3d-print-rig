@@ -1,3 +1,5 @@
+import {ensureWorkspaceEntry} from './workspace-entry.mjs';
+ensureWorkspaceEntry(import.meta.url);
 import {setupSceneDisplay} from './display-preferences.mjs';
 import {workspaceFrame,WorkspaceResizeObserver,workspaceTask} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=workspace-belts-1';
@@ -7,12 +9,12 @@ import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=workspace-belts-1';
 import {createV24Adapter} from './v24_matrix_adapter.mjs?v=workspace-belts-1';
-import {setupMachineNavigation} from './machines.js?v=workspace-belts-1';
+import {setupMachineNavigation} from './machines.js?v=workspace-belts-2';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
-import {setupRenderExport} from './render-export.js?v=workspace-belts-1';
-import {setupPublicInfo} from './public-info.js?v=workspace-belts-1';
-import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=workspace-belts-1';
-import {setupV24MachineHeads} from './machine-heads.js?v=workspace-belts-1';
+import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
+import {setupPublicInfo} from './public-info.js?v=workspace-belts-2';
+import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=workspace-belts-2';
+import {setupV24MachineHeads} from './machine-heads.js?v=workspace-belts-2';
 export async function mount(scope){
 const $=s=>document.querySelector(s),ids=[250,300,350].flatMap(size=>['printed','ldo_cnc'].map(structure=>`voron_v24_${size}_${structure}`));
 const wanted=new URLSearchParams(location.search).get('machine'),id=ids.includes(wanted)?wanted:ids[0];

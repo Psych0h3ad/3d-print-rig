@@ -1,19 +1,19 @@
 import {workspaceTask} from './workspace-lifecycle.mjs';
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=workspace-belts-1';
-import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=workspace-belts-1';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=workspace-belts-2';
+import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=workspace-belts-2';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=workspace-belts-1';
 import {appearanceRole} from './appearance-role.mjs?v=workspace-belts-1';
 import {partKey} from './head-assembly.js?v=workspace-belts-1';
-import {v24HeadCatalog} from './machine-head-model.mjs?v=workspace-belts-1';
-import {setupConfigurations} from './configurations.js?v=workspace-belts-1';
+import {v24HeadCatalog} from './machine-head-model.mjs?v=workspace-belts-2';
+import {setupConfigurations} from './configurations.js?v=workspace-belts-2';
 
-import {stockProbeFit} from './probe-mounts.js?v=workspace-belts-1';
+import {stockProbeFit} from './probe-mounts.js?v=workspace-belts-2';
 
 import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs?v=workspace-belts-1';
 import {bankPlan} from './changer-bank-model.mjs?v=workspace-belts-1';
-import {setupChangerBank} from './changer-bank.js?v=workspace-belts-1';
+import {setupChangerBank} from './changer-bank.js?v=workspace-belts-2';
 import {contentSHA256,acceptedMountValidation} from './mount-validation.mjs?v=workspace-belts-1';
 import {acceptedHeadValidation}from './head-validation.mjs?v=workspace-belts-1';
 
