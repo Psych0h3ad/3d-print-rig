@@ -1,7 +1,7 @@
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=extra-machines-55';
-import {setupSceneDisplay} from './display-preferences.mjs';
+import {setupSceneDisplay} from './display-preferences.mjs?v=ff4032c3ebd2a3c5539b';
 import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect} from './responsive-camera.mjs?v=workspace-belts-1';
 import {appearanceRole} from './appearance-role.mjs?v=workspace-belts-1';

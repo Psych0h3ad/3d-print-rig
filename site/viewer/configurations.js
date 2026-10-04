@@ -17,6 +17,7 @@ export async function setupConfigurations(catalog,install,{presentation='printer
  const query=new URLSearchParams(location.search);
  const requestedId=query.get('configuration'),matched=configurationById(catalog,requestedId);
  const gantryRequest=monolithConfigurationRequest(catalog,location.search),requested=matched||gantryRequest||catalog.variants[0];
+ if(query.get('embed')==='1' && requestedId && !matched && !gantryRequest){document.documentElement.dataset.embedError='configuration';throw Error('指定された構成は現在利用できません。元のサイトで確認してください。');}
  const initial=query.get('mount')?resolveVariant(catalog,{...requested,mount:query.get('mount')},'mount'):requested;
  if(!initial)throw Error('構成のCADが登録されていません。');
  function menus(v){

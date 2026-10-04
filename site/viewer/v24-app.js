@@ -5,7 +5,7 @@ import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v
 import {appearanceRole} from './appearance-role.mjs?v=workspace-belts-1';
 import * as THREE from 'three';
 import {loadFrameMods,withFrameMods} from './frame-mods.js?v=workspace-belts-1';
-import {setupLighting} from './lighting.js?v=extra-machines-55';
+import {setupLighting} from './lighting.js?v=44a45f57324a1d1496ba';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=workspace-belts-2';
 import {setupAccessories} from './accessories.js?v=workspace-belts-2';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
@@ -17,7 +17,7 @@ import {createV24Adapter} from './v24_adapter.mjs?v=extra-machines-55';
 import {setupMachineNavigation} from './machines.js?v=ec75087acca3b5355dfc';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {setupPublicInfo} from './public-info.js?v=workspace-belts-2';
-import {setupV24MachineHeads} from './machine-heads.js?v=734477ed3a00960919e7';
+import {setupV24MachineHeads} from './machine-heads.js?v=d32b5ebce56daefb09df';
 export async function mount(scope){
 setupMachineNavigation('siboor_v24_350');
 setupPublicInfo();

@@ -6933,6 +6933,58 @@
     "crossant.covers.note": {
       "source_revision": "9197f4ce3ea2a6b28002",
       "text": "Кожухи Backpack из DXF: прозрачные боковые и непрозрачный задний. Добавлены проставки и корректировки отверстий фильтра и кабельного уплотнителя под текущую CAD-модель. Толщина задаётся для предпросмотра. Переднего и верхнего DXF нет."
+    },
+    "ui.just_for_fun": {
+      "source_revision": "b8439fe662543da058a3",
+      "text": "Just for fun"
+    },
+    "embed.heading": {
+      "source_revision": "5e69083899a061572c34",
+      "text": "Встроить на сайт · Экспериментальная функция"
+    },
+    "embed.policy": {
+      "source_revision": "6981f718488057137053",
+      "text": "Экспериментальная функция. Обновления применяются автоматически с сохранением выбранной машины и конфигурации. Внешний вид и управление могут меняться в ходе разработки."
+    },
+    "embed.theme": {
+      "source_revision": "6702e1406cadfddc02ad",
+      "text": "Тема вставки"
+    },
+    "embed.light": {
+      "source_revision": "23e98a5f3253a6c43dca",
+      "text": "Светлая"
+    },
+    "embed.dark": {
+      "source_revision": "31a20704b6024d396c3b",
+      "text": "Тёмная"
+    },
+    "embed.auto": {
+      "source_revision": "7b0bb0c9c4ffb9426e36",
+      "text": "Как на устройстве"
+    },
+    "embed.code": {
+      "source_revision": "6c6d46875e52b217a456",
+      "text": "Код вставки"
+    },
+    "embed.copy": {
+      "source_revision": "29336ee20893d5419dba",
+      "text": "Копировать код"
+    },
+    "embed.preview": {
+      "source_revision": "6aa704a0d49b56ad56c4",
+      "text": "Предпросмотр вставки"
+    },
+    "embed.copied": {
+      "source_revision": "480073949efa8166a046",
+      "text": "Код скопирован."
+    },
+    "embed.copy_fallback": {
+      "source_revision": "28d91b15c309e8778d55",
+      "text": "Код выделен. Скопируйте его и вставьте на сайт."
+    },
+    "embed.unavailable": {
+      "source_revision": "b8f8e39c88e712f412dc",
+      "text": "Запрошенная конфигурация недоступна. Проверьте исходный сайт."
     }
   }
 }

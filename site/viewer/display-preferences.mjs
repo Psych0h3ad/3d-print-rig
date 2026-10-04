@@ -3,6 +3,7 @@ import {workspaceListen} from './workspace-lifecycle.mjs';
 export const displayKey = '3d-print-rig-display-v1';
 let memory;
 export function readDisplay(storage) {
+  if(globalThis.location){const query=new URLSearchParams(location.search);if(query.get('embed')==='1')return {dark:query.get('embed_theme')==='dark'};}
   try {
     storage ||= globalThis.localStorage;
     const value = JSON.parse(storage.getItem(displayKey) || 'null');
@@ -12,6 +13,7 @@ export function readDisplay(storage) {
 }
 export function saveDisplay(value, storage) {
   memory = {...readDisplay(storage), ...value};
+  if(globalThis.location && new URLSearchParams(location.search).get('embed')==='1')return memory;
   try { (storage || globalThis.localStorage).setItem(displayKey, JSON.stringify(memory)); } catch {}
   return memory;
 }

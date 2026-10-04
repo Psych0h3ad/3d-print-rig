@@ -1,4 +1,5 @@
 import {workspaceTask,WorkspaceMutationObserver} from './workspace-lifecycle.mjs';
+import {embedURL,iframeMarkup} from './embed-contract.mjs?v=4fc89f7f6f11001e30f4';
 export const siteLinks = Object.freeze({
   github: 'https://github.com/Psych0h3ad/3d-print-rig',
   x: 'https://www.x.com/YuTR0N',
@@ -64,6 +65,18 @@ export function setupWorkspaceSharing({navigation, actions, menu}) {
   const native = make('button', '端末で共有'); native.hidden = typeof navigator.share !== 'function';
   const status = make('p', '', 'foot'); status.id = 'pageShareStatus'; status.setAttribute('role', 'status');
   controls.append(copy, x, native); body.append(selected, label, input, controls, status); dialog.append(heading, body);
+  const embed=make('section','','share-embed'),embedTitle=make('h3','サイトに埋め込む · テスト機能');
+  const embedNote=make('p','テスト公開中です。機種・構成を維持して更新を自動反映します。開発中のため、表示や操作が変わる場合があります。','foot');
+  const themeLabel=make('label','埋め込みの配色');themeLabel.htmlFor='embedTheme';
+  const theme=make('select');theme.id='embedTheme';
+  for(const[value,text]of [['light','ライト'],['dark','ダーク'],['auto','端末に合わせる']]){const option=make('option',text);option.value=value;theme.append(option);}
+  theme.value=document.documentElement.dataset.theme==='dark'?'dark':'light';
+  const codeLabel=make('label','埋め込みコード');codeLabel.htmlFor='embedCode';
+  const code=make('textarea');code.id='embedCode';code.rows=4;code.readOnly=true;code.spellcheck=false;
+  const embedActions=make('div','','share-actions'),copyEmbed=make('button','コードをコピー'),preview=make('a','埋め込みをプレビュー');
+  copyEmbed.id='copyEmbedCode';preview.id='previewEmbed';preview.target='_blank';preview.rel='noopener';
+  const embedStatus=make('p','','foot');embedStatus.setAttribute('role','status');
+  embedActions.append(copyEmbed,preview);embed.append(embedTitle,embedNote,themeLabel,theme,codeLabel,code,embedActions,embedStatus);body.append(embed);
   document.body.append(dialog);
   const current = () => pageShareData(location.href, document.title, {
     base: document.querySelector('#baseColor')?.value,
@@ -73,7 +86,17 @@ export function setupWorkspaceSharing({navigation, actions, menu}) {
     const data = current(); input.value = data.url; selected.textContent = document.querySelector('.inspector-heading h1')?.textContent || data.title;
     x.href = xShareURL(data); return data;
   }
-  trigger.onclick = () => { refresh(); status.textContent = ''; dialog.showModal(); };
+  function refreshEmbed(){
+    const data=current(),url=embedURL(data.url,{theme:theme.value,machine:document.body.dataset.machineId});
+    code.value=iframeMarkup(url,data.title);preview.href=url;return code.value;
+  }
+  theme.onchange=refreshEmbed;code.onclick=()=>code.select();preview.onclick=refreshEmbed;
+  copyEmbed.onclick=()=>workspaceTask(async()=>{
+    const value=refreshEmbed();
+    try{await navigator.clipboard.writeText(value);embedStatus.textContent='コードをコピーしました。';}
+    catch{code.focus();code.select();embedStatus.textContent='コードを選択しました。コピーしてサイトに貼り付けてください。';}
+  });
+  trigger.onclick = () => { refresh();refreshEmbed(); status.textContent = '';embedStatus.textContent=''; dialog.showModal(); };
   close.onclick = () => dialog.close();
   input.onclick = () => input.select();
   copy.onclick = async () => {return workspaceTask(async()=>{
