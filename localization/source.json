@@ -8674,13 +8674,13 @@
     },
     "embed.heading": {
       "kind": "message",
-      "ja": "サイトに埋め込む · テスト機能",
-      "en": "Embed on your site · Experimental"
+      "ja": "サイトに埋め込む · アルファテスト",
+      "en": "Embed on your site · Alpha test"
     },
     "embed.policy": {
       "kind": "message",
-      "ja": "テスト公開中です。機種・構成を維持して更新を自動反映します。開発中のため、表示や操作が変わる場合があります。",
-      "en": "Experimental feature. Updates apply automatically while retaining the selected machine and configuration. Appearance and controls may change during development."
+      "ja": "アルファテスト段階の機能です。機種・構成を維持して更新を自動反映します。開発中のため、表示や操作が変わる場合があります。",
+      "en": "This feature is in alpha testing. Updates apply automatically while retaining the selected machine and configuration. Appearance and controls may change during development."
     },
     "embed.theme": {
       "kind": "message",

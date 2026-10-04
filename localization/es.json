@@ -6939,12 +6939,12 @@
       "text": "Just for fun"
     },
     "embed.heading": {
-      "source_revision": "5e69083899a061572c34",
-      "text": "Insertar en tu sitio · Experimental"
+      "source_revision": "232eb22d1840e688a0a9",
+      "text": "Insertar en tu sitio · Prueba alfa"
     },
     "embed.policy": {
-      "source_revision": "6981f718488057137053",
-      "text": "Función experimental. Las actualizaciones se aplican automáticamente conservando la máquina y la configuración elegidas. La apariencia y los controles pueden cambiar durante el desarrollo."
+      "source_revision": "c303b3edc54ce00efd7d",
+      "text": "Esta función está en fase de prueba alfa. Las actualizaciones se aplican automáticamente y conservan la máquina y la configuración seleccionadas. La apariencia y los controles pueden cambiar durante el desarrollo."
     },
     "embed.theme": {
       "source_revision": "6702e1406cadfddc02ad",

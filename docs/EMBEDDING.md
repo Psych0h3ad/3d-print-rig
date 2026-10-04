@@ -1,6 +1,6 @@
 # Embedded viewers
 
-**Experimental / テスト公開中.** Appearance and controls may change while this
+**Alpha test / アルファテスト段階.** Appearance and controls may change while this
 feature is developed. This notice appears in the sharing dialog, the download
 gallery, the embed cover, and the persistent embed footer.
 

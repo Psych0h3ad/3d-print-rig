@@ -7,8 +7,8 @@ const ja=language==='ja';
 const words=ja?{load:'3Dモデルを表示',intro:'マシンを回転して、構造を見てみよう。',detail:'ドラッグで回転 · ピンチ・ホイールで拡大縮小',open:'3D Print Rigで開く ↗',live:'Live · 更新を自動反映',error:'指定された機種・埋め込み形式は現在利用できません。元のサイトで確認してください。',unavailable:'接続できませんでした。元のサイトで開いてください。'}:{load:'Load 3D model',intro:'Explore the machine in 3D.',detail:'Drag to orbit · Pinch or scroll to zoom',open:'Open in 3D Print Rig ↗',live:'Live · Updates automatically',error:'This machine or embed format is unavailable. Check the original site.',unavailable:'Could not connect. Open the viewer on the original site.'};
 words.error=ja?'指定された機種・構成・埋め込み形式は現在利用できません。元のサイトで確認してください。':'This machine, configuration or embed format is unavailable. Check the original site.';
 document.documentElement.lang=ja?'ja':'en';
-for(const[id,text]of Object.entries({load:words.load,intro:words.intro,detail:words.detail,openViewer:words.open,policy:(ja?'テスト公開中 · ':'Experimental · ')+words.live}))$(id).textContent=text;
-$('experimental').textContent=ja?'テスト機能：開発中のため、表示や操作が変わる場合があります。':'Experimental feature: appearance and controls may change during development.';
+for(const[id,text]of Object.entries({load:words.load,intro:words.intro,detail:words.detail,openViewer:words.open,policy:(ja?'アルファテスト · ':'Alpha test · ')+words.live}))$(id).textContent=text;
+$('experimental').textContent=ja?'アルファテスト段階の機能です。開発中のため、表示や操作が変わる場合があります。':'Alpha test: appearance and controls may change during development.';
 $('openViewer').href=new URL('../viewer/',location.href);
 try {
   const {url,theme}=embedTarget(location.href),machine=url.searchParams.get('machine');

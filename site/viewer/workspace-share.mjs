@@ -65,8 +65,8 @@ export function setupWorkspaceSharing({navigation, actions, menu}) {
   const native = make('button', '端末で共有'); native.hidden = typeof navigator.share !== 'function';
   const status = make('p', '', 'foot'); status.id = 'pageShareStatus'; status.setAttribute('role', 'status');
   controls.append(copy, x, native); body.append(selected, label, input, controls, status); dialog.append(heading, body);
-  const embed=make('section','','share-embed'),embedTitle=make('h3','サイトに埋め込む · テスト機能');
-  const embedNote=make('p','テスト公開中です。機種・構成を維持して更新を自動反映します。開発中のため、表示や操作が変わる場合があります。','foot');
+  const embed=make('section','','share-embed'),embedTitle=make('h3','サイトに埋め込む · アルファテスト');
+  const embedNote=make('p','アルファテスト段階の機能です。機種・構成を維持して更新を自動反映します。開発中のため、表示や操作が変わる場合があります。','foot');
   const themeLabel=make('label','埋め込みの配色');themeLabel.htmlFor='embedTheme';
   const theme=make('select');theme.id='embedTheme';
   for(const[value,text]of [['light','ライト'],['dark','ダーク'],['auto','端末に合わせる']]){const option=make('option',text);option.value=value;theme.append(option);}
