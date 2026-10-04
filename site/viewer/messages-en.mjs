@@ -1,8 +1,8 @@
-import {v0Messages,v0Templates} from './v0-messages-en.mjs?v=config-labels-1';
-import {ratRigMessages,ratRigTemplates} from './ratrig-messages-en.mjs?v=config-labels-1';
-import {e3ngMessages} from './e3ng-messages-en.mjs?v=config-labels-1';
-import {yudxMessages} from './yudx-messages-en.mjs?v=config-labels-1';
-import {rapidoXMessages} from './rapido-x-messages-en.mjs?v=config-labels-1';
+import {v0Messages,v0Templates} from './v0-messages-en.mjs?v=trident-belts-1';
+import {ratRigMessages,ratRigTemplates} from './ratrig-messages-en.mjs?v=trident-belts-1';
+import {e3ngMessages} from './e3ng-messages-en.mjs?v=trident-belts-1';
+import {yudxMessages} from './yudx-messages-en.mjs?v=trident-belts-1';
+import {rapidoXMessages} from './rapido-x-messages-en.mjs?v=trident-belts-1';
 export const messages = {
  "部品を探す": "Find a component",
  "画面の使い方": "Workspace layout",
@@ -1263,6 +1263,7 @@ export const messages = {
 };
 
 export const templates = {
+ "{0} mmベルトはXY移動に追従。ヘッドの配線経路は未登録。": "{0} mm belts follow XY motion. Wiring for this toolhead is not registered.",
  ...ratRigTemplates,
  ...v0Templates,
  "· ベッド基準位置の移動 {0} mm": "· Bed reference movement: {0} mm",

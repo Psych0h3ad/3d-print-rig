@@ -66,12 +66,19 @@ export function setupFlexible(scene,meshes,manifest,routes){
   diagnostics,
   update(dx,dy,z,enabled,variant=null){
    const rest=Math.abs(dx)+Math.abs(dy)+Math.abs(z)<.001;
-   const key=[dx.toFixed(2),dy.toFixed(2),z.toFixed(2),enabled,variant?.id||'stock'].join(',');if(key===last)return diagnostics;last=key;
+   const key=[dx.toFixed(2),dy.toFixed(2),z.toFixed(2),enabled,variant?.id||'stock',!!variant?.disableToolheadRouting].join(',');if(key===last)return diagnostics;last=key;
    for(const {mesh,attr,original,weights} of belts){
     if(variant?.includeStockBelts===false){mesh.visible=false;continue}
     mesh.visible=enabled;
     for(let i=0;i<attr.count;i++){attr.array[i*3]=original[i*3]+dx*weights[i*2]/1000;attr.array[i*3+2]=original[i*3+2]-dy*weights[i*2+1]/1000}
     attr.needsUpdate=true;mesh.geometry.computeBoundingSphere();
+   }
+   if(variant?.disableToolheadRouting){
+    for(const {mesh} of [...links,...clips])mesh.visible=false;
+    byKey.get('PTFE_tube').visible=false;byKey.get('CAN_cable').visible=false;
+    tube.visible=false;cable.visible=false;
+    Object.assign(diagnostics,{belts:enabled&&variant.includeStockBelts!==false,ptfe:false,chain:false,chainRouteValid:false,chainLinks:0,chainCulledLinks:0,static:rest,scope:'Registered gantry belts only; toolhead routing is not registered.'});
+    return diagnostics;
    }
    if(variant){
     for(const {mesh} of [...links,...clips])mesh.visible=false;

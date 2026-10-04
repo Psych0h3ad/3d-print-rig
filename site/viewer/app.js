@@ -1,5 +1,5 @@
-import {loadMonolithMachines} from './monolith-machine.js?v=sphinx-report-45';
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=sphinx-report-45';
+import {loadMonolithMachines} from './monolith-machine.js?v=trident-belts-1';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=trident-belts-1';
 import {bankBedReferenceDrop} from './changer-bank-model.mjs?v=trident-clearance-35';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=trident-clearance-35';
 import * as THREE from 'three';
@@ -9,16 +9,17 @@ import {loadModel} from './model-loader.js?v=trident-clearance-35';
 import {loadFrameMods,withFrameMods} from './frame-mods.js?v=trident-clearance-35';
 import {setupGrid} from './grid-control.js?v=trident-clearance-35';
 import {setupLighting} from './lighting.js?v=trident-clearance-35';
-import {setupFlexible} from './flexible.js?v=trident-clearance-35';
+import {setupFlexible} from './flexible.js?v=trident-belts-1';
 import {createBedChain} from './bed-chain.mjs?v=public-v25';
-import {setupConfigurations} from './configurations.js?v=controls-icons-1';
+import {createPrinterBelts,printerBeltOwner} from './printer-gantry.mjs?v=trident-belts-1';
+import {setupConfigurations} from './configurations.js?v=trident-belts-1';
 import {setupAccessories} from './accessories.js?v=sphinx-skirts-45';
 import {setupAppearance} from './appearance.js?v=trident-clearance-35';
 import {setupRenderExport} from './render-export.js?v=controls-icons-1';
 import {setupPublicInfo} from './public-info.js?v=controls-icons-1';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=controls-icons-1';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=trident-belts-1';
 import {setupChangerBank} from './changer-bank.js?v=trident-clearance-35';
-import {expandedPrinterCatalog} from './machine-head-model.mjs?v=sphinx-report-45';
+import {expandedPrinterCatalog} from './machine-head-model.mjs?v=trident-belts-1';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=trident-clearance-35';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=trident-clearance-35';
 import {createHeadMarkers} from './head-markers.mjs?v=trident-clearance-35';
@@ -47,7 +48,8 @@ const groups={},moving={y:[],xy:[],z:[],reference_flexible:[]},panes=[],parts=ne
 const allMeshes=[];
 let installed='stock',stockRegistration,stockRefX,stockLeverX,stockPlungerX,xolMeta,xolScene;
 let activeConfig,catalog,r2Registration,appearance,stockRows,accessories,installedHeads,toolBank,program,headMarkers;
-const assetRoots=new Map(),assets=new Map(),xolMechanisms={},stockSwitchMeshes=[],r2Belts=[];
+const assetRoots=new Map(),assets=new Map(),xolMechanisms={},stockSwitchMeshes=[];
+const printerBelts=createPrinterBelts(parts);
 const stockHeadGroup='03_Stock_Stealthburner_CW2_Rapido2_UHF';
 const cadPoint=p=>new THREE.Vector3(p[0]/1000,p[2]/1000,-p[1]/1000);
 function registerModule(root,metadata){
@@ -60,11 +62,7 @@ function registerModule(root,metadata){
  if(!['Lever','Plunger','X_Lever','X_Plunger','Y_Lever','Y_Plunger'].includes(o.userData.mechanism)){
  const motion=p?.motion||o.userData.motion||'xy';if(moving[motion])moving[motion].push(o);
  }
- if(o.userData.flex_belt){const attr=o.geometry.attributes.position,original=attr.array.slice(),weights=[];
- for(let i=0;i<attr.count;i++){const x=original[i*3]*1000,y=-original[i*3+2]*1000;let wx=0,wy=0;
- if(y>-20&&y<5){wy=1;if(Math.abs(x)<216)wx=Math.max(0,Math.min(1,(216-Math.abs(x))/196))}
- else if(Math.abs(x)>215)wy=y>5?Math.max(0,1-(y-5)/233):Math.max(0,1-(-20-y)/208);
- weights.push(wx,wy)}r2Belts.push({mesh:o,attr,original,weights});}
+ printerBelts.register(o,p);
  if(o.material.transparent){o.material.depthWrite=false;o.renderOrder=2}
  });appearance?.registerMeshes(meshes);return meshes;
 }
@@ -84,7 +82,15 @@ function showHead(){
  if(xolScene)xolScene.visible=installed==='xol'&&shown;
  for(const p of panes)p.visible=$('#panels').checked;
  for(const m of activeConfig.modules){const a=assetRoots.get(m.id);if(a?.root.userData.headModule)a.root.visible=shown}
- if(activeConfig.machine_head){for(const o of moving.reference_flexible)if(!o.userData.bedChain)o.visible=false;for(const key of ['580','Upper_Belt','PTFE_tube','CAN_cable'])if(parts.has(key))parts.get(key).visible=false}
+ if(activeConfig.machine_head){for(const o of moving.reference_flexible)if(!o.userData.bedChain)o.visible=false;for(const key of ['PTFE_tube','CAN_cable'])if(parts.has(key))parts.get(key).visible=false}
+ showBelts();
+}
+function showBelts(){
+ const state=printerBelts.setVisible(activeConfig,$('#cables').checked);
+ $('#routing').dataset.beltOwner=state.owner;$('#routing').dataset.visibleBeltMeshes=state.visible_meshes;$('#routing').dataset.registeredBeltMeshes=state.registered_meshes;
+ $('#headStatus').dataset.visibleR2Belts=state.owner==='trident_r2'?state.visible_meshes:0;
+ $('#headStatus').dataset.visibleStockBelts=state.owner==='siboor_awd'?state.visible_meshes:0;
+ return state;
 }
 async function installConfiguration(v){
  program?.invalidate();
@@ -146,7 +152,14 @@ function setPose(x,y,z){
  for(const[a,v]of [['x',x],['y',y],['z',z]]){$('#'+a).value=v;$('#'+a+'v').textContent=v.toFixed(1)+' mm'}
  installedHeads?.setDelta([dx,dy,0]);installedHeads?.gantry.setFlexibleVisible($('#cables').checked);installedHeads?.setPalette(appearance?.colors()||{});
  headMarkers?.update();
- if(activeConfig?.machine_head){flexible.update(dx,dy,bedDown,false,null);for(const row of r2Belts)row.mesh.visible=false;$('#status').textContent='ヘッドの取付・移動を比較中。ホーミング接点は未登録。';$('#status').style.background='#eff5f7';$('#routing').textContent=activeConfig.machine_gantry?($('#cables').checked?'MonolithベルトがXY移動に追従。歯・張力・配線は未再現。':'Monolithベルト：非表示'):'このヘッドのベルト・配線経路は未登録。';$('#headStatus').dataset.installed=installed;$('#headStatus').dataset.variant=activeConfig.id;showHead();return}
+ printerBelts.update(activeConfig,dx,dy,$('#cables').checked);
+ if(activeConfig?.machine_head){
+  const routing=flexible.update(dx,dy,bedDown,$('#cables').checked,{id:activeConfig.id,includeStockBelts:printerBeltOwner(activeConfig)==='siboor_awd',disableToolheadRouting:true});
+  $('#status').textContent='ヘッドの取付・移動を比較中。ホーミング接点は未登録。';$('#status').style.background='#eff5f7';
+  $('#routing').textContent=activeConfig.machine_gantry?($('#cables').checked?'MonolithベルトがXY移動に追従。歯・張力・配線は未再現。':'Monolithベルト：非表示'):$('#cables').checked?`${activeConfig.belt_width_mm} mmベルトはXY移動に追従。ヘッドの配線経路は未登録。`:'ベルト・配線：非表示';
+  Object.assign($('#routing').dataset,{belts:String($('#cables').checked),ptfe:String(routing.ptfe),chain:String(routing.chain),chainLinks:String(routing.chainLinks||0)});
+  showHead();updateHeadDiagnostics(x,y);return;
+ }
  const hitX=x>registration.switches.X.first_contact_display_coordinate_mm,hitY=y>registration.switches.Y.first_contact_display_coordinate_mm;
  $('#status').textContent=`X ${leverPose('X',x,dx,dy)} ／ Y ${leverPose('Y',y,dx,dy)}`;
  $('#status').dataset.xAngle=levers.X.userData.depressionDeg.toFixed(4);$('#status').dataset.yAngle=levers.Y.userData.depressionDeg.toFixed(4);
@@ -155,10 +168,14 @@ function setPose(x,y,z){
  let variant=null;
  if(installed==='xol'||r2){const inlet=installed==='xol'?(activeConfig.extruder==='orbiter2'?[-.09999426211,-24.11,427.2598619]:xolMeta.filament_inlet_mm):[-.05,-28.76,414];const off=activeConfig.head_translation_mm;variant={id:activeConfig.id,includeStockBelts:!r2,filament_inlet_mm:inlet.map((n,i)=>n+off[i]),can_inlet_mm:[-.1,18,438].map((n,i)=>n+off[i])}}
  const routing=flexible.update(dx,dy,bedDown,$('#cables').checked,variant);
- if(r2){for(const key of ['580','Upper_Belt'])parts.get(key).visible=false;for(const {mesh,attr,original,weights} of r2Belts){mesh.visible=$('#cables').checked;for(let i=0;i<attr.count;i++){attr.array[3*i]=original[3*i]+dx*weights[2*i]/1000;attr.array[3*i+2]=original[3*i+2]-dy*weights[2*i+1]/1000}attr.needsUpdate=true;mesh.geometry.computeBoundingSphere()}}
+ showBelts();
  $('#routing').textContent=!$('#cables').checked?'ベルト・配線：非表示':variant?`${activeConfig.belt_width_mm} mmベルト・PTFE経路プレビュー ／ ヘッド用チェーン未取付`:rest?'CAD基準姿勢 · 元の配線形状':routing.chainRouteValid?'経路プレビュー · ベルト・PTFE・47リンク追従':'経路プレビュー · ベルト・PTFE追従 ／ チェーンは経路範囲外';
  $('#routing').dataset.chain=String(routing.chain);$('#routing').dataset.belts=String(routing.belts);$('#routing').dataset.ptfe=String(routing.ptfe);
  $('#routing').dataset.chainLinks=String(routing.chainLinks||0);$('#routing').dataset.chainCulledLinks=String(routing.chainCulledLinks||0);
+ updateHeadDiagnostics(x,y);
+ if(activeConfig)for(const m of activeConfig.modules){const a=assetRoots.get(m.id);if(a?.root.userData.headModule)a.root.visible=$('#head').checked}
+}
+function updateHeadDiagnostics(x,y){
  const hd=$('#headStatus');hd.dataset.installed=installed;hd.dataset.stockVisible=String(groups[stockHeadGroup].visible);hd.dataset.xolVisible=String(!!xolScene?.visible);
  hd.dataset.xMm=x;hd.dataset.yMm=y;hd.dataset.referenceXMm=refX;hd.dataset.referenceYMm=refY;
  if(activeConfig){hd.dataset.variant=activeConfig.id;hd.dataset.gantry=activeConfig.gantry;hd.dataset.beltWidthMm=activeConfig.belt_width_mm;hd.dataset.xyMotors=activeConfig.xy_motors;
@@ -173,8 +190,6 @@ function setPose(x,y,z){
  const moduleId=activeConfig.modules.find(m=>m.id===(installed==='stock'?'sb':'xol')+'_'+activeConfig.hotend)?.id;
  const mount=parts.get(moduleId+'_mount')||parts.get('xol_Rapido2UHF_Mount');if(mount){hd.dataset.mountOffsetMm=(mount.position.x*1000).toFixed(6);hd.dataset.mountColor='#'+mount.material.color.getHexString()}
  }
- if(activeConfig)for(const m of activeConfig.modules){const a=assetRoots.get(m.id);if(a?.root.userData.headModule)a.root.visible=$('#head').checked}
-
 }
 const callout=document.createElement('div');callout.style.cssText='display:none;position:absolute;z-index:1;padding:8px 12px;border:1px solid #dc9a37;background:#fff8e8ee;border-radius:7px;color:#825318;pointer-events:none;font-size:12px';document.body.appendChild(callout);
 const marker=new THREE.Mesh(new THREE.SphereGeometry(.00065,16,12),new THREE.MeshBasicMaterial({color:0xf4a934,depthTest:false,transparent:true,opacity:.8}));marker.visible=false;marker.renderOrder=10;scene.add(marker);

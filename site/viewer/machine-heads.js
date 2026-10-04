@@ -1,12 +1,12 @@
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=sphinx-report-45';
-import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=sphinx-report-45';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=trident-belts-1';
+import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=trident-belts-1';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=trident-clearance-35';
 import {appearanceRole} from './appearance-role.mjs?v=trident-clearance-35';
 import {partKey} from './head-assembly.js?v=trident-clearance-35';
-import {v24HeadCatalog} from './machine-head-model.mjs?v=sphinx-report-45';
-import {setupConfigurations} from './configurations.js?v=controls-icons-1';
+import {v24HeadCatalog} from './machine-head-model.mjs?v=trident-belts-1';
+import {setupConfigurations} from './configurations.js?v=trident-belts-1';
 
 import {stockProbeFit} from './probe-mounts.js?v=sphinx-report-45';
 

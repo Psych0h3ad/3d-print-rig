@@ -1,9 +1,9 @@
 // Shared presentation layer. Existing controls, IDs and CAD controllers stay intact.
-import {setupLanguage,originalText} from './i18n.mjs?v=config-labels-1';
+import {setupLanguage,originalText} from './i18n.mjs?v=trident-belts-1';
 import {printerWorkspaceURL,workspaceReturnKey,workspaceKindFor} from './workspace-return.mjs?v=controls-icons-1';
 import {setupWorkspaceSharing} from './workspace-share.mjs?v=controls-icons-1';
 import {lockInspectorHorizontalScroll} from './workspace-scroll.mjs?v=inspector-width-1';
-import {setupChoiceSearch} from './workspace-choices.mjs?v=config-labels-1';
+import {setupChoiceSearch} from './workspace-choices.mjs?v=trident-belts-1';
 import {setupMobileLayout} from './workspace-layout.mjs?v=config-labels-1';
 const $ = selector => document.querySelector(selector);
 const node = (tag, className, text) => {

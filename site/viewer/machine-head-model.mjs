@@ -1,4 +1,5 @@
 import {headPlan} from './head-assembly.js?v=trident-clearance-35';
+import {withPrinterGantry} from './printer-gantry.mjs?v=trident-belts-1';
 
 import {translatedProbeFit} from './probe-checks.js?v=sphinx-report-45';
 
@@ -46,7 +47,7 @@ export function machineHeadVariants(heads,registry,machine,gantry){
  });
 }
 export function expandedPrinterCatalog(current,heads,registry,machine){
- const result=clone(withEmbeddedBoards(current,heads.embedded_board));result.machine_id=machine;result.dimensions=['gantry','toolhead','mount','extruder','hotend','carriage','probe','board','cooling'];
+ const result=clone(withEmbeddedBoards(withPrinterGantry(current),heads.embedded_board));result.machine_id=machine;result.dimensions=['gantry','toolhead','mount','extruder','hotend','carriage','probe','board','cooling'];
  for(const v of result.variants){v.mount||='fixed';v.carriage||='standard';v.board||='none';v.cooling||='source'}
  for(const field of ['toolheads','mounts','extruders','hotends','carriages','probes','boards','cooling_options']){
   result[field]||=[];for(const row of heads[field]||[]){const existing=result[field].find(r=>r.id===row.id);if(existing)Object.assign(existing,clone(row));else result[field].push(clone(row));}

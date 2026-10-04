@@ -1,4 +1,4 @@
-import {monolithHeadCatalog} from './monolith-head-model.mjs?v=sphinx-report-45';
+import {monolithHeadCatalog} from './monolith-head-model.mjs?v=trident-belts-1';
 import {translatedProbeFit} from './probe-checks.js?v=sphinx-report-45';
 
 const clone=value=>JSON.parse(JSON.stringify(value));

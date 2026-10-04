@@ -1,6 +1,6 @@
-import {monolithHeadCatalog} from './monolith-head-model.mjs?v=sphinx-report-45';
+import {monolithHeadCatalog} from './monolith-head-model.mjs?v=trident-belts-1';
 import {machinePage} from './machines.js?v=controls-icons-1';
-import {machineHeadVariants} from './machine-head-model.mjs?v=sphinx-report-45';
+import {machineHeadVariants} from './machine-head-model.mjs?v=trident-belts-1';
 
 export function headPrinterLink(variant,registry,href){
  const source=new URL(href),preferred=source.searchParams.get('return_machine');

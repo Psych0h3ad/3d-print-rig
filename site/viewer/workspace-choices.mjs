@@ -1,4 +1,4 @@
-import {translate} from './i18n.mjs?v=config-labels-1';
+import {translate} from './i18n.mjs?v=trident-belts-1';
 
 const normalize = value => String(value).normalize('NFKC').toLocaleLowerCase().replace(/\s+/gu, ' ').trim();
 export function matchingChoices(rows, query) {

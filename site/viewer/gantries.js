@@ -1,4 +1,4 @@
-import {loadMonolithData} from './monolith-machine.js?v=sphinx-report-45';
+import {loadMonolithData} from './monolith-machine.js?v=trident-belts-1';
 import {machineChoices,machinePage} from './machines.js?v=controls-icons-1';
 import {monolithBeltClip} from './monolith-belt-clip.mjs?v=trident-clearance-35';
 import {appearanceRole} from './appearance-role.mjs?v=trident-clearance-35';
@@ -8,9 +8,9 @@ import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=trident-clearance-35';
 import {setupPublicInfo} from './public-info.js?v=controls-icons-1';
 import {setupRenderExport} from './render-export.js?v=controls-icons-1';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=controls-icons-1';
-import {monolithHeadCatalog} from './monolith-head-model.mjs?v=sphinx-report-45';
-import {setupConfigurations} from './configurations.js?v=controls-icons-1';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=trident-belts-1';
+import {monolithHeadCatalog} from './monolith-head-model.mjs?v=trident-belts-1';
+import {setupConfigurations} from './configurations.js?v=trident-belts-1';
 import {resolveVariant} from './configuration-model.js?v=sphinx-report-45';
 import {gantryDimensions,gantryChoice,gantryAssets} from './gantry-model.js?v=trident-clearance-35';
 const $=s=>document.querySelector(s),stage=$('#stage'),scene=new THREE.Scene(),bench=new THREE.Group();scene.add(bench);scene.background=new THREE.Color('#edf1f5');
