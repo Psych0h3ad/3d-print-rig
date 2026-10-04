@@ -1,14 +1,11 @@
-import {Vector3,CatmullRomCurve3,TubeGeometry} from './vendor/three.module.js';
+import {Vector3,TubeGeometry} from './vendor/three.module.js';
 import {bedChainRoute} from './bed-chain.mjs?v=public-v25';
 import {micronChainPins} from './micron-flexible-pins.mjs?v=motion-colors-41';
+import {micronTubeSpecs,micronTubeRoute} from './micron-tube-routes.mjs?v=c69d79d6fdbfee5338fe';
 
 const point=([x,y,z])=>new Vector3(x/1000,z/1000,-y/1000);
-// Tube controls use native cap/straight-section coordinates. Moving paths are
-// routing previews; their bend radii, service length and collisions are unverified.
-const tubeSpecs=[
- {key:'m180_00411',radius_mm:2,headWeights:[1,1,.67,.33,0,0],gantry:false,points:[[.027122181333485,-11.6106005585107,135],[.027122181333485,-11.6106005585107,168],[-.000166428718375,186.2,320.599778706421],[54.8799712795471,195,352.4],[195,102,352.4],[195.000070097487,65,352.400064896997]]},
- {key:'m180_01768',radius_mm:2.75,headWeights:[1,.5,0,0],gantry:true,points:[[20.1321951785985,16.9647773201344,184.798624602641],[47.9833,77.5,295.9672],[75.8344782032097,137.776332959104,167.757612709613],[75.8344782032058,138.035152004206,166.791686883324]]}
-];
+// Endpoint bores and straight insertion sections follow their owning parts.
+// Free loops remain routing previews: service length/swept clearance unverified.
 
 export function createMicronFlexible(nodes,records,profile){
  const plus=profile.machine_id===micronChainPins.machine,axis=new Vector3(0,0,1),keys=new Set();
@@ -18,9 +15,9 @@ export function createMicronFlexible(nodes,records,profile){
   node.traverse(n=>{if(n.isMesh)n.frustumCulled=false});
   return {pin,node,from,angle:Math.atan2(pin.to_xz_mm[1]-pin.from_xz_mm[1],pin.to_xz_mm[0]-pin.from_xz_mm[0]),origin:node.position.clone(),quaternion:node.quaternion.clone()};
  }):[];
- const tubes=plus?tubeSpecs.map(spec=>{
+ const tubes=plus?micronTubeSpecs.map(spec=>{
   const node=nodes.get(spec.key);if(!node)throw Error('Missing Micron tube '+spec.key);keys.add(spec.key);const meshes=[];
-  node.traverse(n=>{if(n.isMesh){n.frustumCulled=false;meshes.push({node:n,original:n.geometry,preview:null})}});
+  node.traverse(n=>{if(n.isMesh){n.frustumCulled=false;if(spec.kind==='umbilical'){n.material=Array.isArray(n.material)?n.material.map(m=>m.clone()):n.material.clone();for(const m of Array.isArray(n.material)?n.material:[n.material])m.color.set('#191b1e');}meshes.push({node:n,original:n.geometry,preview:null})}});
   return {...spec,node,origin:node.position.clone(),meshes};
  }):[];
  const fixed=[...records].filter(([k,r])=>r.motion==='reference_flexible'&&r.source?.assembly_path?.includes('Bed_Assembly v9:1')&&r.name==='Wire').map(([k])=>{keys.add(k);return nodes.get(k)});
@@ -39,18 +36,16 @@ export function createMicronFlexible(nodes,records,profile){
   if(delta.join(',')!==lastDelta){
    tubeState=[];
    for(const t of tubes){
-    const native=delta.every(d=>Math.abs(d)<1e-8)||(t.gantry&&Math.abs(delta[0])+Math.abs(delta[1])<1e-8);
-    const controls=t.points.map((p,i)=>p.map((v,a)=>v+delta[a]*(a===2&&t.gantry?1:t.headWeights[i])));
+    const route=micronTubeRoute(t,delta);
     for(const e of t.meshes){
      e.preview?.dispose();e.preview=null;
-     if(native)e.node.geometry=e.original;
-     else{const curve=new CatmullRomCurve3(controls.map(point),false,'centripetal');e.preview=new TubeGeometry(curve,128,t.radius_mm/1000,12,false);e.preview.computeBoundingBox();e.preview.computeBoundingSphere();e.node.geometry=e.preview;}
+     e.preview=new TubeGeometry(route.curve,192,t.radius_mm/1000,12,false);e.preview.computeBoundingBox();e.preview.computeBoundingSphere();e.node.geometry=e.preview;
     }
-    t.node.position.copy(t.origin);if(native&&t.gantry)t.node.position.y+=z/1000;
-    tubeState.push({key:t.key,endpoints_mm:[controls[0],controls.at(-1)],outer_diameter_mm:t.radius_mm*2,native_geometry:native});
+    t.node.position.copy(t.origin);
+    tubeState.push({key:t.key,endpoints_mm:route.endpoints_mm,straight_sections_mm:route.straight_sections_mm,outer_diameter_mm:t.radius_mm*2,native_geometry:false});
    }
    lastDelta=delta.join(',');
-  }else for(const t of tubes){t.node.position.copy(t.origin);if(t.gantry&&Math.abs(delta[0])+Math.abs(delta[1])<1e-8)t.node.position.y+=z/1000;}
+  }else for(const t of tubes)t.node.position.copy(t.origin);
   for(const e of chain)e.node.visible=active;for(const t of tubes)t.node.visible=active;for(const n of fixed)n.visible=active;
   return {visible:active,managed_parts:keys.size,chain:chain.length?{links:chain.length,pitch_mm:micronChainPins.pitch_mm,endpoint_error_mm:route.endpoint_error_mm}:null,tubes:tubeState};
  }

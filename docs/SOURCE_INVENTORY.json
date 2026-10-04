@@ -70,8 +70,8 @@
     },
     {
       "path": "docs/MICRON.md",
-      "bytes": 2253,
-      "sha256": "cfc31662d17298154debd6cc46e306af4f5dd5198206539b69947146b1b98705"
+      "bytes": 3074,
+      "sha256": "da3cce509a7d5bef034941529fea17b8b9f9511b4c44794acb5a9f0a9eb52cdc"
     },
     {
       "path": "docs/MONOLITH_MACHINE.md",
@@ -80,8 +80,8 @@
     },
     {
       "path": "docs/MOTION_AUDIT.md",
-      "bytes": 7746,
-      "sha256": "e1864fd7f5431d372692a1c53a9e1ec837ab544659e3d35dc566e1f13a11129e"
+      "bytes": 7936,
+      "sha256": "9bca5f3f297ae7e861cdb55148e9db2b2d809b521e3b739b1e97a3954b048935"
     },
     {
       "path": "docs/PROBE_CLEARANCE.md",
@@ -250,8 +250,8 @@
     },
     {
       "path": "scripts/build_locales.mjs",
-      "bytes": 8501,
-      "sha256": "1345735e606a2091a050a632ce1faface86a7248a8edb9c24459d04cfacd86a9"
+      "bytes": 8581,
+      "sha256": "b7565d4cd5688933ed1ddbb658181317afbf6a297b484fa04d4b86d909e56bd5"
     },
     {
       "path": "scripts/build_site.py",
@@ -270,8 +270,8 @@
     },
     {
       "path": "scripts/check_repository.py",
-      "bytes": 9986,
-      "sha256": "ceb1f4ab8ccac6423bda7e99bbb5c694cbe5a2f9076c626e8fbfe97ddbb6b87e"
+      "bytes": 10080,
+      "sha256": "a11b8c5d448dc4fbde67fa963caf1d3684ffec690cbee5672300af6f971b1b9b"
     },
     {
       "path": "scripts/check_ui_catalog.mjs",
@@ -477,6 +477,11 @@
       "path": "scripts/test_micron_belts.mjs",
       "bytes": 1540,
       "sha256": "40877df25e8c0ff9ff36240edb94d19cb74d1a6950136c2c9cb7d857f5b448d1"
+    },
+    {
+      "path": "scripts/test_micron_tubes.mjs",
+      "bytes": 2898,
+      "sha256": "423ee8764afe6828d7f0732f3535339fab7099a3d8d03981f44bc9753018ea19"
     },
     {
       "path": "scripts/test_monolith_heads.mjs",
@@ -1635,8 +1640,8 @@
     },
     {
       "path": "site/viewer/micron-adapter.mjs",
-      "bytes": 4646,
-      "sha256": "2ac7ce412c7c6994562d50818fdba12801e2c9db238375fa5f442216c8ddcabb"
+      "bytes": 4701,
+      "sha256": "6177cae5e22f1f414ba2a74d3c365b2454f3301e3b008c94fffb31945369ea5d"
     },
     {
       "path": "site/viewer/micron-belts.mjs",
@@ -1650,18 +1655,23 @@
     },
     {
       "path": "site/viewer/micron-flexible.mjs",
-      "bytes": 4332,
-      "sha256": "673ddbd4167befb8bad567ec974355c42a198c72da75a075d0ba801994d5a8e7"
+      "bytes": 3659,
+      "sha256": "f60dbb5f5765a15dfc34ab025f975f139fe869e43304938bf32d3312ab05b18b"
+    },
+    {
+      "path": "site/viewer/micron-tube-routes.mjs",
+      "bytes": 3025,
+      "sha256": "c69d79d6fdbfee5338fe365ca9542323714add2a834e34aafec37395d19614b1"
     },
     {
       "path": "site/viewer/micron.html",
       "bytes": 5108,
-      "sha256": "11cba21f15c10ab65611dd1968818ef22c40e4223b513ce038dc2b0c86e27a3f"
+      "sha256": "6ec462c4b9ebb44a64f1a4556c945f0a98c596457ce5a3146d099eda41b7467f"
     },
     {
       "path": "site/viewer/micron.js",
-      "bytes": 8513,
-      "sha256": "ed2e3c36ef9f6248261c266670c3a349c7c8689b8a2cfa70ff6d35b99b1ae920"
+      "bytes": 8516,
+      "sha256": "d7f27542c02d378488b32ca91ff285ec44032e34ca6d65bd9e136793fbca18fe"
     },
     {
       "path": "site/viewer/model-loader.js",

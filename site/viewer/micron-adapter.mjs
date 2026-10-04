@@ -1,7 +1,7 @@
 /** Micron: fixed bed, Z gantry, Y X-beam, XYZ toolhead. Baked CAD placement. */
 import {appearanceRole} from './appearance-role.mjs?v=public-v25';
 import {createMicronBelts} from './micron-belts.mjs?v=public-v25';
-import {createMicronFlexible} from './micron-flexible.mjs?v=motion-colors-41';
+import {createMicronFlexible} from './micron-flexible.mjs?v=f60dbb5f5765a15dfc34';
 export const cadToGlb = ([x,y,z]) => [x / 1000, z / 1000, -y / 1000];
 export const corexyDelta = ([x,y]) => ({a_mm: x + y, b_mm: x - y});
 export const corexyInverse = (a,b) => [(a + b) / 2, (a - b) / 2];
@@ -25,7 +25,7 @@ export function partTranslation(part, delta) {
 
 export function createMicronAdapter(root, manifest, profile) {
   if (manifest.machine_id !== profile.machine_id || !/^micron(_plus)?_r1_(120|180)$/.test(profile.machine_id)) throw new Error('Micron profile mismatch');
-  const records = new Map(manifest.parts.map(p => [p.key,{...p,appearance_role:appearanceRole(p)}]));
+  const records = new Map(manifest.parts.map(p => [p.key,{...p,appearance_role:['m180_01765','m180_01766'].includes(p.key)?'base':appearanceRole(p)}]));
   if (records.size !== manifest.parts.length) throw new Error('Duplicate part key');
   const nodes = new Map();
   root.traverse(o => {

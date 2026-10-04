@@ -96,7 +96,7 @@ Trident 250/300/350 has one native M3 nut behind every 25 mm X-rail fixing, and 
 
 ## Micron flexible routing and V2.4 materials
 
-Micron Plus keeps its 18 native 20 mm chain links attached to the fixed and moving pivots. Bed wires remain fixed. PTFE and head wiring retain native geometry at the source pose and use endpoint-following tube previews elsewhere; service length, bend radii and swept cable clearance are not certified. Actual geometry checks cover 1,154 poses across Micron 120 and Plus 180, including whole-Z-range return motion, visibility toggles and source-pose restoration.
+Micron Plus keeps its 18 native 20 mm chain links attached to the fixed and moving pivots. Bed wires remain fixed. PTFE and head wiring use fitting-aligned routing previews at every pose. Straight insertion sections remain coaxial with the measured WWG2, split PUG and PG9 bores, with continuous tangents into the free loops. The PTFE frame inlet stays fixed; the cable's PG9 end follows gantry Z, and both head ends follow XYZ. Service length, bend radii and swept cable clearance are not certified. Actual geometry checks cover whole-Z-range return motion, visibility toggles and reset. The original static author tubes remain in the downloaded CAD.
 
 All six V2.4 250/300/350 printed and LDO reference models apply default or saved palettes during startup and restore defaults through the color controls. Printed materials use zero metalness; protected hardware retains its source color. Actual materials and production controller startup/reset are checked on all six assemblies.
 
