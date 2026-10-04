@@ -11,17 +11,17 @@ import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=workspace-belts-1';
 import {loadFrameMods,withFrameMods} from './frame-mods.js?v=workspace-belts-1';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
-import {setupLighting} from './lighting.js?v=workspace-belts-2';
-import {setupFlexible} from './flexible.js?v=workspace-belts-2';
+import {setupLighting} from './lighting.js?v=extra-machines-55';
+import {setupFlexible} from './flexible.js?v=extra-machines-55';
 import {createBedChain} from './bed-chain.mjs?v=workspace-belts-1';
 import {createPrinterBelts,printerBeltOwner} from './printer-gantry.mjs?v=workspace-belts-2';
-import {setupConfigurations} from './configurations.js?v=workspace-belts-2';
+import {setupConfigurations} from './configurations.js?v=extra-machines-55';
 import {setupAccessories} from './accessories.js?v=workspace-belts-2';
 import {setupAppearance} from './appearance.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {setupPublicInfo} from './public-info.js?v=workspace-belts-2';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=workspace-belts-2';
-import {setupChangerBank} from './changer-bank.js?v=workspace-belts-2';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=extra-machines-55';
+import {setupChangerBank} from './changer-bank.js?v=extra-machines-55';
 import {expandedPrinterCatalog} from './machine-head-model.mjs?v=workspace-belts-2';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=workspace-belts-2';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=workspace-belts-1';
@@ -151,7 +151,7 @@ function setPose(x,y,z){
  $('#zGuideStatus').textContent=`Zガイドブロック3箇所 · ${drift<.001&&railShift<.001?'ベッドに追従':'追従を確認してください'}`;
  $('#zGuideStatus').dataset.maxDriftMm=drift.toFixed(6);$('#zGuideStatus').dataset.bedReferenceDropMm=bedReferenceDrop.toFixed(6);if(Math.abs(bedReferenceDrop)>.001)$('#zGuideStatus').append(Object.assign(document.createElement('span'),{textContent:` · ベッド基準位置の移動 ${(-bedReferenceDrop).toFixed(2)} mm`}));$('#zGuideStatus').dataset.railShiftMm=railShift.toFixed(6);
  const rest=Math.abs(dx)+Math.abs(dy)+Math.abs(bedDown)<.001;
- for(const o of moving.reference_flexible)if(!o.userData.bedChain)o.visible=rest&&$('#cables').checked;
+ for(const o of moving.reference_flexible)if(!o.userData.bedChain)o.visible=$('#cables').checked;
  const chainState=bedChain.update(bedDown,$('#cables').checked);$('#routing').dataset.bedChain=String(chainState.visible);$('#routing').dataset.bedChainLinks=chainState.links;$('#routing').dataset.bedChainEndpointErrorMm=chainState.endpoint_error_mm;
  for(const[a,v]of [['x',x],['y',y],['z',z]]){$('#'+a).value=v;$('#'+a+'v').textContent=v.toFixed(1)+' mm'}
  installedHeads?.setDelta([dx,dy,0]);installedHeads?.gantry.setFlexibleVisible($('#cables').checked);installedHeads?.setPalette(appearance?.colors()||{});
@@ -173,7 +173,7 @@ function setPose(x,y,z){
  if(installed==='xol'||r2){const inlet=installed==='xol'?(activeConfig.extruder==='orbiter2'?[-.09999426211,-24.11,427.2598619]:xolMeta.filament_inlet_mm):[-.05,-28.76,414];const off=activeConfig.head_translation_mm;variant={id:activeConfig.id,includeStockBelts:!r2,filament_inlet_mm:inlet.map((n,i)=>n+off[i]),can_inlet_mm:[-.1,18,438].map((n,i)=>n+off[i])}}
  const routing=flexible.update(dx,dy,bedDown,$('#cables').checked,variant);
  showBelts();
- $('#routing').textContent=!$('#cables').checked?'ベルト・配線：非表示':variant?`${activeConfig.belt_width_mm} mmベルト・PTFE経路プレビュー ／ ヘッド用チェーン未取付`:rest?'CAD基準姿勢 · 元の配線形状':routing.chainRouteValid?'経路プレビュー · ベルト・PTFE・47リンク追従':'経路プレビュー · ベルト・PTFE追従 ／ チェーンは経路範囲外';
+ $('#routing').textContent=!$('#cables').checked?'ベルト・配線：非表示':variant?`${activeConfig.belt_width_mm} mmベルト・PTFE経路プレビュー ／ ヘッド用チェーン未取付`:rest?'CAD基準姿勢 · 元の配線形状':routing.chainRouteValid?'経路プレビュー · ベルト・PTFE・47リンク追従':'チェーンは基準形状を表示（この姿勢の配索は未検証） · ベルト・PTFE経路プレビュー';
  $('#routing').dataset.chain=String(routing.chain);$('#routing').dataset.belts=String(routing.belts);$('#routing').dataset.ptfe=String(routing.ptfe);
  $('#routing').dataset.chainLinks=String(routing.chainLinks||0);$('#routing').dataset.chainCulledLinks=String(routing.chainCulledLinks||0);
  updateHeadDiagnostics(x,y);

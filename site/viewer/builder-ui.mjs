@@ -1,5 +1,5 @@
 import {workspaceTask} from './workspace-lifecycle.mjs';
-import {builderGroups,builderManifest,builderURL} from './toolhead-builder.mjs?v=sphinx-report-45';
+import {builderGroups,builderManifest,builderURL} from './toolhead-builder.mjs?v=extra-machines-55';
 import {monolithCompanion} from './monolith-head-model.mjs?v=workspace-belts-2';
 
 export function setupHeadBuilder(catalog,{getVariant,getMetadata,getExtras,pins,selectVariant,isBusy}){

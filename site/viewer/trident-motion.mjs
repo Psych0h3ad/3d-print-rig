@@ -23,7 +23,7 @@ export function createTridentMotion(profile){
    if(isTridentBedChain(row))continue;
    mesh.position.set(origin.x+(motion==='xy'?dx/1000:0),origin.y-(motion==='z'?down/1000:0),origin.z-(['xy','y'].includes(motion)?dy/1000:0));
    if(motion==='reference_flexible'){
-    mesh.visible=Boolean(flexibleVisible)&&toolheadReference&&Math.abs(dx)+Math.abs(dy)+Math.abs(down)<.00001;
+    mesh.visible=Boolean(flexibleVisible);
    }
   }
   for(const b of belts)b.update(dy,flexibleVisible);

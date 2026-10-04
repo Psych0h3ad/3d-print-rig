@@ -43,13 +43,13 @@ for(const id of ids){
     assert(b.node.visible);checkRoute(b.route);maxLengthDrift=Math.max(maxLengthDrift,Math.abs(b.route.length-lengths[i]));
     near(b.route.length,lengths[i]);
    }
-   assert.equal(result.chain_visible,Math.abs(delta[2])<1e-5);
+   assert.equal(result.chain_visible,true,'Enabled Z chain remains visible throughout motion');
   }else{
    for(const [key,node]of adapter.nodes){
     const row=adapter.records.get(key);
     if(/^Z Belt(?: \(\d+\))?$/.test(row.name)){assert(node.visible);assert.deepEqual(node.getWorldPosition(new Vector3()).toArray(),origins.get(key))}
     if(/^[AB] Belt$/.test(row.name)){
-     assert.equal(node.visible,Math.abs(delta[0])+Math.abs(delta[1])<1e-5);
+     assert.equal(node.visible,true,'Enabled XY belt must remain visible throughout motion');
      near(node.position.y-origins.get(key)[1],delta[2]/1000);
     }
    }
@@ -88,7 +88,7 @@ for(const id of ids){
    near(mesh.position.x-origin.x,row.motion==='xy'?pose.dx/1000:0);
    near(mesh.position.y-origin.y,row.motion==='z'?-pose.bed_down_mm/1000:0);
    near(mesh.position.z-origin.z,['xy','y'].includes(row.motion)?-pose.dy/1000:0);
-   if(row.motion==='reference_flexible'&&row.group==='Z Assembly')assert.equal(mesh.visible,z===0);
+   if(row.motion==='reference_flexible'&&row.group==='Z Assembly')assert(mesh.visible);
   }
   for(const [i,b]of beltEntries.entries()){
    assert(b.mesh.visible);checkRoute(b.route);checkNoCrossing(b.route.points);
@@ -111,8 +111,8 @@ for(const id of ids){
   for(const y of [0,350]){motion.setPose({x:0,y,z:0},{toolheadReference:false});beltEntries.forEach((b,i)=>near(b.route.length,lengths[i],1e-6))}
  }
  motion.setBedReferenceDrop(1.97);motion.setPose({x:0,y:0,z:0});
- for(const [mesh,{row}]of motion.entries)if(row.motion==='reference_flexible'&&row.group==='Z Assembly')assert(!mesh.visible);
- report.machines.push({id,parts:motion.entries.size,poses,fine_y_sweep:701,max_belt_length_drift_mm:maxLengthDrift,belt_routing:'registered smooth envelope; teeth/clamp cuts/tension not simulated',z_chain:'XY-independent, source Z pose only'});
+ for(const [mesh,{row}]of motion.entries)if(row.motion==='reference_flexible'&&row.group==='Z Assembly')assert(mesh.visible);
+ report.machines.push({id,parts:motion.entries.size,poses,fine_y_sweep:701,max_belt_length_drift_mm:maxLengthDrift,belt_routing:'registered smooth envelope; teeth/clamp cuts/tension not simulated',z_chain:'XY-independent; reference geometry remains visible when deformation is unregistered'});
 }
 if(process.argv[3])fs.writeFileSync(process.argv[3],JSON.stringify(report,null,2));
 console.log(`Release motion audit finished: ${report.machines.length} machine configurations; ${report.findings.length} unresolved finding(s) recorded separately.`);

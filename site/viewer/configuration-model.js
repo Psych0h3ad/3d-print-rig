@@ -30,7 +30,11 @@ function candidatesFor(catalog,selection,changed){
  if(['probe','board'].includes(changed))anchors.push('carriage');
  const fields=[...new Set([...(changed?[changed]:[]),...anchors.filter(k=>selection[k]!==undefined)])],index=variantIndex(catalog);
  let rows=catalog.variants;for(const k of fields){const subset=index.fields.get(k)?.get(selection[k])||[];if(subset.length<rows.length)rows=subset}
- return rows.filter(v=>fields.every(k=>v[k]===selection[k]));
+ const anchored=rows.filter(v=>fields.every(k=>v[k]===selection[k]));
+ // Offer an installed head on the same printer even when it needs another
+ // registered gantry. Keep existing gantry choices whenever they fit.
+ if(anchored.length||!machine||changed!=='toolhead')return anchored;
+ return (index.fields.get('toolhead')?.get(selection.toolhead)||[]).filter(v=>fields.filter(k=>k!=='gantry').every(k=>v[k]===selection[k]));
 }
 
 // The changed choice has priority; all results must have installed CAD.

@@ -3,5 +3,5 @@
 export function v24FlexibleState(row,delta,enabled) {
   if(/^Z Belt(?: \(\d+\))?$/.test(row.name||''))return {visible:Boolean(enabled),z:0};
   if(/^[AB] Belt$/.test(row.name||''))return {visible:Boolean(enabled),z:delta[2]};
-  return {visible:Boolean(enabled)&&delta.every(v=>Math.abs(v)<1e-5),z:0};
+  return {visible:Boolean(enabled),z:0};
 }

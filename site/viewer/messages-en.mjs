@@ -1,3 +1,4 @@
+import {extraMachineMessages} from './extra-machine-messages-en.mjs?v=extra-machines-55';
 import {v0Messages,v0Templates} from './v0-messages-en.mjs?v=fysetc-front-54';
 import {ratRigMessages,ratRigTemplates} from './ratrig-messages-en.mjs?v=workspace-belts-2';
 import {e3ngMessages} from './e3ng-messages-en.mjs?v=workspace-belts-2';
@@ -1394,3 +1395,5 @@ Object.assign(templates, {
  "Crossantの形状を読み込み中… {0} / 7": "Loading Crossant geometry… {0} / 7",
  "姿勢更新済み · ベルト {0}": "Pose updated · Belts {0}"
 });
+
+Object.assign(messages, extraMachineMessages);

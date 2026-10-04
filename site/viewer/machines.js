@@ -1,8 +1,11 @@
-import {replaceWorkspaceURL} from './workspace-navigation.mjs';
-import {navigateWorkspace} from './workspace-navigation.mjs';
+import {annexMachines} from './annex-machines.mjs?v=extra-machines-55';
+import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=extra-machines-55';
+import {navigateWorkspace} from './workspace-navigation.mjs?v=extra-machines-55';
 import {renderProductLinks} from './product-links.js?v=workspace-belts-1';
 import {ratRigMachines} from './ratrig-machines.mjs?v=workspace-belts-1';
 export const machineChoices=[
+ ...annexMachines,
+ {id:'remorph_beta1_307',label:'Remorph Beta 1 · 307 / LGX Pro / Rapido UHF / Beacon Rev. H',page:'./remorph.html',family:'remorph',vendor:'remorph',size:307},
  {id:'siboor_trident_350',label:'SIBOOR Trident 350 · CNC AWD',page:'./'},
  ...[250,300,350].map(size=>({id:`voron_trident_${size}`,label:`VORON Trident ${size} · 標準プリント構造`,page:'./trident.html'})),
  {id:'siboor_v24_350',label:'VORON V2.4 350 · Modを比較',page:'./v24.html'},
@@ -23,8 +26,8 @@ export const machineChoices=[
  {id:'crossant_235_v06_leadscrew',label:'Crossant-235 · Leadscrew Z / Sherpa Mini / Goliath',page:'./crossant.html',family:'crossant',vendor:'pole',size:220},
  ...ratRigMachines,
 ];
-const vendors={voron:'VORON / 標準',siboor:'SIBOOR',ldo:'LDO',fysetc:'FYSETC',pfa:'Printers for Ants',ratrig:'Rat Rig',pole:'Pole Engineering'};
-const families={trident:'VORON Trident',v24:'VORON V2.4',v0:'VORON V0',micron:'Micron',vcore4:'V-Core 4',crossant:'Crossant-235'};
+const vendors={voron:'VORON / 標準',siboor:'SIBOOR',ldo:'LDO',fysetc:'FYSETC',pfa:'Printers for Ants',ratrig:'Rat Rig',pole:'Pole Engineering',remorph:'Lex Reman / Remorph',annex:'Annex Engineering'};
+const families={trident:'VORON Trident',v24:'VORON V2.4',v0:'VORON V0',micron:'Micron',vcore4:'V-Core 4',crossant:'Crossant-235',remorph:'Remorph',annex_k1:'Annex K1',annex_k2:'Annex K2',annex_k3:'Annex K3'};
 for(const row of machineChoices){
  if(row.family&&row.vendor&&row.size)continue;
  row.family=row.id.startsWith('micron_')?'micron':row.id.includes('trident')?'trident':row.id.includes('v24')?'v24':'v0';

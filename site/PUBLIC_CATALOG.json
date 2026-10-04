@@ -1,5 +1,5 @@
 {
-  "viewer_version": "viewer-v54",
+  "viewer_version": 55,
   "sources": [
     {
       "id": "siboor_trident",
@@ -1166,6 +1166,75 @@
       "license_url": "../licenses/fysetc_cnc_stealth_front/LICENSE",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
       "changes": "Remove the two embedded printing supports from the cover; retain cover and logo dimensions. Omit print-bed transforms and export meshes for display."
+    },
+    {
+      "id": "annex_k3",
+      "label": "Annex K3",
+      "repository": "Annex-Engineering/Gasherbrum-K3",
+      "author": "Annex Engineering",
+      "commit": "1a470008b8f906085838f9e9c00c25fc499c00ae",
+      "version": "Release 1.1 · 2022-11-24",
+      "url": "https://github.com/Annex-Engineering/Gasherbrum-K3/tree/1a470008b8f906085838f9e9c00c25fc499c00ae",
+      "license": "Annex Engineering Hardware and Software EULA",
+      "license_url": "../licenses/annex_license/LICENSE.md",
+      "scope": "Complete native assembly: 1789 part instances. Static CAD viewing; motion is not registered.",
+      "changes": "Native geometry tessellation and source colors retained; viewer materials and scene controls added.",
+      "notice": "5 original reference geometry issue(s) retained. Native mesh placement and instance count checked; physical assembly, continuous collision checks and motion are unverified."
+    },
+    {
+      "id": "annex_k1",
+      "label": "Annex K1",
+      "repository": "Annex-Engineering/Masherbrum-K1",
+      "author": "Annex Engineering",
+      "commit": "b85286efd96cf836858ddcb3c3916108828c910e",
+      "version": "Release 3.0",
+      "url": "https://github.com/Annex-Engineering/Masherbrum-K1/tree/b85286efd96cf836858ddcb3c3916108828c910e",
+      "license": "Annex Engineering Hardware and Software EULA",
+      "license_url": "../licenses/annex_license/LICENSE.md",
+      "scope": "Complete native assembly: 1766 part instances. Static CAD viewing; motion is not registered.",
+      "changes": "Native geometry tessellation and source colors retained; viewer materials and scene controls added. Corrupt corner-clip reference surface replaced by the author’s Release_3_0/STLs/Panel_Mounting/Sides_and_Top_Quick_Release/corner_lock_body_6mm_x6_Rev2.stl (SHA256 bb71c5db8d715840101f351b02f09175fd112194c8bcd0eb23a8009a3620f3d2); native part transforms preserved. Matching normal CAD counterpart surface discrepancy < 0.03 mm.",
+      "notice": "12 original reference geometry issue(s) retained. Native mesh placement and instance count checked; physical assembly, continuous collision checks and motion are unverified."
+    },
+    {
+      "id": "annex_k2",
+      "label": "Annex K2",
+      "repository": "Annex-Engineering/Chhogori-K2",
+      "author": "Annex Engineering",
+      "commit": "9a151664698ac46f051df6135afb2e2e730ac703",
+      "version": "Release 4.0",
+      "url": "https://github.com/Annex-Engineering/Chhogori-K2/tree/9a151664698ac46f051df6135afb2e2e730ac703",
+      "license": "Annex Engineering Hardware and Software EULA",
+      "license_url": "../licenses/annex_license/LICENSE.md",
+      "scope": "Complete native assembly: 1492 part instances. Static CAD viewing; motion is not registered.",
+      "changes": "Native geometry tessellation and source colors retained; viewer materials and scene controls added.",
+      "notice": "2 original reference geometry issue(s) retained. Native mesh placement and instance count checked; physical assembly, continuous collision checks and motion are unverified."
+    },
+    {
+      "id": "remorph_beta1",
+      "label": "Remorph Beta 1",
+      "repository": "lexreman/remorphdesign",
+      "author": "Lex Reman",
+      "commit": "83b1c44079001418c14f63d2b353a049d3a361ad",
+      "version": "Beta 1",
+      "url": "https://github.com/lexreman/remorphdesign/tree/83b1c44079001418c14f63d2b353a049d3a361ad",
+      "license": "CERN-OHL-W-2.0",
+      "license_url": "../licenses/remorph/LICENSE",
+      "scope": "Complete native 307 mm assembly, original Rapido UHF mount, XYZ guide motion and LED placement.",
+      "changes": "Ground datum, render materials, reference flexible geometry and two native XY belt bindings.",
+      "notice": "3515 native instances. Alternative mounts, multijoint door motion and continuous collisions are unverified; native reference issues and CAD/config Z ratio difference are retained."
+    },
+    {
+      "id": "remorph_rapido_uhf",
+      "label": "Remorph / Rapido UHF integration CAD",
+      "repository": "Phaetus/Rapido",
+      "author": "Phaetus",
+      "commit": "ca025effebbf63a48dda88ec3a6039fd3c081f0a",
+      "url": "https://github.com/Phaetus/Rapido/tree/ca025effebbf63a48dda88ec3a6039fd3c081f0a",
+      "license": "Personal use only; commercial use prohibited by manufacturer README",
+      "license_url": "../licenses/remorph/PHAETUS_README.md",
+      "scope": "Supplemental Rapido UHF model at the author’s dedicated four-hole mount.",
+      "changes": "Native mount and seat registration, simplified mount fasteners.",
+      "notice": "Manufacturer heatsink/heater integration surfaces are retained; this does not imply a closed internal solid model."
     }
   ],
   "defaults": [

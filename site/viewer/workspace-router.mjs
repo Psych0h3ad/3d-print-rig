@@ -1,10 +1,10 @@
 import {WorkspaceScope, activateScope} from './workspace-lifecycle.mjs';
-import {bindWorkspaceNavigation, setWorkspaceLeaving, workspaceTarget, workspaceURL, replaceWorkspaceURL} from './workspace-navigation.mjs';
-import {setupWorkspace} from './workspace-ui.mjs?v=fysetc-front-54';
+import {bindWorkspaceNavigation, setWorkspaceLeaving, workspaceTarget, workspaceURL, replaceWorkspaceURL} from './workspace-navigation.mjs?v=extra-machines-55';
+import {setupWorkspace} from './workspace-ui.mjs?v=extra-machines-55';
 import {applyDisplay} from './display-preferences.mjs';
-import {machinePage} from './machines.js?v=workspace-belts-2';
+import {machinePage} from './machines.js?v=extra-machines-55';
 
-const controllers = new Set(['bootstrap.js','v24-bootstrap.js','app.js','v24-app.js','vanilla-trident.js','v24-reference.js','v0-app.js','micron.js','kit-reference.js','ratrig.js','crossant.js','toolheads.js','gantries.js','components.js','toolchangers.js','e3ng.js']);
+const controllers = new Set(['bootstrap.js','v24-bootstrap.js','app.js','v24-app.js','vanilla-trident.js','v24-reference.js','v0-app.js','micron.js','kit-reference.js','ratrig.js','crossant.js','toolheads.js','gantries.js','components.js','toolchangers.js','e3ng.js','remorph.js', 'annex.js']);
 document.documentElement.dataset.workspaceSession = crypto.randomUUID();
 let scope, sequence = 0, transitions = Promise.resolve();
 const templates = new Map();

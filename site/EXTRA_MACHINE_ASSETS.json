@@ -1,0 +1,123 @@
+{
+  "version": 55,
+  "base_url": "https://psych0h3ad.github.io/3d-print-rig-extra-models/",
+  "local_directory": "extra-assets",
+  "machines": [
+    {
+      "id": "annex_k1_assembly",
+      "parts": 1766,
+      "files": {
+        "assembly_manifest.json": {
+          "path": "machines/annex_k1_assembly/assembly_manifest.json",
+          "bytes": 2652282,
+          "sha256": "5f03cae4efec2c39bff780553028c7fcdfe61ef043e61dedb7702cccaaeef7af"
+        },
+        "machine_profile.json": {
+          "path": "machines/annex_k1_assembly/machine_profile.json",
+          "bytes": 5390,
+          "sha256": "cf5720e5a34784a40eb5c693ecbb3bc2f995bad0305db9b67a3b4aae0e5d0f1b"
+        },
+        "model.glb": {
+          "path": "machines/annex_k1_assembly/model.glb.gz",
+          "bytes": 23335637,
+          "sha256": "410498711dbbd05a96209b06c3501edc819a157596741aa4be0f0b0a411863da",
+          "encoding": "gzip",
+          "decoded_bytes": 80759500,
+          "decoded_sha256": "03f3c99734f20f9b4af1b17d1f31443e0c05f534e163ad03b8a88e5f8ea92240"
+        }
+      }
+    },
+    {
+      "id": "annex_k2_assembly",
+      "parts": 1492,
+      "files": {
+        "assembly_manifest.json": {
+          "path": "machines/annex_k2_assembly/assembly_manifest.json",
+          "bytes": 2228812,
+          "sha256": "c44ebc69b8e7c66878d2778ab6430d247c3fd052e31e93471745a38e5e92efe4"
+        },
+        "machine_profile.json": {
+          "path": "machines/annex_k2_assembly/machine_profile.json",
+          "bytes": 1464,
+          "sha256": "c9ad3f40dba5c0b475893c9c9754d3bd00f269aa758bd5180d9d339e3760399c"
+        },
+        "model.glb": {
+          "path": "machines/annex_k2_assembly/model.glb.gz",
+          "bytes": 21368418,
+          "sha256": "5683ad7cc5e53b1b613ac8a382e7f2561951d01a6fd18c794a52440efa6ce2ad",
+          "encoding": "gzip",
+          "decoded_bytes": 74792800,
+          "decoded_sha256": "0efe6df3f44824d2431cd514fb31b3c135cc9cd81cf232d07ec9ac3f3ccdc450"
+        }
+      }
+    },
+    {
+      "id": "annex_k3_assembly",
+      "parts": 1789,
+      "files": {
+        "assembly_manifest.json": {
+          "path": "machines/annex_k3_assembly/assembly_manifest.json",
+          "bytes": 2625469,
+          "sha256": "a53b1ed063fd42d965a5ed6ff31cf7c1983d3feb7bfaf7f5462c32569191e930"
+        },
+        "machine_profile.json": {
+          "path": "machines/annex_k3_assembly/machine_profile.json",
+          "bytes": 2155,
+          "sha256": "c467952db5930bde4553e19c6e98061cb122e87a19a7795fbc17c77de7160c7a"
+        },
+        "model.glb": {
+          "path": "machines/annex_k3_assembly/model.glb.gz",
+          "bytes": 14193129,
+          "sha256": "a028d1b9a15531cfd0fd8d51a3089f3ea0bf065f9be0c547f92ee3da203c7956",
+          "encoding": "gzip",
+          "decoded_bytes": 43054376,
+          "decoded_sha256": "aa9cea21120eef1d395d02800c179d169169d40321c8b480b672d9b841f8f1cf"
+        }
+      }
+    },
+    {
+      "id": "remorph_beta1_307",
+      "parts": 3515,
+      "files": {
+        "assembly_manifest.json": {
+          "path": "machines/remorph_beta1_307/assembly_manifest.json",
+          "bytes": 4272119,
+          "sha256": "9044189b483881ed719e2b44455e38e0c5f53ecef46c70cdb3dc957289839735"
+        },
+        "belt_bindings.json": {
+          "path": "machines/remorph_beta1_307/belt_bindings.json",
+          "bytes": 114922,
+          "sha256": "cac1519f14efcb72a86065d862a9ecc4deeb0159549cc1068db9562f39643bbe"
+        },
+        "geometry_qa.json": {
+          "path": "machines/remorph_beta1_307/geometry_qa.json",
+          "bytes": 1032,
+          "sha256": "44ee96a770fc709f44ce75e3e575d2663c118647e5a76cc053647db1294ee7be"
+        },
+        "machine_profile.json": {
+          "path": "machines/remorph_beta1_307/machine_profile.json",
+          "bytes": 6953,
+          "sha256": "997cb8ea35695ee1b56d77eec3b42011c5902d621e8fd9ed35411891ba2626c4"
+        },
+        "model.glb": {
+          "path": "machines/remorph_beta1_307/model.glb.gz",
+          "bytes": 48998792,
+          "sha256": "670a19a8d8d54e0511f675bfc1dfd3831147021e1542a05e7901f0846ce080cc",
+          "encoding": "gzip",
+          "decoded_bytes": 159585404,
+          "decoded_sha256": "bc2dac0dbcdb191f6ae1391a538f3deed28ec3deb0fdc7597f6adde8379c841c"
+        },
+        "source_provenance.json": {
+          "path": "machines/remorph_beta1_307/source_provenance.json",
+          "bytes": 54105,
+          "sha256": "ccbb29fd525d4ba5b96fcdf63a7fa7c61350c6d95344a9d977d663b71a5bab48"
+        },
+        "TESS_QA.json": {
+          "path": "machines/remorph_beta1_307/TESS_QA.json",
+          "bytes": 484361,
+          "sha256": "b9fcbc9c833c13e86dcf89bef8e062673f96cb11c94adaab6499482575f2714d"
+        }
+      }
+    }
+  ]
+}

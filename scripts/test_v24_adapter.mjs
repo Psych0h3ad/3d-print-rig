@@ -33,7 +33,7 @@ assert.deepEqual(nodes[2].position.toArray(),[0,.1,0]);
 assert.deepEqual(nodes[3].position.toArray(),[0,.1,-.05]);
 assert.deepEqual(nodes[4].position.toArray(),[.025,.1,-.05]);
 assert.deepEqual(child.position.toArray(),[0,0,0]);
-assert.equal(nodes[5].visible,false);
+assert.equal(nodes[5].visible,true,'Enabled reference wiring must remain visible away from its source pose');
 assert.deepEqual(adapter.setPose({x:-9,y:900,z:900}).display_xyz_mm,[0,350,330]);
 assert.throws(()=>adapter.setPose({x:NaN,y:0,z:0}),/Non-finite/);
 assert.equal(adapter.setPose({x:175,y:179.1,z:27}).atReference,true);

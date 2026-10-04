@@ -1,7 +1,8 @@
+import {sceneLightingState} from './scene-lighting-state.mjs?v=extra-machines-55';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {rememberDisplayControl} from './display-preferences.mjs';
-import {replaceWorkspaceURL} from './workspace-navigation.mjs';
+import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=extra-machines-55';
 import {workspaceFrame,WorkspaceResizeObserver,workspaceTask,workspaceListen} from './workspace-lifecycle.mjs';
 import * as THREE from './vendor-r180/three.module.js';
 import {OrbitControls} from './vendor-r180/OrbitControls.js?v=workspace-belts-1';
@@ -9,7 +10,7 @@ import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
 import {loadRatRigMachine,disposeRatRig} from './ratrig-loader.mjs?v=workspace-belts-2';
 import {createRatRigGcodePreview} from './ratrig_gcode_preview.mjs';
 import {ratRigSchema,validateRatRigConfiguration,ratRigAxisRanges} from './ratrig-ui-state.mjs?v=workspace-belts-1';
-import {setupMachineNavigation} from './machines.js?v=workspace-belts-2';
+import {setupMachineNavigation} from './machines.js?v=extra-machines-55';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {setupPublicInfo} from './public-info.js?v=workspace-belts-2';
@@ -28,7 +29,7 @@ controls.addEventListener('change',request);
 function resize(){const rect=stage.getBoundingClientRect(),width=Math.max(rect.width,1),height=Math.max(rect.height,1);renderer.setSize(width,height);setResponsiveAspect(camera,controls,width,height);request()}
 const observer=new WorkspaceResizeObserver(resize);observer.observe(stage);
 function setBusy(value){busy=value;for(const id of mutable)$(id).disabled=value||!current;if(!value&&current)sync()}
-function lighting(){const dark=$('night').checked;scene.background=new THREE.Color(dark?'#04070c':'#edf1f5');scene.environment=dark?null:environment.texture;scene.environmentIntensity=dark?0:.16;renderer.toneMappingExposure=dark?1.35:.9;ambient.intensity=dark?.025:.25;sun.intensity=dark?.025:1.4;request()}
+function lighting(){const room=sceneLightingState({darkUI:$('night').checked});scene.background=new THREE.Color(room.background);scene.environment=environment.texture;scene.environmentIntensity=room.environmentIntensity;renderer.toneMappingExposure=room.exposure;ambient.intensity=room.ambientIntensity;sun.intensity=1.4;document.body.dataset.roomDark='false';request()}
 function sync(){
  if(!current)return;const s=current.adapter.getSnapshot(),p=current.profile,ranges=ratRigAxisRanges(p,s);
  for(const a of ['x0','x1','y','z'])if(ranges[a]){$(a).min=ranges[a][0];$(a).max=ranges[a][1];$(a).value=s.pose[a];$(a+'v').textContent=s.pose[a].toFixed(2)+' mm';$(a).disabled=busy||a==='x1'&&s.mode!=='independent'}

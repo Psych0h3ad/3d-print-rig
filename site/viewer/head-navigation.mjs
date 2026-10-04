@@ -1,5 +1,5 @@
 import {monolithHeadCatalog} from './monolith-head-model.mjs?v=workspace-belts-2';
-import {machinePage} from './machines.js?v=workspace-belts-2';
+import {machinePage} from './machines.js?v=extra-machines-55';
 import {machineHeadVariants} from './machine-head-model.mjs?v=workspace-belts-2';
 
 export function headPrinterLink(variant,registry,href){

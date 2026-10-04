@@ -21,3 +21,11 @@ const monolith={...c,dimensions:printer.dimensions,variants:[{...variants[4],gan
 const sc=monolith.variants[0];assert(choicesFor(monolith,sc,'mount').some(r=>r.id==='fixed'));assert.equal(resolveVariant(monolith,{...sc,mount:'fixed'},'mount').toolhead,'sphinx');assert(choiceChanges(monolith,sc,'mount','fixed').includes('toolhead'));
 assert.equal(translate('Chube Compact · 組み合わせ変更あり'),'Chube Compact · Companion changes required');
 console.log('Component choices: registered companion changes remain discoverable; head/gantry context and probe/board mounting stay bound.');
+
+const installed={...printer,variants:[{...g2,id:'stock-nine',gantry:'awd'},{...g2,id:'sphinx-six',toolhead:'sphinx',gantry:'r2'}],toolheads:[{id:'sb'},{id:'sphinx'}]};
+const kit=installed.variants[0];assert(choicesFor(installed,kit,'toolhead').some(r=>r.id==='sphinx'));
+assert.equal(resolveVariant(installed,{...kit,toolhead:'sphinx'},'toolhead').gantry,'r2');
+assert.deepEqual(choiceChanges(installed,kit,'toolhead','sphinx'),['gantry']);
+const withNine={...installed,variants:[...installed.variants,{...installed.variants[1],id:'sphinx-nine',gantry:'awd'}]};
+assert.equal(resolveVariant(withNine,{...kit,toolhead:'sphinx'},'toolhead').gantry,'awd');
+console.log('Installed heads requiring another registered gantry stay discoverable; a fitting current gantry takes precedence.');

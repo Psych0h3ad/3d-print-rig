@@ -22,6 +22,7 @@
 !/site/PUBLIC_CATALOG.json
 !/site/ASSET_BUNDLE.json
 !/site/RATRIG_ASSETS.json
+!/site/EXTRA_MACHINE_ASSETS.json
 !/site/CROSSANT_ASSETS.json
 !/site/V0_INSTALLATIONS.json
 !/site/MOD_REGISTRY.json

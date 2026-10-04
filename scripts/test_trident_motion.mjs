@@ -13,7 +13,7 @@ const motion=createTridentMotion(profile);motion.register({traverse:fn=>meshes.f
 motion.setPose({x:250,y:200,z:150});
 for(const key of ['bed','fuse','guide_block','leadnut'])assert.equal(meshes.find(m=>m.userData.part_key===key).position.y,-.15);
 for(const key of ['rail','motor']){const p=meshes.find(m=>m.userData.part_key===key).position;assert.deepEqual([p.x,p.y,p.z],[0,0,0]);}
-assert.equal(meshes[6].position.x,.075);assert.equal(meshes[6].position.z,-.025);assert.equal(meshes[7].position.x,0);assert.equal(meshes[7].position.z,-.025);assert.equal(meshes[8].visible,false);
+assert.equal(meshes[6].position.x,.075);assert.equal(meshes[6].position.z,-.025);assert.equal(meshes[7].position.x,0);assert.equal(meshes[7].position.z,-.025);assert.equal(meshes[8].visible,true);
 motion.setPose({x:175,y:175,z:0});assert(meshes[8].visible);assert.equal(meshes[0].position.y,0);
 assert.equal(motion.setPose({x:500,y:-20,z:300}).z,250);
 assert.throws(()=>motion.setPose({x:'bad',y:0,z:0}));
@@ -21,7 +21,7 @@ assert.throws(()=>createTridentMotion({...profile,machine_id:'siboor_trident_350
 motion.setBedReferenceDrop(1.97);motion.setPose({x:175,y:175,z:0});
 for(const key of ['bed','fuse','guide_block','leadnut'])assert.equal(meshes.find(m=>m.userData.part_key===key).position.y,-.00197);
 for(const key of ['rail','motor','head'])assert.equal(meshes.find(m=>m.userData.part_key===key).position.y,0);
-assert(!meshes[8].visible);assert.throws(()=>motion.setBedReferenceDrop(NaN));assert.throws(()=>motion.setBedReferenceDrop(-41));
+assert(meshes[8].visible);assert.throws(()=>motion.setBedReferenceDrop(NaN));assert.throws(()=>motion.setBedReferenceDrop(-41));
 assert.equal(motion.setPose({x:175,y:175,z:250}).bed_down_mm,250);assert.throws(()=>motion.setBedReferenceDrop(300));
 motion.setBedReferenceDrop(0);motion.setPose({x:175,y:175,z:0});assert.equal(meshes[0].position.y,0);assert(meshes[8].visible);
 console.log('Independent Trident motion passed: bed, fuse, guide blocks and nuts follow Z; rails and motors remain fixed.');

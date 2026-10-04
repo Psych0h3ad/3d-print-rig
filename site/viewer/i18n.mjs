@@ -1,6 +1,6 @@
-import {replaceWorkspaceURL} from './workspace-navigation.mjs';
+import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=extra-machines-55';
 import {WorkspaceMutationObserver,workspaceListen,onWorkspaceDispose} from './workspace-lifecycle.mjs';
-import {messages,templates} from './messages-en.mjs?v=fysetc-front-54';
+import {messages,templates} from './messages-en.mjs?v=extra-machines-55';
 
 const normalize=text=>text.trim().replace(/\s+/gu,' ');
 const escape=text=>text.replace(/[.*+?^${}()|[\]\\]/gu,'\\$&');

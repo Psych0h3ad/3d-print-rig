@@ -1,4 +1,4 @@
-import {machinePage} from './machines.js?v=workspace-belts-2';
+import {machinePage} from './machines.js?v=extra-machines-55';
 
 export const workspaceReturnKey='3d-print-rig-workspace-return';
 export function workspaceKindFor(page){

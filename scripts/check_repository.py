@@ -76,6 +76,8 @@ def main():
     if errors:
         raise SystemExit('\n'.join(errors))
     subprocess.run(['node', str(ROOT/'scripts/test_configurations.mjs')], cwd=ROOT, check=True)
+    subprocess.run(['node', str(ROOT/'scripts/test_extra_assets.mjs')], cwd=ROOT, check=True)
+    subprocess.run(['node', str(ROOT/'scripts/test_scene_lighting.mjs')], cwd=ROOT, check=True)
     subprocess.run(['node', str(ROOT/'scripts/test_component_choices.mjs')], cwd=ROOT, check=True)
     subprocess.run(['node', str(ROOT/'scripts/test_rapido_x.mjs')], cwd=ROOT, check=True)
     subprocess.run(['node', str(ROOT/'scripts/test_ratrig.mjs')], cwd=ROOT, check=True)

@@ -1,4 +1,4 @@
-import {collections,catalogDimensions} from './configuration-model.js?v=sphinx-report-45';
+import {collections,catalogDimensions} from './configuration-model.js?v=extra-machines-55';
 import {headPlan} from './head-assembly.js?v=trident-clearance-35';
 import {appearanceRole} from './appearance-role.mjs?v=trident-clearance-35';
 import {probeHasConflict} from './probe-checks.js?v=sphinx-report-45';

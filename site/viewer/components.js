@@ -1,6 +1,6 @@
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
-import {replaceWorkspaceURL} from './workspace-navigation.mjs';
+import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=extra-machines-55';
 import {setupSceneDisplay} from './display-preferences.mjs';
 import {WorkspaceResizeObserver,workspaceTask} from './workspace-lifecycle.mjs';
 import * as THREE from 'three';

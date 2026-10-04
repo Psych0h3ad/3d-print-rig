@@ -1,10 +1,10 @@
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
-import {replaceWorkspaceURL} from './workspace-navigation.mjs';
+import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=extra-machines-55';
 import {setupSceneDisplay} from './display-preferences.mjs';
 import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {loadMonolithData} from './monolith-machine.js?v=workspace-belts-2';
-import {machineChoices,machinePage} from './machines.js?v=workspace-belts-2';
+import {machineChoices,machinePage} from './machines.js?v=extra-machines-55';
 import {monolithBeltClip} from './monolith-belt-clip.mjs?v=workspace-belts-1';
 import {appearanceRole} from './appearance-role.mjs?v=workspace-belts-1';
 import * as THREE from 'three';
@@ -13,10 +13,10 @@ import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=workspace-belts-1';
 import {setupPublicInfo} from './public-info.js?v=workspace-belts-2';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=workspace-belts-2';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=extra-machines-55';
 import {monolithHeadCatalog} from './monolith-head-model.mjs?v=workspace-belts-2';
-import {setupConfigurations} from './configurations.js?v=workspace-belts-2';
-import {resolveVariant} from './configuration-model.js?v=workspace-belts-1';
+import {setupConfigurations} from './configurations.js?v=extra-machines-55';
+import {resolveVariant} from './configuration-model.js?v=extra-machines-55';
 import {gantryDimensions,gantryChoice,gantryAssets} from './gantry-model.js?v=workspace-belts-1';
 export async function mount(scope){
 const $=s=>document.querySelector(s),stage=$('#stage'),scene=scope.scene(new THREE.Scene()),bench=new THREE.Group();scene.add(bench);scene.background=new THREE.Color('#edf1f5');

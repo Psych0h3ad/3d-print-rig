@@ -1,3 +1,4 @@
+import {sceneLightingState} from './scene-lighting-state.mjs?v=extra-machines-55';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {rememberDisplayControl} from './display-preferences.mjs';
@@ -7,7 +8,7 @@ import {OrbitControls} from './vendor-r180/OrbitControls.js?v=workspace-belts-1'
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
 import {loadCrossant,disposeCrossant} from './crossant-loader.mjs';
 import {crossantSchema,crossantGroups,validateCrossantState} from './crossant-state.mjs';
-import {setupMachineNavigation} from './machines.js?v=workspace-belts-2';
+import {setupMachineNavigation} from './machines.js?v=extra-machines-55';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {setupPublicInfo} from './public-info.js?v=workspace-belts-2';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
@@ -17,14 +18,14 @@ renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.toneMapping=THRE
 const scene=scope.scene(new THREE.Scene()),camera=new THREE.PerspectiveCamera(35,1,.01,30),controls=scope.resource(new OrbitControls(camera,renderer.domElement));controls.enableDamping=true;
 camera.position.set(.8,.6,.8);controls.target.set(0,.25,0);
 const pmrem=new THREE.PMREMGenerator(renderer),environment=pmrem.fromScene(new RoomEnvironment(),.03),ambient=new THREE.HemisphereLight(0xffffff,0x586b80,.25),sun=new THREE.DirectionalLight(0xffffff,1.4);sun.position.set(2,4,3);scene.add(ambient,sun);
-const floor=new THREE.Mesh(new THREE.PlaneGeometry(3,3),new THREE.MeshStandardMaterial({color:0xd6dfdb,roughness:.9}));floor.rotation.x=-Math.PI/2;scene.add(floor);const grid=new THREE.GridHelper(3,30,0xa8b8b1,0xc5cec9);grid.visible=false;scene.add(grid);
+const grid=new THREE.GridHelper(3,30,0xa8b8b1,0xc5cec9);grid.visible=false;scene.add(grid);
 let current,frame=null,disposed=false,animation=null,marks=[],state,loaded=false;
 const abort=new AbortController(),mutable=['x','y','z','nominal','resetPose','minPose','maxPose','animatePose','base','accent','frame','resetPalette','night','gridVisible','belts','chain','saveConfiguration','loadConfiguration','clearContact'];
 const request=()=>{if(disposed||frame!==null)return;frame=workspaceFrame(t=>{frame=null;if(animation!==null)advance(t);controls.update();renderer.render(scene,camera);if(animation!==null)request()})};
 controls.addEventListener('change',request);
 const observer=new WorkspaceResizeObserver(()=>{const r=stage.getBoundingClientRect(),w=Math.max(r.width,1),h=Math.max(r.height,1);renderer.setSize(w,h);setResponsiveAspect(camera,controls,w,h);request()});observer.observe(stage);
 const reference=()=>Object.fromEntries(['x','y','z'].map((a,i)=>[a,current.profile.display_reference_xyz_mm[i]]));
-function lighting(){const night=$('night').checked;document.body.classList.toggle('night',night);scene.background=new THREE.Color(night?'#04070c':'#edf1f5');scene.environment=night?null:environment.texture;scene.environmentIntensity=night?0:.16;renderer.toneMappingExposure=night?1.35:.9;ambient.intensity=night?.025:.25;sun.intensity=night?.025:1.4;floor.material.color.set(night?'#111a16':'#d6dfdb');request()}
+function lighting(){const room=sceneLightingState({darkUI:$('night').checked});scene.background=new THREE.Color(room.background);scene.environment=environment.texture;scene.environmentIntensity=room.environmentIntensity;renderer.toneMappingExposure=room.exposure;ambient.intensity=room.ambientIntensity;sun.intensity=1.4;document.body.dataset.roomDark='false';request()}
 function range(){return state.nominal?current.profile.display_limits_mm:current.profile.sampled_clearance_limits_mm}
 function stop(){animation=null;if($('animatePose'))$('animatePose').textContent='動作を再生'}
 function clearMarks(){for(const m of marks){m.removeFromParent();m.geometry.dispose();m.material.dispose()}marks=[]}
@@ -88,7 +89,7 @@ try{
    if(![c.part_a,c.part_b].every(k=>current.adapter.nodes.has(k))||!c.first_pose_mm)throw Error('Crossantの接触部品が不足しています。');
    const b=document.createElement('button');b.textContent=c.name_a+' / '+c.name_b;b.dataset.i18n='off';b.onclick=()=>action(()=>{stop();state.nominal=true;clearMarks();setCrossantPose(Object.fromEntries(['x','y','z'].map((a,i)=>[a,c.first_pose_mm[i]])));for(const key of [c.part_a,c.part_b]){const m=new THREE.BoxHelper(current.adapter.nodes.get(key),0xffaa00);scene.add(m);marks.push(m)}view('head')});$('contacts').append(b);
   }
-  floor.position.y=new THREE.Box3().setFromObject(current.root).min.y-.004;grid.position.y=floor.position.y+.001;current.adapter.setPalette(state.palette);loaded=true;for(const id of mutable)$(id).disabled=false;sync();view();$('badge').textContent='Crossant-235 · 2,177 PARTS';$('status').hidden=true;document.body.dataset.assetStatus='ready';
+  grid.position.y=new THREE.Box3().setFromObject(current.root).min.y-.003;current.adapter.setPalette(state.palette);loaded=true;for(const id of mutable)$(id).disabled=false;sync();view();$('badge').textContent='Crossant-235 · 2,177 PARTS';$('status').hidden=true;document.body.dataset.assetStatus='ready';
   await setupPublicInfo({includeDownloads:false});setupRenderExport({three:THREE,renderer,scene,camera,controls,name:machine});
  }
 }catch(e){if(!disposed){$('status').hidden=false;$('status').textContent=e.message;document.body.dataset.assetStatus='error';document.body.dataset.error=e.message;console.error(e)}}

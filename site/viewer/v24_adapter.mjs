@@ -1,4 +1,4 @@
-import {v24FlexibleState} from './v24-flexible.mjs?v=v24-belts-43';
+import {v24FlexibleState} from './v24-flexible.mjs?v=extra-machines-55';
 import {appearanceRole} from './appearance-role.mjs?v=trident-clearance-35';
 import {createV24Belts} from './v24-belts.mjs?v=v24-belts-43';
 /** Separate V2.4 kinematic adapter. CAD vertices already contain world placement. */

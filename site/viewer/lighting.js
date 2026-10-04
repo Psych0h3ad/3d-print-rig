@@ -1,3 +1,4 @@
+import {sceneLightingState} from './scene-lighting-state.mjs?v=extra-machines-55';
 import {readDisplay} from './display-preferences.mjs';
 import {workspaceTask,workspaceListen} from './workspace-lifecycle.mjs';
 import * as THREE from 'three';
@@ -27,7 +28,11 @@ export function setupLighting(scene,renderer,{registration={meta:'DISCO_MOD.json
   if(Number.isFinite(saved?.animationSpeed)&&saved.animationSpeed>=0&&saved.animationSpeed<=200)speed.value=saved.animationSpeed;
  }catch{}
  $('#night').checked=readDisplay().dark;
- function save(){try{localStorage.setItem(storageKey,JSON.stringify({installed:$('#ledMod').checked,power:$('#ledPower').checked,night:$('#night').checked,level:Number($('#ledLevel').value),color:$('#ledColor').value,effect:effectSelect.value,animationSpeed:Number(speed.value)}))}catch{}}
+ const roomDark=document.createElement('input');Object.assign(roomDark,{id:'roomDark',type:'checkbox'});
+ const roomLabel=document.createElement('label');roomLabel.append(roomDark,'環境照明を消す（庫内LEDを比較）');$('#nightOn').before(roomLabel);
+ try{roomDark.checked=JSON.parse(localStorage.getItem(storageKey)||'null')?.roomDark===true}catch{}
+
+ function save(){try{localStorage.setItem(storageKey,JSON.stringify({installed:$('#ledMod').checked,power:$('#ledPower').checked,roomDark:roomDark.checked,level:Number($('#ledLevel').value),color:$('#ledColor').value,effect:effectSelect.value,animationSpeed:Number(speed.value)}))}catch{}}
  RectAreaLightUniformsLib.init();
  const room=new RoomEnvironment(),pmrem=new THREE.PMREMGenerator(renderer),env=pmrem.fromScene(room,.04);
  scene.environment=env.texture;room.dispose();pmrem.dispose();
@@ -48,15 +53,18 @@ export function setupLighting(scene,renderer,{registration={meta:'DISCO_MOD.json
  }
  const animator=createLedAnimator({active:()=>Boolean(currentState?.on&&effectSelect.value!=='static'&&Number(speed.value)>0&&!document.hidden),rate:()=>Number(speed.value)/100,draw:frame});
  function apply(){
-  const state=lightingState({installed:$('#ledMod').checked,power:$('#ledPower').checked,night:$('#night').checked,level:$('#ledLevel').value,ready,failed}),{installed,on,night,value}=state;
+  if(!$('#ledMod').checked||failed)roomDark.checked=false;
+  const state=lightingState({installed:$('#ledMod').checked,power:$('#ledPower').checked,night:roomDark.checked&&ready&&!failed,level:$('#ledLevel').value,ready,failed}),{installed,on,night,value}=state;
   currentState=state;
   if(mod)mod.visible=installed;
   frame(animator.seconds);animator.refresh();
-  scene.background.set(night?'#04070c':'#edf1f5');scene.environmentIntensity=night?.006:.16;
-  ambient.intensity=night?.008:.25;
-  for(const entry of daylight)entry.light.intensity=night?0:entry.intensity;
-  renderer.toneMappingExposure=night?1.35:.9;
-  document.body.classList.toggle('night',night);
+  const room=sceneLightingState({darkUI:$('#night').checked,roomDark:roomDark.checked,ledAvailable:installed});
+  scene.background.set(room.background);scene.environmentIntensity=room.environmentIntensity;
+  ambient.intensity=room.ambientIntensity;
+  for(const entry of daylight)entry.light.intensity=entry.intensity*room.daylightScale;
+  renderer.toneMappingExposure=room.exposure;
+  roomDark.disabled=!installed;document.body.dataset.roomDark=String(room.darkRoom);
+  $('#lightStatus').dataset.environmentLight=room.darkRoom?'off':'on';
   $('#ledPower').disabled=state.powerDisabled;$('#ledLevel').disabled=state.adjustDisabled;
   $('#ledColor').disabled=state.adjustDisabled;
   effectSelect.disabled=state.adjustDisabled;speed.disabled=state.adjustDisabled||effectSelect.value==='static';
@@ -66,10 +74,10 @@ export function setupLighting(scene,renderer,{registration={meta:'DISCO_MOD.json
   $('#lightStatus').textContent=state.status;
   document.body.dataset.discoInstalled=String(installed&&ready);document.body.dataset.discoFramePosition=JSON.stringify(rig.position.toArray());update();
  }
- for(const id of ['ledMod','ledPower','night','ledLevel','ledColor','ledEffect','ledAnimationSpeed'])$('#'+id).addEventListener('input',()=>{save();apply()});
+ for(const id of ['ledMod','ledPower','night','roomDark','ledLevel','ledColor','ledEffect','ledAnimationSpeed'])$('#'+id).addEventListener('input',()=>{save();apply()});
  workspaceListen(document,'visibilitychange',()=>animator.refresh());
  workspaceListen(window,'pagehide',e=>e.persisted?animator.stop():animator.dispose());workspaceListen(window,'pageshow',()=>animator.refresh());
- $('#nightOn').onclick=()=>{$('#ledMod').checked=true;$('#ledPower').checked=true;$('#night').checked=true;if(+$('#ledLevel').value===0)$('#ledLevel').value=75;save();apply()};
+ $('#nightOn').onclick=()=>{$('#ledMod').checked=true;$('#ledPower').checked=true;roomDark.checked=true;if(+$('#ledLevel').value===0)$('#ledLevel').value=75;save();apply()};
  const whenReady=workspaceTask(()=>Promise.all([fetch('../'+registration.meta).then(r=>{if(!r.ok)throw Error('Disco取付データ');return r.json()}),loadModel(new GLTFLoader(),'../'+registration.glb)]).then(([data,g])=>{
   mod=g.scene;mod.name='Disco_on_a_Stick_XXL';rig.add(mod);
   mod.traverse(o=>{if(!o.isMesh)return;const shift=registration.side_translation_mm?.[o.userData.side];if(shift)o.position.add(viewVector(shift).multiplyScalar(.001));o.material=Array.isArray(o.material)?o.material.map(m=>m.clone()):o.material.clone();if(o.userData.led_role==='LED'){for(const m of Array.isArray(o.material)?o.material:[o.material])m.roughness=.35;emitters.push(o)}});

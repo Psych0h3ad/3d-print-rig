@@ -31,7 +31,7 @@ export function createV0Adapter(root,manifest,profile){
   function setPose(pose,options){
     const delta=poseDelta(profile,pose,options),atReference=delta.every(x=>Math.abs(x)<1e-5);
     const atZReference=Math.abs(delta[2])<1e-5;
-    for(const [key,o] of nodes){if(chain.keys.has(key)||door.keys.has(key)||tophat.keys.has(key))continue;const r=records.get(key),d=partTranslation(r,delta).glb_m,b=origins.get(key);o.position.set(b.x+d[0],b.y+d[1],b.z+d[2]);if(r.motion==='reference_flexible'&&!belts.keys.has(key)&&!chain.keys.has(key))o.visible=flexibleVisible&&atZReference;}
+    for(const [key,o] of nodes){if(chain.keys.has(key)||door.keys.has(key)||tophat.keys.has(key))continue;const r=records.get(key),d=partTranslation(r,delta).glb_m,b=origins.get(key);o.position.set(b.x+d[0],b.y+d[1],b.z+d[2]);if(r.motion==='reference_flexible'&&!belts.keys.has(key)&&!chain.keys.has(key))o.visible=flexibleVisible;}
     belts.update(delta[1],flexibleVisible);
     const chainState=chain.update(delta[2],flexibleVisible,chainShift);
     const envelope=profile.sampled_clearance_limits_mm;const within=envelope?['x','y','z'].every((a,i)=>pose[a]>=envelope['XYZ'[i]][0]&&pose[a]<=envelope['XYZ'[i]][1]):null;

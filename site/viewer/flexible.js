@@ -94,12 +94,12 @@ export function setupFlexible(scene,meshes,manifest,routes){
    }
    const start=[base[0][0]+dx,base[0][1]+dy,base[0][2]],route=chainRoute(start,base.at(-1),46*routes.chain_pitch_mm,routes.chain_pitch_mm);
    for(const {mesh,index} of [...links,...clips]){
-    mesh.visible=enabled&&(rest||!!route);
-    if(!route)continue;
+    mesh.visible=enabled;
+    if(!route){mesh.quaternion.identity();mesh.position.set(0,0,0);continue}
     const delta=route.angles[index]-restRoute.angles[index];mesh.quaternion.setFromAxisAngle(new THREE.Vector3(0,1,0),delta);
     mesh.position.copy(cad(route.points[index])).sub(cad(base[index]).applyQuaternion(mesh.quaternion));
    }
-   tube.visible=enabled&&!rest;cable.visible=enabled&&!rest&&!!route;
+   tube.visible=enabled&&!rest;cable.visible=enabled&&!rest;
    if(enabled&&!rest){
     let pts;
     if(route){
@@ -115,11 +115,12 @@ export function setupFlexible(scene,meshes,manifest,routes){
      const h=sourcePoints[0],f=sourcePoints[lastFixed];
      pts=[[h[0]+dx,h[1]+dy,h[2]],[h[0]+dx,h[1]+dy,454],[h[0]+dx-22,h[1]+dy+35,477],
       [(h[0]+dx+f[0])/2-55,(h[1]+dy+f[1])/2,487],f,...sourcePoints.slice(lastFixed+1)];
+     replaceTube(cable,[[-16+dx,23+dy,414],[-16+dx,24+dy,467],[(dx+196)/2,(dy+270)/2,479],[212,247,464],[212,247,444]],.0018);
     }
     replaceTube(tube,pts,.002);
    }
    byKey.get('PTFE_tube').visible=enabled&&rest;byKey.get('CAN_cable').visible=enabled&&rest;
-   Object.assign(diagnostics,{belts:enabled,ptfe:enabled,chain:enabled&&(rest||!!route),chainRouteValid:!!route,chainRadiusMm:route?.radius??null,chainLinks:links.filter(p=>p.mesh.visible).length,chainCulledLinks:links.filter(p=>p.mesh.frustumCulled).length,static:rest,scope:'Routing preview; straight-run teeth phase, PTFE fixed length/bend limits and chain hinge constraints are not physical simulation.'});
+   Object.assign(diagnostics,{belts:enabled,ptfe:enabled,chain:enabled,chainRouteValid:!!route,chainReferenceFallback:!route,chainRadiusMm:route?.radius??null,chainLinks:links.filter(p=>p.mesh.visible).length,chainCulledLinks:links.filter(p=>p.mesh.frustumCulled).length,static:rest,scope:route?'Routing preview; straight-run teeth phase, PTFE fixed length/bend limits and chain hinge constraints are not physical simulation.':'Chain retained at native reference shape; this pose exceeds the registered chain routing envelope. Wiring is an unverified routing preview.'});
    return diagnostics;
   }
  };

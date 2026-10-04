@@ -3,11 +3,11 @@ ensureWorkspaceEntry(import.meta.url);
 import {setupDisplayPreferences} from './display-preferences.mjs';
 import {WorkspaceMutationObserver,workspaceListen} from './workspace-lifecycle.mjs';
 // Shared presentation layer. Existing controls, IDs and CAD controllers stay intact.
-import {setupLanguage,originalText} from './i18n.mjs?v=fysetc-front-54';
-import {printerWorkspaceURL,workspaceReturnKey,workspaceKindFor} from './workspace-return.mjs?v=workspace-belts-2';
+import {setupLanguage,originalText} from './i18n.mjs?v=extra-machines-55';
+import {printerWorkspaceURL,workspaceReturnKey,workspaceKindFor} from './workspace-return.mjs?v=extra-machines-55';
 import {setupWorkspaceSharing} from './workspace-share.mjs?v=workspace-belts-2';
 import {lockInspectorHorizontalScroll} from './workspace-scroll.mjs?v=workspace-belts-1';
-import {setupChoiceSearch} from './workspace-choices.mjs?v=fysetc-front-54';
+import {setupChoiceSearch} from './workspace-choices.mjs?v=extra-machines-55';
 import {setupMobileLayout} from './workspace-layout.mjs?v=workspace-belts-2';
 const $ = selector => document.querySelector(selector);
 const node = (tag, className, text) => {
