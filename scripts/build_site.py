@@ -45,6 +45,25 @@ def unpack_assets(archive, target):
         print(f'Loaded {len(expected)} model files ({total:,} bytes).')
 
 
+def validate_mounting_evidence(target):
+    bundle = json.loads((target / 'ASSET_BUNDLE.json').read_text(encoding='utf-8'))
+    for name in ['HEAD_VALIDATION.json', 'MOUNT_VALIDATION.json']:
+        evidence = json.loads((target / name).read_text(encoding='utf-8'))
+        if evidence['model_bundle_sha256'] != bundle['sha256']:
+            raise ValueError(f'{name} belongs to another model bundle.')
+        for pins in [evidence['input_sha256'], *[m['input_sha256'] for m in evidence['machines'].values()]]:
+            for relative, expected in pins.items():
+                path = PurePosixPath(relative)
+                if path.is_absolute() or '..' in path.parts or '\\' in relative or ':' in relative:
+                    raise ValueError('Invalid mounting evidence input path.')
+                # Match Response.text()/TextEncoder in the viewer. Model data
+                # can retain CRLF; source-inventory newline rules do not apply.
+                actual = hashlib.sha256((target / path).read_bytes()).hexdigest()
+                if actual != expected:
+                    raise ValueError(f'{name}: shipped input changed: {relative}')
+    print('Mounting evidence verified against the shipped files.')
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, required=True)
@@ -83,6 +102,7 @@ def main():
             if digest.hexdigest() != info['sha256'] or size != info['bytes']:
                 raise ValueError('Model bundle does not match its pinned checksum.')
             unpack_assets(archive, target)
+    validate_mounting_evidence(target)
     (target / '.nojekyll').touch()
     size = sum(path.stat().st_size for path in target.rglob('*') if path.is_file())
     if size > MAX_SITE_BYTES:
