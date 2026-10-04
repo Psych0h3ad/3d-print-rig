@@ -48,6 +48,13 @@ export function createTranslator(definitions,{dictionaries=new Map()}={}){
   const id=sourceIndex.get(source)||englishIndex.get(source);
   let result;
   if(id)result=resolve(id,language);
+  else if(source.includes(' ／ ')){
+   // Controllers append independent status messages with this separator.
+   // Match a complete template first so a separator inside a parameter is
+   // retained; otherwise translate each complete message independently.
+   const whole=match(source,japanese.test(source)?specificJP:ep,language,depth);
+   result=whole??source.split(' ／ ').map(part=>translate(part,language,depth+1)).join(' ／ ');
+  }
   else if(language==='en')result=japanese.test(source)?english(source,depth):source;
   else{
    const input=japanese.test(source)?english(source,depth):source;

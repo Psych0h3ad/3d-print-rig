@@ -2,7 +2,7 @@ import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=extra-machines-5
 import {WorkspaceMutationObserver,workspaceListen,onWorkspaceDispose} from './workspace-lifecycle.mjs';
 import {supportedLanguages,languageNames,normalizeLanguage,chooseLanguage,languageURL} from './languages.mjs?v=fa521b07d4184ded0146';
 import {definitions,localeLoaders} from './locales/manifest.mjs?v=1e53788e4a255dbd9c6f';
-import {createTranslator} from './translation-engine.mjs?v=6cb43c8f5354246e656c';
+import {createTranslator} from './translation-engine.mjs?v=9df92786fca2264e4189';
 export {supportedLanguages,chooseLanguage,languageURL} from './languages.mjs?v=fa521b07d4184ded0146';
 
 const dictionaries=new Map(),loads=new Map();

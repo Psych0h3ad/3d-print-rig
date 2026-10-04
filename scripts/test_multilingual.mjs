@@ -32,6 +32,12 @@ for(const language of ['es','ko','ru']){
  assert.equal(back.searchParams.get('lang'),language);assert.equal(back.searchParams.get('machine'),'voron_v24_250_printed');assert.equal(back.searchParams.get('configuration'),'kept');
 }
 assert.equal(translate('未検証','es'),'Sin verificar');assert.equal(translate('未検証','ko'),'미검증');assert.equal(translate('未検証','ru'),'Не проверено');
+const motorStatusId=Object.keys(source.entries).find(id=>source.entries[id].ja==='3D切替済み · {0}モーター · {1} mmベルト');
+for(const language of supportedLanguages){
+ const status=formatMessage(motorStatusId,{0:4,1:9},language);
+ assert.equal(translate('3D切替済み · 4モーター · 9 mmベルト ／ 未検証',language),status+' ／ '+translate('未検証',language));
+ if(language!=='ja')assert.equal(translate('3D assembly switched · 4 motors · 9 mm belts ／ Unverified',language),status+' ／ '+translate('未検証',language));
+}
 
 // Revising a message keeps its ID and legacy source alias. An old translation
 // must not silently state the previous clearance when the source has changed.
