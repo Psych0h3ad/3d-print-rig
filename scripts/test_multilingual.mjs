@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import {translate,loadLanguage,formatMessage,languageURL,chooseLanguage,supportedLanguages} from '../site/viewer/i18n.mjs';
 import {createTranslator} from '../site/viewer/translation-engine.mjs';
-import {sourceRevision,validateTranslations} from './build_locales.mjs';
+import {sourceRevision,validateTranslations,contentRevision} from './build_locales.mjs';
 import {definitions} from '../site/viewer/locales/manifest.mjs';
 import {printerWorkspaceURL} from '../site/viewer/workspace-return.mjs';
 
@@ -10,6 +10,8 @@ const root=new URL('../localization/',import.meta.url),read=async name=>JSON.par
 const source=await read('source'),dictionaries=Object.fromEntries(await Promise.all(['es','ko','ru'].map(async language=>[language,await read(language)])));
 const glossary=await read('glossary');
 assert.deepEqual(validateTranslations(source,dictionaries,glossary),[]);
+assert.equal(contentRevision('export const label="Yavoth";\r\n'),contentRevision('export const label="Yavoth";\n'));
+assert.notEqual(contentRevision('export const label="Yavoth";\n'),contentRevision('export const label="Xol";\n'));
 assert.deepEqual(supportedLanguages,['ja','en','es','ko','ru']);
 assert.equal(chooseLanguage({query:'es-MX',stored:'ko',languages:['ru-RU']}),'es');
 assert.equal(chooseLanguage({stored:'ko-KR',languages:['ru-RU']}),'ko');

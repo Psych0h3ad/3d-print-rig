@@ -4,22 +4,22 @@ import {setupSceneDisplay} from './display-preferences.mjs';
 import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {loadMonolithData} from './monolith-machine.js?v=00b77b5268c44e283d7a';
 import {setupChangerBank} from './changer-bank.js?v=extra-machines-55';
-import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=ee3c5c75dfacf1781828';
+import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=734477ed3a00960919e7';
 import {headPrinterLink} from './head-navigation.mjs?v=ab004f4526ccc4a163f0';
-import {headBuilderDimensions} from './configuration-model.js?v=907ab04d670d495430a3';
+import {headBuilderDimensions} from './configuration-model.js?v=d4b3dda97a404a7575b7';
 import {appearanceRole} from './appearance-role.mjs?v=workspace-belts-1';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=workspace-belts-1';
-import {setupConfigurations} from './configurations.js?v=229aa12eed9703870cbd';
+import {setupConfigurations} from './configurations.js?v=c79dbc328a6744678a2b';
 import {setupPublicInfo} from './public-info.js?v=workspace-belts-2';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=workspace-belts-1';
 import {probeCheck,probeMetrics,probeGuide,headInspectionState,headBodyCollisionNotes} from './probe-checks.js?v=ea1aef3e30bf7d11d3cb';
 import {renderProductLinks} from './product-links.js?v=workspace-belts-1';
-import {setupHeadBuilder} from './builder-ui.mjs?v=4dacbf7cbd138343fc3f';
-import {validateBuilderExtras} from './toolhead-builder.mjs?v=13a9f1e6e782da01d1ab';
+import {setupHeadBuilder} from './builder-ui.mjs?v=99ba104579f95dce80a1';
+import {validateBuilderExtras} from './toolhead-builder.mjs?v=6ec7788c796225ad9e84';
 export async function mount(scope){
 let machineRegistry,toolBank,bankRig;
 
