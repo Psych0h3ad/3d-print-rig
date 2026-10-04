@@ -340,8 +340,8 @@
     },
     {
       "path": "scripts/prepare_wallpapers.py",
-      "bytes": 5606,
-      "sha256": "82c947a4142b6a1b5c6317af27664d73f15fe8da16f257fa432069a9874dbf46"
+      "bytes": 5631,
+      "sha256": "40c4cf12336379a7a2e3d8dbf24342a80de54eb44ebfc0ee95c9967b01abfdae"
     },
     {
       "path": "scripts/probe_configurations.py",
@@ -715,13 +715,13 @@
     },
     {
       "path": "site/fun/fun.mjs",
-      "bytes": 5218,
-      "sha256": "03cb0bc39292c2b8175ba050a1f4c71714834f72512101e842d29f7608e2b86b"
+      "bytes": 5237,
+      "sha256": "47a2b9003cb63e9ad1d76deb5b877f9fa1719db735ec0cb9ad19673fe6242275"
     },
     {
       "path": "site/fun/index.html",
-      "bytes": 3400,
-      "sha256": "0041da5ff1aec68775eff1687ed7444dea03f6a4be911389b5dfd3847cfd0cf8"
+      "bytes": 3416,
+      "sha256": "07f538f58a636cdf944e35e1bc4d882ddb8dd6b1796eb8a41be5a6821e233b5d"
     },
     {
       "path": "site/fun/licenses/ahi_a4t/LICENSE",
@@ -820,13 +820,13 @@
     },
     {
       "path": "site/fun/previews/01-v0-blueprint-3840x2160.webp",
-      "bytes": 31202,
-      "sha256": "1fc085be96734050cd762f76d3ce28c1039174dc4e8b7b55eeb533d9a5deffff"
+      "bytes": 31099,
+      "sha256": "e87b35fe76dbd4d7fae5b3b9aab5c05b8443ced96a1ee18ad3dcae7f35bac001"
     },
     {
       "path": "site/fun/previews/01-v0-blueprint-5120x2160.webp",
-      "bytes": 19854,
-      "sha256": "b0bc382c2295c9bd08846c766cc641d107051b9043f1f6fdd37ec57e7c850269"
+      "bytes": 20032,
+      "sha256": "6bde4e49c3b3685c746b1d242b5ea6848d221b9dc1b4bd39852901ff171024c5"
     },
     {
       "path": "site/fun/previews/01-v0-graphite-1440x3120.webp",
@@ -835,13 +835,13 @@
     },
     {
       "path": "site/fun/previews/01-v0-graphite-3840x2160.webp",
-      "bytes": 30572,
-      "sha256": "d14f600c5a8fbeb8e257d7efd9e2c48204c7c49a82e6b1fb9d33eb9ca7c527df"
+      "bytes": 30466,
+      "sha256": "0930c1a392bae14dc0d317ea3c1e9c1418edb4989d8d69c60e53a7700b293a32"
     },
     {
       "path": "site/fun/previews/01-v0-graphite-5120x2160.webp",
-      "bytes": 19328,
-      "sha256": "acd77d89a4a0fb91bfb1db81489e230c41c713644e5d80760e7a12c7e9857518"
+      "bytes": 19234,
+      "sha256": "96c5968c35048c9948f8efd19eab7be2c9647d744927b5938149b750454f4c8b"
     },
     {
       "path": "site/fun/previews/01-v0-paper-1440x3120.webp",
@@ -850,13 +850,13 @@
     },
     {
       "path": "site/fun/previews/01-v0-paper-3840x2160.webp",
-      "bytes": 30850,
-      "sha256": "5f67b5f89594f23dd53ef6a339070001c554d378bbf5c8ec8f485555d508b077"
+      "bytes": 30748,
+      "sha256": "95a51c546df540c3c6420e4ab28808a72dd8b177b09cdeba109eddd2dcafe24d"
     },
     {
       "path": "site/fun/previews/01-v0-paper-5120x2160.webp",
-      "bytes": 19792,
-      "sha256": "b651e4c4712267ecfb1c90c89ac6a64890d693cd4de111a4f5daa7b2bac07109"
+      "bytes": 19750,
+      "sha256": "bc1d1a9605c7e37e3a857e7c08b38f18e39369e5f2be12ce5fcf2b1057b06e81"
     },
     {
       "path": "site/fun/previews/02-v24-blueprint-1440x3120.webp",
@@ -865,13 +865,13 @@
     },
     {
       "path": "site/fun/previews/02-v24-blueprint-3840x2160.webp",
-      "bytes": 32080,
-      "sha256": "6b60747b361acd3c72c3c227f952cb1f2092061b07921c576bcf19798f23c785"
+      "bytes": 31974,
+      "sha256": "87ad643b913bddb929876d866a6530da96805bdb5be0b423ae09798b6c82ec74"
     },
     {
       "path": "site/fun/previews/02-v24-blueprint-5120x2160.webp",
-      "bytes": 19895,
-      "sha256": "6a39c7e0c8dd573e01028898a70d73a65249cdd6542fe2d2dfa971b1e9973758"
+      "bytes": 19850,
+      "sha256": "b8d7515fdaf723a0d7d41a0391767a0ed50fb4d6b454d64598ec84165a2f2a28"
     },
     {
       "path": "site/fun/previews/02-v24-graphite-1440x3120.webp",
@@ -880,13 +880,13 @@
     },
     {
       "path": "site/fun/previews/02-v24-graphite-3840x2160.webp",
-      "bytes": 31230,
-      "sha256": "e02ea5388c4b8757acba142296aa52cad077b523f877053d7db474c5d9b024aa"
+      "bytes": 31128,
+      "sha256": "f2b79805ef626351d01d8dd7663a5353824ad03352bcef9899d80700978af52a"
     },
     {
       "path": "site/fun/previews/02-v24-graphite-5120x2160.webp",
-      "bytes": 19344,
-      "sha256": "c7a39c6ad34d5e033544965a590d529c07e14eca7b1151cc47d057de11ca32b0"
+      "bytes": 19302,
+      "sha256": "a89b16642190dba3605da9699f81c09ca5ff66944cc2d124fe64c2e33b2a4c63"
     },
     {
       "path": "site/fun/previews/02-v24-paper-1440x3120.webp",
@@ -895,13 +895,13 @@
     },
     {
       "path": "site/fun/previews/02-v24-paper-3840x2160.webp",
-      "bytes": 31746,
-      "sha256": "32798c247fae192ae24e7414b9117eb1fc81ff0c9a9954a4dc616eefbf84c774"
+      "bytes": 31646,
+      "sha256": "f6052e27e174189b746ea55b2b27cbba7a89cc3e40908cd23851cc1a386becb0"
     },
     {
       "path": "site/fun/previews/02-v24-paper-5120x2160.webp",
-      "bytes": 19818,
-      "sha256": "96272249514a4501e2232793cab2d30c9f2e518086ddb75ca7b67a16f1e59406"
+      "bytes": 19774,
+      "sha256": "1709afd415e0c37c1ec5fafd72fddea7a5ead4d391cb463c4dd2c3ed2ad6fd23"
     },
     {
       "path": "site/fun/previews/03-trident-blueprint-1440x3120.webp",
@@ -910,13 +910,13 @@
     },
     {
       "path": "site/fun/previews/03-trident-blueprint-3840x2160.webp",
-      "bytes": 25291,
-      "sha256": "ce36b45e8e4f82bcf0ff76f8837e2b933818bc070e036a946e960bfe047b26dc"
+      "bytes": 25188,
+      "sha256": "6f65c7711073af8ed073171aba69e85406bbad611306182e7b61591c6006085e"
     },
     {
       "path": "site/fun/previews/03-trident-blueprint-5120x2160.webp",
-      "bytes": 15874,
-      "sha256": "9401844e64c343de217503af721f27206f530554518b5c94f4fd0dcc09315872"
+      "bytes": 15826,
+      "sha256": "7f16cf152c7e1dc27d4b97fd062d0e37f060fae5e43d79b7337bca902b1575a7"
     },
     {
       "path": "site/fun/previews/03-trident-graphite-1440x3120.webp",
@@ -925,13 +925,13 @@
     },
     {
       "path": "site/fun/previews/03-trident-graphite-3840x2160.webp",
-      "bytes": 24512,
-      "sha256": "450a764fa515400378000f9b173aa9cf996225ebc9e39af169e78c5688bc2dec"
+      "bytes": 24393,
+      "sha256": "55c8bde93e1ba36245198172bdf69ebce6e54a957b9b1d1c83b82ef8658e488f"
     },
     {
       "path": "site/fun/previews/03-trident-graphite-5120x2160.webp",
-      "bytes": 15354,
-      "sha256": "5c4e0363c8a465145680ece7ce47ce2d865367dba83928043f12735fde088144"
+      "bytes": 15308,
+      "sha256": "53f40dfb4a2a3d9bc1c4ba67e1b06afabed7103df928931591e169df3ba39c2f"
     },
     {
       "path": "site/fun/previews/03-trident-paper-1440x3120.webp",
@@ -940,13 +940,13 @@
     },
     {
       "path": "site/fun/previews/03-trident-paper-3840x2160.webp",
-      "bytes": 24789,
-      "sha256": "73433dbb58b7bd324ea5db78bf52a888d4951b1fb5633711eb9ae64b5f6e5f75"
+      "bytes": 24692,
+      "sha256": "c2774a4897a2234d0bfde05cd36edb960d05040b06a87238138d684e807b439d"
     },
     {
       "path": "site/fun/previews/03-trident-paper-5120x2160.webp",
-      "bytes": 15914,
-      "sha256": "0ac52aa0ce8d4bd56e93d9b447ad67cf3831a81821883d5254e830a85b076eff"
+      "bytes": 15842,
+      "sha256": "fa0fd27f64615dd54e1a4fcc04a91ab30065c650668c76603af1e98957bf6908"
     },
     {
       "path": "site/fun/previews/04-micron-blueprint-1440x3120.webp",
@@ -955,13 +955,13 @@
     },
     {
       "path": "site/fun/previews/04-micron-blueprint-3840x2160.webp",
-      "bytes": 35400,
-      "sha256": "f446f29a270be39130000e2691a7615457ba0313d386470f7134d4a5e6785d0e"
+      "bytes": 35296,
+      "sha256": "bebd3ad30672671d30e907bc6811c2d0771a7450b8b9d7876c76b1a0b78f06d6"
     },
     {
       "path": "site/fun/previews/04-micron-blueprint-5120x2160.webp",
-      "bytes": 22461,
-      "sha256": "3d919527b9c2a5b048e7becbabc083069be1ee8c9fbe932182c6c2ae7f09b283"
+      "bytes": 22418,
+      "sha256": "63f6bafb23a7f8fc57f55ad93fd45c5f6918641dc9875cbeffc75c981ff5f919"
     },
     {
       "path": "site/fun/previews/04-micron-graphite-1440x3120.webp",
@@ -970,13 +970,13 @@
     },
     {
       "path": "site/fun/previews/04-micron-graphite-3840x2160.webp",
-      "bytes": 34804,
-      "sha256": "fff24ba2b4250f3207f47e0ef8d9714d4b5b25a75ab0543fac275b739274ae4c"
+      "bytes": 34702,
+      "sha256": "9146726f25cd565cb25353295527f20eb98cde8c0922be01081821593d5805f7"
     },
     {
       "path": "site/fun/previews/04-micron-graphite-5120x2160.webp",
-      "bytes": 21938,
-      "sha256": "6c46e4c6f570efdc104a567cc4ff7b26215220575121b8542163e0da8fd38761"
+      "bytes": 21878,
+      "sha256": "64e423c60594677068cb18f5ad6c49226f317ec2828b3b349d8fd974ee2944e7"
     },
     {
       "path": "site/fun/previews/04-micron-paper-1440x3120.webp",
@@ -985,13 +985,13 @@
     },
     {
       "path": "site/fun/previews/04-micron-paper-3840x2160.webp",
-      "bytes": 35112,
-      "sha256": "42d2307543c730eca49f3f9e1e82d0659e1b98890fa016bb35dbca233a3f55c4"
+      "bytes": 35022,
+      "sha256": "bc1c94bb2c524c932129c2bf84ea317937d7c2a2cd0144d6af0d9407312d65e6"
     },
     {
       "path": "site/fun/previews/04-micron-paper-5120x2160.webp",
-      "bytes": 22374,
-      "sha256": "f1ab581985a7a4baf6a5844104a005a12ff11e52e0de66a8eb7003289701d8bd"
+      "bytes": 22336,
+      "sha256": "4f8c7047073243ede6feb88b63df38b8531c3d2ffbcb35c4c382eab4686e9788"
     },
     {
       "path": "site/fun/previews/05-gantry-blueprint-1440x3120.webp",
@@ -1000,13 +1000,13 @@
     },
     {
       "path": "site/fun/previews/05-gantry-blueprint-3840x2160.webp",
-      "bytes": 25791,
-      "sha256": "7d82d24ebd8b2a4b7eb8fba16f6fc7d6c339b771ba2355ef331f6fcb050c446e"
+      "bytes": 25428,
+      "sha256": "83aaf5b213d7ca733136fd652c7806088e3c9d12adab80178fbc4264c8fa4df6"
     },
     {
       "path": "site/fun/previews/05-gantry-blueprint-5120x2160.webp",
-      "bytes": 20401,
-      "sha256": "3b271595897420564cf02ab83e5faec58676d7ba870f2d70dbe3e83911bc9618"
+      "bytes": 20390,
+      "sha256": "d6bba163f16f3379b3bac5d54dd86cbd8a5a702f2633dea526c03641bf5577dc"
     },
     {
       "path": "site/fun/previews/05-gantry-graphite-1440x3120.webp",
@@ -1015,13 +1015,13 @@
     },
     {
       "path": "site/fun/previews/05-gantry-graphite-3840x2160.webp",
-      "bytes": 25385,
-      "sha256": "36d50cafd44dfc6c8e70ab0340866a432b56c53bbe2778d0a60140345b765738"
+      "bytes": 25286,
+      "sha256": "551024052ba2a441ba37ef0613158d8859554a4a498da7023f11d8fd5fef9407"
     },
     {
       "path": "site/fun/previews/05-gantry-graphite-5120x2160.webp",
-      "bytes": 19908,
-      "sha256": "7165cb1a52ddd641c77fc4c6dafcab25aa81388f0a8026b1a37f38979e44386e"
+      "bytes": 19844,
+      "sha256": "d9e10aeaeb667bd247e016dc1cae84bc5fee8367d13467f41450175d41e682b7"
     },
     {
       "path": "site/fun/previews/05-gantry-paper-1440x3120.webp",
@@ -1030,13 +1030,13 @@
     },
     {
       "path": "site/fun/previews/05-gantry-paper-3840x2160.webp",
-      "bytes": 25351,
-      "sha256": "fb284e69cf604ee8c180d3ffb94c1e0a15a5fb5f17b4c2884d2f115bf2ec4644"
+      "bytes": 25246,
+      "sha256": "24a9e02ac89f3f1009f791f0f92bd2efad369101a7e6c37302fa40076d2fd6bd"
     },
     {
       "path": "site/fun/previews/05-gantry-paper-5120x2160.webp",
-      "bytes": 20273,
-      "sha256": "785307a3d1b30cc1c0676535b3190037df7e8286862c2dc48d3da2d15b67e5f7"
+      "bytes": 20230,
+      "sha256": "95655f38a7df07a5a1bcb321485813d99bb7e0aabfe6c362dbade3909e33e6db"
     },
     {
       "path": "site/fun/previews/06-head-blueprint-1440x3120.webp",
@@ -1045,13 +1045,13 @@
     },
     {
       "path": "site/fun/previews/06-head-blueprint-3840x2160.webp",
-      "bytes": 23506,
-      "sha256": "d5a3b6651777f99e36cc861f2d215b706388dcebec358c2d7f27776c3b8f8a19"
+      "bytes": 23404,
+      "sha256": "727a7d544b7f8054a838a248609e30d89d4cb9ad706ba8356d44c4cabf44cd1c"
     },
     {
       "path": "site/fun/previews/06-head-blueprint-5120x2160.webp",
-      "bytes": 15472,
-      "sha256": "6f0b2fb1f1531b60fe0432f98dccc7baa07fffb603195b81c6332eb6c2166a6f"
+      "bytes": 15424,
+      "sha256": "64abb7132dcd298a5ddc61fd7507687907a6c3bf123652163cd64c2f4a049209"
     },
     {
       "path": "site/fun/previews/06-head-graphite-1440x3120.webp",
@@ -1060,13 +1060,13 @@
     },
     {
       "path": "site/fun/previews/06-head-graphite-3840x2160.webp",
-      "bytes": 23410,
-      "sha256": "658d9eb4e85b2968cb61496ed9d7325301c330f71b219abde8046d98d12d955e"
+      "bytes": 23308,
+      "sha256": "0947a813afb3b3b8e6b67f11a1d2748087ceb70497db45120ba75cf25bce5383"
     },
     {
       "path": "site/fun/previews/06-head-graphite-5120x2160.webp",
-      "bytes": 15313,
-      "sha256": "63e869dc374fb2fe6e9e0de0e6c9abad4061cf83c8b7634d66b5e1626be8deba"
+      "bytes": 15265,
+      "sha256": "2c76e13aca3f08eacf0b1c6aa8a541c617c37d479a047b10dcf7c635f73a98ac"
     },
     {
       "path": "site/fun/previews/06-head-paper-1440x3120.webp",
@@ -1075,13 +1075,13 @@
     },
     {
       "path": "site/fun/previews/06-head-paper-3840x2160.webp",
-      "bytes": 23046,
-      "sha256": "5b0733ac6c0a2714e20903056f269ad2e07731c9efad3203332c86194d2c7d4d"
+      "bytes": 22957,
+      "sha256": "316a683df458f5d4d505bf2c0ea5b0088b5a22327965461c4f3749aee28a30a5"
     },
     {
       "path": "site/fun/previews/06-head-paper-5120x2160.webp",
-      "bytes": 15342,
-      "sha256": "eced9f93a29122b792bd5fcedbdaeeb21fa7ea6c6393333817ec025382478af2"
+      "bytes": 15295,
+      "sha256": "947caaf7250f5e4717c3149b7bf4ddea0c7c6b5613e091f8450d6853fc60ebd8"
     },
     {
       "path": "site/fun/previews/07-atlas-blueprint-1440x3120.webp",
@@ -1090,13 +1090,13 @@
     },
     {
       "path": "site/fun/previews/07-atlas-blueprint-3840x2160.webp",
-      "bytes": 32144,
-      "sha256": "8ecec9ee13871dd14ae99e05dffc64fb7709143fa0f8abbf092312e99f699cb7"
+      "bytes": 32043,
+      "sha256": "165b70d7ad1386e400f9dc2dfef5d274dabb55c82dfd01f9396624d7271e9b5a"
     },
     {
       "path": "site/fun/previews/07-atlas-blueprint-5120x2160.webp",
-      "bytes": 18966,
-      "sha256": "7784884717811bda3caa41542e9a24b3db6b78ee43f46303c7686f3160a058f0"
+      "bytes": 18922,
+      "sha256": "02daaf6f63e5079c0c0606001daa3afd2348c6d57d88f98065c854d95b6e444e"
     },
     {
       "path": "site/fun/previews/07-atlas-graphite-1440x3120.webp",
@@ -1105,13 +1105,13 @@
     },
     {
       "path": "site/fun/previews/07-atlas-graphite-3840x2160.webp",
-      "bytes": 31504,
-      "sha256": "1614a38b9c81b40d53d4545d6213314a3109551331c0348f939255ebe5481d86"
+      "bytes": 31404,
+      "sha256": "8d9f4233a73b6af43bd964c179c57e493ff3d16d26fdc6b4b12e10b6cea4f7e1"
     },
     {
       "path": "site/fun/previews/07-atlas-graphite-5120x2160.webp",
-      "bytes": 18288,
-      "sha256": "c4c5f648263807cf82eec9f03855d657f3cb5f30d6c8b4fe6d67ffd50c407762"
+      "bytes": 18242,
+      "sha256": "9fd456544e7eac2fb49d457ed8280e6afb388634de98be43bce80782159cba01"
     },
     {
       "path": "site/fun/previews/07-atlas-paper-1440x3120.webp",
@@ -1120,13 +1120,13 @@
     },
     {
       "path": "site/fun/previews/07-atlas-paper-3840x2160.webp",
-      "bytes": 31616,
-      "sha256": "36ba298270de00076a3bc96fb6bcf43e445792c35e4ef991bf574b792b124a8d"
+      "bytes": 31518,
+      "sha256": "ee5fdb88f3d33509a72a9387e6bf62725d14acc37c6f1128e6a9011958ba64b5"
     },
     {
       "path": "site/fun/previews/07-atlas-paper-5120x2160.webp",
-      "bytes": 18755,
-      "sha256": "54dac5ce2e037d02502ae9a4e46364db1fe61f20b8093728ecd93e3f752719c3"
+      "bytes": 18712,
+      "sha256": "5ffd3a2f7949eea0c98d79fdeb385492a62c6b193f924b65806025bc90650a8a"
     },
     {
       "path": "site/fun/previews/08-crossant-assembly-blueprint-1440x3120.webp",
@@ -1135,13 +1135,13 @@
     },
     {
       "path": "site/fun/previews/08-crossant-assembly-blueprint-3840x2160.webp",
-      "bytes": 31428,
-      "sha256": "cc862bfa9e25a182521bae03a38ca30a616029691571a16f6fca36f043180c16"
+      "bytes": 31317,
+      "sha256": "6c7a9c350c81c36442d71709f801da45dc980b94e0be1328bd4c7e1309d466c5"
     },
     {
       "path": "site/fun/previews/08-crossant-assembly-blueprint-5120x2160.webp",
-      "bytes": 18396,
-      "sha256": "085ac0136efef2ca8c6067645a3458b32690700a505c7abd2135a25b7af11b53"
+      "bytes": 18355,
+      "sha256": "4367b99f4e51e9b1d0b1c80a4b1632180d306f5da7b56efe89311e698386ff86"
     },
     {
       "path": "site/fun/previews/08-crossant-assembly-graphite-1440x3120.webp",
@@ -1150,13 +1150,13 @@
     },
     {
       "path": "site/fun/previews/08-crossant-assembly-graphite-3840x2160.webp",
-      "bytes": 30843,
-      "sha256": "60cbaaf904f6f7f3918fbe38f619fa17c6caa4fd79a6ae71f1bd04468a666233"
+      "bytes": 30609,
+      "sha256": "1e34f34e6af24db16af0aeb992e4a40e59a9fafd922b7de4c4e6db6d4ba7083a"
     },
     {
       "path": "site/fun/previews/08-crossant-assembly-graphite-5120x2160.webp",
-      "bytes": 17884,
-      "sha256": "d627e05b2ad0561e7d3b4703bb6dcbf2b2d50f29f6217f1eb323b39c63f60119"
+      "bytes": 17840,
+      "sha256": "a127096cef1d9ef57b3223901b154aa4ba0b0a0ba481fca31b4f9b4bc89f4284"
     },
     {
       "path": "site/fun/previews/08-crossant-assembly-paper-1440x3120.webp",
@@ -1165,13 +1165,13 @@
     },
     {
       "path": "site/fun/previews/08-crossant-assembly-paper-3840x2160.webp",
-      "bytes": 31594,
-      "sha256": "ac9c7623e81ad72250a22426890ebd00f9491ad93a9c82134c3c45fdeaa2a49f"
+      "bytes": 31492,
+      "sha256": "d83b744d28c74e90050351cdd0490eb4e70636ebc4809ec80931ad1462b5423d"
     },
     {
       "path": "site/fun/previews/08-crossant-assembly-paper-5120x2160.webp",
-      "bytes": 18253,
-      "sha256": "b377d3e21788c4ecbfca5dba083c190a078a0ccd9391990cfa42e399dbf4438f"
+      "bytes": 18214,
+      "sha256": "ba21e011631486932ca81f555423463f6fa20c6b3863a03491456198f441120f"
     },
     {
       "path": "site/fun/previews/09-ratrig-assembly-blueprint-1440x3120.webp",
@@ -1180,13 +1180,13 @@
     },
     {
       "path": "site/fun/previews/09-ratrig-assembly-blueprint-3840x2160.webp",
-      "bytes": 30148,
-      "sha256": "fb750fc041428023288de88b9d02a033335a08827c1df015ca2668ecfa67b44e"
+      "bytes": 30034,
+      "sha256": "81c7a23eb4d5ae84e7fb162212c838756d3c1d3c8a3e2800dfc880e8bf00c06b"
     },
     {
       "path": "site/fun/previews/09-ratrig-assembly-blueprint-5120x2160.webp",
-      "bytes": 18380,
-      "sha256": "c42a853fbfd18340abd3ed60dcc9584bebf7c18d184feecf0611e78ec313667b"
+      "bytes": 18340,
+      "sha256": "7dfc496e7a176c5b171f41571d28b10bfa8f61fa2b73f7d49dc90b29875522e6"
     },
     {
       "path": "site/fun/previews/09-ratrig-assembly-graphite-1440x3120.webp",
@@ -1195,13 +1195,13 @@
     },
     {
       "path": "site/fun/previews/09-ratrig-assembly-graphite-3840x2160.webp",
-      "bytes": 29467,
-      "sha256": "5a3096142337cd6bbe47b0e233bd8eba2910c9c6bced53a6df493da4c2647fd0"
+      "bytes": 29362,
+      "sha256": "0b412c9f24983622c08c677f3b637fce11bd25b5c58ce9cad8f17bfe89d685c1"
     },
     {
       "path": "site/fun/previews/09-ratrig-assembly-graphite-5120x2160.webp",
-      "bytes": 17862,
-      "sha256": "7902ff7480d985cce96ef88e58beb0ac47ab6f64cae583f30aa6a3501060829e"
+      "bytes": 17802,
+      "sha256": "3a7daf2fcfe2b2a18763bae3fcfd66d951cbc84ffe41b67ac20ee3a9f7212ccf"
     },
     {
       "path": "site/fun/previews/09-ratrig-assembly-paper-1440x3120.webp",
@@ -1210,13 +1210,13 @@
     },
     {
       "path": "site/fun/previews/09-ratrig-assembly-paper-3840x2160.webp",
-      "bytes": 30426,
-      "sha256": "2c84465068084b59c99de9199e2ba3327655cd2ceaa2db99b46c37148ab78437"
+      "bytes": 30306,
+      "sha256": "b748219df361395be5077b14f7f4b4fe8c9701351e37500b35e6359dafacad13"
     },
     {
       "path": "site/fun/previews/09-ratrig-assembly-paper-5120x2160.webp",
-      "bytes": 18250,
-      "sha256": "945e9d726f24af4bf3e7e05c6eebb65acb3f3191348363a7905972241a6647b4"
+      "bytes": 18211,
+      "sha256": "57797921c0a80242186a229989e3e7ed91efaae7617390faa8091150c8427586"
     },
     {
       "path": "site/fun/previews/10-e3ng-assembly-blueprint-1440x3120.webp",
@@ -1225,13 +1225,13 @@
     },
     {
       "path": "site/fun/previews/10-e3ng-assembly-blueprint-3840x2160.webp",
-      "bytes": 24056,
-      "sha256": "eeba34ca9dd6d6f76321c5cf403d83ba7cee2b39d8c48ce64dc21afaf82930ac"
+      "bytes": 23940,
+      "sha256": "f783310cc9e5099864fc1a1fbd3888e911ba7cfa3739a38eb6b6f722775256cf"
     },
     {
       "path": "site/fun/previews/10-e3ng-assembly-blueprint-5120x2160.webp",
-      "bytes": 17638,
-      "sha256": "2c1c99c8d6614ea84926af8e173ed1d2cef5455c53b165e0c0e1f3e254101fad"
+      "bytes": 17598,
+      "sha256": "7a86456e8b94411f2d6b1a2cc0dfd267146082004ba5b540788780ae373012fb"
     },
     {
       "path": "site/fun/previews/10-e3ng-assembly-graphite-1440x3120.webp",
@@ -1240,13 +1240,13 @@
     },
     {
       "path": "site/fun/previews/10-e3ng-assembly-graphite-3840x2160.webp",
-      "bytes": 23408,
-      "sha256": "66f00bf72a39dfbc6551099613adee285e38d977b4a0edf9b6c841ff783efb0a"
+      "bytes": 23302,
+      "sha256": "fb657781acba924758318b06ef355817a232561fcc1dcdf52bc163a422190779"
     },
     {
       "path": "site/fun/previews/10-e3ng-assembly-graphite-5120x2160.webp",
-      "bytes": 17204,
-      "sha256": "a84a6abc4573d7628d25a19fb52bba322ac979ccd5570b84fcc9687f93b042d1"
+      "bytes": 17161,
+      "sha256": "e1a2f3e0305f4ede261fdb42030d28e88b91eec67f3c925e0c778e89731120b0"
     },
     {
       "path": "site/fun/previews/10-e3ng-assembly-paper-1440x3120.webp",
@@ -1255,13 +1255,13 @@
     },
     {
       "path": "site/fun/previews/10-e3ng-assembly-paper-3840x2160.webp",
-      "bytes": 24061,
-      "sha256": "3d9c685d381456d43bd9bc6e26d979c35687aff1252fb55203c95889d6f51995"
+      "bytes": 23956,
+      "sha256": "9d5e6ba6a9bc680b01698c4fc7822954a8411399e139b4cafe169f22f69dfafc"
     },
     {
       "path": "site/fun/previews/10-e3ng-assembly-paper-5120x2160.webp",
-      "bytes": 17720,
-      "sha256": "edf00d94be1a79f249296e4b068a3f352e7a401f3770803d55a8a0b5c0c5154f"
+      "bytes": 17681,
+      "sha256": "2a995877fe47325d284dae29ef0a45341ad97f29293ee9f897da49c1429c9380"
     },
     {
       "path": "site/fun/previews/11-monolith-assembly-blueprint-1440x3120.webp",
@@ -1270,13 +1270,13 @@
     },
     {
       "path": "site/fun/previews/11-monolith-assembly-blueprint-3840x2160.webp",
-      "bytes": 25000,
-      "sha256": "d1b70b020dc249789b6ef504e901cf286dd090236781f8fc17ffd2a9daeaf92a"
+      "bytes": 24896,
+      "sha256": "d2bc5091e31b67c60caa49e9a51b3fef527ccd7a947f10080edaf04954bb35e7"
     },
     {
       "path": "site/fun/previews/11-monolith-assembly-blueprint-5120x2160.webp",
-      "bytes": 18626,
-      "sha256": "fe378fa3f4344c97938634935603eb8c42c67a7f3534dff94953987a5ce0039c"
+      "bytes": 18584,
+      "sha256": "a33cbf2b0020d652227ceb0dade4c26073cce2ab36851d849307e601031d4b00"
     },
     {
       "path": "site/fun/previews/11-monolith-assembly-graphite-1440x3120.webp",
@@ -1285,13 +1285,13 @@
     },
     {
       "path": "site/fun/previews/11-monolith-assembly-graphite-3840x2160.webp",
-      "bytes": 24749,
-      "sha256": "83885d44b7af0bab70b261cc5b27d5fdf40c192ce1a31d63db72db53b22d8f10"
+      "bytes": 24282,
+      "sha256": "489afdde6e0e394fbd254d82eb2c6675f05bc2e3bd45c033e2d4af688eee2140"
     },
     {
       "path": "site/fun/previews/11-monolith-assembly-graphite-5120x2160.webp",
-      "bytes": 18193,
-      "sha256": "8122e95706749b587c2b748aa307a63130a86ecc143bb3d6b55f3cc5f119d5c5"
+      "bytes": 18150,
+      "sha256": "c25e2838996e8728222aa144bc3d62d7cd75f70a5f024f8a20262bbebdf1ad3a"
     },
     {
       "path": "site/fun/previews/11-monolith-assembly-paper-1440x3120.webp",
@@ -1300,13 +1300,13 @@
     },
     {
       "path": "site/fun/previews/11-monolith-assembly-paper-3840x2160.webp",
-      "bytes": 25258,
-      "sha256": "2088d3ce453e11bf108b4e99525537fb880d71dcb9789a0f65ba49d592ff0382"
+      "bytes": 25050,
+      "sha256": "8796ecbbc9a5f6e3a6d2d29e44826ec3d291e01f4127bae8488a637423c9f37a"
     },
     {
       "path": "site/fun/previews/11-monolith-assembly-paper-5120x2160.webp",
-      "bytes": 18582,
-      "sha256": "6670677dd5f90b8593139666e2f1fb39e20d4a71fe4076ac6246bbe2d405c089"
+      "bytes": 18540,
+      "sha256": "6999203157fa0f4d2d8889febc0c669e5952889125cc8abc14a33b748ed819a0"
     },
     {
       "path": "site/fun/previews/12-xol-assembly-blueprint-1440x3120.webp",
@@ -1315,13 +1315,13 @@
     },
     {
       "path": "site/fun/previews/12-xol-assembly-blueprint-3840x2160.webp",
-      "bytes": 21418,
-      "sha256": "e7732179e3523f18fc9cad9a46c066aee26472306cba71bf0cfcf1923f8bf925"
+      "bytes": 21318,
+      "sha256": "6a0f6ac12bb549cd2580c8b130d7870a6cec9e7f83f225fd9db7b3ec5660f0cc"
     },
     {
       "path": "site/fun/previews/12-xol-assembly-blueprint-5120x2160.webp",
-      "bytes": 13242,
-      "sha256": "95fe0a03a82d670ae9b1a4ef317a5a588f948e42e4778993a3680ec55be56811"
+      "bytes": 13200,
+      "sha256": "4d3cb8ba8e359e69dfeec225f86532cf0ca9a49cf77d22a8ca13df04c1aaeaab"
     },
     {
       "path": "site/fun/previews/12-xol-assembly-graphite-1440x3120.webp",
@@ -1330,13 +1330,13 @@
     },
     {
       "path": "site/fun/previews/12-xol-assembly-graphite-3840x2160.webp",
-      "bytes": 21044,
-      "sha256": "fbb1ebbd3e5c530db3cd026514cf46bb777338e8fbde40c65f63d68f6728c433"
+      "bytes": 20958,
+      "sha256": "edbbbae72b72d01fd4f618225de019666f8a5d8d3adecc46a6c47d5e7f7db68c"
     },
     {
       "path": "site/fun/previews/12-xol-assembly-graphite-5120x2160.webp",
-      "bytes": 12932,
-      "sha256": "2f02f018abab6ef56007880c564c3e57bd276a9f3e09e18a73fee97274003acd"
+      "bytes": 12900,
+      "sha256": "457c0d9f7e233687da866eefad5982e41c42fe8c2ccc2448e6f0e418de25ef39"
     },
     {
       "path": "site/fun/previews/12-xol-assembly-paper-1440x3120.webp",
@@ -1345,13 +1345,13 @@
     },
     {
       "path": "site/fun/previews/12-xol-assembly-paper-3840x2160.webp",
-      "bytes": 21607,
-      "sha256": "6f85219cfca19ea14c16c43b8e96b9335e55a3db554aec1d48515243e85b6c2f"
+      "bytes": 21504,
+      "sha256": "ee93400af841bbd600976beaeaa0b800944b0e81fbf8f05a81246252dde041a8"
     },
     {
       "path": "site/fun/previews/12-xol-assembly-paper-5120x2160.webp",
-      "bytes": 13087,
-      "sha256": "931f390a5f2927128d9d6c12911a1e356a8c488b1f08c34a8316a33aaaf2e62d"
+      "bytes": 13044,
+      "sha256": "aaa6cfd504d7d0d39b4c8017f3b32df22ffa4c3cdd9da84a54cf3a2e481a675a"
     },
     {
       "path": "site/fun/previews/13-anthead-assembly-blueprint-1440x3120.webp",
@@ -1360,13 +1360,13 @@
     },
     {
       "path": "site/fun/previews/13-anthead-assembly-blueprint-3840x2160.webp",
-      "bytes": 20009,
-      "sha256": "7564552f69fcd3a0b4d835f3a98f1405ddad5e0aec80ec93861d9fd0c2f10605"
+      "bytes": 19907,
+      "sha256": "75b3675ab515f465d205bdef48692601c3484e372be773ba15dd61102fdbf98e"
     },
     {
       "path": "site/fun/previews/13-anthead-assembly-blueprint-5120x2160.webp",
       "bytes": 12528,
-      "sha256": "de8a15b30c6cb797bb4ccd878b47e8fbefdc83bfd43e8cee56a0e45de2743773"
+      "sha256": "4da6c62294f8f3e214d81d7bab524b2e5c41d5184661cc7b97b9b9864f043764"
     },
     {
       "path": "site/fun/previews/13-anthead-assembly-graphite-1440x3120.webp",
@@ -1375,13 +1375,13 @@
     },
     {
       "path": "site/fun/previews/13-anthead-assembly-graphite-3840x2160.webp",
-      "bytes": 19782,
-      "sha256": "b47e2a85d8eb78603f4bb9857dd4c7b18db03b8699c5113776229cad6348f66a"
+      "bytes": 19578,
+      "sha256": "5b969c1dba9360cd8985659ddebbf132feb00198bdaca88b3135263d3f1c9331"
     },
     {
       "path": "site/fun/previews/13-anthead-assembly-graphite-5120x2160.webp",
-      "bytes": 12402,
-      "sha256": "57e07284169f4e3b721ff7467711607fb9f74911eaba45c7a001c177df153d2f"
+      "bytes": 12364,
+      "sha256": "2bbd45dff3bf7e4925ca052da21c62b3e116a7f44c88f492702c1a70969ab1b7"
     },
     {
       "path": "site/fun/previews/13-anthead-assembly-paper-1440x3120.webp",
@@ -1390,13 +1390,13 @@
     },
     {
       "path": "site/fun/previews/13-anthead-assembly-paper-3840x2160.webp",
-      "bytes": 19920,
-      "sha256": "95b6af8a0c8ff909c854d95036e9274c445b751f7e8776eb94cc420669f8b516"
+      "bytes": 19852,
+      "sha256": "77e023155eed41aaecdca938be231cce3c9a4336ac0a213cb4ae239ad459b046"
     },
     {
       "path": "site/fun/previews/13-anthead-assembly-paper-5120x2160.webp",
-      "bytes": 12472,
-      "sha256": "0c4284aafd71e064a6f62324134fef55903c02cc63a1542e0ac8b097111a269f"
+      "bytes": 12434,
+      "sha256": "89c3817ada24a4dccffd5af2c61d9406e65c33359f52c79a67b65cdeb1be4b58"
     },
     {
       "path": "site/fun/previews/14-jabberwocky-assembly-blueprint-1440x3120.webp",
@@ -1405,13 +1405,13 @@
     },
     {
       "path": "site/fun/previews/14-jabberwocky-assembly-blueprint-3840x2160.webp",
-      "bytes": 19962,
-      "sha256": "6732eeb4e245d295ddf23e7049e755a27668389b176817ec17b8be30026fa554"
+      "bytes": 19857,
+      "sha256": "71ad92c099513be7ba935d37f896af5f234699edef5e14c88d8822966dd71e81"
     },
     {
       "path": "site/fun/previews/14-jabberwocky-assembly-blueprint-5120x2160.webp",
-      "bytes": 12278,
-      "sha256": "abdf23f57e5c967961abe43a0a23936330c27be1b47201846611fddae46615ab"
+      "bytes": 12356,
+      "sha256": "bc1db4411fce69f72503f6944c97609212fff40f439dcf24b583c142b0c015af"
     },
     {
       "path": "site/fun/previews/14-jabberwocky-assembly-graphite-1440x3120.webp",
@@ -1420,13 +1420,13 @@
     },
     {
       "path": "site/fun/previews/14-jabberwocky-assembly-graphite-3840x2160.webp",
-      "bytes": 19580,
-      "sha256": "cc3ddf0ca4071eea1835abc843255625b435b80d4b6832a15cac1d183dcc45e9"
+      "bytes": 19493,
+      "sha256": "2e2f0e8cc35ee7458db146a5f9f9acc4aa1fbe7ddedac85fdc6df4a6c40cdb71"
     },
     {
       "path": "site/fun/previews/14-jabberwocky-assembly-graphite-5120x2160.webp",
-      "bytes": 12108,
-      "sha256": "5abcb435c6f50162be80989d7a229eccce45a20f2af69fe068b8c31be70442d8"
+      "bytes": 12066,
+      "sha256": "59645c2e7ef12da753966e374de9b3b5b54a1f2fd93e5f90dc39b16b9e43cd40"
     },
     {
       "path": "site/fun/previews/14-jabberwocky-assembly-paper-1440x3120.webp",
@@ -1435,13 +1435,13 @@
     },
     {
       "path": "site/fun/previews/14-jabberwocky-assembly-paper-3840x2160.webp",
-      "bytes": 19809,
-      "sha256": "c766218b3e2b235677854255b3f6e1336b3c4469bb702ae1ab38b71655241b77"
+      "bytes": 19686,
+      "sha256": "6fc0968bb634e4e39c632e335d396f06205434beb472d6d4f0e6c4ca71e59321"
     },
     {
       "path": "site/fun/previews/14-jabberwocky-assembly-paper-5120x2160.webp",
-      "bytes": 12118,
-      "sha256": "9dbddf01f93b7a9ecbfb7f4d60f049b3131e8f737b136cc5ca0b5ca881530a25"
+      "bytes": 12080,
+      "sha256": "7c87fa8c43d5f904d9e36d731f6d9aff88b16dfbb205e78c3089ecbcb28a8406"
     },
     {
       "path": "site/fun/previews/15-a4t-exploded-blueprint-1440x3120.webp",
@@ -1450,13 +1450,13 @@
     },
     {
       "path": "site/fun/previews/15-a4t-exploded-blueprint-3840x2160.webp",
-      "bytes": 18783,
-      "sha256": "32ab97f9484ae1f4bf4cd0d290c26766855f8da4aba2d3459a4607d2c0ef81f6"
+      "bytes": 18698,
+      "sha256": "0038516655ff598b09c8008846db72f67169d3d3f095a2fd7191bf49783741c5"
     },
     {
       "path": "site/fun/previews/15-a4t-exploded-blueprint-5120x2160.webp",
-      "bytes": 11460,
-      "sha256": "2c8c4304b698a04e962c8308514f2b3de5f83f6dcc62fec1473e117f65367508"
+      "bytes": 11420,
+      "sha256": "72c6c3a22966a1403a40b62a9ae3baa1a05e08ac2bb04af48452e13ec4f6c68b"
     },
     {
       "path": "site/fun/previews/15-a4t-exploded-graphite-1440x3120.webp",
@@ -1465,13 +1465,13 @@
     },
     {
       "path": "site/fun/previews/15-a4t-exploded-graphite-3840x2160.webp",
-      "bytes": 18524,
-      "sha256": "a4c496be253b2f9e84d78d66f07b5873c5d756474612d2843be1092cebaba173"
+      "bytes": 18423,
+      "sha256": "15bf0a05378a0ff3ed9e3f865b3e59c51fda617586bea40a03a703dfa11a8eab"
     },
     {
       "path": "site/fun/previews/15-a4t-exploded-graphite-5120x2160.webp",
-      "bytes": 11262,
-      "sha256": "92092de7c0826c326c2dcd23ca90397aac105928f65f8c18f0a2e4f1077eb99b"
+      "bytes": 11222,
+      "sha256": "39d44a6c42a7432550cc71a89ce3c936623f0e74310fc6adfe54487c0b7f5b54"
     },
     {
       "path": "site/fun/previews/15-a4t-exploded-paper-1440x3120.webp",
@@ -1480,13 +1480,13 @@
     },
     {
       "path": "site/fun/previews/15-a4t-exploded-paper-3840x2160.webp",
-      "bytes": 18846,
-      "sha256": "f4756262eb18938e6068c34ed7007e33a5cdf83c09057627540563e5040ac2ae"
+      "bytes": 18742,
+      "sha256": "de58881a16c46b8d46c6b3f6a89752958badd8a17c3be6533db5d81714f741ec"
     },
     {
       "path": "site/fun/previews/15-a4t-exploded-paper-5120x2160.webp",
-      "bytes": 11216,
-      "sha256": "9b206c2d0831ca61cc7b0521f5f170957c1239a17c4eb953b8d4cde8a8f6bba1"
+      "bytes": 11186,
+      "sha256": "545cb30d08eb277de2f9afbe81cf50c6c7a41090ccb5ba9f3e0c73a502e4dfd1"
     },
     {
       "path": "site/fun/previews/16-stealthchanger-exploded-blueprint-1440x3120.webp",
@@ -1495,13 +1495,13 @@
     },
     {
       "path": "site/fun/previews/16-stealthchanger-exploded-blueprint-3840x2160.webp",
-      "bytes": 18312,
-      "sha256": "f2eaa6af76b1e7cb2f6baf3567a3d6d0c8c1c0286c87bdf2736a6bc6d2f28f81"
+      "bytes": 18214,
+      "sha256": "820bbbb95152bb23c5dd555eee7e66476b2d37acf31c55a910f524e1f8564a00"
     },
     {
       "path": "site/fun/previews/16-stealthchanger-exploded-blueprint-5120x2160.webp",
-      "bytes": 11524,
-      "sha256": "f87f9b0a302078a7ddad3540c59ecebcba04e2ccfb6d6cfa6a7c59f91766eb54"
+      "bytes": 11484,
+      "sha256": "6b68677fdd0faa276abaaf92a104fc43bddba9eaf86c36ec8018ea30c5dd0063"
     },
     {
       "path": "site/fun/previews/16-stealthchanger-exploded-graphite-1440x3120.webp",
@@ -1510,13 +1510,13 @@
     },
     {
       "path": "site/fun/previews/16-stealthchanger-exploded-graphite-3840x2160.webp",
-      "bytes": 18022,
-      "sha256": "7dca8155af188336be8f52218dbad09428fbbc606a089b3011d6482faae8a6d6"
+      "bytes": 17924,
+      "sha256": "c47b2a7967b9b63b2c48f372a00c4b6662a36e8fe59b6760b6198e63d078287d"
     },
     {
       "path": "site/fun/previews/16-stealthchanger-exploded-graphite-5120x2160.webp",
-      "bytes": 11301,
-      "sha256": "bd66b045f4f4a8b46d1ffebedd6d67b3a5d38eb9edc50f8e5ad940d984da2441"
+      "bytes": 11262,
+      "sha256": "0a7576605440b14487027c04733186c15a94677eee8194dc0d8ec2011ebf83f2"
     },
     {
       "path": "site/fun/previews/16-stealthchanger-exploded-paper-1440x3120.webp",
@@ -1525,13 +1525,13 @@
     },
     {
       "path": "site/fun/previews/16-stealthchanger-exploded-paper-3840x2160.webp",
-      "bytes": 18150,
-      "sha256": "67c4eb1fa3a11a57c6e46a0fd3c0416c8be2acceff343315c6bd92f4e68662ab"
+      "bytes": 18056,
+      "sha256": "caa20f94cb99a90126ab439f0872726b9ace51fa5ac6faba51a8803c33a5a603"
     },
     {
       "path": "site/fun/previews/16-stealthchanger-exploded-paper-5120x2160.webp",
       "bytes": 11236,
-      "sha256": "fbb2de2fd30de884805a1468a44ab628f2f51bcb4e614c724aca2e0aae2a3300"
+      "sha256": "57f00c52010144c4155c362377930c3d57c4d15b93e03312f3b7c3d9ffd7b994"
     },
     {
       "path": "site/fun/previews/17-yudx-exploded-blueprint-1440x3120.webp",
@@ -1540,13 +1540,13 @@
     },
     {
       "path": "site/fun/previews/17-yudx-exploded-blueprint-3840x2160.webp",
-      "bytes": 23986,
-      "sha256": "5cc58c9763fce12f5c217d99feed0c33de62e1e9d97cda4d08b8a3de086c52b5"
+      "bytes": 23886,
+      "sha256": "dc5a6bb6cb78b2a4136b650b0ff0a3996e0245f464597589e0bd6d80bb18edda"
     },
     {
       "path": "site/fun/previews/17-yudx-exploded-blueprint-5120x2160.webp",
-      "bytes": 14494,
-      "sha256": "6edf5fbdb126b4ffb3516b4eaf2f3e954f16d7da0961fd6ccde38b8cc1d6c670"
+      "bytes": 14456,
+      "sha256": "aece60f917d52f4e88bc32d66896b27150da964d240ea21b89d155c1995cd086"
     },
     {
       "path": "site/fun/previews/17-yudx-exploded-graphite-1440x3120.webp",
@@ -1555,13 +1555,13 @@
     },
     {
       "path": "site/fun/previews/17-yudx-exploded-graphite-3840x2160.webp",
-      "bytes": 23701,
-      "sha256": "a305cd3412baca7c3470c3b1fe8d2001242582a1d1c051923fa0f89820788229"
+      "bytes": 23601,
+      "sha256": "61328f3bd565556ee8e98fe65979585244c15e8a44f1af8df01826ee06fb23a1"
     },
     {
       "path": "site/fun/previews/17-yudx-exploded-graphite-5120x2160.webp",
-      "bytes": 14428,
-      "sha256": "65f640da8b6d9467adb0d4264569d48d99f30bf15d35087e957e6ebc3a273391"
+      "bytes": 14298,
+      "sha256": "9dc729b822029fe4cfc53e9a0547dcaa86d85b379ce05992b59302fd7bd83b73"
     },
     {
       "path": "site/fun/previews/17-yudx-exploded-paper-1440x3120.webp",
@@ -1570,13 +1570,13 @@
     },
     {
       "path": "site/fun/previews/17-yudx-exploded-paper-3840x2160.webp",
-      "bytes": 23842,
-      "sha256": "e8687e9e5736830cf76f4dfb19ffd0711fb2c82bb6fac4fbba07b76dd017f3ef"
+      "bytes": 23742,
+      "sha256": "113c38659d1961e298c90e6c8a3c9a53c02c0b0cc72cc74cd44daa0aac22a8b4"
     },
     {
       "path": "site/fun/previews/17-yudx-exploded-paper-5120x2160.webp",
-      "bytes": 14375,
-      "sha256": "e20cf35369f341056b0aac090c6948a5324aac1f456a58bd5ea34dd3774c364e"
+      "bytes": 14274,
+      "sha256": "b3664019818fb7cbc0859baf7aadb91cd2edadfc02cd0d85443e5ec2cbf73fbe"
     },
     {
       "path": "site/fun/previews/18-sherpa-exploded-blueprint-1440x3120.webp",
@@ -1585,13 +1585,13 @@
     },
     {
       "path": "site/fun/previews/18-sherpa-exploded-blueprint-3840x2160.webp",
-      "bytes": 29008,
-      "sha256": "06888d3d28f1e41e1b30d6575896befb5bafde5557af16b36147d56764379db0"
+      "bytes": 28916,
+      "sha256": "ca1ae99c830b81d77f114a316ecb9645c93f6d5b0225b5c3c4f39ce0855640b0"
     },
     {
       "path": "site/fun/previews/18-sherpa-exploded-blueprint-5120x2160.webp",
-      "bytes": 17730,
-      "sha256": "a0bea494525033a7d34779fd247b822075649cdd16837f858b3f0723b5ff2cc9"
+      "bytes": 17690,
+      "sha256": "60b1f2bf0a595afe5b649a6267bd621bca1a4a6813b73d66a486728130abf2b7"
     },
     {
       "path": "site/fun/previews/18-sherpa-exploded-graphite-1440x3120.webp",
@@ -1600,13 +1600,13 @@
     },
     {
       "path": "site/fun/previews/18-sherpa-exploded-graphite-3840x2160.webp",
-      "bytes": 28507,
-      "sha256": "b75c0de2724e910bc09c750985ae4b7417578a30fc72a63e6e5892bee4587f03"
+      "bytes": 28257,
+      "sha256": "68ffb13ced674ea82b0d7532f7bf7a2cf4da4c1a5c675975987b0db0bcfddc7a"
     },
     {
       "path": "site/fun/previews/18-sherpa-exploded-graphite-5120x2160.webp",
-      "bytes": 17443,
-      "sha256": "8ff25b9fdf60a795bdac91b2c66cb5502778e85a6ca12f77113999aecf18551f"
+      "bytes": 17404,
+      "sha256": "ab14461c6e512c1017e4b1d340795ce4f4fb54e59949e0b63cf6645b2b1de8d3"
     },
     {
       "path": "site/fun/previews/18-sherpa-exploded-paper-1440x3120.webp",
@@ -1615,13 +1615,13 @@
     },
     {
       "path": "site/fun/previews/18-sherpa-exploded-paper-3840x2160.webp",
-      "bytes": 29080,
-      "sha256": "911cc3920466f390359c05905cbe898c57ac3bd9abfe24afa159b6c219d5f4d0"
+      "bytes": 28988,
+      "sha256": "565e32224771979e5c4c638067ca0c04c312f27a8a49d2fe9f524f3df41348a6"
     },
     {
       "path": "site/fun/previews/18-sherpa-exploded-paper-5120x2160.webp",
-      "bytes": 17620,
-      "sha256": "f1c18882dbf161978a4c24e94cff497825d1ff990fce2c6e929eeda9fa81a8c6"
+      "bytes": 17578,
+      "sha256": "3916368490ac5598e6ab00f9781f112f4162bf481483c8ed4996f79cfee1c543"
     },
     {
       "path": "site/fun/previews/19-galileo-exploded-blueprint-1440x3120.webp",
@@ -1630,13 +1630,13 @@
     },
     {
       "path": "site/fun/previews/19-galileo-exploded-blueprint-3840x2160.webp",
-      "bytes": 27943,
-      "sha256": "56dc2ef458915759fbaed02f0388f4e76794135b4973b80326d6aeffe69bd50f"
+      "bytes": 27840,
+      "sha256": "26dccd01080869390c393161da5fbc1565bc97892a70fc56f2169157b0027030"
     },
     {
       "path": "site/fun/previews/19-galileo-exploded-blueprint-5120x2160.webp",
-      "bytes": 17652,
-      "sha256": "3406665a246e6575c75f4b24b2a57fd5650f9d9f98d4e04c3e0d41512dabbe20"
+      "bytes": 17612,
+      "sha256": "c1b1b19f389f0b1a63433f90fb696c06fcbd6f7be0c4903838f79d90a73c44c8"
     },
     {
       "path": "site/fun/previews/19-galileo-exploded-graphite-1440x3120.webp",
@@ -1645,13 +1645,13 @@
     },
     {
       "path": "site/fun/previews/19-galileo-exploded-graphite-3840x2160.webp",
-      "bytes": 27486,
-      "sha256": "1cc96e33cf7e037fdc8189f77bc5c17a38ad4b2749d32a441dce842014b16dbd"
+      "bytes": 27382,
+      "sha256": "e220e876ba63e97f7e1d6e36748e90cd70d688f57a50971d604c0b41edecb692"
     },
     {
       "path": "site/fun/previews/19-galileo-exploded-graphite-5120x2160.webp",
-      "bytes": 17316,
-      "sha256": "7072ad0c734779754d2780e6d4ecb978b777882d2106ae1d426260da201b29be"
+      "bytes": 17273,
+      "sha256": "fade7ad6032dfcb153f2238956e84c853fb4d06be0744653fb228ec06af963a3"
     },
     {
       "path": "site/fun/previews/19-galileo-exploded-paper-1440x3120.webp",
@@ -1660,13 +1660,13 @@
     },
     {
       "path": "site/fun/previews/19-galileo-exploded-paper-3840x2160.webp",
-      "bytes": 28135,
-      "sha256": "66de051f72b3a1df725bd02ce8fc0b84e279ad90e27d0b70efd885702eadc0c8"
+      "bytes": 28000,
+      "sha256": "0440122ad7bd05a4081bba19f19ae93f55de4382b37eb1e7e7f49e19b896f9ca"
     },
     {
       "path": "site/fun/previews/19-galileo-exploded-paper-5120x2160.webp",
-      "bytes": 17562,
-      "sha256": "695eff24f900b5d1700a2ef5b67be87dcc6833625ec72269f2ba5a3c2fb1071c"
+      "bytes": 17524,
+      "sha256": "03b8ba891b2b3dc1c587d19745608c996e5e65bd0f42f0250cbbcb9849e9ecc1"
     },
     {
       "path": "site/fun/previews/20-sphinx-exploded-blueprint-1440x3120.webp",
@@ -1675,13 +1675,13 @@
     },
     {
       "path": "site/fun/previews/20-sphinx-exploded-blueprint-3840x2160.webp",
-      "bytes": 17630,
-      "sha256": "d1ef99519b612a77b22fa16a05d00143122aaf2250f8061f0ace19d40d83c8ee"
+      "bytes": 17514,
+      "sha256": "5bf53fdda1ba1db0a4d4046611612f8b9279e364cb0180129317ec3b3464166d"
     },
     {
       "path": "site/fun/previews/20-sphinx-exploded-blueprint-5120x2160.webp",
-      "bytes": 10938,
-      "sha256": "0f3a6ee630eb4e2f6d2d23dae8d63b4f1be361c3925a8e8b7a3ec1d426f612d5"
+      "bytes": 10900,
+      "sha256": "412f774d47bde5378eed60aa71183225060254386d3d6dee0aba8eb400a037c2"
     },
     {
       "path": "site/fun/previews/20-sphinx-exploded-graphite-1440x3120.webp",
@@ -1690,13 +1690,13 @@
     },
     {
       "path": "site/fun/previews/20-sphinx-exploded-graphite-3840x2160.webp",
-      "bytes": 17440,
-      "sha256": "12399e8bbc4952baebeeb426e97cb99afe0f2392b519bb5f2764cf8209602f64"
+      "bytes": 17350,
+      "sha256": "ce1bf4d9c4962f2ccf6a0186eac7e7f503c5b786357adfd34196498f50fbcd18"
     },
     {
       "path": "site/fun/previews/20-sphinx-exploded-graphite-5120x2160.webp",
-      "bytes": 10846,
-      "sha256": "3994ea1ead2f23b18f13d9885549d3e25b4157b7c5445a16a6cf20a74c64276d"
+      "bytes": 10806,
+      "sha256": "90e8dd3b947dc9019e278acbe1d5a50acaa9d9803d3533154656981ad3104211"
     },
     {
       "path": "site/fun/previews/20-sphinx-exploded-paper-1440x3120.webp",
@@ -1705,13 +1705,13 @@
     },
     {
       "path": "site/fun/previews/20-sphinx-exploded-paper-3840x2160.webp",
-      "bytes": 17416,
-      "sha256": "6e51979789eed2bc296de0bcd20a4986fe12b0af7086e2c6239b006f87a26ee9"
+      "bytes": 17319,
+      "sha256": "be908a48bb36158989e2084831dab348be18781e918843fd4e8bc215151cb751"
     },
     {
       "path": "site/fun/previews/20-sphinx-exploded-paper-5120x2160.webp",
-      "bytes": 10716,
-      "sha256": "096586e8fddfc8d84a6c4abea18cf80c48784c0f414e44a6ec39c8421fe42302"
+      "bytes": 10680,
+      "sha256": "e86e9b3f7038550a6aaa2d3b33c3c28d0080100265373389c8012c10290ba9e7"
     },
     {
       "path": "site/fun/previews/21-monolith-drive-exploded-blueprint-1440x3120.webp",
@@ -1720,13 +1720,13 @@
     },
     {
       "path": "site/fun/previews/21-monolith-drive-exploded-blueprint-3840x2160.webp",
-      "bytes": 20758,
-      "sha256": "1d710c11efab8ea405eb6494e9e16faf2e187a2acef3181455e1ddf7cb6d8cdd"
+      "bytes": 20663,
+      "sha256": "42e34fc930c658f09676af625da3bb9ce94870f3bc3cb9d2a382c54ee4ef0e6f"
     },
     {
       "path": "site/fun/previews/21-monolith-drive-exploded-blueprint-5120x2160.webp",
-      "bytes": 12959,
-      "sha256": "987b37c72a55410710fd42af240f0a4bff540d16411a373afc22a1fcc5b6e800"
+      "bytes": 12922,
+      "sha256": "e1620b37961884153da45eeccc83f30731616140ad0088e7ec9dc5f35298589f"
     },
     {
       "path": "site/fun/previews/21-monolith-drive-exploded-graphite-1440x3120.webp",
@@ -1735,13 +1735,13 @@
     },
     {
       "path": "site/fun/previews/21-monolith-drive-exploded-graphite-3840x2160.webp",
-      "bytes": 20403,
-      "sha256": "5134e648a907e2be5b7701f9c44fc6508c7a8989cfbcf6b05a9d69a5d1173320"
+      "bytes": 20306,
+      "sha256": "0153be719b55fea3ced6a25b4f5c673ef9317312279fdd575bc60a1d6f1d8a0e"
     },
     {
       "path": "site/fun/previews/21-monolith-drive-exploded-graphite-5120x2160.webp",
-      "bytes": 12837,
-      "sha256": "6fef29f05afb4ec0d3fd467fdc364b3e5fc2caabdb856acc159a30299b6a4746"
+      "bytes": 12794,
+      "sha256": "6006ceacc01e0263ebf3cb9fbea6ce5b99102910c50f20169c265e1010b1e875"
     },
     {
       "path": "site/fun/previews/21-monolith-drive-exploded-paper-1440x3120.webp",
@@ -1750,13 +1750,13 @@
     },
     {
       "path": "site/fun/previews/21-monolith-drive-exploded-paper-3840x2160.webp",
-      "bytes": 20610,
-      "sha256": "61f4eb3b6d9239eb5207e6cb45004917ea1b1fb1385bb29ddf090d1b63f75e49"
+      "bytes": 20520,
+      "sha256": "7dce02139ca559cd89bffd5e9bfc279fb737e85f1353e84533a59a2ef17da523"
     },
     {
       "path": "site/fun/previews/21-monolith-drive-exploded-paper-5120x2160.webp",
-      "bytes": 12726,
-      "sha256": "2557520889e43babffb96dfe39f2c76c34bdaed739a7b5d12c8a092df557a5f1"
+      "bytes": 12688,
+      "sha256": "4ab3fee60f9de555a2aa6994d6e79d23abfe5dc4bfe67e10dd384c404f42f19d"
     },
     {
       "path": "site/fun/previews/22-v24-expanded-exploded-blueprint-1440x3120.webp",
@@ -1765,13 +1765,13 @@
     },
     {
       "path": "site/fun/previews/22-v24-expanded-exploded-blueprint-3840x2160.webp",
-      "bytes": 23198,
-      "sha256": "3d927e4dec6e48b8bbc1571eeb02befb8a3f3b36f669f0f1a9ac4dae9d3d9e0d"
+      "bytes": 23102,
+      "sha256": "adde0b61a06d18fb4c884164eab76aaacc0b0541600d3a7628a425c6eede7f55"
     },
     {
       "path": "site/fun/previews/22-v24-expanded-exploded-blueprint-5120x2160.webp",
-      "bytes": 14204,
-      "sha256": "ea900bc2fced5522c51cce80b85f0cf575001f0f3965e3942e5a554d8059ee2c"
+      "bytes": 14164,
+      "sha256": "0857e920b0134d21487615b9fba56af71f5c0a40dfa46ad5e34d9d7cb2d3d36d"
     },
     {
       "path": "site/fun/previews/22-v24-expanded-exploded-graphite-1440x3120.webp",
@@ -1780,13 +1780,13 @@
     },
     {
       "path": "site/fun/previews/22-v24-expanded-exploded-graphite-3840x2160.webp",
-      "bytes": 22604,
-      "sha256": "6616a852faacec5c1bf61ae86dc463db6e946613bbec9e72d7bef17af8d1ef9a"
+      "bytes": 22541,
+      "sha256": "4e5b9b16ff9cea5237508bd99bb190c3c5250c1ce8c703bdd0450c092f618e58"
     },
     {
       "path": "site/fun/previews/22-v24-expanded-exploded-graphite-5120x2160.webp",
-      "bytes": 13882,
-      "sha256": "fab88f0e7024ad935dfee415070216c3e4f15ccfb200ad4f56d2be9abadc54a0"
+      "bytes": 13838,
+      "sha256": "a930d508d7ef916699a8d03e36c8e7534348677c7abada651de3e1dcbd850603"
     },
     {
       "path": "site/fun/previews/22-v24-expanded-exploded-paper-1440x3120.webp",
@@ -1795,13 +1795,13 @@
     },
     {
       "path": "site/fun/previews/22-v24-expanded-exploded-paper-3840x2160.webp",
-      "bytes": 23265,
-      "sha256": "fac39e6e564f185c1aec87446d2c79df85ccff0c867d38a5140b28d59fea61f4"
+      "bytes": 23168,
+      "sha256": "006c3497b9b651479b3a914bd775d75f857d9fd70cc4fd1c13c25b3633031467"
     },
     {
       "path": "site/fun/previews/22-v24-expanded-exploded-paper-5120x2160.webp",
-      "bytes": 14117,
-      "sha256": "d4494a2070341cc9a33a97da6f4457c76957279ce86b588611b57b487ffe0629"
+      "bytes": 14084,
+      "sha256": "6892245e4ca449e2e5b891097f757f0b649fa378b6140c745eb44ca9a8c91bf4"
     },
     {
       "path": "site/fun/previews/23-a4t-section-blueprint-1440x3120.webp",
@@ -1810,13 +1810,13 @@
     },
     {
       "path": "site/fun/previews/23-a4t-section-blueprint-3840x2160.webp",
-      "bytes": 25306,
-      "sha256": "c884bf8a9ecfbaf8eaa265365759cd562bf5cdee5c814aa31850157e56b74cfd"
+      "bytes": 25200,
+      "sha256": "e2578e40bed80aa328133a33c0591065dc813826dc47e53e7614264f0d90faa7"
     },
     {
       "path": "site/fun/previews/23-a4t-section-blueprint-5120x2160.webp",
-      "bytes": 15523,
-      "sha256": "70ff3e6bae0bd385a127aa0ea4c670a3241c6bb07837efa134c2ea945645c571"
+      "bytes": 15485,
+      "sha256": "990f281075a4fac76b2039583002b2a3ae96806ace3b9439d41d1781bd45aaa0"
     },
     {
       "path": "site/fun/previews/23-a4t-section-graphite-1440x3120.webp",
@@ -1825,13 +1825,13 @@
     },
     {
       "path": "site/fun/previews/23-a4t-section-graphite-3840x2160.webp",
-      "bytes": 25306,
-      "sha256": "97b024273a21ec7f5c81b1ed6ddf4361b60f6e20e343ab81fbccaaa604324dac"
+      "bytes": 24802,
+      "sha256": "8a6ca9cd17a2caa9ed10e4a51a3e434026d69761463d2bea5061d424146b3635"
     },
     {
       "path": "site/fun/previews/23-a4t-section-graphite-5120x2160.webp",
-      "bytes": 15215,
-      "sha256": "194c9eaff777502728d910bd065a03b514c4432ba0991cdde87ee09f12e60575"
+      "bytes": 15176,
+      "sha256": "5543c5a1ccaeae4f0239258a57fdc3eb8b84e6b2814ee4e1364a08344752d1be"
     },
     {
       "path": "site/fun/previews/23-a4t-section-paper-1440x3120.webp",
@@ -1840,13 +1840,13 @@
     },
     {
       "path": "site/fun/previews/23-a4t-section-paper-3840x2160.webp",
-      "bytes": 25526,
-      "sha256": "cb7454cb06fabc1777291024f97c4d90ac129b5a0c8070a286ef109a78b35775"
+      "bytes": 25620,
+      "sha256": "a4c85641c625e97f61c047aeb352affd14c982bcd45e6f6840d427fa0d5dcf88"
     },
     {
       "path": "site/fun/previews/23-a4t-section-paper-5120x2160.webp",
-      "bytes": 15181,
-      "sha256": "18fe1f987ec1f1e62c9da62fd78408bfb3a0a3a3202782113c820e283718b472"
+      "bytes": 15148,
+      "sha256": "73ef6492847d46dde108c202649cad42774b0561ef67162fa64e548719aad1f2"
     },
     {
       "path": "site/fun/previews/24-yudx-section-blueprint-1440x3120.webp",
@@ -1855,13 +1855,13 @@
     },
     {
       "path": "site/fun/previews/24-yudx-section-blueprint-3840x2160.webp",
-      "bytes": 22616,
-      "sha256": "71f0be1252b9a5816ba9a7851a1433ea452d7dec3886f30c31d38fb2c1aec827"
+      "bytes": 22510,
+      "sha256": "9970bada64d1191142cd7958ef48e9431d057e49f7369b382e5713db8e3813bf"
     },
     {
       "path": "site/fun/previews/24-yudx-section-blueprint-5120x2160.webp",
-      "bytes": 13815,
-      "sha256": "969cd976ad1a26d13436410150306122b6312f82a42406950e670ce54138d0af"
+      "bytes": 13920,
+      "sha256": "9a8bfb480584b630539ae135fbb902aef580b9fcd4d2933a51ec2e9c7ee66a3a"
     },
     {
       "path": "site/fun/previews/24-yudx-section-graphite-1440x3120.webp",
@@ -1870,13 +1870,13 @@
     },
     {
       "path": "site/fun/previews/24-yudx-section-graphite-3840x2160.webp",
-      "bytes": 22400,
-      "sha256": "f4feaae9e9ca6f08834fccfb921583c3dc0c5163b520299c6794dc90e572c22c"
+      "bytes": 22356,
+      "sha256": "995e258d5431c64ba0b1128519dc37d6b469834dfc4d062f1cdf146cbfa0b021"
     },
     {
       "path": "site/fun/previews/24-yudx-section-graphite-5120x2160.webp",
-      "bytes": 13762,
-      "sha256": "e845df20825d8a37aba2cd350d84eef79edab38fc6c6f3672e1df42c1aa6eac0"
+      "bytes": 13804,
+      "sha256": "7a7430d52ecaeb480fe920a442f71cf017860b5b155dcecb5c85dc3fc5d77b5c"
     },
     {
       "path": "site/fun/previews/24-yudx-section-paper-1440x3120.webp",
@@ -1885,13 +1885,13 @@
     },
     {
       "path": "site/fun/previews/24-yudx-section-paper-3840x2160.webp",
-      "bytes": 22476,
-      "sha256": "8c4967189e8d357e86b4352c6d2029898332e72a4f0278c916476ced69e1306f"
+      "bytes": 22375,
+      "sha256": "5baab7b3cbfad2d2aac1deeda2f21ee75b99cfe052f126cc39617ae3471c95f2"
     },
     {
       "path": "site/fun/previews/24-yudx-section-paper-5120x2160.webp",
-      "bytes": 13762,
-      "sha256": "9915a34d4e9d580b4850d36f882ac4f7037051104f57016d9f47a079c5fdfda8"
+      "bytes": 13728,
+      "sha256": "1516f491f9c617d68533780e9051aa71934e82762d9854b0fc6bb9e99dfb3693"
     },
     {
       "path": "site/fun/previews/25-sherpa-section-blueprint-1440x3120.webp",
@@ -1900,13 +1900,13 @@
     },
     {
       "path": "site/fun/previews/25-sherpa-section-blueprint-3840x2160.webp",
-      "bytes": 36198,
-      "sha256": "92dff4691a78089c05b9c3e50a83e1985f9c34ba6a378582a0391d52c4c71788"
+      "bytes": 36063,
+      "sha256": "07bbcbd6c68e10a548b7222afb44c68177d838ea96225e27028c3676ef801449"
     },
     {
       "path": "site/fun/previews/25-sherpa-section-blueprint-5120x2160.webp",
-      "bytes": 21655,
-      "sha256": "6127f8914f5370e1918c4efd861db503b085a09a0cd4a921d9fef4430010c462"
+      "bytes": 21616,
+      "sha256": "b9376621ae076e342ab6b7d48883e2cad2e0cdc4a955515e87c7fee6179a41ea"
     },
     {
       "path": "site/fun/previews/25-sherpa-section-graphite-1440x3120.webp",
@@ -1915,13 +1915,13 @@
     },
     {
       "path": "site/fun/previews/25-sherpa-section-graphite-3840x2160.webp",
-      "bytes": 35606,
-      "sha256": "25122786e9d660a875ff88c4db38f4671f43368aeaab07f1aadd1eaa4da8ef23"
+      "bytes": 35506,
+      "sha256": "18faa37abce11d0df931224fdc1fb015e9773b1b4a835594b19ec93ef2bfa89f"
     },
     {
       "path": "site/fun/previews/25-sherpa-section-graphite-5120x2160.webp",
-      "bytes": 21456,
-      "sha256": "00a7267ebac9d8cc7b1d09645b5b1387e78c5f05c8a374ca84341db3958350b0"
+      "bytes": 21419,
+      "sha256": "747bebeecb7af9044cb9e8e52b5356a7a45638c232f5889f65b052e67f3e2938"
     },
     {
       "path": "site/fun/previews/25-sherpa-section-paper-1440x3120.webp",
@@ -1930,13 +1930,13 @@
     },
     {
       "path": "site/fun/previews/25-sherpa-section-paper-3840x2160.webp",
-      "bytes": 36332,
-      "sha256": "8c9467e7097bc5c2d6e22d37ad36cab1b8c7e7f6da6b8e56c3cbedaa500c2486"
+      "bytes": 36233,
+      "sha256": "ccb0c1236bddc44681bd40438293fac911a2d8285cd486c33f59b498009ee2d0"
     },
     {
       "path": "site/fun/previews/25-sherpa-section-paper-5120x2160.webp",
-      "bytes": 21532,
-      "sha256": "49199fa929f73431bea0ad3e3b72942d8f9b9d5a514c6ffacaa6566a80efb843"
+      "bytes": 21496,
+      "sha256": "b730a214fedbf28a54ceaf424d5d24059d98f865445a33c08493c5c0b935126e"
     },
     {
       "path": "site/fun/previews/26-galileo-section-blueprint-1440x3120.webp",
@@ -1945,13 +1945,13 @@
     },
     {
       "path": "site/fun/previews/26-galileo-section-blueprint-3840x2160.webp",
-      "bytes": 32523,
-      "sha256": "e29c8927ff7a01f40738856a5bdf98a1f7164d47f2c16428e4c490bb1d15b395"
+      "bytes": 32418,
+      "sha256": "d4b097faf69df8da35097adcbc75be8a161c6b0e172bb1b265dd33106ea70e6f"
     },
     {
       "path": "site/fun/previews/26-galileo-section-blueprint-5120x2160.webp",
-      "bytes": 19792,
-      "sha256": "34d7a63cc5a6073ca0b409e4a31089d03bc26ef57e07d0a366f6ee8bc2157497"
+      "bytes": 19749,
+      "sha256": "f3522775351726a349392ec1f7c5b2c8ca3f6cbcdb8d7cec6bb94a712e3ab04d"
     },
     {
       "path": "site/fun/previews/26-galileo-section-graphite-1440x3120.webp",
@@ -1960,13 +1960,13 @@
     },
     {
       "path": "site/fun/previews/26-galileo-section-graphite-3840x2160.webp",
-      "bytes": 32108,
-      "sha256": "5d5a2c678cd1300add873616b502344d051857c4ceff63ea684bfd6b239ae7ea"
+      "bytes": 32006,
+      "sha256": "9565ecfabc6d350058bde5504b1a286067adc729274bb056dc47bdde37309ebe"
     },
     {
       "path": "site/fun/previews/26-galileo-section-graphite-5120x2160.webp",
-      "bytes": 19690,
-      "sha256": "3aa7da6b9279eea8a25d4e7b4733702039475c9dd1a43e2a0a318b1796c8a26f"
+      "bytes": 19653,
+      "sha256": "fc81354b66877be3cc2a1ee66e6ecced298bc17ffde5837d8324884b66696169"
     },
     {
       "path": "site/fun/previews/26-galileo-section-paper-1440x3120.webp",
@@ -1975,13 +1975,13 @@
     },
     {
       "path": "site/fun/previews/26-galileo-section-paper-3840x2160.webp",
-      "bytes": 32624,
-      "sha256": "fe58e89bbdaaf970d837c294eff100ba147e269ca540e10ee64688056f7c375c"
+      "bytes": 32488,
+      "sha256": "b4ef74dfc9d6e45008c5341c7bd41e2d9d5873074c1873acfc43ed6d70ccc655"
     },
     {
       "path": "site/fun/previews/26-galileo-section-paper-5120x2160.webp",
-      "bytes": 19626,
-      "sha256": "0933a4ffe952d3f52293b6ae8fa53298d81f21fc106012db2abde47ce224d33c"
+      "bytes": 19590,
+      "sha256": "b6cb4af54728300f4ebe5f40a9e71a1588a77c70e1df1505b10c1c188e97c9a7"
     },
     {
       "path": "site/fun/previews/27-sphinx-section-blueprint-1440x3120.webp",
@@ -1990,13 +1990,13 @@
     },
     {
       "path": "site/fun/previews/27-sphinx-section-blueprint-3840x2160.webp",
-      "bytes": 17000,
-      "sha256": "4c7d1695f3f08c119f06c90f2ef0cf04c55121ae310455ba5777f206a7039eb5"
+      "bytes": 16902,
+      "sha256": "6cd89a1854d60d21ee8e345cfcc9113b207d59d610b667f357e9c7a189340dce"
     },
     {
       "path": "site/fun/previews/27-sphinx-section-blueprint-5120x2160.webp",
-      "bytes": 10562,
-      "sha256": "c8757064797e8038f1c4b166af9f6e7920a9499dde93dd3f2072ba813d0cbd47"
+      "bytes": 10673,
+      "sha256": "2eb12390b88711af86ec7a2572fe775c8cf170d4d6d954baa2488a722786aaee"
     },
     {
       "path": "site/fun/previews/27-sphinx-section-graphite-1440x3120.webp",
@@ -2005,13 +2005,13 @@
     },
     {
       "path": "site/fun/previews/27-sphinx-section-graphite-3840x2160.webp",
-      "bytes": 16822,
-      "sha256": "bb4318fb4d65ecda40ff3daf68659c86a70a44b122e9163ca9b46a5042e5c62d"
+      "bytes": 16724,
+      "sha256": "6a9e3b2f2582a4967f6c9ae66f98b49d83174e3c4fb0c2be3771add0dfb97692"
     },
     {
       "path": "site/fun/previews/27-sphinx-section-graphite-5120x2160.webp",
-      "bytes": 10428,
-      "sha256": "dbebacdc5f0f41d584abbd0bef47e6b75d8bfd21f3c6cb58f21ebcbff39c466f"
+      "bytes": 10391,
+      "sha256": "b8933cdd559d01035d2f0a59d645c5b99dca21bad9219de6ab8e2227be8fb912"
     },
     {
       "path": "site/fun/previews/27-sphinx-section-paper-1440x3120.webp",
@@ -2020,18 +2020,18 @@
     },
     {
       "path": "site/fun/previews/27-sphinx-section-paper-3840x2160.webp",
-      "bytes": 16718,
-      "sha256": "146d225bec51014009cc0fe6d9d9d84aeee2a2ba0b50ac1b7fa6fef405861367"
+      "bytes": 16626,
+      "sha256": "670a3efde32fa6bd25072eb9756cc11242d81bf66cecf34e4da96478af73e07f"
     },
     {
       "path": "site/fun/previews/27-sphinx-section-paper-5120x2160.webp",
-      "bytes": 10244,
-      "sha256": "77048434cd2ff9671c2897b451f3d68f66cd6d50a2d4b895073d502d75e3f58a"
+      "bytes": 10214,
+      "sha256": "291438697ccd8c9ea76010c85574a25073f33f42fc43ee9cc813283cc932ec8d"
     },
     {
       "path": "site/fun/wallpapers.json",
-      "bytes": 143657,
-      "sha256": "f5f91bebf70d026b061d944ac16515c8eed66fdea655b311a0f7eaf2cbbed442"
+      "bytes": 148046,
+      "sha256": "e95384282a0ef53bad3660eff49e84d36492533201df1601b6baed332dad9b5f"
     },
     {
       "path": "site/index.html",

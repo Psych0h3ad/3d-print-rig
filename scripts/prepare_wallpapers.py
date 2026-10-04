@@ -7,7 +7,7 @@ import argparse,hashlib,html,json,shutil,zipfile
 from pathlib import Path
 from PIL import Image
 ROOT=Path(__file__).resolve().parents[1]
-TAG='wallpapers-2026-10-05'
+TAG='wallpapers-2026-10-05-r2'
 URL=f'https://github.com/Psych0h3ad/3d-print-rig/releases/download/{TAG}/'
 def main():
     p=argparse.ArgumentParser();p.add_argument('--collection',type=Path,required=True);p.add_argument('--release-output',type=Path,required=True);a=p.parse_args()
@@ -26,7 +26,7 @@ def main():
         name=png.name;shutil.copyfile(png,out/name)
         with Image.open(source/row['preview']) as im:
             im.thumbnail((850,850),Image.Resampling.LANCZOS);im.save(target/'previews'/(row['id']+'.webp'),'WEBP',quality=87,method=6)
-        public.append({k:row[k] for k in ['id','series','no','subject','title','kind','palette','format','width','height','bytes','sha256','sources']}|{'preview':'previews/'+row['id']+'.webp','download':URL+name})
+        public.append({k:row[k] for k in ['id','series','no','subject','title','kind','palette','format','width','height','bytes','sha256','sources']}|{'preview':'previews/'+row['id']+'.webp?v='+row['sha256'][:12],'download':URL+name})
         records.append({'name':name,'bytes':png.stat().st_size,'sha256':row['sha256']})
     sources={}
     for volume in [source,source/'vol-02']:

@@ -12,7 +12,7 @@ for(const name of ['format','palette','kind'])if(!form.elements[name].value)form
 const make=(tag,text,className)=>{const e=document.createElement(tag);if(text)e.textContent=text;if(className)e.className=className;return e;};
 const size=bytes=>(bytes/1e6).toFixed(1)+' MB';
 try{
-  const response=await fetch('./wallpapers.json');if(!response.ok)throw Error('Catalog unavailable');const catalog=await response.json();
+  const response=await fetch('./wallpapers.json',{cache:'no-cache'});if(!response.ok)throw Error('Catalog unavailable');const catalog=await response.json();
   const hero=catalog.wallpapers.find(r=>r.subject==='sherpa'&&r.kind==='section'&&r.palette==='paper'&&r.format==='desktop');
   $('heroImage').src=hero.preview;
   for(const pack of catalog.packs){const a=make('a','','pack');a.href=pack.download;a.append(make('span',(pack.format==='all'?(ja?'全図柄':'Complete collection'):words[pack.format])+' · '+pack.count),make('small','ZIP / '+size(pack.bytes)+' ↓'));$('packs').append(a);}
