@@ -1,37 +1,21 @@
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=extra-machines-55';
 import {WorkspaceMutationObserver,workspaceListen,onWorkspaceDispose} from './workspace-lifecycle.mjs';
-import {messages,templates} from './messages-en.mjs?v=a4t-carriage-57';
+import {supportedLanguages,languageNames,normalizeLanguage,chooseLanguage,languageURL} from './languages.mjs?v=fa521b07d4184ded0146';
+import {definitions,localeLoaders} from './locales/manifest.mjs?v=1e53788e4a255dbd9c6f';
+import {createTranslator} from './translation-engine.mjs?v=6cb43c8f5354246e656c';
+export {supportedLanguages,chooseLanguage,languageURL} from './languages.mjs?v=fa521b07d4184ded0146';
 
-const normalize=text=>text.trim().replace(/\s+/gu,' ');
-const escape=text=>text.replace(/[.*+?^${}()|[\]\\]/gu,'\\$&');
-const patterns=Object.entries(templates).map(([source,target])=>{
- const keys=[];let last=0,expression='';
- for(const match of source.matchAll(/\{(\d+)\}/gu)){expression+=escape(source.slice(last,match.index))+'(.*?)';keys.push(match[1]);last=match.index+match[0].length}
- expression+=escape(source.slice(last));return {test:new RegExp('^'+expression+'$','u'),keys,target,specificity:source.replace(/\{\d+\}/gu,'').length};
-}).sort((a,b)=>b.specificity-a.specificity);
-const fragments=Object.keys(messages).filter(s=>s.length>1&&/[\u3040-\u30ff\u3400-\u9fff]/u.test(s)).sort((a,b)=>b.length-a.length);
-const fragmentPattern=new RegExp(fragments.map(escape).join('|'),'gu');
-const namedFragmentPattern=new RegExp(fragments.filter(s=>/[a-z]/iu.test(s)).map(escape).join('|'),'gu');
-
-export function translate(text,language='en',depth=0){
- if(language!=='en'||typeof text!=='string'||depth>5||!/[\u3040-\u30ff\u3400-\u9fff]/u.test(text))return text;
- const source=normalize(text);let result=Object.hasOwn(messages,source)?messages[source]:undefined;
- if(result===undefined){
-  // Keep known component names together before generic count/list templates
-  // split their punctuation or consume the Japanese suffix of their names.
-  const input=source.replace(namedFragmentPattern,key=>messages[key]);
-  for(const p of patterns){const m=input.match(p.test);if(!m)continue;const values=Object.fromEntries(p.keys.map((key,i)=>[key,translate(m[i+1],'en',depth+1)]));result=p.target.replace(/\{(\d+)\}/gu,(_,key)=>values[key]);break}
-  if(result===undefined)result=input.replace(fragmentPattern,key=>messages[key]);
- }
- return text.slice(0,text.indexOf(text.trim()))+result+text.slice(text.indexOf(text.trim())+text.trim().length);
+const dictionaries=new Map(),loads=new Map();
+const translator=createTranslator(definitions,{dictionaries});
+export const {messageIdFor,messageSource}=translator;
+export const translate=(text,language='en',depth=0)=>translator.translate(text,normalizeLanguage(language)||'en',depth);
+export const formatMessage=(id,values={},language='en')=>translator.formatMessage(id,values,normalizeLanguage(language)||'en');
+export const translationDiagnostics=()=>({loadedLanguages:['ja','en',...dictionaries.keys()],...translator.diagnostics()});
+export function loadLanguage(language){
+ const lang=normalizeLanguage(language);if(!lang||['ja','en'].includes(lang))return Promise.resolve();
+ if(!loads.has(lang))loads.set(lang,localeLoaders[lang]().then(module=>{dictionaries.set(lang,module.default)}).catch(error=>{loads.delete(lang);throw error}));
+ return loads.get(lang);
 }
-
-export function chooseLanguage({query,stored,languages=[]}={}){
- if(['ja','en'].includes(query))return query;
- if(['ja','en'].includes(stored))return stored;
- return (languages[0]||'en').toLowerCase().startsWith('ja')?'ja':'en';
-}
-export function languageURL(href,language){const url=new URL(href);if(['ja','en'].includes(language))url.searchParams.set('lang',language);return url.href}
 
 const sourceText=new WeakMap(),sourceAttributes=new WeakMap();
 export function originalText(element){
@@ -40,18 +24,23 @@ export function originalText(element){
  return [...element.childNodes].map(originalText).join('');
 }
 
-export function setupLanguage({document=globalThis.document,window=globalThis.window}={}){
+export function originalAttribute(element,attribute){
+ const current=element?.getAttribute(attribute),previous=sourceAttributes.get(element)?.get(attribute);
+ return previous&&current===previous.rendered?previous.source:current;
+}
+
+export function setupLanguage({document=globalThis.document,window=globalThis.window,load=loadLanguage}={}){
  if(!document?.body||document.getElementById('viewerLanguage'))return;
  let stored;try{stored=window.localStorage.getItem('3d-print-rig-language')}catch{}
  let language=chooseLanguage({query:new URL(window.location.href).searchParams.get('lang'),stored,languages:window.navigator.languages||[window.navigator.language]});
  const label=document.createElement('label');label.className='language-picker';label.setAttribute('data-i18n','off');
  const name=document.createElement('span');name.className='language-label';name.textContent='Language / 言語';
  const select=document.createElement('select');select.id='viewerLanguage';select.setAttribute('aria-label','Language / 言語');
- for(const [value,text]of [['ja','日本語'],['en','English']]){const option=document.createElement('option');option.value=value;option.textContent=text;select.append(option)}
+ for(const [value,text]of supportedLanguages.map(value=>[value,languageNames[value]])){const option=document.createElement('option');option.value=value;option.textContent=text;select.append(option)}
  label.append(name,select);document.querySelector('.header-actions')?.prepend(label);
  const attributes=['title','placeholder','aria-label','alt'];
  const excluded=element=>element?.closest('script,style,pre,code,textarea,[contenteditable="true"],[data-i18n="off"],[data-part]');
- let observer,pending=false,disposed=false;const dirty=new Set();
+ let observer,pending=false,disposed=false,generation=0;const dirty=new Set();
  onWorkspaceDispose(()=>{disposed=true;dirty.clear()});
  function localizeLink(element){
   if(element.tagName!=='A'||!element.hasAttribute('href')||element.hasAttribute('download'))return;
@@ -68,13 +57,14 @@ export function setupLanguage({document=globalThis.document,window=globalThis.wi
    const current=element.getAttribute(attr),previous=records.get(attr),source=previous&&current===previous.rendered?previous.source:current,rendered=translate(source,language);records.set(attr,{source,rendered});if(current!==rendered)element.setAttribute(attr,rendered);
   }
   localizeLink(element);
+  const explicitId=element.getAttribute('data-i18n-id');
   for(const child of element.childNodes){
    if(child.nodeType===1)visit(child);
-   else if(child.nodeType===3){const current=child.nodeValue,previous=sourceText.get(child),source=previous&&current===previous.rendered?previous.source:current,rendered=translate(source,language);sourceText.set(child,{source,rendered});if(current!==rendered)child.nodeValue=rendered}
+   else if(child.nodeType===3){const current=child.nodeValue,previous=sourceText.get(child),source=explicitId?messageSource(explicitId):previous&&current===previous.rendered?previous.source:current,rendered=explicitId?formatMessage(explicitId,{},language):translate(source,language);sourceText.set(child,{source,rendered});if(current!==rendered)child.nodeValue=rendered}
   }
  }
  const observe=()=>observer.observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:[...attributes,'href']});
- function refresh(){dirty.clear();observer?.disconnect();visit(document.body);document.documentElement.lang=language;select.value=language;observe()}
+ function refresh(){dirty.clear();observer?.disconnect();visit(document.body);const title=document.querySelector('title');if(title)visit(title);document.documentElement.lang=language;select.value=language;select.setAttribute('aria-label',formatMessage('ui.language',{},language));name.textContent=formatMessage('ui.language',{},language);observe()}
  // Motion updates only translate their changed labels, not the whole workbench.
  function collect(records){
   for(const record of records){
@@ -88,14 +78,18 @@ export function setupLanguage({document=globalThis.document,window=globalThis.wi
   queueMicrotask(()=>{if(disposed)return;pending=false;collect(observer.takeRecords());observer.disconnect();const roots=[...dirty].filter(e=>e?.isConnected);dirty.clear();for(const e of roots)if(!roots.some(parent=>parent!==e&&parent.contains(e)))visit(e);observe()});
  }
  observer=new WorkspaceMutationObserver(schedule,window.MutationObserver);
- function setLanguage(value){
-  if(!['ja','en'].includes(value))return;
-  language=value;try{window.localStorage.setItem('3d-print-rig-language',value)}catch{}
-  replaceWorkspaceURL(null,'',languageURL(window.location.href,value),window.history);refresh();
-  window.dispatchEvent(new window.CustomEvent('rig-language-change',{detail:{language:value}}));
+ async function setLanguage(value){
+  const lang=normalizeLanguage(value);if(!lang)return;
+  language=lang;const request=++generation;
+  try{window.localStorage.setItem('3d-print-rig-language',lang)}catch{}
+  replaceWorkspaceURL(null,'',languageURL(window.location.href,lang),window.history);refresh();
+  window.dispatchEvent(new window.CustomEvent('rig-language-change',{detail:{language:lang}}));
+  if(['ja','en'].includes(lang))return;
+  try{await load(lang);if(disposed||request!==generation)return;refresh();window.dispatchEvent(new window.CustomEvent('rig-language-change',{detail:{language:lang}}))}
+  catch(error){if(!disposed&&request===generation)console.warn('Translation dictionary unavailable; current English text is retained.',error)}
  }
  select.addEventListener('change',()=>setLanguage(select.value));
- workspaceListen(window,'storage',event=>{if(event.key==='3d-print-rig-language'&&['ja','en'].includes(event.newValue)&&event.newValue!==language)setLanguage(event.newValue)});
+ workspaceListen(window,'storage',event=>{if(event.key==='3d-print-rig-language'&&normalizeLanguage(event.newValue)&&event.newValue!==language)setLanguage(event.newValue)});
  replaceWorkspaceURL(null,'',languageURL(window.location.href,language),window.history);
- refresh();return {setLanguage,refresh,get language(){return language},disconnect:()=>observer.disconnect()};
+ refresh();const ready=['ja','en'].includes(language)?Promise.resolve():setLanguage(language);return {setLanguage,refresh,ready,get language(){return language},disconnect:()=>{disposed=true;generation++;observer.disconnect()}};
 }

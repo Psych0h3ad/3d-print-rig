@@ -4,7 +4,7 @@ import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=extra-machines-5
 import {setupSceneDisplay} from './display-preferences.mjs';
 import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {loadMonolithData} from './monolith-machine.js?v=a4t-carriage-57';
-import {machineChoices,machinePage} from './machines.js?v=extra-machines-55';
+import {machineChoices,machinePage} from './machines.js?v=ec75087acca3b5355dfc';
 import {monolithBeltClip} from './monolith-belt-clip.mjs?v=workspace-belts-1';
 import {appearanceRole} from './appearance-role.mjs?v=workspace-belts-1';
 import * as THREE from 'three';

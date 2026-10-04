@@ -3,17 +3,18 @@ ensureWorkspaceEntry(import.meta.url);
 import {setupDisplayPreferences} from './display-preferences.mjs';
 import {WorkspaceMutationObserver,workspaceListen} from './workspace-lifecycle.mjs';
 // Shared presentation layer. Existing controls, IDs and CAD controllers stay intact.
-import {setupLanguage,originalText} from './i18n.mjs?v=a4t-carriage-57';
-import {printerWorkspaceURL,workspaceReturnKey,workspaceKindFor} from './workspace-return.mjs?v=extra-machines-55';
+import {setupLanguage,originalText,messageSource} from './i18n.mjs?v=67e06aaffd6f076ed0e4';
+import {printerWorkspaceURL,workspaceReturnKey,workspaceKindFor} from './workspace-return.mjs?v=68b3781e7021af6edf72';
 import {setupWorkspaceSharing} from './workspace-share.mjs?v=workspace-belts-2';
 import {lockInspectorHorizontalScroll} from './workspace-scroll.mjs?v=workspace-belts-1';
-import {setupChoiceSearch} from './workspace-choices.mjs?v=a4t-carriage-57';
-import {setupMobileLayout} from './workspace-layout.mjs?v=workspace-belts-2';
+import {setupChoiceSearch} from './workspace-choices.mjs?v=2c16015eda88c33819bd';
+import {setupMobileLayout} from './workspace-layout.mjs?v=4156bfb5b743ea9adb5d';
 const $ = selector => document.querySelector(selector);
 const node = (tag, className, text) => {
   const element = document.createElement(tag);
   if (className) element.className = className;
-  if (text) element.textContent = text;
+  if (text?.id) { element.textContent=messageSource(text.id);element.setAttribute('data-i18n-id',text.id); }
+  else if (text) element.textContent = text;
   return element;
 };
 
@@ -35,20 +36,20 @@ export function setupWorkspace() {
   const navigation = node('nav', 'workspace-nav');
   navigation.setAttribute('aria-label', 'ワークスペース');
   const destinations = [
-    ['プリンター', './', machinePage], ['ツールヘッド', './toolheads.html', page === 'toolheads.html'],
-    ['ガントリー', './gantries.html', page === 'gantries.html'],
+    ['ui.printer', './', machinePage], ['ui.toolhead', './toolheads.html', page === 'toolheads.html'],
+    ['ui.gantry', './gantries.html', page === 'gantries.html'],
   ];
-  for (const [label, href, current] of destinations) {
-    const link = node('a', '', label);
+  for (const [id, href, current] of destinations) {
+    const link = node('a', '', {id});
     link.href = href;
     if (current) link.setAttribute('aria-current', 'page');
     // Preserve links to the currently selected head, including controller updates.
-    if (label === 'ツールヘッド' && $('#toolheadLink')) {
+    if (id === 'ui.toolhead' && $('#toolheadLink')) {
       const original = $('#toolheadLink');
       link.href = original.href;
       new WorkspaceMutationObserver(() => { link.href = original.href; }).observe(original, { attributes: true, attributeFilter: ['href'] });
     }
-    if (label === 'プリンター') link.id = 'workspacePrinterLink';
+    if (id === 'ui.printer') link.id = 'workspacePrinterLink';
     navigation.append(link);
   }
   header.insertBefore(navigation, $('.header-actions'));

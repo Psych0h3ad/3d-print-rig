@@ -1,5 +1,5 @@
 import {WorkspaceMutationObserver,workspaceListen} from './workspace-lifecycle.mjs';
-import {translate} from './i18n.mjs?v=a4t-carriage-57';
+import {translate,originalText,originalAttribute} from './i18n.mjs?v=67e06aaffd6f076ed0e4';
 
 const normalize = value => String(value).normalize('NFKC').toLocaleLowerCase().replace(/\s+/gu, ' ').trim();
 export function matchingChoices(rows, query) {
@@ -54,7 +54,7 @@ export function setupChoiceSearch(panel) {
     // An inactive tab does not change which controls this panel contains.
     return (!hidden || hidden === panel) && !select.closest('.builder-search') && select.options.length;
   });
-  const caption = select => select.labels?.[0]?.textContent.trim() || select.getAttribute('aria-label') || select.id;
+  const caption = select => originalText(select.labels?.[0]).trim() || originalAttribute(select,'aria-label') || select.id;
   function refreshFields() {
     const selects = fields(), previous = field.value;
     if (entry.hidden !== !selects.length) entry.hidden = !selects.length;
@@ -70,7 +70,7 @@ export function setupChoiceSearch(panel) {
   function render() {
     const rows = fields().filter(select => field.value === '*' || field.value === select.id).flatMap(select =>
       [...select.options].filter(option => !option.hidden && !option.parentElement.hidden).map(option => ({
-        select, value: option.value, label: t(option.text), field: t(caption(select)), detail: t(option.title),
+        select, value: option.value, label: t(originalText(option)), field: t(caption(select)), detail: t(originalAttribute(option,'title')||''),
         disabled: select.disabled || option.disabled || option.parentElement.disabled,
         selected: select.value === option.value,
       })));

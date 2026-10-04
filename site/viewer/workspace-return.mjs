@@ -1,4 +1,5 @@
-import {machinePage} from './machines.js?v=extra-machines-55';
+import {normalizeLanguage} from './languages.mjs?v=fa521b07d4184ded0146';
+import {machinePage} from './machines.js?v=ec75087acca3b5355dfc';
 
 export const workspaceReturnKey='3d-print-rig-workspace-return';
 export function workspaceKindFor(page){
@@ -19,6 +20,6 @@ export function printerWorkspaceURL(current,remembered){
   if(canonical&&saved.origin===here.origin&&samePage(saved,canonical))target=saved;
  }catch{}
  target ||= new URL('./',here);
- const lang=q.get('lang');if(['ja','en'].includes(lang))target.searchParams.set('lang',lang);
+ const lang=q.get('lang');if(normalizeLanguage(lang))target.searchParams.set('lang',normalizeLanguage(lang));
  return target.href;
 }

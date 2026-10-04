@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {readFile,readdir} from 'node:fs/promises';
-import {translate,chooseLanguage,languageURL,setupLanguage} from '../site/viewer/i18n.mjs';
+import {translate,chooseLanguage,languageURL,setupLanguage,loadLanguage} from '../site/viewer/i18n.mjs';
 import {messages,templates} from '../site/viewer/messages-en.mjs';
 import {probeCheck} from '../site/viewer/probe-checks.js';
 import {builderURL} from '../site/viewer/toolhead-builder.mjs';
@@ -9,7 +9,7 @@ assert.equal(chooseLanguage({query:'en',stored:'ja',languages:['ja-JP']}),'en');
 assert.equal(chooseLanguage({query:'ja',stored:'en',languages:['en-US']}),'ja');
 assert.equal(chooseLanguage({query:'invalid',stored:'en',languages:['ja']}),'en');
 assert.equal(chooseLanguage({languages:['ja-JP','en-US']}),'ja');
-assert.equal(chooseLanguage({languages:['de-DE','ja']}),'en');
+assert.equal(chooseLanguage({languages:['de-DE','ja']}),'ja');
 assert.equal(chooseLanguage(), 'en');
 // A configuration promise can add more labels between the observer callback
 // and its queued translation. Disconnecting must not discard those records.
@@ -87,3 +87,22 @@ for(const name of await readdir(site))if(name.endsWith('.json')){
  if(Array.isArray(c.variants))for(const v of c.variants){variants++;const check=probeCheck(v);assert(!jp.test(translate(check.label)));for(const line of check.lines)assert(!jp.test(translate(line)),line)}
 }
 console.log(`Language checks passed: ${Object.keys(messages).length} messages, ${Object.keys(templates).length} templates, ${translated} catalog descriptions and ${variants} variant statuses; IDs, share parameters and uncertainty preserved.`);
+
+// A delayed dictionary must not restore an earlier choice after the user
+// switches languages again, including labels added by a late CAD promise.
+await Promise.all(['es','ko','ru'].map(loadLanguage));
+const switchedBody=new LanguageElement('BODY');
+const switchLabel={nodeType:3,nodeValue:'構成'};switchedBody.append(switchLabel);
+const switchedDocument={...languageDocument,body:switchedBody,documentElement:{}};
+const releases=new Map();
+const switched=setupLanguage({document:switchedDocument,window:languageWindow,load:language=>new Promise(resolve=>releases.set(language,resolve))});
+const firstSwitch=switched.setLanguage('es'),lastSwitch=switched.setLanguage('ko');
+releases.get('es')();await firstSwitch;
+assert.equal(switched.language,'ko');assert.equal(switchLabel.nodeValue,'구성');
+releases.get('ko')();await lastSwitch;
+const delayedLabel={nodeType:3,nodeValue:'ホットエンド'};switchedBody.append(delayedLabel);
+languageObserver.callback([{type:'childList',addedNodes:[delayedLabel]}]);await Promise.resolve();
+assert.equal(delayedLabel.nodeValue,'핫엔드');
+await switched.setLanguage('ja');assert.equal(switchLabel.nodeValue,'構成');assert.equal(delayedLabel.nodeValue,'ホットエンド');
+switched.disconnect();
+console.log('Rapid language changes and asynchronous CAD labels preserve the latest language and original source text.');

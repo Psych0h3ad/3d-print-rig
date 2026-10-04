@@ -1,5 +1,6 @@
+import {normalizeLanguage} from './languages.mjs?v=fa521b07d4184ded0146';
 import {monolithHeadCatalog} from './monolith-head-model.mjs?v=a4t-carriage-57';
-import {machinePage} from './machines.js?v=extra-machines-55';
+import {machinePage} from './machines.js?v=ec75087acca3b5355dfc';
 import {machineHeadVariants} from './machine-head-model.mjs?v=a4t-carriage-57';
 
 export function headPrinterLink(variant,registry,href){
@@ -12,7 +13,7 @@ export function headPrinterLink(variant,registry,href){
  const url=new URL(machinePage(machine)||machinePage(preferred)||'./',source);
  if(machine){url.searchParams.set('machine',machine);const original=machine===preferred&&source.searchParams.get('return_head')===variant.id&&source.searchParams.get('return_configuration');url.searchParams.set('configuration',original||variant.id)}
  else if(machinePage(preferred))url.searchParams.set('machine',preferred);
- const lang=source.searchParams.get('lang');if(['ja','en'].includes(lang))url.searchParams.set('lang',lang);
+ const lang=source.searchParams.get('lang');if(normalizeLanguage(lang))url.searchParams.set('lang',normalizeLanguage(lang));
  return {url:url.href,machine,registered:!!machine};
 }
 
@@ -29,6 +30,6 @@ export function monolithPrinterLink(variant,registry,source){
  const found=eligible.find(v=>v.machine===preferred&&v.gantry===wanted)||eligible.find(v=>v.gantry===wanted)||eligible.find(v=>v.machine===preferred)||eligible.find(v=>v.machine==='voron_trident_350')||eligible[0];
  if(!found)return null;
  const url=new URL(machinePage(found.machine),source);url.searchParams.set('machine',found.machine);url.searchParams.set('gantry',found.gantry);url.searchParams.set('head_configuration',variant.id);
- const lang=q.get('lang');if(['ja','en'].includes(lang))url.searchParams.set('lang',lang);
+ const lang=q.get('lang');if(normalizeLanguage(lang))url.searchParams.set('lang',normalizeLanguage(lang));
  return {url:url.href,machine:found.machine,registered:true};
 }

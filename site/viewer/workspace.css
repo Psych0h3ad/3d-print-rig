@@ -214,8 +214,8 @@ body.ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) {
   .ui-workspace .brand-mark { display:none; }
   .ui-workspace .header-actions { gap:4px; }
 }
-html[lang=en] .ui-workspace .inspector-heading:has(.change-machine) h1 { padding-right:115px; }
-@media (max-width:680px) { html[lang=en] .ui-workspace .inspector-heading:has(.change-machine) h1 { padding-right:190px; } }
+html:not([lang=ja]) .ui-workspace .inspector-heading:has(.change-machine) h1 { padding-right:115px; }
+@media (max-width:680px) { html:not([lang=ja]) .ui-workspace .inspector-heading:has(.change-machine) h1 { padding-right:190px; } }
 @media (max-width: 680px) and (max-height: 650px) { .ui-workspace .view-meta { display: none; } }
 
 @media (min-width: 681px) and (max-width: 900px) { body.ui-workspace { grid-template-rows: 100px minmax(0, 1fr); } }
@@ -387,7 +387,7 @@ body.ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) {
   .ui-workspace .inspector-heading { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px; padding: 8px 12px; min-height: 0; }
   .ui-workspace .inspector-heading h1,
   .ui-workspace .inspector-heading:has(.change-machine) h1,
-  html[lang=en] .ui-workspace .inspector-heading:has(.change-machine) h1 { padding: 0; margin: 0; font-size: 16px; overflow-wrap: anywhere; }
+  html:not([lang=ja]) .ui-workspace .inspector-heading:has(.change-machine) h1 { padding: 0; margin: 0; font-size: 16px; overflow-wrap: anywhere; }
   .ui-workspace .change-machine { position: static; min-height: 44px; padding: 8px 10px; font-size: 11px; }
   .mobile-layout { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 3px; border: 1px solid var(--line); border-radius: 9px; background: var(--paper); }
   .ui-workspace .mobile-layout button { min-width: 0; min-height: 40px; border: 0; padding: 8px 4px; font-size: 12px; color: var(--muted); background: transparent; }

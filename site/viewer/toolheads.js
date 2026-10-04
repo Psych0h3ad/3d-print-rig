@@ -5,7 +5,7 @@ import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {loadMonolithData} from './monolith-machine.js?v=a4t-carriage-57';
 import {setupChangerBank} from './changer-bank.js?v=extra-machines-55';
 import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=a4t-carriage-57';
-import {headPrinterLink} from './head-navigation.mjs?v=a4t-carriage-57';
+import {headPrinterLink} from './head-navigation.mjs?v=c67754db513f4b94e241';
 import {headBuilderDimensions} from './configuration-model.js?v=extra-machines-55';
 import {appearanceRole} from './appearance-role.mjs?v=workspace-belts-1';
 import * as THREE from 'three';

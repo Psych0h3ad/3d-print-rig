@@ -1,8 +1,9 @@
+import {translate} from './i18n.mjs?v=67e06aaffd6f076ed0e4';
 import {WorkspaceScope, activateScope} from './workspace-lifecycle.mjs';
 import {bindWorkspaceNavigation, setWorkspaceLeaving, workspaceTarget, workspaceURL, replaceWorkspaceURL} from './workspace-navigation.mjs?v=extra-machines-55';
-import {setupWorkspace} from './workspace-ui.mjs?v=a4t-carriage-57';
+import {setupWorkspace} from './workspace-ui.mjs?v=a89f36578c185efac0d0';
 import {applyDisplay} from './display-preferences.mjs';
-import {machinePage} from './machines.js?v=extra-machines-55';
+import {machinePage} from './machines.js?v=ec75087acca3b5355dfc';
 
 const controllers = new Set(['bootstrap.js','v24-bootstrap.js','app.js','v24-app.js','vanilla-trident.js','v24-reference.js','v0-app.js','micron.js','kit-reference.js','ratrig.js','crossant.js','toolheads.js','gantries.js','components.js','toolchangers.js','e3ng.js','remorph.js', 'annex.js']);
 document.documentElement.dataset.workspaceSession = crypto.randomUUID();
@@ -22,7 +23,7 @@ function busy(value) {
   if (workspace) { workspace.inert = value; workspace.setAttribute('aria-busy', String(value)); }
   for (const dialog of document.querySelectorAll('dialog[open]')) dialog.close();
 }
-function text(ja, en) { return document.documentElement.lang === 'ja' ? ja : en; }
+function text(ja, en) { return translate(ja, new URL(location.href).searchParams.get('lang') || document.documentElement.lang); }
 function rememberView() {
   return {tab: document.querySelector('.inspector-tabs [aria-selected="true"]')?.id};
 }

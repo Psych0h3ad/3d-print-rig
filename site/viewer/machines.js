@@ -1,3 +1,4 @@
+import {normalizeLanguage} from './languages.mjs?v=fa521b07d4184ded0146';
 import {annexMachines} from './annex-machines.mjs?v=extra-machines-55';
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=extra-machines-55';
 import {navigateWorkspace} from './workspace-navigation.mjs?v=extra-machines-55';
@@ -75,7 +76,7 @@ export function setupMachineNavigation(machine){
   const page=machinePage(choice.id);if(navigating||!page||choice.id===machine)return;navigating=true;show.disabled=true;for(const element of Object.values({...controls,id:select}))element.disabled=true;show.textContent='読み込み中…';status.textContent=choice.label+'を読み込み中…';
   try{localStorage.setItem('3d-print-rig-last-configuration-'+machine,new URL(location.href).searchParams.get('configuration')||'')}catch{}
   const target=new URL(page,location.href);target.searchParams.set('machine',choice.id);
-  const language=new URL(location.href).searchParams.get('lang');if(['ja','en'].includes(language))target.searchParams.set('lang',language);
+  const language=new URL(location.href).searchParams.get('lang');if(normalizeLanguage(language))target.searchParams.set('lang',normalizeLanguage(language));
   try{const previous=localStorage.getItem('3d-print-rig-last-configuration-'+choice.id);if(previous&&previous.length<1024)target.searchParams.set('configuration',previous)}catch{}
   try{if(choice.id!==machine)await navigateWorkspace(target)}finally{navigating=false;for(const element of Object.values({...controls,id:select}))element.disabled=false;show.textContent='このマシンを表示';menus()}
  }
