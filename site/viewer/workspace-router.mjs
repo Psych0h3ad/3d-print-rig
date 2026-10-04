@@ -1,11 +1,11 @@
-import {translate} from './i18n.mjs?v=664090ad077faa5767f0';
+import {translate} from './i18n.mjs?v=77fc414775717442a0df';
 import {WorkspaceScope, activateScope} from './workspace-lifecycle.mjs';
-import {bindWorkspaceNavigation, setWorkspaceLeaving, workspaceTarget, workspaceURL, replaceWorkspaceURL} from './workspace-navigation.mjs?v=463f121958ea463c3a61';
-import {setupWorkspace} from './workspace-ui.mjs?v=824d4f89f19936d2c609';
+import {bindWorkspaceNavigation, setWorkspaceLeaving, workspaceTarget, workspaceURL, replaceWorkspaceURL} from './workspace-navigation.mjs?v=5c6f4dcd051bb1336e43';
+import {setupWorkspace} from './workspace-ui.mjs?v=60acc12e095f62bfccf9';
 import {applyDisplay} from './display-preferences.mjs?v=9860960509e28d17f3fd';
-import {machinePage} from './machines.js?v=b4593761cfecac3b686b';
+import {machinePage} from './machines.js?v=9383d20caf1cef38e5d4';
 
-const controllers = new Set(['bootstrap.js','v24-bootstrap.js','app.js','v24-app.js','vanilla-trident.js','v24-reference.js','v0-app.js','micron.js','kit-reference.js','ratrig.js','crossant.js','toolheads.js','gantries.js','components.js','toolchangers.js','e3ng.js','positron.js','remorph.js', 'annex.js']);
+const controllers = new Set(['bootstrap.js','v24-bootstrap.js','app.js','v24-app.js','vanilla-trident.js','v24-reference.js','v0-app.js','micron.js','kit-reference.js','ratrig.js','crossant.js','toolheads.js','gantries.js','components.js','toolchangers.js','e3ng.js','community.js','positron.js','remorph.js', 'annex.js']);
 document.documentElement.dataset.workspaceSession = crypto.randomUUID();
 let scope, sequence = 0, transitions = Promise.resolve();
 const templates = new Map();

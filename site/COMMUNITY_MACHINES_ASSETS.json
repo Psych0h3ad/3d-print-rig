@@ -1,0 +1,127 @@
+{
+  "version": "native-community-machines-63",
+  "base_url": "https://psych0h3ad.github.io/3d-print-rig-community-models/",
+  "local_directory": "community-machines-assets",
+  "machines": {
+    "ender3_stock_220": {
+      "machine_id": "ender3_stock_220",
+      "parts": 300,
+      "files": {
+        "assembly_manifest.json": {
+          "path": "ender3/assembly_manifest.json",
+          "bytes": 81653,
+          "sha256": "c3f3ea9b8a2651f7d60d64f751cf704ee943ae1efc069f6ffb5422a76ca95020"
+        },
+        "machine_profile.json": {
+          "path": "ender3/machine_profile.json",
+          "bytes": 630,
+          "sha256": "2ecdcdcb8d99bba6e70c317deea48fec079c7e4e74f2cf3e48af878f9e9a206b"
+        },
+        "model.glb": {
+          "path": "ender3/model.glb.gz",
+          "bytes": 8531313,
+          "sha256": "c2cb03dfc9c848367c4e492f8d500610f72d920e75d170332dfeb2017ca5c179",
+          "encoding": "gzip",
+          "decoded_bytes": 21334944,
+          "decoded_sha256": "38829606310cc315fa664b926828906bae73950167412639c350bc3fa847112d"
+        }
+      }
+    },
+    "mercury_one1_235": {
+      "machine_id": "mercury_one1_235",
+      "parts": 716,
+      "files": {
+        "assembly_manifest.json": {
+          "path": "mercury235/assembly_manifest.json",
+          "bytes": 189560,
+          "sha256": "22b2da21c2c4cd22e8ae86fde6900c726eceecd3a161b3f54fa63ec75aab8cee"
+        },
+        "machine_profile.json": {
+          "path": "mercury235/machine_profile.json",
+          "bytes": 791,
+          "sha256": "653b4930038a651226da8c8fd48201dd7dbfc09f33318a4a9fd704b1b017d36d"
+        },
+        "model.glb": {
+          "path": "mercury235/model.glb.gz",
+          "bytes": 25326811,
+          "sha256": "5b110a8c2235aa03f6a3522da0dcbe36afcd4d64ba3a768e71898bd1047f3bd8",
+          "encoding": "gzip",
+          "decoded_bytes": 62898064,
+          "decoded_sha256": "1d9a0a701bdc1f1e47cb8f8da1165bfcfee6f600379f2727e1a3884c5cd9ef66"
+        }
+      }
+    },
+    "mercury_one1_370": {
+      "machine_id": "mercury_one1_370",
+      "parts": 797,
+      "files": {
+        "assembly_manifest.json": {
+          "path": "mercury370/assembly_manifest.json",
+          "bytes": 210239,
+          "sha256": "ec5394e15958e5ffdaf1be8cd5feca83db348c83f9663d546b7bdbe3c83ad826"
+        },
+        "machine_profile.json": {
+          "path": "mercury370/machine_profile.json",
+          "bytes": 789,
+          "sha256": "a45e15856630964e881ab65f9d76e02b2e07fa1d5b700ef3f2c2ba1277ef7276"
+        },
+        "model.glb": {
+          "path": "mercury370/model.glb.gz",
+          "bytes": 24873642,
+          "sha256": "d5fdd24a8f5aafc18dabe806789d1e71d7852ef17af892225818cf5010586187",
+          "encoding": "gzip",
+          "decoded_bytes": 65261532,
+          "decoded_sha256": "3850cf56f3760b7fa46d4e91b01fe1c664f149fe6b393baad2ad5bccab1a8ec0"
+        }
+      }
+    },
+    "siboor_sboom_220": {
+      "machine_id": "siboor_sboom_220",
+      "parts": 608,
+      "files": {
+        "assembly_manifest.json": {
+          "path": "sboom/assembly_manifest.json",
+          "bytes": 152690,
+          "sha256": "a79157efa04967750475040a88cdcc68d6d1247e7f93e8b0f37d8375ddd03507"
+        },
+        "machine_profile.json": {
+          "path": "sboom/machine_profile.json",
+          "bytes": 615,
+          "sha256": "42845d6413ba8c29e97d2415bc7043d5e6aa8c86f6a7789873560aabbd8a76d8"
+        },
+        "model.glb": {
+          "path": "sboom/model.glb.gz",
+          "bytes": 11210543,
+          "sha256": "77c6d23b754b06371a1c65f3a8898585d595c248d0f64c07f0b85653f577b3c3",
+          "encoding": "gzip",
+          "decoded_bytes": 31010588,
+          "decoded_sha256": "c448371c7bdafa0182fc45a2994abd13dc037901dd716eddfc3d26df27d0c84c"
+        }
+      }
+    },
+    "vzbot_330_printed": {
+      "machine_id": "vzbot_330_printed",
+      "parts": 2872,
+      "files": {
+        "assembly_manifest.json": {
+          "path": "vz330/assembly_manifest.json",
+          "bytes": 788052,
+          "sha256": "fc1d6661524d5a393605ff81a115501574dbdc6cac18d50e76e4993e41e5e66b"
+        },
+        "machine_profile.json": {
+          "path": "vz330/machine_profile.json",
+          "bytes": 639,
+          "sha256": "b8e1a57db4ad049bdbd35d90636247457eaeb6780224bfd87d3d5baf3a39b6b1"
+        },
+        "model.glb": {
+          "path": "vz330/model.glb.gz",
+          "bytes": 46016810,
+          "sha256": "d4c2dda0e6de732e2a8174caba11cab2a41ca404f885ced9c8940a4087ca6a57",
+          "encoding": "gzip",
+          "decoded_bytes": 111804840,
+          "decoded_sha256": "7f45c8b04e25517b7377f21915cad70c158b342846fe5b8b62ebebc2a88bcb48"
+        }
+      }
+    }
+  }
+}

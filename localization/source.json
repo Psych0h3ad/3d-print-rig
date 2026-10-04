@@ -8861,6 +8861,51 @@
       "kind": "message",
       "ja": "折り畳み完了",
       "en": "Folding complete"
+    },
+    "ui.community.assembly": {
+      "kind": "message",
+      "ja": "作者の全体CADを基準にした組立構成です。別ヘッド・Modとの互換性はこの構成では未検証です。",
+      "en": "Assembly based on the author’s complete CAD. Other toolheads and mods are unverified for this configuration."
+    },
+    "ui.community.references": {
+      "kind": "message",
+      "ja": "校正治具・未使用のCAD候補を表示",
+      "en": "Show calibration aids and unused CAD alternatives"
+    },
+    "ui.community.offsets": {
+      "kind": "message",
+      "ja": "CAD基準姿勢からの移動量です。可動範囲は表示用で、ファームウェアのホーム座標とは異なります。",
+      "en": "Offsets from the CAD reference pose. Preview ranges differ from firmware homing coordinates."
+    },
+    "ui.community.flex": {
+      "kind": "message",
+      "ja": "ベルト・配線・チェーンは表示用に追従します。張力やチェーンのリンク機構は計算していません。",
+      "en": "Belts, wires and chains follow for display. Tension and chain-link mechanics are not calculated."
+    },
+    "ui.community.detail": {
+      "kind": "message",
+      "ja": "細部は表示用に軽量化しています。組立候補・重複部品・校正治具は標準表示から分けています。",
+      "en": "Small details are reduced for display. Assembly alternatives, duplicated parts and calibration aids are separate from the default view."
+    },
+    "ui.community.ender": {
+      "kind": "message",
+      "ja": "初代Ender-3の標準構成 · Bowden / Cartesian",
+      "en": "Original Ender-3 standard assembly · Bowden / Cartesian"
+    },
+    "ui.community.vzbot": {
+      "kind": "message",
+      "ja": "VzBot 330 · プリントAWD / Goliath / Vz-HextrudORT / CPAP",
+      "en": "VzBot 330 · Printed AWD / Goliath / Vz-HextrudORT / CPAP"
+    },
+    "ui.community.vz_source": {
+      "kind": "message",
+      "ja": "公式プリントAWD v1.2を表示しています。元CADのXYベルトは一部のみで、CPAPホースは含まれていません。",
+      "en": "Showing official printed AWD v1.2. The source CAD has partial XY belts and no CPAP hose."
+    },
+    "ui.community.ender_source": {
+      "kind": "message",
+      "ja": "元の公式CADにはBowdenチューブが含まれていません。",
+      "en": "The original official CAD does not include the Bowden tube."
     }
   }
 }

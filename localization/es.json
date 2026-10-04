@@ -7089,6 +7089,42 @@
     "ui.positron.complete": {
       "source_revision": "bb17d490757cadfcbd1e",
       "text": "Plegado completo"
+    },
+    "ui.community.assembly": {
+      "source_revision": "2c4624c23f461d5fb1ac",
+      "text": "Ensamblaje basado en el CAD completo del autor. Otros cabezales y mods no están verificados para esta configuración."
+    },
+    "ui.community.references": {
+      "source_revision": "a9e41132cd8d05a15cb6",
+      "text": "Mostrar útiles de calibración y alternativas CAD no utilizadas"
+    },
+    "ui.community.offsets": {
+      "source_revision": "4026d51b0483262c5d68",
+      "text": "Desplazamientos desde la posición de referencia CAD. Los rangos de vista previa difieren de las coordenadas de origen del firmware."
+    },
+    "ui.community.flex": {
+      "source_revision": "57f6d8b59ec7df3d5fc2",
+      "text": "Las correas, cables y cadenas acompañan el movimiento para su visualización. No se calculan la tensión ni la mecánica de los eslabones."
+    },
+    "ui.community.detail": {
+      "source_revision": "420644eb706c21a9dd0a",
+      "text": "Los pequeños detalles se han aligerado para visualizarlos. Las alternativas de montaje, las piezas duplicadas y los útiles de calibración se muestran por separado."
+    },
+    "ui.community.ender": {
+      "source_revision": "9017430a9754dded9270",
+      "text": "Ensamblaje estándar del Ender-3 original · Bowden / Cartesian"
+    },
+    "ui.community.vzbot": {
+      "source_revision": "e35d7b39b14f22584c2e",
+      "text": "VzBot 330 · AWD con piezas impresas / Goliath / Vz-HextrudORT / CPAP"
+    },
+    "ui.community.vz_source": {
+      "source_revision": "a7bc53047606e6625bdb",
+      "text": "Se muestra el AWD oficial con piezas impresas v1.2. El CAD de origen contiene correas XY parciales y no incluye la manguera CPAP."
+    },
+    "ui.community.ender_source": {
+      "source_revision": "30a0a21a183e859f4f4a",
+      "text": "El CAD oficial original no incluye el tubo Bowden."
     }
   }
 }

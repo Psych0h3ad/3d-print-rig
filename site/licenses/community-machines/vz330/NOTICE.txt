@@ -1,0 +1,11 @@
+VzBot / 330
+Author: VzBoT3D
+Source: https://github.com/VzBoT3D/VzBoT-Vz330
+Revision: a7b1cdc7121c1d36c73704aa3c7d74c42bc0c959
+Version: Vz-330 v1.2 / WEB v2 · Printed AWD
+Original assembly: https://github.com/VzBoT3D/VzBoT-Vz330/blob/a7b1cdc7121c1d36c73704aa3c7d74c42bc0c959/CAD/Full%20Printer/Vz-330_v1.2.zip
+License: CC-BY-NC-4.0
+Native STEP checksum: 68b5e77168f67ccbbc9a6f53397cec70bf1a54c6689446be282dd9588b9668a3
+
+Changes: Display mesh conversion and small-detail reduction; material roles; source-mounted rigid axis groups. Calibration aids, unused variants and duplicated assemblies are hidden by default and can be shown as references. Flexible meshes use visual endpoint following, not mechanical simulation. Author CAD invalid reference leaves are retained: 02632,02634,02660.
+This is the printed AWD reference from v1.2, not the later CNC Mellow kit. The original master contains partial XY belt geometry and no full CPAP hose. The alternate 2WD idlers, duplicated gantry, MGN9C plate and 15 mm CPAP mount are reference geometry.

@@ -7089,6 +7089,42 @@
     "ui.positron.complete": {
       "source_revision": "bb17d490757cadfcbd1e",
       "text": "접기 완료"
+    },
+    "ui.community.assembly": {
+      "source_revision": "2c4624c23f461d5fb1ac",
+      "text": "제작자의 전체 CAD를 기반으로 한 조립 구성입니다. 이 구성의 다른 툴헤드 및 모드는 검증되지 않았습니다."
+    },
+    "ui.community.references": {
+      "source_revision": "a9e41132cd8d05a15cb6",
+      "text": "보정 지그 및 사용하지 않는 CAD 후보 표시"
+    },
+    "ui.community.offsets": {
+      "source_revision": "4026d51b0483262c5d68",
+      "text": "CAD 기준 자세로부터의 이동량입니다. 미리보기 범위는 펌웨어의 홈 좌표와 다릅니다."
+    },
+    "ui.community.flex": {
+      "source_revision": "57f6d8b59ec7df3d5fc2",
+      "text": "벨트, 배선 및 체인은 표시용으로 따라 움직입니다. 장력과 체인 링크의 동작은 계산하지 않습니다."
+    },
+    "ui.community.detail": {
+      "source_revision": "420644eb706c21a9dd0a",
+      "text": "세부 형상은 표시용으로 경량화했습니다. 조립 후보, 중복 부품 및 보정 지그는 기본 표시와 분리되어 있습니다."
+    },
+    "ui.community.ender": {
+      "source_revision": "9017430a9754dded9270",
+      "text": "초대 Ender-3 기본 구성 · Bowden / Cartesian"
+    },
+    "ui.community.vzbot": {
+      "source_revision": "e35d7b39b14f22584c2e",
+      "text": "VzBot 330 · 출력 부품 AWD / Goliath / Vz-HextrudORT / CPAP"
+    },
+    "ui.community.vz_source": {
+      "source_revision": "a7bc53047606e6625bdb",
+      "text": "공식 출력 부품 AWD v1.2를 표시합니다. 원본 CAD에는 XY 벨트 일부만 있으며 CPAP 호스는 포함되지 않습니다."
+    },
+    "ui.community.ender_source": {
+      "source_revision": "30a0a21a183e859f4f4a",
+      "text": "원본 공식 CAD에는 Bowden 튜브가 포함되지 않습니다."
     }
   }
 }

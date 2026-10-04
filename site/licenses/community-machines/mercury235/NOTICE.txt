@@ -1,0 +1,10 @@
+Mercury One.1 / Ender-5
+Author: ZeroGDesign
+Source: https://github.com/ZeroGDesign/docs
+Revision: dc8f6b2bcd8e4f90dd403626079e40d5c450bfcb
+Version: 235 assembly v32
+Original assembly: https://github.com/ZeroGDesign/docs/blob/dc8f6b2bcd8e4f90dd403626079e40d5c450bfcb/docs/assets/stl/m1_1/mercury_235_assembly.zip
+License: CC-BY-NC-SA-4.0
+Native STEP checksum: 8a39a244b3d325dd2d632b1f6a4f9328a442dcf42c5e93f4db41b07eb3d6ec84
+
+Changes: Display mesh conversion and small-detail reduction; material roles; source-mounted rigid axis groups. Calibration aids, unused variants and duplicated assemblies are hidden by default and can be shown as references. Flexible meshes use visual endpoint following, not mechanical simulation. Author CAD invalid reference leaves are retained: 00352.

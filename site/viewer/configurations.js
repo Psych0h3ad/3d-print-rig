@@ -1,4 +1,4 @@
-import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=463f121958ea463c3a61';
+import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=5c6f4dcd051bb1336e43';
 import {workspaceTask} from './workspace-lifecycle.mjs';
 import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=a444255dc35e7c15a082';
 import {catalogDimensions,collections,resolveVariant,choicesFor,choiceChanges,importedVariant,configurationById} from './configuration-model.js?v=d4b3dda97a404a7575b7';

@@ -1,0 +1,11 @@
+SIBOOR S-BOOM
+Author: Lzhikai
+Source: https://github.com/Lzhikai/SIBOOR-S-BOOM-2026
+Revision: 6aa1f513ade5ea28c2b5e092655ee6017a5f057c
+Version: January 2026
+Original assembly: https://github.com/Lzhikai/SIBOOR-S-BOOM-2026/blob/6aa1f513ade5ea28c2b5e092655ee6017a5f057c/CAD/SIBOOR%20S-BOOM.zip
+License: GPL-3.0
+Native STEP checksum: e882532eaa04f20af2ba830218fe82db8710bfd4395a55a97bebbf0984d0d24a
+
+Changes: Display mesh conversion and small-detail reduction; material roles; source-mounted rigid axis groups. Calibration aids, unused variants and duplicated assemblies are hidden by default and can be shown as references. Flexible meshes use visual endpoint following, not mechanical simulation. Author CAD invalid reference leaves are retained: 00267,00411,00412,00414,00415,00427,00515,00519,00553.
+The V6 heatbreak leaf is aligned to the source heatsink/nozzle axis with a +22 mm X placement correction.

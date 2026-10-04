@@ -2,7 +2,7 @@ import {sceneLightingState} from './scene-lighting-state.mjs?v=extra-machines-55
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {rememberDisplayControl} from './display-preferences.mjs?v=9860960509e28d17f3fd';
-import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=463f121958ea463c3a61';
+import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=5c6f4dcd051bb1336e43';
 import {workspaceFrame,WorkspaceResizeObserver,workspaceTask,workspaceListen} from './workspace-lifecycle.mjs';
 import * as THREE from './vendor-r180/three.module.js';
 import {OrbitControls} from './vendor-r180/OrbitControls.js?v=workspace-belts-1';
@@ -10,7 +10,7 @@ import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
 import {loadRatRigMachine,disposeRatRig} from './ratrig-loader.mjs?v=workspace-belts-2';
 import {createRatRigGcodePreview} from './ratrig_gcode_preview.mjs';
 import {ratRigSchema,validateRatRigConfiguration,ratRigAxisRanges} from './ratrig-ui-state.mjs?v=workspace-belts-1';
-import {setupMachineNavigation} from './machines.js?v=b4593761cfecac3b686b';
+import {setupMachineNavigation} from './machines.js?v=9383d20caf1cef38e5d4';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {setupPublicInfo} from './public-info.js?v=workspace-belts-2';

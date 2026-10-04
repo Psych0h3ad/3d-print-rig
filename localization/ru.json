@@ -7089,6 +7089,42 @@
     "ui.positron.complete": {
       "source_revision": "bb17d490757cadfcbd1e",
       "text": "Складывание завершено"
+    },
+    "ui.community.assembly": {
+      "source_revision": "2c4624c23f461d5fb1ac",
+      "text": "Сборка на основе полного CAD автора. Другие головки и моды для этой конфигурации не проверены."
+    },
+    "ui.community.references": {
+      "source_revision": "a9e41132cd8d05a15cb6",
+      "text": "Показать калибровочные приспособления и неиспользуемые варианты CAD"
+    },
+    "ui.community.offsets": {
+      "source_revision": "4026d51b0483262c5d68",
+      "text": "Смещения от исходной позы CAD. Диапазоны просмотра отличаются от координат парковки прошивки."
+    },
+    "ui.community.flex": {
+      "source_revision": "57f6d8b59ec7df3d5fc2",
+      "text": "Ремни, проводка и цепи следуют за движением для отображения. Натяжение и механика звеньев цепи не рассчитываются."
+    },
+    "ui.community.detail": {
+      "source_revision": "420644eb706c21a9dd0a",
+      "text": "Мелкие детали облегчены для просмотра. Варианты сборки, дублирующие детали и калибровочные приспособления отделены от стандартного вида."
+    },
+    "ui.community.ender": {
+      "source_revision": "9017430a9754dded9270",
+      "text": "Стандартная сборка оригинального Ender-3 · Bowden / Cartesian"
+    },
+    "ui.community.vzbot": {
+      "source_revision": "e35d7b39b14f22584c2e",
+      "text": "VzBot 330 · AWD с печатными деталями / Goliath / Vz-HextrudORT / CPAP"
+    },
+    "ui.community.vz_source": {
+      "source_revision": "a7bc53047606e6625bdb",
+      "text": "Показана официальная печатная версия AWD v1.2. Исходный CAD содержит только часть ремней XY и не содержит шланга CPAP."
+    },
+    "ui.community.ender_source": {
+      "source_revision": "30a0a21a183e859f4f4a",
+      "text": "Оригинальный официальный CAD не содержит трубку Bowden."
     }
   }
 }

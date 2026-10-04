@@ -1,4 +1,4 @@
-import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=463f121958ea463c3a61';
+import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=5c6f4dcd051bb1336e43';
 import {workspaceTask} from './workspace-lifecycle.mjs';
 import {bankChoices,bankCapacity,normalizeBank,initialBank,readBankURL,bankBedReferenceDrop,bankSystem,bankSource,bankSpec,variantBankSystem,bankStateForVariant,bankPlan} from './changer-bank-model.mjs?v=trident-clearance-35';
 import {bankWitnessCheck}from './head-validation.mjs?v=trident-clearance-35';
