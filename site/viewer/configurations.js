@@ -1,6 +1,6 @@
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=extra-machines-55';
 import {workspaceTask} from './workspace-lifecycle.mjs';
-import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=workspace-belts-2';
+import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=a4t-carriage-57';
 import {catalogDimensions,collections,resolveVariant,choicesFor,choiceChanges,importedVariant,configurationById} from './configuration-model.js?v=extra-machines-55';
 import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=workspace-belts-1';
 import {renderProductLinks} from './product-links.js?v=workspace-belts-1';

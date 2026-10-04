@@ -1,6 +1,6 @@
-import {monolithHeadCatalog} from './monolith-head-model.mjs?v=workspace-belts-2';
+import {monolithHeadCatalog} from './monolith-head-model.mjs?v=a4t-carriage-57';
 import {machinePage} from './machines.js?v=extra-machines-55';
-import {machineHeadVariants} from './machine-head-model.mjs?v=workspace-belts-2';
+import {machineHeadVariants} from './machine-head-model.mjs?v=a4t-carriage-57';
 
 export function headPrinterLink(variant,registry,href){
  const source=new URL(href),preferred=source.searchParams.get('return_machine');

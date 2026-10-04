@@ -5,6 +5,17 @@ import {e3ngMessages} from './e3ng-messages-en.mjs?v=workspace-belts-2';
 import {yudxMessages} from './yudx-messages-en.mjs?v=workspace-belts-2';
 import {rapidoXMessages} from './rapido-x-messages-en.mjs?v=workspace-belts-2';
 export const messages = {
+ "A4Tのカウリング・ファン・押出機をXolキャリッジに装着。上下の取付面と固定穴を照合し、原寸の固定ネジと角ナットを配置しています。": "A4T cowling, fans and extruder fitted to the Xol carriage. Native mounting planes and screw axes checked, with full-size mounting screws and square nuts.",
+ "6 mm / 9 mmのベルト固定具は別部品です。機体のベルト幅に合う構成のみ表示します。": "The 6 mm and 9 mm belt clamps are separate parts. Only assemblies matching the machine belt width are offered.",
+ "LED・逆流防止インサート・ツールヘッド基板・配線は未装着。プローブは未登録です。": "LEDs, backflow inserts, toolhead board and wiring are absent. No probe installation is registered.",
+ "静止状態のキャリッジ取付を検査済み。機体全体の連続可動域・前方アイドラー・配線の干渉は未検証です。": "Static carriage attachment checked. Continuous machine travel, front idler clearance and wiring interference remain unverified.",
+ "原本CADの角ナット周辺に約0.73 mm³、掛けネジ周辺に約0.05 mm³の接触を保持しています。製造公差や実機の適合を保証する検査ではありません。": "Native CAD contacts of about 0.73 mm\u00b3 around each square nut and 0.05 mm\u00b3 around each hanging screw are retained. These checks do not certify manufacturing tolerances or physical fit.",
+ "A4T / Xolキャリッジ": "A4T / Xol carriage",
+ "Xolキャリッジ · 6 mm": "Xol carriage \u00b7 6 mm",
+ "Xolキャリッジ · 9 mm": "Xol carriage \u00b7 9 mm",
+ "Rapido HFはフィラメント軸まわりに向きを変え、原本のヒーター配線がキャリッジへ当たる配置を修正。16部品と対称の4本の固定ネジは保持しています。": "Rapido HF is rotated around its filament axis to clear its native heater wire references from the carriage. All 16 hotend bodies and the four symmetric mounting screws are retained.",
+ "Rapidoの配線参考形状は左4010ファンへ最大約0.85 mm³接触します。配線を変形・消去して隠していません。実配線の経路は未検証です。": "Rapido wire reference geometry contacts the left 4010 fan by up to about 0.85 mm\u00b3. The wire shapes are retained without deformation or omission; physical wiring routes remain unverified.",
+ "A4T / Xolキャリッジ · 組付けCAD": "A4T / Xol carriage · native CAD",
   'ダークモード':'Dark mode',
  "部品を探す": "Find a component",
  "画面の使い方": "Workspace layout",

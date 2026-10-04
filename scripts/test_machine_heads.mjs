@@ -61,3 +61,15 @@ const placedV3=machineHeadVariants(generations,registry,'six');
 assert.deepEqual(placedV3.map(v=>v.source_head_configuration),['sphinx_native','v3']);
 assert.deepEqual(placedV3[1].machine_head.nozzle_mm,[0,-21.3,73.25]);
 assert.equal(machineHeadVariants(generations,registry,'nine','awd').length,0);
+// A4T uses a complete Xol carriage registration, with width-specific clamps.
+registry.sources.a4t_xol_carriage_6={origin_mm:[0,-7,360]};
+registry.sources.a4t_xol_carriage_9={origin_mm:[0,0,360]};
+const a4t=head('a4t6','a4t','fixed','a4t_xol_carriage_6',6);
+a4t.registration_source='a4t_xol_carriage_6';a4t.carriage='a4t_xol';a4t.base_asset='assembled_a4t';a4t.head_translation_mm=[0,-63.2,354.4];a4t.fit.nozzle_mm=[0,-31.35,310.9];a4t.modules=[{id:'a4t_xol_carriage_6',translation_mm:[0,-7,0],role:'tool'}];
+const a4t9={...a4t,id:'a4t9',registration_source:'a4t_xol_carriage_9',belt_width_mm:9,gantry:'a4t_xol_carriage_9',head_translation_mm:[0,-56.2,354.4],modules:[{id:'a4t_xol_carriage_9',translation_mm:[0,0,0],role:'tool'}]};
+const a4tHeads={...heads,variants:[a4t,a4t9,{...a4t,id:'unregistered',registration_source:'a4t_unregistered'}]};
+const sixA4t=machineHeadVariants(a4tHeads,registry,'six');
+assert.deepEqual(sixA4t.map(v=>v.source_head_configuration),['a4t6']);
+assert.deepEqual(sixA4t[0].machine_head.modules[0].translation_mm,[0,-7,-224]);
+assert.deepEqual(machineHeadVariants(a4tHeads,registry,'nine','awd').map(v=>v.source_head_configuration),['a4t9']);
+assert.equal(sixA4t[0].fit.machine_mount.full_travel_verified,false);
