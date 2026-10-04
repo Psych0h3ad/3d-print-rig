@@ -1,10 +1,11 @@
 import {normalizeLanguage} from './languages.mjs?v=fa521b07d4184ded0146';
 import {annexMachines} from './annex-machines.mjs?v=extra-machines-55';
-import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=extra-machines-55';
-import {navigateWorkspace} from './workspace-navigation.mjs?v=extra-machines-55';
+import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=463f121958ea463c3a61';
+import {navigateWorkspace} from './workspace-navigation.mjs?v=463f121958ea463c3a61';
 import {renderProductLinks} from './product-links.js?v=workspace-belts-1';
 import {ratRigMachines} from './ratrig-machines.mjs?v=workspace-belts-1';
 export const machineChoices=[
+ {id:'positron_v322',label:'Positron V3.2.2 · LDO / 180',page:'./positron.html',family:'positron',vendor:'positron_ldo',size:180},
  ...annexMachines,
  {id:'remorph_beta1_307',label:'Remorph Beta 1 · 307 / LGX Pro / Rapido UHF / Beacon Rev. H',page:'./remorph.html',family:'remorph',vendor:'remorph',size:307},
  {id:'siboor_trident_350',label:'SIBOOR Trident 350 · CNC AWD',page:'./'},
@@ -27,8 +28,8 @@ export const machineChoices=[
  {id:'crossant_235_v06_leadscrew',label:'Crossant-235 · Leadscrew Z / Sherpa Mini / Goliath',page:'./crossant.html',family:'crossant',vendor:'pole',size:220},
  ...ratRigMachines,
 ];
-const vendors={voron:'VORON / 標準',siboor:'SIBOOR',ldo:'LDO',fysetc:'FYSETC',pfa:'Printers for Ants',ratrig:'Rat Rig',pole:'Pole Engineering',remorph:'Lex Reman / Remorph',annex:'Annex Engineering'};
-const families={trident:'VORON Trident',v24:'VORON V2.4',v0:'VORON V0',micron:'Micron',vcore4:'V-Core 4',crossant:'Crossant-235',remorph:'Remorph',annex_k1:'Annex K1',annex_k2:'Annex K2',annex_k3:'Annex K3'};
+const vendors={positron_ldo:'Positron 3D / LDO',voron:'VORON / 標準',siboor:'SIBOOR',ldo:'LDO',fysetc:'FYSETC',pfa:'Printers for Ants',ratrig:'Rat Rig',pole:'Pole Engineering',remorph:'Lex Reman / Remorph',annex:'Annex Engineering'};
+const families={positron:'Positron',trident:'VORON Trident',v24:'VORON V2.4',v0:'VORON V0',micron:'Micron',vcore4:'V-Core 4',crossant:'Crossant-235',remorph:'Remorph',annex_k1:'Annex K1',annex_k2:'Annex K2',annex_k3:'Annex K3'};
 for(const row of machineChoices){
  if(row.family&&row.vendor&&row.size)continue;
  row.family=row.id.startsWith('micron_')?'micron':row.id.includes('trident')?'trident':row.id.includes('v24')?'v24':'v0';

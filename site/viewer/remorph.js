@@ -5,7 +5,7 @@ import {OrbitControls} from './vendor/OrbitControls.js';
 import {createRemorphAdapter} from './remorph-adapter.mjs';
 import {createRemorphEnvironment} from './remorph-environment.mjs?v=extra-machines-55';
 import {loadExtraMachine} from './extra-machine-loader.mjs?v=extra-machines-55';
-import {setupMachineNavigation} from './machines.js?v=ec75087acca3b5355dfc';
+import {setupMachineNavigation} from './machines.js?v=b4593761cfecac3b686b';
 import {workspaceFrame,WorkspaceResizeObserver,workspaceListen} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';

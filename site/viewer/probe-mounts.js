@@ -1,4 +1,4 @@
-import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=extra-machines-55';
+import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=463f121958ea463c3a61';
 import {workspaceTask} from './workspace-lifecycle.mjs';
 import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=ea1aef3e30bf7d11d3cb';
 export function stockProbeFit(row){return row.module?{...row,id:row.id,physical_passed:row.physical_passed??null,height_passed:row.height_passed??null,metal_keepout_verified:row.metal_keepout_verified??false}:null}

@@ -6985,6 +6985,110 @@
     "embed.unavailable": {
       "source_revision": "b8f8e39c88e712f412dc",
       "text": "La configuración solicitada no está disponible. Consulta el sitio original."
+    },
+    "ui.positron.assembly": {
+      "source_revision": "0e919a1db163cbc3e679",
+      "text": "Ensamblaje oficial completo · CoreXY invertido"
+    },
+    "ui.positron.volume": {
+      "source_revision": "370dfb2f2c998ccc56cd",
+      "text": "Cama de vidrio de 200 mm. Límites oficiales: X 182 / Y 180 / Z 165 mm."
+    },
+    "ui.positron.accessories": {
+      "source_revision": "4aff869830cdd6de98b4",
+      "text": "Pantalla y soportes independientes para bobinas"
+    },
+    "ui.positron.fold": {
+      "source_revision": "427576b5568d580fdc96",
+      "text": "Plegado"
+    },
+    "ui.positron.fold_play": {
+      "source_revision": "8cda6fd3dae619ac2bc7",
+      "text": "Plegar"
+    },
+    "ui.positron.unfold_play": {
+      "source_revision": "1215355d0db03b2ceb4c",
+      "text": "Desplegar"
+    },
+    "ui.positron.sequence": {
+      "source_revision": "62cab822a8112be62657",
+      "text": "Retirar vidrio → Retirar soporte V → Pestillo y tornillos → Cabezal a la derecha → Guardar soporte → Abatir columna → Devolver cabezal."
+    },
+    "ui.positron.path": {
+      "source_revision": "4f588440a6b1fbbfc18f",
+      "text": "Los pasadores siguen la ranura J del CAD. Las trayectorias de las piezas transportadas a mano son ilustrativas."
+    },
+    "ui.positron.preparation": {
+      "source_revision": "4e87ca50cf71eaa526d8",
+      "text": "En la impresora real, deje enfriar y descargue el filamento primero."
+    },
+    "ui.positron.cnc": {
+      "source_revision": "52e6b17d348033c4433b",
+      "text": "Piezas CNC y estructura"
+    },
+    "ui.positron.references": {
+      "source_revision": "0ba893052fcb5e3db30d",
+      "text": "Documentación de Positron"
+    },
+    "ui.positron.cad": {
+      "source_revision": "7698650ced5f17e588b3",
+      "text": "CAD oficial · V3.2.2 / 2026-01-26"
+    },
+    "ui.positron.guide": {
+      "source_revision": "40f300512a563c7d1c55",
+      "text": "Instrucciones de plegado de LDO"
+    },
+    "ui.positron.mesh": {
+      "source_revision": "841c0cbb7288bddbde55",
+      "text": "No se reproduce la deformación de correas y cables ausente en el CAD original. Los tornillos y la pantalla usan mallas aligeradas."
+    },
+    "ui.positron.alternatives": {
+      "source_revision": "7c9b7439342ee004187a",
+      "text": "Los montajes alternativos y los cambios de cabezal no están verificados para esta configuración."
+    },
+    "ui.positron.stage": {
+      "source_revision": "b472a25b672beee00461",
+      "text": "Ensamblaje 3D de Positron"
+    },
+    "ui.positron.step_glass": {
+      "source_revision": "84b8610eb92aa6bffe02",
+      "text": "Retirar la cama de vidrio"
+    },
+    "ui.positron.step_bed_screw": {
+      "source_revision": "93e5f4a0d59e36d08a51",
+      "text": "Retirar el tornillo de la cama"
+    },
+    "ui.positron.step_holder": {
+      "source_revision": "7076635996030ef50ead",
+      "text": "Retirar el soporte V"
+    },
+    "ui.positron.step_latch": {
+      "source_revision": "9a740e25d4b7791917ac",
+      "text": "Bajar el pestillo y retirar el tornillo de la columna"
+    },
+    "ui.positron.step_park": {
+      "source_revision": "62803f33bf769ac270d9",
+      "text": "Mover el cabezal al extremo derecho"
+    },
+    "ui.positron.step_stow": {
+      "source_revision": "53e84808383694b065f4",
+      "text": "Colocar el soporte V para guardarlo"
+    },
+    "ui.positron.step_slot": {
+      "source_revision": "d275d178c908e1093c63",
+      "text": "Mover los pasadores por las ranuras J hasta sus asientos de giro"
+    },
+    "ui.positron.step_column": {
+      "source_revision": "c3069ecb94204b68937f",
+      "text": "Abatir la columna"
+    },
+    "ui.positron.step_return": {
+      "source_revision": "9c14d7b206104fb94c2b",
+      "text": "Devolver el cabezal hacia la columna"
+    },
+    "ui.positron.complete": {
+      "source_revision": "bb17d490757cadfcbd1e",
+      "text": "Plegado completo"
     }
   }
 }

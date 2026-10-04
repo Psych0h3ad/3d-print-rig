@@ -11,7 +11,7 @@ import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=workspace-belts-1';
 import {poseDelta,createV0Adapter} from './v0_adapter.mjs?v=extra-machines-55';
-import {setupMachineNavigation} from './machines.js?v=ec75087acca3b5355dfc';
+import {setupMachineNavigation} from './machines.js?v=b4593761cfecac3b686b';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {setupPublicInfo} from './public-info.js?v=workspace-belts-2';

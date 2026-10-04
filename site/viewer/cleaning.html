@@ -10,7 +10,7 @@
 <a href="./">プリンターを開く</a>
 </p>
 <script type="module">
-import {printerWorkspaceURL,workspaceReturnKey} from './workspace-return.mjs?v=68b3781e7021af6edf72';
+import {printerWorkspaceURL,workspaceReturnKey} from './workspace-return.mjs?v=61e6b3f1785c8136f56c';
 let remembered;try{remembered=sessionStorage.getItem(workspaceReturnKey)}catch{}
 location.replace(printerWorkspaceURL(location.href,remembered));
 </script>

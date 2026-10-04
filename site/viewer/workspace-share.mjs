@@ -1,5 +1,5 @@
 import {workspaceTask,WorkspaceMutationObserver} from './workspace-lifecycle.mjs';
-import {embedURL,iframeMarkup} from './embed-contract.mjs?v=4fc89f7f6f11001e30f4';
+import {embedURL,iframeMarkup} from './embed-contract.mjs?v=290207158724d83955e8';
 export const siteLinks = Object.freeze({
   github: 'https://github.com/Psych0h3ad/3d-print-rig',
   x: 'https://www.x.com/YuTR0N',

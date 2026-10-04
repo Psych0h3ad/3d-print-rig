@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {RoomEnvironment} from './vendor/RoomEnvironment.js';
 import {workspaceFrame,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
-import {setupMachineNavigation} from './machines.js?v=ec75087acca3b5355dfc';
+import {setupMachineNavigation} from './machines.js?v=b4593761cfecac3b686b';
 import {loadExtraMachine} from './extra-machine-loader.mjs';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=extra-machines-55';

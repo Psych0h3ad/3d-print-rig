@@ -1,0 +1,23 @@
+Positron V3.2.2 / 2026-01-26
+
+Original design: Positron 3D Team and LDO Motors; original V3 by Kralyn.
+Repository: https://github.com/Positron3D/Positron
+Pinned revision: 75ac17a07e02694e1fc80a3a256ede64cca90e6d
+Official project: https://positron3d.com/
+Hardware and documentation: CC BY-SA 4.0
+https://creativecommons.org/licenses/by-sa/4.0/
+
+Changes: meshes for browser display, material roles, rigid folding groups and
+an illustrative hand-operated folding sequence. The native CNC hinge and guide
+slot geometry is retained. No firmware connection or physical clearance
+certification is provided. The four invalid reference leaves in the original
+assembly remain reference geometry; native leaf count is 1,314.
+
+LDO-manufactured Positron PCB designs have the upstream exception: modifications
+have no ShareAlike requirement; manufacturing and resale are limited to LDO
+Motors and authorized distributors. Personal noncommercial use is permitted.
+Credit Positron 3D Team and LDO Motors. Designs are supplied as-is without
+warranty. The full upstream notice is linked at the pinned repository.
+
+Folding reference: LDO Motion, 10 - Positron V3.2 - Folding
+https://ldomotion.com/guides/10---positron-v32---folding

@@ -8731,6 +8731,136 @@
       "kind": "message",
       "ja": "指定された構成は現在利用できません。元のサイトで確認してください。",
       "en": "The requested configuration is unavailable. Check the original site."
+    },
+    "ui.positron.assembly": {
+      "kind": "message",
+      "ja": "公式の全体アセンブリ · 逆さ印刷のCoreXY",
+      "en": "Official complete assembly · Inverted CoreXY"
+    },
+    "ui.positron.volume": {
+      "kind": "message",
+      "ja": "200 mmガラスベッド。公式設定の印刷範囲はX 182 / Y 180 / Z 165 mmです。",
+      "en": "200 mm glass bed. Official configured print limits: X 182 / Y 180 / Z 165 mm."
+    },
+    "ui.positron.accessories": {
+      "kind": "message",
+      "ja": "画面・独立スプールホルダー",
+      "en": "Display and separate spool holders"
+    },
+    "ui.positron.fold": {
+      "kind": "message",
+      "ja": "折り畳み",
+      "en": "Folding"
+    },
+    "ui.positron.fold_play": {
+      "kind": "message",
+      "ja": "折り畳む",
+      "en": "Fold"
+    },
+    "ui.positron.unfold_play": {
+      "kind": "message",
+      "ja": "展開する",
+      "en": "Unfold"
+    },
+    "ui.positron.sequence": {
+      "kind": "message",
+      "ja": "ガラスを外す → Vホルダーを外す → ラッチとネジ → ヘッドを右へ → ホルダーを収納姿勢へ → 支柱を倒す → ヘッドを戻す。",
+      "en": "Remove glass → Remove V holder → Latch and screws → Park head right → Stow holder → Fold column → Return head."
+    },
+    "ui.positron.path": {
+      "kind": "message",
+      "ja": "ピンはCADのJ字溝を通ります。手で運ぶ部品の軌道は説明用です。",
+      "en": "Pins follow the CAD J-slot. Paths for hand-carried parts are illustrative."
+    },
+    "ui.positron.preparation": {
+      "kind": "message",
+      "ja": "実機では冷却・フィラメントの取り出しを先に行ってください。",
+      "en": "On the physical printer, cool down and unload filament first."
+    },
+    "ui.positron.cnc": {
+      "kind": "message",
+      "ja": "CNC・フレーム",
+      "en": "CNC parts and frame"
+    },
+    "ui.positron.references": {
+      "kind": "message",
+      "ja": "Positronの資料",
+      "en": "Positron references"
+    },
+    "ui.positron.cad": {
+      "kind": "message",
+      "ja": "公式CAD · V3.2.2 / 2026-01-26",
+      "en": "Official CAD · V3.2.2 / 2026-01-26"
+    },
+    "ui.positron.guide": {
+      "kind": "message",
+      "ja": "LDOの折り畳み手順",
+      "en": "LDO folding instructions"
+    },
+    "ui.positron.mesh": {
+      "kind": "message",
+      "ja": "原本CADにないベルト・配線の変形は再現していません。ネジや画面の細部は表示用に軽量化しています。",
+      "en": "Belt and wiring deformation absent from the master CAD is not reproduced. Screw and display details use lighter display meshes."
+    },
+    "ui.positron.alternatives": {
+      "kind": "message",
+      "ja": "取り付け変更や別ヘッドへの交換はこの構成では未検証です。",
+      "en": "Alternative mounts and toolhead swaps are unverified for this configuration."
+    },
+    "ui.positron.stage": {
+      "kind": "message",
+      "ja": "Positron 3Dアセンブリ",
+      "en": "Positron 3D assembly"
+    },
+    "ui.positron.step_glass": {
+      "kind": "message",
+      "ja": "ガラスベッドを外す",
+      "en": "Remove the glass bed"
+    },
+    "ui.positron.step_bed_screw": {
+      "kind": "message",
+      "ja": "ベッドのネジを外す",
+      "en": "Remove the bed thumbscrew"
+    },
+    "ui.positron.step_holder": {
+      "kind": "message",
+      "ja": "Vホルダーを外す",
+      "en": "Remove the V holder"
+    },
+    "ui.positron.step_latch": {
+      "kind": "message",
+      "ja": "ラッチを下げ、支柱のネジを外す",
+      "en": "Lower the latch and remove the column thumbscrew"
+    },
+    "ui.positron.step_park": {
+      "kind": "message",
+      "ja": "ヘッドを右端へ移動",
+      "en": "Move the head to the right end"
+    },
+    "ui.positron.step_stow": {
+      "kind": "message",
+      "ja": "Vホルダーを収納姿勢へ",
+      "en": "Position the V holder for storage"
+    },
+    "ui.positron.step_slot": {
+      "kind": "message",
+      "ja": "ピンをJ字溝の回転位置へ移動",
+      "en": "Move the pins through the J-slots to the pivot seats"
+    },
+    "ui.positron.step_column": {
+      "kind": "message",
+      "ja": "支柱を倒す",
+      "en": "Fold the column"
+    },
+    "ui.positron.step_return": {
+      "kind": "message",
+      "ja": "ヘッドを支柱側へ戻す",
+      "en": "Return the head towards the column"
+    },
+    "ui.positron.complete": {
+      "kind": "message",
+      "ja": "折り畳み完了",
+      "en": "Folding complete"
     }
   }
 }

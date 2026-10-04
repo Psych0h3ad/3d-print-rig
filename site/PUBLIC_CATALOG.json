@@ -1272,6 +1272,20 @@
       "license": "Component-specific licenses and hardware terms retained",
       "license_url": "../licenses/yavoth_assembly/NOTICE.md",
       "license_sha256": "0977793ed1cf83b6a0b4ea77603a1ea1e0c270d609b2a643cc6381e3e36a2ecc"
+    },
+    {
+      "id": "positron_v322",
+      "label": "Positron V3.2.2 / 2026-01-26",
+      "repository": "Positron3D/Positron",
+      "author": "Positron 3D Team / LDO Motors",
+      "commit": "75ac17a07e02694e1fc80a3a256ede64cca90e6d",
+      "url": "https://github.com/Positron3D/Positron/tree/75ac17a07e02694e1fc80a3a256ede64cca90e6d",
+      "website": "https://positron3d.com/",
+      "scope": "Official complete assembly; 1,314 native leaves. CNC J-slot guided folding, detachable glass and V holder.",
+      "license": "CC-BY-SA-4.0; upstream LDO PCB exception applies.",
+      "license_url": "../licenses/positron/NOTICE.txt",
+      "version": "V3.2.2 / 2026-01-26",
+      "changes": "Display meshing, appearance roles and illustrative hand-operated removal paths. Native hinge, dowels, rail and V holder retained. No flexible wiring in master CAD."
     }
   ],
   "defaults": [

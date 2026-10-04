@@ -9,12 +9,12 @@ import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=workspace-belts-1';
 import {createV24Adapter} from './v24_matrix_adapter.mjs?v=extra-machines-55';
-import {setupMachineNavigation} from './machines.js?v=ec75087acca3b5355dfc';
+import {setupMachineNavigation} from './machines.js?v=b4593761cfecac3b686b';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {setupPublicInfo} from './public-info.js?v=workspace-belts-2';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=workspace-belts-2';
-import {setupV24MachineHeads} from './machine-heads.js?v=d32b5ebce56daefb09df';
+import {setupV24MachineHeads} from './machine-heads.js?v=7bec69554a2cdedd1d44';
 export async function mount(scope){
 const $=s=>document.querySelector(s),ids=[250,300,350].flatMap(size=>['printed','ldo_cnc'].map(structure=>`voron_v24_${size}_${structure}`));
 const wanted=new URLSearchParams(location.search).get('machine'),id=ids.includes(wanted)?wanted:ids[0];

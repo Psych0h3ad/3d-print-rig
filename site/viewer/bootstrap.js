@@ -1,6 +1,6 @@
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
-import {setupMachineNavigation} from './machines.js?v=ec75087acca3b5355dfc';
+import {setupMachineNavigation} from './machines.js?v=b4593761cfecac3b686b';
 import {machineAssetsAvailable,showMissingAssets} from './asset-availability.js?v=workspace-belts-2';
 export async function mount(scope){
  setupMachineNavigation('siboor_trident_350');

@@ -1,4 +1,4 @@
-import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=extra-machines-55';
+import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=463f121958ea463c3a61';
 import {workspaceTask} from './workspace-lifecycle.mjs';
 import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=a444255dc35e7c15a082';
 import {catalogDimensions,collections,resolveVariant,choicesFor,choiceChanges,importedVariant,configurationById} from './configuration-model.js?v=d4b3dda97a404a7575b7';

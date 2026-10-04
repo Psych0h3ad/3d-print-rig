@@ -1,6 +1,6 @@
 // Version 1 is a URL contract, not a frozen model revision.
 export const embedVersion = '1';
-export const embedPages = new Set(['index.html','trident.html','v24.html','v24-reference.html','v0.html','micron.html','kit-reference.html','ratrig.html','crossant.html','annex.html','remorph.html','toolheads.html','gantries.html','components.html','toolchangers.html','e3ng.html']);
+export const embedPages = new Set(['index.html','trident.html','v24.html','v24-reference.html','v0.html','micron.html','kit-reference.html','ratrig.html','crossant.html','annex.html','positron.html','remorph.html','toolheads.html','gantries.html','components.html','toolchangers.html','e3ng.html']);
 const internal = new Set(['embed','embed_theme','v','viewer','theme','_viewer','return_machine','return_configuration','return_head']);
 export function embedURL(href, {theme = 'light', machine} = {}) {
   const source = new URL(href), page = source.pathname.split('/').pop() || 'index.html';
