@@ -1,7 +1,7 @@
 export const communitySchema='3d-print-rig.community.v1';
 export function validateAxes(axes,profile){
- if(!axes||Object.keys(axes).sort().join()!=='x,y,z')throw Error('Invalid axes');
- for(const key of ['x','y','z'])if(!Number.isFinite(axes[key])||axes[key]<profile.axes[key][0]||axes[key]>profile.axes[key][1])throw Error('Axis outside preview range: '+key);
+ if(!axes||Object.keys(axes).sort().join()!==Object.keys(profile.axes).sort().join())throw Error('Invalid axes');
+ for(const key of Object.keys(profile.axes))if(!Number.isFinite(axes[key])||axes[key]<profile.axes[key][0]||axes[key]>profile.axes[key][1])throw Error('Axis outside preview range: '+key);
  return axes;
 }
 export function nativeMotion(group,axes,profile){

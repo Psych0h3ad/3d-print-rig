@@ -13,7 +13,7 @@ import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=workspace-belts-1';
-import {setupMachineNavigation} from './machines.js?v=9383d20caf1cef38e5d4';
+import {setupMachineNavigation} from './machines.js?v=9afdc567bd48998f220c';
 import {setupConfigurations} from './configurations.js?v=9d347c03f3b6b7bd977d';
 import {setupAccessories} from './accessories.js?v=workspace-belts-2';
 import {setupPublicInfo} from './public-info.js?v=workspace-belts-2';

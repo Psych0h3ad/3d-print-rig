@@ -1,6 +1,6 @@
 import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
 import {extraAssetBase,checkedExtraAsset} from './extra-asset-integrity.mjs';
-import {createCommunityAdapter} from './community-adapter.mjs?v=420fdb82805ba6940d9f';
+import {createCommunityAdapter} from './community-adapter.mjs?v=6118b98102e6c2734fca';
 export async function loadCommunity(index,machine,{signal}={}){
  const spec=index.machines[machine];if(!spec||spec.machine_id!==machine)throw Error('Unknown community printer');
  const base=extraAssetBase(index,import.meta.url),read=async name=>JSON.parse(new TextDecoder().decode(await checkedExtraAsset(base,spec.files[name],{signal})));

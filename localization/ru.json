@@ -7181,6 +7181,54 @@
     "fixed_sc.archive": {
       "source_revision": "ffbc612925b0cf51d23a",
       "text": "Fixed-Gantry-SC · исходный CAD и детали для просмотра"
+    },
+    "ui.community.aether": {
+      "source_revision": "5a1324c73ffcd96c2dbc",
+      "text": "Antithesis Aether MK1.1 · Алюминиевый портал / Conch / Galileo 2 · 130 × 100 × 115.5 mm"
+    },
+    "ui.community.vminion": {
+      "source_revision": "f04eabd985f438a2d9e5",
+      "text": "Rat Rig V-Minion 1.0 · EVA / LGX Lite / Dragonfly BMO / SKR 2"
+    },
+    "ui.community.snake180": {
+      "source_revision": "c31f22d4e996be04a8a1",
+      "text": "SnakeOil XY · 180 / Mosquito / Sherpa Mini / Стол на 3 опорах"
+    },
+    "ui.community.idex": {
+      "source_revision": "5577cdb34458429e448d",
+      "text": "SnakeOil XY IDEX · 2 головки / Mosquito / Sherpa Mini / EBB36"
+    },
+    "ui.community.snake3s": {
+      "source_revision": "c35c7f8353c3457bb2c6",
+      "text": "SnakeOil XY-3S · KP3S / E3D V6 / Sherpa Mini"
+    },
+    "ui.community.proosa": {
+      "source_revision": "07f0607236e770546a99",
+      "text": "ProosaXY · MK3-S в CoreXY / E3D V6 / Sherpa Mini / 3 оси Z"
+    },
+    "ui.community.aether_notice": {
+      "source_revision": "ce442da28162a9bfecdb",
+      "text": "Официальная CAD-сборка с алюминиевым порталом. Сборочные приспособления, дубликаты и варианты MJF отделены от стандартного вида."
+    },
+    "ui.community.idex_notice": {
+      "source_revision": "4565297c73e2f00f1ab3",
+      "text": "Левая и правая головки перемещаются отдельно по X и X2. Дубликаты сборок Sherpa Mini из исходного CAD отделены от стандартного вида. Ремни XY представлены частично."
+    },
+    "ui.community.missing_routes": {
+      "source_revision": "0c8960482c8c353d4b03",
+      "text": "Исходный CAD не содержит ремни XY и полные маршруты проводки."
+    },
+    "ui.community.source_cad": {
+      "source_revision": "e1ffbd39410d5d4e78fe",
+      "text": "Исходный CAD сборки"
+    },
+    "ui.community.source_changes": {
+      "source_revision": "924662b955c394dcbe07",
+      "text": "Изменения и источники компонентов"
+    },
+    "ui.community.component_license": {
+      "source_revision": "031698a93624749bc6de",
+      "text": "Лицензии компонентов"
     }
   }
 }

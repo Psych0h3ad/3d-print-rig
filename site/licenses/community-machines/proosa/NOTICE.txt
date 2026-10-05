@@ -1,0 +1,13 @@
+ProosaXY / MK3-S conversion
+Author: SnakeOilXY
+Repository: https://github.com/SnakeOilXY/ProosaXY
+Revision: c43b9e46b5127aa138ef4561ba0d22329837d0df
+Version: MAIN assembly · triple Z · V6 / Sherpa Mini
+Original assembly: https://github.com/SnakeOilXY/ProosaXY/blob/c43b9e46b5127aa138ef4561ba0d22329837d0df/src/MAIN-ASSEMBLY.step.zip
+License: GPL-3.0 + ANNEX Engineering License
+Native STEP SHA-256: 10ce4e1df4e9cf626568293277e0e7d00194fe9782d3952415fbd5f7e36428cf
+
+Changes: Display mesh conversion and small-detail reduction; material roles; source-mounted axis groups. Author placements and dimensions are preserved, with no placement corrections. Axis controls are offsets from the original CAD pose and cover conservative preview ranges, not firmware travel. Flexible belt meshes use visual endpoint following, not belt mechanics.
+Reference geometry separated from the default view: 0 leaves. No identified embedded print supports were removed.
+Sherpa Mini and modified Sherpa-derived parts retain the ANNEX Engineering License; EVA-derived parts retain GPL-3.0. Credits: SnakeOilXY / ChipCE; Annex Engineering (Sherpa Mini); EVA-3D (EVA). These component licenses are not replaced by the viewer code license.
+Additional credits: Prusa Research (MK3/S hardware, GPL-2.0), Gregoire Saunier (Bear Extruder and X Axis, GPL-3.0), VORON Design (DIN mount, GPL-3.0). The source assembly contains no XY belts or full wire routes.

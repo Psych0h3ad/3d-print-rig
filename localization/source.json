@@ -8976,6 +8976,66 @@
       "kind": "message",
       "ja": "Fixed-Gantry-SC · 原本CADと表示用部品",
       "en": "Fixed-Gantry-SC · source CAD and display parts"
+    },
+    "ui.community.aether": {
+      "kind": "message",
+      "ja": "Antithesis Aether MK1.1 · アルミガントリー / Conch / Galileo 2 · 130 × 100 × 115.5 mm",
+      "en": "Antithesis Aether MK1.1 · Aluminum gantry / Conch / Galileo 2 · 130 × 100 × 115.5 mm"
+    },
+    "ui.community.vminion": {
+      "kind": "message",
+      "ja": "Rat Rig V-Minion 1.0 · EVA / LGX Lite / Dragonfly BMO / SKR 2",
+      "en": "Rat Rig V-Minion 1.0 · EVA / LGX Lite / Dragonfly BMO / SKR 2"
+    },
+    "ui.community.snake180": {
+      "kind": "message",
+      "ja": "SnakeOil XY · 180 / Mosquito / Sherpa Mini / 3点ベッド",
+      "en": "SnakeOil XY · 180 / Mosquito / Sherpa Mini / 3-point bed"
+    },
+    "ui.community.idex": {
+      "kind": "message",
+      "ja": "SnakeOil XY IDEX · 2ヘッド / Mosquito / Sherpa Mini / EBB36",
+      "en": "SnakeOil XY IDEX · 2 toolheads / Mosquito / Sherpa Mini / EBB36"
+    },
+    "ui.community.snake3s": {
+      "kind": "message",
+      "ja": "SnakeOil XY-3S · KP3S / E3D V6 / Sherpa Mini",
+      "en": "SnakeOil XY-3S · KP3S / E3D V6 / Sherpa Mini"
+    },
+    "ui.community.proosa": {
+      "kind": "message",
+      "ja": "ProosaXY · MK3-SからCoreXY / E3D V6 / Sherpa Mini / 3軸Z",
+      "en": "ProosaXY · MK3-S to CoreXY / E3D V6 / Sherpa Mini / 3 Z axes"
+    },
+    "ui.community.aether_notice": {
+      "kind": "message",
+      "ja": "公式CADのアルミ仕様です。組立治具・重複部品・MJF向け代替部品を標準表示から分けています。",
+      "en": "Official aluminum CAD assembly. Assembly aids, duplicate parts and MJF alternatives are separate from the default view."
+    },
+    "ui.community.idex_notice": {
+      "kind": "message",
+      "ja": "左右のヘッドをX・X2で個別に動かせます。元CADに重複したSherpa Miniを標準表示から分けています。XYベルトは一部のみ含まれます。",
+      "en": "Move the left and right heads independently with X and X2. Duplicate Sherpa Mini assemblies in the source CAD are separate from the default view. Only partial XY belts are included."
+    },
+    "ui.community.missing_routes": {
+      "kind": "message",
+      "ja": "元CADにはXYベルトと全体の配線経路が含まれていません。",
+      "en": "The source CAD includes no XY belts or full wire routes."
+    },
+    "ui.community.source_cad": {
+      "kind": "message",
+      "ja": "元の組立CAD",
+      "en": "Original assembly CAD"
+    },
+    "ui.community.source_changes": {
+      "kind": "message",
+      "ja": "変更と部品の出典",
+      "en": "Changes and component sources"
+    },
+    "ui.community.component_license": {
+      "kind": "message",
+      "ja": "部品別ライセンス",
+      "en": "Component licenses"
     }
   }
 }

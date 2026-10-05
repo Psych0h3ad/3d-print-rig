@@ -1,0 +1,12 @@
+Antithesis Aether MK1.1
+Author: antithesisengineering
+Repository: https://github.com/antithesisengineering/Antithesis-Aether-MK1.1
+Revision: 24e67a9495d2a73dfad09fb21bfe443abc917f71
+Version: MK1.1 · aluminum gantry · release build v3
+Original assembly: https://github.com/antithesisengineering/Antithesis-Aether-MK1.1/blob/24e67a9495d2a73dfad09fb21bfe443abc917f71/CAD/Antithesis%20Aether%20MK1.1.step
+License: GPL-3.0
+Native STEP SHA-256: 8faefbd4a30fb52eb8f989ee69dd72d68c80cec5ae8999d805ded70ba3cf4eda
+
+Changes: Display mesh conversion and small-detail reduction; material roles; source-mounted axis groups. Author placements and dimensions are preserved, with no placement corrections. Axis controls are offsets from the original CAD pose and cover conservative preview ranges, not firmware travel. Flexible belt meshes use visual endpoint following, not belt mechanics.
+Reference geometry separated from the default view: 10 leaves. No identified embedded print supports were removed.
+The current official assembly contains the aluminum XY gantry, Conch hotend and Galileo 2 extruder. Build helpers, duplicate cable-mount/filament bodies and MJF alternatives are separate reference geometry. The bed moves in XY and the printhead in Z. The X rail moves with the bed over its carriage block, which stays on the Y plate. Original build volume: 130 x 100 x 115.5 mm.

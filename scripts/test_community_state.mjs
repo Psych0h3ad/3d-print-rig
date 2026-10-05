@@ -10,9 +10,17 @@ const state={schema:communitySchema,machine:profile.machine_id,axes:{x:0,y:0,z:0
 assert.deepEqual(validateCommunityState(JSON.parse(JSON.stringify(state)),profile),state);
 for(const mutate of [s=>s.machine='another',s=>s.schema='unsupported',s=>s.axes.x=NaN,s=>s.palette.base='red',s=>s.grid=1,s=>s.camera.position=[0,.3,0],s=>s.camera.up=[0,0,0]]){const bad=structuredClone(state);mutate(bad);assert.throws(()=>validateCommunityState(bad,profile))}
 const catalog=JSON.parse(readFileSync(new URL('../site/COMMUNITY_MACHINES_ASSETS.json',import.meta.url)));
-assert.equal(Object.keys(catalog.machines).length,5);
+assert.equal(Object.keys(catalog.machines).length,11);
 for(const [id,spec] of Object.entries(catalog.machines)){
  const choice=machineChoices.find(x=>x.id===id);assert.ok(choice);assert.ok(choice.page.includes('community.html'));assert.ok(machineFamilies[choice.family]);assert.ok(machineVendors[choice.vendor]);
  assert.equal(spec.machine_id,id);assert.ok(spec.parts>200);for(const file of Object.values(spec.files)){assert.ok(file.bytes>0);assert.match(file.sha256,/^[a-f0-9]{64}$/);assert.ok(!file.path.includes('..'))}
 }
 console.log('Community native machine selection, motion coordinate mapping and configuration validation passed.');
+const idex={...profile,machine_id:'snakeoil_xy_idex',axes:{x:[0,90],u:[0,80],y:[-130,70],z:[-70,170]},motions:{head:['x','y',0],head2:['u','y',0],beam:[0,'y',0],bed:[0,0,'z']}};
+const dualPose={x:40,u:10,y:20,z:30};
+assert.deepEqual(nativeMotion('head',dualPose,idex),[40,20,0]);
+assert.deepEqual(nativeMotion('head2',dualPose,idex),[10,20,0]);
+assert.deepEqual(validateCommunityState({...state,machine:idex.machine_id,axes:dualPose},idex).axes,dualPose);
+assert.throws(()=>validateAxes({x:0,y:0,z:0},idex));
+assert.throws(()=>validateAxes({...dualPose,u:81},idex));
+assert.throws(()=>validateAxes({...dualPose,v:0},idex));

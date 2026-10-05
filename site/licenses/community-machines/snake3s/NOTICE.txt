@@ -1,0 +1,13 @@
+SnakeOil XY-3S / KP3S
+Author: SnakeOilXY
+Repository: https://github.com/SnakeOilXY/SnakeOilXY-3S
+Revision: 61cfb4c0849c8e4b9cef75ea0cc445192cc0fa59
+Version: v1 · KP3S conversion · V6 / Sherpa Mini
+Original assembly: https://github.com/SnakeOilXY/SnakeOilXY-3S/blob/61cfb4c0849c8e4b9cef75ea0cc445192cc0fa59/src/STEP/v1.step.zip
+License: GPL-3.0 + ANNEX Engineering License
+Native STEP SHA-256: 433728ccffc3af65962826e0e224b087a861754f86c6c43479e1fb87430d7ee2
+
+Changes: Display mesh conversion and small-detail reduction; material roles; source-mounted axis groups. Author placements and dimensions are preserved, with no placement corrections. Axis controls are offsets from the original CAD pose and cover conservative preview ranges, not firmware travel. Flexible belt meshes use visual endpoint following, not belt mechanics.
+Reference geometry separated from the default view: 0 leaves. No identified embedded print supports were removed.
+Sherpa Mini and modified Sherpa-derived parts retain the ANNEX Engineering License; EVA-derived parts retain GPL-3.0. Credits: SnakeOilXY / ChipCE; Annex Engineering (Sherpa Mini); EVA-3D (EVA). These component licenses are not replaced by the viewer code license.
+Additional credit: Gregoire Saunier (Bear Extruder and X Axis), GPL-3.0. The assembly is the direct-drive KP3S conversion. The source assembly contains no XY belts or full wire routes.

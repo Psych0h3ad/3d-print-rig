@@ -20,7 +20,7 @@ export async function setupPublicInfo({includeDownloads=true,machineId=null}={})
   for(const archive of catalog.source_archives||[]){const p=node('p','');p.append(link('編集用データ：'+archive.label,archive.url));sb.append(p)}
   for(const s of catalog.sources){const row=node('article','');row.className='source-item';row.append(node('strong',s.label),node('p',s.author),link(s.repository||'配布元',s.url));
    const version=node('p','');version.append(node('code',[s.commit,s.version].filter(Boolean).join(' / ')));row.append(version,node('p','適用範囲：'+s.scope),node('p',s.license),node('p',s.changes));
-   if(s.license_url)row.append(link('ライセンス原文',s.license_url));if(s.notice)row.append(node('p',s.notice));sb.append(row)}
+   if(s.license_url)row.append(link('ライセンス原文',s.license_url));if(s.cad_url)row.append(link('元の組立CAD',s.cad_url));if(s.notice_url)row.append(link('変更と部品の出典',s.notice_url));if(s.component_license_url)row.append(link('部品別ライセンス',s.component_license_url));if(s.notice)row.append(node('p',s.notice));sb.append(row)}
   const table=node('table','');table.className='download-table';const head=node('thead','');head.innerHTML='<tr><th>機種 / サイズ</th><th>構成</th><th>STEP</th></tr>';table.append(head);const body=node('tbody','');
   for(const item of catalog.defaults||[]){
    const local=['127.0.0.1','localhost','[::1]'].includes(location.hostname),url=local&&item.local_url?item.local_url:item.url;if(!url)continue;

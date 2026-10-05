@@ -1,0 +1,13 @@
+SnakeOil XY / IDEX
+Author: SnakeOilXY
+Repository: https://github.com/SnakeOilXY/SnakeOil-XY
+Revision: a98641cf6d199b7557ccc511e57664eac0d34243
+Version: v1 · IDEX assembly · dual Mosquito / Sherpa Mini
+Original assembly: https://github.com/SnakeOilXY/SnakeOil-XY/blob/a98641cf6d199b7557ccc511e57664eac0d34243/CAD/v1-IDEX-assembly.step.zip
+License: GPL-3.0 + ANNEX Engineering License
+Native STEP SHA-256: 616e8c233f4320f516a22a7a681de1bf5bb4aeb9ce81bdb856d1bb92540d8df6
+
+Changes: Display mesh conversion and small-detail reduction; material roles; source-mounted axis groups. Author placements and dimensions are preserved, with no placement corrections. Axis controls are offsets from the original CAD pose and cover conservative preview ranges, not firmware travel. Flexible belt meshes use visual endpoint following, not belt mechanics.
+Reference geometry separated from the default view: 96 leaves. No identified embedded print supports were removed.
+Sherpa Mini and modified Sherpa-derived parts retain the ANNEX Engineering License; EVA-derived parts retain GPL-3.0. Credits: SnakeOilXY / ChipCE; Annex Engineering (Sherpa Mini); EVA-3D (EVA). These component licenses are not replaced by the viewer code license.
+Two independent source-mounted heads and their separate X carriage blocks are retained. The duplicate second Sherpa assembly inside each head is separate reference geometry. Source XY belt geometry is partial. IDEX build volume label follows the original project: 250 x 240 x 230 mm.

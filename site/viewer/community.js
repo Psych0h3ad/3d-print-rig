@@ -3,11 +3,11 @@ ensureWorkspaceEntry(import.meta.url);
 import * as THREE from './vendor-r180/three.module.js';
 import {OrbitControls} from './vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
-import {loadCommunity} from './community-loader.mjs?v=5ee07b1dd6fe6207db37';
-import {communitySchema,validateCommunityState} from './community-state.mjs?v=e7dc4353c10ea94a369d';
-import {setupMachineNavigation} from './machines.js?v=9383d20caf1cef38e5d4';
+import {loadCommunity} from './community-loader.mjs?v=bcb8b4999d92a6563b04';
+import {communitySchema,validateCommunityState} from './community-state.mjs?v=8018d585f8d53c6dce6c';
+import {setupMachineNavigation} from './machines.js?v=9afdc567bd48998f220c';
 import {sceneLightingState} from './scene-lighting-state.mjs';
-import {translate} from './i18n.mjs?v=21b0cc2348d37af6ddb4';
+import {translate} from './i18n.mjs?v=510fd59c8295ed9da40b';
 import {rememberDisplayControl} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
@@ -19,8 +19,14 @@ const descriptions={
  mercury_one1_370:'Mercury One.1 · Ender-5 Plus / EVA 2.4 / LGX Lite / Rapido / BLTouch',
  vzbot_330_printed:'VzBot 330 · プリントAWD / Goliath / Vz-HextrudORT / CPAP',
  siboor_sboom_220:'SIBOOR S-BOOM · CoreXZ / Dragon Burner / Sherpa Mini / E3D V6 / Tap',
+ antithesis_aether_mk11:'Antithesis Aether MK1.1 · アルミガントリー / Conch / Galileo 2 · 130 × 100 × 115.5 mm',
+ ratrig_vminion_180:'Rat Rig V-Minion 1.0 · EVA / LGX Lite / Dragonfly BMO / SKR 2',
+ snakeoil_xy_180:'SnakeOil XY · 180 / Mosquito / Sherpa Mini / 3点ベッド',
+ snakeoil_xy_idex:'SnakeOil XY IDEX · 2ヘッド / Mosquito / Sherpa Mini / EBB36',
+ snakeoil_3s_kp3s_180:'SnakeOil XY-3S · KP3S / E3D V6 / Sherpa Mini',
+ snakeoil_proosaxy:'ProosaXY · MK3-SからCoreXY / E3D V6 / Sherpa Mini / 3軸Z',
 };
-const sourceNotices={vzbot_330_printed:'公式プリントAWD v1.2を表示しています。元CADのXYベルトは一部のみで、CPAPホースは含まれていません。',ender3_stock_220:'元の公式CADにはBowdenチューブが含まれていません。'};
+const sourceNotices={vzbot_330_printed:'公式プリントAWD v1.2を表示しています。元CADのXYベルトは一部のみで、CPAPホースは含まれていません。',ender3_stock_220:'元の公式CADにはBowdenチューブが含まれていません。',antithesis_aether_mk11:'公式CADのアルミ仕様です。組立治具・重複部品・MJF向け代替部品を標準表示から分けています。',snakeoil_xy_idex:'左右のヘッドをX・X2で個別に動かせます。元CADに重複したSherpa Miniを標準表示から分けています。XYベルトは一部のみ含まれます。',snakeoil_3s_kp3s_180:'元CADにはXYベルトと全体の配線経路が含まれていません。',snakeoil_proosaxy:'元CADにはXYベルトと全体の配線経路が含まれていません。'};
 export async function mount(scope){
  const $=id=>document.getElementById(id),stage=$('stage'),machine=new URLSearchParams(location.search).get('machine')||'ender3_stock_220',t=v=>translate(v,document.documentElement.lang);
  if(!Object.hasOwn(descriptions,machine))throw Error('Unknown community printer');
@@ -29,14 +35,14 @@ export async function mount(scope){
  const pmrem=scope.resource(new THREE.PMREMGenerator(renderer)),environment=scope.resource(pmrem.fromScene(new RoomEnvironment(),.03));scene.environment=environment.texture;
  const ambient=new THREE.HemisphereLight(0xffffff,0x586b80,.25),sun=new THREE.DirectionalLight(0xffffff,1.4);sun.position.set(2,4,3);scene.add(ambient,sun);
  const grid=new THREE.GridHelper(2,40,0xa8b8b1,0xc5cec9);grid.visible=false;scene.add(grid);
- let current,state,animation=null,frame=null;
- function render(){if(frame!==null||scope.disposed)return;frame=workspaceFrame(time=>{frame=null;if(animation){const u=Math.min(1,(time-animation.start)/12000);setAxes(Object.fromEntries(['x','y','z'].map(k=>[k,animation.from[k]+(animation.to[k]-animation.from[k])*(.5-.5*Math.cos(Math.PI*u))])));if(u===1)animation=null}controls.update();renderer.render(scene,camera);if(animation)render()})}
+ let current,state,axisKeys=['x','y','z'],animation=null,frame=null;
+ function render(){if(frame!==null||scope.disposed)return;frame=workspaceFrame(time=>{frame=null;if(animation){const u=Math.min(1,(time-animation.start)/12000);setAxes(Object.fromEntries(axisKeys.map(k=>[k,animation.from[k]+(animation.to[k]-animation.from[k])*(.5-.5*Math.cos(Math.PI*u))])));if(u===1)animation=null}controls.update();renderer.render(scene,camera);if(animation)render()})}
  function resize(){const r=stage.getBoundingClientRect();renderer.setSize(Math.max(1,r.width),Math.max(1,r.height),false);setResponsiveAspect(camera,controls,r.width,r.height);render()}
  new WorkspaceResizeObserver(resize).observe(stage);controls.addEventListener('change',render);scope.cleanup(()=>{animation=null;current=null});
  workspaceListen(document,'visibilitychange',()=>{if(!document.hidden)resize()});
  function lighting(){const settings=sceneLightingState({darkUI:$('night').checked});scene.background=new THREE.Color(settings.background);scene.environmentIntensity=settings.environmentIntensity;renderer.toneMappingExposure=settings.exposure;ambient.intensity=settings.ambientIntensity;document.body.dataset.roomDark='false';render()}
- function setAxes(next){state.axes=current.adapter.setAxes(next);for(const k of ['x','y','z']){$(k).value=state.axes[k];$(k+'Value').textContent=state.axes[k].toFixed(1)+' mm'}document.body.dataset.pose=JSON.stringify(state.axes);render()}
- function visibleBounds(group){const box=new THREE.Box3();for(const[key,n]of current.adapter.nodes)if(n.visible&&(!group||current.adapter.records.get(key).group===group))box.expandByObject(n);return box}
+ function setAxes(next){state.axes=current.adapter.setAxes(next);for(const k of axisKeys){$(k).value=state.axes[k];$(k+'Value').textContent=state.axes[k].toFixed(1)+' mm'}document.body.dataset.pose=JSON.stringify(state.axes);render()}
+ function visibleBounds(group){const box=new THREE.Box3();for(const[key,n]of current.adapter.nodes)if(n.visible&&(!group||(current.profile.head_groups||[group]).includes(current.adapter.records.get(key).group)))box.expandByObject(n);return box}
  function view(kind='iso'){
   if(!current)return;const box=visibleBounds(kind==='head'?'head':null),center=box.getCenter(new THREE.Vector3());
   const distance=box.getSize(new THREE.Vector3()).length()/2/Math.sin(THREE.MathUtils.degToRad(camera.fov)/2)*1.04;
@@ -50,13 +56,14 @@ export async function mount(scope){
  function describe(){if(!current)return;$('machineDescription').textContent=t(descriptions[machine]);$('sourceNotice').hidden=!sourceNotices[machine];$('sourceNotice').textContent=sourceNotices[machine]?t(sourceNotices[machine]):''}
  workspaceListen(window,'rig-language-change',describe);
  try{
-  const response=await fetch('../COMMUNITY_MACHINES_ASSETS.json?v=native-machines-63b');if(!response.ok)throw Error('Native catalog unavailable');current=await loadCommunity(await response.json(),machine);scene.add(current.root);
-  state={schema:communitySchema,machine,axes:{x:0,y:0,z:0},palette:{...current.profile.palette_defaults},references:false,grid:false,night:$('night').checked};
+  const response=await fetch('../COMMUNITY_MACHINES_ASSETS.json?v=native-machines-68');if(!response.ok)throw Error('Native catalog unavailable');current=await loadCommunity(await response.json(),machine);scene.add(current.root);axisKeys=Object.keys(current.profile.axes);const zeroAxes=()=>Object.fromEntries(axisKeys.map(k=>[k,0]));
+  for(const k of axisKeys)if(!$(k)){const label=document.createElement('label'),span=document.createElement('span'),value=document.createElement('strong'),input=document.createElement('input');label.htmlFor=k;span.className='axislabel';span.append(current.profile.axis_labels?.[k]||k.toUpperCase());value.id=k+'Value';span.append(value);label.append(span);input.id=k;input.type='range';input.step='any';$('z').after(label,input)}
+  state={schema:communitySchema,machine,axes:zeroAxes(),palette:{...current.profile.palette_defaults},references:false,grid:false,night:$('night').checked};
   $('machineTitle').textContent=current.profile.title;document.title=current.profile.title+' · 3D Print Rig';describe();$('machineRevision').textContent=current.profile.source.version;
   $('nativeSource').href=current.profile.source.repository+'/tree/'+current.profile.source.revision;$('nativeSource').textContent=current.profile.source.repository.replace('https://github.com/','')+' · '+current.profile.source.revision.slice(0,12);$('nativeLicense').textContent=current.profile.source.license;
   $('references').disabled=!current.manifest.reference_leaves.length;
-  for(const k of ['x','y','z']){[$(k).min,$(k).max]=current.profile.axes[k];$(k).disabled=false;$(k).oninput=()=>{animation=null;setAxes({...state.axes,[k]:Number($(k).value)})}}
-  $('motionPause').onclick=()=>{animation=null};$('motionPlay').onclick=()=>{const to=Object.fromEntries(['x','y','z'].map(k=>[k,current.profile.axes[k][1]]));animation={start:performance.now(),from:{...state.axes},to};render()};$('resetPose').onclick=()=>{animation=null;setAxes({x:0,y:0,z:0});view()};
+  for(const k of axisKeys){[$(k).min,$(k).max]=current.profile.axes[k];$(k).disabled=false;$(k).oninput=()=>{animation=null;setAxes({...state.axes,[k]:Number($(k).value)})}}
+  $('motionPause').onclick=()=>{animation=null};$('motionPlay').onclick=()=>{const to=Object.fromEntries(axisKeys.map(k=>[k,current.profile.axes[k][1]]));animation={start:performance.now(),from:{...state.axes},to};render()};$('resetPose').onclick=()=>{animation=null;setAxes(zeroAxes());view()};
   for(const k of ['base','accent','frame']){$(k).value=state.palette[k];$(k).oninput=()=>{state.palette[k]=$(k).value;current.adapter.setPalette(state.palette);render()}}
   $('resetPalette').onclick=()=>{state.palette={...current.profile.palette_defaults};for(const k of ['base','accent','frame'])$(k).value=state.palette[k];current.adapter.setPalette(state.palette);render()};
   $('references').onchange=()=>{state.references=$('references').checked;current.adapter.setReferences(state.references);render()};$('gridVisible').onchange=()=>{state.grid=$('gridVisible').checked;grid.visible=state.grid;render()};

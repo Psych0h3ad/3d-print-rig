@@ -1,5 +1,5 @@
 import * as THREE from './vendor-r180/three.module.js';
-import {validateAxes,nativeMotion,displayMotion} from './community-state.mjs?v=e7dc4353c10ea94a369d';
+import {validateAxes,nativeMotion,displayMotion} from './community-state.mjs?v=8018d585f8d53c6dce6c';
 const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
 const smooth=v=>{v=clamp(v);return v*v*(3-2*v)};
 function hat(v,a,l,h,b){return v<=a||v>=b?0:v<l?(v-a)/(l-a):v<=h?1:(b-v)/(b-h)}
@@ -7,6 +7,9 @@ function hat(v,a,l,h,b){return v<=a||v>=b?0:v<l?(v-a)/(l-a):v<=h?1:(b-v)/(b-h)}
 // They are display envelopes; belt tension and link mechanics are not simulated.
 function flexWeights(p,r,profile){
  const k=Number(r.key),id=profile.machine_id,[x,y,z]=p;
+ if(id==='antithesis_aether_mk11'&&k===347)return {native_axes:{x:[0,hat(y,-610.25,-530,-470,-395),0],y:[hat(x,-170.75,-81,-7,163.75),0,0]}};
+ if(id==='ratrig_vminion_180'&&k===141)return {native_axes:{x:[hat(x,-70.68,-34.85,-.15,203.83),0,0],z:[0,0,1]}};
+ if(id==='snakeoil_xy_180'&&r.group==='belt')return {native_axes:{x:[hat(x,-156,-24,24,156)*hat(y,5,180.5,232.9,370.5),0,0],y:[0,hat(y,5,170.76,232.5,370.5),0]}};
  if(id.startsWith('mercury')){
   if(r.group==='tube'){
    const a=profile.flex?.tube_fixed,b=profile.flex?.tube_head;
@@ -32,7 +35,7 @@ function flexWeights(p,r,profile){
  return {custom:[0,0,0]};
 }
 export function createCommunityAdapter(root,manifest,profile){
- const records=new Map(manifest.parts.map(r=>[r.key,r])),nodes=new Map(),initial=new Map(),flex=[];let axes={x:0,y:0,z:0},references=false;
+ const records=new Map(manifest.parts.map(r=>[r.key,r])),nodes=new Map(),initial=new Map(),flex=[];let axes=Object.fromEntries(Object.keys(profile.axes).map(k=>[k,0])),references=false;
  root.traverse(n=>{if(n.userData?.part_key){if(nodes.has(n.userData.part_key))throw Error('Duplicate native part');nodes.set(n.userData.part_key,n)}});
  if(nodes.size!==records.size||nodes.size!==manifest.native_leaf_count)throw Error('Incomplete native assembly');root.updateMatrixWorld(true);
  for(const[key,node]of nodes){
@@ -52,7 +55,7 @@ export function createCommunityAdapter(root,manifest,profile){
   for(const[key,node]of nodes){const r=records.get(key),delta=motions.get(r.group);node.matrixAutoUpdate=false;node.matrix.copy(initial.get(key));node.matrix.elements[12]+=delta[0];node.matrix.elements[13]+=delta[1];node.matrix.elements[14]+=delta[2];node.visible=r.group!=='reference'||references}
   for(const e of flex){
    const a=e.mesh.geometry.attributes.position;a.array.set(e.source);
-   for(let i=0;i<a.count;i++){const w=e.weights[i],delta=w.head!==undefined?head.map(v=>v*w.head):displayMotion(w.custom.map((v,j)=>v*axes[axisNames[j]]),profile);for(let j=0;j<3;j++)a.array[3*i+j]=e.source[3*i+j]+delta[j]}
+   for(let i=0;i<a.count;i++){const w=e.weights[i],delta=w.native_axes?displayMotion([0,1,2].map(j=>Object.entries(w.native_axes).reduce((v,[k,c])=>v+c[j]*axes[k],0)),profile):w.head!==undefined?head.map(v=>v*w.head):displayMotion(w.custom.map((v,j)=>v*axes[axisNames[j]]),profile);for(let j=0;j<3;j++)a.array[3*i+j]=e.source[3*i+j]+delta[j]}
    a.needsUpdate=true;e.mesh.geometry.computeVertexNormals();e.mesh.geometry.computeBoundingBox();e.mesh.geometry.computeBoundingSphere();
   }root.updateMatrixWorld(true);return {...axes};
  }

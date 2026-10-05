@@ -1,5 +1,5 @@
 {
-  "version": "native-community-machines-63b",
+  "version": "native-community-machines-68",
   "base_url": "https://psych0h3ad.github.io/3d-print-rig-community-models/",
   "local_directory": "community-machines-assets",
   "machines": {
@@ -120,6 +120,150 @@
           "encoding": "gzip",
           "decoded_bytes": 111807612,
           "decoded_sha256": "ab8345930a8ccc62c5eb54f72e2020087b6b5f718bdc4ac7008c5bc267411157"
+        }
+      }
+    },
+    "antithesis_aether_mk11": {
+      "machine_id": "antithesis_aether_mk11",
+      "parts": 553,
+      "files": {
+        "assembly_manifest.json": {
+          "path": "aether/assembly_manifest.json",
+          "bytes": 224799,
+          "sha256": "c03e63501e315f22c84fd1bf0dcc06eb46fe946a976749f0eb76c851e716b4a4"
+        },
+        "machine_profile.json": {
+          "path": "aether/machine_profile.json",
+          "bytes": 721,
+          "sha256": "597d91abbd4b51c8f1d047eb1e1712c0fecb1cf1c8a1fda14ed041bb9e79ae05"
+        },
+        "model.glb": {
+          "path": "aether/model.glb.gz",
+          "bytes": 5581564,
+          "sha256": "26341d7345a0c5462c74453843763fde7b03c661a473f95076e9bb041090899c",
+          "encoding": "gzip",
+          "decoded_bytes": 17494824,
+          "decoded_sha256": "a9040b607a9eef0cde239e3b2d38dd1cd7d076191fb2d4995b91115eac3a9457"
+        }
+      }
+    },
+    "ratrig_vminion_180": {
+      "machine_id": "ratrig_vminion_180",
+      "parts": 1171,
+      "files": {
+        "assembly_manifest.json": {
+          "path": "vminion/assembly_manifest.json",
+          "bytes": 548458,
+          "sha256": "7d19ae9e9a45abad13a44137b08b6ae20c0d923404cc4474eee7c46512ea02b9"
+        },
+        "machine_profile.json": {
+          "path": "vminion/machine_profile.json",
+          "bytes": 728,
+          "sha256": "e57ab95a3cd6f67ce78bc735b44cad19a34d50e26a8fd101375e936a18536a2c"
+        },
+        "model.glb": {
+          "path": "vminion/model.glb.gz",
+          "bytes": 9945390,
+          "sha256": "b374caf56dfa0f7f82800ff73ea461e244569de5aa4a159a254f6dbcca39d2da",
+          "encoding": "gzip",
+          "decoded_bytes": 30054088,
+          "decoded_sha256": "ab40f7919677aadcd5aae4d148a7815b36b309a878153ed19ec58c614785c0a8"
+        }
+      }
+    },
+    "snakeoil_xy_180": {
+      "machine_id": "snakeoil_xy_180",
+      "parts": 1524,
+      "files": {
+        "assembly_manifest.json": {
+          "path": "snake180/assembly_manifest.json",
+          "bytes": 457491,
+          "sha256": "e5a279c366192ff837e859934438a1c0768467615ad992adcc7e10d63522c9e1"
+        },
+        "machine_profile.json": {
+          "path": "snake180/machine_profile.json",
+          "bytes": 719,
+          "sha256": "0f6f169a75184bbf6192ab060861725b2554941ac8f9368b9aec3eea818c2ecf"
+        },
+        "model.glb": {
+          "path": "snake180/model.glb.gz",
+          "bytes": 11873680,
+          "sha256": "9b5ef0bab1b618e0270b0dc36f360e638b20fe54f521e7023953f2610c40acf5",
+          "encoding": "gzip",
+          "decoded_bytes": 39988852,
+          "decoded_sha256": "a3f4dc824c421b77a8f3c3b16f6140abaf1fd607bf4b63c8764b28211f9b3bfb"
+        }
+      }
+    },
+    "snakeoil_xy_idex": {
+      "machine_id": "snakeoil_xy_idex",
+      "parts": 2386,
+      "files": {
+        "assembly_manifest.json": {
+          "path": "snakeidex/assembly_manifest.json",
+          "bytes": 938490,
+          "sha256": "4b2ca4db41f079646ef94df0eacacd93b4c75f6dd0b31b170db7baa11bf65929"
+        },
+        "machine_profile.json": {
+          "path": "snakeidex/machine_profile.json",
+          "bytes": 799,
+          "sha256": "1d0780969959aef9d9deff75123c9b792880b8e60f98b1b959487d236d3b021a"
+        },
+        "model.glb": {
+          "path": "snakeidex/model.glb.gz",
+          "bytes": 18228899,
+          "sha256": "34d7daaed40a6cdb9d9193642b9e41b08324731793e14fee47bf737af13b983c",
+          "encoding": "gzip",
+          "decoded_bytes": 59922980,
+          "decoded_sha256": "2c145835e2b4defa28bdaccf16ac2f28f90fef81f831bdd09a9efadc5019baa9"
+        }
+      }
+    },
+    "snakeoil_3s_kp3s_180": {
+      "machine_id": "snakeoil_3s_kp3s_180",
+      "parts": 343,
+      "files": {
+        "assembly_manifest.json": {
+          "path": "snake3s/assembly_manifest.json",
+          "bytes": 114323,
+          "sha256": "0003ee416069cd4db73a69aaa198ca023aa5e7951c29ad1167a3a888b6e49ff8"
+        },
+        "machine_profile.json": {
+          "path": "snake3s/machine_profile.json",
+          "bytes": 706,
+          "sha256": "02da6808d34ba7b9fad880aac99cbb43ceebdc0a0cce6053744b6cc319403e87"
+        },
+        "model.glb": {
+          "path": "snake3s/model.glb.gz",
+          "bytes": 3834216,
+          "sha256": "3033a6b5b70bbc264c79d19100316d3d9bcc550722caf0281943e15c509cb9a1",
+          "encoding": "gzip",
+          "decoded_bytes": 11098956,
+          "decoded_sha256": "f1ac81542266763bd24c1f5e6dfe5ea1e41219c252736e75f2dfccfd0f12c7a9"
+        }
+      }
+    },
+    "snakeoil_proosaxy": {
+      "machine_id": "snakeoil_proosaxy",
+      "parts": 1136,
+      "files": {
+        "assembly_manifest.json": {
+          "path": "proosa/assembly_manifest.json",
+          "bytes": 323596,
+          "sha256": "33fda73cee50a828b2049a7463bb07ca039a7a323882696801d228c50bc2cabc"
+        },
+        "machine_profile.json": {
+          "path": "proosa/machine_profile.json",
+          "bytes": 716,
+          "sha256": "73ed7309c243868d66469a1a25da058de906b1bc9887ab8e69bbd713f2bbd4d7"
+        },
+        "model.glb": {
+          "path": "proosa/model.glb.gz",
+          "bytes": 7335674,
+          "sha256": "100b69c458dc66b5beccefb50481d4db2bf985008e560f65c4be81cda4f0d9fa",
+          "encoding": "gzip",
+          "decoded_bytes": 27820572,
+          "decoded_sha256": "5cd45b636ab63d579fa2a86c62fd3a40f774b5d6957f00c3782a9a68dd529bf0"
         }
       }
     }
