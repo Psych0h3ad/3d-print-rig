@@ -1,9 +1,9 @@
-import {translate} from './i18n.mjs?v=e3ba75776c6578a73d7a';
+import {translate} from './i18n.mjs?v=92f8d10f2c2cbe531ab0';
 import {WorkspaceScope, activateScope} from './workspace-lifecycle.mjs';
 import {bindWorkspaceNavigation, setWorkspaceLeaving, workspaceTarget, workspaceURL, replaceWorkspaceURL} from './workspace-navigation.mjs?v=5c6f4dcd051bb1336e43';
-import {setupWorkspace} from './workspace-ui.mjs?v=7c8af25c14ba373cfeb2';
+import {setupWorkspace} from './workspace-ui.mjs?v=097b1901a71c7f63e1c0';
 import {applyDisplay} from './display-preferences.mjs?v=9860960509e28d17f3fd';
-import {machinePage} from './machines.js?v=9afdc567bd48998f220c';
+import {machinePage} from './machines.js?v=dedc575bbef34e348ec3';
 
 const controllers = new Set(['bootstrap.js','v24-bootstrap.js','app.js','v24-app.js','vanilla-trident.js','v24-reference.js','v0-app.js','micron.js','kit-reference.js','ratrig.js','crossant.js','toolheads.js','gantries.js','components.js','toolchangers.js','e3ng.js','community.js','positron.js','remorph.js', 'annex.js']);
 document.documentElement.dataset.workspaceSession = crypto.randomUUID();

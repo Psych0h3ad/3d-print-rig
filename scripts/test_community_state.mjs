@@ -10,7 +10,7 @@ const state={schema:communitySchema,machine:profile.machine_id,axes:{x:0,y:0,z:0
 assert.deepEqual(validateCommunityState(JSON.parse(JSON.stringify(state)),profile),state);
 for(const mutate of [s=>s.machine='another',s=>s.schema='unsupported',s=>s.axes.x=NaN,s=>s.palette.base='red',s=>s.grid=1,s=>s.camera.position=[0,.3,0],s=>s.camera.up=[0,0,0]]){const bad=structuredClone(state);mutate(bad);assert.throws(()=>validateCommunityState(bad,profile))}
 const catalog=JSON.parse(readFileSync(new URL('../site/COMMUNITY_MACHINES_ASSETS.json',import.meta.url)));
-assert.equal(Object.keys(catalog.machines).length,11);
+assert.equal(Object.keys(catalog.machines).length,12);
 for(const [id,spec] of Object.entries(catalog.machines)){
  const choice=machineChoices.find(x=>x.id===id);assert.ok(choice);assert.ok(choice.page.includes('community.html'));assert.ok(machineFamilies[choice.family]);assert.ok(machineVendors[choice.vendor]);
  assert.equal(spec.machine_id,id);assert.ok(spec.parts>200);for(const file of Object.values(spec.files)){assert.ok(file.bytes>0);assert.match(file.sha256,/^[a-f0-9]{64}$/);assert.ok(!file.path.includes('..'))}

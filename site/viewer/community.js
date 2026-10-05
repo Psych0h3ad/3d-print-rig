@@ -3,17 +3,18 @@ ensureWorkspaceEntry(import.meta.url);
 import * as THREE from './vendor-r180/three.module.js';
 import {OrbitControls} from './vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
-import {loadCommunity} from './community-loader.mjs?v=5e4a49aab9ad3e28e7c0';
+import {loadCommunity} from './community-loader.mjs?v=11dca24fee78f21e1c3e';
 import {communitySchema,validateCommunityState} from './community-state.mjs?v=8018d585f8d53c6dce6c';
-import {setupMachineNavigation} from './machines.js?v=9afdc567bd48998f220c';
+import {setupMachineNavigation} from './machines.js?v=dedc575bbef34e348ec3';
 import {sceneLightingState} from './scene-lighting-state.mjs';
-import {translate} from './i18n.mjs?v=e3ba75776c6578a73d7a';
+import {translate} from './i18n.mjs?v=92f8d10f2c2cbe531ab0';
 import {rememberDisplayControl} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {setupRenderExport} from './render-export.js';
 import {setupPublicInfo} from './public-info.js';
 const descriptions={
+ lh_stinger_200:'LH Stinger 1.0 · 200 mmカーボンベッド / Orbiter V2.0 / Dragon HF / Y軸AWD',
  ender3_stock_220:'初代Ender-3の標準構成 · Bowden / Cartesian',
  mercury_one1_235:'Mercury One.1 · Ender-5 / EVA 2.4 / LGX Lite / Rapido / BLTouch',
  mercury_one1_370:'Mercury One.1 · Ender-5 Plus / EVA 2.4 / LGX Lite / Rapido / BLTouch',
@@ -26,7 +27,7 @@ const descriptions={
  snakeoil_3s_kp3s_180:'SnakeOil XY-3S · KP3S / E3D V6 / Sherpa Mini',
  snakeoil_proosaxy:'ProosaXY · MK3-SからCoreXY / E3D V6 / Sherpa Mini / 3軸Z',
 };
-const sourceNotices={vzbot_330_printed:'公式プリントAWD v1.2を表示しています。元CADのXYベルトは一部のみで、CPAPホースは含まれていません。',ender3_stock_220:'元の公式CADにはBowdenチューブが含まれていません。',antithesis_aether_mk11:'公式CADのアルミ仕様です。組立治具・重複部品・MJF向け代替部品を標準表示から分けています。',snakeoil_xy_idex:'左右のヘッドをX・X2で個別に動かせます。元CADに重複したSherpa Miniを標準表示から分けています。XYベルトは一部のみ含まれます。',snakeoil_3s_kp3s_180:'元CADにはXYベルトと全体の配線経路が含まれていません。',snakeoil_proosaxy:'元CADにはXYベルトと全体の配線経路が含まれていません。'};
+const sourceNotices={lh_stinger_200:'組立治具とホットエンド延長部品を標準表示から分けています。電子ボックスはこのCADに含まれていません。',vzbot_330_printed:'公式プリントAWD v1.2を表示しています。元CADのXYベルトは一部のみで、CPAPホースは含まれていません。',ender3_stock_220:'元の公式CADにはBowdenチューブが含まれていません。',antithesis_aether_mk11:'公式CADのアルミ仕様です。組立治具・重複部品・MJF向け代替部品を標準表示から分けています。',snakeoil_xy_idex:'左右のヘッドをX・X2で個別に動かせます。元CADに重複したSherpa Miniを標準表示から分けています。XYベルトは一部のみ含まれます。',snakeoil_3s_kp3s_180:'元CADにはXYベルトと全体の配線経路が含まれていません。',snakeoil_proosaxy:'元CADにはXYベルトと全体の配線経路が含まれていません。'};
 export async function mount(scope){
  const $=id=>document.getElementById(id),stage=$('stage'),machine=new URLSearchParams(location.search).get('machine')||'ender3_stock_220',t=v=>translate(v,document.documentElement.lang);
  if(!Object.hasOwn(descriptions,machine))throw Error('Unknown community printer');
@@ -56,7 +57,7 @@ export async function mount(scope){
  function describe(){if(!current)return;$('machineDescription').textContent=t(descriptions[machine]);$('sourceNotice').hidden=!sourceNotices[machine];$('sourceNotice').textContent=sourceNotices[machine]?t(sourceNotices[machine]):''}
  workspaceListen(window,'rig-language-change',describe);
  try{
-  const response=await fetch('../COMMUNITY_MACHINES_ASSETS.json?v=a8a68a5b5e69f83d9677');if(!response.ok)throw Error('Native catalog unavailable');current=await loadCommunity(await response.json(),machine);scene.add(current.root);axisKeys=Object.keys(current.profile.axes);const zeroAxes=()=>Object.fromEntries(axisKeys.map(k=>[k,0]));
+  const response=await fetch('../COMMUNITY_MACHINES_ASSETS.json?v=c5f82927f4d78938f533');if(!response.ok)throw Error('Native catalog unavailable');current=await loadCommunity(await response.json(),machine);scene.add(current.root);axisKeys=Object.keys(current.profile.axes);const zeroAxes=()=>Object.fromEntries(axisKeys.map(k=>[k,0]));
   for(const k of axisKeys)if(!$(k)){const label=document.createElement('label'),span=document.createElement('span'),value=document.createElement('strong'),input=document.createElement('input');label.htmlFor=k;span.className='axislabel';span.append(current.profile.axis_labels?.[k]||k.toUpperCase());value.id=k+'Value';span.append(value);label.append(span);input.id=k;input.type='range';input.step='any';$('z').after(label,input)}
   state={schema:communitySchema,machine,axes:zeroAxes(),palette:{...current.profile.palette_defaults},references:false,grid:false,night:$('night').checked};
   $('machineTitle').textContent=current.profile.title;document.title=current.profile.title+' · 3D Print Rig';describe();$('machineRevision').textContent=current.profile.source.version;

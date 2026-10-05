@@ -7,6 +7,7 @@ const move=values=>new THREE.Matrix4().makeTranslation(...values.map(x=>x*.001))
 const rotation=(axis,angle)=>new THREE.Matrix4().makeRotationAxis(axis,angle);
 const X=new THREE.Vector3(1,0,0),Y=new THREE.Vector3(0,1,0),Z=new THREE.Vector3(0,0,1);
 const around=(point,matrix)=>move(point).multiply(matrix).multiply(move(point.map(x=>-x)));
+const blend=(from,to,amount)=>{const a=new THREE.Vector3(),b=new THREE.Vector3(),qa=new THREE.Quaternion(),qb=new THREE.Quaternion(),scale=new THREE.Vector3();from.decompose(a,qa,scale);to.decompose(b,qb,scale);return new THREE.Matrix4().compose(a.lerp(b,amount),qa.slerp(qb,amount),new THREE.Vector3(1,1,1))};
 
 // The two dowels travel in the native J-shaped CNC slots before rotation.
 // Hand-carried parts use explicit demonstration paths, outside the hinge.
@@ -17,15 +18,15 @@ export function positronFoldTransforms(profile,percent){
  matrices.glass=move([350*setAside,-151*setAside,230*slide+30*setAside]);
  const bedUnscrew=phase(p,.18,.205),bedPlace=phase(p,.205,.225),bedSettle=phase(p,.225,.25);
  matrices.bed_screw=move([225*bedPlace,35*bedUnscrew-180*bedSettle,230*bedPlace]).multiply(around(f.holder_pivot_mm,rotation(X,Math.PI/2*bedSettle)));
- const holderOut=phase(p,.25,.35),holderSet=phase(p,.54,.58),holderAside=phase(p,.50,.54),holderReturn=phase(p,.58,.62);
+ const holderOut=phase(p,.25,.35),holderSet=phase(p,.54,.58),holderAside=phase(p,.50,.54);
  const holderPivot=f.holder_pivot_mm;
- const holderFinal=new THREE.Quaternion().setFromRotationMatrix(rotation(Z,-Math.PI/2).multiply(rotation(X,-Math.PI/2)));
+ const holderFinal=new THREE.Quaternion().setFromRotationMatrix(rotation(X,THREE.MathUtils.degToRad(f.storage?.holder_flip_degrees||0)).multiply(rotation(Z,-Math.PI/2)).multiply(rotation(X,-Math.PI/2)));
  const holderQ=new THREE.Quaternion().slerp(holderFinal,holderSet);
  const holderRotation=new THREE.Matrix4().makeRotationFromQuaternion(holderQ);
  // The V stays in a plane parallel to the front of the Z rail, as in the
  // author's folding guide. The mouth faces the column, with the arms tucked
  // underneath it and the apex extending over the left side of the base.
- matrices.holder=move([-230*holderAside+106*holderReturn,40*holderOut*(1-holderSet)-30*holderSet,20*holderOut*(1-holderSet)-23*holderSet]).multiply(around(holderPivot,holderRotation));
+ matrices.holder=move([-230*holderAside,40*holderOut*(1-holderSet)-30*holderSet,20*holderOut*(1-holderSet)-23*holderSet]).multiply(around(holderPivot,holderRotation));
  const holderApex=v(f.holder_apex_mm).applyMatrix4(matrices.holder).multiplyScalar(1000).toArray();
  matrices.holder=around(holderApex,rotation(Y,THREE.MathUtils.degToRad(-8)*holderSet)).multiply(matrices.holder);
  const columnOut=phase(p,.35,.375),columnPlace=phase(p,.375,.42);
@@ -49,10 +50,28 @@ export function positronFoldTransforms(profile,percent){
   matrices.holder=move([0,60*Math.sin(Math.PI*track),0]).multiply(column).multiply(matrices.holder);
  }
  const dx=f.park_head_dx_mm*phase(p,.42,.50)+(f.stow_head_dx_mm-f.park_head_dx_mm)*phase(p,.92,1);
- const beamMove=0;
+ const beamMove=(f.park_beam_dz_mm||0)*phase(p,.42,.50);
  matrices.beam=move([0,0,beamMove]);matrices.head=move([dx,0,beamMove]);
- const steps=[.18,.25,.35,.42,.50,.62,.72,.92,1];const step=steps.findIndex(t=>p<t);
- return {percent,step:step<0?9:step,angleDegrees:angle*180/Math.PI,pin_mm:pin.toArray().map(n=>n*1000),matrices};
+ // The detached bed holder is seated over the left storage hole. The removed
+ // thumb screws are put through the holder and the right storage hole last.
+ // These are the author's storage pins, not additional assembly hardware.
+ if(f.storage){
+  const s=f.storage;
+  const holderTilt=s.holder_tilt_axis?rotation(new THREE.Vector3(...s.holder_tilt_axis).normalize(),THREE.MathUtils.degToRad(s.holder_slope_degrees||0)):rotation(Z,THREE.MathUtils.degToRad(s.holder_slope_degrees||0));
+  const bedStored=move(s.holder_hole_top_mm).multiply(holderTilt).multiply(rotation(Y,THREE.MathUtils.degToRad(90+(s.holder_yaw_degrees||0)))).multiply(move(s.holder_source_hole_top_mm.map(x=>-x)));
+  // Turn the V over: its spring retainers face upward in the storage guide.
+  // The removed screw keeps its downward insertion direction independently.
+  const center=[...s.holder_hole_top_mm];center[1]-=(s.holder_thickness_mm||0)/2;
+  const holderStored=around(center,rotation(X,THREE.MathUtils.degToRad(s.holder_flip_degrees||0))).multiply(bedStored);
+  const holderSeat=phase(p,.92,.96);
+  matrices.holder=move([0,20*Math.sin(Math.PI*holderSeat),0]).multiply(blend(matrices.holder,holderStored,holderSeat));
+  const columnStored=move(s.column_screw_seat_mm).multiply(rotation(Z,THREE.MathUtils.degToRad(s.column_screw_lean_degrees||0))).multiply(rotation(X,Math.PI/2)).multiply(move(s.column_screw_source_seat_mm.map(x=>-x)));
+  const travel=phase(p,.94,.98),insert=phase(p,.98,1);
+  matrices.bed_screw=blend(matrices.bed_screw,move([0,35*(1-insert),0]).multiply(bedStored),travel);
+  matrices.column_screw=blend(matrices.column_screw,move([0,35*(1-insert),0]).multiply(columnStored),travel);
+ }
+ const steps=[.18,.25,.35,.42,.50,.62,.72,.92,.96,1];const step=steps.findIndex(t=>p<t);
+ return {percent,step:step<0?10:step,angleDegrees:angle*180/Math.PI,pin_mm:pin.toArray().map(n=>n*1000),matrices};
 }
 
 export function createPositronAdapter(root,manifest,profile){

@@ -1,5 +1,5 @@
 {
-  "version": "native-surface-routes-69",
+  "version": "native-community-stinger-72",
   "base_url": "https://psych0h3ad.github.io/3d-print-rig-community-models/",
   "local_directory": "community-machines-assets",
   "machines": {
@@ -264,6 +264,30 @@
           "encoding": "gzip",
           "decoded_bytes": 49029212,
           "decoded_sha256": "99018bcd4ca8fd9a0fdd2b13f764dea7e2de9471979db8766b947e876c977e87"
+        }
+      }
+    },
+    "lh_stinger_200": {
+      "machine_id": "lh_stinger_200",
+      "parts": 875,
+      "files": {
+        "assembly_manifest.json": {
+          "path": "stinger/assembly_manifest.json",
+          "bytes": 333262,
+          "sha256": "91491f6fc0eb24f5079103f4c169444a0a0e00f3a93576e88ebe54523a88622e"
+        },
+        "machine_profile.json": {
+          "path": "stinger/machine_profile.json",
+          "bytes": 725,
+          "sha256": "57e497f6e0cf5c79d742501082bcbbc000d5dc48476e94e171f2f13d5a313623"
+        },
+        "model.glb": {
+          "path": "stinger/model.glb.gz",
+          "bytes": 42183419,
+          "sha256": "d6c8595ecd48da1251d9149aa02736577ed5009b31c34eb0944d8f8820b7d681",
+          "encoding": "gzip",
+          "decoded_bytes": 91008944,
+          "decoded_sha256": "33178ba53414065a11b307fb0bcecb7fbd3c25ae532840a5c60f0ce13809127e"
         }
       }
     }

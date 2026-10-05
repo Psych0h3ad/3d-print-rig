@@ -1,6 +1,7 @@
 import * as THREE from './vendor-r180/three.module.js';
 import {validateAxes,nativeMotion,displayMotion} from './community-state.mjs?v=8018d585f8d53c6dce6c';
 import {mercuryTubeSpecs,mercuryTubeRoute} from './mercury-tube-routes.mjs?v=d27d615757ad1f732409';
+import {stingerFlexWeights} from './stinger-flex.mjs?v=1e3394a27814499e46e1';
 const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
 const smooth=v=>{v=clamp(v);return v*v*(3-2*v)};
 function hat(v,a,l,h,b){return v<=a||v>=b?0:v<l?(v-a)/(l-a):v<=h?1:(b-v)/(b-h)}
@@ -8,6 +9,7 @@ function hat(v,a,l,h,b){return v<=a||v>=b?0:v<l?(v-a)/(l-a):v<=h?1:(b-v)/(b-h)}
 // They are display envelopes; belt tension and link mechanics are not simulated.
 function flexWeights(p,r,profile){
  const k=Number(r.key),id=profile.machine_id,[x,y,z]=p;
+ if(id==='lh_stinger_200')return {custom:stingerFlexWeights(p,r.key)};
  if(id==='antithesis_aether_mk11'&&k===347)return {native_axes:{x:[0,hat(y,-610.25,-530,-470,-395),0],y:[hat(x,-170.75,-81,-7,163.75),0,0]}};
  if(id==='ratrig_vminion_180'&&k===141)return {native_axes:{x:[hat(x,-70.68,-34.85,-.15,203.83),0,0],z:[0,0,1]}};
  if(id==='snakeoil_xy_180'&&r.group==='belt')return {native_axes:{x:[hat(x,-156,-24,24,156)*hat(y,5,180.5,232.9,370.5),0,0],y:[0,hat(y,5,170.76,232.5,370.5),0]}};
@@ -36,7 +38,7 @@ export function createCommunityAdapter(root,manifest,profile){
  for(const[key,node]of nodes){
   initial.set(key,node.matrix.clone());const r=records.get(key);
   node.traverse(m=>{if(!m.isMesh)return;m.frustumCulled=false;m.material=Array.isArray(m.material)?m.material.map(x=>x.clone()):m.material.clone();for(const material of [].concat(m.material))if(material.transparent)material.depthWrite=false;
-   if(!['tube','belt','chain','bed_wire','x_belt'].includes(r.group))return;
+   if(!['tube','belt','chain','bed_wire','x_belt','compound_motion'].includes(r.group))return;
    if(r.group==='tube'&&mercuryTubeSpecs[profile.machine_id]){
     m.geometry=m.geometry.clone();const source=m.geometry.attributes.position.array.slice();
     const route=mercuryTubeRoute(profile.machine_id,axes);m.geometry.dispose();m.geometry=new THREE.TubeGeometry(route.curve,128,.002,12,false);

@@ -1,0 +1,95 @@
+{
+  "source": {
+    "repository": "https://github.com/Positron3D/Positron",
+    "website": "https://positron3d.com/",
+    "revision": "75ac17a07e02694e1fc80a3a256ede64cca90e6d",
+    "version": "V3.2.2 / 2026-01-26",
+    "path": "Printed Parts & CAD Models/CAD Files/PositronV3.2.2_2026-01-26.step.zip",
+    "license": "CC-BY-SA-4.0",
+    "archive_sha256": "c68e84a45838e16f5e43fc5a480ccec2fd1fb2e388024f410808de15548cab48"
+  },
+  "guide": "https://ldomotion.com/guides/10---positron-v32---folding",
+  "fold": {
+    "dowel_source_mm": [
+      0.0,
+      17.168928627539657,
+      -101.605365990038
+    ],
+    "slot_center_mm": [
+      0.0,
+      28.96892862753967,
+      -114.07244699003799
+    ],
+    "slot_start_mm": [
+      0.0,
+      17.368928627539674,
+      -101.56553099003798
+    ],
+    "slot_end_mm": [
+      0.0,
+      36.734709982802656,
+      -125.67134599003799
+    ],
+    "slot_radius_mm": 11.6,
+    "latch_pivot_mm": [
+      -18.615399999999994,
+      189.14881198280267,
+      -136.52020077336
+    ],
+    "holder_pivot_mm": [
+      0.0,
+      172.84235049725766,
+      -108.02020077335999
+    ],
+    "column_fold_degrees": 90,
+    "park_head_dx_mm": 116,
+    "stow_head_dx_mm": 70,
+    "carriage_dz_mm": 30,
+    "holder_apex_mm": [
+      0,
+      168.09235049725362,
+      -118.10181592937244
+    ],
+    "storage": {
+      "holder_source_hole_top_mm": [
+        9.947598300641403e-13,
+        177.59235049725748,
+        -108.02020077326199
+      ],
+      "holder_hole_top_mm": [
+        -125.05843685386398,
+        59.067510671910895,
+        -2.0066996913857054
+      ],
+      "column_screw_source_seat_mm": [
+        0.0,
+        26.801703627539666,
+        -141.62020077336
+      ],
+      "column_screw_seat_mm": [
+        124.4814452409877,
+        45,
+        -2.006699691396989
+      ],
+      "guide_step": 10,
+      "guide": "https://ldomotion.com/guides/10---positron-v32---folding",
+      "source_holes": [
+        "01228",
+        "01227"
+      ],
+      "bed_screw": "00116",
+      "column_screw": "00040",
+      "holder_slope_degrees": 0,
+      "holder_yaw_degrees": 1,
+      "holder_tilt_axis": [
+        1,
+        0,
+        0
+      ],
+      "column_screw_lean_degrees": -5.5,
+      "holder_flip_degrees": 180,
+      "holder_thickness_mm": 9.5
+    },
+    "park_beam_dz_mm": -11.18
+  }
+}

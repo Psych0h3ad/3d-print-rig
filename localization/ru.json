@@ -7245,6 +7245,14 @@
     "ui.positron.storage_screws": {
       "source_revision": "c52cd9e7884e3e32d866",
       "text": "Вставить снятые винты в отверстия для хранения"
+    },
+    "stinger.description": {
+      "source_revision": "3f59d8a2a003de5e63a0",
+      "text": "LH Stinger 1.0 · карбоновый стол 200 mm / Orbiter V2.0 / Dragon HF / AWD по оси Y"
+    },
+    "stinger.reference_notice": {
+      "source_revision": "9833ba6120c21522ff5e",
+      "text": "Сборочные приспособления и детали удлинителя хотэнда выделены в отдельную справочную геометрию. Корпус электроники не входит в этот CAD."
     }
   }
 }

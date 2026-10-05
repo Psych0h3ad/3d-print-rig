@@ -1,0 +1,28 @@
+LH Stinger 1.0 / 200 mm CF bed
+Author: Andrei / lhndo (LH Stinger); community contributors.
+Repository: https://github.com/lhndo/LH-Stinger
+Revision: 4fb1e2eb917bfe78ae29cbde5a3793a80c02cc80
+Native assembly: LH Stinger 1.0 v23 / Toolhead v220
+Original editable CAD: https://github.com/lhndo/LH-Stinger/tree/4fb1e2eb917bfe78ae29cbde5a3793a80c02cc80/CAD
+Original STEP: https://github.com/lhndo/LH-Stinger/blob/4fb1e2eb917bfe78ae29cbde5a3793a80c02cc80/CAD/Printer/LH%20Stinger.step.zip
+Native STEP SHA-256: 0f77ee05b0c25ddfa5c71b6d95093e4a4f140e096784e5cfffb6e23a44e3de7c
+License: CC-BY-NC-SA-4.0. These CAD terms are independent of the viewer code license.
+
+Changes: Native CAD surface tessellation, checked small-hardware mesh reduction,
+material roles and mounted axis groups. Original placements and dimensions remain
+unchanged. The standard view uses the 200 mm carbon bed, Orbiter V2.0, Dragon HF,
+two 5015 part-cooling fans and a 4010 hotend fan. It is the author's complete
+printer assembly; the separately published electronics box is not included.
+The 40 EXTRAS leaves (assembly guides, tools and optional frame accessories) and
+two Dragon extender leaves are optional reference geometry. No identified embedded
+printing supports were removed from the native assembly. Source cable/PCB leaves
+333 and 859 contain invalid source BREP geometry; their display surfaces are retained.
+X/Z belts are 6 mm; the Y belt is 9 mm. Preview controls are conservative offsets
+from the native CAD pose, not firmware home coordinates. Flexible source belts and
+cables follow their endpoints for display; tension, link mechanics and physical
+cable bending are not simulated. New toolhead or mod combinations are not implied.
+
+Original project credits include Dalegaard (toolhead inspiration), Renató Kulman
+(silicone sock mold), fns720 (Wago mounts), Technoturk (SSR cover), Arthur_C
+(extrusion cable clip) and John_S (T-nut clip). The assembly includes commercial
+reference hardware from LDO, Phaetus, Orbiter, Sunon, Omron and other suppliers.

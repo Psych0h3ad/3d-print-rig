@@ -1470,6 +1470,22 @@
       "notice_url": "../licenses/community-machines/proosa/NOTICE.txt",
       "cad_url": "https://github.com/SnakeOilXY/ProosaXY/blob/c43b9e46b5127aa138ef4561ba0d22329837d0df/src/MAIN-ASSEMBLY.step.zip",
       "component_license_url": "../licenses/community-machines/proosa/ANNEX_LICENSE.md"
+    },
+    {
+      "id": "community_stinger",
+      "label": "LH Stinger 1.0 · 200 mm CF bed",
+      "author": "Andrei / lhndo",
+      "repository": "lhndo/LH-Stinger",
+      "url": "https://github.com/lhndo/LH-Stinger",
+      "commit": "4fb1e2eb917bfe78ae29cbde5a3793a80c02cc80",
+      "version": "LH Stinger 1.0 · assembly v23 / toolhead v220",
+      "license": "CC-BY-NC-SA-4.0",
+      "license_url": "../licenses/community-machines/stinger/LICENSE.txt",
+      "scope": "Native complete-machine reference assembly and display meshes.",
+      "changes": "Checked native surface conversion, material roles and source-mounted axis preview.",
+      "notice": "Assembly aids and Dragon extender are optional reference geometry. Original CAD placements retained.",
+      "notice_url": "../licenses/community-machines/stinger/NOTICE.txt",
+      "cad_url": "https://github.com/lhndo/LH-Stinger/blob/4fb1e2eb917bfe78ae29cbde5a3793a80c02cc80/CAD/Printer/LH%20Stinger.step.zip"
     }
   ],
   "defaults": [

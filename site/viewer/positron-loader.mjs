@@ -1,6 +1,6 @@
 import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
 import {extraAssetBase,checkedExtraAsset} from './extra-asset-integrity.mjs';
-import {createPositronAdapter} from './positron-fold.mjs?v=c795bca2d69392919256';
+import {createPositronAdapter} from './positron-fold.mjs?v=04edc193d74fda9ebab3';
 export async function loadPositron(index,{signal}={}){
  if(index.machine_id!=='positron_v322'||index.parts!==1314)throw Error('Invalid Positron catalog');
  const base=extraAssetBase(index,import.meta.url),read=async name=>JSON.parse(new TextDecoder().decode(await checkedExtraAsset(base,index.files[name],{signal})));

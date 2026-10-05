@@ -3,18 +3,18 @@ ensureWorkspaceEntry(import.meta.url);
 import * as THREE from './vendor-r180/three.module.js';
 import {OrbitControls} from './vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
-import {loadPositron} from './positron-loader.mjs?v=528f1da191b938471260';
+import {loadPositron} from './positron-loader.mjs?v=f2d74e670c3a3348323d';
 import {positronSchema,validatePositronState} from './positron-state.mjs?v=8296d1b775fbca04462f';
-import {setupMachineNavigation} from './machines.js?v=9afdc567bd48998f220c';
+import {setupMachineNavigation} from './machines.js?v=dedc575bbef34e348ec3';
 import {sceneLightingState} from './scene-lighting-state.mjs';
-import {translate} from './i18n.mjs?v=e3ba75776c6578a73d7a';
+import {translate} from './i18n.mjs?v=92f8d10f2c2cbe531ab0';
 import {rememberDisplayControl} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {setupRenderExport} from './render-export.js';
 import {setupPublicInfo} from './public-info.js';
 
-const foldSteps=['ガラスベッドを外す','ベッドのネジを外す','Vホルダーを外す','ラッチを下げ、支柱のネジを外す','ヘッドを右端へ移動','Vホルダーを収納姿勢へ','ピンをJ字溝の回転位置へ移動','支柱を倒す','ヘッドを支柱側へ戻す','折り畳み完了'];
+const foldSteps=['ガラスベッドを外す','ベッドのネジを外す','Vホルダーを外す','ラッチを下げ、支柱のネジを外す','ヘッドを右端へ移動','Vホルダーを収納姿勢へ','ピンをJ字溝の回転位置へ移動','支柱を倒す','Vホルダーを左の収納穴に合わせる','外したネジを左右の収納穴に差し込む','折り畳み完了'];
 export async function mount(scope){
  const $=id=>document.getElementById(id),stage=$('stage'),machine='positron_v322',t=text=>translate(text,document.documentElement.lang);
  const requested=new URLSearchParams(location.search).get('machine');if(requested&&requested!==machine)throw Error('Positron identity mismatch');
@@ -31,10 +31,10 @@ export async function mount(scope){
  function setFold(percent){const pose=current.adapter.setFold(percent);state.fold=percent;$('fold').value=percent;$('foldValue').textContent=Math.round(percent)+'%';$('foldStep').textContent=percent===0?t('CAD基準姿勢'):t(foldSteps[pose.step]);document.body.dataset.fold=String(percent);document.body.dataset.columnAngle=pose.angleDegrees.toFixed(4);render();return pose}
  function stop(){animation=null}
  workspaceListen(window,'rig-language-change',()=>{if(current)setFold(current.adapter.getFold())});
- function visibleBounds(group){const box=new THREE.Box3();for(const[k,n]of current.adapter.nodes)if(n.visible&&(!group||current.adapter.records.get(k).group===group))box.expandByObject(n);return box}
+ function visibleBounds(group,excludeRemoved=false){const box=new THREE.Box3();for(const[k,n]of current.adapter.nodes){const partGroup=current.adapter.records.get(k).group;if(n.visible&&(!group||partGroup===group)&&!(excludeRemoved&&state.fold>0&&partGroup==='glass'))box.expandByObject(n)}return box}
  function motionBounds(){const percent=current.adapter.getFold(),box=new THREE.Box3();try{for(let p=0;p<=100;p+=5){current.adapter.setFold(p);box.union(visibleBounds())}}finally{current.adapter.setFold(percent)}return box}
  function view(kind='iso',motion=false){
-  if(!current)return;const box=motion?motionBounds():visibleBounds(kind==='head'?'head':null);
+  if(!current)return;const box=motion?motionBounds():visibleBounds(kind==='head'?'head':null,true);
   const center=box.getCenter(new THREE.Vector3()),distance=box.getSize(new THREE.Vector3()).length()/2/Math.sin(THREE.MathUtils.degToRad(camera.fov)/2)*1.06;
   const direction=new THREE.Vector3(...({iso:[.6,.6,.95],front:[0,.15,1],top:[0,1,.0001],head:[.45,.75,1]}[kind]));
   controls.target.copy(center);camera.up.set(0,kind==='top'?0:1,kind==='top'?-1:0);camera.position.copy(center).add(direction.normalize().multiplyScalar(distance));camera.lookAt(center);frameResponsiveView(camera,controls);controls.update();render();
@@ -45,7 +45,7 @@ export async function mount(scope){
  $('night').onchange=$('night').oninput=()=>{if(state)state.night=$('night').checked;lighting()};lighting();
  setupMachineNavigation(machine);
  try{
-  const indexResponse=await fetch('../POSITRON_ASSETS.json?v=aaf375861bbb6951c81d');if(!indexResponse.ok)throw Error('Positron catalog unavailable');current=await loadPositron(await indexResponse.json());scene.add(current.root);
+  const indexResponse=await fetch('../POSITRON_ASSETS.json?v=a65d576ed592a5a587f8');if(!indexResponse.ok)throw Error('Positron catalog unavailable');current=await loadPositron(await indexResponse.json());scene.add(current.root);
   state={schema:positronSchema,machine,fold:0,palette:{...current.profile.appearance.palette_defaults},accessories:true,grid:false,night:$('night').checked};
   $('fold').oninput=()=>{stop();setFold(Number($('fold').value))};$('resetPose').onclick=()=>{stop();setFold(0);view()};
   for(const[id,direction,end]of [['foldPlay',1,100],['unfoldPlay',-1,0]])$(id).onclick=()=>{if(current.adapter.getFold()===end)return;view('iso',true);animation={direction,end,last:performance.now()};render()};$('foldPause').onclick=stop;

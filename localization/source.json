@@ -9056,6 +9056,16 @@
       "kind": "message",
       "ja": "外したネジを左右の収納穴に差し込む",
       "en": "Insert the removed thumbscrews into the storage holes"
+    },
+    "stinger.description": {
+      "kind": "message",
+      "ja": "LH Stinger 1.0 · 200 mmカーボンベッド / Orbiter V2.0 / Dragon HF / Y軸AWD",
+      "en": "LH Stinger 1.0 · 200 mm carbon bed / Orbiter V2.0 / Dragon HF / Y-axis AWD"
+    },
+    "stinger.reference_notice": {
+      "kind": "message",
+      "ja": "組立治具とホットエンド延長部品を標準表示から分けています。電子ボックスはこのCADに含まれていません。",
+      "en": "Assembly aids and hotend extension parts are separate reference geometry. The electronics box is not included in this CAD."
     }
   }
 }

@@ -1,0 +1,34 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {machineChoices,machineOptions,machinePage} from '../site/viewer/machines.js';
+import {nativeMotion} from '../site/viewer/community-state.mjs';
+import {stingerFlexWeights} from '../site/viewer/stinger-flex.mjs';
+const id='lh_stinger_200',catalog=JSON.parse(fs.readFileSync(new URL('../site/COMMUNITY_MACHINES_ASSETS.json',import.meta.url))),profile=JSON.parse(fs.readFileSync(new URL('./fixtures/stinger-motion.json',import.meta.url)));
+assert.equal(catalog.machines[id].parts,875);
+assert.equal(machinePage(id),'./community.html');
+const choice=machineChoices.find(r=>r.id===id);assert.deepEqual(machineOptions(choice,'size'),[200]);
+const pose={x:95,y:105,z:130};
+assert.deepEqual(nativeMotion('head',pose,profile),[95,0,130]);
+assert.deepEqual(nativeMotion('beam',pose,profile),[0,0,130]);
+assert.deepEqual(nativeMotion('bed',pose,profile),[0,105,0]);
+assert.deepEqual(nativeMotion('fixed',pose,profile),[0,0,0]);
+// Pulley anchors stay in place while the belt's native clamp ends follow.
+assert.deepEqual(stingerFlexWeights([-135.553216,289,103],'550'),[0,0,1]);
+assert.deepEqual(stingerFlexWeights([25,289,103],'550'),[1,0,1]);
+assert.deepEqual(stingerFlexWeights([203.855102,289,103],'550'),[0,0,1]);
+assert.deepEqual(stingerFlexWeights([25,38.054404,-30],'708'),[0,0,0]);
+assert.deepEqual(stingerFlexWeights([25,257,-20],'708'),[0,1,0]);
+assert.deepEqual(stingerFlexWeights([25,476.384080,-30],'708'),[0,0,0]);
+// A single source leaf contains four fixed clips and one beam-mounted clip.
+assert.deepEqual(stingerFlexWeights([-83,300,110],'345'),[0,0,1]);
+assert.deepEqual(stingerFlexWeights([183,360,-60],'345'),[0,0,0]);
+assert.deepEqual(stingerFlexWeights([236.212302,345,258],'332'),[0,0,0]);
+assert.deepEqual(stingerFlexWeights([25.594291,240,160],'332'),[1,0,1]);
+assert.deepEqual(stingerFlexWeights([234.4309,343.4578,280.8566],'332'),[0,0,0]);
+assert.equal(stingerFlexWeights([100,260,350],'332')[2],0);
+assert.deepEqual(stingerFlexWeights([-77.4095,348.7489,-40.0479],'333'),[0,0,0]);
+assert.deepEqual(stingerFlexWeights([-3.0062,259.761,122.1009],'333'),[1,0,1]);
+assert.deepEqual(stingerFlexWeights([-184.5552,362.7148,-57.4836],'343'),[0,0,0]);
+assert.deepEqual(stingerFlexWeights([-59.8671,405.8592,-5.8618],'343'),[0,1,0]);
+for(const key of ['550','708','332','333','338','343','345'])for(let i=0;i<100;i++)assert(stingerFlexWeights([i*5-200,i*7-50,i*5-100],key).every(v=>Number.isFinite(v)&&v>=0&&v<=1));
+console.log('LH Stinger: native gantry/bed groups, 6/9 mm belt clamp anchors, tube fittings, mixed cable clips and grouped selection passed.');

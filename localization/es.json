@@ -7245,6 +7245,14 @@
     "ui.positron.storage_screws": {
       "source_revision": "c52cd9e7884e3e32d866",
       "text": "Insertar los tornillos retirados en los orificios de almacenamiento"
+    },
+    "stinger.description": {
+      "source_revision": "3f59d8a2a003de5e63a0",
+      "text": "LH Stinger 1.0 · cama de carbono de 200 mm / Orbiter V2.0 / Dragon HF / AWD en el eje Y"
+    },
+    "stinger.reference_notice": {
+      "source_revision": "9833ba6120c21522ff5e",
+      "text": "Las ayudas de montaje y las piezas de extensión del hotend se muestran como geometría de referencia separada. Este CAD no incluye la caja de electrónica."
     }
   }
 }

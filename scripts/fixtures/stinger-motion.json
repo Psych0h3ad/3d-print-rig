@@ -1,0 +1,76 @@
+{
+  "machine_id": "lh_stinger_200",
+  "title": "LH Stinger / 200",
+  "size": 200,
+  "build_volume_mm": [
+    200,
+    200,
+    200
+  ],
+  "source": {
+    "repository": "https://github.com/lhndo/LH-Stinger",
+    "revision": "4fb1e2eb917bfe78ae29cbde5a3793a80c02cc80",
+    "version": "LH Stinger 1.0 \u00b7 assembly v23 / toolhead v220",
+    "path": "CAD/Printer/LH Stinger.step.zip",
+    "license": "CC-BY-NC-SA-4.0",
+    "source_step_sha256": "0f77ee05b0c25ddfa5c71b6d95093e4a4f140e096784e5cfffb6e23a44e3de7c"
+  },
+  "origin_mm": [
+    25.6015627891716,
+    263.16013762433,
+    -97.3065782729323
+  ],
+  "basis": [
+    [
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      -1,
+      0
+    ]
+  ],
+  "axes": {
+    "x": [
+      -95,
+      95
+    ],
+    "y": [
+      -105,
+      105
+    ],
+    "z": [
+      -65,
+      130
+    ]
+  },
+  "motions": {
+    "head": [
+      "x",
+      0,
+      "z"
+    ],
+    "beam": [
+      0,
+      0,
+      "z"
+    ],
+    "bed": [
+      0,
+      "y",
+      0
+    ]
+  },
+  "palette_defaults": {
+    "base": "#24272c",
+    "accent": "#e32636",
+    "frame": "#25292c"
+  }
+}
