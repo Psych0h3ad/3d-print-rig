@@ -201,8 +201,8 @@
       "files": {
         "assembly_manifest.json": {
           "path": "snakeidex/assembly_manifest.json",
-          "bytes": 938490,
-          "sha256": "4b2ca4db41f079646ef94df0eacacd93b4c75f6dd0b31b170db7baa11bf65929"
+          "bytes": 938486,
+          "sha256": "c64c34bf644679dac348ce44abf084bce29830c00db218628dc39203436a3b89"
         },
         "machine_profile.json": {
           "path": "snakeidex/machine_profile.json",
@@ -211,11 +211,11 @@
         },
         "model.glb": {
           "path": "snakeidex/model.glb.gz",
-          "bytes": 18228899,
-          "sha256": "34d7daaed40a6cdb9d9193642b9e41b08324731793e14fee47bf737af13b983c",
+          "bytes": 18228912,
+          "sha256": "00b0f130a9b3dcf584a7ac00c5f7107a201fcdfe4f50d1fba72e9aa0a2ff3ef1",
           "encoding": "gzip",
-          "decoded_bytes": 59922980,
-          "decoded_sha256": "2c145835e2b4defa28bdaccf16ac2f28f90fef81f831bdd09a9efadc5019baa9"
+          "decoded_bytes": 59925428,
+          "decoded_sha256": "0b19d4c96fd2dd4af245e7dafddb69ba3bf8c9d31c0f7107b7d7ccc69f9b199d"
         }
       }
     },
