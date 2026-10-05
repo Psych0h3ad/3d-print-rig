@@ -4,6 +4,12 @@
 
 Compare printer, toolhead and gantry configurations in 3D.
 
+TicTac 2.1, THE 100 v1.1, Rook MK2 beta and Satsuma 180 v1.0 are available
+as whole native CAD references. Select their family under **Change printer**.
+These assemblies support colors, camera views and image export; movement and
+mod swapping are not offered. Original CAD versions and omissions are shown
+in the viewer's **Official data** and third-party notices.
+
 ## Explore
 
 - [Viewer](https://psych0h3ad.github.io/3d-print-rig/viewer/): choose a machine and size, inspect its CAD, colors and registered motion. Shared printer/head/Monolith configuration controls show proposed changes before **Apply**; V0 uses its own Mod controls.

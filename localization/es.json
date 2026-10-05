@@ -7565,6 +7565,38 @@
     "custom_voron.v24_half": {
       "source_revision": "6009704582682953f48e",
       "text": "VORON V2.4 {0} × {1} × {2} · Z a la mitad"
+    },
+    "tictac.description": {
+      "source_revision": "a4737cbcb6a039e29961",
+      "text": "TicTac 2.1 · 120 mm / cabezal Rat Rig nuevo / CAD original ensamblado"
+    },
+    "rook.description": {
+      "source_revision": "4dff962f531d8a6b0b8d",
+      "text": "Rook MK2 beta · 120 mm / Dragon Burner / Bambu / Galileo 2 G2SA"
+    },
+    "the100.description": {
+      "source_revision": "4312049b467547669e93",
+      "text": "THE 100 v1.1 · 165 × 165 × 150 mm / BMG Bowden / CHC Pro Volcano"
+    },
+    "satsuma.description": {
+      "source_revision": "f298c770ac8a4ab2d789",
+      "text": "Satsuma 180 v1.0 · 180 mm / CoreXY / Orbiter 2.0 / cama Prusa MINI"
+    },
+    "tictac.reference": {
+      "source_revision": "7f2c3c648041610daa65",
+      "text": "Conjunto CAD completo estático. El suelo original, el cubo de calibración y los duplicados son referencias opcionales. El movimiento y el cambio de mods no están disponibles."
+    },
+    "rook.reference": {
+      "source_revision": "c7211aeedf2176b69415",
+      "text": "Conjunto MK2 beta estático con Galileo 2 G2SA. Los orificios de montaje y la superficie de apoyo están alineados. No se incluyen los tornillos de fijación omitidos en el CAD original."
+    },
+    "the100.reference": {
+      "source_revision": "611f6eeaa10c54acbe44",
+      "text": "Conjunto CAD completo estático. El soporte alternativo superpuesto es una referencia opcional. El CAD original no incluye las correas ni la ruta completa de PTFE."
+    },
+    "satsuma.reference": {
+      "source_revision": "38578b7e498b5f1efe62",
+      "text": "Conjunto CAD completo estático con controles de paneles, colores y cámara. El movimiento y el cambio de mods no están disponibles."
     }
   }
 }

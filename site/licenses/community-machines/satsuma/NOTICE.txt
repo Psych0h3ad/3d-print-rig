@@ -1,0 +1,6 @@
+Squirrelbrain — v1.0 / 171223 / file 2023-12-18
+Source: https://www.printables.com/model/487266-satsuma-180-v10
+Source STEP SHA256: b816ef0b5d7c9f86b119a77c9ab14d4bcec418513e6601ca0232f5ff3e38b38d
+License: GPL-3.0 (original machine geometry).
+
+Display conversion: native tessellation without decimation, normalized surface normals, material roles and transparency. Optional source references: . No built-in supports were removed. Native source topology findings retained as display meshes: 90, 252. This is a static whole CAD assembly reference. Motion, mod swapping and full physical fastening/swept-clearance certification are not offered.

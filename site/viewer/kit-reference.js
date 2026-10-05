@@ -8,10 +8,10 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=ce28c0df722a83db6bb3';
-import {setupMachineNavigation} from './machines.js?v=eecf060e1aad0b884593';
+import {setupMachineNavigation} from './machines.js?v=98f22b8a6b185e5aa7e3';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
-import {setupPublicInfo} from './public-info.js?v=workspace-belts-2';
+import {setupPublicInfo} from './public-info.js?v=2bbf2c451ffa53bf08e7';
 export async function mount(scope){
 const $=s=>document.querySelector(s),id='fysetc_v24_250_pro',stage=$('#stage');
 setupMachineNavigation(id);setupPublicInfo({includeDownloads:false});

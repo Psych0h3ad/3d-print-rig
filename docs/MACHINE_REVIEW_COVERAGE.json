@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "review_revision": 80,
+  "review_revision": 81,
   "reviewed_on": "2026-10-06",
   "input_sha256": {
     "site/ASSET_BUNDLE.json": "aae8ddef2905287f4a92b8618f1e3a7ca233331d95b08db7267cc45737a5ecb0",
-    "site/COMMUNITY_MACHINES_ASSETS.json": "f8d9d41f8082b1d9c88dd560c1e24a3c4f1bd0aec71426b22386e47d9132dbd2",
+    "site/COMMUNITY_MACHINES_ASSETS.json": "b1f97f395b36aed9e07b67932f80e6b6c21a663edb7ab63888e05e89e2af603b",
     "site/CROSSANT_ASSETS.json": "cc782d728e52beb780c0aaa2cb664ccce127154c02744312307dee74ffe8bdc6",
     "site/CUSTOM_VORON_ASSETS.json": "e7fdcd0995e22a8e1fbaa6dd0b4d567ba063440dd13cf684d6f629279e55ae23",
     "site/EXTRA_MACHINE_ASSETS.json": "a1ef772b70a82420d97d564f8327e22dde6bcb511bdd6e94d406d6bc62cca624",
@@ -12,59 +12,59 @@
     "site/MOD_REGISTRY.json": "873c2c35fe99ebf20fdbb82a76992a4a5ace91ebc47f51d94c7d54c6284618a7",
     "site/MOUNT_VALIDATION.json": "b257b3d725e1ad9693dbcdbe81a8cbae019620134df5acdd92b7c2c4952e39bb",
     "site/POSITRON_ASSETS.json": "e00d990ee740c59780a3633a934bebce322044099ed533053a4dbcde4bcf8090",
-    "site/PUBLIC_CATALOG.json": "5b8c2a3c5563e7899c4a323c53e02d7e953eaf71e62fdce6fc7f7b51db8c2b3d",
+    "site/PUBLIC_CATALOG.json": "fe8f8d168974081cb2824fd1020bb0b438a580f337c0adbb9c4c4fea298732ae",
     "site/RATRIG_ASSETS.json": "d5490dc94c253a52b92cf456f824bbbdbca0384b347470818e87870f07cb5b58",
     "site/REAR_ENCLOSURE_QA.json": "489361a49a4f8cb47fb154754c61a74030127d1da7fd07399ef66ca923f9b83a",
     "site/V0_INSTALLATIONS.json": "0cd5d09bb48f841c867d97dc28eb1bd733d140446d823da496e98fb97f843ea8",
     "site/viewer/accessories.js": "1efeb500765a1f0483048ffc3d3c72623ba4672006b30134fe9005832d3468e3",
     "site/viewer/annex-machines.mjs": "9f86685e46c3bcc36874649cce36b645ec6c2ff6eb6d1fdee124a327e20f7e81",
-    "site/viewer/annex.html": "9bf59b98a128ccd43b38ca56308dd63a6f9ed5d2a0c41fb381dad010faf7d737",
-    "site/viewer/annex.js": "f219d2a6ebf3f0a80c04c845865a45fceaa75d6ffae9b29ef012d583b1c30780",
-    "site/viewer/app.js": "8ef62759d6c277ebd102d3c3b9ea0a52dfffd987b823f60c683030ac303a00f8",
+    "site/viewer/annex.html": "4947b16317a81cf98e87ef8f6409522988de41b8b8fcc56087186c3ad045d667",
+    "site/viewer/annex.js": "1285d06619d9c1833707f4123e4d0dde2bd65379030f1dd7031d5af58ad4922d",
+    "site/viewer/app.js": "39bc8022521a99823cb7a470ca711376426cddccf33c6a8a10c9a1975430f677",
     "site/viewer/appearance-role.mjs": "0e1a614ef669679216cd423dbbafbafe3205bef679b59619683d8b84f3ee8d44",
     "site/viewer/appearance.js": "c50ecf4651c6ad0e68392df9eea9eb67e8bab6c9542106019c464682b45a01ab",
     "site/viewer/art/cad-background.json": "ebd23566959ec740ae479345ba5601478b53593693ff11466e4934474dd071e8",
     "site/viewer/art/credits.html": "fc56f2eee21e92db298051a1d4f600e865468913cd4a45781c3088b06dc4a759",
     "site/viewer/assembly-downloads.mjs": "7f37199d83924fa6db9303d629d9e68f1798995b53a64ae900362f052fdb6cd2",
-    "site/viewer/asset-availability.js": "f011d3e3cc1700bc517e8515baac9957bf062ff8a1c8db111e3e588b7f27118f",
+    "site/viewer/asset-availability.js": "e8aa120ece0ca623982f25de53562c57b18b454309774e8ca84a2d81362512ee",
     "site/viewer/bed-chain-pins.mjs": "ea9c3d5f368a9509af7f99da784303eba92df5e316246c8a14942bc0f1bb3ae9",
     "site/viewer/bed-chain.mjs": "7b1707f0d18e07056c380bb831c2db07575af8720426cc9b6a131a079da61504",
-    "site/viewer/bootstrap.js": "c47ad130666e79427335350ebb8401cef2d9a8e2a65cf77469a69633c3cd3d89",
+    "site/viewer/bootstrap.js": "7db0b79b20b5d2f817a5812288bcb89d784ed78a4950bcac5ab52b0f7f0293d5",
     "site/viewer/builder-ui.mjs": "99ba104579f95dce80a1c71fdf0b59c1c72a03f564f5a168dc3969b6418e9f9d",
     "site/viewer/changer-bank-model.mjs": "024cc52a5bbc61da75066a1822bca711fd6543b532a1c922e8ac0b44469a016c",
     "site/viewer/changer-bank.js": "47bbc0fef91af2c7241e5ff8a292897b8688dbdf00612caab1a03f365853b5ad",
-    "site/viewer/cleaning.html": "75cc7e12cf0440c66a3651a438c6147b7bae2e4861cecf395b29c02ab462784f",
+    "site/viewer/cleaning.html": "5fd8b85383be2b5fc0ce310b1d940858fe654a9247b5d4f096b00f11631215b7",
     "site/viewer/community-adapter.mjs": "40219681064134f2c2494a047e60eff167ef95ffd00a1cdb286159ab1fccab14",
-    "site/viewer/community-loader.mjs": "315fad8a98184500473fce1ebaccef86dbb41f0f194c78729ce973df15970b52",
+    "site/viewer/community-loader.mjs": "d5d464215f225e9cc06e41de6772fb46ccc3cd8e8e83e74cf70377c508477e18",
     "site/viewer/community-state.mjs": "97f7806821349b272754110534d799e8e6a67fe4fda29eaaeace6e6c27c2cbf3",
-    "site/viewer/community.html": "51f3543b689d50bf817e2af640864668be4af2f8ab4352b01884df48a485bfc6",
-    "site/viewer/community.js": "934edc56e14cad1c1d877e15e798753ff2607038685da95d2a851c6ae3e6f811",
+    "site/viewer/community.html": "4f1873d6ad3fcb50fc6d2f8b8b18b8eac36c9c4ce8671d1fc411e61ff39c2639",
+    "site/viewer/community.js": "f3cff9ec82187d4fa681e81bcc0941ad1953156843bf8f9a3ca37f3a1623c7ec",
     "site/viewer/component-selection.js": "51826e4eeaa0dd803b109d2ba7261d86e40fa509e63ffe7ce2f087efd0ee6e04",
-    "site/viewer/components.html": "f7ebd8fa1132d0317cb897517c8bf120b4ea47595e84db83dca3e59da8d51a40",
-    "site/viewer/components.js": "ba9b6d53eb51a06325c91c9855fc1bf14bbbf7e483391961827b0dcd8d5fb1fd",
+    "site/viewer/components.html": "cd40ce09b5407b1a399527d41a4bcfa5e603ea9380232fad3f44d9f14d91d41c",
+    "site/viewer/components.js": "73eb1abe17b5c9d96eef7da4561cbbffd2a76ef546f257e2f0026722105cbf86",
     "site/viewer/configuration-draft.mjs": "40f3194bb0e1c5a35cf8099ace53c17b05ce9fa8b2c938ed957851c9d3770d54",
     "site/viewer/configuration-editor.css": "1ce65fe33b2c2f92e5b2eab845b196a6db3175a7ec858902ec9e23e8c2f3a3f4",
-    "site/viewer/configuration-editor.mjs": "8f8fed1a681f51bfecb2a2f958328e68cb00ee95697ce36e7fa0e9727ee587a9",
+    "site/viewer/configuration-editor.mjs": "487e5f733f806958447634073668709f0514c493d9e9664eb59b367f5b8d2e47",
     "site/viewer/configuration-model.js": "d4b3dda97a404a7575b774c073165147233bcb917c5cd4afb30b7c6636521af1",
-    "site/viewer/configurations.js": "ebc64eb73f35c37d5b11651c5f47fe53806fa2bcdd7ba541e22bc8363d27fc30",
+    "site/viewer/configurations.js": "25dcc106fed44c65cc6db7f0ef98952edbbe09e05fd0c81390a8a488ea85ad81",
     "site/viewer/crossant-adapter.mjs": "53736f331789070429692a0336eb9412bd3c64ed157933a5107b439761878116",
     "site/viewer/crossant-belt_deform.mjs": "76401db9a4923512ae72c83fda6dd210ccf0b1d19be8a16326dfac48950df531",
     "site/viewer/crossant-chain_preview.mjs": "43c664f7c35cbb1638214efc3d77ad1acf8a47c33b4a22a50ad70c20778c4bc3",
     "site/viewer/crossant-covers.mjs": "d512e7e5c32543e4232ba0ffef722b9106637da5b0b9a3c9b315aec067072e4e",
     "site/viewer/crossant-loader.mjs": "3fa8436523f1d0760466553cf2cdbf2301d2242987fa15e51d1c7434f7b1fb04",
     "site/viewer/crossant-state.mjs": "534dc62f2c6545f556f7a19791302d04f9c06e364c67d29bf6428bd81a5c7a9f",
-    "site/viewer/crossant.html": "4b034a573d99f6ea1225efe53680172eb2c7cc4c6f120273a35dbf4607095184",
-    "site/viewer/crossant.js": "042af61acb071209b9f1ed2db6d114b43c536a0c4814150f97120cca45fcbb6a",
+    "site/viewer/crossant.html": "1bdf908f59462d4e54793570a65dea8a01065945c8745a751c749ff2aff58e8c",
+    "site/viewer/crossant.js": "7512b9f7b1b465d8b8bc16ba9ca65c49f2ed0fa086f325e64f2736f022539e74",
     "site/viewer/custom-voron-loader.mjs": "9947051632cb50e79d409bc7ff38dfa627b255e19ff738002e3bdfe251aec9e9",
     "site/viewer/custom-voron-state.mjs": "4b6132fe80a74098a8bade2347c6e581bb39bcf3b8dc9459cf8298b7e7938949",
     "site/viewer/custom-voron-tube.mjs": "337ec19c5d88b1bf0fdf3a230d4ce9f1aa3fda6b9f48e3928cd5c4db5f9f8b44",
-    "site/viewer/custom-voron.html": "117a86041879eaa4e6c4a3e6ef02e745ac5319b1bfb3c067bf6d863d6d10eb82",
-    "site/viewer/custom-voron.js": "388a9d1ceaeddd333fef50b9fbb37f629320b8a57133655871a057e9fde18c09",
+    "site/viewer/custom-voron.html": "a8fd4b68ffc3936d3e2056b1d77a82fa9d13c8dcc8708086b18909f94dd2327c",
+    "site/viewer/custom-voron.js": "a4ba17f5b9c7716bae2f86b955365c665fd2e959514a399d53d0c404794a8625",
     "site/viewer/display-preferences.mjs": "9860960509e28d17f3fd89b59e32eaa7110a1816b8e5e4703f49c3a24998aae0",
     "site/viewer/display-start.js": "2ccf9c125fa0c4f73dc1a238a9b5070c779ef1b45d8301a11acd804528ccbad6",
     "site/viewer/e3ng-model.mjs": "7d5da880bcd1c29e4fd7f25a58afeafe5bd2e6839778821da65faa6614a1495a",
-    "site/viewer/e3ng.html": "3f9e6302c46c4b5f22daa6920143e91542786ea1e7acd12500fcc7c252779c75",
-    "site/viewer/e3ng.js": "91c1f0375d7a1c1db90dfcc6cf962ce1bf9e02831bcbf9a48da7612401df5f06",
+    "site/viewer/e3ng.html": "58c3b622c9c9c6902c009937c0b7890d2e0afa63683a95276cd77e40fb0e736e",
+    "site/viewer/e3ng.js": "ef0da7762a37ad3058a40625afd13f62e38a2612f6ee3672de1ceeb65c6499f0",
     "site/viewer/embed-contract.mjs": "efefdd1fb25011506d9bda403a4a16b4b01b4520a53aa1d71195a97095e77947",
     "site/viewer/embedded-boards.mjs": "44669b07f69dccdcacfe282a132f1e15da263b9f44373824a4895510297209d6",
     "site/viewer/export-camera.mjs": "9b7cb2c53ed30506e01c79eafd2ee4c72fa4305806a316acdf5cc3985d0ce628",
@@ -72,8 +72,8 @@
     "site/viewer/extra-machine-loader.mjs": "274bbda379e78bd0880811a7ba95cbea56ccfdc747bcb147ef4246de5593e23a",
     "site/viewer/flexible.js": "afc4eac5d4c4b6d6247cb8172b5391258e2f32274de76983a111ded2c9437d64",
     "site/viewer/frame-mods.js": "2807dfa874f24875b7a4d34879cd22f04ea1a1dbdbb5aacac593b893f07ee751",
-    "site/viewer/gantries.html": "916a2a0dffc8ec547afa14a2b910f8457af222c5e160db80b28b0eeb8a0541cc",
-    "site/viewer/gantries.js": "012204ce6d81be611d4ac5a026bbfc83afd667539d90b7cc693895f8ec9a80b2",
+    "site/viewer/gantries.html": "86fb9509e5b78a40a8d2184e672331195b39c316502d5be5c21c3b63b85c5f80",
+    "site/viewer/gantries.js": "3f5962cabb0e987d9042f51c91337132c224c9169efb5173bb1d40bf3f93f5b6",
     "site/viewer/gantry-model.js": "77bee27ae99e3944fc901c733b7fa2450b2e36deb9b789c66328e8c979db2ec4",
     "site/viewer/gcode-panel.js": "2c8eaf3484a8fc0fed2616806ac289bdc96a774d4667aa434cb7ed664f91f6b2",
     "site/viewer/gcode-preview.mjs": "a206f28d86363c4cf14edf04ea61af3c5f833e537d95016eb1ca54495da2a004",
@@ -81,28 +81,28 @@
     "site/viewer/grid-control.js": "44e2e88530fbb5820a7dfc1475d281023b1e2a72b3953205f42b4a766cca5732",
     "site/viewer/head-assembly.js": "7fa59d6f7b82e35957e9ef08fee311905ddf333447b2d1415ee16d9733ab331b",
     "site/viewer/head-markers.mjs": "ecb2d72d7d41cc8055e4708bfbba02683a246304453d3e64a5b70dbcfdec818f",
-    "site/viewer/head-navigation.mjs": "2988d4295ff5f85b7158f83022b227017762a3051af31debc99aeb3f49909fdf",
+    "site/viewer/head-navigation.mjs": "6bc4816e2e74f152b9b77f5016231012439fd78c36646de13bce6f3f27d2ff32",
     "site/viewer/head-validation-ui.mjs": "e7852ba7382943fa85b9e49f3b2002e18ef3e327a10ca9b8ba8277f0ef7aee04",
     "site/viewer/head-validation.mjs": "2ff01996ff2feb2c3cbe1ef6e60adf1a1dc6cc2a092cca351efa4d6cbe9e14b2",
-    "site/viewer/i18n.mjs": "0703fd7e12b24d53bf117fad9170f483d1d516b4af9de5e05c35edcfa214e04a",
-    "site/viewer/index.html": "008f73ddb6549a76d2bcf5f3f73da4697527f1367d444cc095224655ab8a1c37",
-    "site/viewer/kit-reference.html": "4d7e3df0c02e145d988b176c3ee057f71d3498df36c8252899f4b462b7ab14a2",
-    "site/viewer/kit-reference.js": "0b2e70d95ac3b00172628c6aa48dd8823c0d86bae771d31d50253e62a004f9d3",
+    "site/viewer/i18n.mjs": "fc082a8e3829df1e89b3fecac7c0e121f938add277367d444ce8ddc3593b6ff2",
+    "site/viewer/index.html": "a3580ecd7760d7d17e653d4ba660c0a0314ba05a9ac3b07a4e914d982986e7c9",
+    "site/viewer/kit-reference.html": "232a02af51ca3d57644fe4e700910936daaba7c4501ffad94fd858d119a198a8",
+    "site/viewer/kit-reference.js": "21fe431fc4c55d33a130103568bc72755bfa7d1097c85bc46d812b9b88551f4b",
     "site/viewer/languages.mjs": "ba6a5cd8e1d86849ca3405b62a9b4f3757b10bb6f195f9990b68d12e15a86424",
     "site/viewer/lighting-animation.mjs": "ee2a0ac739d69f7d647970d4f30c967dc835e028b077420472fcad45b1aeb760",
     "site/viewer/lighting-state.mjs": "980c984e27b4befb063e6332a919b4b54d95e43f8b7d1125a6792c0fd08b586e",
     "site/viewer/lighting.js": "f45648f622e9ee8976e101676d0a8699c2140bfd800ff798c03453047970cecf",
     "site/viewer/machine-head-model.mjs": "03db7c7d900ff7f5b2c0770170535e407dd15795a34fdd05e921599999d09387",
-    "site/viewer/machine-heads.js": "3b2c7061a44274710e488d3c9092e7b62a290f614ff7aa2c56e6454148ee6c69",
-    "site/viewer/machines.js": "eecf060e1aad0b884593f1755348f38c28af7ebd971c3f5beded0730075821f2",
+    "site/viewer/machine-heads.js": "f6e54253e2fb9be17e8ace9cf8f0fa2e5691f40d45a1cb5701254e7b3708486a",
+    "site/viewer/machines.js": "98f22b8a6b185e5aa7e396fe8322bc3b25d2b47f90b30bcfed2788ffea55d507",
     "site/viewer/mercury-tube-routes.mjs": "d27d615757ad1f73240934053ae3c293e92e57c09584c3bd767fcf877fecffee",
     "site/viewer/micron-adapter.mjs": "6177cae5e22f1f414ba2a74d3c365b2454f3301e3b008c94fffb31945369ea5d",
     "site/viewer/micron-belts.mjs": "377a1b6b837466e7ccddea8dad3c5fff4793f888ca7d1aacf45bb3a7d286156c",
     "site/viewer/micron-flexible-pins.mjs": "9e386712b40c4b8116583ec34a7f56709cb25f7dfc93339c9c68faa39d1cd2bd",
     "site/viewer/micron-flexible.mjs": "f60dbb5f5765a15dfc34ab025f975f139fe869e43304938bf32d3312ab05b18b",
     "site/viewer/micron-tube-routes.mjs": "c69d79d6fdbfee5338fe365ca9542323714add2a834e34aafec37395d19614b1",
-    "site/viewer/micron.html": "3708a3ecb4a63bac806e148ed4f3b4ea9149b481d11c748b74135bdc98ae79a7",
-    "site/viewer/micron.js": "7caf75a28d733854f6375545ede93917a00e4e47a273bd7c96087ae02f17f31c",
+    "site/viewer/micron.html": "eaef0efff2ac9dd929da230229271e17d0edb100f6607ed889586417fe590e27",
+    "site/viewer/micron.js": "afdce54ed09eda54294c1e2a7c18c672127d84cfdaa0e349f48c637df66a45d5",
     "site/viewer/model-loader.js": "ce28c0df722a83db6bb39d793888e9fa7438f466d64a927657eefad5a5e3808d",
     "site/viewer/model-progress.mjs": "6b41a2b9f7626039b7e6a058f4d2619623250c8535275362c371cbe8a1e98d5b",
     "site/viewer/monolith-belt-clip.mjs": "ffef92bb9ead85b656edd2862143f680fae9c19f4b8b73ff72d9a905a3802e55",
@@ -114,26 +114,26 @@
     "site/viewer/positron-fold.mjs": "7368d3dd6e38e237f6ff9e9c66de9f167096c6a72c867238bb8d21027b37d067",
     "site/viewer/positron-loader.mjs": "e213f57d4ee250d3116e86f3b19637e0b3f446bf6f50fe4cc7d6f53ac1705f0e",
     "site/viewer/positron-state.mjs": "8296d1b775fbca04462f5518a3126d25a53d372ddebadb0c2adff67968fee9ea",
-    "site/viewer/positron.html": "c2659ab463b71941c9d7cff53f1f105281ff2d25e315d90c2b44c28bed6162db",
-    "site/viewer/positron.js": "7a92aabf5093c13cf1863b89c24f4c2a48843658c371d015cc6910874c4826ef",
+    "site/viewer/positron.html": "8514e5d4625298a4b461c1798cd25b1375f69c50881a0b1edcf9ed93133ab13a",
+    "site/viewer/positron.js": "c910402dbc128d48cf2755aeac0457ce422193f1321b9fe42adc7eeefcab6660",
     "site/viewer/printer-gantry.mjs": "f2f8aca7cc040f3911ab2b31b982d914df930c58cb5c63d2db4374e0b9b1cff5",
     "site/viewer/probe-checks.js": "ea1aef3e30bf7d11d3cbca0e3272704428ed9ef5670ec0d154efdede824c0222",
     "site/viewer/probe-mounts.js": "81f922c3169490021d08867cce4a6ce1a36870e8030a770789e130ba0112b489",
     "site/viewer/product-links.js": "8a5b11566dea89f05401a2e88361e89b9cacfb74a6263c6606ba00e61e0d0c32",
-    "site/viewer/public-info.js": "1f2cb73fdf4ca33127375e3fce6d5d17a833dd7df4219dd48026b916923a71ee",
+    "site/viewer/public-info.js": "2bbf2c451ffa53bf08e7da43a2e70bd01b10cb23b872ec77f33f714038de0f6b",
     "site/viewer/ratrig_adapter.mjs": "a4648c4988c02ca82726b413a8011142c31502c513e395c8b4665a4720f7542a",
     "site/viewer/ratrig_gcode_preview.mjs": "d8c60b04d15d4417dfa5c4dd4ba9590645e4a1b27116aafa8e821c2c7ac50e88",
     "site/viewer/ratrig_motion_math.mjs": "89517eb971282a5918a2c7df66e85d9266725a639a0ffb736388e88d5c9e6ba3",
     "site/viewer/ratrig-loader.mjs": "191cd56ade87050054c8bb408ed4083db76123226594b57e675c3165a778617f",
     "site/viewer/ratrig-machines.mjs": "6f5c7fbad04c29c3827deaea5ed6a556bcd927ab7c3d9505beff4200a0392ba0",
     "site/viewer/ratrig-ui-state.mjs": "58e9d9727047d366ffe400325f8381b047b3aa29ddc49a1a3b68c811cfd3ad08",
-    "site/viewer/ratrig.html": "62a238ebda03fb59cbf26b9602e81734eb7daddf12e38e4593c731e48b8507cd",
-    "site/viewer/ratrig.js": "93d35dce37b793b90901d9dfe14552f1cad7cd16a98bb3822b905050071e3d4e",
+    "site/viewer/ratrig.html": "4d4b95cd67f324008972472d4ee813115c39ac9c42803705b55ae141dbbd73ec",
+    "site/viewer/ratrig.js": "b3064d42274e55afdd6e5eb679f6131e1e8d04c53f92c0dce626345c3fd43df7",
     "site/viewer/remorph-adapter.mjs": "5bb6f83844e91238bd2a73d57185ec378eb70862f1284935304aaad8ec0209be",
     "site/viewer/remorph-belts.mjs": "c75ae005bf795485430cc1188bb51fc647244585f5e0407c9b9586cf79dd082f",
     "site/viewer/remorph-environment.mjs": "6fb8bb7c9e6491287c5d0b737248116b439cea560aee50b929c2af1c18e2815d",
-    "site/viewer/remorph.html": "536b00712dc0ac3197b14a6d26b3e34b63aacdccd8610f9ef777f4425745cfa0",
-    "site/viewer/remorph.js": "b36dde82ef6f3e11bf0e719bb03abd0466f00b1d24cc63f7633a44602e1d5947",
+    "site/viewer/remorph.html": "f1f61f410b41e56a7e85b44af5e6759340c9541d9dd83bc7711ba3698468a694",
+    "site/viewer/remorph.js": "c0e499e2de7cd23d8e1910c7c8e57b86b0d65a20b31b8deb8d14d6d4b6cd3571",
     "site/viewer/render-export.js": "5932066eed0ef909b72bf4b00f1a3d88324bb2d3f92869d930ee900f707b1497",
     "site/viewer/responsive-camera.mjs": "a5087f024910f351f1deca2caa00f8e26ffbffaec6ece167c0120b59036ca1b8",
     "site/viewer/scene-lighting-state.mjs": "80afe1341b17e451471f51b9dd350c2c5a3c14e5cdd922f6b1eb110db9f5e8d1",
@@ -142,18 +142,18 @@
     "site/viewer/theme-toggle.css": "4e62a8462e0b9ed5c6653d7dcb43cf66a36893b1be13b5b267e4e0af3f85613b",
     "site/viewer/toolchanger-model.js": "0688c022fbab64a87c2e33d823880ec90afaa05223f3d4a3f2f454a258e7c443",
     "site/viewer/toolchangers.css": "aeb1af01008eeb68e8915ccf6a73a4944f2d70ad906feccca6da2579b4dba488",
-    "site/viewer/toolchangers.html": "8b54fbea16bec6b24a32ab53e45766a2603f4d773b3c22009f7565c05c7935d8",
-    "site/viewer/toolchangers.js": "5aa928989f3eb2f185628cddf34f37498805240611577eea5b2602f5ca103796",
+    "site/viewer/toolchangers.html": "8e2497f2f71c5e2c81d50fd281d184c8d6ae47d2193ae993d4649ade868158d7",
+    "site/viewer/toolchangers.js": "384d9e0b16c17916a8d9ad0eac02663faf3ec8d154114fd84ef484d89cded2c5",
     "site/viewer/toolhead-builder.mjs": "6ec7788c796225ad9e846684d16b484269fdcf64b171d55c0fda5c45304a4516",
     "site/viewer/toolheads.css": "a03941a53ad7be71c88335121d4ef8239365f7a7b60091ab296dedc92793804a",
-    "site/viewer/toolheads.html": "f03e66e158b2ebdac5a0076d89137160b072f1046a74bdeae9d182f1a9c967f4",
-    "site/viewer/toolheads.js": "143cabd84ac7d860d00a12f5d4effde94ef789c2736c91bec170321206e29f45",
+    "site/viewer/toolheads.html": "66ff0b6a4f76f7f01986592ef3f57ff9f68ca4f1e8ec04499724483b02f1572d",
+    "site/viewer/toolheads.js": "7e869bfcde60bb7919e23b52518cbd12f9ab8cb49a26e0840a9aa1cefa31a7f5",
     "site/viewer/translation-engine.mjs": "f8fc3bbed8f367d0c54f4b45a1a3616525fefbbd0ba0b2e74138d52e595652df",
     "site/viewer/trident-belts.mjs": "e2522a232fe7528cae83d9ad6754a233ba82ee5968f92a13e14ce15001d74352",
     "site/viewer/trident-motion.mjs": "8bc856fb8131098df12ca3fd30d76c36a4c6aa777a5ec8ab6fb846885afde45b",
-    "site/viewer/trident.html": "b577f4cf7a206e5eb4e3e6f04ac01c58def0e3fbd85483bc9b90a968def1193e",
+    "site/viewer/trident.html": "4e442bc79ef53da36dbd4b3c186efc6c7aec6f4dbfce281dfac3538c1cbca094",
     "site/viewer/v0_adapter.mjs": "b25f6ec8b11c3f0769a092db308191c30400e2c3872587f38d61d8dec613de4c",
-    "site/viewer/v0-app.js": "ed8a03e08253c75e12dcc67a84656348bac27286bd4ca29a85b790923113f1a7",
+    "site/viewer/v0-app.js": "f5bb4a03ea8af0d64c8697572f58d8a4f1bcfa780758d3cfa2cc388ab9ff567a",
     "site/viewer/v0-belts.mjs": "948e42567a0013aa58217f9a877c9387159934bf848215d8d5a1d9515f911e5d",
     "site/viewer/v0-chain-pins.mjs": "6d41fb943c5b19ea28ac78025bcd1559ddccbb4baab4872a28816fe5c4c81136",
     "site/viewer/v0-chain.mjs": "191a8944e5e3197f21dcdaf6023bcc5be39d268162c22f68b3a9ffe7e5bd86fc",
@@ -161,32 +161,116 @@
     "site/viewer/v0-installations.mjs": "a72fbce7f4a7c5297d706b751bbe48f009878d8b59e23b5fbd173d5b768d772e",
     "site/viewer/v0-mod-library.mjs": "897dcc582eb8dfa53141c173a8d8536cd343a08a384fe9510006e94168aa3d7b",
     "site/viewer/v0-tophat.mjs": "1c65737cefc844de5ab72663dc4c38ba929f98dec76fe8b318298142305bfd2f",
-    "site/viewer/v0.html": "23571e175c29e826c1c73aae214eea0b0c2d4dfddd6e3a4de27703e2af3e3b96",
+    "site/viewer/v0.html": "01dbd8b88c78f21d5b127a8e1a050ac8948eb4cad12fd5b86e789f174b7d8f4d",
     "site/viewer/v24_adapter.mjs": "a512696091b77afc946902d8698966d2e384b665cc1fc8f436d3f6aa461059f9",
     "site/viewer/v24_matrix_adapter.mjs": "96c2ca261c43ee9053c3eb54642c55218d7582ac8a3de20ce28a515e0d43c8ac",
-    "site/viewer/v24-app.js": "3c80ff419801ae5cdabf0f0fcbd5e97d81989fb77db487576645ea4937b9377f",
+    "site/viewer/v24-app.js": "64729a07c152b6213a80dfbb29570e03101568b1331292dff37acaad31aacf8a",
     "site/viewer/v24-belts.mjs": "dac441c501db20e20d10d5c26fbe5d994d511d4312a343082c4361ecbcbd87b2",
-    "site/viewer/v24-bootstrap.js": "b5be1f4f45a9d235c614e72cd14ee069b775b75b52e86703e2de834f03d9159b",
+    "site/viewer/v24-bootstrap.js": "f8535fba078a767c672b012760578e89cc98d9580d9c1024bac4cc0442aff0a4",
     "site/viewer/v24-flexible.mjs": "4de2768da445f9eef0d59ead19639302112d082c26084fa80d48b6f98635470b",
-    "site/viewer/v24-reference.html": "4becac9eeb1b702cc7897f4a5b09bc7d718f5eacfecbeb14587292eda47a7aee",
-    "site/viewer/v24-reference.js": "811efb8d954dd4ae28970c6f018a5ddc5692d15348e1fe7d0bf3cb96273acd99",
-    "site/viewer/v24.html": "2e2370c07be49da32f36249261ad22d81c7a5c6b973dfa18f7b3cbce9f0e0700",
-    "site/viewer/vanilla-trident.js": "50f4048738731671b2b720b85bddaf1be8610819b3b5b5fb4ea8891a63294f54",
+    "site/viewer/v24-reference.html": "c0b5b7ecb176d073540be6ecf4bf07656e06ec9d79672898bebb36932f303f44",
+    "site/viewer/v24-reference.js": "6b127f3a93be1762cef80dd1c4b13d243e82256ba69927427e53ad3bf3a46132",
+    "site/viewer/v24.html": "be797a5e624f046701d11ad08059d1014180064b895b055736294ac0fbab6c3f",
+    "site/viewer/vanilla-trident.js": "269492a9442b514daa524ed67c72f44b2722f92b20f8c71c0ea2704bde6ddb65",
     "site/viewer/viewer.css": "a59b3f5f2ad1c8d3a36f6dd7f053df49d851c3b1d75a182c22fc4108336bc829",
-    "site/viewer/workspace-choices.mjs": "c18532da07d0f701f366c1a6af5b02f7c9bfca8d67290654c00fbc6be78c28f4",
+    "site/viewer/workspace-choices.mjs": "50eccf77896af0a138b183251866326ce81a9e9f167fdd5db2ea2be847297be6",
     "site/viewer/workspace-entry.mjs": "7e4c8f98212e989784bda6bb8415bf2c335376c5d79ed5a2da26d5deabaa3615",
     "site/viewer/workspace-layout.mjs": "738c040595ec99155ce29dcf2e2fb4014bf02b6742fcf03b6d518d3ac26b4fb5",
     "site/viewer/workspace-lifecycle.mjs": "6684e77acebd6489e552ff85d52a4a8b8588b1e34153bcfc8c0921b66bf109f5",
     "site/viewer/workspace-navigation.mjs": "424451cc1e036690fee71ad97f27205d59c84100d55ad75f81f9f5db320718d4",
-    "site/viewer/workspace-return.mjs": "c51013f59bd9b96045508818f63a1996d16b59f16020ff5bf6eaeb45e42f34a1",
-    "site/viewer/workspace-router.mjs": "bcfe5983f516cc7fa9d3fe98d3a7c15aae5cd9e1969b831221bb7d0297343755",
+    "site/viewer/workspace-return.mjs": "c55fefd51cd84c16f11da4f83a41851fd750c0d8de471a51fce5d516d003d33c",
+    "site/viewer/workspace-router.mjs": "4cc74803b0d9240e38d02b0064a1519a791fccf9bbd0397d7ad5dbd14f8738ea",
     "site/viewer/workspace-scroll.mjs": "048fe4a04b0a52b9cc23358733fc87529ac6bc46b0bd7309b96ea8e944874418",
-    "site/viewer/workspace-sections.mjs": "11c2fa1a0591944c5aa32981573b91e9db915ef33cd0c88861ad2293a6b2c56f",
+    "site/viewer/workspace-sections.mjs": "181502ea1d03250aac1636c3abd2e156192e9efc478a2bb1473a21e582946be1",
     "site/viewer/workspace-share.mjs": "e6c4054688ce084e0759d2fb4d529ea4df55e8b0190c49607fc621773b868729",
-    "site/viewer/workspace-ui.mjs": "be01cd8acb200db9ac801a21ec59ec0d0d9bba4704816be9a259c1e2a86b5590",
+    "site/viewer/workspace-ui.mjs": "eafce6e1b1fe932f0a694cd2d891d8e62731c2218ab46137a198e1c53b5799b2",
     "site/viewer/workspace.css": "afe321bd2fdaf8d2c23b8f1bd217ce29d35b660fc037125d2457da2379adb22d"
   },
   "machines": [
+    {
+      "id": "tictac_21_120",
+      "family": "tictac",
+      "model_sha256": "73755c5b4f0cdd134554c68d9b37102348af2d71c2e9a31e761c492856939f9b",
+      "mesh_quality_verified": true,
+      "motion_scope": "native_reference_assembly",
+      "sampled_poses": 1,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "REQUESTED_ACTUAL_QA_81.json",
+          "sha256": "9b4e10fe9a0a1be864a0d13ca059bce593314dc1e7397a7a8d9c6cb795ddb879",
+          "scope": "Current independent licensed exported models: all native part identities, finite rigid pose/reset, unit normals, panel transparency, palette/hardware isolation and configuration state. Static native CAD reference; no movement, toolchanger or mod combinations are offered."
+        },
+        {
+          "report": "REQUESTED_NATIVE_QA_81.json",
+          "sha256": "4849c1e7ed329b0a67b6cad227945414978fd246ca0e499ce27db209e174e1a0",
+          "scope": "Fresh actual source T/square-nut proximity screen using native-solid distances. Source topology findings remain declared in notices; proximity does not prove threads, all fastening, belt correctness or full physical fit."
+        }
+      ]
+    },
+    {
+      "id": "the100_v11_165",
+      "family": "the100",
+      "model_sha256": "0a3088eb107137530b22e2b4a9ee41b52d0aff3ebd531e68f35d7c825256f8b5",
+      "mesh_quality_verified": true,
+      "motion_scope": "native_reference_assembly",
+      "sampled_poses": 1,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "REQUESTED_ACTUAL_QA_81.json",
+          "sha256": "9b4e10fe9a0a1be864a0d13ca059bce593314dc1e7397a7a8d9c6cb795ddb879",
+          "scope": "Current independent licensed exported models: all native part identities, finite rigid pose/reset, unit normals, panel transparency, palette/hardware isolation and configuration state. Static native CAD reference; no movement, toolchanger or mod combinations are offered."
+        },
+        {
+          "report": "REQUESTED_NATIVE_QA_81.json",
+          "sha256": "4849c1e7ed329b0a67b6cad227945414978fd246ca0e499ce27db209e174e1a0",
+          "scope": "Fresh actual source T/square-nut proximity screen using native-solid distances. Source topology findings remain declared in notices; proximity does not prove threads, all fastening, belt correctness or full physical fit."
+        }
+      ]
+    },
+    {
+      "id": "rook_mk2_120",
+      "family": "rook",
+      "model_sha256": "16d278caa466868340ad8c97d91b80d96bfbc2af2d871565ab8d1e3559faf861",
+      "mesh_quality_verified": true,
+      "motion_scope": "native_reference_assembly",
+      "sampled_poses": 1,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "REQUESTED_ACTUAL_QA_81.json",
+          "sha256": "9b4e10fe9a0a1be864a0d13ca059bce593314dc1e7397a7a8d9c6cb795ddb879",
+          "scope": "Current independent licensed exported models: all native part identities, finite rigid pose/reset, unit normals, panel transparency, palette/hardware isolation and configuration state. Static native CAD reference; no movement, toolchanger or mod combinations are offered."
+        },
+        {
+          "report": "REQUESTED_NATIVE_QA_81.json",
+          "sha256": "4849c1e7ed329b0a67b6cad227945414978fd246ca0e499ce27db209e174e1a0",
+          "scope": "Fresh actual source T/square-nut proximity screen using native-solid distances. Source topology findings remain declared in notices; proximity does not prove threads, all fastening, belt correctness or full physical fit."
+        }
+      ]
+    },
+    {
+      "id": "satsuma180_v10",
+      "family": "satsuma",
+      "model_sha256": "8c6a1a7d0118ee2bda8ff2278a60e9150324af9f24be59fee4efbe93007cf952",
+      "mesh_quality_verified": true,
+      "motion_scope": "native_reference_assembly",
+      "sampled_poses": 1,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "REQUESTED_ACTUAL_QA_81.json",
+          "sha256": "9b4e10fe9a0a1be864a0d13ca059bce593314dc1e7397a7a8d9c6cb795ddb879",
+          "scope": "Current independent licensed exported models: all native part identities, finite rigid pose/reset, unit normals, panel transparency, palette/hardware isolation and configuration state. Static native CAD reference; no movement, toolchanger or mod combinations are offered."
+        },
+        {
+          "report": "REQUESTED_NATIVE_QA_81.json",
+          "sha256": "4849c1e7ed329b0a67b6cad227945414978fd246ca0e499ce27db209e174e1a0",
+          "scope": "Fresh actual source T/square-nut proximity screen using native-solid distances. Source topology findings remain declared in notices; proximity does not prove threads, all fastening, belt correctness or full physical fit."
+        }
+      ]
+    },
     {
       "id": "sovol_sv08_350",
       "family": "sovol_sv08",
@@ -197,8 +281,8 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "COMMUNITY_NATIVE_QA_80.json",
-          "sha256": "fc364c6ae3d98d5cfc7c31290708ea1769f662208c48bcdd875f421d48f1f0bc",
+          "report": "COMMUNITY_NATIVE_QA_81.json",
+          "sha256": "95ce2f0a45fe46addddca8fc1b23ccdcaec9093a38cf0cbff9998f20cc93fb44",
           "scope": "Actual nodes, native motion groups, travel corners and fine diagonal sweep, exact reset, supplied normals, palette roles and flexible-part visibility."
         },
         {
@@ -218,8 +302,8 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "COMMUNITY_NATIVE_QA_80.json",
-          "sha256": "fc364c6ae3d98d5cfc7c31290708ea1769f662208c48bcdd875f421d48f1f0bc",
+          "report": "COMMUNITY_NATIVE_QA_81.json",
+          "sha256": "95ce2f0a45fe46addddca8fc1b23ccdcaec9093a38cf0cbff9998f20cc93fb44",
           "scope": "Actual nodes, native motion groups, travel corners and fine diagonal sweep, exact reset, supplied normals, palette roles and flexible-part visibility."
         }
       ]
@@ -234,8 +318,8 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "COMMUNITY_NATIVE_QA_80.json",
-          "sha256": "fc364c6ae3d98d5cfc7c31290708ea1769f662208c48bcdd875f421d48f1f0bc",
+          "report": "COMMUNITY_NATIVE_QA_81.json",
+          "sha256": "95ce2f0a45fe46addddca8fc1b23ccdcaec9093a38cf0cbff9998f20cc93fb44",
           "scope": "Actual nodes, native motion groups, travel corners and fine diagonal sweep, exact reset, supplied normals, palette roles and flexible-part visibility."
         }
       ]
@@ -250,8 +334,8 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "COMMUNITY_NATIVE_QA_80.json",
-          "sha256": "fc364c6ae3d98d5cfc7c31290708ea1769f662208c48bcdd875f421d48f1f0bc",
+          "report": "COMMUNITY_NATIVE_QA_81.json",
+          "sha256": "95ce2f0a45fe46addddca8fc1b23ccdcaec9093a38cf0cbff9998f20cc93fb44",
           "scope": "Actual nodes, native motion groups, travel corners and fine diagonal sweep, exact reset, supplied normals, palette roles and flexible-part visibility."
         }
       ]
@@ -266,8 +350,8 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "COMMUNITY_NATIVE_QA_80.json",
-          "sha256": "fc364c6ae3d98d5cfc7c31290708ea1769f662208c48bcdd875f421d48f1f0bc",
+          "report": "COMMUNITY_NATIVE_QA_81.json",
+          "sha256": "95ce2f0a45fe46addddca8fc1b23ccdcaec9093a38cf0cbff9998f20cc93fb44",
           "scope": "Actual nodes, native motion groups, travel corners and fine diagonal sweep, exact reset, supplied normals, palette roles and flexible-part visibility."
         }
       ]
@@ -282,8 +366,8 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "COMMUNITY_NATIVE_QA_80.json",
-          "sha256": "fc364c6ae3d98d5cfc7c31290708ea1769f662208c48bcdd875f421d48f1f0bc",
+          "report": "COMMUNITY_NATIVE_QA_81.json",
+          "sha256": "95ce2f0a45fe46addddca8fc1b23ccdcaec9093a38cf0cbff9998f20cc93fb44",
           "scope": "Actual nodes, native motion groups, travel corners and fine diagonal sweep, exact reset, supplied normals, palette roles and flexible-part visibility."
         }
       ]
@@ -298,8 +382,8 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "COMMUNITY_NATIVE_QA_80.json",
-          "sha256": "fc364c6ae3d98d5cfc7c31290708ea1769f662208c48bcdd875f421d48f1f0bc",
+          "report": "COMMUNITY_NATIVE_QA_81.json",
+          "sha256": "95ce2f0a45fe46addddca8fc1b23ccdcaec9093a38cf0cbff9998f20cc93fb44",
           "scope": "Actual nodes, native motion groups, travel corners and fine diagonal sweep, exact reset, supplied normals, palette roles and flexible-part visibility."
         }
       ]
@@ -314,8 +398,8 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "COMMUNITY_NATIVE_QA_80.json",
-          "sha256": "fc364c6ae3d98d5cfc7c31290708ea1769f662208c48bcdd875f421d48f1f0bc",
+          "report": "COMMUNITY_NATIVE_QA_81.json",
+          "sha256": "95ce2f0a45fe46addddca8fc1b23ccdcaec9093a38cf0cbff9998f20cc93fb44",
           "scope": "Actual nodes, native motion groups, travel corners and fine diagonal sweep, exact reset, supplied normals, palette roles and flexible-part visibility."
         }
       ]
@@ -330,8 +414,8 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "COMMUNITY_NATIVE_QA_80.json",
-          "sha256": "fc364c6ae3d98d5cfc7c31290708ea1769f662208c48bcdd875f421d48f1f0bc",
+          "report": "COMMUNITY_NATIVE_QA_81.json",
+          "sha256": "95ce2f0a45fe46addddca8fc1b23ccdcaec9093a38cf0cbff9998f20cc93fb44",
           "scope": "Actual nodes, native motion groups, travel corners and fine diagonal sweep, exact reset, supplied normals, palette roles and flexible-part visibility."
         }
       ]
@@ -346,8 +430,8 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "COMMUNITY_NATIVE_QA_80.json",
-          "sha256": "fc364c6ae3d98d5cfc7c31290708ea1769f662208c48bcdd875f421d48f1f0bc",
+          "report": "COMMUNITY_NATIVE_QA_81.json",
+          "sha256": "95ce2f0a45fe46addddca8fc1b23ccdcaec9093a38cf0cbff9998f20cc93fb44",
           "scope": "Actual nodes, native motion groups, travel corners and fine diagonal sweep, exact reset, supplied normals, palette roles and flexible-part visibility."
         }
       ]
@@ -362,8 +446,8 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "COMMUNITY_NATIVE_QA_80.json",
-          "sha256": "fc364c6ae3d98d5cfc7c31290708ea1769f662208c48bcdd875f421d48f1f0bc",
+          "report": "COMMUNITY_NATIVE_QA_81.json",
+          "sha256": "95ce2f0a45fe46addddca8fc1b23ccdcaec9093a38cf0cbff9998f20cc93fb44",
           "scope": "Actual nodes, native motion groups, travel corners and fine diagonal sweep, exact reset, supplied normals, palette roles and flexible-part visibility."
         }
       ]
@@ -378,8 +462,8 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "COMMUNITY_NATIVE_QA_80.json",
-          "sha256": "fc364c6ae3d98d5cfc7c31290708ea1769f662208c48bcdd875f421d48f1f0bc",
+          "report": "COMMUNITY_NATIVE_QA_81.json",
+          "sha256": "95ce2f0a45fe46addddca8fc1b23ccdcaec9093a38cf0cbff9998f20cc93fb44",
           "scope": "Actual nodes, native motion groups, travel corners and fine diagonal sweep, exact reset, supplied normals, palette roles and flexible-part visibility."
         }
       ]
@@ -394,8 +478,8 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "COMMUNITY_NATIVE_QA_80.json",
-          "sha256": "fc364c6ae3d98d5cfc7c31290708ea1769f662208c48bcdd875f421d48f1f0bc",
+          "report": "COMMUNITY_NATIVE_QA_81.json",
+          "sha256": "95ce2f0a45fe46addddca8fc1b23ccdcaec9093a38cf0cbff9998f20cc93fb44",
           "scope": "Actual nodes, native motion groups, travel corners and fine diagonal sweep, exact reset, supplied normals, palette roles and flexible-part visibility."
         }
       ]
@@ -410,7 +494,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "POSITRON_NATIVE_QA_80.json",
+          "report": "POSITRON_NATIVE_QA_81.json",
           "sha256": "9cab147eb0d571e129bda656ad58d898f79d49e87bec617837fd488de9be37cc",
           "scope": "All native nodes: 1001 fold poses, rigid finite transforms, exact reset."
         },
@@ -431,7 +515,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "ANNEX_NATIVE_QA_80.json",
+          "report": "ANNEX_NATIVE_QA_81.json",
           "sha256": "2aae0215de5ac1aee56c1e4866980dd7f3b69b4f1b66fb6cc54427aac7271429",
           "scope": "Native part transforms, upright placement and rendered part coverage. Source reference; motion is not offered."
         }
@@ -447,7 +531,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "ANNEX_NATIVE_QA_80.json",
+          "report": "ANNEX_NATIVE_QA_81.json",
           "sha256": "2aae0215de5ac1aee56c1e4866980dd7f3b69b4f1b66fb6cc54427aac7271429",
           "scope": "Native part transforms, upright placement and rendered part coverage. Source reference; motion is not offered."
         }
@@ -463,7 +547,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "ANNEX_NATIVE_QA_80.json",
+          "report": "ANNEX_NATIVE_QA_81.json",
           "sha256": "2aae0215de5ac1aee56c1e4866980dd7f3b69b4f1b66fb6cc54427aac7271429",
           "scope": "Native part transforms, upright placement and rendered part coverage. Source reference; motion is not offered."
         }
@@ -479,7 +563,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "REMORPH_NATIVE_QA_80.json",
+          "report": "REMORPH_NATIVE_QA_81.json",
           "sha256": "e7a4fe9f94f4c69e44dd71e43d51d08525e3e5aa498be03c8f79c2eb3940cd58",
           "scope": "Actual native motion groups, nozzle gap, belts, visibility, palette, floor and lighting."
         }
@@ -495,7 +579,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "SIBOOR_ROUTES_QA_80.json",
+          "report": "SIBOOR_ROUTES_QA_81.json",
           "sha256": "86b750b9a98dd8e2273cf6a744123b7b4ee5967dabf881b81ab6c77eddb11151",
           "scope": "Actual source, enabled belts and all 47 chain links preserved throughout sampled motion. Unregistered chain deformation uses an explicitly unverified reference fallback."
         },
@@ -517,7 +601,7 @@
       "evidence": [
         {
           "report": "audit_trident_sizes.mjs",
-          "sha256": "e71396e8f948a5b4f4d33228c232bbadf5619785a9e9d59d14bfc72fe6f554a4",
+          "sha256": "cf12b625affa64015892ca599943ad389d1b2107583df232b5368f42da895dee",
           "scope": "All three actual size models: frame and bed dimensions, drive/base motion, registered heads, nozzle gap, dynamic XY route sweeps and blocked incompatible docks."
         },
         {
@@ -538,7 +622,7 @@
       "evidence": [
         {
           "report": "audit_trident_sizes.mjs",
-          "sha256": "e71396e8f948a5b4f4d33228c232bbadf5619785a9e9d59d14bfc72fe6f554a4",
+          "sha256": "cf12b625affa64015892ca599943ad389d1b2107583df232b5368f42da895dee",
           "scope": "All three actual size models: frame and bed dimensions, drive/base motion, registered heads, nozzle gap, dynamic XY route sweeps and blocked incompatible docks."
         },
         {
@@ -559,7 +643,7 @@
       "evidence": [
         {
           "report": "audit_trident_sizes.mjs",
-          "sha256": "e71396e8f948a5b4f4d33228c232bbadf5619785a9e9d59d14bfc72fe6f554a4",
+          "sha256": "cf12b625affa64015892ca599943ad389d1b2107583df232b5368f42da895dee",
           "scope": "All three actual size models: frame and bed dimensions, drive/base motion, registered heads, nozzle gap, dynamic XY route sweeps and blocked incompatible docks."
         },
         {
@@ -579,12 +663,12 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "CUSTOM_VORON_MOTION_QA_80.json",
+          "report": "CUSTOM_VORON_MOTION_QA_81.json",
           "sha256": "8e952b27324be707955d4eb437bb8666c70b66631d98d096cea9170045300a4e",
           "scope": "Actual custom native-exported complete assembly; 195 minimum/maximum/intermediate/reversed/rapid XYZ poses, reset and finite flexible routes. Trident PTFE endpoints follow measured native CW2 inlet and fixed roof/spool holder. Smooth belt preview excludes teeth/cut-end/tension certification."
         },
         {
-          "report": "CUSTOM_VORON_NATIVE_QA_80.json",
+          "report": "CUSTOM_VORON_NATIVE_QA_81.json",
           "sha256": "5a3c77c2702d78ef7abe790c1d908a40b525082192cc71a23c1882a22edc5450",
           "scope": "Actual selected nut/bolt/rail analytic bore axes, exact native-solid seating/interference, full scalar Z guide containment. Full-printer swept collision is not certified."
         }
@@ -600,12 +684,12 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "CUSTOM_VORON_MOTION_QA_80.json",
+          "report": "CUSTOM_VORON_MOTION_QA_81.json",
           "sha256": "8e952b27324be707955d4eb437bb8666c70b66631d98d096cea9170045300a4e",
           "scope": "Actual custom native-exported complete assembly; 195 minimum/maximum/intermediate/reversed/rapid XYZ poses, reset and finite flexible routes. Trident PTFE endpoints follow measured native CW2 inlet and fixed roof/spool holder. Smooth belt preview excludes teeth/cut-end/tension certification."
         },
         {
-          "report": "CUSTOM_VORON_NATIVE_QA_80.json",
+          "report": "CUSTOM_VORON_NATIVE_QA_81.json",
           "sha256": "5a3c77c2702d78ef7abe790c1d908a40b525082192cc71a23c1882a22edc5450",
           "scope": "Actual selected nut/bolt/rail analytic bore axes, exact native-solid seating/interference, full scalar Z guide containment. Full-printer swept collision is not certified."
         }
@@ -621,7 +705,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "MOTION_ASSETS_QA_80.json",
+          "report": "MOTION_ASSETS_QA_81.json",
           "sha256": "3a537da8ecb7fb268673f631ef80c115ede9b0598bcb4db86c5930e623bf838f",
           "scope": "Actual exported models: travel grid, enabled flexible visibility, rigid group transforms, belt envelopes, enclosure switches and reverse/reset. Belt teeth/clamp cuts, tension and body swept clearance are separate."
         },
@@ -642,7 +726,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "MOTION_ASSETS_QA_80.json",
+          "report": "MOTION_ASSETS_QA_81.json",
           "sha256": "3a537da8ecb7fb268673f631ef80c115ede9b0598bcb4db86c5930e623bf838f",
           "scope": "Actual exported models: travel grid, enabled flexible visibility, rigid group transforms, belt envelopes, enclosure switches and reverse/reset. Belt teeth/clamp cuts, tension and body swept clearance are separate."
         },
@@ -663,7 +747,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "MOTION_ASSETS_QA_80.json",
+          "report": "MOTION_ASSETS_QA_81.json",
           "sha256": "3a537da8ecb7fb268673f631ef80c115ede9b0598bcb4db86c5930e623bf838f",
           "scope": "Actual exported models: travel grid, enabled flexible visibility, rigid group transforms, belt envelopes, enclosure switches and reverse/reset. Belt teeth/clamp cuts, tension and body swept clearance are separate."
         },
@@ -684,7 +768,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "MOTION_ASSETS_QA_80.json",
+          "report": "MOTION_ASSETS_QA_81.json",
           "sha256": "3a537da8ecb7fb268673f631ef80c115ede9b0598bcb4db86c5930e623bf838f",
           "scope": "Actual exported models: travel grid, enabled flexible visibility, rigid group transforms, belt envelopes, enclosure switches and reverse/reset. Belt teeth/clamp cuts, tension and body swept clearance are separate."
         },
@@ -705,7 +789,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "MOTION_ASSETS_QA_80.json",
+          "report": "MOTION_ASSETS_QA_81.json",
           "sha256": "3a537da8ecb7fb268673f631ef80c115ede9b0598bcb4db86c5930e623bf838f",
           "scope": "Actual exported models: travel grid, enabled flexible visibility, rigid group transforms, belt envelopes, enclosure switches and reverse/reset. Belt teeth/clamp cuts, tension and body swept clearance are separate."
         },
@@ -726,7 +810,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "MOTION_ASSETS_QA_80.json",
+          "report": "MOTION_ASSETS_QA_81.json",
           "sha256": "3a537da8ecb7fb268673f631ef80c115ede9b0598bcb4db86c5930e623bf838f",
           "scope": "Actual exported models: travel grid, enabled flexible visibility, rigid group transforms, belt envelopes, enclosure switches and reverse/reset. Belt teeth/clamp cuts, tension and body swept clearance are separate."
         },
@@ -747,12 +831,12 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "CUSTOM_VORON_MOTION_QA_80.json",
+          "report": "CUSTOM_VORON_MOTION_QA_81.json",
           "sha256": "8e952b27324be707955d4eb437bb8666c70b66631d98d096cea9170045300a4e",
           "scope": "Actual custom native-exported complete assembly; 195 minimum/maximum/intermediate/reversed/rapid XYZ poses, reset and finite flexible routes. Trident PTFE endpoints follow measured native CW2 inlet and fixed roof/spool holder. Smooth belt preview excludes teeth/cut-end/tension certification."
         },
         {
-          "report": "CUSTOM_VORON_NATIVE_QA_80.json",
+          "report": "CUSTOM_VORON_NATIVE_QA_81.json",
           "sha256": "5a3c77c2702d78ef7abe790c1d908a40b525082192cc71a23c1882a22edc5450",
           "scope": "Actual selected nut/bolt/rail analytic bore axes, exact native-solid seating/interference, full scalar Z guide containment. Full-printer swept collision is not certified."
         }
@@ -768,12 +852,12 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "CUSTOM_VORON_MOTION_QA_80.json",
+          "report": "CUSTOM_VORON_MOTION_QA_81.json",
           "sha256": "8e952b27324be707955d4eb437bb8666c70b66631d98d096cea9170045300a4e",
           "scope": "Actual custom native-exported complete assembly; 195 minimum/maximum/intermediate/reversed/rapid XYZ poses, reset and finite flexible routes. Trident PTFE endpoints follow measured native CW2 inlet and fixed roof/spool holder. Smooth belt preview excludes teeth/cut-end/tension certification."
         },
         {
-          "report": "CUSTOM_VORON_NATIVE_QA_80.json",
+          "report": "CUSTOM_VORON_NATIVE_QA_81.json",
           "sha256": "5a3c77c2702d78ef7abe790c1d908a40b525082192cc71a23c1882a22edc5450",
           "scope": "Actual selected nut/bolt/rail analytic bore axes, exact native-solid seating/interference, full scalar Z guide containment. Full-printer swept collision is not certified."
         }
@@ -789,7 +873,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "MOTION_ASSETS_QA_80.json",
+          "report": "MOTION_ASSETS_QA_81.json",
           "sha256": "3a537da8ecb7fb268673f631ef80c115ede9b0598bcb4db86c5930e623bf838f",
           "scope": "Actual exported models: travel grid, enabled flexible visibility, rigid group transforms, belt envelopes, enclosure switches and reverse/reset. Belt teeth/clamp cuts, tension and body swept clearance are separate."
         },
@@ -810,7 +894,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "MOTION_ASSETS_QA_80.json",
+          "report": "MOTION_ASSETS_QA_81.json",
           "sha256": "3a537da8ecb7fb268673f631ef80c115ede9b0598bcb4db86c5930e623bf838f",
           "scope": "Actual exported models: travel grid, enabled flexible visibility, rigid group transforms, belt envelopes, enclosure switches and reverse/reset. Belt teeth/clamp cuts, tension and body swept clearance are separate."
         }
@@ -826,7 +910,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "MOTION_ASSETS_QA_80.json",
+          "report": "MOTION_ASSETS_QA_81.json",
           "sha256": "3a537da8ecb7fb268673f631ef80c115ede9b0598bcb4db86c5930e623bf838f",
           "scope": "Actual exported models: travel grid, enabled flexible visibility, rigid group transforms, belt envelopes, enclosure switches and reverse/reset. Belt teeth/clamp cuts, tension and body swept clearance are separate."
         }
@@ -842,7 +926,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "MICRON_ACTUAL_QA_80.json",
+          "report": "MICRON_ACTUAL_QA_81.json",
           "sha256": "4b194a77b049488b9d457015ff8f1c11aa598d2b638b1f9a49805b97ae6044b6",
           "scope": "Actual model travel, chain continuity, Plus PTFE/CAN fitting endpoints, visibility and reset."
         }
@@ -858,7 +942,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "MICRON_ACTUAL_QA_80.json",
+          "report": "MICRON_ACTUAL_QA_81.json",
           "sha256": "4b194a77b049488b9d457015ff8f1c11aa598d2b638b1f9a49805b97ae6044b6",
           "scope": "Actual model travel, chain continuity, Plus PTFE/CAN fitting endpoints, visibility and reset."
         }
@@ -874,7 +958,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "FYSETC_REFERENCE_QA_80.json",
+          "report": "FYSETC_REFERENCE_QA_81.json",
           "sha256": "7c370c4e27ffb478f32d4807e8530f1a2bb28501a0393ff6d79fcf0da653f7c1",
           "scope": "All 1388 native part identities, visibility, transforms and production palette roles. Source reference; motion is not offered."
         },
@@ -895,7 +979,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "CROSSANT_COVERS_QA_80.json",
+          "report": "CROSSANT_COVERS_QA_81.json",
           "sha256": "adcda7e31f8d4372ed68c3ffcabe1b9ae7d182de46e492fc3661d9d01deeb4c4",
           "scope": "Production loader, native nodes, DXF covers at three thicknesses, all four belts and chain display, save-state compatibility."
         }
@@ -911,7 +995,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "RATRIG_ALL_NATIVE_QA_80.json",
+          "report": "RATRIG_ALL_NATIVE_QA_81.json",
           "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
           "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
         }
@@ -927,7 +1011,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "RATRIG_ALL_NATIVE_QA_80.json",
+          "report": "RATRIG_ALL_NATIVE_QA_81.json",
           "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
           "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
         }
@@ -943,7 +1027,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "RATRIG_ALL_NATIVE_QA_80.json",
+          "report": "RATRIG_ALL_NATIVE_QA_81.json",
           "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
           "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
         }
@@ -959,7 +1043,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "RATRIG_ALL_NATIVE_QA_80.json",
+          "report": "RATRIG_ALL_NATIVE_QA_81.json",
           "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
           "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
         }
@@ -975,7 +1059,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "RATRIG_ALL_NATIVE_QA_80.json",
+          "report": "RATRIG_ALL_NATIVE_QA_81.json",
           "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
           "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
         }
@@ -991,7 +1075,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "RATRIG_ALL_NATIVE_QA_80.json",
+          "report": "RATRIG_ALL_NATIVE_QA_81.json",
           "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
           "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
         }
@@ -1007,7 +1091,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "RATRIG_ALL_NATIVE_QA_80.json",
+          "report": "RATRIG_ALL_NATIVE_QA_81.json",
           "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
           "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
         }
@@ -1023,7 +1107,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "RATRIG_ALL_NATIVE_QA_80.json",
+          "report": "RATRIG_ALL_NATIVE_QA_81.json",
           "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
           "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
         }
@@ -1039,7 +1123,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "RATRIG_ALL_NATIVE_QA_80.json",
+          "report": "RATRIG_ALL_NATIVE_QA_81.json",
           "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
           "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
         }
@@ -1055,7 +1139,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "RATRIG_ALL_NATIVE_QA_80.json",
+          "report": "RATRIG_ALL_NATIVE_QA_81.json",
           "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
           "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
         }
@@ -1071,7 +1155,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "RATRIG_ALL_NATIVE_QA_80.json",
+          "report": "RATRIG_ALL_NATIVE_QA_81.json",
           "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
           "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
         }
@@ -1087,7 +1171,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "RATRIG_ALL_NATIVE_QA_80.json",
+          "report": "RATRIG_ALL_NATIVE_QA_81.json",
           "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
           "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
         }
@@ -1103,7 +1187,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "RATRIG_ALL_NATIVE_QA_80.json",
+          "report": "RATRIG_ALL_NATIVE_QA_81.json",
           "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
           "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
         }
@@ -1119,7 +1203,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "RATRIG_ALL_NATIVE_QA_80.json",
+          "report": "RATRIG_ALL_NATIVE_QA_81.json",
           "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
           "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
         }
@@ -1135,7 +1219,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "RATRIG_ALL_NATIVE_QA_80.json",
+          "report": "RATRIG_ALL_NATIVE_QA_81.json",
           "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
           "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
         }
@@ -1151,7 +1235,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "RATRIG_ALL_NATIVE_QA_80.json",
+          "report": "RATRIG_ALL_NATIVE_QA_81.json",
           "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
           "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
         }
@@ -1167,7 +1251,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "RATRIG_ALL_NATIVE_QA_80.json",
+          "report": "RATRIG_ALL_NATIVE_QA_81.json",
           "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
           "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
         }
@@ -1183,7 +1267,7 @@
       "full_physical_fit_certified": false,
       "evidence": [
         {
-          "report": "RATRIG_ALL_NATIVE_QA_80.json",
+          "report": "RATRIG_ALL_NATIVE_QA_81.json",
           "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
           "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
         }
@@ -1200,24 +1284,24 @@
   "browser_review": {
     "browser": "Codex in-app browser",
     "changed_machine_views": [
-      "voron_v24_500_custom",
-      "voron_v24_350_half_z",
-      "voron_trident_500_custom",
-      "voron_trident_350_half_z"
+      "tictac_21_120",
+      "rook_mk2_120",
+      "the100_v11_165",
+      "satsuma180_v10"
     ],
     "screenshots": [
-      "browser-custom-80/v24-500-max.png",
-      "browser-custom-80/v24-half-max.png",
-      "browser-custom-80/trident-500-motion.png",
-      "browser-custom-80/trident-half-motion.png"
+      "browser-requested-81/tictac-local.png",
+      "browser-requested-81/rook-local.png",
+      "browser-requested-81/the100-local.png",
+      "browser-requested-81/satsuma-local.png"
     ],
     "default_language": "en",
-    "all_57_visually_reviewed": false,
+    "all_61_visually_reviewed": false,
     "windows_chrome_verified": false,
     "mobile_touch_device_verified": false,
     "scope": "Changed native assemblies visually reviewed in the in-app browser. Responsive viewport review is separate from real mobile touch and external Chrome certification."
   },
-  "scope": "Actual exported mesh quality for all 57 available machines, scoped sampled motion/native reference reviews and loaded combination audits. Native assembly references, unregistered routing and unverified mounting interfaces retain their declared limitations. Every physical clearance and every browser/device are not certified.",
+  "scope": "Actual exported mesh quality for all 61 available machines, scoped sampled motion/native reference reviews and loaded combination audits. Native assembly references, unregistered routing and unverified mounting interfaces retain their declared limitations. Every physical clearance and every browser/device are not certified.",
   "interaction_review": {
     "revision": "configuration-ux-2026-10-06",
     "base_commit": "6313cac",
@@ -1338,8 +1422,8 @@
     "retention_scope": "Upstream draft controls retained; complete source regressions rerun after English/default-language integration. Actual model review is separately refreshed for this release."
   },
   "loading_review": {
-    "report": "PRODUCTION_LOADING_QA_80.json",
-    "sha256": "bfd2973c160c11b951dedfe6b08d14c645fb56b594f28058d92353bb2035abaf",
+    "report": "PRODUCTION_LOADING_QA_81.json",
+    "sha256": "1c3d573189b8a5382b2459aea418f6f14b2fb406b007fcac78d3edd0782598f3",
     "scope": "Current production loaders, measured progress, checksum identity and cleanup; GPU rendering is separate."
   },
   "mesh_rebuild_review": {

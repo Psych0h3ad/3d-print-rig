@@ -1,5 +1,5 @@
 {
-  "viewer_version": "viewer-v78",
+  "viewer_version": "viewer-v81",
   "sources": [
     {
       "id": "siboor_trident",
@@ -1502,6 +1502,66 @@
       "license_url": "../licenses/community-machines/sv08/LICENSE.txt",
       "notice_url": "../licenses/community-machines/sv08/NOTICE.txt",
       "cad_url": "https://raw.githubusercontent.com/Sovol3d/SV08/a60644875f8c756d20b3828c9416518b414b5491/STEP/0JXHSV08-00000%20%E6%A1%86%E6%9E%B6%E6%89%93%E5%8D%B0%E6%9C%BA%E6%95%B4%E8%A3%85%20Frame%203d%20printer%20pre-assembled.zip"
+    },
+    {
+      "id": "requested_tictac",
+      "label": "TicTac 2.1 / 120",
+      "author": "Squirrelbrain",
+      "repository": "https://www.printables.com/model/416884-tictac-21",
+      "commit": "7876d80933b515e45ffaed01d828d8c26edf401de11c952350ea5fea2604f024",
+      "url": "https://www.printables.com/model/416884-tictac-21",
+      "scope": "Static complete native CAD assembly reference",
+      "license": "CC-BY-NC-SA-4.0",
+      "license_file": "licenses/community-machines/tictac/LICENSE.txt",
+      "version": "2.1 / 040124 / file 2024-01-06",
+      "source_step_sha256": "7876d80933b515e45ffaed01d828d8c26edf401de11c952350ea5fea2604f024",
+      "changes": "Display triangulation without decimation; unit normals, material roles, optional source alternatives.",
+      "notice": "licenses/community-machines/tictac/NOTICE.txt"
+    },
+    {
+      "id": "requested_rook",
+      "label": "Rook MK2 / 120",
+      "author": "Rolohaun Design / Kanrog",
+      "repository": "https://www.printables.com/model/1644597-rook-mk2",
+      "commit": "93d1c61f8ef0d7c3e2c5383873de5c1082f919c970a616715e7ba1abb410bae2",
+      "url": "https://www.printables.com/model/1644597-rook-mk2",
+      "scope": "Static complete native CAD assembly reference",
+      "license": "CC-BY-NC-4.0",
+      "license_file": "licenses/community-machines/rook/LICENSE.txt",
+      "version": "MK2 beta / file 2026-03-21",
+      "source_step_sha256": "93d1c61f8ef0d7c3e2c5383873de5c1082f919c970a616715e7ba1abb410bae2",
+      "changes": "Display triangulation without decimation; unit normals, material roles, optional source alternatives.",
+      "notice": "licenses/community-machines/rook/NOTICE.txt"
+    },
+    {
+      "id": "requested_the100",
+      "label": "THE 100 v1.1 / 165",
+      "author": "Matt The Printing Nerd / MSzturc",
+      "repository": "https://github.com/MSzturc/the100",
+      "commit": "7f51196334e94e337d0a842e6374835164d6f9c0",
+      "url": "https://github.com/MSzturc/the100/tree/7f51196334e94e337d0a842e6374835164d6f9c0",
+      "scope": "Static complete native CAD assembly reference",
+      "license": "CC-BY-NC-SA-4.0",
+      "license_file": "licenses/community-machines/the100/LICENSE.txt",
+      "version": "v1.1",
+      "source_step_sha256": "a95606f005cbc59f1a0ae744184df9143e96b6296a571127b67686b035ba65c2",
+      "changes": "Display triangulation without decimation; unit normals, material roles, optional source alternatives.",
+      "notice": "licenses/community-machines/the100/NOTICE.txt"
+    },
+    {
+      "id": "requested_satsuma",
+      "label": "Satsuma 180 v1.0",
+      "author": "Squirrelbrain",
+      "repository": "https://www.printables.com/model/487266-satsuma-180-v10",
+      "commit": "b816ef0b5d7c9f86b119a77c9ab14d4bcec418513e6601ca0232f5ff3e38b38d",
+      "url": "https://www.printables.com/model/487266-satsuma-180-v10",
+      "scope": "Static complete native CAD assembly reference",
+      "license": "GPL-3.0",
+      "license_file": "licenses/community-machines/satsuma/LICENSE.txt",
+      "version": "v1.0 / 171223 / file 2023-12-18",
+      "source_step_sha256": "b816ef0b5d7c9f86b119a77c9ab14d4bcec418513e6601ca0232f5ff3e38b38d",
+      "changes": "Display triangulation without decimation; unit normals, material roles, optional source alternatives.",
+      "notice": "licenses/community-machines/satsuma/NOTICE.txt"
     }
   ],
   "defaults": [

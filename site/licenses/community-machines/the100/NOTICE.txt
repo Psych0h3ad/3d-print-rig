@@ -1,0 +1,8 @@
+Matt The Printing Nerd / MSzturc — v1.1
+Source: https://github.com/MSzturc/the100/tree/7f51196334e94e337d0a842e6374835164d6f9c0
+Source STEP SHA256: a95606f005cbc59f1a0ae744184df9143e96b6296a571127b67686b035ba65c2
+License: CC-BY-NC-SA-4.0 (original machine geometry).
+
+Display conversion: native tessellation without decimation, normalized surface normals, material roles and transparency. Optional source references: 275. No built-in supports were removed. Native source topology findings retained as display meshes: . This is a static whole CAD assembly reference. Motion, mod swapping and full physical fastening/swept-clearance certification are not offered.
+
+The source contains no belt geometry or complete Bowden tube. The overlapping lower CHC mount is an optional reference.

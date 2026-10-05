@@ -4,12 +4,12 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {RoomEnvironment} from './vendor/RoomEnvironment.js';
 import {workspaceFrame,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
-import {setupMachineNavigation} from './machines.js?v=eecf060e1aad0b884593';
+import {setupMachineNavigation} from './machines.js?v=98f22b8a6b185e5aa7e3';
 import {loadExtraMachine} from './extra-machine-loader.mjs?v=274bbda379e78bd08808';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=extra-machines-55';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
-import {setupPublicInfo} from './public-info.js?v=workspace-belts-2';
+import {setupPublicInfo} from './public-info.js?v=2bbf2c451ffa53bf08e7';
 export async function mount(scope){
  const $=id=>document.getElementById(id),stage=$('stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));
  renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);

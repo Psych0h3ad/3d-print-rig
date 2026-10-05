@@ -1,0 +1,6 @@
+Squirrelbrain — 2.1 / 040124 / file 2024-01-06
+Source: https://www.printables.com/model/416884-tictac-21
+Source STEP SHA256: 7876d80933b515e45ffaed01d828d8c26edf401de11c952350ea5fea2604f024
+License: CC-BY-NC-SA-4.0 (original machine geometry).
+
+Display conversion: native tessellation without decimation, normalized surface normals, material roles and transparency. Optional source references: 1419, 1489, 1497, 1498. No built-in supports were removed. Native source topology findings retained as display meshes: 1202, 1419. This is a static whole CAD assembly reference. Motion, mod swapping and full physical fastening/swept-clearance certification are not offered.

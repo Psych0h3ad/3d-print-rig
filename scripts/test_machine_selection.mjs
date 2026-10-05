@@ -7,7 +7,7 @@ assert.deepEqual(machineOptions({family:'trident',vendor:'voron'},'size'),[250,3
 for(const size of [250,300,350])assert.equal(machinePage('voron_trident_'+size),'./trident.html');
 let transitions=0;
 for(const m of machineChoices){
- assert(machineFamilies[m.family]&&machineVendors[m.vendor]&&[120,130,180,200,220,230,235,250,300,307,330,350,370,400,500].includes(m.size));
+ assert(machineFamilies[m.family]&&machineVendors[m.vendor]&&[120,130,165,180,200,220,230,235,250,300,307,330,350,370,400,500].includes(m.size));
  for(const dimension of ['family','vendor','size','id']){
   assert(machineOptions(m,dimension).includes(m[dimension]));
   for(const value of machineOptions(m,dimension)){

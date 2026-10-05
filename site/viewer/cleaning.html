@@ -10,7 +10,7 @@
 <a href="./">Open printer</a>
 </p>
 <script type="module">
-import {printerWorkspaceURL,workspaceReturnKey} from './workspace-return.mjs?v=c51013f59bd9b9604550';
+import {printerWorkspaceURL,workspaceReturnKey} from './workspace-return.mjs?v=c55fefd51cd84c16f11d';
 let remembered;try{remembered=sessionStorage.getItem(workspaceReturnKey)}catch{}
 location.replace(printerWorkspaceURL(location.href,remembered));
 </script>

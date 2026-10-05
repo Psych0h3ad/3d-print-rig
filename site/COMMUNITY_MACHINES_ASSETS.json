@@ -1,5 +1,5 @@
 {
-  "version": "native-community-belts-79",
+  "version": "native-community-requested-81",
   "base_url": "https://psych0h3ad.github.io/3d-print-rig-community-models/",
   "local_directory": "community-machines-assets",
   "machines": {
@@ -312,6 +312,113 @@
           "encoding": "gzip",
           "decoded_bytes": 89412160,
           "decoded_sha256": "95af277a4543096620b30f64d2d3fb6403fa6f07ca624719734d1c3a35c51ea3"
+        }
+      }
+    },
+    "tictac_21_120": {
+      "machine_id": "tictac_21_120",
+      "parts": 1499,
+      "files": {
+        "assembly_manifest.json": {
+          "path": "requested-v1/tictac/assembly_manifest.json",
+          "bytes": 448364,
+          "sha256": "42b70bdb95b82c6f1a672e72fc00bd3465639ba2a226d1b87e8b714d70ea8728"
+        },
+        "machine_profile.json": {
+          "path": "requested-v1/tictac/machine_profile.json",
+          "bytes": 799,
+          "sha256": "89da83ea8ee5509911787943371d2b5ac19a34b87bcabc7b4cdf25a2e73d410b"
+        },
+        "model.glb": {
+          "path": "requested-v1/tictac/model.glb.gz",
+          "bytes": 23033363,
+          "sha256": "8cb75729380dfd7ece3e0a61292b404f57816d955157f476515e57867dc77d2a",
+          "encoding": "gzip",
+          "decoded_bytes": 65185072,
+          "decoded_sha256": "73755c5b4f0cdd134554c68d9b37102348af2d71c2e9a31e761c492856939f9b"
+        }
+      }
+    },
+    "rook_mk2_120": {
+      "machine_id": "rook_mk2_120",
+      "parts": 399,
+      "files": {
+        "assembly_manifest.json": {
+          "path": "requested-v1/rook/assembly_manifest.json",
+          "bytes": 116037,
+          "sha256": "c77aac373926533e051d7f73a088570c955f303c1f0979ea5156fd871cf680a8"
+        },
+        "machine_profile.json": {
+          "path": "requested-v1/rook/machine_profile.json",
+          "bytes": 2477,
+          "sha256": "b5092cbb977d4393936762dd8b0f27d1fb49f16acb02e9acf41f3512d54e4285"
+        },
+        "model.glb": {
+          "path": "requested-v1/rook/model.glb.gz",
+          "bytes": 3608460,
+          "sha256": "032f2bb7cd32e5c01e1b20ec170774ef7158269e956fd1ee9ff5086a4b351550",
+          "encoding": "gzip",
+          "decoded_bytes": 13474632,
+          "decoded_sha256": "16d278caa466868340ad8c97d91b80d96bfbc2af2d871565ab8d1e3559faf861"
+        },
+        "g2sa.glb": {
+          "path": "requested-v1/rook/g2sa.glb.gz",
+          "bytes": 2431817,
+          "sha256": "efd293b53f33e5d74be831dcd9a7273018ced4a83b0275444589470283e6b9f2",
+          "encoding": "gzip",
+          "decoded_bytes": 5572132,
+          "decoded_sha256": "e97858db12f4018bffb9c7e0875e9480650f53f9ef914273d20cde5b92b0d56c"
+        }
+      },
+      "additional_models": [
+        "g2sa.glb"
+      ]
+    },
+    "the100_v11_165": {
+      "machine_id": "the100_v11_165",
+      "parts": 279,
+      "files": {
+        "assembly_manifest.json": {
+          "path": "requested-v1/the100/assembly_manifest.json",
+          "bytes": 80443,
+          "sha256": "089ae2251732c9481ecd319024294df03e3116c189126089d58dedd333c09275"
+        },
+        "machine_profile.json": {
+          "path": "requested-v1/the100/machine_profile.json",
+          "bytes": 768,
+          "sha256": "258660d6747638c8b3245ba9b4f26c32a1ae01807fbf9115651cceec03e95052"
+        },
+        "model.glb": {
+          "path": "requested-v1/the100/model.glb.gz",
+          "bytes": 9543855,
+          "sha256": "68c815949b33e38039e11eecaf290432b5502f7301fbd24f665b10b2736c566f",
+          "encoding": "gzip",
+          "decoded_bytes": 26622556,
+          "decoded_sha256": "0a3088eb107137530b22e2b4a9ee41b52d0aff3ebd531e68f35d7c825256f8b5"
+        }
+      }
+    },
+    "satsuma180_v10": {
+      "machine_id": "satsuma180_v10",
+      "parts": 912,
+      "files": {
+        "assembly_manifest.json": {
+          "path": "requested-v1/satsuma/assembly_manifest.json",
+          "bytes": 272273,
+          "sha256": "eed5ca4e5c1296e73485b2f38c12ede765b807f8925e736d68c4ff2db3b76e31"
+        },
+        "machine_profile.json": {
+          "path": "requested-v1/satsuma/machine_profile.json",
+          "bytes": 898,
+          "sha256": "01a7d515672dfb4d2de5b80db133af9569e8c3b394d7382f3f32716c90f73d35"
+        },
+        "model.glb": {
+          "path": "requested-v1/satsuma/model.glb.gz",
+          "bytes": 28245863,
+          "sha256": "22db691427da5671754068a2d4e0311088d3b94fe63c870db14ce9ec7782fac1",
+          "encoding": "gzip",
+          "decoded_bytes": 73973008,
+          "decoded_sha256": "8c6a1a7d0118ee2bda8ff2278a60e9150324af9f24be59fee4efbe93007cf952"
         }
       }
     }

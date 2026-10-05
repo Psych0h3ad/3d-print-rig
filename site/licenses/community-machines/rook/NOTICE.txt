@@ -1,0 +1,8 @@
+Rolohaun Design / Kanrog — MK2 beta / file 2026-03-21
+Source: https://www.printables.com/model/1644597-rook-mk2
+Source STEP SHA256: 93d1c61f8ef0d7c3e2c5383873de5c1082f919c970a616715e7ba1abb410bae2
+License: CC-BY-NC-4.0 (original machine geometry).
+
+Display conversion: native tessellation without decimation, normalized surface normals, material roles and transparency. Optional source references: . No built-in supports were removed. Native source topology findings retained as display meshes: 371. This is a static whole CAD assembly reference. Motion, mod swapping and full physical fastening/swept-clearance certification are not offered.
+
+Galileo 2 G2SA: JaredC01/Galileo2 at 98f8a37944d7277cd37231776400553cc402219f, GPL-3.0. Geometry is distributed independently as g2sa.glb.gz; the original Rook geometry retains CC-BY-NC-4.0. Two 43.5 mm bore axes and the planar mounting seat were measured for display registration. The source Rook CAD omits both foot mounting screws and their clamping receivers; no substitute hardware was invented. Source: https://github.com/JaredC01/Galileo2/blob/98f8a37944d7277cd37231776400553cc402219f/galileo2_standalone/CAD/G2_Standalone_And_Bowden.step

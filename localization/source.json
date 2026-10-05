@@ -9456,6 +9456,46 @@
       "kind": "template",
       "ja": "VORON V2.4 {0} × {1} × {2} · Z高さ半分",
       "en": "VORON V2.4 {0} × {1} × {2} · Half Z"
+    },
+    "tictac.description": {
+      "kind": "message",
+      "ja": "TicTac 2.1 · 120 mm / 新Rat Rigツールヘッド / 公式組立CAD",
+      "en": "TicTac 2.1 · 120 mm / new Rat Rig toolhead / original assembled CAD"
+    },
+    "rook.description": {
+      "kind": "message",
+      "ja": "Rook MK2 beta · 120 mm / Dragon Burner / Bambu / Galileo 2 G2SA",
+      "en": "Rook MK2 beta · 120 mm / Dragon Burner / Bambu / Galileo 2 G2SA"
+    },
+    "the100.description": {
+      "kind": "message",
+      "ja": "THE 100 v1.1 · 165 × 165 × 150 mm / BMG Bowden / CHC Pro Volcano",
+      "en": "THE 100 v1.1 · 165 × 165 × 150 mm / BMG Bowden / CHC Pro Volcano"
+    },
+    "satsuma.description": {
+      "kind": "message",
+      "ja": "Satsuma 180 v1.0 · 180 mm / CoreXY / Orbiter 2.0 / Prusa MINIベッド",
+      "en": "Satsuma 180 v1.0 · 180 mm / CoreXY / Orbiter 2.0 / Prusa MINI bed"
+    },
+    "tictac.reference": {
+      "kind": "message",
+      "ja": "全体CADの静止モデルです。参考床・校正キューブと重複部品は参考表示に分けています。可動操作とMod交換は未対応です。",
+      "en": "Static whole CAD assembly. The source floor, calibration cube and duplicate parts are optional references. Motion and mod swapping are not supported."
+    },
+    "rook.reference": {
+      "kind": "message",
+      "ja": "MK2 betaの全体CADにGalileo 2 G2SAを表示しています。固定穴と座面を照合していますが、元CADに省かれた固定ネジは補っていません。静止モデルです。",
+      "en": "Static MK2 beta assembly with Galileo 2 G2SA. Mounting holes and the seating plane are aligned. Foot mounting screws omitted by the source CAD are not supplied."
+    },
+    "the100.reference": {
+      "kind": "message",
+      "ja": "全体CADの静止モデルです。重複マウントは参考表示に分けています。元CADにベルトと全体のPTFE経路が含まれていません。",
+      "en": "Static whole CAD assembly. The overlapping alternative mount is an optional reference. Belts and the complete PTFE route are absent from the source CAD."
+    },
+    "satsuma.reference": {
+      "kind": "message",
+      "ja": "全体CADの静止モデルです。パネル・色・カメラを確認できます。可動操作とMod交換は未対応です。",
+      "en": "Static whole CAD assembly with panel, color and camera controls. Motion and mod swapping are not supported."
     }
   }
 }

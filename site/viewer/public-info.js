@@ -13,7 +13,7 @@ export async function setupPublicInfo({includeDownloads=true,machineId=null}={})
  sb.append(node('p','コミュニティCADを組み合わせた非公式ビューアーです。各データの作者・ライセンスは個別に適用されます。'));
  db.append(node('p','STEPはメーカー／VORONの標準構成のみ。画面で選んだMod・色・可動姿勢は含みません。'));
  try{
-  const response=await fetch('../PUBLIC_CATALOG.json?v=standard-step-42',{cache:'no-cache'});if(!response.ok)throw Error('カタログを取得できません');const catalog=await response.json();
+  const response=await fetch('../PUBLIC_CATALOG.json?v=fe8f8d168974081cb282',{cache:'no-cache'});if(!response.ok)throw Error('カタログを取得できません');const catalog=await response.json();
   const assemblyDownload=$('#assemblyDownload');if(machineId&&assemblyDownload)mountAssemblyDownload(assemblyDownload,machineId,catalog);
   sb.append(node('p','ビューアー版：'+catalog.viewer_version));
   if(catalog.model_source_url)sb.append(link('表示モデルの編集用データ',catalog.model_source_url));
