@@ -10,3 +10,5 @@ Native STEP SHA-256: 3ee271884b8d6230c2e2c983c6dc283dfba8764e3926b1fe9fa56b39516
 Changes: Display mesh conversion and small-detail reduction; material roles; source-mounted axis groups. Author placements and dimensions are preserved, with no placement corrections. Axis controls are offsets from the original CAD pose and cover conservative preview ranges, not firmware travel. Flexible belt meshes use visual endpoint following, not belt mechanics.
 Reference geometry separated from the default view: 0 leaves. No identified embedded print supports were removed.
 Sherpa Mini and modified Sherpa-derived parts retain the ANNEX Engineering License; EVA-derived parts retain GPL-3.0. Credits: SnakeOilXY / ChipCE; Annex Engineering (Sherpa Mini); EVA-3D (EVA). These component licenses are not replaced by the viewer code license.
+
+CAD surface boundaries are welded before optional small-hardware reduction. Motor, probe, rail and housing surfaces are retained and normals are exported with hard edges. Reduction candidates must preserve winding, boundary topology and bounds.

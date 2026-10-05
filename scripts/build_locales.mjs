@@ -67,7 +67,7 @@ async function cacheReferences(outputs){
  async function scan(directory){for(const item of await fs.readdir(directory,{withFileTypes:true})){const path=resolve(directory,item.name);if(item.isDirectory())await scan(path);else if(['.mjs','.js','.html','.css'].includes(extname(path)))files.set(path,await fs.readFile(path,'utf8'))}}
  await scan(viewer);await scan(resolve(viewer,'../fun'));
  const changed=new Map(Object.entries(outputs).map(([name,text])=>[fileURLToPath(new URL(name,root)),text]));
-  for(const name of ['community.js','community-state.mjs','community-adapter.mjs','community-loader.mjs','positron.js','positron-fold.mjs','positron-loader.mjs','positron-state.mjs','workspace-navigation.mjs','theme-toggle.css','../fun/fun.css','embed-contract.mjs','workspace-share.mjs','display-start.js','display-preferences.mjs','languages.mjs','translation-engine.mjs','i18n.mjs','messages-en.mjs','machines.js','head-navigation.mjs','machine-head-model.mjs','changer-bank-model.mjs','changer-bank.js','configuration-model.js','configurations.js','probe-checks.js','toolheads.js','toolchangers.js','crossant-covers.mjs','crossant-adapter.mjs','crossant-loader.mjs','crossant-state.mjs','crossant.js','micron-tube-routes.mjs','micron-flexible.mjs','micron-adapter.mjs','micron.js','workspace-return.mjs','workspace-layout.mjs','workspace-choices.mjs','workspace-ui.mjs','workspace-router.mjs','workspace.css']){
+  for(const name of ['../COMMUNITY_MACHINES_ASSETS.json','mercury-tube-routes.mjs','community.js','community-state.mjs','community-adapter.mjs','community-loader.mjs','positron.js','positron-fold.mjs','positron-loader.mjs','positron-state.mjs','workspace-navigation.mjs','theme-toggle.css','../fun/fun.css','embed-contract.mjs','workspace-share.mjs','display-start.js','display-preferences.mjs','languages.mjs','translation-engine.mjs','i18n.mjs','messages-en.mjs','machines.js','head-navigation.mjs','machine-head-model.mjs','changer-bank-model.mjs','changer-bank.js','configuration-model.js','configurations.js','probe-checks.js','toolheads.js','toolchangers.js','crossant-covers.mjs','crossant-adapter.mjs','crossant-loader.mjs','crossant-state.mjs','crossant.js','micron-tube-routes.mjs','micron-flexible.mjs','micron-adapter.mjs','micron.js','workspace-return.mjs','workspace-layout.mjs','workspace-choices.mjs','workspace-ui.mjs','workspace-router.mjs','workspace.css']){
    const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));
   }
  // Content revisions propagate from dictionaries to their importers and page
@@ -77,7 +77,7 @@ async function cacheReferences(outputs){
   for(const[path,original]of files){
    if(relative(viewer,path).replaceAll('\\','/').startsWith('locales/'))continue;
    const before=changed.get(path)??original;
-   const after=before.replace(/(['"])(\.{1,2}\/[^'"\s?#]+\.(?:mjs|js|css))(?:\?v=[^'"\s]+)?\1/gu,(token,quote,name)=>{
+   const after=before.replace(/(['"])(\.{1,2}\/[^'"\s?#]+\.(?:mjs|js|css|json))(?:\?v=[^'"\s]+)?\1/gu,(token,quote,name)=>{
     const target=resolve(dirname(path),name);if(target===path||!changed.has(target))return token;
     return quote+name+'?v='+digest(changed.get(target))+quote;
    });

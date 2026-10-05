@@ -11,3 +11,5 @@ Changes: Display mesh conversion and small-detail reduction; material roles; sou
 Reference geometry separated from the default view: 0 leaves. No identified embedded print supports were removed.
 Sherpa Mini and modified Sherpa-derived parts retain the ANNEX Engineering License; EVA-derived parts retain GPL-3.0. Credits: SnakeOilXY / ChipCE; Annex Engineering (Sherpa Mini); EVA-3D (EVA). These component licenses are not replaced by the viewer code license.
 Additional credits: Prusa Research (MK3/S hardware, GPL-2.0), Gregoire Saunier (Bear Extruder and X Axis, GPL-3.0), VORON Design (DIN mount, GPL-3.0). The source assembly contains no XY belts or full wire routes.
+
+CAD surface boundaries are welded before optional small-hardware reduction. Motor, probe, rail and housing surfaces are retained and normals are exported with hard edges. Reduction candidates must preserve winding, boundary topology and bounds.

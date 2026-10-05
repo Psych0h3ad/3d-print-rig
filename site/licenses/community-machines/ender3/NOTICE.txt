@@ -8,3 +8,5 @@ License: GPL-3.0
 Native STEP checksum: 6a1e54e484ccf3a157bb6f38b7f262a8b62bfdb21f19880538d6790c88ac5230
 
 Changes: Display mesh conversion and small-detail reduction; material roles; source-mounted rigid axis groups. Calibration aids, unused variants and duplicated assemblies are hidden by default and can be shown as references. Flexible meshes use visual endpoint following, not mechanical simulation. Author CAD invalid reference leaves are retained: none.
+
+CAD surface boundaries are welded before optional small-hardware reduction. Motor, probe, rail and housing surfaces are retained and normals are exported with hard edges. Reduction candidates must preserve winding, boundary topology and bounds.

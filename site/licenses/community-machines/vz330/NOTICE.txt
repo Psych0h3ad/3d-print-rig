@@ -9,3 +9,5 @@ Native STEP checksum: 68b5e77168f67ccbbc9a6f53397cec70bf1a54c6689446be282dd9588b
 
 Changes: Display mesh conversion and small-detail reduction; material roles; source-mounted rigid axis groups. Calibration aids, unused variants and duplicated assemblies are hidden by default and can be shown as references. Flexible meshes use visual endpoint following, not mechanical simulation. Author CAD invalid reference leaves are retained: 02632,02634,02660.
 This is the printed AWD reference from v1.2, not the later CNC Mellow kit. The original master contains partial XY belt geometry and no full CPAP hose. The alternate 2WD idlers, duplicated gantry, MGN9C plate and 15 mm CPAP mount are reference geometry.
+
+CAD surface boundaries are welded before optional small-hardware reduction. Motor, probe, rail and housing surfaces are retained and normals are exported with hard edges. Reduction candidates must preserve winding, boundary topology and bounds.

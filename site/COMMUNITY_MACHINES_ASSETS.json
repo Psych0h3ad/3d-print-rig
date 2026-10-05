@@ -1,5 +1,5 @@
 {
-  "version": "native-community-machines-68",
+  "version": "native-surface-routes-69",
   "base_url": "https://psych0h3ad.github.io/3d-print-rig-community-models/",
   "local_directory": "community-machines-assets",
   "machines": {
@@ -9,8 +9,8 @@
       "files": {
         "assembly_manifest.json": {
           "path": "ender3/assembly_manifest.json",
-          "bytes": 81653,
-          "sha256": "c3f3ea9b8a2651f7d60d64f751cf704ee943ae1efc069f6ffb5422a76ca95020"
+          "bytes": 81654,
+          "sha256": "23f0f8f643ee2642c1255fd863c53a60d90a37ec7be591b97a4c93d21e937077"
         },
         "machine_profile.json": {
           "path": "ender3/machine_profile.json",
@@ -19,11 +19,11 @@
         },
         "model.glb": {
           "path": "ender3/model.glb.gz",
-          "bytes": 8531695,
-          "sha256": "3fe8ff2224b0f6a973088a4047abd0e6d4a43f07a62e3f5e926902b7f9d05d6d",
+          "bytes": 26612050,
+          "sha256": "5d3a0bf20ec8085dc46f4f8a2a762200f427ca39227e72cedadff75989d77c2f",
           "encoding": "gzip",
-          "decoded_bytes": 21336660,
-          "decoded_sha256": "5d16b682faacb22a4873eea3ebf6f36453016a40fd43064303370aefbb4e1333"
+          "decoded_bytes": 58026652,
+          "decoded_sha256": "393dcd56b4e7a0e675886486acd81c825de9f1a7102b839e00aa1b5365203457"
         }
       }
     },
@@ -33,21 +33,21 @@
       "files": {
         "assembly_manifest.json": {
           "path": "mercury235/assembly_manifest.json",
-          "bytes": 189560,
-          "sha256": "22b2da21c2c4cd22e8ae86fde6900c726eceecd3a161b3f54fa63ec75aab8cee"
+          "bytes": 189558,
+          "sha256": "bcdcf5d4f8b1a22f73e088d1b8e892930fd02d938f067314167ffaf1052fefdf"
         },
         "machine_profile.json": {
           "path": "mercury235/machine_profile.json",
-          "bytes": 791,
-          "sha256": "653b4930038a651226da8c8fd48201dd7dbfc09f33318a4a9fd704b1b017d36d"
+          "bytes": 847,
+          "sha256": "b8cf9b30f8a22f39e59e8d95b53ee5671a5a457853fac553d71113fa17df1ff3"
         },
         "model.glb": {
           "path": "mercury235/model.glb.gz",
-          "bytes": 25327844,
-          "sha256": "f422fab7092aa4feadcae42d9850ee66283c5bf3933dd87f6447c45ec0d82c53",
+          "bytes": 54981181,
+          "sha256": "21601add653e1d431178b15ea7d4963d75e45bdd7061a5f6d8eae3f364a6380e",
           "encoding": "gzip",
-          "decoded_bytes": 62900628,
-          "decoded_sha256": "90d95d2ce61c13ca44eff181af2c2cadab8e88857f0b689f0af754148b7c8411"
+          "decoded_bytes": 114987704,
+          "decoded_sha256": "73b00f8d5714a6974837608f6f0ffd66fb540e116741862ce296199acb0fdf72"
         }
       }
     },
@@ -57,21 +57,21 @@
       "files": {
         "assembly_manifest.json": {
           "path": "mercury370/assembly_manifest.json",
-          "bytes": 210237,
-          "sha256": "b58a5384ff6d7d9cbe43911ae98121303cc46b30f9aecfe5c5ace1d7217b2f09"
+          "bytes": 210231,
+          "sha256": "fbc36ad7d011c0e56228b953db4a3c5f06807ce28e74715501c9540dc68f8a31"
         },
         "machine_profile.json": {
           "path": "mercury370/machine_profile.json",
-          "bytes": 789,
-          "sha256": "a45e15856630964e881ab65f9d76e02b2e07fa1d5b700ef3f2c2ba1277ef7276"
+          "bytes": 902,
+          "sha256": "ebfea1d468618f75b04d972d96b8687b0b46935e88f775099b2c331268d4fca4"
         },
         "model.glb": {
           "path": "mercury370/model.glb.gz",
-          "bytes": 24873934,
-          "sha256": "4d1ac7ba1a26d91c837826328703cc030a4b63cac012a986d43092b082058336",
+          "bytes": 48747147,
+          "sha256": "aa3eec95f5899f390e9dfd746d0916a4cff6e415c07f7e99f8f53ed8b674043a",
           "encoding": "gzip",
-          "decoded_bytes": 65264028,
-          "decoded_sha256": "193e048df238d795bb800a1ba781491c9ab8e2f2081011933eb4ca83a3491bef"
+          "decoded_bytes": 112620096,
+          "decoded_sha256": "479f7840e1fdd1790ecd797dc8ba0ef7021316f88755566bd113a22f7c9c286e"
         }
       }
     },
@@ -82,7 +82,7 @@
         "assembly_manifest.json": {
           "path": "sboom/assembly_manifest.json",
           "bytes": 152690,
-          "sha256": "a79157efa04967750475040a88cdcc68d6d1247e7f93e8b0f37d8375ddd03507"
+          "sha256": "5f843b0c61495ad1aa8f771c4409558967d7e9f54d9982c0ebc83aff99d96628"
         },
         "machine_profile.json": {
           "path": "sboom/machine_profile.json",
@@ -91,11 +91,11 @@
         },
         "model.glb": {
           "path": "sboom/model.glb.gz",
-          "bytes": 11209134,
-          "sha256": "67858d7a62e5239d16b0a49fe4b3edf11a8f4b67e2ddc1917e6ec0036b1e5a43",
+          "bytes": 22341658,
+          "sha256": "1e04369918d94850cacae2f766b02df748a242c06c713039138c926cddc13d89",
           "encoding": "gzip",
-          "decoded_bytes": 31012792,
-          "decoded_sha256": "6df4054e8d3191950d0f42c5fe58ffaec408fcd6fe6965fa10a2b76d51127d9c"
+          "decoded_bytes": 59601508,
+          "decoded_sha256": "14be46c56724a3f954a0ab2dac8a64647b4618d913a0e3eb0c2658f619f7c77d"
         }
       }
     },
@@ -106,7 +106,7 @@
         "assembly_manifest.json": {
           "path": "vz330/assembly_manifest.json",
           "bytes": 788052,
-          "sha256": "fc1d6661524d5a393605ff81a115501574dbdc6cac18d50e76e4993e41e5e66b"
+          "sha256": "c287d2108da5ee2e7c99d906faf28be264e433f2d99b10bb3dd7dea4ea771cb5"
         },
         "machine_profile.json": {
           "path": "vz330/machine_profile.json",
@@ -115,11 +115,11 @@
         },
         "model.glb": {
           "path": "vz330/model.glb.gz",
-          "bytes": 46020577,
-          "sha256": "be0fd61e3c2b7ec38862dd28d6e554d1268ff6c25aa70d8f9f61edd70bc1dbc4",
+          "bytes": 80234165,
+          "sha256": "1e7015ca59c4610e3acf7cc00d816564235fdc4883550af606a69337152cb7fe",
           "encoding": "gzip",
-          "decoded_bytes": 111807612,
-          "decoded_sha256": "ab8345930a8ccc62c5eb54f72e2020087b6b5f718bdc4ac7008c5bc267411157"
+          "decoded_bytes": 199956384,
+          "decoded_sha256": "04ca850e7ce000b44db73a35058d036e4c537a7b715486172d527a926f93756c"
         }
       }
     },
@@ -129,8 +129,8 @@
       "files": {
         "assembly_manifest.json": {
           "path": "aether/assembly_manifest.json",
-          "bytes": 224799,
-          "sha256": "c03e63501e315f22c84fd1bf0dcc06eb46fe946a976749f0eb76c851e716b4a4"
+          "bytes": 224800,
+          "sha256": "aeaa609e8734e0c5775369d09f0d90265a85d2a05959da08bce8779310d77ce6"
         },
         "machine_profile.json": {
           "path": "aether/machine_profile.json",
@@ -139,11 +139,11 @@
         },
         "model.glb": {
           "path": "aether/model.glb.gz",
-          "bytes": 5581564,
-          "sha256": "26341d7345a0c5462c74453843763fde7b03c661a473f95076e9bb041090899c",
+          "bytes": 14250795,
+          "sha256": "1a08904bee8d460caed919f378e31e6b9bdcd1f0af6cc1ad4d8f2fb188a8a0fc",
           "encoding": "gzip",
-          "decoded_bytes": 17494824,
-          "decoded_sha256": "a9040b607a9eef0cde239e3b2d38dd1cd7d076191fb2d4995b91115eac3a9457"
+          "decoded_bytes": 35013184,
+          "decoded_sha256": "9737ca06af3e3a51a9a185a85bfaeadf5741c9d4f7cad9206ff6d37b77165ee3"
         }
       }
     },
@@ -153,8 +153,8 @@
       "files": {
         "assembly_manifest.json": {
           "path": "vminion/assembly_manifest.json",
-          "bytes": 548458,
-          "sha256": "7d19ae9e9a45abad13a44137b08b6ae20c0d923404cc4474eee7c46512ea02b9"
+          "bytes": 548450,
+          "sha256": "11e2f61fdcf9620abe3978741643f23e632a9b3fa4014fb19b0378e76727d45e"
         },
         "machine_profile.json": {
           "path": "vminion/machine_profile.json",
@@ -163,11 +163,11 @@
         },
         "model.glb": {
           "path": "vminion/model.glb.gz",
-          "bytes": 9945390,
-          "sha256": "b374caf56dfa0f7f82800ff73ea461e244569de5aa4a159a254f6dbcca39d2da",
+          "bytes": 26032119,
+          "sha256": "2031e111369e6b932507f3fdd877a6d5b8eb9fc77f8db7091c6b65d91afc3d57",
           "encoding": "gzip",
-          "decoded_bytes": 30054088,
-          "decoded_sha256": "ab40f7919677aadcd5aae4d148a7815b36b309a878153ed19ec58c614785c0a8"
+          "decoded_bytes": 66274756,
+          "decoded_sha256": "b394124d0ef44519aa24cd005d1433305f35a545c3b8d5f9c8cccb8268fb0175"
         }
       }
     },
@@ -178,7 +178,7 @@
         "assembly_manifest.json": {
           "path": "snake180/assembly_manifest.json",
           "bytes": 457491,
-          "sha256": "e5a279c366192ff837e859934438a1c0768467615ad992adcc7e10d63522c9e1"
+          "sha256": "2b935ba30f24fc72d0429b1f291d2cd6fac329751ea543a096159c31f9527334"
         },
         "machine_profile.json": {
           "path": "snake180/machine_profile.json",
@@ -187,11 +187,11 @@
         },
         "model.glb": {
           "path": "snake180/model.glb.gz",
-          "bytes": 11873680,
-          "sha256": "9b5ef0bab1b618e0270b0dc36f360e638b20fe54f521e7023953f2610c40acf5",
+          "bytes": 23456314,
+          "sha256": "50301d1f6ebacd44cdf0ca6b3fe379ddea9dcc4acb114db2d6934a8e1374df0c",
           "encoding": "gzip",
-          "decoded_bytes": 39988852,
-          "decoded_sha256": "a3f4dc824c421b77a8f3c3b16f6140abaf1fd607bf4b63c8764b28211f9b3bfb"
+          "decoded_bytes": 73913476,
+          "decoded_sha256": "1361302b4008deb1267eb8db72ad1b108e1de0e7159b28ab0088fc2dda8486c4"
         }
       }
     },
@@ -202,7 +202,7 @@
         "assembly_manifest.json": {
           "path": "snakeidex/assembly_manifest.json",
           "bytes": 938486,
-          "sha256": "c64c34bf644679dac348ce44abf084bce29830c00db218628dc39203436a3b89"
+          "sha256": "dd783a68fb36c58d6bc1ef7ebceba6dd3efdea150ede647a2061782628e79e6f"
         },
         "machine_profile.json": {
           "path": "snakeidex/machine_profile.json",
@@ -211,11 +211,11 @@
         },
         "model.glb": {
           "path": "snakeidex/model.glb.gz",
-          "bytes": 18228912,
-          "sha256": "00b0f130a9b3dcf584a7ac00c5f7107a201fcdfe4f50d1fba72e9aa0a2ff3ef1",
+          "bytes": 47753563,
+          "sha256": "13c60bb74649d762421f117d3e6422fa508504fc48f031cb2a95e10c724ae742",
           "encoding": "gzip",
-          "decoded_bytes": 59925428,
-          "decoded_sha256": "0b19d4c96fd2dd4af245e7dafddb69ba3bf8c9d31c0f7107b7d7ccc69f9b199d"
+          "decoded_bytes": 129421264,
+          "decoded_sha256": "798136042b99c6a206a662b4e113b0ec7b08532d2235f496b573b5aa47468181"
         }
       }
     },
@@ -225,8 +225,8 @@
       "files": {
         "assembly_manifest.json": {
           "path": "snake3s/assembly_manifest.json",
-          "bytes": 114323,
-          "sha256": "0003ee416069cd4db73a69aaa198ca023aa5e7951c29ad1167a3a888b6e49ff8"
+          "bytes": 114324,
+          "sha256": "dae4005386e415d45933cd561466af48465e2393b5c1892805325b46990b4409"
         },
         "machine_profile.json": {
           "path": "snake3s/machine_profile.json",
@@ -235,11 +235,11 @@
         },
         "model.glb": {
           "path": "snake3s/model.glb.gz",
-          "bytes": 3834216,
-          "sha256": "3033a6b5b70bbc264c79d19100316d3d9bcc550722caf0281943e15c509cb9a1",
+          "bytes": 12548512,
+          "sha256": "b4afd08eb175d047cbb0cdaaab73185b43f91b5f85f7b24fe52b2c0888680574",
           "encoding": "gzip",
-          "decoded_bytes": 11098956,
-          "decoded_sha256": "f1ac81542266763bd24c1f5e6dfe5ea1e41219c252736e75f2dfccfd0f12c7a9"
+          "decoded_bytes": 29110800,
+          "decoded_sha256": "12ae8ee0e81dc89b04fc762d030fb72465692f8009159a4564086985d6774935"
         }
       }
     },
@@ -250,7 +250,7 @@
         "assembly_manifest.json": {
           "path": "proosa/assembly_manifest.json",
           "bytes": 323596,
-          "sha256": "33fda73cee50a828b2049a7463bb07ca039a7a323882696801d228c50bc2cabc"
+          "sha256": "22d90dc33f09499d90499df9d4ccf533135f6cb2dc768277364bf03aae73998f"
         },
         "machine_profile.json": {
           "path": "proosa/machine_profile.json",
@@ -259,11 +259,11 @@
         },
         "model.glb": {
           "path": "proosa/model.glb.gz",
-          "bytes": 7335674,
-          "sha256": "100b69c458dc66b5beccefb50481d4db2bf985008e560f65c4be81cda4f0d9fa",
+          "bytes": 14290558,
+          "sha256": "227a0bc57584bd7da86f5f7eb37fe2b283bdb3e01399b7f604ac78f9a5be6931",
           "encoding": "gzip",
-          "decoded_bytes": 27820572,
-          "decoded_sha256": "5cd45b636ab63d579fa2a86c62fd3a40f774b5d6957f00c3782a9a68dd529bf0"
+          "decoded_bytes": 49029212,
+          "decoded_sha256": "99018bcd4ca8fd9a0fdd2b13f764dea7e2de9471979db8766b947e876c977e87"
         }
       }
     }

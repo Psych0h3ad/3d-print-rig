@@ -1,5 +1,6 @@
 import * as THREE from './vendor-r180/three.module.js';
 import {validateAxes,nativeMotion,displayMotion} from './community-state.mjs?v=8018d585f8d53c6dce6c';
+import {mercuryTubeSpecs,mercuryTubeRoute} from './mercury-tube-routes.mjs?v=d27d615757ad1f732409';
 const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
 const smooth=v=>{v=clamp(v);return v*v*(3-2*v)};
 function hat(v,a,l,h,b){return v<=a||v>=b?0:v<l?(v-a)/(l-a):v<=h?1:(b-v)/(b-h)}
@@ -11,12 +12,6 @@ function flexWeights(p,r,profile){
  if(id==='ratrig_vminion_180'&&k===141)return {native_axes:{x:[hat(x,-70.68,-34.85,-.15,203.83),0,0],z:[0,0,1]}};
  if(id==='snakeoil_xy_180'&&r.group==='belt')return {native_axes:{x:[hat(x,-156,-24,24,156)*hat(y,5,180.5,232.9,370.5),0,0],y:[0,hat(y,5,170.76,232.5,370.5),0]}};
  if(id.startsWith('mercury')){
-  if(r.group==='tube'){
-   const a=profile.flex?.tube_fixed,b=profile.flex?.tube_head;
-   if(!a||!b)throw Error('Missing tube connectors');
-   const da=Math.hypot(...p.map((v,i)=>v-a[i])),db=Math.hypot(...p.map((v,i)=>v-b[i]));
-   return {head:smooth(da/(da+db))};
-  }
   const small=id.endsWith('235'),side=small?195:259,front=small?-167:-239.5,back=small?231:303.5,pivot=small?15.89:13.34;
   const low=k===(small?76:493),fixedSide=low?-1:1;
   const wy=x*fixedSide>side+5?0:hat(y,front,pivot-40,pivot+40,back);
@@ -42,6 +37,11 @@ export function createCommunityAdapter(root,manifest,profile){
   initial.set(key,node.matrix.clone());const r=records.get(key);
   node.traverse(m=>{if(!m.isMesh)return;m.frustumCulled=false;m.material=Array.isArray(m.material)?m.material.map(x=>x.clone()):m.material.clone();for(const material of [].concat(m.material))if(material.transparent)material.depthWrite=false;
    if(!['tube','belt','chain','bed_wire','x_belt'].includes(r.group))return;
+   if(r.group==='tube'&&mercuryTubeSpecs[profile.machine_id]){
+    m.geometry=m.geometry.clone();const source=m.geometry.attributes.position.array.slice();
+    const route=mercuryTubeRoute(profile.machine_id,axes);m.geometry.dispose();m.geometry=new THREE.TubeGeometry(route.curve,128,.002,12,false);
+    flex.push({mesh:m,source:m.geometry.attributes.position.array.slice(),routed:true,nativeSource:source});return;
+   }
    m.geometry=m.geometry.clone();const attribute=m.geometry.attributes.position,source=attribute.array.slice(),weights=[];
    for(let i=0;i<attribute.count;i++){
     const display=[source[i*3]*1000,source[i*3+1]*1000,source[i*3+2]*1000];
@@ -54,6 +54,10 @@ export function createCommunityAdapter(root,manifest,profile){
   const motions=new Map([...new Set([...records.values()].map(r=>r.group))].map(group=>[group,displayMotion(nativeMotion(group,axes,profile),profile)])),head=displayMotion(nativeMotion('head',axes,profile),profile),axisNames=['x','y','z'];
   for(const[key,node]of nodes){const r=records.get(key),delta=motions.get(r.group);node.matrixAutoUpdate=false;node.matrix.copy(initial.get(key));node.matrix.elements[12]+=delta[0];node.matrix.elements[13]+=delta[1];node.matrix.elements[14]+=delta[2];node.visible=r.group!=='reference'||references}
   for(const e of flex){
+   if(e.routed){
+    const route=mercuryTubeRoute(profile.machine_id,axes),geometry=new THREE.TubeGeometry(route.curve,128,.002,12,false);
+    e.mesh.geometry.dispose();e.mesh.geometry=geometry;continue;
+   }
    const a=e.mesh.geometry.attributes.position;a.array.set(e.source);
    for(let i=0;i<a.count;i++){const w=e.weights[i],delta=w.native_axes?displayMotion([0,1,2].map(j=>Object.entries(w.native_axes).reduce((v,[k,c])=>v+c[j]*axes[k],0)),profile):w.head!==undefined?head.map(v=>v*w.head):displayMotion(w.custom.map((v,j)=>v*axes[axisNames[j]]),profile);for(let j=0;j<3;j++)a.array[3*i+j]=e.source[3*i+j]+delta[j]}
    a.needsUpdate=true;e.mesh.geometry.computeVertexNormals();e.mesh.geometry.computeBoundingBox();e.mesh.geometry.computeBoundingSphere();

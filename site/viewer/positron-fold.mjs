@@ -22,9 +22,12 @@ export function positronFoldTransforms(profile,percent){
  const holderFinal=new THREE.Quaternion().setFromRotationMatrix(rotation(Z,-Math.PI/2).multiply(rotation(X,-Math.PI/2)));
  const holderQ=new THREE.Quaternion().slerp(holderFinal,holderSet);
  const holderRotation=new THREE.Matrix4().makeRotationFromQuaternion(holderQ);
- matrices.holder=move([-230*holderAside+106*holderReturn,40*holderOut*(1-holderSet)-30*holderSet,20*holderOut*(1-holderSet)-.70*holderSet]).multiply(around(holderPivot,holderRotation));
+ // The V stays in a plane parallel to the front of the Z rail, as in the
+ // author's folding guide. The mouth faces the column, with the arms tucked
+ // underneath it and the apex extending over the left side of the base.
+ matrices.holder=move([-230*holderAside+106*holderReturn,40*holderOut*(1-holderSet)-30*holderSet,20*holderOut*(1-holderSet)-23*holderSet]).multiply(around(holderPivot,holderRotation));
  const holderApex=v(f.holder_apex_mm).applyMatrix4(matrices.holder).multiplyScalar(1000).toArray();
- matrices.holder=around(holderApex,rotation(Y,THREE.MathUtils.degToRad(19)*holderSet)).multiply(matrices.holder);
+ matrices.holder=around(holderApex,rotation(Y,THREE.MathUtils.degToRad(-8)*holderSet)).multiply(matrices.holder);
  const columnOut=phase(p,.35,.375),columnPlace=phase(p,.375,.42);
  matrices.column_screw=move([180*columnPlace,-10*columnPlace,-45*columnOut+250*columnPlace]);
  matrices.latch=around(f.latch_pivot_mm,rotation(X,-Math.PI*phase(p,.35,.42)));
@@ -40,9 +43,13 @@ export function positronFoldTransforms(profile,percent){
  matrices.column=column;matrices.carriage=column.clone().multiply(move([0,f.carriage_dz_mm*phase(p,.42,.50),0]));
  matrices.latch=column.clone().multiply(matrices.latch);
  // The detached V holder is held upright, then carried down with the column.
- if(p>.62)matrices.holder=column.clone().multiply(matrices.holder);
+ if(p>.62){
+  // Keep the loose holder clear of the hinge base while the dowels move
+  // through the J slots. This hand-carried path is illustrative.
+  matrices.holder=move([0,60*Math.sin(Math.PI*track),0]).multiply(column).multiply(matrices.holder);
+ }
  const dx=f.park_head_dx_mm*phase(p,.42,.50)+(f.stow_head_dx_mm-f.park_head_dx_mm)*phase(p,.92,1);
- const beamMove=75*phase(p,.42,.50);
+ const beamMove=0;
  matrices.beam=move([0,0,beamMove]);matrices.head=move([dx,0,beamMove]);
  const steps=[.18,.25,.35,.42,.50,.62,.72,.92,1];const step=steps.findIndex(t=>p<t);
  return {percent,step:step<0?9:step,angleDegrees:angle*180/Math.PI,pin_mm:pin.toArray().map(n=>n*1000),matrices};

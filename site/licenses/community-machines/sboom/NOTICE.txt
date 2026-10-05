@@ -9,3 +9,5 @@ Native STEP checksum: e882532eaa04f20af2ba830218fe82db8710bfd4395a55a97bebbf0984
 
 Changes: Display mesh conversion and small-detail reduction; material roles; source-mounted rigid axis groups. Calibration aids, unused variants and duplicated assemblies are hidden by default and can be shown as references. Flexible meshes use visual endpoint following, not mechanical simulation. Author CAD invalid reference leaves are retained: 00267,00411,00412,00414,00415,00427,00515,00519,00553.
 The V6 heatbreak leaf is aligned to the source heatsink/nozzle axis with a +22 mm X placement correction.
+
+CAD surface boundaries are welded before optional small-hardware reduction. Motor, probe, rail and housing surfaces are retained and normals are exported with hard edges. Reduction candidates must preserve winding, boundary topology and bounds.

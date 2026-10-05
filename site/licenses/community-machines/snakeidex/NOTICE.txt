@@ -11,3 +11,5 @@ Changes: Display mesh conversion and small-detail reduction; material roles; sou
 Reference geometry separated from the default view: 96 leaves. No identified embedded print supports were removed.
 Sherpa Mini and modified Sherpa-derived parts retain the ANNEX Engineering License; EVA-derived parts retain GPL-3.0. Credits: SnakeOilXY / ChipCE; Annex Engineering (Sherpa Mini); EVA-3D (EVA). These component licenses are not replaced by the viewer code license.
 Two independent source-mounted heads and their separate X carriage blocks are retained. The duplicate second Sherpa assembly inside each head is separate reference geometry. Source XY belt geometry is partial. IDEX build volume label follows the original project: 250 x 240 x 230 mm.
+
+CAD surface boundaries are welded before optional small-hardware reduction. Motor, probe, rail and housing surfaces are retained and normals are exported with hard edges. Reduction candidates must preserve winding, boundary topology and bounds.

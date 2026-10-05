@@ -8,3 +8,7 @@ License: CC-BY-NC-SA-4.0
 Native STEP checksum: 8a39a244b3d325dd2d632b1f6a4f9328a442dcf42c5e93f4db41b07eb3d6ec84
 
 Changes: Display mesh conversion and small-detail reduction; material roles; source-mounted rigid axis groups. Calibration aids, unused variants and duplicated assemblies are hidden by default and can be shown as references. Flexible meshes use visual endpoint following, not mechanical simulation. Author CAD invalid reference leaves are retained: 00352.
+
+The display PTFE uses measured annular cap centres and connector axes. The fixed guide stays fixed, the OD4 routing passes above the frame, and the swept preview retains native service length. Tube/frame checks cover an XY grid and the Z endpoints; this is not a filament-force simulation.
+
+CAD surface boundaries are welded before optional small-hardware reduction. Motor, probe, rail and housing surfaces are retained and normals are exported with hard edges. Reduction candidates must preserve winding, boundary topology and bounds.

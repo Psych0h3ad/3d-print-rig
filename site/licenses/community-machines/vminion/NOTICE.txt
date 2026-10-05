@@ -10,3 +10,5 @@ Native STEP SHA-256: 46650c0be0527b0f799a6ebd5cde210254caafdc4c436f558857fa30c17
 Changes: Display mesh conversion and small-detail reduction; material roles; source-mounted axis groups. Author placements and dimensions are preserved, with no placement corrections. Axis controls are offsets from the original CAD pose and cover conservative preview ranges, not firmware travel. Flexible belt meshes use visual endpoint following, not belt mechanics.
 Reference geometry separated from the default view: 0 leaves. No identified embedded print supports were removed.
 Official public CAD share revision 7, V-Minion 1.0: EVA / LGX Lite / Dragonfly BMO / inductive M8 probe / SKR 2 electronics. The CAD share revision is separate from the pinned printed-parts repository revision. XY belts: X 6 mm, Y 9 mm.
+
+CAD surface boundaries are welded before optional small-hardware reduction. Motor, probe, rail and housing surfaces are retained and normals are exported with hard edges. Reduction candidates must preserve winding, boundary topology and bounds.
