@@ -107,8 +107,8 @@
       "text": "Очистить поиск"
     },
     "text.0022": {
-      "source_revision": "c282973c7554af9081e8",
-      "text": "Используйте вкладки настроек для конфигурации, внешнего вида и движения. На мобильных устройствах представление 3D расширяет модель, Config показывает модель и настройки вместе, а Settings расширяет настройки."
+      "source_revision": "a55b1009961ea38346a1",
+      "text": "Используйте вкладки для конфигурации, внешнего вида и движения. На телефоне «3D-вид» увеличивает модель, а «Настройка» сохраняет модель видимой при изменении параметров."
     },
     "text.0023": {
       "source_revision": "61979bb807abf7675621",
@@ -7125,6 +7125,62 @@
     "ui.community.ender_source": {
       "source_revision": "30a0a21a183e859f4f4a",
       "text": "Оригинальный официальный CAD не содержит трубку Bowden."
+    },
+    "fixed_sc.system": {
+      "source_revision": "1b835c0348c171bed09d",
+      "text": "Горизонтальная смена · Fixed-Gantry-SC"
+    },
+    "fixed_sc.left": {
+      "source_revision": "f2f94d35261e0a26dc03",
+      "text": "Левый док · штатный ролик"
+    },
+    "fixed_sc.right": {
+      "source_revision": "eeff7a6b7d6e5d42b628",
+      "text": "Правый док · штатный ролик"
+    },
+    "fixed_sc.shover": {
+      "source_revision": "eeb85bf735109ac9fb6d",
+      "text": "Shover для CNC"
+    },
+    "fixed_sc.head": {
+      "source_revision": "7a870d099df70a47f41c",
+      "text": "Специальные детали головки"
+    },
+    "fixed_sc.ldo": {
+      "source_revision": "8f2c454aea5344264df3",
+      "text": "Для LDO CNC"
+    },
+    "fixed_sc.fysetc": {
+      "source_revision": "473f787d413504ab670d",
+      "text": "Для FYSETC CNC"
+    },
+    "fixed_sc.parts": {
+      "source_revision": "9cc9f1edc7e9a71d7732",
+      "text": "Оригинальные сборки деталей автора. Положения установки на Trident и траектории смены не зарегистрированы."
+    },
+    "fixed_sc.ramp": {
+      "source_revision": "b489138f33adc9632c4c",
+      "text": "В горизонтальной схеме автора вход по Y поднимает головку, затем сдвиг по X освобождает её."
+    },
+    "fixed_sc.idler": {
+      "source_revision": "67b30949c0598b91fb73",
+      "text": "Проверенное предварительное положение пересекается со штатным роликом Trident R2; установка на принтер не предлагается."
+    },
+    "fixed_sc.supports": {
+      "source_revision": "b962badc17ab54500dba",
+      "text": "Встроенные печатные поддержки исключены. Для LDO и FYSETC используются разные детали."
+    },
+    "fixed_sc.sf": {
+      "source_revision": "e45cb4457887a079d3d9",
+      "text": "Воздуховоды Anthead SF и два зацепных винта. Это комплект крепления без хотэнда и экструдера."
+    },
+    "fixed_sc.lowrider": {
+      "source_revision": "8d91156bbcb99676f83f",
+      "text": "Оригинальная задняя пластина Low Rider для A4T. Соединение со специальным кожухом не зарегистрировано."
+    },
+    "fixed_sc.archive": {
+      "source_revision": "ffbc612925b0cf51d23a",
+      "text": "Fixed-Gantry-SC · исходный CAD и детали для просмотра"
     }
   }
 }

@@ -107,8 +107,8 @@
       "text": "Borrar búsqueda"
     },
     "text.0022": {
-      "source_revision": "c282973c7554af9081e8",
-      "text": "Utilice las pestañas de configuración para configuración, apariencia y movimiento. En dispositivos móviles, la vista 3D expande el modelo, Config muestra el modelo y la configuración juntos y Configuración expande la configuración."
+      "source_revision": "a55b1009961ea38346a1",
+      "text": "Usa las pestañas de configuración para configurar el equipo, la apariencia y el movimiento. En el móvil, Vista 3D amplía el modelo; Configuración mantiene el modelo visible en tiempo real mientras cambias los ajustes."
     },
     "text.0023": {
       "source_revision": "61979bb807abf7675621",
@@ -7125,6 +7125,62 @@
     "ui.community.ender_source": {
       "source_revision": "30a0a21a183e859f4f4a",
       "text": "El CAD oficial original no incluye el tubo Bowden."
+    },
+    "fixed_sc.system": {
+      "source_revision": "1b835c0348c171bed09d",
+      "text": "Intercambio horizontal · Fixed-Gantry-SC"
+    },
+    "fixed_sc.left": {
+      "source_revision": "f2f94d35261e0a26dc03",
+      "text": "Dock izquierdo · polea original"
+    },
+    "fixed_sc.right": {
+      "source_revision": "eeff7a6b7d6e5d42b628",
+      "text": "Dock derecho · polea original"
+    },
+    "fixed_sc.shover": {
+      "source_revision": "eeb85bf735109ac9fb6d",
+      "text": "Shover específico para CNC"
+    },
+    "fixed_sc.head": {
+      "source_revision": "7a870d099df70a47f41c",
+      "text": "Piezas específicas del cabezal"
+    },
+    "fixed_sc.ldo": {
+      "source_revision": "8f2c454aea5344264df3",
+      "text": "Para LDO CNC"
+    },
+    "fixed_sc.fysetc": {
+      "source_revision": "473f787d413504ab670d",
+      "text": "Para FYSETC CNC"
+    },
+    "fixed_sc.parts": {
+      "source_revision": "9cc9f1edc7e9a71d7732",
+      "text": "Conjuntos de piezas originales del autor. Las posiciones de montaje en Trident y las rutas de intercambio no están registradas."
+    },
+    "fixed_sc.ramp": {
+      "source_revision": "b489138f33adc9632c4c",
+      "text": "El autor utiliza intercambio horizontal: la entrada en Y eleva el cabezal y un empuje en X lo libera."
+    },
+    "fixed_sc.idler": {
+      "source_revision": "67b30949c0598b91fb73",
+      "text": "Una posición candidata interfiere con la polea del Trident R2 actual, por lo que no se ofrece como montaje en la impresora."
+    },
+    "fixed_sc.supports": {
+      "source_revision": "b962badc17ab54500dba",
+      "text": "Se han omitido los soportes de impresión integrados. LDO y FYSETC utilizan piezas diferentes."
+    },
+    "fixed_sc.sf": {
+      "source_revision": "e45cb4457887a079d3d9",
+      "text": "Conductos de Anthead SF y dos tornillos de enganche. Es un conjunto de fijación sin hotend ni extrusor."
+    },
+    "fixed_sc.lowrider": {
+      "source_revision": "8d91156bbcb99676f83f",
+      "text": "Conjunto original de placa posterior Low Rider para A4T. El montaje en su carenado específico no está registrado."
+    },
+    "fixed_sc.archive": {
+      "source_revision": "ffbc612925b0cf51d23a",
+      "text": "Fixed-Gantry-SC · CAD original y piezas de visualización"
     }
   }
 }

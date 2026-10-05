@@ -390,7 +390,7 @@ body.ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) {
   .ui-workspace .inspector-heading:has(.change-machine) h1,
   html:not([lang=ja]) .ui-workspace .inspector-heading:has(.change-machine) h1 { padding: 0; margin: 0; font-size: 16px; overflow-wrap: anywhere; }
   .ui-workspace .change-machine { position: static; min-height: 44px; padding: 8px 10px; font-size: 11px; }
-  .mobile-layout { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 3px; border: 1px solid var(--line); border-radius: 9px; background: var(--paper); }
+  .mobile-layout { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 3px; border: 1px solid var(--line); border-radius: 9px; background: var(--paper); }
   .ui-workspace .mobile-layout button { min-width: 0; min-height: 40px; border: 0; padding: 8px 4px; font-size: 12px; color: var(--muted); background: transparent; }
   .ui-workspace .mobile-layout button[aria-pressed=true] { color: #fff; background: #294550; }
   .ui-workspace .inspector-tabs > button { min-height: 44px; font-size: 12px; }
@@ -398,10 +398,6 @@ body.ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) {
   .inspector-footer { padding-bottom: max(8px, env(safe-area-inset-bottom)); }
   .ui-workspace .workspace[data-layout=preview] { grid-template-rows: minmax(0, 1fr) auto; }
   .ui-workspace .workspace[data-layout=preview] :is(.inspector-tabs, .inspector-content, .inspector-footer) { display: none; }
-  .ui-workspace .workspace[data-layout=settings] { grid-template-rows: minmax(0, 1fr); }
-  .ui-workspace .workspace[data-layout=settings] #stage { display: none; }
-  .ui-workspace .workspace[data-layout=settings] > aside { grid-row: 1; border-radius: 0; }
-  .ui-workspace .workspace[data-layout=settings] .inspector-content { padding-top: 12px; }
   .ui-workspace .choice-dialog .dialog-head { padding: 8px 12px; }
   .ui-workspace .choice-dialog .close { min-height: 44px; min-width: 44px; }
   .choice-filters { top: -12px; }
@@ -418,10 +414,8 @@ body.ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) {
   .ui-workspace .workspace > aside { grid-column: 2; grid-row: 1; border-radius: 0; }
   .ui-workspace .workspace[data-layout=preview] { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto; }
   .ui-workspace .workspace[data-layout=preview] > aside { grid-column: 1; grid-row: 2; }
-  .ui-workspace .workspace[data-layout=settings] { grid-template-columns: minmax(0, 1fr); }
-  .ui-workspace .workspace[data-layout=settings] > aside { grid-column: 1; }
-  .ui-workspace .workspace:is([data-layout=settings], [data-layout=preview]) .inspector-heading { grid-template-columns: minmax(0, 1fr) auto minmax(220px, 1fr); }
-  .workspace:is([data-layout=settings], [data-layout=preview]) .mobile-layout { grid-column: 3; grid-row: 1; }
+  .ui-workspace .workspace[data-layout=preview] .inspector-heading { grid-template-columns: minmax(0, 1fr) auto minmax(180px, 1fr); }
+  .workspace[data-layout=preview] .mobile-layout { grid-column: 3; grid-row: 1; }
 }
 
 /* Shared state is visible before a controller or CAD bundle finishes loading. */

@@ -7,7 +7,7 @@ import {loadCommunity} from './community-loader.mjs?v=5ee07b1dd6fe6207db37';
 import {communitySchema,validateCommunityState} from './community-state.mjs?v=e7dc4353c10ea94a369d';
 import {setupMachineNavigation} from './machines.js?v=9383d20caf1cef38e5d4';
 import {sceneLightingState} from './scene-lighting-state.mjs';
-import {translate} from './i18n.mjs?v=59425925cded8ac6c6c4';
+import {translate} from './i18n.mjs?v=21b0cc2348d37af6ddb4';
 import {rememberDisplayControl} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';

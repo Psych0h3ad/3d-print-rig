@@ -10,8 +10,8 @@ import zipfile
 from pathlib import Path, PurePosixPath
 
 ROOT = Path(__file__).resolve().parents[1]
-# Retain a 30 MB margin below the published GitHub Pages 1 GB limit.
-MAX_SITE_BYTES = 970_000_000
+# Retain a 20 MB margin below the published GitHub Pages 1 GB limit.
+MAX_SITE_BYTES = 980_000_000
 
 
 def unpack_assets(archive, target):

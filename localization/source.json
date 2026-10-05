@@ -134,8 +134,8 @@
     },
     "text.0022": {
       "kind": "message",
-      "ja": "構成・外観・動作は設定タブから。スマートフォンでは「3Dビュー」でモデルを広く、「構成画面」で3Dと設定を同時に、「設定画面」で設定を広く表示できます。",
-      "en": "Use the settings tabs for configuration, appearance and motion. On mobile, 3D view expands the model, Config shows the model and settings together, and Settings expands the settings."
+      "ja": "構成・外観・動作は設定タブから。スマートフォンでは「3Dビュー」でモデルを広く、「構成画面」で3Dと設定を同時に表示できます。",
+      "en": "Use the settings tabs for configuration, appearance and motion. On mobile, 3D view expands the model; Config keeps the live model visible while you change settings."
     },
     "text.0023": {
       "kind": "message",
@@ -8906,6 +8906,76 @@
       "kind": "message",
       "ja": "元の公式CADにはBowdenチューブが含まれていません。",
       "en": "The original official CAD does not include the Bowden tube."
+    },
+    "fixed_sc.system": {
+      "kind": "message",
+      "ja": "水平交換 · Fixed-Gantry-SC",
+      "en": "Horizontal exchange · Fixed-Gantry-SC"
+    },
+    "fixed_sc.left": {
+      "kind": "message",
+      "ja": "左ドック · ストックアイドラー",
+      "en": "Left dock · stock idler"
+    },
+    "fixed_sc.right": {
+      "kind": "message",
+      "ja": "右ドック · ストックアイドラー",
+      "en": "Right dock · stock idler"
+    },
+    "fixed_sc.shover": {
+      "kind": "message",
+      "ja": "CNC専用Shover",
+      "en": "CNC-specific Shover"
+    },
+    "fixed_sc.head": {
+      "kind": "message",
+      "ja": "ヘッド側の専用部品",
+      "en": "Dedicated head attachments"
+    },
+    "fixed_sc.ldo": {
+      "kind": "message",
+      "ja": "LDO CNC用",
+      "en": "For LDO CNC"
+    },
+    "fixed_sc.fysetc": {
+      "kind": "message",
+      "ja": "FYSETC CNC用",
+      "en": "For FYSETC CNC"
+    },
+    "fixed_sc.parts": {
+      "kind": "message",
+      "ja": "作者の原本パーツ構成です。Tridentへの取付位置と交換経路は未登録です。",
+      "en": "Original author part assemblies. Trident installation placements and exchange paths are not registered."
+    },
+    "fixed_sc.ramp": {
+      "kind": "message",
+      "ja": "作者の方式はY方向の進入で持ち上げ、X方向に押して切り離す水平交換です。",
+      "en": "The author uses horizontal exchange: entry along Y lifts the head, then a shove along X releases it."
+    },
+    "fixed_sc.idler": {
+      "kind": "message",
+      "ja": "現在のTrident R2アイドラーとの候補配置で干渉があるため、機体への装着オプションには追加していません。",
+      "en": "A candidate placement intersects the current Trident R2 idler, so this is not offered as a printer installation."
+    },
+    "fixed_sc.supports": {
+      "kind": "message",
+      "ja": "印刷用の埋め込みサポートを省いたモデルです。LDO用とFYSETC用は別部品です。",
+      "en": "Built-in print supports are omitted. LDO and FYSETC use separate parts."
+    },
+    "fixed_sc.sf": {
+      "kind": "message",
+      "ja": "Anthead SF専用のダクトと2本の掛けネジです。ホットエンドや押出機を含む完成ヘッドではありません。",
+      "en": "Anthead SF ducts and two catch screws. This is an attachment assembly, without the hotend or extruder."
+    },
+    "fixed_sc.lowrider": {
+      "kind": "message",
+      "ja": "A4T用Low Riderバックプレートの原本構成です。専用カウリングとの取付適合は未登録です。",
+      "en": "Original A4T Low Rider backplate assembly. Attachment to its dedicated cowling is not registered."
+    },
+    "fixed_sc.archive": {
+      "kind": "message",
+      "ja": "Fixed-Gantry-SC · 原本CADと表示用部品",
+      "en": "Fixed-Gantry-SC · source CAD and display parts"
     }
   }
 }

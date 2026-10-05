@@ -1,5 +1,5 @@
 {
-  "viewer_version": "viewer-v59",
+  "viewer_version": "viewer-v67",
   "sources": [
     {
       "id": "siboor_trident",
@@ -1356,6 +1356,20 @@
       "scope": "Native whole-machine reference assembly and display meshes.",
       "changes": "Display mesh reduction, material roles and axis preview. Original assembly variants and calibration aids are separate reference geometry.",
       "notice": "Printed AWD v1.2 reference; later CNC kits differ."
+    },
+    {
+      "id": "fixed_gantry_sc",
+      "label": "Fixed-Gantry-SC",
+      "repository": "N3MI-DG/Fixed-Gantry-SC",
+      "author": "N3MI-DG; upstream DraftShift, hartk1213, Armchair Heavy Industries",
+      "commit": "ba257556bbe1e6233ee78b3e39e2169c420c9ab9",
+      "url": "https://github.com/N3MI-DG/Fixed-Gantry-SC/tree/ba257556bbe1e6233ee78b3e39e2169c420c9ab9",
+      "version": "ba257556bbe1; original CAD hashes in source archive",
+      "scope": "Eight original component assemblies: stock-idler docks, CNC-specific shovers, Anthead SF ducts and A4T Low Rider backplate. Printer attachment and horizontal exchange motion are not registered.",
+      "license": "GPL-3.0 modification; separate Anthead/StealthChanger GPL and A4T CC BY-NC-SA 4.0 notices retained",
+      "license_url": "../licenses/fixed_gantry_sc/NOTICE.md",
+      "license_sha256": "54b6a311958e95dee3653e54df08c55042b62b9be1bc1c099064a1978656c9a4",
+      "changes": "Display tessellation and appearance roles; Shover print supports omitted. Original dimensions, hardware and placement retained; no printer mounting adaptation."
     }
   ],
   "defaults": [
@@ -1730,6 +1744,12 @@
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v59/viewer-yavoth-native.zip",
       "bytes": 34266466,
       "sha256": "473d107ec047df0a8a1c79601d2ea90c0d8a567f4e77b2210a3669ed2c396ce9"
+    },
+    {
+      "label": "Fixed-Gantry-SC · 原本CADと表示用部品",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v67/viewer-horizontal-sc-source.zip",
+      "bytes": 11774457,
+      "sha256": "dd905f66d9c11e40f6c7bb106ab6a42575c6f65f2ca8f1c8786abf0ff4d2e033"
     }
   ]
 }

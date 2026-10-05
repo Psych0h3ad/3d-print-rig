@@ -107,8 +107,8 @@
       "text": "검색 지우기"
     },
     "text.0022": {
-      "source_revision": "c282973c7554af9081e8",
-      "text": "구성, 모양 및 동작에 대한 설정 탭을 사용하십시오. 모바일에서는 3D 보기가 모델을 확장하고, Config가 모델과 설정을 함께 표시하며, 설정이 설정을 확장합니다."
+      "source_revision": "a55b1009961ea38346a1",
+      "text": "설정 탭에서 구성, 외관, 동작을 변경할 수 있습니다. 모바일에서 3D 보기는 모델을 넓게 표시하고, 구성 화면에서는 설정을 변경하면서 실시간 모델을 함께 볼 수 있습니다."
     },
     "text.0023": {
       "source_revision": "61979bb807abf7675621",
@@ -7125,6 +7125,62 @@
     "ui.community.ender_source": {
       "source_revision": "30a0a21a183e859f4f4a",
       "text": "원본 공식 CAD에는 Bowden 튜브가 포함되지 않습니다."
+    },
+    "fixed_sc.system": {
+      "source_revision": "1b835c0348c171bed09d",
+      "text": "수평 교환 · Fixed-Gantry-SC"
+    },
+    "fixed_sc.left": {
+      "source_revision": "f2f94d35261e0a26dc03",
+      "text": "왼쪽 도크 · 기본 아이들러"
+    },
+    "fixed_sc.right": {
+      "source_revision": "eeff7a6b7d6e5d42b628",
+      "text": "오른쪽 도크 · 기본 아이들러"
+    },
+    "fixed_sc.shover": {
+      "source_revision": "eeb85bf735109ac9fb6d",
+      "text": "CNC 전용 Shover"
+    },
+    "fixed_sc.head": {
+      "source_revision": "7a870d099df70a47f41c",
+      "text": "전용 헤드 부품"
+    },
+    "fixed_sc.ldo": {
+      "source_revision": "8f2c454aea5344264df3",
+      "text": "LDO CNC용"
+    },
+    "fixed_sc.fysetc": {
+      "source_revision": "473f787d413504ab670d",
+      "text": "FYSETC CNC용"
+    },
+    "fixed_sc.parts": {
+      "source_revision": "9cc9f1edc7e9a71d7732",
+      "text": "제작자의 원본 부품 어셈블리입니다. Trident 설치 위치와 교환 경로는 등록되지 않았습니다."
+    },
+    "fixed_sc.ramp": {
+      "source_revision": "b489138f33adc9632c4c",
+      "text": "제작자의 수평 교환 방식은 Y 방향 진입으로 헤드를 들어 올린 뒤 X 방향으로 밀어 분리합니다."
+    },
+    "fixed_sc.idler": {
+      "source_revision": "67b30949c0598b91fb73",
+      "text": "현재 Trident R2 아이들러와 후보 배치가 간섭하므로 프린터 설치 옵션으로 제공하지 않습니다."
+    },
+    "fixed_sc.supports": {
+      "source_revision": "b962badc17ab54500dba",
+      "text": "내장된 출력 서포트를 제외한 모델입니다. LDO용과 FYSETC용은 서로 다른 부품입니다."
+    },
+    "fixed_sc.sf": {
+      "source_revision": "e45cb4457887a079d3d9",
+      "text": "Anthead SF 전용 덕트와 걸림 나사 2개입니다. 핫엔드나 압출기가 포함된 완성 헤드가 아닙니다."
+    },
+    "fixed_sc.lowrider": {
+      "source_revision": "8d91156bbcb99676f83f",
+      "text": "A4T용 Low Rider 백플레이트 원본 어셈블리입니다. 전용 카울링과의 장착 적합성은 등록되지 않았습니다."
+    },
+    "fixed_sc.archive": {
+      "source_revision": "ffbc612925b0cf51d23a",
+      "text": "Fixed-Gantry-SC · 원본 CAD와 표시 부품"
     }
   }
 }
