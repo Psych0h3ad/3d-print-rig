@@ -7229,6 +7229,22 @@
     "ui.community.component_license": {
       "source_revision": "031698a93624749bc6de",
       "text": "Licencias de los componentes"
+    },
+    "ui.positron.supports": {
+      "source_revision": "3f26f6cef00b324fa203",
+      "text": "Este modelo de visualización omite seis soportes integrados del conducto del ventilador, los dos anillos de retención del muelle y la carcasa del accionamiento Z."
+    },
+    "ui.positron.surfaces": {
+      "source_revision": "e8d3aa32dbfc7313beef",
+      "text": "Las superficies se regeneran a partir del CAD original. Solo se aligeran las fijaciones pequeñas tras comprobar su geometría. No se reproduce la deformación de correas y cables ausente en el original."
+    },
+    "ui.positron.storage_holder": {
+      "source_revision": "f715f9472e5f5de1cf2a",
+      "text": "Alinear el soporte V con el orificio de almacenamiento izquierdo"
+    },
+    "ui.positron.storage_screws": {
+      "source_revision": "c52cd9e7884e3e32d866",
+      "text": "Insertar los tornillos retirados en los orificios de almacenamiento"
     }
   }
 }

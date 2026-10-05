@@ -7229,6 +7229,22 @@
     "ui.community.component_license": {
       "source_revision": "031698a93624749bc6de",
       "text": "부품별 라이선스"
+    },
+    "ui.positron.supports": {
+      "source_revision": "3f26f6cef00b324fa203",
+      "text": "이 표시 모델은 팬 덕트, 스프링 고정 링 2개, Z 구동 케이스의 내장 서포트 형상 6개를 제외했습니다."
+    },
+    "ui.positron.surfaces": {
+      "source_revision": "e8d3aa32dbfc7313beef",
+      "text": "표시 면을 원본 CAD에서 다시 생성했습니다. 작은 체결 부품만 형상 검사 후 경량화했습니다. 원본에 없는 벨트와 배선의 변형은 재현하지 않습니다."
+    },
+    "ui.positron.storage_holder": {
+      "source_revision": "f715f9472e5f5de1cf2a",
+      "text": "V 홀더를 왼쪽 수납 구멍에 맞추기"
+    },
+    "ui.positron.storage_screws": {
+      "source_revision": "c52cd9e7884e3e32d866",
+      "text": "분리한 나사를 양쪽 수납 구멍에 넣기"
     }
   }
 }

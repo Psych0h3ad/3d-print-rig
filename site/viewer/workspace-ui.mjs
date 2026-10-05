@@ -3,11 +3,11 @@ ensureWorkspaceEntry(import.meta.url);
 import {setupDisplayPreferences,setupHeaderThemeToggle} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {WorkspaceMutationObserver,workspaceListen} from './workspace-lifecycle.mjs';
 // Shared presentation layer. Existing controls, IDs and CAD controllers stay intact.
-import {setupLanguage,originalText,messageSource} from './i18n.mjs?v=510fd59c8295ed9da40b';
+import {setupLanguage,originalText,messageSource} from './i18n.mjs?v=e3ba75776c6578a73d7a';
 import {printerWorkspaceURL,workspaceReturnKey,workspaceKindFor} from './workspace-return.mjs?v=a858970770125ed6614c';
 import {setupWorkspaceSharing} from './workspace-share.mjs?v=e6c4054688ce084e0759';
 import {lockInspectorHorizontalScroll} from './workspace-scroll.mjs?v=workspace-belts-1';
-import {setupChoiceSearch} from './workspace-choices.mjs?v=d622afd92039b975445b';
+import {setupChoiceSearch} from './workspace-choices.mjs?v=3b110320b44a616c6020';
 import {setupMobileLayout} from './workspace-layout.mjs?v=738c040595ec99155ce2';
 const $ = selector => document.querySelector(selector);
 const node = (tag, className, text) => {

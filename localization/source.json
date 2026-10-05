@@ -9036,6 +9036,26 @@
       "kind": "message",
       "ja": "部品別ライセンス",
       "en": "Component licenses"
+    },
+    "ui.positron.supports": {
+      "kind": "message",
+      "ja": "埋め込みサポートを除いた表示モデルです。ファンダクト、スプリング保持リング2個、Z駆動ケースの計6形状を省いています。",
+      "en": "This display model omits six built-in support solids from the fan duct, both spring retaining rings and Z drive housing."
+    },
+    "ui.positron.surfaces": {
+      "kind": "message",
+      "ja": "表示面は原本CADから再生成しています。小さな締結部品のみ、形状の検査後に軽量化しています。原本にないベルト・配線の変形は再現していません。",
+      "en": "Display surfaces are regenerated from original CAD. Only small fasteners are simplified after geometry checks. Belt and wiring deformation absent from the source is not reproduced."
+    },
+    "ui.positron.storage_holder": {
+      "kind": "message",
+      "ja": "Vホルダーを左の収納穴に合わせる",
+      "en": "Align the V holder with the left storage hole"
+    },
+    "ui.positron.storage_screws": {
+      "kind": "message",
+      "ja": "外したネジを左右の収納穴に差し込む",
+      "en": "Insert the removed thumbscrews into the storage holes"
     }
   }
 }

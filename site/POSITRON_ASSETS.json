@@ -1,27 +1,27 @@
 {
-  "version": "positron-native-fold-62",
+  "version": "positron-v3.2.2-native-2",
   "machine_id": "positron_v322",
   "parts": 1314,
   "base_url": "https://psych0h3ad.github.io/3d-print-rig-positron-models/",
   "local_directory": "positron-assets",
   "files": {
     "assembly_manifest.json": {
-      "path": "assembly_manifest.json",
-      "bytes": 941834,
-      "sha256": "f909fc2fc108180ddd59df905e56b1d043f242107f31a025b965d52b9d23a3c3"
+      "path": "v3.2.2-native-2/assembly_manifest.json",
+      "bytes": 517885,
+      "sha256": "928fdfa879e51e3dba0ba7b976027bd348a395565d39bc47d6fd1a7fd8360cfb"
     },
     "machine_profile.json": {
-      "path": "machine_profile.json",
+      "path": "v3.2.2-native-2/machine_profile.json",
       "bytes": 1920,
       "sha256": "4db6264b68e0aeb02aa38ff5401228ae89bc1a83153f6762355996ef164a44c7"
     },
     "model.glb": {
-      "path": "model.glb.gz",
-      "bytes": 21522589,
-      "sha256": "12e1f53b39ed94b0f9dd1bd8d5e22cc0512be44bc9ec242cabbd49dd998bb7f6",
+      "path": "v3.2.2-native-2/model.glb.gz",
+      "bytes": 36452927,
+      "sha256": "d98f528d821e31e0f3e0b0ec16318b2fda88681ec548a9d315c81fe6dce5e771",
       "encoding": "gzip",
-      "decoded_bytes": 56002628,
-      "decoded_sha256": "db16f47e0a69595dfb2d085d496598f25cb54907b7d0a07588c1405bbe415a14"
+      "decoded_bytes": 98958660,
+      "decoded_sha256": "bf2eee971286dabebd8ae0f4149eb76657036c21e2df31aef6f1e32c28158f25"
     }
   }
 }
