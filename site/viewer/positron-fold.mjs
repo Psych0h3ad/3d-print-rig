@@ -65,7 +65,9 @@ export function positronFoldTransforms(profile,percent){
   const holderStored=around(center,rotation(X,THREE.MathUtils.degToRad(s.holder_flip_degrees||0))).multiply(bedStored);
   const holderSeat=phase(p,.92,.96);
   matrices.holder=move([0,20*Math.sin(Math.PI*holderSeat),0]).multiply(blend(matrices.holder,holderStored,holderSeat));
-  const columnStored=move(s.column_screw_seat_mm).multiply(rotation(Z,THREE.MathUtils.degToRad(s.column_screw_lean_degrees||0))).multiply(rotation(X,Math.PI/2)).multiply(move(s.column_screw_source_seat_mm.map(x=>-x)));
+  // The original column screw is dropped vertically into the storage bore.
+  // Its depth is registered separately from the detached holder's rotation.
+  const columnStored=move(s.column_screw_seat_mm).multiply(rotation(X,Math.PI/2)).multiply(move(s.column_screw_source_seat_mm.map(x=>-x)));
   const travel=phase(p,.94,.98),insert=phase(p,.98,1);
   matrices.bed_screw=blend(matrices.bed_screw,move([0,35*(1-insert),0]).multiply(bedStored),travel);
   matrices.column_screw=blend(matrices.column_screw,move([0,35*(1-insert),0]).multiply(columnStored),travel);

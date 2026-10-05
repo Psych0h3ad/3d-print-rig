@@ -67,8 +67,8 @@
         -141.62020077336
       ],
       "column_screw_seat_mm": [
-        124.4814452409877,
-        45,
+        124,
+        59.56951067881665,
         -2.006699691396989
       ],
       "guide_step": 10,
@@ -86,9 +86,15 @@
         0,
         0
       ],
-      "column_screw_lean_degrees": -5.5,
+      "column_screw_lean_degrees": 0,
       "holder_flip_degrees": 180,
-      "holder_thickness_mm": 9.5
+      "holder_thickness_mm": 9.5,
+      "column_screw_tip_mm": [
+        124,
+        36.56951067881665,
+        -2.006699691396989
+      ],
+      "column_screw_rest_surface_mm": 36.56751067881665
     },
     "park_beam_dz_mm": -11.18
   }

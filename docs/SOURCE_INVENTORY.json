@@ -300,8 +300,8 @@
     },
     {
       "path": "scripts/fixtures/positron-storage.json",
-      "bytes": 2318,
-      "sha256": "ef68f915d289b04376e2b303b7d087c67334c366b19bb73303f70f8e080ebd02"
+      "bytes": 2480,
+      "sha256": "ffcb152e084d47227fd38d96faf2fd539c34ee9d7481cb2a8c9e3823cc05fc49"
     },
     {
       "path": "scripts/fixtures/ratrig-profiles.json",
@@ -555,8 +555,8 @@
     },
     {
       "path": "scripts/test_positron_storage.mjs",
-      "bytes": 1917,
-      "sha256": "43a7f7e1f5a004305ab5f020b1f3c5903d4a4a2a86a007865a22f1deddb59e35"
+      "bytes": 2606,
+      "sha256": "50037be582bb753416a5e9f0df47363055e92cd4719cf18165e3edf87727ff27"
     },
     {
       "path": "scripts/test_printer_gantry.mjs",
@@ -726,7 +726,7 @@
     {
       "path": "site/POSITRON_ASSETS.json",
       "bytes": 956,
-      "sha256": "a65d576ed592a5a587f82ae8d8761d8c37c8e6c307e78209a90e5d946734b10d"
+      "sha256": "16d5b9d1ef6e5bb9af989f248696b72e371624dba34c9c350c9625cc33e4e449"
     },
     {
       "path": "site/PUBLIC_CATALOG.json",
@@ -3355,13 +3355,13 @@
     },
     {
       "path": "site/viewer/positron-fold.mjs",
-      "bytes": 7963,
-      "sha256": "04edc193d74fda9ebab3e0b218b6a8d85b73796a851ec367a3dd5d1c1f5bd516"
+      "bytes": 8037,
+      "sha256": "2833710c5c61ce984aaeb3ff8100b8f6bd8111413c36e7a4dbfc929e0ff51060"
     },
     {
       "path": "site/viewer/positron-loader.mjs",
       "bytes": 1214,
-      "sha256": "f2d74e670c3a3348323d803c5f11416aa40262364c87520817cb41c36470b08c"
+      "sha256": "934d699d8450a1d321effe76c7e3dceca24ca23858f31589cc923b58c107731b"
     },
     {
       "path": "site/viewer/positron-state.mjs",
@@ -3371,12 +3371,12 @@
     {
       "path": "site/viewer/positron.html",
       "bytes": 4994,
-      "sha256": "faa605d99e0b8d9ac0b645e887bffdf7ebd910c396851a3122c2332a2a156f65"
+      "sha256": "63bf31da2ab7250017788a9b3824cb133cf1653422482dd25241ef7cb9bf8186"
     },
     {
       "path": "site/viewer/positron.js",
       "bytes": 9680,
-      "sha256": "3bd277a8af25ab848acaf31a458b4040bf732564849b9ba1ca5d2eaea4d45226"
+      "sha256": "e0acf4bfdd4d56fd0a7e46367bdc89980856f3400ed0a0689f7569f442781ee6"
     },
     {
       "path": "site/viewer/printer-gantry.mjs",

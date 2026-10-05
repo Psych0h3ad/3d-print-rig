@@ -1,5 +1,5 @@
 {
-  "version": "positron-v3.2.2-storage-3",
+  "version": "positron-v3.2.2-storage-4",
   "machine_id": "positron_v322",
   "parts": 1314,
   "base_url": "https://psych0h3ad.github.io/3d-print-rig-positron-models/",
@@ -11,9 +11,9 @@
       "sha256": "928fdfa879e51e3dba0ba7b976027bd348a395565d39bc47d6fd1a7fd8360cfb"
     },
     "machine_profile.json": {
-      "path": "v3.2.2-storage-3/machine_profile.json",
-      "bytes": 2844,
-      "sha256": "820952d430686e9a6fd02f735cbc1aa2017d590267cbc18594e879130d29e173"
+      "path": "v3.2.2-storage-4/machine_profile.json",
+      "bytes": 3006,
+      "sha256": "97586d44db9e4ac68ac64c52cb69dd42bf432bade6a01b1d2fe5249db2efcc3a"
     },
     "model.glb": {
       "path": "v3.2.2-native-2/model.glb.gz",
