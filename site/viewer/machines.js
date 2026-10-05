@@ -1,7 +1,7 @@
 import {normalizeLanguage} from './languages.mjs?v=ba6a5cd8e1d86849ca34';
 import {annexMachines} from './annex-machines.mjs?v=extra-machines-55';
-import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=5c6f4dcd051bb1336e43';
-import {navigateWorkspace} from './workspace-navigation.mjs?v=5c6f4dcd051bb1336e43';
+import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
+import {navigateWorkspace} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
 import {renderProductLinks} from './product-links.js?v=workspace-belts-1';
 import {ratRigMachines} from './ratrig-machines.mjs?v=workspace-belts-1';
 export const machineChoices=[
@@ -23,12 +23,16 @@ export const machineChoices=[
  {id:'remorph_beta1_307',label:'Remorph Beta 1 · 307 / LGX Pro / Rapido UHF / Beacon Rev. H',page:'./remorph.html',family:'remorph',vendor:'remorph',size:307},
  {id:'siboor_trident_350',label:'SIBOOR Trident 350 · CNC AWD',page:'./'},
  ...[250,300,350].map(size=>({id:`voron_trident_${size}`,label:`VORON Trident ${size} · 標準プリント構造`,page:'./trident.html'})),
+ {id:'voron_trident_500_custom',label:'VORON Trident 500 × 500 × 250 · Custom',page:'./custom-voron.html',family:'trident',vendor:'voron',size:500},
+ {id:'voron_trident_350_half_z',label:'VORON Trident 350 × 350 × 125 · Half Z',page:'./custom-voron.html',family:'trident',vendor:'voron',size:350},
  {id:'siboor_v24_350',label:'VORON V2.4 350 · Modを比較',page:'./v24.html'},
  {id:'voron_v24_250_printed',label:'VORON V2.4 250 · R2標準プリント構造',page:'./v24-reference.html'},
  {id:'voron_v24_250_ldo_cnc',label:'VORON V2.4 250 · LDO CNC AWD参照',page:'./v24-reference.html'},
  {id:'voron_v24_300_printed',label:'VORON V2.4 300 · R2標準プリント構造',page:'./v24-reference.html'},
  {id:'voron_v24_300_ldo_cnc',label:'VORON V2.4 300 · LDO CNC AWD参照',page:'./v24-reference.html'},
  {id:'voron_v24_350_printed',label:'VORON V2.4 350 · R2標準プリント構造',page:'./v24-reference.html'},
+ {id:'voron_v24_500_custom',label:'VORON V2.4 500 × 500 × 480 · Custom',page:'./custom-voron.html',family:'v24',vendor:'voron',size:500},
+ {id:'voron_v24_350_half_z',label:'VORON V2.4 350 × 350 × 165 · Half Z',page:'./custom-voron.html',family:'v24',vendor:'voron',size:350},
  {id:'voron_v24_350_ldo_cnc',label:'VORON V2.4 350 · LDO CNC AWD参照',page:'./v24-reference.html'},
  {id:'voron_v02r1_120',label:'VORON V0.2r1 120 · Mini Stealthburner',page:'./v0.html'},
  {id:'voron_v02_120',label:'VORON V0.2 120 · Mini Stealthburner',page:'./v0.html'},

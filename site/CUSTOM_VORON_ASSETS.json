@@ -1,0 +1,111 @@
+{
+  "schema": "custom-voron-assets-1",
+  "base_url": "https://psych0h3ad.github.io/3d-print-rig-community-models/",
+  "local_directory": "community-machines-assets",
+  "machines": [
+    {
+      "id": "voron_v24_500_custom",
+      "size": 500,
+      "z": 480,
+      "family": "v24",
+      "files": {
+        "model.glb": {
+          "path": "custom-voron-v1/voron_v24_500_custom/model.glb.gz",
+          "bytes": 24788407,
+          "sha256": "78c1d5302b77631010ae752f89183635cbb22626b2a337c8b2e9c8bd95511a4a",
+          "encoding": "gzip",
+          "decoded_bytes": 79290652,
+          "decoded_sha256": "4a09d4a965acddc782b56c0994d0c3e335cf23b6067683b348ec59f4a90080b7"
+        },
+        "assembly_manifest.json": {
+          "path": "custom-voron-v1/voron_v24_500_custom/assembly_manifest.json",
+          "bytes": 1523645,
+          "sha256": "1f4d567ad2487a1a2db0df8a3ab2c61c173f83b97b2b8ceb5985bed59698de76"
+        },
+        "machine_profile.json": {
+          "path": "custom-voron-v1/voron_v24_500_custom/machine_profile.json",
+          "bytes": 4003,
+          "sha256": "4866b2408c9df5fe360fb59ec8a11eff6ab9a8fea6913e493c0e2fda7e15c085"
+        }
+      }
+    },
+    {
+      "id": "voron_v24_350_half_z",
+      "size": 350,
+      "z": 165,
+      "family": "v24",
+      "files": {
+        "model.glb": {
+          "path": "custom-voron-v1/voron_v24_350_half_z/model.glb.gz",
+          "bytes": 23947887,
+          "sha256": "e9d894c8ffd531548354b054dce54eaa908199d69edd075d2bfb6118a2a71cd7",
+          "encoding": "gzip",
+          "decoded_bytes": 75948540,
+          "decoded_sha256": "3f2a28ef82e9da45ad78fbb505d801b62d772884a52dddb10520cacdab00af7c"
+        },
+        "assembly_manifest.json": {
+          "path": "custom-voron-v1/voron_v24_350_half_z/assembly_manifest.json",
+          "bytes": 1420503,
+          "sha256": "5a41bf6fda8690875cde32586de9d907376726ba2d73b246990e89a2ffe4ad1b"
+        },
+        "machine_profile.json": {
+          "path": "custom-voron-v1/voron_v24_350_half_z/machine_profile.json",
+          "bytes": 4003,
+          "sha256": "0c202e9c8f0af06a9bce302b207f2b4bc11eba5c614bce57ec26f79a3df9fbf0"
+        }
+      }
+    },
+    {
+      "id": "voron_trident_500_custom",
+      "size": 500,
+      "z": 250,
+      "family": "trident",
+      "files": {
+        "model.glb": {
+          "path": "custom-voron-v1/voron_trident_500_custom/model.glb.gz",
+          "bytes": 27544082,
+          "sha256": "0d112afd1c8e425331d3ef7bb8b7f2b57c09884743c81d69a922a05588e24b9b",
+          "encoding": "gzip",
+          "decoded_bytes": 86308664,
+          "decoded_sha256": "b43a6362c39a8dd711cac376cc4026952f8437a361655ccffee0a785bcd19df5"
+        },
+        "assembly_manifest.json": {
+          "path": "custom-voron-v1/voron_trident_500_custom/assembly_manifest.json",
+          "bytes": 1039890,
+          "sha256": "31ab237af93ff060c091fb8cb9f76b6b94329f9f24452f328fb2099b089e788a"
+        },
+        "machine_profile.json": {
+          "path": "custom-voron-v1/voron_trident_500_custom/machine_profile.json",
+          "bytes": 5976,
+          "sha256": "e1dc479aa0c2d9ee3df6010781fff0add53176278358a9691a6a69a61ca91566"
+        }
+      }
+    },
+    {
+      "id": "voron_trident_350_half_z",
+      "size": 350,
+      "z": 125,
+      "family": "trident",
+      "files": {
+        "model.glb": {
+          "path": "custom-voron-v1/voron_trident_350_half_z/model.glb.gz",
+          "bytes": 26349309,
+          "sha256": "48bc1f8cba7b4d784aa727a2d5ad3ff2c42625dab325d63bc6b0094b83141015",
+          "encoding": "gzip",
+          "decoded_bytes": 81595616,
+          "decoded_sha256": "70a026205085e4fe4ebd32063c376b1a488a196c379979d1f882d7702f72e055"
+        },
+        "assembly_manifest.json": {
+          "path": "custom-voron-v1/voron_trident_350_half_z/assembly_manifest.json",
+          "bytes": 1018669,
+          "sha256": "806295b3726991f9c049e74d2c440c26921e17df5914063687fbe11490af8145"
+        },
+        "machine_profile.json": {
+          "path": "custom-voron-v1/voron_trident_350_half_z/machine_profile.json",
+          "bytes": 6014,
+          "sha256": "f8f3316c0ea84089826f4ed587ebbc68e637d11c33a5b8caa07bfa4edf8bae7d"
+        }
+      }
+    }
+  ]
+}

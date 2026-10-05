@@ -7541,6 +7541,30 @@
     "sovol.reference": {
       "source_revision": "163e7e20a9e506e68b31",
       "text": "전체 CAD 조립체의 정적 모델입니다. Z 장착면과 나사 축을 정렬하고 노즐을 베드 위로 올렸습니다. 중복 부품은 선택형 참고 표시로 분리했습니다. 원본 CAD에는 XY 벨트가 없습니다. 연결되지 않은 PTFE와 배선도 선택형 참고 표시로 분리했습니다. 이동과 모드 교체는 지원하지 않습니다."
+    },
+    "custom_voron.reference": {
+      "source_revision": "2a57c57a9e185f904213",
+      "text": "치수를 변경한 VORON 참조 모델입니다. 표준 키트가 아니며 이 크기의 모드 장착은 등록되지 않았습니다."
+    },
+    "custom_voron.motion": {
+      "source_revision": "084f8dc533693c7e68d3",
+      "text": "XY 벨트는 6 mm입니다. 이동 시 매끄러운 경로를 표시하며 톱니, 장력 및 전체 이동 범위의 충돌 검증은 포함하지 않습니다."
+    },
+    "custom_voron.trident_size": {
+      "source_revision": "b69db5fc6eae6594b52a",
+      "text": "VORON Trident {0} × {1} × {2} · 사용자 지정"
+    },
+    "custom_voron.trident_half": {
+      "source_revision": "c4914cfa4ced4a53d43b",
+      "text": "VORON Trident {0} × {1} × {2} · Z 높이 절반"
+    },
+    "custom_voron.v24_size": {
+      "source_revision": "f55e1c069c536e8c3af3",
+      "text": "VORON V2.4 {0} × {1} × {2} · 사용자 지정"
+    },
+    "custom_voron.v24_half": {
+      "source_revision": "6009704582682953f48e",
+      "text": "VORON V2.4 {0} × {1} × {2} · Z 높이 절반"
     }
   }
 }

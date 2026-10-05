@@ -6,7 +6,7 @@ import {circleBeltRoute,beltGeometry,BELT_THICKNESS} from './v0-belts.mjs?v=trid
 // Closed, smooth routing envelope only; teeth, clamps and tension are not simulated.
 const centre=row=>row.bounds_mm[0].map((v,i)=>(v+row.bounds_mm[1][i])/2);
 export function tridentBeltCircles(metadata,name,dy=0){
- if(!/^trident_r2_gantry_(250|300|350)$/.test(metadata.id)||metadata.belt_width_mm!==6)throw Error('Trident belt profile mismatch');
+ if(!/^trident_r2_gantry_(250|300|350|500)$/.test(metadata.id)||metadata.belt_width_mm!==6)throw Error('Trident belt profile mismatch');
  if(!['A_Belt','B_Belt'].includes(name))throw Error('Unknown Trident belt');
  const mirror=name==='B_Belt'?-1:1,offset=(Number(metadata.id.split('_').at(-1))-350)/2;
  const specs=[[-226,-.5,1,true], [212.76,-13.74,-1,true,'idler'],

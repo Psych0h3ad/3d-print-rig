@@ -7,13 +7,13 @@ import {loadModel} from './model-loader.js?v=ce28c0df722a83db6bb3';
 import {appearanceRole} from './appearance-role.mjs?v=workspace-belts-1';
 import {partKey} from './head-assembly.js?v=workspace-belts-1';
 import {v24HeadCatalog} from './machine-head-model.mjs?v=03db7c7d900ff7f5b2c0';
-import {setupConfigurations} from './configurations.js?v=074d32a4e80ab88827da';
+import {setupConfigurations} from './configurations.js?v=ebc64eb73f35c37d5b11';
 
-import {stockProbeFit} from './probe-mounts.js?v=06a66eade4bdc5eb8c84';
+import {stockProbeFit} from './probe-mounts.js?v=81f922c3169490021d08';
 
 import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs?v=workspace-belts-1';
 import {bankPlan} from './changer-bank-model.mjs?v=024cc52a5bbc61da7506';
-import {setupChangerBank} from './changer-bank.js?v=2575f5e3fafcf4c76da2';
+import {setupChangerBank} from './changer-bank.js?v=47bbc0fef91af2c7241e';
 import {contentSHA256,acceptedMountValidation} from './mount-validation.mjs?v=workspace-belts-1';
 import {acceptedHeadValidation}from './head-validation.mjs?v=workspace-belts-1';
 

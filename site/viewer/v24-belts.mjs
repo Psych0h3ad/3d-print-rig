@@ -16,7 +16,7 @@ const contacts=[
  [212.9029847717,-13.6206892916,5.9301977237,1,true],
 ];
 export function v24BeltCircles(size,name,dy=0){
- if(![250,300,350].includes(size)||!['A Belt','B Belt'].includes(name))throw Error('V2.4 R2 belt profile mismatch');
+ if(![250,300,350,500].includes(size)||!['A Belt','B Belt'].includes(name))throw Error('V2.4 R2 belt profile mismatch');
  const mirror=name==='A Belt'?1:-1,offset=(size-350)/2;
  return contacts.map(([x,y,r,turn,moving])=>({x:mirror*(x+Math.sign(x)*offset),y:y+(moving?dy:Math.sign(y)*offset),r,turn:turn*mirror,moving}));
 }
@@ -38,7 +38,7 @@ export function createV24Belts(nodes,manifest,profile){
  // The LDO reference assets contain Z belts only; never reuse the R2 XY path.
  if(!rows.length)return {keys:new Set(),entries:[],update(){}};
  if(rows.length!==2||profile.xy_belt_width_mm!==6)throw Error('Expected two native 6 mm V2.4 R2 belts');
- const size=Number(profile.machine_id.match(/_(250|300|350)(?:_|$)/)?.[1]);
+ const size=profile.size_mm??Number(profile.machine_id.match(/_(250|300|350|500)(?:_|$)/)?.[1]);
  const entries=rows.map(row=>{
   const node=nodes.get(row.key),meshes=[];node.traverse(m=>{if(m.isMesh)meshes.push(m)});
   if(meshes.length!==1)throw Error('Unexpected V2.4 belt mesh structure');

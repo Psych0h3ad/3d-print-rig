@@ -7541,6 +7541,30 @@
     "sovol.reference": {
       "source_revision": "163e7e20a9e506e68b31",
       "text": "Conjunto CAD completo estático. Las superficies de montaje Z y los ejes de los tornillos están alineados; la boquilla queda elevada sobre la cama. Las piezas duplicadas son referencias opcionales. El CAD original no incluye correas XY. El PTFE y el cableado sin conectar también son referencias opcionales. El movimiento y el cambio de mods no están disponibles."
+    },
+    "custom_voron.reference": {
+      "source_revision": "2a57c57a9e185f904213",
+      "text": "Referencia VORON con dimensiones personalizadas. No es un kit estándar; los montajes de mods para este tamaño no están registrados."
+    },
+    "custom_voron.motion": {
+      "source_revision": "084f8dc533693c7e68d3",
+      "text": "Las correas XY son de 6 mm. El movimiento usa una ruta suave de referencia; no incluye dientes, tensión ni validación de colisiones en todo el recorrido."
+    },
+    "custom_voron.trident_size": {
+      "source_revision": "b69db5fc6eae6594b52a",
+      "text": "VORON Trident {0} × {1} × {2} · Personalizado"
+    },
+    "custom_voron.trident_half": {
+      "source_revision": "c4914cfa4ced4a53d43b",
+      "text": "VORON Trident {0} × {1} × {2} · Z a la mitad"
+    },
+    "custom_voron.v24_size": {
+      "source_revision": "f55e1c069c536e8c3af3",
+      "text": "VORON V2.4 {0} × {1} × {2} · Personalizado"
+    },
+    "custom_voron.v24_half": {
+      "source_revision": "6009704582682953f48e",
+      "text": "VORON V2.4 {0} × {1} × {2} · Z a la mitad"
     }
   }
 }

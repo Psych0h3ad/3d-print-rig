@@ -26,7 +26,7 @@ export function isTridentBedChain(row){return (row?.group==='04_Z_Motion'&&row.n
 export function createBedChain(root,metadata){
  const rows=metadata.parts.filter(isTridentBedChain),links=rows.filter(p=>p.name==='10x11 Chain Link');
  if(!links.length)return null;if(links.length!==20)throw Error('Trident bed chain link count');
- const siboor=links[0].group==='04_Z_Motion',pins=tridentChainPins[siboor?'siboor':'voron'],meshes=new Map();
+ const siboor=links[0].group==='04_Z_Motion',pins=metadata.bed_chain_pins??tridentChainPins[siboor?'siboor':'voron'],meshes=new Map();
  root.traverse(o=>{if(o.isMesh)meshes.set(o.userData.part_key||o.userData.partKey||o.name,o)});
  const entries=pins.map(pin=>{
   const row=links.find(r=>siboor?r.key===pin.key:r.key.endsWith('_'+pin.key.split('_').at(-1)));

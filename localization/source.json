@@ -9426,6 +9426,36 @@
       "kind": "message",
       "ja": "全体CADの静止モデルです。Z取付部の座面と固定穴を照合し、ノズルをベッドから離した位置に配置しています。重複部品は参考表示に分けています。元CADにはXYベルトが含まれていません。未接続のPTFEと配線も参考表示に分けています。可動操作とMod交換は未対応です。",
       "en": "Static complete CAD assembly. Z mounting seats and screw axes are aligned, with the nozzle raised above the bed. Duplicate parts are optional references. The source CAD omits XY belts. Unconnected PTFE and wires are also optional references. Motion and mod swapping are not supported."
+    },
+    "custom_voron.reference": {
+      "kind": "message",
+      "ja": "寸法を調整したVORON参照モデルです。標準キットとは異なり、このサイズのMod取付は未登録です。",
+      "en": "A VORON reference with custom dimensions. This is not a standard kit; mod mounts for this size are not registered."
+    },
+    "custom_voron.motion": {
+      "kind": "message",
+      "ja": "XYベルトは6 mmです。移動時は滑らかな経路プレビューを表示します。歯・張力・全域の干渉検証は含みません。",
+      "en": "XY belts are 6 mm. Motion uses a smooth route preview; teeth, tension and full travel collision validation are not included."
+    },
+    "custom_voron.trident_size": {
+      "kind": "template",
+      "ja": "VORON Trident {0} × {1} × {2} · カスタム",
+      "en": "VORON Trident {0} × {1} × {2} · Custom"
+    },
+    "custom_voron.trident_half": {
+      "kind": "template",
+      "ja": "VORON Trident {0} × {1} × {2} · Z高さ半分",
+      "en": "VORON Trident {0} × {1} × {2} · Half Z"
+    },
+    "custom_voron.v24_size": {
+      "kind": "template",
+      "ja": "VORON V2.4 {0} × {1} × {2} · カスタム",
+      "en": "VORON V2.4 {0} × {1} × {2} · Custom"
+    },
+    "custom_voron.v24_half": {
+      "kind": "template",
+      "ja": "VORON V2.4 {0} × {1} × {2} · Z高さ半分",
+      "en": "VORON V2.4 {0} × {1} × {2} · Half Z"
     }
   }
 }

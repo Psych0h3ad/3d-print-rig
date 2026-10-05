@@ -10,7 +10,7 @@ export function replaceWorkspaceURL(state, title, url, target = globalThis.histo
   // A completed old load must not overwrite a Back/Forward destination.
   if (!leaving) { target.replaceState(state, title, url); committedURL = String(url); }
 }
-export const workspacePages = new Set(['index.html', 'trident.html', 'v0.html', 'v24.html', 'v24-reference.html', 'micron.html', 'kit-reference.html', 'ratrig.html', 'crossant.html', 'toolheads.html', 'gantries.html', 'components.html', 'toolchangers.html', 'e3ng.html', 'community.html', 'positron.html', 'remorph.html', 'annex.html']);
+export const workspacePages = new Set(['index.html', 'trident.html', 'custom-voron.html', 'v0.html', 'v24.html', 'v24-reference.html', 'micron.html', 'kit-reference.html', 'ratrig.html', 'crossant.html', 'toolheads.html', 'gantries.html', 'components.html', 'toolchangers.html', 'e3ng.html', 'community.html', 'positron.html', 'remorph.html', 'annex.html']);
 export function workspaceTarget(value, current) {
   try {
     const url = new URL(value, current), base = new URL('.', current);

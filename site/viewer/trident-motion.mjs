@@ -2,17 +2,18 @@ import {createTridentBelts} from './trident-belts.mjs?v=trident-clearance-35';
 import {createBedChain,isTridentBedChain} from './bed-chain.mjs?v=public-v25';
 /** Independent Trident bed motion. Vertices carry their CAD placements. */
 export function createTridentMotion(profile){
- if(profile.kinematics!=='trident'||!/^voron_trident_(250|300|350)$/.test(profile.machine_id))throw Error('Trident profile mismatch');
+ if(profile.kinematics!=='trident'||!/^voron_trident_(?:(?:250|300|350)|500_custom|350_half_z)$/.test(profile.machine_id))throw Error('Trident profile mismatch');
+ const size=profile.size_mm??Number(profile.machine_id.match(/_(250|300|350|500)(?:_|$)/)?.[1]),gantryId='trident_r2_gantry_'+size;
  const entries=new Map(),belts=[],bedChains=[];let reference=[...profile.display_reference_xyz_mm],bedReferenceDrop=0;
  function register(root,metadata){
-  if(/^trident_r2_gantry_/.test(metadata.id||'')&&metadata.id!=='trident_r2_gantry_'+profile.machine_id.split('_').at(-1))throw Error('Trident gantry size mismatch');
+  if(/^trident_r2_gantry_/.test(metadata.id||'')&&metadata.id!==gantryId)throw Error('Trident gantry size mismatch');
   const rows=new Map(metadata.parts.map(p=>[p.key,p]));
   root.traverse(mesh=>{if(!mesh.isMesh)return;const key=mesh.userData.part_key||mesh.name,row=rows.get(key);if(!row)throw Error('Unregistered Trident part '+key);
    if(!['fixed','xy','y','z','reference_flexible'].includes(row.motion))throw Error('Unknown Trident motion '+key);
    if(entries.has(mesh))return;entries.set(mesh,{row,origin:mesh.position.clone()});
   });
   if(metadata.parts.some(p=>isTridentBedChain(p)&&p.name==='10x11 Chain Link')&&!bedChains.some(c=>c.root===root))bedChains.push({root,...createBedChain(root,metadata)});
-  if(metadata.id==='trident_r2_gantry_'+profile.machine_id.split('_').at(-1)&&!belts.some(b=>b.root===root))belts.push({root,...createTridentBelts(root,metadata)});
+  if(metadata.id===gantryId&&!belts.some(b=>b.root===root))belts.push({root,...createTridentBelts(root,metadata)});
  }
  function setReference(value){reference=[...value]}
  function setBedReferenceDrop(value){if(!Number.isFinite(value)||value< -40||value>profile.display_limits_mm.Z[1])throw Error('Invalid bed reference');bedReferenceDrop=value}
