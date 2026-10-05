@@ -9064,8 +9064,8 @@
     },
     "stinger.reference_notice": {
       "kind": "message",
-      "ja": "組立治具とホットエンド延長部品を標準表示から分けています。電子ボックスはこのCADに含まれていません。",
-      "en": "Assembly aids and hotend extension parts are separate reference geometry. The electronics box is not included in this CAD."
+      "ja": "元CADの延長ノズル構成です。組立治具と短いノズルは参考表示に分けています。電子ボックスはこのCADに含まれていません。",
+      "en": "Native extended-nozzle configuration. Assembly aids and the short nozzle are separate references. The electronics box is not included in this CAD."
     }
   }
 }

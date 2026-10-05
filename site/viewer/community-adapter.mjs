@@ -1,7 +1,8 @@
 import * as THREE from './vendor-r180/three.module.js';
 import {validateAxes,nativeMotion,displayMotion} from './community-state.mjs?v=8018d585f8d53c6dce6c';
 import {mercuryTubeSpecs,mercuryTubeRoute} from './mercury-tube-routes.mjs?v=d27d615757ad1f732409';
-import {stingerFlexWeights} from './stinger-flex.mjs?v=1e3394a27814499e46e1';
+import {stingerFlexWeights} from './stinger-flex.mjs?v=0ab64709177d49ba0fec';
+import {stingerTubeRoute} from './stinger-tube-route.mjs';
 const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
 const smooth=v=>{v=clamp(v);return v*v*(3-2*v)};
 function hat(v,a,l,h,b){return v<=a||v>=b?0:v<l?(v-a)/(l-a):v<=h?1:(b-v)/(b-h)}
@@ -39,10 +40,10 @@ export function createCommunityAdapter(root,manifest,profile){
   initial.set(key,node.matrix.clone());const r=records.get(key);
   node.traverse(m=>{if(!m.isMesh)return;m.frustumCulled=false;m.material=Array.isArray(m.material)?m.material.map(x=>x.clone()):m.material.clone();for(const material of [].concat(m.material))if(material.transparent)material.depthWrite=false;
    if(!['tube','belt','chain','bed_wire','x_belt','compound_motion'].includes(r.group))return;
-   if(r.group==='tube'&&mercuryTubeSpecs[profile.machine_id]){
+   if(r.group==='tube'&&(mercuryTubeSpecs[profile.machine_id]||profile.machine_id==='lh_stinger_200'&&key==='332')){
     m.geometry=m.geometry.clone();const source=m.geometry.attributes.position.array.slice();
-    const route=mercuryTubeRoute(profile.machine_id,axes);m.geometry.dispose();m.geometry=new THREE.TubeGeometry(route.curve,128,.002,12,false);
-    flex.push({mesh:m,source:m.geometry.attributes.position.array.slice(),routed:true,nativeSource:source});return;
+    const route=profile.machine_id==='lh_stinger_200'?stingerTubeRoute(axes,profile):mercuryTubeRoute(profile.machine_id,axes);m.geometry.dispose();m.geometry=new THREE.TubeGeometry(route.curve,profile.machine_id==='lh_stinger_200'?192:128,.002,12,false);
+    flex.push({mesh:m,source:m.geometry.attributes.position.array.slice(),routed:true,key,nativeSource:source});return;
    }
    m.geometry=m.geometry.clone();const attribute=m.geometry.attributes.position,source=attribute.array.slice(),weights=[];
    for(let i=0;i<attribute.count;i++){
@@ -57,7 +58,7 @@ export function createCommunityAdapter(root,manifest,profile){
   for(const[key,node]of nodes){const r=records.get(key),delta=motions.get(r.group);node.matrixAutoUpdate=false;node.matrix.copy(initial.get(key));node.matrix.elements[12]+=delta[0];node.matrix.elements[13]+=delta[1];node.matrix.elements[14]+=delta[2];node.visible=r.group!=='reference'||references}
   for(const e of flex){
    if(e.routed){
-    const route=mercuryTubeRoute(profile.machine_id,axes),geometry=new THREE.TubeGeometry(route.curve,128,.002,12,false);
+    const route=profile.machine_id==='lh_stinger_200'?stingerTubeRoute(axes,profile):mercuryTubeRoute(profile.machine_id,axes),geometry=new THREE.TubeGeometry(route.curve,profile.machine_id==='lh_stinger_200'?192:128,.002,12,false);
     e.mesh.geometry.dispose();e.mesh.geometry=geometry;continue;
    }
    const a=e.mesh.geometry.attributes.position;a.array.set(e.source);

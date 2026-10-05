@@ -1,5 +1,5 @@
 {
-  "version": "native-community-stinger-72",
+  "version": "native-community-motion-74",
   "base_url": "https://psych0h3ad.github.io/3d-print-rig-community-models/",
   "local_directory": "community-machines-assets",
   "machines": {
@@ -272,22 +272,22 @@
       "parts": 875,
       "files": {
         "assembly_manifest.json": {
-          "path": "stinger/assembly_manifest.json",
-          "bytes": 333262,
-          "sha256": "91491f6fc0eb24f5079103f4c169444a0a0e00f3a93576e88ebe54523a88622e"
+          "path": "stinger-v3/assembly_manifest.json",
+          "bytes": 333359,
+          "sha256": "db700b832ec91d5c7a8cc1431c49292fa6b70282970783a53b991885a7e75a8c"
         },
         "machine_profile.json": {
-          "path": "stinger/machine_profile.json",
-          "bytes": 725,
-          "sha256": "57e497f6e0cf5c79d742501082bcbbc000d5dc48476e94e171f2f13d5a313623"
+          "path": "stinger-v3/machine_profile.json",
+          "bytes": 948,
+          "sha256": "2d14191afaad6655b277e2f98292742bbfc1531a5adc10b83713a4f157a6eb37"
         },
         "model.glb": {
-          "path": "stinger/model.glb.gz",
-          "bytes": 42183419,
-          "sha256": "d6c8595ecd48da1251d9149aa02736577ed5009b31c34eb0944d8f8820b7d681",
+          "path": "stinger-v3/model.glb.gz",
+          "bytes": 42189033,
+          "sha256": "53de42c154605623295e9d503ea5237006d3390b624206d6892ed0ce9ba97234",
           "encoding": "gzip",
-          "decoded_bytes": 91008944,
-          "decoded_sha256": "33178ba53414065a11b307fb0bcecb7fbd3c25ae532840a5c60f0ce13809127e"
+          "decoded_bytes": 91011656,
+          "decoded_sha256": "3f9545ec42868cd09d43fa4700feee2b8c105b651f8fd1ec2f67d6831ff060da"
         }
       }
     }

@@ -1483,7 +1483,7 @@
       "license_url": "../licenses/community-machines/stinger/LICENSE.txt",
       "scope": "Native complete-machine reference assembly and display meshes.",
       "changes": "Checked native surface conversion, material roles and source-mounted axis preview.",
-      "notice": "Assembly aids and Dragon extender are optional reference geometry. Original CAD placements retained.",
+      "notice": "The native hotend extension and matching nozzle are displayed. Assembly aids and the short nozzle are optional reference geometry; the reverse Bowden display route uses the documented 600 mm service length.",
       "notice_url": "../licenses/community-machines/stinger/NOTICE.txt",
       "cad_url": "https://github.com/lhndo/LH-Stinger/blob/4fb1e2eb917bfe78ae29cbde5a3793a80c02cc80/CAD/Printer/LH%20Stinger.step.zip"
     }

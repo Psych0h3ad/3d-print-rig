@@ -7251,8 +7251,8 @@
       "text": "LH Stinger 1.0 · 200 mm 카본 베드 / Orbiter V2.0 / Dragon HF / Y축 AWD"
     },
     "stinger.reference_notice": {
-      "source_revision": "9833ba6120c21522ff5e",
-      "text": "조립 지그와 핫엔드 연장 부품은 별도의 참고 모델로 분리했습니다. 이 CAD에는 전자부품 케이스가 포함되어 있지 않습니다."
+      "source_revision": "1bcf58036b8b03abe494",
+      "text": "원본 CAD의 연장 노즐 구성입니다. 조립 지그와 짧은 노즐은 별도의 참고 모델입니다. 이 CAD에는 전자부품 케이스가 포함되어 있지 않습니다."
     }
   }
 }

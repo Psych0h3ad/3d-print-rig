@@ -10,16 +10,20 @@ License: CC-BY-NC-SA-4.0. These CAD terms are independent of the viewer code lic
 
 Changes: Native CAD surface tessellation, checked small-hardware mesh reduction,
 material roles and mounted axis groups. Original placements and dimensions remain
-unchanged. The standard view uses the 200 mm carbon bed, Orbiter V2.0, Dragon HF,
+unchanged. The standard view uses the 200 mm carbon bed, Orbiter V2.0, Dragon HF with its native extension adapter and matching nozzle,
 two 5015 part-cooling fans and a 4010 hotend fan. It is the author's complete
 printer assembly; the separately published electronics box is not included.
 The 40 EXTRAS leaves (assembly guides, tools and optional frame accessories) and
-two Dragon extender leaves are optional reference geometry. No identified embedded
+the short, unextended nozzle are optional reference geometry. The extended
+nozzle protrudes below the native long silicone sock; no hardware is repositioned. No identified embedded
 printing supports were removed from the native assembly. Source cable/PCB leaves
 333 and 859 contain invalid source BREP geometry; their display surfaces are retained.
 X/Z belts are 6 mm; the Y belt is 9 mm. Preview controls are conservative offsets
-from the native CAD pose, not firmware home coordinates. Flexible source belts and
-cables follow their endpoints for display; tension, link mechanics and physical
+from the native CAD pose, not firmware home coordinates. The reverse Bowden uses the author's toolhead guide's 600 mm service length,
+native fitting centres and normals, and a display route with 25 mm bend radii.
+The route stays above the crossbar during travel. The lower Z preview limit
+keeps the nozzle and auxiliary fan flaps above the native bed surface.
+Flexible source belts and cables follow their endpoints for display; tension, link mechanics and physical
 cable bending are not simulated. New toolhead or mod combinations are not implied.
 
 Original project credits include Dalegaard (toolhead inspiration), Renató Kulman

@@ -18,12 +18,13 @@ assert(new THREE.Vector3(0,0,1).transformDirection(pose.matrices.column_screw).d
 const bedAxis=apply(pose.matrices.bed_screw,[0,169.59235049725766,-108.02020077326199]);
 assert(Math.abs(bedAxis.x+125.058436853864)<1e-8);assert(Math.abs(bedAxis.z+2.006699691386)<1e-8);
 const seat=apply(pose.matrices.column_screw,s.column_screw_source_seat_mm);
+assert(Math.abs(s.column_screw_nut_bounds_y_mm[1]-(seat.y-23)-s.column_screw_thread_engagement_mm)<.005);
 const axis=new THREE.Vector3(0,0,-1).transformDirection(pose.matrices.column_screw);
 assert(Math.abs(seat.x-124)<1e-9);assert(Math.abs(seat.z+2.006699691397)<1e-9);
-assert(Math.abs(seat.y-23-36.56751067881665)<.005);
+assert(Math.abs(seat.y-23-31.29251067881665)<.005);
 for(const y of [37.52,40,42.26751067881665]){
  const point=seat.clone().addScaledVector(axis,(y-seat.y)/axis.y);
- assert(Math.hypot(point.x-124,point.z+2.006699691397)+2.942/axis.y<3.25);
+ assert(Math.hypot(point.x-124,point.z+2.006699691397)+2.942/Math.abs(axis.y)<3.25);
 }
 // Old asset profiles must not restore the unsupported screw lean.
 const legacy=structuredClone(profile);legacy.fold.storage.column_screw_lean_degrees=-5.5;

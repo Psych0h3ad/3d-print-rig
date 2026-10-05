@@ -10,7 +10,7 @@
   "source": {
     "repository": "https://github.com/lhndo/LH-Stinger",
     "revision": "4fb1e2eb917bfe78ae29cbde5a3793a80c02cc80",
-    "version": "LH Stinger 1.0 \u00b7 assembly v23 / toolhead v220",
+    "version": "LH Stinger 1.0 · assembly v23 / toolhead v220",
     "path": "CAD/Printer/LH Stinger.step.zip",
     "license": "CC-BY-NC-SA-4.0",
     "source_step_sha256": "0f77ee05b0c25ddfa5c71b6d95093e4a4f140e096784e5cfffb6e23a44e3de7c"
@@ -47,7 +47,7 @@
       105
     ],
     "z": [
-      -65,
+      -61.7872851403,
       130
     ]
   },
@@ -72,5 +72,12 @@
     "base": "#24272c",
     "accent": "#e32636",
     "frame": "#25292c"
+  },
+  "standard_hotend": "Dragon HF / extension adapter / extended nozzle",
+  "clearance_datums_mm": {
+    "bed_top_z": -0.6092100609,
+    "nozzle_tip_z": 61.3012571097,
+    "lowest_bed_overlapping_part_z": 61.2280750794,
+    "minimum_gap": 0.05
   }
 }

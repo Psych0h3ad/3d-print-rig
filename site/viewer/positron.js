@@ -7,7 +7,7 @@ import {loadPositron} from './positron-loader.mjs?v=934d699d8450a1d321ef';
 import {positronSchema,validatePositronState} from './positron-state.mjs?v=8296d1b775fbca04462f';
 import {setupMachineNavigation} from './machines.js?v=dedc575bbef34e348ec3';
 import {sceneLightingState} from './scene-lighting-state.mjs';
-import {translate} from './i18n.mjs?v=92f8d10f2c2cbe531ab0';
+import {translate} from './i18n.mjs?v=611313ff4d517c1c8bb1';
 import {rememberDisplayControl} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
@@ -45,7 +45,7 @@ export async function mount(scope){
  $('night').onchange=$('night').oninput=()=>{if(state)state.night=$('night').checked;lighting()};lighting();
  setupMachineNavigation(machine);
  try{
-  const indexResponse=await fetch('../POSITRON_ASSETS.json?v=16d5b9d1ef6e5bb9af98');if(!indexResponse.ok)throw Error('Positron catalog unavailable');current=await loadPositron(await indexResponse.json());scene.add(current.root);
+  const indexResponse=await fetch('../POSITRON_ASSETS.json?v=e00d990ee740c59780a3');if(!indexResponse.ok)throw Error('Positron catalog unavailable');current=await loadPositron(await indexResponse.json());scene.add(current.root);
   state={schema:positronSchema,machine,fold:0,palette:{...current.profile.appearance.palette_defaults},accessories:true,grid:false,night:$('night').checked};
   $('fold').oninput=()=>{stop();setFold(Number($('fold').value))};$('resetPose').onclick=()=>{stop();setFold(0);view()};
   for(const[id,direction,end]of [['foldPlay',1,100],['unfoldPlay',-1,0]])$(id).onclick=()=>{if(current.adapter.getFold()===end)return;view('iso',true);animation={direction,end,last:performance.now()};render()};$('foldPause').onclick=stop;

@@ -68,7 +68,7 @@
       ],
       "column_screw_seat_mm": [
         124,
-        59.56951067881665,
+        54.29251067881665,
         -2.006699691396989
       ],
       "guide_step": 10,
@@ -91,10 +91,15 @@
       "holder_thickness_mm": 9.5,
       "column_screw_tip_mm": [
         124,
-        36.56951067881665,
+        31.29251067881665,
         -2.006699691396989
       ],
-      "column_screw_rest_surface_mm": 36.56751067881665
+      "column_screw_storage_bore_top_mm": 42.26751067881665,
+      "column_screw_thread_engagement_mm": 4.5,
+      "column_screw_nut_bounds_y_mm": [
+        30.79251067881665,
+        35.79251067881665
+      ]
     },
     "park_beam_dz_mm": -11.18
   }

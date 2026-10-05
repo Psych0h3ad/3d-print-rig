@@ -7251,8 +7251,8 @@
       "text": "LH Stinger 1.0 · cama de carbono de 200 mm / Orbiter V2.0 / Dragon HF / AWD en el eje Y"
     },
     "stinger.reference_notice": {
-      "source_revision": "9833ba6120c21522ff5e",
-      "text": "Las ayudas de montaje y las piezas de extensión del hotend se muestran como geometría de referencia separada. Este CAD no incluye la caja de electrónica."
+      "source_revision": "1bcf58036b8b03abe494",
+      "text": "Configuración nativa con boquilla extendida. Las ayudas de montaje y la boquilla corta son referencias separadas. Este CAD no incluye la caja de electrónica."
     }
   }
 }
