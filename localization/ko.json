@@ -7533,6 +7533,14 @@
     "support.monolith": {
       "source_revision": "19f870109e881c8e6351",
       "text": "Monolith 갠트리 단독"
+    },
+    "sovol.description": {
+      "source_revision": "7643bada56a1fbab50fb",
+      "text": "SOVOL SV08 · 350 × 350 × 345 mm / CoreXY / 4Z / 공식 조립 CAD"
+    },
+    "sovol.reference": {
+      "source_revision": "163e7e20a9e506e68b31",
+      "text": "전체 CAD 조립체의 정적 모델입니다. Z 장착면과 나사 축을 정렬하고 노즐을 베드 위로 올렸습니다. 중복 부품은 선택형 참고 표시로 분리했습니다. 원본 CAD에는 XY 벨트가 없습니다. 연결되지 않은 PTFE와 배선도 선택형 참고 표시로 분리했습니다. 이동과 모드 교체는 지원하지 않습니다."
     }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "version": "native-community-motion-74",
+  "version": "native-community-sv08-78",
   "base_url": "https://psych0h3ad.github.io/3d-print-rig-community-models/",
   "local_directory": "community-machines-assets",
   "machines": {
@@ -288,6 +288,30 @@
           "encoding": "gzip",
           "decoded_bytes": 91011656,
           "decoded_sha256": "3f9545ec42868cd09d43fa4700feee2b8c105b651f8fd1ec2f67d6831ff060da"
+        }
+      }
+    },
+    "sovol_sv08_350": {
+      "machine_id": "sovol_sv08_350",
+      "parts": 719,
+      "files": {
+        "assembly_manifest.json": {
+          "path": "sv08/assembly_manifest.json",
+          "bytes": 237566,
+          "sha256": "721f39e7c13268bc7f0eabbe5f9770cdb7cd151809dc503c18fa96fc52b01b9d"
+        },
+        "machine_profile.json": {
+          "path": "sv08/machine_profile.json",
+          "bytes": 654,
+          "sha256": "a3cfbbaffea070b1be0496ddce9af1709e40839301ba79668a54a2029a73337c"
+        },
+        "model.glb": {
+          "path": "sv08/model.glb.gz",
+          "bytes": 28255180,
+          "sha256": "f2633ecfa8fd6786d38788fcc4e93b743eb2e5b276fdc618f87192357110049a",
+          "encoding": "gzip",
+          "decoded_bytes": 71649512,
+          "decoded_sha256": "a8e0e472b428d536fb8bb39b2b27ea1bab3337decad8ec065212439b4bf632e6"
         }
       }
     }

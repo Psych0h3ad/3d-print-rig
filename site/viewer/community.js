@@ -3,17 +3,18 @@ ensureWorkspaceEntry(import.meta.url);
 import * as THREE from './vendor-r180/three.module.js';
 import {OrbitControls} from './vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
-import {loadCommunity} from './community-loader.mjs?v=ecee4c0fedfa8a704d84';
-import {communitySchema,validateCommunityState} from './community-state.mjs?v=8018d585f8d53c6dce6c';
-import {setupMachineNavigation} from './machines.js?v=de0df76326354fc0fecd';
+import {loadCommunity} from './community-loader.mjs?v=315fad8a98184500473f';
+import {communitySchema,validateCommunityState,communityMotionEnabled} from './community-state.mjs?v=97f7806821349b272754';
+import {setupMachineNavigation} from './machines.js?v=bbb10b08e04530c1040e';
 import {sceneLightingState} from './scene-lighting-state.mjs';
-import {translate} from './i18n.mjs?v=a199a1f323d9fa0f7e7d';
+import {translate} from './i18n.mjs?v=bf6af5624d58ebfea9ec';
 import {rememberDisplayControl} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {setupRenderExport} from './render-export.js';
 import {setupPublicInfo} from './public-info.js';
 const descriptions={
+ sovol_sv08_350:'SOVOL SV08 · 350 × 350 × 345 mm / CoreXY / 4Z / 公式組立CAD',
  lh_stinger_200:'LH Stinger 1.0 · 200 mmカーボンベッド / Orbiter V2.0 / Dragon HF / Y軸AWD',
  ender3_stock_220:'初代Ender-3の標準構成 · Bowden / Cartesian',
  mercury_one1_235:'Mercury One.1 · Ender-5 / EVA 2.4 / LGX Lite / Rapido / BLTouch',
@@ -27,7 +28,7 @@ const descriptions={
  snakeoil_3s_kp3s_180:'SnakeOil XY-3S · KP3S / E3D V6 / Sherpa Mini',
  snakeoil_proosaxy:'ProosaXY · MK3-SからCoreXY / E3D V6 / Sherpa Mini / 3軸Z',
 };
-const sourceNotices={lh_stinger_200:'元CADの延長ノズル構成です。組立治具と短いノズルは参考表示に分けています。電子ボックスはこのCADに含まれていません。',vzbot_330_printed:'公式プリントAWD v1.2を表示しています。元CADのXYベルトは一部のみで、CPAPホースは含まれていません。',ender3_stock_220:'元の公式CADにはBowdenチューブが含まれていません。',antithesis_aether_mk11:'公式CADのアルミ仕様です。組立治具・重複部品・MJF向け代替部品を標準表示から分けています。',snakeoil_xy_idex:'左右のヘッドをX・X2で個別に動かせます。元CADに重複したSherpa Miniを標準表示から分けています。XYベルトは一部のみ含まれます。',snakeoil_3s_kp3s_180:'元CADにはXYベルトと全体の配線経路が含まれていません。',snakeoil_proosaxy:'元CADにはXYベルトと全体の配線経路が含まれていません。'};
+const sourceNotices={sovol_sv08_350:'全体CADの静止モデルです。Z取付部の座面と固定穴を照合し、ノズルをベッドから離した位置に配置しています。重複部品は参考表示に分けています。元CADにはXYベルトが含まれていません。未接続のPTFEと配線も参考表示に分けています。可動操作とMod交換は未対応です。',lh_stinger_200:'元CADの延長ノズル構成です。組立治具と短いノズルは参考表示に分けています。電子ボックスはこのCADに含まれていません。',vzbot_330_printed:'公式プリントAWD v1.2を表示しています。元CADのXYベルトは一部のみで、CPAPホースは含まれていません。',ender3_stock_220:'元の公式CADにはBowdenチューブが含まれていません。',antithesis_aether_mk11:'公式CADのアルミ仕様です。組立治具・重複部品・MJF向け代替部品を標準表示から分けています。',snakeoil_xy_idex:'左右のヘッドをX・X2で個別に動かせます。元CADに重複したSherpa Miniを標準表示から分けています。XYベルトは一部のみ含まれます。',snakeoil_3s_kp3s_180:'元CADにはXYベルトと全体の配線経路が含まれていません。',snakeoil_proosaxy:'元CADにはXYベルトと全体の配線経路が含まれていません。'};
 export async function mount(scope){
  const $=id=>document.getElementById(id),stage=$('stage'),machine=new URLSearchParams(location.search).get('machine')||'ender3_stock_220',t=v=>translate(v,document.documentElement.lang);
  if(!Object.hasOwn(descriptions,machine))throw Error('Unknown community printer');
@@ -57,21 +58,22 @@ export async function mount(scope){
  function describe(){if(!current)return;$('machineDescription').textContent=t(descriptions[machine]);$('sourceNotice').hidden=!sourceNotices[machine];$('sourceNotice').textContent=sourceNotices[machine]?t(sourceNotices[machine]):''}
  workspaceListen(window,'rig-language-change',describe);
  try{
-  const response=await fetch('../COMMUNITY_MACHINES_ASSETS.json?v=56998302f24415f136ca');if(!response.ok)throw Error('Native catalog unavailable');current=await loadCommunity(await response.json(),machine);scene.add(current.root);axisKeys=Object.keys(current.profile.axes);const zeroAxes=()=>Object.fromEntries(axisKeys.map(k=>[k,0]));
+  const response=await fetch('../COMMUNITY_MACHINES_ASSETS.json?v=ef8bae3a20c6cba54d3a');if(!response.ok)throw Error('Native catalog unavailable');current=await loadCommunity(await response.json(),machine);scene.add(current.root);axisKeys=Object.keys(current.profile.axes);const zeroAxes=()=>Object.fromEntries(axisKeys.map(k=>[k,0]));
   for(const k of axisKeys)if(!$(k)){const label=document.createElement('label'),span=document.createElement('span'),value=document.createElement('strong'),input=document.createElement('input');label.htmlFor=k;span.className='axislabel';span.append(current.profile.axis_labels?.[k]||k.toUpperCase());value.id=k+'Value';span.append(value);label.append(span);input.id=k;input.type='range';input.step='any';$('z').after(label,input)}
   state={schema:communitySchema,machine,axes:zeroAxes(),palette:{...current.profile.palette_defaults},references:false,grid:false,night:$('night').checked};
   $('machineTitle').textContent=current.profile.title;document.title=current.profile.title+' · 3D Print Rig';describe();$('machineRevision').textContent=current.profile.source.version;
   $('nativeSource').href=current.profile.source.repository+'/tree/'+current.profile.source.revision;$('nativeSource').textContent=current.profile.source.repository.replace('https://github.com/','')+' · '+current.profile.source.revision.slice(0,12);$('nativeLicense').textContent=current.profile.source.license;
   $('references').disabled=!current.manifest.reference_leaves.length;
-  for(const k of axisKeys){[$(k).min,$(k).max]=current.profile.axes[k];$(k).disabled=false;$(k).oninput=()=>{animation=null;setAxes({...state.axes,[k]:Number($(k).value)})}}
+  const movable=communityMotionEnabled(current.profile);$('motionSettings').hidden=!movable;document.body.dataset.motionEnabled=String(movable);
+  for(const k of axisKeys){[$(k).min,$(k).max]=current.profile.axes[k];$(k).disabled=!movable;$(k).oninput=()=>{animation=null;setAxes({...state.axes,[k]:Number($(k).value)})}}
   $('motionPause').onclick=()=>{animation=null};$('motionPlay').onclick=()=>{const to=Object.fromEntries(axisKeys.map(k=>[k,current.profile.axes[k][1]]));animation={start:performance.now(),from:{...state.axes},to};render()};$('resetPose').onclick=()=>{animation=null;setAxes(zeroAxes());view()};
   for(const k of ['base','accent','frame']){$(k).value=state.palette[k];$(k).oninput=()=>{state.palette[k]=$(k).value;current.adapter.setPalette(state.palette);render()}}
   $('resetPalette').onclick=()=>{state.palette={...current.profile.palette_defaults};for(const k of ['base','accent','frame'])$(k).value=state.palette[k];current.adapter.setPalette(state.palette);render()};
   $('references').onchange=()=>{state.references=$('references').checked;current.adapter.setReferences(state.references);render()};$('gridVisible').onchange=()=>{state.grid=$('gridVisible').checked;grid.visible=state.grid;render()};
   $('saveConfiguration').onclick=()=>{const url=URL.createObjectURL(new Blob([JSON.stringify(capture(),null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=machine+'.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);$('configurationStatus').textContent=t('構成JSONを保存しました。')};
   $('loadConfiguration').onclick=()=>$('configurationFile').click();$('configurationFile').onchange=()=>workspaceTask(async()=>{const file=$('configurationFile').files?.[0];$('configurationFile').value='';if(!file)return;try{if(file.size>64*1024)throw Error('Configuration exceeds 64 KB');restore(JSON.parse(await file.text()));$('configurationStatus').textContent=t('構成JSONを復元しました。')}catch(e){$('configurationStatus').textContent=e.message}});
-  for(const id of ['motionPlay','motionPause','resetPose','base','accent','frame','resetPalette','gridVisible','saveConfiguration','loadConfiguration'])$(id).disabled=false;
-  current.adapter.setPalette(state.palette);setAxes(state.axes);view();resize();await setupPublicInfo({includeDownloads:false});setupRenderExport({three:THREE,renderer,scene,camera,controls,name:machine});$('openRender').disabled=false;
+  for(const id of ['resetPose','base','accent','frame','resetPalette','gridVisible','saveConfiguration','loadConfiguration'])$(id).disabled=false;
+  $('motionPlay').disabled=$('motionPause').disabled=!movable;current.adapter.setPalette(state.palette);setAxes(state.axes);view();resize();await setupPublicInfo({includeDownloads:false});setupRenderExport({three:THREE,renderer,scene,camera,controls,name:machine});$('openRender').disabled=false;
   const visible=[...current.adapter.nodes.values()].filter(n=>n.visible).length;$('badge').textContent=visible.toLocaleString()+' PARTS · '+current.profile.title.toUpperCase();document.body.dataset.ready='true';document.body.dataset.parts=String(current.manifest.native_leaf_count);$('status').hidden=true;
  }catch(e){$('status').textContent=t('モデルの読込に失敗しました。機種を選び直してください。');document.body.dataset.error=e.message;throw e}
 }

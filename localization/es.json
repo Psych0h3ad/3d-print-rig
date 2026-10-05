@@ -7533,6 +7533,14 @@
     "support.monolith": {
       "source_revision": "19f870109e881c8e6351",
       "text": "Pórtico Monolith independiente"
+    },
+    "sovol.description": {
+      "source_revision": "7643bada56a1fbab50fb",
+      "text": "SOVOL SV08 · 350 × 350 × 345 mm / CoreXY / 4Z / CAD oficial ensamblado"
+    },
+    "sovol.reference": {
+      "source_revision": "163e7e20a9e506e68b31",
+      "text": "Conjunto CAD completo estático. Las superficies de montaje Z y los ejes de los tornillos están alineados; la boquilla queda elevada sobre la cama. Las piezas duplicadas son referencias opcionales. El CAD original no incluye correas XY. El PTFE y el cableado sin conectar también son referencias opcionales. El movimiento y el cambio de mods no están disponibles."
     }
   }
 }

@@ -1,0 +1,10 @@
+SOVOL SV08 / official complete assembly
+Copyright SOVOL and the original contributors. GPL-3.0.
+Source: https://github.com/Sovol3d/SV08/tree/a60644875f8c756d20b3828c9416518b414b5491
+Native STEP SHA256: 7ebc42e3e041e4c1b5d1a64cef25a5ef002bda2fd187854e01443f0cc29be0e5
+
+Display changes: triangulation, display-only detail reduction, unit-normal repair, material roles, four Z carrier seats aligned to the native gantry mounting axes, and a 10 mm raised gantry/head pose. Seven duplicate/overlapping instances are optional reference geometry. The supplied partial PTFE and wire routes end freely in the source CAD, over 150 mm from native hardware. These two incomplete routes are optional reference geometry; complete routing is not supplied. No built-in supports were removed.
+
+Limitations: static complete assembly; no motion, toolhead/mod swapping or generated STEP download. Source CAD has no XY belt route. Native tensioner 355 contains invalid topology and is retained as a display mesh; full native-solid fit is not certified. Native source threaded and component contacts are retained.
+
+Editable source is the pinned upstream assembled STEP. Conversion recipe and placement overrides: https://github.com/Psych0h3ad/3d-print-rig-community-models/tree/main/scripts

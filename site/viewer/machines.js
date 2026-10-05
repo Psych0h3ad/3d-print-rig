@@ -5,6 +5,7 @@ import {navigateWorkspace} from './workspace-navigation.mjs?v=5c6f4dcd051bb1336e
 import {renderProductLinks} from './product-links.js?v=workspace-belts-1';
 import {ratRigMachines} from './ratrig-machines.mjs?v=workspace-belts-1';
 export const machineChoices=[
+ {id:'sovol_sv08_350',label:'SOVOL SV08 · 350 / Official CAD',page:'./community.html',family:'sovol_sv08',vendor:'sovol',size:350},
  {id:'lh_stinger_200',label:'LH Stinger 1.0 · 200 / Orbiter V2.0 / Dragon HF',page:'./community.html',family:'lh_stinger',vendor:'lhndo',size:200},
  {id:'antithesis_aether_mk11',label:'Antithesis Aether MK1.1 · Aluminum / Conch / Galileo 2',page:'./community.html',family:'aether',vendor:'antithesis',size:130},
  {id:'ratrig_vminion_180',label:'Rat Rig V-Minion 1.0 · 180 / EVA / LGX Lite',page:'./community.html',family:'vminion',vendor:'ratrig',size:180},
@@ -40,8 +41,8 @@ export const machineChoices=[
  {id:'crossant_235_v06_leadscrew',label:'Crossant-235 · Leadscrew Z / Sherpa Mini / Goliath',page:'./crossant.html',family:'crossant',vendor:'pole',size:220},
  ...ratRigMachines,
 ];
-const vendors={lhndo:'LH Stinger / lhndo',antithesis:"Antithesis Engineering",snakeoil:"SnakeOilXY",zerog:"ZeroG",vzbot:"VzBot",creality:"Creality",positron_ldo:'Positron 3D / LDO',voron:'VORON / 標準',siboor:'SIBOOR',ldo:'LDO',fysetc:'FYSETC',pfa:'Printers for Ants',ratrig:'Rat Rig',pole:'Pole Engineering',remorph:'Lex Reman / Remorph',annex:'Annex Engineering'};
-const families={lh_stinger:'LH Stinger',aether:"Antithesis Aether",vminion:"V-Minion",snakeoil_xy:"SnakeOil XY",snakeoil_3s:"SnakeOil XY-3S",proosaxy:"ProosaXY",mercury:"Mercury One.1",vzbot:"VzBot",ender3:"Ender-3",sboom:"S-BOOM",positron:'Positron',trident:'VORON Trident',v24:'VORON V2.4',v0:'VORON V0',micron:'Micron',vcore4:'V-Core 4',crossant:'Crossant-235',remorph:'Remorph',annex_k1:'Annex K1',annex_k2:'Annex K2',annex_k3:'Annex K3'};
+const vendors={sovol:'SOVOL',lhndo:'LH Stinger / lhndo',antithesis:"Antithesis Engineering",snakeoil:"SnakeOilXY",zerog:"ZeroG",vzbot:"VzBot",creality:"Creality",positron_ldo:'Positron 3D / LDO',voron:'VORON / 標準',siboor:'SIBOOR',ldo:'LDO',fysetc:'FYSETC',pfa:'Printers for Ants',ratrig:'Rat Rig',pole:'Pole Engineering',remorph:'Lex Reman / Remorph',annex:'Annex Engineering'};
+const families={sovol_sv08:'SOVOL SV08',lh_stinger:'LH Stinger',aether:"Antithesis Aether",vminion:"V-Minion",snakeoil_xy:"SnakeOil XY",snakeoil_3s:"SnakeOil XY-3S",proosaxy:"ProosaXY",mercury:"Mercury One.1",vzbot:"VzBot",ender3:"Ender-3",sboom:"S-BOOM",positron:'Positron',trident:'VORON Trident',v24:'VORON V2.4',v0:'VORON V0',micron:'Micron',vcore4:'V-Core 4',crossant:'Crossant-235',remorph:'Remorph',annex_k1:'Annex K1',annex_k2:'Annex K2',annex_k3:'Annex K3'};
 for(const row of machineChoices){
  if(row.family&&row.vendor&&row.size)continue;
  row.family=row.id.startsWith('micron_')?'micron':row.id.includes('trident')?'trident':row.id.includes('v24')?'v24':'v0';

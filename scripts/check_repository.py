@@ -18,6 +18,37 @@ def private_values(data):
 def canonical(data):
     return data.replace(b'\r\n', b'\n')
 
+def history_blob_records(root, objects, size_limit=10 * 1024 * 1024):
+    """Read exact Git blob bytes through one process, including binary/newlines."""
+    with subprocess.Popen(['git', 'cat-file', '--batch'], cwd=root,
+                          stdin=subprocess.PIPE, stdout=subprocess.PIPE) as batch:
+        for name, oid in objects:
+            batch.stdin.write((oid+'\n').encode('ascii'))
+            batch.stdin.flush()
+            header = batch.stdout.readline().split()
+            if len(header) != 3 or header[0].decode('ascii') != oid or header[1] != b'blob':
+                raise ValueError('Unexpected Git blob header (content withheld).')
+            size = int(header[2])
+            if size >= size_limit:
+                remaining = size
+                while remaining:
+                    chunk = batch.stdout.read(min(remaining, 1024 * 1024))
+                    if not chunk:
+                        raise ValueError('Truncated Git blob (content withheld).')
+                    remaining -= len(chunk)
+                data = None
+            else:
+                data = batch.stdout.read(size)
+                if len(data) != size:
+                    raise ValueError('Truncated Git blob (content withheld).')
+            if batch.stdout.read(1) != b'\n':
+                raise ValueError('Invalid Git blob boundary (content withheld).')
+            yield name, size, data
+        batch.stdin.close()
+        if batch.wait(timeout=10):
+            raise ValueError('Git blob inspection failed.')
+
+
 def main():
     tracked = subprocess.check_output(['git', 'ls-files', '-z'], cwd=ROOT).decode('utf-8').split('\0')
     paths = [Path(name) for name in tracked if name]
@@ -55,6 +86,7 @@ def main():
     # Check every committed path, not just the current tree. Never log blob values.
     commits = subprocess.check_output(['git','rev-list','--all'],cwd=ROOT).decode().splitlines()
     seen_blobs = set()
+    objects = []
     for commit in commits:
         tree = subprocess.check_output(['git','ls-tree','-r','-z',commit],cwd=ROOT).decode('utf-8').split('\0')
         for entry in filter(None,tree):
@@ -64,11 +96,12 @@ def main():
                 errors.append(f'Excluded file exists in Git history: {name}')
             if kind == 'blob' and oid not in seen_blobs:
                 seen_blobs.add(oid)
-                size = int(subprocess.check_output(['git','cat-file','-s',oid],cwd=ROOT))
-                if size >= 10*1024*1024:
-                    errors.append('Oversize Git history blob (content withheld).')
-                elif private_values(subprocess.check_output(['git','cat-file','blob',oid],cwd=ROOT)):
-                    errors.append(f'Private value signature in Git history: {name} (value withheld)')
+                objects.append((name, oid))
+    for name, size, data in history_blob_records(ROOT, objects):
+        if data is None:
+            errors.append('Oversize Git history blob (content withheld).')
+        elif private_values(data):
+            errors.append(f'Private value signature in Git history: {name} (value withheld)')
     for path in paths:
         if path.suffix in ('.js', '.mjs'):
             result = subprocess.run(['node', '--check', str(ROOT / path)], capture_output=True, text=True)

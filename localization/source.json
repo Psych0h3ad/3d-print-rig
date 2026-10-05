@@ -9416,6 +9416,16 @@
       "kind": "message",
       "ja": "Monolithガントリー単体",
       "en": "Standalone Monolith gantry"
+    },
+    "sovol.description": {
+      "kind": "message",
+      "ja": "SOVOL SV08 · 350 × 350 × 345 mm / CoreXY / 4Z / 公式組立CAD",
+      "en": "SOVOL SV08 · 350 × 350 × 345 mm / CoreXY / 4Z / official assembled CAD"
+    },
+    "sovol.reference": {
+      "kind": "message",
+      "ja": "全体CADの静止モデルです。Z取付部の座面と固定穴を照合し、ノズルをベッドから離した位置に配置しています。重複部品は参考表示に分けています。元CADにはXYベルトが含まれていません。未接続のPTFEと配線も参考表示に分けています。可動操作とMod交換は未対応です。",
+      "en": "Static complete CAD assembly. Z mounting seats and screw axes are aligned, with the nozzle raised above the bed. Duplicate parts are optional references. The source CAD omits XY belts. Unconnected PTFE and wires are also optional references. Motion and mod swapping are not supported."
     }
   }
 }

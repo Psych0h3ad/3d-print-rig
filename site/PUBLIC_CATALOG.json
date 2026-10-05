@@ -1,5 +1,5 @@
 {
-  "viewer_version": "viewer-v67",
+  "viewer_version": "viewer-v78",
   "sources": [
     {
       "id": "siboor_trident",
@@ -1486,6 +1486,22 @@
       "notice": "The native hotend extension and matching nozzle are displayed. Assembly aids and the short nozzle are optional reference geometry; the reverse Bowden display route uses the documented 600 mm service length.",
       "notice_url": "../licenses/community-machines/stinger/NOTICE.txt",
       "cad_url": "https://github.com/lhndo/LH-Stinger/blob/4fb1e2eb917bfe78ae29cbde5a3793a80c02cc80/CAD/Printer/LH%20Stinger.step.zip"
+    },
+    {
+      "id": "sovol_sv08",
+      "label": "SOVOL SV08 / 350",
+      "repository": "Sovol3d/SV08",
+      "author": "SOVOL",
+      "commit": "a60644875f8c756d20b3828c9416518b414b5491",
+      "url": "https://github.com/Sovol3d/SV08/tree/a60644875f8c756d20b3828c9416518b414b5491",
+      "scope": "SOVOL SV08 · 350 × 350 × 345 mm / CoreXY / 4Z / 公式組立CAD",
+      "license": "GPL-3.0",
+      "license_file": "licenses/community-machines/sv08/LICENSE.txt",
+      "changes": "Complete assembly display conversion; native Z mounting seats aligned, raised nozzle pose, seven overlapping alternatives separated. Static reference; XY belts are absent from source.",
+      "version": "7ebc42e3e041e4c1b5d1a64cef25a5ef002bda2fd187854e01443f0cc29be0e5",
+      "license_url": "../licenses/community-machines/sv08/LICENSE.txt",
+      "notice_url": "../licenses/community-machines/sv08/NOTICE.txt",
+      "cad_url": "https://raw.githubusercontent.com/Sovol3d/SV08/a60644875f8c756d20b3828c9416518b414b5491/STEP/0JXHSV08-00000%20%E6%A1%86%E6%9E%B6%E6%89%93%E5%8D%B0%E6%9C%BA%E6%95%B4%E8%A3%85%20Frame%203d%20printer%20pre-assembled.zip"
     }
   ],
   "defaults": [

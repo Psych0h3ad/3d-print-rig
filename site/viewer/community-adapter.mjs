@@ -1,5 +1,5 @@
 import * as THREE from './vendor-r180/three.module.js';
-import {validateAxes,nativeMotion,displayMotion} from './community-state.mjs?v=8018d585f8d53c6dce6c';
+import {validateAxes,nativeMotion,displayMotion} from './community-state.mjs?v=97f7806821349b272754';
 import {mercuryTubeSpecs,mercuryTubeRoute} from './mercury-tube-routes.mjs?v=d27d615757ad1f732409';
 import {stingerFlexWeights} from './stinger-flex.mjs?v=0ab64709177d49ba0fec';
 import {stingerTubeRoute} from './stinger-tube-route.mjs';

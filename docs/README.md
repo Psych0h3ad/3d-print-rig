@@ -49,3 +49,5 @@
 | 原作者・ライセンス・原本と表示モデルの差 | [Third-party notices](THIRD_PARTY_NOTICES.md) |
 
 [プロジェクトREADMEに戻る](../README.md)
+
+- [SOVOL SV08](SOVOL.md): complete static CAD reference, source scope and display controls.
