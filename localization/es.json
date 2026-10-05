@@ -7349,6 +7349,190 @@
     "configuration_editor.retry": {
       "source_revision": "36b9d1db6b809e74167a",
       "text": "Reintentar cargar CAD"
+    },
+    "ui.support_index": {
+      "source_revision": "f9d016df706ffd2d9df3",
+      "text": "Compatibilidad de combinaciones"
+    },
+    "support.title": {
+      "source_revision": "2d56c3045e8800fdea62",
+      "text": "Compatibilidad de combinaciones · 3D Print Rig"
+    },
+    "support.intro": {
+      "source_revision": "ffdbecd683bb37eb8ead",
+      "text": "Consulta las configuraciones disponibles y las piezas aún no admitidas para instalación."
+    },
+    "support.scope": {
+      "source_revision": "66993c3047adb16673e7",
+      "text": "Compatible significa registrado en el visor. No certifica compatibilidad física, recorrido completo ni cambio automático."
+    },
+    "support.choose": {
+      "source_revision": "65b1ec98d0d6f329a95f",
+      "text": "Explorar por máquina"
+    },
+    "support.all_machines": {
+      "source_revision": "4e871f0c5cc5de9775a8",
+      "text": "Todas las máquinas"
+    },
+    "support.target": {
+      "source_revision": "b4685f56bcf5a16a1849",
+      "text": "Máquina o visor independiente"
+    },
+    "support.filter": {
+      "source_revision": "1fb137136ae64c743700",
+      "text": "Filtrar combinaciones"
+    },
+    "support.reset": {
+      "source_revision": "657056f3d635871a94b7",
+      "text": "Restablecer filtros"
+    },
+    "support.count_hint": {
+      "source_revision": "dcce3dd089b23e06208b",
+      "text": "Los recuentos mantienen los demás filtros. Las opciones con 0 combinaciones siguen visibles."
+    },
+    "support.empty": {
+      "source_revision": "adedb1e476ddb044b175",
+      "text": "No hay combinaciones registradas para estos filtros. No implica incompatibilidad física. Quita un filtro para ver configuraciones registradas."
+    },
+    "support.more": {
+      "source_revision": "4d7d2b6ed3ad2cb77533",
+      "text": "Mostrar más"
+    },
+    "support.extra": {
+      "source_revision": "befa4c4452520438cbcc",
+      "text": "Compatibilidad de mods y docks"
+    },
+    "support.heads": {
+      "source_revision": "006cbdbbdb81b19399c2",
+      "text": "Cabezales compatibles y no compatibles"
+    },
+    "support.head_hint": {
+      "source_revision": "f98fe33853e7aeef6543",
+      "text": "Instalación en esta máquina. Un cabezal compatible puede requerir un pórtico o extrusor específico."
+    },
+    "support.stock_hint": {
+      "source_revision": "d077262f65f62f5ffc51",
+      "text": "Las máquinas de configuración original muestran el CAD fuente. No admiten cambiar a cabezales o pórticos compartidos."
+    },
+    "support.machine_spec": {
+      "source_revision": "49ce22b2a7baca34c279",
+      "text": "Máquina / especificación"
+    },
+    "support.status": {
+      "source_revision": "61412afc5cf5196c9d61",
+      "text": "Estado de compatibilidad"
+    },
+    "support.count": {
+      "source_revision": "4b3e586fa6fd40677650",
+      "text": "Configuraciones registradas"
+    },
+    "support.method": {
+      "source_revision": "f69df3658cbe452f715f",
+      "text": "Cómo leer este índice"
+    },
+    "support.generated": {
+      "source_revision": "45449f7465b08897262a",
+      "text": "Generado al publicar desde los catálogos y reglas del visor. Cuenta configuraciones registradas, no productos del número de piezas."
+    },
+    "support.count_scope": {
+      "source_revision": "fe68ee9b736d9bab1e8c",
+      "text": "Los recuentos excluyen colores, poses, mods independientes y disposición en docks. V0 cuenta selecciones de Mod que cumplen las reglas de montaje."
+    },
+    "support.unregistered_scope": {
+      "source_revision": "60995bd9674dfb95ffa3",
+      "text": "Las piezas solo independientes necesitan soportes o datos de montaje registrados. No registrado no significa incompatibilidad física."
+    },
+    "support.download_index": {
+      "source_revision": "4cf1ad9e9399926c82d3",
+      "text": "Descargar datos de compatibilidad"
+    },
+    "support.download_rows": {
+      "source_revision": "ee90eb7627a929cc9c55",
+      "text": "Descargar datos de configuración"
+    },
+    "support.github": {
+      "source_revision": "da351d7680cd15782da4",
+      "text": "GitHub · Documentación de compatibilidad"
+    },
+    "support.open": {
+      "source_revision": "44948c2bac10644bb92a",
+      "text": "Abrir visor"
+    },
+    "support.supported": {
+      "source_revision": "f2b939b74dc4220ce712",
+      "text": "Configurable"
+    },
+    "support.stock": {
+      "source_revision": "81bb96aab0a1b3d27679",
+      "text": "Solo configuración original"
+    },
+    "support.missing": {
+      "source_revision": "b496c09ca68011eb590c",
+      "text": "CAD no registrado"
+    },
+    "support.standalone": {
+      "source_revision": "02a9dc7ac465675167b4",
+      "text": "Combinaciones independientes"
+    },
+    "support.installed": {
+      "source_revision": "471ad2a7c997816c6858",
+      "text": "Instalación compatible"
+    },
+    "support.not_installed": {
+      "source_revision": "dbf25a749990abc2a72d",
+      "text": "No compatible con esta máquina"
+    },
+    "support.standalone_only": {
+      "source_revision": "ccff397a599dfa8943bc",
+      "text": "Solo independiente / instalación no compatible"
+    },
+    "support.open_head": {
+      "source_revision": "54ee5b7ffa4e4395b015",
+      "text": "Abrir visor independiente"
+    },
+    "support.open_row": {
+      "source_revision": "90ed421083f07286eeaa",
+      "text": "Abrir esta configuración en 3D"
+    },
+    "support.open_v0": {
+      "source_revision": "7416f126de4bea1d8331",
+      "text": "Abrir máquina y seleccionar Mods"
+    },
+    "support.open_component": {
+      "source_revision": "eef5b8cceaa63d1f2771",
+      "text": "Ver CAD de pieza"
+    },
+    "support.exclusive": {
+      "source_revision": "8e33f8b33370208fa139",
+      "text": "No se pueden seleccionar juntos los mods del mismo grupo."
+    },
+    "support.bank_yes": {
+      "source_revision": "778a9bf2d5449f0560d7",
+      "text": "Colocación de docks compatible. Cambio automático sin verificar."
+    },
+    "support.bank_no": {
+      "source_revision": "cdb7e06b3c236b582c47",
+      "text": "Docks de máquina no compatibles. La instalación del cabezal tiene otro alcance."
+    },
+    "support.stock_detail": {
+      "source_revision": "66913e3b321898f31e97",
+      "text": "Muestra la configuración original del CAD. No admite cambios ni combinaciones de piezas."
+    },
+    "support.error": {
+      "source_revision": "89f143e0ef3e786b3154",
+      "text": "No se pudieron cargar los datos. Recarga esta página."
+    },
+    "support.all": {
+      "source_revision": "35401d1140e36cd43c4f",
+      "text": "Todos"
+    },
+    "support.mount": {
+      "source_revision": "d9bc9bff81636d351f61",
+      "text": "Método de montaje"
+    },
+    "support.monolith": {
+      "source_revision": "19f870109e881c8e6351",
+      "text": "Pórtico Monolith independiente"
     }
   }
 }

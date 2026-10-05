@@ -7349,6 +7349,190 @@
     "configuration_editor.retry": {
       "source_revision": "36b9d1db6b809e74167a",
       "text": "Повторить загрузку CAD"
+    },
+    "ui.support_index": {
+      "source_revision": "f9d016df706ffd2d9df3",
+      "text": "Поддержка сочетаний"
+    },
+    "support.title": {
+      "source_revision": "2d56c3045e8800fdea62",
+      "text": "Поддержка сочетаний · 3D Print Rig"
+    },
+    "support.intro": {
+      "source_revision": "ffdbecd683bb37eb8ead",
+      "text": "Доступные конфигурации и детали, установка которых пока не поддерживается."
+    },
+    "support.scope": {
+      "source_revision": "66993c3047adb16673e7",
+      "text": "Поддержка означает регистрацию в просмотрщике. Это не гарантия физической совместимости, полного хода или автоматической смены."
+    },
+    "support.choose": {
+      "source_revision": "65b1ec98d0d6f329a95f",
+      "text": "Выбрать принтер"
+    },
+    "support.all_machines": {
+      "source_revision": "4e871f0c5cc5de9775a8",
+      "text": "Поддержка всех принтеров"
+    },
+    "support.target": {
+      "source_revision": "b4685f56bcf5a16a1849",
+      "text": "Принтер или отдельный узел"
+    },
+    "support.filter": {
+      "source_revision": "1fb137136ae64c743700",
+      "text": "Фильтр сочетаний"
+    },
+    "support.reset": {
+      "source_revision": "657056f3d635871a94b7",
+      "text": "Сбросить фильтры"
+    },
+    "support.count_hint": {
+      "source_revision": "dcce3dd089b23e06208b",
+      "text": "Числа учитывают остальные фильтры. Варианты с 0 зарегистрированных сочетаний остаются видимыми."
+    },
+    "support.empty": {
+      "source_revision": "adedb1e476ddb044b175",
+      "text": "Для этих условий нет зарегистрированных сочетаний. Это не означает физическую несовместимость. Уберите фильтр, чтобы увидеть доступные конфигурации."
+    },
+    "support.more": {
+      "source_revision": "4d7d2b6ed3ad2cb77533",
+      "text": "Показать ещё"
+    },
+    "support.extra": {
+      "source_revision": "befa4c4452520438cbcc",
+      "text": "Поддержка модификаций и доков"
+    },
+    "support.heads": {
+      "source_revision": "006cbdbbdb81b19399c2",
+      "text": "Поддерживаемые и неподдерживаемые головки"
+    },
+    "support.head_hint": {
+      "source_revision": "f98fe33853e7aeef6543",
+      "text": "Поддержка установки на этот принтер. Может потребоваться определённый портал или экструдер."
+    },
+    "support.stock_hint": {
+      "source_revision": "d077262f65f62f5ffc51",
+      "text": "Для принтеров только со штатной конфигурацией доступна исходная сборка. Замена головок и порталов не поддерживается."
+    },
+    "support.machine_spec": {
+      "source_revision": "49ce22b2a7baca34c279",
+      "text": "Принтер / исполнение"
+    },
+    "support.status": {
+      "source_revision": "61412afc5cf5196c9d61",
+      "text": "Состояние поддержки"
+    },
+    "support.count": {
+      "source_revision": "4b3e586fa6fd40677650",
+      "text": "Зарегистрированные конфигурации"
+    },
+    "support.method": {
+      "source_revision": "f69df3658cbe452f715f",
+      "text": "Как читать этот список"
+    },
+    "support.generated": {
+      "source_revision": "45449f7465b08897262a",
+      "text": "Создаётся при публикации из каталогов и правил просмотрщика. Подсчитываются зарегистрированные конфигурации, а не произведение количества деталей."
+    },
+    "support.count_scope": {
+      "source_revision": "fe68ee9b736d9bab1e8c",
+      "text": "Цвета, положения, независимые дополнения и размещение в доках не учитываются. Для V0 считаются сочетания Mod, удовлетворяющие правилам установки."
+    },
+    "support.unregistered_scope": {
+      "source_revision": "60995bd9674dfb95ffa3",
+      "text": "Для отдельных деталей ещё нужно зарегистрировать крепления или сборку. Отсутствие регистрации не означает физическую несовместимость."
+    },
+    "support.download_index": {
+      "source_revision": "4cf1ad9e9399926c82d3",
+      "text": "Скачать данные поддержки"
+    },
+    "support.download_rows": {
+      "source_revision": "ee90eb7627a929cc9c55",
+      "text": "Скачать данные конфигураций"
+    },
+    "support.github": {
+      "source_revision": "da351d7680cd15782da4",
+      "text": "GitHub · Документация поддержки"
+    },
+    "support.open": {
+      "source_revision": "44948c2bac10644bb92a",
+      "text": "Открыть просмотрщик"
+    },
+    "support.supported": {
+      "source_revision": "f2b939b74dc4220ce712",
+      "text": "Настраиваемый"
+    },
+    "support.stock": {
+      "source_revision": "81bb96aab0a1b3d27679",
+      "text": "Только штатная сборка"
+    },
+    "support.missing": {
+      "source_revision": "b496c09ca68011eb590c",
+      "text": "CAD не зарегистрирован"
+    },
+    "support.standalone": {
+      "source_revision": "02a9dc7ac465675167b4",
+      "text": "Сочетания отдельных узлов"
+    },
+    "support.installed": {
+      "source_revision": "471ad2a7c997816c6858",
+      "text": "Установка поддерживается"
+    },
+    "support.not_installed": {
+      "source_revision": "dbf25a749990abc2a72d",
+      "text": "Установка на этот принтер не поддерживается"
+    },
+    "support.standalone_only": {
+      "source_revision": "ccff397a599dfa8943bc",
+      "text": "Только отдельно / установка не поддерживается"
+    },
+    "support.open_head": {
+      "source_revision": "54ee5b7ffa4e4395b015",
+      "text": "Открыть отдельный узел"
+    },
+    "support.open_row": {
+      "source_revision": "90ed421083f07286eeaa",
+      "text": "Открыть эту конфигурацию в 3D"
+    },
+    "support.open_v0": {
+      "source_revision": "7416f126de4bea1d8331",
+      "text": "Открыть принтер и выбрать Mods"
+    },
+    "support.open_component": {
+      "source_revision": "eef5b8cceaa63d1f2771",
+      "text": "Посмотреть CAD детали"
+    },
+    "support.exclusive": {
+      "source_revision": "8e33f8b33370208fa139",
+      "text": "Дополнения одной группы нельзя выбрать одновременно."
+    },
+    "support.bank_yes": {
+      "source_revision": "778a9bf2d5449f0560d7",
+      "text": "Размещение доков поддерживается. Автоматическая смена не проверена."
+    },
+    "support.bank_no": {
+      "source_revision": "cdb7e06b3c236b582c47",
+      "text": "Доки принтера не поддерживаются. Установка головки имеет отдельную область поддержки."
+    },
+    "support.stock_detail": {
+      "source_revision": "66913e3b321898f31e97",
+      "text": "Показана исходная штатная сборка. Замена и сочетания деталей не поддерживаются."
+    },
+    "support.error": {
+      "source_revision": "89f143e0ef3e786b3154",
+      "text": "Не удалось загрузить данные. Обновите страницу."
+    },
+    "support.all": {
+      "source_revision": "35401d1140e36cd43c4f",
+      "text": "Все"
+    },
+    "support.mount": {
+      "source_revision": "d9bc9bff81636d351f61",
+      "text": "Способ крепления"
+    },
+    "support.monolith": {
+      "source_revision": "19f870109e881c8e6351",
+      "text": "Отдельный портал Monolith"
     }
   }
 }

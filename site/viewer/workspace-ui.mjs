@@ -3,13 +3,13 @@ ensureWorkspaceEntry(import.meta.url);
 import {setupDisplayPreferences,setupHeaderThemeToggle} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {WorkspaceMutationObserver,workspaceListen} from './workspace-lifecycle.mjs';
 // Shared presentation layer. Existing controls, IDs and CAD controllers stay intact.
-import {setupLanguage,originalText,messageSource} from './i18n.mjs?v=642ceb891c52c8332f6d';
+import {setupLanguage,originalText,messageSource} from './i18n.mjs?v=a199a1f323d9fa0f7e7d';
 import {printerWorkspaceURL,workspaceReturnKey,workspaceKindFor} from './workspace-return.mjs?v=2fe52644cc6f4d63178a';
 import {setupWorkspaceSharing} from './workspace-share.mjs?v=e6c4054688ce084e0759';
 import {lockInspectorHorizontalScroll} from './workspace-scroll.mjs?v=workspace-belts-1';
-import {setupChoiceSearch} from './workspace-choices.mjs?v=48a2e70c8c3956e6e713';
+import {setupChoiceSearch} from './workspace-choices.mjs?v=7905c2c469f868634d9e';
 import {setupMobileLayout} from './workspace-layout.mjs?v=738c040595ec99155ce2';
-import {workspaceSectionCategory,isPrimaryWorkspaceLink} from './workspace-sections.mjs?v=f8e22c35f88b94e7816e';
+import {workspaceSectionCategory,isPrimaryWorkspaceLink} from './workspace-sections.mjs?v=8eb43b161d2b1e2117c9';
 const $ = selector => document.querySelector(selector);
 const node = (tag, className, text) => {
   const element = document.createElement(tag);
@@ -40,6 +40,7 @@ export function setupWorkspace() {
     ['ui.printer', './', machinePage], ['ui.toolhead', './toolheads.html', page === 'toolheads.html'],
     ['ui.gantry', './gantries.html', page === 'gantries.html'],
     ['ui.just_for_fun', '../fun/', false],
+    ['ui.support_index', '../support/', false],
   ];
   for (const [id, href, current] of destinations) {
     const link = node('a', '', {id});
@@ -52,6 +53,7 @@ export function setupWorkspace() {
       new WorkspaceMutationObserver(() => { link.href = original.href; }).observe(original, { attributes: true, attributeFilter: ['href'] });
     }
     if (id === 'ui.printer') link.id = 'workspacePrinterLink';
+    if (id === 'ui.support_index') link.id = 'workspaceSupportLink';
     navigation.append(link);
   }
   header.insertBefore(navigation, $('.header-actions'));
@@ -64,8 +66,14 @@ export function setupWorkspace() {
     } catch {}
     const href = printerWorkspaceURL(location.href, remembered), link = $('#workspacePrinterLink');
     if (link.href !== href) link.href = href;
+    const support = $('#workspaceSupportLink'), supportURL = new URL('../support/', location.href);
+    const supportMachine = machinePage ? document.body.dataset.machineId : page === 'gantries.html' ? 'gantries' : 'toolheads';
+    if (supportMachine) supportURL.searchParams.set('machine', supportMachine);
+    supportURL.searchParams.set('lang', new URL(location.href).searchParams.get('lang') || document.documentElement.lang || 'en');
+    if (support.href !== supportURL.href) support.href = supportURL.href;
   }
   rememberPrinter();
+  workspaceListen(window, 'rig-language-change', rememberPrinter);
   new WorkspaceMutationObserver(rememberPrinter).observe(document.body, {subtree: true, attributes: true, attributeFilter: ['data-machine-id','data-variant']});
   for (const link of header.querySelectorAll('.mode-link')) link.hidden = true;
   for (const link of aside.querySelectorAll(':scope > .workbench-link')) {

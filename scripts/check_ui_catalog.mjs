@@ -38,6 +38,7 @@ async function scan(directory){
  }
 }
 await scan(root);
+await scan(resolve(root,'../support'));
 const unique=Array.from(new Map(unknown.map(row=>[row.file+'\0'+row.text,row])).values()).sort((a,b)=>a.file.localeCompare(b.file)||a.text.localeCompare(b.text));
 const baselinePath=new URL('../localization/legacy-fragments.json',import.meta.url);
 if(process.argv.includes('--report')){console.log(JSON.stringify({invalid,unknown:unique},null,2));process.exitCode=invalid.length?1:0}

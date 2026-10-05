@@ -7349,6 +7349,190 @@
     "configuration_editor.retry": {
       "source_revision": "36b9d1db6b809e74167a",
       "text": "CAD 다시 불러오기"
+    },
+    "ui.support_index": {
+      "source_revision": "f9d016df706ffd2d9df3",
+      "text": "조합 지원 현황"
+    },
+    "support.title": {
+      "source_revision": "2d56c3045e8800fdea62",
+      "text": "조합 지원 현황 · 3D Print Rig"
+    },
+    "support.intro": {
+      "source_revision": "ffdbecd683bb37eb8ead",
+      "text": "현재 뷰어에서 선택 가능한 구성과 아직 장착할 수 없는 부품을 확인하세요."
+    },
+    "support.scope": {
+      "source_revision": "66993c3047adb16673e7",
+      "text": "지원은 뷰어 등록 상태입니다. 실물 호환성, 전체 이동 범위 또는 자동 교환을 보증하지 않습니다."
+    },
+    "support.choose": {
+      "source_revision": "65b1ec98d0d6f329a95f",
+      "text": "기종별로 보기"
+    },
+    "support.all_machines": {
+      "source_revision": "4e871f0c5cc5de9775a8",
+      "text": "전체 기종 지원표"
+    },
+    "support.target": {
+      "source_revision": "b4685f56bcf5a16a1849",
+      "text": "기종 또는 단독 뷰어"
+    },
+    "support.filter": {
+      "source_revision": "1fb137136ae64c743700",
+      "text": "조합 필터"
+    },
+    "support.reset": {
+      "source_revision": "657056f3d635871a94b7",
+      "text": "필터 초기화"
+    },
+    "support.count_hint": {
+      "source_revision": "dcce3dd089b23e06208b",
+      "text": "개수는 다른 조건을 유지한 등록 수입니다. 등록 조합이 0개인 선택지도 표시합니다."
+    },
+    "support.empty": {
+      "source_revision": "adedb1e476ddb044b175",
+      "text": "이 조건의 조합은 미등록입니다. 실물에서 호환되지 않는다는 의미는 아닙니다. 필터를 해제하면 등록된 구성을 볼 수 있습니다."
+    },
+    "support.more": {
+      "source_revision": "4d7d2b6ed3ad2cb77533",
+      "text": "더 보기"
+    },
+    "support.extra": {
+      "source_revision": "befa4c4452520438cbcc",
+      "text": "추가 Mod 및 도크 지원"
+    },
+    "support.heads": {
+      "source_revision": "006cbdbbdb81b19399c2",
+      "text": "헤드별 지원 및 미지원"
+    },
+    "support.head_hint": {
+      "source_revision": "f98fe33853e7aeef6543",
+      "text": "이 기종의 장착 지원 현황입니다. 지원 헤드도 특정 갠트리나 압출기가 필요할 수 있습니다."
+    },
+    "support.stock_hint": {
+      "source_revision": "d077262f65f62f5ffc51",
+      "text": "표준 구성 전용 기종은 원본 CAD를 표시합니다. 공통 헤드나 갠트리로의 교체는 미지원입니다."
+    },
+    "support.machine_spec": {
+      "source_revision": "49ce22b2a7baca34c279",
+      "text": "기종 / 사양"
+    },
+    "support.status": {
+      "source_revision": "61412afc5cf5196c9d61",
+      "text": "지원 현황"
+    },
+    "support.count": {
+      "source_revision": "4b3e586fa6fd40677650",
+      "text": "등록 구성 수"
+    },
+    "support.method": {
+      "source_revision": "f69df3658cbe452f715f",
+      "text": "목록 읽는 방법"
+    },
+    "support.generated": {
+      "source_revision": "45449f7465b08897262a",
+      "text": "공개 시 뷰어와 동일한 카탈로그 및 조합 규칙에서 자동 생성합니다. 부품 수의 곱이 아닌 등록된 구성을 셉니다."
+    },
+    "support.count_scope": {
+      "source_revision": "fe68ee9b736d9bab1e8c",
+      "text": "색상, 자세, 독립 추가 Mod, 도크 배치는 개수에 포함하지 않습니다. V0는 장착 조건을 만족하는 Mod 선택 조합을 셉니다."
+    },
+    "support.unregistered_scope": {
+      "source_revision": "60995bd9674dfb95ffa3",
+      "text": "단독 표시 전용 부품은 기체 마운트나 조립 데이터 등록이 필요합니다. 미등록은 실물 비호환을 뜻하지 않습니다."
+    },
+    "support.download_index": {
+      "source_revision": "4cf1ad9e9399926c82d3",
+      "text": "지원 데이터 다운로드"
+    },
+    "support.download_rows": {
+      "source_revision": "ee90eb7627a929cc9c55",
+      "text": "구성 데이터 다운로드"
+    },
+    "support.github": {
+      "source_revision": "da351d7680cd15782da4",
+      "text": "GitHub · 지원 현황 기록"
+    },
+    "support.open": {
+      "source_revision": "44948c2bac10644bb92a",
+      "text": "뷰어 열기"
+    },
+    "support.supported": {
+      "source_revision": "f2b939b74dc4220ce712",
+      "text": "조합 지원"
+    },
+    "support.stock": {
+      "source_revision": "81bb96aab0a1b3d27679",
+      "text": "표준 구성만 지원"
+    },
+    "support.missing": {
+      "source_revision": "b496c09ca68011eb590c",
+      "text": "CAD 미등록"
+    },
+    "support.standalone": {
+      "source_revision": "02a9dc7ac465675167b4",
+      "text": "단독 조합"
+    },
+    "support.installed": {
+      "source_revision": "471ad2a7c997816c6858",
+      "text": "기체 장착 지원"
+    },
+    "support.not_installed": {
+      "source_revision": "dbf25a749990abc2a72d",
+      "text": "이 기종 장착 미지원"
+    },
+    "support.standalone_only": {
+      "source_revision": "ccff397a599dfa8943bc",
+      "text": "단독 표시만 지원 / 기체 장착 미지원"
+    },
+    "support.open_head": {
+      "source_revision": "54ee5b7ffa4e4395b015",
+      "text": "단독 뷰어로 확인"
+    },
+    "support.open_row": {
+      "source_revision": "90ed421083f07286eeaa",
+      "text": "이 구성을 3D로 열기"
+    },
+    "support.open_v0": {
+      "source_revision": "7416f126de4bea1d8331",
+      "text": "기체를 열고 Mod 선택"
+    },
+    "support.open_component": {
+      "source_revision": "eef5b8cceaa63d1f2771",
+      "text": "부품 CAD 확인"
+    },
+    "support.exclusive": {
+      "source_revision": "8e33f8b33370208fa139",
+      "text": "같은 그룹의 추가 Mod는 동시에 선택할 수 없습니다."
+    },
+    "support.bank_yes": {
+      "source_revision": "778a9bf2d5449f0560d7",
+      "text": "도크 배치 지원. 자동 교환 동작은 미검증입니다."
+    },
+    "support.bank_no": {
+      "source_revision": "cdb7e06b3c236b582c47",
+      "text": "기체 측 도크는 미지원입니다. 헤드 장착 표시와 지원 범위가 다릅니다."
+    },
+    "support.stock_detail": {
+      "source_revision": "66913e3b321898f31e97",
+      "text": "원본 CAD의 표준 구성을 표시합니다. 부품 교체 및 조합은 미지원입니다."
+    },
+    "support.error": {
+      "source_revision": "89f143e0ef3e786b3154",
+      "text": "지원 데이터를 불러오지 못했습니다. 페이지를 새로고침하세요."
+    },
+    "support.all": {
+      "source_revision": "35401d1140e36cd43c4f",
+      "text": "전체"
+    },
+    "support.mount": {
+      "source_revision": "d9bc9bff81636d351f61",
+      "text": "장착 방식"
+    },
+    "support.monolith": {
+      "source_revision": "19f870109e881c8e6351",
+      "text": "Monolith 갠트리 단독"
     }
   }
 }

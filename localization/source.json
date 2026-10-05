@@ -9186,6 +9186,236 @@
       "kind": "message",
       "ja": "CADを再読み込み",
       "en": "Retry loading CAD"
+    },
+    "ui.support_index": {
+      "kind": "message",
+      "ja": "組み合わせ対応状況",
+      "en": "Combination support"
+    },
+    "support.title": {
+      "kind": "message",
+      "ja": "組み合わせ対応状況 · 3D Print Rig",
+      "en": "Combination support · 3D Print Rig"
+    },
+    "support.intro": {
+      "kind": "message",
+      "ja": "現在のビュワーで選べる構成と、まだ組み込めない部品を確認できます。",
+      "en": "Explore available viewer configurations and parts not yet supported for installation."
+    },
+    "support.scope": {
+      "kind": "message",
+      "ja": "対応済みはビュワーへの登録状況です。実機の互換性・全可動域・自動交換の保証とは異なります。",
+      "en": "Support means registered in the viewer. It does not certify physical compatibility, full travel or automatic tool changing."
+    },
+    "support.choose": {
+      "kind": "message",
+      "ja": "機体から調べる",
+      "en": "Explore by machine"
+    },
+    "support.all_machines": {
+      "kind": "message",
+      "ja": "全機種の対応表",
+      "en": "All machine support"
+    },
+    "support.target": {
+      "kind": "message",
+      "ja": "マシン・単体ビュワー",
+      "en": "Machine or standalone viewer"
+    },
+    "support.filter": {
+      "kind": "message",
+      "ja": "組み合わせを絞る",
+      "en": "Filter combinations"
+    },
+    "support.reset": {
+      "kind": "message",
+      "ja": "条件をリセット",
+      "en": "Reset filters"
+    },
+    "support.count_hint": {
+      "kind": "message",
+      "ja": "選択肢の件数は、ほかの条件を維持したときの登録数です。0件の選択肢も確認できます。",
+      "en": "Counts retain your other filters. Options with 0 registered combinations remain visible."
+    },
+    "support.empty": {
+      "kind": "message",
+      "ja": "この条件の組み合わせは未登録です。実機で組み合わせできないという意味ではありません。条件を外すと、登録済みの構成を確認できます。",
+      "en": "No combination is registered for these filters. This does not mean physical incompatibility. Remove a filter to see registered configurations."
+    },
+    "support.more": {
+      "kind": "message",
+      "ja": "さらに表示",
+      "en": "Show more"
+    },
+    "support.extra": {
+      "kind": "message",
+      "ja": "追加Mod・ドックの対応",
+      "en": "Add-on and dock support"
+    },
+    "support.heads": {
+      "kind": "message",
+      "ja": "ヘッド別の対応済み・未対応",
+      "en": "Supported and unsupported heads"
+    },
+    "support.head_hint": {
+      "kind": "message",
+      "ja": "この機体への組込状況です。対応済みでも、ガントリー・押出機などの条件があります。",
+      "en": "Installation support for this machine. Supported heads may require a specific gantry or extruder."
+    },
+    "support.stock_hint": {
+      "kind": "message",
+      "ja": "標準構成のみの機種は、元CADの機体を表示できます。共通ヘッドやガントリーへの交換は未対応です。",
+      "en": "Stock-only machines display the source assembly. Swapping shared heads or gantries is not supported."
+    },
+    "support.machine_spec": {
+      "kind": "message",
+      "ja": "機種・仕様",
+      "en": "Machine / specification"
+    },
+    "support.status": {
+      "kind": "message",
+      "ja": "対応状況",
+      "en": "Support status"
+    },
+    "support.count": {
+      "kind": "message",
+      "ja": "登録構成数",
+      "en": "Registered configurations"
+    },
+    "support.method": {
+      "kind": "message",
+      "ja": "一覧の見方",
+      "en": "How to read this index"
+    },
+    "support.generated": {
+      "kind": "message",
+      "ja": "公開時にビュワーと同じカタログ・組み合わせ判定から自動生成します。部品数の掛け算ではなく、登録済みの構成を数えています。",
+      "en": "Generated at publication from the viewer catalogs and combination rules. Counts represent registered configurations, not multiplied component totals."
+    },
+    "support.count_scope": {
+      "kind": "message",
+      "ja": "構成数には色・姿勢・独立した追加Mod・ドック内のヘッド配置を含めません。V0の件数は取付条件を満たすMod選択の組み合わせです。",
+      "en": "Counts exclude colors, poses, independent add-ons and dock-bank arrangements. V0 counts are Mod selections that satisfy mounting rules."
+    },
+    "support.unregistered_scope": {
+      "kind": "message",
+      "ja": "単体表示のみの部品には、機体側マウントや組立データの登録が必要です。未登録を実機の非互換とは扱いません。",
+      "en": "Standalone-only parts still need machine mounts or assembly data registered. Unregistered does not mean physically incompatible."
+    },
+    "support.download_index": {
+      "kind": "message",
+      "ja": "対応状況データをダウンロード",
+      "en": "Download support data"
+    },
+    "support.download_rows": {
+      "kind": "message",
+      "ja": "構成データをダウンロード",
+      "en": "Download configuration data"
+    },
+    "support.github": {
+      "kind": "message",
+      "ja": "GitHub · 対応状況の記録",
+      "en": "GitHub · Support documentation"
+    },
+    "support.open": {
+      "kind": "message",
+      "ja": "ビュワーを開く",
+      "en": "Open viewer"
+    },
+    "support.supported": {
+      "kind": "message",
+      "ja": "組み合わせ対応済み",
+      "en": "Configurable"
+    },
+    "support.stock": {
+      "kind": "message",
+      "ja": "標準構成のみ",
+      "en": "Stock assembly only"
+    },
+    "support.missing": {
+      "kind": "message",
+      "ja": "CAD未登録",
+      "en": "CAD not registered"
+    },
+    "support.standalone": {
+      "kind": "message",
+      "ja": "単体での組み合わせ",
+      "en": "Standalone combinations"
+    },
+    "support.installed": {
+      "kind": "message",
+      "ja": "機体への組込対応済み",
+      "en": "Installation supported"
+    },
+    "support.not_installed": {
+      "kind": "message",
+      "ja": "この機体への組込は未対応",
+      "en": "Not supported on this machine"
+    },
+    "support.standalone_only": {
+      "kind": "message",
+      "ja": "単体表示のみ・機体組込は未対応",
+      "en": "Standalone only / installation not supported"
+    },
+    "support.open_head": {
+      "kind": "message",
+      "ja": "単体ビュワーで確認",
+      "en": "Open standalone viewer"
+    },
+    "support.open_row": {
+      "kind": "message",
+      "ja": "この構成を3Dで開く",
+      "en": "Open this configuration in 3D"
+    },
+    "support.open_v0": {
+      "kind": "message",
+      "ja": "機体を開いてModを選択",
+      "en": "Open machine and select Mods"
+    },
+    "support.open_component": {
+      "kind": "message",
+      "ja": "部品CADを確認",
+      "en": "View component CAD"
+    },
+    "support.exclusive": {
+      "kind": "message",
+      "ja": "同じグループの追加Modは同時に選べません。",
+      "en": "Add-ons in the same group cannot be selected together."
+    },
+    "support.bank_yes": {
+      "kind": "message",
+      "ja": "ドック配置対応済み。自動交換動作は未検証。",
+      "en": "Dock placement supported. Automatic exchange is unverified."
+    },
+    "support.bank_no": {
+      "kind": "message",
+      "ja": "機体側ドックは未対応。ヘッドの装着表示と対応範囲が異なります。",
+      "en": "Machine docks are unsupported. Head installation has a separate support scope."
+    },
+    "support.stock_detail": {
+      "kind": "message",
+      "ja": "元CADの標準構成を表示。部品の交換・組み合わせは未対応です。",
+      "en": "Displays the source stock assembly. Component swapping and combinations are unsupported."
+    },
+    "support.error": {
+      "kind": "message",
+      "ja": "対応状況を読み込めませんでした。ページを再読み込みしてください。",
+      "en": "Could not load support data. Please reload this page."
+    },
+    "support.all": {
+      "kind": "message",
+      "ja": "すべて",
+      "en": "All"
+    },
+    "support.mount": {
+      "kind": "message",
+      "ja": "取付方式",
+      "en": "Mounting method"
+    },
+    "support.monolith": {
+      "kind": "message",
+      "ja": "Monolithガントリー単体",
+      "en": "Standalone Monolith gantry"
     }
   }
 }

@@ -113,6 +113,8 @@ def main():
                 raise ValueError('Model bundle does not match its pinned checksum.')
             unpack_assets(archive, target)
     validate_mounting_evidence(target)
+    subprocess.run(['node', '--experimental-loader', './scripts/three-test-loader.mjs',
+                    'scripts/build_support_catalog.mjs', str(target)], cwd=ROOT, check=True)
     (target / '.nojekyll').touch()
     size = sum(path.stat().st_size for path in target.rglob('*') if path.is_file())
     if size > MAX_SITE_BYTES:

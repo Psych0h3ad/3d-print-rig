@@ -14,7 +14,7 @@ import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {setupPublicInfo} from './public-info.js?v=workspace-belts-2';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=workspace-belts-2';
-import {setupV24MachineHeads} from './machine-heads.js?v=6fe48d896bef48eb22b1';
+import {setupV24MachineHeads} from './machine-heads.js?v=dd5179a5e2a6fb2cf68f';
 export async function mount(scope){
 const $=s=>document.querySelector(s),ids=[250,300,350].flatMap(size=>['printed','ldo_cnc'].map(structure=>`voron_v24_${size}_${structure}`));
 const wanted=new URLSearchParams(location.search).get('machine'),id=ids.includes(wanted)?wanted:ids[0];

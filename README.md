@@ -1,5 +1,7 @@
 # 3D Print Rig
 
+[組み合わせ対応状況 / Combination support](https://psych0h3ad.github.io/3d-print-rig/support/) · [対応済み・未対応の定義](docs/COMBINATION_SUPPORT.md)
+
 [English](https://psych0h3ad.github.io/3d-print-rig/viewer/?lang=en) · [日本語](https://psych0h3ad.github.io/3d-print-rig/viewer/?lang=ja) · [Español](https://psych0h3ad.github.io/3d-print-rig/viewer/?lang=es) · [한국어](https://psych0h3ad.github.io/3d-print-rig/viewer/?lang=ko) · [Русский](https://psych0h3ad.github.io/3d-print-rig/viewer/?lang=ru) · [License](LICENSE) · [Third-party notices](docs/THIRD_PARTY_NOTICES.md)
 
 Compare printer, toolhead and gantry configurations in 3D.
