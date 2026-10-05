@@ -44,7 +44,7 @@ for(const size of [250,300,350]){
  }
  const raw=await read(`${dir}/configurations.json`),catalog=expandedPrinterCatalog(raw,heads,registry,machine),variants=machineHeadVariants(heads,registry,machine);
  assert(variants.length>100);for(const v of catalog.variants)for(const m of v.modules)if(/^trident_r2_gantry_/.test(m.id))assert.equal(m.id,gantry.id);
- const state=initialBank(catalog,bank,'trident_r2');assert(state.tools.length>0);normalizeBank(state,catalog,bank,'trident_r2');assert.throws(()=>normalizeBank({...state,enabled:true},catalog,bank,'trident_r2'));
+ const state=initialBank(catalog,bank,'trident_r2');assert.deepEqual(state,{enabled:false,active:0,tools:[]});normalizeBank(state,catalog,bank,'trident_r2');assert.throws(()=>normalizeBank({...state,enabled:true},catalog,bank,'trident_r2'));
  const standard=catalog.variants.find(v=>v.id===profile.default_configuration),drop=bankBedReferenceDrop(catalog,bank,state,standard);
  assert(Math.abs(catalog.bed_reference_top_mm-drop-standard.fit.nozzle_mm[2])<.001);
  motion.setBedReferenceDrop(drop);motion.setPose({x:0,y:0,z:0});

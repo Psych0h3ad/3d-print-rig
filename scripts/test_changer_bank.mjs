@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {bankChoices,initialBank,normalizeBank,bankPlan,readBankURL,bankBedReferenceDrop} from '../site/viewer/changer-bank-model.mjs';
+import {bankChoices,bankCapacity,initialBank,normalizeBank,bankPlan,readBankURL,bankBedReferenceDrop} from '../site/viewer/changer-bank-model.mjs';
 const profiles=['xol','jabberwocky'].map(toolhead=>({selection:{toolhead,hotend:'hot',extruder:'drive',probe:'none',board:'none',cooling:'source'},dock:'dock_'+toolhead,park_translation_mm:[0,68,73]}));
 const data={pitch_mm:90,nine_mm_forward_mm:5.6,profiles,machines:{printer:{capacity:4,center_x_mm:0,translation_mm:[0,-240,330]}},fixture_assets:['nuts']};
 const variants=[6,9].flatMap(belt_width_mm=>profiles.map(p=>({id:'installed_'+belt_width_mm+'_'+p.selection.toolhead,source_head_configuration:'source_'+belt_width_mm+'_'+p.selection.toolhead,mount:'stealthchanger',gantry:'g'+belt_width_mm,belt_width_mm,...p.selection,machine_head:{base:p.selection.toolhead,translation:[1,2,3],translation_delta_mm:[1,2,3],hidden:['support'],modules:[{id:'front',translation_mm:[1,2,3],role:'tool'},{id:'shuttle',translation_mm:[1,2,3],role:'shuttle'}]}})));
@@ -29,3 +29,16 @@ bedData.machines.printer.bank_permitted=false;bedData.machines.printer.printing_
 assert.throws(()=>bankPlan(state,catalog,bedData,v),/Bed collision/);
 assert.equal(bankPlan({...state,enabled:false},catalog,bedData,v).instances.length,0);
 console.log('Native Z rail limit is respected; incompatible Trident docks are rejected, including saved states.');
+for(const machine_id of ['voron_trident_250','voron_trident_300','voron_trident_350','siboor_trident_350','fysetc_trident_300']){
+ const tridentCatalog={...catalog,machine_id},tridentData={...data,machines:{[machine_id]:{...data.machines.printer}}};
+ // Explicit family protection also handles older catalogs missing the flag.
+ assert.deepEqual(bankChoices(tridentCatalog,tridentData,'g6'),[]);assert.equal(bankCapacity(tridentData,machine_id),0);
+ const empty={enabled:false,active:0,tools:[]};assert.deepEqual(initialBank(tridentCatalog,tridentData,'g6'),empty);
+ assert.deepEqual(normalizeBank(empty,tridentCatalog,tridentData,'g6'),empty);
+ assert.deepEqual(normalizeBank({...state,enabled:false},tridentCatalog,tridentData,'g6'),empty);
+ assert.deepEqual(bankPlan(empty,tridentCatalog,tridentData,v).instances,[]);
+ assert.throws(()=>normalizeBank({...state,enabled:true},tridentCatalog,tridentData,'g6'),/未登録/);
+ assert.throws(()=>normalizeBank({...empty,active:1},tridentCatalog,tridentData,'g6'),/台数/);
+ assert.throws(()=>normalizeBank({...empty,tools:['not_registered']},tridentCatalog,tridentData,'g6'),/登録されていない/);
+}
+console.log('Trident fixed SC docks have zero choices/capacity and no instances; inactive legacy files remain loadable.');

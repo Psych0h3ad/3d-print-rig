@@ -16,7 +16,8 @@ for(const machine_id of ['trident','toolhead']){
  assert.throws(()=>normalizeBank({...state,tools:['native_sc']},catalog,data,'r2'),/登録されていない/);
  assert.throws(()=>normalizeBank({...state,tools:['native_madmax','native_madmax']},catalog,data,'r2'),/台数/);
  assert.deepEqual(bankStateForVariant({enabled:false,tools:['native_sc'],active:0},madmax,catalog,data),state);
- assert.throws(()=>bankStateForVariant({enabled:false,tools:[],active:0},madmax,catalog,data),/台数/);
+ if(machine_id==='trident')assert.deepEqual(bankStateForVariant({enabled:false,tools:[],active:0},madmax,catalog,data),state);
+ else assert.throws(()=>bankStateForVariant({enabled:false,tools:[],active:0},madmax,catalog,data),/台数/);
  assert.throws(()=>bankStateForVariant({enabled:false,tools:['native_sc'],active:2},madmax,catalog,data),/台数/);
  assert.throws(()=>bankStateForVariant({...state,system:'stealthchanger'},madmax,catalog,data),/一致/);
  assert.throws(()=>bankStateForVariant(state,sc,catalog,data),/一致/);

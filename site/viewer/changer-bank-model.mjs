@@ -15,13 +15,21 @@ export function bankSpec(data,system){
  // never borrow StealthChanger fixtures or its Trident collision verdict.
  return {machines:Object.fromEntries(Object.keys(data.machines).map(id=>[id,{capacity:1,bank_permitted:false,docking_registered:false,docking_unregistered_reason:'MadMaxの機体側ドックは未登録です。現在は単独ヘッドの装着表示です。'}]))};
 }
-export function bankChoices(catalog,data,gantry,system='stealthchanger',cooling='4010'){
+// This bank contains fixed ModularDocks. Trident needs a dedicated horizontal
+// exchange or liftbar assembly, neither of which is registered here.
+export function bankDockUnavailable(catalog,data,system='stealthchanger'){
+ return system==='stealthchanger'&&(/(?:^|_)trident(?:_|$)/.test(catalog.machine_id)||data.machines?.[catalog.machine_id]?.bank_permitted===false);
+}
+function registeredBankChoices(catalog,data,gantry,system='stealthchanger',cooling='4010'){
  if(gantry?.startsWith('monolith_'))return [];
  if(system==='indx')return (data.indx?.tool_options||[]).map(p=>catalog.variants.find(v=>v.toolhead==='indx'&&v.hotend===p.id&&v.cooling===cooling&&(!gantry||v.gantry===gantry))).filter(Boolean);
  if(system==='madmax')return catalog.variants.filter(v=>v.machine_head&&v.mount==='madmax'&&v.registration_source==='madmax_xol'&&(!gantry||v.gantry===gantry));
  return data.profiles.map(p=>catalog.variants.find(v=>v.machine_head&&v.mount==='stealthchanger'&&(!gantry||v.gantry===gantry)&&Object.entries(p.selection).every(([k,value])=>v[k]===value))).filter(Boolean);
 }
-export function bankCapacity(data,machine,system='stealthchanger'){return bankSpec(data,system)?.machines[machine]?.capacity||0}
+export function bankChoices(catalog,data,gantry,system='stealthchanger',cooling='4010'){
+ return bankDockUnavailable(catalog,data,system)?[]:registeredBankChoices(catalog,data,gantry,system,cooling);
+}
+export function bankCapacity(data,machine,system='stealthchanger'){return bankDockUnavailable({machine_id:machine},data,system)?0:bankSpec(data,system)?.machines[machine]?.capacity||0}
 // A signed offset brings the bed toward the nozzle, bounded by the native
 // Z rail/carriage envelope. Dock interference must never lower this datum.
 export function bankBedReferenceDrop(catalog,data,state,variant){
@@ -32,6 +40,15 @@ export function bankBedReferenceDrop(catalog,data,state,variant){
 }
 export function normalizeBank(state,catalog,data,gantry){
  const system=bankSystem(state),capacity=bankCapacity(data,catalog.machine_id,system);
+ if(bankDockUnavailable(catalog,data,system)){
+  if(state?.enabled===true)throw Error(data.machines[catalog.machine_id]?.printing_blocked_reason||'この機体のドック構成は未登録です。');
+  // Preserve old files with a disabled bank, while removing their stale dock
+  // selections. Validate the old shape before discarding it.
+  const legacy=registeredBankChoices(catalog,data,undefined,system),limit=data.machines[catalog.machine_id]?.capacity||0;
+  if(state?.enabled!==false||!Array.isArray(state.tools)||!Number.isInteger(state.active)||state.active<0||(state.tools.length?state.active>=state.tools.length:state.active!==0)||state.tools.length>limit)throw Error('ツールバンクの台数または使用中のヘッドが不正です。');
+  if(state.tools.some(id=>!legacy.some(v=>bankSource(v,system)===id||v.id===id)))throw Error('この機体に登録されていないドック構成です。');
+  return {enabled:false,active:0,tools:[]};
+ }
  let choices=bankChoices(catalog,data,gantry,system);if(!state?.enabled&&!choices.length)choices=bankChoices(catalog,data,undefined,system);
  if(!state||typeof state.enabled!=='boolean'||!Array.isArray(state.tools)||!Number.isInteger(state.active)||state.tools.length<1||state.tools.length>capacity||state.active<0||state.active>=state.tools.length)throw Error('ツールバンクの台数または使用中のヘッドが不正です。');
  const mount=bankSpec(data,system)?.machines[catalog.machine_id];
@@ -42,13 +59,15 @@ export function normalizeBank(state,catalog,data,gantry){
  return {enabled:state.enabled,active:state.active,tools,...(system!=='stealthchanger'?{system}: {})};
 }
 export function initialBank(catalog,data,gantry,system='stealthchanger'){
+ if(bankDockUnavailable(catalog,data,system))return {enabled:false,active:0,tools:[]};
  let choices=bankChoices(catalog,data,gantry,system);if(!choices.length)choices=bankChoices(catalog,data,undefined,system);if(!choices.length)throw Error('この機体のドック構成は未登録です。');
  return {enabled:false,active:0,tools:Array.from({length:Math.min(3,bankCapacity(data,catalog.machine_id,system))},(_,i)=>bankSource(choices[i%choices.length],system)),...(system!=='stealthchanger'?{system}: {})};
 }
 export function bankStateForVariant(state,variant,catalog,data){
  // Older MadMax files inherited the disabled StealthChanger bank by default.
  if(variant?.mount==='madmax'&&state?.enabled===false&&state.system===undefined){
-  if(!Array.isArray(state.tools)||!state.tools.length||state.tools.length>bankCapacity(data,catalog.machine_id)||!state.tools.every(id=>typeof id==='string')||!Number.isInteger(state.active)||state.active<0||state.active>=state.tools.length)throw Error('ツールバンクの台数または使用中のヘッドが不正です。');
+  if(bankDockUnavailable(catalog,data))normalizeBank(state,catalog,data,variant.gantry);
+  else if(!Array.isArray(state.tools)||!state.tools.length||state.tools.length>bankCapacity(data,catalog.machine_id)||!state.tools.every(id=>typeof id==='string')||!Number.isInteger(state.active)||state.active<0||state.active>=state.tools.length)throw Error('ツールバンクの台数または使用中のヘッドが不正です。');
   return initialBank(catalog,data,variant.gantry,'madmax');
  }
  if((variant?.mount==='madmax')!==(bankSystem(state)==='madmax'))throw Error('構成とツール交換方式が一致しません。');

@@ -17,7 +17,7 @@ import {createV24Adapter} from './v24_adapter.mjs?v=extra-machines-55';
 import {setupMachineNavigation} from './machines.js?v=9383d20caf1cef38e5d4';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {setupPublicInfo} from './public-info.js?v=workspace-belts-2';
-import {setupV24MachineHeads} from './machine-heads.js?v=f5e4c6394b8e47967243';
+import {setupV24MachineHeads} from './machine-heads.js?v=22e49edc49a2b3b9342f';
 export async function mount(scope){
 setupMachineNavigation('siboor_v24_350');
 setupPublicInfo();

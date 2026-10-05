@@ -1,14 +1,21 @@
 import fs from 'node:fs/promises';import path from 'node:path';import assert from 'node:assert/strict';import * as THREE from 'three';
 import {withEmbeddedBoards,xolEmbeddedBoard,sbEmbeddedBoard} from '../site/viewer/embedded-boards.mjs';
 import {machineHeadVariants} from '../site/viewer/machine-head-model.mjs';
-import {bankChoices,bankPlan,bankCapacity,bankBedReferenceDrop} from '../site/viewer/changer-bank-model.mjs';
+import {bankChoices,bankPlan,bankCapacity,bankBedReferenceDrop,bankDockUnavailable,initialBank} from '../site/viewer/changer-bank-model.mjs';
 const root=path.resolve(process.argv[2]),read=async n=>JSON.parse(await fs.readFile(path.join(root,n),'utf8'));
 globalThis.location={href:'https://assets.test/viewer/'};globalThis.fetch=async input=>{let n=String(input).split('?')[0];if(n.includes('ASSET_BUNDLE.json'))return Response.json({encoding:'gzip'});if(n.startsWith('http'))n=new URL(n).pathname.slice(1);else n=n.replace(/^\.\.\//,'');try{return new Response(await fs.readFile(path.join(root,n)))}catch{return new Response('',{status:404})}};
 const {createMachineHeads}=await import('../site/viewer/machine-heads.js'),raw=await read('TOOLHEAD_CONFIGURATIONS.json'),heads=withEmbeddedBoards(raw,[xolEmbeddedBoard(await read(raw.base_assets.xol.meta)),sbEmbeddedBoard(await read(raw.base_assets.stealthburner.meta))]),registry=await read('MACHINE_HEAD_REGISTRATIONS.json'),data=await read('TOOLCHANGER_BANK.json');
 let combinations=0,meshChecks=0;const machines=[],failures=[],blocked=[];
 for(const [machine,binding]of Object.entries(registry.machines))for(const gantry of binding.gantries?Object.keys(binding.gantries):[undefined]){
- const scene=new THREE.Scene(),catalog={...heads,machine_id:machine,variants:machineHeadVariants(heads,registry,machine,gantry),assets:{...heads.assets,...registry.assets,...data.assets},bank_data:data},rig=createMachineHeads(scene,catalog),choices=bankChoices(catalog,data,gantry);assert.equal(choices.length,2,machine+' parked choices');
- if(data.machines[machine].bank_permitted===false){const state={enabled:true,active:0,tools:[choices[0].source_head_configuration]};assert.throws(()=>bankPlan(state,catalog,data,choices[0]));await assert.rejects(rig.install(choices[0],state));assert.equal(rig.bankRig.children.length,0);blocked.push({machine,gantry,reason:data.machines[machine].printing_blocked_reason});continue;}
+ const scene=new THREE.Scene(),catalog={...heads,machine_id:machine,variants:machineHeadVariants(heads,registry,machine,gantry),assets:{...heads.assets,...registry.assets,...data.assets},bank_data:data},rig=createMachineHeads(scene,catalog),choices=bankChoices(catalog,data,gantry);
+ if(bankDockUnavailable(catalog,data)){
+  assert.deepEqual(choices,[]);assert.equal(bankCapacity(data,machine),0);
+  const head=catalog.variants.find(v=>v.mount==='stealthchanger'),empty=initialBank(catalog,data,gantry),state={enabled:true,active:0,tools:[head.source_head_configuration]};
+  assert.deepEqual(empty,{enabled:false,active:0,tools:[]});assert.throws(()=>bankPlan(state,catalog,data,head));await assert.rejects(rig.install(head,state));
+  await rig.install(head,empty);assert.equal(rig.active,head);assert.equal(rig.bankRig.children.length,0);
+  rig.setDelta([31,-27,0]);assert.equal(rig.bankRig.children.length,0);blocked.push({machine,gantry,reason:data.machines[machine].printing_blocked_reason});continue;
+ }
+ assert.equal(choices.length,2,machine+' parked choices');
  for(let count=1;count<=bankCapacity(data,machine);count++)for(let mask=0;mask<2**count;mask++)for(let active=0;active<count;active++){
   const state={enabled:true,active,tools:Array.from({length:count},(_,i)=>choices[mask>>i&1].source_head_configuration)},v=choices[mask>>active&1],plan=bankPlan(state,catalog,data,v);
   await rig.install(v,state);assert.equal(rig.active,v);assert.equal(rig.bankRig.children.length,plan.instances.length);assert.equal(rig.bankRig.children.filter(o=>o.userData.tool_bank.kind==='dock').length,count);

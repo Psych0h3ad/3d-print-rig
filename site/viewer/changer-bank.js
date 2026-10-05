@@ -1,6 +1,6 @@
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=5c6f4dcd051bb1336e43';
 import {workspaceTask} from './workspace-lifecycle.mjs';
-import {bankChoices,bankCapacity,normalizeBank,initialBank,readBankURL,bankBedReferenceDrop,bankSystem,bankSource,bankSpec,variantBankSystem,bankStateForVariant,bankPlan} from './changer-bank-model.mjs?v=trident-clearance-35';
+import {bankChoices,bankCapacity,bankDockUnavailable,normalizeBank,initialBank,readBankURL,bankBedReferenceDrop,bankSystem,bankSource,bankSpec,variantBankSystem,bankStateForVariant,bankPlan} from './changer-bank-model.mjs?v=024cc52a5bbc61da7506';
 import {bankWitnessCheck}from './head-validation.mjs?v=trident-clearance-35';
 
 export function setupChangerBank({catalog,rig,data,extras={},before=document.querySelector('#configurationControls'),inspectPose}={}){
@@ -10,17 +10,20 @@ export function setupChangerBank({catalog,rig,data,extras={},before=document.que
  const panel=document.createElement('details');panel.id='changerBank';panel.open=false;
  panel.innerHTML='<summary id="bankTitle">ツールバンク</summary><label class="bank-toggle"><input id="bankEnabled" type="checkbox"><span id="bankToggleLabel">機体にドックと複数ヘッドを取り付ける</span></label><div id="bankFields"></div><p id="bankStatus" class="foot" aria-live="polite"></p><p id="bankHelp" class="foot"></p><button id="bankAlternative" type="button" hidden>MadMax / Xolに切り替える</button><details><summary>ドックの確認範囲</summary><p id="bankScope" class="foot"></p></details>';
  before.before(panel);
+ const bankError=document.createElement('p');bankError.id='changerBankError';bankError.className='foot notice';bankError.hidden=true;bankError.setAttribute('role','alert');before.before(bankError);
  const enabled=panel.querySelector('#bankEnabled'),fields=panel.querySelector('#bankFields'),status=panel.querySelector('#bankStatus');
  const label=v=>v?.toolhead==='indx'?catalog.hotends.find(r=>r.id===v.hotend)?.label:[v?.toolhead==='xol'?'Xol':v?.toolhead==='stealthburner'?'Stealthburner':'JabberWocky',catalog.extruders.find(r=>r.id===v?.extruder)?.label,catalog.hotends.find(r=>r.id===v?.hotend)?.label].join(' / ');
  function choices(variant=controller?.current){return bankChoices(catalog,data,variant?.gantry||previousGantry,bankSystem(state),variant?.toolhead==='indx'?variant.cooling:'4010')}
  function menus(){
   const system=bankSystem(state),indx=system==='indx',madmax=system==='madmax',opts=choices(),spec=bankSpec(data,system),mount=spec.machines[catalog.machine_id],monolith=!!controller?.current?.machine_gantry;
+  panel.dataset.system=system;
+  panel.hidden=bankDockUnavailable(catalog,data,system);
+  if(panel.hidden){fields.replaceChildren();enabled.checked=false;enabled.disabled=true;panel.open=false;return}
   fields.replaceChildren();fields.hidden=!state.enabled;enabled.checked=state.enabled;enabled.disabled=!controller||busy||controller.busy||!opts.length||mount?.bank_permitted===false;
   panel.querySelector('#bankTitle').textContent=indx?'INDX・受動ツール':madmax?'MadMax・XY交換':'StealthChanger・ツールバンク';
   panel.querySelector('#bankToggleLabel').textContent=indx?'受動ツールとドックを取り付ける':madmax?'XY交換用ドックを取り付ける':'機体にドックと複数ヘッドを取り付ける';
   panel.querySelector('#bankHelp').textContent=indx?'Smart Headは1台。選択中の工具はSmart Headに装着し、残りは専用ドックで待機します。各ノズルの外形はBondtechの共通参照モデルです。':'待機姿勢の登録済み構成：Xol / Sherpa Mini / Rapido 2 UHF、JabberWocky / Conch。同じヘッドも複数配置できます。SBは原本ドックに干渉するため、単独の装着表示で選べます。';
   panel.querySelector('#bankScope').textContent=indx?'原本の2020用ドック・磁石・バネ・受動ツール。41 mm間隔。追加の前面2020クロスバーが必要です。端部締結・外装・全可動域・自動ドッキング経路は未検証。':'元作者のModularDockを上部2020フレームに配置。待機ヘッドとドック本体の交差を検査。追加補強・締結部品・ドア・全可動域・自動ドッキング経路は未検証。実機の製作保証ではありません。';
-  if(system==='stealthchanger'&&mount?.bank_permitted===false)panel.querySelector('#bankHelp').textContent='通常のStealthChangerドックはTridentで交換に必要なZ移動ができず、上昇したベッドにも干渉します。MadMaxはXY移動で交換する別方式で、Tridentに対応する元設計です。';
   if(madmax){panel.querySelector('#bankHelp').textContent='MadMaxはXY移動だけで交換するため、Tridentでも使える設計です。現在の装着構成はXol / Sherpa Mini / Rapido 2 UHF、MGN12H・6 mmベルトです。';panel.querySelector('#bankScope').textContent='専用キャリッジ・Maxwell結合・Xolプレートを原本CADの取付穴軸で配置。Trident用のドック支持部・待機ヘッド・交換経路は未登録です。9 mm用の保持具はこの6 mm構成に流用しません。'}
   const alternative=panel.querySelector('#bankAlternative'),madmaxVariant=bankChoices(catalog,data,controller?.current?.gantry||previousGantry,'madmax')[0];
   alternative.hidden=system!=='stealthchanger'||mount?.bank_permitted!==false||!madmaxVariant;alternative.disabled=!controller||busy||controller.busy;
@@ -45,13 +48,15 @@ export function setupChangerBank({catalog,rig,data,extras={},before=document.que
   }
  }
  async function select(next){return workspaceTask(async()=>{
-  if(!controller||busy||controller.busy)return;busy=true;menus();let error;
-  try{next=bankStateForVariant(next,controller.current,catalog,data);next=normalizeBank(next,catalog,data,controller.current.gantry);const system=bankSystem(next),v=bankChoices(catalog,data,controller.current.gantry,system,controller.current.toolhead==='indx'?controller.current.cooling:'4010').find(v=>bankSource(v,system)===next.tools[next.active]);const applied=await controller.selectVariant(next.enabled?v.id:controller.current.id,{...extras.getExtras?.(),tool_bank:next});if(applied===false)throw Error('ヘッドを切り替えられませんでした。')}catch(e){error=e}finally{busy=false;menus();if(error)status.textContent=error.message}
+  if(!controller||busy||controller.busy)return;busy=true;bankError.hidden=true;menus();let error;
+  try{next=bankStateForVariant(next,controller.current,catalog,data);next=normalizeBank(next,catalog,data,controller.current.gantry);const system=bankSystem(next),v=bankChoices(catalog,data,controller.current.gantry,system,controller.current.toolhead==='indx'?controller.current.cooling:'4010').find(v=>bankSource(v,system)===next.tools[next.active]);const applied=await controller.selectVariant(next.enabled?v.id:controller.current.id,{...extras.getExtras?.(),tool_bank:next});if(applied===false)throw Error('ヘッドを切り替えられませんでした。')}catch(e){error=e}finally{busy=false;menus();if(error){status.textContent=error.message;bankError.textContent=error.message;bankError.hidden=false}}
  });}
  enabled.onchange=e=>select({...state,enabled:e.target.checked});
  async function install(variant){return workspaceTask(async()=>{
   const system=variantBankSystem(variant),oldSystem=bankSystem(state),opts=bankChoices(catalog,data,variant.gantry,system,variant.toolhead==='indx'?variant.cooling:'4010');let next=state;
-  if(system!==oldSystem){next=initialBank(catalog,data,variant.gantry,system);next.enabled=system==='indx'}
+  bankError.hidden=true;
+  if(bankDockUnavailable(catalog,data,system))next=initialBank(catalog,data,variant.gantry,system);
+  else if(system!==oldSystem){next=initialBank(catalog,data,variant.gantry,system);next.enabled=system==='indx'}
   else if(!opts.length)next={...state,enabled:false};
   else if(variant.gantry!==previousGantry){
    const fresh=initialBank(catalog,data,variant.gantry,system),old=bankChoices(catalog,data,previousGantry,system);fresh.tools=state.tools.slice(0,bankCapacity(data,catalog.machine_id,system)).map(id=>{const previous=old.find(v=>bankSource(v,system)===id);return bankSource(opts.find(v=>system==='indx'?v.hotend===previous?.hotend:v.toolhead===previous?.toolhead)||opts[0],system)});fresh.active=Math.min(state.active,fresh.tools.length-1);fresh.enabled=state.enabled;next=fresh;
@@ -61,5 +66,5 @@ export function setupChangerBank({catalog,rig,data,extras={},before=document.que
   await rig.install(variant,next);state=next;previousGantry=variant.gantry;menus();
  });}
  const options={...extras,getExtras:()=>({...extras.getExtras?.(),tool_bank:JSON.parse(JSON.stringify(state))}),validateExtras:value=>{extras.validateExtras?.(value);if(value.tool_bank){const variant=catalog.variants.find(v=>v.id===value.configuration)||controller?.current;normalizeBank(bankStateForVariant(value.tool_bank,variant,catalog,data),catalog,data,variant?.gantry||previousGantry)}},applyExtras:async value=>{return workspaceTask(async()=>{await extras.applyExtras?.(value);if(value.tool_bank){const next=normalizeBank(bankStateForVariant(value.tool_bank,rig.active,catalog,data),catalog,data,rig.active?.gantry);await rig.setBank(next);state=next;menus()}});},onSettled:v=>{extras.onSettled?.(v);menus();if(!v)return;const u=new URL(location.href);if(state.enabled)u.searchParams.set('tools',JSON.stringify(state));else u.searchParams.delete('tools');replaceWorkspaceURL(null,'',u)}};
- return {install,options,async bind(value){return workspaceTask(async()=>{controller=value;menus();if(urlError)status.textContent=urlError.message;else if(urlState)await select(urlState)});},get state(){return state}};
+ return {install,options,async bind(value){return workspaceTask(async()=>{controller=value;menus();if(urlError){status.textContent=urlError.message;bankError.textContent=urlError.message;bankError.hidden=false}else if(urlState)await select(urlState)});},get state(){return state}};
 }

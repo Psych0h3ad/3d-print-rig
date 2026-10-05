@@ -12,8 +12,8 @@ import {setupConfigurations} from './configurations.js?v=9d347c03f3b6b7bd977d';
 import {stockProbeFit} from './probe-mounts.js?v=06a66eade4bdc5eb8c84';
 
 import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs?v=workspace-belts-1';
-import {bankPlan} from './changer-bank-model.mjs?v=workspace-belts-1';
-import {setupChangerBank} from './changer-bank.js?v=6b1bb7cfa1e370707be3';
+import {bankPlan} from './changer-bank-model.mjs?v=024cc52a5bbc61da7506';
+import {setupChangerBank} from './changer-bank.js?v=2575f5e3fafcf4c76da2';
 import {contentSHA256,acceptedMountValidation} from './mount-validation.mjs?v=workspace-belts-1';
 import {acceptedHeadValidation}from './head-validation.mjs?v=workspace-belts-1';
 
