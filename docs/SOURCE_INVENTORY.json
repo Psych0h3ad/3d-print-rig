@@ -309,14 +309,29 @@
       "sha256": "34bc6abb4911fa53738a03c9c560f6e6730ecd25e247933df864721fcf11052f"
     },
     {
+      "path": "scripts/check_wallpaper_compositions.py",
+      "bytes": 2701,
+      "sha256": "a52f3c47ebc94c09a8376aee6413065dda38395898671e9a7420db5c4062f5cb"
+    },
+    {
       "path": "scripts/check_workbench_assets.mjs",
       "bytes": 7831,
       "sha256": "ab5ae9764d8aa42d637c3be38d064dc286fbf8e796967e9a2599088d68b36a1b"
     },
     {
+      "path": "scripts/compose_wallpaper_collections.py",
+      "bytes": 14945,
+      "sha256": "952e7e68577ecd313cb2e2d066ca37c2bc87f3018ccfc48c5ddfe91f3c521757"
+    },
+    {
       "path": "scripts/export_monolith_belt_routes.py",
       "bytes": 3103,
       "sha256": "6c8d9170d38ad1b3de41c9e923e95ca5b9e36a53ec2553352548f4fdd8fcac7d"
+    },
+    {
+      "path": "scripts/extend_wallpaper_release.py",
+      "bytes": 5067,
+      "sha256": "3aad72481e09a62a2c0f1224777c07691dd63bc9355e7baa3ba3c039a14b8178"
     },
     {
       "path": "scripts/fixtures/monolith-belt-routes.json",
@@ -684,6 +699,11 @@
       "sha256": "dfd61d277d494e835b9fd8be5f6268a901c26c2610819d7e5e8adcc1daf03b52"
     },
     {
+      "path": "scripts/test_wallpaper_catalog.mjs",
+      "bytes": 2445,
+      "sha256": "de834a6edb1c596c9fbf4224a19523bbcfd9f5a8a4d0845ae4b1ade63f3697a3"
+    },
+    {
       "path": "scripts/test_workbenches.mjs",
       "bytes": 2585,
       "sha256": "4273619533f0f8119cac3845143c94afd3552263b9b9b865b4da247ad9568a71"
@@ -794,24 +814,29 @@
       "sha256": "00b3ebbe569d556460fd04b2955c73a13b2a47cada775b9c723d9422936580b8"
     },
     {
+      "path": "site/fun/collection-provenance.json",
+      "bytes": 143057,
+      "sha256": "38db5b9f071b9d20d1be2cd915333fcacc5d66d3cca7327e25fcb3db4a1bd9c6"
+    },
+    {
       "path": "site/fun/credits.html",
-      "bytes": 7281,
-      "sha256": "d4c8cc0739458300c0171ba739b7475b20c3795fdd36597ef7afa110a39220e5"
+      "bytes": 7632,
+      "sha256": "c6f8611996413dab5c48c7ea8b79c2d539383c1b0313c4ee964e2d081cdcda48"
     },
     {
       "path": "site/fun/fun.css",
-      "bytes": 6051,
-      "sha256": "f26c7445f6972a1379163a8d2ec24b26c400ad5d2b7b9b6f086a9af2a6e5388c"
+      "bytes": 6765,
+      "sha256": "011ea6320a67a45ee47af9add4bf112831da8715d40e47931548733b0e9df394"
     },
     {
       "path": "site/fun/fun.mjs",
-      "bytes": 5639,
-      "sha256": "9950ec8d630415a1ef039dafad37a0e617369b9d48059bf50f5b092e5ceb51c6"
+      "bytes": 6962,
+      "sha256": "fc564c47d3e4d4aa430dca92277cbd970736b3f950b54e1bab8ed978392a7ccd"
     },
     {
       "path": "site/fun/index.html",
-      "bytes": 3560,
-      "sha256": "f9197a5a776c65e1a0e5fd381179759b30faea70b7207ef57d64ecdaa04e95f4"
+      "bytes": 4022,
+      "sha256": "a25a0103349853d252961fe84de40ee11b8ae4c5a32be09ad286d6758af533c6"
     },
     {
       "path": "site/fun/licenses/ahi_a4t/LICENSE",
@@ -2119,9 +2144,549 @@
       "sha256": "291438697ccd8c9ea76010c85574a25073f33f42fc43ee9cc813283cc932ec8d"
     },
     {
+      "path": "site/fun/previews/28-machine-cabinet-blueprint-1440x3120.webp",
+      "bytes": 38152,
+      "sha256": "c886d4d6e3fb94a1945b8697e387a33bf63e919cfe6487229e894e0dbe0099d2"
+    },
+    {
+      "path": "site/fun/previews/28-machine-cabinet-blueprint-3840x2160.webp",
+      "bytes": 33477,
+      "sha256": "c8c9127cf274fdbb6aa04846295c0c99833d6772fd32678bdc40db2e60e371bc"
+    },
+    {
+      "path": "site/fun/previews/28-machine-cabinet-blueprint-5120x2160.webp",
+      "bytes": 30890,
+      "sha256": "81f4de91480735f67bacd68b3c5b2315705962670cc8301241dc1e92c9ad2096"
+    },
+    {
+      "path": "site/fun/previews/28-machine-cabinet-graphite-1440x3120.webp",
+      "bytes": 37076,
+      "sha256": "4269431177c4df3b84efa212eee388e674c2f9b2b7cc8a1c2e93427711c16094"
+    },
+    {
+      "path": "site/fun/previews/28-machine-cabinet-graphite-3840x2160.webp",
+      "bytes": 32390,
+      "sha256": "c901a9dd551882ba3a04224defb86ec4ecaf743cf13ad7dce3d48c963ba97408"
+    },
+    {
+      "path": "site/fun/previews/28-machine-cabinet-graphite-5120x2160.webp",
+      "bytes": 30434,
+      "sha256": "64d6aed060d3c533a75e9b7d2975bf3ef64397d269fa293946a2fca85e0d3ffd"
+    },
+    {
+      "path": "site/fun/previews/28-machine-cabinet-paper-1440x3120.webp",
+      "bytes": 38350,
+      "sha256": "079107773b4437c475a785a2b5b0dabf08b63971b0ccc18882f13cafe74a755b"
+    },
+    {
+      "path": "site/fun/previews/28-machine-cabinet-paper-3840x2160.webp",
+      "bytes": 33740,
+      "sha256": "4d73c460a92e6c6e938f5d43e56266f448afc5f700a246aa3f7c9027ecb6cd76"
+    },
+    {
+      "path": "site/fun/previews/28-machine-cabinet-paper-5120x2160.webp",
+      "bytes": 30949,
+      "sha256": "400491f79ed38127200bf2ab8ea1fd9992f10c4fa139016a1ae40b1cbe2598c8"
+    },
+    {
+      "path": "site/fun/previews/29-toolhead-cabinet-blueprint-1440x3120.webp",
+      "bytes": 23655,
+      "sha256": "259a4970316c19d10df8252080619edf44edf686e1d5f73998c2a0d93c06aae7"
+    },
+    {
+      "path": "site/fun/previews/29-toolhead-cabinet-blueprint-3840x2160.webp",
+      "bytes": 31747,
+      "sha256": "4041e71ec28ac7c0b572a84f6845d4751150132e6866272fd1db18b62132358e"
+    },
+    {
+      "path": "site/fun/previews/29-toolhead-cabinet-blueprint-5120x2160.webp",
+      "bytes": 18554,
+      "sha256": "74a495f80e301b992489ce7d8670b39542692db987b68b34a76f9e24fd18debf"
+    },
+    {
+      "path": "site/fun/previews/29-toolhead-cabinet-graphite-1440x3120.webp",
+      "bytes": 23284,
+      "sha256": "f2b52dabea2efce6e22b614fb00dc3dc135828126f180bcd787b52ca41f7b709"
+    },
+    {
+      "path": "site/fun/previews/29-toolhead-cabinet-graphite-3840x2160.webp",
+      "bytes": 31221,
+      "sha256": "cbd2a3a6ed06aa6f1ef5c5480b8a90f96267cba9a54df3e6540c07ee6d783d25"
+    },
+    {
+      "path": "site/fun/previews/29-toolhead-cabinet-graphite-5120x2160.webp",
+      "bytes": 18610,
+      "sha256": "87c9b9e41d611f43d9dec7b7d79ec5eaaad53ac33d2ba74b9a43caddc3958890"
+    },
+    {
+      "path": "site/fun/previews/29-toolhead-cabinet-paper-1440x3120.webp",
+      "bytes": 23710,
+      "sha256": "1024feefb65300748f43c1528ef23407a337e2c20f4cea7fed186ae20a7937db"
+    },
+    {
+      "path": "site/fun/previews/29-toolhead-cabinet-paper-3840x2160.webp",
+      "bytes": 31531,
+      "sha256": "9f52bf69f5e7738ebbc47010a1aa1173a32266bff8ad4999647af4bd58b2563c"
+    },
+    {
+      "path": "site/fun/previews/29-toolhead-cabinet-paper-5120x2160.webp",
+      "bytes": 18490,
+      "sha256": "dd1d10a01357ac4ed4ca78fcc752a7cf1cc520b86040a96ba7fc8702f8cf1f34"
+    },
+    {
+      "path": "site/fun/previews/30-drive-matrix-blueprint-1440x3120.webp",
+      "bytes": 30741,
+      "sha256": "fab2504feac4195cb4252ec3be91b8fc213d33ae73ecd32b0ddc1f9fcb84ade0"
+    },
+    {
+      "path": "site/fun/previews/30-drive-matrix-blueprint-3840x2160.webp",
+      "bytes": 23091,
+      "sha256": "bace4a54aa4ad114f874332487cb59e577774d8d89f521e8fa850b2db6c67587"
+    },
+    {
+      "path": "site/fun/previews/30-drive-matrix-blueprint-5120x2160.webp",
+      "bytes": 14056,
+      "sha256": "27e40d14a0a1f08324015a022cf41437b67a40bcc1dbf389dd1b349737e43da5"
+    },
+    {
+      "path": "site/fun/previews/30-drive-matrix-graphite-1440x3120.webp",
+      "bytes": 30233,
+      "sha256": "35bddd0dd61925c7c3c716484c0717de877bef5932bc37781243ca1e83bba432"
+    },
+    {
+      "path": "site/fun/previews/30-drive-matrix-graphite-3840x2160.webp",
+      "bytes": 22678,
+      "sha256": "c1f755cc1d915827be2436aba0b5f1073a09b21567f126be965d403d380c0198"
+    },
+    {
+      "path": "site/fun/previews/30-drive-matrix-graphite-5120x2160.webp",
+      "bytes": 14168,
+      "sha256": "d9b272db3294b2aa3467556d418895823ae484a05fe1360861621ba1428fe6cb"
+    },
+    {
+      "path": "site/fun/previews/30-drive-matrix-paper-1440x3120.webp",
+      "bytes": 30766,
+      "sha256": "17957692dc5752061342143cfaa3d1fd564625c095fb785cbc8a728f56f99d51"
+    },
+    {
+      "path": "site/fun/previews/30-drive-matrix-paper-3840x2160.webp",
+      "bytes": 22915,
+      "sha256": "d9f3722adf01523d25f0e0c779d283e9a47f866d56581e29a22fec1dd98e9ef7"
+    },
+    {
+      "path": "site/fun/previews/30-drive-matrix-paper-5120x2160.webp",
+      "bytes": 13970,
+      "sha256": "3cbff73e1edc4114fceaa72c8e8fb67cc27874cbf027ec23f08a4beb965ab6c7"
+    },
+    {
+      "path": "site/fun/previews/31-exploded-atlas-blueprint-1440x3120.webp",
+      "bytes": 23114,
+      "sha256": "b9188b86ac281fe9c78a6e83df6b4ac5bde1505ce1fbcea9e5e0eeca629a6e8d"
+    },
+    {
+      "path": "site/fun/previews/31-exploded-atlas-blueprint-3840x2160.webp",
+      "bytes": 30166,
+      "sha256": "3a1d0d4194ef07080e18a4cd48a6b9395a0ee41a56059e3b24539697a960f123"
+    },
+    {
+      "path": "site/fun/previews/31-exploded-atlas-blueprint-5120x2160.webp",
+      "bytes": 18391,
+      "sha256": "bf9735a3e7b042e6838f20037379ae4bacced0b8b955b48203365fdbb82343ab"
+    },
+    {
+      "path": "site/fun/previews/31-exploded-atlas-graphite-1440x3120.webp",
+      "bytes": 22715,
+      "sha256": "c1a2c4a4993264315a77c141577a9b528aa2ae742b12a306ab4711821825afc1"
+    },
+    {
+      "path": "site/fun/previews/31-exploded-atlas-graphite-3840x2160.webp",
+      "bytes": 29600,
+      "sha256": "0e82acf8c7ee13596c59a04909de6391c0e6f3b89d425009e26ad4072c4e6fec"
+    },
+    {
+      "path": "site/fun/previews/31-exploded-atlas-graphite-5120x2160.webp",
+      "bytes": 18399,
+      "sha256": "720dedfad785ba525181baddfa477dffdf3fad0c84cb213e411a7b7623affbfa"
+    },
+    {
+      "path": "site/fun/previews/31-exploded-atlas-paper-1440x3120.webp",
+      "bytes": 23220,
+      "sha256": "664c7090ec9568c39fc42fd2bd017f55a0d52c714835d9711ddc8e443ee832c3"
+    },
+    {
+      "path": "site/fun/previews/31-exploded-atlas-paper-3840x2160.webp",
+      "bytes": 30152,
+      "sha256": "7b15babc24fb81f3f0a3203fc8b53445fff5349bbbebb3803393a176020343b1"
+    },
+    {
+      "path": "site/fun/previews/31-exploded-atlas-paper-5120x2160.webp",
+      "bytes": 18292,
+      "sha256": "7a2e0188bb5c9e0d1353aff434c898992d3e359b2f79638c243ec6cea28e6a29"
+    },
+    {
+      "path": "site/fun/previews/32-section-library-blueprint-1440x3120.webp",
+      "bytes": 29434,
+      "sha256": "6a0aa22bb8c1014ae021f41b6470928f6dbcbc16da9a19763901f94d948cc570"
+    },
+    {
+      "path": "site/fun/previews/32-section-library-blueprint-3840x2160.webp",
+      "bytes": 40348,
+      "sha256": "ec2564b1ff57c33afdca0507e4c8e367cec00f137f8e9960b9a77d769874e83a"
+    },
+    {
+      "path": "site/fun/previews/32-section-library-blueprint-5120x2160.webp",
+      "bytes": 33044,
+      "sha256": "ab0c0e66b8e0248bc17be1d2d307df208b609ab1c8cda7ee0a114a7cf9f9f0f8"
+    },
+    {
+      "path": "site/fun/previews/32-section-library-graphite-1440x3120.webp",
+      "bytes": 28866,
+      "sha256": "71f64069772a76e141c1cf770a46919c6c5b527f5e299c34780166d36c499b09"
+    },
+    {
+      "path": "site/fun/previews/32-section-library-graphite-3840x2160.webp",
+      "bytes": 39632,
+      "sha256": "a96b0e4b296388c46b6f6d866364dd5508bb060c50a1ecec49cd8c8c3ac3d865"
+    },
+    {
+      "path": "site/fun/previews/32-section-library-graphite-5120x2160.webp",
+      "bytes": 32744,
+      "sha256": "a98e578760cd5833528cbdfb67487861197f765da7332134078881a047a0fb69"
+    },
+    {
+      "path": "site/fun/previews/32-section-library-paper-1440x3120.webp",
+      "bytes": 29254,
+      "sha256": "08084d88841ba75d5a38eadbc66e1b15645ab511ceb01be6c7a7f73ffaccc555"
+    },
+    {
+      "path": "site/fun/previews/32-section-library-paper-3840x2160.webp",
+      "bytes": 40063,
+      "sha256": "7fe3108d73950ad02c1c3fbe1750c809ae639f2f945ff686cfebe90833df1a9a"
+    },
+    {
+      "path": "site/fun/previews/32-section-library-paper-5120x2160.webp",
+      "bytes": 32788,
+      "sha256": "db4f0ef9a4b890180debe87fd4e2d1a8b6c95c1d31f863ad9cfa0bd51ba9b233"
+    },
+    {
+      "path": "site/fun/previews/33-motion-systems-blueprint-1440x3120.webp",
+      "bytes": 22964,
+      "sha256": "02f97b1a5608dd8095e853f037e33c5b4c1916ac127a7c1f8739d28c494d4172"
+    },
+    {
+      "path": "site/fun/previews/33-motion-systems-blueprint-3840x2160.webp",
+      "bytes": 29625,
+      "sha256": "2c2480e6231e69bd02b0e862ed5b5ff13656f8e6ca5a805e80184b04cc3be542"
+    },
+    {
+      "path": "site/fun/previews/33-motion-systems-blueprint-5120x2160.webp",
+      "bytes": 20848,
+      "sha256": "6a13188d8a00eb856c4a2754a2be1ca72970cf29c96d93c080418d2605a0ad00"
+    },
+    {
+      "path": "site/fun/previews/33-motion-systems-graphite-1440x3120.webp",
+      "bytes": 22632,
+      "sha256": "398b0c0458434906bc35a7c8bd7c5f1df717daafd74b1bf9e566c7b1ce3735f6"
+    },
+    {
+      "path": "site/fun/previews/33-motion-systems-graphite-3840x2160.webp",
+      "bytes": 29095,
+      "sha256": "68f26cfb058749b1168bfac79d7a1b1ba69165fddee4204f19bb48e2f0ec75d6"
+    },
+    {
+      "path": "site/fun/previews/33-motion-systems-graphite-5120x2160.webp",
+      "bytes": 20800,
+      "sha256": "b274f48dfe2354c84dbb10dc210285f116f597fde7768face5497d0dfe8ef330"
+    },
+    {
+      "path": "site/fun/previews/33-motion-systems-paper-1440x3120.webp",
+      "bytes": 23114,
+      "sha256": "04fe54c7bd7e712af7b9de61d67a3c8cbd1f85361a7b551cdc29db711ffb288f"
+    },
+    {
+      "path": "site/fun/previews/33-motion-systems-paper-3840x2160.webp",
+      "bytes": 29655,
+      "sha256": "86c132420fc92c470efa48a05d0ea43a1758f788c06dd4bfbfc25b08ac994823"
+    },
+    {
+      "path": "site/fun/previews/33-motion-systems-paper-5120x2160.webp",
+      "bytes": 20841,
+      "sha256": "7eedc18921e7b2b2770531545fb8387a62d4c2b1052e1763d67141e40ed1344e"
+    },
+    {
+      "path": "site/fun/previews/34-workshop-index-blueprint-1440x3120.webp",
+      "bytes": 27019,
+      "sha256": "c6eb477bbd9552b1b31b1256b191e6f02ca21c49de49e17ab0fb184477e2a010"
+    },
+    {
+      "path": "site/fun/previews/34-workshop-index-blueprint-3840x2160.webp",
+      "bytes": 46840,
+      "sha256": "649b1b0940ae8dbff10afbc9d1f750c9a78c187f7f703f90a2ce2945a0ec4008"
+    },
+    {
+      "path": "site/fun/previews/34-workshop-index-blueprint-5120x2160.webp",
+      "bytes": 29410,
+      "sha256": "dbf0b43dea65859b015dadcc3d579fc6c240cea49d13111d1d596f4b2dc22008"
+    },
+    {
+      "path": "site/fun/previews/34-workshop-index-graphite-1440x3120.webp",
+      "bytes": 26772,
+      "sha256": "29a4cbe9730bcda102e9341249ae8b9c84460e8077b69826f670ee7259727a1b"
+    },
+    {
+      "path": "site/fun/previews/34-workshop-index-graphite-3840x2160.webp",
+      "bytes": 45745,
+      "sha256": "b6fca73241e3bb8e75e5b1e49e570bcd8625f42f3ed83b338eaa764244d605c4"
+    },
+    {
+      "path": "site/fun/previews/34-workshop-index-graphite-5120x2160.webp",
+      "bytes": 28987,
+      "sha256": "7cfcf8b20d3f260b3c8295cc15f06226bc8fc014802a412b07472b14e831f15a"
+    },
+    {
+      "path": "site/fun/previews/34-workshop-index-paper-1440x3120.webp",
+      "bytes": 27696,
+      "sha256": "1be3e67302d341c86968d07d18947307cf27b06b1d925fe78c40f1008ba3a9d4"
+    },
+    {
+      "path": "site/fun/previews/34-workshop-index-paper-3840x2160.webp",
+      "bytes": 47273,
+      "sha256": "e6b66e3b158729d7a8dbde5b8bdf581bc200bae08fd52ceded3e189f02669499"
+    },
+    {
+      "path": "site/fun/previews/34-workshop-index-paper-5120x2160.webp",
+      "bytes": 29324,
+      "sha256": "c68cd29767ac9e8e921e6da43fdc70c57a0e2a6b820821a25ff0104ba18ca3fe"
+    },
+    {
+      "path": "site/fun/previews/35-printer-field-blueprint-1440x3120.webp",
+      "bytes": 26294,
+      "sha256": "0c15e2c0bf6dcbbf9192a7e8666e5a3f1b61b1bbdf9ecbaf21b977280f846d28"
+    },
+    {
+      "path": "site/fun/previews/35-printer-field-blueprint-3840x2160.webp",
+      "bytes": 52870,
+      "sha256": "41796059c08e0d33dfb5b749e6f68cb147063eeffbf612f2a76dcd81889db51a"
+    },
+    {
+      "path": "site/fun/previews/35-printer-field-blueprint-5120x2160.webp",
+      "bytes": 42488,
+      "sha256": "8a8c6884ac82b8db72936946ee82935b73abac653823ca5ff3ae392f41ad9f7e"
+    },
+    {
+      "path": "site/fun/previews/35-printer-field-graphite-1440x3120.webp",
+      "bytes": 25537,
+      "sha256": "a429d45c16ca94a574c522f51f7023aca313ca258370242ad2c6cfe354daf7af"
+    },
+    {
+      "path": "site/fun/previews/35-printer-field-graphite-3840x2160.webp",
+      "bytes": 51304,
+      "sha256": "c82a3d7d47f7635c252ad6de90e4e9ca655478da3c0caf57dee4040b0e963d72"
+    },
+    {
+      "path": "site/fun/previews/35-printer-field-graphite-5120x2160.webp",
+      "bytes": 41277,
+      "sha256": "e43ae9c6b1505c6833ebb19c5deb21df8af6c3287346fcaa4bd16b3f8eb1dfd7"
+    },
+    {
+      "path": "site/fun/previews/35-printer-field-paper-1440x3120.webp",
+      "bytes": 26818,
+      "sha256": "3acb48af29e68d16386cf04a81df1a5d13da4de8dc7ad071bd2cdc5646c5731b"
+    },
+    {
+      "path": "site/fun/previews/35-printer-field-paper-3840x2160.webp",
+      "bytes": 53776,
+      "sha256": "e38a458da33670273c1b68366ac29fbbb9b6460f72f83cc94f45a1066021740f"
+    },
+    {
+      "path": "site/fun/previews/35-printer-field-paper-5120x2160.webp",
+      "bytes": 42925,
+      "sha256": "d61dddfedebc3619d49d94afd9d3b1dcaef6ef196a38fedd21f610c77550db5b"
+    },
+    {
+      "path": "site/fun/previews/36-toolhead-field-blueprint-1440x3120.webp",
+      "bytes": 27050,
+      "sha256": "4d0d483eb7e6646e2087d21a3991846d00cf1b3c5aa263b4a2738e71b33429a8"
+    },
+    {
+      "path": "site/fun/previews/36-toolhead-field-blueprint-3840x2160.webp",
+      "bytes": 36900,
+      "sha256": "05934298246a5341c3bc9bee7a78f331e67011bb4135dc5dc0008032cff8eb86"
+    },
+    {
+      "path": "site/fun/previews/36-toolhead-field-blueprint-5120x2160.webp",
+      "bytes": 28308,
+      "sha256": "247edfb7acdc221f918f5327144a3f68b2a32a2ba7aa1335e96db36deedee10c"
+    },
+    {
+      "path": "site/fun/previews/36-toolhead-field-graphite-1440x3120.webp",
+      "bytes": 26764,
+      "sha256": "e5c5988ad6333537a4196818957893b6e80049078f9faa8b0263ae129153c344"
+    },
+    {
+      "path": "site/fun/previews/36-toolhead-field-graphite-3840x2160.webp",
+      "bytes": 36232,
+      "sha256": "8865c1b043eacfc5a094bd680d3f69ca94fda588d74156484394201f3f48c6e4"
+    },
+    {
+      "path": "site/fun/previews/36-toolhead-field-graphite-5120x2160.webp",
+      "bytes": 28032,
+      "sha256": "a06a61c73f6f9ff579b4c369dace5348e0baa95119cdac0eb44fd00b2c152b21"
+    },
+    {
+      "path": "site/fun/previews/36-toolhead-field-paper-1440x3120.webp",
+      "bytes": 27223,
+      "sha256": "2b4a462143e4b16359ee4b9038187910404dc5a81c13c0a1de59d10db4e78549"
+    },
+    {
+      "path": "site/fun/previews/36-toolhead-field-paper-3840x2160.webp",
+      "bytes": 36945,
+      "sha256": "77665f3015007b658bbf7daca447eb0a0f72a26fbda171d899dd7588fcff2dc5"
+    },
+    {
+      "path": "site/fun/previews/36-toolhead-field-paper-5120x2160.webp",
+      "bytes": 28404,
+      "sha256": "b3bd0b4573bf14c757e51e88ea55055624616bc58d5911f7d6f93475ef0ab2bc"
+    },
+    {
+      "path": "site/fun/previews/37-cutaway-field-blueprint-1440x3120.webp",
+      "bytes": 25438,
+      "sha256": "7cc33b30acd2611dfc1546bf4b34517a30ef0b75bf69fb70d3e708ccb1200a05"
+    },
+    {
+      "path": "site/fun/previews/37-cutaway-field-blueprint-3840x2160.webp",
+      "bytes": 44903,
+      "sha256": "807fa45cf4cf67bfd6913248e139ac52ab071d47722bba381fa79c02ec88c048"
+    },
+    {
+      "path": "site/fun/previews/37-cutaway-field-blueprint-5120x2160.webp",
+      "bytes": 34382,
+      "sha256": "c28211c34bc0d05a810d8ce6cde8afc4e8f1d7cedc2fe42f4f9cc6f0a260d12e"
+    },
+    {
+      "path": "site/fun/previews/37-cutaway-field-graphite-1440x3120.webp",
+      "bytes": 25171,
+      "sha256": "1be459301e41425899453c0e73bab3b20883bda3a198cf4c7912f6250b2bb710"
+    },
+    {
+      "path": "site/fun/previews/37-cutaway-field-graphite-3840x2160.webp",
+      "bytes": 44635,
+      "sha256": "79326a49fee8e1af2b144946f4d647cbba3b546c7138f6609554e69105aa4b25"
+    },
+    {
+      "path": "site/fun/previews/37-cutaway-field-graphite-5120x2160.webp",
+      "bytes": 33652,
+      "sha256": "8895338513d08a016df80ee1b7424a31ac3ef3299529a2a7787ab6a125ae7125"
+    },
+    {
+      "path": "site/fun/previews/37-cutaway-field-paper-1440x3120.webp",
+      "bytes": 25482,
+      "sha256": "0efee31f65058a6aaa12a45488494fb4579590611d02611bbdcb62dc706862e3"
+    },
+    {
+      "path": "site/fun/previews/37-cutaway-field-paper-3840x2160.webp",
+      "bytes": 45044,
+      "sha256": "4b7e17d548e293df5e1cfceaef3255baf369ac3479afc6e3fdf2a8b58696d73a"
+    },
+    {
+      "path": "site/fun/previews/37-cutaway-field-paper-5120x2160.webp",
+      "bytes": 33741,
+      "sha256": "8904c356ecec42ad4befb372e2e8584056c437e43ac7e2bf31d5d2939e4e0a79"
+    },
+    {
+      "path": "site/fun/previews/38-assembly-pairs-blueprint-1440x3120.webp",
+      "bytes": 17730,
+      "sha256": "68e0bf3e2b3348b1d3053fb3eafa61d1b6f088d72d88677766cc5ced96b90d27"
+    },
+    {
+      "path": "site/fun/previews/38-assembly-pairs-blueprint-3840x2160.webp",
+      "bytes": 23336,
+      "sha256": "9552bd68e0e47bda9c3b8f2eda1c8560fa1728bd7bce2636288dd39b25539f6d"
+    },
+    {
+      "path": "site/fun/previews/38-assembly-pairs-blueprint-5120x2160.webp",
+      "bytes": 31982,
+      "sha256": "a5978e54a807351213f5fe7206d7ed09af81020e71a0bd07e546b5a44b2800ba"
+    },
+    {
+      "path": "site/fun/previews/38-assembly-pairs-graphite-1440x3120.webp",
+      "bytes": 17377,
+      "sha256": "fc44a94399bfac790200d4f81004d7f83c433775be8f88cf2cb7991e9cfe1c69"
+    },
+    {
+      "path": "site/fun/previews/38-assembly-pairs-graphite-3840x2160.webp",
+      "bytes": 22905,
+      "sha256": "3a3421b3ba7c6dca913af35654a6f68a34cb1c6b42933be7bba9b4825a01aed6"
+    },
+    {
+      "path": "site/fun/previews/38-assembly-pairs-graphite-5120x2160.webp",
+      "bytes": 31390,
+      "sha256": "b0fa1550d4c7ed470193cc1af5941f143b5d4ccc6c278379b898161cf1421a2f"
+    },
+    {
+      "path": "site/fun/previews/38-assembly-pairs-paper-1440x3120.webp",
+      "bytes": 17707,
+      "sha256": "df5c8568ec56985c84b3e188be60d819a4a39b821f84b3a6f27ffc7ab945bd84"
+    },
+    {
+      "path": "site/fun/previews/38-assembly-pairs-paper-3840x2160.webp",
+      "bytes": 23260,
+      "sha256": "9fab5427a3cf824f1ff333bb33f6e212567226d639f05b935f96c14af815aa5a"
+    },
+    {
+      "path": "site/fun/previews/38-assembly-pairs-paper-5120x2160.webp",
+      "bytes": 31962,
+      "sha256": "ebcbf90867e54c31e75f3e27ef8b2dc7ef4e67d09028e05f91264ff2ee7b8465"
+    },
+    {
+      "path": "site/fun/previews/39-voron-family-blueprint-1440x3120.webp",
+      "bytes": 36152,
+      "sha256": "02839d4d1a2fc4ae9971ccb04f53fd23d68a68be078b3e1f8e6d3f22bb1ab7eb"
+    },
+    {
+      "path": "site/fun/previews/39-voron-family-blueprint-3840x2160.webp",
+      "bytes": 26022,
+      "sha256": "d1d71b0103abefb3f7ed6738cdfda75c899b77d3ced9bdbaff57edb063578435"
+    },
+    {
+      "path": "site/fun/previews/39-voron-family-blueprint-5120x2160.webp",
+      "bytes": 16582,
+      "sha256": "7fd42a02bd1d7fd0884e48467f296a5c6c4652fe511cbad931be1d687b9d6d8b"
+    },
+    {
+      "path": "site/fun/previews/39-voron-family-graphite-1440x3120.webp",
+      "bytes": 35003,
+      "sha256": "c48581a4d970c30c88768ffe6111b1d4cd5e8c7d1027a0c4ca1ecbafb2955a9c"
+    },
+    {
+      "path": "site/fun/previews/39-voron-family-graphite-3840x2160.webp",
+      "bytes": 25364,
+      "sha256": "0829f367c0b34d948d7d9269414091d4c7445910c53bc6dc49793e1b14db45d3"
+    },
+    {
+      "path": "site/fun/previews/39-voron-family-graphite-5120x2160.webp",
+      "bytes": 16540,
+      "sha256": "ece39811712340293ee91317140891c6441efb09ca832da0ffdc197d5c4e4458"
+    },
+    {
+      "path": "site/fun/previews/39-voron-family-paper-1440x3120.webp",
+      "bytes": 36578,
+      "sha256": "1c9f132463f4ac74bd40dc9fa9653336edcb3af7f568fb60293ec8bac2616ec3"
+    },
+    {
+      "path": "site/fun/previews/39-voron-family-paper-3840x2160.webp",
+      "bytes": 26244,
+      "sha256": "b1ba19bc795c53a660de023cc3714c5f24a2c56a3da77abb514a2e8d10015548"
+    },
+    {
+      "path": "site/fun/previews/39-voron-family-paper-5120x2160.webp",
+      "bytes": 16664,
+      "sha256": "952d424ef10f1cc1f39ddc8a48a9011b914f77b65da3909dcb52c5ddf400df00"
+    },
+    {
       "path": "site/fun/wallpapers.json",
-      "bytes": 148046,
-      "sha256": "e95384282a0ef53bad3660eff49e84d36492533201df1601b6baed332dad9b5f"
+      "bytes": 266493,
+      "sha256": "36afd925e02270d7596533f9958ea1dd272488ef099dc7611ea88cf46ad8ab49"
     },
     {
       "path": "site/index.html",
