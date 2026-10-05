@@ -18,6 +18,14 @@ assert.equal(chooseLanguage({stored:'ko-KR',languages:['ru-RU']}),'ko');
 assert.equal(chooseLanguage({languages:['fr-FR','ru-RU','en']}),'en');
 assert.equal(chooseLanguage({stored:'ja',languages:['en-US']}),'ja');
 assert.equal(chooseLanguage({languages:['fr-FR']}),'en');
+// Initial HTML is English. Returning to Japanese must translate those
+// labels and populated templates, not only Japanese controller strings.
+for(const raw of ['Colors and materials','Printed parts / base','Camera view','Keep other parts','Also changes related parts']){
+ const id=Object.keys(source.entries).find(id=>source.entries[id].en===raw);assert(id,raw);
+ assert.equal(translate(raw,'ja'),source.entries[id].ja);
+}
+assert.equal(translate('3D assembly switched · 4 motors · 9 mm belts','ja'),'3D切替済み · 4モーター · 9 mmベルト');
+assert.equal(translate('G1 X10  Y20\n; hello','ja'),'G1 X10  Y20\n; hello');
 await Promise.all(['es','ko','ru'].map(loadLanguage));
 let checked=0;
 for(const language of ['es','ko','ru']){

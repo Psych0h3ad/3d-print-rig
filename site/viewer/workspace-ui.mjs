@@ -3,12 +3,13 @@ ensureWorkspaceEntry(import.meta.url);
 import {setupDisplayPreferences,setupHeaderThemeToggle} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {WorkspaceMutationObserver,workspaceListen} from './workspace-lifecycle.mjs';
 // Shared presentation layer. Existing controls, IDs and CAD controllers stay intact.
-import {setupLanguage,originalText,messageSource} from './i18n.mjs?v=971480958997666004b5';
+import {setupLanguage,originalText,messageSource} from './i18n.mjs?v=642ceb891c52c8332f6d';
 import {printerWorkspaceURL,workspaceReturnKey,workspaceKindFor} from './workspace-return.mjs?v=2fe52644cc6f4d63178a';
 import {setupWorkspaceSharing} from './workspace-share.mjs?v=e6c4054688ce084e0759';
 import {lockInspectorHorizontalScroll} from './workspace-scroll.mjs?v=workspace-belts-1';
-import {setupChoiceSearch} from './workspace-choices.mjs?v=0154ae076882aa8fb560';
+import {setupChoiceSearch} from './workspace-choices.mjs?v=48a2e70c8c3956e6e713';
 import {setupMobileLayout} from './workspace-layout.mjs?v=738c040595ec99155ce2';
+import {workspaceSectionCategory,isPrimaryWorkspaceLink} from './workspace-sections.mjs?v=f8e22c35f88b94e7816e';
 const $ = selector => document.querySelector(selector);
 const node = (tag, className, text) => {
   const element = document.createElement(tag);
@@ -68,7 +69,7 @@ export function setupWorkspace() {
   new WorkspaceMutationObserver(rememberPrinter).observe(document.body, {subtree: true, attributes: true, attributeFilter: ['data-machine-id','data-variant']});
   for (const link of header.querySelectorAll('.mode-link')) link.hidden = true;
   for (const link of aside.querySelectorAll(':scope > .workbench-link')) {
-    if (/^(Monolithガントリーを組む|ツールヘッド単体を組む|ホットエンド・押出機のCADを確認)/.test(link.textContent)) link.hidden = true;
+    if (isPrimaryWorkspaceLink(originalText(link))) link.hidden = true;
   }
 
   const actions = $('.header-actions');
@@ -189,12 +190,7 @@ export function setupWorkspace() {
   });
   function category(element) {
     if (element.matches('a.workbench-link') && !['buildMonolith','monolithPrinterLink'].includes(element.id)) return 'reference';
-    const text = originalText(element.querySelector(':scope > summary'));
-    if (/組立条件|Mod資料|構成を保存/.test(text)) return 'reference';
-    if (/動作|G-code|接触|交換機構の表示|取付チェック/.test(text)) return 'inspect';
-    if (/色|素材|照明|表示/.test(text)) return 'appearance';
-    if (/原本|出典|使用版|カタログ|選択した構成と部品|部品リスト・共有|マウント・構成/.test(text)) return 'reference';
-    return 'configuration';
+    return workspaceSectionCategory(originalText(element.querySelector(':scope > summary')));
   }
   function organize() {
     const candidates = [...aside.children, ...heading.children].filter(element => ![heading, tabs, content, footer].includes(element) && !element.matches('h1, .inspector-eyebrow, .change-machine, .mobile-layout') && !(heading.contains(element) && element.matches('p.foot')));

@@ -1518,16 +1518,16 @@
       "display_name": "VORON V2.4 R2 250",
       "configuration": "R2 / Stealthburner / Clockwork 2 / Revo Voron",
       "revision": "R2",
-      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v42/VORON_V2.4_R2_250_SB_CW2_RevoVoron_Assy_STEP.zip",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v77/VORON_V2.4_R2_250_SB_CW2_RevoVoron_Assy_STEP.zip",
       "upstream_url": "https://github.com/VoronDesign/Voron-2/tree/a192410e27ea345644ae5c4b29b4c9c40cbe1a73",
       "license": "GPL-3.0",
       "release_verified": true,
       "part_count": 1308,
       "step_zip": {
-        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v42/VORON_V2.4_R2_250_SB_CW2_RevoVoron_Assy_STEP.zip",
+        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v77/VORON_V2.4_R2_250_SB_CW2_RevoVoron_Assy_STEP.zip",
         "filename": "VORON_V2.4_R2_250_SB_CW2_RevoVoron_Assy_STEP.zip",
-        "bytes": 58068830,
-        "sha256": "aaeba8a3494dc6c9f11d6e0621c6d1dc6899035fddca265306f53702896198ea"
+        "bytes": 58069390,
+        "sha256": "361375ea45f4dfaf4db5cf083d26398e37b72d6fe2049606430c48021b76d597"
       }
     },
     {
@@ -1539,16 +1539,16 @@
       "display_name": "VORON V2.4 R2 300",
       "configuration": "R2 / Stealthburner / Clockwork 2 / Revo Voron",
       "revision": "R2",
-      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v42/VORON_V2.4_R2_300_SB_CW2_RevoVoron_Assy_STEP.zip",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v77/VORON_V2.4_R2_300_SB_CW2_RevoVoron_Assy_STEP.zip",
       "upstream_url": "https://github.com/VoronDesign/Voron-2/tree/a192410e27ea345644ae5c4b29b4c9c40cbe1a73",
       "license": "GPL-3.0",
       "release_verified": true,
       "part_count": 1322,
       "step_zip": {
-        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v42/VORON_V2.4_R2_300_SB_CW2_RevoVoron_Assy_STEP.zip",
+        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v77/VORON_V2.4_R2_300_SB_CW2_RevoVoron_Assy_STEP.zip",
         "filename": "VORON_V2.4_R2_300_SB_CW2_RevoVoron_Assy_STEP.zip",
-        "bytes": 58520541,
-        "sha256": "c9dff57ccfe923544cc55b1826f5069b767cdcfd0dc8d8af34a380408080f207"
+        "bytes": 58521106,
+        "sha256": "57a3cd6f4b21fc83da04dce8ae1225d620be8e681003b31fcb86670e91da4583"
       }
     },
     {
@@ -1560,16 +1560,16 @@
       "display_name": "VORON V2.4 R2 350",
       "configuration": "R2 / Stealthburner / Clockwork 2 / Revo Voron",
       "revision": "R2",
-      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v42/VORON_V2.4_R2_350_SB_CW2_RevoVoron_Assy_STEP.zip",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v77/VORON_V2.4_R2_350_SB_CW2_RevoVoron_Assy_STEP.zip",
       "upstream_url": "https://github.com/VoronDesign/Voron-2/tree/a192410e27ea345644ae5c4b29b4c9c40cbe1a73",
       "license": "GPL-3.0",
       "release_verified": true,
       "part_count": 1336,
       "step_zip": {
-        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v42/VORON_V2.4_R2_350_SB_CW2_RevoVoron_Assy_STEP.zip",
+        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v77/VORON_V2.4_R2_350_SB_CW2_RevoVoron_Assy_STEP.zip",
         "filename": "VORON_V2.4_R2_350_SB_CW2_RevoVoron_Assy_STEP.zip",
-        "bytes": 58816062,
-        "sha256": "ad4fe88c0b4640f9d9ce97184029158c3773a619b4c51c474be6251570d2cab9"
+        "bytes": 58817017,
+        "sha256": "db9e8c9b2a83a1ccd78cb836c623dc86df3b4f581f28527aba3aab918553ef45"
       }
     },
     {
@@ -1602,16 +1602,16 @@
       "display_name": "VORON Trident R2 300",
       "configuration": "R2 / Stealthburner / Clockwork 2 / Revo Voron",
       "revision": "R2",
-      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v42/VORON_Trident_R2_300_SB_CW2_RevoVoron_Assy_STEP.zip",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v77/VORON_Trident_R2_300_SB_CW2_RevoVoron_Assy_STEP.zip",
       "upstream_url": "https://github.com/VoronDesign/Voron-Trident/tree/a8628f48546948ce1fc15511b7765b7f31f80722",
       "license": "GPL-3.0 (VORON); retained CW2 component terms not declared",
       "release_verified": true,
       "part_count": 1340,
       "step_zip": {
-        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v42/VORON_Trident_R2_300_SB_CW2_RevoVoron_Assy_STEP.zip",
+        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v77/VORON_Trident_R2_300_SB_CW2_RevoVoron_Assy_STEP.zip",
         "filename": "VORON_Trident_R2_300_SB_CW2_RevoVoron_Assy_STEP.zip",
-        "bytes": 74971939,
-        "sha256": "9f2865020581dc8c627b2c8f39146773d93a1acae03219ad82c7b4478fb1384c"
+        "bytes": 74972442,
+        "sha256": "cac7278b69b164152333e5f68effcc9a55155c7557f843b0da5957dc476e071a"
       }
     },
     {
@@ -1623,16 +1623,16 @@
       "display_name": "VORON Trident R2 350",
       "configuration": "R2 / Stealthburner / Clockwork 2 / Revo Voron",
       "revision": "R2",
-      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v42/VORON_Trident_R2_350_SB_CW2_RevoVoron_Assy_STEP.zip",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v77/VORON_Trident_R2_350_SB_CW2_RevoVoron_Assy_STEP.zip",
       "upstream_url": "https://github.com/VoronDesign/Voron-Trident/tree/a8628f48546948ce1fc15511b7765b7f31f80722",
       "license": "GPL-3.0 (VORON); retained CW2 component terms not declared",
       "release_verified": true,
       "part_count": 1348,
       "step_zip": {
-        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v42/VORON_Trident_R2_350_SB_CW2_RevoVoron_Assy_STEP.zip",
+        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v77/VORON_Trident_R2_350_SB_CW2_RevoVoron_Assy_STEP.zip",
         "filename": "VORON_Trident_R2_350_SB_CW2_RevoVoron_Assy_STEP.zip",
-        "bytes": 75682119,
-        "sha256": "0ccf90587588bf83abf4e49349e7682bd02b167cbd19aca2ca43d70c86400778"
+        "bytes": 75682075,
+        "sha256": "7c316f8bf5ad0444862fea4baef5d6f3d5322ab93869756c1b8db82b0d30964c"
       }
     },
     {

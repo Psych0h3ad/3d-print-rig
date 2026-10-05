@@ -48,6 +48,25 @@ class EvidenceDeliveryTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'another model bundle'):
             validate_mounting_evidence(self.root)
 
+    def test_enclosure_delta_must_be_delivered_and_current(self):
+        self.evidence['enclosure_delta_proof'] = 'REAR_ENCLOSURE_QA.json'
+        self.save()
+        with self.assertRaisesRegex(ValueError, 'Missing enclosure delta proof'):
+            validate_mounting_evidence(self.root)
+        file = self.root / 'REAR_ENCLOSURE_QA.json'
+        proof = {'model_bundle_sha256': 'bundle-current', **{key: {'all_passed': True} for key in ['trident', 'v24', 'retention']}}
+        file.write_text(json.dumps(proof))
+        validate_mounting_evidence(self.root)
+        proof['model_bundle_sha256'] = 'old'
+        file.write_text(json.dumps(proof))
+        with self.assertRaisesRegex(ValueError, 'stale or failed'):
+            validate_mounting_evidence(self.root)
+        proof['model_bundle_sha256'] = 'bundle-current'
+        proof['retention']['all_passed'] = False
+        file.write_text(json.dumps(proof))
+        with self.assertRaisesRegex(ValueError, 'stale or failed'):
+            validate_mounting_evidence(self.root)
+
 
 if __name__ == '__main__':
     unittest.main()

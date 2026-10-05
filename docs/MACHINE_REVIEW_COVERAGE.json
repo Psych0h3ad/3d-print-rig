@@ -11,15 +11,15 @@
     "site/MOD_REGISTRY.json": "873c2c35fe99ebf20fdbb82a76992a4a5ace91ebc47f51d94c7d54c6284618a7",
     "site/MOUNT_VALIDATION.json": "b257b3d725e1ad9693dbcdbe81a8cbae019620134df5acdd92b7c2c4952e39bb",
     "site/POSITRON_ASSETS.json": "e00d990ee740c59780a3633a934bebce322044099ed533053a4dbcde4bcf8090",
-    "site/PUBLIC_CATALOG.json": "77241be40f372f4f4edac5172894dd8f77425800b88ac6006ddea9bb46650b4c",
+    "site/PUBLIC_CATALOG.json": "8c1dd33092d3f8f5f40dbb102bcbc5a3449653a4471831baab119e989b1a581d",
     "site/RATRIG_ASSETS.json": "d5490dc94c253a52b92cf456f824bbbdbca0384b347470818e87870f07cb5b58",
-    "site/REAR_ENCLOSURE_QA.json": "2f78780d2f0c7d9e14efe30f98fe8cda6e88d47f68d30ff722776dc500a4cce5",
+    "site/REAR_ENCLOSURE_QA.json": "489361a49a4f8cb47fb154754c61a74030127d1da7fd07399ef66ca923f9b83a",
     "site/V0_INSTALLATIONS.json": "0cd5d09bb48f841c867d97dc28eb1bd733d140446d823da496e98fb97f843ea8",
     "site/viewer/accessories.js": "1efeb500765a1f0483048ffc3d3c72623ba4672006b30134fe9005832d3468e3",
     "site/viewer/annex-machines.mjs": "9f86685e46c3bcc36874649cce36b645ec6c2ff6eb6d1fdee124a327e20f7e81",
-    "site/viewer/annex.html": "b5cfb7f998923b733d858cc3f417a90fb2f8e23d526ad17265b86b792f776e11",
+    "site/viewer/annex.html": "3c099f0f70b973368ecdb93ed678df878eb3f6df8266d1992415aed090f9dd78",
     "site/viewer/annex.js": "cecb8952666109d426402496df1178de2eb10490c8530e41e05ac50644da2574",
-    "site/viewer/app.js": "e628898601cd67bedff532444960c7439df20bc91c9b105b9b2689de857f9510",
+    "site/viewer/app.js": "6031377d22aaccd3f8526571eb7d07ca001258afeab1b41949a1788ece387b5e",
     "site/viewer/appearance-role.mjs": "0e1a614ef669679216cd423dbbafbafe3205bef679b59619683d8b84f3ee8d44",
     "site/viewer/appearance.js": "c50ecf4651c6ad0e68392df9eea9eb67e8bab6c9542106019c464682b45a01ab",
     "site/viewer/art/cad-background.json": "ebd23566959ec740ae479345ba5601478b53593693ff11466e4934474dd071e8",
@@ -28,7 +28,7 @@
     "site/viewer/asset-availability.js": "f011d3e3cc1700bc517e8515baac9957bf062ff8a1c8db111e3e588b7f27118f",
     "site/viewer/bed-chain-pins.mjs": "ea9c3d5f368a9509af7f99da784303eba92df5e316246c8a14942bc0f1bb3ae9",
     "site/viewer/bed-chain.mjs": "4921b2d32efb8c68c496525144d36c6602fc700a173d628f1b9c7dbc6cb5e7ce",
-    "site/viewer/bootstrap.js": "2363d300c6717cf0baff9df8d28b39e26576f9ad4e872bc5a7272b0307da2df7",
+    "site/viewer/bootstrap.js": "965c483142c938efdd16e163e8768868c47d0a535a6a1f1b30ef85970e19b3a0",
     "site/viewer/builder-ui.mjs": "99ba104579f95dce80a1c71fdf0b59c1c72a03f564f5a168dc3969b6418e9f9d",
     "site/viewer/changer-bank-model.mjs": "024cc52a5bbc61da75066a1822bca711fd6543b532a1c922e8ac0b44469a016c",
     "site/viewer/changer-bank.js": "2575f5e3fafcf4c76da258c39ab0f3af8092a8a1e74e9700df154c1d2b53475f",
@@ -36,28 +36,28 @@
     "site/viewer/community-adapter.mjs": "38d19912d8f14ccab44c905c20be7caa326d2a85a70b4e241addc211b06dbc51",
     "site/viewer/community-loader.mjs": "ecee4c0fedfa8a704d844890d66fdbd450e4be35bf2baa9651116908ee0b19d2",
     "site/viewer/community-state.mjs": "8018d585f8d53c6dce6c62bd2ed368733b171d0b956dfbdcc393389ecbb322eb",
-    "site/viewer/community.html": "fc842e2fe83527de71d2326407608c7b4857b3defa8f6dfb489622328eaa4579",
-    "site/viewer/community.js": "a7aa1dd613cd0648370dda1fa19fb7c85bbddbc34b176ed884e9ec0808fd8a35",
+    "site/viewer/community.html": "ff567070fe5744a5fce40df0c327710da668d485c4a46ea106810f5dfdbf883b",
+    "site/viewer/community.js": "458082fb859da6afbfb6e3b9d31869df6a12c501749e38bdc3eb68833b12994b",
     "site/viewer/component-selection.js": "51826e4eeaa0dd803b109d2ba7261d86e40fa509e63ffe7ce2f087efd0ee6e04",
-    "site/viewer/components.html": "27862eed79fb5c94cfab944777651a32c44464f40a8a4b4757c324ee987e83c6",
+    "site/viewer/components.html": "9c1d658346c60005251d4dc328ef74a780ad7ff1306e7b9afefc5a8346ba564c",
     "site/viewer/components.js": "21598cbc04ac03f2cb714feeb4ef68304cabcfe8aee9f0baad89016b2ec77546",
     "site/viewer/configuration-draft.mjs": "40f3194bb0e1c5a35cf8099ace53c17b05ce9fa8b2c938ed957851c9d3770d54",
     "site/viewer/configuration-editor.css": "1ce65fe33b2c2f92e5b2eab845b196a6db3175a7ec858902ec9e23e8c2f3a3f4",
-    "site/viewer/configuration-editor.mjs": "d75e6ae1c3c9d98253eec9ed56ecb928902caf296f02d9f587917f3af86560ae",
+    "site/viewer/configuration-editor.mjs": "cae46adbf20dae5e5cb876ca10cf024fb43da62801ae17b8dc61077f12a8f207",
     "site/viewer/configuration-model.js": "d4b3dda97a404a7575b774c073165147233bcb917c5cd4afb30b7c6636521af1",
-    "site/viewer/configurations.js": "18aa481946884dec44c674cf31eb5910b1e8792e24ce1471d4ab0881d3fc9952",
+    "site/viewer/configurations.js": "d649f99a5d77773bb122b440f4d32cd1a1c2700dbee2264d8e5ae616870f6dfd",
     "site/viewer/crossant-adapter.mjs": "53736f331789070429692a0336eb9412bd3c64ed157933a5107b439761878116",
     "site/viewer/crossant-belt_deform.mjs": "76401db9a4923512ae72c83fda6dd210ccf0b1d19be8a16326dfac48950df531",
     "site/viewer/crossant-chain_preview.mjs": "43c664f7c35cbb1638214efc3d77ad1acf8a47c33b4a22a50ad70c20778c4bc3",
     "site/viewer/crossant-covers.mjs": "d512e7e5c32543e4232ba0ffef722b9106637da5b0b9a3c9b315aec067072e4e",
     "site/viewer/crossant-loader.mjs": "3fa8436523f1d0760466553cf2cdbf2301d2242987fa15e51d1c7434f7b1fb04",
     "site/viewer/crossant-state.mjs": "534dc62f2c6545f556f7a19791302d04f9c06e364c67d29bf6428bd81a5c7a9f",
-    "site/viewer/crossant.html": "2e0f506133e09774d7f56bd1c2dffebd02ef7661d5d42208f7a930ea331db957",
+    "site/viewer/crossant.html": "88af9040b5c589afb082ac71d4d4f43bc8f028ff222d844f822418e94b0a448e",
     "site/viewer/crossant.js": "a7ee16602045d2ec0bc775487035c383a52db2573b6e3b260ee2c7246e4d81da",
     "site/viewer/display-preferences.mjs": "9860960509e28d17f3fd89b59e32eaa7110a1816b8e5e4703f49c3a24998aae0",
     "site/viewer/display-start.js": "2ccf9c125fa0c4f73dc1a238a9b5070c779ef1b45d8301a11acd804528ccbad6",
     "site/viewer/e3ng-model.mjs": "7d5da880bcd1c29e4fd7f25a58afeafe5bd2e6839778821da65faa6614a1495a",
-    "site/viewer/e3ng.html": "481b20b0d32c81892c329a441a773b7a29e25f193e6b4db6142c39e4247fcc5e",
+    "site/viewer/e3ng.html": "e7e17a21691e0e72d7fae7edfd87c01d449ddd6dd3de889e33d1b73e96e96cbd",
     "site/viewer/e3ng.js": "e0938c2953045c70944bf36f96a874bdc2312e16fc6821d4f956fdc154267f1f",
     "site/viewer/embed-contract.mjs": "efefdd1fb25011506d9bda403a4a16b4b01b4520a53aa1d71195a97095e77947",
     "site/viewer/embedded-boards.mjs": "44669b07f69dccdcacfe282a132f1e15da263b9f44373824a4895510297209d6",
@@ -66,8 +66,8 @@
     "site/viewer/extra-machine-loader.mjs": "274bbda379e78bd0880811a7ba95cbea56ccfdc747bcb147ef4246de5593e23a",
     "site/viewer/flexible.js": "afc4eac5d4c4b6d6247cb8172b5391258e2f32274de76983a111ded2c9437d64",
     "site/viewer/frame-mods.js": "2807dfa874f24875b7a4d34879cd22f04ea1a1dbdbb5aacac593b893f07ee751",
-    "site/viewer/gantries.html": "1a73e47f00ac7897d1e7fa8fba0994c8c0c354607c0c27ca4d00f86c958e91f9",
-    "site/viewer/gantries.js": "923596cc3bfa104882dcd93d62654906900d415b615378e8637cfeba8ca06677",
+    "site/viewer/gantries.html": "5ee94c639da9a0e221809649deca8e26628419104e0f1ebc776c4dcc6aa31624",
+    "site/viewer/gantries.js": "4b6fc31ee4458294637c37f4f69be6f6513276683c4a940262c6e27e9f2b7880",
     "site/viewer/gantry-model.js": "77bee27ae99e3944fc901c733b7fa2450b2e36deb9b789c66328e8c979db2ec4",
     "site/viewer/gcode-panel.js": "2c8eaf3484a8fc0fed2616806ac289bdc96a774d4667aa434cb7ed664f91f6b2",
     "site/viewer/gcode-preview.mjs": "a206f28d86363c4cf14edf04ea61af3c5f833e537d95016eb1ca54495da2a004",
@@ -78,16 +78,16 @@
     "site/viewer/head-navigation.mjs": "f676d62e1860079b7ecffe1088787c6ee3ceeed6f090b16b0a4878d937700542",
     "site/viewer/head-validation-ui.mjs": "e7852ba7382943fa85b9e49f3b2002e18ef3e327a10ca9b8ba8277f0ef7aee04",
     "site/viewer/head-validation.mjs": "2ff01996ff2feb2c3cbe1ef6e60adf1a1dc6cc2a092cca351efa4d6cbe9e14b2",
-    "site/viewer/i18n.mjs": "971480958997666004b5a27c31da15909a830c6bca87727f505b87870b01407d",
-    "site/viewer/index.html": "3b26dd47c70514c4f1cd8d14834cf7aad0bc8fd1792bf77255ea1dedab56ac41",
-    "site/viewer/kit-reference.html": "8c71950b625ee1091f2bd0d25fb3db426ff5646aec7eb055be88e0a725a321c4",
+    "site/viewer/i18n.mjs": "642ceb891c52c8332f6d16383e507e2c28c1b752b302a0efa6e53772a3957f45",
+    "site/viewer/index.html": "aa2cc318f307a7be64dcf3abee44a6e57c2ce0fb792aec0ba33fdba7cc79640d",
+    "site/viewer/kit-reference.html": "9f24c537e496572cc59ac5148b763d244534b67bf1047d87636e9e726a490e32",
     "site/viewer/kit-reference.js": "cdb1b19e5e3912f6f307f864315bb3a3859ec121af64e7dab5c1e3c85480f645",
     "site/viewer/languages.mjs": "ba6a5cd8e1d86849ca3405b62a9b4f3757b10bb6f195f9990b68d12e15a86424",
     "site/viewer/lighting-animation.mjs": "ee2a0ac739d69f7d647970d4f30c967dc835e028b077420472fcad45b1aeb760",
     "site/viewer/lighting-state.mjs": "980c984e27b4befb063e6332a919b4b54d95e43f8b7d1125a6792c0fd08b586e",
     "site/viewer/lighting.js": "f45648f622e9ee8976e101676d0a8699c2140bfd800ff798c03453047970cecf",
     "site/viewer/machine-head-model.mjs": "03db7c7d900ff7f5b2c0770170535e407dd15795a34fdd05e921599999d09387",
-    "site/viewer/machine-heads.js": "53283bff702720c5f57184eea8821dbf1ecf67b029fd8ce3f05e76bd4c7b6360",
+    "site/viewer/machine-heads.js": "6fe48d896bef48eb22b1be8c074250136a869ad6209523af55a9fd22c2bfe4cc",
     "site/viewer/machines.js": "de0df76326354fc0fecd932c140cfd5f2535b54220f856d693fb9dcb2db3012e",
     "site/viewer/mercury-tube-routes.mjs": "d27d615757ad1f73240934053ae3c293e92e57c09584c3bd767fcf877fecffee",
     "site/viewer/micron-adapter.mjs": "6177cae5e22f1f414ba2a74d3c365b2454f3301e3b008c94fffb31945369ea5d",
@@ -95,7 +95,7 @@
     "site/viewer/micron-flexible-pins.mjs": "9e386712b40c4b8116583ec34a7f56709cb25f7dfc93339c9c68faa39d1cd2bd",
     "site/viewer/micron-flexible.mjs": "f60dbb5f5765a15dfc34ab025f975f139fe869e43304938bf32d3312ab05b18b",
     "site/viewer/micron-tube-routes.mjs": "c69d79d6fdbfee5338fe365ca9542323714add2a834e34aafec37395d19614b1",
-    "site/viewer/micron.html": "adbdba59565ddaebcdc3cf3cb85a1899826a0e9778712a84f9e9cd98ae0c633c",
+    "site/viewer/micron.html": "094503e45b27a2674f09275ac411a1beb0514eac64fb99aeb09bb73b2f396af5",
     "site/viewer/micron.js": "27c62c762a6055e19bff7a13ac42f6a491ed5b319a351ef9a2c02532bebeeb0e",
     "site/viewer/model-loader.js": "ce28c0df722a83db6bb39d793888e9fa7438f466d64a927657eefad5a5e3808d",
     "site/viewer/model-progress.mjs": "6b41a2b9f7626039b7e6a058f4d2619623250c8535275362c371cbe8a1e98d5b",
@@ -108,8 +108,8 @@
     "site/viewer/positron-fold.mjs": "7368d3dd6e38e237f6ff9e9c66de9f167096c6a72c867238bb8d21027b37d067",
     "site/viewer/positron-loader.mjs": "e213f57d4ee250d3116e86f3b19637e0b3f446bf6f50fe4cc7d6f53ac1705f0e",
     "site/viewer/positron-state.mjs": "8296d1b775fbca04462f5518a3126d25a53d372ddebadb0c2adff67968fee9ea",
-    "site/viewer/positron.html": "1a1ca3c4e5ebed618a5fbdde1c17fb6d5af4995e0e44c2dcfc1c3cb4c37be93f",
-    "site/viewer/positron.js": "6d3ad8101aa5bdba83fa572d219bd15749b04cb9b87f37ce5e4a6c9553659c46",
+    "site/viewer/positron.html": "090c3f6e0fac3afbd18665ab956a250f4a341566b4ddbada4c2f040eb085bf98",
+    "site/viewer/positron.js": "8b05502776e22a6ce0eab4667f94995dc6b6d2118d3b30d296a7da8cad7bccd9",
     "site/viewer/printer-gantry.mjs": "f2f8aca7cc040f3911ab2b31b982d914df930c58cb5c63d2db4374e0b9b1cff5",
     "site/viewer/probe-checks.js": "ea1aef3e30bf7d11d3cbca0e3272704428ed9ef5670ec0d154efdede824c0222",
     "site/viewer/probe-mounts.js": "06a66eade4bdc5eb8c8490b4f18c35597f0f66693611a00b39995e390c61e850",
@@ -121,12 +121,12 @@
     "site/viewer/ratrig-loader.mjs": "191cd56ade87050054c8bb408ed4083db76123226594b57e675c3165a778617f",
     "site/viewer/ratrig-machines.mjs": "6f5c7fbad04c29c3827deaea5ed6a556bcd927ab7c3d9505beff4200a0392ba0",
     "site/viewer/ratrig-ui-state.mjs": "58e9d9727047d366ffe400325f8381b047b3aa29ddc49a1a3b68c811cfd3ad08",
-    "site/viewer/ratrig.html": "b9c6a372678affea4d9f44aff737e9695f49635b97163207248e94b91741ad23",
+    "site/viewer/ratrig.html": "7e68c493124539b9b785ce00054ccfe5325e604d4b82d358573ec5d7ed941f82",
     "site/viewer/ratrig.js": "5b08b49935b900a284d1eb5d4a6ba37145262f6f837830d749d7efb688905ec5",
     "site/viewer/remorph-adapter.mjs": "5bb6f83844e91238bd2a73d57185ec378eb70862f1284935304aaad8ec0209be",
     "site/viewer/remorph-belts.mjs": "c75ae005bf795485430cc1188bb51fc647244585f5e0407c9b9586cf79dd082f",
     "site/viewer/remorph-environment.mjs": "6fb8bb7c9e6491287c5d0b737248116b439cea560aee50b929c2af1c18e2815d",
-    "site/viewer/remorph.html": "9c4bf7f733779b1df6ff715825a99db7e2c690336aecb73b281c0adfb3dc9520",
+    "site/viewer/remorph.html": "440eddf32c1d63b68f26a9e8dd536d9d408ea5666932eee7a82c515d37a6e032",
     "site/viewer/remorph.js": "b25da2b5ee95264125a408a769bc7d25e6d98db832c8454a8e00453c3b065692",
     "site/viewer/render-export.js": "5932066eed0ef909b72bf4b00f1a3d88324bb2d3f92869d930ee900f707b1497",
     "site/viewer/responsive-camera.mjs": "a5087f024910f351f1deca2caa00f8e26ffbffaec6ece167c0120b59036ca1b8",
@@ -136,16 +136,16 @@
     "site/viewer/theme-toggle.css": "4e62a8462e0b9ed5c6653d7dcb43cf66a36893b1be13b5b267e4e0af3f85613b",
     "site/viewer/toolchanger-model.js": "0688c022fbab64a87c2e33d823880ec90afaa05223f3d4a3f2f454a258e7c443",
     "site/viewer/toolchangers.css": "aeb1af01008eeb68e8915ccf6a73a4944f2d70ad906feccca6da2579b4dba488",
-    "site/viewer/toolchangers.html": "dacfeda32e6b50587fa3df3c5f2b9adaee81ab61affdc5aa67b3d77a1417bc1c",
+    "site/viewer/toolchangers.html": "3c58e7eb3d9f025e85a5bf3bd0bc0df4d04f1fde3c5d97c50e69bb03b8e3c114",
     "site/viewer/toolchangers.js": "8a9778481abb13d2e144a649404bb35695ef76d0f1866601a66061d227dd0dd3",
     "site/viewer/toolhead-builder.mjs": "6ec7788c796225ad9e846684d16b484269fdcf64b171d55c0fda5c45304a4516",
     "site/viewer/toolheads.css": "a03941a53ad7be71c88335121d4ef8239365f7a7b60091ab296dedc92793804a",
-    "site/viewer/toolheads.html": "6b502962d317b56b86b1974740d79cd799d3d3c2f076bd70f2e6fabbd30a84f8",
-    "site/viewer/toolheads.js": "7ba44073ee9d9ac438fb277d9ae17ddfb7fab111b7ebc11f798828152ca7a793",
-    "site/viewer/translation-engine.mjs": "59b4da15aa1f296a364770caae2cc6a95ae0e3938331c35ac736cf0aa8ad4681",
+    "site/viewer/toolheads.html": "5701489615ef07ad397869220a46951d4a232e47e63ea587df016e72a376bb96",
+    "site/viewer/toolheads.js": "9d7b5ff637d271d40ae8cf5a38fe90f043aeafad50a7514f57e05cc546c53cf0",
+    "site/viewer/translation-engine.mjs": "f8fc3bbed8f367d0c54f4b45a1a3616525fefbbd0ba0b2e74138d52e595652df",
     "site/viewer/trident-belts.mjs": "2e87689c8830c00da722598a48ccfbd4c05d31a9879ba871e583d0e0475b3deb",
     "site/viewer/trident-motion.mjs": "a49660784f83f66326726f51f2c9d82980f8e03c2cdf9f6ce06e09edc7876f90",
-    "site/viewer/trident.html": "3ff39f93aecbc9ed71957ee4bd32b9a9b3173e5fc7a31c46cd3a977ab644b302",
+    "site/viewer/trident.html": "fa70b68967ee982dff82c020cca39f1efc96e42d2210902fc69b24712153bfae",
     "site/viewer/v0_adapter.mjs": "b25f6ec8b11c3f0769a092db308191c30400e2c3872587f38d61d8dec613de4c",
     "site/viewer/v0-app.js": "3240925450e5cde2663401597bc6b5da68cc352a12ce6e17ebc82d1750fbc4d6",
     "site/viewer/v0-belts.mjs": "948e42567a0013aa58217f9a877c9387159934bf848215d8d5a1d9515f911e5d",
@@ -155,28 +155,29 @@
     "site/viewer/v0-installations.mjs": "a72fbce7f4a7c5297d706b751bbe48f009878d8b59e23b5fbd173d5b768d772e",
     "site/viewer/v0-mod-library.mjs": "897dcc582eb8dfa53141c173a8d8536cd343a08a384fe9510006e94168aa3d7b",
     "site/viewer/v0-tophat.mjs": "1c65737cefc844de5ab72663dc4c38ba929f98dec76fe8b318298142305bfd2f",
-    "site/viewer/v0.html": "2c9a1b2d906c00e2363b0be7af188d17ad97cd43e5624032a5986be02d5000b7",
+    "site/viewer/v0.html": "325974026d41d3aa16f9ed6f244d0c27787ad538e139c4b9b9b4968aa3c36975",
     "site/viewer/v24_adapter.mjs": "b7aa62783a2df21b466fb1a4d633bb27309181d4b1b94580b54ac43a987e7bd3",
     "site/viewer/v24_matrix_adapter.mjs": "f22db0487b41926a1c6cbbabfc46fbd463e69d67ed34aebcb28edda91a84c264",
-    "site/viewer/v24-app.js": "1a046324443bd3da9ad47b2d4e8eb19846df349192c50d57c22f91f9adc2ceaa",
+    "site/viewer/v24-app.js": "b7d3e2d147497c9219e8d5f79c9d2d9dddfcd4b1ad8080d730ee33011516066d",
     "site/viewer/v24-belts.mjs": "4bd352513ef54386383e3a7f525130cc64238c1c1ca2d6a3f3f2c577091caa4b",
-    "site/viewer/v24-bootstrap.js": "a83e68a923ed9c4e18ce2daa855dd15d17c0452b59708e128b79291c9ab27f65",
+    "site/viewer/v24-bootstrap.js": "db1458722942c973c4008498c56c4d4edb7aaeb1358825ceb1617392ed05ed8e",
     "site/viewer/v24-flexible.mjs": "4de2768da445f9eef0d59ead19639302112d082c26084fa80d48b6f98635470b",
-    "site/viewer/v24-reference.html": "1efd2f2ab26cc4b0d21c232a027173b6bdb3daba28381dd22b5b2756875f7b7f",
-    "site/viewer/v24-reference.js": "eaace952d3c0b458ab06457892146988bc1fdbacada6faac96ca9ba5927c2de8",
-    "site/viewer/v24.html": "3c9ee71bb62838d810d2fe65f895892d5f77ebc4c5a94d0e44502384533e7a51",
-    "site/viewer/vanilla-trident.js": "31d0f7be8e347202700ad440773f1bda203359014a8e4087cf0889a86c690b75",
+    "site/viewer/v24-reference.html": "c4b68de2dd4e555aa9d9e6f5b27bb926cd001e9534726525e2fead88ad18b12f",
+    "site/viewer/v24-reference.js": "e31b7b05df1509b7260bf93270761002c3931b97bdee82278486652f7ccb21af",
+    "site/viewer/v24.html": "4a311f776dc8977cb4332d6800995564c5fd61f1b19c6dfbe43ad9bda8f55e98",
+    "site/viewer/vanilla-trident.js": "cfa2ad94d3527c8c748872c2b094a6bea9c7a3a75f76ebb5d08418a0a129ecfb",
     "site/viewer/viewer.css": "a59b3f5f2ad1c8d3a36f6dd7f053df49d851c3b1d75a182c22fc4108336bc829",
-    "site/viewer/workspace-choices.mjs": "0154ae076882aa8fb56044731fdba206f7a60dc3c37bbc05da6dd44065589986",
+    "site/viewer/workspace-choices.mjs": "48a2e70c8c3956e6e713f27ba88203355bbbfcffc06d59eb865f74e58f79cb4b",
     "site/viewer/workspace-entry.mjs": "7e4c8f98212e989784bda6bb8415bf2c335376c5d79ed5a2da26d5deabaa3615",
     "site/viewer/workspace-layout.mjs": "738c040595ec99155ce29dcf2e2fb4014bf02b6742fcf03b6d518d3ac26b4fb5",
     "site/viewer/workspace-lifecycle.mjs": "6684e77acebd6489e552ff85d52a4a8b8588b1e34153bcfc8c0921b66bf109f5",
     "site/viewer/workspace-navigation.mjs": "5c6f4dcd051bb1336e4399932d022e0328a2c9229870b1b79c7b0003491e6a4d",
     "site/viewer/workspace-return.mjs": "2fe52644cc6f4d63178a85007cafd1b23c052e78e0186bfd4d28bed6c812843e",
-    "site/viewer/workspace-router.mjs": "2c4a5c88c08e777d3322cbe4a6c629240b6e01076360b0030d7152ab7e75f56c",
+    "site/viewer/workspace-router.mjs": "7e722b74c8d5a49625f91523aa43c3e51c7df37e23761ab95e8f801f67a500b8",
     "site/viewer/workspace-scroll.mjs": "048fe4a04b0a52b9cc23358733fc87529ac6bc46b0bd7309b96ea8e944874418",
+    "site/viewer/workspace-sections.mjs": "f8e22c35f88b94e7816ecdc3f24e666f9395b070b34f0778ae37d003dcafc6db",
     "site/viewer/workspace-share.mjs": "e6c4054688ce084e0759d2fb4d529ea4df55e8b0190c49607fc621773b868729",
-    "site/viewer/workspace-ui.mjs": "9e6ccd69ac834911a5e33b698ea744699d4a4068d87a362ff0027263eae41243",
+    "site/viewer/workspace-ui.mjs": "95ea178c7a351362b9a9af13cb9c2cbda517969ebfdadeb3ec210c5a4844bb66",
     "site/viewer/workspace.css": "afe321bd2fdaf8d2c23b8f1bd217ce29d35b660fc037125d2457da2379adb22d"
   },
   "machines": [
@@ -470,6 +471,11 @@
           "report": "SIBOOR_ROUTES_QA_77.json",
           "sha256": "86b750b9a98dd8e2273cf6a744123b7b4ee5967dabf881b81ab6c77eddb11151",
           "scope": "Actual source, enabled belts and all 47 chain links preserved throughout sampled motion. Unregistered chain deformation uses an explicitly unverified reference fallback."
+        },
+        {
+          "report": "site/REAR_ENCLOSURE_QA.json",
+          "sha256": "489361a49a4f8cb47fb154754c61a74030127d1da7fd07399ef66ca923f9b83a",
+          "scope": "Rear panel/foam native outline, original exhaust interface, added-body intersections and per-part retained mounting evidence. Compressible source seal contact is distinct from rigid-body clearance."
         }
       ]
     },
@@ -484,8 +490,13 @@
       "evidence": [
         {
           "report": "audit_trident_sizes.mjs",
-          "sha256": "9db7fa1555022ec81985c244fbd0a6e7732ff92293cf47fc28e3cc63ba7ed22b",
+          "sha256": "7c2358d40cabe63e23489665d3b99d640fab94960052cdc5c321a98a70c1d327",
           "scope": "All three actual size models: frame and bed dimensions, drive/base motion, registered heads, nozzle gap, dynamic XY route sweeps and blocked incompatible docks."
+        },
+        {
+          "report": "site/REAR_ENCLOSURE_QA.json",
+          "sha256": "489361a49a4f8cb47fb154754c61a74030127d1da7fd07399ef66ca923f9b83a",
+          "scope": "Rear panel/foam native outline, original exhaust interface, added-body intersections and per-part retained mounting evidence. Compressible source seal contact is distinct from rigid-body clearance."
         }
       ]
     },
@@ -500,8 +511,13 @@
       "evidence": [
         {
           "report": "audit_trident_sizes.mjs",
-          "sha256": "9db7fa1555022ec81985c244fbd0a6e7732ff92293cf47fc28e3cc63ba7ed22b",
+          "sha256": "7c2358d40cabe63e23489665d3b99d640fab94960052cdc5c321a98a70c1d327",
           "scope": "All three actual size models: frame and bed dimensions, drive/base motion, registered heads, nozzle gap, dynamic XY route sweeps and blocked incompatible docks."
+        },
+        {
+          "report": "site/REAR_ENCLOSURE_QA.json",
+          "sha256": "489361a49a4f8cb47fb154754c61a74030127d1da7fd07399ef66ca923f9b83a",
+          "scope": "Rear panel/foam native outline, original exhaust interface, added-body intersections and per-part retained mounting evidence. Compressible source seal contact is distinct from rigid-body clearance."
         }
       ]
     },
@@ -516,8 +532,13 @@
       "evidence": [
         {
           "report": "audit_trident_sizes.mjs",
-          "sha256": "9db7fa1555022ec81985c244fbd0a6e7732ff92293cf47fc28e3cc63ba7ed22b",
+          "sha256": "7c2358d40cabe63e23489665d3b99d640fab94960052cdc5c321a98a70c1d327",
           "scope": "All three actual size models: frame and bed dimensions, drive/base motion, registered heads, nozzle gap, dynamic XY route sweeps and blocked incompatible docks."
+        },
+        {
+          "report": "site/REAR_ENCLOSURE_QA.json",
+          "sha256": "489361a49a4f8cb47fb154754c61a74030127d1da7fd07399ef66ca923f9b83a",
+          "scope": "Rear panel/foam native outline, original exhaust interface, added-body intersections and per-part retained mounting evidence. Compressible source seal contact is distinct from rigid-body clearance."
         }
       ]
     },
@@ -534,6 +555,11 @@
           "report": "MOTION_ASSETS_QA_77.json",
           "sha256": "3a537da8ecb7fb268673f631ef80c115ede9b0598bcb4db86c5930e623bf838f",
           "scope": "Actual exported models: travel grid, enabled flexible visibility, rigid group transforms, belt envelopes, enclosure switches and reverse/reset. Belt teeth/clamp cuts, tension and body swept clearance are separate."
+        },
+        {
+          "report": "site/REAR_ENCLOSURE_QA.json",
+          "sha256": "489361a49a4f8cb47fb154754c61a74030127d1da7fd07399ef66ca923f9b83a",
+          "scope": "Rear panel/foam native outline, original exhaust interface, added-body intersections and per-part retained mounting evidence. Compressible source seal contact is distinct from rigid-body clearance."
         }
       ]
     },
@@ -550,6 +576,11 @@
           "report": "MOTION_ASSETS_QA_77.json",
           "sha256": "3a537da8ecb7fb268673f631ef80c115ede9b0598bcb4db86c5930e623bf838f",
           "scope": "Actual exported models: travel grid, enabled flexible visibility, rigid group transforms, belt envelopes, enclosure switches and reverse/reset. Belt teeth/clamp cuts, tension and body swept clearance are separate."
+        },
+        {
+          "report": "site/REAR_ENCLOSURE_QA.json",
+          "sha256": "489361a49a4f8cb47fb154754c61a74030127d1da7fd07399ef66ca923f9b83a",
+          "scope": "Rear panel/foam native outline, original exhaust interface, added-body intersections and per-part retained mounting evidence. Compressible source seal contact is distinct from rigid-body clearance."
         }
       ]
     },
@@ -566,6 +597,11 @@
           "report": "MOTION_ASSETS_QA_77.json",
           "sha256": "3a537da8ecb7fb268673f631ef80c115ede9b0598bcb4db86c5930e623bf838f",
           "scope": "Actual exported models: travel grid, enabled flexible visibility, rigid group transforms, belt envelopes, enclosure switches and reverse/reset. Belt teeth/clamp cuts, tension and body swept clearance are separate."
+        },
+        {
+          "report": "site/REAR_ENCLOSURE_QA.json",
+          "sha256": "489361a49a4f8cb47fb154754c61a74030127d1da7fd07399ef66ca923f9b83a",
+          "scope": "Rear panel/foam native outline, original exhaust interface, added-body intersections and per-part retained mounting evidence. Compressible source seal contact is distinct from rigid-body clearance."
         }
       ]
     },
@@ -582,6 +618,11 @@
           "report": "MOTION_ASSETS_QA_77.json",
           "sha256": "3a537da8ecb7fb268673f631ef80c115ede9b0598bcb4db86c5930e623bf838f",
           "scope": "Actual exported models: travel grid, enabled flexible visibility, rigid group transforms, belt envelopes, enclosure switches and reverse/reset. Belt teeth/clamp cuts, tension and body swept clearance are separate."
+        },
+        {
+          "report": "site/REAR_ENCLOSURE_QA.json",
+          "sha256": "489361a49a4f8cb47fb154754c61a74030127d1da7fd07399ef66ca923f9b83a",
+          "scope": "Rear panel/foam native outline, original exhaust interface, added-body intersections and per-part retained mounting evidence. Compressible source seal contact is distinct from rigid-body clearance."
         }
       ]
     },
@@ -598,6 +639,11 @@
           "report": "MOTION_ASSETS_QA_77.json",
           "sha256": "3a537da8ecb7fb268673f631ef80c115ede9b0598bcb4db86c5930e623bf838f",
           "scope": "Actual exported models: travel grid, enabled flexible visibility, rigid group transforms, belt envelopes, enclosure switches and reverse/reset. Belt teeth/clamp cuts, tension and body swept clearance are separate."
+        },
+        {
+          "report": "site/REAR_ENCLOSURE_QA.json",
+          "sha256": "489361a49a4f8cb47fb154754c61a74030127d1da7fd07399ef66ca923f9b83a",
+          "scope": "Rear panel/foam native outline, original exhaust interface, added-body intersections and per-part retained mounting evidence. Compressible source seal contact is distinct from rigid-body clearance."
         }
       ]
     },
@@ -614,6 +660,11 @@
           "report": "MOTION_ASSETS_QA_77.json",
           "sha256": "3a537da8ecb7fb268673f631ef80c115ede9b0598bcb4db86c5930e623bf838f",
           "scope": "Actual exported models: travel grid, enabled flexible visibility, rigid group transforms, belt envelopes, enclosure switches and reverse/reset. Belt teeth/clamp cuts, tension and body swept clearance are separate."
+        },
+        {
+          "report": "site/REAR_ENCLOSURE_QA.json",
+          "sha256": "489361a49a4f8cb47fb154754c61a74030127d1da7fd07399ef66ca923f9b83a",
+          "scope": "Rear panel/foam native outline, original exhaust interface, added-body intersections and per-part retained mounting evidence. Compressible source seal contact is distinct from rigid-body clearance."
         }
       ]
     },
@@ -630,6 +681,11 @@
           "report": "MOTION_ASSETS_QA_77.json",
           "sha256": "3a537da8ecb7fb268673f631ef80c115ede9b0598bcb4db86c5930e623bf838f",
           "scope": "Actual exported models: travel grid, enabled flexible visibility, rigid group transforms, belt envelopes, enclosure switches and reverse/reset. Belt teeth/clamp cuts, tension and body swept clearance are separate."
+        },
+        {
+          "report": "site/REAR_ENCLOSURE_QA.json",
+          "sha256": "489361a49a4f8cb47fb154754c61a74030127d1da7fd07399ef66ca923f9b83a",
+          "scope": "Rear panel/foam native outline, original exhaust interface, added-body intersections and per-part retained mounting evidence. Compressible source seal contact is distinct from rigid-body clearance."
         }
       ]
     },
@@ -710,6 +766,11 @@
           "report": "FYSETC_REFERENCE_QA_77.json",
           "sha256": "7c370c4e27ffb478f32d4807e8530f1a2bb28501a0393ff6d79fcf0da653f7c1",
           "scope": "All 1388 native part identities, visibility, transforms and production palette roles. Source reference; motion is not offered."
+        },
+        {
+          "report": "site/REAR_ENCLOSURE_QA.json",
+          "sha256": "489361a49a4f8cb47fb154754c61a74030127d1da7fd07399ef66ca923f9b83a",
+          "scope": "Rear panel/foam native outline, original exhaust interface, added-body intersections and per-part retained mounting evidence. Compressible source seal contact is distinct from rigid-body clearance."
         }
       ]
     },
@@ -1028,9 +1089,15 @@
   "browser_review": {
     "browser": "Codex in-app browser",
     "changed_machine_views": [
-      "positron_v322",
-      "lh_stinger_200"
+      "voron_trident_350",
+      "voron_v24_350_printed"
     ],
+    "screenshots": [
+      "browser-enclosure-77/trident-350-rear-local.png",
+      "browser-enclosure-77/v24-350-rear-local.png"
+    ],
+    "default_language": "en",
+    "dynamic_option_groups_english_verified": true,
     "all_52_visually_reviewed": false,
     "windows_chrome_verified": false,
     "mobile_touch_device_verified": false
@@ -1153,6 +1220,11 @@
       ],
       "physical_mobile_safari_verified": false
     },
-    "retention_scope": "Upstream UX controls retained; complete current source regressions rerun after English/default-language integration. Geometry/model review is separately refreshed for this release."
+    "retention_scope": "Upstream draft controls retained; complete source regressions rerun after English/default-language integration. Actual model review is separately refreshed for this release."
+  },
+  "loading_review": {
+    "report": "PRODUCTION_LOADING_QA_77.json",
+    "sha256": "488f940371cfc99249ab263d2fb1cba2157b67a17e42fc71e66c0fd979f451a7",
+    "scope": "Current production loaders, measured progress, checksum identity and cleanup; GPU rendering is separate."
   }
 }

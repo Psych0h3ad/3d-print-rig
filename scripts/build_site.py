@@ -51,6 +51,16 @@ def validate_mounting_evidence(target):
         evidence = json.loads((target / name).read_text(encoding='utf-8'))
         if evidence['model_bundle_sha256'] != bundle['sha256']:
             raise ValueError(f'{name} belongs to another model bundle.')
+        if evidence.get('enclosure_delta_proof'):
+            proof_path = PurePosixPath(evidence['enclosure_delta_proof'])
+            if proof_path.is_absolute() or '..' in proof_path.parts or '\\' in str(proof_path) or ':' in str(proof_path):
+                raise ValueError('Invalid enclosure delta proof path.')
+            file = target / proof_path
+            if not file.is_file():
+                raise ValueError('Missing enclosure delta proof in built assets.')
+            proof = json.loads(file.read_text(encoding='utf-8'))
+            if proof.get('model_bundle_sha256') != bundle['sha256'] or not all(proof.get(key, {}).get('all_passed') for key in ['trident', 'v24', 'retention']):
+                raise ValueError('Enclosure delta proof is stale or failed.')
         for pins in [evidence['input_sha256'], *[m['input_sha256'] for m in evidence['machines'].values()]]:
             for relative, expected in pins.items():
                 path = PurePosixPath(relative)
