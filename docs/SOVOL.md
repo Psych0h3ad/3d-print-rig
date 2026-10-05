@@ -6,6 +6,10 @@ The manufacturer’s complete assembly contains 719 native parts. The viewer
 offers camera, palette, theme, grid, configuration-save and image-export controls.
 Motion and toolhead/mod swapping are not registered for this reference.
 
+The display mesh retains the native CAD tessellation, including fan blades,
+threads and rail details. Only zero-area triangles are omitted; no mesh
+decimation is applied.
+
 Four Z carrier seats and their mounting axes are aligned to the source gantry.
 The gantry/head are displayed 10 mm above the source pose; the inspected nozzle
 has about 8.03 mm clearance above the bed. Seven overlapping source instances

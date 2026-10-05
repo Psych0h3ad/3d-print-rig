@@ -1,5 +1,5 @@
 import {circleBeltRoute} from './v0-belts.mjs?v=trident-clearance-35';
-import {monolithBeltGeometry} from './monolith-belts.mjs?v=trident-clearance-35';
+import {monolithBeltGeometry} from './monolith-belts.mjs?v=cc31216a6676936d5cd6';
 
 // Native printed V2.4 R2 A/B belt contacts, in CAD millimetres (350 mm).
 // VoronDesign/Voron-2 a192410e27ea345644ae5c4b29b4c9c40cbe1a73.

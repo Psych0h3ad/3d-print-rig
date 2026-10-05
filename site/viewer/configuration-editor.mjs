@@ -1,6 +1,6 @@
 import {configurationLabel} from './configuration-draft.mjs?v=40f3194bb0e1c5a35cf8';
 import {workspaceListen} from './workspace-lifecycle.mjs';
-import {translate} from './i18n.mjs?v=bf6af5624d58ebfea9ec';
+import {translate} from './i18n.mjs?v=8d2d79009773fee64e49';
 
 export function setupConfigurationEditor(catalog,{ids,apply,discard,undo}){
  const $=id=>document.getElementById(id),make=(tag,text,cls)=>{const n=document.createElement(tag);if(text)n.textContent=text;if(cls)n.className=cls;return n};

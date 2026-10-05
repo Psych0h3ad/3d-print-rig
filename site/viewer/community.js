@@ -7,7 +7,7 @@ import {loadCommunity} from './community-loader.mjs?v=315fad8a98184500473f';
 import {communitySchema,validateCommunityState,communityMotionEnabled} from './community-state.mjs?v=97f7806821349b272754';
 import {setupMachineNavigation} from './machines.js?v=bbb10b08e04530c1040e';
 import {sceneLightingState} from './scene-lighting-state.mjs';
-import {translate} from './i18n.mjs?v=bf6af5624d58ebfea9ec';
+import {translate} from './i18n.mjs?v=8d2d79009773fee64e49';
 import {rememberDisplayControl} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
@@ -58,7 +58,7 @@ export async function mount(scope){
  function describe(){if(!current)return;$('machineDescription').textContent=t(descriptions[machine]);$('sourceNotice').hidden=!sourceNotices[machine];$('sourceNotice').textContent=sourceNotices[machine]?t(sourceNotices[machine]):''}
  workspaceListen(window,'rig-language-change',describe);
  try{
-  const response=await fetch('../COMMUNITY_MACHINES_ASSETS.json?v=ef8bae3a20c6cba54d3a');if(!response.ok)throw Error('Native catalog unavailable');current=await loadCommunity(await response.json(),machine);scene.add(current.root);axisKeys=Object.keys(current.profile.axes);const zeroAxes=()=>Object.fromEntries(axisKeys.map(k=>[k,0]));
+  const response=await fetch('../COMMUNITY_MACHINES_ASSETS.json?v=f8d9d41f8082b1d9c88d');if(!response.ok)throw Error('Native catalog unavailable');current=await loadCommunity(await response.json(),machine);scene.add(current.root);axisKeys=Object.keys(current.profile.axes);const zeroAxes=()=>Object.fromEntries(axisKeys.map(k=>[k,0]));
   for(const k of axisKeys)if(!$(k)){const label=document.createElement('label'),span=document.createElement('span'),value=document.createElement('strong'),input=document.createElement('input');label.htmlFor=k;span.className='axislabel';span.append(current.profile.axis_labels?.[k]||k.toUpperCase());value.id=k+'Value';span.append(value);label.append(span);input.id=k;input.type='range';input.step='any';$('z').after(label,input)}
   state={schema:communitySchema,machine,axes:zeroAxes(),palette:{...current.profile.palette_defaults},references:false,grid:false,night:$('night').checked};
   $('machineTitle').textContent=current.profile.title;document.title=current.profile.title+' · 3D Print Rig';describe();$('machineRevision').textContent=current.profile.source.version;

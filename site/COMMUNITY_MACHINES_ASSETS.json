@@ -1,5 +1,5 @@
 {
-  "version": "native-community-sv08-78",
+  "version": "native-community-belts-79",
   "base_url": "https://psych0h3ad.github.io/3d-print-rig-community-models/",
   "local_directory": "community-machines-assets",
   "machines": {
@@ -296,22 +296,22 @@
       "parts": 719,
       "files": {
         "assembly_manifest.json": {
-          "path": "sv08/assembly_manifest.json",
+          "path": "sv08-v2/assembly_manifest.json",
           "bytes": 237566,
-          "sha256": "721f39e7c13268bc7f0eabbe5f9770cdb7cd151809dc503c18fa96fc52b01b9d"
+          "sha256": "04e6fbd0d100a2591af35addcf4840f83c598b6055903b6a0aa741e126767779"
         },
         "machine_profile.json": {
-          "path": "sv08/machine_profile.json",
+          "path": "sv08-v2/machine_profile.json",
           "bytes": 654,
           "sha256": "a3cfbbaffea070b1be0496ddce9af1709e40839301ba79668a54a2029a73337c"
         },
         "model.glb": {
-          "path": "sv08/model.glb.gz",
-          "bytes": 28255180,
-          "sha256": "f2633ecfa8fd6786d38788fcc4e93b743eb2e5b276fdc618f87192357110049a",
+          "path": "sv08-v2/model.glb.gz",
+          "bytes": 34433547,
+          "sha256": "17e9bd35f37fcc4bcfad1a3a6c3929bf4047d186b60f26dbe4262eeeb2d3522d",
           "encoding": "gzip",
-          "decoded_bytes": 71649512,
-          "decoded_sha256": "a8e0e472b428d536fb8bb39b2b27ea1bab3337decad8ec065212439b4bf632e6"
+          "decoded_bytes": 89412160,
+          "decoded_sha256": "95af277a4543096620b30f64d2d3fb6403fa6f07ca624719734d1c3a35c51ea3"
         }
       }
     }

@@ -5,6 +5,7 @@ import {monolithBeltGeometry} from '../site/viewer/monolith-belts.mjs';
 import {v24FlexibleState} from '../site/viewer/v24-flexible.mjs';
 const fixture=JSON.parse(await readFile(new URL('fixtures/v24-belt-contacts.json',import.meta.url),'utf8'));
 const near=(a,b,t=1e-5)=>assert(Math.abs(a-b)<t,`${a} != ${b}`);
+const signedVolume=g=>{const p=g.attributes.position.array,a=g.index.array;let v=0;for(let i=0;i<a.length;i+=3){const x=a[i]*3,y=a[i+1]*3,z=a[i+2]*3;v+=(p[x]*(p[y+1]*p[z+2]-p[y+2]*p[z+1])+p[x+1]*(p[y+2]*p[z]-p[y]*p[z+2])+p[x+2]*(p[y]*p[z+1]-p[y+1]*p[z]))/6}return v*1e9};
 let routes=0,maximumLengthChange=0;
 for(const row of fixture.records){
  const circles=v24BeltCircles(row.size,row.name),rest=v24BeltRoute(row.size,row.name,0,0,row.z);
@@ -22,6 +23,9 @@ for(const row of fixture.records){
   maximumLengthChange=Math.max(maximumLengthChange,Math.abs(route.length-rest.length));
   if(y%50===0||y===row.size){
    const g=monolithBeltGeometry(route),p=g.attributes.position,edges=new Map();
+   const volume=signedVolume(g),envelope=route.length*route.width*route.thickness;
+   assert(volume>0,'Moving belt faces point inward');assert(Math.abs(volume/envelope-1)<.002,'Belt swept volume differs from its route');
+   assert(g.boundingBox&&g.boundingSphere,'Moving belt bounds are stale');
    for(let i=0;i<p.count;i+=4){near(Math.hypot(p.getX(i+1)-p.getX(i),p.getZ(i+1)-p.getZ(i))*1000,1.38,4e-5);near((p.getY(i+2)-p.getY(i+1))*1000,6,4e-5)}
    const indices=g.index.array;for(let i=0;i<indices.length;i+=3)for(let j=0;j<3;j++){const k=[indices[i+j],indices[i+(j+1)%3]].sort((a,b)=>a-b).join(':');edges.set(k,(edges.get(k)||0)+1)}assert([...edges.values()].every(n=>n===2),'Open belt solid has a seam');g.dispose();
   }

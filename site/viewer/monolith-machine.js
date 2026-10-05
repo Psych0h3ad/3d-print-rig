@@ -4,7 +4,7 @@ import {loadModel} from './model-loader.js?v=ce28c0df722a83db6bb3';
 import {partKey} from './head-assembly.js?v=trident-clearance-35';
 import {appearanceRole} from './appearance-role.mjs?v=trident-clearance-35';
 import {withMonolithMachines,monolithPartDelta} from './monolith-machine-model.mjs?v=a444255dc35e7c15a082';
-import {monolithBeltRoute,monolithBeltGeometry,monolithBeltTravelLimits} from './monolith-belts.mjs?v=trident-clearance-35';
+import {monolithBeltRoute,monolithBeltGeometry,monolithBeltTravelLimits} from './monolith-belts.mjs?v=cc31216a6676936d5cd6';
 
 const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);
 let machineData;

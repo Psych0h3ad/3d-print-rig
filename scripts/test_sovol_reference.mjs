@@ -12,5 +12,5 @@ assert.equal(communityMotionEnabled({...profile,axes:{x:[0,300]},motion_preview:
 assert.equal(communityMotionEnabled({...profile,axes:{x:[0,300]}}),false);
 const catalog=JSON.parse(fs.readFileSync(new URL('../site/COMMUNITY_MACHINES_ASSETS.json',import.meta.url)));
 assert.equal(catalog.machines[row.id].parts,719);
-for(const file of Object.values(catalog.machines[row.id].files)){assert(file.path.startsWith('sv08/'));assert(file.bytes>0);assert.match(file.sha256,/^[a-f0-9]{64}$/)}
+for(const file of Object.values(catalog.machines[row.id].files)){assert(file.path.startsWith('sv08-v2/'));assert(file.bytes>0);assert.match(file.sha256,/^[a-f0-9]{64}$/)}
 console.log('SOVOL native reference selection, disabled motion and catalog integrity passed.');

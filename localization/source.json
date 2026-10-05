@@ -8884,8 +8884,8 @@
     },
     "ui.community.detail": {
       "kind": "message",
-      "ja": "細部は表示用に軽量化しています。組立候補・重複部品・校正治具は標準表示から分けています。",
-      "en": "Small details are reduced for display. Assembly alternatives, duplicated parts and calibration aids are separate from the default view."
+      "ja": "表示用の変換内容は各モデルの出典・変更点に記載しています。組立候補・重複部品・校正治具は標準表示から分けています。",
+      "en": "Display conversion is described in each model's source notices. Assembly alternatives, duplicated parts and calibration aids are separate from the default view."
     },
     "ui.community.ender": {
       "kind": "message",

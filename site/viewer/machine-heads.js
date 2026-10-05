@@ -1,13 +1,13 @@
 import {workspaceTask} from './workspace-lifecycle.mjs';
 import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=a444255dc35e7c15a082';
-import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=24741aa54cc5e8054ef2';
+import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=00cb7346889b7ca1e13d';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=ce28c0df722a83db6bb3';
 import {appearanceRole} from './appearance-role.mjs?v=workspace-belts-1';
 import {partKey} from './head-assembly.js?v=workspace-belts-1';
 import {v24HeadCatalog} from './machine-head-model.mjs?v=03db7c7d900ff7f5b2c0';
-import {setupConfigurations} from './configurations.js?v=2c788dfdf19f80ee49ba';
+import {setupConfigurations} from './configurations.js?v=074d32a4e80ab88827da';
 
 import {stockProbeFit} from './probe-mounts.js?v=06a66eade4bdc5eb8c84';
 

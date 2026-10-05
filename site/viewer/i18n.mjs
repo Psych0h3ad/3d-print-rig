@@ -1,7 +1,7 @@
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=5c6f4dcd051bb1336e43';
 import {WorkspaceMutationObserver,workspaceListen,onWorkspaceDispose} from './workspace-lifecycle.mjs';
 import {supportedLanguages,languageNames,normalizeLanguage,chooseLanguage,languageURL} from './languages.mjs?v=ba6a5cd8e1d86849ca34';
-import {definitions,localeLoaders} from './locales/manifest.mjs?v=7cfe6139456fc6b8ea7b';
+import {definitions,localeLoaders} from './locales/manifest.mjs?v=12f13a53ad730147dfe4';
 import {createTranslator} from './translation-engine.mjs?v=f8fc3bbed8f367d0c54f';
 export {supportedLanguages,chooseLanguage,languageURL} from './languages.mjs?v=ba6a5cd8e1d86849ca34';
 

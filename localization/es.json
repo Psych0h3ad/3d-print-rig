@@ -7107,8 +7107,8 @@
       "text": "Las correas, cables y cadenas acompañan el movimiento para su visualización. No se calculan la tensión ni la mecánica de los eslabones."
     },
     "ui.community.detail": {
-      "source_revision": "420644eb706c21a9dd0a",
-      "text": "Los pequeños detalles se han aligerado para visualizarlos. Las alternativas de montaje, las piezas duplicadas y los útiles de calibración se muestran por separado."
+      "source_revision": "8a4f40ffaa2e71a0d56a",
+      "text": "La conversión para visualización se detalla en los avisos de cada modelo. Las alternativas de montaje, las piezas duplicadas y los útiles de calibración se separan de la vista predeterminada."
     },
     "ui.community.ender": {
       "source_revision": "9017430a9754dded9270",

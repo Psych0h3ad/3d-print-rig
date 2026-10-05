@@ -53,10 +53,19 @@ export function monolithBeltRoute(source,size,dx=0,dy=0,cut){
 
 export function monolithBeltGeometry(route){
  const vertices=[],indices=[];
+ // Routes may supply either a left or a right tangent normal. Both describe
+ // the same belt, but their ring orders require opposite triangle winding.
+ let handedness=0;
+ for(let i=0;i<route.points.length-1&&Math.abs(handedness)<1e-9;i++){
+  const a=route.points[i],b=route.points[i+1],n=route.normals[i];
+  handedness=(b[0]-a[0])*n[1]-(b[1]-a[1])*n[0];
+ }
+ if(!Number.isFinite(handedness)||Math.abs(handedness)<1e-9)throw Error('Belt route has no oriented span');
  for(let i=0;i<route.points.length;i++)for(const [side,height] of [[-1,-1],[1,-1],[1,1],[-1,1]]){
   const p=route.points[i],n=route.normals[i];vertices.push((p[0]+side*n[0]*route.thickness/2)/1000,(route.z+height*route.width/2)/1000,-(p[1]+side*n[1]*route.thickness/2)/1000);
  }
  for(let i=0;i<route.points.length-1;i++)for(let j=0;j<4;j++){const a=i*4+j,b=i*4+(j+1)%4,c=b+4,d=a+4;indices.push(a,b,c,a,c,d)}
  const end=(route.points.length-1)*4;indices.push(0,2,1,0,3,2,end,end+1,end+2,end,end+2,end+3);
- const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));g.setIndex(indices);g.computeVertexNormals();g.computeBoundingSphere();return g;
+ if(handedness<0)for(let i=0;i<indices.length;i+=3)[indices[i+1],indices[i+2]]=[indices[i+2],indices[i+1]];
+ const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));g.setIndex(indices);g.computeVertexNormals();g.computeBoundingBox();g.computeBoundingSphere();return g;
 }

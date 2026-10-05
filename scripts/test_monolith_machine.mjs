@@ -16,6 +16,9 @@ for(const sources of Object.values(routes.routes))for(const source of sources)fo
   for(const index of [0,route.points.length-1]){near(route.points[index][0]-reference.points[index][0],dx);near(route.points[index][1]-reference.points[index][1],dy)}
   for(const [i,segment] of route.segments.entries())if(segment.kind==='circle')near(segment.radius,rest.segments[i].radius);
   const geometry=monolithBeltGeometry(route);assert(geometry.attributes.position.array.every(Number.isFinite));geometry.computeBoundingBox();near(geometry.boundingBox.max.y-geometry.boundingBox.min.y,source.width/1000,1e-8);
+  const positions=geometry.attributes.position.array,faces=geometry.index.array;let volume=0;
+  for(let i=0;i<faces.length;i+=3){const a=faces[i]*3,b=faces[i+1]*3,c=faces[i+2]*3;volume+=(positions[a]*(positions[b+1]*positions[c+2]-positions[b+2]*positions[c+1])+positions[a+1]*(positions[b+2]*positions[c]-positions[b]*positions[c+2])+positions[a+2]*(positions[b]*positions[c+1]-positions[b+1]*positions[c]))/6}
+  assert(volume>0,'Monolith belt faces must point outward');assert(Math.abs(volume*1e9/(route.length*route.width*route.thickness)-1)<.002);
   // Every indexed edge belongs to two triangles, including both open-belt
   // end caps. The centerline is open; the physical strip is a closed solid.
   const edges=new Map(),indices=geometry.index.array;
