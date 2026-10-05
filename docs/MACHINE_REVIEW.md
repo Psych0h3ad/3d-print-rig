@@ -38,7 +38,7 @@ model/adapter hashes, tested poses and combinations, findings and scope.
 | Mesh quality | Finite vertices, valid normals and bounds; no lost geometry or rendering glitches; built-in supports removed only with documented evidence and notice. |
 | Materials | Every printed base/accent role responds to palettes; hardware materials stay correct; aluminum/CNC options and transparent panels. |
 | Environment | Consistent floor/grid defaults and environment brightness; site theme separate from chamber lighting; RGB animation. |
-| Interaction | Mobile orbit, concurrent model/settings view, atomic selection changes, save/load, configurable image export and all supported languages. |
+| Interaction | Mobile orbit, concurrent model/settings view, measured download percentages with a separate assembly phase, failed/canceled load cleanup, atomic selection changes, save/load, configurable image export and all supported languages. |
 | Provenance | Original repositories and revisions, licenses, supported combinations, stock download scope and reference-model limitations. |
 
 Fixed endpoints and final poses are insufficient. Adaptively sample fast

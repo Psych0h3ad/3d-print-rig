@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=trident-clearance-35';
+import {loadModel} from './model-loader.js?v=ce28c0df722a83db6bb3';
 import {partKey} from './head-assembly.js?v=trident-clearance-35';
 import {appearanceRole} from './appearance-role.mjs?v=trident-clearance-35';
 import {withMonolithMachines,monolithPartDelta} from './monolith-machine-model.mjs?v=a444255dc35e7c15a082';

@@ -7253,6 +7253,18 @@
     "stinger.reference_notice": {
       "source_revision": "1bcf58036b8b03abe494",
       "text": "Исходная конфигурация с удлинённым соплом. Сборочные приспособления и короткое сопло выделены в отдельные справочные модели. Корпус электроники не входит в этот CAD."
+    },
+    "loading.download": {
+      "source_revision": "8835436437eab7b66005",
+      "text": "Загрузка модели…"
+    },
+    "loading.assembly": {
+      "source_revision": "c85a66cdd0635790d619",
+      "text": "Сборка модели…"
+    },
+    "loading.progress": {
+      "source_revision": "4f31326ba772e5e077f6",
+      "text": "Ход загрузки модели"
     }
   }
 }

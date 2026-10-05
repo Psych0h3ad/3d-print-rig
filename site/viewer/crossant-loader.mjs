@@ -3,6 +3,7 @@ import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
 import {createCrossantAdapter} from './crossant-adapter.mjs?v=53736f33178907042969';
 import {createChainPreview} from './crossant-chain_preview.mjs';
 import {createCrossantCovers} from './crossant-covers.mjs?v=d512e7e5c32543e4232b';
+import {beginModelLoading,readModelBytes} from './model-progress.mjs?v=6b41a2b9f7626039b7e6';
 const digest=async b=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',b)),v=>v.toString(16).padStart(2,'0')).join('');
 export function disposeCrossant(root){
  if(!root)return;const geometry=new Set(),materials=new Set();
@@ -11,14 +12,17 @@ export function disposeCrossant(root){
 }
 export async function loadCrossant(index,{signal,onProgress=()=>{}}={}){
  if(index.machine_id!=='crossant_235_v06_leadscrew'||index.parts!==2177)throw Error('Crossantの構成情報が一致しません。');
+ const names=['assembly_manifest.json','machine_profile.json','belt_bindings.json','chain_bindings.json','KNOWN_CONTACTS.json'];
+ const files=[...names,'model.gltf',...Array.from({length:7},(_,i)=>'geometry_'+String(i).padStart(2,'0')+'.bin'),'covers_manifest.json','covers.glb'];
+ const progress=beginModelLoading(Object.fromEntries(files.map(n=>[n,index.files[n]])));
+ try{
  const local=['127.0.0.1','localhost'].includes(location.hostname),base=local?new URL('../'+index.local_directory+'/',import.meta.url):new URL(index.base_url);
  async function checked(name){
   const s=index.files[name];if(!s||s.path.includes('..')||s.path.startsWith('/')||s.bytes>20*1024*1024)throw Error('Crossantの構成ファイルが不正です。');
   const url=new URL(s.path,base);url.searchParams.set('sha',s.sha256.slice(0,16));const res=await fetch(url,{signal});if(!res.ok)throw Error('Crossantのモデルを取得できません。');
-  const bytes=new Uint8Array(await res.arrayBuffer());if(bytes.length!==s.bytes||await digest(bytes)!==s.sha256)throw Error('Crossantのモデルのハッシュが一致しません。');return bytes;
+  const bytes=await readModelBytes(res,{spec:s,onProgress:e=>progress.update(name,e)});if(bytes.length!==s.bytes||await digest(bytes)!==s.sha256)throw Error('Crossantのモデルのハッシュが一致しません。');return bytes;
  }
  onProgress('Crossantの部品表を読み込み中…');
- const names=['assembly_manifest.json','machine_profile.json','belt_bindings.json','chain_bindings.json','KNOWN_CONTACTS.json'];
  const [manifest,profile,belts,chains,contacts]=await Promise.all(names.map(async n=>JSON.parse(new TextDecoder().decode(await checked(n)))));
  if(manifest.machine_id!==index.machine_id||profile.machine_id!==index.machine_id||manifest.parts.length!==index.parts)throw Error('Crossantの構成情報が一致しません。');
  const gltf=JSON.parse(new TextDecoder().decode(await checked('model.gltf'))),urls=new Map();let root;
@@ -35,10 +39,12 @@ export async function loadCrossant(index,{signal,onProgress=()=>{}}={}){
   const nodes=new Map();root.traverse(n=>{if(n.userData?.part_key)nodes.set(n.userData.part_key,n)});
   onProgress('Crossantのカバーを読み込み中…');
   const [coverManifest,coverBytes]=await Promise.all([checked('covers_manifest.json').then(b=>JSON.parse(new TextDecoder().decode(b))),checked('covers.glb')]);
+  progress.assembling();
   const coverRoot=(await new GLTFLoader().parseAsync(coverBytes.buffer,base.href)).scene;
   root.add(coverRoot);const covers=createCrossantCovers(coverRoot,coverManifest);
   const chain=createChainPreview(root,nodes,chains,THREE),adapter=createCrossantAdapter(root,manifest,profile,belts,{chainPreview:chain,placementCorrections:coverManifest.placement_corrections});
   adapter.setPose(Object.fromEntries(['x','y','z'].map((a,i)=>[a,profile.display_reference_xyz_mm[i]])));
   return {root,manifest,profile,adapter,chain,contacts,index,covers};
  }catch(e){disposeCrossant(root);throw e}finally{for(const url of urls.values())URL.revokeObjectURL(url)}
+ }finally{progress.finish()}
 }

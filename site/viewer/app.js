@@ -1,17 +1,17 @@
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
-import {loadMonolithMachines} from './monolith-machine.js?v=00b77b5268c44e283d7a';
+import {loadMonolithMachines} from './monolith-machine.js?v=24741aa54cc5e8054ef2';
 import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=a444255dc35e7c15a082';
 import {bankBedReferenceDrop} from './changer-bank-model.mjs?v=024cc52a5bbc61da7506';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=workspace-belts-1';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=workspace-belts-1';
+import {loadModel} from './model-loader.js?v=ce28c0df722a83db6bb3';
 import {loadFrameMods,withFrameMods} from './frame-mods.js?v=workspace-belts-1';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
-import {setupLighting} from './lighting.js?v=16f9cd983dca18754bc2';
+import {setupLighting} from './lighting.js?v=f45648f622e9ee8976e1';
 import {setupFlexible} from './flexible.js?v=extra-machines-55';
 import {createBedChain} from './bed-chain.mjs?v=workspace-belts-1';
 import {createPrinterBelts,printerBeltOwner} from './printer-gantry.mjs?v=workspace-belts-2';
@@ -20,7 +20,7 @@ import {setupAccessories} from './accessories.js?v=workspace-belts-2';
 import {setupAppearance} from './appearance.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {setupPublicInfo} from './public-info.js?v=workspace-belts-2';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=22e49edc49a2b3b9342f';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=0ce2aca7e8c402081bc8';
 import {setupChangerBank} from './changer-bank.js?v=2575f5e3fafcf4c76da2';
 import {expandedPrinterCatalog} from './machine-head-model.mjs?v=03db7c7d900ff7f5b2c0';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=workspace-belts-2';
@@ -213,7 +213,7 @@ async function loadGLB(url){return workspaceTask(async()=>{
  throw last;
 });}
 setupPublicInfo();
-Promise.all([fetch('../assembly_manifest.json?v=trident-clearance-35',{cache:'no-cache'}).then(r=>r.json()),fetch('../flexible_routes.json?v=trident-clearance-35',{cache:'no-cache'}).then(r=>r.json()),loadModel(new GLTFLoader(),'../SIBOOR_Trident_350.glb',p=>{$('#loading').textContent=p.total?'読み込み '+Math.round(p.loaded/p.total*100)+'%':'3Dモデルを読み込み中…'}),loadGLB('../Endstop_Mechanisms.glb'),fetch('../COLOR_OPTIONS.json?v=trident-clearance-35',{cache:'no-cache'}).then(r=>r.json()),fetch('../ASSEMBLY_CONFIGURATIONS.json?v=trident-clearance-35',{cache:'no-cache'}).then(r=>r.json()),fetch('../R2_ENDSTOP_REGISTRATION.json?v=trident-clearance-35',{cache:'no-cache'}).then(r=>r.json())]).then(async([manifest,routes,g,endstops,colorOptions,configs,r2Meta])=>{return workspaceTask(async()=>{
+Promise.all([fetch('../assembly_manifest.json?v=trident-clearance-35',{cache:'no-cache'}).then(r=>r.json()),fetch('../flexible_routes.json?v=trident-clearance-35',{cache:'no-cache'}).then(r=>r.json()),loadModel(new GLTFLoader(),'../SIBOOR_Trident_350.glb'),loadGLB('../Endstop_Mechanisms.glb'),fetch('../COLOR_OPTIONS.json?v=trident-clearance-35',{cache:'no-cache'}).then(r=>r.json()),fetch('../ASSEMBLY_CONFIGURATIONS.json?v=trident-clearance-35',{cache:'no-cache'}).then(r=>r.json()),fetch('../R2_ENDSTOP_REGISTRATION.json?v=trident-clearance-35',{cache:'no-cache'}).then(r=>r.json())]).then(async([manifest,routes,g,endstops,colorOptions,configs,r2Meta])=>{return workspaceTask(async()=>{
  const headData=await loadMachineHeadCatalog('siboor_trident_350');registration=manifest.motion_preview.endstop_registration;catalog=await loadMonolithMachines(expandedPrinterCatalog(withFrameMods(configs,frameMods),headData.heads,headData.registry,'siboor_trident_350'),headData);catalog.bank_data=headData.bank;installedHeads=createMachineHeads(scene,{...catalog,base_assets:headData.heads.base_assets},{render:()=>{renderRequested=true}});ensureMachineHeadControls({gantry:true,monolithUnavailable:catalog.monolith_unavailable});r2Registration=r2Meta;stockRows=manifest.parts;
  refX=registration.switches.X.cad_reference_display_coordinate_mm;refY=registration.switches.Y.cad_reference_display_coordinate_mm;
  const lookup=new Map(manifest.parts.map(r=>[r.key,r]));model=g.scene;model.add(endstops.scene);scene.add(model);

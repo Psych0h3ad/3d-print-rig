@@ -5,7 +5,7 @@ import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {RoomEnvironment} from './vendor/RoomEnvironment.js';
 import {workspaceFrame,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {setupMachineNavigation} from './machines.js?v=dedc575bbef34e348ec3';
-import {loadExtraMachine} from './extra-machine-loader.mjs';
+import {loadExtraMachine} from './extra-machine-loader.mjs?v=274bbda379e78bd08808';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=extra-machines-55';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';

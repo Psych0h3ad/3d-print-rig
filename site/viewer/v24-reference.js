@@ -7,14 +7,14 @@ import {appearanceRole} from './appearance-role.mjs?v=workspace-belts-1';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=workspace-belts-1';
+import {loadModel} from './model-loader.js?v=ce28c0df722a83db6bb3';
 import {createV24Adapter} from './v24_matrix_adapter.mjs?v=extra-machines-55';
 import {setupMachineNavigation} from './machines.js?v=dedc575bbef34e348ec3';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {setupPublicInfo} from './public-info.js?v=workspace-belts-2';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=workspace-belts-2';
-import {setupV24MachineHeads} from './machine-heads.js?v=22e49edc49a2b3b9342f';
+import {setupV24MachineHeads} from './machine-heads.js?v=0ce2aca7e8c402081bc8';
 export async function mount(scope){
 const $=s=>document.querySelector(s),ids=[250,300,350].flatMap(size=>['printed','ldo_cnc'].map(structure=>`voron_v24_${size}_${structure}`));
 const wanted=new URLSearchParams(location.search).get('machine'),id=ids.includes(wanted)?wanted:ids[0];

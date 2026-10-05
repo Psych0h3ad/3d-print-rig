@@ -7253,6 +7253,18 @@
     "stinger.reference_notice": {
       "source_revision": "1bcf58036b8b03abe494",
       "text": "Configuración nativa con boquilla extendida. Las ayudas de montaje y la boquilla corta son referencias separadas. Este CAD no incluye la caja de electrónica."
+    },
+    "loading.download": {
+      "source_revision": "8835436437eab7b66005",
+      "text": "Descargando modelo…"
+    },
+    "loading.assembly": {
+      "source_revision": "c85a66cdd0635790d619",
+      "text": "Ensamblando modelo…"
+    },
+    "loading.progress": {
+      "source_revision": "4f31326ba772e5e077f6",
+      "text": "Progreso de descarga del modelo"
     }
   }
 }

@@ -9,7 +9,7 @@ import {appearanceRole} from './appearance-role.mjs?v=workspace-belts-1';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=workspace-belts-1';
+import {loadModel} from './model-loader.js?v=ce28c0df722a83db6bb3';
 import {poseDelta,createV0Adapter} from './v0_adapter.mjs?v=extra-machines-55';
 import {setupMachineNavigation} from './machines.js?v=dedc575bbef34e348ec3';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';

@@ -2,6 +2,7 @@ import * as THREE from './vendor-r180/three.module.js';
 import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
 import {createRatRigAdapter} from './ratrig_adapter.mjs';
 import {createRatRigGcodePreview} from './ratrig_gcode_preview.mjs';
+import {beginModelLoading,readModelBytes} from './model-progress.mjs?v=6b41a2b9f7626039b7e6';
 
 const digest=async bytes=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');
 export function disposeRatRig(root,adapter){
@@ -12,11 +13,13 @@ export function disposeRatRig(root,adapter){
 }
 export async function loadRatRigMachine(index,id,{onProgress=()=>{},signal}={}){
  const row=index.machines.find(r=>r.id===id);if(!row||!index.stock_only)throw Error('RatRigの標準構成が未登録です。');
+ const names=['machine_profile.json','assembly_manifest.json','flexible_routes.json','model.glb'],progress=beginModelLoading(Object.fromEntries(names.map(n=>[n,row.files[n]])));
+ try{
  const local=['127.0.0.1','localhost'].includes(location.hostname),base=local?new URL('../'+index.local_directory+'/',import.meta.url):new URL(index.base_url);
  async function checked(name){
   const spec=row.files[name];if(!spec)throw Error('構成ファイルが不足しています。');
   const url=new URL(spec.path,base);url.searchParams.set('sha',spec.sha256.slice(0,16));const response=await fetch(url,{cache:'no-cache',signal});if(!response.ok)throw Error('CADを取得できませんでした ('+response.status+')');
-  const bytes=new Uint8Array(await response.arrayBuffer());
+  const bytes=await readModelBytes(response,{spec,onProgress:e=>progress.update(name,e)});
   if(spec.encoding==='gzip'&&bytes.length===spec.decoded_bytes&&await digest(bytes)===spec.decoded_sha256)return bytes;
   if(bytes.length!==spec.bytes||await digest(bytes)!==spec.sha256)throw Error('CADファイルのハッシュが一致しません。');
   if(spec.encoding==='gzip'){
@@ -29,9 +32,10 @@ export async function loadRatRigMachine(index,id,{onProgress=()=>{},signal}={}){
  onProgress('CAD部品表を読み込み中…');
  const [profile,manifest,routes]=await Promise.all(['machine_profile.json','assembly_manifest.json','flexible_routes.json'].map(async n=>JSON.parse(new TextDecoder().decode(await checked(n)))));
  if(profile.machine_id!==id||manifest.machine_id!==id||!profile.import_ready||profile.native_import_file!==row.native_import_file)throw Error('CAD構成の識別情報が一致しません。');
- onProgress('3Dモデルを読み込み中…');const bytes=await checked('model.glb');let root,adapter;
+ onProgress('3Dモデルを読み込み中…');const bytes=await checked('model.glb');progress.assembling();let root,adapter;
  try{
   root=(await new GLTFLoader().parseAsync(bytes.buffer,base.href)).scene;adapter=createRatRigAdapter(root,manifest,profile,routes,THREE);
   return {row,root,adapter,profile,manifest,routes,gcode:createRatRigGcodePreview(adapter,profile)};
  }catch(e){disposeRatRig(root,adapter);throw e}
+ }finally{progress.finish()}
 }

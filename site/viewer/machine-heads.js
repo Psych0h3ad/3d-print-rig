@@ -1,9 +1,9 @@
 import {workspaceTask} from './workspace-lifecycle.mjs';
 import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=a444255dc35e7c15a082';
-import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=00b77b5268c44e283d7a';
+import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=24741aa54cc5e8054ef2';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=workspace-belts-1';
+import {loadModel} from './model-loader.js?v=ce28c0df722a83db6bb3';
 import {appearanceRole} from './appearance-role.mjs?v=workspace-belts-1';
 import {partKey} from './head-assembly.js?v=workspace-belts-1';
 import {v24HeadCatalog} from './machine-head-model.mjs?v=03db7c7d900ff7f5b2c0';

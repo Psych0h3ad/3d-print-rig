@@ -7,7 +7,7 @@ const suites={
  positron:['positron_state','positron_storage'],annex_k1:['machine_navigation'],annex_k2:['machine_navigation'],annex_k3:['machine_navigation'],remorph:['machine_navigation'],crossant:['crossant_state'],vcore4:['ratrig'],
  trident:['trident_motion','bed_chain','printer_gantry','machine_heads','changer_bank','probe_clearance'],v24:['v24_adapter','v24_belts','printer_gantry','machine_heads','changer_bank','probe_clearance'],v0:['v0_belts','v0_installations','v0_mod_selection'],micron:['micron_adapter','micron_belts','micron_tubes']
 };
-const required=['appearance_roles','scene_lighting','lighting_animation','export_camera','orbit_touch','responsive_camera','selection_regressions','workspace_runtime','multilingual','machine_selection'];
+const required=['appearance_roles','scene_lighting','lighting_animation','export_camera','orbit_touch','responsive_camera','selection_regressions','workspace_runtime','multilingual','machine_selection','model_progress'];
 const machines=machineChoices.filter(m=>m.available!==false);
 assert.equal(new Set(machines.map(m=>m.id)).size,machines.length);
 for(const machine of machines){

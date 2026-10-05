@@ -6,7 +6,7 @@ import {workspaceFrame,WorkspaceResizeObserver,workspaceTask,workspaceListen} fr
 import * as THREE from './vendor-r180/three.module.js';
 import {OrbitControls} from './vendor-r180/OrbitControls.js?v=workspace-belts-1';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
-import {loadCrossant,disposeCrossant} from './crossant-loader.mjs?v=53609b746909abeefb6e';
+import {loadCrossant,disposeCrossant} from './crossant-loader.mjs?v=3fa8436523f1d0760466';
 import {crossantSchema,crossantGroups,validateCrossantState} from './crossant-state.mjs?v=534dc62f2c6545f556f7';
 import {setupMachineNavigation} from './machines.js?v=dedc575bbef34e348ec3';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
