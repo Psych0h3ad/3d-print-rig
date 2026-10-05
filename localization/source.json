@@ -9049,8 +9049,8 @@
     },
     "ui.positron.storage_holder": {
       "kind": "message",
-      "ja": "Vホルダーを左の収納穴に合わせる",
-      "en": "Align the V holder with the left storage hole"
+      "ja": "ヘッドを収納位置へ戻す",
+      "en": "Return the toolhead to its storage position"
     },
     "ui.positron.storage_screws": {
       "kind": "message",

@@ -7239,8 +7239,8 @@
       "text": "Las superficies se regeneran a partir del CAD original. Solo se aligeran las fijaciones pequeñas tras comprobar su geometría. No se reproduce la deformación de correas y cables ausente en el original."
     },
     "ui.positron.storage_holder": {
-      "source_revision": "f715f9472e5f5de1cf2a",
-      "text": "Alinear el soporte V con el orificio de almacenamiento izquierdo"
+      "source_revision": "58fc42ae55a6fab4d507",
+      "text": "Devolver el cabezal a su posición de almacenamiento"
     },
     "ui.positron.storage_screws": {
       "source_revision": "c52cd9e7884e3e32d866",

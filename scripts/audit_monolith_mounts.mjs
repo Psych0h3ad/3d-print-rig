@@ -21,7 +21,12 @@ const catalog=monolithHeadCatalog(heads,registry,gantries),scene=new THREE.Scene
 let installed=0,meshBoundsChecked=0;const proven=new Set(),failures=[];
 for(const g of gantries.variants){
  const rows=catalog.variants.filter(v=>v.gantry===g.id);
- assert.equal(rows.filter(v=>v.mount==='fixed').length,4,g.id+' fixed heads');
+ const fixed=rows.filter(v=>v.mount==='fixed');
+ assert(fixed.length>=4,g.id+' fixed head coverage');
+ // The native fixed mount is Sphinx; SB/Xol use the registered changer
+ // receiver. Verify every completed fixed assembly, including its hardware.
+ assert(fixed.every(v=>v.toolhead==='sphinx'),g.id+' unregistered fixed mount');
+ for(const v of fixed)for(const type of ['extruder','hotend'])assert(v.modules.some(m=>m.id===v.fit.complete_head_native[type]),g.id+' incomplete '+type);
  for(const mount of ['fixed','stealthchanger']){
   const chosen=resolveVariant(catalog,{...rows[0],mount},'mount');assert.equal(chosen.gantry,g.id);
   assert(choicesFor(catalog,chosen,'mount').some(r=>r.id===mount));
@@ -56,6 +61,6 @@ for(const g of gantries.variants){
  }
  console.log(g.id+': '+rows.length+' installed plans');
 }
-const result={installed,gantries:gantries.variants.length,fixedConfigurations:catalog.variants.filter(v=>v.mount==='fixed').length,meshBoundsChecked,failures,nativeQA:await read('MONOLITH_MOUNT_QA.json'),browserRenderingTest:false};
-await fs.writeFile(report,JSON.stringify(result,null,2));console.log(JSON.stringify({...result,nativeQA:result.nativeQA.passed,failures:failures.length,examples:failures.slice(0,5)}));
+const result={installed,gantries:gantries.variants.length,fixedConfigurations:catalog.variants.filter(v=>v.mount==='fixed').length,meshBoundsChecked,failures,registration_axis_error_mm:registry.monolith_target.axis_error_mm,native_solid_clearance_rechecked:false,browserRenderingTest:false};
+await fs.writeFile(report,JSON.stringify(result,null,2));console.log(JSON.stringify({...result,failures:failures.length,examples:failures.slice(0,5)}));
 assert.equal(failures.length,0);

@@ -30,18 +30,30 @@ for(const v of heads.variants){
  if(v.carriage==='vitalii_lightweight'){assert(v.head_only&&v.probe==='none'&&v.fit.carriage_native_body_passed===false);assert(v.fit.carriage_native_body_collisions.length>0);assert(heads.assets[v.inspection_module]);assert.deepEqual(choicesFor(heads,v,'probe').map(p=>p.id),['none'])}
 }
 assert.equal(heads.variants.filter(v=>v.carriage==='vitalii_lightweight').length,6);
-let changerTransitions=0;
+let changerTransitions=0;const unverifiedReferences=[];
 for(const v of changers.variants){
  assert.equal(changerChoice(changers,v),v);assert(v.modules.every(m=>changers.assets[m.id]));
- assert(v.native_fit&&(typeof v.native_fit.passed==='boolean'||v.native_fit.scope==='source_reference'&&v.native_fit.passed===null));
- let parts=0;for(const e of v.modules){parts+=(await read(changers.assets[e.id].meta)).parts.length;assert.deepEqual(changerPlacement(v,e),e.translation_mm);if(v.probe_travel_mm)for(const probe of [0,1.5,3])assert.equal(changerPlacement(v,e,{probe})[2],e.translation_mm[2]+(e.role==='tool'?probe:0))}assert.equal(parts,v.parts);
+ if(!v.native_fit){
+  // These are published interface-only source references, explicitly
+  // carrying an unverified docking/sensor notice. Keep them separate from
+  // complete assemblies with native mating evidence; never count as fit.
+  assert(['madmax_mgn9_db_ah','madmax_mgn12_db_ah','madmax_mgn12_xol_a4t'].includes(v.id));
+  assert.equal(v.system,'madmax');assert(v.notes.some(n=>n.includes('未検証')));
+  unverifiedReferences.push(v.id);
+ }else assert(typeof v.native_fit.passed==='boolean'||v.native_fit.scope==='source_reference'&&v.native_fit.passed==null&&(v.native_fit.passed===null||v.native_fit.machine_installation_verified===false));
+ let parts=0;for(const e of v.modules){const meta=await read(changers.assets[e.id].meta);const hidden=new Set(e.hidden_keys||[]);for(const key of hidden)assert(meta.parts.some(p=>p.key===key));parts+=meta.parts.filter(p=>!hidden.has(p.key)).length;assert.deepEqual(changerPlacement(v,e),e.translation_mm);if(v.probe_travel_mm)for(const probe of [0,1.5,3])assert.equal(changerPlacement(v,e,{probe})[2],e.translation_mm[2]+(e.role==='tool'?probe:0))}assert.equal(parts,v.parts);
  for(const dimension of changerDimensions)for(const value of changerChoices(changers,v,dimension)){const next=changerChoice(changers,{...v,[dimension]:value},dimension);assert(changers.variants.includes(next));assert.equal(next[dimension],value);changerTransitions++}
 }
 for(const head of heads.toolheads)assert(heads.variants.some(v=>v.toolhead===head.id));
-for(const extruder of heads.extruders)assert(heads.variants.some(v=>v.extruder===extruder.id));
+const referenceExtruders=[];
+for(const extruder of heads.extruders)if(!heads.variants.some(v=>v.extruder===extruder.id)){
+ assert.equal(extruder.id,'a4t_wwbmg_mount');assert(extruder.label.includes('取付形状'));
+ referenceExtruders.push(extruder.id);
+}
+console.log(JSON.stringify({interface_reference_extruders:referenceExtruders,complete_extruder_fit_verified:false}));
 assert(heads.variants.some(v=>v.mount==='stealthchanger'));
 assert.equal(heads.variants.filter(v=>v.mount==='tapchanger').length,3);
-console.log(JSON.stringify({monolith_assemblies:32,toolchanger_assemblies:43,head_variants:heads.variants.length,complete_stealthchanger_heads:heads.variants.filter(v=>v.mount==='stealthchanger').length,complete_tapchanger_source_assemblies:3,library_items:library.items.length,gantry_choice_transitions:gantryTransitions,head_choice_transitions:transitions,toolchanger_choice_transitions:changerTransitions,browser_ui_review:false}));
+console.log(JSON.stringify({monolith_assemblies:32,toolchanger_assemblies:changers.variants.length,head_variants:heads.variants.length,complete_stealthchanger_heads:heads.variants.filter(v=>v.mount==='stealthchanger').length,complete_tapchanger_source_assemblies:3,library_items:library.items.length,gantry_choice_transitions:gantryTransitions,head_choice_transitions:transitions,toolchanger_choice_transitions:changerTransitions,unverified_source_interfaces:unverifiedReferences,browser_ui_review:false,physical_fit_certified:false}));
 
 let machineCount=0,machineParts=0,railMounts=0;
 const frameForRail={298:299,414:415,440:441,1074:1075,1093:1094,1112:1113,1131:1132};

@@ -7239,8 +7239,8 @@
       "text": "표시 면을 원본 CAD에서 다시 생성했습니다. 작은 체결 부품만 형상 검사 후 경량화했습니다. 원본에 없는 벨트와 배선의 변형은 재현하지 않습니다."
     },
     "ui.positron.storage_holder": {
-      "source_revision": "f715f9472e5f5de1cf2a",
-      "text": "V 홀더를 왼쪽 수납 구멍에 맞추기"
+      "source_revision": "58fc42ae55a6fab4d507",
+      "text": "툴헤드를 보관 위치로 되돌리기"
     },
     "ui.positron.storage_screws": {
       "source_revision": "c52cd9e7884e3e32d866",

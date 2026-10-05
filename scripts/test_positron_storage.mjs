@@ -30,4 +30,41 @@ for(const y of [37.52,40,42.26751067881665]){
 const legacy=structuredClone(profile);legacy.fold.storage.column_screw_lean_degrees=-5.5;
 assert(new THREE.Vector3(0,0,1).transformDirection(positronFoldTransforms(legacy,100).matrices.column_screw).distanceTo(new THREE.Vector3(0,-1,0))<1e-9);
 for(const matrix of Object.values(positronFoldTransforms(profile,0).matrices))assert(matrix.equals(new THREE.Matrix4()));
-console.log('Positron storage: original thumbscrews, holder registration, bore clearance, 201 rigid poses and native reset passed.');
+// Native display envelopes catch the former loose-screw path. V handling
+// follows the registered column before folding; native solid audits cover
+// the complete carried-part paths separately.
+const parts=JSON.parse(fs.readFileSync(new URL('./fixtures/positron-carried-bounds.json',import.meta.url)));
+const bounds=(part,pose)=>{
+ const lo=part.bounds_mm[0].map((x,i)=>Math.min(x,part.bounds_mm[1][i])),hi=part.bounds_mm[0].map((x,i)=>Math.max(x,part.bounds_mm[1][i])),box=new THREE.Box3();
+ for(const x of [lo[0],hi[0]])for(const y of [lo[1],hi[1]])for(const z of [lo[2],hi[2]])box.expandByPoint(apply(pose.matrices[part.group],[x,y,z]));
+ return box;
+};
+const mainScrew=parts.find(p=>p.key==='00040'),display=parts.filter(p=>['00832','00833','00834','00835'].includes(p.key));
+for(let p=39;p<=96;p+=.1){
+ const pose=positronFoldTransforms(profile,p),screw=bounds(mainScrew,pose);
+ for(const body of display)assert(!screw.intersectsBox(bounds(body,pose)),`Loose screw crossed display at ${p}`);
+}
+const registered=positronFoldTransforms(profile,62),relative=registered.matrices.column.clone().invert().multiply(registered.matrices.holder);
+for(let p=62;p<=72;p+=.1){
+ const next=positronFoldTransforms(profile,p),attached=next.matrices.column.clone().invert().multiply(next.matrices.holder);
+ attached.elements.forEach((n,i)=>assert(Math.abs(n-relative.elements[i])<1e-10,`V failed to follow column at ${p}`));
+}
+// Pair with the Z column completely before it starts rotating. The relative
+// transform must stay fixed during the entire closing rotation; checking
+// only the final storage pose missed the previous through-rail path.
+const paired=positronFoldTransforms(profile,78),pairedRelative=paired.matrices.column.clone().invert().multiply(paired.matrices.holder);
+assert.equal(paired.angleDegrees,0);
+for(let p=78;p<=92;p+=.1){
+ const next=positronFoldTransforms(profile,p),relative=next.matrices.column.clone().invert().multiply(next.matrices.holder);
+ relative.elements.forEach((n,i)=>assert(Math.abs(n-pairedRelative.elements[i])<1e-10,`V must stay paired with Z column during closing at ${p}`));
+}
+const beforeScrews=positronFoldTransforms(profile,96);
+assert(beforeScrews.matrices.holder.equals(pose.matrices.holder));
+for(let p=98.5;p<=100;p+=.02){
+ const next=positronFoldTransforms(profile,p);
+ for(const g of ['bed_screw','column_screw']){
+  assert(Math.abs(next.matrices[g].elements[12]-pose.matrices[g].elements[12])<1e-10);
+  assert(Math.abs(next.matrices[g].elements[14]-pose.matrices[g].elements[14])<1e-10);
+ }
+}
+console.log('Positron storage: native holder registration, bore clearance, lifted handling paths, display obstruction regression, V following column, vertical screw insertion and native reset passed.');

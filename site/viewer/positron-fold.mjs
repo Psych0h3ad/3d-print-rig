@@ -29,8 +29,10 @@ export function positronFoldTransforms(profile,percent){
  matrices.holder=move([-230*holderAside,40*holderOut*(1-holderSet)-30*holderSet,20*holderOut*(1-holderSet)-23*holderSet]).multiply(around(holderPivot,holderRotation));
  const holderApex=v(f.holder_apex_mm).applyMatrix4(matrices.holder).multiplyScalar(1000).toArray();
  matrices.holder=around(holderApex,rotation(Y,THREE.MathUtils.degToRad(-8)*holderSet)).multiply(matrices.holder);
- const columnOut=phase(p,.35,.375),columnPlace=phase(p,.375,.42);
- matrices.column_screw=move([180*columnPlace,-10*columnPlace,-45*columnOut+250*columnPlace]);
+ const columnOut=phase(p,.35,.375),columnLift=phase(p,.375,.39),columnPlace=phase(p,.39,.42);
+ // Pull the shaft out along its axis before carrying it above the rear
+ // panel. The loose screw stays behind the printer, clear of the display.
+ matrices.column_screw=move([200*columnPlace,100*columnLift,-45*columnOut]);
  matrices.latch=around(f.latch_pivot_mm,rotation(X,-Math.PI*phase(p,.35,.42)));
  let pin=v(f.dowel_source_mm);
  const track=phase(p,.62,.72),start=v(f.slot_start_mm),center=v(f.slot_center_mm),end=v(f.slot_end_mm),radius=f.slot_radius_mm*.001;
@@ -39,7 +41,7 @@ export function positronFoldTransforms(profile,percent){
   else if(track<.85){const t=(track-.35)/.5*Math.PI/2;pin=new THREE.Vector3(center.x,center.y-radius*Math.cos(t),center.z-radius*Math.sin(t))}
   else pin=new THREE.Vector3(center.x,center.y,center.z-radius).lerp(end,(track-.85)/.15);
  }
- const angle=Math.PI/2*phase(p,.72,.92),source=v(f.dowel_source_mm);
+ const angle=Math.PI/2*phase(p,.78,.92),source=v(f.dowel_source_mm);
  const column=new THREE.Matrix4().makeTranslation(pin.x,pin.y,pin.z).multiply(rotation(X,angle)).multiply(new THREE.Matrix4().makeTranslation(-source.x,-source.y,-source.z));
  matrices.column=column;matrices.carriage=column.clone().multiply(move([0,f.carriage_dz_mm*phase(p,.42,.50),0]));
  matrices.latch=column.clone().multiply(matrices.latch);
@@ -63,14 +65,42 @@ export function positronFoldTransforms(profile,percent){
   // The removed screw keeps its downward insertion direction independently.
   const center=[...s.holder_hole_top_mm];center[1]-=(s.holder_thickness_mm||0)/2;
   const holderStored=around(center,rotation(X,THREE.MathUtils.degToRad(s.holder_flip_degrees||0))).multiply(bedStored);
-  const holderSeat=phase(p,.92,.96);
-  matrices.holder=move([0,20*Math.sin(Math.PI*holderSeat),0]).multiply(blend(matrices.holder,holderStored,holderSeat));
+  // Register the V beside the upright column before folding, following
+  // guide steps 7–8. Carry both together rather than forcing the V through
+  // the folded rail after the column has already been laid down.
+  const columnEnd=move(f.slot_end_mm).multiply(rotation(X,Math.PI/2)).multiply(move(f.dowel_source_mm.map(x=>-x)));
+  const besideColumn=move([0,30,70]).multiply(columnEnd.clone().invert()).multiply(holderStored);
+  if(p>=.58){
+   const held=matrices.holder,anchor=v(s.holder_source_hole_top_mm).applyMatrix4(held).multiplyScalar(1000).toArray();
+   const raised=move([0,400,0]).multiply(held),targetRotation=besideColumn.clone().setPosition(0,0,0);
+   const turned=move([anchor[0],anchor[1]+400,anchor[2]]).multiply(targetRotation).multiply(move(s.holder_source_hole_top_mm.map(x=>-x)));
+   const above=move([0,400,100]).multiply(besideColumn),inFront=move([0,0,100]).multiply(besideColumn);
+   if(p<.59)matrices.holder=blend(held,raised,phase(p,.58,.59));
+   else if(p<.60)matrices.holder=blend(raised,turned,phase(p,.59,.60));
+   else if(p<.608)matrices.holder=blend(turned,above,phase(p,.60,.608));
+   else if(p<.616)matrices.holder=blend(above,inFront,phase(p,.608,.616));
+   else if(p<.62)matrices.holder=blend(inFront,besideColumn,phase(p,.616,.62));
+   else matrices.holder=column.clone().multiply(move([0,-30*phase(p,.72,.74),-70*phase(p,.74,.78)])).multiply(besideColumn);
+  }
   // The original column screw is dropped vertically into the storage bore.
   // Its depth is registered separately from the detached holder's rotation.
   const columnStored=move(s.column_screw_seat_mm).multiply(rotation(X,Math.PI/2)).multiply(move(s.column_screw_source_seat_mm.map(x=>-x)));
-  const travel=phase(p,.94,.98),insert=phase(p,.98,1);
-  matrices.bed_screw=blend(matrices.bed_screw,move([0,35*(1-insert),0]).multiply(bedStored),travel);
-  matrices.column_screw=blend(matrices.column_screw,move([0,35*(1-insert),0]).multiply(columnStored),travel);
+  // Handle the screws after the V has been seated. Turn them above the
+  // assembly, translate over their respective bores, and only then insert.
+  const placeScrew=(loose,stored,sourcePoint)=>{
+   const a=v(sourcePoint).applyMatrix4(loose).multiplyScalar(1000).toArray();
+   const b=v(sourcePoint).applyMatrix4(stored).multiplyScalar(1000).toArray();
+   const up=move([0,250-a[1],0]).multiply(loose);
+   const orientation=stored.clone().setPosition(0,0,0);
+   const upright=move([a[0],250,a[2]]).multiply(orientation).multiply(move(sourcePoint.map(x=>-x)));
+   const over=move([0,250-b[1],0]).multiply(stored);
+   if(p<.968)return blend(loose,up,phase(p,.96,.968));
+   if(p<.974)return blend(up,upright,phase(p,.968,.974));
+   if(p<.985)return blend(upright,over,phase(p,.974,.985));
+   return blend(over,stored,phase(p,.985,1));
+  };
+  matrices.bed_screw=placeScrew(matrices.bed_screw,bedStored,s.holder_source_hole_top_mm);
+  matrices.column_screw=placeScrew(matrices.column_screw,columnStored,s.column_screw_source_seat_mm);
  }
  const steps=[.18,.25,.35,.42,.50,.62,.72,.92,.96,1];const step=steps.findIndex(t=>p<t);
  return {percent,step:step<0?10:step,angleDegrees:angle*180/Math.PI,pin_mm:pin.toArray().map(n=>n*1000),matrices};

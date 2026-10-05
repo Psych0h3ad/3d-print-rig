@@ -1,0 +1,1301 @@
+{
+  "schema_version": 1,
+  "review_revision": 75,
+  "reviewed_on": "2026-10-05",
+  "input_sha256": {
+    "site/ASSET_BUNDLE.json": "6399b3b0d4876fc556c813fdef6fec5fcd8d434a38cd5d3032d8eb731be06244",
+    "site/COMMUNITY_MACHINES_ASSETS.json": "56998302f24415f136cad73a689d9ad1f82ecbbd1fb5194678fb3816f4ef7099",
+    "site/CROSSANT_ASSETS.json": "cc782d728e52beb780c0aaa2cb664ccce127154c02744312307dee74ffe8bdc6",
+    "site/EXTRA_MACHINE_ASSETS.json": "a1ef772b70a82420d97d564f8327e22dde6bcb511bdd6e94d406d6bc62cca624",
+    "site/HEAD_VALIDATION.json": "e0e98e7caf6563a7526df43518d1561c865dfd5378994ccc6991077ee514c0e4",
+    "site/MOD_REGISTRY.json": "873c2c35fe99ebf20fdbb82a76992a4a5ace91ebc47f51d94c7d54c6284618a7",
+    "site/MOUNT_VALIDATION.json": "24f3280c4774b3930dbe345d4d9a34748ab2eda55a4a7ccb376d6b15ba9c3fce",
+    "site/POSITRON_ASSETS.json": "e00d990ee740c59780a3633a934bebce322044099ed533053a4dbcde4bcf8090",
+    "site/PUBLIC_CATALOG.json": "77241be40f372f4f4edac5172894dd8f77425800b88ac6006ddea9bb46650b4c",
+    "site/RATRIG_ASSETS.json": "d5490dc94c253a52b92cf456f824bbbdbca0384b347470818e87870f07cb5b58",
+    "site/V0_INSTALLATIONS.json": "0cd5d09bb48f841c867d97dc28eb1bd733d140446d823da496e98fb97f843ea8",
+    "site/viewer/accessories.js": "1efeb500765a1f0483048ffc3d3c72623ba4672006b30134fe9005832d3468e3",
+    "site/viewer/annex-machines.mjs": "9f86685e46c3bcc36874649cce36b645ec6c2ff6eb6d1fdee124a327e20f7e81",
+    "site/viewer/annex.html": "d0d999014c19dfa5e56fe0bfc6207f77daa9a315251f4871f224df1d5570eb3b",
+    "site/viewer/annex.js": "4aac820833ec95aaaf31480fb02cbf344dcf7e4682dd01b59b029ab3b511dac3",
+    "site/viewer/app.js": "c6475f6471e7a7fabd901a8850fc925b85dd9b031c8a5e2bf519ce6b2457e323",
+    "site/viewer/appearance-role.mjs": "0e1a614ef669679216cd423dbbafbafe3205bef679b59619683d8b84f3ee8d44",
+    "site/viewer/appearance.js": "c50ecf4651c6ad0e68392df9eea9eb67e8bab6c9542106019c464682b45a01ab",
+    "site/viewer/art/cad-background.json": "ebd23566959ec740ae479345ba5601478b53593693ff11466e4934474dd071e8",
+    "site/viewer/art/credits.html": "fc56f2eee21e92db298051a1d4f600e865468913cd4a45781c3088b06dc4a759",
+    "site/viewer/assembly-downloads.mjs": "7f37199d83924fa6db9303d629d9e68f1798995b53a64ae900362f052fdb6cd2",
+    "site/viewer/asset-availability.js": "e29cb542b2cc536add0f0a57e24d1dc772b90298d57ff5167197f2d70c37661b",
+    "site/viewer/bed-chain-pins.mjs": "ea9c3d5f368a9509af7f99da784303eba92df5e316246c8a14942bc0f1bb3ae9",
+    "site/viewer/bed-chain.mjs": "4921b2d32efb8c68c496525144d36c6602fc700a173d628f1b9c7dbc6cb5e7ce",
+    "site/viewer/bootstrap.js": "6d842fd8b25b7917a98901fe6c2528c2cf967adb1b853b11f1f98f483a7894a4",
+    "site/viewer/builder-ui.mjs": "99ba104579f95dce80a1c71fdf0b59c1c72a03f564f5a168dc3969b6418e9f9d",
+    "site/viewer/changer-bank-model.mjs": "024cc52a5bbc61da75066a1822bca711fd6543b532a1c922e8ac0b44469a016c",
+    "site/viewer/changer-bank.js": "2575f5e3fafcf4c76da258c39ab0f3af8092a8a1e74e9700df154c1d2b53475f",
+    "site/viewer/cleaning.html": "0091a9b339cea7ccd9a024e80792076ba11d0aca0fc03178cd3a50259fc66115",
+    "site/viewer/community-adapter.mjs": "38d19912d8f14ccab44c905c20be7caa326d2a85a70b4e241addc211b06dbc51",
+    "site/viewer/community-loader.mjs": "87dd12fb434a35af4b1f6cef4392c9a91bdd126f61b6e9dedca679e3f161041d",
+    "site/viewer/community-state.mjs": "8018d585f8d53c6dce6c62bd2ed368733b171d0b956dfbdcc393389ecbb322eb",
+    "site/viewer/community.html": "ed23f7d1043544836cd6d854fb4ae0db1da99e29d955cc485e1bb484bf407b21",
+    "site/viewer/community.js": "e2385a72a5f63622e6cf2a3844dfe72b1d877280802bd8821e5ffe960a2da08c",
+    "site/viewer/component-selection.js": "51826e4eeaa0dd803b109d2ba7261d86e40fa509e63ffe7ce2f087efd0ee6e04",
+    "site/viewer/components.html": "ac60c2a38797424acb6b8b8f32aece6da89a7e76174358609dd8cb288935bd5e",
+    "site/viewer/components.js": "2937dab88f33016e85bfa74a2d57e162b8cade1feca3571c96ef4d0147df8b41",
+    "site/viewer/configuration-model.js": "d4b3dda97a404a7575b774c073165147233bcb917c5cd4afb30b7c6636521af1",
+    "site/viewer/configurations.js": "9d347c03f3b6b7bd977d187c926adeb23ff105bd5d6f822194d2da88b1bc67b0",
+    "site/viewer/crossant-adapter.mjs": "53736f331789070429692a0336eb9412bd3c64ed157933a5107b439761878116",
+    "site/viewer/crossant-belt_deform.mjs": "76401db9a4923512ae72c83fda6dd210ccf0b1d19be8a16326dfac48950df531",
+    "site/viewer/crossant-chain_preview.mjs": "43c664f7c35cbb1638214efc3d77ad1acf8a47c33b4a22a50ad70c20778c4bc3",
+    "site/viewer/crossant-covers.mjs": "d512e7e5c32543e4232ba0ffef722b9106637da5b0b9a3c9b315aec067072e4e",
+    "site/viewer/crossant-loader.mjs": "53609b746909abeefb6ef5e92e71aa366af3763da984b17ec8abd4836c1c5b4e",
+    "site/viewer/crossant-state.mjs": "534dc62f2c6545f556f7a19791302d04f9c06e364c67d29bf6428bd81a5c7a9f",
+    "site/viewer/crossant.html": "e87ac61f2756ee1409d6ba25183538ff4d4f83b6c0cb34c01e4bd1b50899869d",
+    "site/viewer/crossant.js": "06cb25c5cafdbd1fe44a134f74430c6c79f23dbf8918df0cd5328339c565c07a",
+    "site/viewer/display-preferences.mjs": "9860960509e28d17f3fd89b59e32eaa7110a1816b8e5e4703f49c3a24998aae0",
+    "site/viewer/display-start.js": "2ccf9c125fa0c4f73dc1a238a9b5070c779ef1b45d8301a11acd804528ccbad6",
+    "site/viewer/e3ng-model.mjs": "7d5da880bcd1c29e4fd7f25a58afeafe5bd2e6839778821da65faa6614a1495a",
+    "site/viewer/e3ng.html": "a70f3203f0d3f5c8088175faa1ab2db130850cc101b0c59ab71a734f40ccf9e8",
+    "site/viewer/e3ng.js": "15b34b4a6c13933a52dd02a6c4bc445a6742a4dd4a15d6020b699ce83e21ccc9",
+    "site/viewer/embed-contract.mjs": "efefdd1fb25011506d9bda403a4a16b4b01b4520a53aa1d71195a97095e77947",
+    "site/viewer/embedded-boards.mjs": "44669b07f69dccdcacfe282a132f1e15da263b9f44373824a4895510297209d6",
+    "site/viewer/export-camera.mjs": "9b7cb2c53ed30506e01c79eafd2ee4c72fa4305806a316acdf5cc3985d0ce628",
+    "site/viewer/extra-asset-integrity.mjs": "4780a3eeb8c5736a816053dbafd559e9413e3810fedcac7de211848ac3dca222",
+    "site/viewer/extra-machine-loader.mjs": "df8d3018b6897eb4ddc9f89ace06565cee5322c64f6970bbff9e1945abbdedf3",
+    "site/viewer/flexible.js": "afc4eac5d4c4b6d6247cb8172b5391258e2f32274de76983a111ded2c9437d64",
+    "site/viewer/frame-mods.js": "2807dfa874f24875b7a4d34879cd22f04ea1a1dbdbb5aacac593b893f07ee751",
+    "site/viewer/gantries.html": "141b8c05ff05363d996802070a836d30143e860105714699f748164e18ebbdcc",
+    "site/viewer/gantries.js": "6f2fb3b142955097117dc5e587fa76209fcba77b6c0beeaa951cc61aeff1d949",
+    "site/viewer/gantry-model.js": "77bee27ae99e3944fc901c733b7fa2450b2e36deb9b789c66328e8c979db2ec4",
+    "site/viewer/gcode-panel.js": "2c8eaf3484a8fc0fed2616806ac289bdc96a774d4667aa434cb7ed664f91f6b2",
+    "site/viewer/gcode-preview.mjs": "a206f28d86363c4cf14edf04ea61af3c5f833e537d95016eb1ca54495da2a004",
+    "site/viewer/gcode-timeline.mjs": "eebf019595c27e46e63d19dfdfd0e1157ff59b9e628fc9a80beac8dc19068089",
+    "site/viewer/grid-control.js": "44e2e88530fbb5820a7dfc1475d281023b1e2a72b3953205f42b4a766cca5732",
+    "site/viewer/head-assembly.js": "7fa59d6f7b82e35957e9ef08fee311905ddf333447b2d1415ee16d9733ab331b",
+    "site/viewer/head-markers.mjs": "ecb2d72d7d41cc8055e4708bfbba02683a246304453d3e64a5b70dbcfdec818f",
+    "site/viewer/head-navigation.mjs": "efe7d538401ec00cc2d10ea7e290b5c4498f33aaa0122e30d84d3e83971f1397",
+    "site/viewer/head-validation-ui.mjs": "e7852ba7382943fa85b9e49f3b2002e18ef3e327a10ca9b8ba8277f0ef7aee04",
+    "site/viewer/head-validation.mjs": "2ff01996ff2feb2c3cbe1ef6e60adf1a1dc6cc2a092cca351efa4d6cbe9e14b2",
+    "site/viewer/i18n.mjs": "6c92fc7f7fe0c2fedafa57b56426cfb7fafa7b7fcf065e2493c087586c79a24d",
+    "site/viewer/index.html": "2c97ec643824328a8cd33a7030c1b87f638471cb75f66f5e12b8b8b835ee5d79",
+    "site/viewer/kit-reference.html": "ce153ff12cd426298e9927a1024e4386d4f14ad4358907fefecbf887743782ac",
+    "site/viewer/kit-reference.js": "c1f6c6fc6600578e6c2bf914f91490146ca215391dd1d2715e2c51e2044f751a",
+    "site/viewer/languages.mjs": "fa521b07d4184ded01465c29ef2c8a5f85e969cb1c2bed0895ffed2cabdda98f",
+    "site/viewer/lighting-animation.mjs": "ee2a0ac739d69f7d647970d4f30c967dc835e028b077420472fcad45b1aeb760",
+    "site/viewer/lighting-state.mjs": "980c984e27b4befb063e6332a919b4b54d95e43f8b7d1125a6792c0fd08b586e",
+    "site/viewer/lighting.js": "16f9cd983dca18754bc20676a97a22c780c471ce5f279405679d3d7dec8a30fa",
+    "site/viewer/machine-head-model.mjs": "03db7c7d900ff7f5b2c0770170535e407dd15795a34fdd05e921599999d09387",
+    "site/viewer/machine-heads.js": "22e49edc49a2b3b9342f60689c58790aea9b3856b309bbce2ac3722a0e4106a8",
+    "site/viewer/machines.js": "dedc575bbef34e348ec3455c4f179ecbf6283cc6e21517d6511d85c571ffd38f",
+    "site/viewer/mercury-tube-routes.mjs": "d27d615757ad1f73240934053ae3c293e92e57c09584c3bd767fcf877fecffee",
+    "site/viewer/micron-adapter.mjs": "6177cae5e22f1f414ba2a74d3c365b2454f3301e3b008c94fffb31945369ea5d",
+    "site/viewer/micron-belts.mjs": "377a1b6b837466e7ccddea8dad3c5fff4793f888ca7d1aacf45bb3a7d286156c",
+    "site/viewer/micron-flexible-pins.mjs": "9e386712b40c4b8116583ec34a7f56709cb25f7dfc93339c9c68faa39d1cd2bd",
+    "site/viewer/micron-flexible.mjs": "f60dbb5f5765a15dfc34ab025f975f139fe869e43304938bf32d3312ab05b18b",
+    "site/viewer/micron-tube-routes.mjs": "c69d79d6fdbfee5338fe365ca9542323714add2a834e34aafec37395d19614b1",
+    "site/viewer/micron.html": "26aaf2aef7961de01363f7d31936929c34f7e6309865c73a301f9dc3114cd6ee",
+    "site/viewer/micron.js": "81c3ee34e044a7b5069b2133cf3c04ff420fe004e4516c5fbbe9645248d8c7c8",
+    "site/viewer/model-loader.js": "9df39fced7704a6427e91842a0213b18dfd6486d78710908be7a58536169d21d",
+    "site/viewer/monolith-belt-clip.mjs": "ffef92bb9ead85b656edd2862143f680fae9c19f4b8b73ff72d9a905a3802e55",
+    "site/viewer/monolith-belts.mjs": "47b8db67a70f368d39e554b352447df2d996f603b8e2299f3b549edc2586358b",
+    "site/viewer/monolith-head-model.mjs": "f01febfc759348d89fa70dab8e583b312121782a9723ed21bc13739be3ff9bd5",
+    "site/viewer/monolith-machine-model.mjs": "a444255dc35e7c15a082e805930c6f6d0b55062fef63e7b0a8b1756d5ee1819b",
+    "site/viewer/monolith-machine.js": "00b77b5268c44e283d7aa465dc57e8221aeb11633abd3270a458a39e1af04169",
+    "site/viewer/mount-validation.mjs": "0c22958eb1c03dcf3a1fc507a7bfa391aa75f2744664a32fffc49499716e593f",
+    "site/viewer/positron-fold.mjs": "7368d3dd6e38e237f6ff9e9c66de9f167096c6a72c867238bb8d21027b37d067",
+    "site/viewer/positron-loader.mjs": "4d2365ea3dd39d70b000ac07d4d2527d60d81f32e127190660c94a5816e3eaf3",
+    "site/viewer/positron-state.mjs": "8296d1b775fbca04462f5518a3126d25a53d372ddebadb0c2adff67968fee9ea",
+    "site/viewer/positron.html": "f9bafeb20d17a65080fcf96db3e48a61d2d2d63b429a57d12f0dbd33368026ff",
+    "site/viewer/positron.js": "c3546658917cb5b253ace68966543cc574479e796ecc3823c787a3d580bb404c",
+    "site/viewer/printer-gantry.mjs": "f2f8aca7cc040f3911ab2b31b982d914df930c58cb5c63d2db4374e0b9b1cff5",
+    "site/viewer/probe-checks.js": "ea1aef3e30bf7d11d3cbca0e3272704428ed9ef5670ec0d154efdede824c0222",
+    "site/viewer/probe-mounts.js": "06a66eade4bdc5eb8c8490b4f18c35597f0f66693611a00b39995e390c61e850",
+    "site/viewer/product-links.js": "8a5b11566dea89f05401a2e88361e89b9cacfb74a6263c6606ba00e61e0d0c32",
+    "site/viewer/public-info.js": "1f2cb73fdf4ca33127375e3fce6d5d17a833dd7df4219dd48026b916923a71ee",
+    "site/viewer/ratrig_adapter.mjs": "a4648c4988c02ca82726b413a8011142c31502c513e395c8b4665a4720f7542a",
+    "site/viewer/ratrig_gcode_preview.mjs": "d8c60b04d15d4417dfa5c4dd4ba9590645e4a1b27116aafa8e821c2c7ac50e88",
+    "site/viewer/ratrig_motion_math.mjs": "89517eb971282a5918a2c7df66e85d9266725a639a0ffb736388e88d5c9e6ba3",
+    "site/viewer/ratrig-loader.mjs": "1cbb4935d016b2e108487b3c401d50b6290f8edc7b0a30ff6df2b13e2f20cb1e",
+    "site/viewer/ratrig-machines.mjs": "6f5c7fbad04c29c3827deaea5ed6a556bcd927ab7c3d9505beff4200a0392ba0",
+    "site/viewer/ratrig-ui-state.mjs": "58e9d9727047d366ffe400325f8381b047b3aa29ddc49a1a3b68c811cfd3ad08",
+    "site/viewer/ratrig.html": "fa2908f1ebde98d30cd098618ebe14d923725040b681012d303d12844b8f73ab",
+    "site/viewer/ratrig.js": "c6244e7d656893912f4296b958c1f0b2583a1ba80150e5f5bd4239121a3db84a",
+    "site/viewer/remorph-adapter.mjs": "5bb6f83844e91238bd2a73d57185ec378eb70862f1284935304aaad8ec0209be",
+    "site/viewer/remorph-belts.mjs": "c75ae005bf795485430cc1188bb51fc647244585f5e0407c9b9586cf79dd082f",
+    "site/viewer/remorph-environment.mjs": "6fb8bb7c9e6491287c5d0b737248116b439cea560aee50b929c2af1c18e2815d",
+    "site/viewer/remorph.html": "450e46da524572950d8dae2edd80e4b99015c2c63b0eb7d67464d1c880cc0d6c",
+    "site/viewer/remorph.js": "76b2533bd601ba0c12f4f1f4b87535a890e1c47c83203112d758f5a7fc655990",
+    "site/viewer/render-export.js": "5932066eed0ef909b72bf4b00f1a3d88324bb2d3f92869d930ee900f707b1497",
+    "site/viewer/responsive-camera.mjs": "a5087f024910f351f1deca2caa00f8e26ffbffaec6ece167c0120b59036ca1b8",
+    "site/viewer/scene-lighting-state.mjs": "80afe1341b17e451471f51b9dd350c2c5a3c14e5cdd922f6b1eb110db9f5e8d1",
+    "site/viewer/stinger-flex.mjs": "0ab64709177d49ba0fec080323bba543679b548b09c55deaa4a06c665e9d247e",
+    "site/viewer/stinger-tube-route.mjs": "064491780dfb942086bf643996507894fb90cf527b90cd7764c121cf12385127",
+    "site/viewer/theme-toggle.css": "4e62a8462e0b9ed5c6653d7dcb43cf66a36893b1be13b5b267e4e0af3f85613b",
+    "site/viewer/toolchanger-model.js": "0688c022fbab64a87c2e33d823880ec90afaa05223f3d4a3f2f454a258e7c443",
+    "site/viewer/toolchangers.css": "aeb1af01008eeb68e8915ccf6a73a4944f2d70ad906feccca6da2579b4dba488",
+    "site/viewer/toolchangers.html": "4b2de48cfcd936faf079145d8851299342140b5aca218b533adf3432a64d1872",
+    "site/viewer/toolchangers.js": "48b7320df42a116e0e9a8fb46285cb26192cea6fc44e535bea83940fde8ec013",
+    "site/viewer/toolhead-builder.mjs": "6ec7788c796225ad9e846684d16b484269fdcf64b171d55c0fda5c45304a4516",
+    "site/viewer/toolheads.css": "a03941a53ad7be71c88335121d4ef8239365f7a7b60091ab296dedc92793804a",
+    "site/viewer/toolheads.html": "90185fa419962bb7e626121f8b40882a8eb788fbb390e11e67324fd7808ce7e7",
+    "site/viewer/toolheads.js": "2f342348cd052b89a81c3b3e0890479ed99c4de27860a76452eec190e66010f8",
+    "site/viewer/translation-engine.mjs": "59b4da15aa1f296a364770caae2cc6a95ae0e3938331c35ac736cf0aa8ad4681",
+    "site/viewer/trident-belts.mjs": "2e87689c8830c00da722598a48ccfbd4c05d31a9879ba871e583d0e0475b3deb",
+    "site/viewer/trident-motion.mjs": "a49660784f83f66326726f51f2c9d82980f8e03c2cdf9f6ce06e09edc7876f90",
+    "site/viewer/trident.html": "21b1ceb8a9baeced85a578859aa721963fd46a143040dc9865e31ab1d16061bf",
+    "site/viewer/v0_adapter.mjs": "b25f6ec8b11c3f0769a092db308191c30400e2c3872587f38d61d8dec613de4c",
+    "site/viewer/v0-app.js": "69eb9b1195898fa03721ea18b97599a4e76f812f601efe20d7ad7b9f91a29c6a",
+    "site/viewer/v0-belts.mjs": "948e42567a0013aa58217f9a877c9387159934bf848215d8d5a1d9515f911e5d",
+    "site/viewer/v0-chain-pins.mjs": "6d41fb943c5b19ea28ac78025bcd1559ddccbb4baab4872a28816fe5c4c81136",
+    "site/viewer/v0-chain.mjs": "191a8944e5e3197f21dcdaf6023bcc5be39d268162c22f68b3a9ffe7e5bd86fc",
+    "site/viewer/v0-door.mjs": "b23eb9dbc0bf6f23bc4fcb9209e85b35641699d62f845e485e342de0191b5e23",
+    "site/viewer/v0-installations.mjs": "a72fbce7f4a7c5297d706b751bbe48f009878d8b59e23b5fbd173d5b768d772e",
+    "site/viewer/v0-mod-library.mjs": "897dcc582eb8dfa53141c173a8d8536cd343a08a384fe9510006e94168aa3d7b",
+    "site/viewer/v0-tophat.mjs": "1c65737cefc844de5ab72663dc4c38ba929f98dec76fe8b318298142305bfd2f",
+    "site/viewer/v0.html": "dab79dff36b044fbd6dc13d471035be0b39f2e5226f04eaa85807647043af756",
+    "site/viewer/v24_adapter.mjs": "b7aa62783a2df21b466fb1a4d633bb27309181d4b1b94580b54ac43a987e7bd3",
+    "site/viewer/v24_matrix_adapter.mjs": "f22db0487b41926a1c6cbbabfc46fbd463e69d67ed34aebcb28edda91a84c264",
+    "site/viewer/v24-app.js": "c7a0fc5a50fc9fc3dc300753a39a67aa6a7b9f8a3d5854514700546bcdf79bfe",
+    "site/viewer/v24-belts.mjs": "4bd352513ef54386383e3a7f525130cc64238c1c1ca2d6a3f3f2c577091caa4b",
+    "site/viewer/v24-bootstrap.js": "e6bceae0f71df9f00fc6444c11067170dade26ca986ee0d1e2530ec9442b508a",
+    "site/viewer/v24-flexible.mjs": "4de2768da445f9eef0d59ead19639302112d082c26084fa80d48b6f98635470b",
+    "site/viewer/v24-reference.html": "227568063c5b2e78cdeaa9219417b1b84ae8fa9b77b48f8e41bd1ca0992f006f",
+    "site/viewer/v24-reference.js": "0863537f798abb79e83c752e6ff336665eb088fa729d859abda3182517af9a6c",
+    "site/viewer/v24.html": "16fa0303d432fc85bffe95d9ced2d5fa58dd2f895d667f22959fe8febc1e6d33",
+    "site/viewer/vanilla-trident.js": "b1f80df0de492e991ac531962e83437d786c59521ee17b7da8f7b19c7f4ea89e",
+    "site/viewer/viewer.css": "a59b3f5f2ad1c8d3a36f6dd7f053df49d851c3b1d75a182c22fc4108336bc829",
+    "site/viewer/workspace-choices.mjs": "de5ad74df97bd9098564c26baed3c218e1847dc77d151b073648088df5f58203",
+    "site/viewer/workspace-entry.mjs": "7e4c8f98212e989784bda6bb8415bf2c335376c5d79ed5a2da26d5deabaa3615",
+    "site/viewer/workspace-layout.mjs": "738c040595ec99155ce29dcf2e2fb4014bf02b6742fcf03b6d518d3ac26b4fb5",
+    "site/viewer/workspace-lifecycle.mjs": "6684e77acebd6489e552ff85d52a4a8b8588b1e34153bcfc8c0921b66bf109f5",
+    "site/viewer/workspace-navigation.mjs": "5c6f4dcd051bb1336e4399932d022e0328a2c9229870b1b79c7b0003491e6a4d",
+    "site/viewer/workspace-return.mjs": "9279f551b4223b1444c90a08f6b02a4752ecf261a6cb64114eb9f77511e1c0f0",
+    "site/viewer/workspace-router.mjs": "f0efdce818241a524ea8325b4552d9fcc63342fe655f6f9cab46d2935fe24f94",
+    "site/viewer/workspace-scroll.mjs": "048fe4a04b0a52b9cc23358733fc87529ac6bc46b0bd7309b96ea8e944874418",
+    "site/viewer/workspace-share.mjs": "e6c4054688ce084e0759d2fb4d529ea4df55e8b0190c49607fc621773b868729",
+    "site/viewer/workspace-ui.mjs": "e1efe39d20063d356d2d8a7bc8b7183b7d3deaa6179258bed9728db28dafe340",
+    "site/viewer/workspace.css": "b1b64162627cb3ff72f352eab3c5a9fc27f463efcbfc511861c96d716b82fd94"
+  },
+  "machines": [
+    {
+      "id": "lh_stinger_200",
+      "family": "lh_stinger",
+      "model_sha256": "3f9545ec42868cd09d43fa4700feee2b8c105b651f8fd1ec2f67d6831ff060da",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 128,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "COMMUNITY_NATIVE_QA_75.json",
+          "sha256": "1c0001a2c59e94c3cf0c4cf56769585727dea87e1a91c5ee968879902e61107f",
+          "scope": "Actual nodes, native motion groups, travel corners and fine diagonal sweep, exact reset, supplied normals, palette roles and flexible-part visibility."
+        }
+      ]
+    },
+    {
+      "id": "antithesis_aether_mk11",
+      "family": "aether",
+      "model_sha256": "9737ca06af3e3a51a9a185a85bfaeadf5741c9d4f7cad9206ff6d37b77165ee3",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 128,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "COMMUNITY_NATIVE_QA_75.json",
+          "sha256": "1c0001a2c59e94c3cf0c4cf56769585727dea87e1a91c5ee968879902e61107f",
+          "scope": "Actual nodes, native motion groups, travel corners and fine diagonal sweep, exact reset, supplied normals, palette roles and flexible-part visibility."
+        }
+      ]
+    },
+    {
+      "id": "ratrig_vminion_180",
+      "family": "vminion",
+      "model_sha256": "b394124d0ef44519aa24cd005d1433305f35a545c3b8d5f9c8cccb8268fb0175",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 128,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "COMMUNITY_NATIVE_QA_75.json",
+          "sha256": "1c0001a2c59e94c3cf0c4cf56769585727dea87e1a91c5ee968879902e61107f",
+          "scope": "Actual nodes, native motion groups, travel corners and fine diagonal sweep, exact reset, supplied normals, palette roles and flexible-part visibility."
+        }
+      ]
+    },
+    {
+      "id": "snakeoil_xy_180",
+      "family": "snakeoil_xy",
+      "model_sha256": "1361302b4008deb1267eb8db72ad1b108e1de0e7159b28ab0088fc2dda8486c4",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 128,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "COMMUNITY_NATIVE_QA_75.json",
+          "sha256": "1c0001a2c59e94c3cf0c4cf56769585727dea87e1a91c5ee968879902e61107f",
+          "scope": "Actual nodes, native motion groups, travel corners and fine diagonal sweep, exact reset, supplied normals, palette roles and flexible-part visibility."
+        }
+      ]
+    },
+    {
+      "id": "snakeoil_xy_idex",
+      "family": "snakeoil_xy",
+      "model_sha256": "798136042b99c6a206a662b4e113b0ec7b08532d2235f496b573b5aa47468181",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 182,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "COMMUNITY_NATIVE_QA_75.json",
+          "sha256": "1c0001a2c59e94c3cf0c4cf56769585727dea87e1a91c5ee968879902e61107f",
+          "scope": "Actual nodes, native motion groups, travel corners and fine diagonal sweep, exact reset, supplied normals, palette roles and flexible-part visibility."
+        }
+      ]
+    },
+    {
+      "id": "snakeoil_3s_kp3s_180",
+      "family": "snakeoil_3s",
+      "model_sha256": "12ae8ee0e81dc89b04fc762d030fb72465692f8009159a4564086985d6774935",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 128,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "COMMUNITY_NATIVE_QA_75.json",
+          "sha256": "1c0001a2c59e94c3cf0c4cf56769585727dea87e1a91c5ee968879902e61107f",
+          "scope": "Actual nodes, native motion groups, travel corners and fine diagonal sweep, exact reset, supplied normals, palette roles and flexible-part visibility."
+        }
+      ]
+    },
+    {
+      "id": "snakeoil_proosaxy",
+      "family": "proosaxy",
+      "model_sha256": "99018bcd4ca8fd9a0fdd2b13f764dea7e2de9471979db8766b947e876c977e87",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 128,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "COMMUNITY_NATIVE_QA_75.json",
+          "sha256": "1c0001a2c59e94c3cf0c4cf56769585727dea87e1a91c5ee968879902e61107f",
+          "scope": "Actual nodes, native motion groups, travel corners and fine diagonal sweep, exact reset, supplied normals, palette roles and flexible-part visibility."
+        }
+      ]
+    },
+    {
+      "id": "mercury_one1_235",
+      "family": "mercury",
+      "model_sha256": "73b00f8d5714a6974837608f6f0ffd66fb540e116741862ce296199acb0fdf72",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 128,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "COMMUNITY_NATIVE_QA_75.json",
+          "sha256": "1c0001a2c59e94c3cf0c4cf56769585727dea87e1a91c5ee968879902e61107f",
+          "scope": "Actual nodes, native motion groups, travel corners and fine diagonal sweep, exact reset, supplied normals, palette roles and flexible-part visibility."
+        }
+      ]
+    },
+    {
+      "id": "mercury_one1_370",
+      "family": "mercury",
+      "model_sha256": "479f7840e1fdd1790ecd797dc8ba0ef7021316f88755566bd113a22f7c9c286e",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 128,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "COMMUNITY_NATIVE_QA_75.json",
+          "sha256": "1c0001a2c59e94c3cf0c4cf56769585727dea87e1a91c5ee968879902e61107f",
+          "scope": "Actual nodes, native motion groups, travel corners and fine diagonal sweep, exact reset, supplied normals, palette roles and flexible-part visibility."
+        }
+      ]
+    },
+    {
+      "id": "vzbot_330_printed",
+      "family": "vzbot",
+      "model_sha256": "04ca850e7ce000b44db73a35058d036e4c537a7b715486172d527a926f93756c",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 128,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "COMMUNITY_NATIVE_QA_75.json",
+          "sha256": "1c0001a2c59e94c3cf0c4cf56769585727dea87e1a91c5ee968879902e61107f",
+          "scope": "Actual nodes, native motion groups, travel corners and fine diagonal sweep, exact reset, supplied normals, palette roles and flexible-part visibility."
+        }
+      ]
+    },
+    {
+      "id": "ender3_stock_220",
+      "family": "ender3",
+      "model_sha256": "393dcd56b4e7a0e675886486acd81c825de9f1a7102b839e00aa1b5365203457",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 128,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "COMMUNITY_NATIVE_QA_75.json",
+          "sha256": "1c0001a2c59e94c3cf0c4cf56769585727dea87e1a91c5ee968879902e61107f",
+          "scope": "Actual nodes, native motion groups, travel corners and fine diagonal sweep, exact reset, supplied normals, palette roles and flexible-part visibility."
+        }
+      ]
+    },
+    {
+      "id": "siboor_sboom_220",
+      "family": "sboom",
+      "model_sha256": "14be46c56724a3f954a0ab2dac8a64647b4618d913a0e3eb0c2658f619f7c77d",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 128,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "COMMUNITY_NATIVE_QA_75.json",
+          "sha256": "1c0001a2c59e94c3cf0c4cf56769585727dea87e1a91c5ee968879902e61107f",
+          "scope": "Actual nodes, native motion groups, travel corners and fine diagonal sweep, exact reset, supplied normals, palette roles and flexible-part visibility."
+        }
+      ]
+    },
+    {
+      "id": "positron_v322",
+      "family": "positron",
+      "model_sha256": "bf2eee971286dabebd8ae0f4149eb76657036c21e2df31aef6f1e32c28158f25",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 3694,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "POSITRON_NATIVE_QA_75.json",
+          "sha256": "9cab147eb0d571e129bda656ad58d898f79d49e87bec617837fd488de9be37cc",
+          "scope": "All native nodes: 1001 fold poses, rigid finite transforms, exact reset."
+        },
+        {
+          "report": "POSITRON_CARRIED_QA_75.json",
+          "sha256": "593503b7f8da1fbf9239add5b6cb589bd1821fb730242fc2f99cff9209b54cf4",
+          "scope": "3694 adaptive fold poses, maximum group-corner step below 2 mm: 11 V bodies and both removed screws versus all 1314 native bodies. Original mating/threaded contacts are recorded separately; this is sampled solid clearance."
+        }
+      ]
+    },
+    {
+      "id": "annex_k1_assembly",
+      "family": "annex_k1",
+      "model_sha256": "03f3c99734f20f9b4af1b17d1f31443e0c05f534e163ad03b8a88e5f8ea92240",
+      "mesh_quality_verified": true,
+      "motion_scope": "native_reference_assembly",
+      "sampled_poses": 0,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "ANNEX_NATIVE_QA_75.json",
+          "sha256": "2aae0215de5ac1aee56c1e4866980dd7f3b69b4f1b66fb6cc54427aac7271429",
+          "scope": "Native part transforms, upright placement and rendered part coverage. Source reference; motion is not offered."
+        }
+      ]
+    },
+    {
+      "id": "annex_k2_assembly",
+      "family": "annex_k2",
+      "model_sha256": "0efe6df3f44824d2431cd514fb31b3c135cc9cd81cf232d07ec9ac3f3ccdc450",
+      "mesh_quality_verified": true,
+      "motion_scope": "native_reference_assembly",
+      "sampled_poses": 0,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "ANNEX_NATIVE_QA_75.json",
+          "sha256": "2aae0215de5ac1aee56c1e4866980dd7f3b69b4f1b66fb6cc54427aac7271429",
+          "scope": "Native part transforms, upright placement and rendered part coverage. Source reference; motion is not offered."
+        }
+      ]
+    },
+    {
+      "id": "annex_k3_assembly",
+      "family": "annex_k3",
+      "model_sha256": "aa9cea21120eef1d395d02800c179d169169d40321c8b480b672d9b841f8f1cf",
+      "mesh_quality_verified": true,
+      "motion_scope": "native_reference_assembly",
+      "sampled_poses": 0,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "ANNEX_NATIVE_QA_75.json",
+          "sha256": "2aae0215de5ac1aee56c1e4866980dd7f3b69b4f1b66fb6cc54427aac7271429",
+          "scope": "Native part transforms, upright placement and rendered part coverage. Source reference; motion is not offered."
+        }
+      ]
+    },
+    {
+      "id": "remorph_beta1_307",
+      "family": "remorph",
+      "model_sha256": "bc2dac0dbcdb191f6ae1391a538f3deed28ec3deb0fdc7597f6adde8379c841c",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 27,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "REMORPH_NATIVE_QA_75.json",
+          "sha256": "e7a4fe9f94f4c69e44dd71e43d51d08525e3e5aa498be03c8f79c2eb3940cd58",
+          "scope": "Actual native motion groups, nozzle gap, belts, visibility, palette, floor and lighting."
+        }
+      ]
+    },
+    {
+      "id": "siboor_trident_350",
+      "family": "trident",
+      "model_sha256": "96309090e82efd59e214c403edf4716357a245e76a190038bea88abae315ff52",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 27,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "SIBOOR_ROUTES_QA_75.json",
+          "sha256": "86b750b9a98dd8e2273cf6a744123b7b4ee5967dabf881b81ab6c77eddb11151",
+          "scope": "Actual source, enabled belts and all 47 chain links preserved throughout sampled motion. Unregistered chain deformation uses an explicitly unverified reference fallback."
+        }
+      ]
+    },
+    {
+      "id": "voron_trident_250",
+      "family": "trident",
+      "model_sha256": "8cad57cf1550f8827ffdfd34cc4d7ab28edfe94b65c99a0fc7b9b28fad7f60ce",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 501,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "audit_trident_sizes.mjs",
+          "sha256": "303b3e259786bba90b446cacbf13170187570f8febb9a70b203c8d7c14c0f03f",
+          "scope": "All three actual size models: frame and bed dimensions, drive/base motion, registered heads, nozzle gap, dynamic XY route sweeps and blocked incompatible docks."
+        }
+      ]
+    },
+    {
+      "id": "voron_trident_300",
+      "family": "trident",
+      "model_sha256": "8371f7f1efb66bd2f4fec320507d6dc8e59c1fda79b08c7188f4ce4304217936",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 601,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "audit_trident_sizes.mjs",
+          "sha256": "303b3e259786bba90b446cacbf13170187570f8febb9a70b203c8d7c14c0f03f",
+          "scope": "All three actual size models: frame and bed dimensions, drive/base motion, registered heads, nozzle gap, dynamic XY route sweeps and blocked incompatible docks."
+        }
+      ]
+    },
+    {
+      "id": "voron_trident_350",
+      "family": "trident",
+      "model_sha256": "d81c419951e187277a9c49750ccd376eaad102517370b34881e9b071a123c58d",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 701,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "audit_trident_sizes.mjs",
+          "sha256": "303b3e259786bba90b446cacbf13170187570f8febb9a70b203c8d7c14c0f03f",
+          "scope": "All three actual size models: frame and bed dimensions, drive/base motion, registered heads, nozzle gap, dynamic XY route sweeps and blocked incompatible docks."
+        }
+      ]
+    },
+    {
+      "id": "siboor_v24_350",
+      "family": "v24",
+      "model_sha256": "7df279a763fcd8fdd1eae0ec997a92ded59642d93dfa42ba9592eee7f7e114ed",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 216,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "MOTION_ASSETS_QA_75.json",
+          "sha256": "3a537da8ecb7fb268673f631ef80c115ede9b0598bcb4db86c5930e623bf838f",
+          "scope": "Actual exported models: travel grid, enabled flexible visibility, rigid group transforms, belt envelopes, enclosure switches and reverse/reset. Belt teeth/clamp cuts, tension and body swept clearance are separate."
+        }
+      ]
+    },
+    {
+      "id": "voron_v24_250_printed",
+      "family": "v24",
+      "model_sha256": "76f0e2e6616d480e1d191c2eb39e0a9938000f2bdeb25f457974f5d7ab1de4c8",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 216,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "MOTION_ASSETS_QA_75.json",
+          "sha256": "3a537da8ecb7fb268673f631ef80c115ede9b0598bcb4db86c5930e623bf838f",
+          "scope": "Actual exported models: travel grid, enabled flexible visibility, rigid group transforms, belt envelopes, enclosure switches and reverse/reset. Belt teeth/clamp cuts, tension and body swept clearance are separate."
+        }
+      ]
+    },
+    {
+      "id": "voron_v24_250_ldo_cnc",
+      "family": "v24",
+      "model_sha256": "ad1847d5be4eb81f6251a9391b0633a9c819d33a60e4a133467837aa8a5e1c88",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 216,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "MOTION_ASSETS_QA_75.json",
+          "sha256": "3a537da8ecb7fb268673f631ef80c115ede9b0598bcb4db86c5930e623bf838f",
+          "scope": "Actual exported models: travel grid, enabled flexible visibility, rigid group transforms, belt envelopes, enclosure switches and reverse/reset. Belt teeth/clamp cuts, tension and body swept clearance are separate."
+        }
+      ]
+    },
+    {
+      "id": "voron_v24_300_printed",
+      "family": "v24",
+      "model_sha256": "aa0130c6ceaa6bbdc1d06a2e80134b8873f2bc590c69c228cdf78c2f4574b50e",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 216,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "MOTION_ASSETS_QA_75.json",
+          "sha256": "3a537da8ecb7fb268673f631ef80c115ede9b0598bcb4db86c5930e623bf838f",
+          "scope": "Actual exported models: travel grid, enabled flexible visibility, rigid group transforms, belt envelopes, enclosure switches and reverse/reset. Belt teeth/clamp cuts, tension and body swept clearance are separate."
+        }
+      ]
+    },
+    {
+      "id": "voron_v24_300_ldo_cnc",
+      "family": "v24",
+      "model_sha256": "658da336489fd1a86aabf8892169dd083083514978e7b71c451ce6ea9225e3bd",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 216,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "MOTION_ASSETS_QA_75.json",
+          "sha256": "3a537da8ecb7fb268673f631ef80c115ede9b0598bcb4db86c5930e623bf838f",
+          "scope": "Actual exported models: travel grid, enabled flexible visibility, rigid group transforms, belt envelopes, enclosure switches and reverse/reset. Belt teeth/clamp cuts, tension and body swept clearance are separate."
+        }
+      ]
+    },
+    {
+      "id": "voron_v24_350_printed",
+      "family": "v24",
+      "model_sha256": "d869f22ec5404a2c6dd4ae9b9e83532252e97aed20dcfd3e117867fa1dc9303c",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 216,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "MOTION_ASSETS_QA_75.json",
+          "sha256": "3a537da8ecb7fb268673f631ef80c115ede9b0598bcb4db86c5930e623bf838f",
+          "scope": "Actual exported models: travel grid, enabled flexible visibility, rigid group transforms, belt envelopes, enclosure switches and reverse/reset. Belt teeth/clamp cuts, tension and body swept clearance are separate."
+        }
+      ]
+    },
+    {
+      "id": "voron_v24_350_ldo_cnc",
+      "family": "v24",
+      "model_sha256": "6a0d044268c28d9192bbb211faae645bd957d3a8c27dedbb000e08e989e66fa7",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 216,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "MOTION_ASSETS_QA_75.json",
+          "sha256": "3a537da8ecb7fb268673f631ef80c115ede9b0598bcb4db86c5930e623bf838f",
+          "scope": "Actual exported models: travel grid, enabled flexible visibility, rigid group transforms, belt envelopes, enclosure switches and reverse/reset. Belt teeth/clamp cuts, tension and body swept clearance are separate."
+        }
+      ]
+    },
+    {
+      "id": "voron_v02r1_120",
+      "family": "v0",
+      "model_sha256": "d89064824fa67ed6e7c78e90c642620afe62c3b4520255f6c626181754b7d29d",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 457,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "MOTION_ASSETS_QA_75.json",
+          "sha256": "3a537da8ecb7fb268673f631ef80c115ede9b0598bcb4db86c5930e623bf838f",
+          "scope": "Actual exported models: travel grid, enabled flexible visibility, rigid group transforms, belt envelopes, enclosure switches and reverse/reset. Belt teeth/clamp cuts, tension and body swept clearance are separate."
+        }
+      ]
+    },
+    {
+      "id": "voron_v02_120",
+      "family": "v0",
+      "model_sha256": "da642150957fa38289499bd1c1586737f4f970968c3b32b3f7b81d76bef05ea9",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 457,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "MOTION_ASSETS_QA_75.json",
+          "sha256": "3a537da8ecb7fb268673f631ef80c115ede9b0598bcb4db86c5930e623bf838f",
+          "scope": "Actual exported models: travel grid, enabled flexible visibility, rigid group transforms, belt envelopes, enclosure switches and reverse/reset. Belt teeth/clamp cuts, tension and body swept clearance are separate."
+        }
+      ]
+    },
+    {
+      "id": "micron_r1_120",
+      "family": "micron",
+      "model_sha256": "74d8b1087b9da37252cf10e1c42737a5a60910c4fe587b4660003065d2f62254",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 55,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "MICRON_ACTUAL_QA_75.json",
+          "sha256": "4b194a77b049488b9d457015ff8f1c11aa598d2b638b1f9a49805b97ae6044b6",
+          "scope": "Actual model travel, chain continuity, Plus PTFE/CAN fitting endpoints, visibility and reset."
+        }
+      ]
+    },
+    {
+      "id": "micron_plus_r1_180",
+      "family": "micron",
+      "model_sha256": "f9b85f592fe71101030d69f1866e5d5b44c82c9c1ef708635b5f0c087121c184",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 387,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "MICRON_ACTUAL_QA_75.json",
+          "sha256": "4b194a77b049488b9d457015ff8f1c11aa598d2b638b1f9a49805b97ae6044b6",
+          "scope": "Actual model travel, chain continuity, Plus PTFE/CAN fitting endpoints, visibility and reset."
+        }
+      ]
+    },
+    {
+      "id": "fysetc_v24_250_pro",
+      "family": "v24",
+      "model_sha256": "4ee4c9612380f007a9c5f107d1d7a2f59e2d89bc7ebabe802bf272eb7c53faff",
+      "mesh_quality_verified": true,
+      "motion_scope": "native_reference_assembly",
+      "sampled_poses": 0,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "FYSETC_REFERENCE_QA_75.json",
+          "sha256": "7c370c4e27ffb478f32d4807e8530f1a2bb28501a0393ff6d79fcf0da653f7c1",
+          "scope": "All 1388 native part identities, visibility, transforms and production palette roles. Source reference; motion is not offered."
+        }
+      ]
+    },
+    {
+      "id": "crossant_235_v06_leadscrew",
+      "family": "crossant",
+      "model_sha256": "f4e560da3b9f8274b508dfc6d9e846ebc5c9e147fccbd16a63c771fba3c13de5",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 1089,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "CROSSANT_COVERS_QA_75.json",
+          "sha256": "adcda7e31f8d4372ed68c3ffcabe1b9ae7d182de46e492fc3661d9d01deeb4c4",
+          "scope": "Production loader, native nodes, DXF covers at three thicknesses, all four belts and chain display, save-state compatibility."
+        }
+      ]
+    },
+    {
+      "id": "ratrig_vcore_40_300_corexy",
+      "family": "vcore4",
+      "model_sha256": "dfb5aaeca2cb274932ae4a9f8c59a7a76114f3d6c6c41dc9c814223b33d2a8b6",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 106,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "RATRIG_ALL_NATIVE_QA_75.json",
+          "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
+          "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
+        }
+      ]
+    },
+    {
+      "id": "ratrig_vcore_40_300_hybrid",
+      "family": "vcore4",
+      "model_sha256": "125705129bc1fe73416d661df8dc928291f2a090a03ef662459bf6275f53031b",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 106,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "RATRIG_ALL_NATIVE_QA_75.json",
+          "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
+          "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
+        }
+      ]
+    },
+    {
+      "id": "ratrig_vcore_40_300_idex",
+      "family": "vcore4",
+      "model_sha256": "16f57d28b27602be3effa8b5c797b3d59f4ce07025aa59c9e84de91a08b10427",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 109,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "RATRIG_ALL_NATIVE_QA_75.json",
+          "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
+          "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
+        }
+      ]
+    },
+    {
+      "id": "ratrig_vcore_40_400_corexy",
+      "family": "vcore4",
+      "model_sha256": "cedf78d3a15e5bcfbbdebef6a3b48d2aafc2f516ac701177472c6eb504bff2b7",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 106,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "RATRIG_ALL_NATIVE_QA_75.json",
+          "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
+          "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
+        }
+      ]
+    },
+    {
+      "id": "ratrig_vcore_40_400_hybrid",
+      "family": "vcore4",
+      "model_sha256": "b2ca97bc05ef65eff019d886a8069b89f1f7958a6a5fa4ec5f27598459e9ed06",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 106,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "RATRIG_ALL_NATIVE_QA_75.json",
+          "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
+          "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
+        }
+      ]
+    },
+    {
+      "id": "ratrig_vcore_40_400_idex",
+      "family": "vcore4",
+      "model_sha256": "b41565379c61be88ff04988bd7c3742318129da04620ca5aa264c441a2a19bde",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 109,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "RATRIG_ALL_NATIVE_QA_75.json",
+          "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
+          "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
+        }
+      ]
+    },
+    {
+      "id": "ratrig_vcore_40_500_corexy",
+      "family": "vcore4",
+      "model_sha256": "1b90e0423e78a64a26c5ecc2c91f51616d8d060fbd34431af0b53f15ed5886fc",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 106,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "RATRIG_ALL_NATIVE_QA_75.json",
+          "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
+          "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
+        }
+      ]
+    },
+    {
+      "id": "ratrig_vcore_40_500_hybrid",
+      "family": "vcore4",
+      "model_sha256": "c352ee0188f76528d9bc3ddf8ca8da341206ac91ea4080bc62bbcbd5f9fbd297",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 106,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "RATRIG_ALL_NATIVE_QA_75.json",
+          "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
+          "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
+        }
+      ]
+    },
+    {
+      "id": "ratrig_vcore_40_500_idex",
+      "family": "vcore4",
+      "model_sha256": "5667d489ad6a27f61e2e5bfd5418582745aac3faae62248dc1d320104cec0bca",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 109,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "RATRIG_ALL_NATIVE_QA_75.json",
+          "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
+          "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
+        }
+      ]
+    },
+    {
+      "id": "ratrig_vcore_41_300_corexy",
+      "family": "vcore4",
+      "model_sha256": "aac48dc8f9ec3c57653f243ba1b7fda102e556f2d2a3e8a8167aa21f3e443be8",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 106,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "RATRIG_ALL_NATIVE_QA_75.json",
+          "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
+          "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
+        }
+      ]
+    },
+    {
+      "id": "ratrig_vcore_41_300_hybrid",
+      "family": "vcore4",
+      "model_sha256": "9642e9a716271296176c5a11d7da26ea65f768cdd5fee282609fab41065ccddb",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 106,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "RATRIG_ALL_NATIVE_QA_75.json",
+          "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
+          "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
+        }
+      ]
+    },
+    {
+      "id": "ratrig_vcore_41_300_idex",
+      "family": "vcore4",
+      "model_sha256": "4328f885ab485f25157d4e25cb2c6d921a2843a0ddce85e619b2f3b1b01f1caa",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 109,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "RATRIG_ALL_NATIVE_QA_75.json",
+          "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
+          "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
+        }
+      ]
+    },
+    {
+      "id": "ratrig_vcore_41_400_corexy",
+      "family": "vcore4",
+      "model_sha256": "1797f6a03cdf2a051ee94f1cbe91e5d9d4e78bf068979f4ef182ef518f9734e9",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 106,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "RATRIG_ALL_NATIVE_QA_75.json",
+          "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
+          "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
+        }
+      ]
+    },
+    {
+      "id": "ratrig_vcore_41_400_hybrid",
+      "family": "vcore4",
+      "model_sha256": "9ee09292ad7f5a1cd22ecc70b4dc351d2f42b88353fca26b0266326fc0195e39",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 106,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "RATRIG_ALL_NATIVE_QA_75.json",
+          "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
+          "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
+        }
+      ]
+    },
+    {
+      "id": "ratrig_vcore_41_400_idex",
+      "family": "vcore4",
+      "model_sha256": "b1d9ce88b7c1e8d94b84081dda180b734f404a6d7c49a3834682ea62fe5f4eb6",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 109,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "RATRIG_ALL_NATIVE_QA_75.json",
+          "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
+          "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
+        }
+      ]
+    },
+    {
+      "id": "ratrig_vcore_41_500_corexy",
+      "family": "vcore4",
+      "model_sha256": "856eed23ee1a8f56dd2d242808cbbfd9fef8abb83f9f4a8afb905709c76f55ce",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 106,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "RATRIG_ALL_NATIVE_QA_75.json",
+          "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
+          "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
+        }
+      ]
+    },
+    {
+      "id": "ratrig_vcore_41_500_hybrid",
+      "family": "vcore4",
+      "model_sha256": "f2de1ea8733e099f302340ad660dc505baa07627215c7d9839d3e1ebeb670dd4",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 106,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "RATRIG_ALL_NATIVE_QA_75.json",
+          "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
+          "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
+        }
+      ]
+    },
+    {
+      "id": "ratrig_vcore_41_500_idex",
+      "family": "vcore4",
+      "model_sha256": "e199087d12dee961f1c2e08b7f96e4dfd95adf52ef5210536f5d6ec0e5904a07",
+      "mesh_quality_verified": true,
+      "motion_scope": "sampled_native_motion",
+      "sampled_poses": 109,
+      "full_physical_fit_certified": false,
+      "evidence": [
+        {
+          "report": "RATRIG_ALL_NATIVE_QA_75.json",
+          "sha256": "78ea75a68ea7ec5c26c346cf3683b015fc65537c95a645c3d2bef7a8525df66c",
+          "scope": "All 18 production-loader models; sampled motion, native group/guide transforms, palettes, flexible display routes and G-code preview state."
+        }
+      ]
+    }
+  ],
+  "combination_checks": {
+    "loaded_head_configurations": 7995,
+    "monolith_installed_configurations": 5040,
+    "changer_bank_combinations": 558,
+    "indx_bank_cases": 14784,
+    "scope": "Actual GLB loading, finite node/bounds registration, material isolation and selection state; not all-body solid interference or automatic docking certification."
+  },
+  "browser_review": {
+    "browser": "Codex in-app browser",
+    "changed_machine_views": [
+      "positron_v322",
+      "lh_stinger_200"
+    ],
+    "all_52_visually_reviewed": true,
+    "windows_chrome_verified": false,
+    "mobile_touch_device_verified": false,
+    "viewport": [
+      1280,
+      720
+    ],
+    "scene_scope": "Sequential real machine-picker changes and one rendered reference/default scene screenshot per available machine. Not all configurations, all angles, or real touch-device/cross-browser certification.",
+    "screenshots": [
+      {
+        "id": "lh_stinger_200",
+        "file": "lh_stinger_200.png",
+        "sha256": "5bdef4569d6b1a7a8033453870d819cdd769a7d7175327a3c438592ec2e67357"
+      },
+      {
+        "id": "antithesis_aether_mk11",
+        "file": "antithesis_aether_mk11.png",
+        "sha256": "d98aef8036fc4ac9214005244bd0bbb24423c35df36e817fae0e166f0f1aae88"
+      },
+      {
+        "id": "ratrig_vminion_180",
+        "file": "ratrig_vminion_180.png",
+        "sha256": "0f4814e33adb5f94ab3f81bb35a6369ad6215277a0f0d27edab9768b6241debf"
+      },
+      {
+        "id": "snakeoil_xy_180",
+        "file": "snakeoil_xy_180.png",
+        "sha256": "910af52aa5d8a6e3826d83e4df067ae2e417e7aa2b1693ae973fd2987a91c9e0"
+      },
+      {
+        "id": "snakeoil_xy_idex",
+        "file": "snakeoil_xy_idex.png",
+        "sha256": "2952d13ef1538bf4fb4ca21b09d20cd513a1857b2cf95fa52ec714d24eb11a17"
+      },
+      {
+        "id": "snakeoil_3s_kp3s_180",
+        "file": "snakeoil_3s_kp3s_180.png",
+        "sha256": "ef2c83adb4ad3bd500424289d1188b6a1a54ccfd8008bd08cc22577d0fe56dc3"
+      },
+      {
+        "id": "snakeoil_proosaxy",
+        "file": "snakeoil_proosaxy.png",
+        "sha256": "85625f71c1a0f3456efcf7f9728401c7fbab3fd1fbfd2ad7487de20a783d42ec"
+      },
+      {
+        "id": "mercury_one1_235",
+        "file": "mercury_one1_235.png",
+        "sha256": "d1d5a3daf0efdd545a3a7f92549f636680ada8af98da8606392a105e004da706"
+      },
+      {
+        "id": "mercury_one1_370",
+        "file": "mercury_one1_370.png",
+        "sha256": "b4feb1369e1b00892c9b882f3a830caaceb29fdb2839a0d7a60d9d247a11ac83"
+      },
+      {
+        "id": "vzbot_330_printed",
+        "file": "vzbot_330_printed.png",
+        "sha256": "40686c8360e1a01c4026b310a157a1f0df01ece81816abf48de6968096fdd6bf"
+      },
+      {
+        "id": "ender3_stock_220",
+        "file": "ender3_stock_220.png",
+        "sha256": "c79865af2fdfbd824570bb93b10adaf48dc67dc3a76b9224ca3d9320c4954b0e"
+      },
+      {
+        "id": "siboor_sboom_220",
+        "file": "siboor_sboom_220.png",
+        "sha256": "766d01dd0f7a0b2dc48f6335a011ac12b201b06a017294e85ab9a8d7d1180938"
+      },
+      {
+        "id": "positron_v322",
+        "file": "positron_v322.png",
+        "sha256": "62703ca18e2559b7ca7ca4549508f5f93fbfb1ffa5ade427b09a28c1b1b0849e"
+      },
+      {
+        "id": "annex_k1_assembly",
+        "file": "annex_k1_assembly.png",
+        "sha256": "e2284f008cbae86595f1d30affeb4a6e91d4575e70e6dc9a471a23568c5fff8b"
+      },
+      {
+        "id": "annex_k2_assembly",
+        "file": "annex_k2_assembly.png",
+        "sha256": "3ce4284657cd65f821233528fea4bec90b827a6f81fc2b6bce4200ee6d6414e5"
+      },
+      {
+        "id": "annex_k3_assembly",
+        "file": "annex_k3_assembly.png",
+        "sha256": "991e24ef9248127f22a3f8b5e9a13d2f5c7266eee39ad9d14e118f46e66c4d8c"
+      },
+      {
+        "id": "remorph_beta1_307",
+        "file": "remorph_beta1_307.png",
+        "sha256": "d4e879cf213dd4c100ca495a956504e53c85bc32f0c863547281fb2a31c313c2"
+      },
+      {
+        "id": "siboor_trident_350",
+        "file": "siboor_trident_350.png",
+        "sha256": "96365e73dbf37c7ea2e8f4a8350d6b49052357966010c22c30a0a59814884976"
+      },
+      {
+        "id": "voron_trident_250",
+        "file": "voron_trident_250.png",
+        "sha256": "be43dc7f2a8a2634903745d2be9377b5db8cda2779edc03b36a7b9e43832e32c"
+      },
+      {
+        "id": "voron_trident_300",
+        "file": "voron_trident_300.png",
+        "sha256": "c837e4a6587e055def42a5e59d1498f0c29b904cd568f9c53ebc8420b0af0207"
+      },
+      {
+        "id": "voron_trident_350",
+        "file": "voron_trident_350.png",
+        "sha256": "f589c9f4986936c901221b04057dd1fd72afdd571aacf441c18e8f441c9d4428"
+      },
+      {
+        "id": "siboor_v24_350",
+        "file": "siboor_v24_350.png",
+        "sha256": "65db3b4d865f790a3149a8d11d72b9315ec638fe62c1099a28b38c57495b1074"
+      },
+      {
+        "id": "voron_v24_350_printed",
+        "file": "voron_v24_350_printed.png",
+        "sha256": "516cc81cd022d8c98793387b96f1edde9e351f21cd105d80ee0ec502fa017b0c"
+      },
+      {
+        "id": "voron_v24_250_printed",
+        "file": "voron_v24_250_printed.png",
+        "sha256": "f62006243bd684647facea4e83248e41c9d54f41fce0a763702c2092fe63910b"
+      },
+      {
+        "id": "voron_v24_300_printed",
+        "file": "voron_v24_300_printed.png",
+        "sha256": "c1e049200f9630e4db169c0513badd8716d7f26499ea57ee2d3196dd1c64388f"
+      },
+      {
+        "id": "voron_v24_250_ldo_cnc",
+        "file": "voron_v24_250_ldo_cnc.png",
+        "sha256": "302fed68ec0909f52d27d5b453056b9f4c95b8cdf28d9523bb26be2fea933cf2"
+      },
+      {
+        "id": "voron_v24_300_ldo_cnc",
+        "file": "voron_v24_300_ldo_cnc.png",
+        "sha256": "9571029491f7456550a7d57952b72ff604cfaa8356b2d556e976257e56ca0386"
+      },
+      {
+        "id": "voron_v24_350_ldo_cnc",
+        "file": "voron_v24_350_ldo_cnc.png",
+        "sha256": "a1aa8c4cd9871c0e5a26d33201b5e4dd3cd29397beb164609ec281cf214d2953"
+      },
+      {
+        "id": "fysetc_v24_250_pro",
+        "file": "fysetc_v24_250_pro.png",
+        "sha256": "0a61c697ba78e52d329c6cb6420f9cc083d86253461b2413c21ecf77e2932b8f"
+      },
+      {
+        "id": "voron_v02r1_120",
+        "file": "voron_v02r1_120.png",
+        "sha256": "f550d4188602b18ffb714b73f55104da533c65546a01f9eb7b6a6364e5130653"
+      },
+      {
+        "id": "voron_v02_120",
+        "file": "voron_v02_120.png",
+        "sha256": "82bb7624e43e87186d0c46a8f6441453eaccf6cfcc00246dcf4f6b8607859b34"
+      },
+      {
+        "id": "micron_r1_120",
+        "file": "micron_r1_120.png",
+        "sha256": "27bca8e6255cd091503a92d4343fe77852da1375f56cd38cc3416e8bce806194"
+      },
+      {
+        "id": "micron_plus_r1_180",
+        "file": "micron_plus_r1_180.png",
+        "sha256": "698f796371157635d6d042f889a776f48987b685318961999cadbcb03d423452"
+      },
+      {
+        "id": "crossant_235_v06_leadscrew",
+        "file": "crossant_235_v06_leadscrew.png",
+        "sha256": "e36396622e5b5b650140f26641c3b54e81e6e346c2f5e8e7e31228828096f8bc"
+      },
+      {
+        "id": "ratrig_vcore_40_300_corexy",
+        "file": "ratrig_vcore_40_300_corexy.png",
+        "sha256": "d3553241c147de67237c9e117414855e0446e5377949c43afba4181cfbd5ae97"
+      },
+      {
+        "id": "ratrig_vcore_40_300_hybrid",
+        "file": "ratrig_vcore_40_300_hybrid.png",
+        "sha256": "4c583cc3341d88e1e12366db110d25251d570ecb1588f9ee0a2b0d5f6909eafa"
+      },
+      {
+        "id": "ratrig_vcore_40_300_idex",
+        "file": "ratrig_vcore_40_300_idex.png",
+        "sha256": "9c300ab8384c0ec43df29965c78dd598f8a96731c24647befc356bbfac82a366"
+      },
+      {
+        "id": "ratrig_vcore_41_300_corexy",
+        "file": "ratrig_vcore_41_300_corexy.png",
+        "sha256": "05f96e946ac36a51c5340325b3ab8c3972163795c1419808ebc4658938255227"
+      },
+      {
+        "id": "ratrig_vcore_41_300_hybrid",
+        "file": "ratrig_vcore_41_300_hybrid.png",
+        "sha256": "2bac1b115fd51f2cf5b3d2f547c881bd268df70caf89ca0ba707872ea2148e69"
+      },
+      {
+        "id": "ratrig_vcore_41_300_idex",
+        "file": "ratrig_vcore_41_300_idex.png",
+        "sha256": "4f2ca80f29abeb5754a3f3a1f5b5b6e4834b41ef8aa7ba1ce354825545f4bcda"
+      },
+      {
+        "id": "ratrig_vcore_40_400_corexy",
+        "file": "ratrig_vcore_40_400_corexy.png",
+        "sha256": "fc99adeff8f035785fad630ab27a2344ab14054bc9226391344097230d37beac"
+      },
+      {
+        "id": "ratrig_vcore_40_400_hybrid",
+        "file": "ratrig_vcore_40_400_hybrid.png",
+        "sha256": "2a5c0e4aaf231a8c266030355fc407c539fc110cbdb88de7ef7a6446b667fa39"
+      },
+      {
+        "id": "ratrig_vcore_40_400_idex",
+        "file": "ratrig_vcore_40_400_idex.png",
+        "sha256": "9ce4405a390d44f35d58ac074a89474c06cf065fb30982e1ddf8c1d5ce1d1426"
+      },
+      {
+        "id": "ratrig_vcore_41_400_corexy",
+        "file": "ratrig_vcore_41_400_corexy.png",
+        "sha256": "8e863a23a9dc1212f1320a7f72eb05a9c4598dd8aee51ed27fe0c3eb824fa33a"
+      },
+      {
+        "id": "ratrig_vcore_41_400_hybrid",
+        "file": "ratrig_vcore_41_400_hybrid.png",
+        "sha256": "68ab6e86abb8b9ef140ae437ee11af7b75c3e88c25bf348a610869a986a28e67"
+      },
+      {
+        "id": "ratrig_vcore_41_400_idex",
+        "file": "ratrig_vcore_41_400_idex.png",
+        "sha256": "bdb9d8c9ce23fabb6883b3a2c689bb970f14ed49cf802c444017a61bb3980445"
+      },
+      {
+        "id": "ratrig_vcore_40_500_corexy",
+        "file": "ratrig_vcore_40_500_corexy.png",
+        "sha256": "c4140086bdcfbe61639fa03d0416deb97083238dcbb05507d496aaebde24dd99"
+      },
+      {
+        "id": "ratrig_vcore_40_500_hybrid",
+        "file": "ratrig_vcore_40_500_hybrid.png",
+        "sha256": "1a68b716566ec5de55117fa0c3c66ea4ef9c0d4b58d88e47407cf7796f40ab9f"
+      },
+      {
+        "id": "ratrig_vcore_40_500_idex",
+        "file": "ratrig_vcore_40_500_idex.png",
+        "sha256": "731a44d0db77084b36bb1cfafa1dd51398760a0827c141779300708b272f6bbe"
+      },
+      {
+        "id": "ratrig_vcore_41_500_corexy",
+        "file": "ratrig_vcore_41_500_corexy.png",
+        "sha256": "6ba7c65652c5b525f85794281f302fb2592bcb5118b93f49bc1de5e58f9cc321"
+      },
+      {
+        "id": "ratrig_vcore_41_500_hybrid",
+        "file": "ratrig_vcore_41_500_hybrid.png",
+        "sha256": "d8a38e699e1a4f0ce6b59269f5b4ab37a2f6ece44e5fe64d757ee14b46d125a3"
+      },
+      {
+        "id": "ratrig_vcore_41_500_idex",
+        "file": "ratrig_vcore_41_500_idex.png",
+        "sha256": "292ba6d9dabcc889c70715e8d85b0928b72e5a67a870c661d73ba3c7e5e8ff94"
+      }
+    ]
+  },
+  "scope": "Actual exported mesh quality for all 52 available machines, scoped sampled motion/native reference reviews and loaded combination audits. Native assembly references, unregistered routing and unverified mounting interfaces retain their declared limitations. Every physical clearance and every browser/device are not certified."
+}

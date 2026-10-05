@@ -10,6 +10,7 @@ import {createV0Adapter} from '../site/viewer/v0_adapter.mjs';
 import {createV24Adapter as createSiboor} from '../site/viewer/v24_adapter.mjs';
 import {createV24Adapter as createVoron} from '../site/viewer/v24_matrix_adapter.mjs';
 import {createTridentMotion} from '../site/viewer/trident-motion.mjs';
+import {isTridentBedChain} from '../site/viewer/bed-chain.mjs';
 import {checkRoute,checkGeometry,checkNoCrossing} from './test_v0_belts.mjs';
 const root=process.argv[2];if(!root)throw Error('Pass assembled site directory');
 const read=file=>JSON.parse(fs.readFileSync(file));
@@ -85,6 +86,9 @@ for(const id of ids){
  let poses=0;for(const x of [0,175,350])for(const y of [0,175,350])for(const z of [0,125,250]){
   const pose=motion.setPose({x,y,z});
   for(const [mesh,{row,origin}]of motion.entries){
+   // Chain links use their solver transforms, separately from rigid bed
+   // translations; their visibility and continuity are checked below.
+   if(isTridentBedChain(row)){assert(mesh.visible);continue;}
    near(mesh.position.x-origin.x,row.motion==='xy'?pose.dx/1000:0);
    near(mesh.position.y-origin.y,row.motion==='z'?-pose.bed_down_mm/1000:0);
    near(mesh.position.z-origin.z,['xy','y'].includes(row.motion)?-pose.dy/1000:0);
