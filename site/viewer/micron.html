@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ja">
+<html lang="en">
 <head>
 <script src="./display-start.js?v=2ccf9c125fa0c4f73dc1">
 </script>
@@ -20,58 +20,58 @@
 </div>
 </div>
 <div class="header-actions">
-<a class="mode-link" href="./toolheads.html">ツールヘッド</a>
-<button id="openSources">出典・ライセンス</button>
-<button id="openRender" class="primary" disabled>画像を書き出す</button>
-<button id="openDownloads" hidden>標準STEP</button>
+<a class="mode-link" href="./toolheads.html">Toolhead</a>
+<button id="openSources">Sources / licenses</button>
+<button id="openRender" class="primary" disabled>Export image</button>
+<button id="openDownloads" hidden>Default STEP</button>
 </div>
 </header>
 <main class="workspace">
 <aside>
-<label for="machineConfig">マシン</label>
+<label for="machineConfig">Machine</label>
 <select id="machineConfig">
 </select>
 <h1 id="machineTitle">Micron</h1>
 <p class="foot">
 <span id="machineHeadLabel">AntHead / Wristwatch G2 / Revo Voron</span>
-<br>ベッド固定・4Zガントリー<br>
+<br>Fixed bed · 4Z gantry<br>
 <span id="structureLabel">
 </span>
 </p>
 <div id="assemblyDownload" class="foot">
 </div>
-<p class="foot">Printers for Antsの元CADを基準にした構成です。LDOキット同一モデルではありません。180はOctopus / Meanwell UHP-200。LDO専用部品・基板・電源の参照は未取付です。</p>
-<a class="workbench-link" href="../MICRON_LDO_REFERENCE.json" target="_blank" rel="noopener">LDO公式構成との差を確認</a>
+<p class="foot">Configuration based on the original Printers for Ants CAD, not an exact LDO kit. The 180 example uses Octopus / Meanwell UHP-200. LDO-specific parts, boards and power supply references are uninstalled.</p>
+<a class="workbench-link" href="../MICRON_LDO_REFERENCE.json" target="_blank" rel="noopener">Compare with the official LDO configuration</a>
 <details open>
-<summary>色と素材</summary>
+<summary>Colors and materials</summary>
 <div class="palette-row">
-<label for="base">印刷部品 / ベース</label>
+<label for="base">Printed parts / base</label>
 <input id="base" type="color" value="#101113" disabled>
-<input id="baseHex" type="text" maxlength="7" aria-label="ベース色 HEX" disabled>
+<input id="baseHex" type="text" maxlength="7" aria-label="Base color HEX" disabled>
 </div>
 <div class="palette-row">
-<label for="accent">アクセント</label>
+<label for="accent">Accent</label>
 <input id="accent" type="color" value="#cc0a0d" disabled>
-<input id="accentHex" type="text" maxlength="7" aria-label="アクセント色 HEX" disabled>
+<input id="accentHex" type="text" maxlength="7" aria-label="Accent color HEX" disabled>
 </div>
 <div class="palette-row">
-<label for="frame">フレーム</label>
+<label for="frame">Frame</label>
 <input id="frame" type="color" value="#0e0f11" disabled>
-<input id="frameHex" type="text" maxlength="7" aria-label="フレーム色 HEX" disabled>
+<input id="frameHex" type="text" maxlength="7" aria-label="Frame color HEX" disabled>
 </div>
-<label for="frameFinish">アルマイト</label>
+<label for="frameFinish">Anodizing</label>
 <select id="frameFinish" disabled>
-<option value="black">ブラック</option>
-<option value="silver">シルバー</option>
-<option value="custom" disabled>カスタム</option>
+<option value="black">Black</option>
+<option value="silver">Silver</option>
+<option value="custom" disabled>Custom</option>
 </select>
-<button id="resetPalette" disabled>標準色</button>
+<button id="resetPalette" disabled>Default colors</button>
 <p class="foot" id="paletteStatus">
 </p>
 </details>
 <details open>
-<summary>動作を確認</summary>
-<p class="foot">固定ベッドと、Zガントリー・YZビーム・XYZヘッドの配置を確認できます。</p>
+<summary>Inspect motion</summary>
+<p class="foot">Inspect the fixed bed, Z gantry, YZ beam and XYZ head.</p>
 <label for="x">
 <span class="axislabel">X<strong id="xv">
 </strong>
@@ -90,40 +90,40 @@
 </span>
 </label>
 <input id="z" type="range" min="0" max="120" step="any" value="4" disabled>
-<button id="reset" disabled>CAD基準姿勢</button>
+<button id="reset" disabled>CAD reference pose</button>
 <p class="status" id="motionStatus" aria-live="polite">
 </p>
-<p class="foot">Z駆動ベルトは固定位置に表示し、PlusのXYベルトはY/Z軸に追従します。歯・クランプ部のカット・張力は未再現。Plusの18リンクZチェーンは接続軸を保って追従し、ベッド配線は固定、PTFEとヘッド配線は接続端が追従する配索プレビューです。</p>
+<p class="foot">Z drive belts stay at their fixed pulleys; Plus XY belts follow Y/Z motion. Teeth, clamp cuts and tension are not modeled. The 18-link Plus Z chain keeps its native hinge spacing, bed wires stay fixed, and PTFE/head wiring use endpoint-following routing previews.</p>
 <p class="foot" id="clearanceStatus">
 </p>
-<p class="foot">接点ホーミング、独立QGL、配線の余長・曲げ半径と全機体の掃引干渉は未検証です。</p>
+<p class="foot">Contact homing, independent QGL, wiring service length and bend radii, and full-printer swept interference are unverified.</p>
 </details>
 <details>
-<summary>表示</summary>
+<summary>Display</summary>
 <label>
-<input id="gridVisible" type="checkbox">床グリッド</label>
+<input id="gridVisible" type="checkbox">Floor grid</label>
 <label>
-<input id="enclosure" type="checkbox" checked>パネル</label>
+<input id="enclosure" type="checkbox" checked>Panels</label>
 <label>
-<input id="belts" type="checkbox" checked>ベルト・参考配線を表示</label>
-<p class="foot">ホーミング接点とドアの角度変更は未登録。</p>
+<input id="belts" type="checkbox" checked>Show belts and reference wiring</label>
+<p class="foot">Homing contacts and door angle adjustment are not registered.</p>
 </details>
 </aside>
-<section id="stage" aria-label="Micron 3Dアセンブリ">
-<nav class="view-tools" aria-label="視点">
-<button id="iso">斜め</button>
-<button id="front">正面</button>
-<button id="top">上面</button>
-<button id="focusHead">ヘッド</button>
+<section id="stage" aria-label="Micron 3D assembly">
+<nav class="view-tools" aria-label="Camera view">
+<button id="iso">Perspective</button>
+<button id="front">Front</button>
+<button id="top">Top</button>
+<button id="focusHead">Head</button>
 </nav>
-<div id="status" class="overlay">モデルを読み込み中…</div>
+<div id="status" class="overlay">Loading model…</div>
 <div class="view-meta">
 <span id="badge">3D ASSEMBLY</span>
-<span class="hint">ドラッグ：回転　ホイール：拡大</span>
+<span class="hint">Drag: orbit · Wheel: zoom</span>
 </div>
 </section>
 </main>
-<script type="module" data-controller="./micron.js?v=2e68f3b3cb86288a1c06" src="./workspace-router.mjs?v=53a911f0aa691357e745">
+<script type="module" data-controller="./micron.js?v=27c62c762a6055e19bff" src="./workspace-router.mjs?v=2c4a5c88c08e777d3322">
 </script>
 </body>
 </html>

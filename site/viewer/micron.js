@@ -7,7 +7,7 @@ import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=ce28c0df722a83db6bb3';
 import {createMicronAdapter} from './micron-adapter.mjs?v=6177cae5e22f1f414ba2';
-import {setupMachineNavigation} from './machines.js?v=dedc575bbef34e348ec3';
+import {setupMachineNavigation} from './machines.js?v=de0df76326354fc0fecd';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {setupPublicInfo} from './public-info.js?v=workspace-belts-2';

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ja">
+<html lang="en">
 <head>
 <script src="./display-start.js?v=2ccf9c125fa0c4f73dc1">
 </script>
@@ -20,63 +20,63 @@
 </div>
 </div>
 <div class="header-actions">
-<a class="mode-link" href="./toolheads.html">ツールヘッド</a>
-<button id="openSources">出典・ライセンス</button>
-<button id="openRender" class="primary" disabled>画像を書き出す</button>
+<a class="mode-link" href="./toolheads.html">Toolhead</a>
+<button id="openSources">Sources / licenses</button>
+<button id="openRender" class="primary" disabled>Export image</button>
 <button id="openDownloads" hidden>
 </button>
 </div>
 </header>
 <main class="workspace">
 <aside>
-<label for="machineConfig">マシン</label>
+<label for="machineConfig">Machine</label>
 <select id="machineConfig">
 </select>
 <h1>V2.4 R2 Pro / 250</h1>
-<p class="foot">FYSETC公式組立CAD · 原本の基準姿勢</p>
-<p class="foot notice">取得したCADの部品配置を表示します。可動機構・Mod交換と、現行キットの部品一致は未検証です。</p>
-<a class="workbench-link" href="./toolheads.html">ツールヘッドの組み合わせ</a>
+<p class="foot">Official FYSETC assembly CAD · original reference pose</p>
+<p class="foot notice">Displays part placement from the retrieved CAD. Motion, mod changes and matching the current kit parts are unverified.</p>
+<a class="workbench-link" href="./toolheads.html">Toolhead combinations</a>
 <details open>
-<summary>色と素材</summary>
+<summary>Colors and materials</summary>
 <div class="palette-row">
-<label for="base">ベース</label>
+<label for="base">Base</label>
 <input id="base" type="color" value="#24272c">
 </div>
 <div class="palette-row">
-<label for="accent">アクセント</label>
+<label for="accent">Accent</label>
 <input id="accent" type="color" value="#e32636">
 </div>
-<label for="frame">アルマイト</label>
+<label for="frame">Anodizing</label>
 <select id="frame">
-<option value="#0e0f11">ブラック</option>
-<option value="#b9bec4">シルバー</option>
+<option value="#0e0f11">Black</option>
+<option value="#b9bec4">Silver</option>
 </select>
-<button id="resetPalette">標準CAD色</button>
+<button id="resetPalette">Default CAD colors</button>
 </details>
 <details open>
-<summary>表示</summary>
+<summary>Display</summary>
 <label>
-<input id="gridVisible" type="checkbox">床グリッド</label>
+<input id="gridVisible" type="checkbox">Floor grid</label>
 <label>
-<input id="enclosure" type="checkbox" checked>パネル</label>
+<input id="enclosure" type="checkbox" checked>Panels</label>
 </details>
 <p class="foot" id="parts">
 </p>
 </aside>
-<section id="stage" aria-label="FYSETC 3Dアセンブリ">
+<section id="stage" aria-label="FYSETC 3D assembly">
 <nav class="view-tools">
-<button id="iso">斜め</button>
-<button id="front">正面</button>
-<button id="top">上面</button>
+<button id="iso">Perspective</button>
+<button id="front">Front</button>
+<button id="top">Top</button>
 </nav>
-<div id="status" class="overlay">モデルを読み込み中…</div>
+<div id="status" class="overlay">Loading model…</div>
 <div class="view-meta">
 <span>FYSETC / 250</span>
-<span class="hint">ドラッグ：回転　ホイール：拡大</span>
+<span class="hint">Drag: orbit · Wheel: zoom</span>
 </div>
 </section>
 </main>
-<script type="module" data-controller="./kit-reference.js?v=8c4246e6ac4c9417da8e" src="./workspace-router.mjs?v=53a911f0aa691357e745">
+<script type="module" data-controller="./kit-reference.js?v=8c4246e6ac4c9417da8e" src="./workspace-router.mjs?v=2c4a5c88c08e777d3322">
 </script>
 </body>
 </html>

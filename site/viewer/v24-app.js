@@ -14,10 +14,10 @@ import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=ce28c0df722a83db6bb3';
 import {createV24Adapter} from './v24_adapter.mjs?v=extra-machines-55';
-import {setupMachineNavigation} from './machines.js?v=dedc575bbef34e348ec3';
+import {setupMachineNavigation} from './machines.js?v=de0df76326354fc0fecd';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {setupPublicInfo} from './public-info.js?v=workspace-belts-2';
-import {setupV24MachineHeads} from './machine-heads.js?v=0ea2f35c267371d01c80';
+import {setupV24MachineHeads} from './machine-heads.js?v=53283bff702720c5f571';
 export async function mount(scope){
 setupMachineNavigation('siboor_v24_350');
 setupPublicInfo();

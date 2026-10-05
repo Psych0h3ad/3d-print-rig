@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ja">
+<html lang="en">
 <head>
 <script src="./display-start.js?v=2ccf9c125fa0c4f73dc1">
 </script>
@@ -20,48 +20,48 @@
 </div>
 </div>
 <div class="header-actions">
-<button id="openDownloads">標準STEP</button>
-<a class="mode-link" href="./toolchangers.html">ツールチェンジャー</a>
-<button id="openSources">出典・ライセンス</button>
-<button id="openRender" class="primary" disabled>画像を書き出す</button>
+<button id="openDownloads">Default STEP</button>
+<a class="mode-link" href="./toolchangers.html">Toolchanger</a>
+<button id="openSources">Sources / licenses</button>
+<button id="openRender" class="primary" disabled>Export image</button>
 </div>
 </header>
 <main class="workspace">
 <aside>
-<a class="workbench-link" href="./gantries.html">Monolithガントリーを組む</a>
-<a class="workbench-link" id="toolheadLink" href="./toolheads.html?configuration=trident_r2__stealthburner__revo_voron__cw2">ツールヘッド単体を組む</a>
-<a class="workbench-link" href="./components.html">ホットエンド・押出機のCADを確認</a>
-<label for="machineConfig">マシン</label>
+<a class="workbench-link" href="./gantries.html">Build a Monolith gantry</a>
+<a class="workbench-link" id="toolheadLink" href="./toolheads.html?configuration=trident_r2__stealthburner__revo_voron__cw2">Build a standalone toolhead</a>
+<a class="workbench-link" href="./components.html">Inspect hotend and extruder CAD</a>
+<label for="machineConfig">Machine</label>
 <select id="machineConfig">
 <option value="siboor_trident_350">SIBOOR Trident 350 · CNC AWD</option>
-<option value="siboor_v24_350">VORON V2.4 350 · R2基準モデル</option>
+<option value="siboor_v24_350">VORON V2.4 350 · R2 reference model</option>
 </select>
 <h1>Trident / 350</h1>
-<p class="foot">VORON標準の筐体・3Z・可動ベッド / XY 6 mm</p>
+<p class="foot">Standard VORON frame, 3Z and moving bed / XY 6 mm</p>
 <div id="assemblyDownload" class="foot">
 </div>
 <details id="configurationControls" open>
-<summary>構成</summary>
-<label for="gantryConfig">ガントリー</label>
+<summary>Configuration</summary>
+<label for="gantryConfig">Gantry</label>
 <select id="gantryConfig" disabled>
 </select>
-<label for="toolheadConfig">ツールヘッド</label>
+<label for="toolheadConfig">Toolhead</label>
 <select id="toolheadConfig" disabled>
 </select>
-<label for="hotendConfig">ホットエンド</label>
+<label for="hotendConfig">Hotend</label>
 <select id="hotendConfig" disabled>
 </select>
-<label for="extruderConfig">押出機</label>
+<label for="extruderConfig">Extruder</label>
 <select id="extruderConfig" disabled>
 </select>
-<label for="probeConfig">ベッドプローブ</label>
+<label for="probeConfig">Bed probe</label>
 <select id="probeConfig" disabled>
 </select>
-<p class="status" id="configStatus" aria-live="polite">構成を準備中…</p>
+<p class="status" id="configStatus" aria-live="polite">Preparing configuration…</p>
 <p id="configSummary">
 </p>
 <details>
-<summary>取付条件・確認範囲</summary>
+<summary>Mounting conditions / check scope</summary>
 <ul class="foot" id="mountInfo">
 </ul>
 <ul class="foot" id="configRequirements">
@@ -69,124 +69,124 @@
 <p class="foot" id="modSources">
 </p>
 <div class="buttons">
-<button id="saveConfiguration">構成を保存</button>
-<button id="loadConfiguration">構成を読み込む</button>
+<button id="saveConfiguration">Save configuration</button>
+<button id="loadConfiguration">Load configuration</button>
 </div>
 <input id="configurationFile" type="file" accept=".json,application/json" hidden>
 </details>
 </details>
 <details>
-<summary>追加Mod</summary>
+<summary>Additional mods</summary>
 <div id="accessoryOptions">
 </div>
 <p id="accessoryStatus" class="foot">
 </p>
 </details>
 <details>
-<summary>Disco / 照明</summary>
+<summary>Disco / lighting</summary>
 <label>
-<input id="ledMod" type="checkbox" disabled>Disco XXLを取り付ける</label>
+<input id="ledMod" type="checkbox" disabled>Install Disco XXL</label>
 <label>
-<input id="ledPower" type="checkbox" disabled>LED点灯</label>
+<input id="ledPower" type="checkbox" disabled>LEDs on</label>
 <label>
-<input id="night" type="checkbox">暗室</label>
+<input id="night" type="checkbox">Dark room</label>
 <label for="ledLevel">
-<span class="axislabel">明るさ<strong id="ledPercent">75%</strong>
+<span class="axislabel">Brightness<strong id="ledPercent">75%</strong>
 </span>
 <input id="ledLevel" type="range" min="0" max="100" value="75" disabled>
 </label>
-<label for="ledColor">発光色</label>
+<label for="ledColor">Light color</label>
 <select id="ledColor" disabled>
-<option value="white">白色</option>
-<option value="red">赤</option>
-<option value="blue">青</option>
-<option value="rainbow">レインボー</option>
+<option value="white">White</option>
+<option value="red">Red</option>
+<option value="blue">Blue</option>
+<option value="rainbow">Rainbow</option>
 </select>
 <div class="buttons">
-<button id="nightOn" disabled>暗室で点灯</button>
-<button id="focusDisco" disabled>取付を拡大</button>
+<button id="nightOn" disabled>Illuminate in a dark room</button>
+<button id="focusDisco" disabled>Zoom to mount</button>
 </div>
 <p id="lightStatus" class="light-state">
 </p>
 </details>
 <details open>
-<summary>色と素材</summary>
+<summary>Colors and materials</summary>
 <div class="palette-row">
-<label for="base">印刷部品 / ベース</label>
+<label for="base">Printed parts / base</label>
 <input id="base" type="color" value="#24272c" disabled>
-<input id="baseHex" type="text" maxlength="7" aria-label="印刷部品 / ベース HEX" disabled>
+<input id="baseHex" type="text" maxlength="7" aria-label="Printed parts / base HEX" disabled>
 </div>
 <div class="palette-row">
-<label for="accent">アクセント</label>
+<label for="accent">Accent</label>
 <input id="accent" type="color" value="#24272c" disabled>
-<input id="accentHex" type="text" maxlength="7" aria-label="アクセント HEX" disabled>
+<input id="accentHex" type="text" maxlength="7" aria-label="Accent HEX" disabled>
 </div>
 <div class="palette-row">
-<label for="frame">フレーム色</label>
+<label for="frame">Frame color</label>
 <input id="frame" type="color" value="#24272c" disabled>
-<input id="frameHex" type="text" maxlength="7" aria-label="フレーム色 HEX" disabled>
+<input id="frameHex" type="text" maxlength="7" aria-label="Frame color HEX" disabled>
 </div>
-<label for="frameFinish">フレーム / アルマイト</label>
+<label for="frameFinish">Frame / anodizing</label>
 <select id="frameFinish" disabled>
-<option value="black">ブラック</option>
-<option value="silver">シルバー</option>
-<option value="custom" disabled>カスタム色</option>
+<option value="black">Black</option>
+<option value="silver">Silver</option>
+<option value="custom" disabled>Custom colors</option>
 </select>
-<button id="resetPalette" disabled>標準色</button>
+<button id="resetPalette" disabled>Default colors</button>
 <p class="foot" id="paletteStatus">
 </p>
 </details>
 <details>
-<summary>動作を確認</summary>
-<p class="foot">可動ベッド / 3Zリニアガイド</p>
+<summary>Inspect motion</summary>
+<p class="foot">Moving bed / 3Z linear guides</p>
 <label for="x">
 <span class="axislabel">X<strong id="xv">175 mm</strong>
 </span>
 </label>
-<input id="x" aria-label="X位置" type="range" min="0" max="350" step="any" value="175" disabled>
+<input id="x" aria-label="X position" type="range" min="0" max="350" step="any" value="175" disabled>
 <label for="y">
 <span class="axislabel">Y<strong id="yv">179 mm</strong>
 </span>
 </label>
-<input id="y" aria-label="Y位置" type="range" min="0" max="350" step="any" value="179.1" disabled>
+<input id="y" aria-label="Y position" type="range" min="0" max="350" step="any" value="179.1" disabled>
 <label for="z">
 <span class="axislabel">Z<strong id="zv">27 mm</strong>
 </span>
 </label>
-<input id="z" aria-label="Z位置" type="range" min="0" max="330" step="any" value="27" disabled>
-<button id="reset" disabled>基準姿勢</button>
+<input id="z" aria-label="Z position" type="range" min="0" max="330" step="any" value="27" disabled>
+<button id="reset" disabled>Reference pose</button>
 <p class="foot" id="motionStatus">
 </p>
 </details>
 <details>
-<summary>表示・対応範囲</summary>
+<summary>Display / supported scope</summary>
 <label>
-<input id="gridVisible" type="checkbox">床グリッド</label>
+<input id="gridVisible" type="checkbox">Floor grid</label>
 <label>
-<input id="enclosure" type="checkbox" checked>パネル</label>
+<input id="enclosure" type="checkbox" checked>Panels</label>
 <label>
-<input id="belts" type="checkbox" checked>ベルト・参考配線</label>
+<input id="belts" type="checkbox" checked>Belts / reference wiring</label>
 <div id="meta" class="foot">
-<strong id="beltWidths">XYベルト 6 mm</strong>
-<p>専用マウントを持つSB・Xol構成に切替。XYベルトは滑らかな経路プレビュー。歯・固定部のカット・テンション、ホーミング接点、配線の屈曲と全域干渉の自動判定は未対応です。</p>
+<strong id="beltWidths">XY belts: 6 mm</strong>
+<p>Switch between SB / Xol configurations with dedicated mounts.XY belts use a smooth routing preview. Teeth, clamp cuts, tension, homing contacts, cable articulation and full-travel collision detection are not simulated.</p>
 </div>
 </details>
 </aside>
-<section id="stage" aria-label="3Dアセンブリ">
-<nav class="view-tools" aria-label="視点">
-<button id="iso">斜め</button>
-<button id="front">正面</button>
-<button id="top">上面</button>
-<button id="focusHead">ヘッド</button>
+<section id="stage" aria-label="3D assembly">
+<nav class="view-tools" aria-label="Camera view">
+<button id="iso">Perspective</button>
+<button id="front">Front</button>
+<button id="top">Top</button>
+<button id="focusHead">Head</button>
 </nav>
-<div id="status" class="overlay">モデルを読み込み中…</div>
+<div id="status" class="overlay">Loading model…</div>
 <div class="view-meta">
 <span id="badge">3D ASSEMBLY</span>
-<span class="hint">左ドラッグ：回転　右ドラッグ：移動　ホイール：拡大</span>
+<span class="hint">Left drag: orbit · Right drag: pan · Wheel: zoom</span>
 </div>
 </section>
 </main>
-<script type="module" data-controller="./vanilla-trident.js?v=7a6c704168db0f9a5b44" src="./workspace-router.mjs?v=53a911f0aa691357e745">
+<script type="module" data-controller="./vanilla-trident.js?v=31d0f7be8e347202700a" src="./workspace-router.mjs?v=2c4a5c88c08e777d3322">
 </script>
 </body>
 </html>

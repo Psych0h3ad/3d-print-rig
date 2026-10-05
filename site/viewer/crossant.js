@@ -8,7 +8,7 @@ import {OrbitControls} from './vendor-r180/OrbitControls.js?v=workspace-belts-1'
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
 import {loadCrossant,disposeCrossant} from './crossant-loader.mjs?v=3fa8436523f1d0760466';
 import {crossantSchema,crossantGroups,validateCrossantState} from './crossant-state.mjs?v=534dc62f2c6545f556f7';
-import {setupMachineNavigation} from './machines.js?v=dedc575bbef34e348ec3';
+import {setupMachineNavigation} from './machines.js?v=de0df76326354fc0fecd';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {setupPublicInfo} from './public-info.js?v=workspace-belts-2';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';

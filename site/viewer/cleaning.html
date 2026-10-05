@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ja">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -7,10 +7,10 @@
 </head>
 <body>
 <p>
-<a href="./">プリンターを開く</a>
+<a href="./">Open printer</a>
 </p>
 <script type="module">
-import {printerWorkspaceURL,workspaceReturnKey} from './workspace-return.mjs?v=9279f551b4223b1444c9';
+import {printerWorkspaceURL,workspaceReturnKey} from './workspace-return.mjs?v=2fe52644cc6f4d63178a';
 let remembered;try{remembered=sessionStorage.getItem(workspaceReturnKey)}catch{}
 location.replace(printerWorkspaceURL(location.href,remembered));
 </script>

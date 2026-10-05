@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ja">
+<html lang="en">
 <head>
 <script src="./display-start.js?v=2ccf9c125fa0c4f73dc1">
 </script>
@@ -22,11 +22,11 @@
 </div>
 </div>
 <div class="header-actions">
-<a class="mode-link" href="./">プリンター</a>
-<a class="mode-link" href="./toolheads.html">ヘッド</a>
-<a class="mode-link" href="./gantries.html">ガントリー</a>
-<button id="openSources">出典・ライセンス</button>
-<button id="openRender" disabled>画像を書き出す</button>
+<a class="mode-link" href="./">Printer</a>
+<a class="mode-link" href="./toolheads.html">Head</a>
+<a class="mode-link" href="./gantries.html">Gantry</a>
+<button id="openSources">Sources / licenses</button>
+<button id="openRender" disabled>Export image</button>
 <button id="openDownloads" hidden>
 </button>
 </div>
@@ -34,73 +34,73 @@
 <main class="workspace">
 <aside>
 <span class="eyebrow">STEALTHCHANGER · TAPCHANGER · MADMAX · YUDX</span>
-<h1>交換機構を見る</h1>
-<p class="foot">シャトル、バックプレート、専用押出機とドックを原本CADで比較します。</p>
-<label for="system">交換機構</label>
+<h1>Inspect toolchanger</h1>
+<p class="foot">Compare shuttles, backplates, dedicated extruders and docks from the original CAD.</p>
+<label for="system">Change mechanism</label>
 <select id="system" disabled>
 </select>
-<label for="interface">ベルト・取付</label>
+<label for="interface">Belts / mounting</label>
 <select id="interface" disabled>
 </select>
-<label for="toolhead">ヘッド側</label>
+<label for="toolhead">Head side</label>
 <select id="toolhead" disabled>
 </select>
-<p class="status" id="changerStatus" aria-live="polite">CADを準備中…</p>
+<p class="status" id="changerStatus" aria-live="polite">Preparing CAD…</p>
 <dl id="changerSpec" class="probe-metrics">
 </dl>
 <details open>
-<summary>検証・組立条件</summary>
+<summary>Checks / assembly conditions</summary>
 <ul class="foot" id="changerNotes">
 </ul>
 </details>
 <details open>
-<summary>機構を見る</summary>
-<label for="probeTravel">Zプローブの変位 <output id="probeValue">0 mm</output>
+<summary>Inspect mechanism</summary>
+<label for="probeTravel">Z probe displacement <output id="probeValue">0 mm</output>
 </label>
 <input id="probeTravel" type="range" min="0" max="3" step="0.1" value="0" disabled>
-<label for="explode">交換部の分解表示</label>
+<label for="explode">Explode the exchangeable component</label>
 <input id="explode" type="range" min="0" max="50" step="1" value="0">
 <label>
-<input id="showDock" type="checkbox" checked>ドックの別組立を表示</label>
+<input id="showDock" type="checkbox" checked>Show separate dock assembly</label>
 <label>
-<input id="showCovers" type="checkbox" checked>外装カバーを表示</label>
+<input id="showCovers" type="checkbox" checked>Show outer covers</label>
 <label>
-<input id="showRail" type="checkbox" checked>原本のレール・梁の取付参照</label>
+<input id="showRail" type="checkbox" checked>Original rail and beam mounting references</label>
 </details>
 <details>
-<summary>色・表示</summary>
-<label for="base">ベース色</label>
+<summary>Colors / display</summary>
+<label for="base">Base color</label>
 <input id="base" type="color" value="#24272c">
-<label for="accent">アクセント色</label>
+<label for="accent">Accent color</label>
 <input id="accent" type="color" value="#e32636">
 <label>
-<input id="grid" type="checkbox">グリッドを表示</label>
+<input id="grid" type="checkbox">Show grid</label>
 </details>
 <details>
-<summary>原本・使用版</summary>
+<summary>Original sources / versions</summary>
 <div class="foot" id="changerSources">
 </div>
 </details>
-<a class="workbench-link" href="./toolheads.html">ホットエンド・押出機を組む</a>
-<a class="workbench-link" href="./e3ng.html">E3NGのホットエンド交換機構</a>
+<a class="workbench-link" href="./toolheads.html">Build hotend / extruder combinations</a>
+<a class="workbench-link" href="./e3ng.html">E3NG hotend changer</a>
 </aside>
-<section id="stage" aria-label="ツールチェンジャーの3Dアセンブリ">
+<section id="stage" aria-label="Toolchanger 3D assembly">
 <nav class="view-tools">
-<button id="iso">斜め</button>
-<button id="front">正面</button>
-<button id="back">背面</button>
-<button id="side">横</button>
-<button id="fit">全体</button>
+<button id="iso">Perspective</button>
+<button id="front">Front</button>
+<button id="back">Rear</button>
+<button id="side">Side</button>
+<button id="fit">Overview</button>
 </nav>
-<div id="loading" role="status">CADを読み込み中…</div>
+<div id="loading" role="status">Loading CAD…</div>
 <div class="view-meta">
 <span id="changerDimensions">
 </span>
-<span class="hint">ドラッグ：回転　ホイール：拡大</span>
+<span class="hint">Drag: orbit · Wheel: zoom</span>
 </div>
 </section>
 </main>
-<script type="module" data-controller="./toolchangers.js?v=8a9778481abb13d2e144" src="./workspace-router.mjs?v=53a911f0aa691357e745">
+<script type="module" data-controller="./toolchangers.js?v=8a9778481abb13d2e144" src="./workspace-router.mjs?v=2c4a5c88c08e777d3322">
 </script>
 </body>
 </html>

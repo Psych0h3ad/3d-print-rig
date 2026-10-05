@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ja">
+<html lang="en">
 <head>
 <script src="./display-start.js?v=2ccf9c125fa0c4f73dc1">
 </script>
@@ -21,9 +21,9 @@
 </div>
 </div>
 <div class="header-actions">
-<a class="mode-link" href="./">プリンター</a>
-<button id="openSources">出典・ライセンス</button>
-<button id="openRender" disabled>画像を書き出す</button>
+<a class="mode-link" href="./">Printer</a>
+<button id="openSources">Sources / licenses</button>
+<button id="openRender" disabled>Export image</button>
 <button id="openDownloads" hidden>
 </button>
 </div>
@@ -31,38 +31,38 @@
 <main class="workspace">
 <aside>
 <span class="eyebrow">RH3D · EMNA2881</span>
-<h1>E3NG · 交換機構</h1>
-<p class="foot">ホットエンド交換機構と専用ガントリーの原本CAD。機体全体のアセンブリは含みません。</p>
+<h1>E3NG · Toolchanger</h1>
+<p class="foot">Original hotend changer and dedicated gantry CAD. The complete printer assembly is not included.</p>
 <details open>
-<summary>E3NGの構成</summary>
-<label for="e3View">表示対象</label>
+<summary>E3NG configuration</summary>
+<label for="e3View">View</label>
 <select id="e3View">
-<option value="head">ヘッド</option>
-<option value="assembly">交換機構・周辺部品</option>
-<option value="dock">ドック・待機ツール</option>
-<option value="gantry">専用ガントリー</option>
+<option value="head">Head</option>
+<option value="assembly">Changer and surrounding components</option>
+<option value="dock">Docks and parked tools</option>
+<option value="gantry">Dedicated gantry</option>
 </select>
-<label for="e3Board">ツールヘッド基板</label>
+<label for="e3Board">Toolhead board</label>
 <select id="e3Board">
 <option value="ebb42">EBB42 CAN V1.1</option>
-<option value="ebb36">EBB36 · 原本CAD</option>
+<option value="ebb36">EBB36 · original CAD</option>
 </select>
-<label for="e3Extruder">押出機の軸</label>
+<label for="e3Extruder">Extruder pivot</label>
 <select id="e3Extruder">
-<option value="pin">3 × 30 mmピン</option>
-<option value="bolt">M3 × 25 mmボルト</option>
+<option value="pin">3 × 30 mm pin</option>
+<option value="bolt">M3 × 25 mm bolt</option>
 </select>
-<label for="e3Arm">アイドラーアーム</label>
+<label for="e3Arm">Idler arm</label>
 <select id="e3Arm">
-<option value="arm">標準アーム</option>
-<option value="sleeve">スリーブ付き</option>
+<option value="arm">Standard arm</option>
+<option value="sleeve">With sleeve</option>
 </select>
-<label for="e3Gantry">Yガントリー</label>
+<label for="e3Gantry">Y gantry</label>
 <select id="e3Gantry">
-<option value="v12">v1.2用・交換機構専用</option>
-<option value="beta">Beta用・交換機構専用</option>
+<option value="v12">v1.2 · dedicated changer variant</option>
+<option value="beta">Beta · dedicated changer variant</option>
 </select>
-<label for="e3Tools">ツール数</label>
+<label for="e3Tools">Tool count</label>
 <select id="e3Tools">
 <option>1</option>
 <option>2</option>
@@ -71,72 +71,72 @@
 <option selected>5</option>
 <option>6</option>
 </select>
-<p class="foot">作者は5ツールを推奨。使用中1台と残りの待機ツールを表示します。6スロットは原本の配置です。</p>
-<p id="e3Status" class="status" aria-live="polite">CADを読み込み中…</p>
+<p class="foot">The author recommends five tools. One active tool and the remaining parked tools are shown. The six slot positions come from the original CAD.</p>
+<p id="e3Status" class="status" aria-live="polite">Loading CAD…</p>
 </details>
 <details>
-<summary>周辺Mod</summary>
+<summary>Surrounding mods</summary>
 <label>
-<input id="e3Nudge" type="checkbox">金属ベッド用Nudge</label>
+<input id="e3Nudge" type="checkbox">Nudge for metal bed carriage</label>
 <label>
-<input id="e3Wiper" type="checkbox">ノズルワイパー</label>
+<input id="e3Wiper" type="checkbox">Nozzle wiper</label>
 <label>
-<input id="e3Routing" type="checkbox">配線・エンクロージャー部品</label>
-<p class="foot">「交換機構・周辺部品」で表示します。原本の取付姿勢を保持しています。</p>
+<input id="e3Routing" type="checkbox">Cable routing and enclosure parts</label>
+<p class="foot">Shown in the changer and surrounding components view. Original placements are preserved.</p>
 </details>
 <details>
-<summary>色・表示</summary>
-<label for="base">ベース色</label>
+<summary>Colors / display</summary>
+<label for="base">Base color</label>
 <input id="base" type="color" value="#24272c">
-<label for="accent">アクセント色</label>
+<label for="accent">Accent color</label>
 <input id="accent" type="color" value="#e32636">
-<label for="frame">アルミフレーム</label>
+<label for="frame">Aluminum frame</label>
 <input id="frame" type="color" value="#181b20">
 <label>
-<input id="grid" type="checkbox">グリッドを表示</label>
+<input id="grid" type="checkbox">Show grid</label>
 </details>
 <details open>
-<summary>モデルの範囲</summary>
+<summary>Model scope</summary>
 <ul class="foot">
-<li>TZ-V6 3.0・3010冷却ファン・4010ブロワー2基・BMGギア・NEMA14を含む原本構成です。</li>
-<li>EBB36とEBB42、ピンとボルト、2種類のYブロックは別仕様として切り替えます。</li>
-<li>EBB42基板上の1部品は原本ソリッドの検査に通っていません。形状を保持して表示しています。</li>
-<li>ドック梁は330 mm。ブラケットの外幅は原本CADで407.2 mm、作者の組立指定は407 mmです。寸法は修正していません。</li>
-<li>原本CADには予備部品も含まれます。ベッド・フレームへの干渉、可動域、交換G-codeは未検証です。</li>
-<li>埋め込みサポートを除去したモデルとしては扱いません。</li>
+<li>Original assembly with TZ-V6 3.0, a 3010 hotend fan, two 4010 blowers, BMG gears and NEMA14 motor.</li>
+<li>EBB36/42, pin/bolt pivots and the two Y-block variants are switched independently.</li>
+<li>One original EBB42 board component fails solid validation. Its original geometry is retained for display.</li>
+<li>The dock beam is 330 mm. The original bracket outer width is 407.2 mm; the author specifies 407 mm for assembly. Dimensions are unchanged.</li>
+<li>The original CAD also includes spare parts. Bed/frame clearance, travel limits and toolchange G-code are unverified.</li>
+<li>This is not presented as a model with embedded print supports removed.</li>
 </ul>
 </details>
 <details>
-<summary>原本・使用版</summary>
+<summary>Original sources / versions</summary>
 <div class="foot">
 <a href="https://github.com/emna2881/E3NG-Toolchanger/tree/25d250b3b00b146769373d5a5c3e9e446ebff19c" target="_blank" rel="noopener">emna2881 / E3NG-Toolchanger · 25d250b3b00b</a>
 <p>E3NG_ToolChanger_MOD1 v10 · Beta</p>
 <a href="https://github.com/RH3D/E3NG/tree/095edee85eb7c813bdcdc25489f05e884cccad91" target="_blank" rel="noopener">RH3D / E3NG · 095edee85eb7</a>
-<p>設計元：RH3D。交換機構：emna2881。Nudge：zruncho3d。押出機の参考設計：Irbis3D / MedusaHC。</p>
+<p>E3NG design: RH3D. Changer: emna2881. Nudge: zruncho3d. Extruder inspiration: Irbis3D / MedusaHC.</p>
 <a href="../licenses/e3ng_toolchanger/LICENSE" target="_blank">CC BY-NC-SA 4.0</a>
-<p>本CADの形状と派生表示データには非営利・継承条件が適用されます。アプリのコードとはライセンスを区別します。</p>
-<a href="https://rh3d.xyz/E3NG_v1_2/standard/files" target="_blank" rel="noopener">E3NG v1.2S / Advanced v1.2の公式ファイル</a>
-<p>v1.2の機体全体の組立CADは作者の有償配布です。このビューは公開されている交換機構のCADを使用しています。</p>
+<p>These CAD shapes and derived display data carry noncommercial and share-alike conditions, separately from the application code license.</p>
+<a href="https://rh3d.xyz/E3NG_v1_2/standard/files" target="_blank" rel="noopener">Official E3NG v1.2S / Advanced v1.2 files</a>
+<p>The author distributes the complete v1.2 assembly CAD as a paid extra. This view uses the publicly available changer CAD.</p>
 </div>
 </details>
 </aside>
-<section id="stage" aria-label="E3NG交換機構の3D参照">
+<section id="stage" aria-label="E3NG changer 3D reference">
 <nav class="view-tools">
-<button id="iso">斜め</button>
-<button id="front">正面</button>
-<button id="back">背面</button>
-<button id="side">横</button>
-<button id="fit">全体</button>
+<button id="iso">Perspective</button>
+<button id="front">Front</button>
+<button id="back">Rear</button>
+<button id="side">Side</button>
+<button id="fit">Overview</button>
 </nav>
-<div id="loading" role="status">CADを読み込み中…</div>
+<div id="loading" role="status">Loading CAD…</div>
 <div class="view-meta">
 <span id="e3Dimensions">
 </span>
-<span class="hint">ドラッグ：回転　ホイール：拡大</span>
+<span class="hint">Drag: orbit · Wheel: zoom</span>
 </div>
 </section>
 </main>
-<script type="module" data-controller="./e3ng.js?v=e0938c2953045c70944b" src="./workspace-router.mjs?v=53a911f0aa691357e745">
+<script type="module" data-controller="./e3ng.js?v=e0938c2953045c70944b" src="./workspace-router.mjs?v=2c4a5c88c08e777d3322">
 </script>
 </body>
 </html>

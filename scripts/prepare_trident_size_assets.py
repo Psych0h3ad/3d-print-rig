@@ -81,7 +81,12 @@ for row in rows:
    delta[1-axis]=outer(1-axis,-195 if 1-axis==0 else 195)
   else:delta[:2]=[outer(0,-195),outer(1,195)]
  elif top=='Panels:1':
-  if max(extent[:2])>300:
+  if k in [1189,1219]:
+   # Rear panel and foam: the top exhaust notch is a fixed-size interface.
+   # Insert sections outside it, retaining the cover/grill and corner radii.
+   if amount:s=expand_edges(s,0,amount,cuts=(-315,-75));method='rear_panel_edges_extended_exhaust_notch_preserved'
+   delta[1]=half
+  elif max(extent[:2])>300:
    for axis in [0,1]:
     if extent[axis]>300 and amount:s=extend_center(s,axis,amount,cut=-195 if axis==0 else 195);method='panel_section_extended'
    delta[:2]=[outer(0,-195) if extent[0]<100 else 0,outer(1,195) if extent[1]<100 else 0]

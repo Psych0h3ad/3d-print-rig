@@ -1,9 +1,9 @@
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=5c6f4dcd051bb1336e43';
 import {WorkspaceMutationObserver,workspaceListen,onWorkspaceDispose} from './workspace-lifecycle.mjs';
-import {supportedLanguages,languageNames,normalizeLanguage,chooseLanguage,languageURL} from './languages.mjs?v=fa521b07d4184ded0146';
+import {supportedLanguages,languageNames,normalizeLanguage,chooseLanguage,languageURL} from './languages.mjs?v=ba6a5cd8e1d86849ca34';
 import {definitions,localeLoaders} from './locales/manifest.mjs?v=dd02964eed58e2a1a439';
 import {createTranslator} from './translation-engine.mjs?v=59b4da15aa1f296a3647';
-export {supportedLanguages,chooseLanguage,languageURL} from './languages.mjs?v=fa521b07d4184ded0146';
+export {supportedLanguages,chooseLanguage,languageURL} from './languages.mjs?v=ba6a5cd8e1d86849ca34';
 
 const dictionaries=new Map(),loads=new Map();
 const translator=createTranslator(definitions,{dictionaries});
@@ -38,7 +38,7 @@ export function setupLanguage({document=globalThis.document,window=globalThis.wi
  const select=document.createElement('select');select.id='viewerLanguage';select.setAttribute('aria-label','Language / 言語');
  for(const [value,text]of supportedLanguages.map(value=>[value,languageNames[value]])){const option=document.createElement('option');option.value=value;option.textContent=text;select.append(option)}
  label.append(name,select);document.querySelector('.header-actions')?.prepend(label);
- const attributes=['title','placeholder','aria-label','alt','label'];
+ const attributes=['title','placeholder','aria-label','aria-description','alt','label'];
  const excluded=element=>element?.closest('script,style,pre,code,textarea,[contenteditable="true"],[data-i18n="off"],[data-part]');
  let observer,pending=false,disposed=false,generation=0;const dirty=new Set();
  onWorkspaceDispose(()=>{disposed=true;dirty.clear()});

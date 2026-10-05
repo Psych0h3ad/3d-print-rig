@@ -8,8 +8,8 @@ import {builderURL} from '../site/viewer/toolhead-builder.mjs';
 assert.equal(chooseLanguage({query:'en',stored:'ja',languages:['ja-JP']}),'en');
 assert.equal(chooseLanguage({query:'ja',stored:'en',languages:['en-US']}),'ja');
 assert.equal(chooseLanguage({query:'invalid',stored:'en',languages:['ja']}),'en');
-assert.equal(chooseLanguage({languages:['ja-JP','en-US']}),'ja');
-assert.equal(chooseLanguage({languages:['de-DE','ja']}),'ja');
+assert.equal(chooseLanguage({languages:['ja-JP','en-US']}),'en');
+assert.equal(chooseLanguage({languages:['de-DE','ja']}),'en');
 assert.equal(chooseLanguage(), 'en');
 // A configuration promise can add more labels between the observer callback
 // and its queued translation. Disconnecting must not discard those records.
@@ -35,17 +35,24 @@ const languageDocument={body:languageBody,documentElement:{},getElementById:()=>
 const languageWindow={location:{href:'https://example.test/viewer/toolheads.html?lang=en'},navigator:{languages:['en']},localStorage:{getItem:()=>null,setItem:()=>{}},history:{replaceState(){}},MutationObserver:LanguageObserver,CustomEvent:class{},addEventListener(){},dispatchEvent(){}};
 const languageController=setupLanguage({document:languageDocument,window:languageWindow});
 const firstLabel={nodeType:3,nodeValue:'構成'},lateLabel={nodeType:3,nodeValue:'ホットエンド'};
+const groupedMenu=new LanguageElement('OPTGROUP');groupedMenu.setAttribute('label','取付 / 交換方式');
+const labelledOption=new LanguageElement('OPTION');labelledOption.setAttribute('label','原本専用キャリッジ');
+groupedMenu.append(labelledOption);languageBody.append(groupedMenu);
 const firstContainer=new LanguageElement(),lateContainer=new LanguageElement();
 languageBody.append(firstContainer,lateContainer);
 firstContainer.append(firstLabel);
-languageObserver.callback([{type:'childList',addedNodes:[firstLabel]}]);
+languageObserver.callback([{type:'childList',addedNodes:[firstLabel,groupedMenu]}]);
 lateContainer.append(lateLabel);
 languageObserver.records.push({type:'childList',addedNodes:[lateLabel]});
 await Promise.resolve();
 assert.equal(firstLabel.nodeValue,'Configuration');
 assert.equal(lateLabel.nodeValue,'Hotend','Labels added during asynchronous configuration switching are also translated');
+assert.equal(groupedMenu.getAttribute('label'),'Mount / change method');
+assert.equal(labelledOption.getAttribute('label'),'Original dedicated carriage');
 languageController.setLanguage('ja');
 assert.equal(firstLabel.nodeValue,'構成');assert.equal(lateLabel.nodeValue,'ホットエンド');
+assert.equal(groupedMenu.getAttribute('label'),'取付 / 交換方式');
+assert.equal(labelledOption.getAttribute('label'),'原本専用キャリッジ');
 languageController.disconnect();
 assert.equal(translate('構成','ja'),'構成');
 assert.equal(translate('構成'),'Configuration');
