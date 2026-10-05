@@ -25,8 +25,8 @@
     },
     {
       "path": "AGENTS.md",
-      "bytes": 649,
-      "sha256": "477b4112500fc302618d8e93ffb0342a57adf6a9037fe6f714ccb70289ca5951"
+      "bytes": 1400,
+      "sha256": "d9e3bda7ba4ed255c73f09c5f11eb09b925b68a987296376a2868cad848719c3"
     },
     {
       "path": "LICENSE",
@@ -35,8 +35,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 928,
-      "sha256": "78c93c4e1741514e7e730c20b78715f0f11f9e9e6dac85b792e8bb1ed28b7f6e"
+      "bytes": 3265,
+      "sha256": "6d6e4f36f54d14df0f28b2a4d23cc4897cf41054870f842d202409b517028f5d"
     },
     {
       "path": "docs/ARMCHAIR.md",
@@ -45,8 +45,8 @@
     },
     {
       "path": "docs/CAD_BACKGROUND.md",
-      "bytes": 1608,
-      "sha256": "0a6410f484dd343852fa018036f1d886e4595525efa5f7cbb154375fbaffc854"
+      "bytes": 2029,
+      "sha256": "862154bf5da65ba3e8ecc9bc004fa539375866d792f23d89b7ce39a62e323b70"
     },
     {
       "path": "docs/CHANGER_BANK.md",
@@ -55,8 +55,8 @@
     },
     {
       "path": "docs/COMBINATION_SUPPORT.md",
-      "bytes": 4199,
-      "sha256": "963e5a57bb67b0b46481385a1db81db6ca6eff7cf61ab0ee2c2c9e1b5a9c9eee"
+      "bytes": 6653,
+      "sha256": "853196bc8e4b9b7209996a62741f508745f093d3937ec4c5600aa3b844963a02"
     },
     {
       "path": "docs/CUTTERS_MADMAX.md",
@@ -65,8 +65,8 @@
     },
     {
       "path": "docs/EMBEDDING.md",
-      "bytes": 1934,
-      "sha256": "7672b893304eb8a476f45b988885ebd43c4fca427a9faceeb93ad72535822686"
+      "bytes": 2292,
+      "sha256": "a9ad31ddabcdbc083e0045b1084ad62b324f47607fde4c4939ae61327f63427e"
     },
     {
       "path": "docs/GOLIATH.md",
@@ -85,13 +85,18 @@
     },
     {
       "path": "docs/MACHINE_REVIEW.md",
-      "bytes": 3930,
-      "sha256": "87cba58d8b4d9f34c6b7a14300278d0e4ce107fa9bd55bc40a3b2353913fc380"
+      "bytes": 6534,
+      "sha256": "07a6bd14f38d0f22bda5ef6a8e834a91517224b65d07ae440efc8fd13776f746"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
       "bytes": 67148,
       "sha256": "829ef272d3ddaeb202db939c8f97e8d0107d6bb782f6742cc99c2370b1a3b26e"
+    },
+    {
+      "path": "docs/MAINTENANCE.md",
+      "bytes": 8742,
+      "sha256": "e4c24064f82467602cd0c8e4afb0f646653724a10ae5583ee19efbb648fd2885"
     },
     {
       "path": "docs/MICRON.md",
@@ -100,13 +105,13 @@
     },
     {
       "path": "docs/MONOLITH_MACHINE.md",
-      "bytes": 5947,
-      "sha256": "6488b2a5705114f78f0983615d568723c7e9bbdb20217552997653950d6d4dd1"
+      "bytes": 6247,
+      "sha256": "5fda1acf0346aa2fa2fd7663bf6236a334f167217e0978919ca3abd594b845de"
     },
     {
       "path": "docs/MOTION_AUDIT.md",
-      "bytes": 7936,
-      "sha256": "9bca5f3f297ae7e861cdb55148e9db2b2d809b521e3b739b1e97a3954b048935"
+      "bytes": 8505,
+      "sha256": "b6f0a87dfe6b527ba29890f647ee5769ff8bfaafcccc0e14b7d6e2ac99c0998d"
     },
     {
       "path": "docs/PROBE_CLEARANCE.md",
@@ -129,6 +134,11 @@
       "sha256": "3f312853645ddc65bb59e97350e335866e9131b3e191a0167d5d93639b8481ef"
     },
     {
+      "path": "docs/README.md",
+      "bytes": 3729,
+      "sha256": "8dd4797c2f3df1d859773e48037cf24f58427439e76996bdfe889e1cd1124e95"
+    },
+    {
       "path": "docs/REAR_ENCLOSURES.md",
       "bytes": 1433,
       "sha256": "e267f88d551f3e9de8b9339cf4aeb07e8543512ddb288e3381ff6cc07c50dfcc"
@@ -140,8 +150,8 @@
     },
     {
       "path": "docs/SELECTION_AUDIT.md",
-      "bytes": 6994,
-      "sha256": "40f1925acf083ad77fce0e4f82a289cd53a2ee6ba5fa0cd986d810ce22d18d11"
+      "bytes": 7782,
+      "sha256": "ddff096233ef2122ef5006f7d52a1dc282abf5d260fe8c5e3f3d4607a088c52f"
     },
     {
       "path": "docs/SPHINX_ASSEMBLIES.md",
@@ -170,28 +180,33 @@
     },
     {
       "path": "docs/TRANSLATING.md",
-      "bytes": 3036,
-      "sha256": "381861ae7860db9cc3cff000d07953a054ce22813b3e97913e9e5225d12750fd"
+      "bytes": 3581,
+      "sha256": "e2acbcaef28afee68e7ae59c1430dfc0385fec887d36635f38a785386846f608"
     },
     {
       "path": "docs/TRIDENT_SIZE_COLOR_QA.md",
-      "bytes": 3321,
-      "sha256": "54539e3ce7523815660a72f3694c10afaed90ee2d288440f031377edabeea235"
+      "bytes": 3730,
+      "sha256": "14a7af4cc32e566cf352fbf6d89602b4470c92c34389e92f74a052cdf9e7f350"
     },
     {
       "path": "docs/UI_WORKSPACE.md",
-      "bytes": 2160,
-      "sha256": "ab13cb2a3caa4bdfc22544af4d9a8cbbef65be9ea90b410b662b862e8b7d696f"
+      "bytes": 4514,
+      "sha256": "29cbce8fa50d01d4ee2e52035ff0bf57dbd23f97bfec32db07a99da9639847b8"
     },
     {
       "path": "docs/V0_INSTALLATIONS.md",
-      "bytes": 7556,
-      "sha256": "226aa3d023d7c4643b1defa1ece6365553ab70b7af6ad606d35ead2eba088c5d"
+      "bytes": 8238,
+      "sha256": "ba3a979a9d5cb72eea3896a3925fe2e70e553016e545af03173507ae17512bea"
+    },
+    {
+      "path": "docs/WALLPAPERS.md",
+      "bytes": 4953,
+      "sha256": "69ed8aa81196ac79db7490e241a9296ce3b287ac9a6f36b55cada32e51764481"
     },
     {
       "path": "docs/WORKSPACE_NAVIGATION.md",
-      "bytes": 2741,
-      "sha256": "4d93a22bfbf36e9dd516c2aaf83973911f0b1ef6339204497712edec5d9cc55f"
+      "bytes": 3180,
+      "sha256": "f8de6721997bc882ebfe4620a6c68dd49cea211f9708e109b43c58a7015dd506"
     },
     {
       "path": "docs/YAVOTH.md",

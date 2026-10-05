@@ -19,6 +19,12 @@ loading and unavailable explicit configuration IDs do not fall back to a
 different default assembly. Registered source-head aliases remain accepted.
 Unsupported protocol versions show a link to the original site.
 
+Only state covered by the shared URL contract can be restored. In particular,
+V0's installed Mod selections use configuration JSON rather than a Mod-restoring
+URL; do not promise that an iframe captures those selections. Check the
+[current registration scope](COMBINATION_SUPPORT.md) before describing a
+standalone head or gantry as a machine installation.
+
 Maintain old IDs (or explicit, verified migrations) when updating catalogs.
 Do not silently repurpose an ID for a different machine. Keep `v=1` readable
 if a future contract is introduced, and add regression fixtures for migrations.

@@ -20,7 +20,8 @@ V0はURLによるMod復元に未対応のため、機体を開いて表示され
 
 「未登録」「未対応」はビュワーの実装状況であり、実機での非互換を意味しません。
 「対応済み」も実機互換性、全移動経路、配線、ファームウェア、自動交換を保証しません。
-原本の取付条件・確認範囲を各構成に併記します。
+カタログにある構成別の注意事項と、Modの取付条件・追加機能の対応範囲を表示します。
+件数だけから取付・干渉検証の網羅性を判断しないでください。
 
 ## Included coverage
 
@@ -35,6 +36,22 @@ V0はURLによるMod復元に未対応のため、機体を開いて表示され
 構成数には独立した追加Mod、ドック内のヘッド配列、色、姿勢を含めません。
 V0の件数は取付ルールを満たすModの選択状態です。ほかの機体の件数とは別の粒度です。
 
+## Reading combination patterns
+
+| 確認したい組み合わせ | 確認する範囲 |
+| --- | --- |
+| Trident / V2.4のサイズ・キット差 | 機種を選択してから登録構成を確認。250 / 300 / 350やプリント／CNCを相互に代用しない。CAD未登録のキット仕様も表示する。 |
+| ヘッドと押出機・ホットエンド・冷却・プローブ・基板 | 全条件に一致する構成と注意事項。単体に存在しても、その機体の取付登録がなければ組込未対応。内蔵基板の有無も別構成。 |
+| Monolithを機体へ組込 | VT/V2、サイズ、構造、6/9 mm、2WD/AWD、および専用キャリッジ／取付。単体ガントリーの全パターンが全機体へ装着できるとは扱わない。 |
+| V0 Mod同士 | ツールヘッド・ベッド支持・Xキャリッジ・加速度センサー・配線マウント・ハンドル・トップハットの7枠。Dragon/Rapid Burnerは配線マウントがstockである条件を検証する。 |
+| 複数ヘッド／ドック | 取付方式ごとのドック登録、容量、選択肢、許可状態。Tridentの標準StealthChanger、Monolith、MadMax機体側ドックは単独ヘッドの装着対応と区別する。 |
+| INDXノズル | 選択状態と簡略外形参照。径・CHT内部ごとの形状が個別にモデリングされているとは数えない。 |
+| 独立した追加Mod | 追加項目と条件欄。基本構成の件数には含めず、全Modの総当たり互換性は主張しない。 |
+
+機体を「組み合わせ対応済み」と表示しても、全ヘッド・全ガントリー・全Modへの対応を
+意味しません。対象機体を選び、必要な条件まで絞り込んで確認します。
+具体的な干渉の検証結果は、未登録という状態とは別に注意事項へ残します。
+
 ## Data and maintenance
 
 - `scripts/build_support_catalog.mjs` runs after verified model extraction in `build_site.py`.
@@ -45,8 +62,15 @@ V0の件数は取付ルールを満たすModの選択状態です。ほかの機
 - A row stores `[configuration ID token indices, dimension option indices…, notes index]`.
   Join its `idParts` tokens with `__` to reconstruct the exact configuration ID.
 - Data are generated into the build, not copied from a manually maintained count. Missing files fail the build.
-- Run `node --experimental-loader ./scripts/three-test-loader.mjs scripts/test_support_catalog.mjs <assembled-site> <support-data>`
+- Run `node scripts/test_support_catalog.mjs <assembled-site> <assembled-site>/support/data`
   to compare every generated row against current production composition logic.
 - Default regressions verify strict intersections, V0 dependency exclusions and exact configuration links.
 
+Running that test without an assembled-site argument only checks its source
+fixtures. A production comparison must supply the current built site and its
+generated data. Rebuild after catalog or composition changes; do not hand-edit
+the generated rows or copy old counts into feature documents. Missing required
+inputs are build failures, not evidence that a combination is unsupported.
+
+See [maintenance](MAINTENANCE.md) for adding patterns and reproducing the build.
 Native-solid, motion and browser evidence remain separate: see [MACHINE_REVIEW.md](MACHINE_REVIEW.md).

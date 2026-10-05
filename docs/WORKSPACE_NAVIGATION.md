@@ -35,6 +35,13 @@ preference once. Actual lights and LEDs remain machine-specific. Reference
 viewers retain CAD illumination while changing their backdrop. Mobile layout is
 session-scoped; the selected inspector tab carries across compatible views.
 
+The header theme control is available without opening Appearance. Switching
+Trident → V0.2 retains the site theme while loading the destination model.
+Language follows the explicit URL, then the stored preference, then English;
+see [translations](TRANSLATING.md). Shared configuration URLs describe the
+committed assembly, not un-applied menu drafts. See
+[configuration editing](UI_WORKSPACE.md) and [embed state limits](EMBEDDING.md).
+
 For regression testing, run `scripts/test_workspace_runtime.mjs` and the normal
 repository checks. Browser checks should cover Trident → V0.2 → Trident,
 Back/Forward, a failed destination and retry, language/mobile-layout persistence,

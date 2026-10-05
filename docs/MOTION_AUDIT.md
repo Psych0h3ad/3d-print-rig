@@ -5,7 +5,10 @@
 V0.2 / V0.2r1 XY belts use common tangents and circular wraps at registered CAD
 axes. Only the Y-carriage pulley centres move. X changes the clamp position
 along the transverse run; Z does not move the gantry. Bed-chain pieces stay
-visible during XY travel and are hidden when Z leaves the source pose.
+visible through XYZ travel. Eleven original links articulate about their native
+pin axes; Kirigami changes the moving endpoint with a fixed link pitch. The
+explicit belt/wiring visibility control hides the chain. See
+[V0 installations](V0_INSTALLATIONS.md) for routing scope and known contacts.
 
 Vanilla Trident 350 R2 now updates both XY belt paths with Y travel. Eight axes
 per belt were measured from the native belt solids at VoronDesign/Voron-Trident
@@ -30,7 +33,8 @@ V0 and vanilla Trident. They replace the toothed source meshes in the viewer;
 downloaded native geometry is unchanged. Teeth, clamp cuts, pulley rotation,
 tension and physical engagement are not simulated. Path length is not a belt
 cut-length recommendation. Unsupported cable articulation is disclosed in the
-motion panels in Japanese and English.
+motion panels; shared interface text follows the
+[supported translation workflow](TRANSLATING.md).
 
 ## Verification
 
@@ -44,6 +48,11 @@ release through the viewer's GLTFLoader:
 ```sh
 node --experimental-loader ./scripts/three-test-loader.mjs scripts/check_motion_assets.mjs <assembled-site-directory> <report.json>
 ```
+
+The following table records the original belt-audit scope. Later size, chain,
+Micron and mounting checks are described separately below. These counts are not
+a current all-machine review total; use the
+[coverage record](MACHINE_REVIEW_COVERAGE.json) and the actual release's reports.
 
 | Actual assets | Grid/reference poses | Fine Y sweep |
 | --- | ---: | ---: |

@@ -1,5 +1,9 @@
 # CAD-derived background
 
+This document covers the viewer's decorative background. Downloadable assembly,
+exploded, section and collection wallpapers have their own
+[gallery and maintenance guide](WALLPAPERS.md).
+
 The background uses six hidden-line orthographic projections of actual catalog
 meshes: V0.2r1, V2.4, Trident, Micron Plus, the original V2.4 toolhead and its XY
 gantry. Geometry and relative part placements are not altered. Transparent
@@ -11,6 +15,9 @@ The shared interface uses graphite and copper colors with the PR wordmark.
 
 Use the exact viewer-v34 asset bundle recorded in
 `site/viewer/art/cad-background.json`. Extract it outside the source repository.
+This is the artwork's pinned input, not a claim that the live viewer still uses
+that release. Reproducing this image and rendering a new current-CAD background
+are separate operations; update its provenance when changing the inputs.
 With Blender 5.2 (Cycles CPU and Freestyle):
 
 ```sh

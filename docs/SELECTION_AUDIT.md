@@ -1,5 +1,12 @@
 # Configuration and selection audit — 2026-10-02
 
+**Historical v18/v19 record.** Counts, browser observations and unregistered
+mounts below belong to the stated baselines. For current availability use the
+[generated support index](COMBINATION_SUPPORT.md), and for current selection
+behavior see [the draft/Apply workflow](UI_WORKSPACE.md). In particular, Sphinx
+now has dedicated [Monolith machine registrations](MONOLITH_MACHINE.md); the
+v19 limitation below is not its present status.
+
 The original delegated audit used source baseline `c135140` and assembled `public-v18-probe1` assets. Its selector fixes were integrated after the published probe and motion changes at `e2f2597`. The v19 rerun includes Sphinx hardware and machine placement. Neither audit certifies physical compatibility or full-travel clearance.
 
 ## Reproduced and repaired
@@ -34,11 +41,13 @@ The original delegated audit used source baseline `c135140` and assembled `publi
 - Japanese/English DOM switching passed on all 11 pages. Existing explicit probe warnings survive idempotent selection; genuine component changes retain safe fallback handling. New Sphinx configurations do not invent a probe registration.
 - The browser observations above belong to the delegated baseline. The integrated v19 rerun used offline geometry/controller, DOM and native CAD checks; it did not repeat that browser review.
 
-## Boundaries and further CAD work
+## Boundaries recorded at v19
 
 - The integrated catalog has 484 standalone configurations without a registered printer destination. They are not asserted to be physically incompatible; they need registered machine carriage/datum data. No Cartesian-product compatibility was invented.
 - Chube Compact's supplied SB mount is CW2-specific. G2E/Orbiter/LGX combinations require mount evidence; generic similarity does not justify exposing them as verified assemblies.
 - Original CAD collisions, incomplete reference heads, dock registration and whole-travel verification remain visible in the existing status/notes. This patch does not remove those qualifications.
 - Source catalog records may contain unused options because they are shared supersets. Absence from a particular machine menu alone is not a bug.
 
-Run `scripts/audit_selection_catalogs.mjs <assembled-site-root> <report.json>` and `node --expose-gc --experimental-loader ./scripts/three-test-loader.mjs scripts/audit_loaded_heads.mjs <assembled-site-root> <report.json>` for the asset-backed audit. Run the repository checker for source/unit verification. Keep generated evidence and geometry outside Git.
+## Rerunning against current assets
+
+Run `node scripts/audit_selection_catalogs.mjs <assembled-site-root> <report.json>` and `node --expose-gc --experimental-loader ./scripts/three-test-loader.mjs scripts/audit_loaded_heads.mjs <assembled-site-root> <report.json>` for the asset-backed audits. Use separate report paths. Also compare the generated support index with the production composition as described in [combination support](COMBINATION_SUPPORT.md); this includes Monolith and V0 states beyond the historical audit above. Run the repository checker for source/unit verification. Keep generated evidence and geometry outside Git, and record a new baseline rather than replacing the historical results here.

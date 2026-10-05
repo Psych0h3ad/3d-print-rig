@@ -4,6 +4,13 @@ This is the default review procedure for every existing and newly added printer,
 vendor, size, gantry, toolhead and mod. A release covers all available machines;
 a source-only reference retains its explicitly declared motion limitations.
 
+Use [maintenance](MAINTENANCE.md) for the catalog/update map and
+[combination support](COMBINATION_SUPPORT.md) for registration status. The review
+unit includes machine/vendor/size, gantry, head, mount/carriage, hotend, extruder,
+cooling, probe and board where applicable. V0 Mod states and parked-tool banks
+have separate dependency and capacity rules; a single family-level pass cannot
+stand in for every registered configuration.
+
 ## Automated checks
 
 `python scripts/check_repository.py` runs every `scripts/test_*.mjs` regression
@@ -26,6 +33,36 @@ Use the current release assets, not an older fixture or model. Audit the native
 models for community printers, Micron, Annex, Remorph, Crossant, Rat Rig and
 Positron with their production adapters. Report every available machine, actual
 model/adapter hashes, tested poses and combinations, findings and scope.
+
+Compare the generated support data against production composition with
+`node scripts/test_support_catalog.mjs <assembled-site> <assembled-site>/support/data`.
+The no-argument source regression does not perform that actual-catalog audit.
+Include selection/loaded-head, V0 installation, rear-enclosure and relevant
+bank/Monolith audits when those inputs change. Test rejected combinations as
+well as offered choices; an unavailable explicit ID must not install a different
+assembly silently.
+
+## Evidence scope when patterns grow
+
+| Evidence | What it establishes | What it does not establish |
+| --- | --- | --- |
+| Catalog / support comparison | Exact registered tuples, option reachability, strict intersections, IDs and reported status | Correct rendering, native mounting or physical compatibility |
+| Production controller with exported GLBs | Installed modules, masks, transforms, colors, sampled poses, reset and teardown | GPU/browser appearance, continuous solid clearance or real operation |
+| Native solids and mating datums | The measured interfaces, intersections and travel scope for the exact pinned inputs | Untested parts, other gantries, flexible wiring, tolerances or exchange paths |
+| Browser review | Observed behavior and rendering at the named browser, viewport, configurations and poses | Every unvisited tuple or mechanical fit |
+
+Keep all available-machine rows in the coverage record. Shared geometry may
+reuse evidence only when identical inputs and relative placements justify it;
+record the grouping and exceptions. Distinct board visibility, nozzle offsets,
+carriages, parked tools or replaced fixtures can change the required checks.
+Adding rows to a support report never extends a native-clearance certificate.
+
+For Markdown-only corrections, retain the existing model evidence and its hashes.
+Verify links and statements against the current implementation, regenerate the
+source inventory and run the publication check. Do not refresh measurement dates
+or coverage hashes without the corresponding review. Historical audit counts
+remain tied to their stated source/release; current availability comes from the
+generated support index.
 
 ## Required inspection categories
 

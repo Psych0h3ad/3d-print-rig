@@ -4,6 +4,12 @@ The viewer supports Japanese (`ja`), English (`en`), Spanish (`es`), Korean
 (`ko`) and Russian (`ru`). Dictionaries are served with the site; viewing a
 page makes no request to a translation service.
 
+New visitors start in English, independently of browser/OS language. An explicit
+`lang` URL parameter takes precedence over the stored user preference; the
+stored preference takes precedence over the English default. Initial viewer
+HTML is English too. Keep both English → Japanese and Japanese → English DOM
+lookup working when changing source aliases or extracting section labels.
+
 `localization/source.json` is the source of truth. Each entry has a permanent
 ID, a `kind`, Japanese source text and English review text. Keep the ID when
 revising wording. IDs such as `text.0123` and `fragment.0001` are permanent,
@@ -38,6 +44,8 @@ New shared controls can use `data-i18n-id="ui.configuration"` for static text
 or `formatMessage(id, values, language)` for dynamic text. Existing source
 strings remain supported during migration. Use `originalText` and
 `originalAttribute` when deriving new labels from an already translated DOM.
+Configuration drafts, companion-change messages and support-index controls use
+the same dictionaries. Include those surfaces when reviewing new terminology.
 Model IDs, option values, code blocks, G-code input and native part names are
 not translation keys.
 

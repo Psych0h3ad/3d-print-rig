@@ -1,5 +1,11 @@
 # Trident sizes and V2.4 color coverage
 
+The numerical results below record the size/color implementation's original
+verification, not the current total of registered heads. Current size-specific
+combinations come from the [support index](COMBINATION_SUPPORT.md). Later
+[rear-panel corrections](REAR_ENCLOSURES.md) and
+[machine review evidence](MACHINE_REVIEW.md) retain their own input scope.
+
 ## Corrected behavior
 
 - Standard VORON Trident now selects and loads 250, 300 and 350 mm assemblies.
@@ -20,11 +26,11 @@ All generated BREP parts are valid. Analytic rail hole axes and unchanged fasten
 
 `prepare_trident_size_catalogs.py` registers new sizes from generated geometry and a published bundle. Its `TRIDENT_SIZE_REGISTRATIONS.json` contains only the new machine entries and handle assets for merging into newer head/mod/bank registries. Do not overwrite unrelated registry entries with its preview snapshots.
 
-## Verification
+## Recorded implementation verification
 
 - `audit_v24_colors.mjs`: actual GLBs for all six V2.4 size/structure pairs; 8,316 mesh materials; two contrasting palettes, protected material preservation and original-color restoration.
 - `audit_trident_sizes.mjs`: actual 250/300/350 base and gantry GLBs; 3,673 part meshes, 3,606 belt routes sampled every 0.5 mm over Y travel; finite geometry, tangent contacts, constant length, noncrossing routes, closed seams, bed/guide motion and fixed frame positions.
-- 344 registered head variants per Trident size. Size-specific gantries persist in expanded catalogs. Stock nozzle/bed reference gap is zero. Existing conventional StealthChanger dock restrictions remain enforced; INDX uses the correctly sized crossbar and existing limitation messages.
+- At that verification baseline: 344 registered head variants per Trident size. Size-specific gantries persist in expanded catalogs. Stock nozzle/bed reference gap is zero. Existing conventional StealthChanger dock restrictions remain enforced; INDX uses the correctly sized crossbar and existing limitation messages.
 - Browser: 250 → 300 → 350 through the machine selector; Trident 300 at X=300, Y=0, Z=250; stock → fixed Sphinx → INDX → stock; bed fans, handles and shifted Disco lighting; palette edits and reload. V2.4 300 palette survives reload with protected material changes = 0.
 - Repository publication checks and regression suite passed.
 

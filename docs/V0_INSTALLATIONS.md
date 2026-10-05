@@ -1,6 +1,15 @@
 # V0 installed configurations
 
-The V0.2 and V0.2r1 machine page mounts original Mod parts on the printer. Selection replaces the corresponding stock parts, follows native XY or bed Z motion, preserves hardware colors, and supports configuration files. The separate 18-family source library provides original alternatives and their component provenance.
+For the current selectable combinations and source-library installation status,
+use the [support index](COMBINATION_SUPPORT.md). The seven installation slots are
+toolhead, bed support, X carriage, accelerometer, strain relief, handles and
+tophat. `validateV0Mods` enforces both `requires` and `conflicts`; Dragon/Rapid
+Burner choices require stock strain relief and cannot be combined with the
+Picobilical plate. Library membership alone does not establish installation.
+Mod selections are saved in configuration JSON; V0 has no Mod-restoring
+configuration URL contract, so support links open the machine for manual selection.
+
+The V0.2 and V0.2r1 machine page mounts original Mod parts on the printer. Selection replaces the corresponding stock parts, follows native XY or bed Z motion, preserves hardware colors, and supports configuration files. The separate source library provides original alternatives and their component provenance; its current installation status is listed in the support index.
 
 | Mod | Machine | Registered geometry and conditions |
 | --- | --- | --- |
