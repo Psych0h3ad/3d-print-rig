@@ -7265,6 +7265,90 @@
     "loading.progress": {
       "source_revision": "4f31326ba772e5e077f6",
       "text": "Ход загрузки модели"
+    },
+    "configuration_editor.displayed": {
+      "source_revision": "ff106c92f97b5eb5947a",
+      "text": "Показано в 3D"
+    },
+    "configuration_editor.undo": {
+      "source_revision": "65f019dd3f12a2623e4a",
+      "text": "Вернуть предыдущую конфигурацию"
+    },
+    "configuration_editor.hint": {
+      "source_revision": "c301f03f6ce089f1c378",
+      "text": "Выберите детали, проверьте изменения и примените их к 3D."
+    },
+    "configuration_editor.changes": {
+      "source_revision": "d0bce9ec15436d5497a4",
+      "text": "Изменения конфигурации"
+    },
+    "configuration_editor.pending": {
+      "source_revision": "fff7233c2ebd7e657922",
+      "text": "Изменения ещё не показаны в 3D."
+    },
+    "configuration_editor.apply": {
+      "source_revision": "657eadb21e701b24823b",
+      "text": "Применить изменения к 3D"
+    },
+    "configuration_editor.cancel": {
+      "source_revision": "c1ecc586c44eec07aa07",
+      "text": "Отменить изменения"
+    },
+    "configuration_editor.review": {
+      "source_revision": "bebec044cfa608f114a2",
+      "text": "Проверить изменения: {0}"
+    },
+    "configuration_editor.automatic": {
+      "source_revision": "169fb3400bfe5d670611",
+      "text": "Связанное изменение"
+    },
+    "configuration_editor.applying": {
+      "source_revision": "81be398b93974fc0e72c",
+      "text": "Применение…"
+    },
+    "configuration_editor.linked_hint": {
+      "source_revision": "9455adc4b4250a1b3d6b",
+      "text": "Меняется в соответствии с другим выбором"
+    },
+    "configuration_editor.fixed": {
+      "source_revision": "6157c6574d2eaf1a3ab9",
+      "text": "Для этой комбинации доступен только этот вариант."
+    },
+    "configuration_editor.save_hint": {
+      "source_revision": "881b24e2c1ed406ec3e5",
+      "text": "Примените изменения к 3D перед сохранением."
+    },
+    "configuration_editor.keep": {
+      "source_revision": "888ad89eec7ec62d195a",
+      "text": "Остальные детали без изменений"
+    },
+    "configuration_editor.linked": {
+      "source_revision": "1792ec66e9577c35e6eb",
+      "text": "Также меняются связанные детали"
+    },
+    "configuration_editor.structure": {
+      "source_revision": "0078172faa7659c50e98",
+      "text": "Портал и крепление"
+    },
+    "configuration_editor.drive": {
+      "source_revision": "ad84f0d7a946ed307cbb",
+      "text": "Головка и экструзия"
+    },
+    "configuration_editor.options": {
+      "source_revision": "bd556fe876c139f99f24",
+      "text": "Датчик, охлаждение и плата"
+    },
+    "configuration_editor.search_hint": {
+      "source_revision": "26198a4a65fd9f0cc792",
+      "text": "Выберите вариант для добавления в черновик. Примените всё кнопкой «Применить изменения к 3D»."
+    },
+    "configuration_editor.mount": {
+      "source_revision": "096970fbc92d9bf57646",
+      "text": "Крепление / смена инструмента"
+    },
+    "configuration_editor.retry": {
+      "source_revision": "36b9d1db6b809e74167a",
+      "text": "Повторить загрузку CAD"
     }
   }
 }

@@ -36,7 +36,7 @@ globalThis.history={replaceState:(_a,_b,url)=>{globalThis.location=new URL(url)}
 const controlled={...c,sources:[],variants:c.variants.map(v=>({...v,notes:[],belt_width_mm:6}))};
 let shown,fail,settled=[],palette={...extras},installs=[];
 const {setupConfigurations}=await import('../site/viewer/configurations.js');
-const control=await setupConfigurations(controlled,async v=>{installs.push(v.id);if(v.id===fail)throw Error('fixture CAD load failure');shown=v.id},{presentation:'toolhead',getExtras:()=>({head_builder:palette}),validateExtras:validateBuilderExtras,applyExtras:async d=>{palette=d.head_builder},onSettled:v=>settled.push(v.id)});
+const control=await setupConfigurations(controlled,async v=>{installs.push(v.id);if(v.id===fail)throw Error('fixture CAD load failure');shown=v.id},{createEditor:()=>({update(){}}),presentation:'toolhead',getExtras:()=>({head_builder:palette}),validateExtras:validateBuilderExtras,applyExtras:async d=>{palette=d.head_builder},onSettled:v=>settled.push(v.id)});
 assert.equal(control.current.id,v.id);assert.equal(shown,v.id);assert(!control.busy);
 const next=controlled.variants.at(-1);await control.selectVariant(next.id);assert.equal(shown,next.id);assert.equal(new URL(location).searchParams.get('configuration'),next.id);
 fail=controlled.variants[0].id;const oldError=console.error;console.error=()=>{};try{await control.selectVariant(fail)}finally{console.error=oldError}

@@ -7265,6 +7265,90 @@
     "loading.progress": {
       "source_revision": "4f31326ba772e5e077f6",
       "text": "Progreso de descarga del modelo"
+    },
+    "configuration_editor.displayed": {
+      "source_revision": "ff106c92f97b5eb5947a",
+      "text": "Visible en 3D"
+    },
+    "configuration_editor.undo": {
+      "source_revision": "65f019dd3f12a2623e4a",
+      "text": "Restaurar configuración anterior"
+    },
+    "configuration_editor.hint": {
+      "source_revision": "c301f03f6ce089f1c378",
+      "text": "Elige las piezas, revisa los cambios y aplícalos a la vista 3D."
+    },
+    "configuration_editor.changes": {
+      "source_revision": "d0bce9ec15436d5497a4",
+      "text": "Cambios de configuración"
+    },
+    "configuration_editor.pending": {
+      "source_revision": "fff7233c2ebd7e657922",
+      "text": "Los cambios aún no se muestran en 3D."
+    },
+    "configuration_editor.apply": {
+      "source_revision": "657eadb21e701b24823b",
+      "text": "Aplicar cambios a 3D"
+    },
+    "configuration_editor.cancel": {
+      "source_revision": "c1ecc586c44eec07aa07",
+      "text": "Descartar cambios"
+    },
+    "configuration_editor.review": {
+      "source_revision": "bebec044cfa608f114a2",
+      "text": "Revisar {0} cambios"
+    },
+    "configuration_editor.automatic": {
+      "source_revision": "169fb3400bfe5d670611",
+      "text": "Cambio asociado"
+    },
+    "configuration_editor.applying": {
+      "source_revision": "81be398b93974fc0e72c",
+      "text": "Aplicando…"
+    },
+    "configuration_editor.linked_hint": {
+      "source_revision": "9455adc4b4250a1b3d6b",
+      "text": "Cambia para ajustarse a otra selección"
+    },
+    "configuration_editor.fixed": {
+      "source_revision": "6157c6574d2eaf1a3ab9",
+      "text": "Esta es la única opción para esta combinación."
+    },
+    "configuration_editor.save_hint": {
+      "source_revision": "881b24e2c1ed406ec3e5",
+      "text": "Aplica los cambios a 3D antes de guardar."
+    },
+    "configuration_editor.keep": {
+      "source_revision": "888ad89eec7ec62d195a",
+      "text": "Mantener las demás piezas"
+    },
+    "configuration_editor.linked": {
+      "source_revision": "1792ec66e9577c35e6eb",
+      "text": "También cambia piezas relacionadas"
+    },
+    "configuration_editor.structure": {
+      "source_revision": "0078172faa7659c50e98",
+      "text": "Pórtico y montaje"
+    },
+    "configuration_editor.drive": {
+      "source_revision": "ad84f0d7a946ed307cbb",
+      "text": "Cabezal y extrusión"
+    },
+    "configuration_editor.options": {
+      "source_revision": "bd556fe876c139f99f24",
+      "text": "Sonda, refrigeración y placa"
+    },
+    "configuration_editor.search_hint": {
+      "source_revision": "26198a4a65fd9f0cc792",
+      "text": "Selecciona una opción para añadirla al borrador. Aplica todo con «Aplicar cambios a 3D»."
+    },
+    "configuration_editor.mount": {
+      "source_revision": "096970fbc92d9bf57646",
+      "text": "Montaje / cambio de herramienta"
+    },
+    "configuration_editor.retry": {
+      "source_revision": "36b9d1db6b809e74167a",
+      "text": "Reintentar cargar CAD"
     }
   }
 }

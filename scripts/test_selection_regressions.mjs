@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {configurationById,resolveVariant,choicesFor,headBuilderDimensions} from '../site/viewer/configuration-model.js';
-import {setupConfigurations} from '../site/viewer/configurations.js';
+import {setupConfigurations as setupConfigurationsWithUI} from '../site/viewer/configurations.js';
+const setupConfigurations=(catalog,install,options={})=>setupConfigurationsWithUI(catalog,install,{...options,createEditor:()=>({update(){}})});
 import {monolithCompanion} from '../site/viewer/monolith-head-model.mjs';
 import {xolEmbeddedBoard,withEmbeddedBoards} from '../site/viewer/embedded-boards.mjs';
 const embedded=xolEmbeddedBoard({parts:[{key:'pcb',source:{path:['assembly','SHT-36v2 <1>:1','PCB']}},{key:'motor',source:{path:['drive']}}]});
@@ -50,3 +51,31 @@ assert.equal(shared.searchParams.get('gantry'),'monolith_v2_printed_9_awd_300');
 nodes=dom('?gantry=missing');controller=await setupConfigurations(catalog,async()=>{});
 assert.match(nodes.get('#configStatus').textContent,/ガントリーはこの機体に未登録/);
 console.log('Standalone gantry links keep their query and do not falsely report missing machine registration.');
+
+// A staged choice changes menus only. Apply installs once; discard/undo are
+// explicit and failed installation leaves a retryable draft with honest state.
+nodes=dom();calls=[];let rejectProbe=false;
+controller=await setupConfigurations(catalog,async v=>{calls.push(v.id);if(rejectProbe&&v.id==='probe')throw Error('CAD unavailable')});
+nodes.get('#probeConfig').value='coil';await nodes.get('#probeConfig').onchange();
+assert.equal(controller.current,base);assert.equal(controller.draft.current,probe);
+assert.equal(controller.draft.pending,true);assert.deepEqual(calls,['stock']);
+controller.discardDraft();assert.equal(controller.draft.pending,false);assert.deepEqual(calls,['stock']);
+nodes.get('#probeConfig').value='coil';await nodes.get('#probeConfig').onchange();
+await controller.applyDraft();assert.equal(controller.current,probe);assert.equal(controller.draft.pending,false);assert.deepEqual(calls,['stock','probe']);
+await controller.undo();assert.equal(controller.current,base);assert.deepEqual(calls,['stock','probe','stock']);
+nodes.get('#probeConfig').value='coil';await nodes.get('#probeConfig').onchange();
+rejectProbe=true;console.error=()=>{};
+try{assert.equal(await controller.applyDraft(),false)}finally{console.error=savedError}
+assert.equal(controller.current,base);assert.equal(controller.draft.current,probe);assert.equal(controller.draft.pending,true);
+rejectProbe=false;assert.equal(await controller.applyDraft(),true);assert.equal(controller.current,probe);
+let release;nodes=dom();controller=await setupConfigurations(catalog,async v=>{if(v===probe)await new Promise(resolve=>release=resolve)});
+nodes.get('#probeConfig').value='coil';await nodes.get('#probeConfig').onchange();
+const applying=controller.applyDraft();assert.equal(controller.busy,true);
+assert.equal(await controller.applyDraft(),false);controller.discardDraft();assert.equal(controller.draft.pending,true);
+release();await applying;assert.equal(controller.current,probe);assert.equal(controller.busy,false);
+console.log('Draft workflow: no pre-apply install, discard, atomic apply, undo, failed-load retry and double-submit protection passed.');
+
+nodes=dom();let initialFailure=true;console.error=()=>{};
+try{controller=await setupConfigurations(catalog,async()=>{if(initialFailure)throw Error('initial failure')})}finally{console.error=savedError}
+assert.equal(controller.current,null);assert.equal(controller.draft.pending,true);
+initialFailure=false;assert.equal(await controller.applyDraft(),true);assert.equal(controller.current,base);

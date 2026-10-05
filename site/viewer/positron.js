@@ -7,7 +7,7 @@ import {loadPositron} from './positron-loader.mjs?v=e213f57d4ee250d3116e';
 import {positronSchema,validatePositronState} from './positron-state.mjs?v=8296d1b775fbca04462f';
 import {setupMachineNavigation} from './machines.js?v=dedc575bbef34e348ec3';
 import {sceneLightingState} from './scene-lighting-state.mjs';
-import {translate} from './i18n.mjs?v=bec072e83e77cab33213';
+import {translate} from './i18n.mjs?v=0a4d8f23cf3f2e9dd51e';
 import {rememberDisplayControl} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';

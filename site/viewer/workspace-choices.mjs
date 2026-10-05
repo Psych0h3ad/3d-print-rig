@@ -1,5 +1,5 @@
 import {WorkspaceMutationObserver,workspaceListen} from './workspace-lifecycle.mjs';
-import {translate,originalText,originalAttribute} from './i18n.mjs?v=bec072e83e77cab33213';
+import {translate,originalText,originalAttribute} from './i18n.mjs?v=0a4d8f23cf3f2e9dd51e';
 
 const normalize = value => String(value).normalize('NFKC').toLocaleLowerCase().replace(/\s+/gu, ' ').trim();
 export function matchingChoices(rows, query) {
@@ -98,6 +98,7 @@ export function setupChoiceSearch(panel) {
     }
   }
   open.onclick = () => {
+    hint.textContent=document.getElementById('configurationDraft')?'候補を選ぶと変更案に追加します。「変更を3Dに反映」でまとめて反映できます。':'候補を選ぶと構成に反映します。関連部品が変わる場合は候補に表示します。';
     dialog.showModal(); query.value = ''; refreshFields();
     // Search across dependent choices too: a head can be offered by switching
     // its gantry even when it is absent from the current head dropdown.

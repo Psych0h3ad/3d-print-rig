@@ -7265,6 +7265,90 @@
     "loading.progress": {
       "source_revision": "4f31326ba772e5e077f6",
       "text": "모델 다운로드 진행률"
+    },
+    "configuration_editor.displayed": {
+      "source_revision": "ff106c92f97b5eb5947a",
+      "text": "3D에 표시 중"
+    },
+    "configuration_editor.undo": {
+      "source_revision": "65f019dd3f12a2623e4a",
+      "text": "이전 구성 복원"
+    },
+    "configuration_editor.hint": {
+      "source_revision": "c301f03f6ce089f1c378",
+      "text": "부품을 선택하고 변경 내용을 확인한 뒤 3D에 적용하세요."
+    },
+    "configuration_editor.changes": {
+      "source_revision": "d0bce9ec15436d5497a4",
+      "text": "구성 변경"
+    },
+    "configuration_editor.pending": {
+      "source_revision": "fff7233c2ebd7e657922",
+      "text": "변경 사항은 아직 3D에 반영되지 않았습니다."
+    },
+    "configuration_editor.apply": {
+      "source_revision": "657eadb21e701b24823b",
+      "text": "변경 사항을 3D에 적용"
+    },
+    "configuration_editor.cancel": {
+      "source_revision": "c1ecc586c44eec07aa07",
+      "text": "변경 취소"
+    },
+    "configuration_editor.review": {
+      "source_revision": "bebec044cfa608f114a2",
+      "text": "변경 사항 {0}개 확인"
+    },
+    "configuration_editor.automatic": {
+      "source_revision": "169fb3400bfe5d670611",
+      "text": "연동 변경"
+    },
+    "configuration_editor.applying": {
+      "source_revision": "81be398b93974fc0e72c",
+      "text": "적용 중…"
+    },
+    "configuration_editor.linked_hint": {
+      "source_revision": "9455adc4b4250a1b3d6b",
+      "text": "다른 선택에 맞춰 변경됩니다"
+    },
+    "configuration_editor.fixed": {
+      "source_revision": "6157c6574d2eaf1a3ab9",
+      "text": "이 조합에서는 이 사양만 사용할 수 있습니다."
+    },
+    "configuration_editor.save_hint": {
+      "source_revision": "881b24e2c1ed406ec3e5",
+      "text": "변경 사항을 3D에 적용한 뒤 저장하세요."
+    },
+    "configuration_editor.keep": {
+      "source_revision": "888ad89eec7ec62d195a",
+      "text": "다른 부품 유지"
+    },
+    "configuration_editor.linked": {
+      "source_revision": "1792ec66e9577c35e6eb",
+      "text": "관련 부품도 변경"
+    },
+    "configuration_editor.structure": {
+      "source_revision": "0078172faa7659c50e98",
+      "text": "갠트리 및 장착 방식"
+    },
+    "configuration_editor.drive": {
+      "source_revision": "ad84f0d7a946ed307cbb",
+      "text": "헤드 및 압출계"
+    },
+    "configuration_editor.options": {
+      "source_revision": "bd556fe876c139f99f24",
+      "text": "프로브·냉각·보드"
+    },
+    "configuration_editor.search_hint": {
+      "source_revision": "26198a4a65fd9f0cc792",
+      "text": "후보를 선택하면 변경안에 추가됩니다. «변경 사항을 3D에 적용»으로 한 번에 반영하세요."
+    },
+    "configuration_editor.mount": {
+      "source_revision": "096970fbc92d9bf57646",
+      "text": "장착·툴 교환 방식"
+    },
+    "configuration_editor.retry": {
+      "source_revision": "36b9d1db6b809e74167a",
+      "text": "CAD 다시 불러오기"
     }
   }
 }

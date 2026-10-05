@@ -9081,6 +9081,111 @@
       "kind": "message",
       "ja": "モデルのダウンロード進捗",
       "en": "Model download progress"
+    },
+    "configuration_editor.displayed": {
+      "kind": "message",
+      "ja": "3Dに表示中",
+      "en": "Shown in 3D"
+    },
+    "configuration_editor.undo": {
+      "kind": "message",
+      "ja": "前の構成に戻す",
+      "en": "Restore previous configuration"
+    },
+    "configuration_editor.hint": {
+      "kind": "message",
+      "ja": "部品を選び、変更内容を確認してから3Dに反映します。",
+      "en": "Choose parts, review the changes, then apply them to 3D."
+    },
+    "configuration_editor.changes": {
+      "kind": "message",
+      "ja": "構成の変更",
+      "en": "Configuration changes"
+    },
+    "configuration_editor.pending": {
+      "kind": "message",
+      "ja": "まだ3Dには反映されていません。",
+      "en": "Changes are not yet shown in 3D."
+    },
+    "configuration_editor.apply": {
+      "kind": "message",
+      "ja": "変更を3Dに反映",
+      "en": "Apply changes to 3D"
+    },
+    "configuration_editor.cancel": {
+      "kind": "message",
+      "ja": "取り消す",
+      "en": "Discard changes"
+    },
+    "configuration_editor.review": {
+      "kind": "template",
+      "ja": "{0}項目の変更を確認",
+      "en": "Changes to review: {0}"
+    },
+    "configuration_editor.automatic": {
+      "kind": "message",
+      "ja": "連動変更",
+      "en": "Companion change"
+    },
+    "configuration_editor.applying": {
+      "kind": "message",
+      "ja": "反映中…",
+      "en": "Applying…"
+    },
+    "configuration_editor.linked_hint": {
+      "kind": "message",
+      "ja": "他の選択に合わせて変更されます",
+      "en": "Changes to match another selection"
+    },
+    "configuration_editor.fixed": {
+      "kind": "message",
+      "ja": "この組み合わせでは、この仕様で固定です。",
+      "en": "This is the only option for this combination."
+    },
+    "configuration_editor.save_hint": {
+      "kind": "message",
+      "ja": "変更を3Dに反映してから保存できます。",
+      "en": "Apply the changes to 3D before saving."
+    },
+    "configuration_editor.keep": {
+      "kind": "message",
+      "ja": "他の部品を維持",
+      "en": "Keep other parts"
+    },
+    "configuration_editor.linked": {
+      "kind": "message",
+      "ja": "関連部品も変更",
+      "en": "Also changes related parts"
+    },
+    "configuration_editor.structure": {
+      "kind": "message",
+      "ja": "ガントリーと取付",
+      "en": "Gantry and mounting"
+    },
+    "configuration_editor.drive": {
+      "kind": "message",
+      "ja": "ヘッドと駆動系",
+      "en": "Head and extrusion"
+    },
+    "configuration_editor.options": {
+      "kind": "message",
+      "ja": "プローブ・冷却・基板",
+      "en": "Probe, cooling and board"
+    },
+    "configuration_editor.search_hint": {
+      "kind": "message",
+      "ja": "候補を選ぶと変更案に追加します。「変更を3Dに反映」でまとめて反映できます。",
+      "en": "Select a candidate to add it to your draft. Apply all changes together with “Apply changes to 3D”."
+    },
+    "configuration_editor.mount": {
+      "kind": "message",
+      "ja": "取付・交換方式",
+      "en": "Mounting / tool change"
+    },
+    "configuration_editor.retry": {
+      "kind": "message",
+      "ja": "CADを再読み込み",
+      "en": "Retry loading CAD"
     }
   }
 }

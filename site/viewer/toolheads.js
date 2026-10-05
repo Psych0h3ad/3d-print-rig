@@ -4,7 +4,7 @@ import {setupSceneDisplay} from './display-preferences.mjs?v=9860960509e28d17f3f
 import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {loadMonolithData} from './monolith-machine.js?v=24741aa54cc5e8054ef2';
 import {setupChangerBank} from './changer-bank.js?v=2575f5e3fafcf4c76da2';
-import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=0ce2aca7e8c402081bc8';
+import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=0ea2f35c267371d01c80';
 import {headPrinterLink} from './head-navigation.mjs?v=efe7d538401ec00cc2d1';
 import {headBuilderDimensions} from './configuration-model.js?v=d4b3dda97a404a7575b7';
 import {appearanceRole} from './appearance-role.mjs?v=workspace-belts-1';
@@ -12,7 +12,7 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=ce28c0df722a83db6bb3';
-import {setupConfigurations} from './configurations.js?v=9d347c03f3b6b7bd977d';
+import {setupConfigurations} from './configurations.js?v=0a0cae1b075ba8127db4';
 import {setupPublicInfo} from './public-info.js?v=workspace-belts-2';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=workspace-belts-1';

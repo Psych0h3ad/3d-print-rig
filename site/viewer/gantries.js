@@ -13,10 +13,9 @@ import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=ce28c0df722a83db6bb3';
 import {setupPublicInfo} from './public-info.js?v=workspace-belts-2';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=0ce2aca7e8c402081bc8';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=0ea2f35c267371d01c80';
 import {monolithHeadCatalog} from './monolith-head-model.mjs?v=f01febfc759348d89fa7';
-import {setupConfigurations} from './configurations.js?v=9d347c03f3b6b7bd977d';
-import {resolveVariant} from './configuration-model.js?v=d4b3dda97a404a7575b7';
+import {setupConfigurations} from './configurations.js?v=0a0cae1b075ba8127db4';
 import {gantryDimensions,gantryChoice,gantryAssets} from './gantry-model.js?v=workspace-belts-1';
 export async function mount(scope){
 const $=s=>document.querySelector(s),stage=$('#stage'),scene=scope.scene(new THREE.Scene()),bench=new THREE.Group();scene.add(bench);scene.background=new THREE.Color('#edf1f5');
@@ -38,8 +37,8 @@ const query=new URLSearchParams(location.search),sourceHead=data.heads.variants.
 const initial=catalog.variants.find(v=>v.id===wanted)||gantryChoice(catalog,{size_mm:350,machine:'VT',build:'printed',belt_width_mm:sourceHead?.belt_width_mm||9,xy_motors:4});
 const preferred=headCatalog.variants.find(v=>v.gantry===initial.id&&(sourceHead?v.source_head_configuration===sourceHead.id:v.mount==='fixed'))||headCatalog.variants.find(v=>v.gantry===initial.id);
 if(preferred)headCatalog.variants=[preferred,...headCatalog.variants.filter(v=>v!==preferred)];
-controller=await setupConfigurations(headCatalog,install);if(!actualHead)throw Error('Monolithとヘッドを表示できませんでした');
-for(const key of gantryDimensions)$('#'+key).onchange=()=>{const g=gantryChoice(catalog,Object.fromEntries(gantryDimensions.map(k=>[k,$('#'+k).value])));const v=resolveVariant(headCatalog,{...actualHead,gantry:g.id},'gantry');controller.selectVariant(v.id)}}catch(e){$('#loading').textContent=e.message;console.error(e)}resize();
+controller=await setupConfigurations(headCatalog,install,{onDraft:head=>{const g=catalog.variants.find(g=>g.id===head.gantry);if(g)for(const key of gantryDimensions)$('#'+key).value=g[key]}});if(!actualHead)throw Error('Monolithとヘッドを表示できませんでした');
+for(const key of gantryDimensions)$('#'+key).onchange=()=>{const g=gantryChoice(catalog,Object.fromEntries(gantryDimensions.map(k=>[k,$('#'+k).value])));controller.stageChoice('gantry',g.id)}}catch(e){$('#loading').textContent=e.message;console.error(e)}resize();
 
 function printerLink(){
  if(!actual||!machineRegistrations)return;

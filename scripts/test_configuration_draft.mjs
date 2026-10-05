@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import {createConfigurationDraft} from '../site/viewer/configuration-draft.mjs';
+const a={id:'a',toolhead:'sb',extruder:'cw2',hotend:'revo'},b={id:'b',toolhead:'xol',extruder:'sherpa',hotend:'revo'},c={...b,id:'c',hotend:'rapido'};
+const catalog={dimensions:['toolhead','extruder','hotend'],toolheads:[{id:'sb',label:'SB'},{id:'xol',label:'Xol'}],extruders:[{id:'cw2',label:'CW2'},{id:'sherpa',label:'Sherpa'}],hotends:[{id:'revo',label:'Revo'},{id:'rapido',label:'Rapido'}],variants:[a,b,c]};
+const draft=createConfigurationDraft(catalog,a);
+assert.equal(draft.pending,false);
+assert.equal(draft.choose('toolhead','xol'),true);
+assert.equal(draft.current,b);
+assert.deepEqual(draft.changes.map(({key,automatic})=>[key,automatic]),[['toolhead',false],['extruder',true]]);
+assert.equal(draft.changes[1].from,'CW2');assert.equal(draft.changes[1].to,'Sherpa');
+assert.equal(draft.choose('hotend','rapido'),true);assert.equal(draft.current,c);
+assert.equal(draft.choose('hotend','missing'),false);assert.equal(draft.current,c);
+draft.reset();assert.equal(draft.current,a);assert.deepEqual(draft.changes,[]);
+draft.choose('toolhead','xol');draft.choose('toolhead','sb');assert.equal(draft.pending,false);
+draft.reset(c);assert.equal(draft.pending,false);draft.choose('hotend','revo');assert.equal(draft.changes.length,1);
+assert.equal(draft.changes[0].automatic,false);assert.equal(c.hotend,'rapido');
+console.log('Registered configuration drafts: dependent changes, cumulative edits, invalid choice, cancel, revert and immutable applied state passed.');

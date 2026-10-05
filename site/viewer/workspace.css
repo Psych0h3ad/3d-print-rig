@@ -1,4 +1,5 @@
 @import url('./theme-toggle.css?v=4e62a8462e0b9ed5c665');
+@import url('./configuration-editor.css?v=1ce65fe33b2c2f92e5b2');
 /* Shared workbench shell; CAD scene and rendering colors remain controller-owned. */
 body.ui-workspace {
   --paper: #fff;

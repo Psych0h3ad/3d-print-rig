@@ -1,5 +1,5 @@
 // Compatibility exports for existing catalog and controller checks.
 // Edit locales/source.json; IDs remain stable when copy changes.
-import {definitions} from './locales/manifest.mjs?v=d0edd049e18f15ab2996';
+import {definitions} from './locales/manifest.mjs?v=dd02964eed58e2a1a439';
 export const messages=Object.fromEntries(Object.values(definitions).filter(e=>e.kind==='message').map(e=>[e.ja,e.en]));
 export const templates=Object.fromEntries(Object.values(definitions).filter(e=>e.kind==='template').map(e=>[e.ja,e.en]));
