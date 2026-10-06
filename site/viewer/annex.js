@@ -11,8 +11,8 @@ import {sceneLightingState} from './scene-lighting-state.mjs?v=extra-machines-55
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {setupPublicInfo} from './public-info.js?v=0b0f91d7a82d25acbb87';
 import {applyNativeMotionProfile,loadNativeMotionProfile} from './native-motion-profile.mjs?v=91532eb992519143f437';
-import {createCommunityAdapter} from './community-adapter.mjs?v=1558e3082151fd6f12a9';
-import {setupNativeMotionControls} from './native-motion-controls.mjs?v=f878d51630bb3299b415';
+import {createCommunityAdapter} from './community-adapter.mjs?v=ffc5eeb9a4b57873672c';
+import {setupNativeMotionControls} from './native-motion-controls.mjs?v=849105826b5c4f86deb8';
 export async function mount(scope){
  const $=id=>document.getElementById(id),stage=$('stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));
  renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);

@@ -1,0 +1,6335 @@
+{
+  "review_revision": 91,
+  "reviewed_on": "2026-10-06",
+  "all_passed": true,
+  "configuration_count": 8,
+  "additional_native_parts": 183,
+  "default_stock_parts": 300,
+  "actual_export": {
+    "all_passed": true,
+    "results": [
+      {
+        "machine": "ender3_stock_220",
+        "configuration": "stock",
+        "parts": 520,
+        "visible_parts": 300,
+        "poses": 256,
+        "vertices": 2976188,
+        "all_passed": true,
+        "model_sha256": "393dcd56b4e7a0e675886486acd81c825de9f1a7102b839e00aa1b5365203457",
+        "additional_model_sha256": [
+          "de87f4b215bab8e5d3b86a2036dd999f44a6c4be7bd207955958c230211b93fa",
+          "655f81d6e76224e136ab10be209ef06286c8656b96f07f45e17425d012b07ac0"
+        ]
+      },
+      {
+        "machine": "ender3_stock_220",
+        "configuration": "stock__stock__klack",
+        "parts": 520,
+        "visible_parts": 319,
+        "poses": 256,
+        "vertices": 2976188,
+        "all_passed": true,
+        "model_sha256": "393dcd56b4e7a0e675886486acd81c825de9f1a7102b839e00aa1b5365203457",
+        "additional_model_sha256": [
+          "de87f4b215bab8e5d3b86a2036dd999f44a6c4be7bd207955958c230211b93fa",
+          "655f81d6e76224e136ab10be209ef06286c8656b96f07f45e17425d012b07ac0"
+        ]
+      },
+      {
+        "machine": "ender3_stock_220",
+        "configuration": "stock__belted__none",
+        "parts": 520,
+        "visible_parts": 392,
+        "poses": 256,
+        "vertices": 2976188,
+        "all_passed": true,
+        "model_sha256": "393dcd56b4e7a0e675886486acd81c825de9f1a7102b839e00aa1b5365203457",
+        "additional_model_sha256": [
+          "de87f4b215bab8e5d3b86a2036dd999f44a6c4be7bd207955958c230211b93fa",
+          "655f81d6e76224e136ab10be209ef06286c8656b96f07f45e17425d012b07ac0"
+        ]
+      },
+      {
+        "machine": "ender3_stock_220",
+        "configuration": "stock__belted__klack",
+        "parts": 520,
+        "visible_parts": 411,
+        "poses": 256,
+        "vertices": 2976188,
+        "all_passed": true,
+        "model_sha256": "393dcd56b4e7a0e675886486acd81c825de9f1a7102b839e00aa1b5365203457",
+        "additional_model_sha256": [
+          "de87f4b215bab8e5d3b86a2036dd999f44a6c4be7bd207955958c230211b93fa",
+          "655f81d6e76224e136ab10be209ef06286c8656b96f07f45e17425d012b07ac0"
+        ]
+      },
+      {
+        "machine": "ender3_stock_220",
+        "configuration": "hydra_bowden_4010",
+        "parts": 520,
+        "visible_parts": 323,
+        "poses": 256,
+        "vertices": 2976188,
+        "all_passed": true,
+        "model_sha256": "393dcd56b4e7a0e675886486acd81c825de9f1a7102b839e00aa1b5365203457",
+        "additional_model_sha256": [
+          "de87f4b215bab8e5d3b86a2036dd999f44a6c4be7bd207955958c230211b93fa",
+          "655f81d6e76224e136ab10be209ef06286c8656b96f07f45e17425d012b07ac0"
+        ]
+      },
+      {
+        "machine": "ender3_stock_220",
+        "configuration": "hydra__stock__klack",
+        "parts": 520,
+        "visible_parts": 342,
+        "poses": 256,
+        "vertices": 2976188,
+        "all_passed": true,
+        "model_sha256": "393dcd56b4e7a0e675886486acd81c825de9f1a7102b839e00aa1b5365203457",
+        "additional_model_sha256": [
+          "de87f4b215bab8e5d3b86a2036dd999f44a6c4be7bd207955958c230211b93fa",
+          "655f81d6e76224e136ab10be209ef06286c8656b96f07f45e17425d012b07ac0"
+        ]
+      },
+      {
+        "machine": "ender3_stock_220",
+        "configuration": "hydra__belted__none",
+        "parts": 520,
+        "visible_parts": 415,
+        "poses": 256,
+        "vertices": 2976188,
+        "all_passed": true,
+        "model_sha256": "393dcd56b4e7a0e675886486acd81c825de9f1a7102b839e00aa1b5365203457",
+        "additional_model_sha256": [
+          "de87f4b215bab8e5d3b86a2036dd999f44a6c4be7bd207955958c230211b93fa",
+          "655f81d6e76224e136ab10be209ef06286c8656b96f07f45e17425d012b07ac0"
+        ]
+      },
+      {
+        "machine": "ender3_stock_220",
+        "configuration": "hydra__belted__klack",
+        "parts": 520,
+        "visible_parts": 434,
+        "poses": 256,
+        "vertices": 2976188,
+        "all_passed": true,
+        "model_sha256": "393dcd56b4e7a0e675886486acd81c825de9f1a7102b839e00aa1b5365203457",
+        "additional_model_sha256": [
+          "de87f4b215bab8e5d3b86a2036dd999f44a6c4be7bd207955958c230211b93fa",
+          "655f81d6e76224e136ab10be209ef06286c8656b96f07f45e17425d012b07ac0"
+        ]
+      }
+    ],
+    "scope": "Actual checksum-pinned main and supplement exports, registered visibility masks, rigid motion including reversed poses and exact reset, unit normals, printed palettes, purchased-material isolation, legacy and current save-state validation. Native clearance and browser inspection are separate."
+  },
+  "native_source_pose": {
+    "belted": {
+      "checked_native_pairs": 451,
+      "intended_thread_engagement": [
+        {
+          "a": "belted_229",
+          "b": "belted_240",
+          "names": [
+            "Belted Z · NEMA17 Black (2)",
+            "Belted Z · M5X30 BHCS v1"
+          ],
+          "volume_mm3": 1.7347237106585436,
+          "bounds_mm": [
+            [
+              9.499999900003491,
+              459.00661403227224,
+              -53.875660212684615
+            ],
+            [
+              10.000000100036738,
+              462.213995037092,
+              -51.2631564397302
+            ]
+          ],
+          "outside_shank_mm3": 0.0
+        },
+        {
+          "a": "belted_239",
+          "b": "belted_240",
+          "names": [
+            "Belted Z · M5 Self-locking nut (1)",
+            "Belted Z · M5X30 BHCS v1"
+          ],
+          "volume_mm3": 22.20069736906472,
+          "bounds_mm": [
+            [
+              9.499999900003493,
+              455.4930329766496,
+              -58.90043312439912
+            ],
+            [
+              14.500000100003492,
+              461.67197133185994,
+              -53.207561412371724
+            ]
+          ],
+          "outside_shank_mm3": 0.0
+        },
+        {
+          "a": "belted_256",
+          "b": "belted_260",
+          "names": [
+            "Belted Z · M5X8 LP-SHCS",
+            "Belted Z · M5 T-Nut (1)"
+          ],
+          "volume_mm3": 1.120974072700104,
+          "bounds_mm": [
+            [
+              152.4,
+              447.5000000000005,
+              1.2000000000012407
+            ],
+            [
+              157.4,
+              450.02950000018325,
+              5.000000298023222
+            ]
+          ],
+          "outside_shank_mm3": 0.0
+        },
+        {
+          "a": "belted_257",
+          "b": "belted_261",
+          "names": [
+            "Belted Z · M5X8 LP-SHCS",
+            "Belted Z · M5 T-Nut (1)"
+          ],
+          "volume_mm3": 1.1209740726986075,
+          "bounds_mm": [
+            [
+              132.4,
+              447.5000000000005,
+              1.2000000000012407
+            ],
+            [
+              137.4,
+              450.029500000311,
+              5.000000298023222
+            ]
+          ],
+          "outside_shank_mm3": 0.0
+        },
+        {
+          "a": "belted_267",
+          "b": "belted_271",
+          "names": [
+            "Belted Z · M5X8 LP-SHCS",
+            "Belted Z · M5 T-Nut (1)"
+          ],
+          "volume_mm3": 1.1209740726996218,
+          "bounds_mm": [
+            [
+              -137.4,
+              447.4999999440635,
+              1.1999999440699314
+            ],
+            [
+              -132.4,
+              450.0294999443741,
+              5.000000242091913
+            ]
+          ],
+          "outside_shank_mm3": 0.0
+        },
+        {
+          "a": "belted_268",
+          "b": "belted_272",
+          "names": [
+            "Belted Z · M5X8 LP-SHCS",
+            "Belted Z · M5 T-Nut (1)"
+          ],
+          "volume_mm3": 1.1209740726985933,
+          "bounds_mm": [
+            [
+              -157.4,
+              447.4999999440635,
+              1.1999999440699314
+            ],
+            [
+              -152.4,
+              450.029499944374,
+              5.000000242091913
+            ]
+          ],
+          "outside_shank_mm3": 0.0
+        },
+        {
+          "a": "belted_539",
+          "b": "belted_571",
+          "names": [
+            "Belted Z · RightV3.7",
+            "Belted Z · M5X40 Button Head Screw (Roller)"
+          ],
+          "volume_mm3": 9.85709805736067,
+          "bounds_mm": [
+            [
+              111.39637376207298,
+              186.4718259270607,
+              -7.850000000002144
+            ],
+            [
+              115.03137792770971,
+              190.98768027178195,
+              -3.8500000000019288
+            ]
+          ],
+          "outside_shank_mm3": 0.0
+        },
+        {
+          "a": "belted_571",
+          "b": "belted_573",
+          "names": [
+            "Belted Z · M5X40 Button Head Screw (Roller)",
+            "Belted Z · 625pillow"
+          ],
+          "volume_mm3": 0.0007853997656326328,
+          "bounds_mm": [
+            [
+              111.39637376207301,
+              186.4718259270607,
+              10.499989899998235
+            ],
+            [
+              116.39637376207301,
+              191.4718259270607,
+              15.50001009999824
+            ]
+          ],
+          "outside_shank_mm3": 0.0
+        },
+        {
+          "a": "belted_571",
+          "b": "belted_574",
+          "names": [
+            "Belted Z · M5X40 Button Head Screw (Roller)",
+            "Belted Z · 625pillow"
+          ],
+          "volume_mm3": 0.0007853997655900002,
+          "bounds_mm": [
+            [
+              111.396373762073,
+              186.4718259270607,
+              4.499989899998149
+            ],
+            [
+              116.396373762073,
+              191.4718259270607,
+              9.500010099998155
+            ]
+          ],
+          "outside_shank_mm3": 0.0
+        },
+        {
+          "a": "belted_571",
+          "b": "belted_577",
+          "names": [
+            "Belted Z · M5X40 Button Head Screw (Roller)",
+            "Belted Z · M5 Self-locking nut"
+          ],
+          "volume_mm3": 22.131827203181302,
+          "bounds_mm": [
+            [
+              111.39637366207299,
+              186.4718258270607,
+              -11.750000100048014
+            ],
+            [
+              116.39637386207382,
+              191.47182602706073,
+              -8.066506250959359
+            ]
+          ],
+          "outside_shank_mm3": 0.0
+        },
+        {
+          "a": "belted_578",
+          "b": "belted_580",
+          "names": [
+            "Belted Z · M5X40 Button Head Screw (Roller)",
+            "Belted Z · 625pillow"
+          ],
+          "volume_mm3": 0.0007853997657178979,
+          "bounds_mm": [
+            [
+              172.19238829130174,
+              222.3389317441613,
+              10.499989899997551
+            ],
+            [
+              177.19238829130174,
+              227.33893174416133,
+              15.500010099997562
+            ]
+          ],
+          "outside_shank_mm3": 0.0
+        },
+        {
+          "a": "belted_578",
+          "b": "belted_581",
+          "names": [
+            "Belted Z · M5X40 Button Head Screw (Roller)",
+            "Belted Z · 625pillow"
+          ],
+          "volume_mm3": 0.0007853997657178979,
+          "bounds_mm": [
+            [
+              172.1923882913017,
+              222.3389317441613,
+              4.499989849997535
+            ],
+            [
+              177.1923882913017,
+              227.33893174416133,
+              9.50001004999755
+            ]
+          ],
+          "outside_shank_mm3": 0.0
+        },
+        {
+          "a": "belted_578",
+          "b": "belted_584",
+          "names": [
+            "Belted Z · M5X40 Button Head Screw (Roller)",
+            "Belted Z · M5 Self-locking nut"
+          ],
+          "volume_mm3": 22.131827203135256,
+          "bounds_mm": [
+            [
+              172.1923881913017,
+              222.3389316441613,
+              -10.750000100048615
+            ],
+            [
+              177.19238839130216,
+              227.33893184416135,
+              -7.0665062509592405
+            ]
+          ],
+          "outside_shank_mm3": 0.0
+        },
+        {
+          "a": "belted_585",
+          "b": "belted_587",
+          "names": [
+            "Belted Z · M5X40 Button Head Screw (Roller)",
+            "Belted Z · 625pillow"
+          ],
+          "volume_mm3": 0.0007853997498585841,
+          "bounds_mm": [
+            [
+              172.19238829130182,
+              151.3389317441615,
+              10.499989999997645
+            ],
+            [
+              177.19238829130182,
+              156.3389317441615,
+              15.500010099997661
+            ]
+          ],
+          "outside_shank_mm3": 0.0
+        },
+        {
+          "a": "belted_585",
+          "b": "belted_588",
+          "names": [
+            "Belted Z · M5X40 Button Head Screw (Roller)",
+            "Belted Z · 625pillow"
+          ],
+          "volume_mm3": 0.0007853997655757894,
+          "bounds_mm": [
+            [
+              172.1923882913018,
+              151.3389317441615,
+              4.499989949997663
+            ],
+            [
+              177.1923882913018,
+              156.3389317441615,
+              9.500010149997676
+            ]
+          ],
+          "outside_shank_mm3": 0.0
+        },
+        {
+          "a": "belted_585",
+          "b": "belted_591",
+          "names": [
+            "Belted Z · M5X40 Button Head Screw (Roller)",
+            "Belted Z · M5 Self-locking nut"
+          ],
+          "volume_mm3": 22.13182720314195,
+          "bounds_mm": [
+            [
+              172.19238819130177,
+              151.33893164416153,
+              -10.750000100048554
+            ],
+            [
+              177.19238839130225,
+              156.33893184416152,
+              -7.066506250960847
+            ]
+          ],
+          "outside_shank_mm3": 0.0
+        },
+        {
+          "a": "belted_592",
+          "b": "belted_594",
+          "names": [
+            "Belted Z · M5X40 Button Head Screw (Roller)",
+            "Belted Z · 625pillow"
+          ],
+          "volume_mm3": 0.0007853997655473677,
+          "bounds_mm": [
+            [
+              -116.91886713478702,
+              187.00035671102813,
+              10.499989899997965
+            ],
+            [
+              -111.91886713478702,
+              192.00035671102813,
+              15.50001009999797
+            ]
+          ],
+          "outside_shank_mm3": 0.0
+        },
+        {
+          "a": "belted_592",
+          "b": "belted_595",
+          "names": [
+            "Belted Z · M5X40 Button Head Screw (Roller)",
+            "Belted Z · 625pillow"
+          ],
+          "volume_mm3": 0.0007853997656042111,
+          "bounds_mm": [
+            [
+              -116.91886713478704,
+              187.00035671102813,
+              4.499989899997979
+            ],
+            [
+              -111.91886713478704,
+              192.00035671102813,
+              9.500010099997985
+            ]
+          ],
+          "outside_shank_mm3": 0.0
+        },
+        {
+          "a": "belted_592",
+          "b": "belted_598",
+          "names": [
+            "Belted Z · M5X40 Button Head Screw (Roller)",
+            "Belted Z · M5 Self-locking nut"
+          ],
+          "volume_mm3": 22.131827203210694,
+          "bounds_mm": [
+            [
+              -116.91886723478704,
+              187.00035661102814,
+              -11.750000100048124
+            ],
+            [
+              -111.9188670347859,
+              192.00035681102813,
+              -8.066506250956943
+            ]
+          ],
+          "outside_shank_mm3": 0.0
+        },
+        {
+          "a": "belted_599",
+          "b": "belted_601",
+          "names": [
+            "Belted Z · M5X40 Button Head Screw (Roller)",
+            "Belted Z · 625pillow"
+          ],
+          "volume_mm3": 0.0007853997656894762,
+          "bounds_mm": [
+            [
+              -177.79999999999873,
+              222.3389317441601,
+              10.499989899998148
+            ],
+            [
+              -172.79999999999873,
+              227.3389317441601,
+              15.500010099998157
+            ]
+          ],
+          "outside_shank_mm3": 0.0
+        },
+        {
+          "a": "belted_599",
+          "b": "belted_602",
+          "names": [
+            "Belted Z · M5X40 Button Head Screw (Roller)",
+            "Belted Z · 625pillow"
+          ],
+          "volume_mm3": 0.0007853997656894762,
+          "bounds_mm": [
+            [
+              -177.79999999999876,
+              222.3389317441601,
+              4.499989899998146
+            ],
+            [
+              -172.79999999999873,
+              227.3389317441601,
+              9.500010099998157
+            ]
+          ],
+          "outside_shank_mm3": 0.0
+        },
+        {
+          "a": "belted_599",
+          "b": "belted_605",
+          "names": [
+            "Belted Z · M5X40 Button Head Screw (Roller)",
+            "Belted Z · M5 Self-locking nut"
+          ],
+          "volume_mm3": 22.131827203193044,
+          "bounds_mm": [
+            [
+              -177.80000009999875,
+              222.3389316441601,
+              -10.75000010004784
+            ],
+            [
+              -172.7999998999984,
+              227.3389318441601,
+              -7.066506250957183
+            ]
+          ],
+          "outside_shank_mm3": 0.0
+        },
+        {
+          "a": "belted_606",
+          "b": "belted_608",
+          "names": [
+            "Belted Z · M5X40 Button Head Screw (Roller)",
+            "Belted Z · 625pillow"
+          ],
+          "volume_mm3": 0.0007853997654905243,
+          "bounds_mm": [
+            [
+              -177.79999999999976,
+              151.3389317441601,
+              10.49998989999832
+            ],
+            [
+              -172.79999999999976,
+              156.3389317441601,
+              15.500010099998327
+            ]
+          ],
+          "outside_shank_mm3": 0.0
+        },
+        {
+          "a": "belted_606",
+          "b": "belted_609",
+          "names": [
+            "Belted Z · M5X40 Button Head Screw (Roller)",
+            "Belted Z · 625pillow"
+          ],
+          "volume_mm3": 0.0007853997655331568,
+          "bounds_mm": [
+            [
+              -177.79999999999978,
+              151.3389317441601,
+              4.499989899998291
+            ],
+            [
+              -172.79999999999976,
+              156.3389317441601,
+              9.500010099998299
+            ]
+          ],
+          "outside_shank_mm3": 0.0
+        },
+        {
+          "a": "belted_606",
+          "b": "belted_612",
+          "names": [
+            "Belted Z · M5X40 Button Head Screw (Roller)",
+            "Belted Z · M5 Self-locking nut"
+          ],
+          "volume_mm3": 22.131827203195087,
+          "bounds_mm": [
+            [
+              -177.80000040070846,
+              151.3389316441601,
+              -10.750000100047727
+            ],
+            [
+              -172.79999989999948,
+              156.33893184692263,
+              -7.0665062509582635
+            ]
+          ],
+          "outside_shank_mm3": 0.0
+        },
+        {
+          "a": "belted_592",
+          "b": "00032",
+          "names": [
+            "Belted Z · M5X40 Button Head Screw (Roller)",
+            "X motor bracket"
+          ],
+          "volume_mm3": 9.69962233622259,
+          "bounds_mm": [
+            [
+              -116.77836662556093,
+              188.54295970555583,
+              23.849999999997895
+            ],
+            [
+              -111.918867134787,
+              192.00035671102813,
+              26.84999999999798
+            ]
+          ],
+          "outside_shank_mm3": 0.0
+        }
+      ],
+      "bearing_envelopes": [
+        {
+          "key": "belted_573",
+          "outer_radius_mm": 8.00001,
+          "inner_radius_mm": 2.49999,
+          "source_bounds_mm": [
+            [
+              105.89637376207321,
+              180.9718259770607,
+              10.499999899998237
+            ],
+            [
+              121.89637386207323,
+              196.9718260770607,
+              15.500000099998237
+            ]
+          ],
+          "purpose": "Conservative material containment for the native 625 bearing; retained purchased render geometry is unchanged."
+        },
+        {
+          "key": "belted_574",
+          "outer_radius_mm": 8.00001,
+          "inner_radius_mm": 2.49999,
+          "source_bounds_mm": [
+            [
+              105.89637381207322,
+              180.97182587706072,
+              4.4999998999981505
+            ],
+            [
+              121.89637391207324,
+              196.97182597706075,
+              9.500000099998154
+            ]
+          ],
+          "purpose": "Conservative material containment for the native 625 bearing; retained purchased render geometry is unchanged."
+        },
+        {
+          "key": "belted_580",
+          "outer_radius_mm": 8.00001,
+          "inner_radius_mm": 2.49999,
+          "source_bounds_mm": [
+            [
+              166.69238819130175,
+              216.83893164416105,
+              10.499999899997556
+            ],
+            [
+              182.6923883913018,
+              232.83893184416107,
+              15.500000099997557
+            ]
+          ],
+          "purpose": "Conservative material containment for the native 625 bearing; retained purchased render geometry is unchanged."
+        },
+        {
+          "key": "belted_581",
+          "outer_radius_mm": 8.00001,
+          "inner_radius_mm": 2.49999,
+          "source_bounds_mm": [
+            [
+              166.69238824130176,
+              216.83893164416097,
+              4.499999849997541
+            ],
+            [
+              182.69238834130175,
+              232.83893184416098,
+              9.500000049997544
+            ]
+          ],
+          "purpose": "Conservative material containment for the native 625 bearing; retained purchased render geometry is unchanged."
+        },
+        {
+          "key": "belted_587",
+          "outer_radius_mm": 8.00001,
+          "inner_radius_mm": 2.49999,
+          "source_bounds_mm": [
+            [
+              166.69238829130174,
+              145.8389316441611,
+              10.49999999999765
+            ],
+            [
+              182.6923883913018,
+              161.83893184416112,
+              15.500000099997655
+            ]
+          ],
+          "purpose": "Conservative material containment for the native 625 bearing; retained purchased render geometry is unchanged."
+        },
+        {
+          "key": "belted_588",
+          "outer_radius_mm": 8.00001,
+          "inner_radius_mm": 2.49999,
+          "source_bounds_mm": [
+            [
+              166.6923883413019,
+              145.83893174416107,
+              4.499999949997668
+            ],
+            [
+              182.69238844130183,
+              161.8389318441611,
+              9.50000014999767
+            ]
+          ],
+          "purpose": "Conservative material containment for the native 625 bearing; retained purchased render geometry is unchanged."
+        },
+        {
+          "key": "belted_594",
+          "outer_radius_mm": 8.00001,
+          "inner_radius_mm": 2.49999,
+          "source_bounds_mm": [
+            [
+              -122.41886723478703,
+              181.50035666102784,
+              10.499999899997967
+            ],
+            [
+              -106.41886703478704,
+              197.50035676102783,
+              15.500000099997967
+            ]
+          ],
+          "purpose": "Conservative material containment for the native 625 bearing; retained purchased render geometry is unchanged."
+        },
+        {
+          "key": "belted_595",
+          "outer_radius_mm": 8.00001,
+          "inner_radius_mm": 2.49999,
+          "source_bounds_mm": [
+            [
+              -122.41886723478703,
+              181.50035666102778,
+              4.499999899997982
+            ],
+            [
+              -106.41886713478702,
+              197.50035686102777,
+              9.500000099997983
+            ]
+          ],
+          "purpose": "Conservative material containment for the native 625 bearing; retained purchased render geometry is unchanged."
+        },
+        {
+          "key": "belted_601",
+          "outer_radius_mm": 8.00001,
+          "inner_radius_mm": 2.49999,
+          "source_bounds_mm": [
+            [
+              -183.2999999499987,
+              216.83893174416022,
+              10.499999899998151
+            ],
+            [
+              -167.2999999499987,
+              232.83893184416021,
+              15.500000099998154
+            ]
+          ],
+          "purpose": "Conservative material containment for the native 625 bearing; retained purchased render geometry is unchanged."
+        },
+        {
+          "key": "belted_602",
+          "outer_radius_mm": 8.00001,
+          "inner_radius_mm": 2.49999,
+          "source_bounds_mm": [
+            [
+              -183.3000000499987,
+              216.83893164416025,
+              4.499999899998149
+            ],
+            [
+              -167.2999998499987,
+              232.83893184416027,
+              9.500000099998152
+            ]
+          ],
+          "purpose": "Conservative material containment for the native 625 bearing; retained purchased render geometry is unchanged."
+        },
+        {
+          "key": "belted_608",
+          "outer_radius_mm": 8.00001,
+          "inner_radius_mm": 2.49999,
+          "source_bounds_mm": [
+            [
+              -183.29999994999977,
+              145.83893164416014,
+              10.499999899998324
+            ],
+            [
+              -167.29999984999978,
+              161.83893174416013,
+              15.500000099998324
+            ]
+          ],
+          "purpose": "Conservative material containment for the native 625 bearing; retained purchased render geometry is unchanged."
+        },
+        {
+          "key": "belted_609",
+          "outer_radius_mm": 8.00001,
+          "inner_radius_mm": 2.49999,
+          "source_bounds_mm": [
+            [
+              -183.29999999999976,
+              145.83893179416017,
+              4.499999899998293
+            ],
+            [
+              -167.29999989999976,
+              161.83893189416017,
+              9.500000099998294
+            ]
+          ],
+          "purpose": "Conservative material containment for the native 625 bearing; retained purchased render geometry is unchanged."
+        }
+      ],
+      "model_sha256": "d9d38f5a8488877a36b8cf4385826dff9ca83fb96214f40de569693d8f52d898",
+      "native_part_sha256": {
+        "belted_216": "59036895dcd2b2408abb790431e5d3909ea737b4563459cc64ba6ac191cbc61c",
+        "belted_217": "3c5bef2b4ca6e0c344ed320f65c5eb8e5f7ca3bf88b02af42ec405b448383dad",
+        "belted_218": "f97bc875797650ce9dc4df9a70b5dcfbc38e045713252e00d40b857f1dad1fbc",
+        "belted_219": "2b35280433220f7faf3c230355e505b3a529aa9336b2fdb063f860755a4a6607",
+        "belted_220": "11722c0d2938ef372edc07cd89a8809d430863704896b31c4eca48c5be31418d",
+        "belted_221": "351a86cba8f79d5dc9bcb1037c618176544ab6d92fa7067e4ee0ca141cf322ce",
+        "belted_222": "81f96696a798ce9092bb09b0236d01135f013bf9e43b13bdcaf0406be072f5f2",
+        "belted_223": "93fe6d49bffc625a339f247c1310dca49ca7adc2195e9babacb9e4993b5999c9",
+        "belted_224": "063d4d0e14f79e98d073922b59bb2ad7c34cd1e5a57eff132b711046a4167bb2",
+        "belted_225": "c53aa55a87f1425448e4816b1496229bd05da99b2f3a49f505a0ee5f94e9f296",
+        "belted_226": "7b69b1a84f90021b8c7e29ef8ca6ca724775512cac6b22e9578420433e094509",
+        "belted_227": "9769b4d569476cc4c1fd2b57528a43bc96b74352faf0683b394a1c564f853bbf",
+        "belted_228": "813898c605cfb692260cd9492e96d0278671bc87f09e291c443fd910bc5920b6",
+        "belted_229": "7425f77c356575d71d3f31430783a010b34aa7d43defcce6ba27b2a7bbdbd750",
+        "belted_230": "fe4ea885589d944de531fa9ef07709759bdf823d370d9597cb80e3250e27e7bf",
+        "belted_231": "559e0d6e9bb7d576b18b42185729c8e875a30741d213aac2f1c572f72511a3aa",
+        "belted_232": "ebfb5fbe6860038458b2859ac48f67a3ac67c8bdeb306b3563c150870595f19d",
+        "belted_233": "4209051180907fe076eda73de47c63eed95b18f403942e9f56ab0c80445dd2e1",
+        "belted_234": "e559481009cf172f6b566787de784e34852d8e746c0e3e51055c5611db1b000a",
+        "belted_235": "9d6b1c2e4e4c6257d5d1026ada272f289502dc255a5f49863cb32e812218b3de",
+        "belted_236": "8d92b9881f7dfa9315065cc9b090dfc32be0a78ff99ff3b789326f194c50681e",
+        "belted_237": "5c93c4758b2a1109358446c0befafacbb4802d219dd702abc6aa30580f1e6ec0",
+        "belted_238": "e60a6c44cbd6025e351d2a47748aba2ea477dd2868b60558c21fca328575439b",
+        "belted_239": "ca2a213cc945f08c40c36fe57092a01ffff860d5415e7d87889a8798b334a310",
+        "belted_240": "8fefa952374c253400633ccfb0325c756b07ff8b5f95fff6a33d152aacbc2eeb",
+        "belted_241": "d2d63ac015da14e996fced491c2a52cb3735853c5861495f8027ce44b3983191",
+        "belted_242": "b6e30b398dff8105bd199032e1cd39b5c351cdb261b89e80f6dd2e4ae8536795",
+        "belted_243": "4bfb588be3b90d6e8ebe1a60e3b0d5e69089a54becb8a20f0366adf986d6ecd1",
+        "belted_244": "52318dc7a0d9a321ee751d36012526c81a671f28e5dc6866869309011f5aaa91",
+        "belted_245": "52edeaab81e96b4eae2e5d514ba5cf0b5db9e98aa2238a377767b7a24ecb0f50",
+        "belted_246": "38efe771c6424787a42eb13a229ff000355f1641c1cb9a80ffc9b1a7242cd080",
+        "belted_247": "40049ba498d9b0b6402020ea8bfe8032a75f11c10b1eadcee49d00afd4a7e887",
+        "belted_248": "a16ed4648084ce4e65270cc8ddc2f3abcb5fc27c53e7399034bd03f6e8613a99",
+        "belted_249": "8f288492676ce09c19996e94741d9717f71f971fc461e5d89640bdee5aabd702",
+        "belted_250": "868b8e324a652277753e587fcc448d17e704453d3348eb490b97e9d0938cfccc",
+        "belted_251": "098496e50ed901e519356b72b52ee6c3b2a3366d2ec32f2113ecff703ca56731",
+        "belted_252": "320fe70c6d51aae3a312c6ee667795c7865b58812f1294a158dceaf1457a6948",
+        "belted_253": "aa9487bb8da277263a42f28625ea93d4b20f3e62a6efe2a8152c68618ba46c3b",
+        "belted_254": "2114fd76821c31e35a8ff925ae4d0332d5007e93146969b4c8bfa5ffcc556a9e",
+        "belted_255": "c71071766cb476a278b549fee8a31f3c314ff3e56d2a5d96e1c16bec5305bfb5",
+        "belted_256": "d10d7cdf53f671654e7e9f6a80f6c6d7f1d13819f34dc758fb47ea4b1961dd65",
+        "belted_257": "79e925d2bcecd3d2c1400bbad6d76160d478fee61f19dd622463204dbcafbcaf",
+        "belted_258": "c476f403360369ba8b89bc7372264afba138402290eb932c797c64a61d98acf2",
+        "belted_259": "2c62eaebb7f2a70ff444ea613fa2ee35c74247f5dcf483943a42ed6bb65f258a",
+        "belted_260": "0b1e32c9bf45e4ae4f7b386fb4b83d63f47c9350dad3040c4f66d7f7697e3f61",
+        "belted_261": "4ae7dbd4e37d95e7a2a1cc6e89f467a980593188b2b001e6a86bee3a8d76c80f",
+        "belted_262": "0ae4f3ed75720649fb84b2f9afd89179579a66df709c1ede0841e5d02220e5c5",
+        "belted_263": "2094f820504cddfcf502be5f1dc80c873e9689d6ec6fa4576eceb42af19ee259",
+        "belted_264": "62495f72f628685c345a2e8dd84704793cf59eea5db7010840ceeaad920b4449",
+        "belted_265": "d87e197025ff8ca03cdca2ced1fa7595f03725d0c0cee7db355c3e2bc14b0bb9",
+        "belted_266": "bc435c59d40871e86b278557399be6fa40a4427805ec6dd935ad6a555dfd2810",
+        "belted_267": "ef979db9386df5ec784ecd941eeb3f28a78184a8726fb926c871921454789574",
+        "belted_268": "2fc7196db44e36957b9e2d46d66dd851e905345e2d5669feec268abdab17894c",
+        "belted_269": "ecaa48f418d19dd4c9c3fde76afd8ade3c12334ad004371d1646c08a228e6004",
+        "belted_270": "e5a6dad4f9f81554f5a71948182ef9f04648f1f3abbec83bff54ac0615cfae53",
+        "belted_271": "0a463bb529857440b5ed4ccd186aa461c6736db49d77066018814bf4fbf5bc15",
+        "belted_272": "1333f5935ca9910f046cc90a1c8c904e7a703e7630fd7e56f69ceeb4c1f805bd",
+        "belted_273": "add5ef48ec064a3f844a478a03aa157de8f13c1ee38bf6f9b14df9edc896568d",
+        "belted_274": "aafa8c0eae7011178079e8943b70e20963878242ea9be41e0c44649d218daa25",
+        "belted_275": "9ecbc82d5ad68a1b2a03b6f3d0adc2b51bf2e82053d9149bd3defc205de79a37",
+        "belted_493": "7139463569596bc86557fcb32a314f0ded342907e0f0f24601a6fba6193f99eb",
+        "belted_494": "03e39ba827323b203dbccd8adfb080702ea974875bac39a47cb4486349b7bca6",
+        "belted_495": "9a974ee55ab993624634b1557735c0673cc0516aa4dbc7a8269b91a91149f293",
+        "belted_496": "1fae7c44e93321a482bb72d9bfed59fdded757fc7526da637ce73bb14e53dc35",
+        "belted_497": "3b826103a6ef428fb90d199a6376f56e6fd8387ee5eca64172e77773b42bbc37",
+        "belted_498": "c592f719e878f4906a27a12d759d1de0cb724917af15ca6517c20775d568f6ac",
+        "belted_499": "a314239f81864e6ab3c44c3cd77a3b6d75cd19e8495d6817aa1c4f26f2641744",
+        "belted_500": "3fde57e436d1e4bb129b8aa2b97ef285f6210337e9d097fd1a948a988b224eac",
+        "belted_501": "88ffa260ab8a2ba5a3550a228969fc363f36931e512cf30975ee82722c1e67b5",
+        "belted_502": "e8632d7c21db8eb3d1f8ae71ecf9d83dd742bafa97c66f745fe5fdcf3e38eadc",
+        "belted_503": "ae75fc0f4bbe4f798bf4183b5e46508f244b1c371bc55a0b12674266dbb05878",
+        "belted_504": "5ff7ab0c5c3836a552c59915ba69b8b7a8f2220030f764c04061e745f3ca475d",
+        "belted_505": "b16c3b3e9aa7b1e08dc62739363d559ae3cc09677e9334023cdb8d05d06f05b4",
+        "belted_506": "a70714ad86b46abb4bdc0f67b8c3a81b1609902d92ede472ef0c88dd6ea73bd9",
+        "belted_507": "f71be465ed575a73bc960701d0ef6a417457fbd1b2c5507c07eaacbb9ee33c78",
+        "belted_508": "3fce39393736f67fc25277ee5f4d19fd828e8fdb49c0f08fad7336a3715428cd",
+        "belted_509": "1c6803eb4209e7c6b55848ac26baa827309806975a12f50f67e1477d54fe309d",
+        "belted_510": "0fa5fee8433bba7116b5fa7c4d054e780cb2a26e0d8afc8a526c555a230d980b",
+        "belted_511": "49d55cda3e015581be5825d5dc8bda26d92f71b7e5f7a33f3fea40e8b5bb706e",
+        "belted_512": "8a5a5f738fbe962e4c8406942867cf1b473623926707df7fe307656797604a87",
+        "belted_513": "749f973db75eaa899ebb7f343f8188ca73d3b412ac4bcd89e4f7a3f2df3a656e",
+        "belted_514": "07eeb65dafc90dcc66473866acb7752a770571d8a79609b4582f3a8637dae0d3",
+        "belted_539": "fa14e576ad5ee6dd38a76fb76f0f4cffc0b8d2ec9fb6d1783c60859e042fbdc7",
+        "belted_556": "707ef735ce3c3a1c8bbbd160faceb42f92fa8111e3b3b255594122b515c85677",
+        "belted_557": "c910f136cfafccbf17ef91472770041311ce0a1c83a9f4fb7b00814c2cb15610",
+        "belted_558": "5f6ea8f871584acb3dc2b1ae4840e1ace04f9cf6eed04bef1c33acc4ecdce208",
+        "belted_559": "209fd545f47e51bfeab93d44a0209bee47f712c62b5a2f4abef6430bcf419887",
+        "belted_560": "0f873b8e4834e0829e1313a0ee87fb227dde7650a0c74df9c67170d852b19efb",
+        "belted_561": "9268c388595c129f5ba3109b2efaa338048f567388fbfcab69abb8f0bf5dc3e8",
+        "belted_562": "6e561ebcc6e647244a05604e97f79f4f8ff133e81ec64dd8aa04b95b9e045669",
+        "belted_563": "ba94e503fcfccdb5404fdf05b68d998885cfea8e7cab8a68a2fd32f2ff4b4404",
+        "belted_564": "54562807c36c050430d64c788112a672454f6d49701db6f5326e8e23543cbcbb",
+        "belted_565": "f2a65f86b5dd6efef1e95216cbc467e495f1f9d1101b171575742879c6f58b1e",
+        "belted_566": "1045f2a8c1d1384f37b9110c5117f35ce35c42dce34d8acb9107e3ebf1429fd5",
+        "belted_567": "06a2339df7978541bed07e21724d5973108ef9d4cb81a939e33c80f86eef8c20",
+        "belted_568": "4f321ccd5e52ff97e0c40817cf6cf32962d07c8f8490c8476643d2f2e1b2f98d",
+        "belted_570": "2b1b514e471067ecd98c76e983fede3c026da583c747c95a187e0f1b76830af2",
+        "belted_571": "637b073c593d20dd34d9e974fa054b8f9c811d2121cf5a2068971d3667d1874e",
+        "belted_572": "e07bbd129da888b8af9fa3cc99560fd181b18191e7046a506fc63e07d38b19e7",
+        "belted_573": "29ff0b836fe81db11f855b04a40421b12a3153bf1bd2f6937125525a69652b93",
+        "belted_574": "96aa598fc3575eae0f0d54281fbe9ddc4c8cf278d9670c1f53621ff6ff797bfd",
+        "belted_575": "930e4b6638c3c041e010977bf01d77748020400724498e8f26fc2b1e68b76a84",
+        "belted_576": "5a105ba2b120cbc8f44945151702dee433cb7be1a73380ff22a17b81f2a1455d",
+        "belted_577": "5ab11a5eada4adb1ef96457b6f7f64ed32d88df1190650b7ccf56ab91b54cd3c",
+        "belted_578": "923caee98992814ba127daedee3c3effa6b6ee70f832a057a3543568276ac533",
+        "belted_579": "7416fb3aa6df6074c4c32805d2b499ec36c9cc820bf964ee32ce37d3de99980e",
+        "belted_580": "1d35b2453a960a9de7744a3df136b9f8ea915c413a7b5f4edbf7be17e6c20811",
+        "belted_581": "bb012f48e9088b17d41a42f577b3e87884d9346cb304dcbc7dcd526dc54e2d52",
+        "belted_582": "a82d283f0f428bfff5538b54092e2d0055171ba063c32a8605210c97e83a6aeb",
+        "belted_583": "4d363acab3900c39a5669a23a437152e346a34b38841aabfe42d8fa59e765a79",
+        "belted_584": "b3068b2359be8a25ab0fc040ebfd59bc92941b2fa454e5ddb5fd28685b4f7cbf",
+        "belted_585": "2de3279f07cde2a1ce36fcdeaee5bdb22fb98a8a91ce97a2a100fcde8dbbde91",
+        "belted_586": "0cdc08e09eecdfb8b3522c0e0feef031838370116092106196138a8c8dc064c7",
+        "belted_587": "f8322c9267e7f13d337f1a22301c75cc68b2d763cec0768bf6ca0a7d17586d4b",
+        "belted_588": "57edb8e3707d0d819514cbf6c4db545cd92d22355489c2d9fc07652250fba11f",
+        "belted_589": "af10a5dae2d53926952beb0fabf79fc261d2ae91ef4ea39eca2690caf02ab085",
+        "belted_590": "ad8249273ec1aa3af214ac56b885e5d3290561ffeac706f0722730931ebfb9bb",
+        "belted_591": "51814c6fcdee7783a4d193704e9f30342ea690fdafdf4cb13909c8261eda02bf",
+        "belted_592": "12ac0a73d911601bb1a0b72dd4baa6dbe7781d8fd30cc367a41a59ff61b97a43",
+        "belted_593": "37d74167aa50ba86a80a89fd602988cbf4a20bf0788253800e2c464f06bc49b9",
+        "belted_594": "b324d0b403d596073f66c306571411db9a6981042cce17696d8a95e48adc0f3e",
+        "belted_595": "0d1e077ebf3cc811c7fc666b784c8426bff97c341f54a066ce2bdc58b2d6c913",
+        "belted_596": "04e3e91e1b38a78f9c1205e890a6de0bd4a96642a80066d497f1a34b0b6757d2",
+        "belted_597": "c2b2f59e150b1b31fbf4cea4ad254f4fd309037367e13a4850d7d861b56965a9",
+        "belted_598": "f777331f0c5c68994203c345e623972c9f8eff5713f23a4fc227dac9cacafb34",
+        "belted_599": "972328bd30d482d39deb5eac548de1439c252e1e589241a584c5dd4c04a26534",
+        "belted_600": "b598dd74de91e39aa2d6734b7bcd1810a9d73629ed0b8bf6e9bc859725dc8af6",
+        "belted_601": "4dd4151b9fd3b591a1c85a3b0ca84dfd5808cb8623b94f8ce3463eee16ea3b10",
+        "belted_602": "983b93828a7333c22da9ab5fd0cd64463772203ebe3d472f4df69ad1019e8909",
+        "belted_603": "255ebe2edd001842c127395b96f87de4867ab0f3fcd1e0d4fa3ffe6dea8e6e65",
+        "belted_604": "4c944c0147c48b775e388626e83e680dafc6be789e2d4dee07fc82a7f0d80f08",
+        "belted_605": "1e94592383d216faf3a116466330df18d5464f7013117723a71425eeeec1399d",
+        "belted_606": "6fb12599ca4ae4698757115bae1bfe3a4d17a8167c8dc1ae8227eb675996acd2",
+        "belted_607": "460ecde20b95a042ffd251128f2c6f236344395ac9abd515a23ea903f697f68c",
+        "belted_608": "21414ea19ea009019124d769e48218cf434c84c3e099cdf703a6d4d6e654db43",
+        "belted_609": "e4c3d6ab447fe51d85927abaf33982bc2adb3439f8a53b8fdc80e192680716eb",
+        "belted_610": "38dac60c7e2a1b682c284ff2f59e420da8c1e92e9d30b6a87a76dff802d6cd75",
+        "belted_611": "61314bf3570c2e305ca0db0297ad47500f204a3a88c33423f2a85e854bc36e7e",
+        "belted_612": "d94a3913397b8ea3b90f502d6175fb9557cb3692d5d298d4c52186d8b290f622",
+        "belted_613": "2426e9dc4417db2ae230fac3ba6c7989481e8212c1ba5b26b875520d09fde9c2",
+        "belted_614": "2edc9f89694bdf648704ef446f433ef3d17d1cef84317a946c78466d4f6b078e",
+        "belted_615": "444f95e47114454e651185ef51c69499277906c738de148bab840e5d050b921d",
+        "belted_616": "36a43d84085cec706e6aee9df0822a99927ef64a5d3bc7607facd89edd58b093",
+        "belted_617": "973308569f92d11c774d673b6ac2f0b1ee60bad5e1e6317ea832125bc66fd8ff",
+        "belted_618": "bec7f0719d08823b99fae580bfef60f3fc838490a9b084f2fade9b79898b29ef",
+        "belted_619": "54dc2a2708ec5d2bef18ad558057ba5048e5c05b342cb87585c8b91255f436ee",
+        "belted_620": "5835afbce0464abf6f13d4263818cd5fc539087d384422ad29ce760f83375140",
+        "belted_621": "f7e9a18d65347f9464399ff8610812bf15a2c26e16e871af5801d6a00fe03172",
+        "belted_622": "5e3bbe4fea4dd5ee9ffc7922b49f6b8a654ae7cc3e2b7c9940613cdb61583541",
+        "belted_623": "9a059cb91b41881636917038c9fc491ff8ba0f88f8cc8cb529548eb9048fe2bb",
+        "belted_624": "533650c18c91a56bda0e23986b8e7da846708ab5692f79ca7444a3788e95fe77",
+        "belted_psu_holder": "dd312217c547afe143f0e95a77fac2dbcd51e2563d3e70cecea4be8e9cfe30b8",
+        "belted_psu_bolt_0": "24e58345b1a7b9b20521c2431035dfe59615ca3029757ad439e3c0820634cec4",
+        "belted_psu_nut_0": "c547fb794ff2a377db14221c0c3d387f9ad371fb3162ab286811d98620552a04",
+        "belted_psu_bolt_1": "4c887ce8a99641af7fb97a90ae065d44ad56fb0f5a5eeab2d6e31356000203c1",
+        "belted_psu_nut_1": "18778f963aa71fe91296b715990a6b527d8fa9b39b6337fe5b17326e557bc348",
+        "belted_psu_bolt_2": "4bef49557828761068859465abde658b99b7e0555c98583e30185469827e2117",
+        "belted_psu_nut_2": "2813ece56b070f127842c4b606c58c46605f26363b4f4136e4496c4561f28d8b",
+        "belted_psu_bolt_3": "6da49aefb29b8e66888597d92564fe4cbda8cad24b839fe91539286f05fb8510",
+        "belted_psu_nut_3": "2932754c0e1f79a32a59e03b6a707186694c3cf0ac0ea379870f6198f371d68b",
+        "belted_psu_bolt_4": "6a60a09e44efc1f3d7e329c56ae703edbd455515c502d466bef3ab81ad1e4d06",
+        "belted_psu_nut_4": "ddc1eb07298327f7483e1514676a052dd2d2ac684c968934e92e13e7d148399f",
+        "belted_psu_bolt_5": "bdc510d9d4ab635dce2d5bca8d8d723dea07cccf8e0cebc44121ad52b551ab69",
+        "belted_psu_nut_5": "0478d2eacdef02bc3b97683450a7b3a68cd6a49bf8fd9b086bf0322f4ce9150f"
+      },
+      "scope": "Changed installed native solids against every retained original solid at the source pose. Thread shanks classified by the actual cylindrical feature. Conservative bearing containment is explicitly separate from exact native contact. This does not certify full-axis travel.",
+      "raw_contact_candidates": [
+        {
+          "a": "belted_227",
+          "b": "belted_228",
+          "names": [
+            "Belted Z · SOLID",
+            "Belted Z · Motor Mount Tensioner Arm (R)"
+          ],
+          "volume_mm3": 0.0017613437584822827,
+          "bounds_mm": [
+            [
+              15.999996990590454,
+              435.67379124182935,
+              -71.49965936950906
+            ],
+            [
+              16.000000100026828,
+              496.8090425279219,
+              -14.622736211463074
+            ]
+          ]
+        },
+        {
+          "a": "belted_235",
+          "b": "belted_237",
+          "names": [
+            "Belted Z · M3X10 SHCS with Washer (R)",
+            "Belted Z · M3 Hexnut (R)"
+          ],
+          "volume_mm3": 3.792338873235982,
+          "bounds_mm": [
+            [
+              10.53049990001362,
+              477.9087286060833,
+              -53.48186505110039
+            ],
+            [
+              12.500000000024585,
+              480.9087288060832,
+              -50.48186485110045
+            ]
+          ],
+          "outside_shank_mm3": 0.2574985389993304
+        },
+        {
+          "a": "belted_236",
+          "b": "belted_238",
+          "names": [
+            "Belted Z · M3X10 SHCS with Washer (R)",
+            "Belted Z · M3 Hexnut (R)"
+          ],
+          "volume_mm3": 3.792338873411766,
+          "bounds_mm": [
+            [
+              10.53049990001262,
+              450.1959156849945,
+              -37.48186505108567
+            ],
+            [
+              12.500000000025619,
+              453.1959158849944,
+              -34.481864851085724
+            ]
+          ],
+          "outside_shank_mm3": 0.2574985390960406
+        },
+        {
+          "a": "belted_242",
+          "b": "belted_244",
+          "names": [
+            "Belted Z · 80T Hubbed Gear (R)",
+            "Belted Z · M3X6 SHCS (R)"
+          ],
+          "volume_mm3": 6.14441245920564,
+          "bounds_mm": [
+            [
+              28.169952118240996,
+              484.55953801917536,
+              -17.51829404933175
+            ],
+            [
+              33.71054787798509,
+              487.5595382191858,
+              -14.518293661500643
+            ]
+          ],
+          "outside_shank_mm3": 0.07521246805357082
+        },
+        {
+          "a": "belted_242",
+          "b": "belted_245",
+          "names": [
+            "Belted Z · 80T Hubbed Gear (R)",
+            "Belted Z · M3X6 SHCS (R)"
+          ],
+          "volume_mm3": 6.249141305941719,
+          "bounds_mm": [
+            [
+              28.16995221286059,
+              477.1636273648001,
+              -13.254765318093389
+            ],
+            [
+              33.71054778780396,
+              480.1636275648577,
+              -10.254764939174468
+            ]
+          ],
+          "outside_shank_mm3": 0.07870952241988183
+        },
+        {
+          "a": "belted_242",
+          "b": "belted_246",
+          "names": [
+            "Belted Z · 80T Hubbed Gear (R)",
+            "Belted Z · M3X6 SHCS (R)"
+          ],
+          "volume_mm3": 6.260167076638749,
+          "bounds_mm": [
+            [
+              28.16995272155309,
+              478.9330220659757,
+              -4.903333462353362
+            ],
+            [
+              33.710547279132136,
+              481.9330222660334,
+              -1.903333083434431
+            ]
+          ],
+          "outside_shank_mm3": 0.07906495192081835
+        },
+        {
+          "a": "belted_242",
+          "b": "belted_247",
+          "names": [
+            "Belted Z · 80T Hubbed Gear (R)",
+            "Belted Z · M3X6 SHCS (R)"
+          ],
+          "volume_mm3": 6.162885105215846,
+          "bounds_mm": [
+            [
+              28.169952160818074,
+              487.4224787851914,
+              -4.0053934520174606
+            ],
+            [
+              33.710547787145366,
+              490.42247898524886,
+              -1.0053930738409929
+            ]
+          ],
+          "outside_shank_mm3": 0.07584510732313282
+        },
+        {
+          "a": "belted_242",
+          "b": "belted_248",
+          "names": [
+            "Belted Z · 80T Hubbed Gear (R)",
+            "Belted Z · M3X6 SHCS (R)"
+          ],
+          "volume_mm3": 6.089585765794132,
+          "bounds_mm": [
+            [
+              28.171370839877287,
+              490.8998568762851,
+              -11.8018688231529
+            ],
+            [
+              33.710547787448014,
+              493.89985814069394,
+              -8.801867303455596
+            ]
+          ],
+          "outside_shank_mm3": 0.0732961231521668
+        },
+        {
+          "a": "belted_243",
+          "b": "belted_244",
+          "names": [
+            "Belted Z · GT2 20T 8mm - Deflanged (R)",
+            "Belted Z · M3X6 SHCS (R)"
+          ],
+          "volume_mm3": 0.1208870203277333,
+          "bounds_mm": [
+            [
+              28.18613393095961,
+              485.0544622249543,
+              -14.909011463737622
+            ],
+            [
+              30.050000100016273,
+              486.81287956897995,
+              -14.568604102937654
+            ]
+          ],
+          "outside_shank_mm3": 0.0035754260994312758
+        },
+        {
+          "a": "belted_243",
+          "b": "belted_245",
+          "names": [
+            "Belted Z · GT2 20T 8mm - Deflanged (R)",
+            "Belted Z · M3X6 SHCS (R)"
+          ],
+          "volume_mm3": 0.1066280778444357,
+          "bounds_mm": [
+            [
+              28.19575779652455,
+              479.4264735286395,
+              -12.052983658244345
+            ],
+            [
+              30.05000010001579,
+              480.1636275648005,
+              -10.463228927744796
+            ]
+          ],
+          "outside_shank_mm3": 0.0029131449892577073
+        },
+        {
+          "a": "belted_243",
+          "b": "belted_246",
+          "names": [
+            "Belted Z · GT2 20T 8mm - Deflanged (R)",
+            "Belted Z · M3X6 SHCS (R)"
+          ],
+          "volume_mm3": 0.10556536995568414,
+          "bounds_mm": [
+            [
+              28.19136884594635,
+              480.6080560025571,
+              -4.893086166773894
+            ],
+            [
+              30.050000100015467,
+              481.89722533856417,
+              -3.7290775824683258
+            ]
+          ],
+          "outside_shank_mm3": 0.0028957514674302245
+        },
+        {
+          "a": "belted_243",
+          "b": "belted_247",
+          "names": [
+            "Belted Z · GT2 20T 8mm - Deflanged (R)",
+            "Belted Z · M3X6 SHCS (R)"
+          ],
+          "volume_mm3": 0.11909166062830948,
+          "bounds_mm": [
+            [
+              28.17898076958362,
+              487.55348517554984,
+              -4.005393451768502
+            ],
+            [
+              30.050000100015843,
+              489.0822493847389,
+              -3.1184646152832203
+            ]
+          ],
+          "outside_shank_mm3": 0.003541486607465758
+        },
+        {
+          "a": "belted_243",
+          "b": "belted_248",
+          "names": [
+            "Belted Z · GT2 20T 8mm - Deflanged (R)",
+            "Belted Z · M3X6 SHCS (R)"
+          ],
+          "volume_mm3": 0.1288121498288736,
+          "bounds_mm": [
+            [
+              28.17572093615045,
+              490.9253459084419,
+              -10.923653056920156
+            ],
+            [
+              30.050000100016298,
+              491.40389333273583,
+              -9.180236612685434
+            ]
+          ],
+          "outside_shank_mm3": 0.003992033350931828
+        },
+        {
+          "a": "belted_253",
+          "b": "belted_493",
+          "names": [
+            "Belted Z · Belts",
+            "Belted Z · F623ZZ Bearings (2) (1)"
+          ],
+          "volume_mm3": 0.007105151489884281,
+          "bounds_mm": [
+            [
+              141.99922831332424,
+              48.117665016551776,
+              -13.322952132816976
+            ],
+            [
+              147.99922851539648,
+              56.50214891161631,
+              -2.0629457932990998
+            ]
+          ]
+        },
+        {
+          "a": "belted_253",
+          "b": "belted_504",
+          "names": [
+            "Belted Z · Belts",
+            "Belted Z · F623ZZ Bearings (2) (1)"
+          ],
+          "volume_mm3": 0.026145043995314865,
+          "bounds_mm": [
+            [
+              -147.99922851539384,
+              48.11766501655183,
+              -13.322952132821166
+            ],
+            [
+              -141.9992283153932,
+              56.5159132472866,
+              -2.0629455209389214
+            ]
+          ]
+        },
+        {
+          "a": "belted_253",
+          "b": "belted_539",
+          "names": [
+            "Belted Z · Belts",
+            "Belted Z · RightV3.7"
+          ],
+          "volume_mm3": 0.011526535052716958,
+          "bounds_mm": [
+            [
+              141.9992284153919,
+              202.85409063508783,
+              -15.539992971762976
+            ],
+            [
+              142.17157618424872,
+              203.0026779443108,
+              -14.909992985725633
+            ]
+          ]
+        },
+        {
+          "a": "belted_556",
+          "b": "belted_558",
+          "names": [
+            "Belted Z · 40-42 motor (1)",
+            "Belted Z · M3X18 Socket Head Screw (1)"
+          ],
+          "volume_mm3": 0.4766843253496277,
+          "bounds_mm": [
+            [
+              -133.19245632543294,
+              214.66269475219204,
+              -20.476526518286377
+            ],
+            [
+              -129.99245612543297,
+              215.20269495217389,
+              -17.276526318286372
+            ]
+          ],
+          "outside_shank_mm3": 0.04624339772074401
+        },
+        {
+          "a": "belted_556",
+          "b": "belted_564",
+          "names": [
+            "Belted Z · 40-42 motor (1)",
+            "Belted Z · M3X10 Flush Head Screw (1) (1)"
+          ],
+          "volume_mm3": 0.08231431382640492,
+          "bounds_mm": [
+            [
+              -133.1217456473142,
+              214.89269475212254,
+              -51.40581584016781
+            ],
+            [
+              -130.06316680355152,
+              215.20269495217397,
+              -48.34723699640511
+            ]
+          ],
+          "outside_shank_mm3": 0.0035306312034537254
+        },
+        {
+          "a": "belted_559",
+          "b": "belted_562",
+          "names": [
+            "Belted Z · M3X10 Pan Head Screw (1) (1)",
+            "Belted Z · E housing 2 (1)"
+          ],
+          "volume_mm3": 0.11765125899475376,
+          "bounds_mm": [
+            [
+              -102.612951314291,
+              224.2226947521738,
+              -21.72652651828649
+            ],
+            [
+              -98.5719611365749,
+              224.43472271682896,
+              -20.886526318286336
+            ]
+          ],
+          "outside_shank_mm3": 0.11765125899475376
+        },
+        {
+          "a": "belted_560",
+          "b": "belted_563",
+          "names": [
+            "Belted Z · Extrusion Spring (1)",
+            "Belted Z · E idler tensioner (1)"
+          ],
+          "volume_mm3": 14.442531141326533,
+          "bounds_mm": [
+            [
+              -126.75119486430779,
+              225.30019475217392,
+              -53.67752651828656
+            ],
+            [
+              -124.56408703129776,
+              234.20019495217394,
+              -44.77752631828647
+            ]
+          ]
+        },
+        {
+          "a": "belted_562",
+          "b": "belted_564",
+          "names": [
+            "Belted Z · E housing 2 (1)",
+            "Belted Z · M3X10 Flush Head Screw (1) (1)"
+          ],
+          "volume_mm3": 1.4556392478795426,
+          "bounds_mm": [
+            [
+              -134.36245632548784,
+              223.12144475212773,
+              -52.64652651834141
+            ],
+            [
+              -128.82245612537784,
+              224.22269485217393,
+              -47.106526318231396
+            ]
+          ],
+          "outside_shank_mm3": 1.4556392478795426
+        },
+        {
+          "a": "belted_562",
+          "b": "belted_565",
+          "names": [
+            "Belted Z · E housing 2 (1)",
+            "Belted Z · M6 Pneumatic joint (1)"
+          ],
+          "volume_mm3": 12.381781518899723,
+          "bounds_mm": [
+            [
+              -99.06495632553035,
+              226.24769474232562,
+              -31.32352672548067
+            ],
+            [
+              -95.06495612494578,
+              232.24769495351413,
+              -25.32352631658599
+            ]
+          ]
+        },
+        {
+          "a": "belted_563",
+          "b": "belted_564",
+          "names": [
+            "Belted Z · E idler tensioner (1)",
+            "Belted Z · M3X10 Flush Head Screw (1) (1)"
+          ],
+          "volume_mm3": 9.94248113170253,
+          "bounds_mm": [
+            [
+              -134.31805712438734,
+              224.22269485217384,
+              -52.64652641828643
+            ],
+            [
+              -128.82245622543283,
+              224.72269485217404,
+              -47.10652641828641
+            ]
+          ],
+          "outside_shank_mm3": 9.94248113170253
+        },
+        {
+          "a": "belted_563",
+          "b": "belted_567",
+          "names": [
+            "Belted Z · E idler tensioner (1)",
+            "Belted Z · M4X8 Socket Head Screw (1) (1)"
+          ],
+          "volume_mm3": 9.927694375163277,
+          "bounds_mm": [
+            [
+              -118.78176445375576,
+              224.47269465376246,
+              -23.240206499742335
+            ],
+            [
+              -114.78176425375577,
+              227.22269485251186,
+              -19.240206299742333
+            ]
+          ],
+          "outside_shank_mm3": 0.5661240173925384
+        },
+        {
+          "a": "belted_566",
+          "b": "belted_567",
+          "names": [
+            "Belted Z · M4 Split Washer (1) (1)",
+            "Belted Z · M4X8 Socket Head Screw (1) (1)"
+          ],
+          "volume_mm3": 0.002986202893140182,
+          "bounds_mm": [
+            [
+              -118.94176431772686,
+              232.2110187012119,
+              -23.400176694836695
+            ],
+            [
+              -114.62176438978464,
+              232.22269495217472,
+              -19.08023610464786
+            ]
+          ],
+          "outside_shank_mm3": 0.002986202893140182
+        },
+        {
+          "a": "belted_572",
+          "b": "belted_573",
+          "names": [
+            "Belted Z · Rollers",
+            "Belted Z · 625pillow"
+          ],
+          "volume_mm3": 0.0027820117672579816,
+          "bounds_mm": [
+            [
+              105.89636371207322,
+              180.9718159270607,
+              10.499989799998238
+            ],
+            [
+              121.89638391207322,
+              196.97183614541538,
+              15.000010211795505
+            ]
+          ]
+        },
+        {
+          "a": "belted_572",
+          "b": "belted_574",
+          "names": [
+            "Belted Z · Rollers",
+            "Belted Z · 625pillow"
+          ],
+          "volume_mm3": 0.0036333328704678536,
+          "bounds_mm": [
+            [
+              105.89636376207324,
+              180.97181582706074,
+              4.999989799998406
+            ],
+            [
+              121.89638396224085,
+              196.97183602706073,
+              9.500010199998153
+            ]
+          ]
+        },
+        {
+          "a": "belted_573",
+          "b": "belted_575",
+          "names": [
+            "Belted Z · 625pillow",
+            "Belted Z · Eccentric column"
+          ],
+          "volume_mm3": 0.00017419918280888803,
+          "bounds_mm": [
+            [
+              110.39636365951011,
+              185.47181582709834,
+              15.499999999953609
+            ],
+            [
+              117.39638385943385,
+              192.47183602702205,
+              15.500010099998242
+            ]
+          ]
+        },
+        {
+          "a": "belted_574",
+          "b": "belted_576",
+          "names": [
+            "Belted Z · 625pillow",
+            "Belted Z · Spacers for rollers"
+          ],
+          "volume_mm3": 0.00026772260044861387,
+          "bounds_mm": [
+            [
+              109.89637376207305,
+              184.97182592706076,
+              4.499989899998099
+            ],
+            [
+              117.89637376207305,
+              192.97182592706076,
+              4.499999999998289
+            ]
+          ]
+        },
+        {
+          "a": "belted_579",
+          "b": "belted_580",
+          "names": [
+            "Belted Z · Rollers",
+            "Belted Z · 625pillow"
+          ],
+          "volume_mm3": 0.0027820114164642997,
+          "bounds_mm": [
+            [
+              166.69237819130177,
+              216.83892164416108,
+              10.499989799997557
+            ],
+            [
+              182.69239839130177,
+              232.83894186251624,
+              15.000010099999445
+            ]
+          ]
+        },
+        {
+          "a": "belted_579",
+          "b": "belted_581",
+          "names": [
+            "Belted Z · Rollers",
+            "Belted Z · 625pillow"
+          ],
+          "volume_mm3": 0.0036171967608176203,
+          "bounds_mm": [
+            [
+              166.69237819130177,
+              216.83892164416096,
+              4.999989899997863
+            ],
+            [
+              182.69239839146937,
+              232.83894184416096,
+              9.500010149997545
+            ]
+          ]
+        },
+        {
+          "a": "belted_580",
+          "b": "belted_582",
+          "names": [
+            "Belted Z · 625pillow",
+            "Belted Z · Spacers for rollers"
+          ],
+          "volume_mm3": 0.0002677226006806893,
+          "bounds_mm": [
+            [
+              170.69238829130174,
+              220.8389317441612,
+              15.499999999997469
+            ],
+            [
+              178.69238829130177,
+              228.8389317441612,
+              15.500010099997617
+            ]
+          ]
+        },
+        {
+          "a": "belted_581",
+          "b": "belted_583",
+          "names": [
+            "Belted Z · 625pillow",
+            "Belted Z · Spacers for rollers"
+          ],
+          "volume_mm3": 0.00026904795577501107,
+          "bounds_mm": [
+            [
+              170.69238829130163,
+              220.838931744161,
+              4.4999898499974815
+            ],
+            [
+              178.69238829130163,
+              228.838931744161,
+              4.499999999997587
+            ]
+          ]
+        },
+        {
+          "a": "belted_586",
+          "b": "belted_587",
+          "names": [
+            "Belted Z · Rollers",
+            "Belted Z · 625pillow"
+          ],
+          "volume_mm3": 0.0027768626110387068,
+          "bounds_mm": [
+            [
+              166.69237824130175,
+              145.83892164400882,
+              10.49998989999765
+            ],
+            [
+              182.69239844130175,
+              161.8389418625162,
+              15.000010149999193
+            ]
+          ]
+        },
+        {
+          "a": "belted_586",
+          "b": "belted_588",
+          "names": [
+            "Belted Z · Rollers",
+            "Belted Z · 625pillow"
+          ],
+          "volume_mm3": 0.0036357553230565998,
+          "bounds_mm": [
+            [
+              166.69237829130185,
+              145.8389216941611,
+              4.9999897881917965
+            ],
+            [
+              182.69239849146945,
+              161.83894189416108,
+              9.50001024999767
+            ]
+          ]
+        },
+        {
+          "a": "belted_587",
+          "b": "belted_589",
+          "names": [
+            "Belted Z · 625pillow",
+            "Belted Z · Spacers for rollers"
+          ],
+          "volume_mm3": 0.00026772260106954724,
+          "bounds_mm": [
+            [
+              170.69238829130182,
+              149.8389317441613,
+              15.499999999997554
+            ],
+            [
+              178.69238829130182,
+              157.8389317441613,
+              15.500010099997715
+            ]
+          ]
+        },
+        {
+          "a": "belted_588",
+          "b": "belted_590",
+          "names": [
+            "Belted Z · 625pillow",
+            "Belted Z · Spacers for rollers"
+          ],
+          "volume_mm3": 0.00026639723731809685,
+          "bounds_mm": [
+            [
+              170.69238829130174,
+              149.83893174416113,
+              4.499989949997611
+            ],
+            [
+              178.69238829130174,
+              157.83893174416113,
+              4.49999999999767
+            ]
+          ]
+        },
+        {
+          "a": "belted_593",
+          "b": "belted_594",
+          "names": [
+            "Belted Z · Rollers",
+            "Belted Z · 625pillow"
+          ],
+          "volume_mm3": 0.0027820117794107894,
+          "bounds_mm": [
+            [
+              -122.41887723478703,
+              181.5003466080177,
+              10.499989799997968
+            ],
+            [
+              -106.41885703478704,
+              197.50036682938287,
+              15.000010099998354
+            ]
+          ]
+        },
+        {
+          "a": "belted_593",
+          "b": "belted_595",
+          "names": [
+            "Belted Z · Rollers",
+            "Belted Z · 625pillow"
+          ],
+          "volume_mm3": 0.0036128381540265764,
+          "bounds_mm": [
+            [
+              -122.41887728478702,
+              181.50034666102778,
+              4.9999898881927045
+            ],
+            [
+              -106.4188570846194,
+              197.50036686102777,
+              9.500010199997982
+            ]
+          ]
+        },
+        {
+          "a": "belted_594",
+          "b": "belted_596",
+          "names": [
+            "Belted Z · 625pillow",
+            "Belted Z · Spacers for rollers"
+          ],
+          "volume_mm3": 0.00026772260215705536,
+          "bounds_mm": [
+            [
+              -118.41886713478699,
+              185.500356711028,
+              15.49999999999779
+            ],
+            [
+              -110.41886713478698,
+              193.50035671102802,
+              15.50001009999802
+            ]
+          ]
+        },
+        {
+          "a": "belted_595",
+          "b": "belted_597",
+          "names": [
+            "Belted Z · 625pillow",
+            "Belted Z · Eccentric column"
+          ],
+          "volume_mm3": 0.00017419917698120854,
+          "bounds_mm": [
+            [
+              -117.91887723474929,
+              186.00034661106582,
+              4.499989899997982
+            ],
+            [
+              -110.9188570348262,
+              193.0003668109889,
+              4.5000000000422915
+            ]
+          ]
+        },
+        {
+          "a": "belted_600",
+          "b": "belted_601",
+          "names": [
+            "Belted Z · Rollers",
+            "Belted Z · 625pillow"
+          ],
+          "volume_mm3": 0.0027820115954820834,
+          "bounds_mm": [
+            [
+              -183.3000100499987,
+              216.83892169400357,
+              10.499989799998152
+            ],
+            [
+              -167.2999898499987,
+              232.83894191251517,
+              15.00001017070752
+            ]
+          ]
+        },
+        {
+          "a": "belted_600",
+          "b": "belted_602",
+          "names": [
+            "Belted Z · Rollers",
+            "Belted Z · 625pillow"
+          ],
+          "volume_mm3": 0.003626551948439527,
+          "bounds_mm": [
+            [
+              -183.3000100499987,
+              216.83892164416028,
+              4.999989849997816
+            ],
+            [
+              -167.2999898498311,
+              232.83894184416027,
+              9.500010199998153
+            ]
+          ]
+        },
+        {
+          "a": "belted_601",
+          "b": "belted_603",
+          "names": [
+            "Belted Z · 625pillow",
+            "Belted Z · Spacers for rollers"
+          ],
+          "volume_mm3": 0.00026772260087115716,
+          "bounds_mm": [
+            [
+              -179.2999999999987,
+              220.83893174416002,
+              15.49999999999809
+            ],
+            [
+              -171.2999999999987,
+              228.83893174416002,
+              15.500010099998203
+            ]
+          ]
+        },
+        {
+          "a": "belted_602",
+          "b": "belted_604",
+          "names": [
+            "Belted Z · 625pillow",
+            "Belted Z · Spacers for rollers"
+          ],
+          "volume_mm3": 0.0002677225967934386,
+          "bounds_mm": [
+            [
+              -179.29999999999868,
+              220.8389317441602,
+              4.499989899998099
+            ],
+            [
+              -171.29999999999868,
+              228.8389317441602,
+              4.499999999998117
+            ]
+          ]
+        },
+        {
+          "a": "belted_607",
+          "b": "belted_608",
+          "names": [
+            "Belted Z · Rollers",
+            "Belted Z · 625pillow"
+          ],
+          "volume_mm3": 0.0027820117683489457,
+          "bounds_mm": [
+            [
+              -183.30000999999976,
+              145.83892159416013,
+              10.499989799998325
+            ],
+            [
+              -167.29998979999976,
+              161.83894181251517,
+              15.00001021180291
+            ]
+          ]
+        },
+        {
+          "a": "belted_607",
+          "b": "belted_609",
+          "names": [
+            "Belted Z · Rollers",
+            "Belted Z · 625pillow"
+          ],
+          "volume_mm3": 0.003626247378718972,
+          "bounds_mm": [
+            [
+              -183.30001004999974,
+              145.8389217441602,
+              4.999989789517608
+            ],
+            [
+              -167.29998984983214,
+              161.83894194416018,
+              9.500010199998295
+            ]
+          ]
+        },
+        {
+          "a": "belted_608",
+          "b": "belted_610",
+          "names": [
+            "Belted Z · 625pillow",
+            "Belted Z · Spacers for rollers"
+          ],
+          "volume_mm3": 0.0002677226003902216,
+          "bounds_mm": [
+            [
+              -179.2999999999997,
+              149.83893174416,
+              15.499999999998217
+            ],
+            [
+              -171.2999999999997,
+              157.83893174416002,
+              15.500010099998374
+            ]
+          ]
+        },
+        {
+          "a": "belted_609",
+          "b": "belted_611",
+          "names": [
+            "Belted Z · 625pillow",
+            "Belted Z · Spacers for rollers"
+          ],
+          "volume_mm3": 0.00026772259716455107,
+          "bounds_mm": [
+            [
+              -179.29999999999973,
+              149.83893174416016,
+              4.499989899998243
+            ],
+            [
+              -171.29999999999973,
+              157.83893174416016,
+              4.499999999998344
+            ]
+          ]
+        },
+        {
+          "a": "belted_579",
+          "b": "00004",
+          "names": [
+            "Belted Z · Rollers",
+            "2040-3R profile"
+          ],
+          "volume_mm3": 10.301689055689774,
+          "bounds_mm": [
+            [
+              163.19999999999985,
+              221.06080387561468,
+              4.899999999997317
+            ],
+            [
+              165.00000000000009,
+              228.61705961270715,
+              15.099999999997717
+            ]
+          ]
+        },
+        {
+          "a": "belted_586",
+          "b": "00004",
+          "names": [
+            "Belted Z · Rollers",
+            "2040-3R profile"
+          ],
+          "volume_mm3": 10.301689055681132,
+          "bounds_mm": [
+            [
+              163.19999999999928,
+              150.06080387561272,
+              4.899999999997303
+            ],
+            [
+              165.00000000000034,
+              157.61705961270965,
+              15.099999999997744
+            ]
+          ]
+        }
+      ],
+      "interpretation": "Classified in contact_review; these raw candidates are not silently treated as free-clearance physical mounts."
+    },
+    "klack": {
+      "checked_native_pairs": 42,
+      "intended_thread_engagement": [
+        {
+          "a": "klack_189",
+          "b": "klack_190",
+          "names": [
+            "KlackEnder · Probe_Dock · M3X12 SHCS v1",
+            "KlackEnder · Probe_Dock · SOLID"
+          ],
+          "volume_mm3": 2.7803094984225254,
+          "bounds_mm": [
+            [
+              147.515061443399,
+              151.83893174416107,
+              33.90000000000032
+            ],
+            [
+              153.51506144339902,
+              154.83893174416107,
+              36.90000000000032
+            ]
+          ],
+          "outside_shank_mm3": 0.0
+        },
+        {
+          "a": "klack_177",
+          "b": "00123",
+          "names": [
+            "KlackEnder · Probe_Mount · M3X10 SHCS v1",
+            "E plate"
+          ],
+          "volume_mm3": 0.8586683765391216,
+          "bounds_mm": [
+            [
+              13.131827353824509,
+              173.83893174416096,
+              44.22739825900831
+            ],
+            [
+              21.612061443398083,
+              173.96393174416053,
+              46.93924522771048
+            ]
+          ],
+          "outside_shank_mm3": 0.0
+        }
+      ],
+      "bearing_envelopes": [],
+      "model_sha256": "d9d38f5a8488877a36b8cf4385826dff9ca83fb96214f40de569693d8f52d898",
+      "native_part_sha256": {
+        "klack_177": "dc99cce59287afbe9d5ded0e993108d5927f292c762c79bae374932ab9fe2e39",
+        "klack_178": "2a6a1f14aa0f66105cb367409ba3b4ac69128e05cd0c3ee0c221cb1b21758ec1",
+        "klack_179": "95984dbd04f19f0e2389bceea5b996d06847cae1e59472e0ba88038a780bd15d",
+        "klack_180": "2aa109d4588c5758238dd7651431ca5199e08921fca1b33eed6451c0364aa194",
+        "klack_181": "6dc280d64a7462751e31eb053c0d01c9d799ea79e7d75dbc797fb801a2dbe570",
+        "klack_182": "69e7cfaeac3301560472e59bcf5fe3b9c875a1efc3282f2826e83539601eb147",
+        "klack_183": "3eecd56ebeda75f87b75797e9f673b82d3e15c071b77b1253e9ee9a14c519367",
+        "klack_184": "8c92e91ed71486c941ff1d2314c600475768635449d094db6c305f0dc31795fb",
+        "klack_185": "a7e04c1c4710780f55eb6a9c03aa72506647544d63c679840417c1835e3cab91",
+        "klack_186": "1aa97f470f8d7812763eae4e13b912f3f8e4467e7ed2bc4d6df140653a191d04",
+        "klack_187": "f0d6f9acb82ed2d443f8256722ed29f1c7177beab279a9c8a99b77c522ca9c41",
+        "klack_188": "62456b1e55f17ec793a3db39a7d97f68735fb4d62e56785b71febeff961ae250",
+        "klack_189": "8b0b6d885c88bc9b63f079eb1a5c6a953b2294ef8344169ca4868e7167c84dc1",
+        "klack_190": "69e272173192ae6d4d8003850e46619cf14d7d1faeebd81285e1b50ed90e4f09",
+        "klack_191": "d43f7d0d7fd3283b9f5f23e3ee3c0348ca538fa56e5cb78cce36daaacb10dc99",
+        "klack_192": "56c62291bf25e6bb47e752cc4593aa3ec8c98005892f67cedf0652988ddc8702",
+        "klack_193": "89df31f560005946cb1650c81cbcb88b0dad73d8212b77a86a4b9a7535dc372d",
+        "klack_194": "f57b4b2b18a74bfc34ae1906e37823a3233ad3af439291f31bdd1c3fc3713bf3",
+        "klack_195": "0a661a539b1f4e9e188fe4c9085b6bb36ee05c68042349ae4443b40dc0f9ed98"
+      },
+      "scope": "Changed installed native solids against every retained original solid at the source pose. Thread shanks classified by the actual cylindrical feature. Conservative bearing containment is explicitly separate from exact native contact. This does not certify full-axis travel.",
+      "raw_contact_candidates": [
+        {
+          "a": "klack_181",
+          "b": "klack_184",
+          "names": [
+            "KlackEnder · Probe_Block · Omron_D2F_F v1",
+            "KlackEnder · Probe_Block · 6x3mm Magnet v1 (1)"
+          ],
+          "volume_mm3": 0.3207763490701414,
+          "bounds_mm": [
+            [
+              6.80706166909301,
+              155.28893174416106,
+              41.75000000000019
+            ],
+            [
+              7.707061669093022,
+              157.93893174416107,
+              41.9000000000003
+            ]
+          ]
+        },
+        {
+          "a": "klack_181",
+          "b": "klack_185",
+          "names": [
+            "KlackEnder · Probe_Block · Omron_D2F_F v1",
+            "KlackEnder · Probe_Block · 6x3mm Magnet v1 (1)"
+          ],
+          "volume_mm3": 0.3207763490701732,
+          "bounds_mm": [
+            [
+              16.967061669093006,
+              155.28893174416106,
+              41.75000000000019
+            ],
+            [
+              17.86706166909302,
+              157.93893174416107,
+              41.900000000000304
+            ]
+          ]
+        }
+      ],
+      "interpretation": "Classified in contact_review; these raw candidates are not silently treated as free-clearance physical mounts."
+    }
+  },
+  "contact_review": {
+    "review_complete": true,
+    "all_passed": true,
+    "model_sha256": "d9d38f5a8488877a36b8cf4385826dff9ca83fb96214f40de569693d8f52d898",
+    "classified_contacts": [
+      {
+        "a": "belted_227",
+        "b": "belted_228",
+        "names": [
+          "Belted Z · SOLID",
+          "Belted Z · Motor Mount Tensioner Arm (R)"
+        ],
+        "volume_mm3": 0.0017613437584822827,
+        "bounds_mm": [
+          [
+            15.999996990590454,
+            435.67379124182935,
+            -71.49965936950906
+          ],
+          [
+            16.000000100026828,
+            496.8090425279219,
+            -14.622736211463074
+          ]
+        ],
+        "mode": "belted",
+        "upstream_contact_mm3": 0.0,
+        "classification": "native_boolean_surface_residual",
+        "maximum_overlap_thickness_mm": 3.1094363741601683e-06,
+        "scope": "Boolean residual at a mating plane thinner than 0.000005 mm; original source intersection is zero. Kept explicitly as CAD numeric tolerance, not omitted as an arbitrary volume allowance."
+      },
+      {
+        "a": "belted_235",
+        "b": "belted_237",
+        "names": [
+          "Belted Z · M3X10 SHCS with Washer (R)",
+          "Belted Z · M3 Hexnut (R)"
+        ],
+        "volume_mm3": 3.792338873235982,
+        "bounds_mm": [
+          [
+            10.53049990001362,
+            477.9087286060833,
+            -53.48186505110039
+          ],
+          [
+            12.500000000024585,
+            480.9087288060832,
+            -50.48186485110045
+          ]
+        ],
+        "outside_shank_mm3": 0.2574985389993304,
+        "mode": "belted",
+        "upstream_contact_mm3": 3.7923388733673304,
+        "classification": "native_fastener_bore_or_fillet_contact",
+        "scope": "Native source intersection reproduced before registration. Retained source contact is recorded separately; it does not establish physical fit, thread tolerance or rolling/belt preload."
+      },
+      {
+        "a": "belted_236",
+        "b": "belted_238",
+        "names": [
+          "Belted Z · M3X10 SHCS with Washer (R)",
+          "Belted Z · M3 Hexnut (R)"
+        ],
+        "volume_mm3": 3.792338873411766,
+        "bounds_mm": [
+          [
+            10.53049990001262,
+            450.1959156849945,
+            -37.48186505108567
+          ],
+          [
+            12.500000000025619,
+            453.1959158849944,
+            -34.481864851085724
+          ]
+        ],
+        "outside_shank_mm3": 0.2574985390960406,
+        "mode": "belted",
+        "upstream_contact_mm3": 3.7923388733658907,
+        "classification": "native_fastener_bore_or_fillet_contact",
+        "scope": "Native source intersection reproduced before registration. Retained source contact is recorded separately; it does not establish physical fit, thread tolerance or rolling/belt preload."
+      },
+      {
+        "a": "belted_242",
+        "b": "belted_244",
+        "names": [
+          "Belted Z · 80T Hubbed Gear (R)",
+          "Belted Z · M3X6 SHCS (R)"
+        ],
+        "volume_mm3": 6.14441245920564,
+        "bounds_mm": [
+          [
+            28.169952118240996,
+            484.55953801917536,
+            -17.51829404933175
+          ],
+          [
+            33.71054787798509,
+            487.5595382191858,
+            -14.518293661500643
+          ]
+        ],
+        "outside_shank_mm3": 0.07521246805357082,
+        "mode": "belted",
+        "upstream_contact_mm3": 6.14441248945601,
+        "classification": "native_fastener_bore_or_fillet_contact",
+        "scope": "Native source intersection reproduced before registration. Retained source contact is recorded separately; it does not establish physical fit, thread tolerance or rolling/belt preload."
+      },
+      {
+        "a": "belted_242",
+        "b": "belted_245",
+        "names": [
+          "Belted Z · 80T Hubbed Gear (R)",
+          "Belted Z · M3X6 SHCS (R)"
+        ],
+        "volume_mm3": 6.249141305941719,
+        "bounds_mm": [
+          [
+            28.16995221286059,
+            477.1636273648001,
+            -13.254765318093389
+          ],
+          [
+            33.71054778780396,
+            480.1636275648577,
+            -10.254764939174468
+          ]
+        ],
+        "outside_shank_mm3": 0.07870952241988183,
+        "mode": "belted",
+        "upstream_contact_mm3": 6.249141335553542,
+        "classification": "native_fastener_bore_or_fillet_contact",
+        "scope": "Native source intersection reproduced before registration. Retained source contact is recorded separately; it does not establish physical fit, thread tolerance or rolling/belt preload."
+      },
+      {
+        "a": "belted_242",
+        "b": "belted_246",
+        "names": [
+          "Belted Z · 80T Hubbed Gear (R)",
+          "Belted Z · M3X6 SHCS (R)"
+        ],
+        "volume_mm3": 6.260167076638749,
+        "bounds_mm": [
+          [
+            28.16995272155309,
+            478.9330220659757,
+            -4.903333462353362
+          ],
+          [
+            33.710547279132136,
+            481.9330222660334,
+            -1.903333083434431
+          ]
+        ],
+        "outside_shank_mm3": 0.07906495192081835,
+        "mode": "belted",
+        "upstream_contact_mm3": 6.26016707638692,
+        "classification": "native_fastener_bore_or_fillet_contact",
+        "scope": "Native source intersection reproduced before registration. Retained source contact is recorded separately; it does not establish physical fit, thread tolerance or rolling/belt preload."
+      },
+      {
+        "a": "belted_242",
+        "b": "belted_247",
+        "names": [
+          "Belted Z · 80T Hubbed Gear (R)",
+          "Belted Z · M3X6 SHCS (R)"
+        ],
+        "volume_mm3": 6.162885105215846,
+        "bounds_mm": [
+          [
+            28.169952160818074,
+            487.4224787851914,
+            -4.0053934520174606
+          ],
+          [
+            33.710547787145366,
+            490.42247898524886,
+            -1.0053930738409929
+          ]
+        ],
+        "outside_shank_mm3": 0.07584510732313282,
+        "mode": "belted",
+        "upstream_contact_mm3": 6.1628850827426795,
+        "classification": "native_fastener_bore_or_fillet_contact",
+        "scope": "Native source intersection reproduced before registration. Retained source contact is recorded separately; it does not establish physical fit, thread tolerance or rolling/belt preload."
+      },
+      {
+        "a": "belted_242",
+        "b": "belted_248",
+        "names": [
+          "Belted Z · 80T Hubbed Gear (R)",
+          "Belted Z · M3X6 SHCS (R)"
+        ],
+        "volume_mm3": 6.089585765794132,
+        "bounds_mm": [
+          [
+            28.171370839877287,
+            490.8998568762851,
+            -11.8018688231529
+          ],
+          [
+            33.710547787448014,
+            493.89985814069394,
+            -8.801867303455596
+          ]
+        ],
+        "outside_shank_mm3": 0.0732961231521668,
+        "mode": "belted",
+        "upstream_contact_mm3": 6.089572521605133,
+        "classification": "native_fastener_bore_or_fillet_contact",
+        "scope": "Native source intersection reproduced before registration. Retained source contact is recorded separately; it does not establish physical fit, thread tolerance or rolling/belt preload."
+      },
+      {
+        "a": "belted_243",
+        "b": "belted_244",
+        "names": [
+          "Belted Z · GT2 20T 8mm - Deflanged (R)",
+          "Belted Z · M3X6 SHCS (R)"
+        ],
+        "volume_mm3": 0.1208870203277333,
+        "bounds_mm": [
+          [
+            28.18613393095961,
+            485.0544622249543,
+            -14.909011463737622
+          ],
+          [
+            30.050000100016273,
+            486.81287956897995,
+            -14.568604102937654
+          ]
+        ],
+        "outside_shank_mm3": 0.0035754260994312758,
+        "mode": "belted",
+        "upstream_contact_mm3": 0.12088702032891652,
+        "classification": "native_fastener_bore_or_fillet_contact",
+        "scope": "Native source intersection reproduced before registration. Retained source contact is recorded separately; it does not establish physical fit, thread tolerance or rolling/belt preload."
+      },
+      {
+        "a": "belted_243",
+        "b": "belted_245",
+        "names": [
+          "Belted Z · GT2 20T 8mm - Deflanged (R)",
+          "Belted Z · M3X6 SHCS (R)"
+        ],
+        "volume_mm3": 0.1066280778444357,
+        "bounds_mm": [
+          [
+            28.19575779652455,
+            479.4264735286395,
+            -12.052983658244345
+          ],
+          [
+            30.05000010001579,
+            480.1636275648005,
+            -10.463228927744796
+          ]
+        ],
+        "outside_shank_mm3": 0.0029131449892577073,
+        "mode": "belted",
+        "upstream_contact_mm3": 0.1066280778429281,
+        "classification": "native_fastener_bore_or_fillet_contact",
+        "scope": "Native source intersection reproduced before registration. Retained source contact is recorded separately; it does not establish physical fit, thread tolerance or rolling/belt preload."
+      },
+      {
+        "a": "belted_243",
+        "b": "belted_246",
+        "names": [
+          "Belted Z · GT2 20T 8mm - Deflanged (R)",
+          "Belted Z · M3X6 SHCS (R)"
+        ],
+        "volume_mm3": 0.10556536995568414,
+        "bounds_mm": [
+          [
+            28.19136884594635,
+            480.6080560025571,
+            -4.893086166773894
+          ],
+          [
+            30.050000100015467,
+            481.89722533856417,
+            -3.7290775824683258
+          ]
+        ],
+        "outside_shank_mm3": 0.0028957514674302245,
+        "mode": "belted",
+        "upstream_contact_mm3": 0.10556536995244135,
+        "classification": "native_fastener_bore_or_fillet_contact",
+        "scope": "Native source intersection reproduced before registration. Retained source contact is recorded separately; it does not establish physical fit, thread tolerance or rolling/belt preload."
+      },
+      {
+        "a": "belted_243",
+        "b": "belted_247",
+        "names": [
+          "Belted Z · GT2 20T 8mm - Deflanged (R)",
+          "Belted Z · M3X6 SHCS (R)"
+        ],
+        "volume_mm3": 0.11909166062830948,
+        "bounds_mm": [
+          [
+            28.17898076958362,
+            487.55348517554984,
+            -4.005393451768502
+          ],
+          [
+            30.050000100015843,
+            489.0822493847389,
+            -3.1184646152832203
+          ]
+        ],
+        "outside_shank_mm3": 0.003541486607465758,
+        "mode": "belted",
+        "upstream_contact_mm3": 0.1190916606334519,
+        "classification": "native_fastener_bore_or_fillet_contact",
+        "scope": "Native source intersection reproduced before registration. Retained source contact is recorded separately; it does not establish physical fit, thread tolerance or rolling/belt preload."
+      },
+      {
+        "a": "belted_243",
+        "b": "belted_248",
+        "names": [
+          "Belted Z · GT2 20T 8mm - Deflanged (R)",
+          "Belted Z · M3X6 SHCS (R)"
+        ],
+        "volume_mm3": 0.1288121498288736,
+        "bounds_mm": [
+          [
+            28.17572093615045,
+            490.9253459084419,
+            -10.923653056920156
+          ],
+          [
+            30.050000100016298,
+            491.40389333273583,
+            -9.180236612685434
+          ]
+        ],
+        "outside_shank_mm3": 0.003992033350931828,
+        "mode": "belted",
+        "upstream_contact_mm3": 0.12881214983926656,
+        "classification": "native_fastener_bore_or_fillet_contact",
+        "scope": "Native source intersection reproduced before registration. Retained source contact is recorded separately; it does not establish physical fit, thread tolerance or rolling/belt preload."
+      },
+      {
+        "a": "belted_253",
+        "b": "belted_493",
+        "names": [
+          "Belted Z · Belts",
+          "Belted Z · F623ZZ Bearings (2) (1)"
+        ],
+        "volume_mm3": 0.007105151489884281,
+        "bounds_mm": [
+          [
+            141.99922831332424,
+            48.117665016551776,
+            -13.322952132816976
+          ],
+          [
+            147.99922851539648,
+            56.50214891161631,
+            -2.0629457932990998
+          ]
+        ],
+        "mode": "belted",
+        "upstream_contact_mm3": 0.007105151490056489,
+        "classification": "author_belt_backing_seat_contact",
+        "scope": "Native source intersection reproduced before registration. Retained source contact is recorded separately; it does not establish physical fit, thread tolerance or rolling/belt preload."
+      },
+      {
+        "a": "belted_253",
+        "b": "belted_504",
+        "names": [
+          "Belted Z · Belts",
+          "Belted Z · F623ZZ Bearings (2) (1)"
+        ],
+        "volume_mm3": 0.026145043995314865,
+        "bounds_mm": [
+          [
+            -147.99922851539384,
+            48.11766501655183,
+            -13.322952132821166
+          ],
+          [
+            -141.9992283153932,
+            56.5159132472866,
+            -2.0629455209389214
+          ]
+        ],
+        "mode": "belted",
+        "upstream_contact_mm3": 0.026145043894152897,
+        "classification": "author_belt_backing_seat_contact",
+        "scope": "Native source intersection reproduced before registration. Retained source contact is recorded separately; it does not establish physical fit, thread tolerance or rolling/belt preload."
+      },
+      {
+        "a": "belted_253",
+        "b": "belted_539",
+        "names": [
+          "Belted Z · Belts",
+          "Belted Z · RightV3.7"
+        ],
+        "volume_mm3": 0.011526535052716958,
+        "bounds_mm": [
+          [
+            141.9992284153919,
+            202.85409063508783,
+            -15.539992971762976
+          ],
+          [
+            142.17157618424872,
+            203.0026779443108,
+            -14.909992985725633
+          ]
+        ],
+        "mode": "belted",
+        "upstream_contact_mm3": 0.011526535054225876,
+        "classification": "author_belt_backing_seat_contact",
+        "scope": "Native source intersection reproduced before registration. Retained source contact is recorded separately; it does not establish physical fit, thread tolerance or rolling/belt preload."
+      },
+      {
+        "a": "belted_556",
+        "b": "belted_558",
+        "names": [
+          "Belted Z · 40-42 motor (1)",
+          "Belted Z · M3X18 Socket Head Screw (1)"
+        ],
+        "volume_mm3": 0.4766843253496277,
+        "bounds_mm": [
+          [
+            -133.19245632543294,
+            214.66269475219204,
+            -20.476526518286377
+          ],
+          [
+            -129.99245612543297,
+            215.20269495217389,
+            -17.276526318286372
+          ]
+        ],
+        "outside_shank_mm3": 0.04624339772074401,
+        "mode": "belted",
+        "upstream_contact_mm3": 0.47668432533876326,
+        "classification": "purchased_extruder_internal_contact",
+        "scope": "Native source intersection reproduced before registration. Retained source contact is recorded separately; it does not establish physical fit, thread tolerance or rolling/belt preload."
+      },
+      {
+        "a": "belted_556",
+        "b": "belted_564",
+        "names": [
+          "Belted Z · 40-42 motor (1)",
+          "Belted Z · M3X10 Flush Head Screw (1) (1)"
+        ],
+        "volume_mm3": 0.08231431382640492,
+        "bounds_mm": [
+          [
+            -133.1217456473142,
+            214.89269475212254,
+            -51.40581584016781
+          ],
+          [
+            -130.06316680355152,
+            215.20269495217397,
+            -48.34723699640511
+          ]
+        ],
+        "outside_shank_mm3": 0.0035306312034537254,
+        "mode": "belted",
+        "upstream_contact_mm3": 0.08231431384921739,
+        "classification": "purchased_extruder_internal_contact",
+        "scope": "Native source intersection reproduced before registration. Retained source contact is recorded separately; it does not establish physical fit, thread tolerance or rolling/belt preload."
+      },
+      {
+        "a": "belted_559",
+        "b": "belted_562",
+        "names": [
+          "Belted Z · M3X10 Pan Head Screw (1) (1)",
+          "Belted Z · E housing 2 (1)"
+        ],
+        "volume_mm3": 0.11765125899475376,
+        "bounds_mm": [
+          [
+            -102.612951314291,
+            224.2226947521738,
+            -21.72652651828649
+          ],
+          [
+            -98.5719611365749,
+            224.43472271682896,
+            -20.886526318286336
+          ]
+        ],
+        "outside_shank_mm3": 0.11765125899475376,
+        "mode": "belted",
+        "upstream_contact_mm3": 0.11765125897256051,
+        "classification": "purchased_extruder_internal_contact",
+        "scope": "Native source intersection reproduced before registration. Retained source contact is recorded separately; it does not establish physical fit, thread tolerance or rolling/belt preload."
+      },
+      {
+        "a": "belted_560",
+        "b": "belted_563",
+        "names": [
+          "Belted Z · Extrusion Spring (1)",
+          "Belted Z · E idler tensioner (1)"
+        ],
+        "volume_mm3": 14.442531141326533,
+        "bounds_mm": [
+          [
+            -126.75119486430779,
+            225.30019475217392,
+            -53.67752651828656
+          ],
+          [
+            -124.56408703129776,
+            234.20019495217394,
+            -44.77752631828647
+          ]
+        ],
+        "mode": "belted",
+        "upstream_contact_mm3": 14.442530010750032,
+        "classification": "purchased_extruder_internal_contact",
+        "scope": "Native source intersection reproduced before registration. Retained source contact is recorded separately; it does not establish physical fit, thread tolerance or rolling/belt preload."
+      },
+      {
+        "a": "belted_562",
+        "b": "belted_564",
+        "names": [
+          "Belted Z · E housing 2 (1)",
+          "Belted Z · M3X10 Flush Head Screw (1) (1)"
+        ],
+        "volume_mm3": 1.4556392478795426,
+        "bounds_mm": [
+          [
+            -134.36245632548784,
+            223.12144475212773,
+            -52.64652651834141
+          ],
+          [
+            -128.82245612537784,
+            224.22269485217393,
+            -47.106526318231396
+          ]
+        ],
+        "outside_shank_mm3": 1.4556392478795426,
+        "mode": "belted",
+        "upstream_contact_mm3": 1.4556392478297293,
+        "classification": "purchased_extruder_internal_contact",
+        "scope": "Native source intersection reproduced before registration. Retained source contact is recorded separately; it does not establish physical fit, thread tolerance or rolling/belt preload."
+      },
+      {
+        "a": "belted_562",
+        "b": "belted_565",
+        "names": [
+          "Belted Z · E housing 2 (1)",
+          "Belted Z · M6 Pneumatic joint (1)"
+        ],
+        "volume_mm3": 12.381781518899723,
+        "bounds_mm": [
+          [
+            -99.06495632553035,
+            226.24769474232562,
+            -31.32352672548067
+          ],
+          [
+            -95.06495612494578,
+            232.24769495351413,
+            -25.32352631658599
+          ]
+        ],
+        "mode": "belted",
+        "upstream_contact_mm3": 12.371024496476965,
+        "classification": "purchased_extruder_internal_contact",
+        "scope": "Native source intersection reproduced before registration. Retained source contact is recorded separately; it does not establish physical fit, thread tolerance or rolling/belt preload."
+      },
+      {
+        "a": "belted_563",
+        "b": "belted_564",
+        "names": [
+          "Belted Z · E idler tensioner (1)",
+          "Belted Z · M3X10 Flush Head Screw (1) (1)"
+        ],
+        "volume_mm3": 9.94248113170253,
+        "bounds_mm": [
+          [
+            -134.31805712438734,
+            224.22269485217384,
+            -52.64652641828643
+          ],
+          [
+            -128.82245622543283,
+            224.72269485217404,
+            -47.10652641828641
+          ]
+        ],
+        "outside_shank_mm3": 9.94248113170253,
+        "mode": "belted",
+        "upstream_contact_mm3": 9.942481131701628,
+        "classification": "purchased_extruder_internal_contact",
+        "scope": "Native source intersection reproduced before registration. Retained source contact is recorded separately; it does not establish physical fit, thread tolerance or rolling/belt preload."
+      },
+      {
+        "a": "belted_563",
+        "b": "belted_567",
+        "names": [
+          "Belted Z · E idler tensioner (1)",
+          "Belted Z · M4X8 Socket Head Screw (1) (1)"
+        ],
+        "volume_mm3": 9.927694375163277,
+        "bounds_mm": [
+          [
+            -118.78176445375576,
+            224.47269465376246,
+            -23.240206499742335
+          ],
+          [
+            -114.78176425375577,
+            227.22269485251186,
+            -19.240206299742333
+          ]
+        ],
+        "outside_shank_mm3": 0.5661240173925384,
+        "mode": "belted",
+        "upstream_contact_mm3": 9.927694564702305,
+        "classification": "purchased_extruder_internal_contact",
+        "scope": "Native source intersection reproduced before registration. Retained source contact is recorded separately; it does not establish physical fit, thread tolerance or rolling/belt preload."
+      },
+      {
+        "a": "belted_566",
+        "b": "belted_567",
+        "names": [
+          "Belted Z · M4 Split Washer (1) (1)",
+          "Belted Z · M4X8 Socket Head Screw (1) (1)"
+        ],
+        "volume_mm3": 0.002986202893140182,
+        "bounds_mm": [
+          [
+            -118.94176431772686,
+            232.2110187012119,
+            -23.400176694836695
+          ],
+          [
+            -114.62176438978464,
+            232.22269495217472,
+            -19.08023610464786
+          ]
+        ],
+        "outside_shank_mm3": 0.002986202893140182,
+        "mode": "belted",
+        "upstream_contact_mm3": 0.0029862028895410904,
+        "classification": "purchased_extruder_internal_contact",
+        "scope": "Native source intersection reproduced before registration. Retained source contact is recorded separately; it does not establish physical fit, thread tolerance or rolling/belt preload."
+      },
+      {
+        "a": "belted_572",
+        "b": "belted_573",
+        "names": [
+          "Belted Z · Rollers",
+          "Belted Z · 625pillow"
+        ],
+        "volume_mm3": 0.0027820117672579816,
+        "bounds_mm": [
+          [
+            105.89636371207322,
+            180.9718159270607,
+            10.499989799998238
+          ],
+          [
+            121.89638391207322,
+            196.97183614541538,
+            15.000010211795505
+          ]
+        ],
+        "mode": "belted",
+        "classification": "expanded_bearing_bound_contact",
+        "scope": "Conservative annulus adds material at nominal bearing seating faces. This bound contact is not a native purchased-solid interference result."
+      },
+      {
+        "a": "belted_572",
+        "b": "belted_574",
+        "names": [
+          "Belted Z · Rollers",
+          "Belted Z · 625pillow"
+        ],
+        "volume_mm3": 0.0036333328704678536,
+        "bounds_mm": [
+          [
+            105.89636376207324,
+            180.97181582706074,
+            4.999989799998406
+          ],
+          [
+            121.89638396224085,
+            196.97183602706073,
+            9.500010199998153
+          ]
+        ],
+        "mode": "belted",
+        "classification": "expanded_bearing_bound_contact",
+        "scope": "Conservative annulus adds material at nominal bearing seating faces. This bound contact is not a native purchased-solid interference result."
+      },
+      {
+        "a": "belted_573",
+        "b": "belted_575",
+        "names": [
+          "Belted Z · 625pillow",
+          "Belted Z · Eccentric column"
+        ],
+        "volume_mm3": 0.00017419918280888803,
+        "bounds_mm": [
+          [
+            110.39636365951011,
+            185.47181582709834,
+            15.499999999953609
+          ],
+          [
+            117.39638385943385,
+            192.47183602702205,
+            15.500010099998242
+          ]
+        ],
+        "mode": "belted",
+        "classification": "expanded_bearing_bound_contact",
+        "scope": "Conservative annulus adds material at nominal bearing seating faces. This bound contact is not a native purchased-solid interference result."
+      },
+      {
+        "a": "belted_574",
+        "b": "belted_576",
+        "names": [
+          "Belted Z · 625pillow",
+          "Belted Z · Spacers for rollers"
+        ],
+        "volume_mm3": 0.00026772260044861387,
+        "bounds_mm": [
+          [
+            109.89637376207305,
+            184.97182592706076,
+            4.499989899998099
+          ],
+          [
+            117.89637376207305,
+            192.97182592706076,
+            4.499999999998289
+          ]
+        ],
+        "mode": "belted",
+        "classification": "expanded_bearing_bound_contact",
+        "scope": "Conservative annulus adds material at nominal bearing seating faces. This bound contact is not a native purchased-solid interference result."
+      },
+      {
+        "a": "belted_579",
+        "b": "belted_580",
+        "names": [
+          "Belted Z · Rollers",
+          "Belted Z · 625pillow"
+        ],
+        "volume_mm3": 0.0027820114164642997,
+        "bounds_mm": [
+          [
+            166.69237819130177,
+            216.83892164416108,
+            10.499989799997557
+          ],
+          [
+            182.69239839130177,
+            232.83894186251624,
+            15.000010099999445
+          ]
+        ],
+        "mode": "belted",
+        "classification": "expanded_bearing_bound_contact",
+        "scope": "Conservative annulus adds material at nominal bearing seating faces. This bound contact is not a native purchased-solid interference result."
+      },
+      {
+        "a": "belted_579",
+        "b": "belted_581",
+        "names": [
+          "Belted Z · Rollers",
+          "Belted Z · 625pillow"
+        ],
+        "volume_mm3": 0.0036171967608176203,
+        "bounds_mm": [
+          [
+            166.69237819130177,
+            216.83892164416096,
+            4.999989899997863
+          ],
+          [
+            182.69239839146937,
+            232.83894184416096,
+            9.500010149997545
+          ]
+        ],
+        "mode": "belted",
+        "classification": "expanded_bearing_bound_contact",
+        "scope": "Conservative annulus adds material at nominal bearing seating faces. This bound contact is not a native purchased-solid interference result."
+      },
+      {
+        "a": "belted_580",
+        "b": "belted_582",
+        "names": [
+          "Belted Z · 625pillow",
+          "Belted Z · Spacers for rollers"
+        ],
+        "volume_mm3": 0.0002677226006806893,
+        "bounds_mm": [
+          [
+            170.69238829130174,
+            220.8389317441612,
+            15.499999999997469
+          ],
+          [
+            178.69238829130177,
+            228.8389317441612,
+            15.500010099997617
+          ]
+        ],
+        "mode": "belted",
+        "classification": "expanded_bearing_bound_contact",
+        "scope": "Conservative annulus adds material at nominal bearing seating faces. This bound contact is not a native purchased-solid interference result."
+      },
+      {
+        "a": "belted_581",
+        "b": "belted_583",
+        "names": [
+          "Belted Z · 625pillow",
+          "Belted Z · Spacers for rollers"
+        ],
+        "volume_mm3": 0.00026904795577501107,
+        "bounds_mm": [
+          [
+            170.69238829130163,
+            220.838931744161,
+            4.4999898499974815
+          ],
+          [
+            178.69238829130163,
+            228.838931744161,
+            4.499999999997587
+          ]
+        ],
+        "mode": "belted",
+        "classification": "expanded_bearing_bound_contact",
+        "scope": "Conservative annulus adds material at nominal bearing seating faces. This bound contact is not a native purchased-solid interference result."
+      },
+      {
+        "a": "belted_586",
+        "b": "belted_587",
+        "names": [
+          "Belted Z · Rollers",
+          "Belted Z · 625pillow"
+        ],
+        "volume_mm3": 0.0027768626110387068,
+        "bounds_mm": [
+          [
+            166.69237824130175,
+            145.83892164400882,
+            10.49998989999765
+          ],
+          [
+            182.69239844130175,
+            161.8389418625162,
+            15.000010149999193
+          ]
+        ],
+        "mode": "belted",
+        "classification": "expanded_bearing_bound_contact",
+        "scope": "Conservative annulus adds material at nominal bearing seating faces. This bound contact is not a native purchased-solid interference result."
+      },
+      {
+        "a": "belted_586",
+        "b": "belted_588",
+        "names": [
+          "Belted Z · Rollers",
+          "Belted Z · 625pillow"
+        ],
+        "volume_mm3": 0.0036357553230565998,
+        "bounds_mm": [
+          [
+            166.69237829130185,
+            145.8389216941611,
+            4.9999897881917965
+          ],
+          [
+            182.69239849146945,
+            161.83894189416108,
+            9.50001024999767
+          ]
+        ],
+        "mode": "belted",
+        "classification": "expanded_bearing_bound_contact",
+        "scope": "Conservative annulus adds material at nominal bearing seating faces. This bound contact is not a native purchased-solid interference result."
+      },
+      {
+        "a": "belted_587",
+        "b": "belted_589",
+        "names": [
+          "Belted Z · 625pillow",
+          "Belted Z · Spacers for rollers"
+        ],
+        "volume_mm3": 0.00026772260106954724,
+        "bounds_mm": [
+          [
+            170.69238829130182,
+            149.8389317441613,
+            15.499999999997554
+          ],
+          [
+            178.69238829130182,
+            157.8389317441613,
+            15.500010099997715
+          ]
+        ],
+        "mode": "belted",
+        "classification": "expanded_bearing_bound_contact",
+        "scope": "Conservative annulus adds material at nominal bearing seating faces. This bound contact is not a native purchased-solid interference result."
+      },
+      {
+        "a": "belted_588",
+        "b": "belted_590",
+        "names": [
+          "Belted Z · 625pillow",
+          "Belted Z · Spacers for rollers"
+        ],
+        "volume_mm3": 0.00026639723731809685,
+        "bounds_mm": [
+          [
+            170.69238829130174,
+            149.83893174416113,
+            4.499989949997611
+          ],
+          [
+            178.69238829130174,
+            157.83893174416113,
+            4.49999999999767
+          ]
+        ],
+        "mode": "belted",
+        "classification": "expanded_bearing_bound_contact",
+        "scope": "Conservative annulus adds material at nominal bearing seating faces. This bound contact is not a native purchased-solid interference result."
+      },
+      {
+        "a": "belted_593",
+        "b": "belted_594",
+        "names": [
+          "Belted Z · Rollers",
+          "Belted Z · 625pillow"
+        ],
+        "volume_mm3": 0.0027820117794107894,
+        "bounds_mm": [
+          [
+            -122.41887723478703,
+            181.5003466080177,
+            10.499989799997968
+          ],
+          [
+            -106.41885703478704,
+            197.50036682938287,
+            15.000010099998354
+          ]
+        ],
+        "mode": "belted",
+        "classification": "expanded_bearing_bound_contact",
+        "scope": "Conservative annulus adds material at nominal bearing seating faces. This bound contact is not a native purchased-solid interference result."
+      },
+      {
+        "a": "belted_593",
+        "b": "belted_595",
+        "names": [
+          "Belted Z · Rollers",
+          "Belted Z · 625pillow"
+        ],
+        "volume_mm3": 0.0036128381540265764,
+        "bounds_mm": [
+          [
+            -122.41887728478702,
+            181.50034666102778,
+            4.9999898881927045
+          ],
+          [
+            -106.4188570846194,
+            197.50036686102777,
+            9.500010199997982
+          ]
+        ],
+        "mode": "belted",
+        "classification": "expanded_bearing_bound_contact",
+        "scope": "Conservative annulus adds material at nominal bearing seating faces. This bound contact is not a native purchased-solid interference result."
+      },
+      {
+        "a": "belted_594",
+        "b": "belted_596",
+        "names": [
+          "Belted Z · 625pillow",
+          "Belted Z · Spacers for rollers"
+        ],
+        "volume_mm3": 0.00026772260215705536,
+        "bounds_mm": [
+          [
+            -118.41886713478699,
+            185.500356711028,
+            15.49999999999779
+          ],
+          [
+            -110.41886713478698,
+            193.50035671102802,
+            15.50001009999802
+          ]
+        ],
+        "mode": "belted",
+        "classification": "expanded_bearing_bound_contact",
+        "scope": "Conservative annulus adds material at nominal bearing seating faces. This bound contact is not a native purchased-solid interference result."
+      },
+      {
+        "a": "belted_595",
+        "b": "belted_597",
+        "names": [
+          "Belted Z · 625pillow",
+          "Belted Z · Eccentric column"
+        ],
+        "volume_mm3": 0.00017419917698120854,
+        "bounds_mm": [
+          [
+            -117.91887723474929,
+            186.00034661106582,
+            4.499989899997982
+          ],
+          [
+            -110.9188570348262,
+            193.0003668109889,
+            4.5000000000422915
+          ]
+        ],
+        "mode": "belted",
+        "classification": "expanded_bearing_bound_contact",
+        "scope": "Conservative annulus adds material at nominal bearing seating faces. This bound contact is not a native purchased-solid interference result."
+      },
+      {
+        "a": "belted_600",
+        "b": "belted_601",
+        "names": [
+          "Belted Z · Rollers",
+          "Belted Z · 625pillow"
+        ],
+        "volume_mm3": 0.0027820115954820834,
+        "bounds_mm": [
+          [
+            -183.3000100499987,
+            216.83892169400357,
+            10.499989799998152
+          ],
+          [
+            -167.2999898499987,
+            232.83894191251517,
+            15.00001017070752
+          ]
+        ],
+        "mode": "belted",
+        "classification": "expanded_bearing_bound_contact",
+        "scope": "Conservative annulus adds material at nominal bearing seating faces. This bound contact is not a native purchased-solid interference result."
+      },
+      {
+        "a": "belted_600",
+        "b": "belted_602",
+        "names": [
+          "Belted Z · Rollers",
+          "Belted Z · 625pillow"
+        ],
+        "volume_mm3": 0.003626551948439527,
+        "bounds_mm": [
+          [
+            -183.3000100499987,
+            216.83892164416028,
+            4.999989849997816
+          ],
+          [
+            -167.2999898498311,
+            232.83894184416027,
+            9.500010199998153
+          ]
+        ],
+        "mode": "belted",
+        "classification": "expanded_bearing_bound_contact",
+        "scope": "Conservative annulus adds material at nominal bearing seating faces. This bound contact is not a native purchased-solid interference result."
+      },
+      {
+        "a": "belted_601",
+        "b": "belted_603",
+        "names": [
+          "Belted Z · 625pillow",
+          "Belted Z · Spacers for rollers"
+        ],
+        "volume_mm3": 0.00026772260087115716,
+        "bounds_mm": [
+          [
+            -179.2999999999987,
+            220.83893174416002,
+            15.49999999999809
+          ],
+          [
+            -171.2999999999987,
+            228.83893174416002,
+            15.500010099998203
+          ]
+        ],
+        "mode": "belted",
+        "classification": "expanded_bearing_bound_contact",
+        "scope": "Conservative annulus adds material at nominal bearing seating faces. This bound contact is not a native purchased-solid interference result."
+      },
+      {
+        "a": "belted_602",
+        "b": "belted_604",
+        "names": [
+          "Belted Z · 625pillow",
+          "Belted Z · Spacers for rollers"
+        ],
+        "volume_mm3": 0.0002677225967934386,
+        "bounds_mm": [
+          [
+            -179.29999999999868,
+            220.8389317441602,
+            4.499989899998099
+          ],
+          [
+            -171.29999999999868,
+            228.8389317441602,
+            4.499999999998117
+          ]
+        ],
+        "mode": "belted",
+        "classification": "expanded_bearing_bound_contact",
+        "scope": "Conservative annulus adds material at nominal bearing seating faces. This bound contact is not a native purchased-solid interference result."
+      },
+      {
+        "a": "belted_607",
+        "b": "belted_608",
+        "names": [
+          "Belted Z · Rollers",
+          "Belted Z · 625pillow"
+        ],
+        "volume_mm3": 0.0027820117683489457,
+        "bounds_mm": [
+          [
+            -183.30000999999976,
+            145.83892159416013,
+            10.499989799998325
+          ],
+          [
+            -167.29998979999976,
+            161.83894181251517,
+            15.00001021180291
+          ]
+        ],
+        "mode": "belted",
+        "classification": "expanded_bearing_bound_contact",
+        "scope": "Conservative annulus adds material at nominal bearing seating faces. This bound contact is not a native purchased-solid interference result."
+      },
+      {
+        "a": "belted_607",
+        "b": "belted_609",
+        "names": [
+          "Belted Z · Rollers",
+          "Belted Z · 625pillow"
+        ],
+        "volume_mm3": 0.003626247378718972,
+        "bounds_mm": [
+          [
+            -183.30001004999974,
+            145.8389217441602,
+            4.999989789517608
+          ],
+          [
+            -167.29998984983214,
+            161.83894194416018,
+            9.500010199998295
+          ]
+        ],
+        "mode": "belted",
+        "classification": "expanded_bearing_bound_contact",
+        "scope": "Conservative annulus adds material at nominal bearing seating faces. This bound contact is not a native purchased-solid interference result."
+      },
+      {
+        "a": "belted_608",
+        "b": "belted_610",
+        "names": [
+          "Belted Z · 625pillow",
+          "Belted Z · Spacers for rollers"
+        ],
+        "volume_mm3": 0.0002677226003902216,
+        "bounds_mm": [
+          [
+            -179.2999999999997,
+            149.83893174416,
+            15.499999999998217
+          ],
+          [
+            -171.2999999999997,
+            157.83893174416002,
+            15.500010099998374
+          ]
+        ],
+        "mode": "belted",
+        "classification": "expanded_bearing_bound_contact",
+        "scope": "Conservative annulus adds material at nominal bearing seating faces. This bound contact is not a native purchased-solid interference result."
+      },
+      {
+        "a": "belted_609",
+        "b": "belted_611",
+        "names": [
+          "Belted Z · 625pillow",
+          "Belted Z · Spacers for rollers"
+        ],
+        "volume_mm3": 0.00026772259716455107,
+        "bounds_mm": [
+          [
+            -179.29999999999973,
+            149.83893174416016,
+            4.499989899998243
+          ],
+          [
+            -171.29999999999973,
+            157.83893174416016,
+            4.499999999998344
+          ]
+        ],
+        "mode": "belted",
+        "classification": "expanded_bearing_bound_contact",
+        "scope": "Conservative annulus adds material at nominal bearing seating faces. This bound contact is not a native purchased-solid interference result."
+      },
+      {
+        "a": "belted_579",
+        "b": "00004",
+        "names": [
+          "Belted Z · Rollers",
+          "2040-3R profile"
+        ],
+        "volume_mm3": 10.301689055689774,
+        "bounds_mm": [
+          [
+            163.19999999999985,
+            221.06080387561468,
+            4.899999999997317
+          ],
+          [
+            165.00000000000009,
+            228.61705961270715,
+            15.099999999997717
+          ]
+        ],
+        "mode": "belted",
+        "upstream_contact_mm3": 8.901311662166743,
+        "original_Creality_rolling_contact_mm3": 10.301689055686456,
+        "baseline_purchased_shape_sha256": "fcffd4f240d3b75368b6a88bec190288babce88f12c2dfa11f513ab372d13e7a",
+        "classification": "native_vwheel_rolling_preload",
+        "scope": "The same purchased native Creality outer V-wheel reproduces this upright contact at the original stock axes. The author extrusion lip differs slightly. This is retained rolling engagement, not a free-clearance or physical preload certification."
+      },
+      {
+        "a": "belted_586",
+        "b": "00004",
+        "names": [
+          "Belted Z · Rollers",
+          "2040-3R profile"
+        ],
+        "volume_mm3": 10.301689055681132,
+        "bounds_mm": [
+          [
+            163.19999999999928,
+            150.06080387561272,
+            4.899999999997303
+          ],
+          [
+            165.00000000000034,
+            157.61705961270965,
+            15.099999999997744
+          ]
+        ],
+        "mode": "belted",
+        "upstream_contact_mm3": 8.90131166214924,
+        "original_Creality_rolling_contact_mm3": 10.30168905568763,
+        "baseline_purchased_shape_sha256": "fcffd4f240d3b75368b6a88bec190288babce88f12c2dfa11f513ab372d13e7a",
+        "classification": "native_vwheel_rolling_preload",
+        "scope": "The same purchased native Creality outer V-wheel reproduces this upright contact at the original stock axes. The author extrusion lip differs slightly. This is retained rolling engagement, not a free-clearance or physical preload certification."
+      },
+      {
+        "a": "klack_181",
+        "b": "klack_184",
+        "names": [
+          "KlackEnder · Probe_Block · Omron_D2F_F v1",
+          "KlackEnder · Probe_Block · 6x3mm Magnet v1 (1)"
+        ],
+        "volume_mm3": 0.3207763490701414,
+        "bounds_mm": [
+          [
+            6.80706166909301,
+            155.28893174416106,
+            41.75000000000019
+          ],
+          [
+            7.707061669093022,
+            157.93893174416107,
+            41.9000000000003
+          ]
+        ],
+        "mode": "klack",
+        "upstream_contact_mm3": 0.3207763490699933,
+        "classification": "switch_terminal_magnet_connection",
+        "scope": "Native source intersection reproduced before registration. Retained source contact is recorded separately; it does not establish physical fit, thread tolerance or rolling/belt preload."
+      },
+      {
+        "a": "klack_181",
+        "b": "klack_185",
+        "names": [
+          "KlackEnder · Probe_Block · Omron_D2F_F v1",
+          "KlackEnder · Probe_Block · 6x3mm Magnet v1 (1)"
+        ],
+        "volume_mm3": 0.3207763490701732,
+        "bounds_mm": [
+          [
+            16.967061669093006,
+            155.28893174416106,
+            41.75000000000019
+          ],
+          [
+            17.86706166909302,
+            157.93893174416107,
+            41.900000000000304
+          ]
+        ],
+        "mode": "klack",
+        "upstream_contact_mm3": 0.32077634907029234,
+        "classification": "switch_terminal_magnet_connection",
+        "scope": "Native source intersection reproduced before registration. Retained source contact is recorded separately; it does not establish physical fit, thread tolerance or rolling/belt preload."
+      }
+    ],
+    "unresolved_new_contacts": [],
+    "full_physical_fit_certified": false,
+    "scope": "Contact classification against original native source solids, including retained upstream interference and conservative bearing bounds. No contact is silently discarded. This does not convert source preload/internal contacts into a collision-free assembly claim."
+  },
+  "continuous_rigid_travel": {
+    "all_passed": true,
+    "model_sha256": "d9d38f5a8488877a36b8cf4385826dff9ca83fb96214f40de569693d8f52d898",
+    "native_checks": 594,
+    "certified_translation_cells": 236894,
+    "configurations": [
+      {
+        "configuration": "stock",
+        "rigid_new_parts": 0,
+        "native_comparisons": 0,
+        "certified_translation_cells": 0,
+        "axis_ranges_mm": [
+          [
+            -100,
+            100
+          ],
+          [
+            -100,
+            100
+          ],
+          [
+            -50,
+            190
+          ]
+        ]
+      },
+      {
+        "configuration": "stock__stock__klack",
+        "rigid_new_parts": 19,
+        "native_comparisons": 207,
+        "certified_translation_cells": 5959,
+        "axis_ranges_mm": [
+          [
+            -100,
+            100
+          ],
+          [
+            -100,
+            100
+          ],
+          [
+            -40,
+            190
+          ]
+        ]
+      },
+      {
+        "configuration": "stock__belted__none",
+        "rigid_new_parts": 163,
+        "native_comparisons": 372,
+        "certified_translation_cells": 50391,
+        "axis_ranges_mm": [
+          [
+            -100,
+            100
+          ],
+          [
+            -100,
+            100
+          ],
+          [
+            -50,
+            190
+          ]
+        ]
+      },
+      {
+        "configuration": "stock__belted__klack",
+        "rigid_new_parts": 182,
+        "native_comparisons": 13,
+        "certified_translation_cells": 57967,
+        "axis_ranges_mm": [
+          [
+            -100,
+            100
+          ],
+          [
+            -100,
+            100
+          ],
+          [
+            -40,
+            190
+          ]
+        ]
+      },
+      {
+        "configuration": "hydra_bowden_4010",
+        "rigid_new_parts": 0,
+        "native_comparisons": 0,
+        "certified_translation_cells": 0,
+        "axis_ranges_mm": [
+          [
+            -100,
+            100
+          ],
+          [
+            -100,
+            100
+          ],
+          [
+            -50,
+            190
+          ]
+        ]
+      },
+      {
+        "configuration": "hydra__stock__klack",
+        "rigid_new_parts": 19,
+        "native_comparisons": 2,
+        "certified_translation_cells": 6308,
+        "axis_ranges_mm": [
+          [
+            -100,
+            100
+          ],
+          [
+            -100,
+            100
+          ],
+          [
+            -40,
+            190
+          ]
+        ]
+      },
+      {
+        "configuration": "hydra__belted__none",
+        "rigid_new_parts": 163,
+        "native_comparisons": 0,
+        "certified_translation_cells": 54116,
+        "axis_ranges_mm": [
+          [
+            -100,
+            100
+          ],
+          [
+            -100,
+            100
+          ],
+          [
+            -50,
+            190
+          ]
+        ]
+      },
+      {
+        "configuration": "hydra__belted__klack",
+        "rigid_new_parts": 182,
+        "native_comparisons": 0,
+        "certified_translation_cells": 62153,
+        "axis_ranges_mm": [
+          [
+            -100,
+            100
+          ],
+          [
+            -100,
+            100
+          ],
+          [
+            -40,
+            190
+          ]
+        ]
+      }
+    ],
+    "uniform_extrusion_proofs": [
+      {
+        "key": "00004",
+        "axis": 1,
+        "material_outside_envelope_mm3": 0.0,
+        "extra_envelope_mm3": 74825.48987501103
+      },
+      {
+        "key": "00005",
+        "axis": 1,
+        "material_outside_envelope_mm3": 0.0,
+        "extra_envelope_mm3": 74721.51038444132
+      },
+      {
+        "key": "00030",
+        "axis": 0,
+        "material_outside_envelope_mm3": 0.0,
+        "extra_envelope_mm3": 4889.046673926241
+      }
+    ],
+    "failures": [],
+    "unresolved": [],
+    "full_physical_fit_certified": false,
+    "scope": "All eight registered configurations: new Belted Z/KlackEnder rigid solids against retained native stock/HYDRA and new solids. Continuous relative translation is resolved by disjoint swept bounds, exact containing native extrusion or adaptive native distance minus translation radius. Source mating and rolling contacts are separately recorded; flexible backing, thread preload, manufacturing and automatic probe pickup are not certified."
+  },
+  "relocated_retained_parts": {
+    "all_passed": true,
+    "model_sha256": "d9d38f5a8488877a36b8cf4385826dff9ca83fb96214f40de569693d8f52d898",
+    "retained_native_part_sha256": {
+      "00292": "0f119f6d1d1b65e9fadc6951f138b864174f9435d5896491168458d59e6081d7",
+      "00294": "448818374f314348c21a2c35192a3b13d79dda7cd1b1b1e1e955ae96af7f6f8b",
+      "00295": "1861450687f0f1546deaef0f36530e5efe7f4de9cf866d7444b000935db9d084",
+      "00291": "cd530e5c959e83fabde46b3e7b8337365c58635f2ee4680b1ea51a1697828a0c",
+      "00121": "7f2fd7d236244b8802024dcb82fa55a7f0bcead4db4af2cf69dce09996a7b353",
+      "00297": "65697069da02218a9f928a1cce1c3fc8f9d07b8bd834fb7f50e6b33602996f83",
+      "00296": "385f7a39196a3ed0de43d98d034b23813b532d836e2b10ed065147f9690d1e39"
+    },
+    "results": [
+      {
+        "configuration": "stock",
+        "retained_changed_keys": [],
+        "native_checks": 0,
+        "certified_translation_cells": 0,
+        "unchanged_native_internal_pair_placements": 0
+      },
+      {
+        "configuration": "stock__stock__klack",
+        "retained_changed_keys": [
+          "00121"
+        ],
+        "native_checks": 1,
+        "certified_translation_cells": 299,
+        "unchanged_native_internal_pair_placements": 0
+      },
+      {
+        "configuration": "stock__belted__none",
+        "retained_changed_keys": [
+          "00291",
+          "00292",
+          "00294",
+          "00295",
+          "00296",
+          "00297"
+        ],
+        "native_checks": 0,
+        "certified_translation_cells": 1350,
+        "unchanged_native_internal_pair_placements": 12
+      },
+      {
+        "configuration": "stock__belted__klack",
+        "retained_changed_keys": [
+          "00291",
+          "00292",
+          "00294",
+          "00295",
+          "00296",
+          "00297"
+        ],
+        "native_checks": 0,
+        "certified_translation_cells": 1350,
+        "unchanged_native_internal_pair_placements": 12
+      },
+      {
+        "configuration": "hydra_bowden_4010",
+        "retained_changed_keys": [],
+        "native_checks": 0,
+        "certified_translation_cells": 0,
+        "unchanged_native_internal_pair_placements": 0
+      },
+      {
+        "configuration": "hydra__stock__klack",
+        "retained_changed_keys": [
+          "00121"
+        ],
+        "native_checks": 0,
+        "certified_translation_cells": 322,
+        "unchanged_native_internal_pair_placements": 0
+      },
+      {
+        "configuration": "hydra__belted__none",
+        "retained_changed_keys": [
+          "00291",
+          "00292",
+          "00294",
+          "00295",
+          "00296",
+          "00297"
+        ],
+        "native_checks": 0,
+        "certified_translation_cells": 1488,
+        "unchanged_native_internal_pair_placements": 12
+      },
+      {
+        "configuration": "hydra__belted__klack",
+        "retained_changed_keys": [
+          "00291",
+          "00292",
+          "00294",
+          "00295",
+          "00296",
+          "00297"
+        ],
+        "native_checks": 0,
+        "certified_translation_cells": 1488,
+        "unchanged_native_internal_pair_placements": 12
+      }
+    ],
+    "intended_shank_contacts": [
+      {
+        "a": "00121",
+        "b": "00119",
+        "volume_mm3": 22.131827203208903
+      }
+    ],
+    "failures": [],
+    "unresolved": [],
+    "scope": "Relocated native PSU/switch/fasteners and the KlackEnder stock nut against retained original/HYDRA solids over continuous relative travel. Equal rigid rest and velocity preserves original purchased-subassembly placement, which is counted separately. Added B/K solids are checked in TRAVEL_QA. No physical or original-source assembly certification."
+  },
+  "belt_display": {
+    "all_passed": true,
+    "model_sha256": "d9d38f5a8488877a36b8cf4385826dff9ca83fb96214f40de569693d8f52d898",
+    "source_cut_end_vertices": {
+      "lower": 12,
+      "upper": 24,
+      "fixed_return": 352
+    },
+    "poses": [
+      {
+        "z": -50,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -47.6,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -45.2,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -42.8,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -40.4,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -38,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -35.6,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -33.2,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -30.8,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -28.4,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -26,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -23.6,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -21.2,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -18.8,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -16.4,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -14,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -11.600000000000001,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -9.200000000000003,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -6.799999999999997,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -4.399999999999999,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -2,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 0.3999999999999986,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 2.799999999999997,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 5.200000000000003,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 7.600000000000001,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 10,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 12.399999999999999,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 14.799999999999997,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 17.200000000000003,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 19.599999999999994,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 22,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 24.400000000000006,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 26.799999999999997,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 29.200000000000003,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 31.599999999999994,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 34,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 36.400000000000006,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 38.8,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 41.2,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 43.599999999999994,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 46,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 48.400000000000006,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 50.8,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 53.2,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 55.599999999999994,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 58,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 60.400000000000006,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 62.8,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 65.2,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 67.6,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 70,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 72.4,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 74.8,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 77.2,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 79.6,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 82,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 84.4,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 86.80000000000001,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 89.19999999999999,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 91.6,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 94,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 96.4,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 98.80000000000001,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 101.19999999999999,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 103.6,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 106,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 108.4,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 110.80000000000001,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 113.19999999999999,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 115.6,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 118,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 120.4,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 122.80000000000001,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 125.19999999999999,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 127.6,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 130,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 132.4,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 134.8,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 137.2,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 139.6,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 142,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 144.4,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 146.8,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 149.2,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 151.6,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 154,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 156.4,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 158.8,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 161.2,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 163.6,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 166,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 168.4,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 170.8,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 173.2,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 175.6,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 178,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 180.4,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 182.8,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 185.2,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 187.6,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 190,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 190,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 187.6,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 185.2,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 182.8,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 180.4,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 178,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 175.6,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 173.2,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 170.8,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 168.4,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 166,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 163.6,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 161.2,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 158.8,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 156.4,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 154,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 151.6,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 149.2,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 146.8,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 144.4,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 142,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 139.6,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 137.2,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 134.8,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 132.4,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 130,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 127.6,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 125.2,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 122.8,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 120.4,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 118,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 115.6,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 113.2,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 110.8,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 108.4,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 106,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 103.6,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 101.2,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 98.8,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 96.4,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 94,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 91.6,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 89.2,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 86.8,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 84.4,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 82,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 79.6,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 77.2,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 74.8,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 72.4,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 70,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 67.6,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 65.2,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 62.8,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 60.400000000000006,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 58,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 55.599999999999994,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 53.19999999999999,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 50.80000000000001,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 48.400000000000006,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 46,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 43.599999999999994,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 41.19999999999999,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 38.80000000000001,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 36.400000000000006,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 34,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 31.599999999999994,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 29.19999999999999,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 26.80000000000001,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 24.400000000000006,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 22,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 19.599999999999994,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 17.19999999999999,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 14.800000000000011,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 12.400000000000006,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 10,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 7.599999999999994,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 5.199999999999989,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 2.8000000000000114,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": 0.4000000000000057,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -2,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -4.400000000000006,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -6.800000000000011,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -9.199999999999989,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -11.599999999999994,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -14,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -16.400000000000006,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -18.80000000000001,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -21.19999999999999,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -23.599999999999994,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -26,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -28.400000000000006,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -30.80000000000001,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -33.19999999999999,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -35.599999999999994,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -38,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -40.400000000000006,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -42.80000000000001,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -45.19999999999999,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -47.599999999999994,
+        "marks": [
+          431,
+          431
+        ]
+      },
+      {
+        "z": -50,
+        "marks": [
+          431,
+          431
+        ]
+      }
+    ],
+    "scope": "Actual native 6 mm backing export: both cut-end vertex sets follow Z, return-side vertices remain fixed, width/depth coordinates are preserved, pitch-marker count is stable and exact reset restores source. Markers have 2 mm pitch; manufactured GT2 tooth profile, clamp friction and belt tension are not simulated."
+  },
+  "source_revisions": {
+    "belted": "6696a2f198f897e295a08c9a504cfcc2d6c1e57e",
+    "klack": "5e6db594cd14b856a31f86e7d1cfcc709bb6a030"
+  },
+  "printed_adjustments": [
+    {
+      "key": "belted_227",
+      "adaptations": [
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 0.9093598359104362,
+          "reason": "Clear the inspected native purchased mating feature; retain its bore axis and all purchased hardware dimensions.",
+          "purchased_geometry_retained": true
+        }
+      ]
+    },
+    {
+      "key": "belted_228",
+      "adaptations": [
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 0.014748865036381176,
+          "reason": "Relieve the native screw-head seating edge; the pilot bore and purchased screw are retained.",
+          "purchased_geometry_retained": true
+        },
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 0.014632809819886461,
+          "reason": "Relieve the native screw-head seating edge; the pilot bore and purchased screw are retained.",
+          "purchased_geometry_retained": true
+        },
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 0.014309498094007722,
+          "reason": "Relieve the native screw-head seating edge; the pilot bore and purchased screw are retained.",
+          "purchased_geometry_retained": true
+        },
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 0.014281680010753917,
+          "reason": "Relieve the native screw-head seating edge; the pilot bore and purchased screw are retained.",
+          "purchased_geometry_retained": true
+        },
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 1.8476835995006695,
+          "reason": "Clear the inspected native purchased mating feature; retain its bore axis and all purchased hardware dimensions.",
+          "purchased_geometry_retained": true
+        }
+      ]
+    },
+    {
+      "key": "belted_229",
+      "adaptations": [
+        {
+          "kind": "rigid_registration",
+          "translation_mm": [
+            0,
+            0.0608997902086,
+            -0.0546404554786
+          ],
+          "reason": "Register the complete motor/pulley/belt transmission to the actual 8 mm shaft axis; retain its source relative placements."
+        }
+      ]
+    },
+    {
+      "key": "belted_230",
+      "adaptations": [
+        {
+          "kind": "rigid_registration",
+          "translation_mm": [
+            0,
+            0.0608997902086,
+            -0.0546404554786
+          ],
+          "reason": "Register the complete motor/pulley/belt transmission to the actual 8 mm shaft axis; retain its source relative placements."
+        }
+      ]
+    },
+    {
+      "key": "belted_231",
+      "adaptations": [
+        {
+          "kind": "rigid_registration",
+          "translation_mm": [
+            0,
+            0.0608997902086,
+            -0.0546404554786
+          ],
+          "reason": "Register the complete motor/pulley/belt transmission to the actual 8 mm shaft axis; retain its source relative placements."
+        }
+      ]
+    },
+    {
+      "key": "belted_232",
+      "adaptations": [
+        {
+          "kind": "rigid_registration",
+          "translation_mm": [
+            0,
+            0.0608997902086,
+            -0.0546404554786
+          ],
+          "reason": "Register the complete motor/pulley/belt transmission to the actual 8 mm shaft axis; retain its source relative placements."
+        }
+      ]
+    },
+    {
+      "key": "belted_233",
+      "adaptations": [
+        {
+          "kind": "rigid_registration",
+          "translation_mm": [
+            0,
+            0.0608997902086,
+            -0.0546404554786
+          ],
+          "reason": "Register the complete motor/pulley/belt transmission to the actual 8 mm shaft axis; retain its source relative placements."
+        }
+      ]
+    },
+    {
+      "key": "belted_234",
+      "adaptations": [
+        {
+          "kind": "rigid_registration",
+          "translation_mm": [
+            0,
+            0.0608997902086,
+            -0.0546404554786
+          ],
+          "reason": "Register the complete motor/pulley/belt transmission to the actual 8 mm shaft axis; retain its source relative placements."
+        }
+      ]
+    },
+    {
+      "key": "belted_235",
+      "adaptations": [
+        {
+          "kind": "rigid_registration",
+          "translation_mm": [
+            0,
+            0.0608997902086,
+            -0.0546404554786
+          ],
+          "reason": "Register the complete motor/pulley/belt transmission to the actual 8 mm shaft axis; retain its source relative placements."
+        }
+      ]
+    },
+    {
+      "key": "belted_236",
+      "adaptations": [
+        {
+          "kind": "rigid_registration",
+          "translation_mm": [
+            0,
+            0.0608997902086,
+            -0.0546404554786
+          ],
+          "reason": "Register the complete motor/pulley/belt transmission to the actual 8 mm shaft axis; retain its source relative placements."
+        }
+      ]
+    },
+    {
+      "key": "belted_237",
+      "adaptations": [
+        {
+          "kind": "rigid_registration",
+          "translation_mm": [
+            0,
+            0.0608997902086,
+            -0.0546404554786
+          ],
+          "reason": "Register the complete motor/pulley/belt transmission to the actual 8 mm shaft axis; retain its source relative placements."
+        }
+      ]
+    },
+    {
+      "key": "belted_238",
+      "adaptations": [
+        {
+          "kind": "rigid_registration",
+          "translation_mm": [
+            0,
+            0.0608997902086,
+            -0.0546404554786
+          ],
+          "reason": "Register the complete motor/pulley/belt transmission to the actual 8 mm shaft axis; retain its source relative placements."
+        }
+      ]
+    },
+    {
+      "key": "belted_239",
+      "adaptations": [
+        {
+          "kind": "rigid_registration",
+          "translation_mm": [
+            0,
+            0.0608997902086,
+            -0.0546404554786
+          ],
+          "reason": "Register the complete motor/pulley/belt transmission to the actual 8 mm shaft axis; retain its source relative placements."
+        }
+      ]
+    },
+    {
+      "key": "belted_240",
+      "adaptations": [
+        {
+          "kind": "rigid_registration",
+          "translation_mm": [
+            0,
+            0.0608997902086,
+            -0.0546404554786
+          ],
+          "reason": "Register the complete motor/pulley/belt transmission to the actual 8 mm shaft axis; retain its source relative placements."
+        }
+      ]
+    },
+    {
+      "key": "belted_241",
+      "adaptations": [
+        {
+          "kind": "rigid_registration",
+          "translation_mm": [
+            0,
+            0.0608997902086,
+            -0.0546404554786
+          ],
+          "reason": "Register the complete motor/pulley/belt transmission to the actual 8 mm shaft axis; retain its source relative placements."
+        }
+      ]
+    },
+    {
+      "key": "belted_242",
+      "adaptations": [
+        {
+          "kind": "rigid_registration",
+          "translation_mm": [
+            0,
+            0.0608997902086,
+            -0.0546404554786
+          ],
+          "reason": "Register the complete motor/pulley/belt transmission to the actual 8 mm shaft axis; retain its source relative placements."
+        }
+      ]
+    },
+    {
+      "key": "belted_243",
+      "adaptations": [
+        {
+          "kind": "rigid_registration",
+          "translation_mm": [
+            0,
+            0.0608997902086,
+            -0.0546404554786
+          ],
+          "reason": "Register the complete motor/pulley/belt transmission to the actual 8 mm shaft axis; retain its source relative placements."
+        }
+      ]
+    },
+    {
+      "key": "belted_244",
+      "adaptations": [
+        {
+          "kind": "rigid_registration",
+          "translation_mm": [
+            0,
+            0.0608997902086,
+            -0.0546404554786
+          ],
+          "reason": "Register the complete motor/pulley/belt transmission to the actual 8 mm shaft axis; retain its source relative placements."
+        }
+      ]
+    },
+    {
+      "key": "belted_245",
+      "adaptations": [
+        {
+          "kind": "rigid_registration",
+          "translation_mm": [
+            0,
+            0.0608997902086,
+            -0.0546404554786
+          ],
+          "reason": "Register the complete motor/pulley/belt transmission to the actual 8 mm shaft axis; retain its source relative placements."
+        }
+      ]
+    },
+    {
+      "key": "belted_246",
+      "adaptations": [
+        {
+          "kind": "rigid_registration",
+          "translation_mm": [
+            0,
+            0.0608997902086,
+            -0.0546404554786
+          ],
+          "reason": "Register the complete motor/pulley/belt transmission to the actual 8 mm shaft axis; retain its source relative placements."
+        }
+      ]
+    },
+    {
+      "key": "belted_247",
+      "adaptations": [
+        {
+          "kind": "rigid_registration",
+          "translation_mm": [
+            0,
+            0.0608997902086,
+            -0.0546404554786
+          ],
+          "reason": "Register the complete motor/pulley/belt transmission to the actual 8 mm shaft axis; retain its source relative placements."
+        }
+      ]
+    },
+    {
+      "key": "belted_248",
+      "adaptations": [
+        {
+          "kind": "rigid_registration",
+          "translation_mm": [
+            0,
+            0.0608997902086,
+            -0.0546404554786
+          ],
+          "reason": "Register the complete motor/pulley/belt transmission to the actual 8 mm shaft axis; retain its source relative placements."
+        }
+      ]
+    },
+    {
+      "key": "belted_249",
+      "adaptations": [
+        {
+          "kind": "rigid_registration",
+          "translation_mm": [
+            0,
+            0.0608997902086,
+            -0.0546404554786
+          ],
+          "reason": "Register the complete motor/pulley/belt transmission to the actual 8 mm shaft axis; retain its source relative placements."
+        }
+      ]
+    },
+    {
+      "key": "belted_264",
+      "adaptations": [
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 1.0179297035574564,
+          "reason": "Clear the actual retained stock part at this holder/plate interface; purchased hardware retains its original dimensions.",
+          "purchased_geometry_retained": true
+        },
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 1.0180863307832624,
+          "reason": "Clear the actual retained stock part at this holder/plate interface; purchased hardware retains its original dimensions.",
+          "purchased_geometry_retained": true
+        }
+      ]
+    },
+    {
+      "key": "belted_275",
+      "adaptations": [
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 1.0179245525214355,
+          "reason": "Clear the actual retained stock part at this holder/plate interface; purchased hardware retains its original dimensions.",
+          "purchased_geometry_retained": true
+        },
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 1.017925204745552,
+          "reason": "Clear the actual retained stock part at this holder/plate interface; purchased hardware retains its original dimensions.",
+          "purchased_geometry_retained": true
+        }
+      ]
+    },
+    {
+      "key": "belted_503",
+      "adaptations": [
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 0.5795663827202588,
+          "reason": "Clear the inspected native purchased mating feature; retain its bore axis and all purchased hardware dimensions.",
+          "purchased_geometry_retained": true
+        },
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 0.6030786634837568,
+          "reason": "Clear the inspected native purchased mating feature; retain its bore axis and all purchased hardware dimensions.",
+          "purchased_geometry_retained": true
+        },
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 40.970220708751185,
+          "reason": "Clear the inspected native purchased mating feature; retain its bore axis and all purchased hardware dimensions.",
+          "purchased_geometry_retained": true
+        }
+      ]
+    },
+    {
+      "key": "belted_514",
+      "adaptations": [
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 0.5795663827157114,
+          "reason": "Clear the inspected native purchased mating feature; retain its bore axis and all purchased hardware dimensions.",
+          "purchased_geometry_retained": true
+        },
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 0.6030786634864853,
+          "reason": "Clear the inspected native purchased mating feature; retain its bore axis and all purchased hardware dimensions.",
+          "purchased_geometry_retained": true
+        },
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 40.970220708768466,
+          "reason": "Clear the inspected native purchased mating feature; retain its bore axis and all purchased hardware dimensions.",
+          "purchased_geometry_retained": true
+        }
+      ]
+    },
+    {
+      "key": "belted_539",
+      "adaptations": [
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 5.289438214247639,
+          "reason": "Clear the inspected native purchased mating feature; retain its bore axis and all purchased hardware dimensions.",
+          "purchased_geometry_retained": true
+        },
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 5.30227580153587,
+          "reason": "Clear the inspected native purchased mating feature; retain its bore axis and all purchased hardware dimensions.",
+          "purchased_geometry_retained": true
+        }
+      ]
+    },
+    {
+      "key": "belted_570",
+      "adaptations": [
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 8.89691513600701,
+          "reason": "Clear the inspected native purchased mating feature; retain its bore axis and all purchased hardware dimensions.",
+          "purchased_geometry_retained": true
+        },
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 11.447787410572346,
+          "reason": "Clear the inspected native purchased mating feature; retain its bore axis and all purchased hardware dimensions.",
+          "purchased_geometry_retained": true
+        },
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 0.03877793905121507,
+          "reason": "Clear the inspected native purchased mating feature; retain its bore axis and all purchased hardware dimensions.",
+          "purchased_geometry_retained": true
+        },
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 5.684344845925807,
+          "reason": "Clear the inspected native purchased mating feature; retain its bore axis and all purchased hardware dimensions.",
+          "purchased_geometry_retained": true
+        },
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 5.650922765453288,
+          "reason": "Clear the inspected native purchased mating feature; retain its bore axis and all purchased hardware dimensions.",
+          "purchased_geometry_retained": true
+        },
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 259.62401024382416,
+          "reason": "Clear the actual retained stock part at this holder/plate interface; purchased hardware retains its original dimensions.",
+          "purchased_geometry_retained": true
+        }
+      ]
+    },
+    {
+      "key": "belted_619",
+      "adaptations": [
+        {
+          "kind": "native_hex_phase_registration",
+          "angle_deg": 25,
+          "axis_point_mm": [
+            145.40800028610286,
+            182.83680914990998,
+            -19.140000178816138
+          ],
+          "axis_direction": [
+            2.949029909160572e-17,
+            1.0,
+            3.7004615335987823e-16
+          ],
+          "remaining_contact_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "key": "belted_620",
+      "adaptations": [
+        {
+          "kind": "native_hex_phase_registration",
+          "angle_deg": 25,
+          "axis_point_mm": [
+            -144.79161199480217,
+            182.83680914991004,
+            -19.14000017881571
+          ],
+          "axis_direction": [
+            -2.5037920965778433e-17,
+            1.0,
+            4.046416149470088e-16
+          ],
+          "remaining_contact_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "key": "belted_psu_holder",
+      "adaptations": [
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 1254.9788989533408,
+          "reason": "Clear the actual retained stock part at this holder/plate interface; purchased hardware retains its original dimensions.",
+          "purchased_geometry_retained": true
+        },
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 806.7508201868986,
+          "reason": "Clear the actual retained stock part at this holder/plate interface; purchased hardware retains its original dimensions.",
+          "purchased_geometry_retained": true
+        },
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 9.93567121324304,
+          "reason": "Clear the actual retained stock part at this holder/plate interface; purchased hardware retains its original dimensions.",
+          "purchased_geometry_retained": true
+        },
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 10.19016151339747,
+          "reason": "Clear the actual retained stock part at this holder/plate interface; purchased hardware retains its original dimensions.",
+          "purchased_geometry_retained": true
+        },
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 20.41249824455008,
+          "reason": "Clear the actual retained stock part at this holder/plate interface; purchased hardware retains its original dimensions.",
+          "purchased_geometry_retained": true
+        },
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 20.412498248442716,
+          "reason": "Clear the actual retained stock part at this holder/plate interface; purchased hardware retains its original dimensions.",
+          "purchased_geometry_retained": true
+        }
+      ]
+    },
+    {
+      "key": "klack_178",
+      "adaptations": [
+        {
+          "kind": "rigid_registration",
+          "translation_mm": [
+            0,
+            0,
+            -0.128073770496
+          ],
+          "reason": "Register the magnet to the paired 6x3 mm pocket and coupling face."
+        }
+      ]
+    },
+    {
+      "key": "klack_180",
+      "adaptations": [
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 0.4611995576215122,
+          "reason": "Side screw head seat; the cylindrical clamping bore is retained.",
+          "purchased_geometry_retained": true
+        },
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 7.001136424210472,
+          "reason": "Clear the original cooling-cover edge while retaining the E-plate belt-tab clamp.",
+          "purchased_geometry_retained": true
+        }
+      ]
+    },
+    {
+      "key": "klack_187",
+      "adaptations": [
+        {
+          "kind": "native_printed_mating_relief",
+          "removed_mm3": 1.440921070751756,
+          "reason": "Clear the native switch terminal/wire channel; switch housing and electrical contact geometry are retained.",
+          "purchased_geometry_retained": true
+        }
+      ]
+    },
+    {
+      "key": "klack_191",
+      "adaptations": [
+        {
+          "kind": "rigid_registration",
+          "translation_mm": [
+            1.5,
+            0,
+            -0.65001
+          ],
+          "reason": "Align the native T-nut threaded bore with the retainer bolt; seat its wide flange behind the actual 4040 slot lips."
+        }
+      ]
+    },
+    {
+      "key": "klack_193",
+      "adaptations": [
+        {
+          "kind": "rigid_registration",
+          "translation_mm": [
+            1.5,
+            0,
+            -0.65001
+          ],
+          "reason": "Align the native T-nut threaded bore with the retainer bolt; seat its wide flange behind the actual 4040 slot lips."
+        }
+      ]
+    }
+  ],
+  "purchased_repairs": [
+    {
+      "key": "belted_573",
+      "repair": {
+        "kind": "native_625_bearing_from_Creality",
+        "source_file": "00064.brep",
+        "source_brep_sha256": "1e09cb3e530ffc6f7e9d9032e4600e4190113012f383e777ed82db5d6fccdac9",
+        "external_dimension_error_mm": 1.9999998812636477e-07
+      }
+    },
+    {
+      "key": "belted_574",
+      "repair": {
+        "kind": "native_625_bearing_from_Creality",
+        "source_file": "00064.brep",
+        "source_brep_sha256": "1e09cb3e530ffc6f7e9d9032e4600e4190113012f383e777ed82db5d6fccdac9",
+        "external_dimension_error_mm": 9.999999406318238e-08
+      }
+    },
+    {
+      "key": "belted_575",
+      "repair": {
+        "kind": "native_reused_eccentric_from_Creality",
+        "source_file": "00105.brep",
+        "source_brep_sha256": "e1c52789124414bef9e0b381afcc87cc2590b3a241e1628b26afc3af1d3f08f0",
+        "reason": "Retain the stock eccentric boss and its actual offset bore at the original mating features.",
+        "eccentric_phase_deg": 180
+      }
+    },
+    {
+      "key": "belted_580",
+      "repair": {
+        "kind": "native_625_bearing_from_Creality",
+        "source_file": "00064.brep",
+        "source_brep_sha256": "1e09cb3e530ffc6f7e9d9032e4600e4190113012f383e777ed82db5d6fccdac9",
+        "external_dimension_error_mm": 1.1368683772161603e-13
+      }
+    },
+    {
+      "key": "belted_581",
+      "repair": {
+        "kind": "native_625_bearing_from_Creality",
+        "source_file": "00064.brep",
+        "source_brep_sha256": "1e09cb3e530ffc6f7e9d9032e4600e4190113012f383e777ed82db5d6fccdac9",
+        "external_dimension_error_mm": 9.999999406318238e-08
+      }
+    },
+    {
+      "key": "belted_587",
+      "repair": {
+        "kind": "native_625_bearing_from_Creality",
+        "source_file": "00064.brep",
+        "source_brep_sha256": "1e09cb3e530ffc6f7e9d9032e4600e4190113012f383e777ed82db5d6fccdac9",
+        "external_dimension_error_mm": 1.4210854715202004e-13
+      }
+    },
+    {
+      "key": "belted_588",
+      "repair": {
+        "kind": "native_625_bearing_from_Creality",
+        "source_file": "00064.brep",
+        "source_brep_sha256": "1e09cb3e530ffc6f7e9d9032e4600e4190113012f383e777ed82db5d6fccdac9",
+        "external_dimension_error_mm": 9.999999406318238e-08
+      }
+    },
+    {
+      "key": "belted_594",
+      "repair": {
+        "kind": "native_625_bearing_from_Creality",
+        "source_file": "00064.brep",
+        "source_brep_sha256": "1e09cb3e530ffc6f7e9d9032e4600e4190113012f383e777ed82db5d6fccdac9",
+        "external_dimension_error_mm": 1.9999998812636477e-07
+      }
+    },
+    {
+      "key": "belted_595",
+      "repair": {
+        "kind": "native_625_bearing_from_Creality",
+        "source_file": "00064.brep",
+        "source_brep_sha256": "1e09cb3e530ffc6f7e9d9032e4600e4190113012f383e777ed82db5d6fccdac9",
+        "external_dimension_error_mm": 1.9999998812636477e-07
+      }
+    },
+    {
+      "key": "belted_597",
+      "repair": {
+        "kind": "native_reused_eccentric_from_Creality",
+        "source_file": "00061.brep",
+        "source_brep_sha256": "91fe10448b43070292a8f246158cc75b36055d7449926d89bbe3d8cfaae2a656",
+        "reason": "Retain the stock eccentric boss and its actual offset bore at the original mating features."
+      }
+    },
+    {
+      "key": "belted_601",
+      "repair": {
+        "kind": "native_625_bearing_from_Creality",
+        "source_file": "00064.brep",
+        "source_brep_sha256": "1e09cb3e530ffc6f7e9d9032e4600e4190113012f383e777ed82db5d6fccdac9",
+        "external_dimension_error_mm": 9.999999406318238e-08
+      }
+    },
+    {
+      "key": "belted_602",
+      "repair": {
+        "kind": "native_625_bearing_from_Creality",
+        "source_file": "00064.brep",
+        "source_brep_sha256": "1e09cb3e530ffc6f7e9d9032e4600e4190113012f383e777ed82db5d6fccdac9",
+        "external_dimension_error_mm": 9.999999406318238e-08
+      }
+    },
+    {
+      "key": "belted_608",
+      "repair": {
+        "kind": "native_625_bearing_from_Creality",
+        "source_file": "00064.brep",
+        "source_brep_sha256": "1e09cb3e530ffc6f7e9d9032e4600e4190113012f383e777ed82db5d6fccdac9",
+        "external_dimension_error_mm": 9.999999406318238e-08
+      }
+    },
+    {
+      "key": "belted_609",
+      "repair": {
+        "kind": "native_625_bearing_from_Creality",
+        "source_file": "00064.brep",
+        "source_brep_sha256": "1e09cb3e530ffc6f7e9d9032e4600e4190113012f383e777ed82db5d6fccdac9",
+        "external_dimension_error_mm": 1.9999998812636477e-07
+      }
+    }
+  ],
+  "files": {
+    "assembly_manifest.json": {
+      "path": "ender3/assembly_manifest.json",
+      "bytes": 440812,
+      "sha256": "a2742daa8b06c91bcd3e5089d460cf71357962a191c644224ebf82ea102a2f53"
+    },
+    "machine_profile.json": {
+      "path": "ender3/machine_profile.json",
+      "bytes": 41396,
+      "sha256": "082b8c7b6cac7141106c5592a0ab8412dc002d0f3493ed39fb7eb1c9b7f6dc87"
+    },
+    "model.glb": {
+      "path": "ender3/model.glb.gz",
+      "bytes": 26612050,
+      "sha256": "5d3a0bf20ec8085dc46f4f8a2a762200f427ca39227e72cedadff75989d77c2f",
+      "encoding": "gzip",
+      "decoded_bytes": 58026652,
+      "decoded_sha256": "393dcd56b4e7a0e675886486acd81c825de9f1a7102b839e00aa1b5365203457"
+    },
+    "hydra.glb": {
+      "path": "ender3/hydra.glb.gz",
+      "bytes": 4785075,
+      "sha256": "30b3f39632af32a67442f941d63df8396c1a6a1852309ae57c3ce10b6236f6bb",
+      "encoding": "gzip",
+      "decoded_bytes": 19831660,
+      "decoded_sha256": "de87f4b215bab8e5d3b86a2036dd999f44a6c4be7bd207955958c230211b93fa"
+    },
+    "mods.glb": {
+      "path": "ender3/mods.glb.gz",
+      "bytes": 7024508,
+      "sha256": "d9d38f5a8488877a36b8cf4385826dff9ca83fb96214f40de569693d8f52d898",
+      "encoding": "gzip",
+      "decoded_bytes": 17408236,
+      "decoded_sha256": "655f81d6e76224e136ab10be209ef06286c8656b96f07f45e17425d012b07ac0"
+    }
+  },
+  "native_source_package_sha256": "97b4dc701669d7e7f0d3c60201f821eb4f2f2012f1c7757f8beaf4be559eca8b",
+  "adapter_sha256": {
+    "community-adapter.mjs": "ffc5eeb9a4b57873672cceb95fb5f628bc38e954002c719127da7a7a68f315e3",
+    "community-state.mjs": "460b3fa78cc503ddb6e631766efe780433e4efa286db5d9388a67d73cd4fce3d",
+    "community-loader.mjs": "54320a29840d0559f71c0f39620b6444c1586cf3fb97bc56eb986200c3f206b6",
+    "community.js": "5380aebe69a59897c3f6dd2f8765c05651197664f9e95e3409f132adf1f5caf0",
+    "ender-mods.mjs": "5f07c69c7c42ba3f3936bf28a6e3ea4607dd182ea7c8a34b31af9ed05f0bf9be"
+  },
+  "browser": {
+    "name": "Codex in-app browser / Chromium",
+    "viewport": [
+      1280,
+      720
+    ],
+    "responsive_viewport": [
+      390,
+      844
+    ],
+    "physical_mobile_touch_verified": false,
+    "other_browser_gpu_review": false,
+    "language_rows": [
+      {
+        "configuration": "hydra__belted__klack",
+        "lang": "ja",
+        "notice": "純正Bowdenホットエンドと左右4010ファン。埋め込みサポート5か所を除去し、ベースとダクトをCADの取付形状に合わせて変更しています。実機の強度・製造公差は未検証です。 Vローラー・F623アイドラー・1モーターのBelted Z。電源は作者の移設ホルダーに取り付け、印刷部品の取付面を元CADの形状に合わせています。6 mmのベルトには2 mmピッチの目印を表示します。歯形と張力は再現していません。 KlackEnderのプローブを装着し、ドックはガントリー、リテーナーはフレームに固定しています。ネジとTナットを実際の取付面に合わせ、可動範囲はベッド上で止めています。プローブの着脱・校正・ホーミングは再現していません。",
+        "options": [
+          "HYDRA · Bowden / デュアル4010",
+          "Belted Z · 1モーター / Vローラー",
+          "KlackEnder · 装着済みプローブ"
+        ]
+      },
+      {
+        "configuration": "hydra__belted__klack",
+        "lang": "es",
+        "notice": "Hotend Bowden original y dos ventiladores 4010. Se retiraron cinco soportes integrados y se adaptaron las bases y los conductos a este CAD. El ajuste del visor no valida la resistencia ni las tolerancias de fabricación. Belted Z de un motor, ruedas V e idlers F623. La fuente usa el soporte de reubicación del autor. Los asientos impresos se adaptaron a este CAD. La banda de 6 mm muestra marcas cada 2 mm; no se simulan el perfil de dientes ni la tensión. KlackEnder con sonda instalada, dock en el pórtico y retenedor fijo en el marco. Tornillos y tuercas T se alinean con este marco. La vista se detiene por encima de la cama; no simula recogida, calibración ni homing.",
+        "options": [
+          "HYDRA · Bowden / dos 4010",
+          "Belted Z · un motor / ruedas V",
+          "KlackEnder · sonda instalada"
+        ]
+      },
+      {
+        "configuration": "hydra__belted__klack",
+        "lang": "ko",
+        "notice": "기본 보우덴 핫엔드와 듀얼 4010 냉각. 내장 서포트 5개를 제거하고 베이스와 덕트를 CAD 결합 형상에 맞췄습니다. 실제 출력물 강도와 제조 공차는 검증되지 않았습니다. V 휠, F623 아이들러, 단일 모터 Belted Z. 전원은 제작자의 이전 홀더에 장착하며 출력 부품 결합면을 원본 CAD에 맞췄습니다. 6 mm 벨트에 2 mm 피치 표시를 제공합니다. 실제 치형과 장력은 시뮬레이션하지 않습니다. 프로브가 장착된 KlackEnder이며 도크는 갠트리, 리테이너는 프레임에 고정됩니다. 나사와 T 너트를 실제 결합면에 맞췄습니다. 미리보기는 베드 위에서 멈추며 프로브 탈착, 교정, 호밍은 시뮬레이션하지 않습니다.",
+        "options": [
+          "HYDRA · 보우덴 / 듀얼 4010",
+          "Belted Z · 단일 모터 / V 휠",
+          "KlackEnder · 장착된 프로브"
+        ]
+      },
+      {
+        "configuration": "hydra__belted__klack",
+        "lang": "ru",
+        "notice": "Штатный Bowden-хотэнд и два вентилятора 4010. Удалены пять встроенных поддержек; основания и воздуховоды адаптированы к сопряжениям CAD. Посадка в просмотрщике не подтверждает прочность печати и производственные допуски. Belted Z с одним мотором, V-роликами и F623. Блок питания установлен в держатель автора. Печатные посадки адаптированы к этому CAD. На ленте 6 mm показан шаг 2 mm; профиль зубьев и натяжение не моделируются. KlackEnder с установленным датчиком, доком на портале и неподвижным держателем на раме. Винты и T-гайки совмещены с посадками. Просмотр останавливается над столом; захват датчика, калибровка и homing не моделируются.",
+        "options": [
+          "HYDRA · Bowden / два 4010",
+          "Belted Z · один мотор / V-ролики",
+          "KlackEnder · установленный датчик"
+        ]
+      },
+      {
+        "configuration": "hydra__belted__klack",
+        "lang": "en",
+        "notice": "Stock Bowden hotend and dual 4010 cooling. Five built-in supports removed; bases and ducts adapted to these CAD mating features. Viewer fit does not validate print strength or manufacturing tolerances. Single-motor Belted Z with V-wheels and F623 idlers. The PSU uses the author relocation holder. Printed seats are adapted to these native mating features. The 6 mm backing carries 2 mm pitch marks; tooth shape and tension are not simulated. KlackEnder with the probe attached, gantry-mounted dock and fixed frame retainer. Native screw and T-nut seats are registered to this frame. The preview stops above the bed; probe pickup, calibration and homing are not simulated.",
+        "options": [
+          "HYDRA · Bowden / dual 4010",
+          "Belted Z · single motor / V-wheels",
+          "KlackEnder · attached probe"
+        ]
+      }
+    ],
+    "switching": [
+      {
+        "configuration": "stock",
+        "minimumZ": "-50",
+        "parts": "300 PARTS · ENDER-3"
+      },
+      {
+        "configuration": "stock__stock__klack",
+        "minimumZ": "-40",
+        "parts": "319 PARTS · ENDER-3"
+      },
+      {
+        "configuration": "stock__belted__none",
+        "minimumZ": "-50",
+        "parts": "392 PARTS · ENDER-3"
+      },
+      {
+        "configuration": "stock__belted__klack",
+        "minimumZ": "-40",
+        "parts": "411 PARTS · ENDER-3"
+      },
+      {
+        "configuration": "hydra_bowden_4010",
+        "minimumZ": "-50",
+        "parts": "323 PARTS · ENDER-3"
+      },
+      {
+        "configuration": "hydra__stock__klack",
+        "minimumZ": "-40",
+        "parts": "342 PARTS · ENDER-3"
+      },
+      {
+        "configuration": "hydra__belted__none",
+        "minimumZ": "-50",
+        "parts": "415 PARTS · ENDER-3"
+      },
+      {
+        "configuration": "hydra__belted__klack",
+        "minimumZ": "-40",
+        "parts": "434 PARTS · ENDER-3"
+      }
+    ],
+    "nonzero_motion_restored": {
+      "configuration": "hydra__belted__klack",
+      "pose": {
+        "x": 100,
+        "y": -100,
+        "z": 190
+      },
+      "x": "100",
+      "y": "-100",
+      "z": "190"
+    },
+    "screenshots": [
+      {
+        "file": "colors-dark-grid.png",
+        "sha256": "45b4967ae94603bb58a496742a5ecc164e32c2b1855c37de19ac989ffefac54c"
+      },
+      {
+        "file": "ender-mods-desktop.png",
+        "sha256": "ff908d56626b056664a3880c7adfaee67aab8827eb6a123291e9fa6fe69b8389"
+      },
+      {
+        "file": "head-probe.png",
+        "sha256": "413d1166a7d5776e48dedc55aa1c9a13dcc7e83d973bea26d028ef9e9e1c75cf"
+      },
+      {
+        "file": "mobile-orbit.png",
+        "sha256": "30c1923b12c40001ea3d191ff75ef32333cd138b4904171096f6144b7d571a5a"
+      },
+      {
+        "file": "mobile.png",
+        "sha256": "f53c619762cb6e79e287eaeadd987933e7fa7ddff3a8d3b2f0f33e90c2572704"
+      },
+      {
+        "file": "mods-export-1920x1368.png",
+        "sha256": "8775d8937572dcf6d17619b2aba13063dc007bf2e740c980537553dc287d8cf8"
+      },
+      {
+        "file": "restored-motion.png",
+        "sha256": "f6f5ff67345d0051889fd9d32adbca52e62968301fa2975dba26d0f35376b03c"
+      },
+      {
+        "file": "support-filter.png",
+        "sha256": "542233496c8df8dba334eb98518951ea9261ad40c041a865b470a3682484dd33"
+      },
+      {
+        "file": "z-high.png",
+        "sha256": "9dab4566e149778afaa84aaaab8ec51017583fd64715092849249eed82c4446a"
+      }
+    ],
+    "scope": "Actual whole-printer and mounted-head views; all eight independent head/drive/probe selections without page reload; source-specific Z limits, upper pose and reset; native configuration JSON download and file-chooser restoration of nonzero X/Y/Z poses; PNG download at 1920 × 1368; printed palettes/hardware separation; both themes and grid; all five languages; responsive simultaneous model/settings and pointer orbit. Physical touchscreen and other browser GPUs are not verified."
+  },
+  "full_physical_fit_certified": false,
+  "scope": "Original Ender-3 / stock or adapted HYDRA Bowden 4010 head / stock leadscrew or single-motor V-wheel Belted Z / no probe or attached KlackEnder. Registered actual models are distinct from native continuous added-body clearance and source contact classification. Retained native rolling, fastener-fillet and electrical contacts are listed, not asserted collision-free. Printed mating reliefs and native purchased hardware registrations are recorded. Klack pickup, firmware homing, tolerances, airflow and belt tooth shape/tension are not simulated. Original CAD omits the Bowden tube. Existing HYDRA geometry/support removal remains unchanged; it is not a new print-strength certification."
+}

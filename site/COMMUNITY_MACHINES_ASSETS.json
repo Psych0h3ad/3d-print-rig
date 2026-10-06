@@ -1,21 +1,21 @@
 {
-  "version": "ender3-hydra-install-90",
+  "version": "ender3-mods-91",
   "base_url": "https://psych0h3ad.github.io/3d-print-rig-community-models/",
   "local_directory": "community-machines-assets",
   "machines": {
     "ender3_stock_220": {
       "machine_id": "ender3_stock_220",
-      "parts": 337,
+      "parts": 520,
       "files": {
         "assembly_manifest.json": {
           "path": "ender3/assembly_manifest.json",
-          "bytes": 227296,
-          "sha256": "62374539c3e54b3926a5f22f87fe0b358f4fa457b4b12b67edb0926d6db0dcc0"
+          "bytes": 440812,
+          "sha256": "a2742daa8b06c91bcd3e5089d460cf71357962a191c644224ebf82ea102a2f53"
         },
         "machine_profile.json": {
           "path": "ender3/machine_profile.json",
-          "bytes": 3258,
-          "sha256": "7b7a482dcad54c8a61d729759e16d7b71ba98df497f683942b537d779ac40276"
+          "bytes": 41396,
+          "sha256": "082b8c7b6cac7141106c5592a0ab8412dc002d0f3493ed39fb7eb1c9b7f6dc87"
         },
         "model.glb": {
           "path": "ender3/model.glb.gz",
@@ -32,10 +32,19 @@
           "encoding": "gzip",
           "decoded_bytes": 19831660,
           "decoded_sha256": "de87f4b215bab8e5d3b86a2036dd999f44a6c4be7bd207955958c230211b93fa"
+        },
+        "mods.glb": {
+          "path": "ender3/mods.glb.gz",
+          "bytes": 7024508,
+          "sha256": "d9d38f5a8488877a36b8cf4385826dff9ca83fb96214f40de569693d8f52d898",
+          "encoding": "gzip",
+          "decoded_bytes": 17408236,
+          "decoded_sha256": "655f81d6e76224e136ab10be209ef06286c8656b96f07f45e17425d012b07ac0"
         }
       },
       "additional_models": [
-        "hydra.glb"
+        "hydra.glb",
+        "mods.glb"
       ]
     },
     "mercury_one1_235": {

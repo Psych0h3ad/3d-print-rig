@@ -8013,6 +8013,42 @@
     "hydra_install.05": {
       "source_revision": "5656c69e2c3a2a59aeae",
       "text": "Conductos de la revisión MK6"
+    },
+    "ender_mods.01": {
+      "source_revision": "9641e1ee65f0eaead388",
+      "text": "Accionamiento Z"
+    },
+    "ender_mods.02": {
+      "source_revision": "d52af687046100946e6b",
+      "text": "Instalación de la sonda"
+    },
+    "ender_mods.03": {
+      "source_revision": "e2a9bb5b3df7e52a6fa7",
+      "text": "Husillo original"
+    },
+    "ender_mods.04": {
+      "source_revision": "f37b6000904419a6eb2b",
+      "text": "Belted Z · un motor / ruedas V"
+    },
+    "ender_mods.05": {
+      "source_revision": "c8cdec1e1646b737e2fa",
+      "text": "Sin sonda adicional"
+    },
+    "ender_mods.06": {
+      "source_revision": "981ed5bb6f92a85b9c9e",
+      "text": "KlackEnder · sonda instalada"
+    },
+    "ender_mods.07": {
+      "source_revision": "a3921c94955f875fce83",
+      "text": "Belted Z de un motor, ruedas V e idlers F623. La fuente usa el soporte de reubicación del autor. Los asientos impresos se adaptaron a este CAD. La banda de 6 mm muestra marcas cada 2 mm; no se simulan el perfil de dientes ni la tensión."
+    },
+    "ender_mods.08": {
+      "source_revision": "8b5e03283a405e964791",
+      "text": "KlackEnder con sonda instalada, dock en el pórtico y retenedor fijo en el marco. Tornillos y tuercas T se alinean con este marco. La vista se detiene por encima de la cama; no simula recogida, calibración ni homing."
+    },
+    "ender_mods.09": {
+      "source_revision": "67d1112d2cf93b1f3210",
+      "text": "Cabezal independiente"
     }
   }
 }

@@ -24,6 +24,10 @@ if(process.argv[2]){
  for(const target of index.targets){
   if(!target.file){assert(['stock','missing'].includes(target.status));continue}
   const c=details.get(target.file),ids=new Set();assert.equal(c.rows.length,target.count);
+  if(target.id==='ender3_stock_220'){
+   assert.equal(target.kind,'community');assert.equal(c.rows.length,8);assert.deepEqual(c.dimensions,['toolhead','zdrive','probe']);
+   for(const row of c.rows){const url=new URL(supportURL(target,c,row,'https://fixture.test/support/','en'));assert.equal(url.searchParams.get('machine'),target.id);assert.equal(url.searchParams.get('configuration'),configurationId(c,row));}
+  }
   const tuples=new Set();
   for(const row of c.rows){const id=configurationId(c,row);assert(!ids.has(id));ids.add(id);const selected=rowSelection(c,row);assert(Object.values(selected).every(Boolean));assert(c.notes[row.at(-1)]);tuples.add(JSON.stringify(selected));rows++}
   assert.equal(tuples.size,c.rows.length,'Display rows must retain every differentiating dimension');

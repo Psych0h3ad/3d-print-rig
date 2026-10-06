@@ -26,6 +26,7 @@ export function buildSupport(root){
  const read=name=>{const bytes=fs.readFileSync(path.join(root,name));input_sha256[name]=createHash('sha256').update(bytes).digest('hex');return JSON.parse(bytes)};
  const raw=read('TOOLHEAD_CONFIGURATIONS.json'),registry=read('MACHINE_HEAD_REGISTRATIONS.json'),gantries=read('GANTRY_CONFIGURATIONS.json'),mounts=read('MONOLITH_MACHINE_REGISTRATIONS.json'),bank=read('TOOLCHANGER_BANK.json'),v0=read('V0_INSTALLATIONS.json'),library=read('COMPONENT_LIBRARY.json'),mods=read('MACHINE_MODS.json');
  const siboor=read('SIBOOR_TRIDENT_ASSETS.json');registerSizedSiboor(siboor,registry,bank,mods);
+ const community=read('COMMUNITY_INSTALLATIONS.json');
  const heads=withEmbeddedBoards(withHeadAdditions(raw,read('HEAD_ADDITIONS.json')),[xolEmbeddedBoard(read(raw.base_assets.xol.meta)),sbEmbeddedBoard(read(raw.base_assets.stealthburner.meta))]);heads.dimensions=headBuilderDimensions;
  const targets=[],details=new Map();
  function compact(target,catalog){
@@ -54,6 +55,10 @@ export function buildSupport(root){
   }else if(v0.machines[m.id]){
    target.status='supported';target.kind='v0';catalog=enumerateV0(v0.machines[m.id]);compact(target,catalog);
    details.get(target.file).mods=library.items.filter(i=>i.id.startsWith('v0mod_')).map(item=>({id:item.id,label:item.label,options:v0.machines[m.id].options.filter(o=>o.attachments.some(a=>a.module===item.module||a.module===item.id)).map(o=>({id:o.id,slot:o.slot,label:o.label,requires:o.requires||{},conflicts:o.conflicts||{}}))}));
+  }else if(community.machines[m.id]){
+   const registration=community.machines[m.id],files=read('COMMUNITY_MACHINES_ASSETS.json').machines[m.id].files;
+   if(registration.profile_sha256!==files['machine_profile.json'].sha256)throw Error('Stale community installation registry');
+   const names={toolhead:'head',zdrive:'z',probe:'probe'};catalog={dimensions:Object.keys(names),options:Object.fromEntries(Object.entries(names).map(([k,v])=>[k,Object.entries(registration.controls[v]).map(([id,c])=>({id,label:c.label}))])),variants:Object.entries(registration.configurations).map(([id,c])=>({id,...Object.fromEntries(Object.entries(names).map(([k,v])=>[k,c.selection[v]])),notes:c.notices})),accessories:[]};target.status='supported';target.kind='community';compact(target,catalog);
   }
  }
  for(const [id,label,page,catalog] of [['toolheads','ツールヘッド単体','./toolheads.html',heads],['gantries','Monolithガントリー単体','./gantries.html',monolithHeadCatalog(heads,registry,gantries)]]){const target={id,label,page,kind:'standalone',status:'standalone'};targets.push(target);compact(target,{...catalog,accessories:[]})}

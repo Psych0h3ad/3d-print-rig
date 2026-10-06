@@ -1,0 +1,119 @@
+{
+  "schema": 1,
+  "machines": {
+    "ender3_stock_220": {
+      "profile_sha256": "082b8c7b6cac7141106c5592a0ab8412dc002d0f3493ed39fb7eb1c9b7f6dc87",
+      "controls": {
+        "head": {
+          "stock": {
+            "label": "Stock · Bowden / original cooling"
+          },
+          "hydra": {
+            "label": "HYDRA · Bowden / dual 4010"
+          }
+        },
+        "z": {
+          "stock": {
+            "label": "Original leadscrew"
+          },
+          "belted": {
+            "label": "Belted Z · single motor / V-wheels"
+          }
+        },
+        "probe": {
+          "none": {
+            "label": "No added probe"
+          },
+          "klack": {
+            "label": "KlackEnder · attached probe"
+          }
+        }
+      },
+      "configurations": {
+        "stock": {
+          "selection": {
+            "head": "stock",
+            "z": "stock",
+            "probe": "none"
+          },
+          "notices": []
+        },
+        "stock__stock__klack": {
+          "selection": {
+            "head": "stock",
+            "z": "stock",
+            "probe": "klack"
+          },
+          "notices": [
+            "KlackEnder with the probe attached, gantry-mounted dock and fixed frame retainer. Native screw and T-nut seats are registered to this frame. The preview stops above the bed; probe pickup, calibration and homing are not simulated."
+          ]
+        },
+        "stock__belted__none": {
+          "selection": {
+            "head": "stock",
+            "z": "belted",
+            "probe": "none"
+          },
+          "notices": [
+            "Single-motor Belted Z with V-wheels and F623 idlers. The PSU uses the author relocation holder. Printed seats are adapted to these native mating features. The 6 mm backing carries 2 mm pitch marks; tooth shape and tension are not simulated."
+          ]
+        },
+        "stock__belted__klack": {
+          "selection": {
+            "head": "stock",
+            "z": "belted",
+            "probe": "klack"
+          },
+          "notices": [
+            "Single-motor Belted Z with V-wheels and F623 idlers. The PSU uses the author relocation holder. Printed seats are adapted to these native mating features. The 6 mm backing carries 2 mm pitch marks; tooth shape and tension are not simulated.",
+            "KlackEnder with the probe attached, gantry-mounted dock and fixed frame retainer. Native screw and T-nut seats are registered to this frame. The preview stops above the bed; probe pickup, calibration and homing are not simulated."
+          ]
+        },
+        "hydra_bowden_4010": {
+          "selection": {
+            "head": "hydra",
+            "z": "stock",
+            "probe": "none"
+          },
+          "notices": [
+            "Stock Bowden hotend and dual 4010 cooling. Five built-in supports removed; bases and ducts adapted to these CAD mating features. Viewer fit does not validate print strength or manufacturing tolerances."
+          ]
+        },
+        "hydra__stock__klack": {
+          "selection": {
+            "head": "hydra",
+            "z": "stock",
+            "probe": "klack"
+          },
+          "notices": [
+            "Stock Bowden hotend and dual 4010 cooling. Five built-in supports removed; bases and ducts adapted to these CAD mating features. Viewer fit does not validate print strength or manufacturing tolerances.",
+            "KlackEnder with the probe attached, gantry-mounted dock and fixed frame retainer. Native screw and T-nut seats are registered to this frame. The preview stops above the bed; probe pickup, calibration and homing are not simulated."
+          ]
+        },
+        "hydra__belted__none": {
+          "selection": {
+            "head": "hydra",
+            "z": "belted",
+            "probe": "none"
+          },
+          "notices": [
+            "Stock Bowden hotend and dual 4010 cooling. Five built-in supports removed; bases and ducts adapted to these CAD mating features. Viewer fit does not validate print strength or manufacturing tolerances.",
+            "Single-motor Belted Z with V-wheels and F623 idlers. The PSU uses the author relocation holder. Printed seats are adapted to these native mating features. The 6 mm backing carries 2 mm pitch marks; tooth shape and tension are not simulated."
+          ]
+        },
+        "hydra__belted__klack": {
+          "selection": {
+            "head": "hydra",
+            "z": "belted",
+            "probe": "klack"
+          },
+          "notices": [
+            "Stock Bowden hotend and dual 4010 cooling. Five built-in supports removed; bases and ducts adapted to these CAD mating features. Viewer fit does not validate print strength or manufacturing tolerances.",
+            "Single-motor Belted Z with V-wheels and F623 idlers. The PSU uses the author relocation holder. Printed seats are adapted to these native mating features. The 6 mm backing carries 2 mm pitch marks; tooth shape and tension are not simulated.",
+            "KlackEnder with the probe attached, gantry-mounted dock and fixed frame retainer. Native screw and T-nut seats are registered to this frame. The preview stops above the bed; probe pickup, calibration and homing are not simulated."
+          ]
+        }
+      }
+    }
+  }
+}

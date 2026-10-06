@@ -8013,6 +8013,42 @@
     "hydra_install.05": {
       "source_revision": "5656c69e2c3a2a59aeae",
       "text": "Воздуховоды редакции MK6"
+    },
+    "ender_mods.01": {
+      "source_revision": "9641e1ee65f0eaead388",
+      "text": "Привод Z"
+    },
+    "ender_mods.02": {
+      "source_revision": "d52af687046100946e6b",
+      "text": "Установка датчика"
+    },
+    "ender_mods.03": {
+      "source_revision": "e2a9bb5b3df7e52a6fa7",
+      "text": "Штатный винт"
+    },
+    "ender_mods.04": {
+      "source_revision": "f37b6000904419a6eb2b",
+      "text": "Belted Z · один мотор / V-ролики"
+    },
+    "ender_mods.05": {
+      "source_revision": "c8cdec1e1646b737e2fa",
+      "text": "Без дополнительного датчика"
+    },
+    "ender_mods.06": {
+      "source_revision": "981ed5bb6f92a85b9c9e",
+      "text": "KlackEnder · установленный датчик"
+    },
+    "ender_mods.07": {
+      "source_revision": "a3921c94955f875fce83",
+      "text": "Belted Z с одним мотором, V-роликами и F623. Блок питания установлен в держатель автора. Печатные посадки адаптированы к этому CAD. На ленте 6 mm показан шаг 2 mm; профиль зубьев и натяжение не моделируются."
+    },
+    "ender_mods.08": {
+      "source_revision": "8b5e03283a405e964791",
+      "text": "KlackEnder с установленным датчиком, доком на портале и неподвижным держателем на раме. Винты и T-гайки совмещены с посадками. Просмотр останавливается над столом; захват датчика, калибровка и homing не моделируются."
+    },
+    "ender_mods.09": {
+      "source_revision": "67d1112d2cf93b1f3210",
+      "text": "Отдельный тулхед"
     }
   }
 }

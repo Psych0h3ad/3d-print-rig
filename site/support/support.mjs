@@ -1,10 +1,10 @@
-import {setupLanguage,translate} from '../viewer/i18n.mjs?v=9ad852831c88771612b5';
+import {setupLanguage,translate} from '../viewer/i18n.mjs?v=7f9863915024ba61771b';
 import {setupHeaderThemeToggle} from '../viewer/display-preferences.mjs?v=9860960509e28d17f3fd';
-import {matchingRows,supportURL} from './model.mjs';
+import {matchingRows,supportURL} from './model.mjs?v=35303ce85aa1cb0aebc4';
 
 const $=id=>document.getElementById(id),el=(tag,text,className)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(className)n.className=className;return n};
 const statusLabels={supported:'組み合わせ対応済み',stock:'標準構成のみ',missing:'CAD未登録',standalone:'単体での組み合わせ'};
-const dimensions={gantry:'ガントリー',toolhead:'ツールヘッド',mount:'取付方式',extruder:'押出機',hotend:'ホットエンド',carriage:'キャリッジ',probe:'プローブ',board:'基板',cooling:'冷却',bed:'ベッド支持機構',accelerometer:'加速度センサー',strain_relief:'配線マウント',handles:'ハンドル',tophat:'トップハット'};
+const dimensions={zdrive:'Z drive',gantry:'ガントリー',toolhead:'ツールヘッド',mount:'取付方式',extruder:'押出機',hotend:'ホットエンド',carriage:'キャリッジ',probe:'プローブ',board:'基板',cooling:'冷却',bed:'ベッド支持機構',accelerometer:'加速度センサー',strain_relief:'配線マウント',handles:'ハンドル',tophat:'トップハット'};
 const language=setupLanguage();setupHeaderThemeToggle(document.querySelector('.header-actions'));
 const t=text=>translate(text,language.language),cache=new Map();let index,target,catalog,selection={},limit=12,request=0;
 const badge=(text,status)=>el('span',text,'badge '+status);
@@ -12,7 +12,7 @@ async function json(file){const r=await fetch(file,{cache:'no-cache'});if(!r.ok)
 function setURL(){const q=new URLSearchParams({lang:language.language,machine:target.id,...selection});history.replaceState(null,'','?'+q)}
 function error(){ $('error').hidden=false;$('error').replaceChildren(el('p','対応状況を読み込めませんでした。ページを再読み込みしてください。'));}
 function renderHeads(){
- $('heads').replaceChildren();$('headCoverage').hidden=target.kind==='standalone'||target.kind==='v0'||target.status==='missing';
+ $('heads').replaceChildren();$('headCoverage').hidden=target.kind==='standalone'||target.kind==='community'||target.kind==='v0'||target.status==='missing';
  if($('headCoverage').hidden)return;
  for(const h of index.head_families){const ok=target.heads?.includes(h.id),card=el('div',undefined,'coverage-item');card.append(el('strong',h.label),badge(ok?'機体への組込対応済み':'この機体への組込は未対応',ok?'supported':'standalone'));if(!ok&&h.configuration){const a=el('a','単体ビュワーで確認');a.href='../viewer/toolheads.html?configuration='+encodeURIComponent(h.configuration)+'&lang='+language.language;card.append(a)}$('heads').append(card)}
 }

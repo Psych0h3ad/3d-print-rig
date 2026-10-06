@@ -1,5 +1,5 @@
 import * as THREE from './vendor-r180/three.module.js';
-import {nativeMotion,displayMotion} from './community-state.mjs?v=8eb1ac3cefb7a4bb42e0';
+import {nativeMotion,displayMotion} from './community-state.mjs?v=460b3fa78cc503ddb6e6';
 import {bedChainRoute} from './bed-chain.mjs';
 const clamp=v=>Math.max(0,Math.min(1,v));
 const dist=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]);

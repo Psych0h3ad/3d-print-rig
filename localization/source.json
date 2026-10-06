@@ -10040,6 +10040,51 @@
       "kind": "message",
       "ja": "MK6改訂版ダクト",
       "en": "MK6 revision ducts"
+    },
+    "ender_mods.01": {
+      "kind": "message",
+      "en": "Z drive",
+      "ja": "Z駆動"
+    },
+    "ender_mods.02": {
+      "kind": "message",
+      "en": "Probe installation",
+      "ja": "ベッドプローブの取付"
+    },
+    "ender_mods.03": {
+      "kind": "message",
+      "en": "Original leadscrew",
+      "ja": "純正リードスクリュー"
+    },
+    "ender_mods.04": {
+      "kind": "message",
+      "en": "Belted Z · single motor / V-wheels",
+      "ja": "Belted Z · 1モーター / Vローラー"
+    },
+    "ender_mods.05": {
+      "kind": "message",
+      "en": "No added probe",
+      "ja": "追加プローブなし"
+    },
+    "ender_mods.06": {
+      "kind": "message",
+      "en": "KlackEnder · attached probe",
+      "ja": "KlackEnder · 装着済みプローブ"
+    },
+    "ender_mods.07": {
+      "kind": "message",
+      "en": "Single-motor Belted Z with V-wheels and F623 idlers. The PSU uses the author relocation holder. Printed seats are adapted to these native mating features. The 6 mm backing carries 2 mm pitch marks; tooth shape and tension are not simulated.",
+      "ja": "Vローラー・F623アイドラー・1モーターのBelted Z。電源は作者の移設ホルダーに取り付け、印刷部品の取付面を元CADの形状に合わせています。6 mmのベルトには2 mmピッチの目印を表示します。歯形と張力は再現していません。"
+    },
+    "ender_mods.08": {
+      "kind": "message",
+      "en": "KlackEnder with the probe attached, gantry-mounted dock and fixed frame retainer. Native screw and T-nut seats are registered to this frame. The preview stops above the bed; probe pickup, calibration and homing are not simulated.",
+      "ja": "KlackEnderのプローブを装着し、ドックはガントリー、リテーナーはフレームに固定しています。ネジとTナットを実際の取付面に合わせ、可動範囲はベッド上で止めています。プローブの着脱・校正・ホーミングは再現していません。"
+    },
+    "ender_mods.09": {
+      "kind": "message",
+      "en": "Standalone toolhead",
+      "ja": "ツールヘッド単体"
     }
   }
 }

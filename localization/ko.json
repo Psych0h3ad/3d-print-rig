@@ -8013,6 +8013,42 @@
     "hydra_install.05": {
       "source_revision": "5656c69e2c3a2a59aeae",
       "text": "MK6 개정 덕트"
+    },
+    "ender_mods.01": {
+      "source_revision": "9641e1ee65f0eaead388",
+      "text": "Z 구동"
+    },
+    "ender_mods.02": {
+      "source_revision": "d52af687046100946e6b",
+      "text": "프로브 설치"
+    },
+    "ender_mods.03": {
+      "source_revision": "e2a9bb5b3df7e52a6fa7",
+      "text": "기본 리드 스크루"
+    },
+    "ender_mods.04": {
+      "source_revision": "f37b6000904419a6eb2b",
+      "text": "Belted Z · 단일 모터 / V 휠"
+    },
+    "ender_mods.05": {
+      "source_revision": "c8cdec1e1646b737e2fa",
+      "text": "추가 프로브 없음"
+    },
+    "ender_mods.06": {
+      "source_revision": "981ed5bb6f92a85b9c9e",
+      "text": "KlackEnder · 장착된 프로브"
+    },
+    "ender_mods.07": {
+      "source_revision": "a3921c94955f875fce83",
+      "text": "V 휠, F623 아이들러, 단일 모터 Belted Z. 전원은 제작자의 이전 홀더에 장착하며 출력 부품 결합면을 원본 CAD에 맞췄습니다. 6 mm 벨트에 2 mm 피치 표시를 제공합니다. 실제 치형과 장력은 시뮬레이션하지 않습니다."
+    },
+    "ender_mods.08": {
+      "source_revision": "8b5e03283a405e964791",
+      "text": "프로브가 장착된 KlackEnder이며 도크는 갠트리, 리테이너는 프레임에 고정됩니다. 나사와 T 너트를 실제 결합면에 맞췄습니다. 미리보기는 베드 위에서 멈추며 프로브 탈착, 교정, 호밍은 시뮬레이션하지 않습니다."
+    },
+    "ender_mods.09": {
+      "source_revision": "67d1112d2cf93b1f3210",
+      "text": "툴헤드 단독"
     }
   }
 }

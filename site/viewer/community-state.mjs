@@ -2,9 +2,10 @@ export const communitySchema='3d-print-rig.community.v1';
 export function communityMotionEnabled(profile){
  return profile.motion_preview!==false&&Object.values(profile.axes).some(([min,max])=>max>min);
 }
-export function validateAxes(axes,profile){
+export function validateAxes(axes,profile,configuration){
  if(!axes||Object.keys(axes).sort().join()!==Object.keys(profile.axes).sort().join())throw Error('Invalid axes');
  for(const key of Object.keys(profile.axes))if(!Number.isFinite(axes[key])||axes[key]<profile.axes[key][0]||axes[key]>profile.axes[key][1])throw Error('Axis outside preview range: '+key);
+ if(configuration)for(const[key,[a,b]]of Object.entries(communityConfiguration(profile,configuration).axes||{}))if(axes[key]<a||axes[key]>b)throw Error('Axis outside installation preview range: '+key);
  return axes;
 }
 export function nativeMotion(group,axes,profile){
@@ -17,7 +18,7 @@ export function communityConfiguration(profile,id='stock'){
  return choices[id];
 }
 export function validateCommunityState(state,profile){
- if(state?.schema!==communitySchema||state.machine!==profile.machine_id)throw Error('Configuration belongs to another printer');validateAxes(state.axes,profile);
+ if(state?.schema!==communitySchema||state.machine!==profile.machine_id)throw Error('Configuration belongs to another printer');validateAxes(state.axes,profile,state.configuration??'stock');
  for(const key of ['base','accent','frame'])if(!/^#[a-f0-9]{6}$/i.test(state.palette?.[key]))throw Error('Invalid color');
  for(const key of ['night','grid','references'])if(typeof state[key]!=='boolean')throw Error('Invalid display setting');
  communityConfiguration(profile,state.configuration??'stock');
