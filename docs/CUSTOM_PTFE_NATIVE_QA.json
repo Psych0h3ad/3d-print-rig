@@ -1,0 +1,295 @@
+{
+  "all_passed": true,
+  "results": [
+    {
+      "machine_id": "voron_trident_500_custom",
+      "passed": true,
+      "old_endpoint_mm": [
+        344.9999999998556,
+        135.62882323077105,
+        528.4698150888082
+      ],
+      "old_endpoint_distance_to_holder_mm": 28.974597655402903,
+      "endpoint_mm": [
+        345.1625295410766,
+        171.98175283421568,
+        515.8999999999962
+      ],
+      "native_holder_sha256": "05654bb66f978d3915f06c7da020ac9397031c8343c852b66e92f43f8a43ee47",
+      "tube_native_sha256": "da65ef9b7bcdc9ddb0bf19a7133b3d6bd881ccf06cba7998b7cb95e97cdf8ecf",
+      "bore_axis": [
+        4.977943102828792e-15,
+        0.9396926207859085,
+        -0.3420201433256684
+      ],
+      "bore_point_mm": [
+        345.16252954107654,
+        162.34642462299354,
+        519.4069726662665
+      ],
+      "bore_axis_error_mm": 1.174645922825314e-14,
+      "native_holder_interference_mm3": 0.0,
+      "radial_clearance_mm": 0.1,
+      "static_native_clearances": [
+        {
+          "part_key": "voron_trident_350_base_1034",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1258",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1264",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1265",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1266",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1291",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1326",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1348",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1349",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1350",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1359",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1382",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1383",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1384",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1385",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1386",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1387",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1388",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1389",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1390",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1391",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1393",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "530",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "545",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "559",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "577",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "578",
+          "overlap_mm3": 0.0
+        }
+      ],
+      "model_sha256": "e9f3d3b4bc31ea052eda5813b2b4ae664f28bcff4c1d783e0ead579e6bac66de",
+      "compressed_model_sha256": "8219242a5b72a6c41239fc5a2938ecae02947741b6cad7b9634a01c94e399209",
+      "scope": "Actual analytic holder bore registration, tangent alignment, native tube validity and exact tube/holder solid intersection. No full swept-machine clearance or constant-length claim."
+    },
+    {
+      "machine_id": "voron_trident_350_half_z",
+      "passed": true,
+      "old_endpoint_mm": [
+        269.9999999998556,
+        135.62882323077105,
+        403.4698150888082
+      ],
+      "old_endpoint_distance_to_holder_mm": 28.97459765540288,
+      "endpoint_mm": [
+        270.1625295410766,
+        171.98175283421565,
+        390.89999999999617
+      ],
+      "native_holder_sha256": "ad7f0f8a2368567a1a7d32c2c6c09d4f6ceff502d917ce8c5049f3eab65bc576",
+      "tube_native_sha256": "475e455d0124dc07f3119c14ce739dc8bee486bed3c40e7920983b8962f5279d",
+      "bore_axis": [
+        4.977943102828792e-15,
+        0.9396926207859085,
+        -0.3420201433256684
+      ],
+      "bore_point_mm": [
+        270.16252954107654,
+        162.34642462299354,
+        394.4069726662664
+      ],
+      "bore_axis_error_mm": 5.818046485878348e-15,
+      "native_holder_interference_mm3": 0.0,
+      "radial_clearance_mm": 0.1,
+      "static_native_clearances": [
+        {
+          "part_key": "voron_trident_350_base_1034",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1055",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1258",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1264",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1265",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1266",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1291",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1326",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1348",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1349",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1350",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1359",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1382",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1383",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1384",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1385",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1386",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1387",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1388",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1389",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1390",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1391",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "voron_trident_350_base_1393",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "530",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "545",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "559",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "577",
+          "overlap_mm3": 0.0
+        },
+        {
+          "part_key": "578",
+          "overlap_mm3": 0.0
+        }
+      ],
+      "model_sha256": "09f44eafe1363005111796cbd51644f54184d31c14e4888f4adf0944bff35d6f",
+      "compressed_model_sha256": "d6c8287771cd4856f5a38d9746c3d9cc01117412ce84b2d541af711ddf75af54",
+      "scope": "Actual analytic holder bore registration, tangent alignment, native tube validity and exact tube/holder solid intersection. No full swept-machine clearance or constant-length claim."
+    }
+  ]
+}

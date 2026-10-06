@@ -70,6 +70,9 @@ async function cacheReferences(outputs){
   for(const name of ['../POSITRON_ASSETS.json','../COMMUNITY_MACHINES_ASSETS.json','model-progress.mjs','model-loader.js','extra-asset-integrity.mjs','extra-machine-loader.mjs','ratrig-loader.mjs','app.js','mercury-tube-routes.mjs','stinger-flex.mjs','community.js','community-state.mjs','community-adapter.mjs','community-loader.mjs','positron.js','positron-fold.mjs','positron-loader.mjs','positron-state.mjs','workspace-navigation.mjs','theme-toggle.css','../fun/fun.css','embed-contract.mjs','workspace-share.mjs','display-start.js','display-preferences.mjs','languages.mjs','translation-engine.mjs','i18n.mjs','messages-en.mjs','machines.js','head-navigation.mjs','machine-head-model.mjs','changer-bank-model.mjs','changer-bank.js','configuration-model.js','configurations.js','configuration-draft.mjs','configuration-editor.mjs','configuration-editor.css','probe-checks.js','toolheads.js','toolchangers.js','crossant-covers.mjs','crossant-adapter.mjs','crossant-loader.mjs','crossant-state.mjs','crossant.js','micron-tube-routes.mjs','micron-flexible.mjs','micron-adapter.mjs','micron.js','workspace-return.mjs','workspace-layout.mjs','workspace-choices.mjs','workspace-ui.mjs','workspace-sections.mjs','workspace-router.mjs','workspace.css']){
    const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));
   }
+ for(const name of ['custom-voron.js','custom-voron-tube.mjs','custom-voron-loader.mjs','custom-voron-state.mjs']){
+  const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));
+ }
  // Content revisions propagate from dictionaries to their importers and page
  // controllers. Revising copy does not depend on remembering a cache suffix.
  for(let pass=0;pass<30;pass++){
