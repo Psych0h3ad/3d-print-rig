@@ -7,8 +7,8 @@ import {createV24Adapter} from './v24_matrix_adapter.mjs';
 import {createTridentMotion} from './trident-motion.mjs';
 import {setupMachineNavigation} from './machines.js?v=98f22b8a6b185e5aa7e3';
 import {appearanceRole} from './appearance-role.mjs';
-import {createCustomTube} from './custom-voron-tube.mjs';
-import {validateCustomState} from './custom-voron-state.mjs';
+import {createCustomTube} from './custom-voron-tube.mjs?v=06995433c84962abb661';
+import {validateCustomState} from './custom-voron-state.mjs?v=4b6132fe80a74098a8ba';
 import {workspaceFrame,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {setupSceneDisplay} from './display-preferences.mjs?v=9860960509e28d17f3fd';
@@ -29,7 +29,7 @@ export async function mount(scope){
  function resize(){const b=$('stage').getBoundingClientRect();renderer.setSize(b.width,b.height,false);setResponsiveAspect(camera,controls,b.width,b.height);render()}
  controls.addEventListener('change',render);new WorkspaceResizeObserver(resize).observe($('stage'));
  const t=value=>translate(value,document.documentElement.lang);
- function applyPose(){if(!adapter)return;const xyz=['x','y','z'].map(a=>Number($(a).value));current=adapter.setPose({x:xyz[0],y:xyz[1],z:xyz[2]},{flexibleVisible:$('belts').checked});tube?.update(current.dx||0,current.dy||0,$('belts').checked);for(const[i,a]of ['x','y','z'].entries())$(a+'v').textContent=xyz[i].toFixed(2)+' mm';document.body.dataset.pose=JSON.stringify(xyz);render()}
+ function applyPose(){if(!adapter)return;const xyz=['x','y','z'].map(a=>Number($(a).value)),flexible=$('belts').checked;adapter.setFlexibleVisible?.(flexible);current=adapter.setPose({x:xyz[0],y:xyz[1],z:xyz[2]},{flexibleVisible:flexible});tube?.update(xyz[0]-profile.display_reference_xyz_mm[0],xyz[1]-profile.display_reference_xyz_mm[1],flexible);for(const[i,a]of ['x','y','z'].entries())$(a+'v').textContent=xyz[i].toFixed(2)+' mm';document.body.dataset.pose=JSON.stringify(xyz);render()}
  function applyPalette(){for(const r of materials){r.material.color.copy(r.original);if(palette[r.role]){r.material.color.set(palette[r.role]);if(['base','accent'].includes(r.role)){r.material.metalness=0;r.material.roughness=.72}}}for(const r of ['base','accent','frame']){$(r).value=palette[r];$(r+'Hex').value=palette[r]}$('frameFinish').value=palette.frame==='#b9bec4'?'silver':palette.frame==='#25282d'?'black':'custom';render()}
  const storage='3d-print-rig-custom-voron-'+id,validColor=v=>/^#[a-f0-9]{6}$/i.test(v);
  function state(){return {schema:'custom-voron-1',machine_id:id,axes:['x','y','z'].map(a=>Number($(a).value)),colors:{...palette},panels:$('enclosure').checked,belts:$('belts').checked,grid:$('gridVisible').checked}}

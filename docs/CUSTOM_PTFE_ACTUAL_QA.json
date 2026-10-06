@@ -1,0 +1,64 @@
+{
+  "all_passed": true,
+  "results": [
+    {
+      "id": "voron_v24_500_custom",
+      "passed": true,
+      "parts": 1397,
+      "poses": 1013,
+      "degenerate_only_normals": 0,
+      "model_sha256": "4a09d4a965acddc782b56c0994d0c3e335cf23b6067683b348ec59f4a90080b7",
+      "manifest_sha256": "1f4d567ad2487a1a2db0df8a3ab2c61c173f83b97b2b8ceb5985bed59698de76",
+      "ptfe": false,
+      "max_endpoint_error_mm": 0,
+      "preview_length_range_mm": null,
+      "scope": "Actual model and production controller, sampled XYZ and reset. Native V2.4 source has the internal head tube but no external Bowden tube."
+    },
+    {
+      "id": "voron_v24_350_half_z",
+      "passed": true,
+      "parts": 1311,
+      "poses": 693,
+      "degenerate_only_normals": 0,
+      "model_sha256": "3f2a28ef82e9da45ad78fbb505d801b62d772884a52dddb10520cacdab00af7c",
+      "manifest_sha256": "5a41bf6fda8690875cde32586de9d907376726ba2d73b246990e89a2ffe4ad1b",
+      "ptfe": false,
+      "max_endpoint_error_mm": 0,
+      "preview_length_range_mm": null,
+      "scope": "Actual model and production controller, sampled XYZ and reset. Native V2.4 source has the internal head tube but no external Bowden tube."
+    },
+    {
+      "id": "voron_trident_500_custom",
+      "passed": true,
+      "parts": 1374,
+      "poses": 933,
+      "degenerate_only_normals": 4,
+      "model_sha256": "e9f3d3b4bc31ea052eda5813b2b4ae664f28bcff4c1d783e0ead579e6bac66de",
+      "manifest_sha256": "d3535215d5671d2da967397819377df92c0a4390603a3018f92a18b3f51b1204",
+      "ptfe": true,
+      "max_endpoint_error_mm": 5.551115123125783e-14,
+      "preview_length_range_mm": [
+        580.7019836139609,
+        1122.809453148628
+      ],
+      "scope": "Actual model and production controller; sampled/reversed/adaptively subdivided motion, native holder endpoint/tangent, mesh winding, visibility and deterministic reset. Length varies: not a physical hose simulation."
+    },
+    {
+      "id": "voron_trident_350_half_z",
+      "passed": true,
+      "parts": 1334,
+      "poses": 693,
+      "degenerate_only_normals": 4,
+      "model_sha256": "09f44eafe1363005111796cbd51644f54184d31c14e4888f4adf0944bff35d6f",
+      "manifest_sha256": "468cf66e043639163d8f30197fd6bef73485dd6a896ade9b77b6154db69f6289",
+      "ptfe": true,
+      "max_endpoint_error_mm": 0,
+      "preview_length_range_mm": [
+        503.2479116693048,
+        878.8065451901448
+      ],
+      "scope": "Actual model and production controller; sampled/reversed/adaptively subdivided motion, native holder endpoint/tangent, mesh winding, visibility and deterministic reset. Length varies: not a physical hose simulation."
+    }
+  ],
+  "adapter_sha256": "06995433c84962abb661e22150f16051ece2eff4802602557b21abae34d9c6c7"
+}

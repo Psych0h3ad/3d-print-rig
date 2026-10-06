@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "review_revision": 81,
+  "review_revision": 82,
   "reviewed_on": "2026-10-06",
   "input_sha256": {
     "site/ASSET_BUNDLE.json": "aae8ddef2905287f4a92b8618f1e3a7ca233331d95b08db7267cc45737a5ecb0",
     "site/COMMUNITY_MACHINES_ASSETS.json": "b1f97f395b36aed9e07b67932f80e6b6c21a663edb7ab63888e05e89e2af603b",
     "site/CROSSANT_ASSETS.json": "cc782d728e52beb780c0aaa2cb664ccce127154c02744312307dee74ffe8bdc6",
-    "site/CUSTOM_VORON_ASSETS.json": "e7fdcd0995e22a8e1fbaa6dd0b4d567ba063440dd13cf684d6f629279e55ae23",
+    "site/CUSTOM_VORON_ASSETS.json": "940f15f39a86e8c389e8914bd45b0b1008ca29fe2192f72989f5710755531a95",
     "site/EXTRA_MACHINE_ASSETS.json": "a1ef772b70a82420d97d564f8327e22dde6bcb511bdd6e94d406d6bc62cca624",
     "site/HEAD_VALIDATION.json": "6ffc2f9780c6aedd4584957fba8bd1aa79fd34a33ce066181a43b56d4064b185",
     "site/MOD_REGISTRY.json": "873c2c35fe99ebf20fdbb82a76992a4a5ace91ebc47f51d94c7d54c6284618a7",
@@ -57,9 +57,9 @@
     "site/viewer/crossant.js": "7512b9f7b1b465d8b8bc16ba9ca65c49f2ed0fa086f325e64f2736f022539e74",
     "site/viewer/custom-voron-loader.mjs": "9947051632cb50e79d409bc7ff38dfa627b255e19ff738002e3bdfe251aec9e9",
     "site/viewer/custom-voron-state.mjs": "4b6132fe80a74098a8bade2347c6e581bb39bcf3b8dc9459cf8298b7e7938949",
-    "site/viewer/custom-voron-tube.mjs": "337ec19c5d88b1bf0fdf3a230d4ce9f1aa3fda6b9f48e3928cd5c4db5f9f8b44",
-    "site/viewer/custom-voron.html": "a8fd4b68ffc3936d3e2056b1d77a82fa9d13c8dcc8708086b18909f94dd2327c",
-    "site/viewer/custom-voron.js": "a4ba17f5b9c7716bae2f86b955365c665fd2e959514a399d53d0c404794a8625",
+    "site/viewer/custom-voron-tube.mjs": "06995433c84962abb661e22150f16051ece2eff4802602557b21abae34d9c6c7",
+    "site/viewer/custom-voron.html": "2b2f0b406080097dcb84ec7deb8c9899c64d378efdb9dea4302cafb9a1e73d9a",
+    "site/viewer/custom-voron.js": "a158dc2f7a538c83af7d3e49edf5e699c8dbda27804e55414000f1933a77dbcd",
     "site/viewer/display-preferences.mjs": "9860960509e28d17f3fd89b59e32eaa7110a1816b8e5e4703f49c3a24998aae0",
     "site/viewer/display-start.js": "2ccf9c125fa0c4f73dc1a238a9b5070c779ef1b45d8301a11acd804528ccbad6",
     "site/viewer/e3ng-model.mjs": "7d5da880bcd1c29e4fd7f25a58afeafe5bd2e6839778821da65faa6614a1495a",
@@ -656,42 +656,52 @@
     {
       "id": "voron_trident_500_custom",
       "family": "trident",
-      "model_sha256": "b43a6362c39a8dd711cac376cc4026952f8437a361655ccffee0a785bcd19df5",
+      "model_sha256": "e9f3d3b4bc31ea052eda5813b2b4ae664f28bcff4c1d783e0ead579e6bac66de",
       "mesh_quality_verified": true,
       "motion_scope": "sampled_native_motion",
-      "sampled_poses": 195,
+      "sampled_poses": 933,
       "full_physical_fit_certified": false,
       "evidence": [
-        {
-          "report": "CUSTOM_VORON_MOTION_QA_81.json",
-          "sha256": "8e952b27324be707955d4eb437bb8666c70b66631d98d096cea9170045300a4e",
-          "scope": "Actual custom native-exported complete assembly; 195 minimum/maximum/intermediate/reversed/rapid XYZ poses, reset and finite flexible routes. Trident PTFE endpoints follow measured native CW2 inlet and fixed roof/spool holder. Smooth belt preview excludes teeth/cut-end/tension certification."
-        },
         {
           "report": "CUSTOM_VORON_NATIVE_QA_81.json",
           "sha256": "5a3c77c2702d78ef7abe790c1d908a40b525082192cc71a23c1882a22edc5450",
           "scope": "Actual selected nut/bolt/rail analytic bore axes, exact native-solid seating/interference, full scalar Z guide containment. Full-printer swept collision is not certified."
+        },
+        {
+          "report": "CUSTOM_PTFE_ACTUAL_QA.json",
+          "sha256": "9ae13eb9488a5524149a3d386501ec2f034e0cbdf1f5f1cc6d5e740014a761b9",
+          "scope": "Actual model and production controller; sampled/reversed/adaptively subdivided motion, native holder endpoint/tangent, mesh winding, visibility and deterministic reset. Length varies: not a physical hose simulation."
+        },
+        {
+          "report": "CUSTOM_PTFE_NATIVE_QA.json",
+          "sha256": "32b8a94039c188d666119106f7dcbb801699906eab558bba32fcce549a1acc98",
+          "scope": "Actual 4.2 mm cylindrical holder bore, 16 mm axial tube insertion, head-chain clearance and exact static native tube/part intersections for the corrected tube. Unchanged rail/nut/hardware evidence retained; no full-machine swept clearance certification."
         }
       ]
     },
     {
       "id": "voron_trident_350_half_z",
       "family": "trident",
-      "model_sha256": "70a026205085e4fe4ebd32063c376b1a488a196c379979d1f882d7702f72e055",
+      "model_sha256": "09f44eafe1363005111796cbd51644f54184d31c14e4888f4adf0944bff35d6f",
       "mesh_quality_verified": true,
       "motion_scope": "sampled_native_motion",
-      "sampled_poses": 195,
+      "sampled_poses": 693,
       "full_physical_fit_certified": false,
       "evidence": [
-        {
-          "report": "CUSTOM_VORON_MOTION_QA_81.json",
-          "sha256": "8e952b27324be707955d4eb437bb8666c70b66631d98d096cea9170045300a4e",
-          "scope": "Actual custom native-exported complete assembly; 195 minimum/maximum/intermediate/reversed/rapid XYZ poses, reset and finite flexible routes. Trident PTFE endpoints follow measured native CW2 inlet and fixed roof/spool holder. Smooth belt preview excludes teeth/cut-end/tension certification."
-        },
         {
           "report": "CUSTOM_VORON_NATIVE_QA_81.json",
           "sha256": "5a3c77c2702d78ef7abe790c1d908a40b525082192cc71a23c1882a22edc5450",
           "scope": "Actual selected nut/bolt/rail analytic bore axes, exact native-solid seating/interference, full scalar Z guide containment. Full-printer swept collision is not certified."
+        },
+        {
+          "report": "CUSTOM_PTFE_ACTUAL_QA.json",
+          "sha256": "9ae13eb9488a5524149a3d386501ec2f034e0cbdf1f5f1cc6d5e740014a761b9",
+          "scope": "Actual model and production controller; sampled/reversed/adaptively subdivided motion, native holder endpoint/tangent, mesh winding, visibility and deterministic reset. Length varies: not a physical hose simulation."
+        },
+        {
+          "report": "CUSTOM_PTFE_NATIVE_QA.json",
+          "sha256": "32b8a94039c188d666119106f7dcbb801699906eab558bba32fcce549a1acc98",
+          "scope": "Actual 4.2 mm cylindrical holder bore, 16 mm axial tube insertion, head-chain clearance and exact static native tube/part intersections for the corrected tube. Unchanged rail/nut/hardware evidence retained; no full-machine swept clearance certification."
         }
       ]
     },
@@ -827,18 +837,18 @@
       "model_sha256": "4a09d4a965acddc782b56c0994d0c3e335cf23b6067683b348ec59f4a90080b7",
       "mesh_quality_verified": true,
       "motion_scope": "sampled_native_motion",
-      "sampled_poses": 195,
+      "sampled_poses": 1013,
       "full_physical_fit_certified": false,
       "evidence": [
-        {
-          "report": "CUSTOM_VORON_MOTION_QA_81.json",
-          "sha256": "8e952b27324be707955d4eb437bb8666c70b66631d98d096cea9170045300a4e",
-          "scope": "Actual custom native-exported complete assembly; 195 minimum/maximum/intermediate/reversed/rapid XYZ poses, reset and finite flexible routes. Trident PTFE endpoints follow measured native CW2 inlet and fixed roof/spool holder. Smooth belt preview excludes teeth/cut-end/tension certification."
-        },
         {
           "report": "CUSTOM_VORON_NATIVE_QA_81.json",
           "sha256": "5a3c77c2702d78ef7abe790c1d908a40b525082192cc71a23c1882a22edc5450",
           "scope": "Actual selected nut/bolt/rail analytic bore axes, exact native-solid seating/interference, full scalar Z guide containment. Full-printer swept collision is not certified."
+        },
+        {
+          "report": "CUSTOM_PTFE_ACTUAL_QA.json",
+          "sha256": "9ae13eb9488a5524149a3d386501ec2f034e0cbdf1f5f1cc6d5e740014a761b9",
+          "scope": "Actual model and production controller, sampled XYZ and reset. Native V2.4 source has the internal head tube but no external Bowden tube."
         }
       ]
     },
@@ -848,18 +858,18 @@
       "model_sha256": "3f2a28ef82e9da45ad78fbb505d801b62d772884a52dddb10520cacdab00af7c",
       "mesh_quality_verified": true,
       "motion_scope": "sampled_native_motion",
-      "sampled_poses": 195,
+      "sampled_poses": 693,
       "full_physical_fit_certified": false,
       "evidence": [
-        {
-          "report": "CUSTOM_VORON_MOTION_QA_81.json",
-          "sha256": "8e952b27324be707955d4eb437bb8666c70b66631d98d096cea9170045300a4e",
-          "scope": "Actual custom native-exported complete assembly; 195 minimum/maximum/intermediate/reversed/rapid XYZ poses, reset and finite flexible routes. Trident PTFE endpoints follow measured native CW2 inlet and fixed roof/spool holder. Smooth belt preview excludes teeth/cut-end/tension certification."
-        },
         {
           "report": "CUSTOM_VORON_NATIVE_QA_81.json",
           "sha256": "5a3c77c2702d78ef7abe790c1d908a40b525082192cc71a23c1882a22edc5450",
           "scope": "Actual selected nut/bolt/rail analytic bore axes, exact native-solid seating/interference, full scalar Z guide containment. Full-printer swept collision is not certified."
+        },
+        {
+          "report": "CUSTOM_PTFE_ACTUAL_QA.json",
+          "sha256": "9ae13eb9488a5524149a3d386501ec2f034e0cbdf1f5f1cc6d5e740014a761b9",
+          "scope": "Actual model and production controller, sampled XYZ and reset. Native V2.4 source has the internal head tube but no external Bowden tube."
         }
       ]
     },
@@ -1435,5 +1445,67 @@
     "report": "BELT_WINDING_QA_79.json",
     "sha256": "8a968f448b68b614b7d338b7960da42bab61f75d3b32e1d16e5a8fcd32ace34f",
     "scope": "V2.4 and Monolith swept belt face orientation and signed volume at moving poses. Source belt omissions and physical tension are not certified."
+  },
+  "ptfe_review": {
+    "revision": "custom-ptfe-v2",
+    "changed_models": [
+      "voron_trident_500_custom",
+      "voron_trident_350_half_z"
+    ],
+    "actual_report": "CUSTOM_PTFE_ACTUAL_QA.json",
+    "native_report": "CUSTOM_PTFE_NATIVE_QA.json",
+    "all_available_machine_rows_retained": 61,
+    "browser": {
+      "name": "Codex in-app browser",
+      "viewports": [
+        [
+          1280,
+          720
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "models": [
+        "voron_trident_500_custom",
+        "voron_trident_350_half_z"
+      ],
+      "checks": [
+        "XYZ extremes and reverse",
+        "reset",
+        "mobile orbit",
+        "model/settings visibility",
+        "no console errors"
+      ],
+      "screenshots": [
+        {
+          "file": "trident500-extreme.png",
+          "sha256": "95188f9421d1fc11bcb4e91b58e33757a6a5d006951e4e4faad83e75cd3dae35"
+        },
+        {
+          "file": "trident500-reset-dark.png",
+          "sha256": "d7d3cb311107ea0852e81148bcd2742eb49c0395bcbdc95fa329f0e7a8d4f193"
+        },
+        {
+          "file": "trident500-mobile.png",
+          "sha256": "5f0bea15482b61420b91d02cbefa3dd64e3ff31a67c6bee3afdf7ddfae7cff60"
+        },
+        {
+          "file": "trident-half-mobile.png",
+          "sha256": "d9acf82198b35c1226bea8ff13ef292aba569efea5c23a190a3004a73eaf1835"
+        }
+      ],
+      "physical_mobile_safari_verified": false
+    },
+    "limitations": [
+      "PTFE length varies with XY; not a constant-length hose solver.",
+      "External Bowden tube is absent from V2.4 native sources.",
+      "Browser review covers named views; native clearance report covers the static CAD pose."
+    ]
   }
 }

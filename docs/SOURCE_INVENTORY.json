@@ -59,9 +59,19 @@
       "sha256": "853196bc8e4b9b7209996a62741f508745f093d3937ec4c5600aa3b844963a02"
     },
     {
+      "path": "docs/CUSTOM_PTFE_ACTUAL_QA.json",
+      "bytes": 2751,
+      "sha256": "9ae13eb9488a5524149a3d386501ec2f034e0cbdf1f5f1cc6d5e740014a761b9"
+    },
+    {
+      "path": "docs/CUSTOM_PTFE_NATIVE_QA.json",
+      "bytes": 8205,
+      "sha256": "32b8a94039c188d666119106f7dcbb801699906eab558bba32fcce549a1acc98"
+    },
+    {
       "path": "docs/CUSTOM_VORON.md",
-      "bytes": 1806,
-      "sha256": "a26988cf8f0f83c7f87fbe30dac55fa7bcb6e1631b5bdaed8248e5b6cb7b37a7"
+      "bytes": 2819,
+      "sha256": "3c0a37306a0971f89acfa58301d83d27b6177739646233711598b8fa50f776ed"
     },
     {
       "path": "docs/CUTTERS_MADMAX.md",
@@ -95,8 +105,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 76330,
-      "sha256": "0d31b002341f672ccf47fbd31ac0556275f866e71bda90cfba2510c3f2e39fc6"
+      "bytes": 78491,
+      "sha256": "49b40ba3551c30fa6c7f5c13094a7055bc0b24291a565fb6d71e7a47c108fb44"
     },
     {
       "path": "docs/MAINTENANCE.md",
@@ -259,6 +269,11 @@
       "sha256": "48d28b275be9ca13b9bfd9c77c047b274ad07446d7245f69f21f7ff81a42001d"
     },
     {
+      "path": "scripts/audit_custom_ptfe.mjs",
+      "bytes": 6986,
+      "sha256": "aa10e8c1270470502fdc0cf7bdf34773aed82ad467e6865d523d35ff942be48d"
+    },
+    {
       "path": "scripts/audit_indx_banks.mjs",
       "bytes": 5364,
       "sha256": "82f3b9da9d260eaf539bd1058aaff79957e955663e1896e4b6b477d5dc395784"
@@ -315,8 +330,8 @@
     },
     {
       "path": "scripts/build_locales.mjs",
-      "bytes": 9481,
-      "sha256": "c8ce55c15615ad4332d75d15941c8dbd5fa10cea23d2f9624d5a333ee1be7ee0"
+      "bytes": 9684,
+      "sha256": "69a7ef5051367b805858326e06bb5a66a9f46bd306fa4f42a567f4464468568a"
     },
     {
       "path": "scripts/build_site.py",
@@ -532,6 +547,11 @@
       "path": "scripts/test_crossant_state.mjs",
       "bytes": 1762,
       "sha256": "1189f7373bcb23d5490e622b52ab57f37adb1f280f999a2cc4d3bce4c6d10eb6"
+    },
+    {
+      "path": "scripts/test_custom_ptfe.mjs",
+      "bytes": 2756,
+      "sha256": "4ba337b993c21d78019e58590558ba6e25802eb053080838ade52c93c524e55b"
     },
     {
       "path": "scripts/test_custom_voron.mjs",
@@ -871,7 +891,7 @@
     {
       "path": "site/CUSTOM_VORON_ASSETS.json",
       "bytes": 4203,
-      "sha256": "e7fdcd0995e22a8e1fbaa6dd0b4d567ba063440dd13cf684d6f629279e55ae23"
+      "sha256": "940f15f39a86e8c389e8914bd45b0b1008ca29fe2192f72989f5710755531a95"
     },
     {
       "path": "site/EXTRA_MACHINE_ASSETS.json",
@@ -3850,18 +3870,18 @@
     },
     {
       "path": "site/viewer/custom-voron-tube.mjs",
-      "bytes": 1267,
-      "sha256": "337ec19c5d88b1bf0fdf3a230d4ce9f1aa3fda6b9f48e3928cd5c4db5f9f8b44"
+      "bytes": 3437,
+      "sha256": "06995433c84962abb661e22150f16051ece2eff4802602557b21abae34d9c6c7"
     },
     {
       "path": "site/viewer/custom-voron.html",
       "bytes": 4180,
-      "sha256": "a8fd4b68ffc3936d3e2056b1d77a82fa9d13c8dcc8708086b18909f94dd2327c"
+      "sha256": "2b2f0b406080097dcb84ec7deb8c9899c64d378efdb9dea4302cafb9a1e73d9a"
     },
     {
       "path": "site/viewer/custom-voron.js",
-      "bytes": 9719,
-      "sha256": "a4ba17f5b9c7716bae2f86b955365c665fd2e959514a399d53d0c404794a8625"
+      "bytes": 9870,
+      "sha256": "a158dc2f7a538c83af7d3e49edf5e699c8dbda27804e55414000f1933a77dbcd"
     },
     {
       "path": "site/viewer/display-preferences.mjs",

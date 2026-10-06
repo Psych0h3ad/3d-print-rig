@@ -62,20 +62,20 @@
       "family": "trident",
       "files": {
         "model.glb": {
-          "path": "custom-voron-v1/voron_trident_500_custom/model.glb.gz",
-          "bytes": 27544082,
-          "sha256": "0d112afd1c8e425331d3ef7bb8b7f2b57c09884743c81d69a922a05588e24b9b",
+          "path": "custom-voron-v2/voron_trident_500_custom/model.glb.gz",
+          "bytes": 34607798,
+          "sha256": "8219242a5b72a6c41239fc5a2938ecae02947741b6cad7b9634a01c94e399209",
           "encoding": "gzip",
-          "decoded_bytes": 86308664,
-          "decoded_sha256": "b43a6362c39a8dd711cac376cc4026952f8437a361655ccffee0a785bcd19df5"
+          "decoded_bytes": 97969792,
+          "decoded_sha256": "e9f3d3b4bc31ea052eda5813b2b4ae664f28bcff4c1d783e0ead579e6bac66de"
         },
         "assembly_manifest.json": {
-          "path": "custom-voron-v1/voron_trident_500_custom/assembly_manifest.json",
-          "bytes": 1039890,
-          "sha256": "31ab237af93ff060c091fb8cb9f76b6b94329f9f24452f328fb2099b089e788a"
+          "path": "custom-voron-v2/voron_trident_500_custom/assembly_manifest.json",
+          "bytes": 1040471,
+          "sha256": "d3535215d5671d2da967397819377df92c0a4390603a3018f92a18b3f51b1204"
         },
         "machine_profile.json": {
-          "path": "custom-voron-v1/voron_trident_500_custom/machine_profile.json",
+          "path": "custom-voron-v2/voron_trident_500_custom/machine_profile.json",
           "bytes": 5976,
           "sha256": "e1dc479aa0c2d9ee3df6010781fff0add53176278358a9691a6a69a61ca91566"
         }
@@ -88,20 +88,20 @@
       "family": "trident",
       "files": {
         "model.glb": {
-          "path": "custom-voron-v1/voron_trident_350_half_z/model.glb.gz",
-          "bytes": 26349309,
-          "sha256": "48bc1f8cba7b4d784aa727a2d5ad3ff2c42625dab325d63bc6b0094b83141015",
+          "path": "custom-voron-v2/voron_trident_350_half_z/model.glb.gz",
+          "bytes": 31893579,
+          "sha256": "d6c8287771cd4856f5a38d9746c3d9cc01117412ce84b2d541af711ddf75af54",
           "encoding": "gzip",
-          "decoded_bytes": 81595616,
-          "decoded_sha256": "70a026205085e4fe4ebd32063c376b1a488a196c379979d1f882d7702f72e055"
+          "decoded_bytes": 90739836,
+          "decoded_sha256": "09f44eafe1363005111796cbd51644f54184d31c14e4888f4adf0944bff35d6f"
         },
         "assembly_manifest.json": {
-          "path": "custom-voron-v1/voron_trident_350_half_z/assembly_manifest.json",
-          "bytes": 1018669,
-          "sha256": "806295b3726991f9c049e74d2c440c26921e17df5914063687fbe11490af8145"
+          "path": "custom-voron-v2/voron_trident_350_half_z/assembly_manifest.json",
+          "bytes": 1019252,
+          "sha256": "468cf66e043639163d8f30197fd6bef73485dd6a896ade9b77b6154db69f6289"
         },
         "machine_profile.json": {
-          "path": "custom-voron-v1/voron_trident_350_half_z/machine_profile.json",
+          "path": "custom-voron-v2/voron_trident_350_half_z/machine_profile.json",
           "bytes": 6014,
           "sha256": "f8f3316c0ea84089826f4ed587ebbc68e637d11c33a5b8caa07bfa4edf8bae7d"
         }
