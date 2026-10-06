@@ -3,10 +3,11 @@ const escape=text=>text.replace(/[.*+?^${}()|[\]\\]/gu,'\\$&');
 const japanese=/[\u3040-\u30ff\u3400-\u9fff]/u;
 const format=(text,values)=>text.replace(/\{(\d+)\}/gu,(token,key)=>Object.hasOwn(values,key)?String(values[key]):token);
 function patterns(entries){
- return entries.map(([source,id])=>{
+ return entries.map(([raw,id])=>{
+  const source=normalize(raw);
   const keys=[];let last=0,expression='';
   for(const m of source.matchAll(/\{(\d+)\}/gu)){expression+=escape(source.slice(last,m.index))+'(.*?)';keys.push(m[1]);last=m.index+m[0].length}
-  expression+=escape(source.slice(last));return {test:new RegExp('^'+expression+'$','u'),keys,id,specificity:source.replace(/\{\d+\}/gu,'').length};
+  expression+=escape(source.slice(last));return {test:new RegExp('^'+expression+'$','u'),keys,id,specificity:source.replace(/\{\d+\}/gu,'').length,literalSeparator:source.includes(' ／ ')};
  }).sort((a,b)=>b.specificity-a.specificity);
 }
 
@@ -52,7 +53,7 @@ export function createTranslator(definitions,{dictionaries=new Map()}={}){
    // Controllers append independent status messages with this separator.
    // Match a complete template first so a separator inside a parameter is
    // retained; otherwise translate each complete message independently.
-   const whole=match(source,japanese.test(source)?specificJP:ep,language,depth);
+   const whole=match(source,(japanese.test(source)?specificJP:ep).filter(p=>p.literalSeparator&&p.specificity>=8),language,depth);
    result=whole??source.split(' ／ ').map(part=>translate(part,language,depth+1)).join(' ／ ');
   }
   else if(language==='ja')result=japanese.test(source)?match(source,jp,'ja',depth)??source.replace(jpFragments,key=>resolve(sourceIndex.get(key),'ja')):match(source,ep,'ja',depth)??source.replace(enFragments,key=>resolve(englishIndex.get(key),'ja'));
@@ -63,7 +64,9 @@ export function createTranslator(definitions,{dictionaries=new Map()}={}){
    result=whole?resolve(whole,language):match(input,ep,language,depth)??input.replace(enFragments,key=>resolve(englishIndex.get(key),language));
   }
   if(result===source)return text;
-  return text.slice(0,text.indexOf(text.trim()))+result+text.slice(text.indexOf(text.trim())+text.trim().length);
+  const start=text.slice(0,text.indexOf(text.trim())),end=text.slice(text.indexOf(text.trim())+text.trim().length);
+  if(start)result=result.trimStart();if(end)result=result.trimEnd();
+  return start+result+end;
  }
  return {translate,formatMessage:(id,values={},language='en')=>format(resolve(id,language),values),messageIdFor:text=>sourceIndex.get(normalize(text))||englishIndex.get(normalize(text)),messageSource:id=>definitions[id]?.ja||id,diagnostics:()=>({fallbacks:[...fallbacks]})};
 }

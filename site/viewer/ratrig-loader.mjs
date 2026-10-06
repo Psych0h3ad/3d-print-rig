@@ -1,3 +1,4 @@
+import {loadedFamilyAssetIdentity} from './gcode-loaded-asset-identity.mjs?v=42ac134c2d9a8b8f8dfc';
 import * as THREE from './vendor-r180/three.module.js';
 import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
 import {createRatRigAdapter} from './ratrig_adapter.mjs';
@@ -35,7 +36,8 @@ export async function loadRatRigMachine(index,id,{onProgress=()=>{},signal}={}){
  onProgress('3Dモデルを読み込み中…');const bytes=await checked('model.glb');progress.assembling();let root,adapter;
  try{
   root=(await new GLTFLoader().parseAsync(bytes.buffer,base.href)).scene;adapter=createRatRigAdapter(root,manifest,profile,routes,THREE);
-  return {row,root,adapter,profile,manifest,routes,gcode:createRatRigGcodePreview(adapter,profile)};
+  const replay_asset_identity=await loadedFamilyAssetIdentity({machine:id,spec:{...row,machine_id:id},manifest,profile,checkedFileNames:names,requiredFileNames:names});
+  return {row,root,adapter,profile,manifest,routes,gcode:createRatRigGcodePreview(adapter,profile),replay_asset_identity};
  }catch(e){disposeRatRig(root,adapter);throw e}
  }finally{progress.finish()}
 }

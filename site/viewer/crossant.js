@@ -1,3 +1,4 @@
+import {setupGcodePanel} from './gcode-panel.js?v=0738f8c451be63bba150';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=extra-machines-55';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
@@ -6,7 +7,7 @@ import {workspaceFrame,WorkspaceResizeObserver,workspaceTask,workspaceListen} fr
 import * as THREE from './vendor-r180/three.module.js';
 import {OrbitControls} from './vendor-r180/OrbitControls.js?v=workspace-belts-1';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
-import {loadCrossant,disposeCrossant} from './crossant-loader.mjs?v=3fa8436523f1d0760466';
+import {loadCrossant,disposeCrossant} from './crossant-loader.mjs?v=c1042da5a3a7e7f1f01d';
 import {crossantSchema,crossantGroups,validateCrossantState} from './crossant-state.mjs?v=534dc62f2c6545f556f7';
 import {setupMachineNavigation} from './machines.js?v=d6045b8af89b3984adcb';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
@@ -93,6 +94,9 @@ try{
    const b=document.createElement('button');b.textContent=c.name_a+' / '+c.name_b;b.dataset.i18n='off';b.onclick=()=>action(()=>{stop();state.nominal=true;clearMarks();setCrossantPose(Object.fromEntries(['x','y','z'].map((a,i)=>[a,c.first_pose_mm[i]])));for(const key of [c.part_a,c.part_b]){const m=new THREE.BoxHelper(current.adapter.nodes.get(key),0xffaa00);scene.add(m);marks.push(m)}view('head')});$('contacts').append(b);
   }
   grid.position.y=new THREE.Box3().setFromObject(current.root).min.y-.003;current.adapter.setPalette(state.palette);loaded=true;for(const id of mutable)$(id).disabled=false;sync();view();$('badge').textContent='Crossant-235 · Backpack';$('status').hidden=true;document.body.dataset.assetStatus='ready';
+  setupGcodePanel({container:document.querySelector('aside'),profile:current.profile,adapter:current.adapter,scene,render:request,drawPath:false,
+   getPose:()=>['x','y','z'].map(a=>current.adapter.getPose()[a]),getLimits:range,getContext:()=>({machine,nominal:state.nominal,asset_identity:current.replay_asset_identity}),beforePlayback:stop,
+   setPose:xyz=>setCrossantPose(Object.fromEntries(['x','y','z'].map((a,i)=>[a,xyz[i]])))});
   await setupPublicInfo({includeDownloads:false});setupRenderExport({three:THREE,renderer,scene,camera,controls,name:machine});
  }
 }catch(e){if(!disposed){$('status').hidden=false;$('status').textContent=e.message;document.body.dataset.assetStatus='error';document.body.dataset.error=e.message;console.error(e)}}

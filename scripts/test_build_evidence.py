@@ -27,6 +27,14 @@ class HistoryBlobTest(unittest.TestCase):
 
 
 class EvidenceDeliveryTest(unittest.TestCase):
+    def test_native_datum_is_delivered_without_newline_conversion(self):
+        root = Path(__file__).resolve().parents[1]
+        name = 'site/TRIDENT_SB_NATIVE_DATUM.json'
+        indexed = subprocess.check_output(['git', 'show', ':' + name], cwd=root)
+        self.assertEqual(indexed, (root / name).read_bytes())
+        self.assertEqual(hashlib.sha256(indexed).hexdigest(),
+                         'c567548b21ed8b6675fd0b54d5b984fd61526babdb9845c074c814a0967cb441')
+
     def setUp(self):
         self.folder = tempfile.TemporaryDirectory()
         self.addCleanup(self.folder.cleanup)

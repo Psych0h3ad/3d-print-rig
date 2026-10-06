@@ -1,3 +1,4 @@
+import {loadedFamilyAssetIdentity} from './gcode-loaded-asset-identity.mjs?v=42ac134c2d9a8b8f8dfc';
 import * as THREE from './vendor-r180/three.module.js';
 import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
 import {createCrossantAdapter} from './crossant-adapter.mjs?v=53736f33178907042969';
@@ -44,7 +45,8 @@ export async function loadCrossant(index,{signal,onProgress=()=>{}}={}){
   root.add(coverRoot);const covers=createCrossantCovers(coverRoot,coverManifest);
   const chain=createChainPreview(root,nodes,chains,THREE),adapter=createCrossantAdapter(root,manifest,profile,belts,{chainPreview:chain,placementCorrections:coverManifest.placement_corrections});
   adapter.setPose(Object.fromEntries(['x','y','z'].map((a,i)=>[a,profile.display_reference_xyz_mm[i]])));
-  return {root,manifest,profile,adapter,chain,contacts,index,covers};
+  const replay_asset_identity=await loadedFamilyAssetIdentity({machine:index.machine_id,spec:index,manifest,profile,checkedFileNames:files,requiredFileNames:files});
+  return {root,manifest,profile,adapter,chain,contacts,index,covers,replay_asset_identity};
  }catch(e){disposeCrossant(root);throw e}finally{for(const url of urls.values())URL.revokeObjectURL(url)}
  }finally{progress.finish()}
 }

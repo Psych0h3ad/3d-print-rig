@@ -15,8 +15,10 @@ The component page offers 17 native STEP parts individually:
 
 Only the selected part is shown. Each is centered independently for inspection;
 the display coordinates do not establish an assembly transform. Fans, hotend,
-extruder, screws and probes are absent. Ender-3 machine installation is not
-registered. The source BLTouch plate is labeled work in progress by the author
+extruder, screws and probes are absent from this individual-part view. A separate
+[installed Ender-3 configuration](https://psych0h3ad.github.io/3d-print-rig/viewer/community.html?machine=ender3_stock_220&configuration=hydra_bowden_4010)
+includes the original Creality hotend, dual 4010 blowers, hotend fan and native
+mounting hardware. The source BLTouch plate is labeled work in progress by the author
 and is not included as a verified probe option.
 
 Five 0.2 mm sacrificial nut-hole membranes are removed from the bases. The
@@ -30,9 +32,15 @@ STEP file by bytes and SHA256, and pins the resulting mesh and metadata.
 Original CAD remains available from the author. **CC BY-NC-SA 4.0** applies to
 these parts and their derived meshes; see [attribution](../site/licenses/hydra/NOTICE.md).
 
-Native investigation aligned the Ender-3 upper roller axes with the base bores.
-It has not resolved a complete fan/duct/hotend placement with checked mating
-features and nozzle clearance. This investigation is not a physical
-incompatibility verdict. It is why no machine installation or complete
-toolhead recipe is offered yet. Component selection and mesh tests cannot
-certify that mounting.
+The installed Bowden/4010 assembly uses measured Creality carriage and fan axes.
+Printed mounting lips and pilot seats have recorded clearance adaptations;
+purchased hardware retains its native dimensions. Its native-solid mating and
+continuous added-body travel checks are recorded in [the installation review](HYDRA_ENDER3_QA.json).
+Stock/Belted Z and attached KlackEnder combinations are recorded separately in
+[the Ender-3 Mod review](ENDER3_MODS_QA.json). The viewer adds a 450 mm Bowden route assumption,
+attached to the measured source connector ports and checked separately during
+Stock/Belted Z movement. The route does not model tube strain or connector internals.
+Other HYDRA plates, hotends, blower sizes and the author's WIP BLTouch
+plate remain individual-part references until their assemblies are registered.
+Airflow, print strength, manufacturing tolerances and automatic tool changing
+are not established by these CAD checks.

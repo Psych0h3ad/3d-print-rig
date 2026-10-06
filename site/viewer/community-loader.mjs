@@ -1,7 +1,8 @@
+import {loadedPrinterAssetIdentity} from './gcode-loaded-asset-identity.mjs?v=42ac134c2d9a8b8f8dfc';
 import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
 import {extraAssetBase,checkedExtraAsset} from './extra-asset-integrity.mjs?v=cb20fe4599d236ba43b3';
 import {beginModelLoading} from './model-progress.mjs?v=6b41a2b9f7626039b7e6';
-import {createCommunityAdapter} from './community-adapter.mjs?v=ffc5eeb9a4b57873672c';
+import {createCommunityAdapter} from './community-adapter.mjs?v=527f242dd6b104060425';
 import {applyNativeMotionProfile,loadNativeMotionProfile} from './native-motion-profile.mjs?v=91532eb992519143f437';
 export async function loadCommunity(index,machine,{signal}={}){
  const spec=index.machines[machine];if(!spec||spec.machine_id!==machine)throw Error('Unknown community printer');
@@ -15,6 +16,7 @@ export async function loadCommunity(index,machine,{signal}={}){
  ({manifest,profile}=applyNativeMotionProfile(manifest,profile,await loadNativeMotionProfile(machine,{signal}),spec.files['model.glb'].decoded_sha256));
  progress.assembling();const root=(await new GLTFLoader().parseAsync(bytes.buffer,base.href)).scene;
  for(const data of extraBytes)root.add((await new GLTFLoader().parseAsync(data.buffer,base.href)).scene);
- return {root,manifest,profile,adapter:createCommunityAdapter(root,manifest,profile)};
+ const replay_asset_identity=await loadedPrinterAssetIdentity({machine,spec,manifest,profile,checkedFileNames:names});
+ return {root,manifest,profile,replay_asset_identity,adapter:createCommunityAdapter(root,manifest,profile)};
  }finally{progress.finish()}
 }

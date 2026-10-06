@@ -1,0 +1,20 @@
+import assert from 'node:assert/strict';
+import {compileVirtualPrinter,createVirtualPlayback} from '../site/viewer/virtual-printer-emulator.mjs';
+const settings={initial:[0,0,10],limits:{X:[0,100],Y:[0,100],Z:[0,100]},tools:['extruder','extruder1'],heaters:{extruder:{temperature_c:20,min_c:0,max_c:300}}};
+const compile=()=>compileVirtualPrinter('M104 S200\nM109 S200\nM83\nG1 X10 E2 F600\nACTIVATE_EXTRUDER EXTRUDER=extruder1\nG4 P2000\nG91\nG1 Y10 E3',{settings});
+const program=compile(),pristine=JSON.stringify(program),replay=createVirtualPlayback(program);assert(program.complete);assert.equal(program.duration_s,4);
+assert.deepEqual(replay.read().state,program.initial_state);assert.equal(replay.step().state.heaters.extruder.target_c,200);assert.equal(replay.read().state.heaters.extruder.temperature_c,20);
+const zeroTime=JSON.parse(JSON.stringify(replay.save()));replay.seekTime(4);replay.restore(zeroTime);assert.equal(replay.index,1);assert.equal(replay.read().state.heaters.extruder.temperature_c,20);
+replay.step();assert.equal(replay.read().state.heaters.extruder.temperature_c,200);
+replay.seekTime(.5);assert.deepEqual(replay.read().position,[5,0,10,1]);assert.equal(replay.read().state.active_tool,'extruder');assert.equal(replay.read().state.extrusion_by_tool.extruder,1);const halfway=replay.save();
+replay.play(1000);assert(replay.playing);assert.deepEqual(replay.advance(1250).position,[7.5,0,10,1.5]);replay.pause();assert(!replay.playing);assert.deepEqual(replay.advance(9999).position,[7.5,0,10,1.5]);
+assert.deepEqual(replay.restore(halfway).position,[5,0,10,1]);assert(!replay.playing);replay.play(2000);replay.advance(2250,4);assert.equal(replay.read().state.active_tool,'extruder1');assert.equal(replay.time,1.5);assert.deepEqual(replay.read().position,[10,0,10,2]);
+assert.throws(()=>replay.advance(2000),/reversed/);assert.throws(()=>replay.advance(2500,2),/speed/);
+replay.seekTime(3.5);assert.deepEqual(replay.read().position,[10,5,10,3.5]);
+for(let i=0;i<200;i++){const seconds=(i*37%401)/100;const value=replay.seekTime(seconds),saved=JSON.parse(JSON.stringify(replay.save()));assert.deepEqual(createVirtualPlayback(compile()).restore(saved).state,value.state)}
+replay.seekTime(999);assert(replay.read().done);assert(!replay.playing);assert.deepEqual(replay.read().state,program.final);
+const reset=replay.reset();assert.deepEqual(reset.state,program.initial_state);assert.equal(reset.index,0);
+for(const bad of [{...halfway,program_id:'other'},{...halfway,time_s:-1},{...halfway,event_index:1,time_s:.5},{...halfway,event_index:3,time_s:1},{...halfway,event_index:999},{...halfway,time_s:Infinity},{...halfway,playing:true}])assert.throws(()=>replay.restore(bad));
+assert.equal(JSON.stringify(program),pristine);
+assert.throws(()=>createVirtualPlayback(compileVirtualPrinter('M112',{settings})));
+console.log('Virtual replay: zero-time ordering, random seek, logical states, monotonic clocks, pause/reset, serialized replay and tamper rejection passed.');

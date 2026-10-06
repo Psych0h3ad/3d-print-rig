@@ -1,3 +1,4 @@
+import {loadedFamilyAssetIdentity} from './gcode-loaded-asset-identity.mjs?v=42ac134c2d9a8b8f8dfc';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {extraAssetBase,checkedExtraAsset} from './extra-asset-integrity.mjs?v=cb20fe4599d236ba43b3';
 import {beginModelLoading} from './model-progress.mjs?v=6b41a2b9f7626039b7e6';
@@ -11,6 +12,7 @@ export async function loadExtraMachine(id){
  const [manifest,profile,bytes,bindings]=await Promise.all([read('assembly_manifest.json'),read('machine_profile.json'),checked('model.glb'),row.files['belt_bindings.json']?read('belt_bindings.json'):null]);
  if(manifest.machine_id!==id||profile.machine_id!==id)throw Error('Machine identity mismatch');
  progress.assembling();const root=(await new GLTFLoader().parseAsync(bytes.buffer,base.href)).scene;
- return {row,root,manifest,profile,bindings};
+ const replay_asset_identity=await loadedFamilyAssetIdentity({machine:id,spec:{...row,machine_id:id},manifest,profile,checkedFileNames:names,requiredFileNames:names});
+ return {row,root,manifest,profile,bindings,checked_file_names:Object.freeze([...names]),replay_asset_identity};
  }finally{progress.finish()}
 }

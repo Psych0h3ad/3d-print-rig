@@ -7,3 +7,5 @@
 *.md text eol=lf
 *.py text eol=lf
 *.yml text eol=lf
+# Preserve the exact bytes pinned by the native datum validation gate.
+site/TRIDENT_SB_NATIVE_DATUM.json -text

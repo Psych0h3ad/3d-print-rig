@@ -32,6 +32,7 @@
 !/site/MOUNT_VALIDATION.json
 !/site/HEAD_VALIDATION.json
 !/site/REAR_ENCLOSURE_QA.json
+!/site/TRIDENT_SB_NATIVE_DATUM.json
 !/site/COMMUNITY_INSTALLATIONS.json
 /site/modules/
 /site/toolheads/

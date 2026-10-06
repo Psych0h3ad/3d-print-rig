@@ -3883,8 +3883,8 @@
       "text": "G-code ограничен"
     },
     "text.0955": {
-      "source_revision": "b6619b08622aa4732d31",
-      "text": "Размер G-code должен быть 2 МБ или меньше."
+      "text": "Размер G-code не должен превышать 2 MB",
+      "source_revision": "c6c2551def0f04822903"
     },
     "text.0956": {
       "source_revision": "684c16c8ce7a6a45a5d4",
@@ -3955,16 +3955,16 @@
       "text": "Monolith перевернутый / 9 mm · выделенный хранитель"
     },
     "text.0973": {
-      "source_revision": "bd278dd4a23da83d8861",
-      "text": "MOVE должно быть 0 или 1."
+      "text": "MOVE должно быть 0 или 1",
+      "source_revision": "bd278dd4a23da83d8861"
     },
     "text.0974": {
-      "source_revision": "1f5a412a6e998df10eb8",
-      "text": "Неподдерживаемый формат НАЗВАНИЯ"
+      "text": "Неподдерживаемый формат NAME",
+      "source_revision": "1f5a412a6e998df10eb8"
     },
     "text.0975": {
-      "source_revision": "d75643c07dd3e4288a95",
-      "text": "P должен быть 0 или выше."
+      "text": "P должно быть не меньше 0",
+      "source_revision": "659b3e9aa4bdf2375da4"
     },
     "text.0976": {
       "source_revision": "9f9deedd223e88df8e0b",
@@ -4191,8 +4191,8 @@
       "text": "Сборка CAD для этих условий пока не зарегистрирована."
     },
     "text.1031": {
-      "source_revision": "78ca6539d90b85fed345",
-      "text": "Не удалось разобрать команду"
+      "text": "Не удалось прочитать команду",
+      "source_revision": "bac42f202aa731b6944d"
     },
     "text.1032": {
       "source_revision": "da0b03ec0aa9b993b8bb",
@@ -4231,8 +4231,8 @@
       "text": "Остановить демонстрацию"
     },
     "text.1041": {
-      "source_revision": "468af4dbb937edd62734",
-      "text": "Шаблоны, комментарии в скобках и контрольные суммы не поддерживаются."
+      "text": "Шаблоны, комментарии в круглых скобках и контрольные суммы не поддерживаются",
+      "source_revision": "468af4dbb937edd62734"
     },
     "text.1042": {
       "source_revision": "b0986ff19e8c2234c87b",
@@ -4267,16 +4267,16 @@
       "text": "Версия для просмотра:"
     },
     "text.1050": {
-      "source_revision": "780f6efff540f73b178a",
-      "text": "Размер файла должен быть 2 МБ или меньше."
+      "text": "Размер файлов не должен превышать 2 MB",
+      "source_revision": "49830a179bc5ac588f76"
     },
     "text.1051": {
       "source_revision": "ef6c538dca43a82efd75",
       "text": "Установка на принтер в сборе"
     },
     "text.1052": {
-      "source_revision": "538e8b6f2a4eba9c1ac7",
-      "text": "Зонд"
+      "text": "зонд",
+      "source_revision": "b76f67485a8d3b202384"
     },
     "text.1053": {
       "source_revision": "c2a694cf54abcd5893df",
@@ -4427,8 +4427,8 @@
       "text": "Для отображения сжатых моделей требуется более новый браузер."
     },
     "text.1089": {
-      "source_revision": "715dc87e820734c53af6",
-      "text": "Время в пути не ограничено"
+      "text": "Длительность движения не является конечным значением",
+      "source_revision": "274b6978c37d62350fd3"
     },
     "text.1090": {
       "source_revision": "58cb6303f1db2163a652",
@@ -4447,16 +4447,16 @@
       "text": "Неверное соотношение сторон изображения."
     },
     "text.1093": {
-      "source_revision": "ce2d44d681fe9bb04740",
-      "text": "Требуется запуск XYZ."
+      "text": "Требуются начальные XYZ",
+      "source_revision": "1c5a973b8048aadea48b"
     },
     "text.1094": {
-      "source_revision": "2150031eacaf215ad3c5",
-      "text": "Стартовая позиция"
+      "text": "Стартовая позиция",
+      "source_revision": "2150031eacaf215ad3c5"
     },
     "text.1095": {
-      "source_revision": "3288f68d9dca474ae38a",
-      "text": "Неверное начальное положение или диапазон отображения."
+      "text": "Недопустимая начальная позиция или отображаемый диапазон",
+      "source_revision": "8614502f27da960e3d89"
     },
     "ui.appearance": {
       "source_revision": "dcce604307081c98b77f",
@@ -4539,8 +4539,8 @@
       "text": "Предварительный просмотр пути · ремни и PTFE следуют за движением / цепь за пределами диапазона пути"
     },
     "text.1114": {
-      "source_revision": "4948fd665fc51c366628",
-      "text": "Результат расчета не является конечным"
+      "text": "Результат вычисления не является конечным значением",
+      "source_revision": "4948fd665fc51c366628"
     },
     "text.1115": {
       "source_revision": "0cbdc7eee56c498a14d1",
@@ -4667,8 +4667,8 @@
       "text": "линия ·"
     },
     "text.1146": {
-      "source_revision": "e1fc24815c6eadd785f5",
-      "text": "Воспроизвести"
+      "text": "Воспроизвести",
+      "source_revision": "e1fc24815c6eadd785f5"
     },
     "text.1147": {
       "source_revision": "36cd7dd8b69ab033f907",
@@ -5047,8 +5047,8 @@
       "text": "Нет сохраненного состояния:"
     },
     "text.1238": {
-      "source_revision": "c1b54c7690fa8bb31563",
-      "text": "Поддерживается до 64 сохраненных состояний."
+      "text": "Допускается не более 64 сохранённых состояний",
+      "source_revision": "db640c0cce4ff9aaacaa"
     },
     "text.1239": {
       "source_revision": "5f130ab0ab0f2fb10579",
@@ -5203,24 +5203,24 @@
       "text": "Предварительный просмотр команд движения и координат в браузере с текущей позиции XYZ."
     },
     "text.1276": {
-      "source_revision": "28f3fab8bd9ab8265238",
-      "text": "Пример прямоугольника"
+      "text": "Пример прямоугольника",
+      "source_revision": "28f3fab8bd9ab8265238"
     },
     "text.1277": {
-      "source_revision": "a496a7777df6a3705f92",
-      "text": "Открыть файл"
+      "text": "Открыть файл",
+      "source_revision": "a496a7777df6a3705f92"
     },
     "text.1278": {
-      "source_revision": "4c4f63eaf0781c3e9959",
-      "text": "Путь предварительного просмотра"
+      "text": "Путь предварительного просмотра",
+      "source_revision": "4c4f63eaf0781c3e9959"
     },
     "text.1279": {
-      "source_revision": "0702f824c7b065e61741",
-      "text": "Следующая строка"
+      "text": "Следующая строка",
+      "source_revision": "0702f824c7b065e61741"
     },
     "text.1280": {
-      "source_revision": "ea9f292367441c3f8c3e",
-      "text": "Скорость воспроизведения"
+      "text": "Скорость воспроизведения",
+      "source_revision": "ea9f292367441c3f8c3e"
     },
     "text.1281": {
       "source_revision": "2bd851493699517e0924",
@@ -5711,44 +5711,44 @@
       "text": "Воспроизведение движений в 3D из текущей конфигурации и позиции XYZ."
     },
     "text.1403": {
-      "source_revision": "04e8aa3fcc30aaefd585",
-      "text": "Позиция воспроизведения"
+      "text": "Позиция воспроизведения",
+      "source_revision": "04e8aa3fcc30aaefd585"
     },
     "text.1404": {
-      "source_revision": "08fefc02951b74e92ea7",
-      "text": "G-code время воспроизведения"
+      "text": "Время воспроизведения G-code",
+      "source_revision": "08fefc02951b74e92ea7"
     },
     "text.1405": {
-      "source_revision": "38fcabaf38db1a3b76ea",
-      "text": "Поддерживаемые команды"
+      "text": "Поддерживаемые команды",
+      "source_revision": "38fcabaf38db1a3b76ea"
     },
     "text.1406": {
       "source_revision": "eb89bb64879317a59334",
       "text": "Klipper G-code спецификация"
     },
     "text.1407": {
-      "source_revision": "baf356080b304615661f",
-      "text": "Пересчитайте путь из текущей конфигурации и позиции."
+      "text": "Пересчитайте путь из текущей конфигурации и позиции.",
+      "source_revision": "baf356080b304615661f"
     },
     "text.1408": {
-      "source_revision": "353572147283121980ad",
-      "text": "Требуется полная программа и ограниченное время."
+      "text": "Требуются траектория для воспроизведения и конечное значение времени",
+      "source_revision": "a9f95d7b069737afc59e"
     },
     "text.1409": {
-      "source_revision": "fca970ca9cc65af559a9",
-      "text": "Изменены пределы движения машины. Пересчитать путь."
+      "text": "Пределы перемещения принтера изменились. Пересчитайте траекторию.",
+      "source_revision": "d53ef7b04a20002b5c74"
     },
     "text.1410": {
-      "source_revision": "331d092a00095d2b089d",
-      "text": "Неверные координаты сопла."
+      "text": "Недопустимые координаты сопла",
+      "source_revision": "49fb067d85069b1ffb46"
     },
     "text.1411": {
-      "source_revision": "0c0e0aef00512ea3aabe",
-      "text": "Неверная скорость воспроизведения."
+      "text": "Недопустимая скорость воспроизведения",
+      "source_revision": "fd4c7cf9408bc0706493"
     },
     "text.1412": {
-      "source_revision": "eeaa550859600587bcf3",
-      "text": "Пауза"
+      "text": "Пауза",
+      "source_revision": "eeaa550859600587bcf3"
     },
     "text.1413": {
       "source_revision": "394b44709ccd9bd5063d",
@@ -6127,8 +6127,8 @@
       "text": "{0}: объем пересечения {1} mm³. Розовые области показывают пересечения исходного CAD."
     },
     "format.0028": {
-      "source_revision": "948e3ee3effcfc062946",
-      "text": "{0}={1} находится за пределами отображаемого диапазона {2}–{3} mm"
+      "text": "{0}={1} вне отображаемого диапазона {2}–{3} mm",
+      "source_revision": "948e3ee3effcfc062946"
     },
     "format.0029": {
       "source_revision": "c265a9b48afb0ed33f48",
@@ -6163,8 +6163,8 @@
       "text": "Детали {0} · {1} · {2} mm"
     },
     "format.0037": {
-      "source_revision": "663f9afd374d645f09f9",
-      "text": "Команды {0} · расчетные секунды {1} от скорости подачи"
+      "text": "{0} команд · Оценка по скорости подачи: {1} секунд",
+      "source_revision": "5db85ce38243fa28c23e"
     },
     "format.0038": {
       "source_revision": "03b71975e3b49133f623",
@@ -6319,24 +6319,24 @@
       "text": "{0} Текущее отображение: {1}."
     },
     "format.0076": {
-      "source_revision": "30678faddee595aaed7c",
-      "text": "{0} не является конечным"
+      "text": "{0} не является конечным значением",
+      "source_revision": "ed8e3285be08f048bb45"
     },
     "format.0077": {
       "source_revision": "756184f5b5c7e7dbd2ca",
       "text": "{0} должен быть числом."
     },
     "format.0078": {
-      "source_revision": "76a933295e2c9685a850",
-      "text": "{0} должен быть больше 0."
+      "text": "{0} должно быть больше 0",
+      "source_revision": "52489699a456459b1230"
     },
     "format.0079": {
-      "source_revision": "517581aef7ad83887bba",
-      "text": "{0} не поддерживается."
+      "text": "{0} не поддерживается",
+      "source_revision": "45faff8a601437a45be7"
     },
     "format.0080": {
-      "source_revision": "aed6a67a3df33c6b7f87",
-      "text": "G-code ограничен строками {0}."
+      "text": "G-code ограничен {0} строками",
+      "source_revision": "aed6a67a3df33c6b7f87"
     },
     "format.0081": {
       "source_revision": "8de7f474bc4ab0a5bedb",
@@ -6351,8 +6351,8 @@
       "text": "{0} и {1}_ADJUST нельзя указывать вместе."
     },
     "format.0084": {
-      "source_revision": "32ed04d7f8450c3c82c4",
-      "text": "{0} и {1}_ADJUST нельзя указывать вместе."
+      "text": "{0} и {1}_ADJUST нельзя указывать вместе.",
+      "source_revision": "32ed04d7f8450c3c82c4"
     },
     "format.0085": {
       "source_revision": "15184151965dc576542a",
@@ -7100,7 +7100,7 @@
     },
     "ui.community.offsets": {
       "source_revision": "4026d51b0483262c5d68",
-      "text": "Смещения от исходной позы CAD. Диапазоны просмотра отличаются от координат парковки прошивки."
+      "text": "Смещения от исходной позы CAD. Диапазоны предварительного просмотра отличаются от координат базирования прошивки."
     },
     "ui.community.flex": {
       "source_revision": "64a5ca4db05738fb238f",
@@ -7123,8 +7123,8 @@
       "text": "Показана официальная печатная версия AWD v1.2. Исходный CAD содержит только часть ремней XY и не содержит шланга CPAP."
     },
     "ui.community.ender_source": {
-      "source_revision": "30a0a21a183e859f4f4a",
-      "text": "Оригинальный официальный CAD не содержит трубку Bowden."
+      "source_revision": "d60111b1d84b9f4754b0",
+      "text": "Траектория Bowden использует исходное сечение трубки D4 и положения фитингов с длиной 450 mm для просмотра. Исходный CAD не содержит полного шланга."
     },
     "fixed_sc.system": {
       "source_revision": "1b835c0348c171bed09d",
@@ -8049,6 +8049,742 @@
     "ender_mods.09": {
       "source_revision": "67d1112d2cf93b1f3210",
       "text": "Отдельный тулхед"
+    },
+    "virtual_printer.title": {
+      "text": "G-code · Автономный виртуальный принтер",
+      "source_revision": "bf03506ef8619c027e86"
+    },
+    "virtual_printer.intro": {
+      "text": "Предпросмотр движения и виртуального состояния по введённым данным. Подключения к физическому принтеру нет.",
+      "source_revision": "4a1c097e1c26578f5f40"
+    },
+    "virtual_printer.settings": {
+      "text": "Макросы и виртуальные настройки",
+      "source_revision": "73f5e0b3a9eda3265a0f"
+    },
+    "virtual_printer.macro_config": {
+      "text": "Настройка макросов Klipper",
+      "source_revision": "bf434cee3e47d007fe32"
+    },
+    "virtual_printer.json_settings": {
+      "text": "Начальная позиция, пределы, контакты и нагреватели (JSON)",
+      "source_revision": "9349a9f2cd1c3c8cb38b"
+    },
+    "virtual_printer.refresh_settings": {
+      "text": "Загрузить настройки осей просмотрщика заново",
+      "source_revision": "94e4b7f1cec3213ffd8d"
+    },
+    "virtual_printer.contact_notice": {
+      "text": "Положения контакта требуют настроек с подтверждающими данными. Контакты только фиксируют позиции и не создают траектории возврата в исходное положение, зондирования или стыковки. Ожидание температуры устанавливает виртуальную температуру равной целевой. Время нагрева и изменения температуры не моделируются.",
+      "source_revision": "806900c38cf2b6191096"
+    },
+    "virtual_printer.save": {
+      "text": "Сохранить виртуальное состояние",
+      "source_revision": "3ec8730695dbe6880111"
+    },
+    "virtual_printer.load": {
+      "text": "Загрузить виртуальное состояние",
+      "source_revision": "4a8ce52cffc84d41d811"
+    },
+    "virtual_printer.events": {
+      "text": "Журнал событий",
+      "source_revision": "7bfc1e01b47528c35e02"
+    },
+    "virtual_printer.commands": {
+      "text": "Поддерживаются команды предпросмотра координат, настроенные G28/PROBE, виртуальные состояния нагревателей и вентилятора, ACTIVATE_EXTRUDER, SET_GCODE_VARIABLE и ограниченные выражения Jinja, if, for и set. Неподдерживаемые синтаксис или команды останавливают выполнение. Номера T требуют зарегистрированных макросов. Смена инструмента — виртуальное событие, не подтверждающее монтаж или траектории обмена.",
+      "source_revision": "f95b0b3740bcd342b331"
+    },
+    "virtual_printer.klipper_docs": {
+      "text": "Спецификация макросов Klipper",
+      "source_revision": "f54f71b34d6b0159d719"
+    },
+    "virtual_printer.event_limit": {
+      "text": "В списке показаны первые 200 событий. Воспроизведение включает все события.",
+      "source_revision": "95e048fddaece2d0aca7"
+    },
+    "virtual_printer.thermal_time": {
+      "text": "Время ожидания температуры не учитывается",
+      "source_revision": "6d4b18e50e19a6ab79a6"
+    },
+    "virtual_printer.range_error": {
+      "text": "Задайте виртуальные пределы в пределах текущего диапазона осей просмотрщика",
+      "source_revision": "42305683f56ef7698765"
+    },
+    "virtual_printer.recompile": {
+      "text": "Требуется пересчёт",
+      "source_revision": "8d521cabe26c3549834a"
+    },
+    "virtual_printer.invalid_file": {
+      "text": "Недопустимый файл виртуального состояния",
+      "source_revision": "960c87aab824ae7a3d78"
+    },
+    "virtual_printer.context_error": {
+      "text": "Конфигурация принтера или измеренные настройки отличаются от сохранённого состояния",
+      "source_revision": "fafd0617bf005b1705ee"
+    },
+    "virtual_printer.saved": {
+      "text": "Виртуальное состояние сохранено.",
+      "source_revision": "a4f34bc3d566d1a7cf8f"
+    },
+    "virtual_printer.file_limit": {
+      "text": "Размер файлов виртуального состояния не должен превышать 3 MB",
+      "source_revision": "1887cc04bc26a9c75a80"
+    },
+    "virtual_printer.virtual_state": {
+      "text": "Виртуальный инструмент: {0} · Оси в исходном положении: {1} · Вентилятор: {2}%{3}",
+      "source_revision": "d8c64c26574c6dfab4a1"
+    },
+    "virtual_printer.source_metadata": {
+      "text": "Источники введённых данных и система координат (JSON)",
+      "source_revision": "5c6697099e988a53b99a"
+    },
+    "virtual_printer.axis.displacement": {
+      "text": "XYZ — координаты перемещения адаптера просмотрщика (mm). Пределы перемещения берутся из текущей конфигурации. Это не начало координат физического принтера и не координаты сопла. Траектория относительно сопла не отображается.",
+      "source_revision": "95f3cbc7ef1012999fd6"
+    },
+    "virtual_printer.axis.display": {
+      "text": "XYZ — отображаемые координаты просмотрщика (mm). Пределы перемещения задаются текущими настройками адаптера. Они не подтверждают начало координат физического принтера, положения контакта или отсутствие пересечений на всём пути движения.",
+      "source_revision": "85f204477dbcd47abcd8"
+    },
+    "virtual_printer.axis.ratrig": {
+      "text": "X соответствует основной каретке X0; Y/Z — координаты просмотрщика (mm). Дополнительные каретки следуют текущему независимому режиму, режиму копирования или зеркальному режиму. Виртуальная смена инструмента не переключает каретки. Траектория относительно сопла не отображается.",
+      "source_revision": "0f3a349080cf135887da"
+    },
+    "virtual_printer.axis.unavailable": {
+      "text": "У этого адаптера нет привязки XYZ принтера. Перемещения XYZ, возврат в исходное положение и движение зонда останавливаются. Доступен только предпросмотр макросов и виртуальных состояний нагревателей, экструзии и инструмента.",
+      "source_revision": "0255ba6268ecc958f74c"
+    },
+    "virtual_printer.axis.no_path": {
+      "text": "Траектория относительно сопла не отображается.",
+      "source_revision": "7ff9b5ceb9aa7fa69baf"
+    },
+    "virtual_printer.heater_state": {
+      "text": " · {0}: {1} / {2} °C",
+      "source_revision": "f1c448387b76cf899320"
+    },
+    "virtual_printer.line_state": {
+      "text": "Строка {0} · {1}{2} · E {3} mm",
+      "source_revision": "bf2ab0c8206ffb2fbe0e"
+    },
+    "virtual_printer.compile_error": {
+      "text": "Остановлено на строке {0}: {1}{2}. Исправьте ввод и скомпилируйте заново.",
+      "source_revision": "310769ab0fb9b9989f61"
+    },
+    "virtual_printer.macro_location": {
+      "text": "{0}:{1} · ",
+      "source_revision": "a5ac69e9c1806332d065"
+    },
+    "virtual_printer.event_row": {
+      "text": "{0} · {1} · {2}",
+      "source_revision": "249ba1827d57d42d1da2"
+    },
+    "virtual_printer.replay_time": {
+      "text": "{0} / {1} s",
+      "source_revision": "d9e9b26f37787695476d"
+    },
+    "virtual_printer.axis.no_path_combined": {
+      "text": "{0} Траектория относительно сопла не отображается.",
+      "source_revision": "c6070ef01693d7a6804c"
+    },
+    "virtual_printer.compile_summary_thermal": {
+      "text": "{0} · Время ожидания температуры не учитывается",
+      "source_revision": "87f013798800bd80eaef"
+    },
+    "virtual_printer.error.panel_prefix": {
+      "text": "Недопустимый префикс ID панели G-code",
+      "source_revision": "da3fd59d2f4e6b51f757"
+    },
+    "virtual_printer.error.binding_setting": {
+      "text": "В виртуальных настройках нельзя изменить поддержку привязки XYZ",
+      "source_revision": "0fefc4b2bada79ca1e85"
+    },
+    "virtual_printer.error.coordinate_parameter": {
+      "text": "Не удалось прочитать параметр: {0}",
+      "source_revision": "4fb79886650f64998552"
+    },
+    "virtual_printer.error.coordinate_duplicate": {
+      "text": "Повторяющийся параметр {0}",
+      "source_revision": "2a879c5b67b22575b302"
+    },
+    "virtual_printer.error.coordinate_parameter_unsupported": {
+      "text": "{1} не поддерживается для {0}",
+      "source_revision": "f49dd54a793c5e9eb701"
+    },
+    "virtual_printer.error.coordinate_numeric": {
+      "text": "Для {0} требуется число",
+      "source_revision": "8cd4b9ad41d157d70bbc"
+    },
+    "virtual_printer.error.coordinate_missing_save": {
+      "text": "Сохранённое состояние не найдено: {0}",
+      "source_revision": "a6e35ca347f032b64f24"
+    },
+    "virtual_printer.error.template_property": {
+      "text": "Неподдерживаемое свойство шаблона: {0}",
+      "source_revision": "591b922f0a614df10cc2"
+    },
+    "virtual_printer.error.template_arithmetic": {
+      "text": "Для арифметики шаблонов требуются конечные числа; преобразуйте params с помощью float/int",
+      "source_revision": "4ec4125d02e84f5bc9d1"
+    },
+    "virtual_printer.error.template_length": {
+      "text": "Выражение шаблона превышает 2048 символов",
+      "source_revision": "791ba52ce33b3eea120b"
+    },
+    "virtual_printer.error.template_escape": {
+      "text": "Неподдерживаемая escape-последовательность строки шаблона",
+      "source_revision": "0d56b278a87954fda5d6"
+    },
+    "virtual_printer.error.template_string": {
+      "text": "Незакрытая строка шаблона",
+      "source_revision": "7dcb762256a422093384"
+    },
+    "virtual_printer.error.template_syntax": {
+      "text": "Неподдерживаемый синтаксис шаблона около {0}",
+      "source_revision": "07afde4c6a7020064b32"
+    },
+    "virtual_printer.error.template_tokens": {
+      "text": "Выражение шаблона превышает 512 токенов",
+      "source_revision": "77d5d17368a506487556"
+    },
+    "virtual_printer.error.template_expected": {
+      "text": "Ожидался токен шаблона {0}",
+      "source_revision": "085afde1b08e21f8a0ec"
+    },
+    "virtual_printer.error.template_depth": {
+      "text": "Вложенность выражения шаблона превышает 32",
+      "source_revision": "4f3bab643ebc4496721f"
+    },
+    "virtual_printer.error.template_calls": {
+      "text": "Поддерживается только range(); действия шаблонов и произвольные вызовы недоступны",
+      "source_revision": "f0aa8683eb054ca2bf42"
+    },
+    "virtual_printer.error.range_arguments": {
+      "text": "Для range требуется 1–3 аргумента",
+      "source_revision": "ae053bba233dbd013570"
+    },
+    "virtual_printer.error.template_expression": {
+      "text": "Неподдерживаемое выражение шаблона",
+      "source_revision": "791f18f5a236503458a1"
+    },
+    "virtual_printer.error.template_property_name": {
+      "text": "Ожидалось имя свойства",
+      "source_revision": "01eeb2c0a6b91f87bd1f"
+    },
+    "virtual_printer.error.template_filter": {
+      "text": "Неподдерживаемый фильтр шаблона: {0}",
+      "source_revision": "7fc578f4f7760b996bb9"
+    },
+    "virtual_printer.error.template_filter_arguments": {
+      "text": "Аргументы фильтров преобразования не поддерживаются",
+      "source_revision": "e234e7ccaba6d108325c"
+    },
+    "virtual_printer.error.template_budget": {
+      "text": "Лимит операций шаблона исчерпан",
+      "source_revision": "d82a46982ac10522f02f"
+    },
+    "virtual_printer.error.template_parent": {
+      "text": "Родительское значение шаблона не определено",
+      "source_revision": "29574adeabc9da835722"
+    },
+    "virtual_printer.error.template_conversion": {
+      "text": "Недопустимое числовое преобразование шаблона",
+      "source_revision": "2d1f2d007137ed7d0e5a"
+    },
+    "virtual_printer.error.range_integers": {
+      "text": "Для range требуются безопасные целые числа",
+      "source_revision": "94e9a2a90e6a816d9cc5"
+    },
+    "virtual_printer.error.range_step": {
+      "text": "step в range не может быть равным нулю",
+      "source_revision": "0ef067af401e1c4ea3d7"
+    },
+    "virtual_printer.error.range_iterations": {
+      "text": "range превышает 256 итераций",
+      "source_revision": "cef95c68a33b07068e8a"
+    },
+    "virtual_printer.error.template_undefined_default": {
+      "text": "Значение шаблона не определено; используйте default или is defined",
+      "source_revision": "e525dd1d2ee549bd85d0"
+    },
+    "virtual_printer.error.template_equality": {
+      "text": "Проверки равенства объектов и равенства логических значений с числами не поддерживаются",
+      "source_revision": "f4ee04ecc731c66df968"
+    },
+    "virtual_printer.error.template_in": {
+      "text": "in поддерживает только строки и списки",
+      "source_revision": "65a825a7cf688b28573f"
+    },
+    "virtual_printer.error.template_comparison": {
+      "text": "Неподдерживаемые операнды сравнения",
+      "source_revision": "fef9f53918da6e7abb63"
+    },
+    "virtual_printer.error.template_node": {
+      "text": "Неподдерживаемый узел выражения шаблона",
+      "source_revision": "53ff1f5ee0f36dc23a4e"
+    },
+    "virtual_printer.error.template_undefined": {
+      "text": "Значение шаблона не определено",
+      "source_revision": "a37949bccc92e710949c"
+    },
+    "virtual_printer.error.template_nodes": {
+      "text": "Шаблон превышает 4096 узлов",
+      "source_revision": "6f77fffc2d061e14d0f7"
+    },
+    "virtual_printer.error.template_delimiter": {
+      "text": "Незакрытый разделитель шаблона на строке {0}",
+      "source_revision": "77e4c208995cc04dfcf2"
+    },
+    "virtual_printer.error.template_reserved": {
+      "text": "Зарезервированная переменная шаблона",
+      "source_revision": "3c598b86d99735c53484"
+    },
+    "virtual_printer.error.template_unexpected": {
+      "text": "Неожиданное {0}",
+      "source_revision": "9a2b0d7d4d1cd843969c"
+    },
+    "virtual_printer.error.template_loop_reserved": {
+      "text": "Зарезервированная переменная цикла",
+      "source_revision": "2f1c8bea374bc48b8b5b"
+    },
+    "virtual_printer.error.template_block_mismatch": {
+      "text": "Несоответствие блоков шаблона",
+      "source_revision": "787f55014b8e9c7e7597"
+    },
+    "virtual_printer.error.template_directive": {
+      "text": "Неподдерживаемая директива шаблона: {0}",
+      "source_revision": "69e9d35bfdfd949db552"
+    },
+    "virtual_printer.error.template_block_depth": {
+      "text": "Вложенность блоков шаблона превышает 16",
+      "source_revision": "750ab38a899abe8f7ef3"
+    },
+    "virtual_printer.error.template_block_open": {
+      "text": "Незакрытый блок шаблона",
+      "source_revision": "954ece525f11afecc7d0"
+    },
+    "virtual_printer.error.macro_config_limit": {
+      "text": "Настройка макросов должна быть текстом длиной не более 128000 символов",
+      "source_revision": "a083e49b59d49d186a61"
+    },
+    "virtual_printer.error.macro_duplicate": {
+      "text": "Повторяющийся макрос {0}",
+      "source_revision": "ae8aad4849d41d908f33"
+    },
+    "virtual_printer.error.macro_count": {
+      "text": "Допускается не более 128 макросов",
+      "source_revision": "d05a691409d5501bc415"
+    },
+    "virtual_printer.error.macro_sections": {
+      "text": "Поддерживаются только секции [gcode_macro NAME] (строка {0} конфигурации)",
+      "source_revision": "942c83bf96e8527f07e1"
+    },
+    "virtual_printer.error.macro_gcode_duplicate": {
+      "text": "Повторяющееся поле gcode",
+      "source_revision": "afbbfcb6785989d1fae7"
+    },
+    "virtual_printer.error.macro_rename": {
+      "text": "Неподдерживаемый параметр макроса rename_existing (строка {0} конфигурации)",
+      "source_revision": "f629f4f6fb810fb0a990"
+    },
+    "virtual_printer.error.macro_variable_duplicate": {
+      "text": "Повторяющаяся переменная макроса",
+      "source_revision": "6212ea28fb171d728a07"
+    },
+    "virtual_printer.error.macro_variable_scalar": {
+      "text": "Переменные макроса должны быть скалярными",
+      "source_revision": "a7581506dc3e8233f7a9"
+    },
+    "virtual_printer.error.macro_config_unsupported": {
+      "text": "Неподдерживаемая настройка макроса на строке {0}: {1}",
+      "source_revision": "51ca5e9e7f4cccad5f77"
+    },
+    "virtual_printer.error.macro_body": {
+      "text": "Для макроса требуется тело gcode: {0}",
+      "source_revision": "1a0c5394764c5136f8bd"
+    },
+    "virtual_printer.error.macro_context": {
+      "text": "{0}: {1}",
+      "source_revision": "eb2200556d70cd321306"
+    },
+    "virtual_printer.error.macro_output_budget": {
+      "text": "Лимит вывода макроса исчерпан",
+      "source_revision": "f92ad458bcf234e14691"
+    },
+    "virtual_printer.error.template_output_scalar": {
+      "text": "Для вывода шаблона требуется определённое скалярное значение",
+      "source_revision": "660a4ce83cf61e195398"
+    },
+    "virtual_printer.error.template_output_injection": {
+      "text": "Вывод шаблона не может вставлять новые строки или шаблоны",
+      "source_revision": "d2cb22781570b9df82f7"
+    },
+    "virtual_printer.error.template_for": {
+      "text": "Для for требуется список или range с не более чем 256 итерациями",
+      "source_revision": "ba2c9c20597403f6124a"
+    },
+    "virtual_printer.error.finite": {
+      "text": "{0} должно быть конечным значением",
+      "source_revision": "0e5b63c5250ffe2fdf4d"
+    },
+    "virtual_printer.error.unsupported_setting": {
+      "text": "Неподдерживаемая настройка или параметр {0}",
+      "source_revision": "94acda2f42aecce4dac8"
+    },
+    "virtual_printer.error.settings_limit": {
+      "text": "Виртуальные настройки превышают 128 KB",
+      "source_revision": "d0e27a1deacb146b9160"
+    },
+    "virtual_printer.error.motion_boolean": {
+      "text": "motion_enabled должно быть логическим значением",
+      "source_revision": "cc978f3ca685ecc2f32f"
+    },
+    "virtual_printer.error.contact_binding": {
+      "text": "Для контактов требуется привязка XYZ адаптера",
+      "source_revision": "0f688db893e0634673d9"
+    },
+    "virtual_printer.error.homing_setting": {
+      "text": "Для возврата оси {0} в исходное положение требуются контакт в пределах диапазона и подтверждающие данные",
+      "source_revision": "49631f3c7d9428473ca1"
+    },
+    "virtual_printer.error.probe_setting": {
+      "text": "Для зонда требуются измеренный контакт, смещение, область контакта XY и подтверждающие данные",
+      "source_revision": "ea338bb00696925e831a"
+    },
+    "virtual_printer.error.initial_homed": {
+      "text": "Недопустимые оси, изначально возвращённые в исходное положение",
+      "source_revision": "d3f11a61abe582e9d550"
+    },
+    "virtual_printer.error.homing_boolean": {
+      "text": "require_homing должно быть логическим значением",
+      "source_revision": "b14d75d490a38a80ac29"
+    },
+    "virtual_printer.error.extrusion_mode": {
+      "text": "Неизвестный режим экструзии",
+      "source_revision": "8cf0121c68dee567cb8c"
+    },
+    "virtual_printer.error.heater_count": {
+      "text": "Допускается не более 16 виртуальных нагревателей",
+      "source_revision": "e9cff02a468dc997632e"
+    },
+    "virtual_printer.error.heater_name": {
+      "text": "Недопустимое имя нагревателя",
+      "source_revision": "71bd4fe6fe75799079e8"
+    },
+    "virtual_printer.error.heater_range": {
+      "text": "Недопустимый диапазон виртуального нагревателя",
+      "source_revision": "e65bd65673b7381aa526"
+    },
+    "virtual_printer.error.extrusion_threshold": {
+      "text": "Порог температуры экструзии вне диапазона нагревателя",
+      "source_revision": "08e83d3a2d691e3e60e5"
+    },
+    "virtual_printer.error.tools_setting": {
+      "text": "Укажите 1–16 уникальных имён виртуальных инструментов",
+      "source_revision": "58629dcd76c80fcbbc0f"
+    },
+    "virtual_printer.error.initial_tool": {
+      "text": "Неизвестный начальный виртуальный инструмент",
+      "source_revision": "21d0d6b2a71afd8c263c"
+    },
+    "virtual_printer.error.temperature_guard": {
+      "text": "Для температурной защиты требуются нагреватель и порог температуры экструзии для каждого виртуального инструмента",
+      "source_revision": "61a56a68c9f980058591"
+    },
+    "virtual_printer.error.evidence_labels": {
+      "text": "Подтверждающие данные должны содержать текстовые метки",
+      "source_revision": "6cd21c4801a5665d4368"
+    },
+    "virtual_printer.error.g28_selectors": {
+      "text": "G28 поддерживает только выбор осей X/Y/Z",
+      "source_revision": "f60f85dd26280a1ca34d"
+    },
+    "virtual_printer.error.parameter_invalid": {
+      "text": "Недопустимый или повторяющийся параметр {0}",
+      "source_revision": "6f4d9f06f2cde41ef99a"
+    },
+    "virtual_printer.error.parameter_missing": {
+      "text": "Отсутствует {0}",
+      "source_revision": "f8a107a9e637381e53aa"
+    },
+    "virtual_printer.error.parameter_decimal": {
+      "text": "Для {0} требуется конечное десятичное число",
+      "source_revision": "9648ac38dd35dfa0c13e"
+    },
+    "virtual_printer.error.heater_missing": {
+      "text": "Виртуальный нагреватель не настроен: {0}",
+      "source_revision": "ed19e68a79033a1938e5"
+    },
+    "virtual_printer.error.heater_target": {
+      "text": "Целевое значение вне настроенного диапазона виртуального нагревателя",
+      "source_revision": "519d5fdd8ee849a5c4da"
+    },
+    "virtual_printer.error.g28_contact": {
+      "text": "Для G28 {0} требуется измеренный контакт; траектория к концевику не выводится",
+      "source_revision": "e8db1186f7d951edabfa"
+    },
+    "virtual_printer.error.probe_contact": {
+      "text": "Для PROBE требуются измеренные данные контакта; траектория зондирования не выводится",
+      "source_revision": "2c9973d592be41d6e70a"
+    },
+    "virtual_printer.error.probe_homing": {
+      "text": "Для PROBE требуется виртуальный возврат XYZ в исходное положение",
+      "source_revision": "b87da7627538dbf440d9"
+    },
+    "virtual_printer.error.probe_region": {
+      "text": "Контакт зонда находится вне измеренной области XY",
+      "source_revision": "eb805d69d95d944b5cda"
+    },
+    "virtual_printer.error.probe_start": {
+      "text": "Зонд начинает движение ниже настроенного контакта",
+      "source_revision": "56cd09dafee88a3d87ee"
+    },
+    "virtual_printer.error.extruder_unknown": {
+      "text": "Неизвестный виртуальный экструдер",
+      "source_revision": "d487bcef74ebda73acaa"
+    },
+    "virtual_printer.error.macro_variable_unknown": {
+      "text": "Неизвестная переменная макроса",
+      "source_revision": "fcf389a8991f4d266dda"
+    },
+    "virtual_printer.error.macro_variable_value": {
+      "text": "Для переменной макроса требуется скалярное значение",
+      "source_revision": "e902bc337d7ed8d1385d"
+    },
+    "virtual_printer.error.fan_range": {
+      "text": "S вентилятора должно быть в пределах 0–255",
+      "source_revision": "dab8ec64128e80c8cd92"
+    },
+    "virtual_printer.error.temperature_window": {
+      "text": "Недопустимый диапазон ожидания температуры",
+      "source_revision": "9e90b06a75af38161167"
+    },
+    "virtual_printer.error.temperature_target": {
+      "text": "Целевая температура виртуального нагревателя не удовлетворяет диапазону ожидания",
+      "source_revision": "93816c2652c20246cd74"
+    },
+    "virtual_printer.error.heater_tool_index": {
+      "text": "Недопустимый индекс инструмента виртуального нагревателя",
+      "source_revision": "4bc4df7cf8a9c56bbae8"
+    },
+    "virtual_printer.error.metadata_limit": {
+      "text": "Метаданные источника превышают 8 KB",
+      "source_revision": "82160f88d6245ec9b0b9"
+    },
+    "virtual_printer.error.metadata_labels": {
+      "text": "Метки метаданных источника должны быть текстом длиной не более 2048 символов",
+      "source_revision": "333f93823f60755150de"
+    },
+    "virtual_printer.error.metadata_files": {
+      "text": "Допускается не более 32 файлов в метаданных источника",
+      "source_revision": "c1b166e3616a4958cf49"
+    },
+    "virtual_printer.error.metadata_file": {
+      "text": "Для метаданных исходного файла требуются путь и SHA-256",
+      "source_revision": "ae6b2e97e1f6d9469013"
+    },
+    "virtual_printer.error.builtin_override": {
+      "text": "Переопределение встроенных команд и rename_existing не поддерживаются: {0}",
+      "source_revision": "a781a8f0cb2499b72414"
+    },
+    "virtual_printer.error.input_text": {
+      "text": "G-code должен быть текстом размером не более 2 MB",
+      "source_revision": "f3929e76e4144a319a52"
+    },
+    "virtual_printer.error.command_budget": {
+      "text": "Лимит команд должен быть в пределах 1–30000",
+      "source_revision": "fc540e9358fc3f167b9c"
+    },
+    "virtual_printer.error.input_lines": {
+      "text": "Ввод превышает {0} строк",
+      "source_revision": "e3d8df58b5d9da0fe87b"
+    },
+    "virtual_printer.error.replay_budget": {
+      "text": "Состояние воспроизведения превышает лимит в 32 миллиона символов",
+      "source_revision": "6c516f36545c0e878aeb"
+    },
+    "virtual_printer.error.time_budget": {
+      "text": "Предпросмотр превышает временной лимит в один год",
+      "source_revision": "6a547affc8702f3545da"
+    },
+    "virtual_printer.error.expanded_budget": {
+      "text": "Число развёрнутых команд превышает лимит {0}",
+      "source_revision": "97f7f6dd420656388ddd"
+    },
+    "virtual_printer.error.template_location": {
+      "text": "Шаблоны должны находиться внутри настроенных макросов; контрольные суммы не поддерживаются",
+      "source_revision": "79c8406ed9e88ced430b"
+    },
+    "virtual_printer.error.virtual_command": {
+      "text": "Не удалось прочитать команду виртуального принтера",
+      "source_revision": "0bbaa50737cd4cf809ae"
+    },
+    "virtual_printer.error.macro_call_depth": {
+      "text": "Глубина вызовов макросов превышает 8",
+      "source_revision": "cdff426e6c89e3dcd1cc"
+    },
+    "virtual_printer.error.xyz_unavailable": {
+      "text": "Предпросмотр XYZ недоступен: у этого адаптера нет привязки XYZ принтера",
+      "source_revision": "52a96ecf5a5facd295ad"
+    },
+    "virtual_printer.error.motion_homing": {
+      "text": "Перед движением виртуальную ось {0} нужно вернуть в исходное положение",
+      "source_revision": "2a0a47d30f75199cdaf2"
+    },
+    "virtual_printer.error.extrusion_cold": {
+      "text": "Виртуальная экструзия ниже настроенной минимальной температуры",
+      "source_revision": "b7350b68edcc864ccfd3"
+    },
+    "virtual_printer.error.command_unsupported": {
+      "text": "Неподдерживаемая команда виртуального принтера: {0}",
+      "source_revision": "13afe1630ffb1444bc07"
+    },
+    "virtual_printer.error.program_complete": {
+      "text": "Требуется полный корректный программный ввод для виртуального принтера",
+      "source_revision": "931460fee755198d9f4c"
+    },
+    "virtual_printer.error.replay_event": {
+      "text": "Недопустимое событие воспроизведения",
+      "source_revision": "6b874ec3adbcc58731a4"
+    },
+    "virtual_printer.error.replay_identity": {
+      "text": "Состояние воспроизведения относится к другой или недопустимой программе",
+      "source_revision": "e2644d8978e91cd122ad"
+    },
+    "virtual_printer.error.replay_cursor": {
+      "text": "Время воспроизведения и индекс события не согласованы",
+      "source_revision": "bef0817ad8510307df86"
+    },
+    "virtual_printer.error.replay_clock": {
+      "text": "Часы воспроизведения пошли назад",
+      "source_revision": "58d987ddba3bbc523c4b"
+    },
+    "virtual_printer.label.adapter_firmware": {
+      "text": "виртуальная прошивка адаптера",
+      "source_revision": "87026c592bcd83a60df2"
+    },
+    "virtual_printer.label.virtual_printer": {
+      "text": "виртуальный принтер",
+      "source_revision": "343c609544e3f6cb8f93"
+    },
+    "virtual_printer.label.homing": {
+      "text": "возврат в исходное положение",
+      "source_revision": "da18dd591803a77b0399"
+    },
+    "virtual_printer.label.homing_axis": {
+      "text": "возврат оси {0} в исходное положение",
+      "source_revision": "3569e967405cc7516ffb"
+    },
+    "virtual_printer.label.homing_contact": {
+      "text": "Контакт при возврате в исходное положение",
+      "source_revision": "19eb9f8321453c72c2ba"
+    },
+    "virtual_printer.label.probe_contact": {
+      "text": "Контакт зонда",
+      "source_revision": "2895b490c8442892b58f"
+    },
+    "virtual_printer.label.heater": {
+      "text": "нагреватель {0}",
+      "source_revision": "03618479a0d03f037b8c"
+    },
+    "virtual_printer.label.heater_field": {
+      "text": "Поле нагревателя {0}",
+      "source_revision": "10d712c0b6241c9bf7e7"
+    },
+    "virtual_printer.label.heater_target": {
+      "text": "Целевое значение нагревателя",
+      "source_revision": "7f1fa4801606cff198d3"
+    },
+    "virtual_printer.label.extrusion_threshold": {
+      "text": "Порог температуры экструзии",
+      "source_revision": "f30c139085adfa25e849"
+    },
+    "virtual_printer.label.source_metadata": {
+      "text": "метаданные источника",
+      "source_revision": "ef7e00dd5f291336ed9a"
+    },
+    "virtual_printer.label.source_file_metadata": {
+      "text": "метаданные исходного файла",
+      "source_revision": "185b5d205f0adffca1ab"
+    },
+    "virtual_printer.label.replay": {
+      "text": "состояние воспроизведения",
+      "source_revision": "c8631f2b9a81dccb04e2"
+    },
+    "virtual_printer.label.replay_clock": {
+      "text": "Часы воспроизведения",
+      "source_revision": "51a2f5c19b49ea81525a"
+    },
+    "virtual_printer.evidence.unavailable": {
+      "text": "Недоступно: только внутреннее логическое начало координат; привязки XYZ модели нет",
+      "source_revision": "07735f7cae97f5b34b3d"
+    },
+    "virtual_printer.evidence.adapter": {
+      "text": "опорные позиции и пределы отображения адаптера",
+      "source_revision": "e95d6fe54885d03d2943"
+    },
+    "virtual_printer.evidence.not_supplied": {
+      "text": "не предоставлены",
+      "source_revision": "26a0a4c978b29c9eface"
+    },
+    "virtual_printer.evidence.displacement": {
+      "text": "Оси перемещения нативного адаптера в mm; это не координаты сопла или прошивки",
+      "source_revision": "48985f5693fcca19c737"
+    },
+    "virtual_printer.evidence.ratrig": {
+      "text": "Пределы основной оси X0 / Y / Z адаптера просмотрщика в текущем режиме кареток; соответствие координатам прошивки не задано",
+      "source_revision": "55d84a52d262692d3eb0"
+    },
+    "virtual_printer.evidence.scope": {
+      "text": "Логическое состояние и воспроизведение координат в заданных пределах; без проверки нативных пересечений на всём пути движения или работы физического принтера",
+      "source_revision": "d490028a9f5cd5c5f1a2"
+    },
+    "virtual_printer.error.loaded_identity": {
+      "text": "Идентификационные данные загруженных ресурсов принтера неполны",
+      "source_revision": "0c5f800ae761e8d9e66e"
+    },
+    "ender.original_x_belt.source_notice": {
+      "text": "Исходный ремень X Ender: сохранены дуги шкивов, обратная ветвь и обрезанные концы исходной CAD-модели. Концы и покупные медные обжимные втулки, сохранённые как жёсткие тела, следуют за кареткой через измеренные прорези Eplate; заново соединяются только прямые резиновые участки. Это полученная из исходной модели оболочка для предпросмотра шириной 6 mm. В исходной модели нет зубьев; зацепление GT2, натяжение и производственная посадка не проверены. Сохранённые исходные обратная ветвь и дуги имеют неразрешённые пересечения со шкивами, подшипниками и роликами. Предпросмотр не подтверждает зазоры всей сборки принтера.",
+      "source_revision": "f024a9cc4a88ab750b60"
+    },
+    "ender.original_x_belt.error.registration": {
+      "text": "Некорректная привязка исходного ремня X Ender",
+      "source_revision": "a312f3d9d01cfbba8e78"
+    },
+    "ender.original_x_belt.error.assembly": {
+      "text": "Отсутствует сборка исходного ремня X Ender",
+      "source_revision": "8d53f3cd29124c8e5ad0"
+    },
+    "ender.original_x_belt.error.component": {
+      "text": "Некорректный компонент исходного ремня X Ender",
+      "source_revision": "49b3b823369d09976819"
+    },
+    "ender.original_x_belt.error.weights_missing": {
+      "text": "Отсутствуют веса движения исходного ремня X Ender",
+      "source_revision": "2416d231b9e3936ff458"
+    },
+    "ender.original_x_belt.error.geometry": {
+      "text": "Некорректная геометрия исходного ремня X Ender",
+      "source_revision": "a72b7723ca5ea2931741"
+    },
+    "ender.original_x_belt.error.endpoint_weights": {
+      "text": "Некорректные веса концов исходного ремня X Ender",
+      "source_revision": "5977b8c398a350750ac4"
+    },
+    "ender.original_x_belt.error.incomplete_geometry": {
+      "text": "Неполная геометрия исходного ремня X Ender",
+      "source_revision": "6f82a2381ce215d1cb46"
+    },
+    "ender.original_x_belt.error.axis_range": {
+      "text": "Ось исходного ремня X Ender выходит за зарегистрированный диапазон предпросмотра",
+      "source_revision": "e78413b50f8ac997975e"
+    },
+    "virtual_printer.error.ratrig_busy": {
+      "source_revision": "274e0f7eed125495ebc5",
+      "text": "Обрабатывается CAD или существующая траектория."
+    },
+    "virtual_printer.nozzle_path_label": {
+      "source_revision": "abf543e9c7291fd2267f",
+      "text": "Траектория относительно сопла"
     }
   }
 }

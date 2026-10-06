@@ -5,6 +5,8 @@ import {stingerFlexWeights} from './stinger-flex.mjs?v=0ab64709177d49ba0fec';
 import {stingerTubeRoute} from './stinger-tube-route.mjs';
 import {registeredFlexWeights,registeredFlexDelta,createRegisteredChains} from './native-motion-flex.mjs?v=f08726bbc4595e183c74';
 import {beltedZWeight,createBeltedZTeeth} from './ender-mods.mjs?v=5f07c69c7c42ba3f3936';
+import {createEnderBowden} from './ender-bowden-route.mjs?v=709b99d375c41ef1b8d6';
+import {createOriginalEnderXBelt} from './ender-original-x-belt.mjs';
 const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
 const smooth=v=>{v=clamp(v);return v*v*(3-2*v)};
 function hat(v,a,l,h,b){return v<=a||v>=b?0:v<l?(v-a)/(l-a):v<=h?1:(b-v)/(b-h)}
@@ -58,12 +60,14 @@ export function createCommunityAdapter(root,manifest,profile){
    }flex.push({mesh:m,key,source,weights,normals:m.geometry.attributes.normal?.array.slice(),spec:r.group==='registered_flex'?profile.motion_registration.flex[key]:null});
   });
  }
- const chains=createRegisteredChains(nodes,initial,profile),teeth=createBeltedZTeeth(root,profile);let restOffsets={};
+ const chains=createRegisteredChains(nodes,initial,profile),teeth=createBeltedZTeeth(root,profile),bowden=createEnderBowden(root,profile);const originalXBelt=createOriginalEnderXBelt(root,profile);let restOffsets={};
  function setAxes(next){
   validateAxes(next,profile,configuration);axes={...next};
   const motions=new Map([...new Set([...records.values()].map(r=>r.group))].map(group=>[group,displayMotion(nativeMotion(group,axes,profile),profile)])),head=displayMotion(nativeMotion('head',axes,profile),profile),axisNames=['x','y','z'];
   for(const[key,node]of nodes){const r=records.get(key),delta=motions.get(r.group),rest=displayMotion(restOffsets[key]||[0,0,0],profile);node.matrixAutoUpdate=false;node.matrix.copy(initial.get(key));for(let i=0;i<3;i++)node.matrix.elements[12+i]+=delta[i]+rest[i];node.visible=!hiddenKeys.has(key)&&(r.group!=='reference'||references)}
   teeth.update(axes,nodes.has('belted_253')&&!hiddenKeys.has('belted_253'));
+  bowden.update(axes,configuration);
+  originalXBelt.update(axes);
   chains.update(axes);
   for(const e of flex){
    if(e.routed){
@@ -84,5 +88,5 @@ export function createCommunityAdapter(root,manifest,profile){
  function setPalette(palette){for(const[key,node]of nodes){const role=records.get(key).appearance_role;if(!palette[role])continue;node.traverse(m=>{if(m.isMesh)for(const material of [].concat(m.material))material.color.set(palette[role])})}}
  function setReferences(value){references=Boolean(value);for(const[key,node]of nodes)if(records.get(key).group==='reference')node.visible=references&&!hiddenKeys.has(key)}
  function setConfiguration(id){const spec=communityConfiguration(profile,id),keys=spec.hidden_keys||[],rest=spec.rest_offsets_mm||{};if(!Array.isArray(keys)||new Set(keys).size!==keys.length||keys.some(k=>!records.has(k))||Object.entries(rest).some(([k,v])=>!records.has(k)||!Array.isArray(v)||v.length!==3||!v.every(Number.isFinite)))throw Error('Incomplete configuration installation');configuration=id;hiddenKeys=new Set(keys);restOffsets=rest;for(const[k,[a,b]]of Object.entries(spec.axes||{}))axes[k]=Math.max(a,Math.min(b,axes[k]));setAxes(axes);return id}
- setConfiguration(configuration);return {root,nodes,records,flex,chains,teeth,setAxes,setPalette,setReferences,setConfiguration,getConfiguration:()=>configuration,getAxes:()=>({...axes})};
+ setConfiguration(configuration);return {root,nodes,records,flex,chains,teeth,bowden,originalXBelt,setAxes,setPalette,setReferences,setConfiguration,getConfiguration:()=>configuration,getAxes:()=>({...axes})};
 }

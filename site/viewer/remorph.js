@@ -1,10 +1,11 @@
+import {setupGcodePanel} from './gcode-panel.js?v=0738f8c451be63bba150';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {createRemorphAdapter} from './remorph-adapter.mjs';
 import {createRemorphEnvironment} from './remorph-environment.mjs?v=extra-machines-55';
-import {loadExtraMachine} from './extra-machine-loader.mjs?v=274bbda379e78bd08808';
+import {loadExtraMachine} from './extra-machine-loader.mjs?v=3fa4da3a4e1eb08606ff';
 import {setupMachineNavigation} from './machines.js?v=d6045b8af89b3984adcb';
 import {workspaceFrame,WorkspaceResizeObserver,workspaceListen} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
@@ -43,6 +44,8 @@ export async function mount(scope){
   $('resetPalette').onclick=()=>{$('frame').value=profile.appearance.palette_defaults.frame;adapter.setPalette(profile.appearance.palette_defaults);render()};
   for(const name of ['resetPose','enclosure','flexible','brightness','startup','idle','ledOff','floorFinish','floorVisible','gridVisible','frame','resetPalette','night','roomDark'])$(name).disabled=false;
   $('badge').textContent=loaded.manifest.parts.length.toLocaleString()+' PARTS · REMORPH BETA 1';
+  setupGcodePanel({container:document.querySelector('aside'),profile,adapter,scene,render,drawPath:false,getContext:()=>({machine:id,asset_identity:loaded.replay_asset_identity}),
+   setPose:xyz=>{const out=adapter.setPose(Object.fromEntries(['x','y','z'].map((a,i)=>[a,xyz[i]])));for(const[i,a]of ['x','y','z'].entries()){$(a).value=xyz[i];$(a+'v').textContent=xyz[i].toFixed(2)+' mm'}$('motionStatus').textContent='XYZ · '+out.xyz_mm.map(v=>v.toFixed(2)).join(' / ')+' mm';document.body.dataset.pose=JSON.stringify(out);render()}});
   setupRenderExport({renderer,scene,camera,controls,name:id,beforeRender:()=>{},afterRender:render});$('openRender').disabled=false;
   document.body.dataset.machineId=id;document.body.dataset.ready='true';document.body.dataset.parts=loaded.manifest.parts.length;$('status').hidden=true;
   pose();floor();light(42);environment.setDark($('night').checked);resize();view('iso');

@@ -1,3 +1,6 @@
+import {loadedFamilyAssetIdentity} from './gcode-loaded-asset-identity.mjs?v=42ac134c2d9a8b8f8dfc';
+import {displacementGcodeSettings,displacementCoordinateNote} from './gcode-machine-bindings.mjs?v=460777c3fc4d1a74bf27';
+import {setupGcodePanel} from './gcode-panel.js?v=0738f8c451be63bba150';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import * as THREE from 'three';
@@ -5,14 +8,14 @@ import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {RoomEnvironment} from './vendor/RoomEnvironment.js';
 import {workspaceFrame,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {setupMachineNavigation} from './machines.js?v=d6045b8af89b3984adcb';
-import {loadExtraMachine} from './extra-machine-loader.mjs?v=274bbda379e78bd08808';
+import {loadExtraMachine} from './extra-machine-loader.mjs?v=3fa4da3a4e1eb08606ff';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=extra-machines-55';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {setupPublicInfo} from './public-info.js?v=0b0f91d7a82d25acbb87';
 import {applyNativeMotionProfile,loadNativeMotionProfile} from './native-motion-profile.mjs?v=91532eb992519143f437';
-import {createCommunityAdapter} from './community-adapter.mjs?v=ffc5eeb9a4b57873672c';
-import {setupNativeMotionControls} from './native-motion-controls.mjs?v=849105826b5c4f86deb8';
+import {createCommunityAdapter} from './community-adapter.mjs?v=527f242dd6b104060425';
+import {setupNativeMotionControls} from './native-motion-controls.mjs?v=0a7a8d3f340bda069691';
 export async function mount(scope){
  const $=id=>document.getElementById(id),stage=$('stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));
  renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);
@@ -31,6 +34,7 @@ export async function mount(scope){
   const id=new URLSearchParams(location.search).get('machine')||'annex_k2_assembly';setupMachineNavigation(id);
   const loaded=await loadExtraMachine(id),rig=await loadNativeMotionProfile(id);
   const {manifest,profile}=applyNativeMotionProfile(loaded.manifest,loaded.profile,rig,loaded.row.files['model.glb'].decoded_sha256),root=loaded.root,nodes=new Map();
+  const replay_asset_identity=await loadedFamilyAssetIdentity({machine:id,spec:{...loaded.row,machine_id:id},manifest,profile,checkedFileNames:loaded.checked_file_names,requiredFileNames:loaded.checked_file_names});
   root.rotation.x=profile.viewer_orientation.viewer_root_rotation_x_radians;
   root.traverse(n=>{if(!n.isMesh)return;const match=n.name.match(/^(p\d+)__/);if(!match)throw Error('Annex part identity');if(nodes.has(match[1]))throw Error('Duplicate Annex part');nodes.set(match[1],n);n.userData.part_key=match[1];n.material=Array.isArray(n.material)?n.material.map(m=>m.clone()):n.material.clone();for(const m of [].concat(n.material)){m.side=THREE.DoubleSide;if(m.transparent)m.depthWrite=false}});
   if(nodes.size!==manifest.parts.length||manifest.parts.some(p=>!nodes.has(p.key)))throw Error('Annex part coverage');
@@ -39,12 +43,16 @@ export async function mount(scope){
   function enclosure(){for(const p of panels){const node=nodes.get(p.key);node.visible=$('enclosure').checked;for(const m of [].concat(node.material)){const transparent=$('panelTransparency').checked&&!/back|rear|bottom/i.test(p.name);m.transparent=transparent;m.opacity=transparent?.18:1;m.depthWrite=!transparent;m.needsUpdate=true}}render()}
   $('enclosure').onchange=$('panelTransparency').onchange=enclosure;enclosure();
   const displayKeys=['night','gridVisible','enclosure','panelTransparency'];
-  setupNativeMotionControls({adapter,profile,camera,controls,render,scope,onPose:enclosure,
+  const nativeMotion=setupNativeMotionControls({adapter,profile,camera,controls,render,scope,onPose:enclosure,
    getDisplay:()=>Object.fromEntries(displayKeys.map(k=>[k,$(k).checked])),
    validateDisplay:d=>{if(!d||displayKeys.some(k=>typeof d[k]!=='boolean'))throw Error('Invalid display setting')},
    setDisplay:d=>{for(const k of displayKeys){$(k).checked=d[k];$(k).dispatchEvent(new Event('input'));$(k).dispatchEvent(new Event('change'))}grid.visible=d.gridVisible;lighting();enclosure()}
   });
-  scene.add(root);box=new THREE.Box3().setFromObject(root);grid.position.y=box.min.y-.003;
+  setupGcodePanel({container:document.querySelector('aside'),profile,adapter,scene,render,drawPath:false,coordinateNote:displacementCoordinateNote,
+   getPose:()=>['x','y','z'].map(a=>adapter.getAxes()[a]),getLimits:()=>displacementGcodeSettings(profile,adapter.getAxes()).limits,
+   getFirmwareSettings:()=>displacementGcodeSettings(profile,adapter.getAxes()),
+   getContext:()=>({machine:id,asset_identity:replay_asset_identity,secondary_axes:Object.fromEntries(Object.entries(adapter.getAxes()).filter(([a])=>!['x','y','z'].includes(a)))}),beforePlayback:()=>$('motionPause').click(),
+   setPose:xyz=>nativeMotion.set({...adapter.getAxes(),...Object.fromEntries(['x','y','z'].map((a,i)=>[a,xyz[i]]))})});  scene.add(root);box=new THREE.Box3().setFromObject(root);grid.position.y=box.min.y-.003;
   $('machineTitle').textContent=profile.label;$('revision').textContent=profile.version;$('partCount').textContent=manifest.parts.length.toLocaleString()+' 部品';
   if(profile.size_reference_note){const note=document.createElement('p');note.className='foot';note.textContent=profile.size_reference_note;$('partCount').after(note)}
   $('badge').textContent=profile.label+' · '+manifest.parts.length.toLocaleString()+' PARTS';

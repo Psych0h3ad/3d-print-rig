@@ -2,7 +2,7 @@
   "schema": 1,
   "machines": {
     "ender3_stock_220": {
-      "profile_sha256": "082b8c7b6cac7141106c5592a0ab8412dc002d0f3493ed39fb7eb1c9b7f6dc87",
+      "profile_sha256": "c10ef0e862cbc2cc065e79153a1ec9da8ec60b0adeef4d5f24290156787f4c03",
       "controls": {
         "head": {
           "stock": {

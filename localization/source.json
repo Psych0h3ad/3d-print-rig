@@ -4855,7 +4855,7 @@
     "text.0955": {
       "kind": "message",
       "ja": "G-codeは2 MB以内です",
-      "en": "G-code must be 2 MB or smaller"
+      "en": "G-code must be within 2 MB"
     },
     "text.0956": {
       "kind": "message",
@@ -4955,7 +4955,7 @@
     "text.0975": {
       "kind": "message",
       "ja": "P は0以上です",
-      "en": "P must be 0 or greater"
+      "en": "P must be at least 0"
     },
     "text.0976": {
       "kind": "message",
@@ -5240,7 +5240,7 @@
     "text.1031": {
       "kind": "message",
       "ja": "コマンドを読み取れません",
-      "en": "Could not parse command"
+      "en": "Cannot read command"
     },
     "text.1032": {
       "kind": "message",
@@ -5335,7 +5335,7 @@
     "text.1050": {
       "kind": "message",
       "ja": "ファイルは2 MB以内です",
-      "en": "File must be 2 MB or smaller"
+      "en": "Files must be within 2 MB"
     },
     "text.1051": {
       "kind": "message",
@@ -5345,7 +5345,7 @@
     "text.1052": {
       "kind": "message",
       "ja": "プローブ",
-      "en": "Probe"
+      "en": "probe"
     },
     "text.1053": {
       "kind": "message",
@@ -5535,7 +5535,7 @@
     "text.1089": {
       "kind": "message",
       "ja": "移動時間が有限値ではありません",
-      "en": "Travel time is not finite"
+      "en": "Movement duration is not finite"
     },
     "text.1090": {
       "kind": "message",
@@ -5560,7 +5560,7 @@
     "text.1093": {
       "kind": "message",
       "ja": "開始XYZが必要です",
-      "en": "Starting XYZ is required"
+      "en": "Initial XYZ is required"
     },
     "text.1094": {
       "kind": "message",
@@ -5570,7 +5570,7 @@
     "text.1095": {
       "kind": "message",
       "ja": "開始位置または表示範囲が不正です",
-      "en": "Invalid start position or display range"
+      "en": "Invalid initial position or display range"
     },
     "ui.appearance": {
       "kind": "message",
@@ -6310,7 +6310,7 @@
     "text.1238": {
       "kind": "message",
       "ja": "保存状態は64個までです",
-      "en": "Up to 64 saved states are supported"
+      "en": "At most 64 saved states"
     },
     "text.1239": {
       "kind": "message",
@@ -7165,22 +7165,22 @@
     "text.1408": {
       "kind": "message",
       "ja": "再生できる軌跡と有限の時刻が必要です",
-      "en": "A complete program and finite time are required."
+      "en": "A playable path and a finite time are required"
     },
     "text.1409": {
       "kind": "message",
       "ja": "機体の可動範囲が変わりました。軌跡を再計算してください",
-      "en": "Machine motion limits changed. Recalculate the path."
+      "en": "The machine travel limits have changed. Recalculate the path."
     },
     "text.1410": {
       "kind": "message",
       "ja": "ノズルの座標が不正です",
-      "en": "Invalid nozzle coordinates."
+      "en": "Invalid nozzle coordinates"
     },
     "text.1411": {
       "kind": "message",
       "ja": "再生速度が不正です",
-      "en": "Invalid playback speed."
+      "en": "Invalid replay speed"
     },
     "text.1412": {
       "kind": "message",
@@ -7705,7 +7705,7 @@
     "format.0037": {
       "kind": "template",
       "ja": "{0}命令 · 送り速度による概算 {1}秒",
-      "en": "{0} commands · estimated {1} seconds from feed rates"
+      "en": "{0} commands · Feed-rate estimate {1} seconds"
     },
     "format.0038": {
       "kind": "template",
@@ -7899,8 +7899,11 @@
     },
     "format.0076": {
       "kind": "template",
-      "ja": "{0}が有限値ではありません",
-      "en": "{0} is not finite"
+      "ja": "{0} が有限値ではありません",
+      "en": "{0} is not finite",
+      "aliases": [
+        "{0}が有限値ではありません"
+      ]
     },
     "format.0077": {
       "kind": "template",
@@ -7909,13 +7912,19 @@
     },
     "format.0078": {
       "kind": "template",
-      "ja": "{0}は0より大きい値が必要です",
-      "en": "{0} must be greater than 0"
+      "ja": "{0} は0より大きい値が必要です",
+      "en": "{0} must be greater than 0",
+      "aliases": [
+        "{0}は0より大きい値が必要です"
+      ]
     },
     "format.0079": {
       "kind": "template",
-      "ja": "{0}は未対応です",
-      "en": "{0} is unsupported"
+      "ja": "{0} は未対応です",
+      "en": "{0} is unsupported",
+      "aliases": [
+        "{0}は未対応です"
+      ]
     },
     "format.0080": {
       "kind": "template",
@@ -8908,8 +8917,8 @@
     },
     "ui.community.ender_source": {
       "kind": "message",
-      "ja": "元の公式CADにはBowdenチューブが含まれていません。",
-      "en": "The original official CAD does not include the Bowden tube."
+      "ja": "Bowden経路は原本のD4チューブ断面と継手位置を使用した450 mmの表示プレビューです。原CADに全長の配管は含まれません。",
+      "en": "The Bowden route uses the native D4 tube section and fitting positions with a 450 mm viewer service length. The source CAD omits the complete hose."
     },
     "fixed_sc.system": {
       "kind": "message",
@@ -10085,6 +10094,947 @@
       "kind": "message",
       "en": "Standalone toolhead",
       "ja": "ツールヘッド単体"
+    },
+    "virtual_printer.title": {
+      "kind": "message",
+      "ja": "G-code · オフライン仮想プリンター",
+      "en": "G-code · Offline virtual printer",
+      "aliases": [
+        "オフライン仮想プリンター"
+      ]
+    },
+    "virtual_printer.intro": {
+      "kind": "message",
+      "ja": "入力から移動と仮想状態を確認するプレビューです。実機には接続しません。",
+      "en": "Preview movement and virtual state from your input. No physical printer connection.",
+      "aliases": [
+        "現在の構成とXYZから、移動と仮想状態を再生。実機には接続しません。"
+      ]
+    },
+    "virtual_printer.settings": {
+      "kind": "message",
+      "ja": "マクロと仮想設定",
+      "en": "Macros and virtual settings"
+    },
+    "virtual_printer.macro_config": {
+      "kind": "message",
+      "ja": "Klipperマクロ設定",
+      "en": "Klipper macro configuration"
+    },
+    "virtual_printer.json_settings": {
+      "kind": "message",
+      "ja": "開始位置・範囲・接触・ヒーター設定（JSON）",
+      "en": "Initial position, limits, contacts and heaters (JSON)"
+    },
+    "virtual_printer.refresh_settings": {
+      "kind": "message",
+      "ja": "ビューアの軸設定を読み直す",
+      "en": "Reload viewer axis settings",
+      "aliases": [
+        "機体の測定設定を読み直す"
+      ]
+    },
+    "virtual_printer.contact_notice": {
+      "kind": "message",
+      "ja": "接触位置は根拠付きの設定が必要です。接触は位置の記録のみで、ホーミング・プローブ・ドックの経路を生成しません。温度待ちは仮想温度を目標値に合わせます。加熱時間と温度変化は再現しません。",
+      "en": "Contact positions require settings with supporting evidence. Contacts only record positions; they do not generate homing, probing or docking paths. Temperature waits set the virtual temperature to its target. Heating time and temperature changes are not simulated."
+    },
+    "virtual_printer.save": {
+      "kind": "message",
+      "ja": "仮想状態を保存",
+      "en": "Save virtual state"
+    },
+    "virtual_printer.load": {
+      "kind": "message",
+      "ja": "仮想状態を読み込む",
+      "en": "Load virtual state"
+    },
+    "virtual_printer.events": {
+      "kind": "message",
+      "ja": "イベントの記録",
+      "en": "Event log"
+    },
+    "virtual_printer.commands": {
+      "kind": "message",
+      "ja": "座標プレビューの命令、設定付きG28/PROBE、ヒーター・ファンの仮想状態、ACTIVATE_EXTRUDER、SET_GCODE_VARIABLE、制限付きJinja式・if・for・setに対応。未対応の構文・命令で停止します。T番号は登録したマクロのみ。ツール切替は仮想イベントで、取り付けや交換経路の検証を意味しません。",
+      "en": "Supports coordinate preview commands, configured G28/PROBE, virtual heater and fan state, ACTIVATE_EXTRUDER, SET_GCODE_VARIABLE and limited Jinja expressions, if, for and set. Unsupported syntax or commands stop execution. T numbers require registered macros. Tool changes are virtual events and do not verify mounting or exchange paths."
+    },
+    "virtual_printer.klipper_docs": {
+      "kind": "message",
+      "ja": "Klipperのマクロ仕様",
+      "en": "Klipper macro specification"
+    },
+    "virtual_printer.event_limit": {
+      "kind": "message",
+      "ja": "イベント一覧は先頭200件を表示します。再生には全件を含みます。",
+      "en": "The event list shows the first 200 entries. Playback includes every event."
+    },
+    "virtual_printer.thermal_time": {
+      "kind": "message",
+      "ja": "温度待ちの時間は含みません",
+      "en": "Temperature wait time is excluded"
+    },
+    "virtual_printer.range_error": {
+      "kind": "message",
+      "ja": "仮想範囲は現在のビューア軸範囲内に設定してください",
+      "en": "Set virtual limits within the current viewer axis limits",
+      "aliases": [
+        "仮想範囲は機体の測定範囲内に設定してください"
+      ]
+    },
+    "virtual_printer.recompile": {
+      "kind": "message",
+      "ja": "再計算が必要です",
+      "en": "Recalculation required"
+    },
+    "virtual_printer.invalid_file": {
+      "kind": "message",
+      "ja": "仮想状態ファイルが不正です",
+      "en": "Invalid virtual state file"
+    },
+    "virtual_printer.context_error": {
+      "kind": "message",
+      "ja": "保存時の機体構成・測定設定と一致しません",
+      "en": "The machine configuration or measured settings differ from the saved state"
+    },
+    "virtual_printer.saved": {
+      "kind": "message",
+      "ja": "仮想状態を保存しました。",
+      "en": "Virtual state saved."
+    },
+    "virtual_printer.file_limit": {
+      "kind": "message",
+      "ja": "仮想状態ファイルは3 MB以内です",
+      "en": "Virtual state files must be within 3 MB"
+    },
+    "virtual_printer.virtual_state": {
+      "kind": "template",
+      "ja": "仮想ツール: {0} · ホーム済み: {1} · ファン: {2}%{3}",
+      "en": "Virtual tool: {0} · Homed: {1} · Fan: {2}%{3}"
+    },
+    "virtual_printer.source_metadata": {
+      "kind": "message",
+      "ja": "入力の出典・座標系（JSON）",
+      "en": "Input sources and coordinate system (JSON)"
+    },
+    "virtual_printer.axis.displacement": {
+      "kind": "message",
+      "ja": "XYZはビューアのアダプター変位座標（mm）です。到達範囲は現在の構成から取得します。実機の原点・ノズル座標ではありません。ノズル基準の軌跡線は表示しません。",
+      "en": "XYZ are viewer adapter displacement coordinates (mm). Reach limits come from the current configuration. These are not physical machine origins or nozzle coordinates. No nozzle-referenced path is displayed."
+    },
+    "virtual_printer.axis.display": {
+      "kind": "message",
+      "ja": "XYZはビューアの表示座標（mm）です。到達範囲は現在のアダプター設定です。実機の原点・接触位置や連続クリアランスを保証しません。",
+      "en": "XYZ are viewer display coordinates (mm). Reach limits use the current adapter settings. They do not establish the physical machine origin, contact positions or continuous clearance."
+    },
+    "virtual_printer.axis.ratrig": {
+      "kind": "message",
+      "ja": "Xは主キャリッジX0、Y/Zはビューア座標（mm）です。副キャリッジは既存の独立・コピー・ミラーモードに従います。仮想ツール切替ではキャリッジを切り替えません。ノズル基準の軌跡線は表示しません。",
+      "en": "X is the primary carriage X0; Y/Z are viewer coordinates (mm). Secondary carriages follow the existing independent, copy or mirror mode. Virtual tool changes do not switch carriages. No nozzle-referenced path is displayed."
+    },
+    "virtual_printer.axis.unavailable": {
+      "kind": "message",
+      "ja": "このアダプターにはプリンターXYZの接続がありません。XYZ・ホーミング・プローブ移動は停止します。マクロとヒーター・押出し・ツールの仮想状態のみ確認できます。",
+      "en": "This adapter has no printer XYZ binding. XYZ, homing and probe movement stop. Only macros and virtual heater, extrusion and tool state can be previewed."
+    },
+    "virtual_printer.axis.no_path": {
+      "kind": "message",
+      "ja": "ノズル基準の軌跡線は表示しません。",
+      "en": "No nozzle-referenced path is displayed."
+    },
+    "virtual_printer.heater_state": {
+      "kind": "template",
+      "ja": " · {0}: {1} / {2} °C",
+      "en": " · {0}: {1} / {2} °C"
+    },
+    "virtual_printer.line_state": {
+      "kind": "template",
+      "ja": "{0}行目 · {1}{2} · E {3} mm",
+      "en": "Line {0} · {1}{2} · E {3} mm"
+    },
+    "virtual_printer.compile_error": {
+      "kind": "template",
+      "ja": "{0}行目で停止：{1}{2}。修正後に再計算してください。",
+      "en": "Stopped at line {0}: {1}{2}. Correct the input and recompile."
+    },
+    "virtual_printer.macro_location": {
+      "kind": "template",
+      "ja": "{0}:{1} · ",
+      "en": "{0}:{1} · "
+    },
+    "virtual_printer.event_row": {
+      "kind": "template",
+      "ja": "{0} · {1} · {2}",
+      "en": "{0} · {1} · {2}"
+    },
+    "virtual_printer.replay_time": {
+      "kind": "template",
+      "ja": "{0} / {1} s",
+      "en": "{0} / {1} s"
+    },
+    "virtual_printer.axis.no_path_combined": {
+      "kind": "template",
+      "ja": "{0} ノズル基準の軌跡線は表示しません。",
+      "en": "{0} No nozzle-referenced path is displayed."
+    },
+    "virtual_printer.compile_summary_thermal": {
+      "kind": "template",
+      "ja": "{0} · 温度待ちの時間は含みません",
+      "en": "{0} · Temperature wait time is excluded"
+    },
+    "virtual_printer.error.panel_prefix": {
+      "kind": "message",
+      "ja": "G-codeパネルのIDプレフィックスが不正です",
+      "en": "Invalid G-code panel ID prefix"
+    },
+    "virtual_printer.error.binding_setting": {
+      "kind": "message",
+      "ja": "仮想設定ではXYZ接続の対応範囲を変更できません",
+      "en": "XYZ binding capability cannot be changed in virtual settings"
+    },
+    "virtual_printer.error.coordinate_parameter": {
+      "kind": "template",
+      "ja": "パラメーターを読み取れません: {0}",
+      "en": "Cannot read parameter: {0}"
+    },
+    "virtual_printer.error.coordinate_duplicate": {
+      "kind": "template",
+      "ja": "{0} が重複しています",
+      "en": "Duplicate {0}"
+    },
+    "virtual_printer.error.coordinate_parameter_unsupported": {
+      "kind": "template",
+      "ja": "{0} の {1} は未対応です",
+      "en": "{1} is unsupported for {0}"
+    },
+    "virtual_printer.error.coordinate_numeric": {
+      "kind": "template",
+      "ja": "{0} は数値が必要です",
+      "en": "{0} requires a number"
+    },
+    "virtual_printer.error.coordinate_missing_save": {
+      "kind": "template",
+      "ja": "保存状態がありません: {0}",
+      "en": "Saved state not found: {0}"
+    },
+    "virtual_printer.error.template_property": {
+      "kind": "template",
+      "ja": "未対応のテンプレートプロパティ: {0}",
+      "en": "Unsupported template property: {0}"
+    },
+    "virtual_printer.error.template_arithmetic": {
+      "kind": "message",
+      "ja": "テンプレート演算には有限の数値が必要です。paramsはfloat/intで変換してください",
+      "en": "Template arithmetic requires finite numbers; convert params with float/int"
+    },
+    "virtual_printer.error.template_length": {
+      "kind": "message",
+      "ja": "テンプレート式が2048文字を超えています",
+      "en": "Template expression exceeds 2048 characters"
+    },
+    "virtual_printer.error.template_escape": {
+      "kind": "message",
+      "ja": "未対応のテンプレート文字列エスケープです",
+      "en": "Unsupported template string escape"
+    },
+    "virtual_printer.error.template_string": {
+      "kind": "message",
+      "ja": "テンプレート文字列が閉じていません",
+      "en": "Unclosed template string"
+    },
+    "virtual_printer.error.template_syntax": {
+      "kind": "template",
+      "ja": "{0}付近のテンプレート構文は未対応です",
+      "en": "Unsupported template syntax near {0}"
+    },
+    "virtual_printer.error.template_tokens": {
+      "kind": "message",
+      "ja": "テンプレート式が512トークンを超えています",
+      "en": "Template expression exceeds 512 tokens"
+    },
+    "virtual_printer.error.template_expected": {
+      "kind": "template",
+      "ja": "テンプレートトークン{0}が必要です",
+      "en": "Expected template token {0}"
+    },
+    "virtual_printer.error.template_depth": {
+      "kind": "message",
+      "ja": "テンプレート式のネストが32を超えています",
+      "en": "Template expression nesting exceeds 32"
+    },
+    "virtual_printer.error.template_calls": {
+      "kind": "message",
+      "ja": "range()のみ対応しています。テンプレートアクションと任意関数の呼び出しは使えません",
+      "en": "Only range() is supported; template actions and arbitrary calls are unavailable"
+    },
+    "virtual_printer.error.range_arguments": {
+      "kind": "message",
+      "ja": "rangeには1–3個の引数が必要です",
+      "en": "range requires 1–3 arguments"
+    },
+    "virtual_printer.error.template_expression": {
+      "kind": "message",
+      "ja": "未対応のテンプレート式です",
+      "en": "Unsupported template expression"
+    },
+    "virtual_printer.error.template_property_name": {
+      "kind": "message",
+      "ja": "プロパティ名が必要です",
+      "en": "Expected property name"
+    },
+    "virtual_printer.error.template_filter": {
+      "kind": "template",
+      "ja": "未対応のテンプレートフィルター: {0}",
+      "en": "Unsupported template filter: {0}"
+    },
+    "virtual_printer.error.template_filter_arguments": {
+      "kind": "message",
+      "ja": "変換フィルターへの引数指定は未対応です",
+      "en": "Conversion filter arguments are unsupported"
+    },
+    "virtual_printer.error.template_budget": {
+      "kind": "message",
+      "ja": "テンプレート演算の上限に達しました",
+      "en": "Template operation budget exhausted"
+    },
+    "virtual_printer.error.template_parent": {
+      "kind": "message",
+      "ja": "テンプレートの親値が未定義です",
+      "en": "Undefined template parent"
+    },
+    "virtual_printer.error.template_conversion": {
+      "kind": "message",
+      "ja": "テンプレートの数値変換が不正です",
+      "en": "Invalid template numeric conversion"
+    },
+    "virtual_printer.error.range_integers": {
+      "kind": "message",
+      "ja": "rangeには安全な整数値が必要です",
+      "en": "range requires safe integers"
+    },
+    "virtual_printer.error.range_step": {
+      "kind": "message",
+      "ja": "rangeのstepは0にできません",
+      "en": "range step cannot be zero"
+    },
+    "virtual_printer.error.range_iterations": {
+      "kind": "message",
+      "ja": "rangeが256回の反復を超えています",
+      "en": "range exceeds 256 iterations"
+    },
+    "virtual_printer.error.template_undefined_default": {
+      "kind": "message",
+      "ja": "テンプレート値が未定義です。defaultまたはis definedを使ってください",
+      "en": "Undefined template value; use default or is defined"
+    },
+    "virtual_printer.error.template_equality": {
+      "kind": "message",
+      "ja": "オブジェクトの等値比較および真偽値と数値の混在した等値比較は未対応です",
+      "en": "Object and mixed boolean/numeric equality are unsupported"
+    },
+    "virtual_printer.error.template_in": {
+      "kind": "message",
+      "ja": "inは文字列とリストのみ対応しています",
+      "en": "in supports strings/lists only"
+    },
+    "virtual_printer.error.template_comparison": {
+      "kind": "message",
+      "ja": "比較対象の値は未対応です",
+      "en": "Unsupported comparison operands"
+    },
+    "virtual_printer.error.template_node": {
+      "kind": "message",
+      "ja": "未対応のテンプレート式ノードです",
+      "en": "Unsupported template expression node"
+    },
+    "virtual_printer.error.template_undefined": {
+      "kind": "message",
+      "ja": "テンプレート値が未定義です",
+      "en": "Undefined template value"
+    },
+    "virtual_printer.error.template_nodes": {
+      "kind": "message",
+      "ja": "テンプレートが4096ノードを超えています",
+      "en": "Template exceeds 4096 nodes"
+    },
+    "virtual_printer.error.template_delimiter": {
+      "kind": "template",
+      "ja": "{0}行目のテンプレート区切りが閉じていません",
+      "en": "Unclosed template delimiter at line {0}"
+    },
+    "virtual_printer.error.template_reserved": {
+      "kind": "message",
+      "ja": "予約済みのテンプレート変数です",
+      "en": "Reserved template variable"
+    },
+    "virtual_printer.error.template_unexpected": {
+      "kind": "template",
+      "ja": "予期しない{0}です",
+      "en": "Unexpected {0}"
+    },
+    "virtual_printer.error.template_loop_reserved": {
+      "kind": "message",
+      "ja": "予約済みのループ変数です",
+      "en": "Reserved loop variable"
+    },
+    "virtual_printer.error.template_block_mismatch": {
+      "kind": "message",
+      "ja": "テンプレートのブロックが対応していません",
+      "en": "Mismatched template block"
+    },
+    "virtual_printer.error.template_directive": {
+      "kind": "template",
+      "ja": "未対応のテンプレートディレクティブ: {0}",
+      "en": "Unsupported template directive: {0}"
+    },
+    "virtual_printer.error.template_block_depth": {
+      "kind": "message",
+      "ja": "テンプレートブロックのネストが16を超えています",
+      "en": "Template block nesting exceeds 16"
+    },
+    "virtual_printer.error.template_block_open": {
+      "kind": "message",
+      "ja": "テンプレートのブロックが閉じていません",
+      "en": "Unclosed template block"
+    },
+    "virtual_printer.error.macro_config_limit": {
+      "kind": "message",
+      "ja": "マクロ設定は128000文字以内のテキストで指定してください",
+      "en": "Macro configuration must be text within 128000 characters"
+    },
+    "virtual_printer.error.macro_duplicate": {
+      "kind": "template",
+      "ja": "マクロ{0}が重複しています",
+      "en": "Duplicate macro {0}"
+    },
+    "virtual_printer.error.macro_count": {
+      "kind": "message",
+      "ja": "マクロは128個までです",
+      "en": "At most 128 macros"
+    },
+    "virtual_printer.error.macro_sections": {
+      "kind": "template",
+      "ja": "[gcode_macro NAME]セクションのみ対応しています（設定{0}行目）",
+      "en": "Only [gcode_macro NAME] sections are supported (configuration line {0})"
+    },
+    "virtual_printer.error.macro_gcode_duplicate": {
+      "kind": "message",
+      "ja": "gcodeフィールドが重複しています",
+      "en": "Duplicate gcode field"
+    },
+    "virtual_printer.error.macro_rename": {
+      "kind": "template",
+      "ja": "マクロオプションrename_existingは未対応です（設定{0}行目）",
+      "en": "Unsupported macro option rename_existing (configuration line {0})"
+    },
+    "virtual_printer.error.macro_variable_duplicate": {
+      "kind": "message",
+      "ja": "マクロ変数が重複しています",
+      "en": "Duplicate macro variable"
+    },
+    "virtual_printer.error.macro_variable_scalar": {
+      "kind": "message",
+      "ja": "マクロ変数はスカラー値で指定してください",
+      "en": "Macro variables must be scalar"
+    },
+    "virtual_printer.error.macro_config_unsupported": {
+      "kind": "template",
+      "ja": "設定{0}行目のマクロ設定は未対応です: {1}",
+      "en": "Unsupported macro configuration at line {0}: {1}"
+    },
+    "virtual_printer.error.macro_body": {
+      "kind": "template",
+      "ja": "マクロにはgcode本体が必要です: {0}",
+      "en": "Macro requires a gcode body: {0}"
+    },
+    "virtual_printer.error.macro_context": {
+      "kind": "template",
+      "ja": "{0}: {1}",
+      "en": "{0}: {1}"
+    },
+    "virtual_printer.error.macro_output_budget": {
+      "kind": "message",
+      "ja": "マクロ出力の上限に達しました",
+      "en": "Macro output budget exhausted"
+    },
+    "virtual_printer.error.template_output_scalar": {
+      "kind": "message",
+      "ja": "テンプレート出力には定義済みのスカラー値が必要です",
+      "en": "Template output requires a defined scalar"
+    },
+    "virtual_printer.error.template_output_injection": {
+      "kind": "message",
+      "ja": "テンプレート出力に改行やテンプレートを挿入できません",
+      "en": "Template output cannot inject new lines or templates"
+    },
+    "virtual_printer.error.template_for": {
+      "kind": "message",
+      "ja": "forには256回以内で反復するリストまたはrangeが必要です",
+      "en": "for requires a list/range within 256 iterations"
+    },
+    "virtual_printer.error.finite": {
+      "kind": "template",
+      "ja": "{0}は有限値で指定してください",
+      "en": "{0} must be finite"
+    },
+    "virtual_printer.error.unsupported_setting": {
+      "kind": "template",
+      "ja": "{0}の設定またはパラメーターは未対応です",
+      "en": "Unsupported {0} setting or parameter"
+    },
+    "virtual_printer.error.settings_limit": {
+      "kind": "message",
+      "ja": "仮想設定が128 KBを超えています",
+      "en": "Virtual settings exceed 128 KB"
+    },
+    "virtual_printer.error.motion_boolean": {
+      "kind": "message",
+      "ja": "motion_enabledは真偽値で指定してください",
+      "en": "motion_enabled must be boolean"
+    },
+    "virtual_printer.error.contact_binding": {
+      "kind": "message",
+      "ja": "接触設定にはXYZアダプター接続が必要です",
+      "en": "Contacts require an XYZ adapter binding"
+    },
+    "virtual_printer.error.homing_setting": {
+      "kind": "template",
+      "ja": "{0}のホーミングには範囲内の接触位置と根拠が必要です",
+      "en": "Homing {0} requires an in-range contact and evidence"
+    },
+    "virtual_printer.error.probe_setting": {
+      "kind": "message",
+      "ja": "プローブには測定済みの接触位置・オフセット・XY接触領域と根拠が必要です",
+      "en": "Probe requires measured contact, offset, XY contact region and evidence"
+    },
+    "virtual_printer.error.initial_homed": {
+      "kind": "message",
+      "ja": "開始時のホーミング済み軸が不正です",
+      "en": "Invalid initial homed axes"
+    },
+    "virtual_printer.error.homing_boolean": {
+      "kind": "message",
+      "ja": "require_homingは真偽値で指定してください",
+      "en": "require_homing must be boolean"
+    },
+    "virtual_printer.error.extrusion_mode": {
+      "kind": "message",
+      "ja": "不明な押出しモードです",
+      "en": "Unknown extrusion mode"
+    },
+    "virtual_printer.error.heater_count": {
+      "kind": "message",
+      "ja": "仮想ヒーターは16個までです",
+      "en": "At most 16 virtual heaters"
+    },
+    "virtual_printer.error.heater_name": {
+      "kind": "message",
+      "ja": "ヒーター名が不正です",
+      "en": "Invalid heater name"
+    },
+    "virtual_printer.error.heater_range": {
+      "kind": "message",
+      "ja": "仮想ヒーターの範囲が不正です",
+      "en": "Invalid virtual heater range"
+    },
+    "virtual_printer.error.extrusion_threshold": {
+      "kind": "message",
+      "ja": "押出し温度のしきい値がヒーターの範囲外です",
+      "en": "Extrusion threshold outside heater range"
+    },
+    "virtual_printer.error.tools_setting": {
+      "kind": "message",
+      "ja": "重複しない仮想ツール名を1–16個指定してください",
+      "en": "Specify 1–16 unique virtual tool names"
+    },
+    "virtual_printer.error.initial_tool": {
+      "kind": "message",
+      "ja": "開始時の仮想ツールが不明です",
+      "en": "Unknown initial virtual tool"
+    },
+    "virtual_printer.error.temperature_guard": {
+      "kind": "message",
+      "ja": "温度ガードには各仮想ツールのヒーターと押出し温度しきい値が必要です",
+      "en": "Temperature guard requires a heater and extrusion threshold for every virtual tool"
+    },
+    "virtual_printer.error.evidence_labels": {
+      "kind": "message",
+      "ja": "根拠にはテキストのラベルが必要です",
+      "en": "Evidence must contain text labels"
+    },
+    "virtual_printer.error.g28_selectors": {
+      "kind": "message",
+      "ja": "G28はX/Y/Zの軸指定のみ対応しています",
+      "en": "G28 supports X/Y/Z selectors only"
+    },
+    "virtual_printer.error.parameter_invalid": {
+      "kind": "template",
+      "ja": "{0}のパラメーターが不正または重複しています",
+      "en": "Invalid/repeated {0} parameter"
+    },
+    "virtual_printer.error.parameter_missing": {
+      "kind": "template",
+      "ja": "{0}がありません",
+      "en": "Missing {0}"
+    },
+    "virtual_printer.error.parameter_decimal": {
+      "kind": "template",
+      "ja": "{0}には有限の十進数が必要です",
+      "en": "{0} requires a finite decimal"
+    },
+    "virtual_printer.error.heater_missing": {
+      "kind": "template",
+      "ja": "仮想ヒーターが設定されていません: {0}",
+      "en": "Virtual heater is not configured: {0}"
+    },
+    "virtual_printer.error.heater_target": {
+      "kind": "message",
+      "ja": "目標値が設定済み仮想ヒーターの範囲外です",
+      "en": "Target outside configured virtual heater range"
+    },
+    "virtual_printer.error.g28_contact": {
+      "kind": "template",
+      "ja": "G28 {0}には測定済みの接触位置が必要です。エンドストップへの経路は推定しません",
+      "en": "G28 {0} requires a measured contact; no endstop path is inferred"
+    },
+    "virtual_printer.error.probe_contact": {
+      "kind": "message",
+      "ja": "PROBEには測定済みの接触データが必要です。プロービング経路は推定しません",
+      "en": "PROBE requires measured contact data; no probing path is inferred"
+    },
+    "virtual_printer.error.probe_homing": {
+      "kind": "message",
+      "ja": "PROBEには仮想XYZのホーミングが必要です",
+      "en": "PROBE requires virtual XYZ homing"
+    },
+    "virtual_printer.error.probe_region": {
+      "kind": "message",
+      "ja": "プローブ接触が測定済みXY領域の外にあります",
+      "en": "Probe contact is outside the measured XY region"
+    },
+    "virtual_printer.error.probe_start": {
+      "kind": "message",
+      "ja": "プローブの開始位置が設定済み接触位置より下です",
+      "en": "Probe starts below its configured contact"
+    },
+    "virtual_printer.error.extruder_unknown": {
+      "kind": "message",
+      "ja": "不明な仮想押出機です",
+      "en": "Unknown virtual extruder"
+    },
+    "virtual_printer.error.macro_variable_unknown": {
+      "kind": "message",
+      "ja": "不明なマクロ変数です",
+      "en": "Unknown macro variable"
+    },
+    "virtual_printer.error.macro_variable_value": {
+      "kind": "message",
+      "ja": "マクロ変数にはスカラー値が必要です",
+      "en": "Macro variable requires a scalar"
+    },
+    "virtual_printer.error.fan_range": {
+      "kind": "message",
+      "ja": "ファンのSは0–255の範囲で指定してください",
+      "en": "Fan S must be within 0–255"
+    },
+    "virtual_printer.error.temperature_window": {
+      "kind": "message",
+      "ja": "温度待ちの範囲が不正です",
+      "en": "Invalid temperature wait window"
+    },
+    "virtual_printer.error.temperature_target": {
+      "kind": "message",
+      "ja": "仮想ヒーター目標値では温度待ちの範囲を満たせません",
+      "en": "Virtual heater target cannot satisfy the wait window"
+    },
+    "virtual_printer.error.heater_tool_index": {
+      "kind": "message",
+      "ja": "仮想ヒーターのツール番号が不正です",
+      "en": "Invalid virtual heater tool index"
+    },
+    "virtual_printer.error.metadata_limit": {
+      "kind": "message",
+      "ja": "出典メタデータが8 KBを超えています",
+      "en": "Source metadata exceeds 8 KB"
+    },
+    "virtual_printer.error.metadata_labels": {
+      "kind": "message",
+      "ja": "出典メタデータのラベルは2048文字以内のテキストで指定してください",
+      "en": "Source metadata labels must be text within 2048 characters"
+    },
+    "virtual_printer.error.metadata_files": {
+      "kind": "message",
+      "ja": "出典メタデータのファイルは32個までです",
+      "en": "At most 32 source metadata files"
+    },
+    "virtual_printer.error.metadata_file": {
+      "kind": "message",
+      "ja": "出典ファイルのメタデータにはパスとSHA-256が必要です",
+      "en": "Source file metadata requires a path and SHA-256"
+    },
+    "virtual_printer.error.builtin_override": {
+      "kind": "template",
+      "ja": "組み込み命令の上書き・rename_existingは未対応です: {0}",
+      "en": "Built-in command override/rename_existing is unsupported: {0}"
+    },
+    "virtual_printer.error.input_text": {
+      "kind": "message",
+      "ja": "G-codeは2 MB以内のテキストで指定してください",
+      "en": "G-code must be text within 2 MB"
+    },
+    "virtual_printer.error.command_budget": {
+      "kind": "message",
+      "ja": "命令数の上限は1–30000の範囲で指定してください",
+      "en": "Command budget must be within 1–30000"
+    },
+    "virtual_printer.error.input_lines": {
+      "kind": "template",
+      "ja": "入力が{0}行を超えています",
+      "en": "Input exceeds {0} lines"
+    },
+    "virtual_printer.error.replay_budget": {
+      "kind": "message",
+      "ja": "再生状態の上限32000000文字を超えています",
+      "en": "Replay state budget exceeds 32 million characters"
+    },
+    "virtual_printer.error.time_budget": {
+      "kind": "message",
+      "ja": "プレビューが1年の時間上限を超えています",
+      "en": "Preview exceeds the one-year time budget"
+    },
+    "virtual_printer.error.expanded_budget": {
+      "kind": "template",
+      "ja": "展開後の命令数が上限{0}を超えています",
+      "en": "Expanded command budget exceeds {0}"
+    },
+    "virtual_printer.error.template_location": {
+      "kind": "message",
+      "ja": "テンプレートは設定済みマクロ内で指定してください。チェックサムは未対応です",
+      "en": "Templates must be inside configured macros; checksums are unsupported"
+    },
+    "virtual_printer.error.virtual_command": {
+      "kind": "message",
+      "ja": "仮想プリンターの命令を読み取れません",
+      "en": "Cannot read virtual printer command"
+    },
+    "virtual_printer.error.macro_call_depth": {
+      "kind": "message",
+      "ja": "マクロ呼び出しの深さが8を超えています",
+      "en": "Macro call depth exceeds 8"
+    },
+    "virtual_printer.error.xyz_unavailable": {
+      "kind": "message",
+      "ja": "XYZプレビューは使えません。このアダプターにはプリンターXYZの接続がありません",
+      "en": "XYZ preview unavailable: this adapter has no printer XYZ binding"
+    },
+    "virtual_printer.error.motion_homing": {
+      "kind": "template",
+      "ja": "移動前に仮想{0}をホーミングしてください",
+      "en": "Virtual {0} must be homed before motion"
+    },
+    "virtual_printer.error.extrusion_cold": {
+      "kind": "message",
+      "ja": "仮想押出しが設定済み最低温度を下回っています",
+      "en": "Virtual extrusion below the configured minimum temperature"
+    },
+    "virtual_printer.error.command_unsupported": {
+      "kind": "template",
+      "ja": "未対応の仮想プリンター命令: {0}",
+      "en": "Unsupported virtual printer command: {0}"
+    },
+    "virtual_printer.error.program_complete": {
+      "kind": "message",
+      "ja": "完全な仮想プリンタープログラムが必要です",
+      "en": "A complete virtual printer program is required"
+    },
+    "virtual_printer.error.replay_event": {
+      "kind": "message",
+      "ja": "再生イベントが不正です",
+      "en": "Invalid replay event"
+    },
+    "virtual_printer.error.replay_identity": {
+      "kind": "message",
+      "ja": "再生状態が別のプログラムまたは不正なプログラムに属しています",
+      "en": "Replay belongs to a different or invalid program"
+    },
+    "virtual_printer.error.replay_cursor": {
+      "kind": "message",
+      "ja": "再生時刻とイベント番号が一致しません",
+      "en": "Inconsistent replay time and event index"
+    },
+    "virtual_printer.error.replay_clock": {
+      "kind": "message",
+      "ja": "再生クロックが逆行しました",
+      "en": "Replay clock reversed"
+    },
+    "virtual_printer.label.adapter_firmware": {
+      "kind": "message",
+      "ja": "アダプターの仮想ファームウェア",
+      "en": "adapter virtual firmware"
+    },
+    "virtual_printer.label.virtual_printer": {
+      "kind": "message",
+      "ja": "仮想プリンター",
+      "en": "virtual printer"
+    },
+    "virtual_printer.label.homing": {
+      "kind": "message",
+      "ja": "ホーミング",
+      "en": "homing"
+    },
+    "virtual_printer.label.homing_axis": {
+      "kind": "template",
+      "ja": "{0}のホーミング",
+      "en": "homing {0}"
+    },
+    "virtual_printer.label.homing_contact": {
+      "kind": "message",
+      "ja": "ホーミング接触",
+      "en": "Homing contact"
+    },
+    "virtual_printer.label.probe_contact": {
+      "kind": "message",
+      "ja": "プローブ接触",
+      "en": "Probe contact"
+    },
+    "virtual_printer.label.heater": {
+      "kind": "template",
+      "ja": "ヒーター{0}",
+      "en": "heater {0}"
+    },
+    "virtual_printer.label.heater_field": {
+      "kind": "template",
+      "ja": "ヒーター項目{0}",
+      "en": "Heater {0}"
+    },
+    "virtual_printer.label.heater_target": {
+      "kind": "message",
+      "ja": "ヒーター目標値",
+      "en": "Heater target"
+    },
+    "virtual_printer.label.extrusion_threshold": {
+      "kind": "message",
+      "ja": "押出し温度しきい値",
+      "en": "Extrusion threshold"
+    },
+    "virtual_printer.label.source_metadata": {
+      "kind": "message",
+      "ja": "出典メタデータ",
+      "en": "source metadata"
+    },
+    "virtual_printer.label.source_file_metadata": {
+      "kind": "message",
+      "ja": "出典ファイルのメタデータ",
+      "en": "source file metadata"
+    },
+    "virtual_printer.label.replay": {
+      "kind": "message",
+      "ja": "再生状態",
+      "en": "replay"
+    },
+    "virtual_printer.label.replay_clock": {
+      "kind": "message",
+      "ja": "再生クロック",
+      "en": "Replay clock"
+    },
+    "virtual_printer.evidence.unavailable": {
+      "kind": "message",
+      "ja": "使用不可：内部の論理原点のみ。モデルXYZの接続はありません",
+      "en": "Unavailable: internal logical origin only; no model XYZ binding"
+    },
+    "virtual_printer.evidence.adapter": {
+      "kind": "message",
+      "ja": "アダプターの表示基準位置と範囲",
+      "en": "adapter display datums and limits"
+    },
+    "virtual_printer.evidence.not_supplied": {
+      "kind": "message",
+      "ja": "未提供",
+      "en": "not supplied"
+    },
+    "virtual_printer.evidence.displacement": {
+      "kind": "message",
+      "ja": "ネイティブアダプターの変位軸（mm）。ノズル座標・ファームウェア座標ではありません",
+      "en": "Native adapter displacement axes in mm; not nozzle or firmware coordinates"
+    },
+    "virtual_printer.evidence.ratrig": {
+      "kind": "message",
+      "ja": "現在のキャリッジモードにおけるビューアアダプターの主X0・Y・Z範囲。ファームウェア座標への対応付けはありません",
+      "en": "Viewer adapter primary X0 / Y / Z limits in current carriage mode; no firmware coordinate mapping"
+    },
+    "virtual_printer.evidence.scope": {
+      "kind": "message",
+      "ja": "論理状態と制限付き座標再生のみ。ネイティブ連続クリアランスや実機動作の検証ではありません",
+      "en": "Logical state and bounded coordinate replay; no native continuous clearance or physical operation"
+    },
+    "virtual_printer.error.loaded_identity": {
+      "kind": "message",
+      "ja": "読み込んだプリンターのアセット情報が不足しています",
+      "en": "Loaded printer asset identity is incomplete"
+    },
+    "ender.original_x_belt.source_notice": {
+      "kind": "message",
+      "ja": "原本EnderのXベルト：原本CADのプーリー弧、戻り側、切断尾端を保持しています。尾端と剛体の購入品銅crimpは、実測したEplateの通し溝を通り、キャリッジに追従します。再接続するのはゴムの直線部分だけです。原本に基づく幅6 mmのプレビュー外形です。原本に歯はなく、GT2の歯の噛み合い、ベルト張力、製造上の適合は未検証です。保持した原本の戻り側／弧には、プーリー、ベアリング、ローラーとの未解決の交差があります。このプレビューはプリンター全体のクリアランスを保証しません。",
+      "en": "Original Ender X belt: native pulley arcs, return and cut tails are retained. Tails and rigid purchased copper crimps follow the carriage through measured Eplate slots; only straight rubber sections are reconnected. This is a 6 mm wide source-derived preview envelope. The source has no teeth; GT2 tooth engagement, belt tension and manufacturing fit are not verified. The retained source return/arcs have unresolved pulley, bearing and roller intersections. This preview does not certify whole-printer clearance.",
+      "aliases": []
+    },
+    "ender.original_x_belt.error.registration": {
+      "kind": "message",
+      "ja": "原本Ender Xベルトの登録が不正です",
+      "en": "Invalid original Ender X belt registration",
+      "aliases": []
+    },
+    "ender.original_x_belt.error.assembly": {
+      "kind": "message",
+      "ja": "原本Ender Xベルトのアセンブリがありません",
+      "en": "Missing original Ender X belt assembly",
+      "aliases": []
+    },
+    "ender.original_x_belt.error.component": {
+      "kind": "message",
+      "ja": "原本Ender Xベルトの構成部品が不正です",
+      "en": "Invalid original Ender X belt component",
+      "aliases": []
+    },
+    "ender.original_x_belt.error.weights_missing": {
+      "kind": "message",
+      "ja": "原本Ender Xベルトの移動重みがありません",
+      "en": "Missing original Ender X belt motion weights",
+      "aliases": []
+    },
+    "ender.original_x_belt.error.geometry": {
+      "kind": "message",
+      "ja": "原本Ender Xベルトの形状が不正です",
+      "en": "Invalid original Ender X belt geometry",
+      "aliases": []
+    },
+    "ender.original_x_belt.error.endpoint_weights": {
+      "kind": "message",
+      "ja": "原本Ender Xベルトの端点重みが不正です",
+      "en": "Invalid original Ender X belt endpoint weights",
+      "aliases": []
+    },
+    "ender.original_x_belt.error.incomplete_geometry": {
+      "kind": "message",
+      "ja": "原本Ender Xベルトの形状が不足しています",
+      "en": "Incomplete original Ender X belt geometry",
+      "aliases": []
+    },
+    "ender.original_x_belt.error.axis_range": {
+      "kind": "message",
+      "ja": "原本Ender Xベルトの軸が登録済みプレビュー範囲を超えています",
+      "en": "Original Ender X belt axis exceeds registered preview range",
+      "aliases": []
+    },
+    "virtual_printer.error.ratrig_busy": {
+      "kind": "message",
+      "ja": "CADまたは既存トレースの処理中です。",
+      "en": "CAD or an existing trace is being processed."
+    },
+    "virtual_printer.nozzle_path_label": {
+      "kind": "message",
+      "ja": "ノズル基準の軌跡線",
+      "en": "Nozzle-based path"
     }
   }
 }

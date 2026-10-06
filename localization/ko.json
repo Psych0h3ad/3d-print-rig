@@ -3883,8 +3883,8 @@
       "text": "G-code는 다음으로 제한됩니다."
     },
     "text.0955": {
-      "source_revision": "b6619b08622aa4732d31",
-      "text": "G-code는 2MB 이하여야 합니다."
+      "text": "G-code는 2 MB 이하여야 합니다",
+      "source_revision": "c6c2551def0f04822903"
     },
     "text.0956": {
       "source_revision": "684c16c8ce7a6a45a5d4",
@@ -3955,16 +3955,16 @@
       "text": "Monolith 반전 / 9 mm · 전용 키퍼"
     },
     "text.0973": {
-      "source_revision": "bd278dd4a23da83d8861",
-      "text": "MOVE는 0 또는 1여야 합니다."
+      "text": "MOVE는 0 또는 1이어야 합니다",
+      "source_revision": "bd278dd4a23da83d8861"
     },
     "text.0974": {
-      "source_revision": "1f5a412a6e998df10eb8",
-      "text": "지원되지 않는 NAME 형식"
+      "text": "지원하지 않는 NAME 형식입니다",
+      "source_revision": "1f5a412a6e998df10eb8"
     },
     "text.0975": {
-      "source_revision": "d75643c07dd3e4288a95",
-      "text": "P는 0 이상이어야 합니다."
+      "text": "P는 0 이상이어야 합니다",
+      "source_revision": "659b3e9aa4bdf2375da4"
     },
     "text.0976": {
       "source_revision": "9f9deedd223e88df8e0b",
@@ -4191,8 +4191,8 @@
       "text": "이러한 조건에 대한 어셈블리 CAD는 아직 등록되지 않았습니다."
     },
     "text.1031": {
-      "source_revision": "78ca6539d90b85fed345",
-      "text": "명령을 구문 분석할 수 없습니다."
+      "text": "명령을 읽을 수 없습니다",
+      "source_revision": "bac42f202aa731b6944d"
     },
     "text.1032": {
       "source_revision": "da0b03ec0aa9b993b8bb",
@@ -4231,8 +4231,8 @@
       "text": "데모 중지"
     },
     "text.1041": {
-      "source_revision": "468af4dbb937edd62734",
-      "text": "템플릿, 괄호 안에 있는 설명 및 체크섬은 지원되지 않습니다."
+      "text": "템플릿, 괄호 주석 및 체크섬은 지원하지 않습니다",
+      "source_revision": "468af4dbb937edd62734"
     },
     "text.1042": {
       "source_revision": "b0986ff19e8c2234c87b",
@@ -4267,16 +4267,16 @@
       "text": "뷰어 버전:"
     },
     "text.1050": {
-      "source_revision": "780f6efff540f73b178a",
-      "text": "파일은 2MB 이하여야 합니다."
+      "text": "파일은 2 MB 이하여야 합니다",
+      "source_revision": "49830a179bc5ac588f76"
     },
     "text.1051": {
       "source_revision": "ef6c538dca43a82efd75",
       "text": "전체 프린터에 장착"
     },
     "text.1052": {
-      "source_revision": "538e8b6f2a4eba9c1ac7",
-      "text": "프로브"
+      "text": "프로브",
+      "source_revision": "b76f67485a8d3b202384"
     },
     "text.1053": {
       "source_revision": "c2a694cf54abcd5893df",
@@ -4427,8 +4427,8 @@
       "text": "압축된 모델을 표시하려면 최신 브라우저가 필요합니다."
     },
     "text.1089": {
-      "source_revision": "715dc87e820734c53af6",
-      "text": "여행 시간은 한정되어 있지 않습니다"
+      "text": "이동 시간이 유한한 값이 아닙니다",
+      "source_revision": "274b6978c37d62350fd3"
     },
     "text.1090": {
       "source_revision": "58cb6303f1db2163a652",
@@ -4447,16 +4447,16 @@
       "text": "잘못된 이미지 가로 세로 비율"
     },
     "text.1093": {
-      "source_revision": "ce2d44d681fe9bb04740",
-      "text": "XYZ를 시작해야 합니다."
+      "text": "시작 XYZ가 필요합니다",
+      "source_revision": "1c5a973b8048aadea48b"
     },
     "text.1094": {
-      "source_revision": "2150031eacaf215ad3c5",
-      "text": "시작 위치"
+      "text": "시작 위치",
+      "source_revision": "2150031eacaf215ad3c5"
     },
     "text.1095": {
-      "source_revision": "3288f68d9dca474ae38a",
-      "text": "잘못된 시작 위치 또는 표시 범위"
+      "text": "시작 위치 또는 표시 범위가 잘못되었습니다",
+      "source_revision": "8614502f27da960e3d89"
     },
     "ui.appearance": {
       "source_revision": "dcce604307081c98b77f",
@@ -4539,8 +4539,8 @@
       "text": "경로 미리보기 · 벨트 및 PTFE 팔로우 모션/경로 범위 외부 체인"
     },
     "text.1114": {
-      "source_revision": "4948fd665fc51c366628",
-      "text": "계산 결과가 유한하지 않습니다."
+      "text": "계산 결과가 유한한 값이 아닙니다",
+      "source_revision": "4948fd665fc51c366628"
     },
     "text.1115": {
       "source_revision": "0cbdc7eee56c498a14d1",
@@ -4667,8 +4667,8 @@
       "text": "라인 ·"
     },
     "text.1146": {
-      "source_revision": "e1fc24815c6eadd785f5",
-      "text": "재생"
+      "text": "재생",
+      "source_revision": "e1fc24815c6eadd785f5"
     },
     "text.1147": {
       "source_revision": "36cd7dd8b69ab033f907",
@@ -5047,8 +5047,8 @@
       "text": "저장된 상태 없음:"
     },
     "text.1238": {
-      "source_revision": "c1b54c7690fa8bb31563",
-      "text": "최대 64 저장된 상태가 지원됩니다."
+      "text": "저장 상태는 최대 64개입니다",
+      "source_revision": "db640c0cce4ff9aaacaa"
     },
     "text.1239": {
       "source_revision": "5f130ab0ab0f2fb10579",
@@ -5203,24 +5203,24 @@
       "text": "현재 XYZ 위치에서 브라우저의 동작 및 좌표 명령을 미리 봅니다."
     },
     "text.1276": {
-      "source_revision": "28f3fab8bd9ab8265238",
-      "text": "직사각형 예"
+      "text": "직사각형 예",
+      "source_revision": "28f3fab8bd9ab8265238"
     },
     "text.1277": {
-      "source_revision": "a496a7777df6a3705f92",
-      "text": "파일 열기"
+      "text": "파일 열기",
+      "source_revision": "a496a7777df6a3705f92"
     },
     "text.1278": {
-      "source_revision": "4c4f63eaf0781c3e9959",
-      "text": "미리보기 경로"
+      "text": "미리보기 경로",
+      "source_revision": "4c4f63eaf0781c3e9959"
     },
     "text.1279": {
-      "source_revision": "0702f824c7b065e61741",
-      "text": "다음 줄"
+      "text": "다음 줄",
+      "source_revision": "0702f824c7b065e61741"
     },
     "text.1280": {
-      "source_revision": "ea9f292367441c3f8c3e",
-      "text": "재생 속도"
+      "text": "재생 속도",
+      "source_revision": "ea9f292367441c3f8c3e"
     },
     "text.1281": {
       "source_revision": "2bd851493699517e0924",
@@ -5711,44 +5711,44 @@
       "text": "현재 구성 및 XYZ 위치에서 3D의 움직임을 재생합니다."
     },
     "text.1403": {
-      "source_revision": "04e8aa3fcc30aaefd585",
-      "text": "재생 위치"
+      "text": "재생 위치",
+      "source_revision": "04e8aa3fcc30aaefd585"
     },
     "text.1404": {
-      "source_revision": "08fefc02951b74e92ea7",
-      "text": "G-code 재생 시간"
+      "text": "G-code 재생 시간",
+      "source_revision": "08fefc02951b74e92ea7"
     },
     "text.1405": {
-      "source_revision": "38fcabaf38db1a3b76ea",
-      "text": "지원되는 명령"
+      "text": "지원되는 명령",
+      "source_revision": "38fcabaf38db1a3b76ea"
     },
     "text.1406": {
       "source_revision": "eb89bb64879317a59334",
       "text": "Klipper G-code 사양"
     },
     "text.1407": {
-      "source_revision": "baf356080b304615661f",
-      "text": "현재 구성 및 위치에서 경로를 다시 계산합니다."
+      "text": "현재 구성 및 위치에서 경로를 다시 계산합니다.",
+      "source_revision": "baf356080b304615661f"
     },
     "text.1408": {
-      "source_revision": "353572147283121980ad",
-      "text": "완전한 프로그램과 한정된 시간이 필요합니다."
+      "text": "재생 가능한 경로와 유한한 시간이 필요합니다",
+      "source_revision": "a9f95d7b069737afc59e"
     },
     "text.1409": {
-      "source_revision": "fca970ca9cc65af559a9",
-      "text": "기계 동작 제한이 변경되었습니다. 경로를 다시 계산하십시오."
+      "text": "장비의 이동 범위가 변경되었습니다. 경로를 다시 계산하세요.",
+      "source_revision": "d53ef7b04a20002b5c74"
     },
     "text.1410": {
-      "source_revision": "331d092a00095d2b089d",
-      "text": "노즐 좌표가 잘못되었습니다."
+      "text": "노즐 좌표가 잘못되었습니다",
+      "source_revision": "49fb067d85069b1ffb46"
     },
     "text.1411": {
-      "source_revision": "0c0e0aef00512ea3aabe",
-      "text": "재생 속도가 잘못되었습니다."
+      "text": "재생 속도가 잘못되었습니다",
+      "source_revision": "fd4c7cf9408bc0706493"
     },
     "text.1412": {
-      "source_revision": "eeaa550859600587bcf3",
-      "text": "일시중지"
+      "text": "일시중지",
+      "source_revision": "eeaa550859600587bcf3"
     },
     "text.1413": {
       "source_revision": "394b44709ccd9bd5063d",
@@ -6127,8 +6127,8 @@
       "text": "{0}: 교차 볼륨 {1} mm³. 분홍색 영역은 원본 CAD의 교차점을 보여줍니다."
     },
     "format.0028": {
-      "source_revision": "948e3ee3effcfc062946",
-      "text": "{0}={1}는 표시 범위를 벗어났습니다. {2}–{3} mm"
+      "text": "{0}={1}이(가) 표시 범위 {2}–{3} mm 밖에 있습니다",
+      "source_revision": "948e3ee3effcfc062946"
     },
     "format.0029": {
       "source_revision": "c265a9b48afb0ed33f48",
@@ -6163,8 +6163,8 @@
       "text": "{0} 부품 · {1} · {2} mm"
     },
     "format.0037": {
-      "source_revision": "663f9afd374d645f09f9",
-      "text": "{0} 명령 · 이송 속도에서 추정된 {1} 초"
+      "text": "{0}개 명령 · 이송 속도 기준 예상 시간 {1}초",
+      "source_revision": "5db85ce38243fa28c23e"
     },
     "format.0038": {
       "source_revision": "03b71975e3b49133f623",
@@ -6319,24 +6319,24 @@
       "text": "{0} 현재 디스플레이: {1}."
     },
     "format.0076": {
-      "source_revision": "30678faddee595aaed7c",
-      "text": "{0}는 유한하지 않습니다"
+      "text": "{0}이(가) 유한한 값이 아닙니다",
+      "source_revision": "ed8e3285be08f048bb45"
     },
     "format.0077": {
       "source_revision": "756184f5b5c7e7dbd2ca",
       "text": "{0}는 숫자여야 합니다."
     },
     "format.0078": {
-      "source_revision": "76a933295e2c9685a850",
-      "text": "{0}는 0보다 커야 합니다."
+      "text": "{0}은(는) 0보다 커야 합니다",
+      "source_revision": "52489699a456459b1230"
     },
     "format.0079": {
-      "source_revision": "517581aef7ad83887bba",
-      "text": "{0}는 지원되지 않습니다"
+      "text": "{0}은(는) 지원하지 않습니다",
+      "source_revision": "45faff8a601437a45be7"
     },
     "format.0080": {
-      "source_revision": "aed6a67a3df33c6b7f87",
-      "text": "G-code는 {0} 라인으로 제한됩니다."
+      "text": "G-code는 최대 {0}행입니다",
+      "source_revision": "aed6a67a3df33c6b7f87"
     },
     "format.0081": {
       "source_revision": "8de7f474bc4ab0a5bedb",
@@ -6351,8 +6351,8 @@
       "text": "{0} 및 {1}_ADJUST는 함께 지정할 수 없습니다."
     },
     "format.0084": {
-      "source_revision": "32ed04d7f8450c3c82c4",
-      "text": "{0} 및 {1}_ADJUST는 함께 지정할 수 없습니다."
+      "text": "{0} 및 {1}_ADJUST는 함께 지정할 수 없습니다.",
+      "source_revision": "32ed04d7f8450c3c82c4"
     },
     "format.0085": {
       "source_revision": "15184151965dc576542a",
@@ -7123,8 +7123,8 @@
       "text": "공식 출력 부품 AWD v1.2를 표시합니다. 원본 CAD에는 XY 벨트 일부만 있으며 CPAP 호스는 포함되지 않습니다."
     },
     "ui.community.ender_source": {
-      "source_revision": "30a0a21a183e859f4f4a",
-      "text": "원본 공식 CAD에는 Bowden 튜브가 포함되지 않습니다."
+      "source_revision": "d60111b1d84b9f4754b0",
+      "text": "Bowden 경로는 원본 D4 튜브 단면과 피팅 위치를 사용한 450 mm 표시용 경로입니다. 원본 CAD에는 전체 튜브가 포함되지 않습니다."
     },
     "fixed_sc.system": {
       "source_revision": "1b835c0348c171bed09d",
@@ -8049,6 +8049,742 @@
     "ender_mods.09": {
       "source_revision": "67d1112d2cf93b1f3210",
       "text": "툴헤드 단독"
+    },
+    "virtual_printer.title": {
+      "text": "G-code · 오프라인 가상 프린터",
+      "source_revision": "bf03506ef8619c027e86"
+    },
+    "virtual_printer.intro": {
+      "text": "입력으로 이동과 가상 상태를 확인하는 미리보기입니다. 실제 프린터에는 연결하지 않습니다.",
+      "source_revision": "4a1c097e1c26578f5f40"
+    },
+    "virtual_printer.settings": {
+      "text": "매크로 및 가상 설정",
+      "source_revision": "73f5e0b3a9eda3265a0f"
+    },
+    "virtual_printer.macro_config": {
+      "text": "Klipper 매크로 설정",
+      "source_revision": "bf434cee3e47d007fe32"
+    },
+    "virtual_printer.json_settings": {
+      "text": "시작 위치, 범위, 접촉 및 히터 설정(JSON)",
+      "source_revision": "9349a9f2cd1c3c8cb38b"
+    },
+    "virtual_printer.refresh_settings": {
+      "text": "뷰어 축 설정 다시 불러오기",
+      "source_revision": "94e4b7f1cec3213ffd8d"
+    },
+    "virtual_printer.contact_notice": {
+      "text": "접촉 위치에는 근거가 있는 설정이 필요합니다. 접촉은 위치만 기록하며 호밍, 프로빙 또는 도킹 경로를 생성하지 않습니다. 온도 대기는 가상 온도를 목표값으로 맞춥니다. 가열 시간과 온도 변화는 시뮬레이션하지 않습니다.",
+      "source_revision": "806900c38cf2b6191096"
+    },
+    "virtual_printer.save": {
+      "text": "가상 상태 저장",
+      "source_revision": "3ec8730695dbe6880111"
+    },
+    "virtual_printer.load": {
+      "text": "가상 상태 불러오기",
+      "source_revision": "4a8ce52cffc84d41d811"
+    },
+    "virtual_printer.events": {
+      "text": "이벤트 기록",
+      "source_revision": "7bfc1e01b47528c35e02"
+    },
+    "virtual_printer.commands": {
+      "text": "좌표 미리보기 명령, 설정된 G28/PROBE, 가상 히터 및 팬 상태, ACTIVATE_EXTRUDER, SET_GCODE_VARIABLE, 제한된 Jinja 표현식과 if, for, set을 지원합니다. 지원하지 않는 구문이나 명령에서 실행을 중지합니다. T 번호에는 등록된 매크로가 필요합니다. 도구 전환은 가상 이벤트이며 장착이나 교환 경로가 검증되었음을 의미하지 않습니다.",
+      "source_revision": "f95b0b3740bcd342b331"
+    },
+    "virtual_printer.klipper_docs": {
+      "text": "Klipper 매크로 사양",
+      "source_revision": "f54f71b34d6b0159d719"
+    },
+    "virtual_printer.event_limit": {
+      "text": "이벤트 목록에는 처음 200개를 표시합니다. 재생에는 모든 이벤트가 포함됩니다.",
+      "source_revision": "95e048fddaece2d0aca7"
+    },
+    "virtual_printer.thermal_time": {
+      "text": "온도 대기 시간은 포함하지 않습니다",
+      "source_revision": "6d4b18e50e19a6ab79a6"
+    },
+    "virtual_printer.range_error": {
+      "text": "가상 범위를 현재 뷰어 축 범위 안으로 설정하세요",
+      "source_revision": "42305683f56ef7698765"
+    },
+    "virtual_printer.recompile": {
+      "text": "다시 계산해야 합니다",
+      "source_revision": "8d521cabe26c3549834a"
+    },
+    "virtual_printer.invalid_file": {
+      "text": "가상 상태 파일이 잘못되었습니다",
+      "source_revision": "960c87aab824ae7a3d78"
+    },
+    "virtual_printer.context_error": {
+      "text": "장비 구성 또는 측정 설정이 저장된 상태와 다릅니다",
+      "source_revision": "fafd0617bf005b1705ee"
+    },
+    "virtual_printer.saved": {
+      "text": "가상 상태를 저장했습니다.",
+      "source_revision": "a4f34bc3d566d1a7cf8f"
+    },
+    "virtual_printer.file_limit": {
+      "text": "가상 상태 파일은 3 MB 이하여야 합니다",
+      "source_revision": "1887cc04bc26a9c75a80"
+    },
+    "virtual_printer.virtual_state": {
+      "text": "가상 도구: {0} · 호밍 완료: {1} · 팬: {2}%{3}",
+      "source_revision": "d8c64c26574c6dfab4a1"
+    },
+    "virtual_printer.source_metadata": {
+      "text": "입력 출처 및 좌표계(JSON)",
+      "source_revision": "5c6697099e988a53b99a"
+    },
+    "virtual_printer.axis.displacement": {
+      "text": "XYZ는 뷰어 어댑터의 변위 좌표(mm)입니다. 도달 범위는 현재 구성에서 가져옵니다. 실제 장비의 원점이나 노즐 좌표가 아닙니다. 노즐 기준 경로는 표시하지 않습니다.",
+      "source_revision": "95f3cbc7ef1012999fd6"
+    },
+    "virtual_printer.axis.display": {
+      "text": "XYZ는 뷰어의 표시 좌표(mm)입니다. 도달 범위는 현재 어댑터 설정을 사용합니다. 실제 장비의 원점, 접촉 위치 또는 전체 이동 경로의 간섭 없음을 보장하지 않습니다.",
+      "source_revision": "85f204477dbcd47abcd8"
+    },
+    "virtual_printer.axis.ratrig": {
+      "text": "X는 주 캐리지 X0이며 Y/Z는 뷰어 좌표(mm)입니다. 보조 캐리지는 기존 독립, 복사 또는 미러 모드를 따릅니다. 가상 도구 전환으로 캐리지를 전환하지 않습니다. 노즐 기준 경로는 표시하지 않습니다.",
+      "source_revision": "0f3a349080cf135887da"
+    },
+    "virtual_printer.axis.unavailable": {
+      "text": "이 어댑터에는 프린터 XYZ 연결이 없습니다. XYZ, 호밍 및 프로브 이동은 중지됩니다. 매크로와 가상 히터, 압출 및 도구 상태만 확인할 수 있습니다.",
+      "source_revision": "0255ba6268ecc958f74c"
+    },
+    "virtual_printer.axis.no_path": {
+      "text": "노즐 기준 경로는 표시하지 않습니다.",
+      "source_revision": "7ff9b5ceb9aa7fa69baf"
+    },
+    "virtual_printer.heater_state": {
+      "text": " · {0}: {1} / {2} °C",
+      "source_revision": "f1c448387b76cf899320"
+    },
+    "virtual_printer.line_state": {
+      "text": "{0}행 · {1}{2} · E {3} mm",
+      "source_revision": "bf2ab0c8206ffb2fbe0e"
+    },
+    "virtual_printer.compile_error": {
+      "text": "{0}행에서 중지: {1}{2}. 입력을 수정한 후 다시 컴파일하세요.",
+      "source_revision": "310769ab0fb9b9989f61"
+    },
+    "virtual_printer.macro_location": {
+      "text": "{0}:{1} · ",
+      "source_revision": "a5ac69e9c1806332d065"
+    },
+    "virtual_printer.event_row": {
+      "text": "{0} · {1} · {2}",
+      "source_revision": "249ba1827d57d42d1da2"
+    },
+    "virtual_printer.replay_time": {
+      "text": "{0} / {1} s",
+      "source_revision": "d9e9b26f37787695476d"
+    },
+    "virtual_printer.axis.no_path_combined": {
+      "text": "{0} 노즐 기준 경로는 표시하지 않습니다.",
+      "source_revision": "c6070ef01693d7a6804c"
+    },
+    "virtual_printer.compile_summary_thermal": {
+      "text": "{0} · 온도 대기 시간은 포함하지 않습니다",
+      "source_revision": "87f013798800bd80eaef"
+    },
+    "virtual_printer.error.panel_prefix": {
+      "text": "G-code 패널 ID 접두사가 잘못되었습니다",
+      "source_revision": "da3fd59d2f4e6b51f757"
+    },
+    "virtual_printer.error.binding_setting": {
+      "text": "가상 설정에서 XYZ 연결 기능을 변경할 수 없습니다",
+      "source_revision": "0fefc4b2bada79ca1e85"
+    },
+    "virtual_printer.error.coordinate_parameter": {
+      "text": "매개변수를 읽을 수 없습니다: {0}",
+      "source_revision": "4fb79886650f64998552"
+    },
+    "virtual_printer.error.coordinate_duplicate": {
+      "text": "{0}이(가) 중복되었습니다",
+      "source_revision": "2a879c5b67b22575b302"
+    },
+    "virtual_printer.error.coordinate_parameter_unsupported": {
+      "text": "{0}에서 {1}은(는) 지원하지 않습니다",
+      "source_revision": "f49dd54a793c5e9eb701"
+    },
+    "virtual_printer.error.coordinate_numeric": {
+      "text": "{0}에는 숫자가 필요합니다",
+      "source_revision": "8cd4b9ad41d157d70bbc"
+    },
+    "virtual_printer.error.coordinate_missing_save": {
+      "text": "저장 상태를 찾을 수 없습니다: {0}",
+      "source_revision": "a6e35ca347f032b64f24"
+    },
+    "virtual_printer.error.template_property": {
+      "text": "지원하지 않는 템플릿 속성: {0}",
+      "source_revision": "591b922f0a614df10cc2"
+    },
+    "virtual_printer.error.template_arithmetic": {
+      "text": "템플릿 연산에는 유한한 숫자가 필요합니다. params를 float/int로 변환하세요",
+      "source_revision": "4ec4125d02e84f5bc9d1"
+    },
+    "virtual_printer.error.template_length": {
+      "text": "템플릿 표현식이 2048자를 초과합니다",
+      "source_revision": "791ba52ce33b3eea120b"
+    },
+    "virtual_printer.error.template_escape": {
+      "text": "지원하지 않는 템플릿 문자열 이스케이프입니다",
+      "source_revision": "0d56b278a87954fda5d6"
+    },
+    "virtual_printer.error.template_string": {
+      "text": "템플릿 문자열이 닫히지 않았습니다",
+      "source_revision": "7dcb762256a422093384"
+    },
+    "virtual_printer.error.template_syntax": {
+      "text": "{0} 부근의 템플릿 구문은 지원하지 않습니다",
+      "source_revision": "07afde4c6a7020064b32"
+    },
+    "virtual_printer.error.template_tokens": {
+      "text": "템플릿 표현식이 512개 토큰을 초과합니다",
+      "source_revision": "77d5d17368a506487556"
+    },
+    "virtual_printer.error.template_expected": {
+      "text": "템플릿 토큰 {0}이(가) 필요합니다",
+      "source_revision": "085afde1b08e21f8a0ec"
+    },
+    "virtual_printer.error.template_depth": {
+      "text": "템플릿 표현식의 중첩이 32를 초과합니다",
+      "source_revision": "4f3bab643ebc4496721f"
+    },
+    "virtual_printer.error.template_calls": {
+      "text": "range()만 지원합니다. 템플릿 액션과 임의 호출은 사용할 수 없습니다",
+      "source_revision": "f0aa8683eb054ca2bf42"
+    },
+    "virtual_printer.error.range_arguments": {
+      "text": "range에는 1–3개 인수가 필요합니다",
+      "source_revision": "ae053bba233dbd013570"
+    },
+    "virtual_printer.error.template_expression": {
+      "text": "지원하지 않는 템플릿 표현식입니다",
+      "source_revision": "791f18f5a236503458a1"
+    },
+    "virtual_printer.error.template_property_name": {
+      "text": "속성 이름이 필요합니다",
+      "source_revision": "01eeb2c0a6b91f87bd1f"
+    },
+    "virtual_printer.error.template_filter": {
+      "text": "지원하지 않는 템플릿 필터: {0}",
+      "source_revision": "7fc578f4f7760b996bb9"
+    },
+    "virtual_printer.error.template_filter_arguments": {
+      "text": "변환 필터의 인수는 지원하지 않습니다",
+      "source_revision": "e234e7ccaba6d108325c"
+    },
+    "virtual_printer.error.template_budget": {
+      "text": "템플릿 연산 한도에 도달했습니다",
+      "source_revision": "d82a46982ac10522f02f"
+    },
+    "virtual_printer.error.template_parent": {
+      "text": "템플릿의 상위 값이 정의되지 않았습니다",
+      "source_revision": "29574adeabc9da835722"
+    },
+    "virtual_printer.error.template_conversion": {
+      "text": "템플릿 숫자 변환이 잘못되었습니다",
+      "source_revision": "2d1f2d007137ed7d0e5a"
+    },
+    "virtual_printer.error.range_integers": {
+      "text": "range에는 안전한 정수가 필요합니다",
+      "source_revision": "94e9a2a90e6a816d9cc5"
+    },
+    "virtual_printer.error.range_step": {
+      "text": "range의 step은 0일 수 없습니다",
+      "source_revision": "0ef067af401e1c4ea3d7"
+    },
+    "virtual_printer.error.range_iterations": {
+      "text": "range가 256회 반복을 초과합니다",
+      "source_revision": "cef95c68a33b07068e8a"
+    },
+    "virtual_printer.error.template_undefined_default": {
+      "text": "템플릿 값이 정의되지 않았습니다. default 또는 is defined를 사용하세요",
+      "source_revision": "e525dd1d2ee549bd85d0"
+    },
+    "virtual_printer.error.template_equality": {
+      "text": "객체 동등 비교 및 불리언과 숫자 간 동등 비교는 지원하지 않습니다",
+      "source_revision": "f4ee04ecc731c66df968"
+    },
+    "virtual_printer.error.template_in": {
+      "text": "in은 문자열과 목록만 지원합니다",
+      "source_revision": "65a825a7cf688b28573f"
+    },
+    "virtual_printer.error.template_comparison": {
+      "text": "지원하지 않는 비교 피연산자입니다",
+      "source_revision": "fef9f53918da6e7abb63"
+    },
+    "virtual_printer.error.template_node": {
+      "text": "지원하지 않는 템플릿 표현식 노드입니다",
+      "source_revision": "53ff1f5ee0f36dc23a4e"
+    },
+    "virtual_printer.error.template_undefined": {
+      "text": "템플릿 값이 정의되지 않았습니다",
+      "source_revision": "a37949bccc92e710949c"
+    },
+    "virtual_printer.error.template_nodes": {
+      "text": "템플릿이 4096개 노드를 초과합니다",
+      "source_revision": "6f77fffc2d061e14d0f7"
+    },
+    "virtual_printer.error.template_delimiter": {
+      "text": "{0}행의 템플릿 구분자가 닫히지 않았습니다",
+      "source_revision": "77e4c208995cc04dfcf2"
+    },
+    "virtual_printer.error.template_reserved": {
+      "text": "예약된 템플릿 변수입니다",
+      "source_revision": "3c598b86d99735c53484"
+    },
+    "virtual_printer.error.template_unexpected": {
+      "text": "예상하지 않은 {0}입니다",
+      "source_revision": "9a2b0d7d4d1cd843969c"
+    },
+    "virtual_printer.error.template_loop_reserved": {
+      "text": "예약된 반복 변수입니다",
+      "source_revision": "2f1c8bea374bc48b8b5b"
+    },
+    "virtual_printer.error.template_block_mismatch": {
+      "text": "템플릿 블록이 일치하지 않습니다",
+      "source_revision": "787f55014b8e9c7e7597"
+    },
+    "virtual_printer.error.template_directive": {
+      "text": "지원하지 않는 템플릿 지시문: {0}",
+      "source_revision": "69e9d35bfdfd949db552"
+    },
+    "virtual_printer.error.template_block_depth": {
+      "text": "템플릿 블록 중첩이 16을 초과합니다",
+      "source_revision": "750ab38a899abe8f7ef3"
+    },
+    "virtual_printer.error.template_block_open": {
+      "text": "템플릿 블록이 닫히지 않았습니다",
+      "source_revision": "954ece525f11afecc7d0"
+    },
+    "virtual_printer.error.macro_config_limit": {
+      "text": "매크로 설정은 128000자 이하의 텍스트여야 합니다",
+      "source_revision": "a083e49b59d49d186a61"
+    },
+    "virtual_printer.error.macro_duplicate": {
+      "text": "매크로 {0}이(가) 중복되었습니다",
+      "source_revision": "ae8aad4849d41d908f33"
+    },
+    "virtual_printer.error.macro_count": {
+      "text": "매크로는 최대 128개입니다",
+      "source_revision": "d05a691409d5501bc415"
+    },
+    "virtual_printer.error.macro_sections": {
+      "text": "[gcode_macro NAME] 섹션만 지원합니다(설정 {0}행)",
+      "source_revision": "942c83bf96e8527f07e1"
+    },
+    "virtual_printer.error.macro_gcode_duplicate": {
+      "text": "gcode 필드가 중복되었습니다",
+      "source_revision": "afbbfcb6785989d1fae7"
+    },
+    "virtual_printer.error.macro_rename": {
+      "text": "매크로 옵션 rename_existing은 지원하지 않습니다(설정 {0}행)",
+      "source_revision": "f629f4f6fb810fb0a990"
+    },
+    "virtual_printer.error.macro_variable_duplicate": {
+      "text": "매크로 변수가 중복되었습니다",
+      "source_revision": "6212ea28fb171d728a07"
+    },
+    "virtual_printer.error.macro_variable_scalar": {
+      "text": "매크로 변수는 스칼라여야 합니다",
+      "source_revision": "a7581506dc3e8233f7a9"
+    },
+    "virtual_printer.error.macro_config_unsupported": {
+      "text": "{0}행의 매크로 설정은 지원하지 않습니다: {1}",
+      "source_revision": "51ca5e9e7f4cccad5f77"
+    },
+    "virtual_printer.error.macro_body": {
+      "text": "매크로에는 gcode 본문이 필요합니다: {0}",
+      "source_revision": "1a0c5394764c5136f8bd"
+    },
+    "virtual_printer.error.macro_context": {
+      "text": "{0}: {1}",
+      "source_revision": "eb2200556d70cd321306"
+    },
+    "virtual_printer.error.macro_output_budget": {
+      "text": "매크로 출력 한도에 도달했습니다",
+      "source_revision": "f92ad458bcf234e14691"
+    },
+    "virtual_printer.error.template_output_scalar": {
+      "text": "템플릿 출력에는 정의된 스칼라가 필요합니다",
+      "source_revision": "660a4ce83cf61e195398"
+    },
+    "virtual_printer.error.template_output_injection": {
+      "text": "템플릿 출력에 줄바꿈이나 템플릿을 삽입할 수 없습니다",
+      "source_revision": "d2cb22781570b9df82f7"
+    },
+    "virtual_printer.error.template_for": {
+      "text": "for에는 256회 이하로 반복하는 목록 또는 range가 필요합니다",
+      "source_revision": "ba2c9c20597403f6124a"
+    },
+    "virtual_printer.error.finite": {
+      "text": "{0}은(는) 유한한 값이어야 합니다",
+      "source_revision": "0e5b63c5250ffe2fdf4d"
+    },
+    "virtual_printer.error.unsupported_setting": {
+      "text": "지원하지 않는 {0} 설정 또는 매개변수입니다",
+      "source_revision": "94acda2f42aecce4dac8"
+    },
+    "virtual_printer.error.settings_limit": {
+      "text": "가상 설정이 128 KB를 초과합니다",
+      "source_revision": "d0e27a1deacb146b9160"
+    },
+    "virtual_printer.error.motion_boolean": {
+      "text": "motion_enabled는 불리언이어야 합니다",
+      "source_revision": "cc978f3ca685ecc2f32f"
+    },
+    "virtual_printer.error.contact_binding": {
+      "text": "접촉 설정에는 XYZ 어댑터 연결이 필요합니다",
+      "source_revision": "0f688db893e0634673d9"
+    },
+    "virtual_printer.error.homing_setting": {
+      "text": "{0} 호밍에는 범위 내 접촉 위치와 근거가 필요합니다",
+      "source_revision": "49631f3c7d9428473ca1"
+    },
+    "virtual_printer.error.probe_setting": {
+      "text": "프로브에는 측정된 접촉 위치, 오프셋, XY 접촉 영역 및 근거가 필요합니다",
+      "source_revision": "ea338bb00696925e831a"
+    },
+    "virtual_printer.error.initial_homed": {
+      "text": "시작 시 호밍 완료 축이 잘못되었습니다",
+      "source_revision": "d3f11a61abe582e9d550"
+    },
+    "virtual_printer.error.homing_boolean": {
+      "text": "require_homing은 불리언이어야 합니다",
+      "source_revision": "b14d75d490a38a80ac29"
+    },
+    "virtual_printer.error.extrusion_mode": {
+      "text": "알 수 없는 압출 모드입니다",
+      "source_revision": "8cf0121c68dee567cb8c"
+    },
+    "virtual_printer.error.heater_count": {
+      "text": "가상 히터는 최대 16개입니다",
+      "source_revision": "e9cff02a468dc997632e"
+    },
+    "virtual_printer.error.heater_name": {
+      "text": "히터 이름이 잘못되었습니다",
+      "source_revision": "71bd4fe6fe75799079e8"
+    },
+    "virtual_printer.error.heater_range": {
+      "text": "가상 히터 범위가 잘못되었습니다",
+      "source_revision": "e65bd65673b7381aa526"
+    },
+    "virtual_printer.error.extrusion_threshold": {
+      "text": "압출 온도 임계값이 히터 범위 밖에 있습니다",
+      "source_revision": "08e83d3a2d691e3e60e5"
+    },
+    "virtual_printer.error.tools_setting": {
+      "text": "중복되지 않는 가상 도구 이름을 1–16개 지정하세요",
+      "source_revision": "58629dcd76c80fcbbc0f"
+    },
+    "virtual_printer.error.initial_tool": {
+      "text": "시작 가상 도구를 알 수 없습니다",
+      "source_revision": "21d0d6b2a71afd8c263c"
+    },
+    "virtual_printer.error.temperature_guard": {
+      "text": "온도 보호에는 각 가상 도구의 히터와 압출 온도 임계값이 필요합니다",
+      "source_revision": "61a56a68c9f980058591"
+    },
+    "virtual_printer.error.evidence_labels": {
+      "text": "근거에는 텍스트 레이블이 포함되어야 합니다",
+      "source_revision": "6cd21c4801a5665d4368"
+    },
+    "virtual_printer.error.g28_selectors": {
+      "text": "G28은 X/Y/Z 선택자만 지원합니다",
+      "source_revision": "f60f85dd26280a1ca34d"
+    },
+    "virtual_printer.error.parameter_invalid": {
+      "text": "{0} 매개변수가 잘못되었거나 중복되었습니다",
+      "source_revision": "6f4d9f06f2cde41ef99a"
+    },
+    "virtual_printer.error.parameter_missing": {
+      "text": "{0}이(가) 없습니다",
+      "source_revision": "f8a107a9e637381e53aa"
+    },
+    "virtual_printer.error.parameter_decimal": {
+      "text": "{0}에는 유한한 십진수가 필요합니다",
+      "source_revision": "9648ac38dd35dfa0c13e"
+    },
+    "virtual_printer.error.heater_missing": {
+      "text": "가상 히터가 설정되지 않았습니다: {0}",
+      "source_revision": "ed19e68a79033a1938e5"
+    },
+    "virtual_printer.error.heater_target": {
+      "text": "목표값이 설정된 가상 히터 범위 밖에 있습니다",
+      "source_revision": "519d5fdd8ee849a5c4da"
+    },
+    "virtual_printer.error.g28_contact": {
+      "text": "G28 {0}에는 측정된 접촉 위치가 필요합니다. 엔드스톱 경로는 추정하지 않습니다",
+      "source_revision": "e8db1186f7d951edabfa"
+    },
+    "virtual_printer.error.probe_contact": {
+      "text": "PROBE에는 측정된 접촉 데이터가 필요합니다. 프로빙 경로는 추정하지 않습니다",
+      "source_revision": "2c9973d592be41d6e70a"
+    },
+    "virtual_printer.error.probe_homing": {
+      "text": "PROBE에는 가상 XYZ 호밍이 필요합니다",
+      "source_revision": "b87da7627538dbf440d9"
+    },
+    "virtual_printer.error.probe_region": {
+      "text": "프로브 접촉이 측정된 XY 영역 밖에 있습니다",
+      "source_revision": "eb805d69d95d944b5cda"
+    },
+    "virtual_printer.error.probe_start": {
+      "text": "프로브가 설정된 접촉 위치보다 아래에서 시작합니다",
+      "source_revision": "56cd09dafee88a3d87ee"
+    },
+    "virtual_printer.error.extruder_unknown": {
+      "text": "알 수 없는 가상 압출기입니다",
+      "source_revision": "d487bcef74ebda73acaa"
+    },
+    "virtual_printer.error.macro_variable_unknown": {
+      "text": "알 수 없는 매크로 변수입니다",
+      "source_revision": "fcf389a8991f4d266dda"
+    },
+    "virtual_printer.error.macro_variable_value": {
+      "text": "매크로 변수에는 스칼라가 필요합니다",
+      "source_revision": "e902bc337d7ed8d1385d"
+    },
+    "virtual_printer.error.fan_range": {
+      "text": "팬 S는 0–255 범위여야 합니다",
+      "source_revision": "dab8ec64128e80c8cd92"
+    },
+    "virtual_printer.error.temperature_window": {
+      "text": "온도 대기 범위가 잘못되었습니다",
+      "source_revision": "9e90b06a75af38161167"
+    },
+    "virtual_printer.error.temperature_target": {
+      "text": "가상 히터 목표값이 대기 범위를 충족할 수 없습니다",
+      "source_revision": "93816c2652c20246cd74"
+    },
+    "virtual_printer.error.heater_tool_index": {
+      "text": "가상 히터 도구 인덱스가 잘못되었습니다",
+      "source_revision": "4bc4df7cf8a9c56bbae8"
+    },
+    "virtual_printer.error.metadata_limit": {
+      "text": "출처 메타데이터가 8 KB를 초과합니다",
+      "source_revision": "82160f88d6245ec9b0b9"
+    },
+    "virtual_printer.error.metadata_labels": {
+      "text": "출처 메타데이터 레이블은 2048자 이하의 텍스트여야 합니다",
+      "source_revision": "333f93823f60755150de"
+    },
+    "virtual_printer.error.metadata_files": {
+      "text": "출처 메타데이터 파일은 최대 32개입니다",
+      "source_revision": "c1b166e3616a4958cf49"
+    },
+    "virtual_printer.error.metadata_file": {
+      "text": "출처 파일 메타데이터에는 경로와 SHA-256이 필요합니다",
+      "source_revision": "ae6b2e97e1f6d9469013"
+    },
+    "virtual_printer.error.builtin_override": {
+      "text": "내장 명령 재정의 및 rename_existing은 지원하지 않습니다: {0}",
+      "source_revision": "a781a8f0cb2499b72414"
+    },
+    "virtual_printer.error.input_text": {
+      "text": "G-code는 2 MB 이하의 텍스트여야 합니다",
+      "source_revision": "f3929e76e4144a319a52"
+    },
+    "virtual_printer.error.command_budget": {
+      "text": "명령 한도는 1–30000 범위여야 합니다",
+      "source_revision": "fc540e9358fc3f167b9c"
+    },
+    "virtual_printer.error.input_lines": {
+      "text": "입력이 {0}행을 초과합니다",
+      "source_revision": "e3d8df58b5d9da0fe87b"
+    },
+    "virtual_printer.error.replay_budget": {
+      "text": "재생 상태가 32백만 자 한도를 초과합니다",
+      "source_revision": "6c516f36545c0e878aeb"
+    },
+    "virtual_printer.error.time_budget": {
+      "text": "미리보기가 1년 시간 한도를 초과합니다",
+      "source_revision": "6a547affc8702f3545da"
+    },
+    "virtual_printer.error.expanded_budget": {
+      "text": "확장된 명령 수가 한도 {0}을(를) 초과합니다",
+      "source_revision": "97f7f6dd420656388ddd"
+    },
+    "virtual_printer.error.template_location": {
+      "text": "템플릿은 설정된 매크로 안에 있어야 합니다. 체크섬은 지원하지 않습니다",
+      "source_revision": "79c8406ed9e88ced430b"
+    },
+    "virtual_printer.error.virtual_command": {
+      "text": "가상 프린터 명령을 읽을 수 없습니다",
+      "source_revision": "0bbaa50737cd4cf809ae"
+    },
+    "virtual_printer.error.macro_call_depth": {
+      "text": "매크로 호출 깊이가 8을 초과합니다",
+      "source_revision": "cdff426e6c89e3dcd1cc"
+    },
+    "virtual_printer.error.xyz_unavailable": {
+      "text": "XYZ 미리보기를 사용할 수 없습니다. 이 어댑터에는 프린터 XYZ 연결이 없습니다",
+      "source_revision": "52a96ecf5a5facd295ad"
+    },
+    "virtual_printer.error.motion_homing": {
+      "text": "이동 전에 가상 {0}을(를) 호밍해야 합니다",
+      "source_revision": "2a0a47d30f75199cdaf2"
+    },
+    "virtual_printer.error.extrusion_cold": {
+      "text": "가상 압출이 설정된 최소 온도 미만입니다",
+      "source_revision": "b7350b68edcc864ccfd3"
+    },
+    "virtual_printer.error.command_unsupported": {
+      "text": "지원하지 않는 가상 프린터 명령: {0}",
+      "source_revision": "13afe1630ffb1444bc07"
+    },
+    "virtual_printer.error.program_complete": {
+      "text": "완전한 가상 프린터 프로그램이 필요합니다",
+      "source_revision": "931460fee755198d9f4c"
+    },
+    "virtual_printer.error.replay_event": {
+      "text": "재생 이벤트가 잘못되었습니다",
+      "source_revision": "6b874ec3adbcc58731a4"
+    },
+    "virtual_printer.error.replay_identity": {
+      "text": "재생 상태가 다른 프로그램 또는 잘못된 프로그램에 속합니다",
+      "source_revision": "e2644d8978e91cd122ad"
+    },
+    "virtual_printer.error.replay_cursor": {
+      "text": "재생 시간과 이벤트 인덱스가 일치하지 않습니다",
+      "source_revision": "bef0817ad8510307df86"
+    },
+    "virtual_printer.error.replay_clock": {
+      "text": "재생 시계가 역행했습니다",
+      "source_revision": "58d987ddba3bbc523c4b"
+    },
+    "virtual_printer.label.adapter_firmware": {
+      "text": "어댑터 가상 펌웨어",
+      "source_revision": "87026c592bcd83a60df2"
+    },
+    "virtual_printer.label.virtual_printer": {
+      "text": "가상 프린터",
+      "source_revision": "343c609544e3f6cb8f93"
+    },
+    "virtual_printer.label.homing": {
+      "text": "호밍",
+      "source_revision": "da18dd591803a77b0399"
+    },
+    "virtual_printer.label.homing_axis": {
+      "text": "{0} 호밍",
+      "source_revision": "3569e967405cc7516ffb"
+    },
+    "virtual_printer.label.homing_contact": {
+      "text": "호밍 접촉",
+      "source_revision": "19eb9f8321453c72c2ba"
+    },
+    "virtual_printer.label.probe_contact": {
+      "text": "프로브 접촉",
+      "source_revision": "2895b490c8442892b58f"
+    },
+    "virtual_printer.label.heater": {
+      "text": "히터 {0}",
+      "source_revision": "03618479a0d03f037b8c"
+    },
+    "virtual_printer.label.heater_field": {
+      "text": "히터 항목 {0}",
+      "source_revision": "10d712c0b6241c9bf7e7"
+    },
+    "virtual_printer.label.heater_target": {
+      "text": "히터 목표값",
+      "source_revision": "7f1fa4801606cff198d3"
+    },
+    "virtual_printer.label.extrusion_threshold": {
+      "text": "압출 온도 임계값",
+      "source_revision": "f30c139085adfa25e849"
+    },
+    "virtual_printer.label.source_metadata": {
+      "text": "출처 메타데이터",
+      "source_revision": "ef7e00dd5f291336ed9a"
+    },
+    "virtual_printer.label.source_file_metadata": {
+      "text": "출처 파일 메타데이터",
+      "source_revision": "185b5d205f0adffca1ab"
+    },
+    "virtual_printer.label.replay": {
+      "text": "재생 상태",
+      "source_revision": "c8631f2b9a81dccb04e2"
+    },
+    "virtual_printer.label.replay_clock": {
+      "text": "재생 시계",
+      "source_revision": "51a2f5c19b49ea81525a"
+    },
+    "virtual_printer.evidence.unavailable": {
+      "text": "사용 불가: 내부 논리 원점만 있으며 모델 XYZ 연결은 없습니다",
+      "source_revision": "07735f7cae97f5b34b3d"
+    },
+    "virtual_printer.evidence.adapter": {
+      "text": "어댑터 표시 기준 위치 및 범위",
+      "source_revision": "e95d6fe54885d03d2943"
+    },
+    "virtual_printer.evidence.not_supplied": {
+      "text": "제공되지 않음",
+      "source_revision": "26a0a4c978b29c9eface"
+    },
+    "virtual_printer.evidence.displacement": {
+      "text": "네이티브 어댑터 변위 축(mm)이며 노즐 또는 펌웨어 좌표가 아닙니다",
+      "source_revision": "48985f5693fcca19c737"
+    },
+    "virtual_printer.evidence.ratrig": {
+      "text": "현재 캐리지 모드의 뷰어 어댑터 주 X0 / Y / Z 범위이며 펌웨어 좌표 매핑은 없습니다",
+      "source_revision": "55d84a52d262692d3eb0"
+    },
+    "virtual_printer.evidence.scope": {
+      "text": "논리 상태와 제한된 좌표 재생이며 네이티브 전체 경로 간섭 검증이나 실기 동작이 아닙니다",
+      "source_revision": "d490028a9f5cd5c5f1a2"
+    },
+    "virtual_printer.error.loaded_identity": {
+      "text": "불러온 프린터의 에셋 식별 정보가 불완전합니다",
+      "source_revision": "0c5f800ae761e8d9e66e"
+    },
+    "ender.original_x_belt.source_notice": {
+      "text": "원본 Ender X 벨트: native CAD의 풀리 호, 복귀 구간, 절단 끝을 유지합니다. 벨트 끝과 강체로 유지한 구매품 구리 crimp는 실측한 Eplate 통과 슬롯을 통해 캐리지에 따라 움직이며, 고무의 직선 구간만 다시 연결합니다. 원본에서 파생한 폭 6 mm의 미리보기 외형입니다. 원본에는 톱니가 없으며 GT2 톱니 맞물림, 벨트 장력, 제조 적합성은 검증되지 않았습니다. 유지한 원본 복귀 구간과 호에는 풀리, 베어링, 롤러와의 미해결 교차가 있습니다. 이 미리보기는 프린터 전체의 간극을 인증하지 않습니다.",
+      "source_revision": "f024a9cc4a88ab750b60"
+    },
+    "ender.original_x_belt.error.registration": {
+      "text": "원본 Ender X 벨트 등록이 올바르지 않습니다",
+      "source_revision": "a312f3d9d01cfbba8e78"
+    },
+    "ender.original_x_belt.error.assembly": {
+      "text": "원본 Ender X 벨트 어셈블리가 없습니다",
+      "source_revision": "8d53f3cd29124c8e5ad0"
+    },
+    "ender.original_x_belt.error.component": {
+      "text": "원본 Ender X 벨트 구성 부품이 올바르지 않습니다",
+      "source_revision": "49b3b823369d09976819"
+    },
+    "ender.original_x_belt.error.weights_missing": {
+      "text": "원본 Ender X 벨트 이동 가중치가 없습니다",
+      "source_revision": "2416d231b9e3936ff458"
+    },
+    "ender.original_x_belt.error.geometry": {
+      "text": "원본 Ender X 벨트 형상이 올바르지 않습니다",
+      "source_revision": "a72b7723ca5ea2931741"
+    },
+    "ender.original_x_belt.error.endpoint_weights": {
+      "text": "원본 Ender X 벨트 끝점 가중치가 올바르지 않습니다",
+      "source_revision": "5977b8c398a350750ac4"
+    },
+    "ender.original_x_belt.error.incomplete_geometry": {
+      "text": "원본 Ender X 벨트 형상이 불완전합니다",
+      "source_revision": "6f82a2381ce215d1cb46"
+    },
+    "ender.original_x_belt.error.axis_range": {
+      "text": "원본 Ender X 벨트 축이 등록된 미리보기 범위를 벗어났습니다",
+      "source_revision": "e78413b50f8ac997975e"
+    },
+    "virtual_printer.error.ratrig_busy": {
+      "source_revision": "274e0f7eed125495ebc5",
+      "text": "CAD 또는 기존 경로를 처리하고 있습니다."
+    },
+    "virtual_printer.nozzle_path_label": {
+      "source_revision": "abf543e9c7291fd2267f",
+      "text": "노즐 기준 경로"
     }
   }
 }

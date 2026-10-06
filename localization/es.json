@@ -3883,8 +3883,8 @@
       "text": "G-code está limitado a"
     },
     "text.0955": {
-      "source_revision": "b6619b08622aa4732d31",
-      "text": "G-code debe ser 2 MB o menor"
+      "text": "G-code no debe superar 2 MB",
+      "source_revision": "c6c2551def0f04822903"
     },
     "text.0956": {
       "source_revision": "684c16c8ce7a6a45a5d4",
@@ -3955,16 +3955,16 @@
       "text": "Monolith invertido / 9 mm · Keeper dedicado"
     },
     "text.0973": {
-      "source_revision": "bd278dd4a23da83d8861",
-      "text": "MOVE debe ser 0 o 1"
+      "text": "MOVE debe ser 0 o 1",
+      "source_revision": "bd278dd4a23da83d8861"
     },
     "text.0974": {
-      "source_revision": "1f5a412a6e998df10eb8",
-      "text": "Formato NOMBRE no admitido"
+      "text": "Formato de NAME no admitido",
+      "source_revision": "1f5a412a6e998df10eb8"
     },
     "text.0975": {
-      "source_revision": "d75643c07dd3e4288a95",
-      "text": "P debe ser 0 o mayor"
+      "text": "P debe ser como mínimo 0",
+      "source_revision": "659b3e9aa4bdf2375da4"
     },
     "text.0976": {
       "source_revision": "9f9deedd223e88df8e0b",
@@ -4191,8 +4191,8 @@
       "text": "El conjunto CAD para estas condiciones aún no está registrado."
     },
     "text.1031": {
-      "source_revision": "78ca6539d90b85fed345",
-      "text": "No se pudo analizar el comando"
+      "text": "No se puede leer la orden",
+      "source_revision": "bac42f202aa731b6944d"
     },
     "text.1032": {
       "source_revision": "da0b03ec0aa9b993b8bb",
@@ -4231,8 +4231,8 @@
       "text": "Detener demostración"
     },
     "text.1041": {
-      "source_revision": "468af4dbb937edd62734",
-      "text": "No se admiten plantillas, comentarios entre paréntesis ni sumas de comprobación."
+      "text": "No se admiten plantillas, comentarios entre paréntesis ni sumas de comprobación",
+      "source_revision": "468af4dbb937edd62734"
     },
     "text.1042": {
       "source_revision": "b0986ff19e8c2234c87b",
@@ -4267,16 +4267,16 @@
       "text": "Versión del visor:"
     },
     "text.1050": {
-      "source_revision": "780f6efff540f73b178a",
-      "text": "El archivo debe ser 2 MB o más pequeño"
+      "text": "Los archivos no deben superar 2 MB",
+      "source_revision": "49830a179bc5ac588f76"
     },
     "text.1051": {
       "source_revision": "ef6c538dca43a82efd75",
       "text": "Montaje en la impresora completa"
     },
     "text.1052": {
-      "source_revision": "538e8b6f2a4eba9c1ac7",
-      "text": "sonda"
+      "text": "sondeo",
+      "source_revision": "b76f67485a8d3b202384"
     },
     "text.1053": {
       "source_revision": "c2a694cf54abcd5893df",
@@ -4427,8 +4427,8 @@
       "text": "Se requiere un navegador más nuevo para mostrar modelos comprimidos"
     },
     "text.1089": {
-      "source_revision": "715dc87e820734c53af6",
-      "text": "El tiempo de viaje no es finito"
+      "text": "La duración del movimiento no es finita",
+      "source_revision": "274b6978c37d62350fd3"
     },
     "text.1090": {
       "source_revision": "58cb6303f1db2163a652",
@@ -4447,16 +4447,16 @@
       "text": "Relación de aspecto de imagen no válida"
     },
     "text.1093": {
-      "source_revision": "ce2d44d681fe9bb04740",
-      "text": "Se requiere iniciar XYZ"
+      "text": "Se requiere XYZ inicial",
+      "source_revision": "1c5a973b8048aadea48b"
     },
     "text.1094": {
-      "source_revision": "2150031eacaf215ad3c5",
-      "text": "Posición inicial"
+      "text": "Posición inicial",
+      "source_revision": "2150031eacaf215ad3c5"
     },
     "text.1095": {
-      "source_revision": "3288f68d9dca474ae38a",
-      "text": "Posición inicial o rango de visualización no válido"
+      "text": "Posición inicial o rango mostrado no válidos",
+      "source_revision": "8614502f27da960e3d89"
     },
     "ui.appearance": {
       "source_revision": "dcce604307081c98b77f",
@@ -4539,8 +4539,8 @@
       "text": "Vista previa de ruta · las correas y PTFE siguen el movimiento/cadena fuera del rango de ruta"
     },
     "text.1114": {
-      "source_revision": "4948fd665fc51c366628",
-      "text": "El resultado del cálculo no es finito."
+      "text": "El resultado del cálculo no es finito",
+      "source_revision": "4948fd665fc51c366628"
     },
     "text.1115": {
       "source_revision": "0cbdc7eee56c498a14d1",
@@ -4667,8 +4667,8 @@
       "text": "línea ·"
     },
     "text.1146": {
-      "source_revision": "e1fc24815c6eadd785f5",
-      "text": "Reproducir"
+      "text": "Reproducir",
+      "source_revision": "e1fc24815c6eadd785f5"
     },
     "text.1147": {
       "source_revision": "36cd7dd8b69ab033f907",
@@ -5047,8 +5047,8 @@
       "text": "Sin estado guardado:"
     },
     "text.1238": {
-      "source_revision": "c1b54c7690fa8bb31563",
-      "text": "Se admiten hasta estados guardados 64"
+      "text": "Se permiten como máximo 64 estados guardados",
+      "source_revision": "db640c0cce4ff9aaacaa"
     },
     "text.1239": {
       "source_revision": "5f130ab0ab0f2fb10579",
@@ -5203,24 +5203,24 @@
       "text": "Obtenga una vista previa de los comandos de movimiento y coordenadas en el navegador desde la posición actual XYZ."
     },
     "text.1276": {
-      "source_revision": "28f3fab8bd9ab8265238",
-      "text": "Ejemplo de rectángulo"
+      "text": "Ejemplo de rectángulo",
+      "source_revision": "28f3fab8bd9ab8265238"
     },
     "text.1277": {
-      "source_revision": "a496a7777df6a3705f92",
-      "text": "Abrir archivo"
+      "text": "Abrir archivo",
+      "source_revision": "a496a7777df6a3705f92"
     },
     "text.1278": {
-      "source_revision": "4c4f63eaf0781c3e9959",
-      "text": "Ruta de vista previa"
+      "text": "Ruta de vista previa",
+      "source_revision": "4c4f63eaf0781c3e9959"
     },
     "text.1279": {
-      "source_revision": "0702f824c7b065e61741",
-      "text": "siguiente linea"
+      "text": "Siguiente línea",
+      "source_revision": "0702f824c7b065e61741"
     },
     "text.1280": {
-      "source_revision": "ea9f292367441c3f8c3e",
-      "text": "Velocidad de reproducción"
+      "text": "Velocidad de reproducción",
+      "source_revision": "ea9f292367441c3f8c3e"
     },
     "text.1281": {
       "source_revision": "2bd851493699517e0924",
@@ -5711,44 +5711,44 @@
       "text": "Reproducir movimientos en 3D desde la configuración actual y posición XYZ."
     },
     "text.1403": {
-      "source_revision": "04e8aa3fcc30aaefd585",
-      "text": "Posición de reproducción"
+      "text": "Posición de reproducción",
+      "source_revision": "04e8aa3fcc30aaefd585"
     },
     "text.1404": {
-      "source_revision": "08fefc02951b74e92ea7",
-      "text": "Tiempo de reproducción G-code"
+      "text": "Tiempo de reproducción de G-code",
+      "source_revision": "08fefc02951b74e92ea7"
     },
     "text.1405": {
-      "source_revision": "38fcabaf38db1a3b76ea",
-      "text": "Comandos admitidos"
+      "text": "Comandos admitidos",
+      "source_revision": "38fcabaf38db1a3b76ea"
     },
     "text.1406": {
       "source_revision": "eb89bb64879317a59334",
       "text": "Especificación de Klipper G-code"
     },
     "text.1407": {
-      "source_revision": "baf356080b304615661f",
-      "text": "Vuelva a calcular la ruta desde la configuración y posición actuales."
+      "text": "Vuelva a calcular la ruta desde la configuración y posición actuales.",
+      "source_revision": "baf356080b304615661f"
     },
     "text.1408": {
-      "source_revision": "353572147283121980ad",
-      "text": "Se requiere un programa completo y un tiempo finito."
+      "text": "Se requieren una trayectoria reproducible y un tiempo finito",
+      "source_revision": "a9f95d7b069737afc59e"
     },
     "text.1409": {
-      "source_revision": "fca970ca9cc65af559a9",
-      "text": "Los límites de movimiento de la máquina cambiaron. Vuelva a calcular el camino."
+      "text": "Los límites de movimiento de la máquina han cambiado. Vuelva a calcular la trayectoria.",
+      "source_revision": "d53ef7b04a20002b5c74"
     },
     "text.1410": {
-      "source_revision": "331d092a00095d2b089d",
-      "text": "Coordenadas de boquilla no válidas."
+      "text": "Coordenadas de la boquilla no válidas",
+      "source_revision": "49fb067d85069b1ffb46"
     },
     "text.1411": {
-      "source_revision": "0c0e0aef00512ea3aabe",
-      "text": "Velocidad de reproducción no válida."
+      "text": "Velocidad de reproducción no válida",
+      "source_revision": "fd4c7cf9408bc0706493"
     },
     "text.1412": {
-      "source_revision": "eeaa550859600587bcf3",
-      "text": "Pausa"
+      "text": "Pausa",
+      "source_revision": "eeaa550859600587bcf3"
     },
     "text.1413": {
       "source_revision": "394b44709ccd9bd5063d",
@@ -6127,8 +6127,8 @@
       "text": "{0}: volumen de intersección {1} mm³. Las regiones rosadas muestran intersecciones en el CAD original."
     },
     "format.0028": {
-      "source_revision": "948e3ee3effcfc062946",
-      "text": "{0}={1} está fuera del rango de visualización {2}–{3} mm"
+      "text": "{0}={1} está fuera del rango mostrado {2}–{3} mm",
+      "source_revision": "948e3ee3effcfc062946"
     },
     "format.0029": {
       "source_revision": "c265a9b48afb0ed33f48",
@@ -6163,8 +6163,8 @@
       "text": "Piezas {0} · {1} · {2} mm"
     },
     "format.0037": {
-      "source_revision": "663f9afd374d645f09f9",
-      "text": "Comandos {0} · segundos estimados de {1} a partir de velocidades de alimentación"
+      "text": "{0} órdenes · Estimación según la velocidad de avance: {1} segundos",
+      "source_revision": "5db85ce38243fa28c23e"
     },
     "format.0038": {
       "source_revision": "03b71975e3b49133f623",
@@ -6319,24 +6319,24 @@
       "text": "{0} Pantalla actual: {1}."
     },
     "format.0076": {
-      "source_revision": "30678faddee595aaed7c",
-      "text": "{0} no es finito"
+      "text": "{0} no es un valor finito",
+      "source_revision": "ed8e3285be08f048bb45"
     },
     "format.0077": {
       "source_revision": "756184f5b5c7e7dbd2ca",
       "text": "{0} debe ser un número"
     },
     "format.0078": {
-      "source_revision": "76a933295e2c9685a850",
-      "text": "{0} debe ser mayor que 0"
+      "text": "{0} debe ser mayor que 0",
+      "source_revision": "52489699a456459b1230"
     },
     "format.0079": {
-      "source_revision": "517581aef7ad83887bba",
-      "text": "{0} no es compatible"
+      "text": "{0} no se admite",
+      "source_revision": "45faff8a601437a45be7"
     },
     "format.0080": {
-      "source_revision": "aed6a67a3df33c6b7f87",
-      "text": "G-code está limitado a líneas {0}"
+      "text": "G-code está limitado a {0} líneas",
+      "source_revision": "aed6a67a3df33c6b7f87"
     },
     "format.0081": {
       "source_revision": "8de7f474bc4ab0a5bedb",
@@ -6351,8 +6351,8 @@
       "text": "{0} y {1}_ADJUST no se pueden especificar juntos"
     },
     "format.0084": {
-      "source_revision": "32ed04d7f8450c3c82c4",
-      "text": "{0} y {1}_ADJUST no se pueden especificar juntos"
+      "text": "{0} y {1}_ADJUST no se pueden especificar juntos",
+      "source_revision": "32ed04d7f8450c3c82c4"
     },
     "format.0085": {
       "source_revision": "15184151965dc576542a",
@@ -7123,8 +7123,8 @@
       "text": "Se muestra el AWD oficial con piezas impresas v1.2. El CAD de origen contiene correas XY parciales y no incluye la manguera CPAP."
     },
     "ui.community.ender_source": {
-      "source_revision": "30a0a21a183e859f4f4a",
-      "text": "El CAD oficial original no incluye el tubo Bowden."
+      "source_revision": "d60111b1d84b9f4754b0",
+      "text": "La ruta Bowden utiliza la sección original del tubo D4 y las posiciones de los racores con una longitud de servicio de 450 mm para el visor. El CAD original no incluye la manguera completa."
     },
     "fixed_sc.system": {
       "source_revision": "1b835c0348c171bed09d",
@@ -8049,6 +8049,742 @@
     "ender_mods.09": {
       "source_revision": "67d1112d2cf93b1f3210",
       "text": "Cabezal independiente"
+    },
+    "virtual_printer.title": {
+      "text": "G-code · Impresora virtual sin conexión",
+      "source_revision": "bf03506ef8619c027e86"
+    },
+    "virtual_printer.intro": {
+      "text": "Vista previa del movimiento y del estado virtual a partir de la entrada. No se conecta a ninguna impresora física.",
+      "source_revision": "4a1c097e1c26578f5f40"
+    },
+    "virtual_printer.settings": {
+      "text": "Macros y ajustes virtuales",
+      "source_revision": "73f5e0b3a9eda3265a0f"
+    },
+    "virtual_printer.macro_config": {
+      "text": "Configuración de macros de Klipper",
+      "source_revision": "bf434cee3e47d007fe32"
+    },
+    "virtual_printer.json_settings": {
+      "text": "Posición inicial, límites, contactos y calentadores (JSON)",
+      "source_revision": "9349a9f2cd1c3c8cb38b"
+    },
+    "virtual_printer.refresh_settings": {
+      "text": "Volver a cargar los ajustes de los ejes del visor",
+      "source_revision": "94e4b7f1cec3213ffd8d"
+    },
+    "virtual_printer.contact_notice": {
+      "text": "Las posiciones de contacto requieren ajustes con pruebas que los respalden. Los contactos solo registran posiciones; no generan trayectorias de homing, sondeo ni acoplamiento. Las esperas de temperatura ajustan la temperatura virtual al objetivo. No se simulan el tiempo de calentamiento ni los cambios de temperatura.",
+      "source_revision": "806900c38cf2b6191096"
+    },
+    "virtual_printer.save": {
+      "text": "Guardar estado virtual",
+      "source_revision": "3ec8730695dbe6880111"
+    },
+    "virtual_printer.load": {
+      "text": "Cargar estado virtual",
+      "source_revision": "4a8ce52cffc84d41d811"
+    },
+    "virtual_printer.events": {
+      "text": "Registro de eventos",
+      "source_revision": "7bfc1e01b47528c35e02"
+    },
+    "virtual_printer.commands": {
+      "text": "Admite órdenes de vista previa de coordenadas, G28/PROBE con configuración, estados virtuales de calentadores y ventiladores, ACTIVATE_EXTRUDER, SET_GCODE_VARIABLE y expresiones Jinja limitadas, if, for y set. La sintaxis o las órdenes no admitidas detienen la ejecución. Los números T requieren macros registradas. Los cambios de herramienta son eventos virtuales y no verifican el montaje ni las trayectorias de intercambio.",
+      "source_revision": "f95b0b3740bcd342b331"
+    },
+    "virtual_printer.klipper_docs": {
+      "text": "Especificación de macros de Klipper",
+      "source_revision": "f54f71b34d6b0159d719"
+    },
+    "virtual_printer.event_limit": {
+      "text": "La lista muestra los primeros 200 eventos. La reproducción incluye todos los eventos.",
+      "source_revision": "95e048fddaece2d0aca7"
+    },
+    "virtual_printer.thermal_time": {
+      "text": "No se incluye el tiempo de espera de temperatura",
+      "source_revision": "6d4b18e50e19a6ab79a6"
+    },
+    "virtual_printer.range_error": {
+      "text": "Establezca los límites virtuales dentro de los límites actuales de los ejes del visor",
+      "source_revision": "42305683f56ef7698765"
+    },
+    "virtual_printer.recompile": {
+      "text": "Es necesario volver a calcular",
+      "source_revision": "8d521cabe26c3549834a"
+    },
+    "virtual_printer.invalid_file": {
+      "text": "Archivo de estado virtual no válido",
+      "source_revision": "960c87aab824ae7a3d78"
+    },
+    "virtual_printer.context_error": {
+      "text": "La configuración de la máquina o los ajustes medidos difieren del estado guardado",
+      "source_revision": "fafd0617bf005b1705ee"
+    },
+    "virtual_printer.saved": {
+      "text": "Estado virtual guardado.",
+      "source_revision": "a4f34bc3d566d1a7cf8f"
+    },
+    "virtual_printer.file_limit": {
+      "text": "Los archivos de estado virtual no deben superar 3 MB",
+      "source_revision": "1887cc04bc26a9c75a80"
+    },
+    "virtual_printer.virtual_state": {
+      "text": "Herramienta virtual: {0} · Ejes con homing: {1} · Ventilador: {2}%{3}",
+      "source_revision": "d8c64c26574c6dfab4a1"
+    },
+    "virtual_printer.source_metadata": {
+      "text": "Fuentes de la entrada y sistema de coordenadas (JSON)",
+      "source_revision": "5c6697099e988a53b99a"
+    },
+    "virtual_printer.axis.displacement": {
+      "text": "XYZ son coordenadas de desplazamiento del adaptador del visor (mm). Los límites de alcance proceden de la configuración actual. No son el origen de la máquina física ni las coordenadas de la boquilla. No se muestra una trayectoria referida a la boquilla.",
+      "source_revision": "95f3cbc7ef1012999fd6"
+    },
+    "virtual_printer.axis.display": {
+      "text": "XYZ son las coordenadas mostradas por el visor (mm). Los límites de alcance usan los ajustes actuales del adaptador. No determinan el origen de la máquina física, las posiciones de contacto ni la ausencia de interferencias durante todo el recorrido.",
+      "source_revision": "85f204477dbcd47abcd8"
+    },
+    "virtual_printer.axis.ratrig": {
+      "text": "X corresponde al carro principal X0; Y/Z son coordenadas del visor (mm). Los carros secundarios siguen el modo existente: independiente, copia o espejo. Los cambios virtuales de herramienta no cambian de carro. No se muestra una trayectoria referida a la boquilla.",
+      "source_revision": "0f3a349080cf135887da"
+    },
+    "virtual_printer.axis.unavailable": {
+      "text": "Este adaptador no tiene una vinculación con XYZ de la impresora. Se detienen los movimientos XYZ, de homing y de sondeo. Solo se pueden previsualizar macros y los estados virtuales de calentadores, extrusión y herramientas.",
+      "source_revision": "0255ba6268ecc958f74c"
+    },
+    "virtual_printer.axis.no_path": {
+      "text": "No se muestra una trayectoria referida a la boquilla.",
+      "source_revision": "7ff9b5ceb9aa7fa69baf"
+    },
+    "virtual_printer.heater_state": {
+      "text": " · {0}: {1} / {2} °C",
+      "source_revision": "f1c448387b76cf899320"
+    },
+    "virtual_printer.line_state": {
+      "text": "Línea {0} · {1}{2} · E {3} mm",
+      "source_revision": "bf2ab0c8206ffb2fbe0e"
+    },
+    "virtual_printer.compile_error": {
+      "text": "Detenido en la línea {0}: {1}{2}. Corrija la entrada y vuelva a compilar.",
+      "source_revision": "310769ab0fb9b9989f61"
+    },
+    "virtual_printer.macro_location": {
+      "text": "{0}:{1} · ",
+      "source_revision": "a5ac69e9c1806332d065"
+    },
+    "virtual_printer.event_row": {
+      "text": "{0} · {1} · {2}",
+      "source_revision": "249ba1827d57d42d1da2"
+    },
+    "virtual_printer.replay_time": {
+      "text": "{0} / {1} s",
+      "source_revision": "d9e9b26f37787695476d"
+    },
+    "virtual_printer.axis.no_path_combined": {
+      "text": "{0} No se muestra una trayectoria referida a la boquilla.",
+      "source_revision": "c6070ef01693d7a6804c"
+    },
+    "virtual_printer.compile_summary_thermal": {
+      "text": "{0} · No se incluye el tiempo de espera de temperatura",
+      "source_revision": "87f013798800bd80eaef"
+    },
+    "virtual_printer.error.panel_prefix": {
+      "text": "Prefijo de ID del panel G-code no válido",
+      "source_revision": "da3fd59d2f4e6b51f757"
+    },
+    "virtual_printer.error.binding_setting": {
+      "text": "No se puede cambiar la capacidad de vinculación XYZ en los ajustes virtuales",
+      "source_revision": "0fefc4b2bada79ca1e85"
+    },
+    "virtual_printer.error.coordinate_parameter": {
+      "text": "No se puede leer el parámetro: {0}",
+      "source_revision": "4fb79886650f64998552"
+    },
+    "virtual_printer.error.coordinate_duplicate": {
+      "text": "{0} duplicado",
+      "source_revision": "2a879c5b67b22575b302"
+    },
+    "virtual_printer.error.coordinate_parameter_unsupported": {
+      "text": "{1} no se admite para {0}",
+      "source_revision": "f49dd54a793c5e9eb701"
+    },
+    "virtual_printer.error.coordinate_numeric": {
+      "text": "{0} requiere un número",
+      "source_revision": "8cd4b9ad41d157d70bbc"
+    },
+    "virtual_printer.error.coordinate_missing_save": {
+      "text": "No se encontró el estado guardado: {0}",
+      "source_revision": "a6e35ca347f032b64f24"
+    },
+    "virtual_printer.error.template_property": {
+      "text": "Propiedad de plantilla no admitida: {0}",
+      "source_revision": "591b922f0a614df10cc2"
+    },
+    "virtual_printer.error.template_arithmetic": {
+      "text": "La aritmética de plantillas requiere números finitos; convierta params con float/int",
+      "source_revision": "4ec4125d02e84f5bc9d1"
+    },
+    "virtual_printer.error.template_length": {
+      "text": "La expresión de plantilla supera 2048 caracteres",
+      "source_revision": "791ba52ce33b3eea120b"
+    },
+    "virtual_printer.error.template_escape": {
+      "text": "Secuencia de escape de cadena de plantilla no admitida",
+      "source_revision": "0d56b278a87954fda5d6"
+    },
+    "virtual_printer.error.template_string": {
+      "text": "Cadena de plantilla sin cerrar",
+      "source_revision": "7dcb762256a422093384"
+    },
+    "virtual_printer.error.template_syntax": {
+      "text": "Sintaxis de plantilla no admitida cerca de {0}",
+      "source_revision": "07afde4c6a7020064b32"
+    },
+    "virtual_printer.error.template_tokens": {
+      "text": "La expresión de plantilla supera 512 tokens",
+      "source_revision": "77d5d17368a506487556"
+    },
+    "virtual_printer.error.template_expected": {
+      "text": "Se esperaba el token de plantilla {0}",
+      "source_revision": "085afde1b08e21f8a0ec"
+    },
+    "virtual_printer.error.template_depth": {
+      "text": "El anidamiento de expresiones de plantilla supera 32",
+      "source_revision": "4f3bab643ebc4496721f"
+    },
+    "virtual_printer.error.template_calls": {
+      "text": "Solo se admite range(); no están disponibles las acciones de plantilla ni las llamadas arbitrarias",
+      "source_revision": "f0aa8683eb054ca2bf42"
+    },
+    "virtual_printer.error.range_arguments": {
+      "text": "range requiere 1–3 argumentos",
+      "source_revision": "ae053bba233dbd013570"
+    },
+    "virtual_printer.error.template_expression": {
+      "text": "Expresión de plantilla no admitida",
+      "source_revision": "791f18f5a236503458a1"
+    },
+    "virtual_printer.error.template_property_name": {
+      "text": "Se esperaba un nombre de propiedad",
+      "source_revision": "01eeb2c0a6b91f87bd1f"
+    },
+    "virtual_printer.error.template_filter": {
+      "text": "Filtro de plantilla no admitido: {0}",
+      "source_revision": "7fc578f4f7760b996bb9"
+    },
+    "virtual_printer.error.template_filter_arguments": {
+      "text": "No se admiten argumentos para los filtros de conversión",
+      "source_revision": "e234e7ccaba6d108325c"
+    },
+    "virtual_printer.error.template_budget": {
+      "text": "Se ha agotado el límite de operaciones de plantilla",
+      "source_revision": "d82a46982ac10522f02f"
+    },
+    "virtual_printer.error.template_parent": {
+      "text": "Valor padre de plantilla no definido",
+      "source_revision": "29574adeabc9da835722"
+    },
+    "virtual_printer.error.template_conversion": {
+      "text": "Conversión numérica de plantilla no válida",
+      "source_revision": "2d1f2d007137ed7d0e5a"
+    },
+    "virtual_printer.error.range_integers": {
+      "text": "range requiere enteros seguros",
+      "source_revision": "94e9a2a90e6a816d9cc5"
+    },
+    "virtual_printer.error.range_step": {
+      "text": "El step de range no puede ser cero",
+      "source_revision": "0ef067af401e1c4ea3d7"
+    },
+    "virtual_printer.error.range_iterations": {
+      "text": "range supera 256 iteraciones",
+      "source_revision": "cef95c68a33b07068e8a"
+    },
+    "virtual_printer.error.template_undefined_default": {
+      "text": "Valor de plantilla no definido; use default o is defined",
+      "source_revision": "e525dd1d2ee549bd85d0"
+    },
+    "virtual_printer.error.template_equality": {
+      "text": "No se admite la igualdad de objetos ni la igualdad entre booleanos y números",
+      "source_revision": "f4ee04ecc731c66df968"
+    },
+    "virtual_printer.error.template_in": {
+      "text": "in solo admite cadenas y listas",
+      "source_revision": "65a825a7cf688b28573f"
+    },
+    "virtual_printer.error.template_comparison": {
+      "text": "Operandos de comparación no admitidos",
+      "source_revision": "fef9f53918da6e7abb63"
+    },
+    "virtual_printer.error.template_node": {
+      "text": "Nodo de expresión de plantilla no admitido",
+      "source_revision": "53ff1f5ee0f36dc23a4e"
+    },
+    "virtual_printer.error.template_undefined": {
+      "text": "Valor de plantilla no definido",
+      "source_revision": "a37949bccc92e710949c"
+    },
+    "virtual_printer.error.template_nodes": {
+      "text": "La plantilla supera 4096 nodos",
+      "source_revision": "6f77fffc2d061e14d0f7"
+    },
+    "virtual_printer.error.template_delimiter": {
+      "text": "Delimitador de plantilla sin cerrar en la línea {0}",
+      "source_revision": "77e4c208995cc04dfcf2"
+    },
+    "virtual_printer.error.template_reserved": {
+      "text": "Variable de plantilla reservada",
+      "source_revision": "3c598b86d99735c53484"
+    },
+    "virtual_printer.error.template_unexpected": {
+      "text": "{0} inesperado",
+      "source_revision": "9a2b0d7d4d1cd843969c"
+    },
+    "virtual_printer.error.template_loop_reserved": {
+      "text": "Variable de bucle reservada",
+      "source_revision": "2f1c8bea374bc48b8b5b"
+    },
+    "virtual_printer.error.template_block_mismatch": {
+      "text": "Bloque de plantilla sin correspondencia",
+      "source_revision": "787f55014b8e9c7e7597"
+    },
+    "virtual_printer.error.template_directive": {
+      "text": "Directiva de plantilla no admitida: {0}",
+      "source_revision": "69e9d35bfdfd949db552"
+    },
+    "virtual_printer.error.template_block_depth": {
+      "text": "El anidamiento de bloques de plantilla supera 16",
+      "source_revision": "750ab38a899abe8f7ef3"
+    },
+    "virtual_printer.error.template_block_open": {
+      "text": "Bloque de plantilla sin cerrar",
+      "source_revision": "954ece525f11afecc7d0"
+    },
+    "virtual_printer.error.macro_config_limit": {
+      "text": "La configuración de macros debe ser texto de un máximo de 128000 caracteres",
+      "source_revision": "a083e49b59d49d186a61"
+    },
+    "virtual_printer.error.macro_duplicate": {
+      "text": "Macro {0} duplicada",
+      "source_revision": "ae8aad4849d41d908f33"
+    },
+    "virtual_printer.error.macro_count": {
+      "text": "Se permiten como máximo 128 macros",
+      "source_revision": "d05a691409d5501bc415"
+    },
+    "virtual_printer.error.macro_sections": {
+      "text": "Solo se admiten secciones [gcode_macro NAME] (línea {0} de configuración)",
+      "source_revision": "942c83bf96e8527f07e1"
+    },
+    "virtual_printer.error.macro_gcode_duplicate": {
+      "text": "Campo gcode duplicado",
+      "source_revision": "afbbfcb6785989d1fae7"
+    },
+    "virtual_printer.error.macro_rename": {
+      "text": "Opción de macro rename_existing no admitida (línea {0} de configuración)",
+      "source_revision": "f629f4f6fb810fb0a990"
+    },
+    "virtual_printer.error.macro_variable_duplicate": {
+      "text": "Variable de macro duplicada",
+      "source_revision": "6212ea28fb171d728a07"
+    },
+    "virtual_printer.error.macro_variable_scalar": {
+      "text": "Las variables de macro deben ser escalares",
+      "source_revision": "a7581506dc3e8233f7a9"
+    },
+    "virtual_printer.error.macro_config_unsupported": {
+      "text": "Configuración de macro no admitida en la línea {0}: {1}",
+      "source_revision": "51ca5e9e7f4cccad5f77"
+    },
+    "virtual_printer.error.macro_body": {
+      "text": "La macro requiere un cuerpo gcode: {0}",
+      "source_revision": "1a0c5394764c5136f8bd"
+    },
+    "virtual_printer.error.macro_context": {
+      "text": "{0}: {1}",
+      "source_revision": "eb2200556d70cd321306"
+    },
+    "virtual_printer.error.macro_output_budget": {
+      "text": "Se ha agotado el límite de salida de macros",
+      "source_revision": "f92ad458bcf234e14691"
+    },
+    "virtual_printer.error.template_output_scalar": {
+      "text": "La salida de plantilla requiere un escalar definido",
+      "source_revision": "660a4ce83cf61e195398"
+    },
+    "virtual_printer.error.template_output_injection": {
+      "text": "La salida de plantilla no puede insertar saltos de línea ni plantillas",
+      "source_revision": "d2cb22781570b9df82f7"
+    },
+    "virtual_printer.error.template_for": {
+      "text": "for requiere una lista o range de un máximo de 256 iteraciones",
+      "source_revision": "ba2c9c20597403f6124a"
+    },
+    "virtual_printer.error.finite": {
+      "text": "{0} debe ser finito",
+      "source_revision": "0e5b63c5250ffe2fdf4d"
+    },
+    "virtual_printer.error.unsupported_setting": {
+      "text": "Ajuste o parámetro de {0} no admitido",
+      "source_revision": "94acda2f42aecce4dac8"
+    },
+    "virtual_printer.error.settings_limit": {
+      "text": "Los ajustes virtuales superan 128 KB",
+      "source_revision": "d0e27a1deacb146b9160"
+    },
+    "virtual_printer.error.motion_boolean": {
+      "text": "motion_enabled debe ser un booleano",
+      "source_revision": "cc978f3ca685ecc2f32f"
+    },
+    "virtual_printer.error.contact_binding": {
+      "text": "Los contactos requieren una vinculación XYZ del adaptador",
+      "source_revision": "0f688db893e0634673d9"
+    },
+    "virtual_printer.error.homing_setting": {
+      "text": "El homing de {0} requiere un contacto dentro del rango y pruebas que lo respalden",
+      "source_revision": "49631f3c7d9428473ca1"
+    },
+    "virtual_printer.error.probe_setting": {
+      "text": "El sondeo requiere un contacto medido, un desplazamiento, una región de contacto XY y pruebas que los respalden",
+      "source_revision": "ea338bb00696925e831a"
+    },
+    "virtual_printer.error.initial_homed": {
+      "text": "Ejes iniciales con homing no válidos",
+      "source_revision": "d3f11a61abe582e9d550"
+    },
+    "virtual_printer.error.homing_boolean": {
+      "text": "require_homing debe ser un booleano",
+      "source_revision": "b14d75d490a38a80ac29"
+    },
+    "virtual_printer.error.extrusion_mode": {
+      "text": "Modo de extrusión desconocido",
+      "source_revision": "8cf0121c68dee567cb8c"
+    },
+    "virtual_printer.error.heater_count": {
+      "text": "Se permiten como máximo 16 calentadores virtuales",
+      "source_revision": "e9cff02a468dc997632e"
+    },
+    "virtual_printer.error.heater_name": {
+      "text": "Nombre de calentador no válido",
+      "source_revision": "71bd4fe6fe75799079e8"
+    },
+    "virtual_printer.error.heater_range": {
+      "text": "Rango de calentador virtual no válido",
+      "source_revision": "e65bd65673b7381aa526"
+    },
+    "virtual_printer.error.extrusion_threshold": {
+      "text": "Umbral de extrusión fuera del rango del calentador",
+      "source_revision": "08e83d3a2d691e3e60e5"
+    },
+    "virtual_printer.error.tools_setting": {
+      "text": "Especifique 1–16 nombres únicos de herramientas virtuales",
+      "source_revision": "58629dcd76c80fcbbc0f"
+    },
+    "virtual_printer.error.initial_tool": {
+      "text": "Herramienta virtual inicial desconocida",
+      "source_revision": "21d0d6b2a71afd8c263c"
+    },
+    "virtual_printer.error.temperature_guard": {
+      "text": "La protección de temperatura requiere un calentador y un umbral de extrusión para cada herramienta virtual",
+      "source_revision": "61a56a68c9f980058591"
+    },
+    "virtual_printer.error.evidence_labels": {
+      "text": "Las pruebas deben incluir etiquetas de texto",
+      "source_revision": "6cd21c4801a5665d4368"
+    },
+    "virtual_printer.error.g28_selectors": {
+      "text": "G28 solo admite selectores X/Y/Z",
+      "source_revision": "f60f85dd26280a1ca34d"
+    },
+    "virtual_printer.error.parameter_invalid": {
+      "text": "Parámetro de {0} no válido o repetido",
+      "source_revision": "6f4d9f06f2cde41ef99a"
+    },
+    "virtual_printer.error.parameter_missing": {
+      "text": "Falta {0}",
+      "source_revision": "f8a107a9e637381e53aa"
+    },
+    "virtual_printer.error.parameter_decimal": {
+      "text": "{0} requiere un número decimal finito",
+      "source_revision": "9648ac38dd35dfa0c13e"
+    },
+    "virtual_printer.error.heater_missing": {
+      "text": "El calentador virtual no está configurado: {0}",
+      "source_revision": "ed19e68a79033a1938e5"
+    },
+    "virtual_printer.error.heater_target": {
+      "text": "Objetivo fuera del rango del calentador virtual configurado",
+      "source_revision": "519d5fdd8ee849a5c4da"
+    },
+    "virtual_printer.error.g28_contact": {
+      "text": "G28 {0} requiere un contacto medido; no se deduce una trayectoria hasta el final de carrera",
+      "source_revision": "e8db1186f7d951edabfa"
+    },
+    "virtual_printer.error.probe_contact": {
+      "text": "PROBE requiere datos de contacto medidos; no se deduce una trayectoria de sondeo",
+      "source_revision": "2c9973d592be41d6e70a"
+    },
+    "virtual_printer.error.probe_homing": {
+      "text": "PROBE requiere homing virtual de XYZ",
+      "source_revision": "b87da7627538dbf440d9"
+    },
+    "virtual_printer.error.probe_region": {
+      "text": "El contacto del sondeo está fuera de la región XY medida",
+      "source_revision": "eb805d69d95d944b5cda"
+    },
+    "virtual_printer.error.probe_start": {
+      "text": "El sondeo comienza por debajo del contacto configurado",
+      "source_revision": "56cd09dafee88a3d87ee"
+    },
+    "virtual_printer.error.extruder_unknown": {
+      "text": "Extrusor virtual desconocido",
+      "source_revision": "d487bcef74ebda73acaa"
+    },
+    "virtual_printer.error.macro_variable_unknown": {
+      "text": "Variable de macro desconocida",
+      "source_revision": "fcf389a8991f4d266dda"
+    },
+    "virtual_printer.error.macro_variable_value": {
+      "text": "La variable de macro requiere un escalar",
+      "source_revision": "e902bc337d7ed8d1385d"
+    },
+    "virtual_printer.error.fan_range": {
+      "text": "S del ventilador debe estar entre 0–255",
+      "source_revision": "dab8ec64128e80c8cd92"
+    },
+    "virtual_printer.error.temperature_window": {
+      "text": "Intervalo de espera de temperatura no válido",
+      "source_revision": "9e90b06a75af38161167"
+    },
+    "virtual_printer.error.temperature_target": {
+      "text": "El objetivo del calentador virtual no puede cumplir el intervalo de espera",
+      "source_revision": "93816c2652c20246cd74"
+    },
+    "virtual_printer.error.heater_tool_index": {
+      "text": "Índice de herramienta del calentador virtual no válido",
+      "source_revision": "4bc4df7cf8a9c56bbae8"
+    },
+    "virtual_printer.error.metadata_limit": {
+      "text": "Los metadatos de origen superan 8 KB",
+      "source_revision": "82160f88d6245ec9b0b9"
+    },
+    "virtual_printer.error.metadata_labels": {
+      "text": "Las etiquetas de los metadatos de origen deben ser texto de un máximo de 2048 caracteres",
+      "source_revision": "333f93823f60755150de"
+    },
+    "virtual_printer.error.metadata_files": {
+      "text": "Se permiten como máximo 32 archivos de metadatos de origen",
+      "source_revision": "c1b166e3616a4958cf49"
+    },
+    "virtual_printer.error.metadata_file": {
+      "text": "Los metadatos del archivo de origen requieren una ruta y SHA-256",
+      "source_revision": "ae6b2e97e1f6d9469013"
+    },
+    "virtual_printer.error.builtin_override": {
+      "text": "No se admite la redefinición de órdenes integradas ni rename_existing: {0}",
+      "source_revision": "a781a8f0cb2499b72414"
+    },
+    "virtual_printer.error.input_text": {
+      "text": "G-code debe ser texto de un máximo de 2 MB",
+      "source_revision": "f3929e76e4144a319a52"
+    },
+    "virtual_printer.error.command_budget": {
+      "text": "El límite de órdenes debe estar entre 1–30000",
+      "source_revision": "fc540e9358fc3f167b9c"
+    },
+    "virtual_printer.error.input_lines": {
+      "text": "La entrada supera {0} líneas",
+      "source_revision": "e3d8df58b5d9da0fe87b"
+    },
+    "virtual_printer.error.replay_budget": {
+      "text": "El estado de reproducción supera el límite de 32 millones de caracteres",
+      "source_revision": "6c516f36545c0e878aeb"
+    },
+    "virtual_printer.error.time_budget": {
+      "text": "La vista previa supera el límite de tiempo de un año",
+      "source_revision": "6a547affc8702f3545da"
+    },
+    "virtual_printer.error.expanded_budget": {
+      "text": "El número de órdenes expandidas supera el límite de {0}",
+      "source_revision": "97f7f6dd420656388ddd"
+    },
+    "virtual_printer.error.template_location": {
+      "text": "Las plantillas deben estar dentro de macros configuradas; no se admiten sumas de comprobación",
+      "source_revision": "79c8406ed9e88ced430b"
+    },
+    "virtual_printer.error.virtual_command": {
+      "text": "No se puede leer la orden de la impresora virtual",
+      "source_revision": "0bbaa50737cd4cf809ae"
+    },
+    "virtual_printer.error.macro_call_depth": {
+      "text": "La profundidad de llamadas de macros supera 8",
+      "source_revision": "cdff426e6c89e3dcd1cc"
+    },
+    "virtual_printer.error.xyz_unavailable": {
+      "text": "Vista previa XYZ no disponible: este adaptador no tiene una vinculación XYZ de la impresora",
+      "source_revision": "52a96ecf5a5facd295ad"
+    },
+    "virtual_printer.error.motion_homing": {
+      "text": "Se debe realizar el homing virtual de {0} antes del movimiento",
+      "source_revision": "2a0a47d30f75199cdaf2"
+    },
+    "virtual_printer.error.extrusion_cold": {
+      "text": "Extrusión virtual por debajo de la temperatura mínima configurada",
+      "source_revision": "b7350b68edcc864ccfd3"
+    },
+    "virtual_printer.error.command_unsupported": {
+      "text": "Orden de impresora virtual no admitida: {0}",
+      "source_revision": "13afe1630ffb1444bc07"
+    },
+    "virtual_printer.error.program_complete": {
+      "text": "Se requiere un programa completo de impresora virtual",
+      "source_revision": "931460fee755198d9f4c"
+    },
+    "virtual_printer.error.replay_event": {
+      "text": "Evento de reproducción no válido",
+      "source_revision": "6b874ec3adbcc58731a4"
+    },
+    "virtual_printer.error.replay_identity": {
+      "text": "La reproducción pertenece a un programa distinto o no válido",
+      "source_revision": "e2644d8978e91cd122ad"
+    },
+    "virtual_printer.error.replay_cursor": {
+      "text": "El tiempo de reproducción y el índice de evento no son coherentes",
+      "source_revision": "bef0817ad8510307df86"
+    },
+    "virtual_printer.error.replay_clock": {
+      "text": "El reloj de reproducción retrocedió",
+      "source_revision": "58d987ddba3bbc523c4b"
+    },
+    "virtual_printer.label.adapter_firmware": {
+      "text": "firmware virtual del adaptador",
+      "source_revision": "87026c592bcd83a60df2"
+    },
+    "virtual_printer.label.virtual_printer": {
+      "text": "impresora virtual",
+      "source_revision": "343c609544e3f6cb8f93"
+    },
+    "virtual_printer.label.homing": {
+      "text": "homing",
+      "source_revision": "da18dd591803a77b0399"
+    },
+    "virtual_printer.label.homing_axis": {
+      "text": "homing de {0}",
+      "source_revision": "3569e967405cc7516ffb"
+    },
+    "virtual_printer.label.homing_contact": {
+      "text": "Contacto de homing",
+      "source_revision": "19eb9f8321453c72c2ba"
+    },
+    "virtual_printer.label.probe_contact": {
+      "text": "Contacto de sondeo",
+      "source_revision": "2895b490c8442892b58f"
+    },
+    "virtual_printer.label.heater": {
+      "text": "calentador {0}",
+      "source_revision": "03618479a0d03f037b8c"
+    },
+    "virtual_printer.label.heater_field": {
+      "text": "Calentador {0}",
+      "source_revision": "10d712c0b6241c9bf7e7"
+    },
+    "virtual_printer.label.heater_target": {
+      "text": "Objetivo del calentador",
+      "source_revision": "7f1fa4801606cff198d3"
+    },
+    "virtual_printer.label.extrusion_threshold": {
+      "text": "Umbral de extrusión",
+      "source_revision": "f30c139085adfa25e849"
+    },
+    "virtual_printer.label.source_metadata": {
+      "text": "metadatos de origen",
+      "source_revision": "ef7e00dd5f291336ed9a"
+    },
+    "virtual_printer.label.source_file_metadata": {
+      "text": "metadatos del archivo de origen",
+      "source_revision": "185b5d205f0adffca1ab"
+    },
+    "virtual_printer.label.replay": {
+      "text": "reproducción",
+      "source_revision": "c8631f2b9a81dccb04e2"
+    },
+    "virtual_printer.label.replay_clock": {
+      "text": "Reloj de reproducción",
+      "source_revision": "51a2f5c19b49ea81525a"
+    },
+    "virtual_printer.evidence.unavailable": {
+      "text": "No disponible: solo un origen lógico interno; sin vinculación XYZ del modelo",
+      "source_revision": "07735f7cae97f5b34b3d"
+    },
+    "virtual_printer.evidence.adapter": {
+      "text": "posiciones de referencia y límites mostrados del adaptador",
+      "source_revision": "e95d6fe54885d03d2943"
+    },
+    "virtual_printer.evidence.not_supplied": {
+      "text": "no proporcionados",
+      "source_revision": "26a0a4c978b29c9eface"
+    },
+    "virtual_printer.evidence.displacement": {
+      "text": "Ejes de desplazamiento del adaptador nativo en mm; no son coordenadas de boquilla ni de firmware",
+      "source_revision": "48985f5693fcca19c737"
+    },
+    "virtual_printer.evidence.ratrig": {
+      "text": "Límites de X0 principal / Y / Z del adaptador del visor en el modo de carro actual; sin correspondencia con las coordenadas del firmware",
+      "source_revision": "55d84a52d262692d3eb0"
+    },
+    "virtual_printer.evidence.scope": {
+      "text": "Estado lógico y reproducción acotada de coordenadas; sin verificación de ausencia de interferencias nativas durante todo el recorrido ni funcionamiento físico",
+      "source_revision": "d490028a9f5cd5c5f1a2"
+    },
+    "virtual_printer.error.loaded_identity": {
+      "text": "La identificación de los recursos de la impresora cargada está incompleta",
+      "source_revision": "0c5f800ae761e8d9e66e"
+    },
+    "ender.original_x_belt.source_notice": {
+      "text": "Correa X original de Ender: se conservan los arcos de polea, el ramal de retorno y los extremos cortados del CAD nativo. Los extremos y los manguitos de cobre comprados, conservados como cuerpos rígidos, siguen el carro por las ranuras medidas de la Eplate; solo se reconectan las secciones rectas de goma. Es una envolvente de vista previa de 6 mm de ancho derivada de la fuente. La fuente no tiene dientes; no se verifican el engrane GT2, la tensión ni el ajuste de fabricación. El retorno y los arcos originales conservados presentan intersecciones sin resolver con poleas, rodamientos y rodillos. Esta vista previa no certifica la holgura de toda la impresora.",
+      "source_revision": "f024a9cc4a88ab750b60"
+    },
+    "ender.original_x_belt.error.registration": {
+      "text": "Registro no válido de la correa X original de Ender",
+      "source_revision": "a312f3d9d01cfbba8e78"
+    },
+    "ender.original_x_belt.error.assembly": {
+      "text": "Falta el conjunto de la correa X original de Ender",
+      "source_revision": "8d53f3cd29124c8e5ad0"
+    },
+    "ender.original_x_belt.error.component": {
+      "text": "Componente no válido de la correa X original de Ender",
+      "source_revision": "49b3b823369d09976819"
+    },
+    "ender.original_x_belt.error.weights_missing": {
+      "text": "Faltan los pesos de movimiento de la correa X original de Ender",
+      "source_revision": "2416d231b9e3936ff458"
+    },
+    "ender.original_x_belt.error.geometry": {
+      "text": "Geometría no válida de la correa X original de Ender",
+      "source_revision": "a72b7723ca5ea2931741"
+    },
+    "ender.original_x_belt.error.endpoint_weights": {
+      "text": "Pesos de los extremos no válidos de la correa X original de Ender",
+      "source_revision": "5977b8c398a350750ac4"
+    },
+    "ender.original_x_belt.error.incomplete_geometry": {
+      "text": "Geometría incompleta de la correa X original de Ender",
+      "source_revision": "6f82a2381ce215d1cb46"
+    },
+    "ender.original_x_belt.error.axis_range": {
+      "text": "El eje de la correa X original de Ender supera el rango registrado de vista previa",
+      "source_revision": "e78413b50f8ac997975e"
+    },
+    "virtual_printer.error.ratrig_busy": {
+      "source_revision": "274e0f7eed125495ebc5",
+      "text": "Se está procesando el CAD o una trayectoria existente."
+    },
+    "virtual_printer.nozzle_path_label": {
+      "source_revision": "abf543e9c7291fd2267f",
+      "text": "Trayectoria basada en la boquilla"
     }
   }
 }

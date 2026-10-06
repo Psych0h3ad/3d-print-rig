@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {loadCustomVoron} from './custom-voron-loader.mjs?v=9947051632cb50e79d40';
 import {createV24Adapter} from './v24_matrix_adapter.mjs?v=94a4b83956040d64774a';
-import {createTridentMotion} from './trident-motion.mjs';
+import {createTridentMotion} from './trident-motion.mjs?v=312d6a2dd8aa665ba921';
 import {setupMachineNavigation} from './machines.js?v=d6045b8af89b3984adcb';
 import {appearanceRole} from './appearance-role.mjs?v=a2d85521f7f516860221';
 import {createCustomTube} from './custom-voron-tube.mjs?v=06995433c84962abb661';
@@ -15,9 +15,9 @@ import {setupSceneDisplay} from './display-preferences.mjs?v=9860960509e28d17f3f
 import {setupGrid} from './grid-control.js';
 import {setupRenderExport} from './render-export.js';
 import {setupPublicInfo} from './public-info.js?v=0b0f91d7a82d25acbb87';
-import {setupGcodePanel} from './gcode-panel.js';
-import {programPoint,programPathOffset} from './gcode-timeline.mjs';
-import {formatMessage,translate} from './i18n.mjs?v=7f9863915024ba61771b';
+import {setupGcodePanel} from './gcode-panel.js?v=0738f8c451be63bba150';
+import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
+import {formatMessage,translate} from './i18n.mjs?v=d01a458bbf8c52c2c300';
 export async function mount(scope){
  const $=id=>document.getElementById(id),id=new URL(location.href).searchParams.get('machine')||'voron_v24_500_custom';setupMachineNavigation(id);setupPublicInfo({machineId:id});
  const renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.setClearColor('#edf1f4');$('stage').append(renderer.domElement);

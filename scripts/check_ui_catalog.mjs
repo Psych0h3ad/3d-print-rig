@@ -2,23 +2,14 @@ import fs from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import {resolve,relative} from 'node:path';
 import {createTranslator} from '../site/viewer/translation-engine.mjs';
+import {javascriptLiterals} from './js-ui-literals.mjs';
 
 const root=fileURLToPath(new URL('../site/viewer/',import.meta.url));
 const source=JSON.parse(await fs.readFile(new URL('../localization/source.json',import.meta.url),'utf8'));
 const translator=createTranslator(source.entries),jp=/[\u3040-\u30ff\u3400-\u9fff]/u;
 const decode=text=>text.replace(/\\(?:u\{([a-f0-9]+)\}|u([a-f0-9]{4})|x([a-f0-9]{2})|([\s\S]))/giu,(_,point,u,x,c)=>point||u||x?String.fromCodePoint(parseInt(point||u||x,16)):({n:'\n',r:'\r',t:'\t'}[c]??c));
 function literals(text){
- const strings=[];
- for(let i=0;i<text.length;i++){
-  if(text.slice(i,i+2)==='//'){i=text.indexOf('\n',i+2);if(i<0)break;continue}
-  if(text.slice(i,i+2)==='/*'){i=text.indexOf('*/',i+2)+1;if(i===0)break;continue}
-  const quote=text[i];if(!['"',"'",'`'].includes(quote))continue;
-  let value='',end=i+1;
-  for(;end<text.length;end++){const c=text[end];if(c==='\\'){value+=c+(text[++end]||'');continue}if(c===quote)break;value+=c}
-  i=end;
-  if(quote==='`')strings.push(...value.split(/\$\{[^}]*\}/gu).map(decode));else strings.push(decode(value));
- }
- return strings;
+ return javascriptLiterals(text).map(decode);
 }
 const unknown=[],invalid=[];
 async function scan(directory){

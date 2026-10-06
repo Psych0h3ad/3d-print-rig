@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import {displacementGcodeSettings,ratRigGcodeSettings} from '../site/viewer/gcode-machine-bindings.mjs';
+import {compileVirtualPrinter,virtualSettingsFromAdapter} from '../site/viewer/virtual-printer-emulator.mjs';
+const p={axes:{x:[-10,90],y:[-50,50],z:[0,80],x2:[0,100]}};
+const original=JSON.stringify(p),s=displacementGcodeSettings(p,{x:0,y:0,z:0,x2:30});
+assert.deepEqual(s.limits,{X:[-10,90],Y:[-50,50],Z:[0,80]});assert.deepEqual(s.initial,[0,0,0]);assert.deepEqual(s.homing,{});assert.deepEqual(s.heaters,{});
+assert.equal(compileVirtualPrinter('G1 X-10 Y50 Z80\nG1 X90 Y-50 Z0',{settings:s}).complete,true);
+for(const cmd of ['G1 X91','G28 X','PROBE','M109 S200','T1'])assert.equal(compileVirtualPrinter(cmd,{settings:s}).complete,false,cmd);
+assert.equal(JSON.stringify(p),original);
+const unknown=displacementGcodeSettings({...p,motion_preview:false},{x:0,y:0,z:0});
+assert.equal(unknown.motion_enabled,false);for(const cmd of ['G1 X0','G92 Y0','SET_GCODE_OFFSET Z=0','G28'])assert.equal(compileVirtualPrinter(cmd,{settings:unknown}).complete,false,cmd);
+assert.equal(compileVirtualPrinter('M83\nG1 E2\nACTIVATE_EXTRUDER EXTRUDER=extruder',{settings:unknown}).complete,true);
+assert.throws(()=>compileVirtualPrinter('G28',{settings:{...unknown,homing:{X:{position_mm:0,evidence:'invented'}}}}),/XYZ adapter/);
+const rr=ratRigGcodeSettings({}, {pose:{x0:-20,x1:100,y:30,z:10}}, {x0:[-25,60],x1:[0,120],y:[0,80],z:[0,90]});
+assert.deepEqual(rr.initial,[-20,30,10]);assert.deepEqual(rr.limits.X,[-25,60]);assert.equal(Object.hasOwn(rr.limits,'X1'),false);
+const roundoff=virtualSettingsFromAdapter({initial:[-1e-12,20,10],limits:{X:[0,100],Y:[0,20],Z:[0,10]}});assert.equal(roundoff.initial[0],0);assert.deepEqual(roundoff.limits.X,[0,100]);
+assert.throws(()=>virtualSettingsFromAdapter({initial:[-.001,20,10],limits:roundoff.limits}),/範囲/);
+console.log('Machine bindings: native displacement, primary X0 limits, absent contacts/heaters, disabled XYZ, numeric boundary roundoff and rejected bounds passed.');

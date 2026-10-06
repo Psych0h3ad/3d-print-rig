@@ -8,6 +8,14 @@ export function createTridentMotion(profile){
  function register(root,metadata){
   if(/^trident_r2_gantry_/.test(metadata.id||'')&&metadata.id!==gantryId)throw Error('Trident gantry size mismatch');
   const rows=new Map(metadata.parts.map(p=>[p.key,p]));
+  // Original leaf1167 joins moving bed extrusions despite its Frame_Hardware path.
+  const bedJointKey=profile.machine_id+'_base_1167';
+  if(/^voron_trident_(250|300|350)$/.test(profile.machine_id)&&metadata.id===profile.machine_id+'_base'){
+   const screw=rows.get(bedJointKey),cross=rows.get(profile.machine_id+'_base_1038'),stem=rows.get(profile.machine_id+'_base_1039');
+   if(!screw||screw.source_leaf!=='1167'||screw.name!=='M5x16 BHCS'||screw.source_component!=='Frame:1/Frame_Hardware:1/Screws:1/M5x16 BHCS:19'||!['fixed','z'].includes(screw.motion)||cross?.motion!=='z'||stem?.motion!=='z'||cross.source_leaf!=='1038'||stem.source_leaf!=='1039'||!cross.source_component?.startsWith('Frame:1/Bed Extrusions:1/')||!stem.source_component?.startsWith('Frame:1/Bed Extrusions:1/'))throw Error('Native Trident bed-joint identity/mates changed');
+   // Copy one runtime row: raw metadata and its accepted native witness pins stay intact.
+   rows.set(bedJointKey,{...screw,motion:'z',motion_axes:['Z'],mount_motion:'bed_support_extrusion'});
+  }
   root.traverse(mesh=>{if(!mesh.isMesh)return;const key=mesh.userData.part_key||mesh.name,row=rows.get(key);if(!row)throw Error('Unregistered Trident part '+key);
    if(!['fixed','xy','y','z','reference_flexible'].includes(row.motion))throw Error('Unknown Trident motion '+key);
    if(entries.has(mesh))return;entries.set(mesh,{row,origin:mesh.position.clone()});

@@ -26,6 +26,12 @@ for(const raw of ['Colors and materials','Printed parts / base','Camera view','K
 }
 assert.equal(translate('3D assembly switched · 4 motors · 9 mm belts','ja'),'3D切替済み · 4モーター · 9 mmベルト');
 assert.equal(translate('G1 X10  Y20\n; hello','ja'),'G1 X10  Y20\n; hello');
+// Fragments used in virtual status/log messages include intentional edge
+// spacing. Translating populated fragments must preserve it exactly once.
+const spaced=createTranslator({heater:{kind:'template',ja:' · {0}: {1} °C',en:' · {0}: {1} °C',revision:'current'},location:{kind:'template',ja:'{0}:{1} · ',en:'{0}:{1} · ',revision:'current'}},{dictionaries:new Map([['es',{heater:['current',' · calentador {0}: {1} °C'],location:['current','{0}:{1} · ']}]])});
+assert.equal(spaced.translate(' · extruder: 200 °C','es'),' · calentador extruder: 200 °C');
+assert.equal(spaced.translate('  · extruder: 200 °C  ','es'),'  · calentador extruder: 200 °C  ');
+assert.equal(spaced.translate('macro:12 · ','es'),'macro:12 · ');
 await Promise.all(['es','ko','ru'].map(loadLanguage));
 let checked=0;
 for(const language of ['es','ko','ru']){

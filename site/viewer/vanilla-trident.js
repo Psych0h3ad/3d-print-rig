@@ -1,8 +1,9 @@
+import {baselineReference,baselineLimits,baselineResetPose,baselineGcodeContext,NATIVE_BASELINE_SOURCE,contentSHA256} from './baseline-native-datum.mjs?v=b86b6ff7d71bab3c1117';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {workspaceFrame,WorkspaceResizeObserver,workspaceTask} from './workspace-lifecycle.mjs';
-import {loadMonolithMachines,stockGantryVisibility} from './monolith-machine.js?v=4360962156f4f4b753ce';
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=a444255dc35e7c15a082';
+import {loadMonolithMachines,stockGantryVisibility} from './monolith-machine.js?v=73defb20995f507a54c8';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=c87c3058ab20e5b43e03';
 import {bankBedReferenceDrop} from './changer-bank-model.mjs?v=024cc52a5bbc61da7506';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=workspace-belts-1';
 import {appearanceRole} from './appearance-role.mjs?v=a2d85521f7f516860221';
@@ -14,17 +15,17 @@ import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
 import {setupMachineNavigation} from './machines.js?v=d6045b8af89b3984adcb';
-import {setupConfigurations} from './configurations.js?v=e976bf36bacb631c5de3';
+import {setupConfigurations} from './configurations.js?v=676c513ee63b2217ba64';
 import {setupAccessories} from './accessories.js?v=workspace-belts-2';
 import {setupPublicInfo} from './public-info.js?v=0b0f91d7a82d25acbb87';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
-import {createTridentMotion} from './trident-motion.mjs?v=extra-machines-55';
+import {createTridentMotion} from './trident-motion.mjs?v=312d6a2dd8aa665ba921';
 import {headPlan,partKey} from './head-assembly.js?v=workspace-belts-1';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=827105d8ff1cb8890137';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=dfd1d9c4c4d0b06f7d58';
 import {setupChangerBank} from './changer-bank.js?v=47bbc0fef91af2c7241e';
-import {expandedPrinterCatalog} from './machine-head-model.mjs?v=03db7c7d900ff7f5b2c0';
-import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=workspace-belts-2';
-import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=workspace-belts-1';
+import {expandedPrinterCatalog} from './machine-head-model.mjs?v=5075b3c940c3d11401f4';
+import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=0738f8c451be63bba150';
+import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
 import {createHeadMarkers} from './head-markers.mjs?v=workspace-belts-1';
 export async function mount(scope){
 const requestedMachine=new URL(location.href).searchParams.get('machine');
@@ -35,7 +36,7 @@ renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor('#
 const scene=scope.scene(new THREE.Scene()),camera=new THREE.PerspectiveCamera(38,1,.005,10),controls=scope.resource(new OrbitControls(camera,renderer.domElement));
 camera.position.set(.98,.83,1.4);controls.target.set(0,.22,0);controls.update();
 let pending=false,frames=0,motion,catalog,profile,originalLimits,current,active,accessories,installedHeads,toolBank,gantryVisibility,program,headMarkers;
-const cached=new Map(),meshes=[],palette={base:'#24272c',accent:'#e32636',frame:'#25282d'};
+const stockReference=[],cached=new Map(),meshes=[],palette={base:'#24272c',accent:'#e32636',frame:'#25282d'};
 function render(){if(pending)return;pending=true;workspaceFrame(()=>{pending=false;renderer.render(scene,camera);document.body.dataset.renderedFrames=++frames})}
 setupGrid(scene,render);
 const frameMods=await loadFrameMods(machine);
@@ -60,8 +61,8 @@ async function asset(id){return workspaceTask(async()=>{if(cached.has(id))return
  }).catch(e=>{cached.delete(id);throw e});cached.set(id,promise);return promise;
 });}
 function applyPose(){if(!motion)return;
- const reference=active?.machine_gantry?[...active.machine_head.nozzle_mm.slice(0,2).map((n,i)=>n-active.machine_gantry.bed_min_xy_mm[i]),0]:profile.display_reference_xyz_mm;
- profile.display_limits_mm=monolithDisplayLimits(originalLimits||profile.display_limits_mm,reference,active);
+ const reference=baselineReference(profile,active,active?.machine_gantry?[...active.machine_head.nozzle_mm.slice(0,2).map((n,i)=>n-active.machine_gantry.bed_min_xy_mm[i]),0]:profile.display_reference_xyz_mm);
+ profile.display_limits_mm=baselineLimits(monolithDisplayLimits(originalLimits||profile.display_limits_mm,reference,active),stockReference,reference,active);
  for(const a of ['x','y','z']){const range=profile.display_limits_mm[a.toUpperCase()];$('#'+a).min=range[0];$('#'+a).max=range[1]}
  const selected=accessories?.getExtras().accessories||[];
  const bedReferenceDrop=bankBedReferenceDrop(catalog,catalog.bank_data,installedHeads?.bankState,active);motion.setBedReferenceDrop(bedReferenceDrop);
@@ -86,19 +87,23 @@ async function install(variant){return workspaceTask(async()=>{program?.invalida
  const base=await asset(plan.base);base.root.visible=true;base.root.position.copy(point(plan.translation));for(const r of base.records)r.mesh.visible=!plan.hidden.has(r.key);
  for(const module of plan.modules){const a=await asset(module.id),hidden=new Set(module.hidden_keys||[]);a.root.visible=true;a.root.position.copy(point(module.translation_mm));for(const r of a.records)r.mesh.visible=!hidden.has(r.key)}
  const endstops=await fetch('../R2_ENDSTOP_REGISTRATION.json?v=trident-clearance-35').then(r=>r.json()),ref=endstops.heads[variant.toolhead==='xol'?(variant.hotend==='rapido2_uhf'?'xol':'xol_standard'):'stealthburner'];
- motion.setReference([ref.X.cad_reference_display_coordinate_mm+referenceOffset,ref.Y.cad_reference_display_coordinate_mm+referenceOffset,0]);motion.setBedReferenceDrop(variant.fit.bed_reference_drop_mm||0);active=variant;accessories?.refresh();applyPose();
+ motion.setReference(baselineReference(profile,variant,[ref.X.cad_reference_display_coordinate_mm+referenceOffset,ref.Y.cad_reference_display_coordinate_mm+referenceOffset,0]));motion.setBedReferenceDrop(variant.fit.bed_reference_drop_mm||0);if(!active&&variant.native_reference_92){const xyz=baselineResetPose(motion.getReference(),bankBedReferenceDrop(catalog,catalog.bank_data,installedHeads?.bankState,variant));for(const[i,a]of ['x','y','z'].entries())$('#'+a).value=xyz[i];}active=variant;accessories?.refresh();applyPose();
  const url=new URL('./toolheads.html',location.href);url.searchParams.set('configuration',variant.id);$('#toolheadLink').href=url;
  $('#badge').textContent=`VORON TRIDENT ${size} · XY 6 mm`;document.body.dataset.configuration=variant.id;
  document.body.dataset.ready='true';
 });}
 try{
- const getJSON=async path=>{return workspaceTask(async()=>{const r=await fetch('../'+path,{cache:'no-cache'});if(!r.ok)throw Error(path);return r.json()});};
+ const getJSON=async(path,expectedSHA)=>{return workspaceTask(async()=>{const r=await fetch('../'+path,{cache:'no-cache'});if(!r.ok)throw Error(path);if(expectedSHA){const text=await r.text();if(await contentSHA256(text)!==expectedSHA)throw Error('Native baseline datum hash mismatch: '+path);return JSON.parse(text)}return r.json()});};
  [profile,catalog]=await Promise.all([getJSON(`machines/${machine}/machine_profile.json`),getJSON(`machines/${machine}/configurations.json`)]);
- originalLimits=JSON.parse(JSON.stringify(profile.display_limits_mm));
- const headData=await loadMachineHeadCatalog(machine);catalog=await loadMonolithMachines(expandedPrinterCatalog(withFrameMods(catalog,frameMods),headData.heads,headData.registry,machine),headData);catalog.bank_data=headData.bank;installedHeads=createMachineHeads(scene,{...catalog,base_assets:headData.heads.base_assets},{render});ensureMachineHeadControls({gantry:true,monolithUnavailable:catalog.monolith_unavailable});motion=createTridentMotion(profile);const [base,g]=await Promise.all([getJSON(profile.base_assets.meta),loadModel(new GLTFLoader(),'../'+profile.base_assets.glb)]);scene.add(g.scene);register(g.scene,base);gantryVisibility=stockGantryVisibility(new Map(meshes.map(r=>[r.key,r.mesh])));
+ originalLimits=JSON.parse(JSON.stringify(profile.display_limits_mm));stockReference.push(...profile.display_reference_xyz_mm);
+ const headData=await loadMachineHeadCatalog(machine);
+ // Hash acceptance above uses the unchanged raw registry; augment only runtime data.
+ if(headData.registry.head_witness_validation?.machine!==machine)throw Error('Native baseline requires current head witness validation');
+ headData.registry.head_baseline_92=await getJSON(NATIVE_BASELINE_SOURCE.file,NATIVE_BASELINE_SOURCE.sha256);
+ catalog=await loadMonolithMachines(expandedPrinterCatalog(withFrameMods(catalog,frameMods),headData.heads,headData.registry,machine),headData);catalog.bank_data=headData.bank;installedHeads=createMachineHeads(scene,{...catalog,base_assets:headData.heads.base_assets},{render});ensureMachineHeadControls({gantry:true,monolithUnavailable:catalog.monolith_unavailable});motion=createTridentMotion(profile);const [base,g]=await Promise.all([getJSON(profile.base_assets.meta),loadModel(new GLTFLoader(),'../'+profile.base_assets.glb)]);scene.add(g.scene);register(g.scene,base);gantryVisibility=stockGantryVisibility(new Map(meshes.map(r=>[r.key,r.mesh])));
  headMarkers=createHeadMarkers(scene,{rig:installedHeads,fixture:key=>meshes.find(r=>r.key===key)?.mesh,render,setPose:xyz=>{program?.invalidate();if(xyz.some((n,i)=>n<Number($('#'+['x','y','z'][i]).min)-1e-7||n>Number($('#'+['x','y','z'][i]).max)+1e-7))return false;for(const[i,a]of ['x','y','z'].entries())$('#'+a).value=xyz[i];$('#enclosure').checked=true;$('#enclosure').onchange?.({target:$('#enclosure')});applyPose();return true}});
  for(const [i,a] of ['x','y','z'].entries()){const limits=profile.display_limits_mm[a.toUpperCase()];$('#'+a).min=limits[0];$('#'+a).max=limits[1];$('#'+a).value=profile.display_reference_xyz_mm[i];$('#'+a).disabled=false;$('#'+a).oninput=applyPose}
- $('#reset').disabled=false;$('#reset').onclick=()=>{for(const [i,a] of ['x','y','z'].entries())$('#'+a).value=profile.display_reference_xyz_mm[i];applyPose()};
+ $('#reset').disabled=false;$('#reset').onclick=()=>{const xyz=active?.native_reference_92?baselineResetPose(motion.getReference(),bankBedReferenceDrop(catalog,catalog.bank_data,installedHeads?.bankState,active)):profile.display_reference_xyz_mm;for(const [i,a] of ['x','y','z'].entries())$('#'+a).value=xyz[i];applyPose()};
  const key='3d-print-rig-vanilla-trident-palette-'+machine,valid=v=>typeof v==='string'&&/^#[0-9a-f]{6}$/i.test(v);
  try{const saved=JSON.parse(localStorage.getItem(key)||(size===350?localStorage.getItem('3d-print-rig-vanilla-trident-palette'):null)||'null');for(const r of ['base','accent','frame'])if(valid(saved?.[r]))palette[r]=saved[r]}catch{}
  const update=()=>{paletteApply();for(const r of ['base','accent','frame']){$('#'+r).value=palette[r];$('#'+r+'Hex').value=palette[r];$('#'+r+'Hex').removeAttribute('aria-invalid')}$('#frameFinish').value=palette.frame==='#b9bec4'?'silver':palette.frame==='#25282d'?'black':'custom';try{localStorage.setItem(key,JSON.stringify(palette))}catch{}$('#paletteStatus').textContent='機種別の配色'};
@@ -110,7 +115,7 @@ try{
  accessories=setupAccessories(catalog,{load:asset,update:applyPose,stockNodes:new Map(meshes.map(r=>[r.key,r.mesh]))});toolBank=setupChangerBank({catalog,rig:installedHeads,data:headData.bank,extras:{...accessories,onSettled:applyPose}});await toolBank.bind(await setupConfigurations(catalog,install,{...toolBank.options,inspectPose:headMarkers.inspect}));
  if(!active)throw Error('構成のCADを表示できませんでした');
  const programFrame=()=>({nozzle_mm:active.fit.nozzle_mm,reference_xyz_mm:motion.getReference(),moving_bed_z:true});
- program=setupGcodePanel({container:document.querySelector('aside'),scene,render,getPose:()=>[current.x,current.y,current.z],getLimits:displayedMachineLimits,toNozzle:xyz=>programPoint(programFrame(),xyz),pathOffset:xyz=>programPathOffset(programFrame(),xyz),getContext:()=>({configuration:active.id,bank:installedHeads.bankState}),setPose:xyz=>{for(const [i,a]of ['x','y','z'].entries())$('#'+a).value=xyz[i];applyPose()}});
+ program=setupGcodePanel({container:document.querySelector('aside'),scene,render,getPose:()=>[current.x,current.y,current.z],getLimits:displayedMachineLimits,toNozzle:xyz=>programPoint(programFrame(),xyz),pathOffset:xyz=>programPathOffset(programFrame(),xyz),getContext:()=>baselineGcodeContext(active,installedHeads.bankState,motion.getReference()),setPose:xyz=>{for(const [i,a]of ['x','y','z'].entries())$('#'+a).value=xyz[i];applyPose()}});
  $('#status').hidden=true;setupRenderExport({renderer,scene,camera,controls,afterRender:render,name:'VORON_Trident_'+size});resize();
 }catch(e){$('#status').textContent='読込エラー: '+e.message;document.body.dataset.error=e.message;console.error(e)}
 for(const [id,p] of [['iso',[.98,.83,1.4]],['front',[0,.24,1.65]],['top',[0,1.8,0]]])$('#'+id).onclick=()=>{camera.up.set(0,id==='top'?0:1,id==='top'?-1:0);camera.position.set(...p);controls.target.set(0,.22,0);frameResponsiveView(camera,controls);render()};

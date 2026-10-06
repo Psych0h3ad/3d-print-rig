@@ -5,9 +5,11 @@ export function sampleGcode(program,seconds){
  let lo=0,hi=events.length;
  while(lo<hi){const mid=(lo+hi)>>>1;if(events[mid].elapsed_s<=time)lo=mid+1;else hi=mid}
  const event=events[lo],last=events[lo-1];
- if(!event)return {time_s:time,index:lo,event:last||null,position:[...(last?.to||program.initial)],done:true};
+ if(!event)return {time_s:time,index:lo,event:last||null,position:[...(last?.to||program.initial)],state:structuredClone(last?.state||program.initial_state||program.final),done:true};
  const start=event.elapsed_s-event.duration_s,f=event.duration_s?Math.max(0,Math.min(1,(time-start)/event.duration_s)):1;
- return {time_s:time,index:lo,event,position:event.from.map((v,i)=>v+(event.to[i]-v)*f),done:false};
+ const position=event.from.map((v,i)=>v+(event.to[i]-v)*f),state=structuredClone((f===0?event.start_state:null)||event.state||last?.state||program.initial_state);
+ if(state){state.position=[...position];if(event.start_state?.extrusion_by_tool){state.extrusion_by_tool=structuredClone(event.start_state.extrusion_by_tool);state.extrusion_by_tool[state.active_tool]+=event.extrusion_mm*f}}
+ return {time_s:time,index:lo,event,position,state,done:false};
 }
 /** Routes live in the bed's reference frame; Trident paths follow its moving bed. */
 export function programPoint({nozzle_mm,reference_xyz_mm},xyz){

@@ -1,0 +1,258 @@
+{
+  "schema": "existing-sb-native-datum-92",
+  "baselines": [
+    {
+      "machine": "voron_trident_250",
+      "source_variant": "trident_r2__stealthburner__revo_voron__cw2",
+      "nozzle_native_machine_mm": [
+        -1.2914379674637144e-12,
+        -35.900002362211055,
+        309.0092143344677
+      ],
+      "reference_xyz_mm": [
+        125.00029985465684,
+        128.29999763777369,
+        0.0
+      ],
+      "native_reset_xyz_mm": [
+        125.00029985465684,
+        128.29999763777369,
+        5.7592143343809425
+      ],
+      "signed_bed_reference_drop_mm": -5.7592143343809425,
+      "current_reference_xyz_mm": [
+        124.60606718710815,
+        126.63501757013745,
+        0.0
+      ],
+      "current_xy_reach_error_mm": [
+        0.39423266754869246,
+        1.664980067636236
+      ],
+      "source_nozzle_part": "sb_revo_voron_85",
+      "source_nozzle_sha256": "53d75ff2227ebd59381253c3d07fe04ecdf539456b0f43261b9f33073857e736",
+      "source_module_translation_mm": [
+        0,
+        -7.34,
+        -3.0064
+      ],
+      "original_cad_delta_limits_mm": {
+        "X": [
+          -124.60606718710815,
+          125.39393281289185
+        ],
+        "Y": [
+          -126.63501757013745,
+          123.36498242986255
+        ],
+        "Z": [
+          0.0,
+          250.0
+        ]
+      },
+      "new_display_limits_without_cad_domain_expansion_mm": {
+        "X": [
+          0.39423266754869246,
+          250
+        ],
+        "Y": [
+          1.664980067636236,
+          250
+        ],
+        "Z": [
+          0,
+          250
+        ]
+      },
+      "bed_frame": {
+        "part": "voron_trident_250_base_662",
+        "sha256": "a546ad69a3130f9fe1c7d95d34bdf005e4f250d03cc6ab165c9414d302f931d9",
+        "native_bounds_mm": [
+          [
+            -127.00029985465818,
+            -166.1999999999975,
+            301.00000000007503
+          ],
+          [
+            126.9997001453419,
+            87.800000000028,
+            302.5000000000922
+          ]
+        ],
+        "nominal_area_mm": 250,
+        "frame_definition": "Nominal machine-size square centered in measured native magnet/bed plate; native outer plate is 4 mm larger. Physical homing switch calibration is not established."
+      },
+      "homing_switch_verified": false,
+      "physical_installation_verified": false
+    },
+    {
+      "machine": "voron_trident_300",
+      "source_variant": "trident_r2__stealthburner__revo_voron__cw2",
+      "nozzle_native_machine_mm": [
+        -1.2914379674637144e-12,
+        -35.900002362211055,
+        309.0092143344677
+      ],
+      "reference_xyz_mm": [
+        150.00029985465684,
+        153.29999763777346,
+        0.0
+      ],
+      "native_reset_xyz_mm": [
+        150.00029985465684,
+        153.29999763777346,
+        5.759214334380886
+      ],
+      "signed_bed_reference_drop_mm": -5.759214334380886,
+      "current_reference_xyz_mm": [
+        149.60606718710815,
+        151.63501757013745,
+        0.0
+      ],
+      "current_xy_reach_error_mm": [
+        0.39423266754869246,
+        1.6649800676359803
+      ],
+      "source_nozzle_part": "sb_revo_voron_85",
+      "source_nozzle_sha256": "53d75ff2227ebd59381253c3d07fe04ecdf539456b0f43261b9f33073857e736",
+      "source_module_translation_mm": [
+        0,
+        -7.34,
+        -3.0064
+      ],
+      "original_cad_delta_limits_mm": {
+        "X": [
+          -149.60606718710815,
+          150.39393281289185
+        ],
+        "Y": [
+          -151.63501757013745,
+          148.36498242986255
+        ],
+        "Z": [
+          0.0,
+          250.0
+        ]
+      },
+      "new_display_limits_without_cad_domain_expansion_mm": {
+        "X": [
+          0.39423266754869246,
+          300
+        ],
+        "Y": [
+          1.6649800676360087,
+          300
+        ],
+        "Z": [
+          0,
+          250
+        ]
+      },
+      "bed_frame": {
+        "part": "voron_trident_300_base_662",
+        "sha256": "a6901649744c31c9d00eae8efc1f27eeeaa1a2eba31da3217391a40660acbdd7",
+        "native_bounds_mm": [
+          [
+            -152.00029985465818,
+            -191.199999999997,
+            301.00000000007503
+          ],
+          [
+            151.99970014534193,
+            112.800000000028,
+            302.5000000000922
+          ]
+        ],
+        "nominal_area_mm": 300,
+        "frame_definition": "Nominal machine-size square centered in measured native magnet/bed plate; native outer plate is 4 mm larger. Physical homing switch calibration is not established."
+      },
+      "homing_switch_verified": false,
+      "physical_installation_verified": false
+    },
+    {
+      "machine": "voron_trident_350",
+      "source_variant": "trident_r2__stealthburner__revo_voron__cw2",
+      "nozzle_native_machine_mm": [
+        -1.2914379674637144e-12,
+        -35.900002362211055,
+        309.0092143344677
+      ],
+      "reference_xyz_mm": [
+        175.00029985465684,
+        178.29999763777346,
+        0.0
+      ],
+      "native_reset_xyz_mm": [
+        175.00029985465684,
+        178.29999763777346,
+        5.759214334380886
+      ],
+      "signed_bed_reference_drop_mm": -5.759214334380886,
+      "current_reference_xyz_mm": [
+        174.60606718710815,
+        176.63501757013745,
+        0.0
+      ],
+      "current_xy_reach_error_mm": [
+        0.39423266754869246,
+        1.6649800676359803
+      ],
+      "source_nozzle_part": "sb_revo_voron_85",
+      "source_nozzle_sha256": "53d75ff2227ebd59381253c3d07fe04ecdf539456b0f43261b9f33073857e736",
+      "source_module_translation_mm": [
+        0,
+        -7.34,
+        -3.0064
+      ],
+      "original_cad_delta_limits_mm": {
+        "X": [
+          -174.60606718710815,
+          175.39393281289185
+        ],
+        "Y": [
+          -176.63501757013745,
+          173.36498242986255
+        ],
+        "Z": [
+          0.0,
+          250.0
+        ]
+      },
+      "new_display_limits_without_cad_domain_expansion_mm": {
+        "X": [
+          0.39423266754869246,
+          350
+        ],
+        "Y": [
+          1.6649800676360087,
+          350
+        ],
+        "Z": [
+          0,
+          250
+        ]
+      },
+      "bed_frame": {
+        "part": "voron_trident_350_base_662",
+        "sha256": "5c97807b3dc58d9139ea59232ba76d980a482b51c375dc8d295c5809a513f4f1",
+        "native_bounds_mm": [
+          [
+            -177.00029985465818,
+            -216.199999999997,
+            301.0000000000749
+          ],
+          [
+            176.99970014534193,
+            137.800000000028,
+            302.5000000000922
+          ]
+        ],
+        "nominal_area_mm": 350,
+        "frame_definition": "Nominal machine-size square centered in measured native magnet/bed plate; native outer plate is 4 mm larger. Physical homing switch calibration is not established."
+      },
+      "homing_switch_verified": false,
+      "physical_installation_verified": false
+    }
+  ],
+  "scope": "Only measured existing Trident R2 SB/Revo/CW2 nozzle references and preserved original CAD translation limits. No new installed head or A4T/Trinity registration. No firmware homing certification."
+}

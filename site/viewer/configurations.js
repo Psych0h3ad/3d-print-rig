@@ -1,9 +1,9 @@
 import {createConfigurationDraft,configurationLabels,configurationLabel} from './configuration-draft.mjs?v=40f3194bb0e1c5a35cf8';
-import {setupConfigurationEditor} from './configuration-editor.mjs?v=7bfb2b4e39d8990e64e8';
+import {setupConfigurationEditor} from './configuration-editor.mjs?v=b622f985c7a6a041273d';
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
 import {workspaceTask,workspaceListen} from './workspace-lifecycle.mjs';
-import {translate} from './i18n.mjs?v=7f9863915024ba61771b';
-import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=a444255dc35e7c15a082';
+import {translate} from './i18n.mjs?v=d01a458bbf8c52c2c300';
+import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=c87c3058ab20e5b43e03';
 import {catalogDimensions,collections,resolveVariant,choicesFor,choiceChanges,importedVariant,configurationById} from './configuration-model.js?v=d4b3dda97a404a7575b7';
 import {probeCheck,probeOptionSuffix,headBodyCollisionNotes} from './probe-checks.js?v=ea1aef3e30bf7d11d3cb';
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
@@ -98,7 +98,12 @@ export async function setupConfigurations(catalog,install,{presentation='printer
  for(const k of ids)$('#'+k+'Config').onchange=()=>stageChoice(k,$('#'+k+'Config').value);
  editor=createEditor(catalog,{ids,apply:applyDraft,discard:discardDraft,undo});
  if(typeof window!=='undefined')workspaceListen(window,'rig-language-change',()=>{menus(draft.current);updateEditor()});
- for(const row of catalog.sources){const a=document.createElement('a');a.href=row.url;a.textContent=row.label;a.target='_blank';a.rel='noopener';$('#modSources').append(a,document.createTextNode('　'))}
+ for(const row of catalog.sources){
+  const a=document.createElement('a'),url=new URL(row.url),repository=url.pathname.split('/').filter(Boolean).slice(0,2);
+  a.textContent=row.label||row.name||(url.hostname==='github.com'?repository.join('/'):url.hostname);
+  if(!row.label&&url.hostname==='github.com'&&repository.length===2&&/^[a-f0-9]{40}$/i.test(row.commit||''))url.pathname='/'+repository.join('/')+'/tree/'+row.commit;
+  a.href=url.href;if(row.commit)a.title=row.commit;a.target='_blank';a.rel='noopener';$('#modSources').append(a,document.createTextNode('　'));
+ }
  $('#saveConfiguration').onclick=()=>{
   if(!actual||busy||draft.pending)return;
   const data={schema:'3d-print-rig-configuration-v1',machine:catalog.machine_id||'siboor_trident_350',configuration:actual.id,selection:Object.fromEntries(ids.map(k=>[k,actual[k]])),...getExtras()};

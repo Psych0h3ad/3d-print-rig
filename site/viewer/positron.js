@@ -1,13 +1,16 @@
+import {virtualSettingsFromAdapter} from './virtual-printer-emulator.mjs?v=82f4d419283bf6313caf';
+import {unavailableCoordinateNote} from './gcode-machine-bindings.mjs?v=460777c3fc4d1a74bf27';
+import {setupGcodePanel} from './gcode-panel.js?v=0738f8c451be63bba150';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import * as THREE from './vendor-r180/three.module.js';
 import {OrbitControls} from './vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
-import {loadPositron} from './positron-loader.mjs?v=e213f57d4ee250d3116e';
+import {loadPositron} from './positron-loader.mjs?v=ffc4cb64885fe75c371e';
 import {positronSchema,validatePositronState} from './positron-state.mjs?v=8296d1b775fbca04462f';
 import {setupMachineNavigation} from './machines.js?v=d6045b8af89b3984adcb';
 import {sceneLightingState} from './scene-lighting-state.mjs';
-import {translate} from './i18n.mjs?v=7f9863915024ba61771b';
+import {translate} from './i18n.mjs?v=d01a458bbf8c52c2c300';
 import {rememberDisplayControl} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
@@ -56,6 +59,9 @@ export async function mount(scope){
   $('loadConfiguration').onclick=()=>$('configurationFile').click();$('configurationFile').onchange=()=>workspaceTask(async()=>{const file=$('configurationFile').files?.[0];$('configurationFile').value='';if(!file)return;try{if(file.size>64*1024)throw Error('Configuration exceeds 64 KB');restore(JSON.parse(await file.text()));$('configurationStatus').textContent=t('構成JSONを復元しました。')}catch(error){$('configurationStatus').textContent=error.message}});
   for(const id of ['fold','foldPlay','unfoldPlay','foldPause','resetPose','base','accent','frame','resetPalette','accessories','gridVisible','saveConfiguration','loadConfiguration'])$(id).disabled=false;
   current.adapter.setPalette(state.palette);setFold(0);view();resize();await setupPublicInfo({includeDownloads:false});setupRenderExport({three:THREE,renderer,scene,camera,controls,name:machine});$('openRender').disabled=false;
+  setupGcodePanel({container:document.querySelector('aside'),profile:current.profile,adapter:current.adapter,scene,render,drawPath:false,coordinateNote:unavailableCoordinateNote,
+   getPose:()=>[0,0,0],getLimits:()=>({X:[0,0],Y:[0,0],Z:[0,0]}),getFirmwareSettings:()=>virtualSettingsFromAdapter({motionEnabled:false}),
+   getContext:()=>({machine,fold:current.adapter.getFold(),asset_identity:current.replay_asset_identity}),beforePlayback:stop,setPose:()=>{}});
   $('badge').textContent=current.manifest.parts.length.toLocaleString()+' PARTS · POSITRON V3.2.2';document.body.dataset.ready='true';document.body.dataset.parts=current.manifest.parts.length;$('status').hidden=true;
  }catch(error){$('status').textContent=t('モデルの読込に失敗しました。機種を選び直してください。');document.body.dataset.error=error.message;throw error}
 }

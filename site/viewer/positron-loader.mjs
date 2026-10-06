@@ -1,3 +1,4 @@
+import {loadedFamilyAssetIdentity} from './gcode-loaded-asset-identity.mjs?v=42ac134c2d9a8b8f8dfc';
 import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
 import {extraAssetBase,checkedExtraAsset} from './extra-asset-integrity.mjs?v=cb20fe4599d236ba43b3';
 import {beginModelLoading} from './model-progress.mjs?v=6b41a2b9f7626039b7e6';
@@ -11,6 +12,7 @@ export async function loadPositron(index,{signal}={}){
  if(manifest.machine_id!==index.machine_id||profile.machine_id!==index.machine_id)throw Error('Positron identity mismatch');
  progress.assembling();const root=(await new GLTFLoader().parseAsync(bytes.buffer,base.href)).scene;
  root.traverse(n=>{if(n.isMesh){n.frustumCulled=false;n.material=Array.isArray(n.material)?n.material.map(m=>m.clone()):n.material.clone();for(const m of [].concat(n.material))if(m.transparent)m.depthWrite=false}});
- return {root,manifest,profile,adapter:createPositronAdapter(root,manifest,profile)};
+ const replay_asset_identity=await loadedFamilyAssetIdentity({machine:index.machine_id,spec:index,manifest,profile,checkedFileNames:names,requiredFileNames:names});
+ return {root,manifest,profile,adapter:createPositronAdapter(root,manifest,profile),replay_asset_identity};
  }finally{progress.finish()}
 }

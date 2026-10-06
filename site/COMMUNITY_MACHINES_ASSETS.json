@@ -1,5 +1,5 @@
 {
-  "version": "ender3-mods-91",
+  "version": "ender3-motion-92",
   "base_url": "https://psych0h3ad.github.io/3d-print-rig-community-models/",
   "local_directory": "community-machines-assets",
   "machines": {
@@ -9,21 +9,21 @@
       "files": {
         "assembly_manifest.json": {
           "path": "ender3/assembly_manifest.json",
-          "bytes": 440812,
-          "sha256": "a2742daa8b06c91bcd3e5089d460cf71357962a191c644224ebf82ea102a2f53"
+          "bytes": 444058,
+          "sha256": "e4c230fb2d228af5c7670b62bffddc675840766445269bfec9b6790db835646f"
         },
         "machine_profile.json": {
           "path": "ender3/machine_profile.json",
-          "bytes": 41396,
-          "sha256": "082b8c7b6cac7141106c5592a0ab8412dc002d0f3493ed39fb7eb1c9b7f6dc87"
+          "bytes": 42947,
+          "sha256": "c10ef0e862cbc2cc065e79153a1ec9da8ec60b0adeef4d5f24290156787f4c03"
         },
         "model.glb": {
           "path": "ender3/model.glb.gz",
-          "bytes": 26612050,
-          "sha256": "5d3a0bf20ec8085dc46f4f8a2a762200f427ca39227e72cedadff75989d77c2f",
+          "bytes": 26662316,
+          "sha256": "462b855a35b2452dfbfa6623ed08dbbf456f3827f70309f49a7b50f79589d595",
           "encoding": "gzip",
-          "decoded_bytes": 58026652,
-          "decoded_sha256": "393dcd56b4e7a0e675886486acd81c825de9f1a7102b839e00aa1b5365203457"
+          "decoded_bytes": 58332824,
+          "decoded_sha256": "ef494370b069a5e8bdbdb45640aab791a822106c0f1636807342ebefe1ecc1cd"
         },
         "hydra.glb": {
           "path": "ender3/hydra.glb.gz",

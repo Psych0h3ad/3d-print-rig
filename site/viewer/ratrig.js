@@ -1,3 +1,5 @@
+import {setupGcodePanel} from './gcode-panel.js?v=0738f8c451be63bba150';
+import {ratRigGcodeSettings,ratRigCoordinateNote} from './gcode-machine-bindings.mjs?v=460777c3fc4d1a74bf27';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=extra-machines-55';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
@@ -7,7 +9,7 @@ import {workspaceFrame,WorkspaceResizeObserver,workspaceTask,workspaceListen} fr
 import * as THREE from './vendor-r180/three.module.js';
 import {OrbitControls} from './vendor-r180/OrbitControls.js?v=workspace-belts-1';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
-import {loadRatRigMachine,disposeRatRig} from './ratrig-loader.mjs?v=191cd56ade87050054c8';
+import {loadRatRigMachine,disposeRatRig} from './ratrig-loader.mjs?v=9782f451eec4a1a9eec0';
 import {createRatRigGcodePreview} from './ratrig_gcode_preview.mjs';
 import {ratRigSchema,validateRatRigConfiguration,ratRigAxisRanges} from './ratrig-ui-state.mjs?v=workspace-belts-1';
 import {setupMachineNavigation} from './machines.js?v=d6045b8af89b3984adcb';
@@ -22,6 +24,7 @@ camera.position.set(1.5,1.2,1.5);controls.target.set(0,.4,0);
 const pmrem=new THREE.PMREMGenerator(renderer),environment=pmrem.fromScene(new RoomEnvironment(),.03);scene.environment=environment.texture;
 const ambient=new THREE.HemisphereLight(0xffffff,0x586b80,.25),sun=new THREE.DirectionalLight(0xffffff,1.4);sun.position.set(2,4,3);scene.add(ambient,sun);
 const grid=new THREE.GridHelper(4,40,0xa8b8b1,0xc5cec9);grid.visible=false;scene.add(grid);
+let program;
 let current,index,busy=false,disposed=false,pending,initialSnapshot,frameRequest=null;
 const mutable=['x0','x1','y','z','carriageMode','copyOffset','mirrorSum','applyMode','resetPose','base','accent','frame','resetPalette','chamber','vaoc','night','gridVisible','enclosure','flexible','saveConfiguration','loadConfiguration','runGcode','resetGcode'];
 const request=()=>{if(disposed||frameRequest!==null)return;frameRequest=workspaceFrame(()=>{frameRequest=null;controls.update();renderer.render(scene,camera)})};
@@ -61,10 +64,10 @@ function provenance(){
 const currentRatRig=()=>current;
 const captureRatRigConfiguration=()=>({schema:ratRigSchema,machine:current.profile.machine_id,rig:current.adapter.getSnapshot(),view:{night:$('night').checked,grid:$('gridVisible').checked,camera:{position:camera.position.toArray(),target:controls.target.toArray(),up:camera.up.toArray()}}});
 function restoreRatRigConfiguration(data){
- validateRatRigConfiguration(current.profile,data);current.adapter.restore(data.rig);$('night').checked=data.view.night;$('gridVisible').checked=data.view.grid;grid.visible=data.view.grid;camera.position.fromArray(data.view.camera.position);camera.up.fromArray(data.view.camera.up);controls.target.fromArray(data.view.camera.target);camera.lookAt(controls.target);controls.update();lighting();current.gcode=createRatRigGcodePreview(current.adapter,current.profile);sync();rememberDisplayControl();return captureRatRigConfiguration();
+ program?.invalidate();validateRatRigConfiguration(current.profile,data);current.adapter.restore(data.rig);$('night').checked=data.view.night;$('gridVisible').checked=data.view.grid;grid.visible=data.view.grid;camera.position.fromArray(data.view.camera.position);camera.up.fromArray(data.view.camera.up);controls.target.fromArray(data.view.camera.target);camera.lookAt(controls.target);controls.update();lighting();current.gcode=createRatRigGcodePreview(current.adapter,current.profile);sync();rememberDisplayControl();return captureRatRigConfiguration();
 }
 async function loadMachine(id){return workspaceTask(async()=>{
- if(busy)throw Error('CADを読み込み中です。');const previous=current,previousInitial=initialSnapshot,previousView=current?captureRatRigConfiguration().view:null;setBusy(true);$('status').hidden=false;pending=new AbortController();let next;
+ program?.invalidate();if(busy)throw Error('CADを読み込み中です。');const previous=current,previousInitial=initialSnapshot,previousView=current?captureRatRigConfiguration().view:null;setBusy(true);$('status').hidden=false;pending=new AbortController();let next;
  try{
   next=await loadRatRigMachine(index,id,{signal:pending.signal,onProgress:t=>$('status').textContent=t});if(disposed){disposeRatRig(next.root,next.adapter);return}
   scene.add(next.root);if(previous)previous.root.visible=false;current=next;initialSnapshot=current.adapter.getSnapshot();
@@ -83,17 +86,23 @@ for(const [id,kind]of [['iso','iso'],['front','front'],['top','top'],['focusHead
 $('saveConfiguration').onclick=()=>{if(!current||busy)return;const url=URL.createObjectURL(new Blob([JSON.stringify(captureRatRigConfiguration(),null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=current.profile.machine_id+'.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);$('configurationStatus').textContent='構成JSONを保存しました。'};
 $('loadConfiguration').onclick=()=>$('configurationFile').click();$('configurationFile').onchange=async()=>{return workspaceTask(async()=>{const file=$('configurationFile').files?.[0];$('configurationFile').value='';if(!file||busy||!current)return;try{if(file.size>64*1024)throw Error('構成JSONは64 KB以下で指定してください。');restoreRatRigConfiguration(JSON.parse(await file.text()));$('configurationStatus').textContent='構成JSONを復元しました。';$('configurationStatus').classList.remove('notice')}catch(e){$('configurationStatus').textContent=e.message;$('configurationStatus').classList.add('notice')}});};
 $('runGcode').onclick=async()=>{return workspaceTask(async()=>{
- if(!current||busy)return;const lines=$('gcodeText').value.split(/\r?\n/);if(lines.length>2000||$('gcodeText').value.length>256*1024){$('gcodeStatus').textContent='トレースが長すぎます。';return}setBusy(true);let count=0;
- try{for(let i=0;i<lines.length;i++){if(disposed)return;current.gcode.executeLine(lines[i]);count=i+1;if(i%8===0){sync();await new Promise(requestAnimationFrame)}}sync();$('gcodeStatus').textContent='トレース適用済み · '+count+'行';$('gcodeStatus').classList.remove('notice')}
- catch(e){sync();$('gcodeStatus').textContent='トレース停止 · '+(count+1)+'行目 · '+e.message;$('gcodeStatus').classList.add('notice')}
+ if(!current||busy)return;const lines=$('ratrigTraceText').value.split(/\r?\n/);if(lines.length>2000||$('ratrigTraceText').value.length>256*1024){$('ratrigTraceStatus').textContent='トレースが長すぎます。';return}setBusy(true);let count=0;
+ try{for(let i=0;i<lines.length;i++){if(disposed)return;current.gcode.executeLine(lines[i]);count=i+1;if(i%8===0){sync();await new Promise(requestAnimationFrame)}}sync();$('ratrigTraceStatus').textContent='トレース適用済み · '+count+'行';$('ratrigTraceStatus').classList.remove('notice')}
+ catch(e){sync();$('ratrigTraceStatus').textContent='トレース停止 · '+(count+1)+'行目 · '+e.message;$('ratrigTraceStatus').classList.add('notice')}
  finally{if(!disposed)setBusy(false)}
 });};
-$('resetGcode').onclick=()=>action(()=>{current.gcode=createRatRigGcodePreview(current.adapter,current.profile);$('gcodeStatus').textContent='G-code座標状態をリセットしました。'},'gcodeStatus');
+$('resetGcode').onclick=()=>action(()=>{current.gcode=createRatRigGcodePreview(current.adapter,current.profile);$('ratrigTraceStatus').textContent='G-code座標状態をリセットしました。'},'ratrigTraceStatus');
 workspaceListen(window,'pagehide',()=>{disposed=true;pending?.abort();if(frameRequest!==null)cancelAnimationFrame(frameRequest);frameRequest=null;observer.disconnect();disposeRatRig(current?.root,current?.adapter);current=null;controls.dispose();environment.texture.dispose();pmrem.dispose();renderer.dispose()});
 lighting();
 try{
+ for(const id of ['gcodeText','gcodeStatus']){const next='ratrigTrace'+id.slice(5);for(const label of document.querySelectorAll('label[for="'+id+'"]'))label.htmlFor=next;$(id).id=next;}
  const response=await fetch('../RATRIG_ASSETS.json?v=trident-clearance-35',{cache:'no-cache'});if(!response.ok)throw Error('RatRigのカタログを取得できません。');index=await response.json();
  const id=new URLSearchParams(location.search).get('machine')||'ratrig_vcore_41_300_corexy';if(!index.machines.some(r=>r.id===id))throw Error('RatRigの標準構成が未登録です。');setupMachineNavigation(id);await setupPublicInfo({includeDownloads:false});setupRenderExport({three:THREE,renderer,scene,camera,controls,name:id});await loadMachine(id);
+ const settings=()=>ratRigGcodeSettings(current.profile,current.adapter.getSnapshot(),ratRigAxisRanges(current.profile,current.adapter.getSnapshot()));
+ program=setupGcodePanel({container:document.querySelector('aside'),profile:current.profile,adapter:current.adapter,scene,render:request,drawPath:false,coordinateNote:ratRigCoordinateNote,
+  getPose:()=>settings().initial,getLimits:()=>settings().limits,getFirmwareSettings:settings,
+  getContext:()=>{const s=current.adapter.getSnapshot();return {machine:current.profile.machine_id,asset_identity:current.replay_asset_identity,mode:s.mode,copy_offset_mm:s.copy_offset_mm,mirror_sum_mm:s.mirror_sum_mm,secondary:s.mode==='independent'?s.pose.x1:null}},
+  beforePlayback:()=>{if(busy)throw Error('CADまたは既存トレースの処理中です。');},setPose:xyz=>{current.adapter.setPose({x0:xyz[0],y:xyz[1],z:xyz[2]});sync()}});
 }catch(e){$('status').hidden=false;$('status').textContent=e.message;document.body.dataset.error=e.message;console.error(e)}
 
 instance = {currentRatRig,captureRatRigConfiguration,restoreRatRigConfiguration,loadMachine};

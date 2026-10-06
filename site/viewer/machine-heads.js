@@ -1,13 +1,13 @@
 import {workspaceTask} from './workspace-lifecycle.mjs';
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=a444255dc35e7c15a082';
-import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=4360962156f4f4b753ce';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=c87c3058ab20e5b43e03';
+import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=73defb20995f507a54c8';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
 import {appearanceRole} from './appearance-role.mjs?v=a2d85521f7f516860221';
 import {partKey} from './head-assembly.js?v=workspace-belts-1';
-import {v24HeadCatalog} from './machine-head-model.mjs?v=03db7c7d900ff7f5b2c0';
-import {setupConfigurations} from './configurations.js?v=e976bf36bacb631c5de3';
+import {v24HeadCatalog} from './machine-head-model.mjs?v=5075b3c940c3d11401f4';
+import {setupConfigurations} from './configurations.js?v=676c513ee63b2217ba64';
 
 import {loadSiboorRegistration} from './siboor-catalog.mjs?v=c59d93be54e1c7637a63';
 import {stockProbeFit} from './probe-mounts.js?v=81f922c3169490021d08';
