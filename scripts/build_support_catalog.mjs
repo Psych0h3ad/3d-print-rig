@@ -12,6 +12,7 @@ import {withMonolithMachines} from '../site/viewer/monolith-machine-model.mjs';
 import {monolithHeadCatalog} from '../site/viewer/monolith-head-model.mjs';
 import {v0Slots,validateV0Mods} from '../site/viewer/v0-installations.mjs';
 import {bankChoices,bankCapacity,bankSpec} from '../site/viewer/changer-bank-model.mjs';
+import {sizedSiboorCatalog,registerSizedSiboor} from '../site/viewer/siboor-catalog.mjs';
 
 export function enumerateV0(registry){
  const dimensions=v0Slots.map(([id])=>id),options=Object.fromEntries(dimensions.map(d=>[d,[{id:'stock',label:d==='toolhead'?'Mini Stealthburner / BMG / Revo Voron':'純正'},...(d==='accelerometer'?[{id:'none',label:'なし'}]:[]),...registry.options.filter(o=>o.slot===d&&o.id!=='stock').map(o=>({id:o.id,label:o.label}))]]));
@@ -23,6 +24,7 @@ export function buildSupport(root){
  const input_sha256={};
  const read=name=>{const bytes=fs.readFileSync(path.join(root,name));input_sha256[name]=createHash('sha256').update(bytes).digest('hex');return JSON.parse(bytes)};
  const raw=read('TOOLHEAD_CONFIGURATIONS.json'),registry=read('MACHINE_HEAD_REGISTRATIONS.json'),gantries=read('GANTRY_CONFIGURATIONS.json'),mounts=read('MONOLITH_MACHINE_REGISTRATIONS.json'),bank=read('TOOLCHANGER_BANK.json'),v0=read('V0_INSTALLATIONS.json'),library=read('COMPONENT_LIBRARY.json'),mods=read('MACHINE_MODS.json');
+ const siboor=read('SIBOOR_TRIDENT_ASSETS.json');registerSizedSiboor(siboor,registry,bank,mods);
  const heads=withEmbeddedBoards(raw,[xolEmbeddedBoard(read(raw.base_assets.xol.meta)),sbEmbeddedBoard(read(raw.base_assets.stealthburner.meta))]);heads.dimensions=headBuilderDimensions;
  const targets=[],details=new Map();
  function compact(target,catalog){
@@ -43,7 +45,7 @@ export function buildSupport(root){
   let catalog;
   if(m.available===false)continue;
   if(registry.machines[m.id]){
-   if(m.family==='trident')catalog=expandedPrinterCatalog(read(m.id==='siboor_trident_350'?'ASSEMBLY_CONFIGURATIONS.json':`machines/${m.id}/configurations.json`),heads,registry,m.id);
+   if(m.family==='trident')catalog=expandedPrinterCatalog(m.id.startsWith('siboor_trident_')?sizedSiboorCatalog(read('ASSEMBLY_CONFIGURATIONS.json'),siboor,m.id):read(`machines/${m.id}/configurations.json`),heads,registry,m.id);
    else if(m.family==='v24')catalog={...v24HeadCatalog(heads,registry,m.id),accessories:[]};
    else throw Error('Unclassified registered printer '+m.id);
    const frame=mods.machines[m.id];if(frame)catalog.accessories=[...(catalog.accessories||[]),...frame.accessories.filter(a=>!catalog.accessories?.some(b=>a.id===b.id))];

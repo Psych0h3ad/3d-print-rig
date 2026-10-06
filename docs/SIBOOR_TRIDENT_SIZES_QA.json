@@ -1,0 +1,1199 @@
+{
+  "schema": "3d-print-rig.siboor-size-review.v1",
+  "review_revision": 85,
+  "reviewed_on": "2026-10-06",
+  "all_passed": true,
+  "source_sha256": "0c8eeb356bd3809dee9c0909d182262b714048eaa98bad1da90d33c0d5b1f88e",
+  "model_sha256": "ca956d3d7b27526e8f21b7d8cbbc5783ce461b6ae450f9609a6f5847cc814672",
+  "asset_index_sha256": "9b10bebcaa3b326532fdac5ecc435c6414cf3d0402967ebc99944130b8a8f3b0",
+  "adapter_sha256": {
+    "app.js": "2dc185375ad99e22f1b90d1aec9fd60bba137445dd7654ec450dcab86917abcf",
+    "flexible.js": "37fd0f2d1bdfe5ac356f0c58bf4a658b8b97a8b5cd6126ecafb1d64f09b0d284",
+    "siboor-machine.mjs": "adbe9aeaae8afb73ec44115b3bf7e4a6a54184c249bfdf7728f8d61957677108",
+    "siboor-catalog.mjs": "c59d93be54e1c7637a63f5028cf6faccd2125be314eb945f92359a3369fe7928",
+    "bootstrap.js": "e350b7a942150092fd4e8e9bd6f3523960013be89bf66d07e6907e1a6272ac2a"
+  },
+  "actual": {
+    "all_passed": true,
+    "machine_id": "siboor_trident_300",
+    "model_sha256": "ca956d3d7b27526e8f21b7d8cbbc5783ce461b6ae450f9609a6f5847cc814672",
+    "parts": 1500,
+    "stock_recipe_parity": 388,
+    "expanded_catalog_variants": 933,
+    "native_r2_belt_poses": 7,
+    "endstop_names_and_pivots_registered": true,
+    "default_cnc_belt_width_mm": 9,
+    "r2_belt_width_mm": 6,
+    "scope": "Production pinned loader and exact native identities; every stock recipe references current parts, expanded head registration and selected native R2 belt poses. GPU rendering, native-solid fit of every head and arbitrary routing clearance are separate."
+  },
+  "native": {
+    "all_passed": true,
+    "machine_id": "siboor_trident_300",
+    "model_sha256": "ca956d3d7b27526e8f21b7d8cbbc5783ce461b6ae450f9609a6f5847cc814672",
+    "manifest_sha256": "519def1433c254b8685af09d18b013723164deb5a32704e1f9e2fcb8e7027afb",
+    "native_source_sha256": "0c8eeb356bd3809dee9c0909d182262b714048eaa98bad1da90d33c0d5b1f88e",
+    "native_export_members": [
+      {
+        "key": "10",
+        "sha256": "2c37147f253c648404f7e31a6eac4833702f2fd16d68c79336b759e4bf0a2a4c",
+        "bounds_match": true
+      },
+      {
+        "key": "1001",
+        "sha256": "c7a3d68512fcc164532c3c26a2f92ad2fdf49b3a76ab797567f26c3df75af869",
+        "bounds_match": true
+      },
+      {
+        "key": "1004",
+        "sha256": "12dca268a4a86ed066997fab21c896280fd3d072906d396a4b51b0dc20476a2a",
+        "bounds_match": true
+      },
+      {
+        "key": "103",
+        "sha256": "5fdc74cbd02af89257aa91f7bb2d2d798142ab88398af2dfb446fa31bf0aaae0",
+        "bounds_match": true
+      },
+      {
+        "key": "1037",
+        "sha256": "19f47a8f6ffd2c383ffaad9c5a1776c286943124810e0c8f996bf73374c563c0",
+        "bounds_match": true
+      },
+      {
+        "key": "106",
+        "sha256": "64da5d2122cdfa4bb43a04bc359f12382a786e7cc79761d92af8fe8ccbb5f32d",
+        "bounds_match": true
+      },
+      {
+        "key": "1072",
+        "sha256": "dba9210ed6396a35c09fac11b7deff6ed54de2ebdbd7ff1f92baa20f69491149",
+        "bounds_match": true
+      },
+      {
+        "key": "109",
+        "sha256": "2dbe03e9fd58ae2ee3735f568affa61909aa5ed426b335bfa9a552af48747e18",
+        "bounds_match": true
+      },
+      {
+        "key": "1096",
+        "sha256": "377a971bf481a981d36d172ad8f56afb26b72f2a88ba4a7d9252a64fb4e91f82",
+        "bounds_match": true
+      },
+      {
+        "key": "1107",
+        "sha256": "680a3f304176835c707488294c0dc75a68c504476bb57d041e9a9eeab94e75f8",
+        "bounds_match": true
+      },
+      {
+        "key": "1129",
+        "sha256": "e2b86a13c96bc0c4a67cc39d81d95cc7ed7323608207f9f4de804a5abe9d0f8f",
+        "bounds_match": true
+      },
+      {
+        "key": "1271",
+        "sha256": "723ee6027c3ef7d05ed1e487cde39c889402cde66a70ab0086009c4cab4979de",
+        "bounds_match": true
+      },
+      {
+        "key": "13",
+        "sha256": "aefd18bae587c55aa1ac6005b6497dc993a6bb447fb4136d7fec3e3958e17965",
+        "bounds_match": true
+      },
+      {
+        "key": "1304",
+        "sha256": "45025468ffee2e96af80b87beb88b29275066327c36f46dd9a8c0f3b65900593",
+        "bounds_match": true
+      },
+      {
+        "key": "1337",
+        "sha256": "28cb3aa505ece534b6fea8329d09f0427613145f0905f470582a4a0cbdce60e2",
+        "bounds_match": true
+      },
+      {
+        "key": "1338",
+        "sha256": "b4ee3a26afc3bfcca7bda49d2fc3acc8c55a05acdd5de5645a3decf696d10004",
+        "bounds_match": true
+      },
+      {
+        "key": "1368",
+        "sha256": "f274d1c36853ece1c20e51643a0843a88b604c9381bcc0fea01a8f4c5eb7ade1",
+        "bounds_match": true
+      },
+      {
+        "key": "1369",
+        "sha256": "f2d87ccc24c2433814a34ce88d1b4f68018e845962a8d950ce3aeccdcb823558",
+        "bounds_match": true
+      },
+      {
+        "key": "1437",
+        "sha256": "9da94a868ffff118b216f325bbd3908890b10d42b9e985dc9efc3202ed7fd2bc",
+        "bounds_match": true
+      },
+      {
+        "key": "144",
+        "sha256": "6aa2d9bfff3f271f3de8c377af05066880fdf4d853edef8db943fe9d00a38e71",
+        "bounds_match": true
+      },
+      {
+        "key": "1440",
+        "sha256": "f77dc3d97fcb96535a7cddd41f2367e600c3549ebcbf67ebb02f7863528f3315",
+        "bounds_match": true
+      },
+      {
+        "key": "1443",
+        "sha256": "6277db7879ab22f797656696bcc4c7fc2c83de8ae45a6113f02cff7a4701fbc4",
+        "bounds_match": true
+      },
+      {
+        "key": "1445",
+        "sha256": "529f49ce4b56af0446d54a6012570ff91e510fbf9621df4be8009aedc334bba4",
+        "bounds_match": true
+      },
+      {
+        "key": "1451",
+        "sha256": "0a702597078d93651cd21f495cc643b088866659086dd92cc69f1930afffd22f",
+        "bounds_match": true
+      },
+      {
+        "key": "146",
+        "sha256": "3fb774d6f85605a1ca1f2be0520904006c71b80ee0594e2a21822845cd14486d",
+        "bounds_match": true
+      },
+      {
+        "key": "1461",
+        "sha256": "655b59384389edd2154943c625d255bae9179b91b744c5dcfdcddda2d8b045d6",
+        "bounds_match": true
+      },
+      {
+        "key": "1462",
+        "sha256": "42c6d60812e83696a5270ec045a70cbddca62b231ec783b73300431219627618",
+        "bounds_match": true
+      },
+      {
+        "key": "1463",
+        "sha256": "7ff7555404248032cf79e33ce609f48ad79aa5cb8db9c7266b9883f10573940c",
+        "bounds_match": true
+      },
+      {
+        "key": "1498",
+        "sha256": "abdfcd8e67b46a5d97b7e358cd4a92044148d395f5d8d01970412a91169898cd",
+        "bounds_match": true
+      },
+      {
+        "key": "1513",
+        "sha256": "b6088a5ded4fb2f7486ec045ea9860acac2c2fe01795baeb7ddea33660c8b9e4",
+        "bounds_match": true
+      },
+      {
+        "key": "16",
+        "sha256": "2a678796585dd56b3a4b036d44c50840bd9b23c22887030ff7e851175a81e0c3",
+        "bounds_match": true
+      },
+      {
+        "key": "19",
+        "sha256": "c5958b2962af4039a566d9b65f4a9b6e6b980896a56275eb6cf1e16e8bfee054",
+        "bounds_match": true
+      },
+      {
+        "key": "190",
+        "sha256": "0fde282f085c0bed1081a26ec3c3869969e66ee41915126c050b9e4a658a882a",
+        "bounds_match": true
+      },
+      {
+        "key": "192",
+        "sha256": "991f9d638c6e58d0206cbbe48a79e3eac2de07398fa9e44329f5fb712401cf74",
+        "bounds_match": true
+      },
+      {
+        "key": "203",
+        "sha256": "4411c13e2b77f6df19190f58ca7366091a0d2f03f0515b69d8e9a51fdf0db0f3",
+        "bounds_match": true
+      },
+      {
+        "key": "218",
+        "sha256": "cd94dcad96e0311c117d8c3ed955c8f94d525ab0a7125ec4dd829fa43d71c975",
+        "bounds_match": true
+      },
+      {
+        "key": "219",
+        "sha256": "42ad054cb05b0ca17cfc2af89d9573383b925136f6eb9d603bcc26ba433a824c",
+        "bounds_match": true
+      },
+      {
+        "key": "22",
+        "sha256": "6edb9ccac0e53de2bd2bdc426aff6ed6d05f54d3b3a846883d7081f9ecb12ff7",
+        "bounds_match": true
+      },
+      {
+        "key": "25",
+        "sha256": "684a3461796a4274fccfe31150b0a1b2c59d47c738b1cf5bb0069dffae9daedb",
+        "bounds_match": true
+      },
+      {
+        "key": "4",
+        "sha256": "8120b034727e5c351e177492429c37a52e1667161d6e3dc732df7cd9980ac3ca",
+        "bounds_match": true
+      },
+      {
+        "key": "45",
+        "sha256": "4746837d8b552556d4d644503b078b109ba6ba194e1bf9e6eb4e9381ddc64f4b",
+        "bounds_match": true
+      },
+      {
+        "key": "51",
+        "sha256": "acd6c1c936b3819aa9b0ab6601647b06c38f6f8b9896ad11f6c170c7a3bf1747",
+        "bounds_match": true
+      },
+      {
+        "key": "52",
+        "sha256": "17b4c747d5ae303f4919cc4e7ea1a4d8539a527ed7f3c8b46d1bd39f35223385",
+        "bounds_match": true
+      },
+      {
+        "key": "53",
+        "sha256": "2914ee77824a178dedca1a4732b26075e9d76671280b1994e83242cef5bb7dce",
+        "bounds_match": true
+      },
+      {
+        "key": "54",
+        "sha256": "6f739e9303d550d669508b7176716c81ec98fdf75c2ad6cfd9ed872144539014",
+        "bounds_match": true
+      },
+      {
+        "key": "55",
+        "sha256": "fdc4b35e03af03e2676d2d63f124ea980abead783ca2f6becfc3e783b90dc3e1",
+        "bounds_match": true
+      },
+      {
+        "key": "56",
+        "sha256": "d68e855832a800d39d6728e38e7da4549c5b707479b2c937c48e5cb3b756ee3a",
+        "bounds_match": true
+      },
+      {
+        "key": "580",
+        "sha256": "f3e0456d1d8806fefb4682cef3f88cd121ca6385b742cb669bedd18471bcde0b",
+        "bounds_match": true
+      },
+      {
+        "key": "638",
+        "sha256": "8d5105cf2ad880840eeb261b80478d1044fcb35470a69d88432f78ee461081ca",
+        "bounds_match": true
+      },
+      {
+        "key": "679",
+        "sha256": "e7c6116c3034e7cf8f7a1541007638dae1977b7944103c1de209629782fc45e4",
+        "bounds_match": true
+      },
+      {
+        "key": "7",
+        "sha256": "857ebf07647c5d0d85844b22c160d7097f801bedf3d370221d0626d4e0acb5ab",
+        "bounds_match": true
+      },
+      {
+        "key": "85",
+        "sha256": "f9be40fcee4e987a8066a0c5c62e96f87d202a27f53da508483b1473b5ef3a78",
+        "bounds_match": true
+      },
+      {
+        "key": "86",
+        "sha256": "f7fc47d9629c4b159631b238e04eb6f432e61aec34e9a3cf34dba6f56c302d25",
+        "bounds_match": true
+      },
+      {
+        "key": "87",
+        "sha256": "0eaae265d0c56f91b1abd4b7c64a4b07627d8a2661aa0737dbe073156589a0c6",
+        "bounds_match": true
+      },
+      {
+        "key": "88",
+        "sha256": "4c28e7673ebbdf95d8289fa8498fc2d34f16281e77790bd712f7cb8019df1931",
+        "bounds_match": true
+      },
+      {
+        "key": "968",
+        "sha256": "6e8236e98f742a44ac56fdc97ddabbc199367fabfba700a74efaf04266ec646b",
+        "bounds_match": true
+      },
+      {
+        "key": "969",
+        "sha256": "c6991497a09244a7d9e518e2cbf053a8fca4a691591af9e72c4216ae10236512",
+        "bounds_match": true
+      },
+      {
+        "key": "970",
+        "sha256": "9bc85b160d2c5c943e313feff842da0bb93e500106ee0a662da04e708316d2a7",
+        "bounds_match": true
+      },
+      {
+        "key": "977",
+        "sha256": "acf74e8df57782aa850a6af562e8b3ebe34a214c72895811035d47a659069dbe",
+        "bounds_match": true
+      },
+      {
+        "key": "981",
+        "sha256": "34acf4abb4cc9b89196a0a27bf8732447ff8b216bdf3fd3a96e5e0dedbd66f32",
+        "bounds_match": true
+      },
+      {
+        "key": "983",
+        "sha256": "5ddf902e19db7352ef3d8c10d5224bab5ba5222cb5224ab67c1df6bb899aa5eb",
+        "bounds_match": true
+      },
+      {
+        "key": "CAN_cable",
+        "sha256": "f02137da1d9549a31e49df45c153133a6aef8fbd2046f9f935a882518b89712e",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_00",
+        "sha256": "1ac83180dc999215390330333d5352f02e6b972469223bdf68bbe5a62a3cc23b",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_01",
+        "sha256": "0af560e435dfc3b3cb7a3d23567fca9061425d43fe8221dcee729be5073db8db",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_02",
+        "sha256": "f836dd35cddc593bd92e40f4865905c8bf648c6bd72340c2618f290cd8d04ed2",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_03",
+        "sha256": "3b843ea628d969c1e0baf651bed11c4cb0727f6f1282427cbd22ecf8897fef67",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_04",
+        "sha256": "17e2a227025790fd96efe5c2bf37f113a30d8c2f1200ec4a050723d467604f9f",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_05",
+        "sha256": "8c2cd640f2528b3ce0de2384669a7b54b721193335b82d57e305114a1a4775b1",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_06",
+        "sha256": "8fe4728964b91acee0df894714158cbce6815b4f818c5369b0b770a94ad31ce6",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_07",
+        "sha256": "dbf69a957221e6d68dcfc887e4c12738482710af34dc8bf69b9290f0c4d881c7",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_08",
+        "sha256": "06e4c4d5fe745d8d2d6edad6541582342148769a3f8ac5bfb5c170f110b29383",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_09",
+        "sha256": "7281f3cebec31a06f1ca3b59102ba041592635dc92e058a3423e8b9e98a072fb",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_10",
+        "sha256": "d13715d516144767936d6f5486dd297f76e279e4f75cb4c7f49dafc292e0e604",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_11",
+        "sha256": "a13fc6c337a9493c9a84391c2efc00a6285b927d3ecece071a664de664274e0b",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_12",
+        "sha256": "696d678a4a3c80b6971712b358b7807ae7aa40c96fd7dca9b483d051b9413950",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_13",
+        "sha256": "f2c716e37538b5ef109004abbec9d9dea6fcb7eb7f2f1338cdcad6779f379c05",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_14",
+        "sha256": "118d011a3c3fd06a1092b735ed003cbfa8f6e2d860aedf464cc8de2b2521fc14",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_15",
+        "sha256": "b7f7a54ba8bb1def3ee0d6c387f54663dc586dfb6361d69b2d33b340d5fbe521",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_16",
+        "sha256": "31a07521abe93f71e9d2b5b77b6dd449106c982448c17507d47a72ec409e2bb5",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_17",
+        "sha256": "ce56f23f8b13c81ff54b97af054c0f2b7f3240bf2223f59ed1924d6e2667c5b5",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_18",
+        "sha256": "71b5b7c2e3f62ecff9579472bfb9b2aca92d2af818c9d72907989dd00e269fb5",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_19",
+        "sha256": "aa196c6fbaa4e92dc32c2a3dac00de00b323b07015c3af228c016683ce6a21ec",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_20",
+        "sha256": "a8d720c8de4dbdbef97646d90f610f6be1b212a4bf56d140576a0e25ceb38056",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_21",
+        "sha256": "d753ceb42d50ab586f0bc464c5d1ca371f42fcd3278996f15774bf8352ce9cb1",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_22",
+        "sha256": "c5ae20af2bc538a6acf0d9eebac9a551a2edf15880bbfb5135a748a08a0f7d44",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_23",
+        "sha256": "b3465a5179284f5ea7bd63618fd5956450bdd448336c220cc26dcb77f5a19c66",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_24",
+        "sha256": "f9a698c0212ad2a90f1f093993424a692cfe360e98d9cba51772714eff215392",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_25",
+        "sha256": "eadb7eb6c69480d30f45150bf64ab58257c2364c0b6b0624e82861d0b00389a1",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_26",
+        "sha256": "13d37baf78c418caabb5f6e2fb5dcf169670c013af034e6ebc9c1d40d6d3d45f",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_27",
+        "sha256": "7abbad9f8e0192b1a7e0d69a0e752874ae76651f818e3cf3189ecfcf0ef63d90",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_28",
+        "sha256": "3e45c569bf25c85e80ed9af00659b463db002eb14c3dafa9339a6ca283e38018",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_29",
+        "sha256": "a6051cb148186b7b6ff6ed6bf1420a362b5f089ce378232df305033e573e1efe",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_30",
+        "sha256": "ef028f3f6ba83ec9325fcb088513bdff870174178480348427cba2586e0072b7",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_31",
+        "sha256": "aca8638638fff0a839e1d0d3847057f82954fd92bad2e2357ff24feb930dfbbc",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_32",
+        "sha256": "f04d0ccbc111f27b8d4baeb13802978aff46c0fdfcc41abdb1af04d609dcd4a1",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_33",
+        "sha256": "3264e1dfa43b5daa5024976cce484c66825cb747881912cc0048bc580836d731",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_34",
+        "sha256": "57e74bbc3b58ae585d4665fdb58331811b4425d210dd7f6b8982d866b2b81a88",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_35",
+        "sha256": "78573e3a936ed8325cfbc54c7e859a7d1268da91f4677d5d73a0e43b60c8789a",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_36",
+        "sha256": "3885eaec49da77fdd73a5136f3209908f2af0f952d50acb52c5d5e6181909b79",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_37",
+        "sha256": "b6cc0870e52861a47ddc008a8b6b06e6abc5275a264feaee63b57bc80496e25f",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_38",
+        "sha256": "c0ee876df3997949cba859b41135e84b493219f42a8495658fb56f4f04b781eb",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_39",
+        "sha256": "ab5c961a6cce767411570f341a85b747a58ea82fc61156daa0ef7015506148cd",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_40",
+        "sha256": "202388e5dfbbe5d90e5e79c21d4f9e1fbe559fbec66a02de33de2923bcc1baa1",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_41",
+        "sha256": "5b3608d89c2483ef60bd20fcc97e0b34e618726090895302d78d0b7f7bf5d10e",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_42",
+        "sha256": "d9f48f32042d9cc2ed8afb619afde6ad508c9e06b27d1cfef38e4044c3c4798c",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_43",
+        "sha256": "bc9cc8d48ca5374ef8c55dbbec7190df6004ad257fcd5a0257da413179acf397",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_44",
+        "sha256": "3aad08d5ad6adc4ab1d26c9b3cc91e03a20730a33b2bd2f82a4496bb16d49359",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_45",
+        "sha256": "0704de24f94ff012d8de5a89be4699cf8ff3b858e46667c70cf4f69dcfa87c0d",
+        "bounds_match": true
+      },
+      {
+        "key": "chain_46",
+        "sha256": "b2819d6f2236a1d356cf471b73782f0f6146e29f2c91b57bb4866bd1227fa69b",
+        "bounds_match": true
+      },
+      {
+        "key": "Door_PC_480x470x3",
+        "sha256": "326db6b43d875ec125e0102ac9ff1dc1f853d331d6394181882934346d2bb813",
+        "bounds_match": true
+      },
+      {
+        "key": "PTFE_tube",
+        "sha256": "1805260710aeb7e42abf5fda3bc017e04b73993105802ea1e35e470acd21675c",
+        "bounds_match": true
+      },
+      {
+        "key": "Upper_Belt",
+        "sha256": "747e44871df284b9d33dffd1e5688bd785fc2daed25d50339ac86ef37ec768f9",
+        "bounds_match": true
+      },
+      {
+        "key": "X_rail_screw_00",
+        "sha256": "b92289fd21095b6bcd9b56684ab6a4da809ab60d2ad6827364ea2c45dfd85b42",
+        "bounds_match": true
+      },
+      {
+        "key": "X_rail_screw_01",
+        "sha256": "e75e4ee3a077ac6cf173e41475616cd5c263436b466e57cf4d4bf330bbd681d7",
+        "bounds_match": true
+      },
+      {
+        "key": "X_rail_screw_02",
+        "sha256": "1971fa3d6a484c118390565738f296c06949f21b34d053279f0befaabf28179e",
+        "bounds_match": true
+      },
+      {
+        "key": "X_rail_screw_03",
+        "sha256": "0a2888f80f3d7ae0ec9246ad4aa37aedb4d098e24a7ef79ed6475d927d1e8cc3",
+        "bounds_match": true
+      },
+      {
+        "key": "X_rail_screw_04",
+        "sha256": "114a7e4f3b75395132ed210f19003d78ce014fa29961d8be76a361211a02b492",
+        "bounds_match": true
+      },
+      {
+        "key": "X_rail_screw_05",
+        "sha256": "2b7cc79f0a7aff6222a1f6ec52520bb509e2d316c2169d1a7d57c97cb6b1b58b",
+        "bounds_match": true
+      },
+      {
+        "key": "X_rail_screw_06",
+        "sha256": "226e9ecace4ee45a9a0e87f0ac8ef36a41930237a58cfc16ff446c4b8308a92a",
+        "bounds_match": true
+      },
+      {
+        "key": "X_rail_screw_07",
+        "sha256": "8b17a575555b33ce989aad8a2071d051bd9eb012bbbeeaa7d8d6eae2c7a9ba3e",
+        "bounds_match": true
+      },
+      {
+        "key": "X_rail_screw_08",
+        "sha256": "d8d0ce9de80bcd9ab19b36195157d86979faab291fb704f1e33d366caf4f4fc3",
+        "bounds_match": true
+      },
+      {
+        "key": "X_rail_screw_09",
+        "sha256": "53fb7cefc5d46efc2845fb21942ef98b6e1b87f8bed7f1f797de70ea915a9cd4",
+        "bounds_match": true
+      },
+      {
+        "key": "X_rail_screw_10",
+        "sha256": "a5f2767d64ae003a03eefc08c344b80302e3442b80be1aca96f790f52c6372a9",
+        "bounds_match": true
+      },
+      {
+        "key": "X_rail_screw_11",
+        "sha256": "2888a7881a53604afb1a001ca9c4d420c1819430aa1ef4fb435bfa7b6ffed357",
+        "bounds_match": true
+      },
+      {
+        "key": "X_rail_screw_12",
+        "sha256": "726d82eb52f75819419c5c250a8e184aabfcf52001254cefdae3c8651334376c",
+        "bounds_match": true
+      },
+      {
+        "key": "X_rail_screw_13",
+        "sha256": "22db530a826aede21921b88cce38c5ef19b9c77d23795bc101d6b54c34424d97",
+        "bounds_match": true
+      },
+      {
+        "key": "Y-1_rail_screw_00",
+        "sha256": "c96301d9fd2eb488223893175bc0d0c1770787d31e415b66e33723243829b5b5",
+        "bounds_match": true
+      },
+      {
+        "key": "Y-1_rail_screw_01",
+        "sha256": "2f02fadb2440e53e0ccba52831cb98c2ee2102052258360af1c8f4a38c0f53ea",
+        "bounds_match": true
+      },
+      {
+        "key": "Y-1_rail_screw_02",
+        "sha256": "8caea5f582d9d8c9aa5695ccd145112ea66194284f3282d077234eae433f2cfd",
+        "bounds_match": true
+      },
+      {
+        "key": "Y-1_rail_screw_03",
+        "sha256": "1dcfe750adb30755119d0a60d281c0fb967dea907c09699c23977a7bc684940a",
+        "bounds_match": true
+      },
+      {
+        "key": "Y-1_rail_screw_04",
+        "sha256": "bf42b6d76819076418fef5afa9ee66fe77ca9ac693746eca32c0c938ac0fc23d",
+        "bounds_match": true
+      },
+      {
+        "key": "Y-1_rail_screw_05",
+        "sha256": "00e0d500d367f1ffbab21f4532f0027cb06dc395bac769920bdfd13472e02421",
+        "bounds_match": true
+      },
+      {
+        "key": "Y-1_rail_screw_06",
+        "sha256": "a2b195d1d9f8881c87fb88dfcb5c12a30b21b745ac68f23814ba76e8ed09558d",
+        "bounds_match": true
+      },
+      {
+        "key": "Y-1_rail_screw_07",
+        "sha256": "3ce6904f2a8f1ff0ca69000e9df6cdd582fd9050deee7d69d285d56d92529406",
+        "bounds_match": true
+      },
+      {
+        "key": "Y-1_rail_screw_08",
+        "sha256": "2ea3c1e190690c53623df5cecf95f785cf8ed7a1fcc52b6e878d0fa515b17153",
+        "bounds_match": true
+      },
+      {
+        "key": "Y-1_rail_screw_09",
+        "sha256": "0c0fe8b841c4a4699d3bc934f6e60c5124d3e1f05694565638f649a97f550264",
+        "bounds_match": true
+      },
+      {
+        "key": "Y-1_rail_screw_10",
+        "sha256": "8f9b8a014a81191cd649fb4da6038f7bf36fc90912473764919b297cd336bd41",
+        "bounds_match": true
+      },
+      {
+        "key": "Y-1_rail_screw_11",
+        "sha256": "7ceb83d21e207217c81bb99a3d420bfaf36090b1c725508c8cc07554efc61f59",
+        "bounds_match": true
+      },
+      {
+        "key": "Y-1_rail_screw_12",
+        "sha256": "8817e2ecbb3e5f98bca1c539082c95fa505c539361ef77deb5bff61de2714699",
+        "bounds_match": true
+      },
+      {
+        "key": "Y-1_rail_screw_13",
+        "sha256": "de87a743aa094b750e96d94e40d07ddf5c096eab67b21c7ce8b82301fe052fdc",
+        "bounds_match": true
+      },
+      {
+        "key": "Y-1_rail_screw_14",
+        "sha256": "d3326dc1b19d45862159fdeb5872a8a820bca9111c03119d4158b7a6f26fbd25",
+        "bounds_match": true
+      },
+      {
+        "key": "Y-1_rail_screw_15",
+        "sha256": "82c582e4b05cce28c19b2f8077dd156e05ca3ec135f0f5e847bdf8fbe2790d41",
+        "bounds_match": true
+      },
+      {
+        "key": "Y-1_rail_screw_16",
+        "sha256": "c076dd05126085efa1b880cd3db0b75e1c4f46309585fc0d5f8e39598f9e28dc",
+        "bounds_match": true
+      },
+      {
+        "key": "Y1_rail_screw_00",
+        "sha256": "a2f8eae72616f4d034bbac8c73f82e615bf8923a21e48d0fb5c0f2a38be14bae",
+        "bounds_match": true
+      },
+      {
+        "key": "Y1_rail_screw_01",
+        "sha256": "fd330203bf38c8fd0de71ec9f85405a987201d981629acb6b7a1611759531e57",
+        "bounds_match": true
+      },
+      {
+        "key": "Y1_rail_screw_02",
+        "sha256": "4c6c71b4affd4b950824748ac0ad10f71c8e23390997f12b08e80dfbec70185a",
+        "bounds_match": true
+      },
+      {
+        "key": "Y1_rail_screw_03",
+        "sha256": "6d9f2e652305a6aa159f7a07af467b93ef2f1b00e5d3d84c3385bd63e2f4fc59",
+        "bounds_match": true
+      },
+      {
+        "key": "Y1_rail_screw_04",
+        "sha256": "10adff2bf8ddfdecb2475aa359c16bb0d3ee9e5d3f447083605a8fe7fb30a107",
+        "bounds_match": true
+      },
+      {
+        "key": "Y1_rail_screw_05",
+        "sha256": "16be0e2811b3960da892e6add3de2af5ca8a3352f7535224b5e9b8190cd92187",
+        "bounds_match": true
+      },
+      {
+        "key": "Y1_rail_screw_06",
+        "sha256": "6374ffc5352bd651dda2eedd15c914ef6c061ada73b475c4247fc543fcc722d8",
+        "bounds_match": true
+      },
+      {
+        "key": "Y1_rail_screw_07",
+        "sha256": "95abe23c51c0eb8360d6e533b60d9fe2afa704d47c02079cc7af6fc147ba84a8",
+        "bounds_match": true
+      },
+      {
+        "key": "Y1_rail_screw_08",
+        "sha256": "13258404041292c04e46cc1a1c4c69aa6ca34cd813755ce3c2e92d8884d3437f",
+        "bounds_match": true
+      },
+      {
+        "key": "Y1_rail_screw_09",
+        "sha256": "ebd5f64c264154cbbbae63daeaab8c4bc47ad5671c88f2dc5be0cc8fdf71e116",
+        "bounds_match": true
+      },
+      {
+        "key": "Y1_rail_screw_10",
+        "sha256": "07502f01c44c1e8a5fac78c3d4e0264a3380d0e29725f41bae83cb63a5d03ba9",
+        "bounds_match": true
+      },
+      {
+        "key": "Y1_rail_screw_11",
+        "sha256": "399613e96e63a9e8f6b5c4f0654e1cb6facef99a22e6addfe05ba3ed235ac44c",
+        "bounds_match": true
+      },
+      {
+        "key": "Y1_rail_screw_12",
+        "sha256": "afaa7aafb481c25a3c6df61256759c9db65594c41f9c58f43b65e6e9c6f11bd1",
+        "bounds_match": true
+      },
+      {
+        "key": "Y1_rail_screw_13",
+        "sha256": "47464b2870a319d837de8dfa6e5aa6e20a5aa9ba8a45a264c26e9c491cf3d5ba",
+        "bounds_match": true
+      },
+      {
+        "key": "Y1_rail_screw_14",
+        "sha256": "13c3f62912b889fd00fe9107c39ce09a882e3b9c4c3e971e2e2d13aa6fc83ab0",
+        "bounds_match": true
+      },
+      {
+        "key": "Y1_rail_screw_15",
+        "sha256": "bd709dbe8304c51ca461585a634f8e2680be4a1e6345fa4df9504d94fbce3bbb",
+        "bounds_match": true
+      },
+      {
+        "key": "Y1_rail_screw_16",
+        "sha256": "7b833a7872192f47e08143211dca8d8ae4cf4257cdbed15e388a4f31a61941cc",
+        "bounds_match": true
+      }
+    ],
+    "rail_fasteners": [
+      {
+        "key": "Y-1_rail_screw_00",
+        "rail": "146",
+        "bore_axis_error_mm": 2.8421709430404007e-13,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y-1_rail_screw_01",
+        "rail": "146",
+        "bore_axis_error_mm": 3.2405734631855066e-13,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y-1_rail_screw_02",
+        "rail": "146",
+        "bore_axis_error_mm": 3.1166837572216805e-13,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y-1_rail_screw_03",
+        "rail": "146",
+        "bore_axis_error_mm": 3.8657704262548816e-13,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y-1_rail_screw_04",
+        "rail": "146",
+        "bore_axis_error_mm": 3.7057375295732124e-13,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y-1_rail_screw_05",
+        "rail": "146",
+        "bore_axis_error_mm": 4.706775815088575e-13,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y-1_rail_screw_06",
+        "rail": "146",
+        "bore_axis_error_mm": 5.598427493280328e-13,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y-1_rail_screw_07",
+        "rail": "146",
+        "bore_axis_error_mm": 2.0097183471152322e-13,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y-1_rail_screw_08",
+        "rail": "146",
+        "bore_axis_error_mm": 1.0423446395232218e-12,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y-1_rail_screw_09",
+        "rail": "146",
+        "bore_axis_error_mm": 1.0372950550217103e-12,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y-1_rail_screw_10",
+        "rail": "146",
+        "bore_axis_error_mm": 1.0372950550217103e-12,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y-1_rail_screw_11",
+        "rail": "146",
+        "bore_axis_error_mm": 1.033003050303378e-12,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y-1_rail_screw_12",
+        "rail": "146",
+        "bore_axis_error_mm": 1.0372950550217103e-12,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y-1_rail_screw_13",
+        "rail": "146",
+        "bore_axis_error_mm": 1.0012351454979884e-12,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y-1_rail_screw_14",
+        "rail": "146",
+        "bore_axis_error_mm": 1.004859173557616e-12,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y-1_rail_screw_15",
+        "rail": "146",
+        "bore_axis_error_mm": 1.048140854583481e-12,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y-1_rail_screw_16",
+        "rail": "146",
+        "bore_axis_error_mm": 1.048140854583481e-12,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y1_rail_screw_00",
+        "rail": "192",
+        "bore_axis_error_mm": 4.0990372275064023e-13,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y1_rail_screw_01",
+        "rail": "192",
+        "bore_axis_error_mm": 4.73031519081054e-13,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y1_rail_screw_02",
+        "rail": "192",
+        "bore_axis_error_mm": 4.706775815088575e-13,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y1_rail_screw_03",
+        "rail": "192",
+        "bore_axis_error_mm": 5.598427493280328e-13,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y1_rail_screw_04",
+        "rail": "192",
+        "bore_axis_error_mm": 5.598427493280328e-13,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y1_rail_screw_05",
+        "rail": "192",
+        "bore_axis_error_mm": 5.598427493280328e-13,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y1_rail_screw_06",
+        "rail": "192",
+        "bore_axis_error_mm": 5.598427493280328e-13,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y1_rail_screw_07",
+        "rail": "192",
+        "bore_axis_error_mm": 2.0097183471152322e-13,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y1_rail_screw_08",
+        "rail": "192",
+        "bore_axis_error_mm": 1.0423446395232218e-12,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y1_rail_screw_09",
+        "rail": "192",
+        "bore_axis_error_mm": 1.0372950550217103e-12,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y1_rail_screw_10",
+        "rail": "192",
+        "bore_axis_error_mm": 1.0372950550217103e-12,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y1_rail_screw_11",
+        "rail": "192",
+        "bore_axis_error_mm": 1.033003050303378e-12,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y1_rail_screw_12",
+        "rail": "192",
+        "bore_axis_error_mm": 1.0372950550217103e-12,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y1_rail_screw_13",
+        "rail": "192",
+        "bore_axis_error_mm": 1.0012351454979884e-12,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y1_rail_screw_14",
+        "rail": "192",
+        "bore_axis_error_mm": 1.004859173557616e-12,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y1_rail_screw_15",
+        "rail": "192",
+        "bore_axis_error_mm": 1.048140854583481e-12,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "Y1_rail_screw_16",
+        "rail": "192",
+        "bore_axis_error_mm": 1.048140854583481e-12,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "X_rail_screw_00",
+        "rail": "203",
+        "bore_axis_error_mm": 8.196215617317648e-08,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "X_rail_screw_01",
+        "rail": "203",
+        "bore_axis_error_mm": 1.2002156880084304e-06,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "X_rail_screw_02",
+        "rail": "203",
+        "bore_axis_error_mm": 2.396229829652096e-06,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "X_rail_screw_03",
+        "rail": "203",
+        "bore_axis_error_mm": 3.5931763785864846e-06,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "X_rail_screw_04",
+        "rail": "203",
+        "bore_axis_error_mm": 4.790356525242389e-06,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "X_rail_screw_05",
+        "rail": "203",
+        "bore_axis_error_mm": 5.987630074216158e-06,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "X_rail_screw_06",
+        "rail": "203",
+        "bore_axis_error_mm": 7.184950418998226e-06,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "X_rail_screw_07",
+        "rail": "203",
+        "bore_axis_error_mm": 8.382297530386617e-06,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "X_rail_screw_08",
+        "rail": "203",
+        "bore_axis_error_mm": 9.57966122274904e-06,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "X_rail_screw_09",
+        "rail": "203",
+        "bore_axis_error_mm": 1.0777036045275777e-05,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "X_rail_screw_10",
+        "rail": "203",
+        "bore_axis_error_mm": 1.1974418715947029e-05,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "X_rail_screw_11",
+        "rail": "203",
+        "bore_axis_error_mm": 1.3171807109959505e-05,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "X_rail_screw_12",
+        "rail": "203",
+        "bore_axis_error_mm": 1.4369199639242076e-05,
+        "unintended_body_overlap_mm3": 0.0
+      },
+      {
+        "key": "X_rail_screw_13",
+        "rail": "203",
+        "bore_axis_error_mm": 1.5566595552463105e-05,
+        "unintended_body_overlap_mm3": 0.0
+      }
+    ],
+    "native_block_rail_internal_insert_overlap_mm3": 0.022485738765257668,
+    "block_housing_rail_body_overlap_mm3": 0,
+    "internal_insert_fit_certified": false,
+    "bed_attached_parts": 39,
+    "nozzle_bed_scope": "Existing stock recipes retain their authored 0.2 mm nozzle/bed reference drop; all hotend/probe body clearance is not certified.",
+    "scope": "Native 300 sized members and 160 exported BRep members: validity and metadata bounds; exact cylindrical mating axes and native solid boolean checks of 48 rail screws and native X block housing/rail. Native insert contact has a small nonzero intersection and is not certified. Thread engagement into the backing strips is intentional. Other bodies, flexible bending and all head modifications are not certified."
+  },
+  "motion": [
+    {
+      "machine_id": "siboor_trident_300",
+      "all_passed": true,
+      "native_source_loaded": true,
+      "poses": 109,
+      "chain_links": 47,
+      "no_automatic_chain_loss": true,
+      "belts_preserved": true,
+      "chain_reference_fallback_poses": 50,
+      "fallback_physical_routing_verified": false
+    },
+    {
+      "machine_id": "siboor_trident_350",
+      "all_passed": true,
+      "native_source_loaded": true,
+      "poses": 109,
+      "chain_links": 47,
+      "no_automatic_chain_loss": true,
+      "belts_preserved": true,
+      "chain_reference_fallback_poses": 61,
+      "fallback_physical_routing_verified": false
+    }
+  ],
+  "browser": {
+    "name": "Codex in-app browser",
+    "viewports": [
+      [
+        1280,
+        720
+      ],
+      [
+        390,
+        844
+      ]
+    ],
+    "screenshots": [
+      {
+        "file": "300-max.png",
+        "sha256": "3a05a7de82379b3a792675792958af72484b03fe6648f08e1385d2bfd3fa38ed"
+      },
+      {
+        "file": "300-mobile-motion.png",
+        "sha256": "a8849b3d2bdf5199b57ec68864fa93fd16552d1e6c4305cebc4e97be4e86b293"
+      },
+      {
+        "file": "300-r2-min.png",
+        "sha256": "47270ef0c52511a14d9ba973f7a32afed525ff06d2c7e910776aa6acceb40565"
+      },
+      {
+        "file": "300-sphinx.png",
+        "sha256": "7c37da9de6567b152c95c9fce3f82a4cc726cdba6f70b7157b4f1ebd9fe00b48"
+      }
+    ],
+    "checks": [
+      "Native 300 default CNC AWD",
+      "XYZ maximum and endstop pressed indication",
+      "300 R2 loading and minimum/midpoint travel",
+      "Sphinx selection and 3D apply",
+      "Mobile orbit and simultaneous model/settings display"
+    ],
+    "gpu_review_separate_from_automated_tests": true,
+    "physical_mobile_safari_verified": false
+  },
+  "scope": "Native sized geometry, production pinned loader, all 388 stock recipes and 933 composed catalog selections; 109 stock flexible preview poses per size and 7 native R2 belt poses. Exact native solid checks cover 48 rail screws and the X block housing only. Full physical fit of every head, probe, dock, internal bearing insert or flexible route is not certified. Stock chains retain a labeled reference fallback outside their registered routing envelope."
+}

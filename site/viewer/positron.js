@@ -5,14 +5,14 @@ import {OrbitControls} from './vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
 import {loadPositron} from './positron-loader.mjs?v=e213f57d4ee250d3116e';
 import {positronSchema,validatePositronState} from './positron-state.mjs?v=8296d1b775fbca04462f';
-import {setupMachineNavigation} from './machines.js?v=98f22b8a6b185e5aa7e3';
+import {setupMachineNavigation} from './machines.js?v=d6045b8af89b3984adcb';
 import {sceneLightingState} from './scene-lighting-state.mjs';
-import {translate} from './i18n.mjs?v=c13782afd4ff0c0f20ce';
+import {translate} from './i18n.mjs?v=3a82b8f94233fcefd476';
 import {rememberDisplayControl} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {setupRenderExport} from './render-export.js';
-import {setupPublicInfo} from './public-info.js?v=2bbf2c451ffa53bf08e7';
+import {setupPublicInfo} from './public-info.js?v=0b0f91d7a82d25acbb87';
 
 const foldSteps=['ガラスベッドを外す','ベッドのネジを外す','Vホルダーを外す','ラッチを下げ、支柱のネジを外す','ヘッドを右端へ移動','Vホルダーを収納姿勢へ','ピンをJ字溝の回転位置へ移動','支柱を倒す','ヘッドを収納位置へ戻す','外したネジを左右の収納穴に差し込む','折り畳み完了'];
 export async function mount(scope){

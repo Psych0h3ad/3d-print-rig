@@ -1,8 +1,9 @@
 import {workspaceTask} from './workspace-lifecycle.mjs';
-import {setupPublicInfo} from './public-info.js?v=2bbf2c451ffa53bf08e7';
+import {setupPublicInfo} from './public-info.js?v=0b0f91d7a82d25acbb87';
 import {modelURL} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
 
 const files={
+  siboor_trident_300:['../SIBOOR_TRIDENT_ASSETS.json?v=9b10bebcaa3b326532fd'],
   siboor_trident_350:['../assembly_manifest.json?v=trident-clearance-35','../ASSEMBLY_CONFIGURATIONS.json?v=trident-clearance-35','../SIBOOR_Trident_350.glb'],
   siboor_v24_350:['../machines/siboor_v24_350/assembly_manifest.json','../machines/siboor_v24_350/machine_profile.json','../machines/siboor_v24_350/model.glb'],
 };

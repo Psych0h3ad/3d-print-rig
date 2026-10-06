@@ -7,8 +7,9 @@ import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
 import {appearanceRole} from './appearance-role.mjs?v=workspace-belts-1';
 import {partKey} from './head-assembly.js?v=workspace-belts-1';
 import {v24HeadCatalog} from './machine-head-model.mjs?v=03db7c7d900ff7f5b2c0';
-import {setupConfigurations} from './configurations.js?v=c402022f348608d5eac9';
+import {setupConfigurations} from './configurations.js?v=4714dc817b08bf7cb3ff';
 
+import {loadSiboorRegistration} from './siboor-catalog.mjs?v=c59d93be54e1c7637a63';
 import {stockProbeFit} from './probe-mounts.js?v=81f922c3169490021d08';
 
 import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs?v=workspace-belts-1';
@@ -22,6 +23,7 @@ export async function loadMachineHeadCatalog(machine){return workspaceTask(async
  const hashes={};
  const get=async name=>{return workspaceTask(async()=>{const r=await fetch('../'+name,{cache:'no-cache'});if(!r.ok)throw Error('ヘッドの取付データを取得できません');const text=await r.text();try{hashes[name]=await contentSHA256(text)}catch{/* Unsupported hashing leaves mounting evidence unverified. */}return JSON.parse(text)});};
  const [heads,registry,bank]=await Promise.all([get('TOOLHEAD_CONFIGURATIONS.json'),get('MACHINE_HEAD_REGISTRATIONS.json'),get('TOOLCHANGER_BANK.json')]);
+ if(machine==='siboor_trident_300'){const patch=(await loadSiboorRegistration()).registrations;registry.machines[machine]=patch.head;bank.machines[machine]=patch.bank;bank.indx.machines[machine]=patch.indx_bank;}
  if(machine){
   try{
    const evidence=await get('MOUNT_VALIDATION.json'),target=evidence.machines?.[machine];

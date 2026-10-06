@@ -4,15 +4,15 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {RoomEnvironment} from './vendor/RoomEnvironment.js';
 import {workspaceFrame,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
-import {setupMachineNavigation} from './machines.js?v=98f22b8a6b185e5aa7e3';
+import {setupMachineNavigation} from './machines.js?v=d6045b8af89b3984adcb';
 import {loadExtraMachine} from './extra-machine-loader.mjs?v=274bbda379e78bd08808';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=extra-machines-55';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
-import {setupPublicInfo} from './public-info.js?v=2bbf2c451ffa53bf08e7';
+import {setupPublicInfo} from './public-info.js?v=0b0f91d7a82d25acbb87';
 import {applyNativeMotionProfile,loadNativeMotionProfile} from './native-motion-profile.mjs?v=91532eb992519143f437';
 import {createCommunityAdapter} from './community-adapter.mjs?v=0bfacb332d4a57985927';
-import {setupNativeMotionControls} from './native-motion-controls.mjs?v=3e781b7f807e9a9f2beb';
+import {setupNativeMotionControls} from './native-motion-controls.mjs?v=f57083983693cb10aa57';
 export async function mount(scope){
  const $=id=>document.getElementById(id),stage=$('stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));
  renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);

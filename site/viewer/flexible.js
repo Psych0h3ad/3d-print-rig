@@ -5,7 +5,7 @@ const rot=(p,c,a)=>{const x=p[0]-c[0],y=p[1]-c[1];return [c[0]+x*Math.cos(a)-y*M
 
 // Centreline length is conserved for this U-route. Reject negative straight
 // sections instead of stretching links or inventing a route through the frame.
-export function chainRoute(start,end,total,pitch){
+export function chainRoute(start,end,total,pitch,bounds=[[-245,-240],[245,250]]){
  const radius=(end[1]-start[1])/2,leg=(total-Math.PI*radius-(end[0]-start[0]))/2;
  const tail=leg+end[0]-start[0];
  if(radius<25||leg<0||tail<0)return null;
@@ -18,33 +18,35 @@ export function chainRoute(start,end,total,pitch){
   else{t-=Math.PI*radius;p=[turn+t,end[1],end[2]];a=0}
   points.push(p);angles.push(a);
  }
- if(points.some(p=>p[0]<-245||p[0]>245||p[1]<-240||p[1]>250))return null;
+ if(points.some(p=>p[0]<bounds[0][0]||p[0]>bounds[1][0]||p[1]<bounds[0][1]||p[1]>bounds[1][1]))return null;
  return {points,angles,radius,leg,tail};
 }
 
-export function beltWeights(x,y){
+export function beltWeights(x,y,size=350){
+ const inset=(350-size)/2;
  const soft=(value,lo,hi)=>{const s=8,L=hi-lo,t=clamp(value-lo,0,L),A=L-s;return (t<s?t*t/(2*s):t>L-s?A-(L-t)*(L-t)/(2*s):t-s/2)/A};
  let wx=0,wy=0;
- if(y>=-4.6&&y<=2.1&&x>=-226&&x<=213){
+ if(y>=-4.6&&y<=2.1&&x>=-226+inset&&x<=213-inset){
   wy=1;
-  wx=x<-18.75?soft(x,-225.7454,-18.75):x>19.15?1-soft(x,19.15,212.9146):1;
+  wx=x<-18.75?soft(x,-225.7454+inset,-18.75):x>19.15?1-soft(x,19.15,212.9146-inset):1;
  }
- if(x<=-225.7454&&x>-235&&y>=-4.6&&y<=10){wy=1;wx=0}
- if(x<-231&&x>-235&&y>=10&&y<=224.2541)wy=1-soft(y,10,222);
- if(x>=212.9146&&x<222&&y>=-7.5&&y<=2.1){wy=1;wx=0}
- if(x>218&&x<222&&y<=-7.5&&y>=-231.2459)wy=soft(y,-229,-7.5);
+ if(x<=-225.7454+inset&&x>-235+inset&&y>=-4.6&&y<=10){wy=1;wx=0}
+ if(x<-231+inset&&x>-235+inset&&y>=10&&y<=224.2541-inset)wy=1-soft(y,10,222-inset);
+ if(x>=212.9146-inset&&x<222-inset&&y>=-7.5&&y<=2.1){wy=1;wx=0}
+ if(x>218-inset&&x<222-inset&&y<=-7.5&&y>=-231.2459+inset)wy=soft(y,-229+inset,-7.5);
  return [wx,wy];
 }
 
 export function setupFlexible(scene,meshes,manifest,routes){
- const byKey=new Map(meshes.map(o=>[o.userData.partKey,o])),base=routes.chain_centres;
- const restRoute=chainRoute(base[0],base.at(-1),46*routes.chain_pitch_mm,routes.chain_pitch_mm);
+ const byKey=new Map(meshes.map(o=>[o.userData.partKey,o])),base=routes.chain_centres,frameBounds=routes.frame_bounds_xy_mm;
+ const canEnd=routes.can_fixed_endpoint_mm||[212,247,444],size=routes.size_mm||350;
+ const restRoute=chainRoute(base[0],base.at(-1),46*routes.chain_pitch_mm,routes.chain_pitch_mm,frameBounds);
  const belts=['580','Upper_Belt'].map(key=>{
   const mesh=byKey.get(key),attr=mesh.geometry.attributes.position,original=attr.array.slice(),weights=new Float32Array(attr.count*2);
   for(let i=0;i<attr.count;i++){
    let x=original[i*3]*1000,y=-original[i*3+2]*1000;
    if(key==='Upper_Belt')x=.431373-x;
-   weights.set(beltWeights(x,y),i*2);
+   weights.set(beltWeights(x,y,size),i*2);
   }
   mesh.material.color.set('#202327');mesh.material.metalness=0;mesh.material.roughness=.85;
   attr.setUsage(THREE.DynamicDrawUsage);return {mesh,attr,original,weights};
@@ -87,12 +89,12 @@ export function setupFlexible(scene,meshes,manifest,routes){
     if(enabled){
      const h=variant.filament_inlet_mm,f=sourcePoints[lastFixed],c=variant.can_inlet_mm;
      replaceTube(tube,[[h[0]+dx,h[1]+dy,h[2]],[h[0]+dx,h[1]+dy,h[2]+32],[h[0]+dx-18,h[1]+dy+30,470],[(h[0]+dx+f[0])/2-35,(h[1]+dy+f[1])/2,484],f,...sourcePoints.slice(lastFixed+1)],.002);
-     replaceTube(cable,[[c[0]+dx,c[1]+dy,c[2]],[c[0]+dx,c[1]+dy+10,467],[(c[0]+dx+212)/2,(c[1]+dy+247)/2,479],[212,247,464],[212,247,444]],.0018);
+     replaceTube(cable,[[c[0]+dx,c[1]+dy,c[2]],[c[0]+dx,c[1]+dy+10,467],[(c[0]+dx+canEnd[0])/2,(c[1]+dy+canEnd[1])/2,479],[canEnd[0],canEnd[1],464],canEnd],.0018);
     }
     Object.assign(diagnostics,{belts:enabled,ptfe:enabled,chain:false,chainRouteValid:false,static:rest,scope:'Xol umbilical routing preview; stock toolhead chain not attached.'});
     return diagnostics;
    }
-   const start=[base[0][0]+dx,base[0][1]+dy,base[0][2]],route=chainRoute(start,base.at(-1),46*routes.chain_pitch_mm,routes.chain_pitch_mm);
+   const start=[base[0][0]+dx,base[0][1]+dy,base[0][2]],route=chainRoute(start,base.at(-1),46*routes.chain_pitch_mm,routes.chain_pitch_mm,frameBounds);
    for(const {mesh,index} of [...links,...clips]){
     mesh.visible=enabled;
     if(!route){mesh.quaternion.identity();mesh.position.set(0,0,0);continue}
@@ -109,13 +111,13 @@ export function setupFlexible(scene,meshes,manifest,routes){
       if(bind==='fixed')return p;
       const q=rot(p,base[bind],route.angles[bind]-restRoute.angles[bind]);return q.map((v,j)=>v+route.points[bind][j]-base[bind][j]);
      });
-     const cp=[[-16+dx,23+dy,414],[-16+dx,24+dy,439],start,...route.points.filter((_,i)=>i%3===0),base.at(-1),[212,247,444]];
+     const cp=[[-16+dx,23+dy,414],[-16+dx,24+dy,439],start,...route.points.filter((_,i)=>i%3===0),base.at(-1),canEnd];
      replaceTube(cable,cp,.0018);
     }else{
      const h=sourcePoints[0],f=sourcePoints[lastFixed];
      pts=[[h[0]+dx,h[1]+dy,h[2]],[h[0]+dx,h[1]+dy,454],[h[0]+dx-22,h[1]+dy+35,477],
       [(h[0]+dx+f[0])/2-55,(h[1]+dy+f[1])/2,487],f,...sourcePoints.slice(lastFixed+1)];
-     replaceTube(cable,[[-16+dx,23+dy,414],[-16+dx,24+dy,467],[(dx+196)/2,(dy+270)/2,479],[212,247,464],[212,247,444]],.0018);
+     replaceTube(cable,[[-16+dx,23+dy,414],[-16+dx,24+dy,467],[(dx+canEnd[0]-16)/2,(dy+canEnd[1]+23)/2,479],[canEnd[0],canEnd[1],464],canEnd],.0018);
     }
     replaceTube(tube,pts,.002);
    }

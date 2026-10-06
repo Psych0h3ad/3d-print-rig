@@ -1,12 +1,12 @@
 import {createConfigurationDraft,configurationLabels,configurationLabel} from './configuration-draft.mjs?v=40f3194bb0e1c5a35cf8';
-import {setupConfigurationEditor} from './configuration-editor.mjs?v=7f52cb4fcac57f0c68cf';
+import {setupConfigurationEditor} from './configuration-editor.mjs?v=1681cee43c4b2023a8d4';
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
 import {workspaceTask,workspaceListen} from './workspace-lifecycle.mjs';
-import {translate} from './i18n.mjs?v=c13782afd4ff0c0f20ce';
+import {translate} from './i18n.mjs?v=3a82b8f94233fcefd476';
 import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=a444255dc35e7c15a082';
 import {catalogDimensions,collections,resolveVariant,choicesFor,choiceChanges,importedVariant,configurationById} from './configuration-model.js?v=d4b3dda97a404a7575b7';
 import {probeCheck,probeOptionSuffix,headBodyCollisionNotes} from './probe-checks.js?v=ea1aef3e30bf7d11d3cb';
-import {renderProductLinks} from './product-links.js?v=workspace-belts-1';
+import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
 import {headWitnessCheck}from './head-validation.mjs?v=workspace-belts-1';
 import {createHeadInspection}from './head-validation-ui.mjs?v=workspace-belts-1';
 

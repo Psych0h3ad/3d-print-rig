@@ -4,18 +4,18 @@ import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690
 import {setupSceneDisplay} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {loadMonolithData} from './monolith-machine.js?v=aae7eb63585800516dd5';
-import {machineChoices,machinePage} from './machines.js?v=98f22b8a6b185e5aa7e3';
+import {machineChoices,machinePage} from './machines.js?v=d6045b8af89b3984adcb';
 import {monolithBeltClip} from './monolith-belt-clip.mjs?v=workspace-belts-1';
 import {appearanceRole} from './appearance-role.mjs?v=workspace-belts-1';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
-import {setupPublicInfo} from './public-info.js?v=2bbf2c451ffa53bf08e7';
+import {setupPublicInfo} from './public-info.js?v=0b0f91d7a82d25acbb87';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=0c8f659766c5b83c5f97';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=089c1147d7e334ee92ca';
 import {monolithHeadCatalog} from './monolith-head-model.mjs?v=f01febfc759348d89fa7';
-import {setupConfigurations} from './configurations.js?v=c402022f348608d5eac9';
+import {setupConfigurations} from './configurations.js?v=4714dc817b08bf7cb3ff';
 import {gantryDimensions,gantryChoice,gantryAssets} from './gantry-model.js?v=workspace-belts-1';
 export async function mount(scope){
 const $=s=>document.querySelector(s),stage=$('#stage'),scene=scope.scene(new THREE.Scene()),bench=new THREE.Group();scene.add(bench);scene.background=new THREE.Color('#edf1f5');

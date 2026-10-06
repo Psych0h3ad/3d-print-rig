@@ -4,20 +4,20 @@ import {setupSceneDisplay} from './display-preferences.mjs?v=9860960509e28d17f3f
 import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {loadMonolithData} from './monolith-machine.js?v=aae7eb63585800516dd5';
 import {setupChangerBank} from './changer-bank.js?v=47bbc0fef91af2c7241e';
-import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=0c8f659766c5b83c5f97';
-import {headPrinterLink} from './head-navigation.mjs?v=6bc4816e2e74f152b9b7';
+import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=089c1147d7e334ee92ca';
+import {headPrinterLink} from './head-navigation.mjs?v=6979990fd1abdc93e4f7';
 import {headBuilderDimensions} from './configuration-model.js?v=d4b3dda97a404a7575b7';
 import {appearanceRole} from './appearance-role.mjs?v=workspace-belts-1';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
-import {setupConfigurations} from './configurations.js?v=c402022f348608d5eac9';
-import {setupPublicInfo} from './public-info.js?v=2bbf2c451ffa53bf08e7';
+import {setupConfigurations} from './configurations.js?v=4714dc817b08bf7cb3ff';
+import {setupPublicInfo} from './public-info.js?v=0b0f91d7a82d25acbb87';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=workspace-belts-1';
 import {probeCheck,probeMetrics,probeGuide,headInspectionState,headBodyCollisionNotes} from './probe-checks.js?v=ea1aef3e30bf7d11d3cb';
-import {renderProductLinks} from './product-links.js?v=workspace-belts-1';
+import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
 import {setupHeadBuilder} from './builder-ui.mjs?v=99ba104579f95dce80a1';
 import {validateBuilderExtras} from './toolhead-builder.mjs?v=6ec7788c796225ad9e84';
 export async function mount(scope){

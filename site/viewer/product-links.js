@@ -1,5 +1,5 @@
 export const affiliateProducts=[
- {id:'siboor_trident',label:'SIBOOR Trident',url:'https://s.click.aliexpress.com/e/_c2zpigGp',machines:['siboor_trident_350']},
+ {id:'siboor_trident',label:'SIBOOR Trident',url:'https://s.click.aliexpress.com/e/_c2zpigGp',machines:['siboor_trident_300','siboor_trident_350']},
  {id:'fysetc_v24_pro',label:'FYSETC V2.4 Pro',url:'https://s.click.aliexpress.com/e/_c4UEOUOH',machines:['fysetc_v24_250_pro','fysetc_v24_300_pro','fysetc_v24_350_pro']},
  {id:'siboor_v24_aug',label:'SIBOOR V2.4 R2 AUG',url:'https://s.click.aliexpress.com/e/_c3CPCViD',machines:['siboor_v24_aug_350']},
  {id:'rapido_ace_uhf',label:'Rapido Ace UHF · PT1000',url:'https://s.click.aliexpress.com/e/_c4D7f7kz',components:['rapido_ace_uhf'],hotends:['rapido_ace_uhf'],sensor:'PT1000'},

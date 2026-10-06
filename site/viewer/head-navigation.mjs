@@ -1,6 +1,6 @@
 import {normalizeLanguage} from './languages.mjs?v=ba6a5cd8e1d86849ca34';
 import {monolithHeadCatalog} from './monolith-head-model.mjs?v=f01febfc759348d89fa7';
-import {machinePage} from './machines.js?v=98f22b8a6b185e5aa7e3';
+import {machinePage} from './machines.js?v=d6045b8af89b3984adcb';
 import {machineHeadVariants} from './machine-head-model.mjs?v=03db7c7d900ff7f5b2c0';
 
 export function headPrinterLink(variant,registry,href){

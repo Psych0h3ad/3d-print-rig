@@ -9595,6 +9595,16 @@
       "kind": "message",
       "ja": "リセット",
       "en": "Reset"
+    },
+    "siboor.native_sizes_source_scope": {
+      "kind": "message",
+      "ja": "取得した300 mm STEPの原寸アセンブリと350 mmへの再構成。ClickyClackyドアとFumePackを含む。",
+      "en": "Native 300 mm assembly and 350 mm reconstruction from the acquired 300 mm STEP, including the ClickyClacky door and FumePack."
+    },
+    "siboor.native_docks_unregistered": {
+      "kind": "message",
+      "ja": "この300 mmキットのフレームにはドックを未登録です。",
+      "en": "Frame docks have not been registered for this 300 mm kit."
     }
   }
 }

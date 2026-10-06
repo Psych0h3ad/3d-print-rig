@@ -2,7 +2,7 @@ import {normalizeLanguage} from './languages.mjs?v=ba6a5cd8e1d86849ca34';
 import {annexMachines} from './annex-machines.mjs?v=extra-machines-55';
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
 import {navigateWorkspace} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
-import {renderProductLinks} from './product-links.js?v=workspace-belts-1';
+import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
 import {ratRigMachines} from './ratrig-machines.mjs?v=workspace-belts-1';
 export const machineChoices=[
  {id:'tictac_21_120',label:'TicTac 2.1 · 120 / Native CAD',page:'./community.html',family:'tictac',vendor:'squirrelbrain',size:120},
@@ -25,7 +25,7 @@ export const machineChoices=[
  {id:'positron_v322',label:'Positron V3.2.2 · LDO / 180',page:'./positron.html',family:'positron',vendor:'positron_ldo',size:180},
  ...annexMachines,
  {id:'remorph_beta1_307',label:'Remorph Beta 1 · 307 / LGX Pro / Rapido UHF / Beacon Rev. H',page:'./remorph.html',family:'remorph',vendor:'remorph',size:307},
- {id:'siboor_trident_350',label:'SIBOOR Trident 350 · CNC AWD',page:'./'},
+ ...[300,350].map(size=>({id:`siboor_trident_${size}`,label:`SIBOOR Trident ${size} · CNC AWD`,page:'./'})),
  ...[250,300,350].map(size=>({id:`voron_trident_${size}`,label:`VORON Trident ${size} · 標準プリント構造`,page:'./trident.html'})),
  {id:'voron_trident_500_custom',label:'VORON Trident 500 × 500 × 250 · Custom',page:'./custom-voron.html',family:'trident',vendor:'voron',size:500},
  {id:'voron_trident_350_half_z',label:'VORON Trident 350 × 350 × 125 · Half Z',page:'./custom-voron.html',family:'trident',vendor:'voron',size:350},

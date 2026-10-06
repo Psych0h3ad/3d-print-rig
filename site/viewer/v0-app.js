@@ -11,10 +11,10 @@ import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
 import {poseDelta,createV0Adapter} from './v0_adapter.mjs?v=extra-machines-55';
-import {setupMachineNavigation} from './machines.js?v=98f22b8a6b185e5aa7e3';
+import {setupMachineNavigation} from './machines.js?v=d6045b8af89b3984adcb';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
-import {setupPublicInfo} from './public-info.js?v=2bbf2c451ffa53bf08e7';
+import {setupPublicInfo} from './public-info.js?v=0b0f91d7a82d25acbb87';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=workspace-belts-2';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=workspace-belts-1';
 export async function mount(scope){

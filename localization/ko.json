@@ -7657,6 +7657,14 @@
     "native_motion.reset": {
       "source_revision": "937ebd1732282cea9b3d",
       "text": "초기화"
+    },
+    "siboor.native_sizes_source_scope": {
+      "source_revision": "feb3c4c142fa66ad4962",
+      "text": "취득한 300 mm STEP에서 가져온 원래 300 mm 조립체와 350 mm 재구성. ClickyClacky 도어와 FumePack을 포함합니다."
+    },
+    "siboor.native_docks_unregistered": {
+      "source_revision": "60fa26f4764811657eae",
+      "text": "이 300 mm 키트의 프레임 도크는 등록되지 않았습니다."
     }
   }
 }

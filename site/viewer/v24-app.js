@@ -4,7 +4,7 @@ import {workspaceFrame,WorkspaceResizeObserver,workspaceTask} from './workspace-
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=workspace-belts-1';
 import {appearanceRole} from './appearance-role.mjs?v=workspace-belts-1';
 import * as THREE from 'three';
-import {loadFrameMods,withFrameMods} from './frame-mods.js?v=workspace-belts-1';
+import {loadFrameMods,withFrameMods} from './frame-mods.js?v=0d49b1113e8a089e3cd9';
 import {setupLighting} from './lighting.js?v=454c19f7ca3795b005de';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=workspace-belts-2';
 import {setupAccessories} from './accessories.js?v=workspace-belts-2';
@@ -14,10 +14,10 @@ import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
 import {createV24Adapter} from './v24_adapter.mjs?v=a512696091b77afc9469';
-import {setupMachineNavigation} from './machines.js?v=98f22b8a6b185e5aa7e3';
+import {setupMachineNavigation} from './machines.js?v=d6045b8af89b3984adcb';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
-import {setupPublicInfo} from './public-info.js?v=2bbf2c451ffa53bf08e7';
-import {setupV24MachineHeads} from './machine-heads.js?v=0c8f659766c5b83c5f97';
+import {setupPublicInfo} from './public-info.js?v=0b0f91d7a82d25acbb87';
+import {setupV24MachineHeads} from './machine-heads.js?v=089c1147d7e334ee92ca';
 export async function mount(scope){
 setupMachineNavigation('siboor_v24_350');
 setupPublicInfo();

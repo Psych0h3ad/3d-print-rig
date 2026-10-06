@@ -9,24 +9,28 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
-import {loadFrameMods,withFrameMods} from './frame-mods.js?v=workspace-belts-1';
+import {loadFrameMods,withFrameMods} from './frame-mods.js?v=0d49b1113e8a089e3cd9';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupLighting} from './lighting.js?v=454c19f7ca3795b005de';
-import {setupFlexible} from './flexible.js?v=extra-machines-55';
+import {setupFlexible} from './flexible.js?v=37fd0f2d1bdfe5ac356f';
+import {createTridentBelts} from './trident-belts.mjs';
 import {createBedChain} from './bed-chain.mjs?v=workspace-belts-1';
 import {createPrinterBelts,printerBeltOwner} from './printer-gantry.mjs?v=workspace-belts-2';
-import {setupConfigurations} from './configurations.js?v=c402022f348608d5eac9';
+import {setupConfigurations} from './configurations.js?v=4714dc817b08bf7cb3ff';
 import {setupAccessories} from './accessories.js?v=workspace-belts-2';
 import {setupAppearance} from './appearance.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
-import {setupPublicInfo} from './public-info.js?v=2bbf2c451ffa53bf08e7';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=0c8f659766c5b83c5f97';
+import {setupPublicInfo} from './public-info.js?v=0b0f91d7a82d25acbb87';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=089c1147d7e334ee92ca';
 import {setupChangerBank} from './changer-bank.js?v=47bbc0fef91af2c7241e';
 import {expandedPrinterCatalog} from './machine-head-model.mjs?v=03db7c7d900ff7f5b2c0';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=workspace-belts-2';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=workspace-belts-1';
 import {createHeadMarkers} from './head-markers.mjs?v=workspace-belts-1';
+import {siboorMachine,loadSiboorAssembly} from './siboor-machine.mjs?v=adbe9aeaae8afb73ec44';
 export async function mount(scope){
+const {id:machine,size,gantryId,maxX,maxY}=siboorMachine();
+document.querySelector('h1').textContent='Trident / '+size;
 const $=s=>document.querySelector(s),scene=scope.scene(new THREE.Scene());
 scene.background=new THREE.Color('#edf1f5');
 const stage=$('#stage');
@@ -43,10 +47,10 @@ let renderRequested=true,lastMotionFrame=0,renderedFrames=0;
 controls.addEventListener('change',()=>{renderRequested=true});
 for(const event of ['click','input','change'])workspaceListen(document,event,()=>{renderRequested=true},true);
 setupGrid(scene,()=>{renderRequested=true});
-const frameMods=await loadFrameMods('siboor_trident_350');
-const lighting=setupLighting(scene,renderer,{registration:frameMods.disco,update:()=>{renderRequested=true}});
+const frameMods=await loadFrameMods(machine);
+const lighting=setupLighting(scene,renderer,{registration:frameMods.disco,machine,update:()=>{renderRequested=true}});
 $('#focusDisco').onclick=()=>{unfocus();stop();lighting.focus(camera,controls);renderRequested=true};
-let model,pivot,mode=null,start=0,ready=false,registration,refX=0,refY=0,current={x:0,y:0,z:0},homeStart,focusAxis=null,flexible,bedChain;
+let model,pivot,mode=null,start=0,ready=false,registration,refX=0,refY=0,current={x:0,y:0,z:0},homeStart,focusAxis=null,flexible,bedChain,r2Belts;
 const levers={},plungers={};
 const groups={},moving={y:[],xy:[],z:[],reference_flexible:[]},panes=[],parts=new Map();
 const allMeshes=[];
@@ -68,7 +72,7 @@ function registerModule(root,metadata){
  }
  printerBelts.register(o,p);
  if(o.material.transparent){o.material.depthWrite=false;o.renderOrder=2}
- });appearance?.registerMeshes(meshes);return meshes;
+ });if(metadata.id===gantryId)r2Belts=createTridentBelts(root,metadata);appearance?.registerMeshes(meshes);return meshes;
 }
 async function asset(id){return workspaceTask(async()=>{
  if(assets.has(id))return assets.get(id);
@@ -105,13 +109,13 @@ async function installConfiguration(v){return workspaceTask(async()=>{
  for(const a of assetRoots.values()){a.root.visible=false;a.root.position.set(0,0,0);for(const o of a.meshes)o.visible=true}
  groups[stockHeadGroup].position.copy(cadPoint(v.head_translation_mm));
  if(installed==='xol'){xolScene.visible=true;xolScene.position.copy(cadPoint(v.head_translation_mm));const hidden=new Set(v.hidden_xol_keys);xolScene.traverse(o=>{if(o.isMesh)o.visible=!hidden.has(o.userData.originalKey)})}
- for(const m of v.modules){const a=assetRoots.get(m.id),hidden=new Set(m.hidden_keys||[]);a.root.visible=true;a.root.position.copy(cadPoint(m.translation_mm));a.root.userData.headModule=m.id!=='trident_r2_gantry_350';for(const mesh of a.meshes)mesh.visible=!hidden.has(mesh.userData.originalKey)}
+ for(const m of v.modules){const a=assetRoots.get(m.id),hidden=new Set(m.hidden_keys||[]);a.root.visible=true;a.root.position.copy(cadPoint(m.translation_mm));a.root.userData.headModule=m.id!==gantryId;for(const mesh of a.meshes)mesh.visible=!hidden.has(mesh.userData.originalKey)}
  registration=v.gantry==='trident_r2'?{switches:r2Registration.heads[v.machine_head?'stealthburner':v.toolhead==='xol'&&v.hotend!=='rapido2_uhf'?'xol_standard':v.toolhead]}:{...stockRegistration,switches:{...stockRegistration.switches,X:installed==='xol'?xolMeta.X_registration:stockRegistration.switches.X}};
  for(const id of ['home','focusX','focusY','releaseSwitch'])$('#'+id).disabled=!!v.machine_head;
  refX=registration.switches.X.cad_reference_display_coordinate_mm;refY=registration.switches.Y.cad_reference_display_coordinate_mm;if(v.machine_gantry){refX=v.machine_head.nozzle_mm[0]-v.machine_gantry.bed_min_xy_mm[0];refY=v.machine_head.nozzle_mm[1]-v.machine_gantry.bed_min_xy_mm[1];}
  for(const a of ['X','Y']){const r=registration.switches[a];levers[a]=allMeshes.find(o=>o.name===r.lever_mesh_name);plungers[a]=allMeshes.find(o=>o.name===r.plunger_mesh_name);if(!levers[a]||!plungers[a])throw Error('Missing '+a+' mechanism')}
  $('#headStatus').textContent=[catalog.toolheads.find(x=>x.id===v.toolhead).label,catalog.hotends.find(x=>x.id===v.hotend).label,catalog.extruders.find(x=>x.id===v.extruder).label].join(' · ');
- $('#headStatus').dataset.gantryGeometryRevision=v.gantry==='trident_r2'?assetRoots.get('trident_r2_gantry_350').meta.geometry_revision:'stock-original';
+ $('#headStatus').dataset.gantryGeometryRevision=v.gantry==='trident_r2'?assetRoots.get(gantryId).meta.geometry_revision:'stock-original';
  $('#headNotes').textContent=v.notes.filter(x=>!x.startsWith('SIBOOR')&&!x.startsWith('ベルト')).join(' ');
  $('#badge').textContent=`${v.machine_gantry?'Monolith':v.gantry==='trident_r2'?'TRIDENT R2':'SIBOOR CNC AWD'} · ${v.xy_motors} XY MOTORS · ${v.belt_width_mm} mm BELTS`;
  $('#machineSubtitle').textContent=`SIBOOR JUNE本体 · ${v.machine_gantry?'Monolith':v.gantry==='trident_r2'?'VORON R2':'CNC AWD'} / ${v.belt_width_mm} mm`;
@@ -138,7 +142,7 @@ function leverPose(axis,value,dx,dy){
 function setPose(x,y,z){
  renderRequested=true;
  const bedReferenceDrop=bankBedReferenceDrop(catalog,catalog.bank_data,installedHeads?.bankState,activeConfig),zMax=230-Math.max(0,bedReferenceDrop);
- const limits=monolithDisplayLimits({X:[0,350],Y:[0,360],Z:[0,zMax]},[refX,refY,0],activeConfig);
+ const limits=monolithDisplayLimits({X:[0,maxX],Y:[0,maxY],Z:[0,zMax]},[refX,refY,0],activeConfig);
  x=clamp(x,...limits.X);y=clamp(y,...limits.Y);z=clamp(z,...limits.Z);current={x,y,z};
  program?.updatePath([x,y,z]);
  for(const a of ['x','y','z']){const range=limits[a.toUpperCase()];$('#'+a).min=range[0];$('#'+a).max=range[1]}
@@ -157,6 +161,7 @@ function setPose(x,y,z){
  installedHeads?.setDelta([dx,dy,0]);installedHeads?.gantry.setFlexibleVisible($('#cables').checked);installedHeads?.setPalette(appearance?.colors()||{});
  headMarkers?.update();
  printerBelts.update(activeConfig,dx,dy,$('#cables').checked);
+ if(activeConfig?.gantry==='trident_r2')r2Belts?.update(dy,$('#cables').checked);
  if(activeConfig?.machine_head){
   const routing=flexible.update(dx,dy,bedDown,$('#cables').checked,{id:activeConfig.id,includeStockBelts:printerBeltOwner(activeConfig)==='siboor_awd',disableToolheadRouting:true});
   $('#status').textContent='ヘッドの取付・移動を比較中。ホーミング接点は未登録。';$('#status').style.background='#eff5f7';
@@ -183,7 +188,7 @@ function updateHeadDiagnostics(x,y){
  const hd=$('#headStatus');hd.dataset.installed=installed;hd.dataset.stockVisible=String(groups[stockHeadGroup].visible);hd.dataset.xolVisible=String(!!xolScene?.visible);
  hd.dataset.xMm=x;hd.dataset.yMm=y;hd.dataset.referenceXMm=refX;hd.dataset.referenceYMm=refY;
  if(activeConfig){hd.dataset.variant=activeConfig.id;hd.dataset.gantry=activeConfig.gantry;hd.dataset.beltWidthMm=activeConfig.belt_width_mm;hd.dataset.xyMotors=activeConfig.xy_motors;
- const visible=o=>o.visible&&(!o.parent||visible(o.parent));hd.dataset.visibleR2Parts=allMeshes.filter(o=>o.name.startsWith('trident_r2_gantry_350_')&&visible(o)).length;
+ const visible=o=>o.visible&&(!o.parent||visible(o.parent));hd.dataset.visibleR2Parts=allMeshes.filter(o=>o.name.startsWith(gantryId+'_')&&visible(o)).length;
  hd.dataset.visibleAwdParts=allMeshes.filter(o=>o.userData.stockGroup==='02_CNC_AWD_Gantry'&&visible(o)).length;
  hd.dataset.visibleXolParts=allMeshes.filter(o=>o.userData.originalKey?.startsWith('xol_')&&visible(o)).length;
  hd.dataset.loadedAssets=assets.size;
@@ -199,10 +204,10 @@ const callout=document.createElement('div');callout.style.cssText='display:none;
 const marker=new THREE.Mesh(new THREE.SphereGeometry(.00065,16,12),new THREE.MeshBasicMaterial({color:0xf4a934,depthTest:false,transparent:true,opacity:.8}));marker.visible=false;marker.renderOrder=10;scene.add(marker);
 function focusSwitch(axis){
  program?.invalidate();
- stop();unfocus();setPose(axis==='X'?350:refX,360,current.z);focusAxis=axis;
+ stop();unfocus();setPose(axis==='X'?maxX:refX,maxY,current.z);focusAxis=axis;
  const highlighted=new Set([registration.switches[axis].switch_key,...registration.switches[axis].actuator_keys,...(activeConfig.gantry==='trident_r2'&&installed==='xol'?['xol_probe_module','xol_standard_probe_bracket']:[])]);
  for(const o of allMeshes){if(o.userData.partKey===registration.switches[axis].switch_key||o===levers[axis]||o===plungers[axis])continue;o.material.opacity=Math.min(o.userData.baseOpacity,highlighted.has(o.userData.partKey)?.4:.022);o.material.transparent=true;o.material.depthWrite=false;o.renderOrder=1}
- const cp=registration.switches[axis].contact_point_mm.slice();if(axis==='X'||registration.switches[axis].switch_motion==='y')cp[1]+=360-refY;
+ const cp=registration.switches[axis].contact_point_mm.slice();if(axis==='X'||registration.switches[axis].switch_motion==='y')cp[1]+=maxY-refY;
  const target=new THREE.Vector3(cp[0]/1000,cp[2]/1000,-cp[1]/1000);marker.position.copy(target);marker.visible=true;
  controls.target.copy(target);
  camera.position.copy(target).add(axis==='X'?new THREE.Vector3(.115,-.06,.13):new THREE.Vector3(.10,-.045,.12));
@@ -212,9 +217,9 @@ async function loadGLB(url){return workspaceTask(async()=>{
  let last;for(let attempt=0;attempt<3;attempt++){try{return await loadModel(new GLTFLoader(),url+(attempt?(url.includes('?')?'&':'?')+'retry='+attempt:''))}catch(e){last=e}}
  throw last;
 });}
-setupPublicInfo();
-Promise.all([fetch('../assembly_manifest.json?v=trident-clearance-35',{cache:'no-cache'}).then(r=>r.json()),fetch('../flexible_routes.json?v=trident-clearance-35',{cache:'no-cache'}).then(r=>r.json()),loadModel(new GLTFLoader(),'../SIBOOR_Trident_350.glb'),loadGLB('../Endstop_Mechanisms.glb'),fetch('../COLOR_OPTIONS.json?v=trident-clearance-35',{cache:'no-cache'}).then(r=>r.json()),fetch('../ASSEMBLY_CONFIGURATIONS.json?v=trident-clearance-35',{cache:'no-cache'}).then(r=>r.json()),fetch('../R2_ENDSTOP_REGISTRATION.json?v=trident-clearance-35',{cache:'no-cache'}).then(r=>r.json())]).then(async([manifest,routes,g,endstops,colorOptions,configs,r2Meta])=>{return workspaceTask(async()=>{
- const headData=await loadMachineHeadCatalog('siboor_trident_350');registration=manifest.motion_preview.endstop_registration;catalog=await loadMonolithMachines(expandedPrinterCatalog(withFrameMods(configs,frameMods),headData.heads,headData.registry,'siboor_trident_350'),headData);catalog.bank_data=headData.bank;installedHeads=createMachineHeads(scene,{...catalog,base_assets:headData.heads.base_assets},{render:()=>{renderRequested=true}});ensureMachineHeadControls({gantry:true,monolithUnavailable:catalog.monolith_unavailable});r2Registration=r2Meta;stockRows=manifest.parts;
+setupPublicInfo({machineId:machine});
+loadSiboorAssembly(machine).then(async([manifest,routes,g,endstops,colorOptions,configs,r2Meta])=>{return workspaceTask(async()=>{
+ const headData=await loadMachineHeadCatalog(machine);registration=manifest.motion_preview.endstop_registration;catalog=await loadMonolithMachines(expandedPrinterCatalog(withFrameMods(configs,frameMods),headData.heads,headData.registry,machine),headData);catalog.bank_data=headData.bank;installedHeads=createMachineHeads(scene,{...catalog,base_assets:headData.heads.base_assets},{render:()=>{renderRequested=true}});ensureMachineHeadControls({gantry:true,monolithUnavailable:catalog.monolith_unavailable});r2Registration=r2Meta;stockRows=manifest.parts;
  refX=registration.switches.X.cad_reference_display_coordinate_mm;refY=registration.switches.Y.cad_reference_display_coordinate_mm;
  const lookup=new Map(manifest.parts.map(r=>[r.key,r]));model=g.scene;model.add(endstops.scene);scene.add(model);
  model.traverse(o=>{
@@ -232,14 +237,14 @@ Promise.all([fetch('../assembly_manifest.json?v=trident-clearance-35',{cache:'no
  stockRegistration=registration;stockRefX=refX;stockLeverX=levers.X;stockPlungerX=plungers.X;
  bedChain=createBedChain(model,manifest);for(const e of bedChain.entries)e.mesh.userData.bedChain=true;
  flexible=setupFlexible(scene,allMeshes,manifest,routes);appearance=setupAppearance(allMeshes,await lighting.whenReady,colorOptions);
- const door=groups['09_ClickyClacky_Door'];if(door){pivot=new THREE.Group();pivot.position.set(-.26205,0,.2565);scene.add(pivot);pivot.attach(door)}
+ const door=groups['09_ClickyClacky_Door'];if(door){pivot=new THREE.Group();pivot.position.copy(cadPoint(manifest.door_hinge_axis_mm));scene.add(pivot);pivot.attach(door)}
  for(const s of ['#door','#x','#y','#z','#demo','#reset','#home','#focusX','#focusY','#releaseSwitch','#focusZ'])$(s).disabled=false;
  accessories=setupAccessories(catalog,{load:asset,update:()=>setPose(current.x,current.y,current.z),stockNodes:parts});
  headMarkers=createHeadMarkers(scene,{rig:installedHeads,fixture:key=>parts.get(key),render:()=>{renderRequested=true},setPose:xyz=>{program?.invalidate();stop();unfocus();if(xyz.some((n,i)=>n<Number($('#'+['x','y','z'][i]).min)-1e-7||n>Number($('#'+['x','y','z'][i]).max)+1e-7))return false;$('#head').checked=true;$('#panels').checked=true;showHead();setPose(...xyz);return true}});
  toolBank=setupChangerBank({catalog,rig:installedHeads,data:headData.bank,extras:{...accessories,onSettled:()=>setPose(current.x,current.y,current.z)}});ready=true;$('#loading').remove();await toolBank.bind(await setupConfigurations(catalog,installConfiguration,{...toolBank.options,inspectPose:headMarkers.inspect}));
  const programFrame=()=>({nozzle_mm:activeConfig.fit.nozzle_mm,reference_xyz_mm:[refX,refY,0],moving_bed_z:true});
  program=setupGcodePanel({container:document.querySelector('aside'),scene,render:()=>{renderRequested=true},getPose:()=>[current.x,current.y,current.z],getLimits:displayedMachineLimits,toNozzle:xyz=>programPoint(programFrame(),xyz),pathOffset:xyz=>programPathOffset(programFrame(),xyz),getContext:()=>({configuration:activeConfig.id,bank:installedHeads.bankState}),setPose:xyz=>setPose(...xyz),beforePlayback:()=>{stop();unfocus()}});
- setupRenderExport({renderer,scene,camera,controls,beforeRender:stop,afterRender:()=>{renderRequested=true},name:'Trident_350'});
+ setupRenderExport({renderer,scene,camera,controls,beforeRender:stop,afterRender:()=>{renderRequested=true},name:'SIBOOR_Trident_'+size});
 });}).catch(e=>{if($('#loading'))$('#loading').textContent='モデルを読み込めませんでした。'+e.message;console.error(e)});
 $('#door').oninput=e=>{$('#angle').textContent=e.target.value+'°';if(pivot)pivot.rotation.y=-THREE.MathUtils.degToRad(+e.target.value)};
 function unfocus(){focusAxis=null;marker.visible=false;callout.style.display='none';for(const o of allMeshes){o.material.opacity=o.userData.baseOpacity;o.material.transparent=o.userData.baseTransparent;o.material.depthWrite=!o.userData.baseTransparent;o.renderOrder=o.userData.baseTransparent?2:0}}
@@ -265,7 +270,7 @@ $('#focusZ').onclick=()=>{
  camera.position.copy(target).add(new THREE.Vector3(.11,.05,.13));controls.update();
  callout.textContent='Zガイド · ベッド150 mm下降（周辺を透過）';callout.style.display='block';
 };
-$('#releaseSwitch').onclick=()=>{program?.invalidate();stop();if(focusAxis==='Z')focusSwitch('X');const a=focusAxis==='Y'?'Y':'X',r=registration.switches[a];setPose(a==='X'?r.first_contact_display_coordinate_mm-1:refX,a==='Y'?r.first_contact_display_coordinate_mm-1:360,current.z);marker.visible=false;callout.textContent=a+'スイッチ · 押下直前（1 mm手前）';};
+$('#releaseSwitch').onclick=()=>{program?.invalidate();stop();if(focusAxis==='Z')focusSwitch('X');const a=focusAxis==='Y'?'Y':'X',r=registration.switches[a];setPose(a==='X'?r.first_contact_display_coordinate_mm-1:refX,a==='Y'?r.first_contact_display_coordinate_mm-1:maxY,current.z);marker.visible=false;callout.textContent=a+'スイッチ · 押下直前（1 mm手前）';};
 $('#panels').onchange=e=>{for(const p of panes)p.visible=e.target.checked};
 $('#head').onchange=()=>{showHead();setPose(current.x,current.y,current.z)};
 $('#cables').onchange=()=>setPose(current.x,current.y,current.z);
@@ -278,9 +283,9 @@ renderer.setAnimationLoop(t=>{
  if(ready&&mode==='home'){
   const seconds=(t-start)/1000;
   const approach=(from,to,sec)=>{const near=Math.max(from,to-3);return sec<3?THREE.MathUtils.lerp(from,near,sec/3):THREE.MathUtils.lerp(near,to,clamp(sec-3,0,1))};
-  if(seconds<4)setPose(homeStart.x,approach(homeStart.y,360,seconds),homeStart.z);
-  else if(seconds<8)setPose(approach(homeStart.x,350,seconds-4),360,homeStart.z);
-  else{setPose(350,360,homeStart.z);stop()}
+  if(seconds<4)setPose(homeStart.x,approach(homeStart.y,maxY,seconds),homeStart.z);
+  else if(seconds<8)setPose(approach(homeStart.x,maxX,seconds-4),maxY,homeStart.z);
+  else{setPose(maxX,maxY,homeStart.z);stop()}
  }
  controls.update();
  if(focusAxis){const p=marker.position.clone().project(camera);callout.style.left=(sidebarWidth()+(p.x+1)*viewWidth()/2+12)+'px';callout.style.top=(stage.getBoundingClientRect().top+(1-p.y)*viewHeight()/2-30)+'px'}

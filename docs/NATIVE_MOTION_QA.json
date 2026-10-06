@@ -1,6 +1,6 @@
 {
   "schema": "3d-print-rig.native-motion-review.v1",
-  "review_revision": 84,
+  "review_revision": 85,
   "reviewed_on": "2026-10-06",
   "all_passed": true,
   "actual_machine_workers": 3,
@@ -9,7 +9,7 @@
     "community-state.mjs": "28a3ee6638eaf28328b40bbe865dd60983793cb1ec36d8861fc04410720cccb5",
     "native-motion-profile.mjs": "91532eb992519143f437623b113bdaf52854e693a79266200d4abba10a3b80df",
     "native-motion-flex.mjs": "3c12d86bfab5e3898144a37352c07b30200dd81253605499a564979031edb111",
-    "native-motion-controls.mjs": "3e781b7f807e9a9f2beb49e53c13c342f1c01b5585f4ea24c83dcb0abc3bf9cb"
+    "native-motion-controls.mjs": "f57083983693cb10aa57097c29d1cbfc3756380be63de4761de7719cceb2f0d8"
   },
   "machines": [
     {
@@ -5983,5 +5983,6 @@
       ]
     }
   ],
-  "scope": "Actual native exports and selected native rail/block and head/bed solids. Broad-phase checks do not certify arbitrary body fit. Flexible routes, belt tension, firmware, all fastener engagement and all modifications are not certified."
+  "scope": "Actual native exports and selected native rail/block and head/bed solids. Broad-phase checks do not certify arbitrary body fit. Flexible routes, belt tension, firmware, all fastener engagement and all modifications are not certified.",
+  "fresh_actual_report_sha256": "65aeaa29bd7bdaeae358825e3d1ce9c5954d1cca74470aa9c7e4576ab06a2f80"
 }

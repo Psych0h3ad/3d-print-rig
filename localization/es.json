@@ -7657,6 +7657,14 @@
     "native_motion.reset": {
       "source_revision": "937ebd1732282cea9b3d",
       "text": "Restablecer"
+    },
+    "siboor.native_sizes_source_scope": {
+      "source_revision": "feb3c4c142fa66ad4962",
+      "text": "Ensamblaje nativo de 300 mm y reconstrucción de 350 mm a partir del STEP adquirido de 300 mm, incluida la puerta ClickyClacky y FumePack."
+    },
+    "siboor.native_docks_unregistered": {
+      "source_revision": "60fa26f4764811657eae",
+      "text": "Los docks del bastidor no están registrados para este kit de 300 mm."
     }
   }
 }

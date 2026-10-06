@@ -8,7 +8,7 @@
       "author": "Lzhikai",
       "commit": "2dccffff009af5eb511ff6a6bbbdd8a3e8ec5ef3",
       "url": "https://github.com/Lzhikai/SIBOOR-Voron-Trident-June/tree/2dccffff009af5eb511ff6a6bbbdd8a3e8ec5ef3",
-      "scope": "取得した300mm STEPから350へ再構成した本体。ドア・フィルターを含む。",
+      "scope": "取得した300 mm STEPの原寸アセンブリと350 mmへの再構成。ClickyClackyドアとFumePackを含む。",
       "license": "再配布条件の明記を確認できず / 公開前に確認が必要",
       "changes": "配置・表示用三角形化・配色の調整。機種ごとの変更履歴を検証記録に保存。",
       "version": "300mm STEP SHA256: 0c8eeb356bd3809dee9c0909d182262b714048eaa98bad1da90d33c0d5b1f88e",
