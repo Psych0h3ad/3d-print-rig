@@ -7719,8 +7719,8 @@
       "text": "SHA256 del STEP de la base"
     },
     "hydra.14": {
-      "source_revision": "9fae526bd7391d769df0",
-      "text": "Sistema de placa de herramienta manual. Solo piezas impresas; no incluye ventiladores, hotend, extrusor, tornillos ni sondas. La instalación en Ender-3 no está registrada. Se han eliminado cinco membranas de soporte de 0.2 mm de los orificios para tuercas de las bases."
+      "source_revision": "c1763f17d1c64aa27fe2",
+      "text": "Sistema manual de placas intercambiables. Aquí las piezas se centran por separado. La página de Ender-3 incluye una instalación adaptada Bowden / dos 4010 con hotend, ventiladores y tornillos originales. Se retiraron cinco membranas de soporte."
     },
     "hydra.15": {
       "source_revision": "53b9eda09f7e6580194b",
@@ -7993,6 +7993,26 @@
     "trinity_native.29": {
       "source_revision": "bd0e88fca322f6d0dbec",
       "text": "Trinity · MGN9H / v1.41"
+    },
+    "hydra_install.01": {
+      "source_revision": "22a0856adeb61df10ccc",
+      "text": "Instalación del cabezal"
+    },
+    "hydra_install.02": {
+      "source_revision": "4a6f6af1f772729fc856",
+      "text": "Original · Bowden / refrigeración original"
+    },
+    "hydra_install.03": {
+      "source_revision": "dd129a508119623cc3ba",
+      "text": "HYDRA · Bowden / dos 4010"
+    },
+    "hydra_install.04": {
+      "source_revision": "3d5ea51f01eee7560e80",
+      "text": "Hotend Bowden original y dos ventiladores 4010. Se retiraron cinco soportes integrados y se adaptaron las bases y los conductos a este CAD. El ajuste del visor no valida la resistencia ni las tolerancias de fabricación."
+    },
+    "hydra_install.05": {
+      "source_revision": "5656c69e2c3a2a59aeae",
+      "text": "Conductos de la revisión MK6"
     }
   }
 }

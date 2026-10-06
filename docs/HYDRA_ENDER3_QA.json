@@ -1,0 +1,853 @@
+{
+  "review_revision": 90,
+  "reviewed_on": "2026-10-06",
+  "all_passed": true,
+  "configuration": "hydra_bowden_4010",
+  "additional_native_parts": 37,
+  "visible_parts": 323,
+  "default_stock_parts": 300,
+  "actual_export": {
+    "all_passed": true,
+    "results": [
+      {
+        "machine": "ender3_stock_220",
+        "configuration": "stock",
+        "parts": 337,
+        "visible_parts": 300,
+        "poses": 256,
+        "vertices": 2147315,
+        "all_passed": true,
+        "model_sha256": "393dcd56b4e7a0e675886486acd81c825de9f1a7102b839e00aa1b5365203457",
+        "additional_model_sha256": [
+          "de87f4b215bab8e5d3b86a2036dd999f44a6c4be7bd207955958c230211b93fa"
+        ]
+      },
+      {
+        "machine": "ender3_stock_220",
+        "configuration": "hydra_bowden_4010",
+        "parts": 337,
+        "visible_parts": 323,
+        "poses": 256,
+        "vertices": 2147315,
+        "all_passed": true,
+        "model_sha256": "393dcd56b4e7a0e675886486acd81c825de9f1a7102b839e00aa1b5365203457",
+        "additional_model_sha256": [
+          "de87f4b215bab8e5d3b86a2036dd999f44a6c4be7bd207955958c230211b93fa"
+        ]
+      }
+    ],
+    "scope": "Actual checksum-pinned main and supplement exports, registered visibility masks, rigid motion including reversed poses and exact reset, unit normals, printed palettes, purchased-material isolation, legacy and current save-state validation. Native clearance and browser inspection are separate."
+  },
+  "native_head_mating": {
+    "all_passed": true,
+    "checked_solid_pairs": 138,
+    "unintended_contacts": [],
+    "intended_thread_engagement": [
+      {
+        "a": "hydra_base_rear",
+        "b": "hydra_fan_screw_2",
+        "volume_mm3": 3.172133342532816,
+        "bounds_mm": [
+          [
+            21.18155007227796,
+            175.00857104494085,
+            73.71923840480937
+          ],
+          [
+            23.593181438172156,
+            178.00857104494085,
+            77.66163830480748
+          ]
+        ],
+        "outside_thread_envelope_mm3": 0.0
+      },
+      {
+        "a": "hydra_base_rear",
+        "b": "hydra_fan_screw_3",
+        "volume_mm3": 3.1721333425284843,
+        "bounds_mm": [
+          [
+            21.181550072251998,
+            207.00857104494082,
+            73.71923840480936
+          ],
+          [
+            23.593181438172156,
+            210.00857104494082,
+            77.66163830480747
+          ]
+        ],
+        "outside_thread_envelope_mm3": 0.0
+      },
+      {
+        "a": "hydra_base_side",
+        "b": "hydra_fan_screw_0",
+        "volume_mm3": 3.2184789433664385,
+        "bounds_mm": [
+          [
+            -11.406818561827848,
+            175.00857104494088,
+            73.71923840480937
+          ],
+          [
+            -8.99518812752487,
+            178.00857104494088,
+            77.71923840480746
+          ]
+        ],
+        "outside_thread_envelope_mm3": 0.0
+      },
+      {
+        "a": "hydra_base_side",
+        "b": "hydra_fan_screw_1",
+        "volume_mm3": 3.2184789433896404,
+        "bounds_mm": [
+          [
+            -11.406818561827844,
+            207.00857104494085,
+            73.71923840480937
+          ],
+          [
+            -8.995188127537554,
+            210.00857104494085,
+            77.71923840480746
+          ]
+        ],
+        "outside_thread_envelope_mm3": 0.0
+      },
+      {
+        "a": "hydra_plate_screw_0",
+        "b": "hydra_plate_nut_0",
+        "volume_mm3": 1.4047551716103364,
+        "bounds_mm": [
+          [
+            -24.15659256177781,
+            217.49470694491458,
+            45.48136442636056
+          ],
+          [
+            -21.156592561777416,
+            218.0093736115816,
+            48.481364426360784
+          ]
+        ],
+        "outside_thread_envelope_mm3": 0.0
+      },
+      {
+        "a": "hydra_plate_screw_1",
+        "b": "hydra_plate_nut_1",
+        "volume_mm3": 1.4047551716100575,
+        "bounds_mm": [
+          [
+            -1.0016515617778272,
+            217.49470694491458,
+            45.50000042636054
+          ],
+          [
+            1.998348438222621,
+            218.00937361158154,
+            48.50000042636079
+          ]
+        ],
+        "outside_thread_envelope_mm3": 0.0
+      },
+      {
+        "a": "hydra_plate_screw_2",
+        "b": "hydra_plate_nut_2",
+        "volume_mm3": 1.4047551716100444,
+        "bounds_mm": [
+          [
+            10.187062438222178,
+            217.49470694491458,
+            45.50000042636057
+          ],
+          [
+            13.187062438222597,
+            218.00937361158154,
+            48.50000042636079
+          ]
+        ],
+        "outside_thread_envelope_mm3": 0.0
+      },
+      {
+        "a": "hydra_plate_screw_4",
+        "b": "hydra_plate_nut_4",
+        "volume_mm3": 0.4946088485299519,
+        "bounds_mm": [
+          [
+            -10.406818661777832,
+            215.78508192362378,
+            70.1616383263608
+          ],
+          [
+            -7.406818461777832,
+            218.68268204491488,
+            71.69043852639462
+          ]
+        ],
+        "outside_thread_envelope_mm3": 0.0
+      },
+      {
+        "a": "hydra_duct_nut_0",
+        "b": "hydra_duct_screw_0",
+        "volume_mm3": 1.4047551716098923,
+        "bounds_mm": [
+          [
+            -18.156818561777488,
+            178.0085710449149,
+            70.87123832636021
+          ],
+          [
+            -15.156818561777442,
+            181.00857104491504,
+            71.38590499302717
+          ]
+        ],
+        "outside_thread_envelope_mm3": 0.0
+      },
+      {
+        "a": "hydra_duct_nut_1",
+        "b": "hydra_duct_screw_1",
+        "volume_mm3": 1.4047551716098996,
+        "bounds_mm": [
+          [
+            -18.156818561777516,
+            190.0085710449149,
+            70.87123832636021
+          ],
+          [
+            -15.156818561777413,
+            193.00857104491504,
+            71.38590499302717
+          ]
+        ],
+        "outside_thread_envelope_mm3": 0.0
+      },
+      {
+        "a": "hydra_duct_nut_2",
+        "b": "hydra_duct_screw_2",
+        "volume_mm3": 1.404755171609747,
+        "bounds_mm": [
+          [
+            27.343181438222484,
+            178.0085710449149,
+            70.81363832636018
+          ],
+          [
+            30.343181438222558,
+            181.008571044915,
+            71.32830499302713
+          ]
+        ],
+        "outside_thread_envelope_mm3": 0.0
+      },
+      {
+        "a": "hydra_duct_nut_3",
+        "b": "hydra_duct_screw_3",
+        "volume_mm3": 1.4047551716097462,
+        "bounds_mm": [
+          [
+            27.343181438222484,
+            190.00857104491496,
+            70.81363832636018
+          ],
+          [
+            30.343181438222615,
+            193.008571044915,
+            71.32830499302713
+          ]
+        ],
+        "outside_thread_envelope_mm3": 0.0
+      },
+      {
+        "a": "hydra_base_connector_screw",
+        "b": "hydra_base_connector_nut",
+        "volume_mm3": 1.4047551716099103,
+        "bounds_mm": [
+          [
+            -43.387938561777545,
+            219.18268204491494,
+            59.53341485969404
+          ],
+          [
+            -40.387938561777446,
+            222.18268204491497,
+            60.04808152636098
+          ]
+        ],
+        "outside_thread_envelope_mm3": 0.0
+      }
+    ],
+    "model_sha256": "30b3f39632af32a67442f941d63df8396c1a6a1852309ae57c3ce10b6236f6bb",
+    "scope": "Actual added native solids against one another and retained Ender-3 head solids; centered thread envelopes are classified separately. Full machine travel and tolerances are separate checks."
+  },
+  "continuous_added_rigid_travel": {
+    "all_passed": true,
+    "native_distance_checks": 37,
+    "uniform_extrusion_proofs": [
+      {
+        "key": "00030",
+        "axis": "X",
+        "native_material_outside_containing_extrusion_mm3": 0.0,
+        "conservative_extra_material_mm3": 4889.046673926241
+      }
+    ],
+    "certified_translation_cells": 9324,
+    "contacts": [],
+    "unresolved": [],
+    "model_sha256": "30b3f39632af32a67442f941d63df8396c1a6a1852309ae57c3ce10b6236f6bb",
+    "scope": "Added HYDRA rigid solids against every non-head native machine solid, over the continuous configured relative translation ranges. The native beam is contained in a constant cross-section extrusion; zero native material outside this conservative envelope is verified by an exact solid difference. Each added solid stays within the beam ends throughout X travel. Other cells use disjoint swept bounds or native distance minus cell radius. Coincident mating inside the head is checked separately. No manufacturing tolerance, fan airflow, belt tension or physical strength certification."
+  },
+  "source": {
+    "author": "boothyboothy",
+    "url": "https://www.printables.com/model/169197-hydra-fan-duct-tool-change-system-for-ender-3-ende",
+    "version": "Printables files 2022-04-13; base STEP 2021-08-04; tool plate STEP v1",
+    "license": "CC-BY-NC-SA-4.0"
+  },
+  "source_file_pins": [
+    {
+      "path": "169197-hydra-fan-duct-tool-change-system-for-ender-3-ender-5-cr10-c73eb0e9-9e3a-4b8b-a6bb-565db1a54be5.pdf",
+      "bytes": 457433,
+      "sha256": "9a58112957aef1580704504e13518f5be62e6344bc7b2d521b6fa69741de4276"
+    },
+    {
+      "path": "4010_fan_lh.stl",
+      "bytes": 907284,
+      "sha256": "afb103bd536bce08a7e48a8a46729254061932e9febb8d247ac3696b92c867b8"
+    },
+    {
+      "path": "4010_fan_rh.stl",
+      "bytes": 927684,
+      "sha256": "b941aa4acc5c7c1d050b70238f3ef7c4353caff4da497b1ce0135527e61eef6d"
+    },
+    {
+      "path": "4010_fan_rh_narrow.stl",
+      "bytes": 945384,
+      "sha256": "42b3f4ac7f78ac7ec17ef771f2b3522fbbf2eba6964f5956fe4ca6d9ca9fdd21"
+    },
+    {
+      "path": "4010_fan__lh_narrow_v5.stl",
+      "bytes": 921584,
+      "sha256": "cf86e18588d3ec20e4e67c9c837d0ec1b46111b469c675c6b09e9d4e75b91321"
+    },
+    {
+      "path": "4010_lh_v6_25_deg_wip.stl",
+      "bytes": 735884,
+      "sha256": "a8dc718fa82db368741ff458639557744ca19c6b8b0528380eca16b6ca52b819"
+    },
+    {
+      "path": "4010_rh_v6_25_deg_wip.stl",
+      "bytes": 736284,
+      "sha256": "3df1aa54d4c424929eac14acdaacdcadd4571def5757506c171c4fa41dda897c"
+    },
+    {
+      "path": "5015_4010_narrow_ducts_25_35_v6.step",
+      "bytes": 3017501,
+      "sha256": "fb37fe55b5a513e0e00714ae74f05127950da1e96a2c207c3579a4c6c4f6e163"
+    },
+    {
+      "path": "5015_lh_narrow.stl",
+      "bytes": 893984,
+      "sha256": "43bc67481ffa8d3e896f31925306a22d51c795d24d77e8d5c64c2f4a0a52735e"
+    },
+    {
+      "path": "5015_lh_v3.stl",
+      "bytes": 945984,
+      "sha256": "9db00a549b2e0b189c305b930ce35da76aa8bfa54a3736adef8c27e3b12ed5fb"
+    },
+    {
+      "path": "5015_lh_v6_narrow_25_deg_wip.stl",
+      "bytes": 1482084,
+      "sha256": "9968981fdd97c90badd36c59b0151b1073c37afcf40acc66d306aeea97dea03d"
+    },
+    {
+      "path": "5015_lh_v6_narrow_35_deg_wip.stl",
+      "bytes": 1129684,
+      "sha256": "2e20681912a6cf750117a7aee58951c566d8e8c7bbf38602f3c633be4d8ba0fa"
+    },
+    {
+      "path": "5015_rh_narrow.stl",
+      "bytes": 910784,
+      "sha256": "39b34c24d7230e9e917098456592b42dddaaefc5d16495ccab7fbb1939e6dbd6"
+    },
+    {
+      "path": "5015_rh_v3.stl",
+      "bytes": 960084,
+      "sha256": "caed4d81935ddc657cf46f8c48a972cad94b428fe3b611deca33ac558d744021"
+    },
+    {
+      "path": "5015_rh_v6_narrow_25_deg_wip.stl",
+      "bytes": 1481984,
+      "sha256": "dd1128c08ef41a70274bbf57ff68abff72d9bbc9dca223a6827a3f06a3ac2b9c"
+    },
+    {
+      "path": "5015_rh_v6_narrow__35_deg_wip.stl",
+      "bytes": 1129584,
+      "sha256": "e85e7cfc4f8db71c568d37093b93aacbbfa4c3ee41674907a2894c50ca123d99"
+    },
+    {
+      "path": "bltouch_plate.stl",
+      "bytes": 446284,
+      "sha256": "281a31428f1748b115c12677faeeba22ee6bcfb0465909a4bf5073dcbfc5ce40"
+    },
+    {
+      "path": "bmg_head.stl",
+      "bytes": 659384,
+      "sha256": "8fc0e433f138348a165d8621be790305dd07669e5867c38db364d9d9666a855e"
+    },
+    {
+      "path": "bowden_cable_clip.stl",
+      "bytes": 557084,
+      "sha256": "d4215f69c2d1e2ef109907170e3e5ec788731708a5f23e21059b992adad81cd7"
+    },
+    {
+      "path": "bowden_head.stl",
+      "bytes": 773684,
+      "sha256": "52efebdb2bd830f8afbb1746dac28d97bcd821803027b6506080ae261b24d110"
+    },
+    {
+      "path": "bowden_head_withchain_link_bracket.stl",
+      "bytes": 958884,
+      "sha256": "9cc73e133cde0ec5a3e420e1c87182ff640d37ad3a4b2b9c116f8d3d6947dfd7"
+    },
+    {
+      "path": "dual_gear_head.stl",
+      "bytes": 554184,
+      "sha256": "3868534cb7cd761c46c76a7adb1145765d7874f0cc84d94f5f4665efd68389d6"
+    },
+    {
+      "path": "Ender_3_CR10_Installation_Guide.pdf",
+      "bytes": 10612182,
+      "sha256": "f558b497be43b8bac09ff578de1cccb3aad81be38a75314d0f4c95a72ad06969"
+    },
+    {
+      "path": "hydra_ender_3__5_duct_base_mk_4_19_ff_thread_ins.step",
+      "bytes": 3746421,
+      "sha256": "7f58fba75309104920f5bcb277e7ee98084263072a71e2a357d99be1d3ae275a"
+    },
+    {
+      "path": "hydro_ender_35_duct_base_no_inserts.step",
+      "bytes": 3607156,
+      "sha256": "b9e52e728c68990f125ee6662b3d5b359fb561f2d684e5b87fbf686b727b72a2"
+    },
+    {
+      "path": "large_display_5015_lh_v3_169197.stl",
+      "bytes": 393665,
+      "sha256": "f0640b1914e4e8146034e0fbb98d5a1adf621dcac50c3b55f301192045a15753"
+    },
+    {
+      "path": "large_display_5015_rh_v3_169197.stl",
+      "bytes": 441066,
+      "sha256": "3bf95bd96307d789669022c49da45266170ef9eceb0e7054f112b2bccf334915"
+    },
+    {
+      "path": "large_display_bmg_head_169197.stl",
+      "bytes": 456172,
+      "sha256": "db8aedc4d7e367478e94a2e6ebafa3fb6026901f20c23c5f442da6ba5fa9cb87"
+    },
+    {
+      "path": "large_display_bowden_cable_clip_169197.stl",
+      "bytes": 401527,
+      "sha256": "881d3af9ae6a00125ba8cc44f6265154c3972139959ab3107ab217a0ac87d210"
+    },
+    {
+      "path": "large_display_bowden_head_withchain_link_bracket_.stl",
+      "bytes": 509102,
+      "sha256": "19d5f628f1a55557117ee82ac9d2c3b16a287157606ddf5fb7c7cd530b250dfb"
+    },
+    {
+      "path": "large_display_rear_duct_base_ender_3_169197.stl",
+      "bytes": 509066,
+      "sha256": "121dd45a7eb4b3d7572225581d6664e7adbbbbf3a1dfe1d79cf3983f1a536625"
+    },
+    {
+      "path": "large_display_rear_duct_mount_ender3_thread_inser.stl",
+      "bytes": 515240,
+      "sha256": "dc12e429087df4b3ac49a4ff1821167352b07a5c801d91f224aa90873d9b15ef"
+    },
+    {
+      "path": "large_display_rear_duct_mount_ender5_thread_inser.stl",
+      "bytes": 514793,
+      "sha256": "a5e0aadeeb99a188f79232b5a8b30cd5443130194c01fb9bf287ba55dc36d504"
+    },
+    {
+      "path": "large_display_side_duct_base_ender_3_169197.stl",
+      "bytes": 495858,
+      "sha256": "c617f7b08342760dedf720c378479b9e7f0eff2c4ea96960db788c19b77f8c6e"
+    },
+    {
+      "path": "large_display_side_duct_base_ender_5_169197.stl",
+      "bytes": 466096,
+      "sha256": "a49226fc4859d2bc0519a19f86c305d55d31e519e3680ba3e12b260ccd5de14b"
+    },
+    {
+      "path": "large_display_side_duct_base_ender_5_v1_2_169197.stl",
+      "bytes": 466295,
+      "sha256": "3002558aa77fd29c385fa794331b287ba09009b6a23005ad1431da9179a03d21"
+    },
+    {
+      "path": "large_display_side_duct_mount_ender3_v1_2_169197.stl",
+      "bytes": 496780,
+      "sha256": "42f22b7898323b62ac9df6d1461fab7615a66c9cdb52f557ce5e623dbc2943ac"
+    },
+    {
+      "path": "large_display_side_duct_mount_ender5_thread_inser.stl",
+      "bytes": 468908,
+      "sha256": "87c01248f72286d3023738d261908933fb2c7c472046fbe40294f5f44d6aab61"
+    },
+    {
+      "path": "large_display_stock_head_169197.stl",
+      "bytes": 484712,
+      "sha256": "b5555209f416a1edcd7fc17de9ab82c29347f16bddcb0313bebabcffbf64fb67"
+    },
+    {
+      "path": "mk6_spacer.stl",
+      "bytes": 214484,
+      "sha256": "5cc5faa13a67b7716e5fd1450c7e6d8114b3579457adf2a28f1351f28e2d9bf6"
+    },
+    {
+      "path": "narrow_ducts_v1.step",
+      "bytes": 2678443,
+      "sha256": "78bfe1a5be330acc1fdc46afd2f360f6c79baf79bd0561f2baac99662c308454"
+    },
+    {
+      "path": "rear_duct_base_ender_5_v1_2.stl",
+      "bytes": 846184,
+      "sha256": "c2005f973ee5f0ffa08d1916842bc1e01e2dfc6651c43867fb75720cfd391be7"
+    },
+    {
+      "path": "rear_duct_mount_ender3_thread_inserts.stl",
+      "bytes": 702584,
+      "sha256": "9acbe70c922f3239119822ccef97a730deabe989bf06cbe032c5b7a1f255f81a"
+    },
+    {
+      "path": "rear_duct_mount_ender3_v1_2.stl",
+      "bytes": 690484,
+      "sha256": "b9d4880ae693b117bc76d9833698502aa517bdb1a5384b11eceda32fb3f16054"
+    },
+    {
+      "path": "rear_duct_mount_ender5_thread_inserts.stl",
+      "bytes": 852284,
+      "sha256": "4895559487ffc52320cc7bcfd9619ad52bd3125cca72967922ea40165d3ae072"
+    },
+    {
+      "path": "side_duct_base_ender_5_v1_2.stl",
+      "bytes": 529584,
+      "sha256": "4cd4f51170abfa8e81c6fbe4a1823c530ff72b0ff3a10f8ff0ae5ec2f9b206d1"
+    },
+    {
+      "path": "side_duct_mount_ender3_thread_inserts.stl",
+      "bytes": 730884,
+      "sha256": "e49789db8f78b1992f6d52069b397e053342fcf61fbce3d53841f69dfee24083"
+    },
+    {
+      "path": "side_duct_mount_ender3_v1_2.stl",
+      "bytes": 678484,
+      "sha256": "72ed46ecff873a4fc57d276d495a44d9a65f4ccd74ee9b6b6e477c1ba3061b84"
+    },
+    {
+      "path": "side_duct_mount_ender5_thread_inserts.stl",
+      "bytes": 550884,
+      "sha256": "28423df022e59efd04fd92d30b275951c4c945ac73720e6c7ed7263dab868ccc"
+    },
+    {
+      "path": "stock_head.stl",
+      "bytes": 579784,
+      "sha256": "c30fedfe15512d707ba8c8296e4fc613dae0c2037d385f0b8a2058b84fb08ea7"
+    },
+    {
+      "path": "tool_head_step_file_v1.step",
+      "bytes": 3554332,
+      "sha256": "f0e2a895f64bdfd6767f820ca90dc0d3a66cea1371094dc9e16c63ef7a0f8729"
+    }
+  ],
+  "printed_adjustments": [
+    {
+      "part": "hydra_base_side",
+      "kind": "lower_mounting_lip_clearance",
+      "removed_mm3": 61.21344843306724,
+      "native_relief_bounds_mm": [
+        [
+          -26.975000100000006,
+          -2.71915397844691,
+          -0.9421123392957825
+        ],
+        [
+          -24.201798621110783,
+          6.2808462215531,
+          2.9224423119779805
+        ]
+      ],
+      "clearance_mm": 0.05,
+      "holes_retained": true
+    },
+    {
+      "part": "hydra_base_rear",
+      "kind": "lower_mounting_lip_clearance",
+      "removed_mm3": 61.670084548542945,
+      "native_relief_bounds_mm": [
+        [
+          23.75179855901571,
+          -2.71915397844691,
+          -0.9421127065666434
+        ],
+        [
+          26.525000405175806,
+          6.280846221553101,
+          2.9224423119779805
+        ]
+      ],
+      "clearance_mm": 0.05,
+      "holes_retained": true
+    },
+    {
+      "part": "hydra_base_side",
+      "kind": "fan_pilot_axis_registration",
+      "removed_mm3": 14.380603649418845,
+      "nominal_pilot_radius_mm": 1.35,
+      "fan_hole_pitch_mm": 32
+    },
+    {
+      "part": "hydra_base_rear",
+      "kind": "fan_pilot_axis_registration",
+      "removed_mm3": 29.54384178849432,
+      "nominal_pilot_radius_mm": 1.35,
+      "fan_hole_pitch_mm": 32
+    },
+    {
+      "part": "hydra_duct_lh",
+      "kind": "native_mating_clearance",
+      "removed_mm3": 135.08704091434993,
+      "retained_fan_or_carriage_geometry": true
+    },
+    {
+      "part": "hydra_duct_lh",
+      "kind": "native_mating_clearance",
+      "removed_mm3": 0.018094264005412697,
+      "retained_fan_or_carriage_geometry": true
+    },
+    {
+      "part": "hydra_duct_rh",
+      "kind": "native_mating_clearance",
+      "removed_mm3": 134.99139129364812,
+      "retained_fan_or_carriage_geometry": true
+    },
+    {
+      "part": "hydra_base_side",
+      "kind": "native_pan_head_counterbore",
+      "radius_mm": 2.9,
+      "removed_mm3": 1.6523874367412645
+    },
+    {
+      "part": "hydra_base_side",
+      "kind": "native_pan_head_counterbore",
+      "radius_mm": 2.9,
+      "removed_mm3": 0.0013776520390820224
+    }
+  ],
+  "supports_removed": [
+    {
+      "part": "base_side",
+      "kind": "sacrificial_nut_hole_membrane",
+      "nominal_thickness_mm": 0.2,
+      "radial_allowance_mm": 0.0001,
+      "boolean_tolerance_mm": 1e-05,
+      "cut_span_mm": 13.494110999999997,
+      "removed_mm3": 1.9291500341878418,
+      "native_cut_bounds_mm": [
+        [
+          -16.9751,
+          1.530746,
+          39.165874
+        ],
+        [
+          -13.4749,
+          5.030946,
+          52.659985
+        ]
+      ]
+    },
+    {
+      "part": "base_rear",
+      "kind": "sacrificial_nut_hole_membrane",
+      "nominal_thickness_mm": 0.2,
+      "radial_allowance_mm": 0.0001,
+      "boolean_tolerance_mm": 1e-05,
+      "cut_span_mm": 12.009999999999998,
+      "removed_mm3": 1.933042060216394,
+      "native_cut_bounds_mm": [
+        [
+          -30.724874,
+          26.21102,
+          40.649985
+        ],
+        [
+          -27.224674,
+          29.71122,
+          52.659985
+        ]
+      ]
+    },
+    {
+      "part": "base_rear",
+      "kind": "sacrificial_nut_hole_membrane",
+      "nominal_thickness_mm": 0.2,
+      "radial_allowance_mm": 0.0001,
+      "boolean_tolerance_mm": 1e-05,
+      "cut_span_mm": 12.009999999999998,
+      "removed_mm3": 1.9330114344629692,
+      "native_cut_bounds_mm": [
+        [
+          -7.569933,
+          26.192384,
+          40.649985
+        ],
+        [
+          -4.069733,
+          29.692584,
+          52.659985
+        ]
+      ]
+    },
+    {
+      "part": "base_rear",
+      "kind": "sacrificial_nut_hole_membrane",
+      "nominal_thickness_mm": 0.2,
+      "radial_allowance_mm": 0.0001,
+      "boolean_tolerance_mm": 1e-05,
+      "cut_span_mm": 12.009999999999998,
+      "removed_mm3": 1.9329688065845403,
+      "native_cut_bounds_mm": [
+        [
+          3.6187810000000002,
+          26.192384,
+          40.649985
+        ],
+        [
+          7.118981,
+          29.692584,
+          52.659985
+        ]
+      ]
+    },
+    {
+      "part": "base_rear",
+      "kind": "sacrificial_nut_hole_membrane",
+      "nominal_thickness_mm": 0.2,
+      "radial_allowance_mm": 0.0001,
+      "boolean_tolerance_mm": 1e-05,
+      "cut_span_mm": 13.494110999999997,
+      "removed_mm3": 1.9346706657015602,
+      "native_cut_bounds_mm": [
+        [
+          12.5749,
+          1.530746,
+          39.165874
+        ],
+        [
+          16.0751,
+          5.030946,
+          52.659985
+        ]
+      ]
+    }
+  ],
+  "nozzle_to_lowest_duct_mm": 1.8546346376391796,
+  "files": {
+    "assembly_manifest.json": {
+      "path": "ender3/assembly_manifest.json",
+      "bytes": 227296,
+      "sha256": "62374539c3e54b3926a5f22f87fe0b358f4fa457b4b12b67edb0926d6db0dcc0"
+    },
+    "machine_profile.json": {
+      "path": "ender3/machine_profile.json",
+      "bytes": 3258,
+      "sha256": "7b7a482dcad54c8a61d729759e16d7b71ba98df497f683942b537d779ac40276"
+    },
+    "model.glb": {
+      "path": "ender3/model.glb.gz",
+      "bytes": 26612050,
+      "sha256": "5d3a0bf20ec8085dc46f4f8a2a762200f427ca39227e72cedadff75989d77c2f",
+      "encoding": "gzip",
+      "decoded_bytes": 58026652,
+      "decoded_sha256": "393dcd56b4e7a0e675886486acd81c825de9f1a7102b839e00aa1b5365203457"
+    },
+    "hydra.glb": {
+      "path": "ender3/hydra.glb.gz",
+      "bytes": 4785075,
+      "sha256": "30b3f39632af32a67442f941d63df8396c1a6a1852309ae57c3ce10b6236f6bb",
+      "encoding": "gzip",
+      "decoded_bytes": 19831660,
+      "decoded_sha256": "de87f4b215bab8e5d3b86a2036dd999f44a6c4be7bd207955958c230211b93fa"
+    }
+  },
+  "native_source_package_sha256": "5879cac5e62149f6ae373d08a785ddf93283d63e26b30da83b41415a0d09e1a8",
+  "adapter_sha256": {
+    "community-adapter.mjs": "1558e3082151fd6f12a92f0f7e219161a94b8ace17473275d6b6603d03a6b249",
+    "community-state.mjs": "8eb1ac3cefb7a4bb42e0d906950e8ee988cd412f55115a1b2811bb6d512095cb",
+    "community-loader.mjs": "d3556642b01be21d438924ab5fe22866b70f7be3b30a56a00b061811e901d098",
+    "community.js": "cdf7dac203c0bd3a8c8faa81602512f5ea4fb561b3cdae53f399c8e107b4856f"
+  },
+  "browser": {
+    "name": "Codex in-app browser / Chromium",
+    "viewport": [
+      1280,
+      720
+    ],
+    "physical_mobile_touch_verified": false,
+    "other_browser_gpu_review": false,
+    "language_rows": [
+      {
+        "configuration": "hydra_bowden_4010",
+        "label": "HYDRA · Bowden / デュアル4010",
+        "lang": "ja",
+        "notice": "純正Bowdenホットエンドと左右4010ファン。埋め込みサポート5か所を除去し、ベースとダクトをCADの取付形状に合わせて変更しています。実機の強度・製造公差は未検証です。"
+      },
+      {
+        "configuration": "hydra_bowden_4010",
+        "label": "HYDRA · Bowden / dos 4010",
+        "lang": "es",
+        "notice": "Hotend Bowden original y dos ventiladores 4010. Se retiraron cinco soportes integrados y se adaptaron las bases y los conductos a este CAD. El ajuste del visor no valida la resistencia ni las tolerancias de fabricación."
+      },
+      {
+        "configuration": "hydra_bowden_4010",
+        "label": "HYDRA · 보우덴 / 듀얼 4010",
+        "lang": "ko",
+        "notice": "기본 보우덴 핫엔드와 듀얼 4010 냉각. 내장 서포트 5개를 제거하고 베이스와 덕트를 CAD 결합 형상에 맞췄습니다. 실제 출력물 강도와 제조 공차는 검증되지 않았습니다."
+      },
+      {
+        "configuration": "hydra_bowden_4010",
+        "label": "HYDRA · Bowden / два 4010",
+        "lang": "ru",
+        "notice": "Штатный Bowden-хотэнд и два вентилятора 4010. Удалены пять встроенных поддержек; основания и воздуховоды адаптированы к сопряжениям CAD. Посадка в просмотрщике не подтверждает прочность печати и производственные допуски."
+      },
+      {
+        "configuration": "hydra_bowden_4010",
+        "label": "HYDRA · Bowden / dual 4010",
+        "lang": "en",
+        "notice": "Stock Bowden hotend and dual 4010 cooling. Five built-in supports removed; bases and ducts adapted to these CAD mating features. Viewer fit does not validate print strength or manufacturing tolerances."
+      }
+    ],
+    "screenshots": [
+      {
+        "file": "hydra-colors-dark-local.png",
+        "sha256": "d0ca8600828da74d42c5b328979415224fd4e1a1b55a42e1faf459e3920418de"
+      },
+      {
+        "file": "hydra-export-1920x1368.png",
+        "sha256": "f43f59adb74953033009e2bd1b1b9c82b0d2a8d1e882fe1f5a15d660fbd96082"
+      },
+      {
+        "file": "hydra-head-local.png",
+        "sha256": "c87196ea22541da986cf9ecc7c3420290c8e26880205b8a7ec2428cf84492463"
+      },
+      {
+        "file": "hydra-z-max-local.png",
+        "sha256": "8e04ac2600888d2252e2d4f2bba69c0ac43263fecf508462f420f4bae46e6ab4"
+      }
+    ],
+    "scope": "Whole Ender-3 and mounted head views; stock/HYDRA switch without page reload; actual saved JSON download and file-chooser restoration; native Z upper pose and reset; base/accent changes with retained fan/metal colors; dark/light scene and grid; all five languages after dictionaries load; current-angle PNG export at 1920 × 1368. Desktop Chromium only."
+  },
+  "full_physical_fit_certified": false,
+  "scope": "Adapted Bowden / original hotend / dual native Creality 4010 fan installation on the original Ender-3 carriage and roller assembly. Exact native head-solid mating classifies intended thread engagement separately. Added rigid solids are checked against all non-head machine solids over continuous configured relative travel; the beam uses an exact containment proof with a conservative native extrusion. Printed lips, pilot axes, mating bosses and pan-head seats are recorded adaptations. Source built-in supports are removed. Actual print strength, airflow, manufacturing tolerance, automatic tool changing and alternative hotends/extruders are not certified. Original source omits the Bowden tube."
+}

@@ -17,7 +17,7 @@ import {createV24Adapter} from './v24_adapter.mjs?v=a98c4f8037232d4e7b5d';
 import {setupMachineNavigation} from './machines.js?v=d6045b8af89b3984adcb';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {setupPublicInfo} from './public-info.js?v=0b0f91d7a82d25acbb87';
-import {setupV24MachineHeads} from './machine-heads.js?v=c0357ec27a81063a7596';
+import {setupV24MachineHeads} from './machine-heads.js?v=1766c33e96d980bdd970';
 export async function mount(scope){
 setupMachineNavigation('siboor_v24_350');
 setupPublicInfo();

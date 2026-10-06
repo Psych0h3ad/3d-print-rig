@@ -43,7 +43,7 @@
         },
         {
           "id": "mk6",
-          "label": "MK6 V6 ducts",
+          "label": "MK6 revision ducts",
           "parts": [
             "mk6_5015_25deg_lh",
             "mk6_5015_25deg_rh",
@@ -61,7 +61,7 @@
       "source_sha256_label": "Base STEP SHA256",
       "license": "CC BY-NC-SA 4.0 · boothyboothy / Boothy",
       "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
-      "notes": "Manual tool-plate system. Individual printed parts only; fans, hotend, extruder, fasteners and probes are absent. Ender-3 installation is not registered. Five 0.2 mm nut-hole support membranes are removed from the base parts.",
+      "notes": "Manual tool-plate system. Parts are centered separately on this page. The Ender-3 machine page includes an adapted Bowden / dual 4010 installation with stock hotend, fans and fasteners. Five built-in nut-hole membranes are removed.",
       "machine_installation_verified": false
     },
     {

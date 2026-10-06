@@ -8,6 +8,7 @@ import {catalogDimensions,choicesFor,resolveVariant} from '../site/viewer/config
 import {headPlan,headPlacement} from '../site/viewer/head-assembly.js';
 import {changerDimensions,changerChoice,changerChoices,changerPlacement} from '../site/viewer/toolchanger-model.js';
 import {withHeadAdditions} from '../site/viewer/head-additions.mjs';
+import {auditCommunityInstallations} from './audit_community_installations.mjs';
 const root=path.resolve(process.argv[2]||'site'),read=async f=>JSON.parse(await readFile(path.join(root,f),'utf8'));
 const gantries=await read('GANTRY_CONFIGURATIONS.json'),heads=withHeadAdditions(await read('TOOLHEAD_CONFIGURATIONS.json'),await read('HEAD_ADDITIONS.json')),library=await read('COMPONENT_LIBRARY.json'),changers=await read('TOOLCHANGER_CONFIGURATIONS.json');
 assert(gantries.variants.length>0&&heads.variants.length>0&&library.items.length>0&&changers.variants.length>0);
@@ -93,3 +94,9 @@ for(const file of ['V0_MACHINES.json','V24_MACHINES.json','KIT_MACHINES.json']){
 }
 assert.equal(machineCount,9);assert.equal(machineParts,12999);assert.equal(railMounts,366);
 console.log(JSON.stringify({new_machine_references:machineCount,native_machine_parts:machineParts,registered_M3_rail_mounts:railMounts}));
+// Installed community mods are actual native supplements, so every release
+// must exercise their visibility, motion, materials and saved configurations.
+const community=await read('COMMUNITY_MACHINES_ASSETS.json'),ender=community.machines.ender3_stock_220;
+const communityDirectories=[];for(const directory of process.argv.slice(3)){try{await access(path.join(directory,ender.files['machine_profile.json'].path));communityDirectories.push(directory)}catch{}}
+assert.equal(communityDirectories.length,1,'Pass exactly one native community machine asset directory');
+await auditCommunityInstallations(communityDirectories[0],{indexPath:path.join(root,'COMMUNITY_MACHINES_ASSETS.json')});

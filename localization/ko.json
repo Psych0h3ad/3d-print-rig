@@ -7719,8 +7719,8 @@
       "text": "베이스 STEP SHA256"
     },
     "hydra.14": {
-      "source_revision": "9fae526bd7391d769df0",
-      "text": "수동 교환 플레이트 방식입니다. 출력 부품만 표시하며 팬, 핫엔드, 압출기, 나사, 프로브는 없습니다. Ender-3 장착은 등록되지 않았습니다. 베이스 너트 구멍의 0.2 mm 서포트 막 5개를 제거했습니다."
+      "source_revision": "c1763f17d1c64aa27fe2",
+      "text": "수동 교환 플레이트 방식입니다. 이 페이지는 부품을 개별 중앙 배치합니다. Ender-3 페이지에서 기본 핫엔드, 팬, 나사가 포함된 보우덴 / 듀얼 4010 조정 구성을 볼 수 있습니다. 너트 구멍 서포트 5개를 제거했습니다."
     },
     "hydra.15": {
       "source_revision": "53b9eda09f7e6580194b",
@@ -7993,6 +7993,26 @@
     "trinity_native.29": {
       "source_revision": "bd0e88fca322f6d0dbec",
       "text": "Trinity · MGN9H / v1.41"
+    },
+    "hydra_install.01": {
+      "source_revision": "22a0856adeb61df10ccc",
+      "text": "툴헤드 장착 구성"
+    },
+    "hydra_install.02": {
+      "source_revision": "4a6f6af1f772729fc856",
+      "text": "기본 · 보우덴 / 기본 냉각"
+    },
+    "hydra_install.03": {
+      "source_revision": "dd129a508119623cc3ba",
+      "text": "HYDRA · 보우덴 / 듀얼 4010"
+    },
+    "hydra_install.04": {
+      "source_revision": "3d5ea51f01eee7560e80",
+      "text": "기본 보우덴 핫엔드와 듀얼 4010 냉각. 내장 서포트 5개를 제거하고 베이스와 덕트를 CAD 결합 형상에 맞췄습니다. 실제 출력물 강도와 제조 공차는 검증되지 않았습니다."
+    },
+    "hydra_install.05": {
+      "source_revision": "5656c69e2c3a2a59aeae",
+      "text": "MK6 개정 덕트"
     }
   }
 }

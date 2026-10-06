@@ -1,9 +1,9 @@
 import * as THREE from './vendor-r180/three.module.js';
-import {validateAxes,nativeMotion,displayMotion} from './community-state.mjs?v=28a3ee6638eaf28328b4';
+import {validateAxes,nativeMotion,displayMotion,communityConfiguration} from './community-state.mjs?v=8eb1ac3cefb7a4bb42e0';
 import {mercuryTubeSpecs,mercuryTubeRoute} from './mercury-tube-routes.mjs?v=d27d615757ad1f732409';
 import {stingerFlexWeights} from './stinger-flex.mjs?v=0ab64709177d49ba0fec';
 import {stingerTubeRoute} from './stinger-tube-route.mjs';
-import {registeredFlexWeights,registeredFlexDelta,createRegisteredChains} from './native-motion-flex.mjs?v=3c12d86bfab5e3898144';
+import {registeredFlexWeights,registeredFlexDelta,createRegisteredChains} from './native-motion-flex.mjs?v=382eba26b1cceaa8d13b';
 const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
 const smooth=v=>{v=clamp(v);return v*v*(3-2*v)};
 function hat(v,a,l,h,b){return v<=a||v>=b?0:v<l?(v-a)/(l-a):v<=h?1:(b-v)/(b-h)}
@@ -34,7 +34,7 @@ function flexWeights(p,r,profile){
  return {custom:[0,0,0]};
 }
 export function createCommunityAdapter(root,manifest,profile){
- const records=new Map(manifest.parts.map(r=>[r.key,r])),nodes=new Map(),initial=new Map(),flex=[];let axes=Object.fromEntries(Object.keys(profile.axes).map(k=>[k,0])),references=false;
+ const records=new Map(manifest.parts.map(r=>[r.key,r])),nodes=new Map(),initial=new Map(),flex=[];let axes=Object.fromEntries(Object.keys(profile.axes).map(k=>[k,0])),references=false,configuration='stock',hiddenKeys=new Set();
  root.traverse(n=>{if(n.userData?.part_key){if(nodes.has(n.userData.part_key))throw Error('Duplicate native part');nodes.set(n.userData.part_key,n)}});
  if(nodes.size!==records.size||nodes.size!==manifest.native_leaf_count)throw Error('Incomplete native assembly');root.updateMatrixWorld(true);
  for(const[key,node]of nodes){
@@ -60,7 +60,7 @@ export function createCommunityAdapter(root,manifest,profile){
  function setAxes(next){
   validateAxes(next,profile);axes={...next};
   const motions=new Map([...new Set([...records.values()].map(r=>r.group))].map(group=>[group,displayMotion(nativeMotion(group,axes,profile),profile)])),head=displayMotion(nativeMotion('head',axes,profile),profile),axisNames=['x','y','z'];
-  for(const[key,node]of nodes){const r=records.get(key),delta=motions.get(r.group);node.matrixAutoUpdate=false;node.matrix.copy(initial.get(key));node.matrix.elements[12]+=delta[0];node.matrix.elements[13]+=delta[1];node.matrix.elements[14]+=delta[2];node.visible=r.group!=='reference'||references}
+  for(const[key,node]of nodes){const r=records.get(key),delta=motions.get(r.group);node.matrixAutoUpdate=false;node.matrix.copy(initial.get(key));node.matrix.elements[12]+=delta[0];node.matrix.elements[13]+=delta[1];node.matrix.elements[14]+=delta[2];node.visible=!hiddenKeys.has(key)&&(r.group!=='reference'||references)}
   chains.update(axes);
   for(const e of flex){
    if(e.routed){
@@ -79,6 +79,7 @@ export function createCommunityAdapter(root,manifest,profile){
   }root.updateMatrixWorld(true);return {...axes};
  }
  function setPalette(palette){for(const[key,node]of nodes){const role=records.get(key).appearance_role;if(!palette[role])continue;node.traverse(m=>{if(m.isMesh)for(const material of [].concat(m.material))material.color.set(palette[role])})}}
- function setReferences(value){references=Boolean(value);for(const[key,node]of nodes)if(records.get(key).group==='reference')node.visible=references}
- setAxes(axes);return {root,nodes,records,flex,chains,setAxes,setPalette,setReferences,getAxes:()=>({...axes})};
+ function setReferences(value){references=Boolean(value);for(const[key,node]of nodes)if(records.get(key).group==='reference')node.visible=references&&!hiddenKeys.has(key)}
+ function setConfiguration(id){const spec=communityConfiguration(profile,id),keys=spec.hidden_keys||[];if(!Array.isArray(keys)||new Set(keys).size!==keys.length||keys.some(k=>!records.has(k)))throw Error('Incomplete configuration installation');configuration=id;hiddenKeys=new Set(keys);setAxes(axes);return id}
+ setConfiguration(configuration);return {root,nodes,records,flex,chains,setAxes,setPalette,setReferences,setConfiguration,getConfiguration:()=>configuration,getAxes:()=>({...axes})};
 }
