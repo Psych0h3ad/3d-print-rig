@@ -8879,8 +8879,12 @@
     },
     "ui.community.flex": {
       "kind": "message",
-      "ja": "ベルト・配線・チェーンは表示用に追従します。張力やチェーンのリンク機構は計算していません。",
-      "en": "Belts, wires and chains follow for display. Tension and chain-link mechanics are not calculated."
+      "ja": "ベルト・配線・チェーンは表示用に追従します。ベルト張力はシミュレーションしていません。",
+      "en": "Belts, wires and chains follow for display. Belt tension is not simulated.",
+      "aliases": [
+        "ベルト・配線・チェーンは表示用に追従します。張力やチェーンのリンク機構は計算していません。",
+        "Belts, wires and chains follow for display. Tension and chain-link mechanics are not calculated."
+      ]
     },
     "ui.community.detail": {
       "kind": "message",
@@ -9424,8 +9428,12 @@
     },
     "sovol.reference": {
       "kind": "message",
-      "ja": "全体CADの静止モデルです。Z取付部の座面と固定穴を照合し、ノズルをベッドから離した位置に配置しています。重複部品は参考表示に分けています。元CADにはXYベルトが含まれていません。未接続のPTFEと配線も参考表示に分けています。可動操作とMod交換は未対応です。",
-      "en": "Static complete CAD assembly. Z mounting seats and screw axes are aligned, with the nozzle raised above the bed. Duplicate parts are optional references. The source CAD omits XY belts. Unconnected PTFE and wires are also optional references. Motion and mod swapping are not supported."
+      "ja": "XYベルトが追従するXYZ可動プレビューです。Zキャリッジの座面を照合しています。重複部品と未接続の元PTFE・配線は参考表示に分けています。",
+      "en": "Native XYZ movement preview with moving XY belt envelopes and seated Z carriages. Duplicate parts and disconnected source PTFE/wires are separated as references.",
+      "aliases": [
+        "全体CADの静止モデルです。Z取付部の座面と固定穴を照合し、ノズルをベッドから離した位置に配置しています。重複部品は参考表示に分けています。元CADにはXYベルトが含まれていません。未接続のPTFEと配線も参考表示に分けています。可動操作とMod交換は未対応です。",
+        "Static complete CAD assembly. Z mounting seats and screw axes are aligned, with the nozzle raised above the bed. Duplicate parts are optional references. The source CAD omits XY belts. Unconnected PTFE and wires are also optional references. Motion and mod swapping are not supported."
+      ]
     },
     "custom_voron.reference": {
       "kind": "message",
@@ -9479,23 +9487,109 @@
     },
     "tictac.reference": {
       "kind": "message",
-      "ja": "全体CADの静止モデルです。参考床・校正キューブと重複部品は参考表示に分けています。可動操作とMod交換は未対応です。",
-      "en": "Static whole CAD assembly. The source floor, calibration cube and duplicate parts are optional references. Motion and mod swapping are not supported."
+      "ja": "XYZ可動プレビューです。床・校正キューブ・重複部品は参考表示に分けています。",
+      "en": "Native XYZ movement preview. The floor, calibration cubes and duplicate parts are separated as references.",
+      "aliases": [
+        "全体CADの静止モデルです。参考床・校正キューブと重複部品は参考表示に分けています。可動操作とMod交換は未対応です。",
+        "Static whole CAD assembly. The source floor, calibration cube and duplicate parts are optional references. Motion and mod swapping are not supported."
+      ]
     },
     "rook.reference": {
       "kind": "message",
-      "ja": "MK2 betaの全体CADにGalileo 2 G2SAを表示しています。固定穴と座面を照合していますが、元CADに省かれた固定ネジは補っていません。静止モデルです。",
-      "en": "Static MK2 beta assembly with Galileo 2 G2SA. Mounting holes and the seating plane are aligned. Foot mounting screws omitted by the source CAD are not supplied."
+      "ja": "Rook MK2 betaにGalileo 2 G2SAを取り付けたXYZ可動プレビューです。固定穴・座面を照合しています。元CADにないネジは補っていません。",
+      "en": "Rook MK2 beta with Galileo 2 G2SA and native XYZ movement. Mounting holes and seats were compared; omitted source screws are not synthesized.",
+      "aliases": [
+        "MK2 betaの全体CADにGalileo 2 G2SAを表示しています。固定穴と座面を照合していますが、元CADに省かれた固定ネジは補っていません。静止モデルです。",
+        "Static MK2 beta assembly with Galileo 2 G2SA. Mounting holes and the seating plane are aligned. Foot mounting screws omitted by the source CAD are not supplied."
+      ]
     },
     "the100.reference": {
       "kind": "message",
-      "ja": "全体CADの静止モデルです。重複マウントは参考表示に分けています。元CADにベルトと全体のPTFE経路が含まれていません。",
-      "en": "Static whole CAD assembly. The overlapping alternative mount is an optional reference. Belts and the complete PTFE route are absent from the source CAD."
+      "ja": "XYZ可動プレビューです。重複マウントは参考表示に分けています。元CADにベルトとBowdenチューブ全体は含まれていません。",
+      "en": "Native XYZ movement preview. The duplicate mount is separated as a reference. The source omits belts and the complete Bowden route.",
+      "aliases": [
+        "全体CADの静止モデルです。重複マウントは参考表示に分けています。元CADにベルトと全体のPTFE経路が含まれていません。",
+        "Static whole CAD assembly. The overlapping alternative mount is an optional reference. Belts and the complete PTFE route are absent from the source CAD."
+      ]
     },
     "satsuma.reference": {
       "kind": "message",
-      "ja": "全体CADの静止モデルです。パネル・色・カメラを確認できます。可動操作とMod交換は未対応です。",
-      "en": "Static whole CAD assembly with panel, color and camera controls. Motion and mod swapping are not supported."
+      "ja": "XYベルトとベッド配線が追従するXYZ可動プレビューです。",
+      "en": "Native XYZ movement preview with moving XY belts and bed cable.",
+      "aliases": [
+        "全体CADの静止モデルです。パネル・色・カメラを確認できます。可動操作とMod交換は未対応です。",
+        "Static whole CAD assembly with panel, color and camera controls. Motion and mod swapping are not supported."
+      ]
+    },
+    "native_motion.offsets": {
+      "kind": "message",
+      "ja": "XYZ操作の値は元CADの組立位置からの変位です。",
+      "en": "XYZ controls are displacements from the native CAD pose."
+    },
+    "native_motion.firmware": {
+      "kind": "message",
+      "ja": "この可動プレビューではファームウェアとベルト張力はシミュレーションしていません。",
+      "en": "This movement preview does not simulate firmware or belt tension."
+    },
+    "native_motion.tictac_chain": {
+      "kind": "message",
+      "ja": "元CADのベッドチェーンは10リンク、Zチェーンは2リンクのみです。不足リンクは補っていません。",
+      "en": "The source contains ten bed-chain links and only two links of the Z chain. Missing links are not synthesized."
+    },
+    "native_motion.chain_reset": {
+      "kind": "message",
+      "ja": "リセット時は元CADのチェーンヒンジと固定端の位置を復元します。",
+      "en": "Native chain hinge and anchor offsets are retained at reset."
+    },
+    "native_motion.bowden_missing": {
+      "kind": "message",
+      "ja": "元CADにベルトとBowdenチューブ全体は含まれていません。",
+      "en": "The source CAD omits belts and the complete Bowden route."
+    },
+    "native_motion.cartesian": {
+      "kind": "message",
+      "ja": "ベルトは元CADのCartesianループ形状を保持しています。",
+      "en": "Belts retain their native Cartesian loop geometry."
+    },
+    "native_motion.rook_belts": {
+      "kind": "message",
+      "ja": "元CADのCartesianベルトループを保持しています。不足する固定ネジは補っていません。",
+      "en": "Native Cartesian belt loops are retained; missing mount screws are not synthesized."
+    },
+    "native_motion.xy_envelope": {
+      "kind": "message",
+      "ja": "元CADの滑らかなXYベルト形状がプーリー位置に追従します。元CADにない歯やカット端は補っていません。",
+      "en": "Native smooth XY belt envelopes follow their pulley contacts. Source teeth and cut ends are not synthesized."
+    },
+    "native_motion.belt_tension": {
+      "kind": "message",
+      "ja": "ベルトは元CADの滑らかな形状を保持しています。歯とベルト張力はシミュレーションしていません。",
+      "en": "Belts retain their native smooth envelope. Teeth and belt tension are not simulated."
+    },
+    "native_motion.chain_offset": {
+      "kind": "message",
+      "ja": "リセット時は元CADの最大0.31 mmのチェーン接続位置の差を保持します。",
+      "en": "Native chain joint offsets up to 0.31 mm are retained at reset."
+    },
+    "native_motion.cable_envelope": {
+      "kind": "message",
+      "ja": "配線とPTFEの変形は、固定端と可動端を結ぶ表示用の形状です。",
+      "en": "Cable and PTFE deformation is an endpoint-constrained display envelope."
+    },
+    "native_motion.annex": {
+      "kind": "message",
+      "ja": "XYZ可動プレビューです。別構成の取り付けは未検証です。",
+      "en": "Native XYZ movement preview. Alternative installations are unverified."
+    },
+    "native_motion.fysetc": {
+      "kind": "message",
+      "ja": "XYZ可動プレビューです。Mod交換と現行キット部品との一致は未検証です。",
+      "en": "Native XYZ movement preview. Mod changes and matching the current kit parts are unverified."
+    },
+    "native_motion.satsuma_rest": {
+      "kind": "message",
+      "ja": "ノズルとの干渉を避けるため、ベッド全体を元CADの位置から4 mm下げています。",
+      "en": "The complete bed assembly starts 4 mm below the source pose to clear the nozzle."
     }
   }
 }

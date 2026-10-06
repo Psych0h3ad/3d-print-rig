@@ -10,6 +10,9 @@ import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=extra-machines-55';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {setupPublicInfo} from './public-info.js?v=2bbf2c451ffa53bf08e7';
+import {applyNativeMotionProfile,loadNativeMotionProfile} from './native-motion-profile.mjs';
+import {createCommunityAdapter} from './community-adapter.mjs?v=0bfacb332d4a57985927';
+import {setupNativeMotionControls} from './native-motion-controls.mjs?v=efe38fef3ecbac6f71eb';
 export async function mount(scope){
  const $=id=>document.getElementById(id),stage=$('stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));
  renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);
@@ -26,13 +29,21 @@ export async function mount(scope){
  for(const name of ['iso','front','top'])$(name).onclick=()=>view(name);lighting();
  try{
   const id=new URLSearchParams(location.search).get('machine')||'annex_k2_assembly';setupMachineNavigation(id);
-  const {root,manifest,profile}=await loadExtraMachine(id);const nodes=new Map();
+  const loaded=await loadExtraMachine(id),rig=await loadNativeMotionProfile(id);
+  const {manifest,profile}=applyNativeMotionProfile(loaded.manifest,loaded.profile,rig,loaded.row.files['model.glb'].decoded_sha256),root=loaded.root,nodes=new Map();
   root.rotation.x=profile.viewer_orientation.viewer_root_rotation_x_radians;
   root.traverse(n=>{if(!n.isMesh)return;const match=n.name.match(/^(p\d+)__/);if(!match)throw Error('Annex part identity');if(nodes.has(match[1]))throw Error('Duplicate Annex part');nodes.set(match[1],n);n.userData.part_key=match[1];n.material=Array.isArray(n.material)?n.material.map(m=>m.clone()):n.material.clone();for(const m of [].concat(n.material)){m.side=THREE.DoubleSide;if(m.transparent)m.depthWrite=false}});
   if(nodes.size!==manifest.parts.length||manifest.parts.some(p=>!nodes.has(p.key)))throw Error('Annex part coverage');
+  const adapter=createCommunityAdapter(root,manifest,profile);
   const panels=manifest.parts.filter(p=>/panel|door/i.test(p.name)&&!/clip|hinge|latch|handle|mount|bracket|spacer/i.test(p.name));
   function enclosure(){for(const p of panels){const node=nodes.get(p.key);node.visible=$('enclosure').checked;for(const m of [].concat(node.material)){const transparent=$('panelTransparency').checked&&!/back|rear|bottom/i.test(p.name);m.transparent=transparent;m.opacity=transparent?.18:1;m.depthWrite=!transparent;m.needsUpdate=true}}render()}
   $('enclosure').onchange=$('panelTransparency').onchange=enclosure;enclosure();
+  const displayKeys=['night','gridVisible','enclosure','panelTransparency'];
+  setupNativeMotionControls({adapter,profile,camera,controls,render,scope,onPose:enclosure,
+   getDisplay:()=>Object.fromEntries(displayKeys.map(k=>[k,$(k).checked])),
+   validateDisplay:d=>{if(!d||displayKeys.some(k=>typeof d[k]!=='boolean'))throw Error('Invalid display setting')},
+   setDisplay:d=>{for(const k of displayKeys)$(k).checked=d[k];grid.visible=d.gridVisible;lighting();enclosure()}
+  });
   scene.add(root);box=new THREE.Box3().setFromObject(root);grid.position.y=box.min.y-.003;
   $('machineTitle').textContent=profile.label;$('revision').textContent=profile.version;$('partCount').textContent=manifest.parts.length.toLocaleString()+' 部品';
   if(profile.size_reference_note){const note=document.createElement('p');note.className='foot';note.textContent=profile.size_reference_note;$('partCount').after(note)}
@@ -41,7 +52,7 @@ export async function mount(scope){
   $('referenceIssues').replaceChildren(...profile.geometry_reference_issues.map(i=>{const li=document.createElement('li');li.textContent=i.name+' · 原本の参照形状に検査課題あり';return li}));
   for(const repair of profile.viewer_geometry_repairs||[]){const li=document.createElement('li');li.textContent='Corrupt corner clip replaced by the author’s matching Release 3.0 STL · '+repair.source_path+' · matching CAD surface discrepancy '+repair.maximum_counterpart_surface_distance_mm.toFixed(3)+' mm';$('referenceIssues').append(li)}
   $('authorSource').href=profile.source_url;$('sourceRevision').textContent=profile.source_commit;
-  $('status').hidden=true;document.body.dataset.assetStatus='ready';document.body.dataset.parts=nodes.size;document.body.dataset.motionStatus='static-native-assembly';
+  $('status').hidden=true;document.body.dataset.ready='true';document.body.dataset.assetStatus='ready';document.body.dataset.parts=nodes.size;document.body.dataset.motionStatus='native-motion-preview';
   resize();view();await setupPublicInfo({includeDownloads:false});setupRenderExport({three:THREE,renderer,scene,camera,controls,name:id});
  }catch(e){$('status').textContent=e.message;document.body.dataset.assetStatus='error';document.body.dataset.error=e.message;console.error(e)}
 }

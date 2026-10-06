@@ -8,7 +8,7 @@ export function validateAxes(axes,profile){
  return axes;
 }
 export function nativeMotion(group,axes,profile){
- validateAxes(axes,profile);return (profile.motions[group]||[0,0,0]).map(v=>typeof v==='string'?axes[v]:v);
+ validateAxes(axes,profile);return (profile.motions[group]||[0,0,0]).map(v=>typeof v==='string'?axes[v]:typeof v==='number'?v:Object.entries(v).reduce((sum,[axis,factor])=>{if(!Object.hasOwn(axes,axis)||!Number.isFinite(factor))throw Error('Invalid native motion term');return sum+axes[axis]*factor},0));
 }
 export function displayMotion(native,profile){return profile.basis.map(row=>row.reduce((sum,n,i)=>sum+n*native[i],0)/1000)}
 export function validateCommunityState(state,profile){

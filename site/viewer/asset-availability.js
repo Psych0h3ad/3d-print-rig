@@ -1,6 +1,6 @@
 import {workspaceTask} from './workspace-lifecycle.mjs';
 import {setupPublicInfo} from './public-info.js?v=2bbf2c451ffa53bf08e7';
-import {modelURL} from './model-loader.js?v=ce28c0df722a83db6bb3';
+import {modelURL} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
 
 const files={
   siboor_trident_350:['../assembly_manifest.json?v=trident-clearance-35','../ASSEMBLY_CONFIGURATIONS.json?v=trident-clearance-35','../SIBOOR_Trident_350.glb'],

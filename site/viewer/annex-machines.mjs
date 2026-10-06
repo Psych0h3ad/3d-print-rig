@@ -6,7 +6,8 @@ export const annexMachines=[
     "family": "annex_k1",
     "vendor": "annex",
     "size": 250,
-    "static_assembly": true
+    "static_assembly": false,
+    "motion_preview": true
   },
   {
     "id": "annex_k2_assembly",
@@ -15,7 +16,8 @@ export const annexMachines=[
     "family": "annex_k2",
     "vendor": "annex",
     "size": 350,
-    "static_assembly": true
+    "static_assembly": false,
+    "motion_preview": true
   },
   {
     "id": "annex_k3_assembly",
@@ -24,6 +26,7 @@ export const annexMachines=[
     "family": "annex_k3",
     "vendor": "annex",
     "size": 180,
-    "static_assembly": true
+    "static_assembly": false,
+    "motion_preview": true
   }
 ];

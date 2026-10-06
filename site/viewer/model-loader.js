@@ -7,7 +7,7 @@ export async function modelURL(path){
  return url.href;
 }
 
-export async function loadModel(loader,path,onProgress){
+export async function loadModel(loader,path,onProgress,options={}){
  const progress=beginModelLoading({model:{}});
  try{
   const original=new URL(path,location.href),url=await modelURL(path);let gzip=url!==original.href;
@@ -22,6 +22,7 @@ export async function loadModel(loader,path,onProgress){
    if(typeof DecompressionStream==='undefined')throw Error('圧縮モデルの表示には新しいブラウザーが必要です');
    buffer=await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
   }
+  if(options.verifySha256){const digest=await crypto.subtle.digest('SHA-256',buffer),hash=Array.from(new Uint8Array(digest),v=>v.toString(16).padStart(2,'0')).join('');if(hash!==options.verifySha256)throw Error('Native model hash mismatch')}
   return await loader.parseAsync(buffer,new URL('.',original).href);
  }finally{progress.finish()}
 }

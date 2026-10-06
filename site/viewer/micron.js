@@ -5,7 +5,7 @@ import {workspaceFrame,WorkspaceResizeObserver,workspaceTask} from './workspace-
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=ce28c0df722a83db6bb3';
+import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
 import {createMicronAdapter} from './micron-adapter.mjs?v=6177cae5e22f1f414ba2';
 import {setupMachineNavigation} from './machines.js?v=98f22b8a6b185e5aa7e3';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';

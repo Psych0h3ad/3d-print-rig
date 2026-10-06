@@ -3,11 +3,11 @@ ensureWorkspaceEntry(import.meta.url);
 import * as THREE from './vendor-r180/three.module.js';
 import {OrbitControls} from './vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
-import {loadCommunity} from './community-loader.mjs?v=d5d464215f225e9cc06e';
-import {communitySchema,validateCommunityState,communityMotionEnabled} from './community-state.mjs?v=97f7806821349b272754';
+import {loadCommunity} from './community-loader.mjs?v=d4d63751ca7a9b3b0f2f';
+import {communitySchema,validateCommunityState,communityMotionEnabled} from './community-state.mjs?v=28a3ee6638eaf28328b4';
 import {setupMachineNavigation} from './machines.js?v=98f22b8a6b185e5aa7e3';
 import {sceneLightingState} from './scene-lighting-state.mjs';
-import {translate} from './i18n.mjs?v=fc082a8e3829df1e89b3';
+import {translate} from './i18n.mjs?v=20a1d9c14386bb4160b4';
 import {rememberDisplayControl} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
@@ -32,7 +32,7 @@ const descriptions={
  snakeoil_3s_kp3s_180:'SnakeOil XY-3S · KP3S / E3D V6 / Sherpa Mini',
  snakeoil_proosaxy:'ProosaXY · MK3-SからCoreXY / E3D V6 / Sherpa Mini / 3軸Z',
 };
-const sourceNotices={ tictac_21_120:"全体CADの静止モデルです。参考床・校正キューブと重複部品は参考表示に分けています。可動操作とMod交換は未対応です。", rook_mk2_120:"MK2 betaの全体CADにGalileo 2 G2SAを表示しています。固定穴と座面を照合していますが、元CADに省かれた固定ネジは補っていません。静止モデルです。", the100_v11_165:"全体CADの静止モデルです。重複マウントは参考表示に分けています。元CADにベルトと全体のPTFE経路が含まれていません。", satsuma180_v10:"全体CADの静止モデルです。パネル・色・カメラを確認できます。可動操作とMod交換は未対応です。",sovol_sv08_350:'全体CADの静止モデルです。Z取付部の座面と固定穴を照合し、ノズルをベッドから離した位置に配置しています。重複部品は参考表示に分けています。元CADにはXYベルトが含まれていません。未接続のPTFEと配線も参考表示に分けています。可動操作とMod交換は未対応です。',lh_stinger_200:'元CADの延長ノズル構成です。組立治具と短いノズルは参考表示に分けています。電子ボックスはこのCADに含まれていません。',vzbot_330_printed:'公式プリントAWD v1.2を表示しています。元CADのXYベルトは一部のみで、CPAPホースは含まれていません。',ender3_stock_220:'元の公式CADにはBowdenチューブが含まれていません。',antithesis_aether_mk11:'公式CADのアルミ仕様です。組立治具・重複部品・MJF向け代替部品を標準表示から分けています。',snakeoil_xy_idex:'左右のヘッドをX・X2で個別に動かせます。元CADに重複したSherpa Miniを標準表示から分けています。XYベルトは一部のみ含まれます。',snakeoil_3s_kp3s_180:'元CADにはXYベルトと全体の配線経路が含まれていません。',snakeoil_proosaxy:'元CADにはXYベルトと全体の配線経路が含まれていません。'};
+const sourceNotices={ tictac_21_120:"Native XYZ movement preview. The floor, calibration cubes and duplicate parts are separated as references.", rook_mk2_120:"Rook MK2 beta with Galileo 2 G2SA and native XYZ movement. Mounting holes and seats were compared; omitted source screws are not synthesized.", the100_v11_165:"Native XYZ movement preview. The duplicate mount is separated as a reference. The source omits belts and the complete Bowden route.", satsuma180_v10:"Native XYZ movement preview with moving XY belts and bed cable.",sovol_sv08_350:'Native XYZ movement preview with moving XY belt envelopes and seated Z carriages. Duplicate parts and disconnected source PTFE/wires are separated as references.',lh_stinger_200:'元CADの延長ノズル構成です。組立治具と短いノズルは参考表示に分けています。電子ボックスはこのCADに含まれていません。',vzbot_330_printed:'公式プリントAWD v1.2を表示しています。元CADのXYベルトは一部のみで、CPAPホースは含まれていません。',ender3_stock_220:'元の公式CADにはBowdenチューブが含まれていません。',antithesis_aether_mk11:'公式CADのアルミ仕様です。組立治具・重複部品・MJF向け代替部品を標準表示から分けています。',snakeoil_xy_idex:'左右のヘッドをX・X2で個別に動かせます。元CADに重複したSherpa Miniを標準表示から分けています。XYベルトは一部のみ含まれます。',snakeoil_3s_kp3s_180:'元CADにはXYベルトと全体の配線経路が含まれていません。',snakeoil_proosaxy:'元CADにはXYベルトと全体の配線経路が含まれていません。'};
 export async function mount(scope){
  const $=id=>document.getElementById(id),stage=$('stage'),machine=new URLSearchParams(location.search).get('machine')||'ender3_stock_220',t=v=>translate(v,document.documentElement.lang);
  if(!Object.hasOwn(descriptions,machine))throw Error('Unknown community printer');
@@ -42,7 +42,7 @@ export async function mount(scope){
  const ambient=new THREE.HemisphereLight(0xffffff,0x586b80,.25),sun=new THREE.DirectionalLight(0xffffff,1.4);sun.position.set(2,4,3);scene.add(ambient,sun);
  const grid=new THREE.GridHelper(2,40,0xa8b8b1,0xc5cec9);grid.visible=false;scene.add(grid);
  let current,state,axisKeys=['x','y','z'],animation=null,frame=null;
- function render(){if(frame!==null||scope.disposed)return;frame=workspaceFrame(time=>{frame=null;if(animation){const u=Math.min(1,(time-animation.start)/12000);setAxes(Object.fromEntries(axisKeys.map(k=>[k,animation.from[k]+(animation.to[k]-animation.from[k])*(.5-.5*Math.cos(Math.PI*u))])));if(u===1)animation=null}controls.update();renderer.render(scene,camera);if(animation)render()})}
+ function render(){if(frame!==null||scope.disposed)return;frame=workspaceFrame(time=>{frame=null;if(animation){const u=Math.min(1,(time-animation.start)/24000),stage=Math.min(2,Math.floor(u*3)),v=Math.min(1,u*3-stage),ease=.5-.5*Math.cos(Math.PI*v);setAxes(Object.fromEntries(axisKeys.map(k=>{const range=current.profile.axes[k],points=[animation.from[k],range[0],range[1],0];return [k,points[stage]+(points[stage+1]-points[stage])*ease]})));if(u===1)animation=null}controls.update();renderer.render(scene,camera);if(animation)render()})}
  function resize(){const r=stage.getBoundingClientRect();renderer.setSize(Math.max(1,r.width),Math.max(1,r.height),false);setResponsiveAspect(camera,controls,r.width,r.height);render()}
  new WorkspaceResizeObserver(resize).observe(stage);controls.addEventListener('change',render);scope.cleanup(()=>{animation=null;current=null});
  workspaceListen(document,'visibilitychange',()=>{if(!document.hidden)resize()});
@@ -59,7 +59,7 @@ export async function mount(scope){
  function restore(data){validateCommunityState(data,current.profile);animation=null;state=structuredClone(data);current.adapter.setPalette(state.palette);current.adapter.setReferences(state.references);for(const k of ['base','accent','frame'])$(k).value=state.palette[k];$('references').checked=state.references;$('night').checked=state.night;$('gridVisible').checked=state.grid;grid.visible=state.grid;setAxes(state.axes);camera.position.fromArray(state.camera.position);camera.up.fromArray(state.camera.up);controls.target.fromArray(state.camera.target);camera.lookAt(controls.target);controls.update();lighting();rememberDisplayControl()}
  for(const[id,kind]of [['iso','iso'],['front','front'],['top','top'],['focusHead','head']])$(id).onclick=()=>view(kind);
  $('night').oninput=$('night').onchange=()=>{if(state)state.night=$('night').checked;lighting()};lighting();setupMachineNavigation(machine);
- function describe(){if(!current)return;$('machineDescription').textContent=t(descriptions[machine]);$('sourceNotice').hidden=!sourceNotices[machine];$('sourceNotice').textContent=sourceNotices[machine]?t(sourceNotices[machine]):''}
+ function describe(){if(!current)return;$('machineDescription').textContent=t(descriptions[machine]);$('sourceNotice').hidden=!sourceNotices[machine];$('sourceNotice').textContent=[sourceNotices[machine],...(current.profile.motion_registration?.notices||[])].filter(Boolean).map(t).join(' ')}
  workspaceListen(window,'rig-language-change',describe);
  try{
   const response=await fetch('../COMMUNITY_MACHINES_ASSETS.json?v=b1f97f395b36aed9e07b');if(!response.ok)throw Error('Native catalog unavailable');current=await loadCommunity(await response.json(),machine);scene.add(current.root);axisKeys=Object.keys(current.profile.axes);const zeroAxes=()=>Object.fromEntries(axisKeys.map(k=>[k,0]));

@@ -7,11 +7,14 @@ import {appearanceRole} from './appearance-role.mjs?v=workspace-belts-1';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=ce28c0df722a83db6bb3';
+import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
 import {setupMachineNavigation} from './machines.js?v=98f22b8a6b185e5aa7e3';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {setupPublicInfo} from './public-info.js?v=2bbf2c451ffa53bf08e7';
+import {applyNativeMotionProfile,loadNativeMotionProfile} from './native-motion-profile.mjs';
+import {createCommunityAdapter} from './community-adapter.mjs?v=0bfacb332d4a57985927';
+import {setupNativeMotionControls} from './native-motion-controls.mjs?v=efe38fef3ecbac6f71eb';
 export async function mount(scope){
 const $=s=>document.querySelector(s),id='fysetc_v24_250_pro',stage=$('#stage');
 setupMachineNavigation(id);setupPublicInfo({includeDownloads:false});
@@ -25,13 +28,25 @@ function view(name){if(!box)return;const center=box.getCenter(new THREE.Vector3(
 function resize(){const b=stage.getBoundingClientRect();renderer.setSize(b.width,b.height,false);setResponsiveAspect(camera,orbit,b.width,b.height);render()}
 new WorkspaceResizeObserver(resize).observe(stage);orbit.addEventListener('change',render);for(const n of ['iso','front','top'])$('#'+n).onclick=()=>view(n);
 try{
- const root='../machines/'+id+'/',[meta,g]=await Promise.all([fetch(root+'assembly_manifest.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('部品表');return r.json()}),loadModel(new GLTFLoader(),root+'model.glb')]);
+ const root='../machines/'+id+'/',rig=await loadNativeMotionProfile(id);
+ const [sourceMeta,sourceProfile,g]=await Promise.all([fetch(root+'assembly_manifest.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('部品表');return r.json()}),fetch(root+'machine_profile.json').then(r=>{if(!r.ok)throw Error('Native machine profile unavailable');return r.json()}),loadModel(new GLTFLoader(),root+'model.glb',null,{verifySha256:rig.model_sha256})]);
+ const {manifest:meta,profile}=applyNativeMotionProfile(sourceMeta,sourceProfile,rig,rig.model_sha256);
  const lookup=new Map(meta.parts.map(p=>[p.key,p])),entries=[];scene.add(g.scene);
  g.scene.traverse(mesh=>{if(!mesh.isMesh)return;const p=lookup.get(mesh.userData.part_key);if(!p)throw Error('部品対応エラー');mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();const mats=Array.isArray(mesh.material)?mesh.material:[mesh.material];for(const m of mats){m.side=THREE.DoubleSide;if(m.transparent)m.depthWrite=false}entries.push({mesh,p,mats,originals:mats.map(m=>m.color.clone())})});
+ const adapter=createCommunityAdapter(g.scene,meta,profile);
+ // The adapter owns cloned materials; color controls must use these current instances.
+ for(const e of entries)e.mats=[].concat(e.mesh.material);
  box=new THREE.Box3().setFromObject(g.scene);grid.position.y=box.min.y-.002;resize();view('iso');
  const palette={};function appearance(){for(const e of entries)for(let i=0;i<e.mats.length;i++){const c=palette[appearanceRole(e.p)];if(c)e.mats[i].color.set(c);else e.mats[i].color.copy(e.originals[i])}render()}
  for(const role of ['base','accent','frame'])$('#'+role).oninput=()=>{palette[role]=$('#'+role).value;appearance()};$('#resetPalette').onclick=()=>{for(const role of Object.keys(palette))delete palette[role];appearance()};
- $('#enclosure').onchange=()=>{for(const e of entries)if(e.p.component==='enclosure')e.mesh.visible=$('#enclosure').checked;render()};$('#parts').textContent=meta.parts.length.toLocaleString()+' 部品 · 250 mm基準';$('#status').hidden=true;document.body.dataset.ready='true';document.body.dataset.parts=String(meta.parts.length);setupRenderExport({renderer,scene,camera,controls:orbit,name:id,afterRender:render});
+ const enclosure=()=>{for(const e of entries)if(e.p.component==='enclosure')e.mesh.visible=$('#enclosure').checked;render()};$('#enclosure').onchange=enclosure;
+ const displayKeys=['night','gridVisible','enclosure'];
+ setupNativeMotionControls({adapter,profile,camera,controls:orbit,render,scope,onPose:enclosure,
+  getDisplay:()=>({...Object.fromEntries(displayKeys.map(k=>[k,$('#'+k).checked])),palette:{...palette}}),
+  validateDisplay:d=>{if(!d||displayKeys.some(k=>typeof d[k]!=='boolean')||!d.palette||Object.entries(d.palette).some(([k,v])=>!['base','accent','frame'].includes(k)||!/^#[a-f0-9]{6}$/i.test(v)))throw Error('Invalid display setting')},
+  setDisplay:d=>{for(const k of displayKeys){$('#'+k).checked=d[k];$('#'+k).dispatchEvent(new Event('change'))}for(const k of Object.keys(palette))delete palette[k];Object.assign(palette,d.palette);for(const[k,v]of Object.entries(palette))$('#'+k).value=v;appearance();enclosure()}
+ });
+ $('#parts').textContent=meta.parts.length.toLocaleString()+' 部品 · 250 mm基準';$('#status').hidden=true;document.body.dataset.ready='true';document.body.dataset.parts=String(meta.parts.length);setupRenderExport({renderer,scene,camera,controls:orbit,name:id,afterRender:render});
 }catch(e){$('#status').textContent='読込エラー: '+e.message;document.body.dataset.error=e.message}
 
 setupSceneDisplay(scene,renderer,camera,scope,THREE);

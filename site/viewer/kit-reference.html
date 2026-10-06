@@ -34,7 +34,7 @@
 </select>
 <h1>V2.4 R2 Pro / 250</h1>
 <p class="foot">Official FYSETC assembly CAD · original reference pose</p>
-<p class="foot notice">Displays part placement from the retrieved CAD. Motion, mod changes and matching the current kit parts are unverified.</p>
+<p class="foot notice">Native XYZ movement preview. Mod changes and matching the current kit parts are unverified.</p>
 <a class="workbench-link" href="./toolheads.html">Toolhead combinations</a>
 <details open>
 <summary>Colors and materials</summary>
@@ -62,7 +62,7 @@
 </details>
 <p class="foot" id="parts">
 </p>
-</aside>
+<details open id="motionSettings"><summary>Motion</summary><p class="foot">XYZ controls are displacements from the native CAD pose.</p><label for="x"><span class="axislabel">X <strong id="xValue">0.0 mm</strong></span></label><input id="x" type="range" min="0" max="0" value="0" step="any" disabled><label for="y"><span class="axislabel">Y <strong id="yValue">0.0 mm</strong></span></label><input id="y" type="range" min="0" max="0" value="0" step="any" disabled><label for="z"><span class="axislabel">Z <strong id="zValue">0.0 mm</strong></span></label><input id="z" type="range" min="0" max="0" value="0" step="any" disabled><div class="button-row"><button id="motionPlay" disabled>Play</button><button id="motionPause" disabled>Pause</button><button id="resetPose" disabled>Reset</button></div><div id="motionNotices"></div></details><div class="button-row"><button id="saveConfiguration" disabled>Save configuration</button><button id="loadConfiguration" disabled>Load</button><input id="configurationFile" type="file" accept=".json,application/json" hidden></div><p id="configurationStatus" class="foot" role="status"></p></aside>
 <section id="stage" aria-label="FYSETC 3D assembly">
 <nav class="view-tools">
 <button id="iso">Perspective</button>
@@ -76,7 +76,7 @@
 </div>
 </section>
 </main>
-<script type="module" data-controller="./kit-reference.js?v=21fe431fc4c55d33a130" src="./workspace-router.mjs?v=4cc74803b0d9240e38d0">
+<script type="module" data-controller="./kit-reference.js?v=902a24f3631f6f011b2d" src="./workspace-router.mjs?v=0d8c2b4e2887c20a11f2">
 </script>
 </body>
 </html>
