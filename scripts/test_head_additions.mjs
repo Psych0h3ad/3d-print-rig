@@ -7,7 +7,13 @@ const read=f=>JSON.parse(fs.readFileSync(new URL('../site/'+f,import.meta.url),'
 const add=read('HEAD_ADDITIONS.json'),raw={assets:{},base_assets:{},sources:[],variants:[]};
 for(const [d,f]of Object.entries(collections)){const supplied=new Set((add[f]||[]).map(o=>o.id));raw[f]=[...new Set(add.variants.map(v=>v[d]))].filter(id=>!supplied.has(id)).map(id=>({id,label:id}));}
 const before=JSON.stringify(raw),catalog=withHeadAdditions(raw,add);catalog.dimensions=headBuilderDimensions;
-assert.equal(JSON.stringify(raw),before);assert.equal(add.variants.length,10);
+assert.equal(JSON.stringify(raw),before);assert.equal(add.variants.length,14);
+const standard=add.variants.filter(v=>v.toolhead==='trinity');
+assert.equal(standard.length,4);
+assert.deepEqual(standard.map(v=>v.id).sort(),['n05','n06','n19','n20'].map(id=>'trinity88__'+id));
+assert(standard.every(v=>v.mount==='fixed'&&v.extruder==='sherpa_r2_standard_short'&&v.hotend==='dragon_ace_volcano'));
+assert.equal(standard.filter(v=>v.carriage==='trinity_mgn9').length,2);
+assert.equal(add.variants.filter(v=>v.toolhead==='trinity_crossbow').length,10);
 let changes=0;
 for(const v of add.variants){
  assert(v.head_only&&!v.machine_head&&!v.registration_source&&v.hardware_assembled);
@@ -18,4 +24,4 @@ for(const v of add.variants){
  }
 }
 for(const mutate of [a=>a.schema='invalid',a=>a.variants[0].head_only=false,a=>a.variants[0].machine_head=true,a=>a.variants[0].extruder='missing',a=>a.variants[0].head_translation_mm=[0,NaN,0],a=>a.variants[0].modules=[{id:'missing'}],a=>a.variants.push(a.variants[0]),a=>a.toolheads.push(a.toolheads[0]),a=>a.assets[add.variants[0].base_asset].parts=0]){const bad=structuredClone(add);mutate(bad);assert.throws(()=>withHeadAdditions(raw,bad));}
-console.log(JSON.stringify({native_head_references:10,exact_choice_transitions:changes,machine_installation_registered:false,strict_invalid_inputs:true}));
+console.log(JSON.stringify({native_head_references:add.variants.length,standard_trinity:standard.length,exact_choice_transitions:changes,machine_installation_registered:false,strict_invalid_inputs:true}));

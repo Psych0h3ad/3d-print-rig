@@ -1,0 +1,3888 @@
+{
+  "all_passed": true,
+  "assets": [
+    {
+      "id": "n00",
+      "parts": 1,
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n00/parts.json",
+          "bytes": 2573,
+          "sha256": "41904f34cab5c0b53463053b55031946a637328e3e036a110217c91c8a66ea58"
+        },
+        "model.glb": {
+          "path": "trinity-native/n00/model.glb.gz",
+          "bytes": 34295,
+          "sha256": "78a12619b822f719a8ab58dab194eb10761618ab2a27afc50c156b113162543d",
+          "encoding": "gzip",
+          "decoded_bytes": 172456,
+          "decoded_sha256": "40ded593ffd51cb4f605656307ef08f26da89f4bce49cbe0e2255d3c6374ae29"
+        }
+      },
+      "variant": {
+        "id": "n00",
+        "source_file": "Files (WIP)/extras/HVFDesigns Trinity Klicky Dock Mount.step",
+        "parts": [
+          "n00_0"
+        ],
+        "head": false
+      }
+    },
+    {
+      "id": "n01",
+      "parts": 1,
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n01/parts.json",
+          "bytes": 2545,
+          "sha256": "e9b22d2d1f4fbb17f3679bf7f3b4b2fab6dc66e3724a3bcb41ec824fb449a596"
+        },
+        "model.glb": {
+          "path": "trinity-native/n01/model.glb.gz",
+          "bytes": 250547,
+          "sha256": "d12e9dbaf22519f7c8b49e591a35d6814656aee81b628e68c83ebe148e814eb3",
+          "encoding": "gzip",
+          "decoded_bytes": 1083700,
+          "decoded_sha256": "0510f2eaf8b2d623d9043d33d7cc3eb11b12e18813e92d6a2ab298199476eec0"
+        }
+      },
+      "variant": {
+        "id": "n01",
+        "source_file": "Files (WIP)/extras/HVFDesigns Trinity_Klicky_Mount.step",
+        "parts": [
+          "n01_0"
+        ],
+        "head": false
+      }
+    },
+    {
+      "id": "n02",
+      "parts": 1,
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n02/parts.json",
+          "bytes": 2589,
+          "sha256": "6914e15476dcb4acee486914c456c6bea8ff83f16af5214f12d77bd766248750"
+        },
+        "model.glb": {
+          "path": "trinity-native/n02/model.glb.gz",
+          "bytes": 86413,
+          "sha256": "826b530cb40b0d30c6219022aa51eaf1bdcae68bc12d711bfc07601f62502f8f",
+          "encoding": "gzip",
+          "decoded_bytes": 379096,
+          "decoded_sha256": "7a20462a56382dcea33087fa3d3d7f6a0b60714f36290b4e88263ff51e16af20"
+        }
+      },
+      "variant": {
+        "id": "n02",
+        "source_file": "Files (WIP)/extras/Trinity klicky00 mounting plate by Prooda.STEP",
+        "parts": [
+          "n02_0"
+        ],
+        "head": false
+      }
+    },
+    {
+      "id": "n03",
+      "parts": 10,
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n03/parts.json",
+          "bytes": 14089,
+          "sha256": "2cf374fd84440b6ff5d4acdce777e226dcdc236bd783f94396e51ac09ece1c67"
+        },
+        "model.glb": {
+          "path": "trinity-native/n03/model.glb.gz",
+          "bytes": 544930,
+          "sha256": "2c0c37d211c6d4fbc012c500ad65517b4d71a167e576e96507316780c460820d",
+          "encoding": "gzip",
+          "decoded_bytes": 3032584,
+          "decoded_sha256": "7441a46d348a9fc21ef36a3b5f7a6d0df8d90af91879f9438e0922185258aa4c"
+        }
+      },
+      "variant": {
+        "id": "n03",
+        "source_file": "Files (WIP)/extras/Trinity pre tensioner by Prooda.step",
+        "parts": [
+          "n03_0",
+          "n03_1",
+          "n03_2",
+          "n03_3",
+          "n03_4",
+          "n03_5",
+          "n03_6",
+          "n03_7",
+          "n03_8",
+          "n03_9"
+        ],
+        "head": false
+      }
+    },
+    {
+      "id": "n04",
+      "parts": 370,
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n04/parts.json",
+          "bytes": 465521,
+          "sha256": "2db969ed91520fe6ddba0ee43e44a7fcf0861a02616a583d8525d8234d7577ec"
+        },
+        "model.glb": {
+          "path": "trinity-native/n04/model.glb.gz",
+          "bytes": 5513001,
+          "sha256": "cdfa49d8f5ea7a67f265d788e0916ff611b5a2005b9ab73e72b4e1a0873669b9",
+          "encoding": "gzip",
+          "decoded_bytes": 26945856,
+          "decoded_sha256": "c3fe560690eb41647001b2cfdc3a9ffb6e8f9f631fb2791aa02fe2b9e0606d2e"
+        }
+      },
+      "variant": {
+        "id": "n04",
+        "source_file": "Files (WIP)/extras/Trinity toolboard mount by Prooda.step",
+        "parts": [
+          "n04_0",
+          "n04_1",
+          "n04_2",
+          "n04_3",
+          "n04_4",
+          "n04_5",
+          "n04_6",
+          "n04_7",
+          "n04_8",
+          "n04_9",
+          "n04_10",
+          "n04_11",
+          "n04_12",
+          "n04_13",
+          "n04_14",
+          "n04_15",
+          "n04_16",
+          "n04_17",
+          "n04_18",
+          "n04_19",
+          "n04_20",
+          "n04_21",
+          "n04_22",
+          "n04_23",
+          "n04_24",
+          "n04_25",
+          "n04_26",
+          "n04_27",
+          "n04_28",
+          "n04_29",
+          "n04_30",
+          "n04_31",
+          "n04_32",
+          "n04_33",
+          "n04_34",
+          "n04_35",
+          "n04_36",
+          "n04_37",
+          "n04_38",
+          "n04_39",
+          "n04_40",
+          "n04_41",
+          "n04_42",
+          "n04_43",
+          "n04_44",
+          "n04_45",
+          "n04_46",
+          "n04_47",
+          "n04_48",
+          "n04_49",
+          "n04_50",
+          "n04_51",
+          "n04_52",
+          "n04_53",
+          "n04_54",
+          "n04_55",
+          "n04_56",
+          "n04_57",
+          "n04_58",
+          "n04_59",
+          "n04_60",
+          "n04_61",
+          "n04_62",
+          "n04_63",
+          "n04_64",
+          "n04_65",
+          "n04_66",
+          "n04_67",
+          "n04_68",
+          "n04_69",
+          "n04_70",
+          "n04_71",
+          "n04_72",
+          "n04_73",
+          "n04_74",
+          "n04_75",
+          "n04_76",
+          "n04_77",
+          "n04_78",
+          "n04_79",
+          "n04_80",
+          "n04_81",
+          "n04_82",
+          "n04_83",
+          "n04_84",
+          "n04_85",
+          "n04_86",
+          "n04_87",
+          "n04_88",
+          "n04_89",
+          "n04_90",
+          "n04_91",
+          "n04_92",
+          "n04_93",
+          "n04_94",
+          "n04_95",
+          "n04_96",
+          "n04_97",
+          "n04_98",
+          "n04_99",
+          "n04_100",
+          "n04_101",
+          "n04_102",
+          "n04_103",
+          "n04_104",
+          "n04_105",
+          "n04_106",
+          "n04_107",
+          "n04_108",
+          "n04_109",
+          "n04_110",
+          "n04_111",
+          "n04_112",
+          "n04_113",
+          "n04_114",
+          "n04_115",
+          "n04_116",
+          "n04_117",
+          "n04_118",
+          "n04_119",
+          "n04_120",
+          "n04_121",
+          "n04_122",
+          "n04_123",
+          "n04_124",
+          "n04_125",
+          "n04_126",
+          "n04_127",
+          "n04_128",
+          "n04_129",
+          "n04_130",
+          "n04_131",
+          "n04_132",
+          "n04_133",
+          "n04_134",
+          "n04_135",
+          "n04_136",
+          "n04_137",
+          "n04_138",
+          "n04_139",
+          "n04_140",
+          "n04_141",
+          "n04_142",
+          "n04_143",
+          "n04_144",
+          "n04_145",
+          "n04_146",
+          "n04_147",
+          "n04_148",
+          "n04_149",
+          "n04_150",
+          "n04_151",
+          "n04_152",
+          "n04_153",
+          "n04_154",
+          "n04_155",
+          "n04_156",
+          "n04_157",
+          "n04_158",
+          "n04_159",
+          "n04_160",
+          "n04_161",
+          "n04_162",
+          "n04_163",
+          "n04_164",
+          "n04_165",
+          "n04_166",
+          "n04_167",
+          "n04_168",
+          "n04_169",
+          "n04_170",
+          "n04_171",
+          "n04_172",
+          "n04_173",
+          "n04_174",
+          "n04_175",
+          "n04_176",
+          "n04_177",
+          "n04_178",
+          "n04_179",
+          "n04_180",
+          "n04_181",
+          "n04_182",
+          "n04_183",
+          "n04_184",
+          "n04_185",
+          "n04_186",
+          "n04_187",
+          "n04_188",
+          "n04_189",
+          "n04_190",
+          "n04_191",
+          "n04_192",
+          "n04_193",
+          "n04_194",
+          "n04_195",
+          "n04_196",
+          "n04_197",
+          "n04_198",
+          "n04_199",
+          "n04_200",
+          "n04_201",
+          "n04_202",
+          "n04_203",
+          "n04_204",
+          "n04_205",
+          "n04_206",
+          "n04_207",
+          "n04_208",
+          "n04_209",
+          "n04_210",
+          "n04_211",
+          "n04_212",
+          "n04_213",
+          "n04_214",
+          "n04_215",
+          "n04_216",
+          "n04_217",
+          "n04_218",
+          "n04_219",
+          "n04_220",
+          "n04_221",
+          "n04_222",
+          "n04_223",
+          "n04_224",
+          "n04_225",
+          "n04_226",
+          "n04_227",
+          "n04_228",
+          "n04_229",
+          "n04_230",
+          "n04_231",
+          "n04_232",
+          "n04_233",
+          "n04_234",
+          "n04_235",
+          "n04_236",
+          "n04_237",
+          "n04_238",
+          "n04_239",
+          "n04_240",
+          "n04_241",
+          "n04_242",
+          "n04_243",
+          "n04_244",
+          "n04_245",
+          "n04_246",
+          "n04_247",
+          "n04_248",
+          "n04_249",
+          "n04_250",
+          "n04_251",
+          "n04_252",
+          "n04_253",
+          "n04_254",
+          "n04_255",
+          "n04_256",
+          "n04_257",
+          "n04_258",
+          "n04_259",
+          "n04_260",
+          "n04_261",
+          "n04_262",
+          "n04_263",
+          "n04_264",
+          "n04_265",
+          "n04_266",
+          "n04_267",
+          "n04_268",
+          "n04_269",
+          "n04_270",
+          "n04_271",
+          "n04_272",
+          "n04_273",
+          "n04_274",
+          "n04_275",
+          "n04_276",
+          "n04_277",
+          "n04_278",
+          "n04_279",
+          "n04_280",
+          "n04_281",
+          "n04_282",
+          "n04_283",
+          "n04_284",
+          "n04_285",
+          "n04_286",
+          "n04_287",
+          "n04_288",
+          "n04_289",
+          "n04_290",
+          "n04_291",
+          "n04_292",
+          "n04_293",
+          "n04_294",
+          "n04_295",
+          "n04_296",
+          "n04_297",
+          "n04_298",
+          "n04_299",
+          "n04_300",
+          "n04_301",
+          "n04_302",
+          "n04_303",
+          "n04_304",
+          "n04_305",
+          "n04_306",
+          "n04_307",
+          "n04_308",
+          "n04_309",
+          "n04_310",
+          "n04_311",
+          "n04_312",
+          "n04_313",
+          "n04_314",
+          "n04_315",
+          "n04_316",
+          "n04_317",
+          "n04_318",
+          "n04_319",
+          "n04_320",
+          "n04_321",
+          "n04_322",
+          "n04_323",
+          "n04_324",
+          "n04_325",
+          "n04_326",
+          "n04_327",
+          "n04_328",
+          "n04_329",
+          "n04_330",
+          "n04_331",
+          "n04_332",
+          "n04_333",
+          "n04_334",
+          "n04_335",
+          "n04_336",
+          "n04_337",
+          "n04_338",
+          "n04_339",
+          "n04_340",
+          "n04_341",
+          "n04_342",
+          "n04_343",
+          "n04_344",
+          "n04_345",
+          "n04_346",
+          "n04_347",
+          "n04_348",
+          "n04_349",
+          "n04_350",
+          "n04_351",
+          "n04_352",
+          "n04_353",
+          "n04_354",
+          "n04_355",
+          "n04_356",
+          "n04_357",
+          "n04_358",
+          "n04_359",
+          "n04_360",
+          "n04_361",
+          "n04_362",
+          "n04_363",
+          "n04_364",
+          "n04_365",
+          "n04_366",
+          "n04_367",
+          "n04_368",
+          "n04_369"
+        ],
+        "head": false
+      }
+    },
+    {
+      "id": "n05",
+      "parts": 105,
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n05/parts.json",
+          "bytes": 129215,
+          "sha256": "4b0c959c6efe9b7de235014a33185adc3fd3b911c82322d4199bfb7e4785d5f2"
+        },
+        "model.glb": {
+          "path": "trinity-native/n05/model.glb.gz",
+          "bytes": 16557711,
+          "sha256": "853f9c350a1c4c822a21c66c7c08600e239aa60d229b96246c564d7c8abc80fb",
+          "encoding": "gzip",
+          "decoded_bytes": 61860848,
+          "decoded_sha256": "364299722958fa5ad0befa63277cce4c33c70f31160b39d6ab4e5be9e56a061d"
+        }
+      },
+      "variant": {
+        "id": "n05",
+        "source_file": "Files (WIP)/Trinity toolhead v1.41 mgn9 6mm belts.step",
+        "parts": [
+          "n05_0",
+          "n05_1",
+          "n05_2",
+          "n05_3",
+          "n05_4",
+          "n05_5",
+          "n05_6",
+          "n05_7",
+          "n05_8",
+          "n05_9",
+          "n05_10",
+          "n05_11",
+          "n05_12",
+          "n05_13",
+          "n05_14",
+          "n05_15",
+          "n05_16",
+          "n05_17",
+          "n05_18",
+          "n05_19",
+          "n05_20",
+          "n05_21",
+          "n05_22",
+          "n05_23",
+          "n05_24",
+          "n05_25",
+          "n05_26",
+          "n05_27",
+          "n05_28",
+          "n05_29",
+          "n05_30",
+          "n05_31",
+          "n05_32",
+          "n05_33",
+          "n05_34",
+          "n05_35",
+          "n05_36",
+          "n05_37",
+          "n05_38",
+          "n05_39",
+          "n05_40",
+          "n05_41",
+          "n05_42",
+          "n05_43",
+          "n05_44",
+          "n05_45",
+          "n05_48",
+          "n05_49",
+          "n05_50",
+          "n05_51",
+          "n05_52",
+          "n05_53",
+          "n05_54",
+          "n05_55",
+          "n05_56",
+          "n05_57",
+          "n05_58",
+          "n05_59",
+          "n05_60",
+          "n05_61",
+          "n05_62",
+          "n05_63",
+          "n05_64",
+          "n05_65",
+          "n05_66",
+          "n05_67",
+          "n05_68",
+          "n05_69",
+          "n05_70",
+          "n05_71",
+          "n05_72",
+          "n05_73",
+          "n05_74",
+          "n05_mount_left",
+          "n05_mount_right",
+          "n05_sherpa_0",
+          "n05_sherpa_1",
+          "n05_sherpa_2",
+          "n05_sherpa_3",
+          "n05_sherpa_4",
+          "n05_sherpa_5",
+          "n05_sherpa_6",
+          "n05_sherpa_7",
+          "n05_sherpa_8",
+          "n05_sherpa_10",
+          "n05_sherpa_11",
+          "n05_sherpa_13",
+          "n05_sherpa_14",
+          "n05_sherpa_15",
+          "n05_sherpa_16",
+          "n05_sherpa_17",
+          "n05_sherpa_18",
+          "n05_sherpa_19",
+          "n05_sherpa_20",
+          "n05_sherpa_21",
+          "n05_sherpa_22",
+          "n05_sherpa_23",
+          "n05_sherpa_24",
+          "n05_sherpa_25",
+          "n05_sherpa_26",
+          "n05_sherpa_27",
+          "n05_sherpa_28",
+          "n05_sherpa_29",
+          "n05_sherpa_30",
+          "n05_sherpa_31"
+        ],
+        "head": true,
+        "nozzle_mm": [
+          0.0,
+          6.499999999999464,
+          -76.92904972273662
+        ],
+        "belt_width_mm": 6,
+        "rail": "mgn9",
+        "floor_y_mm": 31.150000000000006,
+        "mount_axes_xz_mm": [
+          [
+            -21.75,
+            -6.499999999999998
+          ],
+          [
+            21.75,
+            -6.499999999999998
+          ]
+        ],
+        "body_hole_radii_mm": [
+          2.325
+        ],
+        "extruder_translation_mm": [
+          -4.3,
+          44.650000000000006,
+          -12.499999999999998
+        ]
+      }
+    },
+    {
+      "id": "n06",
+      "parts": 105,
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n06/parts.json",
+          "bytes": 128753,
+          "sha256": "be45ab75fd71cc4cc6e00e604212bd3a815625cf9d72f8729c4d30acabfccd2a"
+        },
+        "model.glb": {
+          "path": "trinity-native/n06/model.glb.gz",
+          "bytes": 16580345,
+          "sha256": "a48d1480e8b6f29b0f021d1ba823b50320e08622da35686e6d07ca7e8b3e52fd",
+          "encoding": "gzip",
+          "decoded_bytes": 61952604,
+          "decoded_sha256": "b6279227297d06f3bd0cfb86f6f0263fd492c8ce143f24430e689547fb46b444"
+        }
+      },
+      "variant": {
+        "id": "n06",
+        "source_file": "Files (WIP)/Trinity toolhead v1.41 mgn9 9mm belts.step",
+        "parts": [
+          "n06_0",
+          "n06_1",
+          "n06_2",
+          "n06_3",
+          "n06_4",
+          "n06_5",
+          "n06_6",
+          "n06_7",
+          "n06_8",
+          "n06_9",
+          "n06_10",
+          "n06_11",
+          "n06_12",
+          "n06_13",
+          "n06_14",
+          "n06_15",
+          "n06_16",
+          "n06_17",
+          "n06_18",
+          "n06_19",
+          "n06_20",
+          "n06_21",
+          "n06_22",
+          "n06_23",
+          "n06_24",
+          "n06_25",
+          "n06_26",
+          "n06_27",
+          "n06_28",
+          "n06_29",
+          "n06_30",
+          "n06_31",
+          "n06_32",
+          "n06_33",
+          "n06_34",
+          "n06_35",
+          "n06_36",
+          "n06_37",
+          "n06_38",
+          "n06_39",
+          "n06_40",
+          "n06_41",
+          "n06_42",
+          "n06_43",
+          "n06_44",
+          "n06_45",
+          "n06_48",
+          "n06_49",
+          "n06_50",
+          "n06_51",
+          "n06_52",
+          "n06_53",
+          "n06_54",
+          "n06_55",
+          "n06_56",
+          "n06_57",
+          "n06_58",
+          "n06_59",
+          "n06_60",
+          "n06_61",
+          "n06_62",
+          "n06_63",
+          "n06_64",
+          "n06_65",
+          "n06_66",
+          "n06_67",
+          "n06_68",
+          "n06_69",
+          "n06_70",
+          "n06_71",
+          "n06_72",
+          "n06_73",
+          "n06_74",
+          "n06_mount_left",
+          "n06_mount_right",
+          "n06_sherpa_0",
+          "n06_sherpa_1",
+          "n06_sherpa_2",
+          "n06_sherpa_3",
+          "n06_sherpa_4",
+          "n06_sherpa_5",
+          "n06_sherpa_6",
+          "n06_sherpa_7",
+          "n06_sherpa_8",
+          "n06_sherpa_10",
+          "n06_sherpa_11",
+          "n06_sherpa_13",
+          "n06_sherpa_14",
+          "n06_sherpa_15",
+          "n06_sherpa_16",
+          "n06_sherpa_17",
+          "n06_sherpa_18",
+          "n06_sherpa_19",
+          "n06_sherpa_20",
+          "n06_sherpa_21",
+          "n06_sherpa_22",
+          "n06_sherpa_23",
+          "n06_sherpa_24",
+          "n06_sherpa_25",
+          "n06_sherpa_26",
+          "n06_sherpa_27",
+          "n06_sherpa_28",
+          "n06_sherpa_29",
+          "n06_sherpa_30",
+          "n06_sherpa_31"
+        ],
+        "head": true,
+        "nozzle_mm": [
+          0.0,
+          6.499999999999464,
+          -80.42904972273662
+        ],
+        "belt_width_mm": 9,
+        "rail": "mgn9",
+        "floor_y_mm": 35.15,
+        "mount_axes_xz_mm": [
+          [
+            -21.75,
+            -6.49999999999999
+          ],
+          [
+            21.75,
+            -6.49999999999999
+          ]
+        ],
+        "body_hole_radii_mm": [
+          2.325
+        ],
+        "extruder_translation_mm": [
+          -4.3,
+          48.65,
+          -12.49999999999999
+        ]
+      }
+    },
+    {
+      "id": "n07",
+      "parts": 1,
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n07/parts.json",
+          "bytes": 2625,
+          "sha256": "925fe6e9644716e3d0f1be4f2de61e409777f715d6c4042c1e0a0115b2bd8bb9"
+        },
+        "model.glb": {
+          "path": "trinity-native/n07/model.glb.gz",
+          "bytes": 7575,
+          "sha256": "8f9b402044320058838a7307c75f545b1e84c791270f6d6616111c9006c2add5",
+          "encoding": "gzip",
+          "decoded_bytes": 39892,
+          "decoded_sha256": "4ae5ccc0138d11ea95193710e2fdff50fe5685c1b09902a35affbae870da8a2a"
+        }
+      },
+      "variant": {
+        "id": "n07",
+        "source_file": "apex clip 6mm 2.8mm.STEP",
+        "parts": [
+          "n07_0"
+        ],
+        "head": false,
+        "source_archive": "Files (WIP)/extras/6mm apex clip test pack.zip"
+      }
+    },
+    {
+      "id": "n08",
+      "parts": 1,
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n08/parts.json",
+          "bytes": 2627,
+          "sha256": "eaf7c6d2a105cb05acf73990ba3b1feeb24f0c025b1a152a4a1311153db81e5c"
+        },
+        "model.glb": {
+          "path": "trinity-native/n08/model.glb.gz",
+          "bytes": 7581,
+          "sha256": "2c284438e9a3f7a74978d3843bbc1e8e1a3c2458fd56ca63206599544b29aed3",
+          "encoding": "gzip",
+          "decoded_bytes": 39892,
+          "decoded_sha256": "9c0d179b2522c324354f29ffb3a7bd3c049482ec6e4602728ce2de5f14a4cd88"
+        }
+      },
+      "variant": {
+        "id": "n08",
+        "source_file": "apex clip 6mm 2.9mm.STEP",
+        "parts": [
+          "n08_0"
+        ],
+        "head": false,
+        "source_archive": "Files (WIP)/extras/6mm apex clip test pack.zip"
+      }
+    },
+    {
+      "id": "n09",
+      "parts": 1,
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n09/parts.json",
+          "bytes": 2629,
+          "sha256": "476019d15af3ee58946f2f931e5382e08124b2f63bce87d5917ba3f5dacf54af"
+        },
+        "model.glb": {
+          "path": "trinity-native/n09/model.glb.gz",
+          "bytes": 7562,
+          "sha256": "906ad453e08a9e22b61d9c59ee567186bbda6859b8fc83b6de660b0124d7d4c0",
+          "encoding": "gzip",
+          "decoded_bytes": 39892,
+          "decoded_sha256": "d3b70b307099fb5248152aec89c8f14ed3721ee25f0ee3c3b730a8cb906a632a"
+        }
+      },
+      "variant": {
+        "id": "n09",
+        "source_file": "apex clip 6mm 3.1mm.STEP",
+        "parts": [
+          "n09_0"
+        ],
+        "head": false,
+        "source_archive": "Files (WIP)/extras/6mm apex clip test pack.zip"
+      }
+    },
+    {
+      "id": "n10",
+      "parts": 1,
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n10/parts.json",
+          "bytes": 2617,
+          "sha256": "244a45ddffa20e9491f26e52738bb85ee8531322f8c6a54026118080131e4770"
+        },
+        "model.glb": {
+          "path": "trinity-native/n10/model.glb.gz",
+          "bytes": 7575,
+          "sha256": "cb18b65b407b42ee3703216c981aaf0f68510a358f24d719ff5d068387461f4a",
+          "encoding": "gzip",
+          "decoded_bytes": 39892,
+          "decoded_sha256": "a61a728e3a055e33f1dce74c2b2c0f233c121e6469014607e7086e356741b2da"
+        }
+      },
+      "variant": {
+        "id": "n10",
+        "source_file": "apex clip 6mm 3mm.STEP",
+        "parts": [
+          "n10_0"
+        ],
+        "head": false,
+        "source_archive": "Files (WIP)/extras/6mm apex clip test pack.zip"
+      }
+    },
+    {
+      "id": "n11",
+      "parts": 1,
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n11/parts.json",
+          "bytes": 2717,
+          "sha256": "2ca265b6b5ab095a246a2b78e1404ce7093366e8ef4b8482ff69109da475ca11"
+        },
+        "model.glb": {
+          "path": "trinity-native/n11/model.glb.gz",
+          "bytes": 7526,
+          "sha256": "43f9037f9b411c3ea2a9fcf2c39fb5434ce21cbfc03f6cd4ddb2539a3a018455",
+          "encoding": "gzip",
+          "decoded_bytes": 39888,
+          "decoded_sha256": "e8555ac432225450abf60673c7a601ab49cc090a03dfea2d7b9409bc34db9159"
+        }
+      },
+      "variant": {
+        "id": "n11",
+        "source_file": "9mm apex clip test pack/apex clip 9mm 2.8mm.STEP",
+        "parts": [
+          "n11_0"
+        ],
+        "head": false,
+        "source_archive": "Files (WIP)/extras/9mm apex clip test pack.zip"
+      }
+    },
+    {
+      "id": "n12",
+      "parts": 1,
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n12/parts.json",
+          "bytes": 2716,
+          "sha256": "bcc3745330822cbc6e83aec402b9e6e9cddfc9fe7226528c94f3208c9c121a83"
+        },
+        "model.glb": {
+          "path": "trinity-native/n12/model.glb.gz",
+          "bytes": 7517,
+          "sha256": "9a012ce197181fa37318d11e10d9297cdf90cb76ac60414c1756e2c808fc85ae",
+          "encoding": "gzip",
+          "decoded_bytes": 39888,
+          "decoded_sha256": "7aa74f3143ee5c47d1b4802eae8d0015eeffac70a7e66a80d80ac0cf2524b86b"
+        }
+      },
+      "variant": {
+        "id": "n12",
+        "source_file": "9mm apex clip test pack/apex clip 9mm 2.9mm.STEP",
+        "parts": [
+          "n12_0"
+        ],
+        "head": false,
+        "source_archive": "Files (WIP)/extras/9mm apex clip test pack.zip"
+      }
+    },
+    {
+      "id": "n13",
+      "parts": 1,
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n13/parts.json",
+          "bytes": 2720,
+          "sha256": "5aef1ba2a1fac3c3f31b57a9148b56e577d564c7d40251736cd84c0a3cc0cd9f"
+        },
+        "model.glb": {
+          "path": "trinity-native/n13/model.glb.gz",
+          "bytes": 7523,
+          "sha256": "b3fdd24f481151fce5ba7963a21dfe0e650868b51f679fdf87e9531d442a2769",
+          "encoding": "gzip",
+          "decoded_bytes": 39888,
+          "decoded_sha256": "f51afdf2ab4934c13801f97585ef23017326b688eda77841008ed4639da0648d"
+        }
+      },
+      "variant": {
+        "id": "n13",
+        "source_file": "9mm apex clip test pack/apex clip 9mm 3.1mm.STEP",
+        "parts": [
+          "n13_0"
+        ],
+        "head": false,
+        "source_archive": "Files (WIP)/extras/9mm apex clip test pack.zip"
+      }
+    },
+    {
+      "id": "n14",
+      "parts": 1,
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n14/parts.json",
+          "bytes": 2709,
+          "sha256": "62f09a7bc1478bae3a8d72dc5897daf225920783c66494618a7a0d22b99612e5"
+        },
+        "model.glb": {
+          "path": "trinity-native/n14/model.glb.gz",
+          "bytes": 7531,
+          "sha256": "775c963681effe8a64115426769bd42e86eea1eac351be34ae51c5bb73a4c002",
+          "encoding": "gzip",
+          "decoded_bytes": 39888,
+          "decoded_sha256": "ca557bfe7ac38ff6341810642dc94fda281d5ae37beb3ef1e9c0ce2d7cbb4c32"
+        }
+      },
+      "variant": {
+        "id": "n14",
+        "source_file": "9mm apex clip test pack/apex clip 9mm 3mm.STEP",
+        "parts": [
+          "n14_0"
+        ],
+        "head": false,
+        "source_archive": "Files (WIP)/extras/9mm apex clip test pack.zip"
+      }
+    },
+    {
+      "id": "n15",
+      "parts": 5,
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n15/parts.json",
+          "bytes": 8045,
+          "sha256": "49a7b11738d568c81a0fa45af9819c4ae07cbd7e5fe0e09a8621e9139bf6bef0"
+        },
+        "model.glb": {
+          "path": "trinity-native/n15/model.glb.gz",
+          "bytes": 1343719,
+          "sha256": "d82b98bea60ff5785ce79d0f44681eee9eec805baab87b23dfb599e10a8960df",
+          "encoding": "gzip",
+          "decoded_bytes": 4863592,
+          "decoded_sha256": "1c9aa32159a5731c9f2650bf40a35e4cb70940b72a39ef4ad273c64c37832751"
+        }
+      },
+      "variant": {
+        "id": "n15",
+        "source_file": "TrinityHeatcore4UHF.step",
+        "parts": [
+          "n15_0s0",
+          "n15_0s1",
+          "n15_0s2",
+          "n15_0s3",
+          "n15_0s4"
+        ],
+        "head": false,
+        "source_archive": "Files (WIP)/user mods/cpp0xc0ffeeee TrinityHeatcore4UHF.zip"
+      }
+    },
+    {
+      "id": "n16",
+      "parts": 24,
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n16/parts.json",
+          "bytes": 37593,
+          "sha256": "f357e55f829dc4115acd814d273f506331253156001c762b3fec256e292ec822"
+        },
+        "model.glb": {
+          "path": "trinity-native/n16/model.glb.gz",
+          "bytes": 5029338,
+          "sha256": "ddd55d0909b2003e0a902c08a16fedf8a9703cef83a1273adb5d0b6006e5096e",
+          "encoding": "gzip",
+          "decoded_bytes": 22330296,
+          "decoded_sha256": "a77deffea2c9305ba212be30b0a5b5c4184a7c4ab0a17992c360d734b2bea20c"
+        }
+      },
+      "variant": {
+        "id": "n16",
+        "source_file": "Chube Compact Trinity Toolhead MGN12 6mm.step",
+        "parts": [
+          "n16_0s0",
+          "n16_0s1",
+          "n16_0s2",
+          "n16_0s3",
+          "n16_0s4",
+          "n16_0s5",
+          "n16_0s6",
+          "n16_0s7",
+          "n16_0s8",
+          "n16_0s9",
+          "n16_0s10",
+          "n16_0s11",
+          "n16_0s12",
+          "n16_0s13",
+          "n16_0s14",
+          "n16_0s15",
+          "n16_0s16",
+          "n16_0s17",
+          "n16_0s18",
+          "n16_0s19",
+          "n16_0s20",
+          "n16_0s21",
+          "n16_0s22",
+          "n16_0s23"
+        ],
+        "head": false,
+        "source_archive": "Files (WIP)/user mods/Prooda Chube Compact Trinity Toolhead MGN12 6mm.zip"
+      }
+    },
+    {
+      "id": "n17",
+      "parts": 19,
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n17/parts.json",
+          "bytes": 29550,
+          "sha256": "c7f424d03132c5aecf9034f3c2a25bdd38d5024beb43d9f1e0088ee9f3089e34"
+        },
+        "model.glb": {
+          "path": "trinity-native/n17/model.glb.gz",
+          "bytes": 3002657,
+          "sha256": "d089a7bf17f06fb5bc2b9a005d1e26fc84b701f779504135d6a2cf7732e96f34",
+          "encoding": "gzip",
+          "decoded_bytes": 11896292,
+          "decoded_sha256": "2878e77e5cc8727f9f77818d0b9fb91a43c261aee9a201f9fc563c1200d9c43a"
+        }
+      },
+      "variant": {
+        "id": "n17",
+        "source_file": "Chube Compact Trinity Toolhead MGN12 9mm.step",
+        "parts": [
+          "n17_0s0",
+          "n17_0s1",
+          "n17_0s2",
+          "n17_0s3",
+          "n17_0s4",
+          "n17_0s5",
+          "n17_0s6",
+          "n17_0s7",
+          "n17_0s8",
+          "n17_0s9",
+          "n17_0s10",
+          "n17_0s11",
+          "n17_0s12",
+          "n17_0s13",
+          "n17_0s14",
+          "n17_0s15",
+          "n17_0s16",
+          "n17_0s17",
+          "n17_0s18"
+        ],
+        "head": false,
+        "source_archive": "Files (WIP)/user mods/Prooda Chube Compact Trinity Toolhead MGN12 9mm.zip"
+      }
+    },
+    {
+      "id": "n18",
+      "parts": 24,
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n18/parts.json",
+          "bytes": 36577,
+          "sha256": "c48f9ba189832858a083ccff1b34f52f7ce3da7b572dabc40c8db88a71554427"
+        },
+        "model.glb": {
+          "path": "trinity-native/n18/model.glb.gz",
+          "bytes": 3154815,
+          "sha256": "226cd9be8a736345544c6b19111478e2e3ded7a4eacee7701bcb294d3fdde08a",
+          "encoding": "gzip",
+          "decoded_bytes": 12647640,
+          "decoded_sha256": "203c8541a7e5c456d445929828d63fcf077a73b363ac35aef5648c52ca466d3f"
+        }
+      },
+      "variant": {
+        "id": "n18",
+        "source_file": "Chube Compact Trinity Toolhead MGN9 6mm.step",
+        "parts": [
+          "n18_0s0",
+          "n18_0s1",
+          "n18_0s2",
+          "n18_0s3",
+          "n18_0s4",
+          "n18_0s5",
+          "n18_0s6",
+          "n18_0s7",
+          "n18_0s8",
+          "n18_0s9",
+          "n18_0s10",
+          "n18_0s11",
+          "n18_0s12",
+          "n18_0s13",
+          "n18_0s14",
+          "n18_0s15",
+          "n18_0s16",
+          "n18_0s17",
+          "n18_0s18",
+          "n18_0s19",
+          "n18_0s20",
+          "n18_0s21",
+          "n18_0s22",
+          "n18_0s23"
+        ],
+        "head": false,
+        "source_archive": "Files (WIP)/user mods/Prooda Chube Compact Trinity Toolhead MGN9 6mm.zip"
+      }
+    },
+    {
+      "id": "n19",
+      "parts": 95,
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n19/parts.json",
+          "bytes": 118757,
+          "sha256": "6b1f9843de8b21fb885706796f316c7efaea1583928bc08863e008374661048f"
+        },
+        "model.glb": {
+          "path": "trinity-native/n19/model.glb.gz",
+          "bytes": 19354642,
+          "sha256": "47a1be0387268417eb5f473167a02056f08b97c2c58a782a674b031928bc83c3",
+          "encoding": "gzip",
+          "decoded_bytes": 74905984,
+          "decoded_sha256": "c710231cf441831b34f3b0d72ba213336cb7861d86739d7bd1d91c30873d8f85"
+        }
+      },
+      "variant": {
+        "id": "n19",
+        "source_file": "Trinity 1.54 mgn12 6mm belts.STEP",
+        "parts": [
+          "n19_0",
+          "n19_1",
+          "n19_2",
+          "n19_3",
+          "n19_4",
+          "n19_5",
+          "n19_6",
+          "n19_9",
+          "n19_10",
+          "n19_11",
+          "n19_12",
+          "n19_13",
+          "n19_14",
+          "n19_15",
+          "n19_16",
+          "n19_17",
+          "n19_18",
+          "n19_19",
+          "n19_20",
+          "n19_21",
+          "n19_22",
+          "n19_23",
+          "n19_24",
+          "n19_25",
+          "n19_26",
+          "n19_27",
+          "n19_28",
+          "n19_29",
+          "n19_30",
+          "n19_31",
+          "n19_32",
+          "n19_33",
+          "n19_34",
+          "n19_35",
+          "n19_36",
+          "n19_37",
+          "n19_38",
+          "n19_39",
+          "n19_40",
+          "n19_41",
+          "n19_42",
+          "n19_43",
+          "n19_44",
+          "n19_45",
+          "n19_46",
+          "n19_47",
+          "n19_48",
+          "n19_49",
+          "n19_50",
+          "n19_51",
+          "n19_52",
+          "n19_53",
+          "n19_54",
+          "n19_55",
+          "n19_56",
+          "n19_57",
+          "n19_58",
+          "n19_59",
+          "n19_60",
+          "n19_61",
+          "n19_62",
+          "n19_63",
+          "n19_65",
+          "n19_mount_left",
+          "n19_mount_right",
+          "n19_sherpa_0",
+          "n19_sherpa_1",
+          "n19_sherpa_2",
+          "n19_sherpa_3",
+          "n19_sherpa_4",
+          "n19_sherpa_5",
+          "n19_sherpa_6",
+          "n19_sherpa_7",
+          "n19_sherpa_8",
+          "n19_sherpa_10",
+          "n19_sherpa_11",
+          "n19_sherpa_13",
+          "n19_sherpa_14",
+          "n19_sherpa_15",
+          "n19_sherpa_16",
+          "n19_sherpa_17",
+          "n19_sherpa_18",
+          "n19_sherpa_19",
+          "n19_sherpa_20",
+          "n19_sherpa_21",
+          "n19_sherpa_22",
+          "n19_sherpa_23",
+          "n19_sherpa_24",
+          "n19_sherpa_25",
+          "n19_sherpa_26",
+          "n19_sherpa_27",
+          "n19_sherpa_28",
+          "n19_sherpa_29",
+          "n19_sherpa_30",
+          "n19_sherpa_31"
+        ],
+        "head": true,
+        "nozzle_mm": [
+          8.881784197001252e-16,
+          7.499999999999461,
+          -81.02904972273662
+        ],
+        "belt_width_mm": 6,
+        "rail": "mgn12",
+        "floor_y_mm": 31.099999999999998,
+        "mount_axes_xz_mm": [
+          [
+            -21.75,
+            -7.499999999999994
+          ],
+          [
+            21.75,
+            -7.499999999999994
+          ]
+        ],
+        "body_hole_radii_mm": [
+          1.7
+        ],
+        "extruder_translation_mm": [
+          -4.3,
+          44.599999999999994,
+          -13.499999999999993
+        ],
+        "source_archive": "Files (WIP)/Trinity 1.54 mgn12 6mm belts.zip"
+      }
+    },
+    {
+      "id": "n20",
+      "parts": 95,
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n20/parts.json",
+          "bytes": 127423,
+          "sha256": "a1e226bbcc2c44494b52572cb03db9b39d16cf8101f3044543b5ca4c0927e622"
+        },
+        "model.glb": {
+          "path": "trinity-native/n20/model.glb.gz",
+          "bytes": 19356870,
+          "sha256": "99236b235abc679e07bede6f320e0eeff65548e816ad6677914f354c4cd86488",
+          "encoding": "gzip",
+          "decoded_bytes": 74868672,
+          "decoded_sha256": "1e459a1ff670861858f226dad3084abc8fb84a6f60e14554d4d453d0fd79acc8"
+        }
+      },
+      "variant": {
+        "id": "n20",
+        "source_file": "Trinity 1.54 mgn12 9 or 10mm belts.STEP",
+        "parts": [
+          "n20_0",
+          "n20_1",
+          "n20_2",
+          "n20_3",
+          "n20_4",
+          "n20_5",
+          "n20_38",
+          "n20_41",
+          "n20_42",
+          "n20_43",
+          "n20_44",
+          "n20_45",
+          "n20_46",
+          "n20_47",
+          "n20_48",
+          "n20_49",
+          "n20_50",
+          "n20_51",
+          "n20_52",
+          "n20_53",
+          "n20_54",
+          "n20_55",
+          "n20_56",
+          "n20_57",
+          "n20_58",
+          "n20_59",
+          "n20_60",
+          "n20_61",
+          "n20_62",
+          "n20_63",
+          "n20_64",
+          "n20_65",
+          "n20_66",
+          "n20_67",
+          "n20_68",
+          "n20_69",
+          "n20_70",
+          "n20_71",
+          "n20_72",
+          "n20_73",
+          "n20_74",
+          "n20_75",
+          "n20_76",
+          "n20_77",
+          "n20_78",
+          "n20_79",
+          "n20_80",
+          "n20_81",
+          "n20_82",
+          "n20_83",
+          "n20_84",
+          "n20_85",
+          "n20_86",
+          "n20_87",
+          "n20_88",
+          "n20_96",
+          "n20_97",
+          "n20_98",
+          "n20_99",
+          "n20_105",
+          "n20_106",
+          "n20_107",
+          "n20_109",
+          "n20_mount_left",
+          "n20_mount_right",
+          "n20_sherpa_0",
+          "n20_sherpa_1",
+          "n20_sherpa_2",
+          "n20_sherpa_3",
+          "n20_sherpa_4",
+          "n20_sherpa_5",
+          "n20_sherpa_6",
+          "n20_sherpa_7",
+          "n20_sherpa_8",
+          "n20_sherpa_10",
+          "n20_sherpa_11",
+          "n20_sherpa_13",
+          "n20_sherpa_14",
+          "n20_sherpa_15",
+          "n20_sherpa_16",
+          "n20_sherpa_17",
+          "n20_sherpa_18",
+          "n20_sherpa_19",
+          "n20_sherpa_20",
+          "n20_sherpa_21",
+          "n20_sherpa_22",
+          "n20_sherpa_23",
+          "n20_sherpa_24",
+          "n20_sherpa_25",
+          "n20_sherpa_26",
+          "n20_sherpa_27",
+          "n20_sherpa_28",
+          "n20_sherpa_29",
+          "n20_sherpa_30",
+          "n20_sherpa_31"
+        ],
+        "head": true,
+        "nozzle_mm": [
+          8.881784197001252e-16,
+          7.499999999999461,
+          -81.02904972273662
+        ],
+        "belt_width_mm": 9,
+        "rail": "mgn12",
+        "floor_y_mm": 32.099999999999994,
+        "mount_axes_xz_mm": [
+          [
+            -21.75,
+            -7.499999999999987
+          ],
+          [
+            21.75,
+            -7.499999999999987
+          ]
+        ],
+        "body_hole_radii_mm": [
+          1.7
+        ],
+        "extruder_translation_mm": [
+          -4.3,
+          45.599999999999994,
+          -13.499999999999986
+        ],
+        "source_archive": "Files (WIP)/Trinity 1.54 mgn12 9 or 10mm belts.zip"
+      }
+    },
+    {
+      "id": "n21",
+      "parts": 57,
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n21/parts.json",
+          "bytes": 84752,
+          "sha256": "3d64a4f013d1e4269794d437f3ded79ede209bde902e4587a8c216dd9d5b9726"
+        },
+        "model.glb": {
+          "path": "trinity-native/n21/model.glb.gz",
+          "bytes": 13117101,
+          "sha256": "fe56886769eaa734d2e738f5d7746df76c9e58d277656a9173d61830f175dde9",
+          "encoding": "gzip",
+          "decoded_bytes": 55865028,
+          "decoded_sha256": "7624aae8a8f9010d6698ecb43df50432785b3e68b61de9e1afafc5044533506f"
+        }
+      },
+      "variant": {
+        "id": "n21",
+        "source_file": "Chube Compact Trinity Magneto Cutter MGN12 6mm.step",
+        "parts": [
+          "n21_0",
+          "n21_1",
+          "n21_2",
+          "n21_3",
+          "n21_4",
+          "n21_5",
+          "n21_6",
+          "n21_7",
+          "n21_8",
+          "n21_9",
+          "n21_10",
+          "n21_11",
+          "n21_12",
+          "n21_13",
+          "n21_14",
+          "n21_15",
+          "n21_16",
+          "n21_17",
+          "n21_18",
+          "n21_19",
+          "n21_20",
+          "n21_21",
+          "n21_22",
+          "n21_23",
+          "n21_24",
+          "n21_25",
+          "n21_26",
+          "n21_27",
+          "n21_28",
+          "n21_29",
+          "n21_30",
+          "n21_31",
+          "n21_32",
+          "n21_33",
+          "n21_34",
+          "n21_35",
+          "n21_36",
+          "n21_37",
+          "n21_38",
+          "n21_39",
+          "n21_40",
+          "n21_41",
+          "n21_42",
+          "n21_43",
+          "n21_44",
+          "n21_45",
+          "n21_46",
+          "n21_47",
+          "n21_48",
+          "n21_49",
+          "n21_50",
+          "n21_51",
+          "n21_52",
+          "n21_53",
+          "n21_54",
+          "n21_55",
+          "n21_56"
+        ],
+        "head": false,
+        "source_archive": "Files (WIP)/user mods/Zerodegree79 Chube Compact Trinity Magneto Cutter MGN12 6mm.zip"
+      }
+    },
+    {
+      "id": "n22",
+      "parts": 49,
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n22/parts.json",
+          "bytes": 70640,
+          "sha256": "b7e74251834fe6e70f60cde3ff719e1a493a51ad9c1229c51ada2839c765a27e"
+        },
+        "model.glb": {
+          "path": "trinity-native/n22/model.glb.gz",
+          "bytes": 10041762,
+          "sha256": "6b7c3dcdd0c3e3d2e6b02cbc6cf4a0fcd37c31b4fbd36a00ae853de5a3d2dd7e",
+          "encoding": "gzip",
+          "decoded_bytes": 39994764,
+          "decoded_sha256": "f9d27b4e1711775a5bd32d66d1c2eea7c8c1764e76e3835fc3738a0c4d306d47"
+        }
+      },
+      "variant": {
+        "id": "n22",
+        "source_file": "Trinity Dragon T-Volcano front cutter.step",
+        "parts": [
+          "n22_0",
+          "n22_1",
+          "n22_2",
+          "n22_3",
+          "n22_4",
+          "n22_5",
+          "n22_6",
+          "n22_7",
+          "n22_8",
+          "n22_9",
+          "n22_10",
+          "n22_11",
+          "n22_12",
+          "n22_13",
+          "n22_14",
+          "n22_15",
+          "n22_16",
+          "n22_17",
+          "n22_18",
+          "n22_19",
+          "n22_20",
+          "n22_21",
+          "n22_22",
+          "n22_23",
+          "n22_24",
+          "n22_25",
+          "n22_26",
+          "n22_27",
+          "n22_28",
+          "n22_29",
+          "n22_30",
+          "n22_31",
+          "n22_32",
+          "n22_33",
+          "n22_34",
+          "n22_35",
+          "n22_36",
+          "n22_37",
+          "n22_38",
+          "n22_39",
+          "n22_40",
+          "n22_41",
+          "n22_42",
+          "n22_43",
+          "n22_44",
+          "n22_45",
+          "n22_46",
+          "n22_47",
+          "n22_48"
+        ],
+        "head": false,
+        "source_archive": "Files (WIP)/user mods/Zerodegree79 Trinity Dragon T-Volcano front cutter.zip"
+      }
+    },
+    {
+      "id": "n23",
+      "parts": 22,
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n23/parts.json",
+          "bytes": 32356,
+          "sha256": "ce8ce9f3bdae0058aaa75c8677b48ee3cfec993a05f937cf08a7d18828f3b552"
+        },
+        "model.glb": {
+          "path": "trinity-native/n23/model.glb.gz",
+          "bytes": 7838123,
+          "sha256": "63204ce1a6734cc1eb5f977da172930708d721f79a82ee655f1e85ced857198d",
+          "encoding": "gzip",
+          "decoded_bytes": 28222508,
+          "decoded_sha256": "2f70f0186335f4957095c14ee3d87734fc631802de6ccf0733dbb5328f28d143"
+        }
+      },
+      "variant": {
+        "id": "n23",
+        "source_file": "Trinity Dragon UHF back cutter.step",
+        "parts": [
+          "n23_0",
+          "n23_1",
+          "n23_2",
+          "n23_3",
+          "n23_4",
+          "n23_5",
+          "n23_6",
+          "n23_7",
+          "n23_8",
+          "n23_9",
+          "n23_10",
+          "n23_11",
+          "n23_12",
+          "n23_13",
+          "n23_14",
+          "n23_15",
+          "n23_16",
+          "n23_17",
+          "n23_18",
+          "n23_19",
+          "n23_20",
+          "n23_21"
+        ],
+        "head": false,
+        "source_archive": "Files (WIP)/user mods/Zerodegree79 Trinity Dragon UHF back cutter.zip"
+      }
+    },
+    {
+      "id": "n24",
+      "parts": 23,
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n24/parts.json",
+          "bytes": 33921,
+          "sha256": "cef292c0f8c209d850b29abf254ce4b9c55eb6e84543ca7efe21bc99ac861ad6"
+        },
+        "model.glb": {
+          "path": "trinity-native/n24/model.glb.gz",
+          "bytes": 6924227,
+          "sha256": "015511993c3b0e7fd57021a07a0f53871a70865a0f34419d203e6edcc531f114",
+          "encoding": "gzip",
+          "decoded_bytes": 24483100,
+          "decoded_sha256": "19d31acad4c2d1c95fab188632436f62d8e696b0fdd9d22805c099afd3b7a431"
+        }
+      },
+      "variant": {
+        "id": "n24",
+        "source_file": "Trinity Dragon UHF Front cutter.step",
+        "parts": [
+          "n24_0",
+          "n24_1",
+          "n24_2",
+          "n24_3",
+          "n24_4",
+          "n24_5",
+          "n24_6",
+          "n24_7",
+          "n24_8",
+          "n24_9",
+          "n24_10",
+          "n24_11",
+          "n24_12",
+          "n24_13",
+          "n24_14",
+          "n24_15",
+          "n24_16",
+          "n24_17",
+          "n24_18",
+          "n24_19",
+          "n24_20",
+          "n24_21",
+          "n24_22"
+        ],
+        "head": false,
+        "source_archive": "Files (WIP)/user mods/Zerodegree79 Trinity Dragon UHF Front cutter.zip"
+      }
+    }
+  ],
+  "complete_heads": 4,
+  "component_only": 21,
+  "exact_choice_transitions": 562,
+  "machine_installation_registered": false,
+  "results": [
+    {
+      "id": "trinity_native_n00",
+      "parts": 1,
+      "model_sha256": "40ded593ffd51cb4f605656307ef08f26da89f4bce49cbe0e2255d3c6374ae29",
+      "metadata_sha256": "41904f34cab5c0b53463053b55031946a637328e3e036a110217c91c8a66ea58",
+      "components": {
+        "printed": 1
+      },
+      "palettes": 5,
+      "complete_head": false,
+      "native_solid_review": false,
+      "printed_roles": 1
+    },
+    {
+      "id": "trinity_native_n01",
+      "parts": 1,
+      "model_sha256": "0510f2eaf8b2d623d9043d33d7cc3eb11b12e18813e92d6a2ab298199476eec0",
+      "metadata_sha256": "e9b22d2d1f4fbb17f3679bf7f3b4b2fab6dc66e3724a3bcb41ec824fb449a596",
+      "components": {
+        "printed": 1
+      },
+      "palettes": 5,
+      "complete_head": false,
+      "native_solid_review": false,
+      "printed_roles": 1
+    },
+    {
+      "id": "trinity_native_n02",
+      "parts": 1,
+      "model_sha256": "7a20462a56382dcea33087fa3d3d7f6a0b60714f36290b4e88263ff51e16af20",
+      "metadata_sha256": "6914e15476dcb4acee486914c456c6bea8ff83f16af5214f12d77bd766248750",
+      "components": {
+        "printed": 1
+      },
+      "palettes": 5,
+      "complete_head": false,
+      "native_solid_review": false,
+      "printed_roles": 1
+    },
+    {
+      "id": "trinity_native_n03",
+      "parts": 10,
+      "model_sha256": "7441a46d348a9fc21ef36a3b5f7a6d0df8d90af91879f9438e0922185258aa4c",
+      "metadata_sha256": "2cf374fd84440b6ff5d4acdce777e226dcdc236bd783f94396e51ac09ece1c67",
+      "components": {
+        "printed": 6,
+        "hardware": 4
+      },
+      "palettes": 5,
+      "complete_head": false,
+      "native_solid_review": false,
+      "printed_roles": 6
+    },
+    {
+      "id": "trinity_native_n04",
+      "parts": 370,
+      "model_sha256": "c3fe560690eb41647001b2cfdc3a9ffb6e8f9f631fb2791aa02fe2b9e0606d2e",
+      "metadata_sha256": "2db969ed91520fe6ddba0ee43e44a7fcf0861a02616a583d8525d8234d7577ec",
+      "components": {
+        "board": 362,
+        "hardware": 4,
+        "printed": 4
+      },
+      "palettes": 5,
+      "complete_head": false,
+      "native_solid_review": false,
+      "printed_roles": 4
+    },
+    {
+      "id": "trinity_native_n05",
+      "parts": 105,
+      "model_sha256": "364299722958fa5ad0befa63277cce4c33c70f31160b39d6ab4e5be9e56a061d",
+      "metadata_sha256": "4b0c959c6efe9b7de235014a33185adc3fd3b911c82322d4199bfb7e4785d5f2",
+      "components": {
+        "printed": 7,
+        "fan": 5,
+        "hardware": 51,
+        "hotend": 8,
+        "nozzle": 1,
+        "board": 2,
+        "rail_reference": 1,
+        "extruder": 29,
+        "motor": 1
+      },
+      "palettes": 5,
+      "complete_head": true,
+      "native_solid_review": true,
+      "printed_roles": 11
+    },
+    {
+      "id": "trinity_native_n06",
+      "parts": 105,
+      "model_sha256": "b6279227297d06f3bd0cfb86f6f0263fd492c8ce143f24430e689547fb46b444",
+      "metadata_sha256": "be45ab75fd71cc4cc6e00e604212bd3a815625cf9d72f8729c4d30acabfccd2a",
+      "components": {
+        "printed": 7,
+        "fan": 5,
+        "hardware": 51,
+        "hotend": 8,
+        "nozzle": 1,
+        "board": 2,
+        "rail_reference": 1,
+        "extruder": 29,
+        "motor": 1
+      },
+      "palettes": 5,
+      "complete_head": true,
+      "native_solid_review": true,
+      "printed_roles": 11
+    },
+    {
+      "id": "trinity_native_n07",
+      "parts": 1,
+      "model_sha256": "4ae5ccc0138d11ea95193710e2fdff50fe5685c1b09902a35affbae870da8a2a",
+      "metadata_sha256": "925fe6e9644716e3d0f1be4f2de61e409777f715d6c4042c1e0a0115b2bd8bb9",
+      "components": {
+        "printed": 1
+      },
+      "palettes": 5,
+      "complete_head": false,
+      "native_solid_review": false,
+      "printed_roles": 1
+    },
+    {
+      "id": "trinity_native_n08",
+      "parts": 1,
+      "model_sha256": "9c0d179b2522c324354f29ffb3a7bd3c049482ec6e4602728ce2de5f14a4cd88",
+      "metadata_sha256": "eaf7c6d2a105cb05acf73990ba3b1feeb24f0c025b1a152a4a1311153db81e5c",
+      "components": {
+        "printed": 1
+      },
+      "palettes": 5,
+      "complete_head": false,
+      "native_solid_review": false,
+      "printed_roles": 1
+    },
+    {
+      "id": "trinity_native_n09",
+      "parts": 1,
+      "model_sha256": "d3b70b307099fb5248152aec89c8f14ed3721ee25f0ee3c3b730a8cb906a632a",
+      "metadata_sha256": "476019d15af3ee58946f2f931e5382e08124b2f63bce87d5917ba3f5dacf54af",
+      "components": {
+        "printed": 1
+      },
+      "palettes": 5,
+      "complete_head": false,
+      "native_solid_review": false,
+      "printed_roles": 1
+    },
+    {
+      "id": "trinity_native_n10",
+      "parts": 1,
+      "model_sha256": "a61a728e3a055e33f1dce74c2b2c0f233c121e6469014607e7086e356741b2da",
+      "metadata_sha256": "244a45ddffa20e9491f26e52738bb85ee8531322f8c6a54026118080131e4770",
+      "components": {
+        "printed": 1
+      },
+      "palettes": 5,
+      "complete_head": false,
+      "native_solid_review": false,
+      "printed_roles": 1
+    },
+    {
+      "id": "trinity_native_n11",
+      "parts": 1,
+      "model_sha256": "e8555ac432225450abf60673c7a601ab49cc090a03dfea2d7b9409bc34db9159",
+      "metadata_sha256": "2ca265b6b5ab095a246a2b78e1404ce7093366e8ef4b8482ff69109da475ca11",
+      "components": {
+        "printed": 1
+      },
+      "palettes": 5,
+      "complete_head": false,
+      "native_solid_review": false,
+      "printed_roles": 1
+    },
+    {
+      "id": "trinity_native_n12",
+      "parts": 1,
+      "model_sha256": "7aa74f3143ee5c47d1b4802eae8d0015eeffac70a7e66a80d80ac0cf2524b86b",
+      "metadata_sha256": "bcc3745330822cbc6e83aec402b9e6e9cddfc9fe7226528c94f3208c9c121a83",
+      "components": {
+        "printed": 1
+      },
+      "palettes": 5,
+      "complete_head": false,
+      "native_solid_review": false,
+      "printed_roles": 1
+    },
+    {
+      "id": "trinity_native_n13",
+      "parts": 1,
+      "model_sha256": "f51afdf2ab4934c13801f97585ef23017326b688eda77841008ed4639da0648d",
+      "metadata_sha256": "5aef1ba2a1fac3c3f31b57a9148b56e577d564c7d40251736cd84c0a3cc0cd9f",
+      "components": {
+        "printed": 1
+      },
+      "palettes": 5,
+      "complete_head": false,
+      "native_solid_review": false,
+      "printed_roles": 1
+    },
+    {
+      "id": "trinity_native_n14",
+      "parts": 1,
+      "model_sha256": "ca557bfe7ac38ff6341810642dc94fda281d5ae37beb3ef1e9c0ce2d7cbb4c32",
+      "metadata_sha256": "62f09a7bc1478bae3a8d72dc5897daf225920783c66494618a7a0d22b99612e5",
+      "components": {
+        "printed": 1
+      },
+      "palettes": 5,
+      "complete_head": false,
+      "native_solid_review": false,
+      "printed_roles": 1
+    },
+    {
+      "id": "trinity_native_n15",
+      "parts": 5,
+      "model_sha256": "1c9aa32159a5731c9f2650bf40a35e4cb70940b72a39ef4ad273c64c37832751",
+      "metadata_sha256": "49a7b11738d568c81a0fa45af9819c4ae07cbd7e5fe0e09a8621e9139bf6bef0",
+      "components": {
+        "printed": 3,
+        "source_hardware": 2
+      },
+      "palettes": 5,
+      "complete_head": false,
+      "native_solid_review": false,
+      "printed_roles": 3
+    },
+    {
+      "id": "trinity_native_n16",
+      "parts": 24,
+      "model_sha256": "a77deffea2c9305ba212be30b0a5b5c4184a7c4ab0a17992c360d734b2bea20c",
+      "metadata_sha256": "f357e55f829dc4115acd814d273f506331253156001c762b3fec256e292ec822",
+      "components": {
+        "source_hardware": 17,
+        "printed": 7
+      },
+      "palettes": 5,
+      "complete_head": false,
+      "native_solid_review": false,
+      "printed_roles": 7
+    },
+    {
+      "id": "trinity_native_n17",
+      "parts": 19,
+      "model_sha256": "2878e77e5cc8727f9f77818d0b9fb91a43c261aee9a201f9fc563c1200d9c43a",
+      "metadata_sha256": "c7f424d03132c5aecf9034f3c2a25bdd38d5024beb43d9f1e0088ee9f3089e34",
+      "components": {
+        "source_hardware": 16,
+        "printed": 3
+      },
+      "palettes": 5,
+      "complete_head": false,
+      "native_solid_review": false,
+      "printed_roles": 3
+    },
+    {
+      "id": "trinity_native_n18",
+      "parts": 24,
+      "model_sha256": "203c8541a7e5c456d445929828d63fcf077a73b363ac35aef5648c52ca466d3f",
+      "metadata_sha256": "c48f9ba189832858a083ccff1b34f52f7ce3da7b572dabc40c8db88a71554427",
+      "components": {
+        "source_hardware": 16,
+        "printed": 8
+      },
+      "palettes": 5,
+      "complete_head": false,
+      "native_solid_review": false,
+      "printed_roles": 8
+    },
+    {
+      "id": "trinity_native_n19",
+      "parts": 95,
+      "model_sha256": "c710231cf441831b34f3b0d72ba213336cb7861d86739d7bd1d91c30873d8f85",
+      "metadata_sha256": "6b1f9843de8b21fb885706796f316c7efaea1583928bc08863e008374661048f",
+      "components": {
+        "printed": 7,
+        "fan": 5,
+        "hardware": 35,
+        "hotend": 15,
+        "nozzle": 1,
+        "rail_reference": 1,
+        "board": 1,
+        "extruder": 29,
+        "motor": 1
+      },
+      "palettes": 5,
+      "complete_head": true,
+      "native_solid_review": true,
+      "printed_roles": 11
+    },
+    {
+      "id": "trinity_native_n20",
+      "parts": 95,
+      "model_sha256": "1e459a1ff670861858f226dad3084abc8fb84a6f60e14554d4d453d0fd79acc8",
+      "metadata_sha256": "a1e226bbcc2c44494b52572cb03db9b39d16cf8101f3044543b5ca4c0927e622",
+      "components": {
+        "printed": 7,
+        "fan": 5,
+        "hardware": 35,
+        "hotend": 15,
+        "nozzle": 1,
+        "rail_reference": 1,
+        "board": 1,
+        "extruder": 29,
+        "motor": 1
+      },
+      "palettes": 5,
+      "complete_head": true,
+      "native_solid_review": true,
+      "printed_roles": 11
+    },
+    {
+      "id": "trinity_native_n21",
+      "parts": 57,
+      "model_sha256": "7624aae8a8f9010d6698ecb43df50432785b3e68b61de9e1afafc5044533506f",
+      "metadata_sha256": "3d64a4f013d1e4269794d437f3ded79ede209bde902e4587a8c216dd9d5b9726",
+      "components": {
+        "printed": 8,
+        "fan": 4,
+        "extruder_hardware": 44,
+        "board": 1
+      },
+      "palettes": 5,
+      "complete_head": false,
+      "native_solid_review": false,
+      "printed_roles": 8
+    },
+    {
+      "id": "trinity_native_n22",
+      "parts": 49,
+      "model_sha256": "f9d27b4e1711775a5bd32d66d1c2eea7c8c1764e76e3835fc3738a0c4d306d47",
+      "metadata_sha256": "b7e74251834fe6e70f60cde3ff719e1a493a51ad9c1229c51ada2839c765a27e",
+      "components": {
+        "extruder_hardware": 36,
+        "printed": 7,
+        "fan": 5,
+        "hotend": 1
+      },
+      "palettes": 5,
+      "complete_head": false,
+      "native_solid_review": false,
+      "printed_roles": 7
+    },
+    {
+      "id": "trinity_native_n23",
+      "parts": 22,
+      "model_sha256": "2f70f0186335f4957095c14ee3d87734fc631802de6ccf0733dbb5328f28d143",
+      "metadata_sha256": "ce8ce9f3bdae0058aaa75c8677b48ee3cfec993a05f937cf08a7d18828f3b552",
+      "components": {
+        "extruder_hardware": 11,
+        "printed": 5,
+        "fan": 5,
+        "hotend": 1
+      },
+      "palettes": 5,
+      "complete_head": false,
+      "native_solid_review": false,
+      "printed_roles": 5
+    },
+    {
+      "id": "trinity_native_n24",
+      "parts": 23,
+      "model_sha256": "19d31acad4c2d1c95fab188632436f62d8e696b0fdd9d22805c099afd3b7a431",
+      "metadata_sha256": "cef292c0f8c209d850b29abf254ce4b9c55eb6e84543ca7efe21bc99ac861ad6",
+      "components": {
+        "hotend": 1,
+        "extruder_hardware": 14,
+        "printed": 4,
+        "fan": 4
+      },
+      "palettes": 5,
+      "complete_head": false,
+      "native_solid_review": false,
+      "printed_roles": 4
+    }
+  ],
+  "scope": "Actual 25 exported assets, finite indexed geometry/unit normals, role coverage and purchased-material isolation across five palettes, checksum-validating loader, exact 14-supplement choice transitions and builder round trips. Native-solid checks cover Sherpa/source mating, mounting screws/source and supplied rail-block/printed-body or clamp intersections on four complete heads. MGN9 uses native M3×12; MGN12 uses M3×16. Intended threaded engagement is separate. Full hotend/probe contacts, machine installation, all moving-body clearance and cutter motion are not certified.",
+  "reviewed_on": "2026-10-06",
+  "source": {
+    "repository": "https://github.com/WV-design/Trinity-toolhead",
+    "commit": "d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+    "current_version": "1.54 / MGN12",
+    "legacy_version": "1.41 / MGN9"
+  },
+  "native_solid_intersections": [
+    {
+      "variant": "n05",
+      "metadata_sha256": "4b0c959c6efe9b7de235014a33185adc3fd3b911c82322d4199bfb7e4785d5f2",
+      "native_brep_hashes": {
+        "n05_0": "adfead73dd13e62b3b528a0cd9a1c4ffb0a3b8e4feea45bae9ce337de05bf176",
+        "n05_1": "bd303f9e9986cef62777baef53fa06d8b9573b077bbc9f1d298054b2f080e28e",
+        "n05_2": "f68e34fd1088d6e5c21ef9a01113c0b25a8266cbd1d6d4a1b480bf9c66a0c8cf",
+        "n05_3": "5788714b75b8e94229955300144fd276894a5b4332b28b537ec16d128de9da06",
+        "n05_4": "862afed365873fb185c4230fedc33419932769336c34f68a7b119ec922fad7f7",
+        "n05_5": "82c80ad212909b7a441949335ca76c20bc219f55141bbfae8edcc40690cc3296",
+        "n05_6": "c7945e16186ec921da603bb1667a7ee904decd61ced5302d0e3d3dbf971a2728",
+        "n05_7": "09289340acccbd181fa5a1fe9a1117e6a7ffea55fee38529ce6e30105cfb360d",
+        "n05_8": "89bd4f15c4611e930407172766b47f1cfe7d5c5479ee0a468aab9751aad36ee7",
+        "n05_9": "fc3d1776855f664047e70cb21f9455595115652cc1313cece8bc6e339db11d9d",
+        "n05_10": "624c0a5f67e5d298742614437dcdae5676bfbc77ba83157104f6aa5374e2b5f2",
+        "n05_11": "2f459d8a4e8193613d70ae88da4d29d007c384946da24669901cc606be4f3aaa",
+        "n05_12": "335aa449fbf7fcedd8fc66973ba20a475dfc888a81f354cc3e632ad5b6d244ea",
+        "n05_13": "7f8044d6c7a15c7cd1556571111222ecd463bd7ab8dd1eedc71580ac3b677623",
+        "n05_14": "1b4fc473277d89ec0d6cc02a20a1b5ded7daa83e48a0b865045a0fce9126b47e",
+        "n05_15": "912a12f77a65aa2b4e9a7c40c30e09a46936dbf32b8459fc60035a862cb7fd8f",
+        "n05_16": "ddd66ace9e91aec3dd3961ff779c1118807db7c2454ac31780e35192d6cd3fdd",
+        "n05_17": "f978b590a725d5748e946f587839206150c4a8a966db3f3ae925771b05f36b15",
+        "n05_18": "1e8add7c05423acfac154f381ef864f7f67dc68c825578abd4b371ae030f43ba",
+        "n05_19": "ff6615f36aec0f72de2b1f3ccddc0313d01ff0886932093198a79b5fc8e07f71",
+        "n05_20": "e865d8742731921aed76f069b9222438e4bda703ea1fab3f62ac736318c88783",
+        "n05_21": "875b92ac7b4ddcb213ded20d9ff37cf02e552031392e8b0f41fedf3dd5e9d8f5",
+        "n05_22": "3ae5c3c6a4582c23041942a7937bec0bcd1573f78c02722a4ee0e594d3a490ae",
+        "n05_23": "7f41527a35ac99cdaef2904c96de7d2bb4c814b665aa9f272f0b6cea9f0e8ff0",
+        "n05_24": "009e23738218fea7fbcd9d6ee541586d5e7dcb3a312e2f1d4066534dab4107e5",
+        "n05_25": "68456326c4b3914a227ad6297f5f44133113b07976fe4f7e9eaaeebb81cbd1e4",
+        "n05_26": "42bbba1890452e7c91e98614747156e5a2671877ab551e7d2389ddeff0243940",
+        "n05_27": "0a53856c89f02d69b1940be4b2b9a617da888f1f43313d98c0f03d859d97e703",
+        "n05_28": "2a05221f3fcfbde8cf9aca054884b633135f7ec1d6eca9a340680de8741baa24",
+        "n05_29": "6a8f0be4d0b5c96e471ecebfba0ca6cdb72358ca90477d2d4f5102a89c49d3b5",
+        "n05_30": "288899b969b433ede4743b70e04c27af67f97d267e57b88d2114e3dfcd18facc",
+        "n05_31": "e828e0a18c4b05c6c55ea02aa3d28ee5398487ebd8e6fba69181d843296d0f30",
+        "n05_32": "99bcfb4d8d64404b76715f1085d8d45e2dacd86fd7327c4468328a2f888e4d41",
+        "n05_33": "65a322b6ceef2dfc03c09435b12f9e6a5d0212c3e4ed37f740a9b5e523c78587",
+        "n05_34": "5e1868ee79bb7b9d40b54fd5a29506b474d367ed0426d2596a8098d47bd7ba2c",
+        "n05_35": "eb98d36b5c311977e7f4b5cd9259c1e32a37d737d175011544950bc4638b5a7f",
+        "n05_36": "71e08b1aacb5bf90be6fb5cae7e9b7e2c47f5c82237dd6bf7805fe83701946d5",
+        "n05_37": "ae42cc4ce620139a265b7a71041089e8b27b749e662e808810ce8959d87653da",
+        "n05_38": "7d89f8714672890b30c2b83c294bcbbdd9d054ed3f776a4201011896febdbe06",
+        "n05_39": "cf7a06ee9749da1f8bac2f34e5c727e69512c630bac46a988a9219ca317db171",
+        "n05_40": "666fecda11ea42a2ed206b0a4acc416e0d4f98345e2fca49fe288363bd2bc208",
+        "n05_41": "444b0bd44b1e7628b3d15e6a46f9f16b3f5dc5c1e1d5f1989198685394a8d182",
+        "n05_42": "b73bfc76e59c1da2664a2323ea55fc6911a8c55dc4488a076b1c2c27b7a17703",
+        "n05_43": "97208bfed285f7cec0f67666d57a1cd47836bfbde94c2d122fa3e5704e74cfac",
+        "n05_44": "021abfe80e3a48e36a165a4ce2e6e4c3ec79c4ccd4a3f154effe6e9a220bd75f",
+        "n05_45": "cce62f60415e7b449a89cf4e0a6b40b8ac93f877c810a0716e3e731c18c9e37b",
+        "n05_48": "3ad675877b96d9eb5eda6c192eb0bd6abf67222d7a3230d4eab44819f57206d1",
+        "n05_49": "ea57b5d83d60404e0bc7e313b981f9641f14c8f5f83a1e62632b8f49a2d40e26",
+        "n05_50": "2d6d9cb2bfd42f13640d88e4b15af8c51ac00495da1c9d23b83cd2a96ba9092d",
+        "n05_51": "b1ed712e1f148520b06c668ec6777e2b1c0fac512f1eb22e4ef7d2ab58df6728",
+        "n05_52": "563f107778f8aa26f474daf195252d1930694bc7dec298ebe4149cd63d614b00",
+        "n05_53": "3cda76be51d422b8d7eeacc74e6e951bc4dad1c98af38eb2c6583741d3395783",
+        "n05_54": "bf9ed5012b56d06bfb4d4519fe146f1070cbc36146045f115d7d04c99353d9cf",
+        "n05_55": "48cbf56613816bfc4a5b0f9cb0c39f354b4ef4ad8f17a260b7310742faccaeec",
+        "n05_56": "7abd8571382cc8bc07c71b0f950c2003abdbb7bd15cbd80919f1e5f98a5146e8",
+        "n05_57": "2932571fcec80f5247770d5a09f98f9c22c7c553e21222ac76ce060d18a96353",
+        "n05_58": "80ca449bb98f9e1b6a229558288d47b9b63c88de6e2686a6647c385aaae2a544",
+        "n05_59": "4cf07a3e9efbd71053d87b0eff131debe7bb897c57f55d3fe42637dc1223c1d7",
+        "n05_60": "f07bc306ae7aed019f56cea6693b7acc553bd2ce54d68b0c22b3262ac874a4bd",
+        "n05_61": "09f459e9d635c3d669f797021dc19e7ffb22ef32b1bc6d5ed58c18a2c2451e23",
+        "n05_62": "65d14a8683e83cc0264313bfbd4f6a44db337b9870359ab4ec1c93a466c01596",
+        "n05_63": "79628b9a0264ed74344aecb609c1a2e72b3208e131ea3f24dc230d7725ea4599",
+        "n05_64": "a6e1a6cf14cbb065aa907fcf13a3bf7d9d772a9a87989808d6d61bcb0be8c308",
+        "n05_65": "f7e1838968cb25971ed5e82d6058b555140087c8f47799c86a72649244db22b6",
+        "n05_66": "ecaaacebc81ffa48befd359b196b48a50b89b2df66182b13ad8ff7f455024073",
+        "n05_67": "d4cff6477687e0ae0d4f8d0921ad01f13489c359c0390d2dd934b3d92c8c4e8d",
+        "n05_68": "d264443725b60bd801269571009563ac93774d7cf920a7c70a13708b83b74cf5",
+        "n05_69": "b419fd1f09b472aecf80ba70c6954307890209bed8153a5ac0ebc0464c06ff33",
+        "n05_70": "5c5fdd22966605f6b89381e407c02a64c711a6eae8ba9d027a0e2a3d78693dd9",
+        "n05_71": "cd6764d77855080653e8e8b482c0687620e19e5bf7cd6f9b1e7bca319e54b95e",
+        "n05_72": "ac94379ab66a997b03f0bd42983d6d56c814bd8e7a5ca300d079a08f4b1f01c2",
+        "n05_73": "b100e5fafabc962882a530af9b88763f808bedc3ae484e870b5eb173f95e5633",
+        "n05_74": "94b3bdf49acf01003c699dc205b1d2d12600c2f5a2b483a24960097ce23987a9",
+        "n05_mount_left": "353c215378d178372a8f7525cd1c5963d4ea8456ec2e43991de6a45b2a6261cb",
+        "n05_mount_right": "20e935651fd010e3c6ef30b076bc560ce4416eb704edd8f2a786fdfbd2c9302e",
+        "n05_sherpa_0": "ce4886e78062f4945b44f9338d3b9b7c43cfb2ab96d40f17052b376a6f9d2968",
+        "n05_sherpa_1": "065d8acda1cfd398dd81f1662d812d1dce9e47667bae532bd46fcba76b5ab167",
+        "n05_sherpa_2": "942b0d3977ac3ab69eae95d5762a2f5b827076cd3868ca2ba087bd9dc143206d",
+        "n05_sherpa_3": "61ae3ccfd3bc6aa81e2e4585a740cf5e279ede9230c76e9b3e7944849172f79c",
+        "n05_sherpa_4": "25ab4237fbe59f148af80f0876ca20f1bb570b479a410228e775417cd5cfcb16",
+        "n05_sherpa_5": "94fd3c97b584f92a398e73568654666eee26517ec0c49003b4b19dc2da509e7c",
+        "n05_sherpa_6": "ce7fc46a9372fb94562b67f432c21a1fe92145ad6761c19143156573d38dc7dd",
+        "n05_sherpa_7": "39a2617d6ce23d082e16925b033f182692f115c208dde22c18ddd7042573dcbc",
+        "n05_sherpa_8": "762c93fa0b80bfe38ee477d29f290f75a918e1e157123f3c348916e2d17c802b",
+        "n05_sherpa_10": "ee916d1bcc9b4046e73156520c87a34c287e750bdaa1fdff76e31ba921d093f0",
+        "n05_sherpa_11": "1a6c24f32f2ff1d974c9d3f37149b24e2b87b735a5c8b881281d5c56f38271f7",
+        "n05_sherpa_13": "f1e9a7f097dda31d675d2310c1bb730e242cb2ab92c6956737ac603b3a3f70a2",
+        "n05_sherpa_14": "e1c124f0e293b4f1923f65b4d6f95adda167a94bb8edcbaf865fc203be273515",
+        "n05_sherpa_15": "ba1e9ce8406e77849345578e2b0760ce225cdcede26bcf67a20968ae8cb196a7",
+        "n05_sherpa_16": "d924ea68409bf42748b762a468a5828bc4099dd2b2044f52fad49787d0cd3811",
+        "n05_sherpa_17": "83ece332373669c2afc78bae91e2d465b3d9f1f7a87ebd0941c287e6d8f88f4e",
+        "n05_sherpa_18": "0a143d8b8f27677a11c49675100c1bc416cbb5221add862b22c3254d839e6015",
+        "n05_sherpa_19": "812367080bf0cd69995d2f0c188010d7eeb3c7db2cff4d8448ff08b6f7266716",
+        "n05_sherpa_20": "0c4d1293248924ae4da49f68e5a8ed7467aab7faa054029f3eb3694f11bd81a0",
+        "n05_sherpa_21": "e23ffeb1225f8a7f5a5efd3bfe5eb08b3828ed8f597bf635ec4c4dffb8d27538",
+        "n05_sherpa_22": "24f3fd9b40447f0b4c841226c870d63cd9cf2f37de35dcfa091d1139ca37daff",
+        "n05_sherpa_23": "5aecf1b241ddaa9b71c90b5053dca21cf12256c201e9e599dfcd3bb4b859f40b",
+        "n05_sherpa_24": "550d8fff5b47d101705cd8c71d15dba9d3de6ef585072d631689a3e467dd42ee",
+        "n05_sherpa_25": "eb112edb30995c3e889521f0d9e28f9d1d4fbe8346cc50b22b5805a64a6152cf",
+        "n05_sherpa_26": "6a679426b661c2b3c481498455a17f11076cb62e9b60827d49c30caf2cff04a2",
+        "n05_sherpa_27": "9a00040625be4133b1d264dbfa11b99a90379d9ec2b5f9485913f432b194e622",
+        "n05_sherpa_28": "385743bf41ddbad37509eee7e108f9fb9d14aece13cf0c40814e1c36f0564c9d",
+        "n05_sherpa_29": "b7b0a319302143d124aa61b0fcf7b094a2a80cd5dd834948caddb4e18a1b464c",
+        "n05_sherpa_30": "e884ca5102f70406aea99ee51e5ffc74868e96491cb08da77df18c6fbd77a8a4",
+        "n05_sherpa_31": "2786a9135916179f3e3280a383827703283b7f67633cb89e6b26c5d9e30e68e3"
+      },
+      "solid_pairs": 9,
+      "checks": [
+        {
+          "a": "n05_73",
+          "a_name": "MGN9H cart",
+          "b": "n05_0",
+          "b_name": "Trinity body modular_mgn 9 6mm",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n05_mount_left",
+          "a_name": "m3 button head_m3x12 · left",
+          "b": "n05_0",
+          "b_name": "Trinity body modular_mgn 9 6mm",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n05_mount_left",
+          "a_name": "m3 button head_m3x12 · left",
+          "b": "n05_32",
+          "b_name": "m3x5x4.5 insert",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n05_mount_right",
+          "a_name": "m3 button head_m3x12 · right",
+          "b": "n05_0",
+          "b_name": "Trinity body modular_mgn 9 6mm",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n05_mount_right",
+          "a_name": "m3 button head_m3x12 · right",
+          "b": "n05_31",
+          "b_name": "m3x5x4.5 insert",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n05_sherpa_7",
+          "a_name": "housing_core_std^housing_sherpa_mini_a3_r17_FDM",
+          "b": "n05_mount_left",
+          "b_name": "m3 button head_m3x12 · left",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n05_sherpa_7",
+          "a_name": "housing_core_std^housing_sherpa_mini_a3_r17_FDM",
+          "b": "n05_mount_right",
+          "b_name": "m3 button head_m3x12 · right",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n05_sherpa_20",
+          "a_name": "socket button head screw_iso_ISO 7380 - M3 x 16 - 16N",
+          "b": "n05_mount_left",
+          "b_name": "m3 button head_m3x12 · left",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n05_sherpa_21",
+          "a_name": "socket button head screw_iso_ISO 7380 - M3 x 16 - 16N",
+          "b": "n05_mount_right",
+          "b_name": "m3 button head_m3x12 · right",
+          "intersection_mm3": 0.0
+        }
+      ],
+      "unintended_contacts": [],
+      "thread_engagement": [],
+      "interface": {
+        "id": "n05",
+        "source_file": "Files (WIP)/Trinity toolhead v1.41 mgn9 6mm belts.step",
+        "parts": [
+          "n05_0",
+          "n05_1",
+          "n05_2",
+          "n05_3",
+          "n05_4",
+          "n05_5",
+          "n05_6",
+          "n05_7",
+          "n05_8",
+          "n05_9",
+          "n05_10",
+          "n05_11",
+          "n05_12",
+          "n05_13",
+          "n05_14",
+          "n05_15",
+          "n05_16",
+          "n05_17",
+          "n05_18",
+          "n05_19",
+          "n05_20",
+          "n05_21",
+          "n05_22",
+          "n05_23",
+          "n05_24",
+          "n05_25",
+          "n05_26",
+          "n05_27",
+          "n05_28",
+          "n05_29",
+          "n05_30",
+          "n05_31",
+          "n05_32",
+          "n05_33",
+          "n05_34",
+          "n05_35",
+          "n05_36",
+          "n05_37",
+          "n05_38",
+          "n05_39",
+          "n05_40",
+          "n05_41",
+          "n05_42",
+          "n05_43",
+          "n05_44",
+          "n05_45",
+          "n05_48",
+          "n05_49",
+          "n05_50",
+          "n05_51",
+          "n05_52",
+          "n05_53",
+          "n05_54",
+          "n05_55",
+          "n05_56",
+          "n05_57",
+          "n05_58",
+          "n05_59",
+          "n05_60",
+          "n05_61",
+          "n05_62",
+          "n05_63",
+          "n05_64",
+          "n05_65",
+          "n05_66",
+          "n05_67",
+          "n05_68",
+          "n05_69",
+          "n05_70",
+          "n05_71",
+          "n05_72",
+          "n05_73",
+          "n05_74",
+          "n05_mount_left",
+          "n05_mount_right",
+          "n05_sherpa_0",
+          "n05_sherpa_1",
+          "n05_sherpa_2",
+          "n05_sherpa_3",
+          "n05_sherpa_4",
+          "n05_sherpa_5",
+          "n05_sherpa_6",
+          "n05_sherpa_7",
+          "n05_sherpa_8",
+          "n05_sherpa_10",
+          "n05_sherpa_11",
+          "n05_sherpa_13",
+          "n05_sherpa_14",
+          "n05_sherpa_15",
+          "n05_sherpa_16",
+          "n05_sherpa_17",
+          "n05_sherpa_18",
+          "n05_sherpa_19",
+          "n05_sherpa_20",
+          "n05_sherpa_21",
+          "n05_sherpa_22",
+          "n05_sherpa_23",
+          "n05_sherpa_24",
+          "n05_sherpa_25",
+          "n05_sherpa_26",
+          "n05_sherpa_27",
+          "n05_sherpa_28",
+          "n05_sherpa_29",
+          "n05_sherpa_30",
+          "n05_sherpa_31"
+        ],
+        "head": true,
+        "nozzle_mm": [
+          0.0,
+          6.499999999999464,
+          -76.92904972273662
+        ],
+        "belt_width_mm": 6,
+        "rail": "mgn9",
+        "floor_y_mm": 31.150000000000006,
+        "mount_axes_xz_mm": [
+          [
+            -21.75,
+            -6.499999999999998
+          ],
+          [
+            21.75,
+            -6.499999999999998
+          ]
+        ],
+        "body_hole_radii_mm": [
+          2.325
+        ],
+        "extruder_translation_mm": [
+          -4.3,
+          44.650000000000006,
+          -12.499999999999998
+        ]
+      },
+      "scope": "Native Sherpa/source, seated mounting screws/source and supplied rail block/printed body or clamp intersections. Intended screw/nut engagement is separate. Complete hotend/probe/cutter contact and printer travel are not certified.",
+      "all_passed": true
+    },
+    {
+      "variant": "n06",
+      "metadata_sha256": "be45ab75fd71cc4cc6e00e604212bd3a815625cf9d72f8729c4d30acabfccd2a",
+      "native_brep_hashes": {
+        "n06_0": "5d1878e31771973346992183b9d211ce5a45b88fd314f838850df371fa794401",
+        "n06_1": "9d50a816602894b763b0355914559b8bb1ace3e407a2af7216a42ce56549f892",
+        "n06_2": "13021a2707034eec7195abcec263c7ea5b0ce073ace7d3333b1be7417013cc46",
+        "n06_3": "d38fe21b074be90eec492f930997098d79ebc10eac0bcc8f4104483cda01347e",
+        "n06_4": "0bf8582c4868150a821827e6bd83a2035cc59a625ae4cffca1a0f485471a2301",
+        "n06_5": "26eface115e21425f61ec406e78655ef405b95e56c0deaf9ea32cc02f3606b1e",
+        "n06_6": "254539ad31776be1f88ca7f74cfbb6dc12047dc0fd602ac64098caebe8ad70fd",
+        "n06_7": "5290f5030a9bb41b0d4333caf688a4ec9748dd6a3e3a6609f9efa0cbffde085e",
+        "n06_8": "1c87620d5dd7b174d54787074258777fec7019c24c78dfaa297b94e96d5c5669",
+        "n06_9": "39a9bb2a43e0a88d1985ca8448715dc415b2c609c09f2e405a35a321bda32f25",
+        "n06_10": "37da44972f2fd1b3f6846c517b7d9b43bb8ef16ad4e7a309dbbe7769a30b11bc",
+        "n06_11": "c3d979d18c4dcc0c68daeff32c6ea2453ec74299b8ddbce9cff94339a73ad6b1",
+        "n06_12": "9e464aa96074e400ad870933b0e9d979bfb028375a4e7bce71765d36a0fdf76a",
+        "n06_13": "fec74950064394ece283d3d3bc3d6e38efd11d90e9881ba3dd194b01ffb6da40",
+        "n06_14": "206d786d37fef823c3037890e2f70e1c1fbbf35f38a39919feaebf5d54c3fd0f",
+        "n06_15": "84299565e977b98bdde35350fb9541d1a918164ce0a522ccc0119119d9efc0da",
+        "n06_16": "a306b00ed2c28ebad57d77ebbb8bf123802ba46aa041efb5fa17d88a2963b2e6",
+        "n06_17": "c53e97755912684d1ebeae6fc6e5daab0bbb815e63de59094d300de93a374c02",
+        "n06_18": "318980c1fe944e349280354e1e20ab18c9ff4089b1b1510c3710378cb0d425b8",
+        "n06_19": "9bb25e5b1ffa44ef00d2674c5d0d264ae1f863d0fedb29840083531c783065ce",
+        "n06_20": "16dc448cfefdc437107f0560ccef41e08a053e5ddcfa4cb5cbb1692094dcb79f",
+        "n06_21": "875b92ac7b4ddcb213ded20d9ff37cf02e552031392e8b0f41fedf3dd5e9d8f5",
+        "n06_22": "3ae5c3c6a4582c23041942a7937bec0bcd1573f78c02722a4ee0e594d3a490ae",
+        "n06_23": "7f41527a35ac99cdaef2904c96de7d2bb4c814b665aa9f272f0b6cea9f0e8ff0",
+        "n06_24": "009e23738218fea7fbcd9d6ee541586d5e7dcb3a312e2f1d4066534dab4107e5",
+        "n06_25": "7e90e01ff169198851463005051368c1235e4d1397da489ef717641e119b467f",
+        "n06_26": "1e98264ce37143fc6f51bf105fc2acb72b1f88f7db37a60c047ff4964ae1b2e5",
+        "n06_27": "a8589784d960b06e4a69bcca460cc91a3353de01b6589aad336a9a587af02f8e",
+        "n06_28": "5ef0f073f90e6e414ca6ddb9c95ebcfe41e1e3689f43a413a624e48daed7675a",
+        "n06_29": "5eef2f69f7e2e123ed3ed7062079c987bbb6d2758795f08ac8df84bd50ffa610",
+        "n06_30": "3354024743fad85c2f20c8a73c84cc12c3c2c28ec37e03cfc54eb53d619a5b5b",
+        "n06_31": "6832510ceea8b80c87cb58c716ca28c3f3d70c185ae01846c2b650abd7d09e9f",
+        "n06_32": "e4cab0b0933ab517b29ba4674ac4781289f581ec95f88f428756fe9f8b18d329",
+        "n06_33": "819830b28458df741a842192a57052c6c6c37f50b45331ee301f3a12c2526d99",
+        "n06_34": "7a69b97059561c8ac7d91ed7e6218244ac16ad85b87ae07cbde7829dae8cb011",
+        "n06_35": "46d3536b7f06b207f76ba73eddc7ca1aa9d098cf3fc0d4c7ed41c33b7c6954e0",
+        "n06_36": "b1fd927ab48a6bb9159f081df259b95ebff0d37b76e4a9cb5dd0b7b405e0f1fb",
+        "n06_37": "29c394cb4d2bce6d45c89d3265e68534313e2813f9d632f0ff518b38ad4d3c59",
+        "n06_38": "34cadf7e7cfd315ec736a1d6733ec6067d37bdb91e408d6d3c2b820a0e5b3dbd",
+        "n06_39": "6e5911af5bc0deb34ea1f9bb0580e12b786db8e5ceea21cc54e25355a06b045f",
+        "n06_40": "e05a3a0ffc5e0aabc198304fb11476c3b7686564b0f7ab803a5429ad92214671",
+        "n06_41": "871104be3f30b882bc6c0d0dae216f4c746f4c4567b963bcaca50bf839f95c72",
+        "n06_42": "74b756ec05c90f482bb484d26dcc2a41f883b0bb9734a854be82c9b0c894cf94",
+        "n06_43": "ef39ca89f49826e20a74a864faf1302e8e331207957e680584b9aa974570f19b",
+        "n06_44": "59f353856d80d27d57f1777f5635e4319260aba8d5d03ce3e823f780ececa6f0",
+        "n06_45": "7d83af4ad557fcf88a7b7b55a578d4aafb6fd5c9cbe98477211f8b7d4f2c9d23",
+        "n06_48": "114f9370cb16e6d7c915c0a42f781cc1b66d36f98625b7d26ecd86f70e9651ff",
+        "n06_49": "ce01c99fba715240525e9162dc7fc6b50fc99cf0fcf9cdd07ed893b030548ed1",
+        "n06_50": "32c1e7d9928d4a78d5ffb39f85af5f3b1b2170157628ecab6ef0880edf3ec37a",
+        "n06_51": "2fbcc71168c7e384d51c463d0cfcf859dfc293474a24bb19c7f1c4fa1c9c6bf1",
+        "n06_52": "c7cf5ecf162a291101fdc9c17182c93d8cd8ed9a90d5d59a9da0932747be88e7",
+        "n06_53": "a682034d03a47e9de6342ba72cfe3d941f785597b799e23d9006740734947222",
+        "n06_54": "6e164d804239bff5ce9b7a5ed5b90d87b7d06fbfcb5a1561d3287208930445f6",
+        "n06_55": "9d1c31b451708195e9d60ff82379a75a2df100f20e654d93812f9e38ae2004c4",
+        "n06_56": "c681292da5bb94937146ca2ace14c8df54d77abb8310b909bc27c2004e203796",
+        "n06_57": "32b65286cb6d6c301ea0e062d376c61e7af5ca503cd210aa7c5598e93819e24b",
+        "n06_58": "25bfb011518b5dacee3af5dbbddd9f17eebcd3035ecbf0f2d985deb8c6dc68c2",
+        "n06_59": "1210a5f601129fbafdaa68e35d4b06eb4cc4c3bfe3b82514e32030819abcf74e",
+        "n06_60": "d74218a8b6a365d3cf7fd9afa5d1ab87e95c8370b233ed678aa01837e60572df",
+        "n06_61": "39cedf9202e48d7baeeab2726d9bf5bcc2dae2c3c77cbe307254e840fa7a3341",
+        "n06_62": "92853f9a145a8b45a0fbcd7e4f14225dc6fc76c2ad26c4ff2be0604b5ea5d779",
+        "n06_63": "ddadfae2e00b1a9b400225254a11f1d8eb52cc766bdaeed46160368e1752db18",
+        "n06_64": "64917f959b80ff3d76c2f4ec07e8efa9ed8bba3c0fbc72cf832ff2e07437d3ed",
+        "n06_65": "e532924535233764a9b5e329d0e2562577849275cb31ef01b85fcf5e737cb782",
+        "n06_66": "4e4d0bd85869ffbfdf61d2080bfba6a4d4cfa8722bb3fcd8836142b0319971c9",
+        "n06_67": "11b49261338dc871679594fec9d2f843bac2d0f5f7f204dbc776dcef30544150",
+        "n06_68": "cd282b2390b16e77449dda050a1f9b94b2e23576a1aa02314b4cf3ecf3fb5387",
+        "n06_69": "c4d94e453cdbd7309a41bca2db748549712f262f8ed3ea304d917e575ee1ab1e",
+        "n06_70": "f60eec5dd704307d0c260323eefd66f18c72c270d9e052c1bc5c4c40b0155219",
+        "n06_71": "11a7cfb25aef9a1f2acbccd5d89976c2a1f2a6af24c81748a8bb2b826715e207",
+        "n06_72": "5c4ad7953ca5e659bf4147bfa95ab27edff51acf9f264fd4c67f878c54717fff",
+        "n06_73": "b100e5fafabc962882a530af9b88763f808bedc3ae484e870b5eb173f95e5633",
+        "n06_74": "9635b67454eca2183249118f8cea9d4a57d36e69e7f44d816f773ce824f03816",
+        "n06_mount_left": "054c4a6cd966a258c0fbfc2f0a1d5ba2d1e169d6c9ae6b5c56d876f0d7df5bb4",
+        "n06_mount_right": "785cafa10696af2e4351a03fb899ba9fc19687d090dd3e5969e9df4bfee4efec",
+        "n06_sherpa_0": "ce4886e78062f4945b44f9338d3b9b7c43cfb2ab96d40f17052b376a6f9d2968",
+        "n06_sherpa_1": "065d8acda1cfd398dd81f1662d812d1dce9e47667bae532bd46fcba76b5ab167",
+        "n06_sherpa_2": "942b0d3977ac3ab69eae95d5762a2f5b827076cd3868ca2ba087bd9dc143206d",
+        "n06_sherpa_3": "61ae3ccfd3bc6aa81e2e4585a740cf5e279ede9230c76e9b3e7944849172f79c",
+        "n06_sherpa_4": "25ab4237fbe59f148af80f0876ca20f1bb570b479a410228e775417cd5cfcb16",
+        "n06_sherpa_5": "94fd3c97b584f92a398e73568654666eee26517ec0c49003b4b19dc2da509e7c",
+        "n06_sherpa_6": "ce7fc46a9372fb94562b67f432c21a1fe92145ad6761c19143156573d38dc7dd",
+        "n06_sherpa_7": "39a2617d6ce23d082e16925b033f182692f115c208dde22c18ddd7042573dcbc",
+        "n06_sherpa_8": "762c93fa0b80bfe38ee477d29f290f75a918e1e157123f3c348916e2d17c802b",
+        "n06_sherpa_10": "ee916d1bcc9b4046e73156520c87a34c287e750bdaa1fdff76e31ba921d093f0",
+        "n06_sherpa_11": "1a6c24f32f2ff1d974c9d3f37149b24e2b87b735a5c8b881281d5c56f38271f7",
+        "n06_sherpa_13": "f1e9a7f097dda31d675d2310c1bb730e242cb2ab92c6956737ac603b3a3f70a2",
+        "n06_sherpa_14": "e1c124f0e293b4f1923f65b4d6f95adda167a94bb8edcbaf865fc203be273515",
+        "n06_sherpa_15": "ba1e9ce8406e77849345578e2b0760ce225cdcede26bcf67a20968ae8cb196a7",
+        "n06_sherpa_16": "d924ea68409bf42748b762a468a5828bc4099dd2b2044f52fad49787d0cd3811",
+        "n06_sherpa_17": "83ece332373669c2afc78bae91e2d465b3d9f1f7a87ebd0941c287e6d8f88f4e",
+        "n06_sherpa_18": "0a143d8b8f27677a11c49675100c1bc416cbb5221add862b22c3254d839e6015",
+        "n06_sherpa_19": "812367080bf0cd69995d2f0c188010d7eeb3c7db2cff4d8448ff08b6f7266716",
+        "n06_sherpa_20": "0c4d1293248924ae4da49f68e5a8ed7467aab7faa054029f3eb3694f11bd81a0",
+        "n06_sherpa_21": "e23ffeb1225f8a7f5a5efd3bfe5eb08b3828ed8f597bf635ec4c4dffb8d27538",
+        "n06_sherpa_22": "24f3fd9b40447f0b4c841226c870d63cd9cf2f37de35dcfa091d1139ca37daff",
+        "n06_sherpa_23": "5aecf1b241ddaa9b71c90b5053dca21cf12256c201e9e599dfcd3bb4b859f40b",
+        "n06_sherpa_24": "550d8fff5b47d101705cd8c71d15dba9d3de6ef585072d631689a3e467dd42ee",
+        "n06_sherpa_25": "eb112edb30995c3e889521f0d9e28f9d1d4fbe8346cc50b22b5805a64a6152cf",
+        "n06_sherpa_26": "6a679426b661c2b3c481498455a17f11076cb62e9b60827d49c30caf2cff04a2",
+        "n06_sherpa_27": "9a00040625be4133b1d264dbfa11b99a90379d9ec2b5f9485913f432b194e622",
+        "n06_sherpa_28": "385743bf41ddbad37509eee7e108f9fb9d14aece13cf0c40814e1c36f0564c9d",
+        "n06_sherpa_29": "b7b0a319302143d124aa61b0fcf7b094a2a80cd5dd834948caddb4e18a1b464c",
+        "n06_sherpa_30": "e884ca5102f70406aea99ee51e5ffc74868e96491cb08da77df18c6fbd77a8a4",
+        "n06_sherpa_31": "2786a9135916179f3e3280a383827703283b7f67633cb89e6b26c5d9e30e68e3"
+      },
+      "solid_pairs": 9,
+      "checks": [
+        {
+          "a": "n06_73",
+          "a_name": "MGN9H cart",
+          "b": "n06_0",
+          "b_name": "Trinity body modular_mgn9 9mm",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n06_mount_left",
+          "a_name": "m3 button head_m3x12 · left",
+          "b": "n06_0",
+          "b_name": "Trinity body modular_mgn9 9mm",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n06_mount_left",
+          "a_name": "m3 button head_m3x12 · left",
+          "b": "n06_32",
+          "b_name": "m3x5x4.5 insert",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n06_mount_right",
+          "a_name": "m3 button head_m3x12 · right",
+          "b": "n06_0",
+          "b_name": "Trinity body modular_mgn9 9mm",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n06_mount_right",
+          "a_name": "m3 button head_m3x12 · right",
+          "b": "n06_31",
+          "b_name": "m3x5x4.5 insert",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n06_sherpa_7",
+          "a_name": "housing_core_std^housing_sherpa_mini_a3_r17_FDM",
+          "b": "n06_mount_left",
+          "b_name": "m3 button head_m3x12 · left",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n06_sherpa_7",
+          "a_name": "housing_core_std^housing_sherpa_mini_a3_r17_FDM",
+          "b": "n06_mount_right",
+          "b_name": "m3 button head_m3x12 · right",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n06_sherpa_20",
+          "a_name": "socket button head screw_iso_ISO 7380 - M3 x 16 - 16N",
+          "b": "n06_mount_left",
+          "b_name": "m3 button head_m3x12 · left",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n06_sherpa_21",
+          "a_name": "socket button head screw_iso_ISO 7380 - M3 x 16 - 16N",
+          "b": "n06_mount_right",
+          "b_name": "m3 button head_m3x12 · right",
+          "intersection_mm3": 0.0
+        }
+      ],
+      "unintended_contacts": [],
+      "thread_engagement": [],
+      "interface": {
+        "id": "n06",
+        "source_file": "Files (WIP)/Trinity toolhead v1.41 mgn9 9mm belts.step",
+        "parts": [
+          "n06_0",
+          "n06_1",
+          "n06_2",
+          "n06_3",
+          "n06_4",
+          "n06_5",
+          "n06_6",
+          "n06_7",
+          "n06_8",
+          "n06_9",
+          "n06_10",
+          "n06_11",
+          "n06_12",
+          "n06_13",
+          "n06_14",
+          "n06_15",
+          "n06_16",
+          "n06_17",
+          "n06_18",
+          "n06_19",
+          "n06_20",
+          "n06_21",
+          "n06_22",
+          "n06_23",
+          "n06_24",
+          "n06_25",
+          "n06_26",
+          "n06_27",
+          "n06_28",
+          "n06_29",
+          "n06_30",
+          "n06_31",
+          "n06_32",
+          "n06_33",
+          "n06_34",
+          "n06_35",
+          "n06_36",
+          "n06_37",
+          "n06_38",
+          "n06_39",
+          "n06_40",
+          "n06_41",
+          "n06_42",
+          "n06_43",
+          "n06_44",
+          "n06_45",
+          "n06_48",
+          "n06_49",
+          "n06_50",
+          "n06_51",
+          "n06_52",
+          "n06_53",
+          "n06_54",
+          "n06_55",
+          "n06_56",
+          "n06_57",
+          "n06_58",
+          "n06_59",
+          "n06_60",
+          "n06_61",
+          "n06_62",
+          "n06_63",
+          "n06_64",
+          "n06_65",
+          "n06_66",
+          "n06_67",
+          "n06_68",
+          "n06_69",
+          "n06_70",
+          "n06_71",
+          "n06_72",
+          "n06_73",
+          "n06_74",
+          "n06_mount_left",
+          "n06_mount_right",
+          "n06_sherpa_0",
+          "n06_sherpa_1",
+          "n06_sherpa_2",
+          "n06_sherpa_3",
+          "n06_sherpa_4",
+          "n06_sherpa_5",
+          "n06_sherpa_6",
+          "n06_sherpa_7",
+          "n06_sherpa_8",
+          "n06_sherpa_10",
+          "n06_sherpa_11",
+          "n06_sherpa_13",
+          "n06_sherpa_14",
+          "n06_sherpa_15",
+          "n06_sherpa_16",
+          "n06_sherpa_17",
+          "n06_sherpa_18",
+          "n06_sherpa_19",
+          "n06_sherpa_20",
+          "n06_sherpa_21",
+          "n06_sherpa_22",
+          "n06_sherpa_23",
+          "n06_sherpa_24",
+          "n06_sherpa_25",
+          "n06_sherpa_26",
+          "n06_sherpa_27",
+          "n06_sherpa_28",
+          "n06_sherpa_29",
+          "n06_sherpa_30",
+          "n06_sherpa_31"
+        ],
+        "head": true,
+        "nozzle_mm": [
+          0.0,
+          6.499999999999464,
+          -80.42904972273662
+        ],
+        "belt_width_mm": 9,
+        "rail": "mgn9",
+        "floor_y_mm": 35.15,
+        "mount_axes_xz_mm": [
+          [
+            -21.75,
+            -6.49999999999999
+          ],
+          [
+            21.75,
+            -6.49999999999999
+          ]
+        ],
+        "body_hole_radii_mm": [
+          2.325
+        ],
+        "extruder_translation_mm": [
+          -4.3,
+          48.65,
+          -12.49999999999999
+        ]
+      },
+      "scope": "Native Sherpa/source, seated mounting screws/source and supplied rail block/printed body or clamp intersections. Intended screw/nut engagement is separate. Complete hotend/probe/cutter contact and printer travel are not certified.",
+      "all_passed": true
+    },
+    {
+      "variant": "n19",
+      "metadata_sha256": "6b1f9843de8b21fb885706796f316c7efaea1583928bc08863e008374661048f",
+      "native_brep_hashes": {
+        "n19_0": "124e413a4442b843150fbd0557c933ba84b3f38f7baf1cbcb26fea84fad018b6",
+        "n19_1": "bd3df6e833165080df1dbd142035692c6b5645cb6da5ca6343d6bd6b3eb95073",
+        "n19_2": "2fb07d6c12b21fdadab2ea89528e557f1628acb610b3bbccff8102440bfcfb33",
+        "n19_3": "07d652fbda7c1f409279052343ff3c6be56f70d2f40991206bfcda3f647d37b0",
+        "n19_4": "f12838e86b89cf2d791f2365f34b98dd809830263aac477fe0b2a023ac38a4d5",
+        "n19_5": "e7c4ad4be8e798435269cc8568173f29ac4966f91468624c4be63f0413241e0e",
+        "n19_6": "c4d54832c4bd86b75cb0bfc164a6526bc2fb3c83b986cbe2df6eaf6d50ba63b7",
+        "n19_9": "5b7a0e24ff1da2216e45ba0939ee65214f827724ae9f699e44757dca3492f9b4",
+        "n19_10": "acf170a0628b807288e90ea9f57443f62eb0cea834220b262a54c7216eb72e27",
+        "n19_11": "c65e6570c1a28a8497cea79ba5f82056794216ead306810a73eeb76faf1d02a4",
+        "n19_12": "5ce9e72662be8a91b25049ded3f1b4042e644d55928da27f46d81b669e6c47f2",
+        "n19_13": "fa4e6476d87703ba92aa540321a206eedde9ec8638ac0439d87185a4862a4ec8",
+        "n19_14": "e8d42be9e667525e313c89c80f52ef53f34c74df70ca70f0daf964146eeff5fb",
+        "n19_15": "b26fc55350e6895e0e893c2ca957f1ec5bdc01eb62d16b9276d56c2c5a8e0b9c",
+        "n19_16": "b2c8cd5bc437382e81af4b79fdd595f0f83ab53e45d08761eacc6133dfd5b87e",
+        "n19_17": "2abc504f6c107ea979140102edfb3b46736cb22281580beb07af10829431ac96",
+        "n19_18": "4f0fb301cd18324252197f4139ed674feaf73cf986b243a43785da4285641479",
+        "n19_19": "a904446117796901d94c311970e79dd62d4f7e9cbe2a75952957bf9d2dcc35dd",
+        "n19_20": "3b4d23b23d1fcc715bc3f8d40eb4017da8e4fe046e63363088127828f9f7cfd2",
+        "n19_21": "9023b27427fd2519517422421b34bc58eb37ab65b63fddf73660a76a3fdaa577",
+        "n19_22": "1e2b118ec79328382203b4bf1853250b0bdd752fe199a05dd5e10b6dd98649f1",
+        "n19_23": "54d4e89ff1af9111aa564494f99afb8e385d02d38e21ab481ec3a423d4b77e27",
+        "n19_24": "18e4883d6ac1dca9b27c84729f3ba8ca49f904c564e482780fac6128309834e8",
+        "n19_25": "3b08e2b65d8d4ccbc15391041fe8a8d5393645fafb97bf8e382f84baea5630cf",
+        "n19_26": "372bea26c825020ca0ea1ddd1ed5b1f9c0395171e5300c35912b90dd210fbfe3",
+        "n19_27": "03332679c983feab891ff192d3d4741fd640b61d4e053fec53e0706debb48eb4",
+        "n19_28": "3917ff854f37ea52ea0878facb53b7f1c1f3fcfc766011897bbfabe0a2312204",
+        "n19_29": "7daad6f8e65b295fe7038663c49c852ad417419f815f9dc2049c554567c03bca",
+        "n19_30": "4580d717b4e83a12a5eace336545b976ae1765cc7181f439f9b7ee41266fb424",
+        "n19_31": "2927af8fb714fffa9edf0f8eb19f7511afb30cbf822fae7e1827d5e6e58a69e2",
+        "n19_32": "f4141a63c577c19f5249b18c8bd24df03291926c5a8b29d9d6e9eff6493da4d2",
+        "n19_33": "f4cb044b7c21317ef57e7bfe52f5be50b5f74289b9db4eddb29e350e764c9f2c",
+        "n19_34": "47f3571bb59e9c17cf723c28d9d14d3d24c1258fda8d5cd73b450f0a26fdee4a",
+        "n19_35": "40a26e3b23bca67254c1e85cb7b30239c99dafc9ccc92f84ab617757cdad1235",
+        "n19_36": "615af1c818ff3d533acfe4de90bf0c3dcad907cd11f32313e4d0e4c7a5dae502",
+        "n19_37": "dfbdaf9dd196b50dbc0350406b6be80d2b488187e6d2a81861677b4278ee257c",
+        "n19_38": "db81170950599fb4c41c09a6ff32c0cd544256038b02409b7f8cafc44e5ae3f9",
+        "n19_39": "b6bc1805ccfbb2a6f66c762696ed95d40cd2a428900175f76d1fa1cd566522c4",
+        "n19_40": "2df998d162e28c0a15128c314c7bb8725f4b08be50b7f0e4799ed6b52131e1de",
+        "n19_41": "679ccd7ce3da3ac3bbf21c021b4bb64cf5155cd356a37c69411bb23b68543341",
+        "n19_42": "08acfdede6d19ea444b5a909bfd445bdf562e54efdb5cd8d52f309f00e119c38",
+        "n19_43": "08f8c71eeac93e7014fb022010d39769c22dd51fd74093b835d1ed46cbfbeeab",
+        "n19_44": "1a528397feaac5741981c894b8a394d2c5351e73cdb9d21f9f704781747bd013",
+        "n19_45": "5911088c918e1c49300d5c47be4d90111344d7b95ec2b7a4d617ce1cec91faa4",
+        "n19_46": "a715f15f5f971ffe369bfeda5427ea31b6562b7fdbee1cbd4c7d7e44a90dab62",
+        "n19_47": "a958f81e05280f25559f5e75c23f7ca4b8bd6b0ee6db28808e71dab76f91bfc7",
+        "n19_48": "7584f63df90aa7889cfcb7af361c53995bbf5981cf20991c2d7be10a98baa890",
+        "n19_49": "47209b6003962df64c322fbf260284b1c6dc12f7215199440e1e514d8c24bee1",
+        "n19_50": "f00829a86c413f03c1a8e70b1e60dcd1651be166e1d6e6103a6eb5d30095a500",
+        "n19_51": "bff87809366220677a87af6a3f4826e8b8972ab948a2145bbfe41a9337b19b5e",
+        "n19_52": "3dfac4b23f7bb769dc02bfb0c1a69433b48ac6eda53c166d0be633615b244af9",
+        "n19_53": "452504d5fa4ecffacb6a8fc95e94c0c98dc59e27282db43b6a1c7b9f13888b98",
+        "n19_54": "e11342bcf613b0725f787751208ae6874fa7c2aba99110e54cc83a3bcd6ad37c",
+        "n19_55": "37ed599d94135eb03430e4574849c35b7d19a62fcc87b33651b05899318c6421",
+        "n19_56": "f28a41932be17c415786294f2a565da164a0f0947f29f7da65d7c0d2170fc17e",
+        "n19_57": "4e4b64add67bd15158478815101d1cf1e78f53fa92faa692573aa699fe07bc70",
+        "n19_58": "430dfeae1af67a02cce6ed854a8d3b70fe128ea5c953fc5ed32e0472a42abd97",
+        "n19_59": "510ddc40dce10a9b28b098e056f7ce99cdd418f03f72cba3c2949fcc0c08628a",
+        "n19_60": "1b4e7ffb1b33ac2f16b879a267dd211a3b18ec2d1db64c0df5097a4c87ad4146",
+        "n19_61": "7de6886bee8087dd73b8e0a6e497461302c232d122f98ae1dccae2d60dcb3092",
+        "n19_62": "2666467115714b8e37a07e769f57f2d07d7e6783b7554bc98440b6010387b771",
+        "n19_63": "48eae4f1ac64496afe73c69d3e3c23981eba15faa11ebc57dc4842b8cfee299f",
+        "n19_65": "db24e2378fe621f9b55699f8e6431d5f87392d776f97da948bf8d3ac7b1c8730",
+        "n19_mount_left": "f1e2525178267c9859892ec0e02cb4ae422b420f6bd3c37f17df7feb80e78e8e",
+        "n19_mount_right": "5247ac111443da0052755e2f7d6f738b9a172167ac155c335c9f0442f5cc62c7",
+        "n19_sherpa_0": "ce4886e78062f4945b44f9338d3b9b7c43cfb2ab96d40f17052b376a6f9d2968",
+        "n19_sherpa_1": "065d8acda1cfd398dd81f1662d812d1dce9e47667bae532bd46fcba76b5ab167",
+        "n19_sherpa_2": "942b0d3977ac3ab69eae95d5762a2f5b827076cd3868ca2ba087bd9dc143206d",
+        "n19_sherpa_3": "61ae3ccfd3bc6aa81e2e4585a740cf5e279ede9230c76e9b3e7944849172f79c",
+        "n19_sherpa_4": "25ab4237fbe59f148af80f0876ca20f1bb570b479a410228e775417cd5cfcb16",
+        "n19_sherpa_5": "94fd3c97b584f92a398e73568654666eee26517ec0c49003b4b19dc2da509e7c",
+        "n19_sherpa_6": "ce7fc46a9372fb94562b67f432c21a1fe92145ad6761c19143156573d38dc7dd",
+        "n19_sherpa_7": "39a2617d6ce23d082e16925b033f182692f115c208dde22c18ddd7042573dcbc",
+        "n19_sherpa_8": "762c93fa0b80bfe38ee477d29f290f75a918e1e157123f3c348916e2d17c802b",
+        "n19_sherpa_10": "ee916d1bcc9b4046e73156520c87a34c287e750bdaa1fdff76e31ba921d093f0",
+        "n19_sherpa_11": "1a6c24f32f2ff1d974c9d3f37149b24e2b87b735a5c8b881281d5c56f38271f7",
+        "n19_sherpa_13": "f1e9a7f097dda31d675d2310c1bb730e242cb2ab92c6956737ac603b3a3f70a2",
+        "n19_sherpa_14": "e1c124f0e293b4f1923f65b4d6f95adda167a94bb8edcbaf865fc203be273515",
+        "n19_sherpa_15": "ba1e9ce8406e77849345578e2b0760ce225cdcede26bcf67a20968ae8cb196a7",
+        "n19_sherpa_16": "d924ea68409bf42748b762a468a5828bc4099dd2b2044f52fad49787d0cd3811",
+        "n19_sherpa_17": "83ece332373669c2afc78bae91e2d465b3d9f1f7a87ebd0941c287e6d8f88f4e",
+        "n19_sherpa_18": "0a143d8b8f27677a11c49675100c1bc416cbb5221add862b22c3254d839e6015",
+        "n19_sherpa_19": "812367080bf0cd69995d2f0c188010d7eeb3c7db2cff4d8448ff08b6f7266716",
+        "n19_sherpa_20": "0c4d1293248924ae4da49f68e5a8ed7467aab7faa054029f3eb3694f11bd81a0",
+        "n19_sherpa_21": "e23ffeb1225f8a7f5a5efd3bfe5eb08b3828ed8f597bf635ec4c4dffb8d27538",
+        "n19_sherpa_22": "24f3fd9b40447f0b4c841226c870d63cd9cf2f37de35dcfa091d1139ca37daff",
+        "n19_sherpa_23": "5aecf1b241ddaa9b71c90b5053dca21cf12256c201e9e599dfcd3bb4b859f40b",
+        "n19_sherpa_24": "550d8fff5b47d101705cd8c71d15dba9d3de6ef585072d631689a3e467dd42ee",
+        "n19_sherpa_25": "eb112edb30995c3e889521f0d9e28f9d1d4fbe8346cc50b22b5805a64a6152cf",
+        "n19_sherpa_26": "6a679426b661c2b3c481498455a17f11076cb62e9b60827d49c30caf2cff04a2",
+        "n19_sherpa_27": "9a00040625be4133b1d264dbfa11b99a90379d9ec2b5f9485913f432b194e622",
+        "n19_sherpa_28": "385743bf41ddbad37509eee7e108f9fb9d14aece13cf0c40814e1c36f0564c9d",
+        "n19_sherpa_29": "b7b0a319302143d124aa61b0fcf7b094a2a80cd5dd834948caddb4e18a1b464c",
+        "n19_sherpa_30": "e884ca5102f70406aea99ee51e5ffc74868e96491cb08da77df18c6fbd77a8a4",
+        "n19_sherpa_31": "2786a9135916179f3e3280a383827703283b7f67633cb89e6b26c5d9e30e68e3"
+      },
+      "solid_pairs": 10,
+      "checks": [
+        {
+          "a": "n19_61",
+          "a_name": "MGN12H cart",
+          "b": "n19_0",
+          "b_name": "Trinity body_mgn12 6mm",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n19_mount_left",
+          "a_name": "Sherpa Mini R2 mounting screw ISO 7380 M3x16 · left",
+          "b": "n19_0",
+          "b_name": "Trinity body_mgn12 6mm",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n19_mount_left",
+          "a_name": "Sherpa Mini R2 mounting screw ISO 7380 M3x16 · left",
+          "b": "n19_10",
+          "b_name": "m3 square nut",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n19_mount_right",
+          "a_name": "Sherpa Mini R2 mounting screw ISO 7380 M3x16 · right",
+          "b": "n19_0",
+          "b_name": "Trinity body_mgn12 6mm",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n19_mount_right",
+          "a_name": "Sherpa Mini R2 mounting screw ISO 7380 M3x16 · right",
+          "b": "n19_11",
+          "b_name": "m3 square nut",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n19_sherpa_7",
+          "a_name": "housing_core_std^housing_sherpa_mini_a3_r17_FDM",
+          "b": "n19_12",
+          "b_name": "''micro'' bowden",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n19_sherpa_7",
+          "a_name": "housing_core_std^housing_sherpa_mini_a3_r17_FDM",
+          "b": "n19_mount_left",
+          "b_name": "Sherpa Mini R2 mounting screw ISO 7380 M3x16 · left",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n19_sherpa_7",
+          "a_name": "housing_core_std^housing_sherpa_mini_a3_r17_FDM",
+          "b": "n19_mount_right",
+          "b_name": "Sherpa Mini R2 mounting screw ISO 7380 M3x16 · right",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n19_sherpa_20",
+          "a_name": "socket button head screw_iso_ISO 7380 - M3 x 16 - 16N",
+          "b": "n19_mount_right",
+          "b_name": "Sherpa Mini R2 mounting screw ISO 7380 M3x16 · right",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n19_sherpa_21",
+          "a_name": "socket button head screw_iso_ISO 7380 - M3 x 16 - 16N",
+          "b": "n19_mount_left",
+          "b_name": "Sherpa Mini R2 mounting screw ISO 7380 M3x16 · left",
+          "intersection_mm3": 0.0
+        }
+      ],
+      "unintended_contacts": [],
+      "thread_engagement": [],
+      "interface": {
+        "id": "n19",
+        "source_file": "Trinity 1.54 mgn12 6mm belts.STEP",
+        "parts": [
+          "n19_0",
+          "n19_1",
+          "n19_2",
+          "n19_3",
+          "n19_4",
+          "n19_5",
+          "n19_6",
+          "n19_9",
+          "n19_10",
+          "n19_11",
+          "n19_12",
+          "n19_13",
+          "n19_14",
+          "n19_15",
+          "n19_16",
+          "n19_17",
+          "n19_18",
+          "n19_19",
+          "n19_20",
+          "n19_21",
+          "n19_22",
+          "n19_23",
+          "n19_24",
+          "n19_25",
+          "n19_26",
+          "n19_27",
+          "n19_28",
+          "n19_29",
+          "n19_30",
+          "n19_31",
+          "n19_32",
+          "n19_33",
+          "n19_34",
+          "n19_35",
+          "n19_36",
+          "n19_37",
+          "n19_38",
+          "n19_39",
+          "n19_40",
+          "n19_41",
+          "n19_42",
+          "n19_43",
+          "n19_44",
+          "n19_45",
+          "n19_46",
+          "n19_47",
+          "n19_48",
+          "n19_49",
+          "n19_50",
+          "n19_51",
+          "n19_52",
+          "n19_53",
+          "n19_54",
+          "n19_55",
+          "n19_56",
+          "n19_57",
+          "n19_58",
+          "n19_59",
+          "n19_60",
+          "n19_61",
+          "n19_62",
+          "n19_63",
+          "n19_65",
+          "n19_mount_left",
+          "n19_mount_right",
+          "n19_sherpa_0",
+          "n19_sherpa_1",
+          "n19_sherpa_2",
+          "n19_sherpa_3",
+          "n19_sherpa_4",
+          "n19_sherpa_5",
+          "n19_sherpa_6",
+          "n19_sherpa_7",
+          "n19_sherpa_8",
+          "n19_sherpa_10",
+          "n19_sherpa_11",
+          "n19_sherpa_13",
+          "n19_sherpa_14",
+          "n19_sherpa_15",
+          "n19_sherpa_16",
+          "n19_sherpa_17",
+          "n19_sherpa_18",
+          "n19_sherpa_19",
+          "n19_sherpa_20",
+          "n19_sherpa_21",
+          "n19_sherpa_22",
+          "n19_sherpa_23",
+          "n19_sherpa_24",
+          "n19_sherpa_25",
+          "n19_sherpa_26",
+          "n19_sherpa_27",
+          "n19_sherpa_28",
+          "n19_sherpa_29",
+          "n19_sherpa_30",
+          "n19_sherpa_31"
+        ],
+        "head": true,
+        "nozzle_mm": [
+          8.881784197001252e-16,
+          7.499999999999461,
+          -81.02904972273662
+        ],
+        "belt_width_mm": 6,
+        "rail": "mgn12",
+        "floor_y_mm": 31.099999999999998,
+        "mount_axes_xz_mm": [
+          [
+            -21.75,
+            -7.499999999999994
+          ],
+          [
+            21.75,
+            -7.499999999999994
+          ]
+        ],
+        "body_hole_radii_mm": [
+          1.7
+        ],
+        "extruder_translation_mm": [
+          -4.3,
+          44.599999999999994,
+          -13.499999999999993
+        ],
+        "source_archive": "Files (WIP)/Trinity 1.54 mgn12 6mm belts.zip"
+      },
+      "scope": "Native Sherpa/source, seated mounting screws/source and supplied rail block/printed body or clamp intersections. Intended screw/nut engagement is separate. Complete hotend/probe/cutter contact and printer travel are not certified.",
+      "all_passed": true
+    },
+    {
+      "variant": "n20",
+      "metadata_sha256": "a1e226bbcc2c44494b52572cb03db9b39d16cf8101f3044543b5ca4c0927e622",
+      "native_brep_hashes": {
+        "n20_0": "76820f5849f4235e2c608478d14ef1672c2049df668d624830b6c52f609c9f4b",
+        "n20_1": "bd3df6e833165080df1dbd142035692c6b5645cb6da5ca6343d6bd6b3eb95073",
+        "n20_2": "2fb07d6c12b21fdadab2ea89528e557f1628acb610b3bbccff8102440bfcfb33",
+        "n20_3": "07d652fbda7c1f409279052343ff3c6be56f70d2f40991206bfcda3f647d37b0",
+        "n20_4": "f12838e86b89cf2d791f2365f34b98dd809830263aac477fe0b2a023ac38a4d5",
+        "n20_5": "e7c4ad4be8e798435269cc8568173f29ac4966f91468624c4be63f0413241e0e",
+        "n20_38": "044d8bddddf17d7d1890bf132b308c4a9d54064782dcb438a5a4ca48e000cc1c",
+        "n20_41": "1bd163c1f2788fadf0955970feb03f15ee54dc15c5d67c5835ed9116de99072e",
+        "n20_42": "465b2d25590be922953224d8529dbaf10eefeda0f1d7e80077172f3db315a4e0",
+        "n20_43": "2d1ed599f9e132a710bdc2205d207b326b2cda2987a7a645ef3e36646f7445e7",
+        "n20_44": "f7d7c1f156f5ef791e4a5740e09cf97c7f36107046898da9dc5fe44f326e374c",
+        "n20_45": "fa4e6476d87703ba92aa540321a206eedde9ec8638ac0439d87185a4862a4ec8",
+        "n20_46": "e8d42be9e667525e313c89c80f52ef53f34c74df70ca70f0daf964146eeff5fb",
+        "n20_47": "b26fc55350e6895e0e893c2ca957f1ec5bdc01eb62d16b9276d56c2c5a8e0b9c",
+        "n20_48": "b2c8cd5bc437382e81af4b79fdd595f0f83ab53e45d08761eacc6133dfd5b87e",
+        "n20_49": "2abc504f6c107ea979140102edfb3b46736cb22281580beb07af10829431ac96",
+        "n20_50": "4f0fb301cd18324252197f4139ed674feaf73cf986b243a43785da4285641479",
+        "n20_51": "a904446117796901d94c311970e79dd62d4f7e9cbe2a75952957bf9d2dcc35dd",
+        "n20_52": "3b4d23b23d1fcc715bc3f8d40eb4017da8e4fe046e63363088127828f9f7cfd2",
+        "n20_53": "9023b27427fd2519517422421b34bc58eb37ab65b63fddf73660a76a3fdaa577",
+        "n20_54": "1e2b118ec79328382203b4bf1853250b0bdd752fe199a05dd5e10b6dd98649f1",
+        "n20_55": "54d4e89ff1af9111aa564494f99afb8e385d02d38e21ab481ec3a423d4b77e27",
+        "n20_56": "18e4883d6ac1dca9b27c84729f3ba8ca49f904c564e482780fac6128309834e8",
+        "n20_57": "3b08e2b65d8d4ccbc15391041fe8a8d5393645fafb97bf8e382f84baea5630cf",
+        "n20_58": "372bea26c825020ca0ea1ddd1ed5b1f9c0395171e5300c35912b90dd210fbfe3",
+        "n20_59": "03332679c983feab891ff192d3d4741fd640b61d4e053fec53e0706debb48eb4",
+        "n20_60": "3917ff854f37ea52ea0878facb53b7f1c1f3fcfc766011897bbfabe0a2312204",
+        "n20_61": "7daad6f8e65b295fe7038663c49c852ad417419f815f9dc2049c554567c03bca",
+        "n20_62": "4580d717b4e83a12a5eace336545b976ae1765cc7181f439f9b7ee41266fb424",
+        "n20_63": "2927af8fb714fffa9edf0f8eb19f7511afb30cbf822fae7e1827d5e6e58a69e2",
+        "n20_64": "f4141a63c577c19f5249b18c8bd24df03291926c5a8b29d9d6e9eff6493da4d2",
+        "n20_65": "15c5b31924065a72d085b4dba64726f205408d3a24372aac2cddea7d32004e54",
+        "n20_66": "56679a65b473aa3a7d09a62887203ba0ca11aad893ba93222d916cc5b8d8e542",
+        "n20_67": "d2f3e9814e60b041cc50b9379bcafc304f7de0edfd183d148ab91ae2524dcda8",
+        "n20_68": "2cb44a0ea474fac3b4424a1c9ce8cf295648df27b8c8ebbee72d097009d9854f",
+        "n20_69": "ead1957c63713299dfcce94b6b051ac737e2858fb22767de371dbd697a7ce4a8",
+        "n20_70": "fe0453cefe777d92a81a6d2eceaa9ace79d2b9b8ff8dc9c44cf64be497445907",
+        "n20_71": "419bd59fe712d5e5e23eaf243e9741844054b1c6f49bb1ac18b37e730f0a9594",
+        "n20_72": "d4b83b56369d7e40be70c6482c247d4bf4175a0d195a928c4906d5fa4221b289",
+        "n20_73": "402727a68eda567afb572dd2ca55bff1692b1e9266f94ae5d32b0473d2b89aa9",
+        "n20_74": "08acfdede6d19ea444b5a909bfd445bdf562e54efdb5cd8d52f309f00e119c38",
+        "n20_75": "08f8c71eeac93e7014fb022010d39769c22dd51fd74093b835d1ed46cbfbeeab",
+        "n20_76": "83e932d9ceb63db8defcc9cbbe6b1b1331f2f28625647aaffd4c6cdd937ca262",
+        "n20_77": "1f4e3e10fef145002bf30d75bcad485c055c8cfbe293f469222823c93ecabb34",
+        "n20_78": "a715f15f5f971ffe369bfeda5427ea31b6562b7fdbee1cbd4c7d7e44a90dab62",
+        "n20_79": "a958f81e05280f25559f5e75c23f7ca4b8bd6b0ee6db28808e71dab76f91bfc7",
+        "n20_80": "7584f63df90aa7889cfcb7af361c53995bbf5981cf20991c2d7be10a98baa890",
+        "n20_81": "47209b6003962df64c322fbf260284b1c6dc12f7215199440e1e514d8c24bee1",
+        "n20_82": "f00829a86c413f03c1a8e70b1e60dcd1651be166e1d6e6103a6eb5d30095a500",
+        "n20_83": "bff87809366220677a87af6a3f4826e8b8972ab948a2145bbfe41a9337b19b5e",
+        "n20_84": "3dfac4b23f7bb769dc02bfb0c1a69433b48ac6eda53c166d0be633615b244af9",
+        "n20_85": "452504d5fa4ecffacb6a8fc95e94c0c98dc59e27282db43b6a1c7b9f13888b98",
+        "n20_86": "e11342bcf613b0725f787751208ae6874fa7c2aba99110e54cc83a3bcd6ad37c",
+        "n20_87": "37ed599d94135eb03430e4574849c35b7d19a62fcc87b33651b05899318c6421",
+        "n20_88": "6db0ba881c8c691c20dbfa565020afc3e981309c3258391e8f8f140b962e4cd1",
+        "n20_96": "2c05924e27379797d21b2c826027780b85135858a6e7c6223791604dfb7dcbdc",
+        "n20_97": "2ad9534f862ffa1e1599157d7f46fb3a5ca048e467f5ed66f64fe8ee31e6e035",
+        "n20_98": "2f86d8444619100bbb79c523aa1aff0aeefaae21ee53bbc28e4b43996f3b819c",
+        "n20_99": "cdcf204c87035cb327be4f9f57c6e8de69d2712b7e0ff4f4a66126298be7bc78",
+        "n20_105": "7de6886bee8087dd73b8e0a6e497461302c232d122f98ae1dccae2d60dcb3092",
+        "n20_106": "2666467115714b8e37a07e769f57f2d07d7e6783b7554bc98440b6010387b771",
+        "n20_107": "48eae4f1ac64496afe73c69d3e3c23981eba15faa11ebc57dc4842b8cfee299f",
+        "n20_109": "bb4ac48d347ce0282e70eb3a42480da7b55129faaef7e3fc4b259483c8709e8b",
+        "n20_mount_left": "77e4d48671b8e43fe20a3c4773a959412100b6ad9f31750756e39040270e52ff",
+        "n20_mount_right": "eb830edd6dc24e84f60ef1aaa44976f737f34a42e55a9367eb2e831a50b90f55",
+        "n20_sherpa_0": "ce4886e78062f4945b44f9338d3b9b7c43cfb2ab96d40f17052b376a6f9d2968",
+        "n20_sherpa_1": "065d8acda1cfd398dd81f1662d812d1dce9e47667bae532bd46fcba76b5ab167",
+        "n20_sherpa_2": "942b0d3977ac3ab69eae95d5762a2f5b827076cd3868ca2ba087bd9dc143206d",
+        "n20_sherpa_3": "61ae3ccfd3bc6aa81e2e4585a740cf5e279ede9230c76e9b3e7944849172f79c",
+        "n20_sherpa_4": "25ab4237fbe59f148af80f0876ca20f1bb570b479a410228e775417cd5cfcb16",
+        "n20_sherpa_5": "94fd3c97b584f92a398e73568654666eee26517ec0c49003b4b19dc2da509e7c",
+        "n20_sherpa_6": "ce7fc46a9372fb94562b67f432c21a1fe92145ad6761c19143156573d38dc7dd",
+        "n20_sherpa_7": "39a2617d6ce23d082e16925b033f182692f115c208dde22c18ddd7042573dcbc",
+        "n20_sherpa_8": "762c93fa0b80bfe38ee477d29f290f75a918e1e157123f3c348916e2d17c802b",
+        "n20_sherpa_10": "ee916d1bcc9b4046e73156520c87a34c287e750bdaa1fdff76e31ba921d093f0",
+        "n20_sherpa_11": "1a6c24f32f2ff1d974c9d3f37149b24e2b87b735a5c8b881281d5c56f38271f7",
+        "n20_sherpa_13": "f1e9a7f097dda31d675d2310c1bb730e242cb2ab92c6956737ac603b3a3f70a2",
+        "n20_sherpa_14": "e1c124f0e293b4f1923f65b4d6f95adda167a94bb8edcbaf865fc203be273515",
+        "n20_sherpa_15": "ba1e9ce8406e77849345578e2b0760ce225cdcede26bcf67a20968ae8cb196a7",
+        "n20_sherpa_16": "d924ea68409bf42748b762a468a5828bc4099dd2b2044f52fad49787d0cd3811",
+        "n20_sherpa_17": "83ece332373669c2afc78bae91e2d465b3d9f1f7a87ebd0941c287e6d8f88f4e",
+        "n20_sherpa_18": "0a143d8b8f27677a11c49675100c1bc416cbb5221add862b22c3254d839e6015",
+        "n20_sherpa_19": "812367080bf0cd69995d2f0c188010d7eeb3c7db2cff4d8448ff08b6f7266716",
+        "n20_sherpa_20": "0c4d1293248924ae4da49f68e5a8ed7467aab7faa054029f3eb3694f11bd81a0",
+        "n20_sherpa_21": "e23ffeb1225f8a7f5a5efd3bfe5eb08b3828ed8f597bf635ec4c4dffb8d27538",
+        "n20_sherpa_22": "24f3fd9b40447f0b4c841226c870d63cd9cf2f37de35dcfa091d1139ca37daff",
+        "n20_sherpa_23": "5aecf1b241ddaa9b71c90b5053dca21cf12256c201e9e599dfcd3bb4b859f40b",
+        "n20_sherpa_24": "550d8fff5b47d101705cd8c71d15dba9d3de6ef585072d631689a3e467dd42ee",
+        "n20_sherpa_25": "eb112edb30995c3e889521f0d9e28f9d1d4fbe8346cc50b22b5805a64a6152cf",
+        "n20_sherpa_26": "6a679426b661c2b3c481498455a17f11076cb62e9b60827d49c30caf2cff04a2",
+        "n20_sherpa_27": "9a00040625be4133b1d264dbfa11b99a90379d9ec2b5f9485913f432b194e622",
+        "n20_sherpa_28": "385743bf41ddbad37509eee7e108f9fb9d14aece13cf0c40814e1c36f0564c9d",
+        "n20_sherpa_29": "b7b0a319302143d124aa61b0fcf7b094a2a80cd5dd834948caddb4e18a1b464c",
+        "n20_sherpa_30": "e884ca5102f70406aea99ee51e5ffc74868e96491cb08da77df18c6fbd77a8a4",
+        "n20_sherpa_31": "2786a9135916179f3e3280a383827703283b7f67633cb89e6b26c5d9e30e68e3"
+      },
+      "solid_pairs": 10,
+      "checks": [
+        {
+          "a": "n20_105",
+          "a_name": "MGN12H cart",
+          "b": "n20_0",
+          "b_name": "Trinity body_mgn12 9mm",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n20_mount_left",
+          "a_name": "Sherpa Mini R2 mounting screw ISO 7380 M3x16 · left",
+          "b": "n20_0",
+          "b_name": "Trinity body_mgn12 9mm",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n20_mount_left",
+          "a_name": "Sherpa Mini R2 mounting screw ISO 7380 M3x16 · left",
+          "b": "n20_42",
+          "b_name": "m3 square nut",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n20_mount_right",
+          "a_name": "Sherpa Mini R2 mounting screw ISO 7380 M3x16 · right",
+          "b": "n20_0",
+          "b_name": "Trinity body_mgn12 9mm",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n20_mount_right",
+          "a_name": "Sherpa Mini R2 mounting screw ISO 7380 M3x16 · right",
+          "b": "n20_43",
+          "b_name": "m3 square nut",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n20_sherpa_7",
+          "a_name": "housing_core_std^housing_sherpa_mini_a3_r17_FDM",
+          "b": "n20_44",
+          "b_name": "''micro'' bowden",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n20_sherpa_7",
+          "a_name": "housing_core_std^housing_sherpa_mini_a3_r17_FDM",
+          "b": "n20_mount_left",
+          "b_name": "Sherpa Mini R2 mounting screw ISO 7380 M3x16 · left",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n20_sherpa_7",
+          "a_name": "housing_core_std^housing_sherpa_mini_a3_r17_FDM",
+          "b": "n20_mount_right",
+          "b_name": "Sherpa Mini R2 mounting screw ISO 7380 M3x16 · right",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n20_sherpa_20",
+          "a_name": "socket button head screw_iso_ISO 7380 - M3 x 16 - 16N",
+          "b": "n20_mount_right",
+          "b_name": "Sherpa Mini R2 mounting screw ISO 7380 M3x16 · right",
+          "intersection_mm3": 0.0
+        },
+        {
+          "a": "n20_sherpa_21",
+          "a_name": "socket button head screw_iso_ISO 7380 - M3 x 16 - 16N",
+          "b": "n20_mount_left",
+          "b_name": "Sherpa Mini R2 mounting screw ISO 7380 M3x16 · left",
+          "intersection_mm3": 0.0
+        }
+      ],
+      "unintended_contacts": [],
+      "thread_engagement": [],
+      "interface": {
+        "id": "n20",
+        "source_file": "Trinity 1.54 mgn12 9 or 10mm belts.STEP",
+        "parts": [
+          "n20_0",
+          "n20_1",
+          "n20_2",
+          "n20_3",
+          "n20_4",
+          "n20_5",
+          "n20_38",
+          "n20_41",
+          "n20_42",
+          "n20_43",
+          "n20_44",
+          "n20_45",
+          "n20_46",
+          "n20_47",
+          "n20_48",
+          "n20_49",
+          "n20_50",
+          "n20_51",
+          "n20_52",
+          "n20_53",
+          "n20_54",
+          "n20_55",
+          "n20_56",
+          "n20_57",
+          "n20_58",
+          "n20_59",
+          "n20_60",
+          "n20_61",
+          "n20_62",
+          "n20_63",
+          "n20_64",
+          "n20_65",
+          "n20_66",
+          "n20_67",
+          "n20_68",
+          "n20_69",
+          "n20_70",
+          "n20_71",
+          "n20_72",
+          "n20_73",
+          "n20_74",
+          "n20_75",
+          "n20_76",
+          "n20_77",
+          "n20_78",
+          "n20_79",
+          "n20_80",
+          "n20_81",
+          "n20_82",
+          "n20_83",
+          "n20_84",
+          "n20_85",
+          "n20_86",
+          "n20_87",
+          "n20_88",
+          "n20_96",
+          "n20_97",
+          "n20_98",
+          "n20_99",
+          "n20_105",
+          "n20_106",
+          "n20_107",
+          "n20_109",
+          "n20_mount_left",
+          "n20_mount_right",
+          "n20_sherpa_0",
+          "n20_sherpa_1",
+          "n20_sherpa_2",
+          "n20_sherpa_3",
+          "n20_sherpa_4",
+          "n20_sherpa_5",
+          "n20_sherpa_6",
+          "n20_sherpa_7",
+          "n20_sherpa_8",
+          "n20_sherpa_10",
+          "n20_sherpa_11",
+          "n20_sherpa_13",
+          "n20_sherpa_14",
+          "n20_sherpa_15",
+          "n20_sherpa_16",
+          "n20_sherpa_17",
+          "n20_sherpa_18",
+          "n20_sherpa_19",
+          "n20_sherpa_20",
+          "n20_sherpa_21",
+          "n20_sherpa_22",
+          "n20_sherpa_23",
+          "n20_sherpa_24",
+          "n20_sherpa_25",
+          "n20_sherpa_26",
+          "n20_sherpa_27",
+          "n20_sherpa_28",
+          "n20_sherpa_29",
+          "n20_sherpa_30",
+          "n20_sherpa_31"
+        ],
+        "head": true,
+        "nozzle_mm": [
+          8.881784197001252e-16,
+          7.499999999999461,
+          -81.02904972273662
+        ],
+        "belt_width_mm": 9,
+        "rail": "mgn12",
+        "floor_y_mm": 32.099999999999994,
+        "mount_axes_xz_mm": [
+          [
+            -21.75,
+            -7.499999999999987
+          ],
+          [
+            21.75,
+            -7.499999999999987
+          ]
+        ],
+        "body_hole_radii_mm": [
+          1.7
+        ],
+        "extruder_translation_mm": [
+          -4.3,
+          45.599999999999994,
+          -13.499999999999986
+        ],
+        "source_archive": "Files (WIP)/Trinity 1.54 mgn12 9 or 10mm belts.zip"
+      },
+      "scope": "Native Sherpa/source, seated mounting screws/source and supplied rail block/printed body or clamp intersections. Intended screw/nut engagement is separate. Complete hotend/probe/cutter contact and printer travel are not certified.",
+      "all_passed": true
+    }
+  ],
+  "topology_repairs": [
+    {
+      "variant": "n16",
+      "key": "0s6",
+      "faces": [
+        8,
+        129,
+        387
+      ],
+      "source_volume_mm3": 24544.56223813309,
+      "repaired_volume_mm3": 24544.346852213355,
+      "volume_delta_mm3": -0.21538591973512666,
+      "source_bounds_mm": [
+        [
+          148.8542698207398,
+          173.39998335192104,
+          238.31625058792213
+        ],
+        [
+          251.1457287038739,
+          219.49999999998872,
+          263.06792454629647
+        ]
+      ],
+      "repaired_bounds_mm": [
+        [
+          148.85426982073983,
+          173.39998335192104,
+          238.31625058792213
+        ],
+        [
+          251.14572870387397,
+          219.49999999998872,
+          263.06792454629647
+        ]
+      ]
+    },
+    {
+      "variant": "n16",
+      "key": "0s7",
+      "faces": [
+        429,
+        682,
+        689,
+        740
+      ],
+      "source_volume_mm3": 54191.01975324107,
+      "repaired_volume_mm3": 54191.01975324107,
+      "volume_delta_mm3": 0.0,
+      "source_bounds_mm": [
+        [
+          140.32229180989683,
+          173.8999981111155,
+          255.61407273225612
+        ],
+        [
+          259.67770738005277,
+          210.90000029663614,
+          340.1500001000303
+        ]
+      ],
+      "repaired_bounds_mm": [
+        [
+          140.32229180989683,
+          173.8999981111155,
+          255.61407273225612
+        ],
+        [
+          259.67770738005277,
+          210.90000029663614,
+          340.1500001000303
+        ]
+      ]
+    },
+    {
+      "variant": "n17",
+      "key": "0s17",
+      "faces": [
+        8,
+        129,
+        387
+      ],
+      "source_volume_mm3": 24520.226936943913,
+      "repaired_volume_mm3": 24520.129005284725,
+      "volume_delta_mm3": -0.09793165918745217,
+      "source_bounds_mm": [
+        [
+          148.8542698207398,
+          173.39998335192104,
+          238.31568994589742
+        ],
+        [
+          251.1457287038739,
+          219.49999999998872,
+          263.06792454629647
+        ]
+      ],
+      "repaired_bounds_mm": [
+        [
+          148.85426982073983,
+          173.39998335192104,
+          238.31568994589742
+        ],
+        [
+          251.14572870387397,
+          219.49999999998872,
+          263.06792454629647
+        ]
+      ]
+    },
+    {
+      "variant": "n18",
+      "key": "0s21",
+      "faces": [
+        8,
+        129,
+        387
+      ],
+      "source_volume_mm3": 24520.226936943913,
+      "repaired_volume_mm3": 24520.129005284725,
+      "volume_delta_mm3": -0.09793165918745217,
+      "source_bounds_mm": [
+        [
+          148.8542698207398,
+          173.39998335192104,
+          238.31568994589742
+        ],
+        [
+          251.1457287038739,
+          219.49999999998872,
+          263.06792454629647
+        ]
+      ],
+      "repaired_bounds_mm": [
+        [
+          148.85426982073983,
+          173.39998335192104,
+          238.31568994589742
+        ],
+        [
+          251.14572870387397,
+          219.49999999998872,
+          263.06792454629647
+        ]
+      ]
+    },
+    {
+      "variant": "n21",
+      "key": "0",
+      "faces": [
+        222,
+        471
+      ],
+      "source_volume_mm3": 25726.126808797533,
+      "repaired_volume_mm3": 25726.3293093079,
+      "volume_delta_mm3": 0.2025005103678268,
+      "source_bounds_mm": [
+        [
+          148.8542698207398,
+          173.39998335192107,
+          238.31686996396277
+        ],
+        [
+          251.14572870387394,
+          219.49999999998872,
+          263.06792454629647
+        ]
+      ],
+      "repaired_bounds_mm": [
+        [
+          148.8542698207398,
+          173.39998335192107,
+          238.31686996396277
+        ],
+        [
+          251.14572870387394,
+          219.49999999998872,
+          263.06792454629647
+        ]
+      ]
+    }
+  ],
+  "adapter_sha256": {
+    "head-additions.mjs": "143d882a3df675284f2eb6b70e98f8ba05cbddfa343d4b41a5560ac577722595",
+    "machine-heads.js": "c0357ec27a81063a7596bfb3f3b75d71e519235956422ca3919af6303d30945d",
+    "toolheads.js": "e8e3d4cc9dbe4405f4c58f4d20082576aaed1a2588fa41f3c3ffba90986a0a6f",
+    "configurations.js": "dec62d6ff51ea27f9cd6b6a9371858b69684110edef6c2398f146a49071d6524",
+    "palette-controller.mjs": "af9daf5ae29080e4cbff191db67db45d6c366437a64261b967372f5742173824"
+  },
+  "browser": {
+    "name": "Codex in-app browser / Chromium",
+    "actual_viewport": [
+      1280,
+      720
+    ],
+    "physical_mobile_touch_verified": false,
+    "other_browser_gpu_review": false,
+    "screenshots": [
+      {
+        "file": "component-n00.png",
+        "sha256": "7d230e87d1998e90a7391ab6fc08b5ed1baf20b2a5b331a252bb675cbdf974c8"
+      },
+      {
+        "file": "component-n01.png",
+        "sha256": "aa48edb222c95d045bd75e457829cac0ad448665ee9f4e8fc298b2ab8740385b"
+      },
+      {
+        "file": "component-n02.png",
+        "sha256": "8d93fe40c2833e53af4b2593a49d5260a3203dfe6801ea768bd3b7fb3a04c433"
+      },
+      {
+        "file": "component-n03.png",
+        "sha256": "55091454d152e5a175172b301ac27dd6e759d1a9f8f9b216c0b2ed0e1150a4c3"
+      },
+      {
+        "file": "component-n04.png",
+        "sha256": "0b4167855c8a77e1f7674335467370e5b05d5b1a01b66863bf0a2537a944eae8"
+      },
+      {
+        "file": "component-n07.png",
+        "sha256": "f347e7116f0e8160314fc570711c371329baa856ac341501d795aa0223e94ba1"
+      },
+      {
+        "file": "component-n08.png",
+        "sha256": "198cbe451b495dcc00113fe1eea7a5cac00abeff1e65e9522e4cb0de1f34369c"
+      },
+      {
+        "file": "component-n09.png",
+        "sha256": "003eb46740891d6afa5dc57897da3df195a045bbd42e9d07ba318d0a7c768e6a"
+      },
+      {
+        "file": "component-n10.png",
+        "sha256": "969904f702ab687cecca0131bca503f78ec2d47f59bc475796ec74197e95bd16"
+      },
+      {
+        "file": "component-n11.png",
+        "sha256": "d5a25cf787da2952078cb1829f0bfedf5c405d046c37cd04993630e81bc202fa"
+      },
+      {
+        "file": "component-n12.png",
+        "sha256": "996aa68a4d2118a080468c81e23a65f5b51f046353a9046a829af24d00df384c"
+      },
+      {
+        "file": "component-n13.png",
+        "sha256": "73446354a7b4375ddc63948418b55a438ac2b12b4618c727abe691e26d5b804b"
+      },
+      {
+        "file": "component-n14.png",
+        "sha256": "2a81c2555d816e777106349bab283032656a80e850d24e8ad54715e3508cd6c7"
+      },
+      {
+        "file": "component-n15.png",
+        "sha256": "6dc45f0c25232716bb18f455f5598555696a846afcf4726be3cb5816a02ec726"
+      },
+      {
+        "file": "component-n16.png",
+        "sha256": "070d54f9a4cce510a10325737a90b2e2d6143cdbb337cc1cd97867418daeaa16"
+      },
+      {
+        "file": "component-n17.png",
+        "sha256": "70b17d572723c6f2aaa3b6b97b4ca04407df3e00f7141bc3f32427ac0977d75e"
+      },
+      {
+        "file": "component-n18.png",
+        "sha256": "013f76f35f1954ec69458b6e8b1a8db1539011ce3e23ae0999780c6ff7c34197"
+      },
+      {
+        "file": "component-n21.png",
+        "sha256": "9b4cbf3b45aa06180bfbabe9f047dc779749a795cf751e244872a4aca13b609c"
+      },
+      {
+        "file": "component-n22.png",
+        "sha256": "75984c218286b807a99897a2df339d8f54cb911f21a1e2c18231bad6d28fefb3"
+      },
+      {
+        "file": "component-n23.png",
+        "sha256": "1771c82f443a48d0020c6a858233e39cc89114532bfeaa811376e9e3c97a8087"
+      },
+      {
+        "file": "component-n24.png",
+        "sha256": "e3b58b4a812603d7e317b64d04e1745167647bd81c93ad28ee7c17894ddb0049"
+      },
+      {
+        "file": "trinity-dark.png",
+        "sha256": "5825fc26bd212dd4d9b39cfa972e2a3d4b075896070c2b413008efcda9b3f830"
+      },
+      {
+        "file": "trinity-es-desktop.png",
+        "sha256": "427c67bb8defaeec97c44d4634fbae042d386a8ddf15c0020c6d2ac5e91f3d0c"
+      },
+      {
+        "file": "trinity-export-1920x1368.png",
+        "sha256": "bfc848af7fd25a5d3236e9debcf0ce9b75dd0da10aff73327debd08f45b81c97"
+      },
+      {
+        "file": "trinity-n05.png",
+        "sha256": "5679c587140fa60d92cae58d8d215eaa3ccfd2b7f7f765ee9f0a6c5e3f071f71"
+      },
+      {
+        "file": "trinity-n06.png",
+        "sha256": "2942d1b6c034f66beaaaa151bb0b1788e5a7a462d829e26f090039814d0af24a"
+      },
+      {
+        "file": "trinity-n19.png",
+        "sha256": "c3becde6fa360a34addf994f6a380083a777609754869c467b59613efc4b0546"
+      },
+      {
+        "file": "trinity-n20.png",
+        "sha256": "4bd71593626a41533ae4d4dfd870152c28e3427e3376df1d3d7b7b8655dddae6"
+      },
+      {
+        "file": "trinity-palette.png",
+        "sha256": "8635014693dd89b7c0100cd43f06c2be6711c2a8cdbfa4d9bfc5656f00b65452"
+      }
+    ],
+    "complete_heads": [
+      "trinity88__n05",
+      "trinity88__n06",
+      "trinity88__n19",
+      "trinity88__n20"
+    ],
+    "component_CAD": [
+      {
+        "id": "trinity_native_n00",
+        "label": "Trinity · Klicky dock mount / HVFDesigns",
+        "info": "1 / 1 parts visible"
+      },
+      {
+        "id": "trinity_native_n01",
+        "label": "Trinity · Klicky mount / HVFDesigns",
+        "info": "1 / 1 parts visible"
+      },
+      {
+        "id": "trinity_native_n02",
+        "label": "Trinity · Klicky00 plate / Prooda",
+        "info": "1 / 1 parts visible"
+      },
+      {
+        "id": "trinity_native_n03",
+        "label": "Trinity · 2020 belt pretensioner / Prooda",
+        "info": "10 / 10 parts visible"
+      },
+      {
+        "id": "trinity_native_n07",
+        "label": "Trinity · Apex clip / 6 mm / 2.8 mm",
+        "info": "1 / 1 parts visible"
+      },
+      {
+        "id": "trinity_native_n08",
+        "label": "Trinity · Apex clip / 6 mm / 2.9 mm",
+        "info": "1 / 1 parts visible"
+      },
+      {
+        "id": "trinity_native_n09",
+        "label": "Trinity · Apex clip / 6 mm / 3.1 mm",
+        "info": "1 / 1 parts visible"
+      },
+      {
+        "id": "trinity_native_n10",
+        "label": "Trinity · Apex clip / 6 mm / 3 mm",
+        "info": "1 / 1 parts visible"
+      },
+      {
+        "id": "trinity_native_n11",
+        "label": "Trinity · Apex clip / 9 mm / 2.8 mm",
+        "info": "1 / 1 parts visible"
+      },
+      {
+        "id": "trinity_native_n12",
+        "label": "Trinity · Apex clip / 9 mm / 2.9 mm",
+        "info": "1 / 1 parts visible"
+      },
+      {
+        "id": "trinity_native_n13",
+        "label": "Trinity · Apex clip / 9 mm / 3.1 mm",
+        "info": "1 / 1 parts visible"
+      },
+      {
+        "id": "trinity_native_n14",
+        "label": "Trinity · Apex clip / 9 mm / 3 mm",
+        "info": "1 / 1 parts visible"
+      },
+      {
+        "id": "trinity_native_n15",
+        "label": "Trinity · Heatcore 4 UHF parts / cpp0xc0ffeeee",
+        "info": "5 / 5 parts visible"
+      },
+      {
+        "id": "trinity_native_n16",
+        "label": "Trinity · Chube Compact / MGN12 / 6 mm / Prooda",
+        "info": "24 / 24 parts visible"
+      },
+      {
+        "id": "trinity_native_n17",
+        "label": "Trinity · Chube Compact / MGN12 / 9 mm / Prooda",
+        "info": "19 / 19 parts visible"
+      },
+      {
+        "id": "trinity_native_n18",
+        "label": "Trinity · Chube Compact / MGN9 / 6 mm / Prooda",
+        "info": "24 / 24 parts visible"
+      },
+      {
+        "id": "trinity_native_n21",
+        "label": "Trinity · Chube Compact / Magneto / Zerodegree79",
+        "info": "57 / 57 parts visible"
+      },
+      {
+        "id": "trinity_native_n22",
+        "label": "Trinity · Dragon T-Volcano / front Magneto / Zerodegree79",
+        "info": "49 / 49 parts visible"
+      },
+      {
+        "id": "trinity_native_n23",
+        "label": "Trinity · Dragon UHF / rear Magneto / Zerodegree79",
+        "info": "22 / 22 parts visible"
+      },
+      {
+        "id": "trinity_native_n24",
+        "label": "Trinity · Dragon UHF / front Magneto / Zerodegree79",
+        "info": "23 / 23 parts visible"
+      },
+      {
+        "id": "trinity_native_n04",
+        "label": "Trinity · Xol / SHT36 V2 board mounts / Prooda",
+        "info": "370 / 370 parts visible"
+      }
+    ],
+    "localized_scope": [
+      {
+        "language": "en",
+        "scope": "Native Trinity source assembly with Sherpa Mini R2 standard/short, Dragon ACE Volcano, dual 3628 fans, a 2510 hotend fan, nozzle and source Beacon RevD. Overlapping source alternatives and construction negatives are omitted and recorded. Printer installation and full probe clearance remain unverified."
+      },
+      {
+        "language": "ja",
+        "scope": "Trinity原本にSherpa Mini R2標準／短型、Dragon ACE Volcano、3628ファン2個、2510ホットエンド冷却ファン、ノズル、原本Beacon RevDを組み立てています。重複する別仕様と作図用負形状の除外を記録。機体への装着とプローブ全体のクリアランスは未検証です。"
+      },
+      {
+        "language": "es",
+        "scope": "Ensamblaje original Trinity con Sherpa Mini R2 estándar/corto, Dragon ACE Volcano, dos ventiladores 3628, un ventilador 2510, boquilla y Beacon RevD original. Se omiten y registran las variantes superpuestas y los negativos de construcción. La instalación y la holgura completa de la sonda siguen sin verificar."
+      },
+      {
+        "language": "ko",
+        "scope": "Trinity 원본에 Sherpa Mini R2 표준/짧은 암, Dragon ACE Volcano, 3628 팬 2개, 2510 핫엔드 팬, 노즐과 원본 Beacon RevD를 조립했습니다. 겹치는 대체 부품과 제작용 음각 형상 제외를 기록했습니다. 프린터 장착 및 전체 프로브 간격은 미검증입니다."
+      },
+      {
+        "language": "ru",
+        "scope": "Исходная сборка Trinity с Sherpa Mini R2 стандартной/короткой версии, Dragon ACE Volcano, двумя вентиляторами 3628, вентилятором 2510, соплом и исходным Beacon RevD. Исключение перекрывающихся вариантов и вспомогательных отрицательных форм записано. Установка и полный зазор датчика не проверены."
+      }
+    ],
+    "scope": "All four complete head views and all 21 component references visually inspected, including the contact sheets. Palette change/reset and configuration save/download/file-dialog load checked for n05. PNG export at 1920 × 1368 checked. Desktop Chromium only; no physical fit inference from screenshots."
+  },
+  "full_machine_physical_fit_certified": false
+}

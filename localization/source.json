@@ -9870,6 +9870,151 @@
       "kind": "message",
       "ja": "原本のベルトクリップ試験片は一つずつ表示。押下アームとホルダーは原本の組立座標を保持しています。機体への装着は未登録です。",
       "en": "Native source belt-clip test packs are shown individually; depressor arm and holder retain their original assembly coordinates. Printer installation is unregistered."
+    },
+    "trinity_native.01": {
+      "kind": "message",
+      "ja": "Trinity原本にSherpa Mini R2標準／短型、Dragon ACE Volcano、3628ファン2個、2510ホットエンド冷却ファン、ノズル、原本Beacon RevDを組み立てています。重複する別仕様と作図用負形状の除外を記録。機体への装着とプローブ全体のクリアランスは未検証です。",
+      "en": "Native Trinity source assembly with Sherpa Mini R2 standard/short, Dragon ACE Volcano, dual 3628 fans, a 2510 hotend fan, nozzle and source Beacon RevD. Overlapping source alternatives and construction negatives are omitted and recorded. Printer installation and full probe clearance remain unverified."
+    },
+    "trinity_native.02": {
+      "kind": "message",
+      "ja": "Trinity原本の部品CADを、提供されているハードウェアとともに表示します。一部の改造データは印刷部品だけで、ホットエンドや押出機全体を含みません。この部品表示は完成ヘッドや機体への装着を登録しません。トポロジー修復と作図用補助形状の除外を記録しています。",
+      "en": "Original Trinity component CAD, including author-supplied hardware where present. Some user modifications supply printed bodies without a hotend or complete extruder. This component view does not register a complete head or printer installation. Topology repairs and omitted construction helpers are recorded."
+    },
+    "trinity_native.03": {
+      "kind": "message",
+      "ja": "Trinity · Klicky dock mount / HVFDesigns",
+      "en": "Trinity · Klicky dock mount / HVFDesigns"
+    },
+    "trinity_native.04": {
+      "kind": "message",
+      "ja": "Trinity · Klicky mount / HVFDesigns",
+      "en": "Trinity · Klicky mount / HVFDesigns"
+    },
+    "trinity_native.05": {
+      "kind": "message",
+      "ja": "Trinity · Klicky00 plate / Prooda",
+      "en": "Trinity · Klicky00 plate / Prooda"
+    },
+    "trinity_native.06": {
+      "kind": "message",
+      "ja": "Trinity · 2020 belt pretensioner / Prooda",
+      "en": "Trinity · 2020 belt pretensioner / Prooda"
+    },
+    "trinity_native.07": {
+      "kind": "message",
+      "ja": "Trinity · Xol / SHT36 V2 board mounts / Prooda",
+      "en": "Trinity · Xol / SHT36 V2 board mounts / Prooda"
+    },
+    "trinity_native.08": {
+      "kind": "message",
+      "ja": "Trinity v1.41 · MGN9 / 6 mm",
+      "en": "Trinity v1.41 · MGN9 / 6 mm"
+    },
+    "trinity_native.09": {
+      "kind": "message",
+      "ja": "Trinity v1.41 · MGN9 / 9 mm",
+      "en": "Trinity v1.41 · MGN9 / 9 mm"
+    },
+    "trinity_native.10": {
+      "kind": "message",
+      "ja": "Trinity · Heatcore 4 UHF parts / cpp0xc0ffeeee",
+      "en": "Trinity · Heatcore 4 UHF parts / cpp0xc0ffeeee"
+    },
+    "trinity_native.11": {
+      "kind": "message",
+      "ja": "Trinity · Chube Compact / MGN12 / 6 mm / Prooda",
+      "en": "Trinity · Chube Compact / MGN12 / 6 mm / Prooda"
+    },
+    "trinity_native.12": {
+      "kind": "message",
+      "ja": "Trinity · Chube Compact / MGN12 / 9 mm / Prooda",
+      "en": "Trinity · Chube Compact / MGN12 / 9 mm / Prooda"
+    },
+    "trinity_native.13": {
+      "kind": "message",
+      "ja": "Trinity · Chube Compact / MGN9 / 6 mm / Prooda",
+      "en": "Trinity · Chube Compact / MGN9 / 6 mm / Prooda"
+    },
+    "trinity_native.14": {
+      "kind": "message",
+      "ja": "Trinity v1.54 · MGN12 / 6 mm",
+      "en": "Trinity v1.54 · MGN12 / 6 mm"
+    },
+    "trinity_native.15": {
+      "kind": "message",
+      "ja": "Trinity v1.54 · MGN12 / 9–10 mm",
+      "en": "Trinity v1.54 · MGN12 / 9–10 mm"
+    },
+    "trinity_native.16": {
+      "kind": "message",
+      "ja": "Trinity · Chube Compact / Magneto / Zerodegree79",
+      "en": "Trinity · Chube Compact / Magneto / Zerodegree79"
+    },
+    "trinity_native.17": {
+      "kind": "message",
+      "ja": "Trinity · Dragon T-Volcano / front Magneto / Zerodegree79",
+      "en": "Trinity · Dragon T-Volcano / front Magneto / Zerodegree79"
+    },
+    "trinity_native.18": {
+      "kind": "message",
+      "ja": "Trinity · Dragon UHF / rear Magneto / Zerodegree79",
+      "en": "Trinity · Dragon UHF / rear Magneto / Zerodegree79"
+    },
+    "trinity_native.19": {
+      "kind": "message",
+      "ja": "Trinity · Dragon UHF / front Magneto / Zerodegree79",
+      "en": "Trinity · Dragon UHF / front Magneto / Zerodegree79"
+    },
+    "trinity_native.20": {
+      "kind": "message",
+      "ja": "Trinity · Apex clip / 6 mm / 2.8 mm",
+      "en": "Trinity · Apex clip / 6 mm / 2.8 mm"
+    },
+    "trinity_native.21": {
+      "kind": "message",
+      "ja": "Trinity · Apex clip / 6 mm / 2.9 mm",
+      "en": "Trinity · Apex clip / 6 mm / 2.9 mm"
+    },
+    "trinity_native.22": {
+      "kind": "message",
+      "ja": "Trinity · Apex clip / 6 mm / 3.1 mm",
+      "en": "Trinity · Apex clip / 6 mm / 3.1 mm"
+    },
+    "trinity_native.23": {
+      "kind": "message",
+      "ja": "Trinity · Apex clip / 6 mm / 3 mm",
+      "en": "Trinity · Apex clip / 6 mm / 3 mm"
+    },
+    "trinity_native.24": {
+      "kind": "message",
+      "ja": "Trinity · Apex clip / 9 mm / 2.8 mm",
+      "en": "Trinity · Apex clip / 9 mm / 2.8 mm"
+    },
+    "trinity_native.25": {
+      "kind": "message",
+      "ja": "Trinity · Apex clip / 9 mm / 2.9 mm",
+      "en": "Trinity · Apex clip / 9 mm / 2.9 mm"
+    },
+    "trinity_native.26": {
+      "kind": "message",
+      "ja": "Trinity · Apex clip / 9 mm / 3.1 mm",
+      "en": "Trinity · Apex clip / 9 mm / 3.1 mm"
+    },
+    "trinity_native.27": {
+      "kind": "message",
+      "ja": "Trinity · Apex clip / 9 mm / 3 mm",
+      "en": "Trinity · Apex clip / 9 mm / 3 mm"
+    },
+    "trinity_native.28": {
+      "kind": "message",
+      "ja": "Trinity",
+      "en": "Trinity"
+    },
+    "trinity_native.29": {
+      "kind": "message",
+      "ja": "Trinity · MGN9H / v1.41",
+      "en": "Trinity · MGN9H / v1.41"
     }
   }
 }

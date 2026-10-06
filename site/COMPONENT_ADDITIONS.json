@@ -1,6 +1,6 @@
 {
   "schema": "3d-print-rig-components-v1",
-  "version": "trinity-crossbow-87",
+  "version": "trinity-native-88",
   "items": [
     {
       "id": "hydra_ender3_parts",
@@ -1369,6 +1369,1695 @@
       "license_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/NOTICE.txt",
       "notes": "Native source belt-clip test packs are shown individually; depressor arm and holder retain their original assembly coordinates. Printer installation is unregistered.",
       "machine_installation_verified": false
+    },
+    {
+      "id": "trinity_native_n00",
+      "kind": "mod",
+      "label": "Trinity · Klicky dock mount / HVFDesigns",
+      "module": "trinity_native_n00",
+      "manufacturer": "WV-design / Prooda / HVFDesigns / Zerodegree79 / cpp0xc0ffeeee",
+      "representation": "STEP",
+      "solids": 1,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "assembly",
+          "label": "Trinity · Klicky dock mount / HVFDesigns",
+          "parts": [
+            "n00_0"
+          ],
+          "assembly": true
+        }
+      ],
+      "source_url": "https://github.com/WV-design/Trinity-toolhead/tree/d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_version": "Trinity · d17a5c9fad6f",
+      "source_commit": "d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_sha256": "02a686a25a29786eadf7a9d021ad1ee6f183a4e4e415dfa1ed2f9f396e54ee0b",
+      "license": "GPL-3.0 Trinity prints / embedded component terms",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/NOTICE.txt",
+      "notes": "Original Trinity component CAD, including author-supplied hardware where present. Some user modifications supply printed bodies without a hotend or complete extruder. This component view does not register a complete head or printer installation. Topology repairs and omitted construction helpers are recorded.",
+      "machine_installation_verified": false
+    },
+    {
+      "id": "trinity_native_n01",
+      "kind": "mod",
+      "label": "Trinity · Klicky mount / HVFDesigns",
+      "module": "trinity_native_n01",
+      "manufacturer": "WV-design / Prooda / HVFDesigns / Zerodegree79 / cpp0xc0ffeeee",
+      "representation": "STEP",
+      "solids": 1,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "assembly",
+          "label": "Trinity · Klicky mount / HVFDesigns",
+          "parts": [
+            "n01_0"
+          ],
+          "assembly": true
+        }
+      ],
+      "source_url": "https://github.com/WV-design/Trinity-toolhead/tree/d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_version": "Trinity · d17a5c9fad6f",
+      "source_commit": "d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_sha256": "6900fdc1ecb819635302a4e8e46513db6f142fc4408b5ec7b74a66967abbdff6",
+      "license": "GPL-3.0 Trinity prints / embedded component terms",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/NOTICE.txt",
+      "notes": "Original Trinity component CAD, including author-supplied hardware where present. Some user modifications supply printed bodies without a hotend or complete extruder. This component view does not register a complete head or printer installation. Topology repairs and omitted construction helpers are recorded.",
+      "machine_installation_verified": false
+    },
+    {
+      "id": "trinity_native_n02",
+      "kind": "mod",
+      "label": "Trinity · Klicky00 plate / Prooda",
+      "module": "trinity_native_n02",
+      "manufacturer": "WV-design / Prooda / HVFDesigns / Zerodegree79 / cpp0xc0ffeeee",
+      "representation": "STEP",
+      "solids": 1,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "assembly",
+          "label": "Trinity · Klicky00 plate / Prooda",
+          "parts": [
+            "n02_0"
+          ],
+          "assembly": true
+        }
+      ],
+      "source_url": "https://github.com/WV-design/Trinity-toolhead/tree/d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_version": "Trinity · d17a5c9fad6f",
+      "source_commit": "d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_sha256": "1aa149b6b7711399abbf657f34a99aeccfdad5780063ff62c94047d42da41390",
+      "license": "GPL-3.0 Trinity prints / embedded component terms",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/NOTICE.txt",
+      "notes": "Original Trinity component CAD, including author-supplied hardware where present. Some user modifications supply printed bodies without a hotend or complete extruder. This component view does not register a complete head or printer installation. Topology repairs and omitted construction helpers are recorded.",
+      "machine_installation_verified": false
+    },
+    {
+      "id": "trinity_native_n03",
+      "kind": "mod",
+      "label": "Trinity · 2020 belt pretensioner / Prooda",
+      "module": "trinity_native_n03",
+      "manufacturer": "WV-design / Prooda / HVFDesigns / Zerodegree79 / cpp0xc0ffeeee",
+      "representation": "STEP",
+      "solids": 10,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "assembly",
+          "label": "Trinity · 2020 belt pretensioner / Prooda",
+          "parts": [
+            "n03_0",
+            "n03_1",
+            "n03_2",
+            "n03_3",
+            "n03_4",
+            "n03_5",
+            "n03_6",
+            "n03_7",
+            "n03_8",
+            "n03_9"
+          ],
+          "assembly": true
+        }
+      ],
+      "source_url": "https://github.com/WV-design/Trinity-toolhead/tree/d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_version": "Trinity · d17a5c9fad6f",
+      "source_commit": "d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_sha256": "eac8d0dff4be00a5aabe5f274230adc77c59f9ea389a6d4896a000656620d172",
+      "license": "GPL-3.0 Trinity prints / embedded component terms",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/NOTICE.txt",
+      "notes": "Original Trinity component CAD, including author-supplied hardware where present. Some user modifications supply printed bodies without a hotend or complete extruder. This component view does not register a complete head or printer installation. Topology repairs and omitted construction helpers are recorded.",
+      "machine_installation_verified": false
+    },
+    {
+      "id": "trinity_native_n04",
+      "kind": "mod",
+      "label": "Trinity · Xol / SHT36 V2 board mounts / Prooda",
+      "module": "trinity_native_n04",
+      "manufacturer": "WV-design / Prooda / HVFDesigns / Zerodegree79 / cpp0xc0ffeeee",
+      "representation": "STEP",
+      "solids": 689,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "assembly",
+          "label": "Trinity · Xol / SHT36 V2 board mounts / Prooda",
+          "parts": [
+            "n04_0",
+            "n04_1",
+            "n04_2",
+            "n04_3",
+            "n04_4",
+            "n04_5",
+            "n04_6",
+            "n04_7",
+            "n04_8",
+            "n04_9",
+            "n04_10",
+            "n04_11",
+            "n04_12",
+            "n04_13",
+            "n04_14",
+            "n04_15",
+            "n04_16",
+            "n04_17",
+            "n04_18",
+            "n04_19",
+            "n04_20",
+            "n04_21",
+            "n04_22",
+            "n04_23",
+            "n04_24",
+            "n04_25",
+            "n04_26",
+            "n04_27",
+            "n04_28",
+            "n04_29",
+            "n04_30",
+            "n04_31",
+            "n04_32",
+            "n04_33",
+            "n04_34",
+            "n04_35",
+            "n04_36",
+            "n04_37",
+            "n04_38",
+            "n04_39",
+            "n04_40",
+            "n04_41",
+            "n04_42",
+            "n04_43",
+            "n04_44",
+            "n04_45",
+            "n04_46",
+            "n04_47",
+            "n04_48",
+            "n04_49",
+            "n04_50",
+            "n04_51",
+            "n04_52",
+            "n04_53",
+            "n04_54",
+            "n04_55",
+            "n04_56",
+            "n04_57",
+            "n04_58",
+            "n04_59",
+            "n04_60",
+            "n04_61",
+            "n04_62",
+            "n04_63",
+            "n04_64",
+            "n04_65",
+            "n04_66",
+            "n04_67",
+            "n04_68",
+            "n04_69",
+            "n04_70",
+            "n04_71",
+            "n04_72",
+            "n04_73",
+            "n04_74",
+            "n04_75",
+            "n04_76",
+            "n04_77",
+            "n04_78",
+            "n04_79",
+            "n04_80",
+            "n04_81",
+            "n04_82",
+            "n04_83",
+            "n04_84",
+            "n04_85",
+            "n04_86",
+            "n04_87",
+            "n04_88",
+            "n04_89",
+            "n04_90",
+            "n04_91",
+            "n04_92",
+            "n04_93",
+            "n04_94",
+            "n04_95",
+            "n04_96",
+            "n04_97",
+            "n04_98",
+            "n04_99",
+            "n04_100",
+            "n04_101",
+            "n04_102",
+            "n04_103",
+            "n04_104",
+            "n04_105",
+            "n04_106",
+            "n04_107",
+            "n04_108",
+            "n04_109",
+            "n04_110",
+            "n04_111",
+            "n04_112",
+            "n04_113",
+            "n04_114",
+            "n04_115",
+            "n04_116",
+            "n04_117",
+            "n04_118",
+            "n04_119",
+            "n04_120",
+            "n04_121",
+            "n04_122",
+            "n04_123",
+            "n04_124",
+            "n04_125",
+            "n04_126",
+            "n04_127",
+            "n04_128",
+            "n04_129",
+            "n04_130",
+            "n04_131",
+            "n04_132",
+            "n04_133",
+            "n04_134",
+            "n04_135",
+            "n04_136",
+            "n04_137",
+            "n04_138",
+            "n04_139",
+            "n04_140",
+            "n04_141",
+            "n04_142",
+            "n04_143",
+            "n04_144",
+            "n04_145",
+            "n04_146",
+            "n04_147",
+            "n04_148",
+            "n04_149",
+            "n04_150",
+            "n04_151",
+            "n04_152",
+            "n04_153",
+            "n04_154",
+            "n04_155",
+            "n04_156",
+            "n04_157",
+            "n04_158",
+            "n04_159",
+            "n04_160",
+            "n04_161",
+            "n04_162",
+            "n04_163",
+            "n04_164",
+            "n04_165",
+            "n04_166",
+            "n04_167",
+            "n04_168",
+            "n04_169",
+            "n04_170",
+            "n04_171",
+            "n04_172",
+            "n04_173",
+            "n04_174",
+            "n04_175",
+            "n04_176",
+            "n04_177",
+            "n04_178",
+            "n04_179",
+            "n04_180",
+            "n04_181",
+            "n04_182",
+            "n04_183",
+            "n04_184",
+            "n04_185",
+            "n04_186",
+            "n04_187",
+            "n04_188",
+            "n04_189",
+            "n04_190",
+            "n04_191",
+            "n04_192",
+            "n04_193",
+            "n04_194",
+            "n04_195",
+            "n04_196",
+            "n04_197",
+            "n04_198",
+            "n04_199",
+            "n04_200",
+            "n04_201",
+            "n04_202",
+            "n04_203",
+            "n04_204",
+            "n04_205",
+            "n04_206",
+            "n04_207",
+            "n04_208",
+            "n04_209",
+            "n04_210",
+            "n04_211",
+            "n04_212",
+            "n04_213",
+            "n04_214",
+            "n04_215",
+            "n04_216",
+            "n04_217",
+            "n04_218",
+            "n04_219",
+            "n04_220",
+            "n04_221",
+            "n04_222",
+            "n04_223",
+            "n04_224",
+            "n04_225",
+            "n04_226",
+            "n04_227",
+            "n04_228",
+            "n04_229",
+            "n04_230",
+            "n04_231",
+            "n04_232",
+            "n04_233",
+            "n04_234",
+            "n04_235",
+            "n04_236",
+            "n04_237",
+            "n04_238",
+            "n04_239",
+            "n04_240",
+            "n04_241",
+            "n04_242",
+            "n04_243",
+            "n04_244",
+            "n04_245",
+            "n04_246",
+            "n04_247",
+            "n04_248",
+            "n04_249",
+            "n04_250",
+            "n04_251",
+            "n04_252",
+            "n04_253",
+            "n04_254",
+            "n04_255",
+            "n04_256",
+            "n04_257",
+            "n04_258",
+            "n04_259",
+            "n04_260",
+            "n04_261",
+            "n04_262",
+            "n04_263",
+            "n04_264",
+            "n04_265",
+            "n04_266",
+            "n04_267",
+            "n04_268",
+            "n04_269",
+            "n04_270",
+            "n04_271",
+            "n04_272",
+            "n04_273",
+            "n04_274",
+            "n04_275",
+            "n04_276",
+            "n04_277",
+            "n04_278",
+            "n04_279",
+            "n04_280",
+            "n04_281",
+            "n04_282",
+            "n04_283",
+            "n04_284",
+            "n04_285",
+            "n04_286",
+            "n04_287",
+            "n04_288",
+            "n04_289",
+            "n04_290",
+            "n04_291",
+            "n04_292",
+            "n04_293",
+            "n04_294",
+            "n04_295",
+            "n04_296",
+            "n04_297",
+            "n04_298",
+            "n04_299",
+            "n04_300",
+            "n04_301",
+            "n04_302",
+            "n04_303",
+            "n04_304",
+            "n04_305",
+            "n04_306",
+            "n04_307",
+            "n04_308",
+            "n04_309",
+            "n04_310",
+            "n04_311",
+            "n04_312",
+            "n04_313",
+            "n04_314",
+            "n04_315",
+            "n04_316",
+            "n04_317",
+            "n04_318",
+            "n04_319",
+            "n04_320",
+            "n04_321",
+            "n04_322",
+            "n04_323",
+            "n04_324",
+            "n04_325",
+            "n04_326",
+            "n04_327",
+            "n04_328",
+            "n04_329",
+            "n04_330",
+            "n04_331",
+            "n04_332",
+            "n04_333",
+            "n04_334",
+            "n04_335",
+            "n04_336",
+            "n04_337",
+            "n04_338",
+            "n04_339",
+            "n04_340",
+            "n04_341",
+            "n04_342",
+            "n04_343",
+            "n04_344",
+            "n04_345",
+            "n04_346",
+            "n04_347",
+            "n04_348",
+            "n04_349",
+            "n04_350",
+            "n04_351",
+            "n04_352",
+            "n04_353",
+            "n04_354",
+            "n04_355",
+            "n04_356",
+            "n04_357",
+            "n04_358",
+            "n04_359",
+            "n04_360",
+            "n04_361",
+            "n04_362",
+            "n04_363",
+            "n04_364",
+            "n04_365",
+            "n04_366",
+            "n04_367",
+            "n04_368",
+            "n04_369"
+          ],
+          "assembly": true
+        }
+      ],
+      "source_url": "https://github.com/WV-design/Trinity-toolhead/tree/d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_version": "Trinity · d17a5c9fad6f",
+      "source_commit": "d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_sha256": "742e82f84a1e27cd246913c8e035b1725b62d6f72ad701c0c84770c359b2ff03",
+      "license": "GPL-3.0 Trinity prints / embedded component terms",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/NOTICE.txt",
+      "notes": "Original Trinity component CAD, including author-supplied hardware where present. Some user modifications supply printed bodies without a hotend or complete extruder. This component view does not register a complete head or printer installation. Topology repairs and omitted construction helpers are recorded.",
+      "machine_installation_verified": false
+    },
+    {
+      "id": "trinity_native_n05",
+      "kind": "mod",
+      "label": "Trinity v1.41 · MGN9 / 6 mm",
+      "module": "trinity_native_n05",
+      "manufacturer": "WV-design / Prooda / HVFDesigns / Zerodegree79 / cpp0xc0ffeeee / Annex Engineering",
+      "representation": "STEP",
+      "solids": 125,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "assembly",
+          "label": "Trinity v1.41 · MGN9 / 6 mm",
+          "parts": [
+            "n05_0",
+            "n05_1",
+            "n05_2",
+            "n05_3",
+            "n05_4",
+            "n05_5",
+            "n05_6",
+            "n05_7",
+            "n05_8",
+            "n05_9",
+            "n05_10",
+            "n05_11",
+            "n05_12",
+            "n05_13",
+            "n05_14",
+            "n05_15",
+            "n05_16",
+            "n05_17",
+            "n05_18",
+            "n05_19",
+            "n05_20",
+            "n05_21",
+            "n05_22",
+            "n05_23",
+            "n05_24",
+            "n05_25",
+            "n05_26",
+            "n05_27",
+            "n05_28",
+            "n05_29",
+            "n05_30",
+            "n05_31",
+            "n05_32",
+            "n05_33",
+            "n05_34",
+            "n05_35",
+            "n05_36",
+            "n05_37",
+            "n05_38",
+            "n05_39",
+            "n05_40",
+            "n05_41",
+            "n05_42",
+            "n05_43",
+            "n05_44",
+            "n05_45",
+            "n05_48",
+            "n05_49",
+            "n05_50",
+            "n05_51",
+            "n05_52",
+            "n05_53",
+            "n05_54",
+            "n05_55",
+            "n05_56",
+            "n05_57",
+            "n05_58",
+            "n05_59",
+            "n05_60",
+            "n05_61",
+            "n05_62",
+            "n05_63",
+            "n05_64",
+            "n05_65",
+            "n05_66",
+            "n05_67",
+            "n05_68",
+            "n05_69",
+            "n05_70",
+            "n05_71",
+            "n05_72",
+            "n05_73",
+            "n05_74",
+            "n05_mount_left",
+            "n05_mount_right",
+            "n05_sherpa_0",
+            "n05_sherpa_1",
+            "n05_sherpa_2",
+            "n05_sherpa_3",
+            "n05_sherpa_4",
+            "n05_sherpa_5",
+            "n05_sherpa_6",
+            "n05_sherpa_7",
+            "n05_sherpa_8",
+            "n05_sherpa_10",
+            "n05_sherpa_11",
+            "n05_sherpa_13",
+            "n05_sherpa_14",
+            "n05_sherpa_15",
+            "n05_sherpa_16",
+            "n05_sherpa_17",
+            "n05_sherpa_18",
+            "n05_sherpa_19",
+            "n05_sherpa_20",
+            "n05_sherpa_21",
+            "n05_sherpa_22",
+            "n05_sherpa_23",
+            "n05_sherpa_24",
+            "n05_sherpa_25",
+            "n05_sherpa_26",
+            "n05_sherpa_27",
+            "n05_sherpa_28",
+            "n05_sherpa_29",
+            "n05_sherpa_30",
+            "n05_sherpa_31"
+          ],
+          "assembly": true
+        }
+      ],
+      "source_url": "https://github.com/WV-design/Trinity-toolhead/tree/d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_version": "Trinity · d17a5c9fad6f",
+      "source_commit": "d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_sha256": "ca133f2b1000566b34dc626b421ebd0953c07aca2842a457cef055a0177ba0f1",
+      "license": "GPL-3.0 Trinity prints / Annex EULA / embedded component terms",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/NOTICE.txt",
+      "notes": "Native Trinity source assembly with Sherpa Mini R2 standard/short, Dragon ACE Volcano, dual 3628 fans, a 2510 hotend fan, nozzle and source Beacon RevD. Overlapping source alternatives and construction negatives are omitted and recorded. Printer installation and full probe clearance remain unverified.",
+      "machine_installation_verified": false
+    },
+    {
+      "id": "trinity_native_n06",
+      "kind": "mod",
+      "label": "Trinity v1.41 · MGN9 / 9 mm",
+      "module": "trinity_native_n06",
+      "manufacturer": "WV-design / Prooda / HVFDesigns / Zerodegree79 / cpp0xc0ffeeee / Annex Engineering",
+      "representation": "STEP",
+      "solids": 125,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "assembly",
+          "label": "Trinity v1.41 · MGN9 / 9 mm",
+          "parts": [
+            "n06_0",
+            "n06_1",
+            "n06_2",
+            "n06_3",
+            "n06_4",
+            "n06_5",
+            "n06_6",
+            "n06_7",
+            "n06_8",
+            "n06_9",
+            "n06_10",
+            "n06_11",
+            "n06_12",
+            "n06_13",
+            "n06_14",
+            "n06_15",
+            "n06_16",
+            "n06_17",
+            "n06_18",
+            "n06_19",
+            "n06_20",
+            "n06_21",
+            "n06_22",
+            "n06_23",
+            "n06_24",
+            "n06_25",
+            "n06_26",
+            "n06_27",
+            "n06_28",
+            "n06_29",
+            "n06_30",
+            "n06_31",
+            "n06_32",
+            "n06_33",
+            "n06_34",
+            "n06_35",
+            "n06_36",
+            "n06_37",
+            "n06_38",
+            "n06_39",
+            "n06_40",
+            "n06_41",
+            "n06_42",
+            "n06_43",
+            "n06_44",
+            "n06_45",
+            "n06_48",
+            "n06_49",
+            "n06_50",
+            "n06_51",
+            "n06_52",
+            "n06_53",
+            "n06_54",
+            "n06_55",
+            "n06_56",
+            "n06_57",
+            "n06_58",
+            "n06_59",
+            "n06_60",
+            "n06_61",
+            "n06_62",
+            "n06_63",
+            "n06_64",
+            "n06_65",
+            "n06_66",
+            "n06_67",
+            "n06_68",
+            "n06_69",
+            "n06_70",
+            "n06_71",
+            "n06_72",
+            "n06_73",
+            "n06_74",
+            "n06_mount_left",
+            "n06_mount_right",
+            "n06_sherpa_0",
+            "n06_sherpa_1",
+            "n06_sherpa_2",
+            "n06_sherpa_3",
+            "n06_sherpa_4",
+            "n06_sherpa_5",
+            "n06_sherpa_6",
+            "n06_sherpa_7",
+            "n06_sherpa_8",
+            "n06_sherpa_10",
+            "n06_sherpa_11",
+            "n06_sherpa_13",
+            "n06_sherpa_14",
+            "n06_sherpa_15",
+            "n06_sherpa_16",
+            "n06_sherpa_17",
+            "n06_sherpa_18",
+            "n06_sherpa_19",
+            "n06_sherpa_20",
+            "n06_sherpa_21",
+            "n06_sherpa_22",
+            "n06_sherpa_23",
+            "n06_sherpa_24",
+            "n06_sherpa_25",
+            "n06_sherpa_26",
+            "n06_sherpa_27",
+            "n06_sherpa_28",
+            "n06_sherpa_29",
+            "n06_sherpa_30",
+            "n06_sherpa_31"
+          ],
+          "assembly": true
+        }
+      ],
+      "source_url": "https://github.com/WV-design/Trinity-toolhead/tree/d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_version": "Trinity · d17a5c9fad6f",
+      "source_commit": "d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_sha256": "0434603e8a5d3f0916b07fe0721274f35c4dfa71647617916f86353d4a074a31",
+      "license": "GPL-3.0 Trinity prints / Annex EULA / embedded component terms",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/NOTICE.txt",
+      "notes": "Native Trinity source assembly with Sherpa Mini R2 standard/short, Dragon ACE Volcano, dual 3628 fans, a 2510 hotend fan, nozzle and source Beacon RevD. Overlapping source alternatives and construction negatives are omitted and recorded. Printer installation and full probe clearance remain unverified.",
+      "machine_installation_verified": false
+    },
+    {
+      "id": "trinity_native_n07",
+      "kind": "mod",
+      "label": "Trinity · Apex clip / 6 mm / 2.8 mm",
+      "module": "trinity_native_n07",
+      "manufacturer": "WV-design / Prooda / HVFDesigns / Zerodegree79 / cpp0xc0ffeeee",
+      "representation": "STEP",
+      "solids": 1,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "assembly",
+          "label": "Trinity · Apex clip / 6 mm / 2.8 mm",
+          "parts": [
+            "n07_0"
+          ],
+          "assembly": true
+        }
+      ],
+      "source_url": "https://github.com/WV-design/Trinity-toolhead/tree/d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_version": "Trinity · d17a5c9fad6f",
+      "source_commit": "d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_sha256": "e3e17970a673314a48947c7bb7eaec8ebe2a816041f919136e42c793da0183cd",
+      "license": "GPL-3.0 Trinity prints / embedded component terms",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/NOTICE.txt",
+      "notes": "Original Trinity component CAD, including author-supplied hardware where present. Some user modifications supply printed bodies without a hotend or complete extruder. This component view does not register a complete head or printer installation. Topology repairs and omitted construction helpers are recorded.",
+      "machine_installation_verified": false
+    },
+    {
+      "id": "trinity_native_n08",
+      "kind": "mod",
+      "label": "Trinity · Apex clip / 6 mm / 2.9 mm",
+      "module": "trinity_native_n08",
+      "manufacturer": "WV-design / Prooda / HVFDesigns / Zerodegree79 / cpp0xc0ffeeee",
+      "representation": "STEP",
+      "solids": 1,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "assembly",
+          "label": "Trinity · Apex clip / 6 mm / 2.9 mm",
+          "parts": [
+            "n08_0"
+          ],
+          "assembly": true
+        }
+      ],
+      "source_url": "https://github.com/WV-design/Trinity-toolhead/tree/d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_version": "Trinity · d17a5c9fad6f",
+      "source_commit": "d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_sha256": "827e7b47c055fc930a15d3ac1e0565dfd760ca8e6efdf26fd4539177b4234239",
+      "license": "GPL-3.0 Trinity prints / embedded component terms",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/NOTICE.txt",
+      "notes": "Original Trinity component CAD, including author-supplied hardware where present. Some user modifications supply printed bodies without a hotend or complete extruder. This component view does not register a complete head or printer installation. Topology repairs and omitted construction helpers are recorded.",
+      "machine_installation_verified": false
+    },
+    {
+      "id": "trinity_native_n09",
+      "kind": "mod",
+      "label": "Trinity · Apex clip / 6 mm / 3.1 mm",
+      "module": "trinity_native_n09",
+      "manufacturer": "WV-design / Prooda / HVFDesigns / Zerodegree79 / cpp0xc0ffeeee",
+      "representation": "STEP",
+      "solids": 1,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "assembly",
+          "label": "Trinity · Apex clip / 6 mm / 3.1 mm",
+          "parts": [
+            "n09_0"
+          ],
+          "assembly": true
+        }
+      ],
+      "source_url": "https://github.com/WV-design/Trinity-toolhead/tree/d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_version": "Trinity · d17a5c9fad6f",
+      "source_commit": "d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_sha256": "e4658ec64d7a448688d3adc22c0ff38a91fbd6b9717862d6ea27cfca6d3a38d6",
+      "license": "GPL-3.0 Trinity prints / embedded component terms",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/NOTICE.txt",
+      "notes": "Original Trinity component CAD, including author-supplied hardware where present. Some user modifications supply printed bodies without a hotend or complete extruder. This component view does not register a complete head or printer installation. Topology repairs and omitted construction helpers are recorded.",
+      "machine_installation_verified": false
+    },
+    {
+      "id": "trinity_native_n10",
+      "kind": "mod",
+      "label": "Trinity · Apex clip / 6 mm / 3 mm",
+      "module": "trinity_native_n10",
+      "manufacturer": "WV-design / Prooda / HVFDesigns / Zerodegree79 / cpp0xc0ffeeee",
+      "representation": "STEP",
+      "solids": 1,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "assembly",
+          "label": "Trinity · Apex clip / 6 mm / 3 mm",
+          "parts": [
+            "n10_0"
+          ],
+          "assembly": true
+        }
+      ],
+      "source_url": "https://github.com/WV-design/Trinity-toolhead/tree/d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_version": "Trinity · d17a5c9fad6f",
+      "source_commit": "d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_sha256": "25de4985a963ca96f5865e538d52de15485d07721b48dc8251d4057f862e1477",
+      "license": "GPL-3.0 Trinity prints / embedded component terms",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/NOTICE.txt",
+      "notes": "Original Trinity component CAD, including author-supplied hardware where present. Some user modifications supply printed bodies without a hotend or complete extruder. This component view does not register a complete head or printer installation. Topology repairs and omitted construction helpers are recorded.",
+      "machine_installation_verified": false
+    },
+    {
+      "id": "trinity_native_n11",
+      "kind": "mod",
+      "label": "Trinity · Apex clip / 9 mm / 2.8 mm",
+      "module": "trinity_native_n11",
+      "manufacturer": "WV-design / Prooda / HVFDesigns / Zerodegree79 / cpp0xc0ffeeee",
+      "representation": "STEP",
+      "solids": 1,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "assembly",
+          "label": "Trinity · Apex clip / 9 mm / 2.8 mm",
+          "parts": [
+            "n11_0"
+          ],
+          "assembly": true
+        }
+      ],
+      "source_url": "https://github.com/WV-design/Trinity-toolhead/tree/d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_version": "Trinity · d17a5c9fad6f",
+      "source_commit": "d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_sha256": "feb649a83897afccb31010eb150ac2d9ce43e0a6ef88fb7a37d4a88fe3f1a169",
+      "license": "GPL-3.0 Trinity prints / embedded component terms",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/NOTICE.txt",
+      "notes": "Original Trinity component CAD, including author-supplied hardware where present. Some user modifications supply printed bodies without a hotend or complete extruder. This component view does not register a complete head or printer installation. Topology repairs and omitted construction helpers are recorded.",
+      "machine_installation_verified": false
+    },
+    {
+      "id": "trinity_native_n12",
+      "kind": "mod",
+      "label": "Trinity · Apex clip / 9 mm / 2.9 mm",
+      "module": "trinity_native_n12",
+      "manufacturer": "WV-design / Prooda / HVFDesigns / Zerodegree79 / cpp0xc0ffeeee",
+      "representation": "STEP",
+      "solids": 1,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "assembly",
+          "label": "Trinity · Apex clip / 9 mm / 2.9 mm",
+          "parts": [
+            "n12_0"
+          ],
+          "assembly": true
+        }
+      ],
+      "source_url": "https://github.com/WV-design/Trinity-toolhead/tree/d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_version": "Trinity · d17a5c9fad6f",
+      "source_commit": "d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_sha256": "611da4d6bba4be5df0afe449a812161fa1a7a8156173237e3eec026484099919",
+      "license": "GPL-3.0 Trinity prints / embedded component terms",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/NOTICE.txt",
+      "notes": "Original Trinity component CAD, including author-supplied hardware where present. Some user modifications supply printed bodies without a hotend or complete extruder. This component view does not register a complete head or printer installation. Topology repairs and omitted construction helpers are recorded.",
+      "machine_installation_verified": false
+    },
+    {
+      "id": "trinity_native_n13",
+      "kind": "mod",
+      "label": "Trinity · Apex clip / 9 mm / 3.1 mm",
+      "module": "trinity_native_n13",
+      "manufacturer": "WV-design / Prooda / HVFDesigns / Zerodegree79 / cpp0xc0ffeeee",
+      "representation": "STEP",
+      "solids": 1,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "assembly",
+          "label": "Trinity · Apex clip / 9 mm / 3.1 mm",
+          "parts": [
+            "n13_0"
+          ],
+          "assembly": true
+        }
+      ],
+      "source_url": "https://github.com/WV-design/Trinity-toolhead/tree/d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_version": "Trinity · d17a5c9fad6f",
+      "source_commit": "d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_sha256": "245d19525d62057c814140474da7407b6936c5f98ae92d1f9e291111d13e41fd",
+      "license": "GPL-3.0 Trinity prints / embedded component terms",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/NOTICE.txt",
+      "notes": "Original Trinity component CAD, including author-supplied hardware where present. Some user modifications supply printed bodies without a hotend or complete extruder. This component view does not register a complete head or printer installation. Topology repairs and omitted construction helpers are recorded.",
+      "machine_installation_verified": false
+    },
+    {
+      "id": "trinity_native_n14",
+      "kind": "mod",
+      "label": "Trinity · Apex clip / 9 mm / 3 mm",
+      "module": "trinity_native_n14",
+      "manufacturer": "WV-design / Prooda / HVFDesigns / Zerodegree79 / cpp0xc0ffeeee",
+      "representation": "STEP",
+      "solids": 1,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "assembly",
+          "label": "Trinity · Apex clip / 9 mm / 3 mm",
+          "parts": [
+            "n14_0"
+          ],
+          "assembly": true
+        }
+      ],
+      "source_url": "https://github.com/WV-design/Trinity-toolhead/tree/d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_version": "Trinity · d17a5c9fad6f",
+      "source_commit": "d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_sha256": "64910d4efe8d81bb24467b9ecdd4cb8bfe430766ea1cb4f6a2e85421a1a99d78",
+      "license": "GPL-3.0 Trinity prints / embedded component terms",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/NOTICE.txt",
+      "notes": "Original Trinity component CAD, including author-supplied hardware where present. Some user modifications supply printed bodies without a hotend or complete extruder. This component view does not register a complete head or printer installation. Topology repairs and omitted construction helpers are recorded.",
+      "machine_installation_verified": false
+    },
+    {
+      "id": "trinity_native_n15",
+      "kind": "mod",
+      "label": "Trinity · Heatcore 4 UHF parts / cpp0xc0ffeeee",
+      "module": "trinity_native_n15",
+      "manufacturer": "WV-design / Prooda / HVFDesigns / Zerodegree79 / cpp0xc0ffeeee",
+      "representation": "STEP",
+      "solids": 5,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "assembly",
+          "label": "Trinity · Heatcore 4 UHF parts / cpp0xc0ffeeee",
+          "parts": [
+            "n15_0s0",
+            "n15_0s1",
+            "n15_0s2",
+            "n15_0s3",
+            "n15_0s4"
+          ],
+          "assembly": true
+        }
+      ],
+      "source_url": "https://github.com/WV-design/Trinity-toolhead/tree/d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_version": "Trinity · d17a5c9fad6f",
+      "source_commit": "d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_sha256": "272d707b65ef9d5f5ae892b1122af9302d04b05ab84f90a7a462e487896076ee",
+      "license": "GPL-3.0 Trinity prints / embedded component terms",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/NOTICE.txt",
+      "notes": "Original Trinity component CAD, including author-supplied hardware where present. Some user modifications supply printed bodies without a hotend or complete extruder. This component view does not register a complete head or printer installation. Topology repairs and omitted construction helpers are recorded.",
+      "machine_installation_verified": false
+    },
+    {
+      "id": "trinity_native_n16",
+      "kind": "mod",
+      "label": "Trinity · Chube Compact / MGN12 / 6 mm / Prooda",
+      "module": "trinity_native_n16",
+      "manufacturer": "WV-design / Prooda / HVFDesigns / Zerodegree79 / cpp0xc0ffeeee",
+      "representation": "STEP",
+      "solids": 24,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "assembly",
+          "label": "Trinity · Chube Compact / MGN12 / 6 mm / Prooda",
+          "parts": [
+            "n16_0s0",
+            "n16_0s1",
+            "n16_0s2",
+            "n16_0s3",
+            "n16_0s4",
+            "n16_0s5",
+            "n16_0s6",
+            "n16_0s7",
+            "n16_0s8",
+            "n16_0s9",
+            "n16_0s10",
+            "n16_0s11",
+            "n16_0s12",
+            "n16_0s13",
+            "n16_0s14",
+            "n16_0s15",
+            "n16_0s16",
+            "n16_0s17",
+            "n16_0s18",
+            "n16_0s19",
+            "n16_0s20",
+            "n16_0s21",
+            "n16_0s22",
+            "n16_0s23"
+          ],
+          "assembly": true
+        }
+      ],
+      "source_url": "https://github.com/WV-design/Trinity-toolhead/tree/d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_version": "Trinity · d17a5c9fad6f",
+      "source_commit": "d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_sha256": "270f2e29897eaae61fdf323daac2c4f8be991617205a875f7cd9995988578ad6",
+      "license": "GPL-3.0 Trinity prints / embedded component terms",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/NOTICE.txt",
+      "notes": "Original Trinity component CAD, including author-supplied hardware where present. Some user modifications supply printed bodies without a hotend or complete extruder. This component view does not register a complete head or printer installation. Topology repairs and omitted construction helpers are recorded.",
+      "machine_installation_verified": false
+    },
+    {
+      "id": "trinity_native_n17",
+      "kind": "mod",
+      "label": "Trinity · Chube Compact / MGN12 / 9 mm / Prooda",
+      "module": "trinity_native_n17",
+      "manufacturer": "WV-design / Prooda / HVFDesigns / Zerodegree79 / cpp0xc0ffeeee",
+      "representation": "STEP",
+      "solids": 19,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "assembly",
+          "label": "Trinity · Chube Compact / MGN12 / 9 mm / Prooda",
+          "parts": [
+            "n17_0s0",
+            "n17_0s1",
+            "n17_0s2",
+            "n17_0s3",
+            "n17_0s4",
+            "n17_0s5",
+            "n17_0s6",
+            "n17_0s7",
+            "n17_0s8",
+            "n17_0s9",
+            "n17_0s10",
+            "n17_0s11",
+            "n17_0s12",
+            "n17_0s13",
+            "n17_0s14",
+            "n17_0s15",
+            "n17_0s16",
+            "n17_0s17",
+            "n17_0s18"
+          ],
+          "assembly": true
+        }
+      ],
+      "source_url": "https://github.com/WV-design/Trinity-toolhead/tree/d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_version": "Trinity · d17a5c9fad6f",
+      "source_commit": "d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_sha256": "79b39dae7fa0b47beb6cdfbb98a4d4dd9f344843ef09f73f8f74c62bb605e2d1",
+      "license": "GPL-3.0 Trinity prints / embedded component terms",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/NOTICE.txt",
+      "notes": "Original Trinity component CAD, including author-supplied hardware where present. Some user modifications supply printed bodies without a hotend or complete extruder. This component view does not register a complete head or printer installation. Topology repairs and omitted construction helpers are recorded.",
+      "machine_installation_verified": false
+    },
+    {
+      "id": "trinity_native_n18",
+      "kind": "mod",
+      "label": "Trinity · Chube Compact / MGN9 / 6 mm / Prooda",
+      "module": "trinity_native_n18",
+      "manufacturer": "WV-design / Prooda / HVFDesigns / Zerodegree79 / cpp0xc0ffeeee",
+      "representation": "STEP",
+      "solids": 24,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "assembly",
+          "label": "Trinity · Chube Compact / MGN9 / 6 mm / Prooda",
+          "parts": [
+            "n18_0s0",
+            "n18_0s1",
+            "n18_0s2",
+            "n18_0s3",
+            "n18_0s4",
+            "n18_0s5",
+            "n18_0s6",
+            "n18_0s7",
+            "n18_0s8",
+            "n18_0s9",
+            "n18_0s10",
+            "n18_0s11",
+            "n18_0s12",
+            "n18_0s13",
+            "n18_0s14",
+            "n18_0s15",
+            "n18_0s16",
+            "n18_0s17",
+            "n18_0s18",
+            "n18_0s19",
+            "n18_0s20",
+            "n18_0s21",
+            "n18_0s22",
+            "n18_0s23"
+          ],
+          "assembly": true
+        }
+      ],
+      "source_url": "https://github.com/WV-design/Trinity-toolhead/tree/d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_version": "Trinity · d17a5c9fad6f",
+      "source_commit": "d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_sha256": "be30061c759c6ebd8aab7301978a60254b0253cef83744949cdbbd2644c34143",
+      "license": "GPL-3.0 Trinity prints / embedded component terms",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/NOTICE.txt",
+      "notes": "Original Trinity component CAD, including author-supplied hardware where present. Some user modifications supply printed bodies without a hotend or complete extruder. This component view does not register a complete head or printer installation. Topology repairs and omitted construction helpers are recorded.",
+      "machine_installation_verified": false
+    },
+    {
+      "id": "trinity_native_n19",
+      "kind": "mod",
+      "label": "Trinity v1.54 · MGN12 / 6 mm",
+      "module": "trinity_native_n19",
+      "manufacturer": "WV-design / Prooda / HVFDesigns / Zerodegree79 / cpp0xc0ffeeee / Annex Engineering",
+      "representation": "STEP",
+      "solids": 125,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "assembly",
+          "label": "Trinity v1.54 · MGN12 / 6 mm",
+          "parts": [
+            "n19_0",
+            "n19_1",
+            "n19_2",
+            "n19_3",
+            "n19_4",
+            "n19_5",
+            "n19_6",
+            "n19_9",
+            "n19_10",
+            "n19_11",
+            "n19_12",
+            "n19_13",
+            "n19_14",
+            "n19_15",
+            "n19_16",
+            "n19_17",
+            "n19_18",
+            "n19_19",
+            "n19_20",
+            "n19_21",
+            "n19_22",
+            "n19_23",
+            "n19_24",
+            "n19_25",
+            "n19_26",
+            "n19_27",
+            "n19_28",
+            "n19_29",
+            "n19_30",
+            "n19_31",
+            "n19_32",
+            "n19_33",
+            "n19_34",
+            "n19_35",
+            "n19_36",
+            "n19_37",
+            "n19_38",
+            "n19_39",
+            "n19_40",
+            "n19_41",
+            "n19_42",
+            "n19_43",
+            "n19_44",
+            "n19_45",
+            "n19_46",
+            "n19_47",
+            "n19_48",
+            "n19_49",
+            "n19_50",
+            "n19_51",
+            "n19_52",
+            "n19_53",
+            "n19_54",
+            "n19_55",
+            "n19_56",
+            "n19_57",
+            "n19_58",
+            "n19_59",
+            "n19_60",
+            "n19_61",
+            "n19_62",
+            "n19_63",
+            "n19_65",
+            "n19_mount_left",
+            "n19_mount_right",
+            "n19_sherpa_0",
+            "n19_sherpa_1",
+            "n19_sherpa_2",
+            "n19_sherpa_3",
+            "n19_sherpa_4",
+            "n19_sherpa_5",
+            "n19_sherpa_6",
+            "n19_sherpa_7",
+            "n19_sherpa_8",
+            "n19_sherpa_10",
+            "n19_sherpa_11",
+            "n19_sherpa_13",
+            "n19_sherpa_14",
+            "n19_sherpa_15",
+            "n19_sherpa_16",
+            "n19_sherpa_17",
+            "n19_sherpa_18",
+            "n19_sherpa_19",
+            "n19_sherpa_20",
+            "n19_sherpa_21",
+            "n19_sherpa_22",
+            "n19_sherpa_23",
+            "n19_sherpa_24",
+            "n19_sherpa_25",
+            "n19_sherpa_26",
+            "n19_sherpa_27",
+            "n19_sherpa_28",
+            "n19_sherpa_29",
+            "n19_sherpa_30",
+            "n19_sherpa_31"
+          ],
+          "assembly": true
+        }
+      ],
+      "source_url": "https://github.com/WV-design/Trinity-toolhead/tree/d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_version": "Trinity · d17a5c9fad6f",
+      "source_commit": "d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_sha256": "1d17722a4abe4d322272ed88147d981c7320c23497158c350a57a18667422bde",
+      "license": "GPL-3.0 Trinity prints / Annex EULA / embedded component terms",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/NOTICE.txt",
+      "notes": "Native Trinity source assembly with Sherpa Mini R2 standard/short, Dragon ACE Volcano, dual 3628 fans, a 2510 hotend fan, nozzle and source Beacon RevD. Overlapping source alternatives and construction negatives are omitted and recorded. Printer installation and full probe clearance remain unverified.",
+      "machine_installation_verified": false
+    },
+    {
+      "id": "trinity_native_n20",
+      "kind": "mod",
+      "label": "Trinity v1.54 · MGN12 / 9–10 mm",
+      "module": "trinity_native_n20",
+      "manufacturer": "WV-design / Prooda / HVFDesigns / Zerodegree79 / cpp0xc0ffeeee / Annex Engineering",
+      "representation": "STEP",
+      "solids": 125,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "assembly",
+          "label": "Trinity v1.54 · MGN12 / 9–10 mm",
+          "parts": [
+            "n20_0",
+            "n20_1",
+            "n20_2",
+            "n20_3",
+            "n20_4",
+            "n20_5",
+            "n20_38",
+            "n20_41",
+            "n20_42",
+            "n20_43",
+            "n20_44",
+            "n20_45",
+            "n20_46",
+            "n20_47",
+            "n20_48",
+            "n20_49",
+            "n20_50",
+            "n20_51",
+            "n20_52",
+            "n20_53",
+            "n20_54",
+            "n20_55",
+            "n20_56",
+            "n20_57",
+            "n20_58",
+            "n20_59",
+            "n20_60",
+            "n20_61",
+            "n20_62",
+            "n20_63",
+            "n20_64",
+            "n20_65",
+            "n20_66",
+            "n20_67",
+            "n20_68",
+            "n20_69",
+            "n20_70",
+            "n20_71",
+            "n20_72",
+            "n20_73",
+            "n20_74",
+            "n20_75",
+            "n20_76",
+            "n20_77",
+            "n20_78",
+            "n20_79",
+            "n20_80",
+            "n20_81",
+            "n20_82",
+            "n20_83",
+            "n20_84",
+            "n20_85",
+            "n20_86",
+            "n20_87",
+            "n20_88",
+            "n20_96",
+            "n20_97",
+            "n20_98",
+            "n20_99",
+            "n20_105",
+            "n20_106",
+            "n20_107",
+            "n20_109",
+            "n20_mount_left",
+            "n20_mount_right",
+            "n20_sherpa_0",
+            "n20_sherpa_1",
+            "n20_sherpa_2",
+            "n20_sherpa_3",
+            "n20_sherpa_4",
+            "n20_sherpa_5",
+            "n20_sherpa_6",
+            "n20_sherpa_7",
+            "n20_sherpa_8",
+            "n20_sherpa_10",
+            "n20_sherpa_11",
+            "n20_sherpa_13",
+            "n20_sherpa_14",
+            "n20_sherpa_15",
+            "n20_sherpa_16",
+            "n20_sherpa_17",
+            "n20_sherpa_18",
+            "n20_sherpa_19",
+            "n20_sherpa_20",
+            "n20_sherpa_21",
+            "n20_sherpa_22",
+            "n20_sherpa_23",
+            "n20_sherpa_24",
+            "n20_sherpa_25",
+            "n20_sherpa_26",
+            "n20_sherpa_27",
+            "n20_sherpa_28",
+            "n20_sherpa_29",
+            "n20_sherpa_30",
+            "n20_sherpa_31"
+          ],
+          "assembly": true
+        }
+      ],
+      "source_url": "https://github.com/WV-design/Trinity-toolhead/tree/d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_version": "Trinity · d17a5c9fad6f",
+      "source_commit": "d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_sha256": "c350abe74a188840a71f75acffab88d1da7b496ffae6b0bd4f39b21b0ef7cf71",
+      "license": "GPL-3.0 Trinity prints / Annex EULA / embedded component terms",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/NOTICE.txt",
+      "notes": "Native Trinity source assembly with Sherpa Mini R2 standard/short, Dragon ACE Volcano, dual 3628 fans, a 2510 hotend fan, nozzle and source Beacon RevD. Overlapping source alternatives and construction negatives are omitted and recorded. Printer installation and full probe clearance remain unverified.",
+      "machine_installation_verified": false
+    },
+    {
+      "id": "trinity_native_n21",
+      "kind": "mod",
+      "label": "Trinity · Chube Compact / Magneto / Zerodegree79",
+      "module": "trinity_native_n21",
+      "manufacturer": "WV-design / Prooda / HVFDesigns / Zerodegree79 / cpp0xc0ffeeee",
+      "representation": "STEP",
+      "solids": 87,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "assembly",
+          "label": "Trinity · Chube Compact / Magneto / Zerodegree79",
+          "parts": [
+            "n21_0",
+            "n21_1",
+            "n21_2",
+            "n21_3",
+            "n21_4",
+            "n21_5",
+            "n21_6",
+            "n21_7",
+            "n21_8",
+            "n21_9",
+            "n21_10",
+            "n21_11",
+            "n21_12",
+            "n21_13",
+            "n21_14",
+            "n21_15",
+            "n21_16",
+            "n21_17",
+            "n21_18",
+            "n21_19",
+            "n21_20",
+            "n21_21",
+            "n21_22",
+            "n21_23",
+            "n21_24",
+            "n21_25",
+            "n21_26",
+            "n21_27",
+            "n21_28",
+            "n21_29",
+            "n21_30",
+            "n21_31",
+            "n21_32",
+            "n21_33",
+            "n21_34",
+            "n21_35",
+            "n21_36",
+            "n21_37",
+            "n21_38",
+            "n21_39",
+            "n21_40",
+            "n21_41",
+            "n21_42",
+            "n21_43",
+            "n21_44",
+            "n21_45",
+            "n21_46",
+            "n21_47",
+            "n21_48",
+            "n21_49",
+            "n21_50",
+            "n21_51",
+            "n21_52",
+            "n21_53",
+            "n21_54",
+            "n21_55",
+            "n21_56"
+          ],
+          "assembly": true
+        }
+      ],
+      "source_url": "https://github.com/WV-design/Trinity-toolhead/tree/d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_version": "Trinity · d17a5c9fad6f",
+      "source_commit": "d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_sha256": "dd41807e38a25ca280213a22a767fb6952fbacdd80cad1d3077c59f5f5bf685a",
+      "license": "GPL-3.0 Trinity prints / CC BY-NC-SA 4.0 A4T WW-BMG / embedded component terms",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/NOTICE.txt",
+      "notes": "Original Trinity component CAD, including author-supplied hardware where present. Some user modifications supply printed bodies without a hotend or complete extruder. This component view does not register a complete head or printer installation. Topology repairs and omitted construction helpers are recorded.",
+      "machine_installation_verified": false
+    },
+    {
+      "id": "trinity_native_n22",
+      "kind": "mod",
+      "label": "Trinity · Dragon T-Volcano / front Magneto / Zerodegree79",
+      "module": "trinity_native_n22",
+      "manufacturer": "WV-design / Prooda / HVFDesigns / Zerodegree79 / cpp0xc0ffeeee",
+      "representation": "STEP",
+      "solids": 58,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "assembly",
+          "label": "Trinity · Dragon T-Volcano / front Magneto / Zerodegree79",
+          "parts": [
+            "n22_0",
+            "n22_1",
+            "n22_2",
+            "n22_3",
+            "n22_4",
+            "n22_5",
+            "n22_6",
+            "n22_7",
+            "n22_8",
+            "n22_9",
+            "n22_10",
+            "n22_11",
+            "n22_12",
+            "n22_13",
+            "n22_14",
+            "n22_15",
+            "n22_16",
+            "n22_17",
+            "n22_18",
+            "n22_19",
+            "n22_20",
+            "n22_21",
+            "n22_22",
+            "n22_23",
+            "n22_24",
+            "n22_25",
+            "n22_26",
+            "n22_27",
+            "n22_28",
+            "n22_29",
+            "n22_30",
+            "n22_31",
+            "n22_32",
+            "n22_33",
+            "n22_34",
+            "n22_35",
+            "n22_36",
+            "n22_37",
+            "n22_38",
+            "n22_39",
+            "n22_40",
+            "n22_41",
+            "n22_42",
+            "n22_43",
+            "n22_44",
+            "n22_45",
+            "n22_46",
+            "n22_47",
+            "n22_48"
+          ],
+          "assembly": true
+        }
+      ],
+      "source_url": "https://github.com/WV-design/Trinity-toolhead/tree/d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_version": "Trinity · d17a5c9fad6f",
+      "source_commit": "d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_sha256": "ed07241071face2c378ecc28635112ff7047dbf9d8b09960ca916d4ca3b3f916",
+      "license": "GPL-3.0 Trinity prints / CC BY-NC-SA 4.0 A4T WW-BMG / embedded component terms",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/NOTICE.txt",
+      "notes": "Original Trinity component CAD, including author-supplied hardware where present. Some user modifications supply printed bodies without a hotend or complete extruder. This component view does not register a complete head or printer installation. Topology repairs and omitted construction helpers are recorded.",
+      "machine_installation_verified": false
+    },
+    {
+      "id": "trinity_native_n23",
+      "kind": "mod",
+      "label": "Trinity · Dragon UHF / rear Magneto / Zerodegree79",
+      "module": "trinity_native_n23",
+      "manufacturer": "WV-design / Prooda / HVFDesigns / Zerodegree79 / cpp0xc0ffeeee",
+      "representation": "STEP",
+      "solids": 29,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "assembly",
+          "label": "Trinity · Dragon UHF / rear Magneto / Zerodegree79",
+          "parts": [
+            "n23_0",
+            "n23_1",
+            "n23_2",
+            "n23_3",
+            "n23_4",
+            "n23_5",
+            "n23_6",
+            "n23_7",
+            "n23_8",
+            "n23_9",
+            "n23_10",
+            "n23_11",
+            "n23_12",
+            "n23_13",
+            "n23_14",
+            "n23_15",
+            "n23_16",
+            "n23_17",
+            "n23_18",
+            "n23_19",
+            "n23_20",
+            "n23_21"
+          ],
+          "assembly": true
+        }
+      ],
+      "source_url": "https://github.com/WV-design/Trinity-toolhead/tree/d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_version": "Trinity · d17a5c9fad6f",
+      "source_commit": "d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_sha256": "fda3b307ff91c4ad6c58dfb9301b998bb83c6e6255a0da2584c56331e0f22347",
+      "license": "GPL-3.0 Trinity prints / CC BY-NC-SA 4.0 A4T WW-BMG / embedded component terms",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/NOTICE.txt",
+      "notes": "Original Trinity component CAD, including author-supplied hardware where present. Some user modifications supply printed bodies without a hotend or complete extruder. This component view does not register a complete head or printer installation. Topology repairs and omitted construction helpers are recorded.",
+      "machine_installation_verified": false
+    },
+    {
+      "id": "trinity_native_n24",
+      "kind": "mod",
+      "label": "Trinity · Dragon UHF / front Magneto / Zerodegree79",
+      "module": "trinity_native_n24",
+      "manufacturer": "WV-design / Prooda / HVFDesigns / Zerodegree79 / cpp0xc0ffeeee",
+      "representation": "STEP",
+      "solids": 23,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "assembly",
+          "label": "Trinity · Dragon UHF / front Magneto / Zerodegree79",
+          "parts": [
+            "n24_0",
+            "n24_1",
+            "n24_2",
+            "n24_3",
+            "n24_4",
+            "n24_5",
+            "n24_6",
+            "n24_7",
+            "n24_8",
+            "n24_9",
+            "n24_10",
+            "n24_11",
+            "n24_12",
+            "n24_13",
+            "n24_14",
+            "n24_15",
+            "n24_16",
+            "n24_17",
+            "n24_18",
+            "n24_19",
+            "n24_20",
+            "n24_21",
+            "n24_22"
+          ],
+          "assembly": true
+        }
+      ],
+      "source_url": "https://github.com/WV-design/Trinity-toolhead/tree/d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_version": "Trinity · d17a5c9fad6f",
+      "source_commit": "d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "source_sha256": "f33c3c711fdf972a378a81cb4e0e0ffd06e75f32916f8022570538290e78fabb",
+      "license": "GPL-3.0 Trinity prints / CC BY-NC-SA 4.0 A4T WW-BMG / embedded component terms",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/NOTICE.txt",
+      "notes": "Original Trinity component CAD, including author-supplied hardware where present. Some user modifications supply printed bodies without a hotend or complete extruder. This component view does not register a complete head or printer installation. Topology repairs and omitted construction helpers are recorded.",
+      "machine_installation_verified": false
     }
   ],
   "assets": {
@@ -1645,6 +3334,581 @@
           "encoding": "gzip",
           "decoded_bytes": 1915392,
           "decoded_sha256": "6a5540551cd72c9cc517884a2b2277bf5e94128515325d579b5d4d32e4ba12b9"
+        }
+      }
+    },
+    "trinity_native_n00": {
+      "component_id": "trinity_native_n00",
+      "parts": 1,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n00/parts.json",
+          "bytes": 2573,
+          "sha256": "41904f34cab5c0b53463053b55031946a637328e3e036a110217c91c8a66ea58"
+        },
+        "model.glb": {
+          "path": "trinity-native/n00/model.glb.gz",
+          "bytes": 34295,
+          "sha256": "78a12619b822f719a8ab58dab194eb10761618ab2a27afc50c156b113162543d",
+          "encoding": "gzip",
+          "decoded_bytes": 172456,
+          "decoded_sha256": "40ded593ffd51cb4f605656307ef08f26da89f4bce49cbe0e2255d3c6374ae29"
+        }
+      }
+    },
+    "trinity_native_n01": {
+      "component_id": "trinity_native_n01",
+      "parts": 1,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n01/parts.json",
+          "bytes": 2545,
+          "sha256": "e9b22d2d1f4fbb17f3679bf7f3b4b2fab6dc66e3724a3bcb41ec824fb449a596"
+        },
+        "model.glb": {
+          "path": "trinity-native/n01/model.glb.gz",
+          "bytes": 250547,
+          "sha256": "d12e9dbaf22519f7c8b49e591a35d6814656aee81b628e68c83ebe148e814eb3",
+          "encoding": "gzip",
+          "decoded_bytes": 1083700,
+          "decoded_sha256": "0510f2eaf8b2d623d9043d33d7cc3eb11b12e18813e92d6a2ab298199476eec0"
+        }
+      }
+    },
+    "trinity_native_n02": {
+      "component_id": "trinity_native_n02",
+      "parts": 1,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n02/parts.json",
+          "bytes": 2589,
+          "sha256": "6914e15476dcb4acee486914c456c6bea8ff83f16af5214f12d77bd766248750"
+        },
+        "model.glb": {
+          "path": "trinity-native/n02/model.glb.gz",
+          "bytes": 86413,
+          "sha256": "826b530cb40b0d30c6219022aa51eaf1bdcae68bc12d711bfc07601f62502f8f",
+          "encoding": "gzip",
+          "decoded_bytes": 379096,
+          "decoded_sha256": "7a20462a56382dcea33087fa3d3d7f6a0b60714f36290b4e88263ff51e16af20"
+        }
+      }
+    },
+    "trinity_native_n03": {
+      "component_id": "trinity_native_n03",
+      "parts": 10,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n03/parts.json",
+          "bytes": 14089,
+          "sha256": "2cf374fd84440b6ff5d4acdce777e226dcdc236bd783f94396e51ac09ece1c67"
+        },
+        "model.glb": {
+          "path": "trinity-native/n03/model.glb.gz",
+          "bytes": 544930,
+          "sha256": "2c0c37d211c6d4fbc012c500ad65517b4d71a167e576e96507316780c460820d",
+          "encoding": "gzip",
+          "decoded_bytes": 3032584,
+          "decoded_sha256": "7441a46d348a9fc21ef36a3b5f7a6d0df8d90af91879f9438e0922185258aa4c"
+        }
+      }
+    },
+    "trinity_native_n04": {
+      "component_id": "trinity_native_n04",
+      "parts": 370,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n04/parts.json",
+          "bytes": 465521,
+          "sha256": "2db969ed91520fe6ddba0ee43e44a7fcf0861a02616a583d8525d8234d7577ec"
+        },
+        "model.glb": {
+          "path": "trinity-native/n04/model.glb.gz",
+          "bytes": 5513001,
+          "sha256": "cdfa49d8f5ea7a67f265d788e0916ff611b5a2005b9ab73e72b4e1a0873669b9",
+          "encoding": "gzip",
+          "decoded_bytes": 26945856,
+          "decoded_sha256": "c3fe560690eb41647001b2cfdc3a9ffb6e8f9f631fb2791aa02fe2b9e0606d2e"
+        }
+      }
+    },
+    "trinity_native_n05": {
+      "component_id": "trinity_native_n05",
+      "parts": 105,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n05/parts.json",
+          "bytes": 129215,
+          "sha256": "4b0c959c6efe9b7de235014a33185adc3fd3b911c82322d4199bfb7e4785d5f2"
+        },
+        "model.glb": {
+          "path": "trinity-native/n05/model.glb.gz",
+          "bytes": 16557711,
+          "sha256": "853f9c350a1c4c822a21c66c7c08600e239aa60d229b96246c564d7c8abc80fb",
+          "encoding": "gzip",
+          "decoded_bytes": 61860848,
+          "decoded_sha256": "364299722958fa5ad0befa63277cce4c33c70f31160b39d6ab4e5be9e56a061d"
+        }
+      }
+    },
+    "trinity_native_n06": {
+      "component_id": "trinity_native_n06",
+      "parts": 105,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n06/parts.json",
+          "bytes": 128753,
+          "sha256": "be45ab75fd71cc4cc6e00e604212bd3a815625cf9d72f8729c4d30acabfccd2a"
+        },
+        "model.glb": {
+          "path": "trinity-native/n06/model.glb.gz",
+          "bytes": 16580345,
+          "sha256": "a48d1480e8b6f29b0f021d1ba823b50320e08622da35686e6d07ca7e8b3e52fd",
+          "encoding": "gzip",
+          "decoded_bytes": 61952604,
+          "decoded_sha256": "b6279227297d06f3bd0cfb86f6f0263fd492c8ce143f24430e689547fb46b444"
+        }
+      }
+    },
+    "trinity_native_n07": {
+      "component_id": "trinity_native_n07",
+      "parts": 1,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n07/parts.json",
+          "bytes": 2625,
+          "sha256": "925fe6e9644716e3d0f1be4f2de61e409777f715d6c4042c1e0a0115b2bd8bb9"
+        },
+        "model.glb": {
+          "path": "trinity-native/n07/model.glb.gz",
+          "bytes": 7575,
+          "sha256": "8f9b402044320058838a7307c75f545b1e84c791270f6d6616111c9006c2add5",
+          "encoding": "gzip",
+          "decoded_bytes": 39892,
+          "decoded_sha256": "4ae5ccc0138d11ea95193710e2fdff50fe5685c1b09902a35affbae870da8a2a"
+        }
+      }
+    },
+    "trinity_native_n08": {
+      "component_id": "trinity_native_n08",
+      "parts": 1,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n08/parts.json",
+          "bytes": 2627,
+          "sha256": "eaf7c6d2a105cb05acf73990ba3b1feeb24f0c025b1a152a4a1311153db81e5c"
+        },
+        "model.glb": {
+          "path": "trinity-native/n08/model.glb.gz",
+          "bytes": 7581,
+          "sha256": "2c284438e9a3f7a74978d3843bbc1e8e1a3c2458fd56ca63206599544b29aed3",
+          "encoding": "gzip",
+          "decoded_bytes": 39892,
+          "decoded_sha256": "9c0d179b2522c324354f29ffb3a7bd3c049482ec6e4602728ce2de5f14a4cd88"
+        }
+      }
+    },
+    "trinity_native_n09": {
+      "component_id": "trinity_native_n09",
+      "parts": 1,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n09/parts.json",
+          "bytes": 2629,
+          "sha256": "476019d15af3ee58946f2f931e5382e08124b2f63bce87d5917ba3f5dacf54af"
+        },
+        "model.glb": {
+          "path": "trinity-native/n09/model.glb.gz",
+          "bytes": 7562,
+          "sha256": "906ad453e08a9e22b61d9c59ee567186bbda6859b8fc83b6de660b0124d7d4c0",
+          "encoding": "gzip",
+          "decoded_bytes": 39892,
+          "decoded_sha256": "d3b70b307099fb5248152aec89c8f14ed3721ee25f0ee3c3b730a8cb906a632a"
+        }
+      }
+    },
+    "trinity_native_n10": {
+      "component_id": "trinity_native_n10",
+      "parts": 1,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n10/parts.json",
+          "bytes": 2617,
+          "sha256": "244a45ddffa20e9491f26e52738bb85ee8531322f8c6a54026118080131e4770"
+        },
+        "model.glb": {
+          "path": "trinity-native/n10/model.glb.gz",
+          "bytes": 7575,
+          "sha256": "cb18b65b407b42ee3703216c981aaf0f68510a358f24d719ff5d068387461f4a",
+          "encoding": "gzip",
+          "decoded_bytes": 39892,
+          "decoded_sha256": "a61a728e3a055e33f1dce74c2b2c0f233c121e6469014607e7086e356741b2da"
+        }
+      }
+    },
+    "trinity_native_n11": {
+      "component_id": "trinity_native_n11",
+      "parts": 1,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n11/parts.json",
+          "bytes": 2717,
+          "sha256": "2ca265b6b5ab095a246a2b78e1404ce7093366e8ef4b8482ff69109da475ca11"
+        },
+        "model.glb": {
+          "path": "trinity-native/n11/model.glb.gz",
+          "bytes": 7526,
+          "sha256": "43f9037f9b411c3ea2a9fcf2c39fb5434ce21cbfc03f6cd4ddb2539a3a018455",
+          "encoding": "gzip",
+          "decoded_bytes": 39888,
+          "decoded_sha256": "e8555ac432225450abf60673c7a601ab49cc090a03dfea2d7b9409bc34db9159"
+        }
+      }
+    },
+    "trinity_native_n12": {
+      "component_id": "trinity_native_n12",
+      "parts": 1,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n12/parts.json",
+          "bytes": 2716,
+          "sha256": "bcc3745330822cbc6e83aec402b9e6e9cddfc9fe7226528c94f3208c9c121a83"
+        },
+        "model.glb": {
+          "path": "trinity-native/n12/model.glb.gz",
+          "bytes": 7517,
+          "sha256": "9a012ce197181fa37318d11e10d9297cdf90cb76ac60414c1756e2c808fc85ae",
+          "encoding": "gzip",
+          "decoded_bytes": 39888,
+          "decoded_sha256": "7aa74f3143ee5c47d1b4802eae8d0015eeffac70a7e66a80d80ac0cf2524b86b"
+        }
+      }
+    },
+    "trinity_native_n13": {
+      "component_id": "trinity_native_n13",
+      "parts": 1,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n13/parts.json",
+          "bytes": 2720,
+          "sha256": "5aef1ba2a1fac3c3f31b57a9148b56e577d564c7d40251736cd84c0a3cc0cd9f"
+        },
+        "model.glb": {
+          "path": "trinity-native/n13/model.glb.gz",
+          "bytes": 7523,
+          "sha256": "b3fdd24f481151fce5ba7963a21dfe0e650868b51f679fdf87e9531d442a2769",
+          "encoding": "gzip",
+          "decoded_bytes": 39888,
+          "decoded_sha256": "f51afdf2ab4934c13801f97585ef23017326b688eda77841008ed4639da0648d"
+        }
+      }
+    },
+    "trinity_native_n14": {
+      "component_id": "trinity_native_n14",
+      "parts": 1,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n14/parts.json",
+          "bytes": 2709,
+          "sha256": "62f09a7bc1478bae3a8d72dc5897daf225920783c66494618a7a0d22b99612e5"
+        },
+        "model.glb": {
+          "path": "trinity-native/n14/model.glb.gz",
+          "bytes": 7531,
+          "sha256": "775c963681effe8a64115426769bd42e86eea1eac351be34ae51c5bb73a4c002",
+          "encoding": "gzip",
+          "decoded_bytes": 39888,
+          "decoded_sha256": "ca557bfe7ac38ff6341810642dc94fda281d5ae37beb3ef1e9c0ce2d7cbb4c32"
+        }
+      }
+    },
+    "trinity_native_n15": {
+      "component_id": "trinity_native_n15",
+      "parts": 5,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n15/parts.json",
+          "bytes": 8045,
+          "sha256": "49a7b11738d568c81a0fa45af9819c4ae07cbd7e5fe0e09a8621e9139bf6bef0"
+        },
+        "model.glb": {
+          "path": "trinity-native/n15/model.glb.gz",
+          "bytes": 1343719,
+          "sha256": "d82b98bea60ff5785ce79d0f44681eee9eec805baab87b23dfb599e10a8960df",
+          "encoding": "gzip",
+          "decoded_bytes": 4863592,
+          "decoded_sha256": "1c9aa32159a5731c9f2650bf40a35e4cb70940b72a39ef4ad273c64c37832751"
+        }
+      }
+    },
+    "trinity_native_n16": {
+      "component_id": "trinity_native_n16",
+      "parts": 24,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n16/parts.json",
+          "bytes": 37593,
+          "sha256": "f357e55f829dc4115acd814d273f506331253156001c762b3fec256e292ec822"
+        },
+        "model.glb": {
+          "path": "trinity-native/n16/model.glb.gz",
+          "bytes": 5029338,
+          "sha256": "ddd55d0909b2003e0a902c08a16fedf8a9703cef83a1273adb5d0b6006e5096e",
+          "encoding": "gzip",
+          "decoded_bytes": 22330296,
+          "decoded_sha256": "a77deffea2c9305ba212be30b0a5b5c4184a7c4ab0a17992c360d734b2bea20c"
+        }
+      }
+    },
+    "trinity_native_n17": {
+      "component_id": "trinity_native_n17",
+      "parts": 19,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n17/parts.json",
+          "bytes": 29550,
+          "sha256": "c7f424d03132c5aecf9034f3c2a25bdd38d5024beb43d9f1e0088ee9f3089e34"
+        },
+        "model.glb": {
+          "path": "trinity-native/n17/model.glb.gz",
+          "bytes": 3002657,
+          "sha256": "d089a7bf17f06fb5bc2b9a005d1e26fc84b701f779504135d6a2cf7732e96f34",
+          "encoding": "gzip",
+          "decoded_bytes": 11896292,
+          "decoded_sha256": "2878e77e5cc8727f9f77818d0b9fb91a43c261aee9a201f9fc563c1200d9c43a"
+        }
+      }
+    },
+    "trinity_native_n18": {
+      "component_id": "trinity_native_n18",
+      "parts": 24,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n18/parts.json",
+          "bytes": 36577,
+          "sha256": "c48f9ba189832858a083ccff1b34f52f7ce3da7b572dabc40c8db88a71554427"
+        },
+        "model.glb": {
+          "path": "trinity-native/n18/model.glb.gz",
+          "bytes": 3154815,
+          "sha256": "226cd9be8a736345544c6b19111478e2e3ded7a4eacee7701bcb294d3fdde08a",
+          "encoding": "gzip",
+          "decoded_bytes": 12647640,
+          "decoded_sha256": "203c8541a7e5c456d445929828d63fcf077a73b363ac35aef5648c52ca466d3f"
+        }
+      }
+    },
+    "trinity_native_n19": {
+      "component_id": "trinity_native_n19",
+      "parts": 95,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n19/parts.json",
+          "bytes": 118757,
+          "sha256": "6b1f9843de8b21fb885706796f316c7efaea1583928bc08863e008374661048f"
+        },
+        "model.glb": {
+          "path": "trinity-native/n19/model.glb.gz",
+          "bytes": 19354642,
+          "sha256": "47a1be0387268417eb5f473167a02056f08b97c2c58a782a674b031928bc83c3",
+          "encoding": "gzip",
+          "decoded_bytes": 74905984,
+          "decoded_sha256": "c710231cf441831b34f3b0d72ba213336cb7861d86739d7bd1d91c30873d8f85"
+        }
+      }
+    },
+    "trinity_native_n20": {
+      "component_id": "trinity_native_n20",
+      "parts": 95,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n20/parts.json",
+          "bytes": 127423,
+          "sha256": "a1e226bbcc2c44494b52572cb03db9b39d16cf8101f3044543b5ca4c0927e622"
+        },
+        "model.glb": {
+          "path": "trinity-native/n20/model.glb.gz",
+          "bytes": 19356870,
+          "sha256": "99236b235abc679e07bede6f320e0eeff65548e816ad6677914f354c4cd86488",
+          "encoding": "gzip",
+          "decoded_bytes": 74868672,
+          "decoded_sha256": "1e459a1ff670861858f226dad3084abc8fb84a6f60e14554d4d453d0fd79acc8"
+        }
+      }
+    },
+    "trinity_native_n21": {
+      "component_id": "trinity_native_n21",
+      "parts": 57,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n21/parts.json",
+          "bytes": 84752,
+          "sha256": "3d64a4f013d1e4269794d437f3ded79ede209bde902e4587a8c216dd9d5b9726"
+        },
+        "model.glb": {
+          "path": "trinity-native/n21/model.glb.gz",
+          "bytes": 13117101,
+          "sha256": "fe56886769eaa734d2e738f5d7746df76c9e58d277656a9173d61830f175dde9",
+          "encoding": "gzip",
+          "decoded_bytes": 55865028,
+          "decoded_sha256": "7624aae8a8f9010d6698ecb43df50432785b3e68b61de9e1afafc5044533506f"
+        }
+      }
+    },
+    "trinity_native_n22": {
+      "component_id": "trinity_native_n22",
+      "parts": 49,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n22/parts.json",
+          "bytes": 70640,
+          "sha256": "b7e74251834fe6e70f60cde3ff719e1a493a51ad9c1229c51ada2839c765a27e"
+        },
+        "model.glb": {
+          "path": "trinity-native/n22/model.glb.gz",
+          "bytes": 10041762,
+          "sha256": "6b7c3dcdd0c3e3d2e6b02cbc6cf4a0fcd37c31b4fbd36a00ae853de5a3d2dd7e",
+          "encoding": "gzip",
+          "decoded_bytes": 39994764,
+          "decoded_sha256": "f9d27b4e1711775a5bd32d66d1c2eea7c8c1764e76e3835fc3738a0c4d306d47"
+        }
+      }
+    },
+    "trinity_native_n23": {
+      "component_id": "trinity_native_n23",
+      "parts": 22,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n23/parts.json",
+          "bytes": 32356,
+          "sha256": "ce8ce9f3bdae0058aaa75c8677b48ee3cfec993a05f937cf08a7d18828f3b552"
+        },
+        "model.glb": {
+          "path": "trinity-native/n23/model.glb.gz",
+          "bytes": 7838123,
+          "sha256": "63204ce1a6734cc1eb5f977da172930708d721f79a82ee655f1e85ced857198d",
+          "encoding": "gzip",
+          "decoded_bytes": 28222508,
+          "decoded_sha256": "2f70f0186335f4957095c14ee3d87734fc631802de6ccf0733dbb5328f28d143"
+        }
+      }
+    },
+    "trinity_native_n24": {
+      "component_id": "trinity_native_n24",
+      "parts": 23,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity-native/n24/parts.json",
+          "bytes": 33921,
+          "sha256": "cef292c0f8c209d850b29abf254ce4b9c55eb6e84543ca7efe21bc99ac861ad6"
+        },
+        "model.glb": {
+          "path": "trinity-native/n24/model.glb.gz",
+          "bytes": 6924227,
+          "sha256": "015511993c3b0e7fd57021a07a0f53871a70865a0f34419d203e6edcc531f114",
+          "encoding": "gzip",
+          "decoded_bytes": 24483100,
+          "decoded_sha256": "19d31acad4c2d1c95fab188632436f62d8e696b0fdd9d22805c099afd3b7a431"
         }
       }
     }

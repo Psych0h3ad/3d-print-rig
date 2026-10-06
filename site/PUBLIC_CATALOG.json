@@ -1653,6 +1653,92 @@
           "commit": "5395af65bed8c26566069b7009b9a7f8b7a05bb5"
         }
       ]
+    },
+    {
+      "id": "trinity",
+      "name": "Trinity toolhead",
+      "url": "https://github.com/WV-design/Trinity-toolhead",
+      "commit": "d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "license": "GPL-3.0 printed designs; A4T CC BY-NC-SA 4.0, Annex EULA and embedded component terms retained",
+      "scope": "Native Trinity source assembly with Sherpa Mini R2 standard/short, Dragon ACE Volcano, dual 3628 fans, a 2510 hotend fan, nozzle and source Beacon RevD. Overlapping source alternatives and construction negatives are omitted and recorded. Printer installation and full probe clearance remain unverified.",
+      "files": [
+        {
+          "path": "Files (WIP)/Trinity toolhead v1.41 mgn9 6mm belts.step",
+          "sha256": "ca133f2b1000566b34dc626b421ebd0953c07aca2842a457cef055a0177ba0f1"
+        },
+        {
+          "path": "Files (WIP)/Trinity toolhead v1.41 mgn9 9mm belts.step",
+          "sha256": "0434603e8a5d3f0916b07fe0721274f35c4dfa71647617916f86353d4a074a31"
+        },
+        {
+          "path": "Files (WIP)/extras/HVFDesigns Trinity Klicky Dock Mount.step",
+          "sha256": "02a686a25a29786eadf7a9d021ad1ee6f183a4e4e415dfa1ed2f9f396e54ee0b"
+        },
+        {
+          "path": "Files (WIP)/extras/HVFDesigns Trinity_Klicky_Mount.step",
+          "sha256": "6900fdc1ecb819635302a4e8e46513db6f142fc4408b5ec7b74a66967abbdff6"
+        },
+        {
+          "path": "Files (WIP)/extras/Trinity klicky00 mounting plate by Prooda.STEP",
+          "sha256": "1aa149b6b7711399abbf657f34a99aeccfdad5780063ff62c94047d42da41390"
+        },
+        {
+          "path": "Files (WIP)/extras/Trinity pre tensioner by Prooda.step",
+          "sha256": "eac8d0dff4be00a5aabe5f274230adc77c59f9ea389a6d4896a000656620d172"
+        },
+        {
+          "path": "Files (WIP)/extras/Trinity toolboard mount by Prooda.step",
+          "sha256": "742e82f84a1e27cd246913c8e035b1725b62d6f72ad701c0c84770c359b2ff03"
+        },
+        {
+          "path": "Files (WIP)/Trinity 1.54 mgn12 6mm belts.zip",
+          "sha256": "e8533d1afb532a41f78d1fcbb2aff0874c79715234e80780019e6ab215e2cbbf"
+        },
+        {
+          "path": "Files (WIP)/Trinity 1.54 mgn12 9 or 10mm belts.zip",
+          "sha256": "109947cf25d6e1bc3d94ed932188a0c0c4162c8c7dcf850741d77e72861632a4"
+        },
+        {
+          "path": "Files (WIP)/extras/6mm apex clip test pack.zip",
+          "sha256": "d5545730233a4b6a9daeac304c900b8174df0256be6393e2292b24b9d5c21bc0"
+        },
+        {
+          "path": "Files (WIP)/extras/9mm apex clip test pack.zip",
+          "sha256": "243369e2c944210c6d6eb0cbd1db3e61c8e03420b037d44ec8a12dcab4113555"
+        },
+        {
+          "path": "Files (WIP)/user mods/Prooda Chube Compact Trinity Toolhead MGN12 6mm.zip",
+          "sha256": "78e0a128a981af61bf1fc0b586ae38cbc353e2415a43d7e6a3759d968aa200da"
+        },
+        {
+          "path": "Files (WIP)/user mods/Prooda Chube Compact Trinity Toolhead MGN12 9mm.zip",
+          "sha256": "3f10f8b30a88ec60a7e3864d0629fdff8bfd7d47bc6d898a76f7b85af9503232"
+        },
+        {
+          "path": "Files (WIP)/user mods/Prooda Chube Compact Trinity Toolhead MGN9 6mm.zip",
+          "sha256": "614d24a0d49d85735326085e871a768a9f3260d2fc7cf39c678d05e5c0d5490a"
+        },
+        {
+          "path": "Files (WIP)/user mods/Zerodegree79 Chube Compact Trinity Magneto Cutter MGN12 6mm.zip",
+          "sha256": "fd5231de1cde119eaba8492efe133426ff885db3068fc57d371670925a1d6c74"
+        },
+        {
+          "path": "Files (WIP)/user mods/Zerodegree79 Trinity Dragon T-Volcano front cutter.zip",
+          "sha256": "bb2acad15219d90c1c61da12ea5c5d1daaee06857c14c039a409ab67fcaee7f8"
+        },
+        {
+          "path": "Files (WIP)/user mods/Zerodegree79 Trinity Dragon UHF Front cutter.zip",
+          "sha256": "5e9871c38e093d2ef413dff96ad0833d60713c9215064640bb560d1116f2ab9a"
+        },
+        {
+          "path": "Files (WIP)/user mods/Zerodegree79 Trinity Dragon UHF back cutter.zip",
+          "sha256": "3a0fc12168700b350f080b3d64af70ce8f268ffb3cf3cf0b9c305d695cec0951"
+        },
+        {
+          "path": "Files (WIP)/user mods/cpp0xc0ffeeee TrinityHeatcore4UHF.zip",
+          "sha256": "f5949d47df1f82d118943cc779aaa41935962006467b82c27b1f05c3889c5f23"
+        }
+      ]
     }
   ],
   "defaults": [

@@ -3,6 +3,6 @@ ensureWorkspaceEntry(import.meta.url);
 import {setupMachineNavigation} from './machines.js?v=d6045b8af89b3984adcb';
 import {machineAssetsAvailable,showMissingAssets} from './asset-availability.js?v=c4c95a77757d7292807d';
 export async function mount(scope){
- if(await machineAssetsAvailable('siboor_v24_350'))await (await import('./v24-app.js?v=9edcc7eed9a84a0b896e')).mount(scope);
+ if(await machineAssetsAvailable('siboor_v24_350'))await (await import('./v24-app.js?v=9a9f64df5ee9c456ee43')).mount(scope);
  else{setupMachineNavigation('siboor_v24_350');await showMissingAssets()}
 }

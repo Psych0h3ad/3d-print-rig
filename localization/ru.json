@@ -7877,6 +7877,122 @@
     "trinity.29": {
       "source_revision": "8119c684bf28cfd1b220",
       "text": "Исходные тестовые зажимы ремня показаны по отдельности; нажимной рычаг и держатель сохраняют координаты исходной сборки. Установка на принтер не зарегистрирована."
+    },
+    "trinity_native.01": {
+      "source_revision": "d2c6e0862d6e02510c3f",
+      "text": "Исходная сборка Trinity с Sherpa Mini R2 стандартной/короткой версии, Dragon ACE Volcano, двумя вентиляторами 3628, вентилятором 2510, соплом и исходным Beacon RevD. Исключение перекрывающихся вариантов и вспомогательных отрицательных форм записано. Установка и полный зазор датчика не проверены."
+    },
+    "trinity_native.02": {
+      "source_revision": "21863b602300e0fc284f",
+      "text": "Исходный CAD компонентов Trinity с оборудованием, предоставленным автором. Некоторые модификации содержат только печатные детали, без хотэнда и полного экструдера. Этот вид не регистрирует полный инструмент или установку. Исправления топологии и исключённые вспомогательные формы записаны."
+    },
+    "trinity_native.03": {
+      "source_revision": "070a232d5fc6c98a1e81",
+      "text": "Trinity · Klicky dock mount / HVFDesigns"
+    },
+    "trinity_native.04": {
+      "source_revision": "d50c7695cb8b45fb24a5",
+      "text": "Trinity · Klicky mount / HVFDesigns"
+    },
+    "trinity_native.05": {
+      "source_revision": "0daeda981593d1e826aa",
+      "text": "Trinity · Klicky00 plate / Prooda"
+    },
+    "trinity_native.06": {
+      "source_revision": "36b24f9e27099caec334",
+      "text": "Trinity · 2020 belt pretensioner / Prooda"
+    },
+    "trinity_native.07": {
+      "source_revision": "21a9cd5ca65898c24c40",
+      "text": "Trinity · Xol / SHT36 V2 board mounts / Prooda"
+    },
+    "trinity_native.08": {
+      "source_revision": "17722a82b6a8ac70395f",
+      "text": "Trinity v1.41 · MGN9 / 6 mm"
+    },
+    "trinity_native.09": {
+      "source_revision": "1a3abf941262364245c0",
+      "text": "Trinity v1.41 · MGN9 / 9 mm"
+    },
+    "trinity_native.10": {
+      "source_revision": "2768b386fe4d71084135",
+      "text": "Trinity · Heatcore 4 UHF parts / cpp0xc0ffeeee"
+    },
+    "trinity_native.11": {
+      "source_revision": "c0fa5a6ad60d31d2c96c",
+      "text": "Trinity · Chube Compact / MGN12 / 6 mm / Prooda"
+    },
+    "trinity_native.12": {
+      "source_revision": "ad539e5639069b993210",
+      "text": "Trinity · Chube Compact / MGN12 / 9 mm / Prooda"
+    },
+    "trinity_native.13": {
+      "source_revision": "19a5a849e3b4cb6cd077",
+      "text": "Trinity · Chube Compact / MGN9 / 6 mm / Prooda"
+    },
+    "trinity_native.14": {
+      "source_revision": "7ef4c950a298894e1ad4",
+      "text": "Trinity v1.54 · MGN12 / 6 mm"
+    },
+    "trinity_native.15": {
+      "source_revision": "71960d02d5ce603511f0",
+      "text": "Trinity v1.54 · MGN12 / 9–10 mm"
+    },
+    "trinity_native.16": {
+      "source_revision": "712685f65ee87468b367",
+      "text": "Trinity · Chube Compact / Magneto / Zerodegree79"
+    },
+    "trinity_native.17": {
+      "source_revision": "2618f23e92aaa052e227",
+      "text": "Trinity · Dragon T-Volcano / front Magneto / Zerodegree79"
+    },
+    "trinity_native.18": {
+      "source_revision": "8c788b11e7578d52b59a",
+      "text": "Trinity · Dragon UHF / rear Magneto / Zerodegree79"
+    },
+    "trinity_native.19": {
+      "source_revision": "f4473a3960a5cbd2fbfc",
+      "text": "Trinity · Dragon UHF / front Magneto / Zerodegree79"
+    },
+    "trinity_native.20": {
+      "source_revision": "a815d23798840fd43f94",
+      "text": "Trinity · Apex clip / 6 mm / 2.8 mm"
+    },
+    "trinity_native.21": {
+      "source_revision": "e290363601f4ac067074",
+      "text": "Trinity · Apex clip / 6 mm / 2.9 mm"
+    },
+    "trinity_native.22": {
+      "source_revision": "e38bac5753c9d1cdbd3a",
+      "text": "Trinity · Apex clip / 6 mm / 3.1 mm"
+    },
+    "trinity_native.23": {
+      "source_revision": "155fae901117e7ce1fed",
+      "text": "Trinity · Apex clip / 6 mm / 3 mm"
+    },
+    "trinity_native.24": {
+      "source_revision": "a13f3670ad995e8fd072",
+      "text": "Trinity · Apex clip / 9 mm / 2.8 mm"
+    },
+    "trinity_native.25": {
+      "source_revision": "8a8292578cd7a813312d",
+      "text": "Trinity · Apex clip / 9 mm / 2.9 mm"
+    },
+    "trinity_native.26": {
+      "source_revision": "7ba5ff0417003ffaf287",
+      "text": "Trinity · Apex clip / 9 mm / 3.1 mm"
+    },
+    "trinity_native.27": {
+      "source_revision": "b967ab8fb851a109ae21",
+      "text": "Trinity · Apex clip / 9 mm / 3 mm"
+    },
+    "trinity_native.28": {
+      "source_revision": "413b140c5a10b6167aee",
+      "text": "Trinity"
+    },
+    "trinity_native.29": {
+      "source_revision": "bd0e88fca322f6d0dbec",
+      "text": "Trinity · MGN9H / v1.41"
     }
   }
 }
