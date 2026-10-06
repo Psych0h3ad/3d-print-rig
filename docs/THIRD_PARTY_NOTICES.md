@@ -588,3 +588,8 @@ The complete RH3D v1.2 / v1.2S printer assembly is not included. That CAD is dis
 
 
 The Crossant Backpack covers are derived from `DXFs/Backpack/leftpanel.dxf`, `rightpanel.dxf` and `rearpanel.dxf` at the revision above. Their outer profiles are unscaled; side panels are transparent and the rear is opaque. Preview spacers avoid gantry-end contact, the rear panel is registered to the existing filter gap and cable ports, eight filter holes match native screw axes, and Grommet C is moved into its DXF slot. DXFs do not specify thickness; 2/3/4 mm is selectable for visualization. Additional panel screws/nuts and physical mounting remain outside the verified scope. Front/top DXFs are absent.
+
+
+## HYDRA
+
+[HYDRA by boothyboothy / Boothy](HYDRA.md) uses author STEP files from Printables model 169197, files updated 2022-04-13, under CC BY-NC-SA 4.0. Seventeen individual printed parts are displayed. Five sacrificial nut-hole membranes are removed from the Ender-3 bases; the manifest records the cuts. Machine installation, hardware and automatic docking are not registered. Original source hashes, versions and display transformations are retained; the application license does not relicense these models.

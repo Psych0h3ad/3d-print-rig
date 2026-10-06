@@ -9605,6 +9605,126 @@
       "kind": "message",
       "ja": "この300 mmキットのフレームにはドックを未登録です。",
       "en": "Frame docks have not been registered for this 300 mm kit."
+    },
+    "hydra.01": {
+      "kind": "message",
+      "ja": "HYDRA · Ender-3原本部品",
+      "en": "HYDRA · Ender-3 source parts"
+    },
+    "hydra.02": {
+      "kind": "message",
+      "ja": "Ender-3ベース",
+      "en": "Ender-3 bases"
+    },
+    "hydra.03": {
+      "kind": "message",
+      "ja": "交換プレート / ケーブルクリップ",
+      "en": "Tool plates / cable clip"
+    },
+    "hydra.04": {
+      "kind": "message",
+      "ja": "4010 / 5015ナローダクト",
+      "en": "4010 / 5015 narrow ducts"
+    },
+    "hydra.05": {
+      "kind": "message",
+      "ja": "MK6 V6ダクト",
+      "en": "MK6 V6 ducts"
+    },
+    "hydra.06": {
+      "kind": "message",
+      "ja": "Ender-3側面ベース",
+      "en": "Ender-3 side base"
+    },
+    "hydra.07": {
+      "kind": "message",
+      "ja": "Ender-3背面ベース",
+      "en": "Ender-3 rear base"
+    },
+    "hydra.08": {
+      "kind": "message",
+      "ja": "BMG交換プレート",
+      "en": "BMG tool plate"
+    },
+    "hydra.09": {
+      "kind": "message",
+      "ja": "純正押出機の交換プレート",
+      "en": "Stock extruder tool plate"
+    },
+    "hydra.10": {
+      "kind": "message",
+      "ja": "デュアルギア押出機の交換プレート",
+      "en": "Dual-gear extruder tool plate"
+    },
+    "hydra.11": {
+      "kind": "message",
+      "ja": "Bowden交換プレート",
+      "en": "Bowden tool plate"
+    },
+    "hydra.12": {
+      "kind": "message",
+      "ja": "交換プレートのケーブルクリップ",
+      "en": "Tool-plate cable clip"
+    },
+    "hydra.13": {
+      "kind": "message",
+      "ja": "ベースSTEP SHA256",
+      "en": "Base STEP SHA256"
+    },
+    "hydra.14": {
+      "kind": "message",
+      "ja": "手動の交換プレート方式です。印刷部品のみの表示で、ファン・ホットエンド・押出機・ねじ・プローブは未装着。Ender-3への組付けは未登録です。ベースのナット穴にある厚さ0.2 mmの印刷用膜を5か所除去しています。",
+      "en": "Manual tool-plate system. Individual printed parts only; fans, hotend, extruder, fasteners and probes are absent. Ender-3 installation is not registered. Five 0.2 mm nut-hole support membranes are removed from the base parts."
+    },
+    "hydra.15": {
+      "kind": "message",
+      "ja": "5015ナローダクト · LH",
+      "en": "5015 narrow duct · LH"
+    },
+    "hydra.16": {
+      "kind": "message",
+      "ja": "5015ナローダクト · RH",
+      "en": "5015 narrow duct · RH"
+    },
+    "hydra.17": {
+      "kind": "message",
+      "ja": "4010ナローダクト · LH",
+      "en": "4010 narrow duct · LH"
+    },
+    "hydra.18": {
+      "kind": "message",
+      "ja": "4010ナローダクト · RH",
+      "en": "4010 narrow duct · RH"
+    },
+    "hydra.19": {
+      "kind": "message",
+      "ja": "MK6 V6 5015ダクト · 25° · LH",
+      "en": "MK6 V6 5015 duct · 25° · LH"
+    },
+    "hydra.20": {
+      "kind": "message",
+      "ja": "MK6 V6 5015ダクト · 25° · RH",
+      "en": "MK6 V6 5015 duct · 25° · RH"
+    },
+    "hydra.21": {
+      "kind": "message",
+      "ja": "MK6 V6 5015ダクト · 35° · LH",
+      "en": "MK6 V6 5015 duct · 35° · LH"
+    },
+    "hydra.22": {
+      "kind": "message",
+      "ja": "MK6 V6 5015ダクト · 35° · RH",
+      "en": "MK6 V6 5015 duct · 35° · RH"
+    },
+    "hydra.23": {
+      "kind": "message",
+      "ja": "MK6 V6 4010ダクト · MK6 · LH",
+      "en": "MK6 V6 4010 duct · MK6 · LH"
+    },
+    "hydra.24": {
+      "kind": "message",
+      "ja": "MK6 V6 4010ダクト · MK6 · RH",
+      "en": "MK6 V6 4010 duct · MK6 · RH"
     }
   }
 }

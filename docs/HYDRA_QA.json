@@ -1,0 +1,479 @@
+{
+  "schema": 1,
+  "review_revision": 86,
+  "all_passed": true,
+  "source": {
+    "author": "boothyboothy",
+    "url": "https://www.printables.com/model/169197-hydra-fan-duct-tool-change-system-for-ender-3-ende",
+    "version": "Printables files 2022-04-13; base STEP 2021-08-04; tool plate STEP v1",
+    "license": "CC-BY-NC-SA-4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "files": [
+      {
+        "path": "5015_4010_narrow_ducts_25_35_v6.step",
+        "bytes": 3017501,
+        "sha256": "fb37fe55b5a513e0e00714ae74f05127950da1e96a2c207c3579a4c6c4f6e163"
+      },
+      {
+        "path": "hydro_ender_35_duct_base_no_inserts.step",
+        "bytes": 3607156,
+        "sha256": "b9e52e728c68990f125ee6662b3d5b359fb561f2d684e5b87fbf686b727b72a2"
+      },
+      {
+        "path": "narrow_ducts_v1.step",
+        "bytes": 2678443,
+        "sha256": "78bfe1a5be330acc1fdc46afd2f360f6c79baf79bd0561f2baac99662c308454"
+      },
+      {
+        "path": "tool_head_step_file_v1.step",
+        "bytes": 3554332,
+        "sha256": "f0e2a895f64bdfd6767f820ca90dc0d3a66cea1371094dc9e16c63ef7a0f8729"
+      }
+    ]
+  },
+  "files": {
+    "parts.json": {
+      "path": "hydra/parts.json",
+      "bytes": 17121,
+      "sha256": "886d1cd89caaa2a05ffdb9b14cbf76972e32f2da65fd6e25ccb4503a0d60dec7"
+    },
+    "model.glb": {
+      "path": "hydra/model.glb.gz",
+      "bytes": 4055440,
+      "sha256": "647ae5d724356afd2d1186e5456b3347b78a89d7bdd0399d8cd10f4638944c76",
+      "encoding": "gzip",
+      "decoded_bytes": 16527400,
+      "decoded_sha256": "6ec11d1dd4aa55a64bfb2e6319437a0560ede146782e809695665b4752218f60"
+    }
+  },
+  "parts": [
+    {
+      "part": "base_side",
+      "source_valid": true,
+      "display_valid": true,
+      "triangles": 11370,
+      "extent_error_mm": 8.306299292826225e-07,
+      "source_volume_mm3": 11412.254691606593,
+      "display_volume_mm3": 11410.325541572405,
+      "removed_supports": 1
+    },
+    {
+      "part": "base_rear",
+      "source_valid": true,
+      "display_valid": true,
+      "triangles": 13993,
+      "extent_error_mm": 2.178470360547635e-06,
+      "source_volume_mm3": 21616.712294727793,
+      "display_volume_mm3": 21608.978601760824,
+      "removed_supports": 4
+    },
+    {
+      "part": "plate_bmg",
+      "source_valid": true,
+      "display_valid": true,
+      "triangles": 12521,
+      "extent_error_mm": 7.495339104934828e-07,
+      "source_volume_mm3": 21830.799285880203,
+      "display_volume_mm3": 21830.799285880203,
+      "removed_supports": 0
+    },
+    {
+      "part": "plate_stock",
+      "source_valid": true,
+      "display_valid": true,
+      "triangles": 12202,
+      "extent_error_mm": 1.684090847220432e-06,
+      "source_volume_mm3": 19952.15208992309,
+      "display_volume_mm3": 19952.15208992309,
+      "removed_supports": 0
+    },
+    {
+      "part": "plate_dualgear",
+      "source_valid": true,
+      "display_valid": true,
+      "triangles": 11642,
+      "extent_error_mm": 9.119060280227131e-07,
+      "source_volume_mm3": 20600.229769153106,
+      "display_volume_mm3": 20600.229769153106,
+      "removed_supports": 0
+    },
+    {
+      "part": "plate_bowden",
+      "source_valid": true,
+      "display_valid": true,
+      "triangles": 15786,
+      "extent_error_mm": 1.3283857924761833e-06,
+      "source_volume_mm3": 6767.800229246571,
+      "display_volume_mm3": 6767.800229246571,
+      "removed_supports": 0
+    },
+    {
+      "part": "cable_clip",
+      "source_valid": true,
+      "display_valid": true,
+      "triangles": 6362,
+      "extent_error_mm": 0.0032214797609970702,
+      "source_volume_mm3": 1215.956968097509,
+      "display_volume_mm3": 1215.956968097509,
+      "removed_supports": 0
+    },
+    {
+      "part": "duct_5015_lh",
+      "source_valid": true,
+      "display_valid": true,
+      "triangles": 12236,
+      "extent_error_mm": 1.3904608096027005e-06,
+      "source_volume_mm3": 12239.973054794067,
+      "display_volume_mm3": 12239.973054794067,
+      "removed_supports": 0
+    },
+    {
+      "part": "duct_5015_rh",
+      "source_valid": true,
+      "display_valid": true,
+      "triangles": 13202,
+      "extent_error_mm": 1.3904608096027005e-06,
+      "source_volume_mm3": 12237.118656972672,
+      "display_volume_mm3": 12237.118656972672,
+      "removed_supports": 0
+    },
+    {
+      "part": "duct_4010_lh",
+      "source_valid": true,
+      "display_valid": true,
+      "triangles": 12956,
+      "extent_error_mm": 8.090872185562148e-07,
+      "source_volume_mm3": 10248.958377400353,
+      "display_volume_mm3": 10248.958377400353,
+      "removed_supports": 0
+    },
+    {
+      "part": "duct_4010_rh",
+      "source_valid": true,
+      "display_valid": true,
+      "triangles": 13400,
+      "extent_error_mm": 8.090872185562148e-07,
+      "source_volume_mm3": 10246.22748729108,
+      "display_volume_mm3": 10246.22748729108,
+      "removed_supports": 0
+    },
+    {
+      "part": "mk6_5015_25deg_lh",
+      "source_valid": true,
+      "display_valid": true,
+      "triangles": 11087,
+      "extent_error_mm": 6.67455650571469e-05,
+      "source_volume_mm3": 8411.03263885154,
+      "display_volume_mm3": 8411.032638851537,
+      "removed_supports": 0
+    },
+    {
+      "part": "mk6_5015_25deg_rh",
+      "source_valid": true,
+      "display_valid": true,
+      "triangles": 11053,
+      "extent_error_mm": 6.67455650571469e-05,
+      "source_volume_mm3": 8411.035143161034,
+      "display_volume_mm3": 8411.035143161027,
+      "removed_supports": 0
+    },
+    {
+      "part": "mk6_5015_35deg_lh",
+      "source_valid": true,
+      "display_valid": true,
+      "triangles": 13173,
+      "extent_error_mm": 0.0002728756082674977,
+      "source_volume_mm3": 8374.395017931603,
+      "display_volume_mm3": 8374.395017931603,
+      "removed_supports": 0
+    },
+    {
+      "part": "mk6_5015_35deg_rh",
+      "source_valid": true,
+      "display_valid": true,
+      "triangles": 13125,
+      "extent_error_mm": 0.0002728756082674977,
+      "source_volume_mm3": 8374.397676257277,
+      "display_volume_mm3": 8374.397676257275,
+      "removed_supports": 0
+    },
+    {
+      "part": "mk6_4010_MK6_lh",
+      "source_valid": true,
+      "display_valid": true,
+      "triangles": 6716,
+      "extent_error_mm": 8.339900418263824e-06,
+      "source_volume_mm3": 6719.643522817558,
+      "display_volume_mm3": 6719.643522817558,
+      "removed_supports": 0
+    },
+    {
+      "part": "mk6_4010_MK6_rh",
+      "source_valid": true,
+      "display_valid": true,
+      "triangles": 6716,
+      "extent_error_mm": 8.33990045379096e-06,
+      "source_volume_mm3": 6719.643522817549,
+      "display_volume_mm3": 6719.643522817549,
+      "removed_supports": 0
+    }
+  ],
+  "supports_removed": [
+    {
+      "part": "base_side",
+      "kind": "sacrificial_nut_hole_membrane",
+      "nominal_thickness_mm": 0.2,
+      "radial_allowance_mm": 0.0001,
+      "boolean_tolerance_mm": 1e-05,
+      "cut_span_mm": 13.494110999999997,
+      "removed_mm3": 1.9291500341878418,
+      "native_cut_bounds_mm": [
+        [
+          -16.9751,
+          1.530746,
+          39.165874
+        ],
+        [
+          -13.4749,
+          5.030946,
+          52.659985
+        ]
+      ]
+    },
+    {
+      "part": "base_rear",
+      "kind": "sacrificial_nut_hole_membrane",
+      "nominal_thickness_mm": 0.2,
+      "radial_allowance_mm": 0.0001,
+      "boolean_tolerance_mm": 1e-05,
+      "cut_span_mm": 12.009999999999998,
+      "removed_mm3": 1.933042060216394,
+      "native_cut_bounds_mm": [
+        [
+          -30.724874,
+          26.21102,
+          40.649985
+        ],
+        [
+          -27.224674,
+          29.71122,
+          52.659985
+        ]
+      ]
+    },
+    {
+      "part": "base_rear",
+      "kind": "sacrificial_nut_hole_membrane",
+      "nominal_thickness_mm": 0.2,
+      "radial_allowance_mm": 0.0001,
+      "boolean_tolerance_mm": 1e-05,
+      "cut_span_mm": 12.009999999999998,
+      "removed_mm3": 1.9330114344629692,
+      "native_cut_bounds_mm": [
+        [
+          -7.569933,
+          26.192384,
+          40.649985
+        ],
+        [
+          -4.069733,
+          29.692584,
+          52.659985
+        ]
+      ]
+    },
+    {
+      "part": "base_rear",
+      "kind": "sacrificial_nut_hole_membrane",
+      "nominal_thickness_mm": 0.2,
+      "radial_allowance_mm": 0.0001,
+      "boolean_tolerance_mm": 1e-05,
+      "cut_span_mm": 12.009999999999998,
+      "removed_mm3": 1.9329688065845403,
+      "native_cut_bounds_mm": [
+        [
+          3.6187810000000002,
+          26.192384,
+          40.649985
+        ],
+        [
+          7.118981,
+          29.692584,
+          52.659985
+        ]
+      ]
+    },
+    {
+      "part": "base_rear",
+      "kind": "sacrificial_nut_hole_membrane",
+      "nominal_thickness_mm": 0.2,
+      "radial_allowance_mm": 0.0001,
+      "boolean_tolerance_mm": 1e-05,
+      "cut_span_mm": 13.494110999999997,
+      "removed_mm3": 1.9346706657015602,
+      "native_cut_bounds_mm": [
+        [
+          12.5749,
+          1.530746,
+          39.165874
+        ],
+        [
+          16.0751,
+          5.030946,
+          52.659985
+        ]
+      ]
+    }
+  ],
+  "native_scope": "Original and cleaned individual native solids, mesh bounds, per-triangle unit normals, finite attributes, indices and role materials. No assembled mounting, moving machine clearance or physical compatibility is certified.",
+  "machine_installation_verified": false,
+  "reviewed_on": "2026-10-06",
+  "adapter_sha256": {
+    "components.js": "b7950a0e9ce01c258fa1506d65bc279b14c73b0bc2efc103d99ca1687d606415",
+    "component-assets.mjs": "c2333ef499f46d621550dccf6762ff0ebf104ec136925d1cb9edb1702ae559ae",
+    "v0-mod-library.mjs": "3879d7ef65488783b1f1ec04fe0184ff0be3cd7734f194aa8cf2eb0868c90980"
+  },
+  "catalog_sha256": "1e81fbb0aa10bf93551e74f3f9e603c1a5d7f58bde9fd4356363f54c0a81cad8",
+  "browser": {
+    "name": "Codex in-app browser / Chromium",
+    "viewports": [
+      [
+        1280,
+        720
+      ],
+      [
+        390,
+        844
+      ]
+    ],
+    "individual_part_selections": 17,
+    "visually_inspected_parts": [
+      "base_rear",
+      "plate_bowden",
+      "duct_5015_lh",
+      "mk6_5015_35deg_lh"
+    ],
+    "languages": [
+      "en",
+      "ja",
+      "es",
+      "ko",
+      "ru"
+    ],
+    "checks": [
+      "All 17 part selections show 1 / 17 parts visible",
+      "Source scope localized in all five languages",
+      "Mobile-size orbit and simultaneous model/settings",
+      "Light and dark themes keep environment lighting",
+      "Current camera PNG export: 1920 x 1368"
+    ],
+    "screenshots": [
+      {
+        "file": "base_rear.png",
+        "sha256": "f6ea7019ca2e40900658cf00d1121cb7b9251ac4075dd16169158d078e958e77"
+      },
+      {
+        "file": "base_side.png",
+        "sha256": "3fa28f64ccd70163a269e27b9e5cfa54ab325e3509237042376e6709e9a9e4ca"
+      },
+      {
+        "file": "cable_clip.png",
+        "sha256": "6e949ce9a34b18f1384eff77971781f51320a3a5844de20d7e8b3261d407baa6"
+      },
+      {
+        "file": "duct_4010_lh.png",
+        "sha256": "27c7e082060b31ea712734cc1b60b5b07c5cd14e9ba3a222b7ee85f8966c0791"
+      },
+      {
+        "file": "duct_4010_rh.png",
+        "sha256": "1d195bd2960fe011a45bccfd04d3c2c0f115fa14edf688a2fa8bfd5819d0498d"
+      },
+      {
+        "file": "duct_5015_lh.png",
+        "sha256": "8d6945d198581e2fd414280d4c3421a8d79c875ce1f1461eac6b539bbd0f8cd7"
+      },
+      {
+        "file": "duct_5015_rh.png",
+        "sha256": "d4629eb8612477b2106af90f874bf30464020481e6dfd3e42164776d3e9c3f16"
+      },
+      {
+        "file": "export-1920x1368.png",
+        "sha256": "acb0442dd18192d4438f8dab59e0c5eb4f88438bae1a33338eea2a830ce1f989"
+      },
+      {
+        "file": "language-en.png",
+        "sha256": "6d8e2d88c54c9959ec63103f173f9f39b1ede54d5c70eb199c9509224202711f"
+      },
+      {
+        "file": "language-es.png",
+        "sha256": "9e953223eec259d337ea25c63664cfd4a1c326ed368a8df8a8a1ae1e0be4442c"
+      },
+      {
+        "file": "language-ja.png",
+        "sha256": "51cf80032e492b15789f170cfdb9298cf1895bc1772f08c416a08ca300c1f789"
+      },
+      {
+        "file": "language-ko.png",
+        "sha256": "18be9e6626a40e5225514f4f876e1ca626279c91976494833642a856300783ac"
+      },
+      {
+        "file": "language-ru.png",
+        "sha256": "2f8f8197ef0988fb78c2ac2776d5cd7c29b21f99c5910fd514ab4fc837009d61"
+      },
+      {
+        "file": "mk6_4010_MK6_lh.png",
+        "sha256": "38778dd88ffad2556366458f20bfeb83c5810f4edb5dce170a97b3df3c3a7e76"
+      },
+      {
+        "file": "mk6_4010_MK6_rh.png",
+        "sha256": "6d8e2d88c54c9959ec63103f173f9f39b1ede54d5c70eb199c9509224202711f"
+      },
+      {
+        "file": "mk6_5015_25deg_lh.png",
+        "sha256": "b0700348af744826c102bcbb1dc3ff62fcac3c4eb77bce8fea8f4a48ec04a5f9"
+      },
+      {
+        "file": "mk6_5015_25deg_rh.png",
+        "sha256": "502493d6ea4e9fd8369add58913de3f714c795e33136e0b93ee74dd068d255d8"
+      },
+      {
+        "file": "mk6_5015_35deg_lh.png",
+        "sha256": "f125ee93ac1748a8d89148f4e753f1a8060bdd421ed2dd1463777358f843589a"
+      },
+      {
+        "file": "mk6_5015_35deg_rh.png",
+        "sha256": "fdfd35af55f1d9f2d9952c4264ac4b3ab62dbd4a8f185612bbe7cec327cbe785"
+      },
+      {
+        "file": "mobile-before.png",
+        "sha256": "c1ddc5537e12e6132a0758cbf6c7414e6b8f39e567563acb3b933d0d8cd1db5b"
+      },
+      {
+        "file": "mobile-dark.png",
+        "sha256": "1a362ad635dbc1fd957d56f127c10507fefb4ad9f3d282150840534a7c43337f"
+      },
+      {
+        "file": "mobile-orbit.png",
+        "sha256": "fb83d1e42af18c3c5ab0992c346f81fc50f6c8ce53ba369116378ee8857ece57"
+      },
+      {
+        "file": "plate_bmg.png",
+        "sha256": "76a02daef3a586616b17a33dd8fcddce722d6ee33783a18ac21b8477a5a6aad7"
+      },
+      {
+        "file": "plate_bowden.png",
+        "sha256": "a0541a5ec1feed01076f138fbd680b5ec6020af8a010fba869c3a2ded450dc71"
+      },
+      {
+        "file": "plate_dualgear.png",
+        "sha256": "a38e21cfaa441719dcd0fc4d4e99f19e45931d70b08390202e2367737d465d30"
+      },
+      {
+        "file": "plate_stock.png",
+        "sha256": "ec4e5a6dcc71e3a4aa454ac02e69cc6aea6c8607aec0468c24a986498bbfc192"
+      }
+    ],
+    "physical_mobile_touch_verified": false,
+    "other_browser_gpu_review": false
+  }
+}

@@ -7,11 +7,12 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
+import {loadExternalComponent} from './component-assets.mjs?v=c2333ef499f46d621550';
 import {setupPublicInfo} from './public-info.js?v=0b0f91d7a82d25acbb87';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {partNodes,selectParts,visibleBounds} from './component-selection.js?v=workspace-belts-1';
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
-import {componentCategories,componentCategory,componentViews,resolveComponentView,componentViewKeys} from './v0-mod-library.mjs?v=fysetc-fans-56';
+import {componentCategories,componentCategory,componentViews,resolveComponentView,componentViewKeys} from './v0-mod-library.mjs?v=3879d7ef65488783b1f1';
 export async function mount(scope){
 const $=s=>document.querySelector(s),stage=$('#stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor('#edf1f5');renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);
@@ -68,10 +69,11 @@ async function install(id,initial=false){return workspaceTask(async()=>{
   const selectable=item.id.startsWith('v0mod_')||item.select_parts;
   const spec=catalog.assets[item.module];
   if(!cached.has(item.module)){
-   const g=await loadModel(new GLTFLoader(),'../'+spec.glb);g.scene.visible=false;
+   const external=spec.external?await loadExternalComponent(new GLTFLoader(),spec,location.href):null;
+   const g=external?.gltf||await loadModel(new GLTFLoader(),'../'+spec.glb);g.scene.visible=false;
    g.scene.traverse(m=>{if(m.isMesh){m.material=Array.isArray(m.material)?m.material.map(v=>v.clone()):m.material.clone();for(const material of Array.isArray(m.material)?m.material:[m.material])material.side=THREE.DoubleSide}});
    let meta=null,nodes=null,views=null;
-   if(selectable){const r=await fetch('../'+spec.meta,{cache:'no-cache'});if(!r.ok)throw Error('部品一覧の取得に失敗しました');meta=await r.json();nodes=partNodes(g.scene,meta.parts);views=componentViews(item,meta.parts)}
+   if(selectable){if(external)meta=external.meta;else{const r=await fetch('../'+spec.meta,{cache:'no-cache'});if(!r.ok)throw Error('部品一覧の取得に失敗しました');meta=await r.json()}nodes=partNodes(g.scene,meta.parts);views=componentViews(item,meta.parts)}
    scene.add(g.scene);cached.set(item.module,{root:g.scene,meta,nodes,views});
   }
   const entry=cached.get(item.module),query=new URLSearchParams(location.search);

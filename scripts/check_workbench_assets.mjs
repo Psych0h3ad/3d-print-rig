@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFile,access} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {gunzipSync} from 'node:zlib';
 import path from 'node:path';
 import {gantryChoice,gantryDimensions} from '../site/viewer/gantry-model.js';
 import {catalogDimensions,choicesFor,resolveVariant} from '../site/viewer/configuration-model.js';
@@ -10,7 +12,18 @@ const gantries=await read('GANTRY_CONFIGURATIONS.json'),heads=await read('TOOLHE
 assert(gantries.variants.length>0&&heads.variants.length>0&&library.items.length>0&&changers.variants.length>0);
 for(const c of [gantries,heads,changers])assert.equal(new Set(c.variants.map(v=>v.id)).size,c.variants.length);
 assert.equal(new Set(library.items.map(v=>v.id)).size,library.items.length);
-for(const catalog of [gantries,heads,library,changers])for(const asset of Object.values(catalog.assets)){await access(path.join(root,asset.meta));try{await access(path.join(root,asset.glb))}catch{await access(path.join(root,asset.glb+'.gz'))}const meta=await read(asset.meta);assert(meta.parts.length>0)}
+for(const catalog of [gantries,heads,library,changers])for(const asset of Object.values(catalog.assets)){
+ if(asset.external){
+  const directory=process.argv[3];assert(directory,'Pass external component asset directory');
+  const decoded={};for(const[name,spec]of Object.entries(asset.files)){
+   assert(!spec.path.includes('..')&&!/[\\:]/.test(spec.path));const bytes=await readFile(path.join(directory,spec.path));
+   assert.equal(bytes.length,spec.bytes);assert.equal(createHash('sha256').update(bytes).digest('hex'),spec.sha256);
+   decoded[name]=spec.encoding==='gzip'?gunzipSync(bytes):bytes;
+   if(spec.encoding==='gzip'){assert.equal(decoded[name].length,spec.decoded_bytes);assert.equal(createHash('sha256').update(decoded[name]).digest('hex'),spec.decoded_sha256)}
+  }
+  const meta=JSON.parse(decoded['parts.json']);assert.equal(meta.id,asset.component_id);assert.equal(meta.parts.length,asset.parts);
+ }else{await access(path.join(root,asset.meta));try{await access(path.join(root,asset.glb))}catch{await access(path.join(root,asset.glb+'.gz'))}const meta=await read(asset.meta);assert(meta.parts.length>0)}
+}
 let gantryTransitions=0;
 for(const v of gantries.variants){
  assert.equal(gantryChoice(gantries,v),v);assert(v.modules.every(id=>gantries.assets[id]));assert.equal(v.front,v.xy_motors===2?'FT':'NP');

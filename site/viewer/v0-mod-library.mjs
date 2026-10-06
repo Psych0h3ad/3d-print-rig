@@ -29,6 +29,16 @@ function group(id,label,parts,assembly=false){return {id,label,parts:uniqueLabel
 // CAD files can contain mutually exclusive variants despite source_assembly.
 export function componentViews(item,parts){
   if(!parts?.length)throw Error('原本の部品がありません');
+  if(item.views){
+    const byKey=new Map(parts.map(p=>[p.key,p])),seen=new Set();
+    const views=item.views.map(v=>{
+      if(!v.id||seen.has(v.id)||!v.parts?.length||new Set(v.parts).size!==v.parts.length)throw Error('Invalid component view');
+      seen.add(v.id);const selected=v.parts.map(key=>{if(!byKey.has(key))throw Error('Missing component part: '+key);return byKey.get(key)});
+      return group(v.id,v.label,selected,v.assembly===true);
+    });
+    if(new Set(views.flatMap(v=>v.parts.map(p=>p.key))).size!==parts.length)throw Error('Unregistered component part');
+    return views;
+  }
   if(item.id==='v0mod_fysetc_cnc_stealth_front')return parts.map(p=>group('file:'+p.source_file,p.name,[p]));
   if(item.id==='v0mod_fysetc_cnc_bed_fans')return parts.map(p=>group('part:'+p.key,p.name,[p]));
   if(item.id==='rapido_x'){

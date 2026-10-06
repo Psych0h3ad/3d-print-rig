@@ -1,0 +1,93 @@
+{
+  "schema": "3d-print-rig-components-v1",
+  "version": "hydra-native-parts-86",
+  "items": [
+    {
+      "id": "hydra_ender3_parts",
+      "kind": "mod",
+      "label": "HYDRA · Ender-3 source parts",
+      "module": "component_hydra_ender3",
+      "manufacturer": "boothyboothy / Boothy",
+      "representation": "STEP",
+      "solids": 17,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "bases",
+          "label": "Ender-3 bases",
+          "parts": [
+            "base_side",
+            "base_rear"
+          ]
+        },
+        {
+          "id": "plates",
+          "label": "Tool plates / cable clip",
+          "parts": [
+            "plate_bowden",
+            "plate_stock",
+            "plate_dualgear",
+            "plate_bmg",
+            "cable_clip"
+          ]
+        },
+        {
+          "id": "narrow",
+          "label": "4010 / 5015 narrow ducts",
+          "parts": [
+            "duct_5015_lh",
+            "duct_5015_rh",
+            "duct_4010_lh",
+            "duct_4010_rh"
+          ]
+        },
+        {
+          "id": "mk6",
+          "label": "MK6 V6 ducts",
+          "parts": [
+            "mk6_5015_25deg_lh",
+            "mk6_5015_25deg_rh",
+            "mk6_5015_35deg_lh",
+            "mk6_5015_35deg_rh",
+            "mk6_4010_MK6_lh",
+            "mk6_4010_MK6_rh"
+          ]
+        }
+      ],
+      "source_url": "https://www.printables.com/model/169197-hydra-fan-duct-tool-change-system-for-ender-3-ende",
+      "source_version": "Printables files 2022-04-13; base STEP 2021-08-04; tool plate STEP v1",
+      "source_commit": null,
+      "source_sha256": "b9e52e728c68990f125ee6662b3d5b359fb561f2d684e5b87fbf686b727b72a2",
+      "source_sha256_label": "Base STEP SHA256",
+      "license": "CC BY-NC-SA 4.0 · boothyboothy / Boothy",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "notes": "Manual tool-plate system. Individual printed parts only; fans, hotend, extruder, fasteners and probes are absent. Ender-3 installation is not registered. Five 0.2 mm nut-hole support membranes are removed from the base parts.",
+      "machine_installation_verified": false
+    }
+  ],
+  "assets": {
+    "component_hydra_ender3": {
+      "component_id": "hydra_ender3_parts",
+      "parts": 17,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-community-models/",
+        "local_directory": "community-machines-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "hydra/parts.json",
+          "bytes": 17121,
+          "sha256": "886d1cd89caaa2a05ffdb9b14cbf76972e32f2da65fd6e25ccb4503a0d60dec7"
+        },
+        "model.glb": {
+          "path": "hydra/model.glb.gz",
+          "bytes": 4055440,
+          "sha256": "647ae5d724356afd2d1186e5456b3347b78a89d7bdd0399d8cd10f4638944c76",
+          "encoding": "gzip",
+          "decoded_bytes": 16527400,
+          "decoded_sha256": "6ec11d1dd4aa55a64bfb2e6319437a0560ede146782e809695665b4752218f60"
+        }
+      }
+    }
+  }
+}

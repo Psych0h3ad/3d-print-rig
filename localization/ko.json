@@ -7665,6 +7665,102 @@
     "siboor.native_docks_unregistered": {
       "source_revision": "60fa26f4764811657eae",
       "text": "이 300 mm 키트의 프레임 도크는 등록되지 않았습니다."
+    },
+    "hydra.01": {
+      "source_revision": "693312b509c4cb502c9b",
+      "text": "HYDRA · Ender-3 원본 부품"
+    },
+    "hydra.02": {
+      "source_revision": "be815efc815e51d3d032",
+      "text": "Ender-3 베이스"
+    },
+    "hydra.03": {
+      "source_revision": "ee6e7d8b6e0b70752367",
+      "text": "교환 플레이트 / 케이블 클립"
+    },
+    "hydra.04": {
+      "source_revision": "08bdce4c9628a6033fb5",
+      "text": "4010 / 5015 좁은 덕트"
+    },
+    "hydra.05": {
+      "source_revision": "e4cbea0612577eae338a",
+      "text": "MK6 V6 덕트"
+    },
+    "hydra.06": {
+      "source_revision": "5d1b7c128861f78cd75c",
+      "text": "Ender-3 측면 베이스"
+    },
+    "hydra.07": {
+      "source_revision": "211cbfafd89a6e358fec",
+      "text": "Ender-3 후면 베이스"
+    },
+    "hydra.08": {
+      "source_revision": "b826ac9cb19766cfb2fd",
+      "text": "BMG 교환 플레이트"
+    },
+    "hydra.09": {
+      "source_revision": "bd1f2f0c8ef934bb980b",
+      "text": "기본 압출기 교환 플레이트"
+    },
+    "hydra.10": {
+      "source_revision": "735533ea0184a93d0ab3",
+      "text": "듀얼 기어 압출기 교환 플레이트"
+    },
+    "hydra.11": {
+      "source_revision": "a1c8055e115bbbd9c062",
+      "text": "Bowden 교환 플레이트"
+    },
+    "hydra.12": {
+      "source_revision": "11115a2d18474a9961a0",
+      "text": "교환 플레이트 케이블 클립"
+    },
+    "hydra.13": {
+      "source_revision": "14ec4c20c8db734a19ce",
+      "text": "베이스 STEP SHA256"
+    },
+    "hydra.14": {
+      "source_revision": "9fae526bd7391d769df0",
+      "text": "수동 교환 플레이트 방식입니다. 출력 부품만 표시하며 팬, 핫엔드, 압출기, 나사, 프로브는 없습니다. Ender-3 장착은 등록되지 않았습니다. 베이스 너트 구멍의 0.2 mm 서포트 막 5개를 제거했습니다."
+    },
+    "hydra.15": {
+      "source_revision": "53b9eda09f7e6580194b",
+      "text": "5015 좁은 덕트 · LH"
+    },
+    "hydra.16": {
+      "source_revision": "b20512c8043cfc55b219",
+      "text": "5015 좁은 덕트 · RH"
+    },
+    "hydra.17": {
+      "source_revision": "13dd4c8ba2c718c70282",
+      "text": "4010 좁은 덕트 · LH"
+    },
+    "hydra.18": {
+      "source_revision": "9e6478f747792db6e86d",
+      "text": "4010 좁은 덕트 · RH"
+    },
+    "hydra.19": {
+      "source_revision": "322a97194454a4d416d6",
+      "text": "MK6 V6 5015 덕트 · 25° · LH"
+    },
+    "hydra.20": {
+      "source_revision": "d196b98be68e4148af6b",
+      "text": "MK6 V6 5015 덕트 · 25° · RH"
+    },
+    "hydra.21": {
+      "source_revision": "9593c67e66c258d3b438",
+      "text": "MK6 V6 5015 덕트 · 35° · LH"
+    },
+    "hydra.22": {
+      "source_revision": "fbcbafd5168fcb285917",
+      "text": "MK6 V6 5015 덕트 · 35° · RH"
+    },
+    "hydra.23": {
+      "source_revision": "f437d8d75f9c72323873",
+      "text": "MK6 V6 4010 덕트 · MK6 · LH"
+    },
+    "hydra.24": {
+      "source_revision": "50116da67ad129bf0704",
+      "text": "MK6 V6 4010 덕트 · MK6 · RH"
     }
   }
 }

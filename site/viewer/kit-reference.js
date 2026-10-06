@@ -14,7 +14,7 @@ import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {setupPublicInfo} from './public-info.js?v=0b0f91d7a82d25acbb87';
 import {applyNativeMotionProfile,loadNativeMotionProfile} from './native-motion-profile.mjs?v=91532eb992519143f437';
 import {createCommunityAdapter} from './community-adapter.mjs?v=0bfacb332d4a57985927';
-import {setupNativeMotionControls} from './native-motion-controls.mjs?v=f57083983693cb10aa57';
+import {setupNativeMotionControls} from './native-motion-controls.mjs?v=831ac2a46064dd2881dc';
 export async function mount(scope){
 const $=s=>document.querySelector(s),id='fysetc_v24_250_pro',stage=$('#stage');
 setupMachineNavigation(id);setupPublicInfo({includeDownloads:false});

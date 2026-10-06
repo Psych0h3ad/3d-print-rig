@@ -20,6 +20,7 @@
 # Locally imported assembly metadata.
 /site/*.json
 !/site/PUBLIC_CATALOG.json
+!/site/COMPONENT_ADDITIONS.json
 !/site/CUSTOM_VORON_ASSETS.json
 !/site/ASSET_BUNDLE.json
 !/site/RATRIG_ASSETS.json

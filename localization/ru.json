@@ -7665,6 +7665,102 @@
     "siboor.native_docks_unregistered": {
       "source_revision": "60fa26f4764811657eae",
       "text": "Доки на раме для этого комплекта 300 mm не зарегистрированы."
+    },
+    "hydra.01": {
+      "source_revision": "693312b509c4cb502c9b",
+      "text": "HYDRA · исходные детали Ender-3"
+    },
+    "hydra.02": {
+      "source_revision": "be815efc815e51d3d032",
+      "text": "Основания Ender-3"
+    },
+    "hydra.03": {
+      "source_revision": "ee6e7d8b6e0b70752367",
+      "text": "Пластины инструмента / зажим кабеля"
+    },
+    "hydra.04": {
+      "source_revision": "08bdce4c9628a6033fb5",
+      "text": "Узкие воздуховоды 4010 / 5015"
+    },
+    "hydra.05": {
+      "source_revision": "e4cbea0612577eae338a",
+      "text": "Воздуховоды MK6 V6"
+    },
+    "hydra.06": {
+      "source_revision": "5d1b7c128861f78cd75c",
+      "text": "Боковое основание Ender-3"
+    },
+    "hydra.07": {
+      "source_revision": "211cbfafd89a6e358fec",
+      "text": "Заднее основание Ender-3"
+    },
+    "hydra.08": {
+      "source_revision": "b826ac9cb19766cfb2fd",
+      "text": "Пластина инструмента BMG"
+    },
+    "hydra.09": {
+      "source_revision": "bd1f2f0c8ef934bb980b",
+      "text": "Пластина штатного экструдера"
+    },
+    "hydra.10": {
+      "source_revision": "735533ea0184a93d0ab3",
+      "text": "Пластина экструдера с двумя шестернями"
+    },
+    "hydra.11": {
+      "source_revision": "a1c8055e115bbbd9c062",
+      "text": "Пластина инструмента Bowden"
+    },
+    "hydra.12": {
+      "source_revision": "11115a2d18474a9961a0",
+      "text": "Зажим кабеля пластины"
+    },
+    "hydra.13": {
+      "source_revision": "14ec4c20c8db734a19ce",
+      "text": "SHA256 STEP основания"
+    },
+    "hydra.14": {
+      "source_revision": "9fae526bd7391d769df0",
+      "text": "Система ручной смены пластины. Показаны только печатные детали; вентиляторы, хотэнд, экструдер, крепёж и датчики отсутствуют. Установка на Ender-3 не зарегистрирована. В отверстиях под гайки оснований удалены пять мембран поддержки толщиной 0.2 mm."
+    },
+    "hydra.15": {
+      "source_revision": "53b9eda09f7e6580194b",
+      "text": "Узкий воздуховод 5015 · LH"
+    },
+    "hydra.16": {
+      "source_revision": "b20512c8043cfc55b219",
+      "text": "Узкий воздуховод 5015 · RH"
+    },
+    "hydra.17": {
+      "source_revision": "13dd4c8ba2c718c70282",
+      "text": "Узкий воздуховод 4010 · LH"
+    },
+    "hydra.18": {
+      "source_revision": "9e6478f747792db6e86d",
+      "text": "Узкий воздуховод 4010 · RH"
+    },
+    "hydra.19": {
+      "source_revision": "322a97194454a4d416d6",
+      "text": "Воздуховод MK6 V6 5015 · 25° · LH"
+    },
+    "hydra.20": {
+      "source_revision": "d196b98be68e4148af6b",
+      "text": "Воздуховод MK6 V6 5015 · 25° · RH"
+    },
+    "hydra.21": {
+      "source_revision": "9593c67e66c258d3b438",
+      "text": "Воздуховод MK6 V6 5015 · 35° · LH"
+    },
+    "hydra.22": {
+      "source_revision": "fbcbafd5168fcb285917",
+      "text": "Воздуховод MK6 V6 5015 · 35° · RH"
+    },
+    "hydra.23": {
+      "source_revision": "f437d8d75f9c72323873",
+      "text": "Воздуховод MK6 V6 4010 · MK6 · LH"
+    },
+    "hydra.24": {
+      "source_revision": "50116da67ad129bf0704",
+      "text": "Воздуховод MK6 V6 4010 · MK6 · RH"
     }
   }
 }

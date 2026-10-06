@@ -7,6 +7,7 @@ import subprocess
 import tempfile
 import urllib.request
 import zipfile
+from merge_component_library import merge_components
 from pathlib import Path, PurePosixPath
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -113,6 +114,7 @@ def main():
                 raise ValueError('Model bundle does not match its pinned checksum.')
             unpack_assets(archive, target)
     validate_mounting_evidence(target)
+    merge_components(target)
     subprocess.run(['node', '--experimental-loader', './scripts/three-test-loader.mjs',
                     'scripts/build_support_catalog.mjs', str(target)], cwd=ROOT, check=True)
     (target / '.nojekyll').touch()

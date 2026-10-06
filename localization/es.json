@@ -7665,6 +7665,102 @@
     "siboor.native_docks_unregistered": {
       "source_revision": "60fa26f4764811657eae",
       "text": "Los docks del bastidor no están registrados para este kit de 300 mm."
+    },
+    "hydra.01": {
+      "source_revision": "693312b509c4cb502c9b",
+      "text": "HYDRA · piezas originales de Ender-3"
+    },
+    "hydra.02": {
+      "source_revision": "be815efc815e51d3d032",
+      "text": "Bases de Ender-3"
+    },
+    "hydra.03": {
+      "source_revision": "ee6e7d8b6e0b70752367",
+      "text": "Placas de herramientas / clip de cable"
+    },
+    "hydra.04": {
+      "source_revision": "08bdce4c9628a6033fb5",
+      "text": "Conductos estrechos 4010 / 5015"
+    },
+    "hydra.05": {
+      "source_revision": "e4cbea0612577eae338a",
+      "text": "Conductos MK6 V6"
+    },
+    "hydra.06": {
+      "source_revision": "5d1b7c128861f78cd75c",
+      "text": "Base lateral de Ender-3"
+    },
+    "hydra.07": {
+      "source_revision": "211cbfafd89a6e358fec",
+      "text": "Base trasera de Ender-3"
+    },
+    "hydra.08": {
+      "source_revision": "b826ac9cb19766cfb2fd",
+      "text": "Placa de herramienta BMG"
+    },
+    "hydra.09": {
+      "source_revision": "bd1f2f0c8ef934bb980b",
+      "text": "Placa para extrusor original"
+    },
+    "hydra.10": {
+      "source_revision": "735533ea0184a93d0ab3",
+      "text": "Placa para extrusor de doble engranaje"
+    },
+    "hydra.11": {
+      "source_revision": "a1c8055e115bbbd9c062",
+      "text": "Placa de herramienta Bowden"
+    },
+    "hydra.12": {
+      "source_revision": "11115a2d18474a9961a0",
+      "text": "Clip de cable de la placa"
+    },
+    "hydra.13": {
+      "source_revision": "14ec4c20c8db734a19ce",
+      "text": "SHA256 del STEP de la base"
+    },
+    "hydra.14": {
+      "source_revision": "9fae526bd7391d769df0",
+      "text": "Sistema de placa de herramienta manual. Solo piezas impresas; no incluye ventiladores, hotend, extrusor, tornillos ni sondas. La instalación en Ender-3 no está registrada. Se han eliminado cinco membranas de soporte de 0.2 mm de los orificios para tuercas de las bases."
+    },
+    "hydra.15": {
+      "source_revision": "53b9eda09f7e6580194b",
+      "text": "Conducto estrecho 5015 · LH"
+    },
+    "hydra.16": {
+      "source_revision": "b20512c8043cfc55b219",
+      "text": "Conducto estrecho 5015 · RH"
+    },
+    "hydra.17": {
+      "source_revision": "13dd4c8ba2c718c70282",
+      "text": "Conducto estrecho 4010 · LH"
+    },
+    "hydra.18": {
+      "source_revision": "9e6478f747792db6e86d",
+      "text": "Conducto estrecho 4010 · RH"
+    },
+    "hydra.19": {
+      "source_revision": "322a97194454a4d416d6",
+      "text": "Conducto MK6 V6 5015 · 25° · LH"
+    },
+    "hydra.20": {
+      "source_revision": "d196b98be68e4148af6b",
+      "text": "Conducto MK6 V6 5015 · 25° · RH"
+    },
+    "hydra.21": {
+      "source_revision": "9593c67e66c258d3b438",
+      "text": "Conducto MK6 V6 5015 · 35° · LH"
+    },
+    "hydra.22": {
+      "source_revision": "fbcbafd5168fcb285917",
+      "text": "Conducto MK6 V6 5015 · 35° · RH"
+    },
+    "hydra.23": {
+      "source_revision": "f437d8d75f9c72323873",
+      "text": "Conducto MK6 V6 4010 · MK6 · LH"
+    },
+    "hydra.24": {
+      "source_revision": "50116da67ad129bf0704",
+      "text": "Conducto MK6 V6 4010 · MK6 · RH"
     }
   }
 }
