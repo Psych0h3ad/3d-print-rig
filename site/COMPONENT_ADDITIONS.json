@@ -81,11 +81,11 @@
         },
         "model.glb": {
           "path": "hydra/model.glb.gz",
-          "bytes": 4055440,
-          "sha256": "647ae5d724356afd2d1186e5456b3347b78a89d7bdd0399d8cd10f4638944c76",
+          "bytes": 4055431,
+          "sha256": "d34b34234b5f26c6dc30a3e6a8ba054cc1e15e28cbe45140a30a43694188f546",
           "encoding": "gzip",
-          "decoded_bytes": 16527400,
-          "decoded_sha256": "6ec11d1dd4aa55a64bfb2e6319437a0560ede146782e809695665b4752218f60"
+          "decoded_bytes": 16527396,
+          "decoded_sha256": "bbb923ac9fca2e0aa8b069595a704da6f8fa856bcbb051c071644efe175b29a3"
         }
       }
     }
