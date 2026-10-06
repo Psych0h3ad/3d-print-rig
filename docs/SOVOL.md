@@ -4,7 +4,8 @@
 
 The manufacturer’s complete assembly contains 719 native parts. The viewer
 offers camera, palette, theme, grid, configuration-save and image-export controls.
-Motion and toolhead/mod swapping are not registered for this reference.
+XYZ movement is available in the Motion tab. Toolhead/mod swapping is not
+registered for this reference. See [native motion](NATIVE_MOTION.md).
 
 The display mesh retains the native CAD tessellation, including fan blades,
 threads and rail details. Only zero-area triangles are omitted; no mesh
@@ -14,7 +15,8 @@ Four Z carrier seats and their mounting axes are aligned to the source gantry.
 The gantry/head are displayed 10 mm above the source pose; the inspected nozzle
 has about 8.03 mm clearance above the bed. Seven overlapping source instances
 and two unconnected PTFE/wire routes are optional references. No built-in
-supports were removed. The source contains no XY belt route.
+supports were removed. The two smooth native XY belt envelopes follow the
+registered pulley contacts; source teeth and cut ends are not synthesized.
 
 Native tensioner 355 has invalid topology. It remains a display mesh; the
 mounting-axis/seat observations do not certify its solid clearance. This

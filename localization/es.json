@@ -4668,7 +4668,7 @@
     },
     "text.1146": {
       "source_revision": "e1fc24815c6eadd785f5",
-      "text": "Jugar"
+      "text": "Reproducir"
     },
     "text.1147": {
       "source_revision": "36cd7dd8b69ab033f907",
@@ -7653,6 +7653,10 @@
     "native_motion.satsuma_rest": {
       "source_revision": "3e945ce4b1913c9b0b08",
       "text": "El conjunto completo de la cama empieza 4 mm por debajo de la posición original para evitar la boquilla."
+    },
+    "native_motion.reset": {
+      "source_revision": "937ebd1732282cea9b3d",
+      "text": "Restablecer"
     }
   }
 }

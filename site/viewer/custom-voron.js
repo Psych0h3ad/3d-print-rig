@@ -17,7 +17,7 @@ import {setupRenderExport} from './render-export.js';
 import {setupPublicInfo} from './public-info.js?v=2bbf2c451ffa53bf08e7';
 import {setupGcodePanel} from './gcode-panel.js';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs';
-import {formatMessage,translate} from './i18n.mjs?v=20a1d9c14386bb4160b4';
+import {formatMessage,translate} from './i18n.mjs?v=c13782afd4ff0c0f20ce';
 export async function mount(scope){
  const $=id=>document.getElementById(id),id=new URL(location.href).searchParams.get('machine')||'voron_v24_500_custom';setupMachineNavigation(id);setupPublicInfo({machineId:id});
  const renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.setClearColor('#edf1f4');$('stage').append(renderer.domElement);

@@ -10,9 +10,9 @@ import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=extra-machines-55';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {setupPublicInfo} from './public-info.js?v=2bbf2c451ffa53bf08e7';
-import {applyNativeMotionProfile,loadNativeMotionProfile} from './native-motion-profile.mjs';
+import {applyNativeMotionProfile,loadNativeMotionProfile} from './native-motion-profile.mjs?v=91532eb992519143f437';
 import {createCommunityAdapter} from './community-adapter.mjs?v=0bfacb332d4a57985927';
-import {setupNativeMotionControls} from './native-motion-controls.mjs?v=efe38fef3ecbac6f71eb';
+import {setupNativeMotionControls} from './native-motion-controls.mjs?v=3e781b7f807e9a9f2beb';
 export async function mount(scope){
  const $=id=>document.getElementById(id),stage=$('stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));
  renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);
@@ -42,7 +42,7 @@ export async function mount(scope){
   setupNativeMotionControls({adapter,profile,camera,controls,render,scope,onPose:enclosure,
    getDisplay:()=>Object.fromEntries(displayKeys.map(k=>[k,$(k).checked])),
    validateDisplay:d=>{if(!d||displayKeys.some(k=>typeof d[k]!=='boolean'))throw Error('Invalid display setting')},
-   setDisplay:d=>{for(const k of displayKeys)$(k).checked=d[k];grid.visible=d.gridVisible;lighting();enclosure()}
+   setDisplay:d=>{for(const k of displayKeys){$(k).checked=d[k];$(k).dispatchEvent(new Event('input'));$(k).dispatchEvent(new Event('change'))}grid.visible=d.gridVisible;lighting();enclosure()}
   });
   scene.add(root);box=new THREE.Box3().setFromObject(root);grid.position.y=box.min.y-.003;
   $('machineTitle').textContent=profile.label;$('revision').textContent=profile.version;$('partCount').textContent=manifest.parts.length.toLocaleString()+' 部品';

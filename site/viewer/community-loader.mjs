@@ -2,7 +2,7 @@ import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
 import {extraAssetBase,checkedExtraAsset} from './extra-asset-integrity.mjs?v=cb20fe4599d236ba43b3';
 import {beginModelLoading} from './model-progress.mjs?v=6b41a2b9f7626039b7e6';
 import {createCommunityAdapter} from './community-adapter.mjs?v=0bfacb332d4a57985927';
-import {applyNativeMotionProfile,loadNativeMotionProfile} from './native-motion-profile.mjs';
+import {applyNativeMotionProfile,loadNativeMotionProfile} from './native-motion-profile.mjs?v=91532eb992519143f437';
 export async function loadCommunity(index,machine,{signal}={}){
  const spec=index.machines[machine];if(!spec||spec.machine_id!==machine)throw Error('Unknown community printer');
  const extraModels=spec.additional_models||[];

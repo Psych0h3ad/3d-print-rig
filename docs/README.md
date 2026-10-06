@@ -42,6 +42,7 @@
 | 機種・部品・組み合わせ追加時に更新する場所と手順 | [Maintenance](MAINTENANCE.md) |
 | 全機種の必須レビュー項目と証拠の扱い | [Machine review](MACHINE_REVIEW.md) · [Coverage record](MACHINE_REVIEW_COVERAGE.json) |
 | ベルト・チェーン・可動部の実装と確認範囲 | [Motion audit](MOTION_AUDIT.md) |
+| TicTac、THE 100、Rook、Satsuma、SV08、Annex、FYSETCのXYZ操作 | [Native assembly motion](NATIVE_MOTION.md) |
 | プローブ選択時の警告、限定された連続移動検証 | [Probe clearance](PROBE_CLEARANCE.md) · [Probe travel](PROBE_TRAVEL.md) |
 | ヘッド／駐機ツールの干渉例と表示条件 | [Head travel](HEAD_TRAVEL.md) |
 | 選択バグの過去の修正・v18/v19検証記録 | [Selection audit — historical](SELECTION_AUDIT.md) |
@@ -50,4 +51,4 @@
 
 [プロジェクトREADMEに戻る](../README.md)
 
-- [SOVOL SV08](SOVOL.md): complete static CAD reference, source scope and display controls.
+- [SOVOL SV08](SOVOL.md): complete native CAD reference, XYZ motion, source scope and display controls.

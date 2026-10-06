@@ -4668,7 +4668,7 @@
     },
     "text.1146": {
       "source_revision": "e1fc24815c6eadd785f5",
-      "text": "플레이"
+      "text": "재생"
     },
     "text.1147": {
       "source_revision": "36cd7dd8b69ab033f907",
@@ -7653,6 +7653,10 @@
     "native_motion.satsuma_rest": {
       "source_revision": "3e945ce4b1913c9b0b08",
       "text": "노즐과의 간섭을 피하기 위해 베드 전체를 원본 CAD 위치보다 4 mm 낮췄습니다."
+    },
+    "native_motion.reset": {
+      "source_revision": "937ebd1732282cea9b3d",
+      "text": "초기화"
     }
   }
 }

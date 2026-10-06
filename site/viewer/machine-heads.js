@@ -7,7 +7,7 @@ import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
 import {appearanceRole} from './appearance-role.mjs?v=workspace-belts-1';
 import {partKey} from './head-assembly.js?v=workspace-belts-1';
 import {v24HeadCatalog} from './machine-head-model.mjs?v=03db7c7d900ff7f5b2c0';
-import {setupConfigurations} from './configurations.js?v=254cbe8dfcd2f5cf9b6b';
+import {setupConfigurations} from './configurations.js?v=c402022f348608d5eac9';
 
 import {stockProbeFit} from './probe-mounts.js?v=81f922c3169490021d08';
 

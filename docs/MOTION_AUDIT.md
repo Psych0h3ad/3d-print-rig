@@ -74,7 +74,7 @@ testing; no browser visual review is claimed.
 - Chain link pitch and endpoint routing do not certify cable bend radii or joint stop limits. The eleven native V0 links now articulate around their measured pin axes throughout Z motion; see [V0 installation checks](V0_INSTALLATIONS.md).
 - Existing SIBOOR AWD/R2 per-vertex deformation needs a separate endpoint and
   tooth-spacing audit; these tests do not certify it.
-- FYSETC 250 Pro remains a static reference page.
+- FYSETC 250 Pro supports registered XYZ movement; see [native motion and its source limitations](NATIVE_MOTION.md).
 - Full swept collisions, homing contacts, teeth, clamp cuts, tension and
   firmware/macros are outside these checks.
 

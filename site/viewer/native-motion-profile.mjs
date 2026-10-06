@@ -5,7 +5,7 @@ export function applyNativeMotionProfile(manifest,profile,rig,modelHash){
  if(rig.machine_id!==profile.machine_id||rig.model_sha256!==modelHash||rig.part_count!==manifest.parts.length)throw Error('Motion registration does not match native CAD');
  const groups=new Map();for(const[group,keys]of Object.entries(rig.groups))for(const key of keys){if(groups.has(key))throw Error('Duplicate motion registration');groups.set(key,group)}
  if(groups.size!==manifest.parts.length||manifest.parts.some(p=>!groups.has(p.key)))throw Error('Incomplete motion registration');
- const parts=manifest.parts.map(p=>({...p,group:p.group==='reference'?'reference':groups.get(p.key),native_bounds_mm:p.native_bounds_mm||p.bounds_mm}));
+ const parts=manifest.parts.map(p=>({...p,group:p.group==='reference'?'reference':groups.get(p.key),native_bounds_mm:p.native_bounds_mm||p.bounds_mm,...(Object.hasOwn(rig.appearance_roles||{},p.key)?{appearance_role:rig.appearance_roles[p.key]}:{})}));
  return {manifest:{...manifest,parts,native_leaf_count:parts.length,reference_leaves:manifest.reference_leaves||[]},profile:{...profile,axes:rig.axes,motions:rig.motions,basis:rig.basis||profile.basis,origin_mm:rig.origin_mm||profile.origin_mm||[0,0,0],motion_preview:true,head_groups:rig.head_groups||['head'],motion_registration:rig}};
 }
 export async function loadNativeMotionProfile(machine,{signal}={}){

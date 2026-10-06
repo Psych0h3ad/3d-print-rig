@@ -9590,6 +9590,11 @@
       "kind": "message",
       "ja": "ノズルとの干渉を避けるため、ベッド全体を元CADの位置から4 mm下げています。",
       "en": "The complete bed assembly starts 4 mm below the source pose to clear the nozzle."
+    },
+    "native_motion.reset": {
+      "kind": "message",
+      "ja": "リセット",
+      "en": "Reset"
     }
   }
 }
