@@ -73,7 +73,7 @@ generated support index.
 | Flexible parts | Belts, chain links, PTFE and CAN remain visible and finite; endpoints stay in actual fittings; frame/bed clearance; belt widths, teeth and clamp cuts checked separately. |
 | Clearance | Nozzle versus bed; probe versus nozzle/hotend/mount; fans and ducts; parked tools versus bed travel; folding and hand-carried parts through every transition. |
 | Mesh quality | Finite vertices, valid normals and bounds; no lost geometry or rendering glitches; built-in supports removed only with documented evidence and notice. |
-| Materials | Every printed base/accent role responds to palettes; hardware materials stay correct; aluminum/CNC options and transparent panels. |
+| Materials | Every printed base/accent role responds to palettes; hardware materials stay correct; aluminum/CNC options and transparent panels. Test distinct contrasting palettes, reverse changes, native reset and movement after recoloring on every applicable size. Check anonymous source leaves against the printed-part library. A printed parent assembly does not classify its purchased descendants. Shared GLB materials must be isolated. Record actual model and material coverage, not only role fixtures. |
 | Environment | Consistent floor/grid defaults and environment brightness; site theme separate from chamber lighting; RGB animation. |
 | Interaction | Mobile orbit, concurrent model/settings view, measured download percentages with a separate assembly phase, failed/canceled load cleanup, atomic selection changes, save/load, configurable image export and all supported languages. |
 | Provenance | Original repositories and revisions, licenses, supported combinations, stock download scope and reference-model limitations. |

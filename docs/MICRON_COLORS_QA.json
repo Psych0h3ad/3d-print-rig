@@ -1,0 +1,750 @@
+{
+  "all_passed": true,
+  "scope": "Actual Micron 120 / Plus GLB parts: source alias coverage, printed palette and purchased hardware isolation, independent materials, all-axis endpoint/reverse/reference color retention and original-material reset. Mechanical clearance and GPU screenshots are separate.",
+  "results": [
+    {
+      "id": "micron_r1_120",
+      "model_sha256": "9cf6f791159e5d15471d0147edee3fc29762468cbe2692a93ef5ffbc1527c2be",
+      "manifest_sha256": "0fd62cc618db12a608123368ee063fe72a556138d8761f88beeaa02789a7d577",
+      "parts": 1074,
+      "materials": 1074,
+      "native_hardware_materials_restored": 14,
+      "printed_alias_leaves_checked": 36,
+      "hardware_identities_checked": 722,
+      "palette_transitions": 5,
+      "poses_per_palette": 10,
+      "roles": {
+        "base": 116,
+        "protected": 897,
+        "accent": 43,
+        "frame": 18
+      }
+    },
+    {
+      "id": "micron_plus_r1_180",
+      "model_sha256": "c28985823dbeb5534405509dac351e0f54fc46e77b0887edd562249b0dbb501a",
+      "manifest_sha256": "d135e8c7d7f3b0f1f7d69b863e9836905e21cdc2193e0eaa9cde15798cb08a64",
+      "parts": 1512,
+      "materials": 1512,
+      "native_hardware_materials_restored": 40,
+      "printed_alias_leaves_checked": 0,
+      "hardware_identities_checked": 942,
+      "palette_transitions": 5,
+      "poses_per_palette": 10,
+      "roles": {
+        "protected": 1216,
+        "base": 172,
+        "frame": 22,
+        "accent": 102
+      }
+    }
+  ],
+  "reviewed_on": "2026-10-06",
+  "native_materials": {
+    "source_commit": "f76aa28767211ddfee2e30290aadcea3c45f8513",
+    "source_files": [
+      {
+        "machine": "micron_r1_120",
+        "path": "sources/micron/CAD/SubAssemblies/120_R1_Assembly v4.step",
+        "sha256": "87cc66bdcd2b8e78fbffac08ca958d480a9f5c71f91ee25ee909d648b478ee45",
+        "inventory_sha256": "375e0dbcd21c9b623f632aae9ab0800448084f710f9f435005ced30ca82d107f"
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "path": "sources/micron/CAD/180_R1_Assembly_RC8/180_R1_Assembly.step",
+        "sha256": "6d083edb1527c04b642b7aad43cbdada898c727aa60432a1d7965efd3b295f9f",
+        "inventory_sha256": "bed2e3927ab9b06bc5e742f5a5f54af059ac993ed25162a1133636d30e0f0d2d"
+      }
+    ],
+    "materials": [
+      {
+        "machine": "micron_r1_120",
+        "key": "m120_00303",
+        "name": "M3 Washer 7mmx.5mm",
+        "source_key": "00303",
+        "color_linear": [
+          0.8962693810462952,
+          0.5972017645835876,
+          0.2015562504529953
+        ]
+      },
+      {
+        "machine": "micron_r1_120",
+        "key": "m120_00305",
+        "name": "M3 Washer 7mmx.5mm",
+        "source_key": "00305",
+        "color_linear": [
+          0.8962693810462952,
+          0.5972017645835876,
+          0.2015562504529953
+        ]
+      },
+      {
+        "machine": "micron_r1_120",
+        "key": "m120_00314",
+        "name": "M3 Washer 7mmx.5mm",
+        "source_key": "00314",
+        "color_linear": [
+          0.8962693810462952,
+          0.5972017645835876,
+          0.2015562504529953
+        ]
+      },
+      {
+        "machine": "micron_r1_120",
+        "key": "m120_00316",
+        "name": "M3 Washer 7mmx.5mm",
+        "source_key": "00316",
+        "color_linear": [
+          0.8962693810462952,
+          0.5972017645835876,
+          0.2015562504529953
+        ]
+      },
+      {
+        "machine": "micron_r1_120",
+        "key": "m120_00325",
+        "name": "M3 Washer 7mmx.5mm",
+        "source_key": "00325",
+        "color_linear": [
+          0.8962693810462952,
+          0.5972017645835876,
+          0.2015562504529953
+        ]
+      },
+      {
+        "machine": "micron_r1_120",
+        "key": "m120_00327",
+        "name": "M3 Washer 7mmx.5mm",
+        "source_key": "00327",
+        "color_linear": [
+          0.8962693810462952,
+          0.5972017645835876,
+          0.2015562504529953
+        ]
+      },
+      {
+        "machine": "micron_r1_120",
+        "key": "m120_00336",
+        "name": "M3 Washer 7mmx.5mm",
+        "source_key": "00336",
+        "color_linear": [
+          0.8962693810462952,
+          0.5972017645835876,
+          0.2015562504529953
+        ]
+      },
+      {
+        "machine": "micron_r1_120",
+        "key": "m120_00338",
+        "name": "M3 Washer 7mmx.5mm",
+        "source_key": "00338",
+        "color_linear": [
+          0.8962693810462952,
+          0.5972017645835876,
+          0.2015562504529953
+        ]
+      },
+      {
+        "machine": "micron_r1_120",
+        "key": "m120_00794",
+        "name": "Outer Housing",
+        "source_key": "00794",
+        "color_linear": [
+          0.04666508734226227,
+          0.04666508734226227,
+          0.04373503103852272
+        ]
+      },
+      {
+        "machine": "micron_r1_120",
+        "key": "m120_00805",
+        "name": "Outer Housing",
+        "source_key": "00805",
+        "color_linear": [
+          0.04666508734226227,
+          0.04666508734226227,
+          0.04373503103852272
+        ]
+      },
+      {
+        "machine": "micron_r1_120",
+        "key": "m120_00816",
+        "name": "Outer Housing",
+        "source_key": "00816",
+        "color_linear": [
+          0.04666508734226227,
+          0.04666508734226227,
+          0.04373503103852272
+        ]
+      },
+      {
+        "machine": "micron_r1_120",
+        "key": "m120_00827",
+        "name": "Outer Housing",
+        "source_key": "00827",
+        "color_linear": [
+          0.04666508734226227,
+          0.04666508734226227,
+          0.04373503103852272
+        ]
+      },
+      {
+        "machine": "micron_r1_120",
+        "key": "m120_head_01322",
+        "name": "MGN9-H-Carriage v2",
+        "source_key": "01322",
+        "color_linear": [
+          0.35153260827064514,
+          0.35153260827064514,
+          0.35153260827064514
+        ]
+      },
+      {
+        "machine": "micron_r1_120",
+        "key": "m120_head_01415",
+        "name": "Release clip (8) (1)",
+        "source_key": "01415",
+        "color_linear": [
+          0.16826939582824707,
+          0.16513219475746155,
+          0.6239603757858276
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_00423",
+        "name": "ls2^lsz.2_1ee4nel-400-2P.1_a1_UHP-200(2)_UHP-200_psu_octopus_spider_and_pi_mount",
+        "source_key": "00423",
+        "color_linear": [
+          0.35153260827064514,
+          0.35153260827064514,
+          0.35153260827064514
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_00424",
+        "name": "ls1^lsz.2_1ee4nel-400-2P.1_a1_UHP-200(2)_UHP-200_psu_octopus_spider_and_pi_mount",
+        "source_key": "00424",
+        "color_linear": [
+          0.35153260827064514,
+          0.35153260827064514,
+          0.35153260827064514
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_00425",
+        "name": "ls^lsz.2_1ee4nel-400-2P.1_a1_UHP-200(2)_UHP-200_psu_octopus_spider_and_pi_mount",
+        "source_key": "00425",
+        "color_linear": [
+          0.35153260827064514,
+          0.35153260827064514,
+          0.35153260827064514
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_00426",
+        "name": "ls2-0^lsz.1_1ee4nel-400-2P.1_a1_UHP-200(2)_UHP-200_psu_octopus_spider_and_pi_mount",
+        "source_key": "00426",
+        "color_linear": [
+          0.35153260827064514,
+          0.35153260827064514,
+          0.35153260827064514
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_00427",
+        "name": "ls1-1^lsz.1_1ee4nel-400-2P.1_a1_UHP-200(2)_UHP-200_psu_octopus_spider_and_pi_mount",
+        "source_key": "00427",
+        "color_linear": [
+          0.35153260827064514,
+          0.35153260827064514,
+          0.35153260827064514
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_00428",
+        "name": "ls-2^lsz.1_1ee4nel-400-2P.1_a1_UHP-200(2)_UHP-200_psu_octopus_spider_and_pi_mount",
+        "source_key": "00428",
+        "color_linear": [
+          0.35153260827064514,
+          0.35153260827064514,
+          0.35153260827064514
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_00429",
+        "name": "1^1ee4nel-400-2P.1_a1_UHP-200(2)_UHP-200_psu_octopus_spider_and_pi_mount",
+        "source_key": "00429",
+        "color_linear": [
+          0.35153260827064514,
+          0.35153260827064514,
+          0.35153260827064514
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_00430",
+        "name": "ls2^lsz.2_1ee4nel-400-2P.1_a1_UHP-200(2)_UHP-200_psu_octopus_spider_and_pi_mount",
+        "source_key": "00430",
+        "color_linear": [
+          0.35153260827064514,
+          0.35153260827064514,
+          0.35153260827064514
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_00431",
+        "name": "ls1^lsz.2_1ee4nel-400-2P.1_a1_UHP-200(2)_UHP-200_psu_octopus_spider_and_pi_mount",
+        "source_key": "00431",
+        "color_linear": [
+          0.35153260827064514,
+          0.35153260827064514,
+          0.35153260827064514
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_00432",
+        "name": "ls^lsz.2_1ee4nel-400-2P.1_a1_UHP-200(2)_UHP-200_psu_octopus_spider_and_pi_mount",
+        "source_key": "00432",
+        "color_linear": [
+          0.35153260827064514,
+          0.35153260827064514,
+          0.35153260827064514
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_00433",
+        "name": "ls2-0^lsz.1_1ee4nel-400-2P.1_a1_UHP-200(2)_UHP-200_psu_octopus_spider_and_pi_mount",
+        "source_key": "00433",
+        "color_linear": [
+          0.35153260827064514,
+          0.35153260827064514,
+          0.35153260827064514
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_00434",
+        "name": "ls1-1^lsz.1_1ee4nel-400-2P.1_a1_UHP-200(2)_UHP-200_psu_octopus_spider_and_pi_mount",
+        "source_key": "00434",
+        "color_linear": [
+          0.35153260827064514,
+          0.35153260827064514,
+          0.35153260827064514
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_00435",
+        "name": "ls-2^lsz.1_1ee4nel-400-2P.1_a1_UHP-200(2)_UHP-200_psu_octopus_spider_and_pi_mount",
+        "source_key": "00435",
+        "color_linear": [
+          0.35153260827064514,
+          0.35153260827064514,
+          0.35153260827064514
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_00436",
+        "name": "1^1ee4nel-400-2P.1_a1_UHP-200(2)_UHP-200_psu_octopus_spider_and_pi_mount",
+        "source_key": "00436",
+        "color_linear": [
+          0.35153260827064514,
+          0.35153260827064514,
+          0.35153260827064514
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_00439",
+        "name": "MOS15.5x10.1.1.1.1.1.1.1.1.1.1^a1.1_UHP-200(2)_UHP-200_psu_octopus_spider_and_pi_mount",
+        "source_key": "00439",
+        "color_linear": [
+          0.7991027235984802,
+          0.0043914420530200005,
+          0.0043914420530200005
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_00440",
+        "name": "MOS15.5x10.1.1.1.1.1.1.1.1.1.1^a1.1_UHP-200(2)_UHP-200_psu_octopus_spider_and_pi_mount",
+        "source_key": "00440",
+        "color_linear": [
+          0.7991027235984802,
+          0.0043914420530200005,
+          0.0043914420530200005
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_00441",
+        "name": "1.2.1^JS100107_UHP-200(2)_UHP-200_psu_octopus_spider_and_pi_mount",
+        "source_key": "00441",
+        "color_linear": [
+          0.35153260827064514,
+          0.35153260827064514,
+          0.35153260827064514
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_00442",
+        "name": "p1^JS100107_UHP-200(2)_UHP-200_psu_octopus_spider_and_pi_mount",
+        "source_key": "00442",
+        "color_linear": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_00443",
+        "name": "1.2.1^JS100107_UHP-200(2)_UHP-200_psu_octopus_spider_and_pi_mount",
+        "source_key": "00443",
+        "color_linear": [
+          0.35153260827064514,
+          0.35153260827064514,
+          0.35153260827064514
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_00444",
+        "name": "p2^UHP-200(2)_UHP-200_psu_octopus_spider_and_pi_mount",
+        "source_key": "00444",
+        "color_linear": [
+          0.35153260827064514,
+          0.35153260827064514,
+          0.35153260827064514
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_00445",
+        "name": "249A-D^UHP-200(2)_UHP-200_psu_octopus_spider_and_pi_mount",
+        "source_key": "00445",
+        "color_linear": [
+          0.35153260827064514,
+          0.35153260827064514,
+          0.35153260827064514
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_00523",
+        "name": "Switch^Copy of JR Mains Inlet v1_Rear_Skirt_Steve",
+        "source_key": "00523",
+        "color_linear": [
+          0.5457244515419006,
+          0.03560131415724754,
+          0.020288562402129173
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_00524",
+        "name": "Fuse (1)^Copy of JR Mains Inlet v1_Rear_Skirt_Steve",
+        "source_key": "00524",
+        "color_linear": [
+          0.02955683507025242,
+          0.02955683507025242,
+          0.02955683507025242
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_00525",
+        "name": "JR Mains Inlet v1-0^Copy of JR Mains Inlet v1_Rear_Skirt_Steve",
+        "source_key": "00525",
+        "color_linear": [
+          0.8879231214523315,
+          0.5972017645835876,
+          0.2015562504529953
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_00526",
+        "name": "JR Mains Inlet v1-1^Copy of JR Mains Inlet v1_Rear_Skirt_Steve",
+        "source_key": "00526",
+        "color_linear": [
+          0.02955683507025242,
+          0.02955683507025242,
+          0.02955683507025242
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_00527",
+        "name": "JR Mains Inlet v1-2^Copy of JR Mains Inlet v1_Rear_Skirt_Steve",
+        "source_key": "00527",
+        "color_linear": [
+          0.8879231214523315,
+          0.5972017645835876,
+          0.2015562504529953
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_00528",
+        "name": "JR Mains Inlet v1-3^Copy of JR Mains Inlet v1_Rear_Skirt_Steve",
+        "source_key": "00528",
+        "color_linear": [
+          0.8879231214523315,
+          0.5972017645835876,
+          0.2015562504529953
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_00529",
+        "name": "JR Mains Inlet v1-4^Copy of JR Mains Inlet v1_Rear_Skirt_Steve",
+        "source_key": "00529",
+        "color_linear": [
+          0.8879231214523315,
+          0.5972017645835876,
+          0.2015562504529953
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_00530",
+        "name": "JR Mains Inlet v1-5^Copy of JR Mains Inlet v1_Rear_Skirt_Steve",
+        "source_key": "00530",
+        "color_linear": [
+          0.8879231214523315,
+          0.5972017645835876,
+          0.2015562504529953
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_00531",
+        "name": "JR Mains Inlet v1-6^Copy of JR Mains Inlet v1_Rear_Skirt_Steve",
+        "source_key": "00531",
+        "color_linear": [
+          0.8713670969009399,
+          0.8796223998069763,
+          0.8879231214523315
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_00532",
+        "name": "JR Mains Inlet v1-7^Copy of JR Mains Inlet v1_Rear_Skirt_Steve",
+        "source_key": "00532",
+        "color_linear": [
+          0.8879231214523315,
+          0.5972017645835876,
+          0.2015562504529953
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_00533",
+        "name": "JR Mains Inlet v1-8^Copy of JR Mains Inlet v1_Rear_Skirt_Steve",
+        "source_key": "00533",
+        "color_linear": [
+          0.8879231214523315,
+          0.5972017645835876,
+          0.2015562504529953
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_01322",
+        "name": "MGN9-H-Carriage v2",
+        "source_key": "01322",
+        "color_linear": [
+          0.35153260827064514,
+          0.35153260827064514,
+          0.35153260827064514
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_01415",
+        "name": "Release clip (8) (1)",
+        "source_key": "01415",
+        "color_linear": [
+          0.16826939582824707,
+          0.16513219475746155,
+          0.6239603757858276
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_01469",
+        "name": "MGN7-H-Carriage v1",
+        "source_key": "01469",
+        "color_linear": [
+          0.5972017645835876,
+          0.5972017645835876,
+          0.5972017645835876
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_01503",
+        "name": "MGN7-H-Carriage v1",
+        "source_key": "01503",
+        "color_linear": [
+          0.5972017645835876,
+          0.5972017645835876,
+          0.5972017645835876
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_01590",
+        "name": "MGN7-H-Carriage v1",
+        "source_key": "01590",
+        "color_linear": [
+          0.5972017645835876,
+          0.5972017645835876,
+          0.5972017645835876
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_01598",
+        "name": "MGN7-H-Carriage v1",
+        "source_key": "01598",
+        "color_linear": [
+          0.5972017645835876,
+          0.5972017645835876,
+          0.5972017645835876
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_01606",
+        "name": "MGN7-H-Carriage v1",
+        "source_key": "01606",
+        "color_linear": [
+          0.5972017645835876,
+          0.5972017645835876,
+          0.5972017645835876
+        ]
+      },
+      {
+        "machine": "micron_plus_r1_180",
+        "key": "m180_01614",
+        "name": "MGN7-H-Carriage v1",
+        "source_key": "01614",
+        "color_linear": [
+          0.5972017645835876,
+          0.5972017645835876,
+          0.5972017645835876
+        ]
+      }
+    ]
+  },
+  "adapter_sha256": {
+    "appearance-role.mjs": "a2d85521f7f516860221f3b68b4481dcf42623055eb2c7a3527324f22517ee75",
+    "palette-controller.mjs": "af9daf5ae29080e4cbff191db67db45d6c366437a64261b967372f5742173824",
+    "micron-native-materials.mjs": "55b8c3644415d202fa4af8bac672b52803fde6b2c1d1278acbb38afac75e2e2c",
+    "micron-adapter.mjs": "a85c18aa4753a88824a6bed079be43c7619ba9ea70673fa4ca8ad195158f2968",
+    "micron.js": "6916572bd6ce0d857f9df595ae072eaf4c1d89b7715e507abc57ab79e500270b"
+  },
+  "browser": {
+    "name": "Codex in-app browser / Chromium",
+    "viewports": [
+      [
+        1280,
+        720
+      ],
+      [
+        390,
+        844
+      ]
+    ],
+    "physical_mobile_touch_verified": false,
+    "other_browser_gpu_review": false,
+    "screenshots": [
+      {
+        "file": "micron-120-mobile.png",
+        "sha256": "4ff01fc40422e4cce9f6b3efc5e340a2052a7609004f3fdf212e4541ac72c16d"
+      },
+      {
+        "file": "micron-120-palette-dark.png",
+        "sha256": "2b7f4d9583bd90a9529db214e3e0bdb9c8e43f4d0a8e0d189db208f0486ed9d2"
+      },
+      {
+        "file": "micron-plus-axis-extreme.png",
+        "sha256": "690a88ebd8421bff2598a446b4ddf33a7573223885365b4ee37ec416e139e00d"
+      },
+      {
+        "file": "micron-plus-default.png",
+        "sha256": "a72fb5a56ecd3c3c7a65785f9af8e63d6e2bff95fb5e38a0ed9b737485addea9"
+      },
+      {
+        "file": "micron-plus-palette.png",
+        "sha256": "dce32262b605dcd1c40b92c7a0b596c715e2649f8edbb0274ff079d956dc2562"
+      },
+      {
+        "file": "trinity-export-1920x1368.png",
+        "sha256": "c1c785e1280bf8a345638ca0537d429542ae7eac980baafa51b01fc1cd71c561"
+      },
+      {
+        "file": "trinity-v05.png",
+        "sha256": "7c9937e9f2a684ca88abc18f3db8fff6c4f16210001ec1a026ae93d6bba4e5f1"
+      },
+      {
+        "file": "trinity-v06.png",
+        "sha256": "f15ef696383ed53ca7ee2ae189beef1092030283b64b39f6df7c9e9e7f2d5a0a"
+      },
+      {
+        "file": "trinity-v07.png",
+        "sha256": "8cc1cbc480d297ff119c347a50094fa2b2d2639c43eb31fa588832c32e1f2cd2"
+      },
+      {
+        "file": "trinity-v08-corrected.png",
+        "sha256": "252b2653c99bc58e3c7cd7d3d09299f021b129f096008f5343a7e40fa346d353"
+      },
+      {
+        "file": "trinity-v09.png",
+        "sha256": "7fb8a8c6734de23286d74a2eccf968ccd58c77cd8cfd122f2bd2d6e4787e0830"
+      },
+      {
+        "file": "trinity-v10.png",
+        "sha256": "c8df83d5e1a6533403bd15ffc802c800672885faa5d3331d710e169c9781f940"
+      },
+      {
+        "file": "trinity-v11.png",
+        "sha256": "83b90d2d49da5a6d41511fca57bb6779388c0429c5a71d1224e7af6921031f4a"
+      },
+      {
+        "file": "trinity-v12.png",
+        "sha256": "c8d2e64d7d25d5a447fc0b77b69c595e8ce27cd8210a41fee21b93f313bc4691"
+      },
+      {
+        "file": "trinity-v13.png",
+        "sha256": "9137a98ad6e4f127d412d884f8a01a93e78a142c3f0693bc5c30a5692af6fd09"
+      },
+      {
+        "file": "trinity-v14.png",
+        "sha256": "8b14bfad99c050425bb0a6f30d9416352ddb7d89c9c9fddd2b2871d24510cd49"
+      }
+    ],
+    "checks": [
+      "Plus: green/orange, silver frame; X max/Y min/Z max; reversed endpoints; native pose and palette reset",
+      "120: purple/lime; dark theme; mobile-width simultaneous settings/model; mouse orbit; native palette reset"
+    ],
+    "actual_native_motion_log_sha256": "78b9f8b2f8cd618867bb391fc243768c50b07712edac84ac7e7f9ef3adcf597c"
+  },
+  "full_physical_fit_certified": false
+}

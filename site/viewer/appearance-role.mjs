@@ -9,15 +9,23 @@ const v24PrintedBase=new Set(['Front Idler A Bottom','Front Idler A Top','Front 
 const v24PrintedAccent=new Set(['Z Belt Clamp Upper','Z Belt Clamp Lower','Belt Tensioner','Belt_Guard','Door Handle A','Door Handle B']);
 // Micron R1 / RC8 native leaves matched to the author's STL library.
 const micronBase=new Set(['A_Drive_Frame_Lower','A_Drive_Frame_Upper','B_Drive_Frame_Lower','B_Drive_Frame_Upper','AB_Drive_Top_Bearing_Retainer','Idler_Body','Bowden_Tube_Holder_Twist_Lock','Twist_Lock','TwistLock','Main Handle','Top Hinge Leaf','Bottom Hinge Leaf','Top Left Corner','Bottom Left Corner','Hinge Barrel','Spool_Holder_Bar','Bowden Tube Entry Rear ECAS','Octopus Bracket','Raspberry_Bracket','Front_Body','Tension_Arm','Rear_Plate','Board_Spacer_Micron','LED_Carrier','Light_Shield_Micron','PUG','M2_Hex_Adapter','180 M2 Hexnut adapter_shorter','Door Hinge']);
-const micronAccent=new Set(['Toothed_Idler_Carrier','Toothed_Idler_Carrier_Pinned','Belt_Clamp_A','Belt_Clamp_B','Sensorless_Yendstop_plug','Keystone Blank','Bezel','Magnet Insert','Railstop','Thermistor Chain Anchor','PG9_Umbilical_Z_Chain_3_Hole','Extruder_Knob','Door_Latch','Handle_Mini-1']);
+const micronAccent=new Set(['Toothed_Idler_Carrier','Toothed_Idler_Carrier_Pinned','Belt_Clamp_A','Belt_Clamp_B','Sensorless_Yendstop_plug','Keystone Blank','Bezel','Magnet Insert','Railstop','Thermistor Chain Anchor','PG9_Umbilical_Z_Chain_3_Hole','Extruder_Knob','Door_Latch','Handle_Mini-1','Front_Cover','Idler_Carrier','Idler_Carrier_Pinned','Printed_Spacer','Mounting_Cover_A','Mounting_Cover_B','Z_Belt_Cover_A','Z_Belt_Cover_B','Mount_Base']);
 export function appearanceRole(part){
- if(!part)return null;const key=String(part.key),name=(part.name||'').replace(/(?:\s*\(\d+\)|\s+v\d+|:\d+)+$/g,'').trim();
+ if(!part)return null;const key=String(part.key),name=(part.name||'').trim().replace(/(?:\s*\(\d+\)|\s+v\d+|:\d+)+$/g,'').trim();
  if(sbBase.has(key))return 'base';if(sbAccent.has(key))return 'accent';
  if(/^m(?:120(?:_head)?|180)_\d+$/.test(key)&&part.source?.repository==='PrintersForAnts/Micron'){
+  const path=(part.source.assembly_path||[]).join('/');
+  // Ancestor names such as Idler_Printed and PSU ... mount also contain
+  // purchased hardware. They cannot make every descendant a printed part.
+  if(/ECAS_Fitting|KGLM-3 Spherical Bearing|Meanwell-UHP-200-24|JR Mains Inlet/.test(path))return null;
+  if(['Nema14_Motor_Mount','Nema17_Motor_Mount','M2_Hex_Adapter','M2_Hex_Adapter_Parametric'].includes(name))return 'base';
+  if(/^(?:M\d+(?:\b|x|_)|MGN\d|Nema|36STH|Rubber Foot|Diffuser_Micron|PG9_Gland)/i.test(name))return null;
+  if(name==='Toothed_Idler')return /Idler_Printed/.test(path)?'accent':null;
   if(micronBase.has(name))return 'base';if(micronAccent.has(name))return 'accent';
   if(['Rear_Gantry_Extrusion','X_Extrusion'].includes(name))return 'frame';
-  if(name==='SOLID'){
-   const path=(part.source.assembly_path||[]).join('/');
+  if(['SOLID','COMPOUND'].includes(name)){
+   if(/CenterPanelClip|CornerPanelClip|reverseBowdenEntry|\/Handles:/.test(path))return 'base';
+   if(/64T Front Pulley Gear|Toothed_Idler_Carrier/.test(path))return 'accent';
    if(/(?:CornerTwistLock|TwistLockCenter|DIN_Mount|Wago DIN Clip|WAGO_221-413_1515):?/.test(path))return /TwistLock/.test(path)?'accent':'base';
   }
  }

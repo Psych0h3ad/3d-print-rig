@@ -2,24 +2,25 @@ import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {setupSceneDisplay} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
-import {loadMonolithData} from './monolith-machine.js?v=aae7eb63585800516dd5';
+import {loadMonolithData} from './monolith-machine.js?v=4360962156f4f4b753ce';
 import {setupChangerBank} from './changer-bank.js?v=47bbc0fef91af2c7241e';
-import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=240d1779e86375d39e4d';
+import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=512c2ba54de8f540b856';
 import {headPrinterLink} from './head-navigation.mjs?v=6979990fd1abdc93e4f7';
 import {headBuilderDimensions} from './configuration-model.js?v=d4b3dda97a404a7575b7';
-import {appearanceRole} from './appearance-role.mjs?v=workspace-belts-1';
+import {appearanceRole} from './appearance-role.mjs?v=a2d85521f7f516860221';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
-import {setupConfigurations} from './configurations.js?v=974ed8de4f3799637aea';
+import {setupConfigurations} from './configurations.js?v=61b07a3f7200ae0ac174';
 import {setupPublicInfo} from './public-info.js?v=0b0f91d7a82d25acbb87';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=workspace-belts-1';
 import {probeCheck,probeMetrics,probeGuide,headInspectionState,headBodyCollisionNotes} from './probe-checks.js?v=ea1aef3e30bf7d11d3cb';
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
-import {setupHeadBuilder} from './builder-ui.mjs?v=99ba104579f95dce80a1';
-import {validateBuilderExtras} from './toolhead-builder.mjs?v=6ec7788c796225ad9e84';
+import {setupHeadBuilder} from './builder-ui.mjs?v=f46e22cc9cd00deb7a67';
+import {validateBuilderExtras} from './toolhead-builder.mjs?v=b1db37b5b101302d6929';
+import {loadExternalComponent} from './component-assets.mjs?v=c2333ef499f46d621550';
 export async function mount(scope){
 let machineRegistry,toolBank,bankRig;
 
@@ -89,7 +90,8 @@ $('#seeInside').onchange=appearance;
 async function asset(id){return workspaceTask(async()=>{
  if(cached.has(id))return cached.get(id);
  const spec=catalog.base_assets[id]||catalog.assets[id];if(!spec)throw Error('未登録のヘッドCAD: '+id);
- const promise=Promise.all([fetch('../'+spec.meta,{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('CAD部品表を取得できません');return r.json()}),loadModel(loader,'../'+spec.glb)]).then(([meta,model])=>{
+ const loading=spec.external?loadExternalComponent(loader,spec,location.href).then(({meta,gltf})=>[meta,gltf]):Promise.all([fetch('../'+spec.meta,{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('CAD部品表を取得できません');return r.json()}),loadModel(loader,'../'+spec.glb)]);
+ const promise=loading.then(([meta,model])=>{
   const lookup=new Map(meta.parts.map(p=>[p.key,p])),root=model.scene,meshes=[];
   root.visible=false;bench.add(root);
   root.traverse(mesh=>{if(!mesh.isMesh)return;

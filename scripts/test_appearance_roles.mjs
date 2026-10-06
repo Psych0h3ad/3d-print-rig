@@ -15,8 +15,14 @@ for(const name of ['M3 Threaded Insert (14) (1)','2020 Drop-in T-nut, M3 (17)','
 for(const name of ['B Drive Frame Lower','B Drive Frame Upper','Octopus Bracket','XY Joint - Right-12'])assert.equal(appearanceRole({key:'fysetc_v24_250_pro_1',name}),'base');
 console.log('Printed identity assignments and 48 lighting state transitions passed; hardware remains protected.');
 const micron=(name,key='m180_01617')=>({key,name,source:{repository:'PrintersForAnts/Micron'}});
+for(const name of ['Nema14_Motor_Mount v5','Nema17_Motor_Mount v3','M2_Hex_Adapter','M2_Hex_Adapter_Parametric'])assert.equal(appearanceRole({...micron(name),appearance_role:'base'}),'base');
 for(const name of ['A_Drive_Frame_Upper v7','B_Drive_Frame_Lower v10','AB_Drive_Top_Bearing_Retainer v5','Rear_Plate v1','Front_Body v6','Board_Spacer_Micron','Main Handle v3','Hinge Barrel v19'])assert.equal(appearanceRole(micron(name)),'base');
 for(const name of ['Belt_Clamp_A v2','Belt_Clamp_B v2','Toothed_Idler_Carrier_Pinned v1','Extruder_Knob v2','Bezel v2','Railstop v1'])assert.equal(appearanceRole(micron(name)),'accent');
 for(const name of ['Rear_Gantry_Extrusion','X_Extrusion'])assert.equal(appearanceRole(micron(name)),'frame');
 for(const name of ['PG9_Gland v2','Diffuser_Micron v9','GT2_16T_Pulley v2','Powge_64T_Pulley v1','Revo Voron','2510 Axial Fan','M3 Threaded Insert v5','MGN7-220mm v1','PCB'])assert.equal(appearanceRole(micron(name)),null);
 assert.equal(appearanceRole({...micron('Rear_Plate v1'),source:{repository:'another/assembly'}}),null);
+for(const name of ['M3 Washer 7mmx.5mm','MGN7-H-Carriage v1','Outer Housing','Release clip (8) (1)','p2^UHP-200_psu_octopus_spider_and_pi_mount']){
+ const p={...micron(name),appearance_role:'base'};p.source.assembly_path=[name==='Outer Housing'?'KGLM-3 Spherical Bearing:1':name.startsWith('Release')?'ECAS_Fitting v1:1':name.startsWith('p2')?'Meanwell-UHP-200-24:1':'Idler_Printed:1'];assert.equal(appearanceRole(p),null);
+}
+for(const path of ['CenterPanelClip-3.5mm (14):1','CornerPanelClip (2):1','reverseBowdenEntry:1','Panels:1/Handles:1'])assert.equal(appearanceRole({...micron('SOLID','m120_00941'),source:{repository:'PrintersForAnts/Micron',assembly_path:[path]}}),'base');
+for(const name of ['Front_Cover v7','Idler_Carrier_Pinned v1','Printed_Spacer','Mounting_Cover_B v6','Z_Belt_Cover_A v5'])assert.equal(appearanceRole(micron(name)),'accent');

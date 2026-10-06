@@ -3,7 +3,7 @@ ensureWorkspaceEntry(import.meta.url);
 import {setupSceneDisplay} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {workspaceFrame,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=workspace-belts-1';
-import {appearanceRole} from './appearance-role.mjs?v=workspace-belts-1';
+import {appearanceRole} from './appearance-role.mjs?v=a2d85521f7f516860221';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
@@ -14,7 +14,7 @@ import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {setupPublicInfo} from './public-info.js?v=0b0f91d7a82d25acbb87';
 import {applyNativeMotionProfile,loadNativeMotionProfile} from './native-motion-profile.mjs?v=91532eb992519143f437';
 import {createCommunityAdapter} from './community-adapter.mjs?v=0bfacb332d4a57985927';
-import {setupNativeMotionControls} from './native-motion-controls.mjs?v=831ac2a46064dd2881dc';
+import {setupNativeMotionControls} from './native-motion-controls.mjs?v=d9cf796abd5745b1e7d1';
 export async function mount(scope){
 const $=s=>document.querySelector(s),id='fysetc_v24_250_pro',stage=$('#stage');
 setupMachineNavigation(id);setupPublicInfo({includeDownloads:false});

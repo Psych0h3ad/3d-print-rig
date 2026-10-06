@@ -79,3 +79,8 @@ nodes=dom();let initialFailure=true;console.error=()=>{};
 try{controller=await setupConfigurations(catalog,async()=>{if(initialFailure)throw Error('initial failure')})}finally{console.error=savedError}
 assert.equal(controller.current,null);assert.equal(controller.draft.pending,true);
 initialFailure=false;assert.equal(await controller.applyDraft(),true);assert.equal(controller.current,base);
+
+// Native references may omit optional notes; rendering must still commit.
+const nativeReference={...base,id:'native-reference',fit:{complete_head_native:{state:'reference'}}};
+nodes=dom('?configuration=native-reference');controller=await setupConfigurations({...catalog,variants:[base,nativeReference]},async()=>{});
+assert.equal(controller.current,nativeReference);assert.equal(nodes.get('#configStatus').dataset.variant,nativeReference.id);

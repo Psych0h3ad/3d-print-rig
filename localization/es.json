@@ -7761,6 +7761,122 @@
     "hydra.24": {
       "source_revision": "50116da67ad129bf0704",
       "text": "Conducto MK6 V6 4010 · MK6 · RH"
+    },
+    "trinity.01": {
+      "source_revision": "b881e28eb31f2249b4ce",
+      "text": "Ensamblaje original Trinity / Crossbow con Sherpa Mini R2, dos ventiladores 3628, un ventilador 2510 para el hotend, hotend, boquilla y Beacon RevD original. La instalación en la impresora, la holgura de la sonda, el cableado y el movimiento del cortador siguen sin verificar. Se omiten los negativos de construcción del logotipo; se registran las reparaciones de recorte de los conductos Chube."
+    },
+    "trinity.02": {
+      "source_revision": "c9208626d32ad41b90a2",
+      "text": "Trinity · Crossbow"
+    },
+    "trinity.03": {
+      "source_revision": "056f67de54437d4954e6",
+      "text": "Cortador Crossbow"
+    },
+    "trinity.04": {
+      "source_revision": "5db3731b70df38a65944",
+      "text": "Trinity · dos 3628 / 2510"
+    },
+    "trinity.05": {
+      "source_revision": "170ac8dec6ed25bb9834",
+      "text": "Trinity · ensamblajes originales"
+    },
+    "trinity.06": {
+      "source_revision": "c92d5b104bb0fa5fed38",
+      "text": "Trinity · clips de correa / brazo pulsador"
+    },
+    "trinity.07": {
+      "source_revision": "8368d57ad7c6460e71a2",
+      "text": "Se conservan las licencias originales del hardware"
+    },
+    "trinity.08": {
+      "source_revision": "42957f2c02b14cacb5a6",
+      "text": "Trinity · Monolith / 6 mm / Chube Compact / Sin cortador"
+    },
+    "trinity.09": {
+      "source_revision": "b2b468c77685e1cb4f93",
+      "text": "Trinity · Monolith / 6 mm"
+    },
+    "trinity.10": {
+      "source_revision": "3c2ee8dc4bb5db950627",
+      "text": "Trinity · Monolith MGN12H"
+    },
+    "trinity.11": {
+      "source_revision": "d2c75604d2f15d7260f8",
+      "text": "Trinity · Monolith / 6 mm / Chube Compact / Crossbow"
+    },
+    "trinity.12": {
+      "source_revision": "4ce39fe1c4c5c63d85fd",
+      "text": "Trinity · Monolith / 9–10 mm / Chube Compact / Sin cortador"
+    },
+    "trinity.13": {
+      "source_revision": "a636dde808505c34bd8b",
+      "text": "Trinity · Monolith / 9–10 mm"
+    },
+    "trinity.14": {
+      "source_revision": "a3480cfd3a94e7349713",
+      "text": "Trinity · Monolith / 9–10 mm / Chube Compact / Crossbow"
+    },
+    "trinity.15": {
+      "source_revision": "6b8681417ec339758ef2",
+      "text": "Trinity · Monolith / 6 mm / Dragon ACE Volcano / Crossbow"
+    },
+    "trinity.16": {
+      "source_revision": "163909e6a55b3e421ebb",
+      "text": "Trinity · Monolith / 9–10 mm / Dragon ACE Volcano / Crossbow"
+    },
+    "trinity.17": {
+      "source_revision": "c3496046868b8c93fd11",
+      "text": "Trinity · Voron / 6 mm / Chube Compact / Crossbow"
+    },
+    "trinity.18": {
+      "source_revision": "a83ca93e32791e09375c",
+      "text": "Trinity · Voron / 6 mm"
+    },
+    "trinity.19": {
+      "source_revision": "bf6874adb5c232c905b8",
+      "text": "Trinity · Voron MGN12H"
+    },
+    "trinity.20": {
+      "source_revision": "c3782bf33678da4dcc3c",
+      "text": "Trinity · Voron / 9–10 mm / Chube Compact / Crossbow"
+    },
+    "trinity.21": {
+      "source_revision": "dfca68b39f1c7644863e",
+      "text": "Trinity · Voron / 9–10 mm"
+    },
+    "trinity.22": {
+      "source_revision": "c1cf5242bb5c8705b8ea",
+      "text": "Trinity · Voron / 6 mm / Dragon ACE Volcano / Crossbow"
+    },
+    "trinity.23": {
+      "source_revision": "2a4633df9b6e1de10470",
+      "text": "Trinity · Voron / 9–10 mm / Dragon ACE Volcano / Crossbow"
+    },
+    "trinity.24": {
+      "source_revision": "0e42dcb3492b4a7d6ead",
+      "text": "Belt clip 6mm pullthrough test pack"
+    },
+    "trinity.25": {
+      "source_revision": "cb97abe1b81db8ae3e27",
+      "text": "Belt clip 6mm test pack"
+    },
+    "trinity.26": {
+      "source_revision": "d3389c59096d64440ea5",
+      "text": "Belt clip 9-10mm pullthrough test pack"
+    },
+    "trinity.27": {
+      "source_revision": "4e86915f00053982e102",
+      "text": "Belt clip 9-10mm test pack"
+    },
+    "trinity.28": {
+      "source_revision": "421941d693f925d6cdad",
+      "text": "Trinity Depressor Arm and Holder_"
+    },
+    "trinity.29": {
+      "source_revision": "8119c684bf28cfd1b220",
+      "text": "Los clips de prueba originales se muestran individualmente; el brazo pulsador y el soporte conservan las coordenadas del ensamblaje original. La instalación en la impresora no está registrada."
     }
   }
 }

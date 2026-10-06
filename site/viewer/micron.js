@@ -6,7 +6,7 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
-import {createMicronAdapter} from './micron-adapter.mjs?v=6177cae5e22f1f414ba2';
+import {createMicronAdapter} from './micron-adapter.mjs?v=a85c18aa4753a88824a6';
 import {setupMachineNavigation} from './machines.js?v=d6045b8af89b3984adcb';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
@@ -32,7 +32,7 @@ try{
  const root='../machines/'+id+'/',json=async name=>{return workspaceTask(async()=>{const r=await fetch(root+name,{cache:'no-cache'});if(!r.ok)throw Error(name+'の読込に失敗');return r.json()});};
  const [manifest,p,g]=await Promise.all([json('assembly_manifest.json'),json('machine_profile.json'),loadModel(new GLTFLoader(),root+'model.glb')]);
  profile=p;scene.add(g.scene);adapter=createMicronAdapter(g.scene,manifest,profile);const originals=new Map(),protectedMaterials=[];
- for(const [key,node]of adapter.nodes)node.traverse(mesh=>{if(!mesh.isMesh)return;mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();for(const material of Array.isArray(mesh.material)?mesh.material:[mesh.material]){originals.set(material,material.color.clone());if(!adapter.records.get(key).appearance_role)protectedMaterials.push(material);else if(['base','accent'].includes(adapter.records.get(key).appearance_role)){material.metalness=0;material.roughness=.72;}if(material.transparent)material.depthWrite=false}});
+ for(const row of adapter.paletteMaterials){originals.set(row.material,row.original);if(!row.role)protectedMaterials.push(row.material);}
  grid.position.y=Math.min(...manifest.parts.map(p=>p.bounds_mm[0][2]))*.001-.002;
  $('#machineTitle').textContent=profile.size_mm===120?'Micron / 120':'Micron Plus / 180';$('#structureLabel').textContent=profile.source_revision;$('#badge').textContent=$('#machineTitle').textContent+' · '+manifest.parts.length.toLocaleString()+' PARTS';
  const limits=profile.display_limits_mm;$('#clearanceStatus').textContent=`表示範囲 X ${limits.X.join('–')} / Y ${limits.Y.join('–')} / Z ${limits.Z.join('–')} mm。レール内の表示上限です。干渉なし可動域ではありません。`;

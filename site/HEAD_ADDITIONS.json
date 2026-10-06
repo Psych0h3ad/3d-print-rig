@@ -1,0 +1,711 @@
+{
+  "schema": "3d-print-rig-head-additions-v1",
+  "version": "trinity-crossbow-87",
+  "toolheads": [
+    {
+      "id": "trinity_crossbow",
+      "label": "Trinity · Crossbow"
+    }
+  ],
+  "mounts": [
+    {
+      "id": "crossbow",
+      "label": "Crossbow cutter"
+    }
+  ],
+  "cooling_options": [
+    {
+      "id": "trinity_dual_3628",
+      "label": "Trinity · dual 3628 / 2510"
+    }
+  ],
+  "gantries": [
+    {
+      "id": "trinity_monolith_6",
+      "label": "Trinity · Monolith / 6 mm"
+    },
+    {
+      "id": "trinity_monolith_9",
+      "label": "Trinity · Monolith / 9–10 mm"
+    },
+    {
+      "id": "trinity_voron_6",
+      "label": "Trinity · Voron / 6 mm"
+    },
+    {
+      "id": "trinity_voron_9",
+      "label": "Trinity · Voron / 9–10 mm"
+    }
+  ],
+  "carriages": [
+    {
+      "id": "trinity_monolith",
+      "label": "Trinity · Monolith MGN12H"
+    },
+    {
+      "id": "trinity_voron",
+      "label": "Trinity · Voron MGN12H"
+    }
+  ],
+  "assets": {
+    "trinity_v05": {
+      "component_id": "trinity_v05",
+      "parts": 83,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity/v05/parts.json",
+          "bytes": 81929,
+          "sha256": "79924abff244459bb864e78c526a2c08d026aebee86fd566332d814732eafe59"
+        },
+        "model.glb": {
+          "path": "trinity/v05/model.glb.gz",
+          "bytes": 18188352,
+          "sha256": "2100500cfaa3c2957633b82f857f39bd7d63741d870394265814a822f615674f",
+          "encoding": "gzip",
+          "decoded_bytes": 69597416,
+          "decoded_sha256": "823243f12c6ba91187c459fd394fd161762c18fd4a77eee436c03f1c2715517d"
+        }
+      }
+    },
+    "trinity_v06": {
+      "component_id": "trinity_v06",
+      "parts": 96,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity/v06/parts.json",
+          "bytes": 93492,
+          "sha256": "0ecd5662f6ba2bf6d30b649eb56e3f220d06ad9a915431dbf19be90c012c3945"
+        },
+        "model.glb": {
+          "path": "trinity/v06/model.glb.gz",
+          "bytes": 18691567,
+          "sha256": "37214886f698975b8cabe00381f246ee4a1d1df81b44b7746ab53083f03c979e",
+          "encoding": "gzip",
+          "decoded_bytes": 71865256,
+          "decoded_sha256": "e6800995b37a35fe55c5b4f950ac3c2cb41a725cf527e378fe40dffe835b4f65"
+        }
+      }
+    },
+    "trinity_v07": {
+      "component_id": "trinity_v07",
+      "parts": 77,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity/v07/parts.json",
+          "bytes": 77204,
+          "sha256": "b747bf96bb5e9230fa2b47f5775d4576c747a8a8fdc3fc1dea659243993c978d"
+        },
+        "model.glb": {
+          "path": "trinity/v07/model.glb.gz",
+          "bytes": 15601226,
+          "sha256": "70cd247f2b626330fb5cfabad6b9900c55b8c147eb533591ddc45a35ada44243",
+          "encoding": "gzip",
+          "decoded_bytes": 57220564,
+          "decoded_sha256": "3c3e96c36eb7f82837e3b5dc0c670d024db6bcc9ee9a4f4ec6c9dd8bba8a3b18"
+        }
+      }
+    },
+    "trinity_v08": {
+      "component_id": "trinity_v08",
+      "parts": 90,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity/v08/parts.json",
+          "bytes": 93200,
+          "sha256": "4a255d35e47bd6493e8f6d02ac48e5769f56288f2079cfeadd6d54f3033335f2"
+        },
+        "model.glb": {
+          "path": "trinity/v08/model.glb.gz",
+          "bytes": 16075578,
+          "sha256": "d129689d60149f7a4ea52904199e07e31c93ac09d8e06efaa46fef6c1a449cee",
+          "encoding": "gzip",
+          "decoded_bytes": 59504428,
+          "decoded_sha256": "d262bf66aaa10fb29ec0143217df1506e41f516afb8c5b7124aa1ce61c696c1b"
+        }
+      }
+    },
+    "trinity_v09": {
+      "component_id": "trinity_v09",
+      "parts": 102,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity/v09/parts.json",
+          "bytes": 95714,
+          "sha256": "0a406e1bce9216793dddc569c270e6ca217cd83b87787fd8b5978d721d83a5ce"
+        },
+        "model.glb": {
+          "path": "trinity/v09/model.glb.gz",
+          "bytes": 19711007,
+          "sha256": "19ed7e4b6c0995763c887a2458266bf609798ab60f07fed9f0c3f37e5060a7be",
+          "encoding": "gzip",
+          "decoded_bytes": 75924832,
+          "decoded_sha256": "a50bb688d3e75371754e3ef63cdc117aba7d830f669f98a44274ea23879c0f56"
+        }
+      }
+    },
+    "trinity_v10": {
+      "component_id": "trinity_v10",
+      "parts": 103,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity/v10/parts.json",
+          "bytes": 96973,
+          "sha256": "5f6e5f12d354cbb5cba3099f8e9d1be57a3316c9f555fb61823b7a49c6b5c111"
+        },
+        "model.glb": {
+          "path": "trinity/v10/model.glb.gz",
+          "bytes": 19739257,
+          "sha256": "3df3bc0139bdadfb4fc5469bc22bd3ce990cdf275d6c32cff55c2024611fe095",
+          "encoding": "gzip",
+          "decoded_bytes": 76068572,
+          "decoded_sha256": "26fd8c6acee27c23d1901689239177dbacb88df0afb9b8e6c9dba98ab663038c"
+        }
+      }
+    },
+    "trinity_v11": {
+      "component_id": "trinity_v11",
+      "parts": 99,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity/v11/parts.json",
+          "bytes": 95709,
+          "sha256": "efa383b5c56ce1792df5908de9333b1e85aa0848da869ea5c5c8bdccacf2abda"
+        },
+        "model.glb": {
+          "path": "trinity/v11/model.glb.gz",
+          "bytes": 16261095,
+          "sha256": "2be466217448c557c1f16d3dbb1393aa5839ae988f16535a63daf6313520c468",
+          "encoding": "gzip",
+          "decoded_bytes": 60218184,
+          "decoded_sha256": "9f44968d8af3094d8a4b04363d1a84393e3221ec2fe28f94be15da462c2b7897"
+        }
+      }
+    },
+    "trinity_v12": {
+      "component_id": "trinity_v12",
+      "parts": 101,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity/v12/parts.json",
+          "bytes": 97891,
+          "sha256": "67b6fed27530f23ee043717f7f3f44225baef8c8a9ec05f69d17bf8018d7aec8"
+        },
+        "model.glb": {
+          "path": "trinity/v12/model.glb.gz",
+          "bytes": 16255371,
+          "sha256": "a5fd271bdff8dd7688ecd4c605d1ec6f5b9f1704dc775b2a48aefc0cf49b16b9",
+          "encoding": "gzip",
+          "decoded_bytes": 60356304,
+          "decoded_sha256": "fe6efb6825d986bc686141791f74544772eafdf47e9535e78eecefb744ad7b9c"
+        }
+      }
+    },
+    "trinity_v13": {
+      "component_id": "trinity_v13",
+      "parts": 105,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity/v13/parts.json",
+          "bytes": 98082,
+          "sha256": "fa2fca8193e903bf0ffe8c5b0048c462b08e385abbf4df8f3ce47480740db556"
+        },
+        "model.glb": {
+          "path": "trinity/v13/model.glb.gz",
+          "bytes": 17282597,
+          "sha256": "22893eaf7938cdda9d6c4a277b6294802a913c2ee6be042687b3367d11ed76d1",
+          "encoding": "gzip",
+          "decoded_bytes": 64279292,
+          "decoded_sha256": "593f35272f2d62436dcc33e3ea2b3e13ca15a4d23a8f96dc4934e248b324151b"
+        }
+      }
+    },
+    "trinity_v14": {
+      "component_id": "trinity_v14",
+      "parts": 107,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/",
+        "local_directory": "toolhead-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "trinity/v14/parts.json",
+          "bytes": 100117,
+          "sha256": "adee73f190d0a2fbe33b8122e8c7e1a8aa1c1782b9ad7d6e0d6228515141586b"
+        },
+        "model.glb": {
+          "path": "trinity/v14/model.glb.gz",
+          "bytes": 17415878,
+          "sha256": "09af2a417b0cc4a53fee50ffb6bcf24a66f4c77ab15a369ed2d21a24f8dd2e79",
+          "encoding": "gzip",
+          "decoded_bytes": 64919268,
+          "decoded_sha256": "9cb8cea56e75192ba433f264b5cfa9fe6cfc08d853b11a53c8348c567c3b78d7"
+        }
+      }
+    }
+  },
+  "variants": [
+    {
+      "id": "trinity87__v05",
+      "toolhead": "trinity_crossbow",
+      "mount": "fixed",
+      "extruder": "sherpa_r2_standard_short",
+      "hotend": "chube_compact",
+      "gantry": "trinity_monolith_6",
+      "carriage": "trinity_monolith",
+      "probe": "beacon_revd",
+      "board": "none",
+      "cooling": "trinity_dual_3628",
+      "belt_width_mm": 6,
+      "base_asset": "trinity_v05",
+      "base_hidden_keys": [],
+      "head_translation_mm": [
+        0,
+        0,
+        0
+      ],
+      "modules": [],
+      "head_only": true,
+      "hardware_assembled": true,
+      "notes": [
+        "Native Trinity / Crossbow source assembly with Sherpa Mini R2, dual 3628 fans, a 2510 hotend fan, hotend, nozzle and source Beacon RevD. Machine installation, probe clearance, wiring and cutter motion remain unverified. Construction logo negatives are omitted; Chube duct trim repairs are recorded."
+      ],
+      "display_scope": "Native Trinity / Crossbow source assembly with Sherpa Mini R2, dual 3628 fans, a 2510 hotend fan, hotend, nozzle and source Beacon RevD. Machine installation, probe clearance, wiring and cutter motion remain unverified. Construction logo negatives are omitted; Chube duct trim repairs are recorded.",
+      "fit": {
+        "nozzle_mm": [
+          9.162892666836342e-12,
+          9.0,
+          -81.18199999999878
+        ],
+        "complete_head_native": {
+          "state": "reference",
+          "scope": "Source hardware assembly; measured extruder datum. Full body/probe/cutter certification is not claimed.",
+          "notes": []
+        }
+      },
+      "source_version": "231a16281d6d34b1b3b0ee8b65ae0b4f00fde7e7",
+      "source_file": "CAD/Monolith Belt Path/Sherpa extruder/Trinity Chube Compact monolith mgn12 6mm sherpa No Cutter.step"
+    },
+    {
+      "id": "trinity87__v06",
+      "toolhead": "trinity_crossbow",
+      "mount": "crossbow",
+      "extruder": "sherpa_r2_standard_short",
+      "hotend": "chube_compact",
+      "gantry": "trinity_monolith_6",
+      "carriage": "trinity_monolith",
+      "probe": "beacon_revd",
+      "board": "none",
+      "cooling": "trinity_dual_3628",
+      "belt_width_mm": 6,
+      "base_asset": "trinity_v06",
+      "base_hidden_keys": [],
+      "head_translation_mm": [
+        0,
+        0,
+        0
+      ],
+      "modules": [],
+      "head_only": true,
+      "hardware_assembled": true,
+      "notes": [
+        "Native Trinity / Crossbow source assembly with Sherpa Mini R2, dual 3628 fans, a 2510 hotend fan, hotend, nozzle and source Beacon RevD. Machine installation, probe clearance, wiring and cutter motion remain unverified. Construction logo negatives are omitted; Chube duct trim repairs are recorded."
+      ],
+      "display_scope": "Native Trinity / Crossbow source assembly with Sherpa Mini R2, dual 3628 fans, a 2510 hotend fan, hotend, nozzle and source Beacon RevD. Machine installation, probe clearance, wiring and cutter motion remain unverified. Construction logo negatives are omitted; Chube duct trim repairs are recorded.",
+      "fit": {
+        "nozzle_mm": [
+          9.162892666836342e-12,
+          9.0,
+          -81.18199999999878
+        ],
+        "complete_head_native": {
+          "state": "reference",
+          "scope": "Source hardware assembly; measured extruder datum. Full body/probe/cutter certification is not claimed.",
+          "notes": []
+        }
+      },
+      "source_version": "231a16281d6d34b1b3b0ee8b65ae0b4f00fde7e7",
+      "source_file": "CAD/Monolith Belt Path/Sherpa extruder/Trinity Chube Compact monolith mgn12 6mm sherpa.step"
+    },
+    {
+      "id": "trinity87__v07",
+      "toolhead": "trinity_crossbow",
+      "mount": "fixed",
+      "extruder": "sherpa_r2_standard_short",
+      "hotend": "chube_compact",
+      "gantry": "trinity_monolith_9",
+      "carriage": "trinity_monolith",
+      "probe": "beacon_revd",
+      "board": "none",
+      "cooling": "trinity_dual_3628",
+      "belt_width_mm": 9,
+      "base_asset": "trinity_v07",
+      "base_hidden_keys": [],
+      "head_translation_mm": [
+        0,
+        0,
+        0
+      ],
+      "modules": [],
+      "head_only": true,
+      "hardware_assembled": true,
+      "notes": [
+        "Native Trinity / Crossbow source assembly with Sherpa Mini R2, dual 3628 fans, a 2510 hotend fan, hotend, nozzle and source Beacon RevD. Machine installation, probe clearance, wiring and cutter motion remain unverified. Construction logo negatives are omitted; Chube duct trim repairs are recorded."
+      ],
+      "display_scope": "Native Trinity / Crossbow source assembly with Sherpa Mini R2, dual 3628 fans, a 2510 hotend fan, hotend, nozzle and source Beacon RevD. Machine installation, probe clearance, wiring and cutter motion remain unverified. Construction logo negatives are omitted; Chube duct trim repairs are recorded.",
+      "fit": {
+        "nozzle_mm": [
+          9.162892666836342e-12,
+          9.0,
+          -81.18199999999878
+        ],
+        "complete_head_native": {
+          "state": "reference",
+          "scope": "Source hardware assembly; measured extruder datum. Full body/probe/cutter certification is not claimed.",
+          "notes": []
+        }
+      },
+      "source_version": "231a16281d6d34b1b3b0ee8b65ae0b4f00fde7e7",
+      "source_file": "CAD/Monolith Belt Path/Sherpa extruder/Trinity Chube Compact monolith mgn12 9-10mm sherpa No Cutter.step"
+    },
+    {
+      "id": "trinity87__v08",
+      "toolhead": "trinity_crossbow",
+      "mount": "crossbow",
+      "extruder": "sherpa_r2_standard_short",
+      "hotend": "chube_compact",
+      "gantry": "trinity_monolith_9",
+      "carriage": "trinity_monolith",
+      "probe": "beacon_revd",
+      "board": "none",
+      "cooling": "trinity_dual_3628",
+      "belt_width_mm": 9,
+      "base_asset": "trinity_v08",
+      "base_hidden_keys": [],
+      "head_translation_mm": [
+        0,
+        0,
+        0
+      ],
+      "modules": [],
+      "head_only": true,
+      "hardware_assembled": true,
+      "notes": [
+        "Native Trinity / Crossbow source assembly with Sherpa Mini R2, dual 3628 fans, a 2510 hotend fan, hotend, nozzle and source Beacon RevD. Machine installation, probe clearance, wiring and cutter motion remain unverified. Construction logo negatives are omitted; Chube duct trim repairs are recorded."
+      ],
+      "display_scope": "Native Trinity / Crossbow source assembly with Sherpa Mini R2, dual 3628 fans, a 2510 hotend fan, hotend, nozzle and source Beacon RevD. Machine installation, probe clearance, wiring and cutter motion remain unverified. Construction logo negatives are omitted; Chube duct trim repairs are recorded.",
+      "fit": {
+        "nozzle_mm": [
+          9.162892666836342e-12,
+          9.0,
+          -81.18199999999878
+        ],
+        "complete_head_native": {
+          "state": "reference",
+          "scope": "Source hardware assembly; measured extruder datum. Full body/probe/cutter certification is not claimed.",
+          "notes": []
+        }
+      },
+      "source_version": "231a16281d6d34b1b3b0ee8b65ae0b4f00fde7e7",
+      "source_file": "CAD/Monolith Belt Path/Sherpa extruder/Trinity Chube Compact monolith mgn12 9-10mm sherpa.step"
+    },
+    {
+      "id": "trinity87__v09",
+      "toolhead": "trinity_crossbow",
+      "mount": "crossbow",
+      "extruder": "sherpa_r2_standard_short",
+      "hotend": "dragon_ace_volcano",
+      "gantry": "trinity_monolith_6",
+      "carriage": "trinity_monolith",
+      "probe": "beacon_revd",
+      "board": "none",
+      "cooling": "trinity_dual_3628",
+      "belt_width_mm": 6,
+      "base_asset": "trinity_v09",
+      "base_hidden_keys": [],
+      "head_translation_mm": [
+        0,
+        0,
+        0
+      ],
+      "modules": [],
+      "head_only": true,
+      "hardware_assembled": true,
+      "notes": [
+        "Native Trinity / Crossbow source assembly with Sherpa Mini R2, dual 3628 fans, a 2510 hotend fan, hotend, nozzle and source Beacon RevD. Machine installation, probe clearance, wiring and cutter motion remain unverified. Construction logo negatives are omitted; Chube duct trim repairs are recorded."
+      ],
+      "display_scope": "Native Trinity / Crossbow source assembly with Sherpa Mini R2, dual 3628 fans, a 2510 hotend fan, hotend, nozzle and source Beacon RevD. Machine installation, probe clearance, wiring and cutter motion remain unverified. Construction logo negatives are omitted; Chube duct trim repairs are recorded.",
+      "fit": {
+        "nozzle_mm": [
+          -4.440892098500626e-15,
+          8.999999999999464,
+          -80.99999999999999
+        ],
+        "complete_head_native": {
+          "state": "reference",
+          "scope": "Source hardware assembly; measured extruder datum. Full body/probe/cutter certification is not claimed.",
+          "notes": []
+        }
+      },
+      "source_version": "231a16281d6d34b1b3b0ee8b65ae0b4f00fde7e7",
+      "source_file": "CAD/Monolith Belt Path/Sherpa extruder/Trinity monolith mgn12 6mm sherpa cutter.step"
+    },
+    {
+      "id": "trinity87__v10",
+      "toolhead": "trinity_crossbow",
+      "mount": "crossbow",
+      "extruder": "sherpa_r2_standard_short",
+      "hotend": "dragon_ace_volcano",
+      "gantry": "trinity_monolith_9",
+      "carriage": "trinity_monolith",
+      "probe": "beacon_revd",
+      "board": "none",
+      "cooling": "trinity_dual_3628",
+      "belt_width_mm": 9,
+      "base_asset": "trinity_v10",
+      "base_hidden_keys": [],
+      "head_translation_mm": [
+        0,
+        0,
+        0
+      ],
+      "modules": [],
+      "head_only": true,
+      "hardware_assembled": true,
+      "notes": [
+        "Native Trinity / Crossbow source assembly with Sherpa Mini R2, dual 3628 fans, a 2510 hotend fan, hotend, nozzle and source Beacon RevD. Machine installation, probe clearance, wiring and cutter motion remain unverified. Construction logo negatives are omitted; Chube duct trim repairs are recorded."
+      ],
+      "display_scope": "Native Trinity / Crossbow source assembly with Sherpa Mini R2, dual 3628 fans, a 2510 hotend fan, hotend, nozzle and source Beacon RevD. Machine installation, probe clearance, wiring and cutter motion remain unverified. Construction logo negatives are omitted; Chube duct trim repairs are recorded.",
+      "fit": {
+        "nozzle_mm": [
+          -4.440892098500626e-15,
+          8.999999999999464,
+          -80.99999999999999
+        ],
+        "complete_head_native": {
+          "state": "reference",
+          "scope": "Source hardware assembly; measured extruder datum. Full body/probe/cutter certification is not claimed.",
+          "notes": []
+        }
+      },
+      "source_version": "231a16281d6d34b1b3b0ee8b65ae0b4f00fde7e7",
+      "source_file": "CAD/Monolith Belt Path/Sherpa extruder/Trinity monolith mgn12 9-10mm sherpa cutter.step"
+    },
+    {
+      "id": "trinity87__v11",
+      "toolhead": "trinity_crossbow",
+      "mount": "crossbow",
+      "extruder": "sherpa_r2_standard_short",
+      "hotend": "chube_compact",
+      "gantry": "trinity_voron_6",
+      "carriage": "trinity_voron",
+      "probe": "beacon_revd",
+      "board": "none",
+      "cooling": "trinity_dual_3628",
+      "belt_width_mm": 6,
+      "base_asset": "trinity_v11",
+      "base_hidden_keys": [],
+      "head_translation_mm": [
+        0,
+        0,
+        0
+      ],
+      "modules": [],
+      "head_only": true,
+      "hardware_assembled": true,
+      "notes": [
+        "Native Trinity / Crossbow source assembly with Sherpa Mini R2, dual 3628 fans, a 2510 hotend fan, hotend, nozzle and source Beacon RevD. Machine installation, probe clearance, wiring and cutter motion remain unverified. Construction logo negatives are omitted; Chube duct trim repairs are recorded."
+      ],
+      "display_scope": "Native Trinity / Crossbow source assembly with Sherpa Mini R2, dual 3628 fans, a 2510 hotend fan, hotend, nozzle and source Beacon RevD. Machine installation, probe clearance, wiring and cutter motion remain unverified. Construction logo negatives are omitted; Chube duct trim repairs are recorded.",
+      "fit": {
+        "nozzle_mm": [
+          9.162892666836342e-12,
+          9.0,
+          -81.18199999999878
+        ],
+        "complete_head_native": {
+          "state": "reference",
+          "scope": "Source hardware assembly; measured extruder datum. Full body/probe/cutter certification is not claimed.",
+          "notes": []
+        }
+      },
+      "source_version": "231a16281d6d34b1b3b0ee8b65ae0b4f00fde7e7",
+      "source_file": "CAD/Voron Belt Path/Sherpa extruder/Trinity Chube Compact voron mgn12 6mm sherpa.step"
+    },
+    {
+      "id": "trinity87__v12",
+      "toolhead": "trinity_crossbow",
+      "mount": "crossbow",
+      "extruder": "sherpa_r2_standard_short",
+      "hotend": "chube_compact",
+      "gantry": "trinity_voron_9",
+      "carriage": "trinity_voron",
+      "probe": "beacon_revd",
+      "board": "none",
+      "cooling": "trinity_dual_3628",
+      "belt_width_mm": 9,
+      "base_asset": "trinity_v12",
+      "base_hidden_keys": [],
+      "head_translation_mm": [
+        0,
+        0,
+        0
+      ],
+      "modules": [],
+      "head_only": true,
+      "hardware_assembled": true,
+      "notes": [
+        "Native Trinity / Crossbow source assembly with Sherpa Mini R2, dual 3628 fans, a 2510 hotend fan, hotend, nozzle and source Beacon RevD. Machine installation, probe clearance, wiring and cutter motion remain unverified. Construction logo negatives are omitted; Chube duct trim repairs are recorded."
+      ],
+      "display_scope": "Native Trinity / Crossbow source assembly with Sherpa Mini R2, dual 3628 fans, a 2510 hotend fan, hotend, nozzle and source Beacon RevD. Machine installation, probe clearance, wiring and cutter motion remain unverified. Construction logo negatives are omitted; Chube duct trim repairs are recorded.",
+      "fit": {
+        "nozzle_mm": [
+          9.162892666836342e-12,
+          9.0,
+          -81.18199999999878
+        ],
+        "complete_head_native": {
+          "state": "reference",
+          "scope": "Source hardware assembly; measured extruder datum. Full body/probe/cutter certification is not claimed.",
+          "notes": []
+        }
+      },
+      "source_version": "231a16281d6d34b1b3b0ee8b65ae0b4f00fde7e7",
+      "source_file": "CAD/Voron Belt Path/Sherpa extruder/Trinity Chube Compact voron mgn12 9mm sherpa.step"
+    },
+    {
+      "id": "trinity87__v13",
+      "toolhead": "trinity_crossbow",
+      "mount": "crossbow",
+      "extruder": "sherpa_r2_standard_short",
+      "hotend": "dragon_ace_volcano",
+      "gantry": "trinity_voron_6",
+      "carriage": "trinity_voron",
+      "probe": "beacon_revd",
+      "board": "none",
+      "cooling": "trinity_dual_3628",
+      "belt_width_mm": 6,
+      "base_asset": "trinity_v13",
+      "base_hidden_keys": [],
+      "head_translation_mm": [
+        0,
+        0,
+        0
+      ],
+      "modules": [],
+      "head_only": true,
+      "hardware_assembled": true,
+      "notes": [
+        "Native Trinity / Crossbow source assembly with Sherpa Mini R2, dual 3628 fans, a 2510 hotend fan, hotend, nozzle and source Beacon RevD. Machine installation, probe clearance, wiring and cutter motion remain unverified. Construction logo negatives are omitted; Chube duct trim repairs are recorded."
+      ],
+      "display_scope": "Native Trinity / Crossbow source assembly with Sherpa Mini R2, dual 3628 fans, a 2510 hotend fan, hotend, nozzle and source Beacon RevD. Machine installation, probe clearance, wiring and cutter motion remain unverified. Construction logo negatives are omitted; Chube duct trim repairs are recorded.",
+      "fit": {
+        "nozzle_mm": [
+          -4.440892098500626e-15,
+          8.999999999999464,
+          -80.99999999999999
+        ],
+        "complete_head_native": {
+          "state": "reference",
+          "scope": "Source hardware assembly; measured extruder datum. Full body/probe/cutter certification is not claimed.",
+          "notes": []
+        }
+      },
+      "source_version": "231a16281d6d34b1b3b0ee8b65ae0b4f00fde7e7",
+      "source_file": "CAD/Voron Belt Path/Sherpa extruder/Trinity voron mgn12 6mm sherpa cutter.step"
+    },
+    {
+      "id": "trinity87__v14",
+      "toolhead": "trinity_crossbow",
+      "mount": "crossbow",
+      "extruder": "sherpa_r2_standard_short",
+      "hotend": "dragon_ace_volcano",
+      "gantry": "trinity_voron_9",
+      "carriage": "trinity_voron",
+      "probe": "beacon_revd",
+      "board": "none",
+      "cooling": "trinity_dual_3628",
+      "belt_width_mm": 9,
+      "base_asset": "trinity_v14",
+      "base_hidden_keys": [],
+      "head_translation_mm": [
+        0,
+        0,
+        0
+      ],
+      "modules": [],
+      "head_only": true,
+      "hardware_assembled": true,
+      "notes": [
+        "Native Trinity / Crossbow source assembly with Sherpa Mini R2, dual 3628 fans, a 2510 hotend fan, hotend, nozzle and source Beacon RevD. Machine installation, probe clearance, wiring and cutter motion remain unverified. Construction logo negatives are omitted; Chube duct trim repairs are recorded."
+      ],
+      "display_scope": "Native Trinity / Crossbow source assembly with Sherpa Mini R2, dual 3628 fans, a 2510 hotend fan, hotend, nozzle and source Beacon RevD. Machine installation, probe clearance, wiring and cutter motion remain unverified. Construction logo negatives are omitted; Chube duct trim repairs are recorded.",
+      "fit": {
+        "nozzle_mm": [
+          -4.440892098500626e-15,
+          8.999999999999464,
+          -80.99999999999999
+        ],
+        "complete_head_native": {
+          "state": "reference",
+          "scope": "Source hardware assembly; measured extruder datum. Full body/probe/cutter certification is not claimed.",
+          "notes": []
+        }
+      },
+      "source_version": "231a16281d6d34b1b3b0ee8b65ae0b4f00fde7e7",
+      "source_file": "CAD/Voron Belt Path/Sherpa extruder/Trinity voron mgn12 9mm sherpa cutter.step"
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://github.com/Martin-Ivanc/Trinity-Crossbow-Cutter",
+      "commit": "231a16281d6d34b1b3b0ee8b65ae0b4f00fde7e7",
+      "license": "GPL-3.0"
+    },
+    {
+      "url": "https://github.com/WV-design/Trinity-toolhead",
+      "commit": "d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
+      "license": "GPL-3.0"
+    },
+    {
+      "url": "https://github.com/DW-Tas/Crossbow-Filament-Cutter",
+      "commit": "5395af65bed8c26566069b7009b9a7f8b7a05bb5",
+      "license": "CC BY-NC-SA 4.0"
+    }
+  ]
+}

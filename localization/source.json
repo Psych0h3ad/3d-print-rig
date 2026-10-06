@@ -9725,6 +9725,151 @@
       "kind": "message",
       "ja": "MK6 V6 4010ダクト · MK6 · RH",
       "en": "MK6 V6 4010 duct · MK6 · RH"
+    },
+    "trinity.01": {
+      "kind": "message",
+      "ja": "Trinity / Crossbowの原本組立にSherpa Mini R2を装着。3628ファン2個、2510ホットエンド冷却ファン、ホットエンド、ノズル、原本Beacon RevDを表示。機体への装着、プローブのクリアランス、配線、カッター動作は未検証です。ロゴの作図用負形状を省き、Chubeダクトのトリム修復を記録しています。",
+      "en": "Native Trinity / Crossbow source assembly with Sherpa Mini R2, dual 3628 fans, a 2510 hotend fan, hotend, nozzle and source Beacon RevD. Machine installation, probe clearance, wiring and cutter motion remain unverified. Construction logo negatives are omitted; Chube duct trim repairs are recorded."
+    },
+    "trinity.02": {
+      "kind": "message",
+      "ja": "Trinity · Crossbow",
+      "en": "Trinity · Crossbow"
+    },
+    "trinity.03": {
+      "kind": "message",
+      "ja": "Crossbowカッター",
+      "en": "Crossbow cutter"
+    },
+    "trinity.04": {
+      "kind": "message",
+      "ja": "Trinity · 3628×2 / 2510",
+      "en": "Trinity · dual 3628 / 2510"
+    },
+    "trinity.05": {
+      "kind": "message",
+      "ja": "Trinity · 原本組立",
+      "en": "Trinity · source assemblies"
+    },
+    "trinity.06": {
+      "kind": "message",
+      "ja": "Trinity · ベルトクリップ / 押下アーム",
+      "en": "Trinity · belt clips / depressor"
+    },
+    "trinity.07": {
+      "kind": "message",
+      "ja": "ハードウェア原本の条件を保持",
+      "en": "Original hardware licenses retained"
+    },
+    "trinity.08": {
+      "kind": "message",
+      "ja": "Trinity · Monolith / 6 mm / Chube Compact / カッターなし",
+      "en": "Trinity · Monolith / 6 mm / Chube Compact / No cutter"
+    },
+    "trinity.09": {
+      "kind": "message",
+      "ja": "Trinity · Monolith / 6 mm",
+      "en": "Trinity · Monolith / 6 mm"
+    },
+    "trinity.10": {
+      "kind": "message",
+      "ja": "Trinity · Monolith MGN12H",
+      "en": "Trinity · Monolith MGN12H"
+    },
+    "trinity.11": {
+      "kind": "message",
+      "ja": "Trinity · Monolith / 6 mm / Chube Compact / Crossbow",
+      "en": "Trinity · Monolith / 6 mm / Chube Compact / Crossbow"
+    },
+    "trinity.12": {
+      "kind": "message",
+      "ja": "Trinity · Monolith / 9–10 mm / Chube Compact / カッターなし",
+      "en": "Trinity · Monolith / 9–10 mm / Chube Compact / No cutter"
+    },
+    "trinity.13": {
+      "kind": "message",
+      "ja": "Trinity · Monolith / 9–10 mm",
+      "en": "Trinity · Monolith / 9–10 mm"
+    },
+    "trinity.14": {
+      "kind": "message",
+      "ja": "Trinity · Monolith / 9–10 mm / Chube Compact / Crossbow",
+      "en": "Trinity · Monolith / 9–10 mm / Chube Compact / Crossbow"
+    },
+    "trinity.15": {
+      "kind": "message",
+      "ja": "Trinity · Monolith / 6 mm / Dragon ACE Volcano / Crossbow",
+      "en": "Trinity · Monolith / 6 mm / Dragon ACE Volcano / Crossbow"
+    },
+    "trinity.16": {
+      "kind": "message",
+      "ja": "Trinity · Monolith / 9–10 mm / Dragon ACE Volcano / Crossbow",
+      "en": "Trinity · Monolith / 9–10 mm / Dragon ACE Volcano / Crossbow"
+    },
+    "trinity.17": {
+      "kind": "message",
+      "ja": "Trinity · Voron / 6 mm / Chube Compact / Crossbow",
+      "en": "Trinity · Voron / 6 mm / Chube Compact / Crossbow"
+    },
+    "trinity.18": {
+      "kind": "message",
+      "ja": "Trinity · Voron / 6 mm",
+      "en": "Trinity · Voron / 6 mm"
+    },
+    "trinity.19": {
+      "kind": "message",
+      "ja": "Trinity · Voron MGN12H",
+      "en": "Trinity · Voron MGN12H"
+    },
+    "trinity.20": {
+      "kind": "message",
+      "ja": "Trinity · Voron / 9–10 mm / Chube Compact / Crossbow",
+      "en": "Trinity · Voron / 9–10 mm / Chube Compact / Crossbow"
+    },
+    "trinity.21": {
+      "kind": "message",
+      "ja": "Trinity · Voron / 9–10 mm",
+      "en": "Trinity · Voron / 9–10 mm"
+    },
+    "trinity.22": {
+      "kind": "message",
+      "ja": "Trinity · Voron / 6 mm / Dragon ACE Volcano / Crossbow",
+      "en": "Trinity · Voron / 6 mm / Dragon ACE Volcano / Crossbow"
+    },
+    "trinity.23": {
+      "kind": "message",
+      "ja": "Trinity · Voron / 9–10 mm / Dragon ACE Volcano / Crossbow",
+      "en": "Trinity · Voron / 9–10 mm / Dragon ACE Volcano / Crossbow"
+    },
+    "trinity.24": {
+      "kind": "message",
+      "ja": "Belt clip 6mm pullthrough test pack",
+      "en": "Belt clip 6mm pullthrough test pack"
+    },
+    "trinity.25": {
+      "kind": "message",
+      "ja": "Belt clip 6mm test pack",
+      "en": "Belt clip 6mm test pack"
+    },
+    "trinity.26": {
+      "kind": "message",
+      "ja": "Belt clip 9-10mm pullthrough test pack",
+      "en": "Belt clip 9-10mm pullthrough test pack"
+    },
+    "trinity.27": {
+      "kind": "message",
+      "ja": "Belt clip 9-10mm test pack",
+      "en": "Belt clip 9-10mm test pack"
+    },
+    "trinity.28": {
+      "kind": "message",
+      "ja": "Trinity Depressor Arm and Holder_",
+      "en": "Trinity Depressor Arm and Holder_"
+    },
+    "trinity.29": {
+      "kind": "message",
+      "ja": "原本のベルトクリップ試験片は一つずつ表示。押下アームとホルダーは原本の組立座標を保持しています。機体への装着は未登録です。",
+      "en": "Native source belt-clip test packs are shown individually; depressor arm and holder retain their original assembly coordinates. Printer installation is unregistered."
     }
   }
 }

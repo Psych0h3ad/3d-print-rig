@@ -1573,6 +1573,86 @@
       "license": "CC BY-NC-SA 4.0 · boothyboothy / Boothy",
       "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
       "version": "Printables files 2022-04-13; base STEP 2021-08-04; tool plate STEP v1"
+    },
+    {
+      "id": "trinity_crossbow",
+      "name": "Trinity Crossbow Cutter",
+      "url": "https://github.com/Martin-Ivanc/Trinity-Crossbow-Cutter",
+      "commit": "231a16281d6d34b1b3b0ee8b65ae0b4f00fde7e7",
+      "license": "GPL-3.0 prints; Crossbow CC BY-NC-SA 4.0; Annex EULA and manufacturer terms retained",
+      "scope": "Native Trinity / Crossbow source assembly with Sherpa Mini R2, dual 3628 fans, a 2510 hotend fan, hotend, nozzle and source Beacon RevD. Machine installation, probe clearance, wiring and cutter motion remain unverified. Construction logo negatives are omitted; Chube duct trim repairs are recorded.",
+      "files": [
+        {
+          "path": "CAD/Belt Clips/Belt clip 6mm pullthrough test pack.step",
+          "sha256": "32541bf80c9a1752489f9b1b8efd595263e801067cf19baeda0dc78227ed51b2"
+        },
+        {
+          "path": "CAD/Belt Clips/Belt clip 6mm test pack.step",
+          "sha256": "70714d9c154890576a838ed2c580eee7f8c2a15376955048afbe5d774a11405d"
+        },
+        {
+          "path": "CAD/Belt Clips/Belt clip 9-10mm pullthrough test pack.step",
+          "sha256": "8a6711c38bc470bca67ad4c9b451ada889f497a6c4556752c9f870bae2c1de97"
+        },
+        {
+          "path": "CAD/Belt Clips/Belt clip 9-10mm test pack.step",
+          "sha256": "e0feb7bb75bda6143a67c41a4289f5dd087168bfdc5793481b4f11c60564c3bf"
+        },
+        {
+          "path": "CAD/Depressor Arm and Holder/Trinity Depressor Arm and Holder_.step",
+          "sha256": "404a5b0d813ccd9ad227205e7db66e899b7ed0d0a0e4a997551f05507c2cede8"
+        },
+        {
+          "path": "CAD/Monolith Belt Path/Sherpa extruder/Trinity Chube Compact monolith mgn12 6mm sherpa No Cutter.step",
+          "sha256": "1cb925eec61559e16106ca6352e3ab8f0f0b85cb41ee0358727ad1c18250a6c9"
+        },
+        {
+          "path": "CAD/Monolith Belt Path/Sherpa extruder/Trinity Chube Compact monolith mgn12 6mm sherpa.step",
+          "sha256": "84fcefc016b4ca78fc9bb6a90632fe416ad80390a5673292196ee99a7021e8d5"
+        },
+        {
+          "path": "CAD/Monolith Belt Path/Sherpa extruder/Trinity Chube Compact monolith mgn12 9-10mm sherpa No Cutter.step",
+          "sha256": "46d72dbe3b83f96f772926faf4fa8dd7586908171c3dcc63c376d15312884998"
+        },
+        {
+          "path": "CAD/Monolith Belt Path/Sherpa extruder/Trinity Chube Compact monolith mgn12 9-10mm sherpa.step",
+          "sha256": "33c44d0730b330a897146cbd0b2bf663b14cc1d6ac6e544d4b6088f7f6d141d7"
+        },
+        {
+          "path": "CAD/Monolith Belt Path/Sherpa extruder/Trinity monolith mgn12 6mm sherpa cutter.step",
+          "sha256": "8c305afb906b7fa1eb875f86a6a23bbdeee947c9a9af77f86f5ec465e4c0aab0"
+        },
+        {
+          "path": "CAD/Monolith Belt Path/Sherpa extruder/Trinity monolith mgn12 9-10mm sherpa cutter.step",
+          "sha256": "a1dee6cd30b13180376886983fbdbaf21f2d8438a9fdc6a658c13f124a7f35ea"
+        },
+        {
+          "path": "CAD/Voron Belt Path/Sherpa extruder/Trinity Chube Compact voron mgn12 6mm sherpa.step",
+          "sha256": "d3c0fd670dcb177e1e0b7f22cd83bf1b4af0a6d989250e08dce703bbc229cd32"
+        },
+        {
+          "path": "CAD/Voron Belt Path/Sherpa extruder/Trinity Chube Compact voron mgn12 9mm sherpa.step",
+          "sha256": "a1f21c4bdddddef03aa072372f9cd9b4e98354475ae6ae4ad722a1b3c541d640"
+        },
+        {
+          "path": "CAD/Voron Belt Path/Sherpa extruder/Trinity voron mgn12 6mm sherpa cutter.step",
+          "sha256": "33bf64915408394ec1065ebb36ef38f7f7f31cabb6ed68e188efcac4f51ea454"
+        },
+        {
+          "path": "CAD/Voron Belt Path/Sherpa extruder/Trinity voron mgn12 9mm sherpa cutter.step",
+          "sha256": "4346855001c4a18dc7b1e8b15bd51ea945ee5456d896029548e9b42d874bbd57"
+        }
+      ],
+      "related_sources": [
+        {
+          "url": "https://github.com/WV-design/Trinity-toolhead",
+          "commit": "d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc"
+        },
+        {
+          "url": "https://github.com/DW-Tas/Crossbow-Filament-Cutter",
+          "commit": "5395af65bed8c26566069b7009b9a7f8b7a05bb5"
+        }
+      ]
     }
   ],
   "defaults": [

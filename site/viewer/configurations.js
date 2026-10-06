@@ -1,8 +1,8 @@
 import {createConfigurationDraft,configurationLabels,configurationLabel} from './configuration-draft.mjs?v=40f3194bb0e1c5a35cf8';
-import {setupConfigurationEditor} from './configuration-editor.mjs?v=136c5070ed294389ef38';
+import {setupConfigurationEditor} from './configuration-editor.mjs?v=e7f3538def45e62d3602';
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
 import {workspaceTask,workspaceListen} from './workspace-lifecycle.mjs';
-import {translate} from './i18n.mjs?v=24cdf229ab0747f6bcb0';
+import {translate} from './i18n.mjs?v=7f58738260a2059a0577';
 import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=a444255dc35e7c15a082';
 import {catalogDimensions,collections,resolveVariant,choicesFor,choiceChanges,importedVariant,configurationById} from './configuration-model.js?v=d4b3dda97a404a7575b7';
 import {probeCheck,probeOptionSuffix,headBodyCollisionNotes} from './probe-checks.js?v=ea1aef3e30bf7d11d3cb';
@@ -63,7 +63,7 @@ export async function setupConfigurations(catalog,install,{presentation='printer
   if(native){
    const label=native.state==='reference'&&native.unresolved_pairs?.length?'一部の交差判定が未確定':{collision:'CAD干渉あり · 比較用',contact:'CADに微小な交差あり','attachment-contact':'取付部に交差あり · 比較用',clear:'検査姿勢の本体交差なし',reference:'原本組立 · 接続未検証'}[native.state];
    $('#configStatus').textContent+=' ／ '+label;$('#configStatus').classList.toggle('notice',check.warning||native.state!=='clear');
-   rows.push(label,...native.notes,...headBodyCollisionNotes(native.interface_contacts));$('#mountInfo')?.replaceChildren(...rows.map(row=>{const li=document.createElement('li');li.textContent=row;return li}));
+   rows.push(label,...(native.notes||[]),...headBodyCollisionNotes(native.interface_contacts));$('#mountInfo')?.replaceChildren(...rows.map(row=>{const li=document.createElement('li');li.textContent=row;return li}));
   }
   const body=headWitnessCheck(v);if(body){$('#configStatus').textContent+=' ／ '+body.label;$('#configStatus').classList.add('notice');rows.push(...body.lines);$('#mountInfo')?.replaceChildren(...rows.map(row=>{const li=document.createElement('li');li.textContent=row;return li}))}inspection.update(v);
   $('#configStatus').dataset.variant=v.id;

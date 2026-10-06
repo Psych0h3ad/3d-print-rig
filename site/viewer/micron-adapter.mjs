@@ -1,5 +1,7 @@
 /** Micron: fixed bed, Z gantry, Y X-beam, XYZ toolhead. Baked CAD placement. */
-import {appearanceRole} from './appearance-role.mjs?v=public-v25';
+import {appearanceRole} from './appearance-role.mjs?v=a2d85521f7f516860221';
+import {createPaletteController} from './palette-controller.mjs?v=af9daf5ae29080e4cbff';
+import {micronHardwareColors} from './micron-native-materials.mjs?v=55b8c3644415d202fa4a';
 import {createMicronBelts} from './micron-belts.mjs?v=public-v25';
 import {createMicronFlexible} from './micron-flexible.mjs?v=f60dbb5f5765a15dfc34';
 export const cadToGlb = ([x,y,z]) => [x / 1000, z / 1000, -y / 1000];
@@ -37,6 +39,9 @@ export function createMicronAdapter(root, manifest, profile) {
   });
   const missing = [...records.keys()].filter(k => !nodes.has(k));
   if (missing.length) throw new Error(`Missing ${missing.length} parts`);
+  const nativeMaterials=new Map(Object.entries(micronHardwareColors[profile.machine_id]).filter(([key])=>records.has(key)));
+  for(const [key,material]of nativeMaterials){const source=records.get(key)?.source;if(!source||source.commit!=='f76aa28767211ddfee2e30290aadcea3c45f8513'||source.source_key!==material.source_key||source.cache_machine!==material.cache_machine)throw Error('Micron native material identity mismatch');}
+  const paletteController=createPaletteController(nodes,records,{materialOverrides:nativeMaterials});
   const origins = new Map([...nodes].map(([k,o]) => [k,o.position.clone()]));
   const belts=createMicronBelts(nodes,records,profile);
   const flexible=createMicronFlexible(nodes,records,profile);
@@ -63,12 +68,9 @@ export function createMicronAdapter(root, manifest, profile) {
   function setFlexibleVisible(value) {flexibleVisible = Boolean(value); if (lastPose) setPose(lastPose);}
   function setEnclosureVisible(value) {enclosureVisible = Boolean(value); for (const [k,o] of nodes) if (records.get(k).group === 'Micron_Enclosure') o.visible = enclosureVisible;}
   function setPalette(palette) {
-    for (const [k,o] of nodes) {
-      const color = palette[records.get(k).appearance_role]; if (!color) continue;
-      o.traverse(n => {if (n.isMesh) for (const mat of Array.isArray(n.material) ? n.material : [n.material]) mat.color.set(color);});
-    }
+    paletteController.setPalette(palette);
   }
-  return {nodes, records, belts, flexible, setPose, setFlexibleVisible, setEnclosureVisible, setPalette,
+  return {nodes, records, belts, flexible, setPose, setFlexibleVisible, setEnclosureVisible, setPalette, paletteMaterials:paletteController.rows,
     getPose:()=>lastPose?['x','y','z'].map(a=>lastPose[a]):[...profile.display_reference_xyz_mm],
     getSummary: () => ({machine_id: profile.machine_id, part_count: nodes.size,
       motion_counts: manifest.parts.reduce((a,p) => (a[p.motion] = (a[p.motion] ?? 0) + 1,a),{})})};

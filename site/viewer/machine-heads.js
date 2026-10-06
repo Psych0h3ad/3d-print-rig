@@ -1,13 +1,13 @@
 import {workspaceTask} from './workspace-lifecycle.mjs';
 import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=a444255dc35e7c15a082';
-import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=aae7eb63585800516dd5';
+import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=4360962156f4f4b753ce';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
-import {appearanceRole} from './appearance-role.mjs?v=workspace-belts-1';
+import {appearanceRole} from './appearance-role.mjs?v=a2d85521f7f516860221';
 import {partKey} from './head-assembly.js?v=workspace-belts-1';
 import {v24HeadCatalog} from './machine-head-model.mjs?v=03db7c7d900ff7f5b2c0';
-import {setupConfigurations} from './configurations.js?v=974ed8de4f3799637aea';
+import {setupConfigurations} from './configurations.js?v=61b07a3f7200ae0ac174';
 
 import {loadSiboorRegistration} from './siboor-catalog.mjs?v=c59d93be54e1c7637a63';
 import {stockProbeFit} from './probe-mounts.js?v=81f922c3169490021d08';
@@ -17,12 +17,15 @@ import {bankPlan} from './changer-bank-model.mjs?v=024cc52a5bbc61da7506';
 import {setupChangerBank} from './changer-bank.js?v=47bbc0fef91af2c7241e';
 import {contentSHA256,acceptedMountValidation} from './mount-validation.mjs?v=workspace-belts-1';
 import {acceptedHeadValidation}from './head-validation.mjs?v=workspace-belts-1';
+import {withHeadAdditions} from './head-additions.mjs?v=143d882a3df675284f2e';
+import {loadExternalComponent} from './component-assets.mjs?v=c2333ef499f46d621550';
 
 const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);
 export async function loadMachineHeadCatalog(machine){return workspaceTask(async()=>{
  const hashes={};
  const get=async name=>{return workspaceTask(async()=>{const r=await fetch('../'+name,{cache:'no-cache'});if(!r.ok)throw Error('ヘッドの取付データを取得できません');const text=await r.text();try{hashes[name]=await contentSHA256(text)}catch{/* Unsupported hashing leaves mounting evidence unverified. */}return JSON.parse(text)});};
- const [heads,registry,bank]=await Promise.all([get('TOOLHEAD_CONFIGURATIONS.json'),get('MACHINE_HEAD_REGISTRATIONS.json'),get('TOOLCHANGER_BANK.json')]);
+ const [rawHeads,additions,registry,bank]=await Promise.all([get('TOOLHEAD_CONFIGURATIONS.json'),get('HEAD_ADDITIONS.json'),get('MACHINE_HEAD_REGISTRATIONS.json'),get('TOOLCHANGER_BANK.json')]);
+ const heads=withHeadAdditions(rawHeads,additions);
  if(machine==='siboor_trident_300'){const patch=(await loadSiboorRegistration()).registrations;registry.machines[machine]=patch.head;bank.machines[machine]=patch.bank;bank.indx.machines[machine]=patch.indx_bank;}
  if(machine){
   try{
@@ -41,7 +44,8 @@ export function createMachineHeads(scene,catalog,{render=()=>{}}={}){
  const cache=new Map(),rig=new THREE.Group(),bankRig=new THREE.Group();rig.name='Installed_Machine_Head';bankRig.name='Frame_Tool_Bank';scene.add(rig,bankRig);let current=null,palette={base:'#24272c',accent:'#e32636'},delta=[0,0,0],bankState=null,bankEntries=[];
  async function asset(id){return workspaceTask(async()=>{
   if(cache.has(id))return cache.get(id);const spec=catalog.base_assets?.[id]||catalog.assets[id];if(!spec)throw Error('未登録のヘッド部品：'+id);
-  const promise=Promise.all([fetch('../'+spec.meta,{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('ヘッドの部品表');return r.json()}),loadModel(new GLTFLoader(),'../'+spec.glb)]).then(([meta,g])=>{
+  const loading=spec.external?loadExternalComponent(new GLTFLoader(),spec,location.href).then(({meta,gltf})=>[meta,gltf]):Promise.all([fetch('../'+spec.meta,{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('ヘッドの部品表');return r.json()}),loadModel(new GLTFLoader(),'../'+spec.glb)]);
+  const promise=loading.then(([meta,g])=>{
    const lookup=new Map(meta.parts.map(p=>[String(p.key),p])),entries=[];g.scene.visible=false;
    g.scene.traverse(mesh=>{if(!mesh.isMesh)return;const key=partKey(mesh),row=lookup.get(String(key));if(!row)throw Error('ヘッドの部品対応が不正です');mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();const materials=Array.isArray(mesh.material)?mesh.material:[mesh.material];for(const m of materials){m.side=THREE.DoubleSide;if(m.transparent)m.depthWrite=false}entries.push({mesh,key,component:row.component,role:appearanceRole(row)||mesh.userData.appearance_role,materials,colors:materials.map(m=>m.color.clone())})});rig.add(g.scene);return {root:g.scene,entries};
   }).catch(e=>{cache.delete(id);throw e});cache.set(id,promise);return promise;

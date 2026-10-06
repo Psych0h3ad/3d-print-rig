@@ -590,6 +590,19 @@ The complete RH3D v1.2 / v1.2S printer assembly is not included. That CAD is dis
 The Crossant Backpack covers are derived from `DXFs/Backpack/leftpanel.dxf`, `rightpanel.dxf` and `rearpanel.dxf` at the revision above. Their outer profiles are unscaled; side panels are transparent and the rear is opaque. Preview spacers avoid gantry-end contact, the rear panel is registered to the existing filter gap and cable ports, eight filter holes match native screw axes, and Grommet C is moved into its DXF slot. DXFs do not specify thickness; 2/3/4 mm is selectable for visualization. Additional panel screws/nuts and physical mounting remain outside the verified scope. Front/top DXFs are absent.
 
 
-## HYDRA
+## Trinity Crossbow
+
+[Trinity Crossbow source assemblies](TRINITY_CROSSBOW.md) pin Martin-Ivanc's
+`231a16281d6d34b1b3b0ee8b65ae0b4f00fde7e7`, WV-design's
+`d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc` and DW-Tas's
+`5395af65bed8c26566069b7009b9a7f8b7a05bb5`. Printed modifications retain
+GPL-3.0, Crossbow CNC geometry CC BY-NC-SA 4.0 and native Annex Sherpa Mini R2
+its original EULA. Prooda's Chube adaptation is credited. Manufacturer geometry
+keeps its own terms. Original sources, versions, transformations, helper omissions
+and six duct repairs are recorded in the asset metadata and
+[notice](../site/licenses/trinity/NOTICE.md); the application license does not
+relicense CAD. These are assembled source heads, not registered printer mounts.
+
+## HYDRA source parts
 
 [HYDRA by boothyboothy / Boothy](HYDRA.md) uses author STEP files from Printables model 169197, files updated 2022-04-13, under CC BY-NC-SA 4.0. Seventeen individual printed parts are displayed. Five sacrificial nut-hole membranes are removed from the Ender-3 bases; the manifest records the cuts. Machine installation, hardware and automatic docking are not registered. Original source hashes, versions and display transformations are retained; the application license does not relicense these models.

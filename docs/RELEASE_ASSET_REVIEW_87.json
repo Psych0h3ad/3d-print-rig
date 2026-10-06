@@ -1,0 +1,1063 @@
+{
+  "review_revision": 87,
+  "reviewed_on": "2026-10-06",
+  "all_passed": true,
+  "machine_mesh_quality": {
+    "all_passed": true,
+    "machines": 62,
+    "results": [
+      {
+        "id": "tictac_21_120",
+        "family": "tictac",
+        "all_passed": true,
+        "model_sha256": "73755c5b4f0cdd134554c68d9b37102348af2d71c2e9a31e761c492856939f9b",
+        "vertices": 1863813,
+        "normal_vertices": 1863813,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 0,
+        "triangles": 1917539,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "the100_v11_165",
+        "family": "the100",
+        "all_passed": true,
+        "model_sha256": "0a3088eb107137530b22e2b4a9ee41b52d0aff3ebd531e68f35d7c825256f8b5",
+        "vertices": 742500,
+        "normal_vertices": 742500,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 0,
+        "triangles": 808631,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "rook_mk2_120",
+        "family": "rook",
+        "all_passed": true,
+        "model_sha256": "16d278caa466868340ad8c97d91b80d96bfbc2af2d871565ab8d1e3559faf861",
+        "vertices": 385046,
+        "normal_vertices": 385046,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 0,
+        "triangles": 388895,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification.",
+        "additional_models": [
+          {
+            "id": "rook_mk2_120/g2sa.glb",
+            "family": "rook",
+            "all_passed": true,
+            "model_sha256": "e97858db12f4018bffb9c7e0875e9480650f53f9ef914273d20cde5b92b0d56c",
+            "vertices": 144230,
+            "normal_vertices": 144230,
+            "zero_normal_vertices_on_collapsed_triangles": 0,
+            "flat_shaded_primitives": 0,
+            "triangles": 174758,
+            "maximum_normal_length_error": 5.960464477539063e-08,
+            "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+          }
+        ]
+      },
+      {
+        "id": "satsuma180_v10",
+        "family": "satsuma",
+        "all_passed": true,
+        "model_sha256": "8c6a1a7d0118ee2bda8ff2278a60e9150324af9f24be59fee4efbe93007cf952",
+        "vertices": 2013572,
+        "normal_vertices": 2013572,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 0,
+        "triangles": 2173945,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "sovol_sv08_350",
+        "family": "sovol_sv08",
+        "all_passed": true,
+        "model_sha256": "95af277a4543096620b30f64d2d3fb6403fa6f07ca624719734d1c3a35c51ea3",
+        "vertices": 2346994,
+        "normal_vertices": 2346994,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 0,
+        "triangles": 2785136,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "lh_stinger_200",
+        "family": "lh_stinger",
+        "all_passed": true,
+        "model_sha256": "3f9545ec42868cd09d43fa4700feee2b8c105b651f8fd1ec2f67d6831ff060da",
+        "vertices": 2334621,
+        "normal_vertices": 2334621,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 0,
+        "triangles": 3051618,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "antithesis_aether_mk11",
+        "family": "aether",
+        "all_passed": true,
+        "model_sha256": "9737ca06af3e3a51a9a185a85bfaeadf5741c9d4f7cad9206ff6d37b77165ee3",
+        "vertices": 888624,
+        "normal_vertices": 888624,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 0,
+        "triangles": 1194458,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "ratrig_vminion_180",
+        "family": "vminion",
+        "all_passed": true,
+        "model_sha256": "b394124d0ef44519aa24cd005d1433305f35a545c3b8d5f9c8cccb8268fb0175",
+        "vertices": 1702841,
+        "normal_vertices": 1702841,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 0,
+        "triangles": 2290194,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "snakeoil_xy_180",
+        "family": "snakeoil_xy",
+        "all_passed": true,
+        "model_sha256": "1361302b4008deb1267eb8db72ad1b108e1de0e7159b28ab0088fc2dda8486c4",
+        "vertices": 2094786,
+        "normal_vertices": 2094786,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 0,
+        "triangles": 2749651,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "snakeoil_xy_idex",
+        "family": "snakeoil_xy",
+        "all_passed": true,
+        "model_sha256": "798136042b99c6a206a662b4e113b0ec7b08532d2235f496b573b5aa47468181",
+        "vertices": 3604698,
+        "normal_vertices": 3604698,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 0,
+        "triangles": 4721348,
+        "maximum_normal_length_error": 1.1920928955078125e-07,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "snakeoil_3s_kp3s_180",
+        "family": "snakeoil_3s",
+        "all_passed": true,
+        "model_sha256": "12ae8ee0e81dc89b04fc762d030fb72465692f8009159a4564086985d6774935",
+        "vertices": 733675,
+        "normal_vertices": 733675,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 0,
+        "triangles": 1030608,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "snakeoil_proosaxy",
+        "family": "proosaxy",
+        "all_passed": true,
+        "model_sha256": "99018bcd4ca8fd9a0fdd2b13f764dea7e2de9471979db8766b947e876c977e87",
+        "vertices": 1374660,
+        "normal_vertices": 1374660,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 0,
+        "triangles": 1720111,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "mercury_one1_235",
+        "family": "mercury",
+        "all_passed": true,
+        "model_sha256": "73b00f8d5714a6974837608f6f0ffd66fb540e116741862ce296199acb0fdf72",
+        "vertices": 3017911,
+        "normal_vertices": 3017911,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 0,
+        "triangles": 4315931,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "mercury_one1_370",
+        "family": "mercury",
+        "all_passed": true,
+        "model_sha256": "479f7840e1fdd1790ecd797dc8ba0ef7021316f88755566bd113a22f7c9c286e",
+        "vertices": 2981928,
+        "normal_vertices": 2981928,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 0,
+        "triangles": 4222918,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "vzbot_330_printed",
+        "family": "vzbot",
+        "all_passed": true,
+        "model_sha256": "04ca850e7ce000b44db73a35058d036e4c537a7b715486172d527a926f93756c",
+        "vertices": 5878986,
+        "normal_vertices": 5878986,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 0,
+        "triangles": 5874086,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "ender3_stock_220",
+        "family": "ender3",
+        "all_passed": true,
+        "model_sha256": "393dcd56b4e7a0e675886486acd81c825de9f1a7102b839e00aa1b5365203457",
+        "vertices": 1392323,
+        "normal_vertices": 1392323,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 0,
+        "triangles": 2028904,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "siboor_sboom_220",
+        "family": "sboom",
+        "all_passed": true,
+        "model_sha256": "14be46c56724a3f954a0ab2dac8a64647b4618d913a0e3eb0c2658f619f7c77d",
+        "vertices": 1584102,
+        "normal_vertices": 1584102,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 0,
+        "triangles": 1864788,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "positron_v322",
+        "family": "positron",
+        "all_passed": true,
+        "model_sha256": "bf2eee971286dabebd8ae0f4149eb76657036c21e2df31aef6f1e32c28158f25",
+        "vertices": 2700365,
+        "normal_vertices": 2700365,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 0,
+        "triangles": 3180431,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "annex_k1_assembly",
+        "family": "annex_k1",
+        "all_passed": true,
+        "model_sha256": "03f3c99734f20f9b4af1b17d1f31443e0c05f534e163ad03b8a88e5f8ea92240",
+        "vertices": 2906625,
+        "normal_vertices": 0,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 206,
+        "triangles": 3761821,
+        "maximum_normal_length_error": 0,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "annex_k2_assembly",
+        "family": "annex_k2",
+        "all_passed": true,
+        "model_sha256": "0efe6df3f44824d2431cd514fb31b3c135cc9cd81cf232d07ec9ac3f3ccdc450",
+        "vertices": 2676828,
+        "normal_vertices": 0,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 194,
+        "triangles": 3504488,
+        "maximum_normal_length_error": 0,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "annex_k3_assembly",
+        "family": "annex_k3",
+        "all_passed": true,
+        "model_sha256": "aa9cea21120eef1d395d02800c179d169169d40321c8b480b672d9b841f8f1cf",
+        "vertices": 2352288,
+        "normal_vertices": 0,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 466,
+        "triangles": 2369158,
+        "maximum_normal_length_error": 0,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "remorph_beta1_307",
+        "family": "remorph",
+        "all_passed": true,
+        "model_sha256": "bc2dac0dbcdb191f6ae1391a538f3deed28ec3deb0fdc7597f6adde8379c841c",
+        "vertices": 6382299,
+        "normal_vertices": 0,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 3515,
+        "triangles": 7277220,
+        "maximum_normal_length_error": 0,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "siboor_trident_300",
+        "family": "trident",
+        "all_passed": true,
+        "model_sha256": "ca956d3d7b27526e8f21b7d8cbbc5783ce461b6ae450f9609a6f5847cc814672",
+        "vertices": 8307474,
+        "normal_vertices": 4127781,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 1350,
+        "triangles": 5788096,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "siboor_trident_350",
+        "family": "trident",
+        "all_passed": true,
+        "model_sha256": "96309090e82efd59e214c403edf4716357a245e76a190038bea88abae315ff52",
+        "vertices": 5339821,
+        "normal_vertices": 0,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 1518,
+        "triangles": 5567908,
+        "maximum_normal_length_error": 0,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "voron_trident_250",
+        "family": "trident",
+        "all_passed": true,
+        "model_sha256": "8cad57cf1550f8827ffdfd34cc4d7ab28edfe94b65c99a0fc7b9b28fad7f60ce",
+        "vertices": 1549441,
+        "normal_vertices": 9154,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 843,
+        "triangles": 1591121,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "voron_trident_300",
+        "family": "trident",
+        "all_passed": true,
+        "model_sha256": "841a2f968790536d791d969ab9b080ff88e80c78b72c49f652384fafe6ea39da",
+        "vertices": 1560967,
+        "normal_vertices": 9154,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 843,
+        "triangles": 1601121,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "voron_trident_350",
+        "family": "trident",
+        "all_passed": true,
+        "model_sha256": "cad3fb144e1938c043f26724fcbec93966124aa15411a030779281fe244b10f8",
+        "vertices": 1569874,
+        "normal_vertices": 9154,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 843,
+        "triangles": 1608789,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "voron_trident_500_custom",
+        "family": "trident",
+        "all_passed": true,
+        "model_sha256": "e9f3d3b4bc31ea052eda5813b2b4ae664f28bcff4c1d783e0ead579e6bac66de",
+        "vertices": 3754391,
+        "normal_vertices": 254716,
+        "zero_normal_vertices_on_collapsed_triangles": 4,
+        "flat_shaded_primitives": 1372,
+        "triangles": 4148272,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "voron_trident_350_half_z",
+        "family": "trident",
+        "all_passed": true,
+        "model_sha256": "09f44eafe1363005111796cbd51644f54184d31c14e4888f4adf0944bff35d6f",
+        "vertices": 3561727,
+        "normal_vertices": 202282,
+        "zero_normal_vertices_on_collapsed_triangles": 4,
+        "flat_shaded_primitives": 1335,
+        "triangles": 3906343,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "siboor_v24_350",
+        "family": "v24",
+        "all_passed": true,
+        "model_sha256": "679d362a57c5512213f19c5a4c2eef6b38719dbd5ce0a0a0e395dfd32e7e1bf2",
+        "vertices": 3000658,
+        "normal_vertices": 0,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 1321,
+        "triangles": 3179823,
+        "maximum_normal_length_error": 0,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "voron_v24_250_printed",
+        "family": "v24",
+        "all_passed": true,
+        "model_sha256": "1abbabbf83d42bf258b7a456b52f1fb0678d5049d568418d21d075c8edbd441f",
+        "vertices": 3075228,
+        "normal_vertices": 42012,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 1261,
+        "triangles": 3257187,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "voron_v24_250_ldo_cnc",
+        "family": "v24",
+        "all_passed": true,
+        "model_sha256": "1c2a5bb95960fca842d77440f217df4d1d62432a436c07cffd5e8cafb5fc3b04",
+        "vertices": 3546720,
+        "normal_vertices": 42012,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 1375,
+        "triangles": 3858500,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "voron_v24_300_printed",
+        "family": "v24",
+        "all_passed": true,
+        "model_sha256": "d9f22ce7c8c71cd115d930f1b9c206f242effaf953eed7aa689a6216fd3aa1b8",
+        "vertices": 3109041,
+        "normal_vertices": 47458,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 1268,
+        "triangles": 3288776,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "voron_v24_300_ldo_cnc",
+        "family": "v24",
+        "all_passed": true,
+        "model_sha256": "551ced95e814c8d6171cd3b1d255c6240604fc36568c4f83a8f42e33367c1f04",
+        "vertices": 3580248,
+        "normal_vertices": 47458,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 1382,
+        "triangles": 3889918,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "voron_v24_350_printed",
+        "family": "v24",
+        "all_passed": true,
+        "model_sha256": "bfffec821a6026fc5df0992e4d31f98290b0d270983ecb04ba024cc69a1355ae",
+        "vertices": 3139242,
+        "normal_vertices": 52904,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 1275,
+        "triangles": 3317688,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "voron_v24_500_custom",
+        "family": "v24",
+        "all_passed": true,
+        "model_sha256": "4a09d4a965acddc782b56c0994d0c3e335cf23b6067683b348ec59f4a90080b7",
+        "vertices": 3216028,
+        "normal_vertices": 0,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 1397,
+        "triangles": 3392908,
+        "maximum_normal_length_error": 0,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "voron_v24_350_half_z",
+        "family": "v24",
+        "all_passed": true,
+        "model_sha256": "3f2a28ef82e9da45ad78fbb505d801b62d772884a52dddb10520cacdab00af7c",
+        "vertices": 3095658,
+        "normal_vertices": 0,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 1311,
+        "triangles": 3275212,
+        "maximum_normal_length_error": 0,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "voron_v24_350_ldo_cnc",
+        "family": "v24",
+        "all_passed": true,
+        "model_sha256": "50ab70f2d930d5e2df6017ecf4fbdaa31db62a2d9e02621b6439b2dee72785e6",
+        "vertices": 3610468,
+        "normal_vertices": 52904,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 1389,
+        "triangles": 3918868,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "voron_v02r1_120",
+        "family": "v0",
+        "all_passed": true,
+        "model_sha256": "d89064824fa67ed6e7c78e90c642620afe62c3b4520255f6c626181754b7d29d",
+        "vertices": 2664583,
+        "normal_vertices": 0,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 1678,
+        "triangles": 2733251,
+        "maximum_normal_length_error": 0,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "voron_v02_120",
+        "family": "v0",
+        "all_passed": true,
+        "model_sha256": "da642150957fa38289499bd1c1586737f4f970968c3b32b3f7b81d76bef05ea9",
+        "vertices": 2594882,
+        "normal_vertices": 0,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 1654,
+        "triangles": 2653556,
+        "maximum_normal_length_error": 0,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "micron_r1_120",
+        "family": "micron",
+        "all_passed": true,
+        "model_sha256": "9cf6f791159e5d15471d0147edee3fc29762468cbe2692a93ef5ffbc1527c2be",
+        "vertices": 1867544,
+        "normal_vertices": 0,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 1074,
+        "triangles": 1827381,
+        "maximum_normal_length_error": 0,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "micron_plus_r1_180",
+        "family": "micron",
+        "all_passed": true,
+        "model_sha256": "c28985823dbeb5534405509dac351e0f54fc46e77b0887edd562249b0dbb501a",
+        "vertices": 2518096,
+        "normal_vertices": 0,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 1512,
+        "triangles": 2503680,
+        "maximum_normal_length_error": 0,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "fysetc_v24_250_pro",
+        "family": "v24",
+        "all_passed": true,
+        "model_sha256": "4ee4c9612380f007a9c5f107d1d7a2f59e2d89bc7ebabe802bf272eb7c53faff",
+        "vertices": 2989175,
+        "normal_vertices": 0,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 1388,
+        "triangles": 3107627,
+        "maximum_normal_length_error": 0,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "crossant_235_v06_leadscrew",
+        "family": "crossant",
+        "all_passed": true,
+        "model_sha256": "f4e560da3b9f8274b508dfc6d9e846ebc5c9e147fccbd16a63c771fba3c13de5",
+        "vertices": 4769647,
+        "normal_vertices": 0,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 2177,
+        "triangles": 5049210,
+        "maximum_normal_length_error": 0,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "ratrig_vcore_40_300_corexy",
+        "family": "vcore4",
+        "all_passed": true,
+        "model_sha256": "dfb5aaeca2cb274932ae4a9f8c59a7a76114f3d6c6c41dc9c814223b33d2a8b6",
+        "vertices": 3688589,
+        "normal_vertices": 14392,
+        "zero_normal_vertices_on_collapsed_triangles": 10,
+        "flat_shaded_primitives": 2237,
+        "triangles": 4034794,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "ratrig_vcore_40_300_hybrid",
+        "family": "vcore4",
+        "all_passed": true,
+        "model_sha256": "125705129bc1fe73416d661df8dc928291f2a090a03ef662459bf6275f53031b",
+        "vertices": 3782510,
+        "normal_vertices": 14373,
+        "zero_normal_vertices_on_collapsed_triangles": 10,
+        "flat_shaded_primitives": 2322,
+        "triangles": 4134098,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "ratrig_vcore_40_300_idex",
+        "family": "vcore4",
+        "all_passed": true,
+        "model_sha256": "16f57d28b27602be3effa8b5c797b3d59f4ce07025aa59c9e84de91a08b10427",
+        "vertices": 4656809,
+        "normal_vertices": 136,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 3045,
+        "triangles": 5080700,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "ratrig_vcore_40_400_corexy",
+        "family": "vcore4",
+        "all_passed": true,
+        "model_sha256": "cedf78d3a15e5bcfbbdebef6a3b48d2aafc2f516ac701177472c6eb504bff2b7",
+        "vertices": 3794985,
+        "normal_vertices": 17069,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 2273,
+        "triangles": 4150255,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "ratrig_vcore_40_400_hybrid",
+        "family": "vcore4",
+        "all_passed": true,
+        "model_sha256": "b2ca97bc05ef65eff019d886a8069b89f1f7958a6a5fa4ec5f27598459e9ed06",
+        "vertices": 3888706,
+        "normal_vertices": 16853,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 2358,
+        "triangles": 4249239,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "ratrig_vcore_40_400_idex",
+        "family": "vcore4",
+        "all_passed": true,
+        "model_sha256": "b41565379c61be88ff04988bd7c3742318129da04620ca5aa264c441a2a19bde",
+        "vertices": 4764131,
+        "normal_vertices": 2340,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 3073,
+        "triangles": 5199823,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "ratrig_vcore_40_500_corexy",
+        "family": "vcore4",
+        "all_passed": true,
+        "model_sha256": "1b90e0423e78a64a26c5ecc2c91f51616d8d060fbd34431af0b53f15ed5886fc",
+        "vertices": 3903612,
+        "normal_vertices": 15151,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 2297,
+        "triangles": 4281009,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "ratrig_vcore_40_500_hybrid",
+        "family": "vcore4",
+        "all_passed": true,
+        "model_sha256": "c352ee0188f76528d9bc3ddf8ca8da341206ac91ea4080bc62bbcbd5f9fbd297",
+        "vertices": 3998462,
+        "normal_vertices": 16165,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 2382,
+        "triangles": 4382129,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "ratrig_vcore_40_500_idex",
+        "family": "vcore4",
+        "all_passed": true,
+        "model_sha256": "5667d489ad6a27f61e2e5bfd5418582745aac3faae62248dc1d320104cec0bca",
+        "vertices": 4877485,
+        "normal_vertices": 15443,
+        "zero_normal_vertices_on_collapsed_triangles": 19,
+        "flat_shaded_primitives": 3096,
+        "triangles": 5339911,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "ratrig_vcore_41_300_corexy",
+        "family": "vcore4",
+        "all_passed": true,
+        "model_sha256": "aac48dc8f9ec3c57653f243ba1b7fda102e556f2d2a3e8a8167aa21f3e443be8",
+        "vertices": 3300338,
+        "normal_vertices": 2636,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 2005,
+        "triangles": 3656669,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "ratrig_vcore_41_300_hybrid",
+        "family": "vcore4",
+        "all_passed": true,
+        "model_sha256": "9642e9a716271296176c5a11d7da26ea65f768cdd5fee282609fab41065ccddb",
+        "vertices": 3407131,
+        "normal_vertices": 2636,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 2091,
+        "triangles": 3767287,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "ratrig_vcore_41_300_idex",
+        "family": "vcore4",
+        "all_passed": true,
+        "model_sha256": "4328f885ab485f25157d4e25cb2c6d921a2843a0ddce85e619b2f3b1b01f1caa",
+        "vertices": 4179046,
+        "normal_vertices": 2772,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 2634,
+        "triangles": 4646482,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "ratrig_vcore_41_400_corexy",
+        "family": "vcore4",
+        "all_passed": true,
+        "model_sha256": "1797f6a03cdf2a051ee94f1cbe91e5d9d4e78bf068979f4ef182ef518f9734e9",
+        "vertices": 3397032,
+        "normal_vertices": 2636,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 2040,
+        "triangles": 3760638,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "ratrig_vcore_41_400_hybrid",
+        "family": "vcore4",
+        "all_passed": true,
+        "model_sha256": "9ee09292ad7f5a1cd22ecc70b4dc351d2f42b88353fca26b0266326fc0195e39",
+        "vertices": 3509622,
+        "normal_vertices": 2636,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 2127,
+        "triangles": 3876774,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "ratrig_vcore_41_400_idex",
+        "family": "vcore4",
+        "all_passed": true,
+        "model_sha256": "b1d9ce88b7c1e8d94b84081dda180b734f404a6d7c49a3834682ea62fe5f4eb6",
+        "vertices": 4282331,
+        "normal_vertices": 2772,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 2670,
+        "triangles": 4757545,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "ratrig_vcore_41_500_corexy",
+        "family": "vcore4",
+        "all_passed": true,
+        "model_sha256": "856eed23ee1a8f56dd2d242808cbbfd9fef8abb83f9f4a8afb905709c76f55ce",
+        "vertices": 3506225,
+        "normal_vertices": 2636,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 2064,
+        "triangles": 3894080,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "ratrig_vcore_41_500_hybrid",
+        "family": "vcore4",
+        "all_passed": true,
+        "model_sha256": "f2de1ea8733e099f302340ad660dc505baa07627215c7d9839d3e1ebeb670dd4",
+        "vertices": 3618897,
+        "normal_vertices": 2636,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 2151,
+        "triangles": 4010356,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      },
+      {
+        "id": "ratrig_vcore_41_500_idex",
+        "family": "vcore4",
+        "all_passed": true,
+        "model_sha256": "e199087d12dee961f1c2e08b7f96e4dfd95adf52ef5210536f5d6ec0e5904a07",
+        "vertices": 4391902,
+        "normal_vertices": 2772,
+        "zero_normal_vertices_on_collapsed_triangles": 0,
+        "flat_shaded_primitives": 2694,
+        "triangles": 4891749,
+        "maximum_normal_length_error": 5.960464477539063e-08,
+        "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+      }
+    ]
+  },
+  "independent_actual_jobs": {
+    "all_passed": true,
+    "complete": true,
+    "workers": 3,
+    "results": [
+      {
+        "test": "test_community_native_74.mjs",
+        "passed": true,
+        "seconds": 27.33,
+        "log": "review87-test_community_native_74.mjs.log"
+      },
+      {
+        "test": "test_micron_actual_60.mjs",
+        "passed": true,
+        "seconds": 3.03,
+        "log": "review87-test_micron_actual_60.mjs.log"
+      },
+      {
+        "test": "test_annex_native_65.mjs",
+        "passed": true,
+        "seconds": 1.71,
+        "log": "review87-test_annex_native_65.mjs.log"
+      },
+      {
+        "test": "test_remorph_native_55.mjs",
+        "passed": true,
+        "seconds": 1.45,
+        "log": "review87-test_remorph_native_55.mjs.log"
+      },
+      {
+        "test": "test_e3ng_native_65.mjs",
+        "passed": true,
+        "seconds": 0.71,
+        "log": "review87-test_e3ng_native_65.mjs.log"
+      },
+      {
+        "test": "test_crossant_covers_61.mjs",
+        "passed": true,
+        "seconds": 3.35,
+        "log": "review87-test_crossant_covers_61.mjs.log"
+      },
+      {
+        "test": "test_siboor_routes_55.mjs",
+        "passed": true,
+        "seconds": 0.89,
+        "log": "review87-test_siboor_routes_55.mjs.log"
+      },
+      {
+        "test": "check_motion_assets.mjs",
+        "passed": true,
+        "seconds": 11.86,
+        "log": "review87-check_motion_assets.mjs.log"
+      },
+      {
+        "test": "audit_v24_colors.mjs",
+        "passed": true,
+        "seconds": 2.76,
+        "log": "review87-audit_v24_colors.mjs.log"
+      },
+      {
+        "test": "audit_trident_sizes.mjs",
+        "passed": true,
+        "seconds": 4.45,
+        "log": "review87-audit_trident_sizes.mjs.log"
+      },
+      {
+        "test": "check_workbench_assets.mjs",
+        "passed": true,
+        "seconds": 9.13,
+        "log": "review87-check_workbench_assets.mjs.log"
+      },
+      {
+        "test": "audit_loaded_heads.mjs",
+        "passed": true,
+        "seconds": 10.79,
+        "log": "review87-audit_loaded_heads.mjs.log"
+      },
+      {
+        "test": "audit_changer_banks.mjs",
+        "passed": true,
+        "seconds": 17.28,
+        "log": "review87-audit_changer_banks.mjs.log"
+      },
+      {
+        "test": "audit_indx_banks.mjs",
+        "passed": true,
+        "seconds": 16.77,
+        "log": "review87-audit_indx_banks.mjs.log"
+      },
+      {
+        "test": "test_ratrig_all_native_81.mjs",
+        "passed": true,
+        "seconds": 53.72,
+        "log": "review87-test_ratrig_all_native_81.mjs.log"
+      },
+      {
+        "test": "test_positron_native_81.mjs",
+        "passed": true,
+        "seconds": 0.87,
+        "log": "review87-test_positron_native_81.mjs.log"
+      },
+      {
+        "test": "test_fysetc_reference_81.mjs",
+        "passed": true,
+        "seconds": 0.5,
+        "log": "review87-test_fysetc_reference_81.mjs.log"
+      },
+      {
+        "test": "test_production_loading_84.mjs",
+        "passed": true,
+        "seconds": 29.53,
+        "log": "review87-test_production_loading_84.mjs.log"
+      },
+      {
+        "test": "audit_monolith_motion.mjs",
+        "passed": true,
+        "seconds": 10.96,
+        "log": "review87-audit_monolith_motion.mjs.log"
+      },
+      {
+        "test": "audit_monolith_mounts.mjs",
+        "passed": true,
+        "seconds": 8.44,
+        "log": "review87-audit_monolith_mounts.mjs.log"
+      },
+      {
+        "test": "audit_monolith_printers.mjs",
+        "passed": true,
+        "seconds": 23.74,
+        "log": "review87-audit_monolith_printers.mjs.log"
+      },
+      {
+        "test": "requested-actual",
+        "passed": true,
+        "seconds": 1.45,
+        "log": "review87-requested-actual.log"
+      },
+      {
+        "test": "custom-motion",
+        "passed": true,
+        "seconds": 11.27,
+        "log": "review87-custom-motion.log"
+      }
+    ]
+  },
+  "native_motion_jobs": {
+    "all_passed": true,
+    "workers": 3,
+    "machines": 9,
+    "results": [
+      {
+        "machine": "annex_k1_assembly",
+        "passed": true,
+        "seconds": 1.71,
+        "log": "annex_k1_assembly-actual.log"
+      },
+      {
+        "machine": "annex_k2_assembly",
+        "passed": true,
+        "seconds": 1.69,
+        "log": "annex_k2_assembly-actual.log"
+      },
+      {
+        "machine": "annex_k3_assembly",
+        "passed": true,
+        "seconds": 1.47,
+        "log": "annex_k3_assembly-actual.log"
+      },
+      {
+        "machine": "fysetc_v24_250_pro",
+        "passed": true,
+        "seconds": 5.42,
+        "log": "fysetc_v24_250_pro-actual.log"
+      },
+      {
+        "machine": "rook_mk2_120",
+        "passed": true,
+        "seconds": 0.64,
+        "log": "rook_mk2_120-actual.log"
+      },
+      {
+        "machine": "satsuma180_v10",
+        "passed": true,
+        "seconds": 3.4,
+        "log": "satsuma180_v10-actual.log"
+      },
+      {
+        "machine": "sovol_sv08_350",
+        "passed": true,
+        "seconds": 2.04,
+        "log": "sovol_sv08_350-actual.log"
+      },
+      {
+        "machine": "the100_v11_165",
+        "passed": true,
+        "seconds": 0.54,
+        "log": "the100_v11_165-actual.log"
+      },
+      {
+        "machine": "tictac_21_120",
+        "passed": true,
+        "seconds": 1.14,
+        "log": "tictac_21_120-actual.log"
+      }
+    ]
+  },
+  "affected_reruns": {
+    "micron-current-native-87.log": {
+      "passed": true,
+      "log_sha256": "78b9f8b2f8cd618867bb391fc243768c50b07712edac84ac7e7f9ef3adcf597c"
+    },
+    "micron-colors-final-87.log": {
+      "passed": true,
+      "log_sha256": "069268c92d1f053f4bddbcaeba838c83f718234c15d0a4e4bebec93592dda870"
+    },
+    "workbench-final-87.log": {
+      "passed": true,
+      "log_sha256": "6c3f986a297c9f4ef10dca624ea236adba7c74b019dac9787a349455a919c769"
+    },
+    "support-final-87.log": {
+      "passed": true,
+      "log_sha256": "95f932f9fac406311f0f88b87c455408552a4c3cf064700f9e5fcb0690919ff7"
+    },
+    "trinity-final-native-87.log": {
+      "passed": true,
+      "log_sha256": "578c90b83b728d768f8a6cdd528b82bb331cae1a077edb32e7d2c2825952568d"
+    }
+  },
+  "trinity_report_sha256": "33a5dbf21f787366c4052f7ee0ffd483fa7aec61f14036b7cf890f955df02900",
+  "micron_report_sha256": "ed51101f14e8ca90cd872d725f3bbd832cba1519a7758f5a74473d4d6c913356",
+  "scope": "Current actual-asset audits cover all 62 available machine meshes, 23 bounded machine/component jobs and 9 native motion jobs. Affected Micron material/motion, exact workbench/support and ten Trinity native assemblies are rerun after repairs. Native-solid review is limited to Sherpa/source mating and mounting screws; machine installation, probe travel and continuous cutter clearance are not certified. Browser review covers named variants and viewports in Chromium only. Existing native mating evidence for other printers remains historical and separate."
+}

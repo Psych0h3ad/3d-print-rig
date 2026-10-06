@@ -31,6 +31,7 @@
 | A4T・Archetype、Yavoth、Rapido X | [Armchair](ARMCHAIR.md) · [Yavoth](YAVOTH.md) · [Rapido X](RAPIDO_X.md) |
 | Micron / Micron Plus、Rat Rig元CAD | [Micron](MICRON.md) · [Rat Rig](RATRIG.md) |
 | HYDRAの交換プレート・ダクト原本と組付けの検証範囲 | [HYDRA](HYDRA.md) |
+| Trinity Crossbowの原本ハードウェア組立と検証範囲 | [Trinity Crossbow](TRINITY_CROSSBOW.md) |
 | Tridentスカート、VORON背面パネル・排気ユニット | [Stealth Skirts](STEALTH_SKIRTS.md) · [Rear enclosures](REAR_ENCLOSURES.md) |
 
 専用MDのない機体も対応表とビュワーの出典・注意事項を参照できます。

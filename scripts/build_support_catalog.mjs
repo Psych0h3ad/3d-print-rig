@@ -13,6 +13,7 @@ import {monolithHeadCatalog} from '../site/viewer/monolith-head-model.mjs';
 import {v0Slots,validateV0Mods} from '../site/viewer/v0-installations.mjs';
 import {bankChoices,bankCapacity,bankSpec} from '../site/viewer/changer-bank-model.mjs';
 import {sizedSiboorCatalog,registerSizedSiboor} from '../site/viewer/siboor-catalog.mjs';
+import {withHeadAdditions} from '../site/viewer/head-additions.mjs';
 
 export function enumerateV0(registry){
  const dimensions=v0Slots.map(([id])=>id),options=Object.fromEntries(dimensions.map(d=>[d,[{id:'stock',label:d==='toolhead'?'Mini Stealthburner / BMG / Revo Voron':'純正'},...(d==='accelerometer'?[{id:'none',label:'なし'}]:[]),...registry.options.filter(o=>o.slot===d&&o.id!=='stock').map(o=>({id:o.id,label:o.label}))]]));
@@ -25,7 +26,7 @@ export function buildSupport(root){
  const read=name=>{const bytes=fs.readFileSync(path.join(root,name));input_sha256[name]=createHash('sha256').update(bytes).digest('hex');return JSON.parse(bytes)};
  const raw=read('TOOLHEAD_CONFIGURATIONS.json'),registry=read('MACHINE_HEAD_REGISTRATIONS.json'),gantries=read('GANTRY_CONFIGURATIONS.json'),mounts=read('MONOLITH_MACHINE_REGISTRATIONS.json'),bank=read('TOOLCHANGER_BANK.json'),v0=read('V0_INSTALLATIONS.json'),library=read('COMPONENT_LIBRARY.json'),mods=read('MACHINE_MODS.json');
  const siboor=read('SIBOOR_TRIDENT_ASSETS.json');registerSizedSiboor(siboor,registry,bank,mods);
- const heads=withEmbeddedBoards(raw,[xolEmbeddedBoard(read(raw.base_assets.xol.meta)),sbEmbeddedBoard(read(raw.base_assets.stealthburner.meta))]);heads.dimensions=headBuilderDimensions;
+ const heads=withEmbeddedBoards(withHeadAdditions(raw,read('HEAD_ADDITIONS.json')),[xolEmbeddedBoard(read(raw.base_assets.xol.meta)),sbEmbeddedBoard(read(raw.base_assets.stealthburner.meta))]);heads.dimensions=headBuilderDimensions;
  const targets=[],details=new Map();
  function compact(target,catalog){
   const dimensions=catalogDimensions(catalog),options=catalog.options||Object.fromEntries(dimensions.map(d=>[d,(catalog[collections[d]]||[]).map(o=>({id:o.id,label:o.label.replace(/^VT \/ /,'Trident / ').replace(/^V2 \/ /,'VORON V2.4 / ').replace('sheet_metal','板金').replace('printed','プリント')}))]));

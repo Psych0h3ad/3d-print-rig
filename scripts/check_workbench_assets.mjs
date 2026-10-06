@@ -7,14 +7,16 @@ import {gantryChoice,gantryDimensions} from '../site/viewer/gantry-model.js';
 import {catalogDimensions,choicesFor,resolveVariant} from '../site/viewer/configuration-model.js';
 import {headPlan,headPlacement} from '../site/viewer/head-assembly.js';
 import {changerDimensions,changerChoice,changerChoices,changerPlacement} from '../site/viewer/toolchanger-model.js';
+import {withHeadAdditions} from '../site/viewer/head-additions.mjs';
 const root=path.resolve(process.argv[2]||'site'),read=async f=>JSON.parse(await readFile(path.join(root,f),'utf8'));
-const gantries=await read('GANTRY_CONFIGURATIONS.json'),heads=await read('TOOLHEAD_CONFIGURATIONS.json'),library=await read('COMPONENT_LIBRARY.json'),changers=await read('TOOLCHANGER_CONFIGURATIONS.json');
+const gantries=await read('GANTRY_CONFIGURATIONS.json'),heads=withHeadAdditions(await read('TOOLHEAD_CONFIGURATIONS.json'),await read('HEAD_ADDITIONS.json')),library=await read('COMPONENT_LIBRARY.json'),changers=await read('TOOLCHANGER_CONFIGURATIONS.json');
 assert(gantries.variants.length>0&&heads.variants.length>0&&library.items.length>0&&changers.variants.length>0);
 for(const c of [gantries,heads,changers])assert.equal(new Set(c.variants.map(v=>v.id)).size,c.variants.length);
 assert.equal(new Set(library.items.map(v=>v.id)).size,library.items.length);
-for(const catalog of [gantries,heads,library,changers])for(const asset of Object.values(catalog.assets)){
+for(const catalog of [gantries,heads,library,changers])for(const asset of Object.values({...catalog.assets,...catalog.base_assets})){
  if(asset.external){
-  const directory=process.argv[3];assert(directory,'Pass external component asset directory');
+  const candidates=[];for(const directory of process.argv.slice(3)){try{await access(path.join(directory,asset.files['parts.json'].path));candidates.push(directory)}catch{}}
+  assert.equal(candidates.length,1,'Pass exactly one matching external component asset directory');const directory=candidates[0];
   const decoded={};for(const[name,spec]of Object.entries(asset.files)){
    assert(!spec.path.includes('..')&&!/[\\:]/.test(spec.path));const bytes=await readFile(path.join(directory,spec.path));
    assert.equal(bytes.length,spec.bytes);assert.equal(createHash('sha256').update(bytes).digest('hex'),spec.sha256);
