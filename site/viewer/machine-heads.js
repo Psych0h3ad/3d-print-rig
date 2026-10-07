@@ -35,11 +35,11 @@ export async function loadMachineHeadCatalog(machine){return workspaceTask(async
  if(machine){
   try{
    const evidence=await get('MOUNT_VALIDATION.json'),target=evidence.machines?.[machine];
-   if(target){const [bundle]=await Promise.all([get('ASSET_BUNDLE.json'),...Object.keys(target.input_sha256).map(get)]);registry.probe_travel_validation=acceptedMountValidation(evidence,hashes,bundle,machine)}
+   if(target){const [bundle]=await Promise.all([get('ASSET_BUNDLE.json'),...Object.keys({...evidence.input_sha256,...target.input_sha256}).map(get)]);registry.probe_travel_validation=acceptedMountValidation(evidence,hashes,bundle,machine)}
   }catch{/* Missing or stale evidence leaves the original unverified state. */}
   try{
    const evidence=await get('HEAD_VALIDATION.json'),target=evidence.machines?.[machine];
-   if(target){const[bundle]=await Promise.all([get('ASSET_BUNDLE.json'),...Object.keys(target.input_sha256).map(get)]);registry.head_witness_validation=acceptedHeadValidation(evidence,hashes,bundle,machine)}
+   if(target){const[bundle]=await Promise.all([get('ASSET_BUNDLE.json'),...Object.keys({...evidence.input_sha256,...target.input_sha256}).map(get)]);registry.head_witness_validation=acceptedHeadValidation(evidence,hashes,bundle,machine)}
   }catch{/* Missing or stale body findings do not prevent loading the catalog. */}
  }
  heads.assets={...heads.assets,...bank.assets};const board=[xolEmbeddedBoard(await get(heads.base_assets.xol.meta)),sbEmbeddedBoard(await get(heads.base_assets.stealthburner.meta))];

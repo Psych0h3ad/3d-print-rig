@@ -4,7 +4,7 @@ import {setupSceneDisplay} from './display-preferences.mjs?v=9860960509e28d17f3f
 import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {loadMonolithData} from './monolith-machine.js?v=20017383790f2243c9e5';
 import {setupChangerBank} from './changer-bank.js?v=47bbc0fef91af2c7241e';
-import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=2c44d8c82f61caedf76f';
+import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=b98f318157167d0f5ce2';
 import {headPrinterLink} from './head-navigation.mjs?v=1b5dea25d39db9dc476d';
 import {headBuilderDimensions} from './configuration-model.js?v=d4b3dda97a404a7575b7';
 import {appearanceRole} from './appearance-role.mjs?v=6b7b8efda77bfc3ce74d';
