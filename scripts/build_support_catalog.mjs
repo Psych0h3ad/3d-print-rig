@@ -1,3 +1,4 @@
+import {augmentTrinityAlpha,TRINITY_ALPHA_SOURCE} from '../site/viewer/trinity-alpha-installation.mjs';
 // The support index uses the same exported catalogs and composition functions
 // as the viewer. Missing inputs fail the build, never become 'unsupported'.
 import fs from 'node:fs';
@@ -28,6 +29,7 @@ export function buildSupport(root){
  const siboor=read('SIBOOR_TRIDENT_ASSETS.json');registerSizedSiboor(siboor,registry,bank,mods);
  const community=read('COMMUNITY_INSTALLATIONS.json');
  const heads=withEmbeddedBoards(withHeadAdditions(raw,read('HEAD_ADDITIONS.json')),[xolEmbeddedBoard(read(raw.base_assets.xol.meta)),sbEmbeddedBoard(read(raw.base_assets.stealthburner.meta))]);heads.dimensions=headBuilderDimensions;
+ const alpha=read(TRINITY_ALPHA_SOURCE.file);if(input_sha256[TRINITY_ALPHA_SOURCE.file]!==TRINITY_ALPHA_SOURCE.sha256)throw Error('Trinity alpha support sidecar hash mismatch');augmentTrinityAlpha({heads,registry},null,alpha,input_sha256['MACHINE_HEAD_REGISTRATIONS.json']);
  const targets=[],details=new Map();
  function compact(target,catalog){
   const dimensions=catalogDimensions(catalog),options=catalog.options||Object.fromEntries(dimensions.map(d=>[d,(catalog[collections[d]]||[]).map(o=>({id:o.id,label:o.label.replace(/^VT \/ /,'Trident / ').replace(/^V2 \/ /,'VORON V2.4 / ').replace('sheet_metal','板金').replace('printed','プリント')}))]));

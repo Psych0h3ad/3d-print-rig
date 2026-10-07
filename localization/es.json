@@ -8785,6 +8785,10 @@
     "virtual_printer.nozzle_path_label": {
       "source_revision": "abf543e9c7291fd2267f",
       "text": "Trayectoria basada en la boquilla"
+    },
+    "ui.trinity_alpha_notice": {
+      "source_revision": "5ffb8ce778ddda2f5501",
+      "text": "Vista previa alfa; validación de montaje y holguras incompleta."
     }
   }
 }

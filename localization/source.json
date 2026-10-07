@@ -11035,6 +11035,11 @@
       "kind": "message",
       "ja": "ノズル基準の軌跡線",
       "en": "Nozzle-based path"
+    },
+    "ui.trinity_alpha_notice": {
+      "kind": "message",
+      "ja": "アルファ版プレビュー。取付・クリアランスの検証は未完了です。",
+      "en": "Alpha preview; mounting/clearance validation incomplete."
     }
   }
 }

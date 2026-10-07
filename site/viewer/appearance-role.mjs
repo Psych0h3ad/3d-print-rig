@@ -35,6 +35,7 @@ export function appearanceRole(part){
   if(['B Drive Frame Upper','A Drive Frame Upper'].includes(nativeName))return 'base';
  }
  if(/^v24_\d+$/.test(key)&&printedR2.has(name))return accents.has(name)?'accent':'base';
+ if(/^voron_trident_(250|300|350)_base_1396$/.test(key)&&name==='Exhaust Grill'&&/PTFE_Plate_Printed:1\/Exhaust Grill/.test(part.source_component||''))return 'accent';
  if(/^v24_\d+$/.test(key)&&!part.appearance_role){if(v24PrintedBase.has(name))return 'base';if(v24PrintedAccent.has(name))return 'accent';}
  if(/^(?:head|changer)_tap_sb_rods_/.test(key)&&['cable_cover','cable_cover_for_pcb'].includes(name))return 'base';
  return part.appearance_role||null;

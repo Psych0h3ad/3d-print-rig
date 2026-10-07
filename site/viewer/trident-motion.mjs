@@ -4,7 +4,7 @@ import {createBedChain,isTridentBedChain} from './bed-chain.mjs?v=public-v25';
 export function createTridentMotion(profile){
  if(profile.kinematics!=='trident'||!/^voron_trident_(?:(?:250|300|350)|500_custom|350_half_z)$/.test(profile.machine_id))throw Error('Trident profile mismatch');
  const size=profile.size_mm??Number(profile.machine_id.match(/_(250|300|350|500)(?:_|$)/)?.[1]),gantryId='trident_r2_gantry_'+size;
- const entries=new Map(),belts=[],bedChains=[];let reference=[...profile.display_reference_xyz_mm],bedReferenceDrop=0;
+ const entries=new Map(),belts=[],bedChains=[];let reference=[...profile.display_reference_xyz_mm],bedReferenceDrop=0,limitsIncludeBedReferenceDrop=false;
  function register(root,metadata){
   if(/^trident_r2_gantry_/.test(metadata.id||'')&&metadata.id!==gantryId)throw Error('Trident gantry size mismatch');
   const rows=new Map(metadata.parts.map(p=>[p.key,p]));
@@ -24,9 +24,9 @@ export function createTridentMotion(profile){
   if(metadata.id===gantryId&&!belts.some(b=>b.root===root))belts.push({root,...createTridentBelts(root,metadata)});
  }
  function setReference(value){reference=[...value]}
- function setBedReferenceDrop(value){if(!Number.isFinite(value)||value< -40||value>profile.display_limits_mm.Z[1])throw Error('Invalid bed reference');bedReferenceDrop=value}
+ function setBedReferenceDrop(value,{displayLimitsIncludeBedReferenceDrop=false}={}){limitsIncludeBedReferenceDrop=displayLimitsIncludeBedReferenceDrop;if(!Number.isFinite(value)||value< -40||value>profile.display_limits_mm.Z[1])throw Error('Invalid bed reference');bedReferenceDrop=value}
  function setPose(pose,{flexibleVisible=true,toolheadReference=true}={}){
-  const xyz=['x','y','z'].map((a,i)=>{const v=Number(pose[a]);if(!Number.isFinite(v))throw Error('Non-finite pose');const limits=profile.display_limits_mm[a.toUpperCase()];return Math.max(limits[0],Math.min(limits[1]-(a==='z'?Math.max(0,bedReferenceDrop):0),v))});
+  const xyz=['x','y','z'].map((a,i)=>{const v=Number(pose[a]);if(!Number.isFinite(v))throw Error('Non-finite pose');const limits=profile.display_limits_mm[a.toUpperCase()];return Math.max(limits[0],Math.min(limits[1]-(a==='z'&&!limitsIncludeBedReferenceDrop?Math.max(0,bedReferenceDrop):0),v))});
   const dx=xyz[0]-reference[0],dy=xyz[1]-reference[1],down=xyz[2]+bedReferenceDrop;
   for(const [mesh,{row,origin}] of entries){const motion=row.motion;
    if(isTridentBedChain(row))continue;

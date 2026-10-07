@@ -1,13 +1,14 @@
+import {augmentTrinityAlpha,TRINITY_ALPHA_SOURCE} from './trinity-alpha-installation.mjs?v=22601baf0fc057db47ee';
 import {workspaceTask} from './workspace-lifecycle.mjs';
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=c87c3058ab20e5b43e03';
-import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=73defb20995f507a54c8';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=c5451e1274490ed4facb';
+import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=89ce4354e3e163c93dc1';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
-import {appearanceRole} from './appearance-role.mjs?v=a2d85521f7f516860221';
+import {appearanceRole} from './appearance-role.mjs?v=6b7b8efda77bfc3ce74d';
 import {partKey} from './head-assembly.js?v=workspace-belts-1';
-import {v24HeadCatalog} from './machine-head-model.mjs?v=5075b3c940c3d11401f4';
-import {setupConfigurations} from './configurations.js?v=676c513ee63b2217ba64';
+import {v24HeadCatalog} from './machine-head-model.mjs?v=8a648bfe089bd36733b7';
+import {setupConfigurations} from './configurations.js?v=750a0fd526a7f3104aac';
 
 import {loadSiboorRegistration} from './siboor-catalog.mjs?v=c59d93be54e1c7637a63';
 import {stockProbeFit} from './probe-mounts.js?v=81f922c3169490021d08';
@@ -37,17 +38,18 @@ export async function loadMachineHeadCatalog(machine){return workspaceTask(async
    if(target){const[bundle]=await Promise.all([get('ASSET_BUNDLE.json'),...Object.keys(target.input_sha256).map(get)]);registry.head_witness_validation=acceptedHeadValidation(evidence,hashes,bundle,machine)}
   }catch{/* Missing or stale body findings do not prevent loading the catalog. */}
  }
- heads.assets={...heads.assets,...bank.assets};const board=[xolEmbeddedBoard(await get(heads.base_assets.xol.meta)),sbEmbeddedBoard(await get(heads.base_assets.stealthburner.meta))];return {heads:withEmbeddedBoards(heads,board),registry,bank};
+ heads.assets={...heads.assets,...bank.assets};const board=[xolEmbeddedBoard(await get(heads.base_assets.xol.meta)),sbEmbeddedBoard(await get(heads.base_assets.stealthburner.meta))];const data={heads:withEmbeddedBoards(heads,board),registry,bank};if(['voron_trident_250','voron_trident_300','voron_trident_350'].includes(machine)){const extra=await get(TRINITY_ALPHA_SOURCE.file);if(hashes[TRINITY_ALPHA_SOURCE.file]!==TRINITY_ALPHA_SOURCE.sha256)throw Error('Trinity alpha sidecar hash mismatch');augmentTrinityAlpha(data,machine,extra,hashes['MACHINE_HEAD_REGISTRATIONS.json']);}return data;
 });}
 export function createMachineHeads(scene,catalog,{render=()=>{}}={}){
  const gantry=createMonolithGantry(scene,catalog);
  const cache=new Map(),rig=new THREE.Group(),bankRig=new THREE.Group();rig.name='Installed_Machine_Head';bankRig.name='Frame_Tool_Bank';scene.add(rig,bankRig);let current=null,palette={base:'#24272c',accent:'#e32636'},delta=[0,0,0],bankState=null,bankEntries=[];
  async function asset(id){return workspaceTask(async()=>{
   if(cache.has(id))return cache.get(id);const spec=catalog.base_assets?.[id]||catalog.assets[id];if(!spec)throw Error('未登録のヘッド部品：'+id);
-  const loading=spec.external?loadExternalComponent(new GLTFLoader(),spec,location.href).then(({meta,gltf})=>[meta,gltf]):Promise.all([fetch('../'+spec.meta,{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('ヘッドの部品表');return r.json()}),loadModel(new GLTFLoader(),'../'+spec.glb)]);
+  const loading=spec.external?loadExternalComponent(new GLTFLoader(),spec,location.href).then(({meta,gltf})=>[meta,gltf]):Promise.all([fetch('../'+spec.meta,{cache:'no-cache'}).then(async r=>{if(!r.ok)throw Error('ヘッドの部品表');if(spec.metadata_sha256){const text=await r.text();if(await contentSHA256(text)!==spec.metadata_sha256)throw Error('Native head metadata hash mismatch');return JSON.parse(text)}return r.json()}),loadModel(new GLTFLoader(),'../'+spec.glb,undefined,spec.decoded_model_sha256?{verifySha256:spec.decoded_model_sha256}:{})]);
   const promise=loading.then(([meta,g])=>{
+   if(meta.coordinate_frame==='original_native_CAD_mm_XY_Zup'){const native=new THREE.Group();native.rotation.x=-Math.PI/2;native.scale.setScalar(.001);native.add(g.scene);g.scene=native;}
    const lookup=new Map(meta.parts.map(p=>[String(p.key),p])),entries=[];g.scene.visible=false;
-   g.scene.traverse(mesh=>{if(!mesh.isMesh)return;const key=partKey(mesh),row=lookup.get(String(key));if(!row)throw Error('ヘッドの部品対応が不正です');mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();const materials=Array.isArray(mesh.material)?mesh.material:[mesh.material];for(const m of materials){m.side=THREE.DoubleSide;if(m.transparent)m.depthWrite=false}entries.push({mesh,key,component:row.component,role:appearanceRole(row)||mesh.userData.appearance_role,materials,colors:materials.map(m=>m.color.clone())})});rig.add(g.scene);return {root:g.scene,entries};
+   g.scene.traverse(mesh=>{if(!mesh.isMesh)return;const key=partKey(mesh),row=lookup.get(String(key));if(!row)throw Error('ヘッドの部品対応が不正です');mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();const materials=Array.isArray(mesh.material)?mesh.material:[mesh.material];for(const m of materials){m.side=meta.native_single_sided?THREE.FrontSide:THREE.DoubleSide;if(m.transparent)m.depthWrite=false}entries.push({mesh,key,component:row.component,role:appearanceRole(row)||mesh.userData.appearance_role,materials,colors:materials.map(m=>m.color.clone())})});rig.add(g.scene);return {root:g.scene,entries};
   }).catch(e=>{cache.delete(id);throw e});cache.set(id,promise);return promise;
  });}
  function setPalette(value){gantry.setPalette(value);palette={...palette,...value};const rows=[...bankEntries,...[...cache.values()].flatMap(p=>p.loaded?.entries||[])];for(const row of rows)for(let i=0;i<row.materials.length;i++){const m=row.materials[i],color=palette[row.role];if(color)m.color.set(color);else m.color.copy(row.colors[i]);if(['base','accent'].includes(row.role)){m.metalness=0;m.roughness=.58}}}

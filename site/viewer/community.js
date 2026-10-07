@@ -10,7 +10,7 @@ import {communitySchema,validateCommunityState,communityMotionEnabled,communityC
 import {installationFor} from './ender-mods.mjs?v=5f07c69c7c42ba3f3936';
 import {setupMachineNavigation} from './machines.js?v=d6045b8af89b3984adcb';
 import {sceneLightingState} from './scene-lighting-state.mjs';
-import {translate} from './i18n.mjs?v=d01a458bbf8c52c2c300';
+import {translate} from './i18n.mjs?v=43b5586b963e97062654';
 import {rememberDisplayControl} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';

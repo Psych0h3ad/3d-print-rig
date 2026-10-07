@@ -4,7 +4,7 @@ import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690
 import {setupSceneDisplay} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect} from './responsive-camera.mjs?v=workspace-belts-1';
-import {appearanceRole} from './appearance-role.mjs?v=a2d85521f7f516860221';
+import {appearanceRole} from './appearance-role.mjs?v=6b7b8efda77bfc3ce74d';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';

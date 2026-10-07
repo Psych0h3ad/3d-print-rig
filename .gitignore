@@ -33,6 +33,7 @@
 !/site/HEAD_VALIDATION.json
 !/site/REAR_ENCLOSURE_QA.json
 !/site/TRIDENT_SB_NATIVE_DATUM.json
+!/site/TRINITY_ALPHA_INSTALLATIONS.json
 !/site/COMMUNITY_INSTALLATIONS.json
 /site/modules/
 /site/toolheads/

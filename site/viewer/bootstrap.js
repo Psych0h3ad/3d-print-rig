@@ -7,6 +7,6 @@ export async function mount(scope){
  const {id:machine,size}=siboorMachine();
  document.querySelector('h1').textContent='Trident / '+size;
  setupMachineNavigation(machine);
- if(await machineAssetsAvailable(machine))await (await import('./app.js?v=f8a877cf2263bfca60de')).mount(scope);
+ if(await machineAssetsAvailable(machine))await (await import('./app.js?v=2a10a1cf41977e283eee')).mount(scope);
  else await showMissingAssets();
 }

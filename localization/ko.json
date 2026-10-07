@@ -8785,6 +8785,10 @@
     "virtual_printer.nozzle_path_label": {
       "source_revision": "abf543e9c7291fd2267f",
       "text": "노즐 기준 경로"
+    },
+    "ui.trinity_alpha_notice": {
+      "source_revision": "5ffb8ce778ddda2f5501",
+      "text": "알파 미리보기: 장착 및 간섭 검증이 완료되지 않았습니다."
     }
   }
 }

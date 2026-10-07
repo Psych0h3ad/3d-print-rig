@@ -2,8 +2,8 @@ import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
 import {partKey} from './head-assembly.js?v=trident-clearance-35';
-import {appearanceRole} from './appearance-role.mjs?v=a2d85521f7f516860221';
-import {withMonolithMachines,monolithPartDelta} from './monolith-machine-model.mjs?v=c87c3058ab20e5b43e03';
+import {appearanceRole} from './appearance-role.mjs?v=6b7b8efda77bfc3ce74d';
+import {withMonolithMachines,monolithPartDelta} from './monolith-machine-model.mjs?v=c5451e1274490ed4facb';
 import {monolithBeltRoute,monolithBeltGeometry,monolithBeltTravelLimits} from './monolith-belts.mjs?v=cc31216a6676936d5cd6';
 
 const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);

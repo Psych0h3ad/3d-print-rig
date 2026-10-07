@@ -6,7 +6,7 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
-import {createMicronAdapter} from './micron-adapter.mjs?v=a85c18aa4753a88824a6';
+import {createMicronAdapter} from './micron-adapter.mjs?v=9b3cb87db30dc42c95ca';
 import {setupMachineNavigation} from './machines.js?v=d6045b8af89b3984adcb';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';

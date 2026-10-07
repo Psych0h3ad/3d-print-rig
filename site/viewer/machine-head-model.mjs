@@ -1,3 +1,4 @@
+import {trinityAlphaVariants} from './trinity-alpha-installation.mjs?v=22601baf0fc057db47ee';
 import {headPlan} from './head-assembly.js?v=trident-clearance-35';
 import {withPrinterGantry} from './printer-gantry.mjs?v=workspace-belts-2';
 
@@ -27,7 +28,7 @@ export function installedHeadPlan(variant,registry,target){
 export function machineHeadVariants(heads,registry,machine,gantry){
  const binding=registry.machines[machine];if(!binding)return [];
  const target=binding.gantries?binding.gantries[gantry]:binding;if(!target)return [];
- return heads.variants.filter(v=>
+ const installed=heads.variants.filter(v=>
   (v.mount==='fixed'&&['trident_r2','siboor_awd'].includes(v.gantry)&&v.carriage==='standard'&&['stealthburner','xol'].includes(v.toolhead))||
   (v.toolhead==='crowncooler'&&v.registration_source==='crowncooler'&&target.belt_width_mm===6)||
   (v.toolhead==='a4t'&&v.mount==='fixed'&&v.carriage==='a4t_xol'&&v.registration_source==='a4t_xol_carriage_'+target.belt_width_mm&&registry.sources[v.registration_source])||
@@ -47,6 +48,7 @@ export function machineHeadVariants(heads,registry,machine,gantry){
   if(v.toolhead==='sphinx')n.notes.push('MGN12の取付面と4本の穴軸でVORON機体へ配置。プローブはヘッド内の取付形状・高さを確認。');
   return n;
  });
+ return [...installed,...trinityAlphaVariants(heads,registry,machine,gantry)];
 }
 export function expandedPrinterCatalog(current,heads,registry,machine){
  const result=clone(withEmbeddedBoards(withPrinterGantry(current),heads.embedded_board));result.machine_id=machine;result.dimensions=['gantry','toolhead','mount','extruder','hotend','carriage','probe','board','cooling'];
@@ -60,7 +62,7 @@ export function expandedPrinterCatalog(current,heads,registry,machine){
    if(result.variants.some(v=>result.dimensions.every(field=>v[field]===variant[field])))continue;
    variant.removed_stock_keys=[...new Set([...foundation.removed_stock_keys,...Array.from({length:168},(_,i)=>String(i+412)),'surface_422'])];
    variant.modules=foundation.modules.filter(m=>/^trident_r2_gantry_(250|300|350)$/.test(m.id));
-   if(variant.fit.nozzle_mm&&Number.isFinite(result.bed_reference_top_mm))variant.fit.bed_reference_drop_mm=Math.max(0,result.bed_reference_top_mm-variant.fit.nozzle_mm[2]+.2);
+   if(!variant.native_alpha_92&&variant.fit.nozzle_mm&&Number.isFinite(result.bed_reference_top_mm))variant.fit.bed_reference_drop_mm=Math.max(0,result.bed_reference_top_mm-variant.fit.nozzle_mm[2]+.2);
    result.variants.push(variant);
   }
  }

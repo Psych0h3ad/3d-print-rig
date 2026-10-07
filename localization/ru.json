@@ -8785,6 +8785,10 @@
     "virtual_printer.nozzle_path_label": {
       "source_revision": "abf543e9c7291fd2267f",
       "text": "Траектория относительно сопла"
+    },
+    "ui.trinity_alpha_notice": {
+      "source_revision": "5ffb8ce778ddda2f5501",
+      "text": "Альфа-просмотр: проверка крепления и зазоров не завершена."
     }
   }
 }

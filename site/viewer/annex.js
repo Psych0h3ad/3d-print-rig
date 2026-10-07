@@ -15,7 +15,7 @@ import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {setupPublicInfo} from './public-info.js?v=0b0f91d7a82d25acbb87';
 import {applyNativeMotionProfile,loadNativeMotionProfile} from './native-motion-profile.mjs?v=91532eb992519143f437';
 import {createCommunityAdapter} from './community-adapter.mjs?v=527f242dd6b104060425';
-import {setupNativeMotionControls} from './native-motion-controls.mjs?v=0a7a8d3f340bda069691';
+import {setupNativeMotionControls} from './native-motion-controls.mjs?v=f05867a50f5371655360';
 export async function mount(scope){
  const $=id=>document.getElementById(id),stage=$('stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));
  renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);

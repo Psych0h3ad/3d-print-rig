@@ -1,9 +1,10 @@
+import {alphaProductNotice} from './trinity-alpha-installation.mjs?v=22601baf0fc057db47ee';
 import {createConfigurationDraft,configurationLabels,configurationLabel} from './configuration-draft.mjs?v=40f3194bb0e1c5a35cf8';
-import {setupConfigurationEditor} from './configuration-editor.mjs?v=b622f985c7a6a041273d';
+import {setupConfigurationEditor} from './configuration-editor.mjs?v=a5494c5fae4a99afed15';
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
 import {workspaceTask,workspaceListen} from './workspace-lifecycle.mjs';
-import {translate} from './i18n.mjs?v=d01a458bbf8c52c2c300';
-import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=c87c3058ab20e5b43e03';
+import {translate} from './i18n.mjs?v=43b5586b963e97062654';
+import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=c5451e1274490ed4facb';
 import {catalogDimensions,collections,resolveVariant,choicesFor,choiceChanges,importedVariant,configurationById} from './configuration-model.js?v=d4b3dda97a404a7575b7';
 import {probeCheck,probeOptionSuffix,headBodyCollisionNotes} from './probe-checks.js?v=ea1aef3e30bf7d11d3cb';
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
@@ -66,7 +67,7 @@ export async function setupConfigurations(catalog,install,{presentation='printer
    rows.push(label,...(native.notes||[]),...headBodyCollisionNotes(native.interface_contacts));$('#mountInfo')?.replaceChildren(...rows.map(row=>{const li=document.createElement('li');li.textContent=row;return li}));
   }
   const body=headWitnessCheck(v);if(body){$('#configStatus').textContent+=' ／ '+body.label;$('#configStatus').classList.add('notice');rows.push(...body.lines);$('#mountInfo')?.replaceChildren(...rows.map(row=>{const li=document.createElement('li');li.textContent=row;return li}))}inspection.update(v);
-  $('#configStatus').dataset.variant=v.id;
+  $('#configStatus').dataset.variant=v.id;alphaProductNotice(v);
   const headLink=$('#toolheadLink');if(presentation==='printer'&&headLink&&catalog.machine_id){const u=new URL(headLink.href,location.href);u.searchParams.set('return_machine',catalog.machine_id);u.searchParams.set('return_configuration',v.id);u.searchParams.set('return_head',u.searchParams.get('configuration'));headLink.href=u.href}
  }
  async function refresh(v,extraData,adjustment){return workspaceTask(async()=>{
@@ -97,7 +98,7 @@ export async function setupConfigurations(catalog,install,{presentation='printer
  function stageChoice(key,value){if(busy||!catalogDimensions(catalog).includes(key)||!draft.choose(key,value))return false;menus(draft.current);updateEditor();return true}
  for(const k of ids)$('#'+k+'Config').onchange=()=>stageChoice(k,$('#'+k+'Config').value);
  editor=createEditor(catalog,{ids,apply:applyDraft,discard:discardDraft,undo});
- if(typeof window!=='undefined')workspaceListen(window,'rig-language-change',()=>{menus(draft.current);updateEditor()});
+ if(typeof window!=='undefined')workspaceListen(window,'rig-language-change',()=>{menus(draft.current);updateEditor();alphaProductNotice(actual)});
  for(const row of catalog.sources){
   const a=document.createElement('a'),url=new URL(row.url),repository=url.pathname.split('/').filter(Boolean).slice(0,2);
   a.textContent=row.label||row.name||(url.hostname==='github.com'?repository.join('/'):url.hostname);
