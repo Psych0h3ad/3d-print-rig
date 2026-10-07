@@ -507,7 +507,7 @@
       "id": "voron_v24_500_custom",
       "family": "v24",
       "all_passed": true,
-      "model_sha256": "4a09d4a965acddc782b56c0994d0c3e335cf23b6067683b348ec59f4a90080b7",
+      "model_sha256": "c7563ea6125ae18e7ac559459478056e5da43725072dee8e5db7e64708717daa",
       "vertices": 3216028,
       "normal_vertices": 0,
       "zero_normal_vertices_on_collapsed_triangles": 0,
@@ -520,7 +520,7 @@
       "id": "voron_v24_350_half_z",
       "family": "v24",
       "all_passed": true,
-      "model_sha256": "3f2a28ef82e9da45ad78fbb505d801b62d772884a52dddb10520cacdab00af7c",
+      "model_sha256": "b6622e56f991fdf68b58ea8c2b51c157fc48eb5f3e01b05e953ed7e2ab3df298",
       "vertices": 3095658,
       "normal_vertices": 0,
       "zero_normal_vertices_on_collapsed_triangles": 0,
@@ -860,124 +860,124 @@
       "id": "mesh-quality",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 27.63,
+      "seconds": 24.192,
       "scope": "Current actual positions, normals, indices and node matrices; no physical fit certificate.",
       "original_sha256": "9b3d72d9df6f7e6ffad2ae23a37c1195acd3acc0687e9b7bec14cea122f0b844",
-      "prepared_sha256": "4b7eb3cb621c2274cdc4d1dda8944e77d1f2192d18397542d4d3ebd21a0f0d85"
+      "prepared_sha256": "baffd9093c50a3e72bf188e1d18b1500583c63c948fb18c1c012ca0698a6028c"
     },
     {
       "id": "community",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 35.549,
+      "seconds": 32.533,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "53b2f6ece46361ad012e52d4d9161099e077fb0496bd93ac9ed71676a9b8d144",
-      "prepared_sha256": "2977c0122669d8c044a5c7f406a853a48b4f58d2c889bb63cb0f3c5f39379789"
+      "prepared_sha256": "1e4da5e39796b003efa807d67b8d73c50f49debcda431fee64bae02345549ea7"
     },
     {
       "id": "micron",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 2.729,
+      "seconds": 3.218,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "38fdc25ae7b30884723d2f4d5412c845c8c37382d73b3a0fac751af669ebaf5e",
-      "prepared_sha256": "25982408a6c75c1a511342388bff0673f9f5191e2debd7a22c9c7e88cd99c0d0"
+      "prepared_sha256": "b2f837629b9240e873a4206bce9d8d98511ae4dd50e62c597d4cd1c2d46c4e7e"
     },
     {
       "id": "annex-reference",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 1.68,
+      "seconds": 1.7,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "7ebde666218e32ddd18a3af641bcd5cd75b631cd58e3033b19a14ca9ccaba475",
-      "prepared_sha256": "1a56db9b595e6af77d53bd9a3cded186752983a4aa8a23ff20d1e31a95090190"
+      "prepared_sha256": "22f76e2456ce8e5ff6df8e7fc46504c4fd79a4a0a38cd8485a4b1a767c31a2ea"
     },
     {
       "id": "remorph",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 1.375,
+      "seconds": 1.55,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "0717e358711b8102570ad47ebbfef67492b23396b79cd52e65b8d480e0fb8610",
-      "prepared_sha256": "9bdaedeaf2736950cc98036d75d7c3373944626a6a10cdc0aaf0e7d50515a19a"
+      "prepared_sha256": "43844aa7fa85d35cb59005e46abb9154cbab776ebb71d5d7ccb88a9a916ea9f6"
     },
     {
       "id": "e3ng-reference",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 0.759,
+      "seconds": 0.884,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "eb79a26aac152eafd8605d85b2871a0d33a678cc696a91de115304430625cd4c",
-      "prepared_sha256": "e06f4df6f8612c86bd3a1cd648d9a9197b25fc42c25d0bd99a1279a96307b4a3"
+      "prepared_sha256": "6f1af867413ee41cff0cf2fd39ed12f6118fe4ea2f3708c0049e0063adcd7845"
     },
     {
       "id": "crossant-covers",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 4.245,
+      "seconds": 4.752,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "b374ce63af671a7a433c2a5ffb32230febef02a76513c64d8ad157eea820adbc",
-      "prepared_sha256": "051c2ff9753d29fa44388e55e61458fac0db65abd6ad1947901393b72c7a6538"
+      "prepared_sha256": "0542570f78e72879a1ec8c90d22c059f72aef314ba6385d83eeba86059dee115"
     },
     {
       "id": "siboor-routes",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 1.132,
+      "seconds": 1.178,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "289a72e4df90db0037cdbe2369f2b3e1c4433488204c67f05cb71cb9b938e814",
-      "prepared_sha256": "be8e676b73e8d5c085a27ce00ef5b9bb3ac542566df70e4e4a40b876a1aba75b"
+      "prepared_sha256": "4d4ceea8add2683bbce33255aa85560e8dc00ced6bcc558210de198e6698078d"
     },
     {
       "id": "ratrig",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 60.331,
+      "seconds": 61.464,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "d358d8cb1b5a53b49a4fd5d36fa06c117125574606e426fe238d1606c065a73e",
-      "prepared_sha256": "7ec63f846ae359f3b8f45d35323b83baeac202b174b0489e144ece98445f603f"
+      "prepared_sha256": "96080c9e1148c4c621418e5120b72b600c98270e5c329b61e26a707f00986a4b"
     },
     {
       "id": "positron-fold",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 1.109,
+      "seconds": 1.053,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "0822ac0b39b5ce1a85167068167a992588b879550dd9e80bd23e0810ab8c3f85",
-      "prepared_sha256": "c9e81c3eed772ec1d7bcde88b9f9bdce5b3ae0b2554f0ebed5fd35dfd14ee589"
+      "prepared_sha256": "3a4a2dbca1e83bec0f0d0552b129fe210b47eb556f612cdd8c354ff3166db0b8"
     },
     {
       "id": "fysetc-reference",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 0.658,
+      "seconds": 0.718,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "5e716fd1284219f180c6bc3827e7c9ea9493c6ca853516b449e034027faffb83",
-      "prepared_sha256": "8a4a9651e5e443ce7410f74b86b35c0613b6f8ade90b0d1f54c22de89e94eb9b"
+      "prepared_sha256": "45ee8e946a1b4a7d63a28ee37139e82e6d9ba0593daa79481fe49367b6ea8417"
     },
     {
       "id": "requested-static",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 1.753,
+      "seconds": 1.973,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "45e00c1b21d537d4bb262d17a4355deead19dd7f091bf40fc7b6b2eaf33c68e4",
-      "prepared_sha256": "820554d80639045f610577c1c810e5adc707d4cd8a08b8c209f0cdfa56802e02"
+      "prepared_sha256": "455bf843057ff34f25cd116934096c50137530da77b6c4c5f7012e21d0979a6a"
     },
     {
       "id": "production-loading",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 36.45,
+      "seconds": 29.425,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
-      "original_sha256": "0eeab4bfd5f4fa3bce4e8065dd328a806563219e22217ce27400cd16daf70dcf",
-      "prepared_sha256": "f7333e106debec3cc8854ddb42dcf15beebd910f77fbd0c7da42c7fad3441853"
+      "original_sha256": "5e10f2ed650b82c37f1a70e663816795dad091baa5b3f93a09913679ba302697",
+      "prepared_sha256": "fe794a36c372e0129dfd5674f4c70a9196edfe200d18b986b24601504c2f9d31"
     },
     {
       "id": "check_motion_assets",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 15.537,
+      "seconds": 14.55,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "7d004faee9d5239eb6d9d3c6f889ac6e16897c359bf6823ed1b603e8f9d1a211",
       "prepared_sha256": "333842524c5860f28bbb7005c945f324b3669adfcb1a0dbd1f8010b46b98f64d"
@@ -986,7 +986,7 @@
       "id": "audit_v24_colors",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 3.05,
+      "seconds": 3.223,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "9fd80ee70d94340edb98f2ea3be3211df863210d10c54e1aa15e2161f3241507",
       "prepared_sha256": "91deac222b512a595c1213441f98d2d8a1ce5cefac77d6238339c0b376a792c6"
@@ -995,7 +995,7 @@
       "id": "audit_trident_sizes",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 4.314,
+      "seconds": 4.506,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "c1eb3d2b1ed8004a322ed655460664343ee8fbf9ad2ba85c1742c2fcb6746f75",
       "prepared_sha256": "4783bb2de3ec23c2df7840c5e853fe84e983aa2eb7d5a04a16617538b622ca29"
@@ -1004,7 +1004,7 @@
       "id": "check_workbench_assets",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 22.675,
+      "seconds": 23.466,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "b9ed2152701a6e74812d64263b79456387a4a7e6e6b257a5abe9393cb445c8a5",
       "prepared_sha256": "be0673cc8df60bc547d0e90392536354c33d54f879ad487dcb8a17aee2921919"
@@ -1013,7 +1013,7 @@
       "id": "audit_loaded_heads",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 13.303,
+      "seconds": 13.178,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "56e9624e15668190fb0405a494c104a861be649f3feeafa8d770cf95c45933ea",
       "prepared_sha256": "e05bfd5ae7fc8ceb6975a2358d1fdf2ccf172e2c93e15f892b9ffb0cfecc48bc"
@@ -1022,7 +1022,7 @@
       "id": "audit_changer_banks",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 20.939,
+      "seconds": 21.034,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "48d28b275be9ca13b9bfd9c77c047b274ad07446d7245f69f21f7ff81a42001d",
       "prepared_sha256": "d03e7aa9e2568f6ebff63bf0cf18a098caf942e7553df207bfc2e4af8e2667c8"
@@ -1031,7 +1031,7 @@
       "id": "audit_indx_banks",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 20.423,
+      "seconds": 21.381,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "82f3b9da9d260eaf539bd1058aaff79957e955663e1896e4b6b477d5dc395784",
       "prepared_sha256": "e17914a6e774e84e2198ab931abf86a78b585e6f3a40d402c9c58238f5c9b050"
@@ -1040,7 +1040,7 @@
       "id": "audit_monolith_motion",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 10.577,
+      "seconds": 10.772,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "24053829ef864cea8d37c2d918b638b2776074e99f55529c45f431db7250649c",
       "prepared_sha256": "defc4b853b2f9bb7a0be754cec40ded8f5c4d16dbc3b586bb992d1494e83194e"
@@ -1049,7 +1049,7 @@
       "id": "audit_monolith_mounts",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 12.036,
+      "seconds": 10.747,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "e808968e52c1cfd795611021834ff89871c8779c8f28beebaf82a0dbaa191e83",
       "prepared_sha256": "e808968e52c1cfd795611021834ff89871c8779c8f28beebaf82a0dbaa191e83"
@@ -1058,7 +1058,7 @@
       "id": "audit_monolith_printers",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 29.309,
+      "seconds": 27.955,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "1b7dfac3acb0eaf4032cbef1b2e0db20db3a3a940bd4287ef6978120ee2222c4",
       "prepared_sha256": "80325694a1458bdf739aa30a5f4b602ceb1ae35c1c3364258ca3dd08e506aa52"
@@ -1067,7 +1067,7 @@
       "id": "audit_custom_ptfe",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 14.934,
+      "seconds": 13.492,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "aa10e8c1270470502fdc0cf7bdf34773aed82ad467e6865d523d35ff942be48d",
       "prepared_sha256": "8766fe95ed15fbfe498b18bed06f56be42020b24de782bba33d4fc39ff859c90"
@@ -1076,88 +1076,88 @@
       "id": "motion-annex_k1_assembly",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 1.271,
+      "seconds": 1.234,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "530b184aec7b468d07cf8c175f3bffc5f25235b6989741ccc7c8079fc0b72ff5",
-      "prepared_sha256": "bfc3f4b70065db2687a9a3b91b3b8b373d720ce78faaa8f44445537c38c6b68c"
+      "prepared_sha256": "b43756e3b18ba7ff89680690a2b41df343eea767cf2a88b175524ad0ad4c3f79"
     },
     {
       "id": "motion-annex_k2_assembly",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 1.199,
+      "seconds": 1.182,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "530b184aec7b468d07cf8c175f3bffc5f25235b6989741ccc7c8079fc0b72ff5",
-      "prepared_sha256": "bfc3f4b70065db2687a9a3b91b3b8b373d720ce78faaa8f44445537c38c6b68c"
+      "prepared_sha256": "b43756e3b18ba7ff89680690a2b41df343eea767cf2a88b175524ad0ad4c3f79"
     },
     {
       "id": "motion-annex_k3_assembly",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 1.029,
+      "seconds": 1.099,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "530b184aec7b468d07cf8c175f3bffc5f25235b6989741ccc7c8079fc0b72ff5",
-      "prepared_sha256": "bfc3f4b70065db2687a9a3b91b3b8b373d720ce78faaa8f44445537c38c6b68c"
+      "prepared_sha256": "b43756e3b18ba7ff89680690a2b41df343eea767cf2a88b175524ad0ad4c3f79"
     },
     {
       "id": "motion-fysetc_v24_250_pro",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 4.883,
+      "seconds": 4.721,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "530b184aec7b468d07cf8c175f3bffc5f25235b6989741ccc7c8079fc0b72ff5",
-      "prepared_sha256": "bfc3f4b70065db2687a9a3b91b3b8b373d720ce78faaa8f44445537c38c6b68c"
+      "prepared_sha256": "b43756e3b18ba7ff89680690a2b41df343eea767cf2a88b175524ad0ad4c3f79"
     },
     {
       "id": "motion-rook_mk2_120",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 0.587,
+      "seconds": 0.65,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "530b184aec7b468d07cf8c175f3bffc5f25235b6989741ccc7c8079fc0b72ff5",
-      "prepared_sha256": "bfc3f4b70065db2687a9a3b91b3b8b373d720ce78faaa8f44445537c38c6b68c"
+      "prepared_sha256": "b43756e3b18ba7ff89680690a2b41df343eea767cf2a88b175524ad0ad4c3f79"
     },
     {
       "id": "motion-satsuma180_v10",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 2.589,
+      "seconds": 3.09,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "530b184aec7b468d07cf8c175f3bffc5f25235b6989741ccc7c8079fc0b72ff5",
-      "prepared_sha256": "bfc3f4b70065db2687a9a3b91b3b8b373d720ce78faaa8f44445537c38c6b68c"
+      "prepared_sha256": "b43756e3b18ba7ff89680690a2b41df343eea767cf2a88b175524ad0ad4c3f79"
     },
     {
       "id": "motion-sovol_sv08_350",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 1.494,
+      "seconds": 1.797,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "530b184aec7b468d07cf8c175f3bffc5f25235b6989741ccc7c8079fc0b72ff5",
-      "prepared_sha256": "bfc3f4b70065db2687a9a3b91b3b8b373d720ce78faaa8f44445537c38c6b68c"
+      "prepared_sha256": "b43756e3b18ba7ff89680690a2b41df343eea767cf2a88b175524ad0ad4c3f79"
     },
     {
       "id": "motion-the100_v11_165",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 0.526,
+      "seconds": 0.516,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "530b184aec7b468d07cf8c175f3bffc5f25235b6989741ccc7c8079fc0b72ff5",
-      "prepared_sha256": "bfc3f4b70065db2687a9a3b91b3b8b373d720ce78faaa8f44445537c38c6b68c"
+      "prepared_sha256": "b43756e3b18ba7ff89680690a2b41df343eea767cf2a88b175524ad0ad4c3f79"
     },
     {
       "id": "motion-tictac_21_120",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 1.12,
+      "seconds": 1.129,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "530b184aec7b468d07cf8c175f3bffc5f25235b6989741ccc7c8079fc0b72ff5",
-      "prepared_sha256": "bfc3f4b70065db2687a9a3b91b3b8b373d720ce78faaa8f44445537c38c6b68c"
+      "prepared_sha256": "b43756e3b18ba7ff89680690a2b41df343eea767cf2a88b175524ad0ad4c3f79"
     },
     {
       "id": "actual-support",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 4.983,
+      "seconds": 4.88,
       "scope": "Production-composed current eligible configurations, strict selection, dependencies and links only.",
       "original_sha256": "03a51c059c3e1cb644245dc2019adbff4764b2e94b82a11bfa734c69ace58743",
       "prepared_sha256": "5d227e0eb3c6a11173d26d65294d170b76157f7e6a8298a51d530c2ae90e4d60"
@@ -1166,7 +1166,7 @@
   "actual_model_profile_manifest_identities": 184,
   "source_regressions": {
     "tests": 91,
-    "workers": 3,
+    "workers": 1,
     "all_passed": true,
     "tests_sha256": {
       "test_accessories.mjs": "ccff00339f4cafcfafd002186d0ab7e4534c7da30021e3756dbcb84524571554",
@@ -1268,7 +1268,7 @@
     "site/COMMUNITY_MACHINES_ASSETS.json": "17bf23b6d8fc1bdd05def397f36a6df3eb767bd72f88dbee771fbe80b232e681",
     "site/COMPONENT_ADDITIONS.json": "27c15395acd33d1ae69cf73a055b50e01e69e7df4f502b4c97af2503eadb18a0",
     "site/CROSSANT_ASSETS.json": "cc782d728e52beb780c0aaa2cb664ccce127154c02744312307dee74ffe8bdc6",
-    "site/CUSTOM_VORON_ASSETS.json": "940f15f39a86e8c389e8914bd45b0b1008ca29fe2192f72989f5710755531a95",
+    "site/CUSTOM_VORON_ASSETS.json": "fc1c9473f677e799d7def7ff1cc1e1991b3d82071a3d4b2ac5a924593954235e",
     "site/EXTRA_MACHINE_ASSETS.json": "a1ef772b70a82420d97d564f8327e22dde6bcb511bdd6e94d406d6bc62cca624",
     "site/HEAD_ADDITIONS.json": "96ff1040533f356166ab3174d2f8f65cf2d8c05d49defced2e45d669c0b4d713",
     "site/HEAD_VALIDATION.json": "6ffc2f9780c6aedd4584957fba8bd1aa79fd34a33ce066181a43b56d4064b185",
@@ -1566,5 +1566,828 @@
     "actual_browser_receipt_sha256": "4873b21562221fc3c7ed1231438437ece352ffa160eb7815cb94eb8a0cc6bf7e",
     "physical_machine_connected": false,
     "native_continuous_clearance_certified": false
+  },
+  "custom_v24_skirts": {
+    "changed_machines": [
+      "voron_v24_500_custom",
+      "voron_v24_350_half_z"
+    ],
+    "native_scope": [
+      {
+        "machine_id": "voron_v24_500_custom",
+        "manifest_sha256": "d73efb485a37dbceb4077cdd3c10b0b3527bceb108614c58d7add302eec4db8e",
+        "profile_sha256": "83f51af3d6c35b2a6ee2356dee823ee1f64256e56b68880fb9528fe57d3e114c",
+        "model_sha256": "e27c4c83bb6e025e59be16c9611dfa92221ff5a2a955787074a510fce4598fef",
+        "native_mates": [
+          {
+            "hardware": "v24_00864",
+            "skirt": "v24_00859",
+            "hardware_radius_mm": 1.5,
+            "skirt_radius_mm": 1.6,
+            "axis_error_mm": 1.8007457694283915e-12,
+            "allowed_axis_error_mm": 0.001,
+            "axis": 2,
+            "passed": true,
+            "exact_native_common_volume_mm3": 0.0,
+            "native_common_solids": 0,
+            "unintended_positive_solid_interference": false
+          },
+          {
+            "hardware": "v24_00865",
+            "skirt": "v24_00859",
+            "hardware_radius_mm": 1.5,
+            "skirt_radius_mm": 1.6,
+            "axis_error_mm": 1.1425385788607957e-12,
+            "allowed_axis_error_mm": 0.001,
+            "axis": 2,
+            "passed": true,
+            "exact_native_common_volume_mm3": 0.0,
+            "native_common_solids": 0,
+            "unintended_positive_solid_interference": false
+          },
+          {
+            "hardware": "v24_00873",
+            "skirt": "v24_00870",
+            "hardware_radius_mm": 1.5,
+            "skirt_radius_mm": 1.6,
+            "axis_error_mm": 4.672995149237061e-05,
+            "allowed_axis_error_mm": 0.001,
+            "axis": 2,
+            "passed": true,
+            "exact_native_common_volume_mm3": 0.0,
+            "native_common_solids": 0,
+            "unintended_positive_solid_interference": false
+          },
+          {
+            "hardware": "v24_00874",
+            "skirt": "v24_00870",
+            "hardware_radius_mm": 1.5,
+            "skirt_radius_mm": 1.6,
+            "axis_error_mm": 4.672995146393135e-05,
+            "allowed_axis_error_mm": 0.001,
+            "axis": 2,
+            "passed": true,
+            "exact_native_common_volume_mm3": 0.0,
+            "native_common_solids": 0,
+            "unintended_positive_solid_interference": false
+          },
+          {
+            "hardware": "v24_00882",
+            "skirt": "v24_00881",
+            "hardware_radius_mm": 1.5,
+            "skirt_radius_mm": 1.7,
+            "axis_error_mm": 0.20000047682106015,
+            "allowed_axis_error_mm": 0.201,
+            "axis": 2,
+            "passed": true,
+            "exact_native_common_volume_mm3": 0.0,
+            "native_common_solids": 0,
+            "unintended_positive_solid_interference": false
+          },
+          {
+            "hardware": "v24_00906",
+            "skirt": "v24_00905",
+            "hardware_radius_mm": 1.5,
+            "skirt_radius_mm": 1.7,
+            "axis_error_mm": 0.20000047684925568,
+            "allowed_axis_error_mm": 0.201,
+            "axis": 2,
+            "passed": true,
+            "exact_native_common_volume_mm3": 0.0,
+            "native_common_solids": 0,
+            "unintended_positive_solid_interference": false
+          },
+          {
+            "hardware": "v24_00910",
+            "skirt": "v24_00909",
+            "hardware_radius_mm": 1.5,
+            "skirt_radius_mm": 1.7,
+            "axis_error_mm": 0.2000004768759709,
+            "allowed_axis_error_mm": 0.201,
+            "axis": 2,
+            "passed": true,
+            "exact_native_common_volume_mm3": 6.651817487268452e-09,
+            "native_common_solids": 1,
+            "unintended_positive_solid_interference": false
+          },
+          {
+            "hardware": "v24_00936",
+            "skirt": "v24_00935",
+            "hardware_radius_mm": 1.5,
+            "skirt_radius_mm": 1.7,
+            "axis_error_mm": 0.20000047690126702,
+            "allowed_axis_error_mm": 0.201,
+            "axis": 2,
+            "passed": true,
+            "exact_native_common_volume_mm3": 6.65229067336639e-09,
+            "native_common_solids": 1,
+            "unintended_positive_solid_interference": false
+          },
+          {
+            "hardware": "v24_00948",
+            "skirt": "v24_00939",
+            "hardware_radius_mm": 1.5,
+            "skirt_radius_mm": 1.6,
+            "axis_error_mm": 0.0009532759159753823,
+            "allowed_axis_error_mm": 0.001,
+            "axis": 2,
+            "passed": true,
+            "exact_native_common_volume_mm3": 0.0,
+            "native_common_solids": 0,
+            "unintended_positive_solid_interference": false
+          },
+          {
+            "hardware": "v24_00949",
+            "skirt": "v24_00939",
+            "hardware_radius_mm": 1.5,
+            "skirt_radius_mm": 1.6,
+            "axis_error_mm": 0.000953275916003804,
+            "allowed_axis_error_mm": 0.001,
+            "axis": 2,
+            "passed": true,
+            "exact_native_common_volume_mm3": 0.0,
+            "native_common_solids": 0,
+            "unintended_positive_solid_interference": false
+          },
+          {
+            "hardware": "v24_00953",
+            "skirt": "v24_00952",
+            "hardware_radius_mm": 1.5,
+            "skirt_radius_mm": 1.75,
+            "axis_error_mm": 5.684341886080802e-14,
+            "allowed_axis_error_mm": 0.001,
+            "axis": 2,
+            "passed": true,
+            "exact_native_common_volume_mm3": 0.0,
+            "native_common_solids": 0,
+            "unintended_positive_solid_interference": false
+          },
+          {
+            "hardware": "v24_00954",
+            "skirt": "v24_00952",
+            "hardware_radius_mm": 1.5,
+            "skirt_radius_mm": 1.75,
+            "axis_error_mm": 0.0,
+            "allowed_axis_error_mm": 0.001,
+            "axis": 2,
+            "passed": true,
+            "exact_native_common_volume_mm3": 0.0,
+            "native_common_solids": 0,
+            "unintended_positive_solid_interference": false
+          },
+          {
+            "hardware": "v24_00979",
+            "skirt": "v24_00955",
+            "hardware_radius_mm": 1.5,
+            "skirt_radius_mm": 1.6,
+            "axis_error_mm": 4.62671908852022e-13,
+            "allowed_axis_error_mm": 0.001,
+            "axis": 2,
+            "passed": true,
+            "exact_native_common_volume_mm3": 0.0,
+            "native_common_solids": 0,
+            "unintended_positive_solid_interference": false
+          },
+          {
+            "hardware": "v24_00980",
+            "skirt": "v24_00955",
+            "hardware_radius_mm": 1.5,
+            "skirt_radius_mm": 1.6,
+            "axis_error_mm": 1.0235762093412351e-12,
+            "allowed_axis_error_mm": 0.001,
+            "axis": 2,
+            "passed": true,
+            "exact_native_common_volume_mm3": 0.0,
+            "native_common_solids": 0,
+            "unintended_positive_solid_interference": false
+          },
+          {
+            "hardware": "v24_00860",
+            "skirt": "v24_00859",
+            "hardware_radius_mm": 1.45,
+            "skirt_radius_mm": 2.35,
+            "axis_error_mm": 8.038873388460929e-14,
+            "allowed_axis_error_mm": 0.001,
+            "axis": 2,
+            "passed": true,
+            "intended_engagement": "Native insert/knurl interference retained; cylindrical insertion axis registration only."
+          },
+          {
+            "hardware": "v24_00875",
+            "skirt": "v24_00870",
+            "hardware_radius_mm": 1.45,
+            "skirt_radius_mm": 2.35,
+            "axis_error_mm": 0.05622645564984757,
+            "allowed_axis_error_mm": 0.06,
+            "axis": 2,
+            "passed": true,
+            "intended_engagement": "Native insert/knurl interference retained; cylindrical insertion axis registration only."
+          },
+          {
+            "hardware": "v24_00945",
+            "skirt": "v24_00939",
+            "hardware_radius_mm": 1.45,
+            "skirt_radius_mm": 2.35,
+            "axis_error_mm": 0.000953275915804852,
+            "allowed_axis_error_mm": 0.001,
+            "axis": 2,
+            "passed": true,
+            "intended_engagement": "Native insert/knurl interference retained; cylindrical insertion axis registration only."
+          },
+          {
+            "hardware": "v24_00974",
+            "skirt": "v24_00955",
+            "hardware_radius_mm": 1.45,
+            "skirt_radius_mm": 2.35,
+            "axis_error_mm": 5.684341886080802e-14,
+            "allowed_axis_error_mm": 0.001,
+            "axis": 2,
+            "passed": true,
+            "intended_engagement": "Native insert/knurl interference retained; cylindrical insertion axis registration only."
+          },
+          {
+            "hardware": "v24_00967",
+            "skirt": "v24_00955",
+            "hardware_radius_mm": 1.45,
+            "skirt_radius_mm": 2.35,
+            "axis_error_mm": 1.8618389146643107e-12,
+            "allowed_axis_error_mm": 0.001,
+            "axis": 1,
+            "passed": true,
+            "intended_engagement": "Native insert/knurl interference retained; cylindrical insertion axis registration only."
+          },
+          {
+            "hardware": "v24_00968",
+            "skirt": "v24_00955",
+            "hardware_radius_mm": 1.45,
+            "skirt_radius_mm": 2.35,
+            "axis_error_mm": 0.00020000000014874786,
+            "allowed_axis_error_mm": 0.001,
+            "axis": 1,
+            "passed": true,
+            "intended_engagement": "Native insert/knurl interference retained; cylindrical insertion axis registration only."
+          }
+        ],
+        "actual_mesh_placements": [
+          {
+            "key": "v24_00859",
+            "native_sha256": "826585297467e7eec55d20f489acb0dfb0f1e1834275a59c171aa4c2c6756126",
+            "fresh_native_mesh_bounds_error_mm": 1.0859806366170233e-05,
+            "passed": true
+          },
+          {
+            "key": "v24_00870",
+            "native_sha256": "61a36969e05f320b5ab9ad599b0f35633ca2c24bf3eba344979d05b4f21d9dc5",
+            "fresh_native_mesh_bounds_error_mm": 1.085975014802898e-05,
+            "passed": true
+          },
+          {
+            "key": "v24_00860",
+            "native_sha256": "e3a585f349167e463a757b88317c8961ff2d2ca9041b1ab5590527e74883827d",
+            "fresh_native_mesh_bounds_error_mm": 1.394443290791969e-05,
+            "passed": true
+          },
+          {
+            "key": "v24_00875",
+            "native_sha256": "7a16b2b49ba3be956e1531c0658c8a697aa39b0a179aa3137b9ad0af62e6d895",
+            "fresh_native_mesh_bounds_error_mm": 1.4768753885618935e-05,
+            "passed": true
+          },
+          {
+            "key": "v24_00865",
+            "native_sha256": "b7004cf15cbeb80e4486d506eb07aed8c1a610258add64da0edf9b464907ccc7",
+            "fresh_native_mesh_bounds_error_mm": 1.1098229037997953e-05,
+            "passed": true
+          },
+          {
+            "key": "v24_00873",
+            "native_sha256": "e4d82cba80c268a919b12db07f9e2d41d12c901c3b52fc7dc704e74381fdfe93",
+            "fresh_native_mesh_bounds_error_mm": 1.1098223978933675e-05,
+            "passed": true
+          },
+          {
+            "key": "v24_00941",
+            "native_sha256": "8280ae5613907abd8d9b8ee6875cf7990edc03733375afd1f46b4ae449f9e939",
+            "fresh_native_mesh_bounds_error_mm": 1.4889395174577658e-05,
+            "passed": true
+          },
+          {
+            "key": "v24_00942",
+            "native_sha256": "eb547efdc6890a1714880686b0ef8681b3c047f4dd4633a516154498b26c6b08",
+            "fresh_native_mesh_bounds_error_mm": 1.4889395174577658e-05,
+            "passed": true
+          },
+          {
+            "key": "v24_00948",
+            "native_sha256": "4800ccb0863ccd711ab418f27e710ee9b3796b9dfecfddddcef6b132f5b2bca9",
+            "fresh_native_mesh_bounds_error_mm": 1.4412567054478131e-05,
+            "passed": true
+          },
+          {
+            "key": "v24_00949",
+            "native_sha256": "b757efb7eaf4f032936e285f6154c90a4d2a3c14e8597abb3d75b8403944172a",
+            "fresh_native_mesh_bounds_error_mm": 1.4412566429200524e-05,
+            "passed": true
+          },
+          {
+            "key": "v24_00957",
+            "native_sha256": "0456d2ef173441989e6cca835f9b4344b3bf6538e422a94388054543017c7448",
+            "fresh_native_mesh_bounds_error_mm": 9.392667550400802e-06,
+            "passed": true
+          },
+          {
+            "key": "v24_00961",
+            "native_sha256": "c32c0e0c91b6237f13b380be6051ee9310461d87a8e4516529f33e79612de02e",
+            "fresh_native_mesh_bounds_error_mm": 1.4367852088525979e-05,
+            "passed": true
+          },
+          {
+            "key": "v24_00963",
+            "native_sha256": "570f908b50d9432b89a7335e93c5d05a1ad00b9f4d7b5ffef09502b3193ec355",
+            "fresh_native_mesh_bounds_error_mm": 1.436785203168256e-05,
+            "passed": true
+          },
+          {
+            "key": "v24_00965",
+            "native_sha256": "81d133a6aeef35a2ea1df1a74ce01cf0329bbc66a9aadf1e4e8a4df8feb4d703",
+            "fresh_native_mesh_bounds_error_mm": 1.2463259167816432e-05,
+            "passed": true
+          },
+          {
+            "key": "v24_00966",
+            "native_sha256": "ccdd20da32ea96742d2ecd1fdf15142d20f241e71497439261924aebf60f5b57",
+            "fresh_native_mesh_bounds_error_mm": 1.2463259167816432e-05,
+            "passed": true
+          },
+          {
+            "key": "v24_00967",
+            "native_sha256": "3f1ecd3790217c1a04f4639af699f0a1210bf0665898b928e60221d7284fa5aa",
+            "fresh_native_mesh_bounds_error_mm": 1.4844713177808444e-05,
+            "passed": true
+          },
+          {
+            "key": "v24_00968",
+            "native_sha256": "07a44cba8725acfb187c48a327784add2c6946663fa64a820eb1255ee38e29b1",
+            "fresh_native_mesh_bounds_error_mm": 1.4844711245132203e-05,
+            "passed": true
+          },
+          {
+            "key": "v24_00969",
+            "native_sha256": "18ff6bf94d8b9ee6a2148cc8002383201382bff66fb4961d93b11faad3da9f14",
+            "fresh_native_mesh_bounds_error_mm": 1.1847477480841917e-05,
+            "passed": true
+          },
+          {
+            "key": "v24_00970",
+            "native_sha256": "91b46203fcfae4cd7dfe43a8647d2a4712719fb5b632d670e31cb979b2502c34",
+            "fresh_native_mesh_bounds_error_mm": 4.540631238114656e-06,
+            "passed": true
+          },
+          {
+            "key": "v24_00971",
+            "native_sha256": "1067f3dae11953deed8c200e6ade144eb06102a10a7e117099525593dd014ee0",
+            "fresh_native_mesh_bounds_error_mm": 1.3139144755314192e-05,
+            "passed": true
+          },
+          {
+            "key": "v24_00979",
+            "native_sha256": "8f32a97a532b0b719834da90cc8b74d25da8b0cacd43ecd2ec2c7b94d6388239",
+            "fresh_native_mesh_bounds_error_mm": 1.441256216594411e-05,
+            "passed": true
+          },
+          {
+            "key": "v24_00980",
+            "native_sha256": "81095838a867991079651eb6e74fc8fc7611de0eec56047f277194d693b6ea71",
+            "fresh_native_mesh_bounds_error_mm": 1.4412561995413853e-05,
+            "passed": true
+          },
+          {
+            "key": "v24_00953",
+            "native_sha256": "e58918e8bb34097d5d6a0c9f91c1638cc8c4b491b7055b4a46cd77cfbde171aa",
+            "fresh_native_mesh_bounds_error_mm": 1.4412399536922749e-05,
+            "passed": true
+          },
+          {
+            "key": "v24_00954",
+            "native_sha256": "1e7657273b493662af92ed79681c040119d4c628c0167e4c6e0366e1efbf1226",
+            "fresh_native_mesh_bounds_error_mm": 1.4412540622288361e-05,
+            "passed": true
+          },
+          {
+            "key": "v24_00906",
+            "native_sha256": "df63b9e9e028fc4ee7bf8ade57eb51ab7c45ecafd8157baf075f926e43102d52",
+            "fresh_native_mesh_bounds_error_mm": 1.410075344665529e-05,
+            "passed": true
+          },
+          {
+            "key": "v24_00910",
+            "native_sha256": "98784526bb8466b20ae541430158b4b930cff4f7de6962546de17d69bcc15330",
+            "fresh_native_mesh_bounds_error_mm": 9.884160874662484e-06,
+            "passed": true
+          }
+        ],
+        "scope": "Selected skirt screw/insert/guard analytic axes, exact source shapes and actual transformed GLB vertices. Not full-machine clearance or physical build certification.",
+        "passed": true,
+        "unintended_solid_interference_findings": []
+      },
+      {
+        "machine_id": "voron_v24_350_half_z",
+        "manifest_sha256": "2f5d780359c2c7cd6934f2196ad089e155edd48a22a7cbe84b0a6b154aec4924",
+        "profile_sha256": "a3bf4bf1e78ac47a193b2c9edaa211443d6a068d77a095699a00e12645dd0df3",
+        "model_sha256": "61e58c8fbcffbc2a6678b9566c8e37069f61d54225da35ec0624b736740ec049",
+        "native_mates": [
+          {
+            "hardware": "v24_00864",
+            "skirt": "v24_00859",
+            "hardware_radius_mm": 1.5,
+            "skirt_radius_mm": 1.6,
+            "axis_error_mm": 1.7747645099886978e-12,
+            "allowed_axis_error_mm": 0.001,
+            "axis": 2,
+            "passed": true,
+            "exact_native_common_volume_mm3": 0.0,
+            "native_common_solids": 0,
+            "unintended_positive_solid_interference": false
+          },
+          {
+            "hardware": "v24_00865",
+            "skirt": "v24_00859",
+            "hardware_radius_mm": 1.5,
+            "skirt_radius_mm": 1.6,
+            "axis_error_mm": 1.1142615098783983e-12,
+            "allowed_axis_error_mm": 0.001,
+            "axis": 2,
+            "passed": true,
+            "exact_native_common_volume_mm3": 0.0,
+            "native_common_solids": 0,
+            "unintended_positive_solid_interference": false
+          },
+          {
+            "hardware": "v24_00873",
+            "skirt": "v24_00870",
+            "hardware_radius_mm": 1.5,
+            "skirt_radius_mm": 1.6,
+            "axis_error_mm": 4.672995143552706e-05,
+            "allowed_axis_error_mm": 0.001,
+            "axis": 2,
+            "passed": true,
+            "exact_native_common_volume_mm3": 0.0,
+            "native_common_solids": 0,
+            "unintended_positive_solid_interference": false
+          },
+          {
+            "hardware": "v24_00874",
+            "skirt": "v24_00870",
+            "hardware_radius_mm": 1.5,
+            "skirt_radius_mm": 1.6,
+            "axis_error_mm": 4.6729951407087925e-05,
+            "allowed_axis_error_mm": 0.001,
+            "axis": 2,
+            "passed": true,
+            "exact_native_common_volume_mm3": 0.0,
+            "native_common_solids": 0,
+            "unintended_positive_solid_interference": false
+          },
+          {
+            "hardware": "v24_00882",
+            "skirt": "v24_00881",
+            "hardware_radius_mm": 1.5,
+            "skirt_radius_mm": 1.7,
+            "axis_error_mm": 0.20000047682106015,
+            "allowed_axis_error_mm": 0.201,
+            "axis": 2,
+            "passed": true,
+            "exact_native_common_volume_mm3": 0.0,
+            "native_common_solids": 0,
+            "unintended_positive_solid_interference": false
+          },
+          {
+            "hardware": "v24_00906",
+            "skirt": "v24_00905",
+            "hardware_radius_mm": 1.5,
+            "skirt_radius_mm": 1.7,
+            "axis_error_mm": 0.2000004768491988,
+            "allowed_axis_error_mm": 0.201,
+            "axis": 2,
+            "passed": true,
+            "exact_native_common_volume_mm3": 0.0,
+            "native_common_solids": 0,
+            "unintended_positive_solid_interference": false
+          },
+          {
+            "hardware": "v24_00910",
+            "skirt": "v24_00909",
+            "hardware_radius_mm": 1.5,
+            "skirt_radius_mm": 1.7,
+            "axis_error_mm": 0.2000004768759709,
+            "allowed_axis_error_mm": 0.201,
+            "axis": 2,
+            "passed": true,
+            "exact_native_common_volume_mm3": 6.651817514547695e-09,
+            "native_common_solids": 1,
+            "unintended_positive_solid_interference": false
+          },
+          {
+            "hardware": "v24_00936",
+            "skirt": "v24_00935",
+            "hardware_radius_mm": 1.5,
+            "skirt_radius_mm": 1.7,
+            "axis_error_mm": 0.20000047690126702,
+            "allowed_axis_error_mm": 0.201,
+            "axis": 2,
+            "passed": true,
+            "exact_native_common_volume_mm3": 6.652324607341362e-09,
+            "native_common_solids": 1,
+            "unintended_positive_solid_interference": false
+          },
+          {
+            "hardware": "v24_00948",
+            "skirt": "v24_00939",
+            "hardware_radius_mm": 1.5,
+            "skirt_radius_mm": 1.6,
+            "axis_error_mm": 0.0009532759159469606,
+            "allowed_axis_error_mm": 0.001,
+            "axis": 2,
+            "passed": true,
+            "exact_native_common_volume_mm3": 0.0,
+            "native_common_solids": 0,
+            "unintended_positive_solid_interference": false
+          },
+          {
+            "hardware": "v24_00949",
+            "skirt": "v24_00939",
+            "hardware_radius_mm": 1.5,
+            "skirt_radius_mm": 1.6,
+            "axis_error_mm": 0.0009532759159895932,
+            "allowed_axis_error_mm": 0.001,
+            "axis": 2,
+            "passed": true,
+            "exact_native_common_volume_mm3": 0.0,
+            "native_common_solids": 0,
+            "unintended_positive_solid_interference": false
+          },
+          {
+            "hardware": "v24_00953",
+            "skirt": "v24_00952",
+            "hardware_radius_mm": 1.5,
+            "skirt_radius_mm": 1.75,
+            "axis_error_mm": 0.0,
+            "allowed_axis_error_mm": 0.001,
+            "axis": 2,
+            "passed": true,
+            "exact_native_common_volume_mm3": 0.0,
+            "native_common_solids": 0,
+            "unintended_positive_solid_interference": false
+          },
+          {
+            "hardware": "v24_00954",
+            "skirt": "v24_00952",
+            "hardware_radius_mm": 1.5,
+            "skirt_radius_mm": 1.75,
+            "axis_error_mm": 2.929642751054232e-14,
+            "allowed_axis_error_mm": 0.001,
+            "axis": 2,
+            "passed": true,
+            "exact_native_common_volume_mm3": 0.0,
+            "native_common_solids": 0,
+            "unintended_positive_solid_interference": false
+          },
+          {
+            "hardware": "v24_00979",
+            "skirt": "v24_00955",
+            "hardware_radius_mm": 1.5,
+            "skirt_radius_mm": 1.6,
+            "axis_error_mm": 4.284519670727984e-13,
+            "allowed_axis_error_mm": 0.001,
+            "axis": 2,
+            "passed": true,
+            "exact_native_common_volume_mm3": 0.0,
+            "native_common_solids": 0,
+            "unintended_positive_solid_interference": false
+          },
+          {
+            "hardware": "v24_00980",
+            "skirt": "v24_00955",
+            "hardware_radius_mm": 1.5,
+            "skirt_radius_mm": 1.6,
+            "axis_error_mm": 1.0800249583553523e-12,
+            "allowed_axis_error_mm": 0.001,
+            "axis": 2,
+            "passed": true,
+            "exact_native_common_volume_mm3": 0.0,
+            "native_common_solids": 0,
+            "unintended_positive_solid_interference": false
+          },
+          {
+            "hardware": "v24_00860",
+            "skirt": "v24_00859",
+            "hardware_radius_mm": 1.45,
+            "skirt_radius_mm": 2.35,
+            "axis_error_mm": 8.038873388460929e-14,
+            "allowed_axis_error_mm": 0.001,
+            "axis": 2,
+            "passed": true,
+            "intended_engagement": "Native insert/knurl interference retained; cylindrical insertion axis registration only."
+          },
+          {
+            "hardware": "v24_00875",
+            "skirt": "v24_00870",
+            "hardware_radius_mm": 1.45,
+            "skirt_radius_mm": 2.35,
+            "axis_error_mm": 0.05622645564996194,
+            "allowed_axis_error_mm": 0.06,
+            "axis": 2,
+            "passed": true,
+            "intended_engagement": "Native insert/knurl interference retained; cylindrical insertion axis registration only."
+          },
+          {
+            "hardware": "v24_00945",
+            "skirt": "v24_00939",
+            "hardware_radius_mm": 1.45,
+            "skirt_radius_mm": 2.35,
+            "axis_error_mm": 0.000953275915804852,
+            "allowed_axis_error_mm": 0.001,
+            "axis": 2,
+            "passed": true,
+            "intended_engagement": "Native insert/knurl interference retained; cylindrical insertion axis registration only."
+          },
+          {
+            "hardware": "v24_00974",
+            "skirt": "v24_00955",
+            "hardware_radius_mm": 1.45,
+            "skirt_radius_mm": 2.35,
+            "axis_error_mm": 6.355287432313019e-14,
+            "allowed_axis_error_mm": 0.001,
+            "axis": 2,
+            "passed": true,
+            "intended_engagement": "Native insert/knurl interference retained; cylindrical insertion axis registration only."
+          },
+          {
+            "hardware": "v24_00967",
+            "skirt": "v24_00955",
+            "hardware_radius_mm": 1.45,
+            "skirt_radius_mm": 2.35,
+            "axis_error_mm": 1.8687273950490635e-12,
+            "allowed_axis_error_mm": 0.001,
+            "axis": 1,
+            "passed": true,
+            "intended_engagement": "Native insert/knurl interference retained; cylindrical insertion axis registration only."
+          },
+          {
+            "hardware": "v24_00968",
+            "skirt": "v24_00955",
+            "hardware_radius_mm": 1.45,
+            "skirt_radius_mm": 2.35,
+            "axis_error_mm": 0.00020000000014874786,
+            "allowed_axis_error_mm": 0.001,
+            "axis": 1,
+            "passed": true,
+            "intended_engagement": "Native insert/knurl interference retained; cylindrical insertion axis registration only."
+          }
+        ],
+        "actual_mesh_placements": [
+          {
+            "key": "v24_00859",
+            "native_sha256": "f9acade38ea6df738aad3b3ddcac16aedf753b19188f8f84a0cce92aa30eb0fe",
+            "fresh_native_mesh_bounds_error_mm": 1.1789937644834936e-05,
+            "passed": true
+          },
+          {
+            "key": "v24_00870",
+            "native_sha256": "26a081eaf9fec4cf2d76b862d0ac9d0cd823f96c473f81cfbff8fd06f0329137",
+            "fresh_native_mesh_bounds_error_mm": 1.178994494921426e-05,
+            "passed": true
+          },
+          {
+            "key": "v24_00860",
+            "native_sha256": "8e31fd2e7f4943853edd60633538db4405b4f6e9c7eeed6d46f16d8e3f70c037",
+            "fresh_native_mesh_bounds_error_mm": 5.676586425806818e-06,
+            "passed": true
+          },
+          {
+            "key": "v24_00875",
+            "native_sha256": "41d02f7b113eb653097fe21069791890f4b20b899a41c7e68daa6ec1b881bd8f",
+            "fresh_native_mesh_bounds_error_mm": 4.207868812500237e-06,
+            "passed": true
+          },
+          {
+            "key": "v24_00865",
+            "native_sha256": "c2f08ddf46b2ca8a1567bfac7544f26bf658aefca1d899057210826e3a8504b8",
+            "fresh_native_mesh_bounds_error_mm": 3.5894358916266356e-06,
+            "passed": true
+          },
+          {
+            "key": "v24_00873",
+            "native_sha256": "c3a31c9e4777322bf8ac165c8fc57deadd8f6153d80477da289a7fe785442119",
+            "fresh_native_mesh_bounds_error_mm": 2.872782971508059e-06,
+            "passed": true
+          },
+          {
+            "key": "v24_00953",
+            "native_sha256": "8f5908f723770bb9df53f7077126c187e34c52690c728ab0322d6786be9777e2",
+            "fresh_native_mesh_bounds_error_mm": 6.186958586340552e-06,
+            "passed": true
+          },
+          {
+            "key": "v24_00954",
+            "native_sha256": "84767dc1b909717636b2224b141617f0e0cba5c3037cd45890cc1ad6f689a41c",
+            "fresh_native_mesh_bounds_error_mm": 6.1870986201029154e-06,
+            "passed": true
+          },
+          {
+            "key": "v24_00906",
+            "native_sha256": "51320692a8db95072d53d918809764446697dfbbe72c8637b7f12e6d77291352",
+            "fresh_native_mesh_bounds_error_mm": 6.210773904058442e-06,
+            "passed": true
+          },
+          {
+            "key": "v24_00910",
+            "native_sha256": "1e15637b4ecbee8823fe384b1e37e680abb0460301c525effc8231efa3ec3e96",
+            "fresh_native_mesh_bounds_error_mm": 6.903928635892953e-06,
+            "passed": true
+          }
+        ],
+        "scope": "Selected skirt screw/insert/guard analytic axes, exact source shapes and actual transformed GLB vertices. Not full-machine clearance or physical build certification.",
+        "passed": true,
+        "unintended_solid_interference_findings": []
+      }
+    ],
+    "browser_models": [
+      {
+        "machine_id": "voron_v24_500_custom",
+        "model_sha256": "e27c4c83bb6e025e59be16c9611dfa92221ff5a2a955787074a510fce4598fef",
+        "manifest_sha256": "d73efb485a37dbceb4077cdd3c10b0b3527bceb108614c58d7add302eec4db8e",
+        "profile_sha256": "83f51af3d6c35b2a6ee2356dee823ee1f64256e56b68880fb9528fe57d3e114c",
+        "observed_poses_mm": [
+          [
+            500,
+            500,
+            480
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            250.0,
+            250.0,
+            240.0
+          ],
+          [
+            249.99958314925166,
+            254.09979116960076,
+            27.009292523210483
+          ]
+        ],
+        "visible_parts": 1390,
+        "reset_restored_reference": true
+      },
+      {
+        "machine_id": "voron_v24_350_half_z",
+        "model_sha256": "61e58c8fbcffbc2a6678b9566c8e37069f61d54225da35ec0624b736740ec049",
+        "manifest_sha256": "2f5d780359c2c7cd6934f2196ad089e155edd48a22a7cbe84b0a6b154aec4924",
+        "profile_sha256": "a3bf4bf1e78ac47a193b2c9edaa211443d6a068d77a095699a00e12645dd0df3",
+        "observed_poses_mm": [
+          [
+            350,
+            350,
+            165
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            175.0,
+            175.0,
+            82.5
+          ],
+          [
+            174.99958314925166,
+            179.09979116960076,
+            27.009292523210483
+          ]
+        ],
+        "visible_parts": 1304,
+        "reset_restored_reference": true
+      }
+    ],
+    "browser_screenshot_sha256": {
+      "custom-v24-500-skirts-candidate.png": "f72b4332c03a33089205a5653078b6639fafb7c35d8df07ee27cef50ff4d32c3",
+      "custom-v24-500-skirts-rear-candidate.png": "e2d3534da0df2b95a57a6d2f9652b8a429e2adb0b2a01d1039dbc9e35e4f85ef",
+      "custom-v24-500-skirts-max-candidate.png": "4564168646213c485a7e4da542e9337d1c545adc76867a237f6eb26c44e34f17",
+      "custom-v24-500-skirts-min-candidate.png": "3181858eb6132865cf23e1667b14bb47900ec7559493dbb3d2dbc1ab169cb70f",
+      "custom-v24-500-skirts-mid-candidate.png": "e42d98fdcc591026a685888dac4faf1e4e232065547db771a617e4e5eb39d4e8",
+      "custom-v24-500-skirts-reset-candidate.png": "e9bbbe68441bbc091f8563037de1bfb7771d511e2e66d7846f88ae8c0de39e00",
+      "custom-v24-half-skirts-candidate.png": "64ac90380841ff409cfe1bee5f9ee4ecfb301cdedb17fe809921ab34ea40a745",
+      "custom-v24-half-skirts-max-candidate.png": "eab7fab2ad0e3b406b4d5767cec9ddba0921fc7f35caeaffceb11c9cfbbb6a90",
+      "custom-v24-half-skirts-min-candidate.png": "4bf863c1fa252aafef44bbcfca6bbba0c788ed2fed66313edf3d60922e735fdc",
+      "custom-v24-half-skirts-mid-candidate.png": "06338d9ef49d5a4ae660bcca9f48da65d4905d0c4ea045aead6de5a80a9008fa",
+      "custom-v24-half-skirts-reset-candidate.png": "201e47e5485783214fe1dda0a30907fb008c372c275fbef9d3ac45956bf36d84"
+    },
+    "browser_scope": "Front display/skirt seating;500rear connectors; maximum,minimum,intermediate,reversed/reset XYZ with native mesh retained. Rendered images reviewed separately from20native skirt mates per model. No full-printer collision, probe, dynamic cable tension or other-browser certificate.",
+    "full_physical_fit_certified": false
   }
 }

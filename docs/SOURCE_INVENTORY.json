@@ -126,7 +126,7 @@
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
       "bytes": 136207,
-      "sha256": "1917cb49262d4556da8eef7b044ba0672a44f1cd6a2f61d442f4585fc7abb56a"
+      "sha256": "374b0cc752e699de0d5b1213c4dc83fc8bbff6b7cf432fb9e909a3a06480e320"
     },
     {
       "path": "docs/MAINTENANCE.md",
@@ -220,8 +220,8 @@
     },
     {
       "path": "docs/RELEASE_ASSET_REVIEW_92.json",
-      "bytes": 96006,
-      "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13"
+      "bytes": 128447,
+      "sha256": "0e9323f1c173efa52fd8aca1c111ec533828d8bef585a229ad766e4cbff67594"
     },
     {
       "path": "docs/SB_PROBE_COMBINATIONS.md",
@@ -480,8 +480,8 @@
     },
     {
       "path": "scripts/check_repository.py",
-      "bytes": 6423,
-      "sha256": "92169824d3634de116f70334377249c08e469b7c53fef8d193ef6016309c42a0"
+      "bytes": 6662,
+      "sha256": "1ef13a3d85dcf0009b986a1fbe7fe350be05a15e58a0b3cd9ec010c5622d4d93"
     },
     {
       "path": "scripts/check_ui_catalog.mjs",
@@ -1111,7 +1111,7 @@
     {
       "path": "site/CUSTOM_VORON_ASSETS.json",
       "bytes": 4203,
-      "sha256": "940f15f39a86e8c389e8914bd45b0b1008ca29fe2192f72989f5710755531a95"
+      "sha256": "fc1c9473f677e799d7def7ff1cc1e1991b3d82071a3d4b2ac5a924593954235e"
     },
     {
       "path": "site/EXTRA_MACHINE_ASSETS.json",

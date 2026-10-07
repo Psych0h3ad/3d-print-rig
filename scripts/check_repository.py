@@ -1,5 +1,6 @@
 """Check tracked publication scope and JavaScript syntax."""
 import hashlib
+import argparse
 import json
 import re
 import subprocess
@@ -50,6 +51,9 @@ def history_blob_records(root, objects, size_limit=10 * 1024 * 1024):
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--regression-workers', type=int, choices=range(1, 9), default=4)
+    args = parser.parse_args()
     tracked = subprocess.check_output(['git', 'ls-files', '-z'], cwd=ROOT).decode('utf-8').split('\0')
     paths = [Path(name) for name in tracked if name]
     if not paths:
@@ -109,7 +113,8 @@ def main():
                 errors.append(result.stderr.strip())
     if errors:
         raise SystemExit('\n'.join(errors))
-    subprocess.run([sys.executable, str(ROOT/'scripts/check_machine_regressions.py')], cwd=ROOT, check=True)
+    subprocess.run([sys.executable, str(ROOT/'scripts/check_machine_regressions.py'),
+                    '--workers', str(args.regression_workers)], cwd=ROOT, check=True)
     subprocess.run(['node', str(ROOT/'scripts/build_locales.mjs')], cwd=ROOT, check=True)
     subprocess.run(['node', str(ROOT/'scripts/check_ui_catalog.mjs')], cwd=ROOT, check=True)
     print(f'Publication check passed: {len(paths)} tracked files, {len(commits)} commits checked; no geometry/private-path/credential signatures; JS syntax valid.')
