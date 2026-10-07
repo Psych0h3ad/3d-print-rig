@@ -4,6 +4,8 @@
 
 Compare printer, toolhead and gantry configurations in 3D.
 
+Standard Trident R2 250/300/350 supports FOX's A/B Stepper Fan V2 preview under **Additional mods**, with SB / CW2 / Revo Voron. Bed-support, drive, enclosure and wiper source parts can be inspected in [Component CAD](https://psych0h3ad.github.io/3d-print-rig/viewer/components.html). Mounted previews and individual source parts have separate verification scopes. [Original versions, licenses and derivation source](https://github.com/Psych0h3ad/3d-print-rig-large-voron-models#readme).
+
 TicTac 2.1, THE 100 v1.1, Rook MK2 beta and Satsuma 180 v1.0 are available
 as whole native CAD references. Select their family under **Change printer**.
 These assemblies support colors, camera views and image export; movement and

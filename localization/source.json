@@ -11070,6 +11070,86 @@
       "kind": "message",
       "ja": "ベッドチェーン上端には元CADの接触箇所が残っています。実機での取り付けやクリアランスは未検証です。",
       "en": "Upper bed-chain contacts inherited from the original CAD remain mechanically unverified. Mounting and clearance are not certified."
+    },
+    "ui.component_printer_bed": {
+      "kind": "message",
+      "ja": "プリンター · ベッド支持",
+      "en": "Printer · Bed supports"
+    },
+    "ui.component_printer_drive": {
+      "kind": "message",
+      "ja": "プリンター · 駆動・モーター",
+      "en": "Printer · Drives / motors"
+    },
+    "ui.component_printer_enclosure": {
+      "kind": "message",
+      "ja": "プリンター · 外装・排気",
+      "en": "Printer · Enclosure / exhaust"
+    },
+    "ui.component_printer_cleaning": {
+      "kind": "message",
+      "ja": "プリンター · ノズル清掃",
+      "en": "Printer · Nozzle cleaning"
+    },
+    "ui.component_toolhead_reference": {
+      "kind": "message",
+      "ja": "ツールヘッド原本CAD",
+      "en": "Original toolhead CAD"
+    },
+    "ui.mod_source_parts": {
+      "kind": "message",
+      "ja": "原本の部品を個別に表示します。機体への取り付けは登録されていません。",
+      "en": "Original source parts shown individually. No machine installation is registered."
+    },
+    "ui.kinematic_left_only": {
+      "kind": "message",
+      "ja": "このファイルは左マウントのみです。ベッド支持の全アセンブリではありません。",
+      "en": "This file contains the left mount only. It is not a complete bed-mount assembly."
+    },
+    "ui.mod_gantry_current": {
+      "kind": "message",
+      "ja": "この追加Modは現在のガントリーに未登録です。",
+      "en": "This mod is not registered for the current gantry."
+    },
+    "ui.mod_gantry_saved": {
+      "kind": "message",
+      "ja": "この追加Modは指定されたガントリーに未登録です。",
+      "en": "This mod is not registered for the selected gantry."
+    },
+    "ui.mod_registry_load": {
+      "kind": "message",
+      "ja": "追加Modの登録を取得できません",
+      "en": "Unable to load the mod registry"
+    },
+    "ui.mod_configuration_current": {
+      "kind": "message",
+      "ja": "この追加Modは現在の構成に未登録です。",
+      "en": "This mod is not registered for the current configuration."
+    },
+    "ui.mod_configuration_saved": {
+      "kind": "message",
+      "ja": "この追加Modは指定された構成に未登録です。",
+      "en": "This mod is not registered for the selected configuration."
+    },
+    "ui.mod_trident_motor_fans": {
+      "kind": "message",
+      "ja": "Trident A/Bモーターファン · FOX V2",
+      "en": "Trident A/B stepper fans · FOX V2"
+    },
+    "ui.mod_trident_motor_fans_scope": {
+      "kind": "message",
+      "ja": "標準R2 / Stealthburner / CW2 / Revo Voronで取り付け形状を確認。VORON原本のファンと固定具を使用し、A側ブラケットの角に小さな逃げを追加しています。形状プレビューで、実機の動作は再現しません。",
+      "en": "Mounting geometry checked for stock R2 / Stealthburner / CW2 / Revo Voron. Includes VORON fans and fasteners, with a small clearance relief on the A-side bracket. Geometry preview; printer operation is not simulated."
+    },
+    "ui.mod_eva_source_subset": {
+      "kind": "message",
+      "ja": "ホットエンド・ファン・Sherpa Microを含む原本CADの部分表示です。基板の詳細・ガントリーの参照形状・閉じていない面は省略しています。機体への取り付けは登録されていません。",
+      "en": "Original CAD subset with hotend, fans and Sherpa Micro. Board details, gantry context and unclosed surfaces are omitted. Machine mounting is not registered."
+    },
+    "ui.component_source_preview_status": {
+      "kind": "template",
+      "ja": "{0} · 部品単体",
+      "en": "{0} · CAD preview"
     }
   }
 }

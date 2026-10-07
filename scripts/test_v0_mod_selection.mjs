@@ -1,6 +1,11 @@
 import assert from 'node:assert/strict';
-import {v0ModCategories,componentViews,componentViewKeys,resolveComponentView,partLabel} from '../site/viewer/v0-mod-library.mjs';
-assert.equal(new Set(v0ModCategories.flatMap(c=>c.mods)).size,20);
+import {readFileSync} from 'node:fs';
+import {v0ModCategories,componentCategories,componentCategory,componentViews,componentViewKeys,resolveComponentView,partLabel} from '../site/viewer/v0-mod-library.mjs';
+const modIds=v0ModCategories.flatMap(c=>c.mods);assert.equal(new Set(modIds).size,modIds.length);assert(modIds.includes('tall_skirts_841565'));
+const additions=JSON.parse(readFileSync(new URL('../site/COMPONENT_ADDITIONS.json',import.meta.url)));
+for(const item of additions.items)assert(componentCategories.some(row=>row.id===componentCategory(item)));
+assert.equal(componentCategory({id:'v0mod_tall_skirts_841565',kind:'mod'}),'v0-enclosure');
+assert.throws(()=>componentCategory({category:'not-a-category',kind:'mod'}));
 const parts=[
  {key:'a',name:'SOLID',source_file:'a/Board_A.step',source_path:['assembly','PCB','SOLID']},
  {key:'b',name:'Connector',source_file:'a/Board_A.step',source_path:['assembly','PCB','Connector']},
@@ -13,6 +18,7 @@ assert.equal(resolveComponentView(views,{part:'c'}).view,views[1]);
 assert.equal(resolveComponentView(views,{view:views[1].id,part:'a'}).part,'all');
 assert.equal(resolveComponentView(views,{view:'missing',part:'missing'}).view,views[0]);
 assert.equal(partLabel(parts[0]),'PCB');assert.equal(partLabel(parts[2]),'Board B');
+assert.equal(partLabel({name:'SOLID',source_file:{path:'originals/Frame_Mount.3mf',sha256:'a'.repeat(64)}}),'Frame Mount');
 const alternatives=componentViews({id:'v0mod_dragon_burner_v8',select_parts:true},parts.map(p=>({...p,source_file:'single.step'})));
 assert.ok(alternatives.every(v=>!v.assembly));assert.throws(()=>componentViewKeys(alternatives[0],'all'));
 assert.throws(()=>componentViews({id:'v0mod_official_bowden'},parts),'Missing native couplers must not produce plausible-looking configurations');

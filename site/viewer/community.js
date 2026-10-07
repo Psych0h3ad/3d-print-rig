@@ -10,12 +10,12 @@ import {communitySchema,validateCommunityState,communityMotionEnabled,communityC
 import {installationFor} from './ender-mods.mjs?v=5f07c69c7c42ba3f3936';
 import {setupMachineNavigation} from './machines.js?v=0b03f369fa4dd3b3de8f';
 import {sceneLightingState} from './scene-lighting-state.mjs';
-import {translate} from './i18n.mjs?v=b2185458695861018d38';
+import {translate} from './i18n.mjs?v=2480220e8ff2a71a69b0';
 import {rememberDisplayControl} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {setupRenderExport} from './render-export.js';
-import {setupPublicInfo} from './public-info.js?v=13988d3956b89c9920dd';
+import {setupPublicInfo} from './public-info.js?v=52a203a04d1f2ed32378';
 const descriptions={
  tictac_21_120:"TicTac 2.1 · 120 mm / 新Rat Rigツールヘッド / 公式組立CAD",
  rook_mk2_120:"Rook MK2 beta · 120 mm / Dragon Burner / Bambu / Galileo 2 G2SA",

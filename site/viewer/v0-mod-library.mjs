@@ -2,19 +2,28 @@
 export const v0ModCategories = [
   {id:'v0-head',label:'V0 · ツールヘッド',mods:['dragon_burner_v8','rapid_burner_v8','mailbox_v5','official_bowden']},
   {id:'v0-mount',label:'V0 · マウント・センサー',mods:['official_hotend_mounts','official_adxl_mounts','xcarriage_inserts','zeroclick']},
-  {id:'v0-enclosure',label:'V0 · 外装・ドア',mods:['stealth_handles','lift_off_tophat','tip_tophat','tophat_cat_flap','mini_fridge']},
+  {id:'v0-enclosure',label:'V0 · 外装・ドア',mods:['stealth_handles','lift_off_tophat','tip_tophat','tophat_cat_flap','mini_fridge','tall_skirts_841565']},
   {id:'v0-wiring',label:'V0 · 配線・基板',mods:['umbilical','picobilical']},
   {id:'v0-motion',label:'V0 · ベッド・ガントリー',mods:['kirigami','tulip_standard','fysetc_cnc_stealth_front','fysetc_cnc_bed_fans']},
   {id:'v0-cleaning',label:'V0 · ノズル清掃',mods:['nozzle_wiper_v2']},
 ];
-export function componentCategory(item){return v0ModCategories.find(c=>c.mods.some(id=>'v0mod_'+id===item.id))?.id||item.kind}
+export function componentCategory(item){
+ if(item.category){if(!componentCategories.some(c=>c.id===item.category))throw Error('Unregistered component category');return item.category}
+ return v0ModCategories.find(c=>c.mods.some(id=>'v0mod_'+id===item.id))?.id||item.kind;
+}
 export const componentCategories = [
   {id:'hotend',label:'ホットエンド'},{id:'extruder',label:'押出機'},
   {id:'electronics',label:'基板'},{id:'carriage',label:'キャリッジ / ベルトクランプ'},
-  {id:'gantry',label:'ガントリー'},...v0ModCategories,{id:'mod',label:'その他のMod'},
+  {id:'gantry',label:'ガントリー'},
+  {id:'printer-bed',label:'プリンター · ベッド支持'},
+  {id:'printer-drive',label:'プリンター · 駆動・モーター'},
+  {id:'printer-enclosure',label:'プリンター · 外装・排気'},
+  {id:'printer-cleaning',label:'プリンター · ノズル清掃'},
+  {id:'toolhead-reference',label:'ツールヘッド原本CAD'},
+  ...v0ModCategories,{id:'mod',label:'その他のMod'},
 ];
 const clean=s=>s.replace(/(?::\d+)+$/,'').replace(/\s+v\d+$/i,'').replace(/_/g,' ');
-const filename=p=>p.source_file?.split(/[\\/]/).at(-1).replace(/\.(?:step|stp|3mf|stl)$/i,'')||'原本';
+const filename=p=>{const source=typeof p.source_file==='string'?p.source_file:p.source_file?.path;return source?.split(/[\\/]/).at(-1).replace(/\.(?:step|stp|3mf|stl)$/i,'')||'原本'};
 const generic=s=>/^(?:SOLID|COMPOUND|Component\d+|\(Unsaved\)|temp_import|=>)/i.test(s);
 export function partLabel(part){
   const path=(part.source_path||[]).slice(1).filter(s=>!generic(s)).map(clean);

@@ -1,0 +1,361 @@
+{
+  "schema": "requested-native-mod-installations-v1",
+  "machines": {
+    "voron_trident_350": {
+      "accessories": [
+        {
+          "id": "trident_ab_stepper_fan_491404_v2",
+          "label": "Trident A/B stepper fans · FOX V2",
+          "module": "trident_ab_stepper_fan_491404_v2_r2_350_alpha",
+          "gantry_ids": [
+            "trident_r2"
+          ],
+          "translation_mm": [
+            0,
+            0,
+            0
+          ],
+          "notes": "Mounting geometry checked for stock R2 / Stealthburner / CW2 / Revo Voron. Includes VORON fans and fasteners, with a small clearance relief on the A-side bracket. Geometry preview; printer operation is not simulated.",
+          "geometry_review": {
+            "finite_mating_passed": true,
+            "unintended_body_interference_passed": true,
+            "whole_machine_certified": false,
+            "scope": "Static geometric attachment, finite original hardware and selected source-motion envelopes; geometric viewer alpha only",
+            "inputs": [
+              {
+                "path": "output/requested-mods-96/trident-drive-mods/fan-alpha-final-v1/PURCHASED_GEOMETRY_LINEAGE.json",
+                "bytes": 52994,
+                "sha256": "db061e06d2ebde47aa6794b07bac23a1740a650cf58e0c46def42d56580a6250"
+              },
+              {
+                "path": "output/requested-mods-96/trident-drive-mods/fan-alpha-final-v1/FINITE_FIXINGS.json",
+                "bytes": 8960,
+                "sha256": "b03d94d027bc7076aa45abf556613f42c2c0c271532007fba0f454dadc374417"
+              },
+              {
+                "path": "output/requested-mods-96/trident-drive-mods/fan-alpha-final-v1/INTENDED_INSERT_EMBEDDING.json",
+                "bytes": 6600,
+                "sha256": "e3545fb0dce1fefc314c5a3f5722e30298a8bb8b5cd1d451bc612d2149c699c4"
+              },
+              {
+                "path": "output/requested-mods-96/trident-drive-mods/fan-alpha-final-v1/PROTECTED_PRINTED_FEATURES.json",
+                "bytes": 1859,
+                "sha256": "899c5a30fbc5bfe234c37d8c78e7883102ea5e042d82c58cf8a885d60fb3d423"
+              },
+              {
+                "path": "output/requested-mods-96/trident-drive-mods/fan-alpha-final-v1/INTERNAL_PAIR_SCOPE.json",
+                "bytes": 85255,
+                "sha256": "a8aa339f055adf780c43a0116c808f19fe01f37e15f77aa8ddaade3f4f22d583"
+              },
+              {
+                "path": "output/requested-mods-96/trident-drive-mods/fan-v2-native-candidate-v3/REPORT.json",
+                "bytes": 6608102,
+                "sha256": "175bc87e748eaa8d03d61cc694034f47dc5ead571e5d90c8179159177ae39ebc"
+              },
+              {
+                "path": "output/requested-mods-96/trident-drive-mods/fan-alpha-hosts-v1/HOST_350.json",
+                "bytes": 6163958,
+                "sha256": "05bac142792351b122a19c1969cd3061acf0fa153abfa5a407c820590ea7d210"
+              },
+              {
+                "path": "publication/build-ender-mods-91/machines/voron_trident_350/assembly_manifest.json",
+                "bytes": 540946,
+                "sha256": "4eb67785885b97e73e1ca6052fc05f07dbddef394e60a6620bf2494265796aca"
+              },
+              {
+                "path": "publication/build-ender-mods-91/machines/voron_trident_350/machine_profile.json",
+                "bytes": 5911,
+                "sha256": "ce0edf0434c215f7422e6522ca7e68db95fc4429598bfeeab988876aed6a2b70"
+              },
+              {
+                "path": "output/modules/trident_r2_gantry_350.json",
+                "bytes": 183534,
+                "sha256": "070c8ffa0ee7e5b085616aacd561a6f10a2bc997027b150028326c4b3783da53"
+              }
+            ],
+            "native_report_sha256": "05bac142792351b122a19c1969cd3061acf0fa153abfa5a407c820590ea7d210",
+            "author_hardware_bom": false,
+            "continuous_whole_machine_clearance_certified": false
+          },
+          "stock_replacement_keys": [],
+          "requires": [],
+          "conflicts": [
+            "trident_stepper_decoupler_430168"
+          ],
+          "native_installed_assembly": true,
+          "compatible_selection": {
+            "toolhead": "stealthburner",
+            "hotend": "revo_voron",
+            "extruder": "cw2",
+            "mount": "fixed",
+            "carriage": "standard",
+            "probe": "none"
+          },
+          "label_id": "ui.mod_trident_motor_fans",
+          "notice_id": "ui.mod_trident_motor_fans_scope"
+        }
+      ]
+    },
+    "voron_trident_300": {
+      "accessories": [
+        {
+          "id": "trident_ab_stepper_fan_491404_v2",
+          "label": "Trident A/B stepper fans · FOX V2",
+          "module": "trident_ab_stepper_fan_491404_v2_r2_300_alpha",
+          "gantry_ids": [
+            "trident_r2"
+          ],
+          "translation_mm": [
+            0,
+            0,
+            0
+          ],
+          "notes": "Mounting geometry checked for stock R2 / Stealthburner / CW2 / Revo Voron. Includes VORON fans and fasteners, with a small clearance relief on the A-side bracket. Geometry preview; printer operation is not simulated.",
+          "geometry_review": {
+            "finite_mating_passed": true,
+            "unintended_body_interference_passed": true,
+            "whole_machine_certified": false,
+            "scope": "Static geometric attachment, finite original hardware and selected source-motion envelopes; geometric viewer alpha only",
+            "inputs": [
+              {
+                "path": "output/requested-mods-96/trident-drive-mods/fan-alpha-final-v1/PURCHASED_GEOMETRY_LINEAGE.json",
+                "bytes": 52994,
+                "sha256": "db061e06d2ebde47aa6794b07bac23a1740a650cf58e0c46def42d56580a6250"
+              },
+              {
+                "path": "output/requested-mods-96/trident-drive-mods/fan-alpha-final-v1/FINITE_FIXINGS.json",
+                "bytes": 8960,
+                "sha256": "b03d94d027bc7076aa45abf556613f42c2c0c271532007fba0f454dadc374417"
+              },
+              {
+                "path": "output/requested-mods-96/trident-drive-mods/fan-alpha-final-v1/INTENDED_INSERT_EMBEDDING.json",
+                "bytes": 6600,
+                "sha256": "e3545fb0dce1fefc314c5a3f5722e30298a8bb8b5cd1d451bc612d2149c699c4"
+              },
+              {
+                "path": "output/requested-mods-96/trident-drive-mods/fan-alpha-final-v1/PROTECTED_PRINTED_FEATURES.json",
+                "bytes": 1859,
+                "sha256": "899c5a30fbc5bfe234c37d8c78e7883102ea5e042d82c58cf8a885d60fb3d423"
+              },
+              {
+                "path": "output/requested-mods-96/trident-drive-mods/fan-alpha-final-v1/INTERNAL_PAIR_SCOPE.json",
+                "bytes": 85255,
+                "sha256": "a8aa339f055adf780c43a0116c808f19fe01f37e15f77aa8ddaade3f4f22d583"
+              },
+              {
+                "path": "output/requested-mods-96/trident-drive-mods/fan-v2-native-candidate-v3/REPORT.json",
+                "bytes": 6608102,
+                "sha256": "175bc87e748eaa8d03d61cc694034f47dc5ead571e5d90c8179159177ae39ebc"
+              },
+              {
+                "path": "output/requested-mods-96/trident-drive-mods/fan-alpha-hosts-v1/HOST_300.json",
+                "bytes": 6083595,
+                "sha256": "66a352434975ee2ef746d05b8ce8c1493d272a0c775e2ab22c067cea4e4ad7d3"
+              },
+              {
+                "path": "publication/build-ender-mods-91/machines/voron_trident_300/assembly_manifest.json",
+                "bytes": 541085,
+                "sha256": "b17e18539aab4f5c4d6f56b8d40276dc77778611b129a65cc4e0b3f1e7b0d5ad"
+              },
+              {
+                "path": "publication/build-ender-mods-91/machines/voron_trident_300/machine_profile.json",
+                "bytes": 5938,
+                "sha256": "c28b590d64bf242514f9f25dcfa89d8ee64e56878480966087ec347936b818a0"
+              },
+              {
+                "path": "output/modules/trident_r2_gantry_300.json",
+                "bytes": 177291,
+                "sha256": "96a5667cc97d044f10e61b58206393931f7839ae2f7ee21c26efed75cc581cc7"
+              }
+            ],
+            "native_report_sha256": "66a352434975ee2ef746d05b8ce8c1493d272a0c775e2ab22c067cea4e4ad7d3",
+            "author_hardware_bom": false,
+            "continuous_whole_machine_clearance_certified": false
+          },
+          "stock_replacement_keys": [],
+          "requires": [],
+          "conflicts": [
+            "trident_stepper_decoupler_430168"
+          ],
+          "native_installed_assembly": true,
+          "compatible_selection": {
+            "toolhead": "stealthburner",
+            "hotend": "revo_voron",
+            "extruder": "cw2",
+            "mount": "fixed",
+            "carriage": "standard",
+            "probe": "none"
+          },
+          "label_id": "ui.mod_trident_motor_fans",
+          "notice_id": "ui.mod_trident_motor_fans_scope"
+        }
+      ]
+    },
+    "voron_trident_250": {
+      "accessories": [
+        {
+          "id": "trident_ab_stepper_fan_491404_v2",
+          "label": "Trident A/B stepper fans · FOX V2",
+          "module": "trident_ab_stepper_fan_491404_v2_r2_250_alpha",
+          "gantry_ids": [
+            "trident_r2"
+          ],
+          "translation_mm": [
+            0,
+            0,
+            0
+          ],
+          "notes": "Mounting geometry checked for stock R2 / Stealthburner / CW2 / Revo Voron. Includes VORON fans and fasteners, with a small clearance relief on the A-side bracket. Geometry preview; printer operation is not simulated.",
+          "geometry_review": {
+            "finite_mating_passed": true,
+            "unintended_body_interference_passed": true,
+            "whole_machine_certified": false,
+            "scope": "Static geometric attachment, finite original hardware and selected source-motion envelopes; geometric viewer alpha only",
+            "inputs": [
+              {
+                "path": "output/requested-mods-96/trident-drive-mods/fan-alpha-final-v1/PURCHASED_GEOMETRY_LINEAGE.json",
+                "bytes": 52994,
+                "sha256": "db061e06d2ebde47aa6794b07bac23a1740a650cf58e0c46def42d56580a6250"
+              },
+              {
+                "path": "output/requested-mods-96/trident-drive-mods/fan-alpha-final-v1/FINITE_FIXINGS.json",
+                "bytes": 8960,
+                "sha256": "b03d94d027bc7076aa45abf556613f42c2c0c271532007fba0f454dadc374417"
+              },
+              {
+                "path": "output/requested-mods-96/trident-drive-mods/fan-alpha-final-v1/INTENDED_INSERT_EMBEDDING.json",
+                "bytes": 6600,
+                "sha256": "e3545fb0dce1fefc314c5a3f5722e30298a8bb8b5cd1d451bc612d2149c699c4"
+              },
+              {
+                "path": "output/requested-mods-96/trident-drive-mods/fan-alpha-final-v1/PROTECTED_PRINTED_FEATURES.json",
+                "bytes": 1859,
+                "sha256": "899c5a30fbc5bfe234c37d8c78e7883102ea5e042d82c58cf8a885d60fb3d423"
+              },
+              {
+                "path": "output/requested-mods-96/trident-drive-mods/fan-alpha-final-v1/INTERNAL_PAIR_SCOPE.json",
+                "bytes": 85255,
+                "sha256": "a8aa339f055adf780c43a0116c808f19fe01f37e15f77aa8ddaade3f4f22d583"
+              },
+              {
+                "path": "output/requested-mods-96/trident-drive-mods/fan-v2-native-candidate-v3/REPORT.json",
+                "bytes": 6608102,
+                "sha256": "175bc87e748eaa8d03d61cc694034f47dc5ead571e5d90c8179159177ae39ebc"
+              },
+              {
+                "path": "output/requested-mods-96/trident-drive-mods/fan-alpha-hosts-v1/HOST_250.json",
+                "bytes": 5999443,
+                "sha256": "fbccf2ba7d4c558ccb888ac389be125f2423167189fc643ee77cfcdc1a316fab"
+              },
+              {
+                "path": "publication/build-ender-mods-91/machines/voron_trident_250/assembly_manifest.json",
+                "bytes": 540406,
+                "sha256": "64a681faee6c50a1c80707f71a5a45e42176a9c14595bd630a00aede4a2626ca"
+              },
+              {
+                "path": "publication/build-ender-mods-91/machines/voron_trident_250/machine_profile.json",
+                "bytes": 5938,
+                "sha256": "b21051cbb36cb6ef05874f8eb9cbd59d0f13efba28d9805d4f1d4218c21e478b"
+              },
+              {
+                "path": "output/modules/trident_r2_gantry_250.json",
+                "bytes": 172896,
+                "sha256": "13bd7b50c0c381b497dc7f618152cc5fb4fb66acb9acee17acc360e956b71e92"
+              }
+            ],
+            "native_report_sha256": "fbccf2ba7d4c558ccb888ac389be125f2423167189fc643ee77cfcdc1a316fab",
+            "author_hardware_bom": false,
+            "continuous_whole_machine_clearance_certified": false
+          },
+          "stock_replacement_keys": [],
+          "requires": [],
+          "conflicts": [
+            "trident_stepper_decoupler_430168"
+          ],
+          "native_installed_assembly": true,
+          "compatible_selection": {
+            "toolhead": "stealthburner",
+            "hotend": "revo_voron",
+            "extruder": "cw2",
+            "mount": "fixed",
+            "carriage": "standard",
+            "probe": "none"
+          },
+          "label_id": "ui.mod_trident_motor_fans",
+          "notice_id": "ui.mod_trident_motor_fans_scope"
+        }
+      ]
+    }
+  },
+  "assets": {
+    "trident_ab_stepper_fan_491404_v2_r2_350_alpha": {
+      "component_id": "trident_ab_stepper_fan_491404_v2_r2_350_alpha",
+      "parts": 28,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/",
+        "local_directory": "large-voron-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "requested-mods-v1/trident_ab_stepper_fan_491404_v2_r2_350_alpha/parts.json",
+          "bytes": 43764,
+          "sha256": "e94e0f8a8ace951cbd07e0979cd75b0499edf8773cdf395869d2890cb9939b79"
+        },
+        "model.glb": {
+          "path": "requested-mods-v1/trident_ab_stepper_fan_491404_v2_r2_350_alpha/model.glb.gz",
+          "bytes": 3775464,
+          "sha256": "775aed590e82cfc2cf8b4c26dbdb30c45b371387ac47b0461cb58a27f4a03eca",
+          "encoding": "gzip",
+          "decoded_bytes": 13399668,
+          "decoded_sha256": "2ddc8d8d238cefc91c1e0e20a887ce74d7d136886237db2489a111fdc464b826"
+        }
+      }
+    },
+    "trident_ab_stepper_fan_491404_v2_r2_300_alpha": {
+      "component_id": "trident_ab_stepper_fan_491404_v2_r2_300_alpha",
+      "parts": 28,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/",
+        "local_directory": "large-voron-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "requested-mods-v1/trident_ab_stepper_fan_491404_v2_r2_300_alpha/parts.json",
+          "bytes": 44398,
+          "sha256": "095d236bbbd1e75bed769ffd042ad0483e6831f22451238d9f4006f430b9b76e"
+        },
+        "model.glb": {
+          "path": "requested-mods-v1/trident_ab_stepper_fan_491404_v2_r2_300_alpha/model.glb.gz",
+          "bytes": 3775450,
+          "sha256": "b0ae72f282ddad2137bbde18c5bc0535e9293762efddca16f3521765192dac74",
+          "encoding": "gzip",
+          "decoded_bytes": 13399660,
+          "decoded_sha256": "c05fc1f19f565139bd55044b96245809df8c518107dcd3ce686625c187c6f437"
+        }
+      }
+    },
+    "trident_ab_stepper_fan_491404_v2_r2_250_alpha": {
+      "component_id": "trident_ab_stepper_fan_491404_v2_r2_250_alpha",
+      "parts": 28,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/",
+        "local_directory": "large-voron-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "requested-mods-v1/trident_ab_stepper_fan_491404_v2_r2_250_alpha/parts.json",
+          "bytes": 44763,
+          "sha256": "e7a279dd4bd5a073af78bd2ff07c167f61b80b111edf2b5644889545e67936b0"
+        },
+        "model.glb": {
+          "path": "requested-mods-v1/trident_ab_stepper_fan_491404_v2_r2_250_alpha/model.glb.gz",
+          "bytes": 3775466,
+          "sha256": "e078c28a95bf9596f516a73859bba548b058e485c8e7facfd2b69bd24d0162be",
+          "encoding": "gzip",
+          "decoded_bytes": 13399656,
+          "decoded_sha256": "5c240e78fd5b54a3a07c8849597cec251307310bc1159b85da08f85e35cb5351"
+        }
+      }
+    }
+  }
+}

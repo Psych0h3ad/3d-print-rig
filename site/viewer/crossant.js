@@ -11,7 +11,7 @@ import {loadCrossant,disposeCrossant} from './crossant-loader.mjs?v=c1042da5a3a7
 import {crossantSchema,crossantGroups,validateCrossantState} from './crossant-state.mjs?v=534dc62f2c6545f556f7';
 import {setupMachineNavigation} from './machines.js?v=0b03f369fa4dd3b3de8f';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
-import {setupPublicInfo} from './public-info.js?v=13988d3956b89c9920dd';
+import {setupPublicInfo} from './public-info.js?v=52a203a04d1f2ed32378';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 export async function mount(scope){
 const $=id=>document.getElementById(id),stage=$('stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));

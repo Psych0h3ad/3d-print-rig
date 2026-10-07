@@ -10,7 +10,7 @@ import {createMicronAdapter} from './micron-adapter.mjs?v=699fe91eb973d2e09ddd';
 import {setupMachineNavigation} from './machines.js?v=0b03f369fa4dd3b3de8f';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
-import {setupPublicInfo} from './public-info.js?v=13988d3956b89c9920dd';
+import {setupPublicInfo} from './public-info.js?v=52a203a04d1f2ed32378';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=workspace-belts-1';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=f471190665709ba23159';
 export async function mount(scope){

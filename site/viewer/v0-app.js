@@ -3,7 +3,8 @@ ensureWorkspaceEntry(import.meta.url);
 import {setupSceneDisplay} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {workspaceFrame,WorkspaceResizeObserver,workspaceTask,workspaceListen} from './workspace-lifecycle.mjs';
 import {createV0Installations,v0Slots,validateV0Mods,v0TophatMaxAngle} from './v0-installations.mjs?v=2687e9168ef1a3b0b82a';
-import {v0ModCategories,componentCategory} from './v0-mod-library.mjs?v=3879d7ef65488783b1f1';
+import {loadExternalComponent} from './component-assets.mjs?v=c2333ef499f46d621550';
+import {v0ModCategories,componentCategory} from './v0-mod-library.mjs?v=ddeeafeb04155ab0838b';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=workspace-belts-1';
 import {appearanceRole} from './appearance-role.mjs?v=6b7b8efda77bfc3ce74d';
 import * as THREE from 'three';
@@ -14,7 +15,7 @@ import {poseDelta,createV0Adapter} from './v0_adapter.mjs?v=e6b118972b21aaf69a31
 import {setupMachineNavigation} from './machines.js?v=0b03f369fa4dd3b3de8f';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
-import {setupPublicInfo} from './public-info.js?v=13988d3956b89c9920dd';
+import {setupPublicInfo} from './public-info.js?v=52a203a04d1f2ed32378';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=f471190665709ba23159';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
 export async function mount(scope){
@@ -56,7 +57,9 @@ try{
  $('#modCategory').onchange=updateModOptions;$('#modLibrary').onchange=updateModLink;$('#modCategory').disabled=false;$('#modLibrary').disabled=false;updateModOptions();
 
  installations=await createV0Installations({scene,adapter,profile,registry:registration.machines[id],loadModule:async module=>{return workspaceTask(async()=>{
-  const source=registration.sources[module];if(!source)throw Error('Mod原本を読み込めません');const r=await fetch('../'+(source.metadata||'modules/'+module+'/module.json'),{cache:'no-cache'});if(!r.ok)throw Error('Mod原本を読み込めません');
+  const source=registration.sources[module];if(!source)throw Error('Mod原本を読み込めません');
+  if(source.external)return (await loadExternalComponent(new GLTFLoader(),source,import.meta.url)).gltf;
+  const r=await fetch('../'+(source.metadata||'modules/'+module+'/module.json'),{cache:'no-cache'});if(!r.ok)throw Error('Mod原本を読み込めません');
   const bytes=await r.arrayBuffer(),digest=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(n=>n.toString(16).padStart(2,'0')).join('');
   if(digest!==registration.sources[module].metadata_sha256)throw Error('Mod原本のバージョンが一致しません');
   return loadModel(new GLTFLoader(),'../'+(source.glb||'modules/'+module+'/module.glb'));

@@ -8813,6 +8813,70 @@
     "custom_voron.chain_contacts": {
       "source_revision": "4643277d9dce21ba0192",
       "text": "Верхний конец кабельной цепи стола сохраняет контакты из исходной CAD-модели. Механическая посадка и зазоры не проверены."
+    },
+    "ui.component_printer_bed": {
+      "source_revision": "69e5780c50be8e5751db",
+      "text": "Принтер · Опоры стола"
+    },
+    "ui.component_printer_drive": {
+      "source_revision": "ca6572a1974425d6b5db",
+      "text": "Принтер · Приводы и двигатели"
+    },
+    "ui.component_printer_enclosure": {
+      "source_revision": "514b3e2fc76ba0a6b79c",
+      "text": "Принтер · Корпус и вытяжка"
+    },
+    "ui.component_printer_cleaning": {
+      "source_revision": "c206f3c3c2e283e96b0a",
+      "text": "Принтер · Очистка сопла"
+    },
+    "ui.component_toolhead_reference": {
+      "source_revision": "8eb7cdda41aa42140bfd",
+      "text": "Исходный CAD печатающей головки"
+    },
+    "ui.mod_source_parts": {
+      "source_revision": "e6ed96cb6eaaca18947c",
+      "text": "Исходные детали показаны по отдельности. Установка на принтер не зарегистрирована."
+    },
+    "ui.kinematic_left_only": {
+      "source_revision": "a732074a105dc24ecad1",
+      "text": "Этот файл содержит только левое крепление. Это не полная сборка креплений стола."
+    },
+    "ui.mod_gantry_current": {
+      "source_revision": "f65c00f92383873cb796",
+      "text": "Этот мод не зарегистрирован для текущего портала."
+    },
+    "ui.mod_gantry_saved": {
+      "source_revision": "6bfcb1055af8cf2015c0",
+      "text": "Этот мод не зарегистрирован для выбранного портала."
+    },
+    "ui.mod_registry_load": {
+      "source_revision": "0b70bee2777e72888dc2",
+      "text": "Не удалось загрузить реестр модов"
+    },
+    "ui.mod_configuration_current": {
+      "source_revision": "61232f72fa14e2aa91a6",
+      "text": "Этот мод не зарегистрирован для текущей конфигурации."
+    },
+    "ui.mod_configuration_saved": {
+      "source_revision": "58602ed3013371783676",
+      "text": "Этот мод не зарегистрирован для выбранной конфигурации."
+    },
+    "ui.mod_trident_motor_fans": {
+      "source_revision": "b24cc41f52f428e3a297",
+      "text": "Вентиляторы двигателей A/B Trident · FOX V2"
+    },
+    "ui.mod_trident_motor_fans_scope": {
+      "source_revision": "0cc7b526dfef032d02ed",
+      "text": "Геометрия крепления проверена для стандартного R2 / Stealthburner / CW2 / Revo Voron. Включены вентиляторы и крепёж VORON; на углу кронштейна A сделана небольшая выемка. Предпросмотр геометрии; работа принтера не моделируется."
+    },
+    "ui.mod_eva_source_subset": {
+      "source_revision": "b13f56e69eaac71b1855",
+      "text": "Часть исходного CAD с хотэндом, вентиляторами и Sherpa Micro. Детали платы, контекст портала и незамкнутые поверхности опущены. Крепление к принтеру не зарегистрировано."
+    },
+    "ui.component_source_preview_status": {
+      "source_revision": "6ea4700e7bac8dfa5aa2",
+      "text": "{0} · Предпросмотр CAD"
     }
   }
 }

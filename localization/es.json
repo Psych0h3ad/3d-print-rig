@@ -8813,6 +8813,70 @@
     "custom_voron.chain_contacts": {
       "source_revision": "4643277d9dce21ba0192",
       "text": "Los contactos del extremo superior de la cadena de la cama proceden del CAD original. Su ajuste mecánico y holgura no están verificados."
+    },
+    "ui.component_printer_bed": {
+      "source_revision": "69e5780c50be8e5751db",
+      "text": "Impresora · Soportes de la cama"
+    },
+    "ui.component_printer_drive": {
+      "source_revision": "ca6572a1974425d6b5db",
+      "text": "Impresora · Transmisión y motores"
+    },
+    "ui.component_printer_enclosure": {
+      "source_revision": "514b3e2fc76ba0a6b79c",
+      "text": "Impresora · Cerramiento y extracción"
+    },
+    "ui.component_printer_cleaning": {
+      "source_revision": "c206f3c3c2e283e96b0a",
+      "text": "Impresora · Limpieza de boquilla"
+    },
+    "ui.component_toolhead_reference": {
+      "source_revision": "8eb7cdda41aa42140bfd",
+      "text": "CAD original del cabezal"
+    },
+    "ui.mod_source_parts": {
+      "source_revision": "e6ed96cb6eaaca18947c",
+      "text": "Las piezas originales se muestran por separado. No se ha registrado ningún montaje en una impresora."
+    },
+    "ui.kinematic_left_only": {
+      "source_revision": "a732074a105dc24ecad1",
+      "text": "Este archivo contiene solo el soporte izquierdo. No es un conjunto completo de soportes de cama."
+    },
+    "ui.mod_gantry_current": {
+      "source_revision": "f65c00f92383873cb796",
+      "text": "Este mod no está registrado para el pórtico actual."
+    },
+    "ui.mod_gantry_saved": {
+      "source_revision": "6bfcb1055af8cf2015c0",
+      "text": "Este mod no está registrado para el pórtico seleccionado."
+    },
+    "ui.mod_registry_load": {
+      "source_revision": "0b70bee2777e72888dc2",
+      "text": "No se pudo cargar el registro de mods"
+    },
+    "ui.mod_configuration_current": {
+      "source_revision": "61232f72fa14e2aa91a6",
+      "text": "Este mod no está registrado para la configuración actual."
+    },
+    "ui.mod_configuration_saved": {
+      "source_revision": "58602ed3013371783676",
+      "text": "Este mod no está registrado para la configuración seleccionada."
+    },
+    "ui.mod_trident_motor_fans": {
+      "source_revision": "b24cc41f52f428e3a297",
+      "text": "Ventiladores A/B de Trident · FOX V2"
+    },
+    "ui.mod_trident_motor_fans_scope": {
+      "source_revision": "0cc7b526dfef032d02ed",
+      "text": "Geometría de montaje comprobada para R2 estándar / Stealthburner / CW2 / Revo Voron. Incluye ventiladores y fijaciones de VORON, con un pequeño rebaje en el soporte A. Vista de la geometría; no simula el funcionamiento de la impresora."
+    },
+    "ui.mod_eva_source_subset": {
+      "source_revision": "b13f56e69eaac71b1855",
+      "text": "Subconjunto del CAD original con hotend, ventiladores y Sherpa Micro. Se omiten los detalles de la placa, el contexto del pórtico y las superficies abiertas. El montaje en una impresora no está registrado."
+    },
+    "ui.component_source_preview_status": {
+      "source_revision": "6ea4700e7bac8dfa5aa2",
+      "text": "{0} · Vista previa de CAD"
     }
   }
 }

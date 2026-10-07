@@ -18,6 +18,7 @@ import {bankChoices,bankCapacity,bankSpec} from '../site/viewer/changer-bank-mod
 import {sizedSiboorCatalog,registerSizedSiboor} from '../site/viewer/siboor-catalog.mjs';
 import {withHeadAdditions} from '../site/viewer/head-additions.mjs';
 import {withInternalSpool,INTERNAL_SPOOL_CATALOG} from '../site/viewer/internal-spool.mjs';
+import {mergeRequestedMods} from '../site/viewer/requested-mods.mjs';
 
 export function enumerateV0(registry){
  const dimensions=v0Slots.map(([id])=>id),options=Object.fromEntries(dimensions.map(d=>[d,[{id:'stock',label:d==='toolhead'?'Mini Stealthburner / BMG / Revo Voron':'純正'},...(d==='accelerometer'?[{id:'none',label:'なし'}]:[]),...registry.options.filter(o=>o.slot===d&&o.id!=='stock').map(o=>({id:o.id,label:o.label}))]]));
@@ -31,6 +32,7 @@ export function buildSupport(root){
  const raw=read('TOOLHEAD_CONFIGURATIONS.json'),registry=read('MACHINE_HEAD_REGISTRATIONS.json'),gantries=read('GANTRY_CONFIGURATIONS.json'),mounts=read('MONOLITH_MACHINE_REGISTRATIONS.json'),bank=read('TOOLCHANGER_BANK.json'),v0=read('V0_INSTALLATIONS.json'),library=read('COMPONENT_LIBRARY.json'),mods=read('MACHINE_MODS.json');
  const siboor=read('SIBOOR_TRIDENT_ASSETS.json');registerSizedSiboor(siboor,registry,bank,mods);
  const internalSpool=read(INTERNAL_SPOOL_CATALOG);
+ const requestedMods=read('REQUESTED_MOD_INSTALLATIONS.json');
  const community=read('COMMUNITY_INSTALLATIONS.json');
  const heads=withEmbeddedBoards(withHeadAdditions(raw,read('HEAD_ADDITIONS.json')),[xolEmbeddedBoard(read(raw.base_assets.xol.meta)),sbEmbeddedBoard(read(raw.base_assets.stealthburner.meta))]);heads.dimensions=headBuilderDimensions;
  const alpha=read(TRINITY_ALPHA_SOURCE.file);if(input_sha256[TRINITY_ALPHA_SOURCE.file]!==TRINITY_ALPHA_SOURCE.sha256)throw Error('Trinity alpha support sidecar hash mismatch');augmentTrinityAlpha({heads,registry},null,alpha,input_sha256['MACHINE_HEAD_REGISTRATIONS.json']);
@@ -48,7 +50,7 @@ export function buildSupport(root){
   target.count=rows.length;target.heads=options.toolhead?.filter(o=>catalog.variants.some(v=>v.toolhead===o.id)).map(o=>o.id)||[];
   target.file=target.id+'.json';
   details.set(target.file,{schema:1,id:target.id,kind:target.kind,page:target.page,dimensions,options,idParts,rows,notes,
-   accessories:(catalog.accessories||[]).map(o=>({id:o.id,label:o.label,label_id:o.label_id,notes:o.notes,notice_id:o.notice_id,exclusive_group:o.exclusive_group})),
+   accessories:(catalog.accessories||[]).map(o=>({id:o.id,label:o.label,label_id:o.label_id,notes:o.notes,notice_id:o.notice_id,exclusive_group:o.exclusive_group,gantry_ids:o.gantry_ids,compatible_selection:o.compatible_selection})),
    banks:target.kind==='machine'?catalog.gantries.flatMap(g=>['stealthchanger','indx','madmax'].map(system=>({gantry:g.id,system,permitted:bankSpec(bank,system)?.machines[target.id]?.bank_permitted!==false,capacity:bankCapacity(bank,target.id,system),choices:bankChoices(catalog,bank,g.id,system).length}))).filter(r=>catalog.variants.some(v=>v.gantry===r.gantry&&(r.system==='indx'?v.toolhead==='indx':v.mount===r.system))):[]});
  }
  for(const m of machineChoices){
@@ -59,7 +61,7 @@ export function buildSupport(root){
    if(m.family==='trident')catalog=expandedPrinterCatalog(m.id.startsWith('siboor_trident_')?sizedSiboorCatalog(read('ASSEMBLY_CONFIGURATIONS.json'),siboor,m.id):read(`machines/${m.id}/configurations.json`),heads,registry,m.id);
    else if(m.family==='v24')catalog={...v24HeadCatalog(heads,registry,m.id,read(`machines/${m.id}/machine_profile.json`)),accessories:[]};
    else throw Error('Unclassified registered printer '+m.id);
-   const frame=withInternalSpool(mods.machines[m.id],internalSpool,m.id);if(frame)catalog.accessories=[...(catalog.accessories||[]),...frame.accessories.filter(a=>!catalog.accessories?.some(b=>a.id===b.id))];
+   let frame=withInternalSpool(mods.machines[m.id],internalSpool,m.id);if(frame){frame=mergeRequestedMods({...frame,assets:mods.assets},requestedMods,m.id);catalog.accessories=[...(catalog.accessories||[]),...frame.accessories.filter(a=>!catalog.accessories?.some(b=>a.id===b.id))];}
    catalog=withMonolithMachines(catalog,heads,registry,gantries,mounts);target.status='supported';compact(target,catalog);
   }else if(v0.machines[m.id]){
    target.status='supported';target.kind='v0';catalog=enumerateV0(v0.machines[m.id]);compact(target,catalog);

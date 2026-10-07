@@ -8813,6 +8813,70 @@
     "custom_voron.chain_contacts": {
       "source_revision": "4643277d9dce21ba0192",
       "text": "베드 체인 상단에는 원본 CAD의 접촉 부위가 남아 있습니다. 실제 장착과 간극은 검증되지 않았습니다."
+    },
+    "ui.component_printer_bed": {
+      "source_revision": "69e5780c50be8e5751db",
+      "text": "프린터 · 베드 지지대"
+    },
+    "ui.component_printer_drive": {
+      "source_revision": "ca6572a1974425d6b5db",
+      "text": "프린터 · 구동부 및 모터"
+    },
+    "ui.component_printer_enclosure": {
+      "source_revision": "514b3e2fc76ba0a6b79c",
+      "text": "프린터 · 외장 및 배기"
+    },
+    "ui.component_printer_cleaning": {
+      "source_revision": "c206f3c3c2e283e96b0a",
+      "text": "프린터 · 노즐 청소"
+    },
+    "ui.component_toolhead_reference": {
+      "source_revision": "8eb7cdda41aa42140bfd",
+      "text": "툴헤드 원본 CAD"
+    },
+    "ui.mod_source_parts": {
+      "source_revision": "e6ed96cb6eaaca18947c",
+      "text": "원본 부품을 개별적으로 표시합니다. 프린터 장착은 등록되어 있지 않습니다."
+    },
+    "ui.kinematic_left_only": {
+      "source_revision": "a732074a105dc24ecad1",
+      "text": "이 파일에는 왼쪽 마운트만 있습니다. 전체 베드 마운트 어셈블리가 아닙니다."
+    },
+    "ui.mod_gantry_current": {
+      "source_revision": "f65c00f92383873cb796",
+      "text": "이 모드는 현재 갠트리에 등록되어 있지 않습니다."
+    },
+    "ui.mod_gantry_saved": {
+      "source_revision": "6bfcb1055af8cf2015c0",
+      "text": "이 모드는 선택한 갠트리에 등록되어 있지 않습니다."
+    },
+    "ui.mod_registry_load": {
+      "source_revision": "0b70bee2777e72888dc2",
+      "text": "모드 등록 정보를 불러올 수 없습니다"
+    },
+    "ui.mod_configuration_current": {
+      "source_revision": "61232f72fa14e2aa91a6",
+      "text": "이 모드는 현재 구성에 등록되어 있지 않습니다."
+    },
+    "ui.mod_configuration_saved": {
+      "source_revision": "58602ed3013371783676",
+      "text": "이 모드는 선택한 구성에 등록되어 있지 않습니다."
+    },
+    "ui.mod_trident_motor_fans": {
+      "source_revision": "b24cc41f52f428e3a297",
+      "text": "Trident A/B 스테퍼 팬 · FOX V2"
+    },
+    "ui.mod_trident_motor_fans_scope": {
+      "source_revision": "0cc7b526dfef032d02ed",
+      "text": "표준 R2 / Stealthburner / CW2 / Revo Voron의 장착 형상을 확인했습니다. VORON 팬과 체결 부품을 포함하며 A측 브래킷 모서리에 작은 간섭 방지 홈을 추가했습니다. 형상 미리보기이며 실제 프린터 작동은 시뮬레이션하지 않습니다."
+    },
+    "ui.mod_eva_source_subset": {
+      "source_revision": "b13f56e69eaac71b1855",
+      "text": "핫엔드, 팬, Sherpa Micro를 포함한 원본 CAD의 부분 미리보기입니다. 보드 세부 형상, 갠트리 참조 형상, 닫히지 않은 표면은 생략했습니다. 프린터 장착은 등록되어 있지 않습니다."
+    },
+    "ui.component_source_preview_status": {
+      "source_revision": "6ea4700e7bac8dfa5aa2",
+      "text": "{0} · CAD 미리보기"
     }
   }
 }

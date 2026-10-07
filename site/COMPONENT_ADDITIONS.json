@@ -1,6 +1,6 @@
 {
   "schema": "3d-print-rig-components-v1",
-  "version": "trinity-native-88",
+  "version": "trinity-native-88-requested-mods-96",
   "items": [
     {
       "id": "hydra_ender3_parts",
@@ -3058,6 +3058,566 @@
       "license_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/NOTICE.txt",
       "notes": "Original Trinity component CAD, including author-supplied hardware where present. Some user modifications supply printed bodies without a hotend or complete extruder. This component view does not register a complete head or printer installation. Topology repairs and omitted construction helpers are recorded.",
       "machine_installation_verified": false
+    },
+    {
+      "id": "v0mod_tall_skirts_841565",
+      "module": "v0mod_tall_skirts_841565",
+      "kind": "mod",
+      "category": "v0-enclosure",
+      "label": "V0.2 tall skirts · source variants",
+      "manufacturer": "Akio",
+      "representation": "STL",
+      "solids": 22,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "part:requested_mod_841565_file_3712558_printed",
+          "label": "Tall_Foot_Front_Right_x1.stl",
+          "parts": [
+            "requested_mod_841565_file_3712558_printed"
+          ],
+          "assembly": false
+        },
+        {
+          "id": "part:requested_mod_841565_file_3712531_printed",
+          "label": "Tall_Foot_Front_Left_x1.stl",
+          "parts": [
+            "requested_mod_841565_file_3712531_printed"
+          ],
+          "assembly": false
+        },
+        {
+          "id": "part:requested_mod_841565_file_3712543_printed",
+          "label": "Tall_Foot_Rear_Right_Plain_x1.stl",
+          "parts": [
+            "requested_mod_841565_file_3712543_printed"
+          ],
+          "assembly": false
+        },
+        {
+          "id": "part:requested_mod_841565_file_3712555_printed",
+          "label": "Tall_Foot_Rear_Right_FRS_x1.stl",
+          "parts": [
+            "requested_mod_841565_file_3712555_printed"
+          ],
+          "assembly": false
+        },
+        {
+          "id": "part:requested_mod_841565_file_3712544_printed",
+          "label": "Tall_Foot_Rear_Left_Mains_Inlet_x1.stl",
+          "parts": [
+            "requested_mod_841565_file_3712544_printed"
+          ],
+          "assembly": false
+        },
+        {
+          "id": "part:requested_mod_841565_file_3712542_printed",
+          "label": "Tall_Foot_Rear_Left_Mains_Inlet_RJ45_x1.stl",
+          "parts": [
+            "requested_mod_841565_file_3712542_printed"
+          ],
+          "assembly": false
+        },
+        {
+          "id": "part:requested_mod_841565_file_3712552_printed",
+          "label": "Tall_Foot_Rear_Left_24V_Inlet_x1.stl",
+          "parts": [
+            "requested_mod_841565_file_3712552_printed"
+          ],
+          "assembly": false
+        },
+        {
+          "id": "part:requested_mod_841565_file_3712538_printed",
+          "label": "Tall_Foot_Rear_Left_24V_Inlet_RJ45_x1.stl",
+          "parts": [
+            "requested_mod_841565_file_3712538_printed"
+          ],
+          "assembly": false
+        },
+        {
+          "id": "part:requested_mod_841565_file_3712535_printed",
+          "label": "Tall_Foot_Rear_Left_Cover.stl",
+          "parts": [
+            "requested_mod_841565_file_3712535_printed"
+          ],
+          "assembly": false
+        },
+        {
+          "id": "part:requested_mod_841565_file_3712541_printed",
+          "label": "Keystone_Insert_Bracket.stl",
+          "parts": [
+            "requested_mod_841565_file_3712541_printed"
+          ],
+          "assembly": false
+        },
+        {
+          "id": "part:requested_mod_841565_file_3712532_printed",
+          "label": "[a]_Foot_Accent_A_x2.stl",
+          "parts": [
+            "requested_mod_841565_file_3712532_printed"
+          ],
+          "assembly": false
+        },
+        {
+          "id": "part:requested_mod_841565_file_3712525_printed",
+          "label": "[a]_Foot_Accent_B_x2.stl",
+          "parts": [
+            "requested_mod_841565_file_3712525_printed"
+          ],
+          "assembly": false
+        },
+        {
+          "id": "part:requested_mod_841565_file_3712551_printed",
+          "label": "Tall_Front_Skirt_x1.stl",
+          "parts": [
+            "requested_mod_841565_file_3712551_printed"
+          ],
+          "assembly": false
+        },
+        {
+          "id": "part:requested_mod_841565_file_3712533_printed",
+          "label": "[a]_Logo_Insert_x2.stl",
+          "parts": [
+            "requested_mod_841565_file_3712533_printed"
+          ],
+          "assembly": false
+        },
+        {
+          "id": "part:requested_mod_841565_file_3712556_printed",
+          "label": "Tall_Front_Skirt_Mesh_x1.stl",
+          "parts": [
+            "requested_mod_841565_file_3712556_printed"
+          ],
+          "assembly": false
+        },
+        {
+          "id": "part:requested_mod_841565_file_3712530_printed",
+          "label": "[a]_Logo_Insert_Mesh_x2.stl",
+          "parts": [
+            "requested_mod_841565_file_3712530_printed"
+          ],
+          "assembly": false
+        },
+        {
+          "id": "part:requested_mod_841565_file_3712549_printed",
+          "label": "Waveshare_4.3_DSI_LCD_Faceplate.stl",
+          "parts": [
+            "requested_mod_841565_file_3712549_printed"
+          ],
+          "assembly": false
+        },
+        {
+          "id": "part:requested_mod_841565_file_3712553_printed",
+          "label": "Tall_Side_Skirt_x2.stl",
+          "parts": [
+            "requested_mod_841565_file_3712553_printed"
+          ],
+          "assembly": false
+        },
+        {
+          "id": "part:requested_mod_841565_file_3712554_printed",
+          "label": "Tall_Side_Skirt_Mesh_x2.stl",
+          "parts": [
+            "requested_mod_841565_file_3712554_printed"
+          ],
+          "assembly": false
+        },
+        {
+          "id": "part:requested_mod_841565_file_3712548_printed",
+          "label": "Tall_Rear_Skirt_x1.stl",
+          "parts": [
+            "requested_mod_841565_file_3712548_printed"
+          ],
+          "assembly": false
+        },
+        {
+          "id": "part:requested_mod_841565_file_3712557_printed",
+          "label": "Tall_Rear_Skirt_Mesh_x1.stl",
+          "parts": [
+            "requested_mod_841565_file_3712557_printed"
+          ],
+          "assembly": false
+        },
+        {
+          "id": "part:requested_mod_841565_file_3712545_printed",
+          "label": "Bottom_Panel_Mesh.stl",
+          "parts": [
+            "requested_mod_841565_file_3712545_printed"
+          ],
+          "assembly": false
+        }
+      ],
+      "source_url": "https://www.printables.com/model/841565-tall-skirts-mod-for-voron-02",
+      "source_version": "Author uploads · 2024-05-16",
+      "source_sha256": "7075ca06f682621c61102b83330bbeb1367d0f4aabb31515141409f8d61d012e",
+      "source_sha256_label": "Source-part metadata SHA256",
+      "license": "GPL-3.0",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/licenses/requested-mods-96/841565/NOTICE.txt",
+      "notes": "Original source parts shown individually. No machine installation is registered.",
+      "machine_installation_verified": false,
+      "original_source_archive": {
+        "name": "REQUESTED_MOD_841565_ORIGINAL_SOURCE_96.zip",
+        "bytes": 25105848,
+        "sha256": "55c9ced1d53f15cbaf383a2a0201a0e3a3cfb1865757a2000dfbbf8e6711c997",
+        "url": "https://github.com/Psych0h3ad/3d-print-rig-large-voron-models/releases/download/requested-mods-v1/REQUESTED_MOD_841565_ORIGINAL_SOURCE_96.zip",
+        "publication_pending": false,
+        "distribution": "Release artifact; not counted as a Pages model asset."
+      }
+    },
+    {
+      "id": "x1c_nozzle_wiper_546970",
+      "module": "x1c_nozzle_wiper_546970",
+      "kind": "mod",
+      "category": "printer-cleaning",
+      "label": "X1C/P1P nozzle wiper · beta mount",
+      "manufacturer": "Iconic FAB",
+      "representation": "STL",
+      "solids": 1,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "part:requested_mod_546970_file_2373424_printed",
+          "label": "nozzle_wiper_mount_beta_1.2_(Iconic-FAB.com).stl",
+          "parts": [
+            "requested_mod_546970_file_2373424_printed"
+          ],
+          "assembly": false
+        }
+      ],
+      "source_url": "https://www.printables.com/model/546970-x1cp1p-style-nozzle-wiper-mod-for-voron-beta",
+      "source_version": "Author uploads · 2026-07-26",
+      "source_sha256": "f1bc535cf057af40eac027eb824d8cd3dae59e388f8840d58fceb3f375e4df3f",
+      "source_sha256_label": "Source-part metadata SHA256",
+      "license": "CC BY-SA (author Printables license)",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/licenses/requested-mods-96/546970/NOTICE.txt",
+      "notes": "Original source parts shown individually. No machine installation is registered.",
+      "machine_installation_verified": false,
+      "original_source_archive": {
+        "name": "REQUESTED_MOD_546970_ORIGINAL_SOURCE_96.zip",
+        "bytes": 1369821,
+        "sha256": "d6dac9ee7d0b58673fc26f5118b05e011c2c547f17ee5a6acdd71cdd36ff30a2",
+        "url": "https://github.com/Psych0h3ad/3d-print-rig-large-voron-models/releases/download/requested-mods-v1/REQUESTED_MOD_546970_ORIGINAL_SOURCE_96.zip",
+        "publication_pending": false,
+        "distribution": "Release artifact; not counted as a Pages model asset."
+      }
+    },
+    {
+      "id": "voron_v24_pg7_filter_1230133",
+      "module": "voron_v24_pg7_filter_1230133",
+      "kind": "mod",
+      "category": "printer-enclosure",
+      "label": "V2.4 PG7 rear exhaust · v2 source parts",
+      "manufacturer": "Kevin Kunst / Ampp33",
+      "representation": "STL",
+      "solids": 2,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "part:requested_mod_1230133_file_5110836_printed",
+          "label": "exhaust_filter_grillv2.stl",
+          "parts": [
+            "requested_mod_1230133_file_5110836_printed"
+          ],
+          "assembly": false
+        },
+        {
+          "id": "part:requested_mod_1230133_file_5110840_printed",
+          "label": "exhaust_filter_housing.stl",
+          "parts": [
+            "requested_mod_1230133_file_5110840_printed"
+          ],
+          "assembly": false
+        }
+      ],
+      "source_url": "https://www.printables.com/model/1230133-voron-24-pg7-canbus-rear-exhaust-filter-mod-v2",
+      "source_version": "Author uploads · 2025-03-15",
+      "source_sha256": "802b51b3b2a885f675e7beaa49808fbdc9ea895c9d0e39153d9a355e10513982",
+      "source_sha256_label": "Source-part metadata SHA256",
+      "license": "GPL-3.0",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/licenses/requested-mods-96/1230133/NOTICE.txt",
+      "notes": "Original source parts shown individually. No machine installation is registered.",
+      "machine_installation_verified": false,
+      "original_source_archive": {
+        "name": "REQUESTED_MOD_1230133_ORIGINAL_SOURCE_96.zip",
+        "bytes": 12617273,
+        "sha256": "dcb289966647d64ed00c022fafda51473f59f834df9903047eb1cffcf6a168f6",
+        "url": "https://github.com/Psych0h3ad/3d-print-rig-large-voron-models/releases/download/requested-mods-v1/REQUESTED_MOD_1230133_ORIGINAL_SOURCE_96.zip",
+        "publication_pending": false,
+        "distribution": "Release artifact; not counted as a Pages model asset."
+      }
+    },
+    {
+      "id": "trident_stepper_decoupler_430168",
+      "module": "trident_stepper_decoupler_430168",
+      "kind": "mod",
+      "category": "printer-drive",
+      "label": "Trident stepper decoupler · original printed parts",
+      "manufacturer": "FOX",
+      "representation": "STL",
+      "solids": 6,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "part:requested_mod_430168_file_1872528_printed",
+          "label": "Top Bearing-A.stl",
+          "parts": [
+            "requested_mod_430168_file_1872528_printed"
+          ],
+          "assembly": false
+        },
+        {
+          "id": "part:requested_mod_430168_file_1872529_printed",
+          "label": "Bottom Bearing-B.stl",
+          "parts": [
+            "requested_mod_430168_file_1872529_printed"
+          ],
+          "assembly": false
+        },
+        {
+          "id": "part:requested_mod_430168_file_1872530_printed",
+          "label": "Bottom Bearing-A.stl",
+          "parts": [
+            "requested_mod_430168_file_1872530_printed"
+          ],
+          "assembly": false
+        },
+        {
+          "id": "part:requested_mod_430168_file_1872531_printed",
+          "label": "Spacer-A.stl",
+          "parts": [
+            "requested_mod_430168_file_1872531_printed"
+          ],
+          "assembly": false
+        },
+        {
+          "id": "part:requested_mod_430168_file_1872532_printed",
+          "label": "Top Bearing-B.stl",
+          "parts": [
+            "requested_mod_430168_file_1872532_printed"
+          ],
+          "assembly": false
+        },
+        {
+          "id": "part:requested_mod_430168_file_1872533_printed",
+          "label": "Spacer-B.stl",
+          "parts": [
+            "requested_mod_430168_file_1872533_printed"
+          ],
+          "assembly": false
+        }
+      ],
+      "source_url": "https://www.printables.com/model/430168-voron-trident-stepper-decoupler",
+      "source_version": "Author uploads · 2023-03-22",
+      "source_sha256": "f74007efeac4031f89c5782176166e1a32b815c1b12e5f2219bc351f14522754",
+      "source_sha256_label": "Source-part metadata SHA256",
+      "license": "CC BY-NC (author Printables license)",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/licenses/requested-mods-96/430168/NOTICE.txt",
+      "notes": "Original source parts shown individually. No machine installation is registered.",
+      "machine_installation_verified": false,
+      "original_source_archive": {
+        "name": "REQUESTED_MOD_430168_ORIGINAL_SOURCE_96.zip",
+        "bytes": 8781967,
+        "sha256": "bd14727896309fc858ddd94cbd99753f2c28e30221975592977bf61224aa79aa",
+        "url": "https://github.com/Psych0h3ad/3d-print-rig-large-voron-models/releases/download/requested-mods-v1/REQUESTED_MOD_430168_ORIGINAL_SOURCE_96.zip",
+        "publication_pending": false,
+        "distribution": "Release artifact; not counted as a Pages model asset."
+      }
+    },
+    {
+      "id": "trident_ab_stepper_fan_491404_v2",
+      "module": "trident_ab_stepper_fan_491404_v2",
+      "kind": "mod",
+      "category": "printer-drive",
+      "label": "Trident A/B stepper fan · V2",
+      "manufacturer": "FOX",
+      "representation": "3MF",
+      "solids": 2,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "part:trident_ab_stepper_fan_491404_v2_object_1",
+          "label": "A/B_fan_mount_v2 (1)",
+          "parts": [
+            "trident_ab_stepper_fan_491404_v2_object_1"
+          ],
+          "assembly": false
+        },
+        {
+          "id": "part:trident_ab_stepper_fan_491404_v2_object_3",
+          "label": "A/B_fan_mount_v2",
+          "parts": [
+            "trident_ab_stepper_fan_491404_v2_object_3"
+          ],
+          "assembly": false
+        }
+      ],
+      "source_url": "https://www.printables.com/model/491404-voron-trident-ab-stepper-fan",
+      "source_version": "Author uploads · 2023-06-11",
+      "source_sha256": "74a6fcb945d76178713e578a5bf29845bc8210479aeb716dc6864c97ef50d576",
+      "source_sha256_label": "Source-part metadata SHA256",
+      "license": "CC BY-NC (author Printables license)",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/licenses/requested-mods-96/491404/NOTICE.txt",
+      "notes": "Original source parts shown individually. No machine installation is registered.",
+      "machine_installation_verified": false,
+      "original_source_archive": {
+        "name": "REQUESTED_MOD_491404_ORIGINAL_SOURCE_96.zip",
+        "bytes": 614963,
+        "sha256": "fb61d81bc7cb0813106f591317e6a7ae61128078149bb063787d75e9e04370fc",
+        "url": "https://github.com/Psych0h3ad/3d-print-rig-large-voron-models/releases/download/requested-mods-v1/REQUESTED_MOD_491404_ORIGINAL_SOURCE_96.zip",
+        "publication_pending": false,
+        "distribution": "Release artifact; not counted as a Pages model asset."
+      }
+    },
+    {
+      "id": "trident_ab_stepper_fan_491404_v1",
+      "module": "trident_ab_stepper_fan_491404_v1",
+      "kind": "mod",
+      "category": "printer-drive",
+      "label": "Trident A/B stepper fan · V1",
+      "manufacturer": "FOX",
+      "representation": "3MF",
+      "solids": 2,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "part:trident_ab_stepper_fan_491404_v1_object_1",
+          "label": "AB_fan_ (1)",
+          "parts": [
+            "trident_ab_stepper_fan_491404_v1_object_1"
+          ],
+          "assembly": false
+        },
+        {
+          "id": "part:trident_ab_stepper_fan_491404_v1_object_3",
+          "label": "AB_fan_",
+          "parts": [
+            "trident_ab_stepper_fan_491404_v1_object_3"
+          ],
+          "assembly": false
+        }
+      ],
+      "source_url": "https://www.printables.com/model/491404-voron-trident-ab-stepper-fan",
+      "source_version": "Author uploads · 2023-06-11",
+      "source_sha256": "9e8dcf16e06a8827892377301e9d735ec2211bc464b5d39791d7e80c7058d469",
+      "source_sha256_label": "Source-part metadata SHA256",
+      "license": "CC BY-NC (author Printables license)",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/licenses/requested-mods-96/491404/NOTICE.txt",
+      "notes": "Original source parts shown individually. No machine installation is registered.",
+      "machine_installation_verified": false,
+      "original_source_archive": {
+        "name": "REQUESTED_MOD_491404_ORIGINAL_SOURCE_96.zip",
+        "bytes": 614963,
+        "sha256": "fb61d81bc7cb0813106f591317e6a7ae61128078149bb063787d75e9e04370fc",
+        "url": "https://github.com/Psych0h3ad/3d-print-rig-large-voron-models/releases/download/requested-mods-v1/REQUESTED_MOD_491404_ORIGINAL_SOURCE_96.zip",
+        "publication_pending": false,
+        "distribution": "Release artifact; not counted as a Pages model asset."
+      }
+    },
+    {
+      "id": "trident_stepper_spacer_534736",
+      "module": "trident_stepper_spacer_534736",
+      "kind": "mod",
+      "category": "printer-drive",
+      "label": "Trident stepper spacer",
+      "manufacturer": "FOX",
+      "representation": "STL",
+      "solids": 1,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "part:trident_stepper_spacer_534736_original",
+          "label": "Stepper Spacer — original 22.5 mm",
+          "parts": [
+            "trident_stepper_spacer_534736_original"
+          ],
+          "assembly": false
+        }
+      ],
+      "source_url": "https://www.printables.com/model/534736-voron-trident-stepper-spacer",
+      "source_version": "Author uploads · 2023-08-03",
+      "source_sha256": "d567790819f82007e65d836f626453a4973907d3bc09a3c0bd1a6a4bbad5456a",
+      "source_sha256_label": "Source-part metadata SHA256",
+      "license": "CC BY-NC (author Printables license)",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/licenses/requested-mods-96/534736/NOTICE.txt",
+      "notes": "Original source parts shown individually. No machine installation is registered.",
+      "machine_installation_verified": false,
+      "original_source_archive": {
+        "name": "REQUESTED_MOD_534736_ORIGINAL_SOURCE_96.zip",
+        "bytes": 36027,
+        "sha256": "5d24614493589a7a81cd525f6e02cc7b42897d8370f61fdcf07a49b83bdda149",
+        "url": "https://github.com/Psych0h3ad/3d-print-rig-large-voron-models/releases/download/requested-mods-v1/REQUESTED_MOD_534736_ORIGINAL_SOURCE_96.zip",
+        "publication_pending": false,
+        "distribution": "Release artifact; not counted as a Pages model asset."
+      }
+    },
+    {
+      "id": "tanaes_trident_kinematic_left_STEP_62268ed",
+      "module": "tanaes_trident_kinematic_left_STEP_62268ed",
+      "kind": "mod",
+      "category": "printer-bed",
+      "label": "Trident kinematic bed · original left mount",
+      "manufacturer": "tanaes",
+      "representation": "STEP",
+      "solids": 1,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "part:tanaes_trident_kinematic_left_STEP_62268ed_Body6",
+          "label": "Body6",
+          "parts": [
+            "tanaes_trident_kinematic_left_STEP_62268ed_Body6"
+          ],
+          "assembly": false
+        }
+      ],
+      "source_url": "https://github.com/tanaes/whopping_Voron_mods/tree/62268ed817878e54d6a1186882060aa8368d4f0f/kinematic_bed",
+      "source_version": "62268ed817878e54d6a1186882060aa8368d4f0f",
+      "source_sha256": "e3916181bf576aa49be236ffb35fd5295af284a440519c30d19ba8e1ed229a2c",
+      "source_sha256_label": "Source-part metadata SHA256",
+      "license": "GPL-3.0",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/licenses/requested-mods-96/kinematic_trident/NOTICE.txt",
+      "notes": "This file contains the left mount only. It is not a complete bed-mount assembly.",
+      "machine_installation_verified": false,
+      "original_source_archive": {
+        "name": "WHOPPING_KINEMATIC_SOURCE_62268ED.zip",
+        "bytes": 62405433,
+        "sha256": "ebff77b5ea11494c7525d072bf85bc49ade2bc0f5bff167851a4a32d2ed3d642",
+        "url": "https://github.com/Psych0h3ad/3d-print-rig-large-voron-models/releases/download/requested-mods-v1/WHOPPING_KINEMATIC_SOURCE_62268ED.zip",
+        "publication_pending": false,
+        "shared_exact_archive_for_both_author_links": true,
+        "distribution": "Release artifact; not a Pages model asset."
+      }
+    },
+    {
+      "id": "requested_mod_681594_head_source_preview_v5",
+      "module": "requested_mod_681594_head_source_preview_v5",
+      "kind": "mod",
+      "category": "toolhead-reference",
+      "label": "EVA for Trident · author CAD subset",
+      "manufacturer": "FOX",
+      "representation": "STEP",
+      "solids": 73,
+      "source_url": "https://www.printables.com/model/681594-eva-toolhead-for-voron-trident",
+      "source_version": "EVA_VORON v41.step",
+      "source_sha256": "458c26329b3c80457d8d1c031b8c78259893fb81c9031b5b79a6c67c92e71227",
+      "source_sha256_label": "Original author STEP SHA256",
+      "license": "CC BY (Printables record; version unspecified). Embedded purchased components retain their separate original terms.",
+      "license_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/licenses/requested-mods-96/681594/NOTICE.txt",
+      "original_source_archive": {
+        "name": "REQUESTED_MOD_681594_ORIGINAL_SOURCE_96.zip",
+        "bytes": 18404906,
+        "sha256": "9cc5ec51c9416003df4acc2a6738ec669aee8163ec9d00063c0e46af9d31946f",
+        "url": "https://github.com/Psych0h3ad/3d-print-rig-large-voron-models/releases/download/requested-mods-v1/REQUESTED_MOD_681594_ORIGINAL_SOURCE_96.zip",
+        "publication_pending": false,
+        "distribution": "Release artifact; not counted as a Pages model asset."
+      },
+      "source_preview_only": true,
+      "complete_author_toolhead": false,
+      "machine_installation_verified": false,
+      "notes": "Original CAD subset with hotend, fans and Sherpa Micro. Board details, gantry context and unclosed surfaces are omitted. Machine mounting is not registered.",
+      "supports_removed": false,
+      "geometry_source": "native_author_solids",
+      "notice_id": "ui.mod_eva_source_subset"
     }
   ],
   "assets": {
@@ -3909,6 +4469,213 @@
           "encoding": "gzip",
           "decoded_bytes": 24483100,
           "decoded_sha256": "19d31acad4c2d1c95fab188632436f62d8e696b0fdd9d22805c099afd3b7a431"
+        }
+      }
+    },
+    "v0mod_tall_skirts_841565": {
+      "component_id": "v0mod_tall_skirts_841565",
+      "parts": 22,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/",
+        "local_directory": "large-voron-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "requested-mods-v1/v0mod_tall_skirts_841565/parts.json",
+          "bytes": 28095,
+          "sha256": "7075ca06f682621c61102b83330bbeb1367d0f4aabb31515141409f8d61d012e"
+        },
+        "model.glb": {
+          "path": "requested-mods-v1/v0mod_tall_skirts_841565/model.glb.gz",
+          "bytes": 5654734,
+          "sha256": "837c09f54ceda977a8e1d17e0862d8a07fcf2f32fdbfa61c756f5a70993072b1",
+          "encoding": "gzip",
+          "decoded_bytes": 25949008,
+          "decoded_sha256": "c9330880b0a1cc0688d6776c545d8c8ad326a8800982aa239759d5899881d90a"
+        }
+      }
+    },
+    "x1c_nozzle_wiper_546970": {
+      "component_id": "x1c_nozzle_wiper_546970",
+      "parts": 1,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/",
+        "local_directory": "large-voron-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "requested-mods-v1/x1c_nozzle_wiper_546970/parts.json",
+          "bytes": 1759,
+          "sha256": "f1bc535cf057af40eac027eb824d8cd3dae59e388f8840d58fceb3f375e4df3f"
+        },
+        "model.glb": {
+          "path": "requested-mods-v1/x1c_nozzle_wiper_546970/model.glb.gz",
+          "bytes": 79647,
+          "sha256": "801d441124b2d54a5a50b0e8e1d739809161623803745d82c4526c98df5a17d0",
+          "encoding": "gzip",
+          "decoded_bytes": 406568,
+          "decoded_sha256": "84cbad898b34b37acdd4ff03bfbcdfc53e0906dd67f3b0330a18878d83c7ce0e"
+        }
+      }
+    },
+    "voron_v24_pg7_filter_1230133": {
+      "component_id": "voron_v24_pg7_filter_1230133",
+      "parts": 2,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/",
+        "local_directory": "large-voron-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "requested-mods-v1/voron_v24_pg7_filter_1230133/parts.json",
+          "bytes": 3003,
+          "sha256": "802b51b3b2a885f675e7beaa49808fbdc9ea895c9d0e39153d9a355e10513982"
+        },
+        "model.glb": {
+          "path": "requested-mods-v1/voron_v24_pg7_filter_1230133/model.glb.gz",
+          "bytes": 13707988,
+          "sha256": "c2382ccf06ee33dd3d795787895a4411166e4d736d7d388a9661c1cdd67b6454",
+          "encoding": "gzip",
+          "decoded_bytes": 43870288,
+          "decoded_sha256": "21eb6be4c23e83830066c4760d5770c006b3c99fbe247c606bbb3c9f5515c6fb"
+        }
+      }
+    },
+    "trident_stepper_decoupler_430168": {
+      "component_id": "trident_stepper_decoupler_430168",
+      "parts": 6,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/",
+        "local_directory": "large-voron-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "requested-mods-v1/trident_stepper_decoupler_430168/parts.json",
+          "bytes": 8746,
+          "sha256": "f74007efeac4031f89c5782176166e1a32b815c1b12e5f2219bc351f14522754"
+        },
+        "model.glb": {
+          "path": "requested-mods-v1/trident_stepper_decoupler_430168/model.glb.gz",
+          "bytes": 1438927,
+          "sha256": "8c518744b852ae9d2876d7535414d8b312dbfdd43089d3239b73861fd72e8f80",
+          "encoding": "gzip",
+          "decoded_bytes": 9321720,
+          "decoded_sha256": "39422cf00b55595f88ff12e8ddcca7d65131c239920399b43da8507062a896ac"
+        }
+      }
+    },
+    "trident_ab_stepper_fan_491404_v2": {
+      "component_id": "trident_ab_stepper_fan_491404_v2",
+      "parts": 2,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/",
+        "local_directory": "large-voron-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "requested-mods-v1/trident_ab_stepper_fan_491404_v2/parts.json",
+          "bytes": 3060,
+          "sha256": "74a6fcb945d76178713e578a5bf29845bc8210479aeb716dc6864c97ef50d576"
+        },
+        "model.glb": {
+          "path": "requested-mods-v1/trident_ab_stepper_fan_491404_v2/model.glb.gz",
+          "bytes": 140594,
+          "sha256": "d97fffe489d33232c7199780a285c79c8e92b46c502edaff89abac7c671bf187",
+          "encoding": "gzip",
+          "decoded_bytes": 566716,
+          "decoded_sha256": "38647b038c09dfe8e409d79c48dd9a4e86af234fe21bdc9f78efa675da396917"
+        }
+      }
+    },
+    "trident_ab_stepper_fan_491404_v1": {
+      "component_id": "trident_ab_stepper_fan_491404_v1",
+      "parts": 2,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/",
+        "local_directory": "large-voron-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "requested-mods-v1/trident_ab_stepper_fan_491404_v1/parts.json",
+          "bytes": 3035,
+          "sha256": "9e8dcf16e06a8827892377301e9d735ec2211bc464b5d39791d7e80c7058d469"
+        },
+        "model.glb": {
+          "path": "requested-mods-v1/trident_ab_stepper_fan_491404_v1/model.glb.gz",
+          "bytes": 404753,
+          "sha256": "048ed2c30de95f2a87642677312d13307e8a0467739c7d0345a1480f3dae8b41",
+          "encoding": "gzip",
+          "decoded_bytes": 1611660,
+          "decoded_sha256": "42926f570dcb2930af5240b8749b8e90ba0ae75d9dc9ceb2decdb5aeb90bb318"
+        }
+      }
+    },
+    "trident_stepper_spacer_534736": {
+      "component_id": "trident_stepper_spacer_534736",
+      "parts": 1,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/",
+        "local_directory": "large-voron-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "requested-mods-v1/trident_stepper_spacer_534736/parts.json",
+          "bytes": 1317,
+          "sha256": "d567790819f82007e65d836f626453a4973907d3bc09a3c0bd1a6a4bbad5456a"
+        },
+        "model.glb": {
+          "path": "requested-mods-v1/trident_stepper_spacer_534736/model.glb.gz",
+          "bytes": 43320,
+          "sha256": "a88507937ffa11ed74e73b49bc5779ce1bad2da3851979484ad8be01ec149d12",
+          "encoding": "gzip",
+          "decoded_bytes": 227084,
+          "decoded_sha256": "ab27b331a8fd5917589c56948935bc551c83e2cd976f416af783dfcd6361f313"
+        }
+      }
+    },
+    "tanaes_trident_kinematic_left_STEP_62268ed": {
+      "component_id": "tanaes_trident_kinematic_left_STEP_62268ed",
+      "parts": 1,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/",
+        "local_directory": "large-voron-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "requested-mods-v1/tanaes_trident_kinematic_left_STEP_62268ed/parts.json",
+          "bytes": 1831,
+          "sha256": "e3916181bf576aa49be236ffb35fd5295af284a440519c30d19ba8e1ed229a2c"
+        },
+        "model.glb": {
+          "path": "requested-mods-v1/tanaes_trident_kinematic_left_STEP_62268ed/model.glb.gz",
+          "bytes": 142567,
+          "sha256": "448196e531492f7da378cda5d37ea472a46f1fa72eae67b040647e323f037f63",
+          "encoding": "gzip",
+          "decoded_bytes": 453348,
+          "decoded_sha256": "fa1f1f89fbd69198dfa670bb79a314203527deb99ec6f8777885272650d0403a"
+        }
+      }
+    },
+    "requested_mod_681594_head_source_preview_v5": {
+      "component_id": "requested_mod_681594_head_source_preview_v5",
+      "parts": 73,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/",
+        "local_directory": "large-voron-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "requested-mods-v1/requested_mod_681594_head_source_preview_v5/parts.json",
+          "bytes": 164470,
+          "sha256": "7b7f59c96cff691a1d86629b7e2faea8045748b86534209e4134de23a98ce815"
+        },
+        "model.glb": {
+          "path": "requested-mods-v1/requested_mod_681594_head_source_preview_v5/model.glb.gz",
+          "bytes": 35280182,
+          "sha256": "580405adc65bf4ac24a3cb7f25059d59bb2ae6d9c775236f4457638c6494167a",
+          "encoding": "gzip",
+          "decoded_bytes": 123843388,
+          "decoded_sha256": "3e5520f20e7f9a1e4d800c23894ebfe8dc9e04cd0d33cd46b9caa053fa484c95"
         }
       }
     }
