@@ -58,7 +58,9 @@ export function setupGcodePanel({container,profile,adapter,scene,setPose,render,
   createVirtualPlayback(program).restore(data.cursor);if(!prepare())return;generation++;pause();$('gcodeText').value=data.gcode;$('gcodeMacros').value=data.macros;$('gcodeMetadata').value=JSON.stringify(program.source_metadata,null,2);$('gcodeSettings').value=JSON.stringify(settings,null,2);settingsEdited=true;install(program,data.cursor);
  }
  function prepare(){try{beforePlayback();return true}catch(e){fail(e);return false}}
- function tick(now){request=0;if(!replay?.playing||!valid())return;if(document.hidden){pause();return}try{present(replay.advance(now,Number($('gcodeSpeed').value)));if(replay.playing)request=workspaceFrame(tick);else pause()}catch(e){fail(e)}}
+ // Frame-start timestamps can precede the Play click. Read the same monotonic
+ // clock at start and advance so a delayed frame cannot rewind playback.
+ function tick(){request=0;if(!replay?.playing||!valid())return;if(document.hidden){pause();return}try{present(replay.advance(performance.now(),Number($('gcodeSpeed').value)));if(replay.playing)request=workspaceFrame(tick);else pause()}catch(e){fail(e)}}
  $('gcodePlay').onclick=()=>{if(replay?.playing){pause();return}if(!valid()||!prepare())return;if(replay.index===result.events.length)seekEvent(0);if(!replay)return;replay.play(performance.now());$('gcodePlay').textContent='一時停止';document.body.dataset.gcodePlaying='true';request=workspaceFrame(tick)};
  $('gcodeStep').onclick=()=>{pause();if(!valid()||!prepare())return;seekEvent(Math.min(replay.index+1,result.events.length))};$('gcodeStart').onclick=()=>{pause();if(!valid()||!prepare())return;seekEvent(0)};$('gcodeFrame').oninput=()=>{pause();if(!valid()||!prepare())return;seekTime(Number($('gcodeFrame').value))};
  $('gcodeText').oninput=invalidate;$('gcodeMacros').oninput=invalidate;$('gcodeMetadata').oninput=invalidate;$('gcodeSettings').oninput=()=>{settingsEdited=true;invalidate()};

@@ -12,7 +12,7 @@ import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {setupPublicInfo} from './public-info.js?v=0b0f91d7a82d25acbb87';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=workspace-belts-1';
-import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=0738f8c451be63bba150';
+import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=f471190665709ba23159';
 export async function mount(scope){
 const $=s=>document.querySelector(s),wanted=new URLSearchParams(location.search).get('machine'),id=['micron_r1_120','micron_plus_r1_180'].includes(wanted)?wanted:'micron_r1_120';
 setupMachineNavigation(id);setupPublicInfo({machineId:id});

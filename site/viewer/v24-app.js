@@ -6,7 +6,7 @@ import {appearanceRole} from './appearance-role.mjs?v=a2d85521f7f516860221';
 import * as THREE from 'three';
 import {loadFrameMods,withFrameMods} from './frame-mods.js?v=0d49b1113e8a089e3cd9';
 import {setupLighting} from './lighting.js?v=454c19f7ca3795b005de';
-import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=0738f8c451be63bba150';
+import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=f471190665709ba23159';
 import {setupAccessories} from './accessories.js?v=workspace-belts-2';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupProbeMounts} from './probe-mounts.js?v=81f922c3169490021d08';

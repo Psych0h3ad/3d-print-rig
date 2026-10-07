@@ -13,7 +13,7 @@ import {setupMachineNavigation} from './machines.js?v=d6045b8af89b3984adcb';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {setupPublicInfo} from './public-info.js?v=0b0f91d7a82d25acbb87';
-import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=0738f8c451be63bba150';
+import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=f471190665709ba23159';
 import {setupV24MachineHeads} from './machine-heads.js?v=dfd1d9c4c4d0b06f7d58';
 export async function mount(scope){
 const $=s=>document.querySelector(s),ids=[250,300,350].flatMap(size=>['printed','ldo_cnc'].map(structure=>`voron_v24_${size}_${structure}`));

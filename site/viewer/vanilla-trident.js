@@ -24,7 +24,7 @@ import {headPlan,partKey} from './head-assembly.js?v=workspace-belts-1';
 import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=dfd1d9c4c4d0b06f7d58';
 import {setupChangerBank} from './changer-bank.js?v=47bbc0fef91af2c7241e';
 import {expandedPrinterCatalog} from './machine-head-model.mjs?v=5075b3c940c3d11401f4';
-import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=0738f8c451be63bba150';
+import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=f471190665709ba23159';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
 import {createHeadMarkers} from './head-markers.mjs?v=workspace-belts-1';
 export async function mount(scope){

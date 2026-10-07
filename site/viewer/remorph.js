@@ -1,4 +1,4 @@
-import {setupGcodePanel} from './gcode-panel.js?v=0738f8c451be63bba150';
+import {setupGcodePanel} from './gcode-panel.js?v=f471190665709ba23159';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import * as THREE from 'three';

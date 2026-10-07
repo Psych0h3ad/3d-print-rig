@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "review_revision": 92,
-  "reviewed_on": "2026-10-06",
+  "reviewed_on": "2026-10-07",
   "input_sha256": {
     "site/ASSET_BUNDLE.json": "aae8ddef2905287f4a92b8618f1e3a7ca233331d95b08db7267cc45737a5ecb0",
     "site/COMMUNITY_INSTALLATIONS.json": "2c233249f3727813b103781502123b8107b277bdadd5975f73d5d00a61548be4",
@@ -23,9 +23,9 @@
     "site/V0_INSTALLATIONS.json": "0cd5d09bb48f841c867d97dc28eb1bd733d140446d823da496e98fb97f843ea8",
     "site/viewer/accessories.js": "1efeb500765a1f0483048ffc3d3c72623ba4672006b30134fe9005832d3468e3",
     "site/viewer/annex-machines.mjs": "3a0e3f3d8e456bee4e5ac266d91c69ca3b6fbc6db8f5a40694f85428c6148c13",
-    "site/viewer/annex.html": "b2cba85bc522a43e44e4c2a24227e68994891bf05b8c8b5c70895aa43a15d2e5",
-    "site/viewer/annex.js": "629e86bb1b627bd7ee7ac6d99aa08f121e5132f9aff9bf61ef1430a0fbdd1d24",
-    "site/viewer/app.js": "65918a7c5ac9d67a9fcc32cd81f4b40641dd4f5121ff350a1bb95e0f749fe281",
+    "site/viewer/annex.html": "1ee10074b7d6304915647ab4677fc223ec8457781f0e9133ecbd40b979763e26",
+    "site/viewer/annex.js": "ccf2d771ac97202bdc98e31b36b696d92c152465cf0f9df6ca41c8a959b49279",
+    "site/viewer/app.js": "f8a877cf2263bfca60de0a2a8d1e32ab44e317656663162c02f6acbfb2c1292a",
     "site/viewer/appearance-role.mjs": "a2d85521f7f516860221f3b68b4481dcf42623055eb2c7a3527324f22517ee75",
     "site/viewer/appearance.js": "c50ecf4651c6ad0e68392df9eea9eb67e8bab6c9542106019c464682b45a01ab",
     "site/viewer/art/cad-background.json": "ebd23566959ec740ae479345ba5601478b53593693ff11466e4934474dd071e8",
@@ -35,7 +35,7 @@
     "site/viewer/baseline-native-datum.mjs": "b86b6ff7d71bab3c11174f8e0834dd181ac5a70d14077b8ff00fffa817e0ad58",
     "site/viewer/bed-chain-pins.mjs": "ea9c3d5f368a9509af7f99da784303eba92df5e316246c8a14942bc0f1bb3ae9",
     "site/viewer/bed-chain.mjs": "7b1707f0d18e07056c380bb831c2db07575af8720426cc9b6a131a079da61504",
-    "site/viewer/bootstrap.js": "04e3321a479632634141ea826849de75ebceb50915004ecda4f5c5a058809f54",
+    "site/viewer/bootstrap.js": "ad210bf75fbc497a0a1194e104a60cd63b9d81c44de13fc25b6ab3be3452ea17",
     "site/viewer/builder-ui.mjs": "162b35bd20fe8f3e7447d8439d9aa67c3deb0267cb251c0dc1e7a9618c258299",
     "site/viewer/changer-bank-model.mjs": "024cc52a5bbc61da75066a1822bca711fd6543b532a1c922e8ac0b44469a016c",
     "site/viewer/changer-bank.js": "47bbc0fef91af2c7241e5ff8a292897b8688dbdf00612caab1a03f365853b5ad",
@@ -43,8 +43,8 @@
     "site/viewer/community-adapter.mjs": "527f242dd6b104060425e920dba162207680ea9516ea311685bf14db83c9bea0",
     "site/viewer/community-loader.mjs": "0c1f84cd10e47300c45f4b31d7a186dda7c3794886220e139b463293a342db92",
     "site/viewer/community-state.mjs": "460b3fa78cc503ddb6e631766efe780433e4efa286db5d9388a67d73cd4fce3d",
-    "site/viewer/community.html": "3c65ef1bf248fcac3326e9ac8ed18fe41b20fa19195357cd69f51349bb161ba5",
-    "site/viewer/community.js": "c3937e5dbd7bc911dc5900b07831c2b19e905ba9af110d97b8feea1154bf705d",
+    "site/viewer/community.html": "a1febc03b54398820021ad47799353a5f34863931f769f08b4a911d0b12eb5f9",
+    "site/viewer/community.js": "9430a95babf58e9e8e83b75c140228b9462b1bd54eacf1f2d840b7038986d829",
     "site/viewer/component-assets.mjs": "c2333ef499f46d621550dccf6762ff0ebf104ec136925d1cb9edb1702ae559ae",
     "site/viewer/component-selection.js": "51826e4eeaa0dd803b109d2ba7261d86e40fa509e63ffe7ce2f087efd0ee6e04",
     "site/viewer/components.html": "be0a5ce62b5cc96d92357a716ceeb2abcbbe3dc2e0b988430f0726b6e0af3cca",
@@ -60,13 +60,13 @@
     "site/viewer/crossant-covers.mjs": "d512e7e5c32543e4232ba0ffef722b9106637da5b0b9a3c9b315aec067072e4e",
     "site/viewer/crossant-loader.mjs": "c1042da5a3a7e7f1f01d42c1af5fa990c8402e36098ece7790990444b238db4b",
     "site/viewer/crossant-state.mjs": "534dc62f2c6545f556f7a19791302d04f9c06e364c67d29bf6428bd81a5c7a9f",
-    "site/viewer/crossant.html": "bb1980d88d4d44ee73b51478d054d9038ba1664b6e4dedfed1f01e55ba039bdd",
-    "site/viewer/crossant.js": "0595f418e6eb1cfd422011f7b492df8533d8b85d1892a530acb682d616a74d20",
+    "site/viewer/crossant.html": "678a989d6613895f8d466dd4549e62da996cf78a17ddf05040bd1c17b4913113",
+    "site/viewer/crossant.js": "5295f55ab5dffaa2579394f332fe7d0505e52a7710a29c8e34b4d236f02afe2e",
     "site/viewer/custom-voron-loader.mjs": "9947051632cb50e79d409bc7ff38dfa627b255e19ff738002e3bdfe251aec9e9",
     "site/viewer/custom-voron-state.mjs": "4b6132fe80a74098a8bade2347c6e581bb39bcf3b8dc9459cf8298b7e7938949",
     "site/viewer/custom-voron-tube.mjs": "06995433c84962abb661e22150f16051ece2eff4802602557b21abae34d9c6c7",
-    "site/viewer/custom-voron.html": "2718c7048bffcaffc73926610e5dc5a628aef7039a53a3309f659335ca3c654f",
-    "site/viewer/custom-voron.js": "e85fdb83e509040dbb723ea13d8405ca88891c2ec68586713b5589a9eefa7c19",
+    "site/viewer/custom-voron.html": "41197c3eb467b3e045960c715cb0d6a8c34e28bca89cea09c9592da3ea1d1fbb",
+    "site/viewer/custom-voron.js": "d990a4968391f8e3530f3d490d27c3dd07c6462d1442e20e2f296e2572aa41db",
     "site/viewer/display-preferences.mjs": "9860960509e28d17f3fd89b59e32eaa7110a1816b8e5e4703f49c3a24998aae0",
     "site/viewer/display-start.js": "2ccf9c125fa0c4f73dc1a238a9b5070c779ef1b45d8301a11acd804528ccbad6",
     "site/viewer/e3ng-model.mjs": "7d5da880bcd1c29e4fd7f25a58afeafe5bd2e6839778821da65faa6614a1495a",
@@ -87,7 +87,7 @@
     "site/viewer/gantry-model.js": "77bee27ae99e3944fc901c733b7fa2450b2e36deb9b789c66328e8c979db2ec4",
     "site/viewer/gcode-loaded-asset-identity.mjs": "42ac134c2d9a8b8f8dfc31744744fb59abf735171ae6b928030371d5e7de8dec",
     "site/viewer/gcode-machine-bindings.mjs": "460777c3fc4d1a74bf27e66d6c4fcca7c4fdd09336412a3263a2b843be621ce1",
-    "site/viewer/gcode-panel.js": "0738f8c451be63bba1506b0f43b391c243219843bcc2abcb7e3754666fd797e7",
+    "site/viewer/gcode-panel.js": "f471190665709ba23159b36918b0af8de6cb776f4535d794509586d1d6dec0f8",
     "site/viewer/gcode-preview.mjs": "b286fb69d375531c6e9152901af54acaa2211629e15217575a9e90472b16b0b1",
     "site/viewer/gcode-timeline.mjs": "a07bc2dcf7216407fe8c04808c65bea022bb3368a3dddc9abb0b989af4008238",
     "site/viewer/grid-control.js": "44e2e88530fbb5820a7dfc1475d281023b1e2a72b3953205f42b4a766cca5732",
@@ -98,10 +98,10 @@
     "site/viewer/head-validation-ui.mjs": "e7852ba7382943fa85b9e49f3b2002e18ef3e327a10ca9b8ba8277f0ef7aee04",
     "site/viewer/head-validation.mjs": "2ff01996ff2feb2c3cbe1ef6e60adf1a1dc6cc2a092cca351efa4d6cbe9e14b2",
     "site/viewer/i18n.mjs": "d01a458bbf8c52c2c30043745e4d194ea143e1d3488a076c53d734ed85c48825",
-    "site/viewer/index.html": "dc13171f80b327aad495440c2aff66cd787b4cd2a300b008191b3c3a376af093",
+    "site/viewer/index.html": "4a31589cefd8e377559ec9eafe1065bcca145e89b3b26d27a0d5c4f39269deae",
     "site/viewer/kit-reference-loader.mjs": "e018cf8fc3c93c4140dd562d71b36bb28c906b1b52841d4884acc267a8c35bf3",
-    "site/viewer/kit-reference.html": "ed1f46602037d76ea203cc38f7a523ea3aca0401b5eb4f46d1189278b1edd9d5",
-    "site/viewer/kit-reference.js": "2721ed83403aba590ff0296bd95361a903650e2be16902f6041a1bdee13e4c7c",
+    "site/viewer/kit-reference.html": "060254d6578838eae29560b1eac5295361df9ad10ce47b79fcfaf34f9d1e0158",
+    "site/viewer/kit-reference.js": "cbcfd27375b1351c327b2c0f4890e057ee4aa14ea41d81ec264783942326fe89",
     "site/viewer/klipper-macro-subset.mjs": "99f089a84c395186fe576a9f5fbf1e35e2da121e5cfaf5b00b4e85d2280a4a1b",
     "site/viewer/languages.mjs": "ba6a5cd8e1d86849ca3405b62a9b4f3757b10bb6f195f9990b68d12e15a86424",
     "site/viewer/lighting-animation.mjs": "ee2a0ac739d69f7d647970d4f30c967dc835e028b077420472fcad45b1aeb760",
@@ -117,8 +117,8 @@
     "site/viewer/micron-flexible.mjs": "f60dbb5f5765a15dfc34ab025f975f139fe869e43304938bf32d3312ab05b18b",
     "site/viewer/micron-native-materials.mjs": "55b8c3644415d202fa4af8bac672b52803fde6b2c1d1278acbb38afac75e2e2c",
     "site/viewer/micron-tube-routes.mjs": "c69d79d6fdbfee5338fe365ca9542323714add2a834e34aafec37395d19614b1",
-    "site/viewer/micron.html": "6b8e707fd4de9c34ad4b073e155b0749ffa21d1e443c900ce8c212e3bb7b3fa9",
-    "site/viewer/micron.js": "821cc0c36879115976ba1e57657ef70c1a794dc931a6890828e48fbfb285abfb",
+    "site/viewer/micron.html": "2232fd60335cd26e07800f64956ec955978e408f10469e818022edc9bd38a149",
+    "site/viewer/micron.js": "76bbcca91508cce92fc830f2c313275d97fc5f979e4ece52617698e6f01d2a61",
     "site/viewer/model-loader.js": "8bb3ff6d2cd5d181cc982f272cd8da4385a15b51f8bb5eb3c5a383a791aa5350",
     "site/viewer/model-progress.mjs": "6b41a2b9f7626039b7e6a058f4d2619623250c8535275362c371cbe8a1e98d5b",
     "site/viewer/monolith-belt-clip.mjs": "ffef92bb9ead85b656edd2862143f680fae9c19f4b8b73ff72d9a905a3802e55",
@@ -143,8 +143,8 @@
     "site/viewer/positron-fold.mjs": "7368d3dd6e38e237f6ff9e9c66de9f167096c6a72c867238bb8d21027b37d067",
     "site/viewer/positron-loader.mjs": "ffc4cb64885fe75c371e49981c29056d7a7fc1059b561b21f08d15a6ee4e4682",
     "site/viewer/positron-state.mjs": "8296d1b775fbca04462f5518a3126d25a53d372ddebadb0c2adff67968fee9ea",
-    "site/viewer/positron.html": "5190485ff2781b82821ba195a6e73d69ed510d8295b5df880d6d70ca3399c51e",
-    "site/viewer/positron.js": "d0c7aed77d027a35a971cc915c8f6623bddab3b3d03d3cfff5d790016df2adb9",
+    "site/viewer/positron.html": "fa823449974b2087c6582f98918847c8c57b096223a3794256004aae11ac3cfa",
+    "site/viewer/positron.js": "278031f9ff75dc04f8813f35f6c7375f34961fa3b0f56ebee6746361a05ab626",
     "site/viewer/printer-gantry.mjs": "f2f8aca7cc040f3911ab2b31b982d914df930c58cb5c63d2db4374e0b9b1cff5",
     "site/viewer/probe-checks.js": "ea1aef3e30bf7d11d3cbca0e3272704428ed9ef5670ec0d154efdede824c0222",
     "site/viewer/probe-mounts.js": "81f922c3169490021d08867cce4a6ce1a36870e8030a770789e130ba0112b489",
@@ -156,13 +156,13 @@
     "site/viewer/ratrig-loader.mjs": "9782f451eec4a1a9eec0615a99a83ec0b87fac00410e4c3875aa9398f5a7f45f",
     "site/viewer/ratrig-machines.mjs": "6f5c7fbad04c29c3827deaea5ed6a556bcd927ab7c3d9505beff4200a0392ba0",
     "site/viewer/ratrig-ui-state.mjs": "58e9d9727047d366ffe400325f8381b047b3aa29ddc49a1a3b68c811cfd3ad08",
-    "site/viewer/ratrig.html": "8c1c0733157a238a58f0d4e997b80305d67a56ca9df1350f6eaa29ae30cc65c5",
-    "site/viewer/ratrig.js": "5f9133d2af03c1a2b4b81482584dabf1b45f2146c1f524777267ebe140a679cf",
+    "site/viewer/ratrig.html": "1783a2389e3924c286fe22fb50db6f7e392b4532b1c4dfd0c925eabd682cfbc5",
+    "site/viewer/ratrig.js": "408ee6a53eddc96f5dbaa9d9ba1e00b0a469abe77dd9b8b3b22fc39cee5125cd",
     "site/viewer/remorph-adapter.mjs": "5bb6f83844e91238bd2a73d57185ec378eb70862f1284935304aaad8ec0209be",
     "site/viewer/remorph-belts.mjs": "c75ae005bf795485430cc1188bb51fc647244585f5e0407c9b9586cf79dd082f",
     "site/viewer/remorph-environment.mjs": "6fb8bb7c9e6491287c5d0b737248116b439cea560aee50b929c2af1c18e2815d",
-    "site/viewer/remorph.html": "aabc4c5252a026448cb426424a16988bab379e7e257c72bc431b0aa3e3b265e3",
-    "site/viewer/remorph.js": "06d22aa70ae3f36b5cacdc7579d18f7f4004459749f56433f5e3703f9637bd98",
+    "site/viewer/remorph.html": "d9cd23dc21d4e7e301151c486897f32fb857104ae64210d41542a3998b669503",
+    "site/viewer/remorph.js": "0d4b60749eabd26dffb43f314caf0bc5d0f20cbe3edbc25be696dbd67e7babe9",
     "site/viewer/render-export.js": "5932066eed0ef909b72bf4b00f1a3d88324bb2d3f92869d930ee900f707b1497",
     "site/viewer/responsive-camera.mjs": "a5087f024910f351f1deca2caa00f8e26ffbffaec6ece167c0120b59036ca1b8",
     "site/viewer/scene-lighting-state.mjs": "80afe1341b17e451471f51b9dd350c2c5a3c14e5cdd922f6b1eb110db9f5e8d1",
@@ -182,9 +182,9 @@
     "site/viewer/translation-engine.mjs": "ad5021536c774dab7b4dd6b7573dc507b06f1d54f5a71bc79809033e33ac8cff",
     "site/viewer/trident-belts.mjs": "e2522a232fe7528cae83d9ad6754a233ba82ee5968f92a13e14ce15001d74352",
     "site/viewer/trident-motion.mjs": "312d6a2dd8aa665ba92175e45eba561a6eda8e461d4cfbb2efa494c0de161933",
-    "site/viewer/trident.html": "6c6dcc5e80f2eb6c9c44a14c62f8bb95c0d6bbb243e3d5ce65f12c9956ca0b87",
+    "site/viewer/trident.html": "ca392ca7a829b83928c1aebc387a508da03a78b35426f64f6833cd54623345bb",
     "site/viewer/v0_adapter.mjs": "8a10029cde5a1a129db7689f19095007f432b9fb12048e1a5b08af41f70d9122",
-    "site/viewer/v0-app.js": "0e151af125778fa7007394f59d95b344537aaf71beb58f738a11bc27366a8d29",
+    "site/viewer/v0-app.js": "eaece6866243f5273ed7fb1cca615f9bed4b646976d4d6622c207b8f31e31478",
     "site/viewer/v0-belts.mjs": "948e42567a0013aa58217f9a877c9387159934bf848215d8d5a1d9515f911e5d",
     "site/viewer/v0-chain-pins.mjs": "6d41fb943c5b19ea28ac78025bcd1559ddccbb4baab4872a28816fe5c4c81136",
     "site/viewer/v0-chain.mjs": "191a8944e5e3197f21dcdaf6023bcc5be39d268162c22f68b3a9ffe7e5bd86fc",
@@ -192,17 +192,17 @@
     "site/viewer/v0-installations.mjs": "cab6e57ca71ebf9b449ad322f40c13ad0c19a3ab101e7999948f257b0e069f13",
     "site/viewer/v0-mod-library.mjs": "3879d7ef65488783b1f1ec04fe0184ff0be3cd7734f194aa8cf2eb0868c90980",
     "site/viewer/v0-tophat.mjs": "1c65737cefc844de5ab72663dc4c38ba929f98dec76fe8b318298142305bfd2f",
-    "site/viewer/v0.html": "68d9f8d1d8fedc347e59852970aa8037feca8cd12254f0b09cf04e4b5679aebf",
+    "site/viewer/v0.html": "f60b243e2028c5fd827a95b325047e0f2981f196a3805b202019dfc578b959de",
     "site/viewer/v24_adapter.mjs": "a98c4f8037232d4e7b5d7fc3f19b5a3ec2c953be6e9ddf78fe3f1ed8419a9054",
     "site/viewer/v24_matrix_adapter.mjs": "94a4b83956040d64774ad758d4507d9c31ee2454dc2328bc3ecbd8aa4b88f5df",
-    "site/viewer/v24-app.js": "3e6b0a567091d006cde62fc32a608f7ad66ae9f1ffe74a092b1c85ebd7e46356",
+    "site/viewer/v24-app.js": "872980428ba9b673d566e9c64e7b415dea8cf9aaa4079a8230cb88701d55339f",
     "site/viewer/v24-belts.mjs": "dac441c501db20e20d10d5c26fbe5d994d511d4312a343082c4361ecbcbd87b2",
-    "site/viewer/v24-bootstrap.js": "319102f1f0458bcb221cbd52e4f5235b88b8d5a0ca3609bd8b223a8815411d5c",
+    "site/viewer/v24-bootstrap.js": "e5a71ee73da3060a8823e511b11419de6be336f642e0df7abd7fcf804813213d",
     "site/viewer/v24-flexible.mjs": "4de2768da445f9eef0d59ead19639302112d082c26084fa80d48b6f98635470b",
-    "site/viewer/v24-reference.html": "fd2c41a41ec8283d154b620a3dab2abfce9f20da20a0cde0d88a6d430b53775d",
-    "site/viewer/v24-reference.js": "ac602d8ff330709c849a12afa3e1790fa0507af6cdb35a5df66cbdd947b08da5",
-    "site/viewer/v24.html": "898056912671c49a230137f58e810c9c570ea7ca9f5c723a58df46781ecfcb9b",
-    "site/viewer/vanilla-trident.js": "3da695d4087381f36783d77d1738d5b76f8c1413841df87c2cda6cced044e2c1",
+    "site/viewer/v24-reference.html": "888fee990ac0e4ce137b8dc46ba613a3e65ff313e8c10df0f45998ebfdb1e73d",
+    "site/viewer/v24-reference.js": "b942b61eae30785ce40c3eda285b9d007df18d4e439aa6d22ad516ef012aa92e",
+    "site/viewer/v24.html": "4be1446c4fa0651d061a7dda6445657bf099b6445e36c4be4b3d48d2691596f1",
+    "site/viewer/vanilla-trident.js": "f57fe755752458c7a480e679afb726e9607bdb44bdf2b9fe3cb21c0a5998ee6a",
     "site/viewer/viewer.css": "a59b3f5f2ad1c8d3a36f6dd7f053df49d851c3b1d75a182c22fc4108336bc829",
     "site/viewer/virtual-printer-emulator.mjs": "82f4d419283bf6313caf21e8baf57e98b7cf222f3483bb154d27d6c145aba694",
     "site/viewer/workspace-choices.mjs": "bb091d27ae1d833a437afaae8cf042bc069e5d1337c7d8782a7f0e9ed5b9a0a8",
@@ -236,8 +236,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -258,8 +258,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -280,8 +280,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ],
       "additional_model_sha256": [
@@ -305,8 +305,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -327,8 +327,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -349,8 +349,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -371,8 +371,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -393,8 +393,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -415,8 +415,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -437,8 +437,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -459,8 +459,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -481,8 +481,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -503,8 +503,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -525,8 +525,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -547,8 +547,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -581,8 +581,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ],
       "additional_model_sha256": [
@@ -607,8 +607,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -635,8 +635,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -657,8 +657,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -679,8 +679,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -701,8 +701,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -723,8 +723,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -757,8 +757,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -785,8 +785,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -813,8 +813,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -841,8 +841,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -875,8 +875,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -909,8 +909,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -937,8 +937,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -965,8 +965,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -993,8 +993,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -1021,8 +1021,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -1049,8 +1049,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -1077,8 +1077,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -1105,8 +1105,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -1133,8 +1133,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -1161,8 +1161,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -1183,8 +1183,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -1205,8 +1205,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -1233,8 +1233,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -1261,8 +1261,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -1283,8 +1283,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -1305,8 +1305,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -1327,8 +1327,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -1349,8 +1349,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -1371,8 +1371,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -1393,8 +1393,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -1415,8 +1415,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -1437,8 +1437,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -1459,8 +1459,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -1481,8 +1481,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -1503,8 +1503,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -1525,8 +1525,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -1547,8 +1547,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -1569,8 +1569,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -1591,8 +1591,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -1613,8 +1613,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -1635,8 +1635,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -1657,8 +1657,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -1679,8 +1679,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -1701,8 +1701,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ]
     },
@@ -1722,8 +1722,8 @@
         },
         {
           "report": "RELEASE_ASSET_REVIEW_92.json",
-          "sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+          "sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+          "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
         }
       ],
       "full_physical_fit_certified": false
@@ -1756,7 +1756,7 @@
     "mobile_touch_device_verified": false,
     "scope": "Changed native assemblies visually reviewed in the in-app browser. Responsive viewport review is separate from real mobile touch and external Chrome certification."
   },
-  "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified.",
+  "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified.",
   "interaction_review": {
     "revision": "configuration-ux-2026-10-06",
     "base_commit": "6313cac",
@@ -1960,8 +1960,8 @@
     "machine_and_component_jobs": 25,
     "native_motion_jobs": 9,
     "report": "RELEASE_ASSET_REVIEW_92.json",
-    "report_sha256": "d763cf3f363d92f9957793c5695f4818af2b82ce7a452cb1645bfcbc5bcc0bea",
-    "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 90 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
+    "report_sha256": "a7e714854f070148e04fc38fc37144bf1e095974bae37f385b5aa3be3e617e13",
+    "scope": "Current actual exports for all 62 available machines, 34 bounded machine/component jobs and 91 source/fixture regressions. Supplied normals, indices, finite native transforms, adapter registration and sampled forward/reversed/reset motion are checked. Native continuous mating, tube mechanics, physical homing and browser engines are separately scoped; incomplete new head/dock installations are not certified."
   },
   "native_motion_review": {
     "report": "NATIVE_MOTION_QA.json",

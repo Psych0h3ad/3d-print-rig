@@ -1,4 +1,4 @@
-import {setupGcodePanel} from './gcode-panel.js?v=0738f8c451be63bba150';
+import {setupGcodePanel} from './gcode-panel.js?v=f471190665709ba23159';
 import {ratRigGcodeSettings,ratRigCoordinateNote} from './gcode-machine-bindings.mjs?v=460777c3fc4d1a74bf27';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=extra-machines-55';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';

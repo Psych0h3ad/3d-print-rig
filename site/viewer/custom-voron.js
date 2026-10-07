@@ -15,7 +15,7 @@ import {setupSceneDisplay} from './display-preferences.mjs?v=9860960509e28d17f3f
 import {setupGrid} from './grid-control.js';
 import {setupRenderExport} from './render-export.js';
 import {setupPublicInfo} from './public-info.js?v=0b0f91d7a82d25acbb87';
-import {setupGcodePanel} from './gcode-panel.js?v=0738f8c451be63bba150';
+import {setupGcodePanel} from './gcode-panel.js?v=f471190665709ba23159';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
 import {formatMessage,translate} from './i18n.mjs?v=d01a458bbf8c52c2c300';
 export async function mount(scope){
