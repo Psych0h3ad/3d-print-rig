@@ -1,6 +1,6 @@
 import {v24FlexibleState} from './v24-flexible.mjs?v=extra-machines-55';
 import {appearanceRole} from './appearance-role.mjs?v=6b7b8efda77bfc3ce74d';
-import {createV24Belts} from './v24-belts.mjs?v=3d8b9c96c24dcd0c9935';
+import {createV24Belts} from './v24-belts.mjs?v=ad0c97343617f3c11d0b';
 /** Separate V2.4 kinematic adapter. CAD vertices already contain world placement. */
 export function createV24Adapter(root,manifest,profile){
   if(manifest.machine_id!==profile.machine_id||!profile.machine_id.startsWith('voron_v24_'))throw new Error('V2.4 profile mismatch');

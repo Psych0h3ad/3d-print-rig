@@ -1,4 +1,4 @@
-import {setupLanguage,translate} from '../viewer/i18n.mjs?v=c125232811265df5b7e6';
+import {setupLanguage,translate,formatMessage} from '../viewer/i18n.mjs?v=b2185458695861018d38';
 import {setupHeaderThemeToggle} from '../viewer/display-preferences.mjs?v=9860960509e28d17f3fd';
 import {matchingRows,supportURL} from './model.mjs?v=35303ce85aa1cb0aebc4';
 
@@ -19,7 +19,7 @@ function renderHeads(){
 function extraRow(title,detail){const row=el('div',undefined,'extras-row');row.append(el('strong',title));if(detail)row.append(el('p',detail));$('extraBody').append(row);return row}
 function renderExtras(){
  $('extraBody').replaceChildren();
- for(const a of catalog.accessories||[])extraRow(a.label,[a.notes,...(a.exclusive_group?['同じグループの追加Modは同時に選べません。']:[])].flat().filter(Boolean).join(' '));
+ for(const a of catalog.accessories||[])extraRow(a.label_id?formatMessage(a.label_id,{},language.language):a.label,[a.notice_id?formatMessage(a.notice_id,{},language.language):a.notes,...(a.exclusive_group?['同じグループの追加Modは同時に選べません。']:[])].flat().filter(Boolean).join(' '));
  for(const b of catalog.banks||[]){if(selection.gantry&&selection.gantry!==b.gantry)continue;const g=catalog.options.gantry?.find(g=>g.id===b.gantry)?.label||b.gantry;extraRow(g+' / '+({stealthchanger:'StealthChanger',indx:'INDX',madmax:'MadMax'}[b.system]),b.permitted&&b.capacity>0&&b.choices>0?'ドック配置対応済み。自動交換動作は未検証。':'機体側ドックは未対応。ヘッドの装着表示と対応範囲が異なります。')}
  for(const mod of catalog.mods||[]){const row=extraRow(mod.label);row.append(badge(mod.options.length?'機体への組込対応済み':'単体表示のみ・機体組込は未対応',mod.options.length?'supported':'standalone'));for(const o of mod.options){row.append(el('p',o.label));for(const [key,value]of Object.entries(o.requires))row.append(el('p',(dimensions[key]||key)+' → '+(catalog.options[key]?.find(o=>o.id===value)?.label||value)))}const a=el('a','部品CADを確認');a.href='../viewer/components.html?component='+encodeURIComponent(mod.id);row.append(a)}
  $('extras').hidden=!$('extraBody').childElementCount;

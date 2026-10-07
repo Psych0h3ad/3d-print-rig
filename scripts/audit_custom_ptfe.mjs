@@ -9,12 +9,13 @@ import {createTridentMotion} from '../site/viewer/trident-motion.mjs';
 import {createCustomTube,customTubeCurve,constantCustomTubeRoute} from '../site/viewer/custom-voron-tube.mjs';
 import {V24_PTFE_SPEC,createV24PtfePreview,v24PtfeRoute} from '../site/viewer/v24-ptfe.mjs';
 import {verifyTubeGeometry} from './test_custom_ptfe.mjs';
-const [base,out]=process.argv.slice(2);assert(base&&out);
+const [base,out,largeBase]=process.argv.slice(2);assert(base&&out);
 const catalog=JSON.parse(fs.readFileSync(new URL('../site/CUSTOM_VORON_ASSETS.json',import.meta.url))),results=[];
 const sha=b=>createHash('sha256').update(b).digest('hex');
 for(const machine of catalog.machines){
+ const sourceBase=machine.local_directory==='large-voron-assets'?largeBase:base;assert(sourceBase,'Missing actual large-model asset root');
  const files=Object.fromEntries(Object.entries(machine.files).map(([name,spec])=>{
-  const raw=fs.readFileSync(path.join(base,spec.path));assert.equal(raw.length,spec.bytes);assert.equal(sha(raw),spec.sha256);
+  const raw=fs.readFileSync(path.join(sourceBase,spec.path));assert.equal(raw.length,spec.bytes);assert.equal(sha(raw),spec.sha256);
   const bytes=spec.encoding==='gzip'?zlib.gunzipSync(raw):raw;
   if(spec.decoded_sha256)assert.equal(sha(bytes),spec.decoded_sha256);
   return [name,bytes];
@@ -48,7 +49,8 @@ for(const machine of catalog.machines){
  const trident=machine.family==='trident',adapter=trident?createTridentMotion(profile):createV24Adapter(root,meta,profile);
  if(trident)adapter.register(root,meta);
  const tube=createCustomTube(root,meta);
- const external=machine.id===V24_PTFE_SPEC.machine_id?createV24PtfePreview(THREE,root,meta,profile,V24_PTFE_SPEC):null;
+ const externalSpec=machine.id===V24_PTFE_SPEC.machine_id?V24_PTFE_SPEC:meta.v24_ptfe_spec;
+ const external=externalSpec?createV24PtfePreview(THREE,root,meta,profile,externalSpec):null;
  const rows=new Map(meta.parts.map(r=>[r.key,r])),ref=profile.display_reference_xyz_mm;
  const source=new Map(meshes.map(m=>[m,[m.position.clone(),m.quaternion.clone()]]));
  const poses=[],values=['X','Y','Z'].map((a,i)=>[...profile.display_limits_mm[a],profile.display_limits_mm[a][1]/2,ref[i]]);
@@ -62,7 +64,7 @@ for(const machine of catalog.machines){
  let first=null,maxEndpointError=0,maxInletError=0,minLength=Infinity,maxLength=0,maxCutLengthError=0,minStorageRadius=Infinity;
  const constantRoute=meta.custom_ptfe?.route_type==='constant_cut_lsl_ellipse_93';
  if(meta.custom_ptfe?.route_type)assert(constantRoute,'Unknown PTFE route type');
- if(constantRoute){assert.deepEqual(meta.custom_ptfe.reference_xyz_mm,ref);assert.deepEqual(meta.custom_ptfe.display_limits_mm,profile.display_limits_mm);assert.equal(meta.custom_ptfe.cut_length_mm,1410)}
+ if(constantRoute){assert.deepEqual(meta.custom_ptfe.reference_xyz_mm,ref);assert.deepEqual(meta.custom_ptfe.display_limits_mm,profile.display_limits_mm);if(machine.id==='voron_trident_500_custom')assert.equal(meta.custom_ptfe.cut_length_mm,1410)}
  const tubeMesh=meshes.find(m=>m.userData.part_key===meta.custom_ptfe?.part_key);
  const externalFirst=external?Array.from(external.mesh.geometry.attributes.position.array):null;
  if(tube){verifyTubeGeometry(tubeMesh.geometry);tube.update();first=Array.from(tubeMesh.geometry.attributes.position.array)}
@@ -71,10 +73,10 @@ for(const machine of catalog.machines){
   const actual=pose.display_xyz_mm??[pose.x,pose.y,pose.z];assert(actual.every(Number.isFinite));
   tube?.update(actual[0]-ref[0],actual[1]-ref[1],true);root.updateMatrixWorld(true);
   if(external){
-   external.setPose(actual,true);assert(external.mesh.visible);const route=v24PtfeRoute(V24_PTFE_SPEC,actual);
-   assert(route.start_mm.every((v,i)=>Math.abs(v-(V24_PTFE_SPEC.head_seat_reference_mm[i]+(actual[i]-ref[i])))<1e-8));
-   assert(route.pointAt(1).every((v,i)=>Math.abs(v-V24_PTFE_SPEC.holder_right_mm[i])<1e-8));
-   assert(route.arc_end_mm[2]+2<V24_PTFE_SPEC.roof.bottom_z_mm);
+   external.setPose(actual,true);assert(external.mesh.visible);const route=v24PtfeRoute(externalSpec,actual);
+   assert(route.start_mm.every((v,i)=>Math.abs(v-(externalSpec.head_seat_reference_mm[i]+(actual[i]-ref[i])))<1e-8));
+   assert(route.pointAt(1).every((v,i)=>Math.abs(v-externalSpec.holder_right_mm[i])<1e-8));
+   assert(route.arc_end_mm[2]+2<externalSpec.roof.bottom_z_mm);
    assert(external.mesh.geometry.attributes.position.array.every(Number.isFinite));
    if(index%100===0)verifyTubeGeometry(external.mesh.geometry);
   }
@@ -104,7 +106,7 @@ for(const machine of catalog.machines){
  results.push({id:machine.id,passed:true,parts:meshes.length,poses:poses.length,degenerate_only_normals:degenerateOnlyNormals,model_sha256:sha(raw),manifest_sha256:sha(files['assembly_manifest.json']),
   ptfe:!!tube||!!external,external_runtime_preview:!!external,route_type:external?'v24_native_mates_two_bends_94':meta.custom_ptfe?.route_type??(tube?'legacy_variable_length_preview':null),max_inlet_error_mm:maxInletError,max_endpoint_error_mm:maxEndpointError,preview_length_range_mm:tube?[minLength,maxLength]:null,
   constant_cut_length_mm:constantRoute?meta.custom_ptfe.cut_length_mm:null,max_cut_length_error_mm:constantRoute?maxCutLengthError:null,min_storage_radius_mm:constantRoute?minStorageRadius:null,full_native_continuous_clearance_certified:false,material_bend_certified:false,
-  scope:trident?(constantRoute?'Actual composed model and production controller; sampled/reversed/adaptively subdivided motion, original inlet/holder endpoints and tangent, mesh winding, visibility and deterministic reset. Geometric 1410 mm cut length and elliptical storage radius checked. Material bending, loads/fatigue and full-printer continuous native clearance remain unqualified.':'Actual model and production controller; sampled/reversed/adaptively subdivided motion, native inlet/holder endpoints and tangent, mesh winding, visibility and deterministic reset. Legacy route length varies; not a physical hose simulation.'):external?'Actual exported V2.4 source plus external flexible viewer preview through the production controller; sampled/reversed/adaptively subdivided XYZ, native inlet/connector/holder endpoints, roof envelope, winding, visibility and deterministic reset. Preview Z limit is469 mm. Route length varies; this added preview is not included in STEP. Full-machine continuous native clearance, retention, material bending and physical cut length remain unqualified.':'Actual model and production controller, sampled XYZ and reset. Native V2.4 source has the internal head tube but no external Bowden tube.'});
+  scope:trident?(constantRoute?'Actual composed model and production controller; sampled/reversed/adaptively subdivided motion, original inlet/holder endpoints and tangent, mesh winding, visibility and deterministic reset. Declared geometric cut length and elliptical storage radius checked. Material bending, loads/fatigue and full-printer continuous native clearance remain unqualified.':'Actual model and production controller; sampled/reversed/adaptively subdivided motion, native inlet/holder endpoints and tangent, mesh winding, visibility and deterministic reset. Route length varies; not a physical hose simulation.'):external?'Actual exported V2.4 source plus external flexible viewer preview through the production controller; sampled/reversed/adaptively subdivided XYZ, native inlet/connector/holder endpoints, roof envelope, winding, visibility and deterministic reset. Preview Z limit is the bound profile limit. Route length varies; this added preview is not included in STEP. Full-machine continuous native clearance, retention, material bending and physical cut length remain unqualified.':'Actual model and production controller, sampled XYZ and reset. Native V2.4 source has the internal head tube but no external Bowden tube.'});
  tube?.dispose();external?.dispose();root.traverse(m=>{if(m.isMesh)m.geometry.dispose()});
  console.log(machine.id,poses.length,'poses passed');
 }

@@ -1,4 +1,5 @@
-import {workspaceTask} from './workspace-lifecycle.mjs';
+import {workspaceTask,workspaceListen} from './workspace-lifecycle.mjs';
+import {formatMessage} from './i18n.mjs?v=b2185458695861018d38';
 export function accessoryIds(catalog,data={}){
  const ids=data.accessories??[];
  if(!Array.isArray(ids)||ids.some(id=>typeof id!=='string'||!catalog.accessories?.some(a=>a.id===id)))throw Error('未登録の追加Modが含まれています。');
@@ -31,17 +32,21 @@ export function setupAccessories(catalog,{load,update,stockNodes}){
  const state=new AccessorySelection(catalog,load,update,stockNodes),inputs=new Map();
  let busy=false;
  function sync(){for(const [id,input] of inputs){input.checked=state.selected.has(id);input.disabled=busy}}
+ function selectedStatus(){return [...state.selected].map(id=>{const row=catalog.accessories.find(row=>row.id===id);return row.label_id?formatMessage(row.label_id,{},document.documentElement.lang):row.label}).join(' ／ ')}
+ if(globalThis.window)workspaceListen(window,'rig-language-change',()=>{if(!busy&&state.selected.size)status.textContent=selectedStatus()});
  async function apply(data){return workspaceTask(async()=>{
   if(busy)throw Error('追加Modを読み込み中です。');busy=true;sync();status.textContent='追加Modを読み込み中…';
-  try{await state.apply(data);status.textContent=state.selected.size?[...state.selected].map(id=>catalog.accessories.find(row=>row.id===id).label).join(' ／ '):'追加Modなし'}
+  try{await state.apply(data);status.textContent=state.selected.size?selectedStatus():'追加Modなし'}
   catch(e){status.textContent='追加Modを読み込めませんでした。';throw e}
   finally{busy=false;sync()}
  });}
  for(const row of catalog.accessories||[]){
-  const label=document.createElement('label'),input=document.createElement('input');input.type='checkbox';input.dataset.mod=row.id;
+ const label=document.createElement('label'),input=document.createElement('input');input.type='checkbox';input.dataset.mod=row.id;
+  if(row.label_id)label.setAttribute('data-i18n-id',row.label_id);
   label.append(input,document.createTextNode(row.label));container.append(label);inputs.set(row.id,input);
   input.onchange=async()=>{return workspaceTask(async()=>{const ids=[...state.selected].filter(id=>id!==row.id&&(!input.checked||!row.exclusive_group||catalog.accessories.find(a=>a.id===id).exclusive_group!==row.exclusive_group));if(input.checked)ids.push(row.id);try{await apply({accessories:ids})}catch(e){console.error(e)}});};
-  const note=document.createElement('p');note.className='foot';note.textContent=row.notes;container.append(note);
+ const note=document.createElement('p');note.className='foot';note.textContent=row.notes;container.append(note);
+  if(row.notice_id)note.setAttribute('data-i18n-id',row.notice_id);
  }
  return {refresh:()=>{state.refresh();sync()},getExtras:()=>state.saved(),applyExtras:apply,validateExtras:data=>accessoryIds(catalog,data)};
 }

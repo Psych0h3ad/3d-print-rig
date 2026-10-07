@@ -8793,6 +8793,26 @@
     "custom_voron.external_ptfe": {
       "source_revision": "b68b54ca12cdcdb38f21",
       "text": "El PTFE externo es una vista previa flexible; su longitud cambia con la posición y no se incluye en STEP. El recorrido Z deja espacio bajo la tapa cerrada."
+    },
+    "custom_voron.large_scale": {
+      "source_revision": "e7f99ab60aacc102ebab",
+      "text": "Para 1000 mm, considera reforzar el bastidor y los mecanismos. Antes de construir la máquina, revisa la rigidez del bastidor, las guías lineales y los sistemas de accionamiento, la masa de la cama de impresión, la potencia necesaria y el recorrido del cableado. Este modelo de referencia ampliado no se ha probado como diseño de impresora."
+    },
+    "custom_voron.large_scale_short": {
+      "source_revision": "37efd5755060e840bc98",
+      "text": "Referencia ampliada a 1000 mm: considera reforzar el bastidor y los mecanismos; el diseño no se ha probado."
+    },
+    "internal_spool.label": {
+      "source_revision": "acee687864e1b05a95ce",
+      "text": "Soporte de bobina interno · elcrni"
+    },
+    "internal_spool.size_notice": {
+      "source_revision": "0a265d3a56b59f4bde80",
+      "text": "Diseño del autor para Trident 300/350, para bobinas de hasta 200 mm de diámetro y 75 mm de ancho. Se muestran el soporte y las guías. No se incluyen una bobina ni el recorrido de alimentación del filamento; el recorrido PTFE existente para la bobina externa es independiente."
+    },
+    "custom_voron.chain_contacts": {
+      "source_revision": "4643277d9dce21ba0192",
+      "text": "Los contactos del extremo superior de la cadena de la cama proceden del CAD original. Su ajuste mecánico y holgura no están verificados."
     }
   }
 }

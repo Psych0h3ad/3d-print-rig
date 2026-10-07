@@ -1,0 +1,135 @@
+{
+  "schema": "trident-internal-spool-1",
+  "assets": {
+    "elcrni_trident_internal_spool_holder_v32_installed_300": {
+      "component_id": "elcrni_trident_internal_spool_holder_v32_installed_300",
+      "parts": 190,
+      "files": {
+        "model.glb": {
+          "sha256": "b35bb552b295b6497643e949fd1aed5c7f19078ea9ef75afe34d90e4a4b68f4b",
+          "bytes": 8550961,
+          "encoding": "gzip",
+          "decoded_bytes": 27358140,
+          "decoded_sha256": "e2af79ba292b08c16931e6f3bb9ec4893ec5bb062d0b1fd8ea5255b35ef6adff",
+          "path": "model.glb.gz"
+        },
+        "parts.json": {
+          "sha256": "9b099cd8fc3446a966eb73eed7df8a74017a4c2dfbcdbe9d0e402a05866100ed",
+          "bytes": 376942,
+          "path": "parts.json"
+        }
+      },
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/internal-spool-v1/elcrni_trident_internal_spool_holder_v32_installed_300/",
+        "local_directory": "large-voron-assets/internal-spool-v1/elcrni_trident_internal_spool_holder_v32_installed_300"
+      }
+    },
+    "elcrni_trident_internal_spool_holder_v32_installed_350": {
+      "component_id": "elcrni_trident_internal_spool_holder_v32_installed_350",
+      "parts": 190,
+      "files": {
+        "model.glb": {
+          "sha256": "fa08b8af321af144bc63609bd712e4ab8afa02e76fb57e783dc5f1ef69660cb6",
+          "bytes": 8551864,
+          "encoding": "gzip",
+          "decoded_bytes": 27358112,
+          "decoded_sha256": "4bd2134add3e430f77b3ec4483e09456d052e4dee5abec65795a34a8179efa5e",
+          "path": "model.glb.gz"
+        },
+        "parts.json": {
+          "sha256": "27e4e35d317df3ccc2e675590d7ff6073ee29aff8de062aa147ac91ca48852fd",
+          "bytes": 376952,
+          "path": "parts.json"
+        }
+      },
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/internal-spool-v1/elcrni_trident_internal_spool_holder_v32_installed_350/",
+        "local_directory": "large-voron-assets/internal-spool-v1/elcrni_trident_internal_spool_holder_v32_installed_350"
+      }
+    }
+  },
+  "machines": {
+    "voron_trident_300": {
+      "id": "trident_internal_spool",
+      "label": "Trident Internal Spool Holder · elcrni",
+      "label_id": "internal_spool.label",
+      "notice_id": "internal_spool.size_notice",
+      "module": "elcrni_trident_internal_spool_holder_v32_installed_300",
+      "translation_mm": [
+        0,
+        0,
+        0
+      ],
+      "qualification": {
+        "schema": "internal-spool-qualified-holder-95",
+        "scope": "rigid_holder_and_guides_only",
+        "machine_id": "voron_trident_300",
+        "component_id": "elcrni_trident_internal_spool_holder_v32_installed_300",
+        "report_sha256": "baa80bce3724fcbd1103968aff9c99f19b0649f527011d718195b73d7e5e7c4d",
+        "native_tuple_receipt_sha256": "baa80bce3724fcbd1103968aff9c99f19b0649f527011d718195b73d7e5e7c4d",
+        "native_bindings_sha256": "36db37bba1974740ee0d7f164fa639d15f7ea7123b1871b37ab54e52e6bef356",
+        "machine_manifest_sha256": "b17e18539aab4f5c4d6f56b8d40276dc77778611b129a65cc4e0b3f1e7b0d5ad",
+        "machine_profile_sha256": "c28b590d64bf242514f9f25dcfa89d8ee64e56878480966087ec347936b818a0",
+        "model_sha256": "b35bb552b295b6497643e949fd1aed5c7f19078ea9ef75afe34d90e4a4b68f4b",
+        "metadata_sha256": "9b099cd8fc3446a966eb73eed7df8a74017a4c2dfbcdbe9d0e402a05866100ed",
+        "verified_bed_down_range_mm": [
+          0,
+          250
+        ],
+        "filament_route_registered": false,
+        "whole_machine_certified": false
+      },
+      "notes": "Author Trident 300/350 sizes; Ø200 × up to 75 mm capacity. Holder and guides only. Spool body and filament route are not included; the existing external PTFE preview remains independent."
+    },
+    "voron_trident_350": {
+      "id": "trident_internal_spool",
+      "label": "Trident Internal Spool Holder · elcrni",
+      "label_id": "internal_spool.label",
+      "notice_id": "internal_spool.size_notice",
+      "module": "elcrni_trident_internal_spool_holder_v32_installed_350",
+      "translation_mm": [
+        0,
+        0,
+        0
+      ],
+      "qualification": {
+        "schema": "internal-spool-qualified-holder-95",
+        "scope": "rigid_holder_and_guides_only",
+        "machine_id": "voron_trident_350",
+        "component_id": "elcrni_trident_internal_spool_holder_v32_installed_350",
+        "report_sha256": "1a219f985fd3e86c79c03c4db81625d81151f8e4ac2cd21f5218314159c231df",
+        "native_tuple_receipt_sha256": "1a219f985fd3e86c79c03c4db81625d81151f8e4ac2cd21f5218314159c231df",
+        "native_bindings_sha256": "d6150812b431bbc8f47db8ae405d88c16fa7f7da1c0f2b705c08e2fd99260343",
+        "machine_manifest_sha256": "4eb67785885b97e73e1ca6052fc05f07dbddef394e60a6620bf2494265796aca",
+        "machine_profile_sha256": "ce0edf0434c215f7422e6522ca7e68db95fc4429598bfeeab988876aed6a2b70",
+        "model_sha256": "fa08b8af321af144bc63609bd712e4ab8afa02e76fb57e783dc5f1ef69660cb6",
+        "metadata_sha256": "27e4e35d317df3ccc2e675590d7ff6073ee29aff8de062aa147ac91ca48852fd",
+        "verified_bed_down_range_mm": [
+          0,
+          250
+        ],
+        "filament_route_registered": false,
+        "whole_machine_certified": false
+      },
+      "notes": "Author Trident 300/350 sizes; Ø200 × up to 75 mm capacity. Holder and guides only. Spool body and filament route are not included; the existing external PTFE preview remains independent."
+    }
+  },
+  "source": {
+    "repository": "https://github.com/elcrni/Voron-Mods",
+    "commit": "b35e4ddcde50adc4f93a1a29342ac467e651f992",
+    "version": "v32",
+    "license": "GPL-3.0"
+  },
+  "unqualified_machine_ids": [
+    {
+      "machine_id": "siboor_trident_300",
+      "reason": "Distinct native frame/bed tuple proof not executed in this standard-only producer."
+    },
+    {
+      "machine_id": "siboor_trident_350",
+      "reason": "Distinct native frame/bed tuple proof not executed in this standard-only producer."
+    }
+  ],
+  "whole_machine_certified": false,
+  "filament_route_registered": false
+}

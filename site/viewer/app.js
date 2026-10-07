@@ -1,36 +1,37 @@
-import {alphaReference,alphaLimits,alphaBedReferenceDrop} from './trinity-alpha-installation.mjs?v=3deb6f75f19bb234e338';
-import {assertSiboorNativeModule,siboorAlphaModuleOptions,siboorAlphaPose,siboorAlphaContext} from './trinity-alpha-siboor-r2.mjs?v=42d5b5e3f19d59e3fe6e';
+import {alphaReference,alphaLimits,alphaBedReferenceDrop} from './trinity-alpha-installation.mjs?v=f64d6bb5774dcf6555e2';
+import {assertSiboorNativeModule,siboorAlphaModuleOptions,siboorAlphaPose,siboorAlphaContext} from './trinity-alpha-siboor-r2.mjs?v=32f957c2b800070785d0';
 import {contentSHA256} from './mount-validation.mjs';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
-import {loadMonolithMachines} from './monolith-machine.js?v=33fd5f2c92e5fd5bb48b';
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=eef8f7b21595928eaee5';
+import {loadMonolithMachines} from './monolith-machine.js?v=cf5ef833e4c9007348b4';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=22f33b752443615cb624';
 import {bankBedReferenceDrop} from './changer-bank-model.mjs?v=024cc52a5bbc61da7506';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
-import {loadFrameMods,withFrameMods} from './frame-mods.js?v=03ac9b506eeb373f4d3b';
+import {loadExternalComponent} from './component-assets.mjs?v=c2333ef499f46d621550';
+import {loadFrameMods,withFrameMods} from './frame-mods.js?v=a48f4ddcbf6d9bddac89';
 import {setupGrid} from './grid-control.js';
 import {setupLighting} from './lighting.js';
 import {setupFlexible} from './flexible.js?v=37fd0f2d1bdfe5ac356f';
-import {createTridentBelts} from './trident-belts.mjs';
-import {createBedChain} from './bed-chain.mjs?v=d388cb7f656c9b5f2d12';
+import {createTridentBelts} from './trident-belts.mjs?v=36cbfcd85e770a25e822';
+import {createBedChain} from './bed-chain.mjs?v=5c6ddd46ac13e6974c73';
 import {createPrinterBelts,printerBeltOwner} from './printer-gantry.mjs';
-import {setupConfigurations} from './configurations.js?v=fa6e12a96f0675a08464';
-import {setupAccessories} from './accessories.js';
+import {setupConfigurations} from './configurations.js?v=69f91a752d2fe88547b1';
+import {setupAccessories} from './accessories.js?v=658b22614e8581217dc5';
 import {setupAppearance} from './appearance.js';
 import {setupRenderExport} from './render-export.js';
-import {setupPublicInfo} from './public-info.js?v=ba2b9ca1adb080a0d143';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=6b0a9c27691a07113f83';
+import {setupPublicInfo} from './public-info.js?v=13988d3956b89c9920dd';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=7b5352d585f32ae03866';
 import {setupChangerBank} from './changer-bank.js?v=47bbc0fef91af2c7241e';
-import {expandedPrinterCatalog} from './machine-head-model.mjs?v=d456b2b417419e1eb493';
+import {expandedPrinterCatalog} from './machine-head-model.mjs?v=41a8e81fcadb44c0e989';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=f471190665709ba23159';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
 import {createHeadMarkers} from './head-markers.mjs';
-import {siboorMachine,loadSiboorAssembly} from './siboor-machine.mjs?v=fc8812c4682346ba7a31';
+import {siboorMachine,loadSiboorAssembly} from './siboor-machine.mjs?v=277d49e8bb9dc6eb3118';
 export async function mount(scope){
 const {id:machine,size,gantryId,maxX,maxY}=siboorMachine();
 document.querySelector('h1').textContent='Trident / '+size;
@@ -81,7 +82,9 @@ function registerModule(root,metadata){
 async function asset(id){return workspaceTask(async()=>{
  if(assets.has(id))return assets.get(id);
  const spec=id==='xol'?{meta:'XOL_MOD.json',glb:'Xol_SherpaMini_Rapido2UHF_AWD9.glb'}:catalog.assets[id];
- const promise=Promise.all([fetch('../'+spec.meta,{cache:'no-cache'}).then(async r=>{if(!r.ok)throw Error(spec.meta);const text=await r.text();const meta=JSON.parse(text);meta.alphaNativeSourceHash=await contentSHA256(text);return meta}),loadModel(new GLTFLoader(),'../'+spec.glb,undefined,siboorAlphaModuleOptions(id))]).then(([meta,g])=>{model.add(g.scene);g.scene.visible=false;const meshes=registerModule(g.scene,meta);const result={meta,root:g.scene,meshes};assetRoots.set(id,result);if(id==='xol'){xolMeta=meta;xolScene=g.scene}return result}).catch(e=>{assets.delete(id);throw e});assets.set(id,promise);return promise;
+ if(!spec)throw Error('Unregistered CAD: '+id);
+ const source=spec.external?loadExternalComponent(new GLTFLoader(),spec,import.meta.url).then(({meta,gltf})=>[meta,gltf]):Promise.all([fetch('../'+spec.meta,{cache:'no-cache'}).then(async r=>{if(!r.ok)throw Error(spec.meta);const text=await r.text();const meta=JSON.parse(text);meta.alphaNativeSourceHash=await contentSHA256(text);return meta}),loadModel(new GLTFLoader(),'../'+spec.glb,undefined,siboorAlphaModuleOptions(id))]);
+ const promise=source.then(([meta,g])=>{model.add(g.scene);g.scene.visible=false;const meshes=registerModule(g.scene,meta);const result={meta,root:g.scene,meshes};assetRoots.set(id,result);if(id==='xol'){xolMeta=meta;xolScene=g.scene}return result}).catch(e=>{assets.delete(id);throw e});assets.set(id,promise);return promise;
 });}
 function showHead(){
  if(!activeConfig)return;const shown=$('#head').checked,removed=new Set(activeConfig.removed_stock_keys);

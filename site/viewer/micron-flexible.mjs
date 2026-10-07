@@ -1,5 +1,5 @@
 import {Vector3,TubeGeometry} from './vendor/three.module.js';
-import {bedChainRoute} from './bed-chain.mjs?v=d388cb7f656c9b5f2d12';
+import {bedChainRoute} from './bed-chain.mjs?v=5c6ddd46ac13e6974c73';
 import {micronChainPins} from './micron-flexible-pins.mjs?v=motion-colors-41';
 import {micronTubeSpecs,micronTubeRoute} from './micron-tube-routes.mjs?v=c69d79d6fdbfee5338fe';
 

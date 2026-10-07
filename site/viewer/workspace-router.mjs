@@ -1,9 +1,9 @@
-import {translate} from './i18n.mjs?v=c125232811265df5b7e6';
+import {translate} from './i18n.mjs?v=b2185458695861018d38';
 import {WorkspaceScope, activateScope} from './workspace-lifecycle.mjs';
 import {bindWorkspaceNavigation, setWorkspaceLeaving, workspaceTarget, workspaceURL, replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
-import {setupWorkspace} from './workspace-ui.mjs?v=cf9547bed5bd584a65f8';
+import {setupWorkspace} from './workspace-ui.mjs?v=8605b6c2e011fb0cee23';
 import {applyDisplay} from './display-preferences.mjs?v=9860960509e28d17f3fd';
-import {machinePage} from './machines.js?v=9a3eae7a7c53d576c80d';
+import {machinePage} from './machines.js?v=0b03f369fa4dd3b3de8f';
 
 const controllers = new Set(['bootstrap.js','v24-bootstrap.js','app.js','v24-app.js','vanilla-trident.js','v24-reference.js','custom-voron.js','v0-app.js','micron.js','kit-reference.js','ratrig.js','crossant.js','toolheads.js','gantries.js','components.js','toolchangers.js','e3ng.js','community.js','positron.js','remorph.js', 'annex.js']);
 document.documentElement.dataset.workspaceSession = crypto.randomUUID();

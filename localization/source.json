@@ -11045,6 +11045,31 @@
       "kind": "message",
       "ja": "外部PTFEは表示用の柔軟な経路で、位置に応じて長さが変わり、STEPには含まれません。閉じた天板の下に余裕を残すため、Zの可動上限を制限しています。",
       "en": "External PTFE is a flexible preview; its length varies with pose and it is not included in STEP. Z travel is limited to leave space below the closed roof."
+    },
+    "custom_voron.large_scale": {
+      "kind": "message",
+      "ja": "1000 mmでは、フレームや機構の強化を検討してください。実機を製作する前に、フレーム剛性、リニアガイドと駆動系、ベッドの重量、必要な電力、配線経路を見直してください。このサイズに拡張した参考モデルは、プリンターの設計として実機検証されていません。",
+      "en": "At 1000 mm, consider frame and mechanism upgrades. Before a real build, review frame rigidity, linear guides and drives, bed mass, power requirements and cable routing. This scaled reference has not been tested as a printer design."
+    },
+    "custom_voron.large_scale_short": {
+      "kind": "message",
+      "ja": "1000 mmの参考モデル：フレームや機構の強化をご検討ください。実機検証は未実施です。",
+      "en": "1000 mm scaled reference: consider frame and mechanism upgrades; the design has not been tested."
+    },
+    "internal_spool.label": {
+      "kind": "message",
+      "ja": "庫内スプールホルダー · elcrni",
+      "en": "Internal spool holder · elcrni"
+    },
+    "internal_spool.size_notice": {
+      "kind": "message",
+      "ja": "作者のTrident 300／350向け設計で、スプールは直径200 mm以下・幅75 mm以下です。ホルダーとガイドを表示します。スプール本体とフィラメント供給経路は含まず、既存の外部スプール用PTFE経路とは連動しません。",
+      "en": "Author design for Trident 300/350, for spools up to 200 mm diameter and 75 mm width. The holder and guides are shown. A spool and filament feed path are not included; the existing outside-spool PTFE route is independent."
+    },
+    "custom_voron.chain_contacts": {
+      "kind": "message",
+      "ja": "ベッドチェーン上端には元CADの接触箇所が残っています。実機での取り付けやクリアランスは未検証です。",
+      "en": "Upper bed-chain contacts inherited from the original CAD remain mechanically unverified. Mounting and clearance are not certified."
     }
   }
 }

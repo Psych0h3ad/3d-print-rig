@@ -93,6 +93,10 @@ export function hollowTubeGeometry(curve,spec,segments=256,sides=16){
 }
 export function createCustomTube(root,manifest){
  const spec=manifest.custom_ptfe;if(!spec)return null;
+ if(manifest.machine_id==='voron_trident_1000_custom'){
+  const keys=[spec.part_key,spec.holder_part_key,'voron_trident_350_base_1359'],guards=spec.native_mate_guards;
+  if(spec.schema!=='trident-variable-ptfe-preview-95'||spec.machine_id!==manifest.machine_id||spec.part_key!=='voron_trident_350_base_1409'||spec.holder_part_key!=='voron_trident_350_base_1393'||spec.radius_mm!==2||spec.inner_radius_mm!==1.5||!guards||Object.keys(guards).length!==keys.length||keys.some(key=>!/^[a-f0-9]{64}$/.test(guards[key]||'')||manifest.parts.find(row=>row.key===key)?.native_sha256!==guards[key]))throw Error('Native 1000 mm PTFE source/mate identity changed');
+ }
  if(spec.route_type){
   constantCustomTubeRoute(spec);
   const mates={'voron_trident_350_base_1409':'29fa151d241090c622ac2655e8c01a4e14c0c96bb78e888b632af71f5f7377bf','voron_trident_350_base_1393':'05654bb66f978d3915f06c7da020ac9397031c8343c852b66e92f43f8a43ee47','578':'3e2ed880b86cda700c2652a3b6ca47b807764e0d3f64252d5bf509b4523f4d62'};

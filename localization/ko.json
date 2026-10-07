@@ -8793,6 +8793,26 @@
     "custom_voron.external_ptfe": {
       "source_revision": "b68b54ca12cdcdb38f21",
       "text": "외부 PTFE는 유연한 경로 미리보기이며 위치에 따라 길이가 달라지고 STEP에는 포함되지 않습니다. Z 이동 범위는 닫힌 상판 아래 공간을 확보하도록 제한됩니다."
+    },
+    "custom_voron.large_scale": {
+      "source_revision": "e7f99ab60aacc102ebab",
+      "text": "1000 mm 크기에서는 프레임과 기구의 보강을 검토하세요. 실제 제작 전에 프레임 강성, 리니어 가이드와 구동계, 출력 베드의 질량, 필요한 전력, 배선 경로를 검토하세요. 이 크기로 확대한 참고 모델은 프린터 설계로서 검증되지 않았습니다."
+    },
+    "custom_voron.large_scale_short": {
+      "source_revision": "37efd5755060e840bc98",
+      "text": "1000 mm로 확대한 참고 모델입니다. 프레임과 기구의 보강을 검토하세요. 설계 검증은 이루어지지 않았습니다."
+    },
+    "internal_spool.label": {
+      "source_revision": "acee687864e1b05a95ce",
+      "text": "내부 스풀 홀더 · elcrni"
+    },
+    "internal_spool.size_notice": {
+      "source_revision": "0a265d3a56b59f4bde80",
+      "text": "Trident 300/350용 원작자 설계로, 지름 200 mm 이하·폭 75 mm 이하의 스풀을 지원합니다. 홀더와 가이드를 표시합니다. 스풀 본체와 필라멘트 공급 경로는 포함되지 않으며, 기존 외부 스풀용 PTFE 경로와 연동되지 않습니다."
+    },
+    "custom_voron.chain_contacts": {
+      "source_revision": "4643277d9dce21ba0192",
+      "text": "베드 체인 상단에는 원본 CAD의 접촉 부위가 남아 있습니다. 실제 장착과 간극은 검증되지 않았습니다."
     }
   }
 }

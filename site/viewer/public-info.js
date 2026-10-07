@@ -1,6 +1,6 @@
 import {workspaceTask} from './workspace-lifecycle.mjs';
 import {setupProductDirectory} from './product-links.js?v=ba0e9d9c9326819ea0fb';
-import {mountAssemblyDownload} from './assembly-downloads.mjs?v=deca17f4ee6e042a47ab';
+import {mountAssemblyDownload} from './assembly-downloads.mjs?v=bb16a4d578e7fd56be5f';
 const $=s=>document.querySelector(s);
 function dialog(id,title){const d=document.createElement('dialog');d.id=id;d.innerHTML=`<div class="dialog-head"><h2>${title}</h2><button class="close" aria-label="閉じる"></button></div><div class="dialog-body"></div>`;document.body.append(d);d.querySelector('.close').onclick=()=>d.close();return d}
 const node=(tag,text)=>{const n=document.createElement(tag);n.textContent=text;return n};
@@ -13,7 +13,7 @@ export async function setupPublicInfo({includeDownloads=true,machineId=null}={})
  sb.append(node('p','コミュニティCADを組み合わせた非公式ビューアーです。各データの作者・ライセンスは個別に適用されます。'));
  db.append(node('p','標準構成・CAD基準姿勢の組立済みSTEPです。選択中のMod・配色は含みません。'));
  try{
-  const response=await fetch('../PUBLIC_CATALOG.json?v=f5043053d2b442190588',{cache:'no-cache'});if(!response.ok)throw Error('カタログを取得できません');const catalog=await response.json();
+  const response=await fetch('../PUBLIC_CATALOG.json?v=ec7f5797d14adef9d029',{cache:'no-cache'});if(!response.ok)throw Error('カタログを取得できません');const catalog=await response.json();
   const assemblyDownload=$('#assemblyDownload');if(machineId&&assemblyDownload)mountAssemblyDownload(assemblyDownload,machineId,catalog);
   sb.append(node('p','ビューアー版：'+catalog.viewer_version));
   if(catalog.model_source_url)sb.append(link('表示モデルの編集用データ',catalog.model_source_url));

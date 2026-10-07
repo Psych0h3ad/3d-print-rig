@@ -1,18 +1,20 @@
-import {createTridentBelts} from './trident-belts.mjs?v=trident-clearance-35';
-import {createBedChain,isTridentBedChain} from './bed-chain.mjs?v=d388cb7f656c9b5f2d12';
+import {createTridentBelts} from './trident-belts.mjs?v=36cbfcd85e770a25e822';
+import {createBedChain,isTridentBedChain} from './bed-chain.mjs?v=5c6ddd46ac13e6974c73';
+import {assertTridentBedRegistration} from './trident-bed-registration.mjs?v=17201d090ac06e795be0';
 /** Independent Trident bed motion. Vertices carry their CAD placements. */
 export function createTridentMotion(profile){
- if(profile.kinematics!=='trident'||!/^voron_trident_(?:(?:250|300|350)|500_custom|350_half_z)$/.test(profile.machine_id))throw Error('Trident profile mismatch');
- const size=profile.size_mm??Number(profile.machine_id.match(/_(250|300|350|500)(?:_|$)/)?.[1]),gantryId='trident_r2_gantry_'+size;
+ if(profile.kinematics!=='trident'||!/^voron_trident_(?:(?:250|300|350)|(?:500|1000)_custom|350_half_z)$/.test(profile.machine_id))throw Error('Trident profile mismatch');
+ const size=profile.size_mm??Number(profile.machine_id.match(/_(250|300|350|500|1000)(?:_|$)/)?.[1]),gantryId='trident_r2_gantry_'+size;
  const entries=new Map(),belts=[],bedChains=[];let reference=[...profile.display_reference_xyz_mm],bedReferenceDrop=0,limitsIncludeBedReferenceDrop=false;
  function register(root,metadata){
   if(/^trident_r2_gantry_/.test(metadata.id||'')&&metadata.id!==gantryId)throw Error('Trident gantry size mismatch');
   const rows=new Map(metadata.parts.map(p=>[p.key,p]));
   // Original leaf1167 joins moving bed extrusions despite its Frame_Hardware path.
   const stockBase=/^voron_trident_(250|300|350)$/.test(profile.machine_id)&&metadata.id===profile.machine_id+'_base';
-  const customProfile=/^voron_trident_(500_custom|350_half_z)$/.test(profile.machine_id);
+  const customProfile=/^voron_trident_((?:500|1000)_custom|350_half_z)$/.test(profile.machine_id);
   const customBase=customProfile&&(metadata.machine_id!==undefined||metadata.source_baseline!==undefined);
   if(customBase&&(metadata.machine_id!==profile.machine_id||metadata.source_baseline!=='voron_trident_350'||metadata.id!==gantryId))throw Error('Native custom Trident bed-joint source identity changed');
+  if(customBase)assertTridentBedRegistration(metadata,profile);
   const bedJointPrefix=customBase?'voron_trident_350_base':profile.machine_id+'_base';
   const bedJointKey=bedJointPrefix+'_1167';
   if(stockBase||customBase){

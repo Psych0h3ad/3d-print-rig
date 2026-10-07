@@ -2,29 +2,31 @@ import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
-import {loadCustomVoron} from './custom-voron-loader.mjs?v=e18d861e8f6c6a9fae6a';
-import {createV24Adapter} from './v24_matrix_adapter.mjs?v=7d9f902c2b7d63478e0a';
-import {createTridentMotion} from './trident-motion.mjs?v=fd57de962d027d09aa07';
-import {setupMachineNavigation} from './machines.js?v=9a3eae7a7c53d576c80d';
+import {loadCustomVoron} from './custom-voron-loader.mjs?v=b646bf813ef8a939f824';
+import {createV24Adapter} from './v24_matrix_adapter.mjs?v=9633233bf8f9aab91d31';
+import {createTridentMotion} from './trident-motion.mjs?v=3e79bc1203d5e0d08666';
+import {setupMachineNavigation} from './machines.js?v=0b03f369fa4dd3b3de8f';
 import {appearanceRole} from './appearance-role.mjs?v=6b7b8efda77bfc3ce74d';
-import {createCustomTube} from './custom-voron-tube.mjs?v=3c58e636367940363ec5';
-import {createV24PtfePreview,V24_PTFE_SPEC} from './v24-ptfe.mjs?v=e63e7da2ace1d2f23005';
+import {createCustomTube} from './custom-voron-tube.mjs?v=55f4f1c021b4cd4a9880';
+import {createV24PtfePreview,V24_PTFE_SPEC} from './v24-ptfe.mjs?v=1f9e7d5bcbafa15feff9';
 import {validateCustomState} from './custom-voron-state.mjs?v=4b6132fe80a74098a8ba';
 import {workspaceFrame,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {setupSceneDisplay} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {setupGrid} from './grid-control.js';
 import {setupRenderExport} from './render-export.js';
-import {setupPublicInfo} from './public-info.js?v=ba2b9ca1adb080a0d143';
+import {setupPublicInfo} from './public-info.js?v=13988d3956b89c9920dd';
 import {setupGcodePanel} from './gcode-panel.js?v=f471190665709ba23159';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
-import {formatMessage,translate} from './i18n.mjs?v=c125232811265df5b7e6';
+import {formatMessage,translate} from './i18n.mjs?v=b2185458695861018d38';
 export async function mount(scope){
  const $=id=>document.getElementById(id),id=new URL(location.href).searchParams.get('machine')||'voron_v24_500_custom';setupMachineNavigation(id);
  const assemblyMachineId=['voron_v24_500_custom','voron_trident_500_custom'].includes(id)?id:null;
  setupPublicInfo({machineId:assemblyMachineId,includeDownloads:assemblyMachineId===null});
  const renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.setClearColor('#edf1f4');$('stage').append(renderer.domElement);
- const scene=scope.scene(new THREE.Scene()),camera=new THREE.PerspectiveCamera(38,1,.001,10),controls=scope.resource(new OrbitControls(camera,renderer.domElement));scene.add(new THREE.HemisphereLight('#ffffff','#6c7981',2.4));
+ // The scene uses metres. A 20 mm near plane preserves depth precision for
+ // thin bed layers when they descend toward the deck of the larger machines.
+ const scene=scope.scene(new THREE.Scene()),camera=new THREE.PerspectiveCamera(38,1,.02,10),controls=scope.resource(new OrbitControls(camera,renderer.domElement));scene.add(new THREE.HemisphereLight('#ffffff','#6c7981',2.4));
  for(const pos of [[.4,.6,.5],[-.3,.2,-.4]]){const light=new THREE.DirectionalLight('#ffffff',2);light.position.set(...pos);scene.add(light)}
  let pending=false,adapter,tube,externalPtfe,current,profile,manifest,program,palette={base:'#24272c',accent:'#e32636',frame:'#25282d'};const materials=[],nodes=new Map();
  function render(){if(pending||scope.disposed)return;pending=true;workspaceFrame(()=>{pending=false;renderer.render(scene,camera)})}
@@ -43,7 +45,10 @@ export async function mount(scope){
   loaded.root.traverse(mesh=>{const key=mesh.userData?.part_key;if(rows.has(key)&&mesh.parent?.userData?.part_key!==key)nodes.set(key,mesh);if(!mesh.isMesh)return;const row=rows.get(key);if(!row)throw Error('Unregistered custom VORON part');mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();for(const material of Array.isArray(mesh.material)?mesh.material:[mesh.material]){if(material.transparent)material.depthWrite=false;materials.push({material,original:material.color.clone(),role:appearanceRole(row)})}});
   if(trident){adapter=createTridentMotion(profile);adapter.register(loaded.root,manifest)}else adapter=createV24Adapter(loaded.root,manifest,profile);
   tube=createCustomTube(loaded.root,manifest);if(tube)scope.resource(tube);
-  if(id===V24_PTFE_SPEC.machine_id){externalPtfe=createV24PtfePreview(THREE,loaded.root,manifest,profile,V24_PTFE_SPEC);scope.resource(externalPtfe);$('externalPtfeNotice').hidden=false;}
+  const ptfeSpec=id===V24_PTFE_SPEC.machine_id?V24_PTFE_SPEC:manifest.v24_ptfe_spec;
+  if(ptfeSpec){externalPtfe=createV24PtfePreview(THREE,loaded.root,manifest,profile,ptfeSpec);scope.resource(externalPtfe);$('externalPtfeNotice').hidden=false;}
+  $('largeScaleNotice').hidden=profile.size_mm<1000;
+  $('chainContactNotice').hidden=id!=='voron_trident_1000_custom';
   $('machineTitle').textContent=(trident?'Trident':'V2.4')+' / '+profile.size_mm;$('dimensions').textContent=profile.size_mm+' × '+profile.size_mm+' × '+profile.display_limits_mm.Z[1]+' mm';$('badge').textContent=$('machineTitle').textContent+' · '+manifest.parts.length.toLocaleString()+' PARTS';$('motionHelp').textContent=t(trident?'ベッド・サーミスタ・3Zガイドが下降に追従':'ベッド固定 · X/Yヘッドと4Zガイド・ガントリーがZ＋へ追従');
   for(const[i,a]of ['x','y','z'].entries()){const limits=profile.display_limits_mm[a.toUpperCase()];$(a).min=limits[0];$(a).max=limits[1];$(a).value=profile.display_reference_xyz_mm[i];$(a).disabled=false;$(a).oninput=()=>{program?.invalidate();applyPose()}}
   $('reset').disabled=false;$('reset').onclick=()=>{program?.invalidate();for(const[i,a]of ['x','y','z'].entries())$(a).value=profile.display_reference_xyz_mm[i];applyPose()};

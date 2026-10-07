@@ -24,6 +24,12 @@ for(const xyz of [...extremes,...extremes.toReversed(),spec.reference_xyz_mm]){
 const reference=preview.mesh.geometry.attributes.position.array.slice();preview.setPose([500,500,469]);preview.reset();assert.deepEqual(preview.mesh.geometry.attributes.position.array,reference);
 preview.setPose(spec.reference_xyz_mm,false);assert(!preview.mesh.visible);preview.reset();assert(preview.mesh.visible);
 for(const xyz of [[0,0,480],[NaN,0,0],[-1,0,0],[500,501,469]])assert.throws(()=>preview.setPose(xyz));
+for(const i of [0,1,2]){
+ const boundary=[500,500,469],rounded=boundary.slice();rounded[i]+=1e-10;
+ assert.deepEqual(v24PtfeRoute(spec,rounded).display_xyz_mm,boundary);
+ const outside=boundary.slice();outside[i]+=1e-6;assert.throws(()=>v24PtfeRoute(spec,outside));
+ const lower=[0,0,0];lower[i]-=1e-10;assert.deepEqual(v24PtfeRoute(spec,lower).display_xyz_mm,[0,0,0]);
+}
 for(const key of Object.keys(spec.native_mate_guards)){
  const bad=structuredClone(manifest);bad.parts.find(p=>p.key===key).native_sha256='0'.repeat(64);assert.throws(()=>createV24PtfePreview(THREE,root,bad,profile,spec));
 }

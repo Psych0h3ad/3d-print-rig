@@ -5,17 +5,17 @@ ensureWorkspaceEntry(import.meta.url);
 import * as THREE from './vendor-r180/three.module.js';
 import {OrbitControls} from './vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
-import {loadCommunity} from './community-loader.mjs?v=c33e60c6a13a5170eb14';
+import {loadCommunity} from './community-loader.mjs?v=508254c3c0a9f9f91d3f';
 import {communitySchema,validateCommunityState,communityMotionEnabled,communityConfiguration} from './community-state.mjs?v=460b3fa78cc503ddb6e6';
 import {installationFor} from './ender-mods.mjs?v=5f07c69c7c42ba3f3936';
-import {setupMachineNavigation} from './machines.js?v=9a3eae7a7c53d576c80d';
+import {setupMachineNavigation} from './machines.js?v=0b03f369fa4dd3b3de8f';
 import {sceneLightingState} from './scene-lighting-state.mjs';
-import {translate} from './i18n.mjs?v=c125232811265df5b7e6';
+import {translate} from './i18n.mjs?v=b2185458695861018d38';
 import {rememberDisplayControl} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {setupRenderExport} from './render-export.js';
-import {setupPublicInfo} from './public-info.js?v=ba2b9ca1adb080a0d143';
+import {setupPublicInfo} from './public-info.js?v=13988d3956b89c9920dd';
 const descriptions={
  tictac_21_120:"TicTac 2.1 · 120 mm / 新Rat Rigツールヘッド / 公式組立CAD",
  rook_mk2_120:"Rook MK2 beta · 120 mm / Dragon Burner / Bambu / Galileo 2 G2SA",

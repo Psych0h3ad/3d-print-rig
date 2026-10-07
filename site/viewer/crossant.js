@@ -9,9 +9,9 @@ import {OrbitControls} from './vendor-r180/OrbitControls.js?v=workspace-belts-1'
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
 import {loadCrossant,disposeCrossant} from './crossant-loader.mjs?v=c1042da5a3a7e7f1f01d';
 import {crossantSchema,crossantGroups,validateCrossantState} from './crossant-state.mjs?v=534dc62f2c6545f556f7';
-import {setupMachineNavigation} from './machines.js?v=9a3eae7a7c53d576c80d';
+import {setupMachineNavigation} from './machines.js?v=0b03f369fa4dd3b3de8f';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
-import {setupPublicInfo} from './public-info.js?v=ba2b9ca1adb080a0d143';
+import {setupPublicInfo} from './public-info.js?v=13988d3956b89c9920dd';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 export async function mount(scope){
 const $=id=>document.getElementById(id),stage=$('stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));

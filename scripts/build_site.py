@@ -15,6 +15,24 @@ ROOT = Path(__file__).resolve().parents[1]
 MAX_SITE_BYTES = 980_000_000
 
 
+# Deliver this original author index as the exact bytes pinned by Trinity.
+# A stale CRLF checkout may be accepted only when it is byte-identical to the
+# pinned Git blob after removing CRLF. No JSON reserialization or SHA waiver.
+SIBOOR_AUTHOR_INDEX_SHA256 = '9b10bebcaa3b326532fdac5ecc435c6414cf3d0402967ebc99944130b8a8f3b0'
+
+
+def copy_siboor_author_index(source, destination):
+    data = source.read_bytes()
+    if hashlib.sha256(data).hexdigest() != SIBOOR_AUTHOR_INDEX_SHA256:
+        original = subprocess.check_output(
+            ['git', 'show', 'HEAD:site/SIBOOR_TRIDENT_ASSETS.json'], cwd=ROOT)
+        if (hashlib.sha256(original).hexdigest() != SIBOOR_AUTHOR_INDEX_SHA256
+                or data.replace(b'\r\n', b'\n') != original):
+            raise ValueError('Original SIBOOR author index bytes changed.')
+        data = original
+    destination.write_bytes(data)
+
+
 def unpack_assets(archive, target):
     with zipfile.ZipFile(archive) as bundle:
         manifest = json.loads(bundle.read('VIEWER_ASSETS.json'))
@@ -119,7 +137,10 @@ def main():
         relative = path.relative_to('site')
         destination = target / relative
         destination.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(ROOT / path, destination)
+        if relative.as_posix() == 'SIBOOR_TRIDENT_ASSETS.json':
+            copy_siboor_author_index(ROOT / path, destination)
+        else:
+            shutil.copyfile(ROOT / path, destination)
     if args.assets:
         unpack_assets(args.assets, target)
     else:

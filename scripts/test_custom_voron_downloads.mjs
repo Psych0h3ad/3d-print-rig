@@ -27,7 +27,7 @@ const entry=id=>({machine_id:id,display_name:id,configuration:'custom reference 
  upstream_url:'https://example.invalid/source',step_zip:{path:'../steps/'+id+'.zip',filename:id+'.zip',bytes:1048576}});
 const catalog={defaults:ids.map(entry),machines:[{...entry(ids[0]),step_zip:{path:'../wrong-mod.zip',filename:'wrong.zip',bytes:1}}]};
 
-for(const id of [...ids,'voron_v24_350_half_z','voron_trident_350_half_z','unknown_custom']){
+for(const id of [...ids,'voron_v24_350_half_z','voron_trident_350_half_z','voron_v24_1000_custom','voron_trident_1000_custom','unknown_custom']){
  let options,navigated;
  vm.runInNewContext(bootstrap,{URL,document,location:{href:baseURI+'?machine='+id},
   setupMachineNavigation:value=>{navigated=value},setupPublicInfo:value=>{options=value}});

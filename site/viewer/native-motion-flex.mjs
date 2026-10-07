@@ -1,6 +1,6 @@
 import * as THREE from './vendor-r180/three.module.js';
 import {nativeMotion,displayMotion} from './community-state.mjs?v=460b3fa78cc503ddb6e6';
-import {bedChainRoute} from './bed-chain.mjs?v=d388cb7f656c9b5f2d12';
+import {bedChainRoute} from './bed-chain.mjs?v=5c6ddd46ac13e6974c73';
 const clamp=v=>Math.max(0,Math.min(1,v));
 const dist=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]);
 function segment(p,a,b){const dx=b[0]-a[0],dy=b[1]-a[1],t=clamp(((p[0]-a[0])*dx+(p[1]-a[1])*dy)/(dx*dx+dy*dy||1));return {t,d:dist(p,[a[0]+dx*t,a[1]+dy*t])}}

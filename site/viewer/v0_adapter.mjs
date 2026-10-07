@@ -1,6 +1,6 @@
 import {appearanceRole} from './appearance-role.mjs?v=6b7b8efda77bfc3ce74d';
 import {createV0Belts} from './v0-belts.mjs?v=trident-clearance-35';
-import {createV0Chain} from './v0-chain.mjs?v=972038b569f23620d1bc';
+import {createV0Chain} from './v0-chain.mjs?v=9bd91f8c757a0dfafbbc';
 import {createV0Door} from './v0-door.mjs?v=v0-mounts-39';
 import {createV0Tophat} from './v0-tophat.mjs?v=v0-mounts-39';
 /** V0: fixed-Z CoreXY gantry, Y beam, XY toolhead, single downward-moving bed. */

@@ -1739,6 +1739,20 @@
           "sha256": "f5949d47df1f82d118943cc779aaa41935962006467b82c27b1f05c3889c5f23"
         }
       ]
+    },
+    {
+      "id": "trident_internal_spool",
+      "name": "Trident Internal Spool Holder · elcrni",
+      "url": "https://github.com/elcrni/Voron-Mods",
+      "commit": "b35e4ddcde50adc4f93a1a29342ac467e651f992",
+      "license": "GPL-3.0; added native VORON hardware retains original component terms",
+      "scope": "Original v32 holder and guides with rigid roller phase corrections, native VORON fixings, a relocated lower guide and an upper guide mounted below the rear frame member. Author sizes 300/350, capacity Ø200 × up to 75 mm. Actual spool body and filament route are not included. Exact host installation qualification is kept in a separate receipt.",
+      "files": [
+        {
+          "path": "Trident_Internal_Spool_Holder/CAD/Trident_internal_spool_holder_001 v32.step",
+          "sha256": "a59e6db9ed290f755f17d14ed28958a02fe92ef3c73678597fcbc03acce7df8e"
+        }
+      ]
     }
   ],
   "defaults": [
@@ -2183,6 +2197,20 @@
       "bytes": 164384386,
       "sha256": "43cfa416abd60294986a719e4c9b92b9bff4a4c15d34ec521e81233b47197e1a",
       "license": "Original component terms; see included source revisions and component notices."
+    },
+    {
+      "label": "VORON V2.4 and Trident custom1000 assembled native solids",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig-large-voron-models/releases/download/voron1000-v1/VORON_1000_Custom_Native_Source.zip",
+      "bytes": 209576717,
+      "sha256": "f67b117397fe8681752d080c825ae54f449d7467df8b8b621a86b6e6c74489d1",
+      "license": "Original component terms; see included source revisions and component notices."
+    },
+    {
+      "url": "https://github.com/Psych0h3ad/3d-print-rig-large-voron-models/releases/download/internal-spool-v1/Trident_Internal_Spool_Native_Source.zip",
+      "bytes": 15390746,
+      "sha256": "0c76bb2c674c2bbcc8b2ad1da96129f1803001ff620d07f97e191addf86f9909",
+      "label": "Trident Internal Spool Holder v32 placed native bodies",
+      "license": "Original component terms; see included licenses and source revision."
     }
   ]
 }

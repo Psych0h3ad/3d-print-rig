@@ -1,6 +1,6 @@
 // External PTFE route preview measured from the native VORON assembly.
 // Inject the viewer's THREE instance; this module has no native/kernel dependency.
-import { hollowTubeGeometry } from './custom-voron-tube.mjs?v=3c58e636367940363ec5';
+import { hollowTubeGeometry } from './custom-voron-tube.mjs?v=55f4f1c021b4cd4a9880';
 const add=(a,b)=>a.map((v,i)=>v+b[i]);
 const sub=(a,b)=>a.map((v,i)=>v-b[i]);
 const mul=(a,s)=>a.map(v=>v*s);
@@ -33,9 +33,12 @@ export function guardV24Sources(manifest,profile,spec){
  return true;
 }
 export function v24PtfeRoute(spec,displayXYZ=spec.reference_xyz_mm){
- if(spec.schema!=='v24-external-ptfe-runtime-preview-94-v4'||spec.machine_id!=='voron_v24_500_custom'||spec.maximum_bend_radius_mm!==25||spec.stem_top_reference_z_mm!==209.5||spec.cubic_y_handle_fraction!==0.75)throw Error('Unsupported V24 PTFE preview law');
+ const supported=spec.machine_id==='voron_v24_500_custom'&&spec.schema==='v24-external-ptfe-runtime-preview-94-v4'||spec.machine_id==='voron_v24_1000_custom'&&spec.schema==='v24-external-ptfe-runtime-preview-95';
+ if(!supported||spec.maximum_bend_radius_mm!==25||spec.stem_top_reference_z_mm!==209.5||spec.cubic_y_handle_fraction!==0.75)throw Error('Unsupported V24 PTFE preview law');
  if(!Array.isArray(displayXYZ)||displayXYZ.length!==3||!displayXYZ.every(Number.isFinite))throw Error('Nonfinite V24 XYZ');
- for(const[i,k]of ['X','Y','Z'].entries()){const [a,b]=spec.preview_display_limits_mm[k];if(displayXYZ[i]<a||displayXYZ[i]>b)throw Error(`Preview ${k} outside explicitly limited travel`);}
+ // Match the motion adapter's numeric tolerance at interpolated end stops.
+ // Canonicalize only roundoff; a requested pose beyond travel still fails.
+ displayXYZ=displayXYZ.map((v,i)=>{const k=['X','Y','Z'][i],[a,b]=spec.preview_display_limits_mm[k];if(v<a-1e-8||v>b+1e-8)throw Error(`Preview ${k} outside explicitly limited travel`);return Math.max(a,Math.min(b,v));});
  const delta=sub(displayXYZ,spec.reference_xyz_mm),start=add(spec.head_seat_reference_mm,delta);
  const stem=[start[0],start[1],spec.stem_top_reference_z_mm+delta[2]],R=spec.maximum_bend_radius_mm;
  if(!(R>spec.cross_section.outer_diameter_mm/2))throw Error('V24 adaptive arc loses section regularity');

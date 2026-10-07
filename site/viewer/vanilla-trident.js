@@ -1,30 +1,31 @@
-import {alphaReference,alphaLimits,alphaContext,alphaNotice,alphaBedReferenceDrop} from './trinity-alpha-installation.mjs?v=3deb6f75f19bb234e338';
+import {alphaReference,alphaLimits,alphaContext,alphaNotice,alphaBedReferenceDrop} from './trinity-alpha-installation.mjs?v=f64d6bb5774dcf6555e2';
 import {baselineReference,baselineLimits,baselineResetPose,baselineGcodeContext,NATIVE_BASELINE_SOURCE,contentSHA256} from './baseline-native-datum.mjs?v=b86b6ff7d71bab3c1117';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {workspaceFrame,WorkspaceResizeObserver,workspaceTask} from './workspace-lifecycle.mjs';
-import {loadMonolithMachines,stockGantryVisibility} from './monolith-machine.js?v=33fd5f2c92e5fd5bb48b';
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=eef8f7b21595928eaee5';
+import {loadMonolithMachines,stockGantryVisibility} from './monolith-machine.js?v=cf5ef833e4c9007348b4';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=22f33b752443615cb624';
 import {bankBedReferenceDrop} from './changer-bank-model.mjs?v=024cc52a5bbc61da7506';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=workspace-belts-1';
 import {appearanceRole} from './appearance-role.mjs?v=6b7b8efda77bfc3ce74d';
 import * as THREE from 'three';
-import {loadFrameMods,withFrameMods} from './frame-mods.js?v=03ac9b506eeb373f4d3b';
+import {loadFrameMods,withFrameMods} from './frame-mods.js?v=a48f4ddcbf6d9bddac89';
+import {loadExternalComponent} from './component-assets.mjs?v=c2333ef499f46d621550';
 import {setupLighting} from './lighting.js?v=454c19f7ca3795b005de';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
-import {setupMachineNavigation} from './machines.js?v=9a3eae7a7c53d576c80d';
-import {setupConfigurations} from './configurations.js?v=fa6e12a96f0675a08464';
-import {setupAccessories} from './accessories.js?v=workspace-belts-2';
-import {setupPublicInfo} from './public-info.js?v=ba2b9ca1adb080a0d143';
+import {setupMachineNavigation} from './machines.js?v=0b03f369fa4dd3b3de8f';
+import {setupConfigurations} from './configurations.js?v=69f91a752d2fe88547b1';
+import {setupAccessories} from './accessories.js?v=658b22614e8581217dc5';
+import {setupPublicInfo} from './public-info.js?v=13988d3956b89c9920dd';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
-import {createTridentMotion} from './trident-motion.mjs?v=fd57de962d027d09aa07';
+import {createTridentMotion} from './trident-motion.mjs?v=3e79bc1203d5e0d08666';
 import {headPlan,partKey} from './head-assembly.js?v=workspace-belts-1';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=6b0a9c27691a07113f83';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=7b5352d585f32ae03866';
 import {setupChangerBank} from './changer-bank.js?v=47bbc0fef91af2c7241e';
-import {expandedPrinterCatalog} from './machine-head-model.mjs?v=d456b2b417419e1eb493';
+import {expandedPrinterCatalog} from './machine-head-model.mjs?v=41a8e81fcadb44c0e989';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=f471190665709ba23159';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
 import {createHeadMarkers} from './head-markers.mjs?v=workspace-belts-1';
@@ -57,7 +58,8 @@ function register(root,meta){const lookup=new Map(meta.parts.map(p=>[p.key,p]));
 }
 async function asset(id){return workspaceTask(async()=>{if(cached.has(id))return cached.get(id);
  const spec=catalog.base_assets[id]||catalog.assets[id];if(!spec)throw Error('未登録のCAD: '+id);
- const promise=Promise.all([fetch('../'+spec.meta).then(r=>{if(!r.ok)throw Error(spec.meta);return r.json()}),loadModel(new GLTFLoader(),'../'+spec.glb)]).then(([meta,g])=>{
+ const source=spec.external?loadExternalComponent(new GLTFLoader(),spec,import.meta.url).then(({meta,gltf})=>[meta,gltf]):Promise.all([fetch('../'+spec.meta).then(r=>{if(!r.ok)throw Error(spec.meta);return r.json()}),loadModel(new GLTFLoader(),'../'+spec.glb)]);
+ const promise=source.then(([meta,g])=>{
   const root=g.scene;root.visible=false;scene.add(root);const records=register(root,meta);return {root,meta,meshes:records.map(r=>r.mesh),records};
  }).catch(e=>{cached.delete(id);throw e});cached.set(id,promise);return promise;
 });}
