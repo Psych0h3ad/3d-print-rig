@@ -59,7 +59,7 @@
       "url": "https://github.com/VoronDesign/Voron-2/tree/a192410e27ea345644ae5c4b29b4c9c40cbe1a73",
       "scope": "Printed R2 assemblies in 250 / 300 / 350 mm, derived from the official 250 mm assembly.",
       "license": "GPL-3.0",
-      "changes": "350 mm寸法への再配置。選択部品の重複を除き、スカート・ラッチ・固定具・ベッドの取付面を調整。 Zレール固定用ナットをM3へ交換してレール裏の溝へ配置。XYを含む68組のレール固定ナットをボルト軸に合わせて調整。 Complete 250/300/350 upper and lower latch groups are registered to the door seam and native magnet recesses.",
+      "changes": "350 mm寸法への再配置。選択部品の重複を除き、スカート・ラッチ・固定具・ベッドの取付面を調整。 Zレール固定用ナットをM3へ交換してレール裏の溝へ配置。XYを含む68組のレール固定ナットをボルト軸に合わせて調整。 Complete 250/300/350 upper and lower latch groups are registered to the door seam and native magnet recesses. Packages separately retain actual 250/300/350 mm reference dimensions derived from the pinned official 250 mm author CAD. Original native skirt/mount seats and paired Frame Tnuts are rigidly corrected. Selected mate scope only; complete printer clearance and manufacturer kit identity are not certified.",
       "license_url": "../licenses/voron_v24/LICENSE",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
     },
@@ -1771,17 +1771,18 @@
       "display_name": "VORON V2.4 R2 250",
       "configuration": "R2 / Stealthburner / Clockwork 2 / Revo Voron",
       "revision": "R2",
-      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v77/VORON_V2.4_R2_250_SB_CW2_RevoVoron_Assy_STEP.zip",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-stock-v24-92/VORON_V2.4_R2_250_SB_CW2_RevoVoron_Assy_STEP.zip",
       "upstream_url": "https://github.com/VoronDesign/Voron-2/tree/a192410e27ea345644ae5c4b29b4c9c40cbe1a73",
       "license": "GPL-3.0",
       "release_verified": true,
       "part_count": 1308,
       "step_zip": {
-        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v77/VORON_V2.4_R2_250_SB_CW2_RevoVoron_Assy_STEP.zip",
+        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-stock-v24-92/VORON_V2.4_R2_250_SB_CW2_RevoVoron_Assy_STEP.zip",
         "filename": "VORON_V2.4_R2_250_SB_CW2_RevoVoron_Assy_STEP.zip",
-        "bytes": 58069390,
-        "sha256": "361375ea45f4dfaf4db5cf083d26398e37b72d6fe2049606430c48021b76d597"
-      }
+        "bytes": 55889378,
+        "sha256": "03802878ca1351084ac063b24fd42449fb4bbc86f29971be18c4791d1bc38ddb"
+      },
+      "source_derivation_notice": "Actual 250 mm printed R2 reference package derived from pinned official 250 mm VoronDesign author CAD through the existing recorded size adaptation. Native skirt seats and paired Frame Tnuts are rigidly corrected. Selected mate scope only; complete printer clearance and manufacturer kit identity are not certified."
     },
     {
       "id": "voron_v24_300_printed",
@@ -1792,17 +1793,18 @@
       "display_name": "VORON V2.4 R2 300",
       "configuration": "R2 / Stealthburner / Clockwork 2 / Revo Voron",
       "revision": "R2",
-      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v77/VORON_V2.4_R2_300_SB_CW2_RevoVoron_Assy_STEP.zip",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-stock-v24-92/VORON_V2.4_R2_300_SB_CW2_RevoVoron_Assy_STEP.zip",
       "upstream_url": "https://github.com/VoronDesign/Voron-2/tree/a192410e27ea345644ae5c4b29b4c9c40cbe1a73",
       "license": "GPL-3.0",
       "release_verified": true,
       "part_count": 1322,
       "step_zip": {
-        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v77/VORON_V2.4_R2_300_SB_CW2_RevoVoron_Assy_STEP.zip",
+        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-stock-v24-92/VORON_V2.4_R2_300_SB_CW2_RevoVoron_Assy_STEP.zip",
         "filename": "VORON_V2.4_R2_300_SB_CW2_RevoVoron_Assy_STEP.zip",
-        "bytes": 58521106,
-        "sha256": "57a3cd6f4b21fc83da04dce8ae1225d620be8e681003b31fcb86670e91da4583"
-      }
+        "bytes": 56323844,
+        "sha256": "ec83e684f436536d3126ba9447e85c1b4fee0d72ad7cdba0e65d26b35c0cc1b5"
+      },
+      "source_derivation_notice": "Actual 300 mm printed R2 reference package derived from pinned official 250 mm VoronDesign author CAD through the existing recorded size adaptation. Native skirt seats and paired Frame Tnuts are rigidly corrected. Selected mate scope only; complete printer clearance and manufacturer kit identity are not certified."
     },
     {
       "id": "voron_v24_350_printed",
@@ -1813,17 +1815,18 @@
       "display_name": "VORON V2.4 R2 350",
       "configuration": "R2 / Stealthburner / Clockwork 2 / Revo Voron",
       "revision": "R2",
-      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v77/VORON_V2.4_R2_350_SB_CW2_RevoVoron_Assy_STEP.zip",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-stock-v24-92/VORON_V2.4_R2_350_SB_CW2_RevoVoron_Assy_STEP.zip",
       "upstream_url": "https://github.com/VoronDesign/Voron-2/tree/a192410e27ea345644ae5c4b29b4c9c40cbe1a73",
       "license": "GPL-3.0",
       "release_verified": true,
       "part_count": 1336,
       "step_zip": {
-        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v77/VORON_V2.4_R2_350_SB_CW2_RevoVoron_Assy_STEP.zip",
+        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-stock-v24-92/VORON_V2.4_R2_350_SB_CW2_RevoVoron_Assy_STEP.zip",
         "filename": "VORON_V2.4_R2_350_SB_CW2_RevoVoron_Assy_STEP.zip",
-        "bytes": 58817017,
-        "sha256": "db9e8c9b2a83a1ccd78cb836c623dc86df3b4f581f28527aba3aab918553ef45"
-      }
+        "bytes": 56612805,
+        "sha256": "60a2fb8115296bb8ebe3b3e8d33cad9ba3d2cf30e8443dc37f9b7c9c358f4d36"
+      },
+      "source_derivation_notice": "Actual 350 mm printed R2 reference package derived from pinned official 250 mm VoronDesign author CAD through the existing recorded size adaptation. Native skirt seats and paired Frame Tnuts are rigidly corrected. Selected mate scope only; complete printer clearance and manufacturer kit identity are not certified."
     },
     {
       "id": "voron_trident_250",
@@ -2119,6 +2122,14 @@
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v67/viewer-horizontal-sc-source.zip",
       "bytes": 11774457,
       "sha256": "dd905f66d9c11e40f6c7bb106ab6a42575c6f65f2ca8f1c8786abf0ff4d2e033"
+    },
+    {
+      "label": "Stock V24 250/300/350 native skirt/mount rigid corrections",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-stock-v24-92/STOCK_V24_NATIVE_SOURCE_92.zip",
+      "bytes": 4217205,
+      "sha256": "6a94fd8bf03b8b06293709ddf11e1c95e3b2057efe1f1eebd1aa1bf072af48ae",
+      "license": "GPL-3.0",
+      "release_verified": false
     }
   ]
 }

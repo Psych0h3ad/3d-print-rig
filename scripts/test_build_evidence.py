@@ -89,10 +89,56 @@ class EvidenceDeliveryTest(unittest.TestCase):
         file.write_text(json.dumps(proof))
         with self.assertRaisesRegex(ValueError, 'stale or failed'):
             validate_mounting_evidence(self.root)
+
         proof['model_bundle_sha256'] = 'bundle-current'
         proof['retention']['all_passed'] = False
         file.write_text(json.dumps(proof))
         with self.assertRaisesRegex(ValueError, 'stale or failed'):
+            validate_mounting_evidence(self.root)
+
+    def test_stock_delta_requires_current_actual_assets_and_preserves_unqualified_scope(self):
+        file = self.root / 'STOCK_SKIRT_RETENTION_QA_92.json'
+        self.evidence.update(stock_skirt_delta_proof=file.name,
+                             stock_skirt_retained_from_model_bundle_sha256='baseline')
+        self.save()
+        with self.assertRaisesRegex(ValueError, 'Missing stock skirt'):
+            validate_mounting_evidence(self.root)
+        machines = {f'voron_v24_{size}_{kind}' for size in [250, 300, 350] for kind in ['printed','ldo_cnc']}
+        inputs = {}
+        for machine in machines:
+            for name in ['model.glb.gz','assembly_manifest.json','machine_profile.json']:
+                path = self.root / 'machines' / machine / name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                data = ('independent delivery fixture ' + machine + name).encode()
+                path.write_bytes(data)
+                inputs[path.relative_to(self.root).as_posix()] = hashlib.sha256(data).hexdigest()
+        proof = dict(schema='stock-v24-rigid-skirt-logical-delta-v1', model_bundle_sha256='bundle-current',
+                     baseline_bundle_sha256='baseline', all_passed=True,
+                     all_six_host_blocks_rails_native_context_and_profiles_unchanged=True,
+                     all_GLb_topology_materials_and_binary_unchanged=True,
+                     old_selected_native_execution_unchanged=True, old_selected_native_axes=120,
+                     all128_scope_not_promoted=True, source_insert_invalid_Common_and_both_IN_findings_unresolved=True,
+                     whole_machine_clearance_certified=False, changed_keys={m:['fixture'] for m in machines},
+                     input_sha256=inputs)
+        def save_proof():
+            file.write_text(json.dumps(proof))
+            self.evidence['input_sha256'][file.name] = hashlib.sha256(file.read_bytes()).hexdigest()
+            self.save()
+        save_proof()
+        validate_mounting_evidence(self.root)
+        file.write_bytes(file.read_bytes() + b' ')
+        with self.assertRaisesRegex(ValueError, 'byte identity changed'):
+            validate_mounting_evidence(self.root)
+        save_proof()
+        proof['whole_machine_clearance_certified'] = True
+        save_proof()
+        with self.assertRaisesRegex(ValueError, 'exceeds its scope'):
+            validate_mounting_evidence(self.root)
+        proof['whole_machine_clearance_certified'] = False
+        save_proof()
+        first = next(iter(inputs))
+        (self.root / first).write_bytes(b'changed actual model')
+        with self.assertRaisesRegex(ValueError, 'shipped input changed'):
             validate_mounting_evidence(self.root)
 
 

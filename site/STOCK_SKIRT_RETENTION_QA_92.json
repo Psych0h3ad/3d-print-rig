@@ -1,0 +1,4191 @@
+{
+  "schema": "stock-v24-rigid-skirt-logical-delta-v1",
+  "model_bundle_sha256": "a79fe940bf766ba2323dc96defc4e1970e2722a8cc3ace381d66929449a1dee8",
+  "baseline_bundle_sha256": "9b85cfcacd9dc224e79340f6bc3918748cd4938a08da17d7e7b1b7b9655e3037",
+  "source_commit": "835b3b5512fd8510e8990086c984b658101b9b2b",
+  "all_passed": true,
+  "all_six_host_blocks_rails_native_context_and_profiles_unchanged": true,
+  "all_GLb_topology_materials_and_binary_unchanged": true,
+  "changed_keys": {
+    "voron_v24_250_printed": [
+      "v24_00882",
+      "v24_00906",
+      "v24_00910",
+      "v24_00936",
+      "v24_01005",
+      "v24_01007",
+      "v24_01048",
+      "v24_01050"
+    ],
+    "voron_v24_250_ldo_cnc": [
+      "v24_00882",
+      "v24_00906",
+      "v24_00910",
+      "v24_00936",
+      "v24_01005",
+      "v24_01007",
+      "v24_01048",
+      "v24_01050"
+    ],
+    "voron_v24_300_printed": [
+      "v24_00858",
+      "v24_00860",
+      "v24_00865",
+      "v24_00869",
+      "v24_00873",
+      "v24_00875",
+      "v24_00882",
+      "v24_00906",
+      "v24_00910",
+      "v24_00936",
+      "v24_00953",
+      "v24_00954",
+      "v24_01005",
+      "v24_01007",
+      "v24_01020",
+      "v24_01021",
+      "v24_01022",
+      "v24_01032",
+      "v24_01034",
+      "v24_01035",
+      "v24_01037",
+      "v24_01048",
+      "v24_01050"
+    ],
+    "voron_v24_300_ldo_cnc": [
+      "v24_00858",
+      "v24_00860",
+      "v24_00865",
+      "v24_00869",
+      "v24_00873",
+      "v24_00875",
+      "v24_00882",
+      "v24_00906",
+      "v24_00910",
+      "v24_00936",
+      "v24_00953",
+      "v24_00954",
+      "v24_01005",
+      "v24_01007",
+      "v24_01020",
+      "v24_01021",
+      "v24_01022",
+      "v24_01032",
+      "v24_01034",
+      "v24_01035",
+      "v24_01037",
+      "v24_01048",
+      "v24_01050"
+    ],
+    "voron_v24_350_printed": [
+      "v24_00859",
+      "v24_00860",
+      "v24_00865",
+      "v24_00870",
+      "v24_00873",
+      "v24_00875",
+      "v24_00882",
+      "v24_00906",
+      "v24_00910",
+      "v24_00936",
+      "v24_00953",
+      "v24_00954",
+      "v24_01005",
+      "v24_01007",
+      "v24_01020",
+      "v24_01021",
+      "v24_01022",
+      "v24_01032",
+      "v24_01034",
+      "v24_01035",
+      "v24_01037",
+      "v24_01048",
+      "v24_01050"
+    ],
+    "voron_v24_350_ldo_cnc": [
+      "v24_00859",
+      "v24_00860",
+      "v24_00865",
+      "v24_00870",
+      "v24_00873",
+      "v24_00875",
+      "v24_00882",
+      "v24_00906",
+      "v24_00910",
+      "v24_00936",
+      "v24_00953",
+      "v24_00954",
+      "v24_01005",
+      "v24_01007",
+      "v24_01020",
+      "v24_01021",
+      "v24_01022",
+      "v24_01032",
+      "v24_01034",
+      "v24_01035",
+      "v24_01037",
+      "v24_01048",
+      "v24_01050"
+    ]
+  },
+  "old_selected_native_axes": 120,
+  "old_selected_native_execution_unchanged": true,
+  "all128_scope_not_promoted": true,
+  "source_insert_invalid_Common_and_both_IN_findings_unresolved": true,
+  "whole_machine_clearance_certified": false,
+  "independent_context_proof_sha256": "30262d6dba3ddf4dbfa6ce8b2e96651ee7b7b8d1859be0cb2d9f472b82c08f3b",
+  "probe_changed_skirt_continuous_bound_rows": [
+    {
+      "machine_id": "voron_v24_250_printed",
+      "module": "sphinx_cartographer_v4",
+      "native_module_metadata_sha256": "e34fcee41c0abe5c786f0dbe826591263128de549eb0d31d50dd32d772a2dca5",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.60874767018493,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 58.90125232990937,
+      "minimum_Z_separation_mm": 53.201252229885604,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          0,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_printed",
+      "module": "sphinx_beacon_revh",
+      "native_module_metadata_sha256": "48878e4658694060c073fad15144a8e03b5ad38db137e4476b6002861540870a",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.5891955,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 58.920804500094306,
+      "minimum_Z_separation_mm": 53.22080440007054,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          0,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_printed",
+      "module": "sphinx_cartographer_v4",
+      "native_module_metadata_sha256": "e34fcee41c0abe5c786f0dbe826591263128de549eb0d31d50dd32d772a2dca5",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.60874767018493,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.201252329909366,
+      "minimum_Z_separation_mm": 53.5012522298856,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          0,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_printed",
+      "module": "sphinx_beacon_revh",
+      "native_module_metadata_sha256": "48878e4658694060c073fad15144a8e03b5ad38db137e4476b6002861540870a",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.5891955,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.2208045000943,
+      "minimum_Z_separation_mm": 53.52080440007054,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          0,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_printed",
+      "module": "xol_beacon_revd_uhf",
+      "native_module_metadata_sha256": "35f4520e7dc0d8922a9e8f0548dd77d02b6088de966f2e01d3fd75e7f1b3a423",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.47921882390244,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.313085442430975,
+      "minimum_Z_separation_mm": 53.61308534240721,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          0,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_printed",
+      "module": "xol_beacon_revh_uhf",
+      "native_module_metadata_sha256": "fb9dfa3433410296f27b0f89342cc89f5efcd52cd6901b10eda8caab80cb35e4",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.448621323903,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.282487942431544,
+      "minimum_Z_separation_mm": 53.58248784240778,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          0,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_printed",
+      "module": "xol_cartographer_v1_v3_uhf",
+      "native_module_metadata_sha256": "9fc902dfa7ca10bd223df5d986759c74dd2bbf64364e922fc3fabf0fefb91793",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.4985958239024,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.33246244243094,
+      "minimum_Z_separation_mm": 53.63246234240717,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          0,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_printed",
+      "module": "xol_cartographer_v4_uhf",
+      "native_module_metadata_sha256": "f7338c0e6c713580f918de5661fc54845979b6d7304613ea4a968ebb3f30f5a5",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.32906843623886,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.16293505476739,
+      "minimum_Z_separation_mm": 53.46293495474362,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          0,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_printed",
+      "module": "xol_beacon_revd_normal",
+      "native_module_metadata_sha256": "34ed00679d05133860247e7cf2f3677ccbe71522c888e0e414751006fe370817",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.879218824106,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.21308573861029,
+      "minimum_Z_separation_mm": 53.513085638586524,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          0,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_printed",
+      "module": "xol_beacon_revh_normal",
+      "native_module_metadata_sha256": "038f926c3da5abbbb70b390bbc8f02afe4b14a49415cca7d77390db4669e4a71",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.84862132410655,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.18248823861086,
+      "minimum_Z_separation_mm": 53.482488138587094,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          0,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_printed",
+      "module": "xol_cartographer_v1_v3_normal",
+      "native_module_metadata_sha256": "db52d1685e580e17558b687384ab283de287407eb1ac48e5fecb4f3c6bdd06a3",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.89859582410605,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.232462738610366,
+      "minimum_Z_separation_mm": 53.5324626385866,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          0,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_printed",
+      "module": "xol_cartographer_v4_normal",
+      "native_module_metadata_sha256": "432d87e5362d8e1a098de5909e1ad92faa16a96260b5ebf1775f4e52499bd164",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.82906805476915,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.162934969273465,
+      "minimum_Z_separation_mm": 53.4629348692497,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          0,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_printed",
+      "module": "xol_beacon_revd_normal_revo",
+      "native_module_metadata_sha256": "3eefc87fb54c510ffeda819aacd4d6a7192f572bba885ab48cba9a37b1716ee4",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.579218824106,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.19308573861031,
+      "minimum_Z_separation_mm": 53.49308563858654,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          0,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_printed",
+      "module": "xol_beacon_revh_normal_revo",
+      "native_module_metadata_sha256": "012090089ed31f7fada7a89baeeaf824d4056d2d0d42e3ba5781076dca9cc46f",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.54862132410653,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.16248823861082,
+      "minimum_Z_separation_mm": 53.462488138587055,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          0,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_printed",
+      "module": "xol_cartographer_v1_v3_normal_revo",
+      "native_module_metadata_sha256": "4dd6fe695ba85e12a83892499dff0de413b5cdf63eb80d5550a1cb4b53d18bc0",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.598595824106,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.21246273861027,
+      "minimum_Z_separation_mm": 53.512462638586506,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          0,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_printed",
+      "module": "xol_cartographer_v4_normal_revo",
+      "native_module_metadata_sha256": "c6a5868deb718faa2d7723abac5a3bb4c1fefcae38ee1f684bec200c6b3bbe6c",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.52906805476914,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.142934969273426,
+      "minimum_Z_separation_mm": 53.44293486924966,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          0,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_printed",
+      "module": "xol_beacon_revd_normal",
+      "native_module_metadata_sha256": "34ed00679d05133860247e7cf2f3677ccbe71522c888e0e414751006fe370817",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.879218824106,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.213349772560264,
+      "minimum_Z_separation_mm": 53.5133496725365,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          0,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_printed",
+      "module": "xol_beacon_revh_normal",
+      "native_module_metadata_sha256": "038f926c3da5abbbb70b390bbc8f02afe4b14a49415cca7d77390db4669e4a71",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.84862132410655,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.18275227256083,
+      "minimum_Z_separation_mm": 53.48275217253707,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          0,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_printed",
+      "module": "xol_cartographer_v1_v3_normal",
+      "native_module_metadata_sha256": "db52d1685e580e17558b687384ab283de287407eb1ac48e5fecb4f3c6bdd06a3",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.89859582410605,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.23272677256034,
+      "minimum_Z_separation_mm": 53.532726672536576,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          0,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_printed",
+      "module": "xol_cartographer_v4_normal",
+      "native_module_metadata_sha256": "432d87e5362d8e1a098de5909e1ad92faa16a96260b5ebf1775f4e52499bd164",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.82906805476915,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.16319900322344,
+      "minimum_Z_separation_mm": 53.463198903199675,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          0,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_printed",
+      "module": "xol_beacon_revd_uhf",
+      "native_module_metadata_sha256": "35f4520e7dc0d8922a9e8f0548dd77d02b6088de966f2e01d3fd75e7f1b3a423",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.47921882390244,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.33442984961266,
+      "minimum_Z_separation_mm": 53.6344297495889,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          0,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_printed",
+      "module": "xol_beacon_revh_uhf",
+      "native_module_metadata_sha256": "fb9dfa3433410296f27b0f89342cc89f5efcd52cd6901b10eda8caab80cb35e4",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.448621323903,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.30383234961323,
+      "minimum_Z_separation_mm": 53.603832249589466,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          0,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_printed",
+      "module": "xol_cartographer_v1_v3_uhf",
+      "native_module_metadata_sha256": "9fc902dfa7ca10bd223df5d986759c74dd2bbf64364e922fc3fabf0fefb91793",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.4985958239024,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.353806849612624,
+      "minimum_Z_separation_mm": 53.65380674958886,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          0,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_printed",
+      "module": "xol_cartographer_v4_uhf",
+      "native_module_metadata_sha256": "f7338c0e6c713580f918de5661fc54845979b6d7304613ea4a968ebb3f30f5a5",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.32906843623886,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.184279461949075,
+      "minimum_Z_separation_mm": 53.48427936192531,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          0,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_printed",
+      "module": "sphinx_cartographer_v4",
+      "native_module_metadata_sha256": "e34fcee41c0abe5c786f0dbe826591263128de549eb0d31d50dd32d772a2dca5",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.60874767018493,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 58.90125232990937,
+      "minimum_Z_separation_mm": 53.201252229885604,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          0,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_printed",
+      "module": "sphinx_beacon_revh",
+      "native_module_metadata_sha256": "48878e4658694060c073fad15144a8e03b5ad38db137e4476b6002861540870a",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.5891955,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 58.920804500094306,
+      "minimum_Z_separation_mm": 53.22080440007054,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          0,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_printed",
+      "module": "sphinx_cartographer_v4",
+      "native_module_metadata_sha256": "e34fcee41c0abe5c786f0dbe826591263128de549eb0d31d50dd32d772a2dca5",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.60874767018493,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.15125232990937,
+      "minimum_Z_separation_mm": 53.451252229885604,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          0,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_printed",
+      "module": "sphinx_beacon_revh",
+      "native_module_metadata_sha256": "48878e4658694060c073fad15144a8e03b5ad38db137e4476b6002861540870a",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.5891955,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.170804500094306,
+      "minimum_Z_separation_mm": 53.47080440007054,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          0,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_ldo_cnc",
+      "module": "sphinx_cartographer_v4",
+      "native_module_metadata_sha256": "e34fcee41c0abe5c786f0dbe826591263128de549eb0d31d50dd32d772a2dca5",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.60874767018493,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 58.90125232990937,
+      "minimum_Z_separation_mm": 53.201252229885604,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          56,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_ldo_cnc",
+      "module": "sphinx_beacon_revh",
+      "native_module_metadata_sha256": "48878e4658694060c073fad15144a8e03b5ad38db137e4476b6002861540870a",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.5891955,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 58.920804500094306,
+      "minimum_Z_separation_mm": 53.22080440007054,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          56,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_ldo_cnc",
+      "module": "sphinx_cartographer_v4",
+      "native_module_metadata_sha256": "e34fcee41c0abe5c786f0dbe826591263128de549eb0d31d50dd32d772a2dca5",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.60874767018493,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.201252329909366,
+      "minimum_Z_separation_mm": 53.5012522298856,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          56,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_ldo_cnc",
+      "module": "sphinx_beacon_revh",
+      "native_module_metadata_sha256": "48878e4658694060c073fad15144a8e03b5ad38db137e4476b6002861540870a",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.5891955,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.2208045000943,
+      "minimum_Z_separation_mm": 53.52080440007054,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          56,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_ldo_cnc",
+      "module": "xol_beacon_revd_uhf",
+      "native_module_metadata_sha256": "35f4520e7dc0d8922a9e8f0548dd77d02b6088de966f2e01d3fd75e7f1b3a423",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.47921882390244,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.313085442430975,
+      "minimum_Z_separation_mm": 53.61308534240721,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          56,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_ldo_cnc",
+      "module": "xol_beacon_revh_uhf",
+      "native_module_metadata_sha256": "fb9dfa3433410296f27b0f89342cc89f5efcd52cd6901b10eda8caab80cb35e4",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.448621323903,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.282487942431544,
+      "minimum_Z_separation_mm": 53.58248784240778,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          56,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_ldo_cnc",
+      "module": "xol_cartographer_v1_v3_uhf",
+      "native_module_metadata_sha256": "9fc902dfa7ca10bd223df5d986759c74dd2bbf64364e922fc3fabf0fefb91793",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.4985958239024,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.33246244243094,
+      "minimum_Z_separation_mm": 53.63246234240717,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          56,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_ldo_cnc",
+      "module": "xol_cartographer_v4_uhf",
+      "native_module_metadata_sha256": "f7338c0e6c713580f918de5661fc54845979b6d7304613ea4a968ebb3f30f5a5",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.32906843623886,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.16293505476739,
+      "minimum_Z_separation_mm": 53.46293495474362,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          56,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_ldo_cnc",
+      "module": "xol_beacon_revd_normal",
+      "native_module_metadata_sha256": "34ed00679d05133860247e7cf2f3677ccbe71522c888e0e414751006fe370817",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.879218824106,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.21308573861029,
+      "minimum_Z_separation_mm": 53.513085638586524,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          56,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_ldo_cnc",
+      "module": "xol_beacon_revh_normal",
+      "native_module_metadata_sha256": "038f926c3da5abbbb70b390bbc8f02afe4b14a49415cca7d77390db4669e4a71",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.84862132410655,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.18248823861086,
+      "minimum_Z_separation_mm": 53.482488138587094,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          56,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_ldo_cnc",
+      "module": "xol_cartographer_v1_v3_normal",
+      "native_module_metadata_sha256": "db52d1685e580e17558b687384ab283de287407eb1ac48e5fecb4f3c6bdd06a3",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.89859582410605,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.232462738610366,
+      "minimum_Z_separation_mm": 53.5324626385866,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          56,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_ldo_cnc",
+      "module": "xol_cartographer_v4_normal",
+      "native_module_metadata_sha256": "432d87e5362d8e1a098de5909e1ad92faa16a96260b5ebf1775f4e52499bd164",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.82906805476915,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.162934969273465,
+      "minimum_Z_separation_mm": 53.4629348692497,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          56,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_ldo_cnc",
+      "module": "xol_beacon_revd_normal_revo",
+      "native_module_metadata_sha256": "3eefc87fb54c510ffeda819aacd4d6a7192f572bba885ab48cba9a37b1716ee4",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.579218824106,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.19308573861031,
+      "minimum_Z_separation_mm": 53.49308563858654,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          56,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_ldo_cnc",
+      "module": "xol_beacon_revh_normal_revo",
+      "native_module_metadata_sha256": "012090089ed31f7fada7a89baeeaf824d4056d2d0d42e3ba5781076dca9cc46f",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.54862132410653,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.16248823861082,
+      "minimum_Z_separation_mm": 53.462488138587055,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          56,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_ldo_cnc",
+      "module": "xol_cartographer_v1_v3_normal_revo",
+      "native_module_metadata_sha256": "4dd6fe695ba85e12a83892499dff0de413b5cdf63eb80d5550a1cb4b53d18bc0",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.598595824106,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.21246273861027,
+      "minimum_Z_separation_mm": 53.512462638586506,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          56,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_ldo_cnc",
+      "module": "xol_cartographer_v4_normal_revo",
+      "native_module_metadata_sha256": "c6a5868deb718faa2d7723abac5a3bb4c1fefcae38ee1f684bec200c6b3bbe6c",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.52906805476914,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.142934969273426,
+      "minimum_Z_separation_mm": 53.44293486924966,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          56,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_ldo_cnc",
+      "module": "xol_beacon_revd_normal",
+      "native_module_metadata_sha256": "34ed00679d05133860247e7cf2f3677ccbe71522c888e0e414751006fe370817",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.879218824106,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.213349772560264,
+      "minimum_Z_separation_mm": 53.5133496725365,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          56,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_ldo_cnc",
+      "module": "xol_beacon_revh_normal",
+      "native_module_metadata_sha256": "038f926c3da5abbbb70b390bbc8f02afe4b14a49415cca7d77390db4669e4a71",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.84862132410655,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.18275227256083,
+      "minimum_Z_separation_mm": 53.48275217253707,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          56,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_ldo_cnc",
+      "module": "xol_cartographer_v1_v3_normal",
+      "native_module_metadata_sha256": "db52d1685e580e17558b687384ab283de287407eb1ac48e5fecb4f3c6bdd06a3",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.89859582410605,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.23272677256034,
+      "minimum_Z_separation_mm": 53.532726672536576,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          56,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_ldo_cnc",
+      "module": "xol_cartographer_v4_normal",
+      "native_module_metadata_sha256": "432d87e5362d8e1a098de5909e1ad92faa16a96260b5ebf1775f4e52499bd164",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.82906805476915,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.16319900322344,
+      "minimum_Z_separation_mm": 53.463198903199675,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          56,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_ldo_cnc",
+      "module": "xol_beacon_revd_uhf",
+      "native_module_metadata_sha256": "35f4520e7dc0d8922a9e8f0548dd77d02b6088de966f2e01d3fd75e7f1b3a423",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.47921882390244,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.33442984961266,
+      "minimum_Z_separation_mm": 53.6344297495889,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          56,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_ldo_cnc",
+      "module": "xol_beacon_revh_uhf",
+      "native_module_metadata_sha256": "fb9dfa3433410296f27b0f89342cc89f5efcd52cd6901b10eda8caab80cb35e4",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.448621323903,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.30383234961323,
+      "minimum_Z_separation_mm": 53.603832249589466,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          56,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_ldo_cnc",
+      "module": "xol_cartographer_v1_v3_uhf",
+      "native_module_metadata_sha256": "9fc902dfa7ca10bd223df5d986759c74dd2bbf64364e922fc3fabf0fefb91793",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.4985958239024,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.353806849612624,
+      "minimum_Z_separation_mm": 53.65380674958886,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          56,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_ldo_cnc",
+      "module": "xol_cartographer_v4_uhf",
+      "native_module_metadata_sha256": "f7338c0e6c713580f918de5661fc54845979b6d7304613ea4a968ebb3f30f5a5",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.32906843623886,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.184279461949075,
+      "minimum_Z_separation_mm": 53.48427936192531,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          56,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_ldo_cnc",
+      "module": "sphinx_cartographer_v4",
+      "native_module_metadata_sha256": "e34fcee41c0abe5c786f0dbe826591263128de549eb0d31d50dd32d772a2dca5",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.60874767018493,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 58.90125232990937,
+      "minimum_Z_separation_mm": 53.201252229885604,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          56.0,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_ldo_cnc",
+      "module": "sphinx_beacon_revh",
+      "native_module_metadata_sha256": "48878e4658694060c073fad15144a8e03b5ad38db137e4476b6002861540870a",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.5891955,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 58.920804500094306,
+      "minimum_Z_separation_mm": 53.22080440007054,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          56.0,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_ldo_cnc",
+      "module": "sphinx_cartographer_v4",
+      "native_module_metadata_sha256": "e34fcee41c0abe5c786f0dbe826591263128de549eb0d31d50dd32d772a2dca5",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.60874767018493,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.15125232990937,
+      "minimum_Z_separation_mm": 53.451252229885604,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          56.0,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_250_ldo_cnc",
+      "module": "sphinx_beacon_revh",
+      "native_module_metadata_sha256": "48878e4658694060c073fad15144a8e03b5ad38db137e4476b6002861540870a",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.5891955,
+      "changed_skirt_native_Z_max_mm": 5.700000100023767,
+      "world_swept_Z_min_mm": 59.170804500094306,
+      "minimum_Z_separation_mm": 53.47080440007054,
+      "display_limits_mm": {
+        "X": [
+          0,
+          250
+        ],
+        "Y": [
+          56.0,
+          250
+        ],
+        "Z": [
+          0,
+          230
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_printed",
+      "module": "sphinx_cartographer_v4",
+      "native_module_metadata_sha256": "e34fcee41c0abe5c786f0dbe826591263128de549eb0d31d50dd32d772a2dca5",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.60874767018493,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 58.9012523299094,
+      "minimum_Z_separation_mm": 53.20125222980115,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          0,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_printed",
+      "module": "sphinx_beacon_revh",
+      "native_module_metadata_sha256": "48878e4658694060c073fad15144a8e03b5ad38db137e4476b6002861540870a",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.5891955,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 58.920804500094306,
+      "minimum_Z_separation_mm": 53.22080439998606,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          0,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_printed",
+      "module": "sphinx_cartographer_v4",
+      "native_module_metadata_sha256": "e34fcee41c0abe5c786f0dbe826591263128de549eb0d31d50dd32d772a2dca5",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.60874767018493,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.201252329909394,
+      "minimum_Z_separation_mm": 53.501252229801146,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          0,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_printed",
+      "module": "sphinx_beacon_revh",
+      "native_module_metadata_sha256": "48878e4658694060c073fad15144a8e03b5ad38db137e4476b6002861540870a",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.5891955,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.2208045000943,
+      "minimum_Z_separation_mm": 53.520804399986055,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          0,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_printed",
+      "module": "xol_beacon_revd_uhf",
+      "native_module_metadata_sha256": "35f4520e7dc0d8922a9e8f0548dd77d02b6088de966f2e01d3fd75e7f1b3a423",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.47921882390244,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.313085442431,
+      "minimum_Z_separation_mm": 53.613085342322755,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          0,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_printed",
+      "module": "xol_beacon_revh_uhf",
+      "native_module_metadata_sha256": "fb9dfa3433410296f27b0f89342cc89f5efcd52cd6901b10eda8caab80cb35e4",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.448621323903,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.28248794243157,
+      "minimum_Z_separation_mm": 53.582487842323324,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          0,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_printed",
+      "module": "xol_cartographer_v1_v3_uhf",
+      "native_module_metadata_sha256": "9fc902dfa7ca10bd223df5d986759c74dd2bbf64364e922fc3fabf0fefb91793",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.4985958239024,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.332462442430966,
+      "minimum_Z_separation_mm": 53.63246234232272,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          0,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_printed",
+      "module": "xol_cartographer_v4_uhf",
+      "native_module_metadata_sha256": "f7338c0e6c713580f918de5661fc54845979b6d7304613ea4a968ebb3f30f5a5",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.32906843623886,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.162935054767416,
+      "minimum_Z_separation_mm": 53.46293495465917,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          0,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_printed",
+      "module": "xol_beacon_revd_normal",
+      "native_module_metadata_sha256": "34ed00679d05133860247e7cf2f3677ccbe71522c888e0e414751006fe370817",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.879218824106,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.21308573861032,
+      "minimum_Z_separation_mm": 53.51308563850207,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          0,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_printed",
+      "module": "xol_beacon_revh_normal",
+      "native_module_metadata_sha256": "038f926c3da5abbbb70b390bbc8f02afe4b14a49415cca7d77390db4669e4a71",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.84862132410655,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.18248823861089,
+      "minimum_Z_separation_mm": 53.48248813850264,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          0,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_printed",
+      "module": "xol_cartographer_v1_v3_normal",
+      "native_module_metadata_sha256": "db52d1685e580e17558b687384ab283de287407eb1ac48e5fecb4f3c6bdd06a3",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.89859582410605,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.232462738610394,
+      "minimum_Z_separation_mm": 53.532462638502146,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          0,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_printed",
+      "module": "xol_cartographer_v4_normal",
+      "native_module_metadata_sha256": "432d87e5362d8e1a098de5909e1ad92faa16a96260b5ebf1775f4e52499bd164",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.82906805476915,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.16293496927349,
+      "minimum_Z_separation_mm": 53.462934869165245,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          0,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_printed",
+      "module": "xol_beacon_revd_normal_revo",
+      "native_module_metadata_sha256": "3eefc87fb54c510ffeda819aacd4d6a7192f572bba885ab48cba9a37b1716ee4",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.579218824106,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.193085738610336,
+      "minimum_Z_separation_mm": 53.49308563850209,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          0,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_printed",
+      "module": "xol_beacon_revh_normal_revo",
+      "native_module_metadata_sha256": "012090089ed31f7fada7a89baeeaf824d4056d2d0d42e3ba5781076dca9cc46f",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.54862132410653,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.16248823861085,
+      "minimum_Z_separation_mm": 53.4624881385026,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          0,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_printed",
+      "module": "xol_cartographer_v1_v3_normal_revo",
+      "native_module_metadata_sha256": "4dd6fe695ba85e12a83892499dff0de413b5cdf63eb80d5550a1cb4b53d18bc0",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.598595824106,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.2124627386103,
+      "minimum_Z_separation_mm": 53.51246263850205,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          0,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_printed",
+      "module": "xol_cartographer_v4_normal_revo",
+      "native_module_metadata_sha256": "c6a5868deb718faa2d7723abac5a3bb4c1fefcae38ee1f684bec200c6b3bbe6c",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.52906805476914,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.142934969273455,
+      "minimum_Z_separation_mm": 53.44293486916521,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          0,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_printed",
+      "module": "xol_beacon_revd_normal",
+      "native_module_metadata_sha256": "34ed00679d05133860247e7cf2f3677ccbe71522c888e0e414751006fe370817",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.879218824106,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.21334977256029,
+      "minimum_Z_separation_mm": 53.513349672452044,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          0,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_printed",
+      "module": "xol_beacon_revh_normal",
+      "native_module_metadata_sha256": "038f926c3da5abbbb70b390bbc8f02afe4b14a49415cca7d77390db4669e4a71",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.84862132410655,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.18275227256086,
+      "minimum_Z_separation_mm": 53.482752172452614,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          0,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_printed",
+      "module": "xol_cartographer_v1_v3_normal",
+      "native_module_metadata_sha256": "db52d1685e580e17558b687384ab283de287407eb1ac48e5fecb4f3c6bdd06a3",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.89859582410605,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.23272677256037,
+      "minimum_Z_separation_mm": 53.53272667245212,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          0,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_printed",
+      "module": "xol_cartographer_v4_normal",
+      "native_module_metadata_sha256": "432d87e5362d8e1a098de5909e1ad92faa16a96260b5ebf1775f4e52499bd164",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.82906805476915,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.16319900322347,
+      "minimum_Z_separation_mm": 53.46319890311522,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          0,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_printed",
+      "module": "xol_beacon_revd_uhf",
+      "native_module_metadata_sha256": "35f4520e7dc0d8922a9e8f0548dd77d02b6088de966f2e01d3fd75e7f1b3a423",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.47921882390244,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.33442984961269,
+      "minimum_Z_separation_mm": 53.63442974950444,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          0,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_printed",
+      "module": "xol_beacon_revh_uhf",
+      "native_module_metadata_sha256": "fb9dfa3433410296f27b0f89342cc89f5efcd52cd6901b10eda8caab80cb35e4",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.448621323903,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.30383234961326,
+      "minimum_Z_separation_mm": 53.60383224950501,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          0,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_printed",
+      "module": "xol_cartographer_v1_v3_uhf",
+      "native_module_metadata_sha256": "9fc902dfa7ca10bd223df5d986759c74dd2bbf64364e922fc3fabf0fefb91793",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.4985958239024,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.35380684961265,
+      "minimum_Z_separation_mm": 53.653806749504405,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          0,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_printed",
+      "module": "xol_cartographer_v4_uhf",
+      "native_module_metadata_sha256": "f7338c0e6c713580f918de5661fc54845979b6d7304613ea4a968ebb3f30f5a5",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.32906843623886,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.1842794619491,
+      "minimum_Z_separation_mm": 53.484279361840855,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          0,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_printed",
+      "module": "sphinx_cartographer_v4",
+      "native_module_metadata_sha256": "e34fcee41c0abe5c786f0dbe826591263128de549eb0d31d50dd32d772a2dca5",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.60874767018493,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 58.9012523299094,
+      "minimum_Z_separation_mm": 53.20125222980115,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          0,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_printed",
+      "module": "sphinx_beacon_revh",
+      "native_module_metadata_sha256": "48878e4658694060c073fad15144a8e03b5ad38db137e4476b6002861540870a",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.5891955,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 58.920804500094306,
+      "minimum_Z_separation_mm": 53.22080439998606,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          0,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_printed",
+      "module": "sphinx_cartographer_v4",
+      "native_module_metadata_sha256": "e34fcee41c0abe5c786f0dbe826591263128de549eb0d31d50dd32d772a2dca5",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.60874767018493,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.1512523299094,
+      "minimum_Z_separation_mm": 53.45125222980115,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          0,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_printed",
+      "module": "sphinx_beacon_revh",
+      "native_module_metadata_sha256": "48878e4658694060c073fad15144a8e03b5ad38db137e4476b6002861540870a",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.5891955,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.170804500094306,
+      "minimum_Z_separation_mm": 53.47080439998606,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          0,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_ldo_cnc",
+      "module": "sphinx_cartographer_v4",
+      "native_module_metadata_sha256": "e34fcee41c0abe5c786f0dbe826591263128de549eb0d31d50dd32d772a2dca5",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.60874767018493,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 58.9012523299094,
+      "minimum_Z_separation_mm": 53.20125222980115,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          56,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_ldo_cnc",
+      "module": "sphinx_beacon_revh",
+      "native_module_metadata_sha256": "48878e4658694060c073fad15144a8e03b5ad38db137e4476b6002861540870a",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.5891955,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 58.920804500094306,
+      "minimum_Z_separation_mm": 53.22080439998606,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          56,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_ldo_cnc",
+      "module": "sphinx_cartographer_v4",
+      "native_module_metadata_sha256": "e34fcee41c0abe5c786f0dbe826591263128de549eb0d31d50dd32d772a2dca5",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.60874767018493,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.201252329909394,
+      "minimum_Z_separation_mm": 53.501252229801146,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          56,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_ldo_cnc",
+      "module": "sphinx_beacon_revh",
+      "native_module_metadata_sha256": "48878e4658694060c073fad15144a8e03b5ad38db137e4476b6002861540870a",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.5891955,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.2208045000943,
+      "minimum_Z_separation_mm": 53.520804399986055,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          56,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_ldo_cnc",
+      "module": "xol_beacon_revd_uhf",
+      "native_module_metadata_sha256": "35f4520e7dc0d8922a9e8f0548dd77d02b6088de966f2e01d3fd75e7f1b3a423",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.47921882390244,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.313085442431,
+      "minimum_Z_separation_mm": 53.613085342322755,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          56,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_ldo_cnc",
+      "module": "xol_beacon_revh_uhf",
+      "native_module_metadata_sha256": "fb9dfa3433410296f27b0f89342cc89f5efcd52cd6901b10eda8caab80cb35e4",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.448621323903,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.28248794243157,
+      "minimum_Z_separation_mm": 53.582487842323324,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          56,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_ldo_cnc",
+      "module": "xol_cartographer_v1_v3_uhf",
+      "native_module_metadata_sha256": "9fc902dfa7ca10bd223df5d986759c74dd2bbf64364e922fc3fabf0fefb91793",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.4985958239024,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.332462442430966,
+      "minimum_Z_separation_mm": 53.63246234232272,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          56,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_ldo_cnc",
+      "module": "xol_cartographer_v4_uhf",
+      "native_module_metadata_sha256": "f7338c0e6c713580f918de5661fc54845979b6d7304613ea4a968ebb3f30f5a5",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.32906843623886,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.162935054767416,
+      "minimum_Z_separation_mm": 53.46293495465917,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          56,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_ldo_cnc",
+      "module": "xol_beacon_revd_normal",
+      "native_module_metadata_sha256": "34ed00679d05133860247e7cf2f3677ccbe71522c888e0e414751006fe370817",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.879218824106,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.21308573861032,
+      "minimum_Z_separation_mm": 53.51308563850207,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          56,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_ldo_cnc",
+      "module": "xol_beacon_revh_normal",
+      "native_module_metadata_sha256": "038f926c3da5abbbb70b390bbc8f02afe4b14a49415cca7d77390db4669e4a71",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.84862132410655,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.18248823861089,
+      "minimum_Z_separation_mm": 53.48248813850264,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          56,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_ldo_cnc",
+      "module": "xol_cartographer_v1_v3_normal",
+      "native_module_metadata_sha256": "db52d1685e580e17558b687384ab283de287407eb1ac48e5fecb4f3c6bdd06a3",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.89859582410605,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.232462738610394,
+      "minimum_Z_separation_mm": 53.532462638502146,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          56,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_ldo_cnc",
+      "module": "xol_cartographer_v4_normal",
+      "native_module_metadata_sha256": "432d87e5362d8e1a098de5909e1ad92faa16a96260b5ebf1775f4e52499bd164",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.82906805476915,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.16293496927349,
+      "minimum_Z_separation_mm": 53.462934869165245,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          56,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_ldo_cnc",
+      "module": "xol_beacon_revd_normal_revo",
+      "native_module_metadata_sha256": "3eefc87fb54c510ffeda819aacd4d6a7192f572bba885ab48cba9a37b1716ee4",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.579218824106,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.193085738610336,
+      "minimum_Z_separation_mm": 53.49308563850209,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          56,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_ldo_cnc",
+      "module": "xol_beacon_revh_normal_revo",
+      "native_module_metadata_sha256": "012090089ed31f7fada7a89baeeaf824d4056d2d0d42e3ba5781076dca9cc46f",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.54862132410653,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.16248823861085,
+      "minimum_Z_separation_mm": 53.4624881385026,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          56,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_ldo_cnc",
+      "module": "xol_cartographer_v1_v3_normal_revo",
+      "native_module_metadata_sha256": "4dd6fe695ba85e12a83892499dff0de413b5cdf63eb80d5550a1cb4b53d18bc0",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.598595824106,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.2124627386103,
+      "minimum_Z_separation_mm": 53.51246263850205,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          56,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_ldo_cnc",
+      "module": "xol_cartographer_v4_normal_revo",
+      "native_module_metadata_sha256": "c6a5868deb718faa2d7723abac5a3bb4c1fefcae38ee1f684bec200c6b3bbe6c",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.52906805476914,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.142934969273455,
+      "minimum_Z_separation_mm": 53.44293486916521,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          56,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_ldo_cnc",
+      "module": "xol_beacon_revd_normal",
+      "native_module_metadata_sha256": "34ed00679d05133860247e7cf2f3677ccbe71522c888e0e414751006fe370817",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.879218824106,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.21334977256029,
+      "minimum_Z_separation_mm": 53.513349672452044,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          56,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_ldo_cnc",
+      "module": "xol_beacon_revh_normal",
+      "native_module_metadata_sha256": "038f926c3da5abbbb70b390bbc8f02afe4b14a49415cca7d77390db4669e4a71",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.84862132410655,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.18275227256086,
+      "minimum_Z_separation_mm": 53.482752172452614,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          56,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_ldo_cnc",
+      "module": "xol_cartographer_v1_v3_normal",
+      "native_module_metadata_sha256": "db52d1685e580e17558b687384ab283de287407eb1ac48e5fecb4f3c6bdd06a3",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.89859582410605,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.23272677256037,
+      "minimum_Z_separation_mm": 53.53272667245212,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          56,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_ldo_cnc",
+      "module": "xol_cartographer_v4_normal",
+      "native_module_metadata_sha256": "432d87e5362d8e1a098de5909e1ad92faa16a96260b5ebf1775f4e52499bd164",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.82906805476915,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.16319900322347,
+      "minimum_Z_separation_mm": 53.46319890311522,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          56,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_ldo_cnc",
+      "module": "xol_beacon_revd_uhf",
+      "native_module_metadata_sha256": "35f4520e7dc0d8922a9e8f0548dd77d02b6088de966f2e01d3fd75e7f1b3a423",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.47921882390244,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.33442984961269,
+      "minimum_Z_separation_mm": 53.63442974950444,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          56,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_ldo_cnc",
+      "module": "xol_beacon_revh_uhf",
+      "native_module_metadata_sha256": "fb9dfa3433410296f27b0f89342cc89f5efcd52cd6901b10eda8caab80cb35e4",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.448621323903,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.30383234961326,
+      "minimum_Z_separation_mm": 53.60383224950501,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          56,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_ldo_cnc",
+      "module": "xol_cartographer_v1_v3_uhf",
+      "native_module_metadata_sha256": "9fc902dfa7ca10bd223df5d986759c74dd2bbf64364e922fc3fabf0fefb91793",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.4985958239024,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.35380684961265,
+      "minimum_Z_separation_mm": 53.653806749504405,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          56,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_ldo_cnc",
+      "module": "xol_cartographer_v4_uhf",
+      "native_module_metadata_sha256": "f7338c0e6c713580f918de5661fc54845979b6d7304613ea4a968ebb3f30f5a5",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.32906843623886,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.1842794619491,
+      "minimum_Z_separation_mm": 53.484279361840855,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          56,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_ldo_cnc",
+      "module": "sphinx_cartographer_v4",
+      "native_module_metadata_sha256": "e34fcee41c0abe5c786f0dbe826591263128de549eb0d31d50dd32d772a2dca5",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.60874767018493,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 58.9012523299094,
+      "minimum_Z_separation_mm": 53.20125222980115,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          56.0,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_ldo_cnc",
+      "module": "sphinx_beacon_revh",
+      "native_module_metadata_sha256": "48878e4658694060c073fad15144a8e03b5ad38db137e4476b6002861540870a",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.5891955,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 58.920804500094306,
+      "minimum_Z_separation_mm": 53.22080439998606,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          56.0,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_ldo_cnc",
+      "module": "sphinx_cartographer_v4",
+      "native_module_metadata_sha256": "e34fcee41c0abe5c786f0dbe826591263128de549eb0d31d50dd32d772a2dca5",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.60874767018493,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.1512523299094,
+      "minimum_Z_separation_mm": 53.45125222980115,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          56.0,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_300_ldo_cnc",
+      "module": "sphinx_beacon_revh",
+      "native_module_metadata_sha256": "48878e4658694060c073fad15144a8e03b5ad38db137e4476b6002861540870a",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.5891955,
+      "changed_skirt_native_Z_max_mm": 5.700000100108251,
+      "world_swept_Z_min_mm": 59.170804500094306,
+      "minimum_Z_separation_mm": 53.47080439998606,
+      "display_limits_mm": {
+        "X": [
+          0,
+          300
+        ],
+        "Y": [
+          56.0,
+          300
+        ],
+        "Z": [
+          0,
+          280
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_printed",
+      "module": "sphinx_cartographer_v4",
+      "native_module_metadata_sha256": "e34fcee41c0abe5c786f0dbe826591263128de549eb0d31d50dd32d772a2dca5",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.60874767018493,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 58.90125232990937,
+      "minimum_Z_separation_mm": 53.20125222980111,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          0,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_printed",
+      "module": "sphinx_beacon_revh",
+      "native_module_metadata_sha256": "48878e4658694060c073fad15144a8e03b5ad38db137e4476b6002861540870a",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.5891955,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 58.920804500094306,
+      "minimum_Z_separation_mm": 53.22080439998605,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          0,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_printed",
+      "module": "sphinx_cartographer_v4",
+      "native_module_metadata_sha256": "e34fcee41c0abe5c786f0dbe826591263128de549eb0d31d50dd32d772a2dca5",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.60874767018493,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.201252329909366,
+      "minimum_Z_separation_mm": 53.50125222980111,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          0,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_printed",
+      "module": "sphinx_beacon_revh",
+      "native_module_metadata_sha256": "48878e4658694060c073fad15144a8e03b5ad38db137e4476b6002861540870a",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.5891955,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.2208045000943,
+      "minimum_Z_separation_mm": 53.52080439998605,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          0,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_printed",
+      "module": "xol_beacon_revd_uhf",
+      "native_module_metadata_sha256": "35f4520e7dc0d8922a9e8f0548dd77d02b6088de966f2e01d3fd75e7f1b3a423",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.47921882390244,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.313085442430975,
+      "minimum_Z_separation_mm": 53.61308534232272,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          0,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_printed",
+      "module": "xol_beacon_revh_uhf",
+      "native_module_metadata_sha256": "fb9dfa3433410296f27b0f89342cc89f5efcd52cd6901b10eda8caab80cb35e4",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.448621323903,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.282487942431544,
+      "minimum_Z_separation_mm": 53.58248784232329,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          0,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_printed",
+      "module": "xol_cartographer_v1_v3_uhf",
+      "native_module_metadata_sha256": "9fc902dfa7ca10bd223df5d986759c74dd2bbf64364e922fc3fabf0fefb91793",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.4985958239024,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.33246244243094,
+      "minimum_Z_separation_mm": 53.63246234232268,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          0,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_printed",
+      "module": "xol_cartographer_v4_uhf",
+      "native_module_metadata_sha256": "f7338c0e6c713580f918de5661fc54845979b6d7304613ea4a968ebb3f30f5a5",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.32906843623886,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.16293505476739,
+      "minimum_Z_separation_mm": 53.46293495465913,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          0,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_printed",
+      "module": "xol_beacon_revd_normal",
+      "native_module_metadata_sha256": "34ed00679d05133860247e7cf2f3677ccbe71522c888e0e414751006fe370817",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.879218824106,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.21308573861029,
+      "minimum_Z_separation_mm": 53.513085638502034,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          0,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_printed",
+      "module": "xol_beacon_revh_normal",
+      "native_module_metadata_sha256": "038f926c3da5abbbb70b390bbc8f02afe4b14a49415cca7d77390db4669e4a71",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.84862132410655,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.18248823861086,
+      "minimum_Z_separation_mm": 53.4824881385026,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          0,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_printed",
+      "module": "xol_cartographer_v1_v3_normal",
+      "native_module_metadata_sha256": "db52d1685e580e17558b687384ab283de287407eb1ac48e5fecb4f3c6bdd06a3",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.89859582410605,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.232462738610366,
+      "minimum_Z_separation_mm": 53.53246263850211,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          0,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_printed",
+      "module": "xol_cartographer_v4_normal",
+      "native_module_metadata_sha256": "432d87e5362d8e1a098de5909e1ad92faa16a96260b5ebf1775f4e52499bd164",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.82906805476915,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.162934969273465,
+      "minimum_Z_separation_mm": 53.46293486916521,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          0,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_printed",
+      "module": "xol_beacon_revd_normal_revo",
+      "native_module_metadata_sha256": "3eefc87fb54c510ffeda819aacd4d6a7192f572bba885ab48cba9a37b1716ee4",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.579218824106,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.19308573861031,
+      "minimum_Z_separation_mm": 53.49308563850205,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          0,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_printed",
+      "module": "xol_beacon_revh_normal_revo",
+      "native_module_metadata_sha256": "012090089ed31f7fada7a89baeeaf824d4056d2d0d42e3ba5781076dca9cc46f",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.54862132410653,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.16248823861082,
+      "minimum_Z_separation_mm": 53.462488138502565,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          0,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_printed",
+      "module": "xol_cartographer_v1_v3_normal_revo",
+      "native_module_metadata_sha256": "4dd6fe695ba85e12a83892499dff0de413b5cdf63eb80d5550a1cb4b53d18bc0",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.598595824106,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.21246273861027,
+      "minimum_Z_separation_mm": 53.512462638502015,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          0,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_printed",
+      "module": "xol_cartographer_v4_normal_revo",
+      "native_module_metadata_sha256": "c6a5868deb718faa2d7723abac5a3bb4c1fefcae38ee1f684bec200c6b3bbe6c",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.52906805476914,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.142934969273426,
+      "minimum_Z_separation_mm": 53.44293486916517,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          0,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_printed",
+      "module": "xol_beacon_revd_normal",
+      "native_module_metadata_sha256": "34ed00679d05133860247e7cf2f3677ccbe71522c888e0e414751006fe370817",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.879218824106,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.213349772560264,
+      "minimum_Z_separation_mm": 53.51334967245201,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          0,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_printed",
+      "module": "xol_beacon_revh_normal",
+      "native_module_metadata_sha256": "038f926c3da5abbbb70b390bbc8f02afe4b14a49415cca7d77390db4669e4a71",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.84862132410655,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.18275227256083,
+      "minimum_Z_separation_mm": 53.48275217245258,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          0,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_printed",
+      "module": "xol_cartographer_v1_v3_normal",
+      "native_module_metadata_sha256": "db52d1685e580e17558b687384ab283de287407eb1ac48e5fecb4f3c6bdd06a3",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.89859582410605,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.23272677256034,
+      "minimum_Z_separation_mm": 53.532726672452085,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          0,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_printed",
+      "module": "xol_cartographer_v4_normal",
+      "native_module_metadata_sha256": "432d87e5362d8e1a098de5909e1ad92faa16a96260b5ebf1775f4e52499bd164",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.82906805476915,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.16319900322344,
+      "minimum_Z_separation_mm": 53.463198903115185,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          0,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_printed",
+      "module": "xol_beacon_revd_uhf",
+      "native_module_metadata_sha256": "35f4520e7dc0d8922a9e8f0548dd77d02b6088de966f2e01d3fd75e7f1b3a423",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.47921882390244,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.33442984961266,
+      "minimum_Z_separation_mm": 53.634429749504406,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          0,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_printed",
+      "module": "xol_beacon_revh_uhf",
+      "native_module_metadata_sha256": "fb9dfa3433410296f27b0f89342cc89f5efcd52cd6901b10eda8caab80cb35e4",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.448621323903,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.30383234961323,
+      "minimum_Z_separation_mm": 53.603832249504975,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          0,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_printed",
+      "module": "xol_cartographer_v1_v3_uhf",
+      "native_module_metadata_sha256": "9fc902dfa7ca10bd223df5d986759c74dd2bbf64364e922fc3fabf0fefb91793",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.4985958239024,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.353806849612624,
+      "minimum_Z_separation_mm": 53.65380674950437,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          0,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_printed",
+      "module": "xol_cartographer_v4_uhf",
+      "native_module_metadata_sha256": "f7338c0e6c713580f918de5661fc54845979b6d7304613ea4a968ebb3f30f5a5",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.32906843623886,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.184279461949075,
+      "minimum_Z_separation_mm": 53.48427936184082,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          0,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_printed",
+      "module": "sphinx_cartographer_v4",
+      "native_module_metadata_sha256": "e34fcee41c0abe5c786f0dbe826591263128de549eb0d31d50dd32d772a2dca5",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.60874767018493,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 58.90125232990937,
+      "minimum_Z_separation_mm": 53.20125222980111,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          0,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_printed",
+      "module": "sphinx_beacon_revh",
+      "native_module_metadata_sha256": "48878e4658694060c073fad15144a8e03b5ad38db137e4476b6002861540870a",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.5891955,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 58.920804500094306,
+      "minimum_Z_separation_mm": 53.22080439998605,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          0,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_printed",
+      "module": "sphinx_cartographer_v4",
+      "native_module_metadata_sha256": "e34fcee41c0abe5c786f0dbe826591263128de549eb0d31d50dd32d772a2dca5",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.60874767018493,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.15125232990937,
+      "minimum_Z_separation_mm": 53.45125222980111,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          0,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_printed",
+      "module": "sphinx_beacon_revh",
+      "native_module_metadata_sha256": "48878e4658694060c073fad15144a8e03b5ad38db137e4476b6002861540870a",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.5891955,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.170804500094306,
+      "minimum_Z_separation_mm": 53.47080439998605,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          0,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_ldo_cnc",
+      "module": "sphinx_cartographer_v4",
+      "native_module_metadata_sha256": "e34fcee41c0abe5c786f0dbe826591263128de549eb0d31d50dd32d772a2dca5",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.60874767018493,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 58.90125232990937,
+      "minimum_Z_separation_mm": 53.20125222980111,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          56,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_ldo_cnc",
+      "module": "sphinx_beacon_revh",
+      "native_module_metadata_sha256": "48878e4658694060c073fad15144a8e03b5ad38db137e4476b6002861540870a",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.5891955,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 58.920804500094306,
+      "minimum_Z_separation_mm": 53.22080439998605,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          56,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_ldo_cnc",
+      "module": "sphinx_cartographer_v4",
+      "native_module_metadata_sha256": "e34fcee41c0abe5c786f0dbe826591263128de549eb0d31d50dd32d772a2dca5",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.60874767018493,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.201252329909366,
+      "minimum_Z_separation_mm": 53.50125222980111,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          56,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_ldo_cnc",
+      "module": "sphinx_beacon_revh",
+      "native_module_metadata_sha256": "48878e4658694060c073fad15144a8e03b5ad38db137e4476b6002861540870a",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.5891955,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.2208045000943,
+      "minimum_Z_separation_mm": 53.52080439998605,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          56,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_ldo_cnc",
+      "module": "xol_beacon_revd_uhf",
+      "native_module_metadata_sha256": "35f4520e7dc0d8922a9e8f0548dd77d02b6088de966f2e01d3fd75e7f1b3a423",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.47921882390244,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.313085442430975,
+      "minimum_Z_separation_mm": 53.61308534232272,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          56,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_ldo_cnc",
+      "module": "xol_beacon_revh_uhf",
+      "native_module_metadata_sha256": "fb9dfa3433410296f27b0f89342cc89f5efcd52cd6901b10eda8caab80cb35e4",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.448621323903,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.282487942431544,
+      "minimum_Z_separation_mm": 53.58248784232329,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          56,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_ldo_cnc",
+      "module": "xol_cartographer_v1_v3_uhf",
+      "native_module_metadata_sha256": "9fc902dfa7ca10bd223df5d986759c74dd2bbf64364e922fc3fabf0fefb91793",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.4985958239024,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.33246244243094,
+      "minimum_Z_separation_mm": 53.63246234232268,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          56,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_ldo_cnc",
+      "module": "xol_cartographer_v4_uhf",
+      "native_module_metadata_sha256": "f7338c0e6c713580f918de5661fc54845979b6d7304613ea4a968ebb3f30f5a5",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.32906843623886,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.16293505476739,
+      "minimum_Z_separation_mm": 53.46293495465913,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          56,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_ldo_cnc",
+      "module": "xol_beacon_revd_normal",
+      "native_module_metadata_sha256": "34ed00679d05133860247e7cf2f3677ccbe71522c888e0e414751006fe370817",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.879218824106,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.21308573861029,
+      "minimum_Z_separation_mm": 53.513085638502034,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          56,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_ldo_cnc",
+      "module": "xol_beacon_revh_normal",
+      "native_module_metadata_sha256": "038f926c3da5abbbb70b390bbc8f02afe4b14a49415cca7d77390db4669e4a71",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.84862132410655,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.18248823861086,
+      "minimum_Z_separation_mm": 53.4824881385026,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          56,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_ldo_cnc",
+      "module": "xol_cartographer_v1_v3_normal",
+      "native_module_metadata_sha256": "db52d1685e580e17558b687384ab283de287407eb1ac48e5fecb4f3c6bdd06a3",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.89859582410605,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.232462738610366,
+      "minimum_Z_separation_mm": 53.53246263850211,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          56,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_ldo_cnc",
+      "module": "xol_cartographer_v4_normal",
+      "native_module_metadata_sha256": "432d87e5362d8e1a098de5909e1ad92faa16a96260b5ebf1775f4e52499bd164",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.82906805476915,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.162934969273465,
+      "minimum_Z_separation_mm": 53.46293486916521,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          56,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_ldo_cnc",
+      "module": "xol_beacon_revd_normal_revo",
+      "native_module_metadata_sha256": "3eefc87fb54c510ffeda819aacd4d6a7192f572bba885ab48cba9a37b1716ee4",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.579218824106,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.19308573861031,
+      "minimum_Z_separation_mm": 53.49308563850205,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          56,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_ldo_cnc",
+      "module": "xol_beacon_revh_normal_revo",
+      "native_module_metadata_sha256": "012090089ed31f7fada7a89baeeaf824d4056d2d0d42e3ba5781076dca9cc46f",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.54862132410653,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.16248823861082,
+      "minimum_Z_separation_mm": 53.462488138502565,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          56,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_ldo_cnc",
+      "module": "xol_cartographer_v1_v3_normal_revo",
+      "native_module_metadata_sha256": "4dd6fe695ba85e12a83892499dff0de413b5cdf63eb80d5550a1cb4b53d18bc0",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.598595824106,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.21246273861027,
+      "minimum_Z_separation_mm": 53.512462638502015,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          56,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_ldo_cnc",
+      "module": "xol_cartographer_v4_normal_revo",
+      "native_module_metadata_sha256": "c6a5868deb718faa2d7723abac5a3bb4c1fefcae38ee1f684bec200c6b3bbe6c",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.52906805476914,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.142934969273426,
+      "minimum_Z_separation_mm": 53.44293486916517,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          56,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_ldo_cnc",
+      "module": "xol_beacon_revd_normal",
+      "native_module_metadata_sha256": "34ed00679d05133860247e7cf2f3677ccbe71522c888e0e414751006fe370817",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.879218824106,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.213349772560264,
+      "minimum_Z_separation_mm": 53.51334967245201,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          56,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_ldo_cnc",
+      "module": "xol_beacon_revh_normal",
+      "native_module_metadata_sha256": "038f926c3da5abbbb70b390bbc8f02afe4b14a49415cca7d77390db4669e4a71",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.84862132410655,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.18275227256083,
+      "minimum_Z_separation_mm": 53.48275217245258,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          56,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_ldo_cnc",
+      "module": "xol_cartographer_v1_v3_normal",
+      "native_module_metadata_sha256": "db52d1685e580e17558b687384ab283de287407eb1ac48e5fecb4f3c6bdd06a3",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.89859582410605,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.23272677256034,
+      "minimum_Z_separation_mm": 53.532726672452085,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          56,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_ldo_cnc",
+      "module": "xol_cartographer_v4_normal",
+      "native_module_metadata_sha256": "432d87e5362d8e1a098de5909e1ad92faa16a96260b5ebf1775f4e52499bd164",
+      "conservative_source_native_and_keepout_Z_min_mm": 311.82906805476915,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.16319900322344,
+      "minimum_Z_separation_mm": 53.463198903115185,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          56,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_ldo_cnc",
+      "module": "xol_beacon_revd_uhf",
+      "native_module_metadata_sha256": "35f4520e7dc0d8922a9e8f0548dd77d02b6088de966f2e01d3fd75e7f1b3a423",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.47921882390244,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.33442984961266,
+      "minimum_Z_separation_mm": 53.634429749504406,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          56,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_ldo_cnc",
+      "module": "xol_beacon_revh_uhf",
+      "native_module_metadata_sha256": "fb9dfa3433410296f27b0f89342cc89f5efcd52cd6901b10eda8caab80cb35e4",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.448621323903,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.30383234961323,
+      "minimum_Z_separation_mm": 53.603832249504975,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          56,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_ldo_cnc",
+      "module": "xol_cartographer_v1_v3_uhf",
+      "native_module_metadata_sha256": "9fc902dfa7ca10bd223df5d986759c74dd2bbf64364e922fc3fabf0fefb91793",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.4985958239024,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.353806849612624,
+      "minimum_Z_separation_mm": 53.65380674950437,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          56,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_ldo_cnc",
+      "module": "xol_cartographer_v4_uhf",
+      "native_module_metadata_sha256": "f7338c0e6c713580f918de5661fc54845979b6d7304613ea4a968ebb3f30f5a5",
+      "conservative_source_native_and_keepout_Z_min_mm": 303.32906843623886,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.184279461949075,
+      "minimum_Z_separation_mm": 53.48427936184082,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          56,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_ldo_cnc",
+      "module": "sphinx_cartographer_v4",
+      "native_module_metadata_sha256": "e34fcee41c0abe5c786f0dbe826591263128de549eb0d31d50dd32d772a2dca5",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.60874767018493,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 58.90125232990937,
+      "minimum_Z_separation_mm": 53.20125222980111,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          56.0,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_ldo_cnc",
+      "module": "sphinx_beacon_revh",
+      "native_module_metadata_sha256": "48878e4658694060c073fad15144a8e03b5ad38db137e4476b6002861540870a",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.5891955,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 58.920804500094306,
+      "minimum_Z_separation_mm": 53.22080439998605,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          56.0,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_ldo_cnc",
+      "module": "sphinx_cartographer_v4",
+      "native_module_metadata_sha256": "e34fcee41c0abe5c786f0dbe826591263128de549eb0d31d50dd32d772a2dca5",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.60874767018493,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.15125232990937,
+      "minimum_Z_separation_mm": 53.45125222980111,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          56.0,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    },
+    {
+      "machine_id": "voron_v24_350_ldo_cnc",
+      "module": "sphinx_beacon_revh",
+      "native_module_metadata_sha256": "48878e4658694060c073fad15144a8e03b5ad38db137e4476b6002861540870a",
+      "conservative_source_native_and_keepout_Z_min_mm": -83.5891955,
+      "changed_skirt_native_Z_max_mm": 5.700000100108258,
+      "world_swept_Z_min_mm": 59.170804500094306,
+      "minimum_Z_separation_mm": 53.47080439998605,
+      "display_limits_mm": {
+        "X": [
+          0,
+          350
+        ],
+        "Y": [
+          56.0,
+          350
+        ],
+        "Z": [
+          0,
+          330
+        ]
+      },
+      "method": "Finite native-source bound + exact bed/nozzle placement equation over full Z interval; no native Boolean rerun."
+    }
+  ],
+  "input_sha256": {
+    "machines/voron_v24_250_ldo_cnc/model.glb.gz": "8a17ec1a4337eb5b4e5fc840b153768661ed57df67165142c736c0e845b10b10",
+    "machines/voron_v24_250_ldo_cnc/assembly_manifest.json": "c3554b251bb2b6dd9f8eb11c1d2398d0eda55687bf1d5c47259d89a47c2cd229",
+    "machines/voron_v24_250_ldo_cnc/machine_profile.json": "e26d865bc6f5862f33dd8c938bd40abe397f6e000dc8403b6991667882a9af8c",
+    "machines/voron_v24_250_printed/model.glb.gz": "10f27d565904281827a453aa5ea4a9ec686e043b89a663735dc84d79ee383496",
+    "machines/voron_v24_250_printed/assembly_manifest.json": "b6c591e56f2c637e86ad0fd54e7a6e2235119a13156e7ae69144b26b84104279",
+    "machines/voron_v24_250_printed/machine_profile.json": "16c3a36dea81bae86155d3ec9520e0d3e8cbf5792a85961e838195bb2c044ee5",
+    "machines/voron_v24_300_ldo_cnc/model.glb.gz": "e16c3efa80090b64c9ec5b49546a9a46c423e789bfeb1305fac704b906c94111",
+    "machines/voron_v24_300_ldo_cnc/assembly_manifest.json": "b0d72b1f8d8a180a8fe0007194fd12340099d4f678022d204f7a2ff7f80a0eb2",
+    "machines/voron_v24_300_ldo_cnc/machine_profile.json": "d52229f602d906f52fe9109bdb6c31a0d23bb9f86970869dcf77d65b59545b3d",
+    "machines/voron_v24_300_printed/model.glb.gz": "a005aa842e6cf014cc725586b3cdce019bec377bebfb6372f3db4a735b2d9a07",
+    "machines/voron_v24_300_printed/assembly_manifest.json": "269cb96ccb68d2a15dd8406509afcd4ce43d19b2cbdf2907ac73ed17ce4e2d69",
+    "machines/voron_v24_300_printed/machine_profile.json": "fcfc04264da6ad47d4d95cf5ac3af91c527a63e7eda37d16260a4e50dcff6241",
+    "machines/voron_v24_350_ldo_cnc/model.glb.gz": "e860c1bba40a1117da5722d0534410e1a22e9b0277a06e0078d440a8cad29db1",
+    "machines/voron_v24_350_ldo_cnc/assembly_manifest.json": "95ee1b913749edc996b6707fbdbfae47dafa716f3aed2402bf03703e9cf2c170",
+    "machines/voron_v24_350_ldo_cnc/machine_profile.json": "5724e420cd995003f50bc74a416560b5cf880e8a678436f9c1809ed45c5f369a",
+    "machines/voron_v24_350_printed/model.glb.gz": "f6d10e87c6015a3f04610a96c23aaa8c9aa32006d97362cd1d44d9cc0407a2f3",
+    "machines/voron_v24_350_printed/assembly_manifest.json": "dfff39a5b4b6c32a3f06be08ecc19830fd7b1a31ee73fd006c0a9465f1037716",
+    "machines/voron_v24_350_printed/machine_profile.json": "41f5a89c9528683497020ebaa3f007d86bdb8a337df552b1d333c3c62916d755"
+  }
+}

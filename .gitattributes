@@ -10,3 +10,6 @@
 # Preserve the exact bytes pinned by the native datum validation gate.
 site/TRIDENT_SB_NATIVE_DATUM.json -text
 site/TRINITY_ALPHA_INSTALLATIONS.json -text
+site/STOCK_SKIRT_RETENTION_QA_92.json -text
+site/TRINITY_ALPHA_HOST_EXTENSIONS_92.json -text
+site/TRINITY_ALPHA_SIBOOR_R2_92.json -text

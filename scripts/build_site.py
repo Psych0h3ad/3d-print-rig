@@ -52,6 +52,35 @@ def validate_mounting_evidence(target):
         evidence = json.loads((target / name).read_text(encoding='utf-8'))
         if evidence['model_bundle_sha256'] != bundle['sha256']:
             raise ValueError(f'{name} belongs to another model bundle.')
+        stock_inputs = {}
+        if evidence.get('stock_skirt_delta_proof'):
+            relative = evidence['stock_skirt_delta_proof']
+            proof_path = PurePosixPath(relative)
+            if proof_path.is_absolute() or '..' in proof_path.parts or '\\' in relative or ':' in relative:
+                raise ValueError('Invalid stock skirt proof path.')
+            file = target / proof_path
+            if not file.is_file():
+                raise ValueError('Missing stock skirt delta proof in built assets.')
+            if evidence['input_sha256'].get(relative) != hashlib.sha256(file.read_bytes()).hexdigest():
+                raise ValueError('Stock skirt delta proof byte identity changed.')
+            proof = json.loads(file.read_text(encoding='utf-8'))
+            machines = {f'voron_v24_{size}_{kind}' for size in [250, 300, 350] for kind in ['printed', 'ldo_cnc']}
+            required = ['all_passed', 'all_six_host_blocks_rails_native_context_and_profiles_unchanged',
+                        'all_GLb_topology_materials_and_binary_unchanged', 'old_selected_native_execution_unchanged',
+                        'all128_scope_not_promoted', 'source_insert_invalid_Common_and_both_IN_findings_unresolved']
+            if (proof.get('schema') != 'stock-v24-rigid-skirt-logical-delta-v1'
+                    or proof.get('model_bundle_sha256') != bundle['sha256']
+                    or proof.get('baseline_bundle_sha256') != evidence.get('stock_skirt_retained_from_model_bundle_sha256')
+                    or not all(proof.get(key) is True for key in required)
+                    or proof.get('whole_machine_clearance_certified') is not False
+                    or proof.get('old_selected_native_axes') != 120
+                    or set(proof.get('changed_keys', {})) != machines):
+                raise ValueError('Stock skirt delta proof is stale, failed or exceeds its scope.')
+            stock_inputs = proof.get('input_sha256', {})
+            expected_paths = {f'machines/{machine}/{filename}' for machine in machines
+                              for filename in ['model.glb.gz', 'assembly_manifest.json', 'machine_profile.json']}
+            if set(stock_inputs) != expected_paths:
+                raise ValueError('Stock skirt proof must bind all six actual models, manifests and profiles.')
         if evidence.get('enclosure_delta_proof'):
             proof_path = PurePosixPath(evidence['enclosure_delta_proof'])
             if proof_path.is_absolute() or '..' in proof_path.parts or '\\' in str(proof_path) or ':' in str(proof_path):
@@ -62,7 +91,7 @@ def validate_mounting_evidence(target):
             proof = json.loads(file.read_text(encoding='utf-8'))
             if proof.get('model_bundle_sha256') != bundle['sha256'] or not all(proof.get(key, {}).get('all_passed') for key in ['trident', 'v24', 'retention']):
                 raise ValueError('Enclosure delta proof is stale or failed.')
-        for pins in [evidence['input_sha256'], *[m['input_sha256'] for m in evidence['machines'].values()]]:
+        for pins in [evidence['input_sha256'], stock_inputs, *[m['input_sha256'] for m in evidence['machines'].values()]]:
             for relative, expected in pins.items():
                 path = PurePosixPath(relative)
                 if path.is_absolute() or '..' in path.parts or '\\' in relative or ':' in relative:

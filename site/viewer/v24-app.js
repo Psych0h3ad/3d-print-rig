@@ -1,10 +1,12 @@
+import {contentSHA256} from './mount-validation.mjs';
+import {alphaResetPose,alphaHostContext,alphaNozzlePosition,alphaNativeHostModelOptions} from './trinity-alpha-host-extensions.mjs?v=1121c0f285fd1d2a8ab7';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {workspaceFrame,WorkspaceResizeObserver,workspaceTask} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=workspace-belts-1';
 import {appearanceRole} from './appearance-role.mjs?v=6b7b8efda77bfc3ce74d';
 import * as THREE from 'three';
-import {loadFrameMods,withFrameMods} from './frame-mods.js?v=0d49b1113e8a089e3cd9';
+import {loadFrameMods,withFrameMods} from './frame-mods.js?v=ceed47eadf23dfc523e1';
 import {setupLighting} from './lighting.js?v=454c19f7ca3795b005de';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=f471190665709ba23159';
 import {setupAccessories} from './accessories.js?v=workspace-belts-2';
@@ -17,12 +19,12 @@ import {createV24Adapter} from './v24_adapter.mjs?v=3a3944ab39c9df1658f4';
 import {setupMachineNavigation} from './machines.js?v=d6045b8af89b3984adcb';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {setupPublicInfo} from './public-info.js?v=0b0f91d7a82d25acbb87';
-import {setupV24MachineHeads} from './machine-heads.js?v=b5400b9638231b96d565';
+import {setupV24MachineHeads} from './machine-heads.js?v=2c44d8c82f61caedf76f';
 export async function mount(scope){
 setupMachineNavigation('siboor_v24_350');
 setupPublicInfo();
 const $=s=>document.querySelector(s),stage=$('#stage'),status=$('#status');
-const assetRoot='../machines/siboor_v24_350/';
+const nativeInputHashes={};const assetRoot='../machines/siboor_v24_350/';
 const renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));stage.append(renderer.domElement);
 renderer.setClearColor('#edf1f4');renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.25;
 const scene=scope.scene(new THREE.Scene()),camera=new THREE.PerspectiveCamera(38,1,.005,10);camera.position.set(.98,.83,1.4);
@@ -45,15 +47,15 @@ function applyPose(){if(!adapter)return;
  const p=adapter.getSummary();document.body.dataset.ready='true';document.body.dataset.parts=p.part_count+(probeMounts?.partDelta()||0);
  $('#badge').textContent=machineHeads?.monolith?'V2.4 / 350 · Monolith '+machineHeads.variant.belt_width_mm+' mm':'V2.4 R2 / 350 · '+Number(document.body.dataset.parts).toLocaleString()+' PARTS';
  if(probeMounts&&!machineHeads?.custom){const link=new URL('./toolheads.html',location.href);link.searchParams.set('configuration','trident_r2__stealthburner__revo_voron__cw2'+(['stock_panasonic','none'].includes(probeMounts.id)?'':'__'+probeMounts.id));$('#toolheadLink').href=link.href}
- document.body.dataset.pose=JSON.stringify(pose);document.body.dataset.fixedBed=JSON.stringify(p.fixed_bed_keys.map(k=>adapter.nodes.get(k).position.toArray()));
+ document.body.dataset.pose=JSON.stringify(pose);if(machineHeads?.variant?.native_alpha_92){document.body.dataset.alphaNozzleCadMm=JSON.stringify(alphaNozzlePosition(machineHeads.variant,pose.cad_delta_xyz_mm));document.body.dataset.alphaPose=JSON.stringify(pose.display_xyz_mm);document.body.dataset.alphaLimits=JSON.stringify(profile.display_limits_mm);}document.body.dataset.fixedBed=JSON.stringify(p.fixed_bed_keys.map(k=>adapter.nodes.get(k).position.toArray()));
  document.body.dataset.zGuidePositions=JSON.stringify(p.z_guide_block_keys.map(k=>adapter.nodes.get(k).position.toArray()));
  document.body.dataset.flexibleVisible=String(pose.flexible_visible_count>0);
  $('#motionBeltHelp').textContent=machineHeads?.monolith?'MonolithのXYベルトはヘッド・Y軸・ガントリーの移動に追従します。クランプ内部・歯・張力は未再現です。':'Zベルトはフレーム側で固定。XYベルトはヘッド・Y軸・ガントリーに追従します。移動時はクランプ内部・歯・張力を省いた経路プレビューです。';
  $('#motionStatus').textContent=machineHeads?.monolith?'ベッド固定 · Monolithの8個のZガイド・ガントリー・XYベルトが追従':'ベッド固定 · 4ZガイドとガントリーがZ＋へ追従';$('#beltWidths').textContent=`XYベルト ${machineHeads?.variant?.belt_width_mm||profile.xy_belt_width_mm} mm ／ Zベルト ${profile.z_belt_width_mm} mm`;render();
 }
 try{
- const getJSON=async name=>{return workspaceTask(async()=>{const r=await fetch(assetRoot+name,{cache:'no-cache'});if(!r.ok)throw Error(name);return r.json()});};
- const [manifest,machine,gltf]=await Promise.all([getJSON('assembly_manifest.json'),getJSON('machine_profile.json'),loadModel(new GLTFLoader(),assetRoot+'model.glb')]);
+ const getJSON=async name=>{return workspaceTask(async()=>{const r=await fetch(assetRoot+name,{cache:'no-cache'});if(!r.ok)throw Error(name);const text=await r.text();nativeInputHashes[name]=await contentSHA256(text);return JSON.parse(text)});};
+ const [manifest,machine,gltf]=await Promise.all([getJSON('assembly_manifest.json'),getJSON('machine_profile.json'),loadModel(new GLTFLoader(),assetRoot+'model.glb',undefined,alphaNativeHostModelOptions('siboor_v24_350'))]);
  profile=machine;scene.add(gltf.scene);adapter=createV24Adapter(gltf.scene,manifest,profile);
  const probeResponse=await fetch('../V24_PROBES.json?v=trident-clearance-35',{cache:'no-cache'});if(!probeResponse.ok)throw Error('プローブ構成を取得できません');const probeCatalog=await probeResponse.json();
  const protectedMaterials=[],originals=new Map();
@@ -64,7 +66,7 @@ try{
  for(const [i,a] of ['x','y','z'].entries()){
   const limits=profile.display_limits_mm[a.toUpperCase()];$('#'+a).min=limits[0];$('#'+a).max=limits[1];$('#'+a).value=profile.display_reference_xyz_mm[i];$('#'+a).disabled=false;$('#'+a).oninput=applyPose;
  }
- $('#reset').disabled=false;$('#reset').onclick=()=>{for(const [i,a] of ['x','y','z'].entries())$('#'+a).value=profile.display_reference_xyz_mm[i];applyPose()};
+ $('#reset').disabled=false;$('#reset').onclick=()=>{for(const [i,a] of ['x','y','z'].entries())$('#'+a).value=alphaResetPose(machineHeads?.variant,profile.display_reference_xyz_mm)[i];applyPose()};
  $('#enclosure').onchange=()=>{adapter.setEnclosureVisible($('#enclosure').checked);document.body.dataset.panelsVisible=String($('#enclosure').checked);render()};
  $('#belts').onchange=()=>{adapter.setFlexibleVisible($('#belts').checked);applyPose()};
  const valid=v=>typeof v==='string'&&/^#[0-9a-f]{6}$/i.test(v),storageKey=profile.appearance.storage_key;
@@ -105,8 +107,8 @@ try{
  const disco=await lighting.whenReady;disco?.traverse(mesh=>{if(mesh.isMesh&&mesh.userData.led_role==='bracket')modMeshes.push({mesh,role:'base',color:mesh.material.color.clone()})});
  $('#resetPalette').disabled=false;$('#resetPalette').onclick=()=>{palette={base:null,accent:null,frame:null};applyPalette();savePalette()};applyPalette();
  $('#frameFinish').onchange=e=>{if(e.target.value==='custom')return;palette.frame=e.target.value==='silver'?'#b9bec4':'#25282d';applyPalette();savePalette()};
- machineHeads=await setupV24MachineHeads({machine:'siboor_v24_350',profile,adapter,scene,render,applyPose,stockProbes:probeCatalog.probes,beforeInstall:async v=>{return workspaceTask(async()=>{program?.invalidate();await probeMounts.apply(v.baseline_probe||'none')});},onChange:()=>{program?.invalidate();applyPalette()}});stockProbe.closest('details').hidden=true;applyPalette();
- program=setupGcodePanel({container:document.querySelector('aside'),profile,adapter,scene,render,getLimits:displayedMachineLimits,getContext:()=>machineHeads.variant?.id||'stock',setPose:xyz=>{for(const [i,a]of ['x','y','z'].entries())$('#'+a).value=xyz[i];applyPose()}});
+ machineHeads=await setupV24MachineHeads({machine:'siboor_v24_350',profile,adapter,scene,render,applyPose,nativeInputHashes,stockProbes:probeCatalog.probes,beforeInstall:async v=>{return workspaceTask(async()=>{program?.invalidate();await probeMounts.apply(v.baseline_probe||'none')});},onChange:()=>{program?.invalidate();applyPalette()}});stockProbe.closest('details').hidden=true;applyPalette();
+ program=setupGcodePanel({container:document.querySelector('aside'),profile,adapter,scene,render,getLimits:displayedMachineLimits,getContext:()=>alphaHostContext({configuration:machineHeads.variant?.id||'stock'},machineHeads.variant),setPose:xyz=>{for(const [i,a]of ['x','y','z'].entries())$('#'+a).value=xyz[i];applyPose()}});
  setupRenderExport({renderer,scene,camera,controls:orbit,afterRender:render,name:'VORON_V24_R2_350_Reference'});
  document.body.dataset.geometryRevision=profile.geometry_revision;document.body.dataset.panelsVisible=String($('#enclosure').checked);
  document.body.dataset.endstopStatus=profile.endstop_registration_or_pending.status;

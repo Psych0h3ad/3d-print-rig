@@ -1,3 +1,5 @@
+import {assertSiboorIndexInput} from './trinity-alpha-siboor-r2.mjs?v=9ac57a92e19b352f3baa';
+import {contentSHA256} from './mount-validation.mjs';
 export function siboorMachine(href=location.href){
  const id=new URL(href).searchParams.get('machine')||'siboor_trident_350';
  if(!['siboor_trident_300','siboor_trident_350'].includes(id))throw Error('Unknown SIBOOR Trident size');
@@ -5,7 +7,7 @@ export function siboorMachine(href=location.href){
 }
 export async function loadSiboorRegistration(){
  const response=await fetch(new URL('../SIBOOR_TRIDENT_ASSETS.json?v=9b10bebcaa3b326532fd',import.meta.url),{cache:'no-cache'});
- if(!response.ok)throw Error('SIBOOR Trident registration unavailable');return response.json();
+ if(!response.ok)throw Error('SIBOOR Trident registration unavailable');const text=await response.text();assertSiboorIndexInput(await contentSHA256(text));return JSON.parse(text);
 }
 
 // Sized stock recipes keep the authored head origin and swap the native gantry.

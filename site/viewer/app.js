@@ -1,38 +1,42 @@
+import {alphaReference,alphaLimits,alphaBedReferenceDrop} from './trinity-alpha-installation.mjs?v=e7b2434829281dfd5a82';
+import {assertSiboorNativeModule,siboorAlphaModuleOptions,siboorAlphaPose,siboorAlphaContext} from './trinity-alpha-siboor-r2.mjs?v=9ac57a92e19b352f3baa';
+import {contentSHA256} from './mount-validation.mjs';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
-import {loadMonolithMachines} from './monolith-machine.js?v=b085a3c74efdcda7401a';
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=74a6f2bc49adde357207';
+import {loadMonolithMachines} from './monolith-machine.js?v=20017383790f2243c9e5';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=47fb2edce06f654fc449';
 import {bankBedReferenceDrop} from './changer-bank-model.mjs?v=024cc52a5bbc61da7506';
-import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=workspace-belts-1';
+import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import * as THREE from 'three';
-import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
+import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
-import {loadFrameMods,withFrameMods} from './frame-mods.js?v=0d49b1113e8a089e3cd9';
-import {setupGrid} from './grid-control.js?v=workspace-belts-1';
-import {setupLighting} from './lighting.js?v=454c19f7ca3795b005de';
+import {loadFrameMods,withFrameMods} from './frame-mods.js?v=ceed47eadf23dfc523e1';
+import {setupGrid} from './grid-control.js';
+import {setupLighting} from './lighting.js';
 import {setupFlexible} from './flexible.js?v=37fd0f2d1bdfe5ac356f';
 import {createTridentBelts} from './trident-belts.mjs';
-import {createBedChain} from './bed-chain.mjs?v=workspace-belts-1';
-import {createPrinterBelts,printerBeltOwner} from './printer-gantry.mjs?v=workspace-belts-2';
-import {setupConfigurations} from './configurations.js?v=0ca729cbb78ef4ae8174';
-import {setupAccessories} from './accessories.js?v=workspace-belts-2';
-import {setupAppearance} from './appearance.js?v=workspace-belts-1';
-import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
-import {setupPublicInfo} from './public-info.js?v=0b0f91d7a82d25acbb87';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=b5400b9638231b96d565';
+import {createBedChain} from './bed-chain.mjs';
+import {createPrinterBelts,printerBeltOwner} from './printer-gantry.mjs';
+import {setupConfigurations} from './configurations.js?v=61c799d8eb68531c1c87';
+import {setupAccessories} from './accessories.js';
+import {setupAppearance} from './appearance.js';
+import {setupRenderExport} from './render-export.js';
+import {setupPublicInfo} from './public-info.js';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=2c44d8c82f61caedf76f';
 import {setupChangerBank} from './changer-bank.js?v=47bbc0fef91af2c7241e';
-import {expandedPrinterCatalog} from './machine-head-model.mjs?v=d201fd95637601425bdc';
+import {expandedPrinterCatalog} from './machine-head-model.mjs?v=f31f2a1ede2c9d3dbe2f';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=f471190665709ba23159';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
-import {createHeadMarkers} from './head-markers.mjs?v=workspace-belts-1';
-import {siboorMachine,loadSiboorAssembly} from './siboor-machine.mjs?v=adbe9aeaae8afb73ec44';
+import {createHeadMarkers} from './head-markers.mjs';
+import {siboorMachine,loadSiboorAssembly} from './siboor-machine.mjs?v=bdefabe5672705f2b9c0';
 export async function mount(scope){
 const {id:machine,size,gantryId,maxX,maxY}=siboorMachine();
 document.querySelector('h1').textContent='Trident / '+size;
 const $=s=>document.querySelector(s),scene=scope.scene(new THREE.Scene());
 scene.background=new THREE.Color('#edf1f5');
+const nativeStockInputSteps=Object.fromEntries(['x','y','z'].map(a=>[a,$('#'+a).step]));
 const stage=$('#stage');
 const viewWidth=()=>Math.max(1,stage.clientWidth),viewHeight=()=>Math.max(1,stage.clientHeight);
 const sidebarWidth=()=>stage.getBoundingClientRect().left;
@@ -77,7 +81,7 @@ function registerModule(root,metadata){
 async function asset(id){return workspaceTask(async()=>{
  if(assets.has(id))return assets.get(id);
  const spec=id==='xol'?{meta:'XOL_MOD.json',glb:'Xol_SherpaMini_Rapido2UHF_AWD9.glb'}:catalog.assets[id];
- const promise=Promise.all([fetch('../'+spec.meta,{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error(spec.meta);return r.json()}),loadGLB('../'+spec.glb)]).then(([meta,g])=>{model.add(g.scene);g.scene.visible=false;const meshes=registerModule(g.scene,meta);const result={meta,root:g.scene,meshes};assetRoots.set(id,result);if(id==='xol'){xolMeta=meta;xolScene=g.scene}return result}).catch(e=>{assets.delete(id);throw e});assets.set(id,promise);return promise;
+ const promise=Promise.all([fetch('../'+spec.meta,{cache:'no-cache'}).then(async r=>{if(!r.ok)throw Error(spec.meta);const text=await r.text();const meta=JSON.parse(text);meta.alphaNativeSourceHash=await contentSHA256(text);return meta}),loadModel(new GLTFLoader(),'../'+spec.glb,undefined,siboorAlphaModuleOptions(id))]).then(([meta,g])=>{model.add(g.scene);g.scene.visible=false;const meshes=registerModule(g.scene,meta);const result={meta,root:g.scene,meshes};assetRoots.set(id,result);if(id==='xol'){xolMeta=meta;xolScene=g.scene}return result}).catch(e=>{assets.delete(id);throw e});assets.set(id,promise);return promise;
 });}
 function showHead(){
  if(!activeConfig)return;const shown=$('#head').checked,removed=new Set(activeConfig.removed_stock_keys);
@@ -104,6 +108,7 @@ async function installConfiguration(v){return workspaceTask(async()=>{
  program?.invalidate();
  headMarkers?.clear();
  const required=[...new Set(v.modules.map(m=>m.id)),...(!v.machine_head&&v.toolhead==='xol'?['xol']:[])];await Promise.all(required.map(asset));await toolBank.install(v);
+ if(v.native_alpha_92)assertSiboorNativeModule(v,assetRoots.get(gantryId)?.meta.alphaNativeSourceHash);
  const headLink=new URL('./toolheads.html',location.href);headLink.searchParams.set('configuration',v.source_head_configuration||v.id);$('#toolheadLink').href=headLink;
  stop();unfocus();activeConfig=v;installed=v.machine_head?'generic':v.toolhead==='xol'?'xol':'stock';
  for(const a of assetRoots.values()){a.root.visible=false;a.root.position.set(0,0,0);for(const o of a.meshes)o.visible=true}
@@ -113,13 +118,14 @@ async function installConfiguration(v){return workspaceTask(async()=>{
  registration=v.gantry==='trident_r2'?{switches:r2Registration.heads[v.machine_head?'stealthburner':v.toolhead==='xol'&&v.hotend!=='rapido2_uhf'?'xol_standard':v.toolhead]}:{...stockRegistration,switches:{...stockRegistration.switches,X:installed==='xol'?xolMeta.X_registration:stockRegistration.switches.X}};
  for(const id of ['home','focusX','focusY','releaseSwitch'])$('#'+id).disabled=!!v.machine_head;
  refX=registration.switches.X.cad_reference_display_coordinate_mm;refY=registration.switches.Y.cad_reference_display_coordinate_mm;if(v.machine_gantry){refX=v.machine_head.nozzle_mm[0]-v.machine_gantry.bed_min_xy_mm[0];refY=v.machine_head.nozzle_mm[1]-v.machine_gantry.bed_min_xy_mm[1];}
+ if(v.native_alpha_92){const reference=alphaReference(null,v,[refX,refY,0]);[refX,refY]=reference;}
  for(const a of ['X','Y']){const r=registration.switches[a];levers[a]=allMeshes.find(o=>o.name===r.lever_mesh_name);plungers[a]=allMeshes.find(o=>o.name===r.plunger_mesh_name);if(!levers[a]||!plungers[a])throw Error('Missing '+a+' mechanism')}
  $('#headStatus').textContent=[catalog.toolheads.find(x=>x.id===v.toolhead).label,catalog.hotends.find(x=>x.id===v.hotend).label,catalog.extruders.find(x=>x.id===v.extruder).label].join(' · ');
  $('#headStatus').dataset.gantryGeometryRevision=v.gantry==='trident_r2'?assetRoots.get(gantryId).meta.geometry_revision:'stock-original';
  $('#headNotes').textContent=v.notes.filter(x=>!x.startsWith('SIBOOR')&&!x.startsWith('ベルト')).join(' ');
  $('#badge').textContent=`${v.machine_gantry?'Monolith':v.gantry==='trident_r2'?'TRIDENT R2':'SIBOOR CNC AWD'} · ${v.xy_motors} XY MOTORS · ${v.belt_width_mm} mm BELTS`;
  $('#machineSubtitle').textContent=`SIBOOR JUNE本体 · ${v.machine_gantry?'Monolith':v.gantry==='trident_r2'?'VORON R2':'CNC AWD'} / ${v.belt_width_mm} mm`;
- accessories?.refresh();showHead();setPose(refX,refY,current.z);
+ accessories?.refresh();showHead();setPose(refX,refY,v.native_alpha_92?0:current.z);
 });}
 const guideMeshes=[],guideRails=[];
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
@@ -141,11 +147,12 @@ function leverPose(axis,value,dx,dy){
 }
 function setPose(x,y,z){
  renderRequested=true;
- const bedReferenceDrop=bankBedReferenceDrop(catalog,catalog.bank_data,installedHeads?.bankState,activeConfig),zMax=230-Math.max(0,bedReferenceDrop);
- const limits=monolithDisplayLimits({X:[0,maxX],Y:[0,maxY],Z:[0,zMax]},[refX,refY,0],activeConfig);
+ const bedReferenceDrop=alphaBedReferenceDrop(activeConfig,bankBedReferenceDrop(catalog,catalog.bank_data,installedHeads?.bankState,activeConfig)),zMax=230-Math.max(0,bedReferenceDrop);
+ const limits=alphaLimits(monolithDisplayLimits({X:[0,maxX],Y:[0,maxY],Z:[0,zMax]},[refX,refY,0],activeConfig),activeConfig);
  x=clamp(x,...limits.X);y=clamp(y,...limits.Y);z=clamp(z,...limits.Z);current={x,y,z};
+ const alphaPose=siboorAlphaPose(activeConfig,[x,y,z]);if(alphaPose){document.body.dataset.alphaPose=JSON.stringify(alphaPose);document.body.dataset.alphaLimits=JSON.stringify(limits);}else{delete document.body.dataset.alphaPose;delete document.body.dataset.alphaLimits;}
  program?.updatePath([x,y,z]);
- for(const a of ['x','y','z']){const range=limits[a.toUpperCase()];$('#'+a).min=range[0];$('#'+a).max=range[1]}
+ for(const a of ['x','y','z']){const range=limits[a.toUpperCase()];$('#'+a).min=range[0];$('#'+a).max=range[1];$('#'+a).step=activeConfig?.native_alpha_92?'any':nativeStockInputSteps[a]}
  const dx=x-refX,dy=y-refY;
  const bedDown=z+bedReferenceDrop;
  for(const o of moving.y)o.position.z=-dy/1000;
@@ -243,7 +250,7 @@ loadSiboorAssembly(machine).then(async([manifest,routes,g,endstops,colorOptions,
  headMarkers=createHeadMarkers(scene,{rig:installedHeads,fixture:key=>parts.get(key),render:()=>{renderRequested=true},setPose:xyz=>{program?.invalidate();stop();unfocus();if(xyz.some((n,i)=>n<Number($('#'+['x','y','z'][i]).min)-1e-7||n>Number($('#'+['x','y','z'][i]).max)+1e-7))return false;$('#head').checked=true;$('#panels').checked=true;showHead();setPose(...xyz);return true}});
  toolBank=setupChangerBank({catalog,rig:installedHeads,data:headData.bank,extras:{...accessories,onSettled:()=>setPose(current.x,current.y,current.z)}});ready=true;$('#loading').remove();await toolBank.bind(await setupConfigurations(catalog,installConfiguration,{...toolBank.options,inspectPose:headMarkers.inspect}));
  const programFrame=()=>({nozzle_mm:activeConfig.fit.nozzle_mm,reference_xyz_mm:[refX,refY,0],moving_bed_z:true});
- program=setupGcodePanel({container:document.querySelector('aside'),scene,render:()=>{renderRequested=true},getPose:()=>[current.x,current.y,current.z],getLimits:displayedMachineLimits,toNozzle:xyz=>programPoint(programFrame(),xyz),pathOffset:xyz=>programPathOffset(programFrame(),xyz),getContext:()=>({configuration:activeConfig.id,bank:installedHeads.bankState}),setPose:xyz=>setPose(...xyz),beforePlayback:()=>{stop();unfocus()}});
+ program=setupGcodePanel({container:document.querySelector('aside'),scene,render:()=>{renderRequested=true},getPose:()=>[current.x,current.y,current.z],getLimits:displayedMachineLimits,toNozzle:xyz=>programPoint(programFrame(),xyz),pathOffset:xyz=>programPathOffset(programFrame(),xyz),getContext:()=>siboorAlphaContext({configuration:activeConfig.id,bank:installedHeads.bankState},activeConfig),setPose:xyz=>setPose(...xyz),beforePlayback:()=>{stop();unfocus()}});
  setupRenderExport({renderer,scene,camera,controls,beforeRender:stop,afterRender:()=>{renderRequested=true},name:'SIBOOR_Trident_'+size});
 });}).catch(e=>{if($('#loading'))$('#loading').textContent='モデルを読み込めませんでした。'+e.message;console.error(e)});
 $('#door').oninput=e=>{$('#angle').textContent=e.target.value+'°';if(pivot)pivot.rotation.y=-THREE.MathUtils.degToRad(+e.target.value)};

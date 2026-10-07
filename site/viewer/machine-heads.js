@@ -1,23 +1,27 @@
-import {augmentTrinityAlpha,TRINITY_ALPHA_SOURCE} from './trinity-alpha-installation.mjs?v=95a0263640e6b91bfb9c';
+import {v24NativeDriveMetadata} from './v24-drive-metadata.mjs?v=dbdf9f37cb0849ffc262';
+import {augmentTrinityAlphaHosts,TRINITY_ALPHA_HOST_SOURCE,alphaResetPose,alphaRangeNotice,alphaResetLabel} from './trinity-alpha-host-extensions.mjs?v=1121c0f285fd1d2a8ab7';
+import {alphaReference,alphaLimits} from './trinity-alpha-installation.mjs?v=e7b2434829281dfd5a82';
+import {augmentTrinitySiboorR2,TRINITY_SIBOOR_SOURCE} from './trinity-alpha-siboor-r2.mjs?v=9ac57a92e19b352f3baa';
+import {augmentTrinityAlpha,TRINITY_ALPHA_SOURCE} from './trinity-alpha-installation.mjs?v=e7b2434829281dfd5a82';
 import {workspaceTask} from './workspace-lifecycle.mjs';
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=74a6f2bc49adde357207';
-import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=b085a3c74efdcda7401a';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=47fb2edce06f654fc449';
+import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=20017383790f2243c9e5';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
 import {appearanceRole} from './appearance-role.mjs?v=6b7b8efda77bfc3ce74d';
-import {partKey} from './head-assembly.js?v=workspace-belts-1';
-import {v24HeadCatalog} from './machine-head-model.mjs?v=d201fd95637601425bdc';
-import {setupConfigurations} from './configurations.js?v=0ca729cbb78ef4ae8174';
+import {partKey} from './head-assembly.js';
+import {v24HeadCatalog} from './machine-head-model.mjs?v=f31f2a1ede2c9d3dbe2f';
+import {setupConfigurations} from './configurations.js?v=61c799d8eb68531c1c87';
 
-import {loadSiboorRegistration} from './siboor-catalog.mjs?v=c59d93be54e1c7637a63';
-import {stockProbeFit} from './probe-mounts.js?v=81f922c3169490021d08';
+import {loadSiboorRegistration} from './siboor-catalog.mjs?v=6e6066e3a0fdc8e3cd52';
+import {stockProbeFit} from './probe-mounts.js';
 
-import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs?v=workspace-belts-1';
+import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs';
 import {bankPlan} from './changer-bank-model.mjs?v=024cc52a5bbc61da7506';
 import {setupChangerBank} from './changer-bank.js?v=47bbc0fef91af2c7241e';
-import {contentSHA256,acceptedMountValidation} from './mount-validation.mjs?v=workspace-belts-1';
-import {acceptedHeadValidation}from './head-validation.mjs?v=workspace-belts-1';
+import {contentSHA256,acceptedMountValidation} from './mount-validation.mjs';
+import {acceptedHeadValidation}from './head-validation.mjs';
 import {withHeadAdditions} from './head-additions.mjs?v=143d882a3df675284f2e';
 import {loadExternalComponent} from './component-assets.mjs?v=c2333ef499f46d621550';
 
@@ -27,7 +31,7 @@ export async function loadMachineHeadCatalog(machine){return workspaceTask(async
  const get=async name=>{return workspaceTask(async()=>{const r=await fetch('../'+name,{cache:'no-cache'});if(!r.ok)throw Error('ヘッドの取付データを取得できません');const text=await r.text();try{hashes[name]=await contentSHA256(text)}catch{/* Unsupported hashing leaves mounting evidence unverified. */}return JSON.parse(text)});};
  const [rawHeads,additions,registry,bank]=await Promise.all([get('TOOLHEAD_CONFIGURATIONS.json'),get('HEAD_ADDITIONS.json'),get('MACHINE_HEAD_REGISTRATIONS.json'),get('TOOLCHANGER_BANK.json')]);
  const heads=withHeadAdditions(rawHeads,additions);
- if(machine==='siboor_trident_300'){const patch=(await loadSiboorRegistration()).registrations;registry.machines[machine]=patch.head;bank.machines[machine]=patch.bank;bank.indx.machines[machine]=patch.indx_bank;}
+ if(['siboor_trident_300','siboor_trident_350'].includes(machine)){const patch=(await loadSiboorRegistration()).registrations;registry.machines.siboor_trident_300=patch.head;bank.machines.siboor_trident_300=patch.bank;bank.indx.machines.siboor_trident_300=patch.indx_bank;}
  if(machine){
   try{
    const evidence=await get('MOUNT_VALIDATION.json'),target=evidence.machines?.[machine];
@@ -38,7 +42,19 @@ export async function loadMachineHeadCatalog(machine){return workspaceTask(async
    if(target){const[bundle]=await Promise.all([get('ASSET_BUNDLE.json'),...Object.keys(target.input_sha256).map(get)]);registry.head_witness_validation=acceptedHeadValidation(evidence,hashes,bundle,machine)}
   }catch{/* Missing or stale body findings do not prevent loading the catalog. */}
  }
- heads.assets={...heads.assets,...bank.assets};const board=[xolEmbeddedBoard(await get(heads.base_assets.xol.meta)),sbEmbeddedBoard(await get(heads.base_assets.stealthburner.meta))];const data={heads:withEmbeddedBoards(heads,board),registry,bank};if(['voron_trident_250','voron_trident_300','voron_trident_350'].includes(machine)){const extra=await get(TRINITY_ALPHA_SOURCE.file);if(hashes[TRINITY_ALPHA_SOURCE.file]!==TRINITY_ALPHA_SOURCE.sha256)throw Error('Trinity alpha sidecar hash mismatch');augmentTrinityAlpha(data,machine,extra,hashes['MACHINE_HEAD_REGISTRATIONS.json']);}return data;
+ heads.assets={...heads.assets,...bank.assets};const board=[xolEmbeddedBoard(await get(heads.base_assets.xol.meta)),sbEmbeddedBoard(await get(heads.base_assets.stealthburner.meta))];
+ const data={heads:withEmbeddedBoards(heads,board),registry,bank};
+ if(["voron_trident_250","voron_trident_300","voron_trident_350","voron_v24_250_printed","voron_v24_250_ldo_cnc","voron_v24_300_printed","voron_v24_300_ldo_cnc","voron_v24_350_printed","voron_v24_350_ldo_cnc","siboor_v24_350","siboor_trident_300","siboor_trident_350"].includes(machine)){
+  const alpha=await get(TRINITY_ALPHA_SOURCE.file);if(hashes[TRINITY_ALPHA_SOURCE.file]!==TRINITY_ALPHA_SOURCE.sha256)throw Error('Trinity alpha sidecar hash mismatch');
+  augmentTrinityAlpha(data,machine,alpha,hashes['MACHINE_HEAD_REGISTRATIONS.json']);
+  const extension=await get(TRINITY_ALPHA_HOST_SOURCE.file);if(hashes[TRINITY_ALPHA_HOST_SOURCE.file]!==TRINITY_ALPHA_HOST_SOURCE.sha256)throw Error('Trinity alpha host sidecar hash mismatch');
+  augmentTrinityAlphaHosts(data,extension,hashes['MACHINE_HEAD_REGISTRATIONS.json']);
+  if(['siboor_trident_300','siboor_trident_350'].includes(machine)){
+   const siboor=await get(TRINITY_SIBOOR_SOURCE.file);if(hashes[TRINITY_SIBOOR_SOURCE.file]!==TRINITY_SIBOOR_SOURCE.sha256)throw Error('Trinity SIBOOR sidecar checksum mismatch');
+   augmentTrinitySiboorR2(data,siboor,hashes['MACHINE_HEAD_REGISTRATIONS.json']);
+  }
+ }
+ return data;
 });}
 export function createMachineHeads(scene,catalog,{render=()=>{}}={}){
  const gantry=createMonolithGantry(scene,catalog);
@@ -89,12 +105,12 @@ export function ensureMachineHeadControls({gantry=false,monolithUnavailable}={})
  if(gantry){panel.querySelector('summary').textContent='ガントリー・ヘッド構成';const head=document.querySelector('#toolheadConfig'),mount=document.querySelector('#mountConfig');head.previousElementSibling.before(mount.previousElementSibling,mount)}
  return panel;
 }
-export async function setupV24MachineHeads({machine,profile,adapter,scene,render,applyPose,beforeInstall=async()=>{},stockProbes=[],onChange=()=>{}}){return workspaceTask(async()=>{
- const data=await loadMachineHeadCatalog(machine),{heads,registry,bank}=data;let catalog=v24HeadCatalog(heads,registry,machine);const binding=registry.machines[machine];catalog.bank_data=bank;if(!binding)throw Error('機種のヘッド取付データがありません');
+export async function setupV24MachineHeads({machine,profile,adapter,scene,render,applyPose,nativeInputHashes=null,beforeInstall=async()=>{},stockProbes=[],onChange=()=>{}}){return workspaceTask(async()=>{
+ const data=await loadMachineHeadCatalog(machine),{heads,registry,bank}=data;let catalog=v24HeadCatalog(heads,registry,machine,profile);const binding=registry.machines[machine];catalog.bank_data=bank;if(!binding)throw Error('機種のヘッド取付データがありません');
  const stock={reference:[...profile.display_reference_xyz_mm],tip:[...profile.nozzle_tip_mm],limits:JSON.parse(JSON.stringify(profile.display_limits_mm)),clearance:document.querySelector('#clearanceStatus')?.textContent};
  const probes=stockProbes.length?stockProbes:[{id:'stock_panasonic',label:'標準Panasonic'},{id:'none',label:'プローブなし',hidden_stock_keys:binding.stock_probe_keys||[]}];
  for(const p of probes)if(!catalog.probes.some(v=>v.id===p.id))catalog.probes.push({id:p.id,label:p.label});
- const baseline=probes.map(p=>({id:(profile.available_configurations?.[0]?.id||'stock')+'__'+p.id,toolhead:'stealthburner',mount:'fixed',extruder:'cw2',hotend:'revo_voron',gantry:'machine_gantry',carriage:'standard',probe:p.id,board:'none',cooling:'source',belt_width_mm:6,xy_motors:binding.xy_motors,modules:[],baseline_probe:p.id,notes:['元の機体CADの標準ヘッド。'],fit:{nozzle_mm:stock.tip,...(stockProbeFit(p)?{probe:stockProbeFit(p)}:{})}}));catalog.variants.unshift(...baseline);
+ const baseline=probes.map(p=>({id:(profile.available_configurations?.[0]?.id||'stock')+'__'+p.id,toolhead:'stealthburner',mount:'fixed',extruder:'cw2',hotend:'revo_voron',gantry:'machine_gantry',carriage:'standard',probe:p.id,board:'none',cooling:'source',belt_width_mm:6,xy_motors:v24NativeDriveMetadata(machine,profile)?.xy_drive_count??binding.xy_motors,modules:[],baseline_probe:p.id,notes:['元の機体CADの標準ヘッド。'],fit:{nozzle_mm:stock.tip,...(stockProbeFit(p)?{probe:stockProbeFit(p)}:{})}}));catalog.variants.unshift(...baseline);
  catalog=await loadMonolithMachines(catalog,data);catalog.dimensions=['gantry','mount','toolhead','extruder','hotend','carriage','probe','board','cooling'];catalog.bank_data=bank;const rig=createMachineHeads(scene,catalog,{render}),gantryVisibility=stockGantryVisibility(adapter.nodes);
  const markers=new THREE.Group();markers.name='Native_Intersection_Part_Bounds';scene.add(markers);
  const clearMarkers=()=>{for(const h of markers.children){h.geometry.dispose();h.material.dispose()}markers.clear()};
@@ -108,12 +124,16 @@ export async function setupV24MachineHeads({machine,profile,adapter,scene,render
  function visibility(){for(const key of binding.stock_head_keys){const node=adapter.nodes.get(key);if(node)node.visible=!custom&&!baselineHidden.has(key)}if(custom)for(const [key,node] of adapter.nodes)if(adapter.records.get(key).motion==='reference_flexible'&&!/^(?:[AB]|Z) Belt(?: \(\d+\))?$/.test(adapter.records.get(key).name||''))node.visible=false}
  async function install(v){return workspaceTask(async()=>{
   clearMarkers();
+  if(v.native_alpha_92?.reset_xyz_mm&&(!nativeInputHashes||nativeInputHashes['machine_profile.json']!==v.native_alpha_92.source_profile_sha256||nativeInputHashes['assembly_manifest.json']!==v.native_alpha_92.source_manifest_sha256))throw Error('Trinity alpha actual native host profile/manifest hash mismatch');
   await beforeInstall(v);await toolBank.install(v);gantryVisibility.install(v);custom=!!v.machine_head;baselineHidden=new Set(probes.find(p=>p.id===v.baseline_probe)?.hidden_stock_keys||[]);
   if(custom){profile.nozzle_tip_mm=[...v.machine_head.nozzle_mm];profile.display_reference_xyz_mm=[profile.nozzle_tip_mm[0]-profile.bed_surface_min_xy_mm[0],profile.nozzle_tip_mm[1]-profile.bed_surface_min_xy_mm[1],profile.nozzle_tip_mm[2]-profile.bed_top_world_z_mm]}
   else{profile.nozzle_tip_mm=[...stock.tip];profile.display_reference_xyz_mm=[...stock.reference]}
-  profile.display_limits_mm=monolithDisplayLimits(stock.limits,profile.display_reference_xyz_mm,v);
-  for(const axis of ['x','y','z']){const input=document.querySelector('#'+axis),[min,max]=profile.display_limits_mm[axis.toUpperCase()];input.min=min;input.max=max;input.value=Math.max(min,Math.min(max,Number(input.value)))}
-  const clearance=document.querySelector('#clearanceStatus');if(clearance)clearance.textContent=v.machine_gantry?.z_delta_limits_mm?'Monolith · '+['X','Y','Z'].map(a=>a+' '+profile.display_limits_mm[a].map(n=>n.toFixed(1)).join('–')).join(' / ')+' mm':stock.clearance;
+  profile.display_reference_xyz_mm=alphaReference(profile,v,profile.display_reference_xyz_mm);
+  profile.display_limits_mm=alphaLimits(monolithDisplayLimits(stock.limits,profile.display_reference_xyz_mm,v),v);
+  const reset=alphaResetPose(v,profile.display_reference_xyz_mm);
+  for(const axis of ['x','y','z']){const input=document.querySelector('#'+axis),[min,max]=profile.display_limits_mm[axis.toUpperCase()];input.step=v.native_alpha_92?'any':axis==='z'?'1':'0.1';input.min=min;input.max=max;input.value=v.native_alpha_92?reset[['x','y','z'].indexOf(axis)]:Math.max(min,Math.min(max,Number(input.value)))}
+  const clearance=document.querySelector('#clearanceStatus');if(clearance)clearance.textContent=v.native_alpha_92?alphaRangeNotice(v):v.machine_gantry?.z_delta_limits_mm?'Monolith · '+['X','Y','Z'].map(a=>a+' '+profile.display_limits_mm[a].map(n=>n.toFixed(1)).join('–')).join(' / ')+' mm':stock.clearance;
+  const resetButton=document.querySelector('#reset');if(resetButton){resetButton.dataset.i18nId=v.native_alpha_92?'text.0843':'text.0745';resetButton.textContent=alphaResetLabel(v);}
   onChange(v);applyPose();visibility();gantryVisibility.update();installed=true;const link=document.querySelector('#toolheadLink');if(link){const url=new URL('./toolheads.html',location.href);url.searchParams.set('configuration',v.source_head_configuration||'trident_r2__stealthburner__revo_voron__cw2');link.href=url.href}
  });}
  const query=new URLSearchParams(location.search),requestedProbe=query.get('probe');

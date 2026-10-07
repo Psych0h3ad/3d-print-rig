@@ -12,7 +12,7 @@ heads.dimensions=headBuilderDimensions;
 const catalogs={heads,kit:expandedPrinterCatalog(assembly,heads,registry,'siboor_trident_350')};
 const vanilla=read('machines/voron_trident_350/configurations.json');
 catalogs.trident=expandedPrinterCatalog(vanilla,heads,registry,'voron_trident_350');
-for(const machine of Object.keys(registry.machines).filter(id=>/v24/.test(id)))catalogs[machine]=v24HeadCatalog(heads,registry,machine);
+for(const machine of Object.keys(registry.machines).filter(id=>/v24/.test(id)))catalogs[machine]=v24HeadCatalog(heads,registry,machine,read(`machines/${machine}/machine_profile.json`));
 const report={catalogs:[],failures:[],sameGeometry:[],declaredReferenceGeometry:[],unusedOptions:[],missingAssets:[],invalidHiddenKeys:[],unreachable:[],nonIdempotent:[],linkLosses:[]};
 const metadata=new Map();
 function signature(c,v){

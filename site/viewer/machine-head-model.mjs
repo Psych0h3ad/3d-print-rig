@@ -1,4 +1,5 @@
-import {trinityAlphaVariants} from './trinity-alpha-installation.mjs?v=95a0263640e6b91bfb9c';
+import {withV24NativeDriveMetadata} from './v24-drive-metadata.mjs?v=dbdf9f37cb0849ffc262';
+import {trinityAlphaVariants} from './trinity-alpha-installation.mjs?v=e7b2434829281dfd5a82';
 import {headPlan} from './head-assembly.js?v=trident-clearance-35';
 import {withPrinterGantry} from './printer-gantry.mjs?v=workspace-belts-2';
 
@@ -70,7 +71,7 @@ export function expandedPrinterCatalog(current,heads,registry,machine){
  for(const source of heads.sources)if(!result.sources.some(s=>s.url===source.url))result.sources.push(clone(source));
  return result;
 }
-export function v24HeadCatalog(heads,registry,machine){
+export function v24HeadCatalog(heads,registry,machine,profile=null){
  const variants=machineHeadVariants(heads,registry,machine),result={...heads,variants,machine_id:machine,head_witness_validation:registry.head_witness_validation,dimensions:['toolhead','mount','extruder','hotend','carriage','probe','board','cooling'],assets:{...heads.assets,...registry.assets},gantries:[{id:'machine_gantry',label:'現在のガントリー'}]};
- return result;
+ return withV24NativeDriveMetadata(result,machine,profile);
 }

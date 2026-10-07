@@ -1,3 +1,5 @@
+import {augmentTrinityAlphaHosts,TRINITY_ALPHA_HOST_SOURCE} from '../site/viewer/trinity-alpha-host-extensions.mjs';
+import {augmentTrinitySiboorR2,TRINITY_SIBOOR_SOURCE,assertSiboorIndexInput} from '../site/viewer/trinity-alpha-siboor-r2.mjs';
 import {augmentTrinityAlpha,TRINITY_ALPHA_SOURCE} from '../site/viewer/trinity-alpha-installation.mjs';
 // The support index uses the same exported catalogs and composition functions
 // as the viewer. Missing inputs fail the build, never become 'unsupported'.
@@ -30,6 +32,9 @@ export function buildSupport(root){
  const community=read('COMMUNITY_INSTALLATIONS.json');
  const heads=withEmbeddedBoards(withHeadAdditions(raw,read('HEAD_ADDITIONS.json')),[xolEmbeddedBoard(read(raw.base_assets.xol.meta)),sbEmbeddedBoard(read(raw.base_assets.stealthburner.meta))]);heads.dimensions=headBuilderDimensions;
  const alpha=read(TRINITY_ALPHA_SOURCE.file);if(input_sha256[TRINITY_ALPHA_SOURCE.file]!==TRINITY_ALPHA_SOURCE.sha256)throw Error('Trinity alpha support sidecar hash mismatch');augmentTrinityAlpha({heads,registry},null,alpha,input_sha256['MACHINE_HEAD_REGISTRATIONS.json']);
+ const alphaHosts=read(TRINITY_ALPHA_HOST_SOURCE.file);if(input_sha256[TRINITY_ALPHA_HOST_SOURCE.file]!==TRINITY_ALPHA_HOST_SOURCE.sha256)throw Error('Trinity alpha support host-sidecar hash mismatch');augmentTrinityAlphaHosts({heads,registry},alphaHosts,input_sha256['MACHINE_HEAD_REGISTRATIONS.json']);
+ assertSiboorIndexInput(input_sha256['SIBOOR_TRIDENT_ASSETS.json']);
+ const siboorAlpha=read(TRINITY_SIBOOR_SOURCE.file);if(input_sha256[TRINITY_SIBOOR_SOURCE.file]!==TRINITY_SIBOOR_SOURCE.sha256)throw Error('Trinity SIBOOR support sidecar checksum mismatch');augmentTrinitySiboorR2({heads,registry},siboorAlpha,input_sha256['MACHINE_HEAD_REGISTRATIONS.json']);
  const targets=[],details=new Map();
  function compact(target,catalog){
   const dimensions=catalogDimensions(catalog),options=catalog.options||Object.fromEntries(dimensions.map(d=>[d,(catalog[collections[d]]||[]).map(o=>({id:o.id,label:o.label.replace(/^VT \/ /,'Trident / ').replace(/^V2 \/ /,'VORON V2.4 / ').replace('sheet_metal','板金').replace('printed','プリント')}))]));
@@ -50,7 +55,7 @@ export function buildSupport(root){
   if(m.available===false)continue;
   if(registry.machines[m.id]){
    if(m.family==='trident')catalog=expandedPrinterCatalog(m.id.startsWith('siboor_trident_')?sizedSiboorCatalog(read('ASSEMBLY_CONFIGURATIONS.json'),siboor,m.id):read(`machines/${m.id}/configurations.json`),heads,registry,m.id);
-   else if(m.family==='v24')catalog={...v24HeadCatalog(heads,registry,m.id),accessories:[]};
+   else if(m.family==='v24')catalog={...v24HeadCatalog(heads,registry,m.id,read(`machines/${m.id}/machine_profile.json`)),accessories:[]};
    else throw Error('Unclassified registered printer '+m.id);
    const frame=mods.machines[m.id];if(frame)catalog.accessories=[...(catalog.accessories||[]),...frame.accessories.filter(a=>!catalog.accessories?.some(b=>a.id===b.id))];
    catalog=withMonolithMachines(catalog,heads,registry,gantries,mounts);target.status='supported';compact(target,catalog);

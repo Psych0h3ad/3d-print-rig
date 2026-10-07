@@ -24,7 +24,7 @@ for(const [machine,binding] of Object.entries(bindings.machines)){
  const nodes=new Map();g.scene.traverse(o=>{if(!o.isMesh)return;const key=o.userData.part_key||(siboor?o.name.slice(1).split('__')[0]:o.name);if(key)nodes.set(String(key),o)});
  const missing=binding.stock_hidden_keys.filter(k=>!nodes.has(k));assert.equal(missing.length,0,machine+' missing removal keys '+missing.join(','));
  const visibility=stockGantryVisibility(nodes),original=new Map([...nodes].map(([k,n])=>[k,n.visible]));
- const current=v2?v24HeadCatalog(data.heads,data.registry,machine):expandedPrinterCatalog(await read(siboor?'ASSEMBLY_CONFIGURATIONS.json':`machines/${machine}/configurations.json`),data.heads,data.registry,machine);
+ const current=v2?v24HeadCatalog(data.heads,data.registry,machine,profile):expandedPrinterCatalog(await read(siboor?'ASSEMBLY_CONFIGURATIONS.json':`machines/${machine}/configurations.json`),data.heads,data.registry,machine);
  const catalog=await loadMonolithMachines(current,data);catalog.bank_data=data.bank;assert(catalog.monolith);const rig=createMachineHeads(scene,catalog);
  const registered=catalog.variants.filter(v=>v.machine_gantry),gantries=[...new Set(registered.map(v=>v.gantry))];assert.equal(gantries.length,8);
  let installed=0,contained=0,xyContained=0;

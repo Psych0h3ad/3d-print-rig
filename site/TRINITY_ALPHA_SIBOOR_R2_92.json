@@ -1,0 +1,199 @@
+{
+  "schema": "trinity-native-siboor-r2-extensions-92",
+  "base_alpha_source": {
+    "file": "TRINITY_ALPHA_INSTALLATIONS.json",
+    "sha256": "be000c39e1ac9e8e90cac184f1ff8f65657ba68aa5a47963751ec87dec06a65d"
+  },
+  "raw_registry_sha256": "b657b29debf7e0af8e0a68e1364477cab92a9a4c1bd7e71c6f2364467251d8e8",
+  "current_native_manifest_sha256": "2c8dba337bf4edcdff828d972b3164b5d5c69012c3edee121bc948d0ac16079f",
+  "asset_id": "trinity_v13_current105_alpha_92",
+  "decoded_model_sha256": "ff8557d93e9d3803b3e4ba2729d6fb947c4134c2e84098a653069ce337d2fcfb",
+  "rows": [
+    {
+      "machine_id": "siboor_trident_300",
+      "gantry_id": "trident_r2",
+      "id": "installed__trident_r2__trinity87__v13_alpha92",
+      "source_head_configuration": "trinity87__v13",
+      "belt_width_mm": 6,
+      "xy_motors": 2,
+      "stock_block_key": "trident_r2_gantry_300_381",
+      "stock_block_sha256": "d4ee372a2b615f619f8dd5c7fa1e9b4a4d9b421e0f193b99ed6fe4e76e5623e2",
+      "stock_block_component_keys": [
+        "trident_r2_gantry_300_381",
+        "trident_r2_gantry_300_382",
+        "trident_r2_gantry_300_383",
+        "trident_r2_gantry_300_384",
+        "trident_r2_gantry_300_385",
+        "trident_r2_gantry_300_386",
+        "trident_r2_gantry_300_387",
+        "trident_r2_gantry_300_388",
+        "trident_r2_gantry_300_389"
+      ],
+      "stock_block_retained_count": 1,
+      "translation_mm": [
+        5.684341886080802e-14,
+        -1.922906278650771e-12,
+        5.684341886080802e-14
+      ],
+      "nozzle_mm": [
+        -0.00018793100299972673,
+        -15.999997425107342,
+        278.9999932802921
+      ],
+      "bed_min_xy_mm": [
+        -149.85736514319632,
+        -197.19999999999715
+      ],
+      "reference_xyz_mm": [
+        149.8571772121933,
+        181.2000025748898,
+        0
+      ],
+      "reset_xyz_mm": [
+        149.8571772121933,
+        181.2000025748898,
+        0
+      ],
+      "bed_reference_drop_mm": 25.145246788104952,
+      "bed_top_native_mm": 303.945240068397,
+      "limits_mm": {
+        "X": [
+          50.224,
+          247.09
+        ],
+        "Y": [
+          49.301,
+          300.0
+        ],
+        "Z": [
+          0,
+          204.85475321189506
+        ]
+      },
+      "source_manifest_sha256": "519def1433c254b8685af09d18b013723164deb5a32704e1f9e2fcb8e7027afb",
+      "source_model_sha256": "204ade40da178faad23ed06f86fcfce555a0867ec4e7a2bc5a2e4a984000c297",
+      "source_model_decoded_sha256": "ca956d3d7b27526e8f21b7d8cbbc5783ce461b6ae450f9609a6f5847cc814672",
+      "source_configuration_sha256": "d1cd49d6d69c1e7f32429b9c58ba157a7a50881660e8e43fbecaf51d7507b288",
+      "source_gantry_manifest_sha256": "96a5667cc97d044f10e61b58206393931f7839ae2f7ee21c26efed75cc581cc7",
+      "source_gantry_model_sha256": "887d1259635f1d204f8276e417d97ed8df7851d4d22b3b683a7c011bdc563542",
+      "source_gantry_model_decoded_sha256": "76c742c7832cde422eab6aa193ff3a4fea2565894b18aa83524eab97fda8916f",
+      "native_binding": {
+        "origin_mm": [
+          -0.0001879310030119541,
+          -6.999997425107883,
+          359.99999328029236
+        ],
+        "axis_error_mm": 6.77360073966733e-07,
+        "part_key": "trident_r2_gantry_300_381",
+        "belt_width_mm": 6,
+        "xy_motors": 2
+      },
+      "source_siboor_index_sha256": "9b10bebcaa3b326532fdac5ecc435c6414cf3d0402967ebc99944130b8a8f3b0",
+      "mount_proof_sha256": "21d59fa0da7028f7812c2402d1c6b7cc2fa21ed96e118aafd02a5271e8fead6d",
+      "all_nine_block_proof_sha256": "33ef996df7578c140359f67280f8b03bdb1986b82e0017fdf691340062baa801",
+      "alpha_viewer_enabled": true,
+      "full_machine_clearance_qualified": false,
+      "internal_functional_unresolved": 18,
+      "native_chord_qualified": false,
+      "homing_firmware_qualified": false,
+      "front_lateral_rules": {
+        "proof_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/native-alpha-92/ff8557d93e9d3803b3e4/42d43dcb691e84c2-SIBOOR_R2_FINITE_NATIVE_SUPPORT_RULES.json",
+        "source_file_sha256": "42d43dcb691e84c2bd74155fdc38e329ff503948d295f0a4bb518d164c49f40f",
+        "machine_id": "siboor_trident_300"
+      }
+    },
+    {
+      "machine_id": "siboor_trident_350",
+      "gantry_id": "trident_r2",
+      "id": "installed__trident_r2__trinity87__v13_alpha92",
+      "source_head_configuration": "trinity87__v13",
+      "belt_width_mm": 6,
+      "xy_motors": 2,
+      "stock_block_key": "trident_r2_gantry_350_381",
+      "stock_block_sha256": "3e2ff4d6c4bf1dfa9d92b0535a27733b837637c6df7834b50739bd1ba5feedd0",
+      "stock_block_component_keys": [
+        "trident_r2_gantry_350_381",
+        "trident_r2_gantry_350_382",
+        "trident_r2_gantry_350_383",
+        "trident_r2_gantry_350_384",
+        "trident_r2_gantry_350_385",
+        "trident_r2_gantry_350_386",
+        "trident_r2_gantry_350_387",
+        "trident_r2_gantry_350_388",
+        "trident_r2_gantry_350_389"
+      ],
+      "stock_block_retained_count": 1,
+      "translation_mm": [
+        5.684341886080802e-14,
+        -1.922906278650771e-12,
+        5.684341886080802e-14
+      ],
+      "nozzle_mm": [
+        -0.00018793100299972673,
+        -15.999997425107342,
+        278.9999932802921
+      ],
+      "bed_min_xy_mm": [
+        -174.85736514319632,
+        -222.19999999999715
+      ],
+      "reference_xyz_mm": [
+        174.8571772121933,
+        206.2000025748898,
+        0
+      ],
+      "reset_xyz_mm": [
+        174.8571772121933,
+        206.2000025748898,
+        0
+      ],
+      "bed_reference_drop_mm": 25.145246788104952,
+      "bed_top_native_mm": 303.945240068397,
+      "limits_mm": {
+        "X": [
+          50.224,
+          297.09
+        ],
+        "Y": [
+          49.301,
+          350.0
+        ],
+        "Z": [
+          0,
+          204.85475321189506
+        ]
+      },
+      "source_manifest_sha256": "4fe7fed76a8c003aa652bed57608026dad7b1953ac7b4b589a990d47ff74dadf",
+      "source_model_sha256": "a9160ed1716880d731c6e85037972a1dfd15388e10356217d5203ccc8e8b3938",
+      "source_model_decoded_sha256": "96309090e82efd59e214c403edf4716357a245e76a190038bea88abae315ff52",
+      "source_configuration_sha256": "2542f57d3ddeb63322057bbbf324b154f4e7b1f0c7edf7168fb4155ed042574a",
+      "source_gantry_manifest_sha256": "070c8ffa0ee7e5b085616aacd561a6f10a2bc997027b150028326c4b3783da53",
+      "source_gantry_model_sha256": "4a85b10cb235adf9c490474e22d0bca46f34659d4846b09f6c965a09c98625d4",
+      "source_gantry_model_decoded_sha256": "80c132a822684a270db4d13f2971cb22825d098588ccaa34d7cb53e3cddfac9b",
+      "native_binding": {
+        "origin_mm": [
+          -0.0001879310030119541,
+          -6.999997425107883,
+          359.99999328029236
+        ],
+        "axis_error_mm": 6.77360073966733e-07,
+        "part_key": "trident_r2_gantry_350_381",
+        "belt_width_mm": 6,
+        "xy_motors": 2
+      },
+      "source_siboor_index_sha256": "9b10bebcaa3b326532fdac5ecc435c6414cf3d0402967ebc99944130b8a8f3b0",
+      "mount_proof_sha256": "21d59fa0da7028f7812c2402d1c6b7cc2fa21ed96e118aafd02a5271e8fead6d",
+      "all_nine_block_proof_sha256": "33ef996df7578c140359f67280f8b03bdb1986b82e0017fdf691340062baa801",
+      "alpha_viewer_enabled": true,
+      "full_machine_clearance_qualified": false,
+      "internal_functional_unresolved": 18,
+      "native_chord_qualified": false,
+      "homing_firmware_qualified": false,
+      "front_lateral_rules": {
+        "proof_url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/native-alpha-92/ff8557d93e9d3803b3e4/42d43dcb691e84c2-SIBOOR_R2_FINITE_NATIVE_SUPPORT_RULES.json",
+        "source_file_sha256": "42d43dcb691e84c2bd74155fdc38e329ff503948d295f0a4bb518d164c49f40f",
+        "machine_id": "siboor_trident_350"
+      }
+    }
+  ]
+}
