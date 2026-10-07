@@ -1,5 +1,5 @@
 import {Vector3} from './vendor/three.module.js';
-import {bedChainRoute} from './bed-chain.mjs?v=public-v25';
+import {bedChainRoute} from './bed-chain.mjs?v=d388cb7f656c9b5f2d12';
 import {v0ChainPins} from './v0-chain-pins.mjs?v=v0-mounts-38';
 export function createV0Chain(nodes,manifest){
  const pins=v0ChainPins[manifest.machine_id];if(!pins)throw Error('V0 native chain pins are missing');

@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import {cadToGlb} from './v0_adapter.mjs?v=beffa4bd404f6b071e07';
+import {cadToGlb} from './v0_adapter.mjs?v=bffcacc18aa8ec88311b';
 import {tophatTransform} from './v0-tophat.mjs?v=v0-mounts-39';
 
 export const v0Slots=[['toolhead','ツールヘッド'],['bed','ベッド支持機構'],['carriage','Xキャリッジ'],['accelerometer','加速度センサー'],['strain_relief','配線マウント'],['handles','ハンドル'],['tophat','トップハット']];

@@ -11040,6 +11040,11 @@
       "kind": "message",
       "ja": "アルファ版プレビュー。取付・クリアランスの検証は未完了です。",
       "en": "Alpha preview; mounting/clearance validation incomplete."
+    },
+    "custom_voron.external_ptfe": {
+      "kind": "message",
+      "ja": "外部PTFEは表示用の柔軟な経路で、位置に応じて長さが変わり、STEPには含まれません。閉じた天板の下に余裕を残すため、Zの可動上限を制限しています。",
+      "en": "External PTFE is a flexible preview; its length varies with pose and it is not included in STEP. Z travel is limited to leave space below the closed roof."
     }
   }
 }

@@ -1,5 +1,5 @@
 import {createTridentBelts} from './trident-belts.mjs?v=trident-clearance-35';
-import {createBedChain,isTridentBedChain} from './bed-chain.mjs?v=public-v25';
+import {createBedChain,isTridentBedChain} from './bed-chain.mjs?v=d388cb7f656c9b5f2d12';
 /** Independent Trident bed motion. Vertices carry their CAD placements. */
 export function createTridentMotion(profile){
  if(profile.kinematics!=='trident'||!/^voron_trident_(?:(?:250|300|350)|500_custom|350_half_z)$/.test(profile.machine_id))throw Error('Trident profile mismatch');
@@ -9,9 +9,14 @@ export function createTridentMotion(profile){
   if(/^trident_r2_gantry_/.test(metadata.id||'')&&metadata.id!==gantryId)throw Error('Trident gantry size mismatch');
   const rows=new Map(metadata.parts.map(p=>[p.key,p]));
   // Original leaf1167 joins moving bed extrusions despite its Frame_Hardware path.
-  const bedJointKey=profile.machine_id+'_base_1167';
-  if(/^voron_trident_(250|300|350)$/.test(profile.machine_id)&&metadata.id===profile.machine_id+'_base'){
-   const screw=rows.get(bedJointKey),cross=rows.get(profile.machine_id+'_base_1038'),stem=rows.get(profile.machine_id+'_base_1039');
+  const stockBase=/^voron_trident_(250|300|350)$/.test(profile.machine_id)&&metadata.id===profile.machine_id+'_base';
+  const customProfile=/^voron_trident_(500_custom|350_half_z)$/.test(profile.machine_id);
+  const customBase=customProfile&&(metadata.machine_id!==undefined||metadata.source_baseline!==undefined);
+  if(customBase&&(metadata.machine_id!==profile.machine_id||metadata.source_baseline!=='voron_trident_350'||metadata.id!==gantryId))throw Error('Native custom Trident bed-joint source identity changed');
+  const bedJointPrefix=customBase?'voron_trident_350_base':profile.machine_id+'_base';
+  const bedJointKey=bedJointPrefix+'_1167';
+  if(stockBase||customBase){
+   const screw=rows.get(bedJointKey),cross=rows.get(bedJointPrefix+'_1038'),stem=rows.get(bedJointPrefix+'_1039');
    if(!screw||screw.source_leaf!=='1167'||screw.name!=='M5x16 BHCS'||screw.source_component!=='Frame:1/Frame_Hardware:1/Screws:1/M5x16 BHCS:19'||!['fixed','z'].includes(screw.motion)||cross?.motion!=='z'||stem?.motion!=='z'||cross.source_leaf!=='1038'||stem.source_leaf!=='1039'||!cross.source_component?.startsWith('Frame:1/Bed Extrusions:1/')||!stem.source_component?.startsWith('Frame:1/Bed Extrusions:1/'))throw Error('Native Trident bed-joint identity/mates changed');
    // Copy one runtime row: raw metadata and its accepted native witness pins stay intact.
    rows.set(bedJointKey,{...screw,motion:'z',motion_axes:['Z'],mount_motion:'bed_support_extrusion'});

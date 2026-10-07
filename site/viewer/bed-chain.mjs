@@ -33,8 +33,10 @@ export function createBedChain(root,metadata){
   if(!row)throw Error('Missing native chain link '+pin.key);const mesh=meshes.get(row.key);if(!mesh)throw Error('Missing chain mesh '+row.key);
   for(const p of [pin.from_xz_mm,pin.to_xz_mm])for(const [j,a]of [0,2].entries())if(p[j]<row.bounds_mm[0][a]-.001||p[j]>row.bounds_mm[1][a]+.001)throw Error('Native chain hinge registration '+row.key);
   const y=(row.bounds_mm[0][1]+row.bounds_mm[1][1])/2,from=new Vector3(pin.from_xz_mm[0]/1000,pin.from_xz_mm[1]/1000,-y/1000);
+  mesh.updateWorldMatrix(true,false);
+  const pivotLocal=mesh.worldToLocal(from.clone());
   mesh.frustumCulled=false;
-  return {row,mesh,from,angle:Math.atan2(pin.to_xz_mm[1]-pin.from_xz_mm[1],pin.to_xz_mm[0]-pin.from_xz_mm[0]),origin:mesh.position.clone(),rotation:mesh.quaternion.clone()};
+  return {row,mesh,from,pivotLocal,angle:Math.atan2(pin.to_xz_mm[1]-pin.from_xz_mm[1],pin.to_xz_mm[0]-pin.from_xz_mm[0]),origin:mesh.position.clone(),rotation:mesh.quaternion.clone()};
  });
  const endParts=rows.filter(p=>p.name!=='10x11 Chain Link').map(row=>({row,mesh:meshes.get(row.key),origin:meshes.get(row.key).position.clone(),moving:(row.bounds_mm[0][2]+row.bounds_mm[1][2])/2>150}));
  const start=pins[0].from_xz_mm,end=pins.at(-1).to_xz_mm,axis=new Vector3(0,0,1);let lastDown,route;
@@ -43,8 +45,10 @@ export function createBedChain(root,metadata){
    route=bedChainRoute(start,[end[0],end[1]-down]);
    for(const [i,e]of entries.entries()){
     if(Math.abs(down)<1e-8){e.mesh.position.copy(e.origin);e.mesh.quaternion.copy(e.rotation);continue;}
-    e.mesh.quaternion.setFromAxisAngle(axis,route.angles[i]-e.angle);
-    const p=route.points[i];e.mesh.position.set(p[0]/1000,p[1]/1000,e.from.z).sub(e.from.clone().applyQuaternion(e.mesh.quaternion)).add(e.origin);
+    e.mesh.quaternion.setFromAxisAngle(axis,route.angles[i]-e.angle).multiply(e.rotation);
+    const p=route.points[i],target=new Vector3(p[0]/1000,p[1]/1000,e.from.z);
+    if(e.mesh.parent)e.mesh.parent.worldToLocal(target);
+    e.mesh.position.copy(target).sub(e.pivotLocal.clone().multiply(e.mesh.scale).applyQuaternion(e.mesh.quaternion));
    }
    for(const e of endParts)e.mesh.position.set(e.origin.x,e.origin.y-(e.moving?down/1000:0),e.origin.z);
    lastDown=down;

@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import {machineChoices} from '../site/viewer/machines.js';
 import {validateCustomState} from '../site/viewer/custom-voron-state.mjs';
 const catalog=JSON.parse(fs.readFileSync(new URL('../site/CUSTOM_VORON_ASSETS.json',import.meta.url)));catalog.machines=Object.fromEntries(catalog.machines.map(r=>[r.id,r]));
-const sizes={voron_v24_500_custom:[500,480],voron_v24_350_half_z:[350,165],voron_trident_500_custom:[500,250],voron_trident_350_half_z:[350,125]};
+const sizes={voron_v24_500_custom:[500,469],voron_v24_350_half_z:[350,165],voron_trident_500_custom:[500,250],voron_trident_350_half_z:[350,125]};
 assert.deepEqual(Object.keys(catalog.machines).sort(),Object.keys(sizes).sort());
 for(const[id,[xy,z]]of Object.entries(sizes)){
  const choice=machineChoices.find(m=>m.id===id);assert.equal(choice.page,'./custom-voron.html');assert.equal(choice.size,xy);

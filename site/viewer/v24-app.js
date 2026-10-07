@@ -1,12 +1,12 @@
 import {contentSHA256} from './mount-validation.mjs';
-import {alphaResetPose,alphaHostContext,alphaNozzlePosition,alphaNativeHostModelOptions} from './trinity-alpha-host-extensions.mjs?v=1121c0f285fd1d2a8ab7';
+import {alphaResetPose,alphaHostContext,alphaNozzlePosition,alphaNativeHostModelOptions} from './trinity-alpha-host-extensions.mjs?v=283a9312a7a9c5ee1d2a';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {workspaceFrame,WorkspaceResizeObserver,workspaceTask} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=workspace-belts-1';
 import {appearanceRole} from './appearance-role.mjs?v=6b7b8efda77bfc3ce74d';
 import * as THREE from 'three';
-import {loadFrameMods,withFrameMods} from './frame-mods.js?v=ceed47eadf23dfc523e1';
+import {loadFrameMods,withFrameMods} from './frame-mods.js?v=03ac9b506eeb373f4d3b';
 import {setupLighting} from './lighting.js?v=454c19f7ca3795b005de';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=f471190665709ba23159';
 import {setupAccessories} from './accessories.js?v=workspace-belts-2';
@@ -16,10 +16,10 @@ import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
 import {createV24Adapter} from './v24_adapter.mjs?v=3a3944ab39c9df1658f4';
-import {setupMachineNavigation} from './machines.js?v=d6045b8af89b3984adcb';
+import {setupMachineNavigation} from './machines.js?v=9a3eae7a7c53d576c80d';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
-import {setupPublicInfo} from './public-info.js?v=0b0f91d7a82d25acbb87';
-import {setupV24MachineHeads} from './machine-heads.js?v=b98f318157167d0f5ce2';
+import {setupPublicInfo} from './public-info.js?v=ba2b9ca1adb080a0d143';
+import {setupV24MachineHeads} from './machine-heads.js?v=6b0a9c27691a07113f83';
 export async function mount(scope){
 setupMachineNavigation('siboor_v24_350');
 setupPublicInfo();

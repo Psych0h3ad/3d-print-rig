@@ -35,7 +35,7 @@ export const machineChoices=[
  {id:'voron_v24_300_printed',label:'VORON V2.4 300 · R2標準プリント構造',page:'./v24-reference.html'},
  {id:'voron_v24_300_ldo_cnc',label:'VORON V2.4 300 · LDO CNC AWD参照',page:'./v24-reference.html'},
  {id:'voron_v24_350_printed',label:'VORON V2.4 350 · R2標準プリント構造',page:'./v24-reference.html'},
- {id:'voron_v24_500_custom',label:'VORON V2.4 500 × 500 × 480 · Custom',page:'./custom-voron.html',family:'v24',vendor:'voron',size:500},
+ {id:'voron_v24_500_custom',label:'VORON V2.4 500 × 500 × 469 · Custom',page:'./custom-voron.html',family:'v24',vendor:'voron',size:500},
  {id:'voron_v24_350_half_z',label:'VORON V2.4 350 × 350 × 165 · Half Z',page:'./custom-voron.html',family:'v24',vendor:'voron',size:350},
  {id:'voron_v24_350_ldo_cnc',label:'VORON V2.4 350 · LDO CNC AWD参照',page:'./v24-reference.html'},
  {id:'voron_v02r1_120',label:'VORON V0.2r1 120 · Mini Stealthburner',page:'./v0.html'},

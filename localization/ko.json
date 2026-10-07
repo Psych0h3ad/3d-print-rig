@@ -8789,6 +8789,10 @@
     "ui.trinity_alpha_notice": {
       "source_revision": "5ffb8ce778ddda2f5501",
       "text": "알파 미리보기: 장착 및 간섭 검증이 완료되지 않았습니다."
+    },
+    "custom_voron.external_ptfe": {
+      "source_revision": "b68b54ca12cdcdb38f21",
+      "text": "외부 PTFE는 유연한 경로 미리보기이며 위치에 따라 길이가 달라지고 STEP에는 포함되지 않습니다. Z 이동 범위는 닫힌 상판 아래 공간을 확보하도록 제한됩니다."
     }
   }
 }

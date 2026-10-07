@@ -2,34 +2,37 @@ import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
-import {loadCustomVoron} from './custom-voron-loader.mjs?v=9947051632cb50e79d40';
+import {loadCustomVoron} from './custom-voron-loader.mjs?v=e18d861e8f6c6a9fae6a';
 import {createV24Adapter} from './v24_matrix_adapter.mjs?v=7d9f902c2b7d63478e0a';
-import {createTridentMotion} from './trident-motion.mjs?v=59606332935ee1881f70';
-import {setupMachineNavigation} from './machines.js?v=d6045b8af89b3984adcb';
+import {createTridentMotion} from './trident-motion.mjs?v=fd57de962d027d09aa07';
+import {setupMachineNavigation} from './machines.js?v=9a3eae7a7c53d576c80d';
 import {appearanceRole} from './appearance-role.mjs?v=6b7b8efda77bfc3ce74d';
-import {createCustomTube} from './custom-voron-tube.mjs?v=06995433c84962abb661';
+import {createCustomTube} from './custom-voron-tube.mjs?v=3c58e636367940363ec5';
+import {createV24PtfePreview,V24_PTFE_SPEC} from './v24-ptfe.mjs?v=e63e7da2ace1d2f23005';
 import {validateCustomState} from './custom-voron-state.mjs?v=4b6132fe80a74098a8ba';
 import {workspaceFrame,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {setupSceneDisplay} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {setupGrid} from './grid-control.js';
 import {setupRenderExport} from './render-export.js';
-import {setupPublicInfo} from './public-info.js?v=0b0f91d7a82d25acbb87';
+import {setupPublicInfo} from './public-info.js?v=ba2b9ca1adb080a0d143';
 import {setupGcodePanel} from './gcode-panel.js?v=f471190665709ba23159';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
-import {formatMessage,translate} from './i18n.mjs?v=43b5586b963e97062654';
+import {formatMessage,translate} from './i18n.mjs?v=c125232811265df5b7e6';
 export async function mount(scope){
- const $=id=>document.getElementById(id),id=new URL(location.href).searchParams.get('machine')||'voron_v24_500_custom';setupMachineNavigation(id);setupPublicInfo({machineId:id});
+ const $=id=>document.getElementById(id),id=new URL(location.href).searchParams.get('machine')||'voron_v24_500_custom';setupMachineNavigation(id);
+ const assemblyMachineId=['voron_v24_500_custom','voron_trident_500_custom'].includes(id)?id:null;
+ setupPublicInfo({machineId:assemblyMachineId,includeDownloads:assemblyMachineId===null});
  const renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.setClearColor('#edf1f4');$('stage').append(renderer.domElement);
  const scene=scope.scene(new THREE.Scene()),camera=new THREE.PerspectiveCamera(38,1,.001,10),controls=scope.resource(new OrbitControls(camera,renderer.domElement));scene.add(new THREE.HemisphereLight('#ffffff','#6c7981',2.4));
  for(const pos of [[.4,.6,.5],[-.3,.2,-.4]]){const light=new THREE.DirectionalLight('#ffffff',2);light.position.set(...pos);scene.add(light)}
- let pending=false,adapter,tube,current,profile,manifest,program,palette={base:'#24272c',accent:'#e32636',frame:'#25282d'};const materials=[],nodes=new Map();
+ let pending=false,adapter,tube,externalPtfe,current,profile,manifest,program,palette={base:'#24272c',accent:'#e32636',frame:'#25282d'};const materials=[],nodes=new Map();
  function render(){if(pending||scope.disposed)return;pending=true;workspaceFrame(()=>{pending=false;renderer.render(scene,camera)})}
  setupGrid(scene,render).position.y=-.096;
  function resize(){const b=$('stage').getBoundingClientRect();renderer.setSize(b.width,b.height,false);setResponsiveAspect(camera,controls,b.width,b.height);render()}
  controls.addEventListener('change',render);new WorkspaceResizeObserver(resize).observe($('stage'));
  const t=value=>translate(value,document.documentElement.lang);
- function applyPose(){if(!adapter)return;const xyz=['x','y','z'].map(a=>Number($(a).value)),flexible=$('belts').checked;adapter.setFlexibleVisible?.(flexible);current=adapter.setPose({x:xyz[0],y:xyz[1],z:xyz[2]},{flexibleVisible:flexible});tube?.update(xyz[0]-profile.display_reference_xyz_mm[0],xyz[1]-profile.display_reference_xyz_mm[1],flexible);for(const[i,a]of ['x','y','z'].entries())$(a+'v').textContent=xyz[i].toFixed(2)+' mm';document.body.dataset.pose=JSON.stringify(xyz);render()}
+ function applyPose(){if(!adapter)return;const xyz=['x','y','z'].map(a=>Number($(a).value)),flexible=$('belts').checked;adapter.setFlexibleVisible?.(flexible);current=adapter.setPose({x:xyz[0],y:xyz[1],z:xyz[2]},{flexibleVisible:flexible});const actual=current.display_xyz_mm??['x','y','z'].map(a=>current[a]);tube?.update(actual[0]-profile.display_reference_xyz_mm[0],actual[1]-profile.display_reference_xyz_mm[1],flexible);externalPtfe?.setPose(actual,flexible);for(const[i,a]of ['x','y','z'].entries()){$(a).value=actual[i];$(a+'v').textContent=actual[i].toFixed(2)+' mm'}document.body.dataset.pose=JSON.stringify(actual);render()}
  function applyPalette(){for(const r of materials){r.material.color.copy(r.original);if(palette[r.role]){r.material.color.set(palette[r.role]);if(['base','accent'].includes(r.role)){r.material.metalness=0;r.material.roughness=.72}}}for(const r of ['base','accent','frame']){$(r).value=palette[r];$(r+'Hex').value=palette[r]}$('frameFinish').value=palette.frame==='#b9bec4'?'silver':palette.frame==='#25282d'?'black':'custom';render()}
  const storage='3d-print-rig-custom-voron-'+id,validColor=v=>/^#[a-f0-9]{6}$/i.test(v);
  function state(){return {schema:'custom-voron-1',machine_id:id,axes:['x','y','z'].map(a=>Number($(a).value)),colors:{...palette},panels:$('enclosure').checked,belts:$('belts').checked,grid:$('gridVisible').checked}}
@@ -40,6 +43,7 @@ export async function mount(scope){
   loaded.root.traverse(mesh=>{const key=mesh.userData?.part_key;if(rows.has(key)&&mesh.parent?.userData?.part_key!==key)nodes.set(key,mesh);if(!mesh.isMesh)return;const row=rows.get(key);if(!row)throw Error('Unregistered custom VORON part');mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();for(const material of Array.isArray(mesh.material)?mesh.material:[mesh.material]){if(material.transparent)material.depthWrite=false;materials.push({material,original:material.color.clone(),role:appearanceRole(row)})}});
   if(trident){adapter=createTridentMotion(profile);adapter.register(loaded.root,manifest)}else adapter=createV24Adapter(loaded.root,manifest,profile);
   tube=createCustomTube(loaded.root,manifest);if(tube)scope.resource(tube);
+  if(id===V24_PTFE_SPEC.machine_id){externalPtfe=createV24PtfePreview(THREE,loaded.root,manifest,profile,V24_PTFE_SPEC);scope.resource(externalPtfe);$('externalPtfeNotice').hidden=false;}
   $('machineTitle').textContent=(trident?'Trident':'V2.4')+' / '+profile.size_mm;$('dimensions').textContent=profile.size_mm+' × '+profile.size_mm+' × '+profile.display_limits_mm.Z[1]+' mm';$('badge').textContent=$('machineTitle').textContent+' · '+manifest.parts.length.toLocaleString()+' PARTS';$('motionHelp').textContent=t(trident?'ベッド・サーミスタ・3Zガイドが下降に追従':'ベッド固定 · X/Yヘッドと4Zガイド・ガントリーがZ＋へ追従');
   for(const[i,a]of ['x','y','z'].entries()){const limits=profile.display_limits_mm[a.toUpperCase()];$(a).min=limits[0];$(a).max=limits[1];$(a).value=profile.display_reference_xyz_mm[i];$(a).disabled=false;$(a).oninput=()=>{program?.invalidate();applyPose()}}
   $('reset').disabled=false;$('reset').onclick=()=>{program?.invalidate();for(const[i,a]of ['x','y','z'].entries())$(a).value=profile.display_reference_xyz_mm[i];applyPose()};

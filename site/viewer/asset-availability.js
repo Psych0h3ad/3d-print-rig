@@ -1,5 +1,5 @@
 import {workspaceTask} from './workspace-lifecycle.mjs';
-import {setupPublicInfo} from './public-info.js?v=0b0f91d7a82d25acbb87';
+import {setupPublicInfo} from './public-info.js?v=ba2b9ca1adb080a0d143';
 import {modelURL} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
 
 const files={

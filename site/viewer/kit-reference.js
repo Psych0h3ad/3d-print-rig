@@ -9,12 +9,12 @@ import {appearanceRole} from './appearance-role.mjs?v=6b7b8efda77bfc3ce74d';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {loadKitReference} from './kit-reference-loader.mjs?v=e018cf8fc3c93c4140dd';
-import {setupMachineNavigation} from './machines.js?v=d6045b8af89b3984adcb';
+import {setupMachineNavigation} from './machines.js?v=9a3eae7a7c53d576c80d';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
-import {setupPublicInfo} from './public-info.js?v=0b0f91d7a82d25acbb87';
-import {createCommunityAdapter} from './community-adapter.mjs?v=527f242dd6b104060425';
-import {setupNativeMotionControls} from './native-motion-controls.mjs?v=f05867a50f5371655360';
+import {setupPublicInfo} from './public-info.js?v=ba2b9ca1adb080a0d143';
+import {createCommunityAdapter} from './community-adapter.mjs?v=119d24ed1cad4ae439f8';
+import {setupNativeMotionControls} from './native-motion-controls.mjs?v=7ea2f5883e6052f8a41e';
 export async function mount(scope){
 const $=s=>document.querySelector(s),id='fysetc_v24_250_pro',stage=$('#stage');
 setupMachineNavigation(id);setupPublicInfo({includeDownloads:false});

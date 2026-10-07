@@ -8789,6 +8789,10 @@
     "ui.trinity_alpha_notice": {
       "source_revision": "5ffb8ce778ddda2f5501",
       "text": "Vista previa alfa; validación de montaje y holguras incompleta."
+    },
+    "custom_voron.external_ptfe": {
+      "source_revision": "b68b54ca12cdcdb38f21",
+      "text": "El PTFE externo es una vista previa flexible; su longitud cambia con la posición y no se incluye en STEP. El recorrido Z deja espacio bajo la tapa cerrada."
     }
   }
 }

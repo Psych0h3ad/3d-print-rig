@@ -1932,6 +1932,52 @@
         "bytes": 62798046,
         "sha256": "99e67b3030e2cf1c6c7bb91600340db30fbbf8c3ece5fbbf2d6c7b7492290e05"
       }
+    },
+    {
+      "id": "voron_v24_500_custom",
+      "machine_id": "voron_v24_500_custom",
+      "brand": "VORON",
+      "model": "V2.4",
+      "size": 500,
+      "display_name": "VORON V2.4 500 Custom",
+      "configuration": "Printed R2 / Stealthburner / Clockwork 2 / Revo Voron",
+      "revision": "Custom 500 / R2 reference",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/voron500-assy-v93/VORON_V2_4_500_Custom_SB_CW2_RevoVoron_Assy_STEP.zip",
+      "upstream_url": "https://github.com/VoronDesign/Voron-2/tree/a192410e27ea345644ae5c4b29b4c9c40cbe1a73",
+      "license": "GPL-3.0",
+      "release_verified": true,
+      "part_count": 1390,
+      "custom_reference": true,
+      "note": "500 mm custom CAD reference; not an official VORON size or tested kit.",
+      "step_zip": {
+        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/voron500-assy-v93/VORON_V2_4_500_Custom_SB_CW2_RevoVoron_Assy_STEP.zip",
+        "filename": "VORON_V2_4_500_Custom_SB_CW2_RevoVoron_Assy_STEP.zip",
+        "bytes": 138467521,
+        "sha256": "4353aeffabcc45cce2c30f607f3eedacc3db70a5af7a9b0d0d9c9d142c7dd21d"
+      }
+    },
+    {
+      "id": "voron_trident_500_custom",
+      "machine_id": "voron_trident_500_custom",
+      "brand": "VORON",
+      "model": "Trident",
+      "size": 500,
+      "display_name": "VORON Trident 500 Custom",
+      "configuration": "Printed R2 / Stealthburner / Clockwork 2 / Revo Voron",
+      "revision": "Custom 500 / R2 reference",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/voron500-assy-v93/VORON_Trident_500_Custom_SB_CW2_RevoVoron_Assy_STEP.zip",
+      "upstream_url": "https://github.com/VoronDesign/Voron-Trident/tree/a8628f48546948ce1fc15511b7765b7f31f80722",
+      "license": "GPL-3.0 (VORON); retained CW2 component terms not declared",
+      "release_verified": true,
+      "part_count": 1374,
+      "custom_reference": true,
+      "note": "500 mm custom CAD reference; not an official VORON size or tested kit.",
+      "step_zip": {
+        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/voron500-assy-v93/VORON_Trident_500_Custom_SB_CW2_RevoVoron_Assy_STEP.zip",
+        "filename": "VORON_Trident_500_Custom_SB_CW2_RevoVoron_Assy_STEP.zip",
+        "bytes": 169583316,
+        "sha256": "21685bafca04b0359629be966e251c6c5c3a9733c9689e00e9ab0747090be5fb"
+      }
     }
   ],
   "source_archives": [
@@ -2130,6 +2176,13 @@
       "sha256": "6a94fd8bf03b8b06293709ddf11e1c95e3b2057efe1f1eebd1aa1bf072af48ae",
       "license": "GPL-3.0",
       "release_verified": false
+    },
+    {
+      "label": "VORON V2.4 and Trident custom500 assembled native solids",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/voron500-assy-v93/VORON_500_Custom_Native_Source.zip",
+      "bytes": 164384386,
+      "sha256": "43cfa416abd60294986a719e4c9b92b9bff4a4c15d34ec521e81233b47197e1a",
+      "license": "Original component terms; see included source revisions and component notices."
     }
   ]
 }
