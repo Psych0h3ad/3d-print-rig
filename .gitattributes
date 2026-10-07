@@ -9,3 +9,4 @@
 *.yml text eol=lf
 # Preserve the exact bytes pinned by the native datum validation gate.
 site/TRIDENT_SB_NATIVE_DATUM.json -text
+site/TRINITY_ALPHA_INSTALLATIONS.json -text

@@ -42,6 +42,9 @@ const reject=change=>{
 reject(a=>a.rows[0].limits_mm.Z[1]+=24.45000671979478);
 reject(a=>a.rows[0].stock_block_key='missing');
 reject(a=>a.rows[0].machine_id='siboor_trident_350');
+reject(a=>a.rows[0].front_lateral_rules.source_file_sha256='0'.repeat(64));
+reject(a=>a.rows[0].front_lateral_rules.machine_id='voron_trident_500_custom');
+reject(a=>a.rows[0].front_lateral_rules.proof_url='https://example.invalid/proof.json');
 reject(a=>a.current_native_manifest_sha256='0'.repeat(64));
 reject(a=>a.asset.files['model.glb'].decoded_sha256='0'.repeat(64));
 reject(a=>a.rows.push(structuredClone(a.rows[0])));

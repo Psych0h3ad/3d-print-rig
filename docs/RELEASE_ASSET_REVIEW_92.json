@@ -860,124 +860,124 @@
       "id": "mesh-quality",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 23.422,
+      "seconds": 24.181,
       "scope": "Current actual positions, normals, indices and node matrices; no physical fit certificate.",
       "original_sha256": "9b3d72d9df6f7e6ffad2ae23a37c1195acd3acc0687e9b7bec14cea122f0b844",
-      "prepared_sha256": "13e7e668a71e88661a4a6eb6578b9e977565200d71ff62da6d160909e7de9cf4"
+      "prepared_sha256": "2b78b765ee7b9ce989a93c95de60f1f7ebedf934e6493273a9522e9e1826be2e"
     },
     {
       "id": "community",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 29.741,
+      "seconds": 32.047,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "53b2f6ece46361ad012e52d4d9161099e077fb0496bd93ac9ed71676a9b8d144",
-      "prepared_sha256": "ba317b4feea60c9b1aa63249ced6b768d45127da3a9ad545cf3575bcda5c3812"
+      "prepared_sha256": "78530c22f6b275d3c927d1241a9602359b001a8f99b746ab0e68f45ce64b89db"
     },
     {
       "id": "micron",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 2.514,
+      "seconds": 3.156,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "38fdc25ae7b30884723d2f4d5412c845c8c37382d73b3a0fac751af669ebaf5e",
-      "prepared_sha256": "6e93d800c31e0719ffe181c02f889bdde5775b4b94ce677e1bd62ff88913233d"
+      "prepared_sha256": "9614fab8d3af322945a0a7373681fb8915bd00af0d52dd181386d6747b438454"
     },
     {
       "id": "annex-reference",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 1.579,
+      "seconds": 1.643,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "7ebde666218e32ddd18a3af641bcd5cd75b631cd58e3033b19a14ca9ccaba475",
-      "prepared_sha256": "0426981740a64dc51f60f07bfd9cf36b2117c6ef45b5299a39edf2cc92254611"
+      "prepared_sha256": "f7b19676af8152e5e9bf3a800bdbe26dd072a6b8f8f1964b6386f2584b019ac5"
     },
     {
       "id": "remorph",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 1.348,
+      "seconds": 1.326,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "0717e358711b8102570ad47ebbfef67492b23396b79cd52e65b8d480e0fb8610",
-      "prepared_sha256": "e1f7e53695ecee0c57640eed530b05091f99d666a04751c2887856b11edd0446"
+      "prepared_sha256": "272dc42b3abf8bf6c28004f34c53c3b2ab30c0ed5e80a0ffe185044b6beb5eb5"
     },
     {
       "id": "e3ng-reference",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 0.705,
+      "seconds": 0.701,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "eb79a26aac152eafd8605d85b2871a0d33a678cc696a91de115304430625cd4c",
-      "prepared_sha256": "0aea5ad06151385c844ca2fc575b069382b801ca17d3a8fd6b4363e3d9e92ca0"
+      "prepared_sha256": "8d0eccb6a1e2ffbf7254d231c2391978313fcc8a585f95d46b8163b5826da0b4"
     },
     {
       "id": "crossant-covers",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 3.89,
+      "seconds": 3.475,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "b374ce63af671a7a433c2a5ffb32230febef02a76513c64d8ad157eea820adbc",
-      "prepared_sha256": "7baaf71067589e98ab70f34c6f1d5e7063e877975a4bb4d886d90ba076212fb1"
+      "prepared_sha256": "1155130b935e1bdd06d69869cfc3e3dd5bac819913df83c594e8657e6dab4198"
     },
     {
       "id": "siboor-routes",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 1.232,
+      "seconds": 1.058,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "289a72e4df90db0037cdbe2369f2b3e1c4433488204c67f05cb71cb9b938e814",
-      "prepared_sha256": "2ecfb8ca22701d05d66c99982c030a711b0843ae54bb3388350467b500f39ea4"
+      "prepared_sha256": "0924c5f5251defc609bc5a5891dd4a21b67e7b233caa62c2e23da5935fa73ab7"
     },
     {
       "id": "ratrig",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 59.657,
+      "seconds": 55.277,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "d358d8cb1b5a53b49a4fd5d36fa06c117125574606e426fe238d1606c065a73e",
-      "prepared_sha256": "0567566fe2ef86a42c020d7cb10946d606ce47a3a6ff062f6b8b0b6edff16f8d"
+      "prepared_sha256": "b117f2b192eb361c97389c7f48921afc5d7b38f8ca6d5ab73c0ff4d791d3f08a"
     },
     {
       "id": "positron-fold",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 1.127,
+      "seconds": 0.925,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "0822ac0b39b5ce1a85167068167a992588b879550dd9e80bd23e0810ab8c3f85",
-      "prepared_sha256": "5fde6705ee13b48ccc3d6164139ddaa95af7b536125fd3b4d08cb1ebe06b8cd7"
+      "prepared_sha256": "7b08a18d57b06c035108f610fd28e3d7980defcffbe2dcf652f27afe26a2521d"
     },
     {
       "id": "fysetc-reference",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 0.66,
+      "seconds": 0.559,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "5e716fd1284219f180c6bc3827e7c9ea9493c6ca853516b449e034027faffb83",
-      "prepared_sha256": "7e4e666419585fdb659c5212b973a043dcdfc8b868837847f479abdd430b2074"
+      "prepared_sha256": "59cad6ec2ed35ffede10e56752b3b1d5e41b2076efafd9d62d1305ccd86abacc"
     },
     {
       "id": "requested-static",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 1.641,
+      "seconds": 1.613,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "45e00c1b21d537d4bb262d17a4355deead19dd7f091bf40fc7b6b2eaf33c68e4",
-      "prepared_sha256": "0ab4f8bf5ece9840754a077c9a66b2943783b65350dcfb1548611ba7002ea393"
+      "prepared_sha256": "68c2f0d5d2a7039af76a5c80ef6d260bb6ce9864afd942b6ad1bf0431608245b"
     },
     {
       "id": "production-loading",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 29.042,
+      "seconds": 29.591,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "5e10f2ed650b82c37f1a70e663816795dad091baa5b3f93a09913679ba302697",
-      "prepared_sha256": "34da8e2d23da19cc788cce9301a408b822d3c16e1101bd2dfae0e58689255525"
+      "prepared_sha256": "23e003f69dabfa8b0a42305edaad1d6ffa69e288eaa9bac778787d9d565ec9d2"
     },
     {
       "id": "check_motion_assets",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 12.609,
+      "seconds": 12.408,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "7d004faee9d5239eb6d9d3c6f889ac6e16897c359bf6823ed1b603e8f9d1a211",
       "prepared_sha256": "333842524c5860f28bbb7005c945f324b3669adfcb1a0dbd1f8010b46b98f64d"
@@ -986,7 +986,7 @@
       "id": "audit_v24_colors",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 2.848,
+      "seconds": 2.79,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "9fd80ee70d94340edb98f2ea3be3211df863210d10c54e1aa15e2161f3241507",
       "prepared_sha256": "91deac222b512a595c1213441f98d2d8a1ce5cefac77d6238339c0b376a792c6"
@@ -995,7 +995,7 @@
       "id": "audit_trident_sizes",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 4.398,
+      "seconds": 4.171,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "c1eb3d2b1ed8004a322ed655460664343ee8fbf9ad2ba85c1742c2fcb6746f75",
       "prepared_sha256": "4783bb2de3ec23c2df7840c5e853fe84e983aa2eb7d5a04a16617538b622ca29"
@@ -1004,7 +1004,7 @@
       "id": "check_workbench_assets",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 21.955,
+      "seconds": 21.267,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "b9ed2152701a6e74812d64263b79456387a4a7e6e6b257a5abe9393cb445c8a5",
       "prepared_sha256": "be0673cc8df60bc547d0e90392536354c33d54f879ad487dcb8a17aee2921919"
@@ -1013,7 +1013,7 @@
       "id": "audit_loaded_heads",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 16.197,
+      "seconds": 11.795,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "56e9624e15668190fb0405a494c104a861be649f3feeafa8d770cf95c45933ea",
       "prepared_sha256": "e05bfd5ae7fc8ceb6975a2358d1fdf2ccf172e2c93e15f892b9ffb0cfecc48bc"
@@ -1022,7 +1022,7 @@
       "id": "audit_changer_banks",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 23.502,
+      "seconds": 20.111,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "48d28b275be9ca13b9bfd9c77c047b274ad07446d7245f69f21f7ff81a42001d",
       "prepared_sha256": "d03e7aa9e2568f6ebff63bf0cf18a098caf942e7553df207bfc2e4af8e2667c8"
@@ -1031,7 +1031,7 @@
       "id": "audit_indx_banks",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 21.91,
+      "seconds": 19.084,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "82f3b9da9d260eaf539bd1058aaff79957e955663e1896e4b6b477d5dc395784",
       "prepared_sha256": "e17914a6e774e84e2198ab931abf86a78b585e6f3a40d402c9c58238f5c9b050"
@@ -1040,7 +1040,7 @@
       "id": "audit_monolith_motion",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 10.129,
+      "seconds": 10.178,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "24053829ef864cea8d37c2d918b638b2776074e99f55529c45f431db7250649c",
       "prepared_sha256": "defc4b853b2f9bb7a0be754cec40ded8f5c4d16dbc3b586bb992d1494e83194e"
@@ -1049,7 +1049,7 @@
       "id": "audit_monolith_mounts",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 9.99,
+      "seconds": 10.908,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "e808968e52c1cfd795611021834ff89871c8779c8f28beebaf82a0dbaa191e83",
       "prepared_sha256": "e808968e52c1cfd795611021834ff89871c8779c8f28beebaf82a0dbaa191e83"
@@ -1058,7 +1058,7 @@
       "id": "audit_monolith_printers",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 30.148,
+      "seconds": 26.749,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "1b7dfac3acb0eaf4032cbef1b2e0db20db3a3a940bd4287ef6978120ee2222c4",
       "prepared_sha256": "80325694a1458bdf739aa30a5f4b602ceb1ae35c1c3364258ca3dd08e506aa52"
@@ -1067,7 +1067,7 @@
       "id": "audit_custom_ptfe",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 17.239,
+      "seconds": 14.424,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "aa10e8c1270470502fdc0cf7bdf34773aed82ad467e6865d523d35ff942be48d",
       "prepared_sha256": "8766fe95ed15fbfe498b18bed06f56be42020b24de782bba33d4fc39ff859c90"
@@ -1076,88 +1076,88 @@
       "id": "motion-annex_k1_assembly",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 1.443,
+      "seconds": 1.161,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "530b184aec7b468d07cf8c175f3bffc5f25235b6989741ccc7c8079fc0b72ff5",
-      "prepared_sha256": "4a07bc31afad900104e11510d4f6f7a898af84f979247982d26f0d83c8871b49"
+      "prepared_sha256": "ff63d4fbc691ae25cf02acce627265c0ec85f92bf8bcdc88b0ee02825db25315"
     },
     {
       "id": "motion-annex_k2_assembly",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 1.424,
+      "seconds": 1.186,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "530b184aec7b468d07cf8c175f3bffc5f25235b6989741ccc7c8079fc0b72ff5",
-      "prepared_sha256": "4a07bc31afad900104e11510d4f6f7a898af84f979247982d26f0d83c8871b49"
+      "prepared_sha256": "ff63d4fbc691ae25cf02acce627265c0ec85f92bf8bcdc88b0ee02825db25315"
     },
     {
       "id": "motion-annex_k3_assembly",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 0.953,
+      "seconds": 1.039,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "530b184aec7b468d07cf8c175f3bffc5f25235b6989741ccc7c8079fc0b72ff5",
-      "prepared_sha256": "4a07bc31afad900104e11510d4f6f7a898af84f979247982d26f0d83c8871b49"
+      "prepared_sha256": "ff63d4fbc691ae25cf02acce627265c0ec85f92bf8bcdc88b0ee02825db25315"
     },
     {
       "id": "motion-fysetc_v24_250_pro",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 4.732,
+      "seconds": 4.153,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "530b184aec7b468d07cf8c175f3bffc5f25235b6989741ccc7c8079fc0b72ff5",
-      "prepared_sha256": "4a07bc31afad900104e11510d4f6f7a898af84f979247982d26f0d83c8871b49"
+      "prepared_sha256": "ff63d4fbc691ae25cf02acce627265c0ec85f92bf8bcdc88b0ee02825db25315"
     },
     {
       "id": "motion-rook_mk2_120",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 0.534,
+      "seconds": 0.509,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "530b184aec7b468d07cf8c175f3bffc5f25235b6989741ccc7c8079fc0b72ff5",
-      "prepared_sha256": "4a07bc31afad900104e11510d4f6f7a898af84f979247982d26f0d83c8871b49"
+      "prepared_sha256": "ff63d4fbc691ae25cf02acce627265c0ec85f92bf8bcdc88b0ee02825db25315"
     },
     {
       "id": "motion-satsuma180_v10",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 2.746,
+      "seconds": 2.545,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "530b184aec7b468d07cf8c175f3bffc5f25235b6989741ccc7c8079fc0b72ff5",
-      "prepared_sha256": "4a07bc31afad900104e11510d4f6f7a898af84f979247982d26f0d83c8871b49"
+      "prepared_sha256": "ff63d4fbc691ae25cf02acce627265c0ec85f92bf8bcdc88b0ee02825db25315"
     },
     {
       "id": "motion-sovol_sv08_350",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 1.572,
+      "seconds": 1.51,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "530b184aec7b468d07cf8c175f3bffc5f25235b6989741ccc7c8079fc0b72ff5",
-      "prepared_sha256": "4a07bc31afad900104e11510d4f6f7a898af84f979247982d26f0d83c8871b49"
+      "prepared_sha256": "ff63d4fbc691ae25cf02acce627265c0ec85f92bf8bcdc88b0ee02825db25315"
     },
     {
       "id": "motion-the100_v11_165",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 0.511,
+      "seconds": 0.49,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "530b184aec7b468d07cf8c175f3bffc5f25235b6989741ccc7c8079fc0b72ff5",
-      "prepared_sha256": "4a07bc31afad900104e11510d4f6f7a898af84f979247982d26f0d83c8871b49"
+      "prepared_sha256": "ff63d4fbc691ae25cf02acce627265c0ec85f92bf8bcdc88b0ee02825db25315"
     },
     {
       "id": "motion-tictac_21_120",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 1.168,
+      "seconds": 1.027,
       "scope": "Actual exported assemblies through current adapters; finite pose/selection checks, no continuous solid clearance.",
       "original_sha256": "530b184aec7b468d07cf8c175f3bffc5f25235b6989741ccc7c8079fc0b72ff5",
-      "prepared_sha256": "4a07bc31afad900104e11510d4f6f7a898af84f979247982d26f0d83c8871b49"
+      "prepared_sha256": "ff63d4fbc691ae25cf02acce627265c0ec85f92bf8bcdc88b0ee02825db25315"
     },
     {
       "id": "actual-support",
       "status": "passed_scoped",
       "exit_code": 0,
-      "seconds": 5.061,
+      "seconds": 5.018,
       "scope": "Production-composed current eligible configurations, strict selection, dependencies and links only.",
       "original_sha256": "03a51c059c3e1cb644245dc2019adbff4764b2e94b82a11bfa734c69ace58743",
       "prepared_sha256": "5d227e0eb3c6a11173d26d65294d170b76157f7e6a8298a51d530c2ae90e4d60"
@@ -1183,7 +1183,7 @@
     "site/REAR_ENCLOSURE_QA.json": "489361a49a4f8cb47fb154754c61a74030127d1da7fd07399ef66ca923f9b83a",
     "site/SIBOOR_TRIDENT_ASSETS.json": "9b10bebcaa3b326532fdac5ecc435c6414cf3d0402967ebc99944130b8a8f3b0",
     "site/TRIDENT_SB_NATIVE_DATUM.json": "87c0edae601c7ffb13c701a5d5e22e32ca3c9d3efe00fff3116808a07db8ffd9",
-    "site/TRINITY_ALPHA_INSTALLATIONS.json": "d3d5133cba7bd72a40b4d8ea9d034a9000521b7936412a2d1d8b9b582fa75fb6",
+    "site/TRINITY_ALPHA_INSTALLATIONS.json": "5edc6b987958e516e63c5b8bdae7a1ff30a3d61dce8f04bb4dbbf22ad8204707",
     "site/V0_INSTALLATIONS.json": "0cd5d09bb48f841c867d97dc28eb1bd733d140446d823da496e98fb97f843ea8",
     "site/embed/embed.css": "ec53fe70ec99a1e2dfcdb1c7bcc28ac1df4bdad189c45797b111dbedb0b57bb1",
     "site/embed/embed.mjs": "77c8ed353b661308b54a41b829c30b7cbb37c9b08cc48e9addc75d2396a537c1",
@@ -1202,7 +1202,7 @@
     "site/viewer/annex-machines.mjs": "3a0e3f3d8e456bee4e5ac266d91c69ca3b6fbc6db8f5a40694f85428c6148c13",
     "site/viewer/annex.html": "37f74b0a3d0ad873f0fa4f9699c1854fcd6223f140989b3b08b822629687dad1",
     "site/viewer/annex.js": "f2ef7736de32e9ea6d527cdbe9cb1bac0565f0b712e803bc21ff9e9d2d66ebaf",
-    "site/viewer/app.js": "2a10a1cf41977e283eee6520d0bdd17084d2172960a6d2ce1ea585665298bf9e",
+    "site/viewer/app.js": "6698539792896a78dd33894ce3440fbaccbda8fbbac2a0cb295093709df7709d",
     "site/viewer/appearance-role.mjs": "6b7b8efda77bfc3ce74de50559f35cae1587db261c1c58246c275b7e39b4e725",
     "site/viewer/appearance.js": "c50ecf4651c6ad0e68392df9eea9eb67e8bab6c9542106019c464682b45a01ab",
     "site/viewer/assembly-downloads.mjs": "7f37199d83924fa6db9303d629d9e68f1798995b53a64ae900362f052fdb6cd2",
@@ -1210,8 +1210,8 @@
     "site/viewer/baseline-native-datum.mjs": "b86b6ff7d71bab3c11174f8e0834dd181ac5a70d14077b8ff00fffa817e0ad58",
     "site/viewer/bed-chain-pins.mjs": "ea9c3d5f368a9509af7f99da784303eba92df5e316246c8a14942bc0f1bb3ae9",
     "site/viewer/bed-chain.mjs": "7b1707f0d18e07056c380bb831c2db07575af8720426cc9b6a131a079da61504",
-    "site/viewer/bootstrap.js": "02494748910932c1624f8196c3c2cb9117849a1080b61f014783e7c3bb8428a4",
-    "site/viewer/builder-ui.mjs": "7e5e05c6da274c91a2c051967ab3ca0d9d971eeed74fd203a10c87dfdace38f2",
+    "site/viewer/bootstrap.js": "1d0e2d3c3784d76b8b668962d1a99fbd716fec814537e7c0fbf72906485ed904",
+    "site/viewer/builder-ui.mjs": "0b5d9fcbc5b3d7a8b83fb06d0af0ea80800e85dcf4ce26065d4b08545a9dd554",
     "site/viewer/changer-bank-model.mjs": "024cc52a5bbc61da75066a1822bca711fd6543b532a1c922e8ac0b44469a016c",
     "site/viewer/changer-bank.js": "47bbc0fef91af2c7241e5ff8a292897b8688dbdf00612caab1a03f365853b5ad",
     "site/viewer/cleaning.html": "2ff0e5cc5c1b8929eef1aad8ab82f255ef3b198fe7401e472713a43d10c68470",
@@ -1228,7 +1228,7 @@
     "site/viewer/configuration-editor.css": "1ce65fe33b2c2f92e5b2eab845b196a6db3175a7ec858902ec9e23e8c2f3a3f4",
     "site/viewer/configuration-editor.mjs": "a5494c5fae4a99afed15b4c995051cb88209b166c249a539c65d16982ae77a70",
     "site/viewer/configuration-model.js": "d4b3dda97a404a7575b774c073165147233bcb917c5cd4afb30b7c6636521af1",
-    "site/viewer/configurations.js": "750a0fd526a7f3104aac7f357728d749de02b0f56ad5869faafb60412b1b127e",
+    "site/viewer/configurations.js": "0ca729cbb78ef4ae8174f364882d607617f4de703aa7fa55761e095f512bdff4",
     "site/viewer/crossant-adapter.mjs": "53736f331789070429692a0336eb9412bd3c64ed157933a5107b439761878116",
     "site/viewer/crossant-belt_deform.mjs": "76401db9a4923512ae72c83fda6dd210ccf0b1d19be8a16326dfac48950df531",
     "site/viewer/crossant-chain_preview.mjs": "43c664f7c35cbb1638214efc3d77ad1acf8a47c33b4a22a50ad70c20778c4bc3",
@@ -1257,8 +1257,8 @@
     "site/viewer/extra-machine-loader.mjs": "3fa4da3a4e1eb08606ff5af921d70ae825e4ff89dd6af70a0773c304d689092b",
     "site/viewer/flexible.js": "37fd0f2d1bdfe5ac356f0c58bf4a658b8b97a8b5cd6126ecafb1d64f09b0d284",
     "site/viewer/frame-mods.js": "0d49b1113e8a089e3cd96456b28f1177a17e66e738f592e35f21a10a6290ebf6",
-    "site/viewer/gantries.html": "983b830df0823d9b5b13b91e5f1e49b26cf812f0c086edf61a467abd0d643cc0",
-    "site/viewer/gantries.js": "1e56ca05874b8a90136854bd17785d80a8e78e04ee8ad49170fefc7de414032c",
+    "site/viewer/gantries.html": "758e599351b7eef6c2519b18831de512cfb70ad6e445427c85a1b383933c406b",
+    "site/viewer/gantries.js": "3c8ac6ac06f1c21672cd4ee2594287c54dfa12e577fa35355494e7f3463518c4",
     "site/viewer/gantry-model.js": "77bee27ae99e3944fc901c733b7fa2450b2e36deb9b789c66328e8c979db2ec4",
     "site/viewer/gcode-loaded-asset-identity.mjs": "42ac134c2d9a8b8f8dfc31744744fb59abf735171ae6b928030371d5e7de8dec",
     "site/viewer/gcode-machine-bindings.mjs": "460777c3fc4d1a74bf27e66d6c4fcca7c4fdd09336412a3263a2b843be621ce1",
@@ -1269,11 +1269,11 @@
     "site/viewer/head-additions.mjs": "143d882a3df675284f2eb6b70e98f8ba05cbddfa343d4b41a5560ac577722595",
     "site/viewer/head-assembly.js": "7fa59d6f7b82e35957e9ef08fee311905ddf333447b2d1415ee16d9733ab331b",
     "site/viewer/head-markers.mjs": "ecb2d72d7d41cc8055e4708bfbba02683a246304453d3e64a5b70dbcfdec818f",
-    "site/viewer/head-navigation.mjs": "b3e124b40c48fbadc39c05aea20b0b92a3a0a582532353b8c6e50162a7aebf5f",
+    "site/viewer/head-navigation.mjs": "87d22884b1e6b14a2982c73206c5c31393fe1f897d95e07b18f57733cd04fb40",
     "site/viewer/head-validation-ui.mjs": "e7852ba7382943fa85b9e49f3b2002e18ef3e327a10ca9b8ba8277f0ef7aee04",
     "site/viewer/head-validation.mjs": "2ff01996ff2feb2c3cbe1ef6e60adf1a1dc6cc2a092cca351efa4d6cbe9e14b2",
     "site/viewer/i18n.mjs": "43b5586b963e970626546d2ab8c0527ed38405205a95128d2de891e52a8a7405",
-    "site/viewer/index.html": "f546c75ebba5e53f359ce0b76c3edbcab2f9bbac690a0cca2f37bc4e0349d898",
+    "site/viewer/index.html": "38453aa523d5e271ec5dcf4ac2b745fffe481977d5cca3cbd50e3df4cc329c13",
     "site/viewer/kit-reference-loader.mjs": "e018cf8fc3c93c4140dd562d71b36bb28c906b1b52841d4884acc267a8c35bf3",
     "site/viewer/kit-reference.html": "4c6dd9867a534007ede18f78c6a99f338acf8c0e30d3f7f667d31f5dff0b7bde",
     "site/viewer/kit-reference.js": "2f974d5e5ae9780941870ed812aeeba8935603b757f78665fcaa8316a7f0facc",
@@ -1282,8 +1282,8 @@
     "site/viewer/lighting-animation.mjs": "ee2a0ac739d69f7d647970d4f30c967dc835e028b077420472fcad45b1aeb760",
     "site/viewer/lighting-state.mjs": "980c984e27b4befb063e6332a919b4b54d95e43f8b7d1125a6792c0fd08b586e",
     "site/viewer/lighting.js": "454c19f7ca3795b005de3a6ec8517fce09fb2ef6d1a8c0b5c2f53f93e2d3adf7",
-    "site/viewer/machine-head-model.mjs": "8a648bfe089bd36733b7b38333ee41f996f3845d3612cfac081cff7443b75be1",
-    "site/viewer/machine-heads.js": "19d33a9f00ee544e9fd289ece20cf94303d68760796a343b6e9ee2a2cbb75600",
+    "site/viewer/machine-head-model.mjs": "d201fd95637601425bdcc6ebeadee2d08ff9463cb006b4c1bcb55061784acfac",
+    "site/viewer/machine-heads.js": "b5400b9638231b96d5652275e250880dab6e371849e9f4e78daa228afc8f66e7",
     "site/viewer/machines.js": "d6045b8af89b3984adcb8e5cbe097102eac691f02783dc2d63220bf48aa0d106",
     "site/viewer/mercury-tube-routes.mjs": "d27d615757ad1f73240934053ae3c293e92e57c09584c3bd767fcf877fecffee",
     "site/viewer/messages-en.mjs": "4b9c77602f380d4c271289e5a7f7fdf781e4148d24ca4b2256fbc8f173134696",
@@ -1299,9 +1299,9 @@
     "site/viewer/model-progress.mjs": "6b41a2b9f7626039b7e6a058f4d2619623250c8535275362c371cbe8a1e98d5b",
     "site/viewer/monolith-belt-clip.mjs": "ffef92bb9ead85b656edd2862143f680fae9c19f4b8b73ff72d9a905a3802e55",
     "site/viewer/monolith-belts.mjs": "cc31216a6676936d5cd6339b8018307fed7d7b2822189913b8ac837564b2bd63",
-    "site/viewer/monolith-head-model.mjs": "df741505960b1f4b70c9acfb1315060d489204211535b48f27bc912e0b2d42c6",
-    "site/viewer/monolith-machine-model.mjs": "c5451e1274490ed4facb68dbf6598a4cc33ba0cac06c9bcf773bba99140019d1",
-    "site/viewer/monolith-machine.js": "89ce4354e3e163c93dc1765ead856f1d5ce04c4192285bfd1f0220beb442de33",
+    "site/viewer/monolith-head-model.mjs": "6a0a4b07e4ece662dfe0cc8cd4d1bb37457ddea046ee6a660664297a3c048050",
+    "site/viewer/monolith-machine-model.mjs": "74a6f2bc49adde35720787fb66cad9cac702aafce974ef326cd68838cfd825c1",
+    "site/viewer/monolith-machine.js": "b085a3c74efdcda7401aaeee7f2e23aff1a01ba09752accf6e02bd35f0196f8c",
     "site/viewer/mount-validation.mjs": "0c22958eb1c03dcf3a1fc507a7bfa391aa75f2744664a32fffc49499716e593f",
     "site/viewer/native-motion-controls.mjs": "f05867a50f53716553603fd9b7a960abfcfe8c7dfe3328108d07cf4d1d5e1edf",
     "site/viewer/native-motion-flex.mjs": "f08726bbc4595e183c74da60666fce3de393fb0a260bb35ac9541381e3f00210",
@@ -1344,13 +1344,13 @@
     "site/viewer/toolchangers.js": "77f10520ce3dab62112465c1f8640b295e7602a97dc642b0051fd7208076c822",
     "site/viewer/toolhead-builder.mjs": "68d8003cdc690265cff216f76346372ef54f0689e09dee32fb9a37e7981ce73a",
     "site/viewer/toolheads.css": "a03941a53ad7be71c88335121d4ef8239365f7a7b60091ab296dedc92793804a",
-    "site/viewer/toolheads.html": "df8f404f16074e8678ab141bfd767795c9f668846462ffb5f833654a830d90c2",
-    "site/viewer/toolheads.js": "4c872bb16db37e4d41ffd7dedbac5908ed7e02e74c593bcf9a9a02d70f273ff9",
+    "site/viewer/toolheads.html": "2a035a62f65f3b49ea4df3e691b5df31545c98ccf25c0053a734dd6e1a39cba0",
+    "site/viewer/toolheads.js": "530512ecf475d76df8f252b9be774bea2a3a45a3d2adb93fec49b23605050704",
     "site/viewer/translation-engine.mjs": "ad5021536c774dab7b4dd6b7573dc507b06f1d54f5a71bc79809033e33ac8cff",
     "site/viewer/trident-belts.mjs": "e2522a232fe7528cae83d9ad6754a233ba82ee5968f92a13e14ce15001d74352",
     "site/viewer/trident-motion.mjs": "59606332935ee1881f708d63ea9d4de93303c8d0e58810bb585546e5dfc265a9",
-    "site/viewer/trident.html": "39e4eb1920701d35a9dc1002f6a1ebd64980cb223733166b76bca6232cdcb2a1",
-    "site/viewer/trinity-alpha-installation.mjs": "22601baf0fc057db47ee727b5a826a1a4915774030fc542377fedb326583e6c8",
+    "site/viewer/trident.html": "16c0426b4f3864c6fddc45edab49e6cbb166ecc478039b233aecc77d489e17aa",
+    "site/viewer/trinity-alpha-installation.mjs": "95a0263640e6b91bfb9c3435ba29b28bace9776d86b8da3a333e8be324400b50",
     "site/viewer/v0-app.js": "c0a2c8981c4ba69dfdc131e9793700e1dc8ba7ed856e4da99e0a656eaa23f545",
     "site/viewer/v0-belts.mjs": "948e42567a0013aa58217f9a877c9387159934bf848215d8d5a1d9515f911e5d",
     "site/viewer/v0-chain-pins.mjs": "6d41fb943c5b19ea28ac78025bcd1559ddccbb4baab4872a28816fe5c4c81136",
@@ -1361,16 +1361,16 @@
     "site/viewer/v0-tophat.mjs": "1c65737cefc844de5ab72663dc4c38ba929f98dec76fe8b318298142305bfd2f",
     "site/viewer/v0.html": "bf6859ec5fc26c023c380d7dc8506ebe6b677e1b04d8355c9a1406890b97c534",
     "site/viewer/v0_adapter.mjs": "beffa4bd404f6b071e07df1ff2ad1ac70eff2cae14e24fed0f8136fe1e98db37",
-    "site/viewer/v24-app.js": "1bd596483608a6e158a37d1b02b691d1ac1ae89c85b93b1ff98ab66630507f6c",
+    "site/viewer/v24-app.js": "4d87ecec62ea41ee7056e7e376028ec4c53432f5167a38df5f158cef018f578e",
     "site/viewer/v24-belts.mjs": "dac441c501db20e20d10d5c26fbe5d994d511d4312a343082c4361ecbcbd87b2",
-    "site/viewer/v24-bootstrap.js": "c263cfb68f76beb947b9e633e6393eb5da5fe5a30eb6200308e74cf35bb4c746",
+    "site/viewer/v24-bootstrap.js": "8adb9c116305415832f827810e4d38998a3b68345810ec945cef373494526b74",
     "site/viewer/v24-flexible.mjs": "4de2768da445f9eef0d59ead19639302112d082c26084fa80d48b6f98635470b",
-    "site/viewer/v24-reference.html": "6937dc9ab024960d32ddf302a7e538e0ccdc449082ba5ff4b564876501f12020",
-    "site/viewer/v24-reference.js": "c20cb86f04818b3161482be08a2690346d66c3e29ecfc6a60e0978a1cc0ba89a",
-    "site/viewer/v24.html": "da4720388b459dc1a41c883110f077aeb090647ab68ff420fbbe08f9831939e9",
+    "site/viewer/v24-reference.html": "2655db1c2a2329e814542300a4b2824368ecf71eacdf6dcfa17ed72dc1d93eb7",
+    "site/viewer/v24-reference.js": "64ed524c5cacd8ecd96c782fa84f4861f8653b8477017e46311eefabc9b48ccb",
+    "site/viewer/v24.html": "aa50373d0479168f8bc13293b0816f35f72209da7ea8cf7b694b517ae9fca7e4",
     "site/viewer/v24_adapter.mjs": "3a3944ab39c9df1658f4cb2e1eabccbf1d23b3d4dac4020342791e60ad6f1d35",
     "site/viewer/v24_matrix_adapter.mjs": "7d9f902c2b7d63478e0ac5aab1a269417fbab09e5f1271b80258065f46dce78f",
-    "site/viewer/vanilla-trident.js": "7666a8905e97439a7ec2cddc7dfb7bdcdee805a654f274c5359b9dc756369499",
+    "site/viewer/vanilla-trident.js": "243054fb526cf2ad659b733b3aa1e6a6f66cf4b81768cd0474295d8d5db3c89d",
     "site/viewer/viewer.css": "a59b3f5f2ad1c8d3a36f6dd7f053df49d851c3b1d75a182c22fc4108336bc829",
     "site/viewer/virtual-printer-emulator.mjs": "82f4d419283bf6313caf21e8baf57e98b7cf222f3483bb154d27d6c145aba694",
     "site/viewer/workspace-choices.mjs": "e1d4846fa99e91038504c059d201f4835be50e8df041c5cd94e01e963460f606",
@@ -1498,7 +1498,7 @@
       "test_toolchangers.mjs": "8a83e9d68d6841aedb094f09ace46714701df98a0abdb0d6df637b90ffd7649f",
       "test_trident_motion.mjs": "39ae0590a8a6183ba87c42720bbf2e2f398932978569d3ad6965f8bb2b303bb4",
       "test_trident_native_datum.mjs": "1b95db7815ba3d35ad257118e0d196d03c77d8830f71a5db33588e6bf1302edc",
-      "test_trinity_alpha.mjs": "81787de67ed09144136790188f38367a8799f16da92092fce542e30d3a93cb77",
+      "test_trinity_alpha.mjs": "4a0008d393a1b365932ee69317714cd291dd38954044ce71e085a34076a75abe",
       "test_ui_literals.mjs": "963b57cc6254175f7a09721b01f1e9dd13cad43ed917fb4034f1b7422e9ff3d3",
       "test_v0_belts.mjs": "d9a9aef04c055c0fce5311f3f1bf8484ec2a1f359e2d5152a12ada93bbdb85d8",
       "test_v0_installations.mjs": "16e691bfcce2ada5fa9fbe331947b48983594f4ffdab5017b9b16ea2413a9a98",
@@ -1527,7 +1527,13 @@
       "voron_trident_350"
     ],
     "configuration": "installed__trident_r2__trinity87__v13_alpha92",
-    "sidecar_sha256": "d3d5133cba7bd72a40b4d8ea9d034a9000521b7936412a2d1d8b9b582fa75fb6",
+    "sidecar_sha256": "be000c39e1ac9e8e90cac184f1ff8f65657ba68aa5a47963751ec87dec06a65d",
+    "original_auxiliary_proof": {
+      "path": "native-alpha-92/ff8557d93e9d3803b3e4/installation-source-proof.json",
+      "url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/native-alpha-92/ff8557d93e9d3803b3e4/installation-source-proof.json",
+      "bytes": 969027,
+      "sha256": "d3d5133cba7bd72a40b4d8ea9d034a9000521b7936412a2d1d8b9b582fa75fb6"
+    },
     "native_manifest_sha256": "2c8dba337bf4edcdff828d972b3164b5d5c69012c3edee121bc948d0ac16079f",
     "exported_GLb_sha256": "ff8557d93e9d3803b3e4ba2729d6fb947c4134c2e84098a653069ce337d2fcfb",
     "external_asset": {
@@ -1553,7 +1559,7 @@
         }
       }
     },
-    "controller_audit_sha256": "b85234a49611ca1b5fff1d48c7a18dac4a669f7b643a13e22aa7458a1418f60f",
+    "controller_audit_sha256": "566f73e2f48a4c80b81b3c14f1ef6699c7b4a6e4912c1f1dcea04e40b801bdfb",
     "actual_head_parts": 104,
     "retained_native_host_blocks": 1,
     "render_packets": 205,
@@ -1576,21 +1582,22 @@
     "browser_screenshot_sha256": {
       "trinity-parent-250-max-current.png": "3162062f5c4ca110fcd3aade87543838a8db60b61f4864d01f24f5e093cbe05b",
       "trinity-parent-250-mid-current.png": "7b535514e630f1ada71a920a00e4f97d79f8e7ce2c86d8f9cf97333f44c44333",
-      "trinity-parent-250-min-current.png": "37b78d4d49fdbf6249d4be1ea0e984c0b7c6b591044f0e2ffd8c60ef040b1031",
+      "trinity-parent-250-min-current.png": "68b0a382d0f3720f89229ceedcb56e51f0d3a578e1bae046bf443413c9498a14",
       "trinity-parent-250-reset-current.png": "5bab5b6e180841b9bfd021f5fc93df3dc681e5b27d20400334c6a81441351e42",
       "trinity-parent-300-desktop-head-current.png": "4ba2bf7e1a7b1cbb338618e4ea5f7aa0d697b69e9a683cc176fb915939003f2d",
       "trinity-parent-300-max-current.png": "d9e04c4c9eb3853492d5194b6b3d0d10dfc303ae09432d4456341fc9d0f89465",
-      "trinity-parent-300-mid-current.png": "14eac8394fae82f49a09d58934952e1046dac5253619d446473c95ef420022b6",
+      "trinity-parent-300-mid-current.png": "850fe0a80649f4a079f91a1d37ecc1d91cad4bd05668da4ef6cc5361f86b5a84",
       "trinity-parent-300-min-current.png": "5a1da2cbddbddac1a61ea189417e672175c13e627d6611d3fccb452458cf79fe",
       "trinity-parent-300-reset-current.png": "ef7e2340f91ff553cd7caec69375876bbb67d9d132020f37b0daab4d75b6484d",
-      "trinity-parent-350-config-head-current.png": "e28886ca6891416d382c39d29f054404ebab3f8a38a7519d278e4d10e71b3fad",
+      "trinity-parent-350-config-head-current.png": "28350434c5f128b3899e8e9c6a9155a7c293dc7406dc0ce64c842766bd3d6638",
       "trinity-parent-350-dark-current.png": "d280f0043b2c79e79c1780aa276698224b2300ffe916c42a7fddf19e3875ebbb",
       "trinity-parent-350-export-preview-current.png": "a24ec549d2e62fea5bfa6f5fa68994c6e2bf1886b1516816b596501c5c59bda4",
-      "trinity-parent-350-max-current.png": "e06be1eff10201af3d85e41603c89dce100d566a81601cc6b078c751e3150ce5",
-      "trinity-parent-350-mid-current.png": "a25480cd26fb46366743ca07aa2bd7ab53ec63df4927a4e523d49191bac987b5",
+      "trinity-parent-350-max-current.png": "cd6fe9eaab35730d3280c1ff613d85f7241e8ca46a801e637c9eed1fdbb83eee",
+      "trinity-parent-350-mid-current.png": "22b07d89c72e68436e5f88301d4e9cd1b7dc06d13bad4181cdfbe4082df2153c",
       "trinity-parent-350-min-current.png": "1b75055dfbeb45118509b94f6dcbbe7d803af2c09f633f7417673780792281da",
       "trinity-parent-350-palette-current.png": "4dc1da73b1e985df88ffb3e8ce8ad2e58a661b328ffdf4e4603c2974fb58068a",
-      "trinity-parent-350-reset-current.png": "24c7fcd4b42d42f0d43d74a14595512ed8026b5829043b53970cde11e5832301"
+      "trinity-parent-350-reset-current.png": "24c7fcd4b42d42f0d43d74a14595512ed8026b5829043b53970cde11e5832301",
+      "trinity-parent-three-sizes-motion-contact-current.png": "bbfda23ac146dc6f8b7098b05aa8371f35180c6a1d846ccac540177a4805cc51"
     },
     "responsive_viewport_and_real_touch_unverified": true,
     "configuration_import_verified": true,
