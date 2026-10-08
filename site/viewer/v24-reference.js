@@ -1,5 +1,5 @@
 import {contentSHA256} from './mount-validation.mjs';
-import {alphaResetPose,alphaHostContext,alphaNozzlePosition,alphaNativeHostModelOptions} from './trinity-alpha-host-extensions.mjs?v=e347f402079a4c2d5ba2';
+import {alphaResetPose,alphaHostContext,alphaNozzlePosition,alphaNativeHostModelOptions} from './trinity-alpha-host-extensions.mjs?v=3ab74a61eb8d8634653c';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {setupSceneDisplay} from './display-preferences.mjs?v=9860960509e28d17f3fd';
@@ -16,7 +16,7 @@ import {setupGrid} from './grid-control.js';
 import {setupRenderExport} from './render-export.js';
 import {setupPublicInfo} from './public-info.js?v=52a203a04d1f2ed32378';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=f471190665709ba23159';
-import {setupV24MachineHeads} from './machine-heads.js?v=26114ae470c17ca87dfc';
+import {setupV24MachineHeads} from './machine-heads.js?v=9c4209ec1f22edb24cc8';
 export async function mount(scope){
 const $=s=>document.querySelector(s),ids=[250,300,350].flatMap(size=>['printed','ldo_cnc'].map(structure=>`voron_v24_${size}_${structure}`));
 const wanted=new URLSearchParams(location.search).get('machine'),id=ids.includes(wanted)?wanted:ids[0];

@@ -16,6 +16,9 @@ for(const size of [250,300,350]){
  const machine='voron_trident_'+size;
  const [variant]=trinityAlphaVariants(heads,registry,machine,'trident_r2');
  assert(variant);assert.equal(variant.machine_head.hidden[0],'actual_retained_Trident_block');
+ assert.deepEqual(variant.machine_head.hidden,['actual_retained_Trident_block','v13_29','v13_71','v13_72','v13_73']);
+ assert.deepEqual(variant.base_hidden_keys,variant.machine_head.hidden);
+ for(const key of ['v13_28','v13_69'])assert(!variant.machine_head.hidden.includes(key),'Native metal belt clamps must remain');
  assert.deepEqual(variant.machine_head.stock_retained_keys,['trident_r2_gantry_'+size+'_381']);
  const profile={machine_id:machine,kinematics:'trident',display_reference_xyz_mm:variant.native_alpha_92.reference_xyz_mm,display_limits_mm:variant.native_alpha_92.limits_mm};
  const motion=createTridentMotion(profile);

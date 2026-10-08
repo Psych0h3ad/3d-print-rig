@@ -1,12 +1,12 @@
 import {contentSHA256} from './mount-validation.mjs';
-import {alphaResetPose,alphaHostContext,alphaNozzlePosition,alphaNativeHostModelOptions} from './trinity-alpha-host-extensions.mjs?v=e347f402079a4c2d5ba2';
+import {alphaResetPose,alphaHostContext,alphaNozzlePosition,alphaNativeHostModelOptions} from './trinity-alpha-host-extensions.mjs?v=3ab74a61eb8d8634653c';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {workspaceFrame,WorkspaceResizeObserver,workspaceTask} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=workspace-belts-1';
 import {appearanceRole} from './appearance-role.mjs?v=6b7b8efda77bfc3ce74d';
 import * as THREE from 'three';
-import {loadFrameMods,withFrameMods} from './frame-mods.js?v=0dae31f960c117380ff4';
+import {loadFrameMods,withFrameMods} from './frame-mods.js?v=03c6dd5b4ea984514c69';
 import {setupLighting} from './lighting.js?v=454c19f7ca3795b005de';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=f471190665709ba23159';
 import {setupAccessories} from './accessories.js?v=cc2bebade8a6c9a072fe';
@@ -19,7 +19,7 @@ import {createV24Adapter} from './v24_adapter.mjs?v=41061f9047b0d8f39121';
 import {setupMachineNavigation} from './machines.js?v=268c3c7f6767524ed489';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {setupPublicInfo} from './public-info.js?v=52a203a04d1f2ed32378';
-import {setupV24MachineHeads} from './machine-heads.js?v=26114ae470c17ca87dfc';
+import {setupV24MachineHeads} from './machine-heads.js?v=9c4209ec1f22edb24cc8';
 export async function mount(scope){
 setupMachineNavigation('siboor_v24_350');
 setupPublicInfo();

@@ -1,0 +1,200 @@
+{
+  "schema": "trinity-installed-belt-visibility-review/99",
+  "reviewed_at_utc": "2026-10-08T01:19:16.867822+00:00",
+  "source_model_sha256": "ff8557d93e9d3803b3e4ba2729d6fb947c4134c2e84098a653069ce337d2fcfb",
+  "render_model_sha256": "f2478be82bef8b1f767a09320e4310c3c426df9246b45ed97992c8e903f6fde2",
+  "original_model_and_download_assets_changed": false,
+  "current_policy_sha256": "93133e5566a6679454375d69def646ed5b5f97700dd3049717acae2a1e7a4b9e",
+  "actual_test_sha256": "54c49775aa84b3742fd95b15d68a3e4378e9a734cec61aa83aed99a5acf067ed",
+  "removed_installed_reference_samples": {
+    "v13_29": "7fddc2c0ff68826acccd8031a464735ad8b6395c66b60c9385853b6bec9d13e5",
+    "v13_71": "87fb4c31585a397fab7b19d9aeea8e39ff5afb10675246fa9b48d23b8ff04aac",
+    "v13_72": "81e2ca7f64a3ea50f5e9dd987a47c3408065c8ea7893e21c4787982b599d4d34",
+    "v13_73": "a20e1b50e1011e3c57f21990e0327f8317660f8925ff3363c729ea33f0db571a"
+  },
+  "reason": "Four short original author belt samples duplicate the machine A/B belts when this head is installed. Installed visibility omits these samples only; native belt clamps and retained MGN12H carriage leaves remain. Original author CAD and standalone source references are preserved.",
+  "actual_parsed_model": {
+    "parts": 205,
+    "render_meshes": 206,
+    "triangles": 4976842,
+    "array_buffers": 1,
+    "sha256": "f2478be82bef8b1f767a09320e4310c3c426df9246b45ed97992c8e903f6fde2"
+  },
+  "installed_visibility": {
+    "passed": true,
+    "hosts": 12,
+    "rows": [
+      {
+        "machine": "voron_trident_250",
+        "gantry": "trident_r2",
+        "poses": 20,
+        "hidden_source_samples": [
+          "v13_29",
+          "v13_71",
+          "v13_72",
+          "v13_73"
+        ],
+        "visible_render_meshes": 201
+      },
+      {
+        "machine": "voron_trident_300",
+        "gantry": "trident_r2",
+        "poses": 20,
+        "hidden_source_samples": [
+          "v13_29",
+          "v13_71",
+          "v13_72",
+          "v13_73"
+        ],
+        "visible_render_meshes": 201
+      },
+      {
+        "machine": "voron_trident_350",
+        "gantry": "trident_r2",
+        "poses": 20,
+        "hidden_source_samples": [
+          "v13_29",
+          "v13_71",
+          "v13_72",
+          "v13_73"
+        ],
+        "visible_render_meshes": 201
+      },
+      {
+        "machine": "voron_v24_250_printed",
+        "gantry": "machine_gantry",
+        "poses": 20,
+        "hidden_source_samples": [
+          "v13_29",
+          "v13_71",
+          "v13_72",
+          "v13_73"
+        ],
+        "visible_render_meshes": 201
+      },
+      {
+        "machine": "voron_v24_250_ldo_cnc",
+        "gantry": "machine_gantry",
+        "poses": 20,
+        "hidden_source_samples": [
+          "v13_29",
+          "v13_71",
+          "v13_72",
+          "v13_73"
+        ],
+        "visible_render_meshes": 201
+      },
+      {
+        "machine": "voron_v24_300_printed",
+        "gantry": "machine_gantry",
+        "poses": 20,
+        "hidden_source_samples": [
+          "v13_29",
+          "v13_71",
+          "v13_72",
+          "v13_73"
+        ],
+        "visible_render_meshes": 201
+      },
+      {
+        "machine": "voron_v24_300_ldo_cnc",
+        "gantry": "machine_gantry",
+        "poses": 20,
+        "hidden_source_samples": [
+          "v13_29",
+          "v13_71",
+          "v13_72",
+          "v13_73"
+        ],
+        "visible_render_meshes": 201
+      },
+      {
+        "machine": "voron_v24_350_printed",
+        "gantry": "machine_gantry",
+        "poses": 20,
+        "hidden_source_samples": [
+          "v13_29",
+          "v13_71",
+          "v13_72",
+          "v13_73"
+        ],
+        "visible_render_meshes": 201
+      },
+      {
+        "machine": "voron_v24_350_ldo_cnc",
+        "gantry": "machine_gantry",
+        "poses": 20,
+        "hidden_source_samples": [
+          "v13_29",
+          "v13_71",
+          "v13_72",
+          "v13_73"
+        ],
+        "visible_render_meshes": 201
+      },
+      {
+        "machine": "siboor_v24_350",
+        "gantry": "machine_gantry",
+        "poses": 20,
+        "hidden_source_samples": [
+          "v13_29",
+          "v13_71",
+          "v13_72",
+          "v13_73"
+        ],
+        "visible_render_meshes": 201
+      },
+      {
+        "machine": "siboor_trident_300",
+        "gantry": "trident_r2",
+        "poses": 20,
+        "hidden_source_samples": [
+          "v13_29",
+          "v13_71",
+          "v13_72",
+          "v13_73"
+        ],
+        "visible_render_meshes": 201
+      },
+      {
+        "machine": "siboor_trident_350",
+        "gantry": "trident_r2",
+        "poses": 20,
+        "hidden_source_samples": [
+          "v13_29",
+          "v13_71",
+          "v13_72",
+          "v13_73"
+        ],
+        "visible_render_meshes": 201
+      }
+    ],
+    "sample_native_sha256": {
+      "v13_29": "7fddc2c0ff68826acccd8031a464735ad8b6395c66b60c9385853b6bec9d13e5",
+      "v13_71": "87fb4c31585a397fab7b19d9aeea8e39ff5afb10675246fa9b48d23b8ff04aac",
+      "v13_72": "81e2ca7f64a3ea50f5e9dd987a47c3408065c8ea7893e21c4787982b599d4d34",
+      "v13_73": "a20e1b50e1011e3c57f21990e0327f8317660f8925ff3363c729ea33f0db571a"
+    },
+    "clamps_preserved": true,
+    "standalone_restored": true,
+    "original_geometry_and_materials_unchanged": true,
+    "scope": "Actual parsed Trinity parts and installed visibility policy at sampled translations. Host belt routing, native mating and continuous clearance are separate."
+  },
+  "current_machine_automation": {
+    "machines": 64,
+    "actual_jobs": 52,
+    "source_tests": 104,
+    "all_passed": true,
+    "run_summary_sha256": "cbd1e807f78e5b91aa28219d449fdfe165ebb8fe9d14dfa6b241b140f77c6139",
+    "actual_ledger_sha256": "565308919ec8db5a5ac17896fa59029855a4f4105c0bf4f83b0f773c1e6cf34e",
+    "delivery_report_sha256": "fa98fa7558539df7081f7b2812fe2c016686fdb02523d9baf60cab80297eb27c"
+  },
+  "scope_notes": [
+    "Tests use current exact exported meshes and original source identities; sampled translation and display checks do not certify mechanical fit.",
+    "Machine belt controllers, width and original route limits are unchanged. Their current automated regression scopes remain recorded in MACHINE_REVIEW_COVERAGE.json.",
+    "Native clamp engagement, continuous solid clearance, teeth and tension remain distinct alpha limitations; this display correction does not qualify them.",
+    "Browser inspection and the previous user-confirmed iPhone loading result are separate from this automated receipt."
+  ],
+  "new_native_solid_clearance_claimed": false,
+  "whole_machine_certified": false
+}
