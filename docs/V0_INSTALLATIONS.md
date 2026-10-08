@@ -47,3 +47,5 @@ Sources and licenses:
 [Editable carriage variants](https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v38/viewer-v0-carriages.zip) provide the three native display bodies, their original revisions, support-omission records and GPL-3.0 text.
 
 Original source archives, individual licenses and component provenance remain available from the viewer's sources dialog. Selection-specific omissions above remove duplicated stock references; the source models remain unchanged.
+
+Shared URLs and combination-support links restore all seven registered Mod selections through `v0_mods`. The same dependency and conflict checks apply to saved files and links. Older four-selector files migrate to stock for the later toolhead, bed and carriage slots. A newer selection supersedes an unfinished load; rejected inputs cannot partially replace pose, colors or display settings. URL restoration covers installed selections, while saved files also retain pose, colors, visibility and door/tophat angles.

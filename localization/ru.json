@@ -8877,6 +8877,26 @@
     "ui.component_source_preview_status": {
       "source_revision": "6ea4700e7bac8dfa5aa2",
       "text": "{0} · Предпросмотр CAD"
+    },
+    "v0_state.link_restored": {
+      "source_revision": "cfb51fa5ce67e96bc79e",
+      "text": "Конфигурация модификаций из общей ссылки восстановлена"
+    },
+    "v0_state.link_load_error": {
+      "source_revision": "60223e9da57481ba3763",
+      "text": "Ошибка чтения общей ссылки:"
+    },
+    "v0_state.wrong_machine": {
+      "source_revision": "7a03005959bb38019890",
+      "text": "Эта общая ссылка предназначена для другого принтера"
+    },
+    "v0_state.invalid_link": {
+      "source_revision": "3ad9a4eb92bf0f07f7db",
+      "text": "Недопустимая конфигурация модификаций V0 в общей ссылке"
+    },
+    "v0_state.file_load_error": {
+      "source_revision": "45a7ff8b4c5fc82dd947",
+      "text": "Ошибка загрузки: {0}"
     }
   }
 }

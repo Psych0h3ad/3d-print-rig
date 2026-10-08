@@ -1,6 +1,6 @@
-import {setupLanguage,translate,formatMessage} from '../viewer/i18n.mjs?v=2480220e8ff2a71a69b0';
+import {setupLanguage,translate,formatMessage} from '../viewer/i18n.mjs?v=7e910562e2ba90f2768b';
 import {setupHeaderThemeToggle} from '../viewer/display-preferences.mjs?v=9860960509e28d17f3fd';
-import {matchingRows,supportURL} from './model.mjs?v=35303ce85aa1cb0aebc4';
+import {matchingRows,supportURL} from './model.mjs?v=4ddcd0ed4a4aee9387d0';
 
 const $=id=>document.getElementById(id),el=(tag,text,className)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(className)n.className=className;return n};
 const statusLabels={supported:'組み合わせ対応済み',stock:'標準構成のみ',missing:'CAD未登録',standalone:'単体での組み合わせ'};
@@ -37,7 +37,7 @@ function renderResults(){
  const rows=matchingRows(catalog,selection);$('resultCount').textContent=t('登録構成数')+' · '+rows.length.toLocaleString();$('empty').hidden=rows.length>0;$('results').replaceChildren();
  for(const row of rows.slice(0,limit)){const card=el('article',undefined,'result'),values=catalog.dimensions.map((d,i)=>[d,catalog.options[d][row[i+1]].label]);card.append(el('h4',values.find(([d])=>d==='toolhead')?.[1]||target.label));const dl=el('dl');for(const [d,value]of values)dl.append(el('dt',dimensions[d]||d),el('dd',value));card.append(dl);
   const notes=catalog.notes[row.at(-1)];if(notes.length){const detail=el('details'),list=el('ul');detail.append(el('summary','取付条件・確認範囲'));for(const note of notes)list.append(el('li',note));detail.append(list);card.append(detail)}
-  const link=el('a',target.kind==='v0'?'機体を開いてModを選択':'この構成を3Dで開く');link.href=supportURL(target,catalog,row,location.href,language.language);card.append(link);$('results').append(card);
+  const link=el('a','この構成を3Dで開く');link.href=supportURL(target,catalog,row,location.href,language.language);card.append(link);$('results').append(card);
  }
  $('more').hidden=rows.length<=limit;
 }

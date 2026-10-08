@@ -5,8 +5,9 @@ export const configurationId=(catalog,row)=>row[0].map(i=>catalog.idParts[i]).jo
 export function supportURL(target,catalog,row,base,language){
  const url=new URL('../viewer/'+target.page.replace(/^\.\//,''),base);url.searchParams.set('lang',language);
  if(target.kind==='machine'||target.kind==='v0'||target.kind==='community')url.searchParams.set('machine',target.id);
- // V0 currently has no URL contract for Mod settings: only offer its machine,
- // never claim that a combination deep-link has been restored.
- if(target.kind!=='v0'&&row)url.searchParams.set('configuration',configurationId(catalog,row));
+ if(row){
+  if(target.kind==='v0')url.searchParams.set('v0_mods',JSON.stringify(rowSelection(catalog,row)));
+  else url.searchParams.set('configuration',configurationId(catalog,row));
+ }
  return url.href;
 }

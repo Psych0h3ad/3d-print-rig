@@ -8877,6 +8877,26 @@
     "ui.component_source_preview_status": {
       "source_revision": "6ea4700e7bac8dfa5aa2",
       "text": "{0} · Vista previa de CAD"
+    },
+    "v0_state.link_restored": {
+      "source_revision": "cfb51fa5ce67e96bc79e",
+      "text": "Se ha restaurado la configuración de Mods del enlace compartido"
+    },
+    "v0_state.link_load_error": {
+      "source_revision": "60223e9da57481ba3763",
+      "text": "Error al leer el enlace compartido:"
+    },
+    "v0_state.wrong_machine": {
+      "source_revision": "7a03005959bb38019890",
+      "text": "Este enlace compartido corresponde a otra impresora"
+    },
+    "v0_state.invalid_link": {
+      "source_revision": "3ad9a4eb92bf0f07f7db",
+      "text": "La configuración de Mod de V0 en el enlace compartido no es válida"
+    },
+    "v0_state.file_load_error": {
+      "source_revision": "45a7ff8b4c5fc82dd947",
+      "text": "Error de carga: {0}"
     }
   }
 }

@@ -12,10 +12,10 @@ import {loadExtraMachine} from './extra-machine-loader.mjs?v=dd97105abc4157397f1
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=extra-machines-55';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
-import {setupPublicInfo} from './public-info.js?v=c9e1dede0c4a39b1a597';
+import {setupPublicInfo} from './public-info.js?v=1a61579df968fc52f420';
 import {applyNativeMotionProfile,loadNativeMotionProfile} from './native-motion-profile.mjs?v=91532eb992519143f437';
 import {createCommunityAdapter} from './community-adapter.mjs?v=f8373d55283539bd5074';
-import {setupNativeMotionControls} from './native-motion-controls.mjs?v=854f8a0b0eab506d014f';
+import {setupNativeMotionControls} from './native-motion-controls.mjs?v=a91ce9c29e276a9d50cd';
 export async function mount(scope){
  const $=id=>document.getElementById(id),stage=$('stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));
  renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);

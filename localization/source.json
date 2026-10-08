@@ -11150,6 +11150,31 @@
       "kind": "template",
       "ja": "{0} · 部品単体",
       "en": "{0} · CAD preview"
+    },
+    "v0_state.link_restored": {
+      "kind": "message",
+      "ja": "共有リンクのMod構成を復元しました",
+      "en": "Restored the shared Mod configuration"
+    },
+    "v0_state.link_load_error": {
+      "kind": "message",
+      "ja": "共有リンクの読込エラー:",
+      "en": "Error reading the shared link:"
+    },
+    "v0_state.wrong_machine": {
+      "kind": "message",
+      "ja": "この機種の共有リンクではありません",
+      "en": "This shared link is for a different machine"
+    },
+    "v0_state.invalid_link": {
+      "kind": "message",
+      "ja": "共有リンクのV0 Mod設定が不正です",
+      "en": "Invalid V0 Mod configuration in the shared link"
+    },
+    "v0_state.file_load_error": {
+      "kind": "template",
+      "ja": "読込エラー: {0}",
+      "en": "Load error: {0}"
     }
   }
 }

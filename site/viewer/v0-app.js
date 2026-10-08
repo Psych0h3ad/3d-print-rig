@@ -2,7 +2,9 @@ import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {setupSceneDisplay} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {workspaceFrame,WorkspaceResizeObserver,workspaceTask,workspaceListen} from './workspace-lifecycle.mjs';
-import {createV0Installations,v0Slots,validateV0Mods,v0TophatMaxAngle} from './v0-installations.mjs?v=2687e9168ef1a3b0b82a';
+import {createV0Installations,v0Slots,v0TophatMaxAngle} from './v0-installations.mjs?v=2687e9168ef1a3b0b82a';
+import {v0ConfigurationSchema,stockV0Mods,validateV0State,readV0ModsURL,v0ModsURL,createV0StateRestorer} from './v0-state.mjs?v=09a952c773025831da15';
+import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
 import {loadExternalComponent} from './component-assets.mjs?v=9f8ef058f1297ab60e53';
 import {v0ModCategories,componentCategory} from './v0-mod-library.mjs?v=ddeeafeb04155ab0838b';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=workspace-belts-1';
@@ -11,21 +13,27 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
-import {poseDelta,createV0Adapter} from './v0_adapter.mjs?v=e6b118972b21aaf69a31';
+import {createV0Adapter} from './v0_adapter.mjs?v=e6b118972b21aaf69a31';
 import {setupMachineNavigation} from './machines.js?v=268c3c7f6767524ed489';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
-import {setupPublicInfo} from './public-info.js?v=c9e1dede0c4a39b1a597';
+import {setupPublicInfo} from './public-info.js?v=1a61579df968fc52f420';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=f471190665709ba23159';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
 export async function mount(scope){
 const $=s=>document.querySelector(s),ids=['voron_v02r1_120','voron_v02_120'];
 const wanted=new URLSearchParams(location.search).get('machine'),id=ids.includes(wanted)?wanted:ids[0];
+const initialURL=location.href;
 setupMachineNavigation(id);setupPublicInfo({includeDownloads:false});
+const feedback=$('#configurationStatus'),feedbackFooter=$('#saveConfiguration').closest?.('.inspector-footer');
+if(feedbackFooter){feedback.style.flex='1 0 100%';feedback.style.margin='0';feedbackFooter.append(feedback)}feedback.hidden=true;
+function configurationFeedback(text){feedback.hidden=!text;feedback.textContent=text}
+// Keep the source message in the DOM so language changes can translate it again.
+function loadError(prefix,error){return prefix+' '+error.message}
 const stage=$('#stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));renderer.setClearColor('#edf1f4');renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);
 const scene=scope.scene(new THREE.Scene()),camera=new THREE.PerspectiveCamera(38,1,.001,10),orbit=scope.resource(new OrbitControls(camera,renderer.domElement));scene.add(new THREE.HemisphereLight('#ffffff','#6c7981',2.4));
 for(const pos of [[.4,.6,.5],[-.3,.2,-.4]]){const light=new THREE.DirectionalLight('#ffffff',2);light.position.set(...pos);scene.add(light)}
-let adapter,profile,program,programFrame,stockProfile,installations,currentManifest,applyPalette,palette={base:null,accent:null,frame:null},pending=false,modRequest=0;
+let adapter,profile,program,programFrame,stockProfile,installations,stateRestorer,currentManifest,applyPalette,palette={base:null,accent:null,frame:null},pending=false;
 function render(){if(pending)return;pending=true;workspaceFrame(()=>{pending=false;renderer.render(scene,camera)})}
 const grid=setupGrid(scene,render);grid.position.y=-.026;
 function resize(){const b=stage.getBoundingClientRect();renderer.setSize(b.width,b.height,false);setResponsiveAspect(camera,orbit,b.width,b.height);render()}
@@ -64,6 +72,10 @@ try{
   if(digest!==registration.sources[module].metadata_sha256)throw Error('Mod原本のバージョンが一致しません');
   return loadModel(new GLTFLoader(),'../'+(source.glb||'modules/'+module+'/module.glb'));
  });}});
+ stateRestorer=createV0StateRestorer({profile,registry:installations.registry,installations,commit:commitV0State,
+  busy:value=>{$('#saveConfiguration').disabled=value;if(value)$('#installationStatus').textContent='Modを読み込み中…'},
+  error:e=>{refreshMods();$('#installationStatus').textContent=loadError('取付エラー:',e)},
+ });
  for(const[slot,label]of v0Slots){
   const caption=document.createElement('label');caption.htmlFor='mod-'+slot;caption.textContent=label;
   const select=document.createElement('select');select.id='mod-'+slot;
@@ -73,10 +85,10 @@ try{
   select.onchange=async()=>{return workspaceTask(async()=>{const state=Object.fromEntries(v0Slots.map(([k])=>[k,$('#mod-'+k).value]));const chosen=installations.registry.options.find(o=>o.id===select.value);Object.assign(state,chosen?.requires||{});try{await setV0Mods(state)}catch{}});};
   $('#v0ModFields').append(caption,select);
  }
- $('#resetMods').onclick=()=>setV0Mods(Object.fromEntries(v0Slots.map(([slot])=>[slot,'stock'])));
+ $('#resetMods').onclick=()=>setV0Mods(stockV0Mods()).catch(()=>{});
  $('#saveConfiguration').onclick=()=>{const blob=new Blob([JSON.stringify(captureV0State(),null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=id+'-configuration.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
  $('#loadConfiguration').onclick=()=>$('#configurationFile').click();
- $('#configurationFile').onchange=async()=>{return workspaceTask(async()=>{try{const file=$('#configurationFile').files[0];if(!file)return;if(file.size>1048576)throw Error('設定ファイルが大きすぎます');await restoreV0State(JSON.parse(await file.text()));$('#configurationStatus').textContent='構成を復元しました'}catch(e){$('#configurationStatus').textContent='読込エラー: '+e.message}finally{$('#configurationFile').value=''}});};
+ $('#configurationFile').onchange=async()=>{return workspaceTask(async()=>{try{const file=$('#configurationFile').files[0];if(!file)return;if(file.size>1048576)throw Error('設定ファイルが大きすぎます');if(await restoreV0State(JSON.parse(await file.text())))configurationFeedback('構成を復元しました')}catch(e){configurationFeedback(loadError('読込エラー:',e))}finally{$('#configurationFile').value=''}});};
  refreshMods();
  const valid=v=>typeof v==='string'&&/^#[0-9a-f]{6}$/i.test(v);try{const saved=JSON.parse(localStorage.getItem(profile.appearance.storage_key)||'null');if(saved?.machine_id===id)for(const role of Object.keys(palette))if(valid(saved.colors?.[role]))palette[role]=saved.colors[role]}catch{}
  applyPalette=function(){for(const [m,c] of originals)m.color.copy(c);adapter.setPalette(palette);installations?.setPalette(palette);for(const role of Object.keys(palette)){const v=palette[role]||profile.appearance.palette_defaults[role];$('#'+role).value=v;$('#'+role+'Hex').value=v;$('#'+role+'Hex').removeAttribute('aria-invalid')}$('#frameFinish').value=palette.frame==='#b9bec4'?'silver':!palette.frame||palette.frame==='#0e0f11'?'black':'custom';document.body.dataset.protectedChanges=String(protectedMaterials.filter(m=>!m.color.equals(originals.get(m))).length);$('#paletteStatus').textContent=Object.values(palette).some(Boolean)?'この機種の配色':'標準CADの配色';render()};
@@ -85,12 +97,13 @@ try{
  $('#frameFinish').disabled=false;$('#frameFinish').onchange=()=>{if($('#frameFinish').value==='custom')return;palette.frame=$('#frameFinish').value==='silver'?'#b9bec4':'#0e0f11';applyPalette();save()};$('#resetPalette').disabled=false;$('#resetPalette').onclick=()=>{palette={base:null,accent:null,frame:null};applyPalette();save()};applyPalette();
  programFrame={nozzle_mm:profile.nozzle_tip_mm,reference_xyz_mm:profile.display_reference_xyz_mm,moving_bed_z:true};
  program=setupGcodePanel({container:document.querySelector('aside'),profile,adapter,scene,render,getLimits:displayedMachineLimits,toNozzle:xyz=>programPoint(programFrame,xyz),pathOffset:xyz=>programPathOffset(programFrame,xyz),setPose:xyz=>{for(const [i,a]of ['x','y','z'].entries())$('#'+a).value=xyz[i];applyPose()}});
+ try{const mods=readV0ModsURL(initialURL,{machine_id:id,registry:installations.registry});if(mods&&await setV0Mods(mods))configurationFeedback('共有リンクのMod構成を復元しました')}catch(e){configurationFeedback(loadError('共有リンクの読込エラー:',e))}
  setupRenderExport({renderer,scene,camera,controls:orbit,name:id,afterRender:render});$('#status').hidden=true;document.body.dataset.ready='true';document.body.dataset.parts=String(manifest.parts.length);applyPose();resize();
 }catch(e){$('#status').textContent='読込エラー: '+e.message;document.body.dataset.error=e.message;console.error(e)}
 
 function refreshMods(){if(!installations)return;const state=installations.getState();$('#tophatAngle').max=String(v0TophatMaxAngle(installations.registry,state));$('#tophatAngle').value=adapter.tophat.getAngle();$('#tophatAnglev').textContent=adapter.tophat.getAngle().toFixed(0)+'°';for(const[slot]of v0Slots)$('#mod-'+slot).value=state[slot];$('#installationStatus').replaceChildren(...installations.getNotes().map(note=>{const p=document.createElement('p');p.textContent=note;return p}));const selected=installations.registry.options.find(o=>o.id===state.toolhead&&o.slot==='toolhead');$('#headSummary').textContent=(selected?.label||'Mini Stealthburner / 統合BMG / Revo Voron')+' · 固定ガントリー・単一Zベッド';$('#installationStatus').classList.toggle('notice',state.handles==='stealth-handles');document.body.dataset.v0Mods=JSON.stringify(state)}
 function updateDatum({preservePhysicalPose=true}={}){
- const old=profile.display_reference_xyz_mm,pose=adapter.getPose(),state=installations.getState(),head=installations.registry.options.find(o=>o.id===state.toolhead),bed=installations.registry.options.find(o=>o.id===state.bed);
+ const old=profile.display_reference_xyz_mm,pose=adapter.getPose(),state=installations.getState(),head=installations.registry.options.find(o=>o.slot==='toolhead'&&o.id===state.toolhead),bed=installations.registry.options.find(o=>o.slot==='bed'&&o.id===state.bed);
  profile.nozzle_tip_mm=[...(head?.nozzle_tip_mm||stockProfile.nozzle_tip_mm)];profile.bed_top_world_z_mm=bed?.bed_top_mm??stockProfile.bed_top_world_z_mm;
  profile.sampled_clearance_limits_mm=head||bed?null:structuredClone(stockProfile.sampled_clearance_limits_mm);
  $('#clearanceStatus').textContent=head||bed?'換装構成の全ストロークは下記の取付確認を参照してください':`CAD格子点の確認範囲 X 0–${stockProfile.sampled_clearance_limits_mm.X[1]} / Y 0–${stockProfile.sampled_clearance_limits_mm.Y[1]} / Z 0–${stockProfile.sampled_clearance_limits_mm.Z[1]} mm`;
@@ -100,22 +113,23 @@ function updateDatum({preservePhysicalPose=true}={}){
  adapter.setChainEndpointShift(bed?.chain_endpoint_offset_mm||[0,0,0]);
  if(preservePhysicalPose)for(const[i,a]of ['x','y','z'].entries())$('#'+a).value=Math.max(profile.display_limits_mm['XYZ'[i]][0],Math.min(profile.display_limits_mm['XYZ'[i]][1],pose[i]+profile.display_reference_xyz_mm[i]-old[i]));
 }
-async function setV0Mods(state){return workspaceTask(async()=>{const request=++modRequest;$('#saveConfiguration').disabled=true;try{$('#installationStatus').textContent='Modを読み込み中…';const applied=await installations.setState(state);if(applied){updateDatum();refreshMods();applyPose()}return applied}catch(e){if(request===modRequest){refreshMods();$('#installationStatus').textContent='取付エラー: '+e.message}throw e}finally{if(request===modRequest)$('#saveConfiguration').disabled=false}});}
+function commitV0State(value){
+ updateDatum({preservePhysicalPose:!value});refreshMods();
+ if(value){
+  palette={...value.palette};applyPalette();for(const[i,a]of ['x','y','z'].entries())$('#'+a).value=value.pose[i];
+  for(const key of ['enclosure','belts']){$('#'+key).checked=value[key];$('#'+key).onchange()}
+  $('#gridVisible').checked=value.grid;$('#gridVisible').onchange();$('#doorAngle').value=value.door_angle_deg;$('#doorAngle').oninput();$('#tophatAngle').value=value.tophat_angle_deg;$('#tophatAngle').oninput();
+ }
+ applyPose();
+ // Sharing and embed controls already preserve the page's query parameters.
+ // Write only committed installation state and retain workspace history data.
+ const url=v0ModsURL(location.href,{machine_id:id,registry:installations.registry},installations.getState());
+ replaceWorkspaceURL(history.state,'',url);
+}
+async function setV0Mods(state){return workspaceTask(()=>stateRestorer.setMods(state));}
 function currentV0(){return {adapter,profile,manifest:currentManifest,installations,scene,camera,orbit}}
-function captureV0State(){return {schema:'v0-configuration-v1',machine_id:id,mods:installations.getState(),pose:adapter.getPose(),palette:{...palette},enclosure:$('#enclosure').checked,belts:$('#belts').checked,grid:$('#gridVisible').checked,door_angle_deg:adapter.door.getAngle(),tophat_angle_deg:adapter.tophat.getAngle()}}
-async function restoreV0State(value){return workspaceTask(async()=>{
- if(value?.schema!=='v0-configuration-v1'||value.machine_id!==id)throw Error('この機種の設定ファイルではありません');
- validateV0Mods(installations.registry,value.mods);if(!Array.isArray(value.pose)||value.pose.length!==3)throw Error('XYZ設定が不正です');poseDelta(profile,Object.fromEntries(['x','y','z'].map((a,i)=>[a,value.pose[i]])));
- if(!value.palette||['base','accent','frame'].some(k=>value.palette[k]!==null&&!/^#[0-9a-f]{6}$/i.test(value.palette[k])))throw Error('色設定が不正です');
- if(['enclosure','belts','grid'].some(k=>typeof value[k]!=='boolean'))throw Error('表示設定が不正です');
- const doorAngle=value.door_angle_deg??0;if(typeof doorAngle!=='number'||!Number.isFinite(doorAngle)||doorAngle<0||doorAngle>110)throw Error('ドア角度が不正です');
- const tophatAngle=value.tophat_angle_deg??0;if(typeof tophatAngle!=='number'||!Number.isFinite(tophatAngle)||tophatAngle<0||tophatAngle>v0TophatMaxAngle(installations.registry,value.mods))throw Error('トップハット角度が不正です');
- if(!await installations.setState(value.mods))return false;
- updateDatum({preservePhysicalPose:false});
- palette={...value.palette};applyPalette();for(const[i,a]of ['x','y','z'].entries())$('#'+a).value=value.pose[i];
- for(const key of ['enclosure','belts']){$('#'+key).checked=value[key];$('#'+key).onchange()}
- $('#gridVisible').checked=value.grid;$('#gridVisible').onchange();$('#doorAngle').value=doorAngle;$('#doorAngle').oninput();$('#tophatAngle').value=tophatAngle;$('#tophatAngle').oninput();refreshMods();applyPose();return true;
-});}
+function captureV0State(){return validateV0State({profile,registry:installations.registry},{schema:v0ConfigurationSchema,machine_id:id,mods:installations.getState(),pose:adapter.getPose(),palette:{...palette},enclosure:$('#enclosure').checked,belts:$('#belts').checked,grid:$('#gridVisible').checked,door_angle_deg:adapter.door.getAngle(),tophat_angle_deg:adapter.tophat.getAngle()})}
+async function restoreV0State(value){return workspaceTask(()=>stateRestorer.restore(value));}
 workspaceListen(window,'pagehide',event=>{if(event.persisted)return;installations?.dispose();orbit.dispose();renderer.dispose();adapter=null;installations=null});
 
 setupSceneDisplay(scene,renderer,camera,scope,THREE);

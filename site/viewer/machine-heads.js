@@ -1,20 +1,21 @@
+import {madmaxJointAssetSpec,madmaxJointApplies,captureMadmaxJoint,setMadmaxJointPose} from './madmax-native-joint.mjs?v=d39e974d7b782135b52a';
 import {v24NativeDriveMetadata} from './v24-drive-metadata.mjs?v=dbdf9f37cb0849ffc262';
-import {augmentTrinityAlphaHosts,TRINITY_ALPHA_HOST_SOURCE,alphaResetPose,alphaRangeNotice,alphaResetLabel} from './trinity-alpha-host-extensions.mjs?v=3ab74a61eb8d8634653c';
-import {alphaReference,alphaLimits} from './trinity-alpha-installation.mjs?v=93133e5566a667945437';
-import {augmentTrinitySiboorR2,TRINITY_SIBOOR_SOURCE} from './trinity-alpha-siboor-r2.mjs?v=95639a69d2eac6d5813b';
-import {augmentTrinityAlpha,TRINITY_ALPHA_SOURCE} from './trinity-alpha-installation.mjs?v=93133e5566a667945437';
+import {augmentTrinityAlphaHosts,TRINITY_ALPHA_HOST_SOURCE,alphaResetPose,alphaRangeNotice,alphaResetLabel} from './trinity-alpha-host-extensions.mjs?v=eaac241cfd978128d54d';
+import {alphaReference,alphaLimits} from './trinity-alpha-installation.mjs?v=37f9f9433fee33e8434c';
+import {augmentTrinitySiboorR2,TRINITY_SIBOOR_SOURCE} from './trinity-alpha-siboor-r2.mjs?v=2325dbef2044df4b96ec';
+import {augmentTrinityAlpha,TRINITY_ALPHA_SOURCE} from './trinity-alpha-installation.mjs?v=37f9f9433fee33e8434c';
 import {workspaceTask} from './workspace-lifecycle.mjs';
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=d417b7cd78bf7d08ba3c';
-import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=30b32efdc284e52bedf3';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=991332fd5248a4b45e69';
+import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=9a091ffba211fccf3e84';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
 import {appearanceRole} from './appearance-role.mjs?v=6b7b8efda77bfc3ce74d';
 import {partKey} from './head-assembly.js';
-import {v24HeadCatalog} from './machine-head-model.mjs?v=1773209b730d1f4cb8db';
-import {setupConfigurations} from './configurations.js?v=5b5f11706296f18600f5';
+import {v24HeadCatalog} from './machine-head-model.mjs?v=1449151f5c6eaa06c413';
+import {setupConfigurations} from './configurations.js?v=3cd2598ce00d6152def6';
 
-import {loadSiboorRegistration} from './siboor-catalog.mjs?v=ef8812f5039f8c1d8d36';
+import {loadSiboorRegistration} from './siboor-catalog.mjs?v=c1640cd9214e2ffcc4c7';
 import {stockProbeFit} from './probe-mounts.js';
 
 import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs';
@@ -60,12 +61,12 @@ export function createMachineHeads(scene,catalog,{render=()=>{}}={}){
  const gantry=createMonolithGantry(scene,catalog);
  const cache=new Map(),rig=new THREE.Group(),bankRig=new THREE.Group();rig.name='Installed_Machine_Head';bankRig.name='Frame_Tool_Bank';scene.add(rig,bankRig);let current=null,palette={base:'#24272c',accent:'#e32636'},delta=[0,0,0],bankState=null,bankEntries=[];
  async function asset(id){return workspaceTask(async()=>{
-  if(cache.has(id))return cache.get(id);const spec=catalog.base_assets?.[id]||catalog.assets[id];if(!spec)throw Error('未登録のヘッド部品：'+id);
+  if(cache.has(id))return cache.get(id);const spec=madmaxJointAssetSpec(catalog.machine_id,id,catalog.base_assets?.[id]||catalog.assets[id]);if(!spec)throw Error('未登録のヘッド部品：'+id);
   const loading=spec.external?loadExternalComponent(new GLTFLoader(),spec,location.href).then(({meta,gltf})=>[meta,gltf]):Promise.all([fetch('../'+spec.meta,{cache:'no-cache'}).then(async r=>{if(!r.ok)throw Error('ヘッドの部品表');if(spec.metadata_sha256){const text=await r.text();if(await contentSHA256(text)!==spec.metadata_sha256)throw Error('Native head metadata hash mismatch');return JSON.parse(text)}return r.json()}),loadModel(new GLTFLoader(),'../'+spec.glb,undefined,spec.decoded_model_sha256?{verifySha256:spec.decoded_model_sha256}:{})]);
   const promise=loading.then(([meta,g])=>{
    if(meta.coordinate_frame==='original_native_CAD_mm_XY_Zup'){const native=new THREE.Group();native.rotation.x=-Math.PI/2;native.scale.setScalar(.001);native.add(g.scene);g.scene=native;}
    const lookup=new Map(meta.parts.map(p=>[String(p.key),p])),entries=[];g.scene.visible=false;
-   g.scene.traverse(mesh=>{if(!mesh.isMesh)return;const key=partKey(mesh),row=lookup.get(String(key));if(!row)throw Error('ヘッドの部品対応が不正です');mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();const materials=Array.isArray(mesh.material)?mesh.material:[mesh.material];for(const m of materials){m.side=meta.native_single_sided?THREE.FrontSide:THREE.DoubleSide;if(m.transparent)m.depthWrite=false}entries.push({mesh,key,component:row.component,role:appearanceRole(row)||mesh.userData.appearance_role,materials,colors:materials.map(m=>m.color.clone())})});rig.add(g.scene);return {root:g.scene,entries};
+   g.scene.traverse(mesh=>{if(!mesh.isMesh)return;const key=partKey(mesh),row=lookup.get(String(key));if(!row)throw Error('ヘッドの部品対応が不正です');mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();const materials=Array.isArray(mesh.material)?mesh.material:[mesh.material];for(const m of materials){m.side=meta.native_single_sided?THREE.FrontSide:THREE.DoubleSide;if(m.transparent)m.depthWrite=false}entries.push({mesh,key,component:row.component,role:appearanceRole(row)||mesh.userData.appearance_role,materials,colors:materials.map(m=>m.color.clone())})});rig.add(g.scene);return {root:g.scene,entries,nativeJoint:captureMadmaxJoint(catalog.machine_id,id,meta,entries)};
   }).catch(e=>{cache.delete(id);throw e});cache.set(id,promise);return promise;
  });}
  function setPalette(value){gantry.setPalette(value);palette={...palette,...value};const rows=[...bankEntries,...[...cache.values()].flatMap(p=>p.loaded?.entries||[])];for(const row of rows)for(let i=0;i<row.materials.length;i++){const m=row.materials[i],color=palette[row.role];if(color)m.color.set(color);else m.color.copy(row.colors[i]);if(['base','accent'].includes(row.role)){m.metalness=0;m.roughness=.58}}}
@@ -82,12 +83,13 @@ export function createMachineHeads(scene,catalog,{render=()=>{}}={}){
  async function setBank(state){return workspaceTask(async()=>{const staged=await stagedBank(state,current);commitBank(staged);render()});}
  async function install(variant,state=bankState){return workspaceTask(async()=>{
   await gantry.install(variant);
+  for(const p of cache.values())if(p.loaded)setMadmaxJointPose(p.loaded.nativeJoint,false);
   if(!variant?.machine_head){for(const p of cache.values())if(p.loaded)p.loaded.root.visible=false;current=null;commitBank({state:state?{...state,enabled:false}:null,roots:[],entries:[]});return}
   const plan=variant.machine_head,required=[...new Set([plan.base,...plan.modules.map(m=>m.id)])];await Promise.all(required.map(async id=>{return workspaceTask(async()=>{const a=await asset(id);cache.get(id).loaded=a});}));
   const staged=await stagedBank(state,variant);
   for(const p of cache.values())if(p.loaded){p.loaded.root.visible=false;p.loaded.root.position.set(0,0,0)}
   const place=(id,translation,hidden=[])=>{const a=cache.get(id).loaded,omit=new Set(hidden);a.root.visible=true;a.root.position.copy(point(translation));for(const e of a.entries)e.mesh.visible=!omit.has(e.key)&&!['rail_reference','dock','shuttle_reference'].includes(e.component)};
-  place(plan.base,plan.translation,plan.hidden);for(const m of plan.modules)place(m.id,m.translation_mm,m.hidden_keys);current=variant;commitBank(staged);setPalette(palette);setDelta(delta);render();
+  place(plan.base,plan.translation,plan.hidden);for(const m of plan.modules)place(m.id,m.translation_mm,m.hidden_keys);current=variant;for(const p of cache.values())if(p.loaded)setMadmaxJointPose(p.loaded.nativeJoint,madmaxJointApplies(catalog.machine_id,variant));commitBank(staged);setPalette(palette);setDelta(delta);render();
  });}
  function setDelta(value){gantry.setDelta(value);delta=[...value];rig.position.copy(point(delta));rig.updateMatrixWorld(true)}
  function setVisible(value){rig.visible=Boolean(value)}

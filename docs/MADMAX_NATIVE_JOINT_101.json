@@ -1,0 +1,91 @@
+{
+  "schema": "madmax-native-joint/101",
+  "machine": "voron_trident_250",
+  "variant": "installed__trident_r2__v21__madmax__xol__sherpa_mini__rapido2_uhf",
+  "parts": [
+    "madmax_xol_carriage_2",
+    "madmax_mgn12_fasteners_0",
+    "madmax_mgn12_fasteners_1",
+    "madmax_mgn12_fasteners_2",
+    "madmax_mgn12_fasteners_3"
+  ],
+  "actual_asset_pins": [
+    {
+      "file": "modules/madmax_xol_carriage.json",
+      "sha256": "0c4ac5838ed23d82b50c5b4fa0cad05e55773ae29d4c5bd3909f4f9e8a44f528",
+      "bytes": 1208,
+      "decoded_sha256": null
+    },
+    {
+      "file": "modules/madmax_xol_carriage.glb.gz",
+      "sha256": "29483090540065aff43498c67ca85075103e273ada1d3329516a50281b9b54fb",
+      "bytes": 109698,
+      "decoded_sha256": "b9ca4c738a1a49cb9b81bde206a482b794b89d05acea765d7c6d4a6fc4831dae"
+    },
+    {
+      "file": "modules/madmax_mgn12_fasteners.json",
+      "sha256": "7a7012a70b67af7b7c51df39899a05c4ba2699c263b0b157904b662e5970ce5f",
+      "bytes": 2452,
+      "decoded_sha256": null
+    },
+    {
+      "file": "modules/madmax_mgn12_fasteners.glb.gz",
+      "sha256": "a1ffc1856480f36ff66e424c52b4ff57053f0f82c7f1b08697eafb1a191540b7",
+      "bytes": 46759,
+      "decoded_sha256": "0294a728e9a1acf3158b6ac5b9686aaf3f0f565197e8ddbb3aa331de094af3ab"
+    },
+    {
+      "file": "modules/trident_r2_gantry_250.json",
+      "sha256": "13bd7b50c0c381b497dc7f618152cc5fb4fb66acb9acee17acc360e956b71e92",
+      "bytes": 172896,
+      "decoded_sha256": null
+    },
+    {
+      "file": "modules/trident_r2_gantry_250.glb.gz",
+      "sha256": "c574aff2f1be10479aeaa20e64a8293aace1b7cd462fda1f43d1c43e8068404c",
+      "bytes": 5167443,
+      "decoded_sha256": "80259fd41c1359d81fc59171974559d8212c1f74a49647ecc688583b40513db3"
+    }
+  ],
+  "native_operations": 57,
+  "native_report_sha256": "0ff26d42e8fe40689046ec8bf1a50adf2322caf38ae72fd7cc53da8d4ce9cfcb",
+  "mesh_report_sha256": "c04457d0ce0e8c226b057fb434a97cae2e6920f21cdda444997f89304e7115e6",
+  "native_body_common_solids": 0,
+  "native_finite_screw_seats": [
+    {
+      "index": 0,
+      "bearing_mm2": 7.209031726258468,
+      "shaft_overlap_mm": 1.422775000000028,
+      "unintended_body_common_solids": 0,
+      "thread_only_common_mm3": 3.9276043933880125
+    },
+    {
+      "index": 1,
+      "bearing_mm2": 7.209031726258505,
+      "shaft_overlap_mm": 1.422775000000021,
+      "unintended_body_common_solids": 0,
+      "thread_only_common_mm3": 3.927604393376553
+    },
+    {
+      "index": 2,
+      "bearing_mm2": 7.209031726258415,
+      "shaft_overlap_mm": 1.4227750000000068,
+      "unintended_body_common_solids": 0,
+      "thread_only_common_mm3": 3.9276043933852174
+    },
+    {
+      "index": 3,
+      "bearing_mm2": 7.209031726258742,
+      "shaft_overlap_mm": 1.422775000000028,
+      "unintended_body_common_solids": 0,
+      "thread_only_common_mm3": 3.9276043933780187
+    }
+  ],
+  "source_mesh_limitations": {
+    "existing_collapsed_screw_triangles": 4,
+    "geometry_bytes_changed": false
+  },
+  "scope": "Original source2 carrier/four source315 screws against native Trident250381..389 and fixed390 only. Finite native seats, body common and intended thread overlap are separate. No whole-head, bed, dock, cables, belts, strength or other host certification.",
+  "whole_machine_certified": false,
+  "new_compatibility_tuples": []
+}
