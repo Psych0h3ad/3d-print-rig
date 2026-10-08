@@ -10,7 +10,7 @@ const root=path.resolve(process.argv[2]),output=process.argv[3];
 const read=async f=>JSON.parse(await fs.readFile(path.join(root,f),'utf8'));
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 globalThis.location={href:'https://assets.test/viewer/'};
-globalThis.fetch=async input=>{let file=String(input).split('?')[0];if(file.includes('ASSET_BUNDLE.json'))return Response.json({encoding:'gzip'});file=file.startsWith('http')?new URL(file).pathname.slice(1):file.replace(/^\.\.\//,'');try{return new Response(await fs.readFile(path.join(root,file)))}catch{return new Response('',{status:404})}};
+globalThis.fetch=async input=>{let file=String(input).split('?')[0];if(file.includes('ASSET_BUNDLE.json'))return Response.json({encoding:'gzip'});file=file.startsWith('http')?new URL(file).pathname.slice(1):file.startsWith('file:')?decodeURIComponent(new URL(file).pathname).split('/site/').at(-1):file.replace(/^\.\.\//,'');try{const bytes=await fs.readFile(file==='SIBOOR_TRIDENT_ASSETS.json'?new URL('../site/SIBOOR_TRIDENT_ASSETS.json',import.meta.url):path.join(root,file));return new Response(file==='SIBOOR_TRIDENT_ASSETS.json'?bytes.toString('utf8').replace(/\r\n/g,'\n'):bytes)}catch{return new Response('',{status:404})}};
 const {createMachineHeads}=await import('../site/viewer/machine-heads.js');
 const heads=await read('TOOLHEAD_CONFIGURATIONS.json'),registry=await read('MACHINE_HEAD_REGISTRATIONS.json');
 let poses=0,vertices=0,paletteChecks=0,resetChecks=0;
@@ -34,4 +34,8 @@ for(const size of [250,300]){
  scene.traverse(o=>{if(o.isMesh){o.geometry.dispose();for(const m of Array.isArray(o.material)?o.material:[o.material])m.dispose()}});scene.clear();rig.cache.clear();globalThis.gc?.();
 }
 const report={passed:true,machines:['voron_trident_250','voron_trident_300'],corrected_host:'voron_trident_250',original_parts:5,poses,actual_vertex_world_checks:vertices,paletteChecks,resetChecks,input_assets:expectedJoint.actual_asset_pins,adapter_sha256:sha(await fs.readFile(new URL('../site/viewer/madmax-native-joint.mjs',import.meta.url))),native_report_sha256:expectedJoint.native_report_sha256,source_geometry_changed:false,browser_review:false,whole_machine_certified:false,scope:'Production installed-head consumer, exact native joint matrix, actual vertex world coordinates, extrema/midpoint/reversal/reset, printed palettes and original purchased materials. Existing 300 host remains unchanged. Full body/belt/dock clearance is not claimed.'};
+const {auditMadmaxPtfe}=await import('./audit_madmax_ptfe.mjs');
+report.ptfe_attachment=await auditMadmaxPtfe(root);
+const {auditRapidoXUhfCover}=await import('./audit_rapido_x_uhf_cover.mjs');
+report.rapido_x_uhf_cover=await auditRapidoXUhfCover(root);
 assert(output,'Fresh evidence report path is required');await fs.writeFile(output,JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({report:path.resolve(output),report_sha256:sha(await fs.readFile(output))}));

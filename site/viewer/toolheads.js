@@ -4,7 +4,7 @@ import {setupSceneDisplay} from './display-preferences.mjs?v=9860960509e28d17f3f
 import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {loadMonolithData} from './monolith-machine.js?v=9a091ffba211fccf3e84';
 import {setupChangerBank} from './changer-bank.js?v=47bbc0fef91af2c7241e';
-import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=90ee8768e056f91e35ff';
+import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=12fd60c25f15c89bf64d';
 import {headPrinterLink} from './head-navigation.mjs?v=2f1251340da063092d39';
 import {headBuilderDimensions} from './configuration-model.js?v=d4b3dda97a404a7575b7';
 import {appearanceRole} from './appearance-role.mjs?v=6b7b8efda77bfc3ce74d';
@@ -16,6 +16,8 @@ import {setupConfigurations} from './configurations.js?v=3cd2598ce00d6152def6';
 import {setupPublicInfo} from './public-info.js?v=1a61579df968fc52f420';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=workspace-belts-1';
+import {setRapidoXUhfSurface} from './rapido-x-uhf-cover.mjs?v=8b458475dac84cfcd8c7';
+import {contentSHA256} from './mount-validation.mjs';
 import {probeCheck,probeMetrics,probeGuide,headInspectionState,headBodyCollisionNotes} from './probe-checks.js?v=ea1aef3e30bf7d11d3cb';
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
 import {setupHeadBuilder} from './builder-ui.mjs?v=17108affd7bb575b37a5';
@@ -90,7 +92,7 @@ $('#seeInside').onchange=appearance;
 async function asset(id){return workspaceTask(async()=>{
  if(cached.has(id))return cached.get(id);
  const spec=catalog.base_assets[id]||catalog.assets[id];if(!spec)throw Error('未登録のヘッドCAD: '+id);
- const loading=spec.external?loadExternalComponent(loader,spec,location.href).then(({meta,gltf})=>[meta,gltf]):Promise.all([fetch('../'+spec.meta,{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('CAD部品表を取得できません');return r.json()}),loadModel(loader,'../'+spec.glb)]);
+ const loading=spec.external?loadExternalComponent(loader,spec,location.href).then(({meta,gltf})=>[meta,gltf]):Promise.all([fetch('../'+spec.meta,{cache:'no-cache'}).then(async r=>{if(!r.ok)throw Error('CAD部品表を取得できません');if(spec.metadata_sha256){const text=await r.text();if(await contentSHA256(text)!==spec.metadata_sha256)throw Error('Native head metadata hash mismatch');return JSON.parse(text)}return r.json()}),loadModel(loader,'../'+spec.glb,undefined,spec.decoded_model_sha256?{verifySha256:spec.decoded_model_sha256}:{})]);
  const promise=loading.then(([meta,model])=>{
   const lookup=new Map(meta.parts.map(p=>[p.key,p])),root=model.scene,meshes=[];
   root.visible=false;bench.add(root);
@@ -163,9 +165,10 @@ async function install(variant){return workspaceTask(async()=>{
   await toolBank?.install(variant);
   // Load before mutating visibility, so failures leave the installed head intact.
   await Promise.all(ids.map(asset));
-  for(const p of cached.values()){const a=p.loaded;if(a){a.root.visible=false;for(const r of a.meshes)r.mesh.visible=true}}
+  for(const [id,p]of cached){const a=p.loaded;if(a){if(id==='stealthburner')setRapidoXUhfSurface(a.meshes,false);a.root.visible=false;for(const r of a.meshes)r.mesh.visible=true}}
   const base=await asset(plan.base);base.root.position.copy(point(headPlacement(variant,{translation_mm:plan.translation,role:'tool'})));base.root.visible=true;
   for(const r of base.meshes)r.mesh.visible=!plan.hidden.has(r.key);
+  if(plan.base==='stealthburner')setRapidoXUhfSurface(base.meshes,variant.cover_source?.kind==='original_uhf');
   for(const module of plan.modules){const a=await asset(module.id),hidden=new Set(module.hidden_keys||[]);a.root.position.copy(point(module.translation_mm));a.root.visible=true;for(const r of a.meshes)r.mesh.visible=!hidden.has(r.key)}
   if(variant.inspection_module){const a=await asset(variant.inspection_module);a.root.position.set(0,0,0);a.root.visible=true;for(const row of a.meshes){row.mesh.renderOrder=20;for(const material of row.materials){material.depthTest=false;material.depthWrite=false;material.transparent=true;material.opacity=.82}}}
   currentVariant=variant;$('#headProbeTravel').value=0;$('#headExplode').value=0;

@@ -23,12 +23,13 @@ import {setupPublicInfo} from './public-info.js?v=1a61579df968fc52f420';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {createTridentMotion} from './trident-motion.mjs?v=77312c6bfbf6c7e7563d';
 import {headPlan,partKey} from './head-assembly.js?v=workspace-belts-1';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=90ee8768e056f91e35ff';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=12fd60c25f15c89bf64d';
 import {setupChangerBank} from './changer-bank.js?v=47bbc0fef91af2c7241e';
 import {expandedPrinterCatalog} from './machine-head-model.mjs?v=1449151f5c6eaa06c413';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=f471190665709ba23159';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
 import {createHeadMarkers} from './head-markers.mjs?v=workspace-belts-1';
+import {createMadmaxPtfe} from './madmax-ptfe.mjs?v=60ee54507be6f40afdbf';
 export async function mount(scope){
 const requestedMachine=new URL(location.href).searchParams.get('machine');
 const machine=/^voron_trident_(250|300|350)$/.test(requestedMachine)?requestedMachine:'voron_trident_350',size=Number(machine.split('_').at(-1)),gantryId='trident_r2_gantry_'+size,referenceOffset=(size-350)/2;
@@ -37,7 +38,7 @@ const $=s=>document.querySelector(s),stage=$('#stage'),renderer=scope.renderer(n
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor('#edf1f4');renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.2;stage.append(renderer.domElement);
 const scene=scope.scene(new THREE.Scene()),camera=new THREE.PerspectiveCamera(38,1,.005,10),controls=scope.resource(new OrbitControls(camera,renderer.domElement));
 camera.position.set(.98,.83,1.4);controls.target.set(0,.22,0);controls.update();
-let pending=false,frames=0,motion,catalog,profile,originalLimits,current,active,accessories,installedHeads,toolBank,gantryVisibility,program,headMarkers;
+let pending=false,frames=0,motion,catalog,profile,originalLimits,current,active,accessories,installedHeads,toolBank,gantryVisibility,program,headMarkers,headPtfe;
 const stockReference=[],cached=new Map(),meshes=[],palette={base:'#24272c',accent:'#e32636',frame:'#25282d'};
 function render(){if(pending)return;pending=true;workspaceFrame(()=>{pending=false;renderer.render(scene,camera);document.body.dataset.renderedFrames=++frames})}
 setupGrid(scene,render);
@@ -76,6 +77,7 @@ function applyPose(){if(!motion)return;
  current=motion.setPose({x:$('#x').value,y:$('#y').value,z:$('#z').value},{flexibleVisible:$('#belts').checked,toolheadReference:!active?.machine_head});
  program?.updatePath([current.x,current.y,current.z]);
  installedHeads?.setDelta([current.dx,current.dy,0]);installedHeads?.gantry.setFlexibleVisible($('#belts').checked);gantryVisibility?.update();
+ if(headPtfe)document.body.dataset.headPtfe=JSON.stringify(headPtfe.update(active,$('#belts').checked));
  headMarkers?.update();
  for(const a of ['x','y','z']){$('#'+a).value=current[a];$('#'+a+'v').textContent=current[a].toFixed(1)+' mm'}
  document.body.dataset.pose=JSON.stringify(current);if(active?.native_alpha_92){document.body.dataset.alphaReference=JSON.stringify(motion.getReference());document.body.dataset.alphaNozzleCadMm=JSON.stringify(active.fit.nozzle_mm.map((n,i)=>n+([current.dx,current.dy,0][i])));document.body.dataset.alphaBedDownMm=current.bed_down_mm;}else{delete document.body.dataset.alphaReference;delete document.body.dataset.alphaNozzleCadMm;delete document.body.dataset.alphaBedDownMm;}document.body.dataset.zGuidePositions=JSON.stringify(profile.z_guide_block_keys.map(k=>{const entry=[...motion.entries].find(([mesh,{row}])=>row.key===k);return entry?.[0].position.toArray()}));
@@ -106,6 +108,7 @@ try{
  if(headData.registry.head_witness_validation?.machine!==machine)throw Error('Native baseline requires current head witness validation');
  headData.registry.head_baseline_92=await getJSON(NATIVE_BASELINE_SOURCE.file,NATIVE_BASELINE_SOURCE.sha256);
  catalog=await loadMonolithMachines(expandedPrinterCatalog(withFrameMods(catalog,frameMods),headData.heads,headData.registry,machine),headData);catalog.bank_data=headData.bank;installedHeads=createMachineHeads(scene,{...catalog,base_assets:headData.heads.base_assets},{render});ensureMachineHeadControls({gantry:true,monolithUnavailable:catalog.monolith_unavailable});motion=createTridentMotion(profile);const [base,g]=await Promise.all([getJSON(profile.base_assets.meta),loadModel(new GLTFLoader(),'../'+profile.base_assets.glb)]);scene.add(g.scene);register(g.scene,base);gantryVisibility=stockGantryVisibility(new Map(meshes.map(r=>[r.key,r.mesh])));
+ headPtfe=createMadmaxPtfe(scene,g.scene,base,profile,installedHeads);scope.resource(headPtfe);
  headMarkers=createHeadMarkers(scene,{rig:installedHeads,fixture:key=>meshes.find(r=>r.key===key)?.mesh,render,setPose:xyz=>{program?.invalidate();if(xyz.some((n,i)=>n<Number($('#'+['x','y','z'][i]).min)-1e-7||n>Number($('#'+['x','y','z'][i]).max)+1e-7))return false;for(const[i,a]of ['x','y','z'].entries())$('#'+a).value=xyz[i];$('#enclosure').checked=true;$('#enclosure').onchange?.({target:$('#enclosure')});applyPose();return true}});
  for(const [i,a] of ['x','y','z'].entries()){const limits=profile.display_limits_mm[a.toUpperCase()];$('#'+a).min=limits[0];$('#'+a).max=limits[1];$('#'+a).value=profile.display_reference_xyz_mm[i];$('#'+a).disabled=false;$('#'+a).oninput=applyPose}
  $('#reset').disabled=false;$('#reset').onclick=()=>{const xyz=(active?.native_reference_92||active?.native_alpha_92)?baselineResetPose(motion.getReference(),alphaBedReferenceDrop(active,bankBedReferenceDrop(catalog,catalog.bank_data,installedHeads?.bankState,active))):profile.display_reference_xyz_mm;for(const [i,a] of ['x','y','z'].entries())$('#'+a).value=xyz[i];applyPose()};

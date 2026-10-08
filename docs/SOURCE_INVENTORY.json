@@ -125,13 +125,18 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 1021502,
-      "sha256": "083348c8aa22af590315d181093386d91c5abb43b3a5608c757a8c22c6483a24"
+      "bytes": 1110420,
+      "sha256": "1e49df6ccbdc73ebe584c34b1ab60bba31d8964775fadd2701b65398a8489b7c"
     },
     {
       "path": "docs/MADMAX_NATIVE_JOINT_101.json",
       "bytes": 3328,
       "sha256": "d00afb92f6f8570df5bfafc032644c3f6e36c3be7b59989303d949d080e3d671"
+    },
+    {
+      "path": "docs/MADMAX_PTFE_102.json",
+      "bytes": 3587,
+      "sha256": "63b1f7c8c3e0da533222d12a7d9d90df8932f2f65329e447c311cb22a76b01ee"
     },
     {
       "path": "docs/MAINTENANCE.md",
@@ -194,6 +199,11 @@
       "sha256": "48f82c218a926911009eb54c6d8bd20804ed967a6a30dab70d514c5e338f1474"
     },
     {
+      "path": "docs/RAPIDO_X_UHF_COVER_102.json",
+      "bytes": 3772,
+      "sha256": "bf9b86bdfa7456e9417ed94a76e3a823516990fd68612bb6877ef807a04592ad"
+    },
+    {
       "path": "docs/RATRIG.md",
       "bytes": 4152,
       "sha256": "3f312853645ddc65bb59e97350e335866e9131b3e191a0167d5d93639b8481ef"
@@ -235,8 +245,8 @@
     },
     {
       "path": "docs/RELEASE_ASSET_REVIEW_92.json",
-      "bytes": 1030878,
-      "sha256": "6cadc271e2822724a7b3e5a459d03657e9f1b022db90fdbf721410a4c6f9fb16"
+      "bytes": 1037366,
+      "sha256": "64f33aed1bc0f0f208063c1ea650476bfdf845f690450a9e5a1feeabd1d73eda"
     },
     {
       "path": "docs/SB_PROBE_COMBINATIONS.md",
@@ -425,8 +435,13 @@
     },
     {
       "path": "scripts/audit_madmax_native_joint.mjs",
-      "bytes": 6254,
-      "sha256": "4acdb3a7dcd9923197f486da2c99c19815dd1bd54014f09f04f2d097c5134d06"
+      "bytes": 6796,
+      "sha256": "bd34b535ad395e75914bb492fdae72ea41762f7ff02bd11b7b786bf628715942"
+    },
+    {
+      "path": "scripts/audit_madmax_ptfe.mjs",
+      "bytes": 7368,
+      "sha256": "27c5e1fb939944d14c3d3320cf5d0c3c0d841f6afd4a2e3ae09e3ed97a68fb56"
     },
     {
       "path": "scripts/audit_micron_colors.mjs",
@@ -447,6 +462,11 @@
       "path": "scripts/audit_monolith_printers.mjs",
       "bytes": 7245,
       "sha256": "aa2371f25f31ce6952d22e7a1c2dfe2bc8334bad4f16e8c5e813e459c341ad20"
+    },
+    {
+      "path": "scripts/audit_rapido_x_uhf_cover.mjs",
+      "bytes": 8192,
+      "sha256": "a1f1c7cba47db25b57df7e52ef9278a6dac20cc2831d1b414ca337f9de98c874"
     },
     {
       "path": "scripts/audit_rear_enclosures.mjs",
@@ -562,6 +582,11 @@
       "path": "scripts/fixtures/madmax-native-joint-101.json",
       "bytes": 2387,
       "sha256": "9eabf471cb0f8210fc655d0f168ee431ce13cf94e28173ba6b3780cce58ea416"
+    },
+    {
+      "path": "scripts/fixtures/madmax-ptfe-native-102.json",
+      "bytes": 472,
+      "sha256": "1da2763a8e161afba031984a199380ee00b112111ae0a147e00e4946aabc41f0"
     },
     {
       "path": "scripts/fixtures/monolith-belt-routes.json",
@@ -900,8 +925,8 @@
     },
     {
       "path": "scripts/test_machine_heads.mjs",
-      "bytes": 12374,
-      "sha256": "004da56affbdddcd78dc5783eca8e86aefd91c86ef746fc6b009c837211c38fe"
+      "bytes": 13600,
+      "sha256": "1830cb614f53c7ca786c3450bde5d77eee635c93477ce5ca2c0b3bd417928c42"
     },
     {
       "path": "scripts/test_machine_navigation.mjs",
@@ -915,8 +940,8 @@
     },
     {
       "path": "scripts/test_madmax_native_joint.mjs",
-      "bytes": 2306,
-      "sha256": "42c457a9c89d34e866ecf75ea5c82be53dd1adc15c97b21b32465f4dce660f96"
+      "bytes": 3976,
+      "sha256": "b511c374edd6ce8bbbc88f0380bdf4632508f47bf1bd8a3ed8204e99c497d53e"
     },
     {
       "path": "scripts/test_madmax_trident.mjs",
@@ -4121,7 +4146,7 @@
     {
       "path": "site/viewer/app.js",
       "bytes": 31878,
-      "sha256": "3b80a762a6b7e33dfa18f82af771a494e85ed2443f2c8aed3e237aa9ee482382"
+      "sha256": "25f7e445958e2f118bbcba197fcb6202d4df5d477cc973b420065ec3d10403a3"
     },
     {
       "path": "site/viewer/appearance-role.mjs",
@@ -4176,7 +4201,7 @@
     {
       "path": "site/viewer/bootstrap.js",
       "bytes": 676,
-      "sha256": "28a34cd7e4868a7efce293c052800b0204c59ae19f55767876bcea67a31ef9a5"
+      "sha256": "f03f4058f9c2afc006fdc18ceaea29af952a91fa4322f66e7923878ea842dc5d"
     },
     {
       "path": "site/viewer/builder-ui.mjs",
@@ -4416,12 +4441,12 @@
     {
       "path": "site/viewer/gantries.html",
       "bytes": 4452,
-      "sha256": "b00275bdf31fba95be20f58f363523d31ed1adc2b6ebcade6af90c5d27a02f12"
+      "sha256": "c368ee76c2436fda9b4fd1f54adc8b689d4e10998cae4a3d8874bbc3cc8c37b2"
     },
     {
       "path": "site/viewer/gantries.js",
       "bytes": 12020,
-      "sha256": "b2a61cfe1a238a148ac862fc7dc78c23c6166e5b2005cd108a3634fdb6e32b5a"
+      "sha256": "b65ea91e8151bbc3b5da720fb99dbafb739eaa9f588996e20f4e15501ef02fef"
     },
     {
       "path": "site/viewer/gantry-model.js",
@@ -4541,7 +4566,7 @@
     {
       "path": "site/viewer/index.html",
       "bytes": 7955,
-      "sha256": "c762f8bf52ea7a526259678641b1aa7bf892126145c9e991fb49ec7430a8879b"
+      "sha256": "fbb39aa3555e8030d5fca30f8f1ca6318826381156de4f71365815ba5e7c5b4c"
     },
     {
       "path": "site/viewer/internal-spool.mjs",
@@ -4620,8 +4645,8 @@
     },
     {
       "path": "site/viewer/machine-heads.js",
-      "bytes": 21256,
-      "sha256": "90ee8768e056f91e35ff0db50e82fb0d5f76ce2fa820c43d0d0bd221ef11f9ac"
+      "bytes": 21744,
+      "sha256": "12fd60c25f15c89bf64d135bcbe766ce2b867e625f4998b8c920eea2034401b7"
     },
     {
       "path": "site/viewer/machines.js",
@@ -4632,6 +4657,11 @@
       "path": "site/viewer/madmax-native-joint.mjs",
       "bytes": 4657,
       "sha256": "d39e974d7b782135b52a126b72a071d534bce4beb2acd82f6fe4f509cffd7b42"
+    },
+    {
+      "path": "site/viewer/madmax-ptfe.mjs",
+      "bytes": 5113,
+      "sha256": "60ee54507be6f40afdbf339e9fb691901e0647d15d4247f98d631d8e912ebf40"
     },
     {
       "path": "site/viewer/mercury-tube-routes.mjs",
@@ -4839,6 +4869,11 @@
       "sha256": "1a61579df968fc52f42019bc43659f1a1d8e132586bb47b6662fbcf8b7706a8d"
     },
     {
+      "path": "site/viewer/rapido-x-uhf-cover.mjs",
+      "bytes": 3682,
+      "sha256": "8b458475dac84cfcd8c7f22a517f537034c6c16d09ba981610af8a40b5bc6894"
+    },
+    {
       "path": "site/viewer/ratrig-loader.mjs",
       "bytes": 3864,
       "sha256": "9782f451eec4a1a9eec0615a99a83ec0b87fac00410e4c3875aa9398f5a7f45f"
@@ -4986,12 +5021,12 @@
     {
       "path": "site/viewer/toolheads.html",
       "bytes": 8582,
-      "sha256": "1239909b86993a46ad69d3eb88bd8ffd08babd089f1cf4b5c4cde873d13b297e"
+      "sha256": "c3bb5960b3fe3a731f64f290533563c7c26b8cd0f1a55245c3c760f3d6bb11e4"
     },
     {
       "path": "site/viewer/toolheads.js",
-      "bytes": 20380,
-      "sha256": "fdd6bfe39425576e600e668c03ecec1be4184cf92370c2617e2fa9e62a0d762a"
+      "bytes": 20951,
+      "sha256": "3d85695518d327c78cf1a2ac8b87b651020e09f7977c45c464a5d83427df792e"
     },
     {
       "path": "site/viewer/translation-engine.mjs",
@@ -5026,7 +5061,7 @@
     {
       "path": "site/viewer/trident.html",
       "bytes": 6845,
-      "sha256": "f827ef6837e3e494a4b83c4f664d8d6d545f922e5ef149b17f609e19117c470c"
+      "sha256": "52e6c8d5c77ca7cdcbb50f889ac79a77b7380598ee35a5b8b2425bac239ea226"
     },
     {
       "path": "site/viewer/trinity-alpha-host-extensions.mjs",
@@ -5106,7 +5141,7 @@
     {
       "path": "site/viewer/v24-app.js",
       "bytes": 14315,
-      "sha256": "937d34c4db95a3d968857de3dc15915960377dcce5509a97aefd5099dc77faf0"
+      "sha256": "a911eca596438f59de30d0f9ca453ee6d6582596bf253e2e7a762e49e10cfaca"
     },
     {
       "path": "site/viewer/v24-belts.mjs",
@@ -5116,7 +5151,7 @@
     {
       "path": "site/viewer/v24-bootstrap.js",
       "bytes": 518,
-      "sha256": "e87ac5e9135062650b56d634c9d5fed2a0f9e69dfd65469fc733006b04aacb87"
+      "sha256": "8e646a990711ff38513008e7e246d8f36a61c4ce1b13e55abf07a1d8d91174bf"
     },
     {
       "path": "site/viewer/v24-drive-metadata.mjs",
@@ -5136,17 +5171,17 @@
     {
       "path": "site/viewer/v24-reference.html",
       "bytes": 4844,
-      "sha256": "292115a5d24c3896ef0f486373965254b82665e89b63c56014d47f22bbbcf37b"
+      "sha256": "4a0179796135e486db99b487504e453230d9b476098d19b3f0d0c4dfea29e020"
     },
     {
       "path": "site/viewer/v24-reference.js",
       "bytes": 10810,
-      "sha256": "36af8c602acea1bf71c1489a885d9ddcb75429d87ea4d87ef8579878993819bf"
+      "sha256": "e8a97bba03160c78b16aa40bc0c5b6e66a817602569c82614c7a7aa0eeff3190"
     },
     {
       "path": "site/viewer/v24.html",
       "bytes": 6009,
-      "sha256": "b05407acb96f3e64f39c1dbea3e46d4afc28ddd1f13ce1fa83a6fecc1e1b0b6b"
+      "sha256": "2bd3fb38d9f3335b13400d6aec6f3a8574f259519c26b978739385169dafe170"
     },
     {
       "path": "site/viewer/v24_adapter.mjs",
@@ -5160,8 +5195,8 @@
     },
     {
       "path": "site/viewer/vanilla-trident.js",
-      "bytes": 19192,
-      "sha256": "07ef845d732acf3fe9023f3a375a4b5ee2b42d8ed52b50c9a2ea88c2cccf3e7b"
+      "bytes": 19477,
+      "sha256": "30b15a528ee7f03443cd57e2363ab848d16ac20b3437df3bcd2cbbc594515886"
     },
     {
       "path": "site/viewer/vendor-r180/BufferGeometryUtils.js",

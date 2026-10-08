@@ -1,6 +1,16 @@
 import assert from 'node:assert/strict';
 import {installedHeadPlan,machineHeadVariants,expandedPrinterCatalog} from '../site/viewer/machine-head-model.mjs';
 import {choicesFor,resolveVariant} from '../site/viewer/configuration-model.js';
+import {withRapidoXUhfCover,rapidoXUhfCover} from '../site/viewer/rapido-x-uhf-cover.mjs';
+const rapidoSource={base_assets:{stealthburner:{meta:'stock',glb:'stock'}},variants:[{id:rapidoXUhfCover.variants[0],hotend:'rapido_x_uhf',toolhead:'stealthburner',mount:'fixed',extruder:'cw2',head_translation_mm:[0,0,0],removed_stock_keys:['412','413','423','418'],modules:[{id:'sb_rapido_x',translation_mm:[0,0,0]}]},{id:'unchanged',toolhead:'stealthburner',hotend:'rapido2_hf'}]};
+const rapidoBefore=JSON.stringify(rapidoSource),rapidoFixed=withRapidoXUhfCover(rapidoSource);
+assert.equal(JSON.stringify(rapidoSource),rapidoBefore);
+assert.deepEqual(rapidoFixed.variants[0].base_hidden_keys,['418']);
+assert.deepEqual(rapidoFixed.variants[0].modules[0].hidden_keys,rapidoXUhfCover.replaced_keys);
+assert.deepEqual(rapidoFixed.variants[1],rapidoSource.variants[1]);
+assert.deepEqual(withRapidoXUhfCover(rapidoFixed),rapidoFixed);
+assert.throws(()=>withRapidoXUhfCover({...rapidoSource,variants:[{...rapidoSource.variants[0],hotend:'rapido2_hf'}]}),/configuration changed/);
+assert.throws(()=>withRapidoXUhfCover({...rapidoSource,variants:[{...rapidoSource.variants[0],removed_stock_keys:['412','423']}]}),/shell selection changed/);
 const registry={sources:{stealthchanger:{origin_mm:[0,10,6]},kit_fixed:{origin_mm:[0,0,360]},r2_fixed:{origin_mm:[0,-7,360]},indx:{origin_mm:[0,34,8]}},native_nozzle_points:{indx_base:[0,0,-32],stealthburner:[0,-29,303]},assets:{head_indx_rail_fasteners:{}},machines:{six:{origin_mm:[0,-7,136],belt_width_mm:6,xy_motors:2},nine:{gantries:{awd:{origin_mm:[0,0,360],belt_width_mm:9,xy_motors:4}}}}};
 const head=(id,toolhead,mount,gantry,width)=>({id,toolhead,mount,gantry,belt_width_mm:width,extruder:'drive',hotend:'hot',carriage:'standard',probe:'none',board:'none',cooling:'source',head_translation_mm:[0,0,0],modules:[],notes:[],fit:{nozzle_mm:[0,-28,-40]}});
 const fixed=head('sb','stealthburner','fixed','trident_r2',6);fixed.fit.nozzle_mm=null;fixed.head_translation_mm=[0,-7,-3];

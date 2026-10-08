@@ -1,4 +1,6 @@
 import {madmaxJointAssetSpec,madmaxJointApplies,captureMadmaxJoint,setMadmaxJointPose} from './madmax-native-joint.mjs?v=d39e974d7b782135b52a';
+import {madmaxPtfeAssetSpec} from './madmax-ptfe.mjs?v=60ee54507be6f40afdbf';
+import {withRapidoXUhfCover,setRapidoXUhfSurface} from './rapido-x-uhf-cover.mjs?v=8b458475dac84cfcd8c7';
 import {v24NativeDriveMetadata} from './v24-drive-metadata.mjs?v=dbdf9f37cb0849ffc262';
 import {augmentTrinityAlphaHosts,TRINITY_ALPHA_HOST_SOURCE,alphaResetPose,alphaRangeNotice,alphaResetLabel} from './trinity-alpha-host-extensions.mjs?v=eaac241cfd978128d54d';
 import {alphaReference,alphaLimits} from './trinity-alpha-installation.mjs?v=37f9f9433fee33e8434c';
@@ -31,7 +33,7 @@ export async function loadMachineHeadCatalog(machine){return workspaceTask(async
  const hashes={};
  const get=async name=>{return workspaceTask(async()=>{const r=await fetch('../'+name,{cache:'no-cache'});if(!r.ok)throw Error('ヘッドの取付データを取得できません');const text=await r.text();try{hashes[name]=await contentSHA256(text)}catch{/* Unsupported hashing leaves mounting evidence unverified. */}return JSON.parse(text)});};
  const [rawHeads,additions,registry,bank]=await Promise.all([get('TOOLHEAD_CONFIGURATIONS.json'),get('HEAD_ADDITIONS.json'),get('MACHINE_HEAD_REGISTRATIONS.json'),get('TOOLCHANGER_BANK.json')]);
- const heads=withHeadAdditions(rawHeads,additions);
+ const heads=withRapidoXUhfCover(withHeadAdditions(rawHeads,additions));
  if(['siboor_trident_300','siboor_trident_350'].includes(machine)){const patch=(await loadSiboorRegistration()).registrations;registry.machines.siboor_trident_300=patch.head;bank.machines.siboor_trident_300=patch.bank;bank.indx.machines.siboor_trident_300=patch.indx_bank;}
  if(machine){
   try{
@@ -61,7 +63,7 @@ export function createMachineHeads(scene,catalog,{render=()=>{}}={}){
  const gantry=createMonolithGantry(scene,catalog);
  const cache=new Map(),rig=new THREE.Group(),bankRig=new THREE.Group();rig.name='Installed_Machine_Head';bankRig.name='Frame_Tool_Bank';scene.add(rig,bankRig);let current=null,palette={base:'#24272c',accent:'#e32636'},delta=[0,0,0],bankState=null,bankEntries=[];
  async function asset(id){return workspaceTask(async()=>{
-  if(cache.has(id))return cache.get(id);const spec=madmaxJointAssetSpec(catalog.machine_id,id,catalog.base_assets?.[id]||catalog.assets[id]);if(!spec)throw Error('未登録のヘッド部品：'+id);
+  if(cache.has(id))return cache.get(id);const spec=madmaxPtfeAssetSpec(catalog.machine_id,id,madmaxJointAssetSpec(catalog.machine_id,id,catalog.base_assets?.[id]||catalog.assets[id]));if(!spec)throw Error('未登録のヘッド部品：'+id);
   const loading=spec.external?loadExternalComponent(new GLTFLoader(),spec,location.href).then(({meta,gltf})=>[meta,gltf]):Promise.all([fetch('../'+spec.meta,{cache:'no-cache'}).then(async r=>{if(!r.ok)throw Error('ヘッドの部品表');if(spec.metadata_sha256){const text=await r.text();if(await contentSHA256(text)!==spec.metadata_sha256)throw Error('Native head metadata hash mismatch');return JSON.parse(text)}return r.json()}),loadModel(new GLTFLoader(),'../'+spec.glb,undefined,spec.decoded_model_sha256?{verifySha256:spec.decoded_model_sha256}:{})]);
   const promise=loading.then(([meta,g])=>{
    if(meta.coordinate_frame==='original_native_CAD_mm_XY_Zup'){const native=new THREE.Group();native.rotation.x=-Math.PI/2;native.scale.setScalar(.001);native.add(g.scene);g.scene=native;}
@@ -83,13 +85,14 @@ export function createMachineHeads(scene,catalog,{render=()=>{}}={}){
  async function setBank(state){return workspaceTask(async()=>{const staged=await stagedBank(state,current);commitBank(staged);render()});}
  async function install(variant,state=bankState){return workspaceTask(async()=>{
   await gantry.install(variant);
+  const uhfBase=cache.get('stealthburner')?.loaded;if(uhfBase)setRapidoXUhfSurface(uhfBase.entries,false);
   for(const p of cache.values())if(p.loaded)setMadmaxJointPose(p.loaded.nativeJoint,false);
   if(!variant?.machine_head){for(const p of cache.values())if(p.loaded)p.loaded.root.visible=false;current=null;commitBank({state:state?{...state,enabled:false}:null,roots:[],entries:[]});return}
   const plan=variant.machine_head,required=[...new Set([plan.base,...plan.modules.map(m=>m.id)])];await Promise.all(required.map(async id=>{return workspaceTask(async()=>{const a=await asset(id);cache.get(id).loaded=a});}));
   const staged=await stagedBank(state,variant);
   for(const p of cache.values())if(p.loaded){p.loaded.root.visible=false;p.loaded.root.position.set(0,0,0)}
   const place=(id,translation,hidden=[])=>{const a=cache.get(id).loaded,omit=new Set(hidden);a.root.visible=true;a.root.position.copy(point(translation));for(const e of a.entries)e.mesh.visible=!omit.has(e.key)&&!['rail_reference','dock','shuttle_reference'].includes(e.component)};
-  place(plan.base,plan.translation,plan.hidden);for(const m of plan.modules)place(m.id,m.translation_mm,m.hidden_keys);current=variant;for(const p of cache.values())if(p.loaded)setMadmaxJointPose(p.loaded.nativeJoint,madmaxJointApplies(catalog.machine_id,variant));commitBank(staged);setPalette(palette);setDelta(delta);render();
+  place(plan.base,plan.translation,plan.hidden);for(const m of plan.modules)place(m.id,m.translation_mm,m.hidden_keys);if(plan.base==='stealthburner')setRapidoXUhfSurface(cache.get(plan.base).loaded.entries,variant.cover_source?.kind==='original_uhf');current=variant;for(const p of cache.values())if(p.loaded)setMadmaxJointPose(p.loaded.nativeJoint,madmaxJointApplies(catalog.machine_id,variant));commitBank(staged);setPalette(palette);setDelta(delta);render();
  });}
  function setDelta(value){gantry.setDelta(value);delta=[...value];rig.position.copy(point(delta));rig.updateMatrixWorld(true)}
  function setVisible(value){rig.visible=Boolean(value)}

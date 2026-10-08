@@ -1,0 +1,77 @@
+{
+  "schema": "rapido-x-uhf-shell-selection-102",
+  "source_configurations": [
+    "rapido51__siboor_awd__stealthburner__rapido_x__cw2",
+    "rapido51__trident_r2__stealthburner__rapido_x__cw2"
+  ],
+  "original_shell_and_lower_led_keys": [
+    "423",
+    "412",
+    "413"
+  ],
+  "hidden_normal_shell_and_lower_led_keys": [
+    "sb_rapido_x_common_6",
+    "sb_rapido_x_common_7",
+    "sb_rapido_x_common_8"
+  ],
+  "actual_source_asset_pins": {
+    "TOOLHEAD_CONFIGURATIONS.json": "910890df1868584a5aef27d39653d2cb124bbeef4cac576703df715a7052e463",
+    "MACHINE_HEAD_REGISTRATIONS.json": "b657b29debf7e0af8e0a68e1364477cab92a9a4c1bd7e71c6f2364467251d8e8",
+    "HEAD_ADDITIONS.json": "d48bf3f653a403ec61c6288e98d18ba180ec21f2291ec202bd0fd073fb7f70eb",
+    "toolheads/sb_stock.json": "4a516030dd823a0bac1fb198005029f07540022325c7cad0ae9f59d0c490418b",
+    "toolheads/sb_stock.glb.gz": "8e95ecf2e0e33ff14c4d6519f6bc18bc4e749f5f1a5aa6c7e9ec36b83b535b62",
+    "modules/sb_rapido_x.json": "dfa1464e5059f81760f1ff6e473e12b470b165930bf29b04a3e658b4eb2a38ec",
+    "modules/sb_rapido_x.glb.gz": "be34043087c13562071a5695f66b53f938b298054104e9941ffdbd8100d6e9d5",
+    "modules/hotend_rapido_x.json": "1fb7544d78ab8e6504510a66000af6b3a1a749f72d71d81dc6384353d659554c",
+    "modules/hotend_rapido_x.glb.gz": "45d6cfbf500992533ab0f895a358e4818d07c988af528390e0db269d00941b83"
+  },
+  "native_local_report_sha256": "ffd028388f056b0b53c32254bdb1fd2afe571971bcb9831c852ee5a0e177d933",
+  "native_shell_pin": {
+    "file": "output/parts/423.brep",
+    "sha256": "8bcb4b3a38fed8abe8ac96d5cea3c2c4d0d41ad9d858de6f45681c49fe536424"
+  },
+  "native_hotend_shell_common_mm3": 0,
+  "retained_original_source_contacts": [
+    {
+      "key": "412",
+      "input": {
+        "file": "output/parts/412.brep",
+        "sha256": "616c450443013b60250aff4dc76bd6760dc2085a297b01dcd1f16b3524740bca"
+      },
+      "common_valid": true,
+      "body_common_mm3": 0.8814767087418187,
+      "distance_mm": 0.0
+    },
+    {
+      "key": "413",
+      "input": {
+        "file": "output/parts/413.brep",
+        "sha256": "b4737490eda07d3d51f377958beecbd06ecd3caa655cd076b269e9d77594a514"
+      },
+      "common_valid": true,
+      "body_common_mm3": 0.8814767087475405,
+      "distance_mm": 0.0
+    },
+    {
+      "key": "4010",
+      "input": {
+        "file": "output/modules/sb_rapido_x/sb_rapido_x_common_15.brep",
+        "sha256": "0b8e3dd3fd9736064900cc26502a6939e88ba65bee8d4ce15ee7c01c00a3bc6d"
+      },
+      "common_valid": true,
+      "body_common_mm3": 0.000786752022871648,
+      "distance_mm": 0.0
+    }
+  ],
+  "manufacturer_hotend_and_front_rear_cartridge_geometry_changed": false,
+  "native_source_solids_changed": false,
+  "model_notices": [
+    "The original UHF shell and its original lower LEDs replace the normal HF shell/LED selection. Manufacturer Rapido X cartridge meshes are retained.",
+    "Fourteen zero-area Float32 export seam triangles of shell423 are excluded from this viewer draw selection. Original position coordinates and native CAD are unchanged; original index bytes/draw range return on reset. No built-in print supports removed by this adapter."
+  ],
+  "whole_head_certified": false,
+  "manufacturer_mesh_cartridge_native_solid_verified": false,
+  "cooling_performance_certified": false,
+  "scope": "UHF shell selection and actual viewer movement/material/reset/HF return. Original native metal/shell Common0 measured separately; original LED/fan contacts remain disclosed. Full cartridge-shell mating, complete fastening and cooling/travel are not certified.",
+  "source_versions_and_licenses": "Original SIBOOR/Stealthburner source records and pinned Phaetus Rapido-X bc1207931f3d0f51955f3dc03a226a77a79d6581 retained; this adapter does not broaden source permissions."
+}

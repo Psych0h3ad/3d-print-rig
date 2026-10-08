@@ -1,0 +1,85 @@
+{
+  "schema": "madmax-native-port-preview-102",
+  "machines": [
+    "voron_trident_250",
+    "voron_trident_300",
+    "voron_trident_350"
+  ],
+  "configuration": "installed__trident_r2__v21__madmax__xol__sherpa_mini__rapido2_uhf",
+  "native_local_report_sha256": "a6818f74cd03f96d091c1265704a35c7a688947385eba5c8b54274f5801765ff",
+  "native_face_census_sha256": "f7489c695b91d7c0c9564bc0ec3107cd5490784e501bbbbef1f901b9210d7a46",
+  "local_native": {
+    "schema": "madmax-ptfe-original-local-bore-102",
+    "passed": true,
+    "port_mm": [
+      -0.09999065669969168,
+      -23.960002477594628,
+      413.1176023963394
+    ],
+    "clip_top_z_mm": 414.11760239633946,
+    "local_tube_section_mm": {
+      "outer_radius": 2,
+      "inner_radius": 1.5,
+      "axial_span": 1.0000000000000568
+    },
+    "original_rigid_fit": [
+      {
+        "key": "xol_318",
+        "native_sha256": "b0deab5260399fe0abe281ba7e1000c5dda5dde29fddff7d3196b71bff375a31",
+        "body_common_mm3": 0,
+        "distance_mm": 1.1313708498980337,
+        "source_valid": true,
+        "tube_valid": true
+      },
+      {
+        "key": "xol_321",
+        "native_sha256": "90800049c09cee225a73db39976e1754de94440da964ca38aa5d342ca4aac1bf",
+        "body_common_mm3": 0,
+        "distance_mm": 7.549516567451064e-15,
+        "source_valid": true,
+        "tube_valid": true
+      }
+    ],
+    "tube_sources": {
+      "250": {
+        "file": "output/modules/voron_trident_250_base/voron_trident_250_base_1409.brep",
+        "sha256": "a61570b49a420f8a2d6a6d507533ffd72cf2108ea921fbffa4b8aafbdd08cba2",
+        "native_cut_face10_center_mm": [
+          269.9999999998556,
+          85.62882323077105,
+          528.4698150888082
+        ],
+        "native_cut_face_area_mm2": 5.4977871437817125
+      },
+      "300": {
+        "file": "output/modules/voron_trident_300_base/voron_trident_300_base_1409.brep",
+        "sha256": "62736d9c33f74967a621661b1552df67a94c1bd1a9e9851d00c8fd4276c7c74a",
+        "native_cut_face10_center_mm": [
+          269.9999999998556,
+          110.62882323077105,
+          528.4698150888082
+        ],
+        "native_cut_face_area_mm2": 5.4977871437817125
+      },
+      "350": {
+        "file": "output/modules/voron_trident_350_base/voron_trident_350_base_1409.brep",
+        "sha256": "0f7aef8464b126a957c2908031e856bf1a76cf1fdb86bc949528c4c440c96b42",
+        "native_cut_face10_center_mm": [
+          269.9999999998556,
+          135.62882323077105,
+          528.4698150888082
+        ],
+        "native_cut_face_area_mm2": 5.4977871437817125
+      }
+    },
+    "input_face_census_sha256": "f7489c695b91d7c0c9564bc0ec3107cd5490784e501bbbbef1f901b9210d7a46",
+    "source_solids_changed": false,
+    "retention_certified": false,
+    "whole_route_clearance_certified": false,
+    "scope": "Exact original ECAS lip/bore and original PTFE section for the displayed upper1mm insertion. Only a local analytical section of the flexible source tube is checked; no purchased fitting approximations and no whole-route native or retention certificate."
+  },
+  "adapter": "site/viewer/madmax-ptfe.mjs",
+  "source_solids_and_step_changed": false,
+  "whole_machine_certified": false,
+  "scope": "Runtime connection of the measured original ECAS upper bore to the original PTFE OD4/ID3 section; the fixed cut endpoint and its native axial direction are retained. Original purchased materials are shared. Stock reset restores the exact original mesh. Flexible preview length varies with pose; whole-route native clearance, cut length, retention and other head tuples are unqualified."
+}

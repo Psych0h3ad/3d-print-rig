@@ -1,0 +1,5 @@
+{
+ "port":{"source_key":"321","point_mm":[-0.09999065669969168,-23.960002477594628,413.1176023963394],"bore_radius_mm":2,"lip_z_mm":414.11760239633946,"native_faces":[3,5,6]},
+ "tube":{"source_leaf":"1409","radius_mm":2,"inner_radius_mm":1.5,"original_cut_face":11},
+ "scope":"Original native ECAS upper bore, upper lip and original PTFE annular section. The displayed connection inserts 1 mm below the upper lip; retention and whole-route clearance are not certified."
+}

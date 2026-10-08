@@ -13,7 +13,7 @@ import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
 import {setupPublicInfo} from './public-info.js?v=1a61579df968fc52f420';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=90ee8768e056f91e35ff';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=12fd60c25f15c89bf64d';
 import {monolithHeadCatalog} from './monolith-head-model.mjs?v=c95662fb82a411e8dbbf';
 import {setupConfigurations} from './configurations.js?v=3cd2598ce00d6152def6';
 import {gantryDimensions,gantryChoice,gantryAssets} from './gantry-model.js?v=workspace-belts-1';
