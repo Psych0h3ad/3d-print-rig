@@ -1,0 +1,427 @@
+{
+  "schema": "trident1000-ptfe-source-route-103",
+  "machine_id": "voron_trident_1000_custom",
+  "current_manifest_sha256": "768233d0c3fbf28c9ff4f49718ee60af83c5b2294ee9bb8bb35a4d09a05444e4",
+  "production_route_sha256": "3c2b6b629363a92659ed04e7fa9d37a2d89c6ae3f008c0acf4ce2f296155ab97",
+  "native_recipient_sha256": {
+    "578": "0149b46ce11e86f45b4cda758e8755a67fb53baf4857ae89bb4650f59900148c",
+    "voron_trident_350_base_1393": "a6ba8c4305b5a6b67c2d0105729b40e6a078795c1afbd4a1b76a648914881dda",
+    "voron_trident_350_base_1359": "1b505b511c69e5ff4fb91a22c387a7c71232008f753855f812b5fc6ee7fe18c9",
+    "voron_trident_350_base_1033": "27035b7d0e8cfe32f45141696e758829957ad86540baa28e8bfbd05f373be5f2",
+    "voron_trident_350_base_1034": "b225fa00b0d9a0132a0dd7c73ff3945b4499fc8172a123541b55f73718fb22fd",
+    "voron_trident_350_base_1035": "94274b978388800f8a24c735567fcfeaa67a37fd628a7096394f2f29bcb69c7d",
+    "voron_trident_350_base_1036": "248ee8f7810f6e8e9ae4efd4294145a599261f273d53e51120140b9356dd33dd"
+  },
+  "native_report_sha256": "b7d914944419038449e9461d6cee41da25c5ed31c87f351df0172ac94306ab86",
+  "native_producer_sha256": "b83394d97d62666634e42feb07a53ce653a19c8b64dfb84eca9aff8338ff9cc1",
+  "candidate_curve_report_sha256": "102d640612607545dca069c46465be82f0a160ccb4c79d53ca6e432162edec10",
+  "production_candidate_body_identical_except_import": true,
+  "numerical_xy_poses": 1681,
+  "height_range_mm": [
+    119.19725013309039,
+    790.9580395955388
+  ],
+  "native_selected_poses": [
+    {
+      "xyz_mm": [
+        499.6060671871081,
+        501.63501757013745,
+        0
+      ],
+      "native_wire_length_mm": 2299.9999999999995,
+      "maximum_point_error_mm": 4.856703836433968e-13,
+      "maximum_tangent_vector_error": 9.773118613738985e-15,
+      "maximum_edge_gap_mm": 2.2737367544323206e-13,
+      "candidate_native_valid": true,
+      "pairs": [
+        {
+          "recipient_key": "578",
+          "common_volume_mm3": 0,
+          "distance_mm": 0.09947724156245767,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1393",
+          "common_volume_mm3": 0,
+          "distance_mm": 0.09999999999924557,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1359",
+          "common_volume_mm3": 0,
+          "distance_mm": 0.19999999999995907,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1033",
+          "common_volume_mm3": 0,
+          "distance_mm": 522.7387348175715,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1034",
+          "common_volume_mm3": 0,
+          "distance_mm": 13.162529541073354,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1035",
+          "common_volume_mm3": 0,
+          "distance_mm": 34.89384865693573,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1036",
+          "common_volume_mm3": 0,
+          "distance_mm": 557.9999999999967,
+          "common_valid": true
+        }
+      ]
+    },
+    {
+      "xyz_mm": [
+        0,
+        0,
+        0
+      ],
+      "native_wire_length_mm": 2300.0,
+      "maximum_point_error_mm": 4.687428401686771e-13,
+      "maximum_tangent_vector_error": 1.7720639374355367e-14,
+      "maximum_edge_gap_mm": 1.2481356158809243e-13,
+      "candidate_native_valid": true,
+      "pairs": [
+        {
+          "recipient_key": "578",
+          "common_volume_mm3": 0,
+          "distance_mm": 0.09947724156239901,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1393",
+          "common_volume_mm3": 0,
+          "distance_mm": 0.09999999999928855,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1359",
+          "common_volume_mm3": 0,
+          "distance_mm": 0.19999999999998538,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1033",
+          "common_volume_mm3": 0,
+          "distance_mm": 27.413064145835897,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1034",
+          "common_volume_mm3": 0,
+          "distance_mm": 13.162529541073354,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1035",
+          "common_volume_mm3": 0,
+          "distance_mm": 34.89384865693577,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1036",
+          "common_volume_mm3": 0,
+          "distance_mm": 61.56093440689475,
+          "common_valid": true
+        }
+      ]
+    },
+    {
+      "xyz_mm": [
+        1000,
+        1000,
+        1000
+      ],
+      "native_wire_length_mm": 2300.0,
+      "maximum_point_error_mm": 5.209785393794664e-13,
+      "maximum_tangent_vector_error": 9.912420713045123e-15,
+      "maximum_edge_gap_mm": 2.2737367544323206e-13,
+      "candidate_native_valid": true,
+      "pairs": [
+        {
+          "recipient_key": "578",
+          "common_volume_mm3": 0,
+          "distance_mm": 0.09947724156245283,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1393",
+          "common_volume_mm3": 0,
+          "distance_mm": 0.09999999999907704,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1359",
+          "common_volume_mm3": 0,
+          "distance_mm": 0.19999999999995907,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1033",
+          "common_volume_mm3": 0,
+          "distance_mm": 732.2901133002425,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1034",
+          "common_volume_mm3": 0,
+          "distance_mm": 13.162529541073354,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1035",
+          "common_volume_mm3": 0,
+          "distance_mm": 34.89384865693573,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1036",
+          "common_volume_mm3": 0,
+          "distance_mm": 557.9999999999969,
+          "common_valid": true
+        }
+      ]
+    },
+    {
+      "xyz_mm": [
+        0,
+        1000,
+        0
+      ],
+      "native_wire_length_mm": 2299.9999999999995,
+      "maximum_point_error_mm": 5.084229945850415e-13,
+      "maximum_tangent_vector_error": 1.001916110911533e-14,
+      "maximum_edge_gap_mm": 2.2737367544323206e-13,
+      "candidate_native_valid": true,
+      "pairs": [
+        {
+          "recipient_key": "578",
+          "common_volume_mm3": 0,
+          "distance_mm": 0.09947724156244682,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1393",
+          "common_volume_mm3": 0,
+          "distance_mm": 0.09999999999907704,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1359",
+          "common_volume_mm3": 0,
+          "distance_mm": 0.19999999999995907,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1033",
+          "common_volume_mm3": 0,
+          "distance_mm": 732.2901133002425,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1034",
+          "common_volume_mm3": 0,
+          "distance_mm": 13.162529541073354,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1035",
+          "common_volume_mm3": 0,
+          "distance_mm": 34.89384865693573,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1036",
+          "common_volume_mm3": 0,
+          "distance_mm": 62.44165545478835,
+          "common_valid": true
+        }
+      ]
+    },
+    {
+      "xyz_mm": [
+        1000,
+        0,
+        1000
+      ],
+      "native_wire_length_mm": 2299.999999999999,
+      "maximum_point_error_mm": 4.687428401686771e-13,
+      "maximum_tangent_vector_error": 1.1407780507931054e-14,
+      "maximum_edge_gap_mm": 1.287337946961986e-13,
+      "candidate_native_valid": true,
+      "pairs": [
+        {
+          "recipient_key": "578",
+          "common_volume_mm3": 0,
+          "distance_mm": 0.09947724156238721,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1393",
+          "common_volume_mm3": 0,
+          "distance_mm": 0.09999999999908905,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1359",
+          "common_volume_mm3": 0,
+          "distance_mm": 0.19999999999995907,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1033",
+          "common_volume_mm3": 0,
+          "distance_mm": 27.41234293940385,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1034",
+          "common_volume_mm3": 0,
+          "distance_mm": 13.162529541073354,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1035",
+          "common_volume_mm3": 0,
+          "distance_mm": 34.89384865693573,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1036",
+          "common_volume_mm3": 0,
+          "distance_mm": 557.9999999999968,
+          "common_valid": true
+        }
+      ]
+    },
+    {
+      "xyz_mm": [
+        500,
+        500,
+        500
+      ],
+      "native_wire_length_mm": 2299.999999999999,
+      "maximum_point_error_mm": 5.084229945850415e-13,
+      "maximum_tangent_vector_error": 9.775166792540698e-15,
+      "maximum_edge_gap_mm": 2.2737367544323206e-13,
+      "candidate_native_valid": true,
+      "pairs": [
+        {
+          "recipient_key": "578",
+          "common_volume_mm3": 0,
+          "distance_mm": 0.0994772415624582,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1393",
+          "common_volume_mm3": 0,
+          "distance_mm": 0.09999999999924557,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1359",
+          "common_volume_mm3": 0,
+          "distance_mm": 0.19999999999995907,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1033",
+          "common_volume_mm3": 0,
+          "distance_mm": 521.1055794082133,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1034",
+          "common_volume_mm3": 0,
+          "distance_mm": 13.162529541073354,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1035",
+          "common_volume_mm3": 0,
+          "distance_mm": 34.89384865693573,
+          "common_valid": true
+        },
+        {
+          "recipient_key": "voron_trident_350_base_1036",
+          "common_volume_mm3": 0,
+          "distance_mm": 557.9999999999967,
+          "common_valid": true
+        }
+      ]
+    }
+  ],
+  "tail_critical_radii": [
+    {
+      "minimum_radius_mm": 24.984425174889072,
+      "parameter_t": 0.8151676026436601,
+      "endpoint_radii_mm": [
+        25.04389851090266,
+        25.043898510896124
+      ],
+      "stationary_parameter_roots": [
+        0.18483239736218515,
+        0.4999999999927852,
+        0.8151676026436601
+      ],
+      "minimum_speed_mm_per_parameter": 20.466154863713353,
+      "qualification": "Derivative-polynomial stationary roots evaluated in double precision, endpoints included; numerical root completeness/tolerance and derivative sampling are explicit, not a formal interval proof.",
+      "derivative_sample_count": 65537,
+      "sampled_minimum_radius_mm": 24.984425174896778,
+      "sampled_minimum_t": 0.8151702880859375,
+      "stationary_vs_sampled_radius_difference_mm": 7.705835969318287e-12
+    },
+    {
+      "minimum_radius_mm": 24.98442517489224,
+      "parameter_t": 0.18483239736012314,
+      "endpoint_radii_mm": [
+        25.043898510900814,
+        25.04389851090297
+      ],
+      "stationary_parameter_roots": [
+        0.18483239736012314,
+        0.5000000000024936,
+        0.8151676026379846
+      ],
+      "minimum_speed_mm_per_parameter": 20.466154863713555,
+      "qualification": "Derivative-polynomial stationary roots evaluated in double precision, endpoints included; numerical root completeness/tolerance and derivative sampling are explicit, not a formal interval proof.",
+      "derivative_sample_count": 65537,
+      "sampled_minimum_radius_mm": 24.98442517489994,
+      "sampled_minimum_t": 0.1848297119140625,
+      "stationary_vs_sampled_radius_difference_mm": 7.698730541960686e-12
+    },
+    {
+      "minimum_radius_mm": 24.99981508926212,
+      "parameter_t": 0.1838884442180172,
+      "endpoint_radii_mm": [
+        25.000527452959073,
+        25.000527452976208
+      ],
+      "stationary_parameter_roots": [
+        0.1838884442180172,
+        0.5000000014068625,
+        0.8161115544419193
+      ],
+      "minimum_speed_mm_per_parameter": 6.777348036326891,
+      "qualification": "Derivative-polynomial stationary roots evaluated in double precision, endpoints included; numerical root completeness/tolerance and derivative sampling are explicit, not a formal interval proof.",
+      "derivative_sample_count": 65537,
+      "sampled_minimum_radius_mm": 24.999815089262412,
+      "sampled_minimum_t": 0.1838836669921875,
+      "stationary_vs_sampled_radius_difference_mm": 2.913225216616411e-13
+    }
+  ],
+  "cut_length_mm": 2300,
+  "inner_radius_mm": 1.5,
+  "outer_radius_mm": 2,
+  "whole_machine_certified": false,
+  "full_native_continuous_clearance_certified": false,
+  "scope": "Six named native poses; exact annular sweep against hash-matched original inlet, holder, roof and four top extrusions. Adaptive production-piece/native curve binding. No whole-printer continuous clearance or hose-material qualification."
+}

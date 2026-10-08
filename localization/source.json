@@ -11175,6 +11175,126 @@
       "kind": "template",
       "ja": "読込エラー: {0}",
       "en": "Load error: {0}"
+    },
+    "doomcube.title": {
+      "kind": "message",
+      "ja": "DoomCube 2 / 350",
+      "en": "DoomCube 2 / 350",
+      "aliases": [
+        "DoomCube 2 / 350"
+      ]
+    },
+    "doomcube.family": {
+      "kind": "message",
+      "ja": "DoomCube",
+      "en": "DoomCube",
+      "aliases": [
+        "DoomCube"
+      ]
+    },
+    "doomcube.source.version": {
+      "kind": "message",
+      "ja": "DoomCube-2 · 元の全体350 CAD v12",
+      "en": "DoomCube-2 · original complete 350 CAD v12",
+      "aliases": [
+        "DoomCube-2 · original complete 350 CAD v12"
+      ]
+    },
+    "doomcube.source.license": {
+      "kind": "message",
+      "ja": "GPL-3.0（リポジトリ。組み込まれたコミュニティ部品には元の出典表記を保持）",
+      "en": "GPL-3.0 (repository; embedded community components retain their original source attribution)",
+      "aliases": [
+        "GPL-3.0 (repository; embedded community components retain their original source attribution)"
+      ]
+    },
+    "doomcube.configuration.stock": {
+      "kind": "message",
+      "ja": "角型4040 · 元の標準ガントリー",
+      "en": "Square 4040 · original stock gantry",
+      "aliases": [
+        "Square 4040 · original stock gantry"
+      ]
+    },
+    "doomcube.configuration.round_frame": {
+      "kind": "message",
+      "ja": "丸型404020 + 内側2020 · 元の標準ガントリー",
+      "en": "Rounded 404020 + nested 2020 · original stock gantry",
+      "aliases": [
+        "Rounded 404020 + nested 2020 · original stock gantry"
+      ]
+    },
+    "doomcube.notice.motion_disabled": {
+      "kind": "message",
+      "ja": "350 mm CADの静止参照モデルです。可動と他のガントリーは有効になっていません。",
+      "en": "Static 350 mm CAD reference. Motion and other gantries are not enabled.",
+      "aliases": [
+        "Static 350 mm CAD reference. Motion and other gantries are not enabled.",
+        "Static DoomCube 350 CAD reference; source omissions remain. Motion preview is disabled.",
+        "Original static DoomCube 350 CAD reference. Motion preview is disabled until cable, belt, chain and mounting registrations have native evidence.",
+        "元のDoomCube 350 CADをそのまま表示する静止参照モデルです。ケーブル、ベルト、チェーンおよび取付設定について元CADに基づく裏付けが得られるまで、可動プレビューは無効です。",
+        "元データに欠落のあるDoomCube 350 CADの静止参照モデルです。可動プレビューは無効です。"
+      ]
+    },
+    "doomcube.notice.source_alternatives": {
+      "kind": "message",
+      "ja": "角型または丸型フレームと、元のMGN9 / 6 mmガントリーです。干渉するプローブとレールの代替部品は非表示です。",
+      "en": "Square or rounded frame; original MGN9 / 6 mm gantry. Conflicting probe and rail alternatives are hidden.",
+      "aliases": [
+        "Square or rounded frame; original MGN9 / 6 mm gantry. Conflicting probe and rail alternatives are hidden.",
+        "Original stock Doom gantry shown; source alternatives are kept separate.",
+        "Exactly one source frame and the original stock Doom gantry are visible. Alternate gantries and other skirt styles are retained in the private native intake, not mixed into this assembly.",
+        "元データのフレーム一種類と、元の標準Doomガントリーだけを表示します。代替ガントリーと他のスカート形状は非公開のネイティブ取込データに保持し、このアセンブリには混在させていません。",
+        "元の標準Doomガントリーを表示し、元データの代替構成は分けて保持しています。"
+      ]
+    },
+    "doomcube.notice.invalid_original_parts": {
+      "kind": "message",
+      "ja": "元の印刷部品三つに不正なネイティブソリッドがあります。有限値のメッシュを表示していますが、取付と物理的クリアランスは未検証です。",
+      "en": "Three original printed parts have invalid native solids. Their finite meshes are shown; mounting and physical clearances remain unverified.",
+      "aliases": [
+        "Three original printed parts have invalid native solids. Their finite meshes are shown; mounting and physical clearances remain unverified.",
+        "3 original printed bodies have invalid native geometry; mounting is unverified.",
+        "Three original baseline printed bodies have self-intersecting native wires. Their finite original tessellations are retained unmodified for visual reference; these bodies and their mounting are not native-solid qualified.",
+        "元の標準構成の印刷部品三つに、自己交差するネイティブ輪郭ワイヤーがあります。有限値の元の三角形メッシュを変更せず参照表示用に保持しています。これらの部品と取付は、ネイティブソリッドとして検証済みではありません。",
+        "元の印刷部品3つのネイティブ形状が不正で、取付は未検証です。"
+      ]
+    },
+    "doomcube.notice.source_omissions": {
+      "kind": "message",
+      "ja": "リポジトリはこの元データを「complete-ish」（おおむね全体が揃った状態）と説明しています。元データの欠落と未検証のネイティブ取付部は、未解決の指摘として残っています。",
+      "en": "The repository describes this source as complete-ish. Source omissions and unqualified native interfaces remain open findings.",
+      "aliases": [
+        "The repository describes this source as complete-ish. Source omissions and unqualified native interfaces remain open findings."
+      ]
+    },
+    "doomcube.notice.builtin_supports": {
+      "kind": "message",
+      "ja": "埋め込みサポートは明確に特定できておらず、削除していません。",
+      "en": "Built-in supports have not been positively identified or removed.",
+      "aliases": [
+        "Built-in supports have not been positively identified or removed.",
+        "Built-in supports were not positively identified; none were removed.",
+        "No built-in supports have been removed: no separate support leaf was positively identified. This is not a certificate that all source printed bodies are free of embedded supports.",
+        "埋め込みサポートは削除していません。サポートとして独立した末端部品を明確に特定できなかったためです。元の印刷部品すべてに埋め込みサポートがないと保証するものではありません。",
+        "埋め込みサポートは明確に特定できておらず、削除していません。"
+      ]
+    },
+    "doomcube.notice.stock_companions": {
+      "kind": "message",
+      "ja": "元の6 mm標準ガントリーは、MGN9 Xレール／ブロックと標準プローブブラケットを使用します。読み込まれたMGN12と9 mmの代替部品は無効です。この選択によって、不正な元の印刷製キャリッジの取付部が検証済みになるわけではありません。",
+      "en": "The native 6 mm stock gantry uses its MGN9 X rail/block and standard probe bracket; imported MGN12 and 9 mm alternatives are inactive. This selection does not qualify the invalid original printed carriage interfaces.",
+      "aliases": [
+        "The native 6 mm stock gantry uses its MGN9 X rail/block and standard probe bracket; imported MGN12 and 9 mm alternatives are inactive. This selection does not qualify the invalid original printed carriage interfaces."
+      ]
+    },
+    "doomcube.description": {
+      "kind": "message",
+      "ja": "DoomCube 2 · 350 mm / 二重エンクロージャー / 元のCAD",
+      "en": "DoomCube 2 · 350 mm / double enclosure / original CAD",
+      "aliases": [
+        "DoomCube 2 · 350 mm / double enclosure / original CAD"
+      ]
     }
   }
 }

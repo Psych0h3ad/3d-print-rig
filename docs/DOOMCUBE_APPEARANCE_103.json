@@ -1,0 +1,3548 @@
+{
+  "schema": "doomcube-original-source-appearance-103",
+  "source_revision": "02baa8c02c8984d46450843e8b41f24b135f6478",
+  "reviewed_native_leaves": 688,
+  "reviewed_display_parts_before": 704,
+  "reviewed_display_parts_after": 705,
+  "binary_chunk_sha256": "cf97a996d6b94c9cbf4b6dde42911bc24dbbb3dde49665d28f7925dbab2b1e89",
+  "binary_geometry_unchanged": true,
+  "mesh_accessors_views_unchanged": true,
+  "native_geometry_unchanged": true,
+  "palette_split_source_key": "220",
+  "source_face_partition_complete": true,
+  "source_roles": {
+    "72": {
+      "source_native_key": "72",
+      "source_brep_sha256": "915d2fafe5514a2f13308f0b0b9a7daf10c2c495d810e1712cc7cfbcee523726",
+      "appearance_role": "base"
+    },
+    "73": {
+      "source_native_key": "73",
+      "source_brep_sha256": "7a24bc80c66bcddb4e9d1f358af59c30ecb9255826b2d13ff1e0ccbd53216710",
+      "appearance_role": "accent"
+    },
+    "74": {
+      "source_native_key": "74",
+      "source_brep_sha256": "1b95f6d9ed8944d86e2d863e59259de0f392f52368e2b00370134ebcd62bb5e9",
+      "appearance_role": "accent"
+    },
+    "75": {
+      "source_native_key": "75",
+      "source_brep_sha256": "2fc8ba48ff1af08a5fa021cab8a9f0d705b77521e9c58eb951fdd6a794608726",
+      "appearance_role": "base"
+    },
+    "76": {
+      "source_native_key": "76",
+      "source_brep_sha256": "a790115e65e51d63f2b8ecd687042c63d5a778cab0a8f625c16ab872324a46ec",
+      "appearance_role": "accent"
+    },
+    "77": {
+      "source_native_key": "77",
+      "source_brep_sha256": "2f04326dcafa3093812279dce00775186cdc79040b9bd4484a1a4863e1d76de4",
+      "appearance_role": "accent"
+    },
+    "78": {
+      "source_native_key": "78",
+      "source_brep_sha256": "f2684a920ec99736ef62f1c550d5730b97e032b5031bb78510cfce76b472ee5e",
+      "appearance_role": "base"
+    },
+    "79": {
+      "source_native_key": "79",
+      "source_brep_sha256": "48185ed73addbb47c472843ed475754dd26bcfb6a13de6580dcabfecb5d74c2d",
+      "appearance_role": "accent"
+    },
+    "80": {
+      "source_native_key": "80",
+      "source_brep_sha256": "fba030b149e414c4f175ddba9545ef9a9db6b34347ed71e02e8d015147edb95e",
+      "appearance_role": "accent"
+    },
+    "81": {
+      "source_native_key": "81",
+      "source_brep_sha256": "311c538866b32df59244b19fab57a0fda0caaca848ad3844a0234ae69d3c1c87",
+      "appearance_role": "base"
+    },
+    "82": {
+      "source_native_key": "82",
+      "source_brep_sha256": "fe63096d9378debca0f7ce41817cebd22fa95195207e64e0514056cc33cef93f",
+      "appearance_role": "accent"
+    },
+    "83": {
+      "source_native_key": "83",
+      "source_brep_sha256": "61d743ab3023728e18b194ceaa03e3e2f061602b188cfba0924b4ea320d55ff4",
+      "appearance_role": "accent"
+    },
+    "84": {
+      "source_native_key": "84",
+      "source_brep_sha256": "b7cfe873030fd0647551ce675d04833764cd8a64d5e500045faeb9238c20aef8",
+      "appearance_role": "base"
+    },
+    "85": {
+      "source_native_key": "85",
+      "source_brep_sha256": "0c81fbe08c69227c66bd77fa1fafa0c2b98fbb460dcda3dcf93a85ba95206dea",
+      "appearance_role": "accent"
+    },
+    "86": {
+      "source_native_key": "86",
+      "source_brep_sha256": "196816733d687b561d77fd7d573dba7d0e08cfd3314733a5fe0d8c0988e07537",
+      "appearance_role": "accent"
+    },
+    "87": {
+      "source_native_key": "87",
+      "source_brep_sha256": "a327e05e10c10389e3a18125fc359248ce16b01259a112889e739c06a57c5af2",
+      "appearance_role": "accent"
+    },
+    "88": {
+      "source_native_key": "88",
+      "source_brep_sha256": "0ea33d5e6c4240e3eb8bf3151b35873dbdd488a274cdc35d95add15f228f8222",
+      "appearance_role": "base"
+    },
+    "89": {
+      "source_native_key": "89",
+      "source_brep_sha256": "4d76bd178244c0e565d2954eaa54955c5481ab17aff53df00eb93ac5d8374cc8",
+      "appearance_role": "accent"
+    },
+    "90": {
+      "source_native_key": "90",
+      "source_brep_sha256": "646513eac518f6011884e130ee01e29eaaa58b06ff36d65b168b296a6f1ad012",
+      "appearance_role": "base"
+    },
+    "91": {
+      "source_native_key": "91",
+      "source_brep_sha256": "36cbe62e2bbfc782c79d107bdf21de90095a58da230790c49b1e16a108c6e501",
+      "appearance_role": "accent"
+    },
+    "92": {
+      "source_native_key": "92",
+      "source_brep_sha256": "80e075e871cc28f202a3af8ac6e7fd3e2304efa2db037b31aed84745c28ec57e",
+      "appearance_role": "accent"
+    },
+    "93": {
+      "source_native_key": "93",
+      "source_brep_sha256": "7c9edde2942da2a88021e8283a5f381da1b37a1a7e5f3f36b1a9858c9eed1428",
+      "appearance_role": "base"
+    },
+    "94": {
+      "source_native_key": "94",
+      "source_brep_sha256": "a9c8a710c82705df3ed17d9529f7183f3f5ee35e31e5ec5f8a449d041401a6d8",
+      "appearance_role": "accent"
+    },
+    "95": {
+      "source_native_key": "95",
+      "source_brep_sha256": "3a70e11b5cd69f7fba5605134abaf8fff9a30044262299e14e7ce50a9c822333",
+      "appearance_role": "accent"
+    },
+    "96": {
+      "source_native_key": "96",
+      "source_brep_sha256": "a3fbde1ba49f9d13e9a0f9f5112a961b97ce1918138bd7c53c1ddb4de210ee57",
+      "appearance_role": "accent"
+    },
+    "97": {
+      "source_native_key": "97",
+      "source_brep_sha256": "f479bb44f9d6d202e0fa333a0d719cc3fc13ec39854b36a4f27fc378016be0df",
+      "appearance_role": "base"
+    },
+    "98": {
+      "source_native_key": "98",
+      "source_brep_sha256": "dd2c57eb51c78bdf04fab11462717c3f06ef0026ab2df753a0cfd1f8cbeef36f",
+      "appearance_role": "accent"
+    },
+    "99": {
+      "source_native_key": "99",
+      "source_brep_sha256": "1d28982b88dcbb780e6ac7c5c0f0bc1cb7aa522a3ccbb434385d0944b3865ab3",
+      "appearance_role": "base"
+    },
+    "100": {
+      "source_native_key": "100",
+      "source_brep_sha256": "028185978c7141a49b10ee1f945ac5a927fec013d1d76c78fc1611c493be4c53",
+      "appearance_role": "accent"
+    },
+    "101": {
+      "source_native_key": "101",
+      "source_brep_sha256": "7ca633b932a32f1e0f91c2d204fe59008df8b347f203d2bbd7268c40dce3c0a5",
+      "appearance_role": "accent"
+    },
+    "102": {
+      "source_native_key": "102",
+      "source_brep_sha256": "fc3be0244c91b54c6ba64296527a151d09277503db693035017b6f217852d6bd",
+      "appearance_role": "base"
+    },
+    "103": {
+      "source_native_key": "103",
+      "source_brep_sha256": "967d315890e8a415e82c90c0c28f43e7cb34e1a5866812ff3162f41792875185",
+      "appearance_role": "accent"
+    },
+    "104": {
+      "source_native_key": "104",
+      "source_brep_sha256": "4c764b4e931761b1c5bca72bd249ca171cb16ecec533740dcb18be2ed21a073b",
+      "appearance_role": "accent"
+    },
+    "105": {
+      "source_native_key": "105",
+      "source_brep_sha256": "5d857bb47fbaf6afd0555485fbc0734e8416524c44935111b956684add29bf9e",
+      "appearance_role": "accent"
+    },
+    "106": {
+      "source_native_key": "106",
+      "source_brep_sha256": "6202f2d6ad82fd2f27e157820e719c28f58599ea89b65f2fa8daae6652d707cb",
+      "appearance_role": "base"
+    },
+    "107": {
+      "source_native_key": "107",
+      "source_brep_sha256": "ffb77df6abbfbe471cec0f732a363257c7f6d6c06b78c295bba739440882be60",
+      "appearance_role": "accent"
+    },
+    "108": {
+      "source_native_key": "108",
+      "source_brep_sha256": "e43e4f9cb67f65338e563ef67c6988c66b22c55f37bb935eaace3fbe4bd4a910",
+      "appearance_role": "base"
+    },
+    "109": {
+      "source_native_key": "109",
+      "source_brep_sha256": "315f5bc9a42a28a67331446e9f6359e204686820fb9ad7fd6589ebf649a10fd6",
+      "appearance_role": "accent"
+    },
+    "110": {
+      "source_native_key": "110",
+      "source_brep_sha256": "b9b466149e4fcefa507812003212c486399f12d7bd6d758d9a85f1c8d35c686c",
+      "appearance_role": "accent"
+    },
+    "111": {
+      "source_native_key": "111",
+      "source_brep_sha256": "fc84880be748f318361ceb3e6f667f64e026cdb3a28bc895f3cfa051ccecb36b",
+      "appearance_role": "accent"
+    },
+    "112": {
+      "source_native_key": "112",
+      "source_brep_sha256": "124fa786925273dc052fc852b1147493115f3f53c39eeb7b35beca0311824395",
+      "appearance_role": "base"
+    },
+    "113": {
+      "source_native_key": "113",
+      "source_brep_sha256": "01c729a7081b3d3b6e8ec3fb8e0d78be2b247a0ac84adf8415ee278179d6f05f",
+      "appearance_role": "accent"
+    },
+    "114": {
+      "source_native_key": "114",
+      "source_brep_sha256": "2cfc96c432d39d8ad291c7943fc838597f277cb36dda61184daddb669c677c63",
+      "appearance_role": "base"
+    },
+    "115": {
+      "source_native_key": "115",
+      "source_brep_sha256": "b0e39d15f5810586bb3a38273b4f16e31799498b7b9644857e000f62c4c1a1f3",
+      "appearance_role": "accent"
+    },
+    "116": {
+      "source_native_key": "116",
+      "source_brep_sha256": "4a7b9f63b8a07f2ad09fd5045b9453c00a09d1e80ea3e59220693dea3c83d132",
+      "appearance_role": "accent"
+    },
+    "117": {
+      "source_native_key": "117",
+      "source_brep_sha256": "d7eb73b24b57ec0bf23815d2372b1e716523f533d25dda44410995ce1e216b79",
+      "appearance_role": "base"
+    },
+    "118": {
+      "source_native_key": "118",
+      "source_brep_sha256": "1a63acfe5c66ff6ac005e82846845d17759f27e75ce775074a385ca580faca2a",
+      "appearance_role": "accent"
+    },
+    "119": {
+      "source_native_key": "119",
+      "source_brep_sha256": "9ac817f8b761869bdf55ca2df829519c3bcb6cb4816d0d66faf6b42e315be8ed",
+      "appearance_role": "accent"
+    },
+    "120": {
+      "source_native_key": "120",
+      "source_brep_sha256": "83dd431a823e131eef0fdcbca518c0964ac7096b2c7628e4922f783bfca31f24",
+      "appearance_role": "accent"
+    },
+    "121": {
+      "source_native_key": "121",
+      "source_brep_sha256": "b75d6fdafed2d5ade11d24627d0220362091d9edddd1808908081240d17fc6c6",
+      "appearance_role": "base"
+    },
+    "122": {
+      "source_native_key": "122",
+      "source_brep_sha256": "1fbb814555f5a761e8c50e8a0fce015f411ddad9c8ebfc08d62a4a406c418bfa",
+      "appearance_role": "accent"
+    },
+    "123": {
+      "source_native_key": "123",
+      "source_brep_sha256": "0d65f8224d11e3007e244cace58a88ab0269f508de3a45faffb66b24447514a4",
+      "appearance_role": "base"
+    },
+    "124": {
+      "source_native_key": "124",
+      "source_brep_sha256": "95ac8706a1331e94bbc138acd34a9ef2b9122e773307b2f545766be4fb082fbb",
+      "appearance_role": "accent"
+    },
+    "125": {
+      "source_native_key": "125",
+      "source_brep_sha256": "fe3fc0652f59789088982fe527ec048e219cc45d37375b215e4744b26dd9ef21",
+      "appearance_role": "accent"
+    },
+    "126": {
+      "source_native_key": "126",
+      "source_brep_sha256": "a1713fae69f85c0887ecb54c9524b130eb4f2ebf8073beef4fcd9cd550ab1ea0",
+      "appearance_role": "base"
+    },
+    "127": {
+      "source_native_key": "127",
+      "source_brep_sha256": "9ea5df92f35a4e3452f0b3dce25221c7b31d4587bf34e8a174fe0170be30c63c",
+      "appearance_role": "accent"
+    },
+    "128": {
+      "source_native_key": "128",
+      "source_brep_sha256": "22ded901addcc86b90fe3eb1ca8770daa03221b8b00a8a105c7dee35c8c81346",
+      "appearance_role": "accent"
+    },
+    "129": {
+      "source_native_key": "129",
+      "source_brep_sha256": "680d9f3b93be3e09ae7b96a44a5393c73f86145ebb6f007c5d3edfedb10d65aa",
+      "appearance_role": "accent"
+    },
+    "130": {
+      "source_native_key": "130",
+      "source_brep_sha256": "4b5fdd0a72b2e960b7130acef244859ca887212218fd13a84a8c40352ab5dc72",
+      "appearance_role": "base"
+    },
+    "131": {
+      "source_native_key": "131",
+      "source_brep_sha256": "f2dad83e6fd7049dc0e848d0df5de743a3a5fc8e11e7f01fbb7fdc3feaca1728",
+      "appearance_role": "accent"
+    },
+    "132": {
+      "source_native_key": "132",
+      "source_brep_sha256": "be9ca3b25404d64330bc5dcdcbcc7790c3007aff31820817b36cac699a6a0b57",
+      "appearance_role": "base"
+    },
+    "133": {
+      "source_native_key": "133",
+      "source_brep_sha256": "32abe34deafa8ec5d080c57fc747ca5bb71fc2d0bf3e2d310b6af44c1b9295b9",
+      "appearance_role": "accent"
+    },
+    "134": {
+      "source_native_key": "134",
+      "source_brep_sha256": "afb694819fd7732f8f24013017d7a7bd17b0850275c1d23e10648d88fb0d6929",
+      "appearance_role": "accent"
+    },
+    "213": {
+      "source_native_key": "213",
+      "source_brep_sha256": "600105edf94ca19a260f9a8e139d7e08aac889bf40c4784d0fd109efd20dd0f0",
+      "appearance_role": "base"
+    },
+    "214": {
+      "source_native_key": "214",
+      "source_brep_sha256": "39a6d09efac86e34372edec6811419827e8b143c8774fcd70872757d208405c5",
+      "appearance_role": "accent"
+    },
+    "215": {
+      "source_native_key": "215",
+      "source_brep_sha256": "6738650f7963b47d0f1529b16d9b2d8d8c017aa1dce20ca23db04a790ef28264",
+      "appearance_role": "base"
+    },
+    "216": {
+      "source_native_key": "216",
+      "source_brep_sha256": "46b6e37605ea9a6902a68ce17c98006695f2fc56b48fb47dac6886f6bfefc5e9",
+      "appearance_role": "accent"
+    },
+    "217": {
+      "source_native_key": "217",
+      "source_brep_sha256": "82c95c53ec8e0879356c93d3f384195d9bda019038b6cc066844a0c57cb4c088",
+      "appearance_role": "native"
+    },
+    "218": {
+      "source_native_key": "218",
+      "source_brep_sha256": "5ad11565e9035df6c0866e0b575a1df26b64de3ec738594ef0af550c599213db",
+      "appearance_role": "native"
+    },
+    "219": {
+      "source_native_key": "219",
+      "source_brep_sha256": "1293a2f0862438535021495b0b9be00669a5c058dacb074f5f326337f0451a97",
+      "appearance_role": "native"
+    },
+    "220": {
+      "source_native_key": "220",
+      "source_brep_sha256": "946b2bd5f0d314ee422b5b42dab1c2351d48ff6637b15ce99a8d0e5c585f93f1",
+      "appearance_role": "base"
+    },
+    "221": {
+      "source_native_key": "221",
+      "source_brep_sha256": "a017d71b9f2f3006d7f96cc506f690dcecaaddc41798156ddd08a0aceb6002ea",
+      "appearance_role": "frame"
+    },
+    "222": {
+      "source_native_key": "222",
+      "source_brep_sha256": "de9543d2988aec0f0c6a4a2d7fa544d16435ceb2603f0a95a9c14ab680435d8e",
+      "appearance_role": "frame"
+    },
+    "223": {
+      "source_native_key": "223",
+      "source_brep_sha256": "a43bb6ebe028d72df114d03bd9191a4ed84005aa2a5563f66791bfe76c8118b5",
+      "appearance_role": "frame"
+    },
+    "224": {
+      "source_native_key": "224",
+      "source_brep_sha256": "a8faf5627b5c1a606848369f873200cc45814b0960f6c350e11680eddaab5e07",
+      "appearance_role": "frame"
+    },
+    "225": {
+      "source_native_key": "225",
+      "source_brep_sha256": "b2bd74f5b39faa7f357cac7a526b87b6d1de9ecfdad25e8a99e5c18b4f0cef57",
+      "appearance_role": "frame"
+    },
+    "226": {
+      "source_native_key": "226",
+      "source_brep_sha256": "5f2aad4ca067d91e8c971a5fa25f1656a4a8c86ae88659bfd9587ec82930dd10",
+      "appearance_role": "frame"
+    },
+    "227": {
+      "source_native_key": "227",
+      "source_brep_sha256": "000a3672a3f8517febc51505e7cbcce1ad041bc7e8a98140d4a3591a2b8682ff",
+      "appearance_role": "frame"
+    },
+    "228": {
+      "source_native_key": "228",
+      "source_brep_sha256": "c5a8a464f1b3457729ee43aec76b131b8371fe65a949055f2d6a7b6e0643aa6f",
+      "appearance_role": "frame"
+    },
+    "229": {
+      "source_native_key": "229",
+      "source_brep_sha256": "1f892a97a4b2f94a71e639e0859d06d2afef1500b0839991fde9e7d42617f4d3",
+      "appearance_role": "frame"
+    },
+    "230": {
+      "source_native_key": "230",
+      "source_brep_sha256": "f3db094e4b09abf52bb58610ebc42acd44e62d8d8a773350c500ccde51d0eed4",
+      "appearance_role": "frame"
+    },
+    "231": {
+      "source_native_key": "231",
+      "source_brep_sha256": "347358823fb5696383f91acf279d53ee3bf17ce9e0ee6a848ec01c3442f9ae68",
+      "appearance_role": "frame"
+    },
+    "232": {
+      "source_native_key": "232",
+      "source_brep_sha256": "45cb821aa226f4e4bb718c05d84897d51a232dea06f555cc520411b7679f3c8b",
+      "appearance_role": "frame"
+    },
+    "233": {
+      "source_native_key": "233",
+      "source_brep_sha256": "72d4c842f1313689a56bbb45ee2f0f51b87a0cbf15d0fa89e7471fb545afdd86",
+      "appearance_role": "base"
+    },
+    "233_accent": {
+      "source_native_key": "233",
+      "source_brep_sha256": "72d4c842f1313689a56bbb45ee2f0f51b87a0cbf15d0fa89e7471fb545afdd86",
+      "appearance_role": "accent"
+    },
+    "234": {
+      "source_native_key": "234",
+      "source_brep_sha256": "eea53e95ff9701a9363f77a1e41bcdfba91da3fa51b50e931e57ae9b8fa7ede7",
+      "appearance_role": "rubber"
+    },
+    "235": {
+      "source_native_key": "235",
+      "source_brep_sha256": "80db9b468395d08e1e36a9d9dd591c4b8ffc1f6b098df6a16caff726c35e360d",
+      "appearance_role": "base"
+    },
+    "235_accent": {
+      "source_native_key": "235",
+      "source_brep_sha256": "80db9b468395d08e1e36a9d9dd591c4b8ffc1f6b098df6a16caff726c35e360d",
+      "appearance_role": "accent"
+    },
+    "236": {
+      "source_native_key": "236",
+      "source_brep_sha256": "f4373436e1b210dec24dae87ad8211a81f5c95b41a1433dcc39f6ccbe4410daa",
+      "appearance_role": "base"
+    },
+    "236_accent": {
+      "source_native_key": "236",
+      "source_brep_sha256": "f4373436e1b210dec24dae87ad8211a81f5c95b41a1433dcc39f6ccbe4410daa",
+      "appearance_role": "accent"
+    },
+    "237": {
+      "source_native_key": "237",
+      "source_brep_sha256": "0f6dd522c379cd8b30b8022502078cd1b9bc1bc5a660c95ab2161d967f16d404",
+      "appearance_role": "rubber"
+    },
+    "238": {
+      "source_native_key": "238",
+      "source_brep_sha256": "3ae9c7390940fe29230cc2c0e23e5be117f3ccf132dd238a4b24ccbab6af414f",
+      "appearance_role": "base"
+    },
+    "238_accent": {
+      "source_native_key": "238",
+      "source_brep_sha256": "3ae9c7390940fe29230cc2c0e23e5be117f3ccf132dd238a4b24ccbab6af414f",
+      "appearance_role": "accent"
+    },
+    "239": {
+      "source_native_key": "239",
+      "source_brep_sha256": "78a889168d3719208357103bab8a64f6ca767e2484c973d033a0cfebeb3e3aa7",
+      "appearance_role": "base"
+    },
+    "239_accent": {
+      "source_native_key": "239",
+      "source_brep_sha256": "78a889168d3719208357103bab8a64f6ca767e2484c973d033a0cfebeb3e3aa7",
+      "appearance_role": "accent"
+    },
+    "240": {
+      "source_native_key": "240",
+      "source_brep_sha256": "85196bfa8cb74eaeaafc1bb3ed59e18455d8e487b3f47f53125ebabf30e04a4d",
+      "appearance_role": "rubber"
+    },
+    "241": {
+      "source_native_key": "241",
+      "source_brep_sha256": "28786e6802186955b345968d725b7ab7fef46a3a6e0910980c4d63d125a30419",
+      "appearance_role": "base"
+    },
+    "241_accent": {
+      "source_native_key": "241",
+      "source_brep_sha256": "28786e6802186955b345968d725b7ab7fef46a3a6e0910980c4d63d125a30419",
+      "appearance_role": "accent"
+    },
+    "242": {
+      "source_native_key": "242",
+      "source_brep_sha256": "832124759064b4fd6c2e393062a97323abfec4e7b34415e5754a1eb78f6aaa0c",
+      "appearance_role": "base"
+    },
+    "242_accent": {
+      "source_native_key": "242",
+      "source_brep_sha256": "832124759064b4fd6c2e393062a97323abfec4e7b34415e5754a1eb78f6aaa0c",
+      "appearance_role": "accent"
+    },
+    "243": {
+      "source_native_key": "243",
+      "source_brep_sha256": "11f4e04b5f7bd014f5ae225ee0dd3bec74c8da5ff9dd10f669c962dfe72838ad",
+      "appearance_role": "rubber"
+    },
+    "244": {
+      "source_native_key": "244",
+      "source_brep_sha256": "19001614095abe8d21badc63d73953f972fef61a265bb56b7b643f15b15e179e",
+      "appearance_role": "base"
+    },
+    "244_accent": {
+      "source_native_key": "244",
+      "source_brep_sha256": "19001614095abe8d21badc63d73953f972fef61a265bb56b7b643f15b15e179e",
+      "appearance_role": "accent"
+    },
+    "245": {
+      "source_native_key": "245",
+      "source_brep_sha256": "032920ec5346a088428ed3e136e99ec698948d401e4036dc935d665a03997743",
+      "appearance_role": "frame"
+    },
+    "246": {
+      "source_native_key": "246",
+      "source_brep_sha256": "81e553ef8815863055e7cdae78a9ca7ea0b1a346e768e7e518608475a5d2f3a8",
+      "appearance_role": "frame"
+    },
+    "247": {
+      "source_native_key": "247",
+      "source_brep_sha256": "90beac5b32cff915c3f74bb8912fd6297958bbe35be33c08bb95dcf6104a4bd7",
+      "appearance_role": "frame"
+    },
+    "248": {
+      "source_native_key": "248",
+      "source_brep_sha256": "bfcefbaf83e5875f97c142d2b6dc7a5fcad02152d7fae70bbbdf47b5590cd46a",
+      "appearance_role": "frame"
+    },
+    "249": {
+      "source_native_key": "249",
+      "source_brep_sha256": "b2bd74f5b39faa7f357cac7a526b87b6d1de9ecfdad25e8a99e5c18b4f0cef57",
+      "appearance_role": "frame"
+    },
+    "250": {
+      "source_native_key": "250",
+      "source_brep_sha256": "45cb821aa226f4e4bb718c05d84897d51a232dea06f555cc520411b7679f3c8b",
+      "appearance_role": "frame"
+    },
+    "251": {
+      "source_native_key": "251",
+      "source_brep_sha256": "000a3672a3f8517febc51505e7cbcce1ad041bc7e8a98140d4a3591a2b8682ff",
+      "appearance_role": "frame"
+    },
+    "252": {
+      "source_native_key": "252",
+      "source_brep_sha256": "c5a8a464f1b3457729ee43aec76b131b8371fe65a949055f2d6a7b6e0643aa6f",
+      "appearance_role": "frame"
+    },
+    "253": {
+      "source_native_key": "253",
+      "source_brep_sha256": "1f892a97a4b2f94a71e639e0859d06d2afef1500b0839991fde9e7d42617f4d3",
+      "appearance_role": "frame"
+    },
+    "254": {
+      "source_native_key": "254",
+      "source_brep_sha256": "f3db094e4b09abf52bb58610ebc42acd44e62d8d8a773350c500ccde51d0eed4",
+      "appearance_role": "frame"
+    },
+    "255": {
+      "source_native_key": "255",
+      "source_brep_sha256": "5f2aad4ca067d91e8c971a5fa25f1656a4a8c86ae88659bfd9587ec82930dd10",
+      "appearance_role": "frame"
+    },
+    "256": {
+      "source_native_key": "256",
+      "source_brep_sha256": "347358823fb5696383f91acf279d53ee3bf17ce9e0ee6a848ec01c3442f9ae68",
+      "appearance_role": "frame"
+    },
+    "257": {
+      "source_native_key": "257",
+      "source_brep_sha256": "01d258a223bc3760da05897f35a1eb23301c1dd9a0606448cd7462363c4262e7",
+      "appearance_role": "frame"
+    },
+    "258": {
+      "source_native_key": "258",
+      "source_brep_sha256": "4fae75ddbe9d1cfd1ddcb5e24e4e6107bca6cbf5294be13a2c07c6b52d604e0d",
+      "appearance_role": "frame"
+    },
+    "259": {
+      "source_native_key": "259",
+      "source_brep_sha256": "2b1d189877e5d889ab2e3b86e2eca9db75c27cc5e3c6081e23b7e6f1d36c860c",
+      "appearance_role": "frame"
+    },
+    "260": {
+      "source_native_key": "260",
+      "source_brep_sha256": "41d872b546b08932d6af6e1a86dc7efd31c1913020c9be41e3d8c8db6e776b82",
+      "appearance_role": "frame"
+    },
+    "261": {
+      "source_native_key": "261",
+      "source_brep_sha256": "c0f66be2b3d01146d7c483eacd27f520a90336aee89105f4f75ddc3708a2ced9",
+      "appearance_role": "base"
+    },
+    "261_accent": {
+      "source_native_key": "261",
+      "source_brep_sha256": "c0f66be2b3d01146d7c483eacd27f520a90336aee89105f4f75ddc3708a2ced9",
+      "appearance_role": "accent"
+    },
+    "262": {
+      "source_native_key": "262",
+      "source_brep_sha256": "9f9151a2d926a8e12a12a76155047f32f824258f0be9371392a9210a671af84f",
+      "appearance_role": "rubber"
+    },
+    "263": {
+      "source_native_key": "263",
+      "source_brep_sha256": "c457881eb6bf43130ae733df8e882d6ee221ca3b5974a96b905f471fc42e9e40",
+      "appearance_role": "metal"
+    },
+    "264": {
+      "source_native_key": "264",
+      "source_brep_sha256": "76f86b3dbacf4d3eb87ff615eb50aa9bf5e8844fd9d7c78efca6a78e73434b6b",
+      "appearance_role": "metal"
+    },
+    "265": {
+      "source_native_key": "265",
+      "source_brep_sha256": "937b4db977a6d13698c499cbf60dfe35e7e589d14fd3dcc3971afc2b118f8dd6",
+      "appearance_role": "base"
+    },
+    "265_accent": {
+      "source_native_key": "265",
+      "source_brep_sha256": "937b4db977a6d13698c499cbf60dfe35e7e589d14fd3dcc3971afc2b118f8dd6",
+      "appearance_role": "accent"
+    },
+    "266": {
+      "source_native_key": "266",
+      "source_brep_sha256": "665dd429575811d0b927171c03c289adb2eba9e04dc3c447885041620cf5de9e",
+      "appearance_role": "base"
+    },
+    "266_accent": {
+      "source_native_key": "266",
+      "source_brep_sha256": "665dd429575811d0b927171c03c289adb2eba9e04dc3c447885041620cf5de9e",
+      "appearance_role": "accent"
+    },
+    "267": {
+      "source_native_key": "267",
+      "source_brep_sha256": "b188d1a1b6552633e867374e36c8077076d45bb72b9f0ac0b188f3001708ccd5",
+      "appearance_role": "rubber"
+    },
+    "268": {
+      "source_native_key": "268",
+      "source_brep_sha256": "5404d7d2793deb9a0a6fc1f1b7e12b6f7fa6dffc47c6757537ed71acd60f914b",
+      "appearance_role": "metal"
+    },
+    "269": {
+      "source_native_key": "269",
+      "source_brep_sha256": "9e594a1e7cd6e4e3db6465562ec2e71ec223dbd0c38fd2791f04adc155b19dc4",
+      "appearance_role": "metal"
+    },
+    "270": {
+      "source_native_key": "270",
+      "source_brep_sha256": "52c7706022843b6ef85702f264d611e5b43649b5a75528c6f030ad4636a883a4",
+      "appearance_role": "base"
+    },
+    "270_accent": {
+      "source_native_key": "270",
+      "source_brep_sha256": "52c7706022843b6ef85702f264d611e5b43649b5a75528c6f030ad4636a883a4",
+      "appearance_role": "accent"
+    },
+    "271": {
+      "source_native_key": "271",
+      "source_brep_sha256": "58b780fc1eaaf4ef04bdfcc85d3e55857f8bccbbe5bf791a2ef3ea32fd7a9a15",
+      "appearance_role": "base"
+    },
+    "271_accent": {
+      "source_native_key": "271",
+      "source_brep_sha256": "58b780fc1eaaf4ef04bdfcc85d3e55857f8bccbbe5bf791a2ef3ea32fd7a9a15",
+      "appearance_role": "accent"
+    },
+    "272": {
+      "source_native_key": "272",
+      "source_brep_sha256": "2ccc54dc282c3acd7815c9ce74c4bed88011ed79ec1844c4aa0ef52820777acf",
+      "appearance_role": "rubber"
+    },
+    "273": {
+      "source_native_key": "273",
+      "source_brep_sha256": "f3c5ec11150a22672dbe38022ce112ee6e92b0b0baa8484fb4f8504901c16b30",
+      "appearance_role": "metal"
+    },
+    "274": {
+      "source_native_key": "274",
+      "source_brep_sha256": "79ef7257d07ce285f8930a7ca0e712017c7684cc28c5bf9eb6701affa597b700",
+      "appearance_role": "metal"
+    },
+    "275": {
+      "source_native_key": "275",
+      "source_brep_sha256": "1ce7247f43e53c761c9e048d357052a4a4cd99a9d36395a05e73b2059b9e2b15",
+      "appearance_role": "base"
+    },
+    "275_accent": {
+      "source_native_key": "275",
+      "source_brep_sha256": "1ce7247f43e53c761c9e048d357052a4a4cd99a9d36395a05e73b2059b9e2b15",
+      "appearance_role": "accent"
+    },
+    "276": {
+      "source_native_key": "276",
+      "source_brep_sha256": "35a3133ea6ecb8154f19b5979865576f1f31d16cd3bf709e3502a9746454107a",
+      "appearance_role": "base"
+    },
+    "276_accent": {
+      "source_native_key": "276",
+      "source_brep_sha256": "35a3133ea6ecb8154f19b5979865576f1f31d16cd3bf709e3502a9746454107a",
+      "appearance_role": "accent"
+    },
+    "277": {
+      "source_native_key": "277",
+      "source_brep_sha256": "1734c4efe08dbd7f339c4f248ae6fa4cf95b1052bd209330856b083d8a801c04",
+      "appearance_role": "rubber"
+    },
+    "278": {
+      "source_native_key": "278",
+      "source_brep_sha256": "48e7447b898105c698f7b90ccb782d6d3fa825b1775e3c5a80bfc907073f988b",
+      "appearance_role": "metal"
+    },
+    "279": {
+      "source_native_key": "279",
+      "source_brep_sha256": "8bc6590daa2068f2d5b0a64f5fb286a0466e3e17bfc438bfed8e5ef196b30f87",
+      "appearance_role": "metal"
+    },
+    "280": {
+      "source_native_key": "280",
+      "source_brep_sha256": "af70333b9d2d61ba6942c35cb220f3a9f7bee61ae0141f49cb67f6cb5d14fe3f",
+      "appearance_role": "base"
+    },
+    "280_accent": {
+      "source_native_key": "280",
+      "source_brep_sha256": "af70333b9d2d61ba6942c35cb220f3a9f7bee61ae0141f49cb67f6cb5d14fe3f",
+      "appearance_role": "accent"
+    },
+    "281": {
+      "source_native_key": "281",
+      "source_brep_sha256": "b5dc8c1a4efca76227474ee642cacb0fc68d4d063741868887e34c0de7f83297",
+      "appearance_role": "accent"
+    },
+    "282": {
+      "source_native_key": "282",
+      "source_brep_sha256": "bfe6a3269f768d0c961037b4df4ea74755727d8e2f5e7c01a50deca35b66e580",
+      "appearance_role": "accent"
+    },
+    "283": {
+      "source_native_key": "283",
+      "source_brep_sha256": "e36d5dd0e20c41c6121a3cede1af1c4c4f0e45f1ac610a6f4af8e1b63fbaffeb",
+      "appearance_role": "glass"
+    },
+    "284": {
+      "source_native_key": "284",
+      "source_brep_sha256": "52579ebde7a0993d2184187b4c60bd62690e0afeec9fd2b0f34d20f39f264195",
+      "appearance_role": "metal"
+    },
+    "285": {
+      "source_native_key": "285",
+      "source_brep_sha256": "6737cc482be0b96e7618ab9bd14adb321844e4d9fcf0dfccf54f91dbf1dc583d",
+      "appearance_role": "metal"
+    },
+    "286": {
+      "source_native_key": "286",
+      "source_brep_sha256": "53c3ef4ef13e7a155150aa49a118d042c6a49ba503284552a421ed22b1ea375e",
+      "appearance_role": "metal"
+    },
+    "287": {
+      "source_native_key": "287",
+      "source_brep_sha256": "43964ae9134d9e130f8e5140397b834c822cfa4eff6406d47b4b50af96a7ec1b",
+      "appearance_role": "metal"
+    },
+    "288": {
+      "source_native_key": "288",
+      "source_brep_sha256": "ce26ff5ee0c57debd3a0ffbf1d8a6a3f3fd3f9d6ebb949cb15d7e4f18339707d",
+      "appearance_role": "metal"
+    },
+    "289": {
+      "source_native_key": "289",
+      "source_brep_sha256": "094459787fff6c606b996c4ed834261ceba071bc09b4894d6c8c0ce117ea2273",
+      "appearance_role": "metal"
+    },
+    "290": {
+      "source_native_key": "290",
+      "source_brep_sha256": "7e49eface7e1061ef7bf3b858b6f9df2de97d8eb4f23437a447ff346ff745c4e",
+      "appearance_role": "metal"
+    },
+    "291": {
+      "source_native_key": "291",
+      "source_brep_sha256": "4c13f79b58b71f11d77750b1c7d2d3f06d721c7d64d25cf60d326f3cac49eb64",
+      "appearance_role": "metal"
+    },
+    "292": {
+      "source_native_key": "292",
+      "source_brep_sha256": "461db615c1ceeb884f064b1baa0dcf3cb3a75b3ae36456200504f2a444ed8349",
+      "appearance_role": "metal"
+    },
+    "293": {
+      "source_native_key": "293",
+      "source_brep_sha256": "71ef70799caac2f044243188ccd07f8506fafb662536ed8194f6793fb446a9bc",
+      "appearance_role": "metal"
+    },
+    "294": {
+      "source_native_key": "294",
+      "source_brep_sha256": "39b89ff46f5dde95ebfec5598a818d36534af41b72a78f12047f7a38ccad746c",
+      "appearance_role": "metal"
+    },
+    "295": {
+      "source_native_key": "295",
+      "source_brep_sha256": "98e586ecbc3f2c67e45b47c1e716d67953a2c0e51c9361fad31154d1fb08a9c5",
+      "appearance_role": "metal"
+    },
+    "296": {
+      "source_native_key": "296",
+      "source_brep_sha256": "158cae4973088843a613092f4dd84b31762fafd3e5416cf6849d52d5ff669374",
+      "appearance_role": "metal"
+    },
+    "297": {
+      "source_native_key": "297",
+      "source_brep_sha256": "e66aa2724dd02c38b6a0480bba3185fa6e97bd12919b31caf2ce79ed5c6d84d2",
+      "appearance_role": "metal"
+    },
+    "298": {
+      "source_native_key": "298",
+      "source_brep_sha256": "17bcadd500a95986b69f8df27d79f90c149be49be6f44f662ee3906d56346c49",
+      "appearance_role": "metal"
+    },
+    "299": {
+      "source_native_key": "299",
+      "source_brep_sha256": "30038e7df4762b4ae17f37d74f215b163328737cc4d2948db497a8d5e094a3d3",
+      "appearance_role": "metal"
+    },
+    "300": {
+      "source_native_key": "300",
+      "source_brep_sha256": "1f4efdbf501cbd385ca9616357745b5ea582315ad66f5596e10bb63002e18074",
+      "appearance_role": "metal"
+    },
+    "301": {
+      "source_native_key": "301",
+      "source_brep_sha256": "101937684e0e418b9505d524228ef1d04f0a8182b4be0605aff23f8e39fb6331",
+      "appearance_role": "metal"
+    },
+    "302": {
+      "source_native_key": "302",
+      "source_brep_sha256": "05bab40473b4bb12afb25a41f5fa6774a75322cad91e06ac089402e8435dff32",
+      "appearance_role": "metal"
+    },
+    "303": {
+      "source_native_key": "303",
+      "source_brep_sha256": "89df9e756e43c01ff264739f713896c254287d2a0baf9603112c9d12112317a3",
+      "appearance_role": "metal"
+    },
+    "304": {
+      "source_native_key": "304",
+      "source_brep_sha256": "8b8de3157f59c9b4b0c9077689151deecaafbbda724177c487a0a5c81cc22ebf",
+      "appearance_role": "metal"
+    },
+    "305": {
+      "source_native_key": "305",
+      "source_brep_sha256": "2324ff80e9735cbdc19305a3afc4039127c4d8e9c3fbf0e71c05d4e488153ce4",
+      "appearance_role": "metal"
+    },
+    "306": {
+      "source_native_key": "306",
+      "source_brep_sha256": "2cff100105d7811e8df3fbc6d4be467710ecd9b87c0e8b4490f1594fd5fd9665",
+      "appearance_role": "accent"
+    },
+    "307": {
+      "source_native_key": "307",
+      "source_brep_sha256": "756ba1555766ad90491447b8db072d31ac4fdf77c3785f41bf9bb1ec4d239f05",
+      "appearance_role": "frame"
+    },
+    "308": {
+      "source_native_key": "308",
+      "source_brep_sha256": "49f0e610d2b663877cf4e1081918006e325b0cdd17170aa925b24ef2ccb05354",
+      "appearance_role": "frame"
+    },
+    "309": {
+      "source_native_key": "309",
+      "source_brep_sha256": "6fdcd6df5c0b5db4e42aa5dd55875f59457e5ed303fb03a1d54afb0815e16cd9",
+      "appearance_role": "frame"
+    },
+    "310": {
+      "source_native_key": "310",
+      "source_brep_sha256": "2fb7d92358f1af380198bfe4869b0f9171724d471a828d2e30133f2d5f66a305",
+      "appearance_role": "frame"
+    },
+    "311": {
+      "source_native_key": "311",
+      "source_brep_sha256": "9a1220e32a1ce88ef321d9449d859ab305181ecb467707b5992afd7f1a4c39f7",
+      "appearance_role": "native"
+    },
+    "312": {
+      "source_native_key": "312",
+      "source_brep_sha256": "afdea36aa7487e31c8a641118349198bcced7ad165d639e160bf838cbb49b2bc",
+      "appearance_role": "accent"
+    },
+    "313": {
+      "source_native_key": "313",
+      "source_brep_sha256": "844f9cee861a7f01b94f18d472924f543f8236a19e7a31637d06a977a18c20e9",
+      "appearance_role": "native"
+    },
+    "314": {
+      "source_native_key": "314",
+      "source_brep_sha256": "f12a1dbb906cc895350d439171b24be5e03167a0a638723ed73c2f75737bf496",
+      "appearance_role": "accent"
+    },
+    "315": {
+      "source_native_key": "315",
+      "source_brep_sha256": "f240ff7ef336118128c2f4e34b9126a49bd958235fb19cfbaac2fa24f3d5351c",
+      "appearance_role": "accent"
+    },
+    "316": {
+      "source_native_key": "316",
+      "source_brep_sha256": "b6a74b53fa368dc666b84c864d39ed1ca1e1f1144da6fc1df809a1b3e6eb77df",
+      "appearance_role": "accent"
+    },
+    "317": {
+      "source_native_key": "317",
+      "source_brep_sha256": "52b208ba75ff6c6d0796e4e7a69f5d71c73f44a451c32592eff3e458baab7ea2",
+      "appearance_role": "native"
+    },
+    "318": {
+      "source_native_key": "318",
+      "source_brep_sha256": "25d69a391fdcfd625a3abc83a9d11b0c1deb5a774cb6ee00e5716d735849c14c",
+      "appearance_role": "accent"
+    },
+    "319": {
+      "source_native_key": "319",
+      "source_brep_sha256": "ea6eccd5dcaf0b565a3976d957f3eab949b54fa01048e7ca1abbe8f6415b20c9",
+      "appearance_role": "accent"
+    },
+    "320": {
+      "source_native_key": "320",
+      "source_brep_sha256": "667609bd81415e5b842c0bd2192c22e6619c9aa57ed2864881ed19688b1a3dae",
+      "appearance_role": "glass"
+    },
+    "321": {
+      "source_native_key": "321",
+      "source_brep_sha256": "5f25f56ebaa10bc9202ca6a10196edd27653b76d56641bbfaaf002dd06851be5",
+      "appearance_role": "accent"
+    },
+    "322": {
+      "source_native_key": "322",
+      "source_brep_sha256": "1dcf64d4536f3a977b9a05d60436741c2bd1b4f0f3b7a5daff0e04cbe3677637",
+      "appearance_role": "accent"
+    },
+    "323": {
+      "source_native_key": "323",
+      "source_brep_sha256": "b902319bc1d79a12b4bbca657a6b2e54ddd050897298e657d4bec830fa130c77",
+      "appearance_role": "glass"
+    },
+    "324": {
+      "source_native_key": "324",
+      "source_brep_sha256": "089cffdb51544e6f920dbf73610ddfffa6f3b944cd82adaa0e1f5641c7b28113",
+      "appearance_role": "metal"
+    },
+    "325": {
+      "source_native_key": "325",
+      "source_brep_sha256": "aea100fb7d07c8b395ef47097d403b276d223645501f758325058d5b2822cae4",
+      "appearance_role": "metal"
+    },
+    "326": {
+      "source_native_key": "326",
+      "source_brep_sha256": "a13cb0dd897f47f4b41fbd400612fb43c845a7bba2fda937521a799ea35c3de3",
+      "appearance_role": "metal"
+    },
+    "327": {
+      "source_native_key": "327",
+      "source_brep_sha256": "49ad6a7907e7542a6aebb609dd58b136aee12429e8c2331c230de3fa8402f568",
+      "appearance_role": "metal"
+    },
+    "328": {
+      "source_native_key": "328",
+      "source_brep_sha256": "635ec281f15ccb1900490807c1160ea068e1fe5bd967b5fd554123a56e1e30f0",
+      "appearance_role": "metal"
+    },
+    "329": {
+      "source_native_key": "329",
+      "source_brep_sha256": "9d20645e1c65527a393712250f23add36dc629b6223a67e2e46df560ad487a55",
+      "appearance_role": "metal"
+    },
+    "330": {
+      "source_native_key": "330",
+      "source_brep_sha256": "ae2ff3197607dc9a9976edf79219a66f50b0e8b3bbe316a14dd5be70de9cf7b9",
+      "appearance_role": "metal"
+    },
+    "331": {
+      "source_native_key": "331",
+      "source_brep_sha256": "0bc5d46c7869180c30d9735a96ebf81b96ebb01b5ff2d41a48de5db0924c12de",
+      "appearance_role": "metal"
+    },
+    "332": {
+      "source_native_key": "332",
+      "source_brep_sha256": "1be437ae2f3e53dc471b72f7cd7caa1ec0e807a933e01482384f8d3f7be1629c",
+      "appearance_role": "metal"
+    },
+    "333": {
+      "source_native_key": "333",
+      "source_brep_sha256": "9c59155dd2de005b00563a0887419c9da094ace048e09828589e1e9bfe4832c6",
+      "appearance_role": "metal"
+    },
+    "334": {
+      "source_native_key": "334",
+      "source_brep_sha256": "01c1bea9013b33a38627535421e1137d94ec780eed401002b3b496221d19b55d",
+      "appearance_role": "metal"
+    },
+    "335": {
+      "source_native_key": "335",
+      "source_brep_sha256": "07ea80003f022720f78fb735a98462fded5d209c2fa0215f08c2eb48dd7977c7",
+      "appearance_role": "metal"
+    },
+    "336": {
+      "source_native_key": "336",
+      "source_brep_sha256": "115a6d8dfeceae96a1eb91ae3d28a583b28555b294e3825b83d331357360c18c",
+      "appearance_role": "metal"
+    },
+    "337": {
+      "source_native_key": "337",
+      "source_brep_sha256": "5ec9e3ffd3483791b3f9d092c12e104028d4a4c343712ae7d957a930189ba14c",
+      "appearance_role": "metal"
+    },
+    "338": {
+      "source_native_key": "338",
+      "source_brep_sha256": "8be9e860687b2bb990e219e8f13f9f5b3828b243fe0618ef55cd684ea3149d1b",
+      "appearance_role": "rubber"
+    },
+    "339": {
+      "source_native_key": "339",
+      "source_brep_sha256": "62164df3026994a7941adc92e7123f83c33a61beae2b71b618ef8242532ce7c4",
+      "appearance_role": "base"
+    },
+    "340": {
+      "source_native_key": "340",
+      "source_brep_sha256": "692bde5a5628d501b1dc0eb26e8b76eb7368c1275073169e5c3094359bdee024",
+      "appearance_role": "brass"
+    },
+    "341": {
+      "source_native_key": "341",
+      "source_brep_sha256": "a7c3dea00403300535aedaa448f046b626f7bd1922fba365578c7d43a252922a",
+      "appearance_role": "metal"
+    },
+    "342": {
+      "source_native_key": "342",
+      "source_brep_sha256": "940b349b8fc4d1909af634d47d5092c0d81c581c1eeeb0d2a2f146624f26561b",
+      "appearance_role": "metal"
+    },
+    "343": {
+      "source_native_key": "343",
+      "source_brep_sha256": "20f003172b4dca5018b08f23ce3f8e3fb6b76fa5bb9e452364134c215b83ee44",
+      "appearance_role": "metal"
+    },
+    "344": {
+      "source_native_key": "344",
+      "source_brep_sha256": "9e51e7e75f3f96f2c5664884c3677897af62e198e1717dac6f1066c5d0c0caee",
+      "appearance_role": "metal"
+    },
+    "345": {
+      "source_native_key": "345",
+      "source_brep_sha256": "43b04941d488e530219b077c09c159f096573d6a05144cfc4bd3964fe85be063",
+      "appearance_role": "accent"
+    },
+    "346": {
+      "source_native_key": "346",
+      "source_brep_sha256": "9a68e8c2ebfc976f80728df28b310e0156b08fd3a574ec2d1549061a2145e55e",
+      "appearance_role": "motor"
+    },
+    "347": {
+      "source_native_key": "347",
+      "source_brep_sha256": "2a3e98263c375db4e431f84a135fb47b4996916bf4dcf1893a66de8eeb08b163",
+      "appearance_role": "metal"
+    },
+    "348": {
+      "source_native_key": "348",
+      "source_brep_sha256": "8c1454dd4eb8766a0b7a77f20a7b8f9e2648e2588f9394411d0e3c247e61794b",
+      "appearance_role": "metal"
+    },
+    "349": {
+      "source_native_key": "349",
+      "source_brep_sha256": "a8a8045ae4d8808fa9a38e6ef0b346f5130b9d06e3826d3b443ae9ed0b9cf730",
+      "appearance_role": "metal"
+    },
+    "350": {
+      "source_native_key": "350",
+      "source_brep_sha256": "f73e9551f62d15d971952f556d0f688d8006a55badae71694846ea433f8f2a49",
+      "appearance_role": "brass"
+    },
+    "351": {
+      "source_native_key": "351",
+      "source_brep_sha256": "eb17d62e7010fd1ec439f997e5d1a6551f1d686dcb701145b65d2564c844eb6d",
+      "appearance_role": "brass"
+    },
+    "352": {
+      "source_native_key": "352",
+      "source_brep_sha256": "a10aa21296883c8b3c8d07295148103f7092a76cc512eedaa8c8235d8629e3ac",
+      "appearance_role": "brass"
+    },
+    "353": {
+      "source_native_key": "353",
+      "source_brep_sha256": "5dca01916e328eebc8b667d423d0600a582a34b72f4a8881c1144bfa7d39b57c",
+      "appearance_role": "brass"
+    },
+    "354": {
+      "source_native_key": "354",
+      "source_brep_sha256": "897a4c9094f705f8f981e18eb78dc8e1a26f85f0f4ae2ed72224d77e2812fb3e",
+      "appearance_role": "brass"
+    },
+    "355": {
+      "source_native_key": "355",
+      "source_brep_sha256": "e26fb323fa29832c17f529602bbd1c81ff37469bd156dd8b2b831b35ad587f6a",
+      "appearance_role": "brass"
+    },
+    "356": {
+      "source_native_key": "356",
+      "source_brep_sha256": "72aa31d9bb4e5f8887e5e18e7b3ec875de2e62c00e3455142ebe3c29c2c91b0f",
+      "appearance_role": "brass"
+    },
+    "357": {
+      "source_native_key": "357",
+      "source_brep_sha256": "20ccb407d9c14fff72f946551b1fb57ae002124a5cbb7abad56b072b6ad12771",
+      "appearance_role": "brass"
+    },
+    "358": {
+      "source_native_key": "358",
+      "source_brep_sha256": "c399080f59b8b6ce0997dfd78202d8bc2c374c398d148e64eaf8b269f419ef84",
+      "appearance_role": "metal"
+    },
+    "359": {
+      "source_native_key": "359",
+      "source_brep_sha256": "8b93304611ceca1ce6d64ce20359e188c3f90a9f6111e5684f486735b44e6f49",
+      "appearance_role": "metal"
+    },
+    "360": {
+      "source_native_key": "360",
+      "source_brep_sha256": "8ca5a94bec4c965668d51949507683a94220f63d5371cdd2c3a986dfcc86fa95",
+      "appearance_role": "metal"
+    },
+    "361": {
+      "source_native_key": "361",
+      "source_brep_sha256": "4a455edc7f280a47a5f30a6d01339ba6c523ad1f8431a173290a5eb4899bac6b",
+      "appearance_role": "metal"
+    },
+    "362": {
+      "source_native_key": "362",
+      "source_brep_sha256": "7ac5659cc9d888eb14ae3c12f4b4c1d66eeded210dd45142541df063f2e617c0",
+      "appearance_role": "metal"
+    },
+    "363": {
+      "source_native_key": "363",
+      "source_brep_sha256": "df196edbbeef10a99acbd447cf618d9dd23176b0699db2ec2d2173e2cc142c42",
+      "appearance_role": "metal"
+    },
+    "364": {
+      "source_native_key": "364",
+      "source_brep_sha256": "72d4f24d6bb5732830a0ff64b3b74e0858dec18c008be94e4382a1e888194635",
+      "appearance_role": "metal"
+    },
+    "365": {
+      "source_native_key": "365",
+      "source_brep_sha256": "5df1f5ad328f819bc1a8adc2b18098b83dea7c20342b80e7478af102e5918d62",
+      "appearance_role": "accent"
+    },
+    "366": {
+      "source_native_key": "366",
+      "source_brep_sha256": "5da7eb2b05120a0812a60fd7b4c01d80ddd6eed6b84b3bf29932d3fcdffff0b6",
+      "appearance_role": "metal"
+    },
+    "367": {
+      "source_native_key": "367",
+      "source_brep_sha256": "008ce9a61b71ecd7036ec7541657e0f4063412f2ff2aa64a12c00987b7eda348",
+      "appearance_role": "metal"
+    },
+    "368": {
+      "source_native_key": "368",
+      "source_brep_sha256": "660bc74ebc5c65ee2b96bbf379cf3481aa9a27a53048c1e91686d083f21a5b4a",
+      "appearance_role": "metal"
+    },
+    "369": {
+      "source_native_key": "369",
+      "source_brep_sha256": "e084b06f90058f8fc6cea7a4d17a4069b218d68d7d197272617be8b58d1f4e56",
+      "appearance_role": "metal"
+    },
+    "370": {
+      "source_native_key": "370",
+      "source_brep_sha256": "e96e3f244230b270633ba58bdb126db9c16d0c090315bbc72036eb6a1645aa3e",
+      "appearance_role": "metal"
+    },
+    "371": {
+      "source_native_key": "371",
+      "source_brep_sha256": "d94b7703f3a429402773c298a5b7f54f69c04f707b44d21e5f311d40f2fdf961",
+      "appearance_role": "metal"
+    },
+    "372": {
+      "source_native_key": "372",
+      "source_brep_sha256": "c107d67cc03346173d6752ff7728f1c3ec954d299b0e8cb699fb32a9cd5b2aea",
+      "appearance_role": "metal"
+    },
+    "373": {
+      "source_native_key": "373",
+      "source_brep_sha256": "deadcd36f067efc916ec81764c4b9804853218c077f360d45fe10c7b000210c5",
+      "appearance_role": "metal"
+    },
+    "374": {
+      "source_native_key": "374",
+      "source_brep_sha256": "2508f29e6faca2af2daef033a4670bc25d792a7355ed8055e0d762be50658ed7",
+      "appearance_role": "metal"
+    },
+    "375": {
+      "source_native_key": "375",
+      "source_brep_sha256": "346b063dbcb0bc4372f7963f6f93b9a0811351eacedc3d7c569e90abb2084ba7",
+      "appearance_role": "metal"
+    },
+    "376": {
+      "source_native_key": "376",
+      "source_brep_sha256": "d7d7d3e50b2b36dfe0b01f196273c5af70d308eb2ed6fd8fcfd6c0fa90982cf9",
+      "appearance_role": "rubber"
+    },
+    "377": {
+      "source_native_key": "377",
+      "source_brep_sha256": "1d51bc0cd17889e4592793253776180d0add3f3d66ca0d818a7c20d28fe523be",
+      "appearance_role": "base"
+    },
+    "378": {
+      "source_native_key": "378",
+      "source_brep_sha256": "29d2eabad885d127e648a5d779deb302987e838bf27ebbb41ede95977e8b7e51",
+      "appearance_role": "brass"
+    },
+    "379": {
+      "source_native_key": "379",
+      "source_brep_sha256": "0d287756abca1246f1973114ef3574514ffb735c527f2a8396d05275b8586e53",
+      "appearance_role": "brass"
+    },
+    "380": {
+      "source_native_key": "380",
+      "source_brep_sha256": "c0059deb0c23bb862d174606fea4e0fde0189203ebe639ab5fff5ee7c2ef133a",
+      "appearance_role": "brass"
+    },
+    "381": {
+      "source_native_key": "381",
+      "source_brep_sha256": "7138801f341655f5444a85debb5b234ea5db1a85e4f468ee31fccf6e9b28fc83",
+      "appearance_role": "brass"
+    },
+    "382": {
+      "source_native_key": "382",
+      "source_brep_sha256": "ee870bacd65c7d1abed73b4ff6f02e6596f503e91da9786c391b93b31eb4471c",
+      "appearance_role": "brass"
+    },
+    "383": {
+      "source_native_key": "383",
+      "source_brep_sha256": "efe8e5f1032dbb7cc0a68627290105b2227db8e3018b474d843e57f2c7de2410",
+      "appearance_role": "brass"
+    },
+    "384": {
+      "source_native_key": "384",
+      "source_brep_sha256": "54c4bd31cf646f15ca27b041b1a18ed0ffebf9eb7b13f9f9827ecadeab212548",
+      "appearance_role": "brass"
+    },
+    "385": {
+      "source_native_key": "385",
+      "source_brep_sha256": "d305bc32f9b98d69d9c8e519d093a9ffae38e50e8f4014d924fdc17b0b0502d7",
+      "appearance_role": "brass"
+    },
+    "386": {
+      "source_native_key": "386",
+      "source_brep_sha256": "12e2e34d15864b88d611aa9d6ebf16fceb6adf975b01090b1fc1be6439c0e46f",
+      "appearance_role": "brass"
+    },
+    "387": {
+      "source_native_key": "387",
+      "source_brep_sha256": "8ec05c98e59df127222920f8eda967ed6c94da3f74aed235726d4dcd67debd29",
+      "appearance_role": "metal"
+    },
+    "388": {
+      "source_native_key": "388",
+      "source_brep_sha256": "0c1cf23cc9d6971138d018c753839454d0d6e4ca434a48ceab78d4dafb1045df",
+      "appearance_role": "metal"
+    },
+    "389": {
+      "source_native_key": "389",
+      "source_brep_sha256": "c6785ef6fe9b8b8fdc4be2dedcc45cb586724b562f570b6f6b1ba9622c5e8590",
+      "appearance_role": "metal"
+    },
+    "390": {
+      "source_native_key": "390",
+      "source_brep_sha256": "314b854e7fce198d7a98cf9a93da25d308891375450f9a589681cfcf7745af52",
+      "appearance_role": "metal"
+    },
+    "391": {
+      "source_native_key": "391",
+      "source_brep_sha256": "6a6671f9dd910dfed7cd045a15c36216143d884e0e8b8dc46ff512cba55717dc",
+      "appearance_role": "metal"
+    },
+    "392": {
+      "source_native_key": "392",
+      "source_brep_sha256": "7c929c44f6335cdce864764b3a17f89e3648908cafb8cd84826c160a57e931cc",
+      "appearance_role": "metal"
+    },
+    "393": {
+      "source_native_key": "393",
+      "source_brep_sha256": "3cd3b30436e0c79c12c3d719bad655578d205496cedaa8cec4bf9906fe522468",
+      "appearance_role": "metal"
+    },
+    "394": {
+      "source_native_key": "394",
+      "source_brep_sha256": "e2083fa447d77319316f647e8945fbdae8d06d71f88b8b377dced65b8164b1f7",
+      "appearance_role": "metal"
+    },
+    "395": {
+      "source_native_key": "395",
+      "source_brep_sha256": "1b4e20698066deade01aeac22b6fa74e9691758cfbedfa64daa9f3656064a23f",
+      "appearance_role": "metal"
+    },
+    "396": {
+      "source_native_key": "396",
+      "source_brep_sha256": "59d5a37071116b2608699f07bb09f023f77cfa9c4180df73ea36214296c338f3",
+      "appearance_role": "metal"
+    },
+    "397": {
+      "source_native_key": "397",
+      "source_brep_sha256": "b25ec5fbdc9de30da73f3f177efe86207685614affc50c55c51d8d0f8a374e3f",
+      "appearance_role": "metal"
+    },
+    "398": {
+      "source_native_key": "398",
+      "source_brep_sha256": "d80ed98c010b5419f78d41208ad1bafa32399f1bff846781fcc2eaa7a39e2ead",
+      "appearance_role": "accent"
+    },
+    "399": {
+      "source_native_key": "399",
+      "source_brep_sha256": "9651ad78159c5ffab64d53c8aebdf22fbd2e0102f127d6cfae0247ef6816e456",
+      "appearance_role": "motor"
+    },
+    "400": {
+      "source_native_key": "400",
+      "source_brep_sha256": "8d89b3c195f69c433baffb5e2d6da71d85d45f62fb3b86ba88e90e4db365f80a",
+      "appearance_role": "metal"
+    },
+    "401": {
+      "source_native_key": "401",
+      "source_brep_sha256": "8ee72a416e67c19bc9ee64c156e10f5df0c4332b78c05bad16fbec73be111f8f",
+      "appearance_role": "metal"
+    },
+    "402": {
+      "source_native_key": "402",
+      "source_brep_sha256": "422ac28c4405692f7d321e42c043a517fcdc811a8fcea9ceb36c7cc786f0c958",
+      "appearance_role": "metal"
+    },
+    "403": {
+      "source_native_key": "403",
+      "source_brep_sha256": "92b612aa7c60b993de75abc656a7c24e52c0db6cecf6a248a6cfd5926c81f271",
+      "appearance_role": "accent"
+    },
+    "404": {
+      "source_native_key": "404",
+      "source_brep_sha256": "67aa6f0878af783afa66763e078b666a3281b7c61d4ae3a2b635009326a327fe",
+      "appearance_role": "metal"
+    },
+    "405": {
+      "source_native_key": "405",
+      "source_brep_sha256": "4cb993e1fd77182ce6cb8556c248747cc43c85ea0051603b2dda8390f1f269e0",
+      "appearance_role": "metal"
+    },
+    "406": {
+      "source_native_key": "406",
+      "source_brep_sha256": "098956d44a1558b8a15129322c215a97aba7b9baebe0bcaa2c6cd3070eb4b6dc",
+      "appearance_role": "metal"
+    },
+    "407": {
+      "source_native_key": "407",
+      "source_brep_sha256": "8c910be8d52ba6cde582758678e1728a68cf769ee00c2d6922ecf5989543ed74",
+      "appearance_role": "metal"
+    },
+    "408": {
+      "source_native_key": "408",
+      "source_brep_sha256": "2e9ddd0642fa4dba1401802a8afa7893723972ba3bcd64face1c0c19bd1e3852",
+      "appearance_role": "metal"
+    },
+    "409": {
+      "source_native_key": "409",
+      "source_brep_sha256": "540c1248072938d680dde0f49d2aac4fd3c91817c74fefe72662631a0f243994",
+      "appearance_role": "metal"
+    },
+    "410": {
+      "source_native_key": "410",
+      "source_brep_sha256": "8e4e68690c76ec0f3944254e745b9377e97451508f45ccc2dbdd61922fd41c29",
+      "appearance_role": "metal"
+    },
+    "411": {
+      "source_native_key": "411",
+      "source_brep_sha256": "baa67fffa29f97649ea4a2bde859f555cf958ba2243d53d192f120d71e78f00e",
+      "appearance_role": "metal"
+    },
+    "412": {
+      "source_native_key": "412",
+      "source_brep_sha256": "16c17c7211333d4f61dac83c3641f34b91c303db6e337782f7016caebd7748fd",
+      "appearance_role": "metal"
+    },
+    "413": {
+      "source_native_key": "413",
+      "source_brep_sha256": "c275d929c262400f8ef4ce95a491b7e0f92529b78301027c14cc79bddcb32dd8",
+      "appearance_role": "metal"
+    },
+    "414": {
+      "source_native_key": "414",
+      "source_brep_sha256": "7528e4010e3fe0bc0ef67f14ed6a2ccef64b45de3e9ad970bb5248601077947c",
+      "appearance_role": "rubber"
+    },
+    "415": {
+      "source_native_key": "415",
+      "source_brep_sha256": "12fdddc2de47ab5c8a7bcfc8c82021934b0c2e4e56636581319253465ffcc386",
+      "appearance_role": "base"
+    },
+    "416": {
+      "source_native_key": "416",
+      "source_brep_sha256": "717e5b8d85cd3db4e75682481fb868f3d9246ce17fca74c29dca3fce036531be",
+      "appearance_role": "brass"
+    },
+    "417": {
+      "source_native_key": "417",
+      "source_brep_sha256": "03ada6562a8024cc5b437f144c11404866b21f2c26093fbea38f447a0ec6c1a8",
+      "appearance_role": "brass"
+    },
+    "418": {
+      "source_native_key": "418",
+      "source_brep_sha256": "c121a0a2c038f5b84f7c8c942f65c2c1243857843bdcb99833cd5c6d3f530975",
+      "appearance_role": "brass"
+    },
+    "419": {
+      "source_native_key": "419",
+      "source_brep_sha256": "0c7e9d3ce1475eb3b9d6412d2e889e0f58f40cde498696b9554207fb2c327ee1",
+      "appearance_role": "brass"
+    },
+    "420": {
+      "source_native_key": "420",
+      "source_brep_sha256": "047b78e44e55d59117246b8bf7a1e0e2e66f1f6986232923870a6ed0013930e0",
+      "appearance_role": "brass"
+    },
+    "421": {
+      "source_native_key": "421",
+      "source_brep_sha256": "546b78e1186e144a79b5e7c64b2cd080fde25c9dcac772c05e9fe9b4b6346b9b",
+      "appearance_role": "brass"
+    },
+    "422": {
+      "source_native_key": "422",
+      "source_brep_sha256": "234c6f8a45c223bf13e45d1ae78b6224119f7b59ec391be655042b90b2fd5a24",
+      "appearance_role": "brass"
+    },
+    "423": {
+      "source_native_key": "423",
+      "source_brep_sha256": "3d3dfe13cfce08bcb8d42789caa1ffd16378b175a3e8f126d8620941563ab3b1",
+      "appearance_role": "brass"
+    },
+    "424": {
+      "source_native_key": "424",
+      "source_brep_sha256": "56755c4cafcce59e3b7a3602b9a2962471696702d41714ec292f06b2e3604535",
+      "appearance_role": "brass"
+    },
+    "425": {
+      "source_native_key": "425",
+      "source_brep_sha256": "746a5de34d80c2432e2d745966251638e9545cced5323aff78af6f08d2e163df",
+      "appearance_role": "metal"
+    },
+    "426": {
+      "source_native_key": "426",
+      "source_brep_sha256": "069b767f717657187e749911afcd177b39e5ea63c1524cdf3b73ff7b59aa0b79",
+      "appearance_role": "metal"
+    },
+    "427": {
+      "source_native_key": "427",
+      "source_brep_sha256": "d58632a4462ecd0ff1493274d38297f827933001c3470bf3b2220b994800a772",
+      "appearance_role": "metal"
+    },
+    "428": {
+      "source_native_key": "428",
+      "source_brep_sha256": "e2e2a89c68c93ea76c4a979d05093cbff1c28de6c848ab53906aa1e245eec878",
+      "appearance_role": "metal"
+    },
+    "429": {
+      "source_native_key": "429",
+      "source_brep_sha256": "037ced3e2351e46ddf5e1bc87dcbd5f3c2ae8094d14863afd3dc352f3628c6d3",
+      "appearance_role": "metal"
+    },
+    "430": {
+      "source_native_key": "430",
+      "source_brep_sha256": "f9bee7f278e6b3de956676b426e63b993b68868c76955dab5e1dd7ea03ef98a9",
+      "appearance_role": "metal"
+    },
+    "431": {
+      "source_native_key": "431",
+      "source_brep_sha256": "355e1c087e18fcd7a4de2ac8991dce23e3c8b11b7c739160fff48d06e80a51bb",
+      "appearance_role": "metal"
+    },
+    "432": {
+      "source_native_key": "432",
+      "source_brep_sha256": "7df21fa664d972cc8be62ef1975e233e47007a0a7ae3350ddb87bceef58ce26a",
+      "appearance_role": "metal"
+    },
+    "433": {
+      "source_native_key": "433",
+      "source_brep_sha256": "5772635ad3832a8b6bc26531f4f0014605fa87af418f00b14d5e0108e11c0487",
+      "appearance_role": "metal"
+    },
+    "434": {
+      "source_native_key": "434",
+      "source_brep_sha256": "f47f135d2e1cfa21e2d878fc877ee1e1a22504d26b2867a65ead6b1eb197458b",
+      "appearance_role": "metal"
+    },
+    "435": {
+      "source_native_key": "435",
+      "source_brep_sha256": "54f842b50e9654f90c21425780f88d70a7cffa06c9a42c2e2b4b3ed08ee42563",
+      "appearance_role": "metal"
+    },
+    "436": {
+      "source_native_key": "436",
+      "source_brep_sha256": "cfb85197410a7b6eecbb25ad4b16ba7ea8f03d72d69552c73f9dba5f292f8d87",
+      "appearance_role": "accent"
+    },
+    "437": {
+      "source_native_key": "437",
+      "source_brep_sha256": "7df71eb3ea4fb91342a7235f5a10565f434ec3a3b13eaa50843d7a0c408e5189",
+      "appearance_role": "motor"
+    },
+    "438": {
+      "source_native_key": "438",
+      "source_brep_sha256": "4db767400d62f75faab1a0cb0a35274b276f2e0c55db537d68680c2582a8a0f0",
+      "appearance_role": "metal"
+    },
+    "439": {
+      "source_native_key": "439",
+      "source_brep_sha256": "c0068435751ad3270ad364c88076fc77404eacdd502ae36775faaa5fe33de5de",
+      "appearance_role": "metal"
+    },
+    "440": {
+      "source_native_key": "440",
+      "source_brep_sha256": "76271ce5b8e22bab472d6497cc7f8cc97608025d295807f19bb08eb6bfcc791e",
+      "appearance_role": "metal"
+    },
+    "441": {
+      "source_native_key": "441",
+      "source_brep_sha256": "9105fd5dccf35ef4fec1315d7cfaf00465ff1ae48251e6a85c2d2c01a57485bb",
+      "appearance_role": "accent"
+    },
+    "442": {
+      "source_native_key": "442",
+      "source_brep_sha256": "5ff7d5d67637e0acc5e5d7a611902800bac584900e7f8d975e04e92383a91d83",
+      "appearance_role": "metal"
+    },
+    "443": {
+      "source_native_key": "443",
+      "source_brep_sha256": "86e65f3ceb33770925fec5660dfea25abf008f6d5ff5a9d79c9a3a5f9ffca418",
+      "appearance_role": "metal"
+    },
+    "444": {
+      "source_native_key": "444",
+      "source_brep_sha256": "092d9db3f07529d69c6401b38dc0bc201f7d7d71cc07441c62cfb0de543b55b0",
+      "appearance_role": "metal"
+    },
+    "445": {
+      "source_native_key": "445",
+      "source_brep_sha256": "d75505f7ddd9854bd59b287cde8f740f43782e151b525f061b8abdc447a9987c",
+      "appearance_role": "metal"
+    },
+    "446": {
+      "source_native_key": "446",
+      "source_brep_sha256": "1f487e3ad276955df42fa75a3e0f48a7fbcb46ac00813cce32a6cb4f43d7740a",
+      "appearance_role": "metal"
+    },
+    "447": {
+      "source_native_key": "447",
+      "source_brep_sha256": "539a0e2ca7d69e4072c26eb1699e95d55325a02af8f26527a156c8df99e65fb4",
+      "appearance_role": "metal"
+    },
+    "448": {
+      "source_native_key": "448",
+      "source_brep_sha256": "689b065a2fb7ade2f60b63af3e85541b6f966a68906f948626490df2b73d5489",
+      "appearance_role": "metal"
+    },
+    "449": {
+      "source_native_key": "449",
+      "source_brep_sha256": "1a066638e6e68a27b59a37ed10e1f486add84a3c03d109143680c8008636dbeb",
+      "appearance_role": "metal"
+    },
+    "450": {
+      "source_native_key": "450",
+      "source_brep_sha256": "bc0cb94a0872b69cf23db19d739190f5699714a1d9b68af027087e80735db0d9",
+      "appearance_role": "metal"
+    },
+    "451": {
+      "source_native_key": "451",
+      "source_brep_sha256": "bb4efb5bbe48e7c98c12d54c3e1162ca7895a7d77e31e90d22e48a1fffcda870",
+      "appearance_role": "metal"
+    },
+    "452": {
+      "source_native_key": "452",
+      "source_brep_sha256": "3413099a970457816bfe9a5d96010c751001550fb516df17e8aa706c035aa674",
+      "appearance_role": "rubber"
+    },
+    "453": {
+      "source_native_key": "453",
+      "source_brep_sha256": "2f1828396af5a763f65cf29060376febd952079f60d094b01e9127e7133588e6",
+      "appearance_role": "base"
+    },
+    "454": {
+      "source_native_key": "454",
+      "source_brep_sha256": "6a9a219f59ab353207aac495434683cf7e57f89665f1e0948e471d4965f9f39c",
+      "appearance_role": "brass"
+    },
+    "455": {
+      "source_native_key": "455",
+      "source_brep_sha256": "b91d7f71b5068621811b6ea4b330d809a93e4a46496243f10decddea5b0d1904",
+      "appearance_role": "brass"
+    },
+    "456": {
+      "source_native_key": "456",
+      "source_brep_sha256": "803330037fe1bd945d5c141c32dc05e90ff5dc2d63af88fe29fb82b016ec9614",
+      "appearance_role": "brass"
+    },
+    "457": {
+      "source_native_key": "457",
+      "source_brep_sha256": "12b40db73e3eb6b141e2e7ba22bf672e0837261f59fa94d6b54d5d4d712063fd",
+      "appearance_role": "brass"
+    },
+    "458": {
+      "source_native_key": "458",
+      "source_brep_sha256": "5a07af63e795d7a691892523dd46c8fd28d5779c7c512600c0a049f08d60929b",
+      "appearance_role": "brass"
+    },
+    "459": {
+      "source_native_key": "459",
+      "source_brep_sha256": "3b0f7a8dbd559a96deec6d97319a1113ed37b0019496b1980a329a3ab41dcaad",
+      "appearance_role": "brass"
+    },
+    "460": {
+      "source_native_key": "460",
+      "source_brep_sha256": "b5a00fe04c63ad3c4d1a1540fe365a50818997bb97542d4fad7085fa1e435a32",
+      "appearance_role": "brass"
+    },
+    "461": {
+      "source_native_key": "461",
+      "source_brep_sha256": "45a0fcf7cb7a3a6681ed7f2e9b235bd55bdc54cddddf5912180c6adbcc631bab",
+      "appearance_role": "brass"
+    },
+    "462": {
+      "source_native_key": "462",
+      "source_brep_sha256": "1dbe3f407d923e3296c878a0557329724639ebf083e00e2e4c7e1a5f872862ef",
+      "appearance_role": "brass"
+    },
+    "463": {
+      "source_native_key": "463",
+      "source_brep_sha256": "5e4b44eb8bf0ee7b8db77d5f57da9510f52d4675de92cf194f7622d64e203d12",
+      "appearance_role": "metal"
+    },
+    "464": {
+      "source_native_key": "464",
+      "source_brep_sha256": "88baf819296e089b99344af9c3b15d8a8a2770075cd40d1b8025dc8e244232cc",
+      "appearance_role": "metal"
+    },
+    "465": {
+      "source_native_key": "465",
+      "source_brep_sha256": "2d4b75f78b7aa6a5f869c957354145343d272aeffaec6f7360ca104dbbeec6f9",
+      "appearance_role": "metal"
+    },
+    "466": {
+      "source_native_key": "466",
+      "source_brep_sha256": "50d74959e727b65a3e575f4aebc8327338056318e1007756354570a5b33660f3",
+      "appearance_role": "metal"
+    },
+    "467": {
+      "source_native_key": "467",
+      "source_brep_sha256": "db88e04924fa4b1fcc9e6317d155a6b3681632089d71b351fafad68ffb2bf0db",
+      "appearance_role": "metal"
+    },
+    "468": {
+      "source_native_key": "468",
+      "source_brep_sha256": "b6b60a614c5290d5f888256a2d03080b127e50ffbecad55abf8763897db7e655",
+      "appearance_role": "metal"
+    },
+    "469": {
+      "source_native_key": "469",
+      "source_brep_sha256": "f2e902cb3a2099b1aec0141e61ce9afa8249ef4983d62ed2976d810ee1002cc4",
+      "appearance_role": "metal"
+    },
+    "470": {
+      "source_native_key": "470",
+      "source_brep_sha256": "9ae45aabcd2a70f3f51828a05e5117f2520d4e3b981559fc333beaf805e97a55",
+      "appearance_role": "metal"
+    },
+    "471": {
+      "source_native_key": "471",
+      "source_brep_sha256": "626455e781254f0c1775049509c524bdd76a1d40fac1a19f600491abfbe47940",
+      "appearance_role": "metal"
+    },
+    "472": {
+      "source_native_key": "472",
+      "source_brep_sha256": "563fffa1e7a27f289dce381641cad2350075d8dc1ce2fbe4a59a9deb6ddf5751",
+      "appearance_role": "metal"
+    },
+    "473": {
+      "source_native_key": "473",
+      "source_brep_sha256": "76217ec2e320306e3b44a505cb5407e758b11a220c6426aff3caee67658b2806",
+      "appearance_role": "metal"
+    },
+    "474": {
+      "source_native_key": "474",
+      "source_brep_sha256": "3b40f195a8eca4d6f4ea39b4af53a4b14611203ee7fe7959964d6235ddfaff9a",
+      "appearance_role": "accent"
+    },
+    "475": {
+      "source_native_key": "475",
+      "source_brep_sha256": "75027465d3cb8c05ee1c2438d17f535690b68d2fe8ac5bd56dd66150056581ad",
+      "appearance_role": "motor"
+    },
+    "476": {
+      "source_native_key": "476",
+      "source_brep_sha256": "91f4d98534a583a0987c964d41df726bf121b13dbf3b5b907b194c006245695b",
+      "appearance_role": "metal"
+    },
+    "477": {
+      "source_native_key": "477",
+      "source_brep_sha256": "181e255ce0eb936a63dfcd973b2d67a6ef39f7ca3563ccf5c363803eea5fe061",
+      "appearance_role": "metal"
+    },
+    "478": {
+      "source_native_key": "478",
+      "source_brep_sha256": "03deb67f41967a8d0e668413566fc77836d1ca0b3806f51502d061e3238b6b4f",
+      "appearance_role": "metal"
+    },
+    "479": {
+      "source_native_key": "479",
+      "source_brep_sha256": "56b7f18cda11a9bf2f15ccc2e14c021d32c7f91f1214a95b4ba8beea8816df0a",
+      "appearance_role": "accent"
+    },
+    "480": {
+      "source_native_key": "480",
+      "source_brep_sha256": "4004c74ceca4965655de95ce37b6aebcca52bdd1261dfc44b38264bd00007d42",
+      "appearance_role": "accent"
+    },
+    "481": {
+      "source_native_key": "481",
+      "source_brep_sha256": "1da59b48f7830a0d4c3da186a035e4ebf6df902c9830b645e4edfe97217649ca",
+      "appearance_role": "base"
+    },
+    "482": {
+      "source_native_key": "482",
+      "source_brep_sha256": "aa3bcca47cce7aa2f4290dd16f5950db01f75077996fa6e6d8b58d45fea450c5",
+      "appearance_role": "accent"
+    },
+    "483": {
+      "source_native_key": "483",
+      "source_brep_sha256": "0977d387cbf094f5717388e1c8eb04c6f7fc78d9de08154aaee39f9fbe1dc8dc",
+      "appearance_role": "base"
+    },
+    "484": {
+      "source_native_key": "484",
+      "source_brep_sha256": "b997838ff941214062a0fdce90fe476a4772541a55ab1ff3365bf090a5bc285f",
+      "appearance_role": "accent"
+    },
+    "485": {
+      "source_native_key": "485",
+      "source_brep_sha256": "c1169f1ec1850a808d1df63c27d6f095f2f7ae12d47e574c9c9cbdbd397df66a",
+      "appearance_role": "base"
+    },
+    "486": {
+      "source_native_key": "486",
+      "source_brep_sha256": "760daa8ad3390751bd2a5ac32db6cf8cde4c35e8d0b16bd84ea8fcc35d959489",
+      "appearance_role": "accent"
+    },
+    "487": {
+      "source_native_key": "487",
+      "source_brep_sha256": "9f4cbe15aa4ae8d33b4b087e32b7166d8df040bfd46b290bc8ec28d8aeda7c6a",
+      "appearance_role": "base"
+    },
+    "488": {
+      "source_native_key": "488",
+      "source_brep_sha256": "1d4abeacbc48e1829e78508a7e3c3764a76e71091cb417eb09e35e5ddde21ffa",
+      "appearance_role": "native"
+    },
+    "489": {
+      "source_native_key": "489",
+      "source_brep_sha256": "84e15b3789b0edb4fe0be4c110acc60ee92e6849cfa31f8ce69b5b4d97eca809",
+      "appearance_role": "native"
+    },
+    "490": {
+      "source_native_key": "490",
+      "source_brep_sha256": "0117641b29e02bb5be63e59730db50c76f8cea2b62cdad225970e9a6feae2f81",
+      "appearance_role": "native"
+    },
+    "491": {
+      "source_native_key": "491",
+      "source_brep_sha256": "d2d6f2a42f617b6ac3ef00b1a560f4ef253d6c7578d3c9dd98c412f3f59874f0",
+      "appearance_role": "metal"
+    },
+    "492": {
+      "source_native_key": "492",
+      "source_brep_sha256": "4cb6b5783f672abeaa2001fec762dc55954ac2df713f5d2fbb9ba724e573b024",
+      "appearance_role": "metal"
+    },
+    "493": {
+      "source_native_key": "493",
+      "source_brep_sha256": "ba9d83ff2b64e59c78cf577929f58d6048ad365feaff2ef0461be76ae8eaf657",
+      "appearance_role": "metal"
+    },
+    "494": {
+      "source_native_key": "494",
+      "source_brep_sha256": "2d43ab09fd80f42b17e16ee555aee0c4b86aec1f25b7dcfcdde3011a6cdba9e4",
+      "appearance_role": "metal"
+    },
+    "495": {
+      "source_native_key": "495",
+      "source_brep_sha256": "72c08a9c035c284d0ce9a12bc379f899e34f9cd7cd9cad4dbf60d36bdcf98b13",
+      "appearance_role": "metal"
+    },
+    "496": {
+      "source_native_key": "496",
+      "source_brep_sha256": "fc19b3a03a0ef7850fb806193da96909e985320dc812edc9dedf6b6da5c51663",
+      "appearance_role": "metal"
+    },
+    "497": {
+      "source_native_key": "497",
+      "source_brep_sha256": "efe91710a62cb82deea4aa620eb9a1e1870e68fe2422d7e2736db601edb77b4b",
+      "appearance_role": "metal"
+    },
+    "498": {
+      "source_native_key": "498",
+      "source_brep_sha256": "0cf1217989d62f93d9527a05ce94a4124c61eb6e746f2b7f9062219b349a25a1",
+      "appearance_role": "metal"
+    },
+    "499": {
+      "source_native_key": "499",
+      "source_brep_sha256": "5de94c92465b37c63345257147253d90d0fc15639226a86c9a4167967ba1607a",
+      "appearance_role": "metal"
+    },
+    "500": {
+      "source_native_key": "500",
+      "source_brep_sha256": "560f5a20e34366b224e07553de70be376597a7dc4307c8e8d2336c5ecd01dc8f",
+      "appearance_role": "metal"
+    },
+    "501": {
+      "source_native_key": "501",
+      "source_brep_sha256": "8fd353683f6ffdeac5b53670ebd378343478ef71b70e55e0d69df48d17db5f4e",
+      "appearance_role": "base"
+    },
+    "502": {
+      "source_native_key": "502",
+      "source_brep_sha256": "2cb946d29a9502ccc2f70d6702d71b4c6ebe72666bed03a3d300901733380158",
+      "appearance_role": "metal"
+    },
+    "503": {
+      "source_native_key": "503",
+      "source_brep_sha256": "46d1f2f4f32ea47e7aab4759e8e2caa0af68992567b3de7d72b89372b1dca780",
+      "appearance_role": "metal"
+    },
+    "504": {
+      "source_native_key": "504",
+      "source_brep_sha256": "d6f39194e125f0b28dbb63454b1823f815c03ed302ff6281e1805be994b3b8ad",
+      "appearance_role": "accent"
+    },
+    "505": {
+      "source_native_key": "505",
+      "source_brep_sha256": "824a94af70cf59d355373d27039cbe599d2bad3451ce7cc4713c0db0a44bf8dd",
+      "appearance_role": "metal"
+    },
+    "506": {
+      "source_native_key": "506",
+      "source_brep_sha256": "491cfeefa1036629c95aad2e41f9c7d384593569bdd991094e847bcf6ea7f9b3",
+      "appearance_role": "metal"
+    },
+    "507": {
+      "source_native_key": "507",
+      "source_brep_sha256": "5795d2b73ec25d18d652452ab11143698f26ba23ab7847ed749db5ab6402530e",
+      "appearance_role": "metal"
+    },
+    "508": {
+      "source_native_key": "508",
+      "source_brep_sha256": "5c01dcfe1cf2bedc85c6e6a78112b7f8aae1ac5d6a445f10452cac1f64153f32",
+      "appearance_role": "metal"
+    },
+    "509": {
+      "source_native_key": "509",
+      "source_brep_sha256": "e469c80c42f3e5a0a69d5320a440a05b458df743d4dc5a9068a22660598c7268",
+      "appearance_role": "brass"
+    },
+    "510": {
+      "source_native_key": "510",
+      "source_brep_sha256": "ea6ec89726eb15179862d19fcc9e0dcf28aca47eb8f473c46c0e110236b7cf93",
+      "appearance_role": "accent"
+    },
+    "511": {
+      "source_native_key": "511",
+      "source_brep_sha256": "f2cbcda075fe3c09b96f9d874fc4727ab5a3e2a9950416f695d0021220ade2c9",
+      "appearance_role": "metal"
+    },
+    "512": {
+      "source_native_key": "512",
+      "source_brep_sha256": "8d8640a87a1bd4d4a61621bbe47aa5554f6ebcc989222b054b057e5c2c4706a1",
+      "appearance_role": "metal"
+    },
+    "513": {
+      "source_native_key": "513",
+      "source_brep_sha256": "4d6bb03d71c90b6fd2c495bcdbda37bb0652c136e8c13223eff19b9a73f4ae52",
+      "appearance_role": "base"
+    },
+    "514": {
+      "source_native_key": "514",
+      "source_brep_sha256": "dc58332b000a66df019078431380e98927fd361827cdbdf64ee00810871ff250",
+      "appearance_role": "base"
+    },
+    "515": {
+      "source_native_key": "515",
+      "source_brep_sha256": "735cf4e19047210abb7fb6a62d403a9afcfa275c884e90882e9406a8ac790903",
+      "appearance_role": "metal"
+    },
+    "516": {
+      "source_native_key": "516",
+      "source_brep_sha256": "1e010b0b5402f7afa7971406267dfeb39fc34ac119b086eec86750c2569b8365",
+      "appearance_role": "metal"
+    },
+    "517": {
+      "source_native_key": "517",
+      "source_brep_sha256": "45e76415b49d72ea41def1bf02e03ac41de3d14208bd617a5141d6a41d37ab22",
+      "appearance_role": "metal"
+    },
+    "518": {
+      "source_native_key": "518",
+      "source_brep_sha256": "ccea839995c123d8e5ee9eace3f11a66aa28a48a166bd5701b9db2fea277196b",
+      "appearance_role": "metal"
+    },
+    "519": {
+      "source_native_key": "519",
+      "source_brep_sha256": "8b1acd4b3ec48bcef4c5b9e5ac71911ac59e12ad3e2d407e5c10ebaac9d7cdb0",
+      "appearance_role": "metal"
+    },
+    "520": {
+      "source_native_key": "520",
+      "source_brep_sha256": "63a6864ad9f818a43a46ffd70a665fdf75aa6decbb7de9f46490daac6419e9c1",
+      "appearance_role": "brass"
+    },
+    "521": {
+      "source_native_key": "521",
+      "source_brep_sha256": "b0e2144b71936214b711e2f94ce69085762c5477b28e7c75d9fb712c97f9ea9d",
+      "appearance_role": "accent"
+    },
+    "522": {
+      "source_native_key": "522",
+      "source_brep_sha256": "2f8fc3e61c6532f7fc50be11f9e671b58bb1aebc3cde6dfb0b99317fb9ff1690",
+      "appearance_role": "metal"
+    },
+    "523": {
+      "source_native_key": "523",
+      "source_brep_sha256": "6ca5ae11f9e3cb51f28014c5b2feb6ea136d4cbb614e68fcdfed317183de6c22",
+      "appearance_role": "accent"
+    },
+    "524": {
+      "source_native_key": "524",
+      "source_brep_sha256": "54c38542a48c5fba96f00fa2dd955d1f0c549e005a5f841797d70cd010977c90",
+      "appearance_role": "metal"
+    },
+    "525": {
+      "source_native_key": "525",
+      "source_brep_sha256": "d5542e029fbef070e45cb07653d686d30460926acde10b1f133f13f7a215807e",
+      "appearance_role": "metal"
+    },
+    "526": {
+      "source_native_key": "526",
+      "source_brep_sha256": "7d553f5d2a89d3dfcc68ad20f4b97a0cbda0fc94aa3d0e45df7f72967726d1a2",
+      "appearance_role": "base"
+    },
+    "527": {
+      "source_native_key": "527",
+      "source_brep_sha256": "c0756d05edf853562f5e7d1c48945e45b553770190c27e24782ecd632f55956c",
+      "appearance_role": "base"
+    },
+    "528": {
+      "source_native_key": "528",
+      "source_brep_sha256": "f68a1f07096fdaf5fde301cacd83d8ed64b29d663dec76c40b5ec7967495fc30",
+      "appearance_role": "metal"
+    },
+    "529": {
+      "source_native_key": "529",
+      "source_brep_sha256": "5a485170ecc61c4a803268188cde3218a0f9d7010c368b69b91beed43a090b43",
+      "appearance_role": "metal"
+    },
+    "530": {
+      "source_native_key": "530",
+      "source_brep_sha256": "def441dbcf99c25a01957dcb1d08e80afc0a9f329411c629ae92851d2219931c",
+      "appearance_role": "metal"
+    },
+    "531": {
+      "source_native_key": "531",
+      "source_brep_sha256": "615528f60830040a475047fd2258ad9540881f882d520662bd93e73cfe36d7e3",
+      "appearance_role": "metal"
+    },
+    "532": {
+      "source_native_key": "532",
+      "source_brep_sha256": "f5ee48f4436e1cbcc6cf0d587d2187af2957c0154f7b70292bf1c102093414dc",
+      "appearance_role": "metal"
+    },
+    "533": {
+      "source_native_key": "533",
+      "source_brep_sha256": "353afcd6e0af800d95357a46f334cc4ee081f86a346fd8680c271f482b3e549d",
+      "appearance_role": "metal"
+    },
+    "534": {
+      "source_native_key": "534",
+      "source_brep_sha256": "ffedbf549d27c2801ce37c758c074283d74bb8cc9a33ef556589dadcf873dc6a",
+      "appearance_role": "accent"
+    },
+    "535": {
+      "source_native_key": "535",
+      "source_brep_sha256": "48bb5599af1917fd4d03a0a0ac56d61d979d12289e3f92de960454d18986480e",
+      "appearance_role": "motor"
+    },
+    "536": {
+      "source_native_key": "536",
+      "source_brep_sha256": "cb6b67f63a777adc93814199d6cdfce58b8b5839aa00bd1f79d85f98800edb15",
+      "appearance_role": "metal"
+    },
+    "537": {
+      "source_native_key": "537",
+      "source_brep_sha256": "5990b70c44d2308a64d7a44416838c38798fc56483e10374285f6fe23786a265",
+      "appearance_role": "metal"
+    },
+    "538": {
+      "source_native_key": "538",
+      "source_brep_sha256": "b1c91094e29193702a4442887e286bf44a27f9fe33c28ea8a1b744a1603c6e05",
+      "appearance_role": "accent"
+    },
+    "539": {
+      "source_native_key": "539",
+      "source_brep_sha256": "212d4fc1c50c9ea3f92d33b5a5f9aecb036afef82da407eba0633ce20a3484f9",
+      "appearance_role": "base"
+    },
+    "540": {
+      "source_native_key": "540",
+      "source_brep_sha256": "3ee320d32ae14ed86a8ea9d71eb0bb520fb024e08f25470faf60c4967efc0f1b",
+      "appearance_role": "metal"
+    },
+    "541": {
+      "source_native_key": "541",
+      "source_brep_sha256": "c5aa839c0762cce59dc354d86e935d085599fa7c8db69f45cf28a25e30b850df",
+      "appearance_role": "metal"
+    },
+    "542": {
+      "source_native_key": "542",
+      "source_brep_sha256": "d3700071e4b12c5beeda3baec4fcf377a07217f2457de9550b281b7f45cfa649",
+      "appearance_role": "metal"
+    },
+    "543": {
+      "source_native_key": "543",
+      "source_brep_sha256": "190e23f768238fc3b1a9b867da8f184295a8497422518667f2b33893380a9ee5",
+      "appearance_role": "metal"
+    },
+    "544": {
+      "source_native_key": "544",
+      "source_brep_sha256": "181c834a217204327ee09f2c5c363a6484af77aef98e1a97db9ae0bd0aebf69e",
+      "appearance_role": "metal"
+    },
+    "545": {
+      "source_native_key": "545",
+      "source_brep_sha256": "7adf18aee89965aef256e7fd74fb423c02d5720ba33442dbf775722e36eadc15",
+      "appearance_role": "metal"
+    },
+    "546": {
+      "source_native_key": "546",
+      "source_brep_sha256": "8d40f92fd02f8a99457a64f0956c4a229b09c66f6db8ae0bf7a0b34e1be72391",
+      "appearance_role": "metal"
+    },
+    "547": {
+      "source_native_key": "547",
+      "source_brep_sha256": "1054e588d366fea8c095409c776e578ae1f1fabe2520bb1a22ffbd04bc645b37",
+      "appearance_role": "metal"
+    },
+    "548": {
+      "source_native_key": "548",
+      "source_brep_sha256": "ac5ed3e9b1bdfcbd877312ddae54c3f8bfa875d6f7fad9a48f8c87533e7d55e1",
+      "appearance_role": "metal"
+    },
+    "549": {
+      "source_native_key": "549",
+      "source_brep_sha256": "a0af531603ff388fb094f3938a83d1150b1e61b8c70b69533dd6fe339c086da4",
+      "appearance_role": "metal"
+    },
+    "550": {
+      "source_native_key": "550",
+      "source_brep_sha256": "96704346cf79656ad6858f670849089d34db7e46d6c931ff65281b36bcd20ef2",
+      "appearance_role": "metal"
+    },
+    "551": {
+      "source_native_key": "551",
+      "source_brep_sha256": "90c67dfc12fe28f0a6b56280782912e59699d19deb8054608823551cd4ebb951",
+      "appearance_role": "metal"
+    },
+    "552": {
+      "source_native_key": "552",
+      "source_brep_sha256": "539b46b8b977d5680d604ee8959a38ec65c1fc904f95cd010c0d9c72e660375a",
+      "appearance_role": "metal"
+    },
+    "553": {
+      "source_native_key": "553",
+      "source_brep_sha256": "9ddca0d73709c7cbbb66a56bfbe9bd679c2fcadf8142e9210a17ef0503973a1e",
+      "appearance_role": "metal"
+    },
+    "554": {
+      "source_native_key": "554",
+      "source_brep_sha256": "fb8a18dc7b0a953871910427e0e58017f0f3648c2ef9f2f8dbcc1e3907e832d4",
+      "appearance_role": "metal"
+    },
+    "555": {
+      "source_native_key": "555",
+      "source_brep_sha256": "07faad232d7a6cace8619307316f0458cf16ad64bd2bd14bccd56fa821914430",
+      "appearance_role": "metal"
+    },
+    "556": {
+      "source_native_key": "556",
+      "source_brep_sha256": "4832f95cabe2f4d6a283ffe52baacf1274005290a3136e526b85f3b94b2085ca",
+      "appearance_role": "metal"
+    },
+    "557": {
+      "source_native_key": "557",
+      "source_brep_sha256": "eebd77d47428017a12e690c06c160464f4e5bee6629cbfe1e91f51e1552adee1",
+      "appearance_role": "metal"
+    },
+    "558": {
+      "source_native_key": "558",
+      "source_brep_sha256": "777be0e828e6e8b840e5d6e806fc5fc1ace0bbb96340fca311769dac36e04291",
+      "appearance_role": "accent"
+    },
+    "559": {
+      "source_native_key": "559",
+      "source_brep_sha256": "232b1227e7d01279ac2e4288d5418617d3d24335e64c7752767821e77ee744da",
+      "appearance_role": "brass"
+    },
+    "560": {
+      "source_native_key": "560",
+      "source_brep_sha256": "e4a4849566a0d532f906f595ec879e90f58157e6c1e8fca6ecac082f06fc84a8",
+      "appearance_role": "brass"
+    },
+    "561": {
+      "source_native_key": "561",
+      "source_brep_sha256": "90066fbc658438501614f8f2a4df0d5012e696a4c1690842dd493533fa19d192",
+      "appearance_role": "metal"
+    },
+    "562": {
+      "source_native_key": "562",
+      "source_brep_sha256": "2e6e33d4fd278f05dfb8f8d8657f21c45dde6d2fdb1690c9ee8781e8336bfee1",
+      "appearance_role": "metal"
+    },
+    "563": {
+      "source_native_key": "563",
+      "source_brep_sha256": "eb550e1b676956f8456d19683263c6bab79b4048909d1905447ee235f32c1722",
+      "appearance_role": "metal"
+    },
+    "564": {
+      "source_native_key": "564",
+      "source_brep_sha256": "96c1d2108622af30d08128f84430bc87dc727f8904a69d83f35c7a44d01012e5",
+      "appearance_role": "metal"
+    },
+    "565": {
+      "source_native_key": "565",
+      "source_brep_sha256": "0a15c2c158bf9b929c3b143bb86d70bbc359a962528716446502c49177a40c07",
+      "appearance_role": "metal"
+    },
+    "566": {
+      "source_native_key": "566",
+      "source_brep_sha256": "e80e1085d49b0662a0aa079082b565f494d7692b543d56dacd9b383e4cc87e65",
+      "appearance_role": "metal"
+    },
+    "567": {
+      "source_native_key": "567",
+      "source_brep_sha256": "ff499f563ba352195b09fef09a083dddf7c6f659a6c28b1e23f0b1a42e979e68",
+      "appearance_role": "metal"
+    },
+    "568": {
+      "source_native_key": "568",
+      "source_brep_sha256": "dbeb64a9e26fa0d91b501a22fbf555b8db0d6147fe6a79f8fb02ace6087426ca",
+      "appearance_role": "metal"
+    },
+    "569": {
+      "source_native_key": "569",
+      "source_brep_sha256": "d8fdefeba36c355e16d554f33bff5044ac0a8cf3404153bcf9d8c03985a9357e",
+      "appearance_role": "accent"
+    },
+    "570": {
+      "source_native_key": "570",
+      "source_brep_sha256": "0207e98dddc738426206bcca1e6f3ac404081f4eb97ef38f99a4fb09d6736074",
+      "appearance_role": "motor"
+    },
+    "571": {
+      "source_native_key": "571",
+      "source_brep_sha256": "c5cce85f1fb1cd9135412bce2865eeb308187da206797fb7af50d4f94657015a",
+      "appearance_role": "metal"
+    },
+    "572": {
+      "source_native_key": "572",
+      "source_brep_sha256": "5f9289d1f1fa8b73fbafef24b8feb2d82150b2ab9ce45dd1745d9665cca5d5a6",
+      "appearance_role": "metal"
+    },
+    "573": {
+      "source_native_key": "573",
+      "source_brep_sha256": "3c8632da97b5a6e59b29d65ca82eab7a059de97fb524decddc1db19fa695f0db",
+      "appearance_role": "metal"
+    },
+    "574": {
+      "source_native_key": "574",
+      "source_brep_sha256": "28b4f5a038ca92008418c408ef19fdd4ce57157032abe6c0dee3e927c5efb3f8",
+      "appearance_role": "metal"
+    },
+    "575": {
+      "source_native_key": "575",
+      "source_brep_sha256": "b85a7b22eb52783240cfcfa304411022be0126d437ab6f297bc866bb4b7592d3",
+      "appearance_role": "metal"
+    },
+    "576": {
+      "source_native_key": "576",
+      "source_brep_sha256": "9c9857ab0232ac29eac6427514bef8a9bfb0c568ef6c7586dba1c6d1a83f15fc",
+      "appearance_role": "metal"
+    },
+    "577": {
+      "source_native_key": "577",
+      "source_brep_sha256": "f1545219f5c5c6fa72eeb1e8118fadd5a2f857e1ede096227100c044d841d025",
+      "appearance_role": "metal"
+    },
+    "578": {
+      "source_native_key": "578",
+      "source_brep_sha256": "4c07570de5a58dfb5942fd7651379cdb339b4b91853950909147ae2f7b63a6de",
+      "appearance_role": "metal"
+    },
+    "579": {
+      "source_native_key": "579",
+      "source_brep_sha256": "a5b9007ef793cdf715c67b9cc5927300832cda3f38202d490659c7a69cf13f14",
+      "appearance_role": "metal"
+    },
+    "580": {
+      "source_native_key": "580",
+      "source_brep_sha256": "24d1f16c6c64883ecac6372842b5d3bf7bfc64ef4fcce33c5c5b1f04f9f68308",
+      "appearance_role": "metal"
+    },
+    "581": {
+      "source_native_key": "581",
+      "source_brep_sha256": "3c051a07ce8ee9da1f119c41f5a3fab0f7b1eb585f935736646489e64bec90dd",
+      "appearance_role": "metal"
+    },
+    "582": {
+      "source_native_key": "582",
+      "source_brep_sha256": "18bce7ac5543ce21ab2060c29fe0ea2d40d053f9f26fa868fa17bc5dd8d4f548",
+      "appearance_role": "metal"
+    },
+    "583": {
+      "source_native_key": "583",
+      "source_brep_sha256": "e514553c3eb89232f034bb827555e8f00e14ea73faad6a28f39d4264b3f77a76",
+      "appearance_role": "metal"
+    },
+    "584": {
+      "source_native_key": "584",
+      "source_brep_sha256": "bb1583413618b6fbfa7744fb7a926a19b20f76a10b750dff0646916e2728bba7",
+      "appearance_role": "metal"
+    },
+    "585": {
+      "source_native_key": "585",
+      "source_brep_sha256": "4204932f8b0acc08ad0660b04f25cc687f755f740245fa1aead7f9ba97976346",
+      "appearance_role": "metal"
+    },
+    "586": {
+      "source_native_key": "586",
+      "source_brep_sha256": "6eba45bdb48c7e5bc3cf04200b58888604deb6cc23153209d030a3e7b86f7888",
+      "appearance_role": "metal"
+    },
+    "587": {
+      "source_native_key": "587",
+      "source_brep_sha256": "bdb89d3de68473d0b8fa52343bd8bc139c2cd422a640bccb55afcba2dd308925",
+      "appearance_role": "metal"
+    },
+    "588": {
+      "source_native_key": "588",
+      "source_brep_sha256": "d2d6cf5025fdcdb121560cb2d5ea6dfdaffd4c657b89502cb3406ac921336125",
+      "appearance_role": "base"
+    },
+    "589": {
+      "source_native_key": "589",
+      "source_brep_sha256": "ddd030565c111313951266cce1d8c387db6be09769476b942cd91d5c9c3efdf3",
+      "appearance_role": "metal"
+    },
+    "590": {
+      "source_native_key": "590",
+      "source_brep_sha256": "624b3a24f366c4ad5bcee485c0c9791a81ccd7ab9e4bbec21026daa1ca781493",
+      "appearance_role": "metal"
+    },
+    "591": {
+      "source_native_key": "591",
+      "source_brep_sha256": "6991588fb4424e2911447be0342f0eb3b69e564871825367e03b0c0b82cbe81b",
+      "appearance_role": "native"
+    },
+    "592": {
+      "source_native_key": "592",
+      "source_brep_sha256": "b619b4d4dae31abc7261a92d02279fca3cdf536a2064701b3bb702db88239dfc",
+      "appearance_role": "native"
+    },
+    "593": {
+      "source_native_key": "593",
+      "source_brep_sha256": "8a85ab305c50a81f6570fbc8d8bed3fd3debb05cfae678fbdf130ec17470960b",
+      "appearance_role": "metal"
+    },
+    "594": {
+      "source_native_key": "594",
+      "source_brep_sha256": "b11b2b355decf6acef9bdd837de70d3686eecf8238c5829cb79b88df2f6537a5",
+      "appearance_role": "brass"
+    },
+    "595": {
+      "source_native_key": "595",
+      "source_brep_sha256": "97be333621d508dd8c3996e9aedaec59d8b142daa07772b8cb5134001a1aaa95",
+      "appearance_role": "metal"
+    },
+    "596": {
+      "source_native_key": "596",
+      "source_brep_sha256": "79f840ad55ea686b1f67534adfa2a3bbc311356e2fe6ad1b69b339f5399fb0ba",
+      "appearance_role": "metal"
+    },
+    "597": {
+      "source_native_key": "597",
+      "source_brep_sha256": "c495f9e24501094c65e37c78e52628e015a6f9afb6400f1f3d508d4e05cd1d10",
+      "appearance_role": "metal"
+    },
+    "598": {
+      "source_native_key": "598",
+      "source_brep_sha256": "7c1b0d1bbc49cc59f7288a1c1a3b80b848c74456a5ba720efac104e63fe8bf6d",
+      "appearance_role": "brass"
+    },
+    "599": {
+      "source_native_key": "599",
+      "source_brep_sha256": "3cfc739f6639a8ca4d2fc8d12d6c7f5a9b7afd03185cb9065aed236e25fd8f21",
+      "appearance_role": "brass"
+    },
+    "600": {
+      "source_native_key": "600",
+      "source_brep_sha256": "cdbfabec5ae1b7111129ba7852c36f302f0c66464c9d51741bfc4d0fc2fb41a5",
+      "appearance_role": "brass"
+    },
+    "601": {
+      "source_native_key": "601",
+      "source_brep_sha256": "0adeea588c2508601003b1431662d56afb8d3c03767910a5a3539d576abff651",
+      "appearance_role": "metal"
+    },
+    "602": {
+      "source_native_key": "602",
+      "source_brep_sha256": "7935130b52d40e2ff0bf044f9eac0a342eaf9ae9842f89dfaa26d6c4c7a91ba5",
+      "appearance_role": "base"
+    },
+    "603": {
+      "source_native_key": "603",
+      "source_brep_sha256": "3cad57b67e87a82a03ccc680202b93b6be6d8bf56531dbed61a2601d1d3fbe66",
+      "appearance_role": "motor"
+    },
+    "604": {
+      "source_native_key": "604",
+      "source_brep_sha256": "969f8a3c2123062f9fd19910b245184f89ecf700c3038154d67639d4c4094cdf",
+      "appearance_role": "base"
+    },
+    "605": {
+      "source_native_key": "605",
+      "source_brep_sha256": "d8beec8c546d83dd65a9a80288c2f2f4972fab3ea4e39a48856a8721b44791f7",
+      "appearance_role": "metal"
+    },
+    "606": {
+      "source_native_key": "606",
+      "source_brep_sha256": "b1f6f6dc1cda0b606109d05e8ef3c7f3cb3797424ca695818997ec14fd8a93d8",
+      "appearance_role": "metal"
+    },
+    "607": {
+      "source_native_key": "607",
+      "source_brep_sha256": "5580f180a0ee393932a8bf98faca24e0160580de7fbea01a84f853cdbebcbeac",
+      "appearance_role": "motor"
+    },
+    "608": {
+      "source_native_key": "608",
+      "source_brep_sha256": "436bd0705378d3b981b0b635a3b8036fe12b08c4bc9f220e3d7de4bc5b817fe5",
+      "appearance_role": "native"
+    },
+    "609": {
+      "source_native_key": "609",
+      "source_brep_sha256": "0dce226257c3f49dcc04ce3939a413ac89d21190af4cf84e35b7d7331fd298db",
+      "appearance_role": "metal"
+    },
+    "610": {
+      "source_native_key": "610",
+      "source_brep_sha256": "f42f4cba4577b4e7b811a3d8546966618f249b88126f491407d404bd9da3343c",
+      "appearance_role": "metal"
+    },
+    "611": {
+      "source_native_key": "611",
+      "source_brep_sha256": "aeb5c154036dd450ef5633bd9d67c5b20062523dad90c703decba9986753dec7",
+      "appearance_role": "metal"
+    },
+    "612": {
+      "source_native_key": "612",
+      "source_brep_sha256": "85df334ae3eb6c8b205f1a31a0813b32b5a0d659bbf6f4058a610dcd86f81894",
+      "appearance_role": "metal"
+    },
+    "613": {
+      "source_native_key": "613",
+      "source_brep_sha256": "5f22ba2b22acf2e1a6246a186e190c6b7c0c8b785ce137ce2d416489be1700dc",
+      "appearance_role": "accent"
+    },
+    "614": {
+      "source_native_key": "614",
+      "source_brep_sha256": "9b40341d87e0c598415d3a682bb71bf6cf49649e5555301b770e2d8027c447c2",
+      "appearance_role": "base"
+    },
+    "615": {
+      "source_native_key": "615",
+      "source_brep_sha256": "802d3fee02bf40d2b34981968bafd6913b2f2c49b7d81dbc562b14635ad63248",
+      "appearance_role": "base"
+    },
+    "616": {
+      "source_native_key": "616",
+      "source_brep_sha256": "ca2ab8151f9449825e6bcaa69c85228e3bd712812654ac7705c6a5010d732c73",
+      "appearance_role": "base"
+    },
+    "617": {
+      "source_native_key": "617",
+      "source_brep_sha256": "5605dba99501c3f0c3bbbf5fccf7e248f4a485cb5218984768d934a882445464",
+      "appearance_role": "base"
+    },
+    "618": {
+      "source_native_key": "618",
+      "source_brep_sha256": "b7553b4f5e2d40fb2cec40daf10e8882850b3da4621edb410f4de74ace32160b",
+      "appearance_role": "base"
+    },
+    "619": {
+      "source_native_key": "619",
+      "source_brep_sha256": "b7bad362faf6b17f5d7ae2fbc2fc196d9c452e446b47f7ab1f87fa54943347cd",
+      "appearance_role": "base"
+    },
+    "620": {
+      "source_native_key": "620",
+      "source_brep_sha256": "421f43980a3e94fa14a80355348b8823b603bc710d740fb49601a71b746951c1",
+      "appearance_role": "base"
+    },
+    "621": {
+      "source_native_key": "621",
+      "source_brep_sha256": "57d6bb2d6ee53fd43ce6fac72fc3e9a24b162af1894325630d4841f38bfaf8ab",
+      "appearance_role": "base"
+    },
+    "622": {
+      "source_native_key": "622",
+      "source_brep_sha256": "184ace4d10fa4dea439703eb4a4e36c186dc1876f6e8272c85cb5bdeb136571f",
+      "appearance_role": "base"
+    },
+    "623": {
+      "source_native_key": "623",
+      "source_brep_sha256": "5c583ca53d0e47385e4dd32b31f1f8577a797a22200507b8e8903a9330080e91",
+      "appearance_role": "metal"
+    },
+    "624": {
+      "source_native_key": "624",
+      "source_brep_sha256": "944b55ce5ad666baca530854b6985f61b88475dccf9f277d9ac1131c84a4766d",
+      "appearance_role": "metal"
+    },
+    "625": {
+      "source_native_key": "625",
+      "source_brep_sha256": "6ad41f8c2c6598555d4c96d8b861a3fbb1fbc7585f3691e9c36f30fc3be137e4",
+      "appearance_role": "metal"
+    },
+    "626": {
+      "source_native_key": "626",
+      "source_brep_sha256": "ab5a61c6979a832f0af9f331c8c24f610ba8094f2ef702460e99d013832ea99f",
+      "appearance_role": "metal"
+    },
+    "627": {
+      "source_native_key": "627",
+      "source_brep_sha256": "531fa71d4e16f18a7dc0882359114a17109c9a54926d747ef466108891a79581",
+      "appearance_role": "metal"
+    },
+    "628": {
+      "source_native_key": "628",
+      "source_brep_sha256": "8f943a62d8e29507e50aa6acc27a7a61d6500809c42744dac7377bfbbce1baf5",
+      "appearance_role": "metal"
+    },
+    "629": {
+      "source_native_key": "629",
+      "source_brep_sha256": "13eb4ea06214f6f627936fd0f9d6e41e099c0758a9dc0d9fc2f97573802e9f56",
+      "appearance_role": "metal"
+    },
+    "630": {
+      "source_native_key": "630",
+      "source_brep_sha256": "46425386a23916725ae9b30f3fc226c1c93f7f5f6850b202edefe2d24768d907",
+      "appearance_role": "accent"
+    },
+    "631": {
+      "source_native_key": "631",
+      "source_brep_sha256": "cfdadbe8dbda0b6de0593583021400aa97e90fc8efa7768b1fb141c9029a1afc",
+      "appearance_role": "accent"
+    },
+    "632": {
+      "source_native_key": "632",
+      "source_brep_sha256": "8b2b6e9112453ea90b37a3f2ecf1bae12ce6052f46f190b62365f74f035d459c",
+      "appearance_role": "metal"
+    },
+    "633": {
+      "source_native_key": "633",
+      "source_brep_sha256": "a6f6664f487102a0cc5f882103d53b89f943b877520ba924383865b738990629",
+      "appearance_role": "metal"
+    },
+    "634": {
+      "source_native_key": "634",
+      "source_brep_sha256": "647fba501eea1a0d964027327fed522f235fce75b2e2a4595d20b65819e18d4d",
+      "appearance_role": "metal"
+    },
+    "635": {
+      "source_native_key": "635",
+      "source_brep_sha256": "3a8db1e76dd16f969782e2d0b8247837ad7a01d63cf798a1b3ca5924d00f961a",
+      "appearance_role": "metal"
+    },
+    "636": {
+      "source_native_key": "636",
+      "source_brep_sha256": "a56182c87c386e3162cefef6dbd080ff1707c198f67443a4f46ca4a36d60f4d5",
+      "appearance_role": "metal"
+    },
+    "637": {
+      "source_native_key": "637",
+      "source_brep_sha256": "111fe14286f8a194d08bde1637be9c6b515ebf9e4feba19bc2372187b20175e8",
+      "appearance_role": "metal"
+    },
+    "638": {
+      "source_native_key": "638",
+      "source_brep_sha256": "03a0cef93d3b576db2e4f5c5722d0d0ec8fa12efe8e58035fc1a63b50ed05cb6",
+      "appearance_role": "metal"
+    },
+    "639": {
+      "source_native_key": "639",
+      "source_brep_sha256": "9f2efaca2adb19ca17c252a6b21a29e27eb5c1c8cf52364e532526e595a0cd9f",
+      "appearance_role": "motor"
+    },
+    "640": {
+      "source_native_key": "640",
+      "source_brep_sha256": "b30f6212df24e1ad0024f2deed8d4a87299fd5d01b92d17740ab29611e233c95",
+      "appearance_role": "motor"
+    },
+    "641": {
+      "source_native_key": "641",
+      "source_brep_sha256": "3ac7971e1b55d963d67bf04f62e83602805dfe02668637cf233cce1d5d25c913",
+      "appearance_role": "motor"
+    },
+    "642": {
+      "source_native_key": "642",
+      "source_brep_sha256": "666511eeaf81b8bf7b3cd8ae19624bf920adc274a51e1d1afc3e5aa256681f06",
+      "appearance_role": "native"
+    },
+    "643": {
+      "source_native_key": "643",
+      "source_brep_sha256": "861e901abbd30cf8b5cf86c932988d82c9b204cc578d1bb0084576559710b98c",
+      "appearance_role": "metal"
+    },
+    "644": {
+      "source_native_key": "644",
+      "source_brep_sha256": "c4ed1b6322fc62175a0da513fcc6a07226b64c577a622d3272b51a938bcf4e77",
+      "appearance_role": "base"
+    },
+    "645": {
+      "source_native_key": "645",
+      "source_brep_sha256": "083051742032ca2302a8f71b5da57446c46b6fe22b692bf7759f213dc1ec5c98",
+      "appearance_role": "brass"
+    },
+    "646": {
+      "source_native_key": "646",
+      "source_brep_sha256": "09eae8984a1295645fda054de372b917e8f3bde25c2988e98f490dfc140efe81",
+      "appearance_role": "brass"
+    },
+    "647": {
+      "source_native_key": "647",
+      "source_brep_sha256": "1cf3c6c34bfd48940d9fbc22c76fde7ffcd206f48114346dc5bd12cd4673d92f",
+      "appearance_role": "brass"
+    },
+    "648": {
+      "source_native_key": "648",
+      "source_brep_sha256": "a3d1445ce13e6f1702ccb9efd2b83ef81ec28e3ab76fe0e4b75a12b5766acb6f",
+      "appearance_role": "base"
+    },
+    "649": {
+      "source_native_key": "649",
+      "source_brep_sha256": "8b89c9c29674f3cff641a5b35193f44bc6606fe9a4098690962a7ba6ebd11fc2",
+      "appearance_role": "brass"
+    },
+    "650": {
+      "source_native_key": "650",
+      "source_brep_sha256": "f0a3a4fea9d0ca35b742e55ecca3c67c6da893ce9b26b916a03e4aaad232fb49",
+      "appearance_role": "brass"
+    },
+    "651": {
+      "source_native_key": "651",
+      "source_brep_sha256": "b6192e87e133d97b388f40b0554c5bb1ac13c45962755c286beeeee67bf1aba1",
+      "appearance_role": "accent"
+    },
+    "652": {
+      "source_native_key": "652",
+      "source_brep_sha256": "7af2acbcfff135130793cd34c38b3c74d1232e9cb730e88f7918248626f9ba53",
+      "appearance_role": "metal"
+    },
+    "653": {
+      "source_native_key": "653",
+      "source_brep_sha256": "405bbc5f9c4e0991ebded744df1efe03137e86b7c716d5a0cb6cb175a334db69",
+      "appearance_role": "accent"
+    },
+    "654": {
+      "source_native_key": "654",
+      "source_brep_sha256": "cf730592ca8370b4689b3c0b77103f8bff4c70538ba4058d488ce73abec1fc17",
+      "appearance_role": "base"
+    },
+    "655": {
+      "source_native_key": "655",
+      "source_brep_sha256": "c8f413bd37e23d148145548cab90398c4233d1db822324e5f546b2ef505d9341",
+      "appearance_role": "metal"
+    },
+    "656": {
+      "source_native_key": "656",
+      "source_brep_sha256": "d6c70a26aaa4ac401c5494e91898962954d3b474e26d807e9de09178d093bbdd",
+      "appearance_role": "base"
+    },
+    "657": {
+      "source_native_key": "657",
+      "source_brep_sha256": "7cb175ef6e006caa25c0f88705cd95ed8b8d1ccb14bdadcd9428696185a8387f",
+      "appearance_role": "metal"
+    },
+    "658": {
+      "source_native_key": "658",
+      "source_brep_sha256": "1847e74865ecb86e4c3a29ccf66f4d67fd3ed3a1cfe9a8bd5faa7fa25c951d22",
+      "appearance_role": "metal"
+    },
+    "659": {
+      "source_native_key": "659",
+      "source_brep_sha256": "f6b8144ba6dfe3a15ac532c54843e528624e098c0ea664a9a47d6782462c8325",
+      "appearance_role": "brass"
+    },
+    "660": {
+      "source_native_key": "660",
+      "source_brep_sha256": "58138d17a6cd3f94dd0473372c0c3f19139d7bc966f8dcb1fcae98f82e224e85",
+      "appearance_role": "metal"
+    },
+    "661": {
+      "source_native_key": "661",
+      "source_brep_sha256": "0f609e552511412f9fc7a4600e8cb9b1d095dd20b99ac9a2d8bb372ed4502cb3",
+      "appearance_role": "metal"
+    },
+    "662": {
+      "source_native_key": "662",
+      "source_brep_sha256": "951a088a9cc0d5961573938289a74dc1fad3e1810f781e0520317a943c899309",
+      "appearance_role": "metal"
+    },
+    "663": {
+      "source_native_key": "663",
+      "source_brep_sha256": "07fa363e53a0351f9e86f85c424798380f0f376c24ae013acfc5a09f9efb949d",
+      "appearance_role": "metal"
+    },
+    "664": {
+      "source_native_key": "664",
+      "source_brep_sha256": "3bab85ebb02bdb5100c06bab137d7d73efee8884cff672a05564e5baec7c7e3f",
+      "appearance_role": "brass"
+    },
+    "665": {
+      "source_native_key": "665",
+      "source_brep_sha256": "145815dc7c9c4a265a7aa4ec4222a245b595b289d4855679c4031abf02f53529",
+      "appearance_role": "brass"
+    },
+    "666": {
+      "source_native_key": "666",
+      "source_brep_sha256": "0c14bff4694d14b5abc1e7c25c87ea6f47e60788a971a4650a86fe3d9e74932e",
+      "appearance_role": "brass"
+    },
+    "667": {
+      "source_native_key": "667",
+      "source_brep_sha256": "51887efbcd92b60acc278988354fc996fc3d959e4086dc6f160b4fda5b61990e",
+      "appearance_role": "brass"
+    },
+    "668": {
+      "source_native_key": "668",
+      "source_brep_sha256": "ae57359474258b9627d2166a7bd2daaf00de14e3cd527b053467419a1bec3ee5",
+      "appearance_role": "brass"
+    },
+    "669": {
+      "source_native_key": "669",
+      "source_brep_sha256": "5acb989bd594077451fa96e4ac9cdb8fb87aad8f1462645ee7fe9771a2f24178",
+      "appearance_role": "brass"
+    },
+    "670": {
+      "source_native_key": "670",
+      "source_brep_sha256": "87c8f4f04028677ef6fc00722055b2d3bd8ce756d2d84a141630dbe3a4fb8178",
+      "appearance_role": "metal"
+    },
+    "671": {
+      "source_native_key": "671",
+      "source_brep_sha256": "b14aea44c9876ee322e88f93d770d55820d64c14b24f038dd9f9291d57dc9b6b",
+      "appearance_role": "brass"
+    },
+    "672": {
+      "source_native_key": "672",
+      "source_brep_sha256": "9edf0eaf32e9ad1208c86b71d231c94a3c06c7b498cd8d9009f9b1848e710bf0",
+      "appearance_role": "brass"
+    },
+    "673": {
+      "source_native_key": "673",
+      "source_brep_sha256": "d8b1999bc49a0f5ab0776979efea386a08d583d0a4440eb67d2a708f985b2f24",
+      "appearance_role": "metal"
+    },
+    "674": {
+      "source_native_key": "674",
+      "source_brep_sha256": "22ebe5998424e18bd3537945ee7770398e98dad19f18ab3a9c28e4f0bbb13877",
+      "appearance_role": "accent"
+    },
+    "675": {
+      "source_native_key": "675",
+      "source_brep_sha256": "548fa7e0a43111958a5cec01d514281dd453e680def17dad599f81f54c6dce18",
+      "appearance_role": "base"
+    },
+    "676": {
+      "source_native_key": "676",
+      "source_brep_sha256": "b44f0f3fac523eadd3ba061c84bda6053c5826723bd56d6d9f339b7e0e1c0a70",
+      "appearance_role": "metal"
+    },
+    "677": {
+      "source_native_key": "677",
+      "source_brep_sha256": "e63ecd21d8bb568946142f1bafc7b26c05a9ba5c8278c2dfc9711836b0ca9347",
+      "appearance_role": "metal"
+    },
+    "678": {
+      "source_native_key": "678",
+      "source_brep_sha256": "0ce692c4b63041453b8317b37f59c9be3d5fd3aea3f8e9c1500042e1f025368f",
+      "appearance_role": "native"
+    },
+    "679": {
+      "source_native_key": "679",
+      "source_brep_sha256": "ded10a20c914277718b4d76aa79e15dbb11bd6476b0b0dddf93bea2c7d88bc26",
+      "appearance_role": "base"
+    },
+    "680": {
+      "source_native_key": "680",
+      "source_brep_sha256": "21c2a7bd384b127ea434ba7447eab6e3e132e4686b5046d50b6eca1468c5ca46",
+      "appearance_role": "metal"
+    },
+    "681": {
+      "source_native_key": "681",
+      "source_brep_sha256": "79c21d39061a3a7800175c6e569feddfcd5b98962c733918b0958959b3241134",
+      "appearance_role": "brass"
+    },
+    "682": {
+      "source_native_key": "682",
+      "source_brep_sha256": "2fb5e6e4d2e2c3a2f5b61757327cc0d81807a214a2dd3ac1256ede9fe088ce76",
+      "appearance_role": "metal"
+    },
+    "683": {
+      "source_native_key": "683",
+      "source_brep_sha256": "ea26d953bf73b6391777f43e71cc9894886acc29fbfbd9ee87f6b0b3c1d707f7",
+      "appearance_role": "brass"
+    },
+    "684": {
+      "source_native_key": "684",
+      "source_brep_sha256": "17528d2451203d8fa50e84e55537137d6f23bc4488cedc96f1b03db67ffb643d",
+      "appearance_role": "brass"
+    },
+    "685": {
+      "source_native_key": "685",
+      "source_brep_sha256": "81077e870f92b5d3c257eeadfe20c400dcff170025ae9aabda1838f359871cce",
+      "appearance_role": "base"
+    },
+    "686": {
+      "source_native_key": "686",
+      "source_brep_sha256": "c22db13beea14d01eb38695a3e3a523a96e87640eab892b6463f88885b5eafb0",
+      "appearance_role": "brass"
+    },
+    "687": {
+      "source_native_key": "687",
+      "source_brep_sha256": "3b7f8a2d77b3be6456edc1eeaa64ad21e2db49a8ec8c985c0959139153ed1cbd",
+      "appearance_role": "brass"
+    },
+    "688": {
+      "source_native_key": "688",
+      "source_brep_sha256": "98c2a7247fe5ffdf253f49fc59f2dedcf4a2f0c230984ad9d2764c831c2b47bc",
+      "appearance_role": "base"
+    },
+    "689": {
+      "source_native_key": "689",
+      "source_brep_sha256": "c17a0b155135589f0b42cd14668f16f66736df90105cfbb22aec491df9aacec7",
+      "appearance_role": "metal"
+    },
+    "690": {
+      "source_native_key": "690",
+      "source_brep_sha256": "e36b7a2f24180cc89776ef874e3452813b45f49cda0cb1cee74cfb2cacb7ad9e",
+      "appearance_role": "metal"
+    },
+    "691": {
+      "source_native_key": "691",
+      "source_brep_sha256": "93cd90747f1be916667f5398b5c44a3fd717a4db172342d7fe2016975dc5996a",
+      "appearance_role": "metal"
+    },
+    "692": {
+      "source_native_key": "692",
+      "source_brep_sha256": "b1c1cdc9a8b266d59f70f935543b7b5e9821bf8a12060919e6febc42f75870bc",
+      "appearance_role": "metal"
+    },
+    "693": {
+      "source_native_key": "693",
+      "source_brep_sha256": "ee38da0104ef6784ec45ae8d00a3a492f68fa93630f0d9a5f994a7f04626d149",
+      "appearance_role": "brass"
+    },
+    "694": {
+      "source_native_key": "694",
+      "source_brep_sha256": "b85b7556f1b5d2cd2595a15c9ff5734bab0d67f60a6ce6714a666486cffb6360",
+      "appearance_role": "metal"
+    },
+    "695": {
+      "source_native_key": "695",
+      "source_brep_sha256": "510588e0551695e0f965bd33e11be00b483d3a08403cfdfbd9a4f62e4097a364",
+      "appearance_role": "metal"
+    },
+    "696": {
+      "source_native_key": "696",
+      "source_brep_sha256": "f948c749fccaeee4b99820d27a7197b3a9764c92a0873057d426f4b2b59bfda4",
+      "appearance_role": "metal"
+    },
+    "697": {
+      "source_native_key": "697",
+      "source_brep_sha256": "1a0892b042b4de49923aaf0c06c149a9d66fbdf55e658480c89ab8403e8fd8c7",
+      "appearance_role": "metal"
+    },
+    "698": {
+      "source_native_key": "698",
+      "source_brep_sha256": "df186805ad0c21a18ec3c888d514420761d6ed3c3cde11c90d010827918501d4",
+      "appearance_role": "metal"
+    },
+    "699": {
+      "source_native_key": "699",
+      "source_brep_sha256": "2a1cfcae80beb0f88806dd3bbced5f00b55240019690f7e2de34c095b0ab0eaf",
+      "appearance_role": "metal"
+    },
+    "700": {
+      "source_native_key": "700",
+      "source_brep_sha256": "dba1fcd63185d64b384ba817b287e6c5e8dbdb9ab1543914d893b51e3833b304",
+      "appearance_role": "native"
+    },
+    "701": {
+      "source_native_key": "701",
+      "source_brep_sha256": "e47e9e3a0802e4cd299712c9f381194410f2c3b871d67d0775b2378d52515d1e",
+      "appearance_role": "brass"
+    },
+    "702": {
+      "source_native_key": "702",
+      "source_brep_sha256": "5bff379c50dfc05cd4c8814295031a704ef8fae89e4ed43dbd11c0fd127f1dc5",
+      "appearance_role": "metal"
+    },
+    "703": {
+      "source_native_key": "703",
+      "source_brep_sha256": "2d21bf391ef7e30d2c378c1522eea564b9c90667d1b8f19f20e2c86e2e842912",
+      "appearance_role": "brass"
+    },
+    "704": {
+      "source_native_key": "704",
+      "source_brep_sha256": "4efca057d4e06c33ef7765caa09a39f302c97723ebeba3cdd39a750b5a688c4c",
+      "appearance_role": "metal"
+    },
+    "705": {
+      "source_native_key": "705",
+      "source_brep_sha256": "a2bc75a2826ae76753e9976b8803bb86ab7fe4ff7d247081c1a7731acbdec90e",
+      "appearance_role": "accent"
+    },
+    "706": {
+      "source_native_key": "706",
+      "source_brep_sha256": "4ee6be93f0376f5d3a86d5784c94412ab9941659d204d94337d03259802d70ec",
+      "appearance_role": "metal"
+    },
+    "707": {
+      "source_native_key": "707",
+      "source_brep_sha256": "90d8338767276d5e73f70c63730cfc18127cc396eb47e5ff11117f157d859cf4",
+      "appearance_role": "metal"
+    },
+    "708": {
+      "source_native_key": "708",
+      "source_brep_sha256": "6f92f01b77d5a7fdead2d8c163b25db9ff5772b348215e93c8dd37f806d94fce",
+      "appearance_role": "metal"
+    },
+    "709": {
+      "source_native_key": "709",
+      "source_brep_sha256": "133a364c69f7b64133256ba186c166c7c48a530702d3d5f12b739552f9258189",
+      "appearance_role": "metal"
+    },
+    "710": {
+      "source_native_key": "710",
+      "source_brep_sha256": "14fd8cc18a1bb459ee8bb04018f94f7dbab4ebe2719b35e3e22b9d9886acac6e",
+      "appearance_role": "metal"
+    },
+    "711": {
+      "source_native_key": "711",
+      "source_brep_sha256": "ac0939cb73c49599e94a75e6f01ebcc15fe1285642e5522bfcef4475d40001e5",
+      "appearance_role": "metal"
+    },
+    "712": {
+      "source_native_key": "712",
+      "source_brep_sha256": "8fb5463e0f26ad5da82f8a47a85b8b1c5afa0c4ff1f0bd6f7cfa59fa535cd01e",
+      "appearance_role": "metal"
+    },
+    "713": {
+      "source_native_key": "713",
+      "source_brep_sha256": "70608c0770fa59520abdd048f94b006cb1c4f9ebe81f3cb4713f0230f9f80903",
+      "appearance_role": "metal"
+    },
+    "714": {
+      "source_native_key": "714",
+      "source_brep_sha256": "a4e088769a7218752527e169746a97bd57a03b32c0c144add6c70634123110d6",
+      "appearance_role": "metal"
+    },
+    "715": {
+      "source_native_key": "715",
+      "source_brep_sha256": "db56d59e78fa4c34b08608db2782f45783d18088cca007f19a3421162a4878f7",
+      "appearance_role": "metal"
+    },
+    "716": {
+      "source_native_key": "716",
+      "source_brep_sha256": "576a76c4b5df959f4fa3a4f601e8a00ac3c8362e4953edeb05f2a002d4d5f791",
+      "appearance_role": "metal"
+    },
+    "717": {
+      "source_native_key": "717",
+      "source_brep_sha256": "4664c74127040c9e0b2d7cfec2e0a21c0fbf7d044dbd492cbdcdb1d5346a20c4",
+      "appearance_role": "metal"
+    },
+    "718": {
+      "source_native_key": "718",
+      "source_brep_sha256": "5b1e7c5f93c0d22af6412a7dc916b5445b4ad032963412ab48ab153cb1d788f6",
+      "appearance_role": "native"
+    },
+    "719": {
+      "source_native_key": "719",
+      "source_brep_sha256": "71d59981ce205d4c40e5039783b7c85eb07cb6c4f37614c5a2a76c2c87e6f010",
+      "appearance_role": "metal"
+    },
+    "720": {
+      "source_native_key": "720",
+      "source_brep_sha256": "de0b3df67113b2286ac342ca40fe6922d70d4be07221451a96ffe174daa21990",
+      "appearance_role": "native"
+    },
+    "721": {
+      "source_native_key": "721",
+      "source_brep_sha256": "2e2c1e251bc877bda0fa72913911c903ca2ef5f1df93a86c39dd9c0479e71890",
+      "appearance_role": "metal"
+    },
+    "722": {
+      "source_native_key": "722",
+      "source_brep_sha256": "a18c9a8f32aa5a1187fda4c2ba5619a79f0b31fb8438ec0ba2651fb812536b72",
+      "appearance_role": "metal"
+    },
+    "723": {
+      "source_native_key": "723",
+      "source_brep_sha256": "43373b54c50c4225a03fa508c9653a9e70be3b179b6a8a19129a22d7dba23c0d",
+      "appearance_role": "metal"
+    },
+    "724": {
+      "source_native_key": "724",
+      "source_brep_sha256": "fe7df1b506c2d8686935843175f4d1d01a6416ece5027bb313882021fdcdb09e",
+      "appearance_role": "accent"
+    },
+    "725": {
+      "source_native_key": "725",
+      "source_brep_sha256": "7de4b12ce2cae2e271f780d644b1d7f95e496adf04bde9322e64bc7cf4ba9f3d",
+      "appearance_role": "brass"
+    },
+    "726": {
+      "source_native_key": "726",
+      "source_brep_sha256": "de144b55b527234b32e34a06ed8de9b45bd28277485d7ac559293fac884d4b60",
+      "appearance_role": "brass"
+    },
+    "727": {
+      "source_native_key": "727",
+      "source_brep_sha256": "d763e3aa2703ab6923bcad8d7ec7ab8340244780655c19ec5d30bf8ffacb5da5",
+      "appearance_role": "brass"
+    },
+    "728": {
+      "source_native_key": "728",
+      "source_brep_sha256": "36045d073546c0cce818b4dd03eeb7ee05724e84dfbd775991cd8d1581f83004",
+      "appearance_role": "accent"
+    },
+    "729": {
+      "source_native_key": "729",
+      "source_brep_sha256": "5a723ed45684cd0a1468bcda4006cb7e4cf8c392dab122c2d605d24654a1997d",
+      "appearance_role": "metal"
+    },
+    "730": {
+      "source_native_key": "730",
+      "source_brep_sha256": "066fc767a96af7e7ef521ccb2239bf0ee9655879cc233fff52bc60c92fac7eaf",
+      "appearance_role": "metal"
+    },
+    "731": {
+      "source_native_key": "731",
+      "source_brep_sha256": "ad146f26170d88f2d1a40a2c80514e6e050fa2a9a12ceed61a77a64c8971daff",
+      "appearance_role": "metal"
+    },
+    "732": {
+      "source_native_key": "732",
+      "source_brep_sha256": "51ebfce913c8cd8a913e91f7af332bd9f3da7c82d0f67d094abc5536e40b4346",
+      "appearance_role": "metal"
+    },
+    "733": {
+      "source_native_key": "733",
+      "source_brep_sha256": "f5320bca7665e2cac7a59054ff5ff292db968e1bfbc84e46a152fef1c87296fd",
+      "appearance_role": "metal"
+    },
+    "734": {
+      "source_native_key": "734",
+      "source_brep_sha256": "427cab396925d88ae92495b4f925e04204cccfc232cc4b092106b889f954db17",
+      "appearance_role": "metal"
+    },
+    "735": {
+      "source_native_key": "735",
+      "source_brep_sha256": "270a84f8775c1d33c11242d0c51fabfc81923969d28ce3f627de034815b7f9b5",
+      "appearance_role": "metal"
+    },
+    "736": {
+      "source_native_key": "736",
+      "source_brep_sha256": "a715a0aa88a0125f5e356e0aaf1df600375513e7fda59537840e52ae4342aaf5",
+      "appearance_role": "metal"
+    },
+    "737": {
+      "source_native_key": "737",
+      "source_brep_sha256": "8e0a928773d9c4d417af0fe8e23e9ef00a4bb7f2872e38eef89a762cb8df1734",
+      "appearance_role": "base"
+    },
+    "738": {
+      "source_native_key": "738",
+      "source_brep_sha256": "7d794c0a0afccd86ee158d3cba4515ec12ab766fbeaa5ba83d7fa7b2f5defe5c",
+      "appearance_role": "metal"
+    },
+    "739": {
+      "source_native_key": "739",
+      "source_brep_sha256": "e0d51929bb1bc3bed6977271b34c953f35e11366e56a451ca51b66b99a227161",
+      "appearance_role": "metal"
+    },
+    "740": {
+      "source_native_key": "740",
+      "source_brep_sha256": "22f684230d90648473202e658fba276eb7d45d4c9b2339dcd3facac3e8f503c1",
+      "appearance_role": "metal"
+    },
+    "741": {
+      "source_native_key": "741",
+      "source_brep_sha256": "0b3416d988c657a75b03add475ef736e2c4bcbc4c7af95d3ac90c3595e8dcff0",
+      "appearance_role": "metal"
+    },
+    "742": {
+      "source_native_key": "742",
+      "source_brep_sha256": "35b2f862eaacec7b5e53fa06f5d13f18a94bccfab9847b61a609334b08043ea0",
+      "appearance_role": "metal"
+    },
+    "743": {
+      "source_native_key": "743",
+      "source_brep_sha256": "60d5ff95fd8ab91bdc6a0eac047e2d3650ccde21e81b3ce36fc95e18607dba12",
+      "appearance_role": "metal"
+    },
+    "744": {
+      "source_native_key": "744",
+      "source_brep_sha256": "06680a8cee2c0abe23f1a8d4b49cc0ce73d6d6c59578278d34e9336bcb53da36",
+      "appearance_role": "metal"
+    },
+    "745": {
+      "source_native_key": "745",
+      "source_brep_sha256": "d14ae414be3487336db46625e260fee19e9ac198876aa3bc55f77ea6c120f7f5",
+      "appearance_role": "metal"
+    },
+    "746": {
+      "source_native_key": "746",
+      "source_brep_sha256": "e5fefe30f2682744fc3eb989dfd4a4a6b089065867ec179fba4e0b673ca55309",
+      "appearance_role": "metal"
+    },
+    "747": {
+      "source_native_key": "747",
+      "source_brep_sha256": "5a9fecc080fe3bd0e9c4731924356f70b57d1c57058bf61beddb204184ba088e",
+      "appearance_role": "metal"
+    },
+    "748": {
+      "source_native_key": "748",
+      "source_brep_sha256": "4cf6bd05df990ce3486b15369c1ed972946006dc86852ea40ecdcbfbbfdc5d41",
+      "appearance_role": "metal"
+    },
+    "749": {
+      "source_native_key": "749",
+      "source_brep_sha256": "e7e2fa7b0f8f165af2a0492d2d5eef4eb6f261060d6eb36a75a34cad8d3b5b16",
+      "appearance_role": "metal"
+    },
+    "750": {
+      "source_native_key": "750",
+      "source_brep_sha256": "0985296c6b0fc232bf2ec842a56418d090406c1739de8411be3f03f6920f2c4c",
+      "appearance_role": "metal"
+    },
+    "751": {
+      "source_native_key": "751",
+      "source_brep_sha256": "9440d8e9dc2721881d8849b85342cd2f283883fa7f8ff15cf8e742d9609ae833",
+      "appearance_role": "metal"
+    },
+    "752": {
+      "source_native_key": "752",
+      "source_brep_sha256": "4295ddf160bed989067907de39a1afa0dce2e3a151475de1fd4876867b2db9c8",
+      "appearance_role": "metal"
+    },
+    "753": {
+      "source_native_key": "753",
+      "source_brep_sha256": "036d81b5e2cd084c150c10ee9cd05c4f894481ffda38a1fd24f34c00c40be71a",
+      "appearance_role": "metal"
+    },
+    "754": {
+      "source_native_key": "754",
+      "source_brep_sha256": "644c101032f0e7d6b0f26e0d3b7de14b6da34e52a1adcdb7ab862ec2b89362ab",
+      "appearance_role": "metal"
+    },
+    "755": {
+      "source_native_key": "755",
+      "source_brep_sha256": "e036bf996ed14515a839079416df008e9d95b6cad7aa884d3bad8f53c1d2ee22",
+      "appearance_role": "metal"
+    },
+    "756": {
+      "source_native_key": "756",
+      "source_brep_sha256": "ff18c6484ba87a73083c002f6580a783ff6e4decdf4630a1ed57302655a1aa72",
+      "appearance_role": "metal"
+    },
+    "757": {
+      "source_native_key": "757",
+      "source_brep_sha256": "d0f36fcc34b70711194e3d5e0fb42afffdc81d6bf65ce748ce159cf0e62637f7",
+      "appearance_role": "metal"
+    },
+    "758": {
+      "source_native_key": "758",
+      "source_brep_sha256": "0213fceee10ba4d41a692ddaab49cc11e5cb82fb56323114fc6988911e6d6d53",
+      "appearance_role": "base"
+    },
+    "759": {
+      "source_native_key": "759",
+      "source_brep_sha256": "f9f93c1b484fc09f69d1c3075f854b99e64f1367e3907bff846f1df6308f42d0",
+      "appearance_role": "metal"
+    },
+    "760": {
+      "source_native_key": "760",
+      "source_brep_sha256": "1ffd8b165bf9347a565fd6e3a0e11e4e6c9c132fa6851cc9db0fd11f45520152",
+      "appearance_role": "metal"
+    },
+    "761": {
+      "source_native_key": "761",
+      "source_brep_sha256": "862674cce26dc0d41e22a7db3200fb26dbe7f14580c703e4233c447db098e476",
+      "appearance_role": "metal"
+    },
+    "762": {
+      "source_native_key": "762",
+      "source_brep_sha256": "a4844d031cf93d62126ed71771645c392f9379f0739eb550f11cb77bb17e4df5",
+      "appearance_role": "metal"
+    },
+    "763": {
+      "source_native_key": "763",
+      "source_brep_sha256": "a35f4a0d028f434d4a41b181e2f33a5f25d9a3e27156ce8ded1c0862524c2f3a",
+      "appearance_role": "metal"
+    },
+    "764": {
+      "source_native_key": "764",
+      "source_brep_sha256": "7309f6fd00bc8f37d563e30ff5e40c0238a5ac7fb3481b7a425f96bc2a5d43d1",
+      "appearance_role": "metal"
+    },
+    "765": {
+      "source_native_key": "765",
+      "source_brep_sha256": "2d1a794153ba8ded994d7a49cc76ac04968754e54bb6f73f2c0e8ec247a5acd9",
+      "appearance_role": "frame"
+    },
+    "766": {
+      "source_native_key": "766",
+      "source_brep_sha256": "7e2a8c98e60dc803fde334d7a3892bee9fc7655039ef71c4e098e40f174d3d7d",
+      "appearance_role": "metal"
+    },
+    "767": {
+      "source_native_key": "767",
+      "source_brep_sha256": "d5e17d27457821c3fa9c8e69bd340f9b52b2b160678295b68d37b94f31b696bf",
+      "appearance_role": "metal"
+    },
+    "768": {
+      "source_native_key": "768",
+      "source_brep_sha256": "3f80f6cfc2867502a000c4e7f04093cad5ffb4aeedb1d0c92a6afcf3690811aa",
+      "appearance_role": "metal"
+    },
+    "769": {
+      "source_native_key": "769",
+      "source_brep_sha256": "a99d5dcc45ecfb67f53eb095d6491b3a4f4ef550a163e68af09ea1187fa0c7dc",
+      "appearance_role": "metal"
+    },
+    "770": {
+      "source_native_key": "770",
+      "source_brep_sha256": "d2bb085f0ea229d8152408b82d36b3a6ef85a61953f90af8de4fe276ba33dab6",
+      "appearance_role": "metal"
+    },
+    "771": {
+      "source_native_key": "771",
+      "source_brep_sha256": "7d54c6d66024bc351c5767e7410564210f062e691e0700db0353c82fb377d184",
+      "appearance_role": "metal"
+    },
+    "772": {
+      "source_native_key": "772",
+      "source_brep_sha256": "b3e585e62ef9528c5b8504d7aa5ee22ec2f6aa8d687ff38d8495c29a713efa78",
+      "appearance_role": "metal"
+    },
+    "773": {
+      "source_native_key": "773",
+      "source_brep_sha256": "874c676fbee586f5997f6244b925079d903426139fcd90b0dc0bc2a5a21ae6ba",
+      "appearance_role": "metal"
+    },
+    "774": {
+      "source_native_key": "774",
+      "source_brep_sha256": "22582f2d41f3634e1e83d886ffaf8befee80e86656800c322cca0d6406e81dfe",
+      "appearance_role": "base"
+    },
+    "775": {
+      "source_native_key": "775",
+      "source_brep_sha256": "8be9e5b94ab67ea7ed6f2659db11b428afee0045cbd1c32d0e5afc8aaeb27be1",
+      "appearance_role": "metal"
+    },
+    "776": {
+      "source_native_key": "776",
+      "source_brep_sha256": "06b5e8994993c49635938229a1b4908e4cd4e25f1e299a35ec5afaba215bd8e5",
+      "appearance_role": "metal"
+    },
+    "777": {
+      "source_native_key": "777",
+      "source_brep_sha256": "e67797a0f70ac14ddca2bd0e362277410e9b864ee8746c83e71a991f8a1af202",
+      "appearance_role": "metal"
+    },
+    "778": {
+      "source_native_key": "778",
+      "source_brep_sha256": "ccdba872019acb8f111f6d2ebdb9a353b8a641c83b2e95c1d6bc1551f69fd33c",
+      "appearance_role": "base"
+    },
+    "779": {
+      "source_native_key": "779",
+      "source_brep_sha256": "2fa154021d8b79be089cc4d8412cfecfe5ae8e0eb6cd868b6ae7974017ee2afc",
+      "appearance_role": "metal"
+    },
+    "780": {
+      "source_native_key": "780",
+      "source_brep_sha256": "097a4c3adbc28be9695436984d5a281daf6bbe3810395ee6eeebf2ea6140abe8",
+      "appearance_role": "metal"
+    },
+    "781": {
+      "source_native_key": "781",
+      "source_brep_sha256": "da48450c3110d2972c51dadc95efa9281bf877631638c28275c3eeed9275d7c0",
+      "appearance_role": "accent"
+    },
+    "782": {
+      "source_native_key": "782",
+      "source_brep_sha256": "48852d48aaa9199f2b23d2781f416e44cdd7b2889f1cbf977ab62ed6a03e5f11",
+      "appearance_role": "metal"
+    },
+    "783": {
+      "source_native_key": "783",
+      "source_brep_sha256": "a46bb724fc9f88be6576f7b77e0a2ed4f7519bb3b9034bc789d445bc1dc0909c",
+      "appearance_role": "metal"
+    },
+    "784": {
+      "source_native_key": "784",
+      "source_brep_sha256": "d95f7029537741323308eca3421751d3e2e49c7a0bab419bb93a45ecc71c4264",
+      "appearance_role": "metal"
+    },
+    "785": {
+      "source_native_key": "785",
+      "source_brep_sha256": "a52a66641f301a7d02958055f58c985d906cff868d2a4178a0cd45dfb99cd7ed",
+      "appearance_role": "base"
+    },
+    "786": {
+      "source_native_key": "786",
+      "source_brep_sha256": "297c45d7da84e07fd80b1a6d9c4c3eeb5acffb923671a4b2acec16dfd0841433",
+      "appearance_role": "metal"
+    },
+    "787": {
+      "source_native_key": "787",
+      "source_brep_sha256": "90d91f6fcedfaaa531c9d7cf9e7a07ce7db18b19681b2f5d9beccd4c4f3c0a66",
+      "appearance_role": "metal"
+    },
+    "788": {
+      "source_native_key": "788",
+      "source_brep_sha256": "b18ff679a2a6a4d89c00f5f7cdcbb305a5b57d31dbd9bc80a2cd4d128c8ca248",
+      "appearance_role": "metal"
+    },
+    "789": {
+      "source_native_key": "789",
+      "source_brep_sha256": "79045a92c363437c4a28b5729c8ab2b16c503e30ab0b9e00ec65f15b12545138",
+      "appearance_role": "base"
+    },
+    "790": {
+      "source_native_key": "790",
+      "source_brep_sha256": "5d8f59145948ce503d7a868ecf1dac996580c1461bfbb9eeb18b8a833f54791c",
+      "appearance_role": "metal"
+    },
+    "791": {
+      "source_native_key": "791",
+      "source_brep_sha256": "35466d6c05c1ed295887af66b6c890f6e0259a06c93e0c9e5c617e1a5e69fc19",
+      "appearance_role": "metal"
+    },
+    "792": {
+      "source_native_key": "792",
+      "source_brep_sha256": "e5cb8e2865b3e9afc089122e3bb41c0c18d54d07697eece007dd7b5082a3690a",
+      "appearance_role": "accent"
+    },
+    "793": {
+      "source_native_key": "793",
+      "source_brep_sha256": "f987430da97ef33b29b11550ef6e791fab4ab92ac6ff7714a4e9fb5bfc248ecc",
+      "appearance_role": "metal"
+    },
+    "794": {
+      "source_native_key": "794",
+      "source_brep_sha256": "3b00d28dd17357514883e133563bcc592ef4182c55cc3c4893c53e46fa2f3a4b",
+      "appearance_role": "metal"
+    },
+    "795": {
+      "source_native_key": "795",
+      "source_brep_sha256": "80dad352a8265fbd3d0b99730368ad61d715efa64e44d419c2d4690c0b7231d5",
+      "appearance_role": "metal"
+    },
+    "796": {
+      "source_native_key": "796",
+      "source_brep_sha256": "65a3404723d2cccb2eb64320ffa3ef94f117c7d3697b84acc26f4e8e7f072b56",
+      "appearance_role": "base"
+    },
+    "797": {
+      "source_native_key": "797",
+      "source_brep_sha256": "f3aac7bd3c485a99654499880cbaf3508d7094112be7231e626f8341e7e8dcba",
+      "appearance_role": "metal"
+    },
+    "798": {
+      "source_native_key": "798",
+      "source_brep_sha256": "a5fbea6394da5f7b567312391d3324a9e56bcf01bf145c17bca3b2178e413606",
+      "appearance_role": "metal"
+    },
+    "799": {
+      "source_native_key": "799",
+      "source_brep_sha256": "db3d3e04cbc84fe58ec18eee444c8cd5f021d464c9d9e7d739024783fe340e35",
+      "appearance_role": "metal"
+    },
+    "800": {
+      "source_native_key": "800",
+      "source_brep_sha256": "52842bf9495b32ab051fa004fa3a912f2fd1835b73189d072f6493bd60daf612",
+      "appearance_role": "base"
+    },
+    "801": {
+      "source_native_key": "801",
+      "source_brep_sha256": "c22e33fbb66444c5487a7d8e05e7a62e0673ec8cda8b891718faa870ee70ee46",
+      "appearance_role": "metal"
+    },
+    "802": {
+      "source_native_key": "802",
+      "source_brep_sha256": "0a603abf2e07440b5dfa3352f5fef83980a20a1624a2351863c4f9160ab1ae26",
+      "appearance_role": "metal"
+    },
+    "803": {
+      "source_native_key": "803",
+      "source_brep_sha256": "10b9a4077a213962dfc9746dad2083ec558fe6063f2beca312b292af41916883",
+      "appearance_role": "accent"
+    },
+    "804": {
+      "source_native_key": "804",
+      "source_brep_sha256": "cd43124a312f7f603f5d2f3370b6378d7d1dacfaf20a14abd1a02f749944c2b8",
+      "appearance_role": "metal"
+    },
+    "805": {
+      "source_native_key": "805",
+      "source_brep_sha256": "266dc4127d1438996fbdc8086a4731dcc14a042bc8ec41d108c909ba824de14d",
+      "appearance_role": "metal"
+    },
+    "806": {
+      "source_native_key": "806",
+      "source_brep_sha256": "bb05db5c23d7a273001097d6ac55a5c6f81e17f1b6c426cfc5c161632d5bc757",
+      "appearance_role": "metal"
+    },
+    "807": {
+      "source_native_key": "807",
+      "source_brep_sha256": "13faa34d26129775d16ea84d84a3e19d9ad708d48309f75849ccb6101d42f064",
+      "appearance_role": "base"
+    },
+    "808": {
+      "source_native_key": "808",
+      "source_brep_sha256": "e492c59f3cdf9e87cd0eb4c9ec4b8eb80804dcb3faa3a3d322bffae277cc862c",
+      "appearance_role": "metal"
+    },
+    "809": {
+      "source_native_key": "809",
+      "source_brep_sha256": "5e05252ba37ea5fa8e5328aaa75e67e9dffff08a1da017de7bd628ebd0626c2a",
+      "appearance_role": "metal"
+    },
+    "810": {
+      "source_native_key": "810",
+      "source_brep_sha256": "6ad216b609d9774f219af1f8f8d45781be6cbea4fcc8af24981c289eecb29e0a",
+      "appearance_role": "metal"
+    },
+    "811": {
+      "source_native_key": "811",
+      "source_brep_sha256": "770064f9af5f8644e310972d5d5b2b65d856e4c662a6c34b7db9948e9110f211",
+      "appearance_role": "base"
+    },
+    "812": {
+      "source_native_key": "812",
+      "source_brep_sha256": "4c4a1bb0a88e227cdb505eb7ccf5001ff1c3b46fefde629e1b64eb3de7c6aa74",
+      "appearance_role": "metal"
+    },
+    "813": {
+      "source_native_key": "813",
+      "source_brep_sha256": "e3fb78645cf83016bab3af0d31f3e9c37f5557b38a1285688ffe1b30287248ec",
+      "appearance_role": "metal"
+    },
+    "814": {
+      "source_native_key": "814",
+      "source_brep_sha256": "f27a032e1c467fac98ff92712ce5e7a418b516036aab3d7fbb304bffcafd5d26",
+      "appearance_role": "metal"
+    },
+    "815": {
+      "source_native_key": "815",
+      "source_brep_sha256": "5ca321c49945f221219ec0edc8aeec9438715111ad135e36a2bd2a86ba9ef817",
+      "appearance_role": "metal"
+    },
+    "816": {
+      "source_native_key": "816",
+      "source_brep_sha256": "f2e63b9aebfdbe322a35f4cac213cd7021a9e8252899c743d3e6899f16400e5f",
+      "appearance_role": "accent"
+    },
+    "817": {
+      "source_native_key": "817",
+      "source_brep_sha256": "5087ae9e67ff1b4417d514c3441627ccb7a2d62912610bf9368fb149c0f29492",
+      "appearance_role": "metal"
+    },
+    "818": {
+      "source_native_key": "818",
+      "source_brep_sha256": "0416dbf355ee4475649e44184c05091947b7e9dd1c9af66c26e63264894fe27d",
+      "appearance_role": "frame"
+    },
+    "819": {
+      "source_native_key": "819",
+      "source_brep_sha256": "13bd7ba2e9aa3b6d4bfd3f9f42a36f036b6f2a43ec18e20c601510e26c34d552",
+      "appearance_role": "frame"
+    },
+    "820": {
+      "source_native_key": "820",
+      "source_brep_sha256": "36bc0ab458f694aba65d0c80cbc45d8e1d24b81109d7e5cae890a2a84dc5c286",
+      "appearance_role": "frame"
+    },
+    "821": {
+      "source_native_key": "821",
+      "source_brep_sha256": "6ea6a91d47e9b602459831ccc06b3deebf80f7aab2742de0a8ca815e49800ba6",
+      "appearance_role": "base"
+    },
+    "822": {
+      "source_native_key": "822",
+      "source_brep_sha256": "833151943ce875e8394d267e9a7517b98611ecafb5d6073f707499a45e0efe9f",
+      "appearance_role": "accent"
+    },
+    "823": {
+      "source_native_key": "823",
+      "source_brep_sha256": "5dd1d38937d97621535e1b3dd47186dd56c3ef5191866c7e9597f8bc234187ca",
+      "appearance_role": "base"
+    },
+    "1175": {
+      "source_native_key": "1175",
+      "source_brep_sha256": "97c6f1d074deb842acd1339d8de80d05545aca020a638ad9bfe0203ff3a9b3e8",
+      "appearance_role": "metal"
+    },
+    "1176": {
+      "source_native_key": "1176",
+      "source_brep_sha256": "e44671c9d6b84322491f0603e0f132b551f79b15ef1ea00fa546cff7560acd86",
+      "appearance_role": "native"
+    },
+    "1177": {
+      "source_native_key": "1177",
+      "source_brep_sha256": "1cd3317efe52d5962f93c89f6ab13c7683bb6639ebda14dc563994a13385e7c3",
+      "appearance_role": "native"
+    },
+    "1178": {
+      "source_native_key": "1178",
+      "source_brep_sha256": "55b780c933f0724e91b13f3aacad0dd7938fd480394a17233f64542abb20a77c",
+      "appearance_role": "metal"
+    },
+    "1179": {
+      "source_native_key": "1179",
+      "source_brep_sha256": "1e5d8f9c8aeca751198838f9713c2859677b2ab127fe63be8aea2539c559d756",
+      "appearance_role": "metal"
+    },
+    "1180": {
+      "source_native_key": "1180",
+      "source_brep_sha256": "164d5d2bd1e2075ee884611a578ebde5e10507adc96a6188fe3ae45d5ee10029",
+      "appearance_role": "metal"
+    },
+    "1181": {
+      "source_native_key": "1181",
+      "source_brep_sha256": "78b5f1f6dbe4a268e5aef3c9fe4de2d7119fce1c5ecac8952c6b7a882f1d8373",
+      "appearance_role": "metal"
+    },
+    "1182": {
+      "source_native_key": "1182",
+      "source_brep_sha256": "85b67693c95be25925d7a9377ba941f9be3dc57fe564f2df30ce925a8a850ee9",
+      "appearance_role": "metal"
+    },
+    "1183": {
+      "source_native_key": "1183",
+      "source_brep_sha256": "0a2f0b2a38d00d6232b92924d4641fd96e5b359932f28b6ce243068a5a4177db",
+      "appearance_role": "metal"
+    },
+    "1184": {
+      "source_native_key": "1184",
+      "source_brep_sha256": "7bceacd761635d46743506ed5a15328172757a5c2fae9e267291a4d17efa2888",
+      "appearance_role": "metal"
+    },
+    "1185": {
+      "source_native_key": "1185",
+      "source_brep_sha256": "f8aac9b69ca961ca6fdf8c3bf09bcaf036dab95548438579e88c03c4d3ebc4d0",
+      "appearance_role": "metal"
+    },
+    "1186": {
+      "source_native_key": "1186",
+      "source_brep_sha256": "0944f019a8096d884bfcd151b13ea93241bf4d55fc1491b44dd4522999e86507",
+      "appearance_role": "metal"
+    },
+    "1187": {
+      "source_native_key": "1187",
+      "source_brep_sha256": "bddb2b5ec5a0e9ea9a887a3ad26e52e85dda78ab4378d8686efbf4f6df1e1c9b",
+      "appearance_role": "frame"
+    },
+    "1188": {
+      "source_native_key": "1188",
+      "source_brep_sha256": "eff7cf86b93dca8d914fe606d43d77ed0b720cedc71b0ee7f0d4325c322f780b",
+      "appearance_role": "frame"
+    },
+    "220_accent": {
+      "source_native_key": "220",
+      "source_brep_sha256": "946b2bd5f0d314ee422b5b42dab1c2351d48ff6637b15ce99a8d0e5c585f93f1",
+      "appearance_role": "accent"
+    }
+  },
+  "open_source_keys": [
+    "218",
+    "700"
+  ],
+  "open_scope": "Unproven manufacture of jog knob and chain-end connector; original authored surfaces retained. Source invalid solids and physical mates remain open.",
+  "whole_machine_certified": false,
+  "native_appearance_review_sha256": "873262986fc001098f9d16a33b38a27846390a7f075132c6e7e9e3ae577489bc",
+  "independent_review_sha256": "d937cc515024ae23b7f258a9be186124702194122d0358961ff15fd7887abe72"
+}

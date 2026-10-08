@@ -7,7 +7,7 @@ const thousand={machine_id:'voron_trident_1000_custom',part_key:'voron_trident_3
 let numericalPoses=0,meshes=0;
 for(const source of [fixtureSpec,thousand]){
  const spec=roofTubeLayout(source),size=source.display_limits_mm.X[1],ref=source.reference_xyz_mm;
- for(let x=0;x<=size;x+=size/20)for(let y=0;y<=size;y+=size/20){const f=roofCustomTubeRoute(source,x-ref[0],y-ref[1]);assert(Math.abs(f.totalLengthMm-spec.cut_length_mm)<1e-8);assert(Math.min(f.a*f.a/f.h,f.h*f.h/f.a)>=20);assert.equal(f.loopStart[2],spec.storage_start_mm[2]+spec.exterior_turn_radius_mm);assert.equal(f.loopEnd[2],f.loopStart[2]);numericalPoses++}
+ for(let x=0;x<=size;x+=size/20)for(let y=0;y<=size;y+=size/20){const f=roofCustomTubeRoute(source,x-ref[0],y-ref[1]);assert(Math.abs(f.totalLengthMm-spec.cut_length_mm)<1e-8);assert(Math.min(f.a*f.a/f.h,f.h*f.h/f.a)>=20);assert.equal(f.loopStart[2],spec.storage_start_mm[2]+(f.arch?0:spec.exterior_turn_radius_mm));assert.equal(f.loopEnd[2],f.loopStart[2]);numericalPoses++}
  const poses=[ref,[0,0,0],[size,size,size],[0,size,0],[size,0,size],[size/2,size/2,size/2]],geometryPoses=[...poses,...poses.slice().reverse(),ref];
  let first;
  for(const xyz of geometryPoses){
@@ -25,4 +25,4 @@ for(const source of [fixtureSpec,thousand]){
  }
  const bad=structuredClone(source);bad.end_mm[1]+=1;assert.throws(()=>roofTubeLayout(bad));assert.throws(()=>roofCustomTubeRoute(source,NaN,0));assert.throws(()=>roofCustomTubeRoute(source,-ref[0]-1,0));
 }
-console.log(JSON.stringify({passed:true,numerical_poses:numericalPoses,mesh_poses:meshes,constant_lengths_mm:[1410,2600],finite_unit_normals_winding_and_matched_sweep_frames:true,native_continuous_clearance_certified:false}));
+console.log(JSON.stringify({passed:true,numerical_poses:numericalPoses,mesh_poses:meshes,constant_lengths_mm:[1410,2300],finite_unit_normals_winding_and_matched_sweep_frames:true,native_continuous_clearance_certified:false}));

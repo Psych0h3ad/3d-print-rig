@@ -5,18 +5,19 @@ ensureWorkspaceEntry(import.meta.url);
 import * as THREE from './vendor-r180/three.module.js';
 import {OrbitControls} from './vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
-import {loadCommunity} from './community-loader.mjs?v=d9628a7b9eea53858cec';
+import {loadCommunity} from './community-loader.mjs?v=b6f74abf0621bc3c35f0';
 import {communitySchema,validateCommunityState,communityMotionEnabled,communityConfiguration} from './community-state.mjs?v=460b3fa78cc503ddb6e6';
 import {installationFor} from './ender-mods.mjs?v=5f07c69c7c42ba3f3936';
-import {setupMachineNavigation} from './machines.js?v=268c3c7f6767524ed489';
+import {setupMachineNavigation} from './machines.js?v=cea8407065ba89be6304';
 import {sceneLightingState} from './scene-lighting-state.mjs';
-import {translate} from './i18n.mjs?v=7e910562e2ba90f2768b';
+import {translate} from './i18n.mjs?v=2dc0b94b6536b576688c';
 import {rememberDisplayControl} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {setupRenderExport} from './render-export.js';
-import {setupPublicInfo} from './public-info.js?v=1a61579df968fc52f420';
+import {setupPublicInfo} from './public-info.js?v=84f5c04634e6ad386915';
 const descriptions={
+ doomcube2_350_reference:"DoomCube 2 · 350 mm / double enclosure / original CAD",
  tictac_21_120:"TicTac 2.1 · 120 mm / 新Rat Rigツールヘッド / 公式組立CAD",
  rook_mk2_120:"Rook MK2 beta · 120 mm / Dragon Burner / Bambu / Galileo 2 G2SA",
  the100_v11_165:"THE 100 v1.1 · 165 × 165 × 150 mm / BMG Bowden / CHC Pro Volcano",
@@ -66,6 +67,7 @@ export async function mount(scope){
  $('night').oninput=$('night').onchange=()=>{if(state)state.night=$('night').checked;lighting()};lighting();setupMachineNavigation(machine);
  function describe(){
   if(!current)return;const selected=communityConfiguration(current.profile,state.configuration??'stock');$('installationNotice').textContent=(selected.notices||[selected.notice]).filter(Boolean).map(t).join(' ');
+  document.querySelector('label[for="headInstallation"]').textContent=t(current.profile.configuration_label||'Toolhead installation');
   const sources=selected.sources||[selected.source].filter(Boolean);$('installationSource').hidden=!sources.length;$('installationSource').replaceChildren();
   for(const source of sources){const link=document.createElement('a'),p=document.createElement('p');link.target='_blank';link.rel='noopener';link.href=source.url;link.textContent=source.author+' · '+source.version;p.textContent=source.license;$('installationSource').append(link,p)}
   function choices(element,options,value){element.replaceChildren(...Object.entries(options).map(([id,c])=>{const o=document.createElement('option');o.value=id;o.textContent=t(c.label);return o}));element.value=value}
@@ -76,7 +78,7 @@ export async function mount(scope){
  }
  workspaceListen(window,'rig-language-change',describe);
  try{
-  const response=await fetch('../COMMUNITY_MACHINES_ASSETS.json?v=17bf23b6d8fc1bdd05de');if(!response.ok)throw Error('Native catalog unavailable');current=await loadCommunity(await response.json(),machine);scene.add(current.root);axisKeys=Object.keys(current.profile.axes);const zeroAxes=()=>Object.fromEntries(axisKeys.map(k=>[k,0]));
+  const response=await fetch('../COMMUNITY_MACHINES_ASSETS.json?v=0af676cc2bda1a732fdc');if(!response.ok)throw Error('Native catalog unavailable');current=await loadCommunity(await response.json(),machine);scene.add(current.root);axisKeys=Object.keys(current.profile.axes);const zeroAxes=()=>Object.fromEntries(axisKeys.map(k=>[k,0]));
   for(const k of axisKeys)if(!$(k)){const label=document.createElement('label'),span=document.createElement('span'),value=document.createElement('strong'),input=document.createElement('input');label.htmlFor=k;span.className='axislabel';span.append(current.profile.axis_labels?.[k]||k.toUpperCase());value.id=k+'Value';span.append(value);label.append(span);input.id=k;input.type='range';input.step='any';$('z').after(label,input)}
   state={schema:communitySchema,machine,configuration:'stock',axes:zeroAxes(),palette:{...current.profile.palette_defaults},references:false,grid:false,night:$('night').checked};
   $('machineTitle').textContent=current.profile.title;document.title=current.profile.title+' · 3D Print Rig';describe();$('machineRevision').textContent=current.profile.source.version;

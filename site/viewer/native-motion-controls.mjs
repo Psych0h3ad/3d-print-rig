@@ -1,6 +1,6 @@
 import {workspaceFrame,workspaceListen,workspaceTask} from './workspace-lifecycle.mjs';
 import {validateAxes} from './community-state.mjs?v=460b3fa78cc503ddb6e6';
-import {translate} from './i18n.mjs?v=7e910562e2ba90f2768b';
+import {translate} from './i18n.mjs?v=2dc0b94b6536b576688c';
 export function setupNativeMotionControls({adapter,profile,camera,controls,render,scope,onPose=()=>{},getDisplay=()=>({}),setDisplay=()=>{},validateDisplay=()=>{}}){
  const $=id=>document.getElementById(id),zero=()=>Object.fromEntries(Object.keys(profile.axes).map(k=>[k,0])),t=s=>translate(s,document.documentElement.lang);let animation=null;
  function set(next){adapter.setAxes(next);for(const[k,v]of Object.entries(next)){$(k).value=v;$(k+'Value').textContent=v.toFixed(1)+' mm'}document.body.dataset.pose=JSON.stringify(next);onPose();render()}

@@ -1,0 +1,85 @@
+{
+  "schema": "internal-spool-rear-deck-delta-103",
+  "native_report_sha256": "ab9e17a5a30ef1fc615ee82f8e06dc23fc251a280967f9558508028b38cb4a99",
+  "scope": "Only added static deck material versus all unchanged installed spool assembly native solids. Original holder/guide and continuous bed receipts remain unchanged; no new filament or whole-machine qualification.",
+  "machines": {
+    "voron_trident_300": {
+      "original_manifest_sha256": "b17e18539aab4f5c4d6f56b8d40276dc77778611b129a65cc4e0b3f1e7b0d5ad",
+      "current_manifest_sha256": "504593577292b209f9cf32c26a16cc735a42c0d1705570ccfab7df341c57f438",
+      "current_model_sha256": "e70b196fc2d27582652249302811d8e5fc864c286d3920e8865596357a99ce70",
+      "unchanged_profile_sha256": "c28b590d64bf242514f9f25dcfa89d8ee64e56878480966087ec347936b818a0",
+      "original_qualification": {
+        "schema": "internal-spool-qualified-holder-95",
+        "scope": "rigid_holder_and_guides_only",
+        "machine_id": "voron_trident_300",
+        "component_id": "elcrni_trident_internal_spool_holder_v32_installed_300",
+        "report_sha256": "baa80bce3724fcbd1103968aff9c99f19b0649f527011d718195b73d7e5e7c4d",
+        "native_tuple_receipt_sha256": "baa80bce3724fcbd1103968aff9c99f19b0649f527011d718195b73d7e5e7c4d",
+        "native_bindings_sha256": "36db37bba1974740ee0d7f164fa639d15f7ea7123b1871b37ab54e52e6bef356",
+        "machine_manifest_sha256": "b17e18539aab4f5c4d6f56b8d40276dc77778611b129a65cc4e0b3f1e7b0d5ad",
+        "machine_profile_sha256": "c28b590d64bf242514f9f25dcfa89d8ee64e56878480966087ec347936b818a0",
+        "model_sha256": "b35bb552b295b6497643e949fd1aed5c7f19078ea9ef75afe34d90e4a4b68f4b",
+        "metadata_sha256": "9b099cd8fc3446a966eb73eed7df8a74017a4c2dfbcdbe9d0e402a05866100ed",
+        "verified_bed_down_range_mm": [
+          0,
+          250
+        ],
+        "filament_route_registered": false,
+        "whole_machine_certified": false
+      },
+      "added_material_volume_mm3": 7725.000000000005,
+      "removed_material_volume_mm3": 0.0,
+      "retained_native_scope": "rigid_holder_and_guides_only",
+      "filament_route_registered": false,
+      "whole_machine_certified": false,
+      "native_bindings_sha256": "36db37bba1974740ee0d7f164fa639d15f7ea7123b1871b37ab54e52e6bef356",
+      "original_native_receipt_sha256": "baa80bce3724fcbd1103968aff9c99f19b0649f527011d718195b73d7e5e7c4d",
+      "original_deck_sha256": "63ff1eda97f7b1fbfabfb172d391a500be148e4c3a8df9a3a7be8d8a2e1a471c",
+      "repaired_deck_sha256": "499eb3a15a85d05e719aec548771b4d431a2e041edff2d3724bf716003c9d9e6",
+      "native_part_count": 190,
+      "minimum_added_material_distance_mm": 2.357582438267009,
+      "all_added_material_native_common_solids": 0,
+      "all_added_material_native_common_volume_mm3": 0,
+      "native_pair_checks_sha256": "a6f92c8c5e74eb6e447128be1dac98eb45ef449fcf385373b7533bae3851c2d0"
+    },
+    "voron_trident_350": {
+      "original_manifest_sha256": "4eb67785885b97e73e1ca6052fc05f07dbddef394e60a6620bf2494265796aca",
+      "current_manifest_sha256": "c30875c2cdae7b7ee59618a76cb2e3fd3285e439a666e0f5f6c441bec7b9b173",
+      "current_model_sha256": "9238ff722d469f6748fb5263212f42e4564e7fa17e9047c32e1d3a831f5bb62e",
+      "unchanged_profile_sha256": "ce0edf0434c215f7422e6522ca7e68db95fc4429598bfeeab988876aed6a2b70",
+      "original_qualification": {
+        "schema": "internal-spool-qualified-holder-95",
+        "scope": "rigid_holder_and_guides_only",
+        "machine_id": "voron_trident_350",
+        "component_id": "elcrni_trident_internal_spool_holder_v32_installed_350",
+        "report_sha256": "1a219f985fd3e86c79c03c4db81625d81151f8e4ac2cd21f5218314159c231df",
+        "native_tuple_receipt_sha256": "1a219f985fd3e86c79c03c4db81625d81151f8e4ac2cd21f5218314159c231df",
+        "native_bindings_sha256": "d6150812b431bbc8f47db8ae405d88c16fa7f7da1c0f2b705c08e2fd99260343",
+        "machine_manifest_sha256": "4eb67785885b97e73e1ca6052fc05f07dbddef394e60a6620bf2494265796aca",
+        "machine_profile_sha256": "ce0edf0434c215f7422e6522ca7e68db95fc4429598bfeeab988876aed6a2b70",
+        "model_sha256": "fa08b8af321af144bc63609bd712e4ab8afa02e76fb57e783dc5f1ef69660cb6",
+        "metadata_sha256": "27e4e35d317df3ccc2e675590d7ff6073ee29aff8de062aa147ac91ca48852fd",
+        "verified_bed_down_range_mm": [
+          0,
+          250
+        ],
+        "filament_route_registered": false,
+        "whole_machine_certified": false
+      },
+      "added_material_volume_mm3": 15450.00000000002,
+      "removed_material_volume_mm3": 0.0,
+      "retained_native_scope": "rigid_holder_and_guides_only",
+      "filament_route_registered": false,
+      "whole_machine_certified": false,
+      "native_bindings_sha256": "d6150812b431bbc8f47db8ae405d88c16fa7f7da1c0f2b705c08e2fd99260343",
+      "original_native_receipt_sha256": "1a219f985fd3e86c79c03c4db81625d81151f8e4ac2cd21f5218314159c231df",
+      "original_deck_sha256": "28adf167ee83256c5ce9726623b13747336be5b9795652aeb100ad8a6957afe3",
+      "repaired_deck_sha256": "4e29878180cd5f56e8895516aafaa7a42086585875f56cd5ca43014965e52198",
+      "native_part_count": 190,
+      "minimum_added_material_distance_mm": 1.060660171776882,
+      "all_added_material_native_common_solids": 0,
+      "all_added_material_native_common_volume_mm3": 0,
+      "native_pair_checks_sha256": "b8599ec9ad37c20c2443c6740953a32dde77fb1f807150ba4aff8d254c117de9"
+    }
+  }
+}

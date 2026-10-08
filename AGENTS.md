@@ -6,6 +6,15 @@ apply to future additions. Use [docs/MAINTENANCE.md](docs/MAINTENANCE.md) to loc
 the authoritative catalogs and change-specific checks, and
 [docs/README.md](docs/README.md) for feature documentation.
 
+Hotend/head changes require the complete companion-part review in
+[docs/MACHINE_REVIEW.md](docs/MACHINE_REVIEW.md#hotend-and-head-companion-parts):
+source-specific cover length, mounts/spacers, ducts/fans, LEDs, nozzle/probe
+positions and fasteners. Check actual exported parts in standalone and installed
+views, all affected registrations, A-to-B-to-A changes, reset and save/load.
+Unknown source requirements, leftover old parts and missing companions are
+findings, not passes. Keep the Rapido X UHF cover/LED source and actual-asset
+regressions in release checks; add equivalent regressions for future defects.
+
 Run scripts/check_repository.py before publication; it runs the independent
 regressions in parallel. Run the actual exported-model audits separately and
 record a coverage row for every available machine. Missing tests, assets or

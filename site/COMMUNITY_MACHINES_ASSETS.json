@@ -441,6 +441,32 @@
           "decoded_sha256": "8c6a1a7d0118ee2bda8ff2278a60e9150324af9f24be59fee4efbe93007cf952"
         }
       }
+    },
+    "doomcube2_350_reference": {
+      "machine_id": "doomcube2_350_reference",
+      "parts": 705,
+      "files": {
+        "assembly_manifest.json": {
+          "path": "doomcube-v103/doomcube2_350_reference/assembly_manifest.json",
+          "bytes": 3177904,
+          "sha256": "08072ed2c19bc2717f8bb79262ddac8fbcdad863da889379e608d3d19efa24bc"
+        },
+        "machine_profile.json": {
+          "path": "doomcube-v103/doomcube2_350_reference/machine_profile.json",
+          "bytes": 5954,
+          "sha256": "b04011b2b8e30e809d7525a648d5ba2bc028f49fef6f81fdf34fc9c390402118"
+        },
+        "model.glb": {
+          "path": "doomcube-v103/doomcube2_350_reference/model.glb.gz",
+          "bytes": 24022510,
+          "sha256": "67d368be1f7bb9a055bf7ad466ad0fd9391d7f5be6392fb7ab55a5289c0a0f76",
+          "encoding": "gzip",
+          "decoded_bytes": 69636092,
+          "decoded_sha256": "7a8d958a198ffabd374314c95a9d49e8b0f0f64fc51a488cdb3a1b973c8e95ad"
+        }
+      },
+      "base_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/",
+      "local_directory": "large-voron-assets"
     }
   }
 }

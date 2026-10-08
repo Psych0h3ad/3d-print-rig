@@ -7,11 +7,13 @@ import assert from 'node:assert/strict';
 import {GLTFLoader} from '../site/viewer/vendor-r180/GLTFLoader.js';
 import {createCommunityAdapter} from '../site/viewer/community-adapter.mjs';
 import {communitySchema,validateCommunityState,displayMotion,nativeMotion} from '../site/viewer/community-state.mjs';
+import {communityAuditDirectory} from './community-audit-root.mjs';
 export async function auditCommunityInstallations(directory,{output,indexPath=new URL('../site/COMMUNITY_MACHINES_ASSETS.json',import.meta.url)}={}){
 assert.ok(directory,'Supply the actual community asset directory');
 const index=JSON.parse(await fs.readFile(indexPath,'utf8')),results=[];
 for(const spec of Object.values(index.machines)){
- const checked=async name=>{const pin=spec.files[name],raw=await fs.readFile(path.join(directory,pin.path));assert.equal(raw.length,pin.bytes);assert.equal(createHash('sha256').update(raw).digest('hex'),pin.sha256);if(pin.encoding!=='gzip')return raw;const bytes=gunzipSync(raw);assert.equal(bytes.length,pin.decoded_bytes);assert.equal(createHash('sha256').update(bytes).digest('hex'),pin.decoded_sha256);return bytes};
+ const selectedDirectory=communityAuditDirectory(spec,index,directory,indexPath);
+ const checked=async name=>{const pin=spec.files[name],raw=await fs.readFile(path.join(selectedDirectory,pin.path));assert.equal(raw.length,pin.bytes);assert.equal(createHash('sha256').update(raw).digest('hex'),pin.sha256);if(pin.encoding!=='gzip')return raw;const bytes=gunzipSync(raw);assert.equal(bytes.length,pin.decoded_bytes);assert.equal(createHash('sha256').update(bytes).digest('hex'),pin.decoded_sha256);return bytes};
  const profile=JSON.parse(await checked('machine_profile.json'));if(!profile.configurations)continue;
  const manifest=JSON.parse(await checked('assembly_manifest.json'));let root;
  for(const name of ['model.glb',...(spec.additional_models||[])]){const raw=await checked(name),scene=(await new GLTFLoader().parseAsync(raw.buffer.slice(raw.byteOffset,raw.byteOffset+raw.byteLength),'')).scene;if(root)root.add(scene);else root=scene}

@@ -14,7 +14,9 @@ the model bundle are addressed relative to the assembled site root.
 | Change | Authoritative inputs and behavior | Update/review alongside it |
 | --- | --- | --- |
 | Machine, vendor or size | `site/viewer/machines.js` and its imported machine lists; model manifest, motion profile and controller | Availability/reason, correct page and baseline STEP entry; [machine review](MACHINE_REVIEW.md); coverage row and family regression registration |
+| Source assembly appearance / size adaptation | Exact source leaf and face-style identities; exported manifest/model and source geometry recipe | Preserve purchased descendants and mixed surface styles; test contrasting/reversed palettes and native reset. Preserve fixed cutouts under unchanged covers; keep viewer and downloadable native assemblies consistent. Trident rear-deck and DoomCube source-identity receipts record the current scope. |
 | Standalone head assembly | `TOOLHEAD_CONFIGURATIONS.json`; `site/viewer/configuration-model.js`; `site/viewer/embedded-boards.mjs` | Exact IDs, real module/visibility differences, author/component terms, probe/head limits; source-only variants retain their limitations |
+| Hotend/head companion parts | Exact author/manufacturer part identities in `TOOLHEAD_CONFIGURATIONS.json` and `HEAD_ADDITIONS.json`; `site/viewer/head-assembly.js`; `machine-heads.js` and `toolheads.js` consumers; source-specific adapters such as `rapido-x-uhf-cover.mjs` | [Complete companion review](MACHINE_REVIEW.md#hotend-and-head-companion-parts): covers, mounts/spacers, ducts/fans, LEDs, nozzle/probe, fasteners, all affected registrations and A-to-B-to-A/reset/save-load checks against actual assets |
 | Head installed on a machine | `MACHINE_HEAD_REGISTRATIONS.json`; `ASSEMBLY_CONFIGURATIONS.json` or `machines/<machine-id>/configurations.json` for Trident; `site/viewer/machine-head-model.mjs` | Native mating datums, replacement parts, belt width/carriage, nozzle reference, size-specific motion and colors |
 | Monolith standalone and installed | `GANTRY_CONFIGURATIONS.json`, `MONOLITH_MACHINE_REGISTRATIONS.json`, `MONOLITH_BELT_ROUTES.json`; `site/viewer/monolith-head-model.mjs` and `monolith-machine-model.mjs` | VT/V2, size, printed/sheet-metal, belt width, drive and fixed/changer registration; [Monolith](MONOLITH_MACHINE.md) |
 | V0 installed Mods | `site/V0_INSTALLATIONS.json`; `site/viewer/v0-installations.mjs` | All seven slots, `requires` / `conflicts`, stock replacement, door/tophat/chain behavior; [V0](V0_INSTALLATIONS.md) |
@@ -32,6 +34,9 @@ the model bundle are addressed relative to the assembled site root.
 2. Register the exact assembly and its measured interface. Shared family names,
    similar bolt patterns or a Cartesian product of menu options do not establish
    compatibility. Preserve source dimensions and document any display omissions.
+   Record its source-backed companion requirements and review the complete
+   cover/mount/cooling/LED/nozzle/probe/fastener set under
+   [machine review](MACHINE_REVIEW.md#hotend-and-head-companion-parts).
 3. Exercise the production composition functions, including board expansion and
    machine/gantry overrides. Verify the exact configuration is reachable, keeps
    its ID through save/load and links, and has the correct installed geometry.

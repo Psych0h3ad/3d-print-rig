@@ -5,6 +5,7 @@ import {navigateWorkspace} from './workspace-navigation.mjs?v=424451cc1e036690fe
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
 import {ratRigMachines} from './ratrig-machines.mjs?v=a21b698822731b57dea6';
 export const machineChoices=[
+ {id:'doomcube2_350_reference',label:'DoomCube 2 · 350 / Native CAD',page:'./community.html',family:'doomcube',vendor:'frankenvoron',size:350},
  {id:'tictac_21_120',label:'TicTac 2.1 · 120 / Native CAD',page:'./community.html',family:'tictac',vendor:'squirrelbrain',size:120},
  {id:'the100_v11_165',label:'THE 100 v1.1 · 165 / Native CAD',page:'./community.html',family:'the100',vendor:'mszturc',size:165},
  {id:'rook_mk2_120',label:'Rook MK2 · 120 / Native CAD',page:'./community.html',family:'rook',vendor:'rolohaun',size:120},
@@ -51,8 +52,8 @@ export const machineChoices=[
  {id:'crossant_235_v06_leadscrew',label:'Crossant-235 · Leadscrew Z / Sherpa Mini / Goliath',page:'./crossant.html',family:'crossant',vendor:'pole',size:220},
  ...ratRigMachines,
 ];
-const vendors={squirrelbrain:'Squirrelbrain',mszturc:'Matt The Printing Nerd',rolohaun:'Rolohaun Design',sovol:'SOVOL',lhndo:'LH Stinger / lhndo',antithesis:"Antithesis Engineering",snakeoil:"SnakeOilXY",zerog:"ZeroG",vzbot:"VzBot",creality:"Creality",positron_ldo:'Positron 3D / LDO',voron:'VORON / 標準',siboor:'SIBOOR',ldo:'LDO',fysetc:'FYSETC',pfa:'Printers for Ants',ratrig:'Rat Rig',pole:'Pole Engineering',remorph:'Lex Reman / Remorph',annex:'Annex Engineering'};
-const families={tictac:'TicTac',the100:'THE 100',rook:'Rook',satsuma:'Satsuma',sovol_sv08:'SOVOL SV08',lh_stinger:'LH Stinger',aether:"Antithesis Aether",vminion:"V-Minion",snakeoil_xy:"SnakeOil XY",snakeoil_3s:"SnakeOil XY-3S",proosaxy:"ProosaXY",mercury:"Mercury One.1",vzbot:"VzBot",ender3:"Ender-3",sboom:"S-BOOM",positron:'Positron',trident:'VORON Trident',v24:'VORON V2.4',v0:'VORON V0',micron:'Micron',vcore4:'V-Core 4',crossant:'Crossant-235',remorph:'Remorph',annex_k1:'Annex K1',annex_k2:'Annex K2',annex_k3:'Annex K3'};
+const vendors={frankenvoron:'FrankenVoron',squirrelbrain:'Squirrelbrain',mszturc:'Matt The Printing Nerd',rolohaun:'Rolohaun Design',sovol:'SOVOL',lhndo:'LH Stinger / lhndo',antithesis:"Antithesis Engineering",snakeoil:"SnakeOilXY",zerog:"ZeroG",vzbot:"VzBot",creality:"Creality",positron_ldo:'Positron 3D / LDO',voron:'VORON / 標準',siboor:'SIBOOR',ldo:'LDO',fysetc:'FYSETC',pfa:'Printers for Ants',ratrig:'Rat Rig',pole:'Pole Engineering',remorph:'Lex Reman / Remorph',annex:'Annex Engineering'};
+const families={doomcube:'DoomCube 2',tictac:'TicTac',the100:'THE 100',rook:'Rook',satsuma:'Satsuma',sovol_sv08:'SOVOL SV08',lh_stinger:'LH Stinger',aether:"Antithesis Aether",vminion:"V-Minion",snakeoil_xy:"SnakeOil XY",snakeoil_3s:"SnakeOil XY-3S",proosaxy:"ProosaXY",mercury:"Mercury One.1",vzbot:"VzBot",ender3:"Ender-3",sboom:"S-BOOM",positron:'Positron',trident:'VORON Trident',v24:'VORON V2.4',v0:'VORON V0',micron:'Micron',vcore4:'V-Core 4',crossant:'Crossant-235',remorph:'Remorph',annex_k1:'Annex K1',annex_k2:'Annex K2',annex_k3:'Annex K3'};
 for(const row of machineChoices){
  if(row.family&&row.vendor&&row.size)continue;
  row.family=row.id.startsWith('micron_')?'micron':row.id.includes('trident')?'trident':row.id.includes('v24')?'v24':'v0';

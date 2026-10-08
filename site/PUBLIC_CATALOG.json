@@ -1753,6 +1753,18 @@
           "sha256": "a59e6db9ed290f755f17d14ed28958a02fe92ef3c73678597fcbc03acce7df8e"
         }
       ]
+    },
+    {
+      "id": "doomcube2",
+      "label": "DoomCube 2 / 350",
+      "repository": "FrankenVoron/DoomCube-2",
+      "author": "FrankenVoron",
+      "commit": "02baa8c02c8984d46450843e8b41f24b135f6478",
+      "url": "https://github.com/FrankenVoron/DoomCube-2/tree/02baa8c02c8984d46450843e8b41f24b135f6478",
+      "license": "GPL-3.0; embedded designs retain their original author credits and license terms",
+      "license_url": "https://github.com/FrankenVoron/DoomCube-2/blob/02baa8c02c8984d46450843e8b41f24b135f6478/LICENSE",
+      "scope": "Original complete-ish 350 CAD v12, square and rounded frame reference assemblies. Static geometry; motion and complete native clearance remain unqualified.",
+      "changes": "Source frame/probe/gantry alternatives separated; printed colors and transparent panels classified. Three invalid original printed bodies retained as finite mesh references."
     }
   ],
   "defaults": [
@@ -1872,16 +1884,16 @@
       "display_name": "VORON Trident R2 300",
       "configuration": "R2 / Stealthburner / Clockwork 2 / Revo Voron",
       "revision": "R2",
-      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v77/VORON_Trident_R2_300_SB_CW2_RevoVoron_Assy_STEP.zip",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-trident-deck-103/VORON_Trident_R2_300_SB_CW2_RevoVoron_Assy_STEP.zip",
       "upstream_url": "https://github.com/VoronDesign/Voron-Trident/tree/a8628f48546948ce1fc15511b7765b7f31f80722",
       "license": "GPL-3.0 (VORON); retained CW2 component terms not declared",
       "release_verified": true,
       "part_count": 1340,
       "step_zip": {
-        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v77/VORON_Trident_R2_300_SB_CW2_RevoVoron_Assy_STEP.zip",
+        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-trident-deck-103/VORON_Trident_R2_300_SB_CW2_RevoVoron_Assy_STEP.zip",
         "filename": "VORON_Trident_R2_300_SB_CW2_RevoVoron_Assy_STEP.zip",
-        "bytes": 74972442,
-        "sha256": "cac7278b69b164152333e5f68effcc9a55155c7557f843b0da5957dc476e071a"
+        "bytes": 74991443,
+        "sha256": "b08e188b53f40366c9fba6be0f23ffc0a94f42e358ee95a07287d45491a92994"
       }
     },
     {
@@ -1893,16 +1905,16 @@
       "display_name": "VORON Trident R2 350",
       "configuration": "R2 / Stealthburner / Clockwork 2 / Revo Voron",
       "revision": "R2",
-      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/trident-front-v100/VORON_Trident_R2_350_SB_CW2_RevoVoron_Assy_STEP.zip",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-trident-deck-103/VORON_Trident_R2_350_SB_CW2_RevoVoron_Assy_STEP.zip",
       "upstream_url": "https://github.com/VoronDesign/Voron-Trident/tree/a8628f48546948ce1fc15511b7765b7f31f80722",
       "license": "GPL-3.0 (VORON); retained CW2 component terms not declared",
       "release_verified": true,
       "part_count": 1348,
       "step_zip": {
-        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/trident-front-v100/VORON_Trident_R2_350_SB_CW2_RevoVoron_Assy_STEP.zip",
+        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-trident-deck-103/VORON_Trident_R2_350_SB_CW2_RevoVoron_Assy_STEP.zip",
         "filename": "VORON_Trident_R2_350_SB_CW2_RevoVoron_Assy_STEP.zip",
-        "bytes": 75680729,
-        "sha256": "229b5b4baf96d7075378fa29e8e95b659357f760bbdb57ccc57bbb616f389bbe"
+        "bytes": 75699964,
+        "sha256": "ba76fc2aa1084f618a072b1cbbb00a9022804c68ee1b1122978cb97df47502b1"
       }
     },
     {
@@ -1979,7 +1991,7 @@
       "display_name": "VORON Trident 500 Custom",
       "configuration": "Printed R2 / Stealthburner / Clockwork 2 / Revo Voron",
       "revision": "Custom 500 / R2 reference",
-      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/trident-front-v100/VORON_Trident_500_Custom_SB_CW2_RevoVoron_Assy_STEP.zip",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-trident-deck-103/VORON_Trident_500_Custom_SB_CW2_RevoVoron_Assy_STEP.zip",
       "upstream_url": "https://github.com/VoronDesign/Voron-Trident/tree/a8628f48546948ce1fc15511b7765b7f31f80722",
       "license": "GPL-3.0 (VORON); retained CW2 component terms not declared",
       "release_verified": true,
@@ -1987,10 +1999,10 @@
       "custom_reference": true,
       "note": "500 mm custom CAD reference; not an official VORON size or tested kit.",
       "step_zip": {
-        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/trident-front-v100/VORON_Trident_500_Custom_SB_CW2_RevoVoron_Assy_STEP.zip",
+        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-trident-deck-103/VORON_Trident_500_Custom_SB_CW2_RevoVoron_Assy_STEP.zip",
         "filename": "VORON_Trident_500_Custom_SB_CW2_RevoVoron_Assy_STEP.zip",
-        "bytes": 169577494,
-        "sha256": "e2811262417d8620a34d5e9e2c6710c6f22cebe3bbdbc6abb2767acbdfb41ea4"
+        "bytes": 169596521,
+        "sha256": "2df47a15c94f9bc908dbd608040f192f9baba60589691c104f950759f75b9519"
       }
     }
   ],
@@ -2228,6 +2240,16 @@
       "bytes": 93892779,
       "sha256": "555aca248e477429a5bba5b9d79b75a4299f6aa006473309cb6df07b1876ed07",
       "license": "GPL-3.0 for VORON and Stealthburner; retained CW2 source terms not declared"
+    },
+    {
+      "id": "trident_deck_103_native",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-trident-deck-103/VORON_Trident_Deck_103_Editable_Source.zip",
+      "bytes": 30220063,
+      "sha256": "363e4bd40ed47b0f2d77e6222af00cbabd72a0a65524cd16980f3c7c9e8c6984",
+      "format": "BREP / STEP / Python source",
+      "includes": "Pinned original 250 mm CAD; five corrected native deck solids; exact deck-only reproduction recipe for existing 300 / 350 / 500 mm STEP assemblies. Original component terms and unchanged front/electronics fixes are preserved.",
+      "label": "VORON Trident rear deck editable source",
+      "license": "GPL-3.0 for Trident CAD and deck delta recipe; other assembly components retain their original terms"
     }
   ]
 }

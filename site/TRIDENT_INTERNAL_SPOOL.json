@@ -79,7 +79,18 @@
         "filament_route_registered": false,
         "whole_machine_certified": false
       },
-      "notes": "Author Trident 300/350 sizes; Ø200 × up to 75 mm capacity. Holder and guides only. Spool body and filament route are not included; the existing external PTFE preview remains independent."
+      "notes": "Author Trident 300/350 sizes; Ø200 × up to 75 mm capacity. Holder and guides only. Spool body and filament route are not included; the existing external PTFE preview remains independent.",
+      "host_delta": {
+        "original_manifest_sha256": "b17e18539aab4f5c4d6f56b8d40276dc77778611b129a65cc4e0b3f1e7b0d5ad",
+        "current_manifest_sha256": "504593577292b209f9cf32c26a16cc735a42c0d1705570ccfab7df341c57f438",
+        "current_model_sha256": "e70b196fc2d27582652249302811d8e5fc864c286d3920e8865596357a99ce70",
+        "unchanged_profile_sha256": "c28b590d64bf242514f9f25dcfa89d8ee64e56878480966087ec347936b818a0",
+        "schema": "internal-spool-rear-deck-delta-103",
+        "evidence_document": "docs/TRIDENT_SPOOL_DECK_DELTA_103.json",
+        "evidence_sha256": "f7db9df6129a5ace34191b9687d0ceec0279e81b24ad9a7a8dba3663d6dbe6bd",
+        "scope": "Changed static deck only; original holder/guide qualification retained.",
+        "whole_machine_certified": false
+      }
     },
     "voron_trident_350": {
       "id": "trident_internal_spool",
@@ -111,7 +122,18 @@
         "filament_route_registered": false,
         "whole_machine_certified": false
       },
-      "notes": "Author Trident 300/350 sizes; Ø200 × up to 75 mm capacity. Holder and guides only. Spool body and filament route are not included; the existing external PTFE preview remains independent."
+      "notes": "Author Trident 300/350 sizes; Ø200 × up to 75 mm capacity. Holder and guides only. Spool body and filament route are not included; the existing external PTFE preview remains independent.",
+      "host_delta": {
+        "original_manifest_sha256": "4eb67785885b97e73e1ca6052fc05f07dbddef394e60a6620bf2494265796aca",
+        "current_manifest_sha256": "c30875c2cdae7b7ee59618a76cb2e3fd3285e439a666e0f5f6c441bec7b9b173",
+        "current_model_sha256": "9238ff722d469f6748fb5263212f42e4564e7fa17e9047c32e1d3a831f5bb62e",
+        "unchanged_profile_sha256": "ce0edf0434c215f7422e6522ca7e68db95fc4429598bfeeab988876aed6a2b70",
+        "schema": "internal-spool-rear-deck-delta-103",
+        "evidence_document": "docs/TRIDENT_SPOOL_DECK_DELTA_103.json",
+        "evidence_sha256": "f7db9df6129a5ace34191b9687d0ceec0279e81b24ad9a7a8dba3663d6dbe6bd",
+        "scope": "Changed static deck only; original holder/guide qualification retained.",
+        "whole_machine_certified": false
+      }
     }
   },
   "source": {

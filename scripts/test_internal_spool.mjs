@@ -1,7 +1,9 @@
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {withInternalSpool} from '../site/viewer/internal-spool.mjs';
+import {qualifiedSpoolHostManifest} from './spool-deck-evidence.mjs';
 const catalog=JSON.parse(fs.readFileSync(new URL('../site/TRIDENT_INTERNAL_SPOOL.json',import.meta.url)));
+const deckProof=fs.readFileSync(new URL('../docs/TRIDENT_SPOOL_DECK_DELTA_103.json',import.meta.url));
 const registration={assets:{native:{meta:'native.json'}},accessories:[]};
 assert.ok(Object.keys(catalog.machines).length>0,'No actual spool installation registered');
 for(const machine of Object.keys(catalog.machines)){
@@ -9,6 +11,13 @@ for(const machine of Object.keys(catalog.machines)){
  assert.equal(row.id,'trident_internal_spool');
  assert.deepEqual(row.translation_mm,[0,0,0]);
  assert.equal(registration.accessories.length,0);
+ if(row.host_delta){
+  assert.equal(qualifiedSpoolHostManifest(machine,row,deckProof),row.host_delta.current_manifest_sha256);
+  for(const mutate of [q=>q.host_delta.current_manifest_sha256='0'.repeat(64),q=>q.qualification.machine_manifest_sha256=q.host_delta.current_manifest_sha256,q=>q.host_delta.whole_machine_certified=true]){
+   const changed=structuredClone(row);mutate(changed);assert.throws(()=>qualifiedSpoolHostManifest(machine,changed,deckProof));
+  }
+  assert.throws(()=>qualifiedSpoolHostManifest(machine,row,Buffer.concat([deckProof,Buffer.from(' ')])));
+ }
  for(const mutate of [
   c=>{c.machines[machine].qualification.native_tuple_receipt_sha256='pending'},
   c=>{c.machines[machine].qualification.machine_id='voron_trident_250'},

@@ -1,0 +1,579 @@
+{
+  "schema": "trident-source-aperture-deck-103",
+  "whole_machine_certified": false,
+  "canonical_source_native_sha256": "be460563ea7c44bbae51931b107658312165a975c8d442be5a295694f6d45613",
+  "source_revision": "a8628f48546948ce1fc15511b7765b7f31f80722",
+  "canonical_notch": {
+    "width_mm": 52.00000000000008,
+    "depth_mm": 51.50000000000051,
+    "radii_mm": [
+      3.00000000000004,
+      3.00000000000004
+    ],
+    "sheet_thickness_mm": 3.000000000015934
+  },
+  "scope": "Only leaf1188 rear central notch; exact source aperture and native sheet section. Rear cap/hardware never regenerated. Finite native source-relative mating and unchanged-volume checks; not full machine/motion/physical clearance certification.",
+  "machines": [
+    {
+      "machine_id": "voron_trident_300",
+      "part_key": "voron_trident_300_base_1188",
+      "before_width_mm": 102.00000000000009,
+      "after_width_mm": 52.00000000000008,
+      "before_native_sha256": "63ff1eda97f7b1fbfabfb172d391a500be148e4c3a8df9a3a7be8d8a2e1a471c",
+      "after_native_sha256": "499eb3a15a85d05e719aec548771b4d431a2e041edff2d3724bf716003c9d9e6",
+      "added_material_mm3": 7725.0000000000055,
+      "removed_material_mm3": 0,
+      "outside_repair_region_symmetric_difference_mm3": 0,
+      "canonical_source_aperture_symmetric_difference_mm3": 0,
+      "source_deck_hardware_pairs": {
+        "741": {
+          "distance_mm": 7.567280135845067e-13,
+          "common_volume_mm3": 0,
+          "native_sha256": "f8cb03036ff552676d64e82f8b32ae1b38edd41d001f8111dd766e2a40bc5eba",
+          "name": "[a]_z_cover_rear",
+          "source_common_volume_mm3": 0
+        },
+        "742": {
+          "distance_mm": 1.0000000000008882,
+          "common_volume_mm3": 0,
+          "native_sha256": "aaf6390d2ae3abce4085a59e644bc014e8b69b942f22ebdcdda91850b6d2da62",
+          "name": "z_stepper_rear",
+          "source_common_volume_mm3": 0
+        },
+        "750": {
+          "distance_mm": 24.1654033988073,
+          "common_volume_mm3": 0,
+          "native_sha256": "f72d9684fbe3271c4009c4fab715db11dff6568b5dbc0ca5fa3fdbe91f100539",
+          "name": "M2x10 Self Tapping Screw (2)",
+          "source_common_volume_mm3": 0
+        },
+        "751": {
+          "distance_mm": 7.348639329834099,
+          "common_volume_mm3": 0,
+          "native_sha256": "9cb5e840b93e4a44330635c90a42a2403b05f1b04be9da2224d231eb4c507eeb",
+          "name": "M3x6 BHCS v1 (1)",
+          "source_common_volume_mm3": 0
+        },
+        "752": {
+          "distance_mm": 11.114967193783585,
+          "common_volume_mm3": 0,
+          "native_sha256": "078529c3dcba41f19de773c354d773e31e0032866915ffbcc89815ad66bb4d63",
+          "name": "M3x6 BHCS v1 (1)",
+          "source_common_volume_mm3": 0
+        },
+        "753": {
+          "distance_mm": 7.348639329834643,
+          "common_volume_mm3": 0,
+          "native_sha256": "c230b5fd649d376315907def22d99b689cecfeaad747e7cce1c0bf919f8e8f2e",
+          "name": "M3x6 BHCS v1 (1)",
+          "source_common_volume_mm3": 0
+        }
+      },
+      "native_valid": true,
+      "original_binary_sha256": "46b74106c16749e68c1e2f3732e767ff3315a4e81809f17d5197d9d7c11c1fd7",
+      "original_binary_bytes": 35410788,
+      "all_original_binary_bytes_preserved": true,
+      "only_deck_primitive_and_appended_views_accessors_changed": true,
+      "all_nodes_materials_and_other_manifest_rows_preserved": true,
+      "before_files": {
+        "model.glb": {
+          "bytes": 11125977,
+          "sha256": "20bc1088cf0592443278fb6a41032c746b3de0ee7d8fe2b1e5d7a45752fcf433",
+          "decoded_bytes": 36176828,
+          "decoded_sha256": "841a2f968790536d791d969ab9b080ff88e80c78b72c49f652384fafe6ea39da"
+        },
+        "assembly_manifest.json": {
+          "bytes": 541085,
+          "sha256": "b17e18539aab4f5c4d6f56b8d40276dc77778611b129a65cc4e0b3f1e7b0d5ad"
+        },
+        "machine_profile.json": {
+          "bytes": 5938,
+          "sha256": "c28b590d64bf242514f9f25dcfa89d8ee64e56878480966087ec347936b818a0"
+        }
+      },
+      "after_files": {
+        "model.glb": {
+          "bytes": 11129383,
+          "sha256": "e70b196fc2d27582652249302811d8e5fc864c286d3920e8865596357a99ce70",
+          "decoded_bytes": 36186576,
+          "decoded_sha256": "d927d9e14276901cdfcd2d433a16e67ae461ec0bc67ea1912715881a64181b16"
+        },
+        "assembly_manifest.json": {
+          "bytes": 541453,
+          "sha256": "504593577292b209f9cf32c26a16cc735a42c0d1705570ccfab7df341c57f438"
+        },
+        "machine_profile.json": {
+          "bytes": 5938,
+          "sha256": "c28b590d64bf242514f9f25dcfa89d8ee64e56878480966087ec347936b818a0"
+        }
+      },
+      "geometry": {
+        "vertex_count": 272,
+        "triangle_count": 220,
+        "normal_length_range": [
+          0.9999999403953552,
+          1.0
+        ],
+        "welded_quality_copy_watertight": true,
+        "welded_quality_copy_winding_consistent": true,
+        "minimum_triangle_area_mm2": 0.7844016847282725
+      }
+    },
+    {
+      "machine_id": "voron_trident_350",
+      "part_key": "voron_trident_350_base_1188",
+      "before_width_mm": 152.00000000000009,
+      "after_width_mm": 52.00000000000008,
+      "before_native_sha256": "28adf167ee83256c5ce9726623b13747336be5b9795652aeb100ad8a6957afe3",
+      "after_native_sha256": "4e29878180cd5f56e8895516aafaa7a42086585875f56cd5ca43014965e52198",
+      "added_material_mm3": 15450.000000000022,
+      "removed_material_mm3": 0,
+      "outside_repair_region_symmetric_difference_mm3": 0,
+      "canonical_source_aperture_symmetric_difference_mm3": 0,
+      "source_deck_hardware_pairs": {
+        "741": {
+          "distance_mm": 2.4158453015843406e-13,
+          "common_volume_mm3": 0,
+          "native_sha256": "8e5fa2f8e1fefccb78eb9f09633589a6b6a81ca415d092a6637b8ed577e6ec77",
+          "name": "[a]_z_cover_rear",
+          "source_common_volume_mm3": 0
+        },
+        "742": {
+          "distance_mm": 0.9999999999998153,
+          "common_volume_mm3": 0,
+          "native_sha256": "a9c32b1942416260be8146a9d8d9302d7f7b955d3f29e9c86f07bfd85d056984",
+          "name": "z_stepper_rear",
+          "source_common_volume_mm3": 0
+        },
+        "750": {
+          "distance_mm": 24.1654033988073,
+          "common_volume_mm3": 0,
+          "native_sha256": "f7fb67720792711e02f29e15c90541d576efc5372fe4178ba80890b957579261",
+          "name": "M2x10 Self Tapping Screw (2)",
+          "source_common_volume_mm3": 0
+        },
+        "751": {
+          "distance_mm": 7.3486393298341035,
+          "common_volume_mm3": 0,
+          "native_sha256": "b44ec2e2eb28c51f97d806eefa5dbabefcdaead867d8426e724bf3606b8c5acd",
+          "name": "M3x6 BHCS v1 (1)",
+          "source_common_volume_mm3": 0
+        },
+        "752": {
+          "distance_mm": 11.114967193783585,
+          "common_volume_mm3": 0,
+          "native_sha256": "c28790f8c7550fbcf5af3953607d0d08952318cb9a0de93b0975d773020d53fb",
+          "name": "M3x6 BHCS v1 (1)",
+          "source_common_volume_mm3": 0
+        },
+        "753": {
+          "distance_mm": 7.34863932983464,
+          "common_volume_mm3": 0,
+          "native_sha256": "c2e1c34c2962c6147bf150c9b5acbf6dfa2cbb87a28a97a0b1977c0cbe7f3273",
+          "name": "M3x6 BHCS v1 (1)",
+          "source_common_volume_mm3": 0
+        }
+      },
+      "native_valid": true,
+      "original_binary_sha256": "b3090aa25cd2ca315c0bfe1dda72a743b9a8841e80821afe8c0ae386afb3afc6",
+      "original_binary_bytes": 35729568,
+      "all_original_binary_bytes_preserved": true,
+      "only_deck_primitive_and_appended_views_accessors_changed": true,
+      "all_nodes_materials_and_other_manifest_rows_preserved": true,
+      "before_files": {
+        "model.glb": {
+          "bytes": 11225330,
+          "sha256": "d64fdf7ba61def5cbd7d094c4103af39938724e0daa43bfb7943a4f67b1ad619",
+          "decoded_bytes": 36496036,
+          "decoded_sha256": "cad3fb144e1938c043f26724fcbec93966124aa15411a030779281fe244b10f8"
+        },
+        "assembly_manifest.json": {
+          "bytes": 540946,
+          "sha256": "4eb67785885b97e73e1ca6052fc05f07dbddef394e60a6620bf2494265796aca"
+        },
+        "machine_profile.json": {
+          "bytes": 5911,
+          "sha256": "ce0edf0434c215f7422e6522ca7e68db95fc4429598bfeeab988876aed6a2b70"
+        }
+      },
+      "after_files": {
+        "model.glb": {
+          "bytes": 11228608,
+          "sha256": "9238ff722d469f6748fb5263212f42e4564e7fa17e9047c32e1d3a831f5bb62e",
+          "decoded_bytes": 36505784,
+          "decoded_sha256": "e619e8944eba1a45ff7f72f28f808d4c475a0d0fb95d08a5eacf4fe2cffa97f4"
+        },
+        "assembly_manifest.json": {
+          "bytes": 541314,
+          "sha256": "c30875c2cdae7b7ee59618a76cb2e3fd3285e439a666e0f5f6c441bec7b9b173"
+        },
+        "machine_profile.json": {
+          "bytes": 5911,
+          "sha256": "ce0edf0434c215f7422e6522ca7e68db95fc4429598bfeeab988876aed6a2b70"
+        }
+      },
+      "geometry": {
+        "vertex_count": 272,
+        "triangle_count": 220,
+        "normal_length_range": [
+          0.9999999403953552,
+          1.0
+        ],
+        "welded_quality_copy_watertight": true,
+        "welded_quality_copy_winding_consistent": true,
+        "minimum_triangle_area_mm2": 0.7844016847286123
+      }
+    },
+    {
+      "machine_id": "voron_trident_500_custom",
+      "part_key": "voron_trident_350_base_1188",
+      "before_width_mm": 302.0000000000001,
+      "after_width_mm": 52.00000000000008,
+      "before_native_sha256": "a24023a7dc9ec435600f5030e9fe1cd948c23be530d646a57e6507fb1179cfe2",
+      "after_native_sha256": "e254fdbf26d40a84f644509230c460cd7813fb5839f0ddcf71750cd899c57818",
+      "added_material_mm3": 38625.00000000012,
+      "removed_material_mm3": 0,
+      "outside_repair_region_symmetric_difference_mm3": 0,
+      "canonical_source_aperture_symmetric_difference_mm3": 0,
+      "source_deck_hardware_pairs": {
+        "741": {
+          "distance_mm": 7.105427357601002e-15,
+          "common_volume_mm3": 0,
+          "native_sha256": "3e99dbceb3bbfec25e2430c0412f0e034100f9eed5d97a3d44d7b42947f6a492",
+          "name": "[a]_z_cover_rear",
+          "source_common_volume_mm3": 0
+        },
+        "742": {
+          "distance_mm": 0.9999999999966036,
+          "common_volume_mm3": 0,
+          "native_sha256": "e57ec40283045698977d186efcebc99a80736f6b3ef1b8ec3ae779e9652e263a",
+          "name": "z_stepper_rear",
+          "source_common_volume_mm3": 0
+        },
+        "750": {
+          "distance_mm": 24.165403398807296,
+          "common_volume_mm3": 0,
+          "native_sha256": "1f335bc28b7a82e5ceac80e037d932054a1b216d3523458de0d8aa3388d264a2",
+          "name": "M2x10 Self Tapping Screw (2)",
+          "source_common_volume_mm3": 0
+        },
+        "751": {
+          "distance_mm": 7.34863932983411,
+          "common_volume_mm3": 0,
+          "native_sha256": "c78835afd7f0af812c2d2b26ed92ea9183aab0e69e04b884fc0cf62a1d28a6be",
+          "name": "M3x6 BHCS v1 (1)",
+          "source_common_volume_mm3": 0
+        },
+        "752": {
+          "distance_mm": 11.114967193783528,
+          "common_volume_mm3": 0,
+          "native_sha256": "089cceab8f85f9f1af86dcdb43627ad2fe8266d4ffaf2cb67a8fac75f590dd9a",
+          "name": "M3x6 BHCS v1 (1)",
+          "source_common_volume_mm3": 0
+        },
+        "753": {
+          "distance_mm": 7.348639329834606,
+          "common_volume_mm3": 0,
+          "native_sha256": "2e5b4d09456b0b9c494150fcbb2c480044b8738d5c418b7099ff0192e19d0eb8",
+          "name": "M3x6 BHCS v1 (1)",
+          "source_common_volume_mm3": 0
+        }
+      },
+      "native_valid": true,
+      "original_binary_sha256": "7911e6bceb06737f4041d00d87a22870fee89af017b33232b7c415835e7c7001",
+      "original_binary_bytes": 107948556,
+      "all_original_binary_bytes_preserved": true,
+      "only_deck_primitive_and_appended_views_accessors_changed": true,
+      "all_nodes_materials_and_other_manifest_rows_preserved": true,
+      "before_files": {
+        "model.glb": {
+          "bytes": 39748968,
+          "sha256": "f2c4b76eb0defa6704afa175c51940cce2fa343e6e91868f9038627c7bc0b097",
+          "decoded_bytes": 109074236,
+          "decoded_sha256": "e579e2332f20d7f8a8dd4f5c1a412a19215a782edc32cafa05f7745d520eb4f6"
+        },
+        "assembly_manifest.json": {
+          "bytes": 1553890,
+          "sha256": "c54bd327f149443c48b4dcaac46795ff16b1d8be608efa2a462aa67e834b1c56"
+        },
+        "machine_profile.json": {
+          "bytes": 7379,
+          "sha256": "8dcb398d4d65665b87cc68973df84c7b63733c501339ece5a6144a2bf9e8d74b"
+        }
+      },
+      "after_files": {
+        "model.glb": {
+          "bytes": 39752779,
+          "sha256": "f9b66a158697e7b8be7cf6434fa0f583b1e6f6162758d0d36e97ef9e566530b3",
+          "decoded_bytes": 109083980,
+          "decoded_sha256": "4aa9673623c73d1090227efe2d522e68ee99b210c4704ae7bd15f5f7d09866b2"
+        },
+        "assembly_manifest.json": {
+          "bytes": 1052517,
+          "sha256": "f5e370eb6a825d3e81d8384610e0898584df507f60b9cbeec0d97e6346985792"
+        },
+        "machine_profile.json": {
+          "bytes": 7379,
+          "sha256": "8dcb398d4d65665b87cc68973df84c7b63733c501339ece5a6144a2bf9e8d74b"
+        }
+      },
+      "geometry": {
+        "vertex_count": 272,
+        "triangle_count": 220,
+        "normal_length_range": [
+          0.9999999403953552,
+          1.0
+        ],
+        "welded_quality_copy_watertight": true,
+        "welded_quality_copy_winding_consistent": true,
+        "minimum_triangle_area_mm2": 0.7844016847282725
+      }
+    },
+    {
+      "machine_id": "voron_trident_1000_custom",
+      "part_key": "voron_trident_350_base_1188",
+      "before_width_mm": 802.0,
+      "after_width_mm": 52.00000000000008,
+      "before_native_sha256": "9e32ddfbbc3355baef4722c4c38f7c41ceeac2ed16b65eafb136de43f0858404",
+      "after_native_sha256": "007a6dfd2b2be16290b4b8bfe684c023c02d32ee83767f7069fdb60c7e6918a4",
+      "added_material_mm3": 115875.00000000096,
+      "removed_material_mm3": 0,
+      "outside_repair_region_symmetric_difference_mm3": 0,
+      "canonical_source_aperture_symmetric_difference_mm3": 0,
+      "source_deck_hardware_pairs": {
+        "741": {
+          "distance_mm": 2.369660023759934e-12,
+          "common_volume_mm3": 0,
+          "native_sha256": "a85ccafedfc3c7fb16026ce84c2aceeb84e2d901fcdaed4fdf25b6b00291c88c",
+          "name": "[a]_z_cover_rear",
+          "source_common_volume_mm3": 0
+        },
+        "742": {
+          "distance_mm": 0.9999999999858993,
+          "common_volume_mm3": 0,
+          "native_sha256": "70ebe1c66a5871dd151ba528f68692e41c26687e9fdbe5f5e92a4c524942af78",
+          "name": "z_stepper_rear",
+          "source_common_volume_mm3": 0
+        },
+        "750": {
+          "distance_mm": 24.165403398807296,
+          "common_volume_mm3": 0,
+          "native_sha256": "6108b00b2aa4c879260b5e5294cf84b61a651b87104019564e87d92d502c5082",
+          "name": "M2x10 Self Tapping Screw (2)",
+          "source_common_volume_mm3": 0
+        },
+        "751": {
+          "distance_mm": 7.348639329833945,
+          "common_volume_mm3": 0,
+          "native_sha256": "add59c16596656ab1a8722ff8284d0df65a39b9ac7a23b4371f003e9d7da1185",
+          "name": "M3x6 BHCS v1 (1)",
+          "source_common_volume_mm3": 0
+        },
+        "752": {
+          "distance_mm": 11.114967193783528,
+          "common_volume_mm3": 0,
+          "native_sha256": "d9c3ba7a55ce5478c5fb38985b079b61688f9b360be1d56419003f7c0ff121de",
+          "name": "M3x6 BHCS v1 (1)",
+          "source_common_volume_mm3": 0
+        },
+        "753": {
+          "distance_mm": 7.3486393298344295,
+          "common_volume_mm3": 0,
+          "native_sha256": "f506751752e8cb85f6feab7e78374a473ddfc2ea69038470abea687cd3696a27",
+          "name": "M3x6 BHCS v1 (1)",
+          "source_common_volume_mm3": 0
+        }
+      },
+      "native_valid": true,
+      "original_binary_sha256": "bfac7277194ac0623203216014d323d13f301bc17569068a687f65c76175e651",
+      "original_binary_bytes": 180760380,
+      "all_original_binary_bytes_preserved": true,
+      "only_deck_primitive_and_appended_views_accessors_changed": true,
+      "all_nodes_materials_and_other_manifest_rows_preserved": true,
+      "before_files": {
+        "model.glb": {
+          "bytes": 57538436,
+          "sha256": "11c03aa01e2310e6dab7caf979cf32c47dac4841e8db14bf199e9cef22cef212",
+          "decoded_bytes": 182647328,
+          "decoded_sha256": "7179188c6de0756907746f33a120c30a7dcc2707a79dbd8c66ef23f5a5417a14"
+        },
+        "assembly_manifest.json": {
+          "bytes": 2715106,
+          "sha256": "03f6d6421f1f2bf338ea1d3ce288242cb096bc8c168e1e48ecd7dd6ae66368dd"
+        },
+        "machine_profile.json": {
+          "bytes": 8875,
+          "sha256": "47c96b8df0388b30251415ac538065d1d3ee4e85dca3126562378c26cde35aa2"
+        }
+      },
+      "after_files": {
+        "model.glb": {
+          "bytes": 57542644,
+          "sha256": "8f10f1c594fac72625118aa76fe8f9c761324d8915b7d9f3d09e8b5087451775",
+          "decoded_bytes": 182657056,
+          "decoded_sha256": "094d657422da5f74965a164e02c9e95824d5e0670fdaed9ffedd0590d4369ede"
+        },
+        "assembly_manifest.json": {
+          "bytes": 1901715,
+          "sha256": "768233d0c3fbf28c9ff4f49718ee60af83c5b2294ee9bb8bb35a4d09a05444e4"
+        },
+        "machine_profile.json": {
+          "bytes": 8875,
+          "sha256": "47c96b8df0388b30251415ac538065d1d3ee4e85dca3126562378c26cde35aa2"
+        }
+      },
+      "geometry": {
+        "vertex_count": 272,
+        "triangle_count": 220,
+        "normal_length_range": [
+          0.9999999403953552,
+          1.0
+        ],
+        "welded_quality_copy_watertight": true,
+        "welded_quality_copy_winding_consistent": true,
+        "minimum_triangle_area_mm2": 0.7844016847286123
+      }
+    },
+    {
+      "machine_id": "voron_trident_350_half_z",
+      "part_key": "voron_trident_350_base_1188",
+      "before_width_mm": 152.00000000000009,
+      "after_width_mm": 52.00000000000008,
+      "before_native_sha256": "e3b1fed3a1b4825751072aa06e782476f49f971462a35f4f6f5d72ce5b87864f",
+      "after_native_sha256": "9736b0279370725697e4312b9e7cc5b9c4add0b884bcbeade64600cfb7e2e777",
+      "added_material_mm3": 15450.000000000022,
+      "removed_material_mm3": 0,
+      "outside_repair_region_symmetric_difference_mm3": 0,
+      "canonical_source_aperture_symmetric_difference_mm3": 0,
+      "source_deck_hardware_pairs": {
+        "741": {
+          "distance_mm": 2.4158453015843406e-13,
+          "common_volume_mm3": 0,
+          "native_sha256": "b8fc0b63163d6bb1baa0fa5993739e96253d43fab30815829252b22890f83a33",
+          "name": "[a]_z_cover_rear",
+          "source_common_volume_mm3": 0
+        },
+        "742": {
+          "distance_mm": 0.9999999999998153,
+          "common_volume_mm3": 0,
+          "native_sha256": "aee46ce6c227c0b309a5d0ec5242b138d8930bbb08744f97a2fbdec466ec6258",
+          "name": "z_stepper_rear",
+          "source_common_volume_mm3": 0
+        },
+        "750": {
+          "distance_mm": 24.1654033988073,
+          "common_volume_mm3": 0,
+          "native_sha256": "87075192166adff22e9826dde0ba728db9779f4dc455870deee01137262b6793",
+          "name": "M2x10 Self Tapping Screw (2)",
+          "source_common_volume_mm3": 0
+        },
+        "751": {
+          "distance_mm": 7.3486393298341035,
+          "common_volume_mm3": 0,
+          "native_sha256": "f3887bfe5505efea240bf9804d8198bec70baff886403937c8aa787e3ef7cdad",
+          "name": "M3x6 BHCS v1 (1)",
+          "source_common_volume_mm3": 0
+        },
+        "752": {
+          "distance_mm": 11.114967193783585,
+          "common_volume_mm3": 0,
+          "native_sha256": "cb10eb76fc865214826c71942805f492b6f8c6d138e915acf60f32255aa1ef6c",
+          "name": "M3x6 BHCS v1 (1)",
+          "source_common_volume_mm3": 0
+        },
+        "753": {
+          "distance_mm": 7.34863932983464,
+          "common_volume_mm3": 0,
+          "native_sha256": "610fb19052d40828e6fb327d37591d69336a2001cdc91e7f61d0217371e13ce5",
+          "name": "M3x6 BHCS v1 (1)",
+          "source_common_volume_mm3": 0
+        }
+      },
+      "native_valid": true,
+      "original_binary_sha256": "83afc31a78a0b06c797a69cb504bb8bbfefb93a8b027b25cf97458fb8e44d0f8",
+      "original_binary_bytes": 89675700,
+      "all_original_binary_bytes_preserved": true,
+      "only_deck_primitive_and_appended_views_accessors_changed": true,
+      "all_nodes_materials_and_other_manifest_rows_preserved": true,
+      "before_files": {
+        "model.glb": {
+          "bytes": 31893813,
+          "sha256": "bb59c005a4803a9e0a97e67df816813f6dc12f1eb574273954c1d715cf079c3b",
+          "decoded_bytes": 90740144,
+          "decoded_sha256": "419520ea8478da0b0f76775b848bc86a7e4733b7558459c9e22ee64caea5f346"
+        },
+        "assembly_manifest.json": {
+          "bytes": 1511494,
+          "sha256": "5b6afa1e8a100206c0337c73864243097d6cb9aa2d483dd7b52b79647a76d87f"
+        },
+        "machine_profile.json": {
+          "bytes": 6014,
+          "sha256": "f8f3316c0ea84089826f4ed587ebbc68e637d11c33a5b8caa07bfa4edf8bae7d"
+        }
+      },
+      "after_files": {
+        "model.glb": {
+          "bytes": 31897441,
+          "sha256": "1024170505a60e07a9cebcc13964efaac1d6b994b35dea659d46f9a2d8036f9e",
+          "decoded_bytes": 90749888,
+          "decoded_sha256": "c7964f897e5d1be6450c3adeb699d20ad375583a4989afb705ed9ee481a346a3"
+        },
+        "assembly_manifest.json": {
+          "bytes": 1023502,
+          "sha256": "8704526653a8308dc542b34f27fbb6eae94407be1671c296ad9d2225e669c5ff"
+        },
+        "machine_profile.json": {
+          "bytes": 6014,
+          "sha256": "f8f3316c0ea84089826f4ed587ebbc68e637d11c33a5b8caa07bfa4edf8bae7d"
+        }
+      },
+      "geometry": {
+        "vertex_count": 272,
+        "triangle_count": 220,
+        "normal_length_range": [
+          0.9999999403953552,
+          1.0
+        ],
+        "welded_quality_copy_watertight": true,
+        "welded_quality_copy_winding_consistent": true,
+        "minimum_triangle_area_mm2": 0.7844016847286123
+      }
+    }
+  ],
+  "baseline_bundle_sha256": "a79fe940bf766ba2323dc96defc4e1970e2722a8cc3ace381d66929449a1dee8",
+  "baseline_bundle_bytes": 851010521,
+  "model_bundle_sha256": "8bdbf3d8573dbcfd15ba5fd24d8d796562e266ebb8d2003e9754377856e8affa",
+  "model_bundle_bytes": 851019084,
+  "bundle_changed_paths": [
+    "machines/voron_trident_300/assembly_manifest.json",
+    "machines/voron_trident_300/model.glb.gz",
+    "machines/voron_trident_350/assembly_manifest.json",
+    "machines/voron_trident_350/model.glb.gz"
+  ],
+  "baseline_input_sha256": {
+    "machines/voron_trident_300/model.glb.gz": "20bc1088cf0592443278fb6a41032c746b3de0ee7d8fe2b1e5d7a45752fcf433",
+    "machines/voron_trident_300/assembly_manifest.json": "b17e18539aab4f5c4d6f56b8d40276dc77778611b129a65cc4e0b3f1e7b0d5ad",
+    "machines/voron_trident_300/machine_profile.json": "c28b590d64bf242514f9f25dcfa89d8ee64e56878480966087ec347936b818a0",
+    "machines/voron_trident_350/model.glb.gz": "d64fdf7ba61def5cbd7d094c4103af39938724e0daa43bfb7943a4f67b1ad619",
+    "machines/voron_trident_350/assembly_manifest.json": "4eb67785885b97e73e1ca6052fc05f07dbddef394e60a6620bf2494265796aca",
+    "machines/voron_trident_350/machine_profile.json": "ce0edf0434c215f7422e6522ca7e68db95fc4429598bfeeab988876aed6a2b70"
+  },
+  "input_sha256": {
+    "machines/voron_trident_300/model.glb.gz": "e70b196fc2d27582652249302811d8e5fc864c286d3920e8865596357a99ce70",
+    "machines/voron_trident_300/assembly_manifest.json": "504593577292b209f9cf32c26a16cc735a42c0d1705570ccfab7df341c57f438",
+    "machines/voron_trident_300/machine_profile.json": "c28b590d64bf242514f9f25dcfa89d8ee64e56878480966087ec347936b818a0",
+    "machines/voron_trident_350/model.glb.gz": "9238ff722d469f6748fb5263212f42e4564e7fa17e9047c32e1d3a831f5bb62e",
+    "machines/voron_trident_350/assembly_manifest.json": "c30875c2cdae7b7ee59618a76cb2e3fd3285e439a666e0f5f6c441bec7b9b173",
+    "machines/voron_trident_350/machine_profile.json": "ce0edf0434c215f7422e6522ca7e68db95fc4429598bfeeab988876aed6a2b70"
+  },
+  "retained_proof_sha256": {
+    "HEAD_VALIDATION.json": "307de76ad2fa77fd9f41c62269d8103aa760467f5651cc20a7a71438e99036ec",
+    "MOUNT_VALIDATION.json": "7abe5612128bafc9840587769556f26639b42334002da3906987cf5ec9d179d7",
+    "REAR_ENCLOSURE_QA.json": "6173dc68d5a22fd08fa179797698687e74e8afbe9680e8428053bca24f843f0f",
+    "STOCK_SKIRT_RETENTION_QA_92.json": "2265d22011d7cc08211292f775f56f88bc30888701df6b9a12a2d0f69b491505"
+  },
+  "bundle_unchanged_members": 1200,
+  "all_other_bundle_members_byte_identical": true,
+  "all_original_proof_bytes_preserved": true,
+  "source_proof_sha256": "77b781d8f90b3a9f8aa4d05d2365271b81e253678180bf0a9cd91490f07ac91e"
+}

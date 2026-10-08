@@ -8897,6 +8897,58 @@
     "v0_state.file_load_error": {
       "source_revision": "45a7ff8b4c5fc82dd947",
       "text": "Error de carga: {0}"
+    },
+    "doomcube.title": {
+      "source_revision": "5463f93b8dfc765504d0",
+      "text": "DoomCube 2 / 350"
+    },
+    "doomcube.family": {
+      "source_revision": "68ed4a5078350f39906e",
+      "text": "DoomCube"
+    },
+    "doomcube.source.version": {
+      "source_revision": "03ea8d7e03edebe01221",
+      "text": "DoomCube-2 · CAD completo original de 350 v12"
+    },
+    "doomcube.source.license": {
+      "source_revision": "3ca859a11f638e340508",
+      "text": "GPL-3.0 (repositorio; los componentes comunitarios incorporados conservan la atribución a sus fuentes originales)"
+    },
+    "doomcube.configuration.stock": {
+      "source_revision": "472946f7a000dd09f961",
+      "text": "Perfil cuadrado 4040 · pórtico estándar original"
+    },
+    "doomcube.configuration.round_frame": {
+      "source_revision": "1ed47faad0bfb3c540b1",
+      "text": "Perfil redondeado 404020 + 2020 interior · pórtico estándar original"
+    },
+    "doomcube.notice.motion_disabled": {
+      "source_revision": "1c958cc56b9f98aadcd9",
+      "text": "Referencia estática de CAD de 350 mm. El movimiento y los demás pórticos no están habilitados."
+    },
+    "doomcube.notice.source_alternatives": {
+      "source_revision": "417a988366cf3221b48e",
+      "text": "Bastidor cuadrado o redondeado; pórtico original MGN9 / 6 mm. Las alternativas de sonda y raíl que interfieren están ocultas."
+    },
+    "doomcube.notice.invalid_original_parts": {
+      "source_revision": "c6431af3e1994a92c6fe",
+      "text": "Tres piezas impresas originales tienen sólidos nativos no válidos. Se muestran sus mallas con valores finitos; el montaje y las holguras físicas siguen sin verificar."
+    },
+    "doomcube.notice.source_omissions": {
+      "source_revision": "af34eade86f72e274f6e",
+      "text": "El repositorio describe esta fuente como «complete-ish» (casi completa). Las omisiones del modelo original y las interfaces nativas no verificadas siguen siendo hallazgos abiertos."
+    },
+    "doomcube.notice.builtin_supports": {
+      "source_revision": "55e635aff6ab79abef50",
+      "text": "No se han identificado de forma concluyente ni eliminado los soportes integrados."
+    },
+    "doomcube.notice.stock_companions": {
+      "source_revision": "0844d11e9c141de4fd93",
+      "text": "El pórtico estándar original de 6 mm utiliza su raíl/bloque MGN9 X y el soporte de sonda estándar; las alternativas importadas MGN12 y de 9 mm están inactivas. Esta selección no valida las interfaces originales de montaje del carro impreso cuya geometría nativa es inválida."
+    },
+    "doomcube.description": {
+      "source_revision": "b4593a3be175c0c0654f",
+      "text": "DoomCube 2 · 350 mm / cerramiento doble / CAD original"
     }
   }
 }

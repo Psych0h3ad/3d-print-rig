@@ -1,0 +1,250 @@
+{
+  "schema": "source-identity-material-repair-103",
+  "source_revision": "02baa8c02c8984d46450843e8b41f24b135f6478",
+  "before_decoded_sha256": "102f2be70d3c32f346e05c2561ebfa5ad070c0013138692d3a52854d800a682a",
+  "after_decoded_sha256": "7a8d958a198ffabd374314c95a9d49e8b0f0f64fc51a488cdb3a1b973c8e95ad",
+  "binary_chunk_byte_exact": true,
+  "meshes_accessors_views_unchanged": true,
+  "other_materials_unchanged": false,
+  "source_geometry_or_placement_changes": false,
+  "parts": [
+    {
+      "key": "216",
+      "source_native_key": "216",
+      "source_brep_sha256": "46b6e37605ea9a6902a68ce17c98006695f2fc56b48fb47dac6886f6bfefc5e9",
+      "source_path": [
+        "Doom 350 Full CAD v12",
+        "Skirts:1",
+        "Unique Skirt Sections:1",
+        "Power Inlet Section:1",
+        "plug_panel_filtered_mains_keystone:1"
+      ],
+      "appearance_role": "accent"
+    },
+    {
+      "key": "281",
+      "source_native_key": "281",
+      "source_brep_sha256": "b5dc8c1a4efca76227474ee642cacb0fc68d4d063741868887e34c0de7f83297",
+      "source_path": [
+        "Doom 350 Full CAD v12",
+        "Panels and Door:1",
+        "350Door:1",
+        "Handle:1"
+      ],
+      "appearance_role": "accent"
+    },
+    {
+      "key": "283",
+      "source_native_key": "283",
+      "source_brep_sha256": "e36d5dd0e20c41c6121a3cede1af1c4c4f0e45f1ac610a6f4af8e1b63fbaffeb",
+      "source_path": [
+        "Doom 350 Full CAD v12",
+        "Panels and Door:1",
+        "350Door:1",
+        "Panels:1"
+      ],
+      "appearance_role": "glass"
+    },
+    {
+      "key": "311",
+      "source_native_key": "311",
+      "source_brep_sha256": "9a1220e32a1ce88ef321d9449d859ab305181ecb467707b5992afd7f1a4c39f7",
+      "source_path": [
+        "Doom 350 Full CAD v12",
+        "Panels and Door:1",
+        "350DeckPanelTop:1",
+        "Panels (1) (1):1"
+      ],
+      "appearance_role": "native"
+    },
+    {
+      "key": "313",
+      "source_native_key": "313",
+      "source_brep_sha256": "844f9cee861a7f01b94f18d472924f543f8236a19e7a31637d06a977a18c20e9",
+      "source_path": [
+        "Doom 350 Full CAD v12",
+        "Panels and Door:1",
+        "350DeckPanelBottom:1",
+        "Panels (1) (1) (1):1"
+      ],
+      "appearance_role": "native"
+    },
+    {
+      "key": "315",
+      "source_native_key": "315",
+      "source_brep_sha256": "f240ff7ef336118128c2f4e34b9126a49bd958235fb19cfbaac2fa24f3d5351c",
+      "source_path": [
+        "Doom 350 Full CAD v12",
+        "Panels and Door:1",
+        "350SidePanel:2",
+        "SidePanelSkirtFlanges:1"
+      ],
+      "appearance_role": "accent"
+    },
+    {
+      "key": "316",
+      "source_native_key": "316",
+      "source_brep_sha256": "b6a74b53fa368dc666b84c864d39ed1ca1e1f1144da6fc1df809a1b3e6eb77df",
+      "source_path": [
+        "Doom 350 Full CAD v12",
+        "Panels and Door:1",
+        "350SidePanel:2",
+        "SidePanelInnerFrame:1"
+      ],
+      "appearance_role": "accent"
+    },
+    {
+      "key": "317",
+      "source_native_key": "317",
+      "source_brep_sha256": "52b208ba75ff6c6d0796e4e7a69f5d71c73f44a451c32592eff3e458baab7ea2",
+      "source_path": [
+        "Doom 350 Full CAD v12",
+        "Panels and Door:1",
+        "350SidePanel:2",
+        "Panels (1):1"
+      ],
+      "appearance_role": "native"
+    },
+    {
+      "key": "318",
+      "source_native_key": "318",
+      "source_brep_sha256": "25d69a391fdcfd625a3abc83a9d11b0c1deb5a774cb6ee00e5716d735849c14c",
+      "source_path": [
+        "Doom 350 Full CAD v12",
+        "Panels and Door:1",
+        "350SidePanel:1",
+        "SidePanelSkirtFlanges:1"
+      ],
+      "appearance_role": "accent"
+    },
+    {
+      "key": "319",
+      "source_native_key": "319",
+      "source_brep_sha256": "ea6eccd5dcaf0b565a3976d957f3eab949b54fa01048e7ca1abbe8f6415b20c9",
+      "source_path": [
+        "Doom 350 Full CAD v12",
+        "Panels and Door:1",
+        "350SidePanel:1",
+        "SidePanelInnerFrame:1"
+      ],
+      "appearance_role": "accent"
+    },
+    {
+      "key": "320",
+      "source_native_key": "320",
+      "source_brep_sha256": "667609bd81415e5b842c0bd2192c22e6619c9aa57ed2864881ed19688b1a3dae",
+      "source_path": [
+        "Doom 350 Full CAD v12",
+        "Panels and Door:1",
+        "350SidePanel:1",
+        "Panels (1):1"
+      ],
+      "appearance_role": "glass"
+    },
+    {
+      "key": "321",
+      "source_native_key": "321",
+      "source_brep_sha256": "5f25f56ebaa10bc9202ca6a10196edd27653b76d56641bbfaaf002dd06851be5",
+      "source_path": [
+        "Doom 350 Full CAD v12",
+        "Panels and Door:1",
+        "350SidePanel:3",
+        "SidePanelSkirtFlanges:1"
+      ],
+      "appearance_role": "accent"
+    },
+    {
+      "key": "322",
+      "source_native_key": "322",
+      "source_brep_sha256": "1dcf64d4536f3a977b9a05d60436741c2bd1b4f0f3b7a5daff0e04cbe3677637",
+      "source_path": [
+        "Doom 350 Full CAD v12",
+        "Panels and Door:1",
+        "350SidePanel:3",
+        "SidePanelInnerFrame:1"
+      ],
+      "appearance_role": "accent"
+    },
+    {
+      "key": "323",
+      "source_native_key": "323",
+      "source_brep_sha256": "b902319bc1d79a12b4bbca657a6b2e54ddd050897298e657d4bec830fa130c77",
+      "source_path": [
+        "Doom 350 Full CAD v12",
+        "Panels and Door:1",
+        "350SidePanel:3",
+        "Panels (1):1"
+      ],
+      "appearance_role": "glass"
+    }
+  ],
+  "glass_keys": [
+    "283",
+    "320",
+    "323"
+  ],
+  "opaque_panel_keys": [
+    "311",
+    "313",
+    "317"
+  ],
+  "machine_id": "doomcube2_350_reference",
+  "invalid_native_source_keys": [
+    "656",
+    "675",
+    "679"
+  ],
+  "static_reference_only": true,
+  "native_mating_verified": false,
+  "removed_builtin_supports": [],
+  "source_step_sha256": "6e42de59e6cd86ff577451e5c1f2cbd63d0d70e078789fd5304faf633028cd93",
+  "source_repository": "https://github.com/FrankenVoron/DoomCube-2",
+  "license": "GPL-3.0 (repository; embedded community components retain their original source attribution)",
+  "current_appearance_review": {
+    "document": "DOOMCUBE_APPEARANCE_103.json",
+    "sha256": "3b0d131b14f8b15daf1a87f91b003aa887eb76b9c57928ce2d5e8ea67912e415",
+    "parts": 705,
+    "native_leaves": 688,
+    "source_role_changes": 98,
+    "split_native_source_keys": [
+      "220"
+    ],
+    "open_source_keys": [
+      "218",
+      "700"
+    ],
+    "geometry_unchanged": true
+  },
+  "current_asset_files": {
+    "assembly_manifest.json": {
+      "path": "doomcube-v103/doomcube2_350_reference/assembly_manifest.json",
+      "bytes": 3177904,
+      "sha256": "08072ed2c19bc2717f8bb79262ddac8fbcdad863da889379e608d3d19efa24bc"
+    },
+    "machine_profile.json": {
+      "path": "doomcube-v103/doomcube2_350_reference/machine_profile.json",
+      "bytes": 5954,
+      "sha256": "b04011b2b8e30e809d7525a648d5ba2bc028f49fef6f81fdf34fc9c390402118"
+    },
+    "model.glb": {
+      "path": "doomcube-v103/doomcube2_350_reference/model.glb.gz",
+      "bytes": 24022510,
+      "sha256": "67d368be1f7bb9a055bf7ad466ad0fd9391d7f5be6392fb7ab55a5289c0a0f76",
+      "encoding": "gzip",
+      "decoded_bytes": 69636092,
+      "decoded_sha256": "7a8d958a198ffabd374314c95a9d49e8b0f0f64fc51a488cdb3a1b973c8e95ad"
+    }
+  },
+  "initial_panel_repair": {
+    "schema": "source-identity-material-repair-103",
+    "source_revision": "02baa8c02c8984d46450843e8b41f24b135f6478",
+    "before_decoded_sha256": "102f2be70d3c32f346e05c2561ebfa5ad070c0013138692d3a52854d800a682a",
+    "after_decoded_sha256": "6d2979fba46f477fc858bdfadd44f4d65f64232e34bbcd44eda6d89ca4765aa7",
+    "binary_chunk_byte_exact": true,
+    "meshes_accessors_views_unchanged": true,
+    "other_materials_unchanged": true,
+    "source_geometry_or_placement_changes": false
+  },
+  "display_parts": 705,
+  "current_material_scope": "Original nonprinted authored surfaces preserved;98 source-backed role corrections, printed palettes and source629 silver spring restoration. Exact source220 face meshes separated into two display identities; native geometry unchanged."
+}

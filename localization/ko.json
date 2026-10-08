@@ -8897,6 +8897,58 @@
     "v0_state.file_load_error": {
       "source_revision": "45a7ff8b4c5fc82dd947",
       "text": "로드 오류: {0}"
+    },
+    "doomcube.title": {
+      "source_revision": "5463f93b8dfc765504d0",
+      "text": "DoomCube 2 / 350"
+    },
+    "doomcube.family": {
+      "source_revision": "68ed4a5078350f39906e",
+      "text": "DoomCube"
+    },
+    "doomcube.source.version": {
+      "source_revision": "03ea8d7e03edebe01221",
+      "text": "DoomCube-2 · 원본 전체 350 CAD v12"
+    },
+    "doomcube.source.license": {
+      "source_revision": "3ca859a11f638e340508",
+      "text": "GPL-3.0 (리포지토리; 포함된 커뮤니티 구성품은 원래 출처 표기를 유지)"
+    },
+    "doomcube.configuration.stock": {
+      "source_revision": "472946f7a000dd09f961",
+      "text": "사각 4040 · 원본 기본 갠트리"
+    },
+    "doomcube.configuration.round_frame": {
+      "source_revision": "1ed47faad0bfb3c540b1",
+      "text": "둥근 404020 + 내부 2020 · 원본 기본 갠트리"
+    },
+    "doomcube.notice.motion_disabled": {
+      "source_revision": "1c958cc56b9f98aadcd9",
+      "text": "350 mm CAD의 정적 참조 모델입니다. 동작과 다른 갠트리는 활성화되지 않았습니다."
+    },
+    "doomcube.notice.source_alternatives": {
+      "source_revision": "417a988366cf3221b48e",
+      "text": "사각 또는 둥근 프레임과 원본 MGN9 / 6 mm 갠트리입니다. 간섭하는 프로브 및 레일 대안 부품은 숨깁니다."
+    },
+    "doomcube.notice.invalid_original_parts": {
+      "source_revision": "c6431af3e1994a92c6fe",
+      "text": "원본 출력 부품 세 개의 네이티브 솔리드가 유효하지 않습니다. 유한한 좌표값의 메시를 표시하지만, 장착과 물리적 간격은 검증되지 않았습니다."
+    },
+    "doomcube.notice.source_omissions": {
+      "source_revision": "af34eade86f72e274f6e",
+      "text": "리포지토리는 이 원본을 'complete-ish'(거의 완성된 상태)로 설명합니다. 원본에서 빠진 요소와 검증되지 않은 네이티브 인터페이스는 미해결 항목으로 남아 있습니다."
+    },
+    "doomcube.notice.builtin_supports": {
+      "source_revision": "55e635aff6ab79abef50",
+      "text": "내장 서포트를 명확히 식별하지 못했으며, 제거하지 않았습니다."
+    },
+    "doomcube.notice.stock_companions": {
+      "source_revision": "0844d11e9c141de4fd93",
+      "text": "원본 6 mm 기본 갠트리는 MGN9 X 레일/블록과 표준 프로브 브래킷을 사용하며, 가져온 MGN12 및 9 mm 대안은 비활성 상태입니다. 이 선택만으로 잘못된 원본 출력 캐리지의 장착 인터페이스가 검증되는 것은 아닙니다."
+    },
+    "doomcube.description": {
+      "source_revision": "b4593a3be175c0c0654f",
+      "text": "DoomCube 2 · 350 mm / 이중 인클로저 / 원본 CAD"
     }
   }
 }
