@@ -4,8 +4,8 @@ import {setupSceneDisplay} from './display-preferences.mjs?v=9860960509e28d17f3f
 import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {loadMonolithData} from './monolith-machine.js?v=9b162574e6caa9c905eb';
 import {setupChangerBank} from './changer-bank.js?v=47bbc0fef91af2c7241e';
-import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=457d33c33edf70ba2eb4';
-import {headPrinterLink} from './head-navigation.mjs?v=3dae022c7f5212d7ca34';
+import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=26114ae470c17ca87dfc';
+import {headPrinterLink} from './head-navigation.mjs?v=be4a7466d04999ebdecd';
 import {headBuilderDimensions} from './configuration-model.js?v=d4b3dda97a404a7575b7';
 import {appearanceRole} from './appearance-role.mjs?v=6b7b8efda77bfc3ce74d';
 import * as THREE from 'three';
@@ -18,9 +18,9 @@ import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=workspace-belts-1';
 import {probeCheck,probeMetrics,probeGuide,headInspectionState,headBodyCollisionNotes} from './probe-checks.js?v=ea1aef3e30bf7d11d3cb';
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
-import {setupHeadBuilder} from './builder-ui.mjs?v=d04bd0a92e567dbe568e';
+import {setupHeadBuilder} from './builder-ui.mjs?v=a21b698822731b57dea6';
 import {validateBuilderExtras} from './toolhead-builder.mjs?v=68d8003cdc690265cff2';
-import {loadExternalComponent} from './component-assets.mjs?v=c2333ef499f46d621550';
+import {loadExternalComponent} from './component-assets.mjs?v=9f8ef058f1297ab60e53';
 export async function mount(scope){
 let machineRegistry,toolBank,bankRig;
 

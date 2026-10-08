@@ -11,12 +11,12 @@ import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
 import {createV24Adapter} from './v24_matrix_adapter.mjs?v=9633233bf8f9aab91d31';
-import {setupMachineNavigation} from './machines.js?v=0b03f369fa4dd3b3de8f';
+import {setupMachineNavigation} from './machines.js?v=268c3c7f6767524ed489';
 import {setupGrid} from './grid-control.js';
 import {setupRenderExport} from './render-export.js';
 import {setupPublicInfo} from './public-info.js?v=52a203a04d1f2ed32378';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=f471190665709ba23159';
-import {setupV24MachineHeads} from './machine-heads.js?v=457d33c33edf70ba2eb4';
+import {setupV24MachineHeads} from './machine-heads.js?v=26114ae470c17ca87dfc';
 export async function mount(scope){
 const $=s=>document.querySelector(s),ids=[250,300,350].flatMap(size=>['printed','ldo_cnc'].map(structure=>`voron_v24_${size}_${structure}`));
 const wanted=new URLSearchParams(location.search).get('machine'),id=ids.includes(wanted)?wanted:ids[0];

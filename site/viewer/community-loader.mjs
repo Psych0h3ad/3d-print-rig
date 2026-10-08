@@ -1,6 +1,6 @@
 import {loadedPrinterAssetIdentity} from './gcode-loaded-asset-identity.mjs?v=42ac134c2d9a8b8f8dfc';
 import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
-import {extraAssetBase,checkedExtraAsset} from './extra-asset-integrity.mjs?v=cb20fe4599d236ba43b3';
+import {extraAssetBase,checkedExtraAsset} from './extra-asset-integrity.mjs?v=737f5dc17ca78791c0d8';
 import {beginModelLoading} from './model-progress.mjs?v=6b41a2b9f7626039b7e6';
 import {createCommunityAdapter} from './community-adapter.mjs?v=f8373d55283539bd5074';
 import {applyNativeMotionProfile,loadNativeMotionProfile} from './native-motion-profile.mjs?v=91532eb992519143f437';

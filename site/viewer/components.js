@@ -7,7 +7,7 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
-import {loadExternalComponent} from './component-assets.mjs?v=c2333ef499f46d621550';
+import {loadExternalComponent} from './component-assets.mjs?v=9f8ef058f1297ab60e53';
 import {setupPublicInfo} from './public-info.js?v=52a203a04d1f2ed32378';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {partNodes,selectParts,visibleBounds} from './component-selection.js?v=workspace-belts-1';

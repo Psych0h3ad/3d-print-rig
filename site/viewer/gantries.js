@@ -4,7 +4,7 @@ import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690
 import {setupSceneDisplay} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {loadMonolithData} from './monolith-machine.js?v=9b162574e6caa9c905eb';
-import {machineChoices,machinePage} from './machines.js?v=0b03f369fa4dd3b3de8f';
+import {machineChoices,machinePage} from './machines.js?v=268c3c7f6767524ed489';
 import {monolithBeltClip} from './monolith-belt-clip.mjs?v=workspace-belts-1';
 import {appearanceRole} from './appearance-role.mjs?v=6b7b8efda77bfc3ce74d';
 import * as THREE from 'three';
@@ -13,7 +13,7 @@ import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
 import {setupPublicInfo} from './public-info.js?v=52a203a04d1f2ed32378';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=457d33c33edf70ba2eb4';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=26114ae470c17ca87dfc';
 import {monolithHeadCatalog} from './monolith-head-model.mjs?v=7dc939f150557c495778';
 import {setupConfigurations} from './configurations.js?v=3a95d353f2f21d3e8217';
 import {gantryDimensions,gantryChoice,gantryAssets} from './gantry-model.js?v=workspace-belts-1';

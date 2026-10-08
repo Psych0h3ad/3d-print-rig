@@ -9,7 +9,7 @@ import {appearanceRole} from './appearance-role.mjs?v=6b7b8efda77bfc3ce74d';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {loadKitReference} from './kit-reference-loader.mjs?v=e018cf8fc3c93c4140dd';
-import {setupMachineNavigation} from './machines.js?v=0b03f369fa4dd3b3de8f';
+import {setupMachineNavigation} from './machines.js?v=268c3c7f6767524ed489';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {setupPublicInfo} from './public-info.js?v=52a203a04d1f2ed32378';

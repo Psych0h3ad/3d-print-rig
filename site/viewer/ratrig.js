@@ -12,7 +12,7 @@ import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
 import {loadRatRigMachine,disposeRatRig} from './ratrig-loader.mjs?v=9782f451eec4a1a9eec0';
 import {createRatRigGcodePreview} from './ratrig_gcode_preview.mjs';
 import {ratRigSchema,validateRatRigConfiguration,ratRigAxisRanges} from './ratrig-ui-state.mjs?v=workspace-belts-1';
-import {setupMachineNavigation} from './machines.js?v=0b03f369fa4dd3b3de8f';
+import {setupMachineNavigation} from './machines.js?v=268c3c7f6767524ed489';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {setupPublicInfo} from './public-info.js?v=52a203a04d1f2ed32378';

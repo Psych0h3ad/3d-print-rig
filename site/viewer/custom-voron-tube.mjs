@@ -1,4 +1,5 @@
 import * as THREE from './vendor/three.module.js';
+import {isRoofTubeSource,roofCustomTubeCurve,roofCustomTubeRoute} from './trident-roof-tube.mjs?v=a21b698822731b57dea6';
 const world=p=>new THREE.Vector3(p[0]/1000,p[2]/1000,-p[1]/1000);
 const gaussX=[-.9894009349916499,-.9445750230732326,-.8656312023878318,-.755404408355003,-.6178762444026438,-.4580167776572274,-.2816035507792589,-.09501250983763745,.09501250983763745,.2816035507792589,.4580167776572274,.6178762444026438,.755404408355003,.8656312023878318,.9445750230732326,.9894009349916499];
 const gaussW=[.027152459411754095,.062253523938647706,.09515851168249259,.12462897125553387,.14959598881657674,.16915651939500262,.18260341504492358,.1894506104550685,.1894506104550685,.18260341504492358,.16915651939500262,.14959598881657674,.12462897125553387,.09515851168249259,.062253523938647706,.027152459411754095];
@@ -13,6 +14,7 @@ export function constantCustomTubeRoute(spec,dx=0,dy=0){
  for(const values of [spec.start_mm,spec.end_mm,spec.reference_xyz_mm,spec.storage_start_mm,spec.storage_end_mm,...spec.tail_controls_mm])if(!Array.isArray(values)||values.length!==3||!values.every(Number.isFinite))throw Error('Non-finite native PTFE datum');
  if(!Array.isArray(spec.roof_guide_xy_mm)||spec.roof_guide_xy_mm.length!==2||!spec.roof_guide_xy_mm.every(Number.isFinite))throw Error('Non-finite PTFE roof guide');
  for(const[i,a]of ['X','Y'].entries()){const value=spec.reference_xyz_mm[i]+[dx,dy][i],limits=spec.display_limits_mm?.[a];if(!Array.isArray(limits)||limits.length!==2||!limits.every(Number.isFinite)||limits[0]>=limits[1])throw Error('Invalid PTFE source travel');if(value<limits[0]-1e-8||value>limits[1]+1e-8)throw Error('PTFE pose outside source travel')}
+ if(isRoofTubeSource(spec))return roofCustomTubeRoute(spec,dx,dy);
  const start=add(spec.start_mm,[dx,dy,0]),z=spec.plane_z_mm,rh=spec.inlet_bend_radius_mm,r=spec.planar_bend_radius_mm,rg=spec.guide_bend_radius_mm;
  const stem=[start[0],start[1],z-rh],headEnd=[start[0]+rh,start[1],z],guideStart=[spec.roof_guide_xy_mm[0],spec.roof_guide_xy_mm[1]+rg,z],guideEnd=[spec.roof_guide_xy_mm[0],spec.roof_guide_xy_mm[1],z+rg];
  const c0=add(headEnd,[0,r,0]),c1=add(guideStart,[r,0,0]),delta=sub(c1,c0),distance=Math.hypot(...delta),unit=scale(delta,1/distance),angle=Math.atan2(unit[1],unit[0]),offset=scale([unit[1],-unit[0],0],r),t0=add(c0,offset),t1=add(c1,offset);
@@ -41,6 +43,7 @@ function constantTubeCurve(spec,dx,dy){
  path.add(tail);line(spec.tail_controls_mm.at(-1),spec.end_mm);return path;
 }
 export function customTubeCurve(spec,dx=0,dy=0){
+ if(isRoofTubeSource(spec)){if(spec.route_type)constantCustomTubeRoute(spec,dx,dy);return roofCustomTubeCurve(spec,dx,dy)}
  if(spec.route_type)return constantTubeCurve(spec,dx,dy);
  const points=spec.controls_mm.map((p,i)=>world([p[0]+(i<2?dx:0),p[1]+(i<2?dy:0),p[2]]));
  const path=new THREE.CurvePath();
@@ -55,7 +58,7 @@ export function customTubeCurve(spec,dx=0,dy=0){
 // native sweep for a differently tessellated solid tube on the first XY input
 // caused a visible pop and lost the 3 mm filament passage.
 export function customTubeGeometry(spec,dx=0,dy=0){
- const curve=customTubeCurve(spec,dx,dy),segments=spec.route_type?768:256,sides=spec.route_type?24:16;
+ const curve=customTubeCurve(spec,dx,dy),fine=!!spec.route_type||isRoofTubeSource(spec),segments=fine?768:256,sides=fine?24:16;
  return hollowTubeGeometry(curve,spec,segments,sides);
 }
 export function hollowTubeGeometry(curve,spec,segments=256,sides=16){
@@ -93,6 +96,12 @@ export function hollowTubeGeometry(curve,spec,segments=256,sides=16){
 }
 export function createCustomTube(root,manifest){
  const spec=manifest.custom_ptfe;if(!spec)return null;
+ if(isRoofTubeSource(spec)){
+  const roofs={'voron_trident_500_custom':'5c3afbfe96c2d0dbeff9fe2846b32876f860443e68ad4811c387ffcb00f65068','voron_trident_1000_custom':'1b505b511c69e5ff4fb91a22c387a7c71232008f753855f812b5fc6ee7fe18c9'};
+  if(manifest.parts.find(p=>p.key==='voron_trident_350_base_1359')?.native_sha256!==roofs[manifest.machine_id])throw Error('Native PTFE roof identity changed');
+  const inlets={'voron_trident_500_custom':'3e2ed880b86cda700c2652a3b6ca47b807764e0d3f64252d5bf509b4523f4d62','voron_trident_1000_custom':'0149b46ce11e86f45b4cda758e8755a67fb53baf4857ae89bb4650f59900148c'};
+  if(manifest.parts.find(p=>p.key==='578')?.native_sha256!==inlets[manifest.machine_id])throw Error('Native PTFE inlet identity changed');
+ }
  if(manifest.machine_id==='voron_trident_1000_custom'){
   const keys=[spec.part_key,spec.holder_part_key,'voron_trident_350_base_1359'],guards=spec.native_mate_guards;
   if(spec.schema!=='trident-variable-ptfe-preview-95'||spec.machine_id!==manifest.machine_id||spec.part_key!=='voron_trident_350_base_1409'||spec.holder_part_key!=='voron_trident_350_base_1393'||spec.radius_mm!==2||spec.inner_radius_mm!==1.5||!guards||Object.keys(guards).length!==keys.length||keys.some(key=>!/^[a-f0-9]{64}$/.test(guards[key]||'')||manifest.parts.find(row=>row.key===key)?.native_sha256!==guards[key]))throw Error('Native 1000 mm PTFE source/mate identity changed');

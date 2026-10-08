@@ -12,7 +12,13 @@ export async function checkedExtraAsset(base,spec,{signal,onProgress}={}){
  if(spec.encoding==='gzip'&&bytes.length===spec.decoded_bytes&&await digest(bytes)===spec.decoded_sha256)return bytes;
  if(bytes.length!==spec.bytes||await digest(bytes)!==spec.sha256)throw Error('CAD checksum mismatch');
  if(spec.encoding!=='gzip')return bytes;
- const decoded=new Uint8Array(await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'))).arrayBuffer());
+ // Feed checked bytes directly; Blob([bytes]) makes another compressed copy.
+ let offset=0;
+ const stream=new ReadableStream({pull(controller){
+  if(offset===bytes.length){controller.close();return}
+  const end=Math.min(offset+1024*1024,bytes.length);controller.enqueue(bytes.subarray(offset,end));offset=end;
+ }});
+ const decoded=new Uint8Array(await new Response(stream.pipeThrough(new DecompressionStream('gzip'))).arrayBuffer());
  if(decoded.length!==spec.decoded_bytes||await digest(decoded)!==spec.decoded_sha256)throw Error('Decoded CAD checksum mismatch');
  return decoded;
 }

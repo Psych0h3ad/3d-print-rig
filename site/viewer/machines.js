@@ -1,9 +1,9 @@
 import {normalizeLanguage} from './languages.mjs?v=ba6a5cd8e1d86849ca34';
-import {annexMachines} from './annex-machines.mjs?v=extra-machines-55';
+import {annexMachines} from './annex-machines.mjs?v=a21b698822731b57dea6';
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
 import {navigateWorkspace} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
-import {ratRigMachines} from './ratrig-machines.mjs?v=workspace-belts-1';
+import {ratRigMachines} from './ratrig-machines.mjs?v=a21b698822731b57dea6';
 export const machineChoices=[
  {id:'tictac_21_120',label:'TicTac 2.1 · 120 / Native CAD',page:'./community.html',family:'tictac',vendor:'squirrelbrain',size:120},
  {id:'the100_v11_165',label:'THE 100 v1.1 · 165 / Native CAD',page:'./community.html',family:'the100',vendor:'mszturc',size:165},

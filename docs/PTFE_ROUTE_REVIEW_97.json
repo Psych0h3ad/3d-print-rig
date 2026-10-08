@@ -1,0 +1,309 @@
+{
+  "schema": "trident-roof-ptfe-scoped-review/97",
+  "reviewed_at_utc": "2026-10-08T00:31:11.422762+00:00",
+  "behavior": "Viewer-only constant-length roof-gate tube routes for the 500 and 1000 mm Trident references.",
+  "source_sha256": {
+    "site/viewer/custom-voron-tube.mjs": "de9385f421e728e101f52e7fed894f3f2ec175816ed2d5d5059bb749a969d439",
+    "site/viewer/trident-roof-tube.mjs": "b7d30477db5f2491bc23fa93b7d51859418d9019bbaf84eeecf11fe68eba3989",
+    "scripts/audit_custom_ptfe.mjs": "02629d6e093ff09ffcbedd55e5517f62db74614fca8877fa004b69ec58daa079",
+    "scripts/test_trident_roof_tube.mjs": "04f32373301b0aadeb99ca8dd755f092bbd7f0c806591b039b428e8cf6868733"
+  },
+  "native_selected_scope": {
+    "pair_queries": 70,
+    "fixed_gate_queries": 2,
+    "recipient_parts": [
+      "CW2 inlet 578",
+      "holder 1393",
+      "roof 1359",
+      "top frame extrusions 1033–1036"
+    ],
+    "poses_per_size": 5,
+    "whole_machine_certified": false,
+    "continuous_clearance_certified": false,
+    "receipt": {
+      "receipt": "FINAL_HANDOFF.json",
+      "sha256": "d214fcfbdab75b5c1b056a0f6bf1dfcf9ff77faf35db6e26022b2881849f6881"
+    },
+    "pair_receipt": {
+      "receipt": "REPORT.json",
+      "sha256": "1092ba87edb65b0fc7cc4819083f0cd28e668fa980010802c921966c7e22d7da"
+    },
+    "limitations": [
+      "Numerical root checks use double precision stationary polynomial roots plus65537 derivative samples per cubic; roots filtered with stated imaginary tolerances, not formal interval arithmetic. Native curve D1/D2 sampled at2049 uniform parameters plus adaptive and cubic extrema parameters for each of15edges at5poses/size. No sampling-only claim of whole continuous native clearance.",
+      "Full in-memory candidate native annular sweeps checked against actual unmodified CW2 inlet578, printed holder1393, finite roof1359 and4top-frame extrusions1033-1036 at reference+4corners; upper/lower turns and whole tail included. Four upright frames1025-1028, foam tape1326, other screws/head/fans/chain, native Filament_Inlet1395 and PTFE self-contact were not checked for v4. Part1395 is a separate remote anchor; route current start is actual CW2 bore, not1395.",
+      "Final16mm straight holder lead retained exactly; source bore seating included in separate positive0.1mm holder/0.099477mm inlet gap facts, not called body interference. Whole hardware/mounting certificate not claimed.",
+      "Piecewise curve is tangent continuous; circular-to-cubic or line joins have one-sided bounded curvature, not curvature continuity. All fixed native solids, public assets and v3 failure evidence retained; no material minimum bend radius or downstream renderer proof."
+    ]
+  },
+  "current_runtime_candidate_equality": {
+    "receipt": {
+      "receipt": "runtime-candidate-equality-v4-cache-v3.json",
+      "sha256": "f9a2bafe720b8344bf87c8dd438d7c594dbd84d3437102a684061210138bcec6"
+    },
+    "rows": [
+      {
+        "machine_id": "voron_trident_500_custom",
+        "source_manifest_sha256": "88de38ed3a114349b1075853fe7d98db0cd7f384c543e6d1bd1ae297e9e736b1",
+        "candidate_sha256": "5a31f210c92019ee27bfb05f734734084063fd197b05af6e00c9c26703181993",
+        "poses": 5,
+        "points_per_pose": 2049,
+        "max_candidate_runtime_delta_mm": 0,
+        "original_native_model_unchanged": true
+      },
+      {
+        "machine_id": "voron_trident_1000_custom",
+        "source_manifest_sha256": "535ad28652ad221d4abfcc54a980a67507cf516313b3ddd390db9794c907417b",
+        "candidate_sha256": "5fe78b50bbda7f7a1cef380e30021787ce87c0f909c292c3a969c8b177d26d69",
+        "poses": 5,
+        "points_per_pose": 2049,
+        "max_candidate_runtime_delta_mm": 0,
+        "original_native_model_unchanged": true
+      }
+    ]
+  },
+  "fresh_actual_route_receipt": {
+    "receipt": "CUSTOM_PTFE_QA_92.json",
+    "sha256": "75d5b18f4e3970bfbef4f5e3a4176799ea6ea8c5360e6ffa6d87986c83a3fe6b"
+  },
+  "original_native_models_and_step_downloads_changed": false,
+  "physical_cut_or_material_certified": false,
+  "machines": [
+    {
+      "machine_id": "voron_trident_500_custom",
+      "cut_length_mm": 1410,
+      "numerical_pose_count": 441,
+      "numerical_unreachable_count": 0,
+      "numerical_max_length_residual_mm": 4.547473508864641e-13,
+      "native_poses_xyz_mm": [
+        [
+          249.60606718710815,
+          251.63501757013745,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          500,
+          500,
+          0
+        ],
+        [
+          0,
+          500,
+          0
+        ],
+        [
+          500,
+          0,
+          0
+        ]
+      ],
+      "exact_selected_native_Common_count": 35,
+      "exact_selected_native_overlap_volume_mm3": 0,
+      "v4_tail_minimum_radius_mm": 24.97357820914627,
+      "v4_overall_route_minimum_radius_mm": 20,
+      "start_endpoint_mm": [
+        0,
+        -35.880961,
+        432.660258
+      ],
+      "end_endpoint_mm": [
+        345.1625295410766,
+        171.98175283421568,
+        515.8999999999962
+      ],
+      "final_lead_measured_length_mm": 16.00000000000001,
+      "native_body_minimum_gaps_mm": {
+        "578": 0.09947724156239256,
+        "voron_trident_350_base_1393": 0.09999999999955235,
+        "voron_trident_350_base_1359": 0.19999999999996523,
+        "voron_trident_350_base_1033": 21.236861995889697,
+        "voron_trident_350_base_1034": 13.162529541073411,
+        "voron_trident_350_base_1035": 5.480932548344131,
+        "voron_trident_350_base_1036": 62.44385551805669
+      },
+      "actual_asset_sha256": {
+        "model.glb": {
+          "bytes": 39748527,
+          "sha256": "79506832fd1547cae205863e22562fe57049da4203bf8f719471e0c8423b0369"
+        },
+        "assembly_manifest.json": {
+          "bytes": 1605289,
+          "sha256": "88de38ed3a114349b1075853fe7d98db0cd7f384c543e6d1bd1ae297e9e736b1"
+        },
+        "machine_profile.json": {
+          "bytes": 7379,
+          "sha256": "8dcb398d4d65665b87cc68973df84c7b63733c501339ece5a6144a2bf9e8d74b"
+        }
+      },
+      "selected_native_recipient_sha256": {
+        "578": {
+          "bytes": 1107203,
+          "sha256": "3e2ed880b86cda700c2652a3b6ca47b807764e0d3f64252d5bf509b4523f4d62"
+        },
+        "voron_trident_350_base_1393": {
+          "bytes": 369653,
+          "sha256": "05654bb66f978d3915f06c7da020ac9397031c8343c852b66e92f43f8a43ee47"
+        },
+        "voron_trident_350_base_1359": {
+          "bytes": 7016,
+          "sha256": "5c3afbfe96c2d0dbeff9fe2846b32876f860443e68ad4811c387ffcb00f65068"
+        },
+        "voron_trident_350_base_1033": {
+          "bytes": 60113,
+          "sha256": "071909b639a47ac723c78e5d0f69027983956555ca6aaaca80ccf94f4896abd5"
+        },
+        "voron_trident_350_base_1034": {
+          "bytes": 64039,
+          "sha256": "0dc221cb2cae8b532e0e5f8681714439690a678ae4132600951c8091132f7f77"
+        },
+        "voron_trident_350_base_1035": {
+          "bytes": 64825,
+          "sha256": "fd151f0c674235fab04d78accc92022a681469ddd6573fb756a8cf1619a554a0"
+        },
+        "voron_trident_350_base_1036": {
+          "bytes": 67075,
+          "sha256": "9b3c9684d2e338758d25dad0814a037f405eafb0e7efa0f254f0becddda86364"
+        }
+      }
+    },
+    {
+      "machine_id": "voron_trident_1000_custom",
+      "cut_length_mm": 2600,
+      "numerical_pose_count": 441,
+      "numerical_unreachable_count": 0,
+      "numerical_max_length_residual_mm": 9.094947017729282e-13,
+      "native_poses_xyz_mm": [
+        [
+          499.6060671871081,
+          501.63501757013745,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1000,
+          1000,
+          0
+        ],
+        [
+          0,
+          1000,
+          0
+        ],
+        [
+          1000,
+          0,
+          0
+        ]
+      ],
+      "exact_selected_native_Common_count": 35,
+      "exact_selected_native_overlap_volume_mm3": 0,
+      "v4_tail_minimum_radius_mm": 24.984425174889072,
+      "v4_overall_route_minimum_radius_mm": 20,
+      "start_endpoint_mm": [
+        0,
+        -35.880961,
+        1182.6602579999999
+      ],
+      "end_endpoint_mm": [
+        595.1625295410765,
+        171.98175283421568,
+        1265.8999999999962
+      ],
+      "final_lead_measured_length_mm": 16.00000000000001,
+      "native_body_minimum_gaps_mm": {
+        "578": 0.09947724156238721,
+        "voron_trident_350_base_1393": 0.09999999999916155,
+        "voron_trident_350_base_1359": 0.1999999999999734,
+        "voron_trident_350_base_1033": 21.238384073989696,
+        "voron_trident_350_base_1034": 13.16252954107324,
+        "voron_trident_350_base_1035": 5.485281374238305,
+        "voron_trident_350_base_1036": 62.44572721177516
+      },
+      "actual_asset_sha256": {
+        "model.glb": {
+          "bytes": 60209946,
+          "sha256": "7b2c9edae75d1ab594c59f98f4831806b63a4d5747d0d53be6508a4c1982a063"
+        },
+        "assembly_manifest.json": {
+          "bytes": 1897393,
+          "sha256": "535ad28652ad221d4abfcc54a980a67507cf516313b3ddd390db9794c907417b"
+        },
+        "machine_profile.json": {
+          "bytes": 8875,
+          "sha256": "47c96b8df0388b30251415ac538065d1d3ee4e85dca3126562378c26cde35aa2"
+        }
+      },
+      "selected_native_recipient_sha256": {
+        "578": {
+          "bytes": 1107429,
+          "sha256": "0149b46ce11e86f45b4cda758e8755a67fb53baf4857ae89bb4650f59900148c"
+        },
+        "voron_trident_350_base_1393": {
+          "bytes": 369889,
+          "sha256": "a6ba8c4305b5a6b67c2d0105729b40e6a078795c1afbd4a1b76a648914881dda"
+        },
+        "voron_trident_350_base_1359": {
+          "bytes": 6189,
+          "sha256": "1b505b511c69e5ff4fb91a22c387a7c71232008f753855f812b5fc6ee7fe18c9"
+        },
+        "voron_trident_350_base_1033": {
+          "bytes": 62790,
+          "sha256": "27035b7d0e8cfe32f45141696e758829957ad86540baa28e8bfbd05f373be5f2"
+        },
+        "voron_trident_350_base_1034": {
+          "bytes": 68142,
+          "sha256": "b225fa00b0d9a0132a0dd7c73ff3945b4499fc8172a123541b55f73718fb22fd"
+        },
+        "voron_trident_350_base_1035": {
+          "bytes": 67164,
+          "sha256": "94274b978388800f8a24c735567fcfeaa67a37fd628a7096394f2f29bcb69c7d"
+        },
+        "voron_trident_350_base_1036": {
+          "bytes": 70205,
+          "sha256": "248ee8f7810f6e8e9ae4efd4294145a599261f273d53e51120140b9356dd33dd"
+        }
+      }
+    }
+  ],
+  "browser_preview": {
+    "environment": "Codex in-app browser, desktop",
+    "sizes": [
+      500,
+      1000
+    ],
+    "minimum_maximum_reversed_reset": true,
+    "screenshots": [
+      {
+        "receipt": "private-500-maximum.png",
+        "sha256": "0128e1d7c38e6d70b2301e9b6596c1244ddcdb1965da64c5b3763bcbdc196d9f"
+      },
+      {
+        "receipt": "private-500-reset.png",
+        "sha256": "95b6b8d279d0948a1a99e43bcbdea548ff81ee24c28e2fc92036c7cb38258d5c"
+      },
+      {
+        "receipt": "private-1000-maximum.png",
+        "sha256": "fc04ff9c3e40e2a77ab5d3890712f303792a77849318b5d95884210debcf39a7"
+      },
+      {
+        "receipt": "private-1000-reset.png",
+        "sha256": "b5febba44bdaf0c2d696c4eeccf64d98c41f363d44960050ed73f962362e945e"
+      }
+    ],
+    "iphone_safari_hardware_tested": false,
+    "public_served_build_checked_in_this_receipt": false
+  },
+  "all64_automated_run": {
+    "receipt": "RUN_SUMMARY.json",
+    "sha256": "b55e0193bcb62dad3da32dd0611ea2caa9bd6e576753569bac47e9b12a6d16fd"
+  },
+  "all_combinations_fit_certified": false
+}

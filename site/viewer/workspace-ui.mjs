@@ -4,7 +4,7 @@ import {setupDisplayPreferences,setupHeaderThemeToggle} from './display-preferen
 import {WorkspaceMutationObserver,workspaceListen} from './workspace-lifecycle.mjs';
 // Shared presentation layer. Existing controls, IDs and CAD controllers stay intact.
 import {setupLanguage,originalText,messageSource} from './i18n.mjs?v=2480220e8ff2a71a69b0';
-import {printerWorkspaceURL,workspaceReturnKey,workspaceKindFor} from './workspace-return.mjs?v=0f5ac99c717f717d94b2';
+import {printerWorkspaceURL,workspaceReturnKey,workspaceKindFor} from './workspace-return.mjs?v=7ee3911046932e4e0e02';
 import {setupWorkspaceSharing} from './workspace-share.mjs?v=e6c4054688ce084e0759';
 import {lockInspectorHorizontalScroll} from './workspace-scroll.mjs?v=workspace-belts-1';
 import {setupChoiceSearch} from './workspace-choices.mjs?v=e7ab156b488eaad2a09b';

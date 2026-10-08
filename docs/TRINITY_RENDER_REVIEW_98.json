@@ -1,0 +1,115 @@
+{
+  "schema": "trinity-render-delivery-scoped-review/98",
+  "reviewed_at_utc": "2026-10-08T00:31:11.436361+00:00",
+  "behavior": "Sequential checked lossless packets and shared static accessors reduce duplicate CPU allocations when switching to Trinity.",
+  "source_sha256": {
+    "site/viewer/component-assets.mjs": "9f8ef058f1297ab60e53f388394c9a78191b531a5e3bbbb7d7155dfed9bc6904",
+    "site/viewer/chunked-component-glb.mjs": "6b1039c50882fce242a7f6451dbd8a0d3729d1d89089ec445d5ca72b85a7b52c",
+    "site/viewer/shared-component-glb.mjs": "4a77abe6f67574be8ee102415fdca65839b1f1461dffb5db3835dbb4a3d79a45",
+    "site/viewer/trinity-render-delivery.mjs": "f2044876578730ca3839d79a684f03cdc61246768519bdf1a8659339cfb615b5",
+    "site/viewer/extra-asset-integrity.mjs": "737f5dc17ca78791c0d836ce2771ccaf9b0912e537ee51ee2275fa4459331d2a",
+    "scripts/test_chunked_component_glb.mjs": "5cc81ab949da7dd02721aae735728b80e2dc0f38d85d3b2d77db8353ef2b9095",
+    "scripts/test_shared_component_glb.mjs": "3f0637bdf358a7f896d05cbacbab489958c6f1e1c09379c94752ae8a11c4d4ce"
+  },
+  "actual_delivery": {
+    "source_sha256": "ff8557d93e9d3803b3e4ba2729d6fb947c4134c2e84098a653069ce337d2fcfb",
+    "render_sha256": "f2478be82bef8b1f767a09320e4310c3c426df9246b45ed97992c8e903f6fde2",
+    "chunks": 11,
+    "max_decoded_chunk_bytes": 33314364,
+    "array_buffers": 1,
+    "render_meshes": 206,
+    "triangles": 4976842,
+    "accessor_ranges_complete": true,
+    "scope": "Actual checked lossless delivery, parsed scene and shared CPU arrays. Browser/iPhone and native fit are separate."
+  },
+  "actual_receipt": {
+    "receipt": "TRINITY_LOSSLESS_DELIVERY_98.json",
+    "sha256": "0a59c0c3b60155a5cd78dd391cde6ca64068748b39b198f012c4aca0983f05dd"
+  },
+  "shape_equality": {
+    "public_proof_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/trinity-lossless-v1/proof.json",
+    "proof_sha256": "7978bc4173f2713d7923410a5d3919d95b599c5b234f513007d6e7393badad84",
+    "preserved": {
+      "node_identities": 205,
+      "source_native_identities": 105,
+      "serialized_gltf_mesh_records": 205,
+      "material_primitives": 206,
+      "expected_rendered_Mesh_objects": 206,
+      "materials": 106,
+      "triangles": 4976842,
+      "nodes_matrices_names_extras_scenes_materials_exact": true,
+      "all_position_normal_triangle_corner_bits_equal": true,
+      "max_position_difference_mm": 0.0,
+      "max_normal_component_difference": 0.0,
+      "triangle_order_winding_and_material_partition_exact": true,
+      "original_native_relationships_preserved": true,
+      "original_part_metadata_values_unchanged": true
+    },
+    "original_decoded_bytes": 415997552,
+    "render_decoded_bytes": 354048088
+  },
+  "source_versions_and_licenses": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/trinity-lossless-v1/licenses/provenance.json",
+  "browser_preview": {
+    "environment": "Codex in-app browser at 390 × 844 CSS pixels",
+    "machine_id": "voron_v24_300_printed",
+    "configuration_id": "installed__machine_gantry__trinity87__v13_alpha92",
+    "xyz_extrema_reversed_and_reset": true,
+    "simultaneous_settings_and_model_visible": true,
+    "ui_selection_and_apply": true,
+    "dark_theme_and_pointer_orbit_checked": true,
+    "png_export_dimensions": [
+      1920,
+      1368
+    ],
+    "screenshots": [
+      {
+        "receipt": "private-final-mobile-motion.png",
+        "sha256": "59c21f51a77dd9ece7b3c68dcac10d50af7281685cf41a021348a1de1bc1b4fc"
+      },
+      {
+        "receipt": "private-mobile-ui-apply-dark.png",
+        "sha256": "f9e433ce9925e2f5442299408cb9b81e748fca0076f4febdde0e82b0ea12131e"
+      },
+      {
+        "receipt": "private-mobile-orbit.png",
+        "sha256": "84ccf8cac84d138bab364c1dc20fdc2213521d62bf50c81058a4f525cefdd3ae"
+      },
+      {
+        "receipt": "private-export-1920x1368.png",
+        "sha256": "826b337c25d79799ba3324b5ad216e8943806e59ed3f23c0ed877ae9732b3388"
+      },
+      {
+        "receipt": "private-final-es.png",
+        "sha256": "eec45de4517a0933428d803142176c6a0cfbc0b1278219e9c5e5d5702308e8da"
+      },
+      {
+        "receipt": "private-final-ko.png",
+        "sha256": "ffd375b50d4489da9dfa7fdb5885bd5f3bc6295091d9c72e112480f94a6aa5f7"
+      },
+      {
+        "receipt": "private-final-ru.png",
+        "sha256": "42f437de566d18d84ee017373cea5133d9899a2d165ed1626afe4abb7fc916aa"
+      },
+      {
+        "receipt": "private-final-ja.png",
+        "sha256": "aac930830035679d2bf66697c0e3aae940ae41884453f9950623dc49f59a7471"
+      }
+    ],
+    "language_switching_tested": [
+      "en",
+      "ja",
+      "es",
+      "ko",
+      "ru"
+    ],
+    "iphone_safari_hardware_tested": false,
+    "public_served_build_checked_in_this_receipt": false
+  },
+  "original_alpha_installation_limitations_retained": true,
+  "new_native_installation_verification": false,
+  "all64_automated_run": {
+    "receipt": "RUN_SUMMARY.json",
+    "sha256": "b55e0193bcb62dad3da32dd0611ea2caa9bd6e576753569bac47e9b12a6d16fd"
+  },
+  "whole_machine_certified": false
+}

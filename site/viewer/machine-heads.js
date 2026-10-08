@@ -23,7 +23,7 @@ import {setupChangerBank} from './changer-bank.js?v=47bbc0fef91af2c7241e';
 import {contentSHA256,acceptedMountValidation} from './mount-validation.mjs';
 import {acceptedHeadValidation}from './head-validation.mjs';
 import {withHeadAdditions} from './head-additions.mjs?v=143d882a3df675284f2e';
-import {loadExternalComponent} from './component-assets.mjs?v=c2333ef499f46d621550';
+import {loadExternalComponent} from './component-assets.mjs?v=9f8ef058f1297ab60e53';
 
 const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);
 export async function loadMachineHeadCatalog(machine){return workspaceTask(async()=>{

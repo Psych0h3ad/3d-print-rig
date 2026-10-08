@@ -1,6 +1,6 @@
 // External PTFE route preview measured from the native VORON assembly.
 // Inject the viewer's THREE instance; this module has no native/kernel dependency.
-import { hollowTubeGeometry } from './custom-voron-tube.mjs?v=55f4f1c021b4cd4a9880';
+import { hollowTubeGeometry } from './custom-voron-tube.mjs?v=de9385f421e728e101f5';
 const add=(a,b)=>a.map((v,i)=>v+b[i]);
 const sub=(a,b)=>a.map((v,i)=>v-b[i]);
 const mul=(a,s)=>a.map(v=>v*s);
