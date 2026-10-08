@@ -15,7 +15,7 @@ import {rememberDisplayControl} from './display-preferences.mjs?v=9860960509e28d
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {setupRenderExport} from './render-export.js';
-import {setupPublicInfo} from './public-info.js?v=52a203a04d1f2ed32378';
+import {setupPublicInfo} from './public-info.js?v=c9e1dede0c4a39b1a597';
 const descriptions={
  tictac_21_120:"TicTac 2.1 · 120 mm / 新Rat Rigツールヘッド / 公式組立CAD",
  rook_mk2_120:"Rook MK2 beta · 120 mm / Dragon Burner / Bambu / Galileo 2 G2SA",

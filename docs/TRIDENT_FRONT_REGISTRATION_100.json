@@ -1,0 +1,463 @@
+{
+  "passed": true,
+  "native_workers": 1,
+  "machines": [
+    "voron_trident_500_custom",
+    "voron_trident_350_half_z",
+    "voron_trident_1000_custom"
+  ],
+  "results": [
+    {
+      "machine_id": "voron_trident_500_custom",
+      "key": "voron_trident_350_base_825",
+      "source_native_sha256": "06af303211778fa420d46c694b8c3c09b2a560f538d76dbb2743381c3239d798",
+      "native_sha256": "15d8d01504240201d0a068351a2b2513fbf21b4de6119fe47e2c133c187cfd5a",
+      "native_file": "output/trident-skirt-100/native/voron_trident_500_custom/parts/voron_trident_350_base_825.brep",
+      "delta_mm": [
+        -50,
+        0,
+        0
+      ],
+      "bounds_mm": [
+        [
+          -298.50000000002336,
+          -330.00000000001455,
+          -66.00011385417713
+        ],
+        [
+          -59.499999900021656,
+          -310.00000000000273,
+          0.8000000000158058
+        ]
+      ],
+      "source_volume_faces_dimensions_preserved": true,
+      "shaft_axis_errors_mm": [
+        1.436610439767725e-10,
+        1.438758024406043e-10
+      ],
+      "insert_axis_error_mm": 1.581407844178051e-10,
+      "purchased_hardware_changed": false,
+      "contacts": [
+        {
+          "key": "voron_trident_350_base_827",
+          "common_volume_mm3": 0,
+          "distance_mm": 1.5711876244495215e-11
+        },
+        {
+          "key": "voron_trident_350_base_829",
+          "common_volume_mm3": 0,
+          "distance_mm": 5.9325877543869865e-12
+        },
+        {
+          "key": "voron_trident_350_base_801",
+          "common_volume_mm3": 0.04510181728198916,
+          "distance_mm": 0.0,
+          "author_native_contact": {
+            "body": "823",
+            "corner": "801",
+            "body_sha256": "9a0acae7fa2d9425e853e54e71d7acdc730b0d5ac09f82680bb398c1ed404a72",
+            "corner_sha256": "9f1b1c801a2051033961bb8c506f74a3d528c64b7c6a7c247c842bcbc98d44a5",
+            "volume_mm3": 0.04510238109348967,
+            "bounds_mm": [
+              [
+                -356.0000001000247,
+                9.199999899991457,
+                -580.571927495241
+              ],
+              [
+                -355.7999999000199,
+                9.800000099996062,
+                -577.6167656309791
+              ]
+            ]
+          },
+          "volume_difference_mm3": 5.638115005146549e-07,
+          "source_contact_preserved": true,
+          "contact_free_claimed": false
+        },
+        {
+          "key": "voron_trident_350_base_831",
+          "common_volume_mm3": 0,
+          "distance_mm": 1.0000000000238813
+        }
+      ]
+    },
+    {
+      "machine_id": "voron_trident_500_custom",
+      "key": "voron_trident_350_base_852",
+      "source_native_sha256": "0ff4166eaeac08c655baefdd6c3f14b5d704ff0a1b914ca72581a45d3964e063",
+      "native_sha256": "24db521a08389bcfade27422d16df03e3ae8e621c785ad8292b4cd0ac6ed2abd",
+      "native_file": "output/trident-skirt-100/native/voron_trident_500_custom/parts/voron_trident_350_base_852.brep",
+      "delta_mm": [
+        50,
+        0,
+        0
+      ],
+      "bounds_mm": [
+        [
+          59.499884575971315,
+          -330.00000000001194,
+          -66.0001138541857
+        ],
+        [
+          298.49988477597236,
+          -309.9999999999893,
+          0.8000000000080265
+        ]
+      ],
+      "source_volume_faces_dimensions_preserved": true,
+      "shaft_axis_errors_mm": [
+        0.00011532402771772304,
+        0.00011532402743351126
+      ],
+      "insert_axis_error_mm": 0.00011532403013359345,
+      "purchased_hardware_changed": false,
+      "contacts": [
+        {
+          "key": "voron_trident_350_base_855",
+          "common_volume_mm3": 0,
+          "distance_mm": 1.2871481658294215e-11
+        },
+        {
+          "key": "voron_trident_350_base_856",
+          "common_volume_mm3": 0,
+          "distance_mm": 2.865263581952604e-12
+        },
+        {
+          "key": "voron_trident_350_base_791",
+          "common_volume_mm3": 0.04527451478717871,
+          "distance_mm": 0.0,
+          "author_native_contact": {
+            "body": "850",
+            "corner": "791",
+            "body_sha256": "473ac5eb91c9617c2f8bf42c1bc1204ac48836f0e7d19a22a73a4a624424cb53",
+            "corner_sha256": "ee52b263354f4bcb2fd85a2f236c420c2412f54a0fa924f6b779e99d83fca399",
+            "volume_mm3": 0.0452745234347378,
+            "bounds_mm": [
+              [
+                -34.20011542403647,
+                9.199999899999552,
+                -580.5719266175983
+              ],
+              [
+                -34.00011522402884,
+                9.80000010000743,
+                -577.616765633507
+              ]
+            ]
+          },
+          "volume_difference_mm3": 8.647559085472878e-09,
+          "source_contact_preserved": true,
+          "contact_free_claimed": false
+        },
+        {
+          "key": "voron_trident_350_base_831",
+          "common_volume_mm3": 0,
+          "distance_mm": 0.99999801626862
+        }
+      ]
+    },
+    {
+      "machine_id": "voron_trident_350_half_z",
+      "key": "voron_trident_350_base_825",
+      "source_native_sha256": "a977d3440dec8d2d0a457e4b51bb36c0d8ec7e903fb1223fbb901f77a42c515a",
+      "native_sha256": "b9aee51661c999e23aa8fbd2b57cbf7bc8cb3dc1c17a20012d3f32dd33748b37",
+      "native_file": "output/trident-skirt-100/native/voron_trident_350_half_z/parts/voron_trident_350_base_825.brep",
+      "delta_mm": [
+        -50,
+        0,
+        0
+      ],
+      "bounds_mm": [
+        [
+          -223.50000010002188,
+          -255.00000000001464,
+          -66.00011385417703
+        ],
+        [
+          -59.50000000002157,
+          -235.00000000000514,
+          0.8000000000159195
+        ]
+      ],
+      "source_volume_faces_dimensions_preserved": true,
+      "shaft_axis_errors_mm": [
+        1.436002614849521e-10,
+        1.438291943755387e-10
+      ],
+      "insert_axis_error_mm": 1.5811275142088152e-10,
+      "purchased_hardware_changed": false,
+      "contacts": [
+        {
+          "key": "voron_trident_350_base_827",
+          "common_volume_mm3": 0,
+          "distance_mm": 1.5711876244495215e-11
+        },
+        {
+          "key": "voron_trident_350_base_829",
+          "common_volume_mm3": 0,
+          "distance_mm": 5.9325877543869865e-12
+        },
+        {
+          "key": "voron_trident_350_base_801",
+          "common_volume_mm3": 0.04510238425454777,
+          "distance_mm": 0.0,
+          "author_native_contact": {
+            "body": "823",
+            "corner": "801",
+            "body_sha256": "9a0acae7fa2d9425e853e54e71d7acdc730b0d5ac09f82680bb398c1ed404a72",
+            "corner_sha256": "9f1b1c801a2051033961bb8c506f74a3d528c64b7c6a7c247c842bcbc98d44a5",
+            "volume_mm3": 0.04510238109348967,
+            "bounds_mm": [
+              [
+                -356.0000001000247,
+                9.199999899991457,
+                -580.571927495241
+              ],
+              [
+                -355.7999999000199,
+                9.800000099996062,
+                -577.6167656309791
+              ]
+            ]
+          },
+          "volume_difference_mm3": 3.161058095835223e-09,
+          "source_contact_preserved": true,
+          "contact_free_claimed": false
+        },
+        {
+          "key": "voron_trident_350_base_831",
+          "common_volume_mm3": 0,
+          "distance_mm": 1.0000000000238813
+        }
+      ]
+    },
+    {
+      "machine_id": "voron_trident_350_half_z",
+      "key": "voron_trident_350_base_852",
+      "source_native_sha256": "f2836321e0d7dda10cf50bd4c37c3dddce807f85861dcf63be1acfa11898873f",
+      "native_sha256": "fd50f8da7d869b9004e419864560068500068861501a6f700edef6416e02c8e9",
+      "native_file": "output/trident-skirt-100/native/voron_trident_350_half_z/parts/voron_trident_350_base_852.brep",
+      "delta_mm": [
+        50,
+        0,
+        0
+      ],
+      "bounds_mm": [
+        [
+          59.499884575971315,
+          -255.00000000001197,
+          -66.0001138541873
+        ],
+        [
+          223.49988477597233,
+          -235.0000000000003,
+          0.8000000000085957
+        ]
+      ],
+      "source_volume_faces_dimensions_preserved": true,
+      "shaft_axis_errors_mm": [
+        0.00011532402771772304,
+        0.00011532402743351123
+      ],
+      "insert_axis_error_mm": 0.00011532403007674999,
+      "purchased_hardware_changed": false,
+      "contacts": [
+        {
+          "key": "voron_trident_350_base_855",
+          "common_volume_mm3": 0,
+          "distance_mm": 1.2871481658294215e-11
+        },
+        {
+          "key": "voron_trident_350_base_856",
+          "common_volume_mm3": 0,
+          "distance_mm": 2.865263581952604e-12
+        },
+        {
+          "key": "voron_trident_350_base_791",
+          "common_volume_mm3": 0.04527452044813378,
+          "distance_mm": 0.0,
+          "author_native_contact": {
+            "body": "850",
+            "corner": "791",
+            "body_sha256": "473ac5eb91c9617c2f8bf42c1bc1204ac48836f0e7d19a22a73a4a624424cb53",
+            "corner_sha256": "ee52b263354f4bcb2fd85a2f236c420c2412f54a0fa924f6b779e99d83fca399",
+            "volume_mm3": 0.0452745234347378,
+            "bounds_mm": [
+              [
+                -34.20011542403647,
+                9.199999899999552,
+                -580.5719266175983
+              ],
+              [
+                -34.00011522402884,
+                9.80000010000743,
+                -577.616765633507
+              ]
+            ]
+          },
+          "volume_difference_mm3": 2.9866040196502297e-09,
+          "source_contact_preserved": true,
+          "contact_free_claimed": false
+        },
+        {
+          "key": "voron_trident_350_base_831",
+          "common_volume_mm3": 0,
+          "distance_mm": 0.9999980172123699
+        }
+      ]
+    },
+    {
+      "machine_id": "voron_trident_1000_custom",
+      "key": "voron_trident_350_base_825",
+      "source_native_sha256": "3166ef98a73019338fd03b5458d0e5e296daffdd09a21f0474b113c976d0b75b",
+      "native_sha256": "b24943bfa70b6523e13d9890157de9c1ead0e2ac9e23c3f3ff1b4dd91b3660aa",
+      "native_file": "output/trident-skirt-100/native/voron_trident_1000_custom/parts/voron_trident_350_base_825.brep",
+      "delta_mm": [
+        -50,
+        0,
+        0
+      ],
+      "bounds_mm": [
+        [
+          -548.5000001000218,
+          -580.0000000000146,
+          -66.00011385417702
+        ],
+        [
+          -59.49999990002171,
+          -560.0000000000027,
+          0.8000000000158058
+        ]
+      ],
+      "source_volume_faces_dimensions_preserved": true,
+      "shaft_axis_errors_mm": [
+        1.4353948139286535e-10,
+        1.438758024406043e-10
+      ],
+      "insert_axis_error_mm": 1.581361028060022e-10,
+      "purchased_hardware_changed": false,
+      "contacts": [
+        {
+          "key": "voron_trident_350_base_827",
+          "common_volume_mm3": 0,
+          "distance_mm": 1.5711876244495215e-11
+        },
+        {
+          "key": "voron_trident_350_base_829",
+          "common_volume_mm3": 0,
+          "distance_mm": 5.9325877543869865e-12
+        },
+        {
+          "key": "voron_trident_350_base_801",
+          "common_volume_mm3": 0.045101798773388116,
+          "distance_mm": 0.0,
+          "author_native_contact": {
+            "body": "823",
+            "corner": "801",
+            "body_sha256": "9a0acae7fa2d9425e853e54e71d7acdc730b0d5ac09f82680bb398c1ed404a72",
+            "corner_sha256": "9f1b1c801a2051033961bb8c506f74a3d528c64b7c6a7c247c842bcbc98d44a5",
+            "volume_mm3": 0.04510238109348967,
+            "bounds_mm": [
+              [
+                -356.0000001000247,
+                9.199999899991457,
+                -580.571927495241
+              ],
+              [
+                -355.7999999000199,
+                9.800000099996062,
+                -577.6167656309791
+              ]
+            ]
+          },
+          "volume_difference_mm3": 5.823201015553447e-07,
+          "source_contact_preserved": true,
+          "contact_free_claimed": false
+        },
+        {
+          "key": "voron_trident_350_base_831",
+          "common_volume_mm3": 0,
+          "distance_mm": 1.0000000000238813
+        }
+      ]
+    },
+    {
+      "machine_id": "voron_trident_1000_custom",
+      "key": "voron_trident_350_base_852",
+      "source_native_sha256": "924570b6301f12d38320327808639d58455a81a37722f4799c36f921a471162d",
+      "native_sha256": "fc861e3344a5bea4b4bd9d497d7f79c11f7c968d8b5738e8d4bbc99bdfe71932",
+      "native_file": "output/trident-skirt-100/native/voron_trident_1000_custom/parts/voron_trident_350_base_852.brep",
+      "delta_mm": [
+        50,
+        0,
+        0
+      ],
+      "bounds_mm": [
+        [
+          59.4998845759713,
+          -580.0000000000119,
+          -66.0001138541857
+        ],
+        [
+          548.499884675973,
+          -559.9999999999893,
+          0.8000000000081402
+        ]
+      ],
+      "source_volume_faces_dimensions_preserved": true,
+      "shaft_axis_errors_mm": [
+        0.00011532402773193397,
+        0.00011532402731982435
+      ],
+      "insert_axis_error_mm": 0.00011532403021885858,
+      "purchased_hardware_changed": false,
+      "contacts": [
+        {
+          "key": "voron_trident_350_base_855",
+          "common_volume_mm3": 0,
+          "distance_mm": 1.2847944930172162e-11
+        },
+        {
+          "key": "voron_trident_350_base_856",
+          "common_volume_mm3": 0,
+          "distance_mm": 2.865263581952604e-12
+        },
+        {
+          "key": "voron_trident_350_base_791",
+          "common_volume_mm3": 0.04527451478778171,
+          "distance_mm": 0.0,
+          "author_native_contact": {
+            "body": "850",
+            "corner": "791",
+            "body_sha256": "473ac5eb91c9617c2f8bf42c1bc1204ac48836f0e7d19a22a73a4a624424cb53",
+            "corner_sha256": "ee52b263354f4bcb2fd85a2f236c420c2412f54a0fa924f6b779e99d83fca399",
+            "volume_mm3": 0.0452745234347378,
+            "bounds_mm": [
+              [
+                -34.20011542403647,
+                9.199999899999552,
+                -580.5719266175983
+              ],
+              [
+                -34.00011522402884,
+                9.80000010000743,
+                -577.616765633507
+              ]
+            ]
+          },
+          "volume_difference_mm3": 8.646956088653734e-09,
+          "source_contact_preserved": true,
+          "contact_free_claimed": false
+        },
+        {
+          "key": "voron_trident_350_base_831",
+          "common_volume_mm3": 0,
+          "distance_mm": 0.9999980162686342
+        }
+      ]
+    }
+  ],
+  "scope": "Exact original native skirt body rigid registration to four screw shafts and two heatset sockets per machine; LCD shell has positive native separation. Small authored corner locating contact is preserved, measured and expressly not a contact-free certificate. No full-machine clearance certification.",
+  "whole_machine_certified": false
+}

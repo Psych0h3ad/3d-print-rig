@@ -5,6 +5,7 @@ register(new URL('./three-test-loader.mjs',import.meta.url),import.meta.url);
 const {createTridentMotion}=await import('../site/viewer/trident-motion.mjs');
 const {Group,Mesh,BoxGeometry,MeshBasicMaterial}=await import('../site/viewer/vendor/three.module.js');
 const beltFixtures=JSON.parse(await fs.readFile(new URL('./fixtures/trident-custom-bed-joint-belts.json',import.meta.url),'utf8'));
+const frontFixture=JSON.parse(await fs.readFile(new URL('./fixtures/trident-front-registration-350.json',import.meta.url),'utf8'));
 
 function fixture(machine){
  const custom=machine.endsWith('_custom')||machine.endsWith('_half_z'),size=machine.includes('500')?500:Number(machine.match(/_(250|300|350)/)[1]);
@@ -15,6 +16,7 @@ function fixture(machine){
   {key:prefix+'_1038',source_leaf:'1038',name:'Bed cross extrusion',source_component:'Frame:1/Bed Extrusions:1/2020:1',motion:'z'},
   {key:prefix+'_1039',source_leaf:'1039',name:'Bed stem extrusion',source_component:'Frame:1/Bed Extrusions:1/2020:2',motion:'z'},
   {key:'fixed_rail',motion:'fixed'}]};
+ if(machine==='voron_trident_350')metadata.parts.push(...structuredClone(frontFixture.parts));
  if(custom){
   Object.assign(metadata,{machine_id:machine,source_baseline:'voron_trident_350',belt_width_mm:6});
   metadata.parts[0].bounds_mm=structuredClone(beltFixtures[machine].joint_bounds_mm);

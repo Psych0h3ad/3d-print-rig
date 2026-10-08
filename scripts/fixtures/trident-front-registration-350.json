@@ -1,0 +1,83 @@
+{
+  "source_metadata_sha256": "4eb67785885b97e73e1ca6052fc05f07dbddef394e60a6620bf2494265796aca",
+  "source_scope": "Two exact native front skirt source rows from the registered standard350 exported metadata; unit fixtures do not prove mesh clearance.",
+  "id": "voron_trident_350_base",
+  "parts": [
+    {
+      "key": "voron_trident_350_base_825",
+      "name": "front_skirt_left_350",
+      "file": "modules/voron_trident_350_base/voron_trident_350_base_825.brep",
+      "color": [
+        0.03189603239297867,
+        0.03189603239297867,
+        0.03189603239297867,
+        1
+      ],
+      "appearance_role": "base",
+      "motion": "fixed",
+      "bounds_mm": [
+        [
+          -173.50000000002336,
+          -255.00000000001464,
+          -66.00011385417703
+        ],
+        [
+          -9.500000000021572,
+          -235.00000000000514,
+          0.8000000000158058
+        ]
+      ],
+      "valid": true,
+      "solids": 1,
+      "group": "Skirt",
+      "motion_axes": [],
+      "panel_surface": false,
+      "source_leaf": "825",
+      "source_component": "Skirt:1/Front:1/Left:1/front_skirt_left_350:1",
+      "method": "rigid_source",
+      "rigid_translation_mm": [
+        195.0,
+        -245.0,
+        520.0
+      ]
+    },
+    {
+      "key": "voron_trident_350_base_852",
+      "name": "front_skirt_right_350",
+      "file": "modules/voron_trident_350_base/voron_trident_350_base_852.brep",
+      "color": [
+        0.03189603239297867,
+        0.03189603239297867,
+        0.03189603239297867,
+        1
+      ],
+      "appearance_role": "base",
+      "motion": "fixed",
+      "bounds_mm": [
+        [
+          9.499884575971317,
+          -255.00000000001197,
+          -66.0001138541873
+        ],
+        [
+          173.49988477597233,
+          -235.0000000000003,
+          0.8000000000085957
+        ]
+      ],
+      "valid": true,
+      "solids": 1,
+      "group": "Skirt",
+      "motion_axes": [],
+      "panel_surface": false,
+      "source_leaf": "852",
+      "source_component": "Skirt:1/Front:1/Right:1/front_skirt_right_350:1",
+      "method": "rigid_source",
+      "rigid_translation_mm": [
+        195.0,
+        -245.0,
+        520.0
+      ]
+    }
+  ]
+}

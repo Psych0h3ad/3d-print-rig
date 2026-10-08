@@ -20,15 +20,21 @@ for(const size of [250,300,350]){
  const frame=manifest.parts.filter(p=>p.appearance_role==='frame'&&p.motion==='fixed');
  for(const i of [0,1])assert(Math.abs(Math.max(...frame.map(p=>p.bounds_mm[1][i]))-Math.min(...frame.map(p=>p.bounds_mm[0][i]))-(size+160))<.001);
  const magnet=manifest.parts.find(p=>p.name==='Magnet Sheet');assert(Math.abs(magnet.bounds_mm[1][0]-magnet.bounds_mm[0][0]-(size+4))<.001);
- const motion=createTridentMotion(profile);let meshes=0;
+ const motion=createTridentMotion(profile);let meshes=0;const frontNodes=new Map();
  for(const [meta,file] of [[manifest,profile.base_assets.glb],[gantry,gantry.glb]]){
   const scene=await glb(file),seen=new Set();
   scene.traverse(o=>{if(!o.isMesh)return;const key=o.userData.part_key||o.name;assert(meta.parts.some(p=>p.key===key));seen.add(key);assert([...o.geometry.attributes.position.array].every(Number.isFinite));meshes++});
   assert.equal(seen.size,meta.parts.length);motion.register(scene,meta);
+  if(size===350&&meta===manifest){const registered=new Map();scene.traverse(o=>{if(o.isMesh)registered.set(o,o.position.clone())});motion.register(scene,meta);for(const [o,p]of registered)assert(o.position.equals(p),'Native front registration must be idempotent');}
+  if(size===350&&meta===manifest)scene.traverse(o=>{if(o.isMesh&&['voron_trident_350_base_825','voron_trident_350_base_852'].includes(o.userData.part_key||o.name))frontNodes.set(o.userData.part_key||o.name,o)});
  }
+ const frontExpected=[[-223.5,-59.5],[59.499884575971,223.499884775972]];let frontPoses=0;
+ const checkFront=()=>{if(size!==350)return;assert.equal(frontNodes.size,2);for(const [i,key]of ['voron_trident_350_base_825','voron_trident_350_base_852'].entries()){const box=new THREE.Box3().setFromObject(frontNodes.get(key));assert(Math.abs(box.min.x*1000-frontExpected[i][0])<.001);assert(Math.abs(box.max.x*1000-frontExpected[i][1])<.001);}frontPoses++;};
+ checkFront();
  let routes=0;const lengths=[];
  for(let y=0;y<=size;y+=.5){
   const pose=motion.setPose({x:y,y,z:y/size*250});
+  if(y%50===0)checkFront();
   for(const {row,origin} of motion.entries.values())assert(['fixed','xy','y','z','reference_flexible'].includes(row.motion));
   for(const b of motion.belts)for(const e of b.entries){
    checkRoute(e.route);routes++;
@@ -42,6 +48,7 @@ for(const size of [250,300,350]){
    if(row.motion==='fixed')assert(p.equals(origin));
   }
  }
+ if(size===350){for(const p of [{x:350,y:350,z:250},{x:175,y:175,z:125},{x:0,y:0,z:0},{x:175,y:175,z:125},{x:350,y:350,z:250},{x:0,y:0,z:0}]){motion.setPose(p);checkFront();}for(const [mesh,entry]of motion.entries)if(frontNodes.has(entry.row.key))assert.equal(entry.row.front_registration_delta_mm,entry.row.key.endsWith('_825')?-50:50);}
  const raw=await read(`${dir}/configurations.json`),catalog=expandedPrinterCatalog(raw,heads,registry,machine),variants=machineHeadVariants(heads,registry,machine);
  assert(variants.length>100);for(const v of catalog.variants)for(const m of v.modules)if(/^trident_r2_gantry_/.test(m.id))assert.equal(m.id,gantry.id);
  const state=initialBank(catalog,bank,'trident_r2');assert.deepEqual(state,{enabled:false,active:0,tools:[]});normalizeBank(state,catalog,bank,'trident_r2');assert.throws(()=>normalizeBank({...state,enabled:true},catalog,bank,'trident_r2'));
@@ -50,6 +57,6 @@ for(const size of [250,300,350]){
  motion.setBedReferenceDrop(drop);motion.setPose({x:0,y:0,z:0});
  const indx=catalog.variants.find(v=>v.toolhead==='indx'),indxState=initialBank(catalog,bank,'trident_r2','indx');indxState.enabled=true;
  const plan=bankPlan(indxState,catalog,bank,catalog.variants.find(v=>v.toolhead==='indx'&&v.hotend===indxState.tools[0]));assert(plan.instances.some(p=>p.id===`indx_crossbar_${size}`));
- reports.push({size,base_parts:manifest.parts.length,gantry_parts:gantry.parts.length,meshes,routes,registered_head_variants:variants.length,stock_nozzle_gap_mm:catalog.bed_reference_top_mm-drop-standard.fit.nozzle_mm[2]});
+ reports.push({size,base_parts:manifest.parts.length,gantry_parts:gantry.parts.length,meshes,routes,front_registration_poses:frontPoses,registered_head_variants:variants.length,stock_nozzle_gap_mm:catalog.bed_reference_top_mm-drop-standard.fit.nozzle_mm[2]});
 }
 console.log(JSON.stringify({passed:true,reports},null,2));

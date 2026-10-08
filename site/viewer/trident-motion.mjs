@@ -1,6 +1,7 @@
 import {createTridentBelts} from './trident-belts.mjs?v=36cbfcd85e770a25e822';
 import {createBedChain,isTridentBedChain} from './bed-chain.mjs?v=5c6ddd46ac13e6974c73';
 import {assertTridentBedRegistration} from './trident-bed-registration.mjs?v=17201d090ac06e795be0';
+import {tridentFrontRegistration} from './trident-front-registration.mjs?v=6ae818408f2a66ba416a';
 /** Independent Trident bed motion. Vertices carry their CAD placements. */
 export function createTridentMotion(profile){
  if(profile.kinematics!=='trident'||!/^voron_trident_(?:(?:250|300|350)|(?:500|1000)_custom|350_half_z)$/.test(profile.machine_id))throw Error('Trident profile mismatch');
@@ -9,6 +10,7 @@ export function createTridentMotion(profile){
  function register(root,metadata){
   if(/^trident_r2_gantry_/.test(metadata.id||'')&&metadata.id!==gantryId)throw Error('Trident gantry size mismatch');
   const rows=new Map(metadata.parts.map(p=>[p.key,p]));
+  const front=tridentFrontRegistration(profile,metadata);
   // Original leaf1167 joins moving bed extrusions despite its Frame_Hardware path.
   const stockBase=/^voron_trident_(250|300|350)$/.test(profile.machine_id)&&metadata.id===profile.machine_id+'_base';
   const customProfile=/^voron_trident_((?:500|1000)_custom|350_half_z)$/.test(profile.machine_id);
@@ -25,7 +27,10 @@ export function createTridentMotion(profile){
   }
   root.traverse(mesh=>{if(!mesh.isMesh)return;const key=mesh.userData.part_key||mesh.name,row=rows.get(key);if(!row)throw Error('Unregistered Trident part '+key);
    if(!['fixed','xy','y','z','reference_flexible'].includes(row.motion))throw Error('Unknown Trident motion '+key);
-   if(entries.has(mesh))return;entries.set(mesh,{row,origin:mesh.position.clone()});
+   if(entries.has(mesh))return;
+   const registration=front.get(key);
+   if(registration)mesh.position.x+=registration.delta_mm/1000;
+   entries.set(mesh,{row:registration?{...row,bounds_mm:registration.registered_bounds_mm,front_registration_delta_mm:registration.delta_mm}:row,origin:mesh.position.clone()});
   });
   if(metadata.parts.some(p=>isTridentBedChain(p)&&p.name==='10x11 Chain Link')&&!bedChains.some(c=>c.root===root))bedChains.push({root,...createBedChain(root,metadata)});
   if(metadata.id===gantryId&&!belts.some(b=>b.root===root))belts.push({root,...createTridentBelts(root,metadata)});
