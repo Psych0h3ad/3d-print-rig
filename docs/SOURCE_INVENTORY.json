@@ -5,8 +5,8 @@
   "files": [
     {
       "path": ".gitattributes",
-      "bytes": 453,
-      "sha256": "c6a71fe9bd5d4d463e2068f7d75817db672df4f7e9876d1d49d13846a3ddbfce"
+      "bytes": 498,
+      "sha256": "08f1d0f60c01906f3c5e5232e644c03bfbff58b170f1cddf7b7ff763bea94eb6"
     },
     {
       "path": ".github/workflows/pages.yml",
