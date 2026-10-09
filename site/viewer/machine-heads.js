@@ -7,22 +7,22 @@ import {alphaReference,alphaLimits} from './trinity-alpha-installation.mjs?v=6e3
 import {augmentTrinitySiboorR2,TRINITY_SIBOOR_SOURCE} from './trinity-alpha-siboor-r2.mjs?v=d7ff546f46437668ce07';
 import {augmentTrinityAlpha,TRINITY_ALPHA_SOURCE} from './trinity-alpha-installation.mjs?v=6e3fbf3f9314692f4726';
 import {workspaceTask} from './workspace-lifecycle.mjs';
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=c4eef4e03ea357278d59';
-import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=10ccd13ccac0f43f2d45';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=3d01367a780f95cedf07';
+import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=e0796af507a3158f94fd';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
-import {appearanceRole} from './appearance-role.mjs?v=6b7b8efda77bfc3ce74d';
+import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import {partKey} from './head-assembly.js';
-import {v24HeadCatalog} from './machine-head-model.mjs?v=21171c5105cd06ef3d6b';
-import {setupConfigurations} from './configurations.js?v=fdea6a121f403586d10d';
+import {v24HeadCatalog} from './machine-head-model.mjs?v=1602c91e0a22d23278a7';
+import {setupConfigurations} from './configurations.js?v=d773f055d1ef6837959e';
 
 import {loadSiboorRegistration} from './siboor-catalog.mjs?v=e973b822bd4a124f239c';
 import {stockProbeFit} from './probe-mounts.js';
 
 import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs';
 import {bankPlan} from './changer-bank-model.mjs?v=024cc52a5bbc61da7506';
-import {setupChangerBank} from './changer-bank.js?v=47bbc0fef91af2c7241e';
+import {setupChangerBank} from './changer-bank.js?v=a456213f82fc8c0142cb';
 import {contentSHA256,acceptedMountValidation} from './mount-validation.mjs';
 import {acceptedHeadValidation}from './head-validation.mjs';
 import {withHeadAdditions} from './head-additions.mjs?v=143d882a3df675284f2e';

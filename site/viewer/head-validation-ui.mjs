@@ -1,4 +1,4 @@
-import {headWitnessCheck}from './head-validation.mjs?v=trident-clearance-35';
+import {headWitnessCheck}from './head-validation.mjs?v=bba39d88e1b5b7f848c0';
 export function createHeadInspection(target,{setPose}={}){
  const panel=document.createElement('details');panel.id='headTravelInspection';panel.hidden=true;panel.innerHTML='<summary>ヘッドと機体の干渉</summary><p class="foot" data-scope></p><ol data-findings class="foot"></ol>';
  target.after(panel);

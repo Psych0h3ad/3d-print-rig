@@ -11,16 +11,16 @@
       "files": {
         "model.glb": {
           "path": "custom-voron-v3/voron_v24_500_custom/model.glb.gz",
-          "bytes": 27170357,
-          "sha256": "ce0d52e39716f76f984278231528ae560724c66513bffa43f12b1bdcb352da46",
+          "bytes": 27143272,
+          "sha256": "5c90900cfe1374ebe5b7211fdc5ad7c8701b44a6fd95d29619cfed8c7c011497",
           "encoding": "gzip",
-          "decoded_bytes": 85047660,
-          "decoded_sha256": "9c2ba6ee8c77aebdaf7c0d0f98be0a3031a7c4aa077709a9051f1ae297060f18"
+          "decoded_bytes": 85195248,
+          "decoded_sha256": "5696e6097763134ee47e6453b023245a237f9272f6eddac76e554fd79655f632"
         },
         "assembly_manifest.json": {
           "path": "custom-voron-v3/voron_v24_500_custom/assembly_manifest.json",
-          "bytes": 2327685,
-          "sha256": "bc265b3ede747163c23f7b29a70d5c3cc23afa120b605add00656ccd8b7f930c"
+          "bytes": 2245403,
+          "sha256": "5be4c147a45550001e7c1ecd8c0ade137df74a87b275a6c9eea26b1e0a493dd1"
         },
         "machine_profile.json": {
           "path": "custom-voron-v3/voron_v24_500_custom/machine_profile.json",
@@ -119,16 +119,16 @@
       "files": {
         "model.glb": {
           "path": "voron1000-v1/voron_v24_1000_custom/model.glb.gz",
-          "bytes": 50823557,
-          "sha256": "0ee2c64df01eca581bbd3d93e3843a496e5b5f0ff90e024bc1ad75a8c68d52df",
+          "bytes": 50846351,
+          "sha256": "9daba1200efc194ec5c9634253804569e622f35b02811009ab05e00c5d626045",
           "encoding": "gzip",
-          "decoded_bytes": 140338736,
-          "decoded_sha256": "01352fffd56a9b95ca66962888cf5df722e6af115a94d6ff52f6d0dda98e1b93"
+          "decoded_bytes": 140486328,
+          "decoded_sha256": "aacca629d947491958eab426727f9b5653c3aa00bd8fa2b5ab53c5b4c9c1a6cd"
         },
         "assembly_manifest.json": {
           "path": "voron1000-v1/voron_v24_1000_custom/assembly_manifest.json",
-          "bytes": 1926124,
-          "sha256": "b17e233be8996b0ebf7f7f5014c46ee138df3775fc0a5ad739760430114568f6"
+          "bytes": 1926144,
+          "sha256": "82c421891fed42099df90386d03b05e3afae6aa8c4af3d49354050d82375e567"
         },
         "machine_profile.json": {
           "path": "voron1000-v1/voron_v24_1000_custom/machine_profile.json",

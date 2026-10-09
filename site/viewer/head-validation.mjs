@@ -7,6 +7,9 @@ export function headPlacementKey(plan){
 export function acceptedHeadValidation(evidence,hashes,bundle,machine){
  const target=evidence?.machines?.[machine];
  if(evidence?.schema!=='3d-print-rig-head-witness-v1'||evidence.model_bundle_sha256!==bundle?.sha256||!target||!Array.isArray(target.records)||!evidence.placements)return null;
+ // Target pins may repeat a global input only with the identical digest.
+ // A spread merge must never hide a contradictory global source identity.
+ if(Object.entries(target.input_sha256||{}).some(([name,digest])=>Object.hasOwn(evidence.input_sha256||{},name)&&evidence.input_sha256[name]!==digest))return null;
  const pins={...evidence.input_sha256,...target.input_sha256};if(Object.keys(pins).length<4)return null;
  for(const[name,digest]of Object.entries(pins))if(hashes[name]!==digest)return null;
  const records=target.records.map(r=>Array.isArray(r.intersection_ids)&&!('intersections'in r)?{...r,intersections:r.intersection_ids.map(id=>evidence.intersection_witnesses?.[id])}:r);

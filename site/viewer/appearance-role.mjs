@@ -24,6 +24,10 @@ export function appearanceRole(part){
   if(micronBase.has(name))return 'base';if(micronAccent.has(name))return 'accent';
   if(['Rear_Gantry_Extrusion','X_Extrusion'].includes(name))return 'frame';
   if(['SOLID','COMPOUND'].includes(name)){
+   // Original 120 R1 source leaves; the author's [a]_railstops_x8 STL.
+   // Pin the leaf identity as well as its direct owning component; a
+   // purchased descendant beneath a printed assembly is not printed.
+   if(name==='SOLID'&&part.source.commit==='f76aa28767211ddfee2e30290aadcea3c45f8513'&&part.source.cache_machine==='micron_r1_120'&&['00345','00348','00376','00379','00407','00410','00438','00441'].includes(part.source.source_key)&&/^m120_/.test(key)&&/^Railstops v3:[12]$/.test(part.source.assembly_path.at(-2)||''))return 'accent';
    if(/CenterPanelClip|CornerPanelClip|reverseBowdenEntry|\/Handles:/.test(path))return 'base';
    if(/64T Front Pulley Gear|Toothed_Idler_Carrier/.test(path))return 'accent';
    if(/(?:CornerTwistLock|TwistLockCenter|DIN_Mount|Wago DIN Clip|WAGO_221-413_1515):?/.test(path))return /TwistLock/.test(path)?'accent':'base';

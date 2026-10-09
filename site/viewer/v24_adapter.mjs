@@ -1,5 +1,5 @@
 import {v24FlexibleState} from './v24-flexible.mjs?v=extra-machines-55';
-import {appearanceRole} from './appearance-role.mjs?v=6b7b8efda77bfc3ce74d';
+import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import {createV24Belts} from './v24-belts.mjs?v=ad0c97343617f3c11d0b';
 /** Separate V2.4 kinematic adapter. CAD vertices already contain world placement. */
 export function createV24Adapter(root,manifest,profile){

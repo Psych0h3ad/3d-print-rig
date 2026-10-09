@@ -6,6 +6,7 @@ import re
 import subprocess
 import sys
 from pathlib import Path
+from check_machine_regressions import changed_inputs
 
 ROOT = Path(__file__).resolve().parents[1]
 BLOCKED = {'.glb', '.gltf', '.bin', '.step', '.stp', '.ste', '.p21', '.stpz', '.brep', '.stl', '.xbf', '.f3d', '.zip', '.7z', '.gz', '.log', '.partial'}
@@ -58,6 +59,7 @@ def main():
     paths = [Path(name) for name in tracked if name]
     if not paths:
         raise SystemExit('No tracked files. Stage the source files before checking.')
+    before = {p.as_posix(): hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
     errors = []
     for path in paths:
         if path.suffix.lower() in BLOCKED or path.name.startswith('.env'):
@@ -117,6 +119,12 @@ def main():
                     '--workers', str(args.regression_workers)], cwd=ROOT, check=True)
     subprocess.run(['node', str(ROOT/'scripts/build_locales.mjs')], cwd=ROOT, check=True)
     subprocess.run(['node', str(ROOT/'scripts/check_ui_catalog.mjs')], cwd=ROOT, check=True)
+    current_names = subprocess.check_output(['git', 'ls-files', '-z'], cwd=ROOT).decode('utf-8').split('\0')
+    after = {n: hashlib.sha256((ROOT/n).read_bytes()).hexdigest()
+             for n in current_names if n and (ROOT/n).is_file()}
+    changed = changed_inputs(before, after)
+    if changed:
+        raise SystemExit('Publication inputs changed during checking: '+', '.join(changed))
     print(f'Publication check passed: {len(paths)} tracked files, {len(commits)} commits checked; no geometry/private-path/credential signatures; JS syntax valid.')
 
 if __name__ == '__main__':

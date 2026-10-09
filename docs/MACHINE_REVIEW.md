@@ -22,7 +22,11 @@ printer family has no required regression suite.
 inspection scope for every available machine. The coverage check also pins
 the model catalogs, renderer, adapters and interaction code. Changing an input
 or adding a machine makes the record stale and fails the default repository
-check. Refresh the record only after rerunning the affected actual-asset audits
+check. Audit scripts, loaders, source tests, Python build gates and publication
+workflows are also pinned: editing the check invalidates its previous result.
+The regression runner compares raw inputs before and after execution and rejects
+changed, added or removed inputs, including files outside the selected tests.
+Refresh the record only after rerunning the affected actual-asset audits
 and reviewing their results. `--registration-only` lists registrations for
 audit orchestration; it is not the publication check.
 

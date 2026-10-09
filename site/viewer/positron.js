@@ -15,7 +15,7 @@ import {rememberDisplayControl} from './display-preferences.mjs?v=9860960509e28d
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {setupRenderExport} from './render-export.js';
-import {setupPublicInfo} from './public-info.js?v=84f5c04634e6ad386915';
+import {setupPublicInfo} from './public-info.js?v=9989925260fcc5301461';
 
 const foldSteps=['ガラスベッドを外す','ベッドのネジを外す','Vホルダーを外す','ラッチを下げ、支柱のネジを外す','ヘッドを右端へ移動','Vホルダーを収納姿勢へ','ピンをJ字溝の回転位置へ移動','支柱を倒す','ヘッドを収納位置へ戻す','外したネジを左右の収納穴に差し込む','折り畳み完了'];
 export async function mount(scope){

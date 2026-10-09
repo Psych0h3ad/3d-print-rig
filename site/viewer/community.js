@@ -15,7 +15,7 @@ import {rememberDisplayControl} from './display-preferences.mjs?v=9860960509e28d
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {setupRenderExport} from './render-export.js';
-import {setupPublicInfo} from './public-info.js?v=84f5c04634e6ad386915';
+import {setupPublicInfo} from './public-info.js?v=9989925260fcc5301461';
 const descriptions={
  doomcube2_350_reference:"DoomCube 2 · 350 mm / double enclosure / original CAD",
  tictac_21_120:"TicTac 2.1 · 120 mm / 新Rat Rigツールヘッド / 公式組立CAD",

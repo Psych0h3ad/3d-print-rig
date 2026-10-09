@@ -4,12 +4,12 @@ import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690
 import {setupSceneDisplay} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect} from './responsive-camera.mjs?v=workspace-belts-1';
-import {appearanceRole} from './appearance-role.mjs?v=6b7b8efda77bfc3ce74d';
+import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
-import {setupPublicInfo} from './public-info.js?v=84f5c04634e6ad386915';
+import {setupPublicInfo} from './public-info.js?v=9989925260fcc5301461';
 import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
 import {changerDimensions,changerChoice,changerChoices,changerPlacement} from './toolchanger-model.js?v=workspace-belts-1';
 export async function mount(scope){

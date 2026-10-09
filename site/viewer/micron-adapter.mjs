@@ -1,5 +1,5 @@
 /** Micron: fixed bed, Z gantry, Y X-beam, XYZ toolhead. Baked CAD placement. */
-import {appearanceRole} from './appearance-role.mjs?v=6b7b8efda77bfc3ce74d';
+import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import {createPaletteController} from './palette-controller.mjs?v=af9daf5ae29080e4cbff';
 import {micronHardwareColors} from './micron-native-materials.mjs?v=55b8c3644415d202fa4a';
 import {createMicronBelts} from './micron-belts.mjs?v=public-v25';

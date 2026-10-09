@@ -1,7 +1,7 @@
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
 import {workspaceTask} from './workspace-lifecycle.mjs';
 import {bankChoices,bankCapacity,bankDockUnavailable,normalizeBank,initialBank,readBankURL,bankBedReferenceDrop,bankSystem,bankSource,bankSpec,variantBankSystem,bankStateForVariant,bankPlan} from './changer-bank-model.mjs?v=024cc52a5bbc61da7506';
-import {bankWitnessCheck}from './head-validation.mjs?v=trident-clearance-35';
+import {bankWitnessCheck}from './head-validation.mjs?v=bba39d88e1b5b7f848c0';
 
 export function setupChangerBank({catalog,rig,data,extras={},before=document.querySelector('#configurationControls'),inspectPose}={}){
  if(!before)throw Error('ツールバンクの表示先がありません');

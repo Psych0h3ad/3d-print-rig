@@ -4,12 +4,12 @@ import {setupConfigurationEditor} from './configuration-editor.mjs?v=95f0d0efdfc
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
 import {workspaceTask,workspaceListen} from './workspace-lifecycle.mjs';
 import {translate} from './i18n.mjs?v=2dc0b94b6536b576688c';
-import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=c4eef4e03ea357278d59';
+import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=3d01367a780f95cedf07';
 import {catalogDimensions,collections,resolveVariant,choicesFor,choiceChanges,importedVariant,configurationById} from './configuration-model.js?v=d4b3dda97a404a7575b7';
 import {probeCheck,probeOptionSuffix,headBodyCollisionNotes} from './probe-checks.js?v=ea1aef3e30bf7d11d3cb';
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
-import {headWitnessCheck}from './head-validation.mjs?v=workspace-belts-1';
-import {createHeadInspection}from './head-validation-ui.mjs?v=workspace-belts-1';
+import {headWitnessCheck}from './head-validation.mjs?v=bba39d88e1b5b7f848c0';
+import {createHeadInspection}from './head-validation-ui.mjs?v=ae9dcf09c303efbdce96';
 
 export async function setupConfigurations(catalog,install,{presentation='printer',getExtras=()=>({}),applyExtras=async()=>{},validateExtras=()=>{},onSettled=()=>{},inspectPose,createEditor=setupConfigurationEditor,onDraft=()=>{}}={}){return workspaceTask(async()=>{
  const $=s=>document.querySelector(s);

@@ -1968,7 +1968,7 @@
       "display_name": "VORON V2.4 500 Custom",
       "configuration": "Printed R2 / Stealthburner / Clockwork 2 / Revo Voron",
       "revision": "Custom 500 / R2 reference",
-      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/voron500-assy-v93/VORON_V2_4_500_Custom_SB_CW2_RevoVoron_Assy_STEP.zip",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/voron500-assy-v105/VORON_V2_4_500_Custom_SB_CW2_RevoVoron_Assy_STEP.zip",
       "upstream_url": "https://github.com/VoronDesign/Voron-2/tree/a192410e27ea345644ae5c4b29b4c9c40cbe1a73",
       "license": "GPL-3.0",
       "release_verified": true,
@@ -1976,10 +1976,10 @@
       "custom_reference": true,
       "note": "500 mm custom CAD reference; not an official VORON size or tested kit.",
       "step_zip": {
-        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/voron500-assy-v93/VORON_V2_4_500_Custom_SB_CW2_RevoVoron_Assy_STEP.zip",
+        "path": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/voron500-assy-v105/VORON_V2_4_500_Custom_SB_CW2_RevoVoron_Assy_STEP.zip",
         "filename": "VORON_V2_4_500_Custom_SB_CW2_RevoVoron_Assy_STEP.zip",
-        "bytes": 138467521,
-        "sha256": "4353aeffabcc45cce2c30f607f3eedacc3db70a5af7a9b0d0d9c9d142c7dd21d"
+        "bytes": 138539923,
+        "sha256": "8ef203d877d83dbf285a28accf83133ed5e91eb13c26f3c6e73e9eefa749d6a3"
       }
     },
     {

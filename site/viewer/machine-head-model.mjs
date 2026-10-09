@@ -7,7 +7,7 @@ import {translatedProbeFit} from './probe-checks.js?v=ea1aef3e30bf7d11d3cb';
 
 import {withEmbeddedBoards} from './embedded-boards.mjs?v=trident-clearance-35';
 import {applyMountValidation} from './mount-validation.mjs?v=trident-clearance-35';
-import {applyHeadValidation} from './head-validation.mjs?v=trident-clearance-35';
+import {applyHeadValidation} from './head-validation.mjs?v=bba39d88e1b5b7f848c0';
 
 const clone=value=>JSON.parse(JSON.stringify(value));
 const add=(a,b)=>a.map((v,i)=>v+b[i]);

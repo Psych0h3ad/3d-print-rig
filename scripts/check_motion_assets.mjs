@@ -12,6 +12,8 @@ import {createV24Adapter as createVoron} from '../site/viewer/v24_matrix_adapter
 import {createTridentMotion} from '../site/viewer/trident-motion.mjs';
 import {isTridentBedChain} from '../site/viewer/bed-chain.mjs';
 import {checkRoute,checkGeometry,checkNoCrossing} from './test_v0_belts.mjs';
+import {auditRearEnclosures} from './audit_rear_enclosures.mjs';
+import {auditMicronColors} from './audit_micron_colors.mjs';
 const root=process.argv[2];if(!root)throw Error('Pass assembled site directory');
 const read=file=>JSON.parse(fs.readFileSync(file));
 const near=(a,b,t=1e-8)=>assert(Math.abs(a-b)<t,`${a} != ${b}`);
@@ -118,5 +120,14 @@ for(const id of ids){
  for(const [mesh,{row}]of motion.entries)if(row.motion==='reference_flexible'&&row.group==='Z Assembly')assert(mesh.visible);
  report.machines.push({id,parts:motion.entries.size,poses,fine_y_sweep:701,max_belt_length_drift_mm:maxLengthDrift,belt_routing:'registered smooth envelope; teeth/clamp cuts/tension not simulated',z_chain:'XY-independent; reference geometry remains visible when deformation is unregistered'});
 }
+// These reviews must execute in the required actual-asset release job, not
+// merely exist as optional scripts or pass on synthetic role fixtures.
+const evidenceDir=process.argv[3]?path.dirname(process.argv[3]):undefined;
+report.recurrence_checks={
+ enclosures:await auditRearEnclosures(root,evidenceDir&&path.join(evidenceDir,'REAR_ENCLOSURES_CURRENT.json')),
+ micron_materials:await auditMicronColors(root,evidenceDir&&path.join(evidenceDir,'MICRON_MATERIALS_CURRENT.json')),
+};
+assert.equal(report.recurrence_checks.enclosures.all_passed,true);
+assert.equal(report.recurrence_checks.micron_materials.all_passed,true);
 if(process.argv[3])fs.writeFileSync(process.argv[3],JSON.stringify(report,null,2));
 console.log(`Release motion audit finished: ${report.machines.length} machine configurations; ${report.findings.length} unresolved finding(s) recorded separately.`);

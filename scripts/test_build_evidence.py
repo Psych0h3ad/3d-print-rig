@@ -8,6 +8,32 @@ from pathlib import Path
 import build_site
 from build_site import validate_mounting_evidence
 from check_repository import history_blob_records, private_values, PRIVATE_PREFIXES
+from check_machine_regressions import regression_inputs, changed_inputs
+
+
+class RegressionFreezeTest(unittest.TestCase):
+    def test_changes_additions_and_deletions_of_audit_inputs_fail_even_with_same_model(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder)
+            files={'site/viewer/adapter.mjs':b'original adapter',
+                   'site/MODELS.json':b'{"model":"same-model-sha"}',
+                   'scripts/audit_actual.mjs':b'original checks',
+                   'scripts/loader.mjs':b'original load',
+                   'scripts/build_site.py':b'original build',
+                   '.github/workflows/pages.yml':b'original workflow'}
+            for name,data in files.items():
+                p=root/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(data)
+            before=regression_inputs(root)
+            self.assertEqual(set(before),set(files))
+            for name,data in files.items():
+                (root/name).write_bytes(data+b' changed')
+                self.assertEqual(changed_inputs(before,regression_inputs(root)),[name])
+                (root/name).write_bytes(data)
+            added=root/'scripts/test_new.mjs';added.write_bytes(b'new required regression')
+            self.assertEqual(changed_inputs(before,regression_inputs(root)),['scripts/test_new.mjs'])
+            added.unlink();(root/'scripts/audit_actual.mjs').unlink()
+            self.assertEqual(changed_inputs(before,regression_inputs(root)),['scripts/audit_actual.mjs'])
+            self.assertEqual(changed_inputs(before,before),[])
 
 
 class HistoryBlobTest(unittest.TestCase):
