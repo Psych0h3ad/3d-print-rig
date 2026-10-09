@@ -20,6 +20,8 @@ Native modules, source identifiers and registration data are provided in the sep
 
 Dedicated Goliath Air/Water assemblies, sensor heights, water-cooling differences and the separate Short WC reference are documented in [Goliath](GOLIATH.md).
 
+The former tLW Tricorn and Goliath print-only presets now resolve to their existing Short Sherpa hardware assemblies, for both Voron and Monolith bodies. Old shared links and saved configurations retain the same registered body and host/gantry while loading the matching extruder, hotend, feed interface and rear 2510 fan. Entering the Sphinx family prefers a declared hardware assembly. Its existing source contacts and clearance limitations remain visible. Dragon Ace MZE and Volcano print references still require their exact companion hardware and are not migrated to a different hotend.
+
 ## Archived V3 and Single Inlet
 
 The same [pinned author repository](https://github.com/riley-github/Sphinx-Toolhead/tree/74ce5f58fcb06aea2ddcbb48b09610cbbfbfa180) supplies these archived generations separately from current tLW. Select Sphinx, then choose V3 WS7040 / WS9290 in Cooling. Ten new hardware combinations are available on the head page and standard 6 mm VORON machine mounts:

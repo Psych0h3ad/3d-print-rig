@@ -1,11 +1,11 @@
 import {alphaProductNotice} from './trinity-alpha-installation.mjs?v=6e3fbf3f9314692f4726';
-import {createConfigurationDraft,configurationLabels,configurationLabel} from './configuration-draft.mjs?v=40f3194bb0e1c5a35cf8';
-import {setupConfigurationEditor} from './configuration-editor.mjs?v=95f0d0efdfc0958b005c';
+import {createConfigurationDraft,configurationLabels,configurationLabel} from './configuration-draft.mjs?v=29f78465c65e0f1d8563';
+import {setupConfigurationEditor} from './configuration-editor.mjs?v=ba1cb66033b2a0e6f01e';
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
 import {workspaceTask,workspaceListen} from './workspace-lifecycle.mjs';
 import {translate} from './i18n.mjs?v=2dc0b94b6536b576688c';
-import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=3d01367a780f95cedf07';
-import {catalogDimensions,collections,resolveVariant,choicesFor,choiceChanges,importedVariant,configurationById} from './configuration-model.js?v=d4b3dda97a404a7575b7';
+import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=c780c464a221901f673f';
+import {catalogDimensions,collections,resolveVariant,choicesFor,choiceChanges,importedVariant,configurationById} from './configuration-model.js?v=922298bc5433b90fa3af';
 import {probeCheck,probeOptionSuffix,headBodyCollisionNotes} from './probe-checks.js?v=ea1aef3e30bf7d11d3cb';
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
 import {headWitnessCheck}from './head-validation.mjs?v=bba39d88e1b5b7f848c0';

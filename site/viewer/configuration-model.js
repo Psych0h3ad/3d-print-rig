@@ -1,10 +1,12 @@
 import {probeHasConflict} from './probe-checks.js?v=ea1aef3e30bf7d11d3cb';
+import {hasDeclaredHeadHardware,registeredConfigurationId} from './head-companion-presets.mjs?v=82ec6a996e9e1661b811';
 export const dimensions=['gantry','toolhead','carriage','hotend','extruder','probe'];
 export const collections={gantry:'gantries',toolhead:'toolheads',mount:'mounts',carriage:'carriages',hotend:'hotends',extruder:'extruders',probe:'probes',board:'boards',cooling:'cooling_options'};
 export const catalogDimensions=catalog=>catalog.dimensions||dimensions;
 // Match registered source IDs used by standalone head links; never guess an ID.
 export function configurationById(catalog,id){
- return catalog.variants.find(v=>v.id===id)||catalog.variants.find(v=>v.source_head_configuration===id);
+ const resolved=registeredConfigurationId(catalog,id);
+ return catalog.variants.find(v=>v.id===resolved)||catalog.variants.find(v=>v.source_head_configuration===resolved);
 }
 export const headBuilderDimensions=['toolhead','extruder','hotend','cooling','mount','gantry','carriage','probe','board'];
 const indexedCatalogs=new WeakMap();
@@ -44,7 +46,7 @@ export function resolveVariant(catalog,selection,changed){
  let candidates=changed?candidatesFor(catalog,selection,changed):catalog.variants;
  // Prefer a hardware assembly when entering a head family that also retains
  // archived print-only references. Explicit component/reference choices still work.
- if(changed==='toolhead'&&candidates.some(v=>v.hardware_assembled))candidates=candidates.filter(v=>v.hardware_assembled);
+ if(changed==='toolhead'&&candidates.some(hasDeclaredHeadHardware))candidates=candidates.filter(hasDeclaredHeadHardware);
  let best=null,bestScore=-1;
  for(const v of candidates){
   const conflict=probeHasConflict(v);
@@ -71,7 +73,8 @@ export function choiceChanges(catalog,variant,dimension,value){
 export function importedVariant(catalog,data){
  if(data.machine&&data.machine!==(catalog.machine_id||'siboor_trident_350')&&!catalog.import_machine_ids?.includes(data.machine))throw Error('この構成は別のマシン用です。');
  const id=data.configuration||data.id;
- const variant=catalog.variants.find(v=>v.id===id);
+ const resolved=registeredConfigurationId(catalog,id);
+ const variant=catalog.variants.find(v=>v.id===resolved);
  if(!variant)throw Error('この構成のCADは登録されていません。');
  return variant;
 }

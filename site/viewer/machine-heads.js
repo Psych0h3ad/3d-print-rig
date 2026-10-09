@@ -7,15 +7,15 @@ import {alphaReference,alphaLimits} from './trinity-alpha-installation.mjs?v=6e3
 import {augmentTrinitySiboorR2,TRINITY_SIBOOR_SOURCE} from './trinity-alpha-siboor-r2.mjs?v=d7ff546f46437668ce07';
 import {augmentTrinityAlpha,TRINITY_ALPHA_SOURCE} from './trinity-alpha-installation.mjs?v=6e3fbf3f9314692f4726';
 import {workspaceTask} from './workspace-lifecycle.mjs';
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=3d01367a780f95cedf07';
-import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=e0796af507a3158f94fd';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=c780c464a221901f673f';
+import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=6866f45fdb31726f3419';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import {partKey} from './head-assembly.js';
-import {v24HeadCatalog} from './machine-head-model.mjs?v=1602c91e0a22d23278a7';
-import {setupConfigurations} from './configurations.js?v=d773f055d1ef6837959e';
+import {v24HeadCatalog} from './machine-head-model.mjs?v=f95a0433f78fc1653c63';
+import {setupConfigurations} from './configurations.js?v=987fbacf610727ae0af2';
 
 import {loadSiboorRegistration} from './siboor-catalog.mjs?v=e973b822bd4a124f239c';
 import {stockProbeFit} from './probe-mounts.js';
@@ -25,7 +25,8 @@ import {bankPlan} from './changer-bank-model.mjs?v=024cc52a5bbc61da7506';
 import {setupChangerBank} from './changer-bank.js?v=a456213f82fc8c0142cb';
 import {contentSHA256,acceptedMountValidation} from './mount-validation.mjs';
 import {acceptedHeadValidation}from './head-validation.mjs';
-import {withHeadAdditions} from './head-additions.mjs?v=143d882a3df675284f2e';
+import {withHeadAdditions} from './head-additions.mjs?v=1439f75ce2affde5a624';
+import {nativeDeckEvidenceSource,nativeWitnessInputs} from './native-evidence-bridge.mjs?v=a5f3aad096d9be8f211b';
 import {loadExternalComponent} from './component-assets.mjs?v=9f8ef058f1297ab60e53';
 
 const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);
@@ -38,11 +39,11 @@ export async function loadMachineHeadCatalog(machine){return workspaceTask(async
  if(machine){
   try{
    const evidence=await get('MOUNT_VALIDATION.json'),target=evidence.machines?.[machine];
-   if(target){const [bundle]=await Promise.all([get('ASSET_BUNDLE.json'),...Object.keys({...evidence.input_sha256,...target.input_sha256}).map(get)]);registry.probe_travel_validation=acceptedMountValidation(evidence,hashes,bundle,machine)}
+   if(target){registry.probe_travel_validation=null;const [bundle]=await Promise.all([get('ASSET_BUNDLE.json'),...Object.keys({...evidence.input_sha256,...target.input_sha256}).map(get)]);const proof=evidence.model_bundle_sha256===bundle.sha256?null:await get(nativeDeckEvidenceSource.file),inputs=nativeWitnessInputs(evidence,hashes,bundle,machine,'MOUNT_VALIDATION.json',proof);if(inputs)registry.probe_travel_validation=acceptedMountValidation(evidence,inputs.hashes,inputs.bundle,machine)}
   }catch{/* Missing or stale evidence leaves the original unverified state. */}
   try{
    const evidence=await get('HEAD_VALIDATION.json'),target=evidence.machines?.[machine];
-   if(target){const[bundle]=await Promise.all([get('ASSET_BUNDLE.json'),...Object.keys({...evidence.input_sha256,...target.input_sha256}).map(get)]);registry.head_witness_validation=acceptedHeadValidation(evidence,hashes,bundle,machine)}
+   if(target){registry.head_witness_validation=null;const[bundle]=await Promise.all([get('ASSET_BUNDLE.json'),...Object.keys({...evidence.input_sha256,...target.input_sha256}).map(get)]);const proof=evidence.model_bundle_sha256===bundle.sha256?null:await get(nativeDeckEvidenceSource.file),inputs=nativeWitnessInputs(evidence,hashes,bundle,machine,'HEAD_VALIDATION.json',proof);if(inputs)registry.head_witness_validation=acceptedHeadValidation(evidence,inputs.hashes,inputs.bundle,machine)}
   }catch{/* Missing or stale body findings do not prevent loading the catalog. */}
  }
  heads.assets={...heads.assets,...bank.assets};const board=[xolEmbeddedBoard(await get(heads.base_assets.xol.meta)),sbEmbeddedBoard(await get(heads.base_assets.stealthburner.meta))];

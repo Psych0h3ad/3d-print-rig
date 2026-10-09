@@ -53,6 +53,7 @@ export function machineHeadVariants(heads,registry,machine,gantry){
 }
 export function expandedPrinterCatalog(current,heads,registry,machine){
  const result=clone(withEmbeddedBoards(withPrinterGantry(current),heads.embedded_board));result.machine_id=machine;result.dimensions=['gantry','toolhead','mount','extruder','hotend','carriage','probe','board','cooling'];
+ result.configuration_aliases={...current.configuration_aliases,...heads.configuration_aliases};
  for(const v of result.variants){const datum=registry.head_baseline_92?.baselines?.find(r=>r.machine===machine&&r.source_variant===v.id);if(datum){v.native_reference_92=clone(datum);v.fit={...v.fit,nozzle_mm:[...datum.nozzle_native_machine_mm]};}v.mount||='fixed';v.carriage||='standard';v.board||='none';v.cooling||='source'}
  for(const field of ['toolheads','mounts','extruders','hotends','carriages','probes','boards','cooling_options']){
   result[field]||=[];for(const row of heads[field]||[]){const existing=result[field].find(r=>r.id===row.id);if(existing)Object.assign(existing,clone(row));else result[field].push(clone(row));}

@@ -1,4 +1,5 @@
-import {collections} from './configuration-model.js?v=d4b3dda97a404a7575b7';
+import {collections} from './configuration-model.js?v=922298bc5433b90fa3af';
+import {withSphinxCompanionPresets} from './head-companion-presets.mjs?v=82ec6a996e9e1661b811';
 
 // Supplemental source heads never create machine mounting registrations.
 export function withHeadAdditions(catalog,additions){
@@ -24,5 +25,5 @@ export function withHeadAdditions(catalog,additions){
   result.variants.push(structuredClone(variant));
  }
  result.sources.push(...structuredClone(additions.sources));
- return result;
+ return withSphinxCompanionPresets(result);
 }

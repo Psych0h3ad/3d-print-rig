@@ -7,6 +7,8 @@ intersection volume is computed from native CAD, not from the rendered boxes.
 Inspecting a pose invalidates any compiled G-code playback. Switching back to
 the stock head clears the custom-head evidence and bounds.
 
+The runtime retains these original witnesses after the separately audited Trident rear-deck repair. It checks the exact repair proof, original evidence bytes, current bundle identity and every original input, allowing only the two declared manifest changes. This restores standard Trident 250/300/350 loading while preserving the original findings. No witness for the altered deck is inherited, and this binding adds no native clearance or whole-machine qualification.
+
 `HEAD_VALIDATION.json` retains 561 V2.4 source-configuration installations:
 84 complete Sphinx placements across the seven displayed V2.4 contexts, and
 253 Xol / 224 Stealthburner placements on the VORON 350 mm printed R2 context.

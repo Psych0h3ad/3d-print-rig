@@ -1,4 +1,4 @@
-import {collections,catalogDimensions} from './configuration-model.js?v=d4b3dda97a404a7575b7';
+import {collections,catalogDimensions} from './configuration-model.js?v=922298bc5433b90fa3af';
 import {headPlan} from './head-assembly.js?v=trident-clearance-35';
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import {probeHasConflict} from './probe-checks.js?v=ea1aef3e30bf7d11d3cb';

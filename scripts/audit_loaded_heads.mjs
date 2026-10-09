@@ -8,7 +8,8 @@ import assert from 'node:assert/strict';
 import * as THREE from 'three';
 import {headPlan} from '../site/viewer/head-assembly.js';
 import {machineHeadVariants} from '../site/viewer/machine-head-model.mjs';
-import {importedVariant} from '../site/viewer/configuration-model.js';
+import {importedVariant,configurationById} from '../site/viewer/configuration-model.js';
+import {sphinxCompanionPresets} from '../site/viewer/head-companion-presets.mjs';
 import {rapidoXUhfCover} from '../site/viewer/rapido-x-uhf-cover.mjs';
 import {TRINITY_INSTALLED_BELT_SAMPLE_KEYS} from '../site/viewer/trinity-alpha-installation.mjs';
 
@@ -17,6 +18,28 @@ const point=p=>Array.isArray(p)&&p.length===3&&p.every(Number.isFinite);
 const references=new Set(['rail_reference','dock','shuttle_reference']);
 const entriesFor=v=>[{id:v.machine_head.base,translation_mm:v.machine_head.translation,hidden_keys:v.machine_head.hidden},...v.machine_head.modules];
 const display=p=>[p[0]*.001,p[2]*.001,-p[1]*.001];
+
+export function assertHeadPresetAliases(catalog,standalone=false){
+ const result={registered:0,installed_ids:0,unsupported:0};
+ for(const p of sphinxCompanionPresets){
+  assert.equal(catalog.configuration_aliases?.[p.from],p.to,'Missing source companion migration '+p.from);
+  assert(!catalog.variants.some(v=>v.id===p.from||v.source_head_configuration===p.from),'Obsolete printed-only preset still registered');
+  const targets=catalog.variants.filter(v=>v.id===p.to||v.source_head_configuration===p.to);
+  if(standalone)assert.equal(targets.length,1,'Missing assembled standalone preset '+p.to);
+  assert.equal(configurationById(catalog,p.from),targets[0],'Source alias resolved to another registration');
+  if(!targets.length){result.unsupported++;continue;}
+  result.registered++;
+  for(const target of targets){
+   if(target.id===p.to){assert.equal(importedVariant(catalog,{machine:catalog.machine_id,configuration:p.from}),target);continue;}
+   assert(target.id.startsWith('installed__')&&target.id.endsWith('__'+p.to),'Unknown installed source ID format');
+   const old=target.id.slice(0,-p.to.length)+p.from;
+   assert.equal(configurationById(catalog,old),target,'Old installed link changed host/gantry');
+   assert.equal(importedVariant(catalog,{machine:catalog.machine_id,configuration:old}),target,'Old installed save lost companions');
+   result.installed_ids++;
+  }
+ }
+ return result;
+}
 
 // Source-specific requirements, never inferred from HF/UHF names.
 export function assertHeadCompanions(v){
@@ -116,7 +139,7 @@ export async function auditLoadedHeads(root,{families=null,machines=null,variant
   const url=new URL(String(inputURL.url||inputURL),globalThis.location.href),name=url.protocol==='file:'?decodeURIComponent(url.pathname).split('/site/').at(-1):decodeURIComponent(url.pathname).replace(/^\//,'');
   try{return new Response(await bytesFor(name));}catch{missing.add(name);return new Response('',{status:404});}
  };
- const report={schema:'loaded-head-companions-105',started_at_utc:new Date().toISOString(),configurations:0,meshChecks:0,modules:0,transitions:0,poseChecks:0,paletteChecks:0,contexts:[],failures:[],open_findings:[],input_sha256:input,source_input_sha256:sourceInput,code_sha256:{},browser_render_test:false,native_solid_review:false,whole_head_certified:false,filters:{families,machines,variants}};
+ const report={schema:'loaded-head-companions-106',started_at_utc:new Date().toISOString(),configurations:0,meshChecks:0,modules:0,transitions:0,poseChecks:0,paletteChecks:0,legacyPresetRestorations:0,contexts:[],failures:[],open_findings:[],input_sha256:input,source_input_sha256:sourceInput,code_sha256:{},browser_render_test:false,native_solid_review:false,whole_head_certified:false,filters:{families,machines,variants}};
  report.cache_policy={inactive_geometry_limit_bytes:128*1024*1024,evicted_modules:0,max_cached_geometry_bytes:0,identity_scope:'Reuse only the same registered module in the same production catalog/scene; no cross-machine placement/native-joint reuse.'};
  const viewer=fileURLToPath(new URL('../site/viewer/',import.meta.url));
  async function codePins(dir,pins){for(const e of await fs.readdir(dir,{withFileTypes:true})){const full=path.join(dir,e.name);if(e.isDirectory())await codePins(full,pins);else if(/\.(?:mjs|js)$/.test(e.name))pins[path.relative(path.dirname(viewer),full).replaceAll('\\','/')]=sha(await fs.readFile(full));}}
@@ -131,11 +154,13 @@ export async function auditLoadedHeads(root,{families=null,machines=null,variant
    if(machines&&!machines.includes(machine))continue;
    let data;try{data=machine==='standalone'?base:await loadMachineHeadCatalog(machine);}catch(e){report.failures.push({machine,stage:'production_catalog',message:e.message});continue;}
    const {heads,registry}=data;
+   if(['voron_trident_250','voron_trident_300','voron_trident_350'].includes(machine))assert.equal(registry.head_witness_validation?.machine,machine,'Standard Trident baseline lost its current source witness binding');
    // Standard Trident has a direct native registry binding but the printer
    // consumer names its gantry trident_r2. Omitting that ID loses alpha rows.
    const gantries=machine==='standalone'?[]:registry.machines[machine].gantries?Object.keys(registry.machines[machine].gantries):machine.startsWith('voron_trident_')?['trident_r2']:[undefined];
    const plans=machine==='standalone'?heads.variants.map(v=>{const p=headPlan(v);return {...v,machine_head:{...p,hidden:[...p.hidden],modules:p.modules.filter(m=>m.role!=='dock')}};}):gantries.flatMap(g=>machineHeadVariants(heads,registry,machine,g));
    const context={machine,production_variants:plans.length,checked:0,by_family:{}};report.contexts.push(context);
+   context.companion_aliases=assertHeadPresetAliases({...heads,machine_id:machine,variants:plans},machine==='standalone');
    for(const family of heads.toolheads){
     if(families&&!families.includes(family.id))continue;
     const sources=plans.filter(v=>v.toolhead===family.id),selected=sources.filter(v=>!variants||variants.includes(v.source_head_configuration||v.id));if(!selected.length)continue;
@@ -190,6 +215,13 @@ export async function auditLoadedHeads(root,{families=null,machines=null,variant
       await rig.install(null);assert([...rig.cache.values()].every(p=>!p.loaded?.root.visible),v.id+' modules survived teardown');
       for(const p of rig.cache.values())for(const row of p.loaded?.entries||[])if(row.uhfSurface){assert.deepEqual(row.mesh.geometry.index.array,row.uhfSurface.source,v.id+' UHF original indices not restored');assert.deepEqual(row.mesh.geometry.drawRange,row.uhfSurface.draw);}
       const saved=JSON.parse(JSON.stringify({machine,configuration:v.id})),restored=importedVariant({...catalog,variants:plans},saved);await rig.install(restored);await inspect(restored);assert.deepEqual(snapshot(rig),original,v.id+' saved ID did not restore companions');report.transitions++;
+      const preset=sphinxCompanionPresets.find(p=>p.to===(v.source_head_configuration||v.id));
+      if(preset){
+       const oldId=v.id===preset.to?preset.from:v.id.slice(0,-preset.to.length)+preset.from;
+       const migrated=importedVariant({...catalog,variants:plans},JSON.parse(JSON.stringify({machine,configuration:oldId})));
+       assert.equal(migrated,v);await rig.install(migrated);await inspect(migrated);
+       assert.deepEqual(snapshot(rig),original,v.id+' old saved preset lost actual companions');report.legacyPresetRestorations++;
+      }
       report.configurations++;context.checked++;context.by_family[family.id]=(context.by_family[family.id]||0)+1;
      }catch(e){report.failures.push({machine,variant:v.id,stage:'actual_head',message:e.message});}finally{trimCache();}}
     }finally{scene.traverse(o=>{if(o.isMesh){o.geometry.dispose();for(const m of Array.isArray(o.material)?o.material:[o.material])m.dispose();}});rig.cache.clear();scene.clear();globalThis.gc?.();}
