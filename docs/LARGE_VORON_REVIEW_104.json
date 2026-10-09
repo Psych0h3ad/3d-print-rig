@@ -1,0 +1,194 @@
+{
+  "schema": "large-voron-selected-native-review-104",
+  "reviewed_at_utc": "2026-10-09T02:45:35.923510+00:00",
+  "source_repository": "https://github.com/VoronDesign/Voron-2",
+  "source_revision": "a192410e27ea345644ae5c4b29b4c9c40cbe1a73",
+  "runtime_sha256": "c4b99bd80cb09e11b702a1da0dea62839204f7727962ecc17929734c9dc008a2",
+  "defect": {
+    "machine_id": "voron_v24_1000_custom",
+    "xyz_mm": [
+      1000,
+      1000,
+      0
+    ],
+    "body_key": "v24_01207",
+    "before_common_mm3": 62.821947538839,
+    "after_selected_native_common_mm3": 0,
+    "change": "Moving PTFE stops inside the rear panel and follows the original connector axis through its exhaust opening."
+  },
+  "v24_ptfe": [
+    {
+      "machine_id": "voron_v24_500_custom",
+      "actual_model_stored_sha256": "ce0d52e39716f76f984278231528ae560724c66513bffa43f12b1bdcb352da46",
+      "actual_manifest_sha256": "bc265b3ede747163c23f7b29a70d5c3cc23afa120b605add00656ccd8b7f930c",
+      "native_report_sha256": "974dd6082d0825fccfae835920ae318d0d8d29cdc6d3a4a36c71f3d2f1028977",
+      "native_body_sha256": {
+        "v24_00125": "f85bc08e71455ccfae108dc4ded7996bab0ca1a5a51740756354d65b736c9579",
+        "v24_00122": "7a42676c67003d508fcce82d98bd36f0df64d698b570adb90e24c3bf96d4f04e",
+        "v24_00123": "d02a4d4fab954c341233a96859b6bd33d465b235e132bb7f810f398d90f4cfc8",
+        "v24_00124": "8ce10790509ee79e5d00f8e422d2f4f288d80db030bd1f0433e39e94f4eea288",
+        "v24_00131": "f1b3076142f5851ad675d7e6845a4ee24261573560aa4716328c61663bf1cf62",
+        "v24_01296": "45b0bfddd327cc8cdeb59ed884669889434dd94390a62a6f8955271788a8f348",
+        "v24_01329": "8bb92d9af1092748027d4d237988cf8c76f519cc120d171dd120f6410e6acde7",
+        "v24_01002": "4086487a98678ac9cd2895df9a1516c36580699ca7d23d4c2251cb3982d25018",
+        "v24_00388": "2ffa7a72e0f7d4247fe2add400776906f44512fcf2b97b02ced0f2b5f1e52570",
+        "v24_01417": "07b5dcb3d0733f17591557615cb227c934de57f1ae24d68563070ba129e05e2e",
+        "v24_01416": "84fa4e588f66d53cc47226c2f8e2240e3f504c5807c3fa5de5c15ae8f65ae4d5",
+        "v24_01391": "8edf9d58ce0b50f8a97e2c3a1c10beebc6ee56c43be13cae74f165162e823928",
+        "v24_01206": "4e284c59475358852e5afeca595a7938aba95de67efeb018368b378d48c5e45f",
+        "v24_01207": "ae41122027e5bbafb3e11dad0c229f19c5b8accf2e01034b58e815fd842a6bc2",
+        "v24_00987": "15ca4904072a80b0348174e1b4afefe8449497562252312f23c8ae0d577b5a8b"
+      },
+      "selected_poses_mm": [
+        [
+          249.99958314925166,
+          254.09979116960076,
+          27.009292523210483
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          500,
+          500,
+          0
+        ],
+        [
+          0,
+          0,
+          469
+        ],
+        [
+          500,
+          0,
+          469
+        ],
+        [
+          0,
+          500,
+          469
+        ],
+        [
+          500,
+          500,
+          469
+        ],
+        [
+          250,
+          250,
+          234.5
+        ]
+      ],
+      "selected_pairs": 120,
+      "native_Common_pairs": 100,
+      "passed": true,
+      "scope": "Eight selected production poses; eight separately valid annular native sweeps versus 15 exact source bodies. Axis travel and all other parts are not native-certified by this report."
+    },
+    {
+      "machine_id": "voron_v24_1000_custom",
+      "actual_model_stored_sha256": "0ee2c64df01eca581bbd3d93e3843a496e5b5f0ff90e024bc1ad75a8c68d52df",
+      "actual_manifest_sha256": "b17e233be8996b0ebf7f7f5014c46ee138df3775fc0a5ad739760430114568f6",
+      "native_report_sha256": "7360070872d107ef6f0085d3c0eb7369341b829fbf4c65485e9f0abfb7f3c9a2",
+      "native_body_sha256": {
+        "v24_00125": "f85bc08e71455ccfae108dc4ded7996bab0ca1a5a51740756354d65b736c9579",
+        "v24_00122": "7a42676c67003d508fcce82d98bd36f0df64d698b570adb90e24c3bf96d4f04e",
+        "v24_00123": "d02a4d4fab954c341233a96859b6bd33d465b235e132bb7f810f398d90f4cfc8",
+        "v24_00124": "8ce10790509ee79e5d00f8e422d2f4f288d80db030bd1f0433e39e94f4eea288",
+        "v24_00131": "f1b3076142f5851ad675d7e6845a4ee24261573560aa4716328c61663bf1cf62",
+        "v24_01296": "45a611f9935ee642af1bd1b36ae0c25e9f0ee58540f24212062b6e020c90a124",
+        "v24_01329": "2c24e17c153959d59e147acc78c2f247fc2db5c3e44afa3ce00b30f9efc2a814",
+        "v24_01002": "bfca8dba637686a92729cf1e550e76b878e006876264151be5dadbd79054b156",
+        "v24_00388": "6f199848e28155b65f15c306b77b5e53cc460bec5cc8e61b4a8a591cb38a23dc",
+        "v24_01417": "7b3c6da273be2f4eb26e19e8fd258847dc93f2091e6cdc4326fbb17351d106c1",
+        "v24_01416": "fc9dc69408c9485d6dc45cc1be8c8f364fa0ee7bf73ea78129b772b06993124f",
+        "v24_01391": "cf4a759707efb45bad4a7cb836ea351f4f0cac9f6fb26d20985b02169f1dbe73",
+        "v24_01206": "fa5006099488503a5b92d953596ba60dd2cef138ebf6eaeca367ed79f0531468",
+        "v24_01207": "717215d27a718410bcb06050bb8ff0e967a6cb8f9912b0bc6257ff53e9003ccf",
+        "v24_00987": "881492a6839c05aaef849b7cc86bbc37e8a5e7e8c579d8cf19989f805109dde2"
+      },
+      "selected_poses_mm": [
+        [
+          499.99958314925163,
+          504.09979116960073,
+          27.009292523210483
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1000,
+          1000,
+          0
+        ],
+        [
+          0,
+          0,
+          969
+        ],
+        [
+          1000,
+          0,
+          969
+        ],
+        [
+          0,
+          1000,
+          969
+        ],
+        [
+          1000,
+          1000,
+          969
+        ],
+        [
+          500,
+          500,
+          484.5
+        ]
+      ],
+      "selected_pairs": 120,
+      "native_Common_pairs": 100,
+      "passed": true,
+      "scope": "Eight selected production poses; eight separately valid annular native sweeps versus 15 exact source bodies. Axis travel and all other parts are not native-certified by this report."
+    }
+  ],
+  "floor": {
+    "v24_machine_ids": [
+      "voron_v24_500_custom",
+      "voron_v24_350_half_z",
+      "voron_v24_1000_custom"
+    ],
+    "native_panel_corner_regions": 24,
+    "original_perimeter_clearance_mm": 0.5,
+    "actual_native_hash_and_mesh_bounds_checks": 18,
+    "native_corner_report_sha256": "1fcb9e462658bfb6680c751990eee04745e817d2f574a2506681e8ae823d3331",
+    "source_features_report_sha256": "537a48d9d3929305291166a554941be165a776747384e936d5bdeaf53be5116f",
+    "actual_asset_binding_sha256": "fb10e2f3f9b6cb7114009498c9a9f08eb074c25b143d07de9aaa8ab9fb26f370",
+    "cover_feature_comparison_scope": "All native vertices, nine samples per edge, face areas, curve types and topology counts. Native cover subtraction did not establish occupied-set identity and is not accepted as proof.",
+    "trident_selected_native_report_sha256": "d8194a80ebce8c49471852452c853dd125afdbade3f0c6e0d25acdf0175a0ded",
+    "trident_machine_ids": [
+      "voron_trident_300",
+      "voron_trident_350",
+      "voron_trident_500_custom",
+      "voron_trident_350_half_z",
+      "voron_trident_1000_custom"
+    ],
+    "trident_selected_pairs": 30
+  },
+  "automated_release": {
+    "machines": 65,
+    "actual_jobs": 56,
+    "source_tests": 109,
+    "actual_ledger_sha256": "693921ef08d8c3f4f34c178da53b461244970e8d5683d81a19643be0cad8d5b9",
+    "source_report_sha256": "630eda68e3548f921ca5f1f55be9533a7df56eb72a204169b002f09a36b598f1"
+  },
+  "native_STEP_changed": false,
+  "whole_machine_certified": false,
+  "continuous_native_clearance_certified": false,
+  "physical_tube_cut_length_certified": false,
+  "scope": "Current source and actual exported models; native checks cover only the named finite poses and selected original solids. Floor corner and source-feature checks do not certify sealing or all mechanical interfaces. Other failed/pending mounting scopes remain separate."
+}

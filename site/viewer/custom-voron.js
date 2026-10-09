@@ -8,7 +8,7 @@ import {createTridentMotion} from './trident-motion.mjs?v=77312c6bfbf6c7e7563d';
 import {setupMachineNavigation} from './machines.js?v=cea8407065ba89be6304';
 import {appearanceRole} from './appearance-role.mjs?v=6b7b8efda77bfc3ce74d';
 import {createCustomTube} from './custom-voron-tube.mjs?v=be16dba6afffddec260f';
-import {createV24PtfePreview,V24_PTFE_SPEC} from './v24-ptfe.mjs?v=2b4ca077954e1f52b51b';
+import {createV24PtfePreview,V24_PTFE_SPEC} from './v24-ptfe.mjs?v=c4b99bd80cb09e11b702';
 import {validateCustomState} from './custom-voron-state.mjs?v=4b6132fe80a74098a8ba';
 import {workspaceFrame,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';

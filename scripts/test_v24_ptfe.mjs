@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import * as THREE from '../site/viewer/vendor/three.module.js';
-import {V24_PTFE_SPEC as spec,v24PtfeRoute,createV24PtfePreview} from '../site/viewer/v24-ptfe.mjs';
+import {V24_PTFE_SPEC as spec,V24_PANEL_PASSAGES,v24PtfeRoute,createV24PtfePreview} from '../site/viewer/v24-ptfe.mjs';
 import {verifyTubeGeometry} from './test_custom_ptfe.mjs';
 const profile={machine_id:spec.machine_id,display_reference_xyz_mm:spec.reference_xyz_mm,display_limits_mm:spec.preview_display_limits_mm};
 const moving=new Set([spec.cw2_part_key,spec.internal_tube_part_key]);
@@ -8,7 +8,7 @@ const manifest={machine_id:spec.machine_id,parts:Object.entries(spec.native_mate
 const root=new THREE.Group(),nativeGeometry=new THREE.BufferGeometry(),nativeMaterial=new THREE.MeshStandardMaterial({color:0x101112});
 const internal=new THREE.Mesh(nativeGeometry,nativeMaterial);internal.userData.part_key=spec.internal_tube_part_key;root.add(internal);
 const preview=createV24PtfePreview(THREE,root,manifest,profile,spec),sourceChildren=root.children.length;
-const extremes=[spec.reference_xyz_mm,[0,0,0],[500,500,469],[0,500,469],[500,0,0],[250,250,234.5],[500,0,469],[0,0,469]];
+const extremes=[spec.reference_xyz_mm,[0,0,0],[500,500,0],[500,500,469],[0,500,469],[500,0,0],[250,250,234.5],[500,0,469],[0,0,469]];
 for(const xyz of [...extremes,...extremes.toReversed(),spec.reference_xyz_mm]){
  const route=v24PtfeRoute(spec,xyz);preview.setPose(xyz);assert(preview.mesh.visible);assert.equal(root.children.length,sourceChildren);assert.equal(preview.mesh.material,nativeMaterial);
  assert.deepEqual(route.start_mm,spec.head_seat_reference_mm.map((v,i)=>v+(xyz[i]-spec.reference_xyz_mm[i])));
@@ -18,6 +18,16 @@ for(const xyz of [...extremes,...extremes.toReversed(),spec.reference_xyz_mm]){
   const a=route.segments[i].derivative(1),b=route.segments[i+1].derivative(0);assert(a.reduce((n,v,j)=>n+v*b[j],0)/Math.hypot(...a)/Math.hypot(...b)>1-1e-12);
  }
  assert(route.arc_end_mm[2]+2<spec.roof.bottom_z_mm);
+ const passage=V24_PANEL_PASSAGES[spec.machine_id],axis=route.segments.find(s=>s.id==='fixed_panel_aperture_axis');
+ assert(axis&&axis.type==='line');assert.equal(axis.length_mm,passage.approach_length_mm);
+ assert.deepEqual(axis.end,spec.inner_feedthrough_mm);
+ assert(axis.start[1]+spec.radius_mm<passage.inside_y_mm);
+ // The moving cubic is monotone in Y and stops inside the panel. Only the
+ // source connector axis crosses its opening; full native fit is separate.
+ for(const t of [0,.125,.25,.5,.75,.875,1]){
+  const p=route.segments.find(s=>s.id==='moving_monotone_Y').point(t);
+  assert(p[1]+spec.radius_mm<passage.inside_y_mm);
+ }
  assert(preview.mesh.geometry.attributes.position.array.every(Number.isFinite));verifyTubeGeometry(preview.mesh.geometry);
  assert.equal(internal.geometry,nativeGeometry);assert.equal(internal.material,nativeMaterial);
 }

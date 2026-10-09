@@ -79,6 +79,10 @@ for(const machine of catalog.machines){
    assert(route.start_mm.every((v,i)=>Math.abs(v-(externalSpec.head_seat_reference_mm[i]+(actual[i]-ref[i])))<1e-8));
    assert(route.pointAt(1).every((v,i)=>Math.abs(v-externalSpec.holder_right_mm[i])<1e-8));
    assert(route.arc_end_mm[2]+2<externalSpec.roof.bottom_z_mm);
+   const approach=route.segments.find(s=>s.id==='fixed_panel_aperture_axis');assert(approach?.type==='line');
+   assert(approach.start[1]+externalSpec.radius_mm<route.rear_panel_inside_y_mm);
+   assert.deepEqual(approach.end,externalSpec.inner_feedthrough_mm);
+   for(const t of [0,.25,.5,.75,1])assert(route.segments.find(s=>s.id==='moving_monotone_Y').point(t)[1]+externalSpec.radius_mm<route.rear_panel_inside_y_mm);
    assert(external.mesh.geometry.attributes.position.array.every(Number.isFinite));
    if(index%100===0)verifyTubeGeometry(external.mesh.geometry);
   }
