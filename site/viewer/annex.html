@@ -1,6 +1,30 @@
 <!doctype html><html lang="en"><head>
-<script src="./display-start.js?v=2ccf9c125fa0c4f73dc1"></script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Annex · 3D Print Rig</title>
-<link rel="stylesheet" href="./viewer.css?v=workspace-belts-1"><link rel="stylesheet" href="./workspace.css?v=019095ad2eda1d8c3c94">
+<script src="./display-start.js?v=2ccf9c125fa0c4f73dc1"></script><meta charset="utf-8">
+<!-- Generated SEO: scripts/build_seo.py -->
+<title>Annex printer CAD · 3D Print Rig</title>
+<meta name="description" content="Explore registered Annex printer CAD assemblies, colors and available motion previews, with original source versions and review limitations.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Annex printer CAD · 3D Print Rig">
+<meta name="twitter:description" content="Explore registered Annex printer CAD assemblies, colors and available motion previews, with original source versions and review limitations.">
+<meta name="twitter:image" content="https://psych0h3ad.github.io/3d-print-rig/assets/social/3d-print-rig-preview.png?v=b6a888d891052e2d01a6">
+<meta name="twitter:image:alt" content="3D Print Rig, a browser CAD configurator, alongside original VORON Trident technical drawings.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="3D Print Rig">
+<meta property="og:title" content="Annex printer CAD · 3D Print Rig">
+<meta property="og:description" content="Explore registered Annex printer CAD assemblies, colors and available motion previews, with original source versions and review limitations.">
+<meta property="og:url" content="https://psych0h3ad.github.io/3d-print-rig/viewer/annex.html">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://psych0h3ad.github.io/3d-print-rig/assets/social/3d-print-rig-preview.png?v=b6a888d891052e2d01a6">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="3D Print Rig, a browser CAD configurator, alongside original VORON Trident technical drawings.">
+<link rel="canonical" href="https://psych0h3ad.github.io/3d-print-rig/viewer/annex.html">
+<link rel="sitemap" type="application/xml" href="https://psych0h3ad.github.io/3d-print-rig/sitemap.xml">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","@id":"https://psych0h3ad.github.io/3d-print-rig/viewer/annex.html#page","name":"Annex printer CAD \u00b7 3D Print Rig","description":"Explore registered Annex printer CAD assemblies, colors and available motion previews, with original source versions and review limitations.","url":"https://psych0h3ad.github.io/3d-print-rig/viewer/annex.html","inLanguage":"en","isPartOf":{"@type":"WebSite","@id":"https://psych0h3ad.github.io/3d-print-rig/#website","name":"3D Print Rig","url":"https://psych0h3ad.github.io/3d-print-rig/"}}</script>
+<!-- End generated SEO -->
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="./viewer.css?v=workspace-belts-1"><link rel="stylesheet" href="./workspace.css?v=bfa3aa9612faccd233bc">
 <script type="importmap">{"imports":{"three":"./vendor/three.module.js"},"scopes":{"./vendor-r180/":{"three":"./vendor-r180/three.module.js"}}}</script></head><body>
 <header><div class="brand"><span class="brand-mark">PR</span><div><strong>3D Print Rig</strong><small>COMMUNITY CAD</small></div></div><div class="header-actions"><button id="openSources">Sources / licenses</button><button id="openRender" class="primary" disabled>Export image</button><button id="openDownloads" hidden></button></div></header>
 <main class="workspace"><aside><label for="machineConfig">Machine</label><select id="machineConfig"></select><h1 id="machineTitle">Annex</h1><p id="revision" class="foot"></p>
@@ -9,4 +33,4 @@
 <details><summary>Native CAD checks</summary><p id="geometryStatus"></p><ul id="referenceIssues"></ul><p class="foot">Original reference geometry is retained. This is not manufacturing-solid or physical collision certification.</p></details>
 <details><summary>Sources</summary><p>Annex Engineering</p><a id="authorSource" target="_blank" rel="noopener">Author CAD and terms</a><p id="sourceRevision" class="foot"></p><a href="../licenses/annex_license/LICENSE.md" target="_blank" rel="noopener">Annex Engineering Hardware and Software EULA</a></details>
 <details open id="motionSettings"><summary>Motion</summary><p class="foot">XYZ controls are displacements from the native CAD pose.</p><label for="x"><span class="axislabel">X <strong id="xValue">0.0 mm</strong></span></label><input id="x" type="range" min="0" max="0" value="0" step="any" disabled><label for="y"><span class="axislabel">Y <strong id="yValue">0.0 mm</strong></span></label><input id="y" type="range" min="0" max="0" value="0" step="any" disabled><label for="z"><span class="axislabel">Z <strong id="zValue">0.0 mm</strong></span></label><input id="z" type="range" min="0" max="0" value="0" step="any" disabled><div class="button-row"><button id="motionPlay" data-i18n-id="text.1146" disabled>Play</button><button id="motionPause" data-i18n-id="text.1412" disabled>Pause</button><button id="resetPose" data-i18n-id="native_motion.reset" disabled>Reset</button></div><div id="motionNotices"></div></details><div class="button-row"><button id="saveConfiguration" disabled>Save configuration</button><button id="loadConfiguration" disabled>Load</button><input id="configurationFile" type="file" accept=".json,application/json" hidden></div><p id="configurationStatus" class="foot" role="status"></p></aside><section id="stage" aria-label="Annex 3D assembly"><nav class="view-tools"><button id="iso">Perspective</button><button id="front">Front</button><button id="top">Top</button><button id="focusHead" hidden>Head</button></nav><div id="status" class="overlay" role="status">Loading CAD…</div><div class="view-meta"><span id="badge">ANNEX ASSEMBLY</span><span class="hint">Drag: orbit · Wheel: zoom</span></div></section></main>
-<script type="module" data-controller="./annex.js?v=c15dbf6c1214a3b01cca" src="./workspace-router.mjs?v=8e7c0cfbce027a1d35e8"></script></body></html>
+<script type="module" data-controller="./annex.js?v=a5559ff6b273f2eda08b" src="./workspace-router.mjs?v=535d0dc1dc66fc0261ea"></script></body></html>

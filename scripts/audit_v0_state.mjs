@@ -12,6 +12,7 @@ import {installationsModule,stateModule} from './v0-state-test-runtime.mjs';
 import {pageShareData,xShareURL} from '../site/viewer/workspace-share.mjs';
 import {embedURL,embedTarget} from '../site/viewer/embed-contract.mjs';
 import {supportURL,rowSelection} from '../site/support/model.mjs';
+import {readSupportJSON} from '../site/support/resource.mjs';
 const [fixtureArgument,reportArgument]=process.argv.slice(2);
 if(!fixtureArgument||!reportArgument)throw Error('Usage: node scripts/audit_v0_state.mjs ASSEMBLED_SITE OUTPUT_REPORT.json');
 const root=path.resolve(fixtureArgument),output=path.resolve(reportArgument),sourceRoot=fileURLToPath(new URL('../',import.meta.url));
@@ -27,8 +28,14 @@ const incompatible=(registry,mods)=>registry.options.some(o=>mods[o.slot]===o.id
 const reject=fn=>{assert.throws(fn);report.counts.invalidCases++};
 function saved(profile,registry,mods,pose){return {schema:v0ConfigurationSchema,machine_id:profile.machine_id,mods,pose,palette:{base:'#ff0033',accent:'#00ffcc',frame:null},enclosure:false,belts:true,grid:false,door_angle_deg:110,tophat_angle_deg:v0TophatMaxAngle(registry,mods)}}
 try{
- for(const name of ['site/viewer/v0-app.js','site/viewer/v0-state.mjs','site/viewer/v0-installations.mjs','site/viewer/v0-mod-library.mjs','site/viewer/v0_adapter.mjs','site/support/model.mjs','scripts/audit_v0_state.mjs','scripts/v0-state-test-runtime.mjs'])report.source_sha256[name]=digest(await fs.readFile(path.join(sourceRoot,name)));
+ for(const name of ['site/viewer/v0-app.js','site/viewer/v0-state.mjs','site/viewer/v0-installations.mjs','site/viewer/v0-mod-library.mjs','site/viewer/v0_adapter.mjs','site/support/model.mjs','site/support/resource.mjs','scripts/audit_v0_state.mjs','scripts/v0-state-test-runtime.mjs'])report.source_sha256[name]=digest(await fs.readFile(path.join(sourceRoot,name)));
  const registration=await read('V0_INSTALLATIONS.json'),library=await read('COMPONENT_LIBRARY.json');assert.equal(registration.schema,'v0-installations-v1');assert(Array.isArray(library.items));
+ const supportIndex=await read('support/data/index.json');
+ const supportFetcher=async url=>{
+  assert(url.startsWith('./data/'),'Support resource must stay in its delivery directory');
+  const name='support/'+url.slice(2),bytes=await fs.readFile(asset(name));
+  report.input_sha256[name]=digest(bytes);return new Response(bytes);
+ };
  // Both supported machines must be present; missing inputs are fatal.
  assert.deepEqual(Object.keys(registration.machines).sort(),['voron_v02_120','voron_v02r1_120']);
  const metadata=new Map();
@@ -58,7 +65,9 @@ try{
    assert.deepEqual(readV0ModsURL(v0ModsURL(v0ModsURL(url,context,stockV0Mods()),context,mods),context),mods);report.counts.reversals++;
   }
   for(const o of registry.options)assert(coverage.has(o.slot+':'+o.id),'Option was never exercised: '+o.id);row.selectionIdentities=[...coverage].sort();
-  const support=await read('support/data/'+machine_id+'.json'),supportTuples=new Set();
+  const supportFile=machine_id+'.json',resource=supportIndex.resources?.[supportFile];
+  assert(resource,'Missing declared compressed support resource: '+supportFile);
+  const support=await readSupportJSON(supportFile,{resource,fetcher:supportFetcher}),supportTuples=new Set();
   assert.deepEqual([...support.dimensions].sort(),v0Slots.map(([slot])=>slot).sort(),'Support links must describe exactly seven installed slots');
   for(const supportRow of support.rows){
    const selected=rowSelection(support,supportRow),url=supportURL({id:machine_id,page:'./v0.html',kind:'v0'},support,supportRow,'https://example.test/rig/support/','ja');

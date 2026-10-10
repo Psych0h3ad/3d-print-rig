@@ -1,14 +1,15 @@
-import {setupLanguage,translate,formatMessage} from '../viewer/i18n.mjs?v=26a2217f63a0c8b5d2d2';
+import {setupLanguage,translate,formatMessage} from '../viewer/i18n.mjs?v=4cc63d15a7b73bcd1e81';
 import {setupHeaderThemeToggle} from '../viewer/display-preferences.mjs?v=3b735c3e32640589ed26';
 import {matchingRows,supportURL} from './model.mjs?v=4ddcd0ed4a4aee9387d0';
+import {readSupportJSON,supportDownloadBlob} from './resource.mjs?v=deb6b9eca87c47bcc2e3';
 
 const $=id=>document.getElementById(id),el=(tag,text,className)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(className)n.className=className;return n};
 const statusLabels={supported:'組み合わせ対応済み',stock:'標準構成のみ',missing:'CAD未登録',standalone:'単体での組み合わせ'};
 const dimensions={zdrive:'Z drive',gantry:'ガントリー',toolhead:'ツールヘッド',mount:'取付方式',extruder:'押出機',hotend:'ホットエンド',carriage:'キャリッジ',probe:'プローブ',board:'基板',cooling:'冷却',bed:'ベッド支持機構',accelerometer:'加速度センサー',strain_relief:'配線マウント',handles:'ハンドル',tophat:'トップハット'};
 const language=setupLanguage();setupHeaderThemeToggle(document.querySelector('.header-actions'));
-const t=text=>translate(text,language.language),cache=new Map();let index,target,catalog,selection={},limit=12,request=0;
+const t=text=>translate(text,language.language),cache=new Map();let index,target,catalog,selection={},limit=12,request=0,downloadURL;
 const badge=(text,status)=>el('span',text,'badge '+status);
-async function json(file){const r=await fetch(file,{cache:'no-cache'});if(!r.ok)throw Error('Could not load '+file);return r.json()}
+async function json(file){const name=file.replace(/^\.\/data\//u,'');if(index&&name!=='index.json'&&!index.resources?.[name])throw Error('Missing support resource: '+name);return readSupportJSON(name,{resource:index?.resources?.[name]})}
 function setURL(){const q=new URLSearchParams({lang:language.language,machine:target.id,...selection});history.replaceState(null,'','?'+q)}
 function error(){ $('error').hidden=false;$('error').replaceChildren(el('p','対応状況を読み込めませんでした。ページを再読み込みしてください。'));}
 function renderHeads(){
@@ -42,11 +43,12 @@ function renderResults(){
  $('more').hidden=rows.length<=limit;
 }
 async function choose(id,{restore=false}={}){
+ if(downloadURL){URL.revokeObjectURL(downloadURL);downloadURL=undefined}$('download').removeAttribute('href');
  const n=++request;target=index.targets.find(x=>x.id===id)||index.targets.find(x=>x.id==='voron_trident_350');$('target').value=target.id;catalog=null;limit=12;selection={};$('catalog').hidden=true;$('error').hidden=true;
  $('targetSummary').replaceChildren(badge(statusLabels[target.status],target.status));if(target.status==='stock')$('targetSummary').append(el('p','元CADの標準構成を表示。部品の交換・組み合わせは未対応です。'));if(target.status==='missing')$('targetSummary').append(el('p',target.reason||'この仕様の組立CADは未登録です。'));renderHeads();
  if(!target.file){if(target.page){const a=el('a','ビュワーを開く');a.href=supportURL(target,null,null,location.href,language.language);$('targetSummary').append(a)}setURL();return}
  try{if(!cache.has(target.id))cache.set(target.id,await json('./data/'+target.file));if(n!==request)return;catalog=cache.get(target.id);if(restore){const q=new URLSearchParams(location.search);for(const d of catalog.dimensions){const value=q.get(d);if(catalog.options[d].some(o=>o.id===value))selection[d]=value}}
-  setURL();$('catalog').hidden=false;$('download').href='./data/'+target.file;renderFilters();renderResults();renderExtras();
+  setURL();$('catalog').hidden=false;downloadURL=URL.createObjectURL(supportDownloadBlob(catalog));$('download').href=downloadURL;$('download').download=target.file;renderFilters();renderResults();renderExtras();
  }catch(e){if(n===request)error();console.error(e)}
 }
 $('target').onchange=()=>choose($('target').value);$('reset').onclick=()=>{selection={};limit=12;setURL();renderFilters();renderResults();renderExtras()};$('more').onclick=()=>{limit+=12;renderResults()};

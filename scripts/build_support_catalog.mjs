@@ -6,6 +6,7 @@ import {augmentTrinityAlpha,TRINITY_ALPHA_SOURCE} from '../site/viewer/trinity-a
 import fs from 'node:fs';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
+import {gzipSync} from 'node:zlib';
 import {pathToFileURL} from 'node:url';
 import {machineChoices} from '../site/viewer/machines.js';
 import {collections,headBuilderDimensions,catalogDimensions} from '../site/viewer/configuration-model.js';
@@ -78,9 +79,16 @@ export function buildSupport(root){
 }
 export function writeSupport(root,output=path.join(root,'support/data')){
  const {index,details}=buildSupport(root);fs.mkdirSync(output,{recursive:true});
- for(const [name,value]of details)fs.writeFileSync(path.join(output,name),JSON.stringify(value)+'\n');
+ index.resources={};
+ for(const [name,value]of details){
+  const decoded=Buffer.from(JSON.stringify(value)+'\n'),compressed=gzipSync(decoded,{level:9});
+  fs.writeFileSync(path.join(output,name+'.gz'),compressed);
+  // Only these freshly generated reports are replaced; native inputs stay exact.
+  fs.rmSync(path.join(output,name),{force:true});
+  index.resources[name]={file:name+'.gz',encoding:'gzip',bytes:compressed.length,sha256:createHash('sha256').update(compressed).digest('hex'),decoded_bytes:decoded.length,decoded_sha256:createHash('sha256').update(decoded).digest('hex')};
+ }
  fs.writeFileSync(path.join(output,'index.json'),JSON.stringify(index)+'\n');
- console.log(JSON.stringify({targets:index.targets.length,configurable:index.targets.filter(t=>t.kind!=='standalone'&&t.status==='supported').length,missing:index.targets.filter(t=>t.status==='missing').length,registered_rows:[...details.values()].reduce((n,d)=>n+d.rows.length,0),bytes:[...details.keys(),'index.json'].reduce((n,f)=>n+fs.statSync(path.join(output,f)).size,0)}));
+ console.log(JSON.stringify({targets:index.targets.length,configurable:index.targets.filter(t=>t.kind!=='standalone'&&t.status==='supported').length,missing:index.targets.filter(t=>t.status==='missing').length,registered_rows:[...details.values()].reduce((n,d)=>n+d.rows.length,0),bytes:[...[...details.keys()].map(f=>f+'.gz'),'index.json'].reduce((n,f)=>n+fs.statSync(path.join(output,f)).size,0)}));
  return {index,details};
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(path.resolve(process.argv[1])).href){if(!process.argv[2])throw Error('Pass an assembled site root');writeSupport(process.argv[2],process.argv[3])}

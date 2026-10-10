@@ -11415,6 +11415,126 @@
       "kind": "message",
       "ja": "一覧を再読み込み",
       "en": "Reload downloads"
+    },
+    "ui.machines": {
+      "kind": "message",
+      "ja": "マシン一覧",
+      "en": "Machines"
+    },
+    "gallery.skip": {
+      "kind": "message",
+      "ja": "マシン一覧へスキップ",
+      "en": "Skip to machines"
+    },
+    "gallery.eyebrow": {
+      "kind": "message",
+      "ja": "登録マシンのコレクション",
+      "en": "THE MACHINE COLLECTION"
+    },
+    "gallery.intro": {
+      "kind": "message",
+      "ja": "マシンの構造をもっと身近に。プリンターを選んで、登録されたアセンブリを3Dで見てみましょう。",
+      "en": "A closer look at the machines. Pick a printer and explore its registered assembly in 3D."
+    },
+    "gallery.note": {
+      "kind": "message",
+      "ja": "サムネイルは実際のビューアーモデルから作成しています。マシンを開くと、利用できる操作や元CADのクレジットを確認できます。",
+      "en": "Thumbnails come from the actual viewer models. Open a machine to explore its available controls and source credits."
+    },
+    "gallery.collection": {
+      "kind": "message",
+      "ja": "登録プリンター一覧",
+      "en": "Registered printers"
+    },
+    "gallery.search": {
+      "kind": "message",
+      "ja": "マシンを探す",
+      "en": "Find a machine"
+    },
+    "gallery.search_placeholder": {
+      "kind": "message",
+      "ja": "プリンター・メーカー・サイズを検索",
+      "en": "Search printer, vendor or size"
+    },
+    "gallery.family": {
+      "kind": "message",
+      "ja": "マシンファミリー",
+      "en": "Family"
+    },
+    "gallery.all_families": {
+      "kind": "message",
+      "ja": "すべてのマシンファミリー",
+      "en": "All families"
+    },
+    "gallery.reset": {
+      "kind": "message",
+      "ja": "検索条件をクリア",
+      "en": "Clear filters"
+    },
+    "gallery.meta_note": {
+      "kind": "message",
+      "ja": "ファミリー · メーカー · 登録サイズ",
+      "en": "Family · Vendor · Registered size"
+    },
+    "gallery.error_title": {
+      "kind": "message",
+      "ja": "マシン一覧を読み込めませんでした",
+      "en": "The collection could not load"
+    },
+    "gallery.error": {
+      "kind": "message",
+      "ja": "接続を確認して、もう一度お試しください。",
+      "en": "Check your connection and try again."
+    },
+    "gallery.retry": {
+      "kind": "message",
+      "ja": "マシン一覧を再読み込み",
+      "en": "Try again"
+    },
+    "gallery.empty_title": {
+      "kind": "message",
+      "ja": "該当するマシンはありません",
+      "en": "No machines found"
+    },
+    "gallery.empty": {
+      "kind": "message",
+      "ja": "検索語を変えるか、ファミリーの絞り込みを解除してください。",
+      "en": "Try a different search or clear the family filter."
+    },
+    "gallery.footer": {
+      "kind": "message",
+      "ja": "各マシンのビューアーで、元のCAD・作者・ライセンスを確認できます。",
+      "en": "Explore the original CAD, authors and licenses in each machine viewer."
+    },
+    "gallery.credits": {
+      "kind": "message",
+      "ja": "CADとクレジット",
+      "en": "CAD & credits"
+    },
+    "gallery.thumbnail_alt": {
+      "kind": "template",
+      "ja": "{0}の3Dモデルプレビュー",
+      "en": "3D model preview of {0}"
+    },
+    "gallery.preview_error": {
+      "kind": "message",
+      "ja": "プレビュー画像を読み込めませんでした",
+      "en": "Preview unavailable"
+    },
+    "gallery.open": {
+      "kind": "message",
+      "ja": "3Dで探索する",
+      "en": "Explore in 3D"
+    },
+    "gallery.loading": {
+      "kind": "message",
+      "ja": "マシン一覧を読み込み中…",
+      "en": "Loading machines…"
+    },
+    "gallery.count": {
+      "kind": "template",
+      "ja": "{1}機種中 {0}機種を表示",
+      "en": "Showing {0} of {1} machines"
     }
   }
 }

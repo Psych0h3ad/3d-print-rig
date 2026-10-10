@@ -6,7 +6,12 @@ Compare printer, toolhead and gantry configurations in 3D.
 
 ## Project sponsor
 
-**Watchtower by YGK3D** — a 3D printer dashboard and farm management project.
+<table>
+<tr>
+<td><a href="https://watchtower3d.com"><img src="site/assets/sponsors/watchtower-circle.svg" alt="Watchtower logo" width="56" height="56"></a></td>
+<td><strong>Watchtower by YGK3D</strong><br>A 3D printer dashboard and farm management project.</td>
+</tr>
+</table>
 
 [Watchtower](https://watchtower3d.com) · [Kickstarter](https://www.kickstarter.com/projects/watchtower3d/watchtower-3d-printer-dashboard-and-farm-management) · [YGK3D on YouTube](https://youtube.com/@ygk3d) · [Watch the introduction](https://youtu.be/sXo3FI5NJ7Y)
 

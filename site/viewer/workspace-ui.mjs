@@ -3,13 +3,14 @@ ensureWorkspaceEntry(import.meta.url);
 import {setupDisplayPreferences,setupHeaderThemeToggle} from './display-preferences.mjs?v=3b735c3e32640589ed26';
 import {WorkspaceMutationObserver,workspaceListen} from './workspace-lifecycle.mjs?v=823ad76bd9034ec8d6ff';
 // Shared presentation layer. Existing controls, IDs and CAD controllers stay intact.
-import {setupLanguage,originalText,messageSource} from './i18n.mjs?v=26a2217f63a0c8b5d2d2';
+import {setupLanguage,originalText,messageSource} from './i18n.mjs?v=4cc63d15a7b73bcd1e81';
+import {normalizeLanguage,languageURL} from './languages.mjs?v=ba6a5cd8e1d86849ca34';
 import {printerWorkspaceURL,workspaceReturnKey,workspaceKindFor} from './workspace-return.mjs?v=594dc2ce774e58ba761f';
 import {setupWorkspaceSharing} from './workspace-share.mjs?v=43727cf619f3a0543d3a';
 import {lockInspectorHorizontalScroll} from './workspace-scroll.mjs?v=workspace-belts-1';
-import {setupChoiceSearch} from './workspace-choices.mjs?v=e46a19221d3e23837e79';
+import {setupChoiceSearch} from './workspace-choices.mjs?v=7a118e2443ad3c0cafd4';
 import {setupMobileLayout} from './workspace-layout.mjs?v=738c040595ec99155ce2';
-import {workspaceSectionCategory,isPrimaryWorkspaceLink} from './workspace-sections.mjs?v=ea78da99fa13cf88b759';
+import {workspaceSectionCategory,isPrimaryWorkspaceLink} from './workspace-sections.mjs?v=bc920049eacb4bfc079e';
 const $ = selector => document.querySelector(selector);
 const node = (tag, className, text) => {
   const element = document.createElement(tag);
@@ -19,20 +20,47 @@ const node = (tag, className, text) => {
   return element;
 };
 
-export function setupWorkspace() {
-  const aside = $('.workspace > aside'), stage = $('#stage'), header = $('body > header');
-  if (!aside || !stage || !header || document.body.classList.contains('ui-workspace')) return;
-  document.body.classList.add('ui-workspace');
-  aside.setAttribute('aria-label', '構成と表示の設定');
-  const background = node('div', 'cad-background');
-  background.setAttribute('aria-hidden', 'true');
-  stage.append(background);
+export function setupWorkspaceDestinationLanguages(links) {
+  const refresh = () => {
+    const current = new URL(location.href);
+    const language = normalizeLanguage(current.searchParams.get('lang'))
+      || normalizeLanguage(document.documentElement.lang) || 'en';
+    for (const link of links) {
+      const source = link.getAttribute('href');
+      if (!source || source.startsWith('#') || link.hasAttribute('download')) continue;
+      const target = new URL(source, current);
+      if (target.origin !== current.origin) continue;
+      const href = languageURL(target.href, language);
+      if (link.href !== href) link.href = href;
+    }
+  };
+  refresh();
+  workspaceListen(window, 'rig-language-change', refresh);
+  // Controllers can replace a selected-toolhead URL after language setup.
+  const observer = new WorkspaceMutationObserver(refresh);
+  for (const link of links) observer.observe(link, {attributes: true, attributeFilter: ['href']});
+}
+
+export function setupProjectSponsor(stage) {
   const sponsor = node('details', 'project-sponsor');
   const sponsorSummary = node('summary');
   sponsorSummary.append(node('span', 'sponsor-label', {id:'ui.project_sponsor'}));
-  const sponsorName = node('strong', '', 'Watchtower by YGK3D');
+  const sponsorArt = node('picture', 'sponsor-art');
+  const compactLogo = node('source');
+  compactLogo.media = '(max-width: 680px)';
+  compactLogo.srcset = new URL('../assets/sponsors/watchtower-circle.svg', import.meta.url).href;
+  const logo = node('img');
+  logo.src = new URL('../assets/sponsors/watchtower-horizontal.png', import.meta.url).href;
+  // The adjacent text names the sponsor; keep the artwork out of its spoken name.
+  logo.alt = '';
+  logo.width = 3549;
+  logo.height = 915;
+  logo.decoding = 'async';
+  sponsorArt.setAttribute('data-i18n', 'off');
+  sponsorArt.append(compactLogo, logo);
+  const sponsorName = node('strong', 'sponsor-name', 'Watchtower by YGK3D');
   sponsorName.setAttribute('data-i18n', 'off');
-  sponsorSummary.append(sponsorName);
+  sponsorSummary.append(sponsorArt, sponsorName);
   const sponsorMenu = node('div', 'sponsor-menu');
   sponsorMenu.append(node('p', '', {id:'ui.watchtower_description'}));
   for (const [id, title, href] of [
@@ -51,9 +79,21 @@ export function setupWorkspace() {
   sponsor.append(sponsorSummary, sponsorMenu);
   stage.append(sponsor);
   workspaceListen(document, 'click', event => { if (!sponsor.contains(event.target)) sponsor.open = false; });
-  sponsor.addEventListener('keydown', event => {
+  workspaceListen(sponsor, 'keydown', event => {
     if (event.key === 'Escape') { sponsor.open = false; sponsorSummary.focus(); }
   });
+  return sponsor;
+}
+
+export function setupWorkspace() {
+  const aside = $('.workspace > aside'), stage = $('#stage'), header = $('body > header');
+  if (!aside || !stage || !header || document.body.classList.contains('ui-workspace')) return;
+  document.body.classList.add('ui-workspace');
+  aside.setAttribute('aria-label', '構成と表示の設定');
+  const background = node('div', 'cad-background');
+  background.setAttribute('aria-hidden', 'true');
+  stage.append(background);
+  setupProjectSponsor(stage);
   const skip = node('a', 'skip-link', '設定へスキップ');
   skip.href = '#inspectorTabs';
   document.body.prepend(skip);
@@ -64,6 +104,7 @@ export function setupWorkspace() {
   const navigation = node('nav', 'workspace-nav');
   navigation.setAttribute('aria-label', 'ワークスペース');
   const destinations = [
+    ['ui.machines', './machines.html', false],
     ['ui.printer', './', machinePage], ['ui.toolhead', './toolheads.html', page === 'toolheads.html'],
     ['ui.gantry', './gantries.html', page === 'gantries.html'],
     ['ui.just_for_fun', '../fun/', false],
@@ -382,4 +423,5 @@ export function setupWorkspace() {
   setupDisplayPreferences();
   setupHeaderThemeToggle(actions);
   setupLanguage();
+  setupWorkspaceDestinationLanguages([...navigation.querySelectorAll('a'), ...menu.querySelectorAll('a'), credits]);
 }

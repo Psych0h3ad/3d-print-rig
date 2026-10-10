@@ -15,10 +15,10 @@ import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {setupSceneDisplay} from './display-preferences.mjs?v=3b735c3e32640589ed26';
 import {setupGrid} from './grid-control.js';
 import {setupRenderExport} from './render-export.js?v=9c6b06804a9e64da0b2f';
-import {setupPublicInfo} from './public-info.js?v=aafffcd9468b872bfa8a';
+import {setupPublicInfo} from './public-info.js?v=88f2df333bbaaed0b74d';
 import {setupGcodePanel} from './gcode-panel.js?v=a84362027155c83c4e26';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
-import {formatMessage,translate} from './i18n.mjs?v=26a2217f63a0c8b5d2d2';
+import {formatMessage,translate} from './i18n.mjs?v=4cc63d15a7b73bcd1e81';
 export async function mount(scope){
  const $=id=>document.getElementById(id),id=new URL(location.href).searchParams.get('machine')||'voron_v24_500_custom';setupMachineNavigation(id);
  const assemblyMachineId=['voron_v24_500_custom','voron_trident_500_custom'].includes(id)?id:null;

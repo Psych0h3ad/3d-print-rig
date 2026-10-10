@@ -1,0 +1,13 @@
+3D Print Rig sharing artwork
+
+The technical drawing is reused without geometric changes from
+fun/previews/03-trident-paper-3840x2160.webp. Original CAD: VoronDesign,
+VORON Trident R2, revision a8628f48546948ce1fc15511b7765b7f31f80722.
+https://github.com/VoronDesign/Voron-Trident/tree/a8628f48546948ce1fc15511b7765b7f31f80722
+GPL-3.0; license: ../../licenses/voron_trident/LICENSE
+Full drawing credits: ../../fun/credits.html
+
+preview.svg is maintained by scripts/build_seo.py. The PNG is the browser
+render of that SVG at 1200 x 630. Render again after changing the SVG and
+run scripts/build_seo.py to refresh every HTML image hash. Source versions
+and the original component terms remain separate from the application.

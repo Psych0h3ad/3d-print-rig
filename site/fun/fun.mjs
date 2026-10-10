@@ -1,15 +1,29 @@
 import {applyDisplay,displayKey,setupHeaderThemeToggle} from '../viewer/display-preferences.mjs?v=3b735c3e32640589ed26';
+import {chooseLanguage,languageURL,supportedLanguages,languageNames} from '../viewer/languages.mjs?v=ba6a5cd8e1d86849ca34';
 const $=id=>document.getElementById(id),query=new URLSearchParams(location.search),form=$('filters');
-const language=query.get('lang') || (navigator.language.startsWith('ja')?'ja':'en'),ja=language==='ja';
-$('language').value=ja?'ja':'en';document.documentElement.lang=ja?'ja':'en';
+let stored;try{stored=window.localStorage.getItem('3d-print-rig-language')}catch{}
+const language=chooseLanguage({query:query.get('lang'),stored}),ja=language==='ja';
+const picker=$('language');
+for(const value of supportedLanguages)if(![...picker.options].some(option=>option.value===value)){
+  const option=document.createElement('option');option.value=value;option.textContent=languageNames[value];picker.append(option);
+}
+picker.value=language;
+// Gallery copy currently has English/Japanese variants; preserve the selected
+// viewer language independently of the English fallback used for other copy.
+document.documentElement.lang=ja?'ja':'en';
+history.replaceState(null,'',languageURL(location.href,language));
 setupHeaderThemeToggle(document.querySelector('header nav'),ja?'ダークモード':'Dark mode');
 window.addEventListener('storage',event=>{if(event.key===displayKey)applyDisplay();});
 const words=ja?{experimental:'壁紙ダウンロードはテスト公開中、埋め込み機能はアルファテスト段階です。開発中のため、表示や操作が変わる場合があります。',back:'ビューアーを開く ↗',intro:'本物のマシンとCADを、いつもと違う見方で。',explore:'壁紙を見る ↓',collectionTitle:'ものづくりの、ひと休み。',about:'機体や部品を並べた図集、画面いっぱいに敷き詰める総柄、組立図・分解図・フィラメント経路の断面図。元CADの太い外形と、構造を伝える内部線。',packTitle:'まとめてダウンロード',formatLabel:'画面サイズ',paletteLabel:'配色',kindLabel:'図の種類',embedTitle:'あなたのサイトにも、3Dを。',embedInfo:'埋め込み機能はアルファテスト段階です。マシンを開いて「共有」から埋め込みコードをコピー。訪問者は、そのページでモデルを回転して見ることができます。',embedLink:'マシンを選ぶ ↗',credits:'元のCAD・作者・ライセンス',notice:'作品ごと・部品ごとの利用条件が適用されます。再配布時も元のクレジットを保持してください。',save:'PNGを保存',all:'すべて',collection:'一覧・図集',pattern:'総柄',pickCollection:'一覧・図集を見る',pickPattern:'総柄を見る',newNote:'12図柄・108枚を追加',new:'今回追加した壁紙',sourceLabel:'元CAD・作者',assembly:'組立図',exploded:'分解図',section:'断面図',phone:'スマホ',desktop:'デスクトップ',ultrawide:'ウルトラワイド',failure:'壁紙一覧を読み込めませんでした。ページを再読み込みしてください。'}:{save:'Download PNG',all:'All drawings',collection:'Collection sheets',pattern:'Repeating patterns',new:'New wallpapers',sourceLabel:'Original CAD / Authors',assembly:'Assembly',exploded:'Exploded',section:'Section',phone:'Phone',desktop:'Desktop',ultrawide:'Ultrawide',failure:'Could not load wallpapers. Please reload this page.'};
 // Translate only copy targets; a category name can also be a section ID.
 for(const id of ['experimental','back','intro','explore','collectionTitle','about','packTitle','formatLabel','paletteLabel','kindLabel','embedTitle','embedInfo','embedLink','credits','notice','pickCollection','pickPattern','newNote'])if(words[id])$(id).textContent=words[id];
 for(const option of form.elements.kind.options)option.textContent=words[option.value];
-$('language').onchange=()=>{const u=new URL(location.href);u.searchParams.set('lang',$('language').value);location.href=u.href;};
-for(const a of document.querySelectorAll('a[href="../viewer/"]'))a.href='../viewer/?lang='+(ja?'ja':'en');
+picker.onchange=()=>{
+  const next=chooseLanguage({query:picker.value});
+  try{window.localStorage.setItem('3d-print-rig-language',next)}catch{}
+  location.href=languageURL(location.href,next);
+};
+for(const a of document.querySelectorAll('a[href="../viewer/"]'))a.href=languageURL(new URL(a.getAttribute('href'),location.href).href,language);
 form.elements.format.value=query.get('format') || (matchMedia('(max-width:600px)').matches?'phone':'desktop');
 form.elements.palette.value=query.get('palette') || 'paper';form.elements.kind.value=query.get('kind') || 'all';
 for(const name of ['format','palette','kind'])if(!form.elements[name].value)form.elements[name].selectedIndex=0;

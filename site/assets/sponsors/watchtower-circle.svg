@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" width="28" height="28" role="img" aria-label="Watchtower">
+  <!-- Round brand-indigo tile. Round rather than square because every surface
+       that shows a favicon at a glance (Google Search results, most PWA and
+       share targets) masks it into a circle anyway, and a circle reads as
+       intentional there instead of a square floating inside a ring. -->
+  <circle cx="14" cy="14" r="14" fill="#312e81"/>
+  <!-- Exact castle path from #app-brand-logo, scaled to 0.88 of the
+       circle's inscribed box. Regenerate with marketing/scripts/gen-favicons.mjs. -->
+  <g transform="translate(3.4467 3.0070) scale(0.87944)">
+    <path fill="#ffffff" d="M4 24v-11h2v-2H4v-2h2V7H4V5h2V3H4V1h4v2h2V1h4v2h2V1h4v2h-2v2h2v2h-2v2h2v2h-2v2h2v11h-6v-5h-4v5H4zm2-2h2v-5h8v5h2V3h-2v2h-2V3h-4v2H8V3H6v19zM10 15h4v-2h-4v2zm0-4h4v-2h-4v2z"/>
+  </g>
+</svg>

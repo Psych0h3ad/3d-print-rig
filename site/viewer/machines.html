@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<!-- Generated SEO: scripts/build_seo.py -->
+<title>3D printer gallery · 3D Print Rig</title>
+<meta name="description" content="Choose a 3D printer from the CAD thumbnail gallery. Browse registered models by family and size, then open their interactive configuration viewers.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="3D printer gallery · 3D Print Rig">
+<meta name="twitter:description" content="Choose a 3D printer from the CAD thumbnail gallery. Browse registered models by family and size, then open their interactive configuration viewers.">
+<meta name="twitter:image" content="https://psych0h3ad.github.io/3d-print-rig/assets/social/3d-print-rig-preview.png?v=b6a888d891052e2d01a6">
+<meta name="twitter:image:alt" content="3D Print Rig, a browser CAD configurator, alongside original VORON Trident technical drawings.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="3D Print Rig">
+<meta property="og:title" content="3D printer gallery · 3D Print Rig">
+<meta property="og:description" content="Choose a 3D printer from the CAD thumbnail gallery. Browse registered models by family and size, then open their interactive configuration viewers.">
+<meta property="og:url" content="https://psych0h3ad.github.io/3d-print-rig/viewer/machines.html">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://psych0h3ad.github.io/3d-print-rig/assets/social/3d-print-rig-preview.png?v=b6a888d891052e2d01a6">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="3D Print Rig, a browser CAD configurator, alongside original VORON Trident technical drawings.">
+<link rel="canonical" href="https://psych0h3ad.github.io/3d-print-rig/viewer/machines.html">
+<link rel="sitemap" type="application/xml" href="https://psych0h3ad.github.io/3d-print-rig/sitemap.xml">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","@id":"https://psych0h3ad.github.io/3d-print-rig/viewer/machines.html#page","name":"3D printer gallery \u00b7 3D Print Rig","description":"Choose a 3D printer from the CAD thumbnail gallery. Browse registered models by family and size, then open their interactive configuration viewers.","url":"https://psych0h3ad.github.io/3d-print-rig/viewer/machines.html","inLanguage":"en","isPartOf":{"@type":"WebSite","@id":"https://psych0h3ad.github.io/3d-print-rig/#website","name":"3D Print Rig","url":"https://psych0h3ad.github.io/3d-print-rig/"}}</script>
+<!-- End generated SEO -->
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+      <script src="./display-start.js?v=2ccf9c125fa0c4f73dc1"></script>
+  <link rel="stylesheet" href="./machine-gallery.css?v=7db93de9b790a189b263">
+</head>
+<body data-machines-gallery>
+  <a class="skip-link" href="#machineSearch" data-i18n-id="gallery.skip">Skip to machines</a>
+  <header>
+    <a class="brand" href="./machines.html" data-gallery-link aria-label="3D Print Rig">
+      <span class="brand-mark" aria-hidden="true">3D</span><strong data-i18n="off">3D Print Rig</strong>
+    </a>
+    <nav class="workspace-nav" aria-label="Workspace" data-gallery-nav>
+      <a href="./machines.html" aria-current="page" data-gallery-link data-i18n-id="ui.machines">Machines</a>
+      <a href="./" id="workspacePrinterLink" data-i18n-id="ui.printer">Printer</a>
+      <a href="./toolheads.html" data-gallery-link data-i18n-id="ui.toolhead">Toolhead</a>
+      <a href="./gantries.html" data-gallery-link data-i18n-id="ui.gantry">Gantry</a>
+      <a href="../fun/" data-gallery-link data-i18n-id="ui.just_for_fun">Just for fun</a>
+      <a href="../support/" data-gallery-link data-i18n-id="ui.support_index">Combination support</a>
+    </nav>
+    <div class="header-actions"></div>
+  </header>
+  <main id="machines">
+    <section class="gallery-intro" aria-labelledby="galleryTitle">
+      <div>
+        <p class="eyebrow" data-i18n-id="gallery.eyebrow">THE MACHINE COLLECTION</p>
+        <h1 id="galleryTitle" data-i18n-id="ui.machines">Machines</h1>
+        <p class="intro" data-i18n-id="gallery.intro">A closer look at the machines. Pick a printer and explore its registered assembly in 3D.</p>
+      </div>
+      <p class="gallery-note" data-i18n-id="gallery.note">Thumbnails come from the actual viewer models. Open a machine to explore its available controls and source credits.</p>
+    </section>
+    <section class="collection" aria-labelledby="collectionTitle">
+      <h2 id="collectionTitle" class="sr-only" data-i18n-id="gallery.collection">Registered printers</h2>
+      <form class="gallery-filters" id="galleryFilters" role="search">
+        <label class="search-field" for="machineSearch"><span data-i18n-id="gallery.search">Find a machine</span><span class="search-input"><input id="machineSearch" name="q" type="search" placeholder="Search printer, vendor or size" autocomplete="off" disabled></span></label>
+        <label for="machineFamily"><span data-i18n-id="gallery.family">Family</span><select id="machineFamily" name="family" disabled><option value="" data-i18n-id="gallery.all_families">All families</option></select></label>
+        <button id="galleryReset" type="button" data-i18n-id="gallery.reset" disabled>Clear filters</button>
+      </form>
+      <div class="collection-meta"><p id="galleryStatus" role="status" aria-live="polite" aria-atomic="true" data-i18n="off">Loading machines…</p><p class="meta-note" data-i18n-id="gallery.meta_note">Family · Vendor · Registered size</p></div>
+      <div id="galleryError" class="gallery-message" role="alert" hidden><h2 data-i18n-id="gallery.error_title">The collection could not load</h2><p data-i18n-id="gallery.error">Check your connection and try again.</p><button id="galleryRetry" type="button" data-i18n-id="gallery.retry">Try again</button></div>
+      <div id="galleryEmpty" class="gallery-message" hidden><h2 data-i18n-id="gallery.empty_title">No machines found</h2><p data-i18n-id="gallery.empty">Try a different search or clear the family filter.</p><button id="galleryEmptyReset" type="button" data-i18n-id="gallery.reset">Clear filters</button></div>
+      <ul id="machineGrid" class="machine-grid" aria-busy="true" aria-labelledby="collectionTitle"></ul>
+      <noscript><p>This gallery needs JavaScript to load its machine index. <a href="../support/">Open combination support</a> for registered machine information.</p></noscript>
+    </section>
+  </main>
+  <footer>
+    <p data-i18n-id="gallery.footer">Explore the original CAD, authors and licenses in each machine viewer.</p>
+    <div><a href="./art/credits.html" data-gallery-link data-i18n-id="gallery.credits">CAD & credits</a><a href="https://github.com/Psych0h3ad/3d-print-rig" target="_blank" rel="noopener noreferrer" data-i18n="off">GitHub <span class="external-icon" aria-hidden="true"></span></a><a href="https://www.x.com/YuTR0N" target="_blank" rel="noopener noreferrer" data-i18n="off">X <span class="external-icon" aria-hidden="true"></span></a></div>
+  </footer>
+  <script type="module" src="./machine-gallery.mjs?v=a21ceca8f91f43c726f4"></script>
+</body>
+</html>

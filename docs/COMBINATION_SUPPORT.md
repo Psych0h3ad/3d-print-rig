@@ -61,6 +61,8 @@ V0の件数は取付ルールを満たすModの選択状態です。ほかの機
 - `support/data/<target>.json` contains every registered row, option labels, source notes and extra support.
 - A row stores `[configuration ID token indices, dimension option indices…, notes index]`.
   Join its `idParts` tokens with `__` to reconstruct the exact configuration ID.
+- Generated detail reports are delivered as gzip files. The index pins both stored
+  and decoded bytes; the viewer verifies those checksums before using the unchanged rows.
 - Data are generated into the build, not copied from a manually maintained count. Missing files fail the build.
 - Run `node scripts/test_support_catalog.mjs <assembled-site> <assembled-site>/support/data`
   to compare every generated row against current production composition logic.

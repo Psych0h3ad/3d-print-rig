@@ -9045,6 +9045,102 @@
     "step.retry": {
       "source_revision": "355a762c26081368ddae",
       "text": "Загрузить список заново"
+    },
+    "ui.machines": {
+      "source_revision": "91e53a767085f7ea62a1",
+      "text": "Принтеры"
+    },
+    "gallery.skip": {
+      "source_revision": "8c06845fa28a1a98c0b3",
+      "text": "Перейти к принтерам"
+    },
+    "gallery.eyebrow": {
+      "source_revision": "a75f7f9175924676bc96",
+      "text": "КОЛЛЕКЦИЯ ПРИНТЕРОВ"
+    },
+    "gallery.intro": {
+      "source_revision": "515f440958d689dc5850",
+      "text": "Рассмотрите принтеры поближе. Выберите принтер и изучите его зарегистрированную сборку в 3D."
+    },
+    "gallery.note": {
+      "source_revision": "cc96264f8d90af95ae21",
+      "text": "Миниатюры получены из реальных моделей просмотрщика. Откройте принтер, чтобы увидеть доступные элементы управления и сведения об авторах исходного CAD."
+    },
+    "gallery.collection": {
+      "source_revision": "617ae44082e2932c3b2a",
+      "text": "Зарегистрированные принтеры"
+    },
+    "gallery.search": {
+      "source_revision": "63380ffc2f3384995dda",
+      "text": "Найти принтер"
+    },
+    "gallery.search_placeholder": {
+      "source_revision": "2157d604eed4b281db61",
+      "text": "Поиск по принтеру, производителю или размеру"
+    },
+    "gallery.family": {
+      "source_revision": "0d4a92746f4c577b4100",
+      "text": "Семейство"
+    },
+    "gallery.all_families": {
+      "source_revision": "c07b4b65ea4073577cad",
+      "text": "Все семейства"
+    },
+    "gallery.reset": {
+      "source_revision": "499580c3c658a5a067fb",
+      "text": "Сбросить фильтры"
+    },
+    "gallery.meta_note": {
+      "source_revision": "81040afe129af03d4d0d",
+      "text": "Семейство · Производитель · Зарегистрированный размер"
+    },
+    "gallery.error_title": {
+      "source_revision": "8b737433d42ba4d2d0ed",
+      "text": "Не удалось загрузить коллекцию"
+    },
+    "gallery.error": {
+      "source_revision": "78a5d30557cc044e6d50",
+      "text": "Проверьте соединение и повторите попытку."
+    },
+    "gallery.retry": {
+      "source_revision": "838d620ee72d07ce5f2f",
+      "text": "Повторить попытку"
+    },
+    "gallery.empty_title": {
+      "source_revision": "99b3ca47b7d44a5adccf",
+      "text": "Принтеры не найдены"
+    },
+    "gallery.empty": {
+      "source_revision": "b39fd22d20b2d065e6f2",
+      "text": "Измените поисковый запрос или сбросьте фильтр семейства."
+    },
+    "gallery.footer": {
+      "source_revision": "063197f9e5afe093eb94",
+      "text": "Сведения об исходном CAD, авторах и лицензиях доступны в просмотрщике каждого принтера."
+    },
+    "gallery.credits": {
+      "source_revision": "4870d69186e92787ce71",
+      "text": "CAD и авторы"
+    },
+    "gallery.thumbnail_alt": {
+      "source_revision": "f869220a76536d852034",
+      "text": "Предпросмотр 3D-модели {0}"
+    },
+    "gallery.preview_error": {
+      "source_revision": "5a3d3f77fc6f7d02bf27",
+      "text": "Предпросмотр недоступен"
+    },
+    "gallery.open": {
+      "source_revision": "db1d716829f4c145008a",
+      "text": "Изучить в 3D"
+    },
+    "gallery.loading": {
+      "source_revision": "21496a979664606805fa",
+      "text": "Загрузка принтеров…"
+    },
+    "gallery.count": {
+      "source_revision": "8668ab0055407b8d3535",
+      "text": "Показано {0} из {1} принтеров"
     }
   }
 }

@@ -1,5 +1,5 @@
 import {withV24NativeDriveMetadata} from './v24-drive-metadata.mjs?v=dbdf9f37cb0849ffc262';
-import {trinityAlphaVariants} from './trinity-alpha-installation.mjs?v=42afa7647e1a80a68de2';
+import {trinityAlphaVariants} from './trinity-alpha-installation.mjs?v=28eb7bab02b87e9f3de1';
 import {headPlan} from './head-assembly.js?v=trident-clearance-35';
 import {withPrinterGantry} from './printer-gantry.mjs?v=workspace-belts-2';
 
