@@ -8965,6 +8965,26 @@
     "message.a4t_printed_option": {
       "source_revision": "9a81a3afe502db9528e1",
       "text": "A4T LED 하우징 (인쇄 부품만)"
+    },
+    "ui.project_sponsor": {
+      "source_revision": "1297a7499e4fa63e791c",
+      "text": "프로젝트 후원사"
+    },
+    "ui.watchtower_description": {
+      "source_revision": "9808a30e13959d8a90d7",
+      "text": "3D 프린터 대시보드 및 팜 관리 프로젝트."
+    },
+    "ui.sponsor_website": {
+      "source_revision": "690e00cb624fb92a866f",
+      "text": "공식 웹사이트"
+    },
+    "ui.sponsor_channel": {
+      "source_revision": "9a42a10234e45d02d319",
+      "text": "YGK3D 채널"
+    },
+    "ui.sponsor_video": {
+      "source_revision": "86290b06e0e915faecfa",
+      "text": "소개 영상"
     }
   }
 }

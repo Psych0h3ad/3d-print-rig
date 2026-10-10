@@ -11315,6 +11315,31 @@
       "kind": "message",
       "ja": "A4T LEDハウジング（印刷部品のみ）",
       "en": "A4T LED housing (printed parts only)"
+    },
+    "ui.project_sponsor": {
+      "kind": "message",
+      "ja": "プロジェクトスポンサー",
+      "en": "Project sponsor"
+    },
+    "ui.watchtower_description": {
+      "kind": "message",
+      "ja": "3Dプリンターのダッシュボードとファーム管理。",
+      "en": "A 3D printer dashboard and farm management project."
+    },
+    "ui.sponsor_website": {
+      "kind": "message",
+      "ja": "公式サイト",
+      "en": "Website"
+    },
+    "ui.sponsor_channel": {
+      "kind": "message",
+      "ja": "YGK3Dチャンネル",
+      "en": "YGK3D channel"
+    },
+    "ui.sponsor_video": {
+      "kind": "message",
+      "ja": "紹介動画",
+      "en": "Introduction video"
     }
   }
 }

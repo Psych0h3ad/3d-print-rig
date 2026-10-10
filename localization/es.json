@@ -8965,6 +8965,26 @@
     "message.a4t_printed_option": {
       "source_revision": "9a81a3afe502db9528e1",
       "text": "Carcasa LED A4T (solo piezas impresas)"
+    },
+    "ui.project_sponsor": {
+      "source_revision": "1297a7499e4fa63e791c",
+      "text": "Patrocinador del proyecto"
+    },
+    "ui.watchtower_description": {
+      "source_revision": "9808a30e13959d8a90d7",
+      "text": "Un proyecto de panel de control y gestión de granjas de impresoras 3D."
+    },
+    "ui.sponsor_website": {
+      "source_revision": "690e00cb624fb92a866f",
+      "text": "Sitio web"
+    },
+    "ui.sponsor_channel": {
+      "source_revision": "9a42a10234e45d02d319",
+      "text": "Canal de YGK3D"
+    },
+    "ui.sponsor_video": {
+      "source_revision": "86290b06e0e915faecfa",
+      "text": "Vídeo de presentación"
     }
   }
 }

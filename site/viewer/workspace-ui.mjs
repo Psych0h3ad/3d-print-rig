@@ -3,13 +3,13 @@ ensureWorkspaceEntry(import.meta.url);
 import {setupDisplayPreferences,setupHeaderThemeToggle} from './display-preferences.mjs?v=9860960509e28d17f3fd';
 import {WorkspaceMutationObserver,workspaceListen} from './workspace-lifecycle.mjs';
 // Shared presentation layer. Existing controls, IDs and CAD controllers stay intact.
-import {setupLanguage,originalText,messageSource} from './i18n.mjs?v=434a340d78f8803fcf98';
+import {setupLanguage,originalText,messageSource} from './i18n.mjs?v=a6a3089071d554fe1eaf';
 import {printerWorkspaceURL,workspaceReturnKey,workspaceKindFor} from './workspace-return.mjs?v=594dc2ce774e58ba761f';
 import {setupWorkspaceSharing} from './workspace-share.mjs?v=e6c4054688ce084e0759';
 import {lockInspectorHorizontalScroll} from './workspace-scroll.mjs?v=workspace-belts-1';
-import {setupChoiceSearch} from './workspace-choices.mjs?v=0707bad1f0cef92ef52d';
+import {setupChoiceSearch} from './workspace-choices.mjs?v=2878c690cbb29ba59ca6';
 import {setupMobileLayout} from './workspace-layout.mjs?v=738c040595ec99155ce2';
-import {workspaceSectionCategory,isPrimaryWorkspaceLink} from './workspace-sections.mjs?v=ac3f1c30e2bc11f3bc30';
+import {workspaceSectionCategory,isPrimaryWorkspaceLink} from './workspace-sections.mjs?v=df1a2d6d8f192a6d9547';
 const $ = selector => document.querySelector(selector);
 const node = (tag, className, text) => {
   const element = document.createElement(tag);
@@ -27,6 +27,33 @@ export function setupWorkspace() {
   const background = node('div', 'cad-background');
   background.setAttribute('aria-hidden', 'true');
   stage.append(background);
+  const sponsor = node('details', 'project-sponsor');
+  const sponsorSummary = node('summary');
+  sponsorSummary.append(node('span', 'sponsor-label', {id:'ui.project_sponsor'}));
+  const sponsorName = node('strong', '', 'Watchtower by YGK3D');
+  sponsorName.setAttribute('data-i18n', 'off');
+  sponsorSummary.append(sponsorName);
+  const sponsorMenu = node('div', 'sponsor-menu');
+  sponsorMenu.append(node('p', '', {id:'ui.watchtower_description'}));
+  for (const [id, title, href] of [
+    ['ui.sponsor_website', '', 'https://watchtower3d.com'],
+    [null, 'Kickstarter', 'https://www.kickstarter.com/projects/watchtower3d/watchtower-3d-printer-dashboard-and-farm-management'],
+    ['ui.sponsor_channel', '', 'https://youtube.com/@ygk3d'],
+    ['ui.sponsor_video', '', 'https://youtu.be/sXo3FI5NJ7Y'],
+  ]) {
+    const link = node('a', '', id ? {id} : title);
+    if (!id) link.setAttribute('data-i18n', 'off');
+    link.href = href;
+    link.target = '_blank';
+    link.rel = 'sponsored noopener noreferrer';
+    sponsorMenu.append(link);
+  }
+  sponsor.append(sponsorSummary, sponsorMenu);
+  stage.append(sponsor);
+  workspaceListen(document, 'click', event => { if (!sponsor.contains(event.target)) sponsor.open = false; });
+  sponsor.addEventListener('keydown', event => {
+    if (event.key === 'Escape') { sponsor.open = false; sponsorSummary.focus(); }
+  });
   const skip = node('a', 'skip-link', '設定へスキップ');
   skip.href = '#inspectorTabs';
   document.body.prepend(skip);

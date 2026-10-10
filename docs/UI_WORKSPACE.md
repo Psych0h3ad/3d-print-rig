@@ -5,6 +5,9 @@ Machine and workbench entry pages share navigation, control categories and a
 responsive layout; the available controls depend on the loaded controller.
 See the [support index](COMBINATION_SUPPORT.md) for current configurations.
 
+The model corner credits project sponsor **Watchtower by YGK3D**. Open the
+credit to visit its website, Kickstarter, YouTube channel or introduction video.
+
 - Machine selection opens in a dialog instead of occupying the configuration panel.
 - Configuration, appearance, motion/inspection and reference tabs separate tasks. Empty categories are hidden.
 - Registered printer configurations group gantry/mount, head/drivetrain and probe/cooling/electronics choices. Mount choices are accessible without an advanced-settings toggle. Configuration save/load controls remain in the panel footer.
