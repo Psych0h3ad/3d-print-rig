@@ -8985,6 +8985,30 @@
     "ui.sponsor_video": {
       "source_revision": "86290b06e0e915faecfa",
       "text": "Vídeo de presentación"
+    },
+    "led.head_section": {
+      "source_revision": "4bb464317f65c752f138",
+      "text": "Iluminación del cabezal"
+    },
+    "led.head_power": {
+      "source_revision": "398d934ec0226d713dce",
+      "text": "Encender los LED del cabezal"
+    },
+    "led.head_brightness": {
+      "source_revision": "f560aed69b64c4f31771",
+      "text": "Brillo de los LED del cabezal"
+    },
+    "led.head_color": {
+      "source_revision": "ee59b452c6b73cac6d99",
+      "text": "Color del LED del logotipo"
+    },
+    "led.head_effect": {
+      "source_revision": "6f21a08a9c65c2c90938",
+      "text": "Efecto del LED del logotipo"
+    },
+    "led.head_scope": {
+      "source_revision": "5a9e5fcd963f3cf5fdca",
+      "text": "Solo se iluminan los LED incluidos en el CAD original. Las luces de la boquilla permanecen blancas."
     }
   }
 }

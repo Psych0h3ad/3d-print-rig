@@ -1,4 +1,4 @@
-import {workspaceTask,onWorkspaceDispose} from './workspace-lifecycle.mjs';
+import {workspaceTask,onWorkspaceDispose} from './workspace-lifecycle.mjs?v=823ad76bd9034ec8d6ff';
 import * as DefaultTHREE from 'three';
 import {cameraAngles,createExportCamera} from './export-camera.mjs?v=trident-clearance-35';
 

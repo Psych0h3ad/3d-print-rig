@@ -8985,6 +8985,30 @@
     "ui.sponsor_video": {
       "source_revision": "86290b06e0e915faecfa",
       "text": "Видео о проекте"
+    },
+    "led.head_section": {
+      "source_revision": "4bb464317f65c752f138",
+      "text": "Освещение печатающей головки"
+    },
+    "led.head_power": {
+      "source_revision": "398d934ec0226d713dce",
+      "text": "Включить LED печатающей головки"
+    },
+    "led.head_brightness": {
+      "source_revision": "f560aed69b64c4f31771",
+      "text": "Яркость LED печатающей головки"
+    },
+    "led.head_color": {
+      "source_revision": "ee59b452c6b73cac6d99",
+      "text": "Цвет LED логотипа"
+    },
+    "led.head_effect": {
+      "source_revision": "6f21a08a9c65c2c90938",
+      "text": "Эффект LED логотипа"
+    },
+    "led.head_scope": {
+      "source_revision": "5a9e5fcd963f3cf5fdca",
+      "text": "Светятся только LED, включенные в исходный CAD. Подсветка сопла остается белой."
     }
   }
 }

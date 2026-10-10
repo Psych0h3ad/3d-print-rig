@@ -8985,6 +8985,30 @@
     "ui.sponsor_video": {
       "source_revision": "86290b06e0e915faecfa",
       "text": "소개 영상"
+    },
+    "led.head_section": {
+      "source_revision": "4bb464317f65c752f138",
+      "text": "툴헤드 조명"
+    },
+    "led.head_power": {
+      "source_revision": "398d934ec0226d713dce",
+      "text": "툴헤드 LED 켜기"
+    },
+    "led.head_brightness": {
+      "source_revision": "f560aed69b64c4f31771",
+      "text": "툴헤드 LED 밝기"
+    },
+    "led.head_color": {
+      "source_revision": "ee59b452c6b73cac6d99",
+      "text": "로고 LED 색상"
+    },
+    "led.head_effect": {
+      "source_revision": "6f21a08a9c65c2c90938",
+      "text": "로고 LED 효과"
+    },
+    "led.head_scope": {
+      "source_revision": "5a9e5fcd963f3cf5fdca",
+      "text": "원본 CAD에 포함된 LED만 켜집니다. 노즐 조명은 흰색으로 유지됩니다."
     }
   }
 }

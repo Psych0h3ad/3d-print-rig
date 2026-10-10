@@ -1,21 +1,21 @@
 import {loadedFamilyAssetIdentity} from './gcode-loaded-asset-identity.mjs?v=42ac134c2d9a8b8f8dfc';
 import {displacementGcodeSettings,displacementCoordinateNote} from './gcode-machine-bindings.mjs?v=460777c3fc4d1a74bf27';
-import {setupGcodePanel} from './gcode-panel.js?v=f471190665709ba23159';
+import {setupGcodePanel} from './gcode-panel.js?v=a84362027155c83c4e26';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {RoomEnvironment} from './vendor/RoomEnvironment.js';
-import {workspaceFrame,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
+import {workspaceFrame,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=823ad76bd9034ec8d6ff';
 import {setupMachineNavigation} from './machines.js?v=cea8407065ba89be6304';
 import {loadExtraMachine} from './extra-machine-loader.mjs?v=dd97105abc4157397f19';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=extra-machines-55';
-import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
-import {setupPublicInfo} from './public-info.js?v=169839bdd8f8d054f7e5';
+import {setupRenderExport} from './render-export.js?v=9c6b06804a9e64da0b2f';
+import {setupPublicInfo} from './public-info.js?v=febd8f5505a0d08a35b2';
 import {applyNativeMotionProfile,loadNativeMotionProfile} from './native-motion-profile.mjs?v=91532eb992519143f437';
 import {createCommunityAdapter} from './community-adapter.mjs?v=f8373d55283539bd5074';
-import {setupNativeMotionControls} from './native-motion-controls.mjs?v=a8a2c881ebee55c5daa1';
+import {setupNativeMotionControls} from './native-motion-controls.mjs?v=0ae093dee1236568fb26';
 export async function mount(scope){
  const $=id=>document.getElementById(id),stage=$('stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));
  renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);

@@ -11340,6 +11340,36 @@
       "kind": "message",
       "ja": "紹介動画",
       "en": "Introduction video"
+    },
+    "led.head_section": {
+      "kind": "message",
+      "ja": "ツールヘッド照明",
+      "en": "Toolhead lighting"
+    },
+    "led.head_power": {
+      "kind": "message",
+      "ja": "ツールヘッドLEDを点灯",
+      "en": "Turn on toolhead LEDs"
+    },
+    "led.head_brightness": {
+      "kind": "message",
+      "ja": "ツールヘッドLEDの明るさ",
+      "en": "Toolhead LED brightness"
+    },
+    "led.head_color": {
+      "kind": "message",
+      "ja": "ロゴLEDの色",
+      "en": "Logo LED color"
+    },
+    "led.head_effect": {
+      "kind": "message",
+      "ja": "ロゴLEDの発光パターン",
+      "en": "Logo LED effect"
+    },
+    "led.head_scope": {
+      "kind": "message",
+      "ja": "元CADに含まれるLEDのみ点灯します。ノズル照明は白色です。",
+      "en": "Only LEDs included in the source CAD are lit. Nozzle lights stay white."
     }
   }
 }

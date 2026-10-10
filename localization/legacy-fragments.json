@@ -8,6 +8,22 @@
     {
       "file": "languages.mjs",
       "text": "日本語"
+    },
+    {
+      "file": "toolhead-led-identities.mjs",
+      "text": "P412__WS2812-RGB灯珠"
+    },
+    {
+      "file": "toolhead-led-identities.mjs",
+      "text": "P413__WS2812-RGB灯珠"
+    },
+    {
+      "file": "toolhead-led-identities.mjs",
+      "text": "P414__Voron-LED透明罩"
+    },
+    {
+      "file": "toolhead-led-identities.mjs",
+      "text": "P416__WS2812-RGB灯珠"
     }
   ]
 }

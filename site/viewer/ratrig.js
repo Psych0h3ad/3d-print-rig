@@ -1,11 +1,11 @@
-import {setupGcodePanel} from './gcode-panel.js?v=f471190665709ba23159';
+import {setupGcodePanel} from './gcode-panel.js?v=a84362027155c83c4e26';
 import {ratRigGcodeSettings,ratRigCoordinateNote} from './gcode-machine-bindings.mjs?v=460777c3fc4d1a74bf27';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=extra-machines-55';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
-import {rememberDisplayControl} from './display-preferences.mjs?v=9860960509e28d17f3fd';
+import {rememberDisplayControl} from './display-preferences.mjs?v=3b735c3e32640589ed26';
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
-import {workspaceFrame,WorkspaceResizeObserver,workspaceTask,workspaceListen} from './workspace-lifecycle.mjs';
+import {workspaceFrame,WorkspaceResizeObserver,workspaceTask,workspaceListen} from './workspace-lifecycle.mjs?v=823ad76bd9034ec8d6ff';
 import * as THREE from './vendor-r180/three.module.js';
 import {OrbitControls} from './vendor-r180/OrbitControls.js?v=workspace-belts-1';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
@@ -13,9 +13,9 @@ import {loadRatRigMachine,disposeRatRig} from './ratrig-loader.mjs?v=9782f451eec
 import {createRatRigGcodePreview} from './ratrig_gcode_preview.mjs';
 import {ratRigSchema,validateRatRigConfiguration,ratRigAxisRanges} from './ratrig-ui-state.mjs?v=workspace-belts-1';
 import {setupMachineNavigation} from './machines.js?v=cea8407065ba89be6304';
-import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
+import {setupRenderExport} from './render-export.js?v=9c6b06804a9e64da0b2f';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
-import {setupPublicInfo} from './public-info.js?v=169839bdd8f8d054f7e5';
+import {setupPublicInfo} from './public-info.js?v=febd8f5505a0d08a35b2';
 export async function mount(scope){
 const $=id=>document.getElementById(id),stage=$('stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=.9;stage.append(renderer.domElement);

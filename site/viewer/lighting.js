@@ -1,6 +1,6 @@
 import {sceneLightingState} from './scene-lighting-state.mjs?v=extra-machines-55';
-import {readDisplay} from './display-preferences.mjs?v=9860960509e28d17f3fd';
-import {workspaceTask,workspaceListen} from './workspace-lifecycle.mjs';
+import {readDisplay} from './display-preferences.mjs?v=3b735c3e32640589ed26';
+import {workspaceTask,workspaceListen,onWorkspaceDispose} from './workspace-lifecycle.mjs?v=823ad76bd9034ec8d6ff';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
@@ -8,6 +8,8 @@ import {RoomEnvironment} from './vendor/RoomEnvironment.js';
 import {RectAreaLightUniformsLib} from './vendor/RectAreaLightUniformsLib.js';
 import {lightingState} from './lighting-state.mjs?v=trident-clearance-35';
 import {ledSample,ledEffects,createLedAnimator} from './lighting-animation.mjs?v=trident-clearance-35';
+import {prepareLedSurface,restoreLedSurface} from './led-emission-surface.mjs?v=af40a3200e128a08c940';
+import {sourceDiscoAperture} from './disco-led-apertures.mjs?v=50208fba4e6d3cbe5cf2';
 
 export function setupLighting(scene,renderer,{registration={meta:'DISCO_MOD.json',glb:'Disco_on_a_Stick_XXL_350.glb',translation_mm:[0,0,0]},machine='siboor_trident_350',update=()=>{}}={}){
  const $=s=>document.querySelector(s);
@@ -44,10 +46,11 @@ export function setupLighting(scene,renderer,{registration={meta:'DISCO_MOD.json
  const lights=[];
  const viewVector=v=>new THREE.Vector3(v[0],v[2],-v[1]);
  let mod=null,ready=false,failed=false,currentState;const emitters=[],color=new THREE.Color();
+ onWorkspaceDispose(()=>{for(const mesh of emitters){restoreLedSurface(mesh);mesh.geometry.dispose();for(const m of [].concat(mesh.material))m.dispose();}});
  function frame(seconds){
   const {on=false,value=0}=currentState||{},sample=t=>ledSample({color:$('#ledColor').value,effect:effectSelect.value,position:t,seconds});
   const setColor=s=>s.rainbow?color.setHSL(s.hue,.9,.52):color.setHex(s.hex);
-  for(const light of lights){const s=sample(light.userData.t);light.color.copy(setColor(s));light.intensity=on?260*value*s.gain:0}
+  for(const light of lights){const s=sample(light.userData.t);light.color.copy(setColor(s));light.intensity=on?24*value*s.gain:0}
   for(const mesh of emitters){const s=sample(mesh.userData.t);for(const material of Array.isArray(mesh.material)?mesh.material:[mesh.material]){material.emissive.copy(on?setColor(s):color.setHex(0));material.emissiveIntensity=on?3.2*value*s.gain:0}}
   document.body.dataset.ledAnimation=effectSelect.value;document.body.dataset.ledAnimationTime=seconds.toFixed(3);update();
  }
@@ -86,14 +89,20 @@ export function setupLighting(scene,renderer,{registration={meta:'DISCO_MOD.json
    const u=viewVector(spec.along),n=viewVector(spec.normal),v=new THREE.Vector3().crossVectors(n,u);
    const members=emitters.filter(o=>o.userData.side===spec.side);
    members.sort((a,b)=>{a.geometry.computeBoundingBox();b.geometry.computeBoundingBox();return a.geometry.boundingBox.getCenter(new THREE.Vector3()).dot(u)-b.geometry.boundingBox.getCenter(new THREE.Vector3()).dot(u)});
-   if(members.length!==data.leds_per_stick)throw Error('Disco左右のLED登録不一致');members.forEach((o,i)=>o.userData.t=i/Math.max(1,members.length-1));
+   if(members.length!==data.leds_per_stick)throw Error('Disco左右のLED登録不一致');members.forEach((o,i)=>{const aperture=sourceDiscoAperture(o);if(!aperture)throw Error('Disco source lens not identified');prepareLedSurface(o,{normal:aperture.normal,aperture});o.userData.t=i/Math.max(1,members.length-1)});
+   // The registration plane belongs to the PCB. Put the light on the native
+   // lens face, outside the package, to avoid grazing/self-lighting artifacts.
+   let lensPlane=-Infinity;
+   for(const o of members)lensPlane=Math.max(lensPlane,new THREE.Vector3(...o.userData.ledSurface.aperture.center).add(o.position).dot(n));
    for(let i=0;i<3;i++){
     const light=new THREE.RectAreaLight(0xffffff,0,spec.length_mm/3000,spec.width_mm/1000);
     light.position.copy(viewVector(spec.center_mm.map((v,j)=>v+(registration.side_translation_mm?.[spec.side]?.[j]||0))).multiplyScalar(.001)).addScaledVector(u,(i-1)*spec.length_mm/3000);
+    light.position.addScaledVector(n,lensPlane-light.position.dot(n)+.0002);
     light.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(u,v.clone().negate(),n.clone().negate()));
     light.userData.t=(i+.5)/3;rig.add(light);lights.push(light);
    }
   }
+  document.body.dataset.discoSurfaceVersion='native-lens-109';document.body.dataset.discoLuminousTriangles=String(emitters.reduce((n,o)=>n+o.userData.ledSurface.luminous_triangles,0));
   ready=true;for(const id of ['ledMod','ledPower','nightOn','ledLevel','ledColor'])$('#'+id).disabled=false;apply();
   return mod;
  }).catch(e=>{failed=true;if(mod)mod.visible=false;apply();console.error(e)}));

@@ -1,4 +1,4 @@
-import {setupGcodePanel} from './gcode-panel.js?v=f471190665709ba23159';
+import {setupGcodePanel} from './gcode-panel.js?v=a84362027155c83c4e26';
 import {displacementGcodeSettings,displacementCoordinateNote,unavailableCoordinateNote} from './gcode-machine-bindings.mjs?v=460777c3fc4d1a74bf27';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
@@ -10,12 +10,12 @@ import {communitySchema,validateCommunityState,communityMotionEnabled,communityC
 import {installationFor} from './ender-mods.mjs?v=5f07c69c7c42ba3f3936';
 import {setupMachineNavigation} from './machines.js?v=cea8407065ba89be6304';
 import {sceneLightingState} from './scene-lighting-state.mjs';
-import {translate} from './i18n.mjs?v=a6a3089071d554fe1eaf';
-import {rememberDisplayControl} from './display-preferences.mjs?v=9860960509e28d17f3fd';
-import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
+import {translate} from './i18n.mjs?v=0fdf472eb0556b50017f';
+import {rememberDisplayControl} from './display-preferences.mjs?v=3b735c3e32640589ed26';
+import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=823ad76bd9034ec8d6ff';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
-import {setupRenderExport} from './render-export.js';
-import {setupPublicInfo} from './public-info.js?v=169839bdd8f8d054f7e5';
+import {setupRenderExport} from './render-export.js?v=9c6b06804a9e64da0b2f';
+import {setupPublicInfo} from './public-info.js?v=febd8f5505a0d08a35b2';
 const descriptions={
  doomcube2_350_reference:"DoomCube 2 · 350 mm / double enclosure / original CAD",
  tictac_21_120:"TicTac 2.1 · 120 mm / 新Rat Rigツールヘッド / 公式組立CAD",

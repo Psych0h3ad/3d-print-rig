@@ -12,6 +12,7 @@ import {importedVariant,configurationById} from '../site/viewer/configuration-mo
 import {sphinxCompanionPresets} from '../site/viewer/head-companion-presets.mjs';
 import {rapidoXUhfCover} from '../site/viewer/rapido-x-uhf-cover.mjs';
 import {TRINITY_INSTALLED_BELT_SAMPLE_KEYS} from '../site/viewer/trinity-alpha-installation.mjs';
+import {createToolheadLedRig} from '../site/viewer/toolhead-lighting.mjs';
 
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 const point=p=>Array.isArray(p)&&p.length===3&&p.every(Number.isFinite);
@@ -165,6 +166,7 @@ export async function auditLoadedHeads(root,{families=null,machines=null,variant
     if(families&&!families.includes(family.id))continue;
     const sources=plans.filter(v=>v.toolhead===family.id),selected=sources.filter(v=>!variants||variants.includes(v.source_head_configuration||v.id));if(!selected.length)continue;
     const catalog={...heads,machine_id:machine,assets:{...heads.assets,...registry.assets}},scene=new THREE.Scene(),rig=createMachineHeads(scene,catalog),metadata=new Map();
+    const ledRig=createToolheadLedRig(scene);
     async function metadataFor(id){
      if(metadata.has(id))return metadata.get(id);
      const spec=catalog.base_assets?.[id]||catalog.assets[id];assert(spec,id+' unregistered module');
@@ -186,6 +188,11 @@ export async function auditLoadedHeads(root,{families=null,machines=null,variant
        const lower=[box.min.x,-box.max.z,box.min.y].map(n=>n*1000),upper=[box.max.x,-box.min.z,box.max.y].map(n=>n*1000);assertSphinxFanBounds([lower,upper]);
       }
      }
+     const led=ledRig.update({power:true,color:'rainbow',effect:'flow',seconds:1});
+     report.ledConfigurations=(report.ledConfigurations||0)+1;report.ledEmitterChecks=(report.ledEmitterChecks||0)+led.installed;
+     for(const e of ledRig.emitters){assert(e.surface.luminous_triangles>0&&e.surface.body_triangles>0,v.id+' full-package LED emission');for(const m of e.surface.materials)assert(Number.isFinite(m.emissiveIntensity),v.id+' invalid LED emission');}
+     const off=ledRig.update({power:false});assert.equal(off.lit,0);for(const e of ledRig.emitters)assert.equal(e.light.intensity,0,v.id+' stale hidden LED light');ledRig.update({power:true});
+     for(const e of ledRig.guides){assert(Number.isFinite(e.materials[0].emissiveIntensity),v.id+' invalid optical guide');report.ledGuideChecks=(report.ledGuideChecks||0)+1;}
      assert(count>0,v.id+' empty head');
      for(const e of entries){const a=rig.cache.get(e.id)?.loaded;assert(a,v.id+' unloaded companion '+e.id);if(e.id===v.fit?.hotend_cooling?.module)assert(a.entries.some(r=>r.mesh.visible),v.id+' hidden cooling companion');}
     }
@@ -205,11 +212,11 @@ export async function auditLoadedHeads(root,{families=null,machines=null,variant
       rig.setDelta([0,0,0]);await rig.install(v);assert.equal(rig.active,v);await inspect(v);const original=snapshot(rig);
       const materials=[...rig.cache.values()].flatMap(p=>p.loaded?.root.visible?p.loaded.entries.filter(e=>e.mesh.visible):[]).map(e=>({e,physical:e.materials.map(m=>[m.metalness,m.roughness])}));
       for(const palette of [{base:'#00ffff',accent:'#ff00ff'},{base:'#ff00ff',accent:'#00ffff'},{base:'#24272c',accent:'#e32636'}]){
-       rig.setPalette(palette);for(const {e,physical}of materials)for(const[i,m]of e.materials.entries()){if(['base','accent'].includes(e.role))assert.equal(m.color.getHexString(),palette[e.role].slice(1));else{assert(m.color.equals(e.colors[i]),v.id+' purchased color changed');assert.deepEqual([m.metalness,m.roughness],physical[i],v.id+' purchased material changed');}report.paletteChecks++;}
+       rig.setPalette(palette);ledRig.update({power:true});for(const g of ledRig.guides)for(const[i,m]of g.materials.entries())assert(m.color.equals([].concat(g.originalMaterial)[i].color),v.id+' optical guide palette stale');for(const {e,physical}of materials)for(const[i,m]of e.materials.entries()){if(['base','accent'].includes(e.role))assert.equal(m.color.getHexString(),palette[e.role].slice(1));else{assert(m.color.equals(e.colors[i]),v.id+' purchased color changed');assert.deepEqual([m.metalness,m.roughness],physical[i],v.id+' purchased material changed');}report.paletteChecks++;}
       }
       const limits=v.native_alpha_92?.limits_mm,reference=v.native_alpha_92?.reference_xyz_mm;
       const low=limits?['X','Y','Z'].map((a,i)=>limits[a][0]-reference[i]):[-37,-24,0],high=limits?['X','Y','Z'].map((a,i)=>limits[a][1]-reference[i]):[37,24,81],mid=low.map((n,i)=>(n+high[i])/2);
-      for(const delta of [low,mid,high,mid,low,[0,0,0]]){rig.setDelta(delta);const actual=snapshot(rig);assert.equal(actual.length,original.length,v.id+' companions lost in movement');for(let i=0;i<actual.length;i++){const expected=[...original[i].matrix];for(const[axis,value]of display(delta).entries())expected[12+axis]+=value;assert(actual[i].matrix.every((n,j)=>Number.isFinite(n)&&Math.abs(n-expected[j])<1e-10),v.id+' detached '+actual[i].key);}report.poseChecks++;}
+      for(const delta of [low,mid,high,mid,low,[0,0,0]]){rig.setDelta(delta);ledRig.update({power:true});const actual=snapshot(rig);assert.equal(actual.length,original.length,v.id+' companions lost in movement');for(let i=0;i<actual.length;i++){const expected=[...original[i].matrix];for(const[axis,value]of display(delta).entries())expected[12+axis]+=value;assert(actual[i].matrix.every((n,j)=>Number.isFinite(n)&&Math.abs(n-expected[j])<1e-10),v.id+' detached '+actual[i].key);}for(const e of ledRig.emitters){const light=e.light.getWorldPosition(new THREE.Vector3());assert([light.x,light.y,light.z].every(Number.isFinite),v.id+' LED light detached');}report.poseChecks++;}
       const b=sources.find(n=>n.id!==v.id&&(n.hotend!==v.hotend||n.cooling!==v.cooling||n.extruder!==v.extruder||n.board!==v.board))||sources.find(n=>n.id!==v.id)||plans.find(n=>n.id!==v.id&&n.toolhead==='stealthburner');
       if(b){await rig.install(b);await inspect(b);await rig.install(v);await inspect(v);assert.deepEqual(snapshot(rig),original,v.id+' A-B-A did not restore companions');report.transitions++;}
       await rig.install(null);assert([...rig.cache.values()].every(p=>!p.loaded?.root.visible),v.id+' modules survived teardown');
@@ -224,7 +231,7 @@ export async function auditLoadedHeads(root,{families=null,machines=null,variant
       }
       report.configurations++;context.checked++;context.by_family[family.id]=(context.by_family[family.id]||0)+1;
      }catch(e){report.failures.push({machine,variant:v.id,stage:'actual_head',message:e.message});}finally{trimCache();}}
-    }finally{scene.traverse(o=>{if(o.isMesh){o.geometry.dispose();for(const m of Array.isArray(o.material)?o.material:[o.material])m.dispose();}});rig.cache.clear();scene.clear();globalThis.gc?.();}
+    }finally{ledRig.dispose();scene.traverse(o=>{if(o.isMesh){o.geometry.dispose();for(const m of Array.isArray(o.material)?o.material:[o.material])m.dispose();}});rig.cache.clear();scene.clear();globalThis.gc?.();}
     console.log(machine+'/'+family.id+': '+selected.length+' selected plans');
    }
   }
@@ -235,7 +242,7 @@ export async function auditLoadedHeads(root,{families=null,machines=null,variant
  const finalCode={};await codePins(viewer,finalCode);finalCode['scripts/audit_loaded_heads.mjs']=sha(await fs.readFile(fileURLToPath(import.meta.url)));if(JSON.stringify(finalCode)!==JSON.stringify(report.code_sha256))report.failures.push({stage:'code_freeze',message:'Production code changed during audit; this receipt is not current evidence.'});
  report.modules=used.size;report.missing_requests=[...missing].sort();report.passed=report.failures.length===0;report.completed_at_utc=new Date().toISOString();
  report.open_findings.push({scope:'complete_native_companion_requirements',required_proof:'Source revision requirements for every cover/mount/extension/duct/fan/LED/nozzle/probe/fastener and native finite mating clearance. Source-specific assertions here cover Rapido UHF selection, pinned tLW fan and declared companion modules only.'},{scope:'viewer_consumers',required_proof:'Parent browser review of standalone/installed consumers, host stock replacement, front/side/rear/underside, save/load controls and true machine reset. JSON ID roundtrip and rig teardown are controller scopes.'});
- report.scope='Production catalogs with additions, boards, Rapido adapter and exact Trinity sidecars; actual exported leaf completeness, masks, placements, declared companions, finite vertices, palettes, sampled rigid motion, A-B-A, controller teardown and saved-ID restoration. Non-alpha samples are adapter deltas, not machine travel extrema. No native clearance, fastener engagement, browser or physical-fit certificate.';
+ report.scope='Production catalogs with additions, boards, Rapido adapter and exact Trinity sidecars; actual exported leaf completeness, masks, placements, declared companions, source LED lens emission/power/parent motion and optical guide palettes, finite vertices, palettes, sampled rigid motion, A-B-A, controller teardown and saved-ID restoration. Non-alpha samples are adapter deltas, not machine travel extrema. No native clearance, fastener engagement, browser or physical-fit certificate.';
  return report;
 }
 

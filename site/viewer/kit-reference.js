@@ -1,9 +1,9 @@
 import {displacementGcodeSettings,displacementCoordinateNote} from './gcode-machine-bindings.mjs?v=460777c3fc4d1a74bf27';
-import {setupGcodePanel} from './gcode-panel.js?v=f471190665709ba23159';
+import {setupGcodePanel} from './gcode-panel.js?v=a84362027155c83c4e26';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
-import {setupSceneDisplay} from './display-preferences.mjs?v=9860960509e28d17f3fd';
-import {workspaceFrame,WorkspaceResizeObserver} from './workspace-lifecycle.mjs';
+import {setupSceneDisplay} from './display-preferences.mjs?v=3b735c3e32640589ed26';
+import {workspaceFrame,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=823ad76bd9034ec8d6ff';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=workspace-belts-1';
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import * as THREE from 'three';
@@ -11,10 +11,10 @@ import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {loadKitReference} from './kit-reference-loader.mjs?v=e018cf8fc3c93c4140dd';
 import {setupMachineNavigation} from './machines.js?v=cea8407065ba89be6304';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
-import {setupRenderExport} from './render-export.js?v=workspace-belts-2';
-import {setupPublicInfo} from './public-info.js?v=169839bdd8f8d054f7e5';
+import {setupRenderExport} from './render-export.js?v=9c6b06804a9e64da0b2f';
+import {setupPublicInfo} from './public-info.js?v=febd8f5505a0d08a35b2';
 import {createCommunityAdapter} from './community-adapter.mjs?v=f8373d55283539bd5074';
-import {setupNativeMotionControls} from './native-motion-controls.mjs?v=a8a2c881ebee55c5daa1';
+import {setupNativeMotionControls} from './native-motion-controls.mjs?v=0ae093dee1236568fb26';
 export async function mount(scope){
 const $=s=>document.querySelector(s),id='fysetc_v24_250_pro',stage=$('#stage');
 setupMachineNavigation(id);setupPublicInfo({includeDownloads:false});

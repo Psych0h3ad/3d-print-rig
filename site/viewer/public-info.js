@@ -1,6 +1,6 @@
-import {workspaceTask} from './workspace-lifecycle.mjs';
+import {workspaceTask} from './workspace-lifecycle.mjs?v=823ad76bd9034ec8d6ff';
 import {setupProductDirectory} from './product-links.js?v=ba0e9d9c9326819ea0fb';
-import {mountAssemblyDownload} from './assembly-downloads.mjs?v=84745c322c8ab851dd10';
+import {mountAssemblyDownload} from './assembly-downloads.mjs?v=55f3d4b2df4552522a6f';
 const $=s=>document.querySelector(s);
 function dialog(id,title){const d=document.createElement('dialog');d.id=id;d.innerHTML=`<div class="dialog-head"><h2>${title}</h2><button class="close" aria-label="閉じる"></button></div><div class="dialog-body"></div>`;document.body.append(d);d.querySelector('.close').onclick=()=>d.close();return d}
 const node=(tag,text)=>{const n=document.createElement(tag);n.textContent=text;return n};

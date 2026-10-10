@@ -3,7 +3,7 @@ import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
 import {partKey} from './head-assembly.js?v=trident-clearance-35';
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
-import {withMonolithMachines,monolithPartDelta} from './monolith-machine-model.mjs?v=4668e82d8218c211d404';
+import {withMonolithMachines,monolithPartDelta} from './monolith-machine-model.mjs?v=55c1a7b9e3348f9a683e';
 import {monolithBeltRoute,monolithBeltGeometry,monolithBeltTravelLimits} from './monolith-belts.mjs?v=cc31216a6676936d5cd6';
 
 const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);

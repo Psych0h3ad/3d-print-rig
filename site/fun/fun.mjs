@@ -1,4 +1,4 @@
-import {applyDisplay,displayKey,setupHeaderThemeToggle} from '../viewer/display-preferences.mjs?v=9860960509e28d17f3fd';
+import {applyDisplay,displayKey,setupHeaderThemeToggle} from '../viewer/display-preferences.mjs?v=3b735c3e32640589ed26';
 const $=id=>document.getElementById(id),query=new URLSearchParams(location.search),form=$('filters');
 const language=query.get('lang') || (navigator.language.startsWith('ja')?'ja':'en'),ja=language==='ja';
 $('language').value=ja?'ja':'en';document.documentElement.lang=ja?'ja':'en';

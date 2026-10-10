@@ -43,7 +43,14 @@ export class WorkspaceScope {
   cleanup(callback) { this.cleanups.push(callback); }
   resource(value) { this.cleanup(() => value.dispose()); return value; }
   renderer(value) { this.renderers.add(value); return value; }
-  scene(value) { this.scenes.add(value); return value; }
+  scene(value) {
+    this.scenes.add(value);
+    if (value.isScene && typeof document !== 'undefined') this.task(async () => {
+      const {setupToolheadLighting} = await import('./toolhead-lighting.mjs?v=d45718a28ab59f3df3ef');
+      if (!this.disposed) setupToolheadLighting(value, {scope:this});
+    });
+    return value;
+  }
   task(run) {
     if (this.disposed) return Promise.reject(new Error('Workspace has closed'));
     // Start synchronously: callers depend on immediate busy/disabled state.

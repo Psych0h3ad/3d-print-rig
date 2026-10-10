@@ -1,8 +1,8 @@
-import {translate} from './i18n.mjs?v=a6a3089071d554fe1eaf';
-import {WorkspaceScope, activateScope} from './workspace-lifecycle.mjs';
+import {translate} from './i18n.mjs?v=0fdf472eb0556b50017f';
+import {WorkspaceScope, activateScope} from './workspace-lifecycle.mjs?v=823ad76bd9034ec8d6ff';
 import {bindWorkspaceNavigation, setWorkspaceLeaving, workspaceTarget, workspaceURL, replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
-import {setupWorkspace} from './workspace-ui.mjs?v=03d694c7c740fd517dfd';
-import {applyDisplay} from './display-preferences.mjs?v=9860960509e28d17f3fd';
+import {setupWorkspace} from './workspace-ui.mjs?v=77aef3366795d9853b48';
+import {applyDisplay} from './display-preferences.mjs?v=3b735c3e32640589ed26';
 import {machinePage} from './machines.js?v=cea8407065ba89be6304';
 
 const controllers = new Set(['bootstrap.js','v24-bootstrap.js','app.js','v24-app.js','vanilla-trident.js','v24-reference.js','custom-voron.js','v0-app.js','micron.js','kit-reference.js','ratrig.js','crossant.js','toolheads.js','gantries.js','components.js','toolchangers.js','e3ng.js','community.js','positron.js','remorph.js', 'annex.js']);

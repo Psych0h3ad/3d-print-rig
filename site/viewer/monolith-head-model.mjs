@@ -1,4 +1,4 @@
-import {installedHeadPlan} from './machine-head-model.mjs?v=14319e9291c3e0e03c8a';
+import {installedHeadPlan} from './machine-head-model.mjs?v=f6a4a8725f0eccc0d4ef';
 import {translatedProbeFit} from './probe-checks.js?v=ea1aef3e30bf7d11d3cb';
 const completeSphinx=v=>v.mount==='fixed'&&v.gantry==='sphinx_monolith'&&v.fit?.nozzle_mm?.every(Number.isFinite)&&['extruder','hotend'].every(k=>v.modules.some(m=>m.id===v.fit?.complete_head_native?.[k]));
 export function monolithHeadCatalog(heads,registry,gantries){

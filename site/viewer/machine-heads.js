@@ -1,28 +1,29 @@
+import {cloneNativeLedTree} from './led-emission-surface.mjs?v=af40a3200e128a08c940';
 import {madmaxJointAssetSpec,madmaxJointApplies,captureMadmaxJoint,setMadmaxJointPose} from './madmax-native-joint.mjs?v=d39e974d7b782135b52a';
 import {madmaxPtfeAssetSpec} from './madmax-ptfe.mjs?v=c0df5309f697af621506';
 import {withRapidoXUhfCover,setRapidoXUhfSurface} from './rapido-x-uhf-cover.mjs?v=8b458475dac84cfcd8c7';
 import {v24NativeDriveMetadata} from './v24-drive-metadata.mjs?v=dbdf9f37cb0849ffc262';
-import {augmentTrinityAlphaHosts,TRINITY_ALPHA_HOST_SOURCE,alphaResetPose,alphaRangeNotice,alphaResetLabel} from './trinity-alpha-host-extensions.mjs?v=e9a27f814819c49928c4';
-import {alphaReference,alphaLimits} from './trinity-alpha-installation.mjs?v=d50a1e417b681bbd05ac';
-import {augmentTrinitySiboorR2,TRINITY_SIBOOR_SOURCE} from './trinity-alpha-siboor-r2.mjs?v=f83d72cd2d1b617d7aaf';
-import {augmentTrinityAlpha,TRINITY_ALPHA_SOURCE} from './trinity-alpha-installation.mjs?v=d50a1e417b681bbd05ac';
-import {workspaceTask} from './workspace-lifecycle.mjs';
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=4668e82d8218c211d404';
-import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=a5d8f8bd22cf2ce71416';
+import {augmentTrinityAlphaHosts,TRINITY_ALPHA_HOST_SOURCE,alphaResetPose,alphaRangeNotice,alphaResetLabel} from './trinity-alpha-host-extensions.mjs?v=02714b279f1d812f09db';
+import {alphaReference,alphaLimits} from './trinity-alpha-installation.mjs?v=159bb822c85e8d788bf5';
+import {augmentTrinitySiboorR2,TRINITY_SIBOOR_SOURCE} from './trinity-alpha-siboor-r2.mjs?v=2842f31c6510fb8d22de';
+import {augmentTrinityAlpha,TRINITY_ALPHA_SOURCE} from './trinity-alpha-installation.mjs?v=159bb822c85e8d788bf5';
+import {workspaceTask} from './workspace-lifecycle.mjs?v=823ad76bd9034ec8d6ff';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=55c1a7b9e3348f9a683e';
+import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=c8ddfb0c37a1f8214b68';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import {partKey} from './head-assembly.js';
-import {v24HeadCatalog} from './machine-head-model.mjs?v=14319e9291c3e0e03c8a';
-import {setupConfigurations} from './configurations.js?v=c93cbf3ea8c833b1bf23';
+import {v24HeadCatalog} from './machine-head-model.mjs?v=f6a4a8725f0eccc0d4ef';
+import {setupConfigurations} from './configurations.js?v=fdfc6a738c7f5a963cb2';
 
-import {loadSiboorRegistration} from './siboor-catalog.mjs?v=0a49d2df46209203dcfe';
-import {stockProbeFit} from './probe-mounts.js';
+import {loadSiboorRegistration} from './siboor-catalog.mjs?v=4a4c93ae310e83be3b36';
+import {stockProbeFit} from './probe-mounts.js?v=04e46a5cb632cb99bbb0';
 
 import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs';
 import {bankPlan} from './changer-bank-model.mjs?v=024cc52a5bbc61da7506';
-import {setupChangerBank} from './changer-bank.js?v=a456213f82fc8c0142cb';
+import {setupChangerBank} from './changer-bank.js?v=b6791b219c8b5ef163e2';
 import {contentSHA256,acceptedMountValidation} from './mount-validation.mjs';
 import {acceptedHeadValidation}from './head-validation.mjs';
 import {withHeadAdditions} from './head-additions.mjs?v=e9a13cf98d4286e48e27';
@@ -77,7 +78,7 @@ export function createMachineHeads(scene,catalog,{render=()=>{}}={}){
   if(!state?.enabled)return {state,roots:[],entries:[]};const plan=bankPlan(state,catalog,catalog.bank_data,variant);
   const ids=[...new Set(plan.instances.map(p=>p.id))];await Promise.all(ids.map(async id=>{return workspaceTask(async()=>{const a=await asset(id);cache.get(id).loaded=a});}));
   const roots=[],entries=[];
-  for(const entry of plan.instances){const a=cache.get(entry.id).loaded,root=a.root.clone(true),lookup=new Map(a.entries.map(e=>[String(e.key),e])),hidden=new Set(entry.hidden_keys||[]);root.visible=true;root.name='Dock_'+entry.slot+'_'+entry.id;root.userData.tool_bank={slot:entry.slot,kind:entry.kind,asset:entry.id};root.position.copy(point(entry.translation_mm));
+  for(const entry of plan.instances){const a=cache.get(entry.id).loaded,root=cloneNativeLedTree(a.root),lookup=new Map(a.entries.map(e=>[String(e.key),e])),hidden=new Set(entry.hidden_keys||[]);root.visible=true;root.name='Dock_'+entry.slot+'_'+entry.id;root.userData.tool_bank={slot:entry.slot,kind:entry.kind,asset:entry.id};root.position.copy(point(entry.translation_mm));
    root.traverse(mesh=>{if(!mesh.isMesh)return;const row=lookup.get(String(partKey(mesh)));if(!row)throw Error('ドックの部品対応が不正です');mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();const materials=Array.isArray(mesh.material)?mesh.material:[mesh.material];mesh.visible=!hidden.has(row.key)&&!['rail_reference','dock','shuttle_reference'].includes(row.component);const offset=entry.part_offsets_mm?.[row.key];if(offset)mesh.position.add(point(offset));entries.push({...row,mesh,materials,colors:row.colors.map(c=>c.clone())})});roots.push(root);
   }
   return {state:plan.state,roots,entries};

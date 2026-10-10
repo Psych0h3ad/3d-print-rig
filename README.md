@@ -38,6 +38,13 @@ own may still lack a machine mounting registration; installed-head support and
 parked-tool bank support are separate. Native CAD terms and component licenses
 remain separate from the viewer software license.
 
+Under **Appearance → Toolhead lighting**, switch source-modelled LEDs on or
+off and adjust brightness and logo RGB effects. Nozzle illumination stays
+white. Disco chamber lighting has separate controls. LED lenses emit while
+their PCB, contacts and package retain their hardware materials; source
+diffusers follow their own installed LED. Models without an identified LED
+PCB do not gain synthetic hardware or lighting.
+
 ## Documentation and development
 
 [Documentation index](docs/README.md) · [Adding and maintaining combinations](docs/MAINTENANCE.md) · [Review requirements](docs/MACHINE_REVIEW.md) · [Translations](docs/TRANSLATING.md)

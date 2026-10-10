@@ -1,5 +1,5 @@
-import {setupLanguage,translate,formatMessage} from '../viewer/i18n.mjs?v=a6a3089071d554fe1eaf';
-import {setupHeaderThemeToggle} from '../viewer/display-preferences.mjs?v=9860960509e28d17f3fd';
+import {setupLanguage,translate,formatMessage} from '../viewer/i18n.mjs?v=0fdf472eb0556b50017f';
+import {setupHeaderThemeToggle} from '../viewer/display-preferences.mjs?v=3b735c3e32640589ed26';
 import {matchingRows,supportURL} from './model.mjs?v=4ddcd0ed4a4aee9387d0';
 
 const $=id=>document.getElementById(id),el=(tag,text,className)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(className)n.className=className;return n};
