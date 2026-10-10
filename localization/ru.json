@@ -9141,6 +9141,26 @@
     "gallery.count": {
       "source_revision": "8668ab0055407b8d3535",
       "text": "Показано {0} из {1} принтеров"
+    },
+    "machine.247zero.caption": {
+      "source_revision": "2b836a29faf09a7e6346",
+      "text": "247zero BETA2 · 120 / Crazy Volcano / M4 Bowden"
+    },
+    "machine.247zero.description": {
+      "source_revision": "6384be2077b4f15b4237",
+      "text": "247zero BETA2 · 120 mm / карбоновый портал ULW / Crazy Volcano / M4 Bowden"
+    },
+    "machine.247zero.source_notice": {
+      "source_revision": "0c385309a44df2e3add8",
+      "text": "BETA2 CAD v43 с оригинальными юбками V0.2. Движение и маршрут Bowden показаны для предварительного просмотра; пределы перемещения в прошивке и зазоры всей машины не проверены."
+    },
+    "machine.247zero.assembly_notice": {
+      "source_revision": "f55bd8da35a885c7ef1f",
+      "text": "BETA2 / v43, оригинальные юбки V0.2 и крепёж, размещённый по посадочным поверхностям исходной модели. Валидность тел нативной CAD-модели и зазоры всей машины остаются открытыми вопросами."
+    },
+    "machine.247zero.motion_notice": {
+      "source_revision": "6c8869cd476b50d171fa",
+      "text": "Предварительный просмотр движения CAD; пределы перемещения в прошивке не предоставлены. Фаза зубьев ремней XY и срезанные концы у зажимов не моделируются. Длина Bowden условная; оси исходных фитингов задают его концы."
     }
   }
 }

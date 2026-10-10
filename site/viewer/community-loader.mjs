@@ -2,7 +2,7 @@ import {loadedPrinterAssetIdentity} from './gcode-loaded-asset-identity.mjs?v=42
 import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
 import {extraAssetBase,checkedExtraAsset} from './extra-asset-integrity.mjs?v=737f5dc17ca78791c0d8';
 import {beginModelLoading} from './model-progress.mjs?v=6b41a2b9f7626039b7e6';
-import {createCommunityAdapter} from './community-adapter.mjs?v=f8373d55283539bd5074';
+import {createCommunityAdapter} from './community-adapter.mjs?v=139c1bf53e2b38992b66';
 import {applyNativeMotionProfile,loadNativeMotionProfile} from './native-motion-profile.mjs?v=91532eb992519143f437';
 export async function loadCommunity(index,machine,{signal}={}){
  const spec=index.machines[machine];if(!spec||spec.machine_id!==machine)throw Error('Unknown community printer');
@@ -13,7 +13,8 @@ export async function loadCommunity(index,machine,{signal}={}){
  const base=extraAssetBase({...index,base_url:spec.base_url??index.base_url,local_directory:spec.local_directory??index.local_directory},import.meta.url),checked=name=>checkedExtraAsset(base,spec.files[name],{signal,onProgress:e=>progress.update(name,e)}),read=async name=>JSON.parse(new TextDecoder().decode(await checked(name)));
  let [manifest,profile,bytes,...extraBytes]=await Promise.all([read('assembly_manifest.json'),read('machine_profile.json'),checked('model.glb'),...extraModels.map(checked)]);
  if(manifest.machine_id!==machine||profile.machine_id!==machine||manifest.native_leaf_count!==spec.parts)throw Error('Native identity mismatch');
- ({manifest,profile}=applyNativeMotionProfile(manifest,profile,await loadNativeMotionProfile(machine,{signal}),spec.files['model.glb'].decoded_sha256));
+ const registration=await loadNativeMotionProfile(machine,{signal})??(profile.motion_registration?.model_sha256?profile.motion_registration:null);
+ ({manifest,profile}=applyNativeMotionProfile(manifest,profile,registration,spec.files['model.glb'].decoded_sha256));
  progress.assembling();const root=(await new GLTFLoader().parseAsync(bytes.buffer,base.href)).scene;
  for(const data of extraBytes)root.add((await new GLTFLoader().parseAsync(data.buffer,base.href)).scene);
  const replay_asset_identity=await loadedPrinterAssetIdentity({machine,spec,manifest,profile,checkedFileNames:names});

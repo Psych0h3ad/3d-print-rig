@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {machineChoices} from '../site/viewer/machines.js';
 import {machineReviewInputs} from './machine_review_inputs.mjs';
 const suites={
+ '247zero':['community_state','247zero'],
  doomcube:['community_state','doomcube'],
  tictac:['community_state','requested_assemblies','native_motion_profiles'],the100:['community_state','requested_assemblies','native_motion_profiles'],rook:['community_state','requested_assemblies','native_motion_profiles'],satsuma:['community_state','requested_assemblies','native_motion_profiles'],
  sovol_sv08:['community_state','sovol_reference','native_motion_profiles'],

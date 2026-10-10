@@ -14,10 +14,10 @@ import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
 import {createV0Adapter} from './v0_adapter.mjs?v=4ee2ec34955631397cf3';
-import {setupMachineNavigation} from './machines.js?v=cea8407065ba89be6304';
+import {setupMachineNavigation} from './machines.js?v=f884e9be087c61766aae';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=9c6b06804a9e64da0b2f';
-import {setupPublicInfo} from './public-info.js?v=88f2df333bbaaed0b74d';
+import {setupPublicInfo} from './public-info.js?v=ce03adfc209799e0d8ad';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=a84362027155c83c4e26';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
 export async function mount(scope){

@@ -9141,6 +9141,26 @@
     "gallery.count": {
       "source_revision": "8668ab0055407b8d3535",
       "text": "전체 {1}개 중 {0}개 표시"
+    },
+    "machine.247zero.caption": {
+      "source_revision": "2b836a29faf09a7e6346",
+      "text": "247zero BETA2 · 120 / Crazy Volcano / M4 Bowden"
+    },
+    "machine.247zero.description": {
+      "source_revision": "6384be2077b4f15b4237",
+      "text": "247zero BETA2 · 120 mm / ULW 카본 갠트리 / Crazy Volcano / M4 Bowden"
+    },
+    "machine.247zero.source_notice": {
+      "source_revision": "0c385309a44df2e3add8",
+      "text": "BETA2 CAD v43과 원본 V0.2 스커트를 사용합니다. 이동과 Bowden 경로는 미리보기이며, 펌웨어 이동 한계와 기계 전체의 간섭 여유는 검증되지 않았습니다."
+    },
+    "machine.247zero.assembly_notice": {
+      "source_revision": "f55bd8da35a885c7ef1f",
+      "text": "BETA2 / v43, 원본 V0.2 스커트와 원본 CAD의 체결면에 맞춘 고정부품입니다. 네이티브 CAD 형상의 유효성과 기계 전체의 간섭 여유는 미해결 사항으로 남아 있습니다."
+    },
+    "machine.247zero.motion_notice": {
+      "source_revision": "6c8869cd476b50d171fa",
+      "text": "CAD 이동 미리보기입니다. 펌웨어 이동 한계는 제공되지 않았습니다. XY 벨트 톱니의 위상과 클램프의 절단 끝은 시뮬레이션하지 않습니다. Bowden 길이는 예시이며, 원본 피팅 축이 양 끝의 위치를 정합니다."
     }
   }
 }

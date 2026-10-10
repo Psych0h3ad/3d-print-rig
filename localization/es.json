@@ -9141,6 +9141,26 @@
     "gallery.count": {
       "source_revision": "8668ab0055407b8d3535",
       "text": "Mostrando {0} de {1} máquinas"
+    },
+    "machine.247zero.caption": {
+      "source_revision": "2b836a29faf09a7e6346",
+      "text": "247zero BETA2 · 120 / Crazy Volcano / M4 Bowden"
+    },
+    "machine.247zero.description": {
+      "source_revision": "6384be2077b4f15b4237",
+      "text": "247zero BETA2 · 120 mm / pórtico ULW de carbono / Crazy Volcano / M4 Bowden"
+    },
+    "machine.247zero.source_notice": {
+      "source_revision": "0c385309a44df2e3add8",
+      "text": "BETA2 CAD v43 con los faldones originales de V0.2. El movimiento y el recorrido Bowden son vistas previas; los límites del firmware y las holguras de toda la máquina siguen sin verificar."
+    },
+    "machine.247zero.assembly_notice": {
+      "source_revision": "f55bd8da35a885c7ef1f",
+      "text": "BETA2 / v43, faldones originales de V0.2 y fijaciones asentadas según el CAD original. La validez de los sólidos del CAD nativo y las holguras de toda la máquina siguen pendientes."
+    },
+    "machine.247zero.motion_notice": {
+      "source_revision": "6c8869cd476b50d171fa",
+      "text": "Vista previa del movimiento CAD; no se proporcionan los límites del firmware. No se simulan la fase de los dientes de las correas XY ni los extremos cortados de las abrazaderas. La longitud Bowden es ilustrativa; los ejes de los racores originales definen sus extremos."
     }
   }
 }

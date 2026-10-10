@@ -11535,6 +11535,31 @@
       "kind": "template",
       "ja": "{1}機種中 {0}機種を表示",
       "en": "Showing {0} of {1} machines"
+    },
+    "machine.247zero.caption": {
+      "kind": "message",
+      "ja": "247zero BETA2 · 120 / Crazy Volcano / M4 Bowden",
+      "en": "247zero BETA2 · 120 / Crazy Volcano / M4 Bowden"
+    },
+    "machine.247zero.description": {
+      "kind": "message",
+      "ja": "247zero BETA2 · 120 mm / ULWカーボンガントリー / Crazy Volcano / M4 Bowden",
+      "en": "247zero BETA2 · 120 mm / ULW carbon gantry / Crazy Volcano / M4 Bowden"
+    },
+    "machine.247zero.source_notice": {
+      "kind": "message",
+      "ja": "BETA2 CAD v43と元のV0.2スカートを使用。動作とBowden経路はプレビューです。ファームウェアの移動限界と機体全体のクリアランスは未検証です。",
+      "en": "BETA2 CAD v43 with original V0.2 skirts. Motion and Bowden routing are previews; firmware limits and whole-machine clearance remain unverified."
+    },
+    "machine.247zero.assembly_notice": {
+      "kind": "message",
+      "ja": "BETA2 / v43、元のV0.2スカートと原本の取付面に合わせた固定部品。ネイティブCADの形状の妥当性と機体全体のクリアランスには未解決事項があります。",
+      "en": "BETA2 / v43, original V0.2 skirts and source-seated hardware. Native CAD validity and whole-machine clearance remain open findings."
+    },
+    "machine.247zero.motion_notice": {
+      "kind": "message",
+      "ja": "CAD動作プレビューです。ファームウェアの移動限界は提供されていません。XYベルトの歯の位相とクランプ部の切断端は再現していません。Bowdenの長さは表示例で、両端は原本の継手軸に合わせています。",
+      "en": "CAD movement preview; firmware limits are not supplied. XY belt tooth phase and clamp cut ends are not simulated. Bowden length is illustrative; native fitting axes define its ends."
     }
   }
 }

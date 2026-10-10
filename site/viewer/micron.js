@@ -7,10 +7,10 @@ import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
 import {createMicronAdapter} from './micron-adapter.mjs?v=f476eef2731027bc0959';
-import {setupMachineNavigation} from './machines.js?v=cea8407065ba89be6304';
+import {setupMachineNavigation} from './machines.js?v=f884e9be087c61766aae';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=9c6b06804a9e64da0b2f';
-import {setupPublicInfo} from './public-info.js?v=88f2df333bbaaed0b74d';
+import {setupPublicInfo} from './public-info.js?v=ce03adfc209799e0d8ad';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=workspace-belts-1';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=a84362027155c83c4e26';
 export async function mount(scope){

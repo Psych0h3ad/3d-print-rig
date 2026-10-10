@@ -467,6 +467,32 @@
       },
       "base_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/",
       "local_directory": "large-voron-assets"
+    },
+    "247zero_beta2_120": {
+      "machine_id": "247zero_beta2_120",
+      "parts": 2118,
+      "base_url": "https://psych0h3ad.github.io/3d-print-rig-247zero-models/",
+      "local_directory": "247zero-assets",
+      "files": {
+        "assembly_manifest.json": {
+          "path": "247zero/assembly_manifest.json",
+          "bytes": 1908878,
+          "sha256": "e067cb4ee63d00f0826442d76db48ee004255a51a3bed2e889d0125aed7da0b0"
+        },
+        "machine_profile.json": {
+          "path": "247zero/machine_profile.json",
+          "bytes": 26873,
+          "sha256": "5ee3d6ec812b31a68e7d6491aff5657bb2e5ebf671f6989a0ad3661dc871a1e7"
+        },
+        "model.glb": {
+          "path": "247zero/model.glb.gz",
+          "bytes": 61917684,
+          "sha256": "20191d4b4f3f29497b1a60961ca93f27f01c2e0b337e713c0033595a4095830c",
+          "encoding": "gzip",
+          "decoded_bytes": 154958056,
+          "decoded_sha256": "6fa5a0e87a38f24334177d96405e834debc8776f17a063be7d6cc89fd99613d7"
+        }
+      }
     }
   }
 }

@@ -1,5 +1,5 @@
 import {workspaceTask,workspaceListen} from './workspace-lifecycle.mjs?v=823ad76bd9034ec8d6ff';
-import {formatMessage} from './i18n.mjs?v=4cc63d15a7b73bcd1e81';
+import {formatMessage} from './i18n.mjs?v=32015863389456390e70';
 export function accessoryIds(catalog,data={}){
  const ids=data.accessories??[];
  if(!Array.isArray(ids)||ids.some(id=>typeof id!=='string'||!catalog.accessories?.some(a=>a.id===id)))throw Error('未登録の追加Modが含まれています。');

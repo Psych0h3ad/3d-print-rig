@@ -12,10 +12,10 @@ import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
 import {loadRatRigMachine,disposeRatRig} from './ratrig-loader.mjs?v=9782f451eec4a1a9eec0';
 import {createRatRigGcodePreview} from './ratrig_gcode_preview.mjs';
 import {ratRigSchema,validateRatRigConfiguration,ratRigAxisRanges} from './ratrig-ui-state.mjs?v=workspace-belts-1';
-import {setupMachineNavigation} from './machines.js?v=cea8407065ba89be6304';
+import {setupMachineNavigation} from './machines.js?v=f884e9be087c61766aae';
 import {setupRenderExport} from './render-export.js?v=9c6b06804a9e64da0b2f';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
-import {setupPublicInfo} from './public-info.js?v=88f2df333bbaaed0b74d';
+import {setupPublicInfo} from './public-info.js?v=ce03adfc209799e0d8ad';
 export async function mount(scope){
 const $=id=>document.getElementById(id),stage=$('stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=.9;stage.append(renderer.domElement);

@@ -25,7 +25,8 @@ const [coverage, source, es, ko, ru, html, css, moduleSource] = await Promise.al
 ]);
 const records = new Map(coverage.machines.map(row => [row.id, row]));
 const available = machineChoices.filter(row => row.available !== false), unavailable = machineChoices.filter(row => row.available === false);
-assert.equal(records.size, 65, 'Release 113 must include the exact 65 current machine review records');
+assert.equal(gallerySchema, 'machine-thumbnails/113', 'Keep the exact thumbnail schema');
+assert.equal(records.size, available.length, 'Release coverage must include every current available machine');
 assert.deepEqual(available.map(row => row.id).sort(), [...records.keys()].sort(), 'Source registrations must equal current actual model coverage, including V0 and community printers');
 assert.equal(unavailable.length, 6, 'Six CAD-missing registrations stay outside the collection');
 
@@ -38,7 +39,7 @@ assert.deepEqual(validateTranslations({schema_version: 1, source_language: 'en',
   Object.fromEntries(Object.entries(dictionaries).map(([language, locale]) => [language, {...locale, messages: Object.fromEntries(galleryIDs.map(id => [id, locale.messages[id]]))}]))), [], 'All gallery translations have current revisions and preserved arguments');
 for (const id of [...galleryIDs, 'ui.printer', 'ui.toolhead', 'ui.gantry', 'ui.just_for_fun', 'ui.support_index', 'ui.dark_mode', 'text.1085']) {
   for (const language of supportedLanguages) {
-    const text = translator.formatMessage(id, {0: 'VORON Trident 350', 1: '65'}, language);
+    const text = translator.formatMessage(id, {0: 'VORON Trident 350', 1: String(available.length)}, language);
     assert(text && text !== id && !/\{\d+\}/u.test(text), id + ' in ' + language);
     if (language !== 'ja') assert(!/[\u3040-\u30ff\u3400-\u9fff]/u.test(text), 'No untranslated Japanese: ' + id + ' in ' + language);
   }
@@ -171,7 +172,7 @@ for (const language of supportedLanguages) {
   release({ok: true, json: async () => structuredClone(fixture)}); await mounted;
   assert.equal(requests, 1, 'Only the static index is fetched'); assert.equal(env.ids.machineGrid.getAttribute('aria-busy'), 'false');
   assert.equal(env.ids.machineSearch.disabled, false); assert.equal(env.ids.galleryEmpty.hidden, true);
-  assert(env.ids.machineGrid.children.length > 0 && env.ids.machineGrid.children.length < 65);
+  assert(env.ids.machineGrid.children.length > 0 && env.ids.machineGrid.children.length < available.length);
   for (const card of env.ids.machineGrid.children) {
     const image = descendants(card).find(node => node.tagName === 'IMG');
     assert.equal(image.loading, 'lazy'); assert.equal(image.decoding, 'async'); assert.equal(image.width, 320); assert.equal(image.height, 240);
@@ -185,12 +186,12 @@ for (const language of supportedLanguages) {
   env.ids.machineSearch.value = 'no-such-model'; env.ids.machineSearch.dispatchEvent(new Event('input'));
   assert.equal(env.ids.machineGrid.children.length, 0); assert.equal(env.ids.galleryEmpty.hidden, false);
   assert.equal(new URL(env.window.location.href).searchParams.get('q'), 'no-such-model');
-  env.ids.galleryEmptyReset.dispatchEvent(new Event('click')); assert.equal(env.ids.machineGrid.children.length, 65);
+  env.ids.galleryEmptyReset.dispatchEvent(new Event('click')); assert.equal(env.ids.machineGrid.children.length, available.length);
   assert.equal(env.ids.machineSearch.focused, true); assert.equal(env.ids.galleryReset.disabled, true);
   assert(!new URL(env.window.location.href).searchParams.has('q')); assert(!new URL(env.window.location.href).searchParams.has('family'));
   for (const next of [...supportedLanguages, ...supportedLanguages.toReversed(), language]) {
     env.lang.setLanguage(next);
-    assert.equal(env.ids.machineGrid.children.length, 65);
+    assert.equal(env.ids.machineGrid.children.length, available.length);
     for (const card of env.ids.machineGrid.children) assert.equal(new URL(card.children[0].href).searchParams.get('lang'), next);
     assert.equal(env.theme.getAttribute('aria-label'), translator.formatMessage('ui.dark_mode', {}, next));
   }
@@ -202,12 +203,12 @@ try {
   assert.equal(failed.ids.galleryError.hidden, false); assert.equal(failed.ids.machineGrid.getAttribute('aria-busy'), 'false');
   assert.equal(failed.ids.galleryRetry.disabled, false); assert.equal(failed.ids.machineGrid.children.length, 0);
   failed.ids.galleryRetry.dispatchEvent(new Event('click')); await new Promise(resolve => setImmediate(resolve));
-  assert.equal(failures, 2); assert.equal(failed.ids.galleryError.hidden, true); assert.equal(failed.ids.machineGrid.children.length, 65);
+  assert.equal(failures, 2); assert.equal(failed.ids.galleryError.hidden, true); assert.equal(failed.ids.machineGrid.children.length, available.length);
 } finally { console.warn = originalWarn; }
 const hostile = createMachineCard({...trident, label: '<img src=x onerror=alert(1)>'}, {document: failed.document, current, language: 'en', translate: text => text, message: id => id});
 assert.equal(descendants(hostile).filter(node => node.tagName === 'IMG').length, 1, 'Hostile catalog text cannot create markup');
 assert(descendants(hostile).some(node => node.tagName === 'H3' && node.textContent === '<img src=x onerror=alert(1)>'));
-console.log('Gallery source checks passed: exact65 registrations, 5 languages, all card routes, filters, lazy images, safe URLs, loading/error/retry/empty states and A-to-B-to-A language changes.');
+console.log('Gallery source checks passed: exact' + available.length + ' registrations, 5 languages, all card routes, filters, lazy images, safe URLs, loading/error/retry/empty states and A-to-B-to-A language changes.');
 if (sourceOnly) { console.log('SOURCE ONLY: actual thumbnail/index/support delivery is not audited by this mode.'); process.exit(0); }
 
 // Current actual image/model evidence is mandatory for the asset phase. The
@@ -259,8 +260,8 @@ for (const row of actual) {
 const translationBytes = Buffer.byteLength(JSON.stringify(Object.fromEntries(galleryIDs.map(id => [id, source.entries[id]])))
   + ['es', 'ko', 'ru'].map(language => JSON.stringify(Object.fromEntries(galleryIDs.map(id => [id, dictionaries[language].messages[id]])))).join(''));
 const sourceBytes = Buffer.byteLength(html + css + moduleSource), totalBytes = sourceBytes + translationBytes + imageBytes;
-assert(totalBytes < 1_300_000, 'Gallery source + new translations + actual65 thumbnails exceed 1.3 MB: ' + totalBytes);
-console.log('Actual gallery asset checks passed: current65 coverage model/stored/companion hashes, exact image hashes and registered routes; gallery payload ' + totalBytes + ' bytes.');
+assert(totalBytes < 1_300_000, 'Gallery source + new translations + actual registered thumbnails exceed 1.3 MB: ' + totalBytes);
+console.log('Actual gallery asset checks passed: current' + available.length + ' coverage model/stored/companion hashes, exact image hashes and registered routes; gallery payload ' + totalBytes + ' bytes.');
 if (['--site', '--support-index'].includes(args[0])) {
   const supportPath = args[0] === '--support-index' ? path.resolve(args[1]) : path.join(site, 'support/data/index.json');
   const support = JSON.parse(await fs.readFile(supportPath, 'utf8'));
@@ -276,5 +277,5 @@ if (['--site', '--support-index'].includes(args[0])) {
   }
   assert.deepEqual(support.targets.filter(target => ['supported', 'stock', 'available'].includes(target.status) && records.has(target.id)).map(target => target.id).sort(), [...records.keys()].sort());
   for (const row of unavailable) { assert.equal(targets.get(row.id)?.status, 'missing'); assert(!actual.some(machine => machine.id === row.id)); }
-  console.log('Actual support-index audit passed: exact65 coverage IDs/pages/families/sizes, including V0/community; all6 missing-CAD registrations excluded.');
+  console.log('Actual support-index audit passed: exact' + available.length + ' coverage IDs/pages/families/sizes, including V0/community; all6 missing-CAD registrations excluded.');
 } else console.log('Support delivery remains a separate required audit: run --site against the assembled release before publication.');
