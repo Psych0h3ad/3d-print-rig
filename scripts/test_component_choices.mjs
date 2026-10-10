@@ -1,4 +1,9 @@
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {spawnSync} from 'node:child_process';
 import {choicesFor,resolveVariant,choiceChanges,headBuilderDimensions} from '../site/viewer/configuration-model.js';
 import {translate} from '../site/viewer/i18n.mjs';
 const row=(id,extruder,hotend,cooling,mount,gantry,probe='none',board='none')=>({id,toolhead:'sb',extruder,hotend,cooling,mount,gantry,probe,board,carriage:'standard'});
@@ -29,3 +34,22 @@ assert.deepEqual(choiceChanges(installed,kit,'toolhead','sphinx'),['gantry']);
 const withNine={...installed,variants:[...installed.variants,{...installed.variants[1],id:'sphinx-nine',gantry:'awd'}]};
 assert.equal(resolveVariant(withNine,{...kit,toolhead:'sphinx'},'toolhead').gantry,'awd');
 console.log('Installed heads requiring another registered gantry stay discoverable; a fitting current gantry takes precedence.');
+
+// Exercise the real catalog producer: physical CRLF would change its input hash
+// between a Windows review build and the Linux Pages build.
+const mergeDirectory=fs.mkdtempSync(path.join(os.tmpdir(),'3d-print-rig-catalog-'));
+try{
+ const original={schema:'3d-print-rig-components-v1',items:[{id:'native',module:'native',name:'日本語\r\n한국어 / Русский'}],assets:{native:{file:'native.glb',sha256:'a'.repeat(64)}}};
+ const additions={schema:'3d-print-rig-components-v1',version:'format-test',items:[{id:'addition',module:'addition',name:'Español'}],assets:{addition:{file:'addition.glb',sha256:'b'.repeat(64)}}};
+ for(const[name,value]of [['COMPONENT_LIBRARY.json',original],['COMPONENT_ADDITIONS.json',additions]])fs.writeFileSync(path.join(mergeDirectory,name),JSON.stringify(value)+'\n');
+ const result=spawnSync(process.env.PYTHON||'python',['-B','-c','import sys;sys.path.insert(0,sys.argv[1]);from merge_component_library import merge_components;merge_components(sys.argv[2])',fileURLToPath(new URL('.',import.meta.url)),mergeDirectory],{encoding:'utf8',env:{...process.env,PYTHONUTF8:'1'},windowsHide:true});
+ assert.equal(result.status,0,result.stderr||String(result.error));
+ const expected={...original,items:[...original.items,...additions.items],assets:{...original.assets,...additions.assets},additions_version:additions.version};
+ const stored=fs.readFileSync(path.join(mergeDirectory,'COMPONENT_LIBRARY.json'));
+ assert.deepEqual(stored,Buffer.from(JSON.stringify(expected)+'\n'),'Actual merged catalog bytes must use UTF-8 and LF on every platform');
+ assert.equal(JSON.parse(stored).items[0].name,original.items[0].name,'Preserve CRLF inside a JSON string; only the physical output newline is canonical');
+}finally{
+ for(const name of ['COMPONENT_LIBRARY.json','COMPONENT_ADDITIONS.json'])fs.unlinkSync(path.join(mergeDirectory,name));
+ fs.rmdirSync(mergeDirectory);
+}
+console.log('Actual component catalog merge preserves Unicode, source identities and JSON string controls with portable LF output.');

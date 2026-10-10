@@ -150,8 +150,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 1819641,
-      "sha256": "0dc7750c421bce4fbd58da0c7a3369b973c02396d23252455ede76bd07649634"
+      "bytes": 1867012,
+      "sha256": "40d601315f63728de2956294a75f3ee9b40186baa53d2496bf2cc4d14ab6ffe5"
     },
     {
       "path": "docs/MADMAX_NATIVE_JOINT_101.json",
@@ -270,8 +270,8 @@
     },
     {
       "path": "docs/RELEASE_ASSET_REVIEW_92.json",
-      "bytes": 1251093,
-      "sha256": "7bf7b4a3ac475fe8ea28b6bed57e462044a5540557ba13d23ac6bf2f60c6719c"
+      "bytes": 1251144,
+      "sha256": "ac5c8dd7a1a860cc85c9395d3b2fe80b886b43b3866d8899dc504e1faac45ae1"
     },
     {
       "path": "docs/SB_PROBE_COMBINATIONS.md",
@@ -730,8 +730,8 @@
     },
     {
       "path": "scripts/merge_component_library.py",
-      "bytes": 1144,
-      "sha256": "891397631c030ad2f2c16722c5a72a988c105ce911294d38cb396c0a6445d5d6"
+      "bytes": 1157,
+      "sha256": "89b30b162a6cf8b7a2de9fc1992475606d00d25bd17ab281c591ea05706c437b"
     },
     {
       "path": "scripts/pack_cad_background.py",
@@ -840,8 +840,8 @@
     },
     {
       "path": "scripts/test_component_choices.mjs",
-      "bytes": 3971,
-      "sha256": "768346c4446b060c46bb5af28f5c224b068374604985fea6117d7b34185d5ef3"
+      "bytes": 6175,
+      "sha256": "f34a52541621349dd79c3cccc5255fa43d28cece5bd335bd344a581f8b7ca78e"
     },
     {
       "path": "scripts/test_configuration_draft.mjs",

@@ -20,4 +20,4 @@ def merge_components(target):
     library['items'].extend(additions['items'])
     library['assets'].update(additions['assets'])
     library['additions_version']=additions['version']
-    library_file.write_text(json.dumps(library,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf8')
+    library_file.write_text(json.dumps(library,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf8',newline='\n')
