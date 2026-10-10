@@ -1,0 +1,16 @@
+// Source-specific standalone printed housing. The original mechanical findings remain visible.
+export const a4tPrintedReference = {"schema":"a4t-printed-head-reference-107","source_variant":"ahi17__a4t_rapido_prints","asset_id":"a4t_printed_led_housing_107","asset":{"component_id":"a4t_printed_led_housing_107","external":{"base_url":"https://psych0h3ad.github.io/3d-print-rig-community-models/a4t-printed-housing-v1/","local_directory":"a4t-printed-housing-v1"},"files":{"model.glb":{"path":"model.glb.gz","bytes":4189790,"sha256":"f3c673cd10ea78ab9f408d61d7686de845075e6d10988f5fdd4f5c4443c3af77","encoding":"gzip","decoded_bytes":10460500,"decoded_sha256":"74ce4e92952d75662437c456b911a73dd561830243f8bcab7c3fc612483cd471"},"parts.json":{"path":"parts.json","bytes":23587,"sha256":"078580267da4f95453690309e00b03c69e1503dd2beab68527178d77440facd2"}},"parts":64},"cooling_option":{"id":"a4t_printed_led_housing","label":"A4T LEDハウジング（印刷部品のみ）"},"source":{"url":"https://github.com/Armchair-Heavy-Industries/A4T/tree/e1fc27113bb3061458f528db837d517c35e0b88a","version":"e1fc27113bb3061458f528db837d517c35e0b88a","license":"CC-BY-NC-SA-4.0"},"variant_id":"a4t107__rapido1_hf__printed_led_housing","companion_scope":{"native_pair_checks":186,"component_body_clear":true,"PCB_harness_qualified":false,"whole_installed_fit_qualified":false,"whole_head_certified":false}};
+const clone=v=>structuredClone(v);
+const housingNote='LEDキャリア・フィルター・半透明ディフューザーの3部品を表示。基板・配線・点灯は未対応。';
+const reviewNote='追加した3印刷部品の取付面と既存部品に対する静止形状を検査。LED基板・配線・機体全体の適合は未検証。';
+export function withA4TPrintedReference(catalog){
+ const spec=a4tPrintedReference,source=catalog.variants.find(v=>v.id===spec.source_variant);
+ if(!source)return catalog;
+ if(source.toolhead!=='a4t'||source.mount!=='fixed'||source.hotend!=='rapido1_hf'||source.extruder!=='ahi_sherpa_mini_a3'||source.base_asset!=='head_a4t_rapido_hf_sherpa_assembled'||source.registration_source||source.machine_head||!Array.isArray(source.modules)||source.modules.length||!Array.isArray(source.head_translation_mm)||source.head_translation_mm.length!==3||source.head_translation_mm.some(n=>n!==0)||!Array.isArray(source.base_hidden_keys)||source.base_hidden_keys.length||source.probe!=='none'||source.board!=='none'||!source.fit?.complete_head_native)throw Error('A4T printed reference source tuple changed');
+ if(catalog.variants.some(v=>v.id===spec.variant_id)||catalog.base_assets[spec.asset_id]||catalog.assets[spec.asset_id]||catalog.cooling_options.some(v=>v.id===spec.cooling_option.id))throw Error('Duplicate A4T printed reference');
+ const variant=clone(source);
+ Object.assign(variant,{id:spec.variant_id,base_asset:spec.asset_id,cooling:spec.cooling_option.id,head_only:true,hardware_assembled:true,display_scope:'LEDハウジングの印刷部品を装着。LED基板・配線は未装着。',notes:[housingNote,...source.notes]});
+ variant.fit.complete_head_native={...clone(source.fit.complete_head_native),base:spec.asset_id,hotend:spec.asset_id,extruder:spec.asset_id,notes:[...source.fit.complete_head_native.notes,reviewNote]};
+ variant.fit.printed_companions=clone(spec.companion_scope);
+ return {...catalog,base_assets:{...catalog.base_assets,[spec.asset_id]:clone(spec.asset)},cooling_options:[...catalog.cooling_options,clone(spec.cooling_option)],variants:[...catalog.variants,variant],sources:[...catalog.sources,clone(spec.source)]};
+}

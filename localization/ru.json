@@ -8949,6 +8949,22 @@
     "doomcube.description": {
       "source_revision": "b4593a3be175c0c0654f",
       "text": "DoomCube 2 · 350 mm / двойной корпус / исходный CAD"
+    },
+    "message.a4t_printed_housing": {
+      "source_revision": "44a8e89c214d29adae31",
+      "text": "Показаны печатные держатель LED, фильтр и полупрозрачный рассеиватель. Платы LED, проводка и освещение не включены."
+    },
+    "message.a4t_printed_scope": {
+      "source_revision": "dd7fa1a1aabdbf429c4d",
+      "text": "Печатный корпус LED установлен. Платы LED и проводка не установлены."
+    },
+    "message.a4t_printed_review": {
+      "source_revision": "78437b0a1ea31e6b30eb",
+      "text": "Проверены сопрягаемые поверхности и статическая геометрия 3 добавленных печатных деталей относительно существующих деталей. Платы LED, проводка и совместимость со всей машиной не проверены."
+    },
+    "message.a4t_printed_option": {
+      "source_revision": "9a81a3afe502db9528e1",
+      "text": "Корпус LED A4T (только печатные детали)"
     }
   }
 }

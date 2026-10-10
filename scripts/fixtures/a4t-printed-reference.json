@@ -1,0 +1,77 @@
+{
+  "id": "ahi17__a4t_rapido_prints",
+  "toolhead": "a4t",
+  "mount": "fixed",
+  "extruder": "ahi_sherpa_mini_a3",
+  "hotend": "rapido1_hf",
+  "gantry": "printed_source",
+  "carriage": "source",
+  "probe": "none",
+  "board": "none",
+  "cooling": "a4t_dual4010_2510",
+  "belt_width_mm": null,
+  "base_asset": "head_a4t_rapido_hf_sherpa_assembled",
+  "base_hidden_keys": [],
+  "head_translation_mm": [
+    0,
+    0,
+    0
+  ],
+  "modules": [],
+  "head_only": true,
+  "notes": [
+    "左右の4010ブロワーと2510冷却ファン、Sherpa Miniの実体CAD、ホットエンド、固定ネジを組み付け済み。ファンの排気口は下向き、吸気口は外向き。",
+    "原寸の取付面・フィラメント軸・穴位置を検査。メーカー別のファン外形・実配線・機体取付・全可動域は未検証です。",
+    "LED・逆流防止インサート・ツールヘッド基板・キャリッジは未装着。部品不足と静止CADの接触を検査情報に明記しています。",
+    "A4Tは純正VORON前方アイドラーと前隅で干渉する場合があります。BFI/Ramalama等と実機の可動域を確認してください。",
+    "サポート省略モデル：カウリング原本の印刷用サポート6個を除外。残る本体の寸法は保持しています。",
+    "標準Cartographer CNCキャリッジは原作者が非対応と案内。プローブ取付の変更が必要です。"
+  ],
+  "display_scope": "A4T / Rapido HF · 4010×2 / 2510組立",
+  "fit": {
+    "complete_head_native": {
+      "base": "head_a4t_rapido_hf_sherpa_assembled",
+      "hotend": "head_a4t_rapido_hf_sherpa_assembled",
+      "extruder": "head_a4t_rapido_hf_sherpa_assembled",
+      "state": "contact",
+      "cross_module_body_passed": false,
+      "body_collisions": [
+        {
+          "a": "cowl",
+          "b": "duct",
+          "volume_mm3": 0.8243437224838795
+        }
+      ],
+      "notes": [
+        "左右の4010ブロワーと2510冷却ファン、Sherpa Miniの実体CAD、ホットエンド、固定ネジを組み付け済み。ファンの排気口は下向き、吸気口は外向き。",
+        "原寸の取付面・フィラメント軸・穴位置を検査。メーカー別のファン外形・実配線・機体取付・全可動域は未検証です。",
+        "LED・逆流防止インサート・ツールヘッド基板・キャリッジは未装着。部品不足と静止CADの接触を検査情報に明記しています。",
+        "A4Tは純正VORON前方アイドラーと前隅で干渉する場合があります。BFI/Ramalama等と実機の可動域を確認してください。",
+        "サポート省略モデル：カウリング原本の印刷用サポート6個を除外。残る本体の寸法は保持しています。",
+        "標準Cartographer CNCキャリッジは原作者が非対応と案内。プローブ取付の変更が必要です。"
+      ],
+      "geometry_revision": "a4t-native-hardware-20261004",
+      "seat_gap_mm": 4.263256414560601e-14,
+      "mount_hole_axis_error_mm": 1.1234667099445443e-13,
+      "filament_axis_error_mm": 6.204547701064548e-14,
+      "added_hardware_body_clear": true,
+      "full_machine_travel_verified": false,
+      "flexible_cable_route_verified": false,
+      "scope": "Static native standalone mechanical assembly. Existing cowl/duct and cartridge reference contacts retained. Added fan/extruder bodies have no external intersection above 0.001 mm3; no manufacturing or whole-machine certificate."
+    },
+    "nozzle_mm": [
+      0,
+      31.85,
+      -43.4999986106336
+    ]
+  },
+  "support_omissions_modules": [
+    "ahi_a4t_cowl"
+  ],
+  "support_model_notice": "サポート省略モデル",
+  "nozzle_mm": [
+    0,
+    31.85,
+    -43.4999986106336
+  ]
+}

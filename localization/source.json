@@ -11295,6 +11295,26 @@
       "aliases": [
         "DoomCube 2 · 350 mm / double enclosure / original CAD"
       ]
+    },
+    "message.a4t_printed_housing": {
+      "kind": "message",
+      "ja": "LEDキャリア・フィルター・半透明ディフューザーの3部品を表示。基板・配線・点灯は未対応。",
+      "en": "Displays the printed LED carrier, filter and translucent diffuser. LED boards, wiring and lighting are not included."
+    },
+    "message.a4t_printed_scope": {
+      "kind": "message",
+      "ja": "LEDハウジングの印刷部品を装着。LED基板・配線は未装着。",
+      "en": "Printed LED housing installed. LED boards and wiring are not installed."
+    },
+    "message.a4t_printed_review": {
+      "kind": "message",
+      "ja": "追加した3印刷部品の取付面と既存部品に対する静止形状を検査。LED基板・配線・機体全体の適合は未検証。",
+      "en": "The mating surfaces and static geometry of the 3 added printed parts were inspected against existing parts. LED boards, wiring and whole-machine fit remain unverified."
+    },
+    "message.a4t_printed_option": {
+      "kind": "message",
+      "ja": "A4T LEDハウジング（印刷部品のみ）",
+      "en": "A4T LED housing (printed parts only)"
     }
   }
 }

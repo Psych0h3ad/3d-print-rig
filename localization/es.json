@@ -8949,6 +8949,22 @@
     "doomcube.description": {
       "source_revision": "b4593a3be175c0c0654f",
       "text": "DoomCube 2 · 350 mm / cerramiento doble / CAD original"
+    },
+    "message.a4t_printed_housing": {
+      "source_revision": "44a8e89c214d29adae31",
+      "text": "Muestra el soporte LED, el filtro y el difusor translúcido impresos. No incluye placas LED, cableado ni iluminación."
+    },
+    "message.a4t_printed_scope": {
+      "source_revision": "dd7fa1a1aabdbf429c4d",
+      "text": "Carcasa LED impresa instalada. Las placas LED y el cableado no están instalados."
+    },
+    "message.a4t_printed_review": {
+      "source_revision": "78437b0a1ea31e6b30eb",
+      "text": "Se inspeccionaron las superficies de unión y la geometría estática de las 3 piezas impresas añadidas respecto a las piezas existentes. Las placas LED, el cableado y el ajuste a toda la máquina siguen sin verificar."
+    },
+    "message.a4t_printed_option": {
+      "source_revision": "9a81a3afe502db9528e1",
+      "text": "Carcasa LED A4T (solo piezas impresas)"
     }
   }
 }
