@@ -2,10 +2,18 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
-import {gunzipSync} from 'node:zlib';
+import {gunzipSync,gzipSync} from 'node:zlib';
 import {register} from 'node:module';
 register('./three-test-loader.mjs',import.meta.url);
-const {enumerateV0,buildSupport}=await import('./build_support_catalog.mjs');
+const {enumerateV0,buildSupport,portableSupportGzip}=await import('./build_support_catalog.mjs');
+for(const decoded of [Buffer.alloc(0),Buffer.from('{"language":"日本語 / Español / 한국어 / Русский"}\n'),Buffer.from(Array.from({length:1024},(_,i)=>i%256))]){
+ const platformEncoder=os=>(bytes,options)=>{const result=Buffer.from(gzipSync(bytes,options));result[9]=os;return result;};
+ const linux=portableSupportGzip(decoded,platformEncoder(3)),windows=portableSupportGzip(decoded,platformEncoder(10));
+ assert.deepEqual(linux,windows,'Platform metadata must not change stored bytes or catalog checksums');
+ assert.equal(linux[9],255,'Use the portable unknown OS marker');
+ assert.deepEqual(gunzipSync(linux),decoded,'Normalization must preserve the complete decoded payload');
+ assert.deepEqual(linux.subarray(10),gzipSync(decoded,{level:9}).subarray(10),'Deflate payload, CRC and length must remain exact');
+}
 const {readV0ModsURL}=await import('../site/viewer/v0-state.mjs');
 import {configurationId,matchingRows,rowSelection,supportURL} from '../site/support/model.mjs';
 import {machineChoices} from '../site/viewer/machines.js';
@@ -40,7 +48,7 @@ if(process.argv[2]){
   if(target.kind==='v0'){assert(c.mods.some(m=>!m.options.length));assert(c.mods.some(m=>m.options.length));assert(!matchingRows(c,{toolhead:'dragon-burner-revo-sherpa',strain_relief:'picobilical-plate'}).length);const registry=JSON.parse(fs.readFileSync(path.join(process.argv[2],'V0_INSTALLATIONS.json'),'utf8')).machines[target.id];for(const row of c.rows){const selected=rowSelection(c,row),url=supportURL(target,c,row,'https://fixture.test/support/','en');assert.deepEqual(readV0ModsURL(url,{machine_id:target.id,registry}),selected,'Every real V0 support link must restore its complete selected Mod tuple');}}
   if(target.id.startsWith('voron_trident_')){assert(target.heads.includes('sphinx'));assert(c.options.gantry.some(g=>g.id.startsWith('monolith_')));assert(c.banks.filter(b=>b.system==='stealthchanger').every(b=>!b.choices))}
   assert(c.banks.filter(b=>b.system==='madmax').every(b=>b.permitted===false),'A disabled single-tool state is not a registered dock');
-  if(delivery){const resource=delivery.resources[target.file],stored=fs.readFileSync(path.join(process.argv[3],resource.file)),decoded=gunzipSync(stored);assert.equal(resource.file,target.file+'.gz');assert.equal(resource.encoding,'gzip');assert.equal(stored.length,resource.bytes);assert.equal(decoded.length,resource.decoded_bytes);assert.equal(createHash('sha256').update(stored).digest('hex'),resource.sha256);assert.equal(createHash('sha256').update(decoded).digest('hex'),resource.decoded_sha256);assert.equal(decoded.toString('utf8'),JSON.stringify(c)+'\n','Published report must match current composition rules: '+target.id);assert(!fs.existsSync(path.join(process.argv[3],target.file)),'Generated plain duplicate must not consume deployment capacity');}
+  if(delivery){const resource=delivery.resources[target.file],stored=fs.readFileSync(path.join(process.argv[3],resource.file)),decoded=gunzipSync(stored);assert.equal(stored[9],255,'Every delivered report must use the portable gzip OS marker');assert.deepEqual(stored,portableSupportGzip(decoded),'Published compression must match the exact canonical producer');assert.equal(resource.file,target.file+'.gz');assert.equal(resource.encoding,'gzip');assert.equal(stored.length,resource.bytes);assert.equal(decoded.length,resource.decoded_bytes);assert.equal(createHash('sha256').update(stored).digest('hex'),resource.sha256);assert.equal(createHash('sha256').update(decoded).digest('hex'),resource.decoded_sha256);assert.equal(decoded.toString('utf8'),JSON.stringify(c)+'\n','Published report must match current composition rules: '+target.id);assert(!fs.existsSync(path.join(process.argv[3],target.file)),'Generated plain duplicate must not consume deployment capacity');}
  }
  console.log(JSON.stringify({targets:index.targets.length,rows,all_registered_configurations_checked:true}));
 }

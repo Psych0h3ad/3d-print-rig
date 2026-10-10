@@ -77,11 +77,19 @@ export function buildSupport(root){
  const index={schema:1,scope:'Viewer registration only. Counts exclude independent accessories, dock-bank selections, colors and motion. Not physical compatibility certification.',model_bundle:read('ASSET_BUNDLE.json'),targets,head_families:heads.toolheads.map(h=>({id:h.id,label:h.label,configuration:heads.variants.find(v=>v.toolhead===h.id)?.id})),input_sha256};
  return {index,details};
 }
+export function portableSupportGzip(decoded,compress=gzipSync){
+ const compressed=Buffer.from(compress(decoded,{level:9}));
+ // Gzip's OS marker describes the compressor, not the catalog. Pin "unknown"
+ // before hashing so Windows review builds and Linux Pages builds are identical.
+ compressed[9]=255;
+ return compressed;
+}
+
 export function writeSupport(root,output=path.join(root,'support/data')){
  const {index,details}=buildSupport(root);fs.mkdirSync(output,{recursive:true});
  index.resources={};
  for(const [name,value]of details){
-  const decoded=Buffer.from(JSON.stringify(value)+'\n'),compressed=gzipSync(decoded,{level:9});
+  const decoded=Buffer.from(JSON.stringify(value)+'\n'),compressed=portableSupportGzip(decoded);
   fs.writeFileSync(path.join(output,name+'.gz'),compressed);
   // Only these freshly generated reports are replaced; native inputs stay exact.
   fs.rmSync(path.join(output,name),{force:true});
