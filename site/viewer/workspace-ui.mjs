@@ -3,13 +3,13 @@ ensureWorkspaceEntry(import.meta.url);
 import {setupDisplayPreferences,setupHeaderThemeToggle} from './display-preferences.mjs?v=3b735c3e32640589ed26';
 import {WorkspaceMutationObserver,workspaceListen} from './workspace-lifecycle.mjs?v=823ad76bd9034ec8d6ff';
 // Shared presentation layer. Existing controls, IDs and CAD controllers stay intact.
-import {setupLanguage,originalText,messageSource} from './i18n.mjs?v=0fdf472eb0556b50017f';
+import {setupLanguage,originalText,messageSource} from './i18n.mjs?v=d6d7a630d8514cd1463d';
 import {printerWorkspaceURL,workspaceReturnKey,workspaceKindFor} from './workspace-return.mjs?v=594dc2ce774e58ba761f';
 import {setupWorkspaceSharing} from './workspace-share.mjs?v=43727cf619f3a0543d3a';
 import {lockInspectorHorizontalScroll} from './workspace-scroll.mjs?v=workspace-belts-1';
-import {setupChoiceSearch} from './workspace-choices.mjs?v=638a049343565a6f6d47';
+import {setupChoiceSearch} from './workspace-choices.mjs?v=3569b4a5b7b7e53db51e';
 import {setupMobileLayout} from './workspace-layout.mjs?v=738c040595ec99155ce2';
-import {workspaceSectionCategory,isPrimaryWorkspaceLink} from './workspace-sections.mjs?v=381cf87c3d029211a951';
+import {workspaceSectionCategory,isPrimaryWorkspaceLink} from './workspace-sections.mjs?v=3b551c133f4ed3ce2fac';
 const $ = selector => document.querySelector(selector);
 const node = (tag, className, text) => {
   const element = document.createElement(tag);
@@ -108,6 +108,11 @@ export function setupWorkspace() {
   }
 
   const actions = $('.header-actions');
+  let downloadEntry = $('#openDownloads');
+  if (!downloadEntry) { downloadEntry = node('button'); downloadEntry.id = 'openDownloads'; actions.append(downloadEntry); }
+  downloadEntry.hidden = false; downloadEntry.disabled = true; downloadEntry.textContent = 'STEP';
+  downloadEntry.setAttribute('aria-label', messageSource('ui.step_downloads'));
+  downloadEntry.setAttribute('aria-haspopup', 'dialog');
   const more = node('details', 'workspace-more');
   more.append(node('summary', '', '資料'));
   if (['components.html','toolchangers.html','e3ng.html'].includes(page)) more.classList.add('current-reference');
@@ -121,7 +126,7 @@ export function setupWorkspace() {
   }
   menu.append(node('hr'));
   const moveActions = () => {
-    for (const button of actions.querySelectorAll(':scope > button:not(#openRender):not(#openShare):not(#themeToggle)')) menu.append(button);
+    for (const button of actions.querySelectorAll(':scope > button:not(#openRender):not(#openShare):not(#themeToggle):not(#openDownloads)')) menu.append(button);
   };
   moveActions();
   new WorkspaceMutationObserver(moveActions).observe(actions, { childList: true });
@@ -139,6 +144,11 @@ export function setupWorkspace() {
   if (description?.matches('p.foot')) heading.append(description);
   for (const eyebrow of aside.querySelectorAll(':scope > .eyebrow')) eyebrow.hidden = true;
   aside.prepend(heading);
+  if (machinePage) {
+    const downloads = node('button', 'machine-step-downloads', {id:'ui.step_downloads'});
+    downloads.id = 'machineStepDownloads'; downloads.hidden = true;
+    heading.append(downloads);
+  }
 
   const machineSelect = $('#machineConfig');
   if (machineSelect) {
@@ -228,7 +238,7 @@ export function setupWorkspace() {
     return workspaceSectionCategory(originalText(element.querySelector(':scope > summary')));
   }
   function organize() {
-    const candidates = [...aside.children, ...heading.children].filter(element => ![heading, tabs, content, footer].includes(element) && !element.matches('h1, .inspector-eyebrow, .change-machine, .mobile-layout') && !(heading.contains(element) && element.matches('p.foot')));
+    const candidates = [...aside.children, ...heading.children].filter(element => ![heading, tabs, content, footer].includes(element) && !element.matches('h1, .inspector-eyebrow, .change-machine, .mobile-layout, .machine-step-downloads') && !(heading.contains(element) && element.matches('p.foot')));
     for (const element of candidates) {
       if (element.hidden && element.matches('.eyebrow, .workbench-link')) continue;
       if (element.id === 'toolheadLink') { element.hidden = true; continue; }

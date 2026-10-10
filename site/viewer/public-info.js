@@ -1,32 +1,39 @@
-import {workspaceTask} from './workspace-lifecycle.mjs?v=823ad76bd9034ec8d6ff';
+import {workspaceTask,workspaceListen,WorkspaceMutationObserver} from './workspace-lifecycle.mjs?v=823ad76bd9034ec8d6ff';
 import {setupProductDirectory} from './product-links.js?v=ba0e9d9c9326819ea0fb';
-import {mountAssemblyDownload} from './assembly-downloads.mjs?v=55f3d4b2df4552522a6f';
+import {assemblyDownloadEntries,mountStepDownloadLibrary} from './step-downloads.mjs?v=18d8cc0100032c414a37';
+import {messageSource} from './i18n.mjs?v=d6d7a630d8514cd1463d';
 const $=s=>document.querySelector(s);
 function dialog(id,title){const d=document.createElement('dialog');d.id=id;d.innerHTML=`<div class="dialog-head"><h2>${title}</h2><button class="close" aria-label="閉じる"></button></div><div class="dialog-body"></div>`;document.body.append(d);d.querySelector('.close').onclick=()=>d.close();return d}
 const node=(tag,text)=>{const n=document.createElement(tag);n.textContent=text;return n};
 const link=(text,url)=>{const a=node('a',text);a.href=url;a.target='_blank';a.rel='noopener';return a};
 export async function setupPublicInfo({includeDownloads=true,machineId=null}={}){return workspaceTask(async()=>{
  setupProductDirectory();
- const sources=dialog('sourcesDialog','出典・ライセンス'),downloads=dialog('downloadsDialog','標準構成のSTEP');
- $('#openSources').onclick=()=>sources.showModal();const downloadButton=$('#openDownloads');downloadButton.hidden=true;downloadButton.onclick=()=>downloads.showModal();
+ const sources=dialog('sourcesDialog','出典・ライセンス'),downloads=dialog('downloadsDialog',messageSource('ui.step_downloads'));
+ downloads.classList.add('step-download-dialog');downloads.setAttribute('aria-labelledby','stepDownloadsTitle');downloads.querySelector('h2').id='stepDownloadsTitle';downloads.querySelector('h2').dataset.i18nId='ui.step_downloads';
+ $('#openSources').onclick=()=>sources.showModal();let downloadButton=$('#openDownloads');
+ if(!downloadButton){downloadButton=node('button','');downloadButton.id='openDownloads';$('.header-actions').append(downloadButton)}
+ downloadButton.hidden=false;downloadButton.disabled=true;downloadButton.textContent='STEP';downloadButton.setAttribute('aria-label',messageSource('ui.step_downloads'));downloadButton.setAttribute('title',messageSource('ui.step_downloads'));downloadButton.setAttribute('aria-haspopup','dialog');
  const sb=sources.querySelector('.dialog-body'),db=downloads.querySelector('.dialog-body');
  sb.append(node('p','コミュニティCADを組み合わせた非公式ビューアーです。各データの作者・ライセンスは個別に適用されます。'));
- db.append(node('p','標準構成・CAD基準姿勢の組立済みSTEPです。選択中のMod・配色は含みません。'));
- try{
+ let entries=[];
+ const currentMachine=()=>document.body.dataset.workspaceKind==='printer'?(document.body.dataset.machineId||machineId):null;
+ const openDownloads=()=>{mountStepDownloadLibrary(db,entries,currentMachine());const credits=node('button','出典・ライセンス');credits.onclick=()=>{downloads.close();sources.showModal()};db.append(credits);downloads.showModal()};
+ downloadButton.onclick=openDownloads;
+ const updateShortcut=()=>{const shortcut=$('#machineStepDownloads');if(shortcut){shortcut.hidden=!entries.some(item=>item.id===currentMachine());shortcut.setAttribute('aria-haspopup','dialog');shortcut.onclick=openDownloads}};
+ new WorkspaceMutationObserver(updateShortcut).observe(document.body,{attributes:true,attributeFilter:['data-machine-id']});
+ const loadCatalog=async()=>{downloadButton.disabled=true;try{
   const response=await fetch('../PUBLIC_CATALOG.json?v=a90a9316c88c2f1c3f92',{cache:'no-cache'});if(!response.ok)throw Error('カタログを取得できません');const catalog=await response.json();
-  const assemblyDownload=$('#assemblyDownload');if(machineId&&assemblyDownload)mountAssemblyDownload(assemblyDownload,machineId,catalog);
+  const assemblyDownload=$('#assemblyDownload');if(assemblyDownload)assemblyDownload.hidden=true;
   sb.append(node('p','ビューアー版：'+catalog.viewer_version));
   if(catalog.model_source_url)sb.append(link('表示モデルの編集用データ',catalog.model_source_url));
   for(const archive of catalog.source_archives||[]){const p=node('p','');p.append(link('編集用データ：'+archive.label,archive.url));sb.append(p)}
   for(const s of catalog.sources){const row=node('article','');row.className='source-item';row.append(node('strong',s.label),node('p',s.author),link(s.repository||'配布元',s.url));
    const version=node('p','');version.append(node('code',[s.commit,s.version].filter(Boolean).join(' / ')));row.append(version,node('p','適用範囲：'+s.scope),node('p',s.license),node('p',s.changes));
    if(s.license_url)row.append(link('ライセンス原文',s.license_url));if(s.cad_url)row.append(link('元の組立CAD',s.cad_url));if(s.notice_url)row.append(link('変更と部品の出典',s.notice_url));if(s.component_license_url)row.append(link('部品別ライセンス',s.component_license_url));if(s.notice)row.append(node('p',s.notice));sb.append(row)}
-  const table=node('table','');table.className='download-table';const head=node('thead','');head.innerHTML='<tr><th>機種 / サイズ</th><th>構成</th><th>STEP</th></tr>';table.append(head);const body=node('tbody','');
-  for(const item of catalog.defaults||[]){
-   const local=['127.0.0.1','localhost','[::1]'].includes(location.hostname),url=local&&item.local_url?item.local_url:item.url;if(!url)continue;
-   if(!includeDownloads)continue;
-   const row=node('tr',''),name=node('td',`${item.brand} ${item.model} / ${item.size} mm`);name.append(node('small',item.revision));const config=node('td',item.configuration),action=node('td','');
-   const a=link(local&&item.local_url?'ローカルSTEP':item.upstream?'公式データ':'ダウンロード',url);if(!item.upstream||local&&item.local_url){a.removeAttribute('target');a.download=''}action.append(a);
-   if(local&&item.local_url&&item.local_note)action.append(node('small',item.local_note));if(item.note)action.append(node('small',item.note));row.append(name,config,action);body.append(row)}table.append(body);if(body.children.length){downloadButton.hidden=false;db.append(table)}document.body.dataset.publicCatalogVersion=catalog.viewer_version;
- }catch(e){sb.append(node('p',e.message));db.append(node('p',e.message))}
+  // The library is global even on a page without its own STEP; never export Mods.
+  entries=assemblyDownloadEntries(catalog);updateShortcut();downloadButton.disabled=false;downloadButton.onclick=openDownloads;
+  document.body.dataset.publicCatalogVersion=catalog.viewer_version;
+ }catch(e){downloadButton.disabled=false;const failed=()=>{db.replaceChildren();const notice=node('p',messageSource('step.error'));notice.dataset.i18nId='step.error';const retry=node('button',messageSource('step.retry'));retry.dataset.i18nId='step.retry';retry.onclick=()=>workspaceTask(async()=>{await loadCatalog();if(entries.length)openDownloads()});db.append(notice,retry);downloads.showModal()};downloadButton.onclick=failed;sb.append(node('p',e.message))}};
+ await loadCatalog();downloadButton.onclick=entries.length?openDownloads:downloadButton.onclick;
+ workspaceListen(window,'rig-language-change',updateShortcut);
 });}

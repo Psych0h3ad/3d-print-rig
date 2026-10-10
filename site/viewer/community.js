@@ -10,12 +10,12 @@ import {communitySchema,validateCommunityState,communityMotionEnabled,communityC
 import {installationFor} from './ender-mods.mjs?v=5f07c69c7c42ba3f3936';
 import {setupMachineNavigation} from './machines.js?v=cea8407065ba89be6304';
 import {sceneLightingState} from './scene-lighting-state.mjs';
-import {translate} from './i18n.mjs?v=0fdf472eb0556b50017f';
+import {translate} from './i18n.mjs?v=d6d7a630d8514cd1463d';
 import {rememberDisplayControl} from './display-preferences.mjs?v=3b735c3e32640589ed26';
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=823ad76bd9034ec8d6ff';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {setupRenderExport} from './render-export.js?v=9c6b06804a9e64da0b2f';
-import {setupPublicInfo} from './public-info.js?v=febd8f5505a0d08a35b2';
+import {setupPublicInfo} from './public-info.js?v=8b398d711708e108174e';
 const descriptions={
  doomcube2_350_reference:"DoomCube 2 · 350 mm / double enclosure / original CAD",
  tictac_21_120:"TicTac 2.1 · 120 mm / 新Rat Rigツールヘッド / 公式組立CAD",

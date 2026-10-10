@@ -29,7 +29,8 @@ in the viewer's **Official data** and third-party notices.
 
 Assembled STEP downloads cover standard VORON V2.4 R2 and Trident R2 in
 250 / 300 / 350 mm, Micron R1 120 and Micron Plus R1 180. Use the viewer's
-**Standard STEP** menu for the matching baseline assembly. These downloads
+**STEP** button in the header, or **STEP downloads** below the printer name.
+The matching assembly appears first; search the list by printer or size. These downloads
 do not export the currently selected custom head, Mods, colors or pose.
 
 Registration describes what the viewer can display. It does not certify

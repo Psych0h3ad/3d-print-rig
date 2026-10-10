@@ -9009,6 +9009,42 @@
     "led.head_scope": {
       "source_revision": "5a9e5fcd963f3cf5fdca",
       "text": "Solo se iluminan los LED incluidos en el CAD original. Las luces de la boquilla permanecen blancas."
+    },
+    "ui.step_downloads": {
+      "source_revision": "3e516ff513cd982e6d09",
+      "text": "Descargas STEP"
+    },
+    "step.search": {
+      "source_revision": "066282c9a70b4f65b388",
+      "text": "Buscar impresora o tamaño"
+    },
+    "step.current": {
+      "source_revision": "234519d4764a52882df8",
+      "text": "Impresora actual"
+    },
+    "step.download": {
+      "source_revision": "d72f71e7eacdbb6ab9d2",
+      "text": "Descargar STEP"
+    },
+    "step.custom": {
+      "source_revision": "6076500664a6c8132f78",
+      "text": "Modelo de referencia personalizado · no es un kit estándar"
+    },
+    "step.unavailable": {
+      "source_revision": "145c69bc0c3d35ef1749",
+      "text": "No hay un STEP ensamblado para esta impresora. Modelos disponibles abajo."
+    },
+    "step.empty": {
+      "source_revision": "09d2c9dbeb18298d556e",
+      "text": "No hay archivos STEP coincidentes."
+    },
+    "step.error": {
+      "source_revision": "4a657ea23336e671eabd",
+      "text": "No se pudieron cargar las descargas. Inténtalo de nuevo."
+    },
+    "step.retry": {
+      "source_revision": "355a762c26081368ddae",
+      "text": "Recargar descargas"
     }
   }
 }

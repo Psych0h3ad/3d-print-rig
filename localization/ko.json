@@ -9009,6 +9009,42 @@
     "led.head_scope": {
       "source_revision": "5a9e5fcd963f3cf5fdca",
       "text": "원본 CAD에 포함된 LED만 켜집니다. 노즐 조명은 흰색으로 유지됩니다."
+    },
+    "ui.step_downloads": {
+      "source_revision": "3e516ff513cd982e6d09",
+      "text": "STEP 다운로드"
+    },
+    "step.search": {
+      "source_revision": "066282c9a70b4f65b388",
+      "text": "프린터 또는 크기로 검색"
+    },
+    "step.current": {
+      "source_revision": "234519d4764a52882df8",
+      "text": "현재 프린터"
+    },
+    "step.download": {
+      "source_revision": "d72f71e7eacdbb6ab9d2",
+      "text": "STEP 다운로드하기"
+    },
+    "step.custom": {
+      "source_revision": "6076500664a6c8132f78",
+      "text": "커스텀 참조 모델 · 표준 키트가 아닙니다"
+    },
+    "step.unavailable": {
+      "source_revision": "145c69bc0c3d35ef1749",
+      "text": "이 프린터의 조립된 STEP은 없습니다. 아래 모델에서 선택하세요."
+    },
+    "step.empty": {
+      "source_revision": "09d2c9dbeb18298d556e",
+      "text": "일치하는 STEP 파일이 없습니다."
+    },
+    "step.error": {
+      "source_revision": "4a657ea23336e671eabd",
+      "text": "다운로드 목록을 불러오지 못했습니다. 다시 시도하세요."
+    },
+    "step.retry": {
+      "source_revision": "355a762c26081368ddae",
+      "text": "다운로드 목록 다시 불러오기"
     }
   }
 }

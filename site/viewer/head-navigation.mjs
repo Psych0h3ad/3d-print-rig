@@ -1,7 +1,7 @@
 import {normalizeLanguage} from './languages.mjs?v=ba6a5cd8e1d86849ca34';
-import {monolithHeadCatalog} from './monolith-head-model.mjs?v=e3d518fdd3f655fa18d5';
+import {monolithHeadCatalog} from './monolith-head-model.mjs?v=d0436168b4fdbd2e7e0a';
 import {machinePage} from './machines.js?v=cea8407065ba89be6304';
-import {machineHeadVariants} from './machine-head-model.mjs?v=f6a4a8725f0eccc0d4ef';
+import {machineHeadVariants} from './machine-head-model.mjs?v=e7acbd694324e2648d8e';
 
 export function headPrinterLink(variant,registry,href){
  const source=new URL(href),preferred=source.searchParams.get('return_machine');

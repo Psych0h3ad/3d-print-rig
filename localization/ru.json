@@ -9009,6 +9009,42 @@
     "led.head_scope": {
       "source_revision": "5a9e5fcd963f3cf5fdca",
       "text": "Светятся только LED, включенные в исходный CAD. Подсветка сопла остается белой."
+    },
+    "ui.step_downloads": {
+      "source_revision": "3e516ff513cd982e6d09",
+      "text": "Скачать STEP"
+    },
+    "step.search": {
+      "source_revision": "066282c9a70b4f65b388",
+      "text": "Поиск принтера или размера"
+    },
+    "step.current": {
+      "source_revision": "234519d4764a52882df8",
+      "text": "Текущий принтер"
+    },
+    "step.download": {
+      "source_revision": "d72f71e7eacdbb6ab9d2",
+      "text": "Скачать файл STEP"
+    },
+    "step.custom": {
+      "source_revision": "6076500664a6c8132f78",
+      "text": "Нестандартная модель для справки · не стандартный комплект"
+    },
+    "step.unavailable": {
+      "source_revision": "145c69bc0c3d35ef1749",
+      "text": "Для этого принтера нет STEP-сборки. Доступные модели — ниже."
+    },
+    "step.empty": {
+      "source_revision": "09d2c9dbeb18298d556e",
+      "text": "Подходящих файлов STEP нет."
+    },
+    "step.error": {
+      "source_revision": "4a657ea23336e671eabd",
+      "text": "Не удалось загрузить список файлов. Попробуйте снова."
+    },
+    "step.retry": {
+      "source_revision": "355a762c26081368ddae",
+      "text": "Загрузить список заново"
     }
   }
 }

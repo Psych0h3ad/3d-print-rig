@@ -11370,6 +11370,51 @@
       "kind": "message",
       "ja": "元CADに含まれるLEDのみ点灯します。ノズル照明は白色です。",
       "en": "Only LEDs included in the source CAD are lit. Nozzle lights stay white."
+    },
+    "ui.step_downloads": {
+      "kind": "message",
+      "ja": "STEPダウンロード",
+      "en": "STEP downloads"
+    },
+    "step.search": {
+      "kind": "message",
+      "ja": "プリンター・サイズで検索",
+      "en": "Search printer or size"
+    },
+    "step.current": {
+      "kind": "message",
+      "ja": "選択中のプリンター",
+      "en": "Current printer"
+    },
+    "step.download": {
+      "kind": "message",
+      "ja": "STEPをダウンロード",
+      "en": "Download STEP"
+    },
+    "step.custom": {
+      "kind": "message",
+      "ja": "カスタム参考モデル・標準キットではありません",
+      "en": "Custom reference · not a standard kit"
+    },
+    "step.unavailable": {
+      "kind": "message",
+      "ja": "このプリンターの組立済みSTEPは未配布です。下の一覧から選べます。",
+      "en": "No assembled STEP for this printer. Available models are below."
+    },
+    "step.empty": {
+      "kind": "message",
+      "ja": "該当するSTEPファイルはありません。",
+      "en": "No matching STEP files."
+    },
+    "step.error": {
+      "kind": "message",
+      "ja": "ダウンロード一覧を読み込めませんでした。再試行してください。",
+      "en": "Could not load downloads. Please retry."
+    },
+    "step.retry": {
+      "kind": "message",
+      "ja": "一覧を再読み込み",
+      "en": "Reload downloads"
     }
   }
 }
