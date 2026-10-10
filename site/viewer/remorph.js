@@ -4,7 +4,7 @@ ensureWorkspaceEntry(import.meta.url);
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {createRemorphAdapter} from './remorph-adapter.mjs';
-import {createRemorphEnvironment} from './remorph-environment.mjs?v=extra-machines-55';
+import {createRemorphEnvironment} from './remorph-environment.mjs?v=67b979de18933d30ccfd';
 import {loadExtraMachine} from './extra-machine-loader.mjs?v=dd97105abc4157397f19';
 import {setupMachineNavigation} from './machines.js?v=cea8407065ba89be6304';
 import {workspaceFrame,WorkspaceResizeObserver,workspaceListen} from './workspace-lifecycle.mjs?v=823ad76bd9034ec8d6ff';

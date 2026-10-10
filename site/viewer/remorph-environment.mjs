@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import {sceneLightingState} from './scene-lighting-state.mjs?v=extra-machines-55';
+import {sceneLightingState} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
 export function createRemorphEnvironment(scene,renderer,profile){
  renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;
  renderer.toneMappingExposure=.9;renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;

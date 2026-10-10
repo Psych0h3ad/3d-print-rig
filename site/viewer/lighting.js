@@ -1,4 +1,4 @@
-import {sceneLightingState} from './scene-lighting-state.mjs?v=extra-machines-55';
+import {sceneLightingState,discoLightLuminance} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
 import {readDisplay} from './display-preferences.mjs?v=3b735c3e32640589ed26';
 import {workspaceTask,workspaceListen,onWorkspaceDispose} from './workspace-lifecycle.mjs?v=823ad76bd9034ec8d6ff';
 import * as THREE from 'three';
@@ -50,7 +50,7 @@ export function setupLighting(scene,renderer,{registration={meta:'DISCO_MOD.json
  function frame(seconds){
   const {on=false,value=0}=currentState||{},sample=t=>ledSample({color:$('#ledColor').value,effect:effectSelect.value,position:t,seconds});
   const setColor=s=>s.rainbow?color.setHSL(s.hue,.9,.52):color.setHex(s.hex);
-  for(const light of lights){const s=sample(light.userData.t);light.color.copy(setColor(s));light.intensity=on?24*value*s.gain:0}
+  for(const light of lights){const s=sample(light.userData.t);light.color.copy(setColor(s));light.intensity=on?discoLightLuminance*value*s.gain:0}
   for(const mesh of emitters){const s=sample(mesh.userData.t);for(const material of Array.isArray(mesh.material)?mesh.material:[mesh.material]){material.emissive.copy(on?setColor(s):color.setHex(0));material.emissiveIntensity=on?3.2*value*s.gain:0}}
   document.body.dataset.ledAnimation=effectSelect.value;document.body.dataset.ledAnimationTime=seconds.toFixed(3);update();
  }

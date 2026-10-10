@@ -10,7 +10,7 @@ import {workspaceFrame,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?
 import {setupMachineNavigation} from './machines.js?v=cea8407065ba89be6304';
 import {loadExtraMachine} from './extra-machine-loader.mjs?v=dd97105abc4157397f19';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
-import {sceneLightingState} from './scene-lighting-state.mjs?v=extra-machines-55';
+import {sceneLightingState} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
 import {setupRenderExport} from './render-export.js?v=9c6b06804a9e64da0b2f';
 import {setupPublicInfo} from './public-info.js?v=aafffcd9468b872bfa8a';
 import {applyNativeMotionProfile,loadNativeMotionProfile} from './native-motion-profile.mjs?v=91532eb992519143f437';

@@ -1,5 +1,5 @@
 import {setupGcodePanel} from './gcode-panel.js?v=a84362027155c83c4e26';
-import {sceneLightingState} from './scene-lighting-state.mjs?v=extra-machines-55';
+import {sceneLightingState} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {rememberDisplayControl} from './display-preferences.mjs?v=3b735c3e32640589ed26';

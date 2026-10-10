@@ -15,7 +15,7 @@ import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
 import {loadExternalComponent} from './component-assets.mjs?v=9f8ef058f1297ab60e53';
 import {loadFrameMods,withFrameMods} from './frame-mods.js?v=39b6a4532e84895d38be';
 import {setupGrid} from './grid-control.js';
-import {setupLighting} from './lighting.js?v=46a2b3350fdb988320e2';
+import {setupLighting} from './lighting.js?v=0f81ff6f77c74b296d83';
 import {setupFlexible} from './flexible.js?v=37fd0f2d1bdfe5ac356f';
 import {createTridentBelts} from './trident-belts.mjs?v=36cbfcd85e770a25e822';
 import {createBedChain} from './bed-chain.mjs?v=5c6ddd46ac13e6974c73';

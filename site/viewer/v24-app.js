@@ -7,7 +7,7 @@ import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import * as THREE from 'three';
 import {loadFrameMods,withFrameMods} from './frame-mods.js?v=39b6a4532e84895d38be';
-import {setupLighting} from './lighting.js?v=46a2b3350fdb988320e2';
+import {setupLighting} from './lighting.js?v=0f81ff6f77c74b296d83';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=a84362027155c83c4e26';
 import {setupAccessories} from './accessories.js?v=f6f651b80f1247fafd70';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';

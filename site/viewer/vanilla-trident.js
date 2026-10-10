@@ -11,7 +11,7 @@ import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import * as THREE from 'three';
 import {loadFrameMods,withFrameMods} from './frame-mods.js?v=39b6a4532e84895d38be';
 import {loadExternalComponent} from './component-assets.mjs?v=9f8ef058f1297ab60e53';
-import {setupLighting} from './lighting.js?v=46a2b3350fdb988320e2';
+import {setupLighting} from './lighting.js?v=0f81ff6f77c74b296d83';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';

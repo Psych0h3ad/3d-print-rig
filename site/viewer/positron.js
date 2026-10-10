@@ -9,7 +9,7 @@ import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
 import {loadPositron} from './positron-loader.mjs?v=d83fa8d9d64cb82a9355';
 import {positronSchema,validatePositronState} from './positron-state.mjs?v=8296d1b775fbca04462f';
 import {setupMachineNavigation} from './machines.js?v=cea8407065ba89be6304';
-import {sceneLightingState} from './scene-lighting-state.mjs';
+import {sceneLightingState} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
 import {translate} from './i18n.mjs?v=26a2217f63a0c8b5d2d2';
 import {rememberDisplayControl} from './display-preferences.mjs?v=3b735c3e32640589ed26';
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=823ad76bd9034ec8d6ff';

@@ -9,7 +9,7 @@ import {loadCommunity} from './community-loader.mjs?v=b6f74abf0621bc3c35f0';
 import {communitySchema,validateCommunityState,communityMotionEnabled,communityConfiguration} from './community-state.mjs?v=460b3fa78cc503ddb6e6';
 import {installationFor} from './ender-mods.mjs?v=5f07c69c7c42ba3f3936';
 import {setupMachineNavigation} from './machines.js?v=cea8407065ba89be6304';
-import {sceneLightingState} from './scene-lighting-state.mjs';
+import {sceneLightingState} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
 import {translate} from './i18n.mjs?v=26a2217f63a0c8b5d2d2';
 import {rememberDisplayControl} from './display-preferences.mjs?v=3b735c3e32640589ed26';
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=823ad76bd9034ec8d6ff';
