@@ -11,7 +11,7 @@ import {loadCrossant,disposeCrossant} from './crossant-loader.mjs?v=c1042da5a3a7
 import {crossantSchema,crossantGroups,validateCrossantState} from './crossant-state.mjs?v=534dc62f2c6545f556f7';
 import {setupMachineNavigation} from './machines.js?v=cea8407065ba89be6304';
 import {setupRenderExport} from './render-export.js?v=9c6b06804a9e64da0b2f';
-import {setupPublicInfo} from './public-info.js?v=8b398d711708e108174e';
+import {setupPublicInfo} from './public-info.js?v=aafffcd9468b872bfa8a';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 export async function mount(scope){
 const $=id=>document.getElementById(id),stage=$('stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));

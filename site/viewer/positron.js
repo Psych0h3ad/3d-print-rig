@@ -10,12 +10,12 @@ import {loadPositron} from './positron-loader.mjs?v=d83fa8d9d64cb82a9355';
 import {positronSchema,validatePositronState} from './positron-state.mjs?v=8296d1b775fbca04462f';
 import {setupMachineNavigation} from './machines.js?v=cea8407065ba89be6304';
 import {sceneLightingState} from './scene-lighting-state.mjs';
-import {translate} from './i18n.mjs?v=d6d7a630d8514cd1463d';
+import {translate} from './i18n.mjs?v=26a2217f63a0c8b5d2d2';
 import {rememberDisplayControl} from './display-preferences.mjs?v=3b735c3e32640589ed26';
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=823ad76bd9034ec8d6ff';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {setupRenderExport} from './render-export.js?v=9c6b06804a9e64da0b2f';
-import {setupPublicInfo} from './public-info.js?v=8b398d711708e108174e';
+import {setupPublicInfo} from './public-info.js?v=aafffcd9468b872bfa8a';
 
 const foldSteps=['ガラスベッドを外す','ベッドのネジを外す','Vホルダーを外す','ラッチを下げ、支柱のネジを外す','ヘッドを右端へ移動','Vホルダーを収納姿勢へ','ピンをJ字溝の回転位置へ移動','支柱を倒す','ヘッドを収納位置へ戻す','外したネジを左右の収納穴に差し込む','折り畳み完了'];
 export async function mount(scope){

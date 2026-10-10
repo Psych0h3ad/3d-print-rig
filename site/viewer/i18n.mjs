@@ -32,7 +32,9 @@ export function originalAttribute(element,attribute){
 export function setupLanguage({document=globalThis.document,window=globalThis.window,load=loadLanguage}={}){
  if(!document?.body||document.getElementById('viewerLanguage'))return;
  let stored;try{stored=window.localStorage.getItem('3d-print-rig-language')}catch{}
- let language=chooseLanguage({query:new URL(window.location.href).searchParams.get('lang'),stored,languages:window.navigator.languages||[window.navigator.language]});
+ const query=new URL(window.location.href).searchParams.get('lang');
+ let followsStored=!normalizeLanguage(query);
+ let language=chooseLanguage({query,stored,languages:window.navigator.languages||[window.navigator.language]});
  const label=document.createElement('label');label.className='language-picker';label.setAttribute('data-i18n','off');
  const name=document.createElement('span');name.className='language-label';name.textContent='Language / 言語';
  const select=document.createElement('select');select.id='viewerLanguage';select.setAttribute('aria-label','Language / 言語');
@@ -78,10 +80,10 @@ export function setupLanguage({document=globalThis.document,window=globalThis.wi
   queueMicrotask(()=>{if(disposed)return;pending=false;collect(observer.takeRecords());observer.disconnect();const roots=[...dirty].filter(e=>e?.isConnected);dirty.clear();for(const e of roots)if(!roots.some(parent=>parent!==e&&parent.contains(e)))visit(e);observe()});
  }
  observer=new WorkspaceMutationObserver(schedule,window.MutationObserver);
- async function setLanguage(value){
-  const lang=normalizeLanguage(value);if(!lang)return;
+ async function setLanguage(value,{persist=true}={}){
+  const lang=normalizeLanguage(value);if(!lang||disposed)return;
   language=lang;const request=++generation;
-  try{window.localStorage.setItem('3d-print-rig-language',lang)}catch{}
+  if(persist){followsStored=false;try{window.localStorage.setItem('3d-print-rig-language',lang)}catch{}}
   replaceWorkspaceURL(null,'',languageURL(window.location.href,lang),window.history);refresh();
   window.dispatchEvent(new window.CustomEvent('rig-language-change',{detail:{language:lang}}));
   if(['ja','en'].includes(lang))return;
@@ -89,7 +91,13 @@ export function setupLanguage({document=globalThis.document,window=globalThis.wi
   catch(error){if(!disposed&&request===generation)console.warn('Translation dictionary unavailable; current English text is retained.',error)}
  }
  select.addEventListener('change',()=>setLanguage(select.value));
- workspaceListen(window,'storage',event=>{if(event.key==='3d-print-rig-language'&&normalizeLanguage(event.newValue)&&event.newValue!==language)setLanguage(event.newValue)});
+ // Storage events can arrive after a newer preference. Never echo a received
+ // value, and preserve explicit URL/user choices in independently opened tabs.
+ workspaceListen(window,'storage',event=>{
+  if(disposed||!followsStored||event.key!=='3d-print-rig-language'||!normalizeLanguage(event.newValue)||event.newValue===language)return;
+  let current;try{if(event.storageArea&&event.storageArea!==window.localStorage)return;current=window.localStorage.getItem(event.key)}catch{return}
+  if(current===event.newValue)setLanguage(current,{persist:false});
+ });
  replaceWorkspaceURL(null,'',languageURL(window.location.href,language),window.history);
- refresh();const ready=['ja','en'].includes(language)?Promise.resolve():setLanguage(language);return {setLanguage,refresh,ready,get language(){return language},disconnect:()=>{disposed=true;generation++;observer.disconnect()}};
+ refresh();const ready=['ja','en'].includes(language)?Promise.resolve():setLanguage(language,{persist:false});return {setLanguage,refresh,ready,get language(){return language},disconnect:()=>{disposed=true;generation++;observer.disconnect()}};
 }
