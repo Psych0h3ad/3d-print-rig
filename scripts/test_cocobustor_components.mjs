@@ -7,6 +7,8 @@ import {componentCategory,componentViews,resolveComponentView,componentViewKeys}
 import {translate} from '../site/viewer/i18n.mjs';
 const read=name=>JSON.parse(fs.readFileSync(new URL('../site/'+name,import.meta.url)));
 const source=read('COCOBUSTOR_SOURCES.json'), additions=read('COMPONENT_ADDITIONS.json');
+assert(fs.readFileSync(new URL('../.gitignore',import.meta.url),'utf8').split(/\r?\n/).includes('!/site/COCOBUSTOR_SOURCES.json'),
+ 'The public source receipt must be included in clean checkouts');
 const revision='052e6c321a7e3fffad5057ce1e9f87de38f0e867';
 assert.equal(source.source_commit,revision);
 assert.equal(source.complete_machine,false);

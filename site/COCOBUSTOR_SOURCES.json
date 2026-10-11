@@ -1,0 +1,700 @@
+{
+  "schema": "cocobustor-public-source-123",
+  "repository": "https://github.com/CoconutDevelopment/CocobustorZero",
+  "source_commit": "052e6c321a7e3fffad5057ce1e9f87de38f0e867",
+  "license": "GPL-3.0",
+  "acquired_stl_files": [
+    {
+      "path": "STLs/AnnexSupernova/Annex_Supernova_Bracket_Skr_Holes_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/AnnexSupernova/Annex_Supernova_Bracket_Skr_Holes_x1.stl",
+      "bytes": 241084,
+      "git_blob_sha1": "11c1370c58b8dc26a6bbf0dfe7f47deff2be49a9",
+      "sha256": "3388c407e4e49d32abca612b067fc34f5154a9d5952fbd2304911fe4da176d22",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/Coconut Air Ducts/[a]_Left_Duct_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/Coconut%20Air%20Ducts/%5Ba%5D_Left_Duct_x1.stl",
+      "bytes": 3522584,
+      "git_blob_sha1": "650c04f509f6d63e541e102efc7aae85cbf0abea",
+      "sha256": "fcb09bbc85f1d3ec3d707fb11820b1ccfa1a2e5c576a1f2eb23b34c8eceebda8",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/Coconut Air Ducts/[a]_Right_Duct_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/Coconut%20Air%20Ducts/%5Ba%5D_Right_Duct_x1.stl",
+      "bytes": 7765884,
+      "git_blob_sha1": "35f2ab55c22eb441d93f609e3d4b5b20fa5a992a",
+      "sha256": "a8b06bf7db4f89016fc64bfebdaecfe7990777f52f3d8316e25049347cdc8a64",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/FrontXBeam/A_Upper_Idler_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/FrontXBeam/A_Upper_Idler_x1.stl",
+      "bytes": 233184,
+      "git_blob_sha1": "73b969eb1c27decc40f6bc992c6c8bf77dc483bd",
+      "sha256": "0bce1d4e911e04d60237eb7cd789ea857dd825d2e953b2f7f7cc625bf0889043",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/FrontXBeam/B_Upper_Idler_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/FrontXBeam/B_Upper_Idler_x1.stl",
+      "bytes": 240584,
+      "git_blob_sha1": "99ea4cea1c9fe1af89edef18f5040ebf67418779",
+      "sha256": "100ef7b2ad0f3779a5a7ca78c228a876083831e425f042a89b0f1a049e8c1198",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/M4max/Bottom_Plate_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/M4max/Bottom_Plate_x1.stl",
+      "bytes": 252584,
+      "git_blob_sha1": "6302083d77b8793776ccfb8340f72ea91d0926d8",
+      "sha256": "06f76e90ef0050320db985b9a7e537f665831febecc1c5bf248a025a22465a98",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/M4max/End_Plate_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/M4max/End_Plate_x1.stl",
+      "bytes": 208584,
+      "git_blob_sha1": "4fdcb8363c2391fa2b2e4715f0b1a77eae764079",
+      "sha256": "790124ca7aa3bcbbb9dfef00ba03a66d46d04674e5c97bc997014e6fbb956135",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/M4max/M4_Max_Motor_Support_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/M4max/M4_Max_Motor_Support_x1.stl",
+      "bytes": 82584,
+      "git_blob_sha1": "7ba04041da19b1a4e2472bd743f18670f7180990",
+      "sha256": "e0e1d3b8b9ec5d6fe2e60560bcc0e69ca9c50723271c7988616c2e4856cc79c4",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/M4max/Main_Body_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/M4max/Main_Body_x1.stl",
+      "bytes": 244684,
+      "git_blob_sha1": "e78f9b449dee419c9de1a522c007e4d9613fc129",
+      "sha256": "ec2c87ca6e53fc08bef69b63329901ef56f4855ef2de12352be074e2088434b7",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/M4max/Middle_Plate_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/M4max/Middle_Plate_x1.stl",
+      "bytes": 294384,
+      "git_blob_sha1": "9265478147665e874ded35e28aee2287685d6e59",
+      "sha256": "355779fa519b2d4f9552415f3d967348e96fde5a1e90067f25333e19d971baf0",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/M4max/[a]_Guider_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/M4max/%5Ba%5D_Guider_x1.stl",
+      "bytes": 353584,
+      "git_blob_sha1": "13e49ae142565dcfa68ff3e3bb92676c538ee114",
+      "sha256": "51eaf8f9a1594287c01ec96e77956fb423232d0b5ac64e295e0d32fe4e682e92",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/M4max/[a]_Latch_Shuttle.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/M4max/%5Ba%5D_Latch_Shuttle.stl",
+      "bytes": 71484,
+      "git_blob_sha1": "00e30caa5066f9c0557cf341db265c619b1a8740",
+      "sha256": "2a656c3c8ca40774e683596a430284fad2d019a63e6588a92fa955924251e09b",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/M4max/[a]_Latch_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/M4max/%5Ba%5D_Latch_x1.stl",
+      "bytes": 95984,
+      "git_blob_sha1": "46cf9c13d69a6a1289af206c48e94a4c1d5b8d0e",
+      "sha256": "c032d15c07425ea85e2c3753fb6e13c58de7706dc45d15dc1488a05e773306ed",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/Meanwell UHP-500/[a]_Meanwell_UHP-500_Mount_Lower_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/Meanwell%20UHP-500/%5Ba%5D_Meanwell_UHP-500_Mount_Lower_x1.stl",
+      "bytes": 100184,
+      "git_blob_sha1": "424a60510a5457df525dcedeea423a6bd0e454f6",
+      "sha256": "552eec4e3162d7ca03433ecdd90d423e78f9f164369b6b8e1288e7fc98decfad",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/Meanwell UHP-500/[a]_Meanwell_UHP-500_Mount_Upper_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/Meanwell%20UHP-500/%5Ba%5D_Meanwell_UHP-500_Mount_Upper_x1.stl",
+      "bytes": 75684,
+      "git_blob_sha1": "4eaeae64835f0f62c031264ac7ef2ad1947e90e9",
+      "sha256": "c8357d92c91b1f2ed8f12323e22629fc36366656232325aaf43c1c6c66681a43",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/PanelAttachments/Extended_Spool_Holder_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/PanelAttachments/Extended_Spool_Holder_x1.stl",
+      "bytes": 175384,
+      "git_blob_sha1": "556dd07924c0435e0aaa45e1c4f2865f14585129",
+      "sha256": "93f7d43945518488eb34bc8c5d92092464f811a168f6c8e7e5c88ea3c7d3ff6c",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/Thick Belted z/Belted_Z_Back_Plate_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/Thick%20Belted%20z/Belted_Z_Back_Plate_x1.stl",
+      "bytes": 225784,
+      "git_blob_sha1": "7ee75fa00c79c25c44494dde0d477b32fe5fe667",
+      "sha256": "322c350f8c0a749a8bcb8e804d7d3756103a21a8fc5eb7089281a61ca35ff518",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/Thick Belted z/Belted_Z_Baseplate_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/Thick%20Belted%20z/Belted_Z_Baseplate_x1.stl",
+      "bytes": 240184,
+      "git_blob_sha1": "128a86c47784c503843c2c204ef8030ff5151931",
+      "sha256": "09736ddcf4dcd045aa5758392506cdba7749d14fb33ff11cd3af5ea704ad2ac7",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/Thick Belted z/Belted_Z_BedMount_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/Thick%20Belted%20z/Belted_Z_BedMount_x1.stl",
+      "bytes": 1399884,
+      "git_blob_sha1": "863b0f21f894391968482af0feba1638d69f4fa7",
+      "sha256": "cc9e69204f76add87217c9c47732f0cad86039efa15f6eacf19f675a6a484d8b",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/Thick Belted z/Belted_Z_BottomClip_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/Thick%20Belted%20z/Belted_Z_BottomClip_x1.stl",
+      "bytes": 272484,
+      "git_blob_sha1": "7b909853d775443dd8f47a0dbbf33fc7943d908c",
+      "sha256": "97fe63c4c690a866f4f211a08810aca01af858169ffcd91578e3e6c7f4f67415",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/Thick Belted z/Belted_Z_Midplate_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/Thick%20Belted%20z/Belted_Z_Midplate_x1.stl",
+      "bytes": 246884,
+      "git_blob_sha1": "735186a08bfcbc72da960b4cf57887da1a9cdd31",
+      "sha256": "d209d1d9df1f8345bf2052b4e789e9181fe191d7da020b46a79e0ab734431083",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/Thick Belted z/Belted_Z_Spacer_Left_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/Thick%20Belted%20z/Belted_Z_Spacer_Left_x1.stl",
+      "bytes": 32484,
+      "git_blob_sha1": "cda6c22138bc17dc7b7afd26183bd43877f37fd9",
+      "sha256": "7b8c5eaf42feeb39f94c0a4994aeda4bb641cd7a2efc2495d5e595a1c4bfa622",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/Thick Belted z/Belted_Z_Spacer_Right_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/Thick%20Belted%20z/Belted_Z_Spacer_Right_x1.stl",
+      "bytes": 35684,
+      "git_blob_sha1": "b2630a3fbc53431f189d5950369166689333b252",
+      "sha256": "69651c40a761cb8628f3eefeb97d5e91e4d3e8e868c1ac0c7f1e772cd8513696",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/Thick Belted z/Belted_Z_TopClip_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/Thick%20Belted%20z/Belted_Z_TopClip_x1.stl",
+      "bytes": 323884,
+      "git_blob_sha1": "c05a0825ee859080e3ef2462b24923f951d7c22a",
+      "sha256": "f54884d549728cf9ea5f1c654e3ae6a46c1f4124f55eb8b8e28db3741ff53183",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/Thick Belted z/Belted_Z_Top_Idler_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/Thick%20Belted%20z/Belted_Z_Top_Idler_x1.stl",
+      "bytes": 74284,
+      "git_blob_sha1": "75d93100af384aae9100a145ebd19bc0069c00f4",
+      "sha256": "ce9956c0c998717b099ff004f69fdaebb4bb27520c914af3bcd85f0f1b60eaab",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/Thick Belted z/[a]_80t_m4_BeltedZ_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/Thick%20Belted%20z/%5Ba%5D_80t_m4_BeltedZ_x1.stl",
+      "bytes": 1214584,
+      "git_blob_sha1": "76ab7961fc91f8b17312007f7e9bb3905a53d0bb",
+      "sha256": "b11b39220455057dfaa855836e115896533ae256dee1d55cc03cefd077ae33e5",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/ULW X Gantry/Toolhead/Ultralightweight_Carriage_Left_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/ULW%20X%20Gantry/Toolhead/Ultralightweight_Carriage_Left_x1.stl",
+      "bytes": 323684,
+      "git_blob_sha1": "1be025d524b629aa3919d6dbe065eb40920090b4",
+      "sha256": "7595a3e1567d5f0bca74d207e0f88027e7a8e85f72aed4bc6f37c467ba4b25e7",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/ULW X Gantry/Toolhead/Ultralightweight_Carriage_Right_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/ULW%20X%20Gantry/Toolhead/Ultralightweight_Carriage_Right_x1.stl",
+      "bytes": 278184,
+      "git_blob_sha1": "f02512c9a67c644278ecbba2e78327ddb1715cce",
+      "sha256": "831f657e299bf426ff80996ff92618b9c24ea34e6c2f95a2a16067f424ad0e2b",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/ULW X Gantry/XY Joints/XY_Joint_Left_Lower_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/ULW%20X%20Gantry/XY%20Joints/XY_Joint_Left_Lower_x1.stl",
+      "bytes": 322384,
+      "git_blob_sha1": "38d8e5e13d2f5739e01f19fd5f68f2188f0c0012",
+      "sha256": "681bf9f80499036783116f7617d4f5af09555067c59a85baad37b0e57a1164bd",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/ULW X Gantry/XY Joints/XY_Joint_Left_Upper_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/ULW%20X%20Gantry/XY%20Joints/XY_Joint_Left_Upper_x1.stl",
+      "bytes": 157784,
+      "git_blob_sha1": "a7d3dd0ad1b08a5df4bf5e6457441b36b2eee610",
+      "sha256": "d78c963d7dfb02bc48dfbf49ddef0cdb7a850ba39774711fd88320e0df6ce10b",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/ULW X Gantry/XY Joints/XY_Joint_Right_Lower_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/ULW%20X%20Gantry/XY%20Joints/XY_Joint_Right_Lower_x1.stl",
+      "bytes": 322384,
+      "git_blob_sha1": "884304e9e495c4931e0f47394e253d785f6cbbe2",
+      "sha256": "1f58c231b9b372703e078cb16fcf269b545bb32a2776afabcb31b1d4b75bf6c1",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/ULW X Gantry/XY Joints/XY_Joint_Right_Upper_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/ULW%20X%20Gantry/XY%20Joints/XY_Joint_Right_Upper_x1.stl",
+      "bytes": 157784,
+      "git_blob_sha1": "f7b5331b51a3b2f050472a378dbd3a32ff27b012",
+      "sha256": "a12232be5c18f7676c53d6fa604aaa2a34dbff0fc0b4d2be152c418bccbf3011",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/V0 4WD/CoconutAWD/v2AWD (Latest)/BottomMotorPlate_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/V0%204WD/CoconutAWD/v2AWD%20%28Latest%29/BottomMotorPlate_x1.stl",
+      "bytes": 924884,
+      "git_blob_sha1": "905459e16e51e148f9c1813a1497f769065fe57e",
+      "sha256": "04ad396dd3a5ef66abb1615a12fb016c7b5b692de313c1f62d0f1391bc5d5c0f",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/V0 4WD/CoconutAWD/v2AWD (Latest)/TopMotorPlate_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/V0%204WD/CoconutAWD/v2AWD%20%28Latest%29/TopMotorPlate_x1.stl",
+      "bytes": 1217284,
+      "git_blob_sha1": "c07fed02f56e94b3fdbd4faf5f5c0e18b9f15563",
+      "sha256": "1325207220f57b745a72d8f21cf28fc0dd6323854a47793201c6fac6fdcb5d01",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/V0 4WD/CoconutAWD/v2AWD (Latest)/[a]_AB1_Spacer_x2.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/V0%204WD/CoconutAWD/v2AWD%20%28Latest%29/%5Ba%5D_AB1_Spacer_x2.stl",
+      "bytes": 509084,
+      "git_blob_sha1": "107fe843d594c3864f21722e1547c9efe2f55484",
+      "sha256": "e7be749fb0eaf90ebae99239d121d10a48d50c697d7931799dd134caa2d4261a",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/V0 4WD/CoconutAWD/v2AWD (Latest)/[a]_AMotorSpacer_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/V0%204WD/CoconutAWD/v2AWD%20%28Latest%29/%5Ba%5D_AMotorSpacer_x1.stl",
+      "bytes": 295384,
+      "git_blob_sha1": "d0cb60700c5673a41c6e08280e44ec03bae7d333",
+      "sha256": "0fc2422609af06389118c5069b7e15e43027042ce9681b79c8a7596273daee03",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/V0 4WD/CoconutAWD/v2AWD (Latest)/[a]_BMotorSpacer_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/V0%204WD/CoconutAWD/v2AWD%20%28Latest%29/%5Ba%5D_BMotorSpacer_x1.stl",
+      "bytes": 296584,
+      "git_blob_sha1": "aee097788783a76764daa1169755a25df75a3fae",
+      "sha256": "1f2caf83f07ff75ef60715f64696caf30107ffa03b152f559a8b8ba7a1245986",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    }
+  ],
+  "included_stl_files": [
+    {
+      "path": "STLs/AnnexSupernova/Annex_Supernova_Bracket_Skr_Holes_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/AnnexSupernova/Annex_Supernova_Bracket_Skr_Holes_x1.stl",
+      "bytes": 241084,
+      "git_blob_sha1": "11c1370c58b8dc26a6bbf0dfe7f47deff2be49a9",
+      "sha256": "3388c407e4e49d32abca612b067fc34f5154a9d5952fbd2304911fe4da176d22",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/Coconut Air Ducts/[a]_Left_Duct_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/Coconut%20Air%20Ducts/%5Ba%5D_Left_Duct_x1.stl",
+      "bytes": 3522584,
+      "git_blob_sha1": "650c04f509f6d63e541e102efc7aae85cbf0abea",
+      "sha256": "fcb09bbc85f1d3ec3d707fb11820b1ccfa1a2e5c576a1f2eb23b34c8eceebda8",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/FrontXBeam/A_Upper_Idler_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/FrontXBeam/A_Upper_Idler_x1.stl",
+      "bytes": 233184,
+      "git_blob_sha1": "73b969eb1c27decc40f6bc992c6c8bf77dc483bd",
+      "sha256": "0bce1d4e911e04d60237eb7cd789ea857dd825d2e953b2f7f7cc625bf0889043",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/FrontXBeam/B_Upper_Idler_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/FrontXBeam/B_Upper_Idler_x1.stl",
+      "bytes": 240584,
+      "git_blob_sha1": "99ea4cea1c9fe1af89edef18f5040ebf67418779",
+      "sha256": "100ef7b2ad0f3779a5a7ca78c228a876083831e425f042a89b0f1a049e8c1198",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/M4max/Bottom_Plate_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/M4max/Bottom_Plate_x1.stl",
+      "bytes": 252584,
+      "git_blob_sha1": "6302083d77b8793776ccfb8340f72ea91d0926d8",
+      "sha256": "06f76e90ef0050320db985b9a7e537f665831febecc1c5bf248a025a22465a98",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/M4max/End_Plate_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/M4max/End_Plate_x1.stl",
+      "bytes": 208584,
+      "git_blob_sha1": "4fdcb8363c2391fa2b2e4715f0b1a77eae764079",
+      "sha256": "790124ca7aa3bcbbb9dfef00ba03a66d46d04674e5c97bc997014e6fbb956135",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/M4max/M4_Max_Motor_Support_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/M4max/M4_Max_Motor_Support_x1.stl",
+      "bytes": 82584,
+      "git_blob_sha1": "7ba04041da19b1a4e2472bd743f18670f7180990",
+      "sha256": "e0e1d3b8b9ec5d6fe2e60560bcc0e69ca9c50723271c7988616c2e4856cc79c4",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/M4max/Main_Body_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/M4max/Main_Body_x1.stl",
+      "bytes": 244684,
+      "git_blob_sha1": "e78f9b449dee419c9de1a522c007e4d9613fc129",
+      "sha256": "ec2c87ca6e53fc08bef69b63329901ef56f4855ef2de12352be074e2088434b7",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/M4max/Middle_Plate_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/M4max/Middle_Plate_x1.stl",
+      "bytes": 294384,
+      "git_blob_sha1": "9265478147665e874ded35e28aee2287685d6e59",
+      "sha256": "355779fa519b2d4f9552415f3d967348e96fde5a1e90067f25333e19d971baf0",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/M4max/[a]_Guider_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/M4max/%5Ba%5D_Guider_x1.stl",
+      "bytes": 353584,
+      "git_blob_sha1": "13e49ae142565dcfa68ff3e3bb92676c538ee114",
+      "sha256": "51eaf8f9a1594287c01ec96e77956fb423232d0b5ac64e295e0d32fe4e682e92",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/M4max/[a]_Latch_Shuttle.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/M4max/%5Ba%5D_Latch_Shuttle.stl",
+      "bytes": 71484,
+      "git_blob_sha1": "00e30caa5066f9c0557cf341db265c619b1a8740",
+      "sha256": "2a656c3c8ca40774e683596a430284fad2d019a63e6588a92fa955924251e09b",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/M4max/[a]_Latch_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/M4max/%5Ba%5D_Latch_x1.stl",
+      "bytes": 95984,
+      "git_blob_sha1": "46cf9c13d69a6a1289af206c48e94a4c1d5b8d0e",
+      "sha256": "c032d15c07425ea85e2c3753fb6e13c58de7706dc45d15dc1488a05e773306ed",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/Meanwell UHP-500/[a]_Meanwell_UHP-500_Mount_Lower_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/Meanwell%20UHP-500/%5Ba%5D_Meanwell_UHP-500_Mount_Lower_x1.stl",
+      "bytes": 100184,
+      "git_blob_sha1": "424a60510a5457df525dcedeea423a6bd0e454f6",
+      "sha256": "552eec4e3162d7ca03433ecdd90d423e78f9f164369b6b8e1288e7fc98decfad",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/Meanwell UHP-500/[a]_Meanwell_UHP-500_Mount_Upper_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/Meanwell%20UHP-500/%5Ba%5D_Meanwell_UHP-500_Mount_Upper_x1.stl",
+      "bytes": 75684,
+      "git_blob_sha1": "4eaeae64835f0f62c031264ac7ef2ad1947e90e9",
+      "sha256": "c8357d92c91b1f2ed8f12323e22629fc36366656232325aaf43c1c6c66681a43",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/PanelAttachments/Extended_Spool_Holder_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/PanelAttachments/Extended_Spool_Holder_x1.stl",
+      "bytes": 175384,
+      "git_blob_sha1": "556dd07924c0435e0aaa45e1c4f2865f14585129",
+      "sha256": "93f7d43945518488eb34bc8c5d92092464f811a168f6c8e7e5c88ea3c7d3ff6c",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/Thick Belted z/Belted_Z_Back_Plate_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/Thick%20Belted%20z/Belted_Z_Back_Plate_x1.stl",
+      "bytes": 225784,
+      "git_blob_sha1": "7ee75fa00c79c25c44494dde0d477b32fe5fe667",
+      "sha256": "322c350f8c0a749a8bcb8e804d7d3756103a21a8fc5eb7089281a61ca35ff518",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/Thick Belted z/Belted_Z_Baseplate_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/Thick%20Belted%20z/Belted_Z_Baseplate_x1.stl",
+      "bytes": 240184,
+      "git_blob_sha1": "128a86c47784c503843c2c204ef8030ff5151931",
+      "sha256": "09736ddcf4dcd045aa5758392506cdba7749d14fb33ff11cd3af5ea704ad2ac7",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/Thick Belted z/Belted_Z_BottomClip_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/Thick%20Belted%20z/Belted_Z_BottomClip_x1.stl",
+      "bytes": 272484,
+      "git_blob_sha1": "7b909853d775443dd8f47a0dbbf33fc7943d908c",
+      "sha256": "97fe63c4c690a866f4f211a08810aca01af858169ffcd91578e3e6c7f4f67415",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/Thick Belted z/Belted_Z_Midplate_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/Thick%20Belted%20z/Belted_Z_Midplate_x1.stl",
+      "bytes": 246884,
+      "git_blob_sha1": "735186a08bfcbc72da960b4cf57887da1a9cdd31",
+      "sha256": "d209d1d9df1f8345bf2052b4e789e9181fe191d7da020b46a79e0ab734431083",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/Thick Belted z/Belted_Z_Spacer_Left_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/Thick%20Belted%20z/Belted_Z_Spacer_Left_x1.stl",
+      "bytes": 32484,
+      "git_blob_sha1": "cda6c22138bc17dc7b7afd26183bd43877f37fd9",
+      "sha256": "7b8c5eaf42feeb39f94c0a4994aeda4bb641cd7a2efc2495d5e595a1c4bfa622",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/Thick Belted z/Belted_Z_Spacer_Right_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/Thick%20Belted%20z/Belted_Z_Spacer_Right_x1.stl",
+      "bytes": 35684,
+      "git_blob_sha1": "b2630a3fbc53431f189d5950369166689333b252",
+      "sha256": "69651c40a761cb8628f3eefeb97d5e91e4d3e8e868c1ac0c7f1e772cd8513696",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/Thick Belted z/Belted_Z_TopClip_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/Thick%20Belted%20z/Belted_Z_TopClip_x1.stl",
+      "bytes": 323884,
+      "git_blob_sha1": "c05a0825ee859080e3ef2462b24923f951d7c22a",
+      "sha256": "f54884d549728cf9ea5f1c654e3ae6a46c1f4124f55eb8b8e28db3741ff53183",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/Thick Belted z/Belted_Z_Top_Idler_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/Thick%20Belted%20z/Belted_Z_Top_Idler_x1.stl",
+      "bytes": 74284,
+      "git_blob_sha1": "75d93100af384aae9100a145ebd19bc0069c00f4",
+      "sha256": "ce9956c0c998717b099ff004f69fdaebb4bb27520c914af3bcd85f0f1b60eaab",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/Thick Belted z/[a]_80t_m4_BeltedZ_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/Thick%20Belted%20z/%5Ba%5D_80t_m4_BeltedZ_x1.stl",
+      "bytes": 1214584,
+      "git_blob_sha1": "76ab7961fc91f8b17312007f7e9bb3905a53d0bb",
+      "sha256": "b11b39220455057dfaa855836e115896533ae256dee1d55cc03cefd077ae33e5",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/ULW X Gantry/Toolhead/Ultralightweight_Carriage_Left_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/ULW%20X%20Gantry/Toolhead/Ultralightweight_Carriage_Left_x1.stl",
+      "bytes": 323684,
+      "git_blob_sha1": "1be025d524b629aa3919d6dbe065eb40920090b4",
+      "sha256": "7595a3e1567d5f0bca74d207e0f88027e7a8e85f72aed4bc6f37c467ba4b25e7",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/ULW X Gantry/Toolhead/Ultralightweight_Carriage_Right_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/ULW%20X%20Gantry/Toolhead/Ultralightweight_Carriage_Right_x1.stl",
+      "bytes": 278184,
+      "git_blob_sha1": "f02512c9a67c644278ecbba2e78327ddb1715cce",
+      "sha256": "831f657e299bf426ff80996ff92618b9c24ea34e6c2f95a2a16067f424ad0e2b",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/ULW X Gantry/XY Joints/XY_Joint_Left_Lower_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/ULW%20X%20Gantry/XY%20Joints/XY_Joint_Left_Lower_x1.stl",
+      "bytes": 322384,
+      "git_blob_sha1": "38d8e5e13d2f5739e01f19fd5f68f2188f0c0012",
+      "sha256": "681bf9f80499036783116f7617d4f5af09555067c59a85baad37b0e57a1164bd",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/ULW X Gantry/XY Joints/XY_Joint_Left_Upper_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/ULW%20X%20Gantry/XY%20Joints/XY_Joint_Left_Upper_x1.stl",
+      "bytes": 157784,
+      "git_blob_sha1": "a7d3dd0ad1b08a5df4bf5e6457441b36b2eee610",
+      "sha256": "d78c963d7dfb02bc48dfbf49ddef0cdb7a850ba39774711fd88320e0df6ce10b",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/ULW X Gantry/XY Joints/XY_Joint_Right_Lower_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/ULW%20X%20Gantry/XY%20Joints/XY_Joint_Right_Lower_x1.stl",
+      "bytes": 322384,
+      "git_blob_sha1": "884304e9e495c4931e0f47394e253d785f6cbbe2",
+      "sha256": "1f58c231b9b372703e078cb16fcf269b545bb32a2776afabcb31b1d4b75bf6c1",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/ULW X Gantry/XY Joints/XY_Joint_Right_Upper_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/ULW%20X%20Gantry/XY%20Joints/XY_Joint_Right_Upper_x1.stl",
+      "bytes": 157784,
+      "git_blob_sha1": "f7b5331b51a3b2f050472a378dbd3a32ff27b012",
+      "sha256": "a12232be5c18f7676c53d6fa604aaa2a34dbff0fc0b4d2be152c418bccbf3011",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/V0 4WD/CoconutAWD/v2AWD (Latest)/BottomMotorPlate_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/V0%204WD/CoconutAWD/v2AWD%20%28Latest%29/BottomMotorPlate_x1.stl",
+      "bytes": 924884,
+      "git_blob_sha1": "905459e16e51e148f9c1813a1497f769065fe57e",
+      "sha256": "04ad396dd3a5ef66abb1615a12fb016c7b5b692de313c1f62d0f1391bc5d5c0f",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/V0 4WD/CoconutAWD/v2AWD (Latest)/TopMotorPlate_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/V0%204WD/CoconutAWD/v2AWD%20%28Latest%29/TopMotorPlate_x1.stl",
+      "bytes": 1217284,
+      "git_blob_sha1": "c07fed02f56e94b3fdbd4faf5f5c0e18b9f15563",
+      "sha256": "1325207220f57b745a72d8f21cf28fc0dd6323854a47793201c6fac6fdcb5d01",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/V0 4WD/CoconutAWD/v2AWD (Latest)/[a]_AB1_Spacer_x2.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/V0%204WD/CoconutAWD/v2AWD%20%28Latest%29/%5Ba%5D_AB1_Spacer_x2.stl",
+      "bytes": 509084,
+      "git_blob_sha1": "107fe843d594c3864f21722e1547c9efe2f55484",
+      "sha256": "e7be749fb0eaf90ebae99239d121d10a48d50c697d7931799dd134caa2d4261a",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/V0 4WD/CoconutAWD/v2AWD (Latest)/[a]_AMotorSpacer_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/V0%204WD/CoconutAWD/v2AWD%20%28Latest%29/%5Ba%5D_AMotorSpacer_x1.stl",
+      "bytes": 295384,
+      "git_blob_sha1": "d0cb60700c5673a41c6e08280e44ec03bae7d333",
+      "sha256": "0fc2422609af06389118c5069b7e15e43027042ce9681b79c8a7596273daee03",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    },
+    {
+      "path": "STLs/V0 4WD/CoconutAWD/v2AWD (Latest)/[a]_BMotorSpacer_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/V0%204WD/CoconutAWD/v2AWD%20%28Latest%29/%5Ba%5D_BMotorSpacer_x1.stl",
+      "bytes": 296584,
+      "git_blob_sha1": "aee097788783a76764daa1169755a25df75a3fae",
+      "sha256": "1f2caf83f07ff75ef60715f64696caf30107ffa03b152f559a8b8ba7a1245986",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867"
+    }
+  ],
+  "withheld_stl_files": [
+    {
+      "path": "STLs/Coconut Air Ducts/[a]_Right_Duct_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/Coconut%20Air%20Ducts/%5Ba%5D_Right_Duct_x1.stl",
+      "bytes": 7765884,
+      "git_blob_sha1": "35f2ab55c22eb441d93f609e3d4b5b20fa5a992a",
+      "sha256": "a8b06bf7db4f89016fc64bfebdaecfe7990777f52f3d8316e25049347cdc8a64",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867",
+      "reason": "Unresolved original mesh topology defect"
+    },
+    {
+      "path": "STLs/Thick Belted z/Belted_Z_BedMount_x1.stl",
+      "url": "https://raw.githubusercontent.com/CoconutDevelopment/CocobustorZero/052e6c321a7e3fffad5057ce1e9f87de38f0e867/STLs/Thick%20Belted%20z/Belted_Z_BedMount_x1.stl",
+      "bytes": 1399884,
+      "git_blob_sha1": "863b0f21f894391968482af0feba1638d69f4fa7",
+      "sha256": "cc9e69204f76add87217c9c47732f0cad86039efa15f6eacf19f675a6a484d8b",
+      "revision": "052e6c321a7e3fffad5057ce1e9f87de38f0e867",
+      "reason": "Unresolved original mesh topology defect"
+    }
+  ],
+  "excluded_stl_files": [
+    {
+      "path": "STLs/Archived/MGN9C X Mosq/MGN9CLeft_x1.stl",
+      "git_blob_sha1": "6ff8517f0b1743160b36a4ca267a81a60ea43e42",
+      "reason": "Archived variant"
+    },
+    {
+      "path": "STLs/Archived/MGN9C X Mosq/MGN9CRight_x1.stl",
+      "git_blob_sha1": "86801704b0c901ce55220feb33ad6e3119a34080",
+      "reason": "Archived variant"
+    },
+    {
+      "path": "STLs/Archived/V1AWD (OLD)/ABDriveMotorPlate.stl",
+      "git_blob_sha1": "02c59ec10812039013c995290c084812d88f8193",
+      "reason": "Archived variant"
+    },
+    {
+      "path": "STLs/Archived/V1AWD (OLD)/ADriveCap.stl",
+      "git_blob_sha1": "edd5e03b53c17910f7d8ee9307d599939a6fcf1d",
+      "reason": "Archived variant"
+    },
+    {
+      "path": "STLs/Archived/V1AWD (OLD)/BDriveCap.stl",
+      "git_blob_sha1": "3ac594d2e31385dec029136d94df1eecaf5505d9",
+      "reason": "Archived variant"
+    },
+    {
+      "path": "STLs/Archived/V1AWD (OLD)/MotorSpacerA.stl",
+      "git_blob_sha1": "56c76a2f41068d5726a7110c28999badf031f648",
+      "reason": "Archived variant"
+    },
+    {
+      "path": "STLs/Archived/V1AWD (OLD)/MotorSpacerB.stl",
+      "git_blob_sha1": "8e5440e8b50c4c9548797cfe3e1641624c0e4af7",
+      "reason": "Archived variant"
+    },
+    {
+      "path": "STLs/Superwide Stance/Unfinished (2).stl",
+      "git_blob_sha1": "9d25a5fcdc6f58a110886150dcacecc69b4f7204",
+      "reason": "Unfinished variant"
+    },
+    {
+      "path": "STLs/Superwide Stance/Unfinished (3).stl",
+      "git_blob_sha1": "0117c03bfd267fc4df7cd3f22bb7be14f274c34e",
+      "reason": "Unfinished variant"
+    },
+    {
+      "path": "STLs/Superwide Stance/Unfinished (4).stl",
+      "git_blob_sha1": "8aac92b3fb466464168bef6fc55b8f87ac316681",
+      "reason": "Unfinished variant"
+    },
+    {
+      "path": "STLs/Superwide Stance/Unfinished.stl",
+      "git_blob_sha1": "c70b145e59eee15318aca92354ca4515bd4880d2",
+      "reason": "Unfinished variant"
+    },
+    {
+      "path": "STLs/V0 4WD/TimTimAWD/STLs/TopTotalAssembly.STL",
+      "git_blob_sha1": "81b6577158e8d388041809aa4674936f8b5a51ae",
+      "reason": "Separate TimTim AWD design"
+    },
+    {
+      "path": "STLs/V0 4WD/TimTimAWD/STLs/Uspacer.STL",
+      "git_blob_sha1": "c484581a0964cd21b8f86591c46f247b90647d76",
+      "reason": "Separate TimTim AWD design"
+    },
+    {
+      "path": "STLs/V0 4WD/TimTimAWD/STLs/bottomTotalAssembly.STL",
+      "git_blob_sha1": "ee74c07b12fb901ad759910fd3ba731d2f922ec9",
+      "reason": "Separate TimTim AWD design"
+    }
+  ],
+  "complete_machine": false,
+  "machine_installation_verified": false,
+  "components": [
+    "v0mod_cocobustorzero_awd_coconut_v2",
+    "v0mod_cocobustorzero_ulw_x",
+    "v0mod_cocobustorzero_belted_z",
+    "v0mod_cocobustorzero_m4max",
+    "v0mod_cocobustorzero_air_ducts",
+    "v0mod_cocobustorzero_accessories"
+  ],
+  "master_assembly": {
+    "path": "STLs/V0 4WD/CoconutAWD/v2AWD (Latest)/V0.2 Master Assembly RC2.f3d",
+    "bytes": 94863722,
+    "git_blob_sha1": "033916c5504a5b46b2e79f5552a180d1c95c0f3c",
+    "status": "Public native archive acquired; assembly occurrence transforms and hardware completeness remain unverified"
+  },
+  "open_findings": [
+    "Native assembly and installed kinematics",
+    "Purchased hardware and companion mapping",
+    "Built-in support identities",
+    "Native mating features and printer clearances"
+  ]
+}

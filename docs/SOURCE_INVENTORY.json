@@ -20,8 +20,8 @@
     },
     {
       "path": ".gitignore",
-      "bytes": 921,
-      "sha256": "a85582d9ff064544ea85ab1e36148ae6e9dec24fe34965f67580fdfd847f4702"
+      "bytes": 952,
+      "sha256": "7836d0525b62453ba5804837a4f9a3f75851a62e0b1642ff8ccc1f6e0102b402"
     },
     {
       "path": "AGENTS.md",
@@ -165,8 +165,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 2391210,
-      "sha256": "37cfc521a9959a297100f49847a62758cfc3cc35ca69ca5cfcab39142901e247"
+      "bytes": 2391136,
+      "sha256": "f046ef869ee947dfccf6a767c896a5091ba3acfb4f107f8369f3c5b5a06324c5"
     },
     {
       "path": "docs/MADMAX_NATIVE_JOINT_101.json",
@@ -875,8 +875,8 @@
     },
     {
       "path": "scripts/test_cocobustor_components.mjs",
-      "bytes": 5348,
-      "sha256": "fe04d26c5bb5d66d768d85baeeb2ca11c83d132185ef11a44b65a5fb76bec8a5"
+      "bytes": 5546,
+      "sha256": "47cafdbfe6be461c09720d5aa5d75cc7360cf19bb0775ad0ac5d9067e440069f"
     },
     {
       "path": "scripts/test_community_state.mjs",
@@ -1477,6 +1477,11 @@
       "path": "site/ASSET_BUNDLE.json",
       "bytes": 242,
       "sha256": "10c44725a05926348f9c25ec2f655fa08c2776f855a6f0e3d376e11e24698bca"
+    },
+    {
+      "path": "site/COCOBUSTOR_SOURCES.json",
+      "bytes": 40042,
+      "sha256": "37df89531c4379dbc6230100ec42a85eda7e57ef3ea435c184dc8d01e29df57c"
     },
     {
       "path": "site/COMMUNITY_INSTALLATIONS.json",
