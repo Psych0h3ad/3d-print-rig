@@ -59,6 +59,11 @@ const unknownSummary=probeMountSummary({id:'beacon',label:'Beacon',module:'refer
 const otherwiseClear={...nativeBeacon,fit:{...nativeBeacon.fit,complete_head_native:{state:'clear'}}};
 assert(headInspectionState(otherwiseClear).warning);assert.equal(headInspectionState(otherwiseClear).state,'unverified');assert(headInspectionState(otherwiseClear).label.includes('未確認'));
 assert.equal(headInspectionState({...otherwiseClear,fit:{...otherwiseClear.fit,carriage_native_body_passed:false}}).state,'carriage-conflict');
+const mountedConflict={...otherwiseClear,fit:{...otherwiseClear.fit,native_installation:{mount_verified:true},complete_head_native:{state:'collision'}}};
+assert(headInspectionState(mountedConflict).label.includes('本体干渉あり'));
+assert(headInspectionState(mountedConflict).label.includes('元の完成機で取付確認'));
+assert(headInspectionState(mountedConflict).warning);
+assert(headInspectionState({...mountedConflict,fit:{...mountedConflict.fit,carriage_native_body_passed:false}}).label.includes('キャリッジ試着'));
 assert.equal(probeCheck({probe:'unknown_sensor'}).state,'unverified');assert.equal(probeCheck({probe:'none'}).state,'none');
 console.log('Probe clearance passed: height/physical/metal conditions, bed clearance metrics, native-coordinate guides, safe hotend changes and explicit conflict previews.');
 import {headBodyCollisionNotes} from '../site/viewer/probe-checks.js';

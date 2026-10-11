@@ -1,7 +1,7 @@
-import {collections} from './configuration-model.js?v=922298bc5433b90fa3af';
+import {collections} from './configuration-model.js?v=c19fa3a47abadf7f3d2c';
 import {withSphinxCompanionPresets} from './head-companion-presets.mjs?v=82ec6a996e9e1661b811';
 import {withA4TPrintedReference} from './a4t-printed-companions.mjs?v=e7443f72d21fc964b2cf';
-import {validateEvaVariant} from './eva-heads.mjs?v=919a1f6692a6bd855927';
+import {validateEvaVariant} from './eva-heads.mjs?v=65c037171afca9ebb341';
 
 // Supplemental source heads never create machine mounting registrations.
 export function withHeadAdditions(catalog,additions){

@@ -1,13 +1,14 @@
 import {normalizeLanguage} from './languages.mjs?v=ba6a5cd8e1d86849ca34';
-import {monolithHeadCatalog} from './monolith-head-model.mjs?v=eb92549b7f074b6ab7a8';
-import {machinePage} from './machines.js?v=f884e9be087c61766aae';
-import {machineHeadVariants} from './machine-head-model.mjs?v=2acb46b71855e6aa181d';
+import {monolithHeadCatalog} from './monolith-head-model.mjs?v=f3ba6c09e79c6c25d45a';
+import {machinePage} from './machines.js?v=7d90ace65109ee54e1d2';
+import {machineHeadVariants} from './machine-head-model.mjs?v=29127f945aa95e886fe7';
 
 export function headPrinterLink(variant,registry,href){
  const source=new URL(href),preferred=source.searchParams.get('return_machine');
  const original=registry.eva_source_machines?.[variant.id];
  if(original&&machinePage(original)){
   const url=new URL(machinePage(original),source);url.searchParams.set('machine',original);
+  const installed=registry.eva_installation_configurations?.[variant.id];if(installed)url.searchParams.set('configuration',installed);
   const lang=normalizeLanguage(source.searchParams.get('lang'));if(lang)url.searchParams.set('lang',lang);
   return {url:url.href,machine:original,registered:true,sourceAssembly:true};
  }

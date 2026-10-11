@@ -1,7 +1,7 @@
-import {collections,catalogDimensions} from './configuration-model.js?v=922298bc5433b90fa3af';
+import {collections,catalogDimensions} from './configuration-model.js?v=c19fa3a47abadf7f3d2c';
 import {headPlan} from './head-assembly.js?v=trident-clearance-35';
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
-import {probeHasConflict} from './probe-checks.js?v=ea1aef3e30bf7d11d3cb';
+import {probeHasConflict} from './probe-checks.js?v=0f70f5c099338db857e7';
 
 const labels={toolhead:'ヘッド',extruder:'押出機',hotend:'ホットエンド',cooling:'冷却',mount:'取付・交換機構',gantry:'キャリッジ / ベルト幅',carriage:'キャリッジ本体',probe:'プローブ',board:'基板'};
 export function builderCandidates(catalog,filters={}){

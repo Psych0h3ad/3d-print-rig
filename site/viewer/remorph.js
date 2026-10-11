@@ -6,11 +6,11 @@ import {OrbitControls} from './vendor/OrbitControls.js';
 import {createRemorphAdapter} from './remorph-adapter.mjs';
 import {createRemorphEnvironment} from './remorph-environment.mjs?v=67b979de18933d30ccfd';
 import {loadExtraMachine} from './extra-machine-loader.mjs?v=dd97105abc4157397f19';
-import {setupMachineNavigation} from './machines.js?v=f884e9be087c61766aae';
+import {setupMachineNavigation} from './machines.js?v=7d90ace65109ee54e1d2';
 import {workspaceFrame,WorkspaceResizeObserver,workspaceListen} from './workspace-lifecycle.mjs?v=ea3c45fda6e17c3b5857';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {setupRenderExport} from './render-export.js?v=a5e4bcf57f5a8e07dcba';
-import {setupPublicInfo} from './public-info.js?v=80ca8e20af09c41431a2';
+import {setupPublicInfo} from './public-info.js?v=bc65031c671a47d05260';
 export async function mount(scope){
  const $=id=>document.getElementById(id),id='remorph_beta1_307',stage=$('stage');
  const renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));stage.append(renderer.domElement);

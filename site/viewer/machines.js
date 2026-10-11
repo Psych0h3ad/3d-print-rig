@@ -15,6 +15,7 @@ export const machineChoices=[
  {id:'lh_stinger_200',label:'LH Stinger 1.0 · 200 / Orbiter V2.0 / Dragon HF',page:'./community.html',family:'lh_stinger',vendor:'lhndo',size:200},
  {id:'antithesis_aether_mk11',label:'Antithesis Aether MK1.1 · Aluminum / Conch / Galileo 2',page:'./community.html',family:'aether',vendor:'antithesis',size:130},
  {id:'ratrig_vminion_180',label:'Rat Rig V-Minion 1.0 · 180 / EVA / LGX Lite',page:'./community.html',family:'vminion',vendor:'ratrig',size:180},
+ {id:'ratrig_vcore31_300',label:'Rat Rig V-Core 3.1 · 300 / EVA 3 / LGX Lite',page:'./community.html',family:'vcore3',vendor:'ratrig',size:300},
  {id:'snakeoil_xy_180',label:'SnakeOil XY · 180 / Mosquito / Sherpa Mini',page:'./community.html',family:'snakeoil_xy',vendor:'snakeoil',size:180},
  {id:'snakeoil_xy_idex',label:'SnakeOil XY · IDEX / Dual Mosquito / Sherpa Mini',page:'./community.html',family:'snakeoil_xy',vendor:'snakeoil',size:250},
  {id:'snakeoil_3s_kp3s_180',label:'SnakeOil XY-3S · KP3S / V6 / Sherpa Mini',page:'./community.html',family:'snakeoil_3s',vendor:'snakeoil',size:180},
@@ -54,7 +55,7 @@ export const machineChoices=[
  ...ratRigMachines,
 ];
 const vendors={'247printing':'247printing',frankenvoron:'FrankenVoron',squirrelbrain:'Squirrelbrain',mszturc:'Matt The Printing Nerd',rolohaun:'Rolohaun Design',sovol:'SOVOL',lhndo:'LH Stinger / lhndo',antithesis:"Antithesis Engineering",snakeoil:"SnakeOilXY",zerog:"ZeroG",vzbot:"VzBot",creality:"Creality",positron_ldo:'Positron 3D / LDO',voron:'VORON / 標準',siboor:'SIBOOR',ldo:'LDO',fysetc:'FYSETC',pfa:'Printers for Ants',ratrig:'Rat Rig',pole:'Pole Engineering',remorph:'Lex Reman / Remorph',annex:'Annex Engineering'};
-const families={'247zero':'247zero',doomcube:'DoomCube 2',tictac:'TicTac',the100:'THE 100',rook:'Rook',satsuma:'Satsuma',sovol_sv08:'SOVOL SV08',lh_stinger:'LH Stinger',aether:"Antithesis Aether",vminion:"V-Minion",snakeoil_xy:"SnakeOil XY",snakeoil_3s:"SnakeOil XY-3S",proosaxy:"ProosaXY",mercury:"Mercury One.1",vzbot:"VzBot",ender3:"Ender-3",sboom:"S-BOOM",positron:'Positron',trident:'VORON Trident',v24:'VORON V2.4',v0:'VORON V0',micron:'Micron',vcore4:'V-Core 4',crossant:'Crossant-235',remorph:'Remorph',annex_k1:'Annex K1',annex_k2:'Annex K2',annex_k3:'Annex K3'};
+const families={'247zero':'247zero',doomcube:'DoomCube 2',tictac:'TicTac',the100:'THE 100',rook:'Rook',satsuma:'Satsuma',sovol_sv08:'SOVOL SV08',lh_stinger:'LH Stinger',aether:"Antithesis Aether",vminion:"V-Minion",snakeoil_xy:"SnakeOil XY",snakeoil_3s:"SnakeOil XY-3S",proosaxy:"ProosaXY",mercury:"Mercury One.1",vzbot:"VzBot",ender3:"Ender-3",sboom:"S-BOOM",positron:'Positron',trident:'VORON Trident',v24:'VORON V2.4',v0:'VORON V0',micron:'Micron',vcore3:'V-Core 3.1',vcore4:'V-Core 4',crossant:'Crossant-235',remorph:'Remorph',annex_k1:'Annex K1',annex_k2:'Annex K2',annex_k3:'Annex K3'};
 for(const row of machineChoices){
  if(row.family&&row.vendor&&row.size)continue;
  row.family=row.id.startsWith('micron_')?'micron':row.id.includes('trident')?'trident':row.id.includes('v24')?'v24':'v0';

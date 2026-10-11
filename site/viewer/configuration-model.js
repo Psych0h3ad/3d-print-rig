@@ -1,4 +1,4 @@
-import {probeHasConflict} from './probe-checks.js?v=ea1aef3e30bf7d11d3cb';
+import {probeHasConflict} from './probe-checks.js?v=0f70f5c099338db857e7';
 import {hasDeclaredHeadHardware,registeredConfigurationId} from './head-companion-presets.mjs?v=82ec6a996e9e1661b811';
 export const dimensions=['gantry','toolhead','carriage','hotend','extruder','probe'];
 export const collections={gantry:'gantries',toolhead:'toolheads',mount:'mounts',carriage:'carriages',hotend:'hotends',extruder:'extruders',probe:'probes',board:'boards',cooling:'cooling_options'};

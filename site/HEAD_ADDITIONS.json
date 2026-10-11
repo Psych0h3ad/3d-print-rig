@@ -61,7 +61,7 @@
       "label": "EVA 2 · Cartesian / 6 mm"
     },
     {
-      "id": "eva3_corexy_6",
+      "id": "eva3_corexy_9",
       "label": "EVA 3 · CoreXY / V-Core 3.1"
     }
   ],
@@ -1223,11 +1223,11 @@
         }
       },
       "notes": [
-        "V-Minion source assembly. Other printer mounts and clearance throughout travel are unverified.",
+        "V-Minion installation checked against source CAD. Other printer mounts are not registered.",
         "EVA 2 patch version unknown. Source: V-Minion v7 / EVA Assembly v5.",
         "Built-in supports unidentified; none removed."
       ],
-      "display_scope": "V-Minion source assembly. Other printer mounts and clearance throughout travel are unverified.",
+      "display_scope": "V-Minion installation checked against source CAD. Other printer mounts are not registered.",
       "fit": {
         "nozzle_mm": [
           -87.49999850988388,
@@ -1249,12 +1249,12 @@
       "mount": "fixed",
       "extruder": "lgx_lite",
       "hotend": "eva_rapido_hf_v1",
-      "gantry": "eva3_corexy_6",
+      "gantry": "eva3_corexy_9",
       "carriage": "eva3_mgn12c",
       "probe": "eva_superpinda",
       "board": "none",
       "cooling": "eva3_sanyo4028_4010",
-      "belt_width_mm": 6,
+      "belt_width_mm": 9,
       "base_asset": "eva3_ratrig_vcore31_urn9_rapido_hf_lgx_lite",
       "base_hidden_keys": [],
       "head_translation_mm": [
@@ -1432,15 +1432,20 @@
           "cover": [
             "eva3_native_094"
           ]
+        },
+        "source_machine": {
+          "id": "ratrig_vcore31_300",
+          "decoded_model_sha256": "6a375f65c81f6cd993313257bab4fe8cae0345ad1b8ee500dece3dc890014a16",
+          "manifest_sha256": "c189b953685eb811c9fa9a2fe0d0aafbda169dcaf24c3ceee3294e186f7ab185"
         }
       },
       "notes": [
-        "V-Core 3.1 source assembly. Other printer mounts and clearance throughout travel are unverified.",
+        "V-Core 3.1 installation checked against source CAD. Other printer mounts are not registered.",
         "EVA 3 patch version unknown. Source: V-Core 3.1 v9 / EVA 3 Assembly v4.",
         "Built-in supports unidentified; none removed.",
         "Unresolved overlaps in source CAD. Assembly clearance is unverified."
       ],
-      "display_scope": "V-Core 3.1 source assembly. Other printer mounts and clearance throughout travel are unverified.",
+      "display_scope": "V-Core 3.1 installation checked against source CAD. Other printer mounts are not registered.",
       "fit": {
         "nozzle_mm": [
           6.169073646640315e-07,

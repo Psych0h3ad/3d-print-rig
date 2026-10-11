@@ -9271,8 +9271,8 @@
       "text": "Sonda inductiva M8 · Ensamblaje original EVA"
     },
     "feature.eva2.notice.scope": {
-      "source_revision": "81281e61da662dab34c2",
-      "text": "Ensamblaje original de V-Minion. Los montajes en otras impresoras y la holgura durante todo el recorrido no están verificados."
+      "source_revision": "4c63d897209e737789a9",
+      "text": "Instalación en V-Minion comprobada con el CAD original. No hay montajes registrados para otras impresoras."
     },
     "feature.eva2.notice.patch": {
       "source_revision": "e3b8e2de9740ab57e95b",
@@ -9303,8 +9303,8 @@
       "text": "SuperPINDA · Ensamblaje original EVA"
     },
     "feature.eva3.notice.scope": {
-      "source_revision": "9363a64fdd597140c315",
-      "text": "Ensamblaje original de V-Core 3.1. Los montajes en otras impresoras y la holgura durante todo el recorrido no están verificados."
+      "source_revision": "11d05116eecb2e1e391b",
+      "text": "Instalación en V-Core 3.1 comprobada con el CAD original. No hay montajes registrados para otras impresoras."
     },
     "feature.eva3.notice.patch": {
       "source_revision": "2b8791ac348c7563bfd3",
@@ -9317,6 +9317,46 @@
     "feature.eva.notice.native_overlaps": {
       "source_revision": "f37d9720724716de65d3",
       "text": "Solapamientos sin resolver en el CAD original. La holgura del ensamblaje no está verificada."
+    },
+    "feature.eva.mount.checked": {
+      "source_revision": "902b484aef07d292c8fb",
+      "text": "Montaje comprobado en la impresora original"
+    },
+    "feature.eva.mount.review": {
+      "source_revision": "6ccd257a1ad4eebc86c2",
+      "text": "Revisión del montaje en el CAD original"
+    },
+    "feature.eva3.native.pose": {
+      "source_revision": "d505d7b4fd433f205d63",
+      "text": "Posición de referencia CAD: separación de 8.50 mm entre boquilla y cama. Los ejes indican desplazamientos desde esta posición."
+    },
+    "feature.eva3.native.belts": {
+      "source_revision": "d31a404fd92f909e70b9",
+      "text": "Correas originales de 9 mm. No se simulan los dientes ni la tensión."
+    },
+    "feature.eva.body.unknown": {
+      "source_revision": "e36e9841f7696c64b0e7",
+      "text": "Holgura del cuerpo sin verificar"
+    },
+    "feature.eva2.native.reset_contact": {
+      "source_revision": "05f37713dd0d0f8cd22e",
+      "text": "La posición inicial del CAD tiene una interferencia entre tornillo y polea. Con la cama en Y +1.5 mm, la separación medida es de 0.17174 mm."
+    },
+    "feature.eva2.native.belts": {
+      "source_revision": "6e53b317a430521ae461",
+      "text": "Correas originales: X 6 mm, Y 9 mm. No se simulan los dientes ni la tensión."
+    },
+    "feature.eva3.native.belt_gaps": {
+      "source_revision": "a2e4a26fc0b0741e7bfc",
+      "text": "Dos extremos de las correas originales están a 5.89123 mm de sus abrazaderas."
+    },
+    "feature.eva3.native.contacts": {
+      "source_revision": "f0bc87cd90a25396be92",
+      "text": "Cinco contactos originales del PTFE, ventilador/carcasa e interior del LGX siguen sin verificar. Se conserva la geometría original."
+    },
+    "feature.eva3.native.threads": {
+      "source_revision": "f229c99f1f41dd99de8d",
+      "text": "Persisten intersecciones entre rosca y tuerca en algunas posiciones bajas de la cama. El ajuste de la rosca no está verificado."
     }
   }
 }

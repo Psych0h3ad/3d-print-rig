@@ -9271,8 +9271,8 @@
       "text": "M8 유도형 프로브 · EVA 원본 어셈블리"
     },
     "feature.eva2.notice.scope": {
-      "source_revision": "81281e61da662dab34c2",
-      "text": "V-Minion 원본 어셈블리. 다른 프린터의 장착과 전체 이동 범위의 간섭은 미확인입니다."
+      "source_revision": "4c63d897209e737789a9",
+      "text": "원본 CAD로 V-Minion 장착을 확인했습니다. 다른 프린터용 장착은 등록되지 않았습니다."
     },
     "feature.eva2.notice.patch": {
       "source_revision": "e3b8e2de9740ab57e95b",
@@ -9303,8 +9303,8 @@
       "text": "SuperPINDA · EVA 원본 어셈블리"
     },
     "feature.eva3.notice.scope": {
-      "source_revision": "9363a64fdd597140c315",
-      "text": "V-Core 3.1 원본 어셈블리. 다른 프린터의 장착과 전체 이동 범위의 간섭은 미확인입니다."
+      "source_revision": "11d05116eecb2e1e391b",
+      "text": "원본 CAD로 V-Core 3.1 장착을 확인했습니다. 다른 프린터용 장착은 등록되지 않았습니다."
     },
     "feature.eva3.notice.patch": {
       "source_revision": "2b8791ac348c7563bfd3",
@@ -9317,6 +9317,46 @@
     "feature.eva.notice.native_overlaps": {
       "source_revision": "f37d9720724716de65d3",
       "text": "원본 CAD에 미판정된 부품 겹침이 있습니다. 조립 간섭은 미확인입니다."
+    },
+    "feature.eva.mount.checked": {
+      "source_revision": "902b484aef07d292c8fb",
+      "text": "원본 프린터의 장착 확인"
+    },
+    "feature.eva.mount.review": {
+      "source_revision": "6ccd257a1ad4eebc86c2",
+      "text": "원본 CAD 장착 검토"
+    },
+    "feature.eva3.native.pose": {
+      "source_revision": "d505d7b4fd433f205d63",
+      "text": "CAD 기준 위치의 노즐과 베드 간격은 8.50 mm입니다. 축 값은 이 위치에서의 이동량입니다."
+    },
+    "feature.eva3.native.belts": {
+      "source_revision": "d31a404fd92f909e70b9",
+      "text": "원본 벨트는 9 mm입니다. 치형과 장력은 시뮬레이션하지 않습니다."
+    },
+    "feature.eva.body.unknown": {
+      "source_revision": "e36e9841f7696c64b0e7",
+      "text": "본체 간섭 미확인"
+    },
+    "feature.eva2.native.reset_contact": {
+      "source_revision": "05f37713dd0d0f8cd22e",
+      "text": "원본 CAD 초기 위치에서 볼트와 아이들러가 겹칩니다. 베드를 Y +1.5 mm 이동하면 두 부품 사이의 측정 간격은 0.17174 mm입니다."
+    },
+    "feature.eva2.native.belts": {
+      "source_revision": "6e53b317a430521ae461",
+      "text": "원본 벨트: X 6 mm, Y 9 mm. 치형과 장력은 시뮬레이션하지 않습니다."
+    },
+    "feature.eva3.native.belt_gaps": {
+      "source_revision": "a2e4a26fc0b0741e7bfc",
+      "text": "원본 벨트 끝 두 곳이 클램프에서 5.89123 mm 떨어져 있습니다."
+    },
+    "feature.eva3.native.contacts": {
+      "source_revision": "f0bc87cd90a25396be92",
+      "text": "PTFE, 팬/슈라우드, LGX 내부의 원본 접촉 5건은 적합 여부가 미확인입니다. 원본 형상을 유지합니다."
+    },
+    "feature.eva3.native.threads": {
+      "source_revision": "f229c99f1f41dd99de8d",
+      "text": "베드가 낮은 일부 위치에서 나사산과 너트의 교차가 남습니다. 나사산 적합 여부는 미확인입니다."
     }
   }
 }

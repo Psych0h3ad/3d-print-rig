@@ -9271,8 +9271,8 @@
       "text": "Индуктивный датчик M8 · Исходная сборка EVA"
     },
     "feature.eva2.notice.scope": {
-      "source_revision": "81281e61da662dab34c2",
-      "text": "Исходная сборка V-Minion. Крепления на других принтерах и зазоры на всём ходе не проверены."
+      "source_revision": "4c63d897209e737789a9",
+      "text": "Установка на V-Minion проверена по исходному CAD. Крепления для других принтеров не зарегистрированы."
     },
     "feature.eva2.notice.patch": {
       "source_revision": "e3b8e2de9740ab57e95b",
@@ -9303,8 +9303,8 @@
       "text": "SuperPINDA · Исходная сборка EVA"
     },
     "feature.eva3.notice.scope": {
-      "source_revision": "9363a64fdd597140c315",
-      "text": "Исходная сборка V-Core 3.1. Крепления на других принтерах и зазоры на всём ходе не проверены."
+      "source_revision": "11d05116eecb2e1e391b",
+      "text": "Установка на V-Core 3.1 проверена по исходному CAD. Крепления для других принтеров не зарегистрированы."
     },
     "feature.eva3.notice.patch": {
       "source_revision": "2b8791ac348c7563bfd3",
@@ -9317,6 +9317,46 @@
     "feature.eva.notice.native_overlaps": {
       "source_revision": "f37d9720724716de65d3",
       "text": "В исходной CAD есть неоценённые пересечения. Зазоры сборки не проверены."
+    },
+    "feature.eva.mount.checked": {
+      "source_revision": "902b484aef07d292c8fb",
+      "text": "Крепление на исходном принтере проверено"
+    },
+    "feature.eva.mount.review": {
+      "source_revision": "6ccd257a1ad4eebc86c2",
+      "text": "Проверка крепления по исходному CAD"
+    },
+    "feature.eva3.native.pose": {
+      "source_revision": "d505d7b4fd433f205d63",
+      "text": "В исходной позе CAD зазор между соплом и столом — 8.50 mm. Значения осей — смещения от этой позы."
+    },
+    "feature.eva3.native.belts": {
+      "source_revision": "d31a404fd92f909e70b9",
+      "text": "Исходные ремни шириной 9 mm. Зубья и натяжение не моделируются."
+    },
+    "feature.eva.body.unknown": {
+      "source_revision": "e36e9841f7696c64b0e7",
+      "text": "Зазоры корпуса не проверены"
+    },
+    "feature.eva2.native.reset_contact": {
+      "source_revision": "05f37713dd0d0f8cd22e",
+      "text": "В исходной позе CAD винт пересекается с роликом. При смещении стола Y +1.5 mm измеренный зазор составляет 0.17174 mm."
+    },
+    "feature.eva2.native.belts": {
+      "source_revision": "6e53b317a430521ae461",
+      "text": "Исходные ремни: X 6 mm, Y 9 mm. Зубья и натяжение не моделируются."
+    },
+    "feature.eva3.native.belt_gaps": {
+      "source_revision": "a2e4a26fc0b0741e7bfc",
+      "text": "Два конца исходных ремней находятся на расстоянии 5.89123 mm от зажимов."
+    },
+    "feature.eva3.native.contacts": {
+      "source_revision": "f0bc87cd90a25396be92",
+      "text": "Пять исходных контактов PTFE, вентилятора/кожуха и внутренних деталей LGX не подтверждены. Исходная геометрия сохранена."
+    },
+    "feature.eva3.native.threads": {
+      "source_revision": "f229c99f1f41dd99de8d",
+      "text": "В некоторых нижних положениях стола остаются пересечения резьбы винта и гайки. Посадка резьбы не проверена."
     }
   }
 }

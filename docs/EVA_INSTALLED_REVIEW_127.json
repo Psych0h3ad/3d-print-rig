@@ -1,0 +1,943 @@
+{
+  "schema": "3d-print-rig-eva-installed-review-127",
+  "release": 127,
+  "generated_at_utc": "2026-10-11T14:06:52.683Z",
+  "status": "prepublication_checks_passed",
+  "scope": "Two exact native source hosts; complete source head companions, measured mounting faces and axes, and actual-export sampled motion. Other printer or changer mounts are not registered by this review.",
+  "full_physical_fit_certified": false,
+  "source_summary_sha256": "62d9061f1228fe3eb31cf1613cca9d9ea55cd18fbb5283d59ea256f9c30c76b2",
+  "independent_summary_sha256": "3651bdc0a32a6eb5a3b2532cffe9074a6b073b65a6528794d65dd1d04a3bb4f8",
+  "runtime_snapshot_sha256": "75f0b646bc695dea176c1644f31100f0dc58e6c05335b6728f6d93b0a0e11d6f",
+  "adapter_sha256": "b17b9b1c319a9e599442a3c6738410323357e1a3a6cdc6c471d77b28893a2d84",
+  "counts": {
+    "all_available_actual_meshes": 67,
+    "additional_actual_meshes": 3,
+    "original_motion_machines": 10,
+    "original_motion_poses": 1971,
+    "paired_standalone_generations": [
+      2,
+      3
+    ],
+    "installed_configurations": 14,
+    "installed_poses": 3584,
+    "mandatory_eva_host_configurations": 4,
+    "mandatory_eva_host_poses": 1024,
+    "focused_installed_eva_poses": 84,
+    "exact_head_leaves": [
+      90,
+      123
+    ],
+    "rapido_x_installed_selections": 14,
+    "rapido_x_vertex_checks": 484560,
+    "probe_warning_preservation_regression": true,
+    "max_worker_lanes": 2,
+    "publication_files_changed": false,
+    "geometry_modified": false,
+    "browser_visual_review": false,
+    "full_physical_fit_certified": false
+  },
+  "artifacts": {
+    "MODEL_QUALITY_ALL_QA_127.json": {
+      "sha256": "05b6eea09c992ff8090f5a7777ad74d58b9c48cec2ff67dab4d437d5f4a4f28b",
+      "bytes": 130612
+    },
+    "MOTION_PUBLIC_QA_127.json": {
+      "sha256": "672e67d2ab400a1507d9a029040ff6e28fb2668b94aa272252d48d038bcac4b2",
+      "bytes": 154964
+    },
+    "WORKBENCH_ACTUAL_127.json": {
+      "sha256": "68b8ab61b39aa5adeba1e6aa8ae5aa0b4e72a5886656c0f1e0070bc321a0bc30",
+      "bytes": 14740
+    },
+    "EVA_PAIRED_SOURCE_ACTUAL_127.json": {
+      "sha256": "bda599a7adb9f944119b4f4dccf68922c28e741fa3338a97c602f3ca38d75cad",
+      "bytes": 8263
+    },
+    "RAPIDO_X_CURRENT_ACTUAL_127.json": {
+      "sha256": "57eed6c9ca968655b66a20b06f96be183f6dfa5c84289854f4fe101ae8f7b69a",
+      "bytes": 28250
+    },
+    "EVA2_INSTALLED_ACTUAL_127.json": {
+      "sha256": "d085329535f0ef3bda9d16a11eafff14d5c4b31b7047aac2d53cc8e2aa24ccbe",
+      "bytes": 214110
+    },
+    "EVA3_INSTALLED_ACTUAL_127.json": {
+      "sha256": "bad913e36ce07cdd6f5c0381a0d05bb44e371f081d6ab19eee3845b4863e2a60",
+      "bytes": 220595
+    }
+  },
+  "machines": [
+    {
+      "machine_id": "ratrig_vminion_180",
+      "family": "vminion",
+      "configuration": "eva125__2__vminion_lgx_bmo",
+      "generation": 2,
+      "patch_version": null,
+      "version_scope": "source_assembly",
+      "source": {
+        "author": "Rat Rig / EVA by Paweł Kucmus",
+        "assembly": "V-Minion 1.0 v7 / EVA Assembly v5",
+        "cad_revision": "urn:adsk.wipprod:fs.file:vf.vNkJMJ3hQ6ifQxhNCE27ww?version=7",
+        "source_step_sha256": "46650c0be0527b0f799a6ebd5cde210254caafdc4c436f558857fa30c17e9b94",
+        "public_cad": "https://a360.co/3rPymJS",
+        "official_files": "https://wiki.ratrig.com/products/v-minion/files",
+        "repository_revision": "6811558082d6a1797dac160ca027692cd7904a4b",
+        "assembled_source_license": {
+          "terms": "CC-BY-NC-SA-4.0",
+          "url": "https://github.com/Rat-Rig/V-Minion/blob/6811558082d6a1797dac160ca027692cd7904a4b/LICENSE",
+          "scope": "Rat Rig assembled source; retain EVA and component attribution and separate upstream declarations."
+        }
+      },
+      "model_pins": {
+        "compressed_glb_sha256": "2031e111369e6b932507f3fdd877a6d5b8eb9fc77f8db7091c6b65d91afc3d57",
+        "decoded_glb_sha256": "b394124d0ef44519aa24cd005d1433305f35a545c3b8d5f9c8cccb8268fb0175",
+        "manifest_sha256": "11e2f61fdcf9620abe3978741643f23e632a9b3fa4014fb19b0378e76727d45e",
+        "profile_sha256": "e57ab95a3cd6f67ce78bc735b44cad19a34d50e26a8fd101375e936a18536a2c"
+      },
+      "summary_metadata_pins_before_final_adoption": {
+        "compressed_glb_sha256": "2031e111369e6b932507f3fdd877a6d5b8eb9fc77f8db7091c6b65d91afc3d57",
+        "decoded_glb_sha256": "b394124d0ef44519aa24cd005d1433305f35a545c3b8d5f9c8cccb8268fb0175",
+        "manifest_sha256": "11e2f61fdcf9620abe3978741643f23e632a9b3fa4014fb19b0378e76727d45e",
+        "profile_sha256": "e57ab95a3cd6f67ce78bc735b44cad19a34d50e26a8fd101375e936a18536a2c"
+      },
+      "recipe": {
+        "extruder": "LGX Lite",
+        "hotend": "Dragonfly BMO",
+        "hotend_fan": "4010",
+        "part_fan": "5015",
+        "probe": "M8 inductive",
+        "rail_block": "MGN12C",
+        "belt_width_mm": 6
+      },
+      "host_parts": 1171,
+      "head_parts": 90,
+      "companion_role_counts": {
+        "carriage": 1,
+        "core": 4,
+        "hotend_mount": 2,
+        "hotend": 3,
+        "nozzle": 1,
+        "extruder": 5,
+        "hotend_fan": 1,
+        "part_fan": 1,
+        "duct": 2,
+        "cover": 1,
+        "probe": 1,
+        "probe_mount": 1,
+        "extruder_mount": 1,
+        "belt_clamp": 1,
+        "cable_guide": 1,
+        "endstop": 2,
+        "fasteners": 64
+      },
+      "companion_count_scope": "Source occurrences; roles overlap and must not be summed as distinct parts.",
+      "native_mount": {
+        "report": {
+          "url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/eva-installed-v1/reviews/eva2_mount.json",
+          "sha256": "e43318764bae2cd8817cb91e0048c5b0bb3eb8f28ae27b3c2c62484a41dd8658"
+        },
+        "verified": true,
+        "coordinate_frame": "Original source world, Z up, millimetres",
+        "carriage_key": "315",
+        "printed_mount_key": "324",
+        "mating_plane_gap_mm": 2.842170943040401e-14,
+        "maximum_axis_error_mm": 6.054112672007536e-14,
+        "rail_block": {
+          "rail_key": "158",
+          "block_key": "315",
+          "native_minimum_distance_mm": 0,
+          "native_common_volume_mm3": 0,
+          "intended_rolling_contact_certified": false,
+          "source_linear_axis": [
+            1,
+            0,
+            0
+          ]
+        },
+        "scope": "Source occurrence carriage/top opposing mounting faces and four native M3 shaft/bore axes; original rail/block relationship measured. Thread flank fit and whole travel clearance are outside this verified scope.",
+        "thread_flank_fit_verified": false,
+        "full_physical_fit": false,
+        "axes_count": 4
+      },
+      "actual_export_review": {
+        "artifact": "EVA2_INSTALLED_ACTUAL_127.json",
+        "sha256": "d085329535f0ef3bda9d16a11eafff14d5c4b31b7047aac2d53cc8e2aa24ccbe",
+        "bytes": 214110,
+        "status": "passed",
+        "pose_count": 42,
+        "head_relative_transform_error_mm": 0,
+        "standalone_host_max_vertex_difference_mm": 0,
+        "standalone_host_topology_equal": true,
+        "purchased_material_comparisons": 78,
+        "artifact_pins_unchanged": true,
+        "geometry_modified": false,
+        "native_solid_clearance": false,
+        "browser_visual_review": false,
+        "full_physical_fit": false
+      },
+      "installed_sampled_configurations": [
+        {
+          "configuration": "stock",
+          "poses": 256,
+          "parts": 1171,
+          "model_sha256": "b394124d0ef44519aa24cd005d1433305f35a545c3b8d5f9c8cccb8268fb0175"
+        },
+        {
+          "configuration": "eva125__2__vminion_lgx_bmo",
+          "poses": 256,
+          "parts": 1171,
+          "model_sha256": "b394124d0ef44519aa24cd005d1433305f35a545c3b8d5f9c8cccb8268fb0175"
+        }
+      ],
+      "complete_head_scope": "Original source assembly; nozzle plane measured from the exported mesh. Complete native-solid body and probe clearance remain unverified.",
+      "probe_clearance_certified": false,
+      "built_in_supports": {
+        "identified": false,
+        "removed": false
+      },
+      "other_host_or_changer_fit_certified": false,
+      "continuous_whole_machine_clearance_certified": false,
+      "full_physical_fit": false
+    },
+    {
+      "machine_id": "ratrig_vcore31_300",
+      "family": "vcore3",
+      "configuration": "eva125__3__vcore_lgx_rapido",
+      "generation": 3,
+      "patch_version": null,
+      "version_scope": "source_assembly",
+      "source": {
+        "author": "Rat Rig / EVA by Paweł Kucmus",
+        "assembly": "V-Core 3.1 v9 / EVA 3 Assembly v4",
+        "source_step_sha256": "9bfde01c4d811eaef253831f2fe7354e14c36b607d36b5b37bfc4fe9f48906d6",
+        "public_cad": "https://ratrig.autodesk360.com/shares/public/SH35dfcQT936092f0e43e0d130efbf30509f",
+        "official_files": "https://wiki.ratrig.com/products/v-core-3-1/files",
+        "repository_revision": "4f5d91f42c9a9f7ec346c73728fa6329491aad8c",
+        "assembled_source_license": {
+          "terms": "CC-BY-NC-SA-4.0",
+          "url": "https://github.com/Rat-Rig/V-core-3/blob/4f5d91f42c9a9f7ec346c73728fa6329491aad8c/LICENSE",
+          "scope": "Rat Rig assembled source; retain EVA and component attribution and separate upstream declarations."
+        }
+      },
+      "model_pins": {
+        "compressed_glb_sha256": "89b02be47eb3a1ebc66cc6128160ad253247532040c07d905d5f2ec72b76fd27",
+        "decoded_glb_sha256": "6a375f65c81f6cd993313257bab4fe8cae0345ad1b8ee500dece3dc890014a16",
+        "manifest_sha256": "c189b953685eb811c9fa9a2fe0d0aafbda169dcaf24c3ceee3294e186f7ab185",
+        "profile_sha256": "6ca2464c60b71f1911de34b57747f2cb4ead800b053beb2c2a04ee252564ec33"
+      },
+      "summary_metadata_pins_before_final_adoption": {
+        "compressed_glb_sha256": "89b02be47eb3a1ebc66cc6128160ad253247532040c07d905d5f2ec72b76fd27",
+        "decoded_glb_sha256": "6a375f65c81f6cd993313257bab4fe8cae0345ad1b8ee500dece3dc890014a16",
+        "manifest_sha256": "ef1b11bf5bffb9528b6de851f7c19a51c9e6446f78e56adef53c45eea9867aba",
+        "profile_sha256": "b8a2ded6a0e99adfdc1876e6dbdd46cbe91313534e475d48d2d21a9571dc22ec"
+      },
+      "recipe": {
+        "extruder": "LGX Lite",
+        "hotend": "Rapido HF v1",
+        "hotend_fan": "4010",
+        "part_fan": "Sanyo 4028",
+        "probe": "SuperPINDA",
+        "rail_block": "MGN12C",
+        "belt_width_mm": 9
+      },
+      "host_parts": 942,
+      "head_parts": 123,
+      "companion_role_counts": {
+        "carriage": 2,
+        "core": 13,
+        "probe": 1,
+        "hotend": 1,
+        "nozzle": 1,
+        "duct": 2,
+        "hotend_mount": 1,
+        "probe_mount": 1,
+        "extruder_mount": 1,
+        "extruder": 11,
+        "fasteners": 96,
+        "hotend_fan": 1,
+        "part_fan": 1,
+        "cover": 1
+      },
+      "companion_count_scope": "Source occurrences; roles overlap and must not be summed as distinct parts.",
+      "native_mount": {
+        "report": {
+          "url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/eva-installed-v1/reviews/eva3_mount.json",
+          "sha256": "8c5d20e403a7c7e7ab83ab04c81bfab37bc8879e208ae460252e2eb51d7639ad"
+        },
+        "verified": true,
+        "coordinate_frame": "Original source world, Z up, millimetres",
+        "carriage_key": "795",
+        "printed_mount_key": "800",
+        "mating_plane_gap_mm": 2.9318061933736317e-07,
+        "maximum_axis_error_mm": 1.0284043141793622e-13,
+        "rail_block": {
+          "rail_key": "692",
+          "block_key": "795",
+          "native_minimum_distance_mm": 0,
+          "native_common_volume_mm3": 0,
+          "intended_rolling_contact_certified": false,
+          "source_linear_axis": [
+            1,
+            0,
+            0
+          ]
+        },
+        "scope": "Source occurrence carriage/top opposing mounting faces and four native M3 shaft/bore axes; original rail/block relationship measured. Thread flank fit and whole travel clearance are outside this verified scope.",
+        "thread_flank_fit_verified": false,
+        "full_physical_fit": false,
+        "axes_count": 4
+      },
+      "actual_export_review": {
+        "artifact": "EVA3_INSTALLED_ACTUAL_127.json",
+        "sha256": "bad913e36ce07cdd6f5c0381a0d05bb44e371f081d6ab19eee3845b4863e2a60",
+        "bytes": 220595,
+        "status": "passed",
+        "pose_count": 42,
+        "head_relative_transform_error_mm": 0,
+        "standalone_host_max_vertex_difference_mm": 0,
+        "standalone_host_topology_equal": true,
+        "purchased_material_comparisons": 130,
+        "artifact_pins_unchanged": true,
+        "geometry_modified": false,
+        "native_solid_clearance": false,
+        "browser_visual_review": false,
+        "full_physical_fit": false
+      },
+      "installed_sampled_configurations": [
+        {
+          "configuration": "stock",
+          "poses": 256,
+          "parts": 942,
+          "model_sha256": "6a375f65c81f6cd993313257bab4fe8cae0345ad1b8ee500dece3dc890014a16"
+        },
+        {
+          "configuration": "eva125__3__vcore_lgx_rapido",
+          "poses": 256,
+          "parts": 942,
+          "model_sha256": "6a375f65c81f6cd993313257bab4fe8cae0345ad1b8ee500dece3dc890014a16"
+        }
+      ],
+      "complete_head_scope": "Complete original source subtree: 123 valid native leaves and 328 native common pairs; five body overlaps and 75 fastener seating/engagement candidates unqualified. No other-host or continuous-clearance certification.",
+      "probe_clearance_certified": false,
+      "built_in_supports": {
+        "identified": false,
+        "removed": false
+      },
+      "other_host_or_changer_fit_certified": false,
+      "continuous_whole_machine_clearance_certified": false,
+      "full_physical_fit": false
+    }
+  ],
+  "native_source_contacts": {
+    "machine_id": "ratrig_vcore31_300",
+    "source_step_sha256": "9bfde01c4d811eaef253831f2fe7354e14c36b607d36b5b37bfc4fe9f48906d6",
+    "report": {
+      "artifact": "EVA3_HEAD_CONTACT_REVIEW.json",
+      "bytes": 249083,
+      "sha256": "fcd3a7c8a9f6425a0ca0b7bc05515e53fc52d18a51ccc421cd20bf98bc9bf809"
+    },
+    "scope": "Source-native original five rigid head overlap findings decomposed by actual solid ordinals; no manufacturer intent inferred from boxes.",
+    "all_five_classified": true,
+    "all_five_cleared": false,
+    "geometry_retained": true,
+    "contacts": [
+      {
+        "keys": [
+          "799",
+          "813"
+        ],
+        "classification": "coaxial_PTFE_extruder_mount_source_seating_overlap_unresolved",
+        "native_common_volume_mm3": 0.579604563806181,
+        "intended_contact_verified": false,
+        "positive_native_overlap_confirmed_by_independent_classifier": false,
+        "whole_zero_common_not_clearance_proof": false
+      },
+      {
+        "keys": [
+          "825",
+          "889"
+        ],
+        "classification": "fan_shroud_source_seating_overlap_unresolved",
+        "native_common_volume_mm3": 0.26770145382539556,
+        "intended_contact_verified": false,
+        "positive_native_overlap_confirmed_by_independent_classifier": false,
+        "whole_zero_common_not_clearance_proof": false
+      },
+      {
+        "keys": [
+          "814",
+          "824"
+        ],
+        "classification": "manufacturer_internal_gear_or_feed_roller_source_overlap_unresolved",
+        "native_common_volume_mm3": 55.22769539514139,
+        "intended_contact_verified": false,
+        "positive_native_overlap_confirmed_by_independent_classifier": false,
+        "whole_zero_common_not_clearance_proof": false
+      },
+      {
+        "keys": [
+          "816",
+          "824"
+        ],
+        "classification": "manufacturer_internal_gear_or_feed_roller_source_overlap_unresolved",
+        "native_common_volume_mm3": 2036.2862228358629,
+        "intended_contact_verified": false,
+        "positive_native_overlap_confirmed_by_independent_classifier": false,
+        "whole_zero_common_not_clearance_proof": false
+      },
+      {
+        "keys": [
+          "798",
+          "799"
+        ],
+        "classification": "native_hotend_PTFE_insertion_overlap_unresolved",
+        "native_common_volume_mm3": null,
+        "intended_contact_verified": false,
+        "positive_native_overlap_confirmed_by_independent_classifier": true,
+        "whole_zero_common_not_clearance_proof": true
+      }
+    ],
+    "unqualified_fastener_seating_or_engagement_candidates": 75,
+    "fastener_engagement_certified": false,
+    "full_physical_fit": false,
+    "historical_contact_summary_before_final_handoff": [
+      {
+        "parts": [
+          {
+            "key": "799",
+            "source_definition": "PTFE Tube - 43.7mm v1"
+          },
+          {
+            "key": "813",
+            "source_definition": "drive_lgx_lite v2"
+          }
+        ],
+        "classification": "coaxial_PTFE_extruder_mount_source_seating_overlap_unresolved",
+        "intended_contact_verified": false,
+        "measured_positive_native_common_mm3": 0.579604563806181,
+        "positive_solid_pair_count": 1
+      },
+      {
+        "parts": [
+          {
+            "key": "825",
+            "source_definition": "Fan - 40mm Axial Brushless 24V DC v2"
+          },
+          {
+            "key": "889",
+            "source_definition": "ratrig_eva3_shroud v3"
+          }
+        ],
+        "classification": "fan_shroud_source_seating_overlap_unresolved",
+        "intended_contact_verified": false,
+        "measured_positive_native_common_mm3": 0.26770145382539556,
+        "positive_solid_pair_count": 4
+      },
+      {
+        "parts": [
+          {
+            "key": "814",
+            "source_definition": "_LGX Lite Face"
+          },
+          {
+            "key": "824",
+            "source_definition": "COMPOUND"
+          }
+        ],
+        "classification": "manufacturer_internal_gear_or_feed_roller_source_overlap_unresolved",
+        "intended_contact_verified": false,
+        "measured_positive_native_common_mm3": 55.22769539514139,
+        "positive_solid_pair_count": 1
+      },
+      {
+        "parts": [
+          {
+            "key": "816",
+            "source_definition": "_LGX Lite Body"
+          },
+          {
+            "key": "824",
+            "source_definition": "COMPOUND"
+          }
+        ],
+        "classification": "manufacturer_internal_gear_or_feed_roller_source_overlap_unresolved",
+        "intended_contact_verified": false,
+        "measured_positive_native_common_mm3": 2036.2862228358629,
+        "positive_solid_pair_count": 3
+      },
+      {
+        "parts": [
+          {
+            "key": "798",
+            "source_definition": "Phaetus Rapido HF v1"
+          },
+          {
+            "key": "799",
+            "source_definition": "PTFE Tube - 43.7mm v1"
+          }
+        ],
+        "classification": "native_hotend_PTFE_insertion_overlap_unresolved",
+        "intended_contact_verified": false,
+        "measured_positive_native_common_mm3": 0,
+        "positive_solid_pair_count": 0
+      }
+    ]
+  },
+  "upstream_license_evidence": {
+    "scope": "Pinned upstream declarations only; these tags do not establish the patch version or ancestry of the two source assemblies or FOX.",
+    "eva2": {
+      "tag": "2.4.2",
+      "revision": "25837bdb2341230a4a393b60ccede8d904476718",
+      "license_file": {
+        "url": "https://github.com/EVA-3D/eva-main/blob/25837bdb2341230a4a393b60ccede8d904476718/LICENSE",
+        "declared_terms": "CC-BY-NC-SA-4.0"
+      },
+      "cad_documentation": {
+        "url": "https://github.com/EVA-3D/eva-main/blob/25837bdb2341230a4a393b60ccede8d904476718/docs/step_files.md",
+        "declared_terms": "GPLv3"
+      },
+      "declarations_consistent": false
+    },
+    "eva3": {
+      "tag": "3.0.2",
+      "revision": "be02c01b411f220a80f17a7da1a4b95ce0e7f960",
+      "license_file": {
+        "url": "https://github.com/EVA-3D/eva-main/blob/be02c01b411f220a80f17a7da1a4b95ce0e7f960/LICENCE",
+        "declared_terms": "CC-BY-NC-SA-4.0"
+      }
+    }
+  },
+  "excluded_other_host_source": {
+    "id": "fox_eva_voron_v41",
+    "public_source": "https://www.printables.com/model/681594-eva-toolhead-for-voron-trident",
+    "author": "FOX @FOX_240146",
+    "revision": "EVA_VORON v41",
+    "source_step_sha256": "458c26329b3c80457d8d1c031b8c78259893fb81c9031b5b79a6c67c92e71227",
+    "eva_generation": null,
+    "patch_version": null,
+    "registered": false,
+    "author_declared_license": "CC-BY-4.0",
+    "license_source": "https://www.printables.com/model/681594-eva-toolhead-for-voron-trident/files",
+    "source_limits": [
+      "Back_v5 imports as an invalid open shell with no solid; three source labels have no surface faces.",
+      "Diagnostic mesh omits 48 native faces in 21 parts.",
+      "Source-specific carriage seating, fastener engagement and mounting proof are incomplete.",
+      "The author declaration does not establish the imported EVA generation or its component terms; the cited EVA 2 tag has conflicting declarations, without proven FOX ancestry."
+    ],
+    "full_physical_fit": false
+  },
+  "open_findings": [
+    {
+      "configuration": "eva125__2__vminion_lgx_bmo",
+      "kind": "source_patch_unconfirmed",
+      "generation": 2,
+      "version_scope": "source_assembly",
+      "source_revision": "6811558082d6a1797dac160ca027692cd7904a4b"
+    },
+    {
+      "configuration": "eva125__3__vcore_lgx_rapido",
+      "kind": "source_patch_unconfirmed",
+      "generation": 3,
+      "version_scope": "source_assembly",
+      "source_revision": "urn:adsk.wipprod:fs.file:vf.eL92Eu5CTp6oAA3iYBTPpw?version=9"
+    }
+  ],
+  "proof_limits": [
+    "Mesh quality covers all 67 available machines; the original motion job covers the named 10, not all 67 movement systems.",
+    "Installed production workbench covers its registered configuration rows. The focused EVA audit compares all 90/123 native head leaves with their immutable source exports.",
+    "Native home parking is separated from printable footprint; tiny signed nozzle/PEI differences from Float32 are not a plunge finding.",
+    "No CAD mating, continuous body clearance, belt tooth phase/tension, browser rendering, multilingual UI, publication or firmware certification is supplied by this worker.",
+    "Unknown EVA patch versions remain null/source_assembly. EVA3 source body overlap/seating qualifications remain explicit native-worker notices; geometry was retained."
+  ],
+  "parent_gates": {
+    "browser_review": {
+      "passed": true,
+      "scope": "Named installed EVA views and settings in the in-app browser. Mobile viewport and mouse/pointer orbit are separate from an actual Safari touchscreen or external Chrome test."
+    },
+    "repository_gate": {
+      "passed": true,
+      "regressions": 131,
+      "workers": 2,
+      "log_sha256": "766927faf507c40cbc887cb6fd0dec4e59737fb37598f970d529397c1fe5620e"
+    },
+    "source_gate": {
+      "passed": true,
+      "localization_ids": 2339,
+      "initial_markup_language": "en"
+    },
+    "static_build": {
+      "passed": true,
+      "site_bytes": 979314444,
+      "budget_bytes": 980000000,
+      "log_sha256": "71e4d4aef241a4d9eef3d1a75ee4f034225bc3c6371fb4b272b5f53bbe6b7706",
+      "registered_support_targets": 75,
+      "registered_support_rows": 25547
+    },
+    "served_external_assets": {
+      "passed": true,
+      "revision": "e3055fdfa2414a2d470189defdb131f36b15a61e",
+      "files": 6,
+      "compressed_and_decoded_model_verified": true,
+      "receipt_sha256": "61144d17d0875992fb3006d78bde0ccb5c31c11d2e529f0c332afd78cc84d46c"
+    },
+    "main_served_revision": {
+      "verification_phase": "after_deployment",
+      "claim_in_this_prepublication_report": false
+    },
+    "publication_ready": true
+  },
+  "native_inspection": {
+    "handoff_sha256": "e5724564548f2ee243eb06afba3f7aa3ca33d317115b5ad866214cbe28fe6413",
+    "status": "complete_scoped_native_handoff",
+    "scope": "Bounded native solid checks against public source occurrences. AABBs only prune candidates. Positive common witnesses are retained and classified. Source reset, rigid placements, normals, hardware and all source leaves are preserved. No all-combination, continuous collision-free or full physical-fit certificate.",
+    "reports": {
+      "NATIVE_INSTALLED_CONTACT_CLASSIFICATION.json": {
+        "bytes": 401249,
+        "sha256": "1bb3b7bd1d8cfe073a1d89b6473176667ed48754a5f9237e52af85133cf617c4"
+      },
+      "NATIVE_TRAVEL_REVIEW_EVA2.json": {
+        "bytes": 651796,
+        "sha256": "f25828a3654a03dc94b265423a54da0fa546c1b722ce919d4899b1a7ad608c0b"
+      },
+      "NATIVE_TRAVEL_REVIEW_EVA3.json": {
+        "bytes": 711037,
+        "sha256": "2274ca6bd46a33f55e14f24b54bd4afa4ba2c39e358a4cdab89166cef7cccdfd"
+      },
+      "NATIVE_CONTACT_FEATURE_REVIEW.json": {
+        "bytes": 7867,
+        "sha256": "65d77df13b357a8dc19df6f90f23cced676e0b33fecd1edbddcdc0bbe1dbb2b0"
+      },
+      "VMINION_REST_SEPARATION_CORRECTION.json": {
+        "bytes": 4878,
+        "sha256": "f6e94c08dcad554e55f22399b4fafb6b48162c468e309f35fb1d04b11f2d1cc0"
+      },
+      "EVA3_HEAD_CONTACT_REVIEW.json": {
+        "bytes": 249083,
+        "sha256": "fcd3a7c8a9f6425a0ca0b7bc05515e53fc52d18a51ccc421cd20bf98bc9bf809"
+      },
+      "HOTEND_TUBE_CLASSIFIER_WITNESS.json": {
+        "bytes": 4196,
+        "sha256": "31ea24297ffa9ad4b58aa5457e611c32527e412c94a93433d8e6881519809c8e"
+      },
+      "THREAD_PHASE_EVA2.json": {
+        "bytes": 12549,
+        "sha256": "906ab1944c3c941ba472a01fb151d23eb5513ea80661910a03c1d2e411d324d4"
+      },
+      "THREAD_PHASE_EVA3.json": {
+        "bytes": 14868,
+        "sha256": "483144c4e9af6a46db07cacf939081f19b0ccf9312cd4c2426303933bd6bd120"
+      },
+      "NATIVE_GUIDE_AXIS_REVIEW.json": {
+        "bytes": 54945,
+        "sha256": "16b2468933e789baa2f9867b6b2bfdc4e9cbbc6d7c3d521e37bc6b12d42ae608"
+      },
+      "NATIVE_FLEX_REGISTRATION.json": {
+        "bytes": 77969,
+        "sha256": "c2c8f4fe606cc858bc9f7cfb30e554af2fa774ba1540ce2fb08ae233c23e4aff"
+      },
+      "NATIVE_BELT_BOUNDARIES.json": {
+        "bytes": 42402,
+        "sha256": "c4f7329bac06b96ca0c7a5245b0811ee03282795dc89e4fbac7d722a10ecc365"
+      },
+      "MOUNT_REVIEW_EVA2.json": {
+        "bytes": 15352,
+        "sha256": "e43318764bae2cd8817cb91e0048c5b0bb3eb8f28ae27b3c2c62484a41dd8658"
+      },
+      "MOUNT_REVIEW_EVA3.json": {
+        "bytes": 14909,
+        "sha256": "8c5d20e403a7c7e7ab83ab04c81bfab37bc8879e208ae460252e2eb51d7639ad"
+      },
+      "EVA3_HOST_KEY_MAP.json": {
+        "bytes": 172286,
+        "sha256": "363954ba62a1d4494a92ae6c0d6ee1db7c1b47290574c483257092f43d35760a"
+      },
+      "EVA3_NATIVE_REUSE_SIGNATURE_REVIEW.json": {
+        "bytes": 59256,
+        "sha256": "14a11fe411e74c2e6ad4fbbb733c551ca87ad1639d79ccabb4283ee421eac89c"
+      },
+      "ACTUAL_HOST_GLB_REVIEW.json": {
+        "bytes": 846943,
+        "sha256": "d7e4bc84e1c06e1ef554d40e777fcc4d2bd8320b6cec1629898b27f6295d468f"
+      }
+    },
+    "native_travel": [
+      {
+        "machine_id": "ratrig_vminion_180",
+        "eva_generation": 2,
+        "source_step_sha256": "46650c0be0527b0f799a6ebd5cde210254caafdc4c436f558857fa30c17e9b94",
+        "poses": 99,
+        "actual_native_common_jobs": 290,
+        "native_common_errors": 0,
+        "positive_common_witnesses": 56,
+        "contact_categories": {
+          "flexible_Y_belt_clamp_engagement_source_proxy": 27,
+          "actual_source_rest_cap_head_to_Y_idler_body_interference": 1,
+          "source_X_home_switch_protrusion_contact_actuation_unverified": 1,
+          "native_rolling_race_micro_contact": 2,
+          "source_nominal_Z_zero_nozzle_PEI_contact": 24,
+          "coaxial_Acme_screw_nut_thread_phase_geometry": 1
+        },
+        "unexpected_body_interference_pairs": [
+          {
+            "keys": [
+              "231",
+              "289"
+            ],
+            "native_common_volume_mm3": 0.9101543047575333,
+            "source_reset": true
+          }
+        ],
+        "continuous_clearance_certified": false,
+        "full_physical_fit_certified": false
+      },
+      {
+        "machine_id": "ratrig_vcore31_300",
+        "eva_generation": 3,
+        "source_step_sha256": "9bfde01c4d811eaef253831f2fe7354e14c36b607d36b5b37bfc4fe9f48906d6",
+        "poses": 205,
+        "actual_native_common_jobs": 330,
+        "native_common_errors": 0,
+        "positive_common_witnesses": 35,
+        "contact_categories": {
+          "native_rolling_race_micro_contact": 14,
+          "coaxial_Acme_screw_nut_thread_phase_geometry": 21
+        },
+        "unexpected_body_interference_pairs": [],
+        "continuous_clearance_certified": false,
+        "full_physical_fit_certified": false
+      }
+    ],
+    "counts": {
+      "sampled_native_poses": 304,
+      "native_common_jobs": 620,
+      "retained_positive_common_witnesses": 91
+    },
+    "vminion_reset_contact_correction": {
+      "keys": [
+        "231",
+        "289"
+      ],
+      "native_common_at_reset_mm3": 0.9101543047575333,
+      "measured_separation_transition_bracket_mm": [
+        1.2099952697753906,
+        1.210000991821289
+      ],
+      "separation_criterion": {
+        "native_distance_mm_above": 1e-06,
+        "common_volume_mm3_below": 1e-09,
+        "boolean_fuzzy_mm": 1e-06
+      },
+      "positive_separated_pose": {
+        "native_y_delta_mm": 1.5,
+        "native_distance_mm": 0.17174056862301498,
+        "native_common_volume_mm3": 0
+      },
+      "supersedes": "NATIVE_CONTACT_FEATURE_REVIEW.json/vminion_source_rest_screw_idler/adaptive_native_clear_y_bracket_mm and its interpretation in NATIVE_INSTALLED_CONTACT_CLASSIFICATION.json. The older 1.205444..1.205505 bracket is only a 1e-6 mm3 volume cutoff; it is not separation.",
+      "production_axes_modified": false,
+      "correction_receipt_sha256": "f6e94c08dcad554e55f22399b4fafb6b48162c468e309f35fb1d04b11f2d1cc0",
+      "historical_cutoff_scope": "The earlier 1.205444..1.205505 mm bracket is a 1e-6 mm3 volume cutoff, not a physical separation witness."
+    },
+    "thread_phase_review": {
+      "eva2": {
+        "measured_poses": [
+          {
+            "native_z_delta_mm": 0,
+            "native_screw_rotation_rad": 0,
+            "native_common_mm3": 0,
+            "native_common_valid": true,
+            "thread_engagement_full_fit_verified": false
+          },
+          {
+            "native_z_delta_mm": 87.5,
+            "native_screw_rotation_rad": -137.44467859455344,
+            "native_common_mm3": 0,
+            "native_common_valid": true,
+            "thread_engagement_full_fit_verified": false
+          },
+          {
+            "native_z_delta_mm": 175,
+            "native_screw_rotation_rad": -274.8893571891069,
+            "native_common_mm3": 0,
+            "native_common_valid": true,
+            "thread_engagement_full_fit_verified": false
+          },
+          {
+            "native_z_delta_mm": 109.375,
+            "native_screw_rotation_rad": -171.8058482431918,
+            "native_common_mm3": 0,
+            "native_common_valid": true,
+            "thread_engagement_full_fit_verified": false
+          }
+        ],
+        "source_lead_mm_per_turn": 4,
+        "unrelated_body_interference": false
+      },
+      "eva3": {
+        "measured_poses": [
+          {
+            "native_z_delta_mm": 0,
+            "native_screw_rotation_rad": 0,
+            "native_common_mm3": 0,
+            "native_common_valid": true,
+            "thread_engagement_full_fit_verified": false
+          },
+          {
+            "native_z_delta_mm": -291.50012793976316,
+            "native_screw_rotation_rad": 457.8873302280224,
+            "native_common_mm3": 31.31117535701682,
+            "native_common_valid": true,
+            "thread_engagement_full_fit_verified": false
+          },
+          {
+            "native_z_delta_mm": -141.50012793976316,
+            "native_screw_rotation_rad": 222.26788120878788,
+            "native_common_mm3": 31.21084822468193,
+            "native_common_valid": true,
+            "thread_engagement_full_fit_verified": false
+          },
+          {
+            "native_z_delta_mm": 8.49987206023684,
+            "native_screw_rotation_rad": -13.351567810446596,
+            "native_common_mm3": 0,
+            "native_common_valid": true,
+            "thread_engagement_full_fit_verified": false
+          },
+          {
+            "native_z_delta_mm": -66.50012793976316,
+            "native_screw_rotation_rad": 104.45815669917064,
+            "native_common_mm3": 0,
+            "native_common_valid": true,
+            "thread_engagement_full_fit_verified": false
+          }
+        ],
+        "source_lead_mm_per_turn": 4,
+        "lower_pose_thread_geometry_unresolved": true
+      },
+      "production_rotation_implemented_by_worker": false,
+      "runtime_rotation_proposals_files": [
+        "THREAD_PHASE_EVA2.json",
+        "THREAD_PHASE_EVA3.json"
+      ],
+      "thread_flank_fit_certified": false
+    },
+    "source_belt_end_gaps": {
+      "source_notice": {
+        "machine_id": "ratrig_vcore31_300",
+        "id": "source-belt-end-gaps",
+        "text": "The source XY belts are 9 mm wide. Two source belt ends remain 5.89123 mm from their clamps; tooth geometry and physical tension are not simulated.",
+        "keys": [
+          "918",
+          "919",
+          "811",
+          "812"
+        ]
+      },
+      "reported_end_count": 2,
+      "reported_gap_mm": 5.89123,
+      "measurement_scope": "Rounded native source notice; no invented belt extensions or tension certification."
+    },
+    "required_range_change": {
+      "worker_changed_axes": false,
+      "source_rest_body_interference_present": true,
+      "source_reset_must_not_be_called_collision_free": true,
+      "whole_machine_certified_range_available": false,
+      "no_new_unrelated_chassis_collision_found_in_vcore_sampled_motion": true,
+      "source_native_reset_must_remain_exact": true
+    },
+    "full_physical_fit_certified": false
+  },
+  "production_review_notices": [
+    {
+      "machine_id": "ratrig_vminion_180"
+    },
+    {
+      "machine_id": "ratrig_vcore31_300",
+      "notices": [
+        "CAD reference pose: 8.50 mm nozzle-to-bed gap. Axis values are offsets from this pose.",
+        "9 mm source belts. Teeth and belt tension are not simulated.",
+        "Built-in supports unidentified; none removed."
+      ]
+    }
+  ],
+  "evidence_freshness": {
+    "fresh_current_runtime": [
+      "EVA_PAIRED_SOURCE_ACTUAL_127.json",
+      "WORKBENCH_ACTUAL_127.json",
+      "EVA2_INSTALLED_ACTUAL_127.json",
+      "EVA3_INSTALLED_ACTUAL_127.json"
+    ],
+    "carried_unchanged_geometry_and_prior_scoped_code_hashes": [
+      "MODEL_QUALITY_ALL_QA_127.json",
+      "MOTION_PUBLIC_QA_127.json",
+      "RAPIDO_X_CURRENT_ACTUAL_127.json"
+    ],
+    "all67_current_model_binaries_rehashed": true,
+    "metadata_and_notice_changes_only": true,
+    "prior_reports_preserved": true,
+    "parent_gates_pending": true
+  },
+  "browser_review": {
+    "browser": "Codex in-app browser",
+    "machines": [
+      "ratrig_vminion_180",
+      "ratrig_vcore31_300"
+    ],
+    "languages": [
+      "en",
+      "ja",
+      "es",
+      "ko",
+      "ru"
+    ],
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "viewports": [
+      [
+        1280,
+        720
+      ],
+      [
+        390,
+        844
+      ]
+    ],
+    "checks": [
+      "Complete source assemblies loaded",
+      "Same exact head/printer configuration links",
+      "Save/load restores native selection and axes",
+      "Minimum and maximum axis inputs and reverse/reset",
+      "Mobile orbit and simultaneous model/settings display",
+      "Current mounting result preserves body/probe warnings",
+      "Current source-contact notices shown",
+      "Image export from current source assembly"
+    ],
+    "screenshots": [
+      {
+        "file": "eva2-installed-head.png",
+        "sha256": "fd92b618e76e2626a5193a8579776a97aa36eb05fb1943a4dc0497a58c741365"
+      },
+      {
+        "file": "eva2-max-axes.png",
+        "sha256": "65680ede5f50a185abeaec87b4d74a35885e4a2b01fc046d9abe497b67bc979e"
+      },
+      {
+        "file": "eva3-installed-head.png",
+        "sha256": "9f28eed8b2cbdd1ac8df459903c7ae1f9760051ec0213bd860d9abbe03de48a5"
+      },
+      {
+        "file": "eva3-installed-rear.png",
+        "sha256": "38ec8ed7a5b6629e7e2c1e0f7807dfd6d3a9040a7665c840ddb3a04286bd2707"
+      },
+      {
+        "file": "eva3-mobile-es-dark.png",
+        "sha256": "a4fea244ea672ddbd8f210c5eda1adf19e12be3a29378f175581bf170f654ba3"
+      }
+    ],
+    "all_67_visually_reviewed": false,
+    "windows_chrome_verified": false,
+    "mobile_touch_device_verified": false,
+    "scope": "Named installed EVA views and settings in the in-app browser. Mobile viewport and mouse/pointer orbit are separate from an actual Safari touchscreen or external Chrome test."
+  }
+}

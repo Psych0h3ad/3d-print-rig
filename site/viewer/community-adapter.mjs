@@ -45,7 +45,7 @@ export function createCommunityAdapter(root,manifest,profile){
  for(const[key,node]of nodes){
   const r=records.get(key),rest=displayMotion(profile.motion_registration?.rest_offsets_mm?.[r.group]||[0,0,0],profile);
   node.matrixAutoUpdate=false;node.matrix.elements[12]+=rest[0];node.matrix.elements[13]+=rest[1];node.matrix.elements[14]+=rest[2];initial.set(key,node.matrix.clone());
-  node.traverse(m=>{if(!m.isMesh)return;m.frustumCulled=false;m.material=Array.isArray(m.material)?m.material.map(x=>x.clone()):m.material.clone();for(const material of [].concat(m.material))if(material.transparent)material.depthWrite=false;
+  node.traverse(m=>{if(!m.isMesh)return;m.frustumCulled=false;m.material=Array.isArray(m.material)?m.material.map(x=>x.clone()):m.material.clone();for(const material of [].concat(m.material)){if(material.transparent)material.depthWrite=false;const override=profile.eva_installation?.purchased_materials?.[key];if(override){material.color.setRGB(...override.color_linear);material.metalness=override.metalness;material.roughness=override.roughness;}}
    if(!['tube','belt','chain','bed_wire','x_belt','compound_motion','registered_flex','belted_z'].includes(r.group))return;
    if(r.group==='tube'&&(mercuryTubeSpecs[profile.machine_id]||profile.machine_id==='lh_stinger_200'&&key==='332')){
     m.geometry=m.geometry.clone();const source=m.geometry.attributes.position.array.slice();

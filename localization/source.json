@@ -11698,8 +11698,8 @@
     },
     "feature.eva2.notice.scope": {
       "kind": "message",
-      "ja": "V-Minionの元アセンブリ。他のプリンターへの取付と全可動域の干渉は未確認です。",
-      "en": "V-Minion source assembly. Other printer mounts and clearance throughout travel are unverified."
+      "ja": "V-Minionへの取付を元CADで確認。他のプリンター向け取付は未登録です。",
+      "en": "V-Minion installation checked against source CAD. Other printer mounts are not registered."
     },
     "feature.eva2.notice.patch": {
       "kind": "message",
@@ -11738,8 +11738,8 @@
     },
     "feature.eva3.notice.scope": {
       "kind": "message",
-      "ja": "V-Core 3.1の元アセンブリ。他のプリンターへの取付と全可動域の干渉は未確認です。",
-      "en": "V-Core 3.1 source assembly. Other printer mounts and clearance throughout travel are unverified."
+      "ja": "V-Core 3.1への取付を元CADで確認。他のプリンター向け取付は未登録です。",
+      "en": "V-Core 3.1 installation checked against source CAD. Other printer mounts are not registered."
     },
     "feature.eva3.notice.patch": {
       "kind": "message",
@@ -11755,6 +11755,56 @@
       "kind": "message",
       "en": "Unresolved overlaps in source CAD. Assembly clearance is unverified.",
       "ja": "元CADに未判定の部品の重なりがあります。組立時の干渉は未確認です。"
+    },
+    "feature.eva.mount.checked": {
+      "kind": "message",
+      "ja": "元の完成機で取付確認",
+      "en": "Source printer mounting checked"
+    },
+    "feature.eva.mount.review": {
+      "kind": "message",
+      "ja": "元CADの取付検証",
+      "en": "Native mounting review"
+    },
+    "feature.eva3.native.pose": {
+      "kind": "message",
+      "ja": "原本位置のノズルとベッドの間隔は8.50 mmです。軸の値はこの位置からの移動量です。",
+      "en": "CAD reference pose: 8.50 mm nozzle-to-bed gap. Axis values are offsets from this pose."
+    },
+    "feature.eva3.native.belts": {
+      "kind": "message",
+      "ja": "原本ベルトは9 mm。歯の形状と張力は再現していません。",
+      "en": "9 mm source belts. Teeth and belt tension are not simulated."
+    },
+    "feature.eva.body.unknown": {
+      "kind": "message",
+      "ja": "本体の干渉未確認",
+      "en": "Body clearance unverified"
+    },
+    "feature.eva2.native.reset_contact": {
+      "kind": "message",
+      "ja": "元CADの原本位置では、Yアイドラーとネジが接触しています。ベッドをY +1.5 mm動かすと、この2部品の間隔は0.17174 mmになります。",
+      "en": "The source reset has a bolt/idler overlap. At bed Y +1.5 mm, this pair has a measured 0.17174 mm gap."
+    },
+    "feature.eva2.native.belts": {
+      "kind": "message",
+      "ja": "原本ベルトはXが6 mm、Yが9 mmです。歯の形状と張力は再現していません。",
+      "en": "Source belts: X 6 mm, Y 9 mm. Teeth and tension are not simulated."
+    },
+    "feature.eva3.native.belt_gaps": {
+      "kind": "message",
+      "ja": "元CADのベルト端2箇所は、クランプから5.89123 mm離れています。",
+      "en": "Two source belt ends are 5.89123 mm from their clamps."
+    },
+    "feature.eva3.native.contacts": {
+      "kind": "message",
+      "ja": "PTFE、ファンとシュラウド、LGX内部の接触5件は適合未確定です。元CADの形状を維持しています。",
+      "en": "Five source contacts involving PTFE, the fan/shroud and LGX internals remain unqualified. Source geometry is retained."
+    },
+    "feature.eva3.native.threads": {
+      "kind": "message",
+      "ja": "ベッド下側の一部位置で、ネジ山とナットに交差が残ります。ネジの適合は未確定です。",
+      "en": "Screw/nut thread intersections remain at some lower bed positions. Thread fit is unverified."
     }
   }
 }

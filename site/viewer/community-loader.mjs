@@ -2,8 +2,9 @@ import {loadedPrinterAssetIdentity} from './gcode-loaded-asset-identity.mjs?v=42
 import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
 import {extraAssetBase,checkedExtraAsset} from './extra-asset-integrity.mjs?v=737f5dc17ca78791c0d8';
 import {beginModelLoading} from './model-progress.mjs?v=6b41a2b9f7626039b7e6';
-import {createCommunityAdapter} from './community-adapter.mjs?v=139c1bf53e2b38992b66';
+import {createCommunityAdapter} from './community-adapter.mjs?v=b17b9b1c319a9e599442';
 import {applyNativeMotionProfile,loadNativeMotionProfile} from './native-motion-profile.mjs?v=91532eb992519143f437';
+import {applyEvaInstallation} from './eva-installations.mjs?v=3838c4828bb6ab03392f';
 export async function loadCommunity(index,machine,{signal}={}){
  const spec=index.machines[machine];if(!spec||spec.machine_id!==machine)throw Error('Unknown community printer');
  const extraModels=spec.additional_models||[];
@@ -15,6 +16,7 @@ export async function loadCommunity(index,machine,{signal}={}){
  if(manifest.machine_id!==machine||profile.machine_id!==machine||manifest.native_leaf_count!==spec.parts)throw Error('Native identity mismatch');
  const registration=await loadNativeMotionProfile(machine,{signal})??(profile.motion_registration?.model_sha256?profile.motion_registration:null);
  ({manifest,profile}=applyNativeMotionProfile(manifest,profile,registration,spec.files['model.glb'].decoded_sha256));
+ ({manifest,profile}=applyEvaInstallation(manifest,profile,spec.eva_installation));
  progress.assembling();const root=(await new GLTFLoader().parseAsync(bytes.buffer,base.href)).scene;
  for(const data of extraBytes)root.add((await new GLTFLoader().parseAsync(data.buffer,base.href)).scene);
  const replay_asset_identity=await loadedPrinterAssetIdentity({machine,spec,manifest,profile,checkedFileNames:names});

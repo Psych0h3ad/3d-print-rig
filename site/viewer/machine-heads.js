@@ -1,33 +1,34 @@
 import {cloneNativeLedTree} from './led-emission-surface.mjs?v=af40a3200e128a08c940';
-import {validateEvaMetadata,bindEvaSourceMachines,bindEvaMeshIdentities} from './eva-heads.mjs?v=919a1f6692a6bd855927';
+import {validateEvaMetadata,bindEvaSourceMachines,bindEvaMeshIdentities} from './eva-heads.mjs?v=65c037171afca9ebb341';
+import {evaCommunityIndex} from './eva-installations.mjs?v=3838c4828bb6ab03392f';
 import {madmaxJointAssetSpec,madmaxJointApplies,captureMadmaxJoint,setMadmaxJointPose} from './madmax-native-joint.mjs?v=d39e974d7b782135b52a';
 import {madmaxPtfeAssetSpec} from './madmax-ptfe.mjs?v=c0df5309f697af621506';
 import {withRapidoXUhfCover,setRapidoXUhfSurface} from './rapido-x-uhf-cover.mjs?v=8b458475dac84cfcd8c7';
 import {v24NativeDriveMetadata} from './v24-drive-metadata.mjs?v=dbdf9f37cb0849ffc262';
-import {augmentTrinityAlphaHosts,TRINITY_ALPHA_HOST_SOURCE,alphaResetPose,alphaRangeNotice,alphaResetLabel} from './trinity-alpha-host-extensions.mjs?v=b94c70cbaff858e24499';
-import {alphaReference,alphaLimits} from './trinity-alpha-installation.mjs?v=34c18c04ce3e5e5e963a';
-import {augmentTrinitySiboorR2,TRINITY_SIBOOR_SOURCE} from './trinity-alpha-siboor-r2.mjs?v=a11de96dc544912a9d79';
-import {augmentTrinityAlpha,TRINITY_ALPHA_SOURCE} from './trinity-alpha-installation.mjs?v=34c18c04ce3e5e5e963a';
+import {augmentTrinityAlphaHosts,TRINITY_ALPHA_HOST_SOURCE,alphaResetPose,alphaRangeNotice,alphaResetLabel} from './trinity-alpha-host-extensions.mjs?v=16eaa18cbe476dce5e42';
+import {alphaReference,alphaLimits} from './trinity-alpha-installation.mjs?v=00883f5a143392e34554';
+import {augmentTrinitySiboorR2,TRINITY_SIBOOR_SOURCE} from './trinity-alpha-siboor-r2.mjs?v=7e0002b29eb86db57580';
+import {augmentTrinityAlpha,TRINITY_ALPHA_SOURCE} from './trinity-alpha-installation.mjs?v=00883f5a143392e34554';
 import {workspaceTask} from './workspace-lifecycle.mjs?v=ea3c45fda6e17c3b5857';
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=cb000b02c8415233701d';
-import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=60de85287f65d9520088';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=334364a6954b5edfdc00';
+import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=f8f1e63949058c9f3c6e';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import {partKey} from './head-assembly.js';
-import {v24HeadCatalog} from './machine-head-model.mjs?v=2acb46b71855e6aa181d';
-import {setupConfigurations} from './configurations.js?v=c50226edf22d331a23ac';
+import {v24HeadCatalog} from './machine-head-model.mjs?v=29127f945aa95e886fe7';
+import {setupConfigurations} from './configurations.js?v=8c524b6bbb6fc6a96a84';
 
-import {loadSiboorRegistration} from './siboor-catalog.mjs?v=f864c11e59af2c8eb853';
-import {stockProbeFit} from './probe-mounts.js?v=1567de1e4c6a007d79e2';
+import {loadSiboorRegistration} from './siboor-catalog.mjs?v=09e0b77a1e3484059fa9';
+import {stockProbeFit} from './probe-mounts.js?v=f1e71ff433b1c31d5e82';
 
 import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs';
 import {bankPlan} from './changer-bank-model.mjs?v=024cc52a5bbc61da7506';
 import {setupChangerBank} from './changer-bank.js?v=e40b96658f9103747458';
 import {contentSHA256,acceptedMountValidation} from './mount-validation.mjs';
 import {acceptedHeadValidation}from './head-validation.mjs';
-import {withHeadAdditions} from './head-additions.mjs?v=4d47ba6b2a4dbb3b39eb';
+import {withHeadAdditions} from './head-additions.mjs?v=56833e5e3a167e8825d5';
 import {nativeDeckEvidenceSource,nativeWitnessInputs} from './native-evidence-bridge.mjs?v=a5f3aad096d9be8f211b';
 import {loadExternalComponent} from './component-assets.mjs?v=9f8ef058f1297ab60e53';
 
@@ -37,7 +38,7 @@ export async function loadMachineHeadCatalog(machine){return workspaceTask(async
  const get=async name=>{return workspaceTask(async()=>{const r=await fetch('../'+name,{cache:'no-cache'});if(!r.ok)throw Error('ヘッドの取付データを取得できません');const text=await r.text();try{hashes[name]=await contentSHA256(text)}catch{/* Unsupported hashing leaves mounting evidence unverified. */}return JSON.parse(text)});};
  const [rawHeads,additions,registry,bank]=await Promise.all([get('TOOLHEAD_CONFIGURATIONS.json'),get('HEAD_ADDITIONS.json'),get('MACHINE_HEAD_REGISTRATIONS.json'),get('TOOLCHANGER_BANK.json')]);
  const heads=withRapidoXUhfCover(withHeadAdditions(rawHeads,additions));
- if(heads.variants.some(v=>v.eva?.source_machine))bindEvaSourceMachines(heads,registry,await get('COMMUNITY_MACHINES_ASSETS.json'));
+ if(heads.variants.some(v=>v.eva?.source_machine)){const [community,eva]=await Promise.all([get('COMMUNITY_MACHINES_ASSETS.json'),get('EVA_INSTALLATIONS.json')]);bindEvaSourceMachines(heads,registry,evaCommunityIndex(community,eva));}
  if(['siboor_trident_300','siboor_trident_350'].includes(machine)){const patch=(await loadSiboorRegistration()).registrations;registry.machines.siboor_trident_300=patch.head;bank.machines.siboor_trident_300=patch.bank;bank.indx.machines.siboor_trident_300=patch.indx_bank;}
  if(machine){
   try{

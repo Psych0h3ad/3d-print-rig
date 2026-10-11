@@ -1,5 +1,6 @@
 // EVA generations have distinct source assemblies and companion interfaces.
 // A shared rail or hotend name does not authorize mixing their printed parts.
+import {validateEvaMountReview} from './eva-installations.mjs?v=3838c4828bb6ab03392f';
 const categories=['carriage','core','hotend_mount','hotend','nozzle','extruder','hotend_fan','part_fan','duct','fasteners'];
 export function validateEvaVariant(variant,asset){
  if(!variant.eva){if(/^eva_[23]$/.test(variant.toolhead))throw Error('Missing EVA source recipe');return;}
@@ -52,7 +53,7 @@ export function bindEvaMeshIdentities(meta,root){
 // A head selected from an existing printer can link back to that exact stock
 // assembly. This is not a mounting registration for another printer or size.
 export function bindEvaSourceMachines(heads,registry,community){
- const bound={};
+ const bound={},configurations={},reviews=[];
  for(const variant of heads.variants){
   const host=variant.eva?.source_machine;if(!host)continue;
   const spec=community.machines?.[host.id];
@@ -60,7 +61,22 @@ export function bindEvaSourceMachines(heads,registry,community){
    ||spec.files['assembly_manifest.json']?.sha256!==host.manifest_sha256)
    throw Error('EVA source printer identity changed: '+host.id);
   bound[variant.id]=host.id;
+  if(spec.eva_installation){
+   validateEvaMountReview(spec.eva_installation);
+   if(spec.eva_installation.configuration!==variant.id)throw Error('EVA source printer selection changed');
+   if(spec.eva_installation.generation!==variant.eva.generation
+    ||spec.eva_installation.source_revision!==variant.eva.source_revision
+    ||JSON.stringify(spec.eva_installation.companions)!==JSON.stringify(variant.eva.companions)
+    ||spec.eva_installation.belt_width_mm!==variant.belt_width_mm)
+    throw Error('EVA source printer companions changed');
+   configurations[variant.id]=spec.eva_installation.configuration;
+   if(spec.eva_installation.mount_review?.mount_verified===true)
+    reviews.push([variant,{...structuredClone(spec.eva_installation.mount_review),machine:host.id,native_review_sha256:spec.eva_installation.native_review_sha256}]);
+  }
  }
  registry.eva_source_machines=bound;
+ registry.eva_installation_configurations=configurations;
+ for(const variant of heads.variants)if(variant.eva&&variant.fit)delete variant.fit.native_installation;
+ for(const [variant,review]of reviews)variant.fit.native_installation=review;
  return registry;
 }

@@ -1517,6 +1517,29 @@
           "companions_sha256": "62ef2cc1359c1547b51e4cc97d6795248722fa3eaf20e65408bb16d8b4aca4f0"
         }
       ]
+    },
+    {
+      "id": "ratrig_vcore31_300",
+      "family": "vcore3",
+      "size": 300,
+      "page": "./community.html",
+      "label": "Rat Rig V-Core 3.1 / 300 / EVA 3 / LGX Lite",
+      "thumbnail": "ratrig_vcore31_300.webp",
+      "width": 320,
+      "height": 240,
+      "thumbnail_sha256": "67f3034543137fa950d306085853028c0252fe76be08a45b2d3fb8ca5da062f2",
+      "thumbnail_bytes": 6046,
+      "model_pins": [
+        {
+          "model_sha256": "6a375f65c81f6cd993313257bab4fe8cae0345ad1b8ee500dece3dc890014a16",
+          "stored_model_sha256": "89b02be47eb3a1ebc66cc6128160ad253247532040c07d905d5f2ec72b76fd27",
+          "companions_sha256": "c54392a45e3f704d4f653dddd89e29bc9ad25afbf3636723f382edfc150b12c5",
+          "companion_sha256": {
+            "assembly_manifest.json": "c189b953685eb811c9fa9a2fe0d0aafbda169dcaf24c3ceee3294e186f7ab185",
+            "machine_profile.json": "6ca2464c60b71f1911de34b57747f2cb4ead800b053beb2c2a04ee252564ec33"
+          }
+        }
+      ]
     }
   ]
 }

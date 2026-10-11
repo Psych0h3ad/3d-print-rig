@@ -8,14 +8,18 @@ import {GLTFLoader} from '../site/viewer/vendor-r180/GLTFLoader.js';
 import {createCommunityAdapter} from '../site/viewer/community-adapter.mjs';
 import {communitySchema,validateCommunityState,displayMotion,nativeMotion} from '../site/viewer/community-state.mjs';
 import {communityAuditDirectory} from './community-audit-root.mjs';
+import {evaCommunityIndex,applyEvaInstallation} from '../site/viewer/eva-installations.mjs';
+import {applyNativeMotionProfile} from '../site/viewer/native-motion-profile.mjs';
 export async function auditCommunityInstallations(directory,{output,indexPath=new URL('../site/COMMUNITY_MACHINES_ASSETS.json',import.meta.url)}={}){
 assert.ok(directory,'Supply the actual community asset directory');
-const index=JSON.parse(await fs.readFile(indexPath,'utf8')),results=[];
+const index=evaCommunityIndex(JSON.parse(await fs.readFile(indexPath,'utf8')),JSON.parse(await fs.readFile(new URL('../site/EVA_INSTALLATIONS.json',import.meta.url),'utf8'))),results=[];
 for(const spec of Object.values(index.machines)){
  const selectedDirectory=communityAuditDirectory(spec,index,directory,indexPath);
  const checked=async name=>{const pin=spec.files[name],raw=await fs.readFile(path.join(selectedDirectory,pin.path));assert.equal(raw.length,pin.bytes);assert.equal(createHash('sha256').update(raw).digest('hex'),pin.sha256);if(pin.encoding!=='gzip')return raw;const bytes=gunzipSync(raw);assert.equal(bytes.length,pin.decoded_bytes);assert.equal(createHash('sha256').update(bytes).digest('hex'),pin.decoded_sha256);return bytes};
- const profile=JSON.parse(await checked('machine_profile.json'));if(!profile.configurations)continue;
- const manifest=JSON.parse(await checked('assembly_manifest.json'));let root;
+ let profile=JSON.parse(await checked('machine_profile.json'));if(!profile.configurations&&!spec.eva_installation)continue;
+ let manifest=JSON.parse(await checked('assembly_manifest.json'));
+ ({manifest,profile}=applyNativeMotionProfile(manifest,profile,profile.motion_registration?.model_sha256?profile.motion_registration:null,spec.files['model.glb'].decoded_sha256));
+ ({manifest,profile}=applyEvaInstallation(manifest,profile,spec.eva_installation));let root;
  for(const name of ['model.glb',...(spec.additional_models||[])]){const raw=await checked(name),scene=(await new GLTFLoader().parseAsync(raw.buffer.slice(raw.byteOffset,raw.byteOffset+raw.byteLength),'')).scene;if(root)root.add(scene);else root=scene}
  const adapter=createCommunityAdapter(root,manifest,profile);assert.equal(adapter.nodes.size,spec.parts);
  const initial=new Map([...adapter.nodes].map(([k,n])=>[k,n.matrixWorld.clone()])),hardware=new Map();let vertices=0;

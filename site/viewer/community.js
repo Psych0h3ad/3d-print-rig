@@ -5,17 +5,18 @@ ensureWorkspaceEntry(import.meta.url);
 import * as THREE from './vendor-r180/three.module.js';
 import {OrbitControls} from './vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
-import {loadCommunity} from './community-loader.mjs?v=2329fdc421ff0e00757e';
+import {loadCommunity} from './community-loader.mjs?v=cbe16d3c60308e76da9f';
+import {evaCommunityIndex} from './eva-installations.mjs?v=3838c4828bb6ab03392f';
 import {communitySchema,validateCommunityState,communityMotionEnabled,communityConfiguration} from './community-state.mjs?v=460b3fa78cc503ddb6e6';
 import {installationFor} from './ender-mods.mjs?v=5f07c69c7c42ba3f3936';
-import {setupMachineNavigation} from './machines.js?v=f884e9be087c61766aae';
+import {setupMachineNavigation} from './machines.js?v=7d90ace65109ee54e1d2';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
-import {translate} from './i18n.mjs?v=548d1e7f5194feeba442';
+import {translate} from './i18n.mjs?v=46e1e3aced367de6d952';
 import {rememberDisplayControl} from './display-preferences.mjs?v=cfa9769ce74b3791658f';
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=ea3c45fda6e17c3b5857';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {setupRenderExport} from './render-export.js?v=a5e4bcf57f5a8e07dcba';
-import {setupPublicInfo} from './public-info.js?v=80ca8e20af09c41431a2';
+import {setupPublicInfo} from './public-info.js?v=bc65031c671a47d05260';
 const descriptions={
  '247zero_beta2_120':'247zero BETA2 · 120 mm / ULW carbon gantry / Crazy Volcano / M4 Bowden',
  doomcube2_350_reference:"DoomCube 2 · 350 mm / double enclosure / original CAD",
@@ -32,6 +33,7 @@ const descriptions={
  siboor_sboom_220:'SIBOOR S-BOOM · CoreXZ / Dragon Burner / Sherpa Mini / E3D V6 / Tap',
  antithesis_aether_mk11:'Antithesis Aether MK1.1 · アルミガントリー / Conch / Galileo 2 · 130 × 100 × 115.5 mm',
  ratrig_vminion_180:'Rat Rig V-Minion 1.0 · EVA / LGX Lite / Dragonfly BMO / SKR 2',
+ ratrig_vcore31_300:'Rat Rig V-Core 3.1 · EVA 3 / LGX Lite / Rapido HF / SuperPINDA',
  snakeoil_xy_180:'SnakeOil XY · 180 / Mosquito / Sherpa Mini / 3点ベッド',
  snakeoil_xy_idex:'SnakeOil XY IDEX · 2ヘッド / Mosquito / Sherpa Mini / EBB36',
  snakeoil_3s_kp3s_180:'SnakeOil XY-3S · KP3S / E3D V6 / Sherpa Mini',
@@ -61,7 +63,7 @@ export async function mount(scope){
   const direction=new THREE.Vector3(...(current.profile.view_directions?.[kind]||{iso:[.6,.6,.95],front:[0,.12,1],top:[0,1,.0001],head:[.4,.5,1]}[kind]));
   controls.target.copy(center);camera.up.set(0,kind==='top'?0:1,kind==='top'?-1:0);camera.position.copy(center).add(direction.normalize().multiplyScalar(distance));camera.lookAt(center);frameResponsiveView(camera,controls);controls.update();render();
  }
- function setInstallation(id){communityConfiguration(current.profile,id);state.configuration=current.adapter.setConfiguration(id);state.axes=current.adapter.getAxes();for(const k of axisKeys){if(!$(k))continue;[$(k).min,$(k).max]=ranges()[k];$(k).value=state.axes[k];$(k+'Value').textContent=state.axes[k].toFixed(1)+' mm'}document.body.dataset.configuration=id;if(current.profile.configurations){const url=new URL(location.href);url.searchParams.set('configuration',id);history.replaceState(null,'',url)}describe();const visible=[...current.adapter.nodes.values()].filter(n=>n.visible).length;$('badge').textContent=visible.toLocaleString()+' PARTS · '+current.profile.title.toUpperCase();render()}
+ function setInstallation(id){if(id==='stock'&&current.profile.eva_installation)id=current.profile.eva_installation.configuration;communityConfiguration(current.profile,id);state.configuration=current.adapter.setConfiguration(id);state.axes=current.adapter.getAxes();for(const k of axisKeys){if(!$(k))continue;[$(k).min,$(k).max]=ranges()[k];$(k).value=state.axes[k];$(k+'Value').textContent=state.axes[k].toFixed(1)+' mm'}document.body.dataset.configuration=id;if(current.profile.configurations){const url=new URL(location.href);url.searchParams.set('configuration',id);history.replaceState(null,'',url)}describe();const visible=[...current.adapter.nodes.values()].filter(n=>n.visible).length;$('badge').textContent=visible.toLocaleString()+' PARTS · '+current.profile.title.toUpperCase();render()}
  function capture(){return {...structuredClone(state),camera:{position:camera.position.toArray(),target:controls.target.toArray(),up:camera.up.toArray()}}}
  function restore(data){validateCommunityState(data,current.profile);animation=null;state=structuredClone(data);setInstallation(data.configuration??'stock');current.adapter.setPalette(state.palette);current.adapter.setReferences(state.references);for(const k of ['base','accent','frame'])$(k).value=state.palette[k];$('references').checked=state.references;$('night').checked=state.night;$('gridVisible').checked=state.grid;grid.visible=state.grid;setAxes(data.axes);camera.position.fromArray(state.camera.position);camera.up.fromArray(state.camera.up);controls.target.fromArray(state.camera.target);camera.lookAt(controls.target);controls.update();lighting();rememberDisplayControl()}
  for(const[id,kind]of [['iso','iso'],['front','front'],['top','top'],['focusHead','head']])$(id).onclick=()=>view(kind);
@@ -74,16 +76,19 @@ export async function mount(scope){
   function choices(element,options,value){element.replaceChildren(...Object.entries(options).map(([id,c])=>{const o=document.createElement('option');o.value=id;o.textContent=t(c.label);return o}));element.value=value}
   const mods=current.profile.mod_controls;$('driveOptions').hidden=!mods;
   if(mods){for(const[k,id]of [['head','headInstallation'],['z','zInstallation'],['probe','probeInstallation']])choices($(id),mods[k],selected.selection[k])}
-  else choices($('headInstallation'),current.profile.configurations||{},state.configuration??'stock');
-  $('machineDescription').textContent=t(descriptions[machine]);$('sourceNotice').hidden=!sourceNotices[machine];$('sourceNotice').textContent=[sourceNotices[machine],...(current.profile.motion_registration?.notices||[])].filter(Boolean).map(t).join(' ')
+  else choices($('headInstallation'),Object.fromEntries(Object.entries(current.profile.configurations||{}).filter(([id])=>!current.profile.eva_installation||id!=='stock')),state.configuration??'stock');
+  const eva=current.profile.eva_installation;$('evaHeadLink').hidden=!eva;
+  if(eva){const url=new URL('./toolheads.html',location.href);url.searchParams.set('configuration',eva.configuration);url.searchParams.set('return_machine',machine);url.searchParams.set('lang',document.documentElement.lang);$('evaHeadLink').href=url.href;}
+  if(eva?.native_review){const link=document.createElement('a');link.href=eva.native_review.url;link.target='_blank';link.rel='noopener';link.textContent=t('Native mounting review');$('installationSource').append(link);}
+  $('machineDescription').textContent=t(descriptions[machine]);const notices=[sourceNotices[machine],...(current.profile.motion_registration?.notices||[])].filter(Boolean);$('sourceNotice').hidden=!notices.length;$('sourceNotice').textContent=notices.map(t).join(' ')
  }
  workspaceListen(window,'rig-language-change',describe);
  try{
-  const response=await fetch('../COMMUNITY_MACHINES_ASSETS.json?v=b82bbe8bffc736a9a9b1');if(!response.ok)throw Error('Native catalog unavailable');current=await loadCommunity(await response.json(),machine);scene.add(current.root);axisKeys=Object.keys(current.profile.axes);const zeroAxes=()=>Object.fromEntries(axisKeys.map(k=>[k,0]));
+  const responses=await Promise.all(['COMMUNITY_MACHINES_ASSETS.json','EVA_INSTALLATIONS.json'].map(name=>fetch('../'+name,{cache:'no-cache'})));if(responses.some(r=>!r.ok))throw Error('Native catalog unavailable');const [nativeIndex,evaRegistry]=await Promise.all(responses.map(r=>r.json()));current=await loadCommunity(evaCommunityIndex(nativeIndex,evaRegistry),machine);scene.add(current.root);axisKeys=Object.keys(current.profile.axes);const zeroAxes=()=>Object.fromEntries(axisKeys.map(k=>[k,0]));
   for(const k of axisKeys)if(!$(k)){const label=document.createElement('label'),span=document.createElement('span'),value=document.createElement('strong'),input=document.createElement('input');label.htmlFor=k;span.className='axislabel';span.append(current.profile.axis_labels?.[k]||k.toUpperCase());value.id=k+'Value';span.append(value);label.append(span);input.id=k;input.type='range';input.step='any';$('z').after(label,input)}
   state={schema:communitySchema,machine,configuration:'stock',axes:zeroAxes(),palette:{...current.profile.palette_defaults},references:false,grid:false,night:$('night').checked};
   $('machineTitle').textContent=current.profile.title;document.title=current.profile.title+' · 3D Print Rig';describe();$('machineRevision').textContent=current.profile.source.version;
-  $('nativeSource').href=current.profile.source.upstream_url||current.profile.source.repository+'/tree/'+current.profile.source.revision;$('nativeSource').textContent=(current.profile.source.author||current.profile.source.repository.replace('https://github.com/',''))+' · '+current.profile.source.version;$('nativeLicense').textContent=current.profile.source.license;
+  $('nativeSource').href=current.profile.source.cad_url||current.profile.source.upstream_url||current.profile.source.repository+'/tree/'+current.profile.source.revision;$('nativeSource').textContent=(current.profile.source.author||current.profile.source.repository.replace('https://github.com/',''))+' · '+current.profile.source.version;$('nativeLicense').textContent=current.profile.source.license;
   $('references').disabled=!current.manifest.reference_leaves.length;$('installationOptions').hidden=!current.profile.configurations;const requestedInstallation=new URLSearchParams(location.search).get('configuration');setInstallation(requestedInstallation||'stock');
   for(const id of ['headInstallation','zInstallation','probeInstallation'])$(id).onchange=()=>{animation=null;const selection={head:$('headInstallation').value,z:$('zInstallation').value,probe:$('probeInstallation').value};setInstallation(current.profile.mod_controls?installationFor(current.profile,selection):$('headInstallation').value)};
   const movable=communityMotionEnabled(current.profile);$('motionSettings').hidden=!movable;document.body.dataset.motionEnabled=String(movable);
