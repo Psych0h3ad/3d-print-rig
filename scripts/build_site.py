@@ -302,6 +302,11 @@ def main():
         shutil.copyfile(Path(folder)/'actual-v0-native-installation.json',
                         target/'review/v0-native-installation.json')
     (target / '.nojekyll').touch()
+    # Manual stages must exercise decoded stock assets, including the existing
+    # support-omitted carriage, before publishing the viewer.
+    subprocess.run(['node', '--experimental-vm-modules', str(ROOT/'scripts/audit_v0_assembly_assets.mjs'),
+                    '--site', str(target), '--report',
+                    str(target/'review/v0-assembly-stages.json')], cwd=ROOT, check=True)
     size = sum(path.stat().st_size for path in target.rglob('*') if path.is_file())
     if size > MAX_SITE_BYTES:
         raise ValueError('Site exceeds the deployment size budget.')

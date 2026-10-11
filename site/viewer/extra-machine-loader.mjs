@@ -1,7 +1,7 @@
 import {loadedFamilyAssetIdentity} from './gcode-loaded-asset-identity.mjs?v=42ac134c2d9a8b8f8dfc';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {extraAssetBase,checkedExtraAsset} from './extra-asset-integrity.mjs?v=737f5dc17ca78791c0d8';
-import {beginModelLoading} from './model-progress.mjs?v=6b41a2b9f7626039b7e6';
+import {extraAssetBase,checkedExtraAsset} from './extra-asset-integrity.mjs?v=019170d7f31b55da1667';
+import {beginModelLoading} from './model-progress.mjs?v=beaef781095b6f56b290';
 export async function loadExtraMachine(id){
  const response=await fetch('../EXTRA_MACHINE_ASSETS.json?v=extra-machines-55');if(!response.ok)throw Error('Machine catalog unavailable');
  const index=await response.json(),row=index.machines.find(r=>r.id===id);if(!row)throw Error('Machine unavailable');

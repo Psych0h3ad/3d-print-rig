@@ -6,6 +6,7 @@ export function fixtureProfile(machine_id){return {machine_id,display_reference_
 export function makeV0Fixture(registry,profile){
  const scene=new THREE.Scene(),nodes=new Map(),records=new Map(),modules=new Map(),geometry=new THREE.BoxGeometry(.001,.001,.001);
  const part=key=>{const node=new THREE.Group();node.userData.part_key=key;node.add(new THREE.Mesh(geometry,new THREE.MeshStandardMaterial({color:'#888888'})));return node};
+ for(const key of registry.native_alternatives?.excluded_keys||[]){const node=part(key);nodes.set(key,node);records.set(key,{motion:'fixed',group:'V0_Frame',source:{assembly_path:[]}});scene.add(node)}
  for(const o of registry.options)for(const key of [...o.replace_keys,...o.attachments.flatMap(s=>s.stock_key?[s.stock_key]:[])])if(!nodes.has(key)){const node=part(key);nodes.set(key,node);records.set(key,{motion:'fixed',group:'V0_Frame',source:{assembly_path:[]}});scene.add(node)}
  // Distinguish an accelerometer removal from replacement and ordinary stock.
  const sensor=part('fixture-stock-adxl');nodes.set(sensor.userData.part_key,sensor);records.set(sensor.userData.part_key,{motion:'xy',group:'V0_Toolhead',source:{assembly_path:['MiniSB ADXL Mount - Generic:1']}});scene.add(sensor);

@@ -3,7 +3,7 @@ import {readDisplay} from './display-preferences.mjs?v=5fd25f289942c501706d';
 import {workspaceTask,workspaceListen,onWorkspaceDispose} from './workspace-lifecycle.mjs?v=a8e49b4993efdc7bac52';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
+import {loadModel} from './model-loader.js?v=ea010e8ec91e63b1dc78';
 import {RoomEnvironment} from './vendor/RoomEnvironment.js';
 import {RectAreaLightUniformsLib} from './vendor/RectAreaLightUniformsLib.js';
 import {lightingState} from './lighting-state.mjs?v=trident-clearance-35';

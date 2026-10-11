@@ -1,5 +1,5 @@
 const digest=async bytes=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');
-import {readModelBytes} from './model-progress.mjs?v=6b41a2b9f7626039b7e6';
+import {readModelBytes} from './model-progress.mjs?v=beaef781095b6f56b290';
 export function extraAssetBase(index,href){
  const here=new URL(href);
  return ['127.0.0.1','localhost','[::1]'].includes(here.hostname)?new URL('../'+index.local_directory+'/',here):new URL(index.base_url);

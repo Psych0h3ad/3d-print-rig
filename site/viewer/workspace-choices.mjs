@@ -1,5 +1,5 @@
 import {WorkspaceMutationObserver,workspaceListen} from './workspace-lifecycle.mjs?v=a8e49b4993efdc7bac52';
-import {translate,originalText,originalAttribute} from './i18n.mjs?v=ba019b1adf20832c91c8';
+import {translate,originalText,originalAttribute} from './i18n.mjs?v=db391db0c6d1562c776b';
 
 const normalize = value => String(value).normalize('NFKC').toLocaleLowerCase().replace(/\s+/gu, ' ').trim();
 export function matchingChoices(rows, query) {
@@ -52,7 +52,7 @@ export function setupChoiceSearch(panel) {
   const fields = () => [...panel.querySelectorAll('select[id]')].filter(select => {
     const hidden = select.closest('[hidden]');
     // An inactive tab does not change which controls this panel contains.
-    return (!hidden || hidden === panel) && !select.closest('.builder-search') && select.options.length;
+    return (!hidden || hidden === panel) && !select.closest('.builder-search,#assemblyControls') && select.options.length;
   });
   const caption = select => originalText(select.labels?.[0]).trim() || originalAttribute(select,'aria-label') || select.id;
   function refreshFields() {

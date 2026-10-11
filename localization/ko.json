@@ -9433,6 +9433,934 @@
     "head.options.dragon.playback_gate": {
       "source_revision": "a8717a6093982e6b88fd",
       "text": "Dragon Burner: 프린터 전체 간격과 헤드 PTFE·배선 경로는 아직 검증되지 않았습니다. XYZ 슬라이더로 형상을 확인하세요."
+    },
+    "ui.memory.device_warning": {
+      "source_revision": "a856d5ae2fb23351d806",
+      "text": "브라우저가 보고한 기기 RAM 추정치: 약 {0} GiB. 사용 가능한 메모리 용량이 아닙니다. 큰 모델은 로드에 실패할 수 있습니다."
+    },
+    "ui.v0assembly.title": {
+      "source_revision": "0438b83b21feaa30400f",
+      "text": "조립 단계"
+    },
+    "ui.v0assembly.intro": {
+      "source_revision": "eee75037c6a6436de5a4",
+      "text": "공식 설명서의 단계별로 원본 CAD 조립 상태를 표시합니다. 사전 삽입은 앞 단계에서 설명하고, 3D 하드웨어는 장착할 부품과 함께 표시합니다."
+    },
+    "ui.v0assembly.start": {
+      "source_revision": "93678e05737afc55f3fa",
+      "text": "기본 구성으로 단계 열기"
+    },
+    "ui.v0assembly.stage": {
+      "source_revision": "6d1a57322e2bbeb1d449",
+      "text": "단계"
+    },
+    "ui.v0assembly.previous": {
+      "source_revision": "6542ce072c12a4e44c0f",
+      "text": "이전 단계"
+    },
+    "ui.v0assembly.next": {
+      "source_revision": "803dc42b7f0630b50fdb",
+      "text": "다음 단계"
+    },
+    "ui.v0assembly.focus": {
+      "source_revision": "01bb76253a5eed4d25fd",
+      "text": "추가된 부품 확대"
+    },
+    "ui.v0assembly.manual": {
+      "source_revision": "386f543fbb613ab67bd2",
+      "text": "공식 매뉴얼 열기"
+    },
+    "ui.v0assembly.finish": {
+      "source_revision": "7adae5bb418ee2f1ab95",
+      "text": "이전 구성으로 돌아가기"
+    },
+    "ui.v0assembly.count": {
+      "source_revision": "e63a2c6056d4c7aa65df",
+      "text": "단계 {0} / {1} · 추가된 부품 {2}개 · 표시된 부품 {3}개"
+    },
+    "ui.v0assembly.pages": {
+      "source_revision": "4f81e1287a6894cbcb63",
+      "text": "공식 매뉴얼 {0}–{1}페이지"
+    },
+    "ui.v0assembly.active": {
+      "source_revision": "8fda4b6fac3498177a3a",
+      "text": "원본 CAD 위치에서 조립 단계를 표시하는 중"
+    },
+    "ui.v0assembly.restored": {
+      "source_revision": "3d49b8b38e6523c84762",
+      "text": "이전 구성을 복원했습니다"
+    },
+    "ui.v0assembly.load_error": {
+      "source_revision": "be0fa69aca639719c250",
+      "text": "조립 단계를 불러올 수 없습니다:"
+    },
+    "ui.v0assembly.data_error": {
+      "source_revision": "6261b80af5975c09dafc",
+      "text": "조립 단계 데이터를 불러올 수 없습니다"
+    },
+    "ui.v0assembly.stock_error": {
+      "source_revision": "04ff769118b33416836f",
+      "text": "기본 구성을 불러올 수 없습니다"
+    },
+    "ui.v0assembly.restore_error": {
+      "source_revision": "e34618b7a38b3c894c99",
+      "text": "이전 구성을 복원할 수 없습니다"
+    },
+    "ui.v0assembly.close_config": {
+      "source_revision": "f4c9d0d7e41f79575267",
+      "text": "구성을 변경하기 전에 조립 단계를 닫아 주세요"
+    },
+    "ui.v0assembly.close_motion": {
+      "source_revision": "4e6c4b4d227538473ba2",
+      "text": "동작을 미리 보기 전에 조립 단계를 닫아 주세요"
+    },
+    "ui.v0assembly.text_d5760661421533": {
+      "source_revision": "fbadf482ae7a4454282e",
+      "text": "준비 및 하드웨어 확인"
+    },
+    "ui.v0assembly.text_2f406f1e667afb": {
+      "source_revision": "7d831b274c5cf971e923",
+      "text": "레일 너트 홀더 5개 준비"
+    },
+    "ui.v0assembly.text_ce9730c6bdf4d9": {
+      "source_revision": "0160fc94a8e0cf0cd411",
+      "text": "Y 레일 준비 및 장착"
+    },
+    "ui.v0assembly.text_bb4680df56c391": {
+      "source_revision": "43356f0cde784599c8b2",
+      "text": "Z 레일 준비 및 장착"
+    },
+    "ui.v0assembly.text_4d50e7d89d2876": {
+      "source_revision": "d8c3c41de27f616a6457",
+      "text": "Z 가로대와 모터 슬롯 너트 준비"
+    },
+    "ui.v0assembly.text_fd161fe5c8996e": {
+      "source_revision": "eebea1895efc75ff1f01",
+      "text": "내측 기둥의 전자부 패널 너트 미리 삽입"
+    },
+    "ui.v0assembly.text_e1e186140671a0": {
+      "source_revision": "8e2cfac1433fa77f9243",
+      "text": "재사용할 뒤 기둥으로 Z 프레임 직각 맞추기"
+    },
+    "ui.v0assembly.text_a5e42bbf0409cd": {
+      "source_revision": "c3b891d0bd40e0a52426",
+      "text": "Z 레일 스토퍼 장착"
+    },
+    "ui.v0assembly.text_576d141d37a96c": {
+      "source_revision": "7c671b0777187cd0ccfe",
+      "text": "베드 너트 블록과 체인 커넥터 준비"
+    },
+    "ui.v0assembly.text_d8910d6d30d91b": {
+      "source_revision": "c3dc1202f797d662e1d0",
+      "text": "기본 프로파일 베드 지지대 조립"
+    },
+    "ui.v0assembly.text_2a68b4ab8fb5e7": {
+      "source_revision": "4e87749d4db9cc9b4ebf",
+      "text": "뒤쪽 베드 마운트 준비 및 점검"
+    },
+    "ui.v0assembly.text_87fa03490757e4": {
+      "source_revision": "15120e337a02da96a387",
+      "text": "지지대를 양쪽 Z 캐리지에 고정"
+    },
+    "ui.v0assembly.text_265a3fa5eb0cff": {
+      "source_revision": "1fda5a5d54ab0ee5f7a8",
+      "text": "베드 지지대 정렬 및 전체 이동 범위 점검"
+    },
+    "ui.v0assembly.text_3b7cdeb934ce90": {
+      "source_revision": "5813bc4d3285aea07773",
+      "text": "Z 엔드스톱 준비 및 장착"
+    },
+    "ui.v0assembly.text_a4dcb07cf676a8": {
+      "source_revision": "f75ba4a82188f2e6a316",
+      "text": "Z 스위치 작동 확인"
+    },
+    "ui.v0assembly.text_81645272264c18": {
+      "source_revision": "0a2194ee5991015280e0",
+      "text": "프레임 슬롯을 닫기 전에 너트 삽입"
+    },
+    "ui.v0assembly.text_d0d687d0346078": {
+      "source_revision": "532a65ff8be7247f80c5",
+      "text": "하부 측면 부재와 뒤 기둥 고정"
+    },
+    "ui.v0assembly.text_28c84ad994f8a6": {
+      "source_revision": "e596619e861ba014c816",
+      "text": "체인 하단 커넥터와 데크 패널 장착"
+    },
+    "ui.v0assembly.text_4c70ffb3b1e9f5": {
+      "source_revision": "41aac21ffd3d983c7157",
+      "text": "프레임의 미리 삽입한 너트 전부 확인"
+    },
+    "ui.v0assembly.text_9352e4a82e35da": {
+      "source_revision": "db7becc23f384ecbb4e3",
+      "text": "앞 기둥을 장착해 프레임 닫기"
+    },
+    "ui.v0assembly.text_a9de8da9100f11": {
+      "source_revision": "ae327d21a7c5d384c2a3",
+      "text": "A 구동부 외장과 인서트 준비"
+    },
+    "ui.v0assembly.text_60b7f84324c540": {
+      "source_revision": "ee739b72c5bb02984511",
+      "text": "A 구동부 베어링 적층 조립"
+    },
+    "ui.v0assembly.text_331baa04537f45": {
+      "source_revision": "b870ea5060868e1e0d29",
+      "text": "A 모터와 풀리 조립"
+    },
+    "ui.v0assembly.text_3ed05cdb4bd926": {
+      "source_revision": "993bfe8f187b0953a8c7",
+      "text": "A 구동부 닫기 및 점검"
+    },
+    "ui.v0assembly.text_d323e1601bc6da": {
+      "source_revision": "aa5aba0f7f40758bd0a9",
+      "text": "B 구동부 외장과 인서트 준비"
+    },
+    "ui.v0assembly.text_02560c3912f4d6": {
+      "source_revision": "130bfe382f1a783ce44f",
+      "text": "B 구동부 베어링 적층 조립"
+    },
+    "ui.v0assembly.text_a9befdb1599861": {
+      "source_revision": "3e9c4fa6ec52c34e54de",
+      "text": "B 모터와 풀리 조립"
+    },
+    "ui.v0assembly.text_1b3346e14f4c52": {
+      "source_revision": "1e95087258583641739d",
+      "text": "B 구동부 닫기 및 점검"
+    },
+    "ui.v0assembly.text_657eeece8dd755": {
+      "source_revision": "c95824b780428fb9ff92",
+      "text": "왼쪽 B, 오른쪽 A 구동부 장착"
+    },
+    "ui.v0assembly.text_8db8f502b38b3f": {
+      "source_revision": "58e2f043abe260fbbc17",
+      "text": "B 아이들러 조립 및 장착"
+    },
+    "ui.v0assembly.text_dc289a749c8f50": {
+      "source_revision": "896501f9b72a79f0a0b0",
+      "text": "A 아이들러 조립 및 장착"
+    },
+    "ui.v0assembly.text_f02928e3c1020c": {
+      "source_revision": "33ab584e36f089686282",
+      "text": "아이들러 좌우와 적층 방향 확인"
+    },
+    "ui.v0assembly.text_3255b4c990d1cf": {
+      "source_revision": "99f0243e44829b4c264d",
+      "text": "백래시 방지 리드 너트 장착"
+    },
+    "ui.v0assembly.text_05e03b02b8c722": {
+      "source_revision": "97d6bf20d6988d114543",
+      "text": "발 장착 전 패널 너트 삽입"
+    },
+    "ui.v0assembly.text_f68cdb4116fcf1": {
+      "source_revision": "66454e08c0be5a271c26",
+      "text": "앞발과 고무 패드 준비"
+    },
+    "ui.v0assembly.text_33045903c54e9c": {
+      "source_revision": "69be4e09ea8d829b8041",
+      "text": "대체 일반형 오른쪽 뒷발 준비"
+    },
+    "ui.v0assembly.text_a56981117470ca": {
+      "source_revision": "b0967b4fa60c949d67e3",
+      "text": "전원 인렛 발 준비 및 발 장착"
+    },
+    "ui.v0assembly.text_409d739da53240": {
+      "source_revision": "2bd42ef7c4bad4231c52",
+      "text": "발 장식 부품 장착"
+    },
+    "ui.v0assembly.text_279651b4574e00": {
+      "source_revision": "67958c4c32b3b54715a8",
+      "text": "리드스크루 일체형 Z 모터 준비 및 장착"
+    },
+    "ui.v0assembly.text_748da3aabc8b46": {
+      "source_revision": "bd2ce1659ec73319fa6e",
+      "text": "Z 모터와 리드 너트 정렬 및 고정"
+    },
+    "ui.v0assembly.text_d555dbe77e588a": {
+      "source_revision": "39b793809b09e1ffebc1",
+      "text": "왼쪽 XY 조인트 준비"
+    },
+    "ui.v0assembly.text_71e223648fbd84": {
+      "source_revision": "5d5cc36bdd7e0d57460c",
+      "text": "오른쪽 XY 조인트 준비"
+    },
+    "ui.v0assembly.text_dc961d0f16b3f4": {
+      "source_revision": "76064a4baa9608a2bbe9",
+      "text": "X 레일 장착 및 조인트 너트 삽입"
+    },
+    "ui.v0assembly.text_b05cd115b4c64f": {
+      "source_revision": "81e78138a81acd1e1676",
+      "text": "XY 조인트를 X 프로파일에 느슨하게 고정"
+    },
+    "ui.v0assembly.text_0d85d938b21fc9": {
+      "source_revision": "7ac4e166fd36b47c926a",
+      "text": "갠트리를 Y 캐리지에 고정"
+    },
+    "ui.v0assembly.text_a1a0bd496eda0e": {
+      "source_revision": "ee848c70da36ce714495",
+      "text": "갠트리 직각 및 동작 점검"
+    },
+    "ui.v0assembly.text_c28e17ab1a313f": {
+      "source_revision": "1504de13767cd14ac626",
+      "text": "상부 측면 부재에 너트 삽입 및 장착"
+    },
+    "ui.v0assembly.text_cb0e479a2aa19a": {
+      "source_revision": "a6c7b80fc3ccf6be0029",
+      "text": "X 캐리지와 고정되는 하드웨어 준비"
+    },
+    "ui.v0assembly.text_462f541d6e72e5": {
+      "source_revision": "dc326e45e81f22d70b3f",
+      "text": "MakerBeam 벨트 클램프 느슨하게 장착"
+    },
+    "ui.v0assembly.text_670525a623c18e": {
+      "source_revision": "01309150ac56f5e2459d",
+      "text": "아래쪽 A 벨트 배치"
+    },
+    "ui.v0assembly.text_f335d1f5ef8df5": {
+      "source_revision": "d8750e1f505daa469bd4",
+      "text": "위쪽 B 벨트 배치"
+    },
+    "ui.v0assembly.text_7aef388aee183c": {
+      "source_revision": "bdd62f233ab31765dbc8",
+      "text": "캐리지를 X 레일 블록에 고정"
+    },
+    "ui.v0assembly.text_ecca914f48f550": {
+      "source_revision": "00fb9b050989ed80fc7b",
+      "text": "벨트 장력 맞추기 및 끝단 절단"
+    },
+    "ui.v0assembly.text_292fd753792b30": {
+      "source_revision": "8994978fae005a4c9ac8",
+      "text": "베드 조절 노브 준비"
+    },
+    "ui.v0assembly.text_1aae5525734882": {
+      "source_revision": "1f1d4107a8333cd95b72",
+      "text": "빌드 플레이트 방향 맞추기"
+    },
+    "ui.v0assembly.text_9e6349e56097fd": {
+      "source_revision": "281d99a169bc607aa8b3",
+      "text": "베드 히터 부착"
+    },
+    "ui.v0assembly.text_ecdcb2568ed38f": {
+      "source_revision": "039b20c600eb4a7c7253",
+      "text": "온도 퓨즈 보호 확인"
+    },
+    "ui.v0assembly.text_89a2fc70238767": {
+      "source_revision": "204d80d4d96f5ec9e59c",
+      "text": "베드 장착 볼트 설치 및 회전 방지"
+    },
+    "ui.v0assembly.text_9aef638ff1d66c": {
+      "source_revision": "2195bb4f2a4d2b136027",
+      "text": "자석 시트 부착"
+    },
+    "ui.v0assembly.text_0e139b73ad5d98": {
+      "source_revision": "f07fa5b7d072e5b42253",
+      "text": "스프링 베드와 플렉스 플레이트 장착"
+    },
+    "ui.v0assembly.text_9aaccb64bce665": {
+      "source_revision": "74bd366edab683c017b7",
+      "text": "베드 배선 배치 및 고정"
+    },
+    "ui.v0assembly.text_9e5ab6432201ca": {
+      "source_revision": "c2cae0f232ecbc05d648",
+      "text": "베드 드래그 체인 재연결"
+    },
+    "ui.v0assembly.text_4a9070e462de7a": {
+      "source_revision": "6143a2404cb8d8f8f298",
+      "text": "Mini Stealthburner 외장과 인서트 준비"
+    },
+    "ui.v0assembly.text_373f011660f977": {
+      "source_revision": "a237c24415a4575a1e79",
+      "text": "가이들러와 BMG 아이들러 준비"
+    },
+    "ui.v0assembly.text_1da10ba4503b25": {
+      "source_revision": "5f69e3df9b89b3d8d96a",
+      "text": "압출기 기어열 조립"
+    },
+    "ui.v0assembly.text_c111d527c73a22": {
+      "source_revision": "97a2a57c7f5c07794c9a",
+      "text": "압출기 장력 기구 설치 및 점검"
+    },
+    "ui.v0assembly.text_b406760adc541e": {
+      "source_revision": "84fcc4bd74b4c182a4ee",
+      "text": "기본 헤드 팬 3개 모두 장착"
+    },
+    "ui.v0assembly.text_1434936707d41f": {
+      "source_revision": "bf36cea0f337764eaa39",
+      "text": "원본 CAD 보충: 노즐 LED"
+    },
+    "ui.v0assembly.text_fc461ec9e88515": {
+      "source_revision": "c51f337007c35af5b7a9",
+      "text": "모터 장착 및 기어 백래시 조절"
+    },
+    "ui.v0assembly.text_a0de498feb06d6": {
+      "source_revision": "ba7c9c9f7c9884807711",
+      "text": "원본과 동일한 Revo Voron 핫엔드 조립"
+    },
+    "ui.v0assembly.text_cd57e91951abb3": {
+      "source_revision": "2cf6ab68f4a9f8850b8b",
+      "text": "핫엔드와 카울 고정"
+    },
+    "ui.v0assembly.text_d990e91ee5ed53": {
+      "source_revision": "8f4976503365267907f5",
+      "text": "툴헤드를 캐리지에 장착"
+    },
+    "ui.v0assembly.text_545bfcf11e637b": {
+      "source_revision": "25c7c0250e4532fa40fc",
+      "text": "기본 배선 스트레인 릴리프와 스탠드오프 장착"
+    },
+    "ui.v0assembly.text_98b8dad1e177f1": {
+      "source_revision": "a3d7aca63f68eb0867b4",
+      "text": "원본 CAD 보충: 범용 ADXL 조립체"
+    },
+    "ui.v0assembly.text_e29b336d62f2ef": {
+      "source_revision": "b24200fbcaabd44cce79",
+      "text": "중간 패널 장착"
+    },
+    "ui.v0assembly.text_cb8d8b7f919410": {
+      "source_revision": "20a31eca248561a73094",
+      "text": "전자부품 마운트 2개 준비"
+    },
+    "ui.v0assembly.text_403f8c138a8eee": {
+      "source_revision": "1092391070fa30c7caae",
+      "text": "SKR Pico와 Raspberry Pi 장착"
+    },
+    "ui.v0assembly.text_4281fde5a80fc6": {
+      "source_revision": "73fa6e97b768545d0a19",
+      "text": "전압 확인 및 전원공급장치 배치"
+    },
+    "ui.v0assembly.text_efcdd9790c4416": {
+      "source_revision": "67a66df55feccae2cb3b",
+      "text": "컨트롤러 냉각 팬 장착"
+    },
+    "ui.v0assembly.text_6f302ecc302901": {
+      "source_revision": "59aadc7ca897b3f2c47b",
+      "text": "전원 인렛 배선 및 장착"
+    },
+    "ui.v0assembly.text_fb1c3485a6549f": {
+      "source_revision": "2baea32b000a469ff0cf",
+      "text": "DC 전원, 모터, 센서, 팬 연결"
+    },
+    "ui.v0assembly.text_fe6e1591119869": {
+      "source_revision": "04ddac2a71ddca117e0b",
+      "text": "전원공급장치 단자 가드 장착"
+    },
+    "ui.v0assembly.text_b8a2a6816888c0": {
+      "source_revision": "acf4675d53995a2faa70",
+      "text": "오른쪽 스커트 장착"
+    },
+    "ui.v0assembly.text_187dc53b8a8afa": {
+      "source_revision": "eb847ad27800eabc9dd7",
+      "text": "왼쪽 스커트 장착"
+    },
+    "ui.v0assembly.text_8c45f03023d24f": {
+      "source_revision": "34e70dcc09baf234c7b8",
+      "text": "뒤 스커트 장착"
+    },
+    "ui.v0assembly.text_fcff344e5a0b83": {
+      "source_revision": "f58a457e884ef40a4e79",
+      "text": "앞 스커트 장착"
+    },
+    "ui.v0assembly.text_2b611f658e36c1": {
+      "source_revision": "9ee6da0e3db840409057",
+      "text": "원본 대체 부품: 디스플레이 빈칸 덮개"
+    },
+    "ui.v0assembly.text_66226db80fb515": {
+      "source_revision": "a0785afc58d3f343ba7c",
+      "text": "V0 디스플레이 조립 및 장착"
+    },
+    "ui.v0assembly.text_91954bcbc106ce": {
+      "source_revision": "d6289d86e93b1da5dfb5",
+      "text": "바닥 패널 장착"
+    },
+    "ui.v0assembly.text_7faf8a75696548": {
+      "source_revision": "9663c30fbf58324e707b",
+      "text": "모터 패널과 배선 통로 장착"
+    },
+    "ui.v0assembly.text_2ede85edbbc3e6": {
+      "source_revision": "1b309a5b030e3a139b1a",
+      "text": "스풀 홀더 장착"
+    },
+    "ui.v0assembly.text_ad5fbd23b47a14": {
+      "source_revision": "f3db6233b68d82c78c4f",
+      "text": "리버스 Bowden 경로 확인"
+    },
+    "ui.v0assembly.text_abd7abe35f14cc": {
+      "source_revision": "f9b3ef459b442865538a",
+      "text": "뒤 패널, 클립, 탑햇 하부 힌지 장착"
+    },
+    "ui.v0assembly.text_04e2ae45944cce": {
+      "source_revision": "026d52e19afdd70512cf",
+      "text": "오른쪽 투명 측면 패널 장착"
+    },
+    "ui.v0assembly.text_d52c2072bdcda4": {
+      "source_revision": "3c09e39ecd32cb07a3c8",
+      "text": "왼쪽 투명 측면 패널 장착"
+    },
+    "ui.v0assembly.text_64aab146f15af4": {
+      "source_revision": "83ff7b8074b459b11981",
+      "text": "분리형 힌지와 앞 패널 장착"
+    },
+    "ui.v0assembly.text_d55fb5e551af34": {
+      "source_revision": "7e7f78b92aac20f8a86b",
+      "text": "도어 래치 본체와 자석 장착"
+    },
+    "ui.v0assembly.text_6553da932d75b7": {
+      "source_revision": "2d558f6a6f952d9a8b89",
+      "text": "도어 손잡이와 대응 자석 장착"
+    },
+    "ui.v0assembly.text_1e2d56eac551e1": {
+      "source_revision": "8ad1e07a0d7ed6287cea",
+      "text": "탑햇 프레임 준비 및 직각 맞추기"
+    },
+    "ui.v0assembly.text_856edf09b64fe3": {
+      "source_revision": "65b9555d1055d3abeb02",
+      "text": "탑햇 모든 슬롯의 삽입 너트 확인"
+    },
+    "ui.v0assembly.text_fac0b16dda405c": {
+      "source_revision": "bb612c904b6ecd142ad6",
+      "text": "상단 패널과 클립 장착"
+    },
+    "ui.v0assembly.text_e32a1295366399": {
+      "source_revision": "a086d36c77ad8ea46b25",
+      "text": "탑햇 앞면 및 측면 패널 장착"
+    },
+    "ui.v0assembly.text_4da82f7dbb9bb8": {
+      "source_revision": "65e535da63dfd4129b83",
+      "text": "뒤 패널과 상부 힌지 장착"
+    },
+    "ui.v0assembly.text_54bc4c07dbd565": {
+      "source_revision": "b0319f1d704ec314c05f",
+      "text": "힌지 축과 캠 잠금 고정부 장착"
+    },
+    "ui.v0assembly.text_bfab3020e0e402": {
+      "source_revision": "fc9af485018ef1027437",
+      "text": "탑햇 개방과 잠금 확인"
+    },
+    "ui.v0assembly.text_78c147459e809a": {
+      "source_revision": "f5050ae79a42b63a9924",
+      "text": "기계 조립 참조 단계 완료"
+    },
+    "ui.v0assembly.text_292189bc413123": {
+      "source_revision": "1a65e686a6bbfffc1214",
+      "text": "대체 r1 필라멘트 소진 센서 발 준비"
+    },
+    "ui.v0assembly.text_082b1c44860a46": {
+      "source_revision": "15714fb2b7101a369a34",
+      "text": "전체 설명서를 읽고 나사·심·인서트를 구분해 지정 출력 부품과 프로파일 작업 구멍을 준비하세요. 정적 표시는 최종 CAD 위치이며 조립 경로가 아닙니다."
+    },
+    "ui.v0assembly.text_5b8a50cfec7dbf": {
+      "source_revision": "53c46a439852c9efb0ab",
+      "text": "홀더 5개에 M2 너트를 넣으세요. 모델은 모두 채워져 있지만 설명서는 일부 생략을 허용합니다. X 레일용도 여기서 준비해 나중에 재사용합니다."
+    },
+    "ui.v0assembly.text_72b10de3226101": {
+      "source_revision": "d830397e970a80bd3368",
+      "text": "캐리지를 원래 레일에 유지하고 먼저 윤활하세요. 레일을 중앙에 두고 프로파일 끝에서 38 mm를 맞춘 뒤 중앙부터 바깥쪽으로 조이세요. 임시 이탈 방지도 유지하세요."
+    },
+    "ui.v0assembly.text_f4bd3fb9c32cd1": {
+      "source_revision": "9824a4d6c7586c879018",
+      "text": "캐리지 이탈을 막으세요. 레일을 중앙에 놓고 약 33 mm 끝단 간격은 베드 정렬 때 조절합니다."
+    },
+    "ui.v0assembly.text_7a6eb8b09cb187": {
+      "source_revision": "2d9641b06e3be92978e1",
+      "text": "27쪽의 추가 Z 모터 너트 2개를 미리 넣으세요. 53쪽에도 별도 장착 너트가 있습니다. 간격 조절 전 블라인드 조인트는 느슨하게 두고 추가 너트를 조인트 부품과 구분하세요."
+    },
+    "ui.v0assembly.text_e73886a06f760f": {
+      "source_revision": "df1a3bf315d6fd45899e",
+      "text": "끝을 닫기 전 표시된 내측 기둥 슬롯마다 M3 너트 3개를 넣으세요. 나중의 중간 패널용 부품이며 최종 CAD 위치로 표시됩니다."
+    },
+    "ui.v0assembly.text_9425a1912b13ed": {
+      "source_revision": "3307d807635f4de2210e",
+      "text": "평평한 면에서 Z 기둥을 평행하게 맞추세요. 임시로 쓰는 외측 뒤 기둥은 최종 CAD 위치만 표시하며 본 프레임에서 재사용합니다."
+    },
+    "ui.v0assembly.text_e8fbe4a7bda16b": {
+      "source_revision": "b7a249047fc76272cbca",
+      "text": "Z 캐리지가 빠지지 않도록 레일 스토퍼를 장착하세요."
+    },
+    "ui.v0assembly.text_c0296253816b66": {
+      "source_revision": "8e145e891b7265e48c40",
+      "text": "지정 인서트를 넣고 조립 편의를 위해 체인 끝을 분리하세요. 기본 프로파일 베드 지지대만 대응하며 Kirigami 분기는 포함되지 않습니다."
+    },
+    "ui.v0assembly.text_7e1c054eec5360": {
+      "source_revision": "fa34bd08a630ef2d3316",
+      "text": "40쪽 그림대로 추가 M3 너트 6·1·2·1개를 넣으세요. 슬롯 나사에는 너트가 필요합니다. 준비 표시는 최종 위치의 하드웨어 그룹을 사용합니다."
+    },
+    "ui.v0assembly.text_556ca5893f301f": {
+      "source_revision": "8ff2d592885a7a713646",
+      "text": "뒤 마운트를 임시 장착해 두 면의 동일 평면을 확인한 뒤 분리해 레일 블록에 고정하세요. 정적 표시는 임시 자세를 재현하지 않습니다."
+    },
+    "ui.v0assembly.text_a26c0884983c79": {
+      "source_revision": "1f0785092769c6800929",
+      "text": "작업 구멍을 통해 M2x8 8개를 고정하고 금속 접합에만 소량의 나사 고정제를 쓰세요. 미리 넣은 중앙 너트와 볼렌치로 지지대를 재장착하세요."
+    },
+    "ui.v0assembly.text_073e37c80a6f26": {
+      "source_revision": "cc9dd70dcfaf88c8ae37",
+      "text": "하단·상단에서 번호 순서로 조이고 좌우 간격과 자유 이동을 확인하세요. 걸리면 풀어 재조절하세요. 정적 표시는 이 이동을 검증하지 않습니다."
+    },
+    "ui.v0assembly.text_86a128aa2db539": {
+      "source_revision": "b61199031a64a6932b3e",
+      "text": "스위치 레버를 제거하고 버튼 방향과 지정 NC 단자를 맞춘 뒤 마운트를 레일 하단에 정렬하세요. 해당 원본 리비전의 하드웨어를 유지하세요."
+    },
+    "ui.v0assembly.text_b7e9ff764e5b5f": {
+      "source_revision": "97959c1c1891376b673a",
+      "text": "지지대를 손으로 내려 스위치 클릭을 확인하세요. 소리·기계 작동·전기 상태는 정적 형상으로 검증되지 않습니다."
+    },
+    "ui.v0assembly.text_78be4037280a78": {
+      "source_revision": "d65c2b273fa686fb08fc",
+      "text": "전원 인렛·Z 모터·구동부·아이들러·스커트·디스플레이 슬롯 너트를 초기 그룹으로 유지하세요. 끝을 닫기 전 52-65쪽을 확인하세요. 표시는 최종 CAD 위치입니다."
+    },
+    "ui.v0assembly.text_84be1ac56e0d61": {
+      "source_revision": "3a58ecea1a879eeee4c2",
+      "text": "준비한 뒤 기둥과 블라인드 조인트 부품을 재사용하고 최종 조임 전 뒤쪽 간격을 37 mm로 맞추세요."
+    },
+    "ui.v0assembly.text_6da8b160080ba7": {
+      "source_revision": "2dc12afe920e6f6babca",
+      "text": "데크를 넣기 전 체인 고정 끝을 부착하고 데크를 엔드스톱 마운트 아래로 통과시키세요. 커넥터의 최종 자세만 표시합니다."
+    },
+    "ui.v0assembly.text_27818782f8cc0c": {
+      "source_revision": "fec6e0364b6694db19f0",
+      "text": "앞면을 닫기 전 모든 슬롯을 확인하세요. 이후 스커트·모터 패널·클립·옵션 너트도 포함됩니다. 나사만 있는 그림으로 누락 너트를 추정하지 마세요. Nevermore 추가 너트는 제외됩니다."
+    },
+    "ui.v0assembly.text_dbab5782a7c334": {
+      "source_revision": "c9a11e79fb466c5362ab",
+      "text": "앞쪽 하단 부재는 처음에 느슨하게 두세요. 앞 기둥으로 슬롯 접근을 닫기 전 62-65쪽을 확인하세요."
+    },
+    "ui.v0assembly.text_d1d75e74a4ccee": {
+      "source_revision": "2fe12ec99302447442d8",
+      "text": "양각 표시로 좌우를 구분하세요. 바깥쪽 인서트는 외장 표면보다 아래까지 넣으세요."
+    },
+    "ui.v0assembly.text_f4d1c35d139878": {
+      "source_revision": "7a4936f21e7a74a0df53",
+      "text": "0.5 mm 심으로 지정된 18 mm 베어링 적층을 만드세요. 임시 고정 너트는 나중에 제거합니다. 외장은 최종 CAD 자세로 표시됩니다."
+    },
+    "ui.v0assembly.text_653d04cd2cd285": {
+      "source_revision": "c71fa80fc9e8ef78aed1",
+      "text": "풀리 고정나사에 나사 고정제를 쓰고 8.5 mm 기준 위치와 원본의 회전 방향을 유지하세요."
+    },
+    "ui.v0assembly.text_05d6b02994151c": {
+      "source_revision": "59bc479426336a90d602",
+      "text": "모터 배선은 안쪽을 향합니다. 풀리 이와 베어링 궤도의 높이를 맞추고 필요하면 조절하세요. 장력 노브는 해당 원본 구동 그룹에 유지됩니다."
+    },
+    "ui.v0assembly.text_ef264ac175fd43": {
+      "source_revision": "f93ed1f017d6c9d9d176",
+      "text": "풀리 고정나사에 나사 고정제를 쓰고 17.5 mm 기준 위치와 원본의 회전 방향을 유지하세요."
+    },
+    "ui.v0assembly.text_c107943b587526": {
+      "source_revision": "110a3bbeae0a138052a0",
+      "text": "앞쪽 삽입 너트와 뒤쪽 프레임 끝 나사산을 재사용하고 임시 너트를 제거하세요. 준비한 양쪽 구동 그룹을 참조하며 부품을 중복 추가하지 않습니다."
+    },
+    "ui.v0assembly.text_4bb4521ff0d99e": {
+      "source_revision": "07f66b59b48422b9ee4e",
+      "text": "베어링·심을 적층해 앞쪽 나사산과 뒤쪽 삽입 너트로 고정하세요. A는 오른쪽 높은 적층, B는 왼쪽 낮은 적층입니다."
+    },
+    "ui.v0assembly.text_705324cfc16847": {
+      "source_revision": "de8c1c1b84f0b37ac718",
+      "text": "설명서 측면·윗면을 비교하고 A/B 또는 베어링 높이를 바꾸지 마세요. 벨트 이동이나 솔리드 간극은 여기서 검증하지 않습니다."
+    },
+    "ui.v0assembly.text_85b67c9935abd5": {
+      "source_revision": "b8a0e2696f5edcc57c3e",
+      "text": "원본 너트 홀더 치수를 쓰고 백래시 방지 너트 양쪽을 따로 돌리지 마세요. 관통 구멍형 분기를 확인하세요. r1은 위치 고정 평면도 필요합니다."
+    },
+    "ui.v0assembly.text_2da31673ccc903": {
+      "source_revision": "596ede6a66210be6b470",
+      "text": "그림대로 바깥 기둥 슬롯에 미리 넣으세요. 뒤 스풀 홀더는 중앙 클립을 대체합니다. 이 원본 그룹은 측면 24개·뒤 패널 5개 너트를 포함하며 다른 초기 너트는 각 그룹에 유지됩니다."
+    },
+    "ui.v0assembly.text_5136b94eef8ea9": {
+      "source_revision": "3a403828591fcccbb02a",
+      "text": "발로 프로파일 끝을 닫기 전에 인서트와 고무 패드를 장착하세요."
+    },
+    "ui.v0assembly.text_04e44fc55c3be2": {
+      "source_revision": "07ba2c7d343292ecf4a4",
+      "text": "일반형 오른쪽 뒷발은 리버스 Bowden을 안내합니다. r1에서는 센서 발의 대체품이므로 둘을 동시에 장착하지 않습니다. 네이티브 선택 마스크로 제외되면 목록 전용이며 숨김을 유지합니다."
+    },
+    "ui.v0assembly.text_6ce0c208069823": {
+      "source_revision": "12bf7cf204c3aa5aafa8",
+      "text": "모서리 긴 볼트와 인렛용 삽입 너트를 쓰세요. 인렛 본체는 배선할 때 장착합니다. 기계를 뒤집는 동작은 표시하지 않습니다."
+    },
+    "ui.v0assembly.text_408ea04c7d42d6": {
+      "source_revision": "941f88772506ac7dbe5e",
+      "text": "지정 셀프탭 나사로 장식을 고정하되 플라스틱 나사산을 손상시키지 마세요. 앞서 준비한 일반·센서 발은 각 원본 고정부품을 유지합니다."
+    },
+    "ui.v0assembly.text_6af91a10bd2818": {
+      "source_revision": "a1fc517b82fc28864507",
+      "text": "지시대로 리드스크루를 윤활하고 정렬 전 프레임 나사를 느슨하게 두세요. r1의 POM·코팅 스크루 대안은 불러온 기본 모터가 아닙니다."
+    },
+    "ui.v0assembly.text_185ad708f226cf": {
+      "source_revision": "259953658a291ae6c123",
+      "text": "모터와 너트 블록을 정렬하고 조이기 전 베드를 손으로 왕복시키세요. r1은 하단 정렬 설명이 확장되며 V0.2는 106쪽을 따릅니다. 정적 자세는 자유 이동의 증거가 아닙니다."
+    },
+    "ui.v0assembly.text_6af98413fc9f2f": {
+      "source_revision": "ab496842ebf09a7c3524",
+      "text": "올바른 좌우 부품, 인서트 깊이, 베어링·심 높이를 사용하세요. 뒤집어 조립하고 19 mm 기준 치수를 확인하세요."
+    },
+    "ui.v0assembly.text_a2dc63bccc7e62": {
+      "source_revision": "9a7684a428cf2f594b55",
+      "text": "준비한 다섯 번째 홀더로 X 레일을 중앙·끝에서 25 mm에 맞추고 너트를 넣으세요. 캐리지를 유지하세요. V0.2 원본에는 XY 슬롯 너트가 없어 113쪽의 4개는 미해결 누락입니다."
+    },
+    "ui.v0assembly.text_6d44623bc3ba3d": {
+      "source_revision": "157322a83f15c1ded391",
+      "text": "XY 조인트가 Y 캐리지에 맞을 때까지 프로파일 나사 6개를 느슨하게 두고 좌우 대칭 베어링 높이를 확인하세요. 센서리스 X/Y 설정은 범위 밖입니다."
+    },
+    "ui.v0assembly.text_bb2e29d32a987f": {
+      "source_revision": "df6cc03e3ee07b6e2b6b",
+      "text": "뒤쪽 위치에서 조인트를 바깥으로 벌리고 캐리지 접시머리 나사 8개를 모두 고정하세요."
+    },
+    "ui.v0assembly.text_b188904c6e8577": {
+      "source_revision": "7b86ba4cafcd9d2026ab",
+      "text": "뒤쪽 양 구동부에 맞춘 뒤 나사 6개를 조이고 앞뒤 자유 이동을 확인하세요. 필요하면 비틀림을 다시 맞추세요. 수동 점검이며 자동 간극 합격이 아닙니다."
+    },
+    "ui.v0assembly.text_68d10b112955f2": {
+      "source_revision": "13caac50e63325f44a4a",
+      "text": "상부 측면 부재마다 바깥 슬롯에 너트 3개를 넣으세요. 나사 접근을 위해 아이들러 캠 잠금을 잠시 분리했다가 복원하세요. CAD 이름과 설명서 부재 문자는 다릅니다."
+    },
+    "ui.v0assembly.text_87f55a96f7dc19": {
+      "source_revision": "cbc8eeae1246f6cb60b0",
+      "text": "내장 출력 서포트를 사용 전 제거하세요. r1은 별도 부품이며 V0.2는 캐리지 복합 부품의 일부입니다. 목록에만 유지하고 설치된 부품으로 표시하지 마세요."
+    },
+    "ui.v0assembly.text_5119fc4575d0ce": {
+      "source_revision": "b179a26a3582242bb6dc",
+      "text": "FHCS 길이 측정 기준을 확인하고 벨트를 통과시킬 때까지 클램프를 느슨하게 두세요. 같은 벨트 길이로 시작하고 배치 전 텐셔너를 풀어주세요."
+    },
+    "ui.v0assembly.text_5ee7fd8444533b": {
+      "source_revision": "39aefef6412f8985488b",
+      "text": "A는 B 아래입니다. 설명서 전체 경로를 따르고 베어링 궤도·풀리 이에만 접촉시키며 출력 부품에는 닿지 않게 하세요. 최종 경로 메쉬만 표시됩니다."
+    },
+    "ui.v0assembly.text_2ed90d6b95bf41": {
+      "source_revision": "45dc497253e12f1d508e",
+      "text": "B는 A 위입니다. 끝단 이 수를 같게 고정하되 아직 최종 절단하지 마세요. 플라스틱 접촉을 피하세요. 통과 동작과 장력은 시뮬레이션하지 않습니다."
+    },
+    "ui.v0assembly.text_039f201ea4d3f6": {
+      "source_revision": "182b2788c856f4332cea",
+      "text": "원본 캐리지 나사 4개와 금속 접합에만 소량의 나사 고정제를 쓰세요. 과다 사용은 ABS를 손상시킵니다."
+    },
+    "ui.v0assembly.text_54f680bc693fa7": {
+      "source_revision": "607610b7f6df2f5878f2",
+      "text": "갠트리를 뒤에 두고 지정 150 mm 구간에서 110 Hz를 기준으로 쓰세요. 두 벨트 장력을 맞춘 뒤 절단하세요. 끝단 간극은 핫엔드에 따라 다릅니다."
+    },
+    "ui.v0assembly.text_d2d2d1d1e7a736": {
+      "source_revision": "09c8b208a4d2984f2cef",
+      "text": "노브 인서트 3개를 장착하세요. 체인 스페이서의 2개는 초기 베드 지지대 준비에 이미 배정되었습니다."
+    },
+    "ui.v0assembly.text_e2236b4c726066": {
+      "source_revision": "574be0b3b5d7d5dfe862",
+      "text": "단일 장착 구멍은 앞쪽, 카운터보어는 위쪽을 향하게 하세요."
+    },
+    "ui.v0assembly.text_f1aba16a042925": {
+      "source_revision": "2e15aabbb207c7b2d647",
+      "text": "플레이트를 닦고 아랫면 중앙에 히터를 붙이세요. 표시는 최종 자세를 유지하며 설치된 부품을 가로질러 뒤집지 않습니다."
+    },
+    "ui.v0assembly.text_43a4ac3125e832": {
+      "source_revision": "e65d85d1ac60ccab5048",
+      "text": "V0.2는 퓨즈를 M3x8로 빌드 플레이트에 고정합니다. 이 모델에는 별도 퓨즈·배선 부품이 식별되지 않으므로 보호가 모델링됐다고 할 수 없습니다."
+    },
+    "ui.v0assembly.text_c74143bd6912cb": {
+      "source_revision": "b8fdd8c42620d30965ca",
+      "text": "너트와 와셔로 볼트 3개의 회전을 막으세요. 다른 베드 프레임은 볼트 길이와 Z 간극을 별도로 검토해야 합니다."
+    },
+    "ui.v0assembly.text_1628dcc8e6cb8c": {
+      "source_revision": "ebe543e06a514c36089c",
+      "text": "플레이트를 닦고 접착 시트를 눌러 붙이며 장착 나사 접근을 확보하세요. 최종 CAD 위치만 표시하고 삽입 애니메이션은 없습니다."
+    },
+    "ui.v0assembly.text_ac29732417967f": {
+      "source_revision": "e9b7c24ebbaa81cfe5d9",
+      "text": "기본 지지대에 스프링 3개와 조절 노브를 장착하세요. 플렉스 플레이트는 원본 출력면 층이며 별도의 그림 기반 장착 지시가 아닙니다."
+    },
+    "ui.v0assembly.text_52712155c81463": {
+      "source_revision": "797c70a1e5e04a77e2f3",
+      "text": "히터·서미스터 선을 따로 너트 블록 가이드와 결속 루프로 통과시키세요. 완전한 배선 묶음이 없어 선 분리와 굽힘 간극은 미검증입니다."
+    },
+    "ui.v0assembly.text_12cec2a2c030af": {
+      "source_revision": "9060d3ad2c805c802543",
+      "text": "양 끝 커넥터를 재사용해 원본 링크 11개를 연결하세요. 베드 최고점에서도 체인을 Z 프로파일 위보다 낮게 유지해 갠트리가 지나가게 하세요. 정적 형상은 이동 영역을 보증하지 않습니다."
+    },
+    "ui.v0assembly.text_99c67261370dbe": {
+      "source_revision": "30316310a4f9329e1386",
+      "text": "원본 출력 부품을 쓰고 인서트 설치 시 주변 플라스틱을 보호하세요. 셔틀 인서트에는 인장 하중이 걸립니다. 그림의 눌림 방지 나사도 준비하세요."
+    },
+    "ui.v0assembly.text_d14803a1c81b34": {
+      "source_revision": "4643375ecdbaf81771ba",
+      "text": "가이들러 서포트를 제거하고 니들 베어링을 윤활하세요. 큰 기어 부분 방향과 축의 슬립핏을 확인하며 짧은 축 끝은 3 mm 미만이어야 합니다."
+    },
+    "ui.v0assembly.text_ad9d9501c9d1f9": {
+      "source_revision": "cd3a4ffba92b182e6d9a",
+      "text": "고정 너트만 유지하고 베어링은 접착하지 마세요. 가이들러 피벗을 자유롭게 두고 50T 기어를 지정 간극 중앙에 맞춘 뒤 필라멘트 경로와 이를 정렬해 고정나사를 조이세요."
+    },
+    "ui.v0assembly.text_f4b11fb9a61e60": {
+      "source_revision": "7f215623f34240460893",
+      "text": "래치를 셔틀 홈에 넣고 필라멘트의 옅은 이 자국과 눌림 방지 스톱을 확인하세요. 과도한 스프링 장력이나 걸림은 허용하지 않습니다."
+    },
+    "ui.v0assembly.text_bbd9f70a7a648f": {
+      "source_revision": "ca4c0bcf6d41b01937f8",
+      "text": "블로워 둘은 덕트로, 축류 팬은 카울 안으로 바람을 보냅니다. 그림의 배선 출구와 경로를 유지하세요."
+    },
+    "ui.v0assembly.text_8224e267fda658": {
+      "source_revision": "133b7b81e18ac56d11ea",
+      "text": "고정 CAD에는 Adafruit Sequin 두 조립체가 있습니다. 해당 쪽은 주변 팬 설명이지 LED 장착 지시가 아닙니다. LED 고정·배선·간극은 미해결입니다."
+    },
+    "ui.v0assembly.text_3fbe45320b1b46": {
+      "source_revision": "23b015ed2f805cd997fb",
+      "text": "기어 맞물림 조절 중 슬롯 모터 나사를 느슨하게 두세요. 조인 뒤에도 작은 백래시를 남기고 필라멘트 공급을 다시 확인하세요."
+    },
+    "ui.v0assembly.text_7db1821626b527": {
+      "source_revision": "2f1428f1dcb5ee75d295",
+      "text": "원본 Revo Voron 분기만 대응합니다. 전용 마운트와 원본 나사 4개를 쓰고 PTFE가 마운트 위로 6 mm 나오게 자르세요. 다른 핫엔드 이름은 적합 증거가 아닙니다."
+    },
+    "ui.v0assembly.text_abbe6e359e37a4": {
+      "source_revision": "36870c16c1a8792b1dd2",
+      "text": "원본 긴 카울 나사 2개와 준비한 고정 너트를 쓰세요. 장착 전 원본 팬·덕트·노즐 조립체를 확인하세요."
+    },
+    "ui.v0assembly.text_3d6abca36d03e8": {
+      "source_revision": "b48e21df887540c4d8ae",
+      "text": "앞 고정나사 2개와 원본 뒤 고정부품을 쓰세요. 설명서 삽입 화살표는 검증된 경로가 아니며 연속 무간섭을 주장하지 않습니다."
+    },
+    "ui.v0assembly.text_7553b6d5621cec": {
+      "source_revision": "6ad7fac0eedb859b0e02",
+      "text": "이전 준비 그림에 따라 스페이서 2개에 끝 인서트 4개를 넣고 이 단계에서 함께 최종 위치로 표시합니다. 모터 나사 노출부에 장착하고 히터 선과 얇은 신호·팬 선을 분리하세요. 맨 앞에서 여유를 최소화하세요. 완전한 배선 묶음은 없습니다."
+    },
+    "ui.v0assembly.text_7c61ee9e44db0d": {
+      "source_revision": "475bf6785c43faeb0cfa",
+      "text": "고정 원본에 옵션 센서·마운트·스페이서·나사가 있습니다. 해당 쪽은 배선 맥락뿐이며 설치 절차나 기본 스트레인 릴리프와의 공존은 확인되지 않았습니다."
+    },
+    "ui.v0assembly.text_a5c9968d102da5": {
+      "source_revision": "f098c5b8fa792d8a6e67",
+      "text": "기둥 삽입 너트 6개를 재사용하고 패널은 최종 위치로 표시합니다. 너트 조절을 위한 임시 프린터 뒤집기는 재현하지 않습니다."
+    },
+    "ui.v0assembly.text_2cff1367f62b14": {
+      "source_revision": "f45e250c90fb75b42099",
+      "text": "원본 SKR Pico와 Raspberry Pi용 인서트·DIN 클립·고정 클리트를 준비하세요. VHB 직접 부착은 대안이며 추가 설치 브래킷 세트가 아닙니다."
+    },
+    "ui.v0assembly.text_50f44ee01d3d4d": {
+      "source_revision": "aea9795641c1ca1bb512",
+      "text": "보드 내부 패키지·핀 부품은 구매 조립체로 함께 추가하며 개별 조립하지 않습니다. SKR E3 배선 옵션은 내보낸 보드 변형이 아닙니다."
+    },
+    "ui.v0assembly.text_17df7e64d6d3a4": {
+      "source_revision": "169c7d547db92f0e631f",
+      "text": "공식 도면으로 전원 전압 선택기를 확인하고 프레임에서 1-2 mm 띄우세요. VHB와 나사 장착은 대안이며 테이프 형상은 없습니다."
+    },
+    "ui.v0assembly.text_a18fe221ff43d2": {
+      "source_revision": "5fa9dd6a1f3979b56709",
+      "text": "원본 출력 마운트 두 반쪽, 인서트, 별도 3010 팬과 정확한 고정부품을 쓰세요."
+    },
+    "ui.v0assembly.text_b529bde9892e11": {
+      "source_revision": "6d3b011d519573a854bf",
+      "text": "전원을 뽑은 상태에서 자격 있는 담당자가 지역 규정과 공식 전원·보호접지 도면을 따라야 합니다. AC·보호접지·DC 접지는 구분됩니다. 모델은 배선과 단자 안전을 검증하지 않습니다."
+    },
+    "ui.v0assembly.text_acca5e287118d2": {
+      "source_revision": "8bf7751bdd9a9e445d0e",
+      "text": "SKR Pico 도면으로 팬 전압·극성, 모터 구분, DIAG 점퍼, Pi 전원을 확인하세요. 완전한 배선 묶음이나 시험된 배선은 표현되지 않습니다."
+    },
+    "ui.v0assembly.text_d2cb92ff2ed9fb": {
+      "source_revision": "c7fdbf41b92b97d0bf40",
+      "text": "배선 점검 후 원본 단자 가드를 장착하세요. 가드가 있다는 것만으로 전기 안전이 보증되지 않습니다."
+    },
+    "ui.v0assembly.text_ea0e75ef4eb23e": {
+      "source_revision": "994688a82b291c589459",
+      "text": "유지한 슬롯 너트와 원본 나사를 쓰세요. 뒤쪽 나사에는 볼렌치가 필요합니다."
+    },
+    "ui.v0assembly.text_7fc88d62d9ef2f": {
+      "source_revision": "04f6deb7a49734ffec36",
+      "text": "중앙 디스플레이 공간을 비우고 로고 장식 부품을 장착하세요."
+    },
+    "ui.v0assembly.text_ffcdc3cfe33c1a": {
+      "source_revision": "8eff0946c3bd0ff1c1e2",
+      "text": "이 덮개는 설명서의 디스플레이 없는 대안입니다. 설치된 디스플레이 전면과 동시에 표시하지 마세요. 네이티브 선택 마스크로 제외되면 목록 전용이며 숨김을 유지합니다."
+    },
+    "ui.v0assembly.text_f796817ccff559": {
+      "source_revision": "305973809a09e2b38071",
+      "text": "확산판·PCB·원본 마운트 또는 발·노브·나사를 장착하고 삽입 너트 2개를 재사용하세요. 약한 USB 단자를 보호하세요. V0.2와 r1 출력 마운트는 다릅니다."
+    },
+    "ui.v0assembly.text_b10a34cb1317d0": {
+      "source_revision": "086fe6c869499c1c6020",
+      "text": "작업 시 고무발을 빼고 다시 장착하세요. 비대칭 구멍이 맞지 않으면 패널을 돌리세요. 중간에 부품을 가로지르는 동작은 표시하지 않습니다."
+    },
+    "ui.v0assembly.text_125f41bea25e46": {
+      "source_revision": "7752b9fb8eac8b884976",
+      "text": "고정 전 배선 묶음과 Bowden을 절개부로 통과시키고 원본 중앙 결속 부품을 쓰세요. 툴헤드 PCB 교체 패널은 별도 분기입니다."
+    },
+    "ui.v0assembly.text_e320267f0c4988": {
+      "source_revision": "3afd663e56c2faa1a397",
+      "text": "미리 넣은 위치를 재사용하고 위쪽 PTFE 라이너를 면에 맞게 자르세요. 필라멘트 스풀은 내보낸 모델에서 제외됩니다."
+    },
+    "ui.v0assembly.text_0f9450453df7c1": {
+      "source_revision": "0da130437cd874cb23b5",
+      "text": "V0.2 220쪽은 스풀 홀더 라이너이며 r1 227쪽 센서 발 경로 단계는 없습니다. 외부 리버스 Bowden 전체 경로는 모델링되지 않았습니다."
+    },
+    "ui.v0assembly.text_91211505f4c0f5": {
+      "source_revision": "2824c8c946cb34877ba3",
+      "text": "원본 3 mm 분할 패널과 클립을 쓰세요. 기본 클립은 VHB가 필요 없습니다. 테이프 두께를 추가할 때 쓰는 별도 클립은 포함되지 않습니다."
+    },
+    "ui.v0assembly.text_28d622ea753691": {
+      "source_revision": "805aa6408a6e40f06d3d",
+      "text": "원본 3 mm 패널과 맞는 클립을 쓰세요. 오른쪽에는 분리형 도어 힌지 부품도 있습니다. 기본 측면 클립은 VHB가 필요 없습니다."
+    },
+    "ui.v0assembly.text_6683179067a4e0": {
+      "source_revision": "8e8a82b492c4a45936bf",
+      "text": "그림의 클립에 VHB와 정확한 긴 힌지 볼트를 쓰세요. 힌지는 위로 분리돼야 하며 하단 플라스틱 나사산을 손상시키지 마세요."
+    },
+    "ui.v0assembly.text_b87cc1e5ea11f8": {
+      "source_revision": "75f660d09e6c69c6f42b",
+      "text": "고정 전 모든 래치 자석이 손잡이 자석을 끌어당기는지 확인하세요. CAD 극성은 전기·자기 시험이 아닙니다."
+    },
+    "ui.v0assembly.text_8d2bf7392e8b14": {
+      "source_revision": "ceb7e91ea4dc37b0053c",
+      "text": "손잡이를 접착하기 전 자석의 인력을 확인하세요. 도어 회전 범위와 분리 경로는 미검증입니다."
+    },
+    "ui.v0assembly.text_4a4258df9aa6c7": {
+      "source_revision": "2c3113913e0b80caab25",
+      "text": "V0.2 설명서는 J/K, CAD는 A/H로 부릅니다. 원본 치수로 대응시키고 상단·외측 슬롯에 너트를 넣은 뒤 평면에서 직각을 맞추며 잠금 나사는 5 mm 돌출시킵니다."
+    },
+    "ui.v0assembly.text_302400bbf06fde": {
+      "source_revision": "2da9985eaaf346081ab5",
+      "text": "패널을 닫기 전 네 면 모두의 표시된 너트 2개씩을 확인하세요. 원본 클립·힌지 부품을 미리 유지하며 최종 위치로 표시합니다."
+    },
+    "ui.v0assembly.text_42c8793195d282": {
+      "source_revision": "a0538b8e7dddb1a36fa9",
+      "text": "3 mm 상단 패널과 원본 모서리 클립을 쓰세요. 기본 클립은 VHB가 필요 없습니다."
+    },
+    "ui.v0assembly.text_ce5b04641cc38e": {
+      "source_revision": "90e508235f563076dc28",
+      "text": "원본 3 mm 패널과 클립을 쓰고 상·하 고정부품을 대응 패널 가장자리에 유지하세요."
+    },
+    "ui.v0assembly.text_a2375dd8cf4958": {
+      "source_revision": "a36ebc4cc0c1715b986e",
+      "text": "뒤 패널은 앞쪽 돌출 잠금 나사의 반대쪽입니다. 하부 힌지와 맞을 때까지 상부 힌지를 조절 가능한 상태로 두세요."
+    },
+    "ui.v0assembly.text_0e2506bd372eeb": {
+      "source_revision": "6f8df5a46921bc4f09f4",
+      "text": "원본 M3x12 축을 하단 플라스틱 힌지에 조심히 돌려 넣고 과도하게 조이지 마세요. 초기 힌지·클립 너트와 하부 힌지를 재사용하세요."
+    },
+    "ui.v0assembly.text_d56ae393a782c3": {
+      "source_revision": "189efd9cd3303046b416",
+      "text": "캠 잠금을 연 상태에서 자유 개방을 확인한 뒤 시계방향 90도로 잠그세요. V0.2는 와셔·동전 키를 씁니다. 정적 표시는 무간섭 개방을 보증하지 않습니다."
+    },
+    "ui.v0assembly.text_472f58df83379b": {
+      "source_revision": "38800294e5676417034d",
+      "text": "전기 점검·설정·최초 가동은 공식 문서를 따르세요. 목록에는 대체 부품과 옵션도 있어 전체를 동시에 조립하거나 무간섭이라고 할 수 없습니다."
+    },
+    "ui.v0assembly.text_b7fdbf2ae5fdbe": {
+      "source_revision": "0b73ae7b3bd9aa1b3a02",
+      "text": "그림대로 바깥 기둥에 미리 넣으세요. 뒤 스풀 홀더는 중앙 클립을 대체합니다. 이 원본 그룹은 측면 24개·뒤 패널 5개·래치 4개 너트를 포함하고 다른 초기 너트는 각 원본 그룹에 남습니다."
+    },
+    "ui.v0assembly.text_23cb847b8b9081": {
+      "source_revision": "776d12317b90b83490f3",
+      "text": "MR85 베어링과 ECAS04 콜릿을 쓰고 지시대로 고무 슬리브를 제거하세요. 지정 NO 단자를 연결하고 이 센서 발 또는 일반 오른쪽 뒷발 하나만 선택하세요. 네이티브 선택 마스크로 제외되면 목록 전용이며 숨김을 유지합니다."
+    },
+    "ui.v0assembly.text_24610b4999f93f": {
+      "source_revision": "03c6df9e9f34a4abf4e2",
+      "text": "준비한 다섯 번째 홀더로 X 레일을 중앙·끝에서 25 mm에 맞추고 슬롯 너트를 넣으세요. 캐리지 이탈을 막고 원본 XY 조인트 너트 6개를 모두 여기서 유지합니다."
+    },
+    "ui.v0assembly.text_af195822c5f5fd": {
+      "source_revision": "9da133a238b0402a3444",
+      "text": "r1은 직렬 퓨즈를 RTV로 히터 패드에 붙입니다. 모델에 별도 퓨즈나 배선이 식별되지 않아 보호는 미검증입니다."
+    },
+    "ui.v0assembly.text_139a5b50f42900": {
+      "source_revision": "c26c6a34c16591d7fe4a",
+      "text": "설명서 역방향 공급 경로를 따르세요. r1 센서 발은 분리된 튜브 구간이 필요합니다. 외부 리버스 Bowden 전체 튜브 부품은 내보내지지 않았습니다."
+    },
+    "ui.v0assembly.text_d2e1296199a92f": {
+      "source_revision": "55f58c1c801ee5bffdaf",
+      "text": "r1 설명서는 수평/수직 부재 B/J, CAD는 A/H로 부릅니다. 200 mm/80 mm 원본에 대응시키고 상단·외측 슬롯에 너트를 넣으며 앞 잠금 나사는 5 mm 돌출시킵니다."
+    },
+    "ui.v0assembly.text_27a2edc43cec8f": {
+      "source_revision": "78249940ba60ca4e053b",
+      "text": "캠 잠금을 연 상태에서 자유 개방을 확인한 뒤 시계방향 90도로 잠그세요. r1은 5 mm 육각렌치를 씁니다. 정적 표시는 무간섭 개방을 보증하지 않습니다."
     }
   }
 }

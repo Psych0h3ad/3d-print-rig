@@ -463,6 +463,18 @@ html[data-theme=dark] #stage { background:#101820; }
 .model-loading-progress progress::-moz-progress-bar{background:var(--accent);border-radius:4px}
 .model-loading-progress progress:indeterminate{background:linear-gradient(90deg,var(--line),var(--accent),var(--line));background-size:200% 100%;animation:model-download-pending 1.5s linear infinite}
 .model-loading-progress progress:indeterminate::-webkit-progress-bar{background:transparent}
+.ui-workspace.has-device-memory-warning{grid-template-rows:auto auto minmax(0,1fr)}
+.ui-workspace.has-device-memory-warning>header{min-height:60px}
+.model-memory-warning{box-sizing:border-box;display:flex;align-items:center;gap:12px;padding:8px 16px;border-bottom:1px solid var(--line);border-left:3px solid var(--accent);background:var(--paper);color:var(--ink);font-size:12px;line-height:1.5;min-width:0}
+.model-memory-warning p{margin:0;flex:1;min-width:0;max-height:max(44px,15dvh);overflow:auto;color:inherit}
+.model-memory-warning button{flex:none;padding:5px 8px;font:inherit;min-height:44px;min-width:44px}
+@media(max-width:680px){.ui-workspace.has-device-memory-warning>header{min-height:96px}}
+:root[data-embedded=true] body.ui-workspace.has-device-memory-warning{display:grid!important;grid-template-rows:auto minmax(0,1fr)!important}
+:root[data-embedded=true] .has-device-memory-warning .workspace,:root[data-embedded=true] .has-device-memory-warning #stage{height:100%!important}
+.assembly-step-buttons{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.assembly-step-buttons button{flex:1;min-height:40px}
+#assemblyFinish{margin-top:12px;width:100%}
+#assemblyManual{display:inline-block;min-height:36px;line-height:36px}
 @keyframes model-download-pending{to{background-position:-200% 0}}
 @media(prefers-reduced-motion:reduce){.model-loading-progress progress:indeterminate{animation:none}}
 

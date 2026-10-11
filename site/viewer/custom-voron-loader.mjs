@@ -1,6 +1,6 @@
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {extraAssetBase,checkedExtraAsset} from './extra-asset-integrity.mjs?v=737f5dc17ca78791c0d8';
-import {beginModelLoading} from './model-progress.mjs?v=6b41a2b9f7626039b7e6';
+import {extraAssetBase,checkedExtraAsset} from './extra-asset-integrity.mjs?v=019170d7f31b55da1667';
+import {beginModelLoading} from './model-progress.mjs?v=beaef781095b6f56b290';
 export async function loadCustomVoron(id){
  const response=await fetch('../CUSTOM_VORON_ASSETS.json?v=4e8e0be172901980fd35',{cache:'no-cache'});if(!response.ok)throw Error('Custom VORON catalog unavailable');
  const index=await response.json(),row=index.machines.find(r=>r.id===id);if(!row)throw Error('Unknown custom VORON');

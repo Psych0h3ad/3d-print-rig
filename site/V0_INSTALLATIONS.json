@@ -5643,7 +5643,28 @@
             }
           }
         }
-      ]
+      ],
+      "native_alternatives": {
+        "model_sha256": "d89064824fa67ed6e7c78e90c642620afe62c3b4520255f6c626181754b7d29d",
+        "manifest_sha256": "3bc45717c986aea14895e52532d76284c7d084740dd19c4dea09dc104ff847ea",
+        "excluded_keys": [
+          "v02r1_00632",
+          "v02r1_00633",
+          "v02r1_00634",
+          "v02r1_00635",
+          "v02r1_00636",
+          "v02r1_00637",
+          "v02r1_00638",
+          "v02r1_00639",
+          "v02r1_00640",
+          "v02r1_00581"
+        ],
+        "selection": {
+          "front": "display",
+          "rear_foot": "runout"
+        },
+        "native_witness_scope": "Overlapping native source alternatives selected exclusively; source inventory retained. This is a viewer selection, not an inferred author default."
+      }
     },
     "voron_v02_120": {
       "options": [
@@ -10494,7 +10515,19 @@
           ],
           "tophat_max_angle_deg": 110
         }
-      ]
+      ],
+      "native_alternatives": {
+        "model_sha256": "da642150957fa38289499bd1c1586737f4f970968c3b32b3f7b81d76bef05ea9",
+        "manifest_sha256": "16b195acbaf4e74ea8b68f629aacf17066c0151fc7c4910647a71cd52ef9c23c",
+        "excluded_keys": [
+          "v02_00573"
+        ],
+        "selection": {
+          "front": "display",
+          "rear_foot": "plain"
+        },
+        "native_witness_scope": "Overlapping native source alternatives selected exclusively; source inventory retained. This is a viewer selection, not an inferred author default."
+      }
     }
   },
   "scope": "Native mounting interfaces; no homing, continuous collision, electrical or load certification.",

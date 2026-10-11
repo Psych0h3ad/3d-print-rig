@@ -6,8 +6,8 @@ import {WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=a8e49b4993efd
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
-import {setupPublicInfo} from './public-info.js?v=04b710e03e02ba2aea63';
+import {loadModel} from './model-loader.js?v=ea010e8ec91e63b1dc78';
+import {setupPublicInfo} from './public-info.js?v=c7e65c6912faa5cf0bb8';
 import {setupRenderExport} from './render-export.js?v=1383105a90d0fa4a63bd';
 import {e3ngSelection,e3ngPartVisible,e3ngURL} from './e3ng-model.mjs?v=workspace-belts-1';
 export async function mount(scope){

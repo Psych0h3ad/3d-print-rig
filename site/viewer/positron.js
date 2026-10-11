@@ -6,16 +6,16 @@ ensureWorkspaceEntry(import.meta.url);
 import * as THREE from './vendor-r180/three.module.js';
 import {OrbitControls} from './vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
-import {loadPositron} from './positron-loader.mjs?v=d83fa8d9d64cb82a9355';
+import {loadPositron} from './positron-loader.mjs?v=2a3105a5404159f02ff4';
 import {positronSchema,validatePositronState} from './positron-state.mjs?v=8296d1b775fbca04462f';
 import {setupMachineNavigation} from './machines.js?v=7d90ace65109ee54e1d2';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
-import {translate} from './i18n.mjs?v=ba019b1adf20832c91c8';
+import {translate} from './i18n.mjs?v=db391db0c6d1562c776b';
 import {rememberDisplayControl} from './display-preferences.mjs?v=5fd25f289942c501706d';
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=a8e49b4993efdc7bac52';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {setupRenderExport} from './render-export.js?v=1383105a90d0fa4a63bd';
-import {setupPublicInfo} from './public-info.js?v=04b710e03e02ba2aea63';
+import {setupPublicInfo} from './public-info.js?v=c7e65c6912faa5cf0bb8';
 
 const foldSteps=['ガラスベッドを外す','ベッドのネジを外す','Vホルダーを外す','ラッチを下げ、支柱のネジを外す','ヘッドを右端へ移動','Vホルダーを収納姿勢へ','ピンをJ字溝の回転位置へ移動','支柱を倒す','ヘッドを収納位置へ戻す','外したネジを左右の収納穴に差し込む','折り畳み完了'];
 export async function mount(scope){

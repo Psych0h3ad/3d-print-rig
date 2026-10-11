@@ -1,4 +1,4 @@
-import {beginModelLoading,readModelBytes} from './model-progress.mjs?v=6b41a2b9f7626039b7e6';
+import {beginModelLoading,readModelBytes} from './model-progress.mjs?v=beaef781095b6f56b290';
 const bundleInfo=fetch(new URL('../ASSET_BUNDLE.json?v=trident-clearance-35',import.meta.url),{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null);
 
 export async function modelURL(path){

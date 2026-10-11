@@ -4,7 +4,7 @@ import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
 import {createCrossantAdapter} from './crossant-adapter.mjs?v=53736f33178907042969';
 import {createChainPreview} from './crossant-chain_preview.mjs';
 import {createCrossantCovers} from './crossant-covers.mjs?v=d512e7e5c32543e4232b';
-import {beginModelLoading,readModelBytes} from './model-progress.mjs?v=6b41a2b9f7626039b7e6';
+import {beginModelLoading,readModelBytes} from './model-progress.mjs?v=beaef781095b6f56b290';
 const digest=async b=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',b)),v=>v.toString(16).padStart(2,'0')).join('');
 export function disposeCrossant(root){
  if(!root)return;const geometry=new Set(),materials=new Set();

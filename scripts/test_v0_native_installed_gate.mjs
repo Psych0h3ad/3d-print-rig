@@ -14,12 +14,14 @@ const registry=catalog.machines.voron_v02r1_120,option=registry.options.find(o=>
 assert(option,'Missing mandatory native V0 installed option');
 const profile=structuredClone(option.runtime_gate.source_profile_snapshot),mods={...stockV0Mods(),...option.requires,toolhead:option.id};
 const keys=new Set([...option.replace_keys,...option.runtime_gate.mandatory_preserved_stock_keys,option.installation.source_carriage_key]);
+for(const key of registry.native_alternatives?.excluded_keys||[])keys.add(key);
 const manifest={machine_id:profile.machine_id,parts:[...keys].map(key=>({key}))};
 const receipts=Object.fromEntries(Object.entries(option.runtime_gate.machine_files).filter(([k])=>k.endsWith('.json')).map(([k,v])=>[k,v.sha256]));
 receipts['model.glb']=v0NativeModelHash(profile.machine_id);
 for(const [name,dep]of Object.entries(option.runtime_gate.source_dependencies))receipts['module:'+name]=dep.model.decoded_sha256;
 const context={registry:{...registry,sources:catalog.sources},manifest,stockProfile:structuredClone(profile),receipts};
-assert.equal(v0NativeModelHash('voron_v02_120'),undefined);
+assert.equal(v0NativeModelHash('voron_v02_120'),'da642150957fa38289499bd1c1586737f4f970968c3b32b3f7b81d76bef05ea9');
+assert.equal(v0NativeModelHash('unknown_machine'),undefined);
 assert.equal(v0NativeDependencyHash('missing'),undefined);
 const checked=assertV0NativeInstalledSelection({...context,mods});
 assert.deepEqual(checked.display_limits_mm,option.installation.display_limits_mm);assert.deepEqual(checked.display_limits_mm.X,[30,90]);assert.deepEqual(checked.display_limits_mm.Y,[20,100]);const maxZ=checked.display_limits_mm.Z[1];assert(maxZ>0&&maxZ<=120);

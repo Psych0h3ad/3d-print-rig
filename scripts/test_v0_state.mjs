@@ -35,7 +35,7 @@ for(const [machine_id,registry]of Object.entries(registration.machines)){
   assert.equal(await restorer.restore(restored),true);assert.equal(busy,false);assert.deepEqual(installations.getState(),mods);assert.deepEqual(committed,file);summary.composed++;
   // Assert the actual production composition: active wrappers, exact source
   // keys (including composed Cat Flap + Lift-Off) and native replacement masks.
-  const hidden=new Set(registry.options.filter(o=>mods[o.slot]===o.id).flatMap(o=>o.replace_keys));
+  const hidden=new Set([...registry.options.filter(o=>mods[o.slot]===o.id).flatMap(o=>o.replace_keys),...(registry.native_alternatives?.excluded_keys||[])]);
   for(const [key,node]of fixture.adapter.nodes)assert.equal(node.visible,!hidden.has(key)&&!(key==='fixture-stock-adxl'&&mods.accelerometer==='none'));
   for(const [id,rows]of installations.roots){const selected=mods[rows[0].option.slot]===id;for(const row of rows){assert.equal(row.wrapper.visible,selected);if(selected&&row.spec.module){const visible=[];row.model.traverse(n=>{if(n.userData.part_key&&n.parent?.userData.part_key!==n.userData.part_key&&n.visible)visible.push(n.userData.part_key)});assert.deepEqual(visible.sort(),[...row.spec.keys].sort())}}}
   for(const pose of poses(profile,mods)){installations.setPose(pose);for(const rows of installations.roots.values())for(const row of rows)assert(row.wrapper.position.toArray().concat(row.wrapper.quaternion.toArray()).every(Number.isFinite));summary.poses++}

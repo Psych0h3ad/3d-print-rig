@@ -2,23 +2,23 @@ import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {setupSceneDisplay} from './display-preferences.mjs?v=5fd25f289942c501706d';
 import {workspaceFrame,WorkspaceResizeObserver,workspaceTask,workspaceListen} from './workspace-lifecycle.mjs?v=a8e49b4993efdc7bac52';
-import {v0NativeModelHash,v0NativeDependencyHash,v0NativeByteHash,guardV0NativeInstallations,guardV0NativeAdapter,v0NativeDisplayLimits,v0NativeRangeText,v0NativeStateProfile,assertV0NativePlayback} from './v0-native-installed-gate.mjs?v=aa8fec803c9ba150edb2';
-import {createV0Installations,v0Slots,v0TophatMaxAngle} from './v0-installations.mjs?v=860a6e2fc759b1a6d5c7';
-import {v0ConfigurationSchema,stockV0Mods,validateV0State,readV0ModsURL,v0ModsURL,createV0StateRestorer} from './v0-state.mjs?v=cf699051e80873b0c61c';
+import {v0NativeModelHash,v0NativeDependencyHash,v0NativeByteHash,guardV0NativeInstallations,guardV0NativeAdapter,v0NativeDisplayLimits,v0NativeRangeText,v0NativeStateProfile,assertV0NativePlayback} from './v0-native-installed-gate.mjs?v=2801ee4ab692384c0d13';
+import {createV0Installations,v0Slots,v0TophatMaxAngle} from './v0-installations.mjs?v=055c471ab6122e9cb3fe';
+import {v0ConfigurationSchema,stockV0Mods,validateV0State,readV0ModsURL,v0ModsURL,createV0StateRestorer} from './v0-state.mjs?v=d07ccd54c3039984cc57';
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
-import {loadExternalComponent} from './component-assets.mjs?v=9f8ef058f1297ab60e53';
+import {loadExternalComponent} from './component-assets.mjs?v=77e18567f1b28e53777a';
 import {v0ModCategories,componentCategory} from './v0-mod-library.mjs?v=ddeeafeb04155ab0838b';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=workspace-belts-1';
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
+import {loadModel} from './model-loader.js?v=ea010e8ec91e63b1dc78';
 import {createV0Adapter} from './v0_adapter.mjs?v=4ee2ec34955631397cf3';
 import {setupMachineNavigation} from './machines.js?v=7d90ace65109ee54e1d2';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=1383105a90d0fa4a63bd';
-import {setupPublicInfo} from './public-info.js?v=04b710e03e02ba2aea63';
+import {setupPublicInfo} from './public-info.js?v=c7e65c6912faa5cf0bb8';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=9f2e2d37bad40bd01847';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
 export async function mount(scope){
@@ -35,6 +35,7 @@ const stage=$('#stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antiali
 const scene=scope.scene(new THREE.Scene()),camera=new THREE.PerspectiveCamera(38,1,.001,10),orbit=scope.resource(new OrbitControls(camera,renderer.domElement));scene.add(new THREE.HemisphereLight('#ffffff','#6c7981',2.4));
 for(const pos of [[.4,.6,.5],[-.3,.2,-.4]]){const light=new THREE.DirectionalLight('#ffffff',2);light.position.set(...pos);scene.add(light)}
 let adapter,profile,program,programFrame,stockProfile,installations,stateRestorer,currentManifest,applyPalette,palette={base:null,accent:null,frame:null},pending=false;
+let assemblyView=null,assemblySnapshot=null,assemblyLocked=false,assemblyControlStates=new Map(),assemblyData=null;
 function render(){if(pending)return;pending=true;workspaceFrame(()=>{pending=false;renderer.render(scene,camera)})}
 const grid=setupGrid(scene,render);grid.position.y=-.026;
 function resize(){const b=stage.getBoundingClientRect();renderer.setSize(b.width,b.height,false);setResponsiveAspect(camera,orbit,b.width,b.height);render()}
@@ -42,7 +43,7 @@ new WorkspaceResizeObserver(resize).observe(stage);orbit.addEventListener('chang
 function view(name){camera.up.set(0,name==='top'?0:1,name==='top'?-1:0);orbit.target.set(0,.16,0);camera.position.set(...({iso:[.53,.45,.7],front:[0,.17,.9],top:[0,1,0]}[name]));frameResponsiveView(camera,orbit);render()}
 for(const name of ['iso','front','top'])$('#'+name).onclick=()=>view(name);view('iso');
 $('#focusHead').onclick=()=>{if(!adapter)return;const box=new THREE.Box3(),partBox=new THREE.Box3();function expand(node){if(!node.visible)return;if(node.isMesh&&node.geometry){node.geometry.computeBoundingBox();partBox.copy(node.geometry.boundingBox).applyMatrix4(node.matrixWorld);box.union(partBox)}for(const child of node.children)expand(child)}scene.updateMatrixWorld(true);for(const [key,node] of adapter.nodes)if(adapter.records.get(key).group===profile.head_group)expand(node);for(const rows of installations?.roots.values()||[])for(const r of rows)if(r.spec.motion==='xy')expand(r.wrapper);if(box.isEmpty())return;camera.up.set(0,1,0);box.getCenter(orbit.target);camera.position.copy(orbit.target).add(new THREE.Vector3(.1,.06,.2));orbit.update();render()};
-function applyPose(){if(!adapter)return;const pose=adapter.setPose(Object.fromEntries(['x','y','z'].map(a=>[a,Number($('#'+a).value)])));for(const a of ['x','y','z'])$('#'+a+'v').textContent=Number($('#'+a).value).toFixed(2)+' mm';
+function applyPose(){if(!adapter||assemblyView)return;const pose=adapter.setPose(Object.fromEntries(['x','y','z'].map(a=>[a,Number($('#'+a).value)])));for(const a of ['x','y','z'])$('#'+a+'v').textContent=Number($('#'+a).value).toFixed(2)+' mm';
  installations?.setPose(adapter.getPose());program?.updatePath(adapter.getPose());
  $('#motionStatus').textContent=pose.within_sampled_clearance_envelope===null?'換装後のノズルとベッドを基準に配置中':pose.within_sampled_clearance_envelope?'X/YヘッドとZベッドを配置中':'格子点で確認した範囲の外です。公称端の接触を確認する姿勢です。';
  $('#flexibleStatus').textContent=!pose.belts_visible?'ベルト・配線を非表示':'ベルト経路はXYに追従 · Zチェーン11リンクはベッドに追従';
@@ -50,7 +51,7 @@ function applyPose(){if(!adapter)return;const pose=adapter.setPose(Object.fromEn
 try{
  const nativeAssetReceipts={};
  const root='../machines/'+id+'/',json=async name=>{return workspaceTask(async()=>{const r=await fetch(root+name,{cache:'no-cache'});if(!r.ok)throw Error(name+'の読込に失敗');const bytes=await r.arrayBuffer();nativeAssetReceipts[name]=await v0NativeByteHash(bytes);return JSON.parse(new TextDecoder().decode(bytes))});};
- const [manifest,p,g,library,registration]=await Promise.all([json('assembly_manifest.json'),json('machine_profile.json'),loadModel(new GLTFLoader(),root+'model.glb',undefined,{verifySha256:v0NativeModelHash(id)}),fetch('../COMPONENT_LIBRARY.json?v=trident-clearance-35',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('Modカタログ');return r.json()}),fetch('../V0_INSTALLATIONS.json?v=82335a9bf7b01455ab97',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('V0 Mod取付データ');return r.json()})]);
+ const [manifest,p,g,library,registration]=await Promise.all([json('assembly_manifest.json'),json('machine_profile.json'),loadModel(new GLTFLoader(),root+'model.glb',undefined,{verifySha256:v0NativeModelHash(id)}),fetch('../COMPONENT_LIBRARY.json?v=trident-clearance-35',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('Modカタログ');return r.json()}),fetch('../V0_INSTALLATIONS.json?v=65d0fcf808da644b5824',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('V0 Mod取付データ');return r.json()})]);
  nativeAssetReceipts['model.glb']=v0NativeModelHash(id);
  profile=p;stockProfile=structuredClone(p);profile.stock_display_limits_mm=structuredClone(stockProfile.display_limits_mm);currentManifest=manifest;scene.add(g.scene);adapter=createV0Adapter(g.scene,manifest,profile);const originals=new Map(),protectedMaterials=[];
  for(const [key,node] of adapter.nodes)node.traverse(mesh=>{if(!mesh.isMesh)return;mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();for(const material of Array.isArray(mesh.material)?mesh.material:[mesh.material]){originals.set(material,material.color.clone());if(!appearanceRole(adapter.records.get(key)))protectedMaterials.push(material);if(material.transparent)material.depthWrite=false}});
@@ -100,9 +101,10 @@ try{
  for(const role of Object.keys(palette)){$('#'+role).disabled=false;$('#'+role+'Hex').disabled=false;$('#'+role).oninput=()=>{palette[role]=$('#'+role).value;applyPalette();save()};$('#'+role+'Hex').oninput=()=>{const v=$('#'+role+'Hex').value;if(!valid(v)){$('#'+role+'Hex').setAttribute('aria-invalid','true');return}palette[role]=v;applyPalette();save()}}
  $('#frameFinish').disabled=false;$('#frameFinish').onchange=()=>{if($('#frameFinish').value==='custom')return;palette.frame=$('#frameFinish').value==='silver'?'#b9bec4':'#0e0f11';applyPalette();save()};$('#resetPalette').disabled=false;$('#resetPalette').onclick=()=>{palette={base:null,accent:null,frame:null};applyPalette();save()};applyPalette();
  programFrame={nozzle_mm:profile.nozzle_tip_mm,reference_xyz_mm:profile.display_reference_xyz_mm,moving_bed_z:true};
- program=setupGcodePanel({container:document.querySelector('aside'),profile,adapter,scene,render,getLimits:displayedMachineLimits,beforePlayback:()=>assertV0NativePlayback(installations),getContext:()=>installations?.getNativeInstallationGate?.(),toNozzle:xyz=>programPoint(programFrame,xyz),pathOffset:xyz=>programPathOffset(programFrame,xyz),setPose:xyz=>{for(const [i,a]of ['x','y','z'].entries())$('#'+a).value=xyz[i];applyPose()}});
+ program=setupGcodePanel({container:document.querySelector('aside'),profile,adapter,scene,render,getLimits:displayedMachineLimits,beforePlayback:()=>{if(assemblyView)throw Error('組み立て手順を閉じてから動作を確認してください');return assertV0NativePlayback(installations)},getContext:()=>installations?.getNativeInstallationGate?.(),toNozzle:xyz=>programPoint(programFrame,xyz),pathOffset:xyz=>programPathOffset(programFrame,xyz),setPose:xyz=>{for(const [i,a]of ['x','y','z'].entries())$('#'+a).value=xyz[i];applyPose()}});
  try{const mods=readV0ModsURL(initialURL,{machine_id:id,registry:installations.registry});if(mods&&await setV0Mods(mods))configurationFeedback('共有リンクのMod構成を復元しました')}catch(e){configurationFeedback(loadError('共有リンクの読込エラー:',e))}
  setupRenderExport({renderer,scene,camera,controls:orbit,name:id,afterRender:render});$('#status').hidden=true;document.body.dataset.ready='true';document.body.dataset.parts=String(manifest.parts.length);applyPose();resize();
+ setupAssemblyControls(nativeAssetReceipts);
 }catch(e){$('#status').textContent='読込エラー: '+e.message;document.body.dataset.error=e.message;console.error(e)}
 
 function refreshMods(){if(!installations)return;const state=installations.getState();$('#tophatAngle').max=String(v0TophatMaxAngle(installations.registry,state));$('#tophatAngle').value=adapter.tophat.getAngle();$('#tophatAnglev').textContent=adapter.tophat.getAngle().toFixed(0)+'°';for(const[slot]of v0Slots)$('#mod-'+slot).value=state[slot];$('#installationStatus').replaceChildren(...installations.getNotes().map(note=>{const p=document.createElement('p');p.textContent=note;return p}));const selected=installations.registry.options.find(o=>o.id===state.toolhead&&o.slot==='toolhead');$('#headSummary').textContent=(selected?.label||'Mini Stealthburner / 統合BMG / Revo Voron')+' · 固定ガントリー・単一Zベッド';$('#installationStatus').classList.toggle('notice',state.handles==='stealth-handles');document.body.dataset.v0Mods=JSON.stringify(state)}
@@ -135,10 +137,84 @@ function commitV0State(value){
  const url=v0ModsURL(location.href,{machine_id:id,registry:installations.registry},installations.getState());
  replaceWorkspaceURL(history.state,'',url);
 }
-async function setV0Mods(state){return workspaceTask(()=>stateRestorer.setMods(state));}
+async function setV0Mods(state){if(assemblyView)throw Error('組み立て手順を閉じてから構成を変更してください');return workspaceTask(()=>stateRestorer.setMods(state));}
+function setupAssemblyControls(receipts){
+ const start=$('#assemblyStart');if(!start)return;
+ start.disabled=false;
+ const step=$('#assemblyStage'),status=$('#assemblyStatus');
+ const fail=e=>{status.textContent=loadError('手順の読込エラー:',e)};
+ function lockControls(){
+  for(const n of document.querySelectorAll('aside input,aside select,aside button')){
+   if(n.closest('#assemblyControls')||n.id==='viewerLanguage'||n.getAttribute('role')==='tab'||n.closest('.mobile-layout'))continue;
+   if(!assemblyControlStates.has(n))assemblyControlStates.set(n,n.disabled);n.disabled=true;
+  }
+  start.disabled=true;
+ }
+ function unlockControls(){for(const[n,disabled]of assemblyControlStates)n.disabled=disabled;assemblyControlStates.clear();start.disabled=false}
+ function focusAdded(){
+  if(!assemblyView)return;
+  const box=new THREE.Box3(),partBox=new THREE.Box3();scene.updateMatrixWorld(true);
+  for(const key of assemblyView.getBoundsKeys()){
+   const native=adapter.nodes.get(key),display=[...installations.roots.values()].flat().filter(r=>r.wrapper.visible&&r.option.replace_keys.includes(key)).map(r=>r.wrapper);
+   for(const node of [...(native?.visible?[native]:[]),...display])node.traverse(n=>{
+    for(let p=n;p&&p!==node.parent;p=p.parent)if(!p.visible)return;
+    if(n.isMesh&&n.geometry){n.geometry.computeBoundingBox();partBox.copy(n.geometry.boundingBox).applyMatrix4(n.matrixWorld);box.union(partBox)}
+   });
+  }
+  if(box.isEmpty())return;
+  const extent=box.getSize(new THREE.Vector3()).length(),distance=Math.max(.05,extent/(2*Math.tan(camera.fov*Math.PI/360))*1.3);
+  box.getCenter(orbit.target);camera.up.set(0,1,0);camera.position.copy(orbit.target).add(new THREE.Vector3(.65,.4,1).normalize().multiplyScalar(distance));frameResponsiveView(camera,orbit);render();
+ }
+ function present(index){
+  const state=assemblyView.setStage(index);step.value=String(index);
+  $('#assemblyPrevious').disabled=index===0;$('#assemblyNext').disabled=index===state.total-1;
+  const stage=assemblyData.machines[id].stages[index];
+  $('#assemblyStepNote').textContent=stage.note||'';
+  $('#assemblyPartCount').textContent=`工程 ${index+1} / ${state.total} · 追加 ${state.added} 部品 · 表示 ${state.visible_count} 部品`;
+  const manual=assemblyData.machines[id].manual;
+  $('#assemblyManual').href=manual.url+'#page='+stage.page_start;
+  $('#assemblyManual').textContent=`公式マニュアル ${stage.page_start}–${stage.page_end} ページ`;
+  status.textContent='元CADの位置で組立状態を表示中';document.body.dataset.assemblyStage=stage.id;render();
+ }
+ async function finish(){
+  if(assemblyLocked||!assemblyView)return;assemblyLocked=true;
+  const saved=assemblySnapshot;
+  try{assemblyView.leave();assemblyView=null;$('#assemblySteps').hidden=true;delete document.body.dataset.assemblyStage;
+   if(!await restoreV0State(saved.configuration))throw Error('元の構成を復元できません');
+   camera.position.copy(saved.camera);camera.up.copy(saved.up);orbit.target.copy(saved.target);orbit.update();render();status.textContent='元の構成を復元しました';
+  }catch(e){fail(e)}finally{if(!assemblyView){unlockControls();assemblySnapshot=null}assemblyLocked=false}
+ }
+ start.onclick=()=>workspaceTask(async()=>{
+  if(assemblyLocked||assemblyView)return;assemblyLocked=true;
+  assemblySnapshot={configuration:captureV0State(),camera:camera.position.clone(),up:camera.up.clone(),target:orbit.target.clone()};lockControls();
+  try{
+   if(!assemblyData){const response=await fetch('../V0_ASSEMBLY_STAGES.json?v=cac666a318dc56cdae84',{cache:'no-cache'});if(!response.ok)throw Error('手順データを読み込めません');assemblyData=await response.json()}
+   const {createV0AssemblyStages}=await import('./v0-assembly.mjs?v=ac576b8eed02781734ab');
+   program?.invalidate();
+   if(!await setV0Mods(stockV0Mods()))throw Error('標準構成を読み込めません');
+   $('#enclosure').checked=true;$('#enclosure').onchange();$('#belts').checked=true;$('#belts').onchange();
+   $('#doorAngle').value='0';$('#doorAngle').oninput();$('#tophatAngle').value='0';$('#tophatAngle').oninput();$('#reset').onclick();
+   const companions=[...installations.roots.values()].flat().filter(r=>r.wrapper.visible).map(r=>({node:r.wrapper,part_keys:r.option.replace_keys}));
+   assemblyView=createV0AssemblyStages({nodes:adapter.nodes,manifest:currentManifest,machine:assemblyData.machines[id],receipts,companions});
+   step.replaceChildren(...assemblyData.machines[id].stages.map((stage,i)=>{const option=document.createElement('option');option.value=String(i);option.textContent=stage.title;return option}));
+   lockControls();$('#assemblySteps').hidden=false;present(0);focusAdded();
+  }catch(e){
+   try{assemblyView?.leave();assemblyView=null;
+    if(assemblySnapshot){if(!await restoreV0State(assemblySnapshot.configuration))throw Error('元の構成を復元できません');
+     camera.position.copy(assemblySnapshot.camera);camera.up.copy(assemblySnapshot.up);orbit.target.copy(assemblySnapshot.target);orbit.update();render()}
+   }catch(rollbackError){e=new Error(e.message+' / '+rollbackError.message)}
+   assemblySnapshot=null;$('#assemblySteps').hidden=true;delete document.body.dataset.assemblyStage;fail(e);
+  }finally{if(!assemblyView)unlockControls();assemblyLocked=false;start.disabled=Boolean(assemblyView)}
+ });
+ step.onchange=()=>{if(assemblyView)present(Number(step.value))};
+ $('#assemblyPrevious').onclick=()=>{if(assemblyView)present(Math.max(0,Number(step.value)-1))};
+ $('#assemblyNext').onclick=()=>{if(assemblyView)present(Math.min(assemblyData.machines[id].stages.length-1,Number(step.value)+1))};
+ $('#assemblyFocus').onclick=focusAdded;$('#assemblyFinish').onclick=()=>workspaceTask(finish);
+ scope.cleanup(()=>{try{assemblyView?.leave()}finally{assemblyView=null;assemblySnapshot=null;assemblyLocked=false;unlockControls();$('#assemblySteps').hidden=true;delete document.body.dataset.assemblyStage}});
+}
 function currentV0(){return {adapter,profile,manifest:currentManifest,installations,scene,camera,orbit}}
 function captureV0State(){return validateV0State({profile,registry:installations.registry},{schema:v0ConfigurationSchema,machine_id:id,mods:installations.getState(),pose:adapter.getPose(),palette:{...palette},enclosure:$('#enclosure').checked,belts:$('#belts').checked,grid:$('#gridVisible').checked,door_angle_deg:adapter.door.getAngle(),tophat_angle_deg:adapter.tophat.getAngle()})}
-async function restoreV0State(value){return workspaceTask(()=>{const checked=validateV0State({profile:v0NativeStateProfile(stockProfile,value?.mods),registry:installations.registry},value);return stateRestorer.restore(checked)});}
+async function restoreV0State(value){if(assemblyView)throw Error('組み立て手順を閉じてから構成を変更してください');return workspaceTask(()=>{const checked=validateV0State({profile:v0NativeStateProfile(stockProfile,value?.mods),registry:installations.registry},value);return stateRestorer.restore(checked)});}
 workspaceListen(window,'pagehide',event=>{if(event.persisted)return;installations?.dispose();orbit.dispose();renderer.dispose();adapter=null;installations=null});
 
 setupSceneDisplay(scene,renderer,camera,scope,THREE);

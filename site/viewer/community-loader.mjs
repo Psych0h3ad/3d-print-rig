@@ -1,11 +1,11 @@
 import {loadedPrinterAssetIdentity} from './gcode-loaded-asset-identity.mjs?v=42ac134c2d9a8b8f8dfc';
 import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
-import {extraAssetBase,checkedExtraAsset} from './extra-asset-integrity.mjs?v=737f5dc17ca78791c0d8';
-import {beginModelLoading} from './model-progress.mjs?v=6b41a2b9f7626039b7e6';
+import {extraAssetBase,checkedExtraAsset} from './extra-asset-integrity.mjs?v=019170d7f31b55da1667';
+import {beginModelLoading} from './model-progress.mjs?v=beaef781095b6f56b290';
 import {createCommunityAdapter} from './community-adapter.mjs?v=603e9739f4c0fc671488';
 import {applyNativeMotionProfile,loadNativeMotionProfile} from './native-motion-profile.mjs?v=91532eb992519143f437';
 import {applyEvaInstallation} from './eva-installations.mjs?v=4dfad49e1f98d4b5b9f2';
-import {loadEvaFrontSurfaces,applyEvaFrontSurfaces} from './eva-front-surfaces.mjs?v=a1a0fbab92e8e08c3f6b';
+import {loadEvaFrontSurfaces,applyEvaFrontSurfaces} from './eva-front-surfaces.mjs?v=629c42810cc0b477c98e';
 export async function loadCommunity(index,machine,{signal}={}){
  const spec=index.machines[machine];if(!spec||spec.machine_id!==machine)throw Error('Unknown community printer');
  const extraModels=spec.additional_models||[];

@@ -1,6 +1,6 @@
 import {workspaceTask} from './workspace-lifecycle.mjs?v=a8e49b4993efdc7bac52';
-import {setupPublicInfo} from './public-info.js?v=04b710e03e02ba2aea63';
-import {modelURL} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
+import {setupPublicInfo} from './public-info.js?v=c7e65c6912faa5cf0bb8';
+import {modelURL} from './model-loader.js?v=ea010e8ec91e63b1dc78';
 
 const files={
   siboor_trident_300:['../SIBOOR_TRIDENT_ASSETS.json?v=9b10bebcaa3b326532fd'],

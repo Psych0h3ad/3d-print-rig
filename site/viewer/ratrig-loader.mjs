@@ -3,7 +3,7 @@ import * as THREE from './vendor-r180/three.module.js';
 import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
 import {createRatRigAdapter} from './ratrig_adapter.mjs';
 import {createRatRigGcodePreview} from './ratrig_gcode_preview.mjs';
-import {beginModelLoading,readModelBytes} from './model-progress.mjs?v=6b41a2b9f7626039b7e6';
+import {beginModelLoading,readModelBytes} from './model-progress.mjs?v=beaef781095b6f56b290';
 
 const digest=async bytes=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');
 export function disposeRatRig(root,adapter){

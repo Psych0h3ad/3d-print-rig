@@ -1,6 +1,6 @@
-import {checkedExtraAsset,extraAssetBase} from './extra-asset-integrity.mjs?v=737f5dc17ca78791c0d8';
-import {beginModelLoading} from './model-progress.mjs?v=6b41a2b9f7626039b7e6';
-import {loadChunkedTrinity} from './chunked-component-glb.mjs?v=6b1039c50882fce242a7';
+import {checkedExtraAsset,extraAssetBase} from './extra-asset-integrity.mjs?v=019170d7f31b55da1667';
+import {beginModelLoading} from './model-progress.mjs?v=beaef781095b6f56b290';
+import {loadChunkedTrinity} from './chunked-component-glb.mjs?v=d8db4ff82a409942c85b';
 
 // External component CAD has the same byte/hash contract as machine assets.
 export async function loadExternalComponent(loader,spec,href){

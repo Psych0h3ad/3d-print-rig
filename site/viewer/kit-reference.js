@@ -8,13 +8,13 @@ import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
-import {loadKitReference} from './kit-reference-loader.mjs?v=e018cf8fc3c93c4140dd';
+import {loadKitReference} from './kit-reference-loader.mjs?v=ece873092744967a18ec';
 import {setupMachineNavigation} from './machines.js?v=7d90ace65109ee54e1d2';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=1383105a90d0fa4a63bd';
-import {setupPublicInfo} from './public-info.js?v=04b710e03e02ba2aea63';
+import {setupPublicInfo} from './public-info.js?v=c7e65c6912faa5cf0bb8';
 import {createCommunityAdapter} from './community-adapter.mjs?v=603e9739f4c0fc671488';
-import {setupNativeMotionControls} from './native-motion-controls.mjs?v=a088a79a7353642d746f';
+import {setupNativeMotionControls} from './native-motion-controls.mjs?v=d385006b68948b309613';
 export async function mount(scope){
 const $=s=>document.querySelector(s),id='fysetc_v24_250_pro',stage=$('#stage');
 setupMachineNavigation(id);setupPublicInfo({includeDownloads:false});

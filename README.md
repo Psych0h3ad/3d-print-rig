@@ -19,6 +19,10 @@ Compare printer, toolhead and gantry configurations in 3D.
 
 EVA 2 and EVA 3 offer complete source-specific head recipes on the [V-Minion 180](https://psych0h3ad.github.io/3d-print-rig/viewer/community.html?machine=ratrig_vminion_180&lang=en) and [V-Core 3.1 300](https://psych0h3ad.github.io/3d-print-rig/viewer/community.html?machine=ratrig_vcore31_300&lang=en). Choose **Toolhead installation** to change the extruder and hotend together with their cooling, probes, fasteners and carriage companions. **Build a standalone toolhead** opens the same recipe separately. [Available EVA combinations, source versions and review scope](docs/EVA_HEADS.md).
 
+[V0.2 and V0.2r1 assembly steps](https://psych0h3ad.github.io/3d-print-rig/viewer/v0.html?machine=voron_v02r1_120&lang=en) follow their respective official manuals, with cumulative part visibility and links to the relevant pages. Parts stay in their native assembled positions; insertion paths are not animated. Closing the steps restores the previous configuration and view. [Sources and review scope](docs/V0_ASSEMBLY.md).
+
+When a browser exposes a device RAM estimate of 4 GiB or less, the viewer shows a dismissible loading advisory. This estimate does not measure free memory. Browsers without the API receive no estimated value.
+
 Standard Trident R2 250/300/350 supports FOX's A/B Stepper Fan V2 preview under **Additional mods**, with SB / CW2 / Revo Voron. Bed-support, drive, enclosure and wiper source parts can be inspected in [Component CAD](https://psych0h3ad.github.io/3d-print-rig/viewer/components.html). Mounted previews and individual source parts have separate verification scopes. [Original versions, licenses and derivation source](https://github.com/Psych0h3ad/3d-print-rig-large-voron-models#readme).
 
 TicTac 2.1, THE 100 v1.1, Rook MK2 beta and Satsuma 180 v1.0 are available

@@ -1,11 +1,11 @@
-import {siboorAlphaModelOptions,assertSiboorRawInput} from './trinity-alpha-siboor-r2.mjs?v=28e62494b5e8b740f76d';
+import {siboorAlphaModelOptions,assertSiboorRawInput} from './trinity-alpha-siboor-r2.mjs?v=133d3f856c21f35d4a23';
 import {contentSHA256} from './mount-validation.mjs';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
-import {extraAssetBase,checkedExtraAsset} from './extra-asset-integrity.mjs?v=737f5dc17ca78791c0d8';
-import {beginModelLoading} from './model-progress.mjs?v=6b41a2b9f7626039b7e6';
-import {loadSiboorRegistration} from './siboor-catalog.mjs?v=6549106f568b1a33d001';
-export {siboorMachine,loadSiboorRegistration} from './siboor-catalog.mjs?v=6549106f568b1a33d001';
+import {loadModel} from './model-loader.js?v=ea010e8ec91e63b1dc78';
+import {extraAssetBase,checkedExtraAsset} from './extra-asset-integrity.mjs?v=019170d7f31b55da1667';
+import {beginModelLoading} from './model-progress.mjs?v=beaef781095b6f56b290';
+import {loadSiboorRegistration} from './siboor-catalog.mjs?v=703ef6a80a9551ecbb38';
+export {siboorMachine,loadSiboorRegistration} from './siboor-catalog.mjs?v=703ef6a80a9551ecbb38';
 export async function loadSiboorAssembly(machine){
  const loader=new GLTFLoader();
  if(machine==='siboor_trident_350'){

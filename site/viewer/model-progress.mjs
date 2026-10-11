@@ -1,3 +1,5 @@
+import {showDeviceMemoryWarning} from './device-memory.mjs?v=c2fd3c5387d359dca8a7';
+
 // Percentages describe received model bytes. Parsing/assembly is a separate
 // phase; elapsed time is never used to invent download progress.
 export function createModelProgress(files, onUpdate = () => {}) {
@@ -57,8 +59,9 @@ export async function readModelBytes(response, {spec, onProgress = () => {}} = {
 }
 
 const displays = new WeakMap();
-export function beginModelLoading(files, {document = globalThis.document, onUpdate} = {}) {
+export function beginModelLoading(files, {document = globalThis.document, navigator = globalThis.navigator, onUpdate} = {}) {
   const stage = document?.getElementById('stage');
+  showDeviceMemoryWarning(stage, {document, navigator});
   let display = stage && displays.get(stage);
   if (stage && !display) {
     const panel = document.createElement('div'); panel.className = 'model-loading-progress';

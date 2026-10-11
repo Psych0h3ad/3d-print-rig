@@ -1,0 +1,213 @@
+// Static, cumulative manual stages. This module changes native visibility only.
+// It does not simulate insertion, motion, material changes or assembly clearance.
+export const v0AssemblySchema='v0-assembly-stages-v1';
+const record=value=>value!==null&&typeof value==='object'&&!Array.isArray(value);
+const text=value=>typeof value==='string'&&value.trim().length>0;
+const hash=value=>typeof value==='string'&&/^[a-f0-9]{64}$/i.test(value);
+const fail=message=>{throw Error('V0 assembly: '+message)};
+
+// `machine` accepts the complete schema document (selected by manifest.machine_id)
+// or its already selected machines[machine_id] entry. Receipts are verified byte
+// digests from the loader: model.glb is the decoded GLB, not its gzip container.
+export function validateV0AssemblyStages({nodes,manifest,machine,receipts,companions=[]}={}){
+ if(!record(manifest)||!text(manifest.machine_id)||!Array.isArray(manifest.parts))fail('Invalid native manifest');
+ if(!record(machine))fail('Missing machine stage specification');
+ if('schema' in machine||'machines' in machine){
+  if(machine.schema!==v0AssemblySchema||!record(machine.machines))fail('Unknown stage schema');
+  if(!Object.hasOwn(machine.machines,manifest.machine_id))fail('Unregistered machine: '+manifest.machine_id);
+  machine=machine.machines[manifest.machine_id];
+ }
+ if(!record(machine))fail('Invalid machine stage specification');
+ if(machine.machine_id!==undefined&&machine.machine_id!==manifest.machine_id)fail('Machine identity mismatch');
+ if(!hash(machine.model_sha256)||!hash(machine.manifest_sha256))fail('Missing native source hashes');
+ if(!record(receipts)||!hash(receipts['model.glb'])||!hash(receipts['assembly_manifest.json'])||
+    machine.model_sha256.toLowerCase()!==receipts['model.glb'].toLowerCase()||
+    machine.manifest_sha256.toLowerCase()!==receipts['assembly_manifest.json'].toLowerCase())fail('Stale or unverified model/manifest bytes');
+ if(!Number.isSafeInteger(machine.parts)||machine.parts<1||machine.parts!==manifest.parts.length)fail('Native part count mismatch');
+ if(!(nodes instanceof Map)||nodes.size!==machine.parts)fail('Native node count mismatch');
+ const keys=new Set(),objects=new Set();
+ for(const row of manifest.parts){
+  if(!record(row)||!text(row.key)||keys.has(row.key))fail('Missing or duplicate manifest part');
+  keys.add(row.key);
+  const node=nodes.get(row.key);
+  if(!record(node)||typeof node.visible!=='boolean'||objects.has(node))fail('Missing or duplicate native node: '+row.key);
+  if(node.userData?.part_key!==undefined&&node.userData.part_key!==row.key)fail('Native node identity mismatch: '+row.key);
+  const visible=Object.getOwnPropertyDescriptor(node,'visible');
+  if(!visible||!('value' in visible)||!visible.writable)fail('Native visibility is not a writable data property: '+row.key);
+  objects.add(node);
+ }
+ for(const key of nodes.keys())if(!keys.has(key))fail('Unknown native node: '+key);
+ // Stock display companions replace exact source leaves, for example the
+ // carriage with its manufacturing support removed. Never re-show the hidden
+ // source leaves to make a stage or focus target visible.
+ if(!Array.isArray(companions))fail('Invalid stock display companions');
+ const companionObjects=new Set(),companionKeys=new Set();
+ const companionRows=companions.map(row=>{
+  if(!record(row)||!record(row.node)||objects.has(row.node)||companionObjects.has(row.node))fail('Missing or duplicate stock companion node');
+  const descriptor=Object.getOwnPropertyDescriptor(row.node,'visible');
+  if(!descriptor||!('value' in descriptor)||!descriptor.writable||typeof row.node.visible!=='boolean')fail('Stock companion visibility is not writable');
+  if(!Array.isArray(row.part_keys)||!row.part_keys.length)fail('Missing stock companion source keys');
+  for(const key of row.part_keys){
+   if(!keys.has(key))fail('Unknown stock companion source key: '+key);
+   if(companionKeys.has(key))fail('Duplicate stock companion source key: '+key);
+   if(nodes.get(key).visible)fail('Stock companion native replacement is still visible: '+key);
+   companionKeys.add(key);
+  }
+  // A companion is an external display wrapper, never a native root/parent.
+  for(const node of objects){const seen=new Set();for(let parent=node;parent;parent=parent.parent){
+   if(seen.has(parent))fail('Cycle in native parent graph');seen.add(parent);
+   if(parent===row.node)fail('Stock companion contains a native node');
+  }}
+  companionObjects.add(row.node);return {node:row.node,part_keys:[...row.part_keys]};
+ });
+ for(const {node}of companionRows){const seen=new Set([node]);for(let parent=node.parent;parent;parent=parent.parent){
+  if(seen.has(parent))fail('Cycle in stock companion parent graph');seen.add(parent);
+  if(companionObjects.has(parent)||objects.has(parent))fail('Stock companion wrappers overlap native or companion roots');
+ }}
+ const manual=machine.manual;
+ if(!record(manual)||!text(manual.url)||!hash(manual.sha256)||!Number.isSafeInteger(manual.pages)||manual.pages<1||!text(manual.revision))fail('Invalid pinned manual');
+ let url;try{url=new URL(manual.url)}catch{fail('Invalid manual URL')}
+ if(url.protocol!=='https:'||url.username||url.password)fail('Manual must have a public HTTPS URL');
+ if(!Array.isArray(machine.stages)||!machine.stages.length)fail('Missing manual stages');
+ const ids=new Set(),assigned=new Set();
+ const stages=machine.stages.map(stage=>{
+  if(!record(stage)||!text(stage.id)||ids.has(stage.id)||!text(stage.title))fail('Missing or duplicate stage identity/title');
+  ids.add(stage.id);
+  if(!Number.isSafeInteger(stage.page_start)||!Number.isSafeInteger(stage.page_end)||stage.page_start<1||stage.page_end<stage.page_start||stage.page_end>manual.pages)fail('Manual page range outside pinned document: '+stage.id);
+  for(const field of ['title_ja','note','note_ja'])if(stage[field]!==undefined&&typeof stage[field]!=='string')fail('Invalid stage copy: '+stage.id);
+  if(stage.title_ja!==undefined&&!text(stage.title_ja))fail('Empty Japanese stage title: '+stage.id);
+  if(!Array.isArray(stage.part_keys))fail('Missing stage part keys: '+stage.id);
+  for(const key of stage.part_keys){
+   if(!text(key)||!keys.has(key))fail('Unknown stage part: '+key);
+   if(assigned.has(key))fail('Part assigned more than once: '+key);
+   assigned.add(key);
+  }
+  const copy={id:stage.id,title:stage.title,page_start:stage.page_start,page_end:stage.page_end,part_keys:[...stage.part_keys]};
+  for(const field of ['title_ja','note','note_ja'])if(stage[field]!==undefined)copy[field]=stage[field];
+  return copy;
+ });
+ if(assigned.size!==keys.size)fail('Unassigned native parts: '+[...keys].filter(key=>!assigned.has(key)).join(', '));
+ const stageIndex=new Map(stages.flatMap((stage,index)=>stage.part_keys.map(key=>[key,index])));
+ const stageIds=new Map(stages.map((stage,index)=>[stage.id,index]));
+ const seatDependencies=machine.seat_display_dependencies===undefined?[]:machine.seat_display_dependencies;
+ if(!Array.isArray(seatDependencies))fail('Invalid seat display dependencies');
+ const seats=new Map();
+ for(const row of seatDependencies){
+  if(!record(row)||!keys.has(row.part_key)||!keys.has(row.carrier_key)||row.part_key===row.carrier_key||seats.has(row.part_key))fail('Invalid or duplicate seat dependency');
+  if(!stageIds.has(row.preload_stage_id)||stageIds.get(row.preload_stage_id)>stageIndex.get(row.part_key))fail('Invalid seat preload stage');
+  if(stageIndex.get(row.part_key)<stageIndex.get(row.carrier_key))fail('Fastener displayed before its receiving part: '+row.part_key);
+  seats.set(row.part_key,{part_key:row.part_key,carrier_key:row.carrier_key,preload_stage_id:row.preload_stage_id});
+ }
+ for(const key of seats.keys()){
+  const seen=new Set();for(let current=key;seats.has(current);current=seats.get(current).carrier_key){
+   if(seen.has(current))fail('Cycle in seat display dependencies');seen.add(current);
+  }
+ }
+ return {machine_id:manifest.machine_id,model_sha256:machine.model_sha256,manifest_sha256:machine.manifest_sha256,parts:machine.parts,
+  manual:{url:manual.url,sha256:manual.sha256,pages:manual.pages,revision:manual.revision},stages,companions:companionRows,seat_display_dependencies:[...seats.values()]};
+}
+
+export function createV0AssemblyStages(options){
+ const spec=validateV0AssemblyStages(options),nodes=options.nodes,bindings=new Map(nodes);
+ const companionBindings=spec.companions,companionForKey=new Map();
+ for(const row of companionBindings)for(const key of row.part_keys)companionForKey.set(key,row.node);
+ let active=null;
+ function checkBindings(){
+  if(nodes.size!==bindings.size)fail('Native node graph changed');
+  for(const [key,node]of bindings)if(nodes.get(key)!==node||node.userData?.part_key!==undefined&&node.userData.part_key!==key)fail('Native node graph changed: '+key);
+ }
+ function snapshot(){
+  const graph=new Map(),ancestors=new Map(),visibilities=new Map(),companionVisibilities=new Map();
+  function walk(node,ancestors){
+   if(ancestors.has(node))fail('Cycle in native node graph');
+   if(graph.has(node))return;
+   if(node.children!==undefined&&!Array.isArray(node.children))fail('Invalid native children');
+   const children=node.children?[...node.children]:null;
+   graph.set(node,{parent:node.parent,childrenRef:node.children,children,part_key:node.userData?.part_key,visible:node.visible});
+   if(children){const next=new Set(ancestors);next.add(node);for(const child of children){if(!record(child))fail('Invalid native child');walk(child,next)}}
+  }
+  for(const [key,node]of bindings)visibilities.set(key,node.visible);
+  for(const {node}of companionBindings)companionVisibilities.set(node,node.visible);
+  for(const node of [...bindings.values(),...companionVisibilities.keys()]){
+   walk(node,new Set());
+   const seen=new Set([node]);
+   for(let parent=node.parent;parent;parent=parent.parent){
+    if(!record(parent)||seen.has(parent))fail('Cycle or invalid native parent graph');
+    seen.add(parent);ancestors.set(parent,{parent:parent.parent,visible:parent.visible});
+   }
+  }
+  return {graph,ancestors,visibilities,companionVisibilities,index:null,part_keys:[]};
+ }
+ function checkActive(){
+  checkBindings();
+  if(!active)return;
+  for(const [node,row]of active.graph){
+   if(node.parent!==row.parent||node.children!==row.childrenRef||node.userData?.part_key!==row.part_key||
+      row.children&&(node.children.length!==row.children.length||row.children.some((child,i)=>node.children[i]!==child)))fail('Native node graph changed during assembly');
+   if(node.visible!==row.visible)fail('Native visibility changed outside assembly controller');
+  }
+  for(const [node,row]of active.ancestors){
+   if(node.parent!==row.parent)fail('Native parent graph changed during assembly');
+   if(!active.graph.has(node)&&node.visible!==row.visible)fail('Native parent visibility changed outside assembly controller');
+  }
+ }
+ function visibleNode(node){
+  if(!node)return false;
+  for(;node;node=node.parent)if(node.visible===false)return false;
+  return true;
+ }
+ function visibleKeys(keys=active.part_keys){
+  return keys.filter(key=>visibleNode(nodes.get(key))||visibleNode(companionForKey.get(key)));
+ }
+ function result(){
+  if(!active)return null;
+  const stage=spec.stages[active.index];
+  const value={index:active.index,total:spec.stages.length,id:stage.id,title:stage.title,pages:[stage.page_start,stage.page_end],
+   added:stage.part_keys.length,visible_count:visibleKeys().length,part_keys:[...stage.part_keys],cumulative_part_keys:[...active.part_keys]};
+  for(const field of ['title_ja','note','note_ja'])if(stage[field]!==undefined)value[field]=stage[field];
+  return value;
+ }
+ function setStage(index){
+  if(!Number.isSafeInteger(index)||index<0||index>=spec.stages.length)fail('Stage index out of range');
+  checkActive();
+  const state=active??snapshot(),part_keys=spec.stages.slice(0,index+1).flatMap(stage=>stage.part_keys),shown=new Set(part_keys);
+  // Native-hidden alternatives stay hidden. No part, transform or material is
+  // replaced. Validate every root before applying the cumulative mask.
+  for(const [key,node]of [...bindings,...companionBindings.map((row,i)=>['companion '+i,row.node])]){
+   const descriptor=Object.getOwnPropertyDescriptor(node,'visible');
+   if(!descriptor||!('value' in descriptor)||!descriptor.writable||typeof node.visible!=='boolean')fail('Native visibility changed: '+key);
+  }
+  for(const [key,node]of bindings){node.visible=state.visibilities.get(key)&&shown.has(key);state.graph.get(node).visible=node.visible}
+  for(const {node,part_keys}of companionBindings){node.visible=state.companionVisibilities.get(node)&&part_keys.some(key=>shown.has(key));state.graph.get(node).visible=node.visible}
+  state.index=index;state.part_keys=part_keys;active=state;
+  return result();
+ }
+ function leave(){
+  checkActive();
+  if(!active)return null;
+  // Do not overwrite concurrent changes. A failed graph/visibility check above
+  // leaves the external state untouched; the caller must resolve that conflict.
+  for(const [key,node]of [...bindings,...companionBindings.map((row,i)=>['companion '+i,row.node])]){
+   const descriptor=Object.getOwnPropertyDescriptor(node,'visible');
+   if(!descriptor||!('value' in descriptor)||!descriptor.writable)fail('Native visibility changed: '+key);
+  }
+  for(const [key,node]of bindings)node.visible=active.visibilities.get(key);
+  for(const [node,visible]of active.companionVisibilities)node.visible=visible;
+  active=null;return null;
+ }
+ return {
+  setStage,leave,
+  current(){checkActive();return result()},
+  // Stage keys include assigned alternatives; "focus added" only uses this
+  // stage's keys which were visible when assembly mode was entered.
+  getBoundsKeys(){checkActive();return active?visibleKeys(spec.stages[active.index].part_keys):[]},
+  // The app can focus the displayed replacement rather than the hidden native
+  // support-bearing leaf. Counts/keys remain native identities, not mesh count.
+  getBoundsNodes(){
+   checkActive();if(!active)return [];
+   const keys=spec.stages[active.index].part_keys,roots=new Set();
+   for(const key of keys){const native=nodes.get(key),companion=companionForKey.get(key);if(visibleNode(native))roots.add(native);if(visibleNode(companion))roots.add(companion)}
+   return [...roots];
+  },
+ };
+}

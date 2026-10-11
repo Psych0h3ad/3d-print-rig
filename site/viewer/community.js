@@ -5,21 +5,21 @@ ensureWorkspaceEntry(import.meta.url);
 import * as THREE from './vendor-r180/three.module.js';
 import {OrbitControls} from './vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
-import {loadCommunity} from './community-loader.mjs?v=a381029aa4dacf12e596';
+import {loadCommunity} from './community-loader.mjs?v=0c8eb5a905c68397e3a7';
 import {evaCommunityIndex} from './eva-installations.mjs?v=4dfad49e1f98d4b5b9f2';
-import {applyEvaOptionsProfile,createEvaOptionsController} from './eva-options.mjs?v=775ad42efa309bb86064';
+import {applyEvaOptionsProfile,createEvaOptionsController} from './eva-options.mjs?v=c86aeda415394ec73ae8';
 import {withHeadAdditions} from './head-additions.mjs?v=23581035dd1b38fe48e2';
 import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
 import {communitySchema,validateCommunityState,communityMotionEnabled,communityConfiguration} from './community-state.mjs?v=460b3fa78cc503ddb6e6';
 import {installationFor} from './ender-mods.mjs?v=5f07c69c7c42ba3f3936';
 import {setupMachineNavigation} from './machines.js?v=7d90ace65109ee54e1d2';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
-import {translate} from './i18n.mjs?v=ba019b1adf20832c91c8';
+import {translate} from './i18n.mjs?v=db391db0c6d1562c776b';
 import {rememberDisplayControl} from './display-preferences.mjs?v=5fd25f289942c501706d';
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=a8e49b4993efdc7bac52';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {setupRenderExport} from './render-export.js?v=1383105a90d0fa4a63bd';
-import {setupPublicInfo} from './public-info.js?v=04b710e03e02ba2aea63';
+import {setupPublicInfo} from './public-info.js?v=c7e65c6912faa5cf0bb8';
 const descriptions={
  '247zero_beta2_120':'247zero BETA2 · 120 mm / ULW carbon gantry / Crazy Volcano / M4 Bowden',
  doomcube2_350_reference:"DoomCube 2 · 350 mm / double enclosure / original CAD",

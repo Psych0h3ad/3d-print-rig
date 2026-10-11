@@ -1,4 +1,4 @@
-import {loadExternalComponent} from './component-assets.mjs?v=9f8ef058f1297ab60e53';
+import {loadExternalComponent} from './component-assets.mjs?v=77e18567f1b28e53777a';
 
 const sha=/^[a-f0-9]{64}$/;
 const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);

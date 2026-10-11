@@ -1,28 +1,28 @@
 import {cloneNativeLedTree} from './led-emission-surface.mjs?v=af40a3200e128a08c940';
 import {validateEvaMetadata,bindEvaSourceMachines,bindEvaMeshIdentities} from './eva-heads.mjs?v=b53ce6925a6fec3b5b10';
-import {loadEvaFrontSurfaces,applyEvaFrontSurfaces} from './eva-front-surfaces.mjs?v=a1a0fbab92e8e08c3f6b';
+import {loadEvaFrontSurfaces,applyEvaFrontSurfaces} from './eva-front-surfaces.mjs?v=629c42810cc0b477c98e';
 import {evaCommunityIndex} from './eva-installations.mjs?v=4dfad49e1f98d4b5b9f2';
-import {validateEvaOptionsRegistry} from './eva-options.mjs?v=775ad42efa309bb86064';
+import {validateEvaOptionsRegistry} from './eva-options.mjs?v=c86aeda415394ec73ae8';
 import {madmaxJointAssetSpec,madmaxJointApplies,captureMadmaxJoint,setMadmaxJointPose} from './madmax-native-joint.mjs?v=d39e974d7b782135b52a';
 import {madmaxPtfeAssetSpec} from './madmax-ptfe.mjs?v=c0df5309f697af621506';
 import {withRapidoXUhfCover,setRapidoXUhfSurface} from './rapido-x-uhf-cover.mjs?v=8b458475dac84cfcd8c7';
 import {v24NativeDriveMetadata} from './v24-drive-metadata.mjs?v=dbdf9f37cb0849ffc262';
-import {augmentTrinityAlphaHosts,TRINITY_ALPHA_HOST_SOURCE,alphaResetPose,alphaRangeNotice,alphaResetLabel} from './trinity-alpha-host-extensions.mjs?v=fbd42f07fa1a4786905b';
-import {alphaReference,alphaLimits} from './trinity-alpha-installation.mjs?v=5d10b3dcaf3e116b826c';
-import {augmentTrinitySiboorR2,TRINITY_SIBOOR_SOURCE} from './trinity-alpha-siboor-r2.mjs?v=28e62494b5e8b740f76d';
-import {augmentTrinityAlpha,TRINITY_ALPHA_SOURCE} from './trinity-alpha-installation.mjs?v=5d10b3dcaf3e116b826c';
+import {augmentTrinityAlphaHosts,TRINITY_ALPHA_HOST_SOURCE,alphaResetPose,alphaRangeNotice,alphaResetLabel} from './trinity-alpha-host-extensions.mjs?v=a0f163ecd7dafe19a85c';
+import {alphaReference,alphaLimits} from './trinity-alpha-installation.mjs?v=f36f52f58f3ce8df1138';
+import {augmentTrinitySiboorR2,TRINITY_SIBOOR_SOURCE} from './trinity-alpha-siboor-r2.mjs?v=133d3f856c21f35d4a23';
+import {augmentTrinityAlpha,TRINITY_ALPHA_SOURCE} from './trinity-alpha-installation.mjs?v=f36f52f58f3ce8df1138';
 import {workspaceTask} from './workspace-lifecycle.mjs?v=a8e49b4993efdc7bac52';
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=ad5001b7aa53ae7136de';
-import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=16a46b1359d5755c50c1';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=c803e88b660d697a7be4';
+import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=8a380e1fea3f1ae30351';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
+import {loadModel} from './model-loader.js?v=ea010e8ec91e63b1dc78';
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import {partKey} from './head-assembly.js';
-import {v24HeadCatalog} from './machine-head-model.mjs?v=e98071542d35d57f15ba';
-import {setupConfigurations} from './configurations.js?v=6a7850440f61a6c48cf0';
+import {v24HeadCatalog} from './machine-head-model.mjs?v=d30f681037e6d434321b';
+import {setupConfigurations} from './configurations.js?v=9537c1b1e5012cbf5b8f';
 
-import {loadSiboorRegistration} from './siboor-catalog.mjs?v=6549106f568b1a33d001';
+import {loadSiboorRegistration} from './siboor-catalog.mjs?v=703ef6a80a9551ecbb38';
 import {stockProbeFit} from './probe-mounts.js?v=2a0160362fcaa1e366a2';
 
 import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs';
@@ -32,7 +32,7 @@ import {contentSHA256,acceptedMountValidation} from './mount-validation.mjs';
 import {acceptedHeadValidation}from './head-validation.mjs';
 import {withHeadAdditions} from './head-additions.mjs?v=23581035dd1b38fe48e2';
 import {nativeDeckEvidenceSource,nativeWitnessInputs} from './native-evidence-bridge.mjs?v=a5f3aad096d9be8f211b';
-import {loadExternalComponent} from './component-assets.mjs?v=9f8ef058f1297ab60e53';
+import {loadExternalComponent} from './component-assets.mjs?v=77e18567f1b28e53777a';
 
 const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);
 export async function loadMachineHeadCatalog(machine){return workspaceTask(async()=>{

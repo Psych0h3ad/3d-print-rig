@@ -1,5 +1,5 @@
-import {checkedExtraAsset,extraAssetBase} from './extra-asset-integrity.mjs?v=737f5dc17ca78791c0d8';
-import {beginModelLoading} from './model-progress.mjs?v=6b41a2b9f7626039b7e6';
+import {checkedExtraAsset,extraAssetBase} from './extra-asset-integrity.mjs?v=019170d7f31b55da1667';
+import {beginModelLoading} from './model-progress.mjs?v=beaef781095b6f56b290';
 import {parseSharedComponentGlb,sharedGlbDocument} from './shared-component-glb.mjs?v=a21b698822731b57dea6';
 import {TRINITY_RENDER_DELIVERY as delivery} from './trinity-render-delivery.mjs?v=a21b698822731b57dea6';
 

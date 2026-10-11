@@ -8,14 +8,14 @@ import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {RoomEnvironment} from './vendor/RoomEnvironment.js';
 import {workspaceFrame,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=a8e49b4993efdc7bac52';
 import {setupMachineNavigation} from './machines.js?v=7d90ace65109ee54e1d2';
-import {loadExtraMachine} from './extra-machine-loader.mjs?v=dd97105abc4157397f19';
+import {loadExtraMachine} from './extra-machine-loader.mjs?v=59a3413417b286024f59';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
 import {setupRenderExport} from './render-export.js?v=1383105a90d0fa4a63bd';
-import {setupPublicInfo} from './public-info.js?v=04b710e03e02ba2aea63';
+import {setupPublicInfo} from './public-info.js?v=c7e65c6912faa5cf0bb8';
 import {applyNativeMotionProfile,loadNativeMotionProfile} from './native-motion-profile.mjs?v=91532eb992519143f437';
 import {createCommunityAdapter} from './community-adapter.mjs?v=603e9739f4c0fc671488';
-import {setupNativeMotionControls} from './native-motion-controls.mjs?v=a088a79a7353642d746f';
+import {setupNativeMotionControls} from './native-motion-controls.mjs?v=d385006b68948b309613';
 export async function mount(scope){
  const $=id=>document.getElementById(id),stage=$('stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));
  renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);

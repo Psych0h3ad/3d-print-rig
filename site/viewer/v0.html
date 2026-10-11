@@ -31,7 +31,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="./viewer.css?v=workspace-belts-1">
 <script type="importmap">{"imports":{"three":"./vendor/three.module.js"},"scopes":{"./vendor-r180/":{"three":"./vendor-r180/three.module.js"}}}</script>
-<link rel="stylesheet" href="./workspace.css?v=e1bf699880aaacb9bd04">
+<link rel="stylesheet" href="./workspace.css?v=9ba32f3b014f79854629">
 <link rel="icon" type="image/svg+xml" href="../assets/brand/rig-mark.svg?v=cbac7f098709f3f6488f">
 <link rel="stylesheet" href="../assets/brand/brand.css?v=82a18995f709e6ae8fba">
 </head>
@@ -59,6 +59,25 @@
 </select>
 <h1 id="machineTitle">VORON V0 / 120</h1>
 <p class="foot" id="headSummary">Mini Stealthburner / integrated BMG / Revo Voron<br>Fixed gantry · single Z bed</p>
+<details id="assemblyControls">
+<summary>Assembly steps</summary>
+<p class="foot">View the native CAD assembly at each stage of the official manual. Preloading is described early; 3D fasteners appear with their receiving parts.</p>
+<button id="assemblyStart" disabled>Open steps with stock configuration</button>
+<div id="assemblySteps" hidden>
+<label for="assemblyStage">Stage</label>
+<select id="assemblyStage"></select>
+<p id="assemblyPartCount" class="foot"></p>
+<div class="assembly-step-buttons">
+<button id="assemblyPrevious">Previous stage</button>
+<button id="assemblyNext">Next stage</button>
+<button id="assemblyFocus">Focus added parts</button>
+</div>
+<a id="assemblyManual" target="_blank" rel="noopener">Open official manual</a>
+<button id="assemblyFinish">Return to previous configuration</button>
+<p id="assemblyStepNote" class="foot"></p>
+</div>
+<p id="assemblyStatus" class="foot" aria-live="polite"></p>
+</details>
 <details open id="configurationControls">
 <summary>Install V0 mods</summary>
 <div id="v0ModFields">
@@ -76,6 +95,7 @@
 <p id="configurationStatus" class="foot" aria-live="polite">
 </p>
 </details>
+
 <details>
 <summary>V0 mod references</summary>
 <label for="modCategory">Mod category</label>
@@ -185,7 +205,7 @@
 </div>
 </section>
 </main>
-<script type="module" data-controller="./v0-app.js?v=ae5ee0fb329a15152816" src="./workspace-router.mjs?v=7aa6496e051fe0b8a0d1">
+<script type="module" data-controller="./v0-app.js?v=09d0f24c40e85726fe6b" src="./workspace-router.mjs?v=89981b2f88cb2907b0a2">
 </script>
 </body>
 </html>

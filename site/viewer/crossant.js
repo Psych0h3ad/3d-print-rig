@@ -7,11 +7,11 @@ import {workspaceFrame,WorkspaceResizeObserver,workspaceTask,workspaceListen} fr
 import * as THREE from './vendor-r180/three.module.js';
 import {OrbitControls} from './vendor-r180/OrbitControls.js?v=workspace-belts-1';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
-import {loadCrossant,disposeCrossant} from './crossant-loader.mjs?v=c1042da5a3a7e7f1f01d';
+import {loadCrossant,disposeCrossant} from './crossant-loader.mjs?v=3152363d03bf35188dc5';
 import {crossantSchema,crossantGroups,validateCrossantState} from './crossant-state.mjs?v=534dc62f2c6545f556f7';
 import {setupMachineNavigation} from './machines.js?v=7d90ace65109ee54e1d2';
 import {setupRenderExport} from './render-export.js?v=1383105a90d0fa4a63bd';
-import {setupPublicInfo} from './public-info.js?v=04b710e03e02ba2aea63';
+import {setupPublicInfo} from './public-info.js?v=c7e65c6912faa5cf0bb8';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 export async function mount(scope){
 const $=id=>document.getElementById(id),stage=$('stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));

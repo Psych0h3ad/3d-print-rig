@@ -9,13 +9,13 @@ import {workspaceFrame,WorkspaceResizeObserver,workspaceTask,workspaceListen} fr
 import * as THREE from './vendor-r180/three.module.js';
 import {OrbitControls} from './vendor-r180/OrbitControls.js?v=workspace-belts-1';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
-import {loadRatRigMachine,disposeRatRig} from './ratrig-loader.mjs?v=9782f451eec4a1a9eec0';
+import {loadRatRigMachine,disposeRatRig} from './ratrig-loader.mjs?v=d2d4bc48e4482f7bf4dd';
 import {createRatRigGcodePreview} from './ratrig_gcode_preview.mjs';
 import {ratRigSchema,validateRatRigConfiguration,ratRigAxisRanges} from './ratrig-ui-state.mjs?v=workspace-belts-1';
 import {setupMachineNavigation} from './machines.js?v=7d90ace65109ee54e1d2';
 import {setupRenderExport} from './render-export.js?v=1383105a90d0fa4a63bd';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
-import {setupPublicInfo} from './public-info.js?v=04b710e03e02ba2aea63';
+import {setupPublicInfo} from './public-info.js?v=c7e65c6912faa5cf0bb8';
 export async function mount(scope){
 const $=id=>document.getElementById(id),stage=$('stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=.9;stage.append(renderer.domElement);

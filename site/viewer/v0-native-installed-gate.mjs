@@ -3,7 +3,7 @@ const expected={"option_id":"dragon-burner-v8-dragon-native-sherpa-a3-r9c","modu
 const canonical=value=>Array.isArray(value)?value.map(canonical):value&&typeof value==='object'?Object.fromEntries(Object.keys(value).sort().map(k=>[k,canonical(value[k])])):value;
 const same=(a,b)=>JSON.stringify(canonical(a))===JSON.stringify(canonical(b));
 export const v0NativeInstalledId=expected.option_id;
-export function v0NativeModelHash(id){return id===expected.machine_id?expected.machine_files['model.glb.gz'].decoded_sha256:undefined;}
+export function v0NativeModelHash(id){return id===expected.machine_id?expected.machine_files['model.glb.gz'].decoded_sha256:id==='voron_v02_120'?'da642150957fa38289499bd1c1586737f4f970968c3b32b3f7b81d76bef05ea9':undefined;}
 export function v0NativeDependencyHash(module){return expected.source_dependencies[module]?.model.decoded_sha256;}
 export async function v0NativeByteHash(bytes){return [...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(v=>v.toString(16).padStart(2,'0')).join('');}
 export function v0NativeDisplayLimits(mods,stockLimits){return structuredClone(mods?.toolhead===expected.option_id?expected.installation.display_limits_mm:stockLimits);}

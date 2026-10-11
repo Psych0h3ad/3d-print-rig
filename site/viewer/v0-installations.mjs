@@ -24,6 +24,8 @@ export function validateV0Mods(registry,state){
  return {...state};
 }
 export async function createV0Installations({scene,adapter,profile,registry,loadModule}){
+ const excluded=registry.native_alternatives?.excluded_keys||[];
+ if(!Array.isArray(excluded)||new Set(excluded).size!==excluded.length||excluded.some(key=>!adapter.nodes.has(key)))throw Error('V0 source alternative inventory mismatch');
  const roots=new Map(),cached=new Map(),preparing=new Map(),stockOrigins=new Map([...adapter.nodes].map(([k,n])=>[k,n.position.clone()]));
  const materialOrigins=new Map();let disposed=false,enclosure=true,state=Object.fromEntries(v0Slots.map(([k])=>[k,'stock'])),palette={};
  const adxlKeys=[...adapter.records].filter(([,p])=>p.source?.assembly_path?.includes('MiniSB ADXL Mount - Generic:1')).map(([k])=>k);
@@ -51,7 +53,7 @@ export async function createV0Installations({scene,adapter,profile,registry,load
  function prepare(option){if(!preparing.has(option.id))preparing.set(option.id,build(option).catch(e=>{preparing.delete(option.id);throw e}));return preparing.get(option.id)}
  function release(r){r.wrapper.removeFromParent();r.model.traverse(n=>{if(n.isMesh)for(const m of Array.isArray(n.material)?n.material:[n.material]){materialOrigins.delete(m);m.dispose()}})}
  function visibility(){
-  const hidden=new Set(state.accelerometer==='none'?adxlKeys:[]);
+  const hidden=new Set([...excluded,...(state.accelerometer==='none'?adxlKeys:[])]);
   for(const option of registry.options)if(state[option.slot]===option.id)for(const key of option.replace_keys)hidden.add(key);
   for(const[k,n]of adapter.nodes){if(hidden.has(k))n.visible=false;else if(adapter.records.get(k).motion!=='reference_flexible')n.visible=adapter.records.get(k).group!=='V0_Enclosure'||enclosure;}
   for(const[id,rows]of roots)for(const r of rows)r.wrapper.visible=state[r.option.slot]===id&&(!r.option.enclosure||enclosure);

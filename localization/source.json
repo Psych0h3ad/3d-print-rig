@@ -11900,6 +11900,1166 @@
       "kind": "message",
       "ja": "Dragon Burner：機体全体のクリアランスとヘッドのPTFE・配線経路は未確認です。形状の確認にはXYZスライダーを使ってください。",
       "en": "Dragon Burner: full printer clearance and head PTFE/wire routing remain unverified. Use the XYZ sliders for geometry review."
+    },
+    "ui.memory.device_warning": {
+      "kind": "template",
+      "ja": "ブラウザー報告の端末RAM概算: {0} GiB。空き容量ではありません。大きなモデルでは読み込みに失敗する場合があります。",
+      "en": "Browser-reported device RAM: about {0} GiB. This is not free memory. Large models may fail to load."
+    },
+    "ui.v0assembly.title": {
+      "kind": "message",
+      "ja": "組み立て手順",
+      "en": "Assembly steps"
+    },
+    "ui.v0assembly.intro": {
+      "kind": "message",
+      "ja": "公式マニュアルの工程ごとに、元CADの組立状態を表示します。先入れの説明は早い工程に残し、3Dの金物は取り付け先の部品と一緒に表示します。",
+      "en": "View the native CAD assembly at each stage of the official manual. Preloading is described early; 3D fasteners appear with their receiving parts."
+    },
+    "ui.v0assembly.start": {
+      "kind": "message",
+      "ja": "標準構成で手順を開く",
+      "en": "Open steps with stock configuration"
+    },
+    "ui.v0assembly.stage": {
+      "kind": "message",
+      "ja": "工程",
+      "en": "Stage"
+    },
+    "ui.v0assembly.previous": {
+      "kind": "message",
+      "ja": "前の工程",
+      "en": "Previous stage"
+    },
+    "ui.v0assembly.next": {
+      "kind": "message",
+      "ja": "次の工程",
+      "en": "Next stage"
+    },
+    "ui.v0assembly.focus": {
+      "kind": "message",
+      "ja": "追加部品に寄る",
+      "en": "Focus added parts"
+    },
+    "ui.v0assembly.manual": {
+      "kind": "message",
+      "ja": "公式マニュアルを開く",
+      "en": "Open official manual"
+    },
+    "ui.v0assembly.finish": {
+      "kind": "message",
+      "ja": "元の構成に戻る",
+      "en": "Return to previous configuration"
+    },
+    "ui.v0assembly.count": {
+      "kind": "template",
+      "ja": "工程 {0} / {1} · 追加 {2} 部品 · 表示 {3} 部品",
+      "en": "Stage {0} / {1} · {2} added parts · {3} visible parts"
+    },
+    "ui.v0assembly.pages": {
+      "kind": "template",
+      "ja": "公式マニュアル {0}–{1} ページ",
+      "en": "Official manual, pages {0}–{1}"
+    },
+    "ui.v0assembly.active": {
+      "kind": "message",
+      "ja": "元CADの位置で組立状態を表示中",
+      "en": "Showing assembly stages in native CAD positions"
+    },
+    "ui.v0assembly.restored": {
+      "kind": "message",
+      "ja": "元の構成を復元しました",
+      "en": "Previous configuration restored"
+    },
+    "ui.v0assembly.load_error": {
+      "kind": "message",
+      "ja": "手順の読込エラー:",
+      "en": "Assembly steps could not load:"
+    },
+    "ui.v0assembly.data_error": {
+      "kind": "message",
+      "ja": "手順データを読み込めません",
+      "en": "Could not load assembly stage data"
+    },
+    "ui.v0assembly.stock_error": {
+      "kind": "message",
+      "ja": "標準構成を読み込めません",
+      "en": "Could not load stock configuration"
+    },
+    "ui.v0assembly.restore_error": {
+      "kind": "message",
+      "ja": "元の構成を復元できません",
+      "en": "Could not restore previous configuration"
+    },
+    "ui.v0assembly.close_config": {
+      "kind": "message",
+      "ja": "組み立て手順を閉じてから構成を変更してください",
+      "en": "Close assembly steps before changing configuration"
+    },
+    "ui.v0assembly.close_motion": {
+      "kind": "message",
+      "ja": "組み立て手順を閉じてから動作を確認してください",
+      "en": "Close assembly steps before previewing motion"
+    },
+    "ui.v0assembly.text_d5760661421533": {
+      "kind": "message",
+      "ja": "準備と金物の確認",
+      "en": "Preparation and hardware reference"
+    },
+    "ui.v0assembly.text_2f406f1e667afb": {
+      "kind": "message",
+      "ja": "5本のレール用ナット保持具を準備",
+      "en": "Prepare all five rail nut carriers"
+    },
+    "ui.v0assembly.text_ce9730c6bdf4d9": {
+      "kind": "message",
+      "ja": "Yレールを準備して取り付け",
+      "en": "Prepare and mount the Y rails"
+    },
+    "ui.v0assembly.text_bb4680df56c391": {
+      "kind": "message",
+      "ja": "Zレールを準備して取り付け",
+      "en": "Prepare and mount the Z rails"
+    },
+    "ui.v0assembly.text_4d50e7d89d2876": {
+      "kind": "message",
+      "ja": "Z横材とモーター用溝ナットを準備",
+      "en": "Prepare Z crossmembers and motor slot nuts"
+    },
+    "ui.v0assembly.text_fd161fe5c8996e": {
+      "kind": "message",
+      "ja": "内側支柱に電子部品パネル用ナットを先入れ",
+      "en": "Preload inner-upright electronics panel nuts"
+    },
+    "ui.v0assembly.text_e1e186140671a0": {
+      "kind": "message",
+      "ja": "再利用する後支柱でZフレームの直角を確認",
+      "en": "Square the Z frame with reusable rear uprights"
+    },
+    "ui.v0assembly.text_a5e42bbf0409cd": {
+      "kind": "message",
+      "ja": "Zレールストッパーを取り付け",
+      "en": "Fit the Z rail stops"
+    },
+    "ui.v0assembly.text_576d141d37a96c": {
+      "kind": "message",
+      "ja": "ベッドのナットブロックとチェーン端部を準備",
+      "en": "Prepare the bed nut block and chain connector"
+    },
+    "ui.v0assembly.text_d8910d6d30d91b": {
+      "kind": "message",
+      "ja": "標準の押出材ベッド支持枠を組み立て",
+      "en": "Build the stock extrusion bed carrier"
+    },
+    "ui.v0assembly.text_2a68b4ab8fb5e7": {
+      "kind": "message",
+      "ja": "後側ベッドマウントを準備して確認",
+      "en": "Prepare and check the rear bed mounts"
+    },
+    "ui.v0assembly.text_87fa03490757e4": {
+      "kind": "message",
+      "ja": "支持枠を両Zキャリッジに固定",
+      "en": "Attach the carrier to both Z carriages"
+    },
+    "ui.v0assembly.text_265a3fa5eb0cff": {
+      "kind": "message",
+      "ja": "ベッド支持枠の平行度と全行程を確認",
+      "en": "Tram and check full bed-carrier travel"
+    },
+    "ui.v0assembly.text_3b7cdeb934ce90": {
+      "kind": "message",
+      "ja": "Zエンドストップを準備して取り付け",
+      "en": "Prepare and fit the Z endstop"
+    },
+    "ui.v0assembly.text_a4dcb07cf676a8": {
+      "kind": "message",
+      "ja": "Zスイッチの作動を確認",
+      "en": "Check Z switch actuation"
+    },
+    "ui.v0assembly.text_81645272264c18": {
+      "kind": "message",
+      "ja": "フレームの溝を閉じる前にナットを先入れ",
+      "en": "Preload frame slots before closing them"
+    },
+    "ui.v0assembly.text_d0d687d0346078": {
+      "kind": "message",
+      "ja": "下側の側材と後支柱を固定",
+      "en": "Attach lower side members and rear uprights"
+    },
+    "ui.v0assembly.text_28c84ad994f8a6": {
+      "kind": "message",
+      "ja": "チェーン下端とデッキパネルを取り付け",
+      "en": "Fit lower chain connector and deck panel"
+    },
+    "ui.v0assembly.text_4c70ffb3b1e9f5": {
+      "kind": "message",
+      "ja": "フレームの先入れナットをすべて確認",
+      "en": "Check all frame nut preloads"
+    },
+    "ui.v0assembly.text_9352e4a82e35da": {
+      "kind": "message",
+      "ja": "前支柱を取り付けてフレームを閉じる",
+      "en": "Close the frame with the front uprights"
+    },
+    "ui.v0assembly.text_a9de8da9100f11": {
+      "kind": "message",
+      "ja": "A駆動部の外装とインサートを準備",
+      "en": "Prepare A drive shells and inserts"
+    },
+    "ui.v0assembly.text_60b7f84324c540": {
+      "kind": "message",
+      "ja": "A駆動部の軸受積層を組み立て",
+      "en": "Assemble A drive bearing stack"
+    },
+    "ui.v0assembly.text_331baa04537f45": {
+      "kind": "message",
+      "ja": "Aモーターとプーリーを組み立て",
+      "en": "Assemble A motor and pulley"
+    },
+    "ui.v0assembly.text_3ed05cdb4bd926": {
+      "kind": "message",
+      "ja": "A駆動部を閉じて確認",
+      "en": "Close and check the A drive"
+    },
+    "ui.v0assembly.text_d323e1601bc6da": {
+      "kind": "message",
+      "ja": "B駆動部の外装とインサートを準備",
+      "en": "Prepare B drive shells and inserts"
+    },
+    "ui.v0assembly.text_02560c3912f4d6": {
+      "kind": "message",
+      "ja": "B駆動部の軸受積層を組み立て",
+      "en": "Assemble B drive bearing stack"
+    },
+    "ui.v0assembly.text_a9befdb1599861": {
+      "kind": "message",
+      "ja": "Bモーターとプーリーを組み立て",
+      "en": "Assemble B motor and pulley"
+    },
+    "ui.v0assembly.text_1b3346e14f4c52": {
+      "kind": "message",
+      "ja": "B駆動部を閉じて確認",
+      "en": "Close and check the B drive"
+    },
+    "ui.v0assembly.text_657eeece8dd755": {
+      "kind": "message",
+      "ja": "左にB、右にAの駆動部を取り付け",
+      "en": "Install B left and A right drives"
+    },
+    "ui.v0assembly.text_8db8f502b38b3f": {
+      "kind": "message",
+      "ja": "Bアイドラーを組み立てて取り付け",
+      "en": "Assemble and install the B idler"
+    },
+    "ui.v0assembly.text_dc289a749c8f50": {
+      "kind": "message",
+      "ja": "Aアイドラーを組み立てて取り付け",
+      "en": "Assemble and install the A idler"
+    },
+    "ui.v0assembly.text_f02928e3c1020c": {
+      "kind": "message",
+      "ja": "アイドラーの左右と積層方向を確認",
+      "en": "Check idler side and stack orientation"
+    },
+    "ui.v0assembly.text_3255b4c990d1cf": {
+      "kind": "message",
+      "ja": "バックラッシュ防止リードナットを取り付け",
+      "en": "Install the anti-backlash leadnut"
+    },
+    "ui.v0assembly.text_05e03b02b8c722": {
+      "kind": "message",
+      "ja": "脚を付ける前にパネル用ナットを先入れ",
+      "en": "Preload panel nuts before installing feet"
+    },
+    "ui.v0assembly.text_f68cdb4116fcf1": {
+      "kind": "message",
+      "ja": "前脚とゴムパッドを準備",
+      "en": "Prepare front feet and pads"
+    },
+    "ui.v0assembly.text_33045903c54e9c": {
+      "kind": "message",
+      "ja": "代替の通常型右後脚を準備",
+      "en": "Prepare the plain rear-right foot alternative"
+    },
+    "ui.v0assembly.text_a56981117470ca": {
+      "kind": "message",
+      "ja": "電源入口側の脚を準備して脚を取り付け",
+      "en": "Prepare inlet foot and attach the feet"
+    },
+    "ui.v0assembly.text_409d739da53240": {
+      "kind": "message",
+      "ja": "脚のアクセント部品を取り付け",
+      "en": "Attach the foot accents"
+    },
+    "ui.v0assembly.text_279651b4574e00": {
+      "kind": "message",
+      "ja": "リードスクリュー一体型Zモーターを準備して取り付け",
+      "en": "Prepare and fit the integrated Z motor"
+    },
+    "ui.v0assembly.text_748da3aabc8b46": {
+      "kind": "message",
+      "ja": "Zモーターとリードナットを整列して固定",
+      "en": "Align and secure the Z motor and leadnut"
+    },
+    "ui.v0assembly.text_d555dbe77e588a": {
+      "kind": "message",
+      "ja": "左XYジョイントを準備",
+      "en": "Prepare the left XY joint"
+    },
+    "ui.v0assembly.text_71e223648fbd84": {
+      "kind": "message",
+      "ja": "右XYジョイントを準備",
+      "en": "Prepare the right XY joint"
+    },
+    "ui.v0assembly.text_dc961d0f16b3f4": {
+      "kind": "message",
+      "ja": "Xレールを取り付けてジョイント用ナットを先入れ",
+      "en": "Mount the X rail and preload joint nuts"
+    },
+    "ui.v0assembly.text_b05cd115b4c64f": {
+      "kind": "message",
+      "ja": "XYジョイントをX押出材に仮止め",
+      "en": "Attach XY joints loosely to the X extrusion"
+    },
+    "ui.v0assembly.text_0d85d938b21fc9": {
+      "kind": "message",
+      "ja": "ガントリーをYキャリッジに固定",
+      "en": "Attach the gantry to the Y carriages"
+    },
+    "ui.v0assembly.text_a1a0bd496eda0e": {
+      "kind": "message",
+      "ja": "ガントリーの直角と動きを確認",
+      "en": "Square and check the gantry"
+    },
+    "ui.v0assembly.text_c28e17ab1a313f": {
+      "kind": "message",
+      "ja": "上側の側材にナットを先入れして取り付け",
+      "en": "Preload and fit upper side members"
+    },
+    "ui.v0assembly.text_cb0e479a2aa19a": {
+      "kind": "message",
+      "ja": "Xキャリッジと保持される金物を準備",
+      "en": "Prepare the X carriage and retained captive hardware"
+    },
+    "ui.v0assembly.text_462f541d6e72e5": {
+      "kind": "message",
+      "ja": "MakerBeamベルトクランプを仮止め",
+      "en": "Fit the MakerBeam belt clamps loosely"
+    },
+    "ui.v0assembly.text_670525a623c18e": {
+      "kind": "message",
+      "ja": "下側のAベルトを通す",
+      "en": "Route the lower A belt"
+    },
+    "ui.v0assembly.text_f335d1f5ef8df5": {
+      "kind": "message",
+      "ja": "上側のBベルトを通す",
+      "en": "Route the upper B belt"
+    },
+    "ui.v0assembly.text_7aef388aee183c": {
+      "kind": "message",
+      "ja": "キャリッジをXレールブロックに固定",
+      "en": "Fasten the carriage to the X rail block"
+    },
+    "ui.v0assembly.text_ecca914f48f550": {
+      "kind": "message",
+      "ja": "ベルト張力をそろえて余端を切る",
+      "en": "Equalize belt tension and trim tails"
+    },
+    "ui.v0assembly.text_292fd753792b30": {
+      "kind": "message",
+      "ja": "ベッド調整ノブを準備",
+      "en": "Prepare the bed adjustment knobs"
+    },
+    "ui.v0assembly.text_1aae5525734882": {
+      "kind": "message",
+      "ja": "ビルドプレートの向きを確認",
+      "en": "Orient the build plate"
+    },
+    "ui.v0assembly.text_9e6349e56097fd": {
+      "kind": "message",
+      "ja": "ベッドヒーターを貼る",
+      "en": "Apply the bed heater"
+    },
+    "ui.v0assembly.text_ecdcb2568ed38f": {
+      "kind": "message",
+      "ja": "温度ヒューズの保護を確認",
+      "en": "Review the thermal fuse protection"
+    },
+    "ui.v0assembly.text_89a2fc70238767": {
+      "kind": "message",
+      "ja": "ベッド取付ボルトを付けて回り止め",
+      "en": "Install and lock bed mounting bolts"
+    },
+    "ui.v0assembly.text_9aef638ff1d66c": {
+      "kind": "message",
+      "ja": "磁性シートを貼る",
+      "en": "Apply the magnetic sheet"
+    },
+    "ui.v0assembly.text_0e139b73ad5d98": {
+      "kind": "message",
+      "ja": "ばね支持のベッドとフレックスプレートを取り付け",
+      "en": "Install the sprung bed and flex plate"
+    },
+    "ui.v0assembly.text_9aaccb64bce665": {
+      "kind": "message",
+      "ja": "ベッド配線を通して固定",
+      "en": "Route and secure bed wires"
+    },
+    "ui.v0assembly.text_9e5ab6432201ca": {
+      "kind": "message",
+      "ja": "ベッドのドラッグチェーンを接続",
+      "en": "Reconnect the bed drag chain"
+    },
+    "ui.v0assembly.text_4a9070e462de7a": {
+      "kind": "message",
+      "ja": "Mini Stealthburnerの外装とインサートを準備",
+      "en": "Prepare Mini Stealthburner shells and inserts"
+    },
+    "ui.v0assembly.text_373f011660f977": {
+      "kind": "message",
+      "ja": "ガイドラーとBMGアイドラーを準備",
+      "en": "Prepare the guidler and BMG idler"
+    },
+    "ui.v0assembly.text_1da10ba4503b25": {
+      "kind": "message",
+      "ja": "押出機の歯車列を組み立て",
+      "en": "Assemble the extruder gear train"
+    },
+    "ui.v0assembly.text_c111d527c73a22": {
+      "kind": "message",
+      "ja": "押出機の張力機構を付けて確認",
+      "en": "Fit and check extruder tension"
+    },
+    "ui.v0assembly.text_b406760adc541e": {
+      "kind": "message",
+      "ja": "標準ヘッドの3個のファンをすべて取り付け",
+      "en": "Fit all three stock head fans"
+    },
+    "ui.v0assembly.text_1434936707d41f": {
+      "kind": "message",
+      "ja": "原本CAD補足：ノズルLED",
+      "en": "Source CAD supplement: nozzle LEDs"
+    },
+    "ui.v0assembly.text_fc461ec9e88515": {
+      "kind": "message",
+      "ja": "モーターを付けて歯車バックラッシュを調整",
+      "en": "Fit motor and adjust gear backlash"
+    },
+    "ui.v0assembly.text_a0de498feb06d6": {
+      "kind": "message",
+      "ja": "原本どおりのRevo Voronホットエンドを組み立て",
+      "en": "Assemble the exact Revo Voron hotend"
+    },
+    "ui.v0assembly.text_cd57e91951abb3": {
+      "kind": "message",
+      "ja": "ホットエンドとカウリングを固定",
+      "en": "Fasten the hotend and cowling"
+    },
+    "ui.v0assembly.text_d990e91ee5ed53": {
+      "kind": "message",
+      "ja": "ツールヘッドをキャリッジに取り付け",
+      "en": "Mount the toolhead on the carriage"
+    },
+    "ui.v0assembly.text_545bfcf11e637b": {
+      "kind": "message",
+      "ja": "標準の配線保持具と支柱を取り付け",
+      "en": "Attach stock strain relief and standoffs"
+    },
+    "ui.v0assembly.text_98b8dad1e177f1": {
+      "kind": "message",
+      "ja": "原本CAD補足：汎用ADXL一式",
+      "en": "Source CAD supplement: generic ADXL assembly"
+    },
+    "ui.v0assembly.text_e29b336d62f2ef": {
+      "kind": "message",
+      "ja": "中間パネルを取り付け",
+      "en": "Install the mid panel"
+    },
+    "ui.v0assembly.text_cb8d8b7f919410": {
+      "kind": "message",
+      "ja": "電子部品用の2個のマウントを準備",
+      "en": "Prepare the two electronics mounts"
+    },
+    "ui.v0assembly.text_403f8c138a8eee": {
+      "kind": "message",
+      "ja": "SKR PicoとRaspberry Piを取り付け",
+      "en": "Attach SKR Pico and Raspberry Pi"
+    },
+    "ui.v0assembly.text_4281fde5a80fc6": {
+      "kind": "message",
+      "ja": "電圧設定を確認して電源を配置",
+      "en": "Check voltage and place the power supply"
+    },
+    "ui.v0assembly.text_efcdd9790c4416": {
+      "kind": "message",
+      "ja": "制御基板冷却ファンを取り付け",
+      "en": "Mount the controller cooling fan"
+    },
+    "ui.v0assembly.text_6f302ecc302901": {
+      "kind": "message",
+      "ja": "電源入口を配線して取り付け",
+      "en": "Wire and install the mains inlet"
+    },
+    "ui.v0assembly.text_fb1c3485a6549f": {
+      "kind": "message",
+      "ja": "DC電源、モーター、センサー、ファンを接続",
+      "en": "Connect DC, motors, sensors and fans"
+    },
+    "ui.v0assembly.text_fe6e1591119869": {
+      "kind": "message",
+      "ja": "電源端子ガードを取り付け",
+      "en": "Fit the PSU terminal guard"
+    },
+    "ui.v0assembly.text_b8a2a6816888c0": {
+      "kind": "message",
+      "ja": "右スカートを取り付け",
+      "en": "Fit the right skirt"
+    },
+    "ui.v0assembly.text_187dc53b8a8afa": {
+      "kind": "message",
+      "ja": "左スカートを取り付け",
+      "en": "Fit the left skirt"
+    },
+    "ui.v0assembly.text_8c45f03023d24f": {
+      "kind": "message",
+      "ja": "後スカートを取り付け",
+      "en": "Fit the rear skirt"
+    },
+    "ui.v0assembly.text_fcff344e5a0b83": {
+      "kind": "message",
+      "ja": "前スカートを取り付け",
+      "en": "Fit the front skirt"
+    },
+    "ui.v0assembly.text_2b611f658e36c1": {
+      "kind": "message",
+      "ja": "原本の代替部品：ディスプレイ空き部の蓋",
+      "en": "Source alternative: display blank insert"
+    },
+    "ui.v0assembly.text_66226db80fb515": {
+      "kind": "message",
+      "ja": "V0ディスプレイを組み立てて取り付け",
+      "en": "Assemble and mount the V0 display"
+    },
+    "ui.v0assembly.text_91954bcbc106ce": {
+      "kind": "message",
+      "ja": "底面パネルを取り付け",
+      "en": "Fit the bottom panel"
+    },
+    "ui.v0assembly.text_7faf8a75696548": {
+      "kind": "message",
+      "ja": "モーターパネルと配線保持部の通路を取り付け",
+      "en": "Fit motor panel and strain-relief passage"
+    },
+    "ui.v0assembly.text_2ede85edbbc3e6": {
+      "kind": "message",
+      "ja": "スプールホルダーを取り付け",
+      "en": "Fit the spool holder"
+    },
+    "ui.v0assembly.text_ad5fbd23b47a14": {
+      "kind": "message",
+      "ja": "リバースBowden経路を確認",
+      "en": "Check reverse Bowden route"
+    },
+    "ui.v0assembly.text_abd7abe35f14cc": {
+      "kind": "message",
+      "ja": "後パネル、クリップ、トップハット下ヒンジを取り付け",
+      "en": "Fit rear panels, clips and lower tophat hinges"
+    },
+    "ui.v0assembly.text_04e2ae45944cce": {
+      "kind": "message",
+      "ja": "右の透明側面パネルを取り付け",
+      "en": "Fit the right clear side panel"
+    },
+    "ui.v0assembly.text_d52c2072bdcda4": {
+      "kind": "message",
+      "ja": "左の透明側面パネルを取り付け",
+      "en": "Fit the left clear side panel"
+    },
+    "ui.v0assembly.text_64aab146f15af4": {
+      "kind": "message",
+      "ja": "抜き差し式ヒンジと前パネルを取り付け",
+      "en": "Fit the slip hinges and front panel"
+    },
+    "ui.v0assembly.text_d55fb5e551af34": {
+      "kind": "message",
+      "ja": "ドアラッチ本体と磁石を取り付け",
+      "en": "Fit door latch bodies and magnets"
+    },
+    "ui.v0assembly.text_6553da932d75b7": {
+      "kind": "message",
+      "ja": "ドアハンドルと対応する磁石を取り付け",
+      "en": "Fit door handle and matching magnets"
+    },
+    "ui.v0assembly.text_1e2d56eac551e1": {
+      "kind": "message",
+      "ja": "トップハット枠を準備して直角を確認",
+      "en": "Prepare and square the tophat frame"
+    },
+    "ui.v0assembly.text_856edf09b64fe3": {
+      "kind": "message",
+      "ja": "トップハットの全溝の先入れナットを確認",
+      "en": "Check every tophat slot preload"
+    },
+    "ui.v0assembly.text_fac0b16dda405c": {
+      "kind": "message",
+      "ja": "上面パネルとクリップを取り付け",
+      "en": "Fit the top panel and clips"
+    },
+    "ui.v0assembly.text_e32a1295366399": {
+      "kind": "message",
+      "ja": "トップハットの前面と側面パネルを取り付け",
+      "en": "Fit front and side tophat panels"
+    },
+    "ui.v0assembly.text_4da82f7dbb9bb8": {
+      "kind": "message",
+      "ja": "後パネルと上ヒンジを取り付け",
+      "en": "Fit the rear panel and upper hinges"
+    },
+    "ui.v0assembly.text_54bc4c07dbd565": {
+      "kind": "message",
+      "ja": "ヒンジ軸とカムロック固定具を取り付け",
+      "en": "Attach hinge pivots and cam-lock fixings"
+    },
+    "ui.v0assembly.text_bfab3020e0e402": {
+      "kind": "message",
+      "ja": "トップハットの開閉とロックを確認",
+      "en": "Check tophat opening and locking"
+    },
+    "ui.v0assembly.text_78c147459e809a": {
+      "kind": "message",
+      "ja": "機械組立の参照手順完了",
+      "en": "Mechanical assembly reference complete"
+    },
+    "ui.v0assembly.text_292189bc413123": {
+      "kind": "message",
+      "ja": "代替のr1フィラメント切れ検知脚を準備",
+      "en": "Prepare the r1 runout-sensor foot alternative"
+    },
+    "ui.v0assembly.text_082b1c44860a46": {
+      "kind": "message",
+      "ja": "全マニュアルを読み、ねじ・シム・インサートを区別し、指定の印刷部品と押出材の作業穴を準備してください。表示は最終CAD位置で、組立経路ではありません。",
+      "en": "Read the full manual; distinguish screws, shims and inserts, and prepare the specified printed parts and extrusion access holes. Static stages show final CAD positions, not assembly paths."
+    },
+    "ui.v0assembly.text_5b8a50cfec7dbf": {
+      "kind": "message",
+      "ja": "5本の保持具にM2ナットを入れます。原本モデルは全穴を使用しますが、マニュアルでは省略も可能です。Xレール用もここで準備し、後で再利用します。",
+      "en": "Populate the five reusable rail strips with M2 nuts. The export has fully populated carriers; the manual allows reduced hardware. X-rail strip is prepared here and reused later."
+    },
+    "ui.v0assembly.text_72b10de3226101": {
+      "kind": "message",
+      "ja": "各キャリッジを元のレール上に保持し、先に潤滑します。レールを中央に置き、端を押出材端面から38 mmに合わせ、中央から外へ締めます。仮の脱落防止も残します。",
+      "en": "Keep each carriage on its matching rail; lubricate first. Centre the rails, position the end 38 mm from the extrusion edge, tighten from the centre outward, and retain temporary rail-end protection."
+    },
+    "ui.v0assembly.text_f4bd3fb9c32cd1": {
+      "kind": "message",
+      "ja": "キャリッジを脱落させないでください。レールを中央に置き、約33 mmの端部オフセットは後のベッド調整で合わせます。",
+      "en": "Keep carriages captive. Centre the rails; the approximate 33 mm end offset is adjusted during bed alignment."
+    },
+    "ui.v0assembly.text_7a6eb8b09cb187": {
+      "kind": "message",
+      "ja": "27ページの追加Zモーターナット2個を先入れします。53ページにも別の取付用先入れがあります。間隔調整まで端部ジョイントは緩め、追加ナットを接合用金物と混同しないでください。",
+      "en": "Preload the two extra Z-motor nuts called out on page 27; later page 53 has another motor mounting preload. Leave the blind joints loose for spacing. Extra nuts are additional to joint hardware."
+    },
+    "ui.v0assembly.text_e73886a06f760f": {
+      "kind": "message",
+      "ja": "端を閉じる前に、図の内側支柱の溝へM3ナットを各3個入れます。後の中間パネル用部品ですが、表示位置は最終CAD位置のままです。",
+      "en": "Preload three M3 nuts in each illustrated inner-upright slot before the ends close. The selected leaves belong to the later mid-panel subgroup and retain their final CAD positions."
+    },
+    "ui.v0assembly.text_9425a1912b13ed": {
+      "kind": "message",
+      "ja": "平面上でZ支柱を平行にします。マニュアルで仮使用する外側後支柱は最終CAD位置だけを表示し、主フレームで再利用します。",
+      "en": "Use a flat surface and keep the Z uprights parallel. The outer rear uprights used temporarily in the manual are shown only at their final source poses and reused in the main frame."
+    },
+    "ui.v0assembly.text_e8fbe4a7bda16b": {
+      "kind": "message",
+      "ja": "Zキャリッジを脱落させずに、保持用レールストッパーを取り付けます。",
+      "en": "Fit the retained rail stops without letting the Z carriages escape."
+    },
+    "ui.v0assembly.text_c0296253816b66": {
+      "kind": "message",
+      "ja": "指定インサートを入れ、作業しやすいようチェーン端を外します。対応するのは標準押出材ベッド枠です。Kirigami分岐は含まれません。",
+      "en": "Install the specified inserts and detach the chain end for easier assembly. Stock extrusion bed carrier is mapped; Kirigami is a separate unrepresented manual branch."
+    },
+    "ui.v0assembly.text_7e1c054eec5360": {
+      "kind": "message",
+      "ja": "40ページの図どおり、各溝に追加M3ナットを6・1・2・1個入れます。溝へのねじにはナットが必要です。準備表示は最終配置の金物グループを使います。",
+      "en": "Preload the carrier slots exactly as the page-40 diagrams show: 6, 1, 2 and 1 extra M3 nuts. All screws into slots require nuts; preparation uses the final hardware subgroup."
+    },
+    "ui.v0assembly.text_556ca5893f301f": {
+      "kind": "message",
+      "ja": "後マウントを仮付けして両取付面の同一平面を確認し、外してレールブロックへ固定します。この表示は仮姿勢を再現しません。",
+      "en": "Temporarily fit the rear mounts to check their two mounting faces are coplanar, then remove them for attachment to rail blocks. This static display does not replay those temporary poses."
+    },
+    "ui.v0assembly.text_a26c0884983c79": {
+      "kind": "message",
+      "ja": "作業穴から8本のM2x8を固定し、ねじロック剤は金属部に少量だけ使います。先入れした中央ナットとボールポイント工具で支持枠を戻します。",
+      "en": "Use the access holes and small metal-only threadlocker application for all eight M2x8 rail-block screws. Refit the carrier with the preloaded centre nuts and ball-end driver."
+    },
+    "ui.v0assembly.text_073e37c80a6f26": {
+      "kind": "message",
+      "ja": "下端・上端で番号順に締め、左右間隔と滑らかな移動を確認します。引っ掛かれば緩めて再調整します。静的表示はこの移動を検証しません。",
+      "en": "Follow the numbered tightening order at lower and upper positions. Check equal side spacing and free travel; loosen and repeat if it binds. The static map does not validate this motion."
+    },
+    "ui.v0assembly.text_86a128aa2db539": {
+      "kind": "message",
+      "ja": "スイッチのレバーを外し、ボタン方向と指定NC端子を合わせ、マウントをレール下端にそろえます。原本リビジョンの金物を維持してください。",
+      "en": "Remove the switch lever, match button orientation, wire the indicated normally closed terminals, and align the mount flush with the rail bottom. Preserve the exact source revision hardware."
+    },
+    "ui.v0assembly.text_b7e9ff764e5b5f": {
+      "kind": "message",
+      "ja": "支持枠を手で下げ、スイッチのクリックを確認します。音・機械作動・電気状態は静的形状では検証されません。",
+      "en": "Manually lower the carrier and confirm the switch clicks. Audible/mechanical actuation and electrical state are not validated by static geometry."
+    },
+    "ui.v0assembly.text_78be4037280a78": {
+      "kind": "message",
+      "ja": "電源入口・Zモーター・駆動部・アイドラー・スカート・表示器の溝ナットを早期グループとして保持します。端を閉じる前に52-65ページを確認。表示は最終CAD位置です。",
+      "en": "Retain the inlet, Z motor, drives, idlers, skirts and display slot nuts as explicit early hardware subgroups. Consult the slot diagrams on pages 52–65 before closing each extrusion end; their display is at final CAD locations."
+    },
+    "ui.v0assembly.text_84be1ac56e0d61": {
+      "kind": "message",
+      "ja": "準備済みの後支柱と端部ジョイント金物を再利用し、最終締付け前に後側間隔を37 mmへ合わせます。",
+      "en": "Reuse the rear uprights and blind-joint hardware prepared earlier. Set the 37 mm rear spacing before final tightening."
+    },
+    "ui.v0assembly.text_6da8b160080ba7": {
+      "kind": "message",
+      "ja": "デッキを差し込む前にチェーン固定端を取り付け、デッキをエンドストップマウントの下へ通します。表示は端部の完成姿勢だけです。",
+      "en": "Attach the fixed chain end before sliding in the deck; the deck must pass below the endstop mount. Only the completed connector pose is displayed."
+    },
+    "ui.v0assembly.text_27818782f8cc0c": {
+      "kind": "message",
+      "ja": "前面を閉じる前に図の全溝を確認します。後のスカート・モーターパネル・クリップ・オプション分も含まれます。ねじだけの図からナットの欠落を推測しないでください。Nevermore追加ナットは対象外です。",
+      "en": "Audit every illustrated slot before closing the front. The counts include later skirts, motor panel, clips and optional accessories; never infer missing nuts from a screw-only drawing. Nevermore extra nuts are outside this stock model."
+    },
+    "ui.v0assembly.text_dbab5782a7c334": {
+      "kind": "message",
+      "ja": "下前材は最初は緩めます。前支柱で溝の端を閉じる前に62-65ページを確認してください。",
+      "en": "The lower front member is initially loose. Verify pages 62–65 before installing the front uprights and closing slot access."
+    },
+    "ui.v0assembly.text_d1d75e74a4ccee": {
+      "kind": "message",
+      "ja": "刻印で左右を区別します。外側インサートは外装表面より下まで入れます。",
+      "en": "Use the embossed side identities. Outer inserts bottom below the shell surface."
+    },
+    "ui.v0assembly.text_f4d1c35d139878": {
+      "kind": "message",
+      "ja": "0.5 mmシムで指定の18 mm軸受積層を作ります。仮保持ナットは後で外します。外装は最終CAD姿勢のまま表示します。",
+      "en": "Use 0.5 mm shims and the specified 18 mm bearing stack; temporary retaining nuts are removed later. Source shells remain in final CAD poses."
+    },
+    "ui.v0assembly.text_653d04cd2cd285": {
+      "kind": "message",
+      "ja": "プーリーの止めねじにねじロック剤を使い、図の8.5 mm基準位置と原本の回転向きを維持します。",
+      "en": "Use threadlocker on pulley grub screws; set the illustrated 8.5 mm pulley datum and preserve source clocking."
+    },
+    "ui.v0assembly.text_05d6b02994151c": {
+      "kind": "message",
+      "ja": "モーター配線は内向きです。プーリーの歯と軸受外周の高さを確認し、必要なら調整します。張力ノブは対応する原本駆動グループに保持します。",
+      "en": "Motor wires face inward. Check pulley teeth align with bearing races; adjust the pulley if needed. The tension knob is retained with the exact source drive subgroup."
+    },
+    "ui.v0assembly.text_ef264ac175fd43": {
+      "kind": "message",
+      "ja": "プーリーの止めねじにねじロック剤を使い、図の17.5 mm基準位置と原本の回転向きを維持します。",
+      "en": "Use threadlocker on pulley grub screws; set the illustrated 17.5 mm pulley datum and preserve source clocking."
+    },
+    "ui.v0assembly.text_c107943b587526": {
+      "kind": "message",
+      "ja": "前側の先入れナットと後側フレーム端のねじ穴を使い、仮保持ナットを外します。準備済みの両駆動部を参照し、部品を重複追加しません。",
+      "en": "Reuse the preloaded forward nuts and threaded rear frame ends; remove temporary retaining nuts. This stage references the two prepared drive subgroups rather than duplicating their leaves."
+    },
+    "ui.v0assembly.text_4bb4521ff0d99e": {
+      "kind": "message",
+      "ja": "軸受とシムを積み、前端のねじ穴と後側の先入れナットで固定します。Aは右の高い積層、Bは左の低い積層です。",
+      "en": "Assemble the bearing/shim stack, then use front threaded ends and rear preloaded nuts. A is the taller right stack; B is the shorter left stack."
+    },
+    "ui.v0assembly.text_705324cfc16847": {
+      "kind": "message",
+      "ja": "マニュアルの側面・上面図を照合し、A/Bと軸受の高さを入れ替えないでください。ここではベルト移動や立体クリアランスを検証しません。",
+      "en": "Compare the manual side and top views; do not interchange A and B or their bearing levels. No belt motion or solid clearance is established here."
+    },
+    "ui.v0assembly.text_85b67c9935abd5": {
+      "kind": "message",
+      "ja": "原本のナットホルダー寸法を使い、バックラッシュ防止ナットの半体を別々に回さないでください。貫通穴型の分岐を確認し、r1では位置決め平面も必要です。",
+      "en": "Use the source nut-holder size and prevent the anti-backlash halves rotating independently. Check the manual branch for a through-hole nut; r1 additionally requires a locating flat."
+    },
+    "ui.v0assembly.text_2da31673ccc903": {
+      "kind": "message",
+      "ja": "図どおり外側支柱の溝に先入れします。後スプールホルダーは中央クリップの代わりです。この原本グループは側面24個・後面5個のナットを含み、他の先入れ分は別グループに保持します。",
+      "en": "Preload the outside upright slots as illustrated. The rear spool holder replaces a middle clip. This source subgroup has 24 side-panel and five rear-panel nuts; other early nuts remain with their own occurrences."
+    },
+    "ui.v0assembly.text_5136b94eef8ea9": {
+      "kind": "message",
+      "ja": "脚で押出材の端を閉じる前に、インサートとゴムパッドを取り付けます。",
+      "en": "Install inserts and rubber pads before the feet close the extrusion ends."
+    },
+    "ui.v0assembly.text_04e44fc55c3be2": {
+      "kind": "message",
+      "ja": "通常型右後脚はリバースBowdenを案内します。r1では切れ検知脚の代替であり、両方を同時に付けません。 除外された選択肢は一覧上だけの扱いで、原本の表示マスクに従い非表示を維持します。",
+      "en": "Plain rear-right foot guides the reverse Bowden tube. In r1 this source group is an alternative to the runout-sensor foot, not a second foot to install simultaneously. Inventory only when excluded by the native variant mask; excluded parts stay hidden."
+    },
+    "ui.v0assembly.text_6ce0c208069823": {
+      "kind": "message",
+      "ja": "角の長ボルトと電源入口用の先入れナットを使います。入口本体は配線時に付けます。機体を裏返す動きは表示しません。",
+      "en": "Use the long corner bolts and preloaded inlet mounting nuts. The inlet itself is fitted during wiring; physical flipping is not animated."
+    },
+    "ui.v0assembly.text_408ea04c7d42d6": {
+      "kind": "message",
+      "ja": "指定のセルフタップねじでアクセントを固定し、樹脂ねじ穴を傷めないでください。先に準備した通常脚・検知脚は各原本の金物を保持します。",
+      "en": "Use the specified self-tapping accent screws without stripping plastic. Earlier plain/runout variant groups retain their own exact fixing identities."
+    },
+    "ui.v0assembly.text_6af91a10bd2818": {
+      "kind": "message",
+      "ja": "指定どおりリードスクリューを潤滑し、整列するまでフレームねじを緩めます。r1のPOM・コーティングねじ分岐は標準モーター原本に含まれません。",
+      "en": "Lubricate the source leadscrew as specified and keep frame fasteners loose until alignment. POM/coated-leadscrew alternatives in r1 are not the imported stock motor."
+    },
+    "ui.v0assembly.text_185ad708f226cf": {
+      "kind": "message",
+      "ja": "モーターをナットブロックに合わせ、締付け前に手でベッドを往復させます。r1は下端での調整説明が追加され、V0.2は106ページに従います。静的姿勢は自由な移動の証明ではありません。",
+      "en": "Align the motor with the nut block and check manual bed cycling before tightening. r1 has expanded bottom-position alignment instructions; V0.2 uses its own page 106. Static poses do not prove unimpeded travel."
+    },
+    "ui.v0assembly.text_6af98413fc9f2f": {
+      "kind": "message",
+      "ja": "対応する左右部品、インサート深さ、軸受・シム高さを使います。裏返して組み立て、19 mmの基準寸法を確認します。",
+      "en": "Use the matching left/right parts, insert depths and bearing/shim levels. Assemble upside down; the guide dimension is 19 mm."
+    },
+    "ui.v0assembly.text_a2dc63bccc7e62": {
+      "kind": "message",
+      "ja": "準備済みの5本目の保持具を使い、Xレールを中央・端から25 mmに合わせてナットを先入れします。キャリッジを保持してください。V0.2原本にはXY溝ナットがなく、113ページの4個は欠落事項です。",
+      "en": "Reuse the prepared fifth nut carrier. Centre the X rail at the illustrated 25 mm end offset and preload the joint slots. Keep the carriage captive. V0.2 source does not export separate XY-joint slot nuts; the four nuts shown on page 113 remain a source gap."
+    },
+    "ui.v0assembly.text_6d44623bc3ba3d": {
+      "kind": "message",
+      "ja": "XYジョイントがYキャリッジに合うまで6本の押出材固定ねじを緩め、左右反転した軸受高さを確認します。センサーレスX/Y設定は対象外です。",
+      "en": "Keep all six extrusion fixing screws loose until the XY joints meet the Y carriages; check the mirrored bearing levels. Sensorless X/Y setup is outside this static map."
+    },
+    "ui.v0assembly.text_bb2e29d32a987f": {
+      "kind": "message",
+      "ja": "後方位置でジョイントを外へ広げ、レールキャリッジ用の皿ねじ8本をすべて固定します。",
+      "en": "Spread joints outward at the rear position, then attach all eight countersunk rail-carriage screws."
+    },
+    "ui.v0assembly.text_b188904c6e8577": {
+      "kind": "message",
+      "ja": "両駆動部に後方で当ててから6本を締め、前後の自由な移動を確認し、必要なら直角を再調整します。手作業確認であり、自動クリアランス合格ではありません。",
+      "en": "Move rearward against both drives before tightening the six joint screws, then check free front-to-back travel and derack if necessary. This is a manual check, not an automated clearance pass."
+    },
+    "ui.v0assembly.text_68d10b112955f2": {
+      "kind": "message",
+      "ja": "上側の各側材の外溝へナットを3個先入れします。ねじに届くようアイドラーのカムロックを仮に外し、戻します。CAD名とマニュアルの押出材記号は異なります。",
+      "en": "Preload three outer-slot nuts on each upper side member; temporarily remove the idler cam locks for fastener access, then replace them. CAD names differ from the manual extrusion letters."
+    },
+    "ui.v0assembly.text_87f55a96f7dc19": {
+      "kind": "message",
+      "ja": "内蔵印刷サポートを使用前に除去します。r1では独立部品、V0.2ではキャリッジ複合部品の一部です。原本一覧には残しますが、取付済み金物として表示しません。",
+      "en": "Remove the built-in print support before use. The r1 source exports it as a separate leaf; the V0.2 carriage is a composite source leaf. Support is retained in inventory only and must not be treated as installed hardware."
+    },
+    "ui.v0assembly.text_5119fc4575d0ce": {
+      "kind": "message",
+      "ja": "皿ねじFHCSの長さ基準に注意し、ベルトを通すまでクランプを緩めます。ベルトは同じ長さで始め、経路を通す前に張力調整を緩めます。",
+      "en": "Match FHCS length convention and leave clamps loose for threading. Start with equal belt lengths; slacken drive tensioners before routing."
+    },
+    "ui.v0assembly.text_5ee7fd8444533b": {
+      "kind": "message",
+      "ja": "AはBの下です。マニュアルの全経路に従い、接触を軸受外周とプーリー歯に限定し、印刷部品に触れさせません。表示は最終経路のメッシュだけです。",
+      "en": "A is below B. Follow the complete manual route; belt contact belongs on bearing races and pulley teeth, not printed bodies. Only the final routed belt mesh appears here."
+    },
+    "ui.v0assembly.text_2ed90d6b95bf41": {
+      "kind": "message",
+      "ja": "BはAの上です。余端の歯数を同じにして固定し、まだ最終カットはしません。樹脂に接触させないでください。通す動作や張力は再現しません。",
+      "en": "B is above A. Secure equal tooth-tail counts without final trimming yet; avoid plastic contact. The map does not simulate threading or tension."
+    },
+    "ui.v0assembly.text_039f201ea4d3f6": {
+      "kind": "message",
+      "ja": "原本のキャリッジねじ4本を使い、ねじロック剤は金属部へ少量だけ塗ります。多すぎるとABSを傷めます。",
+      "en": "Use the four source carriage screws with a small metal-only threadlocker application; excess threadlocker can damage ABS."
+    },
+    "ui.v0assembly.text_54f680bc693fa7": {
+      "kind": "message",
+      "ja": "ガントリーを後方に置き、図の150 mm区間で110 Hzを目安にします。両ベルトをそろえてから余端を切ります。余端クリアランスはホットエンドで異なります。",
+      "en": "Use the manual 110 Hz reference at the indicated 150 mm spans with the gantry rearward. Equalize both belts before final trimming; tail clearance depends on the hotend."
+    },
+    "ui.v0assembly.text_d2d2d1d1e7a736": {
+      "kind": "message",
+      "ja": "ノブにインサート3個を入れます。チェーンスペーサーの2個は早期のベッド支持枠準備へ割当済みです。",
+      "en": "Install the three knob inserts. The two drag-chain spacer inserts were assigned in early bed-carrier preparation."
+    },
+    "ui.v0assembly.text_e2236b4c726066": {
+      "kind": "message",
+      "ja": "単独の取付穴を前、座ぐりを上へ向けます。",
+      "en": "The single mounting hole faces front and counterbores face upward."
+    },
+    "ui.v0assembly.text_f1aba16a042925": {
+      "kind": "message",
+      "ja": "プレートを清掃し、下面中央にヒーターを貼ります。表示は最終姿勢を維持し、取付済み部品の中を裏返して通りません。",
+      "en": "Clean the plate and centre the heater on its underside. The displayed plate remains at its final pose rather than flipping through installed parts."
+    },
+    "ui.v0assembly.text_43a4ac3125e832": {
+      "kind": "message",
+      "ja": "V0.2ではヒューズをM3x8でビルドプレートに固定します。原本出力には独立したヒューズ・配線部品を特定できず、保護機構がモデル化済みとは言えません。",
+      "en": "V0.2 describes a fuse attached to the build plate with an M3x8 fixing. No separate fuse leaf/wiring is identifiable in this export; do not claim the protection is modeled."
+    },
+    "ui.v0assembly.text_c74143bd6912cb": {
+      "kind": "message",
+      "ja": "ナットとワッシャーで3本のボルトを回り止めします。別のベッド枠ではボルト長とZクリアランスを別途確認してください。",
+      "en": "Lock the three bolts against rotation with their nuts and washers. Alternative bed frames require their own bolt-length and Z-clearance review."
+    },
+    "ui.v0assembly.text_1628dcc8e6cb8c": {
+      "kind": "message",
+      "ja": "プレートを清掃して粘着シートを押し付け、取付ねじへの工具アクセスを確保します。最終CAD位置だけを表示し、差し込むアニメーションはありません。",
+      "en": "Clean and press the adhesive sheet onto the plate; keep mounting-screw access available. Final CAD adhesion is shown without an ingress animation."
+    },
+    "ui.v0assembly.text_ac29732417967f": {
+      "kind": "message",
+      "ja": "標準支持枠にばね3個と調整ノブを取り付けます。フレックスプレートは原本の造形面層で、別の図付き取付手順ではありません。",
+      "en": "Fit the three bed springs and adjustment knobs to the stock carrier. The flex plate is a source build-surface layer, not a separately illustrated new assembly instruction."
+    },
+    "ui.v0assembly.text_52712155c81463": {
+      "kind": "message",
+      "ja": "ヒーターとサーミスター線を別々にナットブロックのガイドと結束ループへ通します。完全な配線束はなく、線の分離と屈曲クリアランスは未検証です。",
+      "en": "Route individual heater and thermistor wires through the nut-block guide and tie loops. The export does not supply a complete wiring harness; wire separation and flex clearance remain unverified."
+    },
+    "ui.v0assembly.text_12cec2a2c030af": {
+      "kind": "message",
+      "ja": "両端コネクターを再利用し、原本の11リンクを接続します。ベッド最上部でもチェーンをZ押出材上端より低く保ちます。静的形状では移動領域を保証しません。",
+      "en": "Reuse both end connectors and reconnect the eleven source links. At the highest bed position the chain must stay below the Z extrusion tops so the gantry can pass; static geometry does not certify a swept envelope."
+    },
+    "ui.v0assembly.text_99c67261370dbe": {
+      "kind": "message",
+      "ja": "原本の印刷部品を使い、インサート施工時に周囲の樹脂を保護します。シャトルのインサートには引張荷重が掛かります。図の潰れ止めねじも準備します。",
+      "en": "Use the source printed bodies and protect surrounding plastic while setting inserts; the shuttle insert remains in tension. Prepare the anti-squish screw as shown."
+    },
+    "ui.v0assembly.text_d14803a1c81b34": {
+      "kind": "message",
+      "ja": "ガイドラーの印刷サポートを除去し、針状軸受を潤滑します。大きい歯車部分の向きと軸のすべり嵌めを確認し、短い軸端を3 mm未満にします。",
+      "en": "Remove the guidler print support, lubricate needle bearings, orient the larger gear section correctly, and check the shaft/bearing slip fit. The shaft short end must be below 3 mm."
+    },
+    "ui.v0assembly.text_ad9d9501c9d1f9": {
+      "kind": "message",
+      "ja": "保持ナットだけを固定し、軸受には接着しないでください。ガイドラー軸を自由に保ち、50T歯車を図の隙間で中央に合わせ、歯をフィラメント経路にそろえて止めねじを締めます。",
+      "en": "Retain the captive nut without gluing bearings; keep the guidler pivot free. Centre the 50T gear with the illustrated clearance and align the drive teeth to the filament path before securing its grub screw."
+    },
+    "ui.v0assembly.text_f4b11fb9a61e60": {
+      "kind": "message",
+      "ja": "ラッチをシャトル溝に収め、フィラメントの軽い歯跡と潰れ止めを確認します。ばねの過大張力や引っ掛かりは許容しません。",
+      "en": "Seat the latch in the shuttle groove. Check light filament tooth marks and the anti-squish stop; excessive spring tension or binding is not acceptable."
+    },
+    "ui.v0assembly.text_bbd9f70a7a648f": {
+      "kind": "message",
+      "ja": "両ブロワーはダクトへ、軸流ファンはカウリング内へ送風します。図の配線出口と経路を維持します。",
+      "en": "Both blowers discharge into the ducts; the axial fan pushes into the cowling. Preserve the illustrated wire exits and routes."
+    },
+    "ui.v0assembly.text_8224e267fda658": {
+      "kind": "message",
+      "ja": "固定リビジョンのCADにはAdafruit Sequinが2組あります。参照ページは近接ファンの説明で、LED取付手順ではありません。固定・配線・クリアランスは未解決です。",
+      "en": "The pinned CAD contains two Adafruit Sequin assemblies. These pages provide nearby fan context, not LED assembly instructions. LED fixation, wiring and clearance remain open."
+    },
+    "ui.v0assembly.text_3fbe45320b1b46": {
+      "kind": "message",
+      "ja": "歯車噛合いを調整する間は長穴のモーターねじを緩めます。締めた後も少しバックラッシュを残し、フィラメント送りを再確認します。",
+      "en": "Leave the slotted motor fixing loose while adjusting gear mesh; retain slight backlash after tightening and repeat the filament feeding check."
+    },
+    "ui.v0assembly.text_7db1821626b527": {
+      "kind": "message",
+      "ja": "対応は原本のRevo Voron分岐だけです。専用マウントと4本の原本ねじを使い、PTFEをマウント上へ6 mm突き出す長さに切ります。他のホットエンド名は適合証拠ではありません。",
+      "en": "Only the imported Revo Voron branch is represented. Use its four source screws and specific mount; cut captured PTFE to protrude 6 mm above the mount. Other hotend names are not fit evidence."
+    },
+    "ui.v0assembly.text_abbe6e359e37a4": {
+      "kind": "message",
+      "ja": "原本の長いカウリングねじ2本と準備済みの保持ナットを使います。取付前に原本固有のファン・ダクト・ノズル一式を確認します。",
+      "en": "Use the two long source cowling fixings and prepared captive carriage nuts. Check source-specific fan/duct/nozzle assembly before mounting."
+    },
+    "ui.v0assembly.text_3d6abca36d03e8": {
+      "kind": "message",
+      "ja": "前の固定ねじ2本と後の原本ねじを使います。マニュアルの挿入矢印は評価済み経路ではなく、連続して干渉しないとは主張しません。",
+      "en": "Use both front carriage attachment screws and the native rear attachment fixing. The manual insertion arrow is not an evaluated trajectory; no continuously clear path is asserted."
+    },
+    "ui.v0assembly.text_7553b6d5621cec": {
+      "kind": "message",
+      "ja": "前の準備図に従い、2本のスペーサーへ端部インサート4個を入れ、この段階で一緒に最終位置へ表示します。モーターねじの露出部へ付け、ヒーター線と細い信号・ファン線を分けます。最前方で余長を最小にしてください。完全な配線束はありません。",
+      "en": "Prepare the two spacers with four end inserts as shown in the earlier component-preparation section; introduce them together here at their final positions. Standoffs use exposed motor-screw threads. Separate heater and thin signal/fan wires, with minimal slack at the front; the complete harness is absent."
+    },
+    "ui.v0assembly.text_7c61ee9e44db0d": {
+      "kind": "message",
+      "ja": "固定原本には任意のセンサー・マウント・スペーサー・ねじが含まれます。参照ページは配線の文脈だけで、取付手順や標準配線保持具との共存は未確認です。",
+      "en": "The pinned source includes this optional sensor, mount, spacers and screws; the manual pages are wiring context only. Physical installation instructions and coexistence with stock strain-relief fixings are not established here."
+    },
+    "ui.v0assembly.text_a5c9968d102da5": {
+      "kind": "message",
+      "ja": "支柱の先入れナット6個を再利用し、パネルは最終位置で表示します。ナット位置調整のため機体を仮に裏返す動きは再現しません。",
+      "en": "Reuse the six preloaded upright nuts; show the source panel at its final pose. Temporary printer inversion for nut positioning is not animated."
+    },
+    "ui.v0assembly.text_2cff1367f62b14": {
+      "kind": "message",
+      "ja": "原本のSKR PicoとRaspberry Pi用にインサート・DINクリップ・固定爪を準備します。VHB直付けは代替方法で、追加ブラケット一式ではありません。",
+      "en": "Prepare inserts, DIN clips and cleats for the source SKR Pico and Raspberry Pi. The direct VHB mounting method is an alternative, not another installed bracket set."
+    },
+    "ui.v0assembly.text_50f44ee01d3d4d": {
+      "kind": "message",
+      "ja": "基板内のパッケージ・ピン部品は購入済み一式として同時に追加し、個別に組み立てません。SKR E3配線分岐は原本出力の基板バリアントではありません。",
+      "en": "Board internal package/pin leaves form purchased source subassemblies and are introduced together, not individually assembled by the user. The SKR E3 wiring option is not an exported board variant."
+    },
+    "ui.v0assembly.text_17df7e64d6d3a4": {
+      "kind": "message",
+      "ja": "公式図で電源の電圧セレクターを確認し、フレームから1-2 mm離します。VHBとねじ取付は代替関係で、テープ形状はありません。",
+      "en": "Check the PSU voltage selector against the official diagram; maintain the indicated 1–2 mm frame gap. VHB and screw mounting are alternatives; tape is not modeled."
+    },
+    "ui.v0assembly.text_a18fe221ff43d2": {
+      "kind": "message",
+      "ja": "原本の印刷マウント2半体、インサート、独立3010ファンと対応する固定金物を使います。",
+      "en": "Use the two source printed mount halves, inserts and the separate 3010 fan with its exact fixing hardware."
+    },
+    "ui.v0assembly.text_b529bde9892e11": {
+      "kind": "message",
+      "ja": "電源プラグを抜いたまま、資格のある担当者が地域の規則と公式の電源・保護接地図に従ってください。AC・保護接地・DCグランドは別です。モデルは配線束や端子の安全を検証しません。",
+      "en": "Keep the machine unplugged; qualified personnel must follow local rules and the official mains/protective-earth diagram. AC, protective earth and DC ground are distinct. Harness and terminal safety are not validated by this model."
+    },
+    "ui.v0assembly.text_acca5e287118d2": {
+      "kind": "message",
+      "ja": "原本基板にはSKR Pico図を使い、ファン電圧・極性・モーター識別・DIAGジャンパー・Pi電源を確認します。完全な配線束や試験済み配線はありません。",
+      "en": "Use the SKR Pico diagram for the exported board. Verify fan voltage, polarity, motor identity, DIAG jumpers and Pi power. No full electrical harness or tested wiring is represented."
+    },
+    "ui.v0assembly.text_d2cb92ff2ed9fb": {
+      "kind": "message",
+      "ja": "配線確認後に原本の端子ガードを付けます。ガードの存在だけでは電気安全を保証しません。",
+      "en": "Fit the source finger guard after wiring checks; its presence does not certify electrical safety."
+    },
+    "ui.v0assembly.text_ea0e75ef4eb23e": {
+      "kind": "message",
+      "ja": "保持済みの溝ナットと原本ねじを使います。後側ねじにはボールポイント工具が必要です。",
+      "en": "Use the retained slot nuts and source screws; rear screws need a ball-end driver."
+    },
+    "ui.v0assembly.text_7fc88d62d9ef2f": {
+      "kind": "message",
+      "ja": "中央のディスプレイ空間を空け、ロゴのアクセント部品を付けます。",
+      "en": "Leave the central display space free and fit the logo accents."
+    },
+    "ui.v0assembly.text_ffcdc3cfe33c1a": {
+      "kind": "message",
+      "ja": "この蓋はマニュアルの表示器なし分岐です。取付済みディスプレイの前面と同時表示しません。 除外された選択肢は一覧上だけの扱いで、原本の表示マスクに従い非表示を維持します。",
+      "en": "This blank is the manual no-display alternative. Do not display it simultaneously with the installed display faceplate. Inventory only when excluded by the native variant mask; excluded parts stay hidden."
+    },
+    "ui.v0assembly.text_f796817ccff559": {
+      "kind": "message",
+      "ja": "拡散板・基板・原本マウントまたは脚・ノブ・ねじを取り付け、先入れナット2個を再利用します。壊れやすいUSB端子に注意。V0.2とr1で印刷マウントが異なります。",
+      "en": "Fit the diffuser, PCB, source mount/feet, knob and fasteners; reuse the two retained frame-slot nuts. Protect the fragile USB connector. V0.2 and r1 have different printed display mounts."
+    },
+    "ui.v0assembly.text_b10a34cb1317d0": {
+      "kind": "message",
+      "ja": "作業時にゴム脚を外し、後で戻します。非対称穴が合わなければパネルを回します。途中で部品を横切る移動は表示しません。",
+      "en": "Remove and then refit rubber feet around this operation. Rotate the panel if the asymmetric mounting pattern does not align; no intermediate crossing motion is shown."
+    },
+    "ui.v0assembly.text_125f41bea25e46": {
+      "kind": "message",
+      "ja": "固定前に配線束とBowdenを切欠きへ通し、原本の中央結束具を使います。ツールヘッド基板用の交換パネルは別分岐です。",
+      "en": "Route the bundle and Bowden tube through the cutout before fastening; reuse the source central cable-tie body. Toolhead-PCB replacement panels are a separate branch."
+    },
+    "ui.v0assembly.text_e320267f0c4988": {
+      "kind": "message",
+      "ja": "先入れ位置を再利用し、上側PTFEライナーを面一に切ります。フィラメントスプールは原本出力に含まれません。",
+      "en": "Reuse the preloaded slot location and cut the source upper PTFE liner flush. The filament spool is excluded from the exported machine."
+    },
+    "ui.v0assembly.text_0f9450453df7c1": {
+      "kind": "message",
+      "ja": "V0.2の220ページはスプールホルダーのライナーです。r1の227ページにある検知脚経路はV0.2にはありません。外部リバースBowden全体はモデル化されていません。",
+      "en": "V0.2 shows the spool-holder liner on page 220; its manual has no r1 page-227 sensor-foot routing step. External reverse-Bowden routing is not modeled."
+    },
+    "ui.v0assembly.text_91211505f4c0f5": {
+      "kind": "message",
+      "ja": "原本の3 mm分割パネルとクリップを使います。標準クリップはVHB不要です。テープ厚を足す場合の別クリップは含まれません。",
+      "en": "Use the source 3 mm split panels and clips; stock clips do not require VHB. Additional tape thickness needs different clips, which are not imported."
+    },
+    "ui.v0assembly.text_28d622ea753691": {
+      "kind": "message",
+      "ja": "原本の3 mmパネルと対応クリップを使います。右側には抜き差し式ドアヒンジもあります。標準側面クリップはVHB不要です。",
+      "en": "Use the source 3 mm panel and matching clips; right side includes the slip-door hinge pieces. Stock side clips do not need VHB."
+    },
+    "ui.v0assembly.text_6683179067a4e0": {
+      "kind": "message",
+      "ja": "図のクリップにはVHBと指定の長いヒンジボルトを使います。上へ抜けるヒンジとし、下側樹脂のねじ山を傷めないでください。",
+      "en": "Use VHB at the illustrated clips and the exact long hinge bolts. The slip hinge should allow upward removal; do not strip the lower plastic threads."
+    },
+    "ui.v0assembly.text_b87cc1e5ea11f8": {
+      "kind": "message",
+      "ja": "固定前に全ラッチ磁石がハンドル磁石を引き付けることを確認します。CADの極性表示は電気・磁力試験ではありません。",
+      "en": "Check all latch magnets attract the handle magnets before fixing them. CAD polarity is not an electrical or magnetic test."
+    },
+    "ui.v0assembly.text_8d2bf7392e8b14": {
+      "kind": "message",
+      "ja": "ハンドルを接着する前に磁石の吸引を確認します。ドアの開閉範囲や取り外し経路は未検証です。",
+      "en": "Verify magnetic attraction before bonding the handle. Door sweep and removal paths are not validated."
+    },
+    "ui.v0assembly.text_4a4258df9aa6c7": {
+      "kind": "message",
+      "ja": "V0.2マニュアルはJ/K、CADはA/Hと呼びます。原本寸法で対応させ、上・外溝へ先入れし、平面で直角を合わせ、ロックねじ突出を5 mmにします。",
+      "en": "The V0.2 manual calls the members J/K; the CAD uses A/H. Match source dimensions, preload top/outward slots, square on a flat surface and set lock screw projection to 5 mm."
+    },
+    "ui.v0assembly.text_302400bbf06fde": {
+      "kind": "message",
+      "ja": "パネルで閉じる前に4辺すべての図示ナット各2個を確認します。原本のクリップ・ヒンジ金物を先に保持し、表示は最終位置です。",
+      "en": "Check the two illustrated nuts on each of all four sides before closing the panels. These are exact source clip/hinge hardware subgroups retained early at final positions."
+    },
+    "ui.v0assembly.text_42c8793195d282": {
+      "kind": "message",
+      "ja": "3 mm上面パネルと原本の角クリップを使います。標準クリップはVHB不要です。",
+      "en": "Use the 3 mm top panel and source corner clips; no VHB is required with stock clips."
+    },
+    "ui.v0assembly.text_ce5b04641cc38e": {
+      "kind": "message",
+      "ja": "原本の3 mmパネルとクリップを使い、上・下の固定金物を対応するパネル端に保持します。",
+      "en": "Use the source 3 mm panels and clips. Upper and lower fixing identities stay with their corresponding panel edge."
+    },
+    "ui.v0assembly.text_a2375dd8cf4958": {
+      "kind": "message",
+      "ja": "後パネルは前側の突出ロックねじと反対側です。下ヒンジと合うまで上ヒンジを調整可能な状態にします。",
+      "en": "Rear panel goes opposite the projecting front lock screws. Leave upper hinges adjustable until their lower mates align."
+    },
+    "ui.v0assembly.text_0e2506bd372eeb": {
+      "kind": "message",
+      "ja": "原本M3x12軸を下側の樹脂ヒンジへ慎重にねじ込み、締めすぎないでください。先に準備したヒンジ・クリップ用ナットと下ヒンジを使います。",
+      "en": "Carefully thread the source M3x12 pivots into the plastic lower hinges; do not overtighten. Reuse early hinge/clip nuts and lower hinge bodies."
+    },
+    "ui.v0assembly.text_d56ae393a782c3": {
+      "kind": "message",
+      "ja": "カムロックを開けて自由な開閉を確認してから、時計回り90度でロックします。V0.2はワッシャー・コイン工具を使います。静的表示は開閉の無干渉を保証しません。",
+      "en": "Check free opening with cam locks open before a clockwise 90-degree lock turn. V0.2 uses a washer/coin key; static stages do not certify a clear opening sweep."
+    },
+    "ui.v0assembly.text_472f58df83379b": {
+      "kind": "message",
+      "ja": "電気確認・設定・初回起動は公式文書に従ってください。一覧には代替部品やオプションも含まれ、全体を同時に組める、または無干渉とは言えません。",
+      "en": "Follow the official documentation for electrical checks, configuration and initial startup. Inventory includes source alternatives and optional groups; their union is not a simultaneously buildable or collision-free configuration."
+    },
+    "ui.v0assembly.text_b7fdbf2ae5fdbe": {
+      "kind": "message",
+      "ja": "図どおり外側支柱へ先入れします。後スプールホルダーは中央クリップの代わりです。この原本グループは側面24個・後面5個・ラッチ4個のナットを含み、他の先入れ分は各原本グループに残ります。",
+      "en": "Preload the outside upright slots as illustrated. The rear spool holder replaces a middle clip. This source subgroup has 24 side-panel, five rear-panel and four door-latch nuts; other early nuts remain with their own occurrences."
+    },
+    "ui.v0assembly.text_23cb847b8b9081": {
+      "kind": "message",
+      "ja": "MR85軸受とECAS04コレットを使い、指示どおりゴムスリーブを外します。指定NO端子を配線し、この検知脚か通常右後脚の片方だけを選びます。 除外された選択肢は一覧上だけの扱いで、原本の表示マスクに従い非表示を維持します。",
+      "en": "Use the MR85 bearing and ECAS04 collet; omit the collet rubber sleeve as instructed. Wire the indicated normally open switch terminals. Choose this foot or the plain rear-right foot, never both. Inventory only when excluded by the native variant mask; excluded parts stay hidden."
+    },
+    "ui.v0assembly.text_24610b4999f93f": {
+      "kind": "message",
+      "ja": "準備済みの5本目の保持具を使い、Xレールを中央・端から25 mmに合わせて溝ナットを先入れします。キャリッジを保持し、原本のXYジョイントナット6個すべてをここで保持します。",
+      "en": "Reuse the prepared fifth nut carrier. Centre the X rail at the illustrated 25 mm end offset and preload the joint slots. Keep the carriage captive. All six source XY-joint nuts are retained here."
+    },
+    "ui.v0assembly.text_af195822c5f5fd": {
+      "kind": "message",
+      "ja": "r1では直列ヒューズをRTVでヒーターパッドへ付けます。独立ヒューズや配線を原本出力に特定できず、保護は未検証です。",
+      "en": "r1 describes an inline fuse attached to the heater pad with RTV. No separate fuse leaf or wiring is identifiable in this export; protection remains unverified."
+    },
+    "ui.v0assembly.text_139a5b50f42900": {
+      "kind": "message",
+      "ja": "マニュアルの逆送り経路に従います。r1の検知脚は分割チューブが必要です。外部リバースBowden全長の部品は出力されていません。",
+      "en": "Use the manual reverse-feed route; r1 sensor foot requires separate tube pieces. No full external reverse-Bowden tube leaf is exported."
+    },
+    "ui.v0assembly.text_d2e1296199a92f": {
+      "kind": "message",
+      "ja": "r1マニュアルは水平材B・垂直材J、CADはA/Hと呼びます。200 mm・80 mm原本に対応させ、上・外溝へ先入れし、前ロックねじの突出を5 mmにします。",
+      "en": "The r1 manual calls horizontal/vertical members B/J, while the CAD retains A/H names. Match 200 mm/80 mm source occurrences; preload top and outward slots and set front lock screw projection to 5 mm."
+    },
+    "ui.v0assembly.text_27a2edc43cec8f": {
+      "kind": "message",
+      "ja": "カムロックを開けて自由な開閉を確認し、時計回り90度でロックします。r1は5 mm六角レンチを使います。静的表示は開閉の無干渉を保証しません。",
+      "en": "Check free opening with cam locks open before a clockwise 90-degree lock turn. r1 uses a 5 mm hex key; static stages do not certify a clear opening sweep."
     }
   }
 }

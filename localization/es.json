@@ -9433,6 +9433,934 @@
     "head.options.dragon.playback_gate": {
       "source_revision": "a8717a6093982e6b88fd",
       "text": "Dragon Burner: la holgura de toda la impresora y las rutas de PTFE y cables del cabezal no están verificadas. Use los controles XYZ para revisar la geometría."
+    },
+    "ui.memory.device_warning": {
+      "source_revision": "a856d5ae2fb23351d806",
+      "text": "RAM del dispositivo indicada por el navegador: unos {0} GiB. No es memoria libre. Los modelos grandes pueden no cargarse."
+    },
+    "ui.v0assembly.title": {
+      "source_revision": "0438b83b21feaa30400f",
+      "text": "Pasos de montaje"
+    },
+    "ui.v0assembly.intro": {
+      "source_revision": "eee75037c6a6436de5a4",
+      "text": "Vea el montaje CAD original por etapas del manual oficial. La precarga se explica antes; los herrajes 3D aparecen junto con las piezas que los alojan."
+    },
+    "ui.v0assembly.start": {
+      "source_revision": "93678e05737afc55f3fa",
+      "text": "Abrir pasos con la configuración original"
+    },
+    "ui.v0assembly.stage": {
+      "source_revision": "6d1a57322e2bbeb1d449",
+      "text": "Etapa"
+    },
+    "ui.v0assembly.previous": {
+      "source_revision": "6542ce072c12a4e44c0f",
+      "text": "Etapa anterior"
+    },
+    "ui.v0assembly.next": {
+      "source_revision": "803dc42b7f0630b50fdb",
+      "text": "Etapa siguiente"
+    },
+    "ui.v0assembly.focus": {
+      "source_revision": "01bb76253a5eed4d25fd",
+      "text": "Enfocar las piezas añadidas"
+    },
+    "ui.v0assembly.manual": {
+      "source_revision": "386f543fbb613ab67bd2",
+      "text": "Abrir el manual oficial"
+    },
+    "ui.v0assembly.finish": {
+      "source_revision": "7adae5bb418ee2f1ab95",
+      "text": "Volver a la configuración anterior"
+    },
+    "ui.v0assembly.count": {
+      "source_revision": "e63a2c6056d4c7aa65df",
+      "text": "Etapa {0} / {1} · {2} piezas añadidas · {3} piezas visibles"
+    },
+    "ui.v0assembly.pages": {
+      "source_revision": "4f81e1287a6894cbcb63",
+      "text": "Manual oficial, páginas {0}–{1}"
+    },
+    "ui.v0assembly.active": {
+      "source_revision": "8fda4b6fac3498177a3a",
+      "text": "Mostrando las etapas de montaje en las posiciones CAD originales"
+    },
+    "ui.v0assembly.restored": {
+      "source_revision": "3d49b8b38e6523c84762",
+      "text": "Configuración anterior restaurada"
+    },
+    "ui.v0assembly.load_error": {
+      "source_revision": "be0fa69aca639719c250",
+      "text": "No se pudieron cargar los pasos de montaje:"
+    },
+    "ui.v0assembly.data_error": {
+      "source_revision": "6261b80af5975c09dafc",
+      "text": "No se pudieron cargar los datos de las etapas de montaje"
+    },
+    "ui.v0assembly.stock_error": {
+      "source_revision": "04ff769118b33416836f",
+      "text": "No se pudo cargar la configuración original"
+    },
+    "ui.v0assembly.restore_error": {
+      "source_revision": "e34618b7a38b3c894c99",
+      "text": "No se pudo restaurar la configuración anterior"
+    },
+    "ui.v0assembly.close_config": {
+      "source_revision": "f4c9d0d7e41f79575267",
+      "text": "Cierre los pasos de montaje antes de cambiar la configuración"
+    },
+    "ui.v0assembly.close_motion": {
+      "source_revision": "4e6c4b4d227538473ba2",
+      "text": "Cierre los pasos de montaje antes de previsualizar el movimiento"
+    },
+    "ui.v0assembly.text_d5760661421533": {
+      "source_revision": "fbadf482ae7a4454282e",
+      "text": "Preparación y referencia de herrajes"
+    },
+    "ui.v0assembly.text_2f406f1e667afb": {
+      "source_revision": "7d831b274c5cf971e923",
+      "text": "Preparar los cinco portatuercas de los raíles"
+    },
+    "ui.v0assembly.text_ce9730c6bdf4d9": {
+      "source_revision": "0160fc94a8e0cf0cd411",
+      "text": "Preparar y montar los raíles Y"
+    },
+    "ui.v0assembly.text_bb4680df56c391": {
+      "source_revision": "43356f0cde784599c8b2",
+      "text": "Preparar y montar los raíles Z"
+    },
+    "ui.v0assembly.text_4d50e7d89d2876": {
+      "source_revision": "d8c3c41de27f616a6457",
+      "text": "Preparar travesaños Z y tuercas del motor"
+    },
+    "ui.v0assembly.text_fd161fe5c8996e": {
+      "source_revision": "eebea1895efc75ff1f01",
+      "text": "Insertar antes las tuercas del panel electrónico"
+    },
+    "ui.v0assembly.text_e1e186140671a0": {
+      "source_revision": "8e2cfac1433fa77f9243",
+      "text": "Escuadrar el marco Z con los montantes traseros reutilizables"
+    },
+    "ui.v0assembly.text_a5e42bbf0409cd": {
+      "source_revision": "c3b891d0bd40e0a52426",
+      "text": "Montar los topes de los raíles Z"
+    },
+    "ui.v0assembly.text_576d141d37a96c": {
+      "source_revision": "7c671b0777187cd0ccfe",
+      "text": "Preparar el bloque de tuerca y el conector de cadena"
+    },
+    "ui.v0assembly.text_d8910d6d30d91b": {
+      "source_revision": "c3dc1202f797d662e1d0",
+      "text": "Montar el soporte de cama de perfiles estándar"
+    },
+    "ui.v0assembly.text_2a68b4ab8fb5e7": {
+      "source_revision": "4e87749d4db9cc9b4ebf",
+      "text": "Preparar y comprobar los soportes traseros de cama"
+    },
+    "ui.v0assembly.text_87fa03490757e4": {
+      "source_revision": "15120e337a02da96a387",
+      "text": "Fijar el soporte a ambos carros Z"
+    },
+    "ui.v0assembly.text_265a3fa5eb0cff": {
+      "source_revision": "1fda5a5d54ab0ee5f7a8",
+      "text": "Alinear y comprobar todo el recorrido del soporte de cama"
+    },
+    "ui.v0assembly.text_3b7cdeb934ce90": {
+      "source_revision": "5813bc4d3285aea07773",
+      "text": "Preparar y montar el final de carrera Z"
+    },
+    "ui.v0assembly.text_a4dcb07cf676a8": {
+      "source_revision": "f75ba4a82188f2e6a316",
+      "text": "Comprobar la actuación del interruptor Z"
+    },
+    "ui.v0assembly.text_81645272264c18": {
+      "source_revision": "0a2194ee5991015280e0",
+      "text": "Insertar tuercas antes de cerrar las ranuras del marco"
+    },
+    "ui.v0assembly.text_d0d687d0346078": {
+      "source_revision": "532a65ff8be7247f80c5",
+      "text": "Fijar los laterales inferiores y montantes traseros"
+    },
+    "ui.v0assembly.text_28c84ad994f8a6": {
+      "source_revision": "e596619e861ba014c816",
+      "text": "Montar el conector inferior de cadena y el panel de base"
+    },
+    "ui.v0assembly.text_4c70ffb3b1e9f5": {
+      "source_revision": "41aac21ffd3d983c7157",
+      "text": "Comprobar todas las tuercas preinsertadas del marco"
+    },
+    "ui.v0assembly.text_9352e4a82e35da": {
+      "source_revision": "db7becc23f384ecbb4e3",
+      "text": "Cerrar el marco con los montantes delanteros"
+    },
+    "ui.v0assembly.text_a9de8da9100f11": {
+      "source_revision": "ae327d21a7c5d384c2a3",
+      "text": "Preparar carcasas e insertos del accionamiento A"
+    },
+    "ui.v0assembly.text_60b7f84324c540": {
+      "source_revision": "ee739b72c5bb02984511",
+      "text": "Montar el conjunto de rodamientos del accionamiento A"
+    },
+    "ui.v0assembly.text_331baa04537f45": {
+      "source_revision": "b870ea5060868e1e0d29",
+      "text": "Montar el motor A y su polea"
+    },
+    "ui.v0assembly.text_3ed05cdb4bd926": {
+      "source_revision": "993bfe8f187b0953a8c7",
+      "text": "Cerrar y comprobar el accionamiento A"
+    },
+    "ui.v0assembly.text_d323e1601bc6da": {
+      "source_revision": "aa5aba0f7f40758bd0a9",
+      "text": "Preparar carcasas e insertos del accionamiento B"
+    },
+    "ui.v0assembly.text_02560c3912f4d6": {
+      "source_revision": "130bfe382f1a783ce44f",
+      "text": "Montar el conjunto de rodamientos del accionamiento B"
+    },
+    "ui.v0assembly.text_a9befdb1599861": {
+      "source_revision": "3e9c4fa6ec52c34e54de",
+      "text": "Montar el motor B y su polea"
+    },
+    "ui.v0assembly.text_1b3346e14f4c52": {
+      "source_revision": "1e95087258583641739d",
+      "text": "Cerrar y comprobar el accionamiento B"
+    },
+    "ui.v0assembly.text_657eeece8dd755": {
+      "source_revision": "c95824b780428fb9ff92",
+      "text": "Montar B a la izquierda y A a la derecha"
+    },
+    "ui.v0assembly.text_8db8f502b38b3f": {
+      "source_revision": "58e2f043abe260fbbc17",
+      "text": "Montar e instalar la polea guía B"
+    },
+    "ui.v0assembly.text_dc289a749c8f50": {
+      "source_revision": "896501f9b72a79f0a0b0",
+      "text": "Montar e instalar la polea guía A"
+    },
+    "ui.v0assembly.text_f02928e3c1020c": {
+      "source_revision": "33ab584e36f089686282",
+      "text": "Comprobar lados y orientación de las poleas guía"
+    },
+    "ui.v0assembly.text_3255b4c990d1cf": {
+      "source_revision": "99f0243e44829b4c264d",
+      "text": "Instalar la tuerca antiholgura del husillo"
+    },
+    "ui.v0assembly.text_05e03b02b8c722": {
+      "source_revision": "97d6bf20d6988d114543",
+      "text": "Insertar tuercas de panel antes de montar los pies"
+    },
+    "ui.v0assembly.text_f68cdb4116fcf1": {
+      "source_revision": "66454e08c0be5a271c26",
+      "text": "Preparar los pies delanteros y sus almohadillas"
+    },
+    "ui.v0assembly.text_33045903c54e9c": {
+      "source_revision": "69be4e09ea8d829b8041",
+      "text": "Preparar la alternativa de pie trasero derecho sin sensor"
+    },
+    "ui.v0assembly.text_a56981117470ca": {
+      "source_revision": "b0967b4fa60c949d67e3",
+      "text": "Preparar el pie de entrada eléctrica y montar los pies"
+    },
+    "ui.v0assembly.text_409d739da53240": {
+      "source_revision": "2bd42ef7c4bad4231c52",
+      "text": "Montar los detalles de los pies"
+    },
+    "ui.v0assembly.text_279651b4574e00": {
+      "source_revision": "67958c4c32b3b54715a8",
+      "text": "Preparar y montar el motor Z con husillo integrado"
+    },
+    "ui.v0assembly.text_748da3aabc8b46": {
+      "source_revision": "bd2ce1659ec73319fa6e",
+      "text": "Alinear y fijar el motor Z y la tuerca del husillo"
+    },
+    "ui.v0assembly.text_d555dbe77e588a": {
+      "source_revision": "39b793809b09e1ffebc1",
+      "text": "Preparar la unión XY izquierda"
+    },
+    "ui.v0assembly.text_71e223648fbd84": {
+      "source_revision": "5d5cc36bdd7e0d57460c",
+      "text": "Preparar la unión XY derecha"
+    },
+    "ui.v0assembly.text_dc961d0f16b3f4": {
+      "source_revision": "76064a4baa9608a2bbe9",
+      "text": "Montar el raíl X e insertar las tuercas de unión"
+    },
+    "ui.v0assembly.text_b05cd115b4c64f": {
+      "source_revision": "81e78138a81acd1e1676",
+      "text": "Fijar sin apretar las uniones XY al perfil X"
+    },
+    "ui.v0assembly.text_0d85d938b21fc9": {
+      "source_revision": "7ac4e166fd36b47c926a",
+      "text": "Fijar el pórtico a los carros Y"
+    },
+    "ui.v0assembly.text_a1a0bd496eda0e": {
+      "source_revision": "ee848c70da36ce714495",
+      "text": "Escuadrar y comprobar el pórtico"
+    },
+    "ui.v0assembly.text_c28e17ab1a313f": {
+      "source_revision": "1504de13767cd14ac626",
+      "text": "Insertar tuercas y montar los laterales superiores"
+    },
+    "ui.v0assembly.text_cb0e479a2aa19a": {
+      "source_revision": "a6c7b80fc3ccf6be0029",
+      "text": "Preparar el carro X y sus herrajes cautivos"
+    },
+    "ui.v0assembly.text_462f541d6e72e5": {
+      "source_revision": "dc326e45e81f22d70b3f",
+      "text": "Colocar sin apretar las abrazaderas de correa MakerBeam"
+    },
+    "ui.v0assembly.text_670525a623c18e": {
+      "source_revision": "01309150ac56f5e2459d",
+      "text": "Guiar la correa A inferior"
+    },
+    "ui.v0assembly.text_f335d1f5ef8df5": {
+      "source_revision": "d8750e1f505daa469bd4",
+      "text": "Guiar la correa B superior"
+    },
+    "ui.v0assembly.text_7aef388aee183c": {
+      "source_revision": "bdd62f233ab31765dbc8",
+      "text": "Fijar el carro al patín del raíl X"
+    },
+    "ui.v0assembly.text_ecca914f48f550": {
+      "source_revision": "00fb9b050989ed80fc7b",
+      "text": "Igualar la tensión de correas y recortar extremos"
+    },
+    "ui.v0assembly.text_292fd753792b30": {
+      "source_revision": "8994978fae005a4c9ac8",
+      "text": "Preparar los mandos de ajuste de cama"
+    },
+    "ui.v0assembly.text_1aae5525734882": {
+      "source_revision": "1f1d4107a8333cd95b72",
+      "text": "Orientar la placa de impresión"
+    },
+    "ui.v0assembly.text_9e6349e56097fd": {
+      "source_revision": "281d99a169bc607aa8b3",
+      "text": "Pegar el calentador de cama"
+    },
+    "ui.v0assembly.text_ecdcb2568ed38f": {
+      "source_revision": "039b20c600eb4a7c7253",
+      "text": "Revisar la protección del fusible térmico"
+    },
+    "ui.v0assembly.text_89a2fc70238767": {
+      "source_revision": "204d80d4d96f5ec9e59c",
+      "text": "Instalar y bloquear los tornillos de cama"
+    },
+    "ui.v0assembly.text_9aef638ff1d66c": {
+      "source_revision": "2195bb4f2a4d2b136027",
+      "text": "Pegar la lámina magnética"
+    },
+    "ui.v0assembly.text_0e139b73ad5d98": {
+      "source_revision": "f07fa5b7d072e5b42253",
+      "text": "Montar la cama con muelles y la placa flexible"
+    },
+    "ui.v0assembly.text_9aaccb64bce665": {
+      "source_revision": "74bd366edab683c017b7",
+      "text": "Guiar y sujetar los cables de cama"
+    },
+    "ui.v0assembly.text_9e5ab6432201ca": {
+      "source_revision": "c2cae0f232ecbc05d648",
+      "text": "Reconectar la cadena portacables de cama"
+    },
+    "ui.v0assembly.text_4a9070e462de7a": {
+      "source_revision": "6143a2404cb8d8f8f298",
+      "text": "Preparar carcasas e insertos de Mini Stealthburner"
+    },
+    "ui.v0assembly.text_373f011660f977": {
+      "source_revision": "a237c24415a4575a1e79",
+      "text": "Preparar el guidler y el rodillo BMG"
+    },
+    "ui.v0assembly.text_1da10ba4503b25": {
+      "source_revision": "5f69e3df9b89b3d8d96a",
+      "text": "Montar el tren de engranajes del extrusor"
+    },
+    "ui.v0assembly.text_c111d527c73a22": {
+      "source_revision": "97a2a57c7f5c07794c9a",
+      "text": "Montar y comprobar la tensión del extrusor"
+    },
+    "ui.v0assembly.text_b406760adc541e": {
+      "source_revision": "84fcc4bd74b4c182a4ee",
+      "text": "Montar los tres ventiladores del cabezal estándar"
+    },
+    "ui.v0assembly.text_1434936707d41f": {
+      "source_revision": "bf36cea0f337764eaa39",
+      "text": "Suplemento del CAD original: LED de boquilla"
+    },
+    "ui.v0assembly.text_fc461ec9e88515": {
+      "source_revision": "c51f337007c35af5b7a9",
+      "text": "Montar el motor y ajustar la holgura de engranajes"
+    },
+    "ui.v0assembly.text_a0de498feb06d6": {
+      "source_revision": "ba7c9c9f7c9884807711",
+      "text": "Montar el hotend Revo Voron exacto del modelo"
+    },
+    "ui.v0assembly.text_cd57e91951abb3": {
+      "source_revision": "2cf6ab68f4a9f8850b8b",
+      "text": "Fijar el hotend y la cubierta"
+    },
+    "ui.v0assembly.text_d990e91ee5ed53": {
+      "source_revision": "8f4976503365267907f5",
+      "text": "Montar el cabezal en el carro"
+    },
+    "ui.v0assembly.text_545bfcf11e637b": {
+      "source_revision": "25c7c0250e4532fa40fc",
+      "text": "Montar el alivio de tensión y separadores estándar"
+    },
+    "ui.v0assembly.text_98b8dad1e177f1": {
+      "source_revision": "a3d7aca63f68eb0867b4",
+      "text": "Suplemento del CAD original: conjunto ADXL genérico"
+    },
+    "ui.v0assembly.text_e29b336d62f2ef": {
+      "source_revision": "b24200fbcaabd44cce79",
+      "text": "Montar el panel central"
+    },
+    "ui.v0assembly.text_cb8d8b7f919410": {
+      "source_revision": "20a31eca248561a73094",
+      "text": "Preparar los dos soportes electrónicos"
+    },
+    "ui.v0assembly.text_403f8c138a8eee": {
+      "source_revision": "1092391070fa30c7caae",
+      "text": "Fijar SKR Pico y Raspberry Pi"
+    },
+    "ui.v0assembly.text_4281fde5a80fc6": {
+      "source_revision": "73fa6e97b768545d0a19",
+      "text": "Comprobar tensión y colocar la fuente"
+    },
+    "ui.v0assembly.text_efcdd9790c4416": {
+      "source_revision": "67a66df55feccae2cb3b",
+      "text": "Montar el ventilador del controlador"
+    },
+    "ui.v0assembly.text_6f302ecc302901": {
+      "source_revision": "59aadc7ca897b3f2c47b",
+      "text": "Cablear y montar la entrada de red"
+    },
+    "ui.v0assembly.text_fb1c3485a6549f": {
+      "source_revision": "2baea32b000a469ff0cf",
+      "text": "Conectar CC, motores, sensores y ventiladores"
+    },
+    "ui.v0assembly.text_fe6e1591119869": {
+      "source_revision": "04ddac2a71ddca117e0b",
+      "text": "Montar la protección de bornes de la fuente"
+    },
+    "ui.v0assembly.text_b8a2a6816888c0": {
+      "source_revision": "acf4675d53995a2faa70",
+      "text": "Montar el faldón derecho"
+    },
+    "ui.v0assembly.text_187dc53b8a8afa": {
+      "source_revision": "eb847ad27800eabc9dd7",
+      "text": "Montar el faldón izquierdo"
+    },
+    "ui.v0assembly.text_8c45f03023d24f": {
+      "source_revision": "34e70dcc09baf234c7b8",
+      "text": "Montar el faldón trasero"
+    },
+    "ui.v0assembly.text_fcff344e5a0b83": {
+      "source_revision": "f58a457e884ef40a4e79",
+      "text": "Montar el faldón delantero"
+    },
+    "ui.v0assembly.text_2b611f658e36c1": {
+      "source_revision": "9ee6da0e3db840409057",
+      "text": "Alternativa original: tapa sin pantalla"
+    },
+    "ui.v0assembly.text_66226db80fb515": {
+      "source_revision": "a0785afc58d3f343ba7c",
+      "text": "Montar e instalar la pantalla V0"
+    },
+    "ui.v0assembly.text_91954bcbc106ce": {
+      "source_revision": "d6289d86e93b1da5dfb5",
+      "text": "Montar el panel inferior"
+    },
+    "ui.v0assembly.text_7faf8a75696548": {
+      "source_revision": "9663c30fbf58324e707b",
+      "text": "Montar el panel de motores y el paso del mazo"
+    },
+    "ui.v0assembly.text_2ede85edbbc3e6": {
+      "source_revision": "1b309a5b030e3a139b1a",
+      "text": "Montar el portabobinas"
+    },
+    "ui.v0assembly.text_ad5fbd23b47a14": {
+      "source_revision": "f3db6233b68d82c78c4f",
+      "text": "Comprobar la ruta del Bowden inverso"
+    },
+    "ui.v0assembly.text_abd7abe35f14cc": {
+      "source_revision": "f9b3ef459b442865538a",
+      "text": "Montar paneles traseros, clips y bisagras inferiores del tophat"
+    },
+    "ui.v0assembly.text_04e2ae45944cce": {
+      "source_revision": "026d52e19afdd70512cf",
+      "text": "Montar el panel lateral transparente derecho"
+    },
+    "ui.v0assembly.text_d52c2072bdcda4": {
+      "source_revision": "3c09e39ecd32cb07a3c8",
+      "text": "Montar el panel lateral transparente izquierdo"
+    },
+    "ui.v0assembly.text_64aab146f15af4": {
+      "source_revision": "83ff7b8074b459b11981",
+      "text": "Montar bisagras desmontables y panel frontal"
+    },
+    "ui.v0assembly.text_d55fb5e551af34": {
+      "source_revision": "7e7f78b92aac20f8a86b",
+      "text": "Montar los pestillos de puerta y sus imanes"
+    },
+    "ui.v0assembly.text_6553da932d75b7": {
+      "source_revision": "2d558f6a6f952d9a8b89",
+      "text": "Montar la manilla y los imanes correspondientes"
+    },
+    "ui.v0assembly.text_1e2d56eac551e1": {
+      "source_revision": "8ad1e07a0d7ed6287cea",
+      "text": "Preparar y escuadrar el marco del tophat"
+    },
+    "ui.v0assembly.text_856edf09b64fe3": {
+      "source_revision": "65b9555d1055d3abeb02",
+      "text": "Comprobar las tuercas de todas las ranuras del tophat"
+    },
+    "ui.v0assembly.text_fac0b16dda405c": {
+      "source_revision": "bb612c904b6ecd142ad6",
+      "text": "Montar el panel superior y sus clips"
+    },
+    "ui.v0assembly.text_e32a1295366399": {
+      "source_revision": "a086d36c77ad8ea46b25",
+      "text": "Montar paneles frontales y laterales del tophat"
+    },
+    "ui.v0assembly.text_4da82f7dbb9bb8": {
+      "source_revision": "65e535da63dfd4129b83",
+      "text": "Montar el panel trasero y las bisagras superiores"
+    },
+    "ui.v0assembly.text_54bc4c07dbd565": {
+      "source_revision": "b0319f1d704ec314c05f",
+      "text": "Montar los pivotes y fijaciones del cierre de leva"
+    },
+    "ui.v0assembly.text_bfab3020e0e402": {
+      "source_revision": "fc9af485018ef1027437",
+      "text": "Comprobar apertura y cierre del tophat"
+    },
+    "ui.v0assembly.text_78c147459e809a": {
+      "source_revision": "f5050ae79a42b63a9924",
+      "text": "Referencia de montaje mecánico completada"
+    },
+    "ui.v0assembly.text_292189bc413123": {
+      "source_revision": "1a65e686a6bbfffc1214",
+      "text": "Preparar la alternativa r1 de pie con sensor de filamento"
+    },
+    "ui.v0assembly.text_082b1c44860a46": {
+      "source_revision": "15714fb2b7101a369a34",
+      "text": "Lea todo el manual, distinga tornillos, calces e insertos y prepare piezas impresas y orificios de acceso. Se muestran posiciones CAD finales, no trayectorias de montaje."
+    },
+    "ui.v0assembly.text_5b8a50cfec7dbf": {
+      "source_revision": "53c46a439852c9efb0ab",
+      "text": "Inserte tuercas M2 en las cinco tiras. El modelo las incluye completas; el manual permite reducir herrajes. La tira X se prepara aquí y se reutiliza después."
+    },
+    "ui.v0assembly.text_72b10de3226101": {
+      "source_revision": "d830397e970a80bd3368",
+      "text": "Mantenga cada carro en su raíl y lubrique primero. Centre el raíl, deje 38 mm desde el extremo del perfil y apriete del centro hacia fuera. Conserve los topes provisionales."
+    },
+    "ui.v0assembly.text_f4bd3fb9c32cd1": {
+      "source_revision": "9824a4d6c7586c879018",
+      "text": "No deje escapar los carros. Centre los raíles; el desplazamiento aproximado de 33 mm se ajusta al alinear la cama."
+    },
+    "ui.v0assembly.text_7a6eb8b09cb187": {
+      "source_revision": "2d9641b06e3be92978e1",
+      "text": "Preinserte las dos tuercas extra del motor Z de la página 27; la 53 añade otra preparación. Deje flojas las uniones ciegas. Las tuercas extra se suman al herraje de unión."
+    },
+    "ui.v0assembly.text_e73886a06f760f": {
+      "source_revision": "df1a3bf315d6fd45899e",
+      "text": "Antes de cerrar los extremos, inserte tres tuercas M3 en cada ranura interior indicada. Pertenecen al panel central posterior y se muestran en sus posiciones CAD finales."
+    },
+    "ui.v0assembly.text_9425a1912b13ed": {
+      "source_revision": "3307d807635f4de2210e",
+      "text": "Trabaje sobre una superficie plana y mantenga paralelos los montantes Z. Los traseros usados provisionalmente se muestran en su posición CAD final y se reutilizan en el marco."
+    },
+    "ui.v0assembly.text_e8fbe4a7bda16b": {
+      "source_revision": "b7a249047fc76272cbca",
+      "text": "Monte los topes sin dejar salir los carros Z."
+    },
+    "ui.v0assembly.text_c0296253816b66": {
+      "source_revision": "8e145e891b7265e48c40",
+      "text": "Instale los insertos y separe el extremo de cadena para facilitar el montaje. Se representa el soporte estándar de perfiles; la alternativa Kirigami no está incluida."
+    },
+    "ui.v0assembly.text_7e1c054eec5360": {
+      "source_revision": "fa34bd08a630ef2d3316",
+      "text": "Inserte 6, 1, 2 y 1 tuercas M3 extra según la página 40. Todo tornillo de ranura necesita tuerca; la preparación muestra el herraje en su posición final."
+    },
+    "ui.v0assembly.text_556ca5893f301f": {
+      "source_revision": "8ff2d592885a7a713646",
+      "text": "Monte provisionalmente los soportes traseros para comprobar que sus caras son coplanares; retírelos para fijarlos a los patines. La vista estática no reproduce las posiciones provisionales."
+    },
+    "ui.v0assembly.text_a26c0884983c79": {
+      "source_revision": "1f0785092769c6800929",
+      "text": "Use los orificios de acceso para los ocho M2x8 y poco fijador solo entre metales. Reinstale el soporte con las tuercas centrales preinsertadas y una llave de punta esférica."
+    },
+    "ui.v0assembly.text_073e37c80a6f26": {
+      "source_revision": "cc9dd70dcfaf88c8ae37",
+      "text": "Apriete en el orden numerado abajo y arriba. Compruebe separación lateral igual y movimiento libre; afloje y repita si se atasca. La vista estática no valida el recorrido."
+    },
+    "ui.v0assembly.text_86a128aa2db539": {
+      "source_revision": "b61199031a64a6932b3e",
+      "text": "Retire la palanca, oriente el botón, conecte los terminales normalmente cerrados indicados y alinee el soporte con el extremo inferior del raíl. Respete los herrajes de esa revisión."
+    },
+    "ui.v0assembly.text_b7e9ff764e5b5f": {
+      "source_revision": "97959c1c1891376b673a",
+      "text": "Baje el soporte manualmente y compruebe el clic. La geometría estática no verifica actuación sonora, mecánica ni estado eléctrico."
+    },
+    "ui.v0assembly.text_78be4037280a78": {
+      "source_revision": "d65c2b273fa686fb08fc",
+      "text": "Conserve los grupos de tuercas de entrada, motor Z, accionamientos, poleas guía, faldones y pantalla. Revise páginas 52-65 antes de cerrar extremos; se muestran posiciones CAD finales."
+    },
+    "ui.v0assembly.text_84be1ac56e0d61": {
+      "source_revision": "3a58ecea1a879eeee4c2",
+      "text": "Reutilice montantes traseros y herrajes de unión preparados. Ajuste la separación trasera a 37 mm antes del apriete final."
+    },
+    "ui.v0assembly.text_6da8b160080ba7": {
+      "source_revision": "2dc12afe920e6f6babca",
+      "text": "Fije el extremo de cadena antes de introducir la base, que debe pasar bajo el soporte del final de carrera. Solo se muestra la posición final del conector."
+    },
+    "ui.v0assembly.text_27818782f8cc0c": {
+      "source_revision": "fec6e0364b6694db19f0",
+      "text": "Revise todas las ranuras antes de cerrar el frente, incluidos faldones, panel de motores, clips y opciones posteriores. No deduzca faltantes de dibujos que solo muestran tornillos. Las tuercas extra Nevermore no están incluidas."
+    },
+    "ui.v0assembly.text_dbab5782a7c334": {
+      "source_revision": "c9a11e79fb466c5362ab",
+      "text": "Deje inicialmente flojo el travesaño frontal inferior. Revise páginas 62-65 antes de instalar montantes delanteros y cerrar el acceso a las ranuras."
+    },
+    "ui.v0assembly.text_d1d75e74a4ccee": {
+      "source_revision": "2fe12ec99302447442d8",
+      "text": "Identifique los lados por las marcas en relieve. Los insertos exteriores quedan por debajo de la superficie."
+    },
+    "ui.v0assembly.text_f4d1c35d139878": {
+      "source_revision": "7a4936f21e7a74a0df53",
+      "text": "Use calces de 0.5 mm y el conjunto de rodamientos de 18 mm. Retire después las tuercas provisionales. Las carcasas se muestran en posición CAD final."
+    },
+    "ui.v0assembly.text_653d04cd2cd285": {
+      "source_revision": "c71fa80fc9e8ef78aed1",
+      "text": "Use fijador en los prisioneros de la polea, ajuste la referencia de 8.5 mm y conserve la orientación angular original."
+    },
+    "ui.v0assembly.text_05d6b02994151c": {
+      "source_revision": "59bc479426336a90d602",
+      "text": "Los cables del motor miran hacia dentro. Alinee dientes de polea con pistas de rodamientos y ajuste si hace falta. El mando tensor permanece en su conjunto original."
+    },
+    "ui.v0assembly.text_ef264ac175fd43": {
+      "source_revision": "f93ed1f017d6c9d9d176",
+      "text": "Use fijador en los prisioneros de la polea, ajuste la referencia de 17.5 mm y conserve la orientación angular original."
+    },
+    "ui.v0assembly.text_c107943b587526": {
+      "source_revision": "110a3bbeae0a138052a0",
+      "text": "Reutilice tuercas delanteras preinsertadas y extremos traseros roscados; retire las tuercas provisionales. Se referencian ambos conjuntos preparados sin duplicar piezas."
+    },
+    "ui.v0assembly.text_4bb4521ff0d99e": {
+      "source_revision": "07f66b59b48422b9ee4e",
+      "text": "Monte rodamientos y calces usando extremos delanteros roscados y tuercas traseras preinsertadas. A es el conjunto alto derecho; B, el bajo izquierdo."
+    },
+    "ui.v0assembly.text_705324cfc16847": {
+      "source_revision": "de8c1c1b84f0b37ac718",
+      "text": "Compare vistas lateral y superior del manual; no intercambie A/B ni sus alturas. Este paso no verifica movimiento de correas ni holguras entre sólidos."
+    },
+    "ui.v0assembly.text_85b67c9935abd5": {
+      "source_revision": "b8a0e2696f5edcc57c3e",
+      "text": "Use el portatuerca original y no gire por separado las mitades antiholgura. Compruebe la variante de orificio pasante; r1 exige además una cara plana de posicionamiento."
+    },
+    "ui.v0assembly.text_2da31673ccc903": {
+      "source_revision": "596ede6a66210be6b470",
+      "text": "Preinserte en las ranuras exteriores según el dibujo. El portabobinas reemplaza un clip central. Este grupo contiene 24 tuercas laterales y cinco traseras; otras permanecen en sus propios grupos."
+    },
+    "ui.v0assembly.text_5136b94eef8ea9": {
+      "source_revision": "3a403828591fcccbb02a",
+      "text": "Instale insertos y almohadillas antes de que los pies cierren los extremos de los perfiles."
+    },
+    "ui.v0assembly.text_04e44fc55c3be2": {
+      "source_revision": "07ba2c7d343292ecf4a4",
+      "text": "El pie trasero derecho sin sensor guía el Bowden inverso. En r1 sustituye al pie con sensor; no se montan ambos a la vez. Si la máscara nativa lo excluye, es solo inventario y permanece oculto."
+    },
+    "ui.v0assembly.text_6ce0c208069823": {
+      "source_revision": "12bf7cf204c3aa5aafa8",
+      "text": "Use tornillos largos de esquina y tuercas preinsertadas de entrada eléctrica. El conector se instala al cablear; no se anima el volteo de la máquina."
+    },
+    "ui.v0assembly.text_408ea04c7d42d6": {
+      "source_revision": "941f88772506ac7dbe5e",
+      "text": "Use los tornillos autorroscantes indicados sin dañar la rosca plástica. Los grupos previos de pie normal/con sensor conservan sus propios herrajes."
+    },
+    "ui.v0assembly.text_6af91a10bd2818": {
+      "source_revision": "a1fc517b82fc28864507",
+      "text": "Lubrique el husillo según lo indicado y deje flojo el marco hasta alinear. Las variantes r1 de POM/husillo recubierto no son el motor estándar importado."
+    },
+    "ui.v0assembly.text_185ad708f226cf": {
+      "source_revision": "259953658a291ae6c123",
+      "text": "Alinee motor y bloque de tuerca, y mueva la cama manualmente antes de apretar. r1 amplía la alineación inferior; V0.2 usa su página 106. Las poses estáticas no prueban recorrido libre."
+    },
+    "ui.v0assembly.text_6af98413fc9f2f": {
+      "source_revision": "ab496842ebf09a7c3524",
+      "text": "Use piezas izquierda/derecha correctas, profundidades de insertos y niveles de rodamientos/calces. Monte invertido y compruebe la referencia de 19 mm."
+    },
+    "ui.v0assembly.text_a2dc63bccc7e62": {
+      "source_revision": "9a7684a428cf2f594b55",
+      "text": "Reutilice la quinta tira, centre el raíl X a 25 mm del extremo y preinserte tuercas sin soltar el carro. V0.2 no exporta tuercas de ranura XY: las cuatro de la página 113 siguen ausentes."
+    },
+    "ui.v0assembly.text_6d44623bc3ba3d": {
+      "source_revision": "157322a83f15c1ded391",
+      "text": "Deje flojos los seis tornillos del perfil hasta unir XY con los carros Y; compruebe los niveles de rodamientos espejados. La configuración X/Y sin sensores queda fuera de esta vista."
+    },
+    "ui.v0assembly.text_bb2e29d32a987f": {
+      "source_revision": "df6cc03e3ee07b6e2b6b",
+      "text": "Separe las uniones hacia fuera en la posición trasera y coloque los ocho tornillos avellanados de los carros."
+    },
+    "ui.v0assembly.text_b188904c6e8577": {
+      "source_revision": "7b86ba4cafcd9d2026ab",
+      "text": "Apoye atrás contra ambos accionamientos antes de apretar los seis tornillos; compruebe movimiento libre y corrija el descuadre. Es una comprobación manual, no una aprobación automática de holguras."
+    },
+    "ui.v0assembly.text_68d10b112955f2": {
+      "source_revision": "13caac50e63325f44a4a",
+      "text": "Preinserte tres tuercas exteriores por lateral superior. Retire provisionalmente los cierres de leva para acceder al herraje y repóngalos. Los nombres CAD difieren de las letras del manual."
+    },
+    "ui.v0assembly.text_87f55a96f7dc19": {
+      "source_revision": "cbc8eeae1246f6cb60b0",
+      "text": "Retire el soporte de impresión integrado. En r1 es una pieza separada; en V0.2 forma parte del carro compuesto. Se conserva solo en el inventario, no como pieza instalada."
+    },
+    "ui.v0assembly.text_5119fc4575d0ce": {
+      "source_revision": "b179a26a3582242bb6dc",
+      "text": "Respete cómo se mide FHCS y deje abrazaderas flojas para pasar las correas. Empiece con longitudes iguales y afloje los tensores antes de guiarlas."
+    },
+    "ui.v0assembly.text_5ee7fd8444533b": {
+      "source_revision": "39aefef6412f8985488b",
+      "text": "A va debajo de B. Siga toda la ruta del manual; el contacto debe ser con rodamientos y dientes de poleas, no piezas impresas. Solo se muestra la malla en su ruta final."
+    },
+    "ui.v0assembly.text_2ed90d6b95bf41": {
+      "source_revision": "45dc497253e12f1d508e",
+      "text": "B va encima de A. Fije extremos con igual número de dientes sin recortar todavía y evite contacto con plástico. No se simulan enhebrado ni tensión."
+    },
+    "ui.v0assembly.text_039f201ea4d3f6": {
+      "source_revision": "182b2788c856f4332cea",
+      "text": "Use los cuatro tornillos originales y poco fijador solo entre metales; el exceso puede dañar el ABS."
+    },
+    "ui.v0assembly.text_54f680bc693fa7": {
+      "source_revision": "607610b7f6df2f5878f2",
+      "text": "Con el pórtico atrás, use la referencia de 110 Hz en los tramos de 150 mm indicados. Iguale ambas correas antes de recortar; el espacio del extremo depende del hotend."
+    },
+    "ui.v0assembly.text_d2d2d1d1e7a736": {
+      "source_revision": "09c8b208a4d2984f2cef",
+      "text": "Instale los tres insertos de los mandos. Los dos del separador de cadena ya se asignaron a la preparación inicial del soporte."
+    },
+    "ui.v0assembly.text_e2236b4c726066": {
+      "source_revision": "574be0b3b5d7d5dfe862",
+      "text": "El orificio único mira al frente y los cajeados hacia arriba."
+    },
+    "ui.v0assembly.text_f1aba16a042925": {
+      "source_revision": "2e15aabbb207c7b2d647",
+      "text": "Limpie la placa y centre el calentador debajo. La placa permanece en su posición final; no se voltea atravesando piezas instaladas."
+    },
+    "ui.v0assembly.text_43a4ac3125e832": {
+      "source_revision": "e65d85d1ac60ccab5048",
+      "text": "V0.2 fija el fusible a la placa con M3x8. No se identifica una pieza de fusible ni su cableado en este modelo; no afirme que la protección está representada."
+    },
+    "ui.v0assembly.text_c74143bd6912cb": {
+      "source_revision": "b8fdd8c42620d30965ca",
+      "text": "Bloquee los tres tornillos con tuercas y arandelas. Otras estructuras de cama requieren revisar longitud de tornillos y holgura Z."
+    },
+    "ui.v0assembly.text_1628dcc8e6cb8c": {
+      "source_revision": "ebe543e06a514c36089c",
+      "text": "Limpie y presione la lámina adhesiva, dejando acceso a los tornillos. Se muestra la posición CAD final sin animación de introducción."
+    },
+    "ui.v0assembly.text_ac29732417967f": {
+      "source_revision": "e9b7c24ebbaa81cfe5d9",
+      "text": "Monte tres muelles y mandos en el soporte estándar. La placa flexible es una capa original de impresión, no una instrucción de montaje adicional ilustrada."
+    },
+    "ui.v0assembly.text_52712155c81463": {
+      "source_revision": "797c70a1e5e04a77e2f3",
+      "text": "Pase por separado cables de calentador y termistor por guías y lazos. No hay mazo completo; separación y holgura al flexionar siguen sin verificar."
+    },
+    "ui.v0assembly.text_12cec2a2c030af": {
+      "source_revision": "9060d3ad2c805c802543",
+      "text": "Reutilice ambos extremos y conecte los once eslabones. Con la cama arriba, la cadena debe quedar bajo los perfiles Z para dejar pasar el pórtico. La geometría estática no certifica el barrido."
+    },
+    "ui.v0assembly.text_99c67261370dbe": {
+      "source_revision": "30316310a4f9329e1386",
+      "text": "Use los cuerpos originales y proteja el plástico al insertar. El inserto del shuttle soporta tracción. Prepare el tornillo antideformación indicado."
+    },
+    "ui.v0assembly.text_d14803a1c81b34": {
+      "source_revision": "4643375ecdbaf81771ba",
+      "text": "Quite el soporte del guidler, lubrique las agujas, oriente la parte mayor del engranaje y compruebe el ajuste deslizante. El extremo corto del eje debe ser menor de 3 mm."
+    },
+    "ui.v0assembly.text_ad9d9501c9d1f9": {
+      "source_revision": "cd3a4ffba92b182e6d9a",
+      "text": "Retenga la tuerca sin pegar los rodamientos y deje libre el pivote. Centre el engranaje 50T con la holgura indicada, alinee dientes con el filamento y apriete el prisionero."
+    },
+    "ui.v0assembly.text_f4b11fb9a61e60": {
+      "source_revision": "7f215623f34240460893",
+      "text": "Asiente el pestillo en el shuttle. Compruebe marcas leves de dientes y el tope antideformación; no acepte exceso de tensión ni bloqueos."
+    },
+    "ui.v0assembly.text_bbd9f70a7a648f": {
+      "source_revision": "ca4c0bcf6d41b01937f8",
+      "text": "Ambos sopladores descargan en los conductos; el ventilador axial sopla hacia la cubierta. Mantenga salidas y rutas de cables indicadas."
+    },
+    "ui.v0assembly.text_8224e267fda658": {
+      "source_revision": "133b7b81e18ac56d11ea",
+      "text": "El CAD fijado contiene dos conjuntos Adafruit Sequin. Estas páginas solo dan contexto de ventiladores, no instrucciones LED. Fijación LED, cableado y holgura siguen abiertos."
+    },
+    "ui.v0assembly.text_3fbe45320b1b46": {
+      "source_revision": "23b015ed2f805cd997fb",
+      "text": "Deje floja la fijación ranurada mientras ajusta el engrane. Mantenga una pequeña holgura tras apretar y repita la prueba de alimentación."
+    },
+    "ui.v0assembly.text_7db1821626b527": {
+      "source_revision": "2f1428f1dcb5ee75d295",
+      "text": "Solo se representa Revo Voron. Use su soporte y cuatro tornillos originales; corte PTFE para sobresalir 6 mm. Otros nombres de hotend no prueban compatibilidad."
+    },
+    "ui.v0assembly.text_abbe6e359e37a4": {
+      "source_revision": "36870c16c1a8792b1dd2",
+      "text": "Use las dos fijaciones largas de cubierta y las tuercas cautivas preparadas. Compruebe el conjunto original de ventiladores, conductos y boquilla antes de montar."
+    },
+    "ui.v0assembly.text_3d6abca36d03e8": {
+      "source_revision": "b48e21df887540c4d8ae",
+      "text": "Use ambos tornillos delanteros y la fijación trasera original. La flecha de inserción no es una trayectoria evaluada; no se afirma paso continuo sin colisiones."
+    },
+    "ui.v0assembly.text_7553b6d5621cec": {
+      "source_revision": "6ad7fac0eedb859b0e02",
+      "text": "Prepare dos separadores con cuatro insertos de extremo según la sección previa y muéstrelos juntos aquí en posición final. Roscan en tornillos de motor expuestos. Separe calentador y señales/ventiladores, con poca holgura al frente; falta el mazo completo."
+    },
+    "ui.v0assembly.text_7c61ee9e44db0d": {
+      "source_revision": "475bf6785c43faeb0cfa",
+      "text": "La fuente fijada incluye sensor opcional, soporte, separadores y tornillos. Las páginas solo contextualizan el cableado; no establecen montaje ni coexistencia con el alivio de tensión estándar."
+    },
+    "ui.v0assembly.text_a5c9968d102da5": {
+      "source_revision": "f098c5b8fa792d8a6e67",
+      "text": "Reutilice las seis tuercas preinsertadas y muestre el panel en su posición final. No se anima la inversión provisional de la impresora para colocar tuercas."
+    },
+    "ui.v0assembly.text_2cff1367f62b14": {
+      "source_revision": "f45e250c90fb75b42099",
+      "text": "Prepare insertos, clips DIN y garras para SKR Pico y Raspberry Pi originales. El montaje directo con VHB es alternativo, no un segundo conjunto instalado."
+    },
+    "ui.v0assembly.text_50f44ee01d3d4d": {
+      "source_revision": "aea9795641c1ca1bb512",
+      "text": "Los componentes y pines internos se añaden juntos como placas compradas, no se montan individualmente. El cableado SKR E3 no implica una placa exportada alternativa."
+    },
+    "ui.v0assembly.text_17df7e64d6d3a4": {
+      "source_revision": "169c7d547db92f0e631f",
+      "text": "Compruebe el selector de tensión en el diagrama oficial y deje 1-2 mm al marco. VHB y tornillos son alternativas; la cinta no está modelada."
+    },
+    "ui.v0assembly.text_a18fe221ff43d2": {
+      "source_revision": "5fa9dd6a1f3979b56709",
+      "text": "Use las dos mitades impresas originales, insertos y ventilador 3010 separado con sus herrajes exactos."
+    },
+    "ui.v0assembly.text_b529bde9892e11": {
+      "source_revision": "6d3b011d519573a854bf",
+      "text": "Mantenga desenchufado; personal cualificado debe seguir normas locales y el esquema oficial de red/tierra protectora. CA, tierra protectora y masa CC son distintas. El modelo no verifica seguridad de mazo ni bornes."
+    },
+    "ui.v0assembly.text_acca5e287118d2": {
+      "source_revision": "8bf7751bdd9a9e445d0e",
+      "text": "Use el esquema SKR Pico. Verifique tensión y polaridad de ventiladores, motores, puentes DIAG y alimentación Pi. No se representa un mazo completo ni cableado probado."
+    },
+    "ui.v0assembly.text_d2cb92ff2ed9fb": {
+      "source_revision": "c7fdbf41b92b97d0bf40",
+      "text": "Monte la protección de bornes tras comprobar el cableado; su presencia no certifica seguridad eléctrica."
+    },
+    "ui.v0assembly.text_ea0e75ef4eb23e": {
+      "source_revision": "994688a82b291c589459",
+      "text": "Use las tuercas retenidas y tornillos originales; los traseros requieren llave de punta esférica."
+    },
+    "ui.v0assembly.text_7fc88d62d9ef2f": {
+      "source_revision": "04f6deb7a49734ffec36",
+      "text": "Deje libre el espacio central de pantalla y monte los detalles del logotipo."
+    },
+    "ui.v0assembly.text_ffcdc3cfe33c1a": {
+      "source_revision": "8eff0946c3bd0ff1c1e2",
+      "text": "Esta tapa corresponde a la alternativa sin pantalla. No la muestre junto con el frontal de pantalla instalado. Si la máscara nativa lo excluye, es solo inventario y permanece oculto."
+    },
+    "ui.v0assembly.text_f796817ccff559": {
+      "source_revision": "305973809a09e2b38071",
+      "text": "Monte difusor, PCB, soporte/pies originales, mando y herrajes; reutilice las dos tuercas preinsertadas. Proteja el USB frágil. V0.2 y r1 tienen soportes impresos distintos."
+    },
+    "ui.v0assembly.text_b10a34cb1317d0": {
+      "source_revision": "086fe6c869499c1c6020",
+      "text": "Quite y reponga los apoyos de goma. Gire el panel si no coincide el patrón asimétrico; no se muestra un movimiento intermedio que atraviese piezas."
+    },
+    "ui.v0assembly.text_125f41bea25e46": {
+      "source_revision": "7752b9fb8eac8b884976",
+      "text": "Pase mazo y Bowden por el recorte antes de fijar; reutilice la pieza central de sujeción original. Los paneles para PCB de cabezal son otra variante."
+    },
+    "ui.v0assembly.text_e320267f0c4988": {
+      "source_revision": "3afd663e56c2faa1a397",
+      "text": "Reutilice la posición preinsertada y corte al ras el tubo PTFE superior. La bobina no está incluida en el modelo exportado."
+    },
+    "ui.v0assembly.text_0f9450453df7c1": {
+      "source_revision": "0da130437cd874cb23b5",
+      "text": "V0.2 muestra el tubo del portabobinas en la página 220; no tiene el paso r1 de pie sensor de la 227. La ruta externa del Bowden inverso no está modelada."
+    },
+    "ui.v0assembly.text_91211505f4c0f5": {
+      "source_revision": "2824c8c946cb34877ba3",
+      "text": "Use paneles divididos de 3 mm y clips originales. Los estándar no necesitan VHB; los clips para espesor adicional de cinta no están incluidos."
+    },
+    "ui.v0assembly.text_28d622ea753691": {
+      "source_revision": "805aa6408a6e40f06d3d",
+      "text": "Use el panel original de 3 mm y sus clips; el derecho incluye piezas de bisagra desmontable. Los clips estándar no necesitan VHB."
+    },
+    "ui.v0assembly.text_6683179067a4e0": {
+      "source_revision": "8e8a82b492c4a45936bf",
+      "text": "Use VHB en los clips indicados y los pernos largos exactos. La bisagra debe permitir retirar hacia arriba; no dañe las roscas plásticas inferiores."
+    },
+    "ui.v0assembly.text_b87cc1e5ea11f8": {
+      "source_revision": "75f660d09e6c69c6f42b",
+      "text": "Compruebe atracción entre todos los imanes de pestillo y manilla antes de fijar. La polaridad CAD no es una prueba eléctrica ni magnética."
+    },
+    "ui.v0assembly.text_8d2bf7392e8b14": {
+      "source_revision": "ceb7e91ea4dc37b0053c",
+      "text": "Compruebe atracción antes de pegar la manilla. No se verifican el barrido de puerta ni la trayectoria de retirada."
+    },
+    "ui.v0assembly.text_4a4258df9aa6c7": {
+      "source_revision": "2c3113913e0b80caab25",
+      "text": "El manual V0.2 usa J/K y el CAD A/H. Correspondan por dimensiones, preinserten arriba/fuera, escuadren sobre plano y dejen 5 mm de tornillo de cierre sobresaliente."
+    },
+    "ui.v0assembly.text_302400bbf06fde": {
+      "source_revision": "2da9985eaaf346081ab5",
+      "text": "Compruebe las dos tuercas indicadas en los cuatro lados antes de cerrar paneles. Son grupos originales de clips/bisagras retenidos antes y mostrados en su posición final."
+    },
+    "ui.v0assembly.text_42c8793195d282": {
+      "source_revision": "a0538b8e7dddb1a36fa9",
+      "text": "Use panel superior de 3 mm y clips de esquina originales; los clips estándar no requieren VHB."
+    },
+    "ui.v0assembly.text_ce5b04641cc38e": {
+      "source_revision": "90e508235f563076dc28",
+      "text": "Use paneles y clips originales de 3 mm; conserve cada fijación superior/inferior con su borde correspondiente."
+    },
+    "ui.v0assembly.text_a2375dd8cf4958": {
+      "source_revision": "a36ebc4cc0c1715b986e",
+      "text": "El panel trasero va en el lado opuesto a los tornillos delanteros salientes. Deje ajustables las bisagras superiores hasta alinearlas con las inferiores."
+    },
+    "ui.v0assembly.text_0e2506bd372eeb": {
+      "source_revision": "6f8df5a46921bc4f09f4",
+      "text": "Enrosque con cuidado los pivotes M3x12 en las bisagras plásticas inferiores, sin exceso de apriete. Reutilice tuercas previas y cuerpos de bisagra inferiores."
+    },
+    "ui.v0assembly.text_d56ae393a782c3": {
+      "source_revision": "189efd9cd3303046b416",
+      "text": "Compruebe apertura libre con las levas abiertas y cierre con 90 grados horarios. V0.2 usa arandela/moneda como llave. La vista estática no certifica un barrido sin contacto."
+    },
+    "ui.v0assembly.text_472f58df83379b": {
+      "source_revision": "38800294e5676417034d",
+      "text": "Siga la documentación oficial para comprobaciones eléctricas, configuración y primer arranque. El inventario incluye alternativas y opciones; su unión no es una configuración montable simultáneamente ni certificada sin colisiones."
+    },
+    "ui.v0assembly.text_b7fdbf2ae5fdbe": {
+      "source_revision": "0b73ae7b3bd9aa1b3a02",
+      "text": "Preinserte en los montantes exteriores según el dibujo. El portabobinas reemplaza un clip central. Este grupo tiene 24 tuercas laterales, cinco traseras y cuatro de pestillo; las otras quedan en sus grupos."
+    },
+    "ui.v0assembly.text_23cb847b8b9081": {
+      "source_revision": "776d12317b90b83490f3",
+      "text": "Use MR85 y collet ECAS04 sin la funda de goma indicada. Cablee los contactos normalmente abiertos y elija este pie o el trasero normal, nunca ambos. Si la máscara nativa lo excluye, es solo inventario y permanece oculto."
+    },
+    "ui.v0assembly.text_24610b4999f93f": {
+      "source_revision": "03c6df9e9f34a4abf4e2",
+      "text": "Reutilice la quinta tira, centre el raíl X a 25 mm del extremo y preinserte las tuercas. Mantenga cautivo el carro; aquí se conservan las seis tuercas XY originales."
+    },
+    "ui.v0assembly.text_af195822c5f5fd": {
+      "source_revision": "9da133a238b0402a3444",
+      "text": "r1 describe un fusible en serie unido al calentador con RTV. No se identifica fusible separado ni cableado en el modelo; la protección sigue sin verificar."
+    },
+    "ui.v0assembly.text_139a5b50f42900": {
+      "source_revision": "c26c6a34c16591d7fe4a",
+      "text": "Siga la ruta inversa del manual; el pie sensor r1 requiere tramos separados de tubo. No se exporta un tubo externo completo de Bowden inverso."
+    },
+    "ui.v0assembly.text_d2e1296199a92f": {
+      "source_revision": "55f58c1c801ee5bffdaf",
+      "text": "r1 llama B/J a perfiles horizontales/verticales; el CAD usa A/H. Correspondan a 200 mm/80 mm, preinserten en ranuras superiores/exteriores y dejen 5 mm de tornillo frontal sobresaliente."
+    },
+    "ui.v0assembly.text_27a2edc43cec8f": {
+      "source_revision": "78249940ba60ca4e053b",
+      "text": "Compruebe apertura libre con levas abiertas y cierre con 90 grados horarios. r1 usa una llave hexagonal de 5 mm. La vista estática no certifica un barrido sin contacto."
     }
   }
 }

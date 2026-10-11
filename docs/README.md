@@ -21,6 +21,7 @@
 | 対象 | 資料 |
 | --- | --- |
 | V0.2 / V0.2r1の装着Modと依存条件 | [V0 installations](V0_INSTALLATIONS.md) |
+| V0.2 / V0.2r1の公式マニュアルに沿った工程表示 | [V0 assembly steps](V0_ASSEMBLY.md) |
 | CocobustorZeroの原本部品・出典・保留形状 | [CocobustorZero](COCOBUSTORZERO.md) |
 | Ducky0の冷却ブラケット・電子部品マウント・出典 | [Ducky0](DUCKY0.md) |
 | Tridentのサイズ別CAD・V2.4の配色、導入時の検証記録 | [Trident sizes / V2.4 colors](TRIDENT_SIZE_COLOR_QA.md) |
