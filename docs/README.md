@@ -21,6 +21,7 @@
 | 対象 | 資料 |
 | --- | --- |
 | V0.2 / V0.2r1の装着Modと依存条件 | [V0 installations](V0_INSTALLATIONS.md) |
+| CocobustorZeroの原本部品・出典・保留形状 | [CocobustorZero](COCOBUSTORZERO.md) |
 | Tridentのサイズ別CAD・V2.4の配色、導入時の検証記録 | [Trident sizes / V2.4 colors](TRIDENT_SIZE_COLOR_QA.md) |
 | Monolithの機体組込、固定／交換式、ベルトと移動範囲 | [Monolith in complete printers](MONOLITH_MACHINE.md) |
 | StealthChanger単独ヘッドの取付と、複数ドックの別条件 | [Mounts](STEALTHCHANGER_MOUNTS.md) · [Changer banks](CHANGER_BANK.md) |

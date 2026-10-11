@@ -3618,6 +3618,215 @@
       "supports_removed": false,
       "geometry_source": "native_author_solids",
       "notice_id": "ui.mod_eva_source_subset"
+    },
+    {
+      "id": "v0mod_cocobustorzero_awd_coconut_v2",
+      "module": "v0mod_cocobustorzero_awd_coconut_v2",
+      "kind": "mod",
+      "category": "v0-motion",
+      "label": "CocobustorZero · Coconut V2 AWD · source parts",
+      "manufacturer": "CoconutDevelopment",
+      "representation": "STL",
+      "solids": 5,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "awd-coconut-v2",
+          "label": "Coconut V2 AWD",
+          "parts": [
+            "cocobustor_905459e16e51e148",
+            "cocobustor_c07fed02f56e94b3",
+            "cocobustor_107fe843d594c386",
+            "cocobustor_d0cb60700c5673a4",
+            "cocobustor_aee097788783a767"
+          ],
+          "assembly": false
+        }
+      ],
+      "source_url": "https://github.com/CoconutDevelopment/CocobustorZero/tree/052e6c321a7e3fffad5057ce1e9f87de38f0e867",
+      "source_commit": "052e6c321a7e3fffad5057ce1e9f87de38f0e867",
+      "source_version": "CocobustorZero · 052e6c321a7e",
+      "source_sha256": "a6e9cf2eff72f241fa4cd8beadc1191cb8595eae8968c548c1710ddc90675ba1",
+      "source_sha256_label": "Source receipt SHA256",
+      "license": "GPL-3.0",
+      "license_url": "https://github.com/CoconutDevelopment/CocobustorZero/blob/052e6c321a7e3fffad5057ce1e9f87de38f0e867/LICENSE",
+      "notes": "Source parts only; complete printer assembly, installation and motion remain unverified. Original geometry is retained; built-in supports have not been isolated.",
+      "machine_installation_verified": false
+    },
+    {
+      "id": "v0mod_cocobustorzero_ulw_x",
+      "module": "v0mod_cocobustorzero_ulw_x",
+      "kind": "mod",
+      "category": "v0-motion",
+      "label": "CocobustorZero · ULW X gantry · source parts",
+      "manufacturer": "CoconutDevelopment",
+      "representation": "STL",
+      "solids": 6,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "ulw-x",
+          "label": "ULW X gantry",
+          "parts": [
+            "cocobustor_1be025d524b629aa",
+            "cocobustor_f02512c9a67c6442",
+            "cocobustor_38d8e5e13d2f5739",
+            "cocobustor_a7d3dd0ad1b08a5d",
+            "cocobustor_884304e9e495c493",
+            "cocobustor_f7b5331b51a3b2f0"
+          ],
+          "assembly": false
+        }
+      ],
+      "source_url": "https://github.com/CoconutDevelopment/CocobustorZero/tree/052e6c321a7e3fffad5057ce1e9f87de38f0e867",
+      "source_commit": "052e6c321a7e3fffad5057ce1e9f87de38f0e867",
+      "source_version": "CocobustorZero · 052e6c321a7e",
+      "source_sha256": "1a2a71c947e672bfd487ad2f30974723d057b894394b43e3e15ee886e24958d7",
+      "source_sha256_label": "Source receipt SHA256",
+      "license": "GPL-3.0",
+      "license_url": "https://github.com/CoconutDevelopment/CocobustorZero/blob/052e6c321a7e3fffad5057ce1e9f87de38f0e867/LICENSE",
+      "notes": "Source parts only; complete printer assembly, installation and motion remain unverified. Original geometry is retained; built-in supports have not been isolated.",
+      "machine_installation_verified": false
+    },
+    {
+      "id": "v0mod_cocobustorzero_belted_z",
+      "module": "v0mod_cocobustorzero_belted_z",
+      "kind": "mod",
+      "category": "v0-motion",
+      "label": "CocobustorZero · Thick belted Z · source parts",
+      "manufacturer": "CoconutDevelopment",
+      "representation": "STL",
+      "solids": 9,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "belted-z",
+          "label": "Thick belted Z",
+          "parts": [
+            "cocobustor_7ee75fa00c79c25c",
+            "cocobustor_128a86c47784c503",
+            "cocobustor_7b909853d775443d",
+            "cocobustor_735186a08bfcbc72",
+            "cocobustor_cda6c22138bc17dc",
+            "cocobustor_b2630a3fbc53431f",
+            "cocobustor_c05a0825ee859080",
+            "cocobustor_75d93100af384aae",
+            "cocobustor_76ab7961fc91f8b1"
+          ],
+          "assembly": false
+        }
+      ],
+      "source_url": "https://github.com/CoconutDevelopment/CocobustorZero/tree/052e6c321a7e3fffad5057ce1e9f87de38f0e867",
+      "source_commit": "052e6c321a7e3fffad5057ce1e9f87de38f0e867",
+      "source_version": "CocobustorZero · 052e6c321a7e",
+      "source_sha256": "1600cc3f9665a727dc732c6358610fab7f08b31860e74ea9aa0036eeef23ddef",
+      "source_sha256_label": "Source receipt SHA256",
+      "license": "GPL-3.0",
+      "license_url": "https://github.com/CoconutDevelopment/CocobustorZero/blob/052e6c321a7e3fffad5057ce1e9f87de38f0e867/LICENSE",
+      "notes": "Source parts only; complete printer assembly, installation and motion remain unverified. Original geometry is retained; built-in supports have not been isolated. The bed mount is withheld pending mesh repair.",
+      "machine_installation_verified": false
+    },
+    {
+      "id": "v0mod_cocobustorzero_m4max",
+      "module": "v0mod_cocobustorzero_m4max",
+      "kind": "extruder",
+      "category": "extruder",
+      "label": "CocobustorZero · M4max · source parts",
+      "manufacturer": "CoconutDevelopment",
+      "representation": "STL",
+      "solids": 8,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "m4max",
+          "label": "M4max",
+          "parts": [
+            "cocobustor_6302083d77b87937",
+            "cocobustor_4fdcb8363c2391fa",
+            "cocobustor_7ba04041da19b1a4",
+            "cocobustor_e78f9b449dee419c",
+            "cocobustor_9265478147665e87",
+            "cocobustor_13e49ae142565dcf",
+            "cocobustor_00e30caa5066f9c0",
+            "cocobustor_46cf9c13d69a6a12"
+          ],
+          "assembly": false
+        }
+      ],
+      "source_url": "https://github.com/CoconutDevelopment/CocobustorZero/tree/052e6c321a7e3fffad5057ce1e9f87de38f0e867",
+      "source_commit": "052e6c321a7e3fffad5057ce1e9f87de38f0e867",
+      "source_version": "CocobustorZero · 052e6c321a7e",
+      "source_sha256": "f99bb123bc5b3b4b27f3e71c8b6b608a146f7bf69632b09a945256dadc146926",
+      "source_sha256_label": "Source receipt SHA256",
+      "license": "GPL-3.0",
+      "license_url": "https://github.com/CoconutDevelopment/CocobustorZero/blob/052e6c321a7e3fffad5057ce1e9f87de38f0e867/LICENSE",
+      "notes": "Source parts only; complete printer assembly, installation and motion remain unverified. Original geometry is retained; built-in supports have not been isolated.",
+      "machine_installation_verified": false
+    },
+    {
+      "id": "v0mod_cocobustorzero_air_ducts",
+      "module": "v0mod_cocobustorzero_air_ducts",
+      "kind": "mod",
+      "category": "v0-head",
+      "label": "CocobustorZero · Coconut air ducts · source parts",
+      "manufacturer": "CoconutDevelopment",
+      "representation": "STL",
+      "solids": 1,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "air-ducts",
+          "label": "Coconut air ducts",
+          "parts": [
+            "cocobustor_650c04f509f6d63e"
+          ],
+          "assembly": false
+        }
+      ],
+      "source_url": "https://github.com/CoconutDevelopment/CocobustorZero/tree/052e6c321a7e3fffad5057ce1e9f87de38f0e867",
+      "source_commit": "052e6c321a7e3fffad5057ce1e9f87de38f0e867",
+      "source_version": "CocobustorZero · 052e6c321a7e",
+      "source_sha256": "ecc80e0cfb09664e0ff73946bd95d60f15c42551d2729f01171bd2c35bbb853f",
+      "source_sha256_label": "Source receipt SHA256",
+      "license": "GPL-3.0",
+      "license_url": "https://github.com/CoconutDevelopment/CocobustorZero/blob/052e6c321a7e3fffad5057ce1e9f87de38f0e867/LICENSE",
+      "notes": "Source parts only; complete printer assembly, installation and motion remain unverified. Original geometry is retained; built-in supports have not been isolated. The right air duct is withheld pending mesh repair.",
+      "machine_installation_verified": false
+    },
+    {
+      "id": "v0mod_cocobustorzero_accessories",
+      "module": "v0mod_cocobustorzero_accessories",
+      "kind": "mod",
+      "category": "v0-motion",
+      "label": "CocobustorZero · Mounts, front idlers and spool holder · source parts",
+      "manufacturer": "CoconutDevelopment",
+      "representation": "STL",
+      "solids": 6,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "accessories",
+          "label": "Mounts, front idlers and spool holder",
+          "parts": [
+            "cocobustor_11c1370c58b8dc26",
+            "cocobustor_73b969eb1c27decc",
+            "cocobustor_99ea4cea1c9fe1af",
+            "cocobustor_424a60510a5457df",
+            "cocobustor_4eaeae64835f0f62",
+            "cocobustor_556dd07924c0435e"
+          ],
+          "assembly": false
+        }
+      ],
+      "source_url": "https://github.com/CoconutDevelopment/CocobustorZero/tree/052e6c321a7e3fffad5057ce1e9f87de38f0e867",
+      "source_commit": "052e6c321a7e3fffad5057ce1e9f87de38f0e867",
+      "source_version": "CocobustorZero · 052e6c321a7e",
+      "source_sha256": "b7bf0dea660395ce5eb6b1da634e075c2d9c052c28473e5b9ca56b860bcc6553",
+      "source_sha256_label": "Source receipt SHA256",
+      "license": "GPL-3.0",
+      "license_url": "https://github.com/CoconutDevelopment/CocobustorZero/blob/052e6c321a7e3fffad5057ce1e9f87de38f0e867/LICENSE",
+      "notes": "Source parts only; complete printer assembly, installation and motion remain unverified. Original geometry is retained; built-in supports have not been isolated.",
+      "machine_installation_verified": false
     }
   ],
   "assets": {
@@ -4676,6 +4885,144 @@
           "encoding": "gzip",
           "decoded_bytes": 123843388,
           "decoded_sha256": "3e5520f20e7f9a1e4d800c23894ebfe8dc9e04cd0d33cd46b9caa053fa484c95"
+        }
+      }
+    },
+    "v0mod_cocobustorzero_awd_coconut_v2": {
+      "component_id": "v0mod_cocobustorzero_awd_coconut_v2",
+      "parts": 5,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/",
+        "local_directory": "large-voron-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "cocobustorzero-v1/v0mod_cocobustorzero_awd_coconut_v2/parts.json",
+          "bytes": 4917,
+          "sha256": "0865b0b10c8e66aff1f70d44c0090993cccece7b8e0240532030deaee28a73f5"
+        },
+        "model.glb": {
+          "path": "cocobustorzero-v1/v0mod_cocobustorzero_awd_coconut_v2/model.glb.gz",
+          "bytes": 1189094,
+          "sha256": "b1bce37f51b40f019fcbff0f766cb85319cf698dd474ecd8d875dc94906d6bd7",
+          "encoding": "gzip",
+          "decoded_bytes": 4360656,
+          "decoded_sha256": "7605f5fba7945a479f29faf6ae95da1a159ebfc379364c3b7ca7c88f52b2a06e"
+        }
+      }
+    },
+    "v0mod_cocobustorzero_ulw_x": {
+      "component_id": "v0mod_cocobustorzero_ulw_x",
+      "parts": 6,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/",
+        "local_directory": "large-voron-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "cocobustorzero-v1/v0mod_cocobustorzero_ulw_x/parts.json",
+          "bytes": 6031,
+          "sha256": "a387e7ad7a33250f4953a8088975d355fdc7cf160d9ecaaa3a1ae2ef4598c05c"
+        },
+        "model.glb": {
+          "path": "cocobustorzero-v1/v0mod_cocobustorzero_ulw_x/model.glb.gz",
+          "bytes": 600624,
+          "sha256": "64d59a3d9fcd8be218413ef06739dc81528ecd0d2c5d2eb63785429c2e78c6ed",
+          "encoding": "gzip",
+          "decoded_bytes": 2094044,
+          "decoded_sha256": "6d5e2fb7053f3e644132b3306e38b59ef9d1deac05963650e35c086bd382e017"
+        }
+      }
+    },
+    "v0mod_cocobustorzero_belted_z": {
+      "component_id": "v0mod_cocobustorzero_belted_z",
+      "parts": 9,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/",
+        "local_directory": "large-voron-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "cocobustorzero-v1/v0mod_cocobustorzero_belted_z/parts.json",
+          "bytes": 8486,
+          "sha256": "a27cd54248535a2b1de244b400b864aa7691e31aaf56c3755aba5991e42a528b"
+        },
+        "model.glb": {
+          "path": "cocobustorzero-v1/v0mod_cocobustorzero_belted_z/model.glb.gz",
+          "bytes": 1039633,
+          "sha256": "7954031bf4b33785a9f53015777851ce305416e09503fcd14bb130a210e68372",
+          "encoding": "gzip",
+          "decoded_bytes": 3790552,
+          "decoded_sha256": "55876b50b3ef431716c92f1482c372b50ebd9287aac28712f576d5850c79dbe8"
+        }
+      }
+    },
+    "v0mod_cocobustorzero_m4max": {
+      "component_id": "v0mod_cocobustorzero_m4max",
+      "parts": 8,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/",
+        "local_directory": "large-voron-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "cocobustorzero-v1/v0mod_cocobustorzero_m4max/parts.json",
+          "bytes": 7438,
+          "sha256": "ec8e31a2089315cfe22f310d6be61a5d139a352bf193b49bfc88a65e4d42390f"
+        },
+        "model.glb": {
+          "path": "cocobustorzero-v1/v0mod_cocobustorzero_m4max/model.glb.gz",
+          "bytes": 572337,
+          "sha256": "5772cbdec6903f83a48e17c2e9b5deeee62993da289302bc975576ad9701076e",
+          "encoding": "gzip",
+          "decoded_bytes": 2030612,
+          "decoded_sha256": "a84eaadf1cb2e22b29cb32f3296570bd05597e16553d9a70cb7e2b36dc375292"
+        }
+      }
+    },
+    "v0mod_cocobustorzero_air_ducts": {
+      "component_id": "v0mod_cocobustorzero_air_ducts",
+      "parts": 1,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/",
+        "local_directory": "large-voron-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "cocobustorzero-v1/v0mod_cocobustorzero_air_ducts/parts.json",
+          "bytes": 1526,
+          "sha256": "126ee01f35d252415f3c99a5c122fd623b1e622a844fd5e32b581671574fca5c"
+        },
+        "model.glb": {
+          "path": "cocobustorzero-v1/v0mod_cocobustorzero_air_ducts/model.glb.gz",
+          "bytes": 1973484,
+          "sha256": "c2a87b7810978502c1d87188bae04e1395511d4de3fbece1c2f8bbc6e352423c",
+          "encoding": "gzip",
+          "decoded_bytes": 5754972,
+          "decoded_sha256": "ce9482ee21944c40eac9a8a9a74c31ed69ca087778f3b244238c024a17668d5e"
+        }
+      }
+    },
+    "v0mod_cocobustorzero_accessories": {
+      "component_id": "v0mod_cocobustorzero_accessories",
+      "parts": 6,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/",
+        "local_directory": "large-voron-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "cocobustorzero-v1/v0mod_cocobustorzero_accessories/parts.json",
+          "bytes": 5812,
+          "sha256": "542081947cdb8a0f8b299a6b687587ed93fb132b66f62a195ba4de128ce7f45c"
+        },
+        "model.glb": {
+          "path": "cocobustorzero-v1/v0mod_cocobustorzero_accessories/model.glb.gz",
+          "bytes": 369355,
+          "sha256": "0d7e65a9078dda1a6b2650be3c80e035f70a35118a9c33150e52248400bb4fbe",
+          "encoding": "gzip",
+          "decoded_bytes": 1396656,
+          "decoded_sha256": "b3577765491cf6e03dfe31bdf1fea164fdfeebea0aa6bb50b260226efa320883"
         }
       }
     }

@@ -11565,6 +11565,76 @@
       "kind": "template",
       "ja": "ベース {0}点 · アクセント {1}点 · 固定色の印刷部品 {2}点",
       "en": "Base {0} parts · accent {1} parts · fixed-color printed parts {2}"
+    },
+    "cocobustor.scope": {
+      "kind": "message",
+      "ja": "原本の部品単体表示です。完成機の組立・取付・可動は未検証です。原本形状を保持しており、埋め込みサポートは分離していません。",
+      "en": "Source parts only; complete printer assembly, installation and motion remain unverified. Original geometry is retained; built-in supports have not been isolated."
+    },
+    "cocobustor.scope_duct": {
+      "kind": "message",
+      "ja": "原本の部品単体表示です。完成機の組立・取付・可動は未検証です。原本形状を保持しており、埋め込みサポートは分離していません。右エアダクトはメッシュ修正待ちのため公開を保留しています。",
+      "en": "Source parts only; complete printer assembly, installation and motion remain unverified. Original geometry is retained; built-in supports have not been isolated. The right air duct is withheld pending mesh repair."
+    },
+    "cocobustor.receipt": {
+      "kind": "message",
+      "ja": "取得原本一覧 SHA256",
+      "en": "Source receipt SHA256"
+    },
+    "cocobustor.awd_coconut_v2": {
+      "kind": "message",
+      "ja": "CocobustorZero · Coconut V2 AWD · 原本部品",
+      "en": "CocobustorZero · Coconut V2 AWD · source parts"
+    },
+    "cocobustor.ulw_x": {
+      "kind": "message",
+      "ja": "CocobustorZero · 軽量Xガントリー · 原本部品",
+      "en": "CocobustorZero · ULW X gantry · source parts"
+    },
+    "cocobustor.view_ulw_x": {
+      "kind": "message",
+      "ja": "軽量Xガントリー",
+      "en": "ULW X gantry"
+    },
+    "cocobustor.belted_z": {
+      "kind": "message",
+      "ja": "CocobustorZero · ベルト式Z · 原本部品",
+      "en": "CocobustorZero · Thick belted Z · source parts"
+    },
+    "cocobustor.view_belted_z": {
+      "kind": "message",
+      "ja": "ベルト式Z",
+      "en": "Thick belted Z"
+    },
+    "cocobustor.m4max": {
+      "kind": "message",
+      "ja": "CocobustorZero · M4max · 原本部品",
+      "en": "CocobustorZero · M4max · source parts"
+    },
+    "cocobustor.air_ducts": {
+      "kind": "message",
+      "ja": "CocobustorZero · Coconutエアダクト · 原本部品",
+      "en": "CocobustorZero · Coconut air ducts · source parts"
+    },
+    "cocobustor.view_air_ducts": {
+      "kind": "message",
+      "ja": "Coconutエアダクト",
+      "en": "Coconut air ducts"
+    },
+    "cocobustor.accessories": {
+      "kind": "message",
+      "ja": "CocobustorZero · マウント・前方アイドラー・スプールホルダー · 原本部品",
+      "en": "CocobustorZero · Mounts, front idlers and spool holder · source parts"
+    },
+    "cocobustor.view_accessories": {
+      "kind": "message",
+      "ja": "マウント・前方アイドラー・スプールホルダー",
+      "en": "Mounts, front idlers and spool holder"
+    },
+    "cocobustor.scope_bed": {
+      "kind": "message",
+      "ja": "原本の部品単体表示です。完成機の組立・取付・可動は未検証です。原本形状を保持しており、埋め込みサポートは分離していません。ベッドマウントはメッシュ修正待ちのため公開を保留しています。",
+      "en": "Source parts only; complete printer assembly, installation and motion remain unverified. Original geometry is retained; built-in supports have not been isolated. The bed mount is withheld pending mesh repair."
     }
   }
 }

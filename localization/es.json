@@ -9165,6 +9165,62 @@
     "ui.head_printed_inventory": {
       "source_revision": "797baa62d6494af10258",
       "text": "Base: {0} piezas · acento: {1} piezas · piezas impresas de color fijo: {2}"
+    },
+    "cocobustor.scope": {
+      "source_revision": "716875d7262a651ed842",
+      "text": "Solo piezas originales; el montaje de la impresora completa, la instalación y el movimiento siguen sin verificar. Se conserva la geometría original; los soportes integrados no se han separado."
+    },
+    "cocobustor.scope_duct": {
+      "source_revision": "762bb05e17b319868c0a",
+      "text": "Solo piezas originales; el montaje de la impresora completa, la instalación y el movimiento siguen sin verificar. Se conserva la geometría original; los soportes integrados no se han separado. El conducto derecho se retiene hasta reparar su malla."
+    },
+    "cocobustor.receipt": {
+      "source_revision": "6e77cca1847fca38c8c3",
+      "text": "SHA256 del registro de fuentes"
+    },
+    "cocobustor.awd_coconut_v2": {
+      "source_revision": "b7dcc287ec9a00ade668",
+      "text": "CocobustorZero · Coconut V2 AWD · piezas originales"
+    },
+    "cocobustor.ulw_x": {
+      "source_revision": "5e000ca48f8f8c7e5e13",
+      "text": "CocobustorZero · pórtico X ULW · piezas originales"
+    },
+    "cocobustor.view_ulw_x": {
+      "source_revision": "654cba58141f6c3491df",
+      "text": "pórtico X ULW"
+    },
+    "cocobustor.belted_z": {
+      "source_revision": "9c6432a283087c044e5d",
+      "text": "CocobustorZero · eje Z por correa · piezas originales"
+    },
+    "cocobustor.view_belted_z": {
+      "source_revision": "5d658eb1c3990ce5d821",
+      "text": "eje Z por correa"
+    },
+    "cocobustor.m4max": {
+      "source_revision": "54405376a4e22670e829",
+      "text": "CocobustorZero · M4max · piezas originales"
+    },
+    "cocobustor.air_ducts": {
+      "source_revision": "dc8dfdccd9a5a941b52e",
+      "text": "CocobustorZero · conductos de aire Coconut · piezas originales"
+    },
+    "cocobustor.view_air_ducts": {
+      "source_revision": "ecea466024894cf1a12a",
+      "text": "conductos de aire Coconut"
+    },
+    "cocobustor.accessories": {
+      "source_revision": "9a3e5842eef9e4969763",
+      "text": "CocobustorZero · soportes, poleas delanteras y portabobinas · piezas originales"
+    },
+    "cocobustor.view_accessories": {
+      "source_revision": "686053c0426917844c83",
+      "text": "soportes, poleas delanteras y portabobinas"
+    },
+    "cocobustor.scope_bed": {
+      "source_revision": "79a6727b5488609fd7b9",
+      "text": "Solo piezas originales; el montaje de la impresora completa, la instalación y el movimiento siguen sin verificar. Se conserva la geometría original; los soportes integrados no se han separado. El soporte de cama se retiene hasta reparar su malla."
     }
   }
 }

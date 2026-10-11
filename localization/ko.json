@@ -9165,6 +9165,62 @@
     "ui.head_printed_inventory": {
       "source_revision": "797baa62d6494af10258",
       "text": "기본색 부품 {0}개 · 강조색 부품 {1}개 · 고정 색상 출력 부품 {2}개"
+    },
+    "cocobustor.scope": {
+      "source_revision": "716875d7262a651ed842",
+      "text": "원본 부품만 표시합니다. 완성 프린터의 조립, 장착 및 동작은 아직 검증되지 않았습니다. 원본 형상을 유지하며 내장 서포트는 분리하지 않았습니다."
+    },
+    "cocobustor.scope_duct": {
+      "source_revision": "762bb05e17b319868c0a",
+      "text": "원본 부품만 표시합니다. 완성 프린터의 조립, 장착 및 동작은 아직 검증되지 않았습니다. 원본 형상을 유지하며 내장 서포트는 분리하지 않았습니다. 오른쪽 에어 덕트는 메시 수정 전까지 공개를 보류합니다."
+    },
+    "cocobustor.receipt": {
+      "source_revision": "6e77cca1847fca38c8c3",
+      "text": "원본 목록 SHA256"
+    },
+    "cocobustor.awd_coconut_v2": {
+      "source_revision": "b7dcc287ec9a00ade668",
+      "text": "CocobustorZero · Coconut V2 AWD · 원본 부품"
+    },
+    "cocobustor.ulw_x": {
+      "source_revision": "5e000ca48f8f8c7e5e13",
+      "text": "CocobustorZero · ULW X 갠트리 · 원본 부품"
+    },
+    "cocobustor.view_ulw_x": {
+      "source_revision": "654cba58141f6c3491df",
+      "text": "ULW X 갠트리"
+    },
+    "cocobustor.belted_z": {
+      "source_revision": "9c6432a283087c044e5d",
+      "text": "CocobustorZero · 벨트식 Z · 원본 부품"
+    },
+    "cocobustor.view_belted_z": {
+      "source_revision": "5d658eb1c3990ce5d821",
+      "text": "벨트식 Z"
+    },
+    "cocobustor.m4max": {
+      "source_revision": "54405376a4e22670e829",
+      "text": "CocobustorZero · M4max · 원본 부품"
+    },
+    "cocobustor.air_ducts": {
+      "source_revision": "dc8dfdccd9a5a941b52e",
+      "text": "CocobustorZero · Coconut 에어 덕트 · 원본 부품"
+    },
+    "cocobustor.view_air_ducts": {
+      "source_revision": "ecea466024894cf1a12a",
+      "text": "Coconut 에어 덕트"
+    },
+    "cocobustor.accessories": {
+      "source_revision": "9a3e5842eef9e4969763",
+      "text": "CocobustorZero · 마운트, 전면 아이들러 및 스풀 홀더 · 원본 부품"
+    },
+    "cocobustor.view_accessories": {
+      "source_revision": "686053c0426917844c83",
+      "text": "마운트, 전면 아이들러 및 스풀 홀더"
+    },
+    "cocobustor.scope_bed": {
+      "source_revision": "79a6727b5488609fd7b9",
+      "text": "원본 부품만 표시합니다. 완성 프린터의 조립, 장착 및 동작은 아직 검증되지 않았습니다. 원본 형상을 유지하며 내장 서포트는 분리하지 않았습니다. 베드 마운트는 메시 수정 전까지 공개를 보류합니다."
     }
   }
 }
