@@ -1,0 +1,216 @@
+{
+  "schema": "ducky0-source-parts-124",
+  "source_repository": "https://github.com/Ducky28/Ducky0",
+  "source_commit": "a831046bed5624bc98ab2a42843d2d5ae851755a",
+  "source_commit_date": "2024-11-14",
+  "declared_license": "GPL-3.0",
+  "acquired_files": [
+    {
+      "path": "BOM/Google Sheets BOM.md",
+      "bytes": 121,
+      "git_blob_sha1": "9bbabbeedb86ac929ed8785d6385fab1e0087487",
+      "revision": "a831046bed5624bc98ab2a42843d2d5ae851755a",
+      "url": "https://raw.githubusercontent.com/Ducky28/Ducky0/a831046bed5624bc98ab2a42843d2d5ae851755a/BOM/Google%20Sheets%20BOM.md",
+      "sha256": "69485c35e1b02a9e7bda872deee0ec3d09f50ea20e1bd24c7a1dbcb544362bce"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 35149,
+      "git_blob_sha1": "f288702d2fa16d3cdf0035b15a9fcbc552cd88e7",
+      "revision": "a831046bed5624bc98ab2a42843d2d5ae851755a",
+      "url": "https://raw.githubusercontent.com/Ducky28/Ducky0/a831046bed5624bc98ab2a42843d2d5ae851755a/LICENSE",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7301,
+      "git_blob_sha1": "d24dc2f703527d8cfd8bfe1b4ac870dd3f6f7982",
+      "revision": "a831046bed5624bc98ab2a42843d2d5ae851755a",
+      "url": "https://raw.githubusercontent.com/Ducky28/Ducky0/a831046bed5624bc98ab2a42843d2d5ae851755a/README.md",
+      "sha256": "75729e354bb1ef48bc9c241002bc93ab69eb3dc33635cafd5d99276dc9132f17"
+    },
+    {
+      "path": "STLs/12032 Motor cooling bracket top left.stl",
+      "bytes": 92084,
+      "git_blob_sha1": "bbb1313d1626101037740b52980bdb10200f2398",
+      "revision": "a831046bed5624bc98ab2a42843d2d5ae851755a",
+      "url": "https://raw.githubusercontent.com/Ducky28/Ducky0/a831046bed5624bc98ab2a42843d2d5ae851755a/STLs/12032%20Motor%20cooling%20bracket%20top%20left.stl",
+      "sha256": "596de48f320c66b9132164235b7a417e4e46ac5f99bcba393d0b93b564cbd58c"
+    },
+    {
+      "path": "STLs/12032 motor cooling bracket bottom left.stl",
+      "bytes": 162684,
+      "git_blob_sha1": "76e27bf45b91d0b994d0d2fb718434eaf1f0ffda",
+      "revision": "a831046bed5624bc98ab2a42843d2d5ae851755a",
+      "url": "https://raw.githubusercontent.com/Ducky28/Ducky0/a831046bed5624bc98ab2a42843d2d5ae851755a/STLs/12032%20motor%20cooling%20bracket%20bottom%20left.stl",
+      "sha256": "c0f9482a1b3b9304bd8c56672e17cc5400ad9543aae89cad603a1f45af1fa9d0"
+    },
+    {
+      "path": "STLs/12032 motor cooling bracket.stl",
+      "bytes": 119284,
+      "git_blob_sha1": "b980707db08a4bf321208fe732739117a456b526",
+      "revision": "a831046bed5624bc98ab2a42843d2d5ae851755a",
+      "url": "https://raw.githubusercontent.com/Ducky28/Ducky0/a831046bed5624bc98ab2a42843d2d5ae851755a/STLs/12032%20motor%20cooling%20bracket.stl",
+      "sha256": "770d2d8790193f6d10c0d324f3f3a953098bdc1a4d9f3bf8578aff1e4b872c29"
+    },
+    {
+      "path": "STLs/12032 motor cooling top bracket.stl",
+      "bytes": 92084,
+      "git_blob_sha1": "dc62d923a72ae323fb01647d99447973c0ae84f9",
+      "revision": "a831046bed5624bc98ab2a42843d2d5ae851755a",
+      "url": "https://raw.githubusercontent.com/Ducky28/Ducky0/a831046bed5624bc98ab2a42843d2d5ae851755a/STLs/12032%20motor%20cooling%20top%20bracket.stl",
+      "sha256": "48d54eef4d5859287e991375aec96a5f14ec858cec695b81e55b1bf7f97aee53"
+    },
+    {
+      "path": "STLs/FT BTT Pi TFT70 Screen enclosure mount.stl",
+      "bytes": 69884,
+      "git_blob_sha1": "0081531781738e282ac505224b3db345bcec1876",
+      "revision": "a831046bed5624bc98ab2a42843d2d5ae851755a",
+      "url": "https://raw.githubusercontent.com/Ducky28/Ducky0/a831046bed5624bc98ab2a42843d2d5ae851755a/STLs/FT%20BTT%20Pi%20TFT70%20Screen%20enclosure%20mount.stl",
+      "sha256": "34383971152a0a1115a69009dcbc10503b5e188299567ab6b402aa0c2a3fcf67"
+    },
+    {
+      "path": "STLs/USB Hub Mount.stl",
+      "bytes": 200684,
+      "git_blob_sha1": "ca104bbaa7d1a4a6577b6ff3f21ee15b2bdac39f",
+      "revision": "a831046bed5624bc98ab2a42843d2d5ae851755a",
+      "url": "https://raw.githubusercontent.com/Ducky28/Ducky0/a831046bed5624bc98ab2a42843d2d5ae851755a/STLs/USB%20Hub%20Mount.stl",
+      "sha256": "86c21a8ade97707fe355bcf4bc067752882691bba3981916fea12d854870e01d"
+    },
+    {
+      "path": "STLs/v0.2 bottom panel.stl",
+      "bytes": 2493884,
+      "git_blob_sha1": "c12c510ae5922791d42b8db7ec1962690db9779a",
+      "revision": "a831046bed5624bc98ab2a42843d2d5ae851755a",
+      "url": "https://raw.githubusercontent.com/Ducky28/Ducky0/a831046bed5624bc98ab2a42843d2d5ae851755a/STLs/v0.2%20bottom%20panel.stl",
+      "sha256": "2e12f149c45d7357cc2cbf171ac9af8bfad8f67ae2f3f1d2b573fe2ca622550e"
+    },
+    {
+      "path": "firmwares/printer.cfg",
+      "bytes": 38590,
+      "git_blob_sha1": "5047bda1520a55ca9f1704b7493340f8748f35c0",
+      "revision": "a831046bed5624bc98ab2a42843d2d5ae851755a",
+      "url": "https://raw.githubusercontent.com/Ducky28/Ducky0/a831046bed5624bc98ab2a42843d2d5ae851755a/firmwares/printer.cfg",
+      "sha256": "cb8ad777c6d9b4eb2491c2ace60bba9896ca49c3b15530ee17520c1852368993"
+    }
+  ],
+  "included_stl_files": [
+    {
+      "path": "STLs/12032 Motor cooling bracket top left.stl",
+      "bytes": 92084,
+      "git_blob_sha1": "bbb1313d1626101037740b52980bdb10200f2398",
+      "revision": "a831046bed5624bc98ab2a42843d2d5ae851755a",
+      "url": "https://raw.githubusercontent.com/Ducky28/Ducky0/a831046bed5624bc98ab2a42843d2d5ae851755a/STLs/12032%20Motor%20cooling%20bracket%20top%20left.stl",
+      "sha256": "596de48f320c66b9132164235b7a417e4e46ac5f99bcba393d0b93b564cbd58c"
+    },
+    {
+      "path": "STLs/12032 motor cooling bracket bottom left.stl",
+      "bytes": 162684,
+      "git_blob_sha1": "76e27bf45b91d0b994d0d2fb718434eaf1f0ffda",
+      "revision": "a831046bed5624bc98ab2a42843d2d5ae851755a",
+      "url": "https://raw.githubusercontent.com/Ducky28/Ducky0/a831046bed5624bc98ab2a42843d2d5ae851755a/STLs/12032%20motor%20cooling%20bracket%20bottom%20left.stl",
+      "sha256": "c0f9482a1b3b9304bd8c56672e17cc5400ad9543aae89cad603a1f45af1fa9d0"
+    },
+    {
+      "path": "STLs/12032 motor cooling bracket.stl",
+      "bytes": 119284,
+      "git_blob_sha1": "b980707db08a4bf321208fe732739117a456b526",
+      "revision": "a831046bed5624bc98ab2a42843d2d5ae851755a",
+      "url": "https://raw.githubusercontent.com/Ducky28/Ducky0/a831046bed5624bc98ab2a42843d2d5ae851755a/STLs/12032%20motor%20cooling%20bracket.stl",
+      "sha256": "770d2d8790193f6d10c0d324f3f3a953098bdc1a4d9f3bf8578aff1e4b872c29"
+    },
+    {
+      "path": "STLs/12032 motor cooling top bracket.stl",
+      "bytes": 92084,
+      "git_blob_sha1": "dc62d923a72ae323fb01647d99447973c0ae84f9",
+      "revision": "a831046bed5624bc98ab2a42843d2d5ae851755a",
+      "url": "https://raw.githubusercontent.com/Ducky28/Ducky0/a831046bed5624bc98ab2a42843d2d5ae851755a/STLs/12032%20motor%20cooling%20top%20bracket.stl",
+      "sha256": "48d54eef4d5859287e991375aec96a5f14ec858cec695b81e55b1bf7f97aee53"
+    },
+    {
+      "path": "STLs/FT BTT Pi TFT70 Screen enclosure mount.stl",
+      "bytes": 69884,
+      "git_blob_sha1": "0081531781738e282ac505224b3db345bcec1876",
+      "revision": "a831046bed5624bc98ab2a42843d2d5ae851755a",
+      "url": "https://raw.githubusercontent.com/Ducky28/Ducky0/a831046bed5624bc98ab2a42843d2d5ae851755a/STLs/FT%20BTT%20Pi%20TFT70%20Screen%20enclosure%20mount.stl",
+      "sha256": "34383971152a0a1115a69009dcbc10503b5e188299567ab6b402aa0c2a3fcf67"
+    },
+    {
+      "path": "STLs/USB Hub Mount.stl",
+      "bytes": 200684,
+      "git_blob_sha1": "ca104bbaa7d1a4a6577b6ff3f21ee15b2bdac39f",
+      "revision": "a831046bed5624bc98ab2a42843d2d5ae851755a",
+      "url": "https://raw.githubusercontent.com/Ducky28/Ducky0/a831046bed5624bc98ab2a42843d2d5ae851755a/STLs/USB%20Hub%20Mount.stl",
+      "sha256": "86c21a8ade97707fe355bcf4bc067752882691bba3981916fea12d854870e01d"
+    }
+  ],
+  "withheld_stl_files": [
+    {
+      "path": "STLs/v0.2 bottom panel.stl",
+      "bytes": 2493884,
+      "git_blob_sha1": "c12c510ae5922791d42b8db7ec1962690db9779a",
+      "revision": "a831046bed5624bc98ab2a42843d2d5ae851755a",
+      "url": "https://raw.githubusercontent.com/Ducky28/Ducky0/a831046bed5624bc98ab2a42843d2d5ae851755a/STLs/v0.2%20bottom%20panel.stl",
+      "sha256": "2e12f149c45d7357cc2cbf171ac9af8bfad8f67ae2f3f1d2b573fe2ca622550e",
+      "reason": "The cited original bottom panel is CC-BY-NC-4.0; remix redistribution terms require clarification."
+    }
+  ],
+  "components": [
+    "v0mod_ducky0_motor_cooling",
+    "v0mod_ducky0_electronics_mounts"
+  ],
+  "complete_machine": false,
+  "machine_installation_verified": false,
+  "native_assembly_supplied": false,
+  "source_tree_geometry_formats": [
+    "STL"
+  ],
+  "supports_removed": false,
+  "support_isolation_verified": false,
+  "source_units": "mm",
+  "viewer_material_policy": "All six included original printed parts use the viewer base palette. STL has no authored materials or accent identities.",
+  "source_references": [
+    {
+      "name": "Original printed bottom panel",
+      "author": "Cthulhu",
+      "url": "https://www.printables.com/model/467247-voron-02-printed-bottom-panel",
+      "license": "CC-BY-NC-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "license_observed": "2026-10-11",
+      "scope": "README attribution for the withheld Ducky0 bottom-panel remix"
+    },
+    {
+      "name": "FT BTT Pi TFT70 screen mount",
+      "author": "Fizzy / @FizzysTech",
+      "url": "https://www.printables.com/model/581227-ft-btt-pi-tft70-screen-mount",
+      "license": "CC-BY-SA-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "license_observed": "2026-10-11",
+      "compatibility_url": "https://creativecommons.org/compatible-licenses/",
+      "scope": "README credit for the screen mount. Original CC terms retained; Ducky0 contributions declared GPL-3.0. Only the Ducky0 attachment STL is included; exact original file revision and full screen assembly are not supplied."
+    },
+    {
+      "name": "Deconstruder",
+      "url": "https://github.com/TheRealDeathsneeze/Deconstruder",
+      "scope": "Linked original toolhead, not included by this source-part collection"
+    },
+    {
+      "name": "Double shear AB mounts",
+      "url": "https://github.com/Driftrotor/Voron-V0.2r1-Double-Shear-AB-Motor-Mounts",
+      "scope": "Linked original mounts, not substituted with the cooling brackets"
+    },
+    {
+      "name": "CocobustorZero",
+      "url": "https://github.com/CoconutDevelopment/CocobustorZero",
+      "scope": "Linked original ducts/feet; not duplicated or inferred as installed"
+    }
+  ],
+  "open_findings": [
+    "Complete Ducky0 assembly, hardware completeness and source-specific installation transforms are not supplied.",
+    "The TFT70 attachment has no established inherited-geometry history, exact original file revision or preferred modification source.",
+    "The linked Deconstruder native CAD has no explicit reuse grant in its inspected public tree.",
+    "No native-solid installation, complete companion review, continuous clearance or installed motion is certified.",
+    "Source-specific embedded support identities have not been isolated.",
+    "README speed, acceleration, temperature and flow values are not certified simulator limits."
+  ]
+}

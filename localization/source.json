@@ -11635,6 +11635,36 @@
       "kind": "message",
       "ja": "原本の部品単体表示です。完成機の組立・取付・可動は未検証です。原本形状を保持しており、埋め込みサポートは分離していません。ベッドマウントはメッシュ修正待ちのため公開を保留しています。",
       "en": "Source parts only; complete printer assembly, installation and motion remain unverified. Original geometry is retained; built-in supports have not been isolated. The bed mount is withheld pending mesh repair."
+    },
+    "ducky0.motor_cooling": {
+      "kind": "message",
+      "ja": "Ducky0 · 12032モーター冷却ブラケット · 原本部品",
+      "en": "Ducky0 · 12032 motor cooling brackets · source parts"
+    },
+    "ducky0.electronics_mounts": {
+      "kind": "message",
+      "ja": "Ducky0 · 画面・USBハブのマウント · 原本部品",
+      "en": "Ducky0 · Screen and USB hub mounts · source parts"
+    },
+    "ducky0.view_motor_cooling": {
+      "kind": "message",
+      "ja": "12032モーター冷却ブラケット",
+      "en": "12032 motor cooling brackets"
+    },
+    "ducky0.view_electronics_mounts": {
+      "kind": "message",
+      "ja": "画面・USBハブのマウント",
+      "en": "Screen and USB hub mounts"
+    },
+    "ducky0.scope": {
+      "kind": "message",
+      "ja": "原本の部品単体表示です。完成機の組立・取付・可動は未検証です。原本形状と埋め込みサポートを保持しています。色はビューアーの配色で、STLに原本の材質情報はありません。",
+      "en": "Source parts only; complete printer assembly, installation and motion remain unverified. Original geometry and built-in supports are retained. Colors use the viewer palette; STL files have no authored materials."
+    },
+    "component.single_part": {
+      "kind": "message",
+      "ja": "部品単体",
+      "en": "Individual component"
     }
   }
 }

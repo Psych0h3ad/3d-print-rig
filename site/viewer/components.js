@@ -8,7 +8,7 @@ import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
 import {loadExternalComponent} from './component-assets.mjs?v=9f8ef058f1297ab60e53';
-import {setupPublicInfo} from './public-info.js?v=e48932944b6743c81085';
+import {setupPublicInfo} from './public-info.js?v=71eab04dbc4d8dabd597';
 import {setupRenderExport} from './render-export.js?v=a5e4bcf57f5a8e07dcba';
 import {partNodes,selectParts,visibleBounds} from './component-selection.js?v=workspace-belts-1';
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
@@ -29,6 +29,13 @@ function fit(){if(!current)return;const box=visibleBounds(current),center=box.ge
 function resize(){const b=stage.getBoundingClientRect();renderer.setSize(b.width,b.height,false);camera.aspect=b.width/b.height;camera.updateProjectionMatrix();fit();dirty=true}
 new WorkspaceResizeObserver(resize).observe(stage);controls.addEventListener('change',()=>{dirty=true});renderer.setAnimationLoop(()=>{if(dirty){renderer.render(scene,camera);dirty=false}});
 const paragraph=text=>{const p=document.createElement('p');p.textContent=text;return p};
+function componentStatus(label,detail){
+ // Translate complete labels independently; a generic status template must
+ // not split a source-part collection name into partially translated words.
+ const name=document.createElement('span'),part=document.createElement('span');
+ name.textContent=label;part.textContent=detail;
+ $('#componentStatus').replaceChildren(name,document.createTextNode(' · '),part);
+}
 function syncURL(selection){
  const url=new URL(location.href);url.searchParams.set('component',currentItem.id);
  for(const key of ['view','part']){const value=key==='view'?selection?.view.id:selection?.part;if(value)url.searchParams.set(key,value);else url.searchParams.delete(key)}
@@ -48,7 +55,7 @@ function setSelection(entry,wanted={}){
  viewSelect.onchange=()=>applySelection(entry,{view:viewSelect.value});
  partSelect.onchange=()=>applySelection(entry,{view:viewSelect.value,part:partSelect.value});
  remembered.set(currentItem.id,{view:selection.view.id,part:selection.part});
- $('#componentStatus').textContent=currentItem.label+' · '+(selection.part==='all'?selection.view.label:selection.view.parts.find(p=>p.key===selection.part).label);
+ componentStatus(currentItem.label,selection.part==='all'?selection.view.label:selection.view.parts.find(p=>p.key===selection.part).label);
  $('#componentSelectionInfo').textContent=`${keys.length} / ${entry.meta.parts.length} 部品を表示`;
  $('#componentSelectionInfo').hidden=false;syncURL(selection);fit();
 }
@@ -85,7 +92,7 @@ async function install(id,initial=false){return workspaceTask(async()=>{
   if(entry.views)setSelection(entry,wanted);
   else{
    $('#componentViewOptions').hidden=true;$('#componentPartOptions').hidden=true;$('#componentSelectionInfo').hidden=true;
-   $('#componentStatus').textContent=item.label+' · 部品単体';syncURL();fit();
+   componentStatus(item.label,'部品単体');syncURL();fit();
   }
   const representation=item.representation==='3MF'?'3MF原本の印刷部品':item.representation==='STL'?'STL原本の印刷部品':item.representation==='integration_surfaces'?'開いた組込み参照面':item.solids+'ソリッド';
   const details=$('#componentDetails');details.replaceChildren(paragraph(item.manufacturer),paragraph(`${representation} · ${item.source_version}`));

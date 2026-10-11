@@ -3827,6 +3827,70 @@
       "license_url": "https://github.com/CoconutDevelopment/CocobustorZero/blob/052e6c321a7e3fffad5057ce1e9f87de38f0e867/LICENSE",
       "notes": "Source parts only; complete printer assembly, installation and motion remain unverified. Original geometry is retained; built-in supports have not been isolated.",
       "machine_installation_verified": false
+    },
+    {
+      "id": "v0mod_ducky0_motor_cooling",
+      "module": "v0mod_ducky0_motor_cooling",
+      "kind": "mod",
+      "category": "v0-motion",
+      "label": "Ducky0 · 12032 motor cooling brackets · source parts",
+      "manufacturer": "Ducky28",
+      "representation": "STL",
+      "solids": 4,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "motor-cooling",
+          "label": "12032 motor cooling brackets",
+          "parts": [
+            "ducky0_bbb1313d16261010",
+            "ducky0_76e27bf45b91d0b9",
+            "ducky0_b980707db08a4bf3",
+            "ducky0_dc62d923a72ae323"
+          ],
+          "assembly": false
+        }
+      ],
+      "source_url": "https://github.com/Ducky28/Ducky0/tree/a831046bed5624bc98ab2a42843d2d5ae851755a",
+      "source_commit": "a831046bed5624bc98ab2a42843d2d5ae851755a",
+      "source_version": "Ducky0 · a831046bed56",
+      "source_sha256_label": "Source receipt SHA256",
+      "license": "GPL-3.0",
+      "license_url": "https://github.com/Ducky28/Ducky0/blob/a831046bed5624bc98ab2a42843d2d5ae851755a/LICENSE",
+      "notes": "Source parts only; complete printer assembly, installation and motion remain unverified. Original geometry and built-in supports are retained. Colors use the viewer palette; STL files have no authored materials.",
+      "machine_installation_verified": false,
+      "source_sha256": "6fd60a1b1d05aef538d3072c5621828ece87a4ba1d523a320131de4259d838cf"
+    },
+    {
+      "id": "v0mod_ducky0_electronics_mounts",
+      "module": "v0mod_ducky0_electronics_mounts",
+      "kind": "mod",
+      "category": "v0-wiring",
+      "label": "Ducky0 · Screen and USB hub mounts · source parts",
+      "manufacturer": "Ducky28",
+      "representation": "STL",
+      "solids": 2,
+      "select_parts": true,
+      "views": [
+        {
+          "id": "electronics-mounts",
+          "label": "Screen and USB hub mounts",
+          "parts": [
+            "ducky0_0081531781738e28",
+            "ducky0_ca104bbaa7d1a4a6"
+          ],
+          "assembly": false
+        }
+      ],
+      "source_url": "https://github.com/Ducky28/Ducky0/tree/a831046bed5624bc98ab2a42843d2d5ae851755a",
+      "source_commit": "a831046bed5624bc98ab2a42843d2d5ae851755a",
+      "source_version": "Ducky0 · a831046bed56",
+      "source_sha256_label": "Source receipt SHA256",
+      "license": "GPL-3.0",
+      "license_url": "https://github.com/Ducky28/Ducky0/blob/a831046bed5624bc98ab2a42843d2d5ae851755a/LICENSE",
+      "notes": "Source parts only; complete printer assembly, installation and motion remain unverified. Original geometry and built-in supports are retained. Colors use the viewer palette; STL files have no authored materials.",
+      "machine_installation_verified": false,
+      "source_sha256": "6fd60a1b1d05aef538d3072c5621828ece87a4ba1d523a320131de4259d838cf"
     }
   ],
   "assets": {
@@ -5023,6 +5087,52 @@
           "encoding": "gzip",
           "decoded_bytes": 1396656,
           "decoded_sha256": "b3577765491cf6e03dfe31bdf1fea164fdfeebea0aa6bb50b260226efa320883"
+        }
+      }
+    },
+    "v0mod_ducky0_motor_cooling": {
+      "component_id": "v0mod_ducky0_motor_cooling",
+      "parts": 4,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/",
+        "local_directory": "large-voron-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "ducky0-v1/v0mod_ducky0_motor_cooling/parts.json",
+          "bytes": 4503,
+          "sha256": "961b07d30aca04a02e0002b338e516602d58e313fd389dd33437be7414c23b1d"
+        },
+        "model.glb": {
+          "path": "ducky0-v1/v0mod_ducky0_motor_cooling/model.glb.gz",
+          "bytes": 95593,
+          "sha256": "0bf3bfcb60634058c377fe4cf09858ff366249cb35c166abe61905370d39290b",
+          "encoding": "gzip",
+          "decoded_bytes": 452612,
+          "decoded_sha256": "0d694b53cf0fe7c4ae7b65349db58564f2e35ee7cb6409cc2eef22b59622c31f"
+        }
+      }
+    },
+    "v0mod_ducky0_electronics_mounts": {
+      "component_id": "v0mod_ducky0_electronics_mounts",
+      "parts": 2,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/",
+        "local_directory": "large-voron-models-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "ducky0-v1/v0mod_ducky0_electronics_mounts/parts.json",
+          "bytes": 2526,
+          "sha256": "520ee28f0f6c1398c995c2645f6f091720e0f3fa12514624a27101e811a20a36"
+        },
+        "model.glb": {
+          "path": "ducky0-v1/v0mod_ducky0_electronics_mounts/model.glb.gz",
+          "bytes": 68102,
+          "sha256": "8c1c4f5f12ea332917fe109c4ee8ec4879f84aad10e757cb765c513f0767d528",
+          "encoding": "gzip",
+          "decoded_bytes": 304532,
+          "decoded_sha256": "71e820c76e11d5ab4336ea01d6bc59f00d597e2b6fae5f36d227316c62e0aa27"
         }
       }
     }

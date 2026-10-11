@@ -1,8 +1,8 @@
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {setupMachineNavigation} from './machines.js?v=f884e9be087c61766aae';
-import {machineAssetsAvailable,showMissingAssets} from './asset-availability.js?v=b0f31499a9701d6a4167';
+import {machineAssetsAvailable,showMissingAssets} from './asset-availability.js?v=f84f1610755a2c6bb07b';
 export async function mount(scope){
- if(await machineAssetsAvailable('siboor_v24_350'))await (await import('./v24-app.js?v=d7b1e2c5aaef2b71151d')).mount(scope);
+ if(await machineAssetsAvailable('siboor_v24_350'))await (await import('./v24-app.js?v=32b10d8e65f7e4b2aaba')).mount(scope);
  else{setupMachineNavigation('siboor_v24_350');await showMissingAssets()}
 }

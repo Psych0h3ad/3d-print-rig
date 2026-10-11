@@ -9221,6 +9221,30 @@
     "cocobustor.scope_bed": {
       "source_revision": "79a6727b5488609fd7b9",
       "text": "원본 부품만 표시합니다. 완성 프린터의 조립, 장착 및 동작은 아직 검증되지 않았습니다. 원본 형상을 유지하며 내장 서포트는 분리하지 않았습니다. 베드 마운트는 메시 수정 전까지 공개를 보류합니다."
+    },
+    "ducky0.motor_cooling": {
+      "source_revision": "fc70dbea9e3b18021142",
+      "text": "Ducky0 · 12032 모터 냉각 브래킷 · 원본 부품"
+    },
+    "ducky0.electronics_mounts": {
+      "source_revision": "a32364499c38225df6f4",
+      "text": "Ducky0 · 화면 및 USB 허브 마운트 · 원본 부품"
+    },
+    "ducky0.view_motor_cooling": {
+      "source_revision": "483bbbdd03445698c567",
+      "text": "12032 모터 냉각 브래킷"
+    },
+    "ducky0.view_electronics_mounts": {
+      "source_revision": "668b8d2f9031d5dde354",
+      "text": "화면 및 USB 허브 마운트"
+    },
+    "ducky0.scope": {
+      "source_revision": "d6463d6e82a22907b1e7",
+      "text": "원본 부품만 표시합니다. 프린터 전체 조립, 장착 및 동작은 아직 검증되지 않았습니다. 원본 형상과 내장 서포트를 유지합니다. 색상은 뷰어 팔레트를 사용하며 STL 파일에는 원본 재질 정보가 없습니다."
+    },
+    "component.single_part": {
+      "source_revision": "6744d37c2b0b9455ac85",
+      "text": "개별 부품"
     }
   }
 }

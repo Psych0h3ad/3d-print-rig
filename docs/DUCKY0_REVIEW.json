@@ -1,0 +1,873 @@
+{
+  "schema": "ducky0-source-review-124",
+  "source_commit": "a831046bed5624bc98ab2a42843d2d5ae851755a",
+  "reviewed_at_utc": "2026-10-11T10:53:18.644899+00:00",
+  "scope": "Exact public STL identity and exported geometry/materials; native installation and continuous clearance remain open",
+  "source_parts_audited": 7,
+  "retained_parts": 6,
+  "withheld_parts": 1,
+  "source_triangles": 64600,
+  "export_triangles": 14724,
+  "source_topology_passed": true,
+  "export_geometry_gate_passed": true,
+  "converter_sha256": "a48f6ddf3d70adf9e83834ff43c08f7938f4d6d8d3c270d3f79946c070c4cc92",
+  "independent_auditor_sha256": "28c1773d50d4f1dcb2e00cb1843a6e3cd24f3fdc120d43014e2bf13d7df5b748",
+  "source_receipt_sha256": "6fd60a1b1d05aef538d3072c5621828ece87a4ba1d523a320131de4259d838cf",
+  "files": [
+    {
+      "path": "v0mod_ducky0_electronics_mounts/LICENSE",
+      "bytes": 35149,
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "v0mod_ducky0_electronics_mounts/NOTICE.txt",
+      "bytes": 1131,
+      "sha256": "cb5f74372674ae674c76c692875f30c2652538014b92bd2290346ddc17c99774"
+    },
+    {
+      "path": "v0mod_ducky0_electronics_mounts/SOURCE_FILES.json",
+      "bytes": 870,
+      "sha256": "a1f372b606da9533efe65946297d6f43ece7555dea0bd1ddc6cc9b3e03f96016"
+    },
+    {
+      "path": "v0mod_ducky0_electronics_mounts/model.glb.gz",
+      "bytes": 68102,
+      "sha256": "8c1c4f5f12ea332917fe109c4ee8ec4879f84aad10e757cb765c513f0767d528"
+    },
+    {
+      "path": "v0mod_ducky0_electronics_mounts/parts.json",
+      "bytes": 2526,
+      "sha256": "520ee28f0f6c1398c995c2645f6f091720e0f3fa12514624a27101e811a20a36"
+    },
+    {
+      "path": "v0mod_ducky0_motor_cooling/LICENSE",
+      "bytes": 35149,
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "v0mod_ducky0_motor_cooling/NOTICE.txt",
+      "bytes": 482,
+      "sha256": "aad8161605e13381a5b530b26ce1ea876f81c73cbe2f41639d0a73f1f9db5351"
+    },
+    {
+      "path": "v0mod_ducky0_motor_cooling/SOURCE_FILES.json",
+      "bytes": 1801,
+      "sha256": "bec1717ee64e64cac6aa8d59cfe6ef3f925102d597b52ed39ead66cc8a1cff86"
+    },
+    {
+      "path": "v0mod_ducky0_motor_cooling/model.glb.gz",
+      "bytes": 95593,
+      "sha256": "0bf3bfcb60634058c377fe4cf09858ff366249cb35c166abe61905370d39290b"
+    },
+    {
+      "path": "v0mod_ducky0_motor_cooling/parts.json",
+      "bytes": 4503,
+      "sha256": "961b07d30aca04a02e0002b338e516602d58e313fd389dd33437be7414c23b1d"
+    }
+  ],
+  "payloads": [
+    {
+      "id": "v0mod_ducky0_motor_cooling",
+      "nodes": 4,
+      "triangles": 9316,
+      "glb_uncompressed_bytes": 452612,
+      "glb_uncompressed_sha256": "0d694b53cf0fe7c4ae7b65349db58564f2e35ee7cb6409cc2eef22b59622c31f",
+      "bin_bytes": 448728,
+      "bin_sha256": "3f14240845489218a711b2d8a5d98c45dc7d1c69f8b98b5a1d430cb0db9380ee",
+      "converter_sha256_canonical_lf": "a48f6ddf3d70adf9e83834ff43c08f7938f4d6d8d3c270d3f79946c070c4cc92",
+      "material": {
+        "name": "Printed base",
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.017641954488384078,
+            0.0202885630566524,
+            0.02518685962736163,
+            1
+          ],
+          "metallicFactor": 0,
+          "roughnessFactor": 0.7
+        }
+      },
+      "metadata_license": "GPL-3.0",
+      "notice_gate": "Source attribution, license links and change notices present; source/history limitations remain recorded."
+    },
+    {
+      "id": "v0mod_ducky0_electronics_mounts",
+      "nodes": 2,
+      "triangles": 5408,
+      "glb_uncompressed_bytes": 304532,
+      "glb_uncompressed_sha256": "71e820c76e11d5ab4336ea01d6bc59f00d597e2b6fae5f36d227316c62e0aa27",
+      "bin_bytes": 302448,
+      "bin_sha256": "aa8119a97481aec20b8b4c41d78aba56c151baa4e5e7dbd9b739306105afd385",
+      "converter_sha256_canonical_lf": "a48f6ddf3d70adf9e83834ff43c08f7938f4d6d8d3c270d3f79946c070c4cc92",
+      "material": {
+        "name": "Printed base",
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.017641954488384078,
+            0.0202885630566524,
+            0.02518685962736163,
+            1
+          ],
+          "metallicFactor": 0,
+          "roughnessFactor": 0.7
+        }
+      },
+      "metadata_license": "GPL-3.0",
+      "notice_gate": "Source attribution, license links and change notices present; source/history limitations remain recorded."
+    }
+  ],
+  "parts": [
+    {
+      "source_file": "STLs/12032 Motor cooling bracket top left.stl",
+      "part_key": "ducky0_bbb1313d16261010",
+      "triangles": 1840,
+      "vertices": 2766,
+      "source_sha256": "596de48f320c66b9132164235b7a417e4e46ac5f99bcba393d0b93b564cbd58c",
+      "source_git_blob_sha1": "bbb1313d1626101037740b52980bdb10200f2398",
+      "ordered_position_float32_sha256": "1192fbb1547e9e70a96ecbfa3a34a5cbee25fe24ac38d0a6442a699333fc1abc",
+      "ordered_expected_position_float32_sha256": "1192fbb1547e9e70a96ecbfa3a34a5cbee25fe24ac38d0a6442a699333fc1abc",
+      "ordered_corner_normal_float32_sha256": "efd56bc492e9f264c80d9731d7205dffd4836a4320c7c273dedbeb85f95485a9",
+      "max_source_coordinate_roundtrip_error_mm": 0.0000073909759521484375,
+      "max_gltf_coordinate_quantization_error_m": 7.390975942378475e-9,
+      "coordinate_mismatch_facets": [],
+      "normal_mismatch_facets": [],
+      "export_zero_area_facets": [],
+      "export_exact_zero_area_facets": [],
+      "exact_coordinate_vertex_counts": {
+        "source": 916,
+        "export": 916
+      },
+      "exact_export_topology": {
+        "edge_count": 2760,
+        "edge_incidence_histogram": {
+          "2": 2760
+        },
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "winding_conflict_edges": 0,
+        "self_edges": 0,
+        "duplicate_facet_groups": 0,
+        "disconnected_vertex_link_fans": 0,
+        "invalid_vertex_links": 0,
+        "edge_connected_components": 1
+      },
+      "export_geometry_normal_sign_flip_facets": [],
+      "minimum_export_geometric_normal_dot": 0.9999998240713397,
+      "minimum_source_stored_normal_dot": 0.9999999999999519,
+      "max_unit_normal_length_error": 3.971273887515281e-8,
+      "material_role": "base",
+      "gates": {
+        "ordered_vertices_equal_expected_float32": true,
+        "within_half_float32_ulp": true,
+        "facet_normals_equal_recomputed_source_float32": true,
+        "finite_unit_normals_tolerance_1e_6": true,
+        "no_export_degenerate_facets": true,
+        "no_exact_export_degenerate_facets": true,
+        "no_rounding_coordinate_merges_or_splits": true,
+        "exact_export_topology_closed_oriented_single_surface": true,
+        "normal_sign_matches_exported_geometry": true,
+        "normal_direction_cosine_at_least_0_999999": true,
+        "stable_source_identity_and_base_role": true,
+        "all_original_facets_retained": true
+      },
+      "pass": true
+    },
+    {
+      "source_file": "STLs/12032 motor cooling bracket bottom left.stl",
+      "part_key": "ducky0_76e27bf45b91d0b9",
+      "triangles": 3252,
+      "vertices": 4899,
+      "source_sha256": "c0f9482a1b3b9304bd8c56672e17cc5400ad9543aae89cad603a1f45af1fa9d0",
+      "source_git_blob_sha1": "76e27bf45b91d0b994d0d2fb718434eaf1f0ffda",
+      "ordered_position_float32_sha256": "52a41ac8a937d40645a5e3f3e6b27323853cfb7e1a0e2813b2fb172b73f65da3",
+      "ordered_expected_position_float32_sha256": "52a41ac8a937d40645a5e3f3e6b27323853cfb7e1a0e2813b2fb172b73f65da3",
+      "ordered_corner_normal_float32_sha256": "679d9919acf1ea618c35a657812caa47c0966d2c26e52d1c0ced40f301e14b6d",
+      "max_source_coordinate_roundtrip_error_mm": 0.0000036954879760742188,
+      "max_gltf_coordinate_quantization_error_m": 3.6954879850670252e-9,
+      "coordinate_mismatch_facets": [],
+      "normal_mismatch_facets": [],
+      "export_zero_area_facets": [],
+      "export_exact_zero_area_facets": [],
+      "exact_coordinate_vertex_counts": {
+        "source": 1620,
+        "export": 1620
+      },
+      "exact_export_topology": {
+        "edge_count": 4878,
+        "edge_incidence_histogram": {
+          "2": 4878
+        },
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "winding_conflict_edges": 0,
+        "self_edges": 0,
+        "duplicate_facet_groups": 0,
+        "disconnected_vertex_link_fans": 0,
+        "invalid_vertex_links": 0,
+        "edge_connected_components": 1
+      },
+      "export_geometry_normal_sign_flip_facets": [],
+      "minimum_export_geometric_normal_dot": 0.9999999506019028,
+      "minimum_source_stored_normal_dot": 0.9999999678608722,
+      "max_unit_normal_length_error": 3.513494495344105e-8,
+      "material_role": "base",
+      "gates": {
+        "ordered_vertices_equal_expected_float32": true,
+        "within_half_float32_ulp": true,
+        "facet_normals_equal_recomputed_source_float32": true,
+        "finite_unit_normals_tolerance_1e_6": true,
+        "no_export_degenerate_facets": true,
+        "no_exact_export_degenerate_facets": true,
+        "no_rounding_coordinate_merges_or_splits": true,
+        "exact_export_topology_closed_oriented_single_surface": true,
+        "normal_sign_matches_exported_geometry": true,
+        "normal_direction_cosine_at_least_0_999999": true,
+        "stable_source_identity_and_base_role": true,
+        "all_original_facets_retained": true
+      },
+      "pass": true
+    },
+    {
+      "source_file": "STLs/12032 motor cooling bracket.stl",
+      "part_key": "ducky0_b980707db08a4bf3",
+      "triangles": 2384,
+      "vertices": 3596,
+      "source_sha256": "770d2d8790193f6d10c0d324f3f3a953098bdc1a4d9f3bf8578aff1e4b872c29",
+      "source_git_blob_sha1": "b980707db08a4bf321208fe732739117a456b526",
+      "ordered_position_float32_sha256": "db8d04ef4fce1ffdbf46d7f0864f4d06bbf98a8dae99a669e1aa33c1f4212fe4",
+      "ordered_expected_position_float32_sha256": "db8d04ef4fce1ffdbf46d7f0864f4d06bbf98a8dae99a669e1aa33c1f4212fe4",
+      "ordered_corner_normal_float32_sha256": "b2dee81ef38dbfcaf1d962960392f8fce9698b5e51ec242936b5e0021d7a4199",
+      "max_source_coordinate_roundtrip_error_mm": 0.0000073909759521484375,
+      "max_gltf_coordinate_quantization_error_m": 7.390975942378475e-9,
+      "coordinate_mismatch_facets": [],
+      "normal_mismatch_facets": [],
+      "export_zero_area_facets": [],
+      "export_exact_zero_area_facets": [],
+      "exact_coordinate_vertex_counts": {
+        "source": 1186,
+        "export": 1186
+      },
+      "exact_export_topology": {
+        "edge_count": 3576,
+        "edge_incidence_histogram": {
+          "2": 3576
+        },
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "winding_conflict_edges": 0,
+        "self_edges": 0,
+        "duplicate_facet_groups": 0,
+        "disconnected_vertex_link_fans": 0,
+        "invalid_vertex_links": 0,
+        "edge_connected_components": 1
+      },
+      "export_geometry_normal_sign_flip_facets": [],
+      "minimum_export_geometric_normal_dot": 0.9999999651895441,
+      "minimum_source_stored_normal_dot": 0.9999999939610684,
+      "max_unit_normal_length_error": 3.7936291663598354e-8,
+      "material_role": "base",
+      "gates": {
+        "ordered_vertices_equal_expected_float32": true,
+        "within_half_float32_ulp": true,
+        "facet_normals_equal_recomputed_source_float32": true,
+        "finite_unit_normals_tolerance_1e_6": true,
+        "no_export_degenerate_facets": true,
+        "no_exact_export_degenerate_facets": true,
+        "no_rounding_coordinate_merges_or_splits": true,
+        "exact_export_topology_closed_oriented_single_surface": true,
+        "normal_sign_matches_exported_geometry": true,
+        "normal_direction_cosine_at_least_0_999999": true,
+        "stable_source_identity_and_base_role": true,
+        "all_original_facets_retained": true
+      },
+      "pass": true
+    },
+    {
+      "source_file": "STLs/12032 motor cooling top bracket.stl",
+      "part_key": "ducky0_dc62d923a72ae323",
+      "triangles": 1840,
+      "vertices": 2778,
+      "source_sha256": "48d54eef4d5859287e991375aec96a5f14ec858cec695b81e55b1bf7f97aee53",
+      "source_git_blob_sha1": "dc62d923a72ae323fb01647d99447973c0ae84f9",
+      "ordered_position_float32_sha256": "7d6f58cd5ecde29147be6b96b9d8e90f7aa123b93ac855abc06bb518a154036d",
+      "ordered_expected_position_float32_sha256": "7d6f58cd5ecde29147be6b96b9d8e90f7aa123b93ac855abc06bb518a154036d",
+      "ordered_corner_normal_float32_sha256": "42f0e8c7ca62e8be07b56120a6960b7da4a6dabdc1463221802defc3bf408c38",
+      "max_source_coordinate_roundtrip_error_mm": 0.000006794929504394531,
+      "max_gltf_coordinate_quantization_error_m": 6.794929507947245e-9,
+      "coordinate_mismatch_facets": [],
+      "normal_mismatch_facets": [],
+      "export_zero_area_facets": [],
+      "export_exact_zero_area_facets": [],
+      "exact_coordinate_vertex_counts": {
+        "source": 916,
+        "export": 916
+      },
+      "exact_export_topology": {
+        "edge_count": 2760,
+        "edge_incidence_histogram": {
+          "2": 2760
+        },
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "winding_conflict_edges": 0,
+        "self_edges": 0,
+        "duplicate_facet_groups": 0,
+        "disconnected_vertex_link_fans": 0,
+        "invalid_vertex_links": 0,
+        "edge_connected_components": 1
+      },
+      "export_geometry_normal_sign_flip_facets": [],
+      "minimum_export_geometric_normal_dot": 0.9999999669991233,
+      "minimum_source_stored_normal_dot": 0.9999999979293493,
+      "max_unit_normal_length_error": 3.7936291663598354e-8,
+      "material_role": "base",
+      "gates": {
+        "ordered_vertices_equal_expected_float32": true,
+        "within_half_float32_ulp": true,
+        "facet_normals_equal_recomputed_source_float32": true,
+        "finite_unit_normals_tolerance_1e_6": true,
+        "no_export_degenerate_facets": true,
+        "no_exact_export_degenerate_facets": true,
+        "no_rounding_coordinate_merges_or_splits": true,
+        "exact_export_topology_closed_oriented_single_surface": true,
+        "normal_sign_matches_exported_geometry": true,
+        "normal_direction_cosine_at_least_0_999999": true,
+        "stable_source_identity_and_base_role": true,
+        "all_original_facets_retained": true
+      },
+      "pass": true
+    },
+    {
+      "source_file": "STLs/FT BTT Pi TFT70 Screen enclosure mount.stl",
+      "part_key": "ducky0_0081531781738e28",
+      "triangles": 1396,
+      "vertices": 2892,
+      "source_sha256": "34383971152a0a1115a69009dcbc10503b5e188299567ab6b402aa0c2a3fcf67",
+      "source_git_blob_sha1": "0081531781738e282ac505224b3db345bcec1876",
+      "ordered_position_float32_sha256": "23de6bb7b6a29fa4c77d9f8616c64a8b8aa143e71f2effba59a0e44474158551",
+      "ordered_expected_position_float32_sha256": "23de6bb7b6a29fa4c77d9f8616c64a8b8aa143e71f2effba59a0e44474158551",
+      "ordered_corner_normal_float32_sha256": "826ce2dbd42793ebf325e715dee2275e0ef44680e30a61195eec83daf979a3a4",
+      "max_source_coordinate_roundtrip_error_mm": 0.000003159046173095703,
+      "max_gltf_coordinate_quantization_error_m": 3.159046177425573e-9,
+      "coordinate_mismatch_facets": [],
+      "normal_mismatch_facets": [],
+      "export_zero_area_facets": [],
+      "export_exact_zero_area_facets": [],
+      "exact_coordinate_vertex_counts": {
+        "source": 698,
+        "export": 698
+      },
+      "exact_export_topology": {
+        "edge_count": 2094,
+        "edge_incidence_histogram": {
+          "2": 2094
+        },
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "winding_conflict_edges": 0,
+        "self_edges": 0,
+        "duplicate_facet_groups": 0,
+        "disconnected_vertex_link_fans": 0,
+        "invalid_vertex_links": 0,
+        "edge_connected_components": 1
+      },
+      "export_geometry_normal_sign_flip_facets": [],
+      "minimum_export_geometric_normal_dot": 0.9999999679983811,
+      "minimum_source_stored_normal_dot": 0.9999999995520333,
+      "max_unit_normal_length_error": 3.517523450291549e-8,
+      "material_role": "base",
+      "gates": {
+        "ordered_vertices_equal_expected_float32": true,
+        "within_half_float32_ulp": true,
+        "facet_normals_equal_recomputed_source_float32": true,
+        "finite_unit_normals_tolerance_1e_6": true,
+        "no_export_degenerate_facets": true,
+        "no_exact_export_degenerate_facets": true,
+        "no_rounding_coordinate_merges_or_splits": true,
+        "exact_export_topology_closed_oriented_single_surface": true,
+        "normal_sign_matches_exported_geometry": true,
+        "normal_direction_cosine_at_least_0_999999": true,
+        "stable_source_identity_and_base_role": true,
+        "all_original_facets_retained": true
+      },
+      "pass": true
+    },
+    {
+      "source_file": "STLs/USB Hub Mount.stl",
+      "part_key": "ducky0_ca104bbaa7d1a4a6",
+      "triangles": 4012,
+      "vertices": 7006,
+      "source_sha256": "86c21a8ade97707fe355bcf4bc067752882691bba3981916fea12d854870e01d",
+      "source_git_blob_sha1": "ca104bbaa7d1a4a6577b6ff3f21ee15b2bdac39f",
+      "ordered_position_float32_sha256": "3541c8392cbf7bd514164f7732123f52cb7736b2f91c1973844965ac4b3c77da",
+      "ordered_expected_position_float32_sha256": "3541c8392cbf7bd514164f7732123f52cb7736b2f91c1973844965ac4b3c77da",
+      "ordered_corner_normal_float32_sha256": "6f004457487915666ef0023940a7e93785bbd837961525a7cd60ae6523416640",
+      "max_source_coordinate_roundtrip_error_mm": 0.0000018477439880371094,
+      "max_gltf_coordinate_quantization_error_m": 1.8477439925335126e-9,
+      "coordinate_mismatch_facets": [],
+      "normal_mismatch_facets": [],
+      "export_zero_area_facets": [],
+      "export_exact_zero_area_facets": [],
+      "exact_coordinate_vertex_counts": {
+        "source": 2002,
+        "export": 2002
+      },
+      "exact_export_topology": {
+        "edge_count": 6018,
+        "edge_incidence_histogram": {
+          "2": 6018
+        },
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "winding_conflict_edges": 0,
+        "self_edges": 0,
+        "duplicate_facet_groups": 0,
+        "disconnected_vertex_link_fans": 0,
+        "invalid_vertex_links": 0,
+        "edge_connected_components": 1
+      },
+      "export_geometry_normal_sign_flip_facets": [],
+      "minimum_export_geometric_normal_dot": 0.9999995614172438,
+      "minimum_source_stored_normal_dot": 0.9999995619899487,
+      "max_unit_normal_length_error": 3.759035682726619e-8,
+      "material_role": "base",
+      "gates": {
+        "ordered_vertices_equal_expected_float32": true,
+        "within_half_float32_ulp": true,
+        "facet_normals_equal_recomputed_source_float32": true,
+        "finite_unit_normals_tolerance_1e_6": true,
+        "no_export_degenerate_facets": true,
+        "no_exact_export_degenerate_facets": true,
+        "no_rounding_coordinate_merges_or_splits": true,
+        "exact_export_topology_closed_oriented_single_surface": true,
+        "normal_sign_matches_exported_geometry": true,
+        "normal_direction_cosine_at_least_0_999999": true,
+        "stable_source_identity_and_base_role": true,
+        "all_original_facets_retained": true
+      },
+      "pass": true
+    }
+  ],
+  "limitations": [
+    "No native CAD fit, hardware, installed-machine motion, viewer palette interaction or browser rendering certification.",
+    "Support geometry retained; semantic removable-support identities unresolved."
+  ],
+  "license_withheld_geometry_failure": false,
+  "automated_machine_attributes": [
+    {
+      "id": "247zero_beta2_120",
+      "model_sha256": "6fa5a0e87a38f24334177d96405e834debc8776f17a063be7d6cc89fd99613d7",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "doomcube2_350_reference",
+      "model_sha256": "7a8d958a198ffabd374314c95a9d49e8b0f0f64fc51a488cdb3a1b973c8e95ad",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "tictac_21_120",
+      "model_sha256": "73755c5b4f0cdd134554c68d9b37102348af2d71c2e9a31e761c492856939f9b",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "the100_v11_165",
+      "model_sha256": "0a3088eb107137530b22e2b4a9ee41b52d0aff3ebd531e68f35d7c825256f8b5",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "rook_mk2_120",
+      "model_sha256": "16d278caa466868340ad8c97d91b80d96bfbc2af2d871565ab8d1e3559faf861",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "satsuma180_v10",
+      "model_sha256": "8c6a1a7d0118ee2bda8ff2278a60e9150324af9f24be59fee4efbe93007cf952",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "sovol_sv08_350",
+      "model_sha256": "95af277a4543096620b30f64d2d3fb6403fa6f07ca624719734d1c3a35c51ea3",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "lh_stinger_200",
+      "model_sha256": "3f9545ec42868cd09d43fa4700feee2b8c105b651f8fd1ec2f67d6831ff060da",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "antithesis_aether_mk11",
+      "model_sha256": "9737ca06af3e3a51a9a185a85bfaeadf5741c9d4f7cad9206ff6d37b77165ee3",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "ratrig_vminion_180",
+      "model_sha256": "b394124d0ef44519aa24cd005d1433305f35a545c3b8d5f9c8cccb8268fb0175",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "snakeoil_xy_180",
+      "model_sha256": "1361302b4008deb1267eb8db72ad1b108e1de0e7159b28ab0088fc2dda8486c4",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "snakeoil_xy_idex",
+      "model_sha256": "798136042b99c6a206a662b4e113b0ec7b08532d2235f496b573b5aa47468181",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "snakeoil_3s_kp3s_180",
+      "model_sha256": "12ae8ee0e81dc89b04fc762d030fb72465692f8009159a4564086985d6774935",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "snakeoil_proosaxy",
+      "model_sha256": "99018bcd4ca8fd9a0fdd2b13f764dea7e2de9471979db8766b947e876c977e87",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "mercury_one1_235",
+      "model_sha256": "73b00f8d5714a6974837608f6f0ffd66fb540e116741862ce296199acb0fdf72",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "mercury_one1_370",
+      "model_sha256": "479f7840e1fdd1790ecd797dc8ba0ef7021316f88755566bd113a22f7c9c286e",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "vzbot_330_printed",
+      "model_sha256": "04ca850e7ce000b44db73a35058d036e4c537a7b715486172d527a926f93756c",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "ender3_stock_220",
+      "model_sha256": "ef494370b069a5e8bdbdb45640aab791a822106c0f1636807342ebefe1ecc1cd",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "siboor_sboom_220",
+      "model_sha256": "14be46c56724a3f954a0ab2dac8a64647b4618d913a0e3eb0c2658f619f7c77d",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "positron_v322",
+      "model_sha256": "bf2eee971286dabebd8ae0f4149eb76657036c21e2df31aef6f1e32c28158f25",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "annex_k1_assembly",
+      "model_sha256": "03f3c99734f20f9b4af1b17d1f31443e0c05f534e163ad03b8a88e5f8ea92240",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "annex_k2_assembly",
+      "model_sha256": "0efe6df3f44824d2431cd514fb31b3c135cc9cd81cf232d07ec9ac3f3ccdc450",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "annex_k3_assembly",
+      "model_sha256": "aa9cea21120eef1d395d02800c179d169169d40321c8b480b672d9b841f8f1cf",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "remorph_beta1_307",
+      "model_sha256": "bc2dac0dbcdb191f6ae1391a538f3deed28ec3deb0fdc7597f6adde8379c841c",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "siboor_trident_300",
+      "model_sha256": "ca956d3d7b27526e8f21b7d8cbbc5783ce461b6ae450f9609a6f5847cc814672",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "siboor_trident_350",
+      "model_sha256": "96309090e82efd59e214c403edf4716357a245e76a190038bea88abae315ff52",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "voron_trident_250",
+      "model_sha256": "8cad57cf1550f8827ffdfd34cc4d7ab28edfe94b65c99a0fc7b9b28fad7f60ce",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "voron_trident_300",
+      "model_sha256": "d927d9e14276901cdfcd2d433a16e67ae461ec0bc67ea1912715881a64181b16",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "voron_trident_350",
+      "model_sha256": "e619e8944eba1a45ff7f72f28f808d4c475a0d0fb95d08a5eacf4fe2cffa97f4",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "voron_trident_500_custom",
+      "model_sha256": "4aa9673623c73d1090227efe2d522e68ee99b210c4704ae7bd15f5f7d09866b2",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "voron_trident_1000_custom",
+      "model_sha256": "094d657422da5f74965a164e02c9e95824d5e0670fdaed9ffedd0590d4369ede",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "voron_trident_350_half_z",
+      "model_sha256": "c7964f897e5d1be6450c3adeb699d20ad375583a4989afb705ed9ee481a346a3",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "siboor_v24_350",
+      "model_sha256": "679d362a57c5512213f19c5a4c2eef6b38719dbd5ce0a0a0e395dfd32e7e1bf2",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "voron_v24_250_printed",
+      "model_sha256": "c94f64fbf04fc48a2b1f5d474dc6c4f70f4d946d9cea2edddcd430be8ca7aebe",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "voron_v24_250_ldo_cnc",
+      "model_sha256": "7eb406d1350e3da483c8e1beade769b9571abe977c92e4b67ad4fae000c81065",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "voron_v24_300_printed",
+      "model_sha256": "6f16caedf58dd81149955d5c215aba46cea386bc3ded88bc18bd73722a8d2f5a",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "voron_v24_300_ldo_cnc",
+      "model_sha256": "451074148753e60129c619d915efa64c305b5a3397b0d9f822d713273702425c",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "voron_v24_350_printed",
+      "model_sha256": "255ba847abf4f7d862d6e5aaac3f284a860eedac08e5bac32534d75ef42f361f",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "voron_v24_500_custom",
+      "model_sha256": "5696e6097763134ee47e6453b023245a237f9272f6eddac76e554fd79655f632",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "voron_v24_1000_custom",
+      "model_sha256": "aacca629d947491958eab426727f9b5653c3aa00bd8fa2b5ab53c5b4c9c1a6cd",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "voron_v24_350_half_z",
+      "model_sha256": "b6622e56f991fdf68b58ea8c2b51c157fc48eb5f3e01b05e953ed7e2ab3df298",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "voron_v24_350_ldo_cnc",
+      "model_sha256": "bd520951b97f06a98049ac29b4ba39d52ad0d6cfd491b2b621002bf612540ba6",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "voron_v02r1_120",
+      "model_sha256": "d89064824fa67ed6e7c78e90c642620afe62c3b4520255f6c626181754b7d29d",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "voron_v02_120",
+      "model_sha256": "da642150957fa38289499bd1c1586737f4f970968c3b32b3f7b81d76bef05ea9",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "micron_r1_120",
+      "model_sha256": "9cf6f791159e5d15471d0147edee3fc29762468cbe2692a93ef5ffbc1527c2be",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "micron_plus_r1_180",
+      "model_sha256": "c28985823dbeb5534405509dac351e0f54fc46e77b0887edd562249b0dbb501a",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "fysetc_v24_250_pro",
+      "model_sha256": "4ee4c9612380f007a9c5f107d1d7a2f59e2d89bc7ebabe802bf272eb7c53faff",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "crossant_235_v06_leadscrew",
+      "model_sha256": "f4e560da3b9f8274b508dfc6d9e846ebc5c9e147fccbd16a63c771fba3c13de5",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "ratrig_vcore_40_300_corexy",
+      "model_sha256": "dfb5aaeca2cb274932ae4a9f8c59a7a76114f3d6c6c41dc9c814223b33d2a8b6",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "ratrig_vcore_40_300_hybrid",
+      "model_sha256": "125705129bc1fe73416d661df8dc928291f2a090a03ef662459bf6275f53031b",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "ratrig_vcore_40_300_idex",
+      "model_sha256": "16f57d28b27602be3effa8b5c797b3d59f4ce07025aa59c9e84de91a08b10427",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "ratrig_vcore_40_400_corexy",
+      "model_sha256": "cedf78d3a15e5bcfbbdebef6a3b48d2aafc2f516ac701177472c6eb504bff2b7",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "ratrig_vcore_40_400_hybrid",
+      "model_sha256": "b2ca97bc05ef65eff019d886a8069b89f1f7958a6a5fa4ec5f27598459e9ed06",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "ratrig_vcore_40_400_idex",
+      "model_sha256": "b41565379c61be88ff04988bd7c3742318129da04620ca5aa264c441a2a19bde",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "ratrig_vcore_40_500_corexy",
+      "model_sha256": "1b90e0423e78a64a26c5ecc2c91f51616d8d060fbd34431af0b53f15ed5886fc",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "ratrig_vcore_40_500_hybrid",
+      "model_sha256": "c352ee0188f76528d9bc3ddf8ca8da341206ac91ea4080bc62bbcbd5f9fbd297",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "ratrig_vcore_40_500_idex",
+      "model_sha256": "5667d489ad6a27f61e2e5bfd5418582745aac3faae62248dc1d320104cec0bca",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "ratrig_vcore_41_300_corexy",
+      "model_sha256": "aac48dc8f9ec3c57653f243ba1b7fda102e556f2d2a3e8a8167aa21f3e443be8",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "ratrig_vcore_41_300_hybrid",
+      "model_sha256": "9642e9a716271296176c5a11d7da26ea65f768cdd5fee282609fab41065ccddb",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "ratrig_vcore_41_300_idex",
+      "model_sha256": "4328f885ab485f25157d4e25cb2c6d921a2843a0ddce85e619b2f3b1b01f1caa",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "ratrig_vcore_41_400_corexy",
+      "model_sha256": "1797f6a03cdf2a051ee94f1cbe91e5d9d4e78bf068979f4ef182ef518f9734e9",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "ratrig_vcore_41_400_hybrid",
+      "model_sha256": "9ee09292ad7f5a1cd22ecc70b4dc351d2f42b88353fca26b0266326fc0195e39",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "ratrig_vcore_41_400_idex",
+      "model_sha256": "b1d9ce88b7c1e8d94b84081dda180b734f404a6d7c49a3834682ea62fe5f4eb6",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "ratrig_vcore_41_500_corexy",
+      "model_sha256": "856eed23ee1a8f56dd2d242808cbbfd9fef8abb83f9f4a8afb905709c76f55ce",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "ratrig_vcore_41_500_hybrid",
+      "model_sha256": "f2de1ea8733e099f302340ad660dc505baa07627215c7d9839d3e1ebeb670dd4",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    },
+    {
+      "id": "ratrig_vcore_41_500_idex",
+      "model_sha256": "e199087d12dee961f1c2e08b7f96e4dfd95adf52ef5210536f5d6ec0e5904a07",
+      "passed": true,
+      "scope": "Actual exported model attributes, supplied normals on rendered surfaces, supported flat-shading fallback, index bounds and finite native node transforms; not mounting or collision certification."
+    }
+  ],
+  "actual_workbench": {
+    "components": 120,
+    "head_variants": 1302,
+    "gantry_choice_transitions": 528,
+    "head_choice_transitions": 70823,
+    "toolchanger_choice_transitions": 908,
+    "physical_fit_certified": false
+  },
+  "browser": {
+    "languages": [
+      "en",
+      "ja",
+      "es",
+      "ko",
+      "ru"
+    ],
+    "scope": "Individual source selection and local rendering; final published screenshots and served revision checked separately"
+  }
+}

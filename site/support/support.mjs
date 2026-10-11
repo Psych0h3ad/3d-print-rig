@@ -1,4 +1,4 @@
-import {setupLanguage,translate,formatMessage} from '../viewer/i18n.mjs?v=6e9340f71b4b83eb984a';
+import {setupLanguage,translate,formatMessage} from '../viewer/i18n.mjs?v=e5bb8e871fb57c84488f';
 import {setupHeaderThemeToggle} from '../viewer/display-preferences.mjs?v=cfa9769ce74b3791658f';
 import {matchingRows,supportURL} from './model.mjs?v=4ddcd0ed4a4aee9387d0';
 import {readSupportJSON,supportDownloadBlob} from './resource.mjs?v=deb6b9eca87c47bcc2e3';

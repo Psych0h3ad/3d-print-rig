@@ -9221,6 +9221,30 @@
     "cocobustor.scope_bed": {
       "source_revision": "79a6727b5488609fd7b9",
       "text": "Solo piezas originales; el montaje de la impresora completa, la instalación y el movimiento siguen sin verificar. Se conserva la geometría original; los soportes integrados no se han separado. El soporte de cama se retiene hasta reparar su malla."
+    },
+    "ducky0.motor_cooling": {
+      "source_revision": "fc70dbea9e3b18021142",
+      "text": "Ducky0 · Soportes de refrigeración de motores 12032 · piezas originales"
+    },
+    "ducky0.electronics_mounts": {
+      "source_revision": "a32364499c38225df6f4",
+      "text": "Ducky0 · Soportes de pantalla y concentrador USB · piezas originales"
+    },
+    "ducky0.view_motor_cooling": {
+      "source_revision": "483bbbdd03445698c567",
+      "text": "Soportes de refrigeración de motores 12032"
+    },
+    "ducky0.view_electronics_mounts": {
+      "source_revision": "668b8d2f9031d5dde354",
+      "text": "Soportes de pantalla y concentrador USB"
+    },
+    "ducky0.scope": {
+      "source_revision": "d6463d6e82a22907b1e7",
+      "text": "Sólo piezas originales; el montaje completo de la impresora, la instalación y el movimiento siguen sin verificar. Se conservan la geometría y los soportes integrados originales. Los colores usan la paleta del visor; los archivos STL no contienen materiales definidos por el autor."
+    },
+    "component.single_part": {
+      "source_revision": "6744d37c2b0b9455ac85",
+      "text": "Componente individual"
     }
   }
 }
