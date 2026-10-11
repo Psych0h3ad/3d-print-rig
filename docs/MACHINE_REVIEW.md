@@ -86,6 +86,18 @@ that audit. Keep both source and actual-asset checks in release orchestration.
 For a new defect, add an equivalent regression that rejects the incorrect
 companion selection and tests its restored state.
 
+EVA front surfaces have a separate required release gate:
+`check_eva_front_release.py` downloads checksum-pinned production assets and
+runs `audit_eva_front_surfaces.mjs` for EVA 2 and EVA 3, each standalone and
+installed. Every repaired triangle is checked against native face witnesses;
+source-defined open regions, grille hubs, arms and rims have separate checks.
+The audit preserves all other leaves, purchased fan materials and authored
+placements, and exercises contrasting A-to-B-to-A palettes and source reset.
+`build_site.py` fails before Pages publication if any owner or witness is missing
+or stale. Part presence, mount measurements and overall bounds cannot replace
+this front-surface inspection. Browser front, side, rear and underside evidence
+and native-solid clearance retain their separate review scopes.
+
 Record the inspected part identities/hashes, expected companions, actual
 combinations and transitions, screenshots, native measurements and failures.
 Inherited source contacts and incomplete cartridge/fastener/cooling verification

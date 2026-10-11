@@ -5,6 +5,7 @@ import {beginModelLoading} from './model-progress.mjs?v=6b41a2b9f7626039b7e6';
 import {createCommunityAdapter} from './community-adapter.mjs?v=b17b9b1c319a9e599442';
 import {applyNativeMotionProfile,loadNativeMotionProfile} from './native-motion-profile.mjs?v=91532eb992519143f437';
 import {applyEvaInstallation} from './eva-installations.mjs?v=3838c4828bb6ab03392f';
+import {loadEvaFrontSurfaces,applyEvaFrontSurfaces} from './eva-front-surfaces.mjs?v=ff32b5dac706119bf45c';
 export async function loadCommunity(index,machine,{signal}={}){
  const spec=index.machines[machine];if(!spec||spec.machine_id!==machine)throw Error('Unknown community printer');
  const extraModels=spec.additional_models||[];
@@ -17,8 +18,9 @@ export async function loadCommunity(index,machine,{signal}={}){
  const registration=await loadNativeMotionProfile(machine,{signal})??(profile.motion_registration?.model_sha256?profile.motion_registration:null);
  ({manifest,profile}=applyNativeMotionProfile(manifest,profile,registration,spec.files['model.glb'].decoded_sha256));
  ({manifest,profile}=applyEvaInstallation(manifest,profile,spec.eva_installation));
- progress.assembling();const root=(await new GLTFLoader().parseAsync(bytes.buffer,base.href)).scene;
+ progress.assembling();const loader=new GLTFLoader(),root=(await loader.parseAsync(bytes.buffer,base.href)).scene;
  for(const data of extraBytes)root.add((await new GLTFLoader().parseAsync(data.buffer,base.href)).scene);
+ if(spec.eva_installation)applyEvaFrontSurfaces(root,manifest,spec.files['model.glb'].decoded_sha256,{...await loadEvaFrontSurfaces(loader,import.meta.url),sourceOriginMm:profile.origin_mm});
  const replay_asset_identity=await loadedPrinterAssetIdentity({machine,spec,manifest,profile,checkedFileNames:names});
  return {root,manifest,profile,replay_asset_identity,adapter:createCommunityAdapter(root,manifest,profile)};
  }finally{progress.finish()}

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "review_revision": "eva-installed-127",
-  "reviewed_on": "2026-10-11",
+  "review_revision": "eva-front-128",
+  "reviewed_on": "2026-10-12",
   "input_sha256": {
     ".github/workflows/pages.yml": "beefdf407364d06a3889ff79538a50ebaec4b3c03434199ebd3301cfcb91abda",
     ".github/workflows/source-check.yml": "ff8d1f258c86fcc6da67bb78fc8ad18d0fdd294431dedd9587ec0cd87a215241",
@@ -9,6 +9,7 @@
     "scripts/audit_changer_banks.mjs": "5ef5e7bbbbfdaf135e2751f97883fd80f18e3f80a6cb1d1414bfb73d31864a96",
     "scripts/audit_community_installations.mjs": "1f9cc8dc8a4ed510bb0b8fadf477fbb00bff06e3f3974b1e67bea55845d9b76f",
     "scripts/audit_custom_ptfe.mjs": "392ae069463a52717b3636828cef7f6add66ac582fe43d2daeb8dc2313771c5a",
+    "scripts/audit_eva_front_surfaces.mjs": "308b47b143a640f3af6f7e4d768e521ae4ff152b7eff66cf6563d940ffac07b6",
     "scripts/audit_eva_heads.mjs": "f55a721e7d65520a2932d328bcd99f5c54f3a869a48a456ab9c70b4742168c22",
     "scripts/audit_indx_banks.mjs": "82f3b9da9d260eaf539bd1058aaff79957e955663e1896e4b6b477d5dc395784",
     "scripts/audit_led_lighting.mjs": "264bdcfa44b1f4a19d83b4684fb36b324117c5dfbcbab7b4dc1ea09fb0172eb3",
@@ -27,12 +28,13 @@
     "scripts/audit_v0_state.mjs": "d952d9dbaf2b21e0dee7f4e83e5266a1f6acfdc759b00bdee61e7c13f5d22fe2",
     "scripts/audit_v24_colors.mjs": "9fd80ee70d94340edb98f2ea3be3211df863210d10c54e1aa15e2161f3241507",
     "scripts/build_configuration_catalog.py": "cb128a25a44434b63c62b30a33001c11ab7bd20e95dba90fa8bfa2139fe392ab",
-    "scripts/build_locales.mjs": "4a8e1a05d060c6fdf9e7d2f5849b42f0b73eb43dae042624c78e7a999accf6fe",
+    "scripts/build_locales.mjs": "f0029a9a3c096103703ee4104c13ee2957b9d777b33d2c13f3c4e4ad65be17af",
     "scripts/build_seo.py": "e14340d5c102869291db1e2d923c54547449681d2f79b5c63b66cdde6895a544",
-    "scripts/build_site.py": "f183063f2c6852a17f7acd4b8f681c09f24499905f79dabbaf2b46a90d7340b0",
+    "scripts/build_site.py": "9c69d1a7f42814142a3fcc5ef36cbdd4fc12eedfefa279856ecdf07cf049f662",
     "scripts/build_support_catalog.mjs": "fe434e67b65ce2199927ae9e3a72e8d387467c2d9f67b7aa519072cda30afaff",
     "scripts/build_toolhead_catalog.py": "e7391d2cc7748db94033069dc44b8365260d169176ee73a31cef249da5023e1a",
     "scripts/cad_section_insert.py": "a590e2fb4045cb3d835901aee33521d63e96e37133979187b0b8503bf16ceefa",
+    "scripts/check_eva_front_release.py": "7e2b1a00daec5e88c52c97444ed10ec8f0ddad9c7eb5be19d5ebb939ced1fc3d",
     "scripts/check_machine_coverage.mjs": "8f0c624955a5098b98b03e46fb0cd6b7cad8abc63c38f7c4eca5b56c62341d0e",
     "scripts/check_machine_regressions.py": "f96fcfd5543698fed43c84288168fd732cbca8089bd2fb3a509a8c254b8decd1",
     "scripts/check_motion_assets.mjs": "c42638dc46fa1a9b585a681f10ee9fdd84349e0b4c87bfaeb1711356bfacdbb9",
@@ -106,6 +108,7 @@
     "scripts/test_ender_bowden.mjs": "789a5b43da43e4ec51c2194f5fa10bee97aa656632ef8da9f749c4ddc9bee8cb",
     "scripts/test_english_markup.mjs": "220989cf5492928d48c5630c6ce3d7b492e11ce5877ad5f029e8c18b53e0cb8a",
     "scripts/test_eva_extraction.py": "5ce9b5221d4a29581d35d592d436715aab265e72273b4bd137ffe36ab6a5bfb1",
+    "scripts/test_eva_front_surfaces.mjs": "3bf1037f0659e933c0df39b5793b7924ae51fb7d931ed48b83de7ddb04544bf8",
     "scripts/test_eva_heads.mjs": "ce79a7242b1a6ed982cdf70932abbe996815ce55c55c2ddd502af2b0cb5128f5",
     "scripts/test_eva_installations.mjs": "63a879856b27c5b7464e7846f0b2737f8c11a159eb13fa5347e2ce5999a711cd",
     "scripts/test_export_camera.mjs": "7953d053e1575cd69b69e6e39454875d1eb1063792d437b04df508923c82dff6",
@@ -220,6 +223,7 @@
     "site/CROSSANT_ASSETS.json": "cc782d728e52beb780c0aaa2cb664ccce127154c02744312307dee74ffe8bdc6",
     "site/CUSTOM_VORON_ASSETS.json": "4e8e0be172901980fd350fa7f4e61af41294b8cc734f51c3d2a70b5d600edea2",
     "site/DUCKY0_SOURCES.json": "6fd60a1b1d05aef538d3072c5621828ece87a4ba1d523a320131de4259d838cf",
+    "site/EVA_FRONT_SURFACES.json": "6736163140e568612cde659961f69fc0d80c8718cfcf44558f4d93689c77bb13",
     "site/EVA_INSTALLATIONS.json": "467e39ea887361e5cc3a43a3e630d747cb6133e55e46f6204de67315841dd809",
     "site/EVA_SOURCES.json": "79df1f72046981d2c5b1bb607a39791019700772e1e65bf2f317246b3c8f39b3",
     "site/EXTRA_MACHINE_ASSETS.json": "a1ef772b70a82420d97d564f8327e22dde6bcb511bdd6e94d406d6bc62cca624",
@@ -247,7 +251,7 @@
     "site/viewer/annex-machines.mjs": "3a0e3f3d8e456bee4e5ac266d91c69ca3b6fbc6db8f5a40694f85428c6148c13",
     "site/viewer/annex.html": "6a9c65978458a849c5880528bf9443cd9a1d7d324e625489d7fb37e1e24cac07",
     "site/viewer/annex.js": "9767fb2f224c1ed0acde0cf5972aea1ea6583b820e82a28e63263c80b9410aca",
-    "site/viewer/app.js": "6c7137abd98fabd947276543fc7a33044021c167172dfa754f305c9c5ba7daa5",
+    "site/viewer/app.js": "46071066e858b4c0e5c1aec0c5979a9250a1b6be489878b5f15633fd9cff55de",
     "site/viewer/appearance-role.mjs": "6eb709afed84945151b895e97638b817f0fac071ab61c5a45de4cb6fb883e1ed",
     "site/viewer/appearance.js": "c50ecf4651c6ad0e68392df9eea9eb67e8bab6c9542106019c464682b45a01ab",
     "site/viewer/art/cad-background.json": "ebd23566959ec740ae479345ba5601478b53593693ff11466e4934474dd071e8",
@@ -257,17 +261,17 @@
     "site/viewer/baseline-native-datum.mjs": "b86b6ff7d71bab3c11174f8e0834dd181ac5a70d14077b8ff00fffa817e0ad58",
     "site/viewer/bed-chain-pins.mjs": "ea9c3d5f368a9509af7f99da784303eba92df5e316246c8a14942bc0f1bb3ae9",
     "site/viewer/bed-chain.mjs": "5c6ddd46ac13e6974c7352b944225966455ccb4a462a5315519428af3788d4d0",
-    "site/viewer/bootstrap.js": "8f7349ba955d30280943ec94af206f1294954d88c3dad2256aa5b21e91b11839",
+    "site/viewer/bootstrap.js": "aaa2f3c2f189ac471215009325470445d7a073c6dfc9463019452ed6761826ef",
     "site/viewer/builder-ui.mjs": "39e997b0ba966b75e84cef885b6b10d86ef2a9ccf7707d15bed35cda4bb19033",
     "site/viewer/changer-bank-model.mjs": "024cc52a5bbc61da75066a1822bca711fd6543b532a1c922e8ac0b44469a016c",
     "site/viewer/changer-bank.js": "e40b96658f910374745893b409b5a3fb39a6326d2c943f3a56d17401da469c17",
     "site/viewer/chunked-component-glb.mjs": "6b1039c50882fce242a7f6451dbd8a0d3729d1d89089ec445d5ca72b85a7b52c",
     "site/viewer/cleaning.html": "bcd913e2e0d3726425801a8a6df95c6fce0a26b19146a77d3bfa14e839f8ea73",
     "site/viewer/community-adapter.mjs": "b17b9b1c319a9e599442a3c6738410323357e1a3a6cdc6c471d77b28893a2d84",
-    "site/viewer/community-loader.mjs": "cbe16d3c60308e76da9fbb17f6006470aa829d82aa3a9d97d9dea4f1d702781c",
+    "site/viewer/community-loader.mjs": "84d4ffe53bb3dcdc07199400514cba447b1b14a236c42678a89f45146720174b",
     "site/viewer/community-state.mjs": "460b3fa78cc503ddb6e631766efe780433e4efa286db5d9388a67d73cd4fce3d",
-    "site/viewer/community.html": "fb62f88a58ae5a0f02c49d21288de48d6ede90a36710304cba5b165915e2eb84",
-    "site/viewer/community.js": "76bfa954f381f58f5efe8476466eaf89f3b9b15f203c64dd43d7b8a92b5c6dbc",
+    "site/viewer/community.html": "c5068f513f7ad6dff81a0b35ca88157825aa6a3d44b4dc046f01c2e78035457f",
+    "site/viewer/community.js": "18e4a60224a0950d7ebd886157d4c301f35ab80a9c2e7461ad898709ff416d36",
     "site/viewer/component-assets.mjs": "9f8ef058f1297ab60e53f388394c9a78191b531a5e3bbbb7d7155dfed9bc6904",
     "site/viewer/component-selection.js": "51826e4eeaa0dd803b109d2ba7261d86e40fa509e63ffe7ce2f087efd0ee6e04",
     "site/viewer/components.html": "1ee38ea8638cdcb359e9d8c3ef5616420c71900f8ee9895d42a668abc59e03a6",
@@ -276,7 +280,7 @@
     "site/viewer/configuration-editor.css": "1ce65fe33b2c2f92e5b2eab845b196a6db3175a7ec858902ec9e23e8c2f3a3f4",
     "site/viewer/configuration-editor.mjs": "e6397345b058e45528b8b775b1f4a32003a216b472b760ce914778e6a54c4c6f",
     "site/viewer/configuration-model.js": "c19fa3a47abadf7f3d2c592f5821dae02cb99d4873957304b3c1766ed2ea9093",
-    "site/viewer/configurations.js": "8c524b6bbb6fc6a96a849716ede000b637131ca92482cc4d8d7acc988975d236",
+    "site/viewer/configurations.js": "5633928f243ee0e2663d4404be9e684d3c71fc707ac713977b7b15334ee42e8e",
     "site/viewer/crossant-adapter.mjs": "53736f331789070429692a0336eb9412bd3c64ed157933a5107b439761878116",
     "site/viewer/crossant-belt_deform.mjs": "76401db9a4923512ae72c83fda6dd210ccf0b1d19be8a16326dfac48950df531",
     "site/viewer/crossant-chain_preview.mjs": "43c664f7c35cbb1638214efc3d77ad1acf8a47c33b4a22a50ad70c20778c4bc3",
@@ -301,6 +305,7 @@
     "site/viewer/ender-bowden-route.mjs": "709b99d375c41ef1b8d67acf3334f7d3a773f62faea9ea345e428b7afe14b272",
     "site/viewer/ender-mods.mjs": "5f07c69c7c42ba3f3936bf28a6e3ea4607dd182ea7c8a34b31af9ed05f0bf9be",
     "site/viewer/ender-original-x-belt.mjs": "47ec507ac8de83010df88849a676c69cc7122e53d3d21cb416aa22c9fea161b1",
+    "site/viewer/eva-front-surfaces.mjs": "ff32b5dac706119bf45c1a4337137c783b03453baeb16ae9555d27a10529fbca",
     "site/viewer/eva-heads.mjs": "65c037171afca9ebb341a08411e9e7c648431786f668a0a87360eb398bd490be",
     "site/viewer/eva-installations.mjs": "3838c4828bb6ab03392fbdd3f431d82952bc916035ed9406540a5ce84349cb3f",
     "site/viewer/export-camera.mjs": "9b7cb2c53ed30506e01c79eafd2ee4c72fa4305806a316acdf5cc3985d0ce628",
@@ -308,8 +313,8 @@
     "site/viewer/extra-machine-loader.mjs": "dd97105abc4157397f19b20dc35d91a6a04b3500526a6a74d1696def8a306abb",
     "site/viewer/flexible.js": "37fd0f2d1bdfe5ac356f0c58bf4a658b8b97a8b5cd6126ecafb1d64f09b0d284",
     "site/viewer/frame-mods.js": "c0c6f31b559412e8a347d854e47c41ca8ec6574e1a999c30ce1fb8eb5392406c",
-    "site/viewer/gantries.html": "a8705c4e8bf233b29c348eea47ad1fd06161bbf83483de358215848c82f6be85",
-    "site/viewer/gantries.js": "76b2321d3813683f58e35d2452621912815ef42a73377fbc183ae63fd4671a30",
+    "site/viewer/gantries.html": "92011fc3e41afc0ae5f49bd20c6f0317f66bad74eea51fbe7cceb085b8586e35",
+    "site/viewer/gantries.js": "60420a427a4adfa5021f8ea0aedb8286c93a39c2822b3cdddb25c269f1bee3ab",
     "site/viewer/gantry-model.js": "77bee27ae99e3944fc901c733b7fa2450b2e36deb9b789c66328e8c979db2ec4",
     "site/viewer/gcode-loaded-asset-identity.mjs": "42ac134c2d9a8b8f8dfc31744744fb59abf735171ae6b928030371d5e7de8dec",
     "site/viewer/gcode-machine-bindings.mjs": "460777c3fc4d1a74bf27e66d6c4fcca7c4fdd09336412a3263a2b843be621ce1",
@@ -326,7 +331,7 @@
     "site/viewer/head-validation-ui.mjs": "ae9dcf09c303efbdce96c1445f71e6fbf7663f8aa6195d9251a3259cb9ee4f30",
     "site/viewer/head-validation.mjs": "bba39d88e1b5b7f848c0447a93850abd4e8a3accbadfcd4db2e9ff772e855e9d",
     "site/viewer/i18n.mjs": "46e1e3aced367de6d95291826711a92c92bab68fd1973e470f451bd92d449e8f",
-    "site/viewer/index.html": "2dc6255c57d502201939f1888a4beb8f99ecfb370e3f401630be05801787c870",
+    "site/viewer/index.html": "6ecc78dde7f58e5f8e69c9ae4baa0d43132893d3d43f8358bafe2a4ef919a59f",
     "site/viewer/internal-spool.mjs": "ca3a453f6bf2966e020830957f6ca3290d89dffebe02ec3aa1b82a45a31c5f99",
     "site/viewer/kit-reference-loader.mjs": "e018cf8fc3c93c4140dd562d71b36bb28c906b1b52841d4884acc267a8c35bf3",
     "site/viewer/kit-reference.html": "080128c7302631305f3afbcfd00088e9dacb971dadc32b9ee886edac6cddb4da",
@@ -340,7 +345,7 @@
     "site/viewer/machine-gallery.css": "7db93de9b790a189b26364d7a6835ff9f2252bb2ca18caea2b2b8cb7e530834a",
     "site/viewer/machine-gallery.mjs": "2cb7ab5c2a179646c2e58373ab9d09ce2fa34c665d7b6956ec25526dbe056b68",
     "site/viewer/machine-head-model.mjs": "29127f945aa95e886fe7d3b5938a36410bbb68d317c28a75d597d8565e31f5af",
-    "site/viewer/machine-heads.js": "511efa4f0957272ec700175c2114538d8b997b2e7041914a7bed67e156d53156",
+    "site/viewer/machine-heads.js": "b490a01b8b3d62c4423a0452469039fb6739ab851e57edd6c0cfb29fb0ba8c9b",
     "site/viewer/machines.html": "2ad965dfabab67e42c123614a612be9120ade2177df47d6fb60c4dd8651408c2",
     "site/viewer/machines.js": "7d90ace65109ee54e1d2ade1149df3ee1f7913d67257fea380845b36eb0fbbf9",
     "site/viewer/madmax-native-joint.mjs": "d39e974d7b782135b52a126b72a071d534bce4beb2acd82f6fe4f509cffd7b42",
@@ -420,15 +425,15 @@
     "site/viewer/toolhead-led-identities.mjs": "39dec8b48b8d0d1a46d6eab5396ad11eed4ed86aab516bfcac675da686fba2aa",
     "site/viewer/toolhead-lighting.mjs": "bca7e8fa08d5332567c15abc178d1915db05259c695d6f63cc80d61f0705f3ea",
     "site/viewer/toolheads.css": "a03941a53ad7be71c88335121d4ef8239365f7a7b60091ab296dedc92793804a",
-    "site/viewer/toolheads.html": "5a136038bbbd5396f4966e83b4bfcc6e9267a9bace09c2e0e8636a99c18aa302",
-    "site/viewer/toolheads.js": "571ebb35a9bb9f065f5b8bb25d21ae3c2a6d6fc3d8c1ed89abae50ca0eec4934",
+    "site/viewer/toolheads.html": "a4038429e7cd058661b4f6e4c49632901167ab2df705f754e7b4c91dea7bac01",
+    "site/viewer/toolheads.js": "1eaba208b6f32854bc0ff1d19ee9d22246d0e518e275dc6f62f58e17f48de90c",
     "site/viewer/translation-engine.mjs": "ad5021536c774dab7b4dd6b7573dc507b06f1d54f5a71bc79809033e33ac8cff",
     "site/viewer/trident-bed-registration.mjs": "17201d090ac06e795be090c94f875e677d4e80054ed8ad16d57a25bb4eddd4fd",
     "site/viewer/trident-belts.mjs": "36cbfcd85e770a25e8220665ee8b44e47c202523f588b9dd2e8e8aa944146511",
     "site/viewer/trident-front-registration.mjs": "6ae818408f2a66ba416aa39b2ac83baed4271c891f885256f686d8e039043eed",
     "site/viewer/trident-motion.mjs": "77312c6bfbf6c7e7563dbf5548ed5600baf2ab2ec2f0f438aa1860af355059ec",
     "site/viewer/trident-roof-tube.mjs": "3c2b6b629363a92659ed04e7fa9d37a2d89c6ae3f008c0acf4ce2f296155ab97",
-    "site/viewer/trident.html": "520de1ab642feb6800b87cd2fa435aadc5c223207caa88f303b9322ccf4ada16",
+    "site/viewer/trident.html": "4adebb1f5becba75c33491a6b31234a1a6fff47cf5d26b5b1547705153f115c6",
     "site/viewer/trinity-alpha-host-extensions.mjs": "16eaa18cbe476dce5e42f8972dde8d72dfd56ea519f66b9819920848aa6c4fc6",
     "site/viewer/trinity-alpha-installation.mjs": "00883f5a143392e345544041305a2328a9325f6eedba59268ee0cf48075f40fc",
     "site/viewer/trinity-alpha-siboor-r2.mjs": "7e0002b29eb86db5758083a52e832c9063182f3a8c8c66694485cfa4bc1e2eab",
@@ -446,16 +451,16 @@
     "site/viewer/v0.html": "6e50087068f500591b2bb7cac0be1e61a5c5a2abb13f450f53051e776e675e6f",
     "site/viewer/v24_adapter.mjs": "2c7e8b33fb449a513a483e754e501cde1e798970cf75e7f465437a81a2bd7ec2",
     "site/viewer/v24_matrix_adapter.mjs": "1f70f3be4ab4a0e745449c099b6224df7cab8bbccc1abc2a4c1008e8ba18038f",
-    "site/viewer/v24-app.js": "51fa91106092981561126e617771fd8fb31c1a382f8ae118f1cfbab628d3e450",
+    "site/viewer/v24-app.js": "91ddb10623f3cb24aca3449da6f20f6bcbe161a15e9e48f7f33c01fb91d281ab",
     "site/viewer/v24-belts.mjs": "ad0c97343617f3c11d0be3cebe666aa149794d56872cb3653c80b8c6d4857f72",
-    "site/viewer/v24-bootstrap.js": "bcdfbc6d7d7d192f1f7dfd23e9caad1c90c9c7c7458d73ff68b742c79b41bbf1",
+    "site/viewer/v24-bootstrap.js": "6115d769cbac0615a474ce9e2ef94109a2d7dfac624180792b0ce8a74ebb5168",
     "site/viewer/v24-drive-metadata.mjs": "dbdf9f37cb0849ffc262891895fa2f6f8580d6ec81b23c0821b0f0c00a512c43",
     "site/viewer/v24-flexible.mjs": "4de2768da445f9eef0d59ead19639302112d082c26084fa80d48b6f98635470b",
     "site/viewer/v24-ptfe.mjs": "c4b99bd80cb09e11b702a1da0dea62839204f7727962ecc17929734c9dc008a2",
-    "site/viewer/v24-reference.html": "b4d324117e7b76c84925274d50b8db5a8d54326d0bcd9b4e254e52e6502cf137",
-    "site/viewer/v24-reference.js": "ea61644fb2b11c44a3e8533ef16c5439eafaeb56bf330e354b71aba4d83fc860",
-    "site/viewer/v24.html": "cfc05003df59cfb3f0f9c407923d9b78667d11040183a66b021f2adc465652c6",
-    "site/viewer/vanilla-trident.js": "0b8487bef7b14cac60769f5347da69105d7e7c492b57aa39d84bbcba7a90d7f4",
+    "site/viewer/v24-reference.html": "d5b5c82266118efac88588e910b1757817631b7d888be66dc56be5faf04a0ff1",
+    "site/viewer/v24-reference.js": "a341ae68350a730b29d4b1f4bc926a5d21749f3654f665c235434adcde0774cf",
+    "site/viewer/v24.html": "1cd62257139b5041c1ba9b2e007aa31d4480f7ef911e0cf9f658d377c38e75b5",
+    "site/viewer/vanilla-trident.js": "d4b6fffc97ef54ac4385155085640f5068bb2ca281ab509cae418e13151593ed",
     "site/viewer/vendor-r180/BufferGeometryUtils.js": "fda7e946b8e0b5ab39b779206589e7a1079a22eb24efb89d7223e03fdfb1f751",
     "site/viewer/vendor-r180/GLTFLoader.js": "adbbafe8ce40416525b6be0ee5cac0d3782482bcf0122c8ca8ec1ffa77d3440b",
     "site/viewer/vendor-r180/OrbitControls.js": "1c5dfa7751d7ab320ac09b578638f08eecacdaaa68109d097158105f3fc6ad43",
@@ -1006,6 +1011,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "runtime_brightness_117": {
@@ -1114,6 +1124,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "6fa5a0e87a38f24334177d96405e834debc8776f17a063be7d6cc89fd99613d7",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -1257,6 +1275,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "runtime_brightness_117": {
@@ -1357,6 +1380,14 @@
         ],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "7a8d958a198ffabd374314c95a9d49e8b0f0f64fc51a488cdb3a1b973c8e95ad",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -1527,6 +1558,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -1682,6 +1718,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "73755c5b4f0cdd134554c68d9b37102348af2d71c2e9a31e761c492856939f9b",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -1852,6 +1896,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -2007,6 +2056,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "0a3088eb107137530b22e2b4a9ee41b52d0aff3ebd531e68f35d7c825256f8b5",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -2177,6 +2234,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -2335,6 +2397,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "16d278caa466868340ad8c97d91b80d96bfbc2af2d871565ab8d1e3559faf861",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -2505,6 +2575,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -2660,6 +2735,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "8c6a1a7d0118ee2bda8ff2278a60e9150324af9f24be59fee4efbe93007cf952",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -2830,6 +2913,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -2985,6 +3073,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "95af277a4543096620b30f64d2d3fb6403fa6f07ca624719734d1c3a35c51ea3",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -3155,6 +3251,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -3310,6 +3411,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "3f9545ec42868cd09d43fa4700feee2b8c105b651f8fd1ec2f67d6831ff060da",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -3480,6 +3589,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -3635,6 +3749,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "9737ca06af3e3a51a9a185a85bfaeadf5741c9d4f7cad9206ff6d37b77165ee3",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -3805,6 +3927,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -3999,6 +4126,14 @@
         },
         "complete_head_scope": "Original source assembly; nozzle plane measured from the exported mesh. Complete native-solid body and probe clearance remain unverified.",
         "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "b394124d0ef44519aa24cd005d1433305f35a545c3b8d5f9c8cccb8268fb0175",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": "ratrig_vminion_180",
+        "full_physical_fit_certified": false
       }
     },
     {
@@ -4009,6 +4144,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "model_sha256": "6a375f65c81f6cd993313257bab4fe8cae0345ad1b8ee500dece3dc890014a16",
@@ -4098,7 +4238,15 @@
         "site/viewer/v24_matrix_adapter.mjs": "1f70f3be4ab4a0e745449c099b6224df7cab8bbccc1abc2a4c1008e8ba18038f"
       },
       "bundled_runtime_identity_checked": true,
-      "catalog_hash_checked": true
+      "catalog_hash_checked": true,
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "6a375f65c81f6cd993313257bab4fe8cae0345ad1b8ee500dece3dc890014a16",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": "ratrig_vcore31_300",
+        "full_physical_fit_certified": false
+      }
     },
     {
       "id": "snakeoil_xy_180",
@@ -4267,6 +4415,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -4422,6 +4575,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "1361302b4008deb1267eb8db72ad1b108e1de0e7159b28ab0088fc2dda8486c4",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -4592,6 +4753,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -4747,6 +4913,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "798136042b99c6a206a662b4e113b0ec7b08532d2235f496b573b5aa47468181",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -4917,6 +5091,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -5072,6 +5251,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "12ae8ee0e81dc89b04fc762d030fb72465692f8009159a4564086985d6774935",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -5242,6 +5429,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -5397,6 +5589,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "99018bcd4ca8fd9a0fdd2b13f764dea7e2de9471979db8766b947e876c977e87",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -5567,6 +5767,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -5722,6 +5927,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "73b00f8d5714a6974837608f6f0ffd66fb540e116741862ce296199acb0fdf72",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -5892,6 +6105,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -6047,6 +6265,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "479f7840e1fdd1790ecd797dc8ba0ef7021316f88755566bd113a22f7c9c286e",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -6217,6 +6443,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -6372,6 +6603,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "04ca850e7ce000b44db73a35058d036e4c537a7b715486172d527a926f93756c",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -6542,6 +6781,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -6755,6 +6999,14 @@
         "source_native_mount": null,
         "complete_head_scope": null,
         "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "ef494370b069a5e8bdbdb45640aab791a822106c0f1636807342ebefe1ecc1cd",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
+        "full_physical_fit_certified": false
       }
     },
     {
@@ -6924,6 +7176,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -7079,6 +7336,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "14be46c56724a3f954a0ab2dac8a64647b4618d913a0e3eb0c2658f619f7c77d",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -7249,6 +7514,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -7410,6 +7680,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "bf2eee971286dabebd8ae0f4149eb76657036c21e2df31aef6f1e32c28158f25",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -7580,6 +7858,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -7735,6 +8018,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "03f3c99734f20f9b4af1b17d1f31443e0c05f534e163ad03b8a88e5f8ea92240",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -7905,6 +8196,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -8060,6 +8356,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "0efe6df3f44824d2431cd514fb31b3c135cc9cd81cf232d07ec9ac3f3ccdc450",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -8230,6 +8534,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -8385,6 +8694,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "aa9cea21120eef1d395d02800c179d169169d40321c8b480b672d9b841f8f1cf",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -8555,6 +8872,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -8710,6 +9032,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "bc2dac0dbcdb191f6ae1391a538f3deed28ec3deb0fdc7597f6adde8379c841c",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -8879,6 +9209,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "full_physical_fit_certified": false,
@@ -9033,6 +9368,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "ca956d3d7b27526e8f21b7d8cbbc5783ce461b6ae450f9609a6f5847cc814672",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -9203,6 +9546,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -9382,6 +9730,14 @@
         "source_native_mount": null,
         "complete_head_scope": null,
         "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "96309090e82efd59e214c403edf4716357a245e76a190038bea88abae315ff52",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
+        "full_physical_fit_certified": false
       }
     },
     {
@@ -9551,6 +9907,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -9726,6 +10087,14 @@
         "source_native_mount": null,
         "complete_head_scope": null,
         "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "8cad57cf1550f8827ffdfd34cc4d7ab28edfe94b65c99a0fc7b9b28fad7f60ce",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
+        "full_physical_fit_certified": false
       }
     },
     {
@@ -9895,6 +10264,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -10070,6 +10444,14 @@
         "source_native_mount": null,
         "complete_head_scope": null,
         "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "d927d9e14276901cdfcd2d433a16e67ae461ec0bc67ea1912715881a64181b16",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
+        "full_physical_fit_certified": false
       }
     },
     {
@@ -10239,6 +10621,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -10430,6 +10817,14 @@
         "source_native_mount": null,
         "complete_head_scope": null,
         "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "e619e8944eba1a45ff7f72f28f808d4c475a0d0fb95d08a5eacf4fe2cffa97f4",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
+        "full_physical_fit_certified": false
       }
     },
     {
@@ -10599,6 +10994,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -10767,6 +11167,14 @@
         "source_native_mount": null,
         "complete_head_scope": null,
         "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "4aa9673623c73d1090227efe2d522e68ee99b210c4704ae7bd15f5f7d09866b2",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
+        "full_physical_fit_certified": false
       }
     },
     {
@@ -10933,6 +11341,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "model_sha256": "094d657422da5f74965a164e02c9e95824d5e0670fdaed9ffedd0590d4369ede",
@@ -11052,7 +11465,15 @@
         "complete_head_scope": null,
         "full_physical_fit_certified": false
       },
-      "bundled_runtime_identity_checked": true
+      "bundled_runtime_identity_checked": true,
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "094d657422da5f74965a164e02c9e95824d5e0670fdaed9ffedd0590d4369ede",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
+        "full_physical_fit_certified": false
+      }
     },
     {
       "id": "voron_trident_350_half_z",
@@ -11221,6 +11642,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -11388,6 +11814,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "c7964f897e5d1be6450c3adeb699d20ad375583a4989afb705ed9ee481a346a3",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -11558,6 +11992,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -11747,6 +12186,14 @@
         "source_native_mount": null,
         "complete_head_scope": null,
         "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "679d362a57c5512213f19c5a4c2eef6b38719dbd5ce0a0a0e395dfd32e7e1bf2",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
+        "full_physical_fit_certified": false
       }
     },
     {
@@ -11916,6 +12363,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -12105,6 +12557,14 @@
         "source_native_mount": null,
         "complete_head_scope": null,
         "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "c94f64fbf04fc48a2b1f5d474dc6c4f70f4d946d9cea2edddcd430be8ca7aebe",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
+        "full_physical_fit_certified": false
       }
     },
     {
@@ -12274,6 +12734,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -12463,6 +12928,14 @@
         "source_native_mount": null,
         "complete_head_scope": null,
         "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "7eb406d1350e3da483c8e1beade769b9571abe977c92e4b67ad4fae000c81065",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
+        "full_physical_fit_certified": false
       }
     },
     {
@@ -12632,6 +13105,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -12821,6 +13299,14 @@
         "source_native_mount": null,
         "complete_head_scope": null,
         "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "6f16caedf58dd81149955d5c215aba46cea386bc3ded88bc18bd73722a8d2f5a",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
+        "full_physical_fit_certified": false
       }
     },
     {
@@ -12990,6 +13476,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -13179,6 +13670,14 @@
         "source_native_mount": null,
         "complete_head_scope": null,
         "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "451074148753e60129c619d915efa64c305b5a3397b0d9f822d713273702425c",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
+        "full_physical_fit_certified": false
       }
     },
     {
@@ -13348,6 +13847,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -13537,6 +14041,14 @@
         "source_native_mount": null,
         "complete_head_scope": null,
         "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "255ba847abf4f7d862d6e5aaac3f284a860eedac08e5bac32534d75ef42f361f",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
+        "full_physical_fit_certified": false
       }
     },
     {
@@ -13706,6 +14218,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -13867,6 +14384,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "5696e6097763134ee47e6453b023245a237f9272f6eddac76e554fd79655f632",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -14034,6 +14559,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "model_sha256": "aacca629d947491958eab426727f9b5653c3aa00bd8fa2b5ab53c5b4c9c1a6cd",
@@ -14153,7 +14683,15 @@
         "complete_head_scope": null,
         "full_physical_fit_certified": false
       },
-      "bundled_runtime_identity_checked": true
+      "bundled_runtime_identity_checked": true,
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "aacca629d947491958eab426727f9b5653c3aa00bd8fa2b5ab53c5b4c9c1a6cd",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
+        "full_physical_fit_certified": false
+      }
     },
     {
       "id": "voron_v24_350_half_z",
@@ -14322,6 +14860,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -14483,6 +15026,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "b6622e56f991fdf68b58ea8c2b51c157fc48eb5f3e01b05e953ed7e2ab3df298",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -14653,6 +15204,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -14842,6 +15398,14 @@
         "source_native_mount": null,
         "complete_head_scope": null,
         "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "bd520951b97f06a98049ac29b4ba39d52ad0d6cfd491b2b621002bf612540ba6",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
+        "full_physical_fit_certified": false
       }
     },
     {
@@ -15011,6 +15575,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -15194,6 +15763,14 @@
         "source_native_mount": null,
         "complete_head_scope": null,
         "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "d89064824fa67ed6e7c78e90c642620afe62c3b4520255f6c626181754b7d29d",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
+        "full_physical_fit_certified": false
       }
     },
     {
@@ -15363,6 +15940,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -15546,6 +16128,14 @@
         "source_native_mount": null,
         "complete_head_scope": null,
         "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "da642150957fa38289499bd1c1586737f4f970968c3b32b3f7b81d76bef05ea9",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
+        "full_physical_fit_certified": false
       }
     },
     {
@@ -15715,6 +16305,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -15890,6 +16485,14 @@
         "source_native_mount": null,
         "complete_head_scope": null,
         "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "9cf6f791159e5d15471d0147edee3fc29762468cbe2692a93ef5ffbc1527c2be",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
+        "full_physical_fit_certified": false
       }
     },
     {
@@ -16059,6 +16662,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -16234,6 +16842,14 @@
         "source_native_mount": null,
         "complete_head_scope": null,
         "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "c28985823dbeb5534405509dac351e0f54fc46e77b0887edd562249b0dbb501a",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
+        "full_physical_fit_certified": false
       }
     },
     {
@@ -16403,6 +17019,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -16571,6 +17192,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "4ee4c9612380f007a9c5f107d1d7a2f59e2d89bc7ebabe802bf272eb7c53faff",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -16741,6 +17370,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -16896,6 +17530,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "f4e560da3b9f8274b508dfc6d9e846ebc5c9e147fccbd16a63c771fba3c13de5",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -17066,6 +17708,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -17221,6 +17868,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "dfb5aaeca2cb274932ae4a9f8c59a7a76114f3d6c6c41dc9c814223b33d2a8b6",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -17391,6 +18046,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -17546,6 +18206,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "125705129bc1fe73416d661df8dc928291f2a090a03ef662459bf6275f53031b",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -17716,6 +18384,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -17871,6 +18544,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "16f57d28b27602be3effa8b5c797b3d59f4ce07025aa59c9e84de91a08b10427",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -18041,6 +18722,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -18196,6 +18882,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "cedf78d3a15e5bcfbbdebef6a3b48d2aafc2f516ac701177472c6eb504bff2b7",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -18366,6 +19060,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -18521,6 +19220,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "b2ca97bc05ef65eff019d886a8069b89f1f7958a6a5fa4ec5f27598459e9ed06",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -18691,6 +19398,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -18846,6 +19558,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "b41565379c61be88ff04988bd7c3742318129da04620ca5aa264c441a2a19bde",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -19016,6 +19736,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -19171,6 +19896,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "1b90e0423e78a64a26c5ecc2c91f51616d8d060fbd34431af0b53f15ed5886fc",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -19341,6 +20074,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -19496,6 +20234,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "c352ee0188f76528d9bc3ddf8ca8da341206ac91ea4080bc62bbcbd5f9fbd297",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -19666,6 +20412,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -19821,6 +20572,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "5667d489ad6a27f61e2e5bfd5418582745aac3faae62248dc1d320104cec0bca",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -19991,6 +20750,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -20146,6 +20910,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "aac48dc8f9ec3c57653f243ba1b7fda102e556f2d2a3e8a8167aa21f3e443be8",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -20316,6 +21088,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -20471,6 +21248,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "9642e9a716271296176c5a11d7da26ea65f768cdd5fee282609fab41065ccddb",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -20641,6 +21426,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -20796,6 +21586,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "4328f885ab485f25157d4e25cb2c6d921a2843a0ddce85e619b2f3b1b01f1caa",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -20966,6 +21764,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -21121,6 +21924,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "1797f6a03cdf2a051ee94f1cbe91e5d9d4e78bf068979f4ef182ef518f9734e9",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -21291,6 +22102,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -21446,6 +22262,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "9ee09292ad7f5a1cd22ecc70b4dc351d2f42b88353fca26b0266326fc0195e39",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -21616,6 +22440,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -21771,6 +22600,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "b1d9ce88b7c1e8d94b84081dda180b734f404a6d7c49a3834682ea62fe5f4eb6",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -21941,6 +22778,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -22096,6 +22938,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "856eed23ee1a8f56dd2d242808cbbfd9fef8abb83f9f4a8afb905709c76f55ce",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -22266,6 +23116,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -22421,6 +23276,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "f2de1ea8733e099f302340ad660dc505baa07627215c7d9839d3e1ebeb670dd4",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     },
@@ -22591,6 +23454,11 @@
           "report": "EVA_INSTALLED_REVIEW_127.json",
           "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6",
           "scope": "Release127 actual attributes for every available registered model; named original10 motion and registered community installation samples, paired standalone EVA companions and Rapido X source regression. Only two native EVA source carriage mounting interfaces have independent solid/axis measurements. All prior findings remain; no universal or continuous physical-fit certification."
+        },
+        {
+          "report": "EVA_FRONT_REVIEW_128.json",
+          "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+          "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain."
         }
       ],
       "historical_native_motion": {
@@ -22746,6 +23614,14 @@
         "sampled_installations": [],
         "source_native_mount": null,
         "complete_head_scope": null,
+        "full_physical_fit_certified": false
+      },
+      "eva_front_release_128": {
+        "mesh_attributes_reviewed": true,
+        "original_model_sha256": "e199087d12dee961f1c2e08b7f96e4dfd95adf52ef5210536f5d6ec0e5904a07",
+        "report": "EVA_FRONT_REVIEW_128.json",
+        "report_sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+        "front_surface_owner": null,
         "full_physical_fit_certified": false
       }
     }
@@ -36875,7 +37751,7 @@
     "current_static_build_and_served_revision_pending": true,
     "retained115_browser_equivalence_allowed": false
   },
-  "generated_at_utc": "2026-10-11T14:06:52.683Z",
+  "generated_at_utc": "2026-10-11T15:43:22.223323+00:00",
   "runtime_brightness_release_117": {
     "baseline": "c1ea4a4f11eeecc19b615cdc12aeb683f9e139bd",
     "geometry_changed": false,
@@ -49182,5 +50058,14 @@
       "actual_gallery_support_passed": true,
       "actual_gallery_support_log_sha256": "d43f49347a765ad9cffb009ff9dad8ea086c1d2994d171232765cb2e1fc026ec"
     }
+  },
+  "eva_front_release_128": {
+    "report": "EVA_FRONT_REVIEW_128.json",
+    "sha256": "9e0511c5ffcd086f6aceb08a85ca1a1f7ec86db4c50f853850aac974707a07c9",
+    "scope": "Current release128 actual attributes for every available exported model; source-bound 10-machine / 1971-pose motion and Rapido X companions. Four actual EVA rendering consumers independently checked against native aperture/normal witnesses. Named in-app browser evidence is separate; all earlier native findings remain.",
+    "actual_fronts": 4,
+    "max_parallel_worker_lanes": 2,
+    "source_regressions": "Required repository gate runs after this scoped evidence refresh.",
+    "full_physical_fit_certified": false
   }
 }

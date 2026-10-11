@@ -19,7 +19,7 @@ import {createV24Adapter} from './v24_adapter.mjs?v=2c7e8b33fb449a513a48';
 import {setupMachineNavigation} from './machines.js?v=7d90ace65109ee54e1d2';
 import {setupRenderExport} from './render-export.js?v=a5e4bcf57f5a8e07dcba';
 import {setupPublicInfo} from './public-info.js?v=bc65031c671a47d05260';
-import {setupV24MachineHeads} from './machine-heads.js?v=511efa4f0957272ec700';
+import {setupV24MachineHeads} from './machine-heads.js?v=b490a01b8b3d62c4423a';
 export async function mount(scope){
 setupMachineNavigation('siboor_v24_350');
 setupPublicInfo();

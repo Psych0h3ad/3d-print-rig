@@ -1,0 +1,158 @@
+{
+  "schema": "3d-print-rig-eva-front-surfaces-v1",
+  "source_solids_modified": false,
+  "supports_removed": false,
+  "asset": {
+    "component_id": "eva_front_surfaces_v1",
+    "parts": 3,
+    "external": {
+      "base_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/",
+      "local_directory": "eva-front-surfaces-assets"
+    },
+    "files": {
+      "model.glb": {
+        "path": "eva-front-surfaces-v1/model.glb.gz",
+        "bytes": 841984,
+        "sha256": "b7111fe444f9c9aad92f2fb2717e29c6d09d8dd95ff4b320d0006e6beab123d6",
+        "encoding": "gzip",
+        "decoded_bytes": 1847644,
+        "decoded_sha256": "67b05c4e8a5dab7ef32c9b9d30545fd828761c9e21432354eae09e9ac40cee43"
+      },
+      "parts.json": {
+        "path": "eva-front-surfaces-v1/parts.json",
+        "bytes": 2986,
+        "sha256": "53dabf748c463c326ece10a4cd71cb53c1cf82082100555fe7e22c72df498ac4"
+      }
+    }
+  },
+  "owners": {
+    "eva2_vminion_lgx_bmo": {
+      "id": "eva2_vminion_lgx_bmo",
+      "model_sha256": "21b8cf9694d86062e6b124051c1b60b963d66328a0df7a1b45ba2baaabd46b3b",
+      "source_step_sha256": "46650c0be0527b0f799a6ebd5cde210254caafdc4c436f558857fa30c17e9b94",
+      "source_origin_mm": [
+        70,
+        0,
+        0
+      ],
+      "targets": [
+        {
+          "part_key": "eva2_vminion_lgx_bmo_334",
+          "patch_key": "eva2_shroud",
+          "source_path": [
+            "Rat Rig - V-Minion 1.0 v7",
+            "Full Assembly v6:1",
+            "EVA Assembly v5:1",
+            "ratrig_eva_shroud v2:1"
+          ],
+          "source_brep_sha256": "c2849ab7e2b621903eec5fb0cf658f7f0d6893f45bfacc016a2105a772f81add"
+        }
+      ]
+    },
+    "ratrig_vminion_180": {
+      "id": "ratrig_vminion_180",
+      "model_sha256": "b394124d0ef44519aa24cd005d1433305f35a545c3b8d5f9c8cccb8268fb0175",
+      "source_step_sha256": "46650c0be0527b0f799a6ebd5cde210254caafdc4c436f558857fa30c17e9b94",
+      "source_origin_mm": [
+        70,
+        0,
+        0
+      ],
+      "targets": [
+        {
+          "part_key": "334",
+          "patch_key": "eva2_shroud",
+          "source_path": [
+            "Rat Rig - V-Minion 1.0 v7",
+            "Full Assembly v6:1",
+            "EVA Assembly v5:1",
+            "ratrig_eva_shroud v2:1"
+          ],
+          "source_brep_sha256": "c2849ab7e2b621903eec5fb0cf658f7f0d6893f45bfacc016a2105a772f81add"
+        }
+      ]
+    },
+    "eva3_ratrig_vcore31_urn9_rapido_hf_lgx_lite": {
+      "id": "eva3_ratrig_vcore31_urn9_rapido_hf_lgx_lite",
+      "model_sha256": "619857aca76e72c14601b086db8c2cf86b7c3ab7d24b1e4323f3d60f6eb58168",
+      "source_step_sha256": "9bfde01c4d811eaef253831f2fe7354e14c36b607d36b5b37bfc4fe9f48906d6",
+      "source_origin_mm": [
+        0,
+        0,
+        0
+      ],
+      "targets": [
+        {
+          "part_key": "eva3_native_094",
+          "patch_key": "eva3_shroud",
+          "source_path": [
+            "Rat Rig V-Core 3.1 - 300 v9",
+            "EVA3 Assembly v4:1",
+            "ratrig_eva3_shroud v3:1"
+          ],
+          "source_brep_sha256": "f60993d60da9eb279606063b3b066f6168dc79d1d6a54009ac497e92277871bf"
+        },
+        {
+          "part_key": "eva3_native_010",
+          "patch_key": "eva3_inlet",
+          "source_path": [
+            "Rat Rig V-Core 3.1 - 300 v9",
+            "EVA3 Assembly v4:1",
+            "40mm_fan_inlet v2:1"
+          ],
+          "source_brep_sha256": "e0a95a592dff7faee704e368f384875b82c79f387b4c4660cc3c2bdacb7b4640"
+        }
+      ]
+    },
+    "ratrig_vcore31_300": {
+      "id": "ratrig_vcore31_300",
+      "model_sha256": "6a375f65c81f6cd993313257bab4fe8cae0345ad1b8ee500dece3dc890014a16",
+      "source_step_sha256": "9bfde01c4d811eaef253831f2fe7354e14c36b607d36b5b37bfc4fe9f48906d6",
+      "source_origin_mm": [
+        0,
+        0,
+        0
+      ],
+      "targets": [
+        {
+          "part_key": "889",
+          "patch_key": "eva3_shroud",
+          "source_path": [
+            "Rat Rig V-Core 3.1 - 300 v9",
+            "EVA3 Assembly v4:1",
+            "ratrig_eva3_shroud v3:1"
+          ],
+          "source_brep_sha256": "f60993d60da9eb279606063b3b066f6168dc79d1d6a54009ac497e92277871bf"
+        },
+        {
+          "part_key": "805",
+          "patch_key": "eva3_inlet",
+          "source_path": [
+            "Rat Rig V-Core 3.1 - 300 v9",
+            "EVA3 Assembly v4:1",
+            "40mm_fan_inlet v2:1"
+          ],
+          "source_brep_sha256": "e0a95a592dff7faee704e368f384875b82c79f387b4c4660cc3c2bdacb7b4640"
+        }
+      ]
+    }
+  },
+  "witnesses": {
+    "2": {
+      "path": "eva-front-surfaces-v1/eva2.source-witnesses.json.gz",
+      "bytes": 691651,
+      "sha256": "f26d94dcb59a32221a33f0067e5ef5c255f15f639585407fcfcdcfdacb20b740",
+      "encoding": "gzip",
+      "decoded_bytes": 6065438,
+      "decoded_sha256": "c64ff9131ccffdd8fddd8b6c29c4288a02cabcc5077ab7bcea0eeb19ae9d5cf3"
+    },
+    "3": {
+      "path": "eva-front-surfaces-v1/eva3.source-witnesses.json.gz",
+      "bytes": 3832091,
+      "sha256": "dd48368229c0a472ba2900b847afa653f38051499eec763b01fc88a4ed47baba",
+      "encoding": "gzip",
+      "decoded_bytes": 23677678,
+      "decoded_sha256": "210b51b1368e4b98f29f019330349367ed40f9ed0fabe966b8735406dba7f0e2"
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import {cloneNativeLedTree} from './led-emission-surface.mjs?v=af40a3200e128a08c940';
 import {validateEvaMetadata,bindEvaSourceMachines,bindEvaMeshIdentities} from './eva-heads.mjs?v=65c037171afca9ebb341';
+import {loadEvaFrontSurfaces,applyEvaFrontSurfaces} from './eva-front-surfaces.mjs?v=ff32b5dac706119bf45c';
 import {evaCommunityIndex} from './eva-installations.mjs?v=3838c4828bb6ab03392f';
 import {madmaxJointAssetSpec,madmaxJointApplies,captureMadmaxJoint,setMadmaxJointPose} from './madmax-native-joint.mjs?v=d39e974d7b782135b52a';
 import {madmaxPtfeAssetSpec} from './madmax-ptfe.mjs?v=c0df5309f697af621506';
@@ -18,7 +19,7 @@ import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import {partKey} from './head-assembly.js';
 import {v24HeadCatalog} from './machine-head-model.mjs?v=29127f945aa95e886fe7';
-import {setupConfigurations} from './configurations.js?v=8c524b6bbb6fc6a96a84';
+import {setupConfigurations} from './configurations.js?v=5633928f243ee0e2663d';
 
 import {loadSiboorRegistration} from './siboor-catalog.mjs?v=09e0b77a1e3484059fa9';
 import {stockProbeFit} from './probe-mounts.js?v=f1e71ff433b1c31d5e82';
@@ -66,11 +67,12 @@ export async function loadMachineHeadCatalog(machine){return workspaceTask(async
 });}
 export function createMachineHeads(scene,catalog,{render=()=>{}}={}){
  const gantry=createMonolithGantry(scene,catalog);
- const cache=new Map(),rig=new THREE.Group(),bankRig=new THREE.Group();rig.name='Installed_Machine_Head';bankRig.name='Frame_Tool_Bank';scene.add(rig,bankRig);let current=null,palette={base:'#24272c',accent:'#e32636'},delta=[0,0,0],bankState=null,bankEntries=[];
+ const frontLoader=new GLTFLoader(),cache=new Map(),rig=new THREE.Group(),bankRig=new THREE.Group();rig.name='Installed_Machine_Head';bankRig.name='Frame_Tool_Bank';scene.add(rig,bankRig);let current=null,palette={base:'#24272c',accent:'#e32636'},delta=[0,0,0],bankState=null,bankEntries=[];
  async function asset(id){return workspaceTask(async()=>{
   if(cache.has(id))return cache.get(id);const spec=madmaxPtfeAssetSpec(catalog.machine_id,id,madmaxJointAssetSpec(catalog.machine_id,id,catalog.base_assets?.[id]||catalog.assets[id]));if(!spec)throw Error('未登録のヘッド部品：'+id);
   const loading=spec.external?loadExternalComponent(new GLTFLoader(),spec,location.href).then(({meta,gltf})=>[meta,gltf]):Promise.all([fetch('../'+spec.meta,{cache:'no-cache'}).then(async r=>{if(!r.ok)throw Error('ヘッドの部品表');if(spec.metadata_sha256){const text=await r.text();if(await contentSHA256(text)!==spec.metadata_sha256)throw Error('Native head metadata hash mismatch');return JSON.parse(text)}return r.json()}),loadModel(new GLTFLoader(),'../'+spec.glb,undefined,spec.decoded_model_sha256?{verifySha256:spec.decoded_model_sha256}:{})]);
-  const promise=loading.then(([meta,g])=>{
+  const promise=loading.then(async([meta,g])=>{
+   if(meta.eva_generation)applyEvaFrontSurfaces(g.scene,meta,spec.files['model.glb'].decoded_sha256,await loadEvaFrontSurfaces(frontLoader,location.href));
    if(meta.coordinate_frame==='original_native_CAD_mm_XY_Zup'){const native=new THREE.Group();native.rotation.x=-Math.PI/2;native.scale.setScalar(.001);native.add(g.scene);g.scene=native;}
    bindEvaMeshIdentities(meta,g.scene);const lookup=new Map(meta.parts.map(p=>[String(p.key),p])),entries=[];g.scene.visible=false;
    g.scene.traverse(mesh=>{if(!mesh.isMesh)return;const key=partKey(mesh),row=lookup.get(String(key));if(!row)throw Error('ヘッドの部品対応が不正です');mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();const materials=Array.isArray(mesh.material)?mesh.material:[mesh.material];for(const m of materials){m.side=meta.native_single_sided?THREE.FrontSide:THREE.DoubleSide;if(m.transparent)m.depthWrite=false}entries.push({mesh,key,component:row.component,role:appearanceRole(row)||mesh.userData.appearance_role,materials,colors:materials.map(m=>m.color.clone())})});rig.add(g.scene);return {root:g.scene,entries,meta,nativeJoint:captureMadmaxJoint(catalog.machine_id,id,meta,entries)};

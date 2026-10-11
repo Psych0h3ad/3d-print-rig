@@ -4,7 +4,7 @@ import {setupSceneDisplay} from './display-preferences.mjs?v=cfa9769ce74b3791658
 import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=ea3c45fda6e17c3b5857';
 import {loadMonolithData} from './monolith-machine.js?v=f8f1e63949058c9f3c6e';
 import {setupChangerBank} from './changer-bank.js?v=e40b96658f9103747458';
-import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=511efa4f0957272ec700';
+import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=b490a01b8b3d62c4423a';
 import {headPrinterLink} from './head-navigation.mjs?v=663ef69203268ad03761';
 import {headBuilderDimensions} from './configuration-model.js?v=c19fa3a47abadf7f3d2c';
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
@@ -13,11 +13,12 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
-import {setupConfigurations} from './configurations.js?v=8c524b6bbb6fc6a96a84';
+import {setupConfigurations} from './configurations.js?v=5633928f243ee0e2663d';
 import {setupPublicInfo} from './public-info.js?v=bc65031c671a47d05260';
 import {setupRenderExport} from './render-export.js?v=a5e4bcf57f5a8e07dcba';
 import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=workspace-belts-1';
 import {validateEvaMetadata,bindEvaMeshIdentities} from './eva-heads.mjs?v=65c037171afca9ebb341';
+import {loadEvaFrontSurfaces,applyEvaFrontSurfaces} from './eva-front-surfaces.mjs?v=ff32b5dac706119bf45c';
 import {setRapidoXUhfSurface} from './rapido-x-uhf-cover.mjs?v=8b458475dac84cfcd8c7';
 import {contentSHA256} from './mount-validation.mjs';
 import {probeCheck,probeMetrics,probeGuide,headInspectionState,headBodyCollisionNotes} from './probe-checks.js?v=0f70f5c099338db857e7';
@@ -95,7 +96,8 @@ async function asset(id){return workspaceTask(async()=>{
  if(cached.has(id))return cached.get(id);
  const spec=catalog.base_assets[id]||catalog.assets[id];if(!spec)throw Error('未登録のヘッドCAD: '+id);
  const loading=spec.external?loadExternalComponent(loader,spec,location.href).then(({meta,gltf})=>[meta,gltf]):Promise.all([fetch('../'+spec.meta,{cache:'no-cache'}).then(async r=>{if(!r.ok)throw Error('CAD部品表を取得できません');if(spec.metadata_sha256){const text=await r.text();if(await contentSHA256(text)!==spec.metadata_sha256)throw Error('Native head metadata hash mismatch');return JSON.parse(text)}return r.json()}),loadModel(loader,'../'+spec.glb,undefined,spec.decoded_model_sha256?{verifySha256:spec.decoded_model_sha256}:{})]);
- const promise=loading.then(([meta,model])=>{
+ const promise=loading.then(async([meta,model])=>{
+  if(meta.eva_generation)applyEvaFrontSurfaces(model.scene,meta,spec.files['model.glb'].decoded_sha256,await loadEvaFrontSurfaces(loader,location.href));
   bindEvaMeshIdentities(meta,model.scene);const lookup=new Map(meta.parts.map(p=>[p.key,p])),root=model.scene,meshes=[];
   root.visible=false;bench.add(root);
   root.traverse(mesh=>{if(!mesh.isMesh)return;

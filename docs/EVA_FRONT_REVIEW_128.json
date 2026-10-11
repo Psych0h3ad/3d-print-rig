@@ -1,0 +1,1268 @@
+{
+  "schema": "3d-print-rig-eva-front-review-128-v1",
+  "reviewed_at_utc": "2026-10-11T15:43:22.223323+00:00",
+  "change": "Source-derived fan-grille aperture and outward-normal rendering correction for EVA 2 and EVA 3; preserve authored hardware, materials and occurrence placements.",
+  "actual_front_review": {
+    "schema": "3d-print-rig-eva-front-actual-audit-v1",
+    "passed": true,
+    "started_at_utc": "2026-10-11T15:28:44.011Z",
+    "registry_sha256": "6736163140e568612cde659961f69fc0d80c8718cfcf44558f4d93689c77bb13",
+    "heads_sha256": "c4cf5dbf88e04b4a608b85f6a36b5f61d822fb2528222eed4cf8123937e42bd1",
+    "community_sha256": "b82bbe8bffc736a9a9b1983be90bff9bd38ed9f1891294f84625ad198346e9a6",
+    "installations_sha256": "467e39ea887361e5cc3a43a3e630d747cb6133e55e46f6204de67315841dd809",
+    "patch_sha256": "b7111fe444f9c9aad92f2fb2717e29c6d09d8dd95ff4b320d0006e6beab123d6",
+    "patch_decoded_sha256": "67b05c4e8a5dab7ef32c9b9d30545fd828761c9e21432354eae09e9ac40cee43",
+    "patch_metadata_sha256": "53dabf748c463c326ece10a4cd71cb53c1cf82082100555fe7e22c72df498ac4",
+    "adapter_sha256": "ff32b5dac706119bf45c1a4337137c783b03453baeb16ae9555d27a10529fbca",
+    "audit_sha256": "308b47b143a640f3af6f7e4d768e521ae4ff152b7eff66cf6563d940ffac07b6",
+    "production_code_sha256": {
+      "scripts/three-test-loader.mjs": "38288237bc9e74ea7279b75e7b7389dfebda76fc1689697f7b1fb55277082387",
+      "site/viewer/vendor-r180/three.module.js": "c8211c69345d2e9949dc7a8ac969380497aa0600a5a8ac6a459c8cd02dd9cb8a",
+      "site/viewer/vendor-r180/three.core.js": "eb077d2417f61d3e6d9264c317cabc4ea35769ed6b0ab533067292a550784c20",
+      "site/viewer/vendor/three.module.js": "c8211c69345d2e9949dc7a8ac969380497aa0600a5a8ac6a459c8cd02dd9cb8a",
+      "site/viewer/vendor/three.core.js": "eb077d2417f61d3e6d9264c317cabc4ea35769ed6b0ab533067292a550784c20",
+      "site/viewer/vendor-r180/GLTFLoader.js": "adbbafe8ce40416525b6be0ee5cac0d3782482bcf0122c8ca8ec1ffa77d3440b",
+      "site/viewer/vendor-r180/BufferGeometryUtils.js": "fda7e946b8e0b5ab39b779206589e7a1079a22eb24efb89d7223e03fdfb1f751",
+      "site/viewer/vendor/GLTFLoader.js": "adbbafe8ce40416525b6be0ee5cac0d3782482bcf0122c8ca8ec1ffa77d3440b",
+      "site/viewer/vendor/BufferGeometryUtils.js": "fda7e946b8e0b5ab39b779206589e7a1079a22eb24efb89d7223e03fdfb1f751",
+      "site/viewer/eva-installations.mjs": "3838c4828bb6ab03392fbdd3f431d82952bc916035ed9406540a5ce84349cb3f",
+      "site/viewer/palette-controller.mjs": "af9daf5ae29080e4cbff191db67db45d6c366437a64261b967372f5742173824",
+      "site/viewer/community-adapter.mjs": "b17b9b1c319a9e599442a3c6738410323357e1a3a6cdc6c471d77b28893a2d84",
+      "site/viewer/247zero-bowden.mjs": "315a9fa6d2f032a56dbe1f8312485d71d605d5ff665476d07b7dc6d32a625168",
+      "site/viewer/community-state.mjs": "460b3fa78cc503ddb6e631766efe780433e4efa286db5d9388a67d73cd4fce3d",
+      "site/viewer/ender-original-x-belt.mjs": "47ec507ac8de83010df88849a676c69cc7122e53d3d21cb416aa22c9fea161b1",
+      "site/viewer/ender-bowden-route.mjs": "709b99d375c41ef1b8d67acf3334f7d3a773f62faea9ea345e428b7afe14b272",
+      "site/viewer/ender-mods.mjs": "5f07c69c7c42ba3f3936bf28a6e3ea4607dd182ea7c8a34b31af9ed05f0bf9be",
+      "site/viewer/native-motion-flex.mjs": "5118c3e7d3cebd86a139b1bd56b6a6e428e2fa2bb290dde243143c6212a4962f",
+      "site/viewer/bed-chain.mjs": "5c6ddd46ac13e6974c7352b944225966455ccb4a462a5315519428af3788d4d0",
+      "site/viewer/bed-chain-pins.mjs": "ea9c3d5f368a9509af7f99da784303eba92df5e316246c8a14942bc0f1bb3ae9",
+      "site/viewer/stinger-tube-route.mjs": "c4d12bd361258fbcb6be5f34b1333b999f2dff9950d78a638bbd17eaac79e5f6",
+      "site/viewer/stinger-flex.mjs": "8ddd2faaa3921acf75eae75bc8dc8e7aa7f665a1b017fd0cc364f381e9de61e7",
+      "site/viewer/mercury-tube-routes.mjs": "d27d615757ad1f73240934053ae3c293e92e57c09584c3bd767fcf877fecffee",
+      "site/viewer/community-loader.mjs": "84d4ffe53bb3dcdc07199400514cba447b1b14a236c42678a89f45146720174b",
+      "site/viewer/eva-front-surfaces.mjs": "ff32b5dac706119bf45c1a4337137c783b03453baeb16ae9555d27a10529fbca",
+      "site/viewer/component-assets.mjs": "9f8ef058f1297ab60e53f388394c9a78191b531a5e3bbbb7d7155dfed9bc6904",
+      "site/viewer/chunked-component-glb.mjs": "6b1039c50882fce242a7f6451dbd8a0d3729d1d89089ec445d5ca72b85a7b52c",
+      "site/viewer/trinity-render-delivery.mjs": "f2044876578730ca3839d79a684f03cdc61246768519bdf1a8659339cfb615b5",
+      "site/viewer/shared-component-glb.mjs": "4a77abe6f67574be8ee102415fdca65839b1f1461dffb5db3835dbb4a3d79a45",
+      "site/viewer/model-progress.mjs": "6b41a2b9f7626039b7e6a058f4d2619623250c8535275362c371cbe8a1e98d5b",
+      "site/viewer/extra-asset-integrity.mjs": "737f5dc17ca78791c0d836ce2771ccaf9b0912e537ee51ee2275fa4459331d2a",
+      "site/viewer/native-motion-profile.mjs": "91532eb992519143f437623b113bdaf52854e693a79266200d4abba10a3b80df",
+      "site/viewer/gcode-loaded-asset-identity.mjs": "42ac134c2d9a8b8f8dfc31744744fb59abf735171ae6b928030371d5e7de8dec"
+    },
+    "assets": [
+      {
+        "owner": "eva2_vminion_lgx_bmo",
+        "generation": 2,
+        "kind": "standalone",
+        "model_sha256": "6bc9646adc104c066d7a568d3a6d21dd0392b29392eaae920b1240bf955d43fb",
+        "decoded_model_sha256": "21b8cf9694d86062e6b124051c1b60b963d66328a0df7a1b45ba2baaabd46b3b",
+        "metadata_sha256": "9831dc9193fab6d3c98e4b3e9b2d8348f8c2345b1137de13e7730a7869adae92",
+        "source_evidence_sha256": "f26d94dcb59a32221a33f0067e5ef5c255f15f639585407fcfcdcfdacb20b740",
+        "source_step_sha256": "46650c0be0527b0f799a6ebd5cde210254caafdc4c436f558857fa30c17e9b94",
+        "source_revision": "urn:adsk.wipprod:fs.file:vf.vNkJMJ3hQ6ifQxhNCE27ww?version=7",
+        "source_origin_mm": [
+          70,
+          0,
+          0
+        ],
+        "head_companions": 90,
+        "recipe": {
+          "variant_id": "eva125__2__vminion_lgx_bmo",
+          "base_asset": "eva2_vminion_lgx_bmo",
+          "head_parts": 90,
+          "fan_keys": [
+            "eva2_vminion_lgx_bmo_316",
+            "eva2_vminion_lgx_bmo_321"
+          ]
+        },
+        "preservation": {
+          "native_leaves": 90,
+          "unchanged_meshes": 89,
+          "preserved_purchased_leaves": 78,
+          "authored_node_matrices_unchanged": true
+        },
+        "fan": {
+          "fans": 2,
+          "source_material_preserved": true,
+          "source_dark_material_protected": true
+        },
+        "palette": {
+          "sequence": [
+            "A",
+            "B",
+            "A"
+          ],
+          "stages": 3,
+          "printed_checks": 36,
+          "protected_checks": 234,
+          "source_color_restore": "Exact captured source colors restored; this is not a browser/native-reset-button test."
+        },
+        "controllerReset": null,
+        "witness": {
+          "rows": [
+            {
+              "key": "eva2_vminion_lgx_bmo_334",
+              "source_path": [
+                "Rat Rig - V-Minion 1.0 v7",
+                "Full Assembly v6:1",
+                "EVA Assembly v5:1",
+                "ratrig_eva_shroud v2:1"
+              ],
+              "source_brep_sha256": "c2849ab7e2b621903eec5fb0cf658f7f0d6893f45bfacc016a2105a772f81add",
+              "correction_kind": "source_null_faces_rendering",
+              "feature_family": "fan_grille",
+              "triangles": 11554,
+              "native_face_normal_triangles": 11554,
+              "singular_native_corner_limits": [],
+              "min_winding_native_dot": 0.05664295231814239,
+              "min_corner_native_dot": 0.999968221272425,
+              "void_witnesses": 3,
+              "hub_arm_rim_witnesses": 5
+            }
+          ],
+          "repair_keys": [
+            "eva2_vminion_lgx_bmo_334"
+          ],
+          "supports_removed": false,
+          "physical_fit_certified": false,
+          "scope": "All rendered repaired-leaf triangles against precomputed exact source-face outward normals; finite source-domain rays preserve voids, hub, arms and rim. Source evidence is supplied independently; this consumer does not compute native BRep booleans."
+        }
+      },
+      {
+        "owner": "ratrig_vminion_180",
+        "generation": 2,
+        "kind": "installed",
+        "model_sha256": "2031e111369e6b932507f3fdd877a6d5b8eb9fc77f8db7091c6b65d91afc3d57",
+        "decoded_model_sha256": "b394124d0ef44519aa24cd005d1433305f35a545c3b8d5f9c8cccb8268fb0175",
+        "metadata_sha256": "11e2f61fdcf9620abe3978741643f23e632a9b3fa4014fb19b0378e76727d45e",
+        "source_evidence_sha256": "f26d94dcb59a32221a33f0067e5ef5c255f15f639585407fcfcdcfdacb20b740",
+        "source_step_sha256": "46650c0be0527b0f799a6ebd5cde210254caafdc4c436f558857fa30c17e9b94",
+        "source_revision": "urn:adsk.wipprod:fs.file:vf.vNkJMJ3hQ6ifQxhNCE27ww?version=7",
+        "source_origin_mm": [
+          70,
+          0,
+          0
+        ],
+        "head_companions": 90,
+        "recipe": {
+          "variant_id": "eva125__2__vminion_lgx_bmo",
+          "base_asset": "eva2_vminion_lgx_bmo",
+          "head_parts": 90,
+          "fan_keys": [
+            "316",
+            "321"
+          ]
+        },
+        "preservation": {
+          "native_leaves": 1171,
+          "unchanged_meshes": 1170,
+          "preserved_purchased_leaves": 1084,
+          "authored_node_matrices_unchanged": true
+        },
+        "fan": {
+          "fans": 2,
+          "source_material_preserved": true,
+          "source_dark_material_protected": true,
+          "patch_hardware_materials_preserved": true,
+          "purchased_materials_recipe_sha256": "467e39ea887361e5cc3a43a3e630d747cb6133e55e46f6204de67315841dd809"
+        },
+        "palette": {
+          "sequence": [
+            "A",
+            "B",
+            "A"
+          ],
+          "stages": 3,
+          "printed_checks": 261,
+          "protected_checks": 3252,
+          "source_color_restore": "Exact captured source colors restored; this is not a browser/native-reset-button test."
+        },
+        "controllerReset": {
+          "source_profile_sha256": "e57ab95a3cd6f67ce78bc735b44cad19a34d50e26a8fd101375e936a18536a2c",
+          "installations_sha256": "467e39ea887361e5cc3a43a3e630d747cb6133e55e46f6204de67315841dd809",
+          "native_head_parts": 90,
+          "head_matrices_and_geometry_restored": true,
+          "scope": "Production community adapter current axes reset; no whole-travel or parked-tool clearance claim."
+        },
+        "witness": {
+          "rows": [
+            {
+              "key": "334",
+              "source_path": [
+                "Rat Rig - V-Minion 1.0 v7",
+                "Full Assembly v6:1",
+                "EVA Assembly v5:1",
+                "ratrig_eva_shroud v2:1"
+              ],
+              "source_brep_sha256": "c2849ab7e2b621903eec5fb0cf658f7f0d6893f45bfacc016a2105a772f81add",
+              "correction_kind": "source_null_faces_rendering",
+              "feature_family": "fan_grille",
+              "triangles": 11554,
+              "native_face_normal_triangles": 11554,
+              "singular_native_corner_limits": [],
+              "min_winding_native_dot": 0.05664295231814239,
+              "min_corner_native_dot": 0.999968221272425,
+              "void_witnesses": 3,
+              "hub_arm_rim_witnesses": 5
+            }
+          ],
+          "repair_keys": [
+            "334"
+          ],
+          "supports_removed": false,
+          "physical_fit_certified": false,
+          "scope": "All rendered repaired-leaf triangles against precomputed exact source-face outward normals; finite source-domain rays preserve voids, hub, arms and rim. Source evidence is supplied independently; this consumer does not compute native BRep booleans."
+        }
+      },
+      {
+        "owner": "eva3_ratrig_vcore31_urn9_rapido_hf_lgx_lite",
+        "generation": 3,
+        "kind": "standalone",
+        "model_sha256": "4c9bdc6f9fe29543f6f2969d69842315639bce7a186ea51eb289f5c922b792b2",
+        "decoded_model_sha256": "619857aca76e72c14601b086db8c2cf86b7c3ab7d24b1e4323f3d60f6eb58168",
+        "metadata_sha256": "7d547ae0d602a6cfc90351ff5cf6089f7d7e45b164657a0c34456d8208d073db",
+        "source_evidence_sha256": "dd48368229c0a472ba2900b847afa653f38051499eec763b01fc88a4ed47baba",
+        "source_step_sha256": "9bfde01c4d811eaef253831f2fe7354e14c36b607d36b5b37bfc4fe9f48906d6",
+        "source_revision": "urn:adsk.wipprod:fs.file:vf.eL92Eu5CTp6oAA3iYBTPpw?version=9",
+        "source_origin_mm": [
+          0,
+          0,
+          0
+        ],
+        "head_companions": 123,
+        "recipe": {
+          "variant_id": "eva125__3__vcore_lgx_rapido",
+          "base_asset": "eva3_ratrig_vcore31_urn9_rapido_hf_lgx_lite",
+          "head_parts": 123,
+          "fan_keys": [
+            "eva3_native_030",
+            "eva3_native_031"
+          ]
+        },
+        "preservation": {
+          "native_leaves": 123,
+          "unchanged_meshes": 143,
+          "preserved_purchased_leaves": 108,
+          "authored_node_matrices_unchanged": true
+        },
+        "fan": {
+          "fans": 2,
+          "source_material_preserved": true,
+          "source_dark_material_protected": true
+        },
+        "palette": {
+          "sequence": [
+            "A",
+            "B",
+            "A"
+          ],
+          "stages": 3,
+          "printed_checks": 45,
+          "protected_checks": 390,
+          "source_color_restore": "Exact captured source colors restored; this is not a browser/native-reset-button test."
+        },
+        "controllerReset": null,
+        "witness": {
+          "rows": [
+            {
+              "key": "eva3_native_094",
+              "source_path": [
+                "Rat Rig V-Core 3.1 - 300 v9",
+                "EVA3 Assembly v4:1",
+                "ratrig_eva3_shroud v3:1"
+              ],
+              "source_brep_sha256": "f60993d60da9eb279606063b3b066f6168dc79d1d6a54009ac497e92277871bf",
+              "correction_kind": "source_null_faces_rendering",
+              "feature_family": "fan_grille",
+              "triangles": 11532,
+              "native_face_normal_triangles": 11532,
+              "singular_native_corner_limits": [],
+              "min_winding_native_dot": 0.056537500363508436,
+              "min_corner_native_dot": 0.9999682214210193,
+              "void_witnesses": 3,
+              "hub_arm_rim_witnesses": 5
+            },
+            {
+              "key": "eva3_native_010",
+              "source_path": [
+                "Rat Rig V-Core 3.1 - 300 v9",
+                "EVA3 Assembly v4:1",
+                "40mm_fan_inlet v2:1"
+              ],
+              "source_brep_sha256": "e0a95a592dff7faee704e368f384875b82c79f387b4c4660cc3c2bdacb7b4640",
+              "correction_kind": "source_outward_normals",
+              "feature_family": "normal_surface",
+              "triangles": 34827,
+              "native_face_normal_triangles": 34827,
+              "singular_native_corner_limits": [
+                {
+                  "source_face_ordinal": 123,
+                  "source_vertex": 22007,
+                  "incident_triangle": 32354,
+                  "method": "Native face interior directional limit at fractions 1e-5 and 1e-4 toward incident triangle centroid",
+                  "agreement_dot": 0.9999999999886531
+                },
+                {
+                  "source_face_ordinal": 123,
+                  "source_vertex": 22008,
+                  "incident_triangle": 32359,
+                  "method": "Native face interior directional limit at fractions 1e-5 and 1e-4 toward incident triangle centroid",
+                  "agreement_dot": 0.9999999999886559
+                }
+              ],
+              "min_winding_native_dot": 0.05168858870907975,
+              "min_corner_native_dot": 0.8407927111866232,
+              "void_witnesses": 0,
+              "hub_arm_rim_witnesses": 0
+            }
+          ],
+          "repair_keys": [
+            "eva3_native_094",
+            "eva3_native_010"
+          ],
+          "supports_removed": false,
+          "physical_fit_certified": false,
+          "scope": "All rendered repaired-leaf triangles against precomputed exact source-face outward normals; finite source-domain rays preserve voids, hub, arms and rim. Source evidence is supplied independently; this consumer does not compute native BRep booleans."
+        }
+      },
+      {
+        "owner": "ratrig_vcore31_300",
+        "generation": 3,
+        "kind": "installed",
+        "model_sha256": "89b02be47eb3a1ebc66cc6128160ad253247532040c07d905d5f2ec72b76fd27",
+        "decoded_model_sha256": "6a375f65c81f6cd993313257bab4fe8cae0345ad1b8ee500dece3dc890014a16",
+        "metadata_sha256": "c189b953685eb811c9fa9a2fe0d0aafbda169dcaf24c3ceee3294e186f7ab185",
+        "source_evidence_sha256": "dd48368229c0a472ba2900b847afa653f38051499eec763b01fc88a4ed47baba",
+        "source_step_sha256": "9bfde01c4d811eaef253831f2fe7354e14c36b607d36b5b37bfc4fe9f48906d6",
+        "source_revision": "urn:adsk.wipprod:fs.file:vf.eL92Eu5CTp6oAA3iYBTPpw?version=9",
+        "source_origin_mm": [
+          0,
+          0,
+          0
+        ],
+        "head_companions": 123,
+        "recipe": {
+          "variant_id": "eva125__3__vcore_lgx_rapido",
+          "base_asset": "eva3_ratrig_vcore31_urn9_rapido_hf_lgx_lite",
+          "head_parts": 123,
+          "fan_keys": [
+            "825",
+            "826"
+          ]
+        },
+        "preservation": {
+          "native_leaves": 942,
+          "unchanged_meshes": 1087,
+          "preserved_purchased_leaves": 880,
+          "authored_node_matrices_unchanged": true
+        },
+        "fan": {
+          "fans": 2,
+          "source_material_preserved": true,
+          "source_dark_material_protected": true,
+          "patch_hardware_materials_preserved": true,
+          "purchased_materials_recipe_sha256": "467e39ea887361e5cc3a43a3e630d747cb6133e55e46f6204de67315841dd809"
+        },
+        "palette": {
+          "sequence": [
+            "A",
+            "B",
+            "A"
+          ],
+          "stages": 3,
+          "printed_checks": 186,
+          "protected_checks": 3081,
+          "source_color_restore": "Exact captured source colors restored; this is not a browser/native-reset-button test."
+        },
+        "controllerReset": {
+          "source_profile_sha256": "6ca2464c60b71f1911de34b57747f2cb4ead800b053beb2c2a04ee252564ec33",
+          "installations_sha256": "467e39ea887361e5cc3a43a3e630d747cb6133e55e46f6204de67315841dd809",
+          "native_head_parts": 123,
+          "head_matrices_and_geometry_restored": true,
+          "scope": "Production community adapter current axes reset; no whole-travel or parked-tool clearance claim."
+        },
+        "witness": {
+          "rows": [
+            {
+              "key": "889",
+              "source_path": [
+                "Rat Rig V-Core 3.1 - 300 v9",
+                "EVA3 Assembly v4:1",
+                "ratrig_eva3_shroud v3:1"
+              ],
+              "source_brep_sha256": "f60993d60da9eb279606063b3b066f6168dc79d1d6a54009ac497e92277871bf",
+              "correction_kind": "source_null_faces_rendering",
+              "feature_family": "fan_grille",
+              "triangles": 11532,
+              "native_face_normal_triangles": 11532,
+              "singular_native_corner_limits": [],
+              "min_winding_native_dot": 0.056537500363508436,
+              "min_corner_native_dot": 0.9999682214210193,
+              "void_witnesses": 3,
+              "hub_arm_rim_witnesses": 5
+            },
+            {
+              "key": "805",
+              "source_path": [
+                "Rat Rig V-Core 3.1 - 300 v9",
+                "EVA3 Assembly v4:1",
+                "40mm_fan_inlet v2:1"
+              ],
+              "source_brep_sha256": "e0a95a592dff7faee704e368f384875b82c79f387b4c4660cc3c2bdacb7b4640",
+              "correction_kind": "source_outward_normals",
+              "feature_family": "normal_surface",
+              "triangles": 34827,
+              "native_face_normal_triangles": 34827,
+              "singular_native_corner_limits": [
+                {
+                  "source_face_ordinal": 123,
+                  "source_vertex": 22007,
+                  "incident_triangle": 32354,
+                  "method": "Native face interior directional limit at fractions 1e-5 and 1e-4 toward incident triangle centroid",
+                  "agreement_dot": 0.9999999999886531
+                },
+                {
+                  "source_face_ordinal": 123,
+                  "source_vertex": 22008,
+                  "incident_triangle": 32359,
+                  "method": "Native face interior directional limit at fractions 1e-5 and 1e-4 toward incident triangle centroid",
+                  "agreement_dot": 0.9999999999886559
+                }
+              ],
+              "min_winding_native_dot": 0.05168858870907975,
+              "min_corner_native_dot": 0.8407927111866232,
+              "void_witnesses": 0,
+              "hub_arm_rim_witnesses": 0
+            }
+          ],
+          "repair_keys": [
+            "889",
+            "805"
+          ],
+          "supports_removed": false,
+          "physical_fit_certified": false,
+          "scope": "All rendered repaired-leaf triangles against precomputed exact source-face outward normals; finite source-domain rays preserve voids, hub, arms and rim. Source evidence is supplied independently; this consumer does not compute native BRep booleans."
+        }
+      }
+    ],
+    "failures": [],
+    "scope": {
+      "four_actual_owners": true,
+      "source_native_triangle_normals": true,
+      "source_defined_void_grille_witnesses": true,
+      "authored_mating_transforms": true,
+      "untouched_source_hardware": true,
+      "production_surface_helper": true,
+      "production_static_import_closure": true,
+      "pinned_source_recipes": true,
+      "palettes_A_B_A": true,
+      "browser_visual_review": false,
+      "native_solid_boolean_recomputed": false,
+      "supports_removed": false,
+      "physical_fit_certified": false
+    },
+    "completed_at_utc": "2026-10-11T15:28:50.910Z"
+  },
+  "all_available_models": [
+    {
+      "id": "247zero_beta2_120",
+      "family": "247zero",
+      "all_passed": true,
+      "source_bytes": 61917684,
+      "source_sha256": "20191d4b4f3f29497b1a60961ca93f27f01c2e0b337e713c0033595a4095830c",
+      "model_sha256": "6fa5a0e87a38f24334177d96405e834debc8776f17a063be7d6cc89fd99613d7"
+    },
+    {
+      "id": "doomcube2_350_reference",
+      "family": "doomcube",
+      "all_passed": true,
+      "source_bytes": 24022510,
+      "source_sha256": "67d368be1f7bb9a055bf7ad466ad0fd9391d7f5be6392fb7ab55a5289c0a0f76",
+      "model_sha256": "7a8d958a198ffabd374314c95a9d49e8b0f0f64fc51a488cdb3a1b973c8e95ad"
+    },
+    {
+      "id": "tictac_21_120",
+      "family": "tictac",
+      "all_passed": true,
+      "source_bytes": 23033363,
+      "source_sha256": "8cb75729380dfd7ece3e0a61292b404f57816d955157f476515e57867dc77d2a",
+      "model_sha256": "73755c5b4f0cdd134554c68d9b37102348af2d71c2e9a31e761c492856939f9b"
+    },
+    {
+      "id": "the100_v11_165",
+      "family": "the100",
+      "all_passed": true,
+      "source_bytes": 9543855,
+      "source_sha256": "68c815949b33e38039e11eecaf290432b5502f7301fbd24f665b10b2736c566f",
+      "model_sha256": "0a3088eb107137530b22e2b4a9ee41b52d0aff3ebd531e68f35d7c825256f8b5"
+    },
+    {
+      "id": "rook_mk2_120",
+      "family": "rook",
+      "all_passed": true,
+      "source_bytes": 3608460,
+      "source_sha256": "032f2bb7cd32e5c01e1b20ec170774ef7158269e956fd1ee9ff5086a4b351550",
+      "model_sha256": "16d278caa466868340ad8c97d91b80d96bfbc2af2d871565ab8d1e3559faf861"
+    },
+    {
+      "id": "satsuma180_v10",
+      "family": "satsuma",
+      "all_passed": true,
+      "source_bytes": 28245863,
+      "source_sha256": "22db691427da5671754068a2d4e0311088d3b94fe63c870db14ce9ec7782fac1",
+      "model_sha256": "8c6a1a7d0118ee2bda8ff2278a60e9150324af9f24be59fee4efbe93007cf952"
+    },
+    {
+      "id": "sovol_sv08_350",
+      "family": "sovol_sv08",
+      "all_passed": true,
+      "source_bytes": 34433547,
+      "source_sha256": "17e9bd35f37fcc4bcfad1a3a6c3929bf4047d186b60f26dbe4262eeeb2d3522d",
+      "model_sha256": "95af277a4543096620b30f64d2d3fb6403fa6f07ca624719734d1c3a35c51ea3"
+    },
+    {
+      "id": "lh_stinger_200",
+      "family": "lh_stinger",
+      "all_passed": true,
+      "source_bytes": 42189033,
+      "source_sha256": "53de42c154605623295e9d503ea5237006d3390b624206d6892ed0ce9ba97234",
+      "model_sha256": "3f9545ec42868cd09d43fa4700feee2b8c105b651f8fd1ec2f67d6831ff060da"
+    },
+    {
+      "id": "antithesis_aether_mk11",
+      "family": "aether",
+      "all_passed": true,
+      "source_bytes": 14250795,
+      "source_sha256": "1a08904bee8d460caed919f378e31e6b9bdcd1f0af6cc1ad4d8f2fb188a8a0fc",
+      "model_sha256": "9737ca06af3e3a51a9a185a85bfaeadf5741c9d4f7cad9206ff6d37b77165ee3"
+    },
+    {
+      "id": "ratrig_vminion_180",
+      "family": "vminion",
+      "all_passed": true,
+      "source_bytes": 26032119,
+      "source_sha256": "2031e111369e6b932507f3fdd877a6d5b8eb9fc77f8db7091c6b65d91afc3d57",
+      "model_sha256": "b394124d0ef44519aa24cd005d1433305f35a545c3b8d5f9c8cccb8268fb0175"
+    },
+    {
+      "id": "snakeoil_xy_180",
+      "family": "snakeoil_xy",
+      "all_passed": true,
+      "source_bytes": 23456314,
+      "source_sha256": "50301d1f6ebacd44cdf0ca6b3fe379ddea9dcc4acb114db2d6934a8e1374df0c",
+      "model_sha256": "1361302b4008deb1267eb8db72ad1b108e1de0e7159b28ab0088fc2dda8486c4"
+    },
+    {
+      "id": "snakeoil_xy_idex",
+      "family": "snakeoil_xy",
+      "all_passed": true,
+      "source_bytes": 47753563,
+      "source_sha256": "13c60bb74649d762421f117d3e6422fa508504fc48f031cb2a95e10c724ae742",
+      "model_sha256": "798136042b99c6a206a662b4e113b0ec7b08532d2235f496b573b5aa47468181"
+    },
+    {
+      "id": "snakeoil_3s_kp3s_180",
+      "family": "snakeoil_3s",
+      "all_passed": true,
+      "source_bytes": 12548512,
+      "source_sha256": "b4afd08eb175d047cbb0cdaaab73185b43f91b5f85f7b24fe52b2c0888680574",
+      "model_sha256": "12ae8ee0e81dc89b04fc762d030fb72465692f8009159a4564086985d6774935"
+    },
+    {
+      "id": "snakeoil_proosaxy",
+      "family": "proosaxy",
+      "all_passed": true,
+      "source_bytes": 14290558,
+      "source_sha256": "227a0bc57584bd7da86f5f7eb37fe2b283bdb3e01399b7f604ac78f9a5be6931",
+      "model_sha256": "99018bcd4ca8fd9a0fdd2b13f764dea7e2de9471979db8766b947e876c977e87"
+    },
+    {
+      "id": "mercury_one1_235",
+      "family": "mercury",
+      "all_passed": true,
+      "source_bytes": 54981181,
+      "source_sha256": "21601add653e1d431178b15ea7d4963d75e45bdd7061a5f6d8eae3f364a6380e",
+      "model_sha256": "73b00f8d5714a6974837608f6f0ffd66fb540e116741862ce296199acb0fdf72"
+    },
+    {
+      "id": "mercury_one1_370",
+      "family": "mercury",
+      "all_passed": true,
+      "source_bytes": 48747147,
+      "source_sha256": "aa3eec95f5899f390e9dfd746d0916a4cff6e415c07f7e99f8f53ed8b674043a",
+      "model_sha256": "479f7840e1fdd1790ecd797dc8ba0ef7021316f88755566bd113a22f7c9c286e"
+    },
+    {
+      "id": "vzbot_330_printed",
+      "family": "vzbot",
+      "all_passed": true,
+      "source_bytes": 80234165,
+      "source_sha256": "1e7015ca59c4610e3acf7cc00d816564235fdc4883550af606a69337152cb7fe",
+      "model_sha256": "04ca850e7ce000b44db73a35058d036e4c537a7b715486172d527a926f93756c"
+    },
+    {
+      "id": "ender3_stock_220",
+      "family": "ender3",
+      "all_passed": true,
+      "source_bytes": 26662316,
+      "source_sha256": "462b855a35b2452dfbfa6623ed08dbbf456f3827f70309f49a7b50f79589d595",
+      "model_sha256": "ef494370b069a5e8bdbdb45640aab791a822106c0f1636807342ebefe1ecc1cd"
+    },
+    {
+      "id": "siboor_sboom_220",
+      "family": "sboom",
+      "all_passed": true,
+      "source_bytes": 22341658,
+      "source_sha256": "1e04369918d94850cacae2f766b02df748a242c06c713039138c926cddc13d89",
+      "model_sha256": "14be46c56724a3f954a0ab2dac8a64647b4618d913a0e3eb0c2658f619f7c77d"
+    },
+    {
+      "id": "positron_v322",
+      "family": "positron",
+      "all_passed": true,
+      "source_bytes": 36452927,
+      "source_sha256": "d98f528d821e31e0f3e0b0ec16318b2fda88681ec548a9d315c81fe6dce5e771",
+      "model_sha256": "bf2eee971286dabebd8ae0f4149eb76657036c21e2df31aef6f1e32c28158f25"
+    },
+    {
+      "id": "annex_k1_assembly",
+      "family": "annex_k1",
+      "all_passed": true,
+      "source_bytes": 23335637,
+      "source_sha256": "410498711dbbd05a96209b06c3501edc819a157596741aa4be0f0b0a411863da",
+      "model_sha256": "03f3c99734f20f9b4af1b17d1f31443e0c05f534e163ad03b8a88e5f8ea92240"
+    },
+    {
+      "id": "annex_k2_assembly",
+      "family": "annex_k2",
+      "all_passed": true,
+      "source_bytes": 21368418,
+      "source_sha256": "5683ad7cc5e53b1b613ac8a382e7f2561951d01a6fd18c794a52440efa6ce2ad",
+      "model_sha256": "0efe6df3f44824d2431cd514fb31b3c135cc9cd81cf232d07ec9ac3f3ccdc450"
+    },
+    {
+      "id": "annex_k3_assembly",
+      "family": "annex_k3",
+      "all_passed": true,
+      "source_bytes": 14193129,
+      "source_sha256": "a028d1b9a15531cfd0fd8d51a3089f3ea0bf065f9be0c547f92ee3da203c7956",
+      "model_sha256": "aa9cea21120eef1d395d02800c179d169169d40321c8b480b672d9b841f8f1cf"
+    },
+    {
+      "id": "remorph_beta1_307",
+      "family": "remorph",
+      "all_passed": true,
+      "source_bytes": 48998792,
+      "source_sha256": "670a19a8d8d54e0511f675bfc1dfd3831147021e1542a05e7901f0846ce080cc",
+      "model_sha256": "bc2dac0dbcdb191f6ae1391a538f3deed28ec3deb0fdc7597f6adde8379c841c"
+    },
+    {
+      "id": "siboor_trident_300",
+      "family": "trident",
+      "all_passed": true,
+      "source_bytes": 62211637,
+      "source_sha256": "204ade40da178faad23ed06f86fcfce555a0867ec4e7a2bc5a2e4a984000c297",
+      "model_sha256": "ca956d3d7b27526e8f21b7d8cbbc5783ce461b6ae450f9609a6f5847cc814672"
+    },
+    {
+      "id": "siboor_trident_350",
+      "family": "trident",
+      "all_passed": true,
+      "source_bytes": 42888020,
+      "source_sha256": "a9160ed1716880d731c6e85037972a1dfd15388e10356217d5203ccc8e8b3938",
+      "model_sha256": "96309090e82efd59e214c403edf4716357a245e76a190038bea88abae315ff52"
+    },
+    {
+      "id": "voron_trident_250",
+      "family": "trident",
+      "all_passed": true,
+      "source_bytes": 10997042,
+      "source_sha256": "fcd1cc5f5831b91aa9020f66abb695568f138591ffebded9ef70b5796ed60490",
+      "model_sha256": "8cad57cf1550f8827ffdfd34cc4d7ab28edfe94b65c99a0fc7b9b28fad7f60ce"
+    },
+    {
+      "id": "voron_trident_300",
+      "family": "trident",
+      "all_passed": true,
+      "source_bytes": 11129383,
+      "source_sha256": "e70b196fc2d27582652249302811d8e5fc864c286d3920e8865596357a99ce70",
+      "model_sha256": "d927d9e14276901cdfcd2d433a16e67ae461ec0bc67ea1912715881a64181b16"
+    },
+    {
+      "id": "voron_trident_350",
+      "family": "trident",
+      "all_passed": true,
+      "source_bytes": 11228608,
+      "source_sha256": "9238ff722d469f6748fb5263212f42e4564e7fa17e9047c32e1d3a831f5bb62e",
+      "model_sha256": "e619e8944eba1a45ff7f72f28f808d4c475a0d0fb95d08a5eacf4fe2cffa97f4"
+    },
+    {
+      "id": "voron_trident_500_custom",
+      "family": "trident",
+      "all_passed": true,
+      "source_bytes": 39752779,
+      "source_sha256": "f9b66a158697e7b8be7cf6434fa0f583b1e6f6162758d0d36e97ef9e566530b3",
+      "model_sha256": "4aa9673623c73d1090227efe2d522e68ee99b210c4704ae7bd15f5f7d09866b2"
+    },
+    {
+      "id": "voron_trident_1000_custom",
+      "family": "trident",
+      "all_passed": true,
+      "source_bytes": 57542644,
+      "source_sha256": "8f10f1c594fac72625118aa76fe8f9c761324d8915b7d9f3d09e8b5087451775",
+      "model_sha256": "094d657422da5f74965a164e02c9e95824d5e0670fdaed9ffedd0590d4369ede"
+    },
+    {
+      "id": "voron_trident_350_half_z",
+      "family": "trident",
+      "all_passed": true,
+      "source_bytes": 31897441,
+      "source_sha256": "1024170505a60e07a9cebcc13964efaac1d6b994b35dea659d46f9a2d8036f9e",
+      "model_sha256": "c7964f897e5d1be6450c3adeb699d20ad375583a4989afb705ed9ee481a346a3"
+    },
+    {
+      "id": "siboor_v24_350",
+      "family": "v24",
+      "all_passed": true,
+      "source_bytes": 23260149,
+      "source_sha256": "f56077999ee7eb974dbb5486d47986a068d5151eed935897b48cf9af390f12f2",
+      "model_sha256": "679d362a57c5512213f19c5a4c2eef6b38719dbd5ce0a0a0e395dfd32e7e1bf2"
+    },
+    {
+      "id": "voron_v24_250_printed",
+      "family": "v24",
+      "all_passed": true,
+      "source_bytes": 24170506,
+      "source_sha256": "10f27d565904281827a453aa5ea4a9ec686e043b89a663735dc84d79ee383496",
+      "model_sha256": "c94f64fbf04fc48a2b1f5d474dc6c4f70f4d946d9cea2edddcd430be8ca7aebe"
+    },
+    {
+      "id": "voron_v24_250_ldo_cnc",
+      "family": "v24",
+      "all_passed": true,
+      "source_bytes": 28247665,
+      "source_sha256": "8a17ec1a4337eb5b4e5fc840b153768661ed57df67165142c736c0e845b10b10",
+      "model_sha256": "7eb406d1350e3da483c8e1beade769b9571abe977c92e4b67ad4fae000c81065"
+    },
+    {
+      "id": "voron_v24_300_printed",
+      "family": "v24",
+      "all_passed": true,
+      "source_bytes": 24342814,
+      "source_sha256": "a005aa842e6cf014cc725586b3cdce019bec377bebfb6372f3db4a735b2d9a07",
+      "model_sha256": "6f16caedf58dd81149955d5c215aba46cea386bc3ded88bc18bd73722a8d2f5a"
+    },
+    {
+      "id": "voron_v24_300_ldo_cnc",
+      "family": "v24",
+      "all_passed": true,
+      "source_bytes": 28235120,
+      "source_sha256": "e16c3efa80090b64c9ec5b49546a9a46c423e789bfeb1305fac704b906c94111",
+      "model_sha256": "451074148753e60129c619d915efa64c305b5a3397b0d9f822d713273702425c"
+    },
+    {
+      "id": "voron_v24_350_printed",
+      "family": "v24",
+      "all_passed": true,
+      "source_bytes": 24543454,
+      "source_sha256": "f6d10e87c6015a3f04610a96c23aaa8c9aa32006d97362cd1d44d9cc0407a2f3",
+      "model_sha256": "255ba847abf4f7d862d6e5aaac3f284a860eedac08e5bac32534d75ef42f361f"
+    },
+    {
+      "id": "voron_v24_500_custom",
+      "family": "v24",
+      "all_passed": true,
+      "source_bytes": 27143272,
+      "source_sha256": "5c90900cfe1374ebe5b7211fdc5ad7c8701b44a6fd95d29619cfed8c7c011497",
+      "model_sha256": "5696e6097763134ee47e6453b023245a237f9272f6eddac76e554fd79655f632"
+    },
+    {
+      "id": "voron_v24_1000_custom",
+      "family": "v24",
+      "all_passed": true,
+      "source_bytes": 50846351,
+      "source_sha256": "9daba1200efc194ec5c9634253804569e622f35b02811009ab05e00c5d626045",
+      "model_sha256": "aacca629d947491958eab426727f9b5653c3aa00bd8fa2b5ab53c5b4c9c1a6cd"
+    },
+    {
+      "id": "voron_v24_350_half_z",
+      "family": "v24",
+      "all_passed": true,
+      "source_bytes": 23948077,
+      "source_sha256": "61e58c8fbcffbc2a6678b9566c8e37069f61d54225da35ec0624b736740ec049",
+      "model_sha256": "b6622e56f991fdf68b58ea8c2b51c157fc48eb5f3e01b05e953ed7e2ab3df298"
+    },
+    {
+      "id": "voron_v24_350_ldo_cnc",
+      "family": "v24",
+      "all_passed": true,
+      "source_bytes": 28659782,
+      "source_sha256": "e860c1bba40a1117da5722d0534410e1a22e9b0277a06e0078d440a8cad29db1",
+      "model_sha256": "bd520951b97f06a98049ac29b4ba39d52ad0d6cfd491b2b621002bf612540ba6"
+    },
+    {
+      "id": "voron_v02r1_120",
+      "family": "v0",
+      "all_passed": true,
+      "source_bytes": 19231981,
+      "source_sha256": "6dc9d8149c3f187a19fb16076f1a8132fef55d5d50a447fd40d8b905251e85f1",
+      "model_sha256": "d89064824fa67ed6e7c78e90c642620afe62c3b4520255f6c626181754b7d29d"
+    },
+    {
+      "id": "voron_v02_120",
+      "family": "v0",
+      "all_passed": true,
+      "source_bytes": 18636361,
+      "source_sha256": "d1286611acb8db2e436f0b9dabffe0dd7e956861ab579d36421340f17cc0e0c1",
+      "model_sha256": "da642150957fa38289499bd1c1586737f4f970968c3b32b3f7b81d76bef05ea9"
+    },
+    {
+      "id": "micron_r1_120",
+      "family": "micron",
+      "all_passed": true,
+      "source_bytes": 13493975,
+      "source_sha256": "1da4b5ac92332c831fedcb19c5be9b88196b65013511d175eaa25ddc23fe32bc",
+      "model_sha256": "9cf6f791159e5d15471d0147edee3fc29762468cbe2692a93ef5ffbc1527c2be"
+    },
+    {
+      "id": "micron_plus_r1_180",
+      "family": "micron",
+      "all_passed": true,
+      "source_bytes": 18094533,
+      "source_sha256": "55b0e2937c358bf0d268fbc608b9022924b4ea932fc0d386ccfdf4581fe50955",
+      "model_sha256": "c28985823dbeb5534405509dac351e0f54fc46e77b0887edd562249b0dbb501a"
+    },
+    {
+      "id": "fysetc_v24_250_pro",
+      "family": "v24",
+      "all_passed": true,
+      "source_bytes": 21717264,
+      "source_sha256": "46c41faf969bd3533c19e2ce9e3b8c573d70180efddb3abb7e0dd26350e800d1",
+      "model_sha256": "4ee4c9612380f007a9c5f107d1d7a2f59e2d89bc7ebabe802bf272eb7c53faff"
+    },
+    {
+      "id": "crossant_235_v06_leadscrew",
+      "family": "crossant",
+      "all_passed": true,
+      "source_bytes": 1997202,
+      "source_sha256": "f4e560da3b9f8274b508dfc6d9e846ebc5c9e147fccbd16a63c771fba3c13de5",
+      "model_sha256": "f4e560da3b9f8274b508dfc6d9e846ebc5c9e147fccbd16a63c771fba3c13de5"
+    },
+    {
+      "id": "ratrig_vcore_40_300_corexy",
+      "family": "vcore4",
+      "all_passed": true,
+      "source_bytes": 28484441,
+      "source_sha256": "f9c2fd64a1c0b1bc62e9b17a46ad873cbc57484f8ce9d0abc94428a96eaa8cb0",
+      "model_sha256": "dfb5aaeca2cb274932ae4a9f8c59a7a76114f3d6c6c41dc9c814223b33d2a8b6"
+    },
+    {
+      "id": "ratrig_vcore_40_300_hybrid",
+      "family": "vcore4",
+      "all_passed": true,
+      "source_bytes": 29078816,
+      "source_sha256": "08a4b294e3172fb200c568bfe4d6f87a04da2f34749fdb478874233066d7b7ba",
+      "model_sha256": "125705129bc1fe73416d661df8dc928291f2a090a03ef662459bf6275f53031b"
+    },
+    {
+      "id": "ratrig_vcore_40_300_idex",
+      "family": "vcore4",
+      "all_passed": true,
+      "source_bytes": 34515530,
+      "source_sha256": "da5c6fe5b095bd650252f396e705f487ceae24532a979288905ce1e8885e8096",
+      "model_sha256": "16f57d28b27602be3effa8b5c797b3d59f4ce07025aa59c9e84de91a08b10427"
+    },
+    {
+      "id": "ratrig_vcore_40_400_corexy",
+      "family": "vcore4",
+      "all_passed": true,
+      "source_bytes": 29909720,
+      "source_sha256": "0ae81a21cc786e865da656edc5adbd8b6b6c6e307dfc69381437b4485786ac64",
+      "model_sha256": "cedf78d3a15e5bcfbbdebef6a3b48d2aafc2f516ac701177472c6eb504bff2b7"
+    },
+    {
+      "id": "ratrig_vcore_40_400_hybrid",
+      "family": "vcore4",
+      "all_passed": true,
+      "source_bytes": 30438145,
+      "source_sha256": "7c7bb58c9c28cfd51c048b2b24e6b5af542d3eae28ff9e74f3a6f7e65cfad98f",
+      "model_sha256": "b2ca97bc05ef65eff019d886a8069b89f1f7958a6a5fa4ec5f27598459e9ed06"
+    },
+    {
+      "id": "ratrig_vcore_40_400_idex",
+      "family": "vcore4",
+      "all_passed": true,
+      "source_bytes": 35496085,
+      "source_sha256": "3c234b0f5b0ab50fdef18560feab0254f0e9cec0f5f980487d6305bb943a9186",
+      "model_sha256": "b41565379c61be88ff04988bd7c3742318129da04620ca5aa264c441a2a19bde"
+    },
+    {
+      "id": "ratrig_vcore_40_500_corexy",
+      "family": "vcore4",
+      "all_passed": true,
+      "source_bytes": 30242665,
+      "source_sha256": "7034d30d6b1cf6f5280b784c15889a18031b612cf573cd2f3583d5e8a5d34022",
+      "model_sha256": "1b90e0423e78a64a26c5ecc2c91f51616d8d060fbd34431af0b53f15ed5886fc"
+    },
+    {
+      "id": "ratrig_vcore_40_500_hybrid",
+      "family": "vcore4",
+      "all_passed": true,
+      "source_bytes": 31355043,
+      "source_sha256": "a5e9b9d151bc5687b9c0fa312769177d1f04607e470d494369e4bcdcca973bda",
+      "model_sha256": "c352ee0188f76528d9bc3ddf8ca8da341206ac91ea4080bc62bbcbd5f9fbd297"
+    },
+    {
+      "id": "ratrig_vcore_40_500_idex",
+      "family": "vcore4",
+      "all_passed": true,
+      "source_bytes": 36569866,
+      "source_sha256": "8ec58e720d261c180f46d6e28ffc06c32063f4a439049c9712d1e5bde97e6972",
+      "model_sha256": "5667d489ad6a27f61e2e5bfd5418582745aac3faae62248dc1d320104cec0bca"
+    },
+    {
+      "id": "ratrig_vcore_41_300_corexy",
+      "family": "vcore4",
+      "all_passed": true,
+      "source_bytes": 24839581,
+      "source_sha256": "f8778b1f12d703f8025d64f1afad38cc6ee5ee42879d154b3b32013670db2e47",
+      "model_sha256": "aac48dc8f9ec3c57653f243ba1b7fda102e556f2d2a3e8a8167aa21f3e443be8"
+    },
+    {
+      "id": "ratrig_vcore_41_300_hybrid",
+      "family": "vcore4",
+      "all_passed": true,
+      "source_bytes": 25398260,
+      "source_sha256": "2f23a94fbc0af033bc64938b8fc92f5451a393baee81f33559256d58737170d2",
+      "model_sha256": "9642e9a716271296176c5a11d7da26ea65f768cdd5fee282609fab41065ccddb"
+    },
+    {
+      "id": "ratrig_vcore_41_300_idex",
+      "family": "vcore4",
+      "all_passed": true,
+      "source_bytes": 31882216,
+      "source_sha256": "aae1a2a6799071b61c83b29af44cef3ac4f65af0e0f6e524c2752b772fbcb29d",
+      "model_sha256": "4328f885ab485f25157d4e25cb2c6d921a2843a0ddce85e619b2f3b1b01f1caa"
+    },
+    {
+      "id": "ratrig_vcore_41_400_corexy",
+      "family": "vcore4",
+      "all_passed": true,
+      "source_bytes": 25802235,
+      "source_sha256": "800fa1b5a85303b9c6437fc1e9e3b13ec36df98b90ce0d18b4ae54fe891e2290",
+      "model_sha256": "1797f6a03cdf2a051ee94f1cbe91e5d9d4e78bf068979f4ef182ef518f9734e9"
+    },
+    {
+      "id": "ratrig_vcore_41_400_hybrid",
+      "family": "vcore4",
+      "all_passed": true,
+      "source_bytes": 26467219,
+      "source_sha256": "3ca8d844e73c2a617c685d58b98576d2c823449781a87c5fab887a34d8cb0479",
+      "model_sha256": "9ee09292ad7f5a1cd22ecc70b4dc351d2f42b88353fca26b0266326fc0195e39"
+    },
+    {
+      "id": "ratrig_vcore_41_400_idex",
+      "family": "vcore4",
+      "all_passed": true,
+      "source_bytes": 32965078,
+      "source_sha256": "50b684aa40405bd7ebb36bfe08c116781fe3ea8e06658b39c97c55fd0d726a14",
+      "model_sha256": "b1d9ce88b7c1e8d94b84081dda180b734f404a6d7c49a3834682ea62fe5f4eb6"
+    },
+    {
+      "id": "ratrig_vcore_41_500_corexy",
+      "family": "vcore4",
+      "all_passed": true,
+      "source_bytes": 26727940,
+      "source_sha256": "99c8586c2297340abf5f49464dddaf5ee7fc4aff6bfedcd5be54492da35af7a8",
+      "model_sha256": "856eed23ee1a8f56dd2d242808cbbfd9fef8abb83f9f4a8afb905709c76f55ce"
+    },
+    {
+      "id": "ratrig_vcore_41_500_hybrid",
+      "family": "vcore4",
+      "all_passed": true,
+      "source_bytes": 27360510,
+      "source_sha256": "4b55fd029f6192f916265da1ad8de54ccb3f688e23ca1e5da6df1857a4a5497a",
+      "model_sha256": "f2de1ea8733e099f302340ad660dc505baa07627215c7d9839d3e1ebeb670dd4"
+    },
+    {
+      "id": "ratrig_vcore_41_500_idex",
+      "family": "vcore4",
+      "all_passed": true,
+      "source_bytes": 33679556,
+      "source_sha256": "7f235db377381bba075f51522d37874307c1a501df5a5cde0403ea7cfc9b2152",
+      "model_sha256": "e199087d12dee961f1c2e08b7f96e4dfd95adf52ef5210536f5d6ec0e5904a07"
+    },
+    {
+      "id": "ratrig_vcore31_300",
+      "family": "vcore3",
+      "all_passed": true,
+      "source_bytes": 33766127,
+      "source_sha256": "89b02be47eb3a1ebc66cc6128160ad253247532040c07d905d5f2ec72b76fd27",
+      "model_sha256": "6a375f65c81f6cd993313257bab4fe8cae0345ad1b8ee500dece3dc890014a16"
+    }
+  ],
+  "independent_machine_scope": {
+    "all_registered_available_machines": 67,
+    "additional_public_models": 3,
+    "missing_machine_ids": [],
+    "skipped_models": [],
+    "motion_machines": 10,
+    "sampled_motion_poses": 1971,
+    "motion_findings": [],
+    "rapido_x_reviews": 2,
+    "rapido_x_installed_selections": 14,
+    "rapido_x_vertex_checks": 484560,
+    "rapido_x_palettes": 18,
+    "helper_atomicity_and_frame_cases": 14,
+    "status_label_and_notice_cases": 5,
+    "native_owner_metadata_profile_receipts": 4,
+    "import_closure_files": 33,
+    "current_source_recipe_acceptances": 4,
+    "source_recipe_rejections": 30,
+    "encoding_bridge_cases": 31
+  },
+  "machine_report_sha256": "4190e3cc9de861b4e23a749560143619386e2651fc0de504fcbe0cd365b5995c",
+  "quality_report_sha256": "e9d0f55cfc4de630e9d8524394713e4fe39aa63d7e905431e761b3673ec2556c",
+  "native_source_proof": {
+    "receipt_sha256": "9294743fe458ad280e9101d9595285e82c055ed2e42d04763368a35bf3ffa322",
+    "domain_proof_sha256": "3505a711ce06e0fa55dc50fd2f1578a10ed31a549100c874f97cc974ba2850d4",
+    "regression_sha256": "13b326ac122fcbf1b802bff41e1cad8a31039fa8c4c10091a4426134abd9a54f",
+    "render_only": true,
+    "source_solids_modified": false,
+    "supports_removed": false,
+    "parts": [
+      {
+        "key": "334",
+        "sha256": "a602a615bed0845a38f216a5b5b757d61d711afa07ed88a51087d251c4e4f326",
+        "source_BRep_sha256": "c2849ab7e2b621903eec5fb0cf658f7f0d6893f45bfacc016a2105a772f81add",
+        "triangles": 11554,
+        "float32_zero_area_triangles": 0,
+        "float32_reversed_triangles": 0
+      },
+      {
+        "key": "889",
+        "sha256": "4e2aac06d5f722b6f8ef3c0bc4abf6a57c9ab355c82641c4a32b1cd3da70e27e",
+        "source_BRep_sha256": "f60993d60da9eb279606063b3b066f6168dc79d1d6a54009ac497e92277871bf",
+        "triangles": 11532,
+        "float32_zero_area_triangles": 0,
+        "float32_reversed_triangles": 0
+      },
+      {
+        "key": "805",
+        "sha256": "2bb5d9586d2ed1e2fd5ba689a80ca84bc977821430f44289ea81e382424b7e81",
+        "source_BRep_sha256": "e0a95a592dff7faee704e368f384875b82c79f387b4c4660cc3c2bdacb7b4640",
+        "triangles": 34827,
+        "float32_zero_area_triangles": 0,
+        "float32_reversed_triangles": 0
+      }
+    ]
+  },
+  "mandatory_publication_gate": {
+    "entry": "scripts/build_site.py → scripts/check_eva_front_release.py → scripts/audit_eva_front_surfaces.mjs",
+    "all_four_actual_owners_required": true,
+    "missing_or_stale_inputs_abort_build": true,
+    "actual_static_build_passed": true,
+    "site_bytes": 979348898,
+    "build_log_sha256": "c06d0cf2f63c490e3440999360a90d6db0c887ce05c9e6e9facb809425a22e61"
+  },
+  "browser_review": {
+    "browser": "Codex in-app browser",
+    "viewports": [
+      [
+        1280,
+        720
+      ],
+      [
+        390,
+        844
+      ]
+    ],
+    "cases": [
+      "EVA 2 standalone",
+      "EVA 3 standalone",
+      "V-Minion 180 / EVA 2",
+      "V-Core 3.1 300 / EVA 3"
+    ],
+    "standalone_views": [
+      "front",
+      "side",
+      "rear",
+      "underside"
+    ],
+    "installed_axes": "Both hosts: min, max, reverse and source reset; V-Minion intermediate [90,90,85] additionally observed. This is sampled viewer evidence, not continuous native-solid clearance.",
+    "palettes": "Both standalone heads and installed printers: native/contrasting/native or A-B-A; purchased fans retain dark finishes.",
+    "save_load": "Both installed source configurations restored palette settings; V-Core 3.1 also restored theme.",
+    "image_export": {
+      "machine": "ratrig_vcore31_300",
+      "width": 2560,
+      "height": 1824,
+      "current_view": true,
+      "visual_reviewed": true
+    },
+    "mobile": "V-Minion, 390x844: simultaneous model/settings and pointer orbit observed. No external Safari/touchscreen or Chrome browser certification.",
+    "screenshots": [
+      {
+        "file": "eva2-bottom-final-local.png",
+        "sha256": "42c81efa1e1a8fea6c89b277ba43ca8a6349c63a7bac2d71d595bf733a3df25f"
+      },
+      {
+        "file": "eva2-front-final-local.png",
+        "sha256": "05d93d662f85a35df1ced6ff436f4ed7004b960d7172773fe04bb404bef0c465"
+      },
+      {
+        "file": "eva2-installed-final-local.png",
+        "sha256": "f756e57362e18519fb80680991fbc9259188f121b9cee576db6631d9021d34a9"
+      },
+      {
+        "file": "eva2-installed-max-final-local.png",
+        "sha256": "59020b8ac28f5f5ff00f8ab6da029e96b908d58f09e42d592970a1c559fbe199"
+      },
+      {
+        "file": "eva2-installed-mid-final-local.png",
+        "sha256": "0ce91ab40754f7686b9ecbddadb44ae5d168d70f8b5601d62e6339169ddf3bbc"
+      },
+      {
+        "file": "eva2-installed-palette-A-final-local.png",
+        "sha256": "867b9eebaadfa26599b53a152cccefcb9cde735e81b9fe8d750dffe08cdf8170"
+      },
+      {
+        "file": "eva2-installed-palette-B-final-local.png",
+        "sha256": "2ee5ecc536195468e8ad9a71ec57e25d73c18f2aa3a73b3ba80b3515f38038f6"
+      },
+      {
+        "file": "eva2-installed-reset-final-local.png",
+        "sha256": "1fd040879679d8352daa40d4fd22011b20f4a18a28e82fa79dac79817321b5c8"
+      },
+      {
+        "file": "eva2-mobile-final-local.png",
+        "sha256": "2b2935be4b434a805a76319682435b197d361b7521c1551af744a8c9c91aaa41"
+      },
+      {
+        "file": "eva2-mobile-orbit-final-local.png",
+        "sha256": "abdec88b376eab5552eecb5d767f4d8529831e3b980a8b9eb5a70530d092e3b7"
+      },
+      {
+        "file": "eva2-palette-final-local.png",
+        "sha256": "bc59b8b8fb1a4ab17b247c5b26848e48575e6591408f9be0beebda6e86a296a9"
+      },
+      {
+        "file": "eva2-rear-final-local.png",
+        "sha256": "630ac499850f97c4ccbb9a37cf218d0061e445ca1ac7a63bd12f609bee29e59d"
+      },
+      {
+        "file": "eva2-side-final-local.png",
+        "sha256": "f0ad92e359c1035a5f86ab17fc0a015034644c18b6c343e73e3f426811e1d8a1"
+      },
+      {
+        "file": "eva3-bottom-final-local.png",
+        "sha256": "9b193324ab6264a74e344815cb4c662ec7bcb88668b49eb3653404f7e5ce7ef7"
+      },
+      {
+        "file": "eva3-front-final-local.png",
+        "sha256": "aa685bb789bad99ae01bba77c6ae77147361ed748a4b993c1e7197ee01369f09"
+      },
+      {
+        "file": "eva3-installed-dark-final-local.png",
+        "sha256": "8cce2c79ddb1544c3277eba10d4df920105acd6f951d0516d141409b3576521c"
+      },
+      {
+        "file": "eva3-installed-final-local.png",
+        "sha256": "35e4f45f2b0810eabbbaef839f8abf768599aa6b1650e52d942b92d81ec5328a"
+      },
+      {
+        "file": "eva3-installed-load-final-local.png",
+        "sha256": "1b6d21c37ce59adcbb62406fabdf15422265c5551ecd78597cabec9987232e90"
+      },
+      {
+        "file": "eva3-installed-max-final-local.png",
+        "sha256": "9157b6c183d8491ecfe8166275253b2672a14882b2b0b3554cae264161ccacb4"
+      },
+      {
+        "file": "eva3-installed-min-final-local.png",
+        "sha256": "82af1948b977d229d4e83172e2d146cac381ff5a03cb5d0a101fa556d7642548"
+      },
+      {
+        "file": "eva3-installed-palette-A-final-local.png",
+        "sha256": "29c9ba71bf6342976232797dcb2337964a31a7a8dabd26d5de1c5f279aeea582"
+      },
+      {
+        "file": "eva3-installed-palette-B-final-local.png",
+        "sha256": "782d7bcb2733fcf39fe2a0fb8eab0304da8d7afd3a05a60661f8283fe6231585"
+      },
+      {
+        "file": "eva3-installed-reset-final-local.png",
+        "sha256": "e8ab5879d29feb9536a9f2b51e3cd7c85a22b517ec0eff574755ac02572d4173"
+      },
+      {
+        "file": "eva3-palette-final-local.png",
+        "sha256": "be02c82ce29ea0b7feebe931a6ea1666d064b63477990e63bb039dcfe4f3b064"
+      },
+      {
+        "file": "eva3-rear-final-local.png",
+        "sha256": "512e4fd141a2a4a64616a886caea20efcfc23a06d83f50cf2905d0ce82814132"
+      },
+      {
+        "file": "eva3-side-final-local.png",
+        "sha256": "fa065da598959b0ac29c49d96f6f30fd18bc9cc01b2778885cf2ae64a5213f39"
+      }
+    ],
+    "scope": "Named views and controls only. Source unit tests cover unchanged translation IDs and common UI paths; observed browser cases do not extend physical-fit certification."
+  },
+  "served_external": {
+    "passed": true,
+    "revision": "5dab3e625428607e8928a80a11c0540a455524de",
+    "files": [
+      {
+        "path": "eva-front-surfaces-v1/model.glb.gz",
+        "bytes": 841984,
+        "sha256": "b7111fe444f9c9aad92f2fb2717e29c6d09d8dd95ff4b320d0006e6beab123d6",
+        "matched": true,
+        "decoded_sha256": "67b05c4e8a5dab7ef32c9b9d30545fd828761c9e21432354eae09e9ac40cee43",
+        "decoded_matched": true
+      },
+      {
+        "path": "eva-front-surfaces-v1/parts.json",
+        "bytes": 2986,
+        "sha256": "53dabf748c463c326ece10a4cd71cb53c1cf82082100555fe7e22c72df498ac4",
+        "matched": true
+      },
+      {
+        "path": "eva-front-surfaces-v1/eva2.source-witnesses.json.gz",
+        "bytes": 691651,
+        "sha256": "f26d94dcb59a32221a33f0067e5ef5c255f15f639585407fcfcdcfdacb20b740",
+        "matched": true,
+        "decoded_sha256": "c64ff9131ccffdd8fddd8b6c29c4288a02cabcc5077ab7bcea0eeb19ae9d5cf3",
+        "decoded_matched": true
+      },
+      {
+        "path": "eva-front-surfaces-v1/eva3.source-witnesses.json.gz",
+        "bytes": 3832091,
+        "sha256": "dd48368229c0a472ba2900b847afa653f38051499eec763b01fc88a4ed47baba",
+        "matched": true,
+        "decoded_sha256": "210b51b1368e4b98f29f019330349367ed40f9ed0fabe966b8735406dba7f0e2",
+        "decoded_matched": true
+      },
+      {
+        "path": "eva-front-surfaces-v1/provenance.json",
+        "bytes": 10201,
+        "sha256": "e7d809d60e99e8a989ce5f942ce5f8f49292526c7fd5b77c800a369285cf00c4",
+        "matched": true
+      },
+      {
+        "path": "eva-front-surfaces-v1/native-domain-proof.json",
+        "bytes": 47272,
+        "sha256": "3505a711ce06e0fa55dc50fd2f1578a10ed31a549100c874f97cc974ba2850d4",
+        "matched": true
+      },
+      {
+        "path": "eva-front-surfaces-v1/NOTICE.txt",
+        "bytes": 531,
+        "sha256": "6bf8cdba43288ec244a9d44f95498c051c3c93c1f87a6ed11eace85397e934bd",
+        "matched": true
+      }
+    ]
+  },
+  "retained_native_scope": "Original carriage interface evidence from release127 is unchanged. Original source contacts, belt clamp gaps, embedded-support identification, panel/STEP proof gaps and Micron flexible reset limitations remain separately recorded. Native normals/source trim measurements do not certify all companion fit or continuous whole-printer clearance.",
+  "full_physical_fit_certified": false
+}

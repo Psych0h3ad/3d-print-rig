@@ -5,6 +5,7 @@ import json
 import math
 import shutil
 import subprocess
+import sys
 import tempfile
 import urllib.request
 import zipfile
@@ -284,6 +285,13 @@ def main():
     merge_components(target)
     subprocess.run(['node', '--experimental-loader', './scripts/three-test-loader.mjs',
                     'scripts/build_support_catalog.mjs', str(target)], cwd=ROOT, check=True)
+    # A native mounting/parts-inventory pass does not prove that front apertures
+    # render correctly. Audit all four real consumers before the Pages artifact.
+    with tempfile.TemporaryDirectory(prefix='eva-front-release-') as folder:
+        subprocess.run([sys.executable, str(ROOT/'scripts/check_eva_front_release.py'),
+                        '--output', folder], cwd=ROOT, check=True)
+        (target/'review').mkdir(exist_ok=True)
+        shutil.copyfile(Path(folder)/'actual-fronts.json', target/'review/eva-fronts.json')
     (target / '.nojekyll').touch()
     size = sum(path.stat().st_size for path in target.rglob('*') if path.is_file())
     if size > MAX_SITE_BYTES:

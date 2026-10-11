@@ -6,7 +6,7 @@ import {workspaceTask,workspaceListen} from './workspace-lifecycle.mjs?v=ea3c45f
 import {translate} from './i18n.mjs?v=46e1e3aced367de6d952';
 import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=334364a6954b5edfdc00';
 import {catalogDimensions,collections,resolveVariant,choicesFor,choiceChanges,importedVariant,configurationById} from './configuration-model.js?v=c19fa3a47abadf7f3d2c';
-import {probeCheck,probeOptionSuffix,headBodyCollisionNotes} from './probe-checks.js?v=0f70f5c099338db857e7';
+import {probeCheck,probeOptionSuffix,headBodyCollisionNotes,headInspectionState} from './probe-checks.js?v=0f70f5c099338db857e7';
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
 import {headWitnessCheck}from './head-validation.mjs?v=bba39d88e1b5b7f848c0';
 import {createHeadInspection}from './head-validation-ui.mjs?v=ae9dcf09c303efbdce96';
@@ -62,8 +62,10 @@ export async function setupConfigurations(catalog,install,{presentation='printer
   const native=v.fit?.complete_head_native;
   if(v.display_scope){$('#configStatus').textContent='参照CADの切替済み'+(check.warning?' ／ '+check.label:'');rows.push(v.display_scope);$('#configStatus').classList.add('notice')}
   if(native){
-   const label=native.state==='reference'&&native.unresolved_pairs?.length?'一部の交差判定が未確定':{collision:'CAD干渉あり · 比較用',contact:'CADに微小な交差あり','attachment-contact':'取付部に交差あり · 比較用',clear:'検査姿勢の本体交差なし',reference:'原本組立 · 接続未検証'}[native.state];
-   $('#configStatus').textContent+=' ／ '+label;$('#configStatus').classList.toggle('notice',check.warning||native.state!=='clear');
+   const mounted=v.fit?.native_installation?.mount_verified===true;
+   const label=mounted?headInspectionState(v).label:native.state==='reference'&&native.unresolved_pairs?.length?'一部の交差判定が未確定':{collision:'CAD干渉あり · 比較用',contact:'CADに微小な交差あり','attachment-contact':'取付部に交差あり · 比較用',clear:'検査姿勢の本体交差なし',reference:'原本組立 · 接続未検証'}[native.state];
+   if(mounted)$('#configStatus').textContent=label;else $('#configStatus').textContent+=' ／ '+label;
+   $('#configStatus').classList.toggle('notice',mounted?headInspectionState(v).warning:check.warning||native.state!=='clear');
    rows.push(label,...(native.notes||[]),...headBodyCollisionNotes(native.interface_contacts));$('#mountInfo')?.replaceChildren(...rows.map(row=>{const li=document.createElement('li');li.textContent=row;return li}));
   }
   const body=headWitnessCheck(v);if(body){$('#configStatus').textContent+=' ／ '+body.label;$('#configStatus').classList.add('notice');rows.push(...body.lines);$('#mountInfo')?.replaceChildren(...rows.map(row=>{const li=document.createElement('li');li.textContent=row;return li}))}inspection.update(v);
