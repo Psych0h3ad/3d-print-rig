@@ -11665,6 +11665,96 @@
       "kind": "message",
       "ja": "部品単体",
       "en": "Individual component"
+    },
+    "feature.eva2.option.toolhead": {
+      "kind": "message",
+      "ja": "EVA 2",
+      "en": "EVA 2"
+    },
+    "feature.eva2.option.gantry": {
+      "kind": "message",
+      "ja": "EVA 2 · 直交方式 / 6 mm",
+      "en": "EVA 2 · Cartesian / 6 mm"
+    },
+    "feature.eva2.option.carriage": {
+      "kind": "message",
+      "ja": "EVA 2 · MGN12C / V-Minion",
+      "en": "EVA 2 · MGN12C / V-Minion"
+    },
+    "feature.eva2.option.cooling": {
+      "kind": "message",
+      "ja": "EVA 2 · 5015 / 4010 / Tri Horn",
+      "en": "EVA 2 · 5015 / 4010 / Tri Horn"
+    },
+    "feature.eva2.option.hotend": {
+      "kind": "message",
+      "ja": "Dragonfly BMO · EVA元アセンブリ",
+      "en": "Dragonfly BMO · EVA source assembly"
+    },
+    "feature.eva2.option.probe": {
+      "kind": "message",
+      "ja": "M8誘導式プローブ · EVA元アセンブリ",
+      "en": "Inductive M8 · EVA source assembly"
+    },
+    "feature.eva2.notice.scope": {
+      "kind": "message",
+      "ja": "EVA 2の直交方式の元アセンブリを再現：LGX Lite、Dragonfly BMO、4010/5015ファン、M8プローブ、レールブロック、固定部品。V-Minionの元の配置を保持しています。他のプリンターへの取り付けと、動作経路全体のクリアランスは未検証です。",
+      "en": "Complete source EVA 2 Cartesian assembly: LGX Lite, Dragonfly BMO, 4010/5015 fans, M8 probe, rail block and fasteners. Original V-Minion placements retained; other printer mounting and continuous clearance are unverified."
+    },
+    "feature.eva2.notice.patch": {
+      "kind": "message",
+      "ja": "このV-Minion CADではEVA 2のパッチ版を特定できていません。元アセンブリの版を記録しており、EVA 2.4.2とは表記していません。",
+      "en": "EVA 2 patch revision is not identified in this V-Minion CAD. The source assembly revision is recorded; it is not labeled as EVA 2.4.2."
+    },
+    "feature.eva3.option.toolhead": {
+      "kind": "message",
+      "ja": "EVA 3",
+      "en": "EVA 3"
+    },
+    "feature.eva3.option.gantry": {
+      "kind": "message",
+      "ja": "EVA 3 · CoreXY / V-Core 3.1",
+      "en": "EVA 3 · CoreXY / V-Core 3.1"
+    },
+    "feature.eva3.option.carriage": {
+      "kind": "message",
+      "ja": "EVA 3 · MGN12C / V-Core 3.1",
+      "en": "EVA 3 · MGN12C / V-Core 3.1"
+    },
+    "feature.eva3.option.cooling": {
+      "kind": "message",
+      "ja": "EVA 3 · Sanyo 4028 / 4010",
+      "en": "EVA 3 · Sanyo 4028 / 4010"
+    },
+    "feature.eva3.option.hotend": {
+      "kind": "message",
+      "ja": "Rapido HF v1 · EVA元アセンブリ",
+      "en": "Rapido HF v1 · EVA source assembly"
+    },
+    "feature.eva3.option.probe": {
+      "kind": "message",
+      "ja": "SuperPINDA · EVA元アセンブリ",
+      "en": "SuperPINDA · EVA source assembly"
+    },
+    "feature.eva3.notice.scope": {
+      "kind": "message",
+      "ja": "EVA 3のCoreXY方式の元アセンブリを再現：LGX Lite、Rapido HF v1、4010/Sanyo 4028ファン、SuperPINDAプローブ、レールブロック、固定部品。V-Core 3.1の元の配置を保持しています。他のプリンターへの取り付けと、動作経路全体のクリアランスは未検証です。",
+      "en": "Complete source EVA 3 CoreXY assembly: LGX Lite, Rapido HF v1, 4010/Sanyo 4028 fans, SuperPINDA probe, rail block and fasteners. Original V-Core 3.1 placements retained; other printer mounting and continuous clearance are unverified."
+    },
+    "feature.eva3.notice.patch": {
+      "kind": "message",
+      "ja": "このV-Core 3.1 CADではEVA 3のパッチ版を特定できていません。V-Core 3.1 v9 / EVA 3 Assembly v4は元アセンブリの版であり、EVA 3.0.2とは表記していません。",
+      "en": "EVA 3 patch revision is not identified in this V-Core 3.1 CAD. V-Core 3.1 v9 / EVA 3 Assembly v4 is the source assembly revision; it is not labeled as EVA 3.0.2."
+    },
+    "feature.eva.notice.supports": {
+      "kind": "message",
+      "ja": "このデータでは組み込みサポートを特定できていないため、サポートは除去していません。",
+      "en": "Built-in support identities are unresolved in this source; no supports were removed."
+    },
+    "feature.eva.notice.native_overlaps": {
+      "kind": "message",
+      "en": "Native source body overlaps remain unresolved; this preview does not certify assembly clearance.",
+      "ja": "元CADの部品間の重なりは未判定です。この表示は組立クリアランスの検証済み構成ではありません。"
     }
   }
 }

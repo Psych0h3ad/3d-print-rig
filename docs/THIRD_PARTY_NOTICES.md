@@ -606,3 +606,7 @@ relicense CAD. These are assembled source heads, not registered printer mounts.
 ## HYDRA source parts
 
 [HYDRA by boothyboothy / Boothy](HYDRA.md) uses author STEP files from Printables model 169197, files updated 2022-04-13, under CC BY-NC-SA 4.0. Seventeen individual printed parts are displayed. Five sacrificial nut-hole membranes are removed from the Ender-3 bases; the manifest records the cuts. Machine installation, hardware and automatic docking are not registered. Original source hashes, versions and display transformations are retained; the application license does not relicense these models.
+
+## EVA source toolhead assemblies
+
+EVA is by Paweł Kucmus. Complete EVA 2.x V-Minion and EVA 3.x V-Core 3.1 source assemblies are by Rat Rig, distributed under their exact CC BY-NC-SA 4.0 notices. Original component identities and native placements are retained; geometry is tessellated/extracted for viewing, with recorded purchased-polymer material overrides. No identified built-in supports were removed. Exact source CAD revisions, SHA-256 identities and license references are in [EVA sources](../site/EVA_SOURCES.json); assembly scope and unresolved patch versions are in [EVA assemblies](EVA_HEADS.md). Individual upstream components retain their own applicable terms.

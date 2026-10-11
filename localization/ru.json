@@ -9245,6 +9245,78 @@
     "component.single_part": {
       "source_revision": "6744d37c2b0b9455ac85",
       "text": "Отдельная деталь"
+    },
+    "feature.eva2.option.toolhead": {
+      "source_revision": "1764db49a751c90c283e",
+      "text": "EVA 2"
+    },
+    "feature.eva2.option.gantry": {
+      "source_revision": "4a74cea37d193971fc64",
+      "text": "EVA 2 · Декартовая кинематика / 6 mm"
+    },
+    "feature.eva2.option.carriage": {
+      "source_revision": "2f73b8f7a84d6b278154",
+      "text": "EVA 2 · MGN12C / V-Minion"
+    },
+    "feature.eva2.option.cooling": {
+      "source_revision": "0bc55c1e36bacf9776df",
+      "text": "EVA 2 · 5015 / 4010 / Tri Horn"
+    },
+    "feature.eva2.option.hotend": {
+      "source_revision": "2e1db792961d5a2de9e7",
+      "text": "Dragonfly BMO · Исходная сборка EVA"
+    },
+    "feature.eva2.option.probe": {
+      "source_revision": "5ce3eea8e3d90fc5ebd3",
+      "text": "Индуктивный датчик M8 · Исходная сборка EVA"
+    },
+    "feature.eva2.notice.scope": {
+      "source_revision": "2f17f9f526fda604e690",
+      "text": "Полная исходная сборка EVA 2 с декартовой кинематикой: LGX Lite, Dragonfly BMO, вентиляторы 4010/5015, датчик M8, каретка рельса и крепёж. Сохранено исходное расположение V-Minion; установка на другие принтеры и зазоры по всей траектории движения не проверены."
+    },
+    "feature.eva2.notice.patch": {
+      "source_revision": "be971cbea5437f3bbd2d",
+      "text": "В этой CAD-модели V-Minion точная патч-версия EVA 2 не установлена. Записана версия исходной сборки; она не обозначена как EVA 2.4.2."
+    },
+    "feature.eva3.option.toolhead": {
+      "source_revision": "cfffd85516b514314033",
+      "text": "EVA 3"
+    },
+    "feature.eva3.option.gantry": {
+      "source_revision": "dfa80195b894046fbd88",
+      "text": "EVA 3 · CoreXY / V-Core 3.1"
+    },
+    "feature.eva3.option.carriage": {
+      "source_revision": "a028157795440333fd38",
+      "text": "EVA 3 · MGN12C / V-Core 3.1"
+    },
+    "feature.eva3.option.cooling": {
+      "source_revision": "11a8b43dd0311bc6446e",
+      "text": "EVA 3 · Sanyo 4028 / 4010"
+    },
+    "feature.eva3.option.hotend": {
+      "source_revision": "e3a0ddf251980b111bc1",
+      "text": "Rapido HF v1 · Исходная сборка EVA"
+    },
+    "feature.eva3.option.probe": {
+      "source_revision": "57b8bc47c24b4644add7",
+      "text": "SuperPINDA · Исходная сборка EVA"
+    },
+    "feature.eva3.notice.scope": {
+      "source_revision": "8f9b074da95e23f34a89",
+      "text": "Полная исходная сборка EVA 3 с кинематикой CoreXY: LGX Lite, Rapido HF v1, вентиляторы 4010/Sanyo 4028, датчик SuperPINDA, каретка рельса и крепёж. Сохранено исходное расположение V-Core 3.1; установка на другие принтеры и зазоры по всей траектории движения не проверены."
+    },
+    "feature.eva3.notice.patch": {
+      "source_revision": "cc98dcbb300629b7169b",
+      "text": "В этой CAD-модели V-Core 3.1 точная патч-версия EVA 3 не установлена. V-Core 3.1 v9 / EVA 3 Assembly v4 — версия исходной сборки; она не обозначена как EVA 3.0.2."
+    },
+    "feature.eva.notice.supports": {
+      "source_revision": "21304cbd2b74e7a26622",
+      "text": "Встроенные поддержки в этом исходном файле не идентифицированы; поддержки не удалялись."
+    },
+    "feature.eva.notice.native_overlaps": {
+      "source_revision": "f76a29f57b246691364f",
+      "text": "Пересечения тел исходной CAD пока не оценены; этот предпросмотр не подтверждает зазоры сборки."
     }
   }
 }

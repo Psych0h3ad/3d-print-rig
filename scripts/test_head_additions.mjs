@@ -7,7 +7,7 @@ const read=f=>JSON.parse(fs.readFileSync(new URL('../site/'+f,import.meta.url),'
 const add=read('HEAD_ADDITIONS.json'),raw={assets:{},base_assets:{},sources:[],variants:[]};
 for(const [d,f]of Object.entries(collections)){const supplied=new Set((add[f]||[]).map(o=>o.id));raw[f]=[...new Set(add.variants.map(v=>v[d]))].filter(id=>!supplied.has(id)).map(id=>({id,label:id}));}
 const before=JSON.stringify(raw),catalog=withHeadAdditions(raw,add);catalog.dimensions=headBuilderDimensions;
-assert.equal(JSON.stringify(raw),before);assert.equal(add.variants.length,14);
+assert.equal(JSON.stringify(raw),before);assert.equal(add.variants.filter(v=>!v.eva).length,14,'Existing Trinity source assemblies are retained');
 const standard=add.variants.filter(v=>v.toolhead==='trinity');
 assert.equal(standard.length,4);
 assert.deepEqual(standard.map(v=>v.id).sort(),['n05','n06','n19','n20'].map(id=>'trinity88__'+id));
@@ -15,7 +15,7 @@ assert(standard.every(v=>v.mount==='fixed'&&v.extruder==='sherpa_r2_standard_sho
 assert.equal(standard.filter(v=>v.carriage==='trinity_mgn9').length,2);
 assert.equal(add.variants.filter(v=>v.toolhead==='trinity_crossbow').length,10);
 let changes=0;
-for(const v of add.variants){
+for(const v of add.variants.filter(v=>!v.eva)){
  assert(v.head_only&&!v.machine_head&&!v.registration_source&&v.hardware_assembled);
  assert.deepEqual(headPlan(v).translation,[0,0,0]);assert.equal(headPlan(v).modules.length,0);
  assert.equal(importedVariant(catalog,{configuration:v.id}),catalog.variants.find(r=>r.id===v.id));

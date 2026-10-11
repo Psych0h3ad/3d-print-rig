@@ -1,6 +1,7 @@
 import {collections} from './configuration-model.js?v=922298bc5433b90fa3af';
 import {withSphinxCompanionPresets} from './head-companion-presets.mjs?v=82ec6a996e9e1661b811';
 import {withA4TPrintedReference} from './a4t-printed-companions.mjs?v=e7443f72d21fc964b2cf';
+import {validateEvaVariant} from './eva-heads.mjs?v=919a1f6692a6bd855927';
 
 // Supplemental source heads never create machine mounting registrations.
 export function withHeadAdditions(catalog,additions){
@@ -23,6 +24,7 @@ export function withHeadAdditions(catalog,additions){
   for(const [dimension,field]of Object.entries(collections))if(!result[field].some(o=>o.id===variant[dimension]))throw Error('Missing head option: '+dimension+'/'+variant[dimension]);
   const asset=result.base_assets[variant.base_asset];
   if(!asset?.external||asset.parts<1||!Array.isArray(variant.head_translation_mm)||variant.head_translation_mm.length!==3||!variant.head_translation_mm.every(Number.isFinite)||!Array.isArray(variant.modules)||variant.modules.length)throw Error('Invalid supplemental head asset');
+  validateEvaVariant(variant,asset);
   result.variants.push(structuredClone(variant));
  }
  result.sources.push(...structuredClone(additions.sources));

@@ -1,6 +1,6 @@
 {
   "schema": "3d-print-rig-head-additions-v1",
-  "version": "trinity-native-88",
+  "version": "eva-source-assemblies-125",
   "toolheads": [
     {
       "id": "trinity_crossbow",
@@ -9,6 +9,14 @@
     {
       "id": "trinity",
       "label": "Trinity"
+    },
+    {
+      "id": "eva_2",
+      "label": "EVA 2"
+    },
+    {
+      "id": "eva_3",
+      "label": "EVA 3"
     }
   ],
   "mounts": [
@@ -21,6 +29,14 @@
     {
       "id": "trinity_dual_3628",
       "label": "Trinity · dual 3628 / 2510"
+    },
+    {
+      "id": "eva2_5015_4010",
+      "label": "EVA 2 · 5015 / 4010 / Tri Horn"
+    },
+    {
+      "id": "eva3_sanyo4028_4010",
+      "label": "EVA 3 · Sanyo 4028 / 4010"
     }
   ],
   "gantries": [
@@ -39,6 +55,14 @@
     {
       "id": "trinity_voron_9",
       "label": "Trinity · Voron / 9–10 mm"
+    },
+    {
+      "id": "eva2_cartesian_6",
+      "label": "EVA 2 · Cartesian / 6 mm"
+    },
+    {
+      "id": "eva3_corexy_6",
+      "label": "EVA 3 · CoreXY / V-Core 3.1"
     }
   ],
   "carriages": [
@@ -53,6 +77,14 @@
     {
       "id": "trinity_mgn9",
       "label": "Trinity · MGN9H / v1.41"
+    },
+    {
+      "id": "eva2_mgn12c",
+      "label": "EVA 2 · MGN12C / V-Minion"
+    },
+    {
+      "id": "eva3_mgn12c",
+      "label": "EVA 3 · MGN12C / V-Core 3.1"
     }
   ],
   "assets": {
@@ -375,6 +407,77 @@
           "encoding": "gzip",
           "decoded_bytes": 74868672,
           "decoded_sha256": "1e459a1ff670861858f226dad3084abc8fb84a6f60e14554d4d453d0fd79acc8"
+        }
+      }
+    },
+    "eva2_vminion_lgx_bmo": {
+      "component_id": "eva2_vminion_lgx_bmo",
+      "parts": 90,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/",
+        "local_directory": "eva-generations-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "eva-generations-v1/eva2_vminion_lgx_bmo/parts.json",
+          "bytes": 79056,
+          "sha256": "9831dc9193fab6d3c98e4b3e9b2d8348f8c2345b1137de13e7730a7869adae92"
+        },
+        "model.glb": {
+          "path": "eva-generations-v1/eva2_vminion_lgx_bmo/model.glb.gz",
+          "bytes": 4438059,
+          "sha256": "6bc9646adc104c066d7a568d3a6d21dd0392b29392eaae920b1240bf955d43fb",
+          "encoding": "gzip",
+          "decoded_bytes": 10128596,
+          "decoded_sha256": "21b8cf9694d86062e6b124051c1b60b963d66328a0df7a1b45ba2baaabd46b3b"
+        },
+        "SOURCE_RECIPE.json": {
+          "path": "eva-generations-v1/eva2_vminion_lgx_bmo/SOURCE_RECIPE.json",
+          "bytes": 6531,
+          "sha256": "0fc29a3bb93157e3372fe8797f8597c031f09d9c9a37539e59babcc279d28572"
+        },
+        "NATIVE_BOUNDS_RECEIPT.json": {
+          "path": "eva-generations-v1/eva2_vminion_lgx_bmo/NATIVE_BOUNDS_RECEIPT.json",
+          "bytes": 11089,
+          "sha256": "83e5a44adb3a6d1694e420d46c598fc9edc6ca78c387395026aa5b3f0fd55749"
+        }
+      }
+    },
+    "eva3_ratrig_vcore31_urn9_rapido_hf_lgx_lite": {
+      "component_id": "eva3_ratrig_vcore31_urn9_rapido_hf_lgx_lite",
+      "parts": 123,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/",
+        "local_directory": "eva-generations-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "eva-generations-v1/eva3_ratrig_vcore31_urn9_rapido_hf_lgx_lite/parts.json",
+          "bytes": 962860,
+          "sha256": "7d547ae0d602a6cfc90351ff5cf6089f7d7e45b164657a0c34456d8208d073db"
+        },
+        "model.glb": {
+          "path": "eva-generations-v1/eva3_ratrig_vcore31_urn9_rapido_hf_lgx_lite/model.glb.gz",
+          "bytes": 16998549,
+          "sha256": "4c9bdc6f9fe29543f6f2969d69842315639bce7a186ea51eb289f5c922b792b2",
+          "encoding": "gzip",
+          "decoded_bytes": 35883076,
+          "decoded_sha256": "619857aca76e72c14601b086db8c2cf86b7c3ab7d24b1e4323f3d60f6eb58168"
+        },
+        "NATIVE_DATUMS.json": {
+          "path": "eva-generations-v1/eva3_ratrig_vcore31_urn9_rapido_hf_lgx_lite/NATIVE_DATUMS.json",
+          "bytes": 978,
+          "sha256": "1e75f00f10f0d0cbfc278c0842fa44fa0100580fcfeb1c1273a73709ef76ae98"
+        },
+        "SOURCE_COLORS.json": {
+          "path": "eva-generations-v1/eva3_ratrig_vcore31_urn9_rapido_hf_lgx_lite/SOURCE_COLORS.json",
+          "bytes": 1898908,
+          "sha256": "8a88452c00735d72b8b6d946b6da74169f254a4a391b93d0f65026d4aac7b0f3"
+        },
+        "EXPORT_RECEIPT.json": {
+          "path": "eva-generations-v1/eva3_ratrig_vcore31_urn9_rapido_hf_lgx_lite/EXPORT_RECEIPT.json",
+          "bytes": 2485,
+          "sha256": "eac7e91f43aaedb0efc3744314836d2655f7e24c99f99f2e2bfb57395a30d51d"
         }
       }
     }
@@ -957,6 +1060,402 @@
       "source_version": "d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
       "source_file": "Trinity 1.54 mgn12 9 or 10mm belts.STEP",
       "source_head_version": "v1.54 MGN12"
+    },
+    {
+      "id": "eva125__2__vminion_lgx_bmo",
+      "toolhead": "eva_2",
+      "mount": "fixed",
+      "extruder": "lgx_lite",
+      "hotend": "eva_bmo",
+      "gantry": "eva2_cartesian_6",
+      "carriage": "eva2_mgn12c",
+      "probe": "eva_m8",
+      "board": "none",
+      "cooling": "eva2_5015_4010",
+      "belt_width_mm": 6,
+      "base_asset": "eva2_vminion_lgx_bmo",
+      "base_hidden_keys": [],
+      "head_translation_mm": [
+        0,
+        0,
+        0
+      ],
+      "modules": [],
+      "head_only": true,
+      "hardware_assembled": true,
+      "eva": {
+        "generation": 2,
+        "version": null,
+        "version_scope": "source_assembly",
+        "source_revision": "6811558082d6a1797dac160ca027692cd7904a4b",
+        "companions": {
+          "carriage": [
+            "eva2_vminion_lgx_bmo_315"
+          ],
+          "core": [
+            "eva2_vminion_lgx_bmo_324",
+            "eva2_vminion_lgx_bmo_325",
+            "eva2_vminion_lgx_bmo_326",
+            "eva2_vminion_lgx_bmo_327"
+          ],
+          "hotend_mount": [
+            "eva2_vminion_lgx_bmo_328",
+            "eva2_vminion_lgx_bmo_329"
+          ],
+          "hotend": [
+            "eva2_vminion_lgx_bmo_319",
+            "eva2_vminion_lgx_bmo_317",
+            "eva2_vminion_lgx_bmo_318"
+          ],
+          "nozzle": [
+            "eva2_vminion_lgx_bmo_319"
+          ],
+          "extruder": [
+            "eva2_vminion_lgx_bmo_336",
+            "eva2_vminion_lgx_bmo_337",
+            "eva2_vminion_lgx_bmo_338",
+            "eva2_vminion_lgx_bmo_339",
+            "eva2_vminion_lgx_bmo_345"
+          ],
+          "hotend_fan": [
+            "eva2_vminion_lgx_bmo_316"
+          ],
+          "part_fan": [
+            "eva2_vminion_lgx_bmo_321"
+          ],
+          "duct": [
+            "eva2_vminion_lgx_bmo_327",
+            "eva2_vminion_lgx_bmo_332"
+          ],
+          "cover": [
+            "eva2_vminion_lgx_bmo_334"
+          ],
+          "probe": [
+            "eva2_vminion_lgx_bmo_322"
+          ],
+          "probe_mount": [
+            "eva2_vminion_lgx_bmo_335"
+          ],
+          "extruder_mount": [
+            "eva2_vminion_lgx_bmo_324"
+          ],
+          "belt_clamp": [
+            "eva2_vminion_lgx_bmo_331"
+          ],
+          "cable_guide": [
+            "eva2_vminion_lgx_bmo_333"
+          ],
+          "endstop": [
+            "eva2_vminion_lgx_bmo_323",
+            "eva2_vminion_lgx_bmo_330"
+          ],
+          "fasteners": [
+            "eva2_vminion_lgx_bmo_340",
+            "eva2_vminion_lgx_bmo_341",
+            "eva2_vminion_lgx_bmo_342",
+            "eva2_vminion_lgx_bmo_343",
+            "eva2_vminion_lgx_bmo_344",
+            "eva2_vminion_lgx_bmo_346",
+            "eva2_vminion_lgx_bmo_347",
+            "eva2_vminion_lgx_bmo_348",
+            "eva2_vminion_lgx_bmo_349",
+            "eva2_vminion_lgx_bmo_350",
+            "eva2_vminion_lgx_bmo_351",
+            "eva2_vminion_lgx_bmo_352",
+            "eva2_vminion_lgx_bmo_353",
+            "eva2_vminion_lgx_bmo_354",
+            "eva2_vminion_lgx_bmo_355",
+            "eva2_vminion_lgx_bmo_356",
+            "eva2_vminion_lgx_bmo_357",
+            "eva2_vminion_lgx_bmo_358",
+            "eva2_vminion_lgx_bmo_359",
+            "eva2_vminion_lgx_bmo_360",
+            "eva2_vminion_lgx_bmo_361",
+            "eva2_vminion_lgx_bmo_362",
+            "eva2_vminion_lgx_bmo_363",
+            "eva2_vminion_lgx_bmo_364",
+            "eva2_vminion_lgx_bmo_365",
+            "eva2_vminion_lgx_bmo_366",
+            "eva2_vminion_lgx_bmo_367",
+            "eva2_vminion_lgx_bmo_368",
+            "eva2_vminion_lgx_bmo_369",
+            "eva2_vminion_lgx_bmo_370",
+            "eva2_vminion_lgx_bmo_371",
+            "eva2_vminion_lgx_bmo_372",
+            "eva2_vminion_lgx_bmo_373",
+            "eva2_vminion_lgx_bmo_374",
+            "eva2_vminion_lgx_bmo_375",
+            "eva2_vminion_lgx_bmo_376",
+            "eva2_vminion_lgx_bmo_377",
+            "eva2_vminion_lgx_bmo_378",
+            "eva2_vminion_lgx_bmo_379",
+            "eva2_vminion_lgx_bmo_380",
+            "eva2_vminion_lgx_bmo_381",
+            "eva2_vminion_lgx_bmo_382",
+            "eva2_vminion_lgx_bmo_383",
+            "eva2_vminion_lgx_bmo_384",
+            "eva2_vminion_lgx_bmo_385",
+            "eva2_vminion_lgx_bmo_386",
+            "eva2_vminion_lgx_bmo_387",
+            "eva2_vminion_lgx_bmo_388",
+            "eva2_vminion_lgx_bmo_389",
+            "eva2_vminion_lgx_bmo_390",
+            "eva2_vminion_lgx_bmo_391",
+            "eva2_vminion_lgx_bmo_392",
+            "eva2_vminion_lgx_bmo_393",
+            "eva2_vminion_lgx_bmo_394",
+            "eva2_vminion_lgx_bmo_395",
+            "eva2_vminion_lgx_bmo_396",
+            "eva2_vminion_lgx_bmo_397",
+            "eva2_vminion_lgx_bmo_398",
+            "eva2_vminion_lgx_bmo_399",
+            "eva2_vminion_lgx_bmo_400",
+            "eva2_vminion_lgx_bmo_401",
+            "eva2_vminion_lgx_bmo_402",
+            "eva2_vminion_lgx_bmo_403",
+            "eva2_vminion_lgx_bmo_404"
+          ]
+        },
+        "source_machine": {
+          "id": "ratrig_vminion_180",
+          "decoded_model_sha256": "b394124d0ef44519aa24cd005d1433305f35a545c3b8d5f9c8cccb8268fb0175",
+          "manifest_sha256": "11e2f61fdcf9620abe3978741643f23e632a9b3fa4014fb19b0378e76727d45e"
+        }
+      },
+      "notes": [
+        "Complete source EVA 2 Cartesian assembly: LGX Lite, Dragonfly BMO, 4010/5015 fans, M8 probe, rail block and fasteners. Original V-Minion placements retained; other printer mounting and continuous clearance are unverified.",
+        "EVA 2 patch revision is not identified in this V-Minion CAD. The source assembly revision is recorded; it is not labeled as EVA 2.4.2.",
+        "Built-in support identities are unresolved in this source; no supports were removed."
+      ],
+      "display_scope": "Complete source EVA 2 Cartesian assembly: LGX Lite, Dragonfly BMO, 4010/5015 fans, M8 probe, rail block and fasteners. Original V-Minion placements retained; other printer mounting and continuous clearance are unverified.",
+      "fit": {
+        "nozzle_mm": [
+          -87.49999850988388,
+          13.499998487532139,
+          115.9999892115593
+        ],
+        "complete_head_native": {
+          "state": "reference",
+          "scope": "Original source assembly; nozzle plane measured from the exported mesh. Complete native-solid body and probe clearance remain unverified.",
+          "notes": []
+        }
+      },
+      "source_version": "6811558082d6a1797dac160ca027692cd7904a4b",
+      "source_file": "https://a360.co/3rPymJS"
+    },
+    {
+      "id": "eva125__3__vcore_lgx_rapido",
+      "toolhead": "eva_3",
+      "mount": "fixed",
+      "extruder": "lgx_lite",
+      "hotend": "eva_rapido_hf_v1",
+      "gantry": "eva3_corexy_6",
+      "carriage": "eva3_mgn12c",
+      "probe": "eva_superpinda",
+      "board": "none",
+      "cooling": "eva3_sanyo4028_4010",
+      "belt_width_mm": 6,
+      "base_asset": "eva3_ratrig_vcore31_urn9_rapido_hf_lgx_lite",
+      "base_hidden_keys": [],
+      "head_translation_mm": [
+        0,
+        0,
+        0
+      ],
+      "modules": [],
+      "head_only": true,
+      "hardware_assembled": true,
+      "eva": {
+        "generation": 3,
+        "version": null,
+        "version_scope": "source_assembly",
+        "source_revision": "urn:adsk.wipprod:fs.file:vf.eL92Eu5CTp6oAA3iYBTPpw?version=9",
+        "companions": {
+          "carriage": [
+            "eva3_native_000",
+            "eva3_native_005"
+          ],
+          "core": [
+            "eva3_native_001",
+            "eva3_native_004",
+            "eva3_native_005",
+            "eva3_native_006",
+            "eva3_native_008",
+            "eva3_native_011",
+            "eva3_native_012",
+            "eva3_native_013",
+            "eva3_native_014",
+            "eva3_native_016",
+            "eva3_native_017",
+            "eva3_native_018",
+            "eva3_native_094"
+          ],
+          "probe": [
+            "eva3_native_002"
+          ],
+          "hotend": [
+            "eva3_native_003"
+          ],
+          "nozzle": [
+            "eva3_native_003"
+          ],
+          "duct": [
+            "eva3_native_007",
+            "eva3_native_010"
+          ],
+          "hotend_mount": [
+            "eva3_native_009"
+          ],
+          "probe_mount": [
+            "eva3_native_015"
+          ],
+          "extruder_mount": [
+            "eva3_native_018"
+          ],
+          "extruder": [
+            "eva3_native_019",
+            "eva3_native_020",
+            "eva3_native_021",
+            "eva3_native_022",
+            "eva3_native_023",
+            "eva3_native_024",
+            "eva3_native_025",
+            "eva3_native_026",
+            "eva3_native_027",
+            "eva3_native_028",
+            "eva3_native_029"
+          ],
+          "fasteners": [
+            "eva3_native_023",
+            "eva3_native_024",
+            "eva3_native_025",
+            "eva3_native_026",
+            "eva3_native_027",
+            "eva3_native_028",
+            "eva3_native_032",
+            "eva3_native_033",
+            "eva3_native_034",
+            "eva3_native_035",
+            "eva3_native_036",
+            "eva3_native_037",
+            "eva3_native_038",
+            "eva3_native_039",
+            "eva3_native_040",
+            "eva3_native_041",
+            "eva3_native_042",
+            "eva3_native_043",
+            "eva3_native_044",
+            "eva3_native_045",
+            "eva3_native_046",
+            "eva3_native_047",
+            "eva3_native_048",
+            "eva3_native_049",
+            "eva3_native_050",
+            "eva3_native_051",
+            "eva3_native_052",
+            "eva3_native_053",
+            "eva3_native_054",
+            "eva3_native_055",
+            "eva3_native_056",
+            "eva3_native_057",
+            "eva3_native_058",
+            "eva3_native_059",
+            "eva3_native_060",
+            "eva3_native_061",
+            "eva3_native_062",
+            "eva3_native_063",
+            "eva3_native_064",
+            "eva3_native_065",
+            "eva3_native_066",
+            "eva3_native_067",
+            "eva3_native_068",
+            "eva3_native_069",
+            "eva3_native_070",
+            "eva3_native_071",
+            "eva3_native_072",
+            "eva3_native_073",
+            "eva3_native_074",
+            "eva3_native_075",
+            "eva3_native_076",
+            "eva3_native_077",
+            "eva3_native_078",
+            "eva3_native_079",
+            "eva3_native_080",
+            "eva3_native_081",
+            "eva3_native_082",
+            "eva3_native_083",
+            "eva3_native_084",
+            "eva3_native_085",
+            "eva3_native_086",
+            "eva3_native_087",
+            "eva3_native_088",
+            "eva3_native_089",
+            "eva3_native_090",
+            "eva3_native_091",
+            "eva3_native_092",
+            "eva3_native_093",
+            "eva3_native_095",
+            "eva3_native_096",
+            "eva3_native_097",
+            "eva3_native_098",
+            "eva3_native_099",
+            "eva3_native_100",
+            "eva3_native_101",
+            "eva3_native_102",
+            "eva3_native_103",
+            "eva3_native_104",
+            "eva3_native_105",
+            "eva3_native_106",
+            "eva3_native_107",
+            "eva3_native_108",
+            "eva3_native_109",
+            "eva3_native_110",
+            "eva3_native_111",
+            "eva3_native_112",
+            "eva3_native_113",
+            "eva3_native_114",
+            "eva3_native_115",
+            "eva3_native_116",
+            "eva3_native_117",
+            "eva3_native_118",
+            "eva3_native_119",
+            "eva3_native_120",
+            "eva3_native_121",
+            "eva3_native_122"
+          ],
+          "hotend_fan": [
+            "eva3_native_030"
+          ],
+          "part_fan": [
+            "eva3_native_031"
+          ],
+          "cover": [
+            "eva3_native_094"
+          ]
+        }
+      },
+      "notes": [
+        "Complete source EVA 3 CoreXY assembly: LGX Lite, Rapido HF v1, 4010/Sanyo 4028 fans, SuperPINDA probe, rail block and fasteners. Original V-Core 3.1 placements retained; other printer mounting and continuous clearance are unverified.",
+        "EVA 3 patch revision is not identified in this V-Core 3.1 CAD. V-Core 3.1 v9 / EVA 3 Assembly v4 is the source assembly revision; it is not labeled as EVA 3.0.2.",
+        "Built-in support identities are unresolved in this source; no supports were removed.",
+        "Native source body overlaps remain unresolved; this preview does not certify assembly clearance."
+      ],
+      "display_scope": "Complete source EVA 3 CoreXY assembly: LGX Lite, Rapido HF v1, 4010/Sanyo 4028 fans, SuperPINDA probe, rail block and fasteners. Original V-Core 3.1 placements retained; other printer mounting and continuous clearance are unverified.",
+      "fit": {
+        "nozzle_mm": [
+          6.169073646640315e-07,
+          -61.3000000000003,
+          453.6000034242881
+        ],
+        "complete_head_native": {
+          "state": "reference",
+          "scope": "Complete original source subtree: 123 valid native leaves and 328 native common pairs; five body overlaps and 75 fastener seating/engagement candidates unqualified. No other-host or continuous-clearance certification.",
+          "notes": []
+        },
+        "source_probe_tip_gap_mm": 0.9999995365739665
+      },
+      "source_version": "urn:adsk.wipprod:fs.file:vf.eL92Eu5CTp6oAA3iYBTPpw?version=9",
+      "source_file": "https://ratrig.autodesk360.com/shares/public/SH35dfcQT936092f0e43e0d130efbf30509f"
     }
   ],
   "sources": [
@@ -974,6 +1473,39 @@
       "url": "https://github.com/DW-Tas/Crossbow-Filament-Cutter",
       "commit": "5395af65bed8c26566069b7009b9a7f8b7a05bb5",
       "license": "CC BY-NC-SA 4.0"
+    },
+    {
+      "url": "https://github.com/Rat-Rig/V-Minion",
+      "commit": "6811558082d6a1797dac160ca027692cd7904a4b",
+      "license": "CC-BY-NC-SA-4.0",
+      "assembly_revision": "V-Minion 1.0 v7; EVA Assembly v5"
+    },
+    {
+      "url": "https://wiki.ratrig.com/products/v-core-3-1/files",
+      "source_revision": "urn:adsk.wipprod:fs.file:vf.eL92Eu5CTp6oAA3iYBTPpw?version=9",
+      "license": "CC-BY-NC-SA-4.0",
+      "assembly_revision": "V-Core 3.1 v9; EVA 3 Assembly v4",
+      "license_url": "https://github.com/Rat-Rig/V-core-3/blob/4f5d91f42c9a9f7ec346c73728fa6329491aad8c/LICENSE"
+    }
+  ],
+  "hotends": [
+    {
+      "id": "eva_bmo",
+      "label": "Dragonfly BMO · EVA source assembly"
+    },
+    {
+      "id": "eva_rapido_hf_v1",
+      "label": "Rapido HF v1 · EVA source assembly"
+    }
+  ],
+  "probes": [
+    {
+      "id": "eva_m8",
+      "label": "Inductive M8 · EVA source assembly"
+    },
+    {
+      "id": "eva_superpinda",
+      "label": "SuperPINDA · EVA source assembly"
     }
   ]
 }

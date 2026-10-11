@@ -2,10 +2,10 @@ import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {setupSceneDisplay} from './display-preferences.mjs?v=cfa9769ce74b3791658f';
 import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=ea3c45fda6e17c3b5857';
-import {loadMonolithData} from './monolith-machine.js?v=6bc7d2f904cb61802684';
+import {loadMonolithData} from './monolith-machine.js?v=9ec5345faf890092b943';
 import {setupChangerBank} from './changer-bank.js?v=e40b96658f9103747458';
-import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=5739a35fd381045163cf';
-import {headPrinterLink} from './head-navigation.mjs?v=b34cb79928c8b6f53caa';
+import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=592c8123a95bfbffdf98';
+import {headPrinterLink} from './head-navigation.mjs?v=99f2b04391df6c30c6e8';
 import {headBuilderDimensions} from './configuration-model.js?v=922298bc5433b90fa3af';
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import {headPrintedCounts} from './head-printed-parts.mjs?v=05f889964e87c5a9185b';
@@ -13,15 +13,16 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
-import {setupConfigurations} from './configurations.js?v=21b6d9d0baaa9accfd2b';
-import {setupPublicInfo} from './public-info.js?v=71eab04dbc4d8dabd597';
+import {setupConfigurations} from './configurations.js?v=294ae06ecd3851d049fb';
+import {setupPublicInfo} from './public-info.js?v=5cd9c42d000ef734a3da';
 import {setupRenderExport} from './render-export.js?v=a5e4bcf57f5a8e07dcba';
 import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=workspace-belts-1';
+import {validateEvaMetadata,bindEvaMeshIdentities} from './eva-heads.mjs?v=919a1f6692a6bd855927';
 import {setRapidoXUhfSurface} from './rapido-x-uhf-cover.mjs?v=8b458475dac84cfcd8c7';
 import {contentSHA256} from './mount-validation.mjs';
 import {probeCheck,probeMetrics,probeGuide,headInspectionState,headBodyCollisionNotes} from './probe-checks.js?v=ea1aef3e30bf7d11d3cb';
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
-import {setupHeadBuilder} from './builder-ui.mjs?v=f6c7b05adf2d2d322e77';
+import {setupHeadBuilder} from './builder-ui.mjs?v=8e598a92038a55c4fa32';
 import {validateBuilderExtras} from './toolhead-builder.mjs?v=2259f6100f56cdc6c390';
 import {loadExternalComponent} from './component-assets.mjs?v=9f8ef058f1297ab60e53';
 export async function mount(scope){
@@ -95,7 +96,7 @@ async function asset(id){return workspaceTask(async()=>{
  const spec=catalog.base_assets[id]||catalog.assets[id];if(!spec)throw Error('未登録のヘッドCAD: '+id);
  const loading=spec.external?loadExternalComponent(loader,spec,location.href).then(({meta,gltf})=>[meta,gltf]):Promise.all([fetch('../'+spec.meta,{cache:'no-cache'}).then(async r=>{if(!r.ok)throw Error('CAD部品表を取得できません');if(spec.metadata_sha256){const text=await r.text();if(await contentSHA256(text)!==spec.metadata_sha256)throw Error('Native head metadata hash mismatch');return JSON.parse(text)}return r.json()}),loadModel(loader,'../'+spec.glb,undefined,spec.decoded_model_sha256?{verifySha256:spec.decoded_model_sha256}:{})]);
  const promise=loading.then(([meta,model])=>{
-  const lookup=new Map(meta.parts.map(p=>[p.key,p])),root=model.scene,meshes=[];
+  bindEvaMeshIdentities(meta,model.scene);const lookup=new Map(meta.parts.map(p=>[p.key,p])),root=model.scene,meshes=[];
   root.visible=false;bench.add(root);
   root.traverse(mesh=>{if(!mesh.isMesh)return;
    const key=partKey(mesh),role=appearanceRole(lookup.get(key))||mesh.userData.appearance_role;
@@ -166,6 +167,7 @@ async function install(variant){return workspaceTask(async()=>{
   await toolBank?.install(variant);
   // Load before mutating visibility, so failures leave the installed head intact.
   await Promise.all(ids.map(asset));
+  validateEvaMetadata(variant,(await asset(plan.base)).meta);
   for(const [id,p]of cached){const a=p.loaded;if(a){if(id==='stealthburner')setRapidoXUhfSurface(a.meshes,false);a.root.visible=false;for(const r of a.meshes)r.mesh.visible=true}}
   const base=await asset(plan.base);base.root.position.copy(point(headPlacement(variant,{translation_mm:plan.translation,role:'tool'})));base.root.visible=true;
   for(const r of base.meshes)r.mesh.visible=!plan.hidden.has(r.key);

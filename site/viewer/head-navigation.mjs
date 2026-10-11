@@ -1,10 +1,16 @@
 import {normalizeLanguage} from './languages.mjs?v=ba6a5cd8e1d86849ca34';
-import {monolithHeadCatalog} from './monolith-head-model.mjs?v=637cb9a625def866c56e';
+import {monolithHeadCatalog} from './monolith-head-model.mjs?v=355e0afcf2ff02166608';
 import {machinePage} from './machines.js?v=f884e9be087c61766aae';
-import {machineHeadVariants} from './machine-head-model.mjs?v=64a13952ea41d881debe';
+import {machineHeadVariants} from './machine-head-model.mjs?v=8cd63b188518bedc3cd2';
 
 export function headPrinterLink(variant,registry,href){
  const source=new URL(href),preferred=source.searchParams.get('return_machine');
+ const original=registry.eva_source_machines?.[variant.id];
+ if(original&&machinePage(original)){
+  const url=new URL(machinePage(original),source);url.searchParams.set('machine',original);
+  const lang=normalizeLanguage(source.searchParams.get('lang'));if(lang)url.searchParams.set('lang',lang);
+  return {url:url.href,machine:original,registered:true,sourceAssembly:true};
+ }
  const monolith=monolithPrinterLink(variant,registry,source);if(monolith)return monolith;
  const targets=Object.entries(registry.machines).filter(([id,binding])=>machinePage(id)&&
   (binding.gantries?Object.keys(binding.gantries):[undefined]).some(gantry=>machineHeadVariants({variants:[variant]},registry,id,gantry).length)).map(([id])=>id);

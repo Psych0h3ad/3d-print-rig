@@ -85,8 +85,8 @@ body.ui-workspace {
 .inspector-heading > p.foot { margin: 6px 0 0; line-height: 1.6; font-size: 11px; }
 .ui-workspace .change-machine { position: absolute; top: 14px; right: 20px; padding: 5px 10px; min-height: 30px; font-size: 11px; color: var(--ink); background: #f7f9fb; }
 .ui-workspace .inspector-heading:has(.change-machine) h1 { padding-right: 90px; }
-.inspector-tabs { display: flex; flex: 0 0 auto; padding: 0 14px; border-bottom: 1px solid var(--line); }
-.ui-workspace .inspector-tabs > button { position: relative; flex: 1; min-width: 0; overflow-wrap: anywhere; white-space: normal; line-height: 1.35; border: 0; border-radius: 0; background: transparent; min-height: 42px; padding: 8px 4px; color: var(--muted); font-size: 12px; }
+.inspector-tabs { display: flex; flex: 0 0 auto; padding: 0 14px; border-bottom: 1px solid var(--line); overflow-x: auto; }
+.ui-workspace .inspector-tabs > button { position: relative; flex: 1 0 auto; min-width: max-content; overflow-wrap: normal; white-space: nowrap; line-height: 1.35; border: 0; border-radius: 0; background: transparent; min-height: 42px; padding: 8px 4px; color: var(--muted); font-size: 12px; }
 .ui-workspace .inspector-tabs > button[aria-selected=true] { color: var(--accent); font-weight: 650; }
 .inspector-tabs > button[aria-selected=true]::after { content: ''; height: 2px; background: var(--accent); position: absolute; bottom: 0; left: 9px; right: 9px; border-radius: 2px; }
 .inspector-content { min-height: 0; min-width: 0; width: 100%; max-width: 100%; overflow-x: hidden; overflow-y: auto; scrollbar-width: thin; flex: 1; overscroll-behavior: contain; padding: 16px 20px 24px; }

@@ -9245,6 +9245,78 @@
     "component.single_part": {
       "source_revision": "6744d37c2b0b9455ac85",
       "text": "개별 부품"
+    },
+    "feature.eva2.option.toolhead": {
+      "source_revision": "1764db49a751c90c283e",
+      "text": "EVA 2"
+    },
+    "feature.eva2.option.gantry": {
+      "source_revision": "4a74cea37d193971fc64",
+      "text": "EVA 2 · 직교식 / 6 mm"
+    },
+    "feature.eva2.option.carriage": {
+      "source_revision": "2f73b8f7a84d6b278154",
+      "text": "EVA 2 · MGN12C / V-Minion"
+    },
+    "feature.eva2.option.cooling": {
+      "source_revision": "0bc55c1e36bacf9776df",
+      "text": "EVA 2 · 5015 / 4010 / Tri Horn"
+    },
+    "feature.eva2.option.hotend": {
+      "source_revision": "2e1db792961d5a2de9e7",
+      "text": "Dragonfly BMO · EVA 원본 어셈블리"
+    },
+    "feature.eva2.option.probe": {
+      "source_revision": "5ce3eea8e3d90fc5ebd3",
+      "text": "M8 유도형 프로브 · EVA 원본 어셈블리"
+    },
+    "feature.eva2.notice.scope": {
+      "source_revision": "2f17f9f526fda604e690",
+      "text": "EVA 2 직교식 원본 어셈블리 전체: LGX Lite, Dragonfly BMO, 4010/5015 팬, M8 프로브, 레일 블록 및 체결 부품. V-Minion의 원래 배치를 유지하며, 다른 프린터 장착과 전체 이동 경로의 간극은 검증되지 않았습니다."
+    },
+    "feature.eva2.notice.patch": {
+      "source_revision": "be971cbea5437f3bbd2d",
+      "text": "이 V-Minion CAD에서 EVA 2의 패치 버전은 확인되지 않았습니다. 원본 어셈블리 버전은 기록되어 있으며, EVA 2.4.2로 표기하지 않습니다."
+    },
+    "feature.eva3.option.toolhead": {
+      "source_revision": "cfffd85516b514314033",
+      "text": "EVA 3"
+    },
+    "feature.eva3.option.gantry": {
+      "source_revision": "dfa80195b894046fbd88",
+      "text": "EVA 3 · CoreXY / V-Core 3.1"
+    },
+    "feature.eva3.option.carriage": {
+      "source_revision": "a028157795440333fd38",
+      "text": "EVA 3 · MGN12C / V-Core 3.1"
+    },
+    "feature.eva3.option.cooling": {
+      "source_revision": "11a8b43dd0311bc6446e",
+      "text": "EVA 3 · Sanyo 4028 / 4010"
+    },
+    "feature.eva3.option.hotend": {
+      "source_revision": "e3a0ddf251980b111bc1",
+      "text": "Rapido HF v1 · EVA 원본 어셈블리"
+    },
+    "feature.eva3.option.probe": {
+      "source_revision": "57b8bc47c24b4644add7",
+      "text": "SuperPINDA · EVA 원본 어셈블리"
+    },
+    "feature.eva3.notice.scope": {
+      "source_revision": "8f9b074da95e23f34a89",
+      "text": "EVA 3 CoreXY 원본 어셈블리 전체: LGX Lite, Rapido HF v1, 4010/Sanyo 4028 팬, SuperPINDA 프로브, 레일 블록 및 체결 부품. V-Core 3.1의 원래 배치를 유지하며, 다른 프린터 장착과 전체 이동 경로의 간극은 검증되지 않았습니다."
+    },
+    "feature.eva3.notice.patch": {
+      "source_revision": "cc98dcbb300629b7169b",
+      "text": "이 V-Core 3.1 CAD에서 EVA 3의 패치 버전은 확인되지 않았습니다. V-Core 3.1 v9 / EVA 3 Assembly v4는 원본 어셈블리 버전이며, EVA 3.0.2로 표기하지 않습니다."
+    },
+    "feature.eva.notice.supports": {
+      "source_revision": "21304cbd2b74e7a26622",
+      "text": "이 원본에서 내장 서포트가 식별되지 않아 서포트를 제거하지 않았습니다."
+    },
+    "feature.eva.notice.native_overlaps": {
+      "source_revision": "f76a29f57b246691364f",
+      "text": "원본 CAD 부품 간 겹침은 아직 판정되지 않았습니다. 이 미리보기는 조립 간격을 검증한 구성이 아닙니다."
     }
   }
 }

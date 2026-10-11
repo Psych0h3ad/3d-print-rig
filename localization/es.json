@@ -9245,6 +9245,78 @@
     "component.single_part": {
       "source_revision": "6744d37c2b0b9455ac85",
       "text": "Componente individual"
+    },
+    "feature.eva2.option.toolhead": {
+      "source_revision": "1764db49a751c90c283e",
+      "text": "EVA 2"
+    },
+    "feature.eva2.option.gantry": {
+      "source_revision": "4a74cea37d193971fc64",
+      "text": "EVA 2 · Cartesiano / 6 mm"
+    },
+    "feature.eva2.option.carriage": {
+      "source_revision": "2f73b8f7a84d6b278154",
+      "text": "EVA 2 · MGN12C / V-Minion"
+    },
+    "feature.eva2.option.cooling": {
+      "source_revision": "0bc55c1e36bacf9776df",
+      "text": "EVA 2 · 5015 / 4010 / Tri Horn"
+    },
+    "feature.eva2.option.hotend": {
+      "source_revision": "2e1db792961d5a2de9e7",
+      "text": "Dragonfly BMO · Ensamblaje original EVA"
+    },
+    "feature.eva2.option.probe": {
+      "source_revision": "5ce3eea8e3d90fc5ebd3",
+      "text": "Sonda inductiva M8 · Ensamblaje original EVA"
+    },
+    "feature.eva2.notice.scope": {
+      "source_revision": "2f17f9f526fda604e690",
+      "text": "Ensamblaje cartesiano original EVA 2 completo: LGX Lite, Dragonfly BMO, ventiladores 4010/5015, sonda M8, patín del raíl y tornillería. Se conserva la disposición original de V-Minion; no se han verificado el montaje en otras impresoras ni las holguras durante todo el recorrido."
+    },
+    "feature.eva2.notice.patch": {
+      "source_revision": "be971cbea5437f3bbd2d",
+      "text": "No se ha identificado la revisión de parche de EVA 2 en este CAD de V-Minion. Se registra la revisión del ensamblaje original; no se etiqueta como EVA 2.4.2."
+    },
+    "feature.eva3.option.toolhead": {
+      "source_revision": "cfffd85516b514314033",
+      "text": "EVA 3"
+    },
+    "feature.eva3.option.gantry": {
+      "source_revision": "dfa80195b894046fbd88",
+      "text": "EVA 3 · CoreXY / V-Core 3.1"
+    },
+    "feature.eva3.option.carriage": {
+      "source_revision": "a028157795440333fd38",
+      "text": "EVA 3 · MGN12C / V-Core 3.1"
+    },
+    "feature.eva3.option.cooling": {
+      "source_revision": "11a8b43dd0311bc6446e",
+      "text": "EVA 3 · Sanyo 4028 / 4010"
+    },
+    "feature.eva3.option.hotend": {
+      "source_revision": "e3a0ddf251980b111bc1",
+      "text": "Rapido HF v1 · Ensamblaje original EVA"
+    },
+    "feature.eva3.option.probe": {
+      "source_revision": "57b8bc47c24b4644add7",
+      "text": "SuperPINDA · Ensamblaje original EVA"
+    },
+    "feature.eva3.notice.scope": {
+      "source_revision": "8f9b074da95e23f34a89",
+      "text": "Ensamblaje CoreXY original EVA 3 completo: LGX Lite, Rapido HF v1, ventiladores 4010/Sanyo 4028, sonda SuperPINDA, patín del raíl y tornillería. Se conserva la disposición original de V-Core 3.1; no se han verificado el montaje en otras impresoras ni las holguras durante todo el recorrido."
+    },
+    "feature.eva3.notice.patch": {
+      "source_revision": "cc98dcbb300629b7169b",
+      "text": "No se ha identificado la revisión de parche de EVA 3 en este CAD de V-Core 3.1. V-Core 3.1 v9 / EVA 3 Assembly v4 identifica la revisión del ensamblaje original; no se etiqueta como EVA 3.0.2."
+    },
+    "feature.eva.notice.supports": {
+      "source_revision": "21304cbd2b74e7a26622",
+      "text": "No se han identificado los soportes integrados de este archivo; no se ha retirado ningún soporte."
+    },
+    "feature.eva.notice.native_overlaps": {
+      "source_revision": "f76a29f57b246691364f",
+      "text": "Los solapamientos entre cuerpos del CAD original siguen sin resolverse; esta vista previa no certifica las holguras del montaje."
     }
   }
 }

@@ -19,7 +19,8 @@ def main():
     before=regression_inputs(ROOT)
     started_at=datetime.datetime.now(datetime.timezone.utc).isoformat()
     tasks=[['node',str(p)]for p in sorted((ROOT/'scripts').glob('test_*.mjs'))]
-    tasks.extend([['node',str(ROOT/'scripts/check_machine_coverage.mjs')],[sys.executable,str(ROOT/'scripts/test_build_evidence.py')]])
+    tasks.append(['node',str(ROOT/'scripts/check_machine_coverage.mjs')])
+    tasks.extend([[sys.executable,str(p)]for p in sorted((ROOT/'scripts').glob('test_*.py'))])
     def run(command):
         start=time.monotonic();result=subprocess.run(command,cwd=ROOT,capture_output=True,text=True,encoding='utf8',errors='replace')
         return dict(test=Path(command[-1]).name,passed=result.returncode==0,seconds=round(time.monotonic()-start,3),output=(result.stdout+result.stderr).strip())

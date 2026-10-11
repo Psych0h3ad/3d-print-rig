@@ -42,7 +42,7 @@ for(const p of sphinxCompanionPresets){
 const missing='head13__sphinx__fixed__micro_bowden__dragon_ace_mze__sphinx_voron__none__source';
 assert.equal(configurationById(catalog,missing),undefined,'Unknown companion requirements are not mapped to another hotend');
 assert.equal(configurationById(catalog,'unknown'),undefined);assert.throws(()=>importedVariant(catalog,{configuration:'unknown'}));
-assert.equal(withHeadAdditions({...structuredClone(raw),sources:[]},additions).variants.length,18,'All production consumers apply the same four preset migrations');
+assert.equal(withHeadAdditions({...structuredClone(raw),sources:[]},additions).variants.length,4+additions.variants.length,'All production consumers apply the same four preset migrations');
 const p=sphinxCompanionPresets[0];let negatives=0;
 for(const mutate of [
  c=>c.variants=c.variants.filter(v=>v.id!==p.to),

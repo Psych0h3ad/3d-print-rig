@@ -1,0 +1,54 @@
+{
+  "schema": "3d-print-rig-eva-sources-v1",
+  "author": "EVA by Paweł Kucmus; complete printer assemblies by Rat Rig",
+  "license": "CC-BY-NC-SA-4.0",
+  "scope": "Complete source heads with original occurrence placements; exact EVA patch versions unconfirmed; other printer adapters and continuous clearance are not certified.",
+  "assemblies": [
+    {
+      "generation": 2,
+      "eva_version": null,
+      "version_scope": "source_assembly",
+      "assembly_revision": "V-Minion 1.0 v7 / EVA Assembly v5",
+      "source_revision": "6811558082d6a1797dac160ca027692cd7904a4b",
+      "public_page": "https://wiki.ratrig.com/products/v-minion/files",
+      "public_cad": "https://ratrig.autodesk360.com/shares/public/SH35dfcQT936092f0e43f1441b1034168ea4",
+      "source_step_sha256": "46650c0be0527b0f799a6ebd5cde210254caafdc4c436f558857fa30c17e9b94",
+      "license": "CC-BY-NC-SA-4.0",
+      "license_url": "https://github.com/Rat-Rig/V-Minion/blob/6811558082d6a1797dac160ca027692cd7904a4b/LICENSE",
+      "supports_removed": false,
+      "support_isolation_verified": false,
+      "configuration": "eva125__2__vminion_lgx_bmo",
+      "asset": "eva2_vminion_lgx_bmo",
+      "parts": 90,
+      "model_sha256": "21b8cf9694d86062e6b124051c1b60b963d66328a0df7a1b45ba2baaabd46b3b",
+      "metadata_sha256": "9831dc9193fab6d3c98e4b3e9b2d8348f8c2345b1137de13e7730a7869adae92",
+      "native_bounds_receipt_sha256": "83e5a44adb3a6d1694e420d46c598fc9edc6ca78c387395026aa5b3f0fd55749"
+    },
+    {
+      "generation": 3,
+      "eva_version": null,
+      "version_scope": "source_assembly",
+      "assembly_revision": "V-Core 3.1 v9 / EVA 3 Assembly v4",
+      "source_revision": "urn:adsk.wipprod:fs.file:vf.eL92Eu5CTp6oAA3iYBTPpw?version=9",
+      "public_page": "https://wiki.ratrig.com/products/v-core-3-1/files",
+      "public_cad": "https://ratrig.autodesk360.com/shares/public/SH35dfcQT936092f0e43e0d130efbf30509f",
+      "source_step_sha256": "9bfde01c4d811eaef253831f2fe7354e14c36b607d36b5b37bfc4fe9f48906d6",
+      "license": "CC-BY-NC-SA-4.0",
+      "license_url": "https://github.com/Rat-Rig/V-core-3/blob/4f5d91f42c9a9f7ec346c73728fa6329491aad8c/LICENSE",
+      "supports_removed": false,
+      "support_isolation_verified": false,
+      "configuration": "eva125__3__vcore_lgx_rapido",
+      "asset": "eva3_ratrig_vcore31_urn9_rapido_hf_lgx_lite",
+      "parts": 123,
+      "model_sha256": "619857aca76e72c14601b086db8c2cf86b7c3ab7d24b1e4323f3d60f6eb58168",
+      "metadata_sha256": "7d547ae0d602a6cfc90351ff5cf6089f7d7e45b164657a0c34456d8208d073db",
+      "native_solid_review": {
+        "leaves": 123,
+        "candidate_pairs": 328,
+        "unqualified_body_overlaps": 5,
+        "fastener_engagement_or_seating_candidates": 75,
+        "physical_fit_certified": false
+      }
+    }
+  ]
+}
