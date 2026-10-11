@@ -558,7 +558,7 @@
       "passed": true,
       "regressions": 131,
       "workers": 2,
-      "log_sha256": "766927faf507c40cbc887cb6fd0dec4e59737fb37598f970d529397c1fe5620e"
+      "log_sha256": "b923abfb649d4c1a9045170e3b4da835fc9caa3e0c43f1184b459336f0fab689"
     },
     "source_gate": {
       "passed": true,
@@ -567,9 +567,9 @@
     },
     "static_build": {
       "passed": true,
-      "site_bytes": 979314444,
+      "site_bytes": 979314445,
       "budget_bytes": 980000000,
-      "log_sha256": "71e4d4aef241a4d9eef3d1a75ee4f034225bc3c6371fb4b272b5f53bbe6b7706",
+      "log_sha256": "1c258fa59a9d9dfd86eb7bee9d649a12d7649fceb0c633a5a6e5dc84122a776a",
       "registered_support_targets": 75,
       "registered_support_rows": 25547
     },
@@ -584,7 +584,15 @@
       "verification_phase": "after_deployment",
       "claim_in_this_prepublication_report": false
     },
-    "publication_ready": true
+    "publication_ready": true,
+    "actual_gallery_support": {
+      "passed": true,
+      "machines": 67,
+      "cad_missing_excluded": 6,
+      "thumbnail_and_model_pins_verified": true,
+      "exact_host_label_identity_verified": true,
+      "log_sha256": "d43f49347a765ad9cffb009ff9dad8ea086c1d2994d171232765cb2e1fc026ec"
+    }
   },
   "native_inspection": {
     "handoff_sha256": "e5724564548f2ee243eb06afba3f7aa3ca33d317115b5ad866214cbe28fe6413",
@@ -874,7 +882,13 @@
     "all67_current_model_binaries_rehashed": true,
     "metadata_and_notice_changes_only": true,
     "prior_reports_preserved": true,
-    "parent_gates_pending": true
+    "parent_gates_pending": true,
+    "source_label_regression": {
+      "source": "scripts/test_eva_installations.mjs",
+      "passed": true,
+      "tested_hosts": 2,
+      "actual_model_geometry_and_motion_unchanged": true
+    }
   },
   "browser_review": {
     "browser": "Codex in-app browser",

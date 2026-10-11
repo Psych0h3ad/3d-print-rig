@@ -140,8 +140,8 @@
     },
     {
       "path": "docs/EVA_INSTALLED_REVIEW_127.json",
-      "bytes": 36857,
-      "sha256": "2ff7c148a4c379d055c637be376060da98014086271890afde37f37eab1f01f4"
+      "bytes": 37357,
+      "sha256": "302ecbcf92a9bcf15faa76d8028598bf6a4131fdc52a86f7a1ba44a75b4a08f6"
     },
     {
       "path": "docs/GOLIATH.md",
@@ -185,8 +185,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 3451807,
-      "sha256": "62b7b601b27556f49bfc6311df96e5c687648004c53b0735e186f19ca0b512cf"
+      "bytes": 3452535,
+      "sha256": "e4789becb4cdd207200f28a385344832ef58c37ae265fb58dc0a11c512c3b624"
     },
     {
       "path": "docs/MADMAX_NATIVE_JOINT_101.json",
@@ -1005,8 +1005,8 @@
     },
     {
       "path": "scripts/test_eva_installations.mjs",
-      "bytes": 7003,
-      "sha256": "e24a1e92d978779c1af1be4e11394aa1c44a476484388e3791fc269eb742808d"
+      "bytes": 8172,
+      "sha256": "63a879856b27c5b7464e7846f0b2737f8c11a159eb13fa5347e2ce5999a711cd"
     },
     {
       "path": "scripts/test_export_camera.mjs",
@@ -1730,8 +1730,8 @@
     },
     {
       "path": "site/assets/machines/index.json",
-      "bytes": 66643,
-      "sha256": "e02208c2d9e3ef34014c0a7c517b10a03f5872701b62d47f96bfe197d4b76a0c"
+      "bytes": 66644,
+      "sha256": "af59fa3d7ffa29f09de01ec67caa8532d8a13585f8cb2ff84b0dfc1a616e88ce"
     },
     {
       "path": "site/assets/machines/lh_stinger_200.webp",

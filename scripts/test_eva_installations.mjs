@@ -1,4 +1,6 @@
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {machineChoices} from '../site/viewer/machines.js';
 import {evaCommunityIndex,applyEvaInstallation,evaInstallationSupport} from '../site/viewer/eva-installations.mjs';
 import {communityConfiguration,validateCommunityState} from '../site/viewer/community-state.mjs';
 import {bindEvaSourceMachines} from '../site/viewer/eva-heads.mjs';
@@ -51,4 +53,16 @@ for(const generation of [2,3]){
  const extra=clone(registry);extra.machines[id].asset=source.machines[id];assert.throws(()=>evaCommunityIndex(source,extra));
  assert.equal(evaCommunityIndex({machines:{}},extra).machines[id].machine_id,id);
 }
-console.log(JSON.stringify({passed:true,generations:[2,3],rejected_inputs:rejected,scope:'Native host identity, complete moving companions, exact selections, stale asset rejection and save/load. Actual meshes and native solid travel require separate release audits.'}));
+// Source-only release jobs must catch catalog label drift before the assembled
+// support index and gallery are compared by the actual-asset release job.
+const production=JSON.parse(fs.readFileSync(new URL('../site/EVA_INSTALLATIONS.json',import.meta.url)));
+const gallery=JSON.parse(fs.readFileSync(new URL('../site/assets/machines/index.json',import.meta.url)));
+function galleryIdentity(label,expected){return typeof label==='string'&&label.toLocaleLowerCase().startsWith(expected.toLocaleLowerCase());}
+for(const id of Object.keys(production.machines)){
+ const machine=machineChoices.find(m=>m.id===id),row=gallery.machines.find(m=>m.id===id);
+ assert(machine&&row,'Installed EVA host needs a gallery registration: '+id);
+ const identity=machine.label.split(/[\u3040-\u30ff\u3400-\u9fff]/u)[0].trim();
+ assert(galleryIdentity(row.label,identity),'Installed EVA gallery/support label differs: '+id);
+ assert(!galleryIdentity(row.label.replace(' · ',' / '),identity),'Separator drift must be rejected: '+id);
+}
+console.log(JSON.stringify({passed:true,generations:[2,3],rejected_inputs:rejected,installed_gallery_identities:Object.keys(production.machines).length,scope:'Native host identity, complete moving companions, exact selections, stale asset rejection and save/load. Actual meshes and native solid travel require separate release audits.'}));
