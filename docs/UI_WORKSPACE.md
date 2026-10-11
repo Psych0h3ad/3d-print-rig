@@ -5,6 +5,10 @@ Machine and workbench entry pages share navigation, control categories and a
 responsive layout; the available controls depend on the loaded controller.
 See the [support index](COMBINATION_SUPPORT.md) for current configurations.
 
+The header and browser tab share the original vector mark in
+`site/assets/brand/`: a printer frame, bed and orange nozzle. Header marks use
+34 px on desktop and 28 px on phones, with the same contrast in both themes.
+
 The model corner credits project sponsor **Watchtower by YGK3D**. Open the
 credit to visit its website, Kickstarter, YouTube channel or introduction video.
 The provided horizontal logo appears on a small dark backing in both themes;
