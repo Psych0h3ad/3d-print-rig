@@ -46,7 +46,7 @@ export class WorkspaceScope {
   scene(value) {
     this.scenes.add(value);
     if (value.isScene && typeof document !== 'undefined') this.task(async () => {
-      const {setupToolheadLighting} = await import('./toolhead-lighting.mjs?v=d45718a28ab59f3df3ef');
+      const {setupToolheadLighting} = await import('./toolhead-lighting.mjs?v=bca7e8fa08d5332567c1');
       if (!this.disposed) setupToolheadLighting(value, {scope:this});
     });
     return value;

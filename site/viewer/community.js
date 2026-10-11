@@ -1,4 +1,4 @@
-import {setupGcodePanel} from './gcode-panel.js?v=a84362027155c83c4e26';
+import {setupGcodePanel} from './gcode-panel.js?v=1df4ed3b7d487c82cee0';
 import {displacementGcodeSettings,displacementCoordinateNote,unavailableCoordinateNote} from './gcode-machine-bindings.mjs?v=460777c3fc4d1a74bf27';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
@@ -10,12 +10,12 @@ import {communitySchema,validateCommunityState,communityMotionEnabled,communityC
 import {installationFor} from './ender-mods.mjs?v=5f07c69c7c42ba3f3936';
 import {setupMachineNavigation} from './machines.js?v=f884e9be087c61766aae';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
-import {translate} from './i18n.mjs?v=32015863389456390e70';
-import {rememberDisplayControl} from './display-preferences.mjs?v=3b735c3e32640589ed26';
-import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=823ad76bd9034ec8d6ff';
+import {translate} from './i18n.mjs?v=d06079e5c1b05cfc35ff';
+import {rememberDisplayControl} from './display-preferences.mjs?v=cfa9769ce74b3791658f';
+import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=ea3c45fda6e17c3b5857';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
-import {setupRenderExport} from './render-export.js?v=9c6b06804a9e64da0b2f';
-import {setupPublicInfo} from './public-info.js?v=ce03adfc209799e0d8ad';
+import {setupRenderExport} from './render-export.js?v=a5e4bcf57f5a8e07dcba';
+import {setupPublicInfo} from './public-info.js?v=3e2eacc0a2df31e15280';
 const descriptions={
  '247zero_beta2_120':'247zero BETA2 · 120 mm / ULW carbon gantry / Crazy Volcano / M4 Bowden',
  doomcube2_350_reference:"DoomCube 2 · 350 mm / double enclosure / original CAD",

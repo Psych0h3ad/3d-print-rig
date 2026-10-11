@@ -32,6 +32,15 @@ bytes. Source entry names and delivery SHA-256 hashes are:
 - Camera presets show their selected state. The operation guide includes touch gestures and keyboard shortcuts: 1 for isometric, 2 for front, 3 for top/side and 4 for the head where available.
 - Tabs support arrow keys, Home and End. Native dialogs provide Escape dismissal and focus restoration.
 
+## Toolhead lighting
+
+Under Appearance, Toolhead lighting controls the LEDs included in the loaded
+source assembly. Brightness runs from 0% to 300%, with a live percentage beside
+the slider. At 100% it keeps the previous rendering strength; 300% triples both
+the emitting surface and its local light. New preferences start at 100%, and
+existing brightness preferences are retained when reloading or changing pages.
+Logo color and animation remain selectable, while nozzle LEDs stay white.
+
 ## Choosing a configuration
 
 The shared printer/head/Monolith configurator keeps a draft separate from the

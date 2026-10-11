@@ -1,5 +1,5 @@
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
-import {WorkspaceMutationObserver,workspaceListen,onWorkspaceDispose} from './workspace-lifecycle.mjs?v=823ad76bd9034ec8d6ff';
+import {WorkspaceMutationObserver,workspaceListen,onWorkspaceDispose} from './workspace-lifecycle.mjs?v=ea3c45fda6e17c3b5857';
 import {supportedLanguages,languageNames,normalizeLanguage,chooseLanguage,languageURL} from './languages.mjs?v=ba6a5cd8e1d86849ca34';
 import {definitions,localeLoaders} from './locales/manifest.mjs?v=69d08f750e3c8ebabb16';
 import {createTranslator} from './translation-engine.mjs?v=ad5021536c774dab7b4d';

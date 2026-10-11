@@ -2,7 +2,6 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import vm from 'node:vm';
 import {setupWorkspaceDestinationLanguages} from '../site/viewer/workspace-ui.mjs';
-import {activateScope,WorkspaceScope} from '../site/viewer/workspace-lifecycle.mjs?v=823ad76bd9034ec8d6ff';
 import {chooseLanguage,languageURL,supportedLanguages,languageNames} from '../site/viewer/languages.mjs';
 
 // Optional candidate source keeps an out-of-scope gallery repair reviewable
@@ -15,6 +14,11 @@ const [workspaceSource,shippedFun,funHTML]=await Promise.all([
   fs.readFile(new URL('../site/fun/index.html',import.meta.url),'utf8'),
 ]);
 const funSource=args.length?await fs.readFile(args[1],'utf8'):shippedFun;
+// Share the shipped module instance so cache updates cannot detach the fixture
+// scope from the destination listeners that are being tested.
+const lifecycleReference=workspaceSource.match(/from '(\.\/workspace-lifecycle\.mjs\?v=[^']+)'/);
+assert(lifecycleReference,'Workspace imports its versioned lifecycle module');
+const {activateScope,WorkspaceScope}=await import(new URL(lifecycleReference[1],new URL('../site/viewer/workspace-ui.mjs',import.meta.url)));
 assert.match(workspaceSource,/setupLanguage\(\);\s*setupWorkspaceDestinationLanguages\(\[\.\.\.navigation\.querySelectorAll\('a'\),\s*\.\.\.menu\.querySelectorAll\('a'\),\s*credits\]\)/,
   'Bind every navigation/menu destination and credits after the initial language is chosen');
 

@@ -3,6 +3,12 @@ import {prepareLedSurface,restoreLedSurface} from './led-emission-surface.mjs?v=
 import * as identities from './toolhead-led-identities.mjs?v=39dec8b48b8d0d1a46d6';
 import {ledSample,createLedAnimator} from './lighting-animation.mjs';
 
+export const TOOLHEAD_LED_MAX_LEVEL=300;
+export const TOOLHEAD_LED_DEFAULT_LEVEL=100;
+export function normalizeToolheadLedLevel(value){
+ const level=Number(value);return Number.isFinite(level)?Math.max(0,Math.min(TOOLHEAD_LED_MAX_LEVEL,level)):0;
+}
+
 const visible=object=>object.visible&&(!object.parent||visible(object.parent));
 const belongs=(object,scene)=>object===scene||Boolean(object.parent&&belongs(object.parent,scene));
 export function createToolheadLedRig(scene,{identify=identities.sourceLedIdentity,apertureFor=identities.sourceLedAperture,guideFor=identities.sourceOpticalGuide||(()=>null),own=()=>{}}={}){
@@ -22,13 +28,13 @@ export function createToolheadLedRig(scene,{identify=identities.sourceLedIdentit
   emitters.push({mesh,identity,surface,light});
   });return emitters;
  }
- function update({power=true,level=75,color:mode='white',effect='static',seconds=0}={}){
-  discover();let count=0;
+ function update({power=true,level=TOOLHEAD_LED_DEFAULT_LEVEL,color:mode='white',effect='static',seconds=0}={}){
+  discover();let count=0;const brightness=normalizeToolheadLedLevel(level);
   for(const [i,entry]of emitters.entries()){
-   const on=power&&visible(entry.mesh)&&Number(level)>0;if(visible(entry.mesh))count++;
+   const on=power&&visible(entry.mesh)&&brightness>0;if(visible(entry.mesh))count++;
    const nozzle=entry.identity.kind==='nozzle',sample=ledSample({color:nozzle?'white':mode,effect:nozzle?'static':effect,position:(i%3)/2,seconds});
    if(nozzle)color.setHex(0xffffff);else if(sample.rainbow)color.setHSL(sample.hue,.9,.52);else color.setHex(sample.hex);
-   const gain=on?Math.max(0,Math.min(100,Number(level)||0))/100*sample.gain:0;
+   const gain=on?brightness/100*sample.gain:0;
    for(const material of entry.surface.materials){material.emissive.copy(color);material.emissiveIntensity=3.2*gain;}
    entry.light.color.copy(color);entry.light.intensity=(nozzle?.004:.0015)*gain;
   }
@@ -39,7 +45,7 @@ export function createToolheadLedRig(scene,{identify=identities.sourceLedIdentit
    const emitter=paired.find(p=>visible(p.mesh)),gain=emitter&&visible(e.mesh)?emitter.surface.materials[0].emissiveIntensity:0;
    for(const [i,m]of e.materials.entries()){const original=[].concat(e.originalMaterial)[i];m.color.copy(original.color);m.metalness=original.metalness;m.roughness=original.roughness;m.emissiveIntensity=gain;if(emitter)m.emissive.copy(emitter.surface.materials[0].emissive);}
   }
-  return {installed:count,lit:power&&level>0?count:0,registered:emitters.length};
+  return {installed:count,lit:power&&brightness>0?count:0,registered:emitters.length};
  }
  function dispose(){for(const e of emitters){e.mesh.remove(e.light);restoreLedSurface(e.mesh);seen.delete(e.mesh);}for(const e of guides){restoreGuide(e);seen.delete(e.mesh);}emitters.length=0;guides.length=0;}
  return {discover,update,dispose,emitters,guides};
@@ -47,11 +53,12 @@ export function createToolheadLedRig(scene,{identify=identities.sourceLedIdentit
 
 export function setupToolheadLighting(scene,{scope}={}){
  const document=globalThis.document,aside=document?.querySelector('aside');if(!aside||scene.userData.toolheadLedController)return;
- const key='3d-print-rig-toolhead-led-v1',state={power:true,level:75,color:'red',effect:'static'};
- try{const saved=JSON.parse(localStorage.getItem(key)||'null');if(typeof saved?.power==='boolean')state.power=saved.power;if(Number.isFinite(saved?.level)&&saved.level>=0&&saved.level<=100)state.level=saved.level;if(['white','red','blue','rainbow'].includes(saved?.color))state.color=saved.color;if(['static','flow','breath','chase'].includes(saved?.effect))state.effect=saved.effect;}catch{}
+ const key='3d-print-rig-toolhead-led-v1',state={power:true,level:TOOLHEAD_LED_DEFAULT_LEVEL,color:'red',effect:'static'};
+ try{const saved=JSON.parse(localStorage.getItem(key)||'null');if(typeof saved?.power==='boolean')state.power=saved.power;if(Number.isFinite(saved?.level)&&saved.level>=0&&saved.level<=TOOLHEAD_LED_MAX_LEVEL)state.level=saved.level;if(['white','red','blue','rainbow'].includes(saved?.color))state.color=saved.color;if(['static','flow','breath','chase'].includes(saved?.effect))state.effect=saved.effect;}catch{}
  const panel=document.createElement('details');panel.id='toolheadLighting';
- panel.innerHTML='<summary data-i18n-id="led.head_section">Toolhead lighting</summary><label><input id="headLedPower" type="checkbox"><span data-i18n-id="led.head_power">Turn on toolhead LEDs</span></label><label for="headLedLevel" data-i18n-id="led.head_brightness">Toolhead LED brightness</label><input id="headLedLevel" type="range" min="0" max="100" step="5"><label for="headLedColor" data-i18n-id="led.head_color">Logo LED color</label><select id="headLedColor"><option value="white">White</option><option value="red">Red</option><option value="blue">Blue</option><option value="rainbow">Rainbow</option></select><label for="headLedEffect" data-i18n-id="led.head_effect">Logo LED effect</label><select id="headLedEffect"><option value="static">Fixed</option><option value="flow">Flow</option><option value="breath">Breathing</option><option value="chase">Chase</option></select><p class="foot" data-i18n-id="led.head_scope">Only LEDs included in the source CAD are lit. Nozzle lights stay white.</p><p id="headLedStatus" class="status" aria-live="polite"></p>';
+ panel.innerHTML='<summary data-i18n-id="led.head_section">Toolhead lighting</summary><label><input id="headLedPower" type="checkbox"><span data-i18n-id="led.head_power">Turn on toolhead LEDs</span></label><label for="headLedLevel" data-i18n-id="led.head_brightness">Toolhead LED brightness</label><output id="headLedLevelValue" for="headLedLevel"></output><input id="headLedLevel" type="range" min="0" max="'+TOOLHEAD_LED_MAX_LEVEL+'" step="5"><label for="headLedColor" data-i18n-id="led.head_color">Logo LED color</label><select id="headLedColor"><option value="white">White</option><option value="red">Red</option><option value="blue">Blue</option><option value="rainbow">Rainbow</option></select><label for="headLedEffect" data-i18n-id="led.head_effect">Logo LED effect</label><select id="headLedEffect"><option value="static">Fixed</option><option value="flow">Flow</option><option value="breath">Breathing</option><option value="chase">Chase</option></select><p class="foot" data-i18n-id="led.head_scope">Only LEDs included in the source CAD are lit. Nozzle lights stay white.</p><p id="headLedStatus" class="status" aria-live="polite"></p>';
  const controls={power:panel.querySelector('#headLedPower'),level:panel.querySelector('#headLedLevel'),color:panel.querySelector('#headLedColor'),effect:panel.querySelector('#headLedEffect')};
+ const levelValue=panel.querySelector('#headLedLevelValue');
  controls.power.checked=state.power;controls.level.value=state.level;controls.color.value=state.color;controls.effect.value=state.effect;
  panel.hidden=true;aside.append(panel);
  const rig=createToolheadLedRig(scene,{own:value=>scope?.resource(value)});
@@ -59,6 +66,7 @@ export function setupToolheadLighting(scene,{scope}={}){
  const redraw=()=>{if(renderer&&camera&&!scope?.disposed)renderer.render(scene,camera)};
  const animator=createLedAnimator({active:()=>state.power&&state.level>0&&state.effect!=='static'&&last.installed>0&&!document.hidden,draw:seconds=>{rig.update({...state,seconds});redraw();}});
  function update(){
+  const percentage=state.level+'%';if(levelValue.value!==percentage){levelValue.value=percentage;controls.level.setAttribute('aria-valuetext',percentage);}
   last=rig.update({...state,seconds:animator.seconds});panel.hidden=!last.installed;
   for(const [k,input]of Object.entries(controls))input.disabled=!last.installed||(k!=='power'&&!state.power);
   const status=panel.querySelector('#headLedStatus');status.textContent=last.lit+' / '+last.installed+' LED';
