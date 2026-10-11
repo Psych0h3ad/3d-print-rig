@@ -78,6 +78,13 @@ belt width. Head endpoints follow XY and beam idlers follow Y. Fixed Sphinx
 ends stop at the registered clamp entrance. The runtime strips are smooth;
 clamp return loops, teeth, tension and docking motion are not simulated.
 
+For Sphinx tLW, the cut uses the four finite backing-face boundary edges from
+the pinned Tricorn, Rapido X/UHF and Goliath/CHC XL source bodies. The fan
+housing's wider body bounds are not a belt entrance. Standalone clipping and
+installed moving strips consume the same datum. The source-backed fixture
+`scripts/fixtures/sphinx-belt-entrances.json` pins those edges and the actual
+exported metadata/models; changed exports require a new interface review.
+
 The fixture `scripts/fixtures/monolith-belt-routes.json` is derived from
 [Monolith Gantry](https://github.com/Monolith3D/Monolith_Gantry), commit
 `5b729c2f96bdbd24ea180a80476364727444c038`, under CC BY-NC-SA 4.0; see the

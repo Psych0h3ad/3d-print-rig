@@ -8,15 +8,15 @@ import {alphaReference,alphaLimits} from './trinity-alpha-installation.mjs?v=c51
 import {augmentTrinitySiboorR2,TRINITY_SIBOOR_SOURCE} from './trinity-alpha-siboor-r2.mjs?v=abc3f9f2f9c21d691fa4';
 import {augmentTrinityAlpha,TRINITY_ALPHA_SOURCE} from './trinity-alpha-installation.mjs?v=c5150b1db73f85636917';
 import {workspaceTask} from './workspace-lifecycle.mjs?v=ea3c45fda6e17c3b5857';
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=3c003f9a882577d9c0f7';
-import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=9848e5fe130e5502e597';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=d9189affa81d96d1e5e9';
+import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=52cfc24d5da0736a1126';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import {partKey} from './head-assembly.js';
 import {v24HeadCatalog} from './machine-head-model.mjs?v=d16ce6534b74128b120a';
-import {setupConfigurations} from './configurations.js?v=c6a4213005f362362c71';
+import {setupConfigurations} from './configurations.js?v=948ab150845299cb1c5f';
 
 import {loadSiboorRegistration} from './siboor-catalog.mjs?v=bd345751692188cb88e6';
 import {stockProbeFit} from './probe-mounts.js?v=1567de1e4c6a007d79e2';

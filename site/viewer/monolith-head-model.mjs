@@ -1,5 +1,6 @@
 import {installedHeadPlan} from './machine-head-model.mjs?v=d16ce6534b74128b120a';
 import {translatedProbeFit} from './probe-checks.js?v=ea1aef3e30bf7d11d3cb';
+import {sphinxBeltPreviewCut} from './sphinx-belt-interface.mjs?v=4c7644b34aecf95b77d8';
 const completeSphinx=v=>v.mount==='fixed'&&v.gantry==='sphinx_monolith'&&v.fit?.nozzle_mm?.every(Number.isFinite)&&['extruder','hotend'].every(k=>v.modules.some(m=>m.id===v.fit?.complete_head_native?.[k]));
 export function monolithHeadCatalog(heads,registry,gantries){
  if(!registry.sources.stealthchanger_monolith||!registry.monolith_target)throw Error('Monolithの取付基準が未登録です');
@@ -13,7 +14,7 @@ export function monolithHeadCatalog(heads,registry,gantries){
   if(v.fit?.probe)v.fit.probe=translatedProbeFit(v.fit.probe,v.machine_head.translation_delta_mm);
   v.source_head_configuration=source.id;v.gantry=g.id;v.xy_motors=g.xy_motors;v.id='monolith_installed__'+g.id+'__'+source.id;
   v.fit={...v.fit,nozzle_mm:v.machine_head.nozzle_mm,machine_mount:{kind:'Monolith MGN12H / 専用反転ベルトクランプ',axis_error_mm:Math.max(registry.monolith_target.axis_error_mm,registry.sources[v.registration_source].axis_error_mm||0),full_travel_verified:false,docking_registered:false}};
-  if(fixed)v.fit.machine_mount.belt_preview_cut=registry.sources[v.registration_source].belt_preview_cut;
+  if(fixed)v.fit.machine_mount.belt_preview_cut=sphinxBeltPreviewCut(v.registration_source,registry.sources[v.registration_source],v.machine_head.translation_delta_mm);
   v.notes=[...g.notes.filter(s=>!s.startsWith('ガントリー単体')),...v.notes,changer?'Split KeeperのMGN接触面と4本の穴軸で配置。シャトルとKeeperの接触を原本CADで照合。':'通常固定式：SphinxのMGN接触面・4本の穴軸・6/9 mmベルト溝を原本CADで照合。','機体フレーム・ドック・ホーミング・全可動域は未検証。'];variants.push(v);
   if(fixed)v.notes.push('ベルト表示はヘッド入口まで。クランプ内部の折返し経路は未登録。');
  }

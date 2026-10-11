@@ -3,9 +3,12 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {gunzipSync} from 'node:zlib';
 import * as THREE from 'three';
 import {monolithHeadCatalog} from '../site/viewer/monolith-head-model.mjs';
 import {choicesFor,resolveVariant} from '../site/viewer/configuration-model.js';
+import {sphinxBeltInterface} from '../site/viewer/sphinx-belt-interface.mjs';
 const [base,overlay,report]=process.argv.slice(2).map(p=>path.resolve(p));
 async function bytes(file){try{return await fs.readFile(path.join(overlay,file))}catch{return fs.readFile(path.join(base,file))}}
 const read=async file=>JSON.parse(await bytes(file));
@@ -18,6 +21,23 @@ globalThis.fetch=async input=>{
 const {createMachineHeads,loadMachineHeadCatalog}=await import('../site/viewer/machine-heads.js');
 const {heads,registry}=await loadMachineHeadCatalog(),gantries=await read('GANTRY_CONFIGURATIONS.json');
 const catalog=monolithHeadCatalog(heads,registry,gantries),scene=new THREE.Scene(),rig=createMachineHeads(scene,catalog);
+const mouthFixture=JSON.parse(await fs.readFile(new URL('./fixtures/sphinx-belt-entrances.json',import.meta.url),'utf8'));
+const hash=b=>createHash('sha256').update(b).digest('hex');
+let beltEntranceChecks=0;
+for(const entry of mouthFixture.entries){
+ const spec=catalog.base_assets[entry.asset],raw=await bytes(spec.meta),meta=JSON.parse(raw);
+ assert.equal(hash(raw),entry.metadata_sha256,entry.asset+' source metadata changed');
+ const packed=await bytes(spec.glb+'.gz'),model=packed[0]===0x1f&&packed[1]===0x8b?gunzipSync(packed):packed;
+ assert.equal(hash(model),entry.model_decoded_sha256,entry.asset+' exported model changed');
+ assert.equal(meta.source_commit,entry.source_revision);
+ assert(meta.source_files.some(s=>s.path===entry.archive_path&&s.sha256===entry.archive_sha256));
+ assert.equal(meta.parts.find(p=>p.key===entry.body_part_key).source_file,entry.source_file);
+ for(const v of catalog.variants.filter(v=>v.mount==='fixed'&&v.base_asset===entry.asset)){
+  assert(entry.widths_mm.includes(v.belt_width_mm));
+  assert.deepEqual(v.fit.machine_mount.belt_preview_cut.x_mm,sphinxBeltInterface.entrance_x_mm);
+  beltEntranceChecks++;
+ }
+}
 let installed=0,meshBoundsChecked=0;const proven=new Set(),failures=[];
 for(const g of gantries.variants){
  const rows=catalog.variants.filter(v=>v.gantry===g.id);
@@ -61,6 +81,6 @@ for(const g of gantries.variants){
  }
  console.log(g.id+': '+rows.length+' installed plans');
 }
-const result={installed,gantries:gantries.variants.length,fixedConfigurations:catalog.variants.filter(v=>v.mount==='fixed').length,meshBoundsChecked,failures,registration_axis_error_mm:registry.monolith_target.axis_error_mm,native_solid_clearance_rechecked:false,browserRenderingTest:false};
+const result={installed,gantries:gantries.variants.length,fixedConfigurations:catalog.variants.filter(v=>v.mount==='fixed').length,meshBoundsChecked,beltEntranceChecks,failures,registration_axis_error_mm:registry.monolith_target.axis_error_mm,native_solid_clearance_rechecked:false,browserRenderingTest:false};
 await fs.writeFile(report,JSON.stringify(result,null,2));console.log(JSON.stringify({...result,failures:failures.length,examples:failures.slice(0,5)}));
 assert.equal(failures.length,0);

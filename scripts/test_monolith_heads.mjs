@@ -42,3 +42,57 @@ const machine='fixture',g=gantries.variants[0],shift=[2,5,320];
 const printer=withMonolithMachines({machine_id:machine,gantries:[],variants:[],assets:{},sources:[]},sensorHeads,mountedRegistry,{...gantries,source:{url:'https://example.test/native'}},{machines:{[machine]:{family:g.machine,size_mm:g.size_mm,gantry_ids:[g.id],translation_mm:shift}}});
 const attached=printer.variants[0];assert.deepEqual(attached.fit.probe.coil_bottom_mm,[1.7254,20.0845,238.1246]);assert.deepEqual(attached.machine_head.modules.at(-1).translation_mm,[2,13,320]);assert.deepEqual(sensorHead.fit.probe.coil_bottom_mm,sensor.coil_bottom_mm);assert.equal(attached.fit.probe.machine_environment_verified,false);
 console.log('Sphinx sensor coordinates and physical modules remain aligned through workbench and printer registration.');
+
+// Regression for the exported Sphinx tLW main-body interface, not its fan
+// housing bounds. Static clipping and moving routes must share the same cut.
+import {sphinxBeltInterface,sphinxBeltPreviewCut} from '../site/viewer/sphinx-belt-interface.mjs';
+import {monolithBeltRoute} from '../site/viewer/monolith-belts.mjs';
+import fs from 'node:fs';
+const nativeRoutes=JSON.parse(fs.readFileSync(new URL('./fixtures/monolith-belt-routes.json',import.meta.url)));
+const nativeMouths=JSON.parse(fs.readFileSync(new URL('./fixtures/sphinx-belt-entrances.json',import.meta.url)));
+assert.deepEqual(Object.keys(sphinxBeltInterface.source_bodies_sha256).sort(),nativeMouths.entries.map(q=>q.asset).sort());
+for(const entry of nativeMouths.entries){
+ assert.equal(sphinxBeltInterface.source_bodies_sha256[entry.asset],entry.source_body_sha256);
+ assert.equal(entry.finite_entry_edges.length,4);
+ for(const edge of entry.finite_entry_edges)for(const p of edge.points_mm){
+  assert(Math.abs(p[0]-sphinxBeltInterface.entrance_x_mm[p[0]<0?0:1])<.00001);
+  assert(Math.abs(p[1]-sphinxBeltInterface.backing_y_mm)<.00001);
+ }
+ const source={...fixed,base_asset:entry.asset};
+ const reg={...mountedRegistry,sources:{...mountedRegistry.sources,[entry.asset]:{origin_mm:[0,-7.5,0],compatible_belt_widths_mm:entry.widths_mm,belt_preview_cut:{x_mm:[-32.49075763926731,32.49075753926731],y_mm:[-35,35]}}}};
+ const composed=monolithHeadCatalog({...expanded,variants:[source]},reg,gantries);
+ assert.equal(composed.variants.length,entry.widths_mm.length*16);
+ for(const v of composed.variants)assert.deepEqual(v.fit.machine_mount.belt_preview_cut.x_mm,sphinxBeltInterface.entrance_x_mm);
+}
+const sphinxSource={...fixed,base_asset:'head_sphinx_monolith_tricorn'};
+const nativeRegistry={...mountedRegistry,sources:{...mountedRegistry.sources,
+ [sphinxSource.base_asset]:{origin_mm:[0,-7.5,0],compatible_belt_widths_mm:[6,9],belt_preview_cut:{x_mm:[-32.49075763926731,32.49075753926731],y_mm:[-35,35]}}}};
+const exact=monolithHeadCatalog({...expanded,variants:[sphinxSource]},nativeRegistry,gantries);
+assert.equal(exact.variants.length,32);
+for(const v of exact.variants){
+ const cut=v.fit.machine_mount.belt_preview_cut;
+ assert.deepEqual(cut.x_mm,sphinxBeltInterface.entrance_x_mm);
+ assert.deepEqual(nativeRegistry.sources[sphinxSource.base_asset].belt_preview_cut.x_mm,[-32.49075763926731,32.49075753926731]);
+ const planes=monolithBeltClip(v),inside=p=>planes.every(([n,c])=>n[0]*p[0]*.001+n[1]*p[2]*.001-n[2]*p[1]*.001+c<0);
+ for(const sources of Object.values(nativeRoutes.routes))for(const source of sources){
+  if(Math.abs(source.width-v.belt_width_mm)>.001)continue;
+  const rest=monolithBeltRoute(source,350,0,0,cut);
+  for(const delta of [[0,0],[100,100],[-100,-100],[13,-27],[-13,27],[0,0]]){
+   const route=monolithBeltRoute(source,350,...delta,cut);
+   for(const p of [route.points[0],route.points.at(-1)]){
+    const entrance=cut.x_mm[p[0]-delta[0]<0?0:1];
+    assert(Math.abs(p[0]-delta[0]-entrance)<1e-8);
+    assert(!inside([entrance+Math.sign(entrance)*.01,p[1]-delta[1],source.z]));
+    assert(inside([entrance-Math.sign(entrance)*.01,p[1]-delta[1],source.z]));
+   }
+   assert(Math.abs(route.length-rest.length)<1e-6);
+   const channel=sphinxBeltInterface.channel_z_mm[source.z<0?0:1];
+   assert(source.z-source.width/2>=channel[0]-.00001&&source.z+source.width/2<=channel[1]+.00001);
+   assert(Math.abs(source.segments[0].points[0][1]-source.thickness/2-(sphinxBeltInterface.backing_y_mm+8))<.00001);
+  }
+ }
+}
+assert.deepEqual(sphinxBeltPreviewCut('unregistered',{},[0,8,0]),undefined);
+assert.throws(()=>sphinxBeltPreviewCut(sphinxSource.base_asset,{origin_mm:[0,-17.5,0]},[0,8,0]),/datum changed/);
+assert.deepEqual(sphinxBeltPreviewCut(sphinxSource.base_asset,nativeRegistry.sources[sphinxSource.base_asset],[2,8,0]).x_mm,sphinxBeltInterface.entrance_x_mm.map(x=>x+2));
+console.log('Source-backed Sphinx mouths: static and moving ends, native 6/9 mm channels, reversed motion/reset, registration immutability and changed-datum rejection passed.');

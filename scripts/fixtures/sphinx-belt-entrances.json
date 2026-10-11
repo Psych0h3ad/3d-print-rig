@@ -1,0 +1,250 @@
+{
+  "schema": "sphinx-tlw-source-belt-mouths-v1",
+  "source_url": "https://github.com/riley-github/Sphinx-Toolhead/tree/74ce5f58fcb06aea2ddcbb48b09610cbbfbfa180",
+  "license": "CC-BY-NC-SA-4.0",
+  "entries": [
+    {
+      "asset": "head_sphinx_monolith_tricorn",
+      "body_part_key": "head_sphinx_monolith_tricorn_6",
+      "source_revision": "74ce5f58fcb06aea2ddcbb48b09610cbbfbfa180",
+      "archive_path": "Monolith Versions/monolith_sphinx_tLW_tricorn_sherpaMini.zip",
+      "archive_sha256": "77b55781958fa2e9cff6c323ec2f46d738a0e777092213e3d5464ab7807b75a1",
+      "source_body_sha256": "be0e04eb0510452dca127f7f19fa183f701a9db28d2fad356c6b8536079cf08f",
+      "source_file": "extracted/monolith_sphinx_tLW_tricorn_sherpaMini/monolith_sphinx_tLW - sphinx_main_body_tricorn.step",
+      "metadata_sha256": "5a0be0b608ae1f17a785c63d1729be19a2a8870cc40f3d789da89412e1528e61",
+      "model_decoded_sha256": "60f327dc9433b5abceacb2431947d8d70ec85a4148df85c91ac4c86a8942010f",
+      "finite_entry_edges": [
+        {
+          "edge_curve_entity": 4460,
+          "line_entity": 82,
+          "points_mm": [
+            [
+              -25.201504661873898,
+              -9.73999999999952,
+              -11.5003202097042
+            ],
+            [
+              -25.2015046618736,
+              -9.73999999999952,
+              -1.50000047899207
+            ]
+          ]
+        },
+        {
+          "edge_curve_entity": 4469,
+          "line_entity": 91,
+          "points_mm": [
+            [
+              -25.201504661873898,
+              -9.73999999999952,
+              11.999999521008
+            ],
+            [
+              -25.201504661873898,
+              -9.73999999999944,
+              1.49999952100799
+            ]
+          ]
+        },
+        {
+          "edge_curve_entity": 4470,
+          "line_entity": 92,
+          "points_mm": [
+            [
+              25.201504661873898,
+              -9.73999999999952,
+              -11.5003202097042
+            ],
+            [
+              25.2015046618736,
+              -9.73999999999952,
+              -1.50000047899207
+            ]
+          ]
+        },
+        {
+          "edge_curve_entity": 4472,
+          "line_entity": 94,
+          "points_mm": [
+            [
+              25.201504661873898,
+              -9.73999999999952,
+              11.999999521008
+            ],
+            [
+              25.2015046618742,
+              -9.74000000000283,
+              1.49999952100797
+            ]
+          ]
+        }
+      ],
+      "widths_mm": [
+        6,
+        9
+      ]
+    },
+    {
+      "asset": "head_sphinx_monolith_rapido_x_uhf",
+      "body_part_key": "head_sphinx_monolith_rapido_x_uhf_6",
+      "source_revision": "74ce5f58fcb06aea2ddcbb48b09610cbbfbfa180",
+      "archive_path": "Monolith Versions/monolith_sphinx_tLW_rapidoXandUHF_sherpaMini.zip",
+      "archive_sha256": "a2617eb7ffd12d7180a1a339b9f766ac0951638fb11dc8c9d2ab8543618c8288",
+      "source_body_sha256": "d22c5c4adf45c1c2619cfd59b45f3e5a80690e2db05b25d4c229fcda18fe536b",
+      "source_file": "extracted/monolith_sphinx_tLW_rapidoXandUHF_sherpaMini/monolith_sphinx_tLW - sphinx_main_body_tricorn.step",
+      "metadata_sha256": "363caef27e6a2f6e77b6d9d74921df62d3ce418de986c66ac305ff2f3ebbcf3d",
+      "model_decoded_sha256": "8f527a5f54011c1e30b3f7e00dbd80649ee868473d77250005ef814d9c812a7a",
+      "finite_entry_edges": [
+        {
+          "edge_curve_entity": 4214,
+          "line_entity": 334,
+          "points_mm": [
+            [
+              -25.201504661873898,
+              -9.73999999999952,
+              -11.5003202097042
+            ],
+            [
+              -25.2015046618736,
+              -9.73999999999952,
+              -1.50000047899207
+            ]
+          ]
+        },
+        {
+          "edge_curve_entity": 4223,
+          "line_entity": 343,
+          "points_mm": [
+            [
+              -25.201504661873898,
+              -9.73999999999952,
+              11.999999521008
+            ],
+            [
+              -25.201504661873898,
+              -9.73999999999944,
+              1.49999952100799
+            ]
+          ]
+        },
+        {
+          "edge_curve_entity": 4224,
+          "line_entity": 344,
+          "points_mm": [
+            [
+              25.201504661873898,
+              -9.73999999999952,
+              -11.5003202097042
+            ],
+            [
+              25.2015046618736,
+              -9.73999999999952,
+              -1.50000047899207
+            ]
+          ]
+        },
+        {
+          "edge_curve_entity": 4226,
+          "line_entity": 346,
+          "points_mm": [
+            [
+              25.201504661873898,
+              -9.73999999999952,
+              11.999999521008
+            ],
+            [
+              25.2015046618742,
+              -9.74000000000283,
+              1.49999952100797
+            ]
+          ]
+        }
+      ],
+      "widths_mm": [
+        6,
+        9
+      ]
+    },
+    {
+      "asset": "head_sphinx_monolith_goliath_chcxl",
+      "body_part_key": "head_sphinx_monolith_goliath_chcxl_6",
+      "source_revision": "74ce5f58fcb06aea2ddcbb48b09610cbbfbfa180",
+      "archive_path": "Monolith Versions/monolith_sphinx_tLW_goliath_chcxl_sherpaMini.zip",
+      "archive_sha256": "1c6f7d92bf42dc7ee2b2bb5774d5ec5b3221db8a47048627f63ed162fa5652bb",
+      "source_body_sha256": "3e1a6c7744fa7a729eabe93eecf6e639f9db8cc2ef500ab55085335c6b167e65",
+      "source_file": "extracted/monolith_sphinx_tLW_goliath_chcxl_sherpaMini/monolith_sphinx_tLW - sphinx_main_body_goliath_chcxl.step",
+      "metadata_sha256": "b605958a9db44b6cd4312b16d77ba55b37f54d23252b42dc828874669b6ceef1",
+      "model_decoded_sha256": "03b267add4a6a8b0b705007e4345b436d18038c95d9372ef50733aa2eb753ec9",
+      "finite_entry_edges": [
+        {
+          "edge_curve_entity": 3101,
+          "line_entity": 5044,
+          "points_mm": [
+            [
+              -25.201504661873898,
+              -9.73999999999952,
+              -11.5003202097042
+            ],
+            [
+              -25.2015046618736,
+              -9.73999999999952,
+              -1.50000047899207
+            ]
+          ]
+        },
+        {
+          "edge_curve_entity": 3109,
+          "line_entity": 5052,
+          "points_mm": [
+            [
+              -25.201504661873898,
+              -9.73999999999952,
+              11.999999521008
+            ],
+            [
+              -25.201504661873898,
+              -9.73999999999944,
+              1.49999952100799
+            ]
+          ]
+        },
+        {
+          "edge_curve_entity": 3110,
+          "line_entity": 5053,
+          "points_mm": [
+            [
+              25.201504661873898,
+              -9.73999999999952,
+              -11.5003202097042
+            ],
+            [
+              25.2015046618736,
+              -9.73999999999952,
+              -1.50000047899207
+            ]
+          ]
+        },
+        {
+          "edge_curve_entity": 3112,
+          "line_entity": 5055,
+          "points_mm": [
+            [
+              25.201504661873898,
+              -9.73999999999952,
+              11.999999521008
+            ],
+            [
+              25.2015046618742,
+              -9.74000000000283,
+              1.49999952100797
+            ]
+          ]
+        }
+      ],
+      "widths_mm": [
+        6
+      ]
+    }
+  ],
+  "scope": "Finite source backing-face boundary edges and immutable published exports; internal clamp returns are not registered."
+}

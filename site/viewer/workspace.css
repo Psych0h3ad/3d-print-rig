@@ -86,7 +86,7 @@ body.ui-workspace {
 .ui-workspace .change-machine { position: absolute; top: 14px; right: 20px; padding: 5px 10px; min-height: 30px; font-size: 11px; color: var(--ink); background: #f7f9fb; }
 .ui-workspace .inspector-heading:has(.change-machine) h1 { padding-right: 90px; }
 .inspector-tabs { display: flex; flex: 0 0 auto; padding: 0 14px; border-bottom: 1px solid var(--line); }
-.ui-workspace .inspector-tabs > button { position: relative; flex: 1; border: 0; border-radius: 0; background: transparent; min-height: 42px; padding: 8px 4px; color: var(--muted); font-size: 12px; }
+.ui-workspace .inspector-tabs > button { position: relative; flex: 1; min-width: 0; overflow-wrap: anywhere; white-space: normal; line-height: 1.35; border: 0; border-radius: 0; background: transparent; min-height: 42px; padding: 8px 4px; color: var(--muted); font-size: 12px; }
 .ui-workspace .inspector-tabs > button[aria-selected=true] { color: var(--accent); font-weight: 650; }
 .inspector-tabs > button[aria-selected=true]::after { content: ''; height: 2px; background: var(--accent); position: absolute; bottom: 0; left: 9px; right: 9px; border-radius: 2px; }
 .inspector-content { min-height: 0; min-width: 0; width: 100%; max-width: 100%; overflow-x: hidden; overflow-y: auto; scrollbar-width: thin; flex: 1; overscroll-behavior: contain; padding: 16px 20px 24px; }
@@ -94,7 +94,8 @@ body.ui-workspace {
 .inspector-panel details { min-width: 0; max-width: 100%; }
 .ui-workspace .inspector-panel:focus-visible { outline-offset: -2px; }
 .ui-workspace details.panel-section { margin-top: 18px; padding: 15px 0 0; border-top: 1px solid var(--line); }
-.ui-workspace details.panel-section:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+/* Hidden search entries do not create a leading section divider or blank row. */
+.ui-workspace details.panel-section:nth-child(1 of :not([hidden])) { margin-top: 0; padding-top: 0; border-top: 0; }
 .ui-workspace summary { gap: 10px; font-size: 12px; line-height: 1.6; }
 .ui-workspace details[open] > summary { margin-bottom: 12px; }
 .ui-workspace details details { margin-top: 12px; padding: 10px 12px; background: #f6f8fa; border-radius: 7px; }
@@ -486,6 +487,13 @@ html[data-theme=dark] #stage { background:#101820; }
 .step-download-link:hover{background:#355d6c}
 .step-source-link{font-size:11px;color:var(--ink);padding:8px 0}
 @media(max-width:680px){.step-download-list{grid-template-columns:minmax(0,1fr)}.ui-workspace .machine-step-downloads{margin-top:0;min-height:38px;padding:6px 10px}.step-download-dialog{width:calc(100vw - 16px)}}
+/* Keep machine actions beside the title so mobile settings retain their space. */
+@media (max-width: 680px) {
+  .ui-workspace .workspace:not([data-layout=preview]) .inspector-heading:has(> .machine-step-downloads:not([hidden])) { grid-template-columns: minmax(0, 1fr) auto auto; }
+  .ui-workspace .workspace:not([data-layout=preview]) .inspector-heading h1 { grid-column: 1; grid-row: 1; }
+  .ui-workspace .workspace:not([data-layout=preview]) .inspector-heading .change-machine { grid-column: -2 / -1; grid-row: 1; max-width: 110px; white-space: normal; overflow-wrap: anywhere; }
+  .ui-workspace .workspace:not([data-layout=preview]) .inspector-heading .machine-step-downloads { grid-column: 2; grid-row: 1; max-width: 96px; min-height: 44px; white-space: normal; overflow-wrap: anywhere; }
+}
 @media(max-width:480px){.ui-workspace .brand strong{display:none}.ui-workspace .brand-mark{display:flex;width:28px;height:28px;font-size:13px}.ui-workspace .header-actions{gap:6px}.ui-workspace #openDownloads{padding:0 8px}.ui-workspace .inspector-heading>p.foot{display:none}}
 @media(max-width:340px){.ui-workspace .brand{display:none}}
 .ui-workspace .project-sponsor{position:absolute;right:12px;bottom:40px;z-index:4;margin:0;padding:0;color:#edf3f8;background:#162c33;border:1px solid #41565e;border-radius:9px;box-shadow:0 2px 10px #0001;font-size:12px;max-width:calc(100% - 24px)}

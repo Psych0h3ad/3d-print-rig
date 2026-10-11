@@ -10,7 +10,7 @@ import {setupWorkspaceSharing} from './workspace-share.mjs?v=4b0806c3707a0abea51
 import {lockInspectorHorizontalScroll} from './workspace-scroll.mjs?v=workspace-belts-1';
 import {setupChoiceSearch} from './workspace-choices.mjs?v=fdb0bc368157c61f31e6';
 import {setupMobileLayout} from './workspace-layout.mjs?v=738c040595ec99155ce2';
-import {workspaceSectionCategory,isPrimaryWorkspaceLink} from './workspace-sections.mjs?v=aa0ae189876da94f5edc';
+import {workspaceSectionCategory,isPrimaryWorkspaceLink} from './workspace-sections.mjs?v=5e55a9d87b70e4fdf037';
 const $ = selector => document.querySelector(selector);
 const node = (tag, className, text) => {
   const element = document.createElement(tag);
