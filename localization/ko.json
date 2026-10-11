@@ -219,8 +219,8 @@
       "text": "프로브와 툴보드가 없습니다."
     },
     "text.0050": {
-      "source_revision": "097ab01458525efe091b",
-      "text": "YUDX 교환 가능 핫엔드 검사"
+      "source_revision": "dc8643e82269f557e1aa",
+      "text": "YUDX 핫엔드 체인저"
     },
     "text.0051": {
       "source_revision": "54857bdc572db8af0c16",
@@ -1219,8 +1219,8 @@
       "text": "MGN12 면과 4개의 나사 축을 사용하여 VORON 기계에 배치됩니다. 헤드 내에서 프로브 장착 및 높이를 검사합니다."
     },
     "text.0299": {
-      "source_revision": "bfd86301feedce165ede",
-      "text": "CAD 빔, 레일, 드라이브 및 전용 벨트 루트 조립. 프린터 제품군과 크기에 맞는 갠트리를 선택한 다음 전용 캐리지에 헤드를 설치합니다."
+      "source_revision": "c2398a606ce777ef717c",
+      "text": "프린터와 크기별 갠트리 및 툴헤드 구성."
     },
     "text.0300": {
       "source_revision": "455d4dab28c6d06363d9",
@@ -1591,8 +1591,8 @@
       "text": "벨트/참조 배선"
     },
     "text.0392": {
-      "source_revision": "ab5dc02e28de7d8c7dce",
-      "text": "프린터에서 이 구성 보기"
+      "source_revision": "c9eb16ec03f8624c9762",
+      "text": "프린터에서 보기"
     },
     "text.0393": {
       "source_revision": "759458b9390e683bf34a",
@@ -3047,8 +3047,8 @@
       "text": "오리지널 모드/툴헤드 부품"
     },
     "text.0756": {
-      "source_revision": "8a2207c2571f4796b915",
-      "text": "Monolith 갠트리 구축"
+      "source_revision": "954ad646ff1a13a392fc",
+      "text": "Monolith 갠트리"
     },
     "text.0757": {
       "source_revision": "181c073ea1e7f4ed3ac6",
@@ -3151,8 +3151,8 @@
       "text": "맞춤 색상"
     },
     "text.0782": {
-      "source_revision": "86227c06fb9736aaf511",
-      "text": "갠트리 구축"
+      "source_revision": "4e000135bb7b5c6f3be5",
+      "text": "갠트리 구성"
     },
     "text.0783": {
       "source_revision": "22d440f92bef4092f505",
@@ -3163,8 +3163,8 @@
       "text": "Monolith에서 이 드라이브를 검사하세요."
     },
     "text.0785": {
-      "source_revision": "d0700980002596fa7f57",
-      "text": "3D에서 이 구성을 확인하세요."
+      "source_revision": "fe6f9376c62c8a0b690f",
+      "text": "3D로 보기"
     },
     "text.0786": {
       "source_revision": "44392d1d15db5fab5dcd",
@@ -3199,7 +3199,7 @@
       "text": "툴헤드 조합"
     },
     "text.0793": {
-      "source_revision": "5f7c3ff04b1fd79cc18a",
+      "source_revision": "4ab0dc6995d78f5ead28",
       "text": "툴헤드 구성"
     },
     "text.0794": {
@@ -3555,8 +3555,8 @@
       "text": "마우스 왼쪽 버튼 드래그: 회전 · 오른쪽 버튼: 이동 · 휠: 확대/축소"
     },
     "text.0876": {
-      "source_revision": "3e7cd4bdedf5c92b9c47",
-      "text": "사용하려는 압출기와 핫엔드로 등록된 어셈블리를 필터링합니다."
+      "source_revision": "4b67c1faf5689871cd6b",
+      "text": "익스트루더와 핫엔드로 필터링."
     },
     "view.perspective": {
       "source_revision": "44a4f0b67af25441c632",
@@ -7267,36 +7267,36 @@
       "text": "모델 다운로드 진행률"
     },
     "configuration_editor.displayed": {
-      "source_revision": "ff106c92f97b5eb5947a",
-      "text": "3D에 표시 중"
+      "source_revision": "5f4353fe5503d59e8943",
+      "text": "현재 구성"
     },
     "configuration_editor.undo": {
       "source_revision": "65f019dd3f12a2623e4a",
       "text": "이전 구성 복원"
     },
     "configuration_editor.hint": {
-      "source_revision": "c301f03f6ce089f1c378",
-      "text": "부품을 선택하고 변경 내용을 확인한 뒤 3D에 적용하세요."
+      "source_revision": "e994a46d3601fed999fe",
+      "text": "부품을 선택한 뒤 변경 사항을 적용하세요."
     },
     "configuration_editor.changes": {
       "source_revision": "d0bce9ec15436d5497a4",
       "text": "구성 변경"
     },
     "configuration_editor.pending": {
-      "source_revision": "fff7233c2ebd7e657922",
-      "text": "변경 사항은 아직 3D에 반영되지 않았습니다."
+      "source_revision": "b306b2943336f15c7c15",
+      "text": "적용되지 않은 변경 사항이 있습니다."
     },
     "configuration_editor.apply": {
-      "source_revision": "657eadb21e701b24823b",
-      "text": "변경 사항을 3D에 적용"
+      "source_revision": "06c053eda0e815265c57",
+      "text": "변경 사항 적용"
     },
     "configuration_editor.cancel": {
       "source_revision": "c1ecc586c44eec07aa07",
       "text": "변경 취소"
     },
     "configuration_editor.review": {
-      "source_revision": "bebec044cfa608f114a2",
-      "text": "변경 사항 {0}개 확인"
+      "source_revision": "76edff7c7bc09fe427bd",
+      "text": "변경 {0}개"
     },
     "configuration_editor.automatic": {
       "source_revision": "169fb3400bfe5d670611",
@@ -7311,12 +7311,12 @@
       "text": "다른 선택에 맞춰 변경됩니다"
     },
     "configuration_editor.fixed": {
-      "source_revision": "6157c6574d2eaf1a3ab9",
-      "text": "이 조합에서는 이 사양만 사용할 수 있습니다."
+      "source_revision": "4d418e4731da9d430531",
+      "text": "이 구성에서는 고정됩니다."
     },
     "configuration_editor.save_hint": {
-      "source_revision": "881b24e2c1ed406ec3e5",
-      "text": "변경 사항을 3D에 적용한 뒤 저장하세요."
+      "source_revision": "b0bd4fab682728df0185",
+      "text": "변경 사항을 적용한 뒤 저장하세요."
     },
     "configuration_editor.keep": {
       "source_revision": "888ad89eec7ec62d195a",
@@ -7339,8 +7339,8 @@
       "text": "프로브·냉각·보드"
     },
     "configuration_editor.search_hint": {
-      "source_revision": "26198a4a65fd9f0cc792",
-      "text": "후보를 선택하면 변경안에 추가됩니다. «변경 사항을 3D에 적용»으로 한 번에 반영하세요."
+      "source_revision": "c3bc508e6e02f61192e0",
+      "text": "옵션을 선택한 뒤 변경 사항을 적용하세요."
     },
     "configuration_editor.mount": {
       "source_revision": "096970fbc92d9bf57646",
@@ -9271,12 +9271,12 @@
       "text": "M8 유도형 프로브 · EVA 원본 어셈블리"
     },
     "feature.eva2.notice.scope": {
-      "source_revision": "2f17f9f526fda604e690",
-      "text": "EVA 2 직교식 원본 어셈블리 전체: LGX Lite, Dragonfly BMO, 4010/5015 팬, M8 프로브, 레일 블록 및 체결 부품. V-Minion의 원래 배치를 유지하며, 다른 프린터 장착과 전체 이동 경로의 간극은 검증되지 않았습니다."
+      "source_revision": "81281e61da662dab34c2",
+      "text": "V-Minion 원본 어셈블리. 다른 프린터의 장착과 전체 이동 범위의 간섭은 미확인입니다."
     },
     "feature.eva2.notice.patch": {
-      "source_revision": "be971cbea5437f3bbd2d",
-      "text": "이 V-Minion CAD에서 EVA 2의 패치 버전은 확인되지 않았습니다. 원본 어셈블리 버전은 기록되어 있으며, EVA 2.4.2로 표기하지 않습니다."
+      "source_revision": "e3b8e2de9740ab57e95b",
+      "text": "EVA 2 패치 버전 미확인. 원본: V-Minion v7 / EVA Assembly v5."
     },
     "feature.eva3.option.toolhead": {
       "source_revision": "cfffd85516b514314033",
@@ -9303,20 +9303,20 @@
       "text": "SuperPINDA · EVA 원본 어셈블리"
     },
     "feature.eva3.notice.scope": {
-      "source_revision": "8f9b074da95e23f34a89",
-      "text": "EVA 3 CoreXY 원본 어셈블리 전체: LGX Lite, Rapido HF v1, 4010/Sanyo 4028 팬, SuperPINDA 프로브, 레일 블록 및 체결 부품. V-Core 3.1의 원래 배치를 유지하며, 다른 프린터 장착과 전체 이동 경로의 간극은 검증되지 않았습니다."
+      "source_revision": "9363a64fdd597140c315",
+      "text": "V-Core 3.1 원본 어셈블리. 다른 프린터의 장착과 전체 이동 범위의 간섭은 미확인입니다."
     },
     "feature.eva3.notice.patch": {
-      "source_revision": "cc98dcbb300629b7169b",
-      "text": "이 V-Core 3.1 CAD에서 EVA 3의 패치 버전은 확인되지 않았습니다. V-Core 3.1 v9 / EVA 3 Assembly v4는 원본 어셈블리 버전이며, EVA 3.0.2로 표기하지 않습니다."
+      "source_revision": "2b8791ac348c7563bfd3",
+      "text": "EVA 3 패치 버전 미확인. 원본: V-Core 3.1 v9 / EVA 3 Assembly v4."
     },
     "feature.eva.notice.supports": {
-      "source_revision": "21304cbd2b74e7a26622",
-      "text": "이 원본에서 내장 서포트가 식별되지 않아 서포트를 제거하지 않았습니다."
+      "source_revision": "a964d6b04246b52c5e43",
+      "text": "내장 서포트 미식별. 제거한 서포트는 없습니다."
     },
     "feature.eva.notice.native_overlaps": {
-      "source_revision": "f76a29f57b246691364f",
-      "text": "원본 CAD 부품 간 겹침은 아직 판정되지 않았습니다. 이 미리보기는 조립 간격을 검증한 구성이 아닙니다."
+      "source_revision": "f37d9720724716de65d3",
+      "text": "원본 CAD에 미판정된 부품 겹침이 있습니다. 조립 간섭은 미확인입니다."
     }
   }
 }

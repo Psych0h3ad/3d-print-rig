@@ -219,8 +219,8 @@
       "text": "Зонд и панель инструментов отсутствуют."
     },
     "text.0050": {
-      "source_revision": "097ab01458525efe091b",
-      "text": "Осмотрите сменный хотенд YUDX."
+      "source_revision": "dc8643e82269f557e1aa",
+      "text": "Сменщик хотэндов YUDX"
     },
     "text.0051": {
       "source_revision": "54857bdc572db8af0c16",
@@ -1219,8 +1219,8 @@
       "text": "Размещен на станке VORON с использованием грани MGN12 и четырех винтовых осей. Крепление зонда и его высота проверяются внутри головки."
     },
     "text.0299": {
-      "source_revision": "bfd86301feedce165ede",
-      "text": "CAD Сборка балок, рельсов, приводов и выделенных ременных трасс. Выберите портал в соответствии с семейством и размером принтера, а затем установите его головку на специальную каретку."
+      "source_revision": "c2398a606ce777ef717c",
+      "text": "Конфигурации портала и головы по принтеру и размеру."
     },
     "text.0300": {
       "source_revision": "455d4dab28c6d06363d9",
@@ -1591,8 +1591,8 @@
       "text": "Ремни/эталонная проводка"
     },
     "text.0392": {
-      "source_revision": "ab5dc02e28de7d8c7dce",
-      "text": "Показать эту конфигурацию на принтере"
+      "source_revision": "c9eb16ec03f8624c9762",
+      "text": "Показать на принтере"
     },
     "text.0393": {
       "source_revision": "759458b9390e683bf34a",
@@ -3047,8 +3047,8 @@
       "text": "Оригинальные детали мода/головки инструмента"
     },
     "text.0756": {
-      "source_revision": "8a2207c2571f4796b915",
-      "text": "Постройте портал Monolith."
+      "source_revision": "954ad646ff1a13a392fc",
+      "text": "Порталы Monolith"
     },
     "text.0757": {
       "source_revision": "181c073ea1e7f4ed3ac6",
@@ -3151,8 +3151,8 @@
       "text": "Пользовательские цвета"
     },
     "text.0782": {
-      "source_revision": "86227c06fb9736aaf511",
-      "text": "Построить портал"
+      "source_revision": "4e000135bb7b5c6f3be5",
+      "text": "Конфигурация портала"
     },
     "text.0783": {
       "source_revision": "22d440f92bef4092f505",
@@ -3163,8 +3163,8 @@
       "text": "Осмотрите этот диск на Monolith."
     },
     "text.0785": {
-      "source_revision": "d0700980002596fa7f57",
-      "text": "Посмотреть эту конфигурацию можно в 3D."
+      "source_revision": "fe6f9376c62c8a0b690f",
+      "text": "Показать в 3D"
     },
     "text.0786": {
       "source_revision": "44392d1d15db5fab5dcd",
@@ -3199,8 +3199,8 @@
       "text": "Комбинации головок инструментов"
     },
     "text.0793": {
-      "source_revision": "5f7c3ff04b1fd79cc18a",
-      "text": "Собрать головку"
+      "source_revision": "4ab0dc6995d78f5ead28",
+      "text": "Конфигурация головы"
     },
     "text.0794": {
       "source_revision": "16b8e14f9e7ae75e83dd",
@@ -3555,8 +3555,8 @@
       "text": "Левая кнопка мыши: вращение · Правая: перемещение · Колесо: масштаб"
     },
     "text.0876": {
-      "source_revision": "3e7cd4bdedf5c92b9c47",
-      "text": "Отфильтруйте зарегистрированные сборки по экструдеру и хотенду, который вы хотите использовать."
+      "source_revision": "4b67c1faf5689871cd6b",
+      "text": "Фильтр по экструдеру и хотэнду."
     },
     "view.perspective": {
       "source_revision": "44a4f0b67af25441c632",
@@ -7267,36 +7267,36 @@
       "text": "Ход загрузки модели"
     },
     "configuration_editor.displayed": {
-      "source_revision": "ff106c92f97b5eb5947a",
-      "text": "Показано в 3D"
+      "source_revision": "5f4353fe5503d59e8943",
+      "text": "Текущая конфигурация"
     },
     "configuration_editor.undo": {
       "source_revision": "65f019dd3f12a2623e4a",
       "text": "Вернуть предыдущую конфигурацию"
     },
     "configuration_editor.hint": {
-      "source_revision": "c301f03f6ce089f1c378",
-      "text": "Выберите детали, проверьте изменения и примените их к 3D."
+      "source_revision": "e994a46d3601fed999fe",
+      "text": "Выберите детали и примените изменения."
     },
     "configuration_editor.changes": {
       "source_revision": "d0bce9ec15436d5497a4",
       "text": "Изменения конфигурации"
     },
     "configuration_editor.pending": {
-      "source_revision": "fff7233c2ebd7e657922",
-      "text": "Изменения ещё не показаны в 3D."
+      "source_revision": "b306b2943336f15c7c15",
+      "text": "Есть неприменённые изменения."
     },
     "configuration_editor.apply": {
-      "source_revision": "657eadb21e701b24823b",
-      "text": "Применить изменения к 3D"
+      "source_revision": "06c053eda0e815265c57",
+      "text": "Применить изменения"
     },
     "configuration_editor.cancel": {
       "source_revision": "c1ecc586c44eec07aa07",
       "text": "Отменить изменения"
     },
     "configuration_editor.review": {
-      "source_revision": "bebec044cfa608f114a2",
-      "text": "Проверить изменения: {0}"
+      "source_revision": "76edff7c7bc09fe427bd",
+      "text": "Изменений: {0}"
     },
     "configuration_editor.automatic": {
       "source_revision": "169fb3400bfe5d670611",
@@ -7311,12 +7311,12 @@
       "text": "Меняется в соответствии с другим выбором"
     },
     "configuration_editor.fixed": {
-      "source_revision": "6157c6574d2eaf1a3ab9",
-      "text": "Для этой комбинации доступен только этот вариант."
+      "source_revision": "4d418e4731da9d430531",
+      "text": "Фиксировано для этой конфигурации."
     },
     "configuration_editor.save_hint": {
-      "source_revision": "881b24e2c1ed406ec3e5",
-      "text": "Примените изменения к 3D перед сохранением."
+      "source_revision": "b0bd4fab682728df0185",
+      "text": "Примените изменения перед сохранением."
     },
     "configuration_editor.keep": {
       "source_revision": "888ad89eec7ec62d195a",
@@ -7339,8 +7339,8 @@
       "text": "Датчик, охлаждение и плата"
     },
     "configuration_editor.search_hint": {
-      "source_revision": "26198a4a65fd9f0cc792",
-      "text": "Выберите вариант для добавления в черновик. Примените всё кнопкой «Применить изменения к 3D»."
+      "source_revision": "c3bc508e6e02f61192e0",
+      "text": "Выберите вариант и примените изменения."
     },
     "configuration_editor.mount": {
       "source_revision": "096970fbc92d9bf57646",
@@ -9271,12 +9271,12 @@
       "text": "Индуктивный датчик M8 · Исходная сборка EVA"
     },
     "feature.eva2.notice.scope": {
-      "source_revision": "2f17f9f526fda604e690",
-      "text": "Полная исходная сборка EVA 2 с декартовой кинематикой: LGX Lite, Dragonfly BMO, вентиляторы 4010/5015, датчик M8, каретка рельса и крепёж. Сохранено исходное расположение V-Minion; установка на другие принтеры и зазоры по всей траектории движения не проверены."
+      "source_revision": "81281e61da662dab34c2",
+      "text": "Исходная сборка V-Minion. Крепления на других принтерах и зазоры на всём ходе не проверены."
     },
     "feature.eva2.notice.patch": {
-      "source_revision": "be971cbea5437f3bbd2d",
-      "text": "В этой CAD-модели V-Minion точная патч-версия EVA 2 не установлена. Записана версия исходной сборки; она не обозначена как EVA 2.4.2."
+      "source_revision": "e3b8e2de9740ab57e95b",
+      "text": "Версия патча EVA 2 неизвестна. Источник: V-Minion v7 / EVA Assembly v5."
     },
     "feature.eva3.option.toolhead": {
       "source_revision": "cfffd85516b514314033",
@@ -9303,20 +9303,20 @@
       "text": "SuperPINDA · Исходная сборка EVA"
     },
     "feature.eva3.notice.scope": {
-      "source_revision": "8f9b074da95e23f34a89",
-      "text": "Полная исходная сборка EVA 3 с кинематикой CoreXY: LGX Lite, Rapido HF v1, вентиляторы 4010/Sanyo 4028, датчик SuperPINDA, каретка рельса и крепёж. Сохранено исходное расположение V-Core 3.1; установка на другие принтеры и зазоры по всей траектории движения не проверены."
+      "source_revision": "9363a64fdd597140c315",
+      "text": "Исходная сборка V-Core 3.1. Крепления на других принтерах и зазоры на всём ходе не проверены."
     },
     "feature.eva3.notice.patch": {
-      "source_revision": "cc98dcbb300629b7169b",
-      "text": "В этой CAD-модели V-Core 3.1 точная патч-версия EVA 3 не установлена. V-Core 3.1 v9 / EVA 3 Assembly v4 — версия исходной сборки; она не обозначена как EVA 3.0.2."
+      "source_revision": "2b8791ac348c7563bfd3",
+      "text": "Версия патча EVA 3 неизвестна. Источник: V-Core 3.1 v9 / EVA 3 Assembly v4."
     },
     "feature.eva.notice.supports": {
-      "source_revision": "21304cbd2b74e7a26622",
-      "text": "Встроенные поддержки в этом исходном файле не идентифицированы; поддержки не удалялись."
+      "source_revision": "a964d6b04246b52c5e43",
+      "text": "Встроенные поддержки не определены; ни одна не удалена."
     },
     "feature.eva.notice.native_overlaps": {
-      "source_revision": "f76a29f57b246691364f",
-      "text": "Пересечения тел исходной CAD пока не оценены; этот предпросмотр не подтверждает зазоры сборки."
+      "source_revision": "f37d9720724716de65d3",
+      "text": "В исходной CAD есть неоценённые пересечения. Зазоры сборки не проверены."
     }
   }
 }

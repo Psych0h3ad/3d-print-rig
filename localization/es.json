@@ -219,8 +219,8 @@
       "text": "Faltan la sonda y el tablero de herramientas."
     },
     "text.0050": {
-      "source_revision": "097ab01458525efe091b",
-      "text": "Inspeccionar el hotend intercambiable YUDX"
+      "source_revision": "dc8643e82269f557e1aa",
+      "text": "Cambiador de hotends YUDX"
     },
     "text.0051": {
       "source_revision": "54857bdc572db8af0c16",
@@ -1219,8 +1219,8 @@
       "text": "Colocado en la máquina VORON utilizando la cara MGN12 y cuatro ejes de tornillo. Montaje y altura de la sonda inspeccionados dentro del cabezal."
     },
     "text.0299": {
-      "source_revision": "bfd86301feedce165ede",
-      "text": "CAD Montaje de vigas, rieles, transmisiones y recorridos de correas dedicados. Seleccione un pórtico para la familia y el tamaño de la impresora y luego instálelo con un cabezal en su carro exclusivo."
+      "source_revision": "c2398a606ce777ef717c",
+      "text": "Configuraciones de pórtico y cabezal por impresora y tamaño."
     },
     "text.0300": {
       "source_revision": "455d4dab28c6d06363d9",
@@ -1591,8 +1591,8 @@
       "text": "Correas/cableado de referencia"
     },
     "text.0392": {
-      "source_revision": "ab5dc02e28de7d8c7dce",
-      "text": "Ver esta configuración en una impresora"
+      "source_revision": "c9eb16ec03f8624c9762",
+      "text": "Ver en la impresora"
     },
     "text.0393": {
       "source_revision": "759458b9390e683bf34a",
@@ -3047,8 +3047,8 @@
       "text": "Piezas originales de mod/cabezal de herramienta"
     },
     "text.0756": {
-      "source_revision": "8a2207c2571f4796b915",
-      "text": "Construya un pórtico Monolith"
+      "source_revision": "954ad646ff1a13a392fc",
+      "text": "Pórticos Monolith"
     },
     "text.0757": {
       "source_revision": "181c073ea1e7f4ed3ac6",
@@ -3151,8 +3151,8 @@
       "text": "Colores personalizados"
     },
     "text.0782": {
-      "source_revision": "86227c06fb9736aaf511",
-      "text": "construir un pórtico"
+      "source_revision": "4e000135bb7b5c6f3be5",
+      "text": "Configuración del pórtico"
     },
     "text.0783": {
       "source_revision": "22d440f92bef4092f505",
@@ -3163,8 +3163,8 @@
       "text": "Inspeccione esta unidad en Monolith"
     },
     "text.0785": {
-      "source_revision": "d0700980002596fa7f57",
-      "text": "Ver esta configuración en 3D"
+      "source_revision": "fe6f9376c62c8a0b690f",
+      "text": "Mostrar en 3D"
     },
     "text.0786": {
       "source_revision": "44392d1d15db5fab5dcd",
@@ -3199,8 +3199,8 @@
       "text": "Combinaciones de cabezales"
     },
     "text.0793": {
-      "source_revision": "5f7c3ff04b1fd79cc18a",
-      "text": "Configurar un cabezal"
+      "source_revision": "4ab0dc6995d78f5ead28",
+      "text": "Configuración del cabezal"
     },
     "text.0794": {
       "source_revision": "16b8e14f9e7ae75e83dd",
@@ -3555,8 +3555,8 @@
       "text": "Arrastrar con el botón izquierdo: girar · Botón derecho: desplazar · Rueda: zoom"
     },
     "text.0876": {
-      "source_revision": "3e7cd4bdedf5c92b9c47",
-      "text": "Filtra los ensamblajes registrados por el extrusor y hotend que deseas usar."
+      "source_revision": "4b67c1faf5689871cd6b",
+      "text": "Filtrar por extrusor y hotend."
     },
     "view.perspective": {
       "source_revision": "44a4f0b67af25441c632",
@@ -7267,36 +7267,36 @@
       "text": "Progreso de descarga del modelo"
     },
     "configuration_editor.displayed": {
-      "source_revision": "ff106c92f97b5eb5947a",
-      "text": "Visible en 3D"
+      "source_revision": "5f4353fe5503d59e8943",
+      "text": "Configuración actual"
     },
     "configuration_editor.undo": {
       "source_revision": "65f019dd3f12a2623e4a",
       "text": "Restaurar configuración anterior"
     },
     "configuration_editor.hint": {
-      "source_revision": "c301f03f6ce089f1c378",
-      "text": "Elige las piezas, revisa los cambios y aplícalos a la vista 3D."
+      "source_revision": "e994a46d3601fed999fe",
+      "text": "Selecciona las piezas y aplica los cambios."
     },
     "configuration_editor.changes": {
       "source_revision": "d0bce9ec15436d5497a4",
       "text": "Cambios de configuración"
     },
     "configuration_editor.pending": {
-      "source_revision": "fff7233c2ebd7e657922",
-      "text": "Los cambios aún no se muestran en 3D."
+      "source_revision": "b306b2943336f15c7c15",
+      "text": "Cambios sin aplicar."
     },
     "configuration_editor.apply": {
-      "source_revision": "657eadb21e701b24823b",
-      "text": "Aplicar cambios a 3D"
+      "source_revision": "06c053eda0e815265c57",
+      "text": "Aplicar cambios"
     },
     "configuration_editor.cancel": {
       "source_revision": "c1ecc586c44eec07aa07",
       "text": "Descartar cambios"
     },
     "configuration_editor.review": {
-      "source_revision": "bebec044cfa608f114a2",
-      "text": "Revisar {0} cambios"
+      "source_revision": "76edff7c7bc09fe427bd",
+      "text": "{0} cambios"
     },
     "configuration_editor.automatic": {
       "source_revision": "169fb3400bfe5d670611",
@@ -7311,12 +7311,12 @@
       "text": "Cambia para ajustarse a otra selección"
     },
     "configuration_editor.fixed": {
-      "source_revision": "6157c6574d2eaf1a3ab9",
-      "text": "Esta es la única opción para esta combinación."
+      "source_revision": "4d418e4731da9d430531",
+      "text": "Fijo en esta configuración."
     },
     "configuration_editor.save_hint": {
-      "source_revision": "881b24e2c1ed406ec3e5",
-      "text": "Aplica los cambios a 3D antes de guardar."
+      "source_revision": "b0bd4fab682728df0185",
+      "text": "Aplica los cambios antes de guardar."
     },
     "configuration_editor.keep": {
       "source_revision": "888ad89eec7ec62d195a",
@@ -7339,8 +7339,8 @@
       "text": "Sonda, refrigeración y placa"
     },
     "configuration_editor.search_hint": {
-      "source_revision": "26198a4a65fd9f0cc792",
-      "text": "Selecciona una opción para añadirla al borrador. Aplica todo con «Aplicar cambios a 3D»."
+      "source_revision": "c3bc508e6e02f61192e0",
+      "text": "Selecciona una opción y aplica los cambios."
     },
     "configuration_editor.mount": {
       "source_revision": "096970fbc92d9bf57646",
@@ -9271,12 +9271,12 @@
       "text": "Sonda inductiva M8 · Ensamblaje original EVA"
     },
     "feature.eva2.notice.scope": {
-      "source_revision": "2f17f9f526fda604e690",
-      "text": "Ensamblaje cartesiano original EVA 2 completo: LGX Lite, Dragonfly BMO, ventiladores 4010/5015, sonda M8, patín del raíl y tornillería. Se conserva la disposición original de V-Minion; no se han verificado el montaje en otras impresoras ni las holguras durante todo el recorrido."
+      "source_revision": "81281e61da662dab34c2",
+      "text": "Ensamblaje original de V-Minion. Los montajes en otras impresoras y la holgura durante todo el recorrido no están verificados."
     },
     "feature.eva2.notice.patch": {
-      "source_revision": "be971cbea5437f3bbd2d",
-      "text": "No se ha identificado la revisión de parche de EVA 2 en este CAD de V-Minion. Se registra la revisión del ensamblaje original; no se etiqueta como EVA 2.4.2."
+      "source_revision": "e3b8e2de9740ab57e95b",
+      "text": "Versión de parche de EVA 2 desconocida. Fuente: V-Minion v7 / EVA Assembly v5."
     },
     "feature.eva3.option.toolhead": {
       "source_revision": "cfffd85516b514314033",
@@ -9303,20 +9303,20 @@
       "text": "SuperPINDA · Ensamblaje original EVA"
     },
     "feature.eva3.notice.scope": {
-      "source_revision": "8f9b074da95e23f34a89",
-      "text": "Ensamblaje CoreXY original EVA 3 completo: LGX Lite, Rapido HF v1, ventiladores 4010/Sanyo 4028, sonda SuperPINDA, patín del raíl y tornillería. Se conserva la disposición original de V-Core 3.1; no se han verificado el montaje en otras impresoras ni las holguras durante todo el recorrido."
+      "source_revision": "9363a64fdd597140c315",
+      "text": "Ensamblaje original de V-Core 3.1. Los montajes en otras impresoras y la holgura durante todo el recorrido no están verificados."
     },
     "feature.eva3.notice.patch": {
-      "source_revision": "cc98dcbb300629b7169b",
-      "text": "No se ha identificado la revisión de parche de EVA 3 en este CAD de V-Core 3.1. V-Core 3.1 v9 / EVA 3 Assembly v4 identifica la revisión del ensamblaje original; no se etiqueta como EVA 3.0.2."
+      "source_revision": "2b8791ac348c7563bfd3",
+      "text": "Versión de parche de EVA 3 desconocida. Fuente: V-Core 3.1 v9 / EVA 3 Assembly v4."
     },
     "feature.eva.notice.supports": {
-      "source_revision": "21304cbd2b74e7a26622",
-      "text": "No se han identificado los soportes integrados de este archivo; no se ha retirado ningún soporte."
+      "source_revision": "a964d6b04246b52c5e43",
+      "text": "Soportes integrados sin identificar; no se ha eliminado ninguno."
     },
     "feature.eva.notice.native_overlaps": {
-      "source_revision": "f76a29f57b246691364f",
-      "text": "Los solapamientos entre cuerpos del CAD original siguen sin resolverse; esta vista previa no certifica las holguras del montaje."
+      "source_revision": "f37d9720724716de65d3",
+      "text": "Solapamientos sin resolver en el CAD original. La holgura del ensamblaje no está verificada."
     }
   }
 }

@@ -274,8 +274,8 @@
     },
     "text.0050": {
       "kind": "message",
-      "ja": "YUDX交換ヘッドを確認",
-      "en": "Inspect the YUDX exchangeable hotend"
+      "ja": "YUDXホットエンドチェンジャー",
+      "en": "YUDX hotend changer"
     },
     "text.0051": {
       "kind": "message",
@@ -1524,8 +1524,8 @@
     },
     "text.0299": {
       "kind": "message",
-      "ja": "梁・レール・駆動部・専用ベルト経路のCAD組立。サイズと機種に合うガントリーを選び、専用キャリッジ付きヘッドと一緒にプリンターへ組み込めます。",
-      "en": "CAD assembly of beams, rails, drives and dedicated belt routes. Select a gantry for the printer family and size, then install it with a head on its dedicated carriage."
+      "ja": "機種・サイズ別のガントリーとヘッドの組み合わせ。",
+      "en": "Gantry and toolhead configurations by printer and size."
     },
     "text.0300": {
       "kind": "message",
@@ -1989,8 +1989,8 @@
     },
     "text.0392": {
       "kind": "message",
-      "ja": "この構成をプリンターで見る",
-      "en": "View this configuration on a printer"
+      "ja": "プリンターで表示",
+      "en": "View on printer"
     },
     "text.0393": {
       "kind": "message",
@@ -3809,8 +3809,8 @@
     },
     "text.0756": {
       "kind": "message",
-      "ja": "Monolithガントリーを組む",
-      "en": "Build a Monolith gantry"
+      "ja": "Monolithガントリー",
+      "en": "Monolith gantries"
     },
     "text.0757": {
       "kind": "message",
@@ -3939,8 +3939,8 @@
     },
     "text.0782": {
       "kind": "message",
-      "ja": "ガントリーを組む",
-      "en": "Build a gantry"
+      "ja": "ガントリー構成",
+      "en": "Gantry setup"
     },
     "text.0783": {
       "kind": "message",
@@ -3954,8 +3954,8 @@
     },
     "text.0785": {
       "kind": "message",
-      "ja": "この構成を3Dで見る",
-      "en": "View this configuration in 3D"
+      "ja": "3Dで表示",
+      "en": "Show in 3D"
     },
     "text.0786": {
       "kind": "message",
@@ -3999,8 +3999,8 @@
     },
     "text.0793": {
       "kind": "message",
-      "ja": "ツールヘッドを組む",
-      "en": "Build a toolhead"
+      "ja": "ツールヘッド構成",
+      "en": "Toolhead setup"
     },
     "text.0794": {
       "kind": "message",
@@ -4444,8 +4444,8 @@
     },
     "text.0876": {
       "kind": "message",
-      "ja": "使いたい押出機・ホットエンドから、登録済みの組立を絞り込みます。",
-      "en": "Filter registered assemblies by the extruder and hotend you want to use."
+      "ja": "押出機・ホットエンドで絞り込み。",
+      "en": "Filter by extruder and hotend."
     },
     "view.perspective": {
       "kind": "message",
@@ -9097,8 +9097,8 @@
     },
     "configuration_editor.displayed": {
       "kind": "message",
-      "ja": "3Dに表示中",
-      "en": "Shown in 3D"
+      "ja": "現在の構成",
+      "en": "Current configuration"
     },
     "configuration_editor.undo": {
       "kind": "message",
@@ -9107,8 +9107,8 @@
     },
     "configuration_editor.hint": {
       "kind": "message",
-      "ja": "部品を選び、変更内容を確認してから3Dに反映します。",
-      "en": "Choose parts, review the changes, then apply them to 3D."
+      "ja": "部品を選び、「変更を反映」を押してください。",
+      "en": "Select parts, then apply changes."
     },
     "configuration_editor.changes": {
       "kind": "message",
@@ -9117,13 +9117,13 @@
     },
     "configuration_editor.pending": {
       "kind": "message",
-      "ja": "まだ3Dには反映されていません。",
-      "en": "Changes are not yet shown in 3D."
+      "ja": "未反映の変更があります。",
+      "en": "Unapplied changes."
     },
     "configuration_editor.apply": {
       "kind": "message",
-      "ja": "変更を3Dに反映",
-      "en": "Apply changes to 3D"
+      "ja": "変更を反映",
+      "en": "Apply changes"
     },
     "configuration_editor.cancel": {
       "kind": "message",
@@ -9132,8 +9132,8 @@
     },
     "configuration_editor.review": {
       "kind": "template",
-      "ja": "{0}項目の変更を確認",
-      "en": "Changes to review: {0}"
+      "ja": "変更 {0}項目",
+      "en": "{0} changes"
     },
     "configuration_editor.automatic": {
       "kind": "message",
@@ -9152,13 +9152,13 @@
     },
     "configuration_editor.fixed": {
       "kind": "message",
-      "ja": "この組み合わせでは、この仕様で固定です。",
-      "en": "This is the only option for this combination."
+      "ja": "この構成では固定。",
+      "en": "Fixed for this configuration."
     },
     "configuration_editor.save_hint": {
       "kind": "message",
-      "ja": "変更を3Dに反映してから保存できます。",
-      "en": "Apply the changes to 3D before saving."
+      "ja": "変更を反映してから保存してください。",
+      "en": "Apply changes before saving."
     },
     "configuration_editor.keep": {
       "kind": "message",
@@ -9187,8 +9187,8 @@
     },
     "configuration_editor.search_hint": {
       "kind": "message",
-      "ja": "候補を選ぶと変更案に追加します。「変更を3Dに反映」でまとめて反映できます。",
-      "en": "Select a candidate to add it to your draft. Apply all changes together with “Apply changes to 3D”."
+      "ja": "候補を選び、「変更を反映」で確定。",
+      "en": "Select an option, then apply changes."
     },
     "configuration_editor.mount": {
       "kind": "message",
@@ -11698,13 +11698,13 @@
     },
     "feature.eva2.notice.scope": {
       "kind": "message",
-      "ja": "EVA 2の直交方式の元アセンブリを再現：LGX Lite、Dragonfly BMO、4010/5015ファン、M8プローブ、レールブロック、固定部品。V-Minionの元の配置を保持しています。他のプリンターへの取り付けと、動作経路全体のクリアランスは未検証です。",
-      "en": "Complete source EVA 2 Cartesian assembly: LGX Lite, Dragonfly BMO, 4010/5015 fans, M8 probe, rail block and fasteners. Original V-Minion placements retained; other printer mounting and continuous clearance are unverified."
+      "ja": "V-Minionの元アセンブリ。他のプリンターへの取付と全可動域の干渉は未確認です。",
+      "en": "V-Minion source assembly. Other printer mounts and clearance throughout travel are unverified."
     },
     "feature.eva2.notice.patch": {
       "kind": "message",
-      "ja": "このV-Minion CADではEVA 2のパッチ版を特定できていません。元アセンブリの版を記録しており、EVA 2.4.2とは表記していません。",
-      "en": "EVA 2 patch revision is not identified in this V-Minion CAD. The source assembly revision is recorded; it is not labeled as EVA 2.4.2."
+      "ja": "EVA 2のパッチ版は不明。原本：V-Minion v7 / EVA Assembly v5。",
+      "en": "EVA 2 patch version unknown. Source: V-Minion v7 / EVA Assembly v5."
     },
     "feature.eva3.option.toolhead": {
       "kind": "message",
@@ -11738,23 +11738,23 @@
     },
     "feature.eva3.notice.scope": {
       "kind": "message",
-      "ja": "EVA 3のCoreXY方式の元アセンブリを再現：LGX Lite、Rapido HF v1、4010/Sanyo 4028ファン、SuperPINDAプローブ、レールブロック、固定部品。V-Core 3.1の元の配置を保持しています。他のプリンターへの取り付けと、動作経路全体のクリアランスは未検証です。",
-      "en": "Complete source EVA 3 CoreXY assembly: LGX Lite, Rapido HF v1, 4010/Sanyo 4028 fans, SuperPINDA probe, rail block and fasteners. Original V-Core 3.1 placements retained; other printer mounting and continuous clearance are unverified."
+      "ja": "V-Core 3.1の元アセンブリ。他のプリンターへの取付と全可動域の干渉は未確認です。",
+      "en": "V-Core 3.1 source assembly. Other printer mounts and clearance throughout travel are unverified."
     },
     "feature.eva3.notice.patch": {
       "kind": "message",
-      "ja": "このV-Core 3.1 CADではEVA 3のパッチ版を特定できていません。V-Core 3.1 v9 / EVA 3 Assembly v4は元アセンブリの版であり、EVA 3.0.2とは表記していません。",
-      "en": "EVA 3 patch revision is not identified in this V-Core 3.1 CAD. V-Core 3.1 v9 / EVA 3 Assembly v4 is the source assembly revision; it is not labeled as EVA 3.0.2."
+      "ja": "EVA 3のパッチ版は不明。原本：V-Core 3.1 v9 / EVA 3 Assembly v4。",
+      "en": "EVA 3 patch version unknown. Source: V-Core 3.1 v9 / EVA 3 Assembly v4."
     },
     "feature.eva.notice.supports": {
       "kind": "message",
-      "ja": "このデータでは組み込みサポートを特定できていないため、サポートは除去していません。",
-      "en": "Built-in support identities are unresolved in this source; no supports were removed."
+      "ja": "埋め込みサポートは未特定・未除去。",
+      "en": "Built-in supports unidentified; none removed."
     },
     "feature.eva.notice.native_overlaps": {
       "kind": "message",
-      "en": "Native source body overlaps remain unresolved; this preview does not certify assembly clearance.",
-      "ja": "元CADの部品間の重なりは未判定です。この表示は組立クリアランスの検証済み構成ではありません。"
+      "en": "Unresolved overlaps in source CAD. Assembly clearance is unverified.",
+      "ja": "元CADに未判定の部品の重なりがあります。組立時の干渉は未確認です。"
     }
   }
 }

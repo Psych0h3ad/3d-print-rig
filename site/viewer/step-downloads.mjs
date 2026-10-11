@@ -1,4 +1,4 @@
-import {formatMessage} from './i18n.mjs?v=a1d29b29b71e3c17ba92';
+import {formatMessage} from './i18n.mjs?v=548d1e7f5194feeba442';
 // Only published baseline assemblies; a selected head or Mod never changes a URL.
 export function assemblyDownloadEntries(catalog) {
 const entries=[],seen=new Set();

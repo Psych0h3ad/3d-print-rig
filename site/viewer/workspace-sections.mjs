@@ -1,4 +1,4 @@
-import {translate} from './i18n.mjs?v=a1d29b29b71e3c17ba92';
+import {translate} from './i18n.mjs?v=548d1e7f5194feeba442';
 // Section placement consumes the catalog's canonical labels, independent of
 // the initial HTML language or the currently displayed translation.
 export function workspaceSectionCategory(source){
@@ -9,5 +9,5 @@ export function workspaceSectionCategory(source){
  if(/原本|出典|使用版|公式データ|カタログ|選択した構成と部品|部品リスト・共有|マウント・構成/.test(text))return'reference';
  return'configuration';
 }
-const primaryLinks=['Monolithガントリーを組む','ツールヘッド単体を組む','ホットエンド・押出機のCADを確認'];
+const primaryLinks=['Monolithガントリー','ツールヘッド単体を組む','ホットエンド・押出機のCADを確認'];
 export function isPrimaryWorkspaceLink(source){return primaryLinks.some(label=>source.trim().startsWith(label)||source.trim().startsWith(translate(label,'en')));}

@@ -2,10 +2,10 @@ import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {setupSceneDisplay} from './display-preferences.mjs?v=cfa9769ce74b3791658f';
 import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=ea3c45fda6e17c3b5857';
-import {loadMonolithData} from './monolith-machine.js?v=9ec5345faf890092b943';
+import {loadMonolithData} from './monolith-machine.js?v=60de85287f65d9520088';
 import {setupChangerBank} from './changer-bank.js?v=e40b96658f9103747458';
-import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=592c8123a95bfbffdf98';
-import {headPrinterLink} from './head-navigation.mjs?v=99f2b04391df6c30c6e8';
+import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=ebdabe9f97726222fa60';
+import {headPrinterLink} from './head-navigation.mjs?v=5008bffaa778c321fc4f';
 import {headBuilderDimensions} from './configuration-model.js?v=922298bc5433b90fa3af';
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import {headPrintedCounts} from './head-printed-parts.mjs?v=05f889964e87c5a9185b';
@@ -13,8 +13,8 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
-import {setupConfigurations} from './configurations.js?v=294ae06ecd3851d049fb';
-import {setupPublicInfo} from './public-info.js?v=5cd9c42d000ef734a3da';
+import {setupConfigurations} from './configurations.js?v=c50226edf22d331a23ac';
+import {setupPublicInfo} from './public-info.js?v=80ca8e20af09c41431a2';
 import {setupRenderExport} from './render-export.js?v=a5e4bcf57f5a8e07dcba';
 import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=workspace-belts-1';
 import {validateEvaMetadata,bindEvaMeshIdentities} from './eva-heads.mjs?v=919a1f6692a6bd855927';
@@ -22,7 +22,7 @@ import {setRapidoXUhfSurface} from './rapido-x-uhf-cover.mjs?v=8b458475dac84cfcd
 import {contentSHA256} from './mount-validation.mjs';
 import {probeCheck,probeMetrics,probeGuide,headInspectionState,headBodyCollisionNotes} from './probe-checks.js?v=ea1aef3e30bf7d11d3cb';
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
-import {setupHeadBuilder} from './builder-ui.mjs?v=8e598a92038a55c4fa32';
+import {setupHeadBuilder} from './builder-ui.mjs?v=4b41a29676f053d91e9c';
 import {validateBuilderExtras} from './toolhead-builder.mjs?v=2259f6100f56cdc6c390';
 import {loadExternalComponent} from './component-assets.mjs?v=9f8ef058f1297ab60e53';
 export async function mount(scope){
@@ -179,7 +179,7 @@ async function install(variant){return workspaceTask(async()=>{
   appearance();inspection(variant);visibleBounds();ready=true;fit();
   const count=[plan.base,...plan.modules.map(m=>m.id)].reduce((n,id)=>{const a=cached.get(id).loaded;return n+(a.root.visible?a.meshes.filter(r=>r.mesh.visible).length:0)},0);
   Object.assign(document.body.dataset,{variant:variant.id,headParts:String(count),headAssets:JSON.stringify(ids),assetStatus:'ready'});
-  const link=headPrinterLink(variant,machineRegistry,location.href);$('#printerLink').href=link.url;$('#printerLink').hidden=false;$('#printerLink').textContent=link.registered?'この構成をプリンターで見る':'マシン一覧（取付CAD未登録）';
+  const link=headPrinterLink(variant,machineRegistry,location.href);$('#printerLink').href=link.url;$('#printerLink').hidden=false;$('#printerLink').textContent=link.registered?'プリンターで表示':'マシン一覧（取付CAD未登録）';
  }finally{$('#loading').hidden=true}
 });}
 function changerDisplay(){

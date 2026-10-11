@@ -1223,11 +1223,11 @@
         }
       },
       "notes": [
-        "Complete source EVA 2 Cartesian assembly: LGX Lite, Dragonfly BMO, 4010/5015 fans, M8 probe, rail block and fasteners. Original V-Minion placements retained; other printer mounting and continuous clearance are unverified.",
-        "EVA 2 patch revision is not identified in this V-Minion CAD. The source assembly revision is recorded; it is not labeled as EVA 2.4.2.",
-        "Built-in support identities are unresolved in this source; no supports were removed."
+        "V-Minion source assembly. Other printer mounts and clearance throughout travel are unverified.",
+        "EVA 2 patch version unknown. Source: V-Minion v7 / EVA Assembly v5.",
+        "Built-in supports unidentified; none removed."
       ],
-      "display_scope": "Complete source EVA 2 Cartesian assembly: LGX Lite, Dragonfly BMO, 4010/5015 fans, M8 probe, rail block and fasteners. Original V-Minion placements retained; other printer mounting and continuous clearance are unverified.",
+      "display_scope": "V-Minion source assembly. Other printer mounts and clearance throughout travel are unverified.",
       "fit": {
         "nozzle_mm": [
           -87.49999850988388,
@@ -1435,12 +1435,12 @@
         }
       },
       "notes": [
-        "Complete source EVA 3 CoreXY assembly: LGX Lite, Rapido HF v1, 4010/Sanyo 4028 fans, SuperPINDA probe, rail block and fasteners. Original V-Core 3.1 placements retained; other printer mounting and continuous clearance are unverified.",
-        "EVA 3 patch revision is not identified in this V-Core 3.1 CAD. V-Core 3.1 v9 / EVA 3 Assembly v4 is the source assembly revision; it is not labeled as EVA 3.0.2.",
-        "Built-in support identities are unresolved in this source; no supports were removed.",
-        "Native source body overlaps remain unresolved; this preview does not certify assembly clearance."
+        "V-Core 3.1 source assembly. Other printer mounts and clearance throughout travel are unverified.",
+        "EVA 3 patch version unknown. Source: V-Core 3.1 v9 / EVA 3 Assembly v4.",
+        "Built-in supports unidentified; none removed.",
+        "Unresolved overlaps in source CAD. Assembly clearance is unverified."
       ],
-      "display_scope": "Complete source EVA 3 CoreXY assembly: LGX Lite, Rapido HF v1, 4010/Sanyo 4028 fans, SuperPINDA probe, rail block and fasteners. Original V-Core 3.1 placements retained; other printer mounting and continuous clearance are unverified.",
+      "display_scope": "V-Core 3.1 source assembly. Other printer mounts and clearance throughout travel are unverified.",
       "fit": {
         "nozzle_mm": [
           6.169073646640315e-07,
