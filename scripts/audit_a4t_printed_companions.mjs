@@ -5,6 +5,8 @@ import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
 import {gunzipSync} from 'node:zlib';
 import {a4tPrintedReference as spec} from '../site/viewer/a4t-printed-companions.mjs';
+import {headPrintedCounts} from '../site/viewer/head-printed-parts.mjs';
+import {appearanceRole} from '../site/viewer/appearance-role.mjs';
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 const root=path.resolve(process.argv[2]),reportFile=path.resolve(process.argv[3]);
 const report={schema:'actual-a4t-printed-companions-107',started_at_utc:new Date().toISOString(),passed:false,input_sha256:{},native_workers:0,new_native_tests_performed:false,whole_installed_fit_qualified:false,PCB_harness_qualified:false,browser_review:false};
@@ -26,6 +28,13 @@ try{
   if(key.endsWith('diffuser')){assert.equal(row.appearance_role,'optical');for(const p of primitives){const m=next.g.materials[p.material];assert.equal(m.alphaMode,'BLEND');assert.equal(m.pbrMetallicRoughness.baseColorFactor[3],.55);}}else assert.equal(row.appearance_role,'base');
   added.push({key,triangles,unit_normals:normals,source_sha256:row.source_sha256});
  }
+ const rootNode={visible:true,parent:null},nodeRows=next.g.nodes.filter(n=>n.mesh!==undefined).map(n=>{const part=meta.parts.find(p=>p.key===n.name);assert(part,'Missing native part identity '+n.name);return {key:part.key,role:appearanceRole(part),component:part.component,mesh:{visible:true,parent:rootNode}};});
+ const inventoryAsset={root:rootNode,meshes:nodeRows},beforeMaterials=JSON.stringify(next.g.materials),counts=headPrintedCounts([inventoryAsset]);
+ assert.equal(counts.fixed,1);assert.equal(counts.total,counts.base+counts.accent+1);
+ const addedRows=nodeRows.filter(row=>keys.includes(row.key));assert.deepEqual(headPrintedCounts([{root:rootNode,meshes:addedRows}]),{base:2,accent:0,fixed:1,total:3});
+ rootNode.visible=false;assert.equal(headPrintedCounts([inventoryAsset]).total,0);rootNode.visible=true;assert.deepEqual(headPrintedCounts([inventoryAsset]),counts);
+ assert.equal(JSON.stringify(next.g.materials),beforeMaterials,'Inventory classification must preserve original optical and purchased PBR');
+ report.printed_inventory={...counts,added_source_printed_parts:3,fixed_color_source_printed_parts:1,source_diffuser_key:'a4t106_led_diffuser',cached_visibility_reset_passed:true,materials_unchanged:true,scope:'Actual exported source part identities and inventory classification only; source optical opacity0.55 and native/companion limitations retained.'};
  report.parts=64;report.original_parts=61;report.added_printed_parts=added;report.original_meshes_materials_and_binary_preserved=true;report.source_body_contacts_retained=true;report.new_supports_removed=0;report.passed=true;
 }catch(e){report.failure=e.stack;process.exitCode=1;}
 report.completed_at_utc=new Date().toISOString();report.producer_sha256=sha(await fs.readFile(new URL(import.meta.url)));await fs.writeFile(reportFile,JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({passed:report.passed,parts:report.parts,failure:report.failure}));

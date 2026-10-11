@@ -12,7 +12,7 @@ body.ui-workspace {
   font-size: 13px;
   grid-template-rows: 60px minmax(0, 1fr);
 }
-.ui-workspace > header { padding: 0 22px; min-height: 0; gap: 24px; z-index: 5; border-bottom: 1px solid var(--line); }
+.ui-workspace > header { padding: 0 22px; min-width: 0; min-height: 0; gap: 24px; z-index: 5; border-bottom: 1px solid var(--line); }
 .ui-workspace .brand { gap: 10px; flex: 0 0 auto; }
 .ui-workspace .brand-mark { width: 34px; height: 34px; border: 0; border-radius: 9px; background: #c43d45; color: white; font-size: 17px; }
 .ui-workspace .brand strong { font-size: 16px; letter-spacing: -.025em; }
@@ -22,13 +22,16 @@ body.ui-workspace {
 .ui-workspace button.primary, .ui-workspace #openRender { background: #263442; color: white; border-color: #263442; }
 .ui-workspace button.primary:hover, .ui-workspace #openRender:hover { background: #3b4b5d; }
 .ui-workspace button:disabled, .ui-workspace select:disabled { cursor: default; opacity: .5; }
-.ui-workspace .header-actions { gap: 10px; flex-wrap: nowrap; }
+.ui-workspace .header-actions { gap: 10px; flex: 0 0 auto; flex-wrap: nowrap; }
 .ui-workspace .language-picker { position:relative; display:flex; align-items:center; margin:0; flex:0 0 auto; }
 .language-label { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
 .ui-workspace .language-picker select { width:100px; margin:0; padding-right:30px; appearance:none; -webkit-appearance:none; }
-.workspace-nav { display: flex; align-self: stretch; align-items: stretch; flex: 1; gap: 22px; padding: 0; min-width: 0; background: var(--paper); scrollbar-width: none; }
+/* Long translations scroll inside the navigation's share of the header.
+   Keep the actions outside this scroller so reference menus can open freely. */
+.workspace-nav { display: flex; align-self: stretch; align-items: stretch; flex: 1; gap: 22px; padding: 0; min-width: 0; overflow-x: auto; overflow-y: hidden; background: var(--paper); scrollbar-width: thin; }
 .workspace-nav a { flex: 0 0 auto; display: flex; align-items: center; position: relative; padding: 0 3px; color: var(--muted); text-decoration: none; font-weight: 600; font-size: 12px; }
 .workspace-nav a:hover { color: var(--ink); }
+.workspace-nav a:focus-visible { outline-offset: -2px; }
 .workspace-nav a[aria-current=page] { color: var(--accent); }
 .workspace-nav a[aria-current=page]::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; border-radius: 3px 3px 0 0; background: var(--accent); }
 .workspace-more { position: relative; margin: 0; padding: 0; border: 0; order: 2; }
@@ -220,7 +223,6 @@ html:not([lang=ja]) .ui-workspace .inspector-heading:has(.change-machine) h1 { p
 @media (max-width:680px) { html:not([lang=ja]) .ui-workspace .inspector-heading:has(.change-machine) h1 { padding-right:190px; } }
 @media (max-width: 680px) and (max-height: 650px) { .ui-workspace .view-meta { display: none; } }
 
-@media (min-width: 681px) and (max-width: 900px) { body.ui-workspace { grid-template-rows: 100px minmax(0, 1fr); } }
 @media (max-width: 900px) {
  .ui-workspace > header { display: grid; grid-template-columns: auto 1fr; grid-template-rows: 56px 1fr; column-gap: 12px; row-gap: 0; }
  .ui-workspace .brand { grid-column: 1; grid-row: 1; }
@@ -328,11 +330,13 @@ body.ui-workspace:is(.night, :has(#night:checked), html[data-theme=dark] body) {
 .ui-workspace .share-actions a { display: inline-flex; align-items: center; padding: 8px 12px; border: 1px solid var(--line); border-radius: 7px; color: var(--ink); text-decoration: none; font-size: 12px; }
 .ui-workspace .share-actions a:hover { background: var(--line); }
 .share-actions > [hidden] { display: none; }
-@media (min-width: 901px) and (max-width: 1040px) {
- body.ui-workspace { grid-template-rows: 100px minmax(0, 1fr); }
- .ui-workspace > header { display: grid; grid-template-columns: auto 1fr; grid-template-rows: 56px 1fr; column-gap: 12px; row-gap: 0; }
+/* Tablet actions may need a second line; grow the header instead of painting
+   into the navigation or stealing the model/settings workspace's width. */
+@media (min-width: 681px) and (max-width: 1040px) {
+ body.ui-workspace { grid-template-rows: auto minmax(0, 1fr); }
+ .ui-workspace > header { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: minmax(56px, auto) 44px; column-gap: 12px; row-gap: 0; }
  .ui-workspace .brand { grid-column: 1; grid-row: 1; }
- .ui-workspace .header-actions { grid-column: 2; grid-row: 1; justify-self: end; }
+ .ui-workspace .header-actions { grid-column: 2; grid-row: 1; justify-self: end; min-width: 0; max-width: 100%; flex-wrap: wrap; gap: 6px; padding: 6px 0; }
  .workspace-nav { grid-column: 1 / -1; grid-row: 2; }
 }
 @media (max-width: 680px) {

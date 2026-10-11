@@ -11560,6 +11560,11 @@
       "kind": "message",
       "ja": "CAD動作プレビューです。ファームウェアの移動限界は提供されていません。XYベルトの歯の位相とクランプ部の切断端は再現していません。Bowdenの長さは表示例で、両端は原本の継手軸に合わせています。",
       "en": "CAD movement preview; firmware limits are not supplied. XY belt tooth phase and clamp cut ends are not simulated. Bowden length is illustrative; native fitting axes define its ends."
+    },
+    "ui.head_printed_inventory": {
+      "kind": "template",
+      "ja": "ベース {0}点 · アクセント {1}点 · 固定色の印刷部品 {2}点",
+      "en": "Base {0} parts · accent {1} parts · fixed-color printed parts {2}"
     }
   }
 }

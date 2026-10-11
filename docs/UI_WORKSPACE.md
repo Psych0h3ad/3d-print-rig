@@ -92,8 +92,8 @@ exact registered machine and page without inventing a configuration.
 machine records name the exact ID, label, family, registered size, page and
 `<id>.webp` thumbnail, with image size, byte count and SHA-256 plus recorded
 decoded/stored model and companion hashes. The inventory must equal the current
-65 IDs in `docs/MACHINE_REVIEW_COVERAGE.json`, including V0 and community
-printers; all six unavailable CAD registrations are excluded. Family and vendor
+IDs in `docs/MACHINE_REVIEW_COVERAGE.json`, including V0 and community
+printers; unavailable CAD registrations are excluded. Family and vendor
 names come from the production machine registry and are checked against the
 actual generated support targets when auditing an assembled site.
 
@@ -116,6 +116,11 @@ Before publication, rebuild the locale outputs, run the repository and actual
 asset release checks, and record desktop/mobile screenshots in both themes.
 
 ## Implementation and review
+
+The standalone head's printed-part count includes source-identified printed
+optics in a separate fixed-color count. Base/accent palette controls keep their
+existing scope; a printed diffuser retains its original translucent material.
+Purchased optics and hidden or detached cached parts do not enter this count.
 
 `workspace-ui.mjs` moves existing DOM controls without replacing their IDs or event handlers. Machine-head and G-code panels added asynchronously are routed into the appropriate category. The shared stylesheet is loaded after the existing page styles. CAD selection, fit warnings, source links and rendering remain controlled by the existing modules.
 

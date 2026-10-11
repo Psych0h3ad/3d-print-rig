@@ -2,25 +2,26 @@ import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {setupSceneDisplay} from './display-preferences.mjs?v=cfa9769ce74b3791658f';
 import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=ea3c45fda6e17c3b5857';
-import {loadMonolithData} from './monolith-machine.js?v=dea78fef81e9b863658b';
+import {loadMonolithData} from './monolith-machine.js?v=9848e5fe130e5502e597';
 import {setupChangerBank} from './changer-bank.js?v=e40b96658f9103747458';
-import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=fa33ad619347c85b4053';
-import {headPrinterLink} from './head-navigation.mjs?v=d53b419b7ce0e0e5851a';
+import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=8abe19cc1ad09693fd30';
+import {headPrinterLink} from './head-navigation.mjs?v=e3795b4762251834ec76';
 import {headBuilderDimensions} from './configuration-model.js?v=922298bc5433b90fa3af';
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
+import {headPrintedCounts} from './head-printed-parts.mjs?v=05f889964e87c5a9185b';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
-import {setupConfigurations} from './configurations.js?v=1a723c74c39485865b94';
-import {setupPublicInfo} from './public-info.js?v=3e2eacc0a2df31e15280';
+import {setupConfigurations} from './configurations.js?v=c6a4213005f362362c71';
+import {setupPublicInfo} from './public-info.js?v=072f61d7bc264f21f5aa';
 import {setupRenderExport} from './render-export.js?v=a5e4bcf57f5a8e07dcba';
 import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=workspace-belts-1';
 import {setRapidoXUhfSurface} from './rapido-x-uhf-cover.mjs?v=8b458475dac84cfcd8c7';
 import {contentSHA256} from './mount-validation.mjs';
 import {probeCheck,probeMetrics,probeGuide,headInspectionState,headBodyCollisionNotes} from './probe-checks.js?v=ea1aef3e30bf7d11d3cb';
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
-import {setupHeadBuilder} from './builder-ui.mjs?v=8a7854de897968e3be37';
+import {setupHeadBuilder} from './builder-ui.mjs?v=1fa876409186ed4d71f5';
 import {validateBuilderExtras} from './toolhead-builder.mjs?v=2259f6100f56cdc6c390';
 import {loadExternalComponent} from './component-assets.mjs?v=9f8ef058f1297ab60e53';
 export async function mount(scope){
@@ -57,7 +58,7 @@ async function restoreExtras(data){return workspaceTask(async()=>{
 });}
 
 function appearance(){
- let base=0,accent=0,protectedChanges=0;
+ let protectedChanges=0;
  for(const promise of cached.values()){
   const asset=promise.loaded;if(!asset)continue;
   for(const row of asset.meshes){
@@ -69,15 +70,15 @@ function appearance(){
      material.depthWrite=!material.transparent;
     }else if(!material.color.equals(original.color))protectedChanges++;
    }
-   if(printed&&asset.root.visible&&row.mesh.visible){if(row.role==='base')base++;else accent++}
   }
  }
  for(const role of ['base','accent']){$('#'+role+'Color').value=colors[role];$('#'+role+'Hex').value=colors[role];$('#'+role+'Hex').removeAttribute('aria-invalid')}
  const matching=Object.entries(presets).find(([,p])=>p[0]===colors.base&&p[1]===colors.accent);
  $('#headPreset').value=matching?.[0]||'custom';
  bankRig?.setPalette(colors);
- $('#headPaletteStatus').textContent=`ベース ${base}点 · アクセント ${accent}点`;
- Object.assign($('#headPaletteStatus').dataset,{base:colors.base,accent:colors.accent,protectedChanges:String(protectedChanges),transparent:String($('#seeInside').checked)});
+ const {base,accent,fixed,total}=headPrintedCounts([...cached.values()].map(p=>p.loaded));
+ $('#headPaletteStatus').textContent=fixed?`ベース ${base}点 · アクセント ${accent}点 · 固定色の印刷部品 ${fixed}点`:`ベース ${base}点 · アクセント ${accent}点`;
+ Object.assign($('#headPaletteStatus').dataset,{base:colors.base,accent:colors.accent,fixedPrinted:String(fixed),totalPrinted:String(total),protectedChanges:String(protectedChanges),transparent:String($('#seeInside').checked)});
  dirty=true;
 }
 function saveColors(){try{localStorage.setItem('3d-print-rig-head-palette',JSON.stringify(colors))}catch{}appearance()}

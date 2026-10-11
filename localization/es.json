@@ -9161,6 +9161,10 @@
     "machine.247zero.motion_notice": {
       "source_revision": "6c8869cd476b50d171fa",
       "text": "Vista previa del movimiento CAD; no se proporcionan los límites del firmware. No se simulan la fase de los dientes de las correas XY ni los extremos cortados de las abrazaderas. La longitud Bowden es ilustrativa; los ejes de los racores originales definen sus extremos."
+    },
+    "ui.head_printed_inventory": {
+      "source_revision": "797baa62d6494af10258",
+      "text": "Base: {0} piezas · acento: {1} piezas · piezas impresas de color fijo: {2}"
     }
   }
 }

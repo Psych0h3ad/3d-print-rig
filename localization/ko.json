@@ -9161,6 +9161,10 @@
     "machine.247zero.motion_notice": {
       "source_revision": "6c8869cd476b50d171fa",
       "text": "CAD 이동 미리보기입니다. 펌웨어 이동 한계는 제공되지 않았습니다. XY 벨트 톱니의 위상과 클램프의 절단 끝은 시뮬레이션하지 않습니다. Bowden 길이는 예시이며, 원본 피팅 축이 양 끝의 위치를 정합니다."
+    },
+    "ui.head_printed_inventory": {
+      "source_revision": "797baa62d6494af10258",
+      "text": "기본색 부품 {0}개 · 강조색 부품 {1}개 · 고정 색상 출력 부품 {2}개"
     }
   }
 }
