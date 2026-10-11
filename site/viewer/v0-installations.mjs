@@ -62,7 +62,7 @@ export async function createV0Installations({scene,adapter,profile,registry,load
   if(!n.isMesh)return;let p=n;while(p&&!p.userData?.part_key)p=p.parent;
   const key=p?.userData?.part_key,role=r.spec.role||r.spec.roles?.[key],color=r.spec.colors?.[key]||palette[role]||profile.appearance?.palette_defaults?.[role];if(color)for(const m of Array.isArray(n.material)?n.material:[n.material])m.color.set(color);
   if(role==='panel')for(const m of Array.isArray(n.material)?n.material:[n.material]){m.transparent=true;m.opacity=.16;m.depthWrite=false;}
-  if(role==='diffuser')for(const m of Array.isArray(n.material)?n.material:[n.material]){m.color.set('#f3f4ed');m.transparent=true;m.opacity=.78;m.depthWrite=false;}
+  if(role==='diffuser'&&!r.spec.preserve_optical_materials)for(const m of Array.isArray(n.material)?n.material:[n.material]){m.color.set('#f3f4ed');m.transparent=true;m.opacity=.78;m.depthWrite=false;}
  });}
  let request=0;
  async function setState(next){const value=validateV0Mods(registry,next),sequence=++request;const chosen=registry.options.filter(o=>value[o.slot]===o.id);await Promise.all(chosen.map(prepare));if(sequence!==request||disposed)return false;state=value;setPose(adapter.getPose());setPalette(palette);return true}

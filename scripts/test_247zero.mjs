@@ -186,7 +186,7 @@ for (const pose of [{x: -60, y: -65, z: 0}, {x: 60, y: 55, z: 120}, {x: 0, y: -5
 const nativeRanges = {"x":[-59.997807724500035,60.00219227550002],"y":[-64.78961454249887,55.21038545750127],"z":[0,120]};
 const axisKeys = Object.keys(nativeRanges), elements = Object.fromEntries([...axisKeys.flatMap(key => [key, key + 'Value']),
   'motionPause', 'motionPlay', 'resetPose'].map(key => [key, {value: '0', textContent: ''}]));
-const sliderState = {axes: {x: 0, y: 0, z: 0}}, dataset = {}, sliderContext = {axisKeys, state: sliderState, animation: {},
+const sliderState = {axes: {x: 0, y: 0, z: 0}}, dataset = {}, sliderContext = {axisKeys, state: sliderState, animation: {}, evaOptions: null,
   $: key => elements[key], ranges: () => nativeRanges, render() {}, view() {}, zeroAxes: () => ({x: 0, y: 0, z: 0}),
   document: {body: {dataset}}, current: {profile: {axes: nativeRanges}, adapter: {
     setAxes(next) {validateAxes(next, {axes: nativeRanges}); return {...next};}}}, movable: true};
@@ -208,6 +208,36 @@ for (const key of axisKeys) {
 elements.resetPose.onclick(); assert.deepEqual(sliderState.axes, {x: 0, y: 0, z: 0});
 for (const key of axisKeys) assert.equal(elements[key + 'Value'].textContent, '0.0 mm');
 
+// The same production handler must forward the adapter's accepted pose to an
+// active EVA overlay before rendering. Keep the null-controller checks above
+// for community machines that have no EVA registration.
+const overlayTrace = [], overlayUpdates = [], nativeSetAxes = sliderContext.current.adapter.setAxes;
+sliderContext.current.adapter.setAxes = next => {
+  overlayTrace.push('adapter'); return nativeSetAxes(next);
+};
+sliderContext.evaOptions = {update(axes) {
+  overlayTrace.push('overlay'); assert.equal(axes, sliderState.axes);
+  overlayUpdates.push({...axes});
+}};
+sliderContext.render = () => {
+  overlayTrace.push('render'); assert.deepEqual(JSON.parse(dataset.pose), sliderState.axes);
+};
+for (const [key, serialized, expected] of [
+  ['x', String(nativeRanges.x[1]), nativeRanges.x[1]],
+  ['y', '-64.7896145424989', nativeRanges.y[0]],
+  ['z', '120', 120], ['y', String(nativeRanges.y[1]), nativeRanges.y[1]], ['z', '60', 60],
+]) {
+  overlayTrace.length = 0; const before = overlayUpdates.length;
+  elements[key].value = serialized; elements[key].oninput();
+  assert.deepEqual(overlayTrace, ['adapter', 'overlay', 'render']);
+  assert.equal(overlayUpdates.length, before + 1); assert.equal(overlayUpdates.at(-1)[key], expected);
+  assert.deepEqual(overlayUpdates.at(-1), sliderState.axes);
+  assert.equal(elements[key + 'Value'].textContent, expected.toFixed(1) + ' mm');
+}
+overlayTrace.length = 0; elements.resetPose.onclick();
+assert.deepEqual(overlayTrace, ['adapter', 'overlay', 'render']);
+assert.deepEqual(overlayUpdates.at(-1), {x: 0, y: 0, z: 0});
+
 const args = process.argv.slice(2);
 assert(args.length === 0 || (args.length === 2 && args[0] === '--candidate'), 'Usage: node scripts/test_247zero.mjs [--candidate assembly-directory]');
 if (args.length) {
@@ -217,4 +247,4 @@ if (args.length) {
     scope: 'JSON source companions, materials and strict embedded registration only; model bytes, native-solid clearance and browser review are separate.'}));
 }
 console.log(JSON.stringify({passed: true, machine: id, source_commit: commit, skirt_commit: skirtCommit, languages: supportedLanguages.length,
-  fixture_parts: fixtureParts.length, counterexamples: registrationCounterexamples.length + selectionCounterexamples.length + 1, slider_boundary_clamp: true, scope: 'Source/UI registration and compact motion fixtures; no actual mesh or full physical fit qualification.'}));
+  fixture_parts: fixtureParts.length, counterexamples: registrationCounterexamples.length + selectionCounterexamples.length + 1, slider_boundary_clamp: true, eva_controller_axis_wiring: true, scope: 'Source/UI registration and compact motion fixtures; no actual mesh or full physical fit qualification.'}));

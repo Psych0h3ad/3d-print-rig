@@ -1,9 +1,10 @@
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
-import {setupSceneDisplay} from './display-preferences.mjs?v=cfa9769ce74b3791658f';
-import {workspaceFrame,WorkspaceResizeObserver,workspaceTask,workspaceListen} from './workspace-lifecycle.mjs?v=ea3c45fda6e17c3b5857';
-import {createV0Installations,v0Slots,v0TophatMaxAngle} from './v0-installations.mjs?v=a686041ca15d51c1c316';
-import {v0ConfigurationSchema,stockV0Mods,validateV0State,readV0ModsURL,v0ModsURL,createV0StateRestorer} from './v0-state.mjs?v=ac57444f3e83c636f074';
+import {setupSceneDisplay} from './display-preferences.mjs?v=5fd25f289942c501706d';
+import {workspaceFrame,WorkspaceResizeObserver,workspaceTask,workspaceListen} from './workspace-lifecycle.mjs?v=a8e49b4993efdc7bac52';
+import {v0NativeModelHash,v0NativeDependencyHash,v0NativeByteHash,guardV0NativeInstallations,guardV0NativeAdapter,v0NativeDisplayLimits,v0NativeRangeText,v0NativeStateProfile,assertV0NativePlayback} from './v0-native-installed-gate.mjs?v=aa8fec803c9ba150edb2';
+import {createV0Installations,v0Slots,v0TophatMaxAngle} from './v0-installations.mjs?v=860a6e2fc759b1a6d5c7';
+import {v0ConfigurationSchema,stockV0Mods,validateV0State,readV0ModsURL,v0ModsURL,createV0StateRestorer} from './v0-state.mjs?v=cf699051e80873b0c61c';
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
 import {loadExternalComponent} from './component-assets.mjs?v=9f8ef058f1297ab60e53';
 import {v0ModCategories,componentCategory} from './v0-mod-library.mjs?v=ddeeafeb04155ab0838b';
@@ -16,9 +17,9 @@ import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
 import {createV0Adapter} from './v0_adapter.mjs?v=4ee2ec34955631397cf3';
 import {setupMachineNavigation} from './machines.js?v=7d90ace65109ee54e1d2';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
-import {setupRenderExport} from './render-export.js?v=a5e4bcf57f5a8e07dcba';
-import {setupPublicInfo} from './public-info.js?v=bc65031c671a47d05260';
-import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=1df4ed3b7d487c82cee0';
+import {setupRenderExport} from './render-export.js?v=1383105a90d0fa4a63bd';
+import {setupPublicInfo} from './public-info.js?v=04b710e03e02ba2aea63';
+import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=9f2e2d37bad40bd01847';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
 export async function mount(scope){
 const $=s=>document.querySelector(s),ids=['voron_v02r1_120','voron_v02_120'];
@@ -47,9 +48,11 @@ function applyPose(){if(!adapter)return;const pose=adapter.setPose(Object.fromEn
  $('#flexibleStatus').textContent=!pose.belts_visible?'ベルト・配線を非表示':'ベルト経路はXYに追従 · Zチェーン11リンクはベッドに追従';
  document.body.dataset.pose=JSON.stringify(pose);document.body.dataset.flexibleVisible=String(pose.belts_visible);document.body.dataset.chainVisible=String(pose.chain_visible);render();}
 try{
- const root='../machines/'+id+'/',json=async name=>{return workspaceTask(async()=>{const r=await fetch(root+name,{cache:'no-cache'});if(!r.ok)throw Error(name+'の読込に失敗');return r.json()});};
- const [manifest,p,g,library,registration]=await Promise.all([json('assembly_manifest.json'),json('machine_profile.json'),loadModel(new GLTFLoader(),root+'model.glb'),fetch('../COMPONENT_LIBRARY.json?v=trident-clearance-35',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('Modカタログ');return r.json()}),fetch('../V0_INSTALLATIONS.json?v=v0-mounts-39',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('V0 Mod取付データ');return r.json()})]);
- profile=p;stockProfile=structuredClone(p);currentManifest=manifest;scene.add(g.scene);adapter=createV0Adapter(g.scene,manifest,profile);const originals=new Map(),protectedMaterials=[];
+ const nativeAssetReceipts={};
+ const root='../machines/'+id+'/',json=async name=>{return workspaceTask(async()=>{const r=await fetch(root+name,{cache:'no-cache'});if(!r.ok)throw Error(name+'の読込に失敗');const bytes=await r.arrayBuffer();nativeAssetReceipts[name]=await v0NativeByteHash(bytes);return JSON.parse(new TextDecoder().decode(bytes))});};
+ const [manifest,p,g,library,registration]=await Promise.all([json('assembly_manifest.json'),json('machine_profile.json'),loadModel(new GLTFLoader(),root+'model.glb',undefined,{verifySha256:v0NativeModelHash(id)}),fetch('../COMPONENT_LIBRARY.json?v=trident-clearance-35',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('Modカタログ');return r.json()}),fetch('../V0_INSTALLATIONS.json?v=82335a9bf7b01455ab97',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('V0 Mod取付データ');return r.json()})]);
+ nativeAssetReceipts['model.glb']=v0NativeModelHash(id);
+ profile=p;stockProfile=structuredClone(p);profile.stock_display_limits_mm=structuredClone(stockProfile.display_limits_mm);currentManifest=manifest;scene.add(g.scene);adapter=createV0Adapter(g.scene,manifest,profile);const originals=new Map(),protectedMaterials=[];
  for(const [key,node] of adapter.nodes)node.traverse(mesh=>{if(!mesh.isMesh)return;mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();for(const material of Array.isArray(mesh.material)?mesh.material:[mesh.material]){originals.set(material,material.color.clone());if(!appearanceRole(adapter.records.get(key)))protectedMaterials.push(material);if(material.transparent)material.depthWrite=false}});
  $('#machineTitle').textContent=id==='voron_v02r1_120'?'V0.2r1 / 120':'V0.2 / 120';$('#badge').textContent=$('#machineTitle').textContent+' · '+manifest.parts.length.toLocaleString()+' PARTS';
  const limits=profile.sampled_clearance_limits_mm;$('#clearanceStatus').textContent=`CAD格子点の確認範囲 X 0–${limits.X[1]} / Y 0–${limits.Y[1]} / Z 0–${limits.Z[1]} mm`;
@@ -66,13 +69,14 @@ try{
 
  installations=await createV0Installations({scene,adapter,profile,registry:registration.machines[id],loadModule:async module=>{return workspaceTask(async()=>{
   const source=registration.sources[module];if(!source)throw Error('Mod原本を読み込めません');
-  if(source.external)return (await loadExternalComponent(new GLTFLoader(),source,import.meta.url)).gltf;
+  if(source.external){const loaded=await loadExternalComponent(new GLTFLoader(),source,import.meta.url);loaded.gltf.scene.userData.ledSourceAsset={id:loaded.meta.id,decoded_model_sha256:source.files['model.glb'].decoded_sha256||source.files['model.glb'].sha256};const rows=new Map(loaded.meta.parts.map(p=>[p.key,p]));loaded.gltf.scene.traverse(n=>{if(!n.isMesh)return;let owner=n;while(owner&&!rows.has(owner.userData?.part_key))owner=owner.parent;if(owner)n.userData.ledSourceRow=rows.get(owner.userData.part_key)});return loaded.gltf;}
   const r=await fetch('../'+(source.metadata||'modules/'+module+'/module.json'),{cache:'no-cache'});if(!r.ok)throw Error('Mod原本を読み込めません');
   const bytes=await r.arrayBuffer(),digest=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(n=>n.toString(16).padStart(2,'0')).join('');
   if(digest!==registration.sources[module].metadata_sha256)throw Error('Mod原本のバージョンが一致しません');
-  return loadModel(new GLTFLoader(),'../'+(source.glb||'modules/'+module+'/module.glb'));
+  const hash=v0NativeDependencyHash(module);const loaded=await loadModel(new GLTFLoader(),'../'+(source.glb||'modules/'+module+'/module.glb'),undefined,{verifySha256:hash});if(hash)nativeAssetReceipts['module:'+module]=hash;return loaded;
  });}});
- stateRestorer=createV0StateRestorer({profile,registry:installations.registry,installations,commit:commitV0State,
+ guardV0NativeInstallations(installations,{registry:{...installations.registry,sources:registration.sources},manifest,stockProfile,receipts:nativeAssetReceipts});guardV0NativeAdapter(adapter,installations);
+ stateRestorer=createV0StateRestorer({profile:stockProfile,registry:installations.registry,installations,commit:commitV0State,
   busy:value=>{$('#saveConfiguration').disabled=value;if(value)$('#installationStatus').textContent='Modを読み込み中…'},
   error:e=>{refreshMods();$('#installationStatus').textContent=loadError('取付エラー:',e)},
  });
@@ -96,7 +100,7 @@ try{
  for(const role of Object.keys(palette)){$('#'+role).disabled=false;$('#'+role+'Hex').disabled=false;$('#'+role).oninput=()=>{palette[role]=$('#'+role).value;applyPalette();save()};$('#'+role+'Hex').oninput=()=>{const v=$('#'+role+'Hex').value;if(!valid(v)){$('#'+role+'Hex').setAttribute('aria-invalid','true');return}palette[role]=v;applyPalette();save()}}
  $('#frameFinish').disabled=false;$('#frameFinish').onchange=()=>{if($('#frameFinish').value==='custom')return;palette.frame=$('#frameFinish').value==='silver'?'#b9bec4':'#0e0f11';applyPalette();save()};$('#resetPalette').disabled=false;$('#resetPalette').onclick=()=>{palette={base:null,accent:null,frame:null};applyPalette();save()};applyPalette();
  programFrame={nozzle_mm:profile.nozzle_tip_mm,reference_xyz_mm:profile.display_reference_xyz_mm,moving_bed_z:true};
- program=setupGcodePanel({container:document.querySelector('aside'),profile,adapter,scene,render,getLimits:displayedMachineLimits,toNozzle:xyz=>programPoint(programFrame,xyz),pathOffset:xyz=>programPathOffset(programFrame,xyz),setPose:xyz=>{for(const [i,a]of ['x','y','z'].entries())$('#'+a).value=xyz[i];applyPose()}});
+ program=setupGcodePanel({container:document.querySelector('aside'),profile,adapter,scene,render,getLimits:displayedMachineLimits,beforePlayback:()=>assertV0NativePlayback(installations),getContext:()=>installations?.getNativeInstallationGate?.(),toNozzle:xyz=>programPoint(programFrame,xyz),pathOffset:xyz=>programPathOffset(programFrame,xyz),setPose:xyz=>{for(const [i,a]of ['x','y','z'].entries())$('#'+a).value=xyz[i];applyPose()}});
  try{const mods=readV0ModsURL(initialURL,{machine_id:id,registry:installations.registry});if(mods&&await setV0Mods(mods))configurationFeedback('共有リンクのMod構成を復元しました')}catch(e){configurationFeedback(loadError('共有リンクの読込エラー:',e))}
  setupRenderExport({renderer,scene,camera,controls:orbit,name:id,afterRender:render});$('#status').hidden=true;document.body.dataset.ready='true';document.body.dataset.parts=String(manifest.parts.length);applyPose();resize();
 }catch(e){$('#status').textContent='読込エラー: '+e.message;document.body.dataset.error=e.message;console.error(e)}
@@ -104,9 +108,14 @@ try{
 function refreshMods(){if(!installations)return;const state=installations.getState();$('#tophatAngle').max=String(v0TophatMaxAngle(installations.registry,state));$('#tophatAngle').value=adapter.tophat.getAngle();$('#tophatAnglev').textContent=adapter.tophat.getAngle().toFixed(0)+'°';for(const[slot]of v0Slots)$('#mod-'+slot).value=state[slot];$('#installationStatus').replaceChildren(...installations.getNotes().map(note=>{const p=document.createElement('p');p.textContent=note;return p}));const selected=installations.registry.options.find(o=>o.id===state.toolhead&&o.slot==='toolhead');$('#headSummary').textContent=(selected?.label||'Mini Stealthburner / 統合BMG / Revo Voron')+' · 固定ガントリー・単一Zベッド';$('#installationStatus').classList.toggle('notice',state.handles==='stealth-handles');document.body.dataset.v0Mods=JSON.stringify(state)}
 function updateDatum({preservePhysicalPose=true}={}){
  const old=profile.display_reference_xyz_mm,pose=adapter.getPose(),state=installations.getState(),head=installations.registry.options.find(o=>o.slot==='toolhead'&&o.id===state.toolhead),bed=installations.registry.options.find(o=>o.slot==='bed'&&o.id===state.bed);
+ profile.display_limits_mm=v0NativeDisplayLimits(state,stockProfile.display_limits_mm);
+ for(const[i,a]of ['x','y','z'].entries()){const limits=profile.display_limits_mm['XYZ'[i]];$('#'+a).min=String(limits[0]);$('#'+a).max=String(limits[1])}
  profile.nozzle_tip_mm=[...(head?.nozzle_tip_mm||stockProfile.nozzle_tip_mm)];profile.bed_top_world_z_mm=bed?.bed_top_mm??stockProfile.bed_top_world_z_mm;
  profile.sampled_clearance_limits_mm=head||bed?null:structuredClone(stockProfile.sampled_clearance_limits_mm);
  $('#clearanceStatus').textContent=head||bed?'換装構成の全ストロークは下記の取付確認を参照してください':`CAD格子点の確認範囲 X 0–${stockProfile.sampled_clearance_limits_mm.X[1]} / Y 0–${stockProfile.sampled_clearance_limits_mm.Y[1]} / Z 0–${stockProfile.sampled_clearance_limits_mm.Z[1]} mm`;
+ const nativeGate=installations.getNativeInstallationGate?.();
+ if(nativeGate)$('#clearanceStatus').textContent=`Dragon Burner display range: ${v0NativeRangeText(nativeGate.display_limits_mm)} mm · sampled poses only`;
+ const regionNotes=$('#x').closest('details').querySelectorAll('p.foot:not([id])'),restricted=Boolean(nativeGate);for(const[i,note]of [...regionNotes].entries()){note.dataset.stockMotionText??=note.textContent;note.textContent=restricted?(i===0?`Display range: ${v0NativeRangeText(nativeGate.display_limits_mm,', ')} mm. Increasing Z lowers the bed.`:'Selected native poses were checked. Complete tube/wire routing, continuous clearance and firmware calibration remain unverified.'):note.dataset.stockMotionText;}
  const bedMin=bed?.bed_xy_min_mm||stockProfile.bed_surface_min_xy_mm;
  profile.display_reference_xyz_mm=[profile.nozzle_tip_mm[0]-bedMin[0],profile.nozzle_tip_mm[1]-bedMin[1],profile.nozzle_tip_mm[2]-profile.bed_top_world_z_mm];
  programFrame.nozzle_mm=profile.nozzle_tip_mm;programFrame.reference_xyz_mm=profile.display_reference_xyz_mm;
@@ -114,7 +123,7 @@ function updateDatum({preservePhysicalPose=true}={}){
  if(preservePhysicalPose)for(const[i,a]of ['x','y','z'].entries())$('#'+a).value=Math.max(profile.display_limits_mm['XYZ'[i]][0],Math.min(profile.display_limits_mm['XYZ'[i]][1],pose[i]+profile.display_reference_xyz_mm[i]-old[i]));
 }
 function commitV0State(value){
- updateDatum({preservePhysicalPose:!value});refreshMods();
+ program?.invalidate();updateDatum({preservePhysicalPose:!value});refreshMods();
  if(value){
   palette={...value.palette};applyPalette();for(const[i,a]of ['x','y','z'].entries())$('#'+a).value=value.pose[i];
   for(const key of ['enclosure','belts']){$('#'+key).checked=value[key];$('#'+key).onchange()}
@@ -129,7 +138,7 @@ function commitV0State(value){
 async function setV0Mods(state){return workspaceTask(()=>stateRestorer.setMods(state));}
 function currentV0(){return {adapter,profile,manifest:currentManifest,installations,scene,camera,orbit}}
 function captureV0State(){return validateV0State({profile,registry:installations.registry},{schema:v0ConfigurationSchema,machine_id:id,mods:installations.getState(),pose:adapter.getPose(),palette:{...palette},enclosure:$('#enclosure').checked,belts:$('#belts').checked,grid:$('#gridVisible').checked,door_angle_deg:adapter.door.getAngle(),tophat_angle_deg:adapter.tophat.getAngle()})}
-async function restoreV0State(value){return workspaceTask(()=>stateRestorer.restore(value));}
+async function restoreV0State(value){return workspaceTask(()=>{const checked=validateV0State({profile:v0NativeStateProfile(stockProfile,value?.mods),registry:installations.registry},value);return stateRestorer.restore(checked)});}
 workspaceListen(window,'pagehide',event=>{if(event.persisted)return;installations?.dispose();orbit.dispose();renderer.dispose();adapter=null;installations=null});
 
 setupSceneDisplay(scene,renderer,camera,scope,THREE);

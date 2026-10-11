@@ -9,6 +9,7 @@ import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
 import {createGunzip} from 'node:zlib';
 import {installationsModule,stateModule} from './v0-state-test-runtime.mjs';
+import {v0NativeInstalledId,v0NativeStateProfile,assertV0NativeInstalledSelection} from '../site/viewer/v0-native-installed-gate.mjs';
 import {pageShareData,xShareURL} from '../site/viewer/workspace-share.mjs';
 import {embedURL,embedTarget} from '../site/viewer/embed-contract.mjs';
 import {supportURL,rowSelection} from '../site/support/model.mjs';
@@ -22,13 +23,13 @@ const report={schema:'v0-state-actual-assets-v1',passed:false,workers:1,fixture:
 const digest=bytes=>createHash('sha256').update(bytes).digest('hex');
 function asset(name){const file=path.resolve(root,name),relative=path.relative(root,file);if(relative.startsWith('..')||path.isAbsolute(relative))throw Error('Asset escapes fixture: '+name);return file}
 async function read(name){const bytes=await fs.readFile(asset(name));report.input_sha256[name]=digest(bytes);return JSON.parse(bytes)}
-async function hashFile(file,gzip=false){let stream=createReadStream(file);if(gzip)stream=stream.pipe(createGunzip());const hash=createHash('sha256');for await(const chunk of stream)hash.update(chunk);return hash.digest('hex')}
+async function hashFile(file,gzip=false,expectedBytes){let stream=createReadStream(file);if(gzip)stream=stream.pipe(createGunzip());const hash=createHash('sha256');let bytes=0;for await(const chunk of stream){hash.update(chunk);bytes+=chunk.length}if(expectedBytes!==undefined)assert.equal(bytes,expectedBytes,'Decoded V0 source bytes');return hash.digest('hex')}
 function* states(registry,slots=v0Slots,index=0,value={}){if(index===slots.length){yield value;return}const slot=slots[index][0];for(const id of ['stock',...(slot==='accelerometer'?['none']:[]),...registry.options.filter(o=>o.slot===slot&&o.id!=='stock').map(o=>o.id)])yield*states(registry,slots,index+1,{...value,[slot]:id})}
 const incompatible=(registry,mods)=>registry.options.some(o=>mods[o.slot]===o.id&&(Object.entries(o.requires||{}).some(([k,v])=>mods[k]!==v)||Object.entries(o.conflicts||{}).some(([k,v])=>v.includes(mods[k]))));
 const reject=fn=>{assert.throws(fn);report.counts.invalidCases++};
 function saved(profile,registry,mods,pose){return {schema:v0ConfigurationSchema,machine_id:profile.machine_id,mods,pose,palette:{base:'#ff0033',accent:'#00ffcc',frame:null},enclosure:false,belts:true,grid:false,door_angle_deg:110,tophat_angle_deg:v0TophatMaxAngle(registry,mods)}}
 try{
- for(const name of ['site/viewer/v0-app.js','site/viewer/v0-state.mjs','site/viewer/v0-installations.mjs','site/viewer/v0-mod-library.mjs','site/viewer/v0_adapter.mjs','site/support/model.mjs','site/support/resource.mjs','scripts/audit_v0_state.mjs','scripts/v0-state-test-runtime.mjs'])report.source_sha256[name]=digest(await fs.readFile(path.join(sourceRoot,name)));
+ for(const name of ['site/viewer/v0-app.js','site/viewer/v0-native-installed-gate.mjs','site/viewer/toolhead-led-identities.mjs','site/viewer/v0-state.mjs','site/viewer/v0-installations.mjs','site/viewer/v0-mod-library.mjs','site/viewer/v0_adapter.mjs','site/support/model.mjs','site/support/resource.mjs','scripts/audit_v0_state.mjs','scripts/v0-state-test-runtime.mjs'])report.source_sha256[name]=digest(await fs.readFile(path.join(sourceRoot,name)));
  const registration=await read('V0_INSTALLATIONS.json'),library=await read('COMPONENT_LIBRARY.json');assert.equal(registration.schema,'v0-installations-v1');assert(Array.isArray(library.items));
  const supportIndex=await read('support/data/index.json');
  const supportFetcher=async url=>{
@@ -41,8 +42,19 @@ try{
  const metadata=new Map();
  for(const [machine_id,registry]of Object.entries(registration.machines))for(const option of registry.options)for(const spec of option.attachments){
   if(!spec.module||metadata.has(spec.module))continue;
-  const source=registration.sources[spec.module];assert(source,'Unregistered source: '+spec.module);assert(!source.external,'This bounded audit requires local installed V0 source metadata');
-  const name=source.metadata||'modules/'+spec.module+'/module.json',meta=await read(name);assert.equal(report.input_sha256[name],source.metadata_sha256,'Installed source metadata hash: '+spec.module);assert(Array.isArray(meta.parts),'Missing source parts: '+spec.module);
+  const source=registration.sources[spec.module];assert(source,'Unregistered source: '+spec.module);
+  const descriptor=source.external&&source.files?.['parts.json'];
+  const name=source.external?(assert(descriptor,'Missing external V0 parts descriptor'),(source.external.local_directory||'extra-assets')+'/'+descriptor.path):source.metadata||'modules/'+spec.module+'/module.json';
+  const meta=await read(name);assert.equal(report.input_sha256[name],source.metadata_sha256,'Installed source metadata hash: '+spec.module);assert(Array.isArray(meta.parts),'Missing source parts: '+spec.module);
+  assert.equal(new Set(meta.parts.map(p=>p.key)).size,meta.parts.length,'Duplicate installed source part');
+  if(source.external){
+   assert.equal(report.input_sha256[name],descriptor.sha256,'External V0 parts pin');assert.equal((await fs.stat(asset(name))).size,descriptor.bytes,'External V0 parts bytes');assert.equal(meta.id,source.component_id);assert.equal(meta.parts.length,source.parts);
+   const model=source.files['model.glb'];assert(model,'Missing external V0 model descriptor');assert([undefined,'gzip','identity'].includes(model.encoding),'Unknown external V0 model encoding');
+   const modelName=(source.external.local_directory||'extra-assets')+'/'+model.path,modelFile=asset(modelName);
+   assert.equal((await fs.stat(modelFile)).size,model.bytes,'External V0 encoded model bytes');report.input_sha256[modelName]=await hashFile(modelFile);assert.equal(report.input_sha256[modelName],model.sha256,'External V0 encoded model pin');
+   const decoded=await hashFile(modelFile,model.encoding==='gzip',model.decoded_bytes??model.bytes);assert.equal(decoded,model.decoded_sha256||model.sha256,'External V0 decoded model pin');
+   report.source_metadata.push({module:spec.module,model:modelName,decoded_sha256:decoded,inspection:'Hash only; native/body/movement verification is separately required'});
+  }
   metadata.set(spec.module,new Set(meta.parts.map(p=>p.key)));report.source_metadata.push({module:spec.module,path:name,sha256:report.input_sha256[name]});
  }
  for(const [machine_id,registry]of Object.entries(registration.machines)){
@@ -60,7 +72,15 @@ try{
    const url=v0ModsURL(base,context,mods);assert.deepEqual(readV0ModsURL(url,context),mods);assert.equal(new URL(url).searchParams.get('lang'),'ja');assert.equal(new URL(url).searchParams.get('embed'),'1');report.counts.urlRoundtrips++;
    const share=pageShareData(url,'V0');assert.deepEqual(readV0ModsURL(share.url,context),mods);assert.deepEqual(readV0ModsURL(new URL(xShareURL(share)).searchParams.get('url'),context),mods);report.counts.shareRoundtrips++;
    assert.deepEqual(readV0ModsURL(embedTarget(embedURL(url)).url.href,context),mods);report.counts.embedRoundtrips++;
-   for(const pose of poses){const value=saved(profile,registry,mods,pose);assert.deepEqual(validateV0State(stateContext,JSON.parse(JSON.stringify(value))),value);report.counts.savedStateRoundtrips++}
+   const destination=v0NativeStateProfile(profile,mods),destinationContext={profile:destination,registry},destinationLimits=destination.display_limits_mm;
+   const destinationPoses=mods.toolhead===v0NativeInstalledId?[axes.map(a=>destinationLimits[a][0]),axes.map(a=>destinationLimits[a][1]),axes.map(a=>(destinationLimits[a][0]+destinationLimits[a][1])/2),[...registry.options.find(o=>o.id===mods.toolhead).installation.display_reference_xyz_mm]]:poses;
+   for(const pose of destinationPoses){const value=saved(profile,registry,mods,pose);assert.deepEqual(validateV0State(destinationContext,JSON.parse(JSON.stringify(value))),value);report.counts.savedStateRoundtrips++}
+   if(mods.toolhead===v0NativeInstalledId){
+    const candidate=registry.options.find(o=>o.id===mods.toolhead),receipts={'assembly_manifest.json':row.manifest_sha256,'machine_profile.json':row.profile_sha256,'model.glb':model_sha256};
+    for(const[module,dep]of Object.entries(candidate.runtime_gate.source_dependencies)){const file=asset(dep.model.path);assert.equal((await fs.stat(file)).size,dep.model.bytes);assert.equal(await hashFile(file),dep.model.sha256);receipts['module:'+module]=await hashFile(file,true,dep.model.decoded_bytes);assert.equal(receipts['module:'+module],dep.model.decoded_sha256)}
+    const checked=assertV0NativeInstalledSelection({registry:{...registry,sources:registration.sources},mods,manifest,stockProfile:profile,receipts});row.nativeInstalledGate=checked;row.nativeInstalledPoseSamples=destinationPoses;
+    for(const axis of [0,1,2])for(const sign of [-1,1]){const pose=[...destinationPoses[2]];pose[axis]=destinationLimits[axes[axis]][sign<0?0:1]+sign;reject(()=>validateV0State(destinationContext,saved(profile,registry,mods,pose)))}
+   }
    assert.deepEqual(readV0ModsURL(v0ModsURL(url,context,stockV0Mods()),context),stockV0Mods());report.counts.stockResets++;
    assert.deepEqual(readV0ModsURL(v0ModsURL(v0ModsURL(url,context,stockV0Mods()),context,mods),context),mods);report.counts.reversals++;
   }
@@ -92,7 +112,8 @@ try{
   for(const item of library.items.filter(i=>i.id.startsWith('v0mod_')))for(const[slot]of v0Slots)reject(()=>v0ModsURL(base,context,{...stockV0Mods(),[slot]:item.id}));
   report.machines.push(row);
  }
- report.passed=true;
+ for(const[name,hash]of Object.entries(report.source_sha256))assert.equal(digest(await fs.readFile(path.join(sourceRoot,name))),hash,'Runtime changed during V0 state audit: '+name);
+ report.source_endcheck=true;report.passed=true;
 }catch(e){report.failures.push({message:e.message,stack:e.stack});process.exitCode=1}
 await fs.mkdir(path.dirname(output),{recursive:true});await fs.writeFile(output,JSON.stringify(report,null,2)+'\n');
 const report_sha256=digest(await fs.readFile(output));

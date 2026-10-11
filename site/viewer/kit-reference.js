@@ -1,9 +1,9 @@
 import {displacementGcodeSettings,displacementCoordinateNote} from './gcode-machine-bindings.mjs?v=460777c3fc4d1a74bf27';
-import {setupGcodePanel} from './gcode-panel.js?v=1df4ed3b7d487c82cee0';
+import {setupGcodePanel} from './gcode-panel.js?v=9f2e2d37bad40bd01847';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
-import {setupSceneDisplay} from './display-preferences.mjs?v=cfa9769ce74b3791658f';
-import {workspaceFrame,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=ea3c45fda6e17c3b5857';
+import {setupSceneDisplay} from './display-preferences.mjs?v=5fd25f289942c501706d';
+import {workspaceFrame,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=a8e49b4993efdc7bac52';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=workspace-belts-1';
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import * as THREE from 'three';
@@ -11,10 +11,10 @@ import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {loadKitReference} from './kit-reference-loader.mjs?v=e018cf8fc3c93c4140dd';
 import {setupMachineNavigation} from './machines.js?v=7d90ace65109ee54e1d2';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
-import {setupRenderExport} from './render-export.js?v=a5e4bcf57f5a8e07dcba';
-import {setupPublicInfo} from './public-info.js?v=bc65031c671a47d05260';
-import {createCommunityAdapter} from './community-adapter.mjs?v=b17b9b1c319a9e599442';
-import {setupNativeMotionControls} from './native-motion-controls.mjs?v=9bf35a1b46da44304d56';
+import {setupRenderExport} from './render-export.js?v=1383105a90d0fa4a63bd';
+import {setupPublicInfo} from './public-info.js?v=04b710e03e02ba2aea63';
+import {createCommunityAdapter} from './community-adapter.mjs?v=603e9739f4c0fc671488';
+import {setupNativeMotionControls} from './native-motion-controls.mjs?v=a088a79a7353642d746f';
 export async function mount(scope){
 const $=s=>document.querySelector(s),id='fysetc_v24_250_pro',stage=$('#stage');
 setupMachineNavigation(id);setupPublicInfo({includeDownloads:false});

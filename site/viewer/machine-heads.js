@@ -1,35 +1,36 @@
 import {cloneNativeLedTree} from './led-emission-surface.mjs?v=af40a3200e128a08c940';
-import {validateEvaMetadata,bindEvaSourceMachines,bindEvaMeshIdentities} from './eva-heads.mjs?v=65c037171afca9ebb341';
-import {loadEvaFrontSurfaces,applyEvaFrontSurfaces} from './eva-front-surfaces.mjs?v=ff32b5dac706119bf45c';
-import {evaCommunityIndex} from './eva-installations.mjs?v=3838c4828bb6ab03392f';
+import {validateEvaMetadata,bindEvaSourceMachines,bindEvaMeshIdentities} from './eva-heads.mjs?v=b53ce6925a6fec3b5b10';
+import {loadEvaFrontSurfaces,applyEvaFrontSurfaces} from './eva-front-surfaces.mjs?v=a1a0fbab92e8e08c3f6b';
+import {evaCommunityIndex} from './eva-installations.mjs?v=4dfad49e1f98d4b5b9f2';
+import {validateEvaOptionsRegistry} from './eva-options.mjs?v=775ad42efa309bb86064';
 import {madmaxJointAssetSpec,madmaxJointApplies,captureMadmaxJoint,setMadmaxJointPose} from './madmax-native-joint.mjs?v=d39e974d7b782135b52a';
 import {madmaxPtfeAssetSpec} from './madmax-ptfe.mjs?v=c0df5309f697af621506';
 import {withRapidoXUhfCover,setRapidoXUhfSurface} from './rapido-x-uhf-cover.mjs?v=8b458475dac84cfcd8c7';
 import {v24NativeDriveMetadata} from './v24-drive-metadata.mjs?v=dbdf9f37cb0849ffc262';
-import {augmentTrinityAlphaHosts,TRINITY_ALPHA_HOST_SOURCE,alphaResetPose,alphaRangeNotice,alphaResetLabel} from './trinity-alpha-host-extensions.mjs?v=16eaa18cbe476dce5e42';
-import {alphaReference,alphaLimits} from './trinity-alpha-installation.mjs?v=00883f5a143392e34554';
-import {augmentTrinitySiboorR2,TRINITY_SIBOOR_SOURCE} from './trinity-alpha-siboor-r2.mjs?v=7e0002b29eb86db57580';
-import {augmentTrinityAlpha,TRINITY_ALPHA_SOURCE} from './trinity-alpha-installation.mjs?v=00883f5a143392e34554';
-import {workspaceTask} from './workspace-lifecycle.mjs?v=ea3c45fda6e17c3b5857';
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=334364a6954b5edfdc00';
-import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=f8f1e63949058c9f3c6e';
+import {augmentTrinityAlphaHosts,TRINITY_ALPHA_HOST_SOURCE,alphaResetPose,alphaRangeNotice,alphaResetLabel} from './trinity-alpha-host-extensions.mjs?v=fbd42f07fa1a4786905b';
+import {alphaReference,alphaLimits} from './trinity-alpha-installation.mjs?v=5d10b3dcaf3e116b826c';
+import {augmentTrinitySiboorR2,TRINITY_SIBOOR_SOURCE} from './trinity-alpha-siboor-r2.mjs?v=28e62494b5e8b740f76d';
+import {augmentTrinityAlpha,TRINITY_ALPHA_SOURCE} from './trinity-alpha-installation.mjs?v=5d10b3dcaf3e116b826c';
+import {workspaceTask} from './workspace-lifecycle.mjs?v=a8e49b4993efdc7bac52';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=ad5001b7aa53ae7136de';
+import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=16a46b1359d5755c50c1';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import {partKey} from './head-assembly.js';
-import {v24HeadCatalog} from './machine-head-model.mjs?v=29127f945aa95e886fe7';
-import {setupConfigurations} from './configurations.js?v=5633928f243ee0e2663d';
+import {v24HeadCatalog} from './machine-head-model.mjs?v=e98071542d35d57f15ba';
+import {setupConfigurations} from './configurations.js?v=6a7850440f61a6c48cf0';
 
-import {loadSiboorRegistration} from './siboor-catalog.mjs?v=09e0b77a1e3484059fa9';
-import {stockProbeFit} from './probe-mounts.js?v=f1e71ff433b1c31d5e82';
+import {loadSiboorRegistration} from './siboor-catalog.mjs?v=6549106f568b1a33d001';
+import {stockProbeFit} from './probe-mounts.js?v=2a0160362fcaa1e366a2';
 
 import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs';
 import {bankPlan} from './changer-bank-model.mjs?v=024cc52a5bbc61da7506';
-import {setupChangerBank} from './changer-bank.js?v=e40b96658f9103747458';
+import {setupChangerBank} from './changer-bank.js?v=6bf3ba28508c49853ec9';
 import {contentSHA256,acceptedMountValidation} from './mount-validation.mjs';
 import {acceptedHeadValidation}from './head-validation.mjs';
-import {withHeadAdditions} from './head-additions.mjs?v=56833e5e3a167e8825d5';
+import {withHeadAdditions} from './head-additions.mjs?v=23581035dd1b38fe48e2';
 import {nativeDeckEvidenceSource,nativeWitnessInputs} from './native-evidence-bridge.mjs?v=a5f3aad096d9be8f211b';
 import {loadExternalComponent} from './component-assets.mjs?v=9f8ef058f1297ab60e53';
 
@@ -39,7 +40,7 @@ export async function loadMachineHeadCatalog(machine){return workspaceTask(async
  const get=async name=>{return workspaceTask(async()=>{const r=await fetch('../'+name,{cache:'no-cache'});if(!r.ok)throw Error('ヘッドの取付データを取得できません');const text=await r.text();try{hashes[name]=await contentSHA256(text)}catch{/* Unsupported hashing leaves mounting evidence unverified. */}return JSON.parse(text)});};
  const [rawHeads,additions,registry,bank]=await Promise.all([get('TOOLHEAD_CONFIGURATIONS.json'),get('HEAD_ADDITIONS.json'),get('MACHINE_HEAD_REGISTRATIONS.json'),get('TOOLCHANGER_BANK.json')]);
  const heads=withRapidoXUhfCover(withHeadAdditions(rawHeads,additions));
- if(heads.variants.some(v=>v.eva?.source_machine)){const [community,eva]=await Promise.all([get('COMMUNITY_MACHINES_ASSETS.json'),get('EVA_INSTALLATIONS.json')]);bindEvaSourceMachines(heads,registry,evaCommunityIndex(community,eva));}
+ if(heads.variants.some(v=>v.eva?.source_machine)){const [community,eva,options]=await Promise.all([get('COMMUNITY_MACHINES_ASSETS.json'),get('EVA_INSTALLATIONS.json'),get('EVA_OPTIONS.json')]);validateEvaOptionsRegistry(options,heads);bindEvaSourceMachines(heads,registry,evaCommunityIndex(community,eva),options);}
  if(['siboor_trident_300','siboor_trident_350'].includes(machine)){const patch=(await loadSiboorRegistration()).registrations;registry.machines.siboor_trident_300=patch.head;bank.machines.siboor_trident_300=patch.bank;bank.indx.machines.siboor_trident_300=patch.indx_bank;}
  if(machine){
   try{
@@ -72,7 +73,7 @@ export function createMachineHeads(scene,catalog,{render=()=>{}}={}){
   if(cache.has(id))return cache.get(id);const spec=madmaxPtfeAssetSpec(catalog.machine_id,id,madmaxJointAssetSpec(catalog.machine_id,id,catalog.base_assets?.[id]||catalog.assets[id]));if(!spec)throw Error('未登録のヘッド部品：'+id);
   const loading=spec.external?loadExternalComponent(new GLTFLoader(),spec,location.href).then(({meta,gltf})=>[meta,gltf]):Promise.all([fetch('../'+spec.meta,{cache:'no-cache'}).then(async r=>{if(!r.ok)throw Error('ヘッドの部品表');if(spec.metadata_sha256){const text=await r.text();if(await contentSHA256(text)!==spec.metadata_sha256)throw Error('Native head metadata hash mismatch');return JSON.parse(text)}return r.json()}),loadModel(new GLTFLoader(),'../'+spec.glb,undefined,spec.decoded_model_sha256?{verifySha256:spec.decoded_model_sha256}:{})]);
   const promise=loading.then(async([meta,g])=>{
-   if(meta.eva_generation)applyEvaFrontSurfaces(g.scene,meta,spec.files['model.glb'].decoded_sha256,await loadEvaFrontSurfaces(frontLoader,location.href));
+   if(meta.eva_generation)applyEvaFrontSurfaces(g.scene,meta,spec.files['model.glb'].decoded_sha256,{...await loadEvaFrontSurfaces(frontLoader,location.href),metadataSha256:spec.files['parts.json'].sha256});
    if(meta.coordinate_frame==='original_native_CAD_mm_XY_Zup'){const native=new THREE.Group();native.rotation.x=-Math.PI/2;native.scale.setScalar(.001);native.add(g.scene);g.scene=native;}
    bindEvaMeshIdentities(meta,g.scene);const lookup=new Map(meta.parts.map(p=>[String(p.key),p])),entries=[];g.scene.visible=false;
    g.scene.traverse(mesh=>{if(!mesh.isMesh)return;const key=partKey(mesh),row=lookup.get(String(key));if(!row)throw Error('ヘッドの部品対応が不正です');mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();const materials=Array.isArray(mesh.material)?mesh.material:[mesh.material];for(const m of materials){m.side=meta.native_single_sided?THREE.FrontSide:THREE.DoubleSide;if(m.transparent)m.depthWrite=false}entries.push({mesh,key,component:row.component,role:appearanceRole(row)||mesh.userData.appearance_role,materials,colors:materials.map(m=>m.color.clone())})});rig.add(g.scene);return {root:g.scene,entries,meta,nativeJoint:captureMadmaxJoint(catalog.machine_id,id,meta,entries)};

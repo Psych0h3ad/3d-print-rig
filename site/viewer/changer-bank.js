@@ -1,5 +1,5 @@
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
-import {workspaceTask} from './workspace-lifecycle.mjs?v=ea3c45fda6e17c3b5857';
+import {workspaceTask} from './workspace-lifecycle.mjs?v=a8e49b4993efdc7bac52';
 import {bankChoices,bankCapacity,bankDockUnavailable,normalizeBank,initialBank,readBankURL,bankBedReferenceDrop,bankSystem,bankSource,bankSpec,variantBankSystem,bankStateForVariant,bankPlan} from './changer-bank-model.mjs?v=024cc52a5bbc61da7506';
 import {bankWitnessCheck}from './head-validation.mjs?v=bba39d88e1b5b7f848c0';
 

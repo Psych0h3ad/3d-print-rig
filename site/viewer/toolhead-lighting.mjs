@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import {prepareLedSurface,restoreLedSurface} from './led-emission-surface.mjs?v=af40a3200e128a08c940';
-import * as identities from './toolhead-led-identities.mjs?v=39dec8b48b8d0d1a46d6';
+import * as identities from './toolhead-led-identities.mjs?v=2b3de1e42ae985776b37';
 import {ledSample,createLedAnimator} from './lighting-animation.mjs';
 
 export const TOOLHEAD_LED_MAX_LEVEL=300;

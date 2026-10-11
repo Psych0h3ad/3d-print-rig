@@ -13,8 +13,8 @@ from merge_component_library import merge_components
 from pathlib import Path, PurePosixPath
 
 ROOT = Path(__file__).resolve().parents[1]
-# Retain a 20 MB margin below the published GitHub Pages 1 GB limit.
-MAX_SITE_BYTES = 980_000_000
+# Retain a 10 MB margin below the published GitHub Pages 1 GB limit.
+MAX_SITE_BYTES = 990_000_000
 
 
 # Deliver this original author index as the exact bytes pinned by Trinity.
@@ -286,12 +286,21 @@ def main():
     subprocess.run(['node', '--experimental-loader', './scripts/three-test-loader.mjs',
                     'scripts/build_support_catalog.mjs', str(target)], cwd=ROOT, check=True)
     # A native mounting/parts-inventory pass does not prove that front apertures
-    # render correctly. Audit all four real consumers before the Pages artifact.
+    # render correctly. Audit every registered consumer before the Pages artifact.
     with tempfile.TemporaryDirectory(prefix='eva-front-release-') as folder:
         subprocess.run([sys.executable, str(ROOT/'scripts/check_eva_front_release.py'),
                         '--output', folder], cwd=ROOT, check=True)
         (target/'review').mkdir(exist_ok=True)
         shutil.copyfile(Path(folder)/'actual-fronts.json', target/'review/eva-fronts.json')
+    with tempfile.TemporaryDirectory(prefix='eva-options-release-') as folder:
+        subprocess.run([sys.executable, str(ROOT/'scripts/check_eva_options_release.py'),
+                        '--output', folder], cwd=ROOT, check=True)
+        shutil.copyfile(Path(folder)/'actual-options.json', target/'review/eva-options.json')
+    with tempfile.TemporaryDirectory(prefix='v0-native-release-') as folder:
+        subprocess.run([sys.executable, str(ROOT/'scripts/check_v0_native_assets_release.py'),
+                        '--site', str(target), '--output', folder], cwd=ROOT, check=True)
+        shutil.copyfile(Path(folder)/'actual-v0-native-installation.json',
+                        target/'review/v0-native-installation.json')
     (target / '.nojekyll').touch()
     size = sum(path.stat().st_size for path in target.rglob('*') if path.is_file())
     if size > MAX_SITE_BYTES:

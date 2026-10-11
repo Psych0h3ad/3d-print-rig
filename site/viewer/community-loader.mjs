@@ -2,10 +2,10 @@ import {loadedPrinterAssetIdentity} from './gcode-loaded-asset-identity.mjs?v=42
 import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
 import {extraAssetBase,checkedExtraAsset} from './extra-asset-integrity.mjs?v=737f5dc17ca78791c0d8';
 import {beginModelLoading} from './model-progress.mjs?v=6b41a2b9f7626039b7e6';
-import {createCommunityAdapter} from './community-adapter.mjs?v=b17b9b1c319a9e599442';
+import {createCommunityAdapter} from './community-adapter.mjs?v=603e9739f4c0fc671488';
 import {applyNativeMotionProfile,loadNativeMotionProfile} from './native-motion-profile.mjs?v=91532eb992519143f437';
-import {applyEvaInstallation} from './eva-installations.mjs?v=3838c4828bb6ab03392f';
-import {loadEvaFrontSurfaces,applyEvaFrontSurfaces} from './eva-front-surfaces.mjs?v=ff32b5dac706119bf45c';
+import {applyEvaInstallation} from './eva-installations.mjs?v=4dfad49e1f98d4b5b9f2';
+import {loadEvaFrontSurfaces,applyEvaFrontSurfaces} from './eva-front-surfaces.mjs?v=a1a0fbab92e8e08c3f6b';
 export async function loadCommunity(index,machine,{signal}={}){
  const spec=index.machines[machine];if(!spec||spec.machine_id!==machine)throw Error('Unknown community printer');
  const extraModels=spec.additional_models||[];
@@ -20,7 +20,7 @@ export async function loadCommunity(index,machine,{signal}={}){
  ({manifest,profile}=applyEvaInstallation(manifest,profile,spec.eva_installation));
  progress.assembling();const loader=new GLTFLoader(),root=(await loader.parseAsync(bytes.buffer,base.href)).scene;
  for(const data of extraBytes)root.add((await new GLTFLoader().parseAsync(data.buffer,base.href)).scene);
- if(spec.eva_installation)applyEvaFrontSurfaces(root,manifest,spec.files['model.glb'].decoded_sha256,{...await loadEvaFrontSurfaces(loader,import.meta.url),sourceOriginMm:profile.origin_mm});
+ if(spec.eva_installation)applyEvaFrontSurfaces(root,manifest,spec.files['model.glb'].decoded_sha256,{...await loadEvaFrontSurfaces(loader,import.meta.url),sourceOriginMm:profile.origin_mm,metadataSha256:spec.files['assembly_manifest.json'].sha256});
  const replay_asset_identity=await loadedPrinterAssetIdentity({machine,spec,manifest,profile,checkedFileNames:names});
  return {root,manifest,profile,replay_asset_identity,adapter:createCommunityAdapter(root,manifest,profile)};
  }finally{progress.finish()}

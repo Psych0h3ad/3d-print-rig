@@ -11,11 +11,39 @@ await loadLanguage('ko');assert.equal(translate('Load error: Invalid XYZ setting
 assert.equal(translate('Load error: Invalid XYZ settings','en'),'Load error: Invalid XYZ settings');
 import * as libraryModule from '../site/viewer/v0-mod-library.mjs';
 import * as adapterModule from '../site/viewer/v0_adapter.mjs';
+import * as nativeGateModule from '../site/viewer/v0-native-installed-gate.mjs';
 import {fixtureProfile,makeV0Fixture,modStates,conflicts} from './v0-state-fixtures.mjs';
 const catalog=JSON.parse(await fs.readFile(new URL('../site/V0_INSTALLATIONS.json',import.meta.url),'utf8'));
 const appSource=await fs.readFile(new URL('../site/viewer/v0-app.js',import.meta.url),'utf8');
 const plain=value=>JSON.parse(JSON.stringify(value));
-const summary={result:'PASS',workers:1,appSelections:0,fileRestorations:0,urlStartupRestorations:0,invalidStartupLinks:0,failedLoads:0,races:0,resets:0,poseReversals:0,machines:[]};
+const summary={result:'PASS',workers:1,appSelections:0,fileRestorations:0,urlStartupRestorations:0,invalidStartupLinks:0,failedLoads:0,races:0,resets:0,poseReversals:0,nativeSourceRejections:0,machines:[]};
+// Execute the current selector body, without mounting a GPU/model fixture.
+// This protects the existing source-declared companion resolution, rather than
+// introducing a second UI resolver or weakening the strict controller API.
+const selectorBody=appSource.match(/select\.onchange=async\(\)=>\{([\s\S]*?)\};\s*\$\('#v0ModFields'\)/u)?.[1];
+assert(selectorBody,'Missing production V0 selector handler');
+let selectorCases=0;
+for(const registry of Object.values(catalog.machines)){
+ const ids=registry.options.filter(o=>o.id!=='stock').map(o=>o.id);
+ assert.equal(new Set(ids).size,ids.length,'ID-only selector lookup requires unique non-stock IDs across slots');
+ for(const chosen of registry.options.filter(o=>o.slot==='toolhead')){
+  const original=stateModule.stockV0Mods(),controls=Object.fromEntries(installationsModule.v0Slots.map(([slot])=>[slot,{value:original[slot]}]));
+  const select=controls.toolhead;select.value=chosen.id;let committed;
+  const execute=vm.runInNewContext(`(async()=>{${selectorBody}})`,{select,installations:{registry},v0Slots:installationsModule.v0Slots,workspaceTask:fn=>fn(),$:key=>controls[key.slice(5)],setV0Mods:async state=>{committed=installationsModule.validateV0Mods(registry,state)}});
+  await execute();assert.deepEqual(committed,{...original,toolhead:chosen.id,...chosen.requires});
+  assert.deepEqual(original,stateModule.stockV0Mods(),'Selector preserves input snapshot');
+  for(const [slot,value]of Object.entries(chosen.requires||{}))assert.equal(committed[slot],value);
+  if(chosen.requires?.accelerometer==='none')assert.throws(()=>installationsModule.validateV0Mods(registry,{...original,toolhead:chosen.id}),'Core API must still reject unresolved source companions');
+  selectorCases++;
+ }
+ const stock=stateModule.stockV0Mods();stock.accelerometer='none';
+ assert.deepEqual(installationsModule.validateV0Mods(registry,stock),stock,'Stock carries no implied companion overrides');
+ assert.throws(()=>installationsModule.validateV0Mods(registry,{...stock,toolhead:'unknown-source-head'}));
+}
+if(process.argv.includes('--selector-only')){
+ console.log(JSON.stringify({passed:true,selector_cases:selectorCases,scope:'Actual production selector body and catalog requirements; strict API preserved. No browser or exported-model audit.'}));process.exit(0);
+}
+summary.selectorCases=selectorCases;
 class Element{
  constructor(id='',tag='input'){this.id=id;this.tag=tag;this.children=[];this.dataset={};this.checked=false;this.disabled=false;this.textContent='';this.files=[];this._value='';this.min='';this.max='';this.type='';this.classList={toggle:()=>{}}}
  get options(){return this.children}
@@ -23,6 +51,7 @@ class Element{
  set value(v){let s=String(v);if(this.type==='range'&&s!==''&&Number.isFinite(Number(s)))s=String(Math.max(Number(this.min),Math.min(Number(this.max),Number(s))));this._value=s}
  append(...children){this.children.push(...children);if(this.tag==='select'&&!this.value&&children.length)this.value=children[0].value}
  replaceChildren(...children){this.children=[];this.value='';this.append(...children)}
+ closest(selector){if(selector!=='details')return null;return this._details??={querySelectorAll:()=>this._motionNotes??=[new Element('','p'),new Element('','p')]}}
  setAttribute(){}removeAttribute(){}click(){this.onclick?.()}getBoundingClientRect(){return {width:900,height:700}}
 }
 async function mountApp(machine_id,mods,{rawURL,profile:providedProfile}={}){
@@ -48,6 +77,7 @@ async function mountApp(machine_id,mods,{rawURL,profile:providedProfile}={}){
   'workspace-lifecycle.mjs':{workspaceTask:fn=>Promise.resolve().then(fn),workspaceFrame:()=>1,workspaceListen:()=>{},WorkspaceResizeObserver:class{observe(){}}},
   'workspace-navigation.mjs':{replaceWorkspaceURL:(state,title,url)=>history.replaceState(state,title,url)},
   'v0-installations.mjs':installationsModule,'v0-state.mjs':stateModule,'v0-mod-library.mjs':libraryModule,
+  'v0-native-installed-gate.mjs':nativeGateModule,
   'component-assets.mjs':{loadExternalComponent:()=>{throw Error('Unexpected external source')}},
   'responsive-camera.mjs':{setResponsiveAspect:()=>{},frameResponsiveView:()=>{}},
   'appearance-role.mjs':{appearanceRole:()=>null},
@@ -64,12 +94,13 @@ async function mountApp(machine_id,mods,{rawURL,profile:providedProfile}={}){
   'machines.js':{setupMachineNavigation:()=>{}},
   'grid-control.js':{setupGrid:(scene,render)=>{const grid=new THREE.Group();$('#gridVisible').onchange=()=>{grid.visible=$('#gridVisible').checked;render()};return grid}},
   'render-export.js':{setupRenderExport:()=>{}},'public-info.js':{setupPublicInfo:()=>{}},
-  'gcode-panel.js':{setupGcodePanel:options=>({updatePath:pose=>{programPose=[...pose]}}),displayedMachineLimits:()=>{}},
+  'gcode-panel.js':{setupGcodePanel:options=>({invalidate:()=>{},updatePath:pose=>{programPose=[...pose]}}),displayedMachineLimits:()=>{}},
   'gcode-timeline.mjs':{programPoint:(frame,xyz)=>{programFrame=frame;return xyz},programPathOffset:()=>[0,0,0]},
  };
  const fetch=async path=>{
-  if(path.endsWith('/assembly_manifest.json'))return {ok:true,json:async()=>({parts:[...fixture.adapter.records].map(([key,row])=>({key,...row}))})};
-  if(path.endsWith('/machine_profile.json'))return {ok:true,json:async()=>profile};
+  const jsonBytes=value=>{const bytes=new TextEncoder().encode(JSON.stringify(value));return {ok:true,json:async()=>value,arrayBuffer:async()=>bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength)}};
+  if(path.endsWith('/assembly_manifest.json'))return jsonBytes({machine_id,parts:[...fixture.adapter.records].map(([key,row])=>({key,...row}))});
+  if(path.endsWith('/machine_profile.json'))return jsonBytes(profile);
   if(path.includes('COMPONENT_LIBRARY'))return {ok:true,json:async()=>library};
   if(path.includes('V0_INSTALLATIONS'))return {ok:true,json:async()=>registration};
   const entry=metadata.get(path.replace(/^\.\.\//,''));if(!entry)throw Error('Unexpected fetch: '+path);
@@ -77,14 +108,14 @@ async function mountApp(machine_id,mods,{rawURL,profile:providedProfile}={}){
   return {ok:true,arrayBuffer:async()=>bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength)};
  };
  const TestURL=class extends URL{static createObjectURL(){return 'blob:v0-state-fixture'}static revokeObjectURL(){}};
- const context=vm.createContext({document,window:{},location,history,devicePixelRatio:1,URL:TestURL,URLSearchParams,TextEncoder,structuredClone,crypto:webcrypto,fetch,Blob:class{constructor(parts,options){blobs.push({parts,options})}},localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v)},setTimeout:()=>1,console});
+ const context=vm.createContext({document,window:{},location,history,devicePixelRatio:1,URL:TestURL,URLSearchParams,TextEncoder,TextDecoder,structuredClone,crypto:webcrypto,fetch,Blob:class{constructor(parts,options){blobs.push({parts,options})}},localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v)},setTimeout:()=>1,console});
  const dependency=specifier=>{const key=specifier==='three'?'three':specifier.split('/').at(-1).split('?')[0];assert(namespaces[key],'Missing dependency stub: '+key);return key};
  const code=appSource.replace(/^import \{([^}]+)\} from '([^']+)';$/gmu,(_,names,specifier)=>`const {${names}}=dependencies[${JSON.stringify(dependency(specifier))}];`).replace(/^import \* as (\w+) from '([^']+)';$/gmu,(_,name,specifier)=>`const ${name}=dependencies[${JSON.stringify(dependency(specifier))}];`).replace(/\bimport\.meta\.url/gu,JSON.stringify('https://example.test/rig/viewer/v0-app.js')).replace(/^export /gmu,'');
  // Dependency injection preserves the controller body and closures while
  // allowing the normal source-test runner to avoid experimental VM modules.
  const factory=vm.runInContext(`(function(dependencies){${code}\nreturn {mount,setV0Mods,currentV0,captureV0State,restoreV0State};})`,context,{filename:'v0-app.js'});
  const api=factory(namespaces);await api.mount(scope);assert.equal(document.body.dataset.ready,'true',document.body.dataset.error);assert.equal($('#saveConfiguration').disabled,false);
- return {api,fixture,profile,stockProfile,$,location,history,historyCalls,document,badHashes,gates,missingParts,blobs,programPose:()=>programPose,dispose(){for(const fn of cleanups.reverse())fn();fixture.dispose()}};
+ return {api,fixture,profile:api.currentV0().profile,stockProfile,$,location,history,historyCalls,document,badHashes,gates,missingParts,blobs,programPose:()=>programPose,dispose(){for(const fn of cleanups.reverse())fn();fixture.dispose()}};
 }
 for(const [machine_id,registry]of Object.entries(catalog.machines)){
  // A provided local exported profile is read as metadata only; meshes stay
@@ -96,9 +127,19 @@ for(const [machine_id,registry]of Object.entries(catalog.machines)){
  const oldDatum=[...app.profile.display_reference_xyz_mm];
  for(const [i,axis]of ['x','y','z'].entries())app.$('#'+axis).value=[25,75,60][i];app.$('#x').oninput();
  const physical=app.api.captureV0State().pose.map((n,i)=>n-oldDatum[i]);await app.api.setV0Mods(stateModule.stockV0Mods());assert.deepEqual(plain(app.profile.sampled_clearance_limits_mm),plain(profile.sampled_clearance_limits_mm));
- const adjusted=app.api.captureV0State().pose;for(let i=0;i<3;i++)assert(Math.abs(adjusted[i]-Math.max(0,Math.min(120,physical[i]+app.profile.display_reference_xyz_mm[i])))<1e-8);
+ const adjusted=app.api.captureV0State().pose;for(let i=0;i<3;i++)assert(Math.abs(adjusted[i]-Math.max(0,Math.min(120,physical[i]+app.profile.display_reference_xyz_mm[i])))<1e-8,JSON.stringify({axis:i,adjusted,physical,datum:app.profile.display_reference_xyz_mm,oldDatum}));
  let count=0;
  for(const mods of modStates(registry,installationsModule.v0Slots))if(!conflicts(registry,mods)){
+  if(mods.toolhead===nativeGateModule.v0NativeInstalledId){
+   // These keyed fixtures cannot authenticate the actual native host bytes.
+   // Run the production source gate and require rejection, never forge its
+   // receipts or substitute a pass-through guard. Actual assets have a separate audit.
+   const before=plain(app.api.captureV0State()),url=app.location.href;
+   await assert.rejects(app.api.setV0Mods(mods),/Installed Dragon Burner machine source changed/);
+   assert.deepEqual(plain(app.api.captureV0State()),before);assert.equal(app.location.href,url);
+   assert.equal(app.api.currentV0().installations.getNativeInstallationGate(),null);assert.equal(app.$('#saveConfiguration').disabled,false);
+   summary.nativeSourceRejections++;continue;
+  }
   assert.equal(await app.api.setV0Mods(mods),true);summary.appSelections++;count++;
   for(const [slot]of installationsModule.v0Slots)assert.equal(app.$('#mod-'+slot).value,mods[slot]);
   assert.deepEqual(stateModule.readV0ModsURL(app.location.href,{machine_id,registry}),mods);

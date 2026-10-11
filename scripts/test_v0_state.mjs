@@ -10,7 +10,12 @@ const registration=JSON.parse(await fs.readFile(new URL('../site/V0_INSTALLATION
 const base='https://example.test/rig/viewer/v0.html?lang=ja&embed=1&component=v0mod_mailbox_v5#inspectorTabs';
 const summary={workers:1,valid:0,rejected:0,roundTrips:0,composed:0,reversals:0,resets:0,poses:0,negativeCases:0,races:0,machines:[]};
 const reject=fn=>{assert.throws(fn);summary.negativeCases++};
-const configuration=(profile,mods)=>({schema:v0ConfigurationSchema,machine_id:profile.machine_id,mods,pose:[0,60,120],palette:{base:'#ff0033',accent:'#00FFCC',frame:null},enclosure:false,belts:false,grid:true,door_angle_deg:110,tophat_angle_deg:0});
+// Fixtures use the destination head's registered display region. This does not
+// certify that the sampled region is a continuous physical operating envelope.
+const displayLimits=(profile,mods)=>registration.machines[profile.machine_id].options.find(o=>o.slot==='toolhead'&&o.id===mods.toolhead)?.installation?.display_limits_mm??profile.display_limits_mm;
+const clamp=(n,[lo,hi])=>Math.max(lo,Math.min(hi,n));
+const configuration=(profile,mods)=>{const limits=displayLimits(profile,mods);return {schema:v0ConfigurationSchema,machine_id:profile.machine_id,mods,pose:[limits.X[0],clamp(60,limits.Y),limits.Z[1]],palette:{base:'#ff0033',accent:'#00FFCC',frame:null},enclosure:false,belts:false,grid:true,door_angle_deg:110,tophat_angle_deg:0}};
+const poses=(profile,mods)=>{const limits=displayLimits(profile,mods),lo=['X','Y','Z'].map(a=>limits[a][0]),hi=['X','Y','Z'].map(a=>limits[a][1]),mid=lo.map((n,i)=>(n+hi[i])/2);return [lo,hi,[mid[0],clamp(37,limits.Y),clamp(85,limits.Z)],[hi[0],lo[1],mid[2]],[lo[0],hi[1],lo[2]]]};
 const hashState=value=>JSON.stringify(value);
 for(const [machine_id,registry]of Object.entries(registration.machines)){
  const profile=fixtureProfile(machine_id),context={machine_id,registry},stateContext={profile,registry},fixture=makeV0Fixture(registry,profile);
@@ -33,11 +38,12 @@ for(const [machine_id,registry]of Object.entries(registration.machines)){
   const hidden=new Set(registry.options.filter(o=>mods[o.slot]===o.id).flatMap(o=>o.replace_keys));
   for(const [key,node]of fixture.adapter.nodes)assert.equal(node.visible,!hidden.has(key)&&!(key==='fixture-stock-adxl'&&mods.accelerometer==='none'));
   for(const [id,rows]of installations.roots){const selected=mods[rows[0].option.slot]===id;for(const row of rows){assert.equal(row.wrapper.visible,selected);if(selected&&row.spec.module){const visible=[];row.model.traverse(n=>{if(n.userData.part_key&&n.parent?.userData.part_key!==n.userData.part_key&&n.visible)visible.push(n.userData.part_key)});assert.deepEqual(visible.sort(),[...row.spec.keys].sort())}}}
-  for(const pose of [[0,0,0],[120,120,120],[60,37,85],[120,0,60],[0,120,0]]){installations.setPose(pose);for(const rows of installations.roots.values())for(const row of rows)assert(row.wrapper.position.toArray().concat(row.wrapper.quaternion.toArray()).every(Number.isFinite));summary.poses++}
+  for(const pose of poses(profile,mods)){installations.setPose(pose);for(const rows of installations.roots.values())for(const row of rows)assert(row.wrapper.position.toArray().concat(row.wrapper.quaternion.toArray()).every(Number.isFinite));summary.poses++}
   assert.equal(await restorer.setMods(stockV0Mods()),true);assert.deepEqual(installations.getState(),stockV0Mods());assert.equal(await restorer.setMods(mods),true);summary.reversals++;
   assert.equal(await restorer.setMods(stockV0Mods()),true);summary.resets++;
  }
- assert.equal(valid.length,1152);assert.equal(invalid.length,768);
+ const hasNativeCandidate=registry.options.some(o=>o.slot==='toolhead'&&o.id==='dragon-burner-v8-dragon-native-sherpa-a3-r9c');
+ assert.equal(valid.length,hasNativeCandidate?1153:1152);assert.equal(invalid.length,hasNativeCandidate?1151:768);
  for(const [slot]of v0Slots){assert(seen.has(slot+':stock'));if(slot==='accelerometer')assert(seen.has(slot+':none'));for(const option of registry.options.filter(o=>o.slot===slot))assert(seen.has(slot+':'+option.id))}
  assert.equal(readV0ModsURL(base,context),null);
  const older={accelerometer:'adxl-0',strain_relief:'picobilical-plate',handles:'stealth-handles',tophat:'cat-flap'};
@@ -57,7 +63,7 @@ for(const [machine_id,registry]of Object.entries(registration.machines)){
  for(const category of v0ModCategories)for(const mod of category.mods)for(const [slot]of v0Slots)reject(()=>v0ModsURL(base,context,{...stockV0Mods(),[slot]:'v0mod_'+mod}));
  for(const [slot]of v0Slots)for(const option of registry.options.filter(o=>o.slot!==slot&&o.id!=='stock'))reject(()=>v0ModsURL(base,context,{...stockV0Mods(),[slot]:option.id}));
  // The restorer snapshots caller-owned arrays/maps before asynchronous work.
- const detached=configuration(profile,valid.at(-1)),pending=restorer.restore(detached);detached.mods.handles='unsupported';detached.pose[0]=99;detached.palette.base='#000000';assert.equal(await pending,true);assert.equal(committed.pose[0],0);assert.equal(committed.palette.base,'#ff0033');assert.notEqual(committed.mods.handles,'unsupported');
+ const detached=configuration(profile,valid.at(-1)),expectedX=detached.pose[0],pending=restorer.restore(detached);detached.mods.handles='unsupported';detached.pose[0]=99;detached.palette.base='#000000';assert.equal(await pending,true);assert.equal(committed.pose[0],expectedX);assert.equal(committed.palette.base,'#ff0033');assert.notEqual(committed.mods.handles,'unsupported');
  await restorer.setMods(stockV0Mods());installations.dispose();fixture.dispose();summary.machines.push({machine_id,valid:valid.length,rejected:invalid.length,registeredOptions:registry.options.length,selectionIdentities:[...seen].sort()});
 }
 // Deterministic newest-request races, without another process or timers.

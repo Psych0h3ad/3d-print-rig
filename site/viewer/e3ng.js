@@ -1,14 +1,14 @@
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
-import {setupSceneDisplay} from './display-preferences.mjs?v=cfa9769ce74b3791658f';
-import {WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=ea3c45fda6e17c3b5857';
+import {setupSceneDisplay} from './display-preferences.mjs?v=5fd25f289942c501706d';
+import {WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=a8e49b4993efdc7bac52';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
-import {setupPublicInfo} from './public-info.js?v=bc65031c671a47d05260';
-import {setupRenderExport} from './render-export.js?v=a5e4bcf57f5a8e07dcba';
+import {setupPublicInfo} from './public-info.js?v=04b710e03e02ba2aea63';
+import {setupRenderExport} from './render-export.js?v=1383105a90d0fa4a63bd';
 import {e3ngSelection,e3ngPartVisible,e3ngURL} from './e3ng-model.mjs?v=workspace-belts-1';
 export async function mount(scope){
 const $=s=>document.querySelector(s),stage=$('#stage'),scene=scope.scene(new THREE.Scene());scene.background=new THREE.Color('#edf1f5');

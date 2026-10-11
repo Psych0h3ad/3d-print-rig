@@ -9357,6 +9357,82 @@
     "feature.eva3.native.threads": {
       "source_revision": "f229c99f1f41dd99de8d",
       "text": "В некоторых нижних положениях стола остаются пересечения резьбы винта и гайки. Посадка резьбы не проверена."
+    },
+    "eva.options.lgx": {
+      "source_revision": "2e7179cb6eee86d9c761",
+      "text": "LGX / Rapido HF с вентиляторами, воздуховодами и SuperPINDA EVA 3."
+    },
+    "eva.options.orbiter": {
+      "source_revision": "a918701f86cce4f99819",
+      "text": "Orbiter 2.0 / Rapido HF с вентиляторами, воздуховодами и SuperPINDA EVA 3."
+    },
+    "eva.options.patch": {
+      "source_revision": "68e6dd33f7f6c431bc14",
+      "text": "Версия патча EVA не подтверждена. Ревизии исходников указаны в References."
+    },
+    "eva.options.motion": {
+      "source_revision": "efaf39dbc13dfaeff84d",
+      "text": "Предпросмотр движения CAD. Зазоры на всей траектории, посадка PTFE и сопряжение резьбы пока не проверены."
+    },
+    "eva.options.v6": {
+      "source_revision": "e9fe4e75ec587b221172",
+      "text": "LGX Lite / E3D V6 с вентиляторами, воздуховодом и датчиком M8 EVA 2."
+    },
+    "eva.options.dragon": {
+      "source_revision": "0815c454881ed35d529e",
+      "text": "LGX Lite / Dragon с вентиляторами, воздуховодом и датчиком M8 EVA 2."
+    },
+    "eva.options.supports_v6": {
+      "source_revision": "3a0a5f92d37d6e17ed56",
+      "text": "Для вида в сборе удалены 3 встроенные мостовые мембраны."
+    },
+    "eva.options.supports_dragon": {
+      "source_revision": "26a48596318e662be4f0",
+      "text": "Для вида в сборе удалены 7 встроенных мостовых мембран."
+    },
+    "eva.options.parking": {
+      "source_revision": "4a8285777e258667f9ed",
+      "text": "При сбросе CAD сопло находится за задним краем стола."
+    },
+    "eva.options.license2": {
+      "source_revision": "3c5905640b828cc5e33c",
+      "text": "Уведомления о лицензии EVA 2 различаются: страница STEP указывает GPLv3, а LICENSE закреплённого репозитория — CC BY-NC-SA 4.0."
+    },
+    "head.options.dragon.full": {
+      "source_revision": "9c51e57a6cf729282aee",
+      "text": "Dragon Burner v8 / Sherpa Mini A3 r9c / Dragon с тремя вентиляторами и LED логотипа."
+    },
+    "head.options.dragon.fixture": {
+      "source_revision": "a00418f44b41682673c7",
+      "text": "Детали исходной каретки скрыты в отдельном виде головки."
+    },
+    "head.options.dragon.identity": {
+      "source_revision": "e97ea820723fd4b17972",
+      "text": "В исходнике не указано, Dragon SF это или HF."
+    },
+    "head.options.dragon.range": {
+      "source_revision": "abfa223322502a55abbc",
+      "text": "Диапазон предпросмотра: X 30–90, Y 20–100, Z 0–116.76 mm."
+    },
+    "head.options.dragon.routes": {
+      "source_revision": "0f7836236a7c38cbb62c",
+      "text": "Траектории PTFE и проводки головки не проверены. Воспроизведение G-code для этой установки отключено."
+    },
+    "head.options.dragon.motion_range": {
+      "source_revision": "ffce62593c56c78f6839",
+      "text": "Диапазон отображения: X 30–90.00, Y 20–100.00, Z 0–116.76 mm. При увеличении Z стол опускается."
+    },
+    "head.options.dragon.sampled_range": {
+      "source_revision": "f5c2a9e264f2fdff15ee",
+      "text": "Диапазон Dragon Burner: X 30–90.00 / Y 20–100.00 / Z 0–116.76 mm · проверены отдельные положения"
+    },
+    "head.options.dragon.motion_scope": {
+      "source_revision": "0ffe4e8bbbf035e350ea",
+      "text": "Отдельные положения проверены по исходному CAD. Полные трассы трубок и проводов, непрерывные зазоры и калибровка прошивки не проверены."
+    },
+    "head.options.dragon.playback_gate": {
+      "source_revision": "a8717a6093982e6b88fd",
+      "text": "Dragon Burner: зазоры всей принтерной сборки и трассы PTFE и проводов головки не проверены. Для просмотра геометрии используйте ползунки XYZ."
     }
   }
 }

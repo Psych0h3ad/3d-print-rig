@@ -9357,6 +9357,82 @@
     "feature.eva3.native.threads": {
       "source_revision": "f229c99f1f41dd99de8d",
       "text": "Persisten intersecciones entre rosca y tuerca en algunas posiciones bajas de la cama. El ajuste de la rosca no está verificado."
+    },
+    "eva.options.lgx": {
+      "source_revision": "2e7179cb6eee86d9c761",
+      "text": "LGX / Rapido HF con ventiladores, conductos y SuperPINDA de EVA 3."
+    },
+    "eva.options.orbiter": {
+      "source_revision": "a918701f86cce4f99819",
+      "text": "Orbiter 2.0 / Rapido HF con ventiladores, conductos y SuperPINDA de EVA 3."
+    },
+    "eva.options.patch": {
+      "source_revision": "68e6dd33f7f6c431bc14",
+      "text": "La versión de parche de EVA no está confirmada. Consulta References para ver las revisiones de las fuentes."
+    },
+    "eva.options.motion": {
+      "source_revision": "efaf39dbc13dfaeff84d",
+      "text": "Vista previa del movimiento CAD. No se han verificado las holguras en todo el recorrido, el asiento del PTFE ni el ajuste de las roscas."
+    },
+    "eva.options.v6": {
+      "source_revision": "e9fe4e75ec587b221172",
+      "text": "LGX Lite / E3D V6 con ventiladores, conducto y sonda M8 de EVA 2."
+    },
+    "eva.options.dragon": {
+      "source_revision": "0815c454881ed35d529e",
+      "text": "LGX Lite / Dragon con ventiladores, conducto y sonda M8 de EVA 2."
+    },
+    "eva.options.supports_v6": {
+      "source_revision": "3a0a5f92d37d6e17ed56",
+      "text": "Se retiraron 3 membranas de puente integradas para la vista ensamblada."
+    },
+    "eva.options.supports_dragon": {
+      "source_revision": "26a48596318e662be4f0",
+      "text": "Se retiraron 7 membranas de puente integradas para la vista ensamblada."
+    },
+    "eva.options.parking": {
+      "source_revision": "4a8285777e258667f9ed",
+      "text": "El restablecimiento CAD deja la boquilla fuera del borde trasero de la cama."
+    },
+    "eva.options.license2": {
+      "source_revision": "3c5905640b828cc5e33c",
+      "text": "Los avisos de licencia de EVA 2 difieren: la página STEP indica GPLv3; la licencia del repositorio fijado indica CC BY-NC-SA 4.0."
+    },
+    "head.options.dragon.full": {
+      "source_revision": "9c51e57a6cf729282aee",
+      "text": "Dragon Burner v8 / Sherpa Mini A3 r9c / Dragon con tres ventiladores y un LED de logotipo."
+    },
+    "head.options.dragon.fixture": {
+      "source_revision": "a00418f44b41682673c7",
+      "text": "Las piezas del carro original están ocultas en la vista independiente."
+    },
+    "head.options.dragon.identity": {
+      "source_revision": "e97ea820723fd4b17972",
+      "text": "La fuente no especifica Dragon SF o HF."
+    },
+    "head.options.dragon.range": {
+      "source_revision": "abfa223322502a55abbc",
+      "text": "Rango de vista previa: X 30–90, Y 20–100, Z 0–116.76 mm."
+    },
+    "head.options.dragon.routes": {
+      "source_revision": "0f7836236a7c38cbb62c",
+      "text": "Las rutas del PTFE y el cableado del cabezal no están verificadas. La reproducción de G-code está desactivada en esta instalación."
+    },
+    "head.options.dragon.motion_range": {
+      "source_revision": "ffce62593c56c78f6839",
+      "text": "Rango de visualización: X 30–90.00, Y 20–100.00, Z 0–116.76 mm. Al aumentar Z, la cama baja."
+    },
+    "head.options.dragon.sampled_range": {
+      "source_revision": "f5c2a9e264f2fdff15ee",
+      "text": "Rango de Dragon Burner: X 30–90.00 / Y 20–100.00 / Z 0–116.76 mm · solo posiciones muestreadas"
+    },
+    "head.options.dragon.motion_scope": {
+      "source_revision": "0ffe4e8bbbf035e350ea",
+      "text": "Se comprobaron algunas posiciones con el CAD original. El recorrido completo de tubos y cables, la holgura continua y la calibración del firmware no están verificados."
+    },
+    "head.options.dragon.playback_gate": {
+      "source_revision": "a8717a6093982e6b88fd",
+      "text": "Dragon Burner: la holgura de toda la impresora y las rutas de PTFE y cables del cabezal no están verificadas. Use los controles XYZ para revisar la geometría."
     }
   }
 }

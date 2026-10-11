@@ -4852,6 +4852,796 @@
             254.86755464222435
           ],
           "tophat_max_angle_deg": 110
+        },
+        {
+          "id": "dragon-burner-v8-dragon-native-sherpa-a3-r9c",
+          "slot": "toolhead",
+          "label": "Dragon Burner v8 / Dragon native / Sherpa Mini A3 r9c",
+          "requires": {
+            "bed": "stock",
+            "carriage": "stock",
+            "accelerometer": "none",
+            "strain_relief": "stock",
+            "handles": "stock",
+            "tophat": "stock"
+          },
+          "attachments": [
+            {
+              "module": "dragon_burner_v8_sherpa_mini_dragon_native",
+              "keys": [
+                "hotend_mount",
+                "extruder_plate",
+                "duct_left",
+                "duct_right",
+                "cowl",
+                "logo_diffuser",
+                "logo_carrier",
+                "logo_led",
+                "rear_brace",
+                "drive_186",
+                "drive_187",
+                "drive_188",
+                "drive_189",
+                "drive_190",
+                "drive_191",
+                "drive_192",
+                "drive_193",
+                "drive_194",
+                "drive_195",
+                "drive_196",
+                "drive_197",
+                "drive_198",
+                "drive_199",
+                "drive_200",
+                "drive_201",
+                "drive_202",
+                "drive_203",
+                "drive_204",
+                "drive_205",
+                "drive_207",
+                "drive_208",
+                "drive_210",
+                "drive_211",
+                "drive_212",
+                "drive_213",
+                "drive_214",
+                "drive_215",
+                "drive_216",
+                "drive_217",
+                "dragon_0",
+                "dragon_1",
+                "dragon_2",
+                "dragon_3",
+                "fan_3010",
+                "fan_4010_left",
+                "fan_4010_right",
+                "drive_heatset_0",
+                "drive_mount_screw_0",
+                "drive_heatset_1",
+                "drive_mount_screw_1",
+                "cowl_heatset_0",
+                "cowl_screw_0",
+                "cowl_heatset_1",
+                "cowl_screw_1",
+                "hotend_screw_0",
+                "hotend_screw_1",
+                "hotend_screw_2",
+                "hotend_screw_3",
+                "brace_screw_0",
+                "brace_screw_1",
+                "carriage_front_screw_0",
+                "carriage_front_screw_1",
+                "carriage_rear_screw",
+                "carriage_square_nut",
+                "carriage_front_nut_1"
+              ],
+              "rotation_xyz_deg": [
+                0,
+                0,
+                0
+              ],
+              "translation_mm": [
+                -147.67683648763472,
+                105.7089871921233,
+                124.94999643784425
+              ],
+              "motion": "xy",
+              "roles": {
+                "hotend_mount": "base",
+                "extruder_plate": "base",
+                "duct_left": "accent",
+                "duct_right": "accent",
+                "cowl": "base",
+                "logo_diffuser": "diffuser",
+                "logo_carrier": "accent",
+                "logo_led": "led",
+                "rear_brace": "base",
+                "drive_186": "metal",
+                "drive_187": "metal",
+                "drive_188": "brass",
+                "drive_189": "metal",
+                "drive_190": "metal",
+                "drive_191": "metal",
+                "drive_192": "metal",
+                "drive_193": "metal",
+                "drive_194": "metal",
+                "drive_195": "metal",
+                "drive_196": "metal",
+                "drive_197": "metal",
+                "drive_198": "metal",
+                "drive_199": "metal",
+                "drive_200": "metal",
+                "drive_201": "metal",
+                "drive_202": "metal",
+                "drive_203": "motor",
+                "drive_204": "accent",
+                "drive_205": "accent",
+                "drive_207": "accent",
+                "drive_208": "accent",
+                "drive_210": "metal",
+                "drive_211": "brass",
+                "drive_212": "metal",
+                "drive_213": "brass",
+                "drive_214": "brass",
+                "drive_215": "brass",
+                "drive_216": "metal",
+                "drive_217": "metal",
+                "dragon_0": "hotend",
+                "dragon_1": "hotend",
+                "dragon_2": "hotend",
+                "dragon_3": "hotend",
+                "fan_3010": "fan",
+                "fan_4010_left": "fan",
+                "fan_4010_right": "fan",
+                "drive_heatset_0": "brass",
+                "drive_mount_screw_0": "metal",
+                "drive_heatset_1": "brass",
+                "drive_mount_screw_1": "metal",
+                "cowl_heatset_0": "brass",
+                "cowl_screw_0": "metal",
+                "cowl_heatset_1": "brass",
+                "cowl_screw_1": "metal",
+                "hotend_screw_0": "metal",
+                "hotend_screw_1": "metal",
+                "hotend_screw_2": "metal",
+                "hotend_screw_3": "metal",
+                "brace_screw_0": "metal",
+                "brace_screw_1": "metal",
+                "carriage_front_nut_1": "metal",
+                "carriage_front_screw_0": "metal",
+                "carriage_front_screw_1": "metal",
+                "carriage_rear_screw": "metal",
+                "carriage_square_nut": "metal"
+              },
+              "preserve_optical_materials": true
+            }
+          ],
+          "replace_keys": [
+            "v02r1_00349",
+            "v02r1_00350",
+            "v02r1_00351",
+            "v02r1_00352",
+            "v02r1_00355",
+            "v02r1_00356",
+            "v02r1_00358",
+            "v02r1_00359",
+            "v02r1_00360",
+            "v02r1_00361",
+            "v02r1_00362",
+            "v02r1_00363",
+            "v02r1_00364",
+            "v02r1_00365",
+            "v02r1_00366",
+            "v02r1_00367",
+            "v02r1_00368",
+            "v02r1_00369",
+            "v02r1_00370",
+            "v02r1_00371",
+            "v02r1_00372",
+            "v02r1_00373",
+            "v02r1_00375",
+            "v02r1_00376",
+            "v02r1_00378",
+            "v02r1_00379",
+            "v02r1_00380",
+            "v02r1_00381",
+            "v02r1_00382",
+            "v02r1_00386",
+            "v02r1_00387",
+            "v02r1_00388",
+            "v02r1_00389",
+            "v02r1_00391",
+            "v02r1_00392",
+            "v02r1_00393",
+            "v02r1_00394",
+            "v02r1_00395",
+            "v02r1_00396",
+            "v02r1_00397",
+            "v02r1_00400",
+            "v02r1_00401",
+            "v02r1_00403",
+            "v02r1_00404",
+            "v02r1_00406",
+            "v02r1_00407",
+            "v02r1_00408",
+            "v02r1_00409",
+            "v02r1_00410",
+            "v02r1_00411",
+            "v02r1_00412",
+            "v02r1_00413",
+            "v02r1_00414",
+            "v02r1_00416",
+            "v02r1_00417",
+            "v02r1_00418",
+            "v02r1_00419",
+            "v02r1_00420",
+            "v02r1_00421",
+            "v02r1_00422",
+            "v02r1_00423",
+            "v02r1_00424",
+            "v02r1_00425",
+            "v02r1_00426",
+            "v02r1_00427",
+            "v02r1_00428",
+            "v02r1_00429",
+            "v02r1_00430",
+            "v02r1_00431",
+            "v02r1_00432",
+            "v02r1_00433",
+            "v02r1_00434",
+            "v02r1_00435",
+            "v02r1_00436",
+            "v02r1_00437",
+            "v02r1_00438",
+            "v02r1_00439",
+            "v02r1_00440",
+            "v02r1_00441",
+            "v02r1_00442",
+            "v02r1_00443",
+            "v02r1_00444",
+            "v02r1_00445",
+            "v02r1_00446",
+            "v02r1_00447",
+            "v02r1_00448"
+          ],
+          "nozzle_tip_mm": [
+            -0.013905907103321624,
+            -25.04070204321674,
+            173.54053546876162
+          ],
+          "hardware_assembled": true,
+          "notes": [
+            "Dragon Burner v8 / Sherpa Mini A3 r9c / Dragon with three fans and a logo LED.",
+            "Preview range: X 30–90, Y 20–100, Z 0–116.76 mm.",
+            "Head PTFE and wiring routes remain unverified. G-code playback is disabled for this installation."
+          ],
+          "installation": {
+            "machine_id": "voron_v02r1_120",
+            "source_carriage_key": "v02r1_00353",
+            "actual_carriage_display_module": "v0_carriage_display",
+            "native_source_to_world_mm": [
+              -0.0018364876295891008,
+              6.321528189801029e-09,
+              -49.20000356215568
+            ],
+            "head_to_source_mm": [
+              -147.67500000000513,
+              105.70898718580177,
+              174.14999999999992
+            ],
+            "display_reference_xyz_mm": [
+              59.983901817467554,
+              66.80941812833922,
+              3.790269352058175
+            ],
+            "nozzle_source_face_id": "0:1:1:3:1@Dragon_Burner_v2 v114/Hotends:1/Dragon_Hotend:1/V6 Nozzle:1#face[20]",
+            "source_axes_unchanged": true,
+            "display_limits_mm": {
+              "X": [
+                30,
+                90
+              ],
+              "Y": [
+                20,
+                100
+              ],
+              "Z": [
+                0,
+                116.76075527794318
+              ]
+            }
+          },
+          "runtime_gate": {
+            "schema": "v0-native-installation-gate-v1",
+            "machine_id": "voron_v02r1_120",
+            "machine_files": {
+              "assembly_manifest.json": {
+                "path": "machines/voron_v02r1_120/assembly_manifest.json",
+                "bytes": 1535819,
+                "sha256": "3bc45717c986aea14895e52532d76284c7d084740dd19c4dea09dc104ff847ea"
+              },
+              "machine_profile.json": {
+                "path": "machines/voron_v02r1_120/machine_profile.json",
+                "bytes": 4888,
+                "sha256": "0ebce269e0deecadd899143e52111643400ebb0e3e10cb218ef3179b63e1abbc"
+              },
+              "model.glb.gz": {
+                "path": "machines/voron_v02r1_120/model.glb.gz",
+                "bytes": 19231981,
+                "sha256": "6dc9d8149c3f187a19fb16076f1a8132fef55d5d50a447fd40d8b905251e85f1",
+                "decoded_sha256": "d89064824fa67ed6e7c78e90c642620afe62c3b4520255f6c626181754b7d29d",
+                "decoded_bytes": 63218348
+              }
+            },
+            "head_asset": {
+              "component_id": "dragon_burner_v8_sherpa_mini_dragon_native",
+              "parts": 72,
+              "external": {
+                "base_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/",
+                "local_directory": "eva-options-assets"
+              },
+              "files": {
+                "parts.json": {
+                  "path": "head-coverage/dragon-v8-dragon-sherpa-mini/parts.json",
+                  "bytes": 112509,
+                  "sha256": "c81724bc121b931c206ba0184f2d51a6b28b85cd331756f6bf971cf90500ef03"
+                },
+                "model.glb": {
+                  "path": "head-coverage/dragon-v8-dragon-sherpa-mini/model.glb.gz",
+                  "bytes": 14785920,
+                  "sha256": "693e3456b3748400ca2a1509c4b9366b42db50944563d7df44f794185e7760ee",
+                  "encoding": "gzip",
+                  "decoded_bytes": 54179324,
+                  "decoded_sha256": "173b14e4a354efc3fc89841536706bff1d0a08c1b45c30913a14620274ab6dc0"
+                }
+              },
+              "metadata_sha256": "c81724bc121b931c206ba0184f2d51a6b28b85cd331756f6bf971cf90500ef03",
+              "repository": "https://github.com/chirpy2605/voron/tree/cc2e749d09d7f24418f9f8c73c90bcefb1e29584"
+            },
+            "mandatory_keys": [
+              "hotend_mount",
+              "extruder_plate",
+              "duct_left",
+              "duct_right",
+              "cowl",
+              "logo_diffuser",
+              "logo_carrier",
+              "logo_led",
+              "rear_brace",
+              "drive_186",
+              "drive_187",
+              "drive_188",
+              "drive_189",
+              "drive_190",
+              "drive_191",
+              "drive_192",
+              "drive_193",
+              "drive_194",
+              "drive_195",
+              "drive_196",
+              "drive_197",
+              "drive_198",
+              "drive_199",
+              "drive_200",
+              "drive_201",
+              "drive_202",
+              "drive_203",
+              "drive_204",
+              "drive_205",
+              "drive_207",
+              "drive_208",
+              "drive_210",
+              "drive_211",
+              "drive_212",
+              "drive_213",
+              "drive_214",
+              "drive_215",
+              "drive_216",
+              "drive_217",
+              "dragon_0",
+              "dragon_1",
+              "dragon_2",
+              "dragon_3",
+              "fan_3010",
+              "fan_4010_left",
+              "fan_4010_right",
+              "drive_heatset_0",
+              "drive_mount_screw_0",
+              "drive_heatset_1",
+              "drive_mount_screw_1",
+              "cowl_heatset_0",
+              "cowl_screw_0",
+              "cowl_heatset_1",
+              "cowl_screw_1",
+              "hotend_screw_0",
+              "hotend_screw_1",
+              "hotend_screw_2",
+              "hotend_screw_3",
+              "brace_screw_0",
+              "brace_screw_1",
+              "carriage_front_screw_0",
+              "carriage_front_screw_1",
+              "carriage_rear_screw",
+              "carriage_square_nut",
+              "carriage_front_nut_1"
+            ],
+            "mandatory_preserved_stock_keys": [
+              "v02r1_00357",
+              "v02r1_00374",
+              "v02r1_00377",
+              "v02r1_00383",
+              "v02r1_00384",
+              "v02r1_00385",
+              "v02r1_00390",
+              "v02r1_00398",
+              "v02r1_00399",
+              "v02r1_00402",
+              "v02r1_00405",
+              "v02r1_00415"
+            ],
+            "verified_physical_printer": false,
+            "route_status": {
+              "belts": "Two existing native production routes finite and attached at 25 poses; teeth/cut ends unverified",
+              "bed_chain": "Eleven existing native links finite and attached at 25 poses",
+              "head_PTFE": "Measured source feed/fixed insert anchors move with their actual owners; complete authored tube/connector route absent",
+              "head_wiring": "Native strain plate/rear brace retained and moving; complete author motor/hotend/fan/LED harness absent",
+              "CAN": "Inapplicable: no CAN board/connector/harness in selected source assembly"
+            },
+            "probe": "none; native fixed Z endstop retained; contact calibration unverified",
+            "source_profile_snapshot": {
+              "schema": "voron-v0-import-v1",
+              "machine_id": "voron_v02r1_120",
+              "label": "VORON V0.2r1 120 / Mini Stealthburner Revo Voron",
+              "status": "import_ready_geometry_and_kinematics_with_nominal_limit_contacts",
+              "cad_units": "mm",
+              "cad_axes": [
+                "X right",
+                "Y rear",
+                "Z up"
+              ],
+              "origin": "Frame XY centre; lowest main frame extrusion Z=0",
+              "source_to_world_translation_mm": [
+                -0.0018364876295891008,
+                6.321528189801029e-09,
+                -49.20000356215568
+              ],
+              "frame_outer_mm": [
+                230.00000000000082,
+                230.0000000000031,
+                248.000000100003
+              ],
+              "build_surface_mm": [
+                120,
+                120
+              ],
+              "bed_surface_min_xy_mm": [
+                -59.997807724570876,
+                -91.85012017155596
+              ],
+              "bed_center_xy_mm": [
+                0.0021922754291239244,
+                -31.850120171555957
+              ],
+              "bed_top_world_z_mm": 169.75026611670344,
+              "bed_bottom_world_z_mm": 161.10026785734507,
+              "nozzle_tip_mm": [
+                -5.883132973838467e-10,
+                -24.56037331406633,
+                173.94978019081844
+              ],
+              "nozzle_tip_measurement": {
+                "method": "Area-weighted lowest planar nozzle-tip faces; nested mounting hardware excluded",
+                "part_key": "v02r1_00425",
+                "face_indices": [
+                  46
+                ],
+                "area_mm2": 1.0554682037080578
+              },
+              "display_reference_xyz_mm": [
+                59.99780772398256,
+                67.28974685748963,
+                4.199514074115001
+              ],
+              "display_limits_mm": {
+                "X": [
+                  0,
+                  120
+                ],
+                "Y": [
+                  0,
+                  120
+                ],
+                "Z": [
+                  0,
+                  120
+                ]
+              },
+              "firmware_limits_mm": {
+                "X": [
+                  0,
+                  120
+                ],
+                "Y": [
+                  0,
+                  120
+                ],
+                "Z": [
+                  -1.5,
+                  120
+                ]
+              },
+              "z_travel_mm": 120,
+              "xy_belt_width_mm": 6,
+              "z_drive": {
+                "type": "single_integrated_T8x8_leadscrew",
+                "rotation_distance_mm": 8,
+                "physical_sign": -1
+              },
+              "head": {
+                "toolhead": "mini_stealthburner",
+                "extruder": "integrated_bmg",
+                "hotend": "revo_voron"
+              },
+              "head_group": "V0_Toolhead",
+              "motion_bindings": {
+                "fixed": [],
+                "y": [
+                  "Y"
+                ],
+                "xy": [
+                  "X",
+                  "Y"
+                ],
+                "z_bed": [
+                  "Z"
+                ],
+                "reference_flexible": []
+              },
+              "motion_signs": {
+                "X": 1,
+                "Y": 1,
+                "Z": -1
+              },
+              "glb_vertex_mapping": "[cad_x,cad_z,-cad_y]*0.001",
+              "glb_nodes": "Identity transforms; world coordinates baked into vertices",
+              "firmware_motion": {
+                "max_velocity": 200,
+                "max_accel": 2000,
+                "max_z_velocity": 15,
+                "max_z_accel": 300,
+                "square_corner_velocity": 6
+              },
+              "endstop_registration_or_pending": {
+                "X": "sensorless, positive homing to 120; stall/contact threshold uncalibrated",
+                "Y": "sensorless, positive homing to 120; stall/contact threshold uncalibrated",
+                "Z": "mechanical switch, positive homing to 120; contact point pending"
+              },
+              "bed_keys": [
+                "v02r1_00102",
+                "v02r1_00125",
+                "v02r1_00449",
+                "v02r1_00450",
+                "v02r1_00451",
+                "v02r1_00452",
+                "v02r1_00453",
+                "v02r1_00454",
+                "v02r1_00456",
+                "v02r1_00457",
+                "v02r1_00458",
+                "v02r1_00459",
+                "v02r1_00460",
+                "v02r1_00461",
+                "v02r1_00462",
+                "v02r1_00463",
+                "v02r1_00465",
+                "v02r1_00466",
+                "v02r1_00467",
+                "v02r1_00468",
+                "v02r1_00469",
+                "v02r1_00470",
+                "v02r1_00471",
+                "v02r1_00472",
+                "v02r1_00473",
+                "v02r1_00474",
+                "v02r1_00475",
+                "v02r1_00476",
+                "v02r1_00477",
+                "v02r1_00478",
+                "v02r1_00479",
+                "v02r1_00480",
+                "v02r1_00481",
+                "v02r1_00482",
+                "v02r1_00483",
+                "v02r1_00484",
+                "v02r1_00485",
+                "v02r1_00486",
+                "v02r1_00487",
+                "v02r1_00488",
+                "v02r1_00489",
+                "v02r1_00491",
+                "v02r1_00492",
+                "v02r1_00493",
+                "v02r1_00494",
+                "v02r1_00495",
+                "v02r1_00496",
+                "v02r1_00497",
+                "v02r1_00498",
+                "v02r1_00499",
+                "v02r1_00500",
+                "v02r1_00501",
+                "v02r1_00502",
+                "v02r1_00503",
+                "v02r1_00505",
+                "v02r1_00506",
+                "v02r1_00507",
+                "v02r1_00508",
+                "v02r1_00509",
+                "v02r1_00510",
+                "v02r1_00511",
+                "v02r1_00512",
+                "v02r1_00513",
+                "v02r1_00514",
+                "v02r1_00515",
+                "v02r1_00516",
+                "v02r1_00517",
+                "v02r1_00518",
+                "v02r1_00519",
+                "v02r1_00520",
+                "v02r1_00521",
+                "v02r1_00522",
+                "v02r1_00523",
+                "v02r1_00524",
+                "v02r1_00525",
+                "v02r1_00526",
+                "v02r1_00527",
+                "v02r1_00528",
+                "v02r1_00531"
+              ],
+              "z_guide_block_keys": [
+                "v02r1_00102",
+                "v02r1_00125"
+              ],
+              "y_guide_block_keys": [
+                "v02r1_00056",
+                "v02r1_00079"
+              ],
+              "flexible": {
+                "status": "reference_pose_only",
+                "visible_only_at_reference_pose": true,
+                "keys": [
+                  "v02r1_00155",
+                  "v02r1_00156",
+                  "v02r1_00529",
+                  "v02r1_00532",
+                  "v02r1_00533",
+                  "v02r1_00534",
+                  "v02r1_00535",
+                  "v02r1_00536",
+                  "v02r1_00537",
+                  "v02r1_00538",
+                  "v02r1_00539",
+                  "v02r1_00540",
+                  "v02r1_00541"
+                ],
+                "PTFE_umbilical_swept_envelope": "pending"
+              },
+              "appearance": {
+                "storage_key": "voron_v02r1_120-appearance-v1",
+                "palette_defaults": {
+                  "base": "#101113",
+                  "accent": "#cc0a0d",
+                  "frame": "#0e0f11"
+                },
+                "transparent_panel_keys": [
+                  "v02r1_00654",
+                  "v02r1_00719",
+                  "v02r1_00773",
+                  "v02r1_00828",
+                  "v02r1_00829",
+                  "v02r1_00830",
+                  "v02r1_00831",
+                  "v02r1_00832"
+                ]
+              },
+              "installed_mods": [],
+              "limitations": [
+                "Firmware limits are command limits; collision validation has separate results",
+                "Negative Z overtravel is not clearance-validated",
+                "Single Z; QGL and Z_TILT are unavailable",
+                "Hinged door/tophat currently in source reference pose; angle sweep pending"
+              ],
+              "sampled_clearance_limits_mm": {
+                "X": [
+                  0,
+                  120
+                ],
+                "Y": [
+                  0,
+                  119.12
+                ],
+                "Z": [
+                  0,
+                  117.17
+                ]
+              },
+              "nominal_travel_collision_status": "Y/Z upper-limit contacts detected; geometry-review poses may use nominal limits, macro preflight uses the candidate envelope",
+              "clearance_envelope_status": "finite_grid_passed",
+              "readiness": {
+                "placed_geometry": true,
+                "native_brep": true,
+                "named_step": true,
+                "glb": true,
+                "rigid_kinematics": true,
+                "finite_clearance_grid": true,
+                "full_nominal_120_cube_collision_free": false,
+                "continuous_swept_volumes": false,
+                "all_mod_combinations": false,
+                "firmware_macro_execution": false,
+                "sensorless_and_z_endstop_calibration": false,
+                "flexible_routing": false,
+                "door_tophat_angular_sweeps": false
+              }
+            },
+            "scope": "Actual completed-printer geometry review with pinned source axes and assembly. Not a whole-printer physical certification.",
+            "source_dependencies": {
+              "v0_carriage_display": {
+                "metadata": {
+                  "path": "modules/v0_carriage_display.json",
+                  "bytes": 4340,
+                  "sha256": "421150b3ee0d3d93d7d033f3ebd44765114b815a497541ebb0fa5ea738116372"
+                },
+                "model": {
+                  "path": "modules/v0_carriage_display.glb.gz",
+                  "bytes": 109441,
+                  "sha256": "b1eefa367ff40f032e822e8652a69e976db23223d45883c60f8e50dcbf717578",
+                  "decoded_bytes": 352996,
+                  "decoded_sha256": "da7a89e62ebb4bb9be5de7008b46c3c3d711b6d2acbda6690ae9d4941ee04cda"
+                },
+                "scope": "Existing original source carriage with manufacturing support omitted; original kept body volume 9197.938615622434 mm3, zero source volume error"
+              }
+            },
+            "native_body_review": {
+              "status": "MEASURED_NATIVE_LIMIT_CONTACTS_RUNTIME_GATED",
+              "selected_native_pair_count": 45,
+              "nominal_body_interference_records": 14,
+              "reduced_samples": "PASS_SELECTED_REDUCED_NATIVE_SAMPLES",
+              "continuous_clearance": false,
+              "proof_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/head-coverage/dragon-v8-dragon-sherpa-mini/installed/INSTALLATION_PROOF.json"
+            },
+            "display_limits_mm": {
+              "X": [
+                30,
+                90
+              ],
+              "Y": [
+                20,
+                100
+              ],
+              "Z": [
+                0,
+                116.76075527794318
+              ]
+            },
+            "display_region_evidence": {
+              "scope": "Eight selected source-native corner samples, not a continuous collision-free operating envelope",
+              "native_proof": "head-coverage/dragon-v8-dragon-sherpa-mini/installed/INSTALLATION_PROOF.json",
+              "source_origin_and_axes_unchanged": true,
+              "firmware_limits_changed": false,
+              "known_corner_contacts_excluded": true,
+              "head_PTFE_harness_complete": false,
+              "CAN_applicable": false,
+              "reviewed_stock_Z_mapping": {
+                "stock_sampled_Z_max_mm": 117.17,
+                "stock_reference_Z_mm": 4.199514074115001,
+                "installed_reference_Z_mm": 3.790269352058175,
+                "installed_display_Z_max_mm": 116.76075527794318,
+                "stock_bed_delta_at_reviewed_max_mm": 112.970485925885,
+                "installed_bed_delta_at_max_mm": 112.970485925885,
+                "formula": "installed_max = stock_reviewed_max - stock_reference + installed_reference",
+                "source": "Pinned original machine_profile.json; finite selected stock review, not continuous clearance"
+              }
+            }
+          }
         }
       ]
     },
@@ -9852,6 +10642,31 @@
       "metadata": "modules/ahi_drive_flat_sherpa.json",
       "glb": "modules/ahi_drive_flat_sherpa.glb",
       "repository": "https://github.com/Armchair-Heavy-Industries/Archetype"
+    },
+    "dragon_burner_v8_sherpa_mini_dragon_native": {
+      "component_id": "dragon_burner_v8_sherpa_mini_dragon_native",
+      "parts": 72,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/",
+        "local_directory": "eva-options-assets"
+      },
+      "files": {
+        "parts.json": {
+          "path": "head-coverage/dragon-v8-dragon-sherpa-mini/parts.json",
+          "bytes": 112509,
+          "sha256": "c81724bc121b931c206ba0184f2d51a6b28b85cd331756f6bf971cf90500ef03"
+        },
+        "model.glb": {
+          "path": "head-coverage/dragon-v8-dragon-sherpa-mini/model.glb.gz",
+          "bytes": 14785920,
+          "sha256": "693e3456b3748400ca2a1509c4b9366b42db50944563d7df44f794185e7760ee",
+          "encoding": "gzip",
+          "decoded_bytes": 54179324,
+          "decoded_sha256": "173b14e4a354efc3fc89841536706bff1d0a08c1b45c30913a14620274ab6dc0"
+        }
+      },
+      "metadata_sha256": "c81724bc121b931c206ba0184f2d51a6b28b85cd331756f6bf971cf90500ef03",
+      "repository": "https://github.com/chirpy2605/voron/tree/cc2e749d09d7f24418f9f8c73c90bcefb1e29584"
     }
   }
 }

@@ -1,4 +1,4 @@
-import {workspaceFrame,workspaceTask,workspaceListen,onWorkspaceDispose} from './workspace-lifecycle.mjs?v=ea3c45fda6e17c3b5857';
+import {workspaceFrame,workspaceTask,workspaceListen,onWorkspaceDispose} from './workspace-lifecycle.mjs?v=a8e49b4993efdc7bac52';
 import * as THREE from 'three';
 import {nozzlePoint} from './gcode-preview.mjs?v=b286fb69d375531c6e91';
 import {compileVirtualPrinter,createVirtualPlayback,virtualSettingsFromAdapter} from './virtual-printer-emulator.mjs?v=82f4d419283bf6313caf';

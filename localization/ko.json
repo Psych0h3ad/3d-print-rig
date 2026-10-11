@@ -9357,6 +9357,82 @@
     "feature.eva3.native.threads": {
       "source_revision": "f229c99f1f41dd99de8d",
       "text": "베드가 낮은 일부 위치에서 나사산과 너트의 교차가 남습니다. 나사산 적합 여부는 미확인입니다."
+    },
+    "eva.options.lgx": {
+      "source_revision": "2e7179cb6eee86d9c761",
+      "text": "EVA 3 팬, 덕트, SuperPINDA를 장착한 LGX / Rapido HF."
+    },
+    "eva.options.orbiter": {
+      "source_revision": "a918701f86cce4f99819",
+      "text": "EVA 3 팬, 덕트, SuperPINDA를 장착한 Orbiter 2.0 / Rapido HF."
+    },
+    "eva.options.patch": {
+      "source_revision": "68e6dd33f7f6c431bc14",
+      "text": "EVA 패치 버전은 확인되지 않았습니다. 소스 리비전은 References에서 확인할 수 있습니다."
+    },
+    "eva.options.motion": {
+      "source_revision": "efaf39dbc13dfaeff84d",
+      "text": "CAD 동작 미리보기입니다. 전체 이동 경로의 간섭, PTFE 안착, 나사 체결은 아직 검증되지 않았습니다."
+    },
+    "eva.options.v6": {
+      "source_revision": "e9fe4e75ec587b221172",
+      "text": "EVA 2 팬, 덕트, M8 프로브를 장착한 LGX Lite / E3D V6."
+    },
+    "eva.options.dragon": {
+      "source_revision": "0815c454881ed35d529e",
+      "text": "EVA 2 팬, 덕트, M8 프로브를 장착한 LGX Lite / Dragon."
+    },
+    "eva.options.supports_v6": {
+      "source_revision": "3a0a5f92d37d6e17ed56",
+      "text": "조립 뷰를 위해 내장 브리지 막 3개를 제거했습니다."
+    },
+    "eva.options.supports_dragon": {
+      "source_revision": "26a48596318e662be4f0",
+      "text": "조립 뷰를 위해 내장 브리지 막 7개를 제거했습니다."
+    },
+    "eva.options.parking": {
+      "source_revision": "4a8285777e258667f9ed",
+      "text": "CAD 초기 위치에서 노즐은 베드 뒤쪽 가장자리 밖에 있습니다."
+    },
+    "eva.options.license2": {
+      "source_revision": "3c5905640b828cc5e33c",
+      "text": "EVA 2 라이선스 표기가 다릅니다. STEP 페이지는 GPLv3, 고정된 저장소의 LICENSE는 CC BY-NC-SA 4.0입니다."
+    },
+    "head.options.dragon.full": {
+      "source_revision": "9c51e57a6cf729282aee",
+      "text": "팬 3개와 로고 LED를 장착한 Dragon Burner v8 / Sherpa Mini A3 r9c / Dragon."
+    },
+    "head.options.dragon.fixture": {
+      "source_revision": "a00418f44b41682673c7",
+      "text": "단독 뷰에서는 원본 캐리지 부품을 숨깁니다."
+    },
+    "head.options.dragon.identity": {
+      "source_revision": "e97ea820723fd4b17972",
+      "text": "원본에는 Dragon SF 또는 HF가 지정되어 있지 않습니다."
+    },
+    "head.options.dragon.range": {
+      "source_revision": "abfa223322502a55abbc",
+      "text": "미리보기 범위: X 30–90, Y 20–100, Z 0–116.76 mm."
+    },
+    "head.options.dragon.routes": {
+      "source_revision": "0f7836236a7c38cbb62c",
+      "text": "헤드 PTFE 및 배선 경로는 아직 검증되지 않았습니다. 이 장착 구성에서는 G-code 재생을 사용할 수 없습니다."
+    },
+    "head.options.dragon.motion_range": {
+      "source_revision": "ffce62593c56c78f6839",
+      "text": "표시 범위: X 30–90.00, Y 20–100.00, Z 0–116.76 mm. Z를 높이면 베드가 내려갑니다."
+    },
+    "head.options.dragon.sampled_range": {
+      "source_revision": "f5c2a9e264f2fdff15ee",
+      "text": "Dragon Burner 표시 범위: X 30–90.00 / Y 20–100.00 / Z 0–116.76 mm · 일부 자세만 확인"
+    },
+    "head.options.dragon.motion_scope": {
+      "source_revision": "0ffe4e8bbbf035e350ea",
+      "text": "원본 CAD로 일부 자세를 확인했습니다. 튜브·배선 전체 경로, 연속 동작 중 간격 및 펌웨어 보정은 아직 검증되지 않았습니다."
+    },
+    "head.options.dragon.playback_gate": {
+      "source_revision": "a8717a6093982e6b88fd",
+      "text": "Dragon Burner: 프린터 전체 간격과 헤드 PTFE·배선 경로는 아직 검증되지 않았습니다. XYZ 슬라이더로 형상을 확인하세요."
     }
   }
 }

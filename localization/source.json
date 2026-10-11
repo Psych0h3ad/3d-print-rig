@@ -11805,6 +11805,101 @@
       "kind": "message",
       "ja": "ベッド下側の一部位置で、ネジ山とナットに交差が残ります。ネジの適合は未確定です。",
       "en": "Screw/nut thread intersections remain at some lower bed positions. Thread fit is unverified."
+    },
+    "eva.options.lgx": {
+      "kind": "message",
+      "ja": "LGX / Rapido HFにEVA 3のファン、ダクト、SuperPINDAを装着。",
+      "en": "LGX / Rapido HF with EVA 3 fans, ducts and SuperPINDA."
+    },
+    "eva.options.orbiter": {
+      "kind": "message",
+      "ja": "Orbiter 2.0 / Rapido HFにEVA 3のファン、ダクト、SuperPINDAを装着。",
+      "en": "Orbiter 2.0 / Rapido HF with EVA 3 fans, ducts and SuperPINDA."
+    },
+    "eva.options.patch": {
+      "kind": "message",
+      "ja": "EVAのパッチバージョンは未確認です。出典の版はReferencesから確認できます。",
+      "en": "The EVA patch version is unconfirmed. See References for source revisions."
+    },
+    "eva.options.motion": {
+      "kind": "message",
+      "ja": "CADの動作プレビューです。経路全体の干渉、PTFEの嵌合、ネジの嵌合は未確認です。",
+      "en": "CAD motion preview. Continuous clearance, PTFE seating and thread fit remain unverified."
+    },
+    "eva.options.v6": {
+      "kind": "message",
+      "ja": "LGX Lite / E3D V6にEVA 2のファン、ダクト、M8プローブを装着。",
+      "en": "LGX Lite / E3D V6 with EVA 2 fans, duct and M8 probe."
+    },
+    "eva.options.dragon": {
+      "kind": "message",
+      "ja": "LGX Lite / DragonにEVA 2のファン、ダクト、M8プローブを装着。",
+      "en": "LGX Lite / Dragon with EVA 2 fans, duct and M8 probe."
+    },
+    "eva.options.supports_v6": {
+      "kind": "message",
+      "ja": "組み立て表示用に3か所の埋め込みブリッジを除去しています。",
+      "en": "3 built-in bridge membranes were removed for the assembled view."
+    },
+    "eva.options.supports_dragon": {
+      "kind": "message",
+      "ja": "組み立て表示用に7か所の埋め込みブリッジを除去しています。",
+      "en": "7 built-in bridge membranes were removed for the assembled view."
+    },
+    "eva.options.parking": {
+      "kind": "message",
+      "ja": "CADの初期位置ではノズルがベッド後端の外側にあります。",
+      "en": "CAD reset parks the nozzle outside the rear bed edge."
+    },
+    "eva.options.license2": {
+      "kind": "message",
+      "ja": "EVA 2のライセンス表記には差があります。STEPページはGPLv3、固定したリポジトリのLICENSEはCC BY-NC-SA 4.0です。",
+      "en": "EVA 2 license notices differ: the STEP page says GPLv3; the pinned repository license says CC BY-NC-SA 4.0."
+    },
+    "head.options.dragon.full": {
+      "kind": "message",
+      "ja": "Dragon Burner v8 / Sherpa Mini A3 r9c / Dragonに3基のファンとロゴLEDを装着。",
+      "en": "Dragon Burner v8 / Sherpa Mini A3 r9c / Dragon with three fans and a logo LED."
+    },
+    "head.options.dragon.fixture": {
+      "kind": "message",
+      "ja": "単体表示では原本のキャリッジ部品を非表示にしています。",
+      "en": "Source carriage parts are hidden in the standalone view."
+    },
+    "head.options.dragon.identity": {
+      "kind": "message",
+      "ja": "原本ではDragonのSF／HFが指定されていません。",
+      "en": "The source does not specify Dragon SF or HF."
+    },
+    "head.options.dragon.range": {
+      "kind": "message",
+      "ja": "プレビューの範囲：X 30–90、Y 20–100、Z 0–116.76 mm。",
+      "en": "Preview range: X 30–90, Y 20–100, Z 0–116.76 mm."
+    },
+    "head.options.dragon.routes": {
+      "kind": "message",
+      "ja": "ヘッドのPTFE・配線経路は未確認です。この取り付けではG-code再生を無効にしています。",
+      "en": "Head PTFE and wiring routes remain unverified. G-code playback is disabled for this installation."
+    },
+    "head.options.dragon.motion_range": {
+      "kind": "message",
+      "ja": "表示範囲：X 30–90.00、Y 20–100.00、Z 0–116.76 mm。Zを増やすとベッドが下がります。",
+      "en": "Display range: X 30–90.00, Y 20–100.00, Z 0–116.76 mm. Increasing Z lowers the bed."
+    },
+    "head.options.dragon.sampled_range": {
+      "kind": "message",
+      "ja": "Dragon Burnerの表示範囲：X 30–90.00 / Y 20–100.00 / Z 0–116.76 mm・一部姿勢のみ確認",
+      "en": "Dragon Burner display range: X 30–90.00 / Y 20–100.00 / Z 0–116.76 mm · sampled poses only"
+    },
+    "head.options.dragon.motion_scope": {
+      "kind": "message",
+      "ja": "一部の姿勢を元のCAD形状で確認しています。チューブ・配線の全経路、連続動作中のクリアランス、ファームウェア設定は未確認です。",
+      "en": "Selected native poses were checked. Complete tube/wire routing, continuous clearance and firmware calibration remain unverified."
+    },
+    "head.options.dragon.playback_gate": {
+      "kind": "message",
+      "ja": "Dragon Burner：機体全体のクリアランスとヘッドのPTFE・配線経路は未確認です。形状の確認にはXYZスライダーを使ってください。",
+      "en": "Dragon Burner: full printer clearance and head PTFE/wire routing remain unverified. Use the XYZ sliders for geometry review."
     }
   }
 }

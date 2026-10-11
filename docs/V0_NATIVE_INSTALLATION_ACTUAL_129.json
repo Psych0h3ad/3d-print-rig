@@ -1,0 +1,1108 @@
+{
+  "schema": "actual-v0-native-installation-assets-v1",
+  "passed": true,
+  "machine_id": "voron_v02r1_120",
+  "option_id": "dragon-burner-v8-dragon-native-sherpa-a3-r9c",
+  "workers": 1,
+  "large_assemblies": 2,
+  "tests": [
+    "Actual GLB production V0 controller and complete source companion masks",
+    "Min/max/intermediate/reversed XYZ actual geometry; unchanged X/Y carriage and Z bed; native reset",
+    "Two finite visible belts and eleven attached bed-chain links on every sampled pose",
+    "Measured nozzle/bed datum tracks requested Z; probe none and native Z switch retained",
+    "Actual installed printed palettes A-B-A preserve purchased hardware materials",
+    "Production state schema save/load and URL restore; installed-stock-installed A-B-A without stale visibility",
+    "Runtime rejects stale machine pins, incomplete head masks and unsupported companion choices; program playback gated",
+    "Actual native WS2812B lens and paired source diffuser: RGB red/blue/rainbow/on/off preserve unlit source albedo and geometry",
+    "Actual native feed/strain/fixed-PTFE source anchors remain attached through bounded min/max/intermediate/reversed poses and native reset; missing full routes remain gated"
+  ],
+  "failures": [],
+  "physical_clearance_verified": false,
+  "continuous_clearance_verified": false,
+  "head_PTFE_wiring_verified": false,
+  "registration_mode": "Active explicit site catalogs; no draft registration fallback",
+  "input_receipt_sha256": "2769e591da9d64a04507e1178f0ced90265f870eef720ebaea1943b96b5b2c9c",
+  "catalogs": {
+    "V0_INSTALLATIONS.json": {
+      "bytes": 349474,
+      "sha256": "82335a9bf7b01455ab970a87f124e9d724de29b343acdb5a3e05993fa832fe10"
+    },
+    "HEAD_ADDITIONS.json": {
+      "bytes": 438710,
+      "sha256": "c752983c1a054ee7b4d000e458d6839cf5176b2d0b143ca1f6727683a4bed405"
+    }
+  },
+  "source_sha256": {
+    "viewer/toolhead-lighting.mjs": {
+      "bytes": 9413,
+      "sha256": "8f16d3b8ff3b2cb750c4a414d3217b11b0df3029ea2e8e7500c48660b0ee87d1"
+    },
+    "viewer/lighting-animation.mjs": {
+      "bytes": 1672,
+      "sha256": "ee2a0ac739d69f7d647970d4f30c967dc835e028b077420472fcad45b1aeb760"
+    },
+    "viewer/toolhead-led-identities.mjs": {
+      "bytes": 26874,
+      "sha256": "2b3de1e42ae985776b37884e43cd9cec1b42485a0cadd37dd7827fdfc1b46250"
+    },
+    "viewer/led-emission-surface.mjs": {
+      "bytes": 4833,
+      "sha256": "af40a3200e128a08c940436bbb8d230661343fa68a5d001908f01fe72f7497d2"
+    },
+    "viewer/vendor/three.module.js": {
+      "bytes": 603113,
+      "sha256": "c8211c69345d2e9949dc7a8ac969380497aa0600a5a8ac6a459c8cd02dd9cb8a"
+    },
+    "viewer/vendor/three.core.js": {
+      "bytes": 1403455,
+      "sha256": "eb077d2417f61d3e6d9264c317cabc4ea35769ed6b0ab533067292a550784c20"
+    },
+    "viewer/v0-native-installed-gate.mjs": {
+      "bytes": 18370,
+      "sha256": "aa8fec803c9ba150edb27ed148a5744ce7b1eff6e23b3491b7789455a22a97d6"
+    },
+    "viewer/v0-state.mjs": {
+      "bytes": 4490,
+      "sha256": "cf699051e80873b0c61cb02c95271e64c211408e4852c274da8a278bd3283f44"
+    },
+    "viewer/v0-installations.mjs": {
+      "bytes": 7878,
+      "sha256": "860a6e2fc759b1a6d5c79a11e7ad1ccf7dce3680635c25041e1861ce53d00b0d"
+    },
+    "viewer/v0-tophat.mjs": {
+      "bytes": 1463,
+      "sha256": "1c65737cefc844de5ab72663dc4c38ba929f98dec76fe8b318298142305bfd2f"
+    },
+    "viewer/v0_adapter.mjs": {
+      "bytes": 4561,
+      "sha256": "4ee2ec34955631397cf3f550f9a31920c31d9ca962d42b4a728f9018b867732b"
+    },
+    "viewer/v0-door.mjs": {
+      "bytes": 1311,
+      "sha256": "b23eb9dbc0bf6f23bc4fcb9209e85b35641699d62f845e485e342de0191b5e23"
+    },
+    "viewer/v0-chain.mjs": {
+      "bytes": 2217,
+      "sha256": "9bd91f8c757a0dfafbbc4d53774944e7b9aaab5aac3841af478dff98d773147e"
+    },
+    "viewer/v0-chain-pins.mjs": {
+      "bytes": 2888,
+      "sha256": "6d41fb943c5b19ea28ac78025bcd1559ddccbb4baab4872a28816fe5c4c81136"
+    },
+    "viewer/bed-chain.mjs": {
+      "bytes": 5860,
+      "sha256": "5c6ddd46ac13e6974c7352b944225966455ccb4a462a5315519428af3788d4d0"
+    },
+    "viewer/bed-chain-pins.mjs": {
+      "bytes": 3869,
+      "sha256": "ea9c3d5f368a9509af7f99da784303eba92df5e316246c8a14942bc0f1bb3ae9"
+    },
+    "viewer/v0-belts.mjs": {
+      "bytes": 4731,
+      "sha256": "948e42567a0013aa58217f9a877c9387159934bf848215d8d5a1d9515f911e5d"
+    },
+    "viewer/appearance-role.mjs": {
+      "bytes": 5970,
+      "sha256": "6eb709afed84945151b895e97638b817f0fac071ab61c5a45de4cb6fb883e1ed"
+    },
+    "viewer/v0-app.js": {
+      "bytes": 22911,
+      "sha256": "ae5ee0fb329a15152816287b25959402417f5f5ef139ef0dad1c3b67c070ab28"
+    },
+    "viewer/gcode-timeline.mjs": {
+      "bytes": 1601,
+      "sha256": "a07bc2dcf7216407fe8c04808c65bea022bb3368a3dddc9abb0b989af4008238"
+    },
+    "viewer/gcode-panel.js": {
+      "bytes": 17142,
+      "sha256": "9f2e2d37bad40bd0184780c8636545ec9316bd8e3a93a50b4c01e3edb2a5f6ff"
+    },
+    "viewer/virtual-printer-emulator.mjs": {
+      "bytes": 22927,
+      "sha256": "82f4d419283bf6313caf21e8baf57e98b7cf222f3483bb154d27d6c145aba694"
+    },
+    "viewer/klipper-macro-subset.mjs": {
+      "bytes": 14533,
+      "sha256": "99f089a84c395186fe576a9f5fbf1e35e2da121e5cfaf5b00b4e85d2280a4a1b"
+    },
+    "viewer/gcode-preview.mjs": {
+      "bytes": 7500,
+      "sha256": "b286fb69d375531c6e9152901af54acaa2211629e15217575a9e90472b16b0b1"
+    },
+    "viewer/workspace-lifecycle.mjs": {
+      "bytes": 4115,
+      "sha256": "a8e49b4993efdc7bac52082af4cbaace1a9c3b5811486b4f7d9a697fb6217a3d"
+    },
+    "viewer/public-info.js": {
+      "bytes": 5343,
+      "sha256": "04b710e03e02ba2aea6317d8d498793f52eea54c2c51602e14e2e78b5781f584"
+    },
+    "viewer/i18n.mjs": {
+      "bytes": 8220,
+      "sha256": "ba019b1adf20832c91c841180d927636c61773463388cbafdd0eba4f6da00766"
+    },
+    "viewer/translation-engine.mjs": {
+      "bytes": 5011,
+      "sha256": "ad5021536c774dab7b4dd6b7573dc507b06f1d54f5a71bc79809033e33ac8cff"
+    },
+    "viewer/locales/manifest.mjs": {
+      "bytes": 308,
+      "sha256": "1e63b64785a54de22e746ffaf9ec63ae5f5a505f40e56c02b9c70772874eafaf"
+    },
+    "viewer/locales/catalog.mjs": {
+      "bytes": 479844,
+      "sha256": "d4455a5958bb30e6b58349b4abc6e082a3caf89c847791db7b9fed2231be09ab"
+    },
+    "viewer/languages.mjs": {
+      "bytes": 901,
+      "sha256": "ba6a5cd8e1d86849ca3405b62a9b4f3757b10bb6f195f9990b68d12e15a86424"
+    },
+    "viewer/workspace-navigation.mjs": {
+      "bytes": 1360,
+      "sha256": "424451cc1e036690fee71ad97f27205d59c84100d55ad75f81f9f5db320718d4"
+    },
+    "viewer/step-downloads.mjs": {
+      "bytes": 3760,
+      "sha256": "4a7268ac0dbd9b17fe1a7faa765e2d4026d1bde272f1fe71700b22919aef2c14"
+    },
+    "viewer/product-links.js": {
+      "bytes": 3622,
+      "sha256": "d1db790d206c694b18c1d2fa6329957a2904eca75c0db6277392e0eeea6906e9"
+    },
+    "viewer/render-export.js": {
+      "bytes": 6988,
+      "sha256": "1383105a90d0fa4a63bd3c6676b58d1e3728bc585498f10542c4f95ed8f435b0"
+    },
+    "viewer/export-camera.mjs": {
+      "bytes": 1418,
+      "sha256": "9b7cb2c53ed30506e01c79eafd2ee4c72fa4305806a316acdf5cc3985d0ce628"
+    },
+    "viewer/grid-control.js": {
+      "bytes": 660,
+      "sha256": "44e2e88530fbb5820a7dfc1475d281023b1e2a72b3953205f42b4a766cca5732"
+    },
+    "viewer/machines.js": {
+      "bytes": 13088,
+      "sha256": "7d90ace65109ee54e1d2ade1149df3ee1f7913d67257fea380845b36eb0fbbf9"
+    },
+    "viewer/ratrig-machines.mjs": {
+      "bytes": 4766,
+      "sha256": "6f5c7fbad04c29c3827deaea5ed6a556bcd927ab7c3d9505beff4200a0392ba0"
+    },
+    "viewer/annex-machines.mjs": {
+      "bytes": 777,
+      "sha256": "3a0e3f3d8e456bee4e5ac266d91c69ca3b6fbc6db8f5a40694f85428c6148c13"
+    },
+    "viewer/model-loader.js": {
+      "bytes": 1893,
+      "sha256": "8bb3ff6d2cd5d181cc982f272cd8da4385a15b51f8bb5eb3c5a383a791aa5350"
+    },
+    "viewer/model-progress.mjs": {
+      "bytes": 5548,
+      "sha256": "6b41a2b9f7626039b7e6a058f4d2619623250c8535275362c371cbe8a1e98d5b"
+    },
+    "viewer/vendor/GLTFLoader.js": {
+      "bytes": 114732,
+      "sha256": "adbbafe8ce40416525b6be0ee5cac0d3782482bcf0122c8ca8ec1ffa77d3440b"
+    },
+    "viewer/vendor/BufferGeometryUtils.js": {
+      "bytes": 35539,
+      "sha256": "fda7e946b8e0b5ab39b779206589e7a1079a22eb24efb89d7223e03fdfb1f751"
+    },
+    "viewer/vendor/OrbitControls.js": {
+      "bytes": 39152,
+      "sha256": "1c5dfa7751d7ab320ac09b578638f08eecacdaaa68109d097158105f3fc6ad43"
+    },
+    "viewer/responsive-camera.mjs": {
+      "bytes": 857,
+      "sha256": "a5087f024910f351f1deca2caa00f8e26ffbffaec6ece167c0120b59036ca1b8"
+    },
+    "viewer/v0-mod-library.mjs": {
+      "bytes": 6747,
+      "sha256": "ddeeafeb04155ab0838b86371c6a6f41096d2afb6783840b6b18cff747134813"
+    },
+    "viewer/component-assets.mjs": {
+      "bytes": 1227,
+      "sha256": "9f8ef058f1297ab60e53f388394c9a78191b531a5e3bbbb7d7155dfed9bc6904"
+    },
+    "viewer/chunked-component-glb.mjs": {
+      "bytes": 4196,
+      "sha256": "6b1039c50882fce242a7f6451dbd8a0d3729d1d89089ec445d5ca72b85a7b52c"
+    },
+    "viewer/trinity-render-delivery.mjs": {
+      "bytes": 694,
+      "sha256": "f2044876578730ca3839d79a684f03cdc61246768519bdf1a8659339cfb615b5"
+    },
+    "viewer/shared-component-glb.mjs": {
+      "bytes": 2887,
+      "sha256": "4a77abe6f67574be8ee102415fdca65839b1f1461dffb5db3835dbb4a3d79a45"
+    },
+    "viewer/extra-asset-integrity.mjs": {
+      "bytes": 1877,
+      "sha256": "737f5dc17ca78791c0d836ce2771ccaf9b0912e537ee51ee2275fa4459331d2a"
+    },
+    "viewer/display-preferences.mjs": {
+      "bytes": 4114,
+      "sha256": "5fd25f289942c501706d829d8ce6fd47989907de445b9b4fa9aaeb52d5997e53"
+    },
+    "viewer/workspace-entry.mjs": {
+      "bytes": 994,
+      "sha256": "7e4c8f98212e989784bda6bb8415bf2c335376c5d79ed5a2da26d5deabaa3615"
+    }
+  },
+  "checker_sha256": "294ec8ea5a272f6e9b44eb32e427349a627cf56af3497f4ec388cd7028aa9633",
+  "artifacts": {
+    "host_manifest": {
+      "source_url": "https://psych0h3ad.github.io/3d-print-rig/machines/voron_v02r1_120/assembly_manifest.json",
+      "descriptor": {
+        "path": "machines/voron_v02r1_120/assembly_manifest.json",
+        "bytes": 1535819,
+        "sha256": "3bc45717c986aea14895e52532d76284c7d084740dd19c4dea09dc104ff847ea"
+      },
+      "stored_sha256": "3bc45717c986aea14895e52532d76284c7d084740dd19c4dea09dc104ff847ea",
+      "decoded_sha256": "3bc45717c986aea14895e52532d76284c7d084740dd19c4dea09dc104ff847ea",
+      "stored_bytes": 1535819,
+      "decoded_bytes": 1535819
+    },
+    "host_profile": {
+      "source_url": "https://psych0h3ad.github.io/3d-print-rig/machines/voron_v02r1_120/machine_profile.json",
+      "descriptor": {
+        "path": "machines/voron_v02r1_120/machine_profile.json",
+        "bytes": 4888,
+        "sha256": "0ebce269e0deecadd899143e52111643400ebb0e3e10cb218ef3179b63e1abbc"
+      },
+      "stored_sha256": "0ebce269e0deecadd899143e52111643400ebb0e3e10cb218ef3179b63e1abbc",
+      "decoded_sha256": "0ebce269e0deecadd899143e52111643400ebb0e3e10cb218ef3179b63e1abbc",
+      "stored_bytes": 4888,
+      "decoded_bytes": 4888
+    },
+    "host_model": {
+      "source_url": "https://psych0h3ad.github.io/3d-print-rig/machines/voron_v02r1_120/model.glb.gz",
+      "descriptor": {
+        "path": "machines/voron_v02r1_120/model.glb.gz",
+        "bytes": 19231981,
+        "sha256": "6dc9d8149c3f187a19fb16076f1a8132fef55d5d50a447fd40d8b905251e85f1",
+        "decoded_sha256": "d89064824fa67ed6e7c78e90c642620afe62c3b4520255f6c626181754b7d29d",
+        "decoded_bytes": 63218348,
+        "encoding": "gzip"
+      },
+      "stored_sha256": "6dc9d8149c3f187a19fb16076f1a8132fef55d5d50a447fd40d8b905251e85f1",
+      "decoded_sha256": "d89064824fa67ed6e7c78e90c642620afe62c3b4520255f6c626181754b7d29d",
+      "stored_bytes": 19231981,
+      "decoded_bytes": 63218348
+    },
+    "carriage_metadata": {
+      "source_url": "https://psych0h3ad.github.io/3d-print-rig/modules/v0_carriage_display.json",
+      "descriptor": {
+        "path": "modules/v0_carriage_display.json",
+        "bytes": 4340,
+        "sha256": "421150b3ee0d3d93d7d033f3ebd44765114b815a497541ebb0fa5ea738116372"
+      },
+      "stored_sha256": "421150b3ee0d3d93d7d033f3ebd44765114b815a497541ebb0fa5ea738116372",
+      "decoded_sha256": "421150b3ee0d3d93d7d033f3ebd44765114b815a497541ebb0fa5ea738116372",
+      "stored_bytes": 4340,
+      "decoded_bytes": 4340
+    },
+    "carriage_model": {
+      "source_url": "https://psych0h3ad.github.io/3d-print-rig/modules/v0_carriage_display.glb.gz",
+      "descriptor": {
+        "path": "modules/v0_carriage_display.glb.gz",
+        "bytes": 109441,
+        "sha256": "b1eefa367ff40f032e822e8652a69e976db23223d45883c60f8e50dcbf717578",
+        "decoded_bytes": 352996,
+        "decoded_sha256": "da7a89e62ebb4bb9be5de7008b46c3c3d711b6d2acbda6690ae9d4941ee04cda",
+        "encoding": "gzip"
+      },
+      "stored_sha256": "b1eefa367ff40f032e822e8652a69e976db23223d45883c60f8e50dcbf717578",
+      "decoded_sha256": "da7a89e62ebb4bb9be5de7008b46c3c3d711b6d2acbda6690ae9d4941ee04cda",
+      "stored_bytes": 109441,
+      "decoded_bytes": 352996
+    },
+    "head_metadata": {
+      "source_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/head-coverage/dragon-v8-dragon-sherpa-mini/parts.json",
+      "descriptor": {
+        "path": "head-coverage/dragon-v8-dragon-sherpa-mini/parts.json",
+        "bytes": 112509,
+        "sha256": "c81724bc121b931c206ba0184f2d51a6b28b85cd331756f6bf971cf90500ef03"
+      },
+      "stored_sha256": "c81724bc121b931c206ba0184f2d51a6b28b85cd331756f6bf971cf90500ef03",
+      "decoded_sha256": "c81724bc121b931c206ba0184f2d51a6b28b85cd331756f6bf971cf90500ef03",
+      "stored_bytes": 112509,
+      "decoded_bytes": 112509
+    },
+    "head_model": {
+      "source_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/head-coverage/dragon-v8-dragon-sherpa-mini/model.glb.gz",
+      "descriptor": {
+        "path": "head-coverage/dragon-v8-dragon-sherpa-mini/model.glb.gz",
+        "bytes": 14785920,
+        "sha256": "693e3456b3748400ca2a1509c4b9366b42db50944563d7df44f794185e7760ee",
+        "encoding": "gzip",
+        "decoded_bytes": 54179324,
+        "decoded_sha256": "173b14e4a354efc3fc89841536706bff1d0a08c1b45c30913a14620274ab6dc0"
+      },
+      "stored_sha256": "693e3456b3748400ca2a1509c4b9366b42db50944563d7df44f794185e7760ee",
+      "decoded_sha256": "173b14e4a354efc3fc89841536706bff1d0a08c1b45c30913a14620274ab6dc0",
+      "stored_bytes": 14785920,
+      "decoded_bytes": 54179324
+    },
+    "native_proof": {
+      "source_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/head-coverage/dragon-v8-dragon-sherpa-mini/native-proof.json",
+      "descriptor": {
+        "path": "head-coverage/dragon-v8-dragon-sherpa-mini/native-proof.json",
+        "bytes": 18864,
+        "sha256": "6172f764a8386af7206e40d8272108f57a00db030e01e3ea6d4d2bdac56711bf"
+      },
+      "stored_sha256": "6172f764a8386af7206e40d8272108f57a00db030e01e3ea6d4d2bdac56711bf",
+      "decoded_sha256": "6172f764a8386af7206e40d8272108f57a00db030e01e3ea6d4d2bdac56711bf",
+      "stored_bytes": 18864,
+      "decoded_bytes": 18864
+    },
+    "source_provenance": {
+      "source_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/head-coverage/dragon-v8-dragon-sherpa-mini/source-provenance.json",
+      "descriptor": {
+        "path": "head-coverage/dragon-v8-dragon-sherpa-mini/source-provenance.json",
+        "bytes": 5455,
+        "sha256": "d3de29b261f4e85dbbfee9a6c69d33a0a71726446c42cd578f7904af4c6723f2"
+      },
+      "stored_sha256": "d3de29b261f4e85dbbfee9a6c69d33a0a71726446c42cd578f7904af4c6723f2",
+      "decoded_sha256": "d3de29b261f4e85dbbfee9a6c69d33a0a71726446c42cd578f7904af4c6723f2",
+      "stored_bytes": 5455,
+      "decoded_bytes": 5455
+    },
+    "installation_proof": {
+      "source_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/head-coverage/dragon-v8-dragon-sherpa-mini/installed/INSTALLATION_PROOF.json",
+      "descriptor": {
+        "path": "head-coverage/dragon-v8-dragon-sherpa-mini/installed/INSTALLATION_PROOF.json",
+        "bytes": 295866,
+        "sha256": "f22d3aa8a4214ef6b81c4ae23306f288e2d2ffbce1254727dff017b4699abb87"
+      },
+      "stored_sha256": "f22d3aa8a4214ef6b81c4ae23306f288e2d2ffbce1254727dff017b4699abb87",
+      "decoded_sha256": "f22d3aa8a4214ef6b81c4ae23306f288e2d2ffbce1254727dff017b4699abb87",
+      "stored_bytes": 295866,
+      "decoded_bytes": 295866
+    },
+    "head_additional:dragon-v8-dragon-sherpa-mini-source-supplement.zip": {
+      "source_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/head-coverage/dragon-v8-dragon-sherpa-mini/source/dragon-v8-dragon-sherpa-mini-source-supplement.zip",
+      "descriptor": {
+        "path": "head-coverage/dragon-v8-dragon-sherpa-mini/source/dragon-v8-dragon-sherpa-mini-source-supplement.zip",
+        "bytes": 125726,
+        "sha256": "b69601de218b8020c81367a4599ab8b4c97d8a576f84387d60e38de1953b50fc"
+      },
+      "stored_sha256": "b69601de218b8020c81367a4599ab8b4c97d8a576f84387d60e38de1953b50fc",
+      "decoded_sha256": "b69601de218b8020c81367a4599ab8b4c97d8a576f84387d60e38de1953b50fc",
+      "stored_bytes": 125726,
+      "decoded_bytes": 125726
+    },
+    "head_additional:companion-manifest.json": {
+      "source_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/head-coverage/dragon-v8-dragon-sherpa-mini/companion-manifest.json",
+      "descriptor": {
+        "path": "head-coverage/dragon-v8-dragon-sherpa-mini/companion-manifest.json",
+        "bytes": 66344,
+        "sha256": "7cfe5fa766ac9fd61a1ec6e3d8417b2066a3896dc7c88cf8446bd28d801920ea"
+      },
+      "stored_sha256": "7cfe5fa766ac9fd61a1ec6e3d8417b2066a3896dc7c88cf8446bd28d801920ea",
+      "decoded_sha256": "7cfe5fa766ac9fd61a1ec6e3d8417b2066a3896dc7c88cf8446bd28d801920ea",
+      "stored_bytes": 66344,
+      "decoded_bytes": 66344
+    }
+  },
+  "geometry": {
+    "host": {
+      "meshes": 1678,
+      "with_source_normals": 0,
+      "without_source_normals": 1678
+    },
+    "v0_carriage_display": {
+      "meshes": 3,
+      "with_source_normals": 0,
+      "without_source_normals": 3
+    },
+    "dragon_burner_v8_sherpa_mini_dragon_native": {
+      "meshes": 72,
+      "with_source_normals": 72,
+      "without_source_normals": 0
+    }
+  },
+  "machine_model_sha256": "d89064824fa67ed6e7c78e90c642620afe62c3b4520255f6c626181754b7d29d",
+  "machine_stored_sha256": "6dc9d8149c3f187a19fb16076f1a8132fef55d5d50a447fd40d8b905251e85f1",
+  "published_proof": {
+    "sha256": "f22d3aa8a4214ef6b81c4ae23306f288e2d2ffbce1254727dff017b4699abb87",
+    "status": "FROZEN_RESTRICTED_DISPLAY_GEOMETRY_PHYSICAL_USE_GATED",
+    "scope": "Exact actual-printer geometry, original source carriage/axes, native optical materials and source anchors. Normal display motion is restricted to the sampled native region. Historical out-of-region contacts remain evidence; continuous clearance, firmware/endstop calibration and complete authored head PTFE/harness routes remain unverified. Physical/program use stays gated.",
+    "native_scope_reused_without_solid_recertification": true,
+    "historical_implementation_pins": {
+      "site/viewer/v0-app.js": {
+        "tested_sha256": "c578e96a72be7dc82e003951f3c7d9d150e03abd40ea9286ef5428d74e42e13d"
+      },
+      "site/viewer/v0-installations.mjs": {
+        "tested_sha256": "860a6e2fc759b1a6d5c79a11e7ad1ccf7dce3680635c25041e1861ce53d00b0d"
+      },
+      "site/viewer/toolhead-led-identities.mjs": {
+        "tested_sha256": "ee2c95d3e9cc71f35823cbd4a01c2d24254c543c23cc06b1eda9baff5c9afcfe"
+      },
+      "site/viewer/v0-native-installed-gate.mjs": {
+        "tested_sha256": "8c09d5cddd89ac8ca983c2e8af1c3989d51b13b8dcc98b129a917cd616ab3144"
+      },
+      "site/viewer/v0-state.mjs": {
+        "tested_sha256": "82dd3f531d36a1f55a553d9bc8985f1dee50c67a014c1fd04441431e3aa36d57"
+      },
+      "site/viewer/v0_adapter.mjs": {
+        "tested_sha256": "4ee2ec34955631397cf3f550f9a31920c31d9ca962d42b4a728f9018b867732b"
+      }
+    }
+  },
+  "head_stored_sha256": "693e3456b3748400ca2a1509c4b9366b42db50944563d7df44f794185e7760ee",
+  "head_model_sha256": "173b14e4a354efc3fc89841536706bff1d0a08c1b45c30913a14620274ab6dc0",
+  "stock_parts": 1678,
+  "new_visible_parts": 65,
+  "old_replaced_parts": 86,
+  "display_limits_mm": {
+    "X": [
+      30,
+      90
+    ],
+    "Y": [
+      20,
+      100
+    ],
+    "Z": [
+      0,
+      116.76075527794318
+    ]
+  },
+  "rejected_outside_region_poses": [
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      120,
+      120,
+      120
+    ],
+    [
+      29.999,
+      60,
+      60
+    ],
+    [
+      90.001,
+      60,
+      60
+    ],
+    [
+      60,
+      19.999,
+      60
+    ],
+    [
+      60,
+      100.001,
+      60
+    ],
+    [
+      60,
+      60,
+      -0.001
+    ],
+    [
+      60,
+      60,
+      120
+    ],
+    [
+      60,
+      60,
+      120.001
+    ]
+  ],
+  "pose_samples": [
+    {
+      "xyz_mm": [
+        59.983901817467554,
+        66.80941812833922,
+        3.790269352058175
+      ],
+      "nozzle_world_mm": [
+        -0.013905907103321624,
+        -25.04070204321674,
+        173.54053546876162
+      ],
+      "exported_nozzle_min_world_z_mm": 173.54053732376957,
+      "bed_world_z_mm": 169.75026611670344,
+      "nozzle_bed_gap_mm": 3.790269352058175,
+      "exported_nozzle_bed_gap_mm": 3.7902712070661266,
+      "belts": 2,
+      "chain_links": 11,
+      "chain_endpoint_error_mm": 8.319472268760549e-08
+    },
+    {
+      "xyz_mm": [
+        30,
+        66.80941812833922,
+        3.790269352058175
+      ],
+      "nozzle_world_mm": [
+        -29.997807724570876,
+        -25.04070204321674,
+        173.54053546876162
+      ],
+      "exported_nozzle_min_world_z_mm": 173.54053732376957,
+      "bed_world_z_mm": 169.75026611670344,
+      "nozzle_bed_gap_mm": 3.790269352058175,
+      "exported_nozzle_bed_gap_mm": 3.7902712070661266,
+      "belts": 2,
+      "chain_links": 11,
+      "chain_endpoint_error_mm": 8.319472268760549e-08
+    },
+    {
+      "xyz_mm": [
+        90,
+        66.80941812833922,
+        3.790269352058175
+      ],
+      "nozzle_world_mm": [
+        30.002192275429124,
+        -25.04070204321674,
+        173.54053546876162
+      ],
+      "exported_nozzle_min_world_z_mm": 173.54053732376957,
+      "bed_world_z_mm": 169.75026611670344,
+      "nozzle_bed_gap_mm": 3.790269352058175,
+      "exported_nozzle_bed_gap_mm": 3.7902712070661266,
+      "belts": 2,
+      "chain_links": 11,
+      "chain_endpoint_error_mm": 8.319472268760549e-08
+    },
+    {
+      "xyz_mm": [
+        60,
+        66.80941812833922,
+        3.790269352058175
+      ],
+      "nozzle_world_mm": [
+        0.0021922754291239244,
+        -25.04070204321674,
+        173.54053546876162
+      ],
+      "exported_nozzle_min_world_z_mm": 173.54053732376957,
+      "bed_world_z_mm": 169.75026611670344,
+      "nozzle_bed_gap_mm": 3.790269352058175,
+      "exported_nozzle_bed_gap_mm": 3.7902712070661266,
+      "belts": 2,
+      "chain_links": 11,
+      "chain_endpoint_error_mm": 8.319472268760549e-08
+    },
+    {
+      "xyz_mm": [
+        45,
+        66.80941812833922,
+        3.790269352058175
+      ],
+      "nozzle_world_mm": [
+        -14.997807724570876,
+        -25.04070204321674,
+        173.54053546876162
+      ],
+      "exported_nozzle_min_world_z_mm": 173.54053732376957,
+      "bed_world_z_mm": 169.75026611670344,
+      "nozzle_bed_gap_mm": 3.790269352058175,
+      "exported_nozzle_bed_gap_mm": 3.7902712070661266,
+      "belts": 2,
+      "chain_links": 11,
+      "chain_endpoint_error_mm": 8.319472268760549e-08
+    },
+    {
+      "xyz_mm": [
+        75,
+        66.80941812833922,
+        3.790269352058175
+      ],
+      "nozzle_world_mm": [
+        15.002192275429124,
+        -25.04070204321674,
+        173.54053546876162
+      ],
+      "exported_nozzle_min_world_z_mm": 173.54053732376957,
+      "bed_world_z_mm": 169.75026611670344,
+      "nozzle_bed_gap_mm": 3.790269352058175,
+      "exported_nozzle_bed_gap_mm": 3.7902712070661266,
+      "belts": 2,
+      "chain_links": 11,
+      "chain_endpoint_error_mm": 8.319472268760549e-08
+    },
+    {
+      "xyz_mm": [
+        30,
+        66.80941812833922,
+        3.790269352058175
+      ],
+      "nozzle_world_mm": [
+        -29.997807724570876,
+        -25.04070204321674,
+        173.54053546876162
+      ],
+      "exported_nozzle_min_world_z_mm": 173.54053732376957,
+      "bed_world_z_mm": 169.75026611670344,
+      "nozzle_bed_gap_mm": 3.790269352058175,
+      "exported_nozzle_bed_gap_mm": 3.7902712070661266,
+      "belts": 2,
+      "chain_links": 11,
+      "chain_endpoint_error_mm": 8.319472268760549e-08
+    },
+    {
+      "xyz_mm": [
+        59.983901817467554,
+        20,
+        3.790269352058175
+      ],
+      "nozzle_world_mm": [
+        -0.013905907103321624,
+        -71.85012017155596,
+        173.54053546876162
+      ],
+      "exported_nozzle_min_world_z_mm": 173.54053732376957,
+      "bed_world_z_mm": 169.75026611670344,
+      "nozzle_bed_gap_mm": 3.790269352058175,
+      "exported_nozzle_bed_gap_mm": 3.7902712070661266,
+      "belts": 2,
+      "chain_links": 11,
+      "chain_endpoint_error_mm": 8.319472268760549e-08
+    },
+    {
+      "xyz_mm": [
+        59.983901817467554,
+        100,
+        3.790269352058175
+      ],
+      "nozzle_world_mm": [
+        -0.013905907103321624,
+        8.149879828444043,
+        173.54053546876162
+      ],
+      "exported_nozzle_min_world_z_mm": 173.54053732376957,
+      "bed_world_z_mm": 169.75026611670344,
+      "nozzle_bed_gap_mm": 3.790269352058175,
+      "exported_nozzle_bed_gap_mm": 3.7902712070661266,
+      "belts": 2,
+      "chain_links": 11,
+      "chain_endpoint_error_mm": 8.319472268760549e-08
+    },
+    {
+      "xyz_mm": [
+        59.983901817467554,
+        60,
+        3.790269352058175
+      ],
+      "nozzle_world_mm": [
+        -0.013905907103321624,
+        -31.850120171555957,
+        173.54053546876162
+      ],
+      "exported_nozzle_min_world_z_mm": 173.54053732376957,
+      "bed_world_z_mm": 169.75026611670344,
+      "nozzle_bed_gap_mm": 3.790269352058175,
+      "exported_nozzle_bed_gap_mm": 3.7902712070661266,
+      "belts": 2,
+      "chain_links": 11,
+      "chain_endpoint_error_mm": 8.319472268760549e-08
+    },
+    {
+      "xyz_mm": [
+        59.983901817467554,
+        40,
+        3.790269352058175
+      ],
+      "nozzle_world_mm": [
+        -0.013905907103321624,
+        -51.85012017155596,
+        173.54053546876162
+      ],
+      "exported_nozzle_min_world_z_mm": 173.54053732376957,
+      "bed_world_z_mm": 169.75026611670344,
+      "nozzle_bed_gap_mm": 3.790269352058175,
+      "exported_nozzle_bed_gap_mm": 3.7902712070661266,
+      "belts": 2,
+      "chain_links": 11,
+      "chain_endpoint_error_mm": 8.319472268760549e-08
+    },
+    {
+      "xyz_mm": [
+        59.983901817467554,
+        80,
+        3.790269352058175
+      ],
+      "nozzle_world_mm": [
+        -0.013905907103321624,
+        -11.850120171555957,
+        173.54053546876162
+      ],
+      "exported_nozzle_min_world_z_mm": 173.54053732376957,
+      "bed_world_z_mm": 169.75026611670344,
+      "nozzle_bed_gap_mm": 3.790269352058175,
+      "exported_nozzle_bed_gap_mm": 3.7902712070661266,
+      "belts": 2,
+      "chain_links": 11,
+      "chain_endpoint_error_mm": 8.319472268760549e-08
+    },
+    {
+      "xyz_mm": [
+        59.983901817467554,
+        20,
+        3.790269352058175
+      ],
+      "nozzle_world_mm": [
+        -0.013905907103321624,
+        -71.85012017155596,
+        173.54053546876162
+      ],
+      "exported_nozzle_min_world_z_mm": 173.54053732376957,
+      "bed_world_z_mm": 169.75026611670344,
+      "nozzle_bed_gap_mm": 3.790269352058175,
+      "exported_nozzle_bed_gap_mm": 3.7902712070661266,
+      "belts": 2,
+      "chain_links": 11,
+      "chain_endpoint_error_mm": 8.319472268760549e-08
+    },
+    {
+      "xyz_mm": [
+        59.983901817467554,
+        66.80941812833922,
+        0
+      ],
+      "nozzle_world_mm": [
+        -0.013905907103321624,
+        -25.04070204321674,
+        173.54053546876162
+      ],
+      "exported_nozzle_min_world_z_mm": 173.54053732376957,
+      "bed_world_z_mm": 173.54053546876162,
+      "nozzle_bed_gap_mm": 0,
+      "exported_nozzle_bed_gap_mm": 1.8550079516899132e-06,
+      "belts": 2,
+      "chain_links": 11,
+      "chain_endpoint_error_mm": 7.923312973570686e-08
+    },
+    {
+      "xyz_mm": [
+        59.983901817467554,
+        66.80941812833922,
+        116.76075527794318
+      ],
+      "nozzle_world_mm": [
+        -0.013905907103321624,
+        -25.04070204321674,
+        173.54053546876162
+      ],
+      "exported_nozzle_min_world_z_mm": 173.54053732376957,
+      "bed_world_z_mm": 56.77978019081844,
+      "nozzle_bed_gap_mm": 116.76075527794318,
+      "exported_nozzle_bed_gap_mm": 116.76075713295113,
+      "belts": 2,
+      "chain_links": 11,
+      "chain_endpoint_error_mm": 7.156639230203595e-10
+    },
+    {
+      "xyz_mm": [
+        59.983901817467554,
+        66.80941812833922,
+        58.38037763897159
+      ],
+      "nozzle_world_mm": [
+        -0.013905907103321624,
+        -25.04070204321674,
+        173.54053546876162
+      ],
+      "exported_nozzle_min_world_z_mm": 173.54053732376957,
+      "bed_world_z_mm": 115.16015782979002,
+      "nozzle_bed_gap_mm": 58.380377638971595,
+      "exported_nozzle_bed_gap_mm": 58.38037949397955,
+      "belts": 2,
+      "chain_links": 11,
+      "chain_endpoint_error_mm": 1.8952475002559033e-09
+    },
+    {
+      "xyz_mm": [
+        59.983901817467554,
+        66.80941812833922,
+        29.190188819485794
+      ],
+      "nozzle_world_mm": [
+        -0.013905907103321624,
+        -25.04070204321674,
+        173.54053546876162
+      ],
+      "exported_nozzle_min_world_z_mm": 173.54053732376957,
+      "bed_world_z_mm": 144.35034664927582,
+      "nozzle_bed_gap_mm": 29.190188819485797,
+      "exported_nozzle_bed_gap_mm": 29.19019067449375,
+      "belts": 2,
+      "chain_links": 11,
+      "chain_endpoint_error_mm": 3.486714869677432e-09
+    },
+    {
+      "xyz_mm": [
+        59.983901817467554,
+        66.80941812833922,
+        87.57056645845738
+      ],
+      "nozzle_world_mm": [
+        -0.013905907103321624,
+        -25.04070204321674,
+        173.54053546876162
+      ],
+      "exported_nozzle_min_world_z_mm": 173.54053732376957,
+      "bed_world_z_mm": 85.96996901030424,
+      "nozzle_bed_gap_mm": 87.57056645845738,
+      "exported_nozzle_bed_gap_mm": 87.57056831346533,
+      "belts": 2,
+      "chain_links": 11,
+      "chain_endpoint_error_mm": 1.062104014261348e-09
+    },
+    {
+      "xyz_mm": [
+        59.983901817467554,
+        66.80941812833922,
+        0
+      ],
+      "nozzle_world_mm": [
+        -0.013905907103321624,
+        -25.04070204321674,
+        173.54053546876162
+      ],
+      "exported_nozzle_min_world_z_mm": 173.54053732376957,
+      "bed_world_z_mm": 173.54053546876162,
+      "nozzle_bed_gap_mm": 0,
+      "exported_nozzle_bed_gap_mm": 1.8550079516899132e-06,
+      "belts": 2,
+      "chain_links": 11,
+      "chain_endpoint_error_mm": 7.923312973570686e-08
+    },
+    {
+      "xyz_mm": [
+        30,
+        20,
+        0
+      ],
+      "nozzle_world_mm": [
+        -29.997807724570876,
+        -71.85012017155596,
+        173.54053546876162
+      ],
+      "exported_nozzle_min_world_z_mm": 173.54053732376957,
+      "bed_world_z_mm": 173.54053546876162,
+      "nozzle_bed_gap_mm": 0,
+      "exported_nozzle_bed_gap_mm": 1.8550079516899132e-06,
+      "belts": 2,
+      "chain_links": 11,
+      "chain_endpoint_error_mm": 7.923312973570686e-08
+    },
+    {
+      "xyz_mm": [
+        30,
+        20,
+        116.76075527794318
+      ],
+      "nozzle_world_mm": [
+        -29.997807724570876,
+        -71.85012017155596,
+        173.54053546876162
+      ],
+      "exported_nozzle_min_world_z_mm": 173.54053732376957,
+      "bed_world_z_mm": 56.77978019081844,
+      "nozzle_bed_gap_mm": 116.76075527794318,
+      "exported_nozzle_bed_gap_mm": 116.76075713295113,
+      "belts": 2,
+      "chain_links": 11,
+      "chain_endpoint_error_mm": 7.156639230203595e-10
+    },
+    {
+      "xyz_mm": [
+        30,
+        100,
+        0
+      ],
+      "nozzle_world_mm": [
+        -29.997807724570876,
+        8.149879828444043,
+        173.54053546876162
+      ],
+      "exported_nozzle_min_world_z_mm": 173.54053732376957,
+      "bed_world_z_mm": 173.54053546876162,
+      "nozzle_bed_gap_mm": 0,
+      "exported_nozzle_bed_gap_mm": 1.8550079516899132e-06,
+      "belts": 2,
+      "chain_links": 11,
+      "chain_endpoint_error_mm": 7.923312973570686e-08
+    },
+    {
+      "xyz_mm": [
+        30,
+        100,
+        116.76075527794318
+      ],
+      "nozzle_world_mm": [
+        -29.997807724570876,
+        8.149879828444043,
+        173.54053546876162
+      ],
+      "exported_nozzle_min_world_z_mm": 173.54053732376957,
+      "bed_world_z_mm": 56.77978019081844,
+      "nozzle_bed_gap_mm": 116.76075527794318,
+      "exported_nozzle_bed_gap_mm": 116.76075713295113,
+      "belts": 2,
+      "chain_links": 11,
+      "chain_endpoint_error_mm": 7.156639230203595e-10
+    },
+    {
+      "xyz_mm": [
+        90,
+        20,
+        0
+      ],
+      "nozzle_world_mm": [
+        30.002192275429124,
+        -71.85012017155596,
+        173.54053546876162
+      ],
+      "exported_nozzle_min_world_z_mm": 173.54053732376957,
+      "bed_world_z_mm": 173.54053546876162,
+      "nozzle_bed_gap_mm": 0,
+      "exported_nozzle_bed_gap_mm": 1.8550079516899132e-06,
+      "belts": 2,
+      "chain_links": 11,
+      "chain_endpoint_error_mm": 7.923312973570686e-08
+    },
+    {
+      "xyz_mm": [
+        90,
+        20,
+        116.76075527794318
+      ],
+      "nozzle_world_mm": [
+        30.002192275429124,
+        -71.85012017155596,
+        173.54053546876162
+      ],
+      "exported_nozzle_min_world_z_mm": 173.54053732376957,
+      "bed_world_z_mm": 56.77978019081844,
+      "nozzle_bed_gap_mm": 116.76075527794318,
+      "exported_nozzle_bed_gap_mm": 116.76075713295113,
+      "belts": 2,
+      "chain_links": 11,
+      "chain_endpoint_error_mm": 7.156639230203595e-10
+    },
+    {
+      "xyz_mm": [
+        90,
+        100,
+        0
+      ],
+      "nozzle_world_mm": [
+        30.002192275429124,
+        8.149879828444043,
+        173.54053546876162
+      ],
+      "exported_nozzle_min_world_z_mm": 173.54053732376957,
+      "bed_world_z_mm": 173.54053546876162,
+      "nozzle_bed_gap_mm": 0,
+      "exported_nozzle_bed_gap_mm": 1.8550079516899132e-06,
+      "belts": 2,
+      "chain_links": 11,
+      "chain_endpoint_error_mm": 7.923312973570686e-08
+    },
+    {
+      "xyz_mm": [
+        90,
+        100,
+        116.76075527794318
+      ],
+      "nozzle_world_mm": [
+        30.002192275429124,
+        8.149879828444043,
+        173.54053546876162
+      ],
+      "exported_nozzle_min_world_z_mm": 173.54053732376957,
+      "bed_world_z_mm": 56.77978019081844,
+      "nozzle_bed_gap_mm": 116.76075527794318,
+      "exported_nozzle_bed_gap_mm": 116.76075713295113,
+      "belts": 2,
+      "chain_links": 11,
+      "chain_endpoint_error_mm": 7.156639230203595e-10
+    },
+    {
+      "xyz_mm": [
+        60,
+        60,
+        60
+      ],
+      "nozzle_world_mm": [
+        0.0021922754291239244,
+        -31.850120171555957,
+        173.54053546876162
+      ],
+      "exported_nozzle_min_world_z_mm": 173.54053732376957,
+      "bed_world_z_mm": 113.54053546876162,
+      "nozzle_bed_gap_mm": 60,
+      "exported_nozzle_bed_gap_mm": 60.00000185500795,
+      "belts": 2,
+      "chain_links": 11,
+      "chain_endpoint_error_mm": 6.282688385792021e-10
+    },
+    {
+      "xyz_mm": [
+        59.983901817467554,
+        66.80941812833922,
+        3.790269352058175
+      ],
+      "nozzle_world_mm": [
+        -0.013905907103321624,
+        -25.04070204321674,
+        173.54053546876162
+      ],
+      "exported_nozzle_min_world_z_mm": 173.54053732376957,
+      "bed_world_z_mm": 169.75026611670344,
+      "nozzle_bed_gap_mm": 3.790269352058175,
+      "exported_nozzle_bed_gap_mm": 3.7902712070661266,
+      "belts": 2,
+      "chain_links": 11,
+      "chain_endpoint_error_mm": 8.319472268760549e-08
+    }
+  ],
+  "native_LED_identity_negatives": 3,
+  "LED": {
+    "installed": 1,
+    "source_id": "0:1:1:99:6@Dragon_Burner_v0.2_v8 v409/LED_Holder v41:1/WS2812B LED v1:1",
+    "lens_triangles": 49,
+    "body_triangles": 4391,
+    "native_optical_guide": 1,
+    "red_blue_differ": true,
+    "rainbow_sample": "fadb54",
+    "off_restores_native_albedo": true,
+    "geometry_and_hardware_materials_preserved": true
+  },
+  "route_anchor_audit": {
+    "passed": true,
+    "anchors": 53,
+    "pose_samples": 29,
+    "authored_complete_PTFE_harness": false,
+    "CAN_applicable": false
+  },
+  "route_findings": {
+    "belts": "Two existing native production routes finite and attached at 25 poses; teeth/cut ends unverified",
+    "bed_chain": "Eleven existing native links finite and attached at 25 poses",
+    "head_PTFE": "Measured source feed/fixed insert anchors move with their actual owners; complete authored tube/connector route absent",
+    "head_wiring": "Native strain plate/rear brace retained and moving; complete author motor/hotend/fan/LED harness absent",
+    "CAN": "Inapplicable: no CAN board/connector/harness in selected source assembly"
+  },
+  "open_findings": [
+    "Full native-solid/swept printer clearance is not proven by this motion audit",
+    "PTFE feed and motor/hotend/fan/LED wiring routes are missing from the source assemblies",
+    "Belts are the existing smooth closed-loop previews: cut ends, teeth and clamp engagement unverified",
+    "Native Z endstop contact calibration is unverified",
+    "Source LED carrier contact stress remains unverified"
+  ],
+  "source_endcheck": true,
+  "artifact_endcheck": true
+}

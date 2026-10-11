@@ -26,6 +26,7 @@
 !/site/HEAD_ADDITIONS.json
 !/site/EVA_SOURCES.json
 !/site/EVA_INSTALLATIONS.json
+!/site/EVA_OPTIONS.json
 !/site/EVA_FRONT_SURFACES.json
 !/site/CUSTOM_VORON_ASSETS.json
 !/site/ASSET_BUNDLE.json

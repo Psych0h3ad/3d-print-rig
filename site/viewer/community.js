@@ -1,22 +1,25 @@
-import {setupGcodePanel} from './gcode-panel.js?v=1df4ed3b7d487c82cee0';
+import {setupGcodePanel} from './gcode-panel.js?v=9f2e2d37bad40bd01847';
 import {displacementGcodeSettings,displacementCoordinateNote,unavailableCoordinateNote} from './gcode-machine-bindings.mjs?v=460777c3fc4d1a74bf27';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import * as THREE from './vendor-r180/three.module.js';
 import {OrbitControls} from './vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
-import {loadCommunity} from './community-loader.mjs?v=84d4ffe53bb3dcdc0719';
-import {evaCommunityIndex} from './eva-installations.mjs?v=3838c4828bb6ab03392f';
+import {loadCommunity} from './community-loader.mjs?v=a381029aa4dacf12e596';
+import {evaCommunityIndex} from './eva-installations.mjs?v=4dfad49e1f98d4b5b9f2';
+import {applyEvaOptionsProfile,createEvaOptionsController} from './eva-options.mjs?v=775ad42efa309bb86064';
+import {withHeadAdditions} from './head-additions.mjs?v=23581035dd1b38fe48e2';
+import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
 import {communitySchema,validateCommunityState,communityMotionEnabled,communityConfiguration} from './community-state.mjs?v=460b3fa78cc503ddb6e6';
 import {installationFor} from './ender-mods.mjs?v=5f07c69c7c42ba3f3936';
 import {setupMachineNavigation} from './machines.js?v=7d90ace65109ee54e1d2';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
-import {translate} from './i18n.mjs?v=46e1e3aced367de6d952';
-import {rememberDisplayControl} from './display-preferences.mjs?v=cfa9769ce74b3791658f';
-import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=ea3c45fda6e17c3b5857';
+import {translate} from './i18n.mjs?v=ba019b1adf20832c91c8';
+import {rememberDisplayControl} from './display-preferences.mjs?v=5fd25f289942c501706d';
+import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=a8e49b4993efdc7bac52';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
-import {setupRenderExport} from './render-export.js?v=a5e4bcf57f5a8e07dcba';
-import {setupPublicInfo} from './public-info.js?v=bc65031c671a47d05260';
+import {setupRenderExport} from './render-export.js?v=1383105a90d0fa4a63bd';
+import {setupPublicInfo} from './public-info.js?v=04b710e03e02ba2aea63';
 const descriptions={
  '247zero_beta2_120':'247zero BETA2 · 120 mm / ULW carbon gantry / Crazy Volcano / M4 Bowden',
  doomcube2_350_reference:"DoomCube 2 · 350 mm / double enclosure / original CAD",
@@ -48,64 +51,92 @@ export async function mount(scope){
  const pmrem=scope.resource(new THREE.PMREMGenerator(renderer)),environment=scope.resource(pmrem.fromScene(new RoomEnvironment(),.03));scene.environment=environment.texture;
  const ambient=new THREE.HemisphereLight(0xffffff,0x586b80,.25),sun=new THREE.DirectionalLight(0xffffff,1.4);sun.position.set(2,4,3);scene.add(ambient,sun);
  const grid=new THREE.GridHelper(2,40,0xa8b8b1,0xc5cec9);grid.visible=false;scene.add(grid);
- let current,state,axisKeys=['x','y','z'],animation=null,frame=null;
+ let current,state,evaOptions=null,installationRequest=0,axisKeys=['x','y','z'],animation=null,frame=null;
  const ranges=()=>({...current.profile.axes,...communityConfiguration(current.profile,state.configuration??'stock').axes});
- function render(){if(frame!==null||scope.disposed)return;frame=workspaceFrame(time=>{frame=null;if(animation){const u=Math.min(1,(time-animation.start)/24000),stage=Math.min(2,Math.floor(u*3)),v=Math.min(1,u*3-stage),ease=.5-.5*Math.cos(Math.PI*v);setAxes(Object.fromEntries(axisKeys.map(k=>{const range=ranges()[k],points=[animation.from[k],range[0],range[1],0];return [k,points[stage]+(points[stage+1]-points[stage])*ease]})));if(u===1)animation=null}controls.update();renderer.render(scene,camera);if(animation)render()})}
+ function render(){if(frame!==null||scope.disposed)return;frame=workspaceFrame(time=>{frame=null;if(animation){const u=Math.min(1,(time-animation.start)/24000),stage=Math.min(2,Math.floor(u*3)),v=Math.min(1,u*3-stage),ease=.5-.5*Math.cos(Math.PI*v);setAxes(Object.fromEntries(axisKeys.map(k=>{const range=ranges()[k],points=[animation.from[k],range[0],range[1],Math.max(range[0],Math.min(0,range[1]))];return [k,points[stage]+(points[stage+1]-points[stage])*ease]})));if(u===1)animation=null}controls.update();renderer.render(scene,camera);if(animation)render()})}
  function resize(){const r=stage.getBoundingClientRect();renderer.setSize(Math.max(1,r.width),Math.max(1,r.height),false);setResponsiveAspect(camera,controls,r.width,r.height);render()}
  new WorkspaceResizeObserver(resize).observe(stage);controls.addEventListener('change',render);scope.cleanup(()=>{animation=null;current=null});
  workspaceListen(document,'visibilitychange',()=>{if(!document.hidden)resize()});
  function lighting(){const settings=sceneLightingState({darkUI:$('night').checked});scene.background=new THREE.Color(settings.background);scene.environmentIntensity=settings.environmentIntensity;renderer.toneMappingExposure=settings.exposure;ambient.intensity=settings.ambientIntensity;document.body.dataset.roomDark='false';render()}
- function setAxes(next){state.axes=current.adapter.setAxes(next);for(const k of axisKeys){$(k).value=state.axes[k];$(k+'Value').textContent=state.axes[k].toFixed(1)+' mm'}document.body.dataset.pose=JSON.stringify(state.axes);render()}
- function visibleBounds(group){const box=new THREE.Box3();for(const[key,n]of current.adapter.nodes)if(n.visible&&(!group||(current.profile.head_groups||[group]).includes(current.adapter.records.get(key).group)))box.expandByObject(n);if(!group)for(const n of current.adapter.zeroBowden?.meshes||[])if(n.visible)box.expandByObject(n);return box}
+ function setAxes(next){state.axes=current.adapter.setAxes(next);evaOptions?.update(state.axes);for(const k of axisKeys){$(k).value=state.axes[k];$(k+'Value').textContent=state.axes[k].toFixed(1)+' mm'}document.body.dataset.pose=JSON.stringify(state.axes);render()}
+ function setPalette(value){current.adapter.setPalette(value);evaOptions?.setPalette(value);render()}
+ function visibleBounds(group){const box=new THREE.Box3();for(const[key,n]of current.adapter.nodes)if(n.visible&&(!group||(current.profile.head_groups||[group]).includes(current.adapter.records.get(key).group)))box.expandByObject(n);if(evaOptions?.current)box.union(evaOptions.bounds());if(!group)for(const n of current.adapter.zeroBowden?.meshes||[])if(n.visible)box.expandByObject(n);return box}
  function view(kind='iso'){
   if(!current)return;const box=visibleBounds(kind==='head'?'head':null),center=box.getCenter(new THREE.Vector3());
   const distance=box.getSize(new THREE.Vector3()).length()/2/Math.sin(THREE.MathUtils.degToRad(camera.fov)/2)*1.04;
   const direction=new THREE.Vector3(...(current.profile.view_directions?.[kind]||{iso:[.6,.6,.95],front:[0,.12,1],top:[0,1,.0001],head:[.4,.5,1]}[kind]));
   controls.target.copy(center);camera.up.set(0,kind==='top'?0:1,kind==='top'?-1:0);camera.position.copy(center).add(direction.normalize().multiplyScalar(distance));camera.lookAt(center);frameResponsiveView(camera,controls);controls.update();render();
  }
- function setInstallation(id){if(id==='stock'&&current.profile.eva_installation)id=current.profile.eva_installation.configuration;communityConfiguration(current.profile,id);state.configuration=current.adapter.setConfiguration(id);state.axes=current.adapter.getAxes();for(const k of axisKeys){if(!$(k))continue;[$(k).min,$(k).max]=ranges()[k];$(k).value=state.axes[k];$(k+'Value').textContent=state.axes[k].toFixed(1)+' mm'}document.body.dataset.configuration=id;if(current.profile.configurations){const url=new URL(location.href);url.searchParams.set('configuration',id);history.replaceState(null,'',url)}describe();const visible=[...current.adapter.nodes.values()].filter(n=>n.visible).length;$('badge').textContent=visible.toLocaleString()+' PARTS · '+current.profile.title.toUpperCase();render()}
+ async function setInstallation(id){
+  if(id==='stock'&&current.profile.eva_installation)id=current.profile.eva_installation.configuration;
+  communityConfiguration(current.profile,id);const request=++installationRequest;
+  if(evaOptions){const result=await evaOptions.install(id);if(result.stale||request!==installationRequest)return false}
+  if(scope.disposed)return false;
+  animation=null;
+  state.configuration=current.adapter.setConfiguration(id);state.axes=current.adapter.getAxes();evaOptions?.update(state.axes);
+  for(const k of axisKeys){if(!$(k))continue;[$(k).min,$(k).max]=ranges()[k];$(k).value=state.axes[k];$(k+'Value').textContent=state.axes[k].toFixed(1)+' mm'}
+  document.body.dataset.configuration=id;
+  if(current.profile.configurations){const url=new URL(location.href);url.searchParams.set('configuration',id);history.replaceState(null,'',url)}
+  describe();const visible=[...current.adapter.nodes.values()].filter(n=>n.visible).length+(evaOptions?.current?.manifest.parts.length||0);
+  $('badge').textContent=visible.toLocaleString()+' PARTS · '+current.profile.title.toUpperCase();render();return true;
+ }
  function capture(){return {...structuredClone(state),camera:{position:camera.position.toArray(),target:controls.target.toArray(),up:camera.up.toArray()}}}
- function restore(data){validateCommunityState(data,current.profile);animation=null;state=structuredClone(data);setInstallation(data.configuration??'stock');current.adapter.setPalette(state.palette);current.adapter.setReferences(state.references);for(const k of ['base','accent','frame'])$(k).value=state.palette[k];$('references').checked=state.references;$('night').checked=state.night;$('gridVisible').checked=state.grid;grid.visible=state.grid;setAxes(data.axes);camera.position.fromArray(state.camera.position);camera.up.fromArray(state.camera.up);controls.target.fromArray(state.camera.target);camera.lookAt(controls.target);controls.update();lighting();rememberDisplayControl()}
+ async function restore(data){validateCommunityState(data,current.profile);animation=null;if(!await setInstallation(data.configuration??'stock'))return;state=structuredClone(data);if(state.configuration==='stock'&&current.profile.eva_installation)state.configuration=current.profile.eva_installation.configuration;setPalette(state.palette);current.adapter.setReferences(state.references);evaOptions?.update(state.axes);for(const k of ['base','accent','frame'])$(k).value=state.palette[k];$('references').checked=state.references;$('night').checked=state.night;$('gridVisible').checked=state.grid;grid.visible=state.grid;setAxes(data.axes);camera.position.fromArray(state.camera.position);camera.up.fromArray(state.camera.up);controls.target.fromArray(state.camera.target);camera.lookAt(controls.target);controls.update();lighting();rememberDisplayControl()}
  for(const[id,kind]of [['iso','iso'],['front','front'],['top','top'],['focusHead','head']])$(id).onclick=()=>view(kind);
  $('night').oninput=$('night').onchange=()=>{if(state)state.night=$('night').checked;lighting()};lighting();setupMachineNavigation(machine);
  function describe(){
   if(!current)return;const selected=communityConfiguration(current.profile,state.configuration??'stock');$('installationNotice').textContent=(selected.notices||[selected.notice]).filter(Boolean).map(t).join(' ');
   document.querySelector('label[for="headInstallation"]').textContent=t(current.profile.configuration_label||'Toolhead installation');
   const sources=selected.sources||[selected.source].filter(Boolean);$('installationSource').hidden=!sources.length;$('installationSource').replaceChildren();
-  for(const source of sources){const link=document.createElement('a'),p=document.createElement('p');link.target='_blank';link.rel='noopener';link.href=source.url;link.textContent=source.author+' · '+source.version;p.textContent=source.license;$('installationSource').append(link,p)}
+  for(const source of sources){const link=document.createElement('a'),p=document.createElement('p');link.target='_blank';link.rel='noopener';link.href=source.url;link.textContent=[source.author||source.name,source.version||source.revision||source.source_revision||source.commit].filter(Boolean).join(' · ')||new URL(source.url).hostname;p.textContent=source.license||'';$('installationSource').append(link,p)}
   function choices(element,options,value){element.replaceChildren(...Object.entries(options).map(([id,c])=>{const o=document.createElement('option');o.value=id;o.textContent=t(c.label);return o}));element.value=value}
   const mods=current.profile.mod_controls;$('driveOptions').hidden=!mods;
   if(mods){for(const[k,id]of [['head','headInstallation'],['z','zInstallation'],['probe','probeInstallation']])choices($(id),mods[k],selected.selection[k])}
   else choices($('headInstallation'),Object.fromEntries(Object.entries(current.profile.configurations||{}).filter(([id])=>!current.profile.eva_installation||id!=='stock')),state.configuration??'stock');
   const eva=current.profile.eva_installation;$('evaHeadLink').hidden=!eva;
-  if(eva){const url=new URL('./toolheads.html',location.href);url.searchParams.set('configuration',eva.configuration);url.searchParams.set('return_machine',machine);url.searchParams.set('lang',document.documentElement.lang);$('evaHeadLink').href=url.href;}
-  if(eva?.native_review){const link=document.createElement('a');link.href=eva.native_review.url;link.target='_blank';link.rel='noopener';link.textContent=t('Native mounting review');$('installationSource').append(link);}
-  $('machineDescription').textContent=t(descriptions[machine]);const notices=[sourceNotices[machine],...(current.profile.motion_registration?.notices||[])].filter(Boolean);$('sourceNotice').hidden=!notices.length;$('sourceNotice').textContent=notices.map(t).join(' ')
+  $('sourceModelNotice').hidden=!!eva;
+  if(eva){const url=new URL('./toolheads.html',location.href);url.searchParams.set('configuration',state.configuration==='stock'?eva.configuration:state.configuration);url.searchParams.set('return_machine',machine);url.searchParams.set('lang',document.documentElement.lang);$('evaHeadLink').href=url.href;}
+  const nativeReview=evaOptions?.entries.find(v=>v.id===state.configuration)?.installation.native_review
+   ||(['stock',eva?.configuration].includes(state.configuration)?eva?.native_review:null);
+  if(nativeReview){const link=document.createElement('a');link.href=nativeReview.url;link.target='_blank';link.rel='noopener';link.textContent=t('Native mounting review');$('installationSource').hidden=false;$('installationSource').append(link);}
+  const licenseNotices=selected.source_license_notices||[];$('sourceLicenseNotice').hidden=!licenseNotices.length;$('sourceLicenseNotice').textContent=licenseNotices.map(t).join(' ');
+  $('machineDescription').textContent=t(selected.machine_description||descriptions[machine]);const notices=selected.motion_notices||[sourceNotices[machine],...(current.profile.motion_registration?.notices||[])].filter(Boolean);$('sourceNotice').hidden=!notices.length;$('sourceNotice').textContent=notices.map(t).join(' ')
  }
  workspaceListen(window,'rig-language-change',describe);
  try{
-  const responses=await Promise.all(['COMMUNITY_MACHINES_ASSETS.json','EVA_INSTALLATIONS.json'].map(name=>fetch('../'+name,{cache:'no-cache'})));if(responses.some(r=>!r.ok))throw Error('Native catalog unavailable');const [nativeIndex,evaRegistry]=await Promise.all(responses.map(r=>r.json()));current=await loadCommunity(evaCommunityIndex(nativeIndex,evaRegistry),machine);scene.add(current.root);axisKeys=Object.keys(current.profile.axes);const zeroAxes=()=>Object.fromEntries(axisKeys.map(k=>[k,0]));
+  const responses=await Promise.all(['COMMUNITY_MACHINES_ASSETS.json','EVA_INSTALLATIONS.json'].map(name=>fetch('../'+name,{cache:'no-cache'})));if(responses.some(r=>!r.ok))throw Error('Native catalog unavailable');const [nativeIndex,evaRegistry]=await Promise.all(responses.map(r=>r.json()));current=await loadCommunity(evaCommunityIndex(nativeIndex,evaRegistry),machine);scene.add(current.root);axisKeys=Object.keys(current.profile.axes);const zeroAxes=()=>Object.fromEntries(axisKeys.map(k=>{const [lo,hi]=(state?ranges():current.profile.axes)[k];return [k,Math.max(lo,Math.min(0,hi))]}));
+  if(current.profile.eva_installation){
+   const responses=await Promise.all(['EVA_OPTIONS.json','TOOLHEAD_CONFIGURATIONS.json','HEAD_ADDITIONS.json'].map(name=>fetch('../'+name,{cache:'no-cache'})));
+   if(responses.some(r=>!r.ok))throw Error('EVA option catalog unavailable');
+   const [options,rawHeads,additions]=await Promise.all(responses.map(r=>r.json())),heads=withHeadAdditions(rawHeads,additions);
+   applyEvaOptionsProfile(current,options,heads);
+   evaOptions=createEvaOptionsController(current,{registry:options,heads,loader:new GLTFLoader(),href:location.href});scope.cleanup(()=>evaOptions?.dispose());
+  }
   for(const k of axisKeys)if(!$(k)){const label=document.createElement('label'),span=document.createElement('span'),value=document.createElement('strong'),input=document.createElement('input');label.htmlFor=k;span.className='axislabel';span.append(current.profile.axis_labels?.[k]||k.toUpperCase());value.id=k+'Value';span.append(value);label.append(span);input.id=k;input.type='range';input.step='any';$('z').after(label,input)}
   state={schema:communitySchema,machine,configuration:'stock',axes:zeroAxes(),palette:{...current.profile.palette_defaults},references:false,grid:false,night:$('night').checked};
   $('machineTitle').textContent=current.profile.title;document.title=current.profile.title+' · 3D Print Rig';describe();$('machineRevision').textContent=current.profile.source.version;
   $('nativeSource').href=current.profile.source.cad_url||current.profile.source.upstream_url||current.profile.source.repository+'/tree/'+current.profile.source.revision;$('nativeSource').textContent=(current.profile.source.author||current.profile.source.repository.replace('https://github.com/',''))+' · '+current.profile.source.version;$('nativeLicense').textContent=current.profile.source.license;
-  $('references').disabled=!current.manifest.reference_leaves.length;$('installationOptions').hidden=!current.profile.configurations;const requestedInstallation=new URLSearchParams(location.search).get('configuration');setInstallation(requestedInstallation||'stock');
-  for(const id of ['headInstallation','zInstallation','probeInstallation'])$(id).onchange=()=>{animation=null;const selection={head:$('headInstallation').value,z:$('zInstallation').value,probe:$('probeInstallation').value};setInstallation(current.profile.mod_controls?installationFor(current.profile,selection):$('headInstallation').value)};
+  $('references').disabled=!current.manifest.reference_leaves.length;$('installationOptions').hidden=!current.profile.configurations;const requestedInstallation=new URLSearchParams(location.search).get('configuration');await setInstallation('stock');
+  for(const id of ['headInstallation','zInstallation','probeInstallation'])$(id).onchange=()=>workspaceTask(async()=>{animation=null;const selection={head:$('headInstallation').value,z:$('zInstallation').value,probe:$('probeInstallation').value};try{await setInstallation(current.profile.mod_controls?installationFor(current.profile,selection):$('headInstallation').value);$('configurationStatus').textContent=''}catch(e){describe();$('configurationStatus').textContent=e.message}});
   const movable=communityMotionEnabled(current.profile);$('motionSettings').hidden=!movable;document.body.dataset.motionEnabled=String(movable);
   for(const k of axisKeys){[$(k).min,$(k).max]=ranges()[k];$(k).disabled=!movable;$(k).oninput=()=>{animation=null;const[lo,hi]=ranges()[k];setAxes({...state.axes,[k]:Math.max(lo,Math.min(hi,Number($(k).value)))})}}
   $('motionPause').onclick=()=>{animation=null};$('motionPlay').onclick=()=>{const to=Object.fromEntries(axisKeys.map(k=>[k,current.profile.axes[k][1]]));animation={start:performance.now(),from:{...state.axes},to};render()};$('resetPose').onclick=()=>{animation=null;setAxes(zeroAxes());view()};
-  for(const k of ['base','accent','frame']){$(k).value=state.palette[k];$(k).oninput=()=>{state.palette[k]=$(k).value;current.adapter.setPalette(state.palette);render()}}
-  $('resetPalette').onclick=()=>{state.palette={...current.profile.palette_defaults};for(const k of ['base','accent','frame'])$(k).value=state.palette[k];current.adapter.setPalette(state.palette);render()};
-  $('references').onchange=()=>{state.references=$('references').checked;current.adapter.setReferences(state.references);render()};$('gridVisible').onchange=()=>{state.grid=$('gridVisible').checked;grid.visible=state.grid;render()};
+  for(const k of ['base','accent','frame']){$(k).value=state.palette[k];$(k).oninput=()=>{state.palette[k]=$(k).value;setPalette(state.palette)}}
+  $('resetPalette').onclick=()=>{state.palette={...current.profile.palette_defaults};for(const k of ['base','accent','frame'])$(k).value=state.palette[k];setPalette(state.palette)};
+  $('references').onchange=()=>{state.references=$('references').checked;current.adapter.setReferences(state.references);evaOptions?.update(state.axes);render()};$('gridVisible').onchange=()=>{state.grid=$('gridVisible').checked;grid.visible=state.grid;render()};
   $('saveConfiguration').onclick=()=>{const url=URL.createObjectURL(new Blob([JSON.stringify(capture(),null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=machine+'.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);$('configurationStatus').textContent=t('構成JSONを保存しました。')};
-  $('loadConfiguration').onclick=()=>$('configurationFile').click();$('configurationFile').onchange=()=>workspaceTask(async()=>{const file=$('configurationFile').files?.[0];$('configurationFile').value='';if(!file)return;try{if(file.size>64*1024)throw Error('Configuration exceeds 64 KB');restore(JSON.parse(await file.text()));$('configurationStatus').textContent=t('構成JSONを復元しました。')}catch(e){$('configurationStatus').textContent=e.message}});
+  $('loadConfiguration').onclick=()=>$('configurationFile').click();$('configurationFile').onchange=()=>workspaceTask(async()=>{const file=$('configurationFile').files?.[0];$('configurationFile').value='';if(!file)return;try{if(file.size>64*1024)throw Error('Configuration exceeds 64 KB');await restore(JSON.parse(await file.text()));$('configurationStatus').textContent=t('構成JSONを復元しました。')}catch(e){$('configurationStatus').textContent=e.message}});
   for(const id of ['resetPose','base','accent','frame','resetPalette','gridVisible','saveConfiguration','loadConfiguration'])$(id).disabled=false;
   setupGcodePanel({container:document.querySelector('aside'),profile:current.profile,adapter:current.adapter,scene,render,drawPath:false,coordinateNote:movable?displacementCoordinateNote:unavailableCoordinateNote,
    getFirmwareSettings:()=>displacementGcodeSettings(current.profile,current.adapter.getAxes(),ranges()),
    getPose:()=>movable?['x','y','z'].map(a=>current.adapter.getAxes()[a]):[0,0,0],getLimits:()=>displacementGcodeSettings(current.profile,current.adapter.getAxes(),ranges()).limits,
    getContext:()=>({machine,configuration:state.configuration,asset_identity:current.replay_asset_identity,secondary:Object.fromEntries(Object.entries(current.adapter.getAxes()).filter(([a])=>!['x','y','z'].includes(a)))}),
    beforePlayback:()=>{animation=null},setPose:xyz=>{if(movable)setAxes({...current.adapter.getAxes(),...Object.fromEntries(['x','y','z'].map((a,i)=>[a,xyz[i]]))})}});
-  $('motionPlay').disabled=$('motionPause').disabled=!movable;current.adapter.setPalette(state.palette);setAxes(state.axes);view();resize();await setupPublicInfo({includeDownloads:false});setupRenderExport({three:THREE,renderer,scene,camera,controls,name:machine});$('openRender').disabled=false;
-  setInstallation(state.configuration);document.body.dataset.ready='true';document.body.dataset.parts=String(current.manifest.native_leaf_count);$('status').hidden=true;
+  $('motionPlay').disabled=$('motionPause').disabled=!movable;setPalette(state.palette);setAxes(state.axes);view();resize();await setupPublicInfo({includeDownloads:false});setupRenderExport({three:THREE,renderer,scene,camera,controls,name:machine});$('openRender').disabled=false;
+  if(requestedInstallation&&requestedInstallation!==state.configuration&&requestedInstallation!=='stock'){
+   try{if(await setInstallation(requestedInstallation))view()}
+   catch(e){describe();$('configurationStatus').textContent=e.message}
+  }
+  document.body.dataset.ready='true';document.body.dataset.parts=String(current.manifest.native_leaf_count);$('status').hidden=true;
  }catch(e){$('status').textContent=t('モデルの読込に失敗しました。機種を選び直してください。');document.body.dataset.error=e.message;throw e}
 }

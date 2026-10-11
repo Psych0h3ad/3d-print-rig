@@ -70,7 +70,7 @@ export function applyEvaInstallation(manifest,profile,row){
   next.motion_registration.notices=[...row.review_notices];
  return {manifest,profile:next};
 }
-export function evaInstallationSupport(row,heads){
+export function evaInstallationSupport(row,heads,options=null){
  const variant=heads.variants.find(v=>v.id===row.configuration);
  if(!variant?.eva||variant.eva.generation!==row.generation||variant.belt_width_mm!==row.belt_width_mm
   ||variant.eva.source_revision!==row.source_revision
@@ -78,9 +78,21 @@ export function evaInstallationSupport(row,heads){
   throw Error('EVA installed selection differs from the source head');
  const dimensions=['toolhead','extruder','hotend','probe'];
  const fields={toolhead:'toolheads',extruder:'extruders',hotend:'hotends',probe:'probes'};
+ const ids=options?.hosts?.[row.machine_id]?.configurations||[row.configuration];
+ const variants=ids.map(id=>{
+  const candidate=heads.variants.find(v=>v.id===id);
+  if(!candidate?.eva||candidate.eva.generation!==row.generation
+   ||candidate.eva.source_revision!==row.source_revision
+   ||candidate.eva.source_machine?.id!==row.machine_id
+   ||id!==row.configuration&&!options.variants.some(v=>v.id===id&&v.machine_id===row.machine_id))
+   throw Error('Unregistered EVA installed combination');
+  return candidate;
+ });
  return {dimensions,options:Object.fromEntries(dimensions.map(d=>{
-  const option=heads[fields[d]].find(o=>o.id===variant[d]);
-  if(!option)throw Error('Missing EVA installed option');
-  return [d,[{id:option.id,label:option.label}]];
- })),variants:[{...variant,id:row.configuration,notes:row.notices||[]}],accessories:[]};
+  const choices=[...new Set(variants.map(v=>v[d]))].map(id=>{
+   const option=heads[fields[d]].find(o=>o.id===id);
+   if(!option)throw Error('Missing EVA installed option');
+   return {id:option.id,label:option.label};
+  });return [d,choices];
+ })),variants:variants.map(v=>({...v,notes:v.id===row.configuration?row.notices||[]:v.installation?.notices||v.notes||[]})),accessories:[]};
 }

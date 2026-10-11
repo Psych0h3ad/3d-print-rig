@@ -61,7 +61,7 @@ export function createCommunityAdapter(root,manifest,profile){
    }flex.push({mesh:m,key,source,weights,normals:m.geometry.attributes.normal?.array.slice(),spec:r.group==='registered_flex'?profile.motion_registration.flex[key]:null});
   });
  }
- const chains=createRegisteredChains(nodes,initial,profile),teeth=createBeltedZTeeth(root,profile),bowden=createEnderBowden(root,profile),zeroBowden=createZeroBowden(root,profile);const originalXBelt=createOriginalEnderXBelt(root,profile);let restOffsets={};
+ const chains=createRegisteredChains(nodes,initial,profile),teeth=createBeltedZTeeth(root,profile),bowden=createEnderBowden(root,profile),zeroBowden=createZeroBowden(root,profile);const originalXBelt=createOriginalEnderXBelt(root,profile);let restOffsets={},flexEndpoints={};
  function setAxes(next){
   validateAxes(next,profile,configuration);axes={...next};
   const motions=new Map([...new Set([...records.values()].map(r=>r.group))].map(group=>[group,displayMotion(nativeMotion(group,axes,profile),profile)])),head=displayMotion(nativeMotion('head',axes,profile),profile),axisNames=['x','y','z'];
@@ -78,6 +78,12 @@ export function createCommunityAdapter(root,manifest,profile){
    }
    const a=e.mesh.geometry.attributes.position;a.array.set(e.source);
    const registered=e.spec?new Map(Object.keys(profile.motions).map(group=>[group,registeredFlexDelta({[group]:1},e.spec,axes,profile)])):null;
+   const endpoint=flexEndpoints[e.key];
+   if(endpoint){
+    const offset=displayMotion(endpoint.moving_mm.map((v,j)=>v-e.spec.moving_mm[j]),profile);
+    const moving=registered.get(e.spec.moving_group);
+    registered.set(e.spec.moving_group,moving.map((v,j)=>v+offset[j]));
+   }
    for(let i=0;i<a.count;i++){const w=e.weights[i],delta=e.spec?[0,1,2].map(j=>Object.entries(w).reduce((v,[group,weight])=>v+registered.get(group)[j]*weight,0)):w.native_axes?displayMotion([0,1,2].map(j=>Object.entries(w.native_axes).reduce((v,[k,c])=>v+c[j]*axes[k],0)),profile):w.head!==undefined?head.map(v=>v*w.head):displayMotion(w.custom.map((v,j)=>v*axes[axisNames[j]]),profile);for(let j=0;j<3;j++)a.array[3*i+j]=e.source[3*i+j]+delta[j]}
    a.needsUpdate=true;
    if(e.normals&&Object.values(axes).every(v=>v===0)){e.mesh.geometry.attributes.normal.array.set(e.normals);e.mesh.geometry.attributes.normal.needsUpdate=true}else e.mesh.geometry.computeVertexNormals();
@@ -89,6 +95,16 @@ export function createCommunityAdapter(root,manifest,profile){
  }
  function setPalette(palette){for(const[key,node]of nodes){const role=records.get(key).appearance_role;if(!palette[role])continue;node.traverse(m=>{if(m.isMesh)for(const material of [].concat(m.material))material.color.set(palette[role])})}}
  function setReferences(value){references=Boolean(value);for(const[key,node]of nodes)if(records.get(key).group==='reference')node.visible=references&&!hiddenKeys.has(key)}
- function setConfiguration(id){const spec=communityConfiguration(profile,id),keys=spec.hidden_keys||[],rest=spec.rest_offsets_mm||{};if(!Array.isArray(keys)||new Set(keys).size!==keys.length||keys.some(k=>!records.has(k))||Object.entries(rest).some(([k,v])=>!records.has(k)||!Array.isArray(v)||v.length!==3||!v.every(Number.isFinite)))throw Error('Incomplete configuration installation');configuration=id;hiddenKeys=new Set(keys);restOffsets=rest;for(const[k,[a,b]]of Object.entries(spec.axes||{}))axes[k]=Math.max(a,Math.min(b,axes[k]));setAxes(axes);return id}
+ function setConfiguration(id){
+  const spec=communityConfiguration(profile,id),keys=spec.hidden_keys||[],rest=spec.rest_offsets_mm||{},endpoints=spec.flex_endpoints_mm||{};
+  if(!Array.isArray(keys)||new Set(keys).size!==keys.length||keys.some(k=>!records.has(k))||Object.entries(rest).some(([k,v])=>!records.has(k)||!Array.isArray(v)||v.length!==3||!v.every(Number.isFinite))
+   ||!endpoints||Array.isArray(endpoints)||typeof endpoints!=='object'||Object.entries(endpoints).some(([k,v])=>{
+    const route=profile.motion_registration?.flex?.[k];
+    return records.get(k)?.group!=='registered_flex'||route?.type!=='endpoint_route'||route.moving_group!=='head'
+     ||!v||Object.keys(v).join()!=='moving_mm'||!Array.isArray(v.moving_mm)||v.moving_mm.length!==3||!v.moving_mm.every(Number.isFinite);
+   }))throw Error('Incomplete configuration installation');
+  configuration=id;hiddenKeys=new Set(keys);restOffsets=rest;flexEndpoints=endpoints;
+  for(const[k,[a,b]]of Object.entries(spec.axes||{}))axes[k]=Math.max(a,Math.min(b,axes[k]));setAxes(axes);return id;
+ }
  setConfiguration(configuration);return {root,nodes,records,flex,chains,teeth,bowden,zeroBowden,originalXBelt,setAxes,setPalette,setReferences,setConfiguration,getConfiguration:()=>configuration,getAxes:()=>({...axes})};
 }

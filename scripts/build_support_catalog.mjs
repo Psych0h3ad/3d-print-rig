@@ -21,6 +21,7 @@ import {withHeadAdditions} from '../site/viewer/head-additions.mjs';
 import {withInternalSpool,INTERNAL_SPOOL_CATALOG} from '../site/viewer/internal-spool.mjs';
 import {mergeRequestedMods} from '../site/viewer/requested-mods.mjs';
 import {evaCommunityIndex,evaInstallationSupport} from '../site/viewer/eva-installations.mjs';
+import {validateEvaOptionsRegistry} from '../site/viewer/eva-options.mjs';
 
 export function enumerateV0(registry){
  const dimensions=v0Slots.map(([id])=>id),options=Object.fromEntries(dimensions.map(d=>[d,[{id:'stock',label:d==='toolhead'?'Mini Stealthburner / BMG / Revo Voron':'純正'},...(d==='accelerometer'?[{id:'none',label:'なし'}]:[]),...registry.options.filter(o=>o.slot===d&&o.id!=='stock').map(o=>({id:o.id,label:o.label}))]]));
@@ -38,6 +39,7 @@ export function buildSupport(root){
  const community=read('COMMUNITY_INSTALLATIONS.json');
  const eva=read('EVA_INSTALLATIONS.json'),communityAssets=evaCommunityIndex(read('COMMUNITY_MACHINES_ASSETS.json'),eva);
  const heads=withEmbeddedBoards(withHeadAdditions(raw,read('HEAD_ADDITIONS.json')),[xolEmbeddedBoard(read(raw.base_assets.xol.meta)),sbEmbeddedBoard(read(raw.base_assets.stealthburner.meta))]);heads.dimensions=headBuilderDimensions;
+ const evaOptions=read('EVA_OPTIONS.json');validateEvaOptionsRegistry(evaOptions,heads);
  const alpha=read(TRINITY_ALPHA_SOURCE.file);if(input_sha256[TRINITY_ALPHA_SOURCE.file]!==TRINITY_ALPHA_SOURCE.sha256)throw Error('Trinity alpha support sidecar hash mismatch');augmentTrinityAlpha({heads,registry},null,alpha,input_sha256['MACHINE_HEAD_REGISTRATIONS.json']);
  const alphaHosts=read(TRINITY_ALPHA_HOST_SOURCE.file);if(input_sha256[TRINITY_ALPHA_HOST_SOURCE.file]!==TRINITY_ALPHA_HOST_SOURCE.sha256)throw Error('Trinity alpha support host-sidecar hash mismatch');augmentTrinityAlphaHosts({heads,registry},alphaHosts,input_sha256['MACHINE_HEAD_REGISTRATIONS.json']);
  assertSiboorIndexInput(input_sha256['SIBOOR_TRIDENT_ASSETS.json']);
@@ -70,7 +72,7 @@ export function buildSupport(root){
    target.status='supported';target.kind='v0';catalog=enumerateV0(v0.machines[m.id]);compact(target,catalog);
    details.get(target.file).mods=library.items.filter(i=>i.id.startsWith('v0mod_')).map(item=>({id:item.id,label:item.label,options:v0.machines[m.id].options.filter(o=>o.attachments.some(a=>a.module===item.module||a.module===item.id)).map(o=>({id:o.id,slot:o.slot,label:o.label,requires:o.requires||{},conflicts:o.conflicts||{}}))}));
   }else if(eva.machines[m.id]){
-   catalog=evaInstallationSupport(eva.machines[m.id],heads);target.status='supported';target.kind='community';compact(target,catalog);
+   catalog=evaInstallationSupport(eva.machines[m.id],heads,evaOptions);target.status='supported';target.kind='community';compact(target,catalog);
   }else if(community.machines[m.id]){
    const registration=community.machines[m.id],files=communityAssets.machines[m.id].files;
    if(registration.profile_sha256!==files['machine_profile.json'].sha256)throw Error('Stale community installation registry');

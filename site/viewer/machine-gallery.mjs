@@ -96,7 +96,7 @@ export function createMachineCard(row, {document, current, language, translate, 
 
 export async function mountGallery({document = globalThis.document, window = globalThis.window, fetcher = globalThis.fetch, services} = {}) {
   const [{setupLanguage, translate, formatMessage}, {setupHeaderThemeToggle, applyDisplay, displayKey}] = services || await Promise.all([
-    import('./i18n.mjs?v=46e1e3aced367de6d952'), import('./display-preferences.mjs?v=cfa9769ce74b3791658f'),
+    import('./i18n.mjs?v=ba019b1adf20832c91c8'), import('./display-preferences.mjs?v=5fd25f289942c501706d'),
   ]);
   const $ = id => document.getElementById(id), lang = setupLanguage({document, window});
   const theme = setupHeaderThemeToggle(document.querySelector('.header-actions'));

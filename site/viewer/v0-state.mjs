@@ -1,4 +1,4 @@
-import {validateV0Mods,v0Slots,v0TophatMaxAngle} from './v0-installations.mjs?v=a686041ca15d51c1c316';
+import {validateV0Mods,v0Slots,v0TophatMaxAngle} from './v0-installations.mjs?v=860a6e2fc759b1a6d5c7';
 
 export const v0ConfigurationSchema='v0-configuration-v1';
 export const v0ModsParameter='v0_mods';
@@ -10,7 +10,10 @@ export const stockV0Mods=()=>Object.fromEntries(v0Slots.map(([slot])=>[slot,'sto
 export function validateV0State({profile,registry},value){
  if(!record(value)||value.schema!==v0ConfigurationSchema||value.machine_id!==profile.machine_id)throw Error('この機種の設定ファイルではありません');
  const mods=validateV0Mods(registry,value.mods);
- if(!Array.isArray(value.pose)||value.pose.length!==3||value.pose.some((n,i)=>typeof n!=='number'||!Number.isFinite(n)||n<profile.display_limits_mm['XYZ'[i]][0]||n>profile.display_limits_mm['XYZ'[i]][1]))throw Error('XYZ設定が不正です');
+ const sourceLimits=profile.stock_display_limits_mm||profile.display_limits_mm;
+ const poseLimits=registry.options.find(o=>o.slot==='toolhead'&&o.id===mods.toolhead)?.installation?.display_limits_mm||sourceLimits;
+ if(['X','Y','Z'].some(a=>!Array.isArray(poseLimits[a])||poseLimits[a].length!==2||poseLimits[a].some(n=>typeof n!=='number'||!Number.isFinite(n))||poseLimits[a][0]>poseLimits[a][1]||poseLimits[a][0]<sourceLimits[a][0]||poseLimits[a][1]>sourceLimits[a][1]))throw Error('XYZ設定が不正です');
+ if(!Array.isArray(value.pose)||value.pose.length!==3||value.pose.some((n,i)=>typeof n!=='number'||!Number.isFinite(n)||n<poseLimits['XYZ'[i]][0]||n>poseLimits['XYZ'[i]][1]))throw Error('XYZ設定が不正です');
  const roles=['base','accent','frame'];
  if(!record(value.palette)||Object.keys(value.palette).sort().join()!=='accent,base,frame'||roles.some(k=>value.palette[k]!==null&&(typeof value.palette[k]!=='string'||!/^#[0-9a-f]{6}$/i.test(value.palette[k]))))throw Error('色設定が不正です');
  if(['enclosure','belts','grid'].some(k=>typeof value[k]!=='boolean'))throw Error('表示設定が不正です');

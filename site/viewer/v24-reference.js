@@ -1,9 +1,9 @@
 import {contentSHA256} from './mount-validation.mjs';
-import {alphaResetPose,alphaHostContext,alphaNozzlePosition,alphaNativeHostModelOptions} from './trinity-alpha-host-extensions.mjs?v=16eaa18cbe476dce5e42';
+import {alphaResetPose,alphaHostContext,alphaNozzlePosition,alphaNativeHostModelOptions} from './trinity-alpha-host-extensions.mjs?v=fbd42f07fa1a4786905b';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
-import {setupSceneDisplay} from './display-preferences.mjs?v=cfa9769ce74b3791658f';
-import {workspaceFrame,WorkspaceResizeObserver,workspaceTask} from './workspace-lifecycle.mjs?v=ea3c45fda6e17c3b5857';
+import {setupSceneDisplay} from './display-preferences.mjs?v=5fd25f289942c501706d';
+import {workspaceFrame,WorkspaceResizeObserver,workspaceTask} from './workspace-lifecycle.mjs?v=a8e49b4993efdc7bac52';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import * as THREE from 'three';
@@ -13,10 +13,10 @@ import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
 import {createV24Adapter} from './v24_matrix_adapter.mjs?v=1f70f3be4ab4a0e74544';
 import {setupMachineNavigation} from './machines.js?v=7d90ace65109ee54e1d2';
 import {setupGrid} from './grid-control.js';
-import {setupRenderExport} from './render-export.js?v=a5e4bcf57f5a8e07dcba';
-import {setupPublicInfo} from './public-info.js?v=bc65031c671a47d05260';
-import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=1df4ed3b7d487c82cee0';
-import {setupV24MachineHeads} from './machine-heads.js?v=b490a01b8b3d62c4423a';
+import {setupRenderExport} from './render-export.js?v=1383105a90d0fa4a63bd';
+import {setupPublicInfo} from './public-info.js?v=04b710e03e02ba2aea63';
+import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=9f2e2d37bad40bd01847';
+import {setupV24MachineHeads} from './machine-heads.js?v=aeb397f89da24d981aac';
 export async function mount(scope){
 const $=s=>document.querySelector(s),ids=[250,300,350].flatMap(size=>['printed','ldo_cnc'].map(structure=>`voron_v24_${size}_${structure}`));
 const wanted=new URLSearchParams(location.search).get('machine'),id=ids.includes(wanted)?wanted:ids[0];

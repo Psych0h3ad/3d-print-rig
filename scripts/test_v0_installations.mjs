@@ -15,7 +15,7 @@ for(const registry of Object.values(catalog.machines)){
  for(const o of registry.options){assert.equal(new Set(o.replace_keys).size,o.replace_keys.length);for(const a of o.attachments){assert(Math.abs(installationMatrix(a).determinant()-1)<1e-12);if(a.module)assert(catalog.sources[a.module].metadata_sha256.match(/^[a-f0-9]{64}$/))}}
  assert.throws(()=>validateV0Mods(registry,{accelerometer:'made-up',strain_relief:'stock',handles:'stock',tophat:'stock'}));
 }
-assert.equal(combinations,2304);assert.equal(rejected,1536);
+const nativeCount=Object.values(catalog.machines).flatMap(r=>r.options).filter(o=>o.slot==='toolhead'&&o.id==='dragon-burner-v8-dragon-native-sherpa-a3-r9c').length;assert(nativeCount===0||nativeCount===1);assert.equal(combinations,2304+nativeCount);assert.equal(rejected,1536+383*nativeCount);
 // Matrix orientation is checked against native CAD coordinates, including bolts.
 const v=new THREE.Vector3(.0115,0,-.0125).applyMatrix4(installationMatrix({rotation_xyz_deg:[0,90,0],translation_mm:[119,-12.5,252]}));
 assert(v.distanceTo(new THREE.Vector3(.119,.2405,0))<1e-12);
@@ -26,4 +26,4 @@ const controller=await createV0Installations({scene,adapter,profile,registry,loa
 const state={accelerometer:'none',strain_relief:'stock',handles:'handle',tophat:'stock'};await controller.setState(state);assert(!bolt.visible);const rows=controller.roots.get('handle');assert.equal(rows.length,1);assert(rows[0].model.children[0].visible,'A hidden source bolt must still appear in its new mounting location');
 controller.setPose([100,80,50]);assert(rows[0].wrapper.visible);assert.equal(rows[0].wrapper.position.x,.001);controller.setPalette({base:'#ff0000'});assert.equal(rows[0].model.children[0].children[0].material.color.getHexString(),'aaaaaa');assert.equal(mesh.material.color.getHexString(),'aaaaaa');
 await Promise.all([controller.setState(state),controller.setState({...state,handles:'stock'})]);assert.equal(controller.getState().handles,'stock');assert(!rows[0].wrapper.visible);assert.equal(controller.roots.size,1);controller.dispose();assert.equal(controller.roots.size,0);
-console.log('V0 installations: 2304 valid / 1536 rejected configurations, saved-state migration, native rotations, hidden-source bolt copies, motion, hardware colors and rapid selection recovery passed.');
+console.log(`V0 installations: ${combinations} valid / ${rejected} rejected configurations, saved-state migration, native rotations, hidden-source bolt copies, motion, hardware colors and rapid selection recovery passed.`);

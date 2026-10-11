@@ -18,7 +18,32 @@ import {configurationById,importedVariant,collections,headBuilderDimensions,reso
 import {createConfigurationDraft} from '../site/viewer/configuration-draft.mjs';
 import {withHeadAdditions} from '../site/viewer/head-additions.mjs';
 
-const hardware=new Set(['hotend','nozzle','extruder','hotend_fan','part_fan','fasteners','probe']);
+const hardware=new Set(['hotend','nozzle','extruder','hotend_fan','part_fan','fasteners','probe','endstop','board']);
+// The immutable source groups its printed carrier and purchased switch under
+// one legacy category. Qualify the carrier by exact source pins/occurrences;
+// names or a mutable role alone cannot make hardware printed.
+export function evaSourcePrintedMount(meta,part,spec){
+ const assembly='b394124d0ef44519aa24cd005d1433305f35a545c3b8d5f9c8cccb8268fb0175';
+ const revision='6811558082d6a1797dac160ca027692cd7904a4b';
+ const parent=['Rat Rig - V-Minion 1.0 v7','Full Assembly v6:1','EVA Assembly v5:1'];
+ const equal=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+ const native=(p,leaf,name)=>p?.key==='eva2_vminion_lgx_bmo_'+leaf&&p.source_leaf_key===leaf
+  &&p.source_valid===true&&p.source_commit===revision&&p.source_assembly_sha256===assembly
+  &&equal(p.source_path,[...parent,name])&&equal(p.eva_companions,['endstop']);
+ if(meta.id!=='eva2_vminion_lgx_bmo'||spec.component_id!==meta.id||meta.eva_generation!==2
+  ||spec.files?.['parts.json']?.sha256!=='9831dc9193fab6d3c98e4b3e9b2d8348f8c2345b1137de13e7730a7869adae92'
+  ||spec.files?.['model.glb']?.decoded_sha256!=='21b8cf9694d86062e6b124051c1b60b963d66328a0df7a1b45ba2baaabd46b3b'
+  ||meta.source?.source_step_sha256!=='46650c0be0527b0f799a6ebd5cde210254caafdc4c436f558857fa30c17e9b94'
+  ||meta.source_model_sha256!==assembly
+  ||meta.source_manifest_sha256!=='11e2f61fdcf9620abe3978741643f23e632a9b3fa4014fb19b0378e76727d45e'
+  ||meta.source_commit!==revision||!equal(meta.source_origin_mm,[70,0,0])
+  ||!native(part,'330','top_endstop_angled v2:1')||!equal(part.native_adjustment_mm,[0,0,0])
+  ||!equal(part.native_bounds_mm,[[-45.54999998025602,31.32499858215456,173.8999999999999],[-12.549999704957058,58.67499862685805,181.89999999999992]])
+  ||part.appearance_role!=='base'||part.printed===false
+  ||['hardware','purchased','metal','motor','fan'].includes(part.material))return false;
+ const limitSwitch=meta.parts.find(p=>native(p,'323','Endstop Module - Horizontal Limit Switch v1:1'));
+ return !!limitSwitch&&limitSwitch.appearance_role==='native'&&limitSwitch.printed!==true;
+}
 const sha=data=>createHash('sha256').update(data).digest('hex');
 const triple=value=>Array.isArray(value)&&value.length===3&&value.every(Number.isFinite);
 const hashPattern=/^[a-f0-9]{64}$/;
@@ -49,25 +74,38 @@ export function evaSourceIdentity(part){
  return typeof source==='string'?source:source.join('/');
 }
 
+export function evaSourceOccurrenceIdentity(part,fallbackSha){
+ const path=evaSourceIdentity(part),source=part.source_identity;
+ const labels=source&&typeof source==='object'&&!Array.isArray(source)?source.label_path:part.source_label_path;
+ const definition=source&&typeof source==='object'&&!Array.isArray(source)?source.definition_label:part.definition_label;
+ const occurrencePath=source&&typeof source==='object'&&!Array.isArray(source)?source.path:part.source_path;
+ if(labels!==undefined||definition!==undefined){
+  assert(Array.isArray(labels)&&Array.isArray(occurrencePath)&&labels.length===occurrencePath.length&&labels.every(s=>typeof s==='string'&&s),'Malformed native occurrence label path');
+  assert(typeof definition==='string'&&definition,'Missing native occurrence definition');
+ }
+ return JSON.stringify([part.source_sha256??fallbackSha??null,path,labels??null,definition??null]);
+}
+
 export function assertEvaSourceMetadata(variant,spec,meta){
  validateEvaVariant(variant,spec);validateEvaMetadata(variant,meta);
  if(variant.eva.version===null){assert.equal(variant.eva.version_scope,'source_assembly','Unconfirmed EVA patch lacks source-assembly scope');assert.equal(meta.eva_version,null,'Unconfirmed EVA patch fabricated in metadata');}
  assert.equal(spec.component_id,variant.base_asset,'EVA external ID changed');
  assert.equal(meta.parts.length,spec.parts,'EVA source leaf count changed');
- assert(hashPattern.test(meta.source_sha256||meta.native_file_sha256||meta.source?.source_step_sha256||''),'Missing EVA native source SHA-256');
+ assert(hashPattern.test(meta.source_sha256||meta.native_file_sha256||meta.source?.source_step_sha256||meta.baseline_source?.source_step_sha256||''),'Missing EVA native source SHA-256');
  assert(meta.parts.length>0,'Empty EVA assembly');
  const identities=new Set();
  for(const part of meta.parts){
-  const identity=evaSourceIdentity(part);assert(!identities.has(identity),'Duplicate EVA native instance identity '+identity);identities.add(identity);
+  const identity=evaSourceOccurrenceIdentity(part,meta.source_sha256);assert(!identities.has(identity),'Duplicate EVA native instance identity '+identity);identities.add(identity);
   const commit=part.source_revision??part.source_commit??part.source?.revision??part.source?.commit??meta.source_revision??meta.source_commit;
-  assert.equal(commit,variant.eva.source_revision,'Mixed EVA part source generation '+part.key);
+  const expectedRevision=variant.eva.composition?.part_sources[part.key]?.source_revision??variant.eva.source_revision;
+  assert.equal(commit,expectedRevision,'Mixed EVA part source generation '+part.key);
   if(part.eva_generation!==undefined)assert.equal(part.eva_generation,variant.eva.generation,'Mixed EVA part generation '+part.key);
   if(part.eva_version!==undefined)assert.equal(part.eva_version,variant.eva.version,'Mixed EVA part version '+part.key);
   assert(Array.isArray(part.eva_companions),'Missing EVA category membership '+part.key);
   assert.equal(new Set(part.eva_companions).size,part.eva_companions.length,'Duplicate EVA companion membership '+part.key);
   const role=appearanceRole(part);
   assert.equal(role,part.appearance_role||null,'Source role overridden by unrelated legacy identity '+part.key);
-  if(part.eva_companions.some(category=>hardware.has(category)))assert(!['base','accent','frame','cnc'].includes(role),'EVA purchased hardware is palette mutable '+part.key);
+  if(part.eva_companions.some(category=>hardware.has(category)&&!(category==='endstop'&&evaSourcePrintedMount(meta,part,spec))))assert(!['base','accent','frame','cnc'].includes(role),'EVA purchased hardware is palette mutable '+part.key);
   if(['base','accent'].includes(role))assert(!['hardware','purchased','metal','motor','fan'].includes(part.material),'Purchased EVA leaf has printed role '+part.key);
   if(part.material==='printed'||part.component==='printed')assert(['base','accent','optical'].includes(role),'Unclassified printed EVA leaf '+part.key);
   const bounds=part.native_bounds_mm||part.bounds_mm;
@@ -141,16 +179,21 @@ export function assertEvaExportedLeaves(variant,meta,root,{boundsToleranceMm=.15
  root.traverse(mesh=>{
   if(!mesh.isMesh)return;const key=partKey(mesh),part=rows.get(key);assert(part,'Unregistered EVA GLB leaf '+key);
   assert(finiteMatrix(mesh.matrixWorld),'Non-finite EVA instance '+key);assert(mesh.visible,'Hidden native EVA leaf '+key);
-  if(nodes.has(key))assert.equal(mesh.parent,nodes.get(key).parent,'Duplicate EVA GLB instance '+key);else nodes.set(key,mesh);
+  if(nodes.has(key))assert(mesh.parent===nodes.get(key).parent,'Duplicate EVA GLB instance '+key);else nodes.set(key,mesh);
   const nativeIdentity=evaSourceIdentity(part),glbIdentity=mesh.userData.source_identity??mesh.userData.source_component??mesh.userData.source_path;
   if(glbIdentity!==undefined)assert.equal(evaSourceIdentity({...mesh.userData,key}),nativeIdentity,'GLB EVA source identity mismatch '+key);
-  const glbRevision=mesh.userData.source_revision??mesh.userData.source_commit;if(glbRevision!==undefined)assert.equal(glbRevision,variant.eva.source_revision,'GLB EVA source revision mismatch '+key);
+  if(mesh.userData.source_label_path!==undefined||glbIdentity&&typeof glbIdentity==='object'&&!Array.isArray(glbIdentity)){
+   assert.equal(evaSourceOccurrenceIdentity({...mesh.userData,key},part.source_sha256??meta.source_sha256),evaSourceOccurrenceIdentity(part,meta.source_sha256),'GLB EVA source occurrence mismatch '+key);
+  }
+  const glbRevision=mesh.userData.source_revision??mesh.userData.source_commit;
+  if(glbRevision!==undefined)assert.equal(glbRevision,variant.eva.composition?.part_sources[key]?.source_revision??variant.eva.source_revision,'GLB EVA source revision mismatch '+key);
   if(mesh.userData.appearance_role!==undefined)assert.equal(mesh.userData.appearance_role||null,part.appearance_role||null,'GLB EVA palette role mismatch '+key);
   const materials=[].concat(mesh.material);assert(materials.length,'Missing EVA material '+key);
   for(const m of materials){assert(m.color.toArray().every(n=>Number.isFinite(n)&&n>=0&&n<=1),'Invalid EVA material color '+key);assert([m.metalness,m.roughness,m.opacity].every(n=>Number.isFinite(n)&&n>=0&&n<=1),'Invalid EVA PBR material '+key);}
   const geometry=mesh.geometry,position=geometry.getAttribute('position'),normal=geometry.getAttribute('normal'),indices=geometry.getIndex();
   assert(position&&position.itemSize===3&&position.count>0,'Missing EVA source positions '+key);
-  assert(normal&&normal.itemSize===3&&normal.count===position.count||!normal&&allowSourceFlatNormals&&materials.every(m=>m.flatShading),'Missing EVA position/unit normal data '+key);
+  const flatNative=allowSourceFlatNormals&&(!variant.eva.composition||part.source_sha256===(meta.source?.source_step_sha256??meta.baseline_source?.source_step_sha256));
+  assert(normal&&normal.itemSize===3&&normal.count===position.count||!normal&&flatNative&&materials.every(m=>m.flatShading),'Missing EVA position/unit normal data '+key);
   assert(!geometry.morphAttributes.position?.length,'Deformed native EVA hardware '+key);
   if(!seenGeometry.has(geometry)){
    seenGeometry.add(geometry);vertices+=position.count;if(normal)normalVertices+=normal.count;
@@ -232,6 +275,14 @@ export function assertEvaSelectionLifecycle(catalog,variants){
 
 function dispose(root){root.traverse(mesh=>{if(!mesh.isMesh)return;for(const resource of [mesh.geometry,...[].concat(mesh.material)])if(!disposed.has(resource)){resource.dispose();disposed.add(resource);}});}
 
+export function pinnedVMinionFlatSource(variant,meta){
+ const baseline=meta.baseline_source,source=meta.source;
+ return variant.eva.generation===2&&variant.eva.source_revision==='6811558082d6a1797dac160ca027692cd7904a4b'
+  &&(meta.source_model_sha256??baseline?.source_model_sha256)==='b394124d0ef44519aa24cd005d1433305f35a545c3b8d5f9c8cccb8268fb0175'
+  &&(source?.source_step_sha256??baseline?.source_step_sha256)==='46650c0be0527b0f799a6ebd5cde210254caafdc4c436f558857fa30c17e9b94'
+  &&(!baseline||baseline.source_manifest_sha256==='11e2f61fdcf9620abe3978741643f23e632a9b3fa4014fb19b0378e76727d45e');
+}
+
 export async function auditEvaHeads(catalogRoot,externalDirectory,{catalog=null}={}){
  const directory=path.resolve(catalogRoot),additionBytes=await fs.readFile(path.join(directory,'HEAD_ADDITIONS.json')),additions=JSON.parse(additionBytes);
  let baseBytes;
@@ -247,39 +298,56 @@ export async function auditEvaHeads(catalogRoot,externalDirectory,{catalog=null}
  if(baseBytes)report.input_sha256['TOOLHEAD_CONFIGURATIONS.json']=sha(baseBytes);
  report.composed_catalog_sha256=sha(JSON.stringify(catalog));
  for(const filename of ['audit_eva_heads.mjs','../site/viewer/eva-heads.mjs','../site/viewer/palette-controller.mjs','../site/viewer/configuration-model.js','../site/viewer/configuration-draft.mjs','../site/viewer/head-additions.mjs','../site/viewer/head-assembly.js','../site/viewer/appearance-role.mjs','../site/viewer/vendor/GLTFLoader.js'])report.code_sha256[filename]=sha(await fs.readFile(new URL(filename,import.meta.url)));
- const cache=new Map();
+ const checkedAssets=new Set(),activeRoots=new Set();
+ report.execution={max_simultaneous_assemblies:2,asset_order:'serial',retained_mesh_cache:false};
+ const debug=stage=>{if(process.env.EVA_AUDIT_DEBUG==='1')console.error(JSON.stringify({stage,memory:process.memoryUsage()}));};
+ async function load(variant){
+  debug('load '+variant.id);
+  const spec=catalog.base_assets[variant.base_asset];assert(spec,'Unregistered EVA asset '+variant.base_asset);
+  const {decoded,pins}=await checkedEvaArtifacts(spec,externalDirectory);report.artifacts[variant.base_asset]=pins;
+  const meta=JSON.parse(decoded['parts.json']);assertEvaSourceMetadata(variant,spec,meta);const bytes=decoded['model.glb'];evaGlbDocument(bytes);
+  debug('parse '+variant.id);
+  const gltf=await new GLTFLoader().parseAsync(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength),'');
+  activeRoots.add(gltf.scene);bindEvaMeshIdentities(meta,gltf.scene);
+  debug('parsed '+variant.id);
+  return {root:gltf.scene,meta};
+ }
+ function release(loaded){dispose(loaded.root);activeRoots.delete(loaded.root);}
  try{
   for(const variant of variants){
-   const spec=catalog.base_assets[variant.base_asset];assert(spec,'Unregistered EVA asset '+variant.base_asset);
-   if(cache.has(variant.base_asset)){validateEvaMetadata(variant,cache.get(variant.base_asset).meta);continue;}
-   const {decoded,pins}=await checkedEvaArtifacts(spec,externalDirectory);report.artifacts[variant.base_asset]=pins;
-   const meta=JSON.parse(decoded['parts.json']);assertEvaSourceMetadata(variant,spec,meta);const bytes=decoded['model.glb'];evaGlbDocument(bytes);
-   const gltf=await new GLTFLoader().parseAsync(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength),'');
+   if(checkedAssets.has(variant.base_asset))continue;
+   await inspectPair(variant);checkedAssets.add(variant.base_asset);
+   if(typeof globalThis.gc==='function')globalThis.gc();
+  }
+  async function inspectPair(variant){
+   const current=await load(variant),{root,meta}=current;
    // This pinned public V-Minion export may omit NORMAL. GLTFLoader then
    // selects derivative flat shading. No other missing-normal source is
    // accepted without its own source-backed regression and provenance.
-   const flatSource=meta.source_model_sha256==='b394124d0ef44519aa24cd005d1433305f35a545c3b8d5f9c8cccb8268fb0175'
-    &&meta.source?.source_step_sha256==='46650c0be0527b0f799a6ebd5cde210254caafdc4c436f558857fa30c17e9b94'
-    &&variant.eva.generation===2&&variant.eva.source_revision==='6811558082d6a1797dac160ca027692cd7904a4b';
-   bindEvaMeshIdentities(meta,gltf.scene);const checked=assertEvaExportedLeaves(variant,meta,gltf.scene,{allowSourceFlatNormals:flatSource}),palette=assertEvaPalettes(meta,gltf.scene);
-   cache.set(variant.base_asset,{root:gltf.scene,meta});report.assets.push({id:variant.base_asset,generation:variant.eva.generation,source_revision:variant.eva.source_revision,parts:checked.parts,vertices:checked.vertices,triangles:checked.triangles,source_normal_vertices:checked.normalVertices,source_flat_winding_triangles:checked.flatTriangles,max_native_bounds_error_mm:checked.maxBoundsError,max_unit_normal_error:checked.maxNormalError,palette});
-  }
-  // Exercise actual cached assemblies A→B→A; no stale generation stays visible.
-  for(const variant of variants){
-   const other=variants.find(v=>v.eva.generation!==variant.eva.generation),baseline=snapshot(cache.get(variant.base_asset).root);
-   for(const current of [variant,other,variant]){
-    const plan=headPlan(current);for(const [id,loaded]of cache){loaded.root.visible=id===plan.base;loaded.root.position.set(0,0,0);loaded.root.updateMatrixWorld(true);assert.equal(loaded.root.visible,id===current.base_asset);}
-    validateEvaMetadata(current,cache.get(plan.base).meta);
+   const flatSource=pinnedVMinionFlatSource(variant,meta);
+   const checked=assertEvaExportedLeaves(variant,meta,root,{allowSourceFlatNormals:flatSource});debug('leaves '+variant.id);
+   const palette=assertEvaPalettes(meta,root);
+   debug('leaves/palette '+variant.id);
+   report.assets.push({id:variant.base_asset,generation:variant.eva.generation,source_revision:variant.eva.source_revision,parts:checked.parts,vertices:checked.vertices,triangles:checked.triangles,source_normal_vertices:checked.normalVertices,source_flat_winding_triangles:checked.flatTriangles,max_native_bounds_error_mm:checked.maxBoundsError,max_unit_normal_error:checked.maxNormalError,palette});
+   const other=variants.find(v=>v.eva.generation!==variant.eva.generation),paired=await load(other),pair=new Map([[variant.base_asset,current],[other.base_asset,paired]]);
+   // Audit every registration while retaining at most two actual assemblies.
+   for(const registration of variants.filter(v=>v.base_asset===variant.base_asset)){
+    validateEvaMetadata(registration,meta);const baseline=snapshot(root);
+    for(const selected of [registration,other,registration]){
+     const plan=headPlan(selected);for(const [id,loaded]of pair){loaded.root.visible=id===plan.base;loaded.root.position.set(0,0,0);loaded.root.updateMatrixWorld(true);assert.equal(loaded.root.visible,id===selected.base_asset);}
+     validateEvaMetadata(selected,pair.get(plan.base).meta);
+    }
+    assert.deepEqual(snapshot(root),baseline,'EVA A→B→A changed native source pose/material');
    }
-   assert.deepEqual(snapshot(cache.get(variant.base_asset).root),baseline,'EVA A→B→A changed native source pose/material');
+   release(paired);release(current);
   }
   assert.equal(sha(await fs.readFile(path.join(directory,'HEAD_ADDITIONS.json'))),report.input_sha256['HEAD_ADDITIONS.json'],'EVA catalog changed during audit');
   if(baseBytes)assert.equal(sha(await fs.readFile(path.join(directory,'TOOLHEAD_CONFIGURATIONS.json'))),report.input_sha256['TOOLHEAD_CONFIGURATIONS.json'],'Head source catalog changed during audit');
   for(const [filename,digest]of Object.entries(report.code_sha256))assert.equal(sha(await fs.readFile(new URL(filename,import.meta.url))),digest,'EVA controller changed during audit '+filename);
   for(const [id,pins]of Object.entries(report.artifacts))for(const pin of Object.values(pins))assert.equal(sha(await fs.readFile(path.join(path.resolve(externalDirectory),pin.path))),pin.sha256,'EVA actual artifact changed during audit '+id+'/'+pin.path);
   report.passed=true;
- }catch(error){report.failures.push({message:error.message});}
- finally{for(const loaded of cache.values())dispose(loaded.root);}
+ }catch(error){report.failures.push({message:error.message});if(process.env.EVA_AUDIT_DEBUG==='1')console.error(error.stack);}
+ finally{for(const root of activeRoots)dispose(root);activeRoots.clear();}
  report.completed_at_utc=new Date().toISOString();return report;
 }
 

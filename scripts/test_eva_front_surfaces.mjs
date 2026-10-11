@@ -6,12 +6,17 @@ import {spawnSync} from 'node:child_process';
 import {register} from 'node:module';
 register('./three-test-loader.mjs',import.meta.url);
 const THREE=await import('three');
-import {applyEvaFrontSurfaces,validateEvaFrontRegistry} from '../site/viewer/eva-front-surfaces.mjs';
-import {evaFrontSnapshot,assertEvaFrontPreservation,assertEvaFrontWitnesses,assertEvaFrontFanProtection,assertEvaFrontPalettes,evaFrontIdentity,assertEvaFrontSurfacePins,evaFrontRecipe,evaFrontCodeClosure} from './audit_eva_front_surfaces.mjs';
+import {applyEvaFrontSurfaces,validateEvaFrontRegistry,evaFrontOwnerMode} from '../site/viewer/eva-front-surfaces.mjs';
+import {evaFrontSnapshot,assertEvaFrontPreservation,assertEvaFrontWitnesses,assertEvaNativeFrontWitnesses,assertEvaFrontFanProtection,assertEvaFrontPalettes,evaFrontIdentity,assertEvaFrontSurfacePins,evaFrontRecipe,evaFrontCodeClosure,evaFrontCoverageComplete} from './audit_eva_front_surfaces.mjs';
 
 const clone=structuredClone,H='a'.repeat(64),MODEL='b'.repeat(64),PATCH='c'.repeat(64);
 const steps={2:'46650c0be0527b0f799a6ebd5cde210254caafdc4c436f558857fa30c17e9b94',3:'9bfde01c4d811eaef253831f2fe7354e14c36b607d36b5b37bfc4fe9f48906d6'};
 let rejected=0,positive=0;
+const extendedOwners=['eva2','vminion','eva3','vcore','eva3_orbiter','eva2_v6'];
+const extendedReviews=extendedOwners.map(owner=>({owner}));
+assert(evaFrontCoverageComplete(extendedReviews,[],extendedOwners));positive++;
+for(const rows of [extendedReviews.slice(0,4),[...extendedReviews.slice(0,-1),{owner:'extra'}],[...extendedReviews.slice(0,-1),extendedReviews[0]]]){assert.equal(evaFrontCoverageComplete(rows,[],extendedOwners),false);rejected++;}
+assert.equal(evaFrontCoverageComplete(extendedReviews,[{owner:'eva2_v6',message:'Failed source aperture'}],extendedOwners),false);rejected++;
 function rect(x0,z0,x1,z1,y=-2){return [[[x0,y,z0],[x1,y,z0],[x1,y,z1]],[[x0,y,z0],[x1,y,z1],[x0,y,z1]]];}
 const grille=[...rect(-20,-20,20,-18),...rect(-20,18,20,20),...rect(-20,-18,-18,18),...rect(18,-18,20,18),...rect(-2,-2,2,2),...rect(-18,-1,-2,1),...rect(2,-1,18,1),...rect(-1,2,1,18),...rect(-1,-18,1,-2)];
 function geometry(tris,origin=[0,0,0]){
@@ -57,6 +62,23 @@ function legacyEva2(){
  f.evidence.parts[0].source_path=sourcePath;f.evidence.parts[0].source_brep_sha256='c2849ab7e2b621903eec5fb0cf658f7f0d6893f45bfacc016a2105a772f81add';
  f.bindings={[JSON.stringify(sourcePath)]:'cover'};
  f.options={originMm:[70,0,0],owner:'ratrig_vminion_180',modelSha256:'b394124d0ef44519aa24cd005d1433305f35a545c3b8d5f9c8cccb8268fb0175'};return f;
+}
+function composedFront(){
+ const f=fixture(2,[70,0,0]),part=f.meta.parts[0];delete f.meta.source_sha256;
+ part.source_sha256=steps[2];
+ f.meta.eva_composition={recipe_sha256:H,part_sources:{cover:{source_sha256:steps[2],source_path:clone(part.source_path)}}};
+ return f;
+}
+{
+ const f=composedFront(),before=evaFrontSnapshot(f.root,f.meta);assert.equal(apply(f),1);
+ assertEvaFrontPreservation(before,evaFrontSnapshot(f.root,f.meta),['cover']);witnesses(f);positive++;
+}
+for(const mutate of [f=>delete f.meta.eva_composition.part_sources.cover,
+ f=>f.meta.eva_composition.part_sources.cover.source_sha256=steps[3],
+ f=>f.meta.parts[0].source_sha256=steps[3],
+ f=>f.meta.eva_composition.part_sources.cover.source_path=['wrong','occurrence']]){
+ const f=composedFront(),original=f.cover.geometry;mutate(f);
+ assert.throws(()=>apply(f),/Stale/);assert.equal(f.cover.geometry,original);rejected++;
 }
 {
  const f=legacyEva2();assertEvaFrontWitnesses(f.root,f.meta,f.bindings,f.evidence,f.options);
@@ -143,6 +165,95 @@ rejectedAudit(f=>f.bindings[evaFrontIdentity(f.evidence.parts[0])]='fan1',/occur
  assert.throws(()=>assertEvaFrontPalettes(f.root,f.meta,['fan1','fan2']),/classified as printed/);rejected++;
 }
 
+let nativePositive=0,nativeRejected=0;
+const META='d'.repeat(64),nativeSource='e'.repeat(64);
+function nativeFixture(origin=[0,0,0]){
+ const f=fixture(3,origin),target=f.registry.owners.owner.targets[0],part=f.meta.parts[0];delete target.patch_key;
+ Object.assign(target,{source_sha256:nativeSource,source_revision:'onshape:synthetic-native-microversion',source_label_path:['0:1','0:2'],definition_label:'0:3',native_bounds_mm:clone(part.native_bounds_mm)});
+ for(const field of ['source_sha256','source_revision','source_path','source_label_path','definition_label','source_brep_sha256'])part[field]=clone(target[field]);
+ const descriptor={path:'native/cover.surface.json.gz',sha256:H,bytes:100,encoding:'gzip',decoded_bytes:200,decoded_sha256:PATCH};
+ const owner=f.registry.owners.owner;Object.assign(owner,{mode:'native_export',patch_required:false,configuration_id:'native-fixture',metadata_sha256:META,source_step_sha256:nativeSource,
+  native_export:{required_views:['standalone','installed'],external:{base_url:'https://example.org/public/',local_directory:'native-front-fixture'},witness:{path:'native/witness.json',bytes:100,sha256:H},audit:{path:'native/audit.json',bytes:100,sha256:H},rays:{path:'native/rays.json',bytes:100,sha256:H},surfaces:{cover:descriptor},ray_part_key:'cover'}});
+ const surface={schema:'3d-print-rig-current-eva-native-surfaces-v1',configuration:owner.configuration_id,key:'cover',...clone(target),source_origin_mm:clone(origin),coordinate_system:'Original installed source world Z-up millimetres; normals in the same native basis.',
+  positions_mm:grille.flat().map(v=>[...v]),normals:grille.flat().map(()=>[0,-1,0]),triangles:grille.map((_t,i)=>[i*3,i*3+1,i*3+2]),source_face_map:grille.map(()=>0),
+  source_native_face_receipts:[{face_ordinal:0,triangles:grille.length,native_area_mm2:100}],all_native_faces_represented:true,supports_removed:false,removed_native_domains:[]};
+ const identity=Object.fromEntries(['source_sha256','source_revision','source_path','source_label_path','definition_label','source_brep_sha256'].map(k=>[k,clone(target[k])]));
+ const model={sha256:MODEL,decoded_sha256:MODEL},metadata={sha256:META};
+ const witness={schema:'3d-print-rig-eva-current-front-native-owner-witness-v1',configuration:owner.configuration_id,model,metadata,parts:[{key:'cover',...identity,triangles:grille.length,faces:1,surface:clone(descriptor),native_bounds_mm:clone(target.native_bounds_mm),removed_native_domains:[]}],owner_frames:['standalone','installed'].map(kind=>({kind,...(kind==='installed'?{machine_id:'native-fixture-host'}:{}),source_origin_mm:clone(origin)})),original_128_front_domains_retained:false,apply_original_128_patch:false,full_physical_fit_certified:false};
+ const audit={schema:'3d-print-rig-current-eva-front-native-audit-v1',configuration:owner.configuration_id,model,metadata,parts:[{key:'cover',...identity,surface:clone(descriptor),native_faces:1,triangles:grille.length,all_native_faces_represented:true,zero_native_domains_removed:true,failures:0,face_results:[{native_face:0,triangles:grille.length,minimum_native_winding_dot:1,minimum_native_normal_dot:1,failures:[]}]}],passed:true,full_physical_fit_certified:false};
+ const rays={schema:'3d-print-rig-eva-current-front-rays-v1',configuration:owner.configuration_id,model_sha256:MODEL,metadata_sha256:META,...identity,target_key:'cover',unexpected_open_airway_hit_count:0,rays:[{samples:[-10,-5,0].map(y=>({native_world_mm:[10,y,10],state:'TopAbs_State.TopAbs_OUT'})),hits:[]}]};
+ return {...f,owner,bundle:{witness,audit,rays,surfaces:{cover:surface}},nativeOptions:{modelSha256:MODEL,metadataSha256:META,originMm:origin}};
+}
+const nativeApply=f=>applyEvaFrontSurfaces(f.root,f.meta,MODEL,{...f,metadataSha256:META});
+const nativeWitness=f=>assertEvaNativeFrontWitnesses(f.root,f.meta,f.owner,f.bundle,f.nativeOptions);
+for(const origin of [[0,0,0],[70,0,0]]){
+ const f=nativeFixture(origin),before=evaFrontSnapshot(f.root,f.meta),original=f.cover.geometry;
+ assert.equal(nativeApply(f),1);assert.equal(f.cover.geometry,original,'Native owner substituted old Rapido geometry');
+ const proof=nativeWitness(f);assert.deepEqual(proof.repair_keys,[]);assert.equal(proof.native_export,true);
+ assertEvaFrontPreservation(before,evaFrontSnapshot(f.root,f.meta),[],{nativeExport:true});assertEvaFrontPalettes(f.root,f.meta,['fan1','fan2']);positive++;nativePositive++;
+}
+{
+ const f=nativeFixture(),original=f.cover.geometry;f.patch.geometry.attributes.position.setXYZ(0,NaN,0,0);
+ assert.equal(nativeApply(f),1);assert.equal(f.cover.geometry,original);assert.equal(f.cover.userData.eva_front_surface,undefined);positive++;nativePositive++;
+}
+function rejectNativeGuard(change,pattern){const f=nativeFixture(),original=f.cover.geometry;change(f);assert.throws(()=>nativeApply(f),pattern);assert.equal(f.cover.geometry,original);rejected++;nativeRejected++;}
+for(const [change,pattern]of [
+ [f=>f.owner.mode='declaration_only',/mode/],[f=>f.owner.patch_required=true,/owner/],
+ [f=>delete f.owner.metadata_sha256,/owner/],[f=>f.owner.metadata_sha256=H,/metadata/],
+ [f=>f.owner.model_sha256=H,/model/],[f=>f.owner.source_origin_mm=[70,0,0],/frame/],
+ [f=>f.owner.targets[0].patch_key='patch',/identity/],[f=>f.meta.parts[0].printed=false,/occurrence/],
+ [f=>f.meta.parts[0].source_brep_sha256=MODEL,/occurrence/],[f=>f.meta.parts[0].source_revision='stale',/occurrence/],
+ [f=>f.meta.parts[0].source_sha256=MODEL,/occurrence/],[f=>f.meta.parts[0].source_label_path=['wrong'],/occurrence/],
+ [f=>f.meta.parts[0].definition_label='wrong',/occurrence/],[f=>f.cover.geometry.translate(.001,0,0),/envelope/],
+ [f=>f.owner.native_export.required_views=['standalone'],/owner/],[f=>delete f.owner.native_export.surfaces.cover,/owner/],
+ [f=>f.owner.native_export.audit.bytes=477763110,/descriptor/],
+ [f=>f.owner.native_export.surfaces.cover.encoding='br',/descriptor/],
+ [f=>delete f.owner.native_export.surfaces.cover.decoded_sha256,/descriptor/],
+ [f=>f.owner.native_export.witness.path='../private.json',/descriptor/],
+ [f=>f.owner.targets[0].native_bounds_mm[0][0]=21,/identity/]
+])rejectNativeGuard(change,pattern);
+{
+ const f=nativeFixture(),original=f.cover.geometry;assert.throws(()=>applyEvaFrontSurfaces(f.root,f.meta,MODEL,f),/metadata/);assert.equal(f.cover.geometry,original);rejected++;nativeRejected++;
+}
+for(const [change,pattern]of [
+ [f=>f.bundle.witness.model.decoded_sha256=H,/model/],
+ [f=>f.bundle.audit.metadata.sha256=H,/metadata/],
+ [f=>f.bundle.witness.apply_original_128_patch=true,/Rapido/],
+ [f=>f.bundle.audit.passed=false,/failed/],
+ [f=>f.bundle.audit.parts[0].face_results[0].minimum_native_winding_dot=-1,/winding/],
+ [f=>f.bundle.audit.parts[0].face_results[0].minimum_native_normal_dot=0,/normal/],
+ [f=>f.bundle.witness.parts=[],/proof part/],
+ [f=>f.bundle.surfaces.cover.source_brep_sha256=MODEL,/identity/],
+ [f=>f.bundle.surfaces.cover.source_revision='stale',/identity/],
+ [f=>f.bundle.surfaces.cover.source_origin_mm=[70,0,0],/origin/],
+ [f=>f.bundle.surfaces.cover.source_face_map.pop(),/face map/],
+ [f=>f.bundle.surfaces.cover.removed_native_domains=[0],/domains/],
+ [f=>f.bundle.surfaces.cover.positions_mm[0][0]+=.01,/missing or moved/],
+ [f=>f.bundle.surfaces.cover.normals[0]=[0,1,0],/normal changed/],
+ [f=>f.cover.geometry.index.setX(0,f.cover.geometry.index.getX(1)),/Degenerate/],
+ [f=>{const i=f.cover.geometry.index,a=i.getX(0);i.setX(0,i.getX(1));i.setX(1,a)},/winding/],
+ [f=>f.bundle.witness.parts[0].surface.sha256=MODEL,/descriptor/],
+ [f=>delete f.bundle.rays.target_key,/source part/],
+ [f=>f.bundle.rays.source_brep_sha256=MODEL,/BRep/],
+ [f=>f.bundle.rays.source_revision='stale',/revision/],
+ [f=>f.bundle.rays.metadata_sha256=H,/equal/],
+ [f=>f.bundle.rays.rays[0].samples[1].state='TopAbs_State.TopAbs_IN',/airway/],
+ [f=>f.bundle.rays.rays[0].samples[1].native_world_mm[0]+=.1,/collinear/],
+ [f=>f.bundle.rays.rays[0].samples.forEach(s=>{s.native_world_mm[0]=0;s.native_world_mm[2]=0}),/blocked/],
+ [f=>f.bundle.witness.owner_frames=f.bundle.witness.owner_frames.filter(r=>r.kind!=='standalone'),/frame/]
+]){const f=nativeFixture();nativeApply(f);change(f);assert.throws(()=>nativeWitness(f),pattern);rejected++;nativeRejected++;}
+{
+ const f=nativeFixture(),before=evaFrontSnapshot(f.root,f.meta);nativeApply(f);f.cover.geometry=f.cover.geometry.clone();
+ assert.throws(()=>assertEvaFrontPreservation(before,evaFrontSnapshot(f.root,f.meta),[],{nativeExport:true}),/Unchanged native geometry/);rejected++;nativeRejected++;
+}
+{
+ const f=nativeFixture();nativeApply(f);f.root.position.set(.02,.03,-.01);f.root.updateMatrixWorld(true);
+ const options={...f.nativeOptions,kind:'installed',machineId:'native-fixture-host'};
+ assertEvaNativeFrontWitnesses(f.root,f.meta,f.owner,f.bundle,{...options,nativeMotionMm:[20,10,30]});positive++;nativePositive++;
+ assert.throws(()=>assertEvaNativeFrontWitnesses(f.root,f.meta,f.owner,f.bundle,{...options,nativeMotionMm:[0,0,0]}),/missing or moved/);rejected++;nativeRejected++;
+ for(const machineId of [null,'another-host']){assert.throws(()=>assertEvaNativeFrontWitnesses(f.root,f.meta,f.owner,f.bundle,{...options,machineId,nativeMotionMm:[20,10,30]}),/source host/);rejected++;nativeRejected++;}
+}
+
 // Source-default registration: no missing owner is a skipped pass. This joins
 // the repository runner through its existing test_*.mjs discovery mechanism.
 const registry=JSON.parse(await fs.readFile(new URL('../site/EVA_FRONT_SURFACES.json',import.meta.url),'utf8'));
@@ -156,8 +267,14 @@ const variants=heads.variants.filter(v=>v.eva),expected=[];
 for(const v of variants){
  if(expected.includes(v.base_asset))continue;expected.push(v.base_asset);
  const owner=registry.owners[v.base_asset],asset=heads.assets[v.base_asset];assert(owner&&asset,'Missing standalone front owner');
- assert.equal(owner.model_sha256,asset.files['model.glb'].decoded_sha256);assert.equal(owner.source_step_sha256,steps[v.eva.generation]);
- const keys=v.eva.generation===2?['eva2_vminion_lgx_bmo_334']:['eva3_native_010','eva3_native_094'];
+ assert.equal(owner.model_sha256,asset.files['model.glb'].decoded_sha256);
+ const native=evaFrontOwnerMode(owner)==='native_export';
+ if(native){
+  assert.equal(owner.patch_required,false);assert.equal(owner.metadata_sha256,asset.files['parts.json'].sha256);
+  assert.equal(owner.configuration_id,v.id);assert.deepEqual(owner.native_export.required_views,['standalone','installed']);
+  const companions=new Set(Object.values(v.eva.companions).flat());assert(owner.targets.every(t=>companions.has(t.part_key)),'Native front target absent from exact companion recipe');
+ }else assert.equal(owner.source_step_sha256,steps[v.eva.generation]);
+ const keys=native?owner.targets.map(t=>t.part_key):v.eva.generation===2?['eva2_vminion_lgx_bmo_334']:['eva3_native_010','eva3_native_094'];
  assert.deepEqual(owner.targets.map(t=>t.part_key).sort(),keys.sort(),'Unexpected standalone printed front source keys');
  for(const [id,row]of Object.entries(installed.machines))if(row.configuration===v.id){
   expected.push(id);const host=registry.owners[id];assert(host,'Missing installed front owner');
@@ -198,6 +315,21 @@ while node in parents:
 else: raise AssertionError('Actual gate is not inside build main')
 gate=ast.parse(pathlib.Path(sys.argv[2]).read_text(encoding='utf8'))
 assert any(isinstance(n,ast.Constant) and n.value=='scripts/audit_eva_front_surfaces.mjs' for n in ast.walk(gate)), 'Release gate must invoke actual audit CLI'
+# Execute only definitions: no imports via bytecode cache, network, models or
+# release main. The bounded production descriptor rules are persistent fixtures.
+namespace={'__file__':sys.argv[2], '__name__':'descriptor_fixture'}
+exec(compile(gate,sys.argv[2],'exec'),namespace)
+check=namespace['checked_descriptor']
+valid={'path':'native/front.surface.json.gz','sha256':'a'*64,'bytes':100,'encoding':'gzip','decoded_bytes':200,'decoded_sha256':'b'*64}
+check(valid,4_000_000,16_000_000)
+negatives=[{'bytes':477_763_110},{'bytes':True},{'bytes':0},{'encoding':'br'},{'decoded_bytes':16_000_001},{'decoded_bytes':True},{'decoded_sha256':'stale'},
+ {'path':'../private.json'},{'path':'C:/private.json'},{'path':'native/./a.json'},{'path':'native//a.json'},{'path':'native/a.json?raw=1'},{'path':'native/a.json#bad'},{'path':None}]
+for mutation in negatives:
+ try: check(dict(valid,**mutation),4_000_000,16_000_000)
+ except ValueError: pass
+ else: raise AssertionError('Production native descriptor accepted: '+repr(mutation))
+print(len(negatives))
 `,new URL('build_site.py',import.meta.url).pathname.replace(/^\/([A-Za-z]:)/,'$1'),new URL('check_eva_front_release.py',import.meta.url).pathname.replace(/^\/([A-Za-z]:)/,'$1')],{encoding:'utf8'});
 assert.equal(gateCheck.status,0,'Mandatory actual build gate disconnected: '+(gateCheck.stderr||gateCheck.error?.message||''));
-console.log(JSON.stringify({passed:true,positive_fixtures:positive,rejected_fixtures:rejected,production_owners:expected.length,production_static_import_files:Object.keys(codeClosure).length,mandatory_actual_build_gate:true,scope:'Synthetic negative guard/aperture/outward-normal/hardware/palette fixtures, atomic missing-input rejection, exact four-owner source recipes, complete static production import closure and mandatory actual publication gate. Corrected actual models and independent native witnesses require audit_eva_front_surfaces.mjs.',physical_fit_certified:false}));
+const descriptorNegatives=Number(gateCheck.stdout.trim());assert.equal(descriptorNegatives,14);positive++;rejected+=descriptorNegatives;
+console.log(JSON.stringify({passed:true,positive_fixtures:positive,rejected_fixtures:rejected,native_export_positive_fixtures:nativePositive,native_export_rejected_fixtures:nativeRejected,python_native_descriptor_rejections:descriptorNegatives,production_owners:expected.length,production_static_import_files:Object.keys(codeClosure).length,mandatory_actual_build_gate:true,scope:'Synthetic guard/aperture/outward-normal/hardware/palette and native-export fixtures; exact registered source recipes and mandatory actual publication gate. These fixtures do not audit frozen actual models or certify physical fit.',physical_fit_certified:false}));

@@ -1,11 +1,11 @@
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
-import {setupSceneDisplay} from './display-preferences.mjs?v=cfa9769ce74b3791658f';
-import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=ea3c45fda6e17c3b5857';
-import {loadMonolithData} from './monolith-machine.js?v=f8f1e63949058c9f3c6e';
-import {setupChangerBank} from './changer-bank.js?v=e40b96658f9103747458';
-import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=b490a01b8b3d62c4423a';
-import {headPrinterLink} from './head-navigation.mjs?v=663ef69203268ad03761';
+import {setupSceneDisplay} from './display-preferences.mjs?v=5fd25f289942c501706d';
+import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=a8e49b4993efdc7bac52';
+import {loadMonolithData} from './monolith-machine.js?v=16a46b1359d5755c50c1';
+import {setupChangerBank} from './changer-bank.js?v=6bf3ba28508c49853ec9';
+import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=aeb397f89da24d981aac';
+import {headPrinterLink} from './head-navigation.mjs?v=f084866391a19cf426f5';
 import {headBuilderDimensions} from './configuration-model.js?v=c19fa3a47abadf7f3d2c';
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import {headPrintedCounts} from './head-printed-parts.mjs?v=05f889964e87c5a9185b';
@@ -13,17 +13,17 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=8bb3ff6d2cd5d181cc98';
-import {setupConfigurations} from './configurations.js?v=5633928f243ee0e2663d';
-import {setupPublicInfo} from './public-info.js?v=bc65031c671a47d05260';
-import {setupRenderExport} from './render-export.js?v=a5e4bcf57f5a8e07dcba';
+import {setupConfigurations} from './configurations.js?v=6a7850440f61a6c48cf0';
+import {setupPublicInfo} from './public-info.js?v=04b710e03e02ba2aea63';
+import {setupRenderExport} from './render-export.js?v=1383105a90d0fa4a63bd';
 import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=workspace-belts-1';
-import {validateEvaMetadata,bindEvaMeshIdentities} from './eva-heads.mjs?v=65c037171afca9ebb341';
-import {loadEvaFrontSurfaces,applyEvaFrontSurfaces} from './eva-front-surfaces.mjs?v=ff32b5dac706119bf45c';
+import {validateEvaMetadata,bindEvaMeshIdentities} from './eva-heads.mjs?v=b53ce6925a6fec3b5b10';
+import {loadEvaFrontSurfaces,applyEvaFrontSurfaces} from './eva-front-surfaces.mjs?v=a1a0fbab92e8e08c3f6b';
 import {setRapidoXUhfSurface} from './rapido-x-uhf-cover.mjs?v=8b458475dac84cfcd8c7';
 import {contentSHA256} from './mount-validation.mjs';
 import {probeCheck,probeMetrics,probeGuide,headInspectionState,headBodyCollisionNotes} from './probe-checks.js?v=0f70f5c099338db857e7';
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
-import {setupHeadBuilder} from './builder-ui.mjs?v=39e997b0ba966b75e84c';
+import {setupHeadBuilder} from './builder-ui.mjs?v=916d77f9eead5c6308e4';
 import {validateBuilderExtras} from './toolhead-builder.mjs?v=25334362949e6cfb330d';
 import {loadExternalComponent} from './component-assets.mjs?v=9f8ef058f1297ab60e53';
 export async function mount(scope){
@@ -97,7 +97,7 @@ async function asset(id){return workspaceTask(async()=>{
  const spec=catalog.base_assets[id]||catalog.assets[id];if(!spec)throw Error('未登録のヘッドCAD: '+id);
  const loading=spec.external?loadExternalComponent(loader,spec,location.href).then(({meta,gltf})=>[meta,gltf]):Promise.all([fetch('../'+spec.meta,{cache:'no-cache'}).then(async r=>{if(!r.ok)throw Error('CAD部品表を取得できません');if(spec.metadata_sha256){const text=await r.text();if(await contentSHA256(text)!==spec.metadata_sha256)throw Error('Native head metadata hash mismatch');return JSON.parse(text)}return r.json()}),loadModel(loader,'../'+spec.glb,undefined,spec.decoded_model_sha256?{verifySha256:spec.decoded_model_sha256}:{})]);
  const promise=loading.then(async([meta,model])=>{
-  if(meta.eva_generation)applyEvaFrontSurfaces(model.scene,meta,spec.files['model.glb'].decoded_sha256,await loadEvaFrontSurfaces(loader,location.href));
+  if(meta.eva_generation)applyEvaFrontSurfaces(model.scene,meta,spec.files['model.glb'].decoded_sha256,{...await loadEvaFrontSurfaces(loader,location.href),metadataSha256:spec.files['parts.json'].sha256});
   bindEvaMeshIdentities(meta,model.scene);const lookup=new Map(meta.parts.map(p=>[p.key,p])),root=model.scene,meshes=[];
   root.visible=false;bench.add(root);
   root.traverse(mesh=>{if(!mesh.isMesh)return;
@@ -112,6 +112,18 @@ async function asset(id){return workspaceTask(async()=>{
  cached.set(id,promise);return promise;
 });}
 const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);
+function releaseUnusedEvaHeads(retained){
+ const keep=new Set(retained);
+ // Complete EVA heads contain their own purchased hardware and source mesh.
+ // Retain only the selected EVA assembly after a successful atomic switch.
+ const protectedResources=new Set();
+ for(const[id,p]of cached)if(keep.has(id)||!p.loaded?.meta.eva_generation)p.loaded?.root.traverse(m=>{if(m.isMesh){protectedResources.add(m.geometry);for(const mat of [].concat(m.material)){protectedResources.add(mat);for(const v of Object.values(mat))if(v?.isTexture)protectedResources.add(v)}}});
+ for(const[id,p]of [...cached]){
+  const a=p.loaded;if(keep.has(id)||!a?.meta.eva_generation)continue;
+  const resources=new Set();a.root.traverse(m=>{if(m.isMesh){resources.add(m.geometry);for(const mat of [].concat(m.material)){resources.add(mat);for(const v of Object.values(mat))if(v?.isTexture)resources.add(v)}}});
+  a.root.removeFromParent();for(const resource of resources)if(!protectedResources.has(resource))resource.dispose();cached.delete(id);
+ }
+}
 function clearGuide(group){for(const child of [...group.children]){child.geometry?.dispose();for(const material of (Array.isArray(child.material)?child.material:[child.material]))material?.dispose();group.remove(child)}}
 function inspection(variant){
  currentVariant=variant;const check=probeCheck(variant),guide=probeGuide(variant),p=variant.fit?.probe;
@@ -182,6 +194,7 @@ async function install(variant){return workspaceTask(async()=>{
   const count=[plan.base,...plan.modules.map(m=>m.id)].reduce((n,id)=>{const a=cached.get(id).loaded;return n+(a.root.visible?a.meshes.filter(r=>r.mesh.visible).length:0)},0);
   Object.assign(document.body.dataset,{variant:variant.id,headParts:String(count),headAssets:JSON.stringify(ids),assetStatus:'ready'});
   const link=headPrinterLink(variant,machineRegistry,location.href);$('#printerLink').href=link.url;$('#printerLink').hidden=false;$('#printerLink').textContent=link.registered?'プリンターで表示':'マシン一覧（取付CAD未登録）';
+  releaseUnusedEvaHeads(ids);
  }finally{$('#loading').hidden=true}
 });}
 function changerDisplay(){
@@ -210,7 +223,7 @@ try{
  catalog={...catalog,dimensions:headBuilderDimensions,machine_id:'toolhead',import_machine_ids:['siboor_trident_350']};
  const bankCatalog={...catalog,bank_data:headData.bank,variants:catalog.variants.map(v=>{const p=headPlan(v);return {...v,machine_head:{base:p.base,translation:p.translation,translation_delta_mm:[0,0,0],hidden:[...p.hidden],modules:p.modules.filter(m=>m.role!=='dock')}}})};
  bankRig=createMachineHeads(bench,bankCatalog,{render:()=>{dirty=true}});bankRig.setVisible(false);
- const bankAdapter={get active(){return bankRig.active},async install(v,state){return workspaceTask(async()=>{await bankRig.install(bankCatalog.variants.find(p=>p.id===v.id),state)});},async setBank(state){return workspaceTask(async()=>{await bankRig.setBank(state)});}};
+ const bankAdapter={get active(){return bankRig.active},async install(v,state){return workspaceTask(async()=>{await bankRig.install(state?.enabled?bankCatalog.variants.find(p=>p.id===v.id):null,state)});},async setBank(state){return workspaceTask(async()=>{await bankRig.setBank(state)});}};
  toolBank=setupChangerBank({before:$('#assemblyScope'),catalog:bankCatalog,rig:bankAdapter,data:headData.bank,extras:{presentation:'toolhead',getExtras:extras,applyExtras:restoreExtras,validateExtras:validateBuilderExtras,onSettled:()=>{builder?.update();if(ready){appearance();visibleBounds();fit()}}}});
  const controller=await setupConfigurations(catalog,install,toolBank.options);await toolBank.bind(controller);
  if(!ready)throw Error('ヘッドのCADを表示できませんでした');

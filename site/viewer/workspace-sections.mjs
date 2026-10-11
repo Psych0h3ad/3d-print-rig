@@ -1,4 +1,4 @@
-import {translate} from './i18n.mjs?v=46e1e3aced367de6d952';
+import {translate} from './i18n.mjs?v=ba019b1adf20832c91c8';
 // Section placement consumes the catalog's canonical labels, independent of
 // the initial HTML language or the currently displayed translation.
 export function workspaceSectionCategory(source){
