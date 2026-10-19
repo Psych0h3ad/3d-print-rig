@@ -15,11 +15,11 @@ import {setupProbeMounts} from './probe-mounts.js?v=6ba3182bca691ca98633';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=34020540905242580aa6';
-import {createV24Adapter} from './v24_adapter.mjs?v=2c7e8b33fb449a513a48';
+import {createV24Adapter} from './v24_adapter.mjs?v=5fd30bae8e14f7b02f00';
 import {setupMachineNavigation} from './machines.js?v=ab543d6b01637bc5083f';
 import {setupRenderExport} from './render-export.js?v=743ea37fb4e25b58aa57';
 import {setupPublicInfo} from './public-info.js?v=04f16ac78c7633a2af39';
-import {setupV24MachineHeads} from './machine-heads.js?v=cda593432a7bdc053f30';
+import {setupV24MachineHeads} from './machine-heads.js?v=b789e8ab42b105b5f17c';
 export async function mount(scope){
 setupMachineNavigation('siboor_v24_350');
 setupPublicInfo();

@@ -34,7 +34,7 @@ for(const entry of mouthFixture.entries){
  assert.equal(meta.parts.find(p=>p.key===entry.body_part_key).source_file,entry.source_file);
  for(const v of catalog.variants.filter(v=>v.mount==='fixed'&&v.base_asset===entry.asset)){
   assert(entry.widths_mm.includes(v.belt_width_mm));
-  assert.deepEqual(v.fit.machine_mount.belt_preview_cut.x_mm,sphinxBeltInterface.entrance_x_mm);
+  assert.deepEqual(v.fit.machine_mount.belt_preview_cut.x_mm,entry.support_end_x_mm||sphinxBeltInterface.entrance_x_mm);
   beltEntranceChecks++;
  }
 }
