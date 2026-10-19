@@ -6,11 +6,11 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: github-pages
+  group: github-pages-main
   cancel-in-progress: false
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     env:
       NODE_OPTIONS: --max-old-space-size=512
@@ -25,7 +25,7 @@ jobs:
           path: _site
   deploy:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     permissions:
       pages: write

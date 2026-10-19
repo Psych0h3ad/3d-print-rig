@@ -8,7 +8,7 @@ permissions:
   contents: read
 jobs:
   check:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     env:
       NODE_OPTIONS: --max-old-space-size=512
