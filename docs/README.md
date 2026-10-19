@@ -1,62 +1,60 @@
-# Documentation / ドキュメント案内
+# Documentation
 
-現在選べる機種・部品の組み合わせは、[公開対応表](https://psych0h3ad.github.io/3d-print-rig/support/?lang=ja)を参照してください。
-対応表は公開ビュワーと同じカタログ・合成ルールから生成します。
-個別のMDは操作、取付条件、出典、検証範囲を説明します。
-リリース番号や検証時点を記した件数は、その時点の記録です。
+Guides for using and contributing to 3D Print Rig.
 
-## 利用方法と現在の対応範囲
+[Choose a printer](https://psych0h3ad.github.io/3d-print-rig/viewer/machines.html) · [Open the viewer](https://psych0h3ad.github.io/3d-print-rig/viewer/) · [Build a toolhead](https://psych0h3ad.github.io/3d-print-rig/viewer/toolheads.html) · [Build a gantry](https://psych0h3ad.github.io/3d-print-rig/viewer/gantries.html)
 
-| 目的 | 資料 |
+## Using the viewer
+
+| Task | Guide |
 | --- | --- |
-| 対応済み／未対応、機体組込と単体表示、構成数の数え方 | [Combination support](COMBINATION_SUPPORT.md) |
-| 構成を選ぶ・適用する・戻す、スマホの設定パネル | [Viewer workspace](UI_WORKSPACE.md) |
-| 機種切替、戻る／進む、テーマ・言語の保持 | [Workspace navigation](WORKSPACE_NAVIGATION.md) |
-| 自分のサイトへの埋め込みと自動更新の範囲 | [Embedding](EMBEDDING.md) |
-| 壁紙、分解図・断面図・複数配置の追加 | [Wallpapers](WALLPAPERS.md) |
-| ビュワー背景のCAD線画 | [CAD background](CAD_BACKGROUND.md) |
+| Find the combinations offered for a printer, head or gantry | [Live combination support](https://psych0h3ad.github.io/3d-print-rig/support/) · [How support is listed](COMBINATION_SUPPORT.md) |
+| Choose parts, apply or undo changes, use the mobile layout, save a configuration and export an image | [Viewer controls](UI_WORKSPACE.md) |
+| Change printers, use browser Back/Forward, and keep theme and language preferences | [Navigation](WORKSPACE_NAVIGATION.md) |
+| Try the supported G-code and macro preview commands | [Virtual printer preview](VIRTUAL_FIRMWARE.md) |
+| Follow the V0.2 / V0.2r1 assembly sequence | [Assembly steps](V0_ASSEMBLY.md) |
+| Explore the filament path, heating and cooling inside Stealthburner | [Animated cutaway](STEALTHBURNER_CUTAWAY.md) |
+| Embed the viewer on another site (alpha test) | [Embedding](EMBEDDING.md) |
+| Browse and create CAD wallpapers | [Wallpapers](WALLPAPERS.md) |
+| Work with the CAD line-art background | [Viewer background](CAD_BACKGROUND.md) |
 
-## 機体・取付・部品ごとの条件
+Use **STEP** in the viewer header to choose a standard printer assembly. Each download uses the configuration named in that panel.
 
-| 対象 | 資料 |
+## Printers, toolheads and Mods
+
+| Subject | Guides |
 | --- | --- |
-| V0.2 / V0.2r1の装着Modと依存条件 | [V0 installations](V0_INSTALLATIONS.md) |
-| V0.2 / V0.2r1の公式マニュアルに沿った工程表示 | [V0 assembly steps](V0_ASSEMBLY.md) |
-| CocobustorZeroの原本部品・出典・保留形状 | [CocobustorZero](COCOBUSTORZERO.md) |
-| Ducky0の冷却ブラケット・電子部品マウント・出典 | [Ducky0](DUCKY0.md) |
-| Tridentのサイズ別CAD・V2.4の配色、導入時の検証記録 | [Trident sizes / V2.4 colors](TRIDENT_SIZE_COLOR_QA.md) |
-| Monolithの機体組込、固定／交換式、ベルトと移動範囲 | [Monolith in complete printers](MONOLITH_MACHINE.md) |
-| StealthChanger単独ヘッドの取付と、複数ドックの別条件 | [Mounts](STEALTHCHANGER_MOUNTS.md) · [Changer banks](CHANGER_BANK.md) |
-| INDXのSmart Head・パッシブツール、機種別制限 | [INDX](INDX.md) |
-| FilamATrixカッターとMadMax取付・未登録ドック | [FilamATrix / MadMax](CUTTERS_MADMAX.md) |
-| Sphinx tLW・旧世代、ホットエンド・プローブ | [Sphinx assemblies](SPHINX_ASSEMBLIES.md) · [Goliath](GOLIATH.md) |
-| Stealthburnerの部品・プローブ構成 | [Stealthburner combinations](SB_PROBE_COMBINATIONS.md) |
-| Stealthburnerのフィラメント経路・加熱・冷却の断面説明 | [Stealthburner cutaway](STEALTHBURNER_CUTAWAY.md) |
-| A4T・Archetype、Yavoth、Rapido X | [Armchair](ARMCHAIR.md) · [Yavoth](YAVOTH.md) · [Rapido X](RAPIDO_X.md) |
-| Micron / Micron Plus、Rat Rig元CAD | [Micron](MICRON.md) · [Rat Rig](RATRIG.md) |
-| DoomCube 2の350 mm原本・フレーム・静止表示 | [DoomCube 2](DOOMCUBE.md) |
-| EVA 2.x / EVA 3.xの完成ヘッドと世代別の取付条件 | [EVA assemblies](EVA_HEADS.md) |
-| HYDRAの交換プレート・ダクト原本と組付けの検証範囲 | [HYDRA](HYDRA.md) |
-| Trinity Crossbowの原本ハードウェア組立と検証範囲 | [Trinity Crossbow](TRINITY_CROSSBOW.md) |
-| Tridentスカート、VORON背面パネル・排気ユニット | [Stealth Skirts](STEALTH_SKIRTS.md) · [Rear enclosures](REAR_ENCLOSURES.md) |
+| VORON sizes, panels and skirts | [Custom sizes](CUSTOM_VORON.md) · [Rear panels and exhausts](REAR_ENCLOSURES.md) · [Stealth Skirts](STEALTH_SKIRTS.md) |
+| VORON V0.2 / V0.2r1 Mods | [Installed Mods and dependencies](V0_INSTALLATIONS.md) |
+| VIRTU May / V-ION | [Public-STL assembly, source credits and model notes](https://psych0h3ad.github.io/3d-print-rig/viewer/community.html?machine=rh3d_virtu_may_230) |
+| SOVOL SV08 | [Source assembly and controls](SOVOL.md) |
+| Micron / Micron Plus and Rat Rig | [Micron](MICRON.md) · [Rat Rig](RATRIG.md) |
+| CocobustorZero and Ducky0 | [CocobustorZero](COCOBUSTORZERO.md) · [Ducky0](DUCKY0.md) |
+| DoomCube 2 | [Source assembly and model notes](DOOMCUBE.md) |
+| Monolith gantries | [Installed gantries, mounts and belt routes](MONOLITH_MACHINE.md) |
+| StealthChanger and parked tools | [Mounts](STEALTHCHANGER_MOUNTS.md) · [Tool banks and docks](CHANGER_BANK.md) |
+| INDX | [Smart Head, passive tools and machine restrictions](INDX.md) |
+| FilamATrix and MadMax | [Cutters and mounts](CUTTERS_MADMAX.md) |
+| Stealthburner | [Head and probe combinations](SB_PROBE_COMBINATIONS.md) |
+| EVA 2.x / 3.x | [Head assemblies and mounting conditions](EVA_HEADS.md) |
+| Sphinx and Goliath | [Sphinx assemblies](SPHINX_ASSEMBLIES.md) · [Goliath](GOLIATH.md) |
+| A4T, Archetype, Yavoth and Rapido X | [Armchair](ARMCHAIR.md) · [Yavoth](YAVOTH.md) · [Rapido X](RAPIDO_X.md) |
+| HYDRA | [Tool-change plates and ducts](HYDRA.md) |
+| Trinity Crossbow | [Assembly and review scope](TRINITY_CROSSBOW.md) |
 
-専用MDのない機体も対応表とビュワーの出典・注意事項を参照できます。
-共通ツールヘッド一覧に存在することだけを、各機体への装着対応とは扱いません。
+For printers without a separate guide, open the viewer's **References** panel for source versions, licenses and model notes. The [live support index](https://psych0h3ad.github.io/3d-print-rig/support/) lists the registered choices for each machine.
 
-## 検証と更新
+## Development and review
 
-| 目的 | 資料 |
+| Task | Guide |
 | --- | --- |
-| 機種・部品・組み合わせ追加時に更新する場所と手順 | [Maintenance](MAINTENANCE.md) |
-| 全機種の必須レビュー項目と証拠の扱い | [Machine review](MACHINE_REVIEW.md) · [Coverage record](MACHINE_REVIEW_COVERAGE.json) |
-| ベルト・チェーン・可動部の実装と確認範囲 | [Motion audit](MOTION_AUDIT.md) |
-| TicTac、THE 100、Rook、Satsuma、SV08、Annex、FYSETCのXYZ操作 | [Native assembly motion](NATIVE_MOTION.md) |
-| プローブ選択時の警告、限定された連続移動検証 | [Probe clearance](PROBE_CLEARANCE.md) · [Probe travel](PROBE_TRAVEL.md) |
-| ヘッド／駐機ツールの干渉例と表示条件 | [Head travel](HEAD_TRAVEL.md) |
-| 選択バグの過去の修正・v18/v19検証記録 | [Selection audit — historical](SELECTION_AUDIT.md) |
-| 5言語の文言更新と翻訳チェック | [Translating](TRANSLATING.md) |
-| 原作者・ライセンス・原本と表示モデルの差 | [Third-party notices](THIRD_PARTY_NOTICES.md) |
+| Add or update a printer, component or combination | [Maintenance](MAINTENANCE.md) |
+| Check mounting, movement, materials, companion parts and release evidence | [Machine review requirements](MACHINE_REVIEW.md) · [Coverage record](MACHINE_REVIEW_COVERAGE.json) |
+| Review belts, chains, cables and moving parts | [Motion audit](MOTION_AUDIT.md) · [Source assembly motion](NATIVE_MOTION.md) |
+| Review nozzle, probe, bed and parked-tool clearance | [Probe clearance](PROBE_CLEARANCE.md) · [Probe travel](PROBE_TRAVEL.md) · [Head travel](HEAD_TRAVEL.md) |
+| Update the shared English, Japanese, Spanish, Korean and Russian text | [Translations](TRANSLATING.md) |
+| Find original authors, licenses, source revisions and model changes | [Third-party notices](THIRD_PARTY_NOTICES.md) |
 
-[プロジェクトREADMEに戻る](../README.md)
+Review archives: [Trident size / V2.4 color review](TRIDENT_SIZE_COLOR_QA.md) · [Selection audit](SELECTION_AUDIT.md).
 
-- [SOVOL SV08](SOVOL.md): complete native CAD reference, XYZ motion, source scope and display controls.
+[Back to the project](../README.md) · [Support development on GitHub Sponsors](https://github.com/sponsors/Psych0h3ad)

@@ -19,6 +19,10 @@ Compare toolheads, hotends, extruders, probes, gantries and Mods on a printer, o
 
 [English](https://psych0h3ad.github.io/3d-print-rig/viewer/?lang=en) · [日本語](https://psych0h3ad.github.io/3d-print-rig/viewer/?lang=ja) · [Español](https://psych0h3ad.github.io/3d-print-rig/viewer/?lang=es) · [한국어](https://psych0h3ad.github.io/3d-print-rig/viewer/?lang=ko) · [Русский](https://psych0h3ad.github.io/3d-print-rig/viewer/?lang=ru)
 
+## Support development
+
+Support ongoing maintenance and new features through [GitHub Sponsors](https://github.com/sponsors/Psych0h3ad).
+
 ## Project sponsor
 
 <table>

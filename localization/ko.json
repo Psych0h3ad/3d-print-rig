@@ -10833,6 +10833,10 @@
     "source_assembly.progress.file": {
       "source_revision": "7aa90661dc5c2c5edcf9",
       "text": "{0}개 파일 중 {1}번째"
+    },
+    "ui.support_development": {
+      "source_revision": "3e380a9e64c7a433bf76",
+      "text": "개발 후원"
     }
   }
 }

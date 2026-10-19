@@ -1,6 +1,6 @@
 import{GLTFLoader}from'./vendor-r180/GLTFLoader.js';
-import{fetchPinned,assertLoadingBudget}from'./source-assembly-runtime/loading.mjs?v=9c1bdfd59e3e9591ec09';
-import{loadChunkedModel,validateChunkManifest}from'./source-assembly-runtime/chunk_loader.mjs?v=5e1ed555cd8dba9bfdf2';
+import{fetchPinned,assertLoadingBudget}from'./source-assembly-runtime/loading.mjs?v=a6e10956559ef9b6f26c';
+import{loadChunkedModel,validateChunkManifest}from'./source-assembly-runtime/chunk_loader.mjs?v=54e8afe025ef1c05218d';
 import{headSubsetPlan,headSubsetPacket}from'./source-assembly-runtime/head_subset.mjs?v=e42678a5314a2d6c0676';
 import{createAssembly}from'./source-assembly-runtime/assembly.mjs?v=e42678a5314a2d6c0676';
 import{releaseRoot}from'./source-assembly-runtime/resources.mjs?v=e42678a5314a2d6c0676';
