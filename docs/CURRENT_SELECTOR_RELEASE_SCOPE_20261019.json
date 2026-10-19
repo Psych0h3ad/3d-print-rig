@@ -1,0 +1,641 @@
+{
+  "schema": "current-selector-affected-scope-v1",
+  "available_machines": 69,
+  "source_base_main": "4c0a7f4e6cd0dde382b9ff80adab49036ee79900",
+  "source_semantic_changes": [
+    "site/viewer/configuration-model.js",
+    "site/viewer/toolhead-builder.mjs"
+  ],
+  "actual_asset_identity_pass": 69,
+  "installed_mount_reference_classification_count": 0,
+  "fresh_old_new_choice_contexts": 150804,
+  "fresh_old_new_resolutions": 654728,
+  "evidence": {
+    "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+    "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f"
+  },
+  "scope": "Fresh actual machine catalogs and stored/decoded asset identity; unchanged pose/controller and original native evidence retained in their existing scopes. Initial bounded full-model attempts remain resource-check failures, not new geometry passes. No new whole-machine physical-fit certificate.",
+  "machines": [
+    {
+      "id": "247zero_beta2_120",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "6fa5a0e87a38f24334177d96405e834debc8776f17a063be7d6cc89fd99613d7"
+    },
+    {
+      "id": "doomcube2_350_reference",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "7a8d958a198ffabd374314c95a9d49e8b0f0f64fc51a488cdb3a1b973c8e95ad"
+    },
+    {
+      "id": "tictac_21_120",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "73755c5b4f0cdd134554c68d9b37102348af2d71c2e9a31e761c492856939f9b"
+    },
+    {
+      "id": "rh3d_virtu_may_230",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "2f9c92fa1fb0253c755f81564309158263c6296f9444fd58ea5e12eea2b6e7aa"
+    },
+    {
+      "id": "the100_v11_165",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "0a3088eb107137530b22e2b4a9ee41b52d0aff3ebd531e68f35d7c825256f8b5"
+    },
+    {
+      "id": "rook_mk2_120",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "16d278caa466868340ad8c97d91b80d96bfbc2af2d871565ab8d1e3559faf861"
+    },
+    {
+      "id": "satsuma180_v10",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "8c6a1a7d0118ee2bda8ff2278a60e9150324af9f24be59fee4efbe93007cf952"
+    },
+    {
+      "id": "sovol_sv08_350",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "95af277a4543096620b30f64d2d3fb6403fa6f07ca624719734d1c3a35c51ea3"
+    },
+    {
+      "id": "antithesis_aether_mk11",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "9737ca06af3e3a51a9a185a85bfaeadf5741c9d4f7cad9206ff6d37b77165ee3"
+    },
+    {
+      "id": "lh_stinger_200",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "3f9545ec42868cd09d43fa4700feee2b8c105b651f8fd1ec2f67d6831ff060da"
+    },
+    {
+      "id": "ratrig_vminion_180",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "b394124d0ef44519aa24cd005d1433305f35a545c3b8d5f9c8cccb8268fb0175"
+    },
+    {
+      "id": "ratrig_vcore31_300",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "6a375f65c81f6cd993313257bab4fe8cae0345ad1b8ee500dece3dc890014a16"
+    },
+    {
+      "id": "snakeoil_xy_180",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "1361302b4008deb1267eb8db72ad1b108e1de0e7159b28ab0088fc2dda8486c4"
+    },
+    {
+      "id": "snakeoil_3s_kp3s_180",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "12ae8ee0e81dc89b04fc762d030fb72465692f8009159a4564086985d6774935"
+    },
+    {
+      "id": "snakeoil_xy_idex",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "798136042b99c6a206a662b4e113b0ec7b08532d2235f496b573b5aa47468181"
+    },
+    {
+      "id": "snakeoil_proosaxy",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "99018bcd4ca8fd9a0fdd2b13f764dea7e2de9471979db8766b947e876c977e87"
+    },
+    {
+      "id": "mercury_one1_235",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "73b00f8d5714a6974837608f6f0ffd66fb540e116741862ce296199acb0fdf72"
+    },
+    {
+      "id": "mercury_one1_370",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "479f7840e1fdd1790ecd797dc8ba0ef7021316f88755566bd113a22f7c9c286e"
+    },
+    {
+      "id": "ender3_stock_220",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "ef494370b069a5e8bdbdb45640aab791a822106c0f1636807342ebefe1ecc1cd"
+    },
+    {
+      "id": "vzbot_330_printed",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "04ca850e7ce000b44db73a35058d036e4c537a7b715486172d527a926f93756c"
+    },
+    {
+      "id": "voron_switchwire_250",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "9db6a07660da8a4042121c3bec4fd7e6dcd8abcd750682dd9595c3a580d194e7"
+    },
+    {
+      "id": "siboor_sboom_220",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "14be46c56724a3f954a0ab2dac8a64647b4618d913a0e3eb0c2658f619f7c77d"
+    },
+    {
+      "id": "positron_v322",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "bf2eee971286dabebd8ae0f4149eb76657036c21e2df31aef6f1e32c28158f25"
+    },
+    {
+      "id": "annex_k1_assembly",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "03f3c99734f20f9b4af1b17d1f31443e0c05f534e163ad03b8a88e5f8ea92240"
+    },
+    {
+      "id": "annex_k3_assembly",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "aa9cea21120eef1d395d02800c179d169169d40321c8b480b672d9b841f8f1cf"
+    },
+    {
+      "id": "annex_k2_assembly",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "0efe6df3f44824d2431cd514fb31b3c135cc9cd81cf232d07ec9ac3f3ccdc450"
+    },
+    {
+      "id": "remorph_beta1_307",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "bc2dac0dbcdb191f6ae1391a538f3deed28ec3deb0fdc7597f6adde8379c841c"
+    },
+    {
+      "id": "siboor_trident_300",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "ca956d3d7b27526e8f21b7d8cbbc5783ce461b6ae450f9609a6f5847cc814672"
+    },
+    {
+      "id": "voron_trident_250",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "8cad57cf1550f8827ffdfd34cc4d7ab28edfe94b65c99a0fc7b9b28fad7f60ce"
+    },
+    {
+      "id": "voron_trident_300",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "d927d9e14276901cdfcd2d433a16e67ae461ec0bc67ea1912715881a64181b16"
+    },
+    {
+      "id": "voron_trident_350",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "e619e8944eba1a45ff7f72f28f808d4c475a0d0fb95d08a5eacf4fe2cffa97f4"
+    },
+    {
+      "id": "voron_trident_500_custom",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "4aa9673623c73d1090227efe2d522e68ee99b210c4704ae7bd15f5f7d09866b2"
+    },
+    {
+      "id": "voron_trident_1000_custom",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "094d657422da5f74965a164e02c9e95824d5e0670fdaed9ffedd0590d4369ede"
+    },
+    {
+      "id": "voron_trident_350_half_z",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "c7964f897e5d1be6450c3adeb699d20ad375583a4989afb705ed9ee481a346a3"
+    },
+    {
+      "id": "siboor_v24_350",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "679d362a57c5512213f19c5a4c2eef6b38719dbd5ce0a0a0e395dfd32e7e1bf2"
+    },
+    {
+      "id": "voron_v24_250_printed",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "c94f64fbf04fc48a2b1f5d474dc6c4f70f4d946d9cea2edddcd430be8ca7aebe"
+    },
+    {
+      "id": "voron_v24_250_ldo_cnc",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "7eb406d1350e3da483c8e1beade769b9571abe977c92e4b67ad4fae000c81065"
+    },
+    {
+      "id": "voron_v24_300_printed",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "6f16caedf58dd81149955d5c215aba46cea386bc3ded88bc18bd73722a8d2f5a"
+    },
+    {
+      "id": "voron_v24_300_ldo_cnc",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "451074148753e60129c619d915efa64c305b5a3397b0d9f822d713273702425c"
+    },
+    {
+      "id": "voron_v24_350_printed",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "255ba847abf4f7d862d6e5aaac3f284a860eedac08e5bac32534d75ef42f361f"
+    },
+    {
+      "id": "voron_v24_500_custom",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "5696e6097763134ee47e6453b023245a237f9272f6eddac76e554fd79655f632"
+    },
+    {
+      "id": "voron_v24_1000_custom",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "aacca629d947491958eab426727f9b5653c3aa00bd8fa2b5ab53c5b4c9c1a6cd"
+    },
+    {
+      "id": "voron_v24_350_half_z",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "b6622e56f991fdf68b58ea8c2b51c157fc48eb5f3e01b05e953ed7e2ab3df298"
+    },
+    {
+      "id": "voron_v24_350_ldo_cnc",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "bd520951b97f06a98049ac29b4ba39d52ad0d6cfd491b2b621002bf612540ba6"
+    },
+    {
+      "id": "voron_v02r1_120",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "d89064824fa67ed6e7c78e90c642620afe62c3b4520255f6c626181754b7d29d"
+    },
+    {
+      "id": "voron_v02_120",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "da642150957fa38289499bd1c1586737f4f970968c3b32b3f7b81d76bef05ea9"
+    },
+    {
+      "id": "micron_r1_120",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "9cf6f791159e5d15471d0147edee3fc29762468cbe2692a93ef5ffbc1527c2be"
+    },
+    {
+      "id": "micron_plus_r1_180",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "c28985823dbeb5534405509dac351e0f54fc46e77b0887edd562249b0dbb501a"
+    },
+    {
+      "id": "fysetc_v24_250_pro",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "4ee4c9612380f007a9c5f107d1d7a2f59e2d89bc7ebabe802bf272eb7c53faff"
+    },
+    {
+      "id": "crossant_235_v06_leadscrew",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "f4e560da3b9f8274b508dfc6d9e846ebc5c9e147fccbd16a63c771fba3c13de5"
+    },
+    {
+      "id": "ratrig_vcore_40_300_corexy",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "dfb5aaeca2cb274932ae4a9f8c59a7a76114f3d6c6c41dc9c814223b33d2a8b6"
+    },
+    {
+      "id": "ratrig_vcore_40_300_hybrid",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "125705129bc1fe73416d661df8dc928291f2a090a03ef662459bf6275f53031b"
+    },
+    {
+      "id": "ratrig_vcore_40_300_idex",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "16f57d28b27602be3effa8b5c797b3d59f4ce07025aa59c9e84de91a08b10427"
+    },
+    {
+      "id": "ratrig_vcore_40_400_corexy",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "cedf78d3a15e5bcfbbdebef6a3b48d2aafc2f516ac701177472c6eb504bff2b7"
+    },
+    {
+      "id": "ratrig_vcore_40_400_hybrid",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "b2ca97bc05ef65eff019d886a8069b89f1f7958a6a5fa4ec5f27598459e9ed06"
+    },
+    {
+      "id": "ratrig_vcore_40_400_idex",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "b41565379c61be88ff04988bd7c3742318129da04620ca5aa264c441a2a19bde"
+    },
+    {
+      "id": "ratrig_vcore_40_500_corexy",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "1b90e0423e78a64a26c5ecc2c91f51616d8d060fbd34431af0b53f15ed5886fc"
+    },
+    {
+      "id": "ratrig_vcore_40_500_hybrid",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "c352ee0188f76528d9bc3ddf8ca8da341206ac91ea4080bc62bbcbd5f9fbd297"
+    },
+    {
+      "id": "ratrig_vcore_40_500_idex",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "5667d489ad6a27f61e2e5bfd5418582745aac3faae62248dc1d320104cec0bca"
+    },
+    {
+      "id": "ratrig_vcore_41_300_corexy",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "aac48dc8f9ec3c57653f243ba1b7fda102e556f2d2a3e8a8167aa21f3e443be8"
+    },
+    {
+      "id": "ratrig_vcore_41_300_hybrid",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "9642e9a716271296176c5a11d7da26ea65f768cdd5fee282609fab41065ccddb"
+    },
+    {
+      "id": "ratrig_vcore_41_300_idex",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "4328f885ab485f25157d4e25cb2c6d921a2843a0ddce85e619b2f3b1b01f1caa"
+    },
+    {
+      "id": "ratrig_vcore_41_400_corexy",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "1797f6a03cdf2a051ee94f1cbe91e5d9d4e78bf068979f4ef182ef518f9734e9"
+    },
+    {
+      "id": "ratrig_vcore_41_400_hybrid",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "9ee09292ad7f5a1cd22ecc70b4dc351d2f42b88353fca26b0266326fc0195e39"
+    },
+    {
+      "id": "ratrig_vcore_41_400_idex",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "b1d9ce88b7c1e8d94b84081dda180b734f404a6d7c49a3834682ea62fe5f4eb6"
+    },
+    {
+      "id": "ratrig_vcore_41_500_corexy",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "856eed23ee1a8f56dd2d242808cbbfd9fef8abb83f9f4a8afb905709c76f55ce"
+    },
+    {
+      "id": "ratrig_vcore_41_500_hybrid",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "f2de1ea8733e099f302340ad660dc505baa07627215c7d9839d3e1ebeb670dd4"
+    },
+    {
+      "id": "ratrig_vcore_41_500_idex",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "e199087d12dee961f1c2e08b7f96e4dfd95adf52ef5210536f5d6ec0e5904a07"
+    },
+    {
+      "id": "siboor_trident_350",
+      "classified_mount_references": 0,
+      "selector_equivalent": true,
+      "actual_input_hashes_verified": true,
+      "prior_pose_scope_retained": true,
+      "new_native_review": false,
+      "current_model_sha256": "96309090e82efd59e214c403edf4716357a245e76a190038bea88abae315ff52"
+    }
+  ]
+}

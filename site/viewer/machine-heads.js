@@ -22,7 +22,7 @@ import {loadModel} from './model-loader.js?v=34020540905242580aa6';
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import {partKey} from './head-assembly.js';
 import {v24HeadCatalog} from './machine-head-model.mjs?v=c169a439c465b1c90218';
-import {setupConfigurations} from './configurations.js?v=b3e201e01ae28313ac77';
+import {setupConfigurations} from './configurations.js?v=6139d26db75d723e151e';
 
 import {loadSiboorRegistration} from './siboor-catalog.mjs?v=59436addbdfb83cd304a';
 import {stockProbeFit} from './probe-mounts.js?v=6ba3182bca691ca98633';
@@ -32,7 +32,7 @@ import {bankPlan} from './changer-bank-model.mjs?v=024cc52a5bbc61da7506';
 import {setupChangerBank} from './changer-bank.js?v=422dc087a1362655b18f';
 import {contentSHA256,acceptedMountValidation} from './mount-validation.mjs';
 import {acceptedHeadValidation}from './head-validation.mjs';
-import {withHeadAdditions} from './head-additions.mjs?v=23581035dd1b38fe48e2';
+import {withHeadAdditions} from './head-additions.mjs?v=28317048846d076205c3';
 import {nativeDeckEvidenceSource,nativeWitnessInputs} from './native-evidence-bridge.mjs?v=a5f3aad096d9be8f211b';
 import {loadExternalComponent} from './component-assets.mjs?v=963445da64a2f4de7cc5';
 

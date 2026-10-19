@@ -8,7 +8,7 @@ import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
 import {loadCommunity} from './community-loader.mjs?v=12f029bed6d14ebb0a87';
 import {evaCommunityIndex} from './eva-installations.mjs?v=4dfad49e1f98d4b5b9f2';
 import {applyEvaOptionsProfile,createEvaOptionsController} from './eva-options.mjs?v=f1c031a90a6055d5091f';
-import {withHeadAdditions} from './head-additions.mjs?v=23581035dd1b38fe48e2';
+import {withHeadAdditions} from './head-additions.mjs?v=28317048846d076205c3';
 import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
 import {communitySchema,validateCommunityState,communityMotionEnabled,communityConfiguration} from './community-state.mjs?v=460b3fa78cc503ddb6e6';
 import {installationFor,installationOptionAvailable} from './ender-mods.mjs?v=5f07c69c7c42ba3f3936';
