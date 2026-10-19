@@ -38,7 +38,7 @@
     "scripts/audit_virtu_may_role.mjs": "b26d85699472f3d6a534611c6ff3be4c438981c514400123dde7abbdf22022bf",
     "scripts/build_approved_site.py": "b9510e13adef990b775c4b6b91d90c59d9519706119817c295c10bc9c80c8402",
     "scripts/build_configuration_catalog.py": "cb128a25a44434b63c62b30a33001c11ab7bd20e95dba90fa8bfa2139fe392ab",
-    "scripts/build_locales.mjs": "414056820998eb22474281843b931c44abc2956a5b58379d70f4df8c5ed465ec",
+    "scripts/build_locales.mjs": "b49c302105bbc4b1b18470d43969e8e99f1e5cfb904d725ab0c3ac5ce5cd25a4",
     "scripts/build_seo.py": "76f407b68c737b588e5fb35f2e8306a9fcfef2d8dca5d6dd0b2661dc4d0fdb55",
     "scripts/build_site.py": "ce9242e16fa5e0ba41568f822c278d8c1c77cf403f46e5e7d8e57b51d4ef31dd",
     "scripts/build_support_catalog.mjs": "edd4890a71380e17b9c8df4b2838d3c0cfb2443e894c326cfb6fc5a5d99fb99e",
@@ -222,6 +222,7 @@
     "scripts/test_source_head_controls.mjs": "602c335a29021c8a5f5fae2cd4c0523be3ad4f7cc1ce0d2b5d51a74467f5f6b9",
     "scripts/test_source_http_content_encoding.mjs": "d7c89a12e3af9de4a97693d94c5629427e75177a32cb7c84d0f3ddddd7219d15",
     "scripts/test_source_index_runtime.mjs": "996b26b5a9b23436656ec15c60fda761007cc924aec6ed3fc8cebc3c5475389b",
+    "scripts/test_source_scene_lighting.mjs": "a9dda2089f1151220be0bd87360845e8ffccc4c57f798a910e64bbcbf43a766c",
     "scripts/test_source_view_appearance.mjs": "93e14c3d3f6a80da2f11623436a7c0bfbf16744dad652d568fbc3f28b6f9143b",
     "scripts/test_sovol_reference.mjs": "1e7713c4b442e2d5b8690c73e164e79bd6d08311d13e1418332bc86f4270e4fe",
     "scripts/test_sponsor_banner.mjs": "6c07adba071219d83424042387d8b209e3d2653ceb0f1ca48394950d19e8e07b",
@@ -330,23 +331,23 @@
     "site/V24_PROBES.json": "5936d472aa038bb83b93a3dae80e10d452e69db2f2cbe7d666bcb5d593c3159e",
     "site/viewer/247zero-bowden.mjs": "315a9fa6d2f032a56dbe1f8312485d71d605d5ff665476d07b7dc6d32a625168",
     "site/viewer/a4t-printed-companions.mjs": "e7443f72d21fc964b2cf7db83d1d38d9918a31ddc2ca90c04653153a7b4dc2cf",
-    "site/viewer/accessories.js": "f59c2d3766cb38a4c89e8018ca5f5ca75a3be83512952c0b1fa11b0b5670b482",
+    "site/viewer/accessories.js": "bf3678306bc8832ac7278bd758fea5247a20335aaa29a6de1ca500ce73288ede",
     "site/viewer/annex-machines.mjs": "3a0e3f3d8e456bee4e5ac266d91c69ca3b6fbc6db8f5a40694f85428c6148c13",
-    "site/viewer/annex.html": "7731110931f005f22fe6dde42726f4c2e4cf920016cf9412502502fb6d908cf0",
-    "site/viewer/annex.js": "cd382db078619840a29cc1900404905e71c784dbeb4a4f28dfcb372572b38948",
-    "site/viewer/app.js": "4543253c40bdd30fdcbeab8712d038343183168c29ef245c21cc12ca8e56daf0",
+    "site/viewer/annex.html": "20b30202b32da96ff843f876c0ecfe55ab4e58eaba716c1cc6ae94f15a9120d1",
+    "site/viewer/annex.js": "1ef0c0ebfb50592e247a328ab4e3ea8f73b045067f9ae7c08793d0c852f6065b",
+    "site/viewer/app.js": "2113b9a27d2aca2096897ff6efe7f5aba90b696405ebd3ae93175ef0ae839708",
     "site/viewer/appearance-role.mjs": "6eb709afed84945151b895e97638b817f0fac071ab61c5a45de4cb6fb883e1ed",
     "site/viewer/appearance.js": "c50ecf4651c6ad0e68392df9eea9eb67e8bab6c9542106019c464682b45a01ab",
     "site/viewer/art/cad-background.json": "ebd23566959ec740ae479345ba5601478b53593693ff11466e4934474dd071e8",
     "site/viewer/art/credits.html": "f0cde9da5ca3b35adcefdb4f055fa11aa86c4aa389fdfa8dbfeb109971afd547",
-    "site/viewer/assembly-downloads.mjs": "589b668bb99e536c16909013b1ae2c4e198bb1108c84f09888a47e518cd3d7d7",
-    "site/viewer/asset-availability.js": "05a853e7b672c471ecbf502eaf37cee893c002b4eb19a8e3f900610b8425518b",
+    "site/viewer/assembly-downloads.mjs": "b0c683435b06fa6db568cce0b75f015ea7161cc65778b8e12c3df7264cdc7811",
+    "site/viewer/asset-availability.js": "0043f641e95b4124f7188728c045c7cc81d0906dc1c940dd1120b29dca18458a",
     "site/viewer/baseline-native-datum.mjs": "b86b6ff7d71bab3c11174f8e0834dd181ac5a70d14077b8ff00fffa817e0ad58",
     "site/viewer/bed-chain-pins.mjs": "ea9c3d5f368a9509af7f99da784303eba92df5e316246c8a14942bc0f1bb3ae9",
     "site/viewer/bed-chain.mjs": "5c6ddd46ac13e6974c7352b944225966455ccb4a462a5315519428af3788d4d0",
-    "site/viewer/bootstrap.js": "225385c3afe2d07e83fe544706d78b8cc6342cf9fc65abba947e6c04600530dc",
+    "site/viewer/bootstrap.js": "f74355677c2a5bcd59265c4942c48af8437bf06a6c2aab1733262e6f3a25be0d",
     "site/viewer/bounded-sha256.mjs": "7b5cb05f2862b026fadc740607e6d9e5755e1dfc96b555ee88430f36fb684e51",
-    "site/viewer/builder-ui.mjs": "d63c220beae305f87bef687f98cd7adfddbd16b31f8bca2aa0e81e50481d6092",
+    "site/viewer/builder-ui.mjs": "46cb2fc7c998c4f0da74813476437920f234dfffe103b6939f10c5dc2712a578",
     "site/viewer/changer-bank-model.mjs": "024cc52a5bbc61da75066a1822bca711fd6543b532a1c922e8ac0b44469a016c",
     "site/viewer/changer-bank.js": "422dc087a1362655b18f2cd25c53d7da70fd3082ef5991ae7d1b84d654ccdc9a",
     "site/viewer/chunked-component-glb.mjs": "73c7d0826330cc80503d31068215654c5166375ad8bcc30379260bc8522af176",
@@ -354,37 +355,37 @@
     "site/viewer/community-adapter.mjs": "b0cc85230bdd2fc9c369a836e7881880c5002ab7b9d1cffd6c9b519ff83678c3",
     "site/viewer/community-loader.mjs": "12f029bed6d14ebb0a87e19a5bc8e2fc074f5776d7f59d11db3da36b55e717db",
     "site/viewer/community-state.mjs": "460b3fa78cc503ddb6e631766efe780433e4efa286db5d9388a67d73cd4fce3d",
-    "site/viewer/community.html": "9d7b5a498e0698662c1a0734fd878d894a15ec3da369d3aa8875fbadc979dea8",
-    "site/viewer/community.js": "6a741af58c7516c5860862f46a8dcdc7cee98f59cd8c3986fb3579fd7897c690",
+    "site/viewer/community.html": "9479e887298443876365b33197fd9068ce570d1f5e26b2b9282e598537e0fcf5",
+    "site/viewer/community.js": "312c6786199b87716a8dab86a9376177a0b94f4ea415b590c982bcffe8e5c9e3",
     "site/viewer/component-assets.mjs": "963445da64a2f4de7cc59e02b7a0f80a706cbf405acf96c9ec9aad0bdedd9b30",
     "site/viewer/component-selection.js": "51826e4eeaa0dd803b109d2ba7261d86e40fa509e63ffe7ce2f087efd0ee6e04",
-    "site/viewer/components.html": "e436a28df121fc0143d1df1a5fa7062f90548cc35bc384e8bbf4d7dda4b20056",
-    "site/viewer/components.js": "ecd9581c2e161fe326e00d6e2a732e892c84c0aad87de0f42f1cd71e08dc184e",
+    "site/viewer/components.html": "56c5b1e3893ac2330ae36131aec5bde69f454c822d1875f7ed220118b4393b58",
+    "site/viewer/components.js": "33b98ede4e9b6a399e9a9ab5121550818d1cdf68948aeba38d24cab3f1ac906b",
     "site/viewer/configuration-draft.mjs": "4773ba64395a0b7b064518d10f70926fce2a8fbf456b5b27bd72b4a60c5aafb6",
     "site/viewer/configuration-editor.css": "1ce65fe33b2c2f92e5b2eab845b196a6db3175a7ec858902ec9e23e8c2f3a3f4",
-    "site/viewer/configuration-editor.mjs": "f5e122dcbe5f240fc6d27c81e658da8237a65204414739c92105b2d772fcc301",
+    "site/viewer/configuration-editor.mjs": "8aaebe7b0b77fd89ff68069b87ecddfb2a0e57deef77c6af70618b1a3da61941",
     "site/viewer/configuration-model.js": "c19fa3a47abadf7f3d2c592f5821dae02cb99d4873957304b3c1766ed2ea9093",
-    "site/viewer/configurations.js": "e68092b4b84c0ce2112d615de167ed308b8855413893ef1137ea8527859baa94",
+    "site/viewer/configurations.js": "b8accde759353668bc9a9611de688463eedef46b8336b2623f7f2d8eff81fa36",
     "site/viewer/crossant-adapter.mjs": "53736f331789070429692a0336eb9412bd3c64ed157933a5107b439761878116",
     "site/viewer/crossant-belt_deform.mjs": "76401db9a4923512ae72c83fda6dd210ccf0b1d19be8a16326dfac48950df531",
     "site/viewer/crossant-chain_preview.mjs": "43c664f7c35cbb1638214efc3d77ad1acf8a47c33b4a22a50ad70c20778c4bc3",
     "site/viewer/crossant-covers.mjs": "c0781087f44545d6025de5f5084595cf5bbd6e92ce6ec0c7d555406d5ab01b3b",
     "site/viewer/crossant-loader.mjs": "7ca2be4ff602015a96c5fd1ac699df68463065a7d7bb57fb76a16fce27da91d2",
     "site/viewer/crossant-state.mjs": "534dc62f2c6545f556f7a19791302d04f9c06e364c67d29bf6428bd81a5c7a9f",
-    "site/viewer/crossant.html": "54fae78b37fe5dfc45fafde2d9899f2e7e2e8932bea5be3142385061694fedf3",
-    "site/viewer/crossant.js": "7cf427e027467936187ccc1148d7dc42bd29b554baa54f00876a7b2cc786deb5",
+    "site/viewer/crossant.html": "acfd0acd596a4e4776b28e2da56e33d554fc0e4c19de8421777576e1ac5a9264",
+    "site/viewer/crossant.js": "eb925525c73e76ee83fe87c13529374c0e695443bef340ce35c512bc0ae7f8b3",
     "site/viewer/custom-voron-loader.mjs": "c70fe94885239ff9b572c02f767548d19a4c298a5d03eec346ac8eb4bab695db",
     "site/viewer/custom-voron-state.mjs": "4b6132fe80a74098a8bade2347c6e581bb39bcf3b8dc9459cf8298b7e7938949",
     "site/viewer/custom-voron-tube.mjs": "be16dba6afffddec260f1e181165c73371d0bbefe73d3c663006da032c11a631",
-    "site/viewer/custom-voron.html": "ed825e67ac7bf2f6621c80a92b803a47260dc08e5a8d331801e2edd9661006bd",
-    "site/viewer/custom-voron.js": "a41c609efb5e86becc34804f513ba9cd169bd30436618393de68f3a581e6e3e4",
+    "site/viewer/custom-voron.html": "d324a96ea4163c08d55216f2a1656060661d5e6994e106041a86c5afad8b12d9",
+    "site/viewer/custom-voron.js": "782379037ccf5307d1bf1cdf7c8c4d8a6bd729786493c785db400bda0e376f5f",
     "site/viewer/device-memory.mjs": "c2fd3c5387d359dca8a774e70e34a3de595fa64cb59331c82c9b4555b7831d8b",
     "site/viewer/disco-led-apertures.mjs": "50208fba4e6d3cbe5cf2df14e45078e37fb5470b52b0f26a038c5b6ec5c8b87b",
     "site/viewer/display-preferences.mjs": "ab531b33fbcb36317429fc9ffc5cb4bac2be79f8bc310962b882a2f34e83ed3b",
     "site/viewer/display-start.js": "2ccf9c125fa0c4f73dc1a238a9b5070c779ef1b45d8301a11acd804528ccbad6",
     "site/viewer/e3ng-model.mjs": "7d5da880bcd1c29e4fd7f25a58afeafe5bd2e6839778821da65faa6614a1495a",
-    "site/viewer/e3ng.html": "ba1e6a975c33cfd906222062d10afabf3122bc0d79c1d05cc6f17ab823b167e5",
-    "site/viewer/e3ng.js": "4a34e07a124e9d422acfda5fefb682d27a2e4b4ac4754d7c73e2e6b3d88addfe",
+    "site/viewer/e3ng.html": "b2dc2763937326a405fee72aa1edb6c904dc9321d91105f7ffaea7a079d78314",
+    "site/viewer/e3ng.js": "920ceaab44e2531256121559a351a2a7afc0b80951ffe0681620936e832d591b",
     "site/viewer/embed-contract.mjs": "efefdd1fb25011506d9bda403a4a16b4b01b4520a53aa1d71195a97095e77947",
     "site/viewer/embedded-boards.mjs": "44669b07f69dccdcacfe282a132f1e15da263b9f44373824a4895510297209d6",
     "site/viewer/ender-bowden-route.mjs": "49b4ba0c192910c863af48920056414d46ca6232cc2c1e615e1be744e42b5aa2",
@@ -398,9 +399,9 @@
     "site/viewer/extra-asset-integrity.mjs": "019170d7f31b55da1667a7273a2ef11b61a1d8ed586371c7f6d517b835e2260f",
     "site/viewer/extra-machine-loader.mjs": "59a3413417b286024f59486aeb57592a33f21f26294e866f9f5b5116ecb5f261",
     "site/viewer/flexible.js": "37fd0f2d1bdfe5ac356f0c58bf4a658b8b97a8b5cd6126ecafb1d64f09b0d284",
-    "site/viewer/frame-mods.js": "a4910d393178d1909b1f4b0e5495237580bc3307378c374c40ef02bc11286ec4",
-    "site/viewer/gantries.html": "5b06b229c20080a8625fa3670216904a47d60c8c0a17ecf3935e207b67e525a1",
-    "site/viewer/gantries.js": "780f009aa05283cc388f1cc535845b2b7aec3793f7ef0fb4d3a8ceecef196ddb",
+    "site/viewer/frame-mods.js": "6cf6d0bf2ebd4e6fc68a3657844881b1faa3d4dd332b9400593981e64c67f391",
+    "site/viewer/gantries.html": "89c225cbf7637a8f9d059ec00a0568f95d5a8f890d9051f6b02a15da622d0459",
+    "site/viewer/gantries.js": "66bf8e86925faab850419cc9f0fe712ce7870699439ae6371ef0d8ccbd46832e",
     "site/viewer/gantry-model.js": "77bee27ae99e3944fc901c733b7fa2450b2e36deb9b789c66328e8c979db2ec4",
     "site/viewer/gcode-loaded-asset-identity.mjs": "42ac134c2d9a8b8f8dfc31744744fb59abf735171ae6b928030371d5e7de8dec",
     "site/viewer/gcode-machine-bindings.mjs": "460777c3fc4d1a74bf27e66d6c4fcca7c4fdd09336412a3263a2b843be621ce1",
@@ -413,17 +414,17 @@
     "site/viewer/head-camera.mjs": "2c375a81d7b329401bfc460a93583f080699345166a3ad642f9fbf91051782de",
     "site/viewer/head-companion-presets.mjs": "82ec6a996e9e1661b8114c5122402f265b8e911e076da913b73b5644f067bcae",
     "site/viewer/head-markers.mjs": "ecb2d72d7d41cc8055e4708bfbba02683a246304453d3e64a5b70dbcfdec818f",
-    "site/viewer/head-navigation.mjs": "761c74da4b40a5a28f3daf2c757cdf9d5feefb4db540ff519758cefa10ae701d",
+    "site/viewer/head-navigation.mjs": "a0665933de48d0d9fb506bfe8ffd3514d40821b56e81365d9775e1e964953e14",
     "site/viewer/head-printed-parts.mjs": "8f8ed3d5c06ff2b0f6c8fe4002f775dba9ed59671c64297e849878938750ac44",
     "site/viewer/head-validation-ui.mjs": "ae9dcf09c303efbdce96c1445f71e6fbf7663f8aa6195d9251a3259cb9ee4f30",
     "site/viewer/head-validation.mjs": "bba39d88e1b5b7f848c0447a93850abd4e8a3accbadfcd4db2e9ff772e855e9d",
-    "site/viewer/i18n.mjs": "0cbc88406dc455da6bf4c40e9510c7a439444aa69ad855a60b0d44a96d4f8763",
+    "site/viewer/i18n.mjs": "eacd78876ef5a84ef72f1b6b11b53dff5de68119d3c4d6440c3c68c0d0b22ec1",
     "site/viewer/inactive-head-cache.mjs": "6822e90a376bc578618589c2dfb804276ccc46d9ea257c20ca83b197a8049299",
-    "site/viewer/index.html": "4712dc33cb9dcb44176cab1e59a268e6f9890fd6180880f2008cb9eb16d2b9c4",
+    "site/viewer/index.html": "b2e2521e7b8f79afdc0b4d96b6ce8af7eee676470f6cef231b8b9885ad940deb",
     "site/viewer/internal-spool.mjs": "ca3a453f6bf2966e020830957f6ca3290d89dffebe02ec3aa1b82a45a31c5f99",
     "site/viewer/kit-reference-loader.mjs": "cd960356d2ed24adfde9b70ad0cf5ea777749e40370ec150a84c42e2416eb50a",
-    "site/viewer/kit-reference.html": "c4d52e0045cea4193eb13c4434c0b0cec7847e836c22b8feb81fdd994985b21b",
-    "site/viewer/kit-reference.js": "f814c1b087ac94a00efa1e40fa084ae9c3581c04214c8bdf9fc0ed3719ef1556",
+    "site/viewer/kit-reference.html": "df48b0923c4aee0e35866d819366de7e1dc9a0b52cc056d3f21434a0958aeb70",
+    "site/viewer/kit-reference.js": "b0837cabecb557049aebf60541658cb446eacb71dbde4ecc6cf9fbc7a9235961",
     "site/viewer/klipper-macro-subset.mjs": "99f089a84c395186fe576a9f5fbf1e35e2da121e5cfaf5b00b4e85d2280a4a1b",
     "site/viewer/languages.mjs": "ba6a5cd8e1d86849ca3405b62a9b4f3757b10bb6f195f9990b68d12e15a86424",
     "site/viewer/led-emission-surface.mjs": "af40a3200e128a08c940436bbb8d230661343fa68a5d001908f01fe72f7497d2",
@@ -433,10 +434,10 @@
     "site/viewer/lighting-state.mjs": "980c984e27b4befb063e6332a919b4b54d95e43f8b7d1125a6792c0fd08b586e",
     "site/viewer/lighting.js": "dbf4b7baca0b4f13cfbff2a7a619101037d2ac774a31799e9a77698c9589fc7a",
     "site/viewer/machine-gallery.css": "7db93de9b790a189b26364d7a6835ff9f2252bb2ca18caea2b2b8cb7e530834a",
-    "site/viewer/machine-gallery.mjs": "b93320f6441ef11403764718460e6300bebdb9ec1c36a36841ca81cc115ba443",
-    "site/viewer/machine-head-model.mjs": "90ab18ee8da47141e5f786e816b23187a553ca7ea1bdd13bc59f5814c144b6e1",
-    "site/viewer/machine-heads.js": "c74863088294a82b822ff54c70966aeeb6b9d6c6db31d74c0a9b92a5636e1c2b",
-    "site/viewer/machines.html": "0ab5a8ca48ccc479fa2cc46ddf2520adc333981962dac3013997baf9c535b68e",
+    "site/viewer/machine-gallery.mjs": "2cb08e618840c29f57003b6caa6ac9b135a7c28564c873bbde22ab9700eee044",
+    "site/viewer/machine-head-model.mjs": "8de90605478d2e60f3517a013e32245be002ee2f64bb246b8214fc9c71b89634",
+    "site/viewer/machine-heads.js": "668ba61f5b822e39aefa23b529ef7e76fa5931351053b77adbdfda41affade55",
+    "site/viewer/machines.html": "4893d321f3dd3fc5ee1d2d98b2f6f137b2525ade7ed3bf395cc795ae473d0e88",
     "site/viewer/machines.js": "ab543d6b01637bc5083f27c3c3649efd6ca89415dd1b64bf86a3e8125d0cd112",
     "site/viewer/madmax-native-joint.mjs": "d39e974d7b782135b52a126b72a071d534bce4beb2acd82f6fe4f509cffd7b42",
     "site/viewer/madmax-ptfe.mjs": "c0df5309f697af621506b2a34ab8b69c429583ff8f43fdafdee0376533d602bd",
@@ -447,8 +448,8 @@
     "site/viewer/micron-flexible.mjs": "1baf6905062383defaca8d7ae7803d736db2a427f03d16a7137b12c54c0ce6a2",
     "site/viewer/micron-native-materials.mjs": "55b8c3644415d202fa4af8bac672b52803fde6b2c1d1278acbb38afac75e2e2c",
     "site/viewer/micron-tube-routes.mjs": "c69d79d6fdbfee5338fe365ca9542323714add2a834e34aafec37395d19614b1",
-    "site/viewer/micron.html": "ffef5f1fabf9732c7c9e7d3525030d9d14b60d3ed8275fdee58c2e937164e45d",
-    "site/viewer/micron.js": "cfa5b8eddf14f5dec26adab3ad356d255f3e9412dec2555d176bb3ba4da77706",
+    "site/viewer/micron.html": "0041fc00d8efdab6df6ec58f321aa81b9db3789717f255a1aab5b0aff29ee577",
+    "site/viewer/micron.js": "23db17e1c08e056172ab15df2d24c20d76443dcab284a95b56e603a6b5af7955",
     "site/viewer/microswiss-source-shroud-palette.mjs": "f014e574106d0f8792bc77f2ab67a95ad58f2c70022a99f3a4d22698b4cfc24c",
     "site/viewer/model-delivery-policy.mjs": "7677e1f8ddfa3d5cc6acce428a2be49204c9b69622e4e65fd6a723d0b12130f2",
     "site/viewer/model-delivery.mjs": "7f46579d616549dce0605f04ebfffb4173cee2995b8b027f20b4840f3140af65",
@@ -456,9 +457,9 @@
     "site/viewer/model-progress.mjs": "beaef781095b6f56b290ce60219c07f29f3b830364cc7bba952e7e2e29b18ca5",
     "site/viewer/monolith-belt-clip.mjs": "ffef92bb9ead85b656edd2862143f680fae9c19f4b8b73ff72d9a905a3802e55",
     "site/viewer/monolith-belts.mjs": "cc31216a6676936d5cd6339b8018307fed7d7b2822189913b8ac837564b2bd63",
-    "site/viewer/monolith-head-model.mjs": "fbac51ac8e1404d9c0141bc5cc830b5339e92a08bf66ec7d94d6f5cf718d36f9",
-    "site/viewer/monolith-machine-model.mjs": "0f78ea54afe4f512961e319ac481f885509db2deb8bb1426307168017d7f7382",
-    "site/viewer/monolith-machine.js": "1b7784cf77e6017965fcc61d4c1afc64a7d162aeb2d1f8480214fa21a129e01f",
+    "site/viewer/monolith-head-model.mjs": "3125c54478c1c8ace1011f52fb7b98651c6ced78c98ac3731f5ada1e1607d80f",
+    "site/viewer/monolith-machine-model.mjs": "e83fd2075345ab0ecce562989ab1cbfff9b2e382b2ca1841bf1fe002e3551ace",
+    "site/viewer/monolith-machine.js": "c1479465066b3b82c17fa6353267a2e47e0ffb28f9b4730c08fa6cd7074167da",
     "site/viewer/motion-profiles/annex_k1_assembly.json": "631319e2c6f400bd040d276f89df3fd00b57ce69ece186a5afac3c25fb81adf9",
     "site/viewer/motion-profiles/annex_k2_assembly.json": "3dd6822292abf79f2f62e95d4a20247657607a13b52702c111aa89854fa2f532",
     "site/viewer/motion-profiles/annex_k3_assembly.json": "c7f7eff5381e3d508daacc44282c6d1222a4f93b07c46b7a95b6a2d551bd8410",
@@ -470,7 +471,7 @@
     "site/viewer/motion-profiles/tictac_21_120.json": "1ddd8a5b34dec4524bdbdcd33f63221479cf1dd5a874b5d9a483cc11b1240d52",
     "site/viewer/mount-validation.mjs": "0c22958eb1c03dcf3a1fc507a7bfa391aa75f2744664a32fffc49499716e593f",
     "site/viewer/native-evidence-bridge.mjs": "a5f3aad096d9be8f211b058e92198d6c1345e21bbe1916c0b7988ad913904621",
-    "site/viewer/native-motion-controls.mjs": "9fb4030f59fc8ecefc58d9240c531f33b74df56fd5fa851fc6f70d41108a3922",
+    "site/viewer/native-motion-controls.mjs": "6e04cdb1be138a1776a0a70ba15b111b48a1656efa0842ad696703f76f62f962",
     "site/viewer/native-motion-flex.mjs": "8d28d1651911d0d8b84e4a2b388b52a7af3e4cd4a6358351bea38acd0aa4a66d",
     "site/viewer/native-motion-profile.mjs": "91532eb992519143f437623b113bdaf52854e693a79266200d4abba10a3b80df",
     "site/viewer/optical-guide-response.mjs": "c961ada77c5beb2148ef228a754ece98899648f096ae9db08f430b31afcef2c5",
@@ -478,13 +479,13 @@
     "site/viewer/positron-fold.mjs": "7368d3dd6e38e237f6ff9e9c66de9f167096c6a72c867238bb8d21027b37d067",
     "site/viewer/positron-loader.mjs": "2a3105a5404159f02ff4018baae0ed14fd8a67ec0d4090051772a13180410d88",
     "site/viewer/positron-state.mjs": "8296d1b775fbca04462f5518a3126d25a53d372ddebadb0c2adff67968fee9ea",
-    "site/viewer/positron.html": "3961d1451fbc12a6d7c802f25fdc92e59d2b884bdb42fa7c8a147ea584091091",
-    "site/viewer/positron.js": "d83305097dcda1f08ae75dd3291ed88c90fc6da0b1d07eb5332fab25ca2d0f1e",
+    "site/viewer/positron.html": "ee83244b67ef8e0b75159a848c9e62bd0b3d0d1d489793a3709b1ec354bfabc5",
+    "site/viewer/positron.js": "106c1b859df507d08a8f0a212f5dcc93940c9d3366bbf634a80e947e83603f59",
     "site/viewer/printer-gantry.mjs": "f2f8aca7cc040f3911ab2b31b982d914df930c58cb5c63d2db4374e0b9b1cff5",
     "site/viewer/probe-checks.js": "0f70f5c099338db857e7cf6f8b711ce7a439322433d341c1f49e1770f0af2503",
     "site/viewer/probe-mounts.js": "6ba3182bca691ca986336ed6f2c01f7e365617ed131df1cddb46c9d7e22d6726",
     "site/viewer/product-links.js": "ba0e9d9c9326819ea0fbc227dedd6cc9ddbff72447ddf0ab4868c918e1588ffa",
-    "site/viewer/public-info.js": "dec4a2afe766c178868426e21e8257c0c0c25df39958fecd4fda3943add052c2",
+    "site/viewer/public-info.js": "801de7389f6c97f07586331a0615e6beb29acdeb39c83338d72b2da3fdefd8e0",
     "site/viewer/rapido-x-uhf-cover.mjs": "8b458475dac84cfcd8c7f22a517f537034c6c16d09ba981610af8a40b5bc6894",
     "site/viewer/ratrig_adapter.mjs": "a4648c4988c02ca82726b413a8011142c31502c513e395c8b4665a4720f7542a",
     "site/viewer/ratrig_gcode_preview.mjs": "d8c60b04d15d4417dfa5c4dd4ba9590645e4a1b27116aafa8e821c2c7ac50e88",
@@ -492,23 +493,23 @@
     "site/viewer/ratrig-loader.mjs": "d2d4bc48e4482f7bf4dd10e10ca3e308edd057c8d14f2d7f7eeb54ac8dc0fc3f",
     "site/viewer/ratrig-machines.mjs": "6f5c7fbad04c29c3827deaea5ed6a556bcd927ab7c3d9505beff4200a0392ba0",
     "site/viewer/ratrig-ui-state.mjs": "58e9d9727047d366ffe400325f8381b047b3aa29ddc49a1a3b68c811cfd3ad08",
-    "site/viewer/ratrig.html": "22b985e5ecb8ef324745b5aba1f0eb0655728079b844de885e2e71cc3b4da8cb",
-    "site/viewer/ratrig.js": "4ad2f524006435a0bf379f7a8047ca6eae36969c4f3eb42a9f3e07ab82010c28",
+    "site/viewer/ratrig.html": "190d078412e829fef143a8e90dbe96e41e12275f8b8997d965ecd6cf1253d98f",
+    "site/viewer/ratrig.js": "dea88f9b19b7baea54eaa61aa9632045a288e7f807f70d28e7a453e3f6cbcfd4",
     "site/viewer/remorph-adapter.mjs": "5bb6f83844e91238bd2a73d57185ec378eb70862f1284935304aaad8ec0209be",
     "site/viewer/remorph-belts.mjs": "c75ae005bf795485430cc1188bb51fc647244585f5e0407c9b9586cf79dd082f",
     "site/viewer/remorph-environment.mjs": "67b979de18933d30ccfdf258b4f8067face45fcbe045492ff273e29ce7767d0f",
-    "site/viewer/remorph.html": "4d752158611c33c914f27d2469a9e6135529f1f4fd3622cc94389d89b6287843",
-    "site/viewer/remorph.js": "5b618f7ffe0890559a3cef1c24156f22d237bf14bd0d472ca6a1a13bf528b863",
+    "site/viewer/remorph.html": "acaa5f7bd7f37857e71b709472c8872d4f5c6d6eaf5677d86ef12a2217ceee3b",
+    "site/viewer/remorph.js": "e18ec94beeb92ef8c898f37a66938df78aa9358ffd0cc44af870878d8f5eba46",
     "site/viewer/render-export.js": "743ea37fb4e25b58aa573c4ec5d7bef101597e6537e89d681ceefc4013430ff0",
     "site/viewer/requested-mods.mjs": "59541cdb05a4fcf10171865e50dc3eeb49c3c1acd7d87a7bd1344a5b246e17fd",
     "site/viewer/responsive-camera.mjs": "a5087f024910f351f1deca2caa00f8e26ffbffaec6ece167c0120b59036ca1b8",
     "site/viewer/scene-lighting-state.mjs": "0e24bd8b53a400dfb636e7f6743ee217fba4eff54bb488a36545938f66efa7dc",
     "site/viewer/shared-component-glb.mjs": "4a77abe6f67574be8ee102415fdca65839b1f1461dffb5db3835dbb4a3d79a45",
-    "site/viewer/siboor-catalog.mjs": "aa9542b9589cdea5924c282d0e82863ede9be6b9cc0fb6226c7772ed6af754aa",
-    "site/viewer/siboor-machine.mjs": "2bd4ad848cb6cf37adf084b7cdd54153695f09e01f43d07947e4287bbdec1983",
+    "site/viewer/siboor-catalog.mjs": "5b4da85c932c7d482c8839111763a57ea6be0cc1e7c6178cbd6d4a164ac17a33",
+    "site/viewer/siboor-machine.mjs": "51df563ee841bfbde23b081f27592766d374cf40e7f4e91ad9f12d89486c38ea",
     "site/viewer/source-assembly-configuration-ui.mjs": "0db9c665fde5b4c30b36b3cb30730392e816ed6da87d9c9badcc4f36db445325",
     "site/viewer/source-assembly-loader.mjs": "3902fb5c51039b3ad51cbf216777145c00036ca7caebc52c3b731d5b2d5bbdd4",
-    "site/viewer/source-assembly-messages.mjs": "eba7a880288403138d726526192dad384b2b7e4a71fc5dc85cde9298dcd120c4",
+    "site/viewer/source-assembly-messages.mjs": "18064021df3d80b39318bcf25d8f55d320ebc64244ab17b03d34ec24c2b7eaa9",
     "site/viewer/source-assembly-references.mjs": "0a283a57ad3b7af595e8377ac4e3adacfd6b92a149b36ec5f8c46a2c1fe89035",
     "site/viewer/source-assembly-registry.mjs": "261eca251ee1e5ea2ce5122831e7743b9ffd581de4afe64e614111e26b2a511a",
     "site/viewer/source-assembly-runtime/assembly.mjs": "c2bf5a9d61e27dc743033c34c6ef53f98b8c1455cce97b93291e80a7a22411dd",
@@ -531,10 +532,10 @@
     "site/viewer/source-assembly-runtime/state_compatibility.mjs": "463e2dc2811c9c97315cb08f4b242b4d6b660a2536b14bf0cb2b07625ea8d7c3",
     "site/viewer/source-assembly-runtime/state.mjs": "613792b62a51edd35ea7cc63569455afb3310189e6e0e9eec20ab3b3850b3a56",
     "site/viewer/source-assembly-runtime/view_appearance.mjs": "44d3ab76a2dc3dc8605fdd7a01d2d0060744749b4078b205e84a97274e06b384",
-    "site/viewer/source-assembly-ui-text.mjs": "b28916b71c841bb9f246efbc0ad0c89d3bfdb1aa02da2ab173fde65d1822d25d",
+    "site/viewer/source-assembly-ui-text.mjs": "da20730c0cea6c1bf0b31adf07d2739047e6f326e0b2743302a44b2816bce85b",
     "site/viewer/source-assembly-view-state.mjs": "f5cb6c47b1d718dbcd9ef4763488fdae04d0e4303625a3851a708fe14a8e765d",
     "site/viewer/source-assembly.css": "eb5323e5993f98622c1b7a27bcc5c6a6e9339f78af951b70bc54bbedcff1f4b4",
-    "site/viewer/source-assembly.mjs": "ad6205a5a28f9116204a8839deeb4f9f9ec57fb03598fef3cf44e0078c243eaa",
+    "site/viewer/source-assembly.mjs": "c2da6ad971d87332a7731c35ca86cc0f3af7058fbc645d45cf5ab373b16de85e",
     "site/viewer/source-control-bounds.mjs": "baf630d6f957ab6678232bc84f40c808ea2a69f6a56d1dc7630c5ed7eadcc9e2",
     "site/viewer/source-credit-format.mjs": "5f0524475081b0c7357655fe3b79692476591f709d4385f4d89924cf98bab430",
     "site/viewer/source-operating-bounds6.mjs": "1e6289b77e9233488baff1e8d1f265d09e754f22f15be3ca1808967c3e58d8e1",
@@ -542,38 +543,38 @@
     "site/viewer/stealthburner-cutaway-model.mjs": "8b5e7f9359fddd75c64ac2221a3a96fe3352226865aef87b5223932c08bced44",
     "site/viewer/stealthburner-cutaway-source.mjs": "7911d055ecc60ef3e4feb39029e5b61d2f5a47867f628371ca16e56cb4e0127e",
     "site/viewer/stealthburner-cutaway.css": "a8b157682b1670aa1ac54a7171695f495fe14ffc366ca5551c7a212981dce426",
-    "site/viewer/stealthburner-cutaway.html": "a9bd10091e338fbd6b5232df0d74a492744457285ec14bd9cfcd79f2c6925a19",
-    "site/viewer/stealthburner-cutaway.mjs": "5021d1e5633116ce8031fbc3a13f84e29c338afd773f54a352a8b67bad426ed3",
+    "site/viewer/stealthburner-cutaway.html": "61fc022bbd4a9c201725299211849370bc1823386287756c18e1668d1d2b331f",
+    "site/viewer/stealthburner-cutaway.mjs": "34f4e724b889fe93e7388af54a7f4b6f020faf766ab367ffabfc45e50dc27a74",
     "site/viewer/stealthburner-lesson.mjs": "ae2ba9fca1145282348d7aeac75356bc1fd91d2ef53cbeb8506db244d6b4393c",
     "site/viewer/stealthburner-nozzle-source.mjs": "f07a68e7a4bb5eba7ac28ba8f0d9bd16a80d1ffba9ce41da18bd8a1a0bd3cded",
     "site/viewer/stealthburner-v6-nozzle.json": "a3238197ff45621d546e4f412b6252bee376a5aaadb4774fd2868867918a1f3f",
-    "site/viewer/step-downloads.mjs": "f521ac4da098e02e8902db8db343642f727c21e477dff3179c34c0b9e639122b",
+    "site/viewer/step-downloads.mjs": "0b9acc6cdbdfa9fc9890265173b106819301d8ad33bc53d499a4255d16614b90",
     "site/viewer/stinger-flex.mjs": "0ab64709177d49ba0fec080323bba543679b548b09c55deaa4a06c665e9d247e",
     "site/viewer/stinger-tube-route.mjs": "064491780dfb942086bf643996507894fb90cf527b90cd7764c121cf12385127",
     "site/viewer/theme-toggle.css": "4e62a8462e0b9ed5c6653d7dcb43cf66a36893b1be13b5b267e4e0af3f85613b",
     "site/viewer/toolchanger-model.js": "0688c022fbab64a87c2e33d823880ec90afaa05223f3d4a3f2f454a258e7c443",
     "site/viewer/toolchangers.css": "aeb1af01008eeb68e8915ccf6a73a4944f2d70ad906feccca6da2579b4dba488",
-    "site/viewer/toolchangers.html": "e949cf6c167ef4a422a9ca37cd94f71f064c0a83662cf7a8764cb71f444d0845",
-    "site/viewer/toolchangers.js": "361580a846eb89942f9aac5029ac0e6c8d59ed82d9868280b201d2c14ff9a01a",
+    "site/viewer/toolchangers.html": "c1c22c7a7903dccca80e8259c6ebea81575d4136530aec60875166f3d2361f4b",
+    "site/viewer/toolchangers.js": "ec5a25ddfdf8248cc56114601eb8ff7a1fe7bf0bf2ff373774ca6017a68691d2",
     "site/viewer/toolhead-builder.mjs": "25334362949e6cfb330d4c7899e7237134674c6c5e0531b715b981de552aaf21",
     "site/viewer/toolhead-led-identities.mjs": "eb05026e88ef185682e851eb0b8cc238834a848778f6a9709d3cb5e4db681a7d",
     "site/viewer/toolhead-lighting.mjs": "ca578b1553dca9100db61751bcb560320aaf16672fe979af2a6a2c2bf39abe76",
     "site/viewer/toolheads.css": "5980047d16c1dadb3a63ea9d656c03261a3af30b2748d879158d97aea40a011f",
-    "site/viewer/toolheads.html": "e48c26ce1c8b8585acad76714a3beb0c98f09cfa74249e7b390c44c447c88c00",
-    "site/viewer/toolheads.js": "b6993b8ba1e2622046fd72142a18a91e5c8c6cab475e5cd4488cd3c77f22efab",
+    "site/viewer/toolheads.html": "a77bf8f84ce626be93d9acf18ead0dad736385fcc904fc7fc902adcbffb11f29",
+    "site/viewer/toolheads.js": "9ff44d08b226ac958758ee992f88888f19eafea6a8c1737d4971b51f543efec1",
     "site/viewer/translation-engine.mjs": "ad5021536c774dab7b4dd6b7573dc507b06f1d54f5a71bc79809033e33ac8cff",
     "site/viewer/trident-bed-registration.mjs": "17201d090ac06e795be090c94f875e677d4e80054ed8ad16d57a25bb4eddd4fd",
     "site/viewer/trident-belts.mjs": "36cbfcd85e770a25e8220665ee8b44e47c202523f588b9dd2e8e8aa944146511",
     "site/viewer/trident-front-registration.mjs": "6ae818408f2a66ba416aa39b2ac83baed4271c891f885256f686d8e039043eed",
     "site/viewer/trident-motion.mjs": "77312c6bfbf6c7e7563dbf5548ed5600baf2ab2ec2f0f438aa1860af355059ec",
     "site/viewer/trident-roof-tube.mjs": "3c2b6b629363a92659ed04e7fa9d37a2d89c6ae3f008c0acf4ce2f296155ab97",
-    "site/viewer/trident.html": "2768935a406caf07ab80cf1117bfe7d9469d99ac985bc858dfaf0321cbc57347",
-    "site/viewer/trinity-alpha-host-extensions.mjs": "f4b6bec2deaaf3fa6f1ceebe4703c60a02fcca019d0d308a16e804579b96a91c",
-    "site/viewer/trinity-alpha-installation.mjs": "ea5bab079f7130312e9265abeed4a636fed7335aea000c05feb32498974c2a53",
-    "site/viewer/trinity-alpha-siboor-r2.mjs": "1fc9d0816ec3922f35cb3cc535334318833387574444a8af28dba7ead8766b2a",
+    "site/viewer/trident.html": "9d9689727dfab7785e5939d8d40f103e3d538cdb367ad1fd1bd470cc3ac9ed8f",
+    "site/viewer/trinity-alpha-host-extensions.mjs": "e295b560c703b2b73ee2bebd297aea58992616cea3fe8289b0552835f6b91318",
+    "site/viewer/trinity-alpha-installation.mjs": "f9c7c4f6d902964f7c8410c9b640e0013c9037fe12b70beae6eb86f2a7a7d805",
+    "site/viewer/trinity-alpha-siboor-r2.mjs": "1ca4c30149a0b73fe5adeb7d41d941d9961ff8e825e16aab77a179e6dd6d4437",
     "site/viewer/trinity-render-delivery.mjs": "f2044876578730ca3839d79a684f03cdc61246768519bdf1a8659339cfb615b5",
     "site/viewer/v0_adapter.mjs": "4ee2ec34955631397cf3f550f9a31920c31d9ca962d42b4a728f9018b867732b",
-    "site/viewer/v0-app.js": "1bc8f2ba77144bbc5ed8d105bb8bd536250394a70631ef9a938b68a47f3afdf9",
+    "site/viewer/v0-app.js": "24e4e3479fb9cd94d460d9c3469e25494115adc4da9b013fb177c60321179476",
     "site/viewer/v0-assembly.mjs": "ac576b8eed02781734ab3f322d381d32942991f058a7460f35d0c99478bfeb9c",
     "site/viewer/v0-belts.mjs": "948e42567a0013aa58217f9a877c9387159934bf848215d8d5a1d9515f911e5d",
     "site/viewer/v0-chain-pins.mjs": "6d41fb943c5b19ea28ac78025bcd1559ddccbb4baab4872a28816fe5c4c81136",
@@ -584,19 +585,19 @@
     "site/viewer/v0-native-installed-gate.mjs": "2801ee4ab692384c0d13083bede9a7428f7f47516bf81ea7310f5616dce47084",
     "site/viewer/v0-state.mjs": "d07ccd54c3039984cc5735ff4f7238996f37f3e97dc37fead9c164be371d95b3",
     "site/viewer/v0-tophat.mjs": "1c65737cefc844de5ab72663dc4c38ba929f98dec76fe8b318298142305bfd2f",
-    "site/viewer/v0.html": "ac447f22aac8b67dcd6e6760c1c57429ace1ed83b12c31c15e98d37220c4e864",
+    "site/viewer/v0.html": "53cfd10eace6cd68ac0e41b467bc13a3611b4f25ac20c6a1662c5aa5590b2291",
     "site/viewer/v24_adapter.mjs": "2c7e8b33fb449a513a483e754e501cde1e798970cf75e7f465437a81a2bd7ec2",
     "site/viewer/v24_matrix_adapter.mjs": "1f70f3be4ab4a0e745449c099b6224df7cab8bbccc1abc2a4c1008e8ba18038f",
-    "site/viewer/v24-app.js": "932696c347dddf40c9b64b5f30d5ecd49c6a6e480eec34da32fe48978692bbc5",
+    "site/viewer/v24-app.js": "4105315066df208f48438329b8ecfddd2662d94159f4ba033b8e8d6165670de1",
     "site/viewer/v24-belts.mjs": "ad0c97343617f3c11d0be3cebe666aa149794d56872cb3653c80b8c6d4857f72",
-    "site/viewer/v24-bootstrap.js": "4c0a502998d50ec441b3a76d7bac8e4c0cf7bcba2cbd96649cee7edad8579b94",
+    "site/viewer/v24-bootstrap.js": "232ac5b2a0cf30f41c1dc968ebeaf0657aced5ca4af747ee7097b783d8765c4c",
     "site/viewer/v24-drive-metadata.mjs": "dbdf9f37cb0849ffc262891895fa2f6f8580d6ec81b23c0821b0f0c00a512c43",
     "site/viewer/v24-flexible.mjs": "4de2768da445f9eef0d59ead19639302112d082c26084fa80d48b6f98635470b",
     "site/viewer/v24-ptfe.mjs": "c4b99bd80cb09e11b702a1da0dea62839204f7727962ecc17929734c9dc008a2",
-    "site/viewer/v24-reference.html": "c78a4bbf9a687e2c1309bc280c4e579258eabaed25645d407f97bf840b55ec65",
-    "site/viewer/v24-reference.js": "288b737c9490bca9dd0f97552ae7ec496efcc2ebe244d153826abd0e70c78742",
-    "site/viewer/v24.html": "e9fcb1e1e118b6e19117b3d0f58e48eff9406e7b56cad5e7f53e9f969e8658a3",
-    "site/viewer/vanilla-trident.js": "ceb392efda8d6cced7236603fffadf6755436e93c3eca3c398de23ab9730c5f1",
+    "site/viewer/v24-reference.html": "83f69348995e28ab10e839120ace036f358e46bf512b244b6aa08ec7d5d20edf",
+    "site/viewer/v24-reference.js": "1f6d847615d115f01ae27668e305ae79a19ada53fd7fdd59f6a2a6c8886eab54",
+    "site/viewer/v24.html": "c7e214ec1811f253fcf834e38092e8b62867226cf192a4729da89dee91ddd943",
+    "site/viewer/vanilla-trident.js": "08fd2a00bd6799371701cbc147ce590bc0a3dcfa6ea149aee0146c4ec0e350bf",
     "site/viewer/vendor-r180/BufferGeometryUtils.js": "fda7e946b8e0b5ab39b779206589e7a1079a22eb24efb89d7223e03fdfb1f751",
     "site/viewer/vendor-r180/GLTFLoader.js": "adbbafe8ce40416525b6be0ee5cac0d3782482bcf0122c8ca8ec1ffa77d3440b",
     "site/viewer/vendor-r180/OrbitControls.js": "1c5dfa7751d7ab320ac09b578638f08eecacdaaa68109d097158105f3fc6ad43",
@@ -616,17 +617,17 @@
     "site/viewer/vendor/three.module.js": "c8211c69345d2e9949dc7a8ac969380497aa0600a5a8ac6a459c8cd02dd9cb8a",
     "site/viewer/viewer.css": "c1477550c92fbfb947a27560609dacefe19037a134b94cd32d6021d99df99586",
     "site/viewer/virtual-printer-emulator.mjs": "82f4d419283bf6313caf21e8baf57e98b7cf222f3483bb154d27d6c145aba694",
-    "site/viewer/workspace-choices.mjs": "8b2b9cc7384a6433ff47afb37f2098072703be6241b6f6e4f4949b1267c4daf5",
+    "site/viewer/workspace-choices.mjs": "4821dcdb0603c8c9ec675d5fcf1402a8b8002b22c520c1496384c6cf48e468c9",
     "site/viewer/workspace-entry.mjs": "7e4c8f98212e989784bda6bb8415bf2c335376c5d79ed5a2da26d5deabaa3615",
     "site/viewer/workspace-layout.mjs": "738c040595ec99155ce29dcf2e2fb4014bf02b6742fcf03b6d518d3ac26b4fb5",
     "site/viewer/workspace-lifecycle.mjs": "742c8844997b5856a728ca7883e876f121217c4499a76fcc4806410de7de86b3",
     "site/viewer/workspace-navigation.mjs": "424451cc1e036690fee71ad97f27205d59c84100d55ad75f81f9f5db320718d4",
     "site/viewer/workspace-return.mjs": "b28bca2f634976361753524986f001ca5307ed2537153df78db41cb3731e5108",
-    "site/viewer/workspace-router.mjs": "5e213d9a914332351f7bf50058fc1926e1d5e7021e252685cb5d976e4b3c71a3",
+    "site/viewer/workspace-router.mjs": "b353d0bab17c7dea3e59f3f586ce18170e2d76662cf4d77aef7152f9986d8cd1",
     "site/viewer/workspace-scroll.mjs": "048fe4a04b0a52b9cc23358733fc87529ac6bc46b0bd7309b96ea8e944874418",
-    "site/viewer/workspace-sections.mjs": "708d3a695867065b8bc854376c0b3f958a468383e3a4fd25a97155a8e05e6b2d",
+    "site/viewer/workspace-sections.mjs": "0524cce18eda8f22c30a990af33d9eff33f43c3abbe92f76bf1c75666eb56bf5",
     "site/viewer/workspace-share.mjs": "5803c3ee68563185c66db188e3c94b71fe7e24c23f3d0e6765696daa2c42752e",
-    "site/viewer/workspace-ui.mjs": "f433fa48f42b8554c4d52e44c33a7837f13ca1bde23cc695e9c940f3b7758f42",
+    "site/viewer/workspace-ui.mjs": "335f96dac3853fa09b4e0ae03d655f0d8934959ce2ea727cb9ba7400e472e14f",
     "site/viewer/workspace.css": "7fd916f08df39083d23f57f01ae769d1e78948a2c2eabda405658e0a56b27952",
     "site/XOL_MOD.json": "bc78d4c2ea028fedbacccbcf7f4607505ddfcc7dbb7511bb7186aaca74b53e32"
   },
@@ -661,7 +662,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -704,7 +705,7 @@
           "sample_poses": 120,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "bd52cc024a108fe671031e972e651f1d376d5ffb535ac00b405977ce42a9b9c6"
+          "actual_report_sha256": "176680dd50119db9161b906c8d0cc774f6f22bd1d980db4e4baa6b20922b7f7d"
         }
       },
       "known_required_companion_failures": []
@@ -739,7 +740,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -782,7 +783,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "126cf5a944e2154bd4187ca77f164a4ad2b02568a5a88234cd1cd0367700b877"
+          "actual_report_sha256": "9131f7e3c6f03a5595d128eb4d0be182125ff22d900ff61e637fdc2fe7d59a17"
         }
       },
       "known_required_companion_failures": []
@@ -817,7 +818,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -860,7 +861,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "d00d0c6d015d6cb74067786f58b29951c1b01e056c912c97fd708bda84ea731a"
+          "actual_report_sha256": "2a3fcc3b4a58cff61c29d40bbbfd8523f37752ad3ad887e9e13375a240abbeb6"
         }
       },
       "known_required_companion_failures": []
@@ -895,7 +896,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -938,7 +939,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "d6576bfad5f26a1c94b5473ee00fc710246c406746273e8063e9633641153eda"
+          "actual_report_sha256": "68f4e28e0f2c55a11a34ed952ab0181280721a053eca489c0319036d4181f603"
         }
       },
       "known_required_companion_failures": []
@@ -973,7 +974,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1016,7 +1017,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "02b06405375434711eb8c0795390dd90e6716d7924df517f599acf7dbeb1fc8f"
+          "actual_report_sha256": "deca97f49f6f3f30b4c5bd957066e635224a7e2b8e8e6ab0217f01ab64f3a5f5"
         }
       },
       "known_required_companion_failures": []
@@ -1051,7 +1052,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1094,7 +1095,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "b94acea2683b4cadd2b979e91452fb0735ced66dd5c8015cff3db495d90a6ebf"
+          "actual_report_sha256": "061b1398c92ebfc6b09f79be21226b7d27a7272734b13ed884fb7b88c7f73584"
         }
       },
       "known_required_companion_failures": []
@@ -1129,7 +1130,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1172,7 +1173,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "7c98a071524a7a0b3bcd032d727bf5d6ac6d04c2e6d4ba8d5b3a0c2f2f6e85a4"
+          "actual_report_sha256": "e643fdd78e59bf38988de2b3470e926eecf2981a6adc99e4073b214a7f9202a5"
         }
       },
       "known_required_companion_failures": []
@@ -1207,7 +1208,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1250,7 +1251,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "a70229dda085b320b1437b5deaaa528056547f9a538d1590e62e7b383b93300b"
+          "actual_report_sha256": "af90dc7d3136fc4fe67e8a12b48e93289bf75d41ae543fe1ae881a9cfc1e5ff5"
         }
       },
       "known_required_companion_failures": []
@@ -1285,7 +1286,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1328,7 +1329,7 @@
           "sample_poses": 120,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "bd3d655ceb24a6253773bb7f85a1ada7dfedf21db5873321ad55045792649187"
+          "actual_report_sha256": "f7b3c89f10a58fb52f84eca6934c5a545f0959ba973ae1c9a6a1fbf58639572b"
         }
       },
       "known_required_companion_failures": []
@@ -1363,7 +1364,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1406,7 +1407,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "8f9bbe617a42f87d0d866f34765db4f73ca855ab7d3623c757e1b1299281ac98"
+          "actual_report_sha256": "96100b01d2fe8986d5537de6ebe01e2e34ae6eb9e12306570c0b8d68e2bd4be7"
         }
       },
       "known_required_companion_failures": []
@@ -1441,7 +1442,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1484,7 +1485,7 @@
           "sample_poses": 90,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "3e405e7bfad0fa981ece8c34f0755b68de1ed86dfd7fc4e97f2e7636ad778ced"
+          "actual_report_sha256": "294baa36d3db30612ffc377eb9d786dae1c5c60c2fa63e2d912b87696464fcb5"
         }
       },
       "known_required_companion_failures": []
@@ -1519,7 +1520,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1562,7 +1563,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "ef4f3ee35abaca3ab53bb3aae15cb40e7723690e2e542b60f90e74e6d4c68593"
+          "actual_report_sha256": "8a1a102e0ad9f80a77ced1f78fc881e557f5c6dc2400f3f3d5787510d7a18e25"
         }
       },
       "known_required_companion_failures": []
@@ -1597,7 +1598,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1640,7 +1641,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "6b535b91bebaf42ef9e05216b404c22736d16bf5327a7d67ad852c9e1e7144a1"
+          "actual_report_sha256": "09743b8bd7f00a070b34250c0970590c07abea99b1f38aad6ddbdd38792060b3"
         }
       },
       "known_required_companion_failures": []
@@ -1675,7 +1676,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1718,7 +1719,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "11471434b18a067376d5d327aa00fd5be7ca5d4ed5055532d03c94ebd2f1695f"
+          "actual_report_sha256": "f7fb8865f60894951456282a7bfe6b3f5560e705c078826c2e823a17076023a1"
         }
       },
       "known_required_companion_failures": []
@@ -1753,7 +1754,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1796,7 +1797,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "3b911a6ae17b6f066658551a4fd69237023c4fb58bcbd2e5b0399fc244c9330d"
+          "actual_report_sha256": "3cc59563c1ec7d1e27ddd6bc71d4ad1c79bd83548b9942807d5e96c3889e9965"
         }
       },
       "known_required_companion_failures": []
@@ -1831,7 +1832,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1874,7 +1875,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "3b1d617c24045dd8a26fc60ce6c7beac19def8130e2478979e3017b4f989b103"
+          "actual_report_sha256": "6f9eaea9422c126bbb4ac520eaff0f5f135d22d95bee62eac12ec4ae0c81bebc"
         }
       },
       "known_required_companion_failures": []
@@ -1909,7 +1910,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1952,7 +1953,7 @@
           "sample_poses": 480,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "30c1e10e5ff9180829b8cfdeb197cc83d802849e84df737145965a0d7e89aac2"
+          "actual_report_sha256": "f2877998df462d25df4addb0ab55019dea83349698c032bfab16f597fb1bedef"
         }
       },
       "known_required_companion_failures": []
@@ -1987,7 +1988,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2030,7 +2031,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "52d6908de1ce72776be56a40d2be9c6725fe4858fbd96d1587c35cb650e2f6e3"
+          "actual_report_sha256": "2963772b2f570d443598db3e3b7f6364c74b2e502f6b0a49fdf059a392a96c70"
         }
       },
       "known_required_companion_failures": []
@@ -2065,7 +2066,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2108,7 +2109,7 @@
           "sample_poses": 19,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "417b5507852e88392e8faff33494444ea47d096795bb56a5504131d28f063a0b"
+          "actual_report_sha256": "0bea5819eec23d6dc20a127171be7882fd078bcc1b5e68e8934b395f1d352a00"
         }
       },
       "known_required_companion_failures": []
@@ -2143,7 +2144,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2187,7 +2188,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "f8bdc73f77ba1aac04381688b82bd7bd53a8aa20a69caffcb687392aa6831c64"
+          "actual_report_sha256": "1be96f19c409fc84e2f669ae1eaac5529b149bfcd1ad10a2de9840d191b5094d"
         }
       },
       "known_required_companion_failures": []
@@ -2222,7 +2223,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2266,7 +2267,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "b34834c944d14575983ddc4a12d26e38bfe2ab22e27cfd17aafa580c682df421"
+          "actual_report_sha256": "cb42168ea7d7b91fc14a0ff8aa1c8ff80f5cbe9c4efe6514ca999dd45ee81060"
         }
       },
       "known_required_companion_failures": []
@@ -2301,7 +2302,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2345,7 +2346,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "7bba19d3743b2ddbff371b857216633d220a47dfcbf23d0978bf0bbf25155378"
+          "actual_report_sha256": "3424142155d059d79eb16b1c63c4f0c872905cacedafb69b2133b07bb7aca08b"
         }
       },
       "known_required_companion_failures": []
@@ -2380,7 +2381,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2424,7 +2425,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": false,
-          "actual_report_sha256": "89b44e590b60f06bad476e0b6fc41dcc118e295679f6dc519cd59e2224270661"
+          "actual_report_sha256": "72016bb5d4e8cf0510271f1a8fcb46694c277cbf3583e2e17ad85cc337f05b67"
         }
       },
       "known_required_companion_failures": []
@@ -2458,7 +2459,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2501,7 +2502,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": false,
-          "actual_report_sha256": "dd9beafd341b3ac10afb0753a6e4003f8ec60b2aa4ec418dede36203ef8bdaf4"
+          "actual_report_sha256": "87844dde1ee66f5519b2562403dd8cea10928f3796a2531dd622c988a821d011"
         }
       },
       "known_required_companion_failures": []
@@ -2535,7 +2536,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2578,7 +2579,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": false,
-          "actual_report_sha256": "8378ab3b10a529a5c8bd598f3d21a78eafad382e35302547661b7957f8258eb3"
+          "actual_report_sha256": "9010600803a86f8b4d90e1246f84a03d29a8f545b8919b8ab656ef59df70ca31"
         }
       },
       "known_required_companion_failures": []
@@ -2613,7 +2614,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2656,7 +2657,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "880871d6176583506ff15c8251f2f9ed269ae02089bb6e1c38fc9a3fcb4d5371"
+          "actual_report_sha256": "5985e9e37db4bd4f5214053fc55fe0f8822e21854f82038350308613828fc2a4"
         }
       },
       "known_required_companion_failures": []
@@ -2691,7 +2692,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2734,7 +2735,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "52c985a7c4fb5bda9385a465fd87f56e2bc1e6c4db8538f966dba9fd0c4639d6"
+          "actual_report_sha256": "48e8ede49ccafdfe34df7e8bf723f3f3f764470c3c8aed71c87f1d4d69f95560"
         }
       },
       "known_required_companion_failures": []
@@ -2769,7 +2770,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2812,7 +2813,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "cd246f36cf8f0193e5d90478bd9c94f72575865cb220b684ed103351574c9235"
+          "actual_report_sha256": "05ee25371ffb823bd4f110d97313b1c7cb70a178275dfcc9a7c943756121e72c"
         }
       },
       "known_required_companion_failures": []
@@ -2847,7 +2848,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2892,7 +2893,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": false,
-          "actual_report_sha256": "66bfd18f1e7a15b8bc0e5ab37cb1f5f91d76c2b2a48ac04b610a2ee360ab04bb"
+          "actual_report_sha256": "b299b3dd4e4865ad827c182196f83a6a8deb5d826ef37cc6d93664d8fa742136"
         }
       },
       "known_required_companion_failures": []
@@ -2927,7 +2928,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2970,7 +2971,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": false,
-          "actual_report_sha256": "42a24b2a15879dc3e629a4a43cfc329d686e37ce65e442bfdf88826cc418f0b9"
+          "actual_report_sha256": "bf44924fcdec7a5d71f6f7f3f75575f9cdaafcdbba6e50a1c894bc05d28143d3"
         }
       },
       "known_required_companion_failures": []
@@ -3005,7 +3006,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3050,7 +3051,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": false,
-          "actual_report_sha256": "69ae3a1cafd8fa686eb6489e2a4d0468f913ff2dc334f855b81a75087d566c3d"
+          "actual_report_sha256": "9806de117b000d8e6f3a81ccae50b550ee965b6f5a89a0ada0180a050bbb636c"
         }
       },
       "known_required_companion_failures": []
@@ -3085,7 +3086,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3128,7 +3129,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": false,
-          "actual_report_sha256": "8dd2bb6e5065fa51399a7c27cf990233343aa7eb31996d3d45655b257706aa3a"
+          "actual_report_sha256": "fab0bc0dad4a049ee1afd8c9b588f44990e8273c4ce19c07ce8e5fb5113fb60a"
         }
       },
       "known_required_companion_failures": []
@@ -3163,7 +3164,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3206,7 +3207,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": false,
-          "actual_report_sha256": "9aebf744a9b0658f03bca79de6d41711a09d64439e0a27cf3afbb906c745142b"
+          "actual_report_sha256": "a3c4746a7377e9c689b35b5b4a16b03bd6992db4c51f5aebc101d0f514ca8af3"
         }
       },
       "known_required_companion_failures": []
@@ -3241,7 +3242,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3284,7 +3285,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": false,
-          "actual_report_sha256": "2fa7188ca49cbc54d0b33b763a8f97468c76d2401acabcf318590bc8d477b857"
+          "actual_report_sha256": "15c1947f17f8a1ae08065fccccee1c93d0088d2200c55a4e58c6b7cef3b75eec"
         }
       },
       "known_required_companion_failures": []
@@ -3319,7 +3320,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3362,7 +3363,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": false,
-          "actual_report_sha256": "6511893f489b95bbb2b79b9658a4113eb4f305d3edc144005d35f6e2392aa534"
+          "actual_report_sha256": "8d158471a4c5ec1880447e14d7df820218c6d897eaedf6f4b08bfc66647d41f0"
         }
       },
       "known_required_companion_failures": []
@@ -3397,7 +3398,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3440,7 +3441,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": false,
-          "actual_report_sha256": "f7ec9a5844aa2b22ace9e63b20b18428ff5f26feb93d6ae94f40ec8f6ef7bdd8"
+          "actual_report_sha256": "9e647e390e8416f7a2977c83653664c6f7f930420da8ce19d01fb7c27a272313"
         }
       },
       "known_required_companion_failures": []
@@ -3475,7 +3476,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3518,7 +3519,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": false,
-          "actual_report_sha256": "8aabcaee38c4792fb97c14fffe8c9461199d940f56161f552eb7cc56158c6852"
+          "actual_report_sha256": "407ae1c87f609ec589fefaf80dfaf92b189469f32ec6b9dfa077e2adc8312208"
         }
       },
       "known_required_companion_failures": []
@@ -3553,7 +3554,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3597,7 +3598,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": false,
-          "actual_report_sha256": "621814f7cf14f73eff21390642265a4548d454f5bba3f7f9216978fa216d16fd"
+          "actual_report_sha256": "a764391fa4049e633b1618dbc381f595ef10c9076a461d427576f113f50af90b"
         }
       },
       "known_required_companion_failures": []
@@ -3632,7 +3633,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3675,7 +3676,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": false,
-          "actual_report_sha256": "9b51f5876b0b33ae8b961cb27d347cc5159bf9029aba849b6ae1890a596c2441"
+          "actual_report_sha256": "c3ba9333b8575ae6fd28437c6fc0ef395a6c6e015f1af0ee8e61b600626cab7d"
         }
       },
       "known_required_companion_failures": []
@@ -3710,7 +3711,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3753,7 +3754,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": false,
-          "actual_report_sha256": "df03ae935cffabdc19b2acebe0522b74e800800be2f63aa1ac3c9f7f0583d5c5"
+          "actual_report_sha256": "0afae892041f8d12e445831ddf5def19bf354a929310e85e3607b7bb40a6b1d1"
         }
       },
       "known_required_companion_failures": []
@@ -3788,7 +3789,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3831,7 +3832,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": false,
-          "actual_report_sha256": "224e0167cbc3131d334d4bbd9000bb0498778bc123bd81bef7c9e7789d0ebf31"
+          "actual_report_sha256": "8970dad4b3b9fb27b1d8422a6609cd4ee2aacc67804ad499e8dcb6e2b3339112"
         }
       },
       "known_required_companion_failures": []
@@ -3866,7 +3867,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3909,7 +3910,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": false,
-          "actual_report_sha256": "a18490f2ade1dc3ec7320c0a477fb935a27c0d62995f2610df8dbc96906c248d"
+          "actual_report_sha256": "ac4512cc80bbfbefbae75f2caad1a51a9fff47bc35bb5d0676df581396d1aefd"
         }
       },
       "known_required_companion_failures": []
@@ -3944,7 +3945,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3987,7 +3988,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": false,
-          "actual_report_sha256": "502a70735b663bcd29cd4248034a82981a1082b7fc96e50025824771d3569685"
+          "actual_report_sha256": "665149714924d00d68eea0c7714aa351d0b14a53d1147477c3df6aada0dd5ac7"
         }
       },
       "known_required_companion_failures": []
@@ -4022,7 +4023,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4065,7 +4066,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": false,
-          "actual_report_sha256": "2877ba3447ab35bf9408c25fef84866a14f5088d00ae93cd8b42e1a41e77dbfe"
+          "actual_report_sha256": "ca7b782d935faee7bf0ead6cc6c0803dbee1b1f00c182ccdecc6e8bc787e04e5"
         }
       },
       "known_required_companion_failures": []
@@ -4100,7 +4101,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4143,7 +4144,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": false,
-          "actual_report_sha256": "759e7ad344ca283126c9b61bacfd2e272d632f27a4fca339755ae9b47c3ab21e"
+          "actual_report_sha256": "ae09c031afe1dd3eaaa3e439df6afc2fb357cc67ec8c2d372bd84c5542e4c176"
         }
       },
       "known_required_companion_failures": []
@@ -4178,7 +4179,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4221,7 +4222,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "c25f2a1f180df7861f8425e7ffef832775490552ea1dfdea53598248fa1629dc"
+          "actual_report_sha256": "04273370d866213735caa135b7dbc3d82fb4e205d260892fb0a7581e613f452a"
         }
       },
       "known_required_companion_failures": []
@@ -4256,7 +4257,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4300,7 +4301,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": false,
-          "actual_report_sha256": "dfd86f2a381f975c4de90312d1e8e5d405e9e0262fab5451bf7641dd4a2fa03e"
+          "actual_report_sha256": "4edfb695fe4d4074befee52ec608e6a28ccdd53a7ab82be82118af0b28677cd4"
         }
       },
       "known_required_companion_failures": []
@@ -4335,7 +4336,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4379,7 +4380,7 @@
           "sample_poses": 21,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "a609b54544e0093e141656391278227b2232f0e836f2d8422169d48b86084425"
+          "actual_report_sha256": "302d4ebfe385b047f77eb0d56fd73f8081aa471c9382aba4b4e5e9c05c753103"
         }
       },
       "known_required_companion_failures": []
@@ -4414,7 +4415,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4458,7 +4459,7 @@
           "sample_poses": 21,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "23ea665f05c090799e63428fce86d406448309390e5b21eb26d176668c58fc68"
+          "actual_report_sha256": "8bac6eee7f045212142237d8830087544e89279b4da951ff08bfa2ad9b6a027f"
         }
       },
       "known_required_companion_failures": []
@@ -4493,7 +4494,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4536,7 +4537,7 @@
           "sample_poses": 66,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "036a197a433aae7d8c8e1cdf876e8b7e5b61426c43d5c853ba2b18edb7d825be"
+          "actual_report_sha256": "d4004209b350f10157e742d62b28a8106b001c91d5ea67a4964e4ceb2b2582d1"
         }
       },
       "known_required_companion_failures": []
@@ -4571,7 +4572,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4614,7 +4615,7 @@
           "sample_poses": 21,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "95e062a39a24e8e2714ac38cac52cd754ec2d313b030c7a5a4f6fd7786982b3c"
+          "actual_report_sha256": "d92ee94bd2fe9ade53d84ea49f0d18d03b50b37f1439357a4db2bdf68a74b1a2"
         }
       },
       "known_required_companion_failures": []
@@ -4649,7 +4650,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4692,7 +4693,7 @@
           "sample_poses": 21,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "53ac946041a4d9cfb29e8ea7c9c4ba251b39213a5682f2afefdce462f76fc1bc"
+          "actual_report_sha256": "a2d049f0455def093ac1bb667fa828697a1fb5fd81586105591cdf8a1d7f4b6e"
         }
       },
       "known_required_companion_failures": []
@@ -4727,7 +4728,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4770,7 +4771,7 @@
           "sample_poses": 66,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "9a2dcfe945b4ee2fe2e54537ad5d4f2e44bc4d3ad06377fa56e0d85f42f10637"
+          "actual_report_sha256": "1e98edfdb9fb3db426a7ca9eae33368a02c466d584090358e29bce6ba42185c6"
         }
       },
       "known_required_companion_failures": []
@@ -4805,7 +4806,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4848,7 +4849,7 @@
           "sample_poses": 21,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "42d9b3b0743385e4222cfc3570f30048604e10f81db5eaad6e7a18d3904ef2d7"
+          "actual_report_sha256": "46db0781acde9fc3f8ac4e251f8dacd50f72642d52ca39443709aec1342911e7"
         }
       },
       "known_required_companion_failures": []
@@ -4883,7 +4884,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4927,7 +4928,7 @@
           "sample_poses": 21,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "60d7b2b603d51e125640f82c6403c6c7ec4dfc10c2fb75f956ee45bd2a8c8a88"
+          "actual_report_sha256": "c3d62a2e6206ab3ca34da058d9a8564027bb1a371e6cce10cc783a17ea2c0d4d"
         }
       },
       "known_required_companion_failures": []
@@ -4962,7 +4963,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5006,7 +5007,7 @@
           "sample_poses": 66,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "dcac5a57e139dbfed92a6f26ee2db13d17bf6034ca3a62315e36143e60f50719"
+          "actual_report_sha256": "097e22ebf4743984c678025f49bbd40e38d3eb472eead656eef902d9f130a7b3"
         }
       },
       "known_required_companion_failures": []
@@ -5041,7 +5042,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5084,7 +5085,7 @@
           "sample_poses": 21,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "00829a8586f64dfffa5ecc2916c02931f3b4d3d4444725b4dc0f33b7b983d50d"
+          "actual_report_sha256": "7ab6fccfa602170747a4d2a63190e3ae5de1e7251b7d360ed1cbbbc05c8c1a40"
         }
       },
       "known_required_companion_failures": []
@@ -5119,7 +5120,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5163,7 +5164,7 @@
           "sample_poses": 21,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "0a0665d0afe0c99b85e4d7b0b825932a625ee85a692e884af466648033c15f3b"
+          "actual_report_sha256": "5d3504e0ccbaedfc3905662df3ec975776dae5d89385794ca85ce11e6b45cd6f"
         }
       },
       "known_required_companion_failures": []
@@ -5198,7 +5199,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5242,7 +5243,7 @@
           "sample_poses": 66,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "b4813fba17788b58248fda723e662224c5be80b4bfe5f5e9e5a2495621076d12"
+          "actual_report_sha256": "95cf191d192036319be0ea8c216e7440fd74e54dcc85732844a68e99e57b0c2c"
         }
       },
       "known_required_companion_failures": []
@@ -5277,7 +5278,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5320,7 +5321,7 @@
           "sample_poses": 21,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "c0f9193405cbc597d7f9ec19773d5e677865ef5eee961b5ad8990a1a016513fd"
+          "actual_report_sha256": "3e677056f8eff8e529148d7b7ad2f85d8e774aaada18858476018b8d5b3ff82e"
         }
       },
       "known_required_companion_failures": []
@@ -5355,7 +5356,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5399,7 +5400,7 @@
           "sample_poses": 21,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "73065f7a557921dc11ddb5d2bc0e603d7fd0631467275b9c5318e11ec4dc3fa9"
+          "actual_report_sha256": "3c2fa75d75b192a35a39d25443649ab47d37d438e1baf818e8c7b34d8d11ea39"
         }
       },
       "known_required_companion_failures": []
@@ -5434,7 +5435,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5478,7 +5479,7 @@
           "sample_poses": 66,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "8a433d5b3d6d82c671a5a1f672ef6a6aa5a71ab9cdb3c6be7b2bc8c928806f7c"
+          "actual_report_sha256": "6ac9fcfb3778cb25ca2649ef25e87cfdcbea54a121547aeefe93c66e376fcfeb"
         }
       },
       "known_required_companion_failures": []
@@ -5513,7 +5514,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5556,7 +5557,7 @@
           "sample_poses": 21,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "b3c1e0da63365da337d60a57c586b8e695813777d5ec7e4c641b8205f047719b"
+          "actual_report_sha256": "d65826aedde110ae8e35c2ca1d44b4ae22e1e3d05985749448e392e8bf2e88e9"
         }
       },
       "known_required_companion_failures": []
@@ -5591,7 +5592,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5634,7 +5635,7 @@
           "sample_poses": 21,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "af2137de08e66b06e7a337d3a0d490b983043d08194eea92106d49aa7ec44688"
+          "actual_report_sha256": "39a1a425a8655b91fcce56571c78e170b3a987b1558ea64c6f214b88e664c9b7"
         }
       },
       "known_required_companion_failures": []
@@ -5669,7 +5670,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5713,7 +5714,7 @@
           "sample_poses": 66,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "55665cd94225260b088bb658c6ea5784d4f2b5629d3525d9c38b43d1df6d555c"
+          "actual_report_sha256": "16d25b7c09740e64ad1272631cad8a0631b909c40514af1f07083d7470812f0f"
         }
       },
       "known_required_companion_failures": []
@@ -5748,7 +5749,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5791,7 +5792,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "aab28d999720ef756ad9cf0c95704a563cfd7bfe21909e1c99aa36adeae46f4d"
+          "actual_report_sha256": "2fcd98c8f798b53635f5a10b1e4dcce738b8fdbcba8c18bd9034ed33f32a16eb"
         }
       },
       "known_required_companion_failures": []
@@ -5826,7 +5827,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5869,7 +5870,7 @@
           "sample_poses": 120,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "17fdab3d6d325aaf62734cc318072c740b709265477f79c4e76be2358358488e"
+          "actual_report_sha256": "e5f297ba1197b6cbc3ad7425fe859616466bc332eb29f330abc414720a3c1974"
         }
       },
       "known_required_companion_failures": []
@@ -5914,7 +5915,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5951,7 +5952,7 @@
           "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "actual_report_sha256": "e672fd20d1bfb2f4dcfbfa48afa86da45d41ba968ba3929bc406f41cd1095cb0"
+          "actual_report_sha256": "26c09a744781d4aafcdbe2fdcaf973e66f995acb007158a29b3c3b2e5b6a75fc"
         }
       },
       "known_required_companion_failures": []
@@ -5987,7 +5988,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "a22178b777608eb66b758fdaae1556e62a83728954586021726850c9794ee78f",
+          "sha256": "136caf5dcb644a8ad6540fb629795adb3227f4e9c30a015dae38c91bf1a15f64",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         },
         {

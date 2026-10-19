@@ -1,6 +1,6 @@
 {
   "schema": "current-actual-viewer-render-scope-v1",
-  "at_utc": "2026-10-19T03:57:37.155811+00:00",
+  "at_utc": "2026-10-19T05:02:33.242127+00:00",
   "scope": "All 69 selectable published-scope machines: original 68 model/companion identities and the qualified VIRTU successor. Actual viewer integrity, sampled controller behavior and browser evidence retain their separate scopes. No whole-machine physical-fit certificate.",
   "registered_selectable_machines": 69,
   "controller_sample_pass": 69,
@@ -66,6 +66,11 @@
           "report": "doomcube2_350_reference.current69-v1.json",
           "sha256": "bd52cc024a108fe671031e972e651f1d376d5ffb535ac00b405977ce42a9b9c6",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "doomcube2_350_reference.current69-v1.json",
+          "sha256": "176680dd50119db9161b906c8d0cc774f6f22bd1d980db4e4baa6b20922b7f7d",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -126,6 +131,11 @@
         {
           "report": "tictac_21_120.current69-v1.json",
           "sha256": "126cf5a944e2154bd4187ca77f164a4ad2b02568a5a88234cd1cd0367700b877",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "tictac_21_120.current69-v1.json",
+          "sha256": "9131f7e3c6f03a5595d128eb4d0be182125ff22d900ff61e637fdc2fe7d59a17",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
@@ -188,6 +198,11 @@
           "report": "the100_v11_165.current69-v1.json",
           "sha256": "d00d0c6d015d6cb74067786f58b29951c1b01e056c912c97fd708bda84ea731a",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "the100_v11_165.current69-v1.json",
+          "sha256": "2a3fcc3b4a58cff61c29d40bbbfd8523f37752ad3ad887e9e13375a240abbeb6",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -248,6 +263,11 @@
         {
           "report": "rook_mk2_120.current69-v1.json",
           "sha256": "d6576bfad5f26a1c94b5473ee00fc710246c406746273e8063e9633641153eda",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "rook_mk2_120.current69-v1.json",
+          "sha256": "68f4e28e0f2c55a11a34ed952ab0181280721a053eca489c0319036d4181f603",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
@@ -310,6 +330,11 @@
           "report": "satsuma180_v10.current69-v1.json",
           "sha256": "02b06405375434711eb8c0795390dd90e6716d7924df517f599acf7dbeb1fc8f",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "satsuma180_v10.current69-v1.json",
+          "sha256": "deca97f49f6f3f30b4c5bd957066e635224a7e2b8e8e6ab0217f01ab64f3a5f5",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -370,6 +395,11 @@
         {
           "report": "sovol_sv08_350.current69-v1.json",
           "sha256": "b94acea2683b4cadd2b979e91452fb0735ced66dd5c8015cff3db495d90a6ebf",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "sovol_sv08_350.current69-v1.json",
+          "sha256": "061b1398c92ebfc6b09f79be21226b7d27a7272734b13ed884fb7b88c7f73584",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
@@ -432,6 +462,11 @@
           "report": "lh_stinger_200.current69-v1.json",
           "sha256": "7c98a071524a7a0b3bcd032d727bf5d6ac6d04c2e6d4ba8d5b3a0c2f2f6e85a4",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "lh_stinger_200.current69-v1.json",
+          "sha256": "e643fdd78e59bf38988de2b3470e926eecf2981a6adc99e4073b214a7f9202a5",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -492,6 +527,11 @@
         {
           "report": "antithesis_aether_mk11.current69-v1.json",
           "sha256": "a70229dda085b320b1437b5deaaa528056547f9a538d1590e62e7b383b93300b",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "antithesis_aether_mk11.current69-v1.json",
+          "sha256": "af90dc7d3136fc4fe67e8a12b48e93289bf75d41ae543fe1ae881a9cfc1e5ff5",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
@@ -555,6 +595,11 @@
           "report": "ratrig_vminion_180.current69-v1.json",
           "sha256": "bd3d655ceb24a6253773bb7f85a1ada7dfedf21db5873321ad55045792649187",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "ratrig_vminion_180.current69-v1.json",
+          "sha256": "f7b3c89f10a58fb52f84eca6934c5a545f0959ba973ae1c9a6a1fbf58639572b",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -615,6 +660,11 @@
         {
           "report": "snakeoil_xy_180.current69-v1.json",
           "sha256": "8f9bbe617a42f87d0d866f34765db4f73ca855ab7d3623c757e1b1299281ac98",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "snakeoil_xy_180.current69-v1.json",
+          "sha256": "96100b01d2fe8986d5537de6ebe01e2e34ae6eb9e12306570c0b8d68e2bd4be7",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
@@ -677,6 +727,11 @@
           "report": "snakeoil_xy_idex.current69-v1.json",
           "sha256": "3e405e7bfad0fa981ece8c34f0755b68de1ed86dfd7fc4e97f2e7636ad778ced",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "snakeoil_xy_idex.current69-v1.json",
+          "sha256": "294baa36d3db30612ffc377eb9d786dae1c5c60c2fa63e2d912b87696464fcb5",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -737,6 +792,11 @@
         {
           "report": "snakeoil_3s_kp3s_180.current69-v1.json",
           "sha256": "ef4f3ee35abaca3ab53bb3aae15cb40e7723690e2e542b60f90e74e6d4c68593",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "snakeoil_3s_kp3s_180.current69-v1.json",
+          "sha256": "8a1a102e0ad9f80a77ced1f78fc881e557f5c6dc2400f3f3d5787510d7a18e25",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
@@ -799,6 +859,11 @@
           "report": "snakeoil_proosaxy.current69-v1.json",
           "sha256": "6b535b91bebaf42ef9e05216b404c22736d16bf5327a7d67ad852c9e1e7144a1",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "snakeoil_proosaxy.current69-v1.json",
+          "sha256": "09743b8bd7f00a070b34250c0970590c07abea99b1f38aad6ddbdd38792060b3",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -859,6 +924,11 @@
         {
           "report": "mercury_one1_235.current69-v1.json",
           "sha256": "11471434b18a067376d5d327aa00fd5be7ca5d4ed5055532d03c94ebd2f1695f",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "mercury_one1_235.current69-v1.json",
+          "sha256": "f7fb8865f60894951456282a7bfe6b3f5560e705c078826c2e823a17076023a1",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
@@ -921,6 +991,11 @@
           "report": "mercury_one1_370.current69-v1.json",
           "sha256": "3b911a6ae17b6f066658551a4fd69237023c4fb58bcbd2e5b0399fc244c9330d",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "mercury_one1_370.current69-v1.json",
+          "sha256": "3cc59563c1ec7d1e27ddd6bc71d4ad1c79bd83548b9942807d5e96c3889e9965",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -981,6 +1056,11 @@
         {
           "report": "vzbot_330_printed.current69-v1.json",
           "sha256": "3b1d617c24045dd8a26fc60ce6c7beac19def8130e2478979e3017b4f989b103",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "vzbot_330_printed.current69-v1.json",
+          "sha256": "6f9eaea9422c126bbb4ac520eaff0f5f135d22d95bee62eac12ec4ae0c81bebc",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
@@ -1050,6 +1130,11 @@
           "report": "ender3_stock_220.current69-v1.json",
           "sha256": "30c1e10e5ff9180829b8cfdeb197cc83d802849e84df737145965a0d7e89aac2",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "ender3_stock_220.current69-v1.json",
+          "sha256": "f2877998df462d25df4addb0ab55019dea83349698c032bfab16f597fb1bedef",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -1111,6 +1196,11 @@
           "report": "siboor_sboom_220.current69-v1.json",
           "sha256": "52d6908de1ce72776be56a40d2be9c6725fe4858fbd96d1587c35cb650e2f6e3",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "siboor_sboom_220.current69-v1.json",
+          "sha256": "2963772b2f570d443598db3e3b7f6364c74b2e502f6b0a49fdf059a392a96c70",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -1164,6 +1254,11 @@
         {
           "report": "positron_v322.current69-v1.json",
           "sha256": "417b5507852e88392e8faff33494444ea47d096795bb56a5504131d28f063a0b",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "positron_v322.current69-v1.json",
+          "sha256": "0bea5819eec23d6dc20a127171be7882fd078bcc1b5e68e8934b395f1d352a00",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
@@ -1230,6 +1325,11 @@
           "report": "annex_k1_assembly.current69-v1.json",
           "sha256": "f8bdc73f77ba1aac04381688b82bd7bd53a8aa20a69caffcb687392aa6831c64",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "annex_k1_assembly.current69-v1.json",
+          "sha256": "1be96f19c409fc84e2f669ae1eaac5529b149bfcd1ad10a2de9840d191b5094d",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -1295,6 +1395,11 @@
           "report": "annex_k2_assembly.current69-v1.json",
           "sha256": "b34834c944d14575983ddc4a12d26e38bfe2ab22e27cfd17aafa580c682df421",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "annex_k2_assembly.current69-v1.json",
+          "sha256": "cb42168ea7d7b91fc14a0ff8aa1c8ff80f5cbe9c4efe6514ca999dd45ee81060",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -1359,6 +1464,11 @@
         {
           "report": "annex_k3_assembly.current69-v1.json",
           "sha256": "7bba19d3743b2ddbff371b857216633d220a47dfcbf23d0978bf0bbf25155378",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "annex_k3_assembly.current69-v1.json",
+          "sha256": "3424142155d059d79eb16b1c63c4f0c872905cacedafb69b2133b07bb7aca08b",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
@@ -1441,6 +1551,11 @@
         {
           "report": "remorph_beta1_307.current69-v1.json",
           "sha256": "89b44e590b60f06bad476e0b6fc41dcc118e295679f6dc519cd59e2224270661",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "remorph_beta1_307.current69-v1.json",
+          "sha256": "72016bb5d4e8cf0510271f1a8fcb46694c277cbf3583e2e17ad85cc337f05b67",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
@@ -1923,6 +2038,11 @@
           "report": "siboor_trident_300.current69-v1.json",
           "sha256": "dd9beafd341b3ac10afb0753a6e4003f8ec60b2aa4ec418dede36203ef8bdaf4",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "siboor_trident_300.current69-v1.json",
+          "sha256": "87844dde1ee66f5519b2562403dd8cea10928f3796a2531dd622c988a821d011",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -2224,6 +2344,11 @@
           "report": "siboor_trident_350.current69-v1.json",
           "sha256": "8378ab3b10a529a5c8bd598f3d21a78eafad382e35302547661b7957f8258eb3",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "siboor_trident_350.current69-v1.json",
+          "sha256": "9010600803a86f8b4d90e1246f84a03d29a8f545b8919b8ab656ef59df70ca31",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -2518,6 +2643,11 @@
         {
           "report": "voron_trident_250.current69-v1.json",
           "sha256": "880871d6176583506ff15c8251f2f9ed269ae02089bb6e1c38fc9a3fcb4d5371",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "voron_trident_250.current69-v1.json",
+          "sha256": "5985e9e37db4bd4f5214053fc55fe0f8822e21854f82038350308613828fc2a4",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
@@ -2814,6 +2944,11 @@
           "report": "voron_trident_300.current69-v1.json",
           "sha256": "52c985a7c4fb5bda9385a465fd87f56e2bc1e6c4db8538f966dba9fd0c4639d6",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "voron_trident_300.current69-v1.json",
+          "sha256": "48e8ede49ccafdfe34df7e8bf723f3f3f764470c3c8aed71c87f1d4d69f95560",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -3109,6 +3244,11 @@
           "report": "voron_trident_350.current69-v1.json",
           "sha256": "cd246f36cf8f0193e5d90478bd9c94f72575865cb220b684ed103351574c9235",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "voron_trident_350.current69-v1.json",
+          "sha256": "05ee25371ffb823bd4f110d97313b1c7cb70a178275dfcc9a7c943756121e72c",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -3193,6 +3333,11 @@
           "report": "voron_trident_500_custom.current69-v1.json",
           "sha256": "66bfd18f1e7a15b8bc0e5ab37cb1f5f91d76c2b2a48ac04b610a2ee360ab04bb",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "voron_trident_500_custom.current69-v1.json",
+          "sha256": "b299b3dd4e4865ad827c182196f83a6a8deb5d826ef37cc6d93664d8fa742136",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -3268,6 +3413,11 @@
         {
           "report": "voron_trident_1000_custom.current69-v1.json",
           "sha256": "42a24b2a15879dc3e629a4a43cfc329d686e37ce65e442bfdf88826cc418f0b9",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "voron_trident_1000_custom.current69-v1.json",
+          "sha256": "bf44924fcdec7a5d71f6f7f3f75575f9cdaafcdbba6e50a1c894bc05d28143d3",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
@@ -3352,6 +3502,11 @@
         {
           "report": "voron_trident_350_half_z.current69-v1.json",
           "sha256": "69ae3a1cafd8fa686eb6489e2a4d0468f913ff2dc334f855b81a75087d566c3d",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "voron_trident_350_half_z.current69-v1.json",
+          "sha256": "9806de117b000d8e6f3a81ccae50b550ee965b6f5a89a0ada0180a050bbb636c",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
@@ -3635,6 +3790,11 @@
           "report": "siboor_v24_350.current69-v1.json",
           "sha256": "8dd2bb6e5065fa51399a7c27cf990233343aa7eb31996d3d45655b257706aa3a",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "siboor_v24_350.current69-v1.json",
+          "sha256": "fab0bc0dad4a049ee1afd8c9b588f44990e8273c4ce19c07ce8e5fb5113fb60a",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -3916,6 +4076,11 @@
         {
           "report": "voron_v24_250_printed.current69-v1.json",
           "sha256": "9aebf744a9b0658f03bca79de6d41711a09d64439e0a27cf3afbb906c745142b",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "voron_v24_250_printed.current69-v1.json",
+          "sha256": "a3c4746a7377e9c689b35b5b4a16b03bd6992db4c51f5aebc101d0f514ca8af3",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
@@ -4199,6 +4364,11 @@
           "report": "voron_v24_250_ldo_cnc.current69-v1.json",
           "sha256": "2fa7188ca49cbc54d0b33b763a8f97468c76d2401acabcf318590bc8d477b857",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "voron_v24_250_ldo_cnc.current69-v1.json",
+          "sha256": "15c1947f17f8a1ae08065fccccee1c93d0088d2200c55a4e58c6b7cef3b75eec",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -4480,6 +4650,11 @@
         {
           "report": "voron_v24_300_printed.current69-v1.json",
           "sha256": "6511893f489b95bbb2b79b9658a4113eb4f305d3edc144005d35f6e2392aa534",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "voron_v24_300_printed.current69-v1.json",
+          "sha256": "8d158471a4c5ec1880447e14d7df820218c6d897eaedf6f4b08bfc66647d41f0",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
@@ -4763,6 +4938,11 @@
           "report": "voron_v24_300_ldo_cnc.current69-v1.json",
           "sha256": "f7ec9a5844aa2b22ace9e63b20b18428ff5f26feb93d6ae94f40ec8f6ef7bdd8",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "voron_v24_300_ldo_cnc.current69-v1.json",
+          "sha256": "9e647e390e8416f7a2977c83653664c6f7f930420da8ce19d01fb7c27a272313",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -5044,6 +5224,11 @@
         {
           "report": "voron_v24_350_printed.current69-v1.json",
           "sha256": "8aabcaee38c4792fb97c14fffe8c9461199d940f56161f552eb7cc56158c6852",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "voron_v24_350_printed.current69-v1.json",
+          "sha256": "407ae1c87f609ec589fefaf80dfaf92b189469f32ec6b9dfa077e2adc8312208",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
@@ -5330,6 +5515,11 @@
         {
           "report": "voron_v24_500_custom.current69-v1.json",
           "sha256": "621814f7cf14f73eff21390642265a4548d454f5bba3f7f9216978fa216d16fd",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "voron_v24_500_custom.current69-v1.json",
+          "sha256": "a764391fa4049e633b1618dbc381f595ef10c9076a461d427576f113f50af90b",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
@@ -5793,6 +5983,11 @@
           "report": "voron_v24_1000_custom.current69-v1.json",
           "sha256": "9b51f5876b0b33ae8b961cb27d347cc5159bf9029aba849b6ae1890a596c2441",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "voron_v24_1000_custom.current69-v1.json",
+          "sha256": "c3ba9333b8575ae6fd28437c6fc0ef395a6c6e015f1af0ee8e61b600626cab7d",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -6074,6 +6269,11 @@
         {
           "report": "voron_v24_350_half_z.current69-v1.json",
           "sha256": "df03ae935cffabdc19b2acebe0522b74e800800be2f63aa1ac3c9f7f0583d5c5",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "voron_v24_350_half_z.current69-v1.json",
+          "sha256": "0afae892041f8d12e445831ddf5def19bf354a929310e85e3607b7bb40a6b1d1",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
@@ -6357,6 +6557,11 @@
           "report": "voron_v24_350_ldo_cnc.current69-v1.json",
           "sha256": "224e0167cbc3131d334d4bbd9000bb0498778bc123bd81bef7c9e7789d0ebf31",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "voron_v24_350_ldo_cnc.current69-v1.json",
+          "sha256": "8970dad4b3b9fb27b1d8422a6609cd4ee2aacc67804ad499e8dcb6e2b3339112",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -6638,6 +6843,11 @@
         {
           "report": "voron_v02r1_120.current69-v1.json",
           "sha256": "a18490f2ade1dc3ec7320c0a477fb935a27c0d62995f2610df8dbc96906c248d",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "voron_v02r1_120.current69-v1.json",
+          "sha256": "ac4512cc80bbfbefbae75f2caad1a51a9fff47bc35bb5d0676df581396d1aefd",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
@@ -6921,6 +7131,11 @@
           "report": "voron_v02_120.current69-v1.json",
           "sha256": "502a70735b663bcd29cd4248034a82981a1082b7fc96e50025824771d3569685",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "voron_v02_120.current69-v1.json",
+          "sha256": "665149714924d00d68eea0c7714aa351d0b14a53d1147477c3df6aada0dd5ac7",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -7202,6 +7417,11 @@
         {
           "report": "micron_r1_120.current69-v1.json",
           "sha256": "2877ba3447ab35bf9408c25fef84866a14f5088d00ae93cd8b42e1a41e77dbfe",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "micron_r1_120.current69-v1.json",
+          "sha256": "ca7b782d935faee7bf0ead6cc6c0803dbee1b1f00c182ccdecc6e8bc787e04e5",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
@@ -7485,6 +7705,11 @@
           "report": "micron_plus_r1_180.current69-v1.json",
           "sha256": "759e7ad344ca283126c9b61bacfd2e272d632f27a4fca339755ae9b47c3ab21e",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "micron_plus_r1_180.current69-v1.json",
+          "sha256": "ae09c031afe1dd3eaaa3e439df6afc2fb357cc67ec8c2d372bd84c5542e4c176",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -7750,6 +7975,11 @@
           "report": "fysetc_v24_250_pro.current69-v1.json",
           "sha256": "c25f2a1f180df7861f8425e7ffef832775490552ea1dfdea53598248fa1629dc",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "fysetc_v24_250_pro.current69-v1.json",
+          "sha256": "04273370d866213735caa135b7dbc3d82fb4e205d260892fb0a7581e613f452a",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -7831,6 +8061,11 @@
         {
           "report": "crossant_235_v06_leadscrew.current69-v1.json",
           "sha256": "dfd86f2a381f975c4de90312d1e8e5d405e9e0262fab5451bf7641dd4a2fa03e",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "crossant_235_v06_leadscrew.current69-v1.json",
+          "sha256": "4edfb695fe4d4074befee52ec608e6a28ccdd53a7ab82be82118af0b28677cd4",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
@@ -8105,6 +8340,11 @@
           "report": "ratrig_vcore_40_300_corexy.current69-v1.json",
           "sha256": "a609b54544e0093e141656391278227b2232f0e836f2d8422169d48b86084425",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "ratrig_vcore_40_300_corexy.current69-v1.json",
+          "sha256": "302d4ebfe385b047f77eb0d56fd73f8081aa471c9382aba4b4e5e9c05c753103",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -8377,6 +8617,11 @@
         {
           "report": "ratrig_vcore_40_300_hybrid.current69-v1.json",
           "sha256": "23ea665f05c090799e63428fce86d406448309390e5b21eb26d176668c58fc68",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "ratrig_vcore_40_300_hybrid.current69-v1.json",
+          "sha256": "8bac6eee7f045212142237d8830087544e89279b4da951ff08bfa2ad9b6a027f",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
@@ -8699,6 +8944,11 @@
           "report": "ratrig_vcore_40_300_idex.current69-v1.json",
           "sha256": "036a197a433aae7d8c8e1cdf876e8b7e5b61426c43d5c853ba2b18edb7d825be",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "ratrig_vcore_40_300_idex.current69-v1.json",
+          "sha256": "d4004209b350f10157e742d62b28a8106b001c91d5ea67a4964e4ceb2b2582d1",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -8968,6 +9218,11 @@
           "report": "ratrig_vcore_40_400_corexy.current69-v1.json",
           "sha256": "95e062a39a24e8e2714ac38cac52cd754ec2d313b030c7a5a4f6fd7786982b3c",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "ratrig_vcore_40_400_corexy.current69-v1.json",
+          "sha256": "d92ee94bd2fe9ade53d84ea49f0d18d03b50b37f1439357a4db2bdf68a74b1a2",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -9236,6 +9491,11 @@
         {
           "report": "ratrig_vcore_40_400_hybrid.current69-v1.json",
           "sha256": "53ac946041a4d9cfb29e8ea7c9c4ba251b39213a5682f2afefdce462f76fc1bc",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "ratrig_vcore_40_400_hybrid.current69-v1.json",
+          "sha256": "a2d049f0455def093ac1bb667fa828697a1fb5fd81586105591cdf8a1d7f4b6e",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
@@ -9558,6 +9818,11 @@
           "report": "ratrig_vcore_40_400_idex.current69-v1.json",
           "sha256": "9a2dcfe945b4ee2fe2e54537ad5d4f2e44bc4d3ad06377fa56e0d85f42f10637",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "ratrig_vcore_40_400_idex.current69-v1.json",
+          "sha256": "1e98edfdb9fb3db426a7ca9eae33368a02c466d584090358e29bce6ba42185c6",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -9826,6 +10091,11 @@
         {
           "report": "ratrig_vcore_40_500_corexy.current69-v1.json",
           "sha256": "42d9b3b0743385e4222cfc3570f30048604e10f81db5eaad6e7a18d3904ef2d7",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "ratrig_vcore_40_500_corexy.current69-v1.json",
+          "sha256": "46db0781acde9fc3f8ac4e251f8dacd50f72642d52ca39443709aec1342911e7",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
@@ -10099,6 +10369,11 @@
         {
           "report": "ratrig_vcore_40_500_hybrid.current69-v1.json",
           "sha256": "60d7b2b603d51e125640f82c6403c6c7ec4dfc10c2fb75f956ee45bd2a8c8a88",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "ratrig_vcore_40_500_hybrid.current69-v1.json",
+          "sha256": "c3d62a2e6206ab3ca34da058d9a8564027bb1a371e6cce10cc783a17ea2c0d4d",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
@@ -10425,6 +10700,11 @@
           "report": "ratrig_vcore_40_500_idex.current69-v1.json",
           "sha256": "dcac5a57e139dbfed92a6f26ee2db13d17bf6034ca3a62315e36143e60f50719",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "ratrig_vcore_40_500_idex.current69-v1.json",
+          "sha256": "097e22ebf4743984c678025f49bbd40e38d3eb472eead656eef902d9f130a7b3",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -10693,6 +10973,11 @@
         {
           "report": "ratrig_vcore_41_300_corexy.current69-v1.json",
           "sha256": "00829a8586f64dfffa5ecc2916c02931f3b4d3d4444725b4dc0f33b7b983d50d",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "ratrig_vcore_41_300_corexy.current69-v1.json",
+          "sha256": "7ab6fccfa602170747a4d2a63190e3ae5de1e7251b7d360ed1cbbbc05c8c1a40",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
@@ -10966,6 +11251,11 @@
         {
           "report": "ratrig_vcore_41_300_hybrid.current69-v1.json",
           "sha256": "0a0665d0afe0c99b85e4d7b0b825932a625ee85a692e884af466648033c15f3b",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "ratrig_vcore_41_300_hybrid.current69-v1.json",
+          "sha256": "5d3504e0ccbaedfc3905662df3ec975776dae5d89385794ca85ce11e6b45cd6f",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
@@ -11292,6 +11582,11 @@
           "report": "ratrig_vcore_41_300_idex.current69-v1.json",
           "sha256": "b4813fba17788b58248fda723e662224c5be80b4bfe5f5e9e5a2495621076d12",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "ratrig_vcore_41_300_idex.current69-v1.json",
+          "sha256": "95cf191d192036319be0ea8c216e7440fd74e54dcc85732844a68e99e57b0c2c",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -11560,6 +11855,11 @@
         {
           "report": "ratrig_vcore_41_400_corexy.current69-v1.json",
           "sha256": "c0f9193405cbc597d7f9ec19773d5e677865ef5eee961b5ad8990a1a016513fd",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "ratrig_vcore_41_400_corexy.current69-v1.json",
+          "sha256": "3e677056f8eff8e529148d7b7ad2f85d8e774aaada18858476018b8d5b3ff82e",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
@@ -11833,6 +12133,11 @@
         {
           "report": "ratrig_vcore_41_400_hybrid.current69-v1.json",
           "sha256": "73065f7a557921dc11ddb5d2bc0e603d7fd0631467275b9c5318e11ec4dc3fa9",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "ratrig_vcore_41_400_hybrid.current69-v1.json",
+          "sha256": "3c2fa75d75b192a35a39d25443649ab47d37d438e1baf818e8c7b34d8d11ea39",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
@@ -12159,6 +12464,11 @@
           "report": "ratrig_vcore_41_400_idex.current69-v1.json",
           "sha256": "8a433d5b3d6d82c671a5a1f672ef6a6aa5a71ab9cdb3c6be7b2bc8c928806f7c",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "ratrig_vcore_41_400_idex.current69-v1.json",
+          "sha256": "6ac9fcfb3778cb25ca2649ef25e87cfdcbea54a121547aeefe93c66e376fcfeb",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -12428,6 +12738,11 @@
           "report": "ratrig_vcore_41_500_corexy.current69-v1.json",
           "sha256": "b3c1e0da63365da337d60a57c586b8e695813777d5ec7e4c641b8205f047719b",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "ratrig_vcore_41_500_corexy.current69-v1.json",
+          "sha256": "d65826aedde110ae8e35c2ca1d44b4ae22e1e3d05985749448e392e8bf2e88e9",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -12696,6 +13011,11 @@
         {
           "report": "ratrig_vcore_41_500_hybrid.current69-v1.json",
           "sha256": "af2137de08e66b06e7a337d3a0d490b983043d08194eea92106d49aa7ec44688",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "ratrig_vcore_41_500_hybrid.current69-v1.json",
+          "sha256": "39a1a425a8655b91fcce56571c78e170b3a987b1558ea64c6f214b88e664c9b7",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
@@ -13022,6 +13342,11 @@
           "report": "ratrig_vcore_41_500_idex.current69-v1.json",
           "sha256": "55665cd94225260b088bb658c6ea5784d4f2b5629d3525d9c38b43d1df6d555c",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "ratrig_vcore_41_500_idex.current69-v1.json",
+          "sha256": "16d25b7c09740e64ad1272631cad8a0631b909c40514af1f07083d7470812f0f",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -13082,6 +13407,11 @@
         {
           "report": "247zero_beta2_120.current69-v1.json",
           "sha256": "aab28d999720ef756ad9cf0c95704a563cfd7bfe21909e1c99aa36adeae46f4d",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "247zero_beta2_120.current69-v1.json",
+          "sha256": "2fcd98c8f798b53635f5a10b1e4dcce738b8fdbcba8c18bd9034ed33f32a16eb",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
@@ -13145,6 +13475,11 @@
           "report": "ratrig_vcore31_300.current69-v1.json",
           "sha256": "17fdab3d6d325aaf62734cc318072c740b709265477f79c4e76be2358358488e",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "ratrig_vcore31_300.current69-v1.json",
+          "sha256": "e5f297ba1197b6cbc3ad7425fe859616466bc332eb29f330abc414720a3c1974",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -13206,6 +13541,11 @@
           "report": "voron_switchwire_250.current69-v1.json",
           "sha256": "e672fd20d1bfb2f4dcfbfa48afa86da45d41ba968ba3929bc406f41cd1095cb0",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "voron_switchwire_250.current69-v1.json",
+          "sha256": "26c09a744781d4aafcdbe2fdcaf973e66f995acb007158a29b3c3b2e5b6a75fc",
+          "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -13257,6 +13597,11 @@
           "report": "docs/VIRTU_MAY_SOURCE_ROLE_REVIEW.json",
           "sha256": "97707a5381724b1948d64059d129d6c39ad83981381202a21c603759279cd682",
           "scope": "Qualified May source-role membership correction and actual current full model/controller. Original geometry, source-mate evidence and limits remain in their existing scope."
+        },
+        {
+          "report": "review/virtu-may-source-role.json",
+          "sha256": "50a5f7ce49de8597702dd9e8e0501cdfc2f00d8a3ba41fbff7038e649b48d3eb",
+          "scope": "Exact full exported source assembly/controller and selected May shaft eligibility, reversible palettes, source-relative attachment, reset and state roundtrip. Existing source mates remain separately scoped."
         },
         {
           "report": "review/virtu-may-source-role.json",

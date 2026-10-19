@@ -10785,6 +10785,18 @@
     "source_assembly.component_license": {
       "source_revision": "0362f4d05dcc539cdc9c",
       "text": "Condiciones indicadas del componente"
+    },
+    "source_assembly.scene_lighting": {
+      "source_revision": "f29310ef7a14c26aa39b",
+      "text": "Iluminación de escena"
+    },
+    "source_assembly.white_fill": {
+      "source_revision": "c275f1d56ec3d3b645e0",
+      "text": "Luz auxiliar blanca"
+    },
+    "source_assembly.color_fill": {
+      "source_revision": "4baf4fcf3fcef42c6d06",
+      "text": "Ciclo de color auxiliar"
     }
   }
 }

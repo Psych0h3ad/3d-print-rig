@@ -13590,6 +13590,21 @@
       "kind": "message",
       "ja": "部品に記載された条件",
       "en": "Component terms as supplied"
+    },
+    "source_assembly.scene_lighting": {
+      "kind": "message",
+      "ja": "シーン照明",
+      "en": "Scene lighting"
+    },
+    "source_assembly.white_fill": {
+      "kind": "message",
+      "ja": "白色の補助光",
+      "en": "White fill"
+    },
+    "source_assembly.color_fill": {
+      "kind": "message",
+      "ja": "補助光の色循環",
+      "en": "Color cycle (fill)"
     }
   }
 }
