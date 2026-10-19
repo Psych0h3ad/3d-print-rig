@@ -142,7 +142,7 @@ export function setupWorkspace() {
   }
   rememberPrinter();
   workspaceListen(window, 'rig-language-change', rememberPrinter);
-  new WorkspaceMutationObserver(rememberPrinter).observe(document.body, {subtree: true, attributes: true, attributeFilter: ['data-machine-id','data-variant']});
+  new WorkspaceMutationObserver(rememberPrinter).observe(document.body, {subtree: true, attributes: true, attributeFilter: ['data-machine-id','data-variant','data-configuration']});
   for (const link of header.querySelectorAll('.mode-link')) link.hidden = true;
   for (const link of aside.querySelectorAll(':scope > .workbench-link')) {
     if (isPrimaryWorkspaceLink(originalText(link))) link.hidden = true;
