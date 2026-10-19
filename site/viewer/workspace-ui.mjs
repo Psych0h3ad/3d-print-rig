@@ -3,14 +3,14 @@ ensureWorkspaceEntry(import.meta.url);
 import {setupDisplayPreferences,setupHeaderThemeToggle} from './display-preferences.mjs?v=ab531b33fbcb36317429';
 import {WorkspaceMutationObserver,workspaceListen} from './workspace-lifecycle.mjs?v=742c8844997b5856a728';
 // Shared presentation layer. Existing controls, IDs and CAD controllers stay intact.
-import {setupLanguage,originalText,messageSource} from './i18n.mjs?v=cb27504f9e0227d8e035';
+import {setupLanguage,originalText,messageSource} from './i18n.mjs?v=2b50474d1e3a055f1cda';
 import {normalizeLanguage,languageURL} from './languages.mjs?v=ba6a5cd8e1d86849ca34';
 import {printerWorkspaceURL,workspaceReturnKey,workspaceKindFor} from './workspace-return.mjs?v=b28bca2f634976361753';
 import {setupWorkspaceSharing} from './workspace-share.mjs?v=5803c3ee68563185c66d';
 import {lockInspectorHorizontalScroll} from './workspace-scroll.mjs?v=workspace-belts-1';
-import {setupChoiceSearch} from './workspace-choices.mjs?v=019f9c526fd3219e8472';
+import {setupChoiceSearch} from './workspace-choices.mjs?v=c62a7c396f3d5eec89f3';
 import {setupMobileLayout} from './workspace-layout.mjs?v=738c040595ec99155ce2';
-import {workspaceSectionCategory,isPrimaryWorkspaceLink} from './workspace-sections.mjs?v=02822015cdb3471f703a';
+import {workspaceSectionCategory,isPrimaryWorkspaceLink} from './workspace-sections.mjs?v=4dd947f00255f96ab028';
 const $ = selector => document.querySelector(selector);
 const node = (tag, className, text) => {
   const element = document.createElement(tag);
@@ -165,6 +165,11 @@ export function setupWorkspace() {
     if (href.endsWith(page)) link.setAttribute('aria-current', 'page');
     menu.append(link);
   }
+  const developmentSupport = node('a', '', {id:'ui.support_development'});
+  developmentSupport.href = 'https://github.com/sponsors/Psych0h3ad';
+  developmentSupport.target = '_blank';
+  developmentSupport.rel = 'noopener noreferrer';
+  menu.append(developmentSupport);
   menu.append(node('hr'));
   const moveActions = () => {
     for (const button of actions.querySelectorAll(':scope > button:not(#openRender):not(#openShare):not(#themeToggle):not(#openDownloads)')) menu.append(button);

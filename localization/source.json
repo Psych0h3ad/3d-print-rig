@@ -13650,6 +13650,11 @@
       "kind": "template",
       "ja": "{0}ファイル中{1}番目",
       "en": "file {1} of {0}"
+    },
+    "ui.support_development": {
+      "kind": "message",
+      "ja": "開発を支援",
+      "en": "Support development"
     }
   }
 }
