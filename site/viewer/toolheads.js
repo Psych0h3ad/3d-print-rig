@@ -6,9 +6,9 @@ import {setupSceneDisplay} from './display-preferences.mjs?v=ab531b33fbcb3631742
 import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=742c8844997b5856a728';
 import {loadMonolithData} from './monolith-machine.js?v=6ff566804ce6f2c1d08e';
 import {setupChangerBank} from './changer-bank.js?v=422dc087a1362655b18f';
-import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=9a9c6b717e9830e3a058';
+import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=f4bdba35e0f5182545eb';
 import {headPrinterLink} from './head-navigation.mjs?v=760ab40348c0af5264ee';
-import {headBuilderDimensions} from './configuration-model.js?v=c19fa3a47abadf7f3d2c';
+import {headBuilderDimensions} from './configuration-model.js?v=9eba2c08e7c5a8c18e16';
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import {headPrintedCounts,visibleInAsset} from './head-printed-parts.mjs?v=8f8ed3d5c06ff2b0f6c8';
 import {frameHeadBounds} from './head-camera.mjs';
@@ -16,7 +16,7 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=34020540905242580aa6';
-import {setupConfigurations} from './configurations.js?v=b3e201e01ae28313ac77';
+import {setupConfigurations} from './configurations.js?v=6139d26db75d723e151e';
 import {setupPublicInfo} from './public-info.js?v=0ae248e40abc369e6667';
 import {setupRenderExport} from './render-export.js?v=743ea37fb4e25b58aa57';
 import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=workspace-belts-1';
@@ -26,8 +26,8 @@ import {setRapidoXUhfSurface} from './rapido-x-uhf-cover.mjs?v=8b458475dac84cfcd
 import {contentSHA256} from './mount-validation.mjs';
 import {probeCheck,probeMetrics,probeGuide,headInspectionState,headBodyCollisionNotes} from './probe-checks.js?v=0f70f5c099338db857e7';
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
-import {setupHeadBuilder} from './builder-ui.mjs?v=2e08c4e592f2b2d6b411';
-import {validateBuilderExtras} from './toolhead-builder.mjs?v=25334362949e6cfb330d';
+import {setupHeadBuilder} from './builder-ui.mjs?v=68d10d05ef3169741c97';
+import {validateBuilderExtras} from './toolhead-builder.mjs?v=179c869d58eddd12517a';
 import {loadExternalComponent} from './component-assets.mjs?v=963445da64a2f4de7cc5';
 export async function mount(scope){
 let machineRegistry,toolBank,bankRig;

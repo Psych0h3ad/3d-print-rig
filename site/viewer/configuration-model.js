@@ -9,6 +9,12 @@ export function configurationById(catalog,id){
  return catalog.variants.find(v=>v.id===resolved)||catalog.variants.find(v=>v.source_head_configuration===resolved);
 }
 export const headBuilderDimensions=['toolhead','extruder','hotend','cooling','mount','gantry','carriage','probe','board'];
+// An explicitly archived mount model does not include the selected hardware.
+export function isHeadMountReference(v){return v?.head_only===true&&!v.hardware_assembled&&v.base_asset?.startsWith('head_print_')&&v.fit?.complete_head_native?.state==='reference';}
+function preserveAssemblyParts(catalog,selection,changed,rows){
+ const current=catalog.variants.find(v=>v.id===selection.id);
+ return changed&&changed!=='toolhead'&&current&&!isHeadMountReference(current)?rows.filter(v=>!isHeadMountReference(v)):rows;
+}
 const indexedCatalogs=new WeakMap();
 function variantIndex(catalog){
  let index=indexedCatalogs.get(catalog);
@@ -35,7 +41,7 @@ function candidatesFor(catalog,selection,changed){
  const anchored=rows.filter(v=>fields.every(k=>v[k]===selection[k]));
  // Offer an installed head on the same printer even when it needs another
  // registered gantry. Keep existing gantry choices whenever they fit.
- if(anchored.length||!machine||changed!=='toolhead')return anchored;
+ if(anchored.length||!machine||changed!=='toolhead')return preserveAssemblyParts(catalog,selection,changed,anchored);
  return (index.fields.get('toolhead')?.get(selection.toolhead)||[]).filter(v=>fields.filter(k=>k!=='gantry').every(k=>v[k]===selection[k]));
 }
 

@@ -81,6 +81,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -157,6 +162,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -233,6 +243,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -309,6 +324,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -385,6 +405,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -461,6 +486,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -537,6 +567,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -613,6 +648,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -690,6 +730,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -766,6 +811,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -842,6 +892,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -918,6 +973,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -994,6 +1054,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -1070,6 +1135,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -1146,6 +1216,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -1222,6 +1297,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -1305,6 +1385,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -1381,6 +1466,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -1450,6 +1540,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -1530,6 +1625,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -1610,6 +1710,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -1690,6 +1795,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -1787,6 +1897,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -2283,6 +2398,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -2599,6 +2719,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -2909,6 +3034,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -3219,6 +3349,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -3529,6 +3664,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -3628,6 +3768,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -3719,6 +3864,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -3818,6 +3968,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -4115,6 +4270,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -4412,6 +4572,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -4709,6 +4874,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -5006,6 +5176,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -5303,6 +5478,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -5600,6 +5780,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -5901,6 +6086,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -6378,6 +6568,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -6675,6 +6870,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -6972,6 +7172,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -7269,6 +7474,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -7566,6 +7776,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -7863,6 +8078,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -8160,6 +8380,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -8440,6 +8665,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -8537,6 +8767,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -8825,6 +9060,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -9113,6 +9353,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -9449,6 +9694,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -9733,6 +9983,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -10017,6 +10272,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -10353,6 +10613,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -10637,6 +10902,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -10925,6 +11195,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -11265,6 +11540,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -11549,6 +11829,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -11837,6 +12122,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -12177,6 +12467,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -12461,6 +12756,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -12749,6 +13049,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -13089,6 +13394,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -13373,6 +13683,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -13657,6 +13972,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -13997,6 +14317,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -14073,6 +14398,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -14150,6 +14480,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -14226,6 +14561,11 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -14297,11 +14637,22 @@
           "report": "EXACT_PUBLISHED69_IDENTITY.v2.json",
           "sha256": "715ce6162229b8f97221eb5e979d24da520c2f66ec846710cb4b4e338fe040a7",
           "scope": "Wallpaper SVG DTD rejection and synthetic parser tests only. Every published viewer, controller, asset-delivery/index and registered source-check body is unchanged. Retain original model/native reports; no new physical qualification."
+        },
+        {
+          "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
+          "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
+          "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
         }
       ],
       "new_native_whole_fit_claim": false,
       "open_source_fit_classifications": []
     }
   ],
-  "original_70_machine_intake_report_sha256": "c98a8ae6b17c45d16a7abd0d66b701078e21edcaceacef7965b837294b60c16e"
+  "original_70_machine_intake_report_sha256": "c98a8ae6b17c45d16a7abd0d66b701078e21edcaceacef7965b837294b60c16e",
+  "selector_affected_scope": {
+    "report": "CURRENT_SELECTOR_RELEASE_SCOPE_20261019.json",
+    "machines": 69,
+    "classified_mount_references": 0,
+    "scope": "Fresh current actual catalog, selector equivalence and streamed stored/decoded model/companion identity. Existing pose/native evidence retains its original scope; initial resource check failures remain recorded separately."
+  }
 }

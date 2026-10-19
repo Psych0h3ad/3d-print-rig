@@ -1,11 +1,11 @@
-import {collections,catalogDimensions} from './configuration-model.js?v=c19fa3a47abadf7f3d2c';
+import {collections,catalogDimensions,isHeadMountReference} from './configuration-model.js?v=9eba2c08e7c5a8c18e16';
 import {headPlan} from './head-assembly.js?v=trident-clearance-35';
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import {probeHasConflict} from './probe-checks.js?v=0f70f5c099338db857e7';
 
 const labels={toolhead:'ヘッド',extruder:'押出機',hotend:'ホットエンド',cooling:'冷却',mount:'取付・交換機構',gantry:'キャリッジ / ベルト幅',carriage:'キャリッジ本体',probe:'プローブ',board:'基板'};
 export function builderCandidates(catalog,filters={}){
- return catalog.variants.filter(v=>Object.entries(filters).every(([key,value])=>!value||v[key]===value));
+ return catalog.variants.filter(v=>!isHeadMountReference(v)&&Object.entries(filters).every(([key,value])=>!value||v[key]===value));
 }
 export function builderGroups(catalog,filters={},currentId){
  const groups=new Map();
