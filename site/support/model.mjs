@@ -1,5 +1,10 @@
 // Strict intersections: never silently substitute a companion in a support table.
 export function matchingRows(catalog,selection,except){return catalog.rows.filter(row=>catalog.dimensions.every((d,i)=>d===except||!selection[d]||catalog.options[d][row[i+1]].id===selection[d]))}
+// An explicit URL filter stays selected even when this catalog has no such part.
+export function supportSelection(catalog,search){
+ const query=new URLSearchParams(search);
+ return Object.fromEntries(catalog.dimensions.flatMap(d=>{const value=query.get(d);return value?[[d,value]]:[]}));
+}
 export function rowSelection(catalog,row){return Object.fromEntries(catalog.dimensions.map((d,i)=>[d,catalog.options[d][row[i+1]].id]))}
 export const configurationId=(catalog,row)=>row[0].map(i=>catalog.idParts[i]).join('__');
 export function supportURL(target,catalog,row,base,language){

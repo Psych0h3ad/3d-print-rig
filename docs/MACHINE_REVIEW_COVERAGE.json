@@ -232,7 +232,7 @@
     "scripts/test_sponsor_banner.mjs": "6c07adba071219d83424042387d8b209e3d2653ceb0f1ca48394950d19e8e07b",
     "scripts/test_stealthburner_cutaway.mjs": "73c7ca1baf79c5eb74aede59d5be6954a60017430e2f26a50784f3fc03c5e6b0",
     "scripts/test_stinger.mjs": "a99aed69b14375787bccbe64ba6b67f9a73bca80c32ccf1cfb5926adff038cfe",
-    "scripts/test_support_catalog.mjs": "5c17e32a885fd37c441397aeda8cc08a78306cadaa5f91de1da14178d4d24cd5",
+    "scripts/test_support_catalog.mjs": "e798975d79d926188bbcc6ce24d5124fbc0ec1c5971af580b61786e81e951122",
     "scripts/test_support_delivery.mjs": "2f782c6f7c664bec415b0619f60dc7b12c215871d9f87e1a9fb3db07b8c19d2e",
     "scripts/test_switchwire_catalog.mjs": "29be59ae97a9c4e933629c4c10eda457dbcfb794a77714154bf33829abb12005",
     "scripts/test_toolchangers.mjs": "2ed1a0225b1d422085dafde93cf3ac6195ac0836c9631ef4453f04f0320ed65d",
