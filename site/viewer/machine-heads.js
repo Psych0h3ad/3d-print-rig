@@ -33,7 +33,7 @@ import {setupChangerBank} from './changer-bank.js?v=ca2d753d81d2570738f4';
 import {contentSHA256,acceptedMountValidation} from './mount-validation.mjs';
 import {acceptedHeadValidation}from './head-validation.mjs';
 import {withHeadAdditions} from './head-additions.mjs?v=28317048846d076205c3';
-import {nativeDeckEvidenceSource,nativeWitnessInputs} from './native-evidence-bridge.mjs?v=a5f3aad096d9be8f211b';
+import {nativeDeckEvidenceSource,nativeCatalogEvidenceSource,nativeWitnessInputs} from './native-evidence-bridge.mjs?v=5bf756b0b363fe86538c';
 import {loadExternalComponent} from './component-assets.mjs?v=963445da64a2f4de7cc5';
 
 const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);
@@ -47,11 +47,11 @@ export async function loadMachineHeadCatalog(machine){return workspaceTask(async
  if(machine){
   try{
    const evidence=await get('MOUNT_VALIDATION.json'),target=evidence.machines?.[machine];
-   if(target){registry.probe_travel_validation=null;const [bundle]=await Promise.all([get('ASSET_BUNDLE.json'),...Object.keys({...evidence.input_sha256,...target.input_sha256}).map(get)]);const proof=evidence.model_bundle_sha256===bundle.sha256?null:await get(nativeDeckEvidenceSource.file),inputs=nativeWitnessInputs(evidence,hashes,bundle,machine,'MOUNT_VALIDATION.json',proof);if(inputs)registry.probe_travel_validation=acceptedMountValidation(evidence,inputs.hashes,inputs.bundle,machine)}
+   if(target){registry.probe_travel_validation=null;const [bundle]=await Promise.all([get('ASSET_BUNDLE.json'),...Object.keys({...evidence.input_sha256,...target.input_sha256}).map(get)]);const proof=evidence.model_bundle_sha256===bundle.sha256?null:await get(nativeDeckEvidenceSource.file),catalogProof=hashes[nativeCatalogEvidenceSource.catalog]===evidence.input_sha256?.[nativeCatalogEvidenceSource.catalog]?null:await get(nativeCatalogEvidenceSource.file),inputs=nativeWitnessInputs(evidence,hashes,bundle,machine,'MOUNT_VALIDATION.json',proof,catalogProof);if(inputs)registry.probe_travel_validation=acceptedMountValidation(evidence,inputs.hashes,inputs.bundle,machine)}
   }catch{/* Missing or stale evidence leaves the original unverified state. */}
   try{
    const evidence=await get('HEAD_VALIDATION.json'),target=evidence.machines?.[machine];
-   if(target){registry.head_witness_validation=null;const[bundle]=await Promise.all([get('ASSET_BUNDLE.json'),...Object.keys({...evidence.input_sha256,...target.input_sha256}).map(get)]);const proof=evidence.model_bundle_sha256===bundle.sha256?null:await get(nativeDeckEvidenceSource.file),inputs=nativeWitnessInputs(evidence,hashes,bundle,machine,'HEAD_VALIDATION.json',proof);if(inputs)registry.head_witness_validation=acceptedHeadValidation(evidence,inputs.hashes,inputs.bundle,machine)}
+   if(target){registry.head_witness_validation=null;const[bundle]=await Promise.all([get('ASSET_BUNDLE.json'),...Object.keys({...evidence.input_sha256,...target.input_sha256}).map(get)]);const proof=evidence.model_bundle_sha256===bundle.sha256?null:await get(nativeDeckEvidenceSource.file),catalogProof=hashes[nativeCatalogEvidenceSource.catalog]===evidence.input_sha256?.[nativeCatalogEvidenceSource.catalog]?null:await get(nativeCatalogEvidenceSource.file),inputs=nativeWitnessInputs(evidence,hashes,bundle,machine,'HEAD_VALIDATION.json',proof,catalogProof);if(inputs)registry.head_witness_validation=acceptedHeadValidation(evidence,inputs.hashes,inputs.bundle,machine)}
   }catch{/* Missing or stale body findings do not prevent loading the catalog. */}
  }
  heads.assets={...heads.assets,...bank.assets};const board=[xolEmbeddedBoard(await get(heads.base_assets.xol.meta)),sbEmbeddedBoard(await get(heads.base_assets.stealthburner.meta))];
@@ -157,7 +157,7 @@ export async function setupV24MachineHeads({machine,profile,adapter,scene,render
   profile.display_reference_xyz_mm=alphaReference(profile,v,profile.display_reference_xyz_mm);
   profile.display_limits_mm=alphaLimits(monolithDisplayLimits(stock.limits,profile.display_reference_xyz_mm,v),v);
   const reset=alphaResetPose(v,profile.display_reference_xyz_mm);
-  for(const axis of ['x','y','z']){const input=document.querySelector('#'+axis),[min,max]=profile.display_limits_mm[axis.toUpperCase()];input.step=v.native_alpha_92?'any':axis==='z'?'1':'0.1';input.min=min;input.max=max;input.value=v.native_alpha_92?reset[['x','y','z'].indexOf(axis)]:Math.max(min,Math.min(max,Number(input.value)))}
+  for(const axis of ['x','y','z']){const input=document.querySelector('#'+axis),[min,max]=profile.display_limits_mm[axis.toUpperCase()];input.step='any';input.min=min;input.max=max;input.value=v.native_alpha_92?reset[['x','y','z'].indexOf(axis)]:Math.max(min,Math.min(max,Number(input.value)))}
   const clearance=document.querySelector('#clearanceStatus');if(clearance)clearance.textContent=v.native_alpha_92?alphaRangeNotice(v):v.machine_gantry?.z_delta_limits_mm?'Monolith · '+['X','Y','Z'].map(a=>a+' '+profile.display_limits_mm[a].map(n=>n.toFixed(1)).join('–')).join(' / ')+' mm':stock.clearance;
   const resetButton=document.querySelector('#reset');if(resetButton){resetButton.dataset.i18nId=v.native_alpha_92?'text.0843':'text.0745';resetButton.textContent=alphaResetLabel(v);}
   onChange(v);applyPose();visibility();gantryVisibility.update();installed=true;const link=document.querySelector('#toolheadLink');if(link){const url=new URL('./toolheads.html',location.href);url.searchParams.set('configuration',v.source_head_configuration||'trident_r2__stealthburner__revo_voron__cw2');link.href=url.href}

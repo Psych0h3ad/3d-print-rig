@@ -55,6 +55,12 @@ class FreshMountingInputs(unittest.TestCase):
         self.source('HEAD_VALIDATION.json', ledger)
         self.source('MOUNT_VALIDATION.json', ledger)
         self.source('ASSET_BUNDLE.json', {'sha256': 'fixture-bundle'})
+        self.bootstrap_meta = 'toolheads/sb_stock.json'
+        self.bodies[self.bootstrap_meta] = b'{"parts":[]}\n'
+        self.source('XOL_MOD.json', {'parts': []})
+        self.source('TOOLHEAD_CONFIGURATIONS.json', {'base_assets': {
+            'xol': {'meta': 'XOL_MOD.json'},
+            'stealthburner': {'meta': self.bootstrap_meta}}})
         self.source('RETENTION.json', {'input_sha256': {
             name: hashlib.sha256(self.bodies[name]).hexdigest() for name in self.gz[2:]}})
         self.source('TRIDENT_DECK_REPAIR_103.json', {
@@ -98,8 +104,9 @@ class FreshMountingInputs(unittest.TestCase):
         # unit fixtures. The source-owner clean-checkout audit uses real assets.
         with patch('prepare_repository_inputs.urllib.request.urlopen', side_effect=fetch):
             result = prepare(self.root, self.contract)
-        self.assertEqual(set(requested), set(self.gz + self.nested))
-        self.assertEqual(result['verified_source_check_inputs'], 12)
+        self.assertEqual(set(requested), set(self.gz + self.nested + [self.bootstrap_meta]))
+        self.assertEqual(result['verified_source_check_inputs'], 13)
+        self.assertEqual(json.loads((self.root / 'site' / self.bootstrap_meta).read_bytes()), {'parts': []})
         self.assertFalse((self.root / 'site/modules/unrelated-model.glb.gz').exists())
         for name in requested:
             self.assertEqual((self.root / 'site' / name).read_bytes(), self.bodies[name])
@@ -108,6 +115,19 @@ class FreshMountingInputs(unittest.TestCase):
         self.contract['files'] = [r for r in self.rows if r['path'] != self.nested[0]]
         with self.assertRaisesRegex(ValueError, 'Unregistered mounting dependency'):
             prepare(self.root, self.contract, self.mapping)
+
+    def test_runtime_base_metadata_must_be_registered(self):
+        self.contract['files'] = [r for r in self.rows if r['path'] != self.bootstrap_meta]
+        with self.assertRaisesRegex(ValueError, 'Unregistered mounting dependency: toolheads/sb_stock.json'):
+            prepare(self.root, self.contract, self.mapping)
+
+    def test_changed_runtime_base_metadata_is_not_overwritten(self):
+        target = self.root / 'site' / self.bootstrap_meta
+        target.parent.mkdir(parents=True)
+        target.write_bytes(b'{"changed":true}')
+        with self.assertRaisesRegex(ValueError, 'no overwrite: toolheads/sb_stock.json'):
+            prepare(self.root, self.contract, self.mapping)
+        self.assertEqual(target.read_bytes(), b'{"changed":true}')
 
     def test_unmapped_nested_dependency_is_not_silently_skipped(self):
         with self.assertRaisesRegex(ValueError, 'Missing source-check input mapping'):
