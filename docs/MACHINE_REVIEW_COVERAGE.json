@@ -3,8 +3,8 @@
   "review_revision": "Current approved input and scoped audit attempts",
   "reviewed_on": "2026-10-19",
   "input_sha256": {
-    ".github/workflows/pages.yml": "c5d4d585bfdbef84d7f2ef909831a802dd3a25779f8619880a05df4a978ebe66",
-    ".github/workflows/source-check.yml": "7ded43da2fc48e375ed50df4ae277d081cd906b1d4e2fe48ee5a8dd1d040b710",
+    ".github/workflows/pages.yml": "a677f6709c56d7312083b2cc31294348cdc411cea9d6230bb7eb5a4a22302f5a",
+    ".github/workflows/source-check.yml": "9ab5cc2c1c44c12fe566ba251292eefa5854371d38e92a0637b0f6a4ea16a2b3",
     "scripts/audit_a4t_printed_companions.mjs": "770c4e5da4eba20f0141952ac2afd961f70ca26fb3d6925abfd9361c8ac7287a",
     "scripts/audit_changer_banks.mjs": "5ef5e7bbbbfdaf135e2751f97883fd80f18e3f80a6cb1d1414bfb73d31864a96",
     "scripts/audit_community_installations.mjs": "1f9cc8dc8a4ed510bb0b8fadf477fbb00bff06e3f3974b1e67bea55845d9b76f",
