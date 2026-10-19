@@ -210,8 +210,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 360963,
-      "sha256": "a8880650224672acf8afa0e919266a28edf24b413c199e39351eea80f61de13a"
+      "bytes": 361084,
+      "sha256": "03ffedcc0d226053f3eaf049411208b9d79adf5d94d278e5c2ee604a2bdc08ff"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -710,8 +710,8 @@
     },
     {
       "path": "scripts/build_locales.mjs",
-      "bytes": 12567,
-      "sha256": "bb02943a5f6bd2bfc684301c39e53fed96bd154bf9e633beccc69c6b2cc03930"
+      "bytes": 12605,
+      "sha256": "f421d8380599006e34c269e9f45d83d23585accb6a51b02db8441a6d38cb7c3a"
     },
     {
       "path": "scripts/build_seo.py",
@@ -1607,6 +1607,11 @@
       "path": "scripts/test_source_head_controls.mjs",
       "bytes": 2149,
       "sha256": "602c335a29021c8a5f5fae2cd4c0523be3ad4f7cc1ce0d2b5d51a74467f5f6b9"
+    },
+    {
+      "path": "scripts/test_source_http_content_encoding.mjs",
+      "bytes": 3837,
+      "sha256": "d7c89a12e3af9de4a97693d94c5629427e75177a32cb7c84d0f3ddddd7219d15"
     },
     {
       "path": "scripts/test_source_index_runtime.mjs",
@@ -5331,12 +5336,12 @@
     {
       "path": "site/viewer/community.html",
       "bytes": 7919,
-      "sha256": "88861c7e813ffe0769b66bd399d1d6c2bc779008bd983de4cbd6d38058f68174"
+      "sha256": "dd5943586e463f366fed72ddf021486c3820ac5c1ab6bd578b85fead858da85f"
     },
     {
       "path": "site/viewer/community.js",
       "bytes": 23222,
-      "sha256": "aa48575d53ef4a9545bc27b6603af88fde108deb7bebc90220d9e78f281dea51"
+      "sha256": "ded922caec4d6908405d76ac97d5e1234ae3001b6e4515151fb6618283d56f5b"
     },
     {
       "path": "site/viewer/component-assets.mjs",
@@ -6171,7 +6176,7 @@
     {
       "path": "site/viewer/source-assembly-loader.mjs",
       "bytes": 2750,
-      "sha256": "db253a61613b4ad3e10bfe2e8c6fff0266ce99acc6f2f3bd4411882855c34c3a"
+      "sha256": "3902fb5c51039b3ad51cbf216777145c00036ca7caebc52c3b731d5b2d5bbdd4"
     },
     {
       "path": "site/viewer/source-assembly-messages.mjs",
@@ -6196,7 +6201,7 @@
     {
       "path": "site/viewer/source-assembly-runtime/chunk_loader.mjs",
       "bytes": 4885,
-      "sha256": "9ff28d357cd3ea6c95911805ef17e1a8922bbb67c00236b8e4df19ef0f83ee1a"
+      "sha256": "69631ef1e30f2b9b256507ab9e97b08da251e169b5f393b7255aaa774cbcf2b2"
     },
     {
       "path": "site/viewer/source-assembly-runtime/current-recorded-source-motion-guard310.mjs",
@@ -6226,12 +6231,12 @@
     {
       "path": "site/viewer/source-assembly-runtime/large_model_warning.mjs",
       "bytes": 2489,
-      "sha256": "1d45eabda77d4bcc227ee84203488ad1bd8094091d0d7437a970f9074d792a12"
+      "sha256": "8e9ab6d3c86733bd9db2dc82572981d60720797f05f70b21fda009980c7469ba"
     },
     {
       "path": "site/viewer/source-assembly-runtime/loading.mjs",
-      "bytes": 4155,
-      "sha256": "3b1ddf98d980d6f19b8d04764565d974e8ad2793dcee0f36042eca494aff1980"
+      "bytes": 4238,
+      "sha256": "7f950e2f016d179c957fcc1888a84a8c138627059349074bd57ee8f3d8f64389"
     },
     {
       "path": "site/viewer/source-assembly-runtime/motion_features.mjs",
@@ -6301,7 +6306,7 @@
     {
       "path": "site/viewer/source-assembly.mjs",
       "bytes": 17959,
-      "sha256": "2aa70c95d21cf50c0b7fea1d87134cb87a59c2b405f6d4ec9ee28ee1215a48e0"
+      "sha256": "5b23f75b41bc52d2412d1191c36ae34ffc7863d5f0d7cd077772c6fc2fe331e3"
     },
     {
       "path": "site/viewer/source-control-bounds.mjs",

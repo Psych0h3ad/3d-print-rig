@@ -10,13 +10,13 @@ import{workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver}from
 import{setResponsiveAspect,frameResponsiveView}from'./responsive-camera.mjs';
 import{setupRenderExport}from'./render-export.js?v=743ea37fb4e25b58aa57';
 import{sourceText}from'./source-assembly-messages.mjs?v=e42678a5314a2d6c0676';
-import{loadSourceIndex,loadSourcePacket,sourceHeadPlan,selectedSourcePacket,loadSourceAssembly}from'./source-assembly-loader.mjs?v=e42678a5314a2d6c0676';
+import{loadSourceIndex,loadSourcePacket,sourceHeadPlan,selectedSourcePacket,loadSourceAssembly}from'./source-assembly-loader.mjs?v=3902fb5c51039b3ad51c';
 import{sourceReviewBounds}from'./source-assembly-runtime/receiver_guard309.mjs?v=e42678a5314a2d6c0676';
 import{sourceMinimumContext,sourceMinimumState}from'./source-assembly-runtime/state.mjs?v=e42678a5314a2d6c0676';
 import{restoreCurrentAssemblyState}from'./source-assembly-runtime/restore_current_state.mjs?v=e42678a5314a2d6c0676';
 import{releaseRoot}from'./source-assembly-runtime/resources.mjs?v=e42678a5314a2d6c0676';
-import{createLoadCoordinator}from'./source-assembly-runtime/loading.mjs?v=e42678a5314a2d6c0676';
-import{requestModelChoice,createMemoryChoiceDialog}from'./source-assembly-runtime/large_model_warning.mjs?v=e42678a5314a2d6c0676';
+import{createLoadCoordinator}from'./source-assembly-runtime/loading.mjs?v=7f950e2f016d179c957f';
+import{requestModelChoice,createMemoryChoiceDialog}from'./source-assembly-runtime/large_model_warning.mjs?v=8e9ab6d3c86733bd9db2';
 import{sourceXYMessage}from'./source-assembly-runtime/source_XY309.mjs?v=e42678a5314a2d6c0676';
 import{captureCamera}from './source-assembly-view-state.mjs?v=e42678a5314a2d6c0676';
 import{bindSourceConfigurationLoad,selectSourceCameraPreset}from './source-assembly-configuration-ui.mjs?v=0db9c665fde5b4c30b36';
