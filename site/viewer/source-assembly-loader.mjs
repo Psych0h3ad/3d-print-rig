@@ -1,6 +1,6 @@
 import{GLTFLoader}from'./vendor-r180/GLTFLoader.js';
-import{fetchPinned,assertLoadingBudget}from'./source-assembly-runtime/loading.mjs?v=7f950e2f016d179c957f';
-import{loadChunkedModel,validateChunkManifest}from'./source-assembly-runtime/chunk_loader.mjs?v=69631ef1e30f2b9b2565';
+import{fetchPinned,assertLoadingBudget}from'./source-assembly-runtime/loading.mjs?v=9c1bdfd59e3e9591ec09';
+import{loadChunkedModel,validateChunkManifest}from'./source-assembly-runtime/chunk_loader.mjs?v=5e1ed555cd8dba9bfdf2';
 import{headSubsetPlan,headSubsetPacket}from'./source-assembly-runtime/head_subset.mjs?v=e42678a5314a2d6c0676';
 import{createAssembly}from'./source-assembly-runtime/assembly.mjs?v=e42678a5314a2d6c0676';
 import{releaseRoot}from'./source-assembly-runtime/resources.mjs?v=e42678a5314a2d6c0676';
@@ -15,6 +15,7 @@ export async function loadSourceAssembly(packet,{signal,mode='full',headPlan=nul
  if(mode==='head'&&!headPlan)throw Error('Head plan missing');
  const p=mode==='head'?selectedSourcePacket(packet,headPlan):packet;
  assertLoadingBudget(p,0,{largeModelConfirmed:true});
- const gltf=await loadChunkedModel(new GLTFLoader(),packet,{signal,onProgress,fetchAsset,selectedPartKeys:mode==='head'?packet.public_head_keys:null});
- try{if(signal?.aborted)throw new DOMException('Canceled','AbortError');return createAssembly(gltf,p);}catch(error){releaseRoot(gltf.scene);throw error;}
+ const progress=q=>{if(!signal?.aborted)onProgress(q);};
+ const gltf=await loadChunkedModel(new GLTFLoader(),packet,{signal,onProgress:progress,fetchAsset,selectedPartKeys:mode==='head'?packet.public_head_keys:null});
+ try{if(signal?.aborted)throw new DOMException('Canceled','AbortError');progress({phase:'assembly',percent:null,downloadPercent:100});const assembly=createAssembly(gltf,p);progress({phase:'ready',percent:null,downloadPercent:100});return assembly;}catch(error){releaseRoot(gltf.scene);throw error;}
 }

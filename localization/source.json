@@ -13610,6 +13610,46 @@
       "kind": "message",
       "ja": "Orbiter 2 · Revo Voron",
       "en": "Orbiter 2 · Revo Voron"
+    },
+    "source_assembly.progress.manifest": {
+      "kind": "message",
+      "ja": "モデル情報を確認中…",
+      "en": "Reading model details…"
+    },
+    "source_assembly.progress.download": {
+      "kind": "message",
+      "ja": "モデルデータをダウンロード中",
+      "en": "Downloading model data"
+    },
+    "source_assembly.progress.verify": {
+      "kind": "message",
+      "ja": "原本データを検証中",
+      "en": "Checking source data"
+    },
+    "source_assembly.progress.decode": {
+      "kind": "message",
+      "ja": "モデルデータを展開中",
+      "en": "Unpacking model data"
+    },
+    "source_assembly.progress.assembly": {
+      "kind": "message",
+      "ja": "画面を準備中…",
+      "en": "Preparing scene…"
+    },
+    "source_assembly.progress.ready": {
+      "kind": "message",
+      "ja": "準備完了",
+      "en": "Ready"
+    },
+    "source_assembly.progress.downloaded": {
+      "kind": "message",
+      "ja": "ダウンロード済み",
+      "en": "downloaded"
+    },
+    "source_assembly.progress.file": {
+      "kind": "template",
+      "ja": "{0}ファイル中{1}番目",
+      "en": "file {1} of {0}"
     }
   }
 }

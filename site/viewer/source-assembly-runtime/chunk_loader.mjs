@@ -1,5 +1,5 @@
 import {BufferAttribute} from 'three';
-import {fetchPinned} from './loading.mjs?v=7f950e2f016d179c957f';
+import {fetchPinned,createChunkProgress} from './loading.mjs?v=9c1bdfd59e3e9591ec09';
 import {headSubsetPlan} from './head_subset.mjs?v=e42678a5314a2d6c0676';
 import {fetchExactChunk} from './exact_gzip_transport.mjs?v=e42678a5314a2d6c0676';
 
@@ -13,16 +13,18 @@ export function validateChunkManifest(m,p){
  }return m;
 }
 export async function loadChunkedModel(loader,packet,{signal,onProgress=()=>{},fetchAsset=fetchPinned,onChunk=()=>{},selectedPartKeys=null}={}){
+ if(signal?.aborted)throw new DOMException('Canceled','AbortError');
+ onProgress({phase:'manifest',percent:null,downloadPercent:null});
  let manifestBytes=await fetchAsset(packet.chunk_delivery.manifest.url,packet.chunk_delivery.manifest,signal);
  const m=validateChunkManifest(JSON.parse(new TextDecoder().decode(manifestBytes)),packet);manifestBytes=null;
  const selection=selectedPartKeys?headSubsetPlan(packet,m,selectedPartKeys):null,selectedChunks=selection?selection.chunkOrdinals.map(i=>m.chunks[i]):m.chunks;
- const transportBytes=c=>typeof globalThis.DecompressionStream==='function'&&c.gzip?c.gzip.bytes:c.bytes,totalBytes=selectedChunks.reduce((sum,c)=>sum+transportBytes(c),0);
+ const transportBytes=c=>typeof globalThis.DecompressionStream==='function'&&c.gzip?c.gzip.bytes:c.bytes,progress=createChunkProgress(selectedChunks,onProgress,{signal});
  const buffers=[];let downloaded=0,networkReceived=0;
  try{
-  for(const c of selectedChunks){if(signal?.aborted)throw new DOMException('Canceled','AbortError');let bytes=new Uint8Array(await fetchExactChunk(c,{fetchPinned:fetchAsset,signal,onProgress:q=>onProgress(q.phase==='decode'?q:{received:networkReceived+q.received,total:totalBytes,percent:(networkReceived+q.received)/totalBytes*100,phase:q.phase})}));buffers[c.ordinal]=bytes;downloaded+=bytes.length;networkReceived+=transportBytes(c);onChunk({ordinal:c.ordinal,downloaded,network_received:networkReceived,retained_buffer_bytes:downloaded,pending_chunks:1});bytes=null;}
+  for(const c of selectedChunks){if(signal?.aborted)throw new DOMException('Canceled','AbortError');let bytes=new Uint8Array(await fetchExactChunk(c,{fetchPinned:fetchAsset,signal,onProgress:progress.begin(c.ordinal)}));buffers[c.ordinal]=bytes;downloaded+=bytes.length;networkReceived+=transportBytes(c);progress.finish(c.ordinal);onChunk({ordinal:c.ordinal,downloaded,network_received:networkReceived,retained_buffer_bytes:downloaded,pending_chunks:1});bytes=null;}
   if(signal?.aborted)throw new DOMException('Canceled','AbortError');
   const plugin=parser=>{parser.loadAccessor=index=>{const a=m.document.accessors[index],v=m.document.bufferViews[a.bufferView],b=m.buffer_view_chunks[a.bufferView],bytes=buffers[b.chunk],T=types[a.componentType];return Promise.resolve(new BufferAttribute(new T(bytes.buffer,bytes.byteOffset+b.offset+(a.byteOffset??0),a.count*sizes[a.type]),sizes[a.type],a.normalized===true));};return {name:'priority_exact_shared_chunk_accessors'};};
-  loader.register(plugin);try{const result=await loader.parseAsync(selection?selection.document:m.document,'');
+  progress.assembly();loader.register(plugin);try{const result=await loader.parseAsync(selection?selection.document:m.document,'');
    if(packet.source_GT2_189&&!selection){const ref=packet.source_GT2_189.source_curve,v=m.document.bufferViews[packet.source_GT2_189.embedded_curve_buffer_view],map=m.buffer_view_chunks[packet.source_GT2_189.embedded_curve_buffer_view];if(!v||!map||v.byteLength!==ref.bytes)throw Error('Missing exact source GT2 curve view');const bytes=buffers[map.chunk].subarray(map.offset,map.offset+v.byteLength).slice();const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),x=>x.toString(16).padStart(2,'0')).join('');if(hash!==ref.sha256)throw Error('Source GT2 curve hash differs');result.prioritySourceCurve189=bytes.buffer;}
    if(selection)result.priorityHeadSubset={keys:selection.keys,downloadBytes:selection.downloadBytes,chunkOrdinals:selection.chunkOrdinals,loading_budget:selection.loading_budget};
    return result;}finally{loader.unregister(plugin);}

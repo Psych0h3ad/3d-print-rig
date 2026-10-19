@@ -10801,6 +10801,38 @@
     "source_assembly.installed_e3_components": {
       "source_revision": "bb8af1a27794de8957f6",
       "text": "Orbiter 2 · Revo Voron"
+    },
+    "source_assembly.progress.manifest": {
+      "source_revision": "bcd39a2f7f93f267df75",
+      "text": "Leyendo los datos del modelo…"
+    },
+    "source_assembly.progress.download": {
+      "source_revision": "cd7e25c38a749373912a",
+      "text": "Descargando el modelo"
+    },
+    "source_assembly.progress.verify": {
+      "source_revision": "693cb7d3c05d57270282",
+      "text": "Verificando los datos de origen"
+    },
+    "source_assembly.progress.decode": {
+      "source_revision": "fd380fc3d801c270b3d0",
+      "text": "Descomprimiendo el modelo"
+    },
+    "source_assembly.progress.assembly": {
+      "source_revision": "9caaa124c86d272f5587",
+      "text": "Preparando la escena…"
+    },
+    "source_assembly.progress.ready": {
+      "source_revision": "f03cf963a74342731f9c",
+      "text": "Listo"
+    },
+    "source_assembly.progress.downloaded": {
+      "source_revision": "bce5f2d96b34651d146c",
+      "text": "descargado"
+    },
+    "source_assembly.progress.file": {
+      "source_revision": "7aa90661dc5c2c5edcf9",
+      "text": "archivo {1} de {0}"
     }
   }
 }

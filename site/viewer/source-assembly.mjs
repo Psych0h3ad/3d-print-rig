@@ -3,7 +3,7 @@ import {sourceControlBounds} from './source-control-bounds.mjs';
 import * as THREE from './vendor-r180/three.module.js';
 import{OrbitControls}from'./vendor-r180/OrbitControls.js';
 import{RoomEnvironment}from'./vendor-r180/RoomEnvironment.js';
-import{loadLanguage}from'./i18n.mjs?v=06116fb55be4a2c8759c';
+import{loadLanguage}from'./i18n.mjs?v=cb27504f9e0227d8e035';
 import{setupMachineNavigation}from'./machines.js?v=ab543d6b01637bc5083f';
 import{sceneLightingState}from'./scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
 import{readDisplay,rememberDisplayControl}from'./display-preferences.mjs?v=ab531b33fbcb36317429';
@@ -11,13 +11,13 @@ import{workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver}from
 import{setResponsiveAspect,frameResponsiveView}from'./responsive-camera.mjs';
 import{setupRenderExport}from'./render-export.js?v=743ea37fb4e25b58aa57';
 import{sourceText}from'./source-assembly-messages.mjs?v=d3b668baa24372e4bbd0';
-import{loadSourceIndex,loadSourcePacket,sourceHeadPlan,selectedSourcePacket,loadSourceAssembly}from'./source-assembly-loader.mjs?v=3902fb5c51039b3ad51c';
+import{loadSourceIndex,loadSourcePacket,sourceHeadPlan,selectedSourcePacket,loadSourceAssembly}from'./source-assembly-loader.mjs?v=2791449e87113977af2e';
 import{sourceReviewBounds}from'./source-assembly-runtime/receiver_guard309.mjs?v=e42678a5314a2d6c0676';
 import{sourceMinimumContext,sourceMinimumState}from'./source-assembly-runtime/state.mjs?v=e42678a5314a2d6c0676';
 import{restoreCurrentAssemblyState}from'./source-assembly-runtime/restore_current_state.mjs?v=e42678a5314a2d6c0676';
 import{releaseRoot}from'./source-assembly-runtime/resources.mjs?v=e42678a5314a2d6c0676';
-import{createLoadCoordinator}from'./source-assembly-runtime/loading.mjs?v=7f950e2f016d179c957f';
-import{requestModelChoice,createMemoryChoiceDialog}from'./source-assembly-runtime/large_model_warning.mjs?v=8e9ab6d3c86733bd9db2';
+import{createLoadCoordinator,sourceProgressStatus}from'./source-assembly-runtime/loading.mjs?v=9c1bdfd59e3e9591ec09';
+import{requestModelChoice,createMemoryChoiceDialog}from'./source-assembly-runtime/large_model_warning.mjs?v=441b5dbf2bba4c69c58e';
 import{sourceXYMessage}from'./source-assembly-runtime/source_XY309.mjs?v=e42678a5314a2d6c0676';
 import{captureCamera}from './source-assembly-view-state.mjs?v=e42678a5314a2d6c0676';
 import{bindSourceConfigurationLoad,selectSourceCameraPreset}from './source-assembly-configuration-ui.mjs?v=0db9c665fde5b4c30b36';
@@ -71,7 +71,7 @@ export async function mount(scope){
   if(active&&requested===mode&&saved){const migration=restoreCurrentAssemblyState(active,saved);sync();return migration;}
   let choice=requested;if(requested==='full')choice=await requestModelChoice(packet,{device:navigator,signal:job.signal,choose,headPeakBytes:headPlan.loading_budget.single_load_peak_bytes});if(choice==='cancel'||!job.current()){viewSelect.value=mode;return false;}
   const carriedAppearance=active&&!saved?captureViewAppearance(active.snapshot(),active.packet):null;release();cancelLoad.hidden=false;messages.set(status,'loading');$('openRender').disabled=true;
-  next=await loadSourceAssembly(packet,{signal:job.signal,mode:choice,headPlan,onProgress:p=>{if(job.current())messages.set(status,'loading',' · '+Math.min(100,p.percent??0).toFixed(1)+'%');}});if(!job.current()){releaseRoot(next.root,next);return false;}
+  next=await loadSourceAssembly(packet,{signal:job.signal,mode:choice,headPlan,onProgress:sourceProgressStatus({job,messages,node:status,language:lang})});if(!job.current()){releaseRoot(next.root,next);return false;}
   const migration=saved?restoreCurrentAssemblyState(next,saved):null;if(!saved){const s=next.snapshot();s.theme=readDisplay().dark?'dark':'light';s.language=['en','ja','es','ko','ru'].includes(lang())?lang():'en';s.grid=false;next.apply(transferViewAppearance(s,next.packet,carriedAppearance));}
   active=next;next=null;mode=choice;scene.add(active.root);const b=visibleBounds(),center=b.getCenter(new THREE.Vector3());grid.position.set(center.x,b.min.y-.0019,center.z);placeSceneFill(b);sync();view();messages.clear(status);cancelLoad.hidden=true;
   if(!renderExport)renderExport=setupRenderExport({renderer,scene,camera,controls,name:machine,three:THREE});$('openRender').disabled=false;return migration??true;
