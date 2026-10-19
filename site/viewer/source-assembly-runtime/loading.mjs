@@ -1,7 +1,9 @@
 export async function fetchPinned(url,expected,signal,onProgress=()=>{}){
  if(!Number.isSafeInteger(expected.bytes)||expected.bytes<=0||expected.bytes>128*1024*1024)throw Error('Asset exceeds the 128 MiB transfer budget');
  const response=await fetch(url,{signal,cache:'no-store'});if(!response.ok)throw Error('Asset request failed: '+response.status);
- const advertised=Number(response.headers.get('content-length'));if(advertised&&advertised!==expected.bytes)throw Error('Asset byte length changed');
+ // Fetch exposes decoded bytes. Content-Length can describe compressed wire
+ // bytes, and CORS can hide Content-Encoding. Pin the bounded decoded stream
+ // below; the transport header cannot establish its size or source identity.
  const reader=response.body.getReader(),bytes=new Uint8Array(expected.bytes);let received=0;
  try{while(true){if(signal.aborted)throw new DOMException('Canceled','AbortError');const {value,done}=await reader.read();if(done)break;if(received+value.byteLength>expected.bytes)throw Error('Asset exceeds pinned byte count');bytes.set(value,received);received+=value.byteLength;onProgress({received,total:expected.bytes,percent:received/expected.bytes*100,phase:'download'});}}
  catch(e){await reader.cancel().catch(()=>{});throw e;}
