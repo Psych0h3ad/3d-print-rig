@@ -1,0 +1,56 @@
+{
+  "schema": "VIRTU-selected-panel-companion-review-v1",
+  "model_sha256": "59e6f343f5e3fb9784b7ab5c9b585c961f384a01aa1017a390630b2cedee6972",
+  "packet_sha256": "54caa427a2d8528b6f78d6eeac9cc1b42b97e17802d371e8d55b176a3bc33701",
+  "inventory_sha256": "20ffaa99540c4769034ec859a2f8b892a45512c80dde08afd1c6468de14a6e83",
+  "source": {
+    "DXF_files": "https://www.printables.com/model/1476283-virtu-e3/files",
+    "hardware_viewer": "https://autode.sk/4AwHogK",
+    "author": "RH3D / Radek Honc",
+    "license": "CC-BY-NC-SA-4.0",
+    "DXF_revision": "2026-04-28",
+    "hardware_viewer_revision": "2026-09-22"
+  },
+  "hardware_occurrences": 58,
+  "genuine_reference_M3x6_substitutions": 2,
+  "M3x6_is_not_claimed_author_default_or_factory_SKU": true,
+  "independent_static_results": {
+    "two_head_bearing_mm2": 12.68526576189,
+    "two_screws_min_complete_fan_gap_mm": 1.3154296023256518,
+    "all58_min_complete_fan_gap_mm": 0.12147356154379277,
+    "nominal_whole_insert_axial_overlap_mm": 2.9499998211601337,
+    "constant_major_core_cylinder_overlap_mm": 2.6793673157432636,
+    "selected_seats_recomputed": {
+      "short_screws": 2,
+      "base_flat_seats": 3,
+      "bottom_conical_seats": 12
+    },
+    "bottom_screw_panel_finite_distance_range_mm": [
+      0.0,
+      9.985470732000392e-06
+    ],
+    "bottom_conical_face_bearing_area_not_claimed": true
+  },
+  "open_findings": [
+    {
+      "id": "VIRTU_BACK_COVER_RIGID_CLAMP_DATUM",
+      "status": "OPEN",
+      "part_keys": [
+        "virtu_panel_public_M3x6_BHCS_for_original_frag_714",
+        "virtu_panel_public_M3x6_BHCS_for_original_frag_687"
+      ],
+      "gap_mm": 0.04999997022366642,
+      "panel_inner_Z_mm": -380.05,
+      "insert_front_Z_mm": -380.00000002977634,
+      "scope": "Two selected rear-cover ports have finite screw head bearing and nominal insert engagement, while a positive finite panel/insert gap remains. Source intent for this allowance and closed rigid clamping are unresolved.",
+      "source_geometry_or_pose_changed": false
+    }
+  ],
+  "geometry_notes": {
+    "original_source_positions_and_triangle_order_retained": true,
+    "new_hardware_normals": "Exported unit facet normals were regenerated from the retained source triangles.",
+    "source_nominal_M3_thread_and_heatset_capture_envelopes_are_not_fan_body_interference": true
+  },
+  "whole_machine_fit_or_preload_certified": false,
+  "new_native_solid_queries": 0
+}

@@ -9314,19 +9314,19 @@
     },
     {
       "path": "source-assembly-assets/inventory-rh3d_virtu_may_230.json",
-      "bytes": 409505,
-      "sha256": "0ad58249bc8c94ac7797c1f86c1a77f56aca03bf98e1180f1e751a7d5dbace32",
-      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/approved-normal-inputs-20261019/0ad58249bc8c94ac7797c1f86c1a77f56aca03bf98e1180f1e751a7d5dbace32.json",
-      "approval_receipt_sha256": "59c90e2368f8ae5e74098571bc85812112a0d20ad872a633f721e291c2fa2267",
+      "bytes": 488998,
+      "sha256": "20ffaa99540c4769034ec859a2f8b892a45512c80dde08afd1c6468de14a6e83",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/approved-normal-inputs-20261019/20ffaa99540c4769034ec859a2f8b892a45512c80dde08afd1c6468de14a6e83.json",
+      "approval_receipt_sha256": "8ac83a9bc62d49d54d39f77afc8566c289182ea066a9f98e24ec9e4f3927fc15",
       "origin": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/approved-normal-inputs-20261019/45fe9828df27952ae4fa661eb3193992fffb7dfd91988d5f78d4050a52e82383.json",
       "source_approval_receipt_sha256": "9c95d220e0c154cddbf9e89bb3e49fae0330ba055f673ff4d4ad38e0fd7578b1"
     },
     {
       "path": "source-assembly-assets/packet-rh3d_virtu_may_230.json",
-      "bytes": 1430032,
-      "sha256": "549a8e4505fb58ce4de09a6720fc6fb56b4c494c3329330be26a37c04eb7a049",
-      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/approved-normal-inputs-20261019/549a8e4505fb58ce4de09a6720fc6fb56b4c494c3329330be26a37c04eb7a049.json",
-      "approval_receipt_sha256": "59c90e2368f8ae5e74098571bc85812112a0d20ad872a633f721e291c2fa2267",
+      "bytes": 1542680,
+      "sha256": "54caa427a2d8528b6f78d6eeac9cc1b42b97e17802d371e8d55b176a3bc33701",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/approved-normal-inputs-20261019/54caa427a2d8528b6f78d6eeac9cc1b42b97e17802d371e8d55b176a3bc33701.json",
+      "approval_receipt_sha256": "8ac83a9bc62d49d54d39f77afc8566c289182ea066a9f98e24ec9e4f3927fc15",
       "origin": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/approved-normal-inputs-20261019/9e229f3412414e57d5f1ca8f51f4b2a12571350cb52735864811ca2f1540050d.json",
       "source_approval_receipt_sha256": "93a2ab83001860c83ab62ff5cbdcd3d575fec832ae133473303d6eec81458189"
     },
@@ -9457,22 +9457,44 @@
       "origin": "https://cdn.shopify.com/s/files/1/1210/0176/files/RH_NG_Step.step?v=1698864429"
     },
     {
-      "path": "source-assembly-assets/manifest-829ee70cc5635107ae7e5afb9730484fefbb41713c80460879dace12abe185de.json",
-      "bytes": 5952175,
-      "sha256": "535be72adad5756568f911397d926df76fe52d068a4311d73b40220b263bce16",
-      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/approved-normal-inputs-20261019/535be72adad5756568f911397d926df76fe52d068a4311d73b40220b263bce16.json",
-      "approval_receipt_sha256": "59c90e2368f8ae5e74098571bc85812112a0d20ad872a633f721e291c2fa2267",
-      "origin": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/approved-normal-inputs-20261019/d2bcda429b001aacfdebe04f7aef501c5cb70da7dd8645fa172cb7b270a073c1.json",
-      "source_approval_receipt_sha256": "9c95d220e0c154cddbf9e89bb3e49fae0330ba055f673ff4d4ad38e0fd7578b1"
+      "path": "source-assembly-assets/1a0be96892facbdf6a055401d7e099153844db5883a36fb5012f7996ee10f4b6.bin.gz",
+      "bytes": 63202,
+      "sha256": "90ec4fc6c0ffcc59507dc07b0dc04be943742d1171a900dd1128730d53b840f5",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/approved-normal-inputs-20261019/90ec4fc6c0ffcc59507dc07b0dc04be943742d1171a900dd1128730d53b840f5.bin.gz",
+      "approval_receipt_sha256": "8ac83a9bc62d49d54d39f77afc8566c289182ea066a9f98e24ec9e4f3927fc15",
+      "origin": "Exact source-preserving VIRTU geometry delivery; primary source identities are retained in the packet."
     },
     {
-      "path": "source-assembly-assets/829ee70cc5635107ae7e5afb9730484fefbb41713c80460879dace12abe185de.prefix.bin",
-      "bytes": 5832700,
-      "sha256": "1c6fc5663533f94af11ba839815f08b4a53e9e128117a5ab57c403e7aec4994f",
-      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/approved-normal-inputs-20261019/1c6fc5663533f94af11ba839815f08b4a53e9e128117a5ab57c403e7aec4994f.prefix.bin",
-      "approval_receipt_sha256": "59c90e2368f8ae5e74098571bc85812112a0d20ad872a633f721e291c2fa2267",
-      "origin": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/approved-normal-inputs-20261019/4bee8a59d817febb34278b6f4b307f35c575e46c7cf6cc8e8b64b643672bc91b.prefix.bin",
-      "source_approval_receipt_sha256": "9c95d220e0c154cddbf9e89bb3e49fae0330ba055f673ff4d4ad38e0fd7578b1"
+      "path": "source-assembly-assets/36d6e841555cc179fbaf8d115b113feae4ff27ab6eae1708f0516674d031cec8.bin.gz",
+      "bytes": 275034,
+      "sha256": "144a46dbd6b00614c110e6f13ed392df220fc198f3a540035bbaa41794827690",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/approved-normal-inputs-20261019/144a46dbd6b00614c110e6f13ed392df220fc198f3a540035bbaa41794827690.bin.gz",
+      "approval_receipt_sha256": "8ac83a9bc62d49d54d39f77afc8566c289182ea066a9f98e24ec9e4f3927fc15",
+      "origin": "Exact source-preserving VIRTU geometry delivery; primary source identities are retained in the packet."
+    },
+    {
+      "path": "source-assembly-assets/59e6f343f5e3fb9784b7ab5c9b585c961f384a01aa1017a390630b2cedee6972.prefix.bin",
+      "bytes": 5930160,
+      "sha256": "7c2932cb2e2f970eca6e2af11167dbdcfe972f8a57d397c84558866838375c56",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/approved-normal-inputs-20261019/7c2932cb2e2f970eca6e2af11167dbdcfe972f8a57d397c84558866838375c56.prefix.bin",
+      "approval_receipt_sha256": "8ac83a9bc62d49d54d39f77afc8566c289182ea066a9f98e24ec9e4f3927fc15",
+      "origin": "Exact source-preserving VIRTU geometry delivery; primary source identities are retained in the packet."
+    },
+    {
+      "path": "source-assembly-assets/c4ef3b37cfa55d3d656803d88fbd65ee4212a112fb01dca80d6565dcd9cfbc59.bin.gz",
+      "bytes": 121404,
+      "sha256": "ff41cd3d5eeb785a2bed15ee42260918e6d2a84ac985a51c27d26e393a37194d",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/approved-normal-inputs-20261019/ff41cd3d5eeb785a2bed15ee42260918e6d2a84ac985a51c27d26e393a37194d.bin.gz",
+      "approval_receipt_sha256": "8ac83a9bc62d49d54d39f77afc8566c289182ea066a9f98e24ec9e4f3927fc15",
+      "origin": "Exact source-preserving VIRTU geometry delivery; primary source identities are retained in the packet."
+    },
+    {
+      "path": "source-assembly-assets/manifest-59e6f343f5e3fb9784b7ab5c9b585c961f384a01aa1017a390630b2cedee6972.json",
+      "bytes": 6051971,
+      "sha256": "93895bcb222bf2c892d46f4f21507bf82b6ae42d08e2c139311313a551de2f46",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/approved-normal-inputs-20261019/93895bcb222bf2c892d46f4f21507bf82b6ae42d08e2c139311313a551de2f46.json",
+      "approval_receipt_sha256": "8ac83a9bc62d49d54d39f77afc8566c289182ea066a9f98e24ec9e4f3927fc15",
+      "origin": "Exact source-preserving VIRTU geometry delivery; primary source identities are retained in the packet."
     }
   ],
   "external_original_transports_retained": [
@@ -11095,7 +11117,7 @@
     }
   ],
   "source_catalog_sha256": {
-    "SOURCE_ASSEMBLIES.json": "e7187b346856f128666f9d3c62e824f0fb61ed53bd7e46365315c080b00d098e",
+    "SOURCE_ASSEMBLIES.json": "9c121090002706fb03dade7891cfbc64b68bb2efaa7d98ac4155c412250920e6",
     "HEAD_ADDITIONS.json": "c752983c1a054ee7b4d000e458d6839cf5176b2d0b143ca1f6727683a4bed405",
     "COMPONENT_ADDITIONS.json": "65d3ef345bcd5031b266fef5e8863568379304943651c03fb5bb6f9503f73b59",
     "COMPONENT_LIBRARY.json": "9b27754925eda73f81c8b9a9298cfd480c0dc2d3af7eefe58b2c12bf6206de06"
@@ -11112,6 +11134,15 @@
       "prior_native_results_not_categorical_fit_evidence": true,
       "empty_Common_on_invalid_source_implies_pilot_miss": false,
       "scope": "Use valid source topology and finite mate features with actual exported mesh identities. Previous whole cached M2/probe native inputs are reported invalid; selected actual-mesh and native point-IN observations do not establish whole-part fit."
+    },
+    {
+      "machine_id": "rh3d_virtu_may_230",
+      "model_sha256": "59e6f343f5e3fb9784b7ab5c9b585c961f384a01aa1017a390630b2cedee6972",
+      "finding": "VIRTU_BACK_COVER_RIGID_CLAMP_DATUM",
+      "status": "OPEN_SOURCE_DATUM",
+      "gap_mm": 0.04999997022366642,
+      "evidence_sha256": "8ac83a9bc62d49d54d39f77afc8566c289182ea066a9f98e24ec9e4f3927fc15",
+      "scope": "Literal selected source panel/insert gap. Genuine hardware is present; closed rigid clamp and preload are not certified."
     }
   ]
 }

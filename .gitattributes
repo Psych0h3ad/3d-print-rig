@@ -18,6 +18,7 @@ docs/TRIDENT_SPOOL_DECK_DELTA_103.json -text
 site/assets/machines/voron_switchwire_250.cpu-projection.json -text
 site/assets/machines/rh3d_e3ng_v12_235.cpu-projection.json -text
 site/assets/machines/rh3d_virtu_may_230.cpu-projection.json -text
+site/assets/machines/rh3d_virtu_may_230.frame59e6.cpu-projection.json -text
 # Preserve the original historical coverage receipt bytes.
 docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json -text
 

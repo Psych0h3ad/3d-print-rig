@@ -7,6 +7,7 @@ import {fileURLToPath,pathToFileURL} from 'node:url';
 import assert from 'node:assert/strict';
 import{Matrix4,Vector3}from '../site/viewer/vendor-r180/three.module.js';
 import {assertMayRolePacket,mayRole} from './virtu-may-role-contract.mjs';
+import{selectedGeometry,assertSelectedGeometryRig,assertSelectedVisibility}from'./virtu-selected-geometry-contract.mjs';
 const args=Object.fromEntries(process.argv.slice(2).reduce((a,v,i,all)=>i%2?a:[...a,[v.slice(2),all[i+1]]],[]));
 assert(args.site&&args.report,'--site and --report required');
 const site=path.resolve(args.site),repo=fileURLToPath(new URL('../',import.meta.url));
@@ -18,7 +19,7 @@ for(const dir of ['site/viewer/source-assembly-runtime','site/viewer/vendor-r180
  for(const name of fs.readdirSync(path.join(repo,dir)))if(/\.(?:js|mjs)$/.test(name)){
   const rel=dir+'/'+name;sourcePins[rel]=sha(fs.readFileSync(path.join(repo,rel)));
  }
-for(const rel of ['site/viewer/source-assembly-loader.mjs','site/viewer/source-operating-bounds6.mjs','scripts/virtu-may-role-contract.mjs','scripts/audit_virtu_may_role.mjs'])sourcePins[rel]=sha(fs.readFileSync(path.join(repo,rel)));
+for(const rel of ['site/viewer/source-assembly-loader.mjs','site/viewer/source-operating-bounds6.mjs','scripts/virtu-may-role-contract.mjs','scripts/audit_virtu_may_role.mjs','scripts/virtu-selected-geometry-contract.mjs','scripts/virtu-selected-geometry-contract.json'])sourcePins[rel]=sha(fs.readFileSync(path.join(repo,rel)));
 globalThis.location={href:pathToFileURL(path.join(site,'viewer/community.html')).href};
 globalThis.self=globalThis;
 globalThis.ProgressEvent??=class{constructor(type,values){Object.assign(this,{type},values)}};
@@ -41,11 +42,13 @@ let rig;
 try{
  const L=await import('../site/viewer/source-assembly-loader.mjs');
  const S=await import('../site/viewer/source-assembly-runtime/state.mjs');
+ const {sourceOperatingBounds}=await import('../site/viewer/source-operating-bounds6.mjs');
  const signal=new AbortController().signal,index=await L.loadSourceIndex(signal);
  const entry=index.models.find(r=>r.id==='rh3d_virtu_may_230');assert(entry);
  const packet=await L.loadSourcePacket(entry,signal);assertMayRolePacket(packet);
  rig=await L.loadSourceAssembly(packet,{signal});
- assert.equal(rig.parts.size,662);
+ assert.equal(rig.parts.size,selectedGeometry.owners);
+ const selectedSourceGeometry=assertSelectedGeometryRig(rig,packet);
  const canonical=rig.parts.get(mayRole.canonical),foreign=rig.parts.get(mayRole.excluded);
  assert(canonical&&foreign,'Original source inventory retained');
  const effective=node=>{for(let n=node;n;n=n.parent)if(!n.visible)return false;return true;};
@@ -80,7 +83,7 @@ try{
  for(const m of rig.materials)if(m.role==='native')hardware.set(m.material,[m.material.color?.getHex(),m.material.metalness,m.material.roughness,m.material.opacity]);
  let poses=0,palettes=0,attachments=0;
  function check(){rig.root.updateMatrixWorld(true);assert(!effective(foreign.node),'Foreign hinge effective-visible');
-  const expectedKeys=S.visibleKeys(packet,rig.snapshot());assert.equal(effective(canonical.node),expectedKeys.has(mayRole.canonical));
+  const expectedKeys=S.visibleKeys(packet,rig.snapshot());assertSelectedVisibility(rig,packet,expectedKeys);assert.equal(effective(canonical.node),expectedKeys.has(mayRole.canonical));
   rig.root.traverse(n=>assert(n.matrixWorld.elements.every(Number.isFinite),'Nonfinite source matrix'));
   if(expectedKeys.has(mayRole.canonical)){
    const now=relative();for(let i=0;i<16;i++)assert(Math.abs(now[i]-originalRelative[i])<1e-12,'Source relative shaft/receiver changed');attachments++;
@@ -97,15 +100,26 @@ try{
  rig.reset();
  for(const [axis,lo,hi]of [['x',-109,116],['y',-112,147],['z',-122,106]])
   for(const value of [lo,(lo+hi)/2,hi,lo,0]){const s=structuredClone(native);s.review_axes[axis]=value;rig.apply(s);check();}
+// Y travel is conditional on X: at native X, Y=152 meets a retained source
+// body. Preserve rejection and state, then reach the maximum with X first.
+rig.reset();const rejectedBefore=rig.snapshot(),rejectedState=structuredClone(rejectedBefore);rejectedState.review_axes.y=152;
+assert.equal(sourceOperatingBounds(packet,{x:0,y:0,z:0},'y').max,147,'Native X conditional Y maximum');
+assert.equal(sourceOperatingBounds(packet,{x:116,y:0,z:0},'y').max,152,'Outer X conditional Y maximum');
+assert.throws(()=>rig.apply(rejectedState),/Retained source body contact: vion_source__cartographer-standard-original-solid-97 \/ virtu_public_dbid_1818/);
+assert.deepEqual(rig.snapshot(),rejectedBefore,'Rejected source contact changed assembly state');check();
+const compositePaths=[{pose:{x:-109,y:-112,z:-122},order:['y','x','z']},{pose:{x:116,y:152,z:106},order:['x','y','z']},{pose:{x:20,y:-30,z:40},order:['y','x','z']},{pose:{x:-109,y:-112,z:-122},order:['y','x','z']}];
+for(const {pose,order}of compositePaths){rig.reset();check();for(const axis of order){const s=rig.snapshot();s.review_axes[axis]=pose[axis];rig.apply(s);check();}}
  const saved=JSON.parse(JSON.stringify(rig.snapshot()));rig.reset();rig.apply(saved);check();rig.reset();check();
  assert.deepEqual(rig.snapshot(),native,'Exact reset state');
+ assertSelectedGeometryRig(rig,packet);
  for(const [array,pin]of sourceArrays)assert.equal(sha(Buffer.from(array.buffer,array.byteOffset,array.byteLength)),pin,'Source array/index changed');
  for(const [rel,pin]of Object.entries(sourcePins))assert.equal(sha(fs.readFileSync(path.join(repo,rel))),pin,'Source changed during audit');
  assert(requests.some(r=>r.path.endsWith('.bin.gz')),'Actual compressed geometry not requested');
  assert(!requests.some(r=>/\.(?:bin|glb)$/.test(r.path)),'Unexpected raw geometry fallback');
- report.passed=true;Object.assign(report,{registered_source_parts:rig.parts.size,actual_meshes:meshCount,
+ report.passed=true;Object.assign(report,{registered_source_parts:rig.parts.size,selected_source_geometry_contract:selectedSourceGeometry,actual_meshes:meshCount,
   controller_pose_cases:poses,contrasting_palette_cases:palettes,source_relative_attachment_checks:attachments,
   all_variants:packet.variants.length,foreign_hinge_effective_visible:false,original_DDG_preserved:true,
+  composite_source_paths:compositePaths,rejected_source_contact_state_unchanged:true,
   original_geometry_and_index_arrays_unchanged:sourceArrays.size,reset_and_save_ID_roundtrip:true,
   model_sha256:packet.model.sha256,inventory_sha256:packet.inventory.sha256,
   default_May_source_clearance:{nozzle_source:packet.nozzle_origin,bed_part_key:bed.record.key,bed_source_id:bed.record.source_id,

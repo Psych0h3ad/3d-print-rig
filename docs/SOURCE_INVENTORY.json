@@ -5,8 +5,8 @@
   "files": [
     {
       "path": ".gitattributes",
-      "bytes": 1005,
-      "sha256": "ccf07ffdb03825f7dbe3f39847f20568676fa24c5167e69b2ca923747c5e31b8"
+      "bytes": 1081,
+      "sha256": "f21e57b4c6e2afccb89e61d6735764c7a07f3a06026c28635441e490e44353cb"
     },
     {
       "path": ".github/FUNDING.yml",
@@ -220,8 +220,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 396971,
-      "sha256": "60ee711c885713188418b0aa7466d2e3118d4191a9cee4a0f8c59e6ee1cacc31"
+      "bytes": 400739,
+      "sha256": "ee8ffd66b965c2c0085d4ddf1ef85864165b1e64527b1237d20757b9b5027fe0"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -524,6 +524,11 @@
       "sha256": "97707a5381724b1948d64059d129d6c39ad83981381202a21c603759279cd682"
     },
     {
+      "path": "docs/VIRTU_SELECTED_PANEL_COMPANION_SCOPE_20261019.json",
+      "bytes": 2426,
+      "sha256": "8ac83a9bc62d49d54d39f77afc8566c289182ea066a9f98e24ec9e4f3927fc15"
+    },
+    {
       "path": "docs/WALLPAPERS.md",
       "bytes": 5067,
       "sha256": "ddc8e1a12c73908702a2bfaa7a4c9e97bcab6c7b26ed001eb17839b28d5de032"
@@ -720,8 +725,8 @@
     },
     {
       "path": "scripts/audit_virtu_may_role.mjs",
-      "bytes": 10425,
-      "sha256": "b26d85699472f3d6a534611c6ff3be4c438981c514400123dde7abbdf22022bf"
+      "bytes": 12185,
+      "sha256": "7ac8c21e4a5829abf989a980146deb8b5964cb3224e886a50b616ee326071712"
     },
     {
       "path": "scripts/build_approved_site.py",
@@ -1650,8 +1655,8 @@
     },
     {
       "path": "scripts/test_source_head_controls.mjs",
-      "bytes": 2149,
-      "sha256": "602c335a29021c8a5f5fae2cd4c0523be3ad4f7cc1ce0d2b5d51a74467f5f6b9"
+      "bytes": 2696,
+      "sha256": "c79878538bbb65adf94e746d3ea66d68ddc0f5de2a9ced73347bd23db1df6ea8"
     },
     {
       "path": "scripts/test_source_http_content_encoding.mjs",
@@ -1849,6 +1854,11 @@
       "sha256": "9231a735a99ed4420603e60a0f8a27313693982de0f3685d3abadafb630454fb"
     },
     {
+      "path": "scripts/test_virtu_selected_geometry_contract.mjs",
+      "bytes": 4248,
+      "sha256": "8610d6f8047be5ac41afcd39984991b019aa38846d0fbb5ee2f5c49afdc270f6"
+    },
+    {
       "path": "scripts/test_virtual_printer_adapter.mjs",
       "bytes": 4247,
       "sha256": "b25320b19d87b8181df8684b30ef4fa42e4eba2fe729f17426e08456d2d3aa7c"
@@ -1960,8 +1970,18 @@
     },
     {
       "path": "scripts/virtu-may-role-contract.mjs",
-      "bytes": 2483,
-      "sha256": "b8e39e35a41752ed922dfd74d399c3ae650f07c993ad87631a00785b56c3cc2d"
+      "bytes": 2604,
+      "sha256": "1fdf0072f3b6ad07d3c0479ddf1fe1c759b2a3dba80ea73a07e5e7bdcd2e466d"
+    },
+    {
+      "path": "scripts/virtu-selected-geometry-contract.json",
+      "bytes": 234221,
+      "sha256": "47d8742af2ab56ee175dc41bc9269e7495f4409a3c87581facef97a2676708cb"
+    },
+    {
+      "path": "scripts/virtu-selected-geometry-contract.mjs",
+      "bytes": 6238,
+      "sha256": "fd794299f2e3b58fd7f81660080eae51680775dde7ab493f28370fad2ffd21fd"
     },
     {
       "path": "scripts/wallpaper_svg_parser.py",
@@ -1970,8 +1990,8 @@
     },
     {
       "path": "site/APPROVED_DELIVERY.json",
-      "bytes": 716408,
-      "sha256": "2c374f2e1f717e6fd7066a82f0c9387173093af75ea8617d7c3be9ef1c15d9d0"
+      "bytes": 718475,
+      "sha256": "1ce2aa4c69f3339b956f35b5353468e6209e7fd160af1df73cdd9e32681339f9"
     },
     {
       "path": "site/ASSET_BUNDLE.json",
@@ -2095,8 +2115,8 @@
     },
     {
       "path": "site/SOURCE_ASSEMBLIES.json",
-      "bytes": 814,
-      "sha256": "e7187b346856f128666f9d3c62e824f0fb61ed53bd7e46365315c080b00d098e"
+      "bytes": 659,
+      "sha256": "9c121090002706fb03dade7891cfbc64b68bb2efaa7d98ac4155c412250920e6"
     },
     {
       "path": "site/STOCK_SKIRT_RETENTION_QA_92.json",
@@ -2200,8 +2220,8 @@
     },
     {
       "path": "site/assets/machines/index.json",
-      "bytes": 71169,
-      "sha256": "53187bd65a902cdb257a3119512c2bffc85da8b697a8aa19b86dbf75cdee6675"
+      "bytes": 71502,
+      "sha256": "9611656536fae103d7fcc2107c2204ba75cbd1964213b8b99e09c79d0ad03159"
     },
     {
       "path": "site/assets/machines/lh_stinger_200.webp",
@@ -2349,9 +2369,14 @@
       "sha256": "a57b11a388082a55f7cbdd7266a5c202fa5066e7edc18a8738d9252d95136bea"
     },
     {
+      "path": "site/assets/machines/rh3d_virtu_may_230.frame59e6.cpu-projection.json",
+      "bytes": 154163,
+      "sha256": "006ef0fdb82d1e9ec5ff007327cc97b88300915e8e29e7040980d03e5e7bbbb9"
+    },
+    {
       "path": "site/assets/machines/rh3d_virtu_may_230.webp",
-      "bytes": 10344,
-      "sha256": "9dc7d21ba30dda75e567f428689caeff3d2236b174bf6070e0f83b715106eef3"
+      "bytes": 9816,
+      "sha256": "afb050237b776c4af0388bd77831abc88355d4f7d3c484aea5de5fc355ba51ed"
     },
     {
       "path": "site/assets/machines/rook_mk2_120.webp",

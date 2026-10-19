@@ -35,7 +35,7 @@
     "scripts/audit_v0_native_installation_assets.mjs": "319f7ae2981a42a0943de371e1c915652988e7490f6437f2ed85fe42cc008777",
     "scripts/audit_v0_state.mjs": "850d80d3b8fe15ced9b2e61fc52b79e800162d35cc5f952700c11727ef3ce2c4",
     "scripts/audit_v24_colors.mjs": "9fd80ee70d94340edb98f2ea3be3211df863210d10c54e1aa15e2161f3241507",
-    "scripts/audit_virtu_may_role.mjs": "b26d85699472f3d6a534611c6ff3be4c438981c514400123dde7abbdf22022bf",
+    "scripts/audit_virtu_may_role.mjs": "7ac8c21e4a5829abf989a980146deb8b5964cb3224e886a50b616ee326071712",
     "scripts/build_approved_site.py": "b9510e13adef990b775c4b6b91d90c59d9519706119817c295c10bc9c80c8402",
     "scripts/build_configuration_catalog.py": "cb128a25a44434b63c62b30a33001c11ab7bd20e95dba90fa8bfa2139fe392ab",
     "scripts/build_locales.mjs": "b49c302105bbc4b1b18470d43969e8e99f1e5cfb904d725ab0c3ac5ce5cd25a4",
@@ -221,7 +221,7 @@
     "scripts/test_source_credit_format.mjs": "f66e96ac7c97944b0a3b18a2d66cb258f6c3843211d5b5254a0d2c04cdef78ce",
     "scripts/test_source_gallery_bindings.mjs": "b3f4302153d4205b75530b72b1f9562a403ff6965ba964844bdc8e814aa8a00e",
     "scripts/test_source_gzip_delivery.mjs": "3264406aa8c39884299fa1aef52b2691fab34ae3d59b5a2de7e2de4bba2e9c49",
-    "scripts/test_source_head_controls.mjs": "602c335a29021c8a5f5fae2cd4c0523be3ad4f7cc1ce0d2b5d51a74467f5f6b9",
+    "scripts/test_source_head_controls.mjs": "c79878538bbb65adf94e746d3ea66d68ddc0f5de2a9ced73347bd23db1df6ea8",
     "scripts/test_source_http_content_encoding.mjs": "d7c89a12e3af9de4a97693d94c5629427e75177a32cb7c84d0f3ddddd7219d15",
     "scripts/test_source_index_runtime.mjs": "996b26b5a9b23436656ec15c60fda761007cc924aec6ed3fc8cebc3c5475389b",
     "scripts/test_source_loading_progress.mjs": "b62dac0068ca12945b5acce0910e7d53bc35108c869ce64055f621777b0a1d90",
@@ -261,6 +261,7 @@
     "scripts/test_validation_bundle.mjs": "e63cbd081df31ada646dffaffdfb7dbb4e1c28e21a0877dd107a742e1748c89a",
     "scripts/test_viewer_mesh_quality_scope.mjs": "413657585dac19f3eaf6d1d87664fab3b049c3bce6d5d408be3fcae344a8ab5b",
     "scripts/test_virtu_may_role.mjs": "9231a735a99ed4420603e60a0f8a27313693982de0f3685d3abadafb630454fb",
+    "scripts/test_virtu_selected_geometry_contract.mjs": "8610d6f8047be5ac41afcd39984991b019aa38846d0fbb5ee2f5c49afdc270f6",
     "scripts/test_virtual_printer_adapter.mjs": "b25320b19d87b8181df8684b30ef4fa42e4eba2fe729f17426e08456d2d3aa7c",
     "scripts/test_virtual_printer_emulator.mjs": "28c4596f05ec7d15db19cf3ca3146f761bce32961c460e63e401c9d4652b1ae6",
     "scripts/test_virtual_printer_klack.mjs": "3c64f7f71af972ee180006eaaca8fef1746318c499976c113d73340098bd1e9a",
@@ -283,9 +284,11 @@
     "scripts/v0-state-fixtures.mjs": "306efda0c0244a1986669a689fd061ca0508cd3c0aefd77750bb085eee3e98d8",
     "scripts/v0-state-test-runtime.mjs": "ec9b938de3ecb982c56917813a814512c173d0fd5862888008c4cac9b26fd6f2",
     "scripts/viewer_mesh_quality_scope.mjs": "2ea1e605c85fd04c6f901791a1b7da4b4d9e46c450d74ba817f2e375e4c7f19d",
-    "scripts/virtu-may-role-contract.mjs": "b8e39e35a41752ed922dfd74d399c3ae650f07c993ad87631a00785b56c3cc2d",
+    "scripts/virtu-may-role-contract.mjs": "1fdf0072f3b6ad07d3c0479ddf1fe1c759b2a3dba80ea73a07e5e7bdcd2e466d",
+    "scripts/virtu-selected-geometry-contract.json": "47d8742af2ab56ee175dc41bc9269e7495f4409a3c87581facef97a2676708cb",
+    "scripts/virtu-selected-geometry-contract.mjs": "fd794299f2e3b58fd7f81660080eae51680775dde7ab493f28370fad2ffd21fd",
     "scripts/wallpaper_svg_parser.py": "7b209593182bc03ed758b21b869c5b852e03be05adbdaefeba2741683e513405",
-    "site/APPROVED_DELIVERY.json": "2c374f2e1f717e6fd7066a82f0c9387173093af75ea8617d7c3be9ef1c15d9d0",
+    "site/APPROVED_DELIVERY.json": "1ce2aa4c69f3339b956f35b5353468e6209e7fd160af1df73cdd9e32681339f9",
     "site/ASSEMBLY_CONFIGURATIONS.json": "2542f57d3ddeb63322057bbbf324b154f4e7b1f0c7edf7168fb4155ed042574a",
     "site/assembly_manifest.json": "4fe7fed76a8c003aa652bed57608026dad7b1953ac7b4b589a990d47ff74dadf",
     "site/ASSET_BUNDLE.json": "10c44725a05926348f9c25ec2f655fa08c2776f855a6f0e3d376e11e24698bca",
@@ -322,7 +325,7 @@
     "site/REAR_ENCLOSURE_QA.json": "6173dc68d5a22fd08fa179797698687e74e8afbe9680e8428053bca24f843f0f",
     "site/REQUESTED_MOD_INSTALLATIONS.json": "1891521be771c2ce0a358c8bdeffdb3f20335250a4ba5ca7252de915f862688a",
     "site/SIBOOR_TRIDENT_ASSETS.json": "9b10bebcaa3b326532fdac5ecc435c6414cf3d0402967ebc99944130b8a8f3b0",
-    "site/SOURCE_ASSEMBLIES.json": "e7187b346856f128666f9d3c62e824f0fb61ed53bd7e46365315c080b00d098e",
+    "site/SOURCE_ASSEMBLIES.json": "9c121090002706fb03dade7891cfbc64b68bb2efaa7d98ac4155c412250920e6",
     "site/STOCK_SKIRT_RETENTION_QA_92.json": "470854bb0441c3eb419f9cb28d7684e99730bff55cc0f31ee92327696fb2e678",
     "site/TOOLCHANGER_BANK.json": "f1d3f62e1c5439586dcdf7a90e49b0b1f494dcafb8020ff78352905316fcfed7",
     "site/TOOLCHANGER_CONFIGURATIONS.json": "3893be3025352ec42572d57db1d194c51d4f7329595193d483efe672972df630",
@@ -6307,12 +6310,12 @@
     {
       "id": "rh3d_virtu_may_230",
       "family": "virtu",
-      "model_sha256": "829ee70cc5635107ae7e5afb9730484fefbb41713c80460879dace12abe185de",
-      "stored_model_sha256": "829ee70cc5635107ae7e5afb9730484fefbb41713c80460879dace12abe185de",
+      "model_sha256": "59e6f343f5e3fb9784b7ab5c9b585c961f384a01aa1017a390630b2cedee6972",
+      "stored_model_sha256": "59e6f343f5e3fb9784b7ab5c9b585c961f384a01aa1017a390630b2cedee6972",
       "companion_sha256": {
-        "packet-rh3d_virtu_may_230.json": "549a8e4505fb58ce4de09a6720fc6fb56b4c494c3329330be26a37c04eb7a049",
-        "manifest-829ee70cc5635107ae7e5afb9730484fefbb41713c80460879dace12abe185de.json": "535be72adad5756568f911397d926df76fe52d068a4311d73b40220b263bce16",
-        "inventory-rh3d_virtu_may_230.json": "0ad58249bc8c94ac7797c1f86c1a77f56aca03bf98e1180f1e751a7d5dbace32"
+        "packet-rh3d_virtu_may_230.json": "54caa427a2d8528b6f78d6eeac9cc1b42b97e17802d371e8d55b176a3bc33701",
+        "inventory-rh3d_virtu_may_230.json": "20ffaa99540c4769034ec859a2f8b892a45512c80dde08afd1c6468de14a6e83",
+        "manifest-59e6f343f5e3fb9784b7ab5c9b585c961f384a01aa1017a390630b2cedee6972.json": "93895bcb222bf2c892d46f4f21507bf82b6ae42d08e2c139311313a551de2f46"
       },
       "adapter_sha256": {
         "scripts/render_geometry_qa.mjs": "85520f0fd54ed889e11f99e094d3bb99635cb43b9be74b5016868215a67d80fb"
@@ -6352,51 +6355,104 @@
           "report": "docs/RAPIDO2_SELECTED_AXIS_REPAIRS_20261019.json",
           "sha256": "59c90e2368f8ae5e74098571bc85812112a0d20ad872a633f721e291c2fa2267",
           "scope": "Current829 selected rigid hardware placements and unchanged shape/attribute proof. All older evidence retains its original model and limited role/geometry scope."
+        },
+        {
+          "report": "docs/VIRTU_SELECTED_PANEL_COMPANION_SCOPE_20261019.json",
+          "sha256": "8ac83a9bc62d49d54d39f77afc8566c289182ea066a9f98e24ec9e4f3927fc15",
+          "scope": "Selected source58hardware and17independently recomputed seats, current geometry identity and explicit OPEN clamp datum."
         }
       ],
-      "current_review_status": "PASS_SCOPED_RENDER_AND_CONTROLLER",
+      "current_review_status": "PASS_SCOPED_SOURCE_GEOMETRY_AND_SELECTED_DESKTOP_CONTROLLER_OPEN_CLAMP_DATUM",
       "unresolved_scope": [
         "Native whole-machine fit and unknown source face orientation remain outside this finite/unit/shader-integrity scope.",
-        "Browser coverage is limited to separately recorded machine/viewport/language interactions."
+        "Browser coverage is limited to separately recorded machine/viewport/language interactions.",
+        "Literal rear cover/insert finite clamp gap0.04999997022366642mm remains OPEN; plug/leads unmodeled."
       ],
       "historical_native_reference": null,
       "companions_sha256": "9e3672f158a7861234b1e99380a234b75dba4dc34ce8334e0ed176e1275bf5e2",
       "current_successor_review_pending": false,
       "viewer_mesh_quality": {
         "schema": "actual-viewer-mesh-quality-v1",
-        "model_sha256": "829ee70cc5635107ae7e5afb9730484fefbb41713c80460879dace12abe185de",
+        "model_sha256": "59e6f343f5e3fb9784b7ab5c9b585c961f384a01aa1017a390630b2cedee6972",
         "actual_exported_input_identity_verified": true,
         "finite_positions_and_world_matrices": true,
-        "meshes": 6027,
-        "triangles": 15864440,
+        "meshes": 9094,
+        "triangles": 15669960,
         "nonunit_consumed_vertex_normals": 0,
         "zero_normals_on_drawn_nondegenerate_smooth_faces": 0,
         "missing_NORMAL_requiring_shader_input": 0,
         "actual_normal_method": "unit-vertex-normals",
         "evidence_sha256": [
-          "282c10a9635e65b0608b365943074666b71a5d44ed1bb24011a586f5280fa258",
-          "2104c71a544dac6853c8128b5a447375d31a9e6321f85754400afff68ea704b8",
-          "23a4d9af63373be6e1e42c4caf37f4c0112a83de5301f4e434afa8092daad3c7",
-          "a99d766621a7e66f188f622c6664e602002e4f7bc59eb7a6b99800c7141de8b1",
-          "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
-          "67f67963a3031b77e0e0e483a2a449ede1f890d96091efa2a4c86127b17bcfee"
+          "96b1f1d78d1d14ae139e91b6e10d7b7b2f7c20ed5ac766e60e4328fce7ca60d9",
+          "beced24dbd874a635151b4a74aae915421d78c34fef78d5833e6ece753d85f1d",
+          "f1489fd935ffef68b7845414c7c6790884dade8c11cd1712bd64a4ab0f9b4061"
         ],
         "source_face_orientation_unknown_not_promoted_to_verified": true,
         "native_whole_fit_verified": false,
         "current_six_rigid_placement_invariance_scope": "59c90e2368f8ae5e74098571bc85812112a0d20ad872a633f721e291c2fa2267"
       },
       "current_controller_review": {
-        "model_sha256": "829ee70cc5635107ae7e5afb9730484fefbb41713c80460879dace12abe185de",
+        "model_sha256": "59e6f343f5e3fb9784b7ab5c9b585c961f384a01aa1017a390630b2cedee6972",
         "sampled_pose_reset_palette_passed": true,
-        "scope": "Exact current normal full/head exported model, selected source hardware repair, sampled actual production movement, reversed/reset/palette and recorded normal save/load. Generic standalone VION is not registered. No whole physical fit claim.",
+        "scope": "Exact59e6body selected parent desktop GPU onab970: sampled min/max/mid/reverse/native reset, purchased materials/palette, Full save to Head and Full reload, PNG. Sponsors controller bytes retain exact identity. New source normal gates are separate; no whole fit/mobile/continuous flex/plug-lead or closed-clamp claim.",
         "observations": {
-          "sample_poses": 1059,
-          "actual_report_sha256": "36b92b44cdd9831065ac2fa07e85e040f406b5d56b42cab4b11265278c0d6622",
-          "parent_GPU_sha256": "d973e9f64f1db7273ff3f5f175d292635b8694115bc8fb909295f4bace9fc971",
-          "old_current_normalized_import_sha256": "fce4645aae3e0db4b5dfc345dfb31d73731fc921924eedf4e2ca0a360486a3b8"
+          "parent_GPU_sha256": "bc2c3b6d578accebe35f652d77bc996460b46453c4868d06a9d5c05580013dc1",
+          "observed_source_revision": "ab97043a8bf2883bec1ec9ca0f71ad7b70d469d8748945dfbe6af7669d4f0c7e",
+          "source_recorded_pose_rows": 5,
+          "current_component_audit_sha256": "96b1f1d78d1d14ae139e91b6e10d7b7b2f7c20ed5ac766e60e4328fce7ca60d9"
         }
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "prior_model_evidence_retained": {
+        "model_sha256": "829ee70cc5635107ae7e5afb9730484fefbb41713c80460879dace12abe185de",
+        "companion_sha256": {
+          "packet-rh3d_virtu_may_230.json": "549a8e4505fb58ce4de09a6720fc6fb56b4c494c3329330be26a37c04eb7a049",
+          "manifest-829ee70cc5635107ae7e5afb9730484fefbb41713c80460879dace12abe185de.json": "535be72adad5756568f911397d926df76fe52d068a4311d73b40220b263bce16",
+          "inventory-rh3d_virtu_may_230.json": "0ad58249bc8c94ac7797c1f86c1a77f56aca03bf98e1180f1e751a7d5dbace32"
+        },
+        "viewer_mesh_quality": {
+          "schema": "actual-viewer-mesh-quality-v1",
+          "model_sha256": "829ee70cc5635107ae7e5afb9730484fefbb41713c80460879dace12abe185de",
+          "actual_exported_input_identity_verified": true,
+          "finite_positions_and_world_matrices": true,
+          "meshes": 6027,
+          "triangles": 15864440,
+          "nonunit_consumed_vertex_normals": 0,
+          "zero_normals_on_drawn_nondegenerate_smooth_faces": 0,
+          "missing_NORMAL_requiring_shader_input": 0,
+          "actual_normal_method": "unit-vertex-normals",
+          "evidence_sha256": [
+            "282c10a9635e65b0608b365943074666b71a5d44ed1bb24011a586f5280fa258",
+            "2104c71a544dac6853c8128b5a447375d31a9e6321f85754400afff68ea704b8",
+            "23a4d9af63373be6e1e42c4caf37f4c0112a83de5301f4e434afa8092daad3c7",
+            "a99d766621a7e66f188f622c6664e602002e4f7bc59eb7a6b99800c7141de8b1",
+            "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
+            "67f67963a3031b77e0e0e483a2a449ede1f890d96091efa2a4c86127b17bcfee"
+          ],
+          "source_face_orientation_unknown_not_promoted_to_verified": true,
+          "native_whole_fit_verified": false,
+          "current_six_rigid_placement_invariance_scope": "59c90e2368f8ae5e74098571bc85812112a0d20ad872a633f721e291c2fa2267"
+        },
+        "current_controller_review": {
+          "model_sha256": "829ee70cc5635107ae7e5afb9730484fefbb41713c80460879dace12abe185de",
+          "sampled_pose_reset_palette_passed": true,
+          "scope": "Exact current normal full/head exported model, selected source hardware repair, sampled actual production movement, reversed/reset/palette and recorded normal save/load. Generic standalone VION is not registered. No whole physical fit claim.",
+          "observations": {
+            "sample_poses": 1059,
+            "actual_report_sha256": "36b92b44cdd9831065ac2fa07e85e040f406b5d56b42cab4b11265278c0d6622",
+            "parent_GPU_sha256": "d973e9f64f1db7273ff3f5f175d292635b8694115bc8fb909295f4bace9fc971",
+            "old_current_normalized_import_sha256": "fce4645aae3e0db4b5dfc345dfb31d73731fc921924eedf4e2ca0a360486a3b8"
+          }
+        }
+      },
+      "source_fit_open_findings": [
+        {
+          "id": "VIRTU_BACK_COVER_RIGID_CLAMP_DATUM",
+          "gap_mm": 0.04999997022366642,
+          "status": "OPEN",
+          "evidence_sha256": "8ac83a9bc62d49d54d39f77afc8566c289182ea066a9f98e24ec9e4f3927fc15"
+        }
+      ]
     }
   ],
   "scope": "All 69 selectable machines. Exact original model and companion tuples retain their scoped native history; current exported-model integrity and sampled controller evidence are recorded separately. No full physical-fit or continuous-clearance certificate.",

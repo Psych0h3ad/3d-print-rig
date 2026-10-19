@@ -1,10 +1,11 @@
 import assert from 'node:assert/strict';
+import{assertSelectedGeometryPacket}from'./virtu-selected-geometry-contract.mjs';
 
 export const mayRole={
  canonical:'vion_source__catalog-idler-NAUO-17379-solid-0',
  excluded:'vion_source__catalog-idler-pin-r6a-solid-0',
- model:'829ee70cc5635107ae7e5afb9730484fefbb41713c80460879dace12abe185de',
- inventory:'0ad58249bc8c94ac7797c1f86c1a77f56aca03bf98e1180f1e751a7d5dbace32',
+ model:'59e6f343f5e3fb9784b7ab5c9b585c961f384a01aa1017a390630b2cedee6972',
+ inventory:'20ffaa99540c4769034ec859a2f8b892a45512c80dde08afd1c6468de14a6e83',
  identities:{
   'vion_source__catalog-idler-NAUO-17379-solid-0':'f6c8ef76fed717f1c96cb49634d1de2b5d22ca8341567dcf546a280bd4e69db6',
   'vion_source__catalog-idler-pin-r6a-solid-0':'8893c7f71c5129f1d023238f25bc5afcc893dde16eaf7ea5ee76c921d55b9a72',
@@ -34,5 +35,6 @@ export function assertMayRolePacket(packet){
   const originalGearShaft=['assembled-candidate','assembled-candidate-y-negative','original-author-Y-M2-reference338'].includes(variant.id);
   assert.equal(variant.visible_keys.includes(mayRole.canonical),originalGearShaft,'Original gear-shaft membership changed: '+variant.id);
  }
+ assertSelectedGeometryPacket(packet);
  return true;
 }
