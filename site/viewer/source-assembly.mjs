@@ -1,3 +1,4 @@
+import{captureViewAppearance,transferViewAppearance}from'./source-assembly-runtime/view_appearance.mjs?v=44d3ab76a2dc3dc8605f';
 import {sourceControlBounds} from './source-control-bounds.mjs';
 import * as THREE from './vendor-r180/three.module.js';
 import{OrbitControls}from'./vendor-r180/OrbitControls.js';
@@ -68,9 +69,9 @@ export async function mount(scope){
  async function load(requested='full',saved=null){const job=coordinator.start();return coordinator.run(job,async()=>{let next;try{
   if(active&&requested===mode&&saved){const migration=restoreCurrentAssemblyState(active,saved);sync();return migration;}
   let choice=requested;if(requested==='full')choice=await requestModelChoice(packet,{device:navigator,signal:job.signal,choose,headPeakBytes:headPlan.loading_budget.single_load_peak_bytes});if(choice==='cancel'||!job.current()){viewSelect.value=mode;return false;}
-  release();cancelLoad.hidden=false;messages.set(status,'loading');$('openRender').disabled=true;
+  const carriedAppearance=active&&!saved?captureViewAppearance(active.snapshot(),active.packet):null;release();cancelLoad.hidden=false;messages.set(status,'loading');$('openRender').disabled=true;
   next=await loadSourceAssembly(packet,{signal:job.signal,mode:choice,headPlan,onProgress:p=>{if(job.current())messages.set(status,'loading',' · '+Math.min(100,p.percent??0).toFixed(1)+'%');}});if(!job.current()){releaseRoot(next.root,next);return false;}
-  const migration=saved?restoreCurrentAssemblyState(next,saved):null;if(!saved){const s=next.snapshot();s.theme=readDisplay().dark?'dark':'light';s.language=['en','ja','es','ko','ru'].includes(lang())?lang():'en';s.grid=false;next.apply(s);}
+  const migration=saved?restoreCurrentAssemblyState(next,saved):null;if(!saved){const s=next.snapshot();s.theme=readDisplay().dark?'dark':'light';s.language=['en','ja','es','ko','ru'].includes(lang())?lang():'en';s.grid=false;next.apply(transferViewAppearance(s,next.packet,carriedAppearance));}
   active=next;next=null;mode=choice;scene.add(active.root);const b=visibleBounds(),center=b.getCenter(new THREE.Vector3());grid.position.set(center.x,b.min.y-.0019,center.z);chamber.position.copy(center);sync();view();messages.clear(status);cancelLoad.hidden=true;
   if(!renderExport)renderExport=setupRenderExport({renderer,scene,camera,controls,name:machine,three:THREE});$('openRender').disabled=false;return migration??true;
  }catch(e){if(next)releaseRoot(next.root,next);if(job.current()){release();for(const inputs of Object.values(axisControls))for(const input of inputs)input.disabled=true;for(const input of Object.values(colorControls))input.disabled=true;$('openRender').disabled=true;if(e.name==='AbortError')messages.clear(status);else{console.error('Source assembly load failed',e);messages.set(status,saved?'unsafe':'error');}cancelLoad.hidden=true;}return false;}});}

@@ -282,6 +282,9 @@ def main():
     subprocess.run(['node', '--experimental-vm-modules', '--experimental-loader', './scripts/three-test-loader.mjs',
                     str(ROOT/'scripts/audit_toolchanger_assets.mjs'), '--site', str(target),
                     '--report', str(target/'review/toolchangers.json')], cwd=ROOT, check=True)
+    subprocess.run(['node', '--experimental-loader', './scripts/three-test-loader.mjs',
+                    str(ROOT/'scripts/audit_microswiss_source_shrouds.mjs'), '--site', str(target),
+                    '--report', str(target/'review/microswiss-source-shrouds.json')], cwd=ROOT, check=True)
     subprocess.run(['node', '--experimental-loader', './scripts/source-assembly-test-loader.mjs',
                     str(ROOT/'scripts/audit_virtu_may_role.mjs'), '--site', str(target),
                     '--report', str(target/'review/virtu-may-source-role.json')], cwd=ROOT, check=True)

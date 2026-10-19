@@ -119,6 +119,15 @@ record the grouping and exceptions. Distinct board visibility, nozzle offsets,
 carriages, parked tools or replaced fixtures can change the required checks.
 Adding rows to a support report never extends a native-clearance certificate.
 
+Record the native analyzer options with each validity result. In particular,
+`BRepCheck_Analyzer(shape, False)` checks topology; it must not be reported as
+complete geometric validity. Keep source geometry, generated transfer
+representations, meshing failures and installed interference as separate
+findings. A failed transferred pcurve does not establish that the entire
+original CAD is invalid. Pin the runtime version and check its supported API
+before preparing a native job. Save source geometry and queried finite features
+before later classification so a failed interpretation does not discard them.
+
 For Markdown-only corrections, retain the existing model evidence and its hashes.
 Verify links and statements against the current implementation, regenerate the
 source inventory and run the publication check. Do not refresh measurement dates
@@ -145,6 +154,13 @@ Fixed endpoints and final poses are insufficient. Adaptively sample fast
 transitions, using mesh or solid movement to choose the step size. Separate
 authored contacts and intended threaded engagement from new body interference.
 Use native solids for physical clearance; boxes are candidate filters only.
+
+Purchased CAD may use construction colors that differ from the product. Check
+the exact manufacturer's appearance before treating white, green or other CAD
+colors as physical materials. Bind any display override to the purchased source
+identity and its actual leaves, retain the original material provenance, and
+test palette changes, reversal and reset. Do not recolor a whole assembly when
+it contains printed holders, metal fasteners, a PCB and purchased fan parts.
 
 When extending a machine size, preserve fixed mounting interfaces and source
 cutouts. Extending the Trident deck must retain the original 52 mm rear notch,

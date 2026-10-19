@@ -14,12 +14,15 @@ import {partNodes,selectParts,visibleBounds} from './component-selection.js?v=wo
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
 import {componentCategories,componentCategory,componentViews,resolveComponentView,componentViewKeys} from './v0-mod-library.mjs?v=ddeeafeb04155ab0838b';
 import {frameHeadBounds} from './head-camera.mjs';
+import {partKey} from './head-assembly.js';
+import {hasMicroSwissSourceShroud,createSourceShroudPalette,mountSourceShroudPalette} from './microswiss-source-shroud-palette.mjs?v=f014e574106d0f8792bc';
 export async function mount(scope){
 const $=s=>document.querySelector(s),stage=$('#stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor('#edf1f5');renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);
 const scene=scope.scene(new THREE.Scene()),camera=new THREE.PerspectiveCamera(38,1,.0001,20),controls=scope.resource(new OrbitControls(camera,renderer.domElement));
 scene.add(new THREE.HemisphereLight('#ffffff','#6c7981',2.4));
 for(const p of [[.4,.6,.5],[-.3,.2,-.4]]){const light=new THREE.DirectionalLight('#ffffff',2);light.position.set(...p);scene.add(light)}
+const sourcePalette=scope.resource(mountSourceShroudPalette($('#componentDetails'),()=>{dirty=true}));
 const cached=new Map(),remembered=new Map(),categoryHistory=new Map();let catalog,current,currentItem,busy=false,view='iso',dirty=true;
 const option=(value,label)=>{const o=document.createElement('option');o.value=value;o.textContent=label;return o};
 function fit(){if(!current)return;const box=visibleBounds(current),size=box.getSize(new THREE.Vector3()),insets={};
@@ -87,13 +90,15 @@ async function install(id,initial=false){return workspaceTask(async()=>{
    const g=external?.gltf||await loadModel(new GLTFLoader(),'../'+spec.glb);g.scene.visible=false;
    g.scene.traverse(m=>{if(m.isMesh){m.material=Array.isArray(m.material)?m.material.map(v=>v.clone()):m.material.clone();for(const material of Array.isArray(m.material)?m.material:[m.material])material.side=THREE.DoubleSide}});
    let meta=null,nodes=null,views=null;
-   if(selectable){if(external)meta=external.meta;else{const r=await fetch('../'+spec.meta,{cache:'no-cache'});if(!r.ok)throw Error('部品一覧の取得に失敗しました');meta=await r.json()}nodes=partNodes(g.scene,meta.parts);views=componentViews(item,meta.parts)}
-   scene.add(g.scene);cached.set(item.module,{root:g.scene,meta,nodes,views});
+   if(selectable||hasMicroSwissSourceShroud(item)){if(external)meta=external.meta;else{const r=await fetch('../'+spec.meta,{cache:'no-cache'});if(!r.ok)throw Error('部品一覧の取得に失敗しました');meta=await r.json()}if(selectable){nodes=partNodes(g.scene,meta.parts);views=componentViews(item,meta.parts)}}
+   const sourceShroudPalette=meta?createSourceShroudPalette(g.scene,meta,partKey):null;
+   scene.add(g.scene);cached.set(item.module,{root:g.scene,meta,nodes,views,sourceShroudPalette});
   }
   const entry=cached.get(item.module),query=new URLSearchParams(location.search);
   const wanted=initial?{view:query.get('view'),part:query.get('part')}:remembered.get(item.id)||{};
   // Resolve and validate before retiring the last successfully loaded scene.
   if(entry.views){const selection=resolveComponentView(entry.views,wanted);selectParts(entry.nodes,componentViewKeys(selection.view,selection.part))}
+  sourcePalette.select(entry.sourceShroudPalette);
   if(current)current.visible=false;current=entry.root;currentItem=item;current.visible=true;
   componentOptions(componentCategory(item),item.id);categoryHistory.set(componentCategory(item),item.id);
   if(entry.views)setSelection(entry,wanted);
@@ -109,7 +114,7 @@ async function install(id,initial=false){return workspaceTask(async()=>{
   $('#componentScope').textContent=(item.notes||'').replace('複数の候補が同じ原本座標に重なるため、部品を一つずつ選んで表示します。','選んだ原本・バリエーションだけを表示します。');$('#loading').hidden=true;renderProductLinks($('#componentProductLinks'),{component:item.id});
   document.body.dataset.ready='true';dirty=true;
  }catch(e){
-  if(previous){currentItem=previous;current=cached.get(previous.module).root;current.visible=true;componentOptions(componentCategory(previous),previous.id);document.body.dataset.ready='true'}
+  if(previous){sourcePalette.select(cached.get(previous.module).sourceShroudPalette);currentItem=previous;current=cached.get(previous.module).root;current.visible=true;componentOptions(componentCategory(previous),previous.id);document.body.dataset.ready='true'}
   $('#loading').textContent=e.message;$('#componentStatus').textContent=previous?'読込に失敗しました。直前の部品を表示中。':'読込に失敗しました';console.error(e);
  }finally{busy=false;for(const selector of ['#component','#componentCategory','#componentView','#componentPart'])$(selector).disabled=false}
 });}

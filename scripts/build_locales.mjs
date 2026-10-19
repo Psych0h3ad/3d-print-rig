@@ -79,6 +79,7 @@ async function cacheReferences(outputs){
  for(const name of ['../CUSTOM_VORON_ASSETS.json','../PUBLIC_CATALOG.json','../SIBOOR_TRIDENT_ASSETS.json','../HEAD_ADDITIONS.json','head-additions.mjs','eva-heads.mjs','eva-installations.mjs','../EVA_INSTALLATIONS.json','a4t-printed-companions.mjs','siboor-machine.mjs','siboor-catalog.mjs','bootstrap.js','asset-availability.js','machine-heads.js','frame-mods.js','flexible.js','product-links.js','custom-voron.js','custom-voron-tube.mjs','v24-ptfe.mjs','custom-voron-loader.mjs','custom-voron-state.mjs','native-motion-profile.mjs','native-motion-flex.mjs','native-motion-controls.mjs','annex.js','kit-reference.js','component-assets.mjs','v0-mod-library.mjs']){
   const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));
  }
+ for(const name of ['components.js','microswiss-source-shroud-palette.mjs','source-assembly-runtime/view_appearance.mjs']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}
  for(const name of ['eva-front-surfaces.mjs','../EVA_FRONT_SURFACES.json']){
   const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));
  }
