@@ -1,6 +1,6 @@
 {
   "schema": "current-actual-viewer-render-scope-v1",
-  "at_utc": "2026-10-19T05:02:33.242127+00:00",
+  "at_utc": "2026-10-19T05:54:05.002022+00:00",
   "scope": "All 69 selectable published-scope machines: original 68 model/companion identities and the qualified VIRTU successor. Actual viewer integrity, sampled controller behavior and browser evidence retain their separate scopes. No whole-machine physical-fit certificate.",
   "registered_selectable_machines": 69,
   "controller_sample_pass": 69,
@@ -71,6 +71,11 @@
           "report": "doomcube2_350_reference.current69-v1.json",
           "sha256": "176680dd50119db9161b906c8d0cc774f6f22bd1d980db4e4baa6b20922b7f7d",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -137,6 +142,11 @@
           "report": "tictac_21_120.current69-v1.json",
           "sha256": "9131f7e3c6f03a5595d128eb4d0be182125ff22d900ff61e637fdc2fe7d59a17",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -203,6 +213,11 @@
           "report": "the100_v11_165.current69-v1.json",
           "sha256": "2a3fcc3b4a58cff61c29d40bbbfd8523f37752ad3ad887e9e13375a240abbeb6",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -269,6 +284,11 @@
           "report": "rook_mk2_120.current69-v1.json",
           "sha256": "68f4e28e0f2c55a11a34ed952ab0181280721a053eca489c0319036d4181f603",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -335,6 +355,11 @@
           "report": "satsuma180_v10.current69-v1.json",
           "sha256": "deca97f49f6f3f30b4c5bd957066e635224a7e2b8e8e6ab0217f01ab64f3a5f5",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -401,6 +426,11 @@
           "report": "sovol_sv08_350.current69-v1.json",
           "sha256": "061b1398c92ebfc6b09f79be21226b7d27a7272734b13ed884fb7b88c7f73584",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -467,6 +497,11 @@
           "report": "lh_stinger_200.current69-v1.json",
           "sha256": "e643fdd78e59bf38988de2b3470e926eecf2981a6adc99e4073b214a7f9202a5",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -533,6 +568,11 @@
           "report": "antithesis_aether_mk11.current69-v1.json",
           "sha256": "af90dc7d3136fc4fe67e8a12b48e93289bf75d41ae543fe1ae881a9cfc1e5ff5",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -600,6 +640,11 @@
           "report": "ratrig_vminion_180.current69-v1.json",
           "sha256": "f7b3c89f10a58fb52f84eca6934c5a545f0959ba973ae1c9a6a1fbf58639572b",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -666,6 +711,11 @@
           "report": "snakeoil_xy_180.current69-v1.json",
           "sha256": "96100b01d2fe8986d5537de6ebe01e2e34ae6eb9e12306570c0b8d68e2bd4be7",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -732,6 +782,11 @@
           "report": "snakeoil_xy_idex.current69-v1.json",
           "sha256": "294baa36d3db30612ffc377eb9d786dae1c5c60c2fa63e2d912b87696464fcb5",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -798,6 +853,11 @@
           "report": "snakeoil_3s_kp3s_180.current69-v1.json",
           "sha256": "8a1a102e0ad9f80a77ced1f78fc881e557f5c6dc2400f3f3d5787510d7a18e25",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -864,6 +924,11 @@
           "report": "snakeoil_proosaxy.current69-v1.json",
           "sha256": "09743b8bd7f00a070b34250c0970590c07abea99b1f38aad6ddbdd38792060b3",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -930,6 +995,11 @@
           "report": "mercury_one1_235.current69-v1.json",
           "sha256": "f7fb8865f60894951456282a7bfe6b3f5560e705c078826c2e823a17076023a1",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -996,6 +1066,11 @@
           "report": "mercury_one1_370.current69-v1.json",
           "sha256": "3cc59563c1ec7d1e27ddd6bc71d4ad1c79bd83548b9942807d5e96c3889e9965",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -1062,6 +1137,11 @@
           "report": "vzbot_330_printed.current69-v1.json",
           "sha256": "6f9eaea9422c126bbb4ac520eaff0f5f135d22d95bee62eac12ec4ae0c81bebc",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -1135,6 +1215,11 @@
           "report": "ender3_stock_220.current69-v1.json",
           "sha256": "f2877998df462d25df4addb0ab55019dea83349698c032bfab16f597fb1bedef",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -1201,6 +1286,11 @@
           "report": "siboor_sboom_220.current69-v1.json",
           "sha256": "2963772b2f570d443598db3e3b7f6364c74b2e502f6b0a49fdf059a392a96c70",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -1260,6 +1350,11 @@
           "report": "positron_v322.current69-v1.json",
           "sha256": "0bea5819eec23d6dc20a127171be7882fd078bcc1b5e68e8934b395f1d352a00",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -1330,6 +1425,11 @@
           "report": "annex_k1_assembly.current69-v1.json",
           "sha256": "1be96f19c409fc84e2f669ae1eaac5529b149bfcd1ad10a2de9840d191b5094d",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -1400,6 +1500,11 @@
           "report": "annex_k2_assembly.current69-v1.json",
           "sha256": "cb42168ea7d7b91fc14a0ff8aa1c8ff80f5cbe9c4efe6514ca999dd45ee81060",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -1470,6 +1575,11 @@
           "report": "annex_k3_assembly.current69-v1.json",
           "sha256": "3424142155d059d79eb16b1c63c4f0c872905cacedafb69b2133b07bb7aca08b",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -1557,6 +1667,11 @@
           "report": "remorph_beta1_307.current69-v1.json",
           "sha256": "72016bb5d4e8cf0510271f1a8fcb46694c277cbf3583e2e17ad85cc337f05b67",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -2043,6 +2158,11 @@
           "report": "siboor_trident_300.current69-v1.json",
           "sha256": "87844dde1ee66f5519b2562403dd8cea10928f3796a2531dd622c988a821d011",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -2349,6 +2469,11 @@
           "report": "siboor_trident_350.current69-v1.json",
           "sha256": "9010600803a86f8b4d90e1246f84a03d29a8f545b8919b8ab656ef59df70ca31",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -2649,6 +2774,11 @@
           "report": "voron_trident_250.current69-v1.json",
           "sha256": "5985e9e37db4bd4f5214053fc55fe0f8822e21854f82038350308613828fc2a4",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -2949,6 +3079,11 @@
           "report": "voron_trident_300.current69-v1.json",
           "sha256": "48e8ede49ccafdfe34df7e8bf723f3f3f764470c3c8aed71c87f1d4d69f95560",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -3249,6 +3384,11 @@
           "report": "voron_trident_350.current69-v1.json",
           "sha256": "05ee25371ffb823bd4f110d97313b1c7cb70a178275dfcc9a7c943756121e72c",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -3338,6 +3478,11 @@
           "report": "voron_trident_500_custom.current69-v1.json",
           "sha256": "b299b3dd4e4865ad827c182196f83a6a8deb5d826ef37cc6d93664d8fa742136",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -3419,6 +3564,11 @@
           "report": "voron_trident_1000_custom.current69-v1.json",
           "sha256": "bf44924fcdec7a5d71f6f7f3f75575f9cdaafcdbba6e50a1c894bc05d28143d3",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -3508,6 +3658,11 @@
           "report": "voron_trident_350_half_z.current69-v1.json",
           "sha256": "9806de117b000d8e6f3a81ccae50b550ee965b6f5a89a0ada0180a050bbb636c",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -3795,6 +3950,11 @@
           "report": "siboor_v24_350.current69-v1.json",
           "sha256": "fab0bc0dad4a049ee1afd8c9b588f44990e8273c4ce19c07ce8e5fb5113fb60a",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -4082,6 +4242,11 @@
           "report": "voron_v24_250_printed.current69-v1.json",
           "sha256": "a3c4746a7377e9c689b35b5b4a16b03bd6992db4c51f5aebc101d0f514ca8af3",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -4369,6 +4534,11 @@
           "report": "voron_v24_250_ldo_cnc.current69-v1.json",
           "sha256": "15c1947f17f8a1ae08065fccccee1c93d0088d2200c55a4e58c6b7cef3b75eec",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -4656,6 +4826,11 @@
           "report": "voron_v24_300_printed.current69-v1.json",
           "sha256": "8d158471a4c5ec1880447e14d7df820218c6d897eaedf6f4b08bfc66647d41f0",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -4943,6 +5118,11 @@
           "report": "voron_v24_300_ldo_cnc.current69-v1.json",
           "sha256": "9e647e390e8416f7a2977c83653664c6f7f930420da8ce19d01fb7c27a272313",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -5230,6 +5410,11 @@
           "report": "voron_v24_350_printed.current69-v1.json",
           "sha256": "407ae1c87f609ec589fefaf80dfaf92b189469f32ec6b9dfa077e2adc8312208",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -5521,6 +5706,11 @@
           "report": "voron_v24_500_custom.current69-v1.json",
           "sha256": "a764391fa4049e633b1618dbc381f595ef10c9076a461d427576f113f50af90b",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -5988,6 +6178,11 @@
           "report": "voron_v24_1000_custom.current69-v1.json",
           "sha256": "c3ba9333b8575ae6fd28437c6fc0ef395a6c6e015f1af0ee8e61b600626cab7d",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -6275,6 +6470,11 @@
           "report": "voron_v24_350_half_z.current69-v1.json",
           "sha256": "0afae892041f8d12e445831ddf5def19bf354a929310e85e3607b7bb40a6b1d1",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -6562,6 +6762,11 @@
           "report": "voron_v24_350_ldo_cnc.current69-v1.json",
           "sha256": "8970dad4b3b9fb27b1d8422a6609cd4ee2aacc67804ad499e8dcb6e2b3339112",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -6849,6 +7054,11 @@
           "report": "voron_v02r1_120.current69-v1.json",
           "sha256": "ac4512cc80bbfbefbae75f2caad1a51a9fff47bc35bb5d0676df581396d1aefd",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -7136,6 +7346,11 @@
           "report": "voron_v02_120.current69-v1.json",
           "sha256": "665149714924d00d68eea0c7714aa351d0b14a53d1147477c3df6aada0dd5ac7",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -7423,6 +7638,11 @@
           "report": "micron_r1_120.current69-v1.json",
           "sha256": "ca7b782d935faee7bf0ead6cc6c0803dbee1b1f00c182ccdecc6e8bc787e04e5",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -7710,6 +7930,11 @@
           "report": "micron_plus_r1_180.current69-v1.json",
           "sha256": "ae09c031afe1dd3eaaa3e439df6afc2fb357cc67ec8c2d372bd84c5542e4c176",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -7980,6 +8205,11 @@
           "report": "fysetc_v24_250_pro.current69-v1.json",
           "sha256": "04273370d866213735caa135b7dbc3d82fb4e205d260892fb0a7581e613f452a",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -8067,6 +8297,11 @@
           "report": "crossant_235_v06_leadscrew.current69-v1.json",
           "sha256": "4edfb695fe4d4074befee52ec608e6a28ccdd53a7ab82be82118af0b28677cd4",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -8345,6 +8580,11 @@
           "report": "ratrig_vcore_40_300_corexy.current69-v1.json",
           "sha256": "302d4ebfe385b047f77eb0d56fd73f8081aa471c9382aba4b4e5e9c05c753103",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -8623,6 +8863,11 @@
           "report": "ratrig_vcore_40_300_hybrid.current69-v1.json",
           "sha256": "8bac6eee7f045212142237d8830087544e89279b4da951ff08bfa2ad9b6a027f",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -8949,6 +9194,11 @@
           "report": "ratrig_vcore_40_300_idex.current69-v1.json",
           "sha256": "d4004209b350f10157e742d62b28a8106b001c91d5ea67a4964e4ceb2b2582d1",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -9223,6 +9473,11 @@
           "report": "ratrig_vcore_40_400_corexy.current69-v1.json",
           "sha256": "d92ee94bd2fe9ade53d84ea49f0d18d03b50b37f1439357a4db2bdf68a74b1a2",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -9497,6 +9752,11 @@
           "report": "ratrig_vcore_40_400_hybrid.current69-v1.json",
           "sha256": "a2d049f0455def093ac1bb667fa828697a1fb5fd81586105591cdf8a1d7f4b6e",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -9823,6 +10083,11 @@
           "report": "ratrig_vcore_40_400_idex.current69-v1.json",
           "sha256": "1e98edfdb9fb3db426a7ca9eae33368a02c466d584090358e29bce6ba42185c6",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -10097,6 +10362,11 @@
           "report": "ratrig_vcore_40_500_corexy.current69-v1.json",
           "sha256": "46db0781acde9fc3f8ac4e251f8dacd50f72642d52ca39443709aec1342911e7",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -10375,6 +10645,11 @@
           "report": "ratrig_vcore_40_500_hybrid.current69-v1.json",
           "sha256": "c3d62a2e6206ab3ca34da058d9a8564027bb1a371e6cce10cc783a17ea2c0d4d",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -10705,6 +10980,11 @@
           "report": "ratrig_vcore_40_500_idex.current69-v1.json",
           "sha256": "097e22ebf4743984c678025f49bbd40e38d3eb472eead656eef902d9f130a7b3",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -10979,6 +11259,11 @@
           "report": "ratrig_vcore_41_300_corexy.current69-v1.json",
           "sha256": "7ab6fccfa602170747a4d2a63190e3ae5de1e7251b7d360ed1cbbbc05c8c1a40",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -11257,6 +11542,11 @@
           "report": "ratrig_vcore_41_300_hybrid.current69-v1.json",
           "sha256": "5d3504e0ccbaedfc3905662df3ec975776dae5d89385794ca85ce11e6b45cd6f",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -11587,6 +11877,11 @@
           "report": "ratrig_vcore_41_300_idex.current69-v1.json",
           "sha256": "95cf191d192036319be0ea8c216e7440fd74e54dcc85732844a68e99e57b0c2c",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -11861,6 +12156,11 @@
           "report": "ratrig_vcore_41_400_corexy.current69-v1.json",
           "sha256": "3e677056f8eff8e529148d7b7ad2f85d8e774aaada18858476018b8d5b3ff82e",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -12139,6 +12439,11 @@
           "report": "ratrig_vcore_41_400_hybrid.current69-v1.json",
           "sha256": "3c2fa75d75b192a35a39d25443649ab47d37d438e1baf818e8c7b34d8d11ea39",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -12469,6 +12774,11 @@
           "report": "ratrig_vcore_41_400_idex.current69-v1.json",
           "sha256": "6ac9fcfb3778cb25ca2649ef25e87cfdcbea54a121547aeefe93c66e376fcfeb",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -12743,6 +13053,11 @@
           "report": "ratrig_vcore_41_500_corexy.current69-v1.json",
           "sha256": "d65826aedde110ae8e35c2ca1d44b4ae22e1e3d05985749448e392e8bf2e88e9",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -13017,6 +13332,11 @@
           "report": "ratrig_vcore_41_500_hybrid.current69-v1.json",
           "sha256": "39a1a425a8655b91fcce56571c78e170b3a987b1558ea64c6f214b88e664c9b7",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -13347,6 +13667,11 @@
           "report": "ratrig_vcore_41_500_idex.current69-v1.json",
           "sha256": "16d25b7c09740e64ad1272631cad8a0631b909c40514af1f07083d7470812f0f",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -13413,6 +13738,11 @@
           "report": "247zero_beta2_120.current69-v1.json",
           "sha256": "2fcd98c8f798b53635f5a10b1e4dcce738b8fdbcba8c18bd9034ed33f32a16eb",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -13480,6 +13810,11 @@
           "report": "ratrig_vcore31_300.current69-v1.json",
           "sha256": "e5f297ba1197b6cbc3ad7425fe859616466bc332eb29f330abc414720a3c1974",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -13546,6 +13881,11 @@
           "report": "voron_switchwire_250.current69-v1.json",
           "sha256": "26c09a744781d4aafcdbe2fdcaf973e66f995acb007158a29b3c3b2e5b6a75fc",
           "scope": "Fresh production loader/controller with exact exported inputs, sampled axis reversals, source-relative attachment where known, palette protection and native reset. No new native-solid or browser claim."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -13607,6 +13947,11 @@
           "report": "review/virtu-may-source-role.json",
           "sha256": "50a5f7ce49de8597702dd9e8e0501cdfc2f00d8a3ba41fbff7038e649b48d3eb",
           "scope": "Exact full exported source assembly/controller and selected May shaft eligibility, reversible palettes, source-relative attachment, reset and state roundtrip. Existing source mates remain separately scoped."
+        },
+        {
+          "report": "EXACT_CONTROLLER_DELIVERY_PROOF.v2.json",
+          "sha256": "3a89e4e1e318a55bddcfa504a41f2a76552732c55698ed5bb92238e20f4d3584",
+          "scope": "Retain original 69 full-model controller and native-history reports only for identical model/companion bytes and controller bodies. New UI/language behavior has separate executable and browser evidence. No rewritten original evidence hashes."
         }
       ],
       "new_native_whole_fit_claim": false,

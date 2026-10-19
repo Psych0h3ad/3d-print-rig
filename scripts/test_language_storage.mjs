@@ -59,9 +59,9 @@ legacy.localStorage.setItem(key,'ko');await flush();assert.equal(automatic.contr
 // Unpinned pages load the stored dictionary without rebroadcasting it.
 const pending=new Map(),delayed=setup(makeWindow(),language=>new Promise(resolve=>pending.set(language,resolve)));
 assert.equal(delayed.controller.language,'ko');
-legacy.localStorage.setItem(key,'es');await flush();assert.equal(delayed.controller.language,'es');
-pending.get('ko')();await delayed.controller.ready;assert.equal(delayed.controller.language,'es');
-pending.get('es')();await Promise.resolve();await Promise.resolve();assert.equal(delayed.text.nodeValue,'Configuración');
+legacy.localStorage.setItem(key,'es');await flush();assert.equal(delayed.controller.language,'ko','Keep the committed language while the new dictionary is pending');
+pending.get('ko')();await delayed.controller.ready;assert.equal(delayed.controller.language,'ko','An obsolete dictionary cannot commit the pending language');
+pending.get('es')();await Promise.resolve();await Promise.resolve();assert.equal(delayed.controller.language,'es');assert.equal(delayed.text.nodeValue,'Configuración');
 
 // Wrong storage areas, removed/invalid values, and a disposed viewer are inert.
 const invalid=new Event('storage');Object.assign(invalid,{key,newValue:'ja',storageArea:{}});delayed.window.dispatchEvent(invalid);
