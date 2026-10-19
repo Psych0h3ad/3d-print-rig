@@ -67,7 +67,7 @@ async function cacheReferences(outputs){
  async function scan(directory){for(const item of await fs.readdir(directory,{withFileTypes:true})){const path=resolve(directory,item.name);if(item.isDirectory())await scan(path);else if(['.mjs','.js','.html','.css'].includes(extname(path)))files.set(path,await fs.readFile(path,'utf8'))}}
  await scan(viewer);await scan(resolve(viewer,'../fun'));await scan(resolve(viewer,'../support'));
  const changed=new Map(Object.entries(outputs).map(([name,text])=>[fileURLToPath(new URL(name,root)),text]));
- for(const name of ['source-assembly.mjs','source-assembly-configuration-ui.mjs','source-assembly-runtime/loading.mjs']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}
+ for(const name of ['source-assembly.mjs','source-assembly-messages.mjs','source-assembly-ui-text.mjs','source-assembly-configuration-ui.mjs','source-assembly-runtime/loading.mjs']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}
  for(const name of ['../support/resource.mjs','../support/support.mjs']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}
  for(const name of ['../fun/fun.mjs','machine-gallery.mjs','machine-gallery.css']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}
  for(const name of ['trident-roof-tube.mjs','trident-front-registration.mjs','trident-motion.mjs','baseline-native-datum.mjs','ender-bowden-route.mjs','247zero-bowden.mjs','gcode-panel.js','gcode-preview.mjs','gcode-timeline.mjs','klipper-macro-subset.mjs','virtual-printer-emulator.mjs','gcode-machine-bindings.mjs','gcode-loaded-asset-identity.mjs']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}

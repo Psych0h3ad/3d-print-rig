@@ -1,4 +1,4 @@
-import{sourceText}from './source-assembly-messages.mjs?v=e42678a5314a2d6c0676';
+import{sourceText}from './source-assembly-messages.mjs?v=18064021df3d80b39318';
 import{sourceCreditPresentation}from './source-credit-format.mjs';
 export const sourceCreditLabel=source=>sourceCreditPresentation(source).label;
 export function createSourceUIText(language){

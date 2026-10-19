@@ -10785,6 +10785,18 @@
     "source_assembly.component_license": {
       "source_revision": "0362f4d05dcc539cdc9c",
       "text": "부품에 명시된 조건"
+    },
+    "source_assembly.scene_lighting": {
+      "source_revision": "f29310ef7a14c26aa39b",
+      "text": "장면 조명"
+    },
+    "source_assembly.white_fill": {
+      "source_revision": "c275f1d56ec3d3b645e0",
+      "text": "흰색 보조광"
+    },
+    "source_assembly.color_fill": {
+      "source_revision": "4baf4fcf3fcef42c6d06",
+      "text": "보조광 색상 순환"
     }
   }
 }

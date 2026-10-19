@@ -3,14 +3,14 @@ import {sourceControlBounds} from './source-control-bounds.mjs';
 import * as THREE from './vendor-r180/three.module.js';
 import{OrbitControls}from'./vendor-r180/OrbitControls.js';
 import{RoomEnvironment}from'./vendor-r180/RoomEnvironment.js';
-import{loadLanguage}from'./i18n.mjs?v=0cbc88406dc455da6bf4';
+import{loadLanguage}from'./i18n.mjs?v=eacd78876ef5a84ef72f';
 import{setupMachineNavigation}from'./machines.js?v=ab543d6b01637bc5083f';
 import{sceneLightingState}from'./scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
 import{readDisplay,rememberDisplayControl}from'./display-preferences.mjs?v=ab531b33fbcb36317429';
 import{workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver}from'./workspace-lifecycle.mjs?v=742c8844997b5856a728';
 import{setResponsiveAspect,frameResponsiveView}from'./responsive-camera.mjs';
 import{setupRenderExport}from'./render-export.js?v=743ea37fb4e25b58aa57';
-import{sourceText}from'./source-assembly-messages.mjs?v=e42678a5314a2d6c0676';
+import{sourceText}from'./source-assembly-messages.mjs?v=18064021df3d80b39318';
 import{loadSourceIndex,loadSourcePacket,sourceHeadPlan,selectedSourcePacket,loadSourceAssembly}from'./source-assembly-loader.mjs?v=3902fb5c51039b3ad51c';
 import{sourceReviewBounds}from'./source-assembly-runtime/receiver_guard309.mjs?v=e42678a5314a2d6c0676';
 import{sourceMinimumContext,sourceMinimumState}from'./source-assembly-runtime/state.mjs?v=e42678a5314a2d6c0676';
@@ -21,7 +21,7 @@ import{requestModelChoice,createMemoryChoiceDialog}from'./source-assembly-runtim
 import{sourceXYMessage}from'./source-assembly-runtime/source_XY309.mjs?v=e42678a5314a2d6c0676';
 import{captureCamera}from './source-assembly-view-state.mjs?v=e42678a5314a2d6c0676';
 import{bindSourceConfigurationLoad,selectSourceCameraPreset}from './source-assembly-configuration-ui.mjs?v=0db9c665fde5b4c30b36';
-import{createSourceUIText,sourceCreditNote,sourceCreditLabel}from './source-assembly-ui-text.mjs?v=e42678a5314a2d6c0676';
+import{createSourceUIText,sourceCreditNote,sourceCreditLabel}from './source-assembly-ui-text.mjs?v=da20730c0cea6c1bf0b3';
 import{sourceReferencePanel,sourceCreditRecords}from './source-assembly-references.mjs';
 export async function mount(scope){
  await loadLanguage(document.documentElement.lang);if(scope.disposed)return;
@@ -49,12 +49,13 @@ export async function mount(scope){
  const renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);
  const scene=scope.scene(new THREE.Scene()),camera=new THREE.PerspectiveCamera(35,1,.001,30),controls=scope.resource(new OrbitControls(camera,renderer.domElement));controls.enableDamping=true;
  const pmrem=scope.resource(new THREE.PMREMGenerator(renderer)),room=new RoomEnvironment(),environment=scope.resource(pmrem.fromScene(room,.03));room.dispose();scene.environment=environment.texture;
- const ambient=new THREE.HemisphereLight(0xffffff,0x586b80,.25),sun=new THREE.DirectionalLight(0xffffff,1.4),chamber=new THREE.PointLight(0xffffff,0,3);sun.position.set(2,4,3);scene.add(ambient,sun,chamber);
+ const ambient=new THREE.HemisphereLight(0xffffff,0x586b80,.25),sun=new THREE.DirectionalLight(0xffffff,1.4),chamber=new THREE.DirectionalLight(0xffffff,0);sun.position.set(2,4,3);scene.add(ambient,sun,chamber,chamber.target);
  const grid=new THREE.GridHelper(2,40,0xa8b8b1,0xc5cec9);grid.visible=false;scene.add(grid);
  const coordinator=createLoadCoordinator();let packet,headPlan,active,mode='full',frame=null,renderExport;
  function render(){if(frame!==null||scope.disposed)return;frame=workspaceFrame(time=>{frame=null;if(active?.snapshot().lighting==='rgb')chamber.color.setHSL((time/15000)%1,.65,.5);controls.update();renderer.render(scene,camera);if(active?.snapshot().lighting==='rgb')render();});}
- function display(){const s=active?.snapshot(),settings=sceneLightingState({darkUI:$('night').checked});scene.background=new THREE.Color(settings.background);scene.environmentIntensity=light.value==='off'?0:settings.environmentIntensity;renderer.toneMappingExposure=settings.exposure;ambient.intensity=light.value==='off'?.12:settings.ambientIntensity;sun.intensity=light.value==='off'?0:1.4;chamber.intensity=['white','rgb'].includes(light.value)?2:0;if(light.value!=='rgb')chamber.color.set(0xffffff);grid.visible=$('gridVisible').checked;document.body.dataset.roomDark='false';render();}
+ function display(){const s=active?.snapshot(),settings=sceneLightingState({darkUI:$('night').checked});scene.background=new THREE.Color(settings.background);scene.environmentIntensity=light.value==='off'?0:settings.environmentIntensity;renderer.toneMappingExposure=settings.exposure;ambient.intensity=light.value==='off'?.12:settings.ambientIntensity;sun.intensity=light.value==='off'?0:1.4;chamber.intensity=['white','rgb'].includes(light.value)?.3:0;if(light.value!=='rgb')chamber.color.set(0xffffff);grid.visible=$('gridVisible').checked;document.body.dataset.roomDark='false';render();}
  function visibleBounds(keys=null){const b=new THREE.Box3();active?.root.traverse(n=>{if(!n.isMesh)return;for(let p=n;p;p=p.parent)if(!p.visible)return;if(keys){let p=n;while(p&&!keys.has(p.userData?.part_key))p=p.parent;if(!p)return;}b.expandByObject(n);});return b;}
+ function placeSceneFill(bounds){if(bounds.isEmpty())return;const center=bounds.getCenter(new THREE.Vector3());chamber.target.position.copy(center);chamber.position.copy(center).add(new THREE.Vector3(-.6,.85,1).normalize());chamber.target.updateMatrixWorld();chamber.updateMatrixWorld();}
  function view(kind='iso'){if(!active)return;const b=visibleBounds(kind==='focusHead'?new Set(packet.public_head_keys):null);if(b.isEmpty())return;const center=b.getCenter(new THREE.Vector3()),size=b.getSize(new THREE.Vector3()),distance=Math.max(.025,size.length()/2/Math.sin(THREE.MathUtils.degToRad(camera.fov)/2)*1.08),directions={iso:[.65,.5,.95],front:[0,0,1],side:[1,0,0],rear:[0,0,-1],under:[0,-1,0],focusHead:[.45,.2,1]};controls.target.copy(center);camera.up.set(0,kind==='under'?0:1,kind==='under'?-1:0);camera.position.copy(center).add(new THREE.Vector3(...directions[kind]).normalize().multiplyScalar(distance));camera.lookAt(center);frameResponsiveView(camera,controls);controls.update();selectSourceCameraPreset(tools,kind);render();}
  function sync(){if(!active)return;const s=active.snapshot(),p=active.packet;for(const a of'xyz'){const b=sourceControlBounds(p,s,a);for(const input of axisControls[a]){input.min=b.min;input.max=b.max;input.step=b.step??'any';input.value=s.review_axes?.[a]??0;input.disabled=!p.private_source_motion172;}}probeRow.hidden=!p.source_probe_state303;probe.value=s.probe_state??'attached';minimum.hidden=!p.private_source_motion172?.finite_nozzle_reference_contact;const c=sourceMinimumContext(p,s);minimum.disabled=!c.enabled;if(!minimum.hidden&&!c.enabled)messages.set(minimumNote,s.probe_state==='attached'?'minimumAttached':'minimumOutside');else messages.clear(minimumNote);colorControls.base.value=s.palette.M;colorControls.accent.value=s.palette.A;for(const[k,input]of Object.entries(colorControls))input.disabled=!active.materials.some(r=>r.role===(k==='base'?'M':'A'));light.value=s.lighting;$('gridVisible').checked=s.grid;$('night').checked=s.theme==='dark';viewSelect.value=mode;motion.hidden=mode==='head';display();}
  function moveError(e){if(['SOURCE_FIXED_XY_ENDPOINT','SOURCE_FIXED_XY_PATH'].includes(e?.code))messages.dynamic(error,()=>sourceXYMessage(e,lang()));else messages.set(error,'blocked');}
@@ -72,7 +73,7 @@ export async function mount(scope){
   const carriedAppearance=active&&!saved?captureViewAppearance(active.snapshot(),active.packet):null;release();cancelLoad.hidden=false;messages.set(status,'loading');$('openRender').disabled=true;
   next=await loadSourceAssembly(packet,{signal:job.signal,mode:choice,headPlan,onProgress:p=>{if(job.current())messages.set(status,'loading',' · '+Math.min(100,p.percent??0).toFixed(1)+'%');}});if(!job.current()){releaseRoot(next.root,next);return false;}
   const migration=saved?restoreCurrentAssemblyState(next,saved):null;if(!saved){const s=next.snapshot();s.theme=readDisplay().dark?'dark':'light';s.language=['en','ja','es','ko','ru'].includes(lang())?lang():'en';s.grid=false;next.apply(transferViewAppearance(s,next.packet,carriedAppearance));}
-  active=next;next=null;mode=choice;scene.add(active.root);const b=visibleBounds(),center=b.getCenter(new THREE.Vector3());grid.position.set(center.x,b.min.y-.0019,center.z);chamber.position.copy(center);sync();view();messages.clear(status);cancelLoad.hidden=true;
+  active=next;next=null;mode=choice;scene.add(active.root);const b=visibleBounds(),center=b.getCenter(new THREE.Vector3());grid.position.set(center.x,b.min.y-.0019,center.z);placeSceneFill(b);sync();view();messages.clear(status);cancelLoad.hidden=true;
   if(!renderExport)renderExport=setupRenderExport({renderer,scene,camera,controls,name:machine,three:THREE});$('openRender').disabled=false;return migration??true;
  }catch(e){if(next)releaseRoot(next.root,next);if(job.current()){release();for(const inputs of Object.values(axisControls))for(const input of inputs)input.disabled=true;for(const input of Object.values(colorControls))input.disabled=true;$('openRender').disabled=true;if(e.name==='AbortError')messages.clear(status);else{console.error('Source assembly load failed',e);messages.set(status,saved?'unsafe':'error');}cancelLoad.hidden=true;}return false;}});}
  open.onclick=()=>workspaceTask(()=>load(viewSelect.value));

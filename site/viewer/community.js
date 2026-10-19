@@ -14,12 +14,12 @@ import {communitySchema,validateCommunityState,communityMotionEnabled,communityC
 import {installationFor,installationOptionAvailable} from './ender-mods.mjs?v=5f07c69c7c42ba3f3936';
 import {setupMachineNavigation} from './machines.js?v=ab543d6b01637bc5083f';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
-import {translate,loadLanguage} from './i18n.mjs?v=0cbc88406dc455da6bf4';
+import {translate,loadLanguage} from './i18n.mjs?v=eacd78876ef5a84ef72f';
 import {rememberDisplayControl} from './display-preferences.mjs?v=ab531b33fbcb36317429';
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=742c8844997b5856a728';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {setupRenderExport} from './render-export.js?v=743ea37fb4e25b58aa57';
-import {setupPublicInfo} from './public-info.js?v=dec4a2afe766c1788684';
+import {setupPublicInfo} from './public-info.js?v=801de7389f6c97f07586';
 const descriptions={
  voron_switchwire_250:'Official Switchwire v1 CAD assembly with Stealthburner, CW2 and Revo Voron.',
  '247zero_beta2_120':'247zero BETA2 · 120 mm / ULW carbon gantry / Crazy Volcano / M4 Bowden',
@@ -47,7 +47,7 @@ const sourceNotices={ '247zero_beta2_120':"BETA2 CAD v43 with original V0.2 skir
 sourceNotices.voron_switchwire_250='Source: VoronDesign/Voron-Switchwire, revision 92cc013ca2af94e6c09950dbe05c0973ee49aa00 (GPL-3.0). Preview movement does not establish physical clearance.';
 import {isSourceAssemblyMachine} from './source-assembly-registry.mjs';
 export async function mount(scope){
- if(isSourceAssemblyMachine(new URLSearchParams(location.search).get('machine')))return (await import('./source-assembly.mjs?v=ad6205a5a28f9116204a')).mount(scope);
+ if(isSourceAssemblyMachine(new URLSearchParams(location.search).get('machine')))return (await import('./source-assembly.mjs?v=c2da6ad971d87332a773')).mount(scope);
  await loadLanguage(document.documentElement.lang);if(scope.disposed)return;
  const $=id=>document.getElementById(id),stage=$('stage'),machine=new URLSearchParams(location.search).get('machine')||'ender3_stock_220',t=v=>translate(v,document.documentElement.lang);
  if(!Object.hasOwn(descriptions,machine))throw Error('Unknown community printer');
