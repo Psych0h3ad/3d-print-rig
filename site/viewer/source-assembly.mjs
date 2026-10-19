@@ -3,14 +3,14 @@ import {sourceControlBounds} from './source-control-bounds.mjs';
 import * as THREE from './vendor-r180/three.module.js';
 import{OrbitControls}from'./vendor-r180/OrbitControls.js';
 import{RoomEnvironment}from'./vendor-r180/RoomEnvironment.js';
-import{loadLanguage}from'./i18n.mjs?v=eacd78876ef5a84ef72f';
+import{loadLanguage}from'./i18n.mjs?v=06116fb55be4a2c8759c';
 import{setupMachineNavigation}from'./machines.js?v=ab543d6b01637bc5083f';
 import{sceneLightingState}from'./scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
 import{readDisplay,rememberDisplayControl}from'./display-preferences.mjs?v=ab531b33fbcb36317429';
 import{workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver}from'./workspace-lifecycle.mjs?v=742c8844997b5856a728';
 import{setResponsiveAspect,frameResponsiveView}from'./responsive-camera.mjs';
 import{setupRenderExport}from'./render-export.js?v=743ea37fb4e25b58aa57';
-import{sourceText}from'./source-assembly-messages.mjs?v=18064021df3d80b39318';
+import{sourceText}from'./source-assembly-messages.mjs?v=d3b668baa24372e4bbd0';
 import{loadSourceIndex,loadSourcePacket,sourceHeadPlan,selectedSourcePacket,loadSourceAssembly}from'./source-assembly-loader.mjs?v=3902fb5c51039b3ad51c';
 import{sourceReviewBounds}from'./source-assembly-runtime/receiver_guard309.mjs?v=e42678a5314a2d6c0676';
 import{sourceMinimumContext,sourceMinimumState}from'./source-assembly-runtime/state.mjs?v=e42678a5314a2d6c0676';
@@ -21,7 +21,7 @@ import{requestModelChoice,createMemoryChoiceDialog}from'./source-assembly-runtim
 import{sourceXYMessage}from'./source-assembly-runtime/source_XY309.mjs?v=e42678a5314a2d6c0676';
 import{captureCamera}from './source-assembly-view-state.mjs?v=e42678a5314a2d6c0676';
 import{bindSourceConfigurationLoad,selectSourceCameraPreset}from './source-assembly-configuration-ui.mjs?v=0db9c665fde5b4c30b36';
-import{createSourceUIText,sourceCreditNote,sourceCreditLabel}from './source-assembly-ui-text.mjs?v=da20730c0cea6c1bf0b3';
+import{createSourceUIText,sourceCreditNote,sourceCreditLabel}from './source-assembly-ui-text.mjs?v=01dad6d27511c601b6de';
 import{sourceReferencePanel,sourceCreditRecords}from './source-assembly-references.mjs';
 export async function mount(scope){
  await loadLanguage(document.documentElement.lang);if(scope.disposed)return;
@@ -29,7 +29,7 @@ export async function mount(scope){
  document.body.classList.add('source-assembly');scope.cleanup(()=>document.body.classList.remove('source-assembly'));
  const owned=(tag,attributes={})=>{const n=document.createElement(tag);Object.assign(n,attributes);n.dataset.i18n='off';return n;};
  const messages=createSourceUIText(lang),text=(node,key)=>messages.set(node,key);
- const configuration=$('machineDescription').closest('details');configuration.dataset.i18n='off';
+ const configuration=$('machineDescription').closest('details');configuration.dataset.i18n='off';text(configuration.querySelector('summary'),'configuration');
  $('machineDescription').textContent='';$('references').closest('label').hidden=true;$('installationOptions').hidden=true;
  const viewRow=owned('div'),viewLabel=text(owned('label',{htmlFor:'sourceView'}),'configuration'),viewSelect=owned('select',{id:'sourceView'});for(const[id,key]of[['full','full'],['head','head']])viewSelect.append(text(owned('option',{value:id}),key));
  const open=text(owned('button',{type:'button',className:'primary'}),'open');viewRow.append(viewLabel,viewSelect,open);$('machineDescription').before(viewRow);
@@ -83,8 +83,8 @@ export async function mount(scope){
  const resize=()=>{const b=stage.getBoundingClientRect();renderer.setSize(Math.max(1,b.width),Math.max(1,b.height),false);setResponsiveAspect(camera,controls,b.width,b.height);render();};new WorkspaceResizeObserver(resize).observe(stage);controls.addEventListener('change',render);scope.cleanup(()=>{coordinator.cancel();release();});
  workspaceListen(window,'rig-language-change',()=>{messages.refresh();choose.refresh();if(active)sync();});
  setupMachineNavigation(machine);resize();
- const job=coordinator.start(),index=await loadSourceIndex(job.signal),record=index.models.find(r=>r.id===machine);if(!record)throw Error('Unregistered source assembly');packet=await loadSourcePacket(record,job.signal);headPlan=await sourceHeadPlan(packet,job.signal);if(!job.current())return;$('machineTitle').textContent=record.label;$('machineRevision').textContent=packet.public_author_source.source_revision;
- const sourceReferenceList=owned('ul');sourceReference.replaceChildren(text(owned('summary'),'referenceTitle'),sourceReferenceList,text(owned('p',{className:'foot'}),'step'));
+ const job=coordinator.start(),index=await loadSourceIndex(job.signal),record=index.models.find(r=>r.id===machine);if(!record)throw Error('Unregistered source assembly');packet=await loadSourcePacket(record,job.signal);headPlan=await sourceHeadPlan(packet,job.signal);if(!job.current())return;$('machineTitle').textContent=machine==='rh3d_e3ng_v12_235'?'E3NG v1.2 / 235':record.label;$('machineRevision').textContent=machine==='rh3d_e3ng_v12_235'?'':packet.public_author_source.source_revision;if(machine==='rh3d_e3ng_v12_235')text($('machineDescription'),'installedE3Components');
+ const sourceReferenceList=owned('ul');sourceReference.replaceChildren(text(owned('summary'),'referenceTitle'),owned('p',{className:'foot',textContent:packet.public_author_source.source_revision}),sourceReferenceList,text(owned('p',{className:'foot'}),'step'));
  for(const s of sourceCreditRecords(packet))for(const host of[creditsList,sourceReferenceList]){const row=owned('li'),a=owned('a',{href:s.url,textContent:sourceCreditLabel(s),target:'_blank',rel:'noopener noreferrer'}),version=messages.dynamic(owned('small'),t=>sourceCreditNote(s,t));row.append(a,version);host.append(row);}
  for(const key of new Set([...packet.public_notices.filter(k=>!k.startsWith('stl-')&&k!=='sourceBounds'),...(packet.public_reference_notes??[])]))for(const host of[sourceReference,credits])host.append(text(owned('p',{className:'foot'}),key));
  await load('full');

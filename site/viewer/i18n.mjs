@@ -1,7 +1,7 @@
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
 import {WorkspaceMutationObserver,workspaceListen,onWorkspaceDispose} from './workspace-lifecycle.mjs?v=742c8844997b5856a728';
 import {supportedLanguages,languageNames,normalizeLanguage,chooseLanguage,languageURL} from './languages.mjs?v=ba6a5cd8e1d86849ca34';
-import {definitions,localeLoaders} from './locales/manifest.mjs?v=971da72293a49569df1f';
+import {definitions,localeLoaders} from './locales/manifest.mjs?v=99bad8307806a2813ebd';
 import {createTranslator} from './translation-engine.mjs?v=ad5021536c774dab7b4d';
 export {supportedLanguages,chooseLanguage,languageURL} from './languages.mjs?v=ba6a5cd8e1d86849ca34';
 
@@ -82,13 +82,14 @@ export function setupLanguage({document=globalThis.document,window=globalThis.wi
  observer=new WorkspaceMutationObserver(schedule,window.MutationObserver);
  async function setLanguage(value,{persist=true}={}){
   const lang=normalizeLanguage(value);if(!lang||disposed)return;
-  language=lang;const request=++generation;
+  const request=++generation;
   if(persist){followsStored=false;try{window.localStorage.setItem('3d-print-rig-language',lang)}catch{}}
-  replaceWorkspaceURL(null,'',languageURL(window.location.href,lang),window.history);refresh();
+  // Keep the visible workspace and source controls in one committed language.
+  // A dictionary request must finish before publishing its language-change event.
+  if(!['ja','en'].includes(lang))try{await load(lang)}catch(error){if(!disposed&&request===generation){select.value=language;console.warn('Translation dictionary unavailable; current language is retained.',error)}return}
+  if(disposed||request!==generation)return;
+  language=lang;replaceWorkspaceURL(null,'',languageURL(window.location.href,lang),window.history);refresh();
   window.dispatchEvent(new window.CustomEvent('rig-language-change',{detail:{language:lang}}));
-  if(['ja','en'].includes(lang))return;
-  try{await load(lang);if(disposed||request!==generation)return;refresh();window.dispatchEvent(new window.CustomEvent('rig-language-change',{detail:{language:lang}}))}
-  catch(error){if(!disposed&&request===generation)console.warn('Translation dictionary unavailable; current English text is retained.',error)}
  }
  select.addEventListener('change',()=>setLanguage(select.value));
  // Storage events can arrive after a newer preference. Never echo a received

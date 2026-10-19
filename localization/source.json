@@ -13605,6 +13605,11 @@
       "kind": "message",
       "ja": "補助光の色循環",
       "en": "Color cycle (fill)"
+    },
+    "source_assembly.installed_e3_components": {
+      "kind": "message",
+      "ja": "Orbiter 2 · Revo Voron",
+      "en": "Orbiter 2 · Revo Voron"
     }
   }
 }
