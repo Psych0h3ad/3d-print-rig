@@ -11,7 +11,10 @@ import math
 import re
 from functools import lru_cache
 from pathlib import Path
-import xml.etree.ElementTree as ET
+if __package__:
+    from .wallpaper_svg_parser import parse_svg_document
+else:
+    from wallpaper_svg_parser import parse_svg_document
 
 import numpy as np
 from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageFont
@@ -72,7 +75,7 @@ class Collection:
         path=self.paths[key]; meta=json.loads(path.with_suffix('.json').read_text(encoding='utf8'))
         assert hashlib.sha256(path.with_suffix('.png').read_bytes()).hexdigest()==meta['render_sha256'], key
         assert 'native BREP topology' in meta['renderer'], key
-        doc=ET.fromstring(path.read_text(encoding='utf8'))
+        doc=parse_svg_document(path.read_text(encoding='utf8'))
         paths=[]; size=float(doc.attrib['width'])
         for el in doc.iter('{http://www.w3.org/2000/svg}path'):
             value=el.attrib['d']
