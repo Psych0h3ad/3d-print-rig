@@ -1,6 +1,6 @@
 import {setupLanguage,translate,formatMessage} from '../viewer/i18n.mjs?v=2b50474d1e3a055f1cda';
 import {setupHeaderThemeToggle} from '../viewer/display-preferences.mjs?v=ab531b33fbcb36317429';
-import {matchingRows,supportURL} from './model.mjs?v=4ddcd0ed4a4aee9387d0';
+import {matchingRows,supportSelection,supportURL} from './model.mjs?v=214df1edebca45b7172f';
 import {readSupportJSON,supportDownloadBlob} from './resource.mjs?v=deb6b9eca87c47bcc2e3';
 
 const $=id=>document.getElementById(id),el=(tag,text,className)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(className)n.className=className;return n};
@@ -30,6 +30,7 @@ function renderFilters(){
  for(const d of catalog.dimensions){const label=el('label',dimensions[d]||d),select=el('select');select.id='filter-'+d;label.htmlFor=select.id;select.dataset.i18n='off';select.setAttribute('aria-label',t(dimensions[d]||d));select.append(new Option(t('すべて'),''));
   const candidates=matchingRows(catalog,selection,d),at=catalog.dimensions.indexOf(d)+1,counts=new Map();for(const row of candidates)counts.set(row[at],(counts.get(row[at])||0)+1);
   for(const [i,o]of catalog.options[d].entries())select.append(new Option(t(o.label)+' · '+(counts.get(i)||0),o.id));
+  if(selection[d]&&!catalog.options[d].some(o=>o.id===selection[d]))select.append(new Option(t('CAD未登録')+' · '+selection[d],selection[d]));
   select.value=selection[d]||'';select.classList.toggle('active',!!selection[d]);
   select.onchange=()=>{if(select.value)selection[d]=select.value;else delete selection[d];limit=12;setURL();renderFilters();renderResults();renderExtras()};label.append(select);$('filters').append(label);
  }
@@ -47,7 +48,7 @@ async function choose(id,{restore=false}={}){
  const n=++request;target=index.targets.find(x=>x.id===id)||index.targets.find(x=>x.id==='voron_trident_350');$('target').value=target.id;catalog=null;limit=12;selection={};$('catalog').hidden=true;$('error').hidden=true;
  $('targetSummary').replaceChildren(badge(statusLabels[target.status],target.status));if(target.status==='stock')$('targetSummary').append(el('p','元CADの標準構成を表示。部品の交換・組み合わせは未対応です。'));if(target.status==='missing')$('targetSummary').append(el('p',target.reason||'この仕様の組立CADは未登録です。'));renderHeads();
  if(!target.file){if(target.page){const a=el('a','ビュワーを開く');a.href=supportURL(target,null,null,location.href,language.language);$('targetSummary').append(a)}setURL();return}
- try{if(!cache.has(target.id))cache.set(target.id,await json('./data/'+target.file));if(n!==request)return;catalog=cache.get(target.id);if(restore){const q=new URLSearchParams(location.search);for(const d of catalog.dimensions){const value=q.get(d);if(catalog.options[d].some(o=>o.id===value))selection[d]=value}}
+ try{if(!cache.has(target.id))cache.set(target.id,await json('./data/'+target.file));if(n!==request)return;catalog=cache.get(target.id);if(restore)selection=supportSelection(catalog,location.search);
   setURL();$('catalog').hidden=false;downloadURL=URL.createObjectURL(supportDownloadBlob(catalog));$('download').href=downloadURL;$('download').download=target.file;renderFilters();renderResults();renderExtras();
  }catch(e){if(n===request)error();console.error(e)}
 }
