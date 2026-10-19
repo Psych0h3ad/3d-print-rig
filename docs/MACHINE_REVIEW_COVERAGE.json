@@ -58,7 +58,7 @@
     "scripts/check_workbench_assets.mjs": "c8a614c4c310989573edf4af7be32a91cdcc307dd14e39f8d8a571c47df25187",
     "scripts/community-audit-root.mjs": "a01788743feffb13445c54c692468e553dcee89d28873e9b8ec07a501d2c854e",
     "scripts/compose_eva_options.py": "e74c7bb522372d086d61cf837a075625e0cd81c95aee32f8878577ea658158be",
-    "scripts/compose_wallpaper_collections.py": "952e7e68577ecd313cb2e2d066ca37c2bc87f3018ccfc48c5ddfe91f3c521757",
+    "scripts/compose_wallpaper_collections.py": "3aacd71c2e1f1260fae9ab3f3008d5cdc9622336926596c5c5e181624eff3679",
     "scripts/convert_cocobustor_sources.py": "1644a9a6646850b6d27b5027377a500ff1c182c81de1b0604c6373bead0fff8f",
     "scripts/convert_ducky0_sources.py": "a48f6ddf3d70adf9e83834ff43c08f7938f4d6d8d3c270d3f79946c070c4cc92",
     "scripts/export_monolith_belt_routes.py": "6c8d9170d38ad1b3de41c9e923e95ca5b9e36a53ec2553352548f4fdd8fcac7d",
@@ -263,6 +263,7 @@
     "scripts/test_virtual_printer_klack.mjs": "3c64f7f71af972ee180006eaaca8fef1746318c499976c113d73340098bd1e9a",
     "scripts/test_virtual_printer_replay.mjs": "8e7363439c5b98b9c83fe3d3c3f05162686483ad5f3cb72db537fe71d34d0723",
     "scripts/test_wallpaper_catalog.mjs": "de834a6edb1c596c9fbf4224a19523bbcfd9f5a8a4d0845ae4b1ade63f3697a3",
+    "scripts/test_wallpaper_svg_parser.py": "59162928822e0da6c076eab32f586c86a900025c339e9ff73a5c064109ecc915",
     "scripts/test_workbenches.mjs": "4273619533f0f8119cac3845143c94afd3552263b9b9b865b4da247ad9568a71",
     "scripts/test_workspace_choices.mjs": "331756f57aec11e66dfc93fbff6d44aa1a07469c151539b421ee44b63a774ecb",
     "scripts/test_workspace_configuration_return.mjs": "fb66ff79e6613b7b012c2b485c0069d0a0be6de89f875fbbd0db422b9990566c",
@@ -280,6 +281,7 @@
     "scripts/v0-state-test-runtime.mjs": "ec9b938de3ecb982c56917813a814512c173d0fd5862888008c4cac9b26fd6f2",
     "scripts/viewer_mesh_quality_scope.mjs": "2ea1e605c85fd04c6f901791a1b7da4b4d9e46c450d74ba817f2e375e4c7f19d",
     "scripts/virtu-may-role-contract.mjs": "8a075e5c6b1c53e1396d28cb0fee808c550122c7954e939dc65b4a8db52f3edd",
+    "scripts/wallpaper_svg_parser.py": "7b209593182bc03ed758b21b869c5b852e03be05adbdaefeba2741683e513405",
     "site/APPROVED_DELIVERY.json": "8b65f7d46f9d85c84caa3244fb4ad6448c159122cb1018dea72e5ff32198a8f8",
     "site/ASSEMBLY_CONFIGURATIONS.json": "2542f57d3ddeb63322057bbbf324b154f4e7b1f0c7edf7168fb4155ed042574a",
     "site/assembly_manifest.json": "4fe7fed76a8c003aa652bed57608026dad7b1953ac7b4b589a990d47ff74dadf",
@@ -664,7 +666,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -742,7 +744,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -820,7 +822,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -898,7 +900,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -976,7 +978,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1054,7 +1056,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1132,7 +1134,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1210,7 +1212,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1288,7 +1290,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1366,7 +1368,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1444,7 +1446,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1522,7 +1524,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1600,7 +1602,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1678,7 +1680,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1756,7 +1758,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1834,7 +1836,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1912,7 +1914,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1990,7 +1992,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2068,7 +2070,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2146,7 +2148,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2225,7 +2227,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2304,7 +2306,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2383,7 +2385,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2461,7 +2463,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2538,7 +2540,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2616,7 +2618,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2694,7 +2696,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2772,7 +2774,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2850,7 +2852,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2930,7 +2932,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3008,7 +3010,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3088,7 +3090,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3166,7 +3168,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3244,7 +3246,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3322,7 +3324,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3400,7 +3402,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3478,7 +3480,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3556,7 +3558,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3635,7 +3637,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3713,7 +3715,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3791,7 +3793,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3869,7 +3871,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3947,7 +3949,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4025,7 +4027,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4103,7 +4105,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4181,7 +4183,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4259,7 +4261,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4338,7 +4340,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4417,7 +4419,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4496,7 +4498,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4574,7 +4576,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4652,7 +4654,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4730,7 +4732,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4808,7 +4810,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4886,7 +4888,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4965,7 +4967,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5044,7 +5046,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5122,7 +5124,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5201,7 +5203,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5280,7 +5282,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5358,7 +5360,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5437,7 +5439,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5516,7 +5518,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5594,7 +5596,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5672,7 +5674,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5751,7 +5753,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5829,7 +5831,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5917,7 +5919,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5990,7 +5992,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333",
+          "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         },
         {

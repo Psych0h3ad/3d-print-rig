@@ -60,6 +60,9 @@ python scripts/compose_wallpaper_collections.py --collection ../technical-wallpa
 python scripts/check_wallpaper_compositions.py ../wallpaper-collections
 ```
 
+The CAD SVG reader rejects document types and custom entity declarations;
+no additional XML library is required.
+
 These tools require Pillow and NumPy; the current composer/contact-sheet code
 uses Windows Bahnschrift/Consolas fonts. Inspect all generated contact sheets and
 representative full-resolution PNGs before packaging. Checks cover hashes,

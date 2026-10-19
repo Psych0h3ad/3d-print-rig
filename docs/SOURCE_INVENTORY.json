@@ -85,8 +85,8 @@
     },
     {
       "path": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-      "bytes": 472565,
-      "sha256": "f454dffa32397bccc8de7d54ce362907c98cbc523353e0831605a80db867f333"
+      "bytes": 501683,
+      "sha256": "3ab7a734f4664d92d11eeb0cf902afa58382b0813a76492f871f5c494766a52e"
     },
     {
       "path": "docs/CUSTOM_PTFE_ACTUAL_QA.json",
@@ -210,8 +210,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 362260,
-      "sha256": "72fdddc7b4358a1eafdf1159ef7fe928f3b06ff8fb0112e8956fc2715988b2bb"
+      "bytes": 362479,
+      "sha256": "4e557b3d1d2af1b709fe048bdae4a2d51c4e40f17f4af475ed18b656a01d7e81"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -510,8 +510,8 @@
     },
     {
       "path": "docs/WALLPAPERS.md",
-      "bytes": 4953,
-      "sha256": "69ed8aa81196ac79db7490e241a9296ce3b287ac9a6f36b55cada32e51764481"
+      "bytes": 5067,
+      "sha256": "ddc8e1a12c73908702a2bfaa7a4c9e97bcab6c7b26ed001eb17839b28d5de032"
     },
     {
       "path": "docs/WORKSPACE_NAVIGATION.md",
@@ -820,8 +820,8 @@
     },
     {
       "path": "scripts/compose_wallpaper_collections.py",
-      "bytes": 14945,
-      "sha256": "952e7e68577ecd313cb2e2d066ca37c2bc87f3018ccfc48c5ddfe91f3c521757"
+      "bytes": 15050,
+      "sha256": "3aacd71c2e1f1260fae9ab3f3008d5cdc9622336926596c5c5e181624eff3679"
     },
     {
       "path": "scripts/convert_cocobustor_sources.py",
@@ -1844,6 +1844,11 @@
       "sha256": "de834a6edb1c596c9fbf4224a19523bbcfd9f5a8a4d0845ae4b1ade63f3697a3"
     },
     {
+      "path": "scripts/test_wallpaper_svg_parser.py",
+      "bytes": 3120,
+      "sha256": "59162928822e0da6c076eab32f586c86a900025c339e9ff73a5c064109ecc915"
+    },
+    {
       "path": "scripts/test_workbenches.mjs",
       "bytes": 2585,
       "sha256": "4273619533f0f8119cac3845143c94afd3552263b9b9b865b4da247ad9568a71"
@@ -1927,6 +1932,11 @@
       "path": "scripts/virtu-may-role-contract.mjs",
       "bytes": 2483,
       "sha256": "8a075e5c6b1c53e1396d28cb0fee808c550122c7954e939dc65b4a8db52f3edd"
+    },
+    {
+      "path": "scripts/wallpaper_svg_parser.py",
+      "bytes": 598,
+      "sha256": "7b209593182bc03ed758b21b869c5b852e03be05adbdaefeba2741683e513405"
     },
     {
       "path": "site/APPROVED_DELIVERY.json",
