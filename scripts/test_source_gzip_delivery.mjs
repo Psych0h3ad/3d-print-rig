@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {gzipSync} from 'node:zlib';
+import {createHash} from 'node:crypto';
+import {fetchExactChunk} from '../site/viewer/source-assembly-runtime/exact_gzip_transport.mjs';
+const raw=Uint8Array.from({length:1024*1024},(_,i)=>i%251),encoded=gzipSync(raw),sha=b=>createHash('sha256').update(b).digest('hex');
+const ref={bytes:raw.length,sha256:sha(raw),gzip:{url:'../chunks/model.bin.gz',bytes:encoded.length,sha256:sha(encoded)}};
+let requests=0;const fetchPinned=async(url,spec)=>{requests++;assert.equal(url,ref.gzip.url);assert.equal(spec.sha256,sha(encoded));return encoded;};
+const decoded=await fetchExactChunk(ref,{fetchPinned});assert.deepEqual(new Uint8Array(decoded),raw);assert.equal(requests,1,'One exact compressed representation, no duplicate raw transfer');
+await assert.rejects(fetchExactChunk(ref,{fetchPinned,Decoder:null}),/requires browser gzip decompression/);assert.equal(requests,1,'Unsupported decoder never requests an absent raw URL');
+const changed=structuredClone(ref);changed.gzip.sha256='0'.repeat(64);await assert.rejects(fetchExactChunk(changed,{fetchPinned:async()=>encoded}),/Compressed chunk identity changed/);
+console.log('Actual allocated gzip body: decoded hash exact, no raw duplicate, unsupported decoder explicit and corruption rejected.');

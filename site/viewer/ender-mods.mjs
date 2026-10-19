@@ -7,9 +7,20 @@ export function beltedZWeight([,y,z]){
  if(y>=202.85409)return Math.max(0,Math.min(1,(485.305738-y)/(485.305738-202.85409)));
  return 1;
 }
-export function installationFor(profile,selection){
- const row=Object.entries(profile.configurations||{}).find(([,c])=>c.selection&&Object.entries(selection).every(([k,v])=>c.selection[k]===v));
+export function installationFor(profile,selection,{changed}={}){
+ const rows=Object.entries(profile.configurations||{}).filter(([,c])=>c.selection);
+ let row=rows.find(([,c])=>Object.entries(selection).every(([k,v])=>c.selection[k]===v));
+ // A newly selected head may have its own Z/probe registrations. Keep that
+ // explicit head choice and choose the closest registered companion set.
+ if(!row&&changed==='head')row=rows.filter(([,c])=>c.selection.head===selection.head)
+  .map((entry,index)=>({entry,index,score:['z','probe'].filter(k=>entry[1].selection[k]===selection[k]).length}))
+  .sort((a,b)=>b.score-a.score||a.index-b.index)[0]?.entry;
  if(!row)throw Error('Unavailable installation combination');return row[0];
+}
+export function installationOptionAvailable(profile,field,value,selection){
+ return Object.values(profile.configurations||{}).some(c=>c.selection&&c.selection[field]===value
+  &&(field==='head'||c.selection.head===selection.head)
+  &&(field!=='probe'||c.selection.z===selection.z));
 }
 export function createBeltedZTeeth(root,profile){
  if(profile.machine_id!=='ender3_stock_220'||!profile.mod_controls)return {update(){},meshes:[]};

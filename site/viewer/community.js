@@ -1,26 +1,27 @@
-import {setupGcodePanel} from './gcode-panel.js?v=9f2e2d37bad40bd01847';
+import {setupGcodePanel} from './gcode-panel.js?v=2e8d1cc51fe9511c776c';
 import {displacementGcodeSettings,displacementCoordinateNote,unavailableCoordinateNote} from './gcode-machine-bindings.mjs?v=460777c3fc4d1a74bf27';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import * as THREE from './vendor-r180/three.module.js';
 import {OrbitControls} from './vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
-import {loadCommunity} from './community-loader.mjs?v=0c8eb5a905c68397e3a7';
+import {loadCommunity} from './community-loader.mjs?v=12f029bed6d14ebb0a87';
 import {evaCommunityIndex} from './eva-installations.mjs?v=4dfad49e1f98d4b5b9f2';
-import {applyEvaOptionsProfile,createEvaOptionsController} from './eva-options.mjs?v=c86aeda415394ec73ae8';
+import {applyEvaOptionsProfile,createEvaOptionsController} from './eva-options.mjs?v=f1c031a90a6055d5091f';
 import {withHeadAdditions} from './head-additions.mjs?v=23581035dd1b38fe48e2';
 import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
 import {communitySchema,validateCommunityState,communityMotionEnabled,communityConfiguration} from './community-state.mjs?v=460b3fa78cc503ddb6e6';
-import {installationFor} from './ender-mods.mjs?v=5f07c69c7c42ba3f3936';
-import {setupMachineNavigation} from './machines.js?v=7d90ace65109ee54e1d2';
+import {installationFor,installationOptionAvailable} from './ender-mods.mjs?v=5f07c69c7c42ba3f3936';
+import {setupMachineNavigation} from './machines.js?v=ab543d6b01637bc5083f';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
-import {translate} from './i18n.mjs?v=db391db0c6d1562c776b';
-import {rememberDisplayControl} from './display-preferences.mjs?v=5fd25f289942c501706d';
-import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=a8e49b4993efdc7bac52';
+import {translate,loadLanguage} from './i18n.mjs?v=0cbc88406dc455da6bf4';
+import {rememberDisplayControl} from './display-preferences.mjs?v=ab531b33fbcb36317429';
+import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=742c8844997b5856a728';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
-import {setupRenderExport} from './render-export.js?v=1383105a90d0fa4a63bd';
-import {setupPublicInfo} from './public-info.js?v=c7e65c6912faa5cf0bb8';
+import {setupRenderExport} from './render-export.js?v=743ea37fb4e25b58aa57';
+import {setupPublicInfo} from './public-info.js?v=dec4a2afe766c1788684';
 const descriptions={
+ voron_switchwire_250:'Official Switchwire v1 CAD assembly with Stealthburner, CW2 and Revo Voron.',
  '247zero_beta2_120':'247zero BETA2 · 120 mm / ULW carbon gantry / Crazy Volcano / M4 Bowden',
  doomcube2_350_reference:"DoomCube 2 · 350 mm / double enclosure / original CAD",
  tictac_21_120:"TicTac 2.1 · 120 mm / 新Rat Rigツールヘッド / 公式組立CAD",
@@ -43,7 +44,11 @@ const descriptions={
  snakeoil_proosaxy:'ProosaXY · MK3-SからCoreXY / E3D V6 / Sherpa Mini / 3軸Z',
 };
 const sourceNotices={ '247zero_beta2_120':"BETA2 CAD v43 with original V0.2 skirts. Motion and Bowden routing are previews; firmware limits and whole-machine clearance remain unverified.", tictac_21_120:"Native XYZ movement preview. The floor, calibration cubes and duplicate parts are separated as references.", rook_mk2_120:"Rook MK2 beta with Galileo 2 G2SA and native XYZ movement. Mounting holes and seats were compared; omitted source screws are not synthesized.", the100_v11_165:"Native XYZ movement preview. The duplicate mount is separated as a reference. The source omits belts and the complete Bowden route.", satsuma180_v10:"Native XYZ movement preview with moving XY belts and bed cable.",sovol_sv08_350:'Native XYZ movement preview with moving XY belt envelopes and seated Z carriages. Duplicate parts and disconnected source PTFE/wires are separated as references.',lh_stinger_200:'元CADの延長ノズル構成です。組立治具と短いノズルは参考表示に分けています。電子ボックスはこのCADに含まれていません。',vzbot_330_printed:'公式プリントAWD v1.2を表示しています。元CADのXYベルトは一部のみで、CPAPホースは含まれていません。',ender3_stock_220:'Bowden経路は原本のD4チューブ断面と継手位置を使用した450 mmの表示プレビューです。原CADに全長の配管は含まれません。',antithesis_aether_mk11:'公式CADのアルミ仕様です。組立治具・重複部品・MJF向け代替部品を標準表示から分けています。',snakeoil_xy_idex:'左右のヘッドをX・X2で個別に動かせます。元CADに重複したSherpa Miniを標準表示から分けています。XYベルトは一部のみ含まれます。',snakeoil_3s_kp3s_180:'元CADにはXYベルトと全体の配線経路が含まれていません。',snakeoil_proosaxy:'元CADにはXYベルトと全体の配線経路が含まれていません。'};
+sourceNotices.voron_switchwire_250='Source: VoronDesign/Voron-Switchwire, revision 92cc013ca2af94e6c09950dbe05c0973ee49aa00 (GPL-3.0). Preview movement does not establish physical clearance.';
+import {isSourceAssemblyMachine} from './source-assembly-registry.mjs';
 export async function mount(scope){
+ if(isSourceAssemblyMachine(new URLSearchParams(location.search).get('machine')))return (await import('./source-assembly.mjs?v=b46261030c86ae1a6f87')).mount(scope);
+ await loadLanguage(document.documentElement.lang);if(scope.disposed)return;
  const $=id=>document.getElementById(id),stage=$('stage'),machine=new URLSearchParams(location.search).get('machine')||'ender3_stock_220',t=v=>translate(v,document.documentElement.lang);
  if(!Object.hasOwn(descriptions,machine))throw Error('Unknown community printer');
  const renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);
@@ -91,7 +96,10 @@ export async function mount(scope){
   for(const source of sources){const link=document.createElement('a'),p=document.createElement('p');link.target='_blank';link.rel='noopener';link.href=source.url;link.textContent=[source.author||source.name,source.version||source.revision||source.source_revision||source.commit].filter(Boolean).join(' · ')||new URL(source.url).hostname;p.textContent=source.license||'';$('installationSource').append(link,p)}
   function choices(element,options,value){element.replaceChildren(...Object.entries(options).map(([id,c])=>{const o=document.createElement('option');o.value=id;o.textContent=t(c.label);return o}));element.value=value}
   const mods=current.profile.mod_controls;$('driveOptions').hidden=!mods;
-  if(mods){for(const[k,id]of [['head','headInstallation'],['z','zInstallation'],['probe','probeInstallation']])choices($(id),mods[k],selected.selection[k])}
+  if(mods){for(const[k,id]of [['head','headInstallation'],['z','zInstallation'],['probe','probeInstallation']]){
+   choices($(id),mods[k],selected.selection[k]);
+   for(const option of $(id).options)option.disabled=!installationOptionAvailable(current.profile,k,option.value,selected.selection);
+  }}
   else choices($('headInstallation'),Object.fromEntries(Object.entries(current.profile.configurations||{}).filter(([id])=>!current.profile.eva_installation||id!=='stock')),state.configuration??'stock');
   const eva=current.profile.eva_installation;$('evaHeadLink').hidden=!eva;
   $('sourceModelNotice').hidden=!!eva;
@@ -102,7 +110,7 @@ export async function mount(scope){
   const licenseNotices=selected.source_license_notices||[];$('sourceLicenseNotice').hidden=!licenseNotices.length;$('sourceLicenseNotice').textContent=licenseNotices.map(t).join(' ');
   $('machineDescription').textContent=t(selected.machine_description||descriptions[machine]);const notices=selected.motion_notices||[sourceNotices[machine],...(current.profile.motion_registration?.notices||[])].filter(Boolean);$('sourceNotice').hidden=!notices.length;$('sourceNotice').textContent=notices.map(t).join(' ')
  }
- workspaceListen(window,'rig-language-change',describe);
+ workspaceListen(window,'rig-language-change',async()=>{const language=document.documentElement.lang;await loadLanguage(language);if(language===document.documentElement.lang&&!scope.disposed)describe()});
  try{
   const responses=await Promise.all(['COMMUNITY_MACHINES_ASSETS.json','EVA_INSTALLATIONS.json'].map(name=>fetch('../'+name,{cache:'no-cache'})));if(responses.some(r=>!r.ok))throw Error('Native catalog unavailable');const [nativeIndex,evaRegistry]=await Promise.all(responses.map(r=>r.json()));current=await loadCommunity(evaCommunityIndex(nativeIndex,evaRegistry),machine);scene.add(current.root);axisKeys=Object.keys(current.profile.axes);const zeroAxes=()=>Object.fromEntries(axisKeys.map(k=>{const [lo,hi]=(state?ranges():current.profile.axes)[k];return [k,Math.max(lo,Math.min(0,hi))]}));
   if(current.profile.eva_installation){
@@ -117,7 +125,7 @@ export async function mount(scope){
   $('machineTitle').textContent=current.profile.title;document.title=current.profile.title+' · 3D Print Rig';describe();$('machineRevision').textContent=current.profile.source.version;
   $('nativeSource').href=current.profile.source.cad_url||current.profile.source.upstream_url||current.profile.source.repository+'/tree/'+current.profile.source.revision;$('nativeSource').textContent=(current.profile.source.author||current.profile.source.repository.replace('https://github.com/',''))+' · '+current.profile.source.version;$('nativeLicense').textContent=current.profile.source.license;
   $('references').disabled=!current.manifest.reference_leaves.length;$('installationOptions').hidden=!current.profile.configurations;const requestedInstallation=new URLSearchParams(location.search).get('configuration');await setInstallation('stock');
-  for(const id of ['headInstallation','zInstallation','probeInstallation'])$(id).onchange=()=>workspaceTask(async()=>{animation=null;const selection={head:$('headInstallation').value,z:$('zInstallation').value,probe:$('probeInstallation').value};try{await setInstallation(current.profile.mod_controls?installationFor(current.profile,selection):$('headInstallation').value);$('configurationStatus').textContent=''}catch(e){describe();$('configurationStatus').textContent=e.message}});
+  for(const id of ['headInstallation','zInstallation','probeInstallation'])$(id).onchange=()=>workspaceTask(async()=>{animation=null;const selection={head:$('headInstallation').value,z:$('zInstallation').value,probe:$('probeInstallation').value};try{await setInstallation(current.profile.mod_controls?installationFor(current.profile,selection,{changed:id==='headInstallation'?'head':id==='zInstallation'?'z':'probe'}):$('headInstallation').value);$('configurationStatus').textContent=''}catch(e){describe();$('configurationStatus').textContent=e.message}});
   const movable=communityMotionEnabled(current.profile);$('motionSettings').hidden=!movable;document.body.dataset.motionEnabled=String(movable);
   for(const k of axisKeys){[$(k).min,$(k).max]=ranges()[k];$(k).disabled=!movable;$(k).oninput=()=>{animation=null;const[lo,hi]=ranges()[k];setAxes({...state.axes,[k]:Math.max(lo,Math.min(hi,Number($(k).value)))})}}
   $('motionPause').onclick=()=>{animation=null};$('motionPlay').onclick=()=>{const to=Object.fromEntries(axisKeys.map(k=>[k,current.profile.axes[k][1]]));animation={start:performance.now(),from:{...state.axes},to};render()};$('resetPose').onclick=()=>{animation=null;setAxes(zeroAxes());view()};

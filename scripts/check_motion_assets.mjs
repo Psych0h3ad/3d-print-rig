@@ -14,6 +14,7 @@ import {isTridentBedChain} from '../site/viewer/bed-chain.mjs';
 import {checkRoute,checkGeometry,checkNoCrossing} from './test_v0_belts.mjs';
 import {auditRearEnclosures} from './audit_rear_enclosures.mjs';
 import {auditMicronColors} from './audit_micron_colors.mjs';
+import {auditStealthburnerCutaway} from './audit_stealthburner_cutaway.mjs';
 const root=process.argv[2];if(!root)throw Error('Pass assembled site directory');
 const read=file=>JSON.parse(fs.readFileSync(file));
 const near=(a,b,t=1e-8)=>assert(Math.abs(a-b)<t,`${a} != ${b}`);
@@ -126,8 +127,10 @@ const evidenceDir=process.argv[3]?path.dirname(process.argv[3]):undefined;
 report.recurrence_checks={
  enclosures:await auditRearEnclosures(root,evidenceDir&&path.join(evidenceDir,'REAR_ENCLOSURES_CURRENT.json')),
  micron_materials:await auditMicronColors(root,evidenceDir&&path.join(evidenceDir,'MICRON_MATERIALS_CURRENT.json')),
+ stealthburner_cutaway:await auditStealthburnerCutaway(root,evidenceDir&&path.join(evidenceDir,'STEALTHBURNER_CUTAWAY_CURRENT.json')),
 };
 assert.equal(report.recurrence_checks.enclosures.all_passed,true);
 assert.equal(report.recurrence_checks.micron_materials.all_passed,true);
+assert.equal(report.recurrence_checks.stealthburner_cutaway.passed,true);
 if(process.argv[3])fs.writeFileSync(process.argv[3],JSON.stringify(report,null,2));
 console.log(`Release motion audit finished: ${report.machines.length} machine configurations; ${report.findings.length} unresolved finding(s) recorded separately.`);

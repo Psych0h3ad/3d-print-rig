@@ -20,6 +20,8 @@
 # Locally imported assembly metadata.
 /site/*.json
 !/site/PUBLIC_CATALOG.json
+!/site/APPROVED_DELIVERY.json
+!/site/COMPONENT_LIBRARY.json
 !/site/COMPONENT_ADDITIONS.json
 !/site/COCOBUSTOR_SOURCES.json
 !/site/DUCKY0_SOURCES.json
@@ -43,6 +45,7 @@
 !/site/REQUESTED_MOD_INSTALLATIONS.json
 !/site/TRINITY_ALPHA_INSTALLATIONS.json
 !/site/COMMUNITY_INSTALLATIONS.json
+!/site/SOURCE_ASSEMBLIES.json
 /site/modules/
 /site/toolheads/
 /site/machines/

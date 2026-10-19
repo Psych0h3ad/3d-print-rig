@@ -1,4 +1,4 @@
-"""Build the static viewer with its pinned model bundle."""
+"""Build the static viewer from its exact approved per-file delivery."""
 import argparse
 import hashlib
 import json
@@ -239,50 +239,22 @@ def validate_mounting_evidence(target):
 
 
 def main():
-    parser = argparse.ArgumentParser(description=__doc__)
+    # Build runtime files only from the exact current per-file approved contract.
+    # The historical archive helpers below are fixture APIs, never this entry path.
+    if '--plan-only' in sys.argv or '--verify-inputs' in sys.argv:
+        raise ValueError('Use build_approved_site.py for a non-deploying input plan.')
+    from build_approved_site import main as build_approved
+    parser = argparse.ArgumentParser(add_help=False)
     parser.add_argument('--output', type=Path, required=True)
-    parser.add_argument('--assets', type=Path)
-    args = parser.parse_args()
+    args, _ = parser.parse_known_args()
     target = args.output.resolve()
-    if target == ROOT or target == ROOT / 'site' or target.exists():
-        raise ValueError('Use a new build output directory.')
-    target.mkdir(parents=True)
-    tracked = subprocess.check_output(['git', 'ls-files', '-z', 'site'], cwd=ROOT).decode().split('\0')
-    for name in filter(None, tracked):
-        path = Path(name)
-        relative = path.relative_to('site')
-        destination = target / relative
-        destination.parent.mkdir(parents=True, exist_ok=True)
-        if relative.as_posix() == 'SIBOOR_TRIDENT_ASSETS.json':
-            copy_siboor_author_index(ROOT / path, destination)
-        else:
-            shutil.copyfile(ROOT / path, destination)
-    if args.assets:
-        info = json.loads((target / 'ASSET_BUNDLE.json').read_text(encoding='utf-8'))
-        validate_local_archive(args.assets, info)
-        unpack_assets(args.assets, target)
-    else:
-        info = json.loads((ROOT / 'site/ASSET_BUNDLE.json').read_text(encoding='utf-8'))
-        url = info['url']
-        if not url.startswith('https://github.com/Psych0h3ad/3d-print-rig/releases/download/'):
-            raise ValueError('Unexpected model bundle URL.')
-        with tempfile.TemporaryDirectory() as folder:
-            archive = Path(folder) / 'viewer-models.zip'
-            request = urllib.request.Request(url, headers={'User-Agent': '3D-Print-Rig'})
-            digest = hashlib.sha256()
-            size = 0
-            with urllib.request.urlopen(request, timeout=60) as response, archive.open('wb') as output:
-                for chunk in iter(lambda: response.read(1024 * 1024), b''):
-                    size += len(chunk)
-                    if size > MAX_SITE_BYTES:
-                        raise ValueError('Model bundle is too large.')
-                    digest.update(chunk)
-                    output.write(chunk)
-            if digest.hexdigest() != info['sha256'] or size != info['bytes']:
-                raise ValueError('Model bundle does not match its pinned checksum.')
-            unpack_assets(archive, target)
+    build_approved()
+    from check_entrypoint_delivery import verify as verify_entrypoints
+    inputs_arg = argparse.ArgumentParser(add_help=False)
+    inputs_arg.add_argument('--inputs', type=Path)
+    input_options, _ = inputs_arg.parse_known_args()
+    input_map = json.loads(input_options.inputs.read_bytes()) if input_options.inputs else None
     validate_mounting_evidence(target)
-    merge_components(target)
     subprocess.run(['node', '--experimental-loader', './scripts/three-test-loader.mjs',
                     'scripts/build_support_catalog.mjs', str(target)], cwd=ROOT, check=True)
     # A native mounting/parts-inventory pass does not prove that front apertures
@@ -307,8 +279,14 @@ def main():
     subprocess.run(['node', '--experimental-vm-modules', str(ROOT/'scripts/audit_v0_assembly_assets.mjs'),
                     '--site', str(target), '--report',
                     str(target/'review/v0-assembly-stages.json')], cwd=ROOT, check=True)
+    subprocess.run(['node', '--experimental-vm-modules', '--experimental-loader', './scripts/three-test-loader.mjs',
+                    str(ROOT/'scripts/audit_toolchanger_assets.mjs'), '--site', str(target),
+                    '--report', str(target/'review/toolchangers.json')], cwd=ROOT, check=True)
+    # Check the complete page graph after generated inputs (including support
+    # data) exist, before the artifact can be uploaded.
+    print(json.dumps(verify_entrypoints(target, input_map)))
     size = sum(path.stat().st_size for path in target.rglob('*') if path.is_file())
-    if size > MAX_SITE_BYTES:
+    if size >= MAX_SITE_BYTES:
         raise ValueError('Site exceeds the deployment size budget.')
     print(f'Static viewer built ({size:,} bytes).')
 

@@ -2,6 +2,9 @@ import assert from 'node:assert/strict';
 import {enderBowdenRoute,enderBowdenSpec,createEnderBowden} from '../site/viewer/ender-bowden-route.mjs';
 import {Group} from '../site/viewer/vendor-r180/three.module.js';
 const profile={machine_id:'ender3_stock_220',origin_mm:[0,0,0],basis:[[1,0,0],[0,1,0],[0,0,1]],configurations:{stock:{},belted:{selection:{z:'belted'}},shifted:{rest_offsets_mm:{'00131':[1,2,3]}}}};
+profile.configurations.ng={filament_path:'direct'};
+profile.configurations.ng_revo={filament_path:'direct'};
+profile.configurations.invalid_path={filament_path:'unknown'};
 let samples=0;
 for(const configuration of ['stock','belted','shifted'])for(const z of [-50,0,190])for(const direction of [1,-1])for(let k=0;k<=100;k++){
  const x=direction*(-100+2*k),axes={x,y:100,z},r=enderBowdenRoute(axes,profile,configuration);
@@ -33,4 +36,19 @@ adapter.update({x:0,y:0,z:0},'stock');assert.deepEqual(tube.position.toArray(),[
 assert.deepEqual(Array.from(tube.geometry.attributes.position.array),Array.from(nativeGeometry.attributes.position.array));
 assert.equal(createEnderBowden(new Group(),{...profile,machine_id:'other'}).meshes.length,0);
 assert.throws(()=>adapter.update({x:0,y:0,z:NaN},'stock'));
+const stockReset=Array.from(tube.geometry.attributes.position.array);
+for(const configuration of ['ng','ng_revo','ng']){
+ for(const axes of [{x:0,y:0,z:0},{x:100,y:-100,z:190},{x:-100,y:100,z:-50},{x:0,y:0,z:0}]){
+  assert.equal(enderBowdenRoute(axes,profile,configuration),null);
+  adapter.update(axes,configuration);assert.equal(tube.visible,false);
+  assert.equal(Object.hasOwn(tube.userData,'endpoints_mm'),false);
+  assert.equal(Object.hasOwn(tube.userData,'length_mm'),false);
+  assert.equal(root.children.length,1);
+ }
+ adapter.update({x:0,y:0,z:0},'stock');assert.equal(tube.visible,true);
+ assert.deepEqual(Array.from(tube.geometry.attributes.position.array),stockReset);
+ assert.deepEqual(tube.userData.endpoints_mm,enderBowdenRoute({x:0,y:0,z:0},profile).endpoints_mm);
+}
+assert.throws(()=>enderBowdenRoute({x:0,y:0,z:0},profile,'invalid_path'),/Unknown Ender-3 filament path/);
+assert.throws(()=>adapter.update({x:0,y:0,z:0},'invalid_path'),/Unknown Ender-3 filament path/);
 console.log(`Ender-3 native fitting tube: ${samples} forward/reversed service-length poses, fixed tangents, shifted fittings and exact reset.`);

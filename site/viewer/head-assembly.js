@@ -18,7 +18,7 @@ export function headPlacement(variant,entry,{probe=0,explode=0}={}){
 }
 
 export function partKey(mesh){
- return mesh.userData.part_key||mesh.name.match(/^P([^_]+)__/u)?.[1]||mesh.name;
+ return String(mesh.userData?.part_key??mesh.name.match(/^P(.+?)__/u)?.[1]??mesh.name);
 }
 
 export function headCombinationCount(catalog){

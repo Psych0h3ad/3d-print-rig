@@ -1,0 +1,14 @@
+Micro Swiss NG visualization models
+
+Copyright and original model rights remain with Micro Swiss.
+
+The NG, NG Revo and Universal NG meshes in 3D Print Rig are used with
+permission dated October 16, 2026. This covers derived web visualization
+meshes, display materials and placement, rendered images and screenshots
+for 3D Print Rig. It is separate from the project source-code license and
+does not relicense the original CAD.
+
+Each model identifies its official product page, original CAD download
+link, source filename, acquisition date and SHA-256. Original STEP files
+are not mirrored by this project. Use the official Micro Swiss links to
+obtain them.

@@ -8,7 +8,7 @@ export function createCrossantCovers(root,manifest){
   const node=root.getObjectByName(p.key);if(!node)throw Error('Crossantの構成情報が一致しません。');
   node.traverse(mesh=>{
    if(!mesh.isMesh)return;
-   mesh.material=new THREE.MeshStandardMaterial({color:p.transparent?0xaec4d0:0x24272c,roughness:p.transparent?.22:.55,metalness:0,transparent:p.transparent,opacity:p.transparent?.16:1,depthWrite:!p.transparent,side:THREE.DoubleSide});
+   mesh.material=new THREE.MeshStandardMaterial({color:p.transparent?0xaec4d0:0x24272c,roughness:p.transparent?.22:.55,metalness:0,transparent:p.transparent,opacity:p.transparent?.16:1,depthWrite:!p.transparent,side:THREE.DoubleSide,flatShading:!mesh.geometry.attributes.normal});
    mesh.frustumCulled=false;
    entries.push({spec:p,mesh,source:new Float32Array(mesh.geometry.attributes.position.array)});
   });

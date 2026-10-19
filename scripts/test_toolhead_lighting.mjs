@@ -25,7 +25,7 @@ for(const [value,expected]of normalizationCases){
 // Synthetic controller fixtures exercise coercion and lifecycle only. The actual
 // exported SB stock / Rapido 2 HF / Xol geometry is checked by audit_led_lighting.
 const brightnessScene=new THREE.Scene(),brightnessHead=new THREE.Group();brightnessScene.add(brightnessHead);
-const brightnessMaterial=new THREE.MeshStandardMaterial({color:0xc5c2a3,metalness:.17,roughness:.45});
+const brightnessMaterial=new THREE.MeshStandardMaterial({color:0xc5c2a3,metalness:.17,roughness:.45,emissive:0x091a2b,emissiveIntensity:.27});
 const brightnessMeshes=['logo','nozzle','nozzle','guide'].map((kind,i)=>{
  const mesh=new THREE.Mesh(new THREE.BoxGeometry(.005,.005,.001),brightnessMaterial);
  mesh.name='brightness-fixture-'+kind+'-'+i;brightnessHead.add(mesh);return mesh;
@@ -34,8 +34,16 @@ const fixtureSource=new Map(brightnessMeshes.map(mesh=>[mesh,{geometry:mesh.geom
  positions:mesh.geometry.attributes.position.array.slice(),normals:mesh.geometry.attributes.normal.array.slice(),index:mesh.geometry.index.array.slice()}]));
 const brightnessRig=createToolheadLedRig(brightnessScene,{
  identify:mesh=>{const i=brightnessMeshes.indexOf(mesh);return i>=0&&i<3?{id:'brightness-fixture-'+i,normal:[0,0,1],kind:i?'nozzle':'logo'}:null},
- apertureFor:()=>null,guideFor:mesh=>mesh===brightnessMeshes[3]?{emitter_id:'brightness-fixture-0'}:null
+ apertureFor:()=>null,guideFor:mesh=>mesh===brightnessMeshes[3]?{id:'brightness-guide-fixture',emitter_id:'brightness-fixture-0'}:null
 });
+function checkNativeGuideOff(entry){
+ assert.equal(entry.optical.enabled,0,'No matching powered LED may enable the guide response');
+ for(const [i,m]of entry.materials.entries()){
+  const native=[].concat(entry.originalMaterial)[i];
+  assert(m.emissive.equals(native.emissive));assert.equal(m.emissiveIntensity,native.emissiveIntensity);
+  assert(m.color.equals(native.color));assert.equal(m.metalness,native.metalness);assert.equal(m.roughness,native.roughness);
+ }
+}
 const checkBrightness=(level,expected,{power=true}={})=>{
  const counts=brightnessRig.update({level,power,color:'red',effect:'static'}),gain=power?expected/100:0;
  assert.deepEqual(counts,{installed:3,lit:gain>0?3:0,registered:3});
@@ -46,7 +54,7 @@ const checkBrightness=(level,expected,{power=true}={})=>{
   for(const m of e.surface.materials){assert.equal(m.emissiveIntensity,3.2*gain);assert(Number.isFinite(m.emissiveIntensity));assert(m.emissive.equals(e.light.color));}
  }
  const emitter=brightnessRig.emitters.find(e=>e.identity.id==='brightness-fixture-0');
- for(const g of brightnessRig.guides)for(const m of g.materials){assert.equal(m.emissiveIntensity,emitter.surface.materials[0].emissiveIntensity);assert(m.emissive.equals(emitter.light.color));}
+ for(const g of brightnessRig.guides){if(gain>0){assert.equal(g.optical.enabled,1);for(const m of g.materials){assert.equal(m.emissiveIntensity,emitter.surface.materials[0].emissiveIntensity);assert(m.emissive.equals(emitter.light.color));}}else checkNativeGuideOff(g);}
  return brightnessRig.emitters.map(e=>({point:e.light.intensity,emissive:e.surface.materials[0].emissiveIntensity}));
 };
 const defaultCounts=brightnessRig.update();assert.equal(defaultCounts.lit,3);
@@ -80,11 +88,11 @@ for(const delta of [[.04,.12,.08],[-.04,-.12,.08],[0,0,0]]){
 for(const mesh of brightnessMeshes.slice(0,3)){
  mesh.visible=false;assert.equal(brightnessRig.update({level:300}).lit,2);
  const e=brightnessRig.emitters.find(e=>e.mesh===mesh);assert.equal(e.light.intensity,0);assert.equal(e.surface.materials[0].emissiveIntensity,0);
- if(e.identity.kind==='logo')assert.equal(brightnessRig.guides[0].materials[0].emissiveIntensity,0);
+ if(e.identity.kind==='logo')checkNativeGuideOff(brightnessRig.guides[0]);
  mesh.visible=true;checkBrightness(300,300);
 }
 brightnessHead.visible=false;assert.equal(brightnessRig.update({level:300}).lit,0);for(const e of brightnessRig.emitters)assert.equal(e.light.intensity,0);
-assert.equal(brightnessRig.guides[0].materials[0].emissiveIntensity,0);brightnessHead.visible=true;
+checkNativeGuideOff(brightnessRig.guides[0]);brightnessHead.visible=true;
 brightnessScene.remove(brightnessHead);assert.deepEqual(brightnessRig.update({level:300}),{installed:0,lit:0,registered:0});assert.equal(brightnessRig.guides.length,0);
 for(const [mesh,source]of fixtureSource){assert.equal(mesh.geometry,source.geometry);assert.equal(mesh.material,source.material);assert(!mesh.userData.ledSurface&&!mesh.userData.ledGuide);assert.equal(mesh.children.length,0);}
 brightnessScene.add(brightnessHead);checkBrightness(300,300);brightnessRig.dispose();brightnessRig.dispose();
@@ -111,11 +119,11 @@ parent.add(mesh);assert.equal(rig.update().installed,1,'Reattached native emitte
 rig.dispose();assert.equal(rig.emitters.length,0);
 const guide=new THREE.Mesh(new THREE.BoxGeometry(.002,.002,.001),originalMaterial),parked=new THREE.Group();parked.add(guide);scene.add(parked);
 const bank=new THREE.Group();scene.add(bank);bank.add(parent,parked);
-const guided=createToolheadLedRig(scene,{identify:o=>o===mesh?{id:'fixture-source-disc',normal:[0,0,1],kind:'logo'}:null,apertureFor:()=>null,guideFor:o=>o===guide?{emitter_id:'fixture-source-disc'}:null});
-guided.update();assert.equal(guide.material.emissiveIntensity,0,'A different parked head cannot illuminate an empty optical guide');
+const guided=createToolheadLedRig(scene,{identify:o=>o===mesh?{id:'fixture-source-disc',normal:[0,0,1],kind:'logo'}:null,apertureFor:()=>null,guideFor:o=>o===guide?{id:'fixture-source-guide',emitter_id:'fixture-source-disc'}:null});
+guided.update();checkNativeGuideOff(guided.guides[0]);
 parent.add(guide);guided.update();assert(guide.material.emissiveIntensity>0);assert(guide.material.emissive.equals(mesh.material.emissive));
 originalMaterial.color.set('#00ffff');guided.update();assert.equal(guide.material.color.getHexString(),'00ffff','A printed optical guide must keep following its palette');
 const nativeClone=cloneNativeLedTree(parent),clonedEmitter=nativeClone.children.find(o=>o.name===mesh.name),clonedGuide=nativeClone.children.find(o=>o.isMesh&&o!==clonedEmitter);assert.equal(clonedEmitter.geometry,original);assert.equal(clonedEmitter.children.length,0);assert(!clonedEmitter.userData.ledSurface);assert(!clonedGuide.userData.ledGuide);assert.equal(clonedGuide.material,originalMaterial);assert(mesh.userData.ledSurface);assert(guide.userData.ledGuide);assert.equal(mesh.children.filter(o=>o.isPointLight).length,1);
-guided.update({power:false});assert.equal(guide.material.emissiveIntensity,0);assert.equal(guide.material.color.getHex(),originalMaterial.color.getHex());
+guided.update({power:false});checkNativeGuideOff(guided.guides[0]);assert.equal(guide.material.color.getHex(),originalMaterial.color.getHex());
 guided.dispose();assert.equal(guide.material,originalMaterial);assert.equal(mesh.geometry,original);
 console.log('Toolhead LED controller: 0..300 normalization, default 100, exact 3x point/lens/guide brightness, reverse/zero/off, source-only targeting, RGB timing, motion, hidden/obsolete roots, material/mask isolation and teardown passed. Fixture tests only; no physical photometric certification.');

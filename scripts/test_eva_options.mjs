@@ -8,6 +8,8 @@ import {spawnSync} from 'node:child_process';
 import * as THREE from '../site/viewer/vendor-r180/three.module.js';
 import {displayMotion,nativeMotion,communityConfiguration,validateCommunityState,communitySchema} from '../site/viewer/community-state.mjs';
 import {createCommunityAdapter} from '../site/viewer/community-adapter.mjs';
+import {bindLedSource,verifyLedModelBytes} from '../site/viewer/led-source-binding.mjs';
+import {createInactiveHeadCache,canRestoreInactiveHeadIndices} from '../site/viewer/inactive-head-cache.mjs';
 import {validateEvaOptionsRegistry,validateEvaFlexEndpoints,applyEvaOptionsProfile,createEvaOptionsController} from '../site/viewer/eva-options.mjs';
 
 const clone=structuredClone,hash=v=>createHash('sha256').update(typeof v==='string'||ArrayBuffer.isView(v)?v:JSON.stringify(v)).digest('hex');
@@ -684,7 +686,7 @@ const closure=evaOptionsCodeClosure();
 check(()=>{for(const file of ['site/viewer/vendor/three.module.js','site/viewer/vendor-r180/three.module.js','site/viewer/community-state.mjs',
  'site/viewer/native-motion-flex.mjs','site/viewer/component-assets.mjs','site/viewer/eva-options.mjs','site/viewer/community-loader.mjs'])assert(/^[a-f0-9]{64}$/.test(closure[file]),'Missing release code pin '+file)});
 async function parentIntegrationReview(){
- const files={};for(const name of ['community.js','toolheads.js','machine-heads.js','eva-front-surfaces.mjs'])files[name]=await fs.readFile(new URL('../site/viewer/'+name,import.meta.url),'utf8');
+ const files={};for(const name of ['community.js','toolheads.js','machine-heads.js','eva-front-surfaces.mjs','inactive-head-cache.mjs'])files[name]=await fs.readFile(new URL('../site/viewer/'+name,import.meta.url),'utf8');
  const findings=[],checks=[];let standaloneBankAdapterReview=null,communityStartupReview=null;
  const range=(text,start,end)=>{const a=text.indexOf(start),b=text.indexOf(end,a+start.length);assert(a>=0&&b>a,'Parent source fixture anchor changed');return text.slice(a,b)};
  const line=(file,fragment)=>files[file].slice(0,files[file].indexOf(fragment)).split('\n').length;
@@ -880,14 +882,16 @@ async function parentIntegrationReview(){
   const source=range(files['machine-heads.js'],'export function createMachineHeads(', 'export function ensureMachineHeadControls(').replace(/^export /,'');
   const createRig=new Function('env',`const {THREE,createMonolithGantry,GLTFLoader,workspaceTask,madmaxPtfeAssetSpec,madmaxJointAssetSpec,
    loadExternalComponent,loadEvaFrontSurfaces,applyEvaFrontSurfaces,bindEvaMeshIdentities,partKey,appearanceRole,captureMadmaxJoint,
-   validateEvaMetadata,setMadmaxJointPose,madmaxJointApplies,setRapidoXUhfSurface}=env;
+   validateEvaMetadata,setMadmaxJointPose,madmaxJointApplies,setRapidoXUhfSurface,bindLedSource,createInactiveHeadCache,canRestoreInactiveHeadIndices}=env;
    const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);${source};return createMachineHeads;`)(
-    {THREE,createMonolithGantry:()=>({install:async()=>{},setPalette(){},setDelta(){}}),GLTFLoader:class{},workspaceTask:run=>run(),
+    {THREE,createInactiveHeadCache,canRestoreInactiveHeadIndices,createMonolithGantry:()=>({install:async()=>{},setPalette(){},setDelta(){}}),GLTFLoader:class{},workspaceTask:run=>run(),
      madmaxPtfeAssetSpec:(machine,id,spec)=>spec,madmaxJointAssetSpec:(machine,id,spec)=>spec,
-     loadExternalComponent:async(loader,spec)=>{hiddenLoads++;const meta=clone(f.definitions.get(spec.component_id));return {meta,gltf:{scene:model(meta)}}},
+     loadExternalComponent:async(loader,spec)=>{hiddenLoads++;const meta=clone(f.definitions.get(spec.component_id)),root=model(meta);
+      const ledModelReceipt=await verifyLedModelBytes(root,spec,new TextEncoder().encode(spec.component_id),{catalogId:spec.component_id});
+      return {meta,gltf:{scene:root},ledModelReceipt}},
      loadEvaFrontSurfaces:async()=>({}),applyEvaFrontSurfaces:()=>{},bindEvaMeshIdentities:(meta,root)=>{root.traverse(m=>{if(m.isMesh)assert(meta.parts.some(p=>p.key===m.userData.part_key))})},
      partKey:m=>m.userData.part_key,appearanceRole:p=>p.appearance_role,captureMadmaxJoint:()=>null,
-     validateEvaMetadata:(v,meta)=>assert.equal(v.eva.generation,meta.eva_generation),setMadmaxJointPose(){},madmaxJointApplies:()=>false,setRapidoXUhfSurface(){}});
+     validateEvaMetadata:(v,meta)=>assert.equal(v.eva.generation,meta.eva_generation),setMadmaxJointPose(){},madmaxJointApplies:()=>false,setRapidoXUhfSurface(){},bindLedSource});
   const previousLocation=globalThis.location;globalThis.location={href:'https://example.invalid/viewer/toolheads.html'};
   try{
    const calls=[],active={},spyRig={active,async install(v,state){calls.push({v,state})},async setBank(state){calls.push({bank:state})}};
@@ -950,3 +954,10 @@ const report={passed:!parentIntegration||parentIntegration.passed,fixture_source
 const reportIndex=process.argv.indexOf('--report');if(reportIndex>=0){const destination=process.argv[reportIndex+1];if(!destination)throw Error('Missing fixture report destination');await fs.writeFile(destination,JSON.stringify(report,null,2)+'\n')}
 if(parentIntegration&&!parentIntegration.passed)process.exitCode=1;
 console.log(JSON.stringify(report));
+
+// Host shards retain exact whole-registry coverage without parsing both hosts together.
+const {evaAuditHostSelection}=await import("./audit_eva_options.mjs");
+const shardRegistry={hosts:{hostA:{},hostB:{}}};
+assert.deepEqual(evaAuditHostSelection(shardRegistry),["hostA","hostB"]);
+assert.deepEqual(evaAuditHostSelection(shardRegistry,["hostB"]),["hostB"]);
+for(const bad of [[],["hostA","hostA"],["missing"],"hostA"])assert.throws(()=>evaAuditHostSelection(shardRegistry,bad));

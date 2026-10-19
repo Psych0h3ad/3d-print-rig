@@ -4,7 +4,7 @@ export function printedInventoryRole(row) {
  if (row.role === 'base' || row.role === 'accent') return row.role;
  return row.role === 'optical' && row.component === 'printed' ? 'fixed' : null;
 }
-function visibleInAsset(mesh, root) {
+export function visibleInAsset(mesh, root) {
  for (let node = mesh; node; node = node.parent) {
   if (node.visible === false) return false;
   if (node === root) return true;

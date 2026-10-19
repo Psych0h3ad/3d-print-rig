@@ -1,4 +1,4 @@
-import {setupGcodePanel} from './gcode-panel.js?v=9f2e2d37bad40bd01847';
+import {setupGcodePanel} from './gcode-panel.js?v=2e8d1cc51fe9511c776c';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import * as THREE from 'three';
@@ -6,11 +6,11 @@ import {OrbitControls} from './vendor/OrbitControls.js';
 import {createRemorphAdapter} from './remorph-adapter.mjs';
 import {createRemorphEnvironment} from './remorph-environment.mjs?v=67b979de18933d30ccfd';
 import {loadExtraMachine} from './extra-machine-loader.mjs?v=59a3413417b286024f59';
-import {setupMachineNavigation} from './machines.js?v=7d90ace65109ee54e1d2';
-import {workspaceFrame,WorkspaceResizeObserver,workspaceListen} from './workspace-lifecycle.mjs?v=a8e49b4993efdc7bac52';
+import {setupMachineNavigation} from './machines.js?v=ab543d6b01637bc5083f';
+import {workspaceFrame,WorkspaceResizeObserver,workspaceListen} from './workspace-lifecycle.mjs?v=742c8844997b5856a728';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
-import {setupRenderExport} from './render-export.js?v=1383105a90d0fa4a63bd';
-import {setupPublicInfo} from './public-info.js?v=c7e65c6912faa5cf0bb8';
+import {setupRenderExport} from './render-export.js?v=743ea37fb4e25b58aa57';
+import {setupPublicInfo} from './public-info.js?v=dec4a2afe766c1788684';
 export async function mount(scope){
  const $=id=>document.getElementById(id),id='remorph_beta1_307',stage=$('stage');
  const renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));stage.append(renderer.domElement);

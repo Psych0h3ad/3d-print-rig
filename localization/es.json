@@ -10361,6 +10361,430 @@
     "ui.v0assembly.text_27a2edc43cec8f": {
       "source_revision": "78249940ba60ca4e053b",
       "text": "Compruebe apertura libre con levas abiertas y cierre con 90 grados horarios. r1 usa una llave hexagonal de 5 mm. La vista estática no certifica un barrido sin contacto."
+    },
+    "machine.switchwire.label": {
+      "source_revision": "c87cef020153c07f8819",
+      "text": "VORON Switchwire · CAD oficial v1 / Stealthburner / CW2 / Revo Voron"
+    },
+    "machine.switchwire.description": {
+      "source_revision": "5596a03b4ff622a1014d",
+      "text": "Ensamblaje CAD oficial de Switchwire v1 con Stealthburner, CW2 y Revo Voron."
+    },
+    "machine.switchwire.source_notice": {
+      "source_revision": "0197fc768928179b1f9a",
+      "text": "Fuente: VoronDesign/Voron-Switchwire, revisión 92cc013ca2af94e6c09950dbe05c0973ee49aa00 (GPL-3.0). La vista previa del movimiento no demuestra la holgura física."
+    },
+    "machine.switchwire.chain_notice": {
+      "source_revision": "d16b362cbe4a1793c5fe",
+      "text": "El CAD original contiene 18 eslabones en la cadena Z. El modelo de movimiento utiliza 24 copias de la misma geometría original del eslabón para cubrir todo el recorrido Z. Las tres cadenas se ensamblan en sus ejes de articulación medidos."
+    },
+    "cutaway.skip": {
+      "source_revision": "00006499f3ac2180e69e",
+      "text": "Ir a la explicación"
+    },
+    "cutaway.stage_label": {
+      "source_revision": "ae315e0fbd821287cdde",
+      "text": "Sección 3D de Stealthburner"
+    },
+    "cutaway.title": {
+      "source_revision": "9b31564379aa35b51f6d",
+      "text": "Dentro de Stealthburner"
+    },
+    "cutaway.intro": {
+      "source_revision": "5ed9ff95bacf53123374",
+      "text": "Sigue el filamento desde los engranajes de arrastre hasta la boquilla."
+    },
+    "cutaway.section_view": {
+      "source_revision": "b17045b074f699f463bc",
+      "text": "Vista de sección"
+    },
+    "cutaway.perspective": {
+      "source_revision": "0fe1c2cc6f9cfd094bf5",
+      "text": "Perspectiva"
+    },
+    "cutaway.front": {
+      "source_revision": "bd885bc12aafcab3b929",
+      "text": "Frontal"
+    },
+    "cutaway.loading": {
+      "source_revision": "fa9f718a58a98c927cf9",
+      "text": "Cargando Stealthburner…"
+    },
+    "cutaway.load_error": {
+      "source_revision": "b17fbe9e2b776dd62006",
+      "text": "No se pudo cargar el CAD. Inténtalo de nuevo."
+    },
+    "cutaway.retry": {
+      "source_revision": "8bff8241b405ed6338e5",
+      "text": "Reintentar"
+    },
+    "cutaway.model_name": {
+      "source_revision": "8cf9bddac029fc372c51",
+      "text": "Stealthburner · CW2 · E3D V6"
+    },
+    "cutaway.orbit_hint": {
+      "source_revision": "67a6dbf1afdd57c49108",
+      "text": "Arrastra para girar · Pellizca para acercar"
+    },
+    "cutaway.play": {
+      "source_revision": "7c1bedc7f0a304ad025a",
+      "text": "Reproducir"
+    },
+    "cutaway.pause": {
+      "source_revision": "8193c42042e530e3f5fb",
+      "text": "Pausa"
+    },
+    "cutaway.restart": {
+      "source_revision": "6160dfbcd71429344e41",
+      "text": "Reiniciar"
+    },
+    "cutaway.timeline": {
+      "source_revision": "00c67e3b0cb8451cfd69",
+      "text": "Posición de la explicación"
+    },
+    "cutaway.feed_title": {
+      "source_revision": "4b3e1a6cf658164f6057",
+      "text": "Alimentación"
+    },
+    "cutaway.heater_title": {
+      "source_revision": "63794ec9d82f0b25a0c8",
+      "text": "Calentamiento"
+    },
+    "cutaway.break_title": {
+      "source_revision": "d75ed448b7d4fe9011cd",
+      "text": "Separar las zonas caliente y fría"
+    },
+    "cutaway.fan_title": {
+      "source_revision": "0bf6d548cf9d19746503",
+      "text": "Refrigeración"
+    },
+    "cutaway.feed_text": {
+      "source_revision": "1def0e5e1c1b9ab96948",
+      "text": "Clockwork 2 sujeta el filamento entre dos engranajes dentados y lo empuja, todavía sólido, por la guía hasta el hotend."
+    },
+    "cutaway.heater_text": {
+      "source_revision": "8845dfe8936f13109c3f",
+      "text": "El cartucho calefactor calienta el bloque. El bloque transmite calor a la boquilla y al filamento. Al ablandarse, el filamento puede salir por la boquilla."
+    },
+    "cutaway.break_text": {
+      "source_revision": "63f3278cdb27a1f10588",
+      "text": "La zona fina del heatbreak limita el calor que sube. El disipador elimina el calor restante y mantiene sólido el filamento por encima de la zona de fusión."
+    },
+    "cutaway.fan_text": {
+      "source_revision": "9fa633a19127a7b49514",
+      "text": "El ventilador axial 4010 impulsa aire entre las aletas del disipador para retirar calor. El soplador 5015 independiente lleva aire por los conductos laterales para enfriar el plástico impreso."
+    },
+    "cutaway.section": {
+      "source_revision": "ae62b30fd790015c9e86",
+      "text": "Cortar por el recorrido del filamento"
+    },
+    "cutaway.complete": {
+      "source_revision": "ba2e10cf4c7713bcb63f",
+      "text": "Modelo completo"
+    },
+    "cutaway.filament_axis": {
+      "source_revision": "a439156e5904aaf1faf5",
+      "text": "Eje del filamento"
+    },
+    "cutaway.try": {
+      "source_revision": "83b484d9e8b52a5881bb",
+      "text": "Prueba los controles"
+    },
+    "cutaway.heater": {
+      "source_revision": "3564a6c30e912c1ed496",
+      "text": "Calentador"
+    },
+    "cutaway.fan": {
+      "source_revision": "2bc1681d103714bfa4f7",
+      "text": "Ventilador 4010 del hotend"
+    },
+    "cutaway.filament": {
+      "source_revision": "f2b526e4d38058166f9a",
+      "text": "Flujo de filamento"
+    },
+    "cutaway.heat_colors": {
+      "source_revision": "4fd491fc55ba56afbe89",
+      "text": "Colores de calor"
+    },
+    "cutaway.creep": {
+      "source_revision": "830f42813bd6885c3e92",
+      "text": "Con el ventilador del hotend apagado, el calor puede subir a la zona fría. Si el filamento se ablanda allí, puede atascarse (heat creep)."
+    },
+    "cutaway.scope": {
+      "source_revision": "4aaf394769e4003abe3f",
+      "text": "Los colores de calor, el flujo de filamento y las trazas de aire explican el mecanismo. No predicen temperaturas, caudal ni rendimiento de impresión. Las aspas del CAD original permanecen fijas."
+    },
+    "cutaway.sources": {
+      "source_revision": "529d414d6f751d9dadbe",
+      "text": "Fuentes CAD"
+    },
+    "cutaway.source_note": {
+      "source_revision": "dc1b3ff34507caf2a3fb",
+      "text": "CAD público original con sus posiciones conservadas. La sección es un efecto de visualización y no modifica las piezas originales."
+    },
+    "cutaway.open_builder": {
+      "source_revision": "6bca4776fcd8a43a2da5",
+      "text": "Abrir el configurador de cabezales"
+    },
+    "cutaway.link": {
+      "source_revision": "68ab1344b7123399c39d",
+      "text": "Cómo funciona Stealthburner"
+    },
+    "cutaway.pin_feed": {
+      "source_revision": "e9232b087e1fad6eb0e8",
+      "text": "Arrastre de filamento de Clockwork 2"
+    },
+    "cutaway.pin_heater": {
+      "source_revision": "4afe0ba8af610c22bd44",
+      "text": "Bloque calefactor y boquilla"
+    },
+    "cutaway.pin_break": {
+      "source_revision": "caa96361772b2e84a06e",
+      "text": "Heatbreak y disipador"
+    },
+    "cutaway.pin_fan": {
+      "source_revision": "0e28de219bbd9ef46ca6",
+      "text": "Ventilador 4010 de refrigeración del hotend"
+    },
+    "component.micro_swiss_reference": {
+      "source_revision": "fad2f6d25a8a0def86a9",
+      "text": "CAD de referencia de Micro Swiss. No incluye los ventiladores de refrigeración. Los archivos STEP están disponibles en Micro Swiss."
+    },
+    "component.micro_swiss_universal_reference": {
+      "source_revision": "f2902e060f62f4692e17",
+      "text": "CAD de referencia de la versión Universal. No incluye la placa de montaje, la carcasa del ventilador ni los ventiladores de refrigeración. Los archivos STEP están disponibles en Micro Swiss."
+    },
+    "component.solid_count": {
+      "source_revision": "116b7d28cba30844f17d",
+      "text": "Sólidos: {0}"
+    },
+    "source_assembly.head": {
+      "source_revision": "94eaa4ba78dfd087458a",
+      "text": "Solo cabezal"
+    },
+    "source_assembly.open": {
+      "source_revision": "f722270d60da261458ec",
+      "text": "Abrir modelo"
+    },
+    "source_assembly.cancel": {
+      "source_revision": "2d4f895142fbf6fb0b8b",
+      "text": "Cancelar"
+    },
+    "source_assembly.loading": {
+      "source_revision": "48ff95679923145f1703",
+      "text": "Cargando"
+    },
+    "source_assembly.motion_note": {
+      "source_revision": "0affd86246e7b7d081e7",
+      "text": "Desplazamientos desde el ensamblaje original. Estos límites de vista no son coordenadas del firmware."
+    },
+    "source_assembly.reset": {
+      "source_revision": "ca182127e22bb51b2ca7",
+      "text": "Posición original"
+    },
+    "source_assembly.colors": {
+      "source_revision": "a5998950b8af9c21d672",
+      "text": "Colores de piezas impresas"
+    },
+    "source_assembly.base": {
+      "source_revision": "7a854d13565295e43855",
+      "text": "Base"
+    },
+    "source_assembly.dark": {
+      "source_revision": "2dfad1273d5ce9e1239c",
+      "text": "Interfaz oscura"
+    },
+    "source_assembly.light": {
+      "source_revision": "d83189c4b21354542bad",
+      "text": "Iluminación"
+    },
+    "source_assembly.studio": {
+      "source_revision": "4a69534b457e351790ec",
+      "text": "Estudio"
+    },
+    "source_assembly.rgb": {
+      "source_revision": "50c63d95810b9cb1172d",
+      "text": "Ciclo de color"
+    },
+    "source_assembly.off": {
+      "source_revision": "65f3cb3e5dabde16d8b4",
+      "text": "Apagada"
+    },
+    "source_assembly.source": {
+      "source_revision": "6feeab6f87992266e645",
+      "text": "Fuentes y licencias"
+    },
+    "source_assembly.step": {
+      "source_revision": "3486aa4ee704eda317ac",
+      "text": "La descarga STEP no está disponible."
+    },
+    "source_assembly.attached": {
+      "source_revision": "618b0825b5558132a4de",
+      "text": "Instalada"
+    },
+    "source_assembly.parked": {
+      "source_revision": "b494bf0a3f1cebaf37c8",
+      "text": "Aparcada"
+    },
+    "source_assembly.minimum": {
+      "source_revision": "ff803b2507035833b6a3",
+      "text": "Boquilla en la cama"
+    },
+    "source_assembly.minimum_attached": {
+      "source_revision": "cd236c515f91d7c1d936",
+      "text": "Aparca la sonda antes de llevar la boquilla a la cama."
+    },
+    "source_assembly.minimum_outside": {
+      "source_revision": "588264a12a14f316ba25",
+      "text": "La boquilla está fuera de la superficie de la cama."
+    },
+    "source_assembly.memory": {
+      "source_revision": "10cab26c4101bccab3a4",
+      "text": "Modelo grande"
+    },
+    "source_assembly.memory_estimate": {
+      "source_revision": "a3c80e313a8124a44ba4",
+      "text": "Pico de memoria estimado"
+    },
+    "source_assembly.memory_unknown": {
+      "source_revision": "fec9409cdd9a85c14796",
+      "text": "Se desconoce la RAM disponible para el navegador."
+    },
+    "source_assembly.device_memory": {
+      "source_revision": "c9a68ab6b95f5d6a8f14",
+      "text": "Memoria aproximada del dispositivo"
+    },
+    "source_assembly.memory_note": {
+      "source_revision": "f9507093f573772eb499",
+      "text": "La carga puede ser lenta o superar la memoria del navegador. La vista del cabezal utiliza menos memoria."
+    },
+    "source_assembly.full_load": {
+      "source_revision": "016b4b4466cd38c86b1e",
+      "text": "Cargar modelo completo"
+    },
+    "source_assembly.under": {
+      "source_revision": "53fd480c8b3ba2c3c201",
+      "text": "Inferior"
+    },
+    "source_assembly.orbit": {
+      "source_revision": "0de26be5387884c48e46",
+      "text": "Arrastra para girar · Rueda o gesto para ampliar"
+    },
+    "source_assembly.source_bounds": {
+      "source_revision": "d233656a3270feca43a7",
+      "text": "El movimiento se detiene en límites conocidos del modelo original. No se simulan todas las interferencias."
+    },
+    "source_assembly.illustrative_loom": {
+      "source_revision": "2407c55c687ae88bcfe2",
+      "text": "La funda del cable es ilustrativa; el autor no especifica su diámetro ni su holgura."
+    },
+    "source_assembly.support_notice": {
+      "source_revision": "83f9e7caa5457d9fe613",
+      "text": "Se omite la geometría de instrucciones incrustadas. Las rejillas inferiores conservan las cavidades originales y el perfil de impresión elegido."
+    },
+    "source_assembly.saved": {
+      "source_revision": "a9d5a11fbd9233d3143c",
+      "text": "Configuración guardada."
+    },
+    "source_assembly.loaded": {
+      "source_revision": "3ed8ff767c3311842e30",
+      "text": "Configuración cargada."
+    },
+    "source_assembly.migrated": {
+      "source_revision": "72d9592b56209fa0e85b",
+      "text": "Configuración cargada con la versión actual."
+    },
+    "source_assembly.unsafe": {
+      "source_revision": "8cee6150c9e298417a3f",
+      "text": "Esta configuración no es compatible o cruza un límite del modelo original."
+    },
+    "source_assembly.blocked": {
+      "source_revision": "4a764e20be10c4e9fc42",
+      "text": "Este movimiento alcanza un límite del modelo. Prueba otra posición o trayectoria."
+    },
+    "source_assembly.error": {
+      "source_revision": "4e1bfb54bb319f7df70b",
+      "text": "No se pudo cargar el modelo. Inténtalo de nuevo."
+    },
+    "source_assembly.head_note": {
+      "source_revision": "eab72ae12fdde10b3ac8",
+      "text": "Esta vista contiene el cabezal actual y sus componentes originales. Los controles de movimiento están en la vista completa."
+    },
+    "source_assembly.revision": {
+      "source_revision": "60f3b00fe05338ffdc49",
+      "text": "Versión de la fuente"
+    },
+    "source_assembly.unknown_license": {
+      "source_revision": "848ea247701b360459dc",
+      "text": "La descarga pública del CAD no indica una licencia."
+    },
+    "source_assembly.stl_e3ng": {
+      "source_revision": "f1ab09b13c1a0953446b",
+      "text": "Ensamblado a partir de los STL publicados por RH3D, con CAD público de hardware acreditado por separado. Este modelo no utiliza el ensamblaje CAD de pago de E3NG."
+    },
+    "source_assembly.stl_virtu": {
+      "source_revision": "c7eac43a31e2b3abf2f6",
+      "text": "Ensamblado a partir de los STL de VIRTU publicados por RH3D, con CAD público de hardware acreditado por separado. No se utilizó el ensamblaje STEP de pago del autor."
+    },
+    "source_assembly.controller_bores": {
+      "source_revision": "c79b4b1b4e823e6442b9",
+      "text": "Se han reconstruido cinco orificios de montaje según el plano oficial. Los demás componentes y colores se conservan."
+    },
+    "source_assembly.incomplete_e3": {
+      "source_revision": "e52cf6afe0545e709762",
+      "text": "Esta vista aún no incluye dos ventiladores 6015 para la electrónica ni seis insertos del cabezal. El ajuste de los tornillos de la sonda está en revisión."
+    },
+    "source_assembly.incomplete_v": {
+      "source_revision": "cf292804e3c03279ec24",
+      "text": "La vista aún no incluye tres ventiladores de refrigeración de la electrónica."
+    },
+    "source_assembly.fixed_body_route": {
+      "source_revision": "9da8f5a3df77589c08f7",
+      "text": "Este movimiento toca una pieza fija. Elige otra trayectoria."
+    },
+    "source_assembly.head_fixed_body": {
+      "source_revision": "94b2b653428f6b05afaf",
+      "text": "El cabezal toca una pieza fija."
+    },
+    "source_identity.ws2812_p412": {
+      "source_revision": "adf56ba405ddd75361bd",
+      "text": "P412__LED RGB WS2812"
+    },
+    "source_identity.ws2812_p413": {
+      "source_revision": "6ee34983920e818a2446",
+      "text": "P413__LED RGB WS2812"
+    },
+    "source_identity.ws2812_p416": {
+      "source_revision": "ede3c8f2014e49b38361",
+      "text": "P416__LED RGB WS2812"
+    },
+    "source_identity.voron_led_p414": {
+      "source_revision": "a706c1038b89d9eb3441",
+      "text": "P414__Cubierta transparente del LED Voron"
+    },
+    "source_assembly.reference_title": {
+      "source_revision": "11b1be3c5e40bcba5f75",
+      "text": "Referencias"
+    },
+    "source_assembly.electronics_cooling6015": {
+      "source_revision": "90f980a3e6947bea2878",
+      "text": "Refrigeración de la electrónica: 3 × 6015."
+    },
+    "source_assembly.source_capture6015": {
+      "source_revision": "09f57432199b823acf68",
+      "text": "Los soportes conservan el solapamiento nominal de la fuente. No se ha verificado el ajuste elástico físico."
+    },
+    "source_assembly.unknown_revision": {
+      "source_revision": "e4f3604b0e822412175f",
+      "text": "Versión no especificada"
+    },
+    "source_assembly.repository_license": {
+      "source_revision": "74025eb9e274f41770e9",
+      "text": "Licencia del repositorio"
+    },
+    "source_assembly.component_license": {
+      "source_revision": "0362f4d05dcc539cdc9c",
+      "text": "Condiciones indicadas del componente"
     }
   }
 }

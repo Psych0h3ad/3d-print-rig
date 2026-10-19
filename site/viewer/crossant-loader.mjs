@@ -3,7 +3,7 @@ import * as THREE from './vendor-r180/three.module.js';
 import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
 import {createCrossantAdapter} from './crossant-adapter.mjs?v=53736f33178907042969';
 import {createChainPreview} from './crossant-chain_preview.mjs';
-import {createCrossantCovers} from './crossant-covers.mjs?v=d512e7e5c32543e4232b';
+import {createCrossantCovers} from './crossant-covers.mjs?v=c0781087f44545d6025d';
 import {beginModelLoading,readModelBytes} from './model-progress.mjs?v=beaef781095b6f56b290';
 const digest=async b=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',b)),v=>v.toString(16).padStart(2,'0')).join('');
 export function disposeCrossant(root){

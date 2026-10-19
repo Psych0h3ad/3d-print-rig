@@ -76,6 +76,41 @@ def identity_bridge_descriptors(metadata):
     return result
 
 
+def merge_host_reports(registry, reports):
+    expected_hosts = set(registry['hosts'])
+    expected_variants = {v['id'] for v in registry['variants']}
+    hosts = [h for r in reports for h in r.get('hosts', [])]
+    reviewed = [v for r in reports for v in r.get('coverage', {}).get('reviewed_variants', [])]
+    if (not reports or not all(r.get('passed') is True for r in reports)
+            or len(hosts) != len(expected_hosts)
+            or {h['machine_id'] for h in hosts} != expected_hosts
+            or len(reviewed) != len(expected_variants) or set(reviewed) != expected_variants):
+        raise ValueError('Incomplete, failed or duplicated actual EVA host shards')
+    for report in reports:
+        if (report['production_code_sha256'] != reports[0]['production_code_sha256']
+                or report['input_sha256'] != reports[0]['input_sha256']
+                or report['source_artifacts'] != reports[0]['source_artifacts']):
+            raise ValueError('EVA shard input/code identity changed')
+        selected = report['coverage']['selected_hosts']
+        if len(selected) != 1 or selected[0] not in expected_hosts:
+            raise ValueError('Unexpected EVA shard selection')
+        if {v for v in report['coverage']['reviewed_variants']} != {v['id'] for v in registry['variants'] if v['machine_id'] == selected[0]}:
+            raise ValueError('EVA shard omitted a registered configuration')
+    for host in hosts:
+        source = registry['hosts'][host['machine_id']]
+        configurations = [c['id'] for c in host['configurations']]
+        if len(configurations) != len(source['configurations']) or set(configurations) != set(source['configurations']):
+            raise ValueError('EVA host result omitted or duplicated a configuration')
+        for name in ['model_sha256', 'manifest_sha256', 'profile_sha256']:
+            if host[name] != source[name]:
+                raise ValueError('EVA shard source model identity changed')
+    combined = {**reports[0], 'hosts': hosts,
+                'coverage': {**reports[0]['coverage'], 'selected_hosts': sorted(expected_hosts),
+                             'expected_shard_variants': sorted(expected_variants), 'reviewed_variants': reviewed},
+                'network_requests': sum(r.get('network_requests', 0) for r in reports),
+                'host_shards': len(reports)}
+    return combined
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, required=True)
@@ -206,8 +241,14 @@ def main():
     if args.prepare_only:
         print(f"Prepared {len(ids)} installed options, {len(hosts)} hosts and {len(requests)} pinned public files.")
         return
-    subprocess.run(['node', str(ROOT / 'scripts/audit_eva_options.mjs'), '--inputs', str(file),
-                    '--report', str(out / 'actual-options.json')], cwd=ROOT, check=True)
+    reports = []
+    for machine in registry['hosts']:
+        report_file = out / ('actual-options-' + machine + '.json')
+        subprocess.run(['node', str(ROOT / 'scripts/audit_eva_options.mjs'), '--inputs', str(file),
+                        '--host', machine, '--report', str(report_file)], cwd=ROOT, check=True)
+        reports.append(json.loads(report_file.read_bytes()))
+    combined = merge_host_reports(registry, reports)
+    (out / 'actual-options.json').write_text(json.dumps(combined, indent=2) + '\n', encoding='utf8')
     print(f"EVA options release gate passed: all {len(ids)} installed configurations on {len(hosts)} source hosts.")
 
 

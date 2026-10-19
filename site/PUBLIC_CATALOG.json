@@ -3,38 +3,38 @@
   "sources": [
     {
       "id": "siboor_trident",
-      "label": "SIBOOR Trident JUNE / ClickyClacky・FumePack",
+      "label": "SIBOOR Trident JUNE / ClickyClacky\u30fbFumePack",
       "repository": "Lzhikai/SIBOOR-Voron-Trident-June",
       "author": "Lzhikai",
       "commit": "2dccffff009af5eb511ff6a6bbbdd8a3e8ec5ef3",
       "url": "https://github.com/Lzhikai/SIBOOR-Voron-Trident-June/tree/2dccffff009af5eb511ff6a6bbbdd8a3e8ec5ef3",
-      "scope": "取得した300 mm STEPの原寸アセンブリと350 mmへの再構成。ClickyClackyドアとFumePackを含む。",
-      "license": "再配布条件の明記を確認できず / 公開前に確認が必要",
-      "changes": "配置・表示用三角形化・配色の調整。機種ごとの変更履歴を検証記録に保存。",
+      "scope": "\u53d6\u5f97\u3057\u305f300 mm STEP\u306e\u539f\u5bf8\u30a2\u30bb\u30f3\u30d6\u30ea\u3068350 mm\u3078\u306e\u518d\u69cb\u6210\u3002ClickyClacky\u30c9\u30a2\u3068FumePack\u3092\u542b\u3080\u3002",
+      "license": "\u518d\u914d\u5e03\u6761\u4ef6\u306e\u660e\u8a18\u3092\u78ba\u8a8d\u3067\u304d\u305a / \u516c\u958b\u524d\u306b\u78ba\u8a8d\u304c\u5fc5\u8981",
+      "changes": "\u914d\u7f6e\u30fb\u8868\u793a\u7528\u4e09\u89d2\u5f62\u5316\u30fb\u914d\u8272\u306e\u8abf\u6574\u3002\u6a5f\u7a2e\u3054\u3068\u306e\u5909\u66f4\u5c65\u6b74\u3092\u691c\u8a3c\u8a18\u9332\u306b\u4fdd\u5b58\u3002",
       "version": "300mm STEP SHA256: 0c8eeb356bd3809dee9c0909d182262b714048eaa98bad1da90d33c0d5b1f88e",
-      "notice": "上記commitはキット資料の版。取得したSTEPはこのSHA256で識別し、同commitから取得したCADとは扱いません。"
+      "notice": "\u4e0a\u8a18commit\u306f\u30ad\u30c3\u30c8\u8cc7\u6599\u306e\u7248\u3002\u53d6\u5f97\u3057\u305fSTEP\u306f\u3053\u306eSHA256\u3067\u8b58\u5225\u3057\u3001\u540ccommit\u304b\u3089\u53d6\u5f97\u3057\u305fCAD\u3068\u306f\u6271\u3044\u307e\u305b\u3093\u3002"
     },
     {
       "id": "siboor_v24",
-      "label": "SIBOOR V2.4 旧キット資料",
+      "label": "SIBOOR V2.4 \u65e7\u30ad\u30c3\u30c8\u8cc7\u6599",
       "repository": "Lzhikai/SIBOOR-Voron-2.4",
       "author": "Lzhikai",
       "commit": "9aed87dc4e01b53cebb0604efc2ca1495be7bcf4",
       "url": "https://github.com/Lzhikai/SIBOOR-Voron-2.4/tree/9aed87dc4e01b53cebb0604efc2ca1495be7bcf4",
-      "scope": "資料参照のみ。現在のV2.4表示モデルのCNC形状には使用していません。",
-      "license": "再配布条件の明記を確認できず / 公開前に確認が必要",
-      "changes": "資料参照のみ。形状の変更・追加なし。"
+      "scope": "\u8cc7\u6599\u53c2\u7167\u306e\u307f\u3002\u73fe\u5728\u306eV2.4\u8868\u793a\u30e2\u30c7\u30eb\u306eCNC\u5f62\u72b6\u306b\u306f\u4f7f\u7528\u3057\u3066\u3044\u307e\u305b\u3093\u3002",
+      "license": "\u518d\u914d\u5e03\u6761\u4ef6\u306e\u660e\u8a18\u3092\u78ba\u8a8d\u3067\u304d\u305a / \u516c\u958b\u524d\u306b\u78ba\u8a8d\u304c\u5fc5\u8981",
+      "changes": "\u8cc7\u6599\u53c2\u7167\u306e\u307f\u3002\u5f62\u72b6\u306e\u5909\u66f4\u30fb\u8ffd\u52a0\u306a\u3057\u3002"
     },
     {
       "id": "siboor_v24_aug",
-      "label": "SIBOOR V2.4 AUG CNC キット資料",
+      "label": "SIBOOR V2.4 AUG CNC \u30ad\u30c3\u30c8\u8cc7\u6599",
       "repository": "Lzhikai/SIBOOR-Voron-2.4-AUG",
       "author": "Lzhikai",
       "commit": "e3569bf1dca2e5056a3d4612620255e81cec91f9",
       "url": "https://github.com/Lzhikai/SIBOOR-Voron-2.4-AUG/tree/e3569bf1dca2e5056a3d4612620255e81cec91f9",
-      "scope": "キットの仕様・マニュアル参照のみ。CNC形状は未導入。",
-      "license": "再配布条件の明記を確認できず / 公開前に確認が必要",
-      "changes": "資料参照のみ。形状の変更・追加なし。"
+      "scope": "\u30ad\u30c3\u30c8\u306e\u4ed5\u69d8\u30fb\u30de\u30cb\u30e5\u30a2\u30eb\u53c2\u7167\u306e\u307f\u3002CNC\u5f62\u72b6\u306f\u672a\u5c0e\u5165\u3002",
+      "license": "\u518d\u914d\u5e03\u6761\u4ef6\u306e\u660e\u8a18\u3092\u78ba\u8a8d\u3067\u304d\u305a / \u516c\u958b\u524d\u306b\u78ba\u8a8d\u304c\u5fc5\u8981",
+      "changes": "\u8cc7\u6599\u53c2\u7167\u306e\u307f\u3002\u5f62\u72b6\u306e\u5909\u66f4\u30fb\u8ffd\u52a0\u306a\u3057\u3002"
     },
     {
       "id": "voron_trident",
@@ -59,7 +59,7 @@
       "url": "https://github.com/VoronDesign/Voron-2/tree/a192410e27ea345644ae5c4b29b4c9c40cbe1a73",
       "scope": "Printed R2 assemblies in 250 / 300 / 350 mm, derived from the official 250 mm assembly.",
       "license": "GPL-3.0",
-      "changes": "350 mm寸法への再配置。選択部品の重複を除き、スカート・ラッチ・固定具・ベッドの取付面を調整。 Zレール固定用ナットをM3へ交換してレール裏の溝へ配置。XYを含む68組のレール固定ナットをボルト軸に合わせて調整。 Complete 250/300/350 upper and lower latch groups are registered to the door seam and native magnet recesses. Packages separately retain actual 250/300/350 mm reference dimensions derived from the pinned official 250 mm author CAD. Original native skirt/mount seats and paired Frame Tnuts are rigidly corrected. Selected mate scope only; complete printer clearance and manufacturer kit identity are not certified.",
+      "changes": "350 mm\u5bf8\u6cd5\u3078\u306e\u518d\u914d\u7f6e\u3002\u9078\u629e\u90e8\u54c1\u306e\u91cd\u8907\u3092\u9664\u304d\u3001\u30b9\u30ab\u30fc\u30c8\u30fb\u30e9\u30c3\u30c1\u30fb\u56fa\u5b9a\u5177\u30fb\u30d9\u30c3\u30c9\u306e\u53d6\u4ed8\u9762\u3092\u8abf\u6574\u3002 Z\u30ec\u30fc\u30eb\u56fa\u5b9a\u7528\u30ca\u30c3\u30c8\u3092M3\u3078\u4ea4\u63db\u3057\u3066\u30ec\u30fc\u30eb\u88cf\u306e\u6e9d\u3078\u914d\u7f6e\u3002XY\u3092\u542b\u308068\u7d44\u306e\u30ec\u30fc\u30eb\u56fa\u5b9a\u30ca\u30c3\u30c8\u3092\u30dc\u30eb\u30c8\u8ef8\u306b\u5408\u308f\u305b\u3066\u8abf\u6574\u3002 Complete 250/300/350 upper and lower latch groups are registered to the door seam and native magnet recesses. Packages separately retain actual 250/300/350 mm reference dimensions derived from the pinned official 250 mm author CAD. Original native skirt/mount seats and paired Frame Tnuts are rigidly corrected. Selected mate scope only; complete printer clearance and manufacturer kit identity are not certified.",
       "license_url": "../licenses/voron_v24/LICENSE",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
     },
@@ -70,9 +70,9 @@
       "author": "VoronDesign",
       "commit": "8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b",
       "url": "https://github.com/VoronDesign/Voron-Stealthburner/tree/8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b",
-      "scope": "SBのRevo Voron・Rapido HF・Dragon SF/HF・V6用CW2マウント、前面本体、CW2修復用形状。",
+      "scope": "SB\u306eRevo Voron\u30fbRapido HF\u30fbDragon SF/HF\u30fbV6\u7528CW2\u30de\u30a6\u30f3\u30c8\u3001\u524d\u9762\u672c\u4f53\u3001CW2\u4fee\u5fa9\u7528\u5f62\u72b6\u3002",
       "license": "GPL-3.0",
-      "changes": "配置・表示用三角形化・配色の調整。機種ごとの変更履歴を検証記録に保存。",
+      "changes": "\u914d\u7f6e\u30fb\u8868\u793a\u7528\u4e09\u89d2\u5f62\u5316\u30fb\u914d\u8272\u306e\u8abf\u6574\u3002\u6a5f\u7a2e\u3054\u3068\u306e\u5909\u66f4\u5c65\u6b74\u3092\u691c\u8a3c\u8a18\u9332\u306b\u4fdd\u5b58\u3002",
       "license_url": "../licenses/stealthburner/LICENSE",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
     },
@@ -83,12 +83,12 @@
       "author": "Armchair-Heavy-Industries",
       "commit": "c00b13ef851d38fef6e295e18296650e1ca50d7e",
       "url": "https://github.com/Armchair-Heavy-Industries/Xol-Toolhead/tree/c00b13ef851d38fef6e295e18296650e1ca50d7e",
-      "scope": "Xol本体、6/9 mmクランプ、Revo/Rapido/Dragon用マウント、Dragon UHF、押出機マウント。 Cartographer V1–V3/V4・Beacon RevD/RevH用のNormal/UHFマウント。 Galileo 2 G2SAおよびLGX Lite用の専用マウント。LGX本体はメーカー参考CAD。",
-      "license": "CC BY-NC-SA 4.0（部品別例外あり）",
-      "changes": "配置・表示用三角形化・配色の調整。機種ごとの変更履歴を検証記録に保存。 対象基板の寸法に合わせて一部の印刷マウントへ局所的な部品逃げを追加。必要な絶縁スペーサーは構成ごとに表示。 共有マウントのフィレット端の自己交差には0.05 mm厚の局所的な逃げを追加し、STEP読み戻しで有効性を確認。 プローブ基板のコネクタをホットエンドから離す方向に配置。",
+      "scope": "Xol\u672c\u4f53\u30016/9 mm\u30af\u30e9\u30f3\u30d7\u3001Revo/Rapido/Dragon\u7528\u30de\u30a6\u30f3\u30c8\u3001Dragon UHF\u3001\u62bc\u51fa\u6a5f\u30de\u30a6\u30f3\u30c8\u3002 Cartographer V1\u2013V3/V4\u30fbBeacon RevD/RevH\u7528\u306eNormal/UHF\u30de\u30a6\u30f3\u30c8\u3002 Galileo 2 G2SA\u304a\u3088\u3073LGX Lite\u7528\u306e\u5c02\u7528\u30de\u30a6\u30f3\u30c8\u3002LGX\u672c\u4f53\u306f\u30e1\u30fc\u30ab\u30fc\u53c2\u8003CAD\u3002",
+      "license": "CC BY-NC-SA 4.0\uff08\u90e8\u54c1\u5225\u4f8b\u5916\u3042\u308a\uff09",
+      "changes": "\u914d\u7f6e\u30fb\u8868\u793a\u7528\u4e09\u89d2\u5f62\u5316\u30fb\u914d\u8272\u306e\u8abf\u6574\u3002\u6a5f\u7a2e\u3054\u3068\u306e\u5909\u66f4\u5c65\u6b74\u3092\u691c\u8a3c\u8a18\u9332\u306b\u4fdd\u5b58\u3002 \u5bfe\u8c61\u57fa\u677f\u306e\u5bf8\u6cd5\u306b\u5408\u308f\u305b\u3066\u4e00\u90e8\u306e\u5370\u5237\u30de\u30a6\u30f3\u30c8\u3078\u5c40\u6240\u7684\u306a\u90e8\u54c1\u9003\u3052\u3092\u8ffd\u52a0\u3002\u5fc5\u8981\u306a\u7d76\u7e01\u30b9\u30da\u30fc\u30b5\u30fc\u306f\u69cb\u6210\u3054\u3068\u306b\u8868\u793a\u3002 \u5171\u6709\u30de\u30a6\u30f3\u30c8\u306e\u30d5\u30a3\u30ec\u30c3\u30c8\u7aef\u306e\u81ea\u5df1\u4ea4\u5dee\u306b\u306f0.05 mm\u539a\u306e\u5c40\u6240\u7684\u306a\u9003\u3052\u3092\u8ffd\u52a0\u3057\u3001STEP\u8aad\u307f\u623b\u3057\u3067\u6709\u52b9\u6027\u3092\u78ba\u8a8d\u3002 \u30d7\u30ed\u30fc\u30d6\u57fa\u677f\u306e\u30b3\u30cd\u30af\u30bf\u3092\u30db\u30c3\u30c8\u30a8\u30f3\u30c9\u304b\u3089\u96e2\u3059\u65b9\u5411\u306b\u914d\u7f6e\u3002",
       "license_url": "../licenses/xol/LICENSE",
       "license_sha256": "57e1f486c22021dd2fb38a96463d7261e02df3235c2d35ce5c104abb17a5df4b",
-      "notice": "G2SA / WWG2はGPL、Annex DFAは別ライセンス。現在の構成には含めていません。GPLとCCの適用範囲を部品単位で保持します。"
+      "notice": "G2SA / WWG2\u306fGPL\u3001Annex DFA\u306f\u5225\u30e9\u30a4\u30bb\u30f3\u30b9\u3002\u73fe\u5728\u306e\u69cb\u6210\u306b\u306f\u542b\u3081\u3066\u3044\u307e\u305b\u3093\u3002GPL\u3068CC\u306e\u9069\u7528\u7bc4\u56f2\u3092\u90e8\u54c1\u5358\u4f4d\u3067\u4fdd\u6301\u3057\u307e\u3059\u3002"
     },
     {
       "id": "rapido",
@@ -97,36 +97,36 @@
       "author": "Phaetus",
       "commit": "d1f1a5d58db21d7ed0e690d34ddca5f89e339d8a",
       "url": "https://github.com/Phaetus/Rapido-2/tree/d1f1a5d58db21d7ed0e690d34ddca5f89e339d8a",
-      "scope": "HFはメーカー原本。UHFはSIBOOR／Xolアセンブリに含まれる形状を使用。",
-      "license": "再配布条件の明記を確認できず / 公開前に確認が必要",
-      "changes": "配置・表示用三角形化・配色の調整。機種ごとの変更履歴を検証記録に保存。",
-      "version": "HF原本 Product Models/Rapdio 2-hf.prt.stp / SHA256 ee13d671002ff07406c56738aa77278f8f56b55d737faf7e14ff7f6b16cb21c7。UHF取得版はSIBOOR・Xolの記録を参照。"
+      "scope": "HF\u306f\u30e1\u30fc\u30ab\u30fc\u539f\u672c\u3002UHF\u306fSIBOOR\uff0fXol\u30a2\u30bb\u30f3\u30d6\u30ea\u306b\u542b\u307e\u308c\u308b\u5f62\u72b6\u3092\u4f7f\u7528\u3002",
+      "license": "\u518d\u914d\u5e03\u6761\u4ef6\u306e\u660e\u8a18\u3092\u78ba\u8a8d\u3067\u304d\u305a / \u516c\u958b\u524d\u306b\u78ba\u8a8d\u304c\u5fc5\u8981",
+      "changes": "\u914d\u7f6e\u30fb\u8868\u793a\u7528\u4e09\u89d2\u5f62\u5316\u30fb\u914d\u8272\u306e\u8abf\u6574\u3002\u6a5f\u7a2e\u3054\u3068\u306e\u5909\u66f4\u5c65\u6b74\u3092\u691c\u8a3c\u8a18\u9332\u306b\u4fdd\u5b58\u3002",
+      "version": "HF\u539f\u672c Product Models/Rapdio 2-hf.prt.stp / SHA256 ee13d671002ff07406c56738aa77278f8f56b55d737faf7e14ff7f6b16cb21c7\u3002UHF\u53d6\u5f97\u7248\u306fSIBOOR\u30fbXol\u306e\u8a18\u9332\u3092\u53c2\u7167\u3002"
     },
     {
       "id": "disco",
       "label": "Disco on a Stick XXL",
       "repository": "VoronDesign/Voron-Hardware",
-      "author": "bartlammers / BLAMM!（VoronDesign/Voron-Hardware）",
+      "author": "bartlammers / BLAMM!\uff08VoronDesign/Voron-Hardware\uff09",
       "commit": "5e5fca5761380576a8bb77f7301cdee90afa0e6e",
       "url": "https://github.com/VoronDesign/Voron-Hardware/tree/5e5fca5761380576a8bb77f7301cdee90afa0e6e",
-      "scope": "SIBOOR / VORON Trident 350とVORON V2.4 350の上部側面2020フレームに取り付ける照明。",
+      "scope": "SIBOOR / VORON Trident 350\u3068VORON V2.4 350\u306e\u4e0a\u90e8\u5074\u97622020\u30d5\u30ec\u30fc\u30e0\u306b\u53d6\u308a\u4ed8\u3051\u308b\u7167\u660e\u3002",
       "license": "GPL-3.0",
-      "changes": "公式PCBと2020ブラケットを固定フレームへ配置。V2.4は上部フレームが30 mm高いため取付をZ+30 mm。定性的なRGB発光・明るさ・暗室表示。",
+      "changes": "\u516c\u5f0fPCB\u30682020\u30d6\u30e9\u30b1\u30c3\u30c8\u3092\u56fa\u5b9a\u30d5\u30ec\u30fc\u30e0\u3078\u914d\u7f6e\u3002V2.4\u306f\u4e0a\u90e8\u30d5\u30ec\u30fc\u30e0\u304c30 mm\u9ad8\u3044\u305f\u3081\u53d6\u4ed8\u3092Z+30 mm\u3002\u5b9a\u6027\u7684\u306aRGB\u767a\u5149\u30fb\u660e\u308b\u3055\u30fb\u6697\u5ba4\u8868\u793a\u3002",
       "license_url": "../licenses/disco/LICENSE.md",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
     },
     {
       "id": "gkd",
-      "label": "Trident CNCガントリーの原設計",
+      "label": "Trident CNC\u30ac\u30f3\u30c8\u30ea\u30fc\u306e\u539f\u8a2d\u8a08",
       "repository": "GKD-Team/Voron-Trident-CNC-Gantry",
-      "author": "ShenLin / GKD Team（AWD原案：aTinyShellScript・DoubleT）",
+      "author": "ShenLin / GKD Team\uff08AWD\u539f\u6848\uff1aaTinyShellScript\u30fbDoubleT\uff09",
       "commit": "a073f12e6d1b1115846662cb0c45ac46cb8aae3a",
       "url": "https://github.com/GKD-Team/Voron-Trident-CNC-Gantry/tree/a073f12e6d1b1115846662cb0c45ac46cb8aae3a",
       "license": "GPL-3.0",
       "license_url": "../licenses/gkd/LICENSE",
-      "scope": "原設計・採用予定品の資料照合。現在のビューアーへCADを追加していません。",
-      "changes": "変更・再配布なし。",
-      "notice": "SIBOOR公式資料がリンクするShenLinの設計。現行SIBOOR各部品との同一性は未確認。"
+      "scope": "\u539f\u8a2d\u8a08\u30fb\u63a1\u7528\u4e88\u5b9a\u54c1\u306e\u8cc7\u6599\u7167\u5408\u3002\u73fe\u5728\u306e\u30d3\u30e5\u30fc\u30a2\u30fc\u3078CAD\u3092\u8ffd\u52a0\u3057\u3066\u3044\u307e\u305b\u3093\u3002",
+      "changes": "\u5909\u66f4\u30fb\u518d\u914d\u5e03\u306a\u3057\u3002",
+      "notice": "SIBOOR\u516c\u5f0f\u8cc7\u6599\u304c\u30ea\u30f3\u30af\u3059\u308bShenLin\u306e\u8a2d\u8a08\u3002\u73fe\u884cSIBOOR\u5404\u90e8\u54c1\u3068\u306e\u540c\u4e00\u6027\u306f\u672a\u78ba\u8a8d\u3002"
     },
     {
       "id": "chaotic_v2",
@@ -137,21 +137,21 @@
       "url": "https://github.com/Chaoticlab/Voron-2.4-CNC-Parts-Kit-V2.0/tree/e1d1451b613b7dfc9033e9597e41d097c80ae578",
       "license": "CC BY-NC-ND 4.0",
       "license_url": "../licenses/chaotic_v2/LICENSE.md",
-      "scope": "原設計・採用予定品の資料照合。現在のビューアーへCADを追加していません。",
-      "changes": "変更・再配布なし。",
-      "notice": "公開リポジトリはマニュアルのみ。組込み用の全CNC CADと、改変した組合せを公開する許諾が必要。"
+      "scope": "\u539f\u8a2d\u8a08\u30fb\u63a1\u7528\u4e88\u5b9a\u54c1\u306e\u8cc7\u6599\u7167\u5408\u3002\u73fe\u5728\u306e\u30d3\u30e5\u30fc\u30a2\u30fc\u3078CAD\u3092\u8ffd\u52a0\u3057\u3066\u3044\u307e\u305b\u3093\u3002",
+      "changes": "\u5909\u66f4\u30fb\u518d\u914d\u5e03\u306a\u3057\u3002",
+      "notice": "\u516c\u958b\u30ea\u30dd\u30b8\u30c8\u30ea\u306f\u30de\u30cb\u30e5\u30a2\u30eb\u306e\u307f\u3002\u7d44\u8fbc\u307f\u7528\u306e\u5168CNC CAD\u3068\u3001\u6539\u5909\u3057\u305f\u7d44\u5408\u305b\u3092\u516c\u958b\u3059\u308b\u8a31\u8afe\u304c\u5fc5\u8981\u3002"
     },
     {
       "id": "orbiter2",
       "label": "Orbiter V2.0",
-      "repository": "Orbiter Projects / 公式配布",
+      "repository": "Orbiter Projects / \u516c\u5f0f\u914d\u5e03",
       "author": "dr. Lorincz Robert / LDO Motors",
       "version": "V2.0 mockup ZIP / SHA256 a8b041652022fa350f7ddc4fb0f7962f7df02eabeb3c00df435a30b07de59818",
       "url": "https://www.orbiterprojects.com/orbiter-v2-0/",
-      "license": "CC Attribution–NonCommercial–ShareAlike（取得ファイルに版番号の明記なし）",
+      "license": "CC Attribution\u2013NonCommercial\u2013ShareAlike\uff08\u53d6\u5f97\u30d5\u30a1\u30a4\u30eb\u306b\u7248\u756a\u53f7\u306e\u660e\u8a18\u306a\u3057\uff09",
       "license_url": "../licenses/orbiter2/LICENSE.txt",
-      "scope": "Xol Orbiter2の押出機・内部機構。",
-      "changes": "配置・表示用三角形化・配色を変更。"
+      "scope": "Xol Orbiter2\u306e\u62bc\u51fa\u6a5f\u30fb\u5185\u90e8\u6a5f\u69cb\u3002",
+      "changes": "\u914d\u7f6e\u30fb\u8868\u793a\u7528\u4e09\u89d2\u5f62\u5316\u30fb\u914d\u8272\u3092\u5909\u66f4\u3002"
     },
     {
       "id": "three",
@@ -162,8 +162,8 @@
       "url": "https://github.com/mrdoob/three.js/tree/r180",
       "license": "MIT",
       "license_url": "./vendor/THREE_LICENSE.txt",
-      "scope": "3D描画・GLTF読み込み・カメラ操作。",
-      "changes": "公式モジュールを同梱。"
+      "scope": "3D\u63cf\u753b\u30fbGLTF\u8aad\u307f\u8fbc\u307f\u30fb\u30ab\u30e1\u30e9\u64cd\u4f5c\u3002",
+      "changes": "\u516c\u5f0f\u30e2\u30b8\u30e5\u30fc\u30eb\u3092\u540c\u68b1\u3002"
     },
     {
       "id": "clickyclacky",
@@ -171,29 +171,29 @@
       "repository": "tanaes/whopping_Voron_mods",
       "author": "tanaes / whoppingpochard",
       "commit": "62268ed817878e54d6a1186882060aa8368d4f0f",
-      "version": "原設計を照合した参考commit。使用形状はSIBOOR配布版／300mm STEP SHA256で識別。",
+      "version": "\u539f\u8a2d\u8a08\u3092\u7167\u5408\u3057\u305f\u53c2\u8003commit\u3002\u4f7f\u7528\u5f62\u72b6\u306fSIBOOR\u914d\u5e03\u7248\uff0f300mm STEP SHA256\u3067\u8b58\u5225\u3002",
       "url": "https://github.com/tanaes/whopping_Voron_mods/tree/62268ed817878e54d6a1186882060aa8368d4f0f/clickyclacky_door",
-      "license": "原設計 GPL-3.0。SIBOOR版の変更範囲・対応版は未確定。",
+      "license": "\u539f\u8a2d\u8a08 GPL-3.0\u3002SIBOOR\u7248\u306e\u5909\u66f4\u7bc4\u56f2\u30fb\u5bfe\u5fdc\u7248\u306f\u672a\u78ba\u5b9a\u3002",
       "license_url": "../licenses/clickyclacky/LICENSE",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
-      "scope": "SIBOOR本体に含まれるドア・フィルターの原作者クレジット。参考commitからCADを追加取得していません。",
-      "changes": "350への配置・寸法調整・表示用三角形化・配色。",
-      "notice": "SIBOORのキットマニュアルが原設計を参照。使用したSTLの版・SHA256はSOURCE_DOWNLOADS.json、本体CADはSOURCE_PROVENANCE.jsonに記録。原設計のGPLを他のSIBOOR独自部品の許可とは扱いません。"
+      "scope": "SIBOOR\u672c\u4f53\u306b\u542b\u307e\u308c\u308b\u30c9\u30a2\u30fb\u30d5\u30a3\u30eb\u30bf\u30fc\u306e\u539f\u4f5c\u8005\u30af\u30ec\u30b8\u30c3\u30c8\u3002\u53c2\u8003commit\u304b\u3089CAD\u3092\u8ffd\u52a0\u53d6\u5f97\u3057\u3066\u3044\u307e\u305b\u3093\u3002",
+      "changes": "350\u3078\u306e\u914d\u7f6e\u30fb\u5bf8\u6cd5\u8abf\u6574\u30fb\u8868\u793a\u7528\u4e09\u89d2\u5f62\u5316\u30fb\u914d\u8272\u3002",
+      "notice": "SIBOOR\u306e\u30ad\u30c3\u30c8\u30de\u30cb\u30e5\u30a2\u30eb\u304c\u539f\u8a2d\u8a08\u3092\u53c2\u7167\u3002\u4f7f\u7528\u3057\u305fSTL\u306e\u7248\u30fbSHA256\u306fSOURCE_DOWNLOADS.json\u3001\u672c\u4f53CAD\u306fSOURCE_PROVENANCE.json\u306b\u8a18\u9332\u3002\u539f\u8a2d\u8a08\u306eGPL\u3092\u4ed6\u306eSIBOOR\u72ec\u81ea\u90e8\u54c1\u306e\u8a31\u53ef\u3068\u306f\u6271\u3044\u307e\u305b\u3093\u3002"
     },
     {
       "id": "fumepack",
       "label": "FumePack",
       "repository": "Exerqtor/Voron",
-      "author": "Exerqtor（原案・前身：smooshworx、DoubleT、oab1、Nevermore）",
+      "author": "Exerqtor\uff08\u539f\u6848\u30fb\u524d\u8eab\uff1asmooshworx\u3001DoubleT\u3001oab1\u3001Nevermore\uff09",
       "commit": "6831a71b915dd4eebb9db524d54a9e1a82e21289",
-      "version": "原設計を照合した参考commit。使用形状はSIBOOR配布版／300mm STEP SHA256で識別。",
+      "version": "\u539f\u8a2d\u8a08\u3092\u7167\u5408\u3057\u305f\u53c2\u8003commit\u3002\u4f7f\u7528\u5f62\u72b6\u306fSIBOOR\u914d\u5e03\u7248\uff0f300mm STEP SHA256\u3067\u8b58\u5225\u3002",
       "url": "https://github.com/Exerqtor/Voron/tree/6831a71b915dd4eebb9db524d54a9e1a82e21289/Mods/fume_pack",
-      "license": "原設計 GPL-3.0。SIBOOR版の変更範囲・対応版は未確定。",
+      "license": "\u539f\u8a2d\u8a08 GPL-3.0\u3002SIBOOR\u7248\u306e\u5909\u66f4\u7bc4\u56f2\u30fb\u5bfe\u5fdc\u7248\u306f\u672a\u78ba\u5b9a\u3002",
       "license_url": "../licenses/fumepack/LICENSE",
       "license_sha256": "8b1ba204bb69a0ade2bfcf65ef294a920f6bb361b317dba43c7ef29d96332b9b",
-      "scope": "SIBOOR本体に含まれるドア・フィルターの原作者クレジット。参考commitからCADを追加取得していません。",
-      "changes": "350への配置・寸法調整・表示用三角形化・配色。",
-      "notice": "SIBOORのキットマニュアルが原設計を参照。使用したSTLの版・SHA256はSOURCE_DOWNLOADS.json、本体CADはSOURCE_PROVENANCE.jsonに記録。原設計のGPLを他のSIBOOR独自部品の許可とは扱いません。"
+      "scope": "SIBOOR\u672c\u4f53\u306b\u542b\u307e\u308c\u308b\u30c9\u30a2\u30fb\u30d5\u30a3\u30eb\u30bf\u30fc\u306e\u539f\u4f5c\u8005\u30af\u30ec\u30b8\u30c3\u30c8\u3002\u53c2\u8003commit\u304b\u3089CAD\u3092\u8ffd\u52a0\u53d6\u5f97\u3057\u3066\u3044\u307e\u305b\u3093\u3002",
+      "changes": "350\u3078\u306e\u914d\u7f6e\u30fb\u5bf8\u6cd5\u8abf\u6574\u30fb\u8868\u793a\u7528\u4e09\u89d2\u5f62\u5316\u30fb\u914d\u8272\u3002",
+      "notice": "SIBOOR\u306e\u30ad\u30c3\u30c8\u30de\u30cb\u30e5\u30a2\u30eb\u304c\u539f\u8a2d\u8a08\u3092\u53c2\u7167\u3002\u4f7f\u7528\u3057\u305fSTL\u306e\u7248\u30fbSHA256\u306fSOURCE_DOWNLOADS.json\u3001\u672c\u4f53CAD\u306fSOURCE_PROVENANCE.json\u306b\u8a18\u9332\u3002\u539f\u8a2d\u8a08\u306eGPL\u3092\u4ed6\u306eSIBOOR\u72ec\u81ea\u90e8\u54c1\u306e\u8a31\u53ef\u3068\u306f\u6271\u3044\u307e\u305b\u3093\u3002"
     },
     {
       "id": "sherpa_mini",
@@ -201,13 +201,13 @@
       "repository": "Annex-Engineering/Sherpa_Mini-Extruder",
       "author": "Anlin / Annex Engineering",
       "commit": "e95e98dcb83f523c33f022acfd5be4893082ae3c",
-      "version": "r16: Xol Assembly Guide 20240615。Release 2 Rev1: CAD/sherpa_mini_release_2_rev1.STEP / SHA256 4191b448e17622d4d29d95c8d5237f4a4f4c74aef5d128862d2f7b83e5192ea2",
+      "version": "r16: Xol Assembly Guide 20240615\u3002Release 2 Rev1: CAD/sherpa_mini_release_2_rev1.STEP / SHA256 4191b448e17622d4d29d95c8d5237f4a4f4c74aef5d128862d2f7b83e5192ea2",
       "url": "https://github.com/Annex-Engineering/Sherpa_Mini-Extruder/tree/e95e98dcb83f523c33f022acfd5be4893082ae3c",
-      "license": "ANNEX ENGINEERING HARDWARE AND SOFTWARE EULA（別条件）",
+      "license": "ANNEX ENGINEERING HARDWARE AND SOFTWARE EULA\uff08\u5225\u6761\u4ef6\uff09",
       "license_url": "../licenses/annex_license/LICENSE.md",
-      "scope": "Xol内蔵r16と、AnnexのRelease 2 Rev1 / a3 r17（Short/Long idler・K front）の押出機本体・モーター・内部部品。",
-      "changes": "取付穴軸に合わせた剛体配置。前面・アームの代替部品を分離。対応ホットエンドごとに参考PTFEの端面を調整。",
-      "notice": "Annexの独自EULAを個別に保持します。CAN基板・専用ブラケットは含みません。PTFEの端面は取付プレビューであり、製作用の切断長を指定していません。"
+      "scope": "Xol\u5185\u8535r16\u3068\u3001Annex\u306eRelease 2 Rev1 / a3 r17\uff08Short/Long idler\u30fbK front\uff09\u306e\u62bc\u51fa\u6a5f\u672c\u4f53\u30fb\u30e2\u30fc\u30bf\u30fc\u30fb\u5185\u90e8\u90e8\u54c1\u3002",
+      "changes": "\u53d6\u4ed8\u7a74\u8ef8\u306b\u5408\u308f\u305b\u305f\u525b\u4f53\u914d\u7f6e\u3002\u524d\u9762\u30fb\u30a2\u30fc\u30e0\u306e\u4ee3\u66ff\u90e8\u54c1\u3092\u5206\u96e2\u3002\u5bfe\u5fdc\u30db\u30c3\u30c8\u30a8\u30f3\u30c9\u3054\u3068\u306b\u53c2\u8003PTFE\u306e\u7aef\u9762\u3092\u8abf\u6574\u3002",
+      "notice": "Annex\u306e\u72ec\u81eaEULA\u3092\u500b\u5225\u306b\u4fdd\u6301\u3057\u307e\u3059\u3002CAN\u57fa\u677f\u30fb\u5c02\u7528\u30d6\u30e9\u30b1\u30c3\u30c8\u306f\u542b\u307f\u307e\u305b\u3093\u3002PTFE\u306e\u7aef\u9762\u306f\u53d6\u4ed8\u30d7\u30ec\u30d3\u30e5\u30fc\u3067\u3042\u308a\u3001\u88fd\u4f5c\u7528\u306e\u5207\u65ad\u9577\u3092\u6307\u5b9a\u3057\u3066\u3044\u307e\u305b\u3093\u3002"
     },
     {
       "id": "dragon_st",
@@ -216,12 +216,12 @@
       "author": "Phaetus",
       "commit": "00bcd5c833634a5bf1db4af16baadc1ee57d254e",
       "url": "https://github.com/Phaetus/Dragon-ST/tree/00bcd5c833634a5bf1db4af16baadc1ee57d254e",
-      "scope": "SB / Xolに対応するメーカー形状。",
+      "scope": "SB / Xol\u306b\u5bfe\u5fdc\u3059\u308b\u30e1\u30fc\u30ab\u30fc\u5f62\u72b6\u3002",
       "license": "README: personal use only / commercial use prohibited",
       "license_url": "../licenses/dragon_st/README.md",
       "license_sha256": "8c4d1a31bffe51d54a701fa47def2a76c812c414c979ba2c3fe195d5ebe0bfb1",
-      "version": "取得STEP SHA256: c04c6e0b9840307214a64afa795ca76d4a479e9dba802c01ed21273f7f2e6ef2",
-      "changes": "V6変換アダプターを除外し、専用4本ボルトのマウントに配置。表示用三角形化・部位別配色。"
+      "version": "\u53d6\u5f97STEP SHA256: c04c6e0b9840307214a64afa795ca76d4a479e9dba802c01ed21273f7f2e6ef2",
+      "changes": "V6\u5909\u63db\u30a2\u30c0\u30d7\u30bf\u30fc\u3092\u9664\u5916\u3057\u3001\u5c02\u75284\u672c\u30dc\u30eb\u30c8\u306e\u30de\u30a6\u30f3\u30c8\u306b\u914d\u7f6e\u3002\u8868\u793a\u7528\u4e09\u89d2\u5f62\u5316\u30fb\u90e8\u4f4d\u5225\u914d\u8272\u3002"
     },
     {
       "id": "dragon_hf",
@@ -230,12 +230,12 @@
       "author": "Phaetus",
       "commit": "b2a8a226539c826e9543f87b136d7d26afa7cccf",
       "url": "https://github.com/Phaetus/Dragon-HF/tree/b2a8a226539c826e9543f87b136d7d26afa7cccf",
-      "scope": "SB / Xolに対応するメーカー形状。",
+      "scope": "SB / Xol\u306b\u5bfe\u5fdc\u3059\u308b\u30e1\u30fc\u30ab\u30fc\u5f62\u72b6\u3002",
       "license": "README: personal use only / commercial use prohibited",
       "license_url": "../licenses/dragon_hf/README.md",
       "license_sha256": "8c4d1a31bffe51d54a701fa47def2a76c812c414c979ba2c3fe195d5ebe0bfb1",
-      "version": "取得STEP SHA256: 8e23c8a9f3c6f1d9d28d3691e87bbad11917efbcc957043b956ebd7817ef9a5a",
-      "changes": "V6変換アダプターを除外し、専用4本ボルトのマウントに配置。表示用三角形化・部位別配色。"
+      "version": "\u53d6\u5f97STEP SHA256: 8e23c8a9f3c6f1d9d28d3691e87bbad11917efbcc957043b956ebd7817ef9a5a",
+      "changes": "V6\u5909\u63db\u30a2\u30c0\u30d7\u30bf\u30fc\u3092\u9664\u5916\u3057\u3001\u5c02\u75284\u672c\u30dc\u30eb\u30c8\u306e\u30de\u30a6\u30f3\u30c8\u306b\u914d\u7f6e\u3002\u8868\u793a\u7528\u4e09\u89d2\u5f62\u5316\u30fb\u90e8\u4f4d\u5225\u914d\u8272\u3002"
     },
     {
       "id": "afterburner",
@@ -244,47 +244,47 @@
       "author": "VoronDesign / E3D",
       "commit": "9ebb6bc38ac3a73d513c1d4beb0f88e9061c9073",
       "url": "https://github.com/VoronDesign/Voron-Afterburner/tree/9ebb6bc38ac3a73d513c1d4beb0f88e9061c9073",
-      "scope": "公式アセンブリ内の1.75 mm V6本体、ノズル、ヒーター、ヒートブレーク。SB用マウントと組合せ。",
+      "scope": "\u516c\u5f0f\u30a2\u30bb\u30f3\u30d6\u30ea\u5185\u306e1.75 mm V6\u672c\u4f53\u3001\u30ce\u30ba\u30eb\u3001\u30d2\u30fc\u30bf\u30fc\u3001\u30d2\u30fc\u30c8\u30d6\u30ec\u30fc\u30af\u3002SB\u7528\u30de\u30a6\u30f3\u30c8\u3068\u7d44\u5408\u305b\u3002",
       "license": "GPL-3.0",
       "license_url": "../licenses/afterburner/LICENSE",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
       "version": "Afterburner_Assembly.step SHA256: 00613b8e448d663dee0673cfb1a9c2b826e33fc4e6dfdb56ba88d2e28e664eb5",
-      "changes": "V6構成部品を抽出し、SBの取付規格に配置。表示用三角形化・配色。"
+      "changes": "V6\u69cb\u6210\u90e8\u54c1\u3092\u62bd\u51fa\u3057\u3001SB\u306e\u53d6\u4ed8\u898f\u683c\u306b\u914d\u7f6e\u3002\u8868\u793a\u7528\u4e09\u89d2\u5f62\u5316\u30fb\u914d\u8272\u3002"
     },
     {
       "id": "trident_bedfans",
       "label": "Trident Bed Fans",
       "repository": "VoronDesign/VoronUsers",
-      "author": "CannedBass（原案: Andrew Ellis）",
+      "author": "CannedBass\uff08\u539f\u6848: Andrew Ellis\uff09",
       "commit": "8e5067f4f6457da8a552983dd210ec48c40be2ca",
       "url": "https://github.com/VoronDesign/VoronUsers/tree/8e5067f4f6457da8a552983dd210ec48c40be2ca/printer_mods/CannedBass/Trident_Bed_Fans",
-      "scope": "SIBOOR Trident 350のベッド支持フレームに5015ブロワー2基を追加。",
+      "scope": "SIBOOR Trident 350\u306e\u30d9\u30c3\u30c9\u652f\u6301\u30d5\u30ec\u30fc\u30e0\u306b5015\u30d6\u30ed\u30ef\u30fc2\u57fa\u3092\u8ffd\u52a0\u3002",
       "license": "GPL-3.0",
       "license_url": "../licenses/trident_bedfans/LICENSE.md",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
       "version": "5015_Bed_Fan_Mount_Trident.step SHA256: 6b9c20ce3fddab6870f77e9c6dbf0d2e5a0cf7391931c0537e8d0299966c1717",
-      "changes": "作者の装着写真に合わせ、ファン・マウント・固定具一式を反転して吸入口を下へ配置。M3 Tナットを追加。通常TridentとSIBOORの取付梁それぞれに位置合わせ。",
-      "notice": "ベッドに追従。装着時のZ表示範囲は0〜230 mm。取付・下降経路をCADで確認。配線とKlipperマクロは含みません。"
+      "changes": "\u4f5c\u8005\u306e\u88c5\u7740\u5199\u771f\u306b\u5408\u308f\u305b\u3001\u30d5\u30a1\u30f3\u30fb\u30de\u30a6\u30f3\u30c8\u30fb\u56fa\u5b9a\u5177\u4e00\u5f0f\u3092\u53cd\u8ee2\u3057\u3066\u5438\u5165\u53e3\u3092\u4e0b\u3078\u914d\u7f6e\u3002M3 T\u30ca\u30c3\u30c8\u3092\u8ffd\u52a0\u3002\u901a\u5e38Trident\u3068SIBOOR\u306e\u53d6\u4ed8\u6881\u305d\u308c\u305e\u308c\u306b\u4f4d\u7f6e\u5408\u308f\u305b\u3002",
+      "notice": "\u30d9\u30c3\u30c9\u306b\u8ffd\u5f93\u3002\u88c5\u7740\u6642\u306eZ\u8868\u793a\u7bc4\u56f2\u306f0\u301c230 mm\u3002\u53d6\u4ed8\u30fb\u4e0b\u964d\u7d4c\u8def\u3092CAD\u3067\u78ba\u8a8d\u3002\u914d\u7dda\u3068Klipper\u30de\u30af\u30ed\u306f\u542b\u307f\u307e\u305b\u3093\u3002"
     },
     {
       "id": "native_component_library",
-      "label": "ホットエンド・押出機の部品CAD",
+      "label": "\u30db\u30c3\u30c8\u30a8\u30f3\u30c9\u30fb\u62bc\u51fa\u6a5f\u306e\u90e8\u54c1CAD",
       "author": "Trianglelab / Phaetus / E3D reference sources / Slice Engineering / Bondtech / Annex Engineering",
       "url": "https://psych0h3ad.github.io/3d-print-rig/viewer/components.html",
-      "scope": "部品単体の参考CAD。原本ソリッドの寸法・体積を保持。対応マウントが確認できた構成とは別に表示。",
-      "license": "部品ごとの配布条件をライブラリに表示。原本のURL・版・SHA256を各モデルで案内。",
-      "changes": "原本CADを形状ごとに読み込み、表示用三角形化・剛体回転・配色。メーカー部品の形状変更なし。",
+      "scope": "\u90e8\u54c1\u5358\u4f53\u306e\u53c2\u8003CAD\u3002\u539f\u672c\u30bd\u30ea\u30c3\u30c9\u306e\u5bf8\u6cd5\u30fb\u4f53\u7a4d\u3092\u4fdd\u6301\u3002\u5bfe\u5fdc\u30de\u30a6\u30f3\u30c8\u304c\u78ba\u8a8d\u3067\u304d\u305f\u69cb\u6210\u3068\u306f\u5225\u306b\u8868\u793a\u3002",
+      "license": "\u90e8\u54c1\u3054\u3068\u306e\u914d\u5e03\u6761\u4ef6\u3092\u30e9\u30a4\u30d6\u30e9\u30ea\u306b\u8868\u793a\u3002\u539f\u672c\u306eURL\u30fb\u7248\u30fbSHA256\u3092\u5404\u30e2\u30c7\u30eb\u3067\u6848\u5185\u3002",
+      "changes": "\u539f\u672cCAD\u3092\u5f62\u72b6\u3054\u3068\u306b\u8aad\u307f\u8fbc\u307f\u3001\u8868\u793a\u7528\u4e09\u89d2\u5f62\u5316\u30fb\u525b\u4f53\u56de\u8ee2\u30fb\u914d\u8272\u3002\u30e1\u30fc\u30ab\u30fc\u90e8\u54c1\u306e\u5f62\u72b6\u5909\u66f4\u306a\u3057\u3002",
       "version": "2026-10-01-components-1",
-      "notice": "単体CADの登録は、SB・Xolへの取付互換性の保証ではありません。Revo MicroはPrintablesで配布された参考CADです。"
+      "notice": "\u5358\u4f53CAD\u306e\u767b\u9332\u306f\u3001SB\u30fbXol\u3078\u306e\u53d6\u4ed8\u4e92\u63db\u6027\u306e\u4fdd\u8a3c\u3067\u306f\u3042\u308a\u307e\u305b\u3093\u3002Revo Micro\u306fPrintables\u3067\u914d\u5e03\u3055\u308c\u305f\u53c2\u8003CAD\u3067\u3059\u3002"
     },
     {
       "id": "sturdy_handles",
-      "label": "Sturdy Handles · M5原設計",
+      "label": "Sturdy Handles \u00b7 M5\u539f\u8a2d\u8a08",
       "repository": "VoronDesign/VoronUsers",
       "author": "jeoje",
       "commit": "8e5067f4f6457da8a552983dd210ec48c40be2ca",
       "url": "https://github.com/VoronDesign/VoronUsers/tree/8e5067f4f6457da8a552983dd210ec48c40be2ca/printer_mods/jeoje/Sturdy_Handles",
-      "scope": "3機種の上部左右2020フレームに固定するハンドル本体2個。締結部品の形状は省略。M3派生版とは別設計。",
+      "scope": "3\u6a5f\u7a2e\u306e\u4e0a\u90e8\u5de6\u53f32020\u30d5\u30ec\u30fc\u30e0\u306b\u56fa\u5b9a\u3059\u308b\u30cf\u30f3\u30c9\u30eb\u672c\u4f532\u500b\u3002\u7de0\u7d50\u90e8\u54c1\u306e\u5f62\u72b6\u306f\u7701\u7565\u3002M3\u6d3e\u751f\u7248\u3068\u306f\u5225\u8a2d\u8a08\u3002",
       "license": "GPL-3.0",
       "license_url": "../licenses/sturdy_handles/LICENSE.md",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
@@ -298,24 +298,24 @@
       "author": "Beacon",
       "commit": "bb8e34c6fd7fb3b200c3a2688fee9f4ce8c76278",
       "url": "https://github.com/beacon3d/docs/tree/bb8e34c6fd7fb3b200c3a2688fee9f4ce8c76278/mcad/beacon",
-      "scope": "メーカーのNormal基板参考CAD。XolとSB用マウントへ剛体配置。干渉確認用の領域は実物部品として表示しません。",
-      "license": "MIT（Molex sub-assemblyには原文中の別条件が適用）",
+      "scope": "\u30e1\u30fc\u30ab\u30fc\u306eNormal\u57fa\u677f\u53c2\u8003CAD\u3002Xol\u3068SB\u7528\u30de\u30a6\u30f3\u30c8\u3078\u525b\u4f53\u914d\u7f6e\u3002\u5e72\u6e09\u78ba\u8a8d\u7528\u306e\u9818\u57df\u306f\u5b9f\u7269\u90e8\u54c1\u3068\u3057\u3066\u8868\u793a\u3057\u307e\u305b\u3093\u3002",
+      "license": "MIT\uff08Molex sub-assembly\u306b\u306f\u539f\u6587\u4e2d\u306e\u5225\u6761\u4ef6\u304c\u9069\u7528\uff09",
       "license_url": "../licenses/beacon/LICENSE",
       "version": "RevD SHA256 186f190756af36c45ed8ed55347c8a6bef18a8a1b7b5569e1fef73486c025bd7 / RevH SHA256 248898016e4b03f387b32c5cb73e6c124ae0039d84a4b0b5fe651eea07460470",
-      "changes": "表示用変換・剛体配置・配色。実体ソリッドの寸法と体積を保持。",
+      "changes": "\u8868\u793a\u7528\u5909\u63db\u30fb\u525b\u4f53\u914d\u7f6e\u30fb\u914d\u8272\u3002\u5b9f\u4f53\u30bd\u30ea\u30c3\u30c9\u306e\u5bf8\u6cd5\u3068\u4f53\u7a4d\u3092\u4fdd\u6301\u3002",
       "license_sha256": "b160d37b90d3106c68c42d4d3773e7b2e42a56fdf4961b712e5ac394994b94fe"
     },
     {
       "id": "cartographer_probes",
-      "label": "Cartographer V1–V3 / V4",
+      "label": "Cartographer V1\u2013V3 / V4",
       "repository": "Cartographer3D/cartographer-probe",
       "author": "Cartographer3D",
       "commit": "bf01749f16f239b5310aaf03e96b18e9dfb9b832",
       "url": "https://github.com/Cartographer3D/cartographer-probe/tree/bf01749f16f239b5310aaf03e96b18e9dfb9b832/STEP/Cartographer%20Probes",
-      "scope": "Standard基板のメーカー参考CAD。Xol・SBの構成比較に使用。",
-      "license": "取得したSTEPの再配布ライセンス表記なし。VORONやビューアーのGPLをこの基板へ適用しません。",
-      "version": "V1–V3 SHA256 05ae752f2e0deb8f8927d9dec9d6432fd127d24d89f03a425d90fea450b2498f / V4 SHA256 7496da4afc02fd3bfe8eec6fcdee32f5b6c41682f26b159305d24595222e6111",
-      "changes": "表示用変換・剛体配置・配色。基板の実体ソリッドを保持。シルク表面と参考領域を実物の部品数へ加えません。"
+      "scope": "Standard\u57fa\u677f\u306e\u30e1\u30fc\u30ab\u30fc\u53c2\u8003CAD\u3002Xol\u30fbSB\u306e\u69cb\u6210\u6bd4\u8f03\u306b\u4f7f\u7528\u3002",
+      "license": "\u53d6\u5f97\u3057\u305fSTEP\u306e\u518d\u914d\u5e03\u30e9\u30a4\u30bb\u30f3\u30b9\u8868\u8a18\u306a\u3057\u3002VORON\u3084\u30d3\u30e5\u30fc\u30a2\u30fc\u306eGPL\u3092\u3053\u306e\u57fa\u677f\u3078\u9069\u7528\u3057\u307e\u305b\u3093\u3002",
+      "version": "V1\u2013V3 SHA256 05ae752f2e0deb8f8927d9dec9d6432fd127d24d89f03a425d90fea450b2498f / V4 SHA256 7496da4afc02fd3bfe8eec6fcdee32f5b6c41682f26b159305d24595222e6111",
+      "changes": "\u8868\u793a\u7528\u5909\u63db\u30fb\u525b\u4f53\u914d\u7f6e\u30fb\u914d\u8272\u3002\u57fa\u677f\u306e\u5b9f\u4f53\u30bd\u30ea\u30c3\u30c9\u3092\u4fdd\u6301\u3002\u30b7\u30eb\u30af\u8868\u9762\u3068\u53c2\u8003\u9818\u57df\u3092\u5b9f\u7269\u306e\u90e8\u54c1\u6570\u3078\u52a0\u3048\u307e\u305b\u3093\u3002"
     },
     {
       "id": "annex_sb_beacon",
@@ -324,11 +324,11 @@
       "author": "Trails / ANNEX Engineering Team",
       "commit": "c73acdda56535898fb3aef6b62998388e0c51670",
       "url": "https://github.com/Annex-Engineering/Annex-Engineering_User_Mods/tree/c73acdda56535898fb3aef6b62998388e0c51670/Printers/Non_Annex_Printers/VORON_Printers/VORON_V2dot4/annex_dev-stealthburner_beacon_x_carriage",
-      "scope": "MGN12H用のSB左右キャリッジ。CW2 / Revo / R2とV2.4の比較用。",
+      "scope": "MGN12H\u7528\u306eSB\u5de6\u53f3\u30ad\u30e3\u30ea\u30c3\u30b8\u3002CW2 / Revo / R2\u3068V2.4\u306e\u6bd4\u8f03\u7528\u3002",
       "license": "GPL-3.0",
       "license_url": "../licenses/annex_sb_beacon/LICENSE.md",
       "version": "beacon_sb_xcarriage.STEP SHA256 ed6ea6778deb604c0c23eeeffc5f07b482e0f0b80c4c813c59a2309a56a58a9f",
-      "changes": "原寸の左右キャリッジを登録し、2.8 mm絶縁スペーサーとM3締結部品を追加。メーカーの金属除外領域と交差する組み合わせは注意を表示。",
+      "changes": "\u539f\u5bf8\u306e\u5de6\u53f3\u30ad\u30e3\u30ea\u30c3\u30b8\u3092\u767b\u9332\u3057\u30012.8 mm\u7d76\u7e01\u30b9\u30da\u30fc\u30b5\u30fc\u3068M3\u7de0\u7d50\u90e8\u54c1\u3092\u8ffd\u52a0\u3002\u30e1\u30fc\u30ab\u30fc\u306e\u91d1\u5c5e\u9664\u5916\u9818\u57df\u3068\u4ea4\u5dee\u3059\u308b\u7d44\u307f\u5408\u308f\u305b\u306f\u6ce8\u610f\u3092\u8868\u793a\u3002",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
     },
     {
@@ -338,12 +338,12 @@
       "author": "Monolith3D",
       "commit": "5b729c2f96bdbd24ea180a80476364727444c038",
       "url": "https://github.com/Monolith3D/Monolith_Gantry/tree/5b729c2f96bdbd24ea180a80476364727444c038",
-      "scope": "250/300/350 mm、VT/V2、Printed/Sheet metal、6/9 mm、2WD/AWDの48構成。Trident4機種とV2.4の7機種へ固定Sphinx・専用StealthChangerを配置。",
+      "scope": "250/300/350 mm\u3001VT/V2\u3001Printed/Sheet metal\u30016/9 mm\u30012WD/AWD\u306e48\u69cb\u6210\u3002Trident4\u6a5f\u7a2e\u3068V2.4\u306e7\u6a5f\u7a2e\u3078\u56fa\u5b9aSphinx\u30fb\u5c02\u7528StealthChanger\u3092\u914d\u7f6e\u3002",
       "license": "CC BY-NC-SA 4.0",
       "license_url": "../licenses/monolith_gantry/LICENSE",
       "license_sha256": "9e502ba75fd0fd30cea5497b438a4bc12f07f02bc932a7a6041fd6a18b8f46a0",
-      "changes": "剛体部品は原寸で配置。梁の断面とレール穴周期を保持して長さを変更。ネジは実測した各穴軸へ配置。V2のYガイド位置とNP後梁のM5/Tスロット基準を登録。ガイドのレール内包含からヘッド別XYZ表示範囲を計算。可動ベルトは原本経路を保つ滑らかな帯で、クランプ内部・歯・張力・全域干渉・ドッキングは未検証。",
-      "notice": "ガントリーの設計データはCC BY-NC-SA 4.0。別リポジトリのクランプはGPL-3.0。ビューアーコードのGPLを全モデルへ一括適用しません。"
+      "changes": "\u525b\u4f53\u90e8\u54c1\u306f\u539f\u5bf8\u3067\u914d\u7f6e\u3002\u6881\u306e\u65ad\u9762\u3068\u30ec\u30fc\u30eb\u7a74\u5468\u671f\u3092\u4fdd\u6301\u3057\u3066\u9577\u3055\u3092\u5909\u66f4\u3002\u30cd\u30b8\u306f\u5b9f\u6e2c\u3057\u305f\u5404\u7a74\u8ef8\u3078\u914d\u7f6e\u3002V2\u306eY\u30ac\u30a4\u30c9\u4f4d\u7f6e\u3068NP\u5f8c\u6881\u306eM5/T\u30b9\u30ed\u30c3\u30c8\u57fa\u6e96\u3092\u767b\u9332\u3002\u30ac\u30a4\u30c9\u306e\u30ec\u30fc\u30eb\u5185\u5305\u542b\u304b\u3089\u30d8\u30c3\u30c9\u5225XYZ\u8868\u793a\u7bc4\u56f2\u3092\u8a08\u7b97\u3002\u53ef\u52d5\u30d9\u30eb\u30c8\u306f\u539f\u672c\u7d4c\u8def\u3092\u4fdd\u3064\u6ed1\u3089\u304b\u306a\u5e2f\u3067\u3001\u30af\u30e9\u30f3\u30d7\u5185\u90e8\u30fb\u6b6f\u30fb\u5f35\u529b\u30fb\u5168\u57df\u5e72\u6e09\u30fb\u30c9\u30c3\u30ad\u30f3\u30b0\u306f\u672a\u691c\u8a3c\u3002",
+      "notice": "\u30ac\u30f3\u30c8\u30ea\u30fc\u306e\u8a2d\u8a08\u30c7\u30fc\u30bf\u306fCC BY-NC-SA 4.0\u3002\u5225\u30ea\u30dd\u30b8\u30c8\u30ea\u306e\u30af\u30e9\u30f3\u30d7\u306fGPL-3.0\u3002\u30d3\u30e5\u30fc\u30a2\u30fc\u30b3\u30fc\u30c9\u306eGPL\u3092\u5168\u30e2\u30c7\u30eb\u3078\u4e00\u62ec\u9069\u7528\u3057\u307e\u305b\u3093\u3002"
     },
     {
       "id": "monolith_toolheads",
@@ -352,11 +352,11 @@
       "author": "Monolith3D",
       "commit": "e205bff37e405bfbeb40fe2d8f46dbeda45c7b73",
       "url": "https://github.com/Monolith3D/Toolheads_for_Monolith/tree/e205bff37e405bfbeb40fe2d8f46dbeda45c7b73",
-      "scope": "Milled・SLMクランプの部品単体CAD。ガントリーとは別のライセンス。",
+      "scope": "Milled\u30fbSLM\u30af\u30e9\u30f3\u30d7\u306e\u90e8\u54c1\u5358\u4f53CAD\u3002\u30ac\u30f3\u30c8\u30ea\u30fc\u3068\u306f\u5225\u306e\u30e9\u30a4\u30bb\u30f3\u30b9\u3002",
       "license": "GPL-3.0",
       "license_url": "../licenses/monolith_toolheads/LICENSE",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
-      "changes": "原寸の表示用変換・配色。ヘッドへの取付は未登録。"
+      "changes": "\u539f\u5bf8\u306e\u8868\u793a\u7528\u5909\u63db\u30fb\u914d\u8272\u3002\u30d8\u30c3\u30c9\u3078\u306e\u53d6\u4ed8\u306f\u672a\u767b\u9332\u3002"
     },
     {
       "id": "vitalii_metal_tap",
@@ -365,11 +365,11 @@
       "author": "Vitalii3D-xyz",
       "commit": "62603ad970bc9fd836c8d8f24eed7e084a324a43",
       "url": "https://github.com/Vitalii3D-xyz/MetalTap/tree/62603ad970bc9fd836c8d8f24eed7e084a324a43",
-      "scope": "配線式光学センサーとOptoTap式の原本組立を別表示。",
+      "scope": "\u914d\u7dda\u5f0f\u5149\u5b66\u30bb\u30f3\u30b5\u30fc\u3068OptoTap\u5f0f\u306e\u539f\u672c\u7d44\u7acb\u3092\u5225\u8868\u793a\u3002",
       "license": "GPL-3.0",
       "license_url": "../licenses/vitalii_metal_tap/LICENSE",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
-      "changes": "重複していたセンサー・アダプターの選択肢を分離。原寸の表示用変換・配色。機体への取付・TAP動作は未検証。"
+      "changes": "\u91cd\u8907\u3057\u3066\u3044\u305f\u30bb\u30f3\u30b5\u30fc\u30fb\u30a2\u30c0\u30d7\u30bf\u30fc\u306e\u9078\u629e\u80a2\u3092\u5206\u96e2\u3002\u539f\u5bf8\u306e\u8868\u793a\u7528\u5909\u63db\u30fb\u914d\u8272\u3002\u6a5f\u4f53\u3078\u306e\u53d6\u4ed8\u30fbTAP\u52d5\u4f5c\u306f\u672a\u691c\u8a3c\u3002"
     },
     {
       "id": "vitalii_lightweight",
@@ -378,25 +378,25 @@
       "author": "Vitalii3D-xyz",
       "commit": "8dce8deed9f481724058dfef3fe2beecdd8897e1",
       "url": "https://github.com/Vitalii3D-xyz/VoronLightweightXCarriage/tree/8dce8deed9f481724058dfef3fe2beecdd8897e1",
-      "scope": "SB・Xol用キャリッジ原本。SBは6ホットエンドの比較用試着を登録。",
+      "scope": "SB\u30fbXol\u7528\u30ad\u30e3\u30ea\u30c3\u30b8\u539f\u672c\u3002SB\u306f6\u30db\u30c3\u30c8\u30a8\u30f3\u30c9\u306e\u6bd4\u8f03\u7528\u8a66\u7740\u3092\u767b\u9332\u3002",
       "license": "GPL-3.0",
       "license_url": "../licenses/vitalii_lightweight/LICENSE",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
-      "changes": "MGN12/SB穴軸で剛体配置。SIBOOR由来CW2カバー等とのCAD干渉を表示。プローブ用スペーサーと機体全域は未検証。"
+      "changes": "MGN12/SB\u7a74\u8ef8\u3067\u525b\u4f53\u914d\u7f6e\u3002SIBOOR\u7531\u6765CW2\u30ab\u30d0\u30fc\u7b49\u3068\u306eCAD\u5e72\u6e09\u3092\u8868\u793a\u3002\u30d7\u30ed\u30fc\u30d6\u7528\u30b9\u30da\u30fc\u30b5\u30fc\u3068\u6a5f\u4f53\u5168\u57df\u306f\u672a\u691c\u8a3c\u3002"
     },
     {
       "id": "vitalii_doublet",
       "label": "DoubleT / Vitalii V2.4 Aluminum Gantry",
       "repository": "Vitalii3D-xyz/DoubleT-2.4AluminumG",
-      "author": "DoubleT / thiagolocatelli / 3DPrintingMods（原設計）、Vitalii3D-xyz（V2.4版）",
+      "author": "DoubleT / thiagolocatelli / 3DPrintingMods\uff08\u539f\u8a2d\u8a08\uff09\u3001Vitalii3D-xyz\uff08V2.4\u7248\uff09",
       "commit": "8c4ed183c02db7814ed02d234e20bfdea77dd892",
       "url": "https://github.com/Vitalii3D-xyz/DoubleT-2.4AluminumG/tree/8c4ed183c02db7814ed02d234e20bfdea77dd892",
-      "scope": "AB・XY・フロントアイドラーの原本組立。梁・モーター・ベルトを含まない。350 mm機への置換は未登録。",
+      "scope": "AB\u30fbXY\u30fb\u30d5\u30ed\u30f3\u30c8\u30a2\u30a4\u30c9\u30e9\u30fc\u306e\u539f\u672c\u7d44\u7acb\u3002\u6881\u30fb\u30e2\u30fc\u30bf\u30fc\u30fb\u30d9\u30eb\u30c8\u3092\u542b\u307e\u306a\u3044\u3002350 mm\u6a5f\u3078\u306e\u7f6e\u63db\u306f\u672a\u767b\u9332\u3002",
       "license": "GPL-3.0",
       "license_url": "../licenses/vitalii_doublet/LICENSE",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
-      "changes": "原寸の表示用変換・配色。",
-      "notice": "READMEが原設計のhttps://github.com/3DPrintingMods/VoronTrident-AluminumG を案内しています。使用形状は上記Vitalii版commit。"
+      "changes": "\u539f\u5bf8\u306e\u8868\u793a\u7528\u5909\u63db\u30fb\u914d\u8272\u3002",
+      "notice": "README\u304c\u539f\u8a2d\u8a08\u306ehttps://github.com/3DPrintingMods/VoronTrident-AluminumG \u3092\u6848\u5185\u3057\u3066\u3044\u307e\u3059\u3002\u4f7f\u7528\u5f62\u72b6\u306f\u4e0a\u8a18Vitalii\u7248commit\u3002"
     },
     {
       "id": "stealthchanger",
@@ -405,12 +405,12 @@
       "author": "DraftShift",
       "commit": "50e3c769297b273ac390fb33b455aa7f4dfe3099",
       "url": "https://github.com/DraftShift/StealthChanger/tree/50e3c769297b273ac390fb33b455aa7f4dfe3099",
-      "scope": "MGN12接続部、9種の専用バックプレート、6/9 mmと反転経路の4仕様。BT123の9 mm・Monolith専用Keeperを使用。 SB・Xol・JabberWockyの完成ヘッドへ剛体配置。XolのShort/Medium代替形状とサポートを分離。全196構成の登録姿勢で本体交差を計測。",
+      "scope": "MGN12\u63a5\u7d9a\u90e8\u30019\u7a2e\u306e\u5c02\u7528\u30d0\u30c3\u30af\u30d7\u30ec\u30fc\u30c8\u30016/9 mm\u3068\u53cd\u8ee2\u7d4c\u8def\u306e4\u4ed5\u69d8\u3002BT123\u306e9 mm\u30fbMonolith\u5c02\u7528Keeper\u3092\u4f7f\u7528\u3002 SB\u30fbXol\u30fbJabberWocky\u306e\u5b8c\u6210\u30d8\u30c3\u30c9\u3078\u525b\u4f53\u914d\u7f6e\u3002Xol\u306eShort/Medium\u4ee3\u66ff\u5f62\u72b6\u3068\u30b5\u30dd\u30fc\u30c8\u3092\u5206\u96e2\u3002\u5168196\u69cb\u6210\u306e\u767b\u9332\u59ff\u52e2\u3067\u672c\u4f53\u4ea4\u5dee\u3092\u8a08\u6e2c\u3002",
       "license": "GPL-3.0",
       "license_url": "../licenses/stealthchanger/LICENSE",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
       "version": "Pinned source CAD / V1.1",
-      "changes": "原本の選択肢・構築用ボディ・印刷サポートを分離。表示用変換・配色。修復箇所は各モジュールのnative_repair/native_repairsへ記録。 Monolith split keepers and reference rail/block align to the native block mating plane. Standard bank disabled on Trident after nozzle-plane bed collision checks."
+      "changes": "\u539f\u672c\u306e\u9078\u629e\u80a2\u30fb\u69cb\u7bc9\u7528\u30dc\u30c7\u30a3\u30fb\u5370\u5237\u30b5\u30dd\u30fc\u30c8\u3092\u5206\u96e2\u3002\u8868\u793a\u7528\u5909\u63db\u30fb\u914d\u8272\u3002\u4fee\u5fa9\u7b87\u6240\u306f\u5404\u30e2\u30b8\u30e5\u30fc\u30eb\u306enative_repair/native_repairs\u3078\u8a18\u9332\u3002 Monolith split keepers and reference rail/block align to the native block mating plane. Standard bank disabled on Trident after nozzle-plane bed collision checks."
     },
     {
       "id": "modular_dock",
@@ -419,12 +419,12 @@
       "author": "DraftShift",
       "commit": "597fad34f3a1233ed1c182ec221a8da9ba68ac33",
       "url": "https://github.com/DraftShift/ModularDock/tree/597fad34f3a1233ed1c182ec221a8da9ba68ac33",
-      "scope": "8種のドックを原本の別組立として表示。バックプレートへのドッキング・機体取付は未登録。",
+      "scope": "8\u7a2e\u306e\u30c9\u30c3\u30af\u3092\u539f\u672c\u306e\u5225\u7d44\u7acb\u3068\u3057\u3066\u8868\u793a\u3002\u30d0\u30c3\u30af\u30d7\u30ec\u30fc\u30c8\u3078\u306e\u30c9\u30c3\u30ad\u30f3\u30b0\u30fb\u6a5f\u4f53\u53d6\u4ed8\u306f\u672a\u767b\u9332\u3002",
       "license": "GPL-3.0",
       "license_url": "../licenses/modular_dock/LICENSE",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
       "version": "Pinned source CAD",
-      "changes": "原本の選択肢・構築用ボディ・印刷サポートを分離。表示用変換・配色。修復箇所は各モジュールのnative_repair/native_repairsへ記録。"
+      "changes": "\u539f\u672c\u306e\u9078\u629e\u80a2\u30fb\u69cb\u7bc9\u7528\u30dc\u30c7\u30a3\u30fb\u5370\u5237\u30b5\u30dd\u30fc\u30c8\u3092\u5206\u96e2\u3002\u8868\u793a\u7528\u5909\u63db\u30fb\u914d\u8272\u3002\u4fee\u5fa9\u7b87\u6240\u306f\u5404\u30e2\u30b8\u30e5\u30fc\u30eb\u306enative_repair/native_repairs\u3078\u8a18\u9332\u3002"
     },
     {
       "id": "tapchanger",
@@ -433,12 +433,12 @@
       "author": "viesturz",
       "commit": "a7b19f99a2ef520485082251917403a5bfd542cd",
       "url": "https://github.com/viesturz/tapchanger/tree/a7b19f99a2ef520485082251917403a5bfd542cd",
-      "scope": "Rods / Plates / Liftbar、SB・MiniSB・Dragon Burner・Xolを原本の別構成として表示。Xolは実験版。",
+      "scope": "Rods / Plates / Liftbar\u3001SB\u30fbMiniSB\u30fbDragon Burner\u30fbXol\u3092\u539f\u672c\u306e\u5225\u69cb\u6210\u3068\u3057\u3066\u8868\u793a\u3002Xol\u306f\u5b9f\u9a13\u7248\u3002",
       "license": "GPL-3.0",
       "license_url": "../licenses/tapchanger/LICENSE",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
       "version": "Pinned source CAD",
-      "changes": "原本の選択肢・構築用ボディ・印刷サポートを分離。表示用変換・配色。修復箇所は各モジュールのnative_repair/native_repairsへ記録。"
+      "changes": "\u539f\u672c\u306e\u9078\u629e\u80a2\u30fb\u69cb\u7bc9\u7528\u30dc\u30c7\u30a3\u30fb\u5370\u5237\u30b5\u30dd\u30fc\u30c8\u3092\u5206\u96e2\u3002\u8868\u793a\u7528\u5909\u63db\u30fb\u914d\u8272\u3002\u4fee\u5fa9\u7b87\u6240\u306f\u5404\u30e2\u30b8\u30e5\u30fc\u30eb\u306enative_repair/native_repairs\u3078\u8a18\u9332\u3002"
     },
     {
       "id": "jabberwocky",
@@ -447,26 +447,26 @@
       "author": "kinematicdigit",
       "commit": "6a80220dccd343f6071043eac15a0db634559ebe",
       "url": "https://github.com/kinematicdigit/Jabberwocky/tree/6a80220dccd343f6071043eac15a0db634559ebe",
-      "scope": "Rev82の完成ヘッド、Conch、専用Compound drive、NH36。MGN12とStealthChangerの機械部を別構成で表示。",
+      "scope": "Rev82\u306e\u5b8c\u6210\u30d8\u30c3\u30c9\u3001Conch\u3001\u5c02\u7528Compound drive\u3001NH36\u3002MGN12\u3068StealthChanger\u306e\u6a5f\u68b0\u90e8\u3092\u5225\u69cb\u6210\u3067\u8868\u793a\u3002",
       "license": "CC-BY-SA-4.0",
       "license_url": "../licenses/jabberwocky/LICENSE.md",
       "license_sha256": "cfac79c9c81810c0aadda0a03c526d886401762ea7f98c699d81ab4b9a74e9fd",
       "version": "Pinned native CAD",
-      "changes": "原本の印刷サポート、代替プローブ、長い外部配線を分離。SCでは標準NH36取付を省略。寸法を保持して表示用変換・配色。"
+      "changes": "\u539f\u672c\u306e\u5370\u5237\u30b5\u30dd\u30fc\u30c8\u3001\u4ee3\u66ff\u30d7\u30ed\u30fc\u30d6\u3001\u9577\u3044\u5916\u90e8\u914d\u7dda\u3092\u5206\u96e2\u3002SC\u3067\u306f\u6a19\u6e96NH36\u53d6\u4ed8\u3092\u7701\u7565\u3002\u5bf8\u6cd5\u3092\u4fdd\u6301\u3057\u3066\u8868\u793a\u7528\u5909\u63db\u30fb\u914d\u8272\u3002"
     },
     {
       "id": "galileo2_installed",
-      "label": "Galileo 2 / G2E・G2SA",
+      "label": "Galileo 2 / G2E\u30fbG2SA",
       "repository": "JaredC01/Galileo2",
       "author": "JaredC01",
       "commit": "98f8a37944d7277cd37231776400553cc402219f",
       "url": "https://github.com/JaredC01/Galileo2/tree/98f8a37944d7277cd37231776400553cc402219f",
-      "scope": "SB用G2Eの比較構成、Xol専用G2SAマウント・前面部品の組立。",
+      "scope": "SB\u7528G2E\u306e\u6bd4\u8f03\u69cb\u6210\u3001Xol\u5c02\u7528G2SA\u30de\u30a6\u30f3\u30c8\u30fb\u524d\u9762\u90e8\u54c1\u306e\u7d44\u7acb\u3002",
       "license": "GPL-3.0",
       "license_url": "../licenses/galileo2/LICENSE",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
       "version": "Pinned native CAD",
-      "changes": "標準ギアと専用取付を選択し代替部品を分離。G2E/R2キャリッジの干渉を構成情報へ記録。原寸の表示用変換・配色。"
+      "changes": "\u6a19\u6e96\u30ae\u30a2\u3068\u5c02\u7528\u53d6\u4ed8\u3092\u9078\u629e\u3057\u4ee3\u66ff\u90e8\u54c1\u3092\u5206\u96e2\u3002G2E/R2\u30ad\u30e3\u30ea\u30c3\u30b8\u306e\u5e72\u6e09\u3092\u69cb\u6210\u60c5\u5831\u3078\u8a18\u9332\u3002\u539f\u5bf8\u306e\u8868\u793a\u7528\u5909\u63db\u30fb\u914d\u8272\u3002"
     },
     {
       "id": "v0_voron_v02r1",
@@ -969,7 +969,7 @@
     },
     {
       "id": "tricorn_hotend",
-      "label": "Tricorn hotend / Long・Short",
+      "label": "Tricorn hotend / Long\u30fbShort",
       "repository": "tricornhotend/tricornhotend.com",
       "author": "Tricorn / okuhno",
       "commit": "f168fa61d58885fe6a146c9e7d3626e430822a00",
@@ -983,10 +983,10 @@
     },
     {
       "id": "chube_hotend",
-      "label": "Chube / Compact・Air・Conduction",
-      "author": "Luke’s Laboratory / Chube",
+      "label": "Chube / Compact\u30fbAir\u30fbConduction",
+      "author": "Luke\u2019s Laboratory / Chube",
       "url": "https://chubehotend.com/integrations",
-      "license": "メーカー配布資料：再配布条件の明記なし",
+      "license": "\u30e1\u30fc\u30ab\u30fc\u914d\u5e03\u8cc7\u6599\uff1a\u518d\u914d\u5e03\u6761\u4ef6\u306e\u660e\u8a18\u306a\u3057",
       "license_url": "../licenses/chube/NOTICE.txt",
       "version": "Manufacturer integration references; file SHA256 pinned in modules.",
       "scope": "Compact with dedicated SB CW2 and A4T mounts. Air/Conduction open integration surfaces are separate part references.",
@@ -1040,7 +1040,7 @@
       "author": "Printers for Ants / Micron contributors",
       "commit": "f76aa28767211ddfee2e30290aadcea3c45f8513",
       "url": "https://github.com/PrintersForAnts/Micron/tree/f76aa28767211ddfee2e30290aadcea3c45f8513",
-      "scope": "Micron 120 / Micron Plus 180 · AntHead / Wristwatch G2 / Revo Voron",
+      "scope": "Micron 120 / Micron Plus 180 \u00b7 AntHead / Wristwatch G2 / Revo Voron",
       "license": "GPL-3.0",
       "license_url": "../licenses/micron/LICENSE",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
@@ -1080,17 +1080,17 @@
       "license": "CC BY-NC-SA 4.0",
       "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
       "changes": "Selected Leadscrew-Z / Sherpa Mini source configuration; normalized axes, source topology repairs, left Z nut placement correction, sRGB-to-linear web colors, motion bindings and chain routing preview.",
-      "label": "Crossant-235 · Pole Engineering and contributors",
+      "label": "Crossant-235 \u00b7 Pole Engineering and contributors",
       "author": "Pole Engineering and contributors; adaptations: 3D Print Rig",
       "url": "https://github.com/Pole-Engineering/Crossant-235",
       "version": "V0.6 archive / V0.5.4 root; upstream WIP head",
       "scope": "Crossant-235 Leadscrew Z / Sherpa Mini / source Goliath; 2,177 native parts.",
-      "notice": "235 mm plate / 220 × 220 × 200 mm nominal build area. WIP head and chain routing are not certified installed fits; original contacts retained. Incomplete Belted-Z is not enabled."
+      "notice": "235 mm plate / 220 \u00d7 220 \u00d7 200 mm nominal build area. WIP head and chain routing are not certified installed fits; original contacts retained. Incomplete Belted-Z is not enabled."
     },
     {
       "id": "goliath",
       "repository": "VzBoT3D/Goliath",
-      "label": "Goliath · VzBoT / Mellow3D",
+      "label": "Goliath \u00b7 VzBoT / Mellow3D",
       "author": "VzBoT team; manufactured by Mellow3D",
       "url": "https://github.com/VzBoT3D/Goliath",
       "commit": "f49cafc26169a8e766e50aee41ebe81e91cb10e5",
@@ -1103,20 +1103,20 @@
     },
     {
       "id": "trident_stealth_skirts",
-      "label": "Trident Stealth Skirts · PrintStructor",
+      "label": "Trident Stealth Skirts \u00b7 PrintStructor",
       "author": "PrintStructor",
       "url": "https://www.printables.com/model/670769-voron-trident-stealth-skirts-cheese-grater-honeyco",
-      "version": "Model 670769 · 2024-05-05",
+      "version": "Model 670769 \u00b7 2024-05-05",
       "sha256": "c840e43fc44933b583b23d2350abf222572c3af1ae79378797dd0cd8455a10d7",
       "license": "GPL-3.0",
       "license_url": "../licenses/stealth_skirts/LICENSE",
-      "scope": "VORON Trident 250 / 300 / 350 · Cheese Grater and Honeycomb original STL panels with source feet, fans, screen and filtered inlet.",
+      "scope": "VORON Trident 250 / 300 / 350 \u00b7 Cheese Grater and Honeycomb original STL panels with source feet, fans, screen and filtered inlet.",
       "changes": "Native rigid frame placement and palette roles; standard skirts and associated fasteners replaced. Native VORON M3 slot nuts placed at measured new skirt axes.",
       "notice": "Source hardware is a reference. Electrical operation and kit-specific compatibility are not certified."
     },
     {
       "id": "e3ng_toolchanger",
-      "label": "E3NG hotend changer · Beta / native MOD1 v10",
+      "label": "E3NG hotend changer \u00b7 Beta / native MOD1 v10",
       "repository": "emna2881/E3NG-Toolchanger",
       "author": "emna2881; E3NG design by RH3D; Nudge by zruncho3d; extruder inspiration by Irbis3D / MedusaHC",
       "commit": "25d250b3b00b146769373d5a5c3e9e446ebff19c",
@@ -1131,16 +1131,16 @@
     },
     {
       "id": "yudx",
-      "label": "YUDX · MGN12Hヘッド・専用押出機・ドック",
+      "label": "YUDX \u00b7 MGN12H\u30d8\u30c3\u30c9\u30fb\u5c02\u7528\u62bc\u51fa\u6a5f\u30fb\u30c9\u30c3\u30af",
       "repository": "dumplinglab/YUDX-tool-changer",
       "author": "dumpling / Dumpling lab",
       "commit": "9b0f1b3d48d2bde63a0e042524a494e89a94ca4b",
       "url": "https://github.com/dumplinglab/YUDX-tool-changer/tree/9b0f1b3d48d2bde63a0e042524a494e89a94ca4b",
-      "scope": "148部品の原本組立。交換ヘッド・専用押出機・空のドック1台を含む参照CAD。機体取付と交換経路は未検証。",
+      "scope": "148\u90e8\u54c1\u306e\u539f\u672c\u7d44\u7acb\u3002\u4ea4\u63db\u30d8\u30c3\u30c9\u30fb\u5c02\u7528\u62bc\u51fa\u6a5f\u30fb\u7a7a\u306e\u30c9\u30c3\u30af1\u53f0\u3092\u542b\u3080\u53c2\u7167CAD\u3002\u6a5f\u4f53\u53d6\u4ed8\u3068\u4ea4\u63db\u7d4c\u8def\u306f\u672a\u691c\u8a3c\u3002",
       "license": "GPL-3.0",
       "license_url": "../licenses/yudx/LICENSE",
-      "changes": "原本の配置・寸法を保持して三角形化。部品単位の配色と分解表示。ソリッド修復・スケール変更はなし。",
-      "notice": "最新版CADを使用。作者のBOM・組立PDFは未更新です。付属G-codeはRRF用でKlipperマクロは未提供。"
+      "changes": "\u539f\u672c\u306e\u914d\u7f6e\u30fb\u5bf8\u6cd5\u3092\u4fdd\u6301\u3057\u3066\u4e09\u89d2\u5f62\u5316\u3002\u90e8\u54c1\u5358\u4f4d\u306e\u914d\u8272\u3068\u5206\u89e3\u8868\u793a\u3002\u30bd\u30ea\u30c3\u30c9\u4fee\u5fa9\u30fb\u30b9\u30b1\u30fc\u30eb\u5909\u66f4\u306f\u306a\u3057\u3002",
+      "notice": "\u6700\u65b0\u7248CAD\u3092\u4f7f\u7528\u3002\u4f5c\u8005\u306eBOM\u30fb\u7d44\u7acbPDF\u306f\u672a\u66f4\u65b0\u3067\u3059\u3002\u4ed8\u5c5eG-code\u306fRRF\u7528\u3067Klipper\u30de\u30af\u30ed\u306f\u672a\u63d0\u4f9b\u3002"
     },
     {
       "id": "phaetus_rapido_x",
@@ -1157,7 +1157,7 @@
     },
     {
       "id": "fysetc_cnc_stealth_front",
-      "label": "V0 · FYSETC CNC Bed Stealth Front",
+      "label": "V0 \u00b7 FYSETC CNC Bed Stealth Front",
       "author": "driftrotor / remix: Maple Leaf Makers",
       "url": "https://www.printables.com/model/859914-voron-v0-fysetc-cnc-bed-stealth-front",
       "version": "3MF files 2024-04-28; page updated 2024-05-02; native file hashes in SOURCE_FILES.json",
@@ -1173,7 +1173,7 @@
       "repository": "Annex-Engineering/Gasherbrum-K3",
       "author": "Annex Engineering",
       "commit": "1a470008b8f906085838f9e9c00c25fc499c00ae",
-      "version": "Release 1.1 · 2022-11-24",
+      "version": "Release 1.1 \u00b7 2022-11-24",
       "url": "https://github.com/Annex-Engineering/Gasherbrum-K3/tree/1a470008b8f906085838f9e9c00c25fc499c00ae",
       "license": "Annex Engineering Hardware and Software EULA",
       "license_url": "../licenses/annex_license/LICENSE.md",
@@ -1192,7 +1192,7 @@
       "license": "Annex Engineering Hardware and Software EULA",
       "license_url": "../licenses/annex_license/LICENSE.md",
       "scope": "Complete native assembly: 1766 part instances. Static CAD viewing; motion is not registered.",
-      "changes": "Native geometry tessellation and source colors retained; viewer materials and scene controls added. Corrupt corner-clip reference surface replaced by the author’s Release_3_0/STLs/Panel_Mounting/Sides_and_Top_Quick_Release/corner_lock_body_6mm_x6_Rev2.stl (SHA256 bb71c5db8d715840101f351b02f09175fd112194c8bcd0eb23a8009a3620f3d2); native part transforms preserved. Matching normal CAD counterpart surface discrepancy < 0.03 mm.",
+      "changes": "Native geometry tessellation and source colors retained; viewer materials and scene controls added. Corrupt corner-clip reference surface replaced by the author\u2019s Release_3_0/STLs/Panel_Mounting/Sides_and_Top_Quick_Release/corner_lock_body_6mm_x6_Rev2.stl (SHA256 bb71c5db8d715840101f351b02f09175fd112194c8bcd0eb23a8009a3620f3d2); native part transforms preserved. Matching normal CAD counterpart surface discrepancy < 0.03 mm.",
       "notice": "12 original reference geometry issue(s) retained. Native mesh placement and instance count checked; physical assembly, continuous collision checks and motion are unverified."
     },
     {
@@ -1232,17 +1232,17 @@
       "url": "https://github.com/Phaetus/Rapido/tree/ca025effebbf63a48dda88ec3a6039fd3c081f0a",
       "license": "Personal use only; commercial use prohibited by manufacturer README",
       "license_url": "../licenses/remorph/PHAETUS_README.md",
-      "scope": "Supplemental Rapido UHF model at the author’s dedicated four-hole mount.",
+      "scope": "Supplemental Rapido UHF model at the author\u2019s dedicated four-hole mount.",
       "changes": "Native mount and seat registration, simplified mount fasteners.",
       "notice": "Manufacturer heatsink/heater integration surfaces are retained; this does not imply a closed internal solid model."
     },
     {
       "id": "fysetc_cnc_bed_fans",
-      "label": "V0 · FYSETC CNC Bed Fans & Connection Mount",
+      "label": "V0 \u00b7 FYSETC CNC Bed Fans & Connection Mount",
       "author": "driftrotor",
       "url": "https://www.printables.com/model/859647-voron-v0-bed-fans-connection-mount-for-fysetc-cnc",
       "version": "3MF files 2024-05-01; page updated 2024-05-02; native file hashes in SOURCE_FILES.json",
-      "scope": "Shared 3010 fan bracket and two connection-mount alternatives, displayed separately. Hole pitch checked against the author’s bed STEP; seats, PCB and full Z travel are unvalidated. No printer installation is registered.",
+      "scope": "Shared 3010 fan bracket and two connection-mount alternatives, displayed separately. Hole pitch checked against the author\u2019s bed STEP; seats, PCB and full Z travel are unvalidated. No printer installation is registered.",
       "license": "GPL-3.0",
       "license_url": "../licenses/fysetc_cnc_bed_fans/LICENSE",
       "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
@@ -1250,7 +1250,7 @@
     },
     {
       "id": "a4t_xol_carriage",
-      "label": "A4T / Xol · 6 / 9 mm",
+      "label": "A4T / Xol \u00b7 6 / 9 mm",
       "author": "DW-Tas / Armchair Heavy Industries; VoronDesign",
       "url": "https://github.com/Armchair-Heavy-Industries/A4T/tree/e1fc27113bb3061458f528db837d517c35e0b88a",
       "version": "A4T e1fc271; Xol c00b13e; Archetype 1527097; native shape checksums in module records",
@@ -1262,7 +1262,7 @@
     },
     {
       "id": "yavoth_assembly",
-      "label": "Yavoth · assembled 6 / 9 mm previews",
+      "label": "Yavoth \u00b7 assembled 6 / 9 mm previews",
       "author": "chirpy2605; original embedded component authors",
       "url": "https://github.com/chirpy2605/voron/tree/cc2e749d09d7f24418f9f8c73c90bcefb1e29584/V0/Yavoth",
       "commit": "cc2e749d09d7f24418f9f8c73c90bcefb1e29584",
@@ -1289,7 +1289,7 @@
     },
     {
       "id": "community_ender3",
-      "label": "Ender-3 · Original Ender-3",
+      "label": "Ender-3 \u00b7 Original Ender-3",
       "author": "Creality3DPrinting",
       "repository": "Creality3DPrinting/Ender-3",
       "url": "https://github.com/Creality3DPrinting/Ender-3",
@@ -1303,7 +1303,7 @@
     },
     {
       "id": "community_mercury235",
-      "label": "Mercury One.1 / Ender-5 · 235 assembly v32",
+      "label": "Mercury One.1 / Ender-5 \u00b7 235 assembly v32",
       "author": "ZeroGDesign",
       "repository": "ZeroGDesign/docs",
       "url": "https://github.com/ZeroGDesign/docs",
@@ -1317,7 +1317,7 @@
     },
     {
       "id": "community_mercury370",
-      "label": "Mercury One.1 / Ender-5 Plus · 370 assembly v15",
+      "label": "Mercury One.1 / Ender-5 Plus \u00b7 370 assembly v15",
       "author": "ZeroGDesign",
       "repository": "ZeroGDesign/docs",
       "url": "https://github.com/ZeroGDesign/docs",
@@ -1331,7 +1331,7 @@
     },
     {
       "id": "community_sboom",
-      "label": "SIBOOR S-BOOM · January 2026",
+      "label": "SIBOOR S-BOOM \u00b7 January 2026",
       "author": "Lzhikai",
       "repository": "Lzhikai/SIBOOR-S-BOOM-2026",
       "url": "https://github.com/Lzhikai/SIBOOR-S-BOOM-2026",
@@ -1345,12 +1345,12 @@
     },
     {
       "id": "community_vz330",
-      "label": "VzBot / 330 · Vz-330 v1.2 / WEB v2 · Printed AWD",
+      "label": "VzBot / 330 \u00b7 Vz-330 v1.2 / WEB v2 \u00b7 Printed AWD",
       "author": "VzBoT3D",
       "repository": "VzBoT3D/VzBoT-Vz330",
       "url": "https://github.com/VzBoT3D/VzBoT-Vz330",
       "commit": "a7b1cdc7121c1d36c73704aa3c7d74c42bc0c959",
-      "version": "Vz-330 v1.2 / WEB v2 · Printed AWD",
+      "version": "Vz-330 v1.2 / WEB v2 \u00b7 Printed AWD",
       "license": "CC-BY-NC-4.0",
       "license_url": "../licenses/community-machines/vz330/LICENSE.txt",
       "scope": "Native whole-machine reference assembly and display meshes.",
@@ -1373,12 +1373,12 @@
     },
     {
       "id": "community_aether",
-      "label": "Antithesis Aether MK1.1 · MK1.1 · aluminum gantry · release build v3",
+      "label": "Antithesis Aether MK1.1 \u00b7 MK1.1 \u00b7 aluminum gantry \u00b7 release build v3",
       "author": "antithesisengineering",
       "repository": "antithesisengineering/Antithesis-Aether-MK1.1",
       "url": "https://github.com/antithesisengineering/Antithesis-Aether-MK1.1",
       "commit": "24e67a9495d2a73dfad09fb21bfe443abc917f71",
-      "version": "MK1.1 · aluminum gantry · release build v3",
+      "version": "MK1.1 \u00b7 aluminum gantry \u00b7 release build v3",
       "license": "GPL-3.0",
       "license_url": "../licenses/community-machines/aether/LICENSE.txt",
       "scope": "Native complete-machine reference assembly and display meshes.",
@@ -1389,12 +1389,12 @@
     },
     {
       "id": "community_vminion",
-      "label": "Rat Rig V-Minion / 180 · V-Minion 1.0 · official assembly revision 7",
+      "label": "Rat Rig V-Minion / 180 \u00b7 V-Minion 1.0 \u00b7 official assembly revision 7",
       "author": "Rat-Rig",
       "repository": "Rat-Rig/V-Minion",
       "url": "https://github.com/Rat-Rig/V-Minion",
       "commit": "6811558082d6a1797dac160ca027692cd7904a4b",
-      "version": "V-Minion 1.0 · official assembly revision 7",
+      "version": "V-Minion 1.0 \u00b7 official assembly revision 7",
       "license": "CC-BY-NC-SA-4.0",
       "license_url": "../licenses/community-machines/vminion/LICENSE.txt",
       "scope": "Native complete-machine reference assembly and display meshes.",
@@ -1405,12 +1405,12 @@
     },
     {
       "id": "community_snake180",
-      "label": "SnakeOil XY / 180 · v1 · 180 assembly · Mosquito / Sherpa Mini",
+      "label": "SnakeOil XY / 180 \u00b7 v1 \u00b7 180 assembly \u00b7 Mosquito / Sherpa Mini",
       "author": "SnakeOilXY",
       "repository": "SnakeOilXY/SnakeOil-XY",
       "url": "https://github.com/SnakeOilXY/SnakeOil-XY",
       "commit": "a98641cf6d199b7557ccc511e57664eac0d34243",
-      "version": "v1 · 180 assembly · Mosquito / Sherpa Mini",
+      "version": "v1 \u00b7 180 assembly \u00b7 Mosquito / Sherpa Mini",
       "license": "GPL-3.0 + ANNEX Engineering License",
       "license_url": "../licenses/community-machines/snake180/LICENSE.txt",
       "scope": "Native complete-machine reference assembly and display meshes.",
@@ -1422,12 +1422,12 @@
     },
     {
       "id": "community_snakeidex",
-      "label": "SnakeOil XY / IDEX · v1 · IDEX assembly · dual Mosquito / Sherpa Mini",
+      "label": "SnakeOil XY / IDEX \u00b7 v1 \u00b7 IDEX assembly \u00b7 dual Mosquito / Sherpa Mini",
       "author": "SnakeOilXY",
       "repository": "SnakeOilXY/SnakeOil-XY",
       "url": "https://github.com/SnakeOilXY/SnakeOil-XY",
       "commit": "a98641cf6d199b7557ccc511e57664eac0d34243",
-      "version": "v1 · IDEX assembly · dual Mosquito / Sherpa Mini",
+      "version": "v1 \u00b7 IDEX assembly \u00b7 dual Mosquito / Sherpa Mini",
       "license": "GPL-3.0 + ANNEX Engineering License",
       "license_url": "../licenses/community-machines/snakeidex/LICENSE.txt",
       "scope": "Native complete-machine reference assembly and display meshes.",
@@ -1439,12 +1439,12 @@
     },
     {
       "id": "community_snake3s",
-      "label": "SnakeOil XY-3S / KP3S · v1 · KP3S conversion · V6 / Sherpa Mini",
+      "label": "SnakeOil XY-3S / KP3S \u00b7 v1 \u00b7 KP3S conversion \u00b7 V6 / Sherpa Mini",
       "author": "SnakeOilXY",
       "repository": "SnakeOilXY/SnakeOilXY-3S",
       "url": "https://github.com/SnakeOilXY/SnakeOilXY-3S",
       "commit": "61cfb4c0849c8e4b9cef75ea0cc445192cc0fa59",
-      "version": "v1 · KP3S conversion · V6 / Sherpa Mini",
+      "version": "v1 \u00b7 KP3S conversion \u00b7 V6 / Sherpa Mini",
       "license": "GPL-3.0 + ANNEX Engineering License",
       "license_url": "../licenses/community-machines/snake3s/LICENSE.txt",
       "scope": "Native complete-machine reference assembly and display meshes.",
@@ -1456,12 +1456,12 @@
     },
     {
       "id": "community_proosa",
-      "label": "ProosaXY / MK3-S conversion · MAIN assembly · triple Z · V6 / Sherpa Mini",
+      "label": "ProosaXY / MK3-S conversion \u00b7 MAIN assembly \u00b7 triple Z \u00b7 V6 / Sherpa Mini",
       "author": "SnakeOilXY",
       "repository": "SnakeOilXY/ProosaXY",
       "url": "https://github.com/SnakeOilXY/ProosaXY",
       "commit": "c43b9e46b5127aa138ef4561ba0d22329837d0df",
-      "version": "MAIN assembly · triple Z · V6 / Sherpa Mini",
+      "version": "MAIN assembly \u00b7 triple Z \u00b7 V6 / Sherpa Mini",
       "license": "GPL-3.0 + ANNEX Engineering License",
       "license_url": "../licenses/community-machines/proosa/LICENSE.txt",
       "scope": "Native complete-machine reference assembly and display meshes.",
@@ -1473,12 +1473,12 @@
     },
     {
       "id": "community_stinger",
-      "label": "LH Stinger 1.0 · 200 mm CF bed",
+      "label": "LH Stinger 1.0 \u00b7 200 mm CF bed",
       "author": "Andrei / lhndo",
       "repository": "lhndo/LH-Stinger",
       "url": "https://github.com/lhndo/LH-Stinger",
       "commit": "4fb1e2eb917bfe78ae29cbde5a3793a80c02cc80",
-      "version": "LH Stinger 1.0 · assembly v23 / toolhead v220",
+      "version": "LH Stinger 1.0 \u00b7 assembly v23 / toolhead v220",
       "license": "CC-BY-NC-SA-4.0",
       "license_url": "../licenses/community-machines/stinger/LICENSE.txt",
       "scope": "Native complete-machine reference assembly and display meshes.",
@@ -1494,7 +1494,7 @@
       "author": "SOVOL",
       "commit": "a60644875f8c756d20b3828c9416518b414b5491",
       "url": "https://github.com/Sovol3d/SV08/tree/a60644875f8c756d20b3828c9416518b414b5491",
-      "scope": "SOVOL SV08 · 350 × 350 × 345 mm / CoreXY / 4Z / 公式組立CAD",
+      "scope": "SOVOL SV08 \u00b7 350 \u00d7 350 \u00d7 345 mm / CoreXY / 4Z / \u516c\u5f0f\u7d44\u7acbCAD",
       "license": "GPL-3.0",
       "license_file": "licenses/community-machines/sv08/LICENSE.txt",
       "changes": "Complete assembly display conversion; native Z mounting seats aligned, raised nozzle pose, seven overlapping alternatives separated. Static reference; XY belts are absent from source.",
@@ -1565,12 +1565,12 @@
     },
     {
       "id": "hydra",
-      "label": "HYDRA · Ender-3 source parts",
+      "label": "HYDRA \u00b7 Ender-3 source parts",
       "author": "boothyboothy / Boothy",
       "commit": null,
       "url": "https://www.printables.com/model/169197-hydra-fan-duct-tool-change-system-for-ender-3-ende",
       "scope": "Manual tool-plate system. Individual printed parts only; fans, hotend, extruder, fasteners and probes are absent. Ender-3 installation is not registered. Five 0.2 mm nut-hole support membranes are removed from the base parts.",
-      "license": "CC BY-NC-SA 4.0 · boothyboothy / Boothy",
+      "license": "CC BY-NC-SA 4.0 \u00b7 boothyboothy / Boothy",
       "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
       "version": "Printables files 2022-04-13; base STEP 2021-08-04; tool plate STEP v1"
     },
@@ -1742,11 +1742,11 @@
     },
     {
       "id": "trident_internal_spool",
-      "name": "Trident Internal Spool Holder · elcrni",
+      "name": "Trident Internal Spool Holder \u00b7 elcrni",
       "url": "https://github.com/elcrni/Voron-Mods",
       "commit": "b35e4ddcde50adc4f93a1a29342ac467e651f992",
       "license": "GPL-3.0; added native VORON hardware retains original component terms",
-      "scope": "Original v32 holder and guides with rigid roller phase corrections, native VORON fixings, a relocated lower guide and an upper guide mounted below the rear frame member. Author sizes 300/350, capacity Ø200 × up to 75 mm. Actual spool body and filament route are not included. Exact host installation qualification is kept in a separate receipt.",
+      "scope": "Original v32 holder and guides with rigid roller phase corrections, native VORON fixings, a relocated lower guide and an upper guide mounted below the rear frame member. Author sizes 300/350, capacity \u00d8200 \u00d7 up to 75 mm. Actual spool body and filament route are not included. Exact host installation qualification is kept in a separate receipt.",
       "files": [
         {
           "path": "Trident_Internal_Spool_Holder/CAD/Trident_internal_spool_holder_001 v32.step",
@@ -1768,7 +1768,7 @@
     },
     {
       "id": "247zero",
-      "label": "247zero BETA2 · 120 mm / CAD v43",
+      "label": "247zero BETA2 \u00b7 120 mm / CAD v43",
       "repository": "247printing/247zero",
       "author": "247printing; VORON Design (V0.2 and M4); Hartk (M4 threaded mod)",
       "commit": "1f790081bddd6120e885f42dc6a78fa326baf4b2",
@@ -1788,7 +1788,7 @@
     },
     {
       "id": "247zero_voron_v02_skirts",
-      "label": "247zero · original VORON V0.2 skirt companions",
+      "label": "247zero \u00b7 original VORON V0.2 skirt companions",
       "repository": "VoronDesign/Voron-0",
       "author": "VORON Design",
       "commit": "a4d02db92a7dd71e8f2c72d6f74f6bc3b9d020c8",
@@ -1806,18 +1806,42 @@
     },
     {
       "id": "247zero_thin_m3_nuts",
-      "label": "247zero · thin M3 square nut data",
+      "label": "247zero \u00b7 thin M3 square nut data",
       "repository": "WV-design/Trinity-toolhead",
       "author": "WV-design; Prooda",
       "commit": "d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
-      "version": "Trinity pre tensioner by Prooda · native M3 Square Nut",
+      "version": "Trinity pre tensioner by Prooda \u00b7 native M3 Square Nut",
       "url": "https://github.com/WV-design/Trinity-toolhead/tree/d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",
       "license": "GPL-3.0",
       "license_url": "https://github.com/WV-design/Trinity-toolhead/blob/d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc/LICENSE",
       "cad_url": "https://github.com/WV-design/Trinity-toolhead/blob/d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc/Files%20%28WIP%29/extras/Trinity%20pre%20tensioner%20by%20Prooda.step",
       "source_step_sha256": "eac8d0dff4be00a5aabe5f274230adc77c59f9ea389a6d4896a000656620d172",
-      "scope": "Ten native 5.5 × 5.5 × 1.7 mm M3 square nuts; this does not install a Trinity toolhead on 247zero.",
+      "scope": "Ten native 5.5 \u00d7 5.5 \u00d7 1.7 mm M3 square nuts; this does not install a Trinity toolhead on 247zero.",
       "changes": "Exact source body rigidly placed at original skirt screw bores and native frame contact seats; no scaling or generic hardware replacement."
+    },
+    {
+      "id": "rh3d_virtu_public_source",
+      "label": "RH3D VIRTU May / V-ION",
+      "author": "RH3D; separately credited public hardware sources",
+      "url": "https://rh3d.xyz/virtu",
+      "license": "CC-BY-NC-SA-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "version": "Public STL assembly and individually credited public hardware",
+      "scope": "Source-based 3D viewer; selected source-derived preview movement.",
+      "changes": "Display conversion and public metadata projection. Geometry and source assembly transforms retained.",
+      "notice": "Author attribution and NonCommercial/ShareAlike conditions apply. Paid STEP assembly not used."
+    },
+    {
+      "id": "rh3d_e3ng_public_source",
+      "label": "RH3D E3NG v1.2",
+      "author": "RH3D; separately credited public hardware sources",
+      "url": "https://rh3d.xyz/e3ng",
+      "license": "CC-BY-NC-SA-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "version": "Public STL assembly and individually credited public hardware",
+      "scope": "Source-based 3D viewer; selected source-derived preview movement.",
+      "changes": "Display conversion and public metadata projection. Geometry and source assembly transforms retained.",
+      "notice": "Author attribution and NonCommercial/ShareAlike conditions apply. Paid STEP assembly not used."
     }
   ],
   "defaults": [
@@ -2061,19 +2085,19 @@
   ],
   "source_archives": [
     {
-      "label": "Trident・V2.4・ヘッド・交換機構",
+      "label": "Trident\u30fbV2.4\u30fb\u30d8\u30c3\u30c9\u30fb\u4ea4\u63db\u6a5f\u69cb",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v11/viewer-sources.zip"
     },
     {
-      "label": "V0.2・V0.2r1・V0 Mod",
+      "label": "V0.2\u30fbV0.2r1\u30fbV0 Mod",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v12/viewer-v0-sources.zip"
     },
     {
-      "label": "V2.4 250・300・350 / R2・LDO CNC AWD",
+      "label": "V2.4 250\u30fb300\u30fb350 / R2\u30fbLDO CNC AWD",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v13/viewer-v24-sources.zip"
     },
     {
-      "label": "Lineux・INDX・追加ヘッド・基板・FYSETC参照",
+      "label": "Lineux\u30fbINDX\u30fb\u8ffd\u52a0\u30d8\u30c3\u30c9\u30fb\u57fa\u677f\u30fbFYSETC\u53c2\u7167",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v13/viewer-head-sources.zip"
     },
     {
@@ -2089,7 +2113,7 @@
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v16/viewer-head-sources.zip"
     },
     {
-      "label": "Armchair / Archetype・A4T・Escapement・Sharketype・Trailhead・ADXL",
+      "label": "Armchair / Archetype\u30fbA4T\u30fbEscapement\u30fbSharketype\u30fbTrailhead\u30fbADXL",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v17/viewer-armchair-sources.zip"
     },
     {
@@ -2097,7 +2121,7 @@
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v18/viewer-hotend-sources.zip"
     },
     {
-      "label": "Sphinx tLW · 組付け部品と取付登録",
+      "label": "Sphinx tLW \u00b7 \u7d44\u4ed8\u3051\u90e8\u54c1\u3068\u53d6\u4ed8\u767b\u9332",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v19/viewer-sphinx-sources.zip"
     },
     {
@@ -2125,51 +2149,51 @@
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v27/viewer-monolith-sources.zip"
     },
     {
-      "label": "Sphinx tLW · ファンとプローブの取付",
+      "label": "Sphinx tLW \u00b7 \u30d5\u30a1\u30f3\u3068\u30d7\u30ed\u30fc\u30d6\u306e\u53d6\u4ed8",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v29/viewer-sphinx-components.zip"
     },
     {
-      "label": "SB · 組み合わせとプローブ取付部品",
+      "label": "SB \u00b7 \u7d44\u307f\u5408\u308f\u305b\u3068\u30d7\u30ed\u30fc\u30d6\u53d6\u4ed8\u90e8\u54c1",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v30/viewer-sb-probe-mounts.zip"
     },
     {
-      "label": "Rat Rig V / Core 40 / 300 mm · CoreXY/Hybrid/IDEX",
+      "label": "Rat Rig V / Core 40 / 300 mm \u00b7 CoreXY/Hybrid/IDEX",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v31/ratrig-40-300-cad.zip",
       "bytes": 563290345,
       "sha256": "7208c29161f485791bb2922e987555a1392719983ad57308397b7b38e8231f18"
     },
     {
-      "label": "Rat Rig V / Core 40 / 400 mm · CoreXY/Hybrid/IDEX",
+      "label": "Rat Rig V / Core 40 / 400 mm \u00b7 CoreXY/Hybrid/IDEX",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v31/ratrig-40-400-cad.zip",
       "bytes": 638618118,
       "sha256": "300426a9711a1288888eac71eb5cbd6c30b3649ac87c5925186dfd1dd7085ea5"
     },
     {
-      "label": "Rat Rig V / Core 40 / 500 mm · CoreXY/Hybrid/IDEX",
+      "label": "Rat Rig V / Core 40 / 500 mm \u00b7 CoreXY/Hybrid/IDEX",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v31/ratrig-40-500-cad.zip",
       "bytes": 692978253,
       "sha256": "78aedb94ac4e1387e1abbe962a3f43a1391cb581f8a32342aea506d53cf9e82e"
     },
     {
-      "label": "Rat Rig V / Core 41 / 300 mm · CoreXY/Hybrid/IDEX",
+      "label": "Rat Rig V / Core 41 / 300 mm \u00b7 CoreXY/Hybrid/IDEX",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v31/ratrig-41-300-cad.zip",
       "bytes": 539208884,
       "sha256": "76b10ccc4596446a1eeca5ce245bd8e54bc1f25d4a7e96722a4692a89edcf076"
     },
     {
-      "label": "Rat Rig V / Core 41 / 400 mm · CoreXY/Hybrid/IDEX",
+      "label": "Rat Rig V / Core 41 / 400 mm \u00b7 CoreXY/Hybrid/IDEX",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v31/ratrig-41-400-cad.zip",
       "bytes": 590192642,
       "sha256": "b139ce1289bea6b6bfe1a788c21755a744aecbf68f17bf36b2e814ec7280d0c3"
     },
     {
-      "label": "Rat Rig V / Core 41 / 500 mm · CoreXY/Hybrid/IDEX",
+      "label": "Rat Rig V / Core 41 / 500 mm \u00b7 CoreXY/Hybrid/IDEX",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v31/ratrig-41-500-cad.zip",
       "bytes": 643965183,
       "sha256": "24c3ebdd259038458845ca41c5f348128420e66a6ac02cc567fb11ce357b65e4"
     },
     {
-      "label": "Sphinx tLW · rear hotend cooling",
+      "label": "Sphinx tLW \u00b7 rear hotend cooling",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v34/viewer-sphinx-cooling.zip"
     },
     {
@@ -2187,15 +2211,15 @@
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v41/viewer-native-fasteners.zip"
     },
     {
-      "label": "Goliath · 原本CADとSphinx取付",
+      "label": "Goliath \u00b7 \u539f\u672cCAD\u3068Sphinx\u53d6\u4ed8",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v44/viewer-goliath-sources.zip"
     },
     {
-      "label": "Trident Stealth Skirts · 原本と取付データ",
+      "label": "Trident Stealth Skirts \u00b7 \u539f\u672c\u3068\u53d6\u4ed8\u30c7\u30fc\u30bf",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v46/viewer-stealth-skirts-sources.zip"
     },
     {
-      "label": "Sphinx · V3 7040／9290 とSingle Inletの原本",
+      "label": "Sphinx \u00b7 V3 7040\uff0f9290 \u3068Single Inlet\u306e\u539f\u672c",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v46/viewer-sphinx-generations-sources.zip"
     },
     {
@@ -2203,47 +2227,47 @@
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v47/viewer-stealthchanger-mounts.zip"
     },
     {
-      "label": "YUDX · CAD sources",
+      "label": "YUDX \u00b7 CAD sources",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v49/viewer-yudx-sources.zip"
     },
     {
-      "label": "Rapido X · 原本CADと取付データ",
+      "label": "Rapido X \u00b7 \u539f\u672cCAD\u3068\u53d6\u4ed8\u30c7\u30fc\u30bf",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v51/viewer-rapido-x-sources.zip",
       "bytes": 59515022,
       "sha256": "9d54c3b1c4279653c43b246abcd9a2fc1afac7cf9aa2440677e210f1b521db19"
     },
     {
-      "label": "A4T・Sphinx · ネイティブ組立データ",
+      "label": "A4T\u30fbSphinx \u00b7 \u30cd\u30a4\u30c6\u30a3\u30d6\u7d44\u7acb\u30c7\u30fc\u30bf",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v53/viewer-a4t-sphinx-native.zip",
       "bytes": 31136561,
       "sha256": "f6fe711437cb3daab793216e6d92a309ebf423c9ec33e4bd5589b9d545585c0f"
     },
     {
-      "label": "FYSETC CNC Bed Stealth Front · 3MF原本",
+      "label": "FYSETC CNC Bed Stealth Front \u00b7 3MF\u539f\u672c",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v54/viewer-fysetc-stealth-front-native.zip",
       "bytes": 95912,
       "sha256": "59ee399a145c65cebc2eb453435cee2f48fbb2214946cb3713fe57eb99532b81"
     },
     {
-      "label": "FYSETC CNC Bed Fans & Connection Mount · 3MF原本",
+      "label": "FYSETC CNC Bed Fans & Connection Mount \u00b7 3MF\u539f\u672c",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v56/viewer-fysetc-bed-fans-native.zip",
       "bytes": 106481,
       "sha256": "1c772f302272a67d27fe9f791ec600d9b8d5b4757f7f2b1a295bbdf4b3322b69"
     },
     {
-      "label": "A4T / Xolキャリッジ · 組付けCAD",
+      "label": "A4T / Xol\u30ad\u30e3\u30ea\u30c3\u30b8 \u00b7 \u7d44\u4ed8\u3051CAD",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v57/viewer-a4t-carriage-native.zip",
       "bytes": 8274728,
       "sha256": "fdc39c301f6f8d8d42a8e9d70a17152497a0f1d0f872d9bfa880696a1ae64d88"
     },
     {
-      "label": "Yavoth · 組立CAD",
+      "label": "Yavoth \u00b7 \u7d44\u7acbCAD",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v59/viewer-yavoth-native.zip",
       "bytes": 34266466,
       "sha256": "473d107ec047df0a8a1c79601d2ea90c0d8a567f4e77b2210a3669ed2c396ce9"
     },
     {
-      "label": "Fixed-Gantry-SC · 原本CADと表示用部品",
+      "label": "Fixed-Gantry-SC \u00b7 \u539f\u672cCAD\u3068\u8868\u793a\u7528\u90e8\u54c1",
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v67/viewer-horizontal-sc-source.zip",
       "bytes": 11774457,
       "sha256": "dd905f66d9c11e40f6c7bb106ab6a42575c6f65f2ca8f1c8786abf0ff4d2e033"

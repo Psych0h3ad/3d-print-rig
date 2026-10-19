@@ -61,6 +61,14 @@ function pairedLogo(controller,guide){
  assert.equal(rows.length,1,guide.mesh.name+' must pair with exactly one PCB in its own head');
  assert.equal(rows[0].identity.kind,'logo',guide.mesh.name+' must not borrow a nozzle emitter');return rows[0];
 }
+function checkUnlitGuide(guide){
+ assert.equal(guide.optical.enabled,0,guide.mesh.name+' retained optical emission');
+ for(const [i,material]of guide.materials.entries()){
+  const original=[].concat(guide.originalMaterial)[i];
+  assert.equal(material.emissiveIntensity,original.emissiveIntensity,guide.mesh.name+' changed native unlit intensity');
+  assert(material.emissive.equals(original.emissive),guide.mesh.name+' changed native unlit emission');
+ }
+}
 function checkLightValues(controller,{gain,color=0xff1838}={}){
  for(const e of controller.emitters){
   const expectedColor=e.identity.kind==='nozzle'?0xffffff:color;
@@ -69,7 +77,7 @@ function checkLightValues(controller,{gain,color=0xff1838}={}){
   assert(e.light.matrixWorld.elements.every(Number.isFinite));
   for(const m of e.surface.materials){assert.equal(m.emissiveIntensity,3.2*gain);assert(Number.isFinite(m.emissiveIntensity));assert.equal(m.emissive.getHex(),expectedColor);}
  }
- for(const g of controller.guides){const e=pairedLogo(controller,g);for(const m of g.materials){assert.equal(m.emissiveIntensity,e.surface.materials[0].emissiveIntensity);assert(m.emissive.equals(e.light.color));}}
+ for(const g of controller.guides){if(!gain){checkUnlitGuide(g);continue;}const e=pairedLogo(controller,g);assert.equal(g.optical.enabled,1);for(const m of g.materials){assert.equal(m.emissiveIntensity,e.surface.materials[0].emissiveIntensity);assert(m.emissive.equals(e.light.color));}}
 }
 
 export async function auditLedLighting(root){
@@ -193,11 +201,11 @@ export async function auditLedLighting(root){
    }
    assert(e.mesh.position.equals(position));e.mesh.visible=false;assert.equal(controller.update({level:300}).lit,2);
    assert.equal(e.light.intensity,0);for(const m of e.surface.materials)assert.equal(m.emissiveIntensity,0);
-   if(e.identity.kind==='logo')for(const g of controller.guides)assert.equal(g.materials[0].emissiveIntensity,0);
+   if(e.identity.kind==='logo')for(const g of controller.guides)checkUnlitGuide(g);
    fixture.brightness.individual_hidden_checks++;e.mesh.visible=true;assert.equal(controller.update({level:300}).lit,3);
   }
   for(const power of [false,true,false,true]){assert.equal(controller.update({power,level:300,color:'red',effect:'static'}).lit,power?3:0);checkLightValues(controller,{gain:power?3:0});fixture.on_off_checks++;}
-  head.visible=false;assert.equal(controller.update({level:300}).lit,0);for(const e of controller.emitters){assert.equal(e.light.intensity,0);for(const m of e.surface.materials)assert.equal(m.emissiveIntensity,0);}for(const g of controller.guides)assert.equal(g.materials[0].emissiveIntensity,0);fixture.hidden_checks++;head.visible=true;
+  head.visible=false;assert.equal(controller.update({level:300}).lit,0);for(const e of controller.emitters){assert.equal(e.light.intensity,0);for(const m of e.surface.materials)assert.equal(m.emissiveIntensity,0);}for(const g of controller.guides)checkUnlitGuide(g);fixture.hidden_checks++;head.visible=true;
   controller.update({level:300,color:'red'});checkPrepared(native,prepared);
   const clone=cloneNativeLedTree(head),cloneMeshes=[];clone.traverse(o=>{if(o.isMesh)cloneMeshes.push(o)});
   assert.equal(cloneMeshes.length,native.size);assert.equal(nativeLights(clone).length,0);
@@ -207,7 +215,7 @@ export async function auditLedLighting(root){
   for(const g of controller.guides)pairedLogo(controller,g);
   const ownGuides=controller.guides.filter(g=>native.has(g.mesh)),logos=controller.emitters.filter(e=>native.has(e.mesh)&&e.identity.kind==='logo').map(e=>({mesh:e.mesh,parent:e.mesh.parent}));
   for(const e of logos)e.parent.remove(e.mesh);assert.equal(controller.update({level:300}).lit,5);
-  for(const g of ownGuides)assert.equal(g.materials[0].emissiveIntensity,0,'An orphan guide must not borrow the cloned head\'s identical emitter ID');
+  for(const g of ownGuides)checkUnlitGuide(g);
   for(const g of controller.guides.filter(g=>!native.has(g.mesh)))assert.equal(g.materials[0].emissiveIntensity,3.2*3);
   fixture.orphan_guide_dark_checks++;fixture.brightness.duplicate_head_guide_isolation_checks++;
   for(const e of logos)e.parent.add(e.mesh);assert.equal(controller.update({level:300}).lit,6);

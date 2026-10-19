@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Generated SEO: scripts/build_seo.py -->
+<title>Inside Stealthburner · 3D Print Rig</title>
+<meta name="description" content="Cut through the filament path of Stealthburner and Clockwork 2. See how the V6 heater, nozzle, heatbreak, heatsink and 4010 cooling fan work together.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Inside Stealthburner · 3D Print Rig">
+<meta name="twitter:description" content="Cut through the filament path of Stealthburner and Clockwork 2. See how the V6 heater, nozzle, heatbreak, heatsink and 4010 cooling fan work together.">
+<meta name="twitter:image" content="https://psych0h3ad.github.io/3d-print-rig/assets/social/3d-print-rig-preview.png?v=b6a888d891052e2d01a6">
+<meta name="twitter:image:alt" content="3D Print Rig, a browser CAD configurator, alongside original VORON Trident technical drawings.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="3D Print Rig">
+<meta property="og:title" content="Inside Stealthburner · 3D Print Rig">
+<meta property="og:description" content="Cut through the filament path of Stealthburner and Clockwork 2. See how the V6 heater, nozzle, heatbreak, heatsink and 4010 cooling fan work together.">
+<meta property="og:url" content="https://psych0h3ad.github.io/3d-print-rig/viewer/stealthburner-cutaway.html">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://psych0h3ad.github.io/3d-print-rig/assets/social/3d-print-rig-preview.png?v=b6a888d891052e2d01a6">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="3D Print Rig, a browser CAD configurator, alongside original VORON Trident technical drawings.">
+<link rel="canonical" href="https://psych0h3ad.github.io/3d-print-rig/viewer/stealthburner-cutaway.html">
+<link rel="sitemap" type="application/xml" href="https://psych0h3ad.github.io/3d-print-rig/sitemap.xml">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","@id":"https://psych0h3ad.github.io/3d-print-rig/viewer/stealthburner-cutaway.html#page","name":"Inside Stealthburner \u00b7 3D Print Rig","description":"Cut through the filament path of Stealthburner and Clockwork 2. See how the V6 heater, nozzle, heatbreak, heatsink and 4010 cooling fan work together.","url":"https://psych0h3ad.github.io/3d-print-rig/viewer/stealthburner-cutaway.html","inLanguage":"en","isPartOf":{"@type":"WebSite","@id":"https://psych0h3ad.github.io/3d-print-rig/#website","name":"3D Print Rig","url":"https://psych0h3ad.github.io/3d-print-rig/"}}</script>
+<!-- End generated SEO -->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="./display-start.js?v=2ccf9c125fa0c4f73dc1"></script>
+<link rel="icon" type="image/svg+xml" href="../assets/brand/rig-mark.svg?v=cbac7f098709f3f6488f">
+<link rel="stylesheet" href="../assets/brand/brand.css?v=82a18995f709e6ae8fba">
+<link rel="stylesheet" href="./theme-toggle.css?v=4e62a8462e0b9ed5c665">
+<link rel="stylesheet" href="./stealthburner-cutaway.css">
+<script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
+</head>
+<body class="cutaway-page">
+<a class="skip" href="#lesson" data-i18n-id="cutaway.skip">Skip to explanation</a>
+<header>
+<a class="brand" href="./machines.html"><img src="../assets/brand/rig-mark.svg?v=cbac7f098709f3f6488f" width="34" height="34" alt=""><strong>3D Print Rig</strong></a>
+<nav aria-label="Navigation"><a href="./toolheads.html" data-i18n-id="ui.toolhead">Toolhead</a><a href="../fun/" data-i18n-id="ui.just_for_fun">Just for fun</a></nav>
+<div class="header-actions"></div>
+</header>
+<main>
+<section id="stage" aria-label="Stealthburner 3D cutaway">
+<div class="camera-tools" role="group" aria-label="Camera view">
+<button id="sectionView" aria-pressed="true" data-i18n-id="cutaway.section_view">Section view</button>
+<button id="perspective" aria-pressed="false" data-i18n-id="cutaway.perspective">Perspective</button>
+<button id="front" aria-pressed="false" data-i18n-id="cutaway.front">Front</button>
+</div>
+<div id="loading" role="status"><span data-i18n-id="cutaway.loading">Loading Stealthburner…</span><output id="loadPercent" data-i18n="off"></output><progress id="loadProgress" max="100" aria-label="Download progress"></progress></div>
+<div id="error" role="alert" hidden><p data-i18n-id="cutaway.load_error">The CAD could not be loaded. Try again.</p><button id="retry" data-i18n-id="cutaway.retry">Retry</button></div>
+<div id="pins" hidden>
+<button data-chapter="0" class="pin" aria-label="Clockwork 2 filament drive" data-i18n-id="cutaway.pin_feed"><span data-i18n="off">1</span></button>
+<button data-chapter="1" class="pin hot" aria-label="Heater block and nozzle" data-i18n-id="cutaway.pin_heater"><span data-i18n="off">2</span></button>
+<button data-chapter="2" class="pin cold" aria-label="Heatbreak and heatsink" data-i18n-id="cutaway.pin_break"><span data-i18n="off">3</span></button>
+<button data-chapter="3" class="pin cold" aria-label="4010 hotend cooling fan" data-i18n-id="cutaway.pin_fan"><span data-i18n="off">4</span></button>
+</div>
+<div class="stage-note"><span data-i18n-id="cutaway.model_name">Stealthburner · CW2 · E3D V6</span><span data-i18n-id="cutaway.orbit_hint">Drag to rotate · Pinch to zoom</span></div>
+</section>
+<aside id="lesson" aria-labelledby="lessonTitle">
+<div class="intro"><h1 id="lessonTitle" data-i18n-id="cutaway.title">Inside Stealthburner</h1><p data-i18n-id="cutaway.intro">Follow the filament from the drive gears to the nozzle.</p></div>
+<div class="playback">
+<button id="play" class="primary" disabled><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path id="playIcon" d="M7 5h4v14H7zM14 5h4v14h-4z" fill="currentColor"/></svg><span id="playText" data-i18n-id="cutaway.pause">Pause</span></button>
+<button id="restart" disabled data-i18n-id="cutaway.restart">Restart</button>
+<output id="time" data-i18n="off">0 / 40 s</output>
+</div>
+<label class="sr-only" for="timeline" data-i18n-id="cutaway.timeline">Explanation timeline</label><input id="timeline" type="range" min="0" max="40" step="0.1" value="0" disabled>
+<nav class="chapters" aria-label="Explanation chapters" id="chapters">
+<button data-chapter="0" aria-pressed="true"><span class="chapter-number" data-i18n="off">1</span><span data-i18n-id="cutaway.feed_title">Feed</span></button>
+<button data-chapter="1" aria-pressed="false"><span class="chapter-number" data-i18n="off">2</span><span data-i18n-id="cutaway.heater_title">Heat</span></button>
+<button data-chapter="2" aria-pressed="false"><span class="chapter-number" data-i18n="off">3</span><span data-i18n-id="cutaway.break_title">Separate hot and cold</span></button>
+<button data-chapter="3" aria-pressed="false"><span class="chapter-number" data-i18n="off">4</span><span data-i18n-id="cutaway.fan_title">Cool</span></button>
+</nav>
+<div class="explanation" aria-live="polite"><h2 id="chapterTitle" data-i18n-id="cutaway.feed_title">Feed</h2><p id="chapterText" data-i18n-id="cutaway.feed_text">Clockwork 2 grips the filament between two hobbed gears. It pushes solid filament down the guide and into the hotend.</p></div>
+<div class="section-control"><label for="section"><span data-i18n-id="cutaway.section">Cut through the filament path</span><output id="sectionValue" data-i18n="off">100%</output></label><input id="section" type="range" min="0" max="100" step="1" value="100" disabled><div class="range-labels"><span data-i18n-id="cutaway.complete">Complete model</span><span data-i18n-id="cutaway.filament_axis">Filament axis</span></div></div>
+<fieldset disabled id="demonstration"><legend data-i18n-id="cutaway.try">Try the controls</legend>
+<label><input id="heater" type="checkbox" checked><span data-i18n-id="cutaway.heater">Heater</span><span class="swatch hot" aria-hidden="true"></span></label>
+<label><input id="fan" type="checkbox" checked><span data-i18n-id="cutaway.fan">4010 hotend fan</span><span class="swatch cold" aria-hidden="true"></span></label>
+<label><input id="feed" type="checkbox" checked><span data-i18n-id="cutaway.filament">Filament flow</span><span class="swatch filament" aria-hidden="true"></span></label>
+<label><input id="heatColors" type="checkbox" checked><span data-i18n-id="cutaway.heat_colors">Heat colors</span></label>
+</fieldset>
+<p id="creep" class="warning" hidden data-i18n-id="cutaway.creep">With the hotend fan off, heat can climb into the cold end. Soft filament here can cause a jam (heat creep).</p>
+<p class="scope" data-i18n-id="cutaway.scope">Heat colors, filament flow and air trails explain the mechanism. They do not predict temperature, airflow or print performance. Fan blades in the source CAD remain fixed.</p>
+<details><summary data-i18n-id="cutaway.sources">CAD sources</summary><p data-i18n-id="cutaway.source_note">Original public CAD, with its placements retained. The section is a viewing effect; it does not change the source parts.</p><div id="sourceLinks"></div><a href="./toolheads.html?toolhead=stealthburner&amp;hotend=v6&amp;extruder=cw2" data-i18n-id="cutaway.open_builder">Open the toolhead builder</a></details>
+</aside>
+</main>
+<script type="module" src="./stealthburner-cutaway.mjs?v=5021d1e5633116ce8031"></script>
+</body>
+</html>

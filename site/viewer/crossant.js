@@ -1,17 +1,17 @@
-import {setupGcodePanel} from './gcode-panel.js?v=9f2e2d37bad40bd01847';
+import {setupGcodePanel} from './gcode-panel.js?v=2e8d1cc51fe9511c776c';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
-import {rememberDisplayControl} from './display-preferences.mjs?v=5fd25f289942c501706d';
-import {workspaceFrame,WorkspaceResizeObserver,workspaceTask,workspaceListen} from './workspace-lifecycle.mjs?v=a8e49b4993efdc7bac52';
+import {rememberDisplayControl} from './display-preferences.mjs?v=ab531b33fbcb36317429';
+import {workspaceFrame,WorkspaceResizeObserver,workspaceTask,workspaceListen} from './workspace-lifecycle.mjs?v=742c8844997b5856a728';
 import * as THREE from './vendor-r180/three.module.js';
 import {OrbitControls} from './vendor-r180/OrbitControls.js?v=workspace-belts-1';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
-import {loadCrossant,disposeCrossant} from './crossant-loader.mjs?v=3152363d03bf35188dc5';
+import {loadCrossant,disposeCrossant} from './crossant-loader.mjs?v=7ca2be4ff602015a96c5';
 import {crossantSchema,crossantGroups,validateCrossantState} from './crossant-state.mjs?v=534dc62f2c6545f556f7';
-import {setupMachineNavigation} from './machines.js?v=7d90ace65109ee54e1d2';
-import {setupRenderExport} from './render-export.js?v=1383105a90d0fa4a63bd';
-import {setupPublicInfo} from './public-info.js?v=c7e65c6912faa5cf0bb8';
+import {setupMachineNavigation} from './machines.js?v=ab543d6b01637bc5083f';
+import {setupRenderExport} from './render-export.js?v=743ea37fb4e25b58aa57';
+import {setupPublicInfo} from './public-info.js?v=dec4a2afe766c1788684';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 export async function mount(scope){
 const $=id=>document.getElementById(id),stage=$('stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));

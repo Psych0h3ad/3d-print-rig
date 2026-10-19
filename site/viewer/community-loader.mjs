@@ -2,10 +2,10 @@ import {loadedPrinterAssetIdentity} from './gcode-loaded-asset-identity.mjs?v=42
 import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
 import {extraAssetBase,checkedExtraAsset} from './extra-asset-integrity.mjs?v=019170d7f31b55da1667';
 import {beginModelLoading} from './model-progress.mjs?v=beaef781095b6f56b290';
-import {createCommunityAdapter} from './community-adapter.mjs?v=603e9739f4c0fc671488';
+import {createCommunityAdapter} from './community-adapter.mjs?v=b0cc85230bdd2fc9c369';
 import {applyNativeMotionProfile,loadNativeMotionProfile} from './native-motion-profile.mjs?v=91532eb992519143f437';
 import {applyEvaInstallation} from './eva-installations.mjs?v=4dfad49e1f98d4b5b9f2';
-import {loadEvaFrontSurfaces,applyEvaFrontSurfaces} from './eva-front-surfaces.mjs?v=629c42810cc0b477c98e';
+import {loadEvaFrontSurfaces,applyEvaFrontSurfaces} from './eva-front-surfaces.mjs?v=b186419d84a7566d8e22';
 export async function loadCommunity(index,machine,{signal}={}){
  const spec=index.machines[machine];if(!spec||spec.machine_id!==machine)throw Error('Unknown community printer');
  const extraModels=spec.additional_models||[];

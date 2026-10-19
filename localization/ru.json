@@ -10361,6 +10361,430 @@
     "ui.v0assembly.text_27a2edc43cec8f": {
       "source_revision": "78249940ba60ca4e053b",
       "text": "Проверьте свободное открывание с открытыми замками, затем поверните их на 90 градусов по часовой стрелке. r1 использует шестигранный ключ 5 mm. Статика не подтверждает свободный размах."
+    },
+    "machine.switchwire.label": {
+      "source_revision": "c87cef020153c07f8819",
+      "text": "VORON Switchwire · Официальная CAD v1 / Stealthburner / CW2 / Revo Voron"
+    },
+    "machine.switchwire.description": {
+      "source_revision": "5596a03b4ff622a1014d",
+      "text": "Официальная CAD-сборка Switchwire v1 со Stealthburner, CW2 и Revo Voron."
+    },
+    "machine.switchwire.source_notice": {
+      "source_revision": "0197fc768928179b1f9a",
+      "text": "Источник: VoronDesign/Voron-Switchwire, ревизия 92cc013ca2af94e6c09950dbe05c0973ee49aa00 (GPL-3.0). Предпросмотр движения не подтверждает физические зазоры."
+    },
+    "machine.switchwire.chain_notice": {
+      "source_revision": "d16b362cbe4a1793c5fe",
+      "text": "В исходной CAD-модели цепь Z содержит 18 звеньев. Модель движения использует 24 копии исходной геометрии звена, чтобы охватить полный ход Z. Все три цепи собраны по измеренным осям шарниров."
+    },
+    "cutaway.skip": {
+      "source_revision": "00006499f3ac2180e69e",
+      "text": "Перейти к объяснению"
+    },
+    "cutaway.stage_label": {
+      "source_revision": "ae315e0fbd821287cdde",
+      "text": "3D-разрез Stealthburner"
+    },
+    "cutaway.title": {
+      "source_revision": "9b31564379aa35b51f6d",
+      "text": "Внутри Stealthburner"
+    },
+    "cutaway.intro": {
+      "source_revision": "5ed9ff95bacf53123374",
+      "text": "Проследите путь филамента от подающих шестерён до сопла."
+    },
+    "cutaway.section_view": {
+      "source_revision": "b17045b074f699f463bc",
+      "text": "Вид разреза"
+    },
+    "cutaway.perspective": {
+      "source_revision": "0fe1c2cc6f9cfd094bf5",
+      "text": "Перспектива"
+    },
+    "cutaway.front": {
+      "source_revision": "bd885bc12aafcab3b929",
+      "text": "Спереди"
+    },
+    "cutaway.loading": {
+      "source_revision": "fa9f718a58a98c927cf9",
+      "text": "Загрузка Stealthburner…"
+    },
+    "cutaway.load_error": {
+      "source_revision": "b17fbe9e2b776dd62006",
+      "text": "Не удалось загрузить CAD. Попробуйте ещё раз."
+    },
+    "cutaway.retry": {
+      "source_revision": "8bff8241b405ed6338e5",
+      "text": "Повторить"
+    },
+    "cutaway.model_name": {
+      "source_revision": "8cf9bddac029fc372c51",
+      "text": "Stealthburner · CW2 · E3D V6"
+    },
+    "cutaway.orbit_hint": {
+      "source_revision": "67a6dbf1afdd57c49108",
+      "text": "Перетаскивание — вращение · Щипок — масштаб"
+    },
+    "cutaway.play": {
+      "source_revision": "7c1bedc7f0a304ad025a",
+      "text": "Воспроизвести"
+    },
+    "cutaway.pause": {
+      "source_revision": "8193c42042e530e3f5fb",
+      "text": "Пауза"
+    },
+    "cutaway.restart": {
+      "source_revision": "6160dfbcd71429344e41",
+      "text": "Начать заново"
+    },
+    "cutaway.timeline": {
+      "source_revision": "00c67e3b0cb8451cfd69",
+      "text": "Положение на шкале объяснения"
+    },
+    "cutaway.feed_title": {
+      "source_revision": "4b3e1a6cf658164f6057",
+      "text": "Подача"
+    },
+    "cutaway.heater_title": {
+      "source_revision": "63794ec9d82f0b25a0c8",
+      "text": "Нагрев"
+    },
+    "cutaway.break_title": {
+      "source_revision": "d75ed448b7d4fe9011cd",
+      "text": "Разделение горячей и холодной зон"
+    },
+    "cutaway.fan_title": {
+      "source_revision": "0bf6d548cf9d19746503",
+      "text": "Охлаждение"
+    },
+    "cutaway.feed_text": {
+      "source_revision": "1def0e5e1c1b9ab96948",
+      "text": "Clockwork 2 зажимает филамент между двумя зубчатыми подающими шестернями и проталкивает его в твёрдом виде через направляющую в хотэнд."
+    },
+    "cutaway.heater_text": {
+      "source_revision": "8845dfe8936f13109c3f",
+      "text": "Нагревательный картридж нагревает блок. Блок передаёт тепло соплу и филаменту. Размягчённый филамент может проходить через сопло."
+    },
+    "cutaway.break_text": {
+      "source_revision": "63f3278cdb27a1f10588",
+      "text": "Тонкая термобарьерная трубка ограничивает передачу тепла вверх. Радиатор отводит оставшееся тепло, сохраняя поступающий филамент твёрдым выше зоны плавления."
+    },
+    "cutaway.fan_text": {
+      "source_revision": "9fa633a19127a7b49514",
+      "text": "Осевой вентилятор 4010 продувает рёбра радиатора и уносит тепло. Отдельный радиальный вентилятор 5015 направляет воздух через боковые каналы для охлаждения напечатанного пластика."
+    },
+    "cutaway.section": {
+      "source_revision": "ae62b30fd790015c9e86",
+      "text": "Разрез по пути филамента"
+    },
+    "cutaway.complete": {
+      "source_revision": "ba2e10cf4c7713bcb63f",
+      "text": "Полная модель"
+    },
+    "cutaway.filament_axis": {
+      "source_revision": "a439156e5904aaf1faf5",
+      "text": "Ось филамента"
+    },
+    "cutaway.try": {
+      "source_revision": "83b484d9e8b52a5881bb",
+      "text": "Попробуйте управление"
+    },
+    "cutaway.heater": {
+      "source_revision": "3564a6c30e912c1ed496",
+      "text": "Нагреватель"
+    },
+    "cutaway.fan": {
+      "source_revision": "2bc1681d103714bfa4f7",
+      "text": "Вентилятор хотэнда 4010"
+    },
+    "cutaway.filament": {
+      "source_revision": "f2b526e4d38058166f9a",
+      "text": "Поток филамента"
+    },
+    "cutaway.heat_colors": {
+      "source_revision": "4fd491fc55ba56afbe89",
+      "text": "Цвета нагрева"
+    },
+    "cutaway.creep": {
+      "source_revision": "830f42813bd6885c3e92",
+      "text": "При выключенном вентиляторе хотэнда тепло может подниматься в холодную зону. Размягчение филамента здесь может вызвать засор (тепловое ползучее размягчение)."
+    },
+    "cutaway.scope": {
+      "source_revision": "4aaf394769e4003abe3f",
+      "text": "Цвета нагрева, поток филамента и воздушные следы объясняют механизм. Они не прогнозируют температуру, расход воздуха или качество печати. Лопасти вентилятора в исходном CAD остаются неподвижными."
+    },
+    "cutaway.sources": {
+      "source_revision": "529d414d6f751d9dadbe",
+      "text": "Источники CAD"
+    },
+    "cutaway.source_note": {
+      "source_revision": "dc1b3ff34507caf2a3fb",
+      "text": "Оригинальный общедоступный CAD с сохранённым расположением деталей. Разрез — эффект отображения, он не меняет исходные детали."
+    },
+    "cutaway.open_builder": {
+      "source_revision": "6bca4776fcd8a43a2da5",
+      "text": "Открыть конфигуратор головки"
+    },
+    "cutaway.link": {
+      "source_revision": "68ab1344b7123399c39d",
+      "text": "Как работает Stealthburner"
+    },
+    "cutaway.pin_feed": {
+      "source_revision": "e9232b087e1fad6eb0e8",
+      "text": "Механизм подачи Clockwork 2"
+    },
+    "cutaway.pin_heater": {
+      "source_revision": "4afe0ba8af610c22bd44",
+      "text": "Нагревательный блок и сопло"
+    },
+    "cutaway.pin_break": {
+      "source_revision": "caa96361772b2e84a06e",
+      "text": "Термобарьер и радиатор"
+    },
+    "cutaway.pin_fan": {
+      "source_revision": "0e28de219bbd9ef46ca6",
+      "text": "Вентилятор охлаждения хотэнда 4010"
+    },
+    "component.micro_swiss_reference": {
+      "source_revision": "fad2f6d25a8a0def86a9",
+      "text": "Справочная CAD-модель Micro Swiss. Вентиляторы охлаждения не включены. Файлы STEP доступны на сайте Micro Swiss."
+    },
+    "component.micro_swiss_universal_reference": {
+      "source_revision": "f2902e060f62f4692e17",
+      "text": "Справочная CAD-модель версии Universal. Монтажная пластина, кожух вентилятора и вентиляторы охлаждения не включены. Файлы STEP доступны на сайте Micro Swiss."
+    },
+    "component.solid_count": {
+      "source_revision": "116b7d28cba30844f17d",
+      "text": "Твёрдых тел: {0}"
+    },
+    "source_assembly.head": {
+      "source_revision": "94eaa4ba78dfd087458a",
+      "text": "Только головка"
+    },
+    "source_assembly.open": {
+      "source_revision": "f722270d60da261458ec",
+      "text": "Открыть модель"
+    },
+    "source_assembly.cancel": {
+      "source_revision": "2d4f895142fbf6fb0b8b",
+      "text": "Отмена"
+    },
+    "source_assembly.loading": {
+      "source_revision": "48ff95679923145f1703",
+      "text": "Загрузка"
+    },
+    "source_assembly.motion_note": {
+      "source_revision": "0affd86246e7b7d081e7",
+      "text": "Смещения от исходного положения сборки. Эти пределы просмотра не являются координатами прошивки."
+    },
+    "source_assembly.reset": {
+      "source_revision": "ca182127e22bb51b2ca7",
+      "text": "Исходное положение"
+    },
+    "source_assembly.colors": {
+      "source_revision": "a5998950b8af9c21d672",
+      "text": "Цвета печатных деталей"
+    },
+    "source_assembly.base": {
+      "source_revision": "7a854d13565295e43855",
+      "text": "Основной"
+    },
+    "source_assembly.dark": {
+      "source_revision": "2dfad1273d5ce9e1239c",
+      "text": "Тёмный интерфейс"
+    },
+    "source_assembly.light": {
+      "source_revision": "d83189c4b21354542bad",
+      "text": "Освещение"
+    },
+    "source_assembly.studio": {
+      "source_revision": "4a69534b457e351790ec",
+      "text": "Студия"
+    },
+    "source_assembly.rgb": {
+      "source_revision": "50c63d95810b9cb1172d",
+      "text": "Цикл цветов"
+    },
+    "source_assembly.off": {
+      "source_revision": "65f3cb3e5dabde16d8b4",
+      "text": "Выключено"
+    },
+    "source_assembly.source": {
+      "source_revision": "6feeab6f87992266e645",
+      "text": "Источники и лицензии"
+    },
+    "source_assembly.step": {
+      "source_revision": "3486aa4ee704eda317ac",
+      "text": "Загрузка STEP недоступна."
+    },
+    "source_assembly.attached": {
+      "source_revision": "618b0825b5558132a4de",
+      "text": "Установлен"
+    },
+    "source_assembly.parked": {
+      "source_revision": "b494bf0a3f1cebaf37c8",
+      "text": "Припаркован"
+    },
+    "source_assembly.minimum": {
+      "source_revision": "ff803b2507035833b6a3",
+      "text": "Сопло на столе"
+    },
+    "source_assembly.minimum_attached": {
+      "source_revision": "cd236c515f91d7c1d936",
+      "text": "Припаркуйте датчик перед перемещением сопла к столу."
+    },
+    "source_assembly.minimum_outside": {
+      "source_revision": "588264a12a14f316ba25",
+      "text": "Сопло находится вне поверхности стола."
+    },
+    "source_assembly.memory": {
+      "source_revision": "10cab26c4101bccab3a4",
+      "text": "Большая модель"
+    },
+    "source_assembly.memory_estimate": {
+      "source_revision": "a3c80e313a8124a44ba4",
+      "text": "Расчётный пик памяти"
+    },
+    "source_assembly.memory_unknown": {
+      "source_revision": "fec9409cdd9a85c14796",
+      "text": "Доступная браузеру оперативная память неизвестна."
+    },
+    "source_assembly.device_memory": {
+      "source_revision": "c9a68ab6b95f5d6a8f14",
+      "text": "Примерный объём памяти устройства"
+    },
+    "source_assembly.memory_note": {
+      "source_revision": "f9507093f573772eb499",
+      "text": "Загрузка может быть медленной или превысить память браузера. Вид головки требует меньше памяти."
+    },
+    "source_assembly.full_load": {
+      "source_revision": "016b4b4466cd38c86b1e",
+      "text": "Загрузить весь принтер"
+    },
+    "source_assembly.under": {
+      "source_revision": "53fd480c8b3ba2c3c201",
+      "text": "Снизу"
+    },
+    "source_assembly.orbit": {
+      "source_revision": "0de26be5387884c48e46",
+      "text": "Перетаскивание: вращение · Колесо или жест: масштаб"
+    },
+    "source_assembly.source_bounds": {
+      "source_revision": "d233656a3270feca43a7",
+      "text": "Движение останавливается на известных границах исходной модели. Полная проверка зазоров не моделируется."
+    },
+    "source_assembly.illustrative_loom": {
+      "source_revision": "2407c55c687ae88bcfe2",
+      "text": "Рукав проводов показан схематично; его диаметр и запас длины автором не заданы."
+    },
+    "source_assembly.support_notice": {
+      "source_revision": "83f9e7caa5457d9fe613",
+      "text": "Встроенная геометрия инструкций исключена. Нижние решётки сохраняют исходные полости и выбранный профиль печати."
+    },
+    "source_assembly.saved": {
+      "source_revision": "a9d5a11fbd9233d3143c",
+      "text": "Конфигурация сохранена."
+    },
+    "source_assembly.loaded": {
+      "source_revision": "3ed8ff767c3311842e30",
+      "text": "Конфигурация загружена."
+    },
+    "source_assembly.migrated": {
+      "source_revision": "72d9592b56209fa0e85b",
+      "text": "Конфигурация загружена с текущей версией источника."
+    },
+    "source_assembly.unsafe": {
+      "source_revision": "8cee6150c9e298417a3f",
+      "text": "Эта конфигурация несовместима или пересекает границу исходной модели."
+    },
+    "source_assembly.blocked": {
+      "source_revision": "4a764e20be10c4e9fc42",
+      "text": "Это движение достигает границы модели. Выберите другое положение или путь."
+    },
+    "source_assembly.error": {
+      "source_revision": "4e1bfb54bb319f7df70b",
+      "text": "Не удалось загрузить модель. Повторите попытку."
+    },
+    "source_assembly.head_note": {
+      "source_revision": "eab72ae12fdde10b3ac8",
+      "text": "Показана текущая головка и её исходные компоненты. Управление перемещением доступно в виде всего принтера."
+    },
+    "source_assembly.revision": {
+      "source_revision": "60f3b00fe05338ffdc49",
+      "text": "Версия источника"
+    },
+    "source_assembly.unknown_license": {
+      "source_revision": "848ea247701b360459dc",
+      "text": "В публичной загрузке CAD лицензия не указана."
+    },
+    "source_assembly.stl_e3ng": {
+      "source_revision": "f1ab09b13c1a0953446b",
+      "text": "Сборка создана из опубликованных RH3D файлов STL с отдельным указанием источников публичных CAD-моделей оборудования. Платная CAD-сборка E3NG не использовалась."
+    },
+    "source_assembly.stl_virtu": {
+      "source_revision": "c7eac43a31e2b3abf2f6",
+      "text": "Сборка создана из опубликованных RH3D файлов STL для VIRTU с отдельным указанием источников публичных CAD-моделей оборудования. Платная STEP-сборка автора не использовалась."
+    },
+    "source_assembly.controller_bores": {
+      "source_revision": "c79b4b1b4e823e6442b9",
+      "text": "Пять монтажных отверстий платы восстановлены по официальному чертежу. Остальные компоненты и цвета сохранены."
+    },
+    "source_assembly.incomplete_e3": {
+      "source_revision": "e52cf6afe0545e709762",
+      "text": "В модели отсутствуют два вентилятора 6015 для электроники и шесть вставок головки. Посадка крепежа датчика проверяется."
+    },
+    "source_assembly.incomplete_v": {
+      "source_revision": "cf292804e3c03279ec24",
+      "text": "В модели пока отсутствуют три вентилятора охлаждения электроники."
+    },
+    "source_assembly.fixed_body_route": {
+      "source_revision": "9da8f5a3df77589c08f7",
+      "text": "Это перемещение касается неподвижной детали. Выберите другой путь."
+    },
+    "source_assembly.head_fixed_body": {
+      "source_revision": "94b2b653428f6b05afaf",
+      "text": "Головка касается неподвижной детали."
+    },
+    "source_identity.ws2812_p412": {
+      "source_revision": "adf56ba405ddd75361bd",
+      "text": "P412__RGB-светодиод WS2812 (LED)"
+    },
+    "source_identity.ws2812_p413": {
+      "source_revision": "6ee34983920e818a2446",
+      "text": "P413__RGB-светодиод WS2812 (LED)"
+    },
+    "source_identity.ws2812_p416": {
+      "source_revision": "ede3c8f2014e49b38361",
+      "text": "P416__RGB-светодиод WS2812 (LED)"
+    },
+    "source_identity.voron_led_p414": {
+      "source_revision": "a706c1038b89d9eb3441",
+      "text": "P414__Прозрачная крышка светодиода Voron (LED)"
+    },
+    "source_assembly.reference_title": {
+      "source_revision": "11b1be3c5e40bcba5f75",
+      "text": "Источники"
+    },
+    "source_assembly.electronics_cooling6015": {
+      "source_revision": "90f980a3e6947bea2878",
+      "text": "Охлаждение электроники: 3 × 6015."
+    },
+    "source_assembly.source_capture6015": {
+      "source_revision": "09f57432199b823acf68",
+      "text": "Крепления вентиляторов сохраняют номинальное перекрытие исходной модели. Упругая посадка физических деталей не проверена."
+    },
+    "source_assembly.unknown_revision": {
+      "source_revision": "e4f3604b0e822412175f",
+      "text": "Версия не указана"
+    },
+    "source_assembly.repository_license": {
+      "source_revision": "74025eb9e274f41770e9",
+      "text": "Лицензия репозитория"
+    },
+    "source_assembly.component_license": {
+      "source_revision": "0362f4d05dcc539cdc9c",
+      "text": "Условия компонентов в источнике"
     }
   }
 }

@@ -12,10 +12,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    env:
+      NODE_OPTIONS: --max-old-space-size=512
     steps:
       - uses: actions/checkout@v6
-      - run: python3 scripts/check_repository.py
-      - run: python3 scripts/build_site.py --output _site
+      - run: python3 scripts/prepare_repository_inputs.py
+      - run: python3 scripts/check_repository.py --regression-workers 2
+      - run: python3 scripts/build_site.py --delivery site/APPROVED_DELIVERY.json --output _site
+      - run: python3 scripts/check_approved_site_size.py --site _site
       - uses: actions/upload-pages-artifact@v4
         with:
           path: _site

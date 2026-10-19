@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import {sourceAssemblyMachines} from '../site/viewer/source-assembly-registry.mjs';
 import {communitySchema,validateAxes,nativeMotion,displayMotion,validateCommunityState} from '../site/viewer/community-state.mjs';
 import {machineChoices,machineFamilies,machineVendors} from '../site/viewer/machines.js';
 import {evaCommunityIndex} from '../site/viewer/eva-installations.mjs';
@@ -11,7 +13,21 @@ const state={schema:communitySchema,machine:profile.machine_id,axes:{x:0,y:0,z:0
 assert.deepEqual(validateCommunityState(JSON.parse(JSON.stringify(state)),profile),state);
 for(const mutate of [s=>s.machine='another',s=>s.schema='unsupported',s=>s.axes.x=NaN,s=>s.palette.base='red',s=>s.grid=1,s=>s.camera.position=[0,.3,0],s=>s.camera.up=[0,0,0]]){const bad=structuredClone(state);mutate(bad);assert.throws(()=>validateCommunityState(bad,profile))}
 const catalog=evaCommunityIndex(JSON.parse(readFileSync(new URL('../site/COMMUNITY_MACHINES_ASSETS.json',import.meta.url))),JSON.parse(readFileSync(new URL('../site/EVA_INSTALLATIONS.json',import.meta.url))));
-assert.deepEqual(Object.keys(catalog.machines).sort(),machineChoices.filter(m=>m.available!==false&&m.page==='./community.html').map(m=>m.id).sort());
+const sourceIndex=JSON.parse(readFileSync(new URL('../site/SOURCE_ASSEMBLIES.json',import.meta.url)));
+assert.equal(sourceIndex.schema,'public-source-assembly-index-v1');
+assert.deepEqual(sourceIndex.models.map(r=>r.id).sort(),sourceAssemblyMachines.map(r=>r.id).sort());
+for(const source of sourceIndex.models){
+ assert(!Object.hasOwn(catalog.machines,source.id),'Machine must use one concrete delivery transport');
+ assert.match(source.model_sha256,/^[a-f0-9]{64}$/);assert.match(source.packet.sha256,/^[a-f0-9]{64}$/);
+ const bytes=readFileSync(new URL('../site/viewer/'+source.packet.url,import.meta.url));
+ assert.equal(bytes.length,source.packet.bytes);assert.equal(createHash('sha256').update(bytes).digest('hex'),source.packet.sha256);
+ const packet=JSON.parse(bytes);assert.equal(packet.model.sha256,source.model_sha256);
+ assert(packet.parts.length>200);assert.equal(new Set(packet.parts.map(r=>r.key)).size,packet.parts.length);
+ assert.match(packet.chunk_delivery.manifest.sha256,/^[a-f0-9]{64}$/);assert(packet.chunk_delivery.chunk_count>0);
+ const choice=machineChoices.find(r=>r.id===source.id);assert(choice&&choice.page==='./community.html'&&choice.available!==false);
+ assert.equal(choice.family,source.family);assert(machineFamilies[choice.family]&&machineVendors[choice.vendor]);
+}
+assert.deepEqual([...Object.keys(catalog.machines),...sourceIndex.models.map(r=>r.id)].sort(),machineChoices.filter(m=>m.available!==false&&m.page==='./community.html').map(m=>m.id).sort());
 for(const [id,spec] of Object.entries(catalog.machines)){
  const choice=machineChoices.find(x=>x.id===id);assert.ok(choice);assert.ok(choice.page.includes('community.html'));assert.ok(machineFamilies[choice.family]);assert.ok(machineVendors[choice.vendor]);
  assert.equal(spec.machine_id,id);assert.ok(spec.parts>200);for(const file of Object.values(spec.files)){assert.ok(file.bytes>0);assert.match(file.sha256,/^[a-f0-9]{64}$/);assert.ok(!file.path.includes('..'))}

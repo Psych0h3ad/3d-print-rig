@@ -302,7 +302,7 @@ export function auditHeadCombinationCoverage(catalog,{sourceMatrix=null,machineC
   if(meta.complete&&v.hardware_assembled===true&&meta.printedOnly)
    add('failure','ASSEMBLED_DECLARATION_WITHOUT_HARDWARE','The assembled declaration retains only explicitly printed metadata leaves.',{variant:v.id});
   const native=v.fit?.complete_head_native;
-  rows.push({id:v.id,selection:Object.fromEntries(Object.keys(collections).map(d=>[d,v[d]??null])),
+  rows.push({id:v.id,recipe_sha256:recipePin(v),selection:Object.fromEntries(Object.keys(collections).map(d=>[d,v[d]??null])),
    core:tuple(v,coreDimensions),assembly:declared,valid_plan:validPlan,hardware_metadata:!meta.complete||!meta.classificationComplete?'unreviewed':
     meta.printedOnly?'mount_only_observed':hardwareRoles.size===meta.observed.length?'hardware_roles_observed':
      meta.observed.length?'partial_hardware_observed':'unreviewed',
@@ -348,6 +348,11 @@ export function auditHeadCombinationCoverage(catalog,{sourceMatrix=null,machineC
     }catch(error){add('failure','MACHINE_NATIVE_RECIPE_INVALID',error.message,{machine:entry.machine,variant:installed.id});continue}
    }else if(!ordinaryInstalledPlanMatches(original,plan)){
     add('failure','MACHINE_COMPANION_PLAN_CHANGED','Installed base, exact modules, masks or source-relative companion/nozzle placements differ from the registered source recipe.',{machine:entry.machine,variant:installed.id});continue;
+   }
+   if(!installed.native_alpha_92&&object(entry.assets)){
+    const effective={...original,base_asset:plan.base,head_translation_mm:plan.translation,base_hidden_keys:plan.hidden,modules:plan.modules};
+    const meta=auditMetadata(effective,{base_assets:catalog.base_assets,assets:{...catalog.assets,...entry.assets}},assetMetadata,add);
+    sourceProof={...sourceProof,retained_assets:meta.assets,exported_metadata_status:meta.complete?'metadata_present':'unreviewed'};
    }
    row.machine_registrations.push({machine:entry.machine,configuration:installed.id,gantry:installed.gantry,
     recipe_review:sourceProof,registration_only:true,native_fit_certified:false});registered++;

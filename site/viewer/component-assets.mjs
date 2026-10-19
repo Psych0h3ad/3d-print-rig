@@ -1,3 +1,4 @@
+import {verifyLedModelBytes} from './led-source-binding.mjs';
 import {checkedExtraAsset,extraAssetBase} from './extra-asset-integrity.mjs?v=019170d7f31b55da1667';
 import {beginModelLoading} from './model-progress.mjs?v=beaef781095b6f56b290';
 import {loadChunkedTrinity} from './chunked-component-glb.mjs?v=d8db4ff82a409942c85b';
@@ -15,7 +16,9 @@ export async function loadExternalComponent(loader,spec,href){
   if(meta.id!==spec.component_id||meta.parts?.length!==spec.parts||new Set(meta.parts.map(p=>p.key)).size!==spec.parts)throw Error('Component part manifest mismatch');
   progress.assembling();
   const path=new URL('.',base).href;
-  const gltf=await loader.parseAsync(model.buffer,path);
-  return {gltf,meta};
+  const modelBuffer=model.buffer.slice(model.byteOffset,model.byteOffset+model.byteLength);
+  const gltf=await loader.parseAsync(modelBuffer,path);
+  const ledModelReceipt=await verifyLedModelBytes(gltf.scene,spec,model,{catalogId:spec.component_id});
+  return {gltf,meta,ledModelReceipt};
  }finally{progress.finish()}
 }

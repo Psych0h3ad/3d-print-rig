@@ -1,6 +1,6 @@
 {
   "schema": "machine-thumbnails/113",
-  "scope": "Images exported from the registered production CAD viewer at its reference configuration; thumbnails do not certify manufacturing fit.",
+  "scope": "Registered source assembly images. Each added CPU projection carries its exact model pins and method; thumbnails do not certify manufacturing fit or browser rendering.",
   "machines": [
     {
       "id": "doomcube2_350_reference",
@@ -1540,6 +1540,78 @@
           }
         }
       ]
+    },
+    {
+      "id": "voron_switchwire_250",
+      "family": "switchwire",
+      "size": 250,
+      "page": "./community.html",
+      "label": "VORON Switchwire · Official v1 CAD / Stealthburner / CW2 / Revo Voron",
+      "thumbnail": "voron_switchwire_250.webp",
+      "width": 320,
+      "height": 240,
+      "thumbnail_sha256": "5fdc1273065daff22a98285a1f42298b6004fc01b01567cf963e834b3d2a2726",
+      "thumbnail_bytes": 6336,
+      "model_pins": [
+        {
+          "model_sha256": "9db6a07660da8a4042121c3bec4fd7e6dcd8abcd750682dd9595c3a580d194e7",
+          "stored_model_sha256": "d74f72ed4f5fba7faa0e097bd62d67f59b11642cc762a9dc709c4e438232a3a8",
+          "companion_sha256": {
+            "source-chunk-01.glb": "fe0e9893ebf67f6d5004b0e0323eb9c85ecd413de325e145ced1d140566d9883",
+            "source-chunk-02.glb": "c78612ab9d6248dac2f4e3310dffc8240ff0916123cd41205342cc902d674446",
+            "source-chunk-03.glb": "cc7508c103fc7c392ee1d7a0cb65715335ab2885a34738ab4d0c6108b8a37606",
+            "source-chunk-04.glb": "a5c87a638177470146cb1998f3f776800ddceeb81da7febbe4dd7c431ff95b9f",
+            "source-chunk-05.glb": "23fe64f5608b479430cbe7ea0dd58d57b866fbaa62b75e64bcaf1e36e4ffe617",
+            "source-chunk-06.glb": "2af9526fe343253682f05c4dfd4710a98559f73dd076d6d562f20bcbecd33e28",
+            "source-chunk-07.glb": "453e960731454dee379b91380d63fc11c605ea22daf34679e82a0c0835db6deb",
+            "source-chunk-08.glb": "7a631af18946467bd5944acb2830ed3423e9111abaa37bbfc048ed64d73d70cf",
+            "source-chunk-09.glb": "4ce0b02408f64288f29c20225de4c331858f717eb4337abbf2e506d5bb978a55",
+            "source-chunk-10.glb": "435131b3a82469a901f2c06533f13e6575223c7b550b9768ff1b479cb1597c46",
+            "assembly_manifest.json": "703f4a92ee026b6e1c4ef5603691e394aa8919b0755330d07a94775b09ca0dfc",
+            "machine_profile.json": "4045df6338cb419a7bba1eb5b28c34e9ccdb88ae19fa5aa9c0b55be65b20b074"
+          },
+          "companions_sha256": "7d69bde90bc82e14bc58d40ee9a1f7bfe590a465d9463e7a2721a4ebe935f7a1",
+          "source_complete_projected_model_sha256": "0b6e62e6336d4ddc3e2051d6a9b00fdd2aa456d42544d0a14fcf19e10ac4afe0",
+          "source_geometry_rendered_model_sha256": "624391d3398f2aa04ca31d9802833df3804f7aa8cee127e5a4c3511403e43613"
+        }
+      ],
+      "thumbnail_projection": {
+        "path": "voron_switchwire_250.cpu-projection.json",
+        "sha256": "e45a8a6e434ef24d74a249b33cef3298b80d8f16e5d5329014420066dfcba56b",
+        "method": "CPU triangle projection",
+        "browser_review": false
+      }
+    },
+    {
+      "id": "rh3d_virtu_may_230",
+      "family": "virtu",
+      "size": 230,
+      "page": "./community.html",
+      "label": "VIRTU May / V-ION",
+      "thumbnail": "rh3d_virtu_may_230.webp",
+      "width": 320,
+      "height": 240,
+      "thumbnail_sha256": "9dc7d21ba30dda75e567f428689caeff3d2236b174bf6070e0f83b715106eef3",
+      "thumbnail_bytes": 10344,
+      "model_pins": [
+        {
+          "model_sha256": "2f9c92fa1fb0253c755f81564309158263c6296f9444fd58ea5e12eea2b6e7aa",
+          "stored_model_sha256": "2f9c92fa1fb0253c755f81564309158263c6296f9444fd58ea5e12eea2b6e7aa",
+          "stored_model_representation": "Exact GLB reconstructed from pinned stored prefix and chunks; no single network GLB object",
+          "companion_sha256": {
+            "packet-rh3d_virtu_may_230.json": "8d27638e1b972af41d69eeb122ed225be23091ee110bb1c8e7733d96fe95b3a4",
+            "inventory-rh3d_virtu_may_230.json": "45fe9828df27952ae4fa661eb3193992fffb7dfd91988d5f78d4050a52e82383",
+            "manifest-2f9c92fa1fb0253c755f81564309158263c6296f9444fd58ea5e12eea2b6e7aa.json": "d2bcda429b001aacfdebe04f7aef501c5cb70da7dd8645fa172cb7b270a073c1"
+          },
+          "companions_sha256": "eeb4763e57e660dab07765919cf40a56e08a952c135f7e26971e9deaf8c8c200",
+          "transport_manifest_sha256": "d2bcda429b001aacfdebe04f7aef501c5cb70da7dd8645fa172cb7b270a073c1",
+          "source_geometry_model_sha256": "d5739494244c7924456ffaf448fbd1b1eca8d9ae2bcfbc26d637ffdc18fbf7e1"
+        }
+      ],
+      "render_method": "actual-exported-triangle-cpu-projection",
+      "source_projection": "rh3d_virtu_may_230.successor-v9.cpu-projection.json",
+      "source_projection_sha256": "6bda4bebb7d22e7744ccababe150f270a1ef964abd2230f74dfefa5fe6698116",
+      "review_scope": "Current registered source geometry, transforms, default visibility and materials rendered by CPU projection; browser rendering is separately reviewed."
     }
   ]
 }

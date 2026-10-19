@@ -1,6 +1,6 @@
 import {virtualSettingsFromAdapter} from './virtual-printer-emulator.mjs?v=82f4d419283bf6313caf';
 import {unavailableCoordinateNote} from './gcode-machine-bindings.mjs?v=460777c3fc4d1a74bf27';
-import {setupGcodePanel} from './gcode-panel.js?v=9f2e2d37bad40bd01847';
+import {setupGcodePanel} from './gcode-panel.js?v=2e8d1cc51fe9511c776c';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import * as THREE from './vendor-r180/three.module.js';
@@ -8,14 +8,14 @@ import {OrbitControls} from './vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
 import {loadPositron} from './positron-loader.mjs?v=2a3105a5404159f02ff4';
 import {positronSchema,validatePositronState} from './positron-state.mjs?v=8296d1b775fbca04462f';
-import {setupMachineNavigation} from './machines.js?v=7d90ace65109ee54e1d2';
+import {setupMachineNavigation} from './machines.js?v=ab543d6b01637bc5083f';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
-import {translate} from './i18n.mjs?v=db391db0c6d1562c776b';
-import {rememberDisplayControl} from './display-preferences.mjs?v=5fd25f289942c501706d';
-import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=a8e49b4993efdc7bac52';
+import {translate} from './i18n.mjs?v=0cbc88406dc455da6bf4';
+import {rememberDisplayControl} from './display-preferences.mjs?v=ab531b33fbcb36317429';
+import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=742c8844997b5856a728';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
-import {setupRenderExport} from './render-export.js?v=1383105a90d0fa4a63bd';
-import {setupPublicInfo} from './public-info.js?v=c7e65c6912faa5cf0bb8';
+import {setupRenderExport} from './render-export.js?v=743ea37fb4e25b58aa57';
+import {setupPublicInfo} from './public-info.js?v=dec4a2afe766c1788684';
 
 const foldSteps=['ガラスベッドを外す','ベッドのネジを外す','Vホルダーを外す','ラッチを下げ、支柱のネジを外す','ヘッドを右端へ移動','Vホルダーを収納姿勢へ','ピンをJ字溝の回転位置へ移動','支柱を倒す','ヘッドを収納位置へ戻す','外したネジを左右の収納穴に差し込む','折り畳み完了'];
 export async function mount(scope){
