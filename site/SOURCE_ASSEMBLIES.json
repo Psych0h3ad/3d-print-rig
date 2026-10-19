@@ -12,8 +12,8 @@
       "assembly_id": "virtu_frame_body_head_candidate_132",
       "packet": {
         "url": "../source-assembly-assets/packet-rh3d_virtu_may_230.json",
-        "sha256": "8d27638e1b972af41d69eeb122ed225be23091ee110bb1c8e7733d96fe95b3a4",
-        "bytes": 1445330
+        "sha256": "9e229f3412414e57d5f1ca8f51f4b2a12571350cb52735864811ca2f1540050d",
+        "bytes": 2750962
       },
       "model_sha256": "2f9c92fa1fb0253c755f81564309158263c6296f9444fd58ea5e12eea2b6e7aa",
       "source_geometry_model_sha256": "d5739494244c7924456ffaf448fbd1b1eca8d9ae2bcfbc26d637ffdc18fbf7e1",

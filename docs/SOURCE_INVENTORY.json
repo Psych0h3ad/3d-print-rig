@@ -85,8 +85,8 @@
     },
     {
       "path": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-      "bytes": 363889,
-      "sha256": "1825a4da0474dbf01afbf2dec98d79e2522036ed4f3df8fe7d99c848927877db"
+      "bytes": 388200,
+      "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47"
     },
     {
       "path": "docs/CUSTOM_PTFE_ACTUAL_QA.json",
@@ -210,8 +210,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 400462,
-      "sha256": "059809694149b77e9118279403bcfdb773607ee5295fabf47f3d11f0c0a27097"
+      "bytes": 360963,
+      "sha256": "a8880650224672acf8afa0e919266a28edf24b413c199e39351eea80f61de13a"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -499,6 +499,11 @@
       "sha256": "e906d5d47854484466a545c2bbe9a1532dbf804628c560e95e26f476bc42f9a0"
     },
     {
+      "path": "docs/VIRTU_MAY_SOURCE_ROLE_REVIEW.json",
+      "bytes": 1704,
+      "sha256": "97707a5381724b1948d64059d129d6c39ad83981381202a21c603759279cd682"
+    },
+    {
       "path": "docs/WALLPAPERS.md",
       "bytes": 4953,
       "sha256": "69ed8aa81196ac79db7490e241a9296ce3b287ac9a6f36b55cada32e51764481"
@@ -689,6 +694,11 @@
       "sha256": "9fd80ee70d94340edb98f2ea3be3211df863210d10c54e1aa15e2161f3241507"
     },
     {
+      "path": "scripts/audit_virtu_may_role.mjs",
+      "bytes": 10425,
+      "sha256": "b26d85699472f3d6a534611c6ff3be4c438981c514400123dde7abbdf22022bf"
+    },
+    {
       "path": "scripts/build_approved_site.py",
       "bytes": 7605,
       "sha256": "b9510e13adef990b775c4b6b91d90c59d9519706119817c295c10bc9c80c8402"
@@ -700,8 +710,8 @@
     },
     {
       "path": "scripts/build_locales.mjs",
-      "bytes": 12401,
-      "sha256": "7bd9e318a3a5108b50e0cbf593796991fa8d034e268d7b61238eabac256afe96"
+      "bytes": 12567,
+      "sha256": "bb02943a5f6bd2bfc684301c39e53fed96bd154bf9e633beccc69c6b2cc03930"
     },
     {
       "path": "scripts/build_seo.py",
@@ -710,8 +720,8 @@
     },
     {
       "path": "scripts/build_site.py",
-      "bytes": 18458,
-      "sha256": "18bf88ba6134d4d6002f692954f70a9ff0472ffefbdc04436fb2494d3f4f2c14"
+      "bytes": 18749,
+      "sha256": "34fdc9269f8e8a37f32febf6922223bed7778621c455ab0279b1a0f4a437fe5b"
     },
     {
       "path": "scripts/build_support_catalog.mjs",
@@ -997,6 +1007,11 @@
       "path": "scripts/render_geometry_qa.mjs",
       "bytes": 15706,
       "sha256": "85520f0fd54ed889e11f99e094d3bb99635cb43b9be74b5016868215a67d80fb"
+    },
+    {
+      "path": "scripts/source-assembly-test-loader.mjs",
+      "bytes": 313,
+      "sha256": "2db3bfe0c9de4871c9b7a7fdb4b98658718a488ca1bf60d257d300f111b42762"
     },
     {
       "path": "scripts/spool-deck-evidence.mjs",
@@ -1569,6 +1584,11 @@
       "sha256": "7c752d3727e61855befc3d45286247745e785563e9e3a1ef09ae032acf142da0"
     },
     {
+      "path": "scripts/test_source_configuration_ui.mjs",
+      "bytes": 5268,
+      "sha256": "1381f13f3d8ef11218e0e39bae0296963a2ad85ece55cd6d820ae1370d23dea6"
+    },
+    {
       "path": "scripts/test_source_credit_format.mjs",
       "bytes": 3239,
       "sha256": "f66e96ac7c97944b0a3b18a2d66cb258f6c3843211d5b5254a0d2c04cdef78ce"
@@ -1749,6 +1769,11 @@
       "sha256": "413657585dac19f3eaf6d1d87664fab3b049c3bce6d5d408be3fcae344a8ab5b"
     },
     {
+      "path": "scripts/test_virtu_may_role.mjs",
+      "bytes": 2049,
+      "sha256": "9231a735a99ed4420603e60a0f8a27313693982de0f3685d3abadafb630454fb"
+    },
+    {
       "path": "scripts/test_virtual_printer_adapter.mjs",
       "bytes": 4247,
       "sha256": "b25320b19d87b8181df8684b30ef4fa42e4eba2fe729f17426e08456d2d3aa7c"
@@ -1849,9 +1874,14 @@
       "sha256": "2ea1e605c85fd04c6f901791a1b7da4b4d9e46c450d74ba817f2e375e4c7f19d"
     },
     {
+      "path": "scripts/virtu-may-role-contract.mjs",
+      "bytes": 2483,
+      "sha256": "8a075e5c6b1c53e1396d28cb0fee808c550122c7954e939dc65b4a8db52f3edd"
+    },
+    {
       "path": "site/APPROVED_DELIVERY.json",
-      "bytes": 707534,
-      "sha256": "0b3fb547985051661627efe6d7f9ae42cd921ce394906360a4e7ae8dccca5b47"
+      "bytes": 707519,
+      "sha256": "c166b7500732a41a6cee2f0a8be219a785b1429b8e293203e9460199256be80a"
     },
     {
       "path": "site/ASSET_BUNDLE.json",
@@ -1976,7 +2006,7 @@
     {
       "path": "site/SOURCE_ASSEMBLIES.json",
       "bytes": 814,
-      "sha256": "723c780a59ee1ccba744dd8a241f9b9012aa4ec1cf2df46a1b9ce34b72bc008c"
+      "sha256": "fb6d48c36981b8adc0707a51e7abfa82fbb770daf5430ec93a8409c837bdd8a4"
     },
     {
       "path": "site/STOCK_SKIRT_RETENTION_QA_92.json",
@@ -2080,8 +2110,8 @@
     },
     {
       "path": "site/assets/machines/index.json",
-      "bytes": 71174,
-      "sha256": "9d5e23006a5735013754a590c54c883f23c45ee9f685cc013a1407d66fd42f3a"
+      "bytes": 71506,
+      "sha256": "ab92ee1c65c5b47b6eba76e3f7b7ee5bee77066b194a177e9dd8c9ca96301c51"
     },
     {
       "path": "site/assets/machines/lh_stinger_200.webp",
@@ -5301,12 +5331,12 @@
     {
       "path": "site/viewer/community.html",
       "bytes": 7919,
-      "sha256": "e205b806d39d3f51d046d1957a2d689d5ee68799ee27f7c7df629fdfe6ebe244"
+      "sha256": "88861c7e813ffe0769b66bd399d1d6c2bc779008bd983de4cbd6d38058f68174"
     },
     {
       "path": "site/viewer/community.js",
       "bytes": 23222,
-      "sha256": "317a91846308b06bafab87be1de415673db41326110748690b5896c08ac1dea1"
+      "sha256": "aa48575d53ef4a9545bc27b6603af88fde108deb7bebc90220d9e78f281dea51"
     },
     {
       "path": "site/viewer/component-assets.mjs",
@@ -6134,6 +6164,11 @@
       "sha256": "2bd4ad848cb6cf37adf084b7cdd54153695f09e01f43d07947e4287bbdec1983"
     },
     {
+      "path": "site/viewer/source-assembly-configuration-ui.mjs",
+      "bytes": 1118,
+      "sha256": "0db9c665fde5b4c30b36b3cb30730392e816ed6da87d9c9badcc4f36db445325"
+    },
+    {
       "path": "site/viewer/source-assembly-loader.mjs",
       "bytes": 2750,
       "sha256": "db253a61613b4ad3e10bfe2e8c6fff0266ce99acc6f2f3bd4411882855c34c3a"
@@ -6265,8 +6300,8 @@
     },
     {
       "path": "site/viewer/source-assembly.mjs",
-      "bytes": 18131,
-      "sha256": "b46261030c86ae1a6f872fd9dd3050c46e8e9df20870af579a18c90c110f2ba9"
+      "bytes": 17959,
+      "sha256": "2aa70c95d21cf50c0b7fea1d87134cb87a59c2b405f6d4ec9ee28ee1215a48e0"
     },
     {
       "path": "site/viewer/source-control-bounds.mjs",

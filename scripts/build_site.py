@@ -282,6 +282,9 @@ def main():
     subprocess.run(['node', '--experimental-vm-modules', '--experimental-loader', './scripts/three-test-loader.mjs',
                     str(ROOT/'scripts/audit_toolchanger_assets.mjs'), '--site', str(target),
                     '--report', str(target/'review/toolchangers.json')], cwd=ROOT, check=True)
+    subprocess.run(['node', '--experimental-loader', './scripts/source-assembly-test-loader.mjs',
+                    str(ROOT/'scripts/audit_virtu_may_role.mjs'), '--site', str(target),
+                    '--report', str(target/'review/virtu-may-source-role.json')], cwd=ROOT, check=True)
     # Check the complete page graph after generated inputs (including support
     # data) exist, before the artifact can be uploaded.
     print(json.dumps(verify_entrypoints(target, input_map)))

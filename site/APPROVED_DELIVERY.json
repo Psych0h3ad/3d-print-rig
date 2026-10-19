@@ -243,10 +243,10 @@
     },
     {
       "path": "assets/machines/rh3d_virtu_may_230.successor-v9.cpu-projection.json",
-      "bytes": 137218,
-      "sha256": "6bda4bebb7d22e7744ccababe150f270a1ef964abd2230f74dfefa5fe6698116",
-      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/approved-normal-inputs-20261019/6bda4bebb7d22e7744ccababe150f270a1ef964abd2230f74dfefa5fe6698116.cpu-projection.json",
-      "approval_receipt_sha256": "47f143313e07de0325591800d85cce8959eda6520fa34d1e618fe894177c101f",
+      "bytes": 156313,
+      "sha256": "4c3cd833a080293140d79f8174fd82489021eec184ffe72016e487dbe4a7b3bd",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/approved-normal-inputs-20261019/4c3cd833a080293140d79f8174fd82489021eec184ffe72016e487dbe4a7b3bd.json",
+      "approval_receipt_sha256": "7a3da9029c36ac272f19767487a60f0ad7f925c172e31ad0b0286dace9d885cc",
       "origin": "Exact source-geometry-preserving CPU thumbnail metadata binding"
     },
     {
@@ -9338,10 +9338,10 @@
     },
     {
       "path": "source-assembly-assets/packet-rh3d_virtu_may_230.json",
-      "bytes": 1445330,
-      "sha256": "8d27638e1b972af41d69eeb122ed225be23091ee110bb1c8e7733d96fe95b3a4",
-      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/approved-normal-inputs-20261019/8d27638e1b972af41d69eeb122ed225be23091ee110bb1c8e7733d96fe95b3a4.json",
-      "approval_receipt_sha256": "9c95d220e0c154cddbf9e89bb3e49fae0330ba055f673ff4d4ad38e0fd7578b1",
+      "bytes": 2750962,
+      "sha256": "9e229f3412414e57d5f1ca8f51f4b2a12571350cb52735864811ca2f1540050d",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/approved-normal-inputs-20261019/9e229f3412414e57d5f1ca8f51f4b2a12571350cb52735864811ca2f1540050d.json",
+      "approval_receipt_sha256": "93a2ab83001860c83ab62ff5cbdcd3d575fec832ae133473303d6eec81458189",
       "origin": "Exact current source assembly compressed transport; original source/BIN/geometry certificates retained"
     },
     {
@@ -10983,7 +10983,7 @@
     }
   ],
   "source_catalog_sha256": {
-    "SOURCE_ASSEMBLIES.json": "51c1059483c3f05a53fcdd09e5b0b97ddb56035ea63872cfe050899ff6671fa3",
+    "SOURCE_ASSEMBLIES.json": "fb6d48c36981b8adc0707a51e7abfa82fbb770daf5430ec93a8409c837bdd8a4",
     "HEAD_ADDITIONS.json": "c752983c1a054ee7b4d000e458d6839cf5176b2d0b143ca1f6727683a4bed405",
     "COMPONENT_ADDITIONS.json": "65d3ef345bcd5031b266fef5e8863568379304943651c03fb5bb6f9503f73b59",
     "COMPONENT_LIBRARY.json": "66529d8e880f9ad4e3880e7875d0bbe8089a9c67f532b40d671cfc60caf775d2"

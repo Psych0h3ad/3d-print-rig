@@ -1,0 +1,32 @@
+{
+  "schema": "VIRTU-May-source-role-review-v1",
+  "model_sha256": "2f9c92fa1fb0253c755f81564309158263c6296f9444fd58ea5e12eea2b6e7aa",
+  "inventory_sha256": "45fe9828df27952ae4fa661eb3193992fffb7dfd91988d5f78d4050a52e82383",
+  "packet_sha256": "9e229f3412414e57d5f1ca8f51f4b2a12571350cb52735864811ca2f1540050d",
+  "canonical_DDG_shaft": "vion_source__catalog-idler-NAUO-17379-solid-0",
+  "excluded_foreign_hinge_occurrence": "vion_source__catalog-idler-pin-r6a-solid-0",
+  "source_assembly_reason": "Original May printed body has the integral Y hinge; the separate metal DDG gear shaft occupies its two Z receiver walls. The additional MicroSherp hinge is not a companion of this May assembly.",
+  "finite_original_source_mates_sha256": "3b74ba27cd619eb9c796bbf0a2bcf9ea020f20eb0381df73780a8bd91e47722d",
+  "Z_shaft_axial_overlaps_mm": [
+    2.050002159358172,
+    3.1999969482421875
+  ],
+  "Z_radial_wall_separation_lower_bound_mm": 0.09961462885854999,
+  "Y_integral_printed_hinge_axial_overlap_mm": 9.5,
+  "Y_radial_wall_separation_lower_bound_mm": 0.09959333312105745,
+  "current_actual_controller": {
+    "report": "review/virtu-may-source-role.json",
+    "sha256": "55c6d227428c8c77a98bb98a660f29c7500384820122c93f41260df3e9999d36",
+    "registered_source_parts": 662,
+    "sampled_pose_cases": 30,
+    "variants": 9,
+    "reversed_palette_cases": 3,
+    "actual_meshes": 6027,
+    "source_relative_attachment_checks": 24,
+    "reset_and_save_ID_roundtrip": true,
+    "original_geometry_index_arrays_unchanged": true
+  },
+  "source_records_geometry_matrices_guards_and_primary_credit_URLs_unchanged": true,
+  "full_machine_native_fit_certified": false,
+  "browser_GPU_review_after_change": false
+}

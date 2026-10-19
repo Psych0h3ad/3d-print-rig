@@ -34,11 +34,12 @@
     "scripts/audit_v0_native_installation_assets.mjs": "319f7ae2981a42a0943de371e1c915652988e7490f6437f2ed85fe42cc008777",
     "scripts/audit_v0_state.mjs": "850d80d3b8fe15ced9b2e61fc52b79e800162d35cc5f952700c11727ef3ce2c4",
     "scripts/audit_v24_colors.mjs": "9fd80ee70d94340edb98f2ea3be3211df863210d10c54e1aa15e2161f3241507",
+    "scripts/audit_virtu_may_role.mjs": "b26d85699472f3d6a534611c6ff3be4c438981c514400123dde7abbdf22022bf",
     "scripts/build_approved_site.py": "b9510e13adef990b775c4b6b91d90c59d9519706119817c295c10bc9c80c8402",
     "scripts/build_configuration_catalog.py": "cb128a25a44434b63c62b30a33001c11ab7bd20e95dba90fa8bfa2139fe392ab",
-    "scripts/build_locales.mjs": "7bd9e318a3a5108b50e0cbf593796991fa8d034e268d7b61238eabac256afe96",
+    "scripts/build_locales.mjs": "bb02943a5f6bd2bfc684301c39e53fed96bd154bf9e633beccc69c6b2cc03930",
     "scripts/build_seo.py": "76f407b68c737b588e5fb35f2e8306a9fcfef2d8dca5d6dd0b2661dc4d0fdb55",
-    "scripts/build_site.py": "18bf88ba6134d4d6002f692954f70a9ff0472ffefbdc04436fb2494d3f4f2c14",
+    "scripts/build_site.py": "34fdc9269f8e8a37f32febf6922223bed7778621c455ab0279b1a0f4a437fe5b",
     "scripts/build_support_catalog.mjs": "edd4890a71380e17b9c8df4b2838d3c0cfb2443e894c326cfb6fc5a5d99fb99e",
     "scripts/build_toolhead_catalog.py": "e7391d2cc7748db94033069dc44b8365260d169176ee73a31cef249da5023e1a",
     "scripts/cad_section_insert.py": "a590e2fb4045cb3d835901aee33521d63e96e37133979187b0b8503bf16ceefa",
@@ -96,6 +97,7 @@
     "scripts/public_source_paths.py": "ee52bb84c4b4e43c3e7950047727ae516337336f741b5031340a5d72074f6371",
     "scripts/render_cad_background.py": "01218aae1d68e321e78baad7b3bb992ba07a52fd3b53249b42edabd5d16ca78a",
     "scripts/render_geometry_qa.mjs": "85520f0fd54ed889e11f99e094d3bb99635cb43b9be74b5016868215a67d80fb",
+    "scripts/source-assembly-test-loader.mjs": "2db3bfe0c9de4871c9b7a7fdb4b98658718a488ca1bf60d257d300f111b42762",
     "scripts/spool-deck-evidence.mjs": "4b2172ed087075d56fea27bc5338ec0121e5e14318e8d0064abefe9ed36f0a9e",
     "scripts/test_247zero.mjs": "9f2414ed12c18d0bea2f8da580f52a0ee39507d6d9dea2ffa11efd7eb126a99c",
     "scripts/test_a4t_printed_companions.mjs": "59992e9a580f9bc0aa91b6b80a754121cb3488d8e4b25a9caff27766355b29ae",
@@ -210,6 +212,7 @@
     "scripts/test_siboor_sizes.mjs": "e3840f3fc041c2c92c33bd45c8d00912b785e65a9516b54c14cd4a2182317291",
     "scripts/test_source_assembly_assets.mjs": "366897d838af545d2923a0846d4cce2fadf5458f14a3794f0366580e14465887",
     "scripts/test_source_assembly_references.mjs": "7c752d3727e61855befc3d45286247745e785563e9e3a1ef09ae032acf142da0",
+    "scripts/test_source_configuration_ui.mjs": "1381f13f3d8ef11218e0e39bae0296963a2ad85ece55cd6d820ae1370d23dea6",
     "scripts/test_source_credit_format.mjs": "f66e96ac7c97944b0a3b18a2d66cb258f6c3843211d5b5254a0d2c04cdef78ce",
     "scripts/test_source_gallery_bindings.mjs": "b3f4302153d4205b75530b72b1f9562a403ff6965ba964844bdc8e814aa8a00e",
     "scripts/test_source_gzip_delivery.mjs": "3264406aa8c39884299fa1aef52b2691fab34ae3d59b5a2de7e2de4bba2e9c49",
@@ -246,6 +249,7 @@
     "scripts/test_v24_ptfe.mjs": "c229caa89723e4a15b288950b870458f8015ca83910e5cec418ce9971ac08160",
     "scripts/test_validation_bundle.mjs": "e63cbd081df31ada646dffaffdfb7dbb4e1c28e21a0877dd107a742e1748c89a",
     "scripts/test_viewer_mesh_quality_scope.mjs": "413657585dac19f3eaf6d1d87664fab3b049c3bce6d5d408be3fcae344a8ab5b",
+    "scripts/test_virtu_may_role.mjs": "9231a735a99ed4420603e60a0f8a27313693982de0f3685d3abadafb630454fb",
     "scripts/test_virtual_printer_adapter.mjs": "b25320b19d87b8181df8684b30ef4fa42e4eba2fe729f17426e08456d2d3aa7c",
     "scripts/test_virtual_printer_emulator.mjs": "28c4596f05ec7d15db19cf3ca3146f761bce32961c460e63e401c9d4652b1ae6",
     "scripts/test_virtual_printer_klack.mjs": "3c64f7f71af972ee180006eaaca8fef1746318c499976c113d73340098bd1e9a",
@@ -266,7 +270,8 @@
     "scripts/v0-state-fixtures.mjs": "306efda0c0244a1986669a689fd061ca0508cd3c0aefd77750bb085eee3e98d8",
     "scripts/v0-state-test-runtime.mjs": "ec9b938de3ecb982c56917813a814512c173d0fd5862888008c4cac9b26fd6f2",
     "scripts/viewer_mesh_quality_scope.mjs": "2ea1e605c85fd04c6f901791a1b7da4b4d9e46c450d74ba817f2e375e4c7f19d",
-    "site/APPROVED_DELIVERY.json": "0b3fb547985051661627efe6d7f9ae42cd921ce394906360a4e7ae8dccca5b47",
+    "scripts/virtu-may-role-contract.mjs": "8a075e5c6b1c53e1396d28cb0fee808c550122c7954e939dc65b4a8db52f3edd",
+    "site/APPROVED_DELIVERY.json": "c166b7500732a41a6cee2f0a8be219a785b1429b8e293203e9460199256be80a",
     "site/ASSEMBLY_CONFIGURATIONS.json": "2542f57d3ddeb63322057bbbf324b154f4e7b1f0c7edf7168fb4155ed042574a",
     "site/assembly_manifest.json": "4fe7fed76a8c003aa652bed57608026dad7b1953ac7b4b589a990d47ff74dadf",
     "site/ASSET_BUNDLE.json": "10c44725a05926348f9c25ec2f655fa08c2776f855a6f0e3d376e11e24698bca",
@@ -303,7 +308,7 @@
     "site/REAR_ENCLOSURE_QA.json": "6173dc68d5a22fd08fa179797698687e74e8afbe9680e8428053bca24f843f0f",
     "site/REQUESTED_MOD_INSTALLATIONS.json": "1891521be771c2ce0a358c8bdeffdb3f20335250a4ba5ca7252de915f862688a",
     "site/SIBOOR_TRIDENT_ASSETS.json": "9b10bebcaa3b326532fdac5ecc435c6414cf3d0402967ebc99944130b8a8f3b0",
-    "site/SOURCE_ASSEMBLIES.json": "723c780a59ee1ccba744dd8a241f9b9012aa4ec1cf2df46a1b9ce34b72bc008c",
+    "site/SOURCE_ASSEMBLIES.json": "fb6d48c36981b8adc0707a51e7abfa82fbb770daf5430ec93a8409c837bdd8a4",
     "site/STOCK_SKIRT_RETENTION_QA_92.json": "470854bb0441c3eb419f9cb28d7684e99730bff55cc0f31ee92327696fb2e678",
     "site/TOOLCHANGER_BANK.json": "f1d3f62e1c5439586dcdf7a90e49b0b1f494dcafb8020ff78352905316fcfed7",
     "site/TOOLCHANGER_CONFIGURATIONS.json": "3893be3025352ec42572d57db1d194c51d4f7329595193d483efe672972df630",
@@ -343,8 +348,8 @@
     "site/viewer/community-adapter.mjs": "b0cc85230bdd2fc9c369a836e7881880c5002ab7b9d1cffd6c9b519ff83678c3",
     "site/viewer/community-loader.mjs": "12f029bed6d14ebb0a87e19a5bc8e2fc074f5776d7f59d11db3da36b55e717db",
     "site/viewer/community-state.mjs": "460b3fa78cc503ddb6e631766efe780433e4efa286db5d9388a67d73cd4fce3d",
-    "site/viewer/community.html": "e205b806d39d3f51d046d1957a2d689d5ee68799ee27f7c7df629fdfe6ebe244",
-    "site/viewer/community.js": "317a91846308b06bafab87be1de415673db41326110748690b5896c08ac1dea1",
+    "site/viewer/community.html": "88861c7e813ffe0769b66bd399d1d6c2bc779008bd983de4cbd6d38058f68174",
+    "site/viewer/community.js": "aa48575d53ef4a9545bc27b6603af88fde108deb7bebc90220d9e78f281dea51",
     "site/viewer/component-assets.mjs": "963445da64a2f4de7cc59e02b7a0f80a706cbf405acf96c9ec9aad0bdedd9b30",
     "site/viewer/component-selection.js": "51826e4eeaa0dd803b109d2ba7261d86e40fa509e63ffe7ce2f087efd0ee6e04",
     "site/viewer/components.html": "61aa2a7a0094595651706b383b9118a679d82a3a732f6e23c3e305aba86505ba",
@@ -494,6 +499,7 @@
     "site/viewer/shared-component-glb.mjs": "4a77abe6f67574be8ee102415fdca65839b1f1461dffb5db3835dbb4a3d79a45",
     "site/viewer/siboor-catalog.mjs": "aa9542b9589cdea5924c282d0e82863ede9be6b9cc0fb6226c7772ed6af754aa",
     "site/viewer/siboor-machine.mjs": "2bd4ad848cb6cf37adf084b7cdd54153695f09e01f43d07947e4287bbdec1983",
+    "site/viewer/source-assembly-configuration-ui.mjs": "0db9c665fde5b4c30b36b3cb30730392e816ed6da87d9c9badcc4f36db445325",
     "site/viewer/source-assembly-loader.mjs": "db253a61613b4ad3e10bfe2e8c6fff0266ce99acc6f2f3bd4411882855c34c3a",
     "site/viewer/source-assembly-messages.mjs": "eba7a880288403138d726526192dad384b2b7e4a71fc5dc85cde9298dcd120c4",
     "site/viewer/source-assembly-references.mjs": "0a283a57ad3b7af595e8377ac4e3adacfd6b92a149b36ec5f8c46a2c1fe89035",
@@ -520,7 +526,7 @@
     "site/viewer/source-assembly-ui-text.mjs": "b28916b71c841bb9f246efbc0ad0c89d3bfdb1aa02da2ab173fde65d1822d25d",
     "site/viewer/source-assembly-view-state.mjs": "f5cb6c47b1d718dbcd9ef4763488fdae04d0e4303625a3851a708fe14a8e765d",
     "site/viewer/source-assembly.css": "eb5323e5993f98622c1b7a27bcc5c6a6e9339f78af951b70bc54bbedcff1f4b4",
-    "site/viewer/source-assembly.mjs": "b46261030c86ae1a6f872fd9dd3050c46e8e9df20870af579a18c90c110f2ba9",
+    "site/viewer/source-assembly.mjs": "2aa70c95d21cf50c0b7fea1d87134cb87a59c2b405f6d4ec9ee28ee1215a48e0",
     "site/viewer/source-control-bounds.mjs": "baf630d6f957ab6678232bc84f40c808ea2a69f6a56d1dc7630c5ed7eadcc9e2",
     "site/viewer/source-credit-format.mjs": "5f0524475081b0c7357655fe3b79692476591f709d4385f4d89924cf98bab430",
     "site/viewer/source-operating-bounds6.mjs": "1e6289b77e9233488baff1e8d1f265d09e754f22f15be3ca1808967c3e58d8e1",
@@ -647,7 +653,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -687,22 +693,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 120,
-          "purchased_palette_checks": 12666,
-          "configurations": [
-            "stock",
-            "round_frame"
-          ],
+          "sample_poses": 120,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "route_controller_counts": {
-            "flex": 0,
-            "chains": null,
-            "teeth": null,
-            "bowden": true,
-            "originalXBelt": true
-          },
-          "route_attachment_native_fit_newly_verified": false
+          "actual_report_sha256": "26adb10f4e28a957b7f17c483ede9946bdca5d83de37ce1fc3c2c6b189ac091e"
         }
       },
       "known_required_companion_failures": []
@@ -737,7 +731,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -777,21 +771,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "purchased_palette_checks": 4254,
-          "configurations": [
-            "stock"
-          ],
+          "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "route_controller_counts": {
-            "flex": 0,
-            "chains": null,
-            "teeth": null,
-            "bowden": true,
-            "originalXBelt": true
-          },
-          "route_attachment_native_fit_newly_verified": false
+          "actual_report_sha256": "7237980fb9b1ecde227fe33c6bef97bbbe5168b22ae2a07b2f7d782090dfb8ce"
         }
       },
       "known_required_companion_failures": []
@@ -826,7 +809,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -866,21 +849,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "purchased_palette_checks": 756,
-          "configurations": [
-            "stock"
-          ],
+          "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "route_controller_counts": {
-            "flex": 0,
-            "chains": null,
-            "teeth": null,
-            "bowden": true,
-            "originalXBelt": true
-          },
-          "route_attachment_native_fit_newly_verified": false
+          "actual_report_sha256": "749835e887909ddaffc26ce17f9976bd0032230ff66028a5cd874880846f7b66"
         }
       },
       "known_required_companion_failures": []
@@ -915,7 +887,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -955,21 +927,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "purchased_palette_checks": 1014,
-          "configurations": [
-            "stock"
-          ],
+          "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "route_controller_counts": {
-            "flex": 0,
-            "chains": null,
-            "teeth": null,
-            "bowden": true,
-            "originalXBelt": true
-          },
-          "route_attachment_native_fit_newly_verified": false
+          "actual_report_sha256": "109650e12014e7b86f4b68acd90a3ecf0c06a1d121f277633c07cf0cb9a25f03"
         }
       },
       "known_required_companion_failures": []
@@ -1004,7 +965,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1044,21 +1005,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "purchased_palette_checks": 2364,
-          "configurations": [
-            "stock"
-          ],
+          "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "route_controller_counts": {
-            "flex": 3,
-            "chains": null,
-            "teeth": null,
-            "bowden": true,
-            "originalXBelt": true
-          },
-          "route_attachment_native_fit_newly_verified": false
+          "actual_report_sha256": "ca93c6f4ba5f627c6cb9e6ccd6c23b0641422c8a343ca470dfc3b29fbec29466"
         }
       },
       "known_required_companion_failures": []
@@ -1093,7 +1043,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1133,21 +1083,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "purchased_palette_checks": 1887,
-          "configurations": [
-            "stock"
-          ],
+          "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "route_controller_counts": {
-            "flex": 2,
-            "chains": null,
-            "teeth": null,
-            "bowden": true,
-            "originalXBelt": true
-          },
-          "route_attachment_native_fit_newly_verified": false
+          "actual_report_sha256": "c79e5b2a9f371c90463067758c76f504c7024448cd95b01b41cfaf49532e56df"
         }
       },
       "known_required_companion_failures": []
@@ -1182,7 +1121,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1222,21 +1161,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "purchased_palette_checks": 2181,
-          "configurations": [
-            "stock"
-          ],
+          "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "route_controller_counts": {
-            "flex": 7,
-            "chains": null,
-            "teeth": null,
-            "bowden": true,
-            "originalXBelt": true
-          },
-          "route_attachment_native_fit_newly_verified": false
+          "actual_report_sha256": "045ed90f8d7fdc200034c1b255094c3f9b9fad07d56d0603139b13ea9a01da1f"
         }
       },
       "known_required_companion_failures": []
@@ -1271,7 +1199,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1311,21 +1239,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "purchased_palette_checks": 1491,
-          "configurations": [
-            "stock"
-          ],
+          "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "route_controller_counts": {
-            "flex": 1,
-            "chains": null,
-            "teeth": null,
-            "bowden": true,
-            "originalXBelt": true
-          },
-          "route_attachment_native_fit_newly_verified": false
+          "actual_report_sha256": "ed7993d5ce596591f875d848b825e4daea8d56a69cc7dc8d635d969e042fccfa"
         }
       },
       "known_required_companion_failures": []
@@ -1360,7 +1277,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1400,22 +1317,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 120,
-          "purchased_palette_checks": 6504,
-          "configurations": [
-            "stock",
-            "eva125__2__vminion_lgx_bmo"
-          ],
+          "sample_poses": 120,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "route_controller_counts": {
-            "flex": 1,
-            "chains": null,
-            "teeth": null,
-            "bowden": true,
-            "originalXBelt": true
-          },
-          "route_attachment_native_fit_newly_verified": false
+          "actual_report_sha256": "302172b8d068e30a610988627da69b0220f5876c32087b6ffc654b68bf1e6d6e"
         }
       },
       "known_required_companion_failures": []
@@ -1450,7 +1355,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1490,21 +1395,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "purchased_palette_checks": 3588,
-          "configurations": [
-            "stock"
-          ],
+          "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "route_controller_counts": {
-            "flex": 2,
-            "chains": null,
-            "teeth": null,
-            "bowden": true,
-            "originalXBelt": true
-          },
-          "route_attachment_native_fit_newly_verified": false
+          "actual_report_sha256": "a82eefc8a12c685c4809cca02fb31f5cbe30b1f8c143475d0ca50ff2c4090028"
         }
       },
       "known_required_companion_failures": []
@@ -1539,7 +1433,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1579,21 +1473,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 90,
-          "purchased_palette_checks": 6297,
-          "configurations": [
-            "stock"
-          ],
+          "sample_poses": 90,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "route_controller_counts": {
-            "flex": 0,
-            "chains": null,
-            "teeth": null,
-            "bowden": true,
-            "originalXBelt": true
-          },
-          "route_attachment_native_fit_newly_verified": false
+          "actual_report_sha256": "4df1fdaf0e7ac64ef3df74f24cbaebbe98650b316a4644aced77fd2c80c2e63f"
         }
       },
       "known_required_companion_failures": []
@@ -1628,7 +1511,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1668,21 +1551,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "purchased_palette_checks": 930,
-          "configurations": [
-            "stock"
-          ],
+          "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "route_controller_counts": {
-            "flex": 0,
-            "chains": null,
-            "teeth": null,
-            "bowden": true,
-            "originalXBelt": true
-          },
-          "route_attachment_native_fit_newly_verified": false
+          "actual_report_sha256": "c131508dc8a1f21a569cd96e024886322c30750d4e929117b330c28375eaceb8"
         }
       },
       "known_required_companion_failures": []
@@ -1717,7 +1589,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1757,21 +1629,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "purchased_palette_checks": 2889,
-          "configurations": [
-            "stock"
-          ],
+          "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "route_controller_counts": {
-            "flex": 0,
-            "chains": null,
-            "teeth": null,
-            "bowden": true,
-            "originalXBelt": true
-          },
-          "route_attachment_native_fit_newly_verified": false
+          "actual_report_sha256": "e0f0ef4333386e5cdb3889330876d2239e10367ff3c647104abc7376288c65a5"
         }
       },
       "known_required_companion_failures": []
@@ -1806,7 +1667,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1846,21 +1707,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "purchased_palette_checks": 1764,
-          "configurations": [
-            "stock"
-          ],
+          "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "route_controller_counts": {
-            "flex": 3,
-            "chains": null,
-            "teeth": null,
-            "bowden": true,
-            "originalXBelt": true
-          },
-          "route_attachment_native_fit_newly_verified": false
+          "actual_report_sha256": "44d92d63518a3da027a3c25a7d76b7e930644ed3038882816ae8bc0e538b2127"
         }
       },
       "known_required_companion_failures": []
@@ -1895,7 +1745,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -1935,21 +1785,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "purchased_palette_checks": 1935,
-          "configurations": [
-            "stock"
-          ],
+          "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "route_controller_counts": {
-            "flex": 3,
-            "chains": null,
-            "teeth": null,
-            "bowden": true,
-            "originalXBelt": true
-          },
-          "route_attachment_native_fit_newly_verified": false
+          "actual_report_sha256": "8f8d37c4a25b1a031f3b223791379de85175227c1ed699759e884c89756e2aba"
         }
       },
       "known_required_companion_failures": []
@@ -1984,7 +1823,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2024,21 +1863,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "purchased_palette_checks": 7875,
-          "configurations": [
-            "stock"
-          ],
+          "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "route_controller_counts": {
-            "flex": 4,
-            "chains": null,
-            "teeth": null,
-            "bowden": true,
-            "originalXBelt": true
-          },
-          "route_attachment_native_fit_newly_verified": false
+          "actual_report_sha256": "f8872e1c670c758b44ebf1176ebc0f7dfbf103627fc0a25af1a410f97e5811c7"
         }
       },
       "known_required_companion_failures": []
@@ -2073,7 +1901,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2113,28 +1941,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 480,
-          "purchased_palette_checks": 10728,
-          "configurations": [
-            "stock",
-            "stock__stock__klack",
-            "stock__belted__none",
-            "stock__belted__klack",
-            "hydra_bowden_4010",
-            "hydra__stock__klack",
-            "hydra__belted__none",
-            "hydra__belted__klack"
-          ],
+          "sample_poses": 480,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "route_controller_counts": {
-            "flex": 1,
-            "chains": null,
-            "teeth": null,
-            "bowden": true,
-            "originalXBelt": true
-          },
-          "route_attachment_native_fit_newly_verified": false
+          "actual_report_sha256": "2c8c5b9dc5e0d26e561ba75c408e5dd0f99e67539df394a0b06c17c484ed4c28"
         }
       },
       "known_required_companion_failures": []
@@ -2169,7 +1979,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2209,21 +2019,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "purchased_palette_checks": 1476,
-          "configurations": [
-            "stock"
-          ],
+          "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "route_controller_counts": {
-            "flex": 5,
-            "chains": null,
-            "teeth": null,
-            "bowden": true,
-            "originalXBelt": true
-          },
-          "route_attachment_native_fit_newly_verified": false
+          "actual_report_sha256": "e9e9d9b23ab05411015777696caa8c5532f9ac6c8065607f901e7dd7d11f2d60"
         }
       },
       "known_required_companion_failures": []
@@ -2258,7 +2057,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2298,14 +2097,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 19,
-          "palettes": {
-            "purchased_checks": 3750,
-            "printed_materials": 64,
-            "patterns": 3
-          },
+          "sample_poses": 19,
           "native_transform_reset": true,
-          "save_ID_roundtrip": true
+          "save_ID_roundtrip": true,
+          "actual_report_sha256": "96ec87adf59b16caadabdfa8f96984f37503e0ccb6ccec6afa9ef5b9e02c0092"
         }
       },
       "known_required_companion_failures": []
@@ -2340,7 +2135,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2381,21 +2176,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "purchased_palette_checks": 5298,
-          "configurations": [
-            "stock"
-          ],
+          "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "route_controller_counts": {
-            "flex": 0,
-            "chains": null,
-            "teeth": null,
-            "bowden": true,
-            "originalXBelt": true
-          },
-          "route_attachment_native_fit_newly_verified": false
+          "actual_report_sha256": "a51a585a296339c49918ac61946941911e6c32e254fe9c14e21755f5751543b4"
         }
       },
       "known_required_companion_failures": []
@@ -2430,7 +2214,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2471,21 +2255,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "purchased_palette_checks": 4476,
-          "configurations": [
-            "stock"
-          ],
+          "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "route_controller_counts": {
-            "flex": 0,
-            "chains": null,
-            "teeth": null,
-            "bowden": true,
-            "originalXBelt": true
-          },
-          "route_attachment_native_fit_newly_verified": false
+          "actual_report_sha256": "f1f136cdce06491bf5c74f0da9d9261f42c8fc7bb7d86c55022287eb20a18867"
         }
       },
       "known_required_companion_failures": []
@@ -2520,7 +2293,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2561,21 +2334,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "purchased_palette_checks": 5367,
-          "configurations": [
-            "stock"
-          ],
+          "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "route_controller_counts": {
-            "flex": 0,
-            "chains": null,
-            "teeth": null,
-            "bowden": true,
-            "originalXBelt": true
-          },
-          "route_attachment_native_fit_newly_verified": false
+          "actual_report_sha256": "62cca6d1b43b908e675fb7f737786d84c2e25b9617c8f4150ba0f6331d78008d"
         }
       },
       "known_required_companion_failures": []
@@ -2610,7 +2372,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2651,38 +2413,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "palettes": {
-            "purchased_checks": 258,
-            "printed_materials": 1,
-            "patterns": 3
-          },
+          "sample_poses": 60,
           "native_transform_reset": true,
-          "reference": {
-            "x": 153.49999999999963,
-            "y": 313.5000000000006,
-            "z": 0.20000000099997806
-          },
-          "ranges": {
-            "x": [
-              0,
-              307
-            ],
-            "y": [
-              0,
-              313.5000000000006
-            ],
-            "z": [
-              0,
-              304
-            ]
-          },
-          "routes": {
-            "geometries": 0,
-            "vertices": 0,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          },
-          "save_ID_roundtrip": false
+          "save_ID_roundtrip": false,
+          "actual_report_sha256": "4b3f60fb8c46675e5a161c95ed8ba802efeef381ec7a4aaf4f4def645c333783"
         }
       },
       "known_required_companion_failures": []
@@ -2716,7 +2450,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2756,57 +2490,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "palettes": {
-            "checks": 9,
-            "production_appearance_factory": true
-          },
+          "sample_poses": 60,
           "native_transform_reset": true,
-          "reference": {
-            "x": 152.60659839971922,
-            "y": 161.4322470735584,
-            "z": 0
-          },
-          "ranges": {
-            "x": [
-              0,
-              300
-            ],
-            "y": [
-              0,
-              310
-            ],
-            "z": [
-              0,
-              230
-            ]
-          },
-          "routes": {
-            "geometries": 74,
-            "vertices": 3141793,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          },
           "save_ID_roundtrip": false,
-          "embedded_production_function_spans": [
-            {
-              "name": "leverPose",
-              "sha256": "bea5e7ee33ce694ac7689ca93bab92c08dbe7f1d13d4d38d171890427b168acf"
-            },
-            {
-              "name": "setPose",
-              "sha256": "d4d67139c501ab91c333f1bca474d243b748e9a9ee44f902348473b0a0635504"
-            },
-            {
-              "name": "showBelts",
-              "sha256": "4beb214def9a8cb66bfbe7a969d46e7dec643981ae4996073846dece0c3282da"
-            },
-            {
-              "name": "updateHeadDiagnostics",
-              "sha256": "bf5612032b4db8354a485f81a68a57e31cc77c97a57ac59ec04f1e93778b75f5"
-            }
-          ],
-          "exact_function_text_executed": true,
-          "scope": "Current stock SIBOOR loader, exact embedded app.js pose/lever functions, real route/appearance factories; controls are a test harness, no DOM/GPU claim. Other installed configurations are not qualified by this stock sample."
+          "actual_report_sha256": "b0925db19c9e293487edc12e5315b46593999579fd6a200e78405ab83246c935"
         }
       },
       "known_required_companion_failures": []
@@ -2840,7 +2527,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -2880,57 +2567,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "palettes": {
-            "checks": 9,
-            "production_appearance_factory": true
-          },
+          "sample_poses": 60,
           "native_transform_reset": true,
-          "reference": {
-            "x": 177.60659839971922,
-            "y": 186.4322470735584,
-            "z": 0
-          },
-          "ranges": {
-            "x": [
-              0,
-              350
-            ],
-            "y": [
-              0,
-              360
-            ],
-            "z": [
-              0,
-              230
-            ]
-          },
-          "routes": {
-            "geometries": 74,
-            "vertices": 772035,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          },
           "save_ID_roundtrip": false,
-          "embedded_production_function_spans": [
-            {
-              "name": "leverPose",
-              "sha256": "bea5e7ee33ce694ac7689ca93bab92c08dbe7f1d13d4d38d171890427b168acf"
-            },
-            {
-              "name": "setPose",
-              "sha256": "d4d67139c501ab91c333f1bca474d243b748e9a9ee44f902348473b0a0635504"
-            },
-            {
-              "name": "showBelts",
-              "sha256": "4beb214def9a8cb66bfbe7a969d46e7dec643981ae4996073846dece0c3282da"
-            },
-            {
-              "name": "updateHeadDiagnostics",
-              "sha256": "bf5612032b4db8354a485f81a68a57e31cc77c97a57ac59ec04f1e93778b75f5"
-            }
-          ],
-          "exact_function_text_executed": true,
-          "scope": "Current stock SIBOOR loader, exact embedded app.js pose/lever functions, real route/appearance factories; controls are a test harness, no DOM/GPU claim. Other installed configurations are not qualified by this stock sample."
+          "actual_report_sha256": "2c291c8ad7deaadb09e8c9a886e222fbe918c7b923b69a5b686eb42db978f62e"
         }
       },
       "known_required_companion_failures": []
@@ -2965,7 +2605,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3005,51 +2645,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "palettes": {
-            "purchased_checks": 3897,
-            "printed_materials": 143,
-            "patterns": 3
-          },
+          "sample_poses": 60,
           "native_transform_reset": true,
-          "reference": {
-            "x": 124.60606718710815,
-            "y": 126.63501757013745,
-            "z": 0
-          },
-          "ranges": {
-            "x": [
-              0,
-              250
-            ],
-            "y": [
-              0,
-              250
-            ],
-            "z": [
-              0,
-              250
-            ]
-          },
-          "routes": {
-            "geometries": 2,
-            "vertices": 217245,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          },
           "save_ID_roundtrip": true,
-          "configuration": "trident_r2__stealthburner__revo_voron__cw2",
-          "complete_default_required_assets": [
-            "trident_r2_gantry_250",
-            "stealthburner",
-            "sb_revo_voron",
-            "trident_r2_sb_carriage"
-          ],
-          "actual_registered_meshes": 1444,
-          "registered_geometry_parts": 1442,
-          "real_belts": 2,
-          "real_bed_chains": 1,
-          "other_registered_configurations_qualified": false,
-          "source_imports_unchanged": true
+          "actual_report_sha256": "ee975e72c4b05987944a10c4813a72100b30f666da87d45d84040d95d8d1e0b3"
         }
       },
       "known_required_companion_failures": []
@@ -3084,7 +2683,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3124,51 +2723,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "palettes": {
-            "purchased_checks": 3927,
-            "printed_materials": 143,
-            "patterns": 3
-          },
+          "sample_poses": 60,
           "native_transform_reset": true,
-          "reference": {
-            "x": 149.60606718710815,
-            "y": 151.63501757013745,
-            "z": 0
-          },
-          "ranges": {
-            "x": [
-              0,
-              300
-            ],
-            "y": [
-              0,
-              300
-            ],
-            "z": [
-              0,
-              250
-            ]
-          },
-          "routes": {
-            "geometries": 2,
-            "vertices": 217245,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          },
           "save_ID_roundtrip": true,
-          "configuration": "trident_r2__stealthburner__revo_voron__cw2",
-          "complete_default_required_assets": [
-            "trident_r2_gantry_300",
-            "stealthburner",
-            "sb_revo_voron",
-            "trident_r2_sb_carriage"
-          ],
-          "actual_registered_meshes": 1454,
-          "registered_geometry_parts": 1452,
-          "real_belts": 2,
-          "real_bed_chains": 1,
-          "other_registered_configurations_qualified": false,
-          "source_imports_unchanged": true
+          "actual_report_sha256": "ef1e7d8e512bad615b8f29331cb22b7be031b16a6a6cb055a3a60a91699ed070"
         }
       },
       "known_required_companion_failures": []
@@ -3203,7 +2761,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3243,51 +2801,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "palettes": {
-            "purchased_checks": 3951,
-            "printed_materials": 143,
-            "patterns": 3
-          },
+          "sample_poses": 60,
           "native_transform_reset": true,
-          "reference": {
-            "x": 174.60606718710815,
-            "y": 176.63501757013745,
-            "z": 0
-          },
-          "ranges": {
-            "x": [
-              0,
-              350
-            ],
-            "y": [
-              0,
-              350
-            ],
-            "z": [
-              0,
-              250
-            ]
-          },
-          "routes": {
-            "geometries": 2,
-            "vertices": 217245,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          },
           "save_ID_roundtrip": true,
-          "configuration": "trident_r2__stealthburner__revo_voron__cw2",
-          "complete_default_required_assets": [
-            "trident_r2_gantry_350",
-            "stealthburner",
-            "sb_revo_voron",
-            "trident_r2_sb_carriage"
-          ],
-          "actual_registered_meshes": 1462,
-          "registered_geometry_parts": 1460,
-          "real_belts": 2,
-          "real_bed_chains": 1,
-          "other_registered_configurations_qualified": false,
-          "source_imports_unchanged": true
+          "actual_report_sha256": "797685590779f1916c292965c41b98563ea00923712bf1b24d555a7de14447cc"
         }
       },
       "known_required_companion_failures": []
@@ -3322,7 +2839,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3364,36 +2881,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "palettes": {
-            "checks": 4125
-          },
+          "sample_poses": 60,
           "native_transform_reset": true,
-          "reference": {
-            "x": 249.60606718710815,
-            "y": 251.63501757013745,
-            "z": 0
-          },
-          "ranges": {
-            "x": [
-              0,
-              500
-            ],
-            "y": [
-              0,
-              500
-            ],
-            "z": [
-              0,
-              250
-            ]
-          },
-          "routes": {
-            "geometries": 0,
-            "vertices": 0,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          },
-          "save_ID_roundtrip": false
+          "save_ID_roundtrip": false,
+          "actual_report_sha256": "763a4f9c2731eb85588fe0815d2257ab8be7d0b9e8d0074650b6c72dc9d90eee"
         }
       },
       "known_required_companion_failures": []
@@ -3428,7 +2919,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3468,36 +2959,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "palettes": {
-            "checks": 4710
-          },
+          "sample_poses": 60,
           "native_transform_reset": true,
-          "reference": {
-            "x": 499.6060671871081,
-            "y": 501.63501757013745,
-            "z": 0
-          },
-          "ranges": {
-            "x": [
-              0,
-              1000
-            ],
-            "y": [
-              0,
-              1000
-            ],
-            "z": [
-              0,
-              994
-            ]
-          },
-          "routes": {
-            "geometries": 48,
-            "vertices": 68352,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          },
-          "save_ID_roundtrip": false
+          "save_ID_roundtrip": false,
+          "actual_report_sha256": "467eaa3650d515020be7385ebcf42cded228cafbd1d3f249642ae736e512b03e"
         }
       },
       "known_required_companion_failures": []
@@ -3532,7 +2997,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3574,36 +3039,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "palettes": {
-            "checks": 4002
-          },
+          "sample_poses": 60,
           "native_transform_reset": true,
-          "reference": {
-            "x": 174.60606718710815,
-            "y": 176.63501757013745,
-            "z": 0
-          },
-          "ranges": {
-            "x": [
-              0,
-              350
-            ],
-            "y": [
-              0,
-              350
-            ],
-            "z": [
-              0,
-              125
-            ]
-          },
-          "routes": {
-            "geometries": 0,
-            "vertices": 0,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          },
-          "save_ID_roundtrip": false
+          "save_ID_roundtrip": false,
+          "actual_report_sha256": "6e8ef8b9ab290254710db2e41c270c74542c26a4d644d479c1dbf45fb4be2369"
         }
       },
       "known_required_companion_failures": []
@@ -3638,7 +3077,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3678,38 +3117,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "palettes": {
-            "purchased_checks": 3375,
-            "printed_materials": 196,
-            "patterns": 3
-          },
+          "sample_poses": 60,
           "native_transform_reset": true,
-          "reference": {
-            "x": 174.99958314925166,
-            "y": 179.09979116960076,
-            "z": 26.769292523210485
-          },
-          "ranges": {
-            "x": [
-              0,
-              350
-            ],
-            "y": [
-              0,
-              350
-            ],
-            "z": [
-              0,
-              330
-            ]
-          },
-          "routes": {
-            "geometries": 44,
-            "vertices": 147725,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          },
-          "save_ID_roundtrip": false
+          "save_ID_roundtrip": false,
+          "actual_report_sha256": "2d3288659a16db59054f794f73f2efab1877fc1c9e68d6985371e14596e5915a"
         }
       },
       "known_required_companion_failures": []
@@ -3744,7 +3155,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3784,38 +3195,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "palettes": {
-            "purchased_checks": 3336,
-            "printed_materials": 203,
-            "patterns": 3
-          },
+          "sample_poses": 60,
           "native_transform_reset": true,
-          "reference": {
-            "x": 124.99958314925169,
-            "y": 129.09979116960076,
-            "z": 27.009292523210497
-          },
-          "ranges": {
-            "x": [
-              0,
-              250
-            ],
-            "y": [
-              0,
-              250
-            ],
-            "z": [
-              0,
-              230
-            ]
-          },
-          "routes": {
-            "geometries": 45,
-            "vertices": 152897,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          },
-          "save_ID_roundtrip": false
+          "save_ID_roundtrip": false,
+          "actual_report_sha256": "917f7f5d792fde3d2e6629c9f095de52d4cd8fa72ecaca4242d8f4a8b5d5fa78"
         }
       },
       "known_required_companion_failures": []
@@ -3850,7 +3233,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3890,38 +3273,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "palettes": {
-            "purchased_checks": 3705,
-            "printed_materials": 194,
-            "patterns": 3
-          },
+          "sample_poses": 60,
           "native_transform_reset": true,
-          "reference": {
-            "x": 124.99958314925169,
-            "y": 129.09979116960076,
-            "z": 27.009292523210497
-          },
-          "ranges": {
-            "x": [
-              0,
-              250
-            ],
-            "y": [
-              56,
-              250
-            ],
-            "z": [
-              0,
-              230
-            ]
-          },
-          "routes": {
-            "geometries": 52,
-            "vertices": 170845,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          },
-          "save_ID_roundtrip": false
+          "save_ID_roundtrip": false,
+          "actual_report_sha256": "741d438039eeb1913d052d5c55daba6f71385512d22a455d2e07a314d237385f"
         }
       },
       "known_required_companion_failures": []
@@ -3956,7 +3311,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -3996,38 +3351,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "palettes": {
-            "purchased_checks": 3378,
-            "printed_materials": 203,
-            "patterns": 3
-          },
+          "sample_poses": 60,
           "native_transform_reset": true,
-          "reference": {
-            "x": 149.9995831492517,
-            "y": 154.09979116960076,
-            "z": 27.009292523210483
-          },
-          "ranges": {
-            "x": [
-              0,
-              300
-            ],
-            "y": [
-              0,
-              300
-            ],
-            "z": [
-              0,
-              280
-            ]
-          },
-          "routes": {
-            "geometries": 45,
-            "vertices": 153372,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          },
-          "save_ID_roundtrip": false
+          "save_ID_roundtrip": false,
+          "actual_report_sha256": "97bef36fbf0ffdc42505d26968fb328a3fd832b9740aef3ea8bde0aac07423f3"
         }
       },
       "known_required_companion_failures": []
@@ -4062,7 +3389,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4102,38 +3429,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "palettes": {
-            "purchased_checks": 3747,
-            "printed_materials": 194,
-            "patterns": 3
-          },
+          "sample_poses": 60,
           "native_transform_reset": true,
-          "reference": {
-            "x": 149.9995831492517,
-            "y": 154.09979116960076,
-            "z": 27.009292523210483
-          },
-          "ranges": {
-            "x": [
-              0,
-              300
-            ],
-            "y": [
-              56,
-              300
-            ],
-            "z": [
-              0,
-              280
-            ]
-          },
-          "routes": {
-            "geometries": 52,
-            "vertices": 171037,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          },
-          "save_ID_roundtrip": false
+          "save_ID_roundtrip": false,
+          "actual_report_sha256": "df1ee4f79e64b3c649347c8fbe638259042e4bae39bc7104d3f03ee61a9c22c2"
         }
       },
       "known_required_companion_failures": []
@@ -4168,7 +3467,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4208,38 +3507,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "palettes": {
-            "purchased_checks": 3420,
-            "printed_materials": 203,
-            "patterns": 3
-          },
+          "sample_poses": 60,
           "native_transform_reset": true,
-          "reference": {
-            "x": 174.99958314925166,
-            "y": 179.09979116960076,
-            "z": 27.009292523210483
-          },
-          "ranges": {
-            "x": [
-              0,
-              350
-            ],
-            "y": [
-              0,
-              350
-            ],
-            "z": [
-              0,
-              330
-            ]
-          },
-          "routes": {
-            "geometries": 45,
-            "vertices": 153371,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          },
-          "save_ID_roundtrip": false
+          "save_ID_roundtrip": false,
+          "actual_report_sha256": "89ea6c6a1ef88987431e28c69a0f017fddfdc8733cd1777ef302ecc350cf7126"
         }
       },
       "known_required_companion_failures": []
@@ -4274,7 +3545,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4315,38 +3586,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "palettes": {
-            "purchased_checks": 3582,
-            "printed_materials": 203,
-            "patterns": 3
-          },
+          "sample_poses": 60,
           "native_transform_reset": true,
-          "reference": {
-            "x": 249.99958314925166,
-            "y": 254.09979116960076,
-            "z": 27.009292523210483
-          },
-          "ranges": {
-            "x": [
-              0,
-              500
-            ],
-            "y": [
-              0,
-              500
-            ],
-            "z": [
-              0,
-              469
-            ]
-          },
-          "routes": {
-            "geometries": 1,
-            "vertices": 50886,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          },
-          "save_ID_roundtrip": false
+          "save_ID_roundtrip": false,
+          "actual_report_sha256": "a32494d08e765a8cf2b044c6af355130034c658bfae8a1409a281a5549874e5a"
         }
       },
       "known_required_companion_failures": []
@@ -4381,7 +3624,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4421,38 +3664,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "palettes": {
-            "purchased_checks": 4110,
-            "printed_materials": 203,
-            "patterns": 3
-          },
+          "sample_poses": 60,
           "native_transform_reset": true,
-          "reference": {
-            "x": 499.99958314925163,
-            "y": 504.09979116960073,
-            "z": 27.009292523210483
-          },
-          "ranges": {
-            "x": [
-              0,
-              1000
-            ],
-            "y": [
-              0,
-              1000
-            ],
-            "z": [
-              0,
-              969
-            ]
-          },
-          "routes": {
-            "geometries": 1,
-            "vertices": 50886,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          },
-          "save_ID_roundtrip": false
+          "save_ID_roundtrip": false,
+          "actual_report_sha256": "e5dcf920eac64027f9c9652082a1e275c4f460710098387b8fe3739e3c008f89"
         }
       },
       "known_required_companion_failures": []
@@ -4487,7 +3702,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4527,38 +3742,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "palettes": {
-            "purchased_checks": 3324,
-            "printed_materials": 203,
-            "patterns": 3
-          },
+          "sample_poses": 60,
           "native_transform_reset": true,
-          "reference": {
-            "x": 174.99958314925166,
-            "y": 179.09979116960076,
-            "z": 27.009292523210483
-          },
-          "ranges": {
-            "x": [
-              0,
-              350
-            ],
-            "y": [
-              0,
-              350
-            ],
-            "z": [
-              0,
-              165
-            ]
-          },
-          "routes": {
-            "geometries": 0,
-            "vertices": 0,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          },
-          "save_ID_roundtrip": false
+          "save_ID_roundtrip": false,
+          "actual_report_sha256": "1fb09c0b31eb580fa5652821b0996d2c1207fc22165526a4578479f8c3d30982"
         }
       },
       "known_required_companion_failures": []
@@ -4593,7 +3780,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4633,38 +3820,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "palettes": {
-            "purchased_checks": 3789,
-            "printed_materials": 194,
-            "patterns": 3
-          },
+          "sample_poses": 60,
           "native_transform_reset": true,
-          "reference": {
-            "x": 174.99958314925166,
-            "y": 179.09979116960076,
-            "z": 27.009292523210483
-          },
-          "ranges": {
-            "x": [
-              0,
-              350
-            ],
-            "y": [
-              56,
-              350
-            ],
-            "z": [
-              0,
-              330
-            ]
-          },
-          "routes": {
-            "geometries": 52,
-            "vertices": 171037,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          },
-          "save_ID_roundtrip": false
+          "save_ID_roundtrip": false,
+          "actual_report_sha256": "07057dd0d4604f8642bb368c47a95f9f9abab7a7da68a3edcf5663883cbe2257"
         }
       },
       "known_required_companion_failures": []
@@ -4699,7 +3858,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4739,38 +3898,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "palettes": {
-            "purchased_checks": 102,
-            "printed_materials": 3,
-            "patterns": 3
-          },
+          "sample_poses": 60,
           "native_transform_reset": true,
-          "reference": {
-            "x": 59.99780772398256,
-            "y": 67.28974685748963,
-            "z": 4.199514074115001
-          },
-          "ranges": {
-            "x": [
-              0,
-              120
-            ],
-            "y": [
-              0,
-              120
-            ],
-            "z": [
-              0,
-              120
-            ]
-          },
-          "routes": {
-            "geometries": 7,
-            "vertices": 11268,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          },
-          "save_ID_roundtrip": false
+          "save_ID_roundtrip": false,
+          "actual_report_sha256": "5ae33d865337400de834a51d6539aca161e0c7f8ac24883a255d8053e719d9bd"
         }
       },
       "known_required_companion_failures": []
@@ -4805,7 +3936,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4845,38 +3976,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "palettes": {
-            "purchased_checks": 102,
-            "printed_materials": 3,
-            "patterns": 3
-          },
+          "sample_poses": 60,
           "native_transform_reset": true,
-          "reference": {
-            "x": 60.04677650611387,
-            "y": 67.2389800747568,
-            "z": 3.999514074115069
-          },
-          "ranges": {
-            "x": [
-              0,
-              120
-            ],
-            "y": [
-              0,
-              120
-            ],
-            "z": [
-              0,
-              120
-            ]
-          },
-          "routes": {
-            "geometries": 7,
-            "vertices": 11268,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          },
-          "save_ID_roundtrip": false
+          "save_ID_roundtrip": false,
+          "actual_report_sha256": "9af80454773827afc449f1ed5ecf17b1cea3a70d2721ab148f59482375cca704"
         }
       },
       "known_required_companion_failures": []
@@ -4911,7 +4014,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -4951,38 +4054,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "palettes": {
-            "purchased_checks": 2691,
-            "printed_materials": 177,
-            "patterns": 3
-          },
+          "sample_poses": 60,
           "native_transform_reset": true,
-          "reference": {
-            "x": 59.90349089975233,
-            "y": 66.64267146618636,
-            "z": 20.524490563579995
-          },
-          "ranges": {
-            "x": [
-              0.24,
-              119.57
-            ],
-            "y": [
-              0,
-              120
-            ],
-            "z": [
-              0,
-              95.13
-            ]
-          },
-          "routes": {
-            "geometries": 26,
-            "vertices": 330471,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          },
-          "save_ID_roundtrip": false
+          "save_ID_roundtrip": false,
+          "actual_report_sha256": "807769331847dcd8163bb4959b4d23ca3d812cfa4cc0ff4753b121c5d196ebf8"
         }
       },
       "known_required_companion_failures": []
@@ -5017,7 +4092,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5057,38 +4132,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "palettes": {
-            "purchased_checks": 3648,
-            "printed_materials": 296,
-            "patterns": 3
-          },
+          "sample_poses": 60,
           "native_transform_reset": true,
-          "reference": {
-            "x": 89.93662244669487,
-            "y": 108.5813186975894,
-            "z": 27.896089990042903
-          },
-          "ranges": {
-            "x": [
-              0.27,
-              179.6
-            ],
-            "y": [
-              3.18,
-              180
-            ],
-            "z": [
-              0,
-              165
-            ]
-          },
-          "routes": {
-            "geometries": 42,
-            "vertices": 68094,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          },
-          "save_ID_roundtrip": false
+          "save_ID_roundtrip": false,
+          "actual_report_sha256": "3495b4a618e419afe41ebff52899acebfb1f0d971ada9e49f6ec3419cbefaf28"
         }
       },
       "known_required_companion_failures": []
@@ -5123,7 +4170,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5163,21 +4210,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "purchased_palette_checks": 3204,
-          "configurations": [
-            "stock"
-          ],
+          "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "route_controller_counts": {
-            "flex": 4,
-            "chains": null,
-            "teeth": null,
-            "bowden": true,
-            "originalXBelt": true
-          },
-          "route_attachment_native_fit_newly_verified": false
+          "actual_report_sha256": "2b2e699907b047d4558834d4e1e0d7c55f33b74155bd9ea39bc40d7147a77702"
         }
       },
       "known_required_companion_failures": []
@@ -5212,7 +4248,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5253,38 +4289,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "palettes": {
-            "purchased_checks": 5952,
-            "printed_materials": 193,
-            "patterns": 3
-          },
+          "sample_poses": 60,
           "native_transform_reset": true,
-          "reference": {
-            "x": 81.51854054931088,
-            "y": 104.7146036279744,
-            "z": 92.77468404496983
-          },
-          "ranges": {
-            "x": [
-              0,
-              220
-            ],
-            "y": [
-              0,
-              220
-            ],
-            "z": [
-              0,
-              200
-            ]
-          },
-          "routes": {
-            "geometries": 18,
-            "vertices": 20650,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          },
-          "save_ID_roundtrip": false
+          "save_ID_roundtrip": false,
+          "actual_report_sha256": "a37b26003448ee4886117972e1d57e57ba626800f1e4cd494df8e2f718f6c814"
         }
       },
       "known_required_companion_failures": []
@@ -5319,7 +4327,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5360,24 +4368,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 21,
-          "rejected_poses": [],
-          "modes": [
-            "independent"
-          ],
-          "palettes": {
-            "purchased_checks": 6303,
-            "printed_materials": 138,
-            "patterns": 3
-          },
+          "sample_poses": 21,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "unexpected_pose_rejections": 0,
-          "routes": {
-            "geometries": 75,
-            "vertices": 76325,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          }
+          "actual_report_sha256": "eba3727199d144406a5e9c92386ef98752aec114afbf8a84d9a9a351add2d044"
         }
       },
       "known_required_companion_failures": []
@@ -5412,7 +4406,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5453,24 +4447,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 21,
-          "rejected_poses": [],
-          "modes": [
-            "independent"
-          ],
-          "palettes": {
-            "purchased_checks": 6546,
-            "printed_materials": 142,
-            "patterns": 3
-          },
+          "sample_poses": 21,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "unexpected_pose_rejections": 0,
-          "routes": {
-            "geometries": 84,
-            "vertices": 101549,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          }
+          "actual_report_sha256": "fcd44f26b95b7a6cab51c681d5838b86f9e3e7c45e479b91647514dc48184f4a"
         }
       },
       "known_required_companion_failures": []
@@ -5505,7 +4485,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5545,77 +4525,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 66,
-          "expected_guard_rejections": [
-            {
-              "mode": "copy",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "copy",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "mirror",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "mirror",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            }
-          ],
-          "rejected_poses": [
-            {
-              "mode": "copy",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "copy",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "mirror",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "mirror",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            }
-          ],
-          "modes": [
-            "independent",
-            "copy",
-            "mirror"
-          ],
-          "palettes": {
-            "purchased_checks": 8673,
-            "printed_materials": 158,
-            "patterns": 3
-          },
+          "sample_poses": 66,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "unexpected_pose_rejections": 0,
-          "routes": {
-            "geometries": 94,
-            "vertices": 130338,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          }
+          "actual_report_sha256": "ad4d4cedef6a41900a39a7170878e968e8551de04d7c0bdae1e551ff242128ef"
         }
       },
       "known_required_companion_failures": []
@@ -5650,7 +4563,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5690,24 +4603,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 21,
-          "rejected_poses": [],
-          "modes": [
-            "independent"
-          ],
-          "palettes": {
-            "purchased_checks": 6411,
-            "printed_materials": 138,
-            "patterns": 3
-          },
+          "sample_poses": 21,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "unexpected_pose_rejections": 0,
-          "routes": {
-            "geometries": 75,
-            "vertices": 77909,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          }
+          "actual_report_sha256": "4940313a1051da6aa623baba27df172f0c33038c878b1ae56f283cf36786b89b"
         }
       },
       "known_required_companion_failures": []
@@ -5742,7 +4641,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5782,24 +4681,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 21,
-          "rejected_poses": [],
-          "modes": [
-            "independent"
-          ],
-          "palettes": {
-            "purchased_checks": 6654,
-            "printed_materials": 142,
-            "patterns": 3
-          },
+          "sample_poses": 21,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "unexpected_pose_rejections": 0,
-          "routes": {
-            "geometries": 84,
-            "vertices": 103133,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          }
+          "actual_report_sha256": "f94b2efbdd6f01f216f06ab12cacefb89d84ef2380f828b9db56b7ca72fa838e"
         }
       },
       "known_required_companion_failures": []
@@ -5834,7 +4719,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -5874,77 +4759,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 66,
-          "expected_guard_rejections": [
-            {
-              "mode": "copy",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "copy",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "mirror",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "mirror",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            }
-          ],
-          "rejected_poses": [
-            {
-              "mode": "copy",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "copy",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "mirror",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "mirror",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            }
-          ],
-          "modes": [
-            "independent",
-            "copy",
-            "mirror"
-          ],
-          "palettes": {
-            "purchased_checks": 8763,
-            "printed_materials": 158,
-            "patterns": 3
-          },
+          "sample_poses": 66,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "unexpected_pose_rejections": 0,
-          "routes": {
-            "geometries": 94,
-            "vertices": 132464,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          }
+          "actual_report_sha256": "add8f129e246d7f6092cf501d4ef312e0b872292c999b9366d227988b2e5c62f"
         }
       },
       "known_required_companion_failures": []
@@ -5979,7 +4797,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -6019,24 +4837,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 21,
-          "rejected_poses": [],
-          "modes": [
-            "independent"
-          ],
-          "palettes": {
-            "purchased_checks": 6483,
-            "printed_materials": 138,
-            "patterns": 3
-          },
+          "sample_poses": 21,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "unexpected_pose_rejections": 0,
-          "routes": {
-            "geometries": 75,
-            "vertices": 79745,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          }
+          "actual_report_sha256": "1451bfe2177e422a2216c8080c9a30197f5c8be049d1499cf68449804e3098ed"
         }
       },
       "known_required_companion_failures": []
@@ -6071,7 +4875,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -6112,24 +4916,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 21,
-          "rejected_poses": [],
-          "modes": [
-            "independent"
-          ],
-          "palettes": {
-            "purchased_checks": 6726,
-            "printed_materials": 142,
-            "patterns": 3
-          },
+          "sample_poses": 21,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "unexpected_pose_rejections": 0,
-          "routes": {
-            "geometries": 84,
-            "vertices": 104969,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          }
+          "actual_report_sha256": "230d6cc0ac5cf324ad57cedbeca14160f2707b10c52eea75bf9ebc2cc64a8a60"
         }
       },
       "known_required_companion_failures": []
@@ -6164,7 +4954,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -6205,77 +4995,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 66,
-          "expected_guard_rejections": [
-            {
-              "mode": "copy",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "copy",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "mirror",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "mirror",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            }
-          ],
-          "rejected_poses": [
-            {
-              "mode": "copy",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "copy",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "mirror",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "mirror",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            }
-          ],
-          "modes": [
-            "independent",
-            "copy",
-            "mirror"
-          ],
-          "palettes": {
-            "purchased_checks": 8835,
-            "printed_materials": 158,
-            "patterns": 3
-          },
+          "sample_poses": 66,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "unexpected_pose_rejections": 0,
-          "routes": {
-            "geometries": 94,
-            "vertices": 136380,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          }
+          "actual_report_sha256": "0f7174654c605cfe77045ecd9bdd062b6019ab8cdfac814c6b197e3577aaa1ae"
         }
       },
       "known_required_companion_failures": []
@@ -6310,7 +5033,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -6350,24 +5073,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 21,
-          "rejected_poses": [],
-          "modes": [
-            "independent"
-          ],
-          "palettes": {
-            "purchased_checks": 5631,
-            "printed_materials": 130,
-            "patterns": 3
-          },
+          "sample_poses": 21,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "unexpected_pose_rejections": 0,
-          "routes": {
-            "geometries": 82,
-            "vertices": 76615,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          }
+          "actual_report_sha256": "db58baacac6d4eb6a6cef00c00fe838bf8a7dcf2d67756a4306d558afd169adb"
         }
       },
       "known_required_companion_failures": []
@@ -6402,7 +5111,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -6443,24 +5152,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 21,
-          "rejected_poses": [],
-          "modes": [
-            "independent"
-          ],
-          "palettes": {
-            "purchased_checks": 5877,
-            "printed_materials": 134,
-            "patterns": 3
-          },
+          "sample_poses": 21,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "unexpected_pose_rejections": 0,
-          "routes": {
-            "geometries": 91,
-            "vertices": 101857,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          }
+          "actual_report_sha256": "8db0e4db2970a1079f585e6d3fa9c39768297b6c6d7bd4e746101624d61b359e"
         }
       },
       "known_required_companion_failures": []
@@ -6495,7 +5190,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -6536,77 +5231,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 66,
-          "expected_guard_rejections": [
-            {
-              "mode": "copy",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "copy",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "mirror",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "mirror",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            }
-          ],
-          "rejected_poses": [
-            {
-              "mode": "copy",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "copy",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "mirror",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "mirror",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            }
-          ],
-          "modes": [
-            "independent",
-            "copy",
-            "mirror"
-          ],
-          "palettes": {
-            "purchased_checks": 7467,
-            "printed_materials": 151,
-            "patterns": 3
-          },
+          "sample_poses": 66,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "unexpected_pose_rejections": 0,
-          "routes": {
-            "geometries": 104,
-            "vertices": 132510,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          }
+          "actual_report_sha256": "5c3ef7d05089367d46f104a8ad4ff7b9e8380f84852d60fe9897ae39d998410c"
         }
       },
       "known_required_companion_failures": []
@@ -6641,7 +5269,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -6681,24 +5309,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 21,
-          "rejected_poses": [],
-          "modes": [
-            "independent"
-          ],
-          "palettes": {
-            "purchased_checks": 5736,
-            "printed_materials": 130,
-            "patterns": 3
-          },
+          "sample_poses": 21,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "unexpected_pose_rejections": 0,
-          "routes": {
-            "geometries": 82,
-            "vertices": 77985,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          }
+          "actual_report_sha256": "bd1fbe799d7afa2984e36186755df48a471722364ba4d5c127830ce87bf41c6a"
         }
       },
       "known_required_companion_failures": []
@@ -6733,7 +5347,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -6774,24 +5388,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 21,
-          "rejected_poses": [],
-          "modes": [
-            "independent"
-          ],
-          "palettes": {
-            "purchased_checks": 5985,
-            "printed_materials": 134,
-            "patterns": 3
-          },
+          "sample_poses": 21,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "unexpected_pose_rejections": 0,
-          "routes": {
-            "geometries": 91,
-            "vertices": 98577,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          }
+          "actual_report_sha256": "f8e2a0abcb1504efad69d8312e4fe5bc743edbe08a3fff664eb92740cd9c0972"
         }
       },
       "known_required_companion_failures": []
@@ -6826,7 +5426,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -6867,77 +5467,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 66,
-          "expected_guard_rejections": [
-            {
-              "mode": "copy",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "copy",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "mirror",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "mirror",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            }
-          ],
-          "rejected_poses": [
-            {
-              "mode": "copy",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "copy",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "mirror",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "mirror",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            }
-          ],
-          "modes": [
-            "independent",
-            "copy",
-            "mirror"
-          ],
-          "palettes": {
-            "purchased_checks": 7575,
-            "printed_materials": 151,
-            "patterns": 3
-          },
+          "sample_poses": 66,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "unexpected_pose_rejections": 0,
-          "routes": {
-            "geometries": 104,
-            "vertices": 136006,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          }
+          "actual_report_sha256": "eacdef6b07ed9de5c6ca6256c05143f47ef5ca9bfc7aab8d04a4b1e4d7bd5e95"
         }
       },
       "known_required_companion_failures": []
@@ -6972,7 +5505,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -7012,24 +5545,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 21,
-          "rejected_poses": [],
-          "modes": [
-            "independent"
-          ],
-          "palettes": {
-            "purchased_checks": 5808,
-            "printed_materials": 130,
-            "patterns": 3
-          },
+          "sample_poses": 21,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "unexpected_pose_rejections": 0,
-          "routes": {
-            "geometries": 82,
-            "vertices": 79695,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          }
+          "actual_report_sha256": "a7df4897cd48e3ea4776754bdc85832b352dbec83e93b50ad411e68133807898"
         }
       },
       "known_required_companion_failures": []
@@ -7064,7 +5583,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -7104,24 +5623,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 21,
-          "rejected_poses": [],
-          "modes": [
-            "independent"
-          ],
-          "palettes": {
-            "purchased_checks": 6057,
-            "printed_materials": 134,
-            "patterns": 3
-          },
+          "sample_poses": 21,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "unexpected_pose_rejections": 0,
-          "routes": {
-            "geometries": 91,
-            "vertices": 104919,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          }
+          "actual_report_sha256": "3eab0399e489444623e1a8d76c3ebfc418ec6ecfd7608efd34a698259bb27969"
         }
       },
       "known_required_companion_failures": []
@@ -7156,7 +5661,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -7197,77 +5702,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 66,
-          "expected_guard_rejections": [
-            {
-              "mode": "copy",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "copy",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "mirror",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "mirror",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            }
-          ],
-          "rejected_poses": [
-            {
-              "mode": "copy",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "copy",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "mirror",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            },
-            {
-              "mode": "mirror",
-              "axis": "z",
-              "value": -7,
-              "rejected": "Negative Z would cross the print surface"
-            }
-          ],
-          "modes": [
-            "independent",
-            "copy",
-            "mirror"
-          ],
-          "palettes": {
-            "purchased_checks": 7647,
-            "printed_materials": 151,
-            "patterns": 3
-          },
+          "sample_poses": 66,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "unexpected_pose_rejections": 0,
-          "routes": {
-            "geometries": 104,
-            "vertices": 139318,
-            "attachment_proof": "controller route constraints only; full native engagement unchanged"
-          }
+          "actual_report_sha256": "3461a26e9a99b01126ddeb933bd4c445873f4fa10cc1a6c5c4a3f8537890c4e6"
         }
       },
       "known_required_companion_failures": []
@@ -7302,7 +5740,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -7342,21 +5780,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "purchased_palette_checks": 5955,
-          "configurations": [
-            "stock"
-          ],
+          "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "route_controller_counts": {
-            "flex": 2,
-            "chains": null,
-            "teeth": null,
-            "bowden": true,
-            "originalXBelt": true
-          },
-          "route_attachment_native_fit_newly_verified": false
+          "actual_report_sha256": "2b83b07c29bfbbf16a120b2144b3274ec3e92328d5e40b137f33237909ff9ffd"
         }
       },
       "known_required_companion_failures": []
@@ -7391,7 +5818,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -7431,22 +5858,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 120,
-          "purchased_palette_checks": 6162,
-          "configurations": [
-            "stock",
-            "eva125__3__vcore_lgx_rapido"
-          ],
+          "sample_poses": 120,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "route_controller_counts": {
-            "flex": 3,
-            "chains": null,
-            "teeth": null,
-            "bowden": true,
-            "originalXBelt": true
-          },
-          "route_attachment_native_fit_newly_verified": false
+          "actual_report_sha256": "edb6473a82197230a86abccaba5f48167dd18dc34ffe5759247df5a161b2b07e"
         }
       },
       "known_required_companion_failures": []
@@ -7491,7 +5906,7 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
         }
       ],
@@ -7525,21 +5940,10 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "poses": 60,
-          "purchased_palette_checks": 2235,
-          "configurations": [
-            "stock"
-          ],
+          "sample_poses": 60,
           "native_transform_reset": true,
           "save_ID_roundtrip": true,
-          "route_controller_counts": {
-            "flex": 3,
-            "chains": null,
-            "teeth": null,
-            "bowden": true,
-            "originalXBelt": true
-          },
-          "route_attachment_native_fit_newly_verified": false
+          "actual_report_sha256": "2c31bc14c03b57ce6b473c2f1efbcd147a00455e7aa2803399dadbc36c6a2635"
         }
       },
       "known_required_companion_failures": []
@@ -7550,7 +5954,7 @@
       "model_sha256": "2f9c92fa1fb0253c755f81564309158263c6296f9444fd58ea5e12eea2b6e7aa",
       "stored_model_sha256": "2f9c92fa1fb0253c755f81564309158263c6296f9444fd58ea5e12eea2b6e7aa",
       "companion_sha256": {
-        "packet-rh3d_virtu_may_230.json": "8d27638e1b972af41d69eeb122ed225be23091ee110bb1c8e7733d96fe95b3a4",
+        "packet-rh3d_virtu_may_230.json": "9e229f3412414e57d5f1ca8f51f4b2a12571350cb52735864811ca2f1540050d",
         "manifest-2f9c92fa1fb0253c755f81564309158263c6296f9444fd58ea5e12eea2b6e7aa.json": "d2bcda429b001aacfdebe04f7aef501c5cb70da7dd8645fa172cb7b270a073c1",
         "inventory-rh3d_virtu_may_230.json": "45fe9828df27952ae4fa661eb3193992fffb7dfd91988d5f78d4050a52e82383"
       },
@@ -7575,8 +5979,13 @@
         },
         {
           "report": "docs/CURRENT_VIEWER_RENDER_SCOPE_20261019.json",
-          "sha256": "10df100d6896a5158a6b0bcf4efaa6cfcf2f4a7e46fb909eb7cb41aa0cb5dc08",
+          "sha256": "95f9bcb9306a9d3f7c4c39ba06b4d27bd7930f2c768e881fe7a1e193fc57dc47",
           "scope": "Actual model identity, finite attributes/matrices, consumed unit or flat derivative normals, sampled production controllers and explicit companion failures."
+        },
+        {
+          "report": "docs/VIRTU_MAY_SOURCE_ROLE_REVIEW.json",
+          "sha256": "97707a5381724b1948d64059d129d6c39ad83981381202a21c603759279cd682",
+          "scope": "Finite original May source role and exact full-controller recurrence; no broad native-fit certificate."
         }
       ],
       "current_review_status": "PASS_SCOPED_RENDER_AND_CONTROLLER",
@@ -7585,7 +5994,7 @@
         "Browser coverage is limited to separately recorded machine/viewport/language interactions."
       ],
       "historical_native_reference": null,
-      "companions_sha256": "eeb4763e57e660dab07765919cf40a56e08a952c135f7e26971e9deaf8c8c200",
+      "companions_sha256": "8ab3c6bf848cb087e5b81c3d5b416423581b5c1038a147630bfb7c0afa0bb6f7",
       "current_successor_review_pending": false,
       "viewer_mesh_quality": {
         "schema": "actual-viewer-mesh-quality-v1",
@@ -7613,10 +6022,12 @@
         "sampled_pose_reset_palette_passed": true,
         "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
         "observations": {
-          "sample_poses": 57,
+          "sample_poses": 30,
+          "variants": 9,
+          "contrasting_palettes": 3,
           "native_transform_reset": true,
-          "purchased_palette_checks": 35496,
-          "save_ID_roundtrip": true
+          "save_ID_roundtrip": true,
+          "actual_report_sha256": "55c6d227428c8c77a98bb98a660f29c7500384820122c93f41260df3e9999d36"
         }
       },
       "known_required_companion_failures": []

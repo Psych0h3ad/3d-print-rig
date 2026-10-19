@@ -1,6 +1,6 @@
 {
   "schema": "current-actual-viewer-render-scope-v1",
-  "at_utc": "2026-10-18T19:30:48.890212+00:00",
+  "at_utc": "2026-10-19T00:37:56.722600+00:00",
   "scope": "All 69 selectable published-scope machines: original 68 model/companion identities and the qualified VIRTU successor. Actual viewer integrity, sampled controller behavior and browser evidence retain their separate scopes. No whole-machine physical-fit certificate.",
   "registered_selectable_machines": 69,
   "controller_sample_pass": 69,
@@ -56,6 +56,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "doomcube2_350_reference.current69-v4.json",
+          "sha256": "26adb10f4e28a957b7f17c483ede9946bdca5d83de37ce1fc3c2c6b189ac091e",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -107,6 +112,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "tictac_21_120.current69-v4.json",
+          "sha256": "7237980fb9b1ecde227fe33c6bef97bbbe5168b22ae2a07b2f7d782090dfb8ce",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -158,6 +168,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "the100_v11_165.current69-v4.json",
+          "sha256": "749835e887909ddaffc26ce17f9976bd0032230ff66028a5cd874880846f7b66",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -209,6 +224,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "rook_mk2_120.current69-v4.json",
+          "sha256": "109650e12014e7b86f4b68acd90a3ecf0c06a1d121f277633c07cf0cb9a25f03",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -260,6 +280,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "satsuma180_v10.current69-v4.json",
+          "sha256": "ca93c6f4ba5f627c6cb9e6ccd6c23b0641422c8a343ca470dfc3b29fbec29466",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -311,6 +336,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "sovol_sv08_350.current69-v4.json",
+          "sha256": "c79e5b2a9f371c90463067758c76f504c7024448cd95b01b41cfaf49532e56df",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -362,6 +392,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "lh_stinger_200.current69-v4.json",
+          "sha256": "045ed90f8d7fdc200034c1b255094c3f9b9fad07d56d0603139b13ea9a01da1f",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -413,6 +448,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "antithesis_aether_mk11.current69-v4.json",
+          "sha256": "ed7993d5ce596591f875d848b825e4daea8d56a69cc7dc8d635d969e042fccfa",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -465,6 +505,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "ratrig_vminion_180.current69-v5.json",
+          "sha256": "302172b8d068e30a610988627da69b0220f5876c32087b6ffc654b68bf1e6d6e",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -516,6 +561,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "snakeoil_xy_180.current69-v4.json",
+          "sha256": "a82eefc8a12c685c4809cca02fb31f5cbe30b1f8c143475d0ca50ff2c4090028",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -567,6 +617,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "snakeoil_xy_idex.current69-v4.json",
+          "sha256": "4df1fdaf0e7ac64ef3df74f24cbaebbe98650b316a4644aced77fd2c80c2e63f",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -618,6 +673,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "snakeoil_3s_kp3s_180.current69-v4.json",
+          "sha256": "c131508dc8a1f21a569cd96e024886322c30750d4e929117b330c28375eaceb8",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -669,6 +729,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "snakeoil_proosaxy.current69-v4.json",
+          "sha256": "e0f0ef4333386e5cdb3889330876d2239e10367ff3c647104abc7376288c65a5",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -720,6 +785,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "mercury_one1_235.current69-v4.json",
+          "sha256": "44d92d63518a3da027a3c25a7d76b7e930644ed3038882816ae8bc0e538b2127",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -771,6 +841,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "mercury_one1_370.current69-v4.json",
+          "sha256": "8f8d37c4a25b1a031f3b223791379de85175227c1ed699759e884c89756e2aba",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -822,6 +897,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "vzbot_330_printed.current69-v4.json",
+          "sha256": "f8872e1c670c758b44ebf1176ebc0f7dfbf103627fc0a25af1a410f97e5811c7",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -880,6 +960,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "ender3_stock_220.current69-v4.json",
+          "sha256": "2c8c5b9dc5e0d26e561ba75c408e5dd0f99e67539df394a0b06c17c484ed4c28",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -931,6 +1016,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "siboor_sboom_220.current69-v4.json",
+          "sha256": "e9e9d9b23ab05411015777696caa8c5532f9ac6c8065607f901e7dd7d11f2d60",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -975,6 +1065,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "positron_v322.current69-v4.json",
+          "sha256": "96ec87adf59b16caadabdfa8f96984f37503e0ccb6ccec6afa9ef5b9e02c0092",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -1030,6 +1125,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "annex_k1_assembly.current69-v4.json",
+          "sha256": "a51a585a296339c49918ac61946941911e6c32e254fe9c14e21755f5751543b4",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -1085,6 +1185,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "annex_k2_assembly.current69-v4.json",
+          "sha256": "f1f136cdce06491bf5c74f0da9d9261f42c8fc7bb7d86c55022287eb20a18867",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -1140,6 +1245,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "annex_k3_assembly.current69-v4.json",
+          "sha256": "62cca6d1b43b908e675fb7f737786d84c2e25b9617c8f4150ba0f6331d78008d",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -1212,6 +1322,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "remorph_beta1_307.current69-v4.json",
+          "sha256": "4b3f60fb8c46675e5a161c95ed8ba802efeef381ec7a4aaf4f4def645c333783",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -1683,6 +1798,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "siboor_trident_300.current69-v4.json",
+          "sha256": "b0925db19c9e293487edc12e5315b46593999579fd6a200e78405ab83246c935",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -1974,6 +2094,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "siboor_trident_350.current69-v4.json",
+          "sha256": "2c291c8ad7deaadb09e8c9a886e222fbe918c7b923b69a5b686eb42db978f62e",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -2259,6 +2384,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "voron_trident_250.current69-v4.json",
+          "sha256": "ee975e72c4b05987944a10c4813a72100b30f666da87d45d84040d95d8d1e0b3",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -2544,6 +2674,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "voron_trident_300.current69-v4.json",
+          "sha256": "ef1e7d8e512bad615b8f29331cb22b7be031b16a6a6cb055a3a60a91699ed070",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -2829,6 +2964,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "voron_trident_350.current69-v4.json",
+          "sha256": "797685590779f1916c292965c41b98563ea00923712bf1b24d555a7de14447cc",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -2903,6 +3043,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "voron_trident_500_custom.current69-v4.json",
+          "sha256": "763a4f9c2731eb85588fe0815d2257ab8be7d0b9e8d0074650b6c72dc9d90eee",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -2969,6 +3114,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "voron_trident_1000_custom.current69-v4.json",
+          "sha256": "467eaa3650d515020be7385ebcf42cded228cafbd1d3f249642ae736e512b03e",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -3043,6 +3193,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "voron_trident_350_half_z.current69-v4.json",
+          "sha256": "6e8ef8b9ab290254710db2e41c270c74542c26a4d644d479c1dbf45fb4be2369",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -3315,6 +3470,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "siboor_v24_350.current69-v5.json",
+          "sha256": "2d3288659a16db59054f794f73f2efab1877fc1c9e68d6985371e14596e5915a",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -3587,6 +3747,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "voron_v24_250_printed.current69-v5.json",
+          "sha256": "917f7f5d792fde3d2e6629c9f095de52d4cd8fa72ecaca4242d8f4a8b5d5fa78",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -3859,6 +4024,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "voron_v24_250_ldo_cnc.current69-v5.json",
+          "sha256": "741d438039eeb1913d052d5c55daba6f71385512d22a455d2e07a314d237385f",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -4131,6 +4301,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "voron_v24_300_printed.current69-v5.json",
+          "sha256": "97bef36fbf0ffdc42505d26968fb328a3fd832b9740aef3ea8bde0aac07423f3",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -4403,6 +4578,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "voron_v24_300_ldo_cnc.current69-v5.json",
+          "sha256": "df1ee4f79e64b3c649347c8fbe638259042e4bae39bc7104d3f03ee61a9c22c2",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -4675,6 +4855,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "voron_v24_350_printed.current69-v5.json",
+          "sha256": "89ea6c6a1ef88987431e28c69a0f017fddfdc8733cd1777ef302ecc350cf7126",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -4951,6 +5136,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "voron_v24_500_custom.current69-v4.json",
+          "sha256": "a32494d08e765a8cf2b044c6af355130034c658bfae8a1409a281a5549874e5a",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -5403,6 +5593,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "voron_v24_1000_custom.current69-v4.json",
+          "sha256": "e5dcf920eac64027f9c9652082a1e275c4f460710098387b8fe3739e3c008f89",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -5675,6 +5870,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "voron_v24_350_half_z.current69-v4.json",
+          "sha256": "1fb09c0b31eb580fa5652821b0996d2c1207fc22165526a4578479f8c3d30982",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -5947,6 +6147,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "voron_v24_350_ldo_cnc.current69-v5.json",
+          "sha256": "07057dd0d4604f8642bb368c47a95f9f9abab7a7da68a3edcf5663883cbe2257",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -6219,6 +6424,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "voron_v02r1_120.current69-v4.json",
+          "sha256": "5ae33d865337400de834a51d6539aca161e0c7f8ac24883a255d8053e719d9bd",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -6491,6 +6701,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "voron_v02_120.current69-v4.json",
+          "sha256": "9af80454773827afc449f1ed5ecf17b1cea3a70d2721ab148f59482375cca704",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -6763,6 +6978,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "micron_r1_120.current69-v4.json",
+          "sha256": "807769331847dcd8163bb4959b4d23ca3d812cfa4cc0ff4753b121c5d196ebf8",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -7035,6 +7255,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "micron_plus_r1_180.current69-v4.json",
+          "sha256": "3495b4a618e419afe41ebff52899acebfb1f0d971ada9e49f6ec3419cbefaf28",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -7290,6 +7515,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "fysetc_v24_250_pro.current69-v4.json",
+          "sha256": "2b2e699907b047d4558834d4e1e0d7c55f33b74155bd9ea39bc40d7147a77702",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -7362,6 +7592,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "crossant_235_v06_leadscrew.current69-v4.json",
+          "sha256": "a37b26003448ee4886117972e1d57e57ba626800f1e4cd494df8e2f718f6c814",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -7376,6 +7611,7 @@
       "required_companion_failures": [],
       "controller": {
         "poses": 21,
+        "expected_guard_rejections": [],
         "rejected_poses": [],
         "modes": [
           "independent"
@@ -7624,6 +7860,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "ratrig_vcore_40_300_corexy.current69-v4.json",
+          "sha256": "eba3727199d144406a5e9c92386ef98752aec114afbf8a84d9a9a351add2d044",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -7638,6 +7879,7 @@
       "required_companion_failures": [],
       "controller": {
         "poses": 21,
+        "expected_guard_rejections": [],
         "rejected_poses": [],
         "modes": [
           "independent"
@@ -7886,6 +8128,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "ratrig_vcore_40_300_hybrid.current69-v4.json",
+          "sha256": "fcd44f26b95b7a6cab51c681d5838b86f9e3e7c45e479b91647514dc48184f4a",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -8197,6 +8444,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "ratrig_vcore_40_300_idex.current69-v4.json",
+          "sha256": "ad4d4cedef6a41900a39a7170878e968e8551de04d7c0bdae1e551ff242128ef",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -8211,6 +8463,7 @@
       "required_companion_failures": [],
       "controller": {
         "poses": 21,
+        "expected_guard_rejections": [],
         "rejected_poses": [],
         "modes": [
           "independent"
@@ -8455,6 +8708,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "ratrig_vcore_40_400_corexy.current69-v4.json",
+          "sha256": "4940313a1051da6aa623baba27df172f0c33038c878b1ae56f283cf36786b89b",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -8469,6 +8727,7 @@
       "required_companion_failures": [],
       "controller": {
         "poses": 21,
+        "expected_guard_rejections": [],
         "rejected_poses": [],
         "modes": [
           "independent"
@@ -8713,6 +8972,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "ratrig_vcore_40_400_hybrid.current69-v4.json",
+          "sha256": "f94b2efbdd6f01f216f06ab12cacefb89d84ef2380f828b9db56b7ca72fa838e",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -9024,6 +9288,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "ratrig_vcore_40_400_idex.current69-v4.json",
+          "sha256": "add8f129e246d7f6092cf501d4ef312e0b872292c999b9366d227988b2e5c62f",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -9038,6 +9307,7 @@
       "required_companion_failures": [],
       "controller": {
         "poses": 21,
+        "expected_guard_rejections": [],
         "rejected_poses": [],
         "modes": [
           "independent"
@@ -9282,6 +9552,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "ratrig_vcore_40_500_corexy.current69-v4.json",
+          "sha256": "1451bfe2177e422a2216c8080c9a30197f5c8be049d1499cf68449804e3098ed",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -9296,6 +9571,7 @@
       "required_companion_failures": [],
       "controller": {
         "poses": 21,
+        "expected_guard_rejections": [],
         "rejected_poses": [],
         "modes": [
           "independent"
@@ -9544,6 +9820,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "ratrig_vcore_40_500_hybrid.current69-v4.json",
+          "sha256": "230d6cc0ac5cf324ad57cedbeca14160f2707b10c52eea75bf9ebc2cc64a8a60",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -9859,6 +10140,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "ratrig_vcore_40_500_idex.current69-v4.json",
+          "sha256": "0f7174654c605cfe77045ecd9bdd062b6019ab8cdfac814c6b197e3577aaa1ae",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -9873,6 +10159,7 @@
       "required_companion_failures": [],
       "controller": {
         "poses": 21,
+        "expected_guard_rejections": [],
         "rejected_poses": [],
         "modes": [
           "independent"
@@ -10117,6 +10404,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "ratrig_vcore_41_300_corexy.current69-v4.json",
+          "sha256": "db58baacac6d4eb6a6cef00c00fe838bf8a7dcf2d67756a4306d558afd169adb",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -10131,6 +10423,7 @@
       "required_companion_failures": [],
       "controller": {
         "poses": 21,
+        "expected_guard_rejections": [],
         "rejected_poses": [],
         "modes": [
           "independent"
@@ -10379,6 +10672,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "ratrig_vcore_41_300_hybrid.current69-v4.json",
+          "sha256": "8db0e4db2970a1079f585e6d3fa9c39768297b6c6d7bd4e746101624d61b359e",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -10694,6 +10992,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "ratrig_vcore_41_300_idex.current69-v4.json",
+          "sha256": "5c3ef7d05089367d46f104a8ad4ff7b9e8380f84852d60fe9897ae39d998410c",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -10708,6 +11011,7 @@
       "required_companion_failures": [],
       "controller": {
         "poses": 21,
+        "expected_guard_rejections": [],
         "rejected_poses": [],
         "modes": [
           "independent"
@@ -10952,6 +11256,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "ratrig_vcore_41_400_corexy.current69-v4.json",
+          "sha256": "bd1fbe799d7afa2984e36186755df48a471722364ba4d5c127830ce87bf41c6a",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -10966,6 +11275,7 @@
       "required_companion_failures": [],
       "controller": {
         "poses": 21,
+        "expected_guard_rejections": [],
         "rejected_poses": [],
         "modes": [
           "independent"
@@ -11214,6 +11524,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "ratrig_vcore_41_400_hybrid.current69-v4.json",
+          "sha256": "f8e2a0abcb1504efad69d8312e4fe5bc743edbe08a3fff664eb92740cd9c0972",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -11529,6 +11844,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "ratrig_vcore_41_400_idex.current69-v4.json",
+          "sha256": "eacdef6b07ed9de5c6ca6256c05143f47ef5ca9bfc7aab8d04a4b1e4d7bd5e95",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -11543,6 +11863,7 @@
       "required_companion_failures": [],
       "controller": {
         "poses": 21,
+        "expected_guard_rejections": [],
         "rejected_poses": [],
         "modes": [
           "independent"
@@ -11787,6 +12108,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "ratrig_vcore_41_500_corexy.current69-v4.json",
+          "sha256": "a7df4897cd48e3ea4776754bdc85832b352dbec83e93b50ad411e68133807898",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -11801,6 +12127,7 @@
       "required_companion_failures": [],
       "controller": {
         "poses": 21,
+        "expected_guard_rejections": [],
         "rejected_poses": [],
         "modes": [
           "independent"
@@ -12045,6 +12372,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "ratrig_vcore_41_500_hybrid.current69-v4.json",
+          "sha256": "3eab0399e489444623e1a8d76c3ebfc418ec6ecfd7608efd34a698259bb27969",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -12360,6 +12692,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "ratrig_vcore_41_500_idex.current69-v4.json",
+          "sha256": "3461a26e9a99b01126ddeb933bd4c445873f4fa10cc1a6c5c4a3f8537890c4e6",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -12411,6 +12748,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "247zero_beta2_120.current69-v4.json",
+          "sha256": "2b83b07c29bfbbf16a120b2144b3274ec3e92328d5e40b137f33237909ff9ffd",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -12463,6 +12805,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "ratrig_vcore31_300.current69-v5.json",
+          "sha256": "edb6473a82197230a86abccaba5f48167dd18dc34ffe5759247df5a161b2b07e",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -12514,6 +12861,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Exact current model/companion requests and imported source bodies, with cache-query changes and seven source-panel localized records explicitly classified; all other records and controller functions are exact."
+        },
+        {
+          "report": "voron_switchwire_250.current69-v4.json",
+          "sha256": "2c31bc14c03b57ce6b473c2f1efbcd147a00455e7aa2803399dadbc36c6a2635",
+          "scope": "Fresh current production loader/controller and sampled poses, palette reversals, reset; exact approved external inputs and current source graph checked."
         }
       ],
       "new_native_whole_fit_claim": false,
@@ -12527,9 +12879,10 @@
       "viewer_mesh_integrity_passed": true,
       "required_companion_failures": [],
       "controller": {
-        "sample_poses": 57,
+        "poses": 30,
+        "variants": 9,
+        "reversed_palettes": 3,
         "native_transform_reset": true,
-        "purchased_palette_checks": 35496,
         "save_ID_roundtrip": true
       },
       "raw_diagnostics_and_interpretation": {
@@ -12559,6 +12912,11 @@
           "report": "CURRENT_CONTROLLER_TRANSITIVE_REUSE.v9i.json",
           "sha256": "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
           "scope": "Other unchanged machine/controller tuples only; these successor rows use fresh actual jobs."
+        },
+        {
+          "report": "docs/VIRTU_MAY_SOURCE_ROLE_REVIEW.json",
+          "sha256": "97707a5381724b1948d64059d129d6c39ad83981381202a21c603759279cd682",
+          "scope": "Qualified May source-role membership correction and actual current full model/controller. Original geometry, source-mate evidence and limits remain in their existing scope."
         }
       ],
       "new_native_whole_fit_claim": false,
