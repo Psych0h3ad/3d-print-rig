@@ -31,8 +31,8 @@ export async function auditRapidoXUhfCover(root){
   const source=heads.variants.find(v=>v.id===sourceId);assert(source);
   const plan=headPlan(source),variant={...source,machine_head:{...plan,hidden:[...plan.hidden],source_variant:sourceId}},scene=new THREE.Scene(),rig=createMachineHeads(scene,{...heads,machine_id:'toolhead_review',base_assets:heads.base_assets});
   await rig.install(variant);
-  const base=rig.cache.get('stealthburner').loaded,cartridge=rig.cache.get('sb_rapido_x').loaded;
-  const originals=base.entries.filter(e=>rapidoXUhfCover.original_keys.includes(e.key));assert.equal(originals.length,3);assert(originals.every(e=>e.mesh.visible));
+  let base=rig.cache.get('stealthburner').loaded;const cartridge=rig.cache.get('sb_rapido_x').loaded;
+  let originals=base.entries.filter(e=>rapidoXUhfCover.original_keys.includes(e.key));assert.equal(originals.length,3);assert(originals.every(e=>e.mesh.visible));
   assert(cartridge.entries.filter(e=>rapidoXUhfCover.replaced_keys.includes(e.key)).every(e=>!e.mesh.visible));
   for(const key of ['sb_rapido_x_mount_2','sb_rapido_x_mount_3'])assert(cartridge.entries.find(e=>e.key===key).mesh.visible,'Manufacturer cartridge omitted');
   rig.setDelta([0,0,0]);
@@ -55,10 +55,25 @@ export async function auditRapidoXUhfCover(root){
   for(const palette of [{base:'#00ffff',accent:'#ff00ff'},{base:'#ff00ff',accent:'#00ffff'},{base:'#24272c',accent:'#e32636'}]){rig.setPalette(palette);for(const {e,colors}of saved)for(const [i,m]of e.materials.entries()){if(e.key==='423')assert.equal(m.color.getHexString(),palette.accent.slice(1));else assert(m.color.equals(colors[i]));palettes++;}}
   await rig.install(null);assert([...rig.cache.values()].every(p=>!p.loaded?.root.visible));
   for(const row of saved){assert.equal(row.e.mesh.geometry,row.geometry);assert.deepEqual(row.e.mesh.geometry.attributes.position.array,row.positions);if(row.e.uhfSurface){assert.deepEqual(row.e.mesh.geometry.index.array,row.e.uhfSurface.source);assert.deepEqual(row.e.mesh.geometry.drawRange,row.e.uhfSurface.draw);}}
-  await rig.install(variant);assert(originals.every(e=>e.mesh.visible));
+  await rig.install(variant);
+  base=rig.cache.get(plan.base)?.loaded;assert(base,'Reinstalled source base missing');
+  assert(base.root.parent===rig.rig,'Selected source base detached');assert(base.root.visible);assert.equal(rig.active.id,variant.id);
+  originals=base.entries.filter(e=>rapidoXUhfCover.original_keys.includes(e.key));
+  assert.equal(originals.length,3);assert(originals.every(e=>e.mesh.visible));
+  for(const row of saved){const entry=originals.find(e=>e.key===row.e.key);assert(entry);assert.deepEqual(entry.mesh.geometry.attributes.position.array,row.positions);}
+  const activeCartridge=rig.cache.get('sb_rapido_x')?.loaded;assert(activeCartridge?.root.visible);
+  assert(activeCartridge.entries.filter(e=>rapidoXUhfCover.replaced_keys.includes(e.key)).every(e=>!e.mesh.visible));
+  for(const key of ['sb_rapido_x_mount_2','sb_rapido_x_mount_3'])assert(activeCartridge.entries.find(e=>e.key===key).mesh.visible);
   const normalSource=heads.variants.find(v=>v.toolhead==='stealthburner'&&v.hotend==='rapido2_hf'&&v.mount==='fixed'&&v.extruder==='cw2'&&v.gantry===source.gantry);assert(normalSource);
   const normalPlan=headPlan(normalSource);await rig.install({...normalSource,machine_head:{...normalPlan,hidden:[...normalPlan.hidden]}});
+  // Test the current HF base, not the detached pre-purge UHF object.
+  base=rig.cache.get(normalPlan.base)?.loaded;assert(base,'Current HF base missing');
+  assert(base.root.parent===rig.rig,'Selected source base detached');assert(base.root.visible);assert.equal(rig.active.id,normalSource.id);
   assert(!base.entries.find(e=>e.key==='423').mesh.visible,'UHF shell remained after HF switch');
+  for(const key of rapidoXUhfCover.original_keys){const entry=base.entries.find(e=>e.key===key);assert(entry);assert.equal(entry.mesh.visible,!normalPlan.hidden.has(key),'Current source LED/cover mask changed');}
+  await rig.install(variant);base=rig.cache.get(plan.base)?.loaded;assert(base?.root.visible);
+  originals=base.entries.filter(e=>rapidoXUhfCover.original_keys.includes(e.key));assert.equal(originals.length,3);assert(originals.every(e=>e.mesh.visible));
+  for(const row of saved){const entry=originals.find(e=>e.key===row.e.key);assert(entry);assert.deepEqual(entry.mesh.geometry.attributes.position.array,row.positions);}
   reviews.push({source_variant:sourceId,poses,normals,maxNormalError,flatShadedParts,surfaceTriangles,omitted_zero_area_export_triangles:14,original_part_keys:originals.map(e=>e.key),manufacturer_meshes_preserved:true,purchased_materials_preserved:true,native_geometry_restored:true,hf_switch_restored:true});
   scene.traverse(o=>{if(o.isMesh){o.geometry.dispose();for(const m of Array.isArray(o.material)?o.material:[o.material])m.dispose()}});scene.clear();rig.cache.clear();globalThis.gc?.();
  }

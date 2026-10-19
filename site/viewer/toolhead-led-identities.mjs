@@ -76,3 +76,11 @@ export function sourceOpticalGuide(mesh){
  const g=GEOMETRIES[r[1]];
  return {id:id(r[0]),kind:'logo',led_ids:[r[3]],bounds:[g.slice(1,4),g.slice(4,7)]};
 }
+
+// Pinned source PCB/diffuser derivative correspondence. Existing rows unchanged.
+const ACE_HF_LED_ASSET_INDEX=ASSETS.length;
+ASSETS.push(['sb_rapido_ace_hf_complete','8c7810f878cb6e2e954cec6544fb6bdb20e54aa8d2e206beda4948c56f7197e9']);
+const ACE_HF_SOURCE_LED_ASSET=ASSETS.findIndex(r=>r[0]==='sb_rapido2_hf');
+if(ACE_HF_SOURCE_LED_ASSET<0)throw Error('Missing exact source HF LED contract');
+for(const row of LEDS.filter(r=>r[3]===ACE_HF_SOURCE_LED_ASSET)){const n=[...row];n[3]=ACE_HF_LED_ASSET_INDEX;LEDS.push(n);}
+for(const row of GUIDES.filter(r=>r[2]===ACE_HF_SOURCE_LED_ASSET)){const n=[...row];n[2]=ACE_HF_LED_ASSET_INDEX;GUIDES.push(n);}

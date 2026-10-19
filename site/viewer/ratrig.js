@@ -1,11 +1,11 @@
-import {setupGcodePanel} from './gcode-panel.js?v=2e8d1cc51fe9511c776c';
+import {setupGcodePanel} from './gcode-panel.js?v=a87a296186e146f91e0f';
 import {ratRigGcodeSettings,ratRigCoordinateNote} from './gcode-machine-bindings.mjs?v=460777c3fc4d1a74bf27';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
-import {rememberDisplayControl} from './display-preferences.mjs?v=ab531b33fbcb36317429';
+import {rememberDisplayControl} from './display-preferences.mjs?v=56b29930754451d8193c';
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
-import {workspaceFrame,WorkspaceResizeObserver,workspaceTask,workspaceListen} from './workspace-lifecycle.mjs?v=742c8844997b5856a728';
+import {workspaceFrame,WorkspaceResizeObserver,workspaceTask,workspaceListen} from './workspace-lifecycle.mjs?v=16928b39409c2ae378c6';
 import * as THREE from './vendor-r180/three.module.js';
 import {OrbitControls} from './vendor-r180/OrbitControls.js?v=workspace-belts-1';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
@@ -13,9 +13,9 @@ import {loadRatRigMachine,disposeRatRig} from './ratrig-loader.mjs?v=d2d4bc48e44
 import {createRatRigGcodePreview} from './ratrig_gcode_preview.mjs';
 import {ratRigSchema,validateRatRigConfiguration,ratRigAxisRanges} from './ratrig-ui-state.mjs?v=workspace-belts-1';
 import {setupMachineNavigation} from './machines.js?v=ab543d6b01637bc5083f';
-import {setupRenderExport} from './render-export.js?v=743ea37fb4e25b58aa57';
+import {setupRenderExport} from './render-export.js?v=52720bd5e5edde8246d8';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
-import {setupPublicInfo} from './public-info.js?v=04f16ac78c7633a2af39';
+import {setupPublicInfo} from './public-info.js?v=bf195f65383903d3395f';
 export async function mount(scope){
 const $=id=>document.getElementById(id),stage=$('stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=.9;stage.append(renderer.domElement);

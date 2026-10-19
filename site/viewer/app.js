@@ -1,11 +1,12 @@
-import {alphaReference,alphaLimits,alphaBedReferenceDrop} from './trinity-alpha-installation.mjs?v=02f8571f16a32ab58d58';
-import {assertSiboorNativeModule,siboorAlphaModuleOptions,siboorAlphaPose,siboorAlphaContext} from './trinity-alpha-siboor-r2.mjs?v=cfb240585f25791bab0b';
+import {createFullMachineSource47} from './source47/source47-full-machine.mjs';
+import {alphaReference,alphaLimits,alphaBedReferenceDrop} from './trinity-alpha-installation.mjs?v=890c0978f9bf425bd5cc';
+import {assertSiboorNativeModule,siboorAlphaModuleOptions,siboorAlphaPose,siboorAlphaContext} from './trinity-alpha-siboor-r2.mjs?v=44c0d7b4659c7a8f68f0';
 import {contentSHA256} from './mount-validation.mjs';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
-import {workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=742c8844997b5856a728';
-import {loadMonolithMachines} from './monolith-machine.js?v=49dae28464f9a72b469c';
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=e042972e0d2fd347ea3e';
+import {workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=16928b39409c2ae378c6';
+import {loadMonolithMachines} from './monolith-machine.js?v=05b32dd846d4e28e35ac';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=f4e2dffb01eb9cd903c9';
 import {bankBedReferenceDrop} from './changer-bank-model.mjs?v=024cc52a5bbc61da7506';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import * as THREE from 'three';
@@ -13,25 +14,25 @@ import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=34020540905242580aa6';
 import {loadExternalComponent} from './component-assets.mjs?v=963445da64a2f4de7cc5';
-import {loadFrameMods,withFrameMods} from './frame-mods.js?v=640d44c7e311996fbf23';
+import {loadFrameMods,withFrameMods} from './frame-mods.js?v=bd184b22738347191957';
 import {setupGrid} from './grid-control.js';
-import {setupLighting} from './lighting.js?v=dbf4b7baca0b4f13cfbf';
+import {setupLighting} from './lighting.js?v=3b3263006a62aec5418d';
 import {setupFlexible} from './flexible.js?v=37fd0f2d1bdfe5ac356f';
 import {createTridentBelts} from './trident-belts.mjs?v=36cbfcd85e770a25e822';
 import {createBedChain} from './bed-chain.mjs?v=5c6ddd46ac13e6974c73';
 import {createPrinterBelts,printerBeltOwner} from './printer-gantry.mjs';
-import {setupConfigurations} from './configurations.js?v=ab54bf1336fbc21ae64c';
-import {setupAccessories} from './accessories.js?v=30fc44d94442d94d2f68';
+import {setupConfigurations} from './configurations.js?v=cb409c061bb86177843f';
+import {setupAccessories} from './accessories.js?v=ec966c0acf9ab2a2a80c';
 import {setupAppearance} from './appearance.js';
-import {setupRenderExport} from './render-export.js?v=743ea37fb4e25b58aa57';
-import {setupPublicInfo} from './public-info.js?v=04f16ac78c7633a2af39';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=b789e8ab42b105b5f17c';
-import {setupChangerBank} from './changer-bank.js?v=422dc087a1362655b18f';
-import {expandedPrinterCatalog} from './machine-head-model.mjs?v=47b748059eccd1c2d45e';
-import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=2e8d1cc51fe9511c776c';
+import {setupRenderExport} from './render-export.js?v=52720bd5e5edde8246d8';
+import {setupPublicInfo} from './public-info.js?v=bf195f65383903d3395f';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=1930f70c483bc5b9a8ab';
+import {setupChangerBank} from './changer-bank.js?v=ca2d753d81d2570738f4';
+import {expandedPrinterCatalog} from './machine-head-model.mjs?v=2b413bed5e7c812d50ac';
+import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=a87a296186e146f91e0f';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
 import {createHeadMarkers} from './head-markers.mjs';
-import {siboorMachine,loadSiboorAssembly} from './siboor-machine.mjs?v=928466966fc4e3329328';
+import {siboorMachine,loadSiboorAssembly} from './siboor-machine.mjs?v=25c4e0f0864d528d5739';
 export async function mount(scope){
 const {id:machine,size,gantryId,maxX,maxY}=siboorMachine();
 document.querySelector('h1').textContent='Trident / '+size;
@@ -59,6 +60,7 @@ let model,pivot,mode=null,start=0,ready=false,registration,refX=0,refY=0,current
 const levers={},plungers={};
 const groups={},moving={y:[],xy:[],z:[],reference_flexible:[]},panes=[],parts=new Map();
 const allMeshes=[];
+let source47;
 let installed='stock',stockRegistration,stockRefX,stockLeverX,stockPlungerX,xolMeta,xolScene;
 let activeConfig,catalog,r2Registration,appearance,stockRows,accessories,installedHeads,toolBank,program,headMarkers;
 const assetRoots=new Map(),assets=new Map(),xolMechanisms={},stockSwitchMeshes=[];
@@ -98,6 +100,7 @@ function showHead(){
  for(const p of panes)p.visible=$('#panels').checked;
  for(const m of activeConfig.modules){const a=assetRoots.get(m.id);if(a?.root.userData.headModule)a.root.visible=shown}
  if(activeConfig.machine_head){for(const o of moving.reference_flexible)if(!o.userData.bedChain)o.visible=false;for(const key of ['PTFE_tube','CAN_cable'])if(parts.has(key))parts.get(key).visible=false}
+ if(source47?.active){const shownRoutes=source47.setVisible($('#cables').checked);Object.assign($('#routing').dataset,{sourceEffectiveChainLinks:shownRoutes.chain_links,ptfe:String(shownRoutes.PTFE),can:String(shownRoutes.CAN)})}
  showBelts();
 }
 function showBelts(){
@@ -110,6 +113,7 @@ function showBelts(){
 async function installConfiguration(v){return workspaceTask(async()=>{
  program?.invalidate();
  headMarkers?.clear();
+ source47?.deactivate();for(const key of ['sourceConstructor','sourceHeadAttachmentErrorMm','sourceFixedAttachmentErrorMm','sourceClosureErrorMm','sourceReferenceFallback','sourceEffectiveChainLinks','sourceRouteStateSignature','sourceRoutePending','sourceNativeClearance','sourceResetScope','sourceRequestedXMm','sourceRequestedYMm','sourceRequestedZMm'])delete $('#routing').dataset[key];
  const required=[...new Set(v.modules.map(m=>m.id)),...(!v.machine_head&&v.toolhead==='xol'?['xol']:[])];await Promise.all(required.map(asset));await toolBank.install(v);
  if(v.native_alpha_92)assertSiboorNativeModule(v,assetRoots.get(gantryId)?.meta.alphaNativeSourceHash);
  const headLink=new URL('./toolheads.html',location.href);headLink.searchParams.set('configuration',v.source_head_configuration||v.id);$('#toolheadLink').href=headLink;
@@ -122,6 +126,7 @@ async function installConfiguration(v){return workspaceTask(async()=>{
  for(const id of ['home','focusX','focusY','releaseSwitch'])$('#'+id).disabled=!!v.machine_head;
  refX=registration.switches.X.cad_reference_display_coordinate_mm;refY=registration.switches.Y.cad_reference_display_coordinate_mm;if(v.machine_gantry){refX=v.machine_head.nozzle_mm[0]-v.machine_gantry.bed_min_xy_mm[0];refY=v.machine_head.nozzle_mm[1]-v.machine_gantry.bed_min_xy_mm[1];}
  if(v.native_alpha_92){const reference=alphaReference(null,v,[refX,refY,0]);[refX,refY]=reference;}
+ if(source47?.matches(v)){[refX,refY]=source47.referencePose;}
  for(const a of ['X','Y']){const r=registration.switches[a];levers[a]=allMeshes.find(o=>o.name===r.lever_mesh_name);plungers[a]=allMeshes.find(o=>o.name===r.plunger_mesh_name);if(!levers[a]||!plungers[a])throw Error('Missing '+a+' mechanism')}
  $('#headStatus').textContent=[catalog.toolheads.find(x=>x.id===v.toolhead).label,catalog.hotends.find(x=>x.id===v.hotend).label,catalog.extruders.find(x=>x.id===v.extruder).label].join(' · ');
  $('#headStatus').dataset.gantryGeometryRevision=v.gantry==='trident_r2'?assetRoots.get(gantryId).meta.geometry_revision:'stock-original';
@@ -133,6 +138,7 @@ async function installConfiguration(v){return workspaceTask(async()=>{
 const guideMeshes=[],guideRails=[];
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 function stop(){mode=null;$('#demo').textContent='動作デモ';$('#home').textContent='ホーミング（Y→X）'}
+function refreshCurrentPose(){if(source47?.active&&source47.matches(activeConfig))source47.refreshRenderedPose();else setPose(current.x,current.y,current.z)}
 function leverPose(axis,value,dx,dy){
  const r=registration.switches[axis],curve=r.contact_curve,translation=value-r.cad_reference_display_coordinate_mm;
  let angle=0,plungerTravel=curve[0].plunger_travel_mm;
@@ -150,9 +156,9 @@ function leverPose(axis,value,dx,dy){
 }
 function setPose(x,y,z){
  renderRequested=true;
- const bedReferenceDrop=alphaBedReferenceDrop(activeConfig,bankBedReferenceDrop(catalog,catalog.bank_data,installedHeads?.bankState,activeConfig)),zMax=230-Math.max(0,bedReferenceDrop);
+ const bedReferenceDrop=source47?.matches(activeConfig)?0:alphaBedReferenceDrop(activeConfig,bankBedReferenceDrop(catalog,catalog.bank_data,installedHeads?.bankState,activeConfig)),zMax=230-Math.max(0,bedReferenceDrop);
  const limits=alphaLimits(monolithDisplayLimits({X:[0,maxX],Y:[0,maxY],Z:[0,zMax]},[refX,refY,0],activeConfig),activeConfig);
- x=clamp(x,...limits.X);y=clamp(y,...limits.Y);z=clamp(z,...limits.Z);current={x,y,z};
+ x=clamp(x,...limits.X);y=clamp(y,...limits.Y);z=clamp(z,...limits.Z);if(source47?.matches(activeConfig)&&!source47.applying){source47.requestPose(x,y,z);return;}current={x,y,z};
  const alphaPose=siboorAlphaPose(activeConfig,[x,y,z]);if(alphaPose){document.body.dataset.alphaPose=JSON.stringify(alphaPose);document.body.dataset.alphaLimits=JSON.stringify(limits);}else{delete document.body.dataset.alphaPose;delete document.body.dataset.alphaLimits;}
  program?.updatePath([x,y,z]);
  for(const a of ['x','y','z']){const range=limits[a.toUpperCase()];$('#'+a).min=range[0];$('#'+a).max=range[1];$('#'+a).step=activeConfig?.native_alpha_92?'any':nativeStockInputSteps[a]}
@@ -173,10 +179,11 @@ function setPose(x,y,z){
  printerBelts.update(activeConfig,dx,dy,$('#cables').checked);
  if(activeConfig?.gantry==='trident_r2')r2Belts?.update(dy,$('#cables').checked);
  if(activeConfig?.machine_head){
-  const routing=flexible.update(dx,dy,bedDown,$('#cables').checked,{id:activeConfig.id,includeStockBelts:printerBeltOwner(activeConfig)==='siboor_awd',disableToolheadRouting:true});
+  let routing=flexible.update(dx,dy,bedDown,$('#cables').checked,{id:activeConfig.id,includeStockBelts:printerBeltOwner(activeConfig)==='siboor_awd',disableToolheadRouting:true});if(source47?.matches(activeConfig)){routing=source47.updatePose({enabled:$('#cables').checked});Object.assign($('#routing').dataset,{sourceConstructor:routing.source_constructor,sourceHeadAttachmentErrorMm:routing.head_attachment_error_mm,sourceFixedAttachmentErrorMm:routing.fixed_attachment_error_mm,sourceClosureErrorMm:routing.closure_error_mm,sourceReferenceFallback:'false',sourceEffectiveChainLinks:routing.chain_effective_visible_count,sourceRouteStateSignature:routing.routing_state_signature,sourceRoutePending:routing.pending,sourceRequestedXMm:routing.requested_xyz[0],sourceRequestedYMm:routing.requested_xyz[1],sourceRequestedZMm:routing.requested_xyz[2],sourceNativeClearance:'false',sourceResetScope:routing.reset_reference});}
   $('#status').textContent='ヘッドの取付・移動を比較中。ホーミング接点は未登録。';$('#status').style.background='#eff5f7';
   $('#routing').textContent=activeConfig.machine_gantry?($('#cables').checked?'MonolithベルトがXY移動に追従。歯・張力・配線は未再現。':'Monolithベルト：非表示'):$('#cables').checked?`${activeConfig.belt_width_mm} mmベルトはXY移動に追従。ヘッドの配線経路は未登録。`:'ベルト・配線：非表示';
   Object.assign($('#routing').dataset,{belts:String($('#cables').checked),ptfe:String(routing.ptfe),chain:String(routing.chain),chainLinks:String(routing.chainLinks||0)});
+  if(source47?.matches(activeConfig))$('#routing').textContent='原形47リンクと既存PTFE・CAN表示経路を保持。実配線の長さ・曲げ限界は未検証です。';
   showHead();updateHeadDiagnostics(x,y);return;
  }
  const hitX=x>registration.switches.X.first_contact_display_coordinate_mm,hitY=y>registration.switches.Y.first_contact_display_coordinate_mm;
@@ -246,20 +253,21 @@ loadSiboorAssembly(machine).then(async([manifest,routes,g,endstops,colorOptions,
  });
  stockRegistration=registration;stockRefX=refX;stockLeverX=levers.X;stockPlungerX=plungers.X;
  bedChain=createBedChain(model,manifest);for(const e of bedChain.entries)e.mesh.userData.bedChain=true;
+ if(machine==='siboor_trident_350'){const routeInput=await fetch('./source47/data/ROUTE350_CAPTURE_BINDINGS_V2.json',{cache:'no-store'}).then(r=>r.json()),routeReference=await fetch('./source47/data/FULL350_SOURCE_REFERENCE.json',{cache:'no-store'}).then(r=>r.json()),serviceInput=await fetch('./source47/data/SOURCE_SERVICE_ROUTE_BINDINGS.json',{cache:'no-store'}).then(r=>r.json());source47=createFullMachineSource47({model,meshes:allMeshes,manifest,input:routeInput,reference:routeReference,serviceInput,getHead:()=>installedHeads?.cache.get('stealthburner')?.loaded,onPose:(x,y,z)=>setPose(x,y,z),onCommit:s=>{Object.assign($("#routing").dataset,{sourceRouteStateSignature:s.routing_state_signature,sourceRoutePending:s.pending,sourceRequestedXMm:s.requested_xyz[0],sourceRequestedYMm:s.requested_xyz[1],sourceRequestedZMm:s.requested_xyz[2]});renderRequested=true}});}
  flexible=setupFlexible(scene,allMeshes,manifest,routes);appearance=setupAppearance(allMeshes,await lighting.whenReady,colorOptions);
  const door=groups['09_ClickyClacky_Door'];if(door){pivot=new THREE.Group();pivot.position.copy(cadPoint(manifest.door_hinge_axis_mm));scene.add(pivot);pivot.attach(door)}
  for(const s of ['#door','#x','#y','#z','#demo','#reset','#home','#focusX','#focusY','#releaseSwitch','#focusZ'])$(s).disabled=false;
- accessories=setupAccessories(catalog,{load:asset,update:()=>setPose(current.x,current.y,current.z),stockNodes:parts});
+ accessories=setupAccessories(catalog,{load:asset,update:()=>refreshCurrentPose(),stockNodes:parts});
  headMarkers=createHeadMarkers(scene,{rig:installedHeads,fixture:key=>parts.get(key),render:()=>{renderRequested=true},setPose:xyz=>{program?.invalidate();stop();unfocus();if(xyz.some((n,i)=>n<Number($('#'+['x','y','z'][i]).min)-1e-7||n>Number($('#'+['x','y','z'][i]).max)+1e-7))return false;$('#head').checked=true;$('#panels').checked=true;showHead();setPose(...xyz);return true}});
- toolBank=setupChangerBank({catalog,rig:installedHeads,data:headData.bank,extras:{...accessories,onSettled:()=>setPose(current.x,current.y,current.z)}});ready=true;$('#loading').remove();await toolBank.bind(await setupConfigurations(catalog,installConfiguration,{...toolBank.options,inspectPose:headMarkers.inspect}));
+ toolBank=setupChangerBank({catalog,rig:installedHeads,data:headData.bank,extras:{...accessories,onSettled:()=>{if(source47?.active&&source47.matches(activeConfig))source47.refreshRenderedPose();else setPose(current.x,current.y,current.z)}}});ready=true;const originalOptions=toolBank.options;toolBank.options={...originalOptions,getExtras:()=>({...originalOptions.getExtras?.(),...(source47?.active?{source47_v15:source47.saveState()}:{})}),validateExtras:data=>{originalOptions.validateExtras?.(data);if(data.source47_v15)source47.validateState(data.source47_v15)},applyExtras:async data=>{await originalOptions.applyExtras?.(data);if(data.source47_v15){if(!source47.matches(activeConfig))throw Error('Source47 state requires exact ACE350 head');source47.restoreState(data.source47_v15)}}};$('#loading').remove();await toolBank.bind(await setupConfigurations(catalog,installConfiguration,{...toolBank.options,inspectPose:headMarkers.inspect}));
  const programFrame=()=>({nozzle_mm:activeConfig.fit.nozzle_mm,reference_xyz_mm:[refX,refY,0],moving_bed_z:true});
  program=setupGcodePanel({container:document.querySelector('aside'),scene,render:()=>{renderRequested=true},getPose:()=>[current.x,current.y,current.z],getLimits:displayedMachineLimits,toNozzle:xyz=>programPoint(programFrame(),xyz),pathOffset:xyz=>programPathOffset(programFrame(),xyz),getContext:()=>siboorAlphaContext({configuration:activeConfig.id,bank:installedHeads.bankState},activeConfig),setPose:xyz=>setPose(...xyz),beforePlayback:()=>{stop();unfocus()}});
  setupRenderExport({renderer,scene,camera,controls,beforeRender:stop,afterRender:()=>{renderRequested=true},name:'SIBOOR_Trident_'+size});
 });}).catch(e=>{if($('#loading'))$('#loading').textContent='モデルを読み込めませんでした。'+e.message;console.error(e)});
 $('#door').oninput=e=>{$('#angle').textContent=e.target.value+'°';if(pivot)pivot.rotation.y=-THREE.MathUtils.degToRad(+e.target.value)};
 function unfocus(){focusAxis=null;marker.visible=false;callout.style.display='none';for(const o of allMeshes){o.material.opacity=o.userData.baseOpacity;o.material.transparent=o.userData.baseTransparent;o.material.depthWrite=!o.userData.baseTransparent;o.renderOrder=o.userData.baseTransparent?2:0}}
-for(const a of ['x','y','z'])$('#'+a).oninput=()=>{stop();unfocus();setPose(+$('#x').value,+$('#y').value,+$('#z').value)};
-$('#reset').onclick=()=>{stop();unfocus();setPose(refX,refY,0);$('#door').value=0;$('#angle').textContent='0°';if(pivot)pivot.rotation.y=0};
+for(const a of ['x','y','z'])$('#'+a).oninput=()=>{stop();unfocus();const target=source47?.matches(activeConfig)?source47.requestedPose:['x','y','z'].map(k=>+$('#'+k).value);target[['x','y','z'].indexOf(a)]=+$('#'+a).value;setPose(...target)};
+$('#reset').onclick=()=>{stop();unfocus();if(source47?.matches(activeConfig))source47.planReset();else setPose(refX,refY,0);$('#door').value=0;$('#angle').textContent='0°';if(pivot)pivot.rotation.y=0};
 $('#demo').onclick=()=>{program?.invalidate();if(mode==='demo'){stop();return}stop();unfocus();mode='demo';start=performance.now();$('#demo').textContent='デモを停止'};
 $('#home').onclick=()=>{program?.invalidate();if(mode==='home'){stop();return}stop();unfocus();homeStart={...current};mode='home';start=performance.now();$('#home').textContent='終端へ移動中…'};
 $('#focusX').onclick=()=>focusSwitch('X');$('#focusY').onclick=()=>focusSwitch('Y');
@@ -282,12 +290,13 @@ $('#focusZ').onclick=()=>{
 };
 $('#releaseSwitch').onclick=()=>{program?.invalidate();stop();if(focusAxis==='Z')focusSwitch('X');const a=focusAxis==='Y'?'Y':'X',r=registration.switches[a];setPose(a==='X'?r.first_contact_display_coordinate_mm-1:refX,a==='Y'?r.first_contact_display_coordinate_mm-1:maxY,current.z);marker.visible=false;callout.textContent=a+'スイッチ · 押下直前（1 mm手前）';};
 $('#panels').onchange=e=>{for(const p of panes)p.visible=e.target.checked};
-$('#head').onchange=()=>{showHead();setPose(current.x,current.y,current.z)};
-$('#cables').onchange=()=>setPose(current.x,current.y,current.z);
+$('#head').onchange=()=>{showHead();refreshCurrentPose()};
+$('#cables').onchange=()=>refreshCurrentPose();
 for(const[id,p]of [['iso',[1.05,.78,1.18]],['front',[0,.24,1.65]],['top',[.001,1.8,.001]]])$('#'+id).onclick=()=>{unfocus();camera.position.set(...p);controls.target.set(0,.22,0);frameResponsiveView(camera,controls)};
 $('#nightOn').addEventListener('click',()=>{unfocus();camera.position.set(0,.24,1.65);controls.target.set(0,.22,0);controls.update()});
 new WorkspaceResizeObserver(()=>{renderRequested=true;setResponsiveAspect(camera,controls,viewWidth(),viewHeight());renderer.setSize(viewWidth(),viewHeight())}).observe(stage);
 renderer.setAnimationLoop(t=>{
+ if(ready&&source47?.pendingCount){source47.tick();renderRequested=true;}
  if(mode&&t-lastMotionFrame<1000/24)return;if(mode)lastMotionFrame=t;
  if(ready&&mode==='demo'){const phase=((t-start)/18000)%1;setPose(refX+110*Math.sin(phase*Math.PI*2),refY+95*Math.sin(phase*Math.PI*4),50*(1-Math.cos(phase*Math.PI*2)))}
  if(ready&&mode==='home'){

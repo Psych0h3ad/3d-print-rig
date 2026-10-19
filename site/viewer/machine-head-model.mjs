@@ -1,5 +1,5 @@
 import {withV24NativeDriveMetadata} from './v24-drive-metadata.mjs?v=dbdf9f37cb0849ffc262';
-import {trinityAlphaVariants} from './trinity-alpha-installation.mjs?v=02f8571f16a32ab58d58';
+import {trinityAlphaVariants} from './trinity-alpha-installation.mjs?v=890c0978f9bf425bd5cc';
 import {headPlan} from './head-assembly.js?v=trident-clearance-35';
 import {withPrinterGantry} from './printer-gantry.mjs?v=workspace-belts-2';
 
@@ -38,13 +38,13 @@ export function machineHeadVariants(heads,registry,machine,gantry){
   (['filamatrix','madmax'].includes(v.mount)&&['filamatrix','madmax_xol'].includes(v.registration_source)&&target.belt_width_mm===6)||
   (v.mount==='stealthchanger'&&v.gantry==='sc_standard_'+target.belt_width_mm&&['stealthburner','xol','jabberwocky'].includes(v.toolhead))||
   (v.toolhead==='indx'&&target.belt_width_mm===6)
- ).filter(v=>v.belt_width_mm===target.belt_width_mm).map(v=>{
+ ).filter(v=>v.belt_width_mm===target.belt_width_mm&&(!v.registration_constraints||(v.registration_constraints.machines.includes(machine)&&v.registration_constraints.gantries.includes(gantry)))).map(v=>{
   const n=clone(v);n.source_head_configuration=v.id;n.machine_head=installedHeadPlan(v,registry,target);n.id='installed__'+(gantry||machine)+'__'+v.id;n.gantry=gantry||'machine_gantry';n.xy_motors=target.xy_motors;
   n.fit={...n.fit,nozzle_mm:n.machine_head.nozzle_mm,bed_reference_drop_mm:0,machine_mount:{kind:'MGN12H 20 x 20 mm',axis_error_mm:Math.max(target.axis_error_mm||0,v.mount==='stealthchanger'?(registry.mount_verification?.stealthchanger?.axis_error_mm||0):v.toolhead==='indx'?(registry.mount_verification?.indx?.axis_error_mm||0):(registry.mount_verification?.[v.registration_source]?.axis_error_mm||0)),docking_registered:false,full_travel_verified:false}};
   if(n.fit.probe)n.fit.probe=translatedProbeFit(n.fit.probe,n.machine_head.translation_delta_mm);
   applyMountValidation(n,registry,machine,gantry);
   applyHeadValidation(n,registry,machine,gantry);
-  n.notes=[...n.notes.filter(t=>!t.includes('プリンター全体への装着')),'MGN12の取付軸で機体に配置。ヘッド全体の可動域・ホーミング接点・配線・ドッキングは未検証。'];
+  n.notes=n.notes.filter(t=>!t.includes('プリンター全体への装着'));if(v.id!=='ace_hf__siboor_awd__stealthburner__cw2__fixed__none')n.notes.push('MGN12の取付軸で機体に配置。ヘッド全体の可動域・ホーミング接点・配線・ドッキングは未検証。');
   if(v.toolhead==='indx')n.notes.push('INDXの受動ツールと2020用ドックを表示。追加クロスバーと専用締結が必要。ベルト固定具・交換経路は未検証。');
   if(v.toolhead==='sphinx')n.notes.push('MGN12の取付面と4本の穴軸でVORON機体へ配置。プローブはヘッド内の取付形状・高さを確認。');
   return n;

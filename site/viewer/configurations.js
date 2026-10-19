@@ -1,10 +1,10 @@
-import {alphaProductNotice} from './trinity-alpha-installation.mjs?v=02f8571f16a32ab58d58';
+import {alphaProductNotice} from './trinity-alpha-installation.mjs?v=890c0978f9bf425bd5cc';
 import {createConfigurationDraft,configurationLabels,configurationLabel} from './configuration-draft.mjs?v=cb42180e023026a13b45';
-import {setupConfigurationEditor} from './configuration-editor.mjs?v=2f88ae135799c9a120c0';
+import {setupConfigurationEditor} from './configuration-editor.mjs?v=5fd8561d3ef8a7f9aed4';
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
-import {workspaceTask,workspaceListen} from './workspace-lifecycle.mjs?v=742c8844997b5856a728';
-import {translate} from './i18n.mjs?v=2b50474d1e3a055f1cda';
-import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=e042972e0d2fd347ea3e';
+import {workspaceTask,workspaceListen} from './workspace-lifecycle.mjs?v=16928b39409c2ae378c6';
+import {translate} from './i18n.mjs?v=fb2427de09deb3a9a84f';
+import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=f4e2dffb01eb9cd903c9';
 import {catalogDimensions,collections,resolveVariant,choicesFor,choiceChanges,importedVariant,configurationById} from './configuration-model.js?v=9eba2c08e7c5a8c18e16';
 import {probeCheck,probeOptionSuffix,headBodyCollisionNotes,headInspectionState} from './probe-checks.js?v=0f70f5c099338db857e7';
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
@@ -47,14 +47,15 @@ export async function setupConfigurations(catalog,install,{presentation='printer
   const url=new URL(location.href);url.searchParams.delete('mount');if(catalog.machine_id!=='monolith_workbench'){url.searchParams.delete('gantry');url.searchParams.delete('head_configuration')}url.searchParams.set('configuration',v.id);replaceWorkspaceURL(null,'',url);
   $('#configSummary').textContent=ids.map(id=>catalog[collections[id]].find(row=>row.id===v[id]).label).join(' ／ ');
   $('#configRequirements').replaceChildren(...v.notes.map(note=>{const li=document.createElement('li');li.textContent=note;return li}));
-  const rows=[`専用マウント：${v.fit?.mount||'登録済みCAD'}`,`選択可能な構成：${catalog.variants.length}通り`];
-  if(presentation==='printer'&&v.fit?.nozzle_mm)rows.push(`基準姿勢のノズル位置：X ${v.fit.nozzle_mm[0].toFixed(2)} / Y ${v.fit.nozzle_mm[1].toFixed(2)} / Z ${v.fit.nozzle_mm[2].toFixed(2)} mm`);
+  const isAce3509=v.hotend==='rapido_ace_hf'&&v.registration_constraints?.machines?.includes('siboor_trident_350');
+  const rows=isAce3509?[]:[`専用マウント：${v.fit?.mount||'登録済みCAD'}`,`選択可能な構成：${catalog.variants.length}通り`];
+  if(presentation==='printer'&&v.fit?.nozzle_mm)rows.push(isAce3509?`CAD組立基準のノズル位置（機体座標）：X ${v.fit.nozzle_mm[0].toFixed(2)} / Y ${v.fit.nozzle_mm[1].toFixed(2)} / Z ${v.fit.nozzle_mm[2].toFixed(2)} mm`:`基準姿勢のノズル位置：X ${v.fit.nozzle_mm[0].toFixed(2)} / Y ${v.fit.nozzle_mm[1].toFixed(2)} / Z ${v.fit.nozzle_mm[2].toFixed(2)} mm`);
   if(presentation==='printer'&&v.fit?.bed_reference_drop_mm)rows.push(`基準ベッド位置を ${v.fit.bed_reference_drop_mm.toFixed(2)} mm下げて表示（ノズル先端と0.2 mmの間隔）`);
   if(v.fit?.mount_hotend_overlap_mm3!=null)rows.push(`マウント／ホットエンドの交差体積：${v.fit.mount_hotend_overlap_mm3.toFixed(3)} mm³`);
-  if(v.fit?.machine_mount){const m=v.fit.machine_mount;rows.push(`機体取付：${m.kind}。取付穴の軸ずれ ${m.axis_error_mm.toFixed(4)} mm。`);rows.push('機体側ドック・ホーミング接点・全可動域は未検証。');if(v.toolhead==='indx')rows.push('INDX：受動ツールとドックを選択可能。ベルト固定具・交換経路は未検証。')}
+  if(v.fit?.machine_mount){const m=v.fit.machine_mount;rows.push(`機体取付：${m.kind}。取付穴の軸ずれ ${m.axis_error_mm.toFixed(4)} mm。`);if(!isAce3509)rows.push('機体側ドック・ホーミング接点・全可動域は未検証。');if(v.toolhead==='indx')rows.push('INDX：受動ツールとドックを選択可能。ベルト固定具・交換経路は未検証。')}
   if(v.fit?.probe){const p=v.fit.probe;rows.push(Number.isFinite(p.coil_nozzle_gap_mm)?`${p.label||'プローブ'}のコイル底面：ノズルより ${p.coil_nozzle_gap_mm.toFixed(2)} mm上`:`${p.label||'プローブ'}のコイル底面：未計測`);if(p.offset_xy_mm)rows.push(`ノズルからのオフセット：X ${p.offset_xy_mm[0].toFixed(2)} / Y ${p.offset_xy_mm[1].toFixed(2)} mm`);if(p.spacer_mm)rows.push(`取付に必要な絶縁スペーサー：${p.spacer_mm.toFixed(1)} mm × 2`)}
   const check=probeCheck(v);rows.push(...check.lines);if(v.fit?.probe?.minimum_probe_bed_clearance_at_nozzle_contact_mm!=null)rows.push(`ノズル接触時のプローブ最下部／ベッド間隔：${v.fit.probe.minimum_probe_bed_clearance_at_nozzle_contact_mm.toFixed(3)} mm`);
-  rows.push(presentation==='toolhead'?'マウントと部品配置のCADプレビュー。プリンター全域の干渉判定は含みません。':'全可動域の衝突、熱・流量・電気特性は未検証。');
+  if(!isAce3509)rows.push(presentation==='toolhead'?'マウントと部品配置のCADプレビュー。プリンター全域の干渉判定は含みません。':'全可動域の衝突、熱・流量・電気特性は未検証。');
   $('#mountInfo')?.replaceChildren(...rows.map(row=>{const li=document.createElement('li');li.textContent=row;return li}));
   $('#configStatus').textContent=presentation==='toolhead'?`3D切替済み · ${v.belt_width_mm} mmキャリッジ`:`3D切替済み · ${v.xy_motors}モーター · ${v.belt_width_mm} mmベルト`;
   if(check.warning)$('#configStatus').textContent+=' ／ '+check.label;$('#configStatus').classList.toggle('notice',check.warning);
@@ -110,12 +111,13 @@ export async function setupConfigurations(catalog,install,{presentation='printer
  $('#saveConfiguration').onclick=()=>{
   if(!actual||busy||draft.pending)return;
   const data={schema:'3d-print-rig-configuration-v1',machine:catalog.machine_id||'siboor_trident_350',configuration:actual.id,selection:Object.fromEntries(ids.map(k=>[k,actual[k]])),...getExtras()};
-  const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=actual.id+'.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  const json=JSON.stringify(data,null,data.source47_v15?0:2);if(new TextEncoder().encode(json).length>16*1024*1024){$('#configStatus').textContent='構成ファイルが大きすぎます。';return}
+  const url=URL.createObjectURL(new Blob([json],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=actual.id+'.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
  };
  const input=$('#configurationFile');$('#loadConfiguration').onclick=()=>input.click();
  input.onchange=async()=>{return workspaceTask(async()=>{
   const file=input.files[0];input.value='';if(!file||busy)return;
-  try{if(file.size>64*1024)throw Error('構成JSONは64 KB以下で指定してください。');const data=JSON.parse(await file.text()),variant=importedVariant(catalog,data);validateExtras(data);if(await refresh(variant,data))undoState=null;updateEditor()}
+  try{if(file.size>16*1024*1024)throw Error('構成ファイルが大きすぎます。');const data=JSON.parse(await file.text());if(file.size>64*1024&&!data.source47_v15)throw Error('構成JSONは64 KB以下で指定してください。');const variant=importedVariant(catalog,data);validateExtras(data);if(await refresh(variant,data))undoState=null;updateEditor()}
   catch(e){$('#configStatus').textContent=e.message}
  });};
  menus(initial);await refresh(initial);

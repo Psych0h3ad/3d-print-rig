@@ -1,4 +1,4 @@
-import {workspaceListen} from './workspace-lifecycle.mjs?v=742c8844997b5856a728';
+import {workspaceListen} from './workspace-lifecycle.mjs?v=16928b39409c2ae378c6';
 
 export const displayKey = '3d-print-rig-display-v1';
 let memory;

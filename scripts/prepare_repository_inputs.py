@@ -6,7 +6,7 @@ from pathlib import Path
 import shutil
 import urllib.request
 from urllib.parse import urlsplit
-from build_approved_site import validate_contract
+from build_approved_site import safe_path, validate_contract
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -23,10 +23,84 @@ def digest(file):
         for block in iter(lambda: stream.read(1024*1024), b''): h.update(block)
     return h.hexdigest()
 
+
+def mounting_dependencies(root, rows, materialize):
+    """Resolve the original mounting validator's finite delivery dependencies.
+
+    Historical hashes remain the validator's responsibility, including the
+    exact deck/catalog bridges. Preparation authenticates each current body
+    against either tracked source or its approved per-file delivery row.
+    """
+    site = root / 'site'
+    ledgers = ['HEAD_VALIDATION.json', 'MOUNT_VALIDATION.json']
+    if not any((site / name).exists() for name in ledgers):
+        return []
+    inventory = json.loads((root / 'docs/SOURCE_INVENTORY.json').read_bytes())
+    source = {row['path'][5:]: row for row in inventory['files']
+              if row['path'].startswith('site/')}
+    delivered = {row['path']: row for row in rows}
+    required = set()
+
+    def require(name):
+        safe_path(name)
+        if name in required:
+            return site / name
+        if name in source:
+            body = (site / name).read_bytes().replace(b'\r\n', b'\n')
+            if hashlib.sha256(body).hexdigest() != source[name]['sha256']:
+                raise ValueError('Changed tracked mounting input: ' + name)
+        elif name in delivered:
+            materialize(delivered[name])
+        else:
+            raise ValueError('Unregistered mounting dependency: ' + name)
+        required.add(name)
+        return site / name
+
+    def maps(value):
+        if isinstance(value, dict):
+            for key, child in value.items():
+                if key == 'input_sha256':
+                    if not isinstance(child, dict):
+                        raise ValueError('Invalid mounting input map')
+                    yield child
+                else:
+                    yield from maps(child)
+        elif isinstance(value, list):
+            for child in value:
+                yield from maps(child)
+
+    # These are proof documents actually interpreted by the original builder.
+    # A referenced profile/manifest is materialized, not treated as a new proof.
+    pending = list(ledgers)
+    if 'TRIDENT_DECK_REPAIR_103.json' in source:
+        pending.append('TRIDENT_DECK_REPAIR_103.json')
+    scanned = set()
+    while pending:
+        name = pending.pop(0)
+        if name in scanned:
+            continue
+        scanned.add(name)
+        proof = json.loads(require(name).read_bytes())
+        for pins in maps(proof):
+            for relative in pins:
+                require(relative)
+        for key in ['stock_skirt_delta_proof', 'enclosure_delta_proof']:
+            if proof.get(key):
+                pending.append(proof[key])
+        retained = proof.get('retained_proof_sha256', {})
+        if not isinstance(retained, dict):
+            raise ValueError('Invalid retained mounting proofs')
+        pending.extend(retained)
+    require('ASSET_BUNDLE.json')
+    return sorted(required)
+
+
 def prepare(root, contract, mapping=None):
-    rows=[row for row in validate_contract(contract) if selected(row)]
+    rows=validate_contract(contract)
     verified=[]
-    for row in rows:
+    def materialize(row):
+        if row['path'] in verified:
+            return
         target=root/'site'/row['path']
         if target.is_file():
             if target.stat().st_size!=row['bytes'] or digest(target)!=row['sha256']:
@@ -60,7 +134,12 @@ def prepare(root, contract, mapping=None):
                 finally:
                     if temporary.exists():temporary.unlink()
         verified.append(row['path'])
+    for row in rows:
+        if selected(row):
+            materialize(row)
+    mounting = mounting_dependencies(root, rows, materialize)
     return {'passed':True,'verified_source_check_inputs':len(verified),'paths':verified,
+            'mounting_dependency_paths':mounting,
             'archive_accessed':False,'scope':'Exact source-regression input preparation; no geometry result.'}
 
 def main():

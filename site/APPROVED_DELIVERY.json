@@ -200,12 +200,14 @@
     },
     {
       "path": "TOOLHEAD_CONFIGURATIONS.json",
-      "bytes": 8912023,
-      "sha256": "910890df1868584a5aef27d39653d2cb124bbeef4cac576703df715a7052e463",
-      "url": "https://psych0h3ad.github.io/3d-print-rig/TOOLHEAD_CONFIGURATIONS.json",
-      "approval_receipt_sha256": "bd6d1fc1543ec3bf2092eaad15268e17979408c08399b098a4fef9e3d4dafcff",
+      "bytes": 8916573,
+      "sha256": "c95523f09e893ed2b4a7603a3e3c74aa39aa0c97508f00b2d60202e26b33afbf",
+      "url": "https://psych0h3ad.github.io/3d-print-rig-toolhead-models/ace_hf_source40_8c7810f878cb/TOOLHEAD_CONFIGURATIONS.c95523f09e89.json",
+      "approval_receipt_sha256": "8ce80e21272423ee2fe9a7d97095e2092a9b970c7cab33819225e3c9e03792d5",
       "origin": "https://psych0h3ad.github.io/3d-print-rig/TOOLHEAD_CONFIGURATIONS.json",
-      "source_approval_receipt_sha256": "e8571ad8c9ad286861c48e2d6ef0189248561fe1f13e56480cf5d0a74fc35c31"
+      "source_approval_receipt_sha256": "e8571ad8c9ad286861c48e2d6ef0189248561fe1f13e56480cf5d0a74fc35c31",
+      "candidate_only": false,
+      "approval_scope": "Pinned source-derived configuration identity with scoped viewing, motion and state restoration checks. Physical whole-machine fit is not certified."
     },
     {
       "path": "V24_PROBES.json",

@@ -13655,6 +13655,61 @@
       "kind": "message",
       "ja": "開発を支援",
       "en": "Support development"
+    },
+    "ace_hf.mount": {
+      "kind": "message",
+      "ja": "純正3 mmスペーサーとRapido用HF取付部を使用。",
+      "en": "Uses the genuine 3 mm spacer and Rapido HF mount."
+    },
+    "ace_hf.pose_scope": {
+      "kind": "message",
+      "ja": "元の部品形状と出典を保持し、ソース形状の取付面で配置。全体の実機適合を保証するものではありません。",
+      "en": "Original part geometry and sources are retained, with placement derived from source mounting faces. Complete physical fit is not certified."
+    },
+    "ace_hf.upstream_routes": {
+      "kind": "message",
+      "ja": "既存のPTFE・CAN表示経路を保持。実配線の長さ・曲げ限界は未検証です。",
+      "en": "Retains the existing PTFE and CAN display routes. Physical cable lengths and bend limits remain unverified."
+    },
+    "ace_hf.chain_route_status": {
+      "kind": "message",
+      "ja": "原形47リンクと既存PTFE・CAN表示経路を保持。実配線の長さ・曲げ限界は未検証です。",
+      "en": "Retains 47 original links and existing PTFE and CAN display routes. Physical cable lengths and bend limits remain unverified."
+    },
+    "ace_hf.scope3509": {
+      "kind": "message",
+      "ja": "SIBOOR Trident 350・9 mmベルト・CW2・固定取付・プローブなし。",
+      "en": "SIBOOR Trident 350;9 mm belts;CW2;fixed mount;no probe."
+    },
+    "ace_hf.catalog_count": {
+      "kind": "template",
+      "ja": "カタログ全体：{0}構成。このACE取付の対象はSIBOOR Trident 350・9 mm・CW2・固定取付のみ。",
+      "en": "Whole catalog:{0} configurations. This ACE installation is limited to SIBOOR Trident 350,9 mm,CW2 and a fixed mount."
+    },
+    "ace_hf.configuration_file_size": {
+      "kind": "message",
+      "ja": "構成ファイルが大きすぎます。",
+      "en": "The configuration file is too large."
+    },
+    "ace_hf.machine_cad_nozzle": {
+      "kind": "template",
+      "ja": "CAD組立基準のノズル位置（機体座標）：X {0} / Y {1} / Z {2} mm",
+      "en": "Nozzle at CAD assembly reference (machine coordinates): X {0} / Y {1} / Z {2} mm"
+    },
+    "ace_hf.z_reference": {
+      "kind": "message",
+      "ja": "Z=0は元CADの組立基準です。ノズルとベッドの間隔は8.353361 mmあり、印刷用Z原点・ベッド全到達域は未検証です。",
+      "en": "Z=0 is the original CAD assembly reference. The nozzle-to-bed gap is 8.353361 mm; printing Z zero and full bed travel remain unverified."
+    },
+    "ace_hf.compatibility_compact": {
+      "kind": "message",
+      "ja": "SIBOOR Trident 350・9 mm・CW2・固定取付・EBB2209・プローブなし。Rapido HF取付部と純正3 mmスペーサーを使用。",
+      "en": "SIBOOR Trident 350; 9 mm belts; CW2; fixed mount; EBB2209; no probe. Uses the Rapido HF mount and genuine 3 mm spacer."
+    },
+    "ace_hf.routing_compact": {
+      "kind": "message",
+      "ja": "47リンクとPTFE・CANを表示。実配線の長さ・曲げ限界は未検証です。",
+      "en": "Displays 47 links, PTFE and CAN. Physical cable lengths and bend limits remain unverified."
     }
   }
 }

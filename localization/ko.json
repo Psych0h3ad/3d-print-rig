@@ -10837,6 +10837,50 @@
     "ui.support_development": {
       "source_revision": "3e380a9e64c7a433bf76",
       "text": "개발 후원"
+    },
+    "ace_hf.mount": {
+      "source_revision": "d4ed4d13ca1bd830f2ad",
+      "text": "정품 3 mm 스페이서와 Rapido HF 마운트를 사용합니다."
+    },
+    "ace_hf.pose_scope": {
+      "source_revision": "10342ebe87eef2031e7b",
+      "text": "원본 부품 형상과 출처를 유지하며 원본 장착면을 기준으로 배치합니다. 전체 실물 적합성을 인증하지는 않습니다."
+    },
+    "ace_hf.upstream_routes": {
+      "source_revision": "591e0f0450dbf2cd3330",
+      "text": "기존 PTFE 및 CAN 표시 경로를 유지합니다. 실제 케이블 길이와 굽힘 한계는 검증되지 않았습니다."
+    },
+    "ace_hf.chain_route_status": {
+      "source_revision": "65b191b583b3decabc09",
+      "text": "원본 링크 47개와 기존 PTFE 및 CAN 표시 경로를 유지합니다. 실제 케이블 길이와 굽힘 한계는 검증되지 않았습니다."
+    },
+    "ace_hf.scope3509": {
+      "source_revision": "6d66ebddce943c6caa65",
+      "text": "SIBOOR Trident 350,9 mm 벨트,CW2,고정 마운트,프로브 없음."
+    },
+    "ace_hf.catalog_count": {
+      "source_revision": "a656702f735cf1e4300a",
+      "text": "전체 카탈로그:{0}개 구성. 이 ACE 장착은 SIBOOR Trident 350,9 mm,CW2 및 고정 마운트로 제한됩니다."
+    },
+    "ace_hf.configuration_file_size": {
+      "source_revision": "bf0cb994770bc8834efe",
+      "text": "구성 파일이 너무 큽니다."
+    },
+    "ace_hf.machine_cad_nozzle": {
+      "source_revision": "9896998dfe1395835407",
+      "text": "CAD 조립 기준의 노즐 위치 (기체 좌표): X {0} / Y {1} / Z {2} mm"
+    },
+    "ace_hf.z_reference": {
+      "source_revision": "d6b52a7118b8ddabf8ec",
+      "text": "Z=0은 원본 CAD 조립 기준입니다. 노즐과 베드 간격은 8.353361 mm이며 인쇄 Z 원점과 베드 전체 이동 범위는 검증되지 않았습니다."
+    },
+    "ace_hf.compatibility_compact": {
+      "source_revision": "8604d681d5b6acb6659a",
+      "text": "SIBOOR Trident 350, 9 mm 벨트, CW2, 고정 마운트, EBB2209, 프로브 없음. Rapido HF 마운트와 정품 3 mm 스페이서를 사용합니다."
+    },
+    "ace_hf.routing_compact": {
+      "source_revision": "9ea9da875ddd65dc43e2",
+      "text": "47개 링크와 PTFE·CAN 경로를 표시합니다. 실제 배선 길이와 굽힘 한계는 미검증입니다."
     }
   }
 }

@@ -1,7 +1,7 @@
 import {prepareOpticalGuideResponse,pairedOpticalEmitter} from './optical-guide-response.mjs';
 import * as THREE from 'three';
 import {prepareLedSurface,restoreLedSurface} from './led-emission-surface.mjs?v=af40a3200e128a08c940';
-import * as identities from './toolhead-led-identities.mjs?v=eb05026e88ef185682e8';
+import * as identities from './toolhead-led-identities.mjs?v=5cd13006c9b761a9594f';
 import {ledSample,createLedAnimator} from './lighting-animation.mjs';
 
 export const TOOLHEAD_LED_MAX_LEVEL=300;

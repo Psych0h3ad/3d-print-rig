@@ -36,6 +36,12 @@ TRIDENT_DECK_RETAINED_PROOFS = {
 }
 
 
+HEAD_CATALOG_DELTA_FILE = 'HEAD_CATALOG_DELTA_ACE_HF_20261020.json'
+HEAD_CATALOG_DELTA_SHA256 = '0995df8a20b9bcbd44856da8f1d5253a285a1f0dbee81222f32677cae7dc32ca'
+HEAD_CATALOG_BASELINE_SHA256 = '910890df1868584a5aef27d39653d2cb124bbeef4cac576703df715a7052e463'
+HEAD_CATALOG_CURRENT_SHA256 = 'c95523f09e893ed2b4a7603a3e3c74aa39aa0c97508f00b2d60202e26b33afbf'
+
+
 def file_sha256(path):
     digest = hashlib.sha256()
     with path.open('rb') as stream:
@@ -173,9 +179,89 @@ def unpack_assets(archive, target):
         print(f'Loaded {len(expected)} model files ({total:,} bytes).')
 
 
+
+def validate_head_catalog_delta(target):
+    """Retain old mounting witnesses only across this exact appended pilot.
+
+    This does not give the new ACE configuration any historical native-head or
+    probe-travel certificate. Every original witness file remains byte-pinned.
+    """
+    file = target / HEAD_CATALOG_DELTA_FILE
+    if not file.exists():
+        return {}
+    if file_sha256(file) != HEAD_CATALOG_DELTA_SHA256:
+        raise ValueError('Head catalog delta proof bytes changed.')
+    proof = json.loads(file.read_bytes())
+    catalog_path = target / 'TOOLHEAD_CONFIGURATIONS.json'
+    if (catalog_path.stat().st_size != 8916573
+            or file_sha256(catalog_path) != HEAD_CATALOG_CURRENT_SHA256
+            or proof['schema'] != 'ace-hf-append-only-mounting-catalog-delta-v1'
+            or proof['baseline_catalog'] != {'bytes': 8912023, 'sha256': HEAD_CATALOG_BASELINE_SHA256}
+            or proof['current_catalog'] != {'bytes': 8916573, 'sha256': HEAD_CATALOG_CURRENT_SHA256}
+            or proof['retained_original_witnesses'] != {
+                name: TRIDENT_DECK_RETAINED_PROOFS[name]
+                for name in ['HEAD_VALIDATION.json', 'MOUNT_VALIDATION.json']}
+            or proof['new_pilot']['whole_head_fit_certified'] is not False
+            or proof['new_pilot']['whole_machine_fit_certified'] is not False
+            or proof['new_pilot']['printing_Z0_qualified'] is not False
+            or proof['new_pilot']['historical_native_witness_scope_includes_new_variant'] is not False):
+        raise ValueError('Head catalog delta proof is stale or exceeds its scope.')
+    for name, expected in proof['retained_original_witnesses'].items():
+        if file_sha256(target / name) != expected:
+            raise ValueError('Original head catalog witness changed: ' + name)
+    catalog = json.loads(catalog_path.read_bytes())
+    added = proof['added_records']
+    asset_id = 'sb_rapido_ace_hf_complete'
+    hotend_id = 'rapido_ace_hf'
+    variant_id = 'ace_hf__siboor_awd__stealthburner__cw2__fixed__none'
+    if (set(added) != {'assets', 'hotends', 'variants'}
+            or added['assets']['id'] != asset_id
+            or added['hotends']['id'] != hotend_id
+            or added['variants']['id'] != variant_id
+            or len(catalog['assets']) != 275
+            or len(catalog['hotends']) != 34
+            or len(catalog['variants']) != 1292):
+        raise ValueError('Head catalog delta has unexpected added records.')
+    rows = {'assets': catalog['assets'].get(asset_id)}
+    for key, identity in [('hotends', hotend_id), ('variants', variant_id)]:
+        found = [row for row in catalog[key] if row.get('id') == identity]
+        if len(found) != 1:
+            raise ValueError('Duplicate or missing appended head catalog record.')
+        rows[key] = found[0]
+    for key, row in rows.items():
+        encoded = json.dumps(row, sort_keys=True, separators=(',', ':'), ensure_ascii=False).encode('utf-8')
+        if hashlib.sha256(encoded).hexdigest() != added[key]['canonical_sha256']:
+            raise ValueError('Appended head catalog record changed: ' + key)
+    asset, variant = rows['assets'], rows['variants']
+    if (asset['sha256'] != proof['new_pilot']['decoded_model_sha256']
+            or asset['metadata_sha256'] != proof['new_pilot']['parts_metadata_sha256']
+            or asset['parts'] != 40
+            or variant['source_evidence']['native_fit_qualified'] is not False
+            or variant['fit']['physical_print_Z0_qualified'] is not False
+            or variant['source_evidence']['finite_cold_seat_report_sha256'] != proof['new_pilot']['selected_native_cold_seat']['report_sha256']
+            or variant['registration_constraints']['machines'] != ['siboor_trident_350']
+            or variant['registration_constraints']['gantries'] != ['siboor_awd']
+            or variant['registration_constraints']['belt_width_mm'] != 9
+            or variant['probe'] != 'none'
+            or variant['board'] != 'ebb2209_stock'):
+        raise ValueError('Appended ACE pilot differs from its narrow source scope.')
+    del catalog['assets'][asset_id]
+    catalog['hotends'] = [row for row in catalog['hotends'] if row['id'] != hotend_id]
+    catalog['variants'] = [row for row in catalog['variants'] if row['id'] != variant_id]
+    # Reconstruct the exact historical document, including its recorded final
+    # CRLF. No shipped file is normalized or rewritten. This verifies all old
+    # rows, root fields, arrays, values and order against the original raw SHA.
+    baseline = (json.dumps(catalog, ensure_ascii=False, separators=(',', ':')) + '\r\n').encode('utf-8')
+    if (len(baseline) != 8912023
+            or hashlib.sha256(baseline).hexdigest() != HEAD_CATALOG_BASELINE_SHA256):
+        raise ValueError('Head catalog delta changes the historical catalog.')
+    return {'TOOLHEAD_CONFIGURATIONS.json': (
+        HEAD_CATALOG_BASELINE_SHA256, HEAD_CATALOG_CURRENT_SHA256)}
+
 def validate_mounting_evidence(target):
     bundle = json.loads((target / 'ASSET_BUNDLE.json').read_text(encoding='utf-8'))
     evidence_bundle, before_deck, after_deck = validate_trident_deck_repair(target, bundle)
+    catalog_delta = validate_head_catalog_delta(target)
     for name in ['HEAD_VALIDATION.json', 'MOUNT_VALIDATION.json']:
         evidence = json.loads((target / name).read_text(encoding='utf-8'))
         if evidence['model_bundle_sha256'] != evidence_bundle:
@@ -233,6 +319,15 @@ def validate_mounting_evidence(target):
                         raise ValueError('Deck bridge does not match original witness input: ' + relative)
                     expected = after_deck[relative]
                 actual = hashlib.sha256((target / path).read_bytes()).hexdigest()
+                if (pins is evidence['input_sha256']
+                        and relative == 'TOOLHEAD_CONFIGURATIONS.json'
+                        and (expected, actual) == (
+                            HEAD_CATALOG_BASELINE_SHA256, HEAD_CATALOG_CURRENT_SHA256)):
+                    if catalog_delta.get(relative) != (expected, actual):
+                        raise ValueError('Missing exact head catalog delta proof.')
+                    if file_sha256(target / name) != TRIDENT_DECK_RETAINED_PROOFS[name]:
+                        raise ValueError('Historical head mounting witness changed: ' + name)
+                    expected = catalog_delta[relative][1]
                 if actual != expected:
                     raise ValueError(f'{name}: shipped input changed: {relative}')
     print('Mounting evidence verified against the shipped files.')
