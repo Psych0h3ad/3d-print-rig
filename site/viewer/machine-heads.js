@@ -131,7 +131,7 @@ export function ensureMachineHeadControls({gantry=false,monolithUnavailable}={})
  if(gantry){panel.querySelector('summary').textContent='ガントリー・ヘッド構成';const head=document.querySelector('#toolheadConfig'),mount=document.querySelector('#mountConfig');head.previousElementSibling.before(mount.previousElementSibling,mount)}
  return panel;
 }
-export async function setupV24MachineHeads({machine,profile,adapter,scene,render,applyPose,nativeInputHashes=null,beforeInstall=async()=>{},stockProbes=[],onChange=()=>{}}){return workspaceTask(async()=>{
+export async function setupV24MachineHeads({machine,profile,adapter,scene,render,applyPose,nativeInputHashes=null,beforeInstall=async()=>{},stockProbes=[],onChange=()=>{},allowInitialFailure=false,onSettled=()=>{}}){return workspaceTask(async()=>{
  const data=await loadMachineHeadCatalog(machine),{heads,registry,bank}=data;let catalog=v24HeadCatalog(heads,registry,machine,profile);const binding=registry.machines[machine];catalog.bank_data=bank;if(!binding)throw Error('機種のヘッド取付データがありません');
  const stock={reference:[...profile.display_reference_xyz_mm],tip:[...profile.nozzle_tip_mm],limits:JSON.parse(JSON.stringify(profile.display_limits_mm)),clearance:document.querySelector('#clearanceStatus')?.textContent};
  const probes=stockProbes.length?stockProbes:[{id:'stock_panasonic',label:'標準Panasonic'},{id:'none',label:'プローブなし',hidden_stock_keys:binding.stock_probe_keys||[]}];
@@ -164,7 +164,8 @@ export async function setupV24MachineHeads({machine,profile,adapter,scene,render
  });}
  const query=new URLSearchParams(location.search),requestedProbe=query.get('probe');
  if(!catalog.variants.some(v=>v.id===query.get('configuration'))&&requestedProbe){const preferred=baseline.find(v=>v.probe===requestedProbe);if(preferred){catalog.variants=catalog.variants.filter(v=>v!==preferred);catalog.variants.unshift(preferred)}}
- await toolBank.bind(await setupConfigurations(catalog,install,{...toolBank.options,inspectPose}));
- if(!installed)throw Error('ヘッド構成を表示できませんでした');
- return {rig,panel,catalog,update:pose=>{rig.setDelta(pose.cad_delta_xyz_mm);rig.gantry.setFlexibleVisible(document.querySelector('#belts')?.checked??true);visibility();gantryVisibility.update();for(const marker of markers.children)marker.update()},setPalette:value=>rig.setPalette(value),focus:(camera,controls)=>rig.focus(camera,controls),get custom(){return custom},get monolith(){return !!rig.gantry.active},get variant(){return rig.active}};
+ const controls=await setupConfigurations(catalog,install,{...toolBank.options,inspectPose,onSettled:v=>{toolBank.options.onSettled?.(v);onSettled(v)}});
+ await toolBank.bind(controls);
+ if(!installed&&!allowInitialFailure)throw Error('ヘッド構成を表示できませんでした');
+ return {rig,panel,catalog,get ready(){return !!controls.current},update:pose=>{rig.setDelta(pose.cad_delta_xyz_mm);rig.gantry.setFlexibleVisible(document.querySelector('#belts')?.checked??true);visibility();gantryVisibility.update();for(const marker of markers.children)marker.update()},setPalette:value=>rig.setPalette(value),focus:(camera,controls)=>rig.focus(camera,controls),get custom(){return custom},get monolith(){return !!rig.gantry.active},get variant(){return rig.active}};
 });}
