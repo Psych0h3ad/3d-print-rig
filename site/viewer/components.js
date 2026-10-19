@@ -1,18 +1,19 @@
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
-import {setupSceneDisplay} from './display-preferences.mjs?v=5fd25f289942c501706d';
-import {WorkspaceResizeObserver,workspaceTask} from './workspace-lifecycle.mjs?v=a8e49b4993efdc7bac52';
+import {setupSceneDisplay} from './display-preferences.mjs?v=ab531b33fbcb36317429';
+import {WorkspaceResizeObserver,workspaceTask} from './workspace-lifecycle.mjs?v=742c8844997b5856a728';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=ea010e8ec91e63b1dc78';
-import {loadExternalComponent} from './component-assets.mjs?v=77e18567f1b28e53777a';
-import {setupPublicInfo} from './public-info.js?v=c7e65c6912faa5cf0bb8';
-import {setupRenderExport} from './render-export.js?v=1383105a90d0fa4a63bd';
+import {loadModel} from './model-loader.js?v=34020540905242580aa6';
+import {loadExternalComponent} from './component-assets.mjs?v=963445da64a2f4de7cc5';
+import {setupPublicInfo} from './public-info.js?v=dec4a2afe766c1788684';
+import {setupRenderExport} from './render-export.js?v=743ea37fb4e25b58aa57';
 import {partNodes,selectParts,visibleBounds} from './component-selection.js?v=workspace-belts-1';
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
 import {componentCategories,componentCategory,componentViews,resolveComponentView,componentViewKeys} from './v0-mod-library.mjs?v=ddeeafeb04155ab0838b';
+import {frameHeadBounds} from './head-camera.mjs';
 export async function mount(scope){
 const $=s=>document.querySelector(s),stage=$('#stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor('#edf1f5');renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);
@@ -21,9 +22,15 @@ scene.add(new THREE.HemisphereLight('#ffffff','#6c7981',2.4));
 for(const p of [[.4,.6,.5],[-.3,.2,-.4]]){const light=new THREE.DirectionalLight('#ffffff',2);light.position.set(...p);scene.add(light)}
 const cached=new Map(),remembered=new Map(),categoryHistory=new Map();let catalog,current,currentItem,busy=false,view='iso',dirty=true;
 const option=(value,label)=>{const o=document.createElement('option');o.value=value;o.textContent=label;return o};
-function fit(){if(!current)return;const box=visibleBounds(current),center=box.getCenter(new THREE.Vector3()),size=box.getSize(new THREE.Vector3());controls.target.copy(center);
- const distance=Math.max(size.x,size.y,size.z)/Math.tan(THREE.MathUtils.degToRad(camera.fov/2))*Math.max(1,1/camera.aspect)*.8;
- const direction=new THREE.Vector3(...({iso:[1,.65,1.2],front:[0,0,1],side:[1,0,0]}[view])).normalize();camera.position.copy(center).addScaledVector(direction,distance);controls.minDistance=Math.max(.005,distance/15);controls.maxDistance=Math.max(.3,distance*10);controls.update();dirty=true;
+function fit(){if(!current)return;const box=visibleBounds(current),size=box.getSize(new THREE.Vector3()),insets={};
+ if(stage.clientWidth<=680){
+  const rect=stage.getBoundingClientRect(),tools=stage.querySelector('.view-tools')?.getBoundingClientRect(),sponsor=stage.querySelector('.project-sponsor > summary')?.getBoundingClientRect(),meta=stage.querySelector('.view-meta')?.getBoundingClientRect();
+  insets.top=Math.min(stage.clientHeight*.4,tools?.height?tools.bottom-rect.top+8:0);
+  insets.bottom=Math.min(stage.clientHeight*.4,Math.max(...[sponsor,meta].filter(r=>r?.height).map(r=>rect.bottom-r.top+8),0));
+ }
+ controls.minDistance=.0001;
+ const {distance}=frameHeadBounds(camera,controls,box,{direction:{iso:[1,.65,1.2],front:[0,0,1],side:[1,0,0]}[view],width:Math.max(stage.clientWidth,1),height:Math.max(stage.clientHeight,1),insets});
+ controls.minDistance=Math.max(.005,distance/15);controls.maxDistance=Math.max(.3,distance*10);dirty=true;
  $('#dimensions').textContent=`表示外寸 ${(size.x*1000).toFixed(1)} × ${(size.z*1000).toFixed(1)} × ${(size.y*1000).toFixed(1)} mm`;
 }
 function resize(){const b=stage.getBoundingClientRect();renderer.setSize(b.width,b.height,false);camera.aspect=b.width/b.height;camera.updateProjectionMatrix();fit();dirty=true}
@@ -94,11 +101,11 @@ async function install(id,initial=false){return workspaceTask(async()=>{
    $('#componentViewOptions').hidden=true;$('#componentPartOptions').hidden=true;$('#componentSelectionInfo').hidden=true;
    componentStatus(item.label,'部品単体');syncURL();fit();
   }
-  const representation=item.representation==='3MF'?'3MF原本の印刷部品':item.representation==='STL'?'STL原本の印刷部品':item.representation==='integration_surfaces'?'開いた組込み参照面':item.solids+'ソリッド';
+  const representation=item.representation==='3MF'?'3MF原本の印刷部品':item.representation==='STL'?'STL原本の印刷部品':item.representation==='integration_surfaces'?'開いた組込み参照面':'ソリッド数：'+item.solids;
   const details=$('#componentDetails');details.replaceChildren(paragraph(item.manufacturer),paragraph(`${representation} · ${item.source_version}`));
   if(item.source_extents_mm)details.append(paragraph('原本XYZ外寸：'+item.source_extents_mm.map(v=>v.toFixed(2)).join(' × ')+' mm'));
   if(item.source_commit)details.append(paragraph('取得commit：'+item.source_commit));details.append(paragraph((item.source_sha256_label||'原本 SHA256')+'：'+item.source_sha256),paragraph(item.license));
-  for(const [label,url] of [['原本の配布元',item.source_url],['配布条件',item.license_url]])if(url){const a=document.createElement('a');a.textContent=label;a.href=url;a.target='_blank';a.rel='noopener';details.append(a,document.createTextNode('　'))}
+  for(const [label,url] of [['原本の配布元',item.source_url],['STEP / '+item.manufacturer,item.source_cad_url],['配布条件',item.license_url]])if(url){const a=document.createElement('a');a.textContent=label;a.href=url;a.target='_blank';a.rel='noopener';details.append(a,document.createTextNode('　'))}
   $('#componentScope').textContent=(item.notes||'').replace('複数の候補が同じ原本座標に重なるため、部品を一つずつ選んで表示します。','選んだ原本・バリエーションだけを表示します。');$('#loading').hidden=true;renderProductLinks($('#componentProductLinks'),{component:item.id});
   document.body.dataset.ready='true';dirty=true;
  }catch(e){

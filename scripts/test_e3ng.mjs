@@ -8,7 +8,10 @@ assert(!referenceURL.searchParams.has('machine'));assert.equal(referenceURL.sear
 assert.equal(machinePage('e3ng_toolchanger_230'),undefined);
 assert(!machineChoices.some(m=>m.id.startsWith('e3ng_')||m.page==='./e3ng.html'));
 assert(!machineOptions({},'family').includes('e3ng'));
-assert(!('e3ng'in machineFamilies));assert(!('rh3d'in machineVendors));
+assert.equal(machineFamilies.e3ng,'E3NG');assert.equal(machineVendors.rh3d,'RH3D');
+assert.deepEqual(machineChoices.filter(m=>m.family==='e3ng').map(m=>({id:m.id,page:m.page,vendor:m.vendor})),
+ []);
+assert.equal(machinePage('rh3d_e3ng_v12_235'),undefined);
 assert.equal(workspaceKindFor('e3ng.html'),'toolchangers');
 assert.equal(machinePage('e3ng_v12_230'),undefined);
 for(const invalid of [{tools:0},{tools:7},{tools:NaN},{board:'ebb42_gen2'},{gantry:'voron'},{extruder:'orbiter'},{view:'printer'},{wiper:'yes'}])assert.throws(()=>e3ngSelection(invalid));
@@ -28,4 +31,4 @@ for(const board of ['ebb42','ebb36'])for(const extruder of ['pin','bolt'])for(co
  selections++;
 }
 assert.deepEqual(selected,e3ngSelection());
-console.log(`E3NG: ${selections} component selections, independent alternatives, dock/tool counts and URL round trips; no machine registration or printer workspace.`);
+console.log(`E3NG: ${selections} component selections, independent alternatives, dock/tool counts and URL round trips; the reference toolchanger remains separate from the exact registered source assembly.`);

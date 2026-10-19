@@ -1,0 +1,18 @@
+.source-assembly .source-notice{font-size:.84rem;line-height:1.45}
+.source-assembly aside details{margin:12px 0}
+.source-assembly .source-axis{display:grid;grid-template-columns:24px 1fr 80px;gap:6px;align-items:center;margin:10px 0}
+.source-assembly .source-axis input[type=number]{width:80px;min-width:0}
+.source-assembly .source-axis input[type=range]{width:100%;min-width:0}
+.source-assembly .source-actions{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.source-assembly select{max-width:100%}
+.source-assembly #sourceView{width:100%}
+.source-assembly #sourceError{min-height:1em;line-height:1.4;color:var(--error,#a43e39)}
+.source-assembly dialog{max-width:min(600px,calc(100vw - 32px));max-height:85dvh;overflow:auto;border-radius:12px;padding:22px}
+.source-assembly #sourceCredits ul{padding-left:20px}
+.source-assembly #sourceCredits a{overflow-wrap:anywhere}
+.source-assembly #sourceCredits li{margin:10px 0;line-height:1.45}
+.source-assembly #status:empty{display:none}
+.source-assembly .view-tools{flex-wrap:nowrap;max-width:calc(100% - 155px);overflow-x:auto}
+.source-assembly .view-tools button{flex:0 0 auto;white-space:nowrap}
+@media(max-width:680px){.source-assembly .source-axis{grid-template-columns:20px 1fr}.source-assembly .source-axis input[type=number]{grid-column:2;width:100%}.source-assembly .view-tools{gap:3px}.source-assembly .view-tools button{padding:5px 7px;font-size:.75rem}.source-assembly .view-meta{font-size:.65rem}}
+@media(max-width:680px){.ui-workspace.source-assembly .view-tools{right:156px;max-width:calc(100% - 168px);flex-wrap:nowrap;overflow-x:auto}.ui-workspace.source-assembly .viewer-help{max-width:128px}}

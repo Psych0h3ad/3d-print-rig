@@ -1,7 +1,7 @@
-import {workspaceTask,workspaceListen,WorkspaceMutationObserver} from './workspace-lifecycle.mjs?v=a8e49b4993efdc7bac52';
+import {workspaceTask,workspaceListen,WorkspaceMutationObserver} from './workspace-lifecycle.mjs?v=742c8844997b5856a728';
 import {setupProductDirectory} from './product-links.js?v=ba0e9d9c9326819ea0fb';
-import {assemblyDownloadEntries,mountStepDownloadLibrary} from './step-downloads.mjs?v=f4ac9960524feb85c743';
-import {messageSource} from './i18n.mjs?v=db391db0c6d1562c776b';
+import {assemblyDownloadEntries,mountStepDownloadLibrary} from './step-downloads.mjs?v=f521ac4da098e02e8902';
+import {messageSource} from './i18n.mjs?v=0cbc88406dc455da6bf4';
 const $=s=>document.querySelector(s);
 function dialog(id,title){const d=document.createElement('dialog');d.id=id;d.innerHTML=`<div class="dialog-head"><h2>${title}</h2><button class="close" aria-label="閉じる"></button></div><div class="dialog-body"></div>`;document.body.append(d);d.querySelector('.close').onclick=()=>d.close();return d}
 const node=(tag,text)=>{const n=document.createElement(tag);n.textContent=text;return n};
@@ -22,7 +22,7 @@ export async function setupPublicInfo({includeDownloads=true,machineId=null}={})
  const updateShortcut=()=>{const shortcut=$('#machineStepDownloads');if(shortcut){shortcut.hidden=!entries.some(item=>item.id===currentMachine());shortcut.setAttribute('aria-haspopup','dialog');shortcut.onclick=openDownloads}};
  new WorkspaceMutationObserver(updateShortcut).observe(document.body,{attributes:true,attributeFilter:['data-machine-id']});
  const loadCatalog=async()=>{downloadButton.disabled=true;try{
-  const response=await fetch('../PUBLIC_CATALOG.json?v=7776476205cc850aa923',{cache:'no-cache'});if(!response.ok)throw Error('カタログを取得できません');const catalog=await response.json();
+  const response=await fetch('../PUBLIC_CATALOG.json?v=40ca60057d6d2779fbde',{cache:'no-cache'});if(!response.ok)throw Error('カタログを取得できません');const catalog=await response.json();
   const assemblyDownload=$('#assemblyDownload');if(assemblyDownload)assemblyDownload.hidden=true;
   sb.append(node('p','ビューアー版：'+catalog.viewer_version));
   if(catalog.model_source_url)sb.append(link('表示モデルの編集用データ',catalog.model_source_url));

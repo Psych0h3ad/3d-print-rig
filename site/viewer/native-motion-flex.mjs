@@ -37,6 +37,7 @@ export function registeredFlexDelta(weights,spec,axes,profile){
 }
 export function createRegisteredChains(nodes,initial,profile){
  const entries=(profile.motion_registration?.chains||[]).map(spec=>{
+  if(spec.fixed_group&&!Object.hasOwn(profile.motions,spec.fixed_group))throw Error('Unknown chain anchor motion group');
   const uv=spec.plane_axes,first=spec.links[0],d=first.to_mm.map((v,i)=>v-first.from_mm[i]),vertical=Math.abs(d[0])>Math.abs(d[1])?0:1,horizontal=1-vertical;
   const signs=[Math.sign(spec.end_mm[horizontal]-spec.start_mm[horizontal])||1,Math.sign(d[vertical])||1];
   const project=p=>[p[horizontal]*signs[0],p[vertical]*signs[1]],unproject=p=>{const out=[];out[horizontal]=p[0]*signs[0];out[vertical]=p[1]*signs[1];return out};
@@ -49,11 +50,13 @@ export function createRegisteredChains(nodes,initial,profile){
  let reports=[];
  function update(axes){
   reports=[];for(const e of entries){
-   const motion=nativeMotion(e.spec.moving_group,axes,profile),delta=e.project(e.uv.map(a=>motion[a])),end=e.end.map((v,i)=>v+delta[i]),route=bedChainRoute(e.start,end,e.links.length,e.spec.pitch_mm),zero=motion.every(v=>Math.abs(v)<1e-9);
+   const fixed=nativeMotion(e.spec.fixed_group||'fixed',axes,profile),moving=nativeMotion(e.spec.moving_group,axes,profile),relative=moving.map((v,i)=>v-fixed[i]);
+   const delta=e.project(e.uv.map(a=>relative[a])),end=e.end.map((v,i)=>v+delta[i]),route=bedChainRoute(e.start,end,e.links.length,e.spec.pitch_mm),zero=relative.every(v=>Math.abs(v)<1e-9);
    for(const[i,link]of e.links.entries())for(const key of link.keys){
     const node=nodes.get(key);if(!node)throw Error('Missing registered chain link');node.matrix.copy(initial.get(key));
-    if(zero)continue;
+    if(zero){const shift=displayMotion(fixed,profile);for(let j=0;j<3;j++)node.matrix.elements[12+j]+=shift[j];continue;}
     const target=e.unproject(route.points[i]),native=[0,0,0];for(const[j,a]of e.uv.entries())native[a]=target[j]-profile.origin_mm[a];
+    for(let j=0;j<3;j++)native[j]+=fixed[j];
     const to=new THREE.Vector3(...displayMotion(native,profile)),rotation=new THREE.Matrix4().makeRotationAxis(e.normal,route.angles[i]-link.angle),translation=to.clone().sub(link.from.clone().applyMatrix4(rotation));
     rotation.setPosition(translation);node.matrix.premultiply(rotation);
    }

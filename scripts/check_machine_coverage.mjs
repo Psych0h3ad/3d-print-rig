@@ -2,16 +2,19 @@ import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {machineChoices} from '../site/viewer/machines.js';
 import {machineReviewInputs} from './machine_review_inputs.mjs';
+import {assertViewerMeshQuality} from './viewer_mesh_quality_scope.mjs';
 const suites={
+ virtu:['source_assembly_assets','source_gallery_bindings'],e3ng:['source_assembly_assets','source_gallery_bindings'],
  '247zero':['community_state','247zero'],
  doomcube:['community_state','doomcube'],
  tictac:['community_state','requested_assemblies','native_motion_profiles'],the100:['community_state','requested_assemblies','native_motion_profiles'],rook:['community_state','requested_assemblies','native_motion_profiles'],satsuma:['community_state','requested_assemblies','native_motion_profiles'],
  sovol_sv08:['community_state','sovol_reference','native_motion_profiles'],
  lh_stinger:['stinger'],aether:['community_state'],vminion:['community_state','eva_options'],snakeoil_xy:['community_state'],snakeoil_3s:['community_state'],proosaxy:['community_state'],mercury:['community_state','mercury_tubes'],vzbot:['community_state'],ender3:['community_state'],sboom:['community_state'],
+ switchwire:['community_state','switchwire_catalog','chain_moving_anchor'],
  positron:['positron_state','positron_storage'],annex_k1:['machine_navigation','native_motion_profiles'],annex_k2:['machine_navigation','native_motion_profiles'],annex_k3:['machine_navigation','native_motion_profiles'],remorph:['machine_navigation'],crossant:['crossant_state'],vcore4:['ratrig'],vcore3:['community_state','eva_installations','eva_options'],
  trident:['rear_enclosures','trident_motion','bed_chain','printer_gantry','machine_heads','changer_bank','probe_clearance'],v24:['rear_enclosures','v24_adapter','v24_belts','printer_gantry','machine_heads','changer_bank','probe_clearance'],v0:['v0_belts','v0_installations','v0_mod_selection','v0_native_installed_gate','v0_assembly','v0_assembly_app'],micron:['micron_adapter','micron_belts','micron_tubes']
 };
-const required=['appearance_roles','palette_controller','scene_lighting','lighting_animation','export_camera','orbit_touch','responsive_camera','selection_regressions','workspace_runtime','multilingual','machine_selection','model_progress','device_memory','siboor_sizes'];
+const required=['viewer_mesh_quality_scope','appearance_roles','palette_controller','scene_lighting','lighting_animation','export_camera','orbit_touch','responsive_camera','selection_regressions','workspace_runtime','multilingual','machine_selection','model_progress','device_memory','siboor_sizes'];
 const machines=machineChoices.filter(m=>m.available!==false);
 assert.equal(new Set(machines.map(m=>m.id)).size,machines.length);
 for(const machine of machines){
@@ -25,8 +28,9 @@ if(!process.argv.includes('--registration-only')){
  for(const machine of machines){
   const row=coverage.machines.find(r=>r.id===machine.id);
   assert.equal(row.family,machine.family);
+  assertViewerMeshQuality(row);
   assert(/^[a-f0-9]{64}$/.test(row.model_sha256)&&row.mesh_quality_verified===true,`Missing actual model review: ${machine.id}`);
-  assert(['sampled_native_motion','native_reference_assembly'].includes(row.motion_scope)&&row.evidence.length>0,`Missing scoped native evidence: ${machine.id}`);
+  assert(['sampled_native_motion','native_reference_assembly','sampled_source_controller'].includes(row.motion_scope)&&row.evidence.length>0,`Missing scoped native evidence: ${machine.id}`);
   assert.equal(row.full_physical_fit_certified,false,'Sampled viewer checks must not certify all physical fit.');
  }
 }

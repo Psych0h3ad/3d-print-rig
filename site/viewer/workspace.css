@@ -28,7 +28,8 @@ body.ui-workspace {
 .ui-workspace .language-picker select { width:100px; margin:0; padding-right:30px; appearance:none; -webkit-appearance:none; }
 /* Long translations scroll inside the navigation's share of the header.
    Keep the actions outside this scroller so reference menus can open freely. */
-.workspace-nav { display: flex; align-self: stretch; align-items: stretch; flex: 1; gap: 22px; padding: 0; min-width: 0; overflow-x: auto; overflow-y: hidden; background: var(--paper); scrollbar-width: thin; }
+.workspace-nav { display: flex; align-self: stretch; align-items: stretch; flex: 1; gap: 22px; padding: 0; min-width: 0; overflow-x: auto; overflow-y: hidden; background: var(--paper); scrollbar-width: none; }
+.workspace-nav::-webkit-scrollbar { display: none; width: 0; height: 0; }
 .workspace-nav a { flex: 0 0 auto; display: flex; align-items: center; position: relative; padding: 0 3px; color: var(--muted); text-decoration: none; font-weight: 600; font-size: 12px; }
 .workspace-nav a:hover { color: var(--ink); }
 .workspace-nav a:focus-visible { outline-offset: -2px; }

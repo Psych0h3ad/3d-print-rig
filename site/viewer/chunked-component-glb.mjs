@@ -1,3 +1,4 @@
+import {verifyTrinityLedModelBytes} from './led-source-binding.mjs';
 import {checkedExtraAsset,extraAssetBase} from './extra-asset-integrity.mjs?v=019170d7f31b55da1667';
 import {beginModelLoading} from './model-progress.mjs?v=beaef781095b6f56b290';
 import {parseSharedComponentGlb,sharedGlbDocument} from './shared-component-glb.mjs?v=a21b698822731b57dea6';
@@ -27,7 +28,7 @@ export function finishChunkAssembly(state){
 }
 export async function loadChunkedTrinity(loader,spec,href){
  if(spec.component_id!==delivery.component_id||spec.parts!==delivery.parts||spec.files['model.glb'].decoded_sha256!==delivery.source_model_sha256||spec.files['parts.json'].sha256!==delivery.source_parts_sha256)throw Error('Trinity native source identity changed');
- const base=extraAssetBase(delivery.external,href),manifest=JSON.parse(new TextDecoder().decode(await checkedExtraAsset(base,delivery.manifest))),root=new URL('trinity-lossless-v1/',base);
+ const base=extraAssetBase(delivery.external,href),manifestBytes=await checkedExtraAsset(base,delivery.manifest),manifest=JSON.parse(new TextDecoder().decode(manifestBytes)),root=new URL('trinity-lossless-v1/',base);
  const progress=beginModelLoading(Object.fromEntries(manifest.chunks.map(r=>[String(r.ordinal),r.file])));
  try{
   const [prefix,parts]=await Promise.all([checkedExtraAsset(root,manifest.reassembly_prefix),checkedExtraAsset(root,manifest.parts)]),meta=JSON.parse(new TextDecoder().decode(parts));
@@ -39,6 +40,8 @@ export async function loadChunkedTrinity(loader,spec,href){
    scatterComponentChunk(state,record,bytes);
   }
   progress.assembling();
-  return {gltf:await parseSharedComponentGlb(loader,finishChunkAssembly(state),root.href),meta};
+  const modelBytes=finishChunkAssembly(state),gltf=await parseSharedComponentGlb(loader,modelBytes,root.href);
+  const ledModelReceipt=await verifyTrinityLedModelBytes(gltf.scene,spec,modelBytes,manifestBytes,{catalogId:spec.component_id});
+  return {gltf,meta,ledModelReceipt};
  }finally{progress.finish()}
 }

@@ -31,6 +31,7 @@
 | FilamATrixカッターとMadMax取付・未登録ドック | [FilamATrix / MadMax](CUTTERS_MADMAX.md) |
 | Sphinx tLW・旧世代、ホットエンド・プローブ | [Sphinx assemblies](SPHINX_ASSEMBLIES.md) · [Goliath](GOLIATH.md) |
 | Stealthburnerの部品・プローブ構成 | [Stealthburner combinations](SB_PROBE_COMBINATIONS.md) |
+| Stealthburnerのフィラメント経路・加熱・冷却の断面説明 | [Stealthburner cutaway](STEALTHBURNER_CUTAWAY.md) |
 | A4T・Archetype、Yavoth、Rapido X | [Armchair](ARMCHAIR.md) · [Yavoth](YAVOTH.md) · [Rapido X](RAPIDO_X.md) |
 | Micron / Micron Plus、Rat Rig元CAD | [Micron](MICRON.md) · [Rat Rig](RATRIG.md) |
 | DoomCube 2の350 mm原本・フレーム・静止表示 | [DoomCube 2](DOOMCUBE.md) |

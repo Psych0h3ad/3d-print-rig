@@ -70,6 +70,27 @@ export function assertHeadCompanions(v){
  return entries;
 }
 
+// Yavoth's pinned author BOM calls for two 4010 blowers and one 2510 axial
+// fan. The old head13 presets loaded only their printable cowl, although the
+// hotend selector changed successfully. Nonempty bounds cannot pass this check.
+// Source: chirpy2605/voron@cc2e749d09d7f24418f9f8c73c90bcefb1e29584,
+// V0/Yavoth/README.md, BOM and Assembly sections.
+export function assertYavothHardware(v,assets){
+ if(v.toolhead!=='yavoth')return;
+ const present={hotend:new Set(),extruder:new Set(),fan:new Set()};
+ for(const [id,asset]of assets){
+  if(!asset.root.visible)continue;
+  for(const row of asset.entries){
+   let visible=true,attached=false;
+   for(let o=row.mesh;o;o=o.parent){if(!o.visible)visible=false;if(o===asset.root){attached=true;break;}}
+   if(visible&&attached&&present[row.component])present[row.component].add(id+'\0'+String(row.key));
+  }
+ }
+ assert(present.hotend.size>0,v.id+' missing actual Yavoth hotend hardware');
+ assert(present.extruder.size>0,v.id+' missing actual Yavoth extruder hardware');
+ assert(present.fan.size>=3,v.id+' missing Yavoth cooling hardware: two 4010 blowers and one 2510 axial fan required');
+}
+
 // The former loop only inspected loaded rows and silently accepted missing leaves.
 export function assertExportedHeadParts(meta,loaded,id){
  assert(Array.isArray(meta?.parts)&&meta.parts.length,id+' missing manifest');
@@ -141,7 +162,7 @@ export async function auditLoadedHeads(root,{families=null,machines=null,variant
   try{return new Response(await bytesFor(name));}catch{missing.add(name);return new Response('',{status:404});}
  };
  const report={schema:'loaded-head-companions-106',started_at_utc:new Date().toISOString(),configurations:0,meshChecks:0,modules:0,transitions:0,poseChecks:0,paletteChecks:0,legacyPresetRestorations:0,contexts:[],failures:[],open_findings:[],input_sha256:input,source_input_sha256:sourceInput,code_sha256:{},browser_render_test:false,native_solid_review:false,whole_head_certified:false,filters:{families,machines,variants}};
- report.cache_policy={inactive_geometry_limit_bytes:128*1024*1024,evicted_modules:0,max_cached_geometry_bytes:0,identity_scope:'Reuse only the same registered module in the same production catalog/scene; no cross-machine placement/native-joint reuse.'};
+ report.cache_policy={production_policy:true,auditor_eviction:false,inactive_geometry_limit_bytes:128*1024*1024,evicted_modules:0,max_cached_geometry_bytes:0,identity_scope:'Reuse only the same registered module in the same production catalog/scene; no cross-machine placement/native-joint reuse.'};
  const viewer=fileURLToPath(new URL('../site/viewer/',import.meta.url));
  async function codePins(dir,pins){for(const e of await fs.readdir(dir,{withFileTypes:true})){const full=path.join(dir,e.name);if(e.isDirectory())await codePins(full,pins);else if(/\.(?:mjs|js)$/.test(e.name))pins[path.relative(path.dirname(viewer),full).replaceAll('\\','/')]=sha(await fs.readFile(full));}}
  await codePins(viewer,report.code_sha256);report.code_sha256['scripts/audit_loaded_heads.mjs']=sha(await fs.readFile(fileURLToPath(import.meta.url)));
@@ -194,17 +215,21 @@ export async function auditLoadedHeads(root,{families=null,machines=null,variant
      const off=ledRig.update({power:false});assert.equal(off.lit,0);for(const e of ledRig.emitters)assert.equal(e.light.intensity,0,v.id+' stale hidden LED light');ledRig.update({power:true});
      for(const e of ledRig.guides){assert(Number.isFinite(e.materials[0].emissiveIntensity),v.id+' invalid optical guide');report.ledGuideChecks=(report.ledGuideChecks||0)+1;}
      assert(count>0,v.id+' empty head');
+     assertYavothHardware(v,[...rig.cache].filter(([,p])=>p.loaded).map(([id,p])=>[id,p.loaded]));
      for(const e of entries){const a=rig.cache.get(e.id)?.loaded;assert(a,v.id+' unloaded companion '+e.id);if(e.id===v.fit?.hotend_cooling?.module)assert(a.entries.some(r=>r.mesh.visible),v.id+' hidden cooling companion');}
     }
-    function trimCache(){
-     const buffers=new Set(),inactive=[];let total=0;
-     for(const[id,p]of rig.cache){const a=p.loaded;if(!a)continue;let bytes=0;for(const e of a.entries)for(const attr of [...Object.values(e.mesh.geometry.attributes),e.mesh.geometry.index].filter(Boolean)){const b=attr.array.buffer;if(!buffers.has(b)){buffers.add(b);bytes+=b.byteLength;}}total+=bytes;if(!a.root.visible)inactive.push({id,a,bytes});}
+    let lastCacheReport;
+    function checkRuntimeCache(){
+     const state=rig.cachePolicy?.report;
+     assert(state,'Production head cache policy was not exercised');
+     assert(state.withinLimit,'Production inactive head cache exceeds its real backing-buffer budget: '+JSON.stringify(state));
+     assert(state.limitBytes<=report.cache_policy.inactive_geometry_limit_bytes,'Production cache policy exceeded the release budget');
+     if(state!==lastCacheReport){report.cache_policy.evicted_modules+=state.evicted.length;lastCacheReport=state;}
+     const buffers=new Set();let total=0;
+     for(const p of rig.cache.values())for(const e of p.loaded?.entries||[])for(const attr of [...Object.values(e.mesh.geometry.attributes),e.mesh.geometry.index].filter(Boolean)){
+      const buffer=attr.array?.buffer||attr.data?.array?.buffer;if(buffer&&!buffers.has(buffer)){buffers.add(buffer);total+=buffer.byteLength;}
+     }
      report.cache_policy.max_cached_geometry_bytes=Math.max(report.cache_policy.max_cached_geometry_bytes,total);
-     let unused=inactive.reduce((n,e)=>n+e.bytes,0),removed=0;
-     // Evict only inactive assets after restoration checks. A source/module is
-     // reloaded through the unchanged production integrity guard if needed again.
-     for(const {id,a,bytes}of inactive.sort((a,b)=>b.bytes-a.bytes)){if(unused<=report.cache_policy.inactive_geometry_limit_bytes)break;rig.rig.remove(a.root);for(const e of a.entries){e.mesh.geometry.dispose();for(const m of e.materials)m.dispose();}rig.cache.delete(id);unused-=bytes;removed+=bytes;report.cache_policy.evicted_modules++;}
-     if(removed)globalThis.gc?.();
     }
     try{
      for(const v of selected){found.add(v.source_head_configuration||v.id);try{
@@ -230,7 +255,7 @@ export async function auditLoadedHeads(root,{families=null,machines=null,variant
        assert.deepEqual(snapshot(rig),original,v.id+' old saved preset lost actual companions');report.legacyPresetRestorations++;
       }
       report.configurations++;context.checked++;context.by_family[family.id]=(context.by_family[family.id]||0)+1;
-     }catch(e){report.failures.push({machine,variant:v.id,stage:'actual_head',message:e.message});}finally{trimCache();}}
+     }catch(e){report.failures.push({machine,variant:v.id,stage:'actual_head',message:e.message});}finally{try{checkRuntimeCache();}catch(e){report.failures.push({machine,variant:v.id,stage:'runtime_cache',message:e.message});}}}
     }finally{ledRig.dispose();scene.traverse(o=>{if(o.isMesh){o.geometry.dispose();for(const m of Array.isArray(o.material)?o.material:[o.material])m.dispose();}});rig.cache.clear();scene.clear();globalThis.gc?.();}
     console.log(machine+'/'+family.id+': '+selected.length+' selected plans');
    }

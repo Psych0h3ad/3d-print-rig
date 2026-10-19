@@ -4,7 +4,9 @@ import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690
 import {navigateWorkspace} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
 import {ratRigMachines} from './ratrig-machines.mjs?v=a21b698822731b57dea6';
+import {sourceAssemblyMachines} from './source-assembly-registry.mjs';
 export const machineChoices=[
+ ...sourceAssemblyMachines,
  {id:'247zero_beta2_120',label:'247zero BETA2 · 120 / Crazy Volcano / M4 Bowden',page:'./community.html',family:'247zero',vendor:'247printing',size:120},
  {id:'doomcube2_350_reference',label:'DoomCube 2 · 350 / Native CAD',page:'./community.html',family:'doomcube',vendor:'frankenvoron',size:350},
  {id:'tictac_21_120',label:'TicTac 2.1 · 120 / Native CAD',page:'./community.html',family:'tictac',vendor:'squirrelbrain',size:120},
@@ -25,6 +27,7 @@ export const machineChoices=[
  {id:'vzbot_330_printed',label:'VzBot 330 · Printed AWD / Goliath / Vz-HextrudORT',page:'./community.html',family:'vzbot',vendor:'vzbot',size:330},
  {id:'ender3_stock_220',label:'Ender-3 · Creality / Original',page:'./community.html',family:'ender3',vendor:'creality',size:220},
  {id:'siboor_sboom_220',label:'SIBOOR S-BOOM · January 2026 / CoreXZ',page:'./community.html',family:'sboom',vendor:'siboor',size:220},
+ {id:'voron_switchwire_250',label:'VORON Switchwire · Official v1 CAD / Stealthburner / CW2 / Revo Voron',page:'./community.html',family:'switchwire',vendor:'voron',size:250,source:{repository:'https://github.com/VoronDesign/Voron-Switchwire',revision:'92cc013ca2af94e6c09950dbe05c0973ee49aa00',version:'Switchwire Assembly v1',license:'GPL-3.0',cad_path:'CAD/Switchwire_Assembly_v1_STEP.zip',cad_archive_sha256:'488329f43b3df1881cef0c433430f20b14709f36c973dc805e62412aa271207d'}},
  {id:'positron_v322',label:'Positron V3.2.2 · LDO / 180',page:'./positron.html',family:'positron',vendor:'positron_ldo',size:180},
  ...annexMachines,
  {id:'remorph_beta1_307',label:'Remorph Beta 1 · 307 / LGX Pro / Rapido UHF / Beacon Rev. H',page:'./remorph.html',family:'remorph',vendor:'remorph',size:307},
@@ -62,6 +65,8 @@ for(const row of machineChoices){
  row.vendor=row.id.startsWith('micron_')?'pfa':row.id.startsWith('fysetc_')?'fysetc':row.id==='siboor_v24_350'?'voron':row.id.startsWith('siboor_')?'siboor':row.id.endsWith('_ldo_cnc')?'ldo':'voron';
  row.size=Number(row.id.match(/(?:^|_)(120|180|250|300|350)(?:_|$)/)?.[1]);
 }
+families.switchwire='VORON Switchwire';
+families.virtu='VIRTU';families.e3ng='E3NG';vendors.rh3d='RH3D';
 export const machineFamilies=families;
 export const machineVendors=vendors;
 export function machineOptions(selection,dimension){

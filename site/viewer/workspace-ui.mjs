@@ -1,16 +1,16 @@
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
-import {setupDisplayPreferences,setupHeaderThemeToggle} from './display-preferences.mjs?v=5fd25f289942c501706d';
-import {WorkspaceMutationObserver,workspaceListen} from './workspace-lifecycle.mjs?v=a8e49b4993efdc7bac52';
+import {setupDisplayPreferences,setupHeaderThemeToggle} from './display-preferences.mjs?v=ab531b33fbcb36317429';
+import {WorkspaceMutationObserver,workspaceListen} from './workspace-lifecycle.mjs?v=742c8844997b5856a728';
 // Shared presentation layer. Existing controls, IDs and CAD controllers stay intact.
-import {setupLanguage,originalText,messageSource} from './i18n.mjs?v=db391db0c6d1562c776b';
+import {setupLanguage,originalText,messageSource} from './i18n.mjs?v=0cbc88406dc455da6bf4';
 import {normalizeLanguage,languageURL} from './languages.mjs?v=ba6a5cd8e1d86849ca34';
-import {printerWorkspaceURL,workspaceReturnKey,workspaceKindFor} from './workspace-return.mjs?v=9948518d8e22019f98df';
-import {setupWorkspaceSharing} from './workspace-share.mjs?v=57174da4e78f1af13b77';
+import {printerWorkspaceURL,workspaceReturnKey,workspaceKindFor} from './workspace-return.mjs?v=b28bca2f634976361753';
+import {setupWorkspaceSharing} from './workspace-share.mjs?v=5803c3ee68563185c66d';
 import {lockInspectorHorizontalScroll} from './workspace-scroll.mjs?v=workspace-belts-1';
-import {setupChoiceSearch} from './workspace-choices.mjs?v=bc313a8ad11a1765edbb';
+import {setupChoiceSearch} from './workspace-choices.mjs?v=8b2b9cc7384a6433ff47';
 import {setupMobileLayout} from './workspace-layout.mjs?v=738c040595ec99155ce2';
-import {workspaceSectionCategory,isPrimaryWorkspaceLink} from './workspace-sections.mjs?v=eabcdf8b47adcab4ed6c';
+import {workspaceSectionCategory,isPrimaryWorkspaceLink} from './workspace-sections.mjs?v=708d3a695867065b8bc8';
 const $ = selector => document.querySelector(selector);
 const node = (tag, className, text) => {
   const element = document.createElement(tag);

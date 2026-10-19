@@ -10361,6 +10361,430 @@
     "ui.v0assembly.text_27a2edc43cec8f": {
       "source_revision": "78249940ba60ca4e053b",
       "text": "캠 잠금을 연 상태에서 자유 개방을 확인한 뒤 시계방향 90도로 잠그세요. r1은 5 mm 육각렌치를 씁니다. 정적 표시는 무간섭 개방을 보증하지 않습니다."
+    },
+    "machine.switchwire.label": {
+      "source_revision": "c87cef020153c07f8819",
+      "text": "VORON Switchwire · 공식 v1 CAD / Stealthburner / CW2 / Revo Voron"
+    },
+    "machine.switchwire.description": {
+      "source_revision": "5596a03b4ff622a1014d",
+      "text": "Stealthburner, CW2, Revo Voron이 포함된 공식 Switchwire v1 CAD 조립 모델입니다."
+    },
+    "machine.switchwire.source_notice": {
+      "source_revision": "0197fc768928179b1f9a",
+      "text": "원본: VoronDesign/Voron-Switchwire, 리비전 92cc013ca2af94e6c09950dbe05c0973ee49aa00 (GPL-3.0). 동작 미리보기는 실제 부품 간 여유 공간을 검증하지 않습니다."
+    },
+    "machine.switchwire.chain_notice": {
+      "source_revision": "d16b362cbe4a1793c5fe",
+      "text": "원본 CAD의 Z 체인은 링크 18개로 구성됩니다. 동작 모델은 Z축 전체 이동 범위에 도달하도록 같은 원본 링크 형상을 24개 사용합니다. 세 체인은 모두 측정된 힌지 축을 기준으로 조립되어 있습니다."
+    },
+    "cutaway.skip": {
+      "source_revision": "00006499f3ac2180e69e",
+      "text": "구조 설명으로 이동"
+    },
+    "cutaway.stage_label": {
+      "source_revision": "ae315e0fbd821287cdde",
+      "text": "Stealthburner 3D 단면"
+    },
+    "cutaway.title": {
+      "source_revision": "9b31564379aa35b51f6d",
+      "text": "Stealthburner 내부 보기"
+    },
+    "cutaway.intro": {
+      "source_revision": "5ed9ff95bacf53123374",
+      "text": "구동 기어에서 노즐까지 필라멘트 경로를 살펴봅니다."
+    },
+    "cutaway.section_view": {
+      "source_revision": "b17045b074f699f463bc",
+      "text": "단면 보기"
+    },
+    "cutaway.perspective": {
+      "source_revision": "0fe1c2cc6f9cfd094bf5",
+      "text": "사시도"
+    },
+    "cutaway.front": {
+      "source_revision": "bd885bc12aafcab3b929",
+      "text": "정면"
+    },
+    "cutaway.loading": {
+      "source_revision": "fa9f718a58a98c927cf9",
+      "text": "Stealthburner 로딩 중…"
+    },
+    "cutaway.load_error": {
+      "source_revision": "b17fbe9e2b776dd62006",
+      "text": "CAD를 불러오지 못했습니다. 다시 시도해 주세요."
+    },
+    "cutaway.retry": {
+      "source_revision": "8bff8241b405ed6338e5",
+      "text": "다시 시도"
+    },
+    "cutaway.model_name": {
+      "source_revision": "8cf9bddac029fc372c51",
+      "text": "Stealthburner · CW2 · E3D V6"
+    },
+    "cutaway.orbit_hint": {
+      "source_revision": "67a6dbf1afdd57c49108",
+      "text": "드래그로 회전 · 핀치로 확대/축소"
+    },
+    "cutaway.play": {
+      "source_revision": "7c1bedc7f0a304ad025a",
+      "text": "재생"
+    },
+    "cutaway.pause": {
+      "source_revision": "8193c42042e530e3f5fb",
+      "text": "일시중지"
+    },
+    "cutaway.restart": {
+      "source_revision": "6160dfbcd71429344e41",
+      "text": "처음부터 보기"
+    },
+    "cutaway.timeline": {
+      "source_revision": "00c67e3b0cb8451cfd69",
+      "text": "설명 재생 위치"
+    },
+    "cutaway.feed_title": {
+      "source_revision": "4b3e1a6cf658164f6057",
+      "text": "필라멘트 공급"
+    },
+    "cutaway.heater_title": {
+      "source_revision": "63794ec9d82f0b25a0c8",
+      "text": "가열"
+    },
+    "cutaway.break_title": {
+      "source_revision": "d75ed448b7d4fe9011cd",
+      "text": "뜨거운 부분과 차가운 부분 분리"
+    },
+    "cutaway.fan_title": {
+      "source_revision": "0bf6d548cf9d19746503",
+      "text": "냉각"
+    },
+    "cutaway.feed_text": {
+      "source_revision": "1def0e5e1c1b9ab96948",
+      "text": "Clockwork 2는 두 구동 기어로 필라멘트를 잡고, 고체 상태로 가이드를 통해 핫엔드로 밀어 넣습니다."
+    },
+    "cutaway.heater_text": {
+      "source_revision": "8845dfe8936f13109c3f",
+      "text": "히터 카트리지가 블록을 가열하고, 블록이 노즐과 필라멘트로 열을 전달합니다. 연화된 필라멘트가 노즐을 통해 나옵니다."
+    },
+    "cutaway.break_text": {
+      "source_revision": "63f3278cdb27a1f10588",
+      "text": "얇은 히트브레이크가 위로 전달되는 열을 줄입니다. 히트싱크가 남은 열을 방출하여 용융 영역 위의 필라멘트를 고체 상태로 유지합니다."
+    },
+    "cutaway.fan_text": {
+      "source_revision": "9fa633a19127a7b49514",
+      "text": "4010 축류 팬은 히트싱크 핀 사이로 공기를 보내 열을 제거합니다. 별도의 5015 블로워는 측면 덕트로 공기를 보내 출력물을 냉각합니다."
+    },
+    "cutaway.section": {
+      "source_revision": "ae62b30fd790015c9e86",
+      "text": "필라멘트 경로로 절단"
+    },
+    "cutaway.complete": {
+      "source_revision": "ba2e10cf4c7713bcb63f",
+      "text": "전체 모델"
+    },
+    "cutaway.filament_axis": {
+      "source_revision": "a439156e5904aaf1faf5",
+      "text": "필라멘트 중심축"
+    },
+    "cutaway.try": {
+      "source_revision": "83b484d9e8b52a5881bb",
+      "text": "가열·냉각 전환"
+    },
+    "cutaway.heater": {
+      "source_revision": "3564a6c30e912c1ed496",
+      "text": "히터 켜기"
+    },
+    "cutaway.fan": {
+      "source_revision": "2bc1681d103714bfa4f7",
+      "text": "4010 핫엔드 팬"
+    },
+    "cutaway.filament": {
+      "source_revision": "f2b526e4d38058166f9a",
+      "text": "필라멘트 흐름 표시"
+    },
+    "cutaway.heat_colors": {
+      "source_revision": "4fd491fc55ba56afbe89",
+      "text": "열 색상 표시"
+    },
+    "cutaway.creep": {
+      "source_revision": "830f42813bd6885c3e92",
+      "text": "핫엔드 팬을 끄면 열이 차가운 영역으로 올라갈 수 있습니다. 여기서 필라멘트가 연화되면 막힘이 발생할 수 있습니다(히트 크리프)."
+    },
+    "cutaway.scope": {
+      "source_revision": "4aaf394769e4003abe3f",
+      "text": "열 색상, 필라멘트 흐름, 공기 흐름은 구조를 설명하기 위한 표시입니다. 온도, 풍량, 출력 성능을 예측하지 않습니다. 원본 CAD의 팬 날개는 고정되어 있습니다."
+    },
+    "cutaway.sources": {
+      "source_revision": "529d414d6f751d9dadbe",
+      "text": "CAD 소스"
+    },
+    "cutaway.source_note": {
+      "source_revision": "dc1b3ff34507caf2a3fb",
+      "text": "공개 원본 CAD의 배치를 유지합니다. 단면은 표시 효과이며 원본 부품 형상을 변경하지 않습니다."
+    },
+    "cutaway.open_builder": {
+      "source_revision": "6bca4776fcd8a43a2da5",
+      "text": "툴헤드 구성 페이지 열기"
+    },
+    "cutaway.link": {
+      "source_revision": "68ab1344b7123399c39d",
+      "text": "Stealthburner 작동 구조"
+    },
+    "cutaway.pin_feed": {
+      "source_revision": "e9232b087e1fad6eb0e8",
+      "text": "Clockwork 2 필라멘트 구동부"
+    },
+    "cutaway.pin_heater": {
+      "source_revision": "4afe0ba8af610c22bd44",
+      "text": "히터 블록과 노즐"
+    },
+    "cutaway.pin_break": {
+      "source_revision": "caa96361772b2e84a06e",
+      "text": "히트브레이크와 히트싱크"
+    },
+    "cutaway.pin_fan": {
+      "source_revision": "0e28de219bbd9ef46ca6",
+      "text": "핫엔드 냉각용 4010 팬"
+    },
+    "component.micro_swiss_reference": {
+      "source_revision": "fad2f6d25a8a0def86a9",
+      "text": "Micro Swiss의 참고용 CAD입니다. 냉각 팬 본체는 포함되어 있지 않습니다. STEP 파일은 Micro Swiss 공식 페이지에서 받으세요."
+    },
+    "component.micro_swiss_universal_reference": {
+      "source_revision": "f2902e060f62f4692e17",
+      "text": "Universal 버전의 참고용 CAD입니다. 장착 플레이트, 팬 슈라우드 및 냉각 팬은 포함되어 있지 않습니다. STEP 파일은 Micro Swiss 공식 페이지에서 받으세요."
+    },
+    "component.solid_count": {
+      "source_revision": "116b7d28cba30844f17d",
+      "text": "솔리드 수: {0}"
+    },
+    "source_assembly.head": {
+      "source_revision": "94eaa4ba78dfd087458a",
+      "text": "헤드만"
+    },
+    "source_assembly.open": {
+      "source_revision": "f722270d60da261458ec",
+      "text": "모델 열기"
+    },
+    "source_assembly.cancel": {
+      "source_revision": "2d4f895142fbf6fb0b8b",
+      "text": "취소"
+    },
+    "source_assembly.loading": {
+      "source_revision": "48ff95679923145f1703",
+      "text": "불러오는 중"
+    },
+    "source_assembly.motion_note": {
+      "source_revision": "0affd86246e7b7d081e7",
+      "text": "원본 조립 위치에서의 이동량입니다. 미리보기 범위는 펌웨어 좌표가 아닙니다."
+    },
+    "source_assembly.reset": {
+      "source_revision": "ca182127e22bb51b2ca7",
+      "text": "원본 조립 위치"
+    },
+    "source_assembly.colors": {
+      "source_revision": "a5998950b8af9c21d672",
+      "text": "출력 부품 색상"
+    },
+    "source_assembly.base": {
+      "source_revision": "7a854d13565295e43855",
+      "text": "기본"
+    },
+    "source_assembly.dark": {
+      "source_revision": "2dfad1273d5ce9e1239c",
+      "text": "어두운 인터페이스"
+    },
+    "source_assembly.light": {
+      "source_revision": "d83189c4b21354542bad",
+      "text": "조명"
+    },
+    "source_assembly.studio": {
+      "source_revision": "4a69534b457e351790ec",
+      "text": "스튜디오"
+    },
+    "source_assembly.rgb": {
+      "source_revision": "50c63d95810b9cb1172d",
+      "text": "색상 순환"
+    },
+    "source_assembly.off": {
+      "source_revision": "65f3cb3e5dabde16d8b4",
+      "text": "끄기"
+    },
+    "source_assembly.source": {
+      "source_revision": "6feeab6f87992266e645",
+      "text": "출처 및 라이선스"
+    },
+    "source_assembly.step": {
+      "source_revision": "3486aa4ee704eda317ac",
+      "text": "STEP 다운로드는 제공되지 않습니다."
+    },
+    "source_assembly.attached": {
+      "source_revision": "618b0825b5558132a4de",
+      "text": "장착"
+    },
+    "source_assembly.parked": {
+      "source_revision": "b494bf0a3f1cebaf37c8",
+      "text": "보관"
+    },
+    "source_assembly.minimum": {
+      "source_revision": "ff803b2507035833b6a3",
+      "text": "노즐을 베드면으로"
+    },
+    "source_assembly.minimum_attached": {
+      "source_revision": "cd236c515f91d7c1d936",
+      "text": "노즐을 베드면으로 이동하기 전에 프로브를 보관하세요."
+    },
+    "source_assembly.minimum_outside": {
+      "source_revision": "588264a12a14f316ba25",
+      "text": "노즐이 베드면 밖에 있습니다."
+    },
+    "source_assembly.memory": {
+      "source_revision": "10cab26c4101bccab3a4",
+      "text": "큰 모델"
+    },
+    "source_assembly.memory_estimate": {
+      "source_revision": "a3c80e313a8124a44ba4",
+      "text": "예상 최대 메모리 사용량"
+    },
+    "source_assembly.memory_unknown": {
+      "source_revision": "fec9409cdd9a85c14796",
+      "text": "브라우저에서 사용할 수 있는 RAM은 알 수 없습니다."
+    },
+    "source_assembly.device_memory": {
+      "source_revision": "c9a68ab6b95f5d6a8f14",
+      "text": "기기 메모리 근사값"
+    },
+    "source_assembly.memory_note": {
+      "source_revision": "f9507093f573772eb499",
+      "text": "로딩이 느리거나 브라우저 메모리를 초과할 수 있습니다. 헤드만 표시하면 메모리를 덜 사용합니다."
+    },
+    "source_assembly.full_load": {
+      "source_revision": "016b4b4466cd38c86b1e",
+      "text": "전체 모델 불러오기"
+    },
+    "source_assembly.under": {
+      "source_revision": "53fd480c8b3ba2c3c201",
+      "text": "아래"
+    },
+    "source_assembly.orbit": {
+      "source_revision": "0de26be5387884c48e46",
+      "text": "드래그로 회전 · 스크롤이나 핀치로 확대"
+    },
+    "source_assembly.source_bounds": {
+      "source_revision": "d233656a3270feca43a7",
+      "text": "원본 모델에서 확인된 경계에서 이동을 멈춥니다. 전체 간섭을 시뮬레이션하지는 않습니다."
+    },
+    "source_assembly.illustrative_loom": {
+      "source_revision": "2407c55c687ae88bcfe2",
+      "text": "배선 슬리브는 설명용입니다. 지름과 여유 길이는 저자가 지정한 값이 아닙니다."
+    },
+    "source_assembly.support_notice": {
+      "source_revision": "83f9e7caa5457d9fe613",
+      "text": "내장된 작업 지시 형상은 제외했습니다. 바닥 그릴의 원본 홈과 선택한 출력 설정은 유지했습니다."
+    },
+    "source_assembly.saved": {
+      "source_revision": "a9d5a11fbd9233d3143c",
+      "text": "구성을 저장했습니다."
+    },
+    "source_assembly.loaded": {
+      "source_revision": "3ed8ff767c3311842e30",
+      "text": "구성을 불러왔습니다."
+    },
+    "source_assembly.migrated": {
+      "source_revision": "72d9592b56209fa0e85b",
+      "text": "현재 출처 버전으로 구성을 불러왔습니다."
+    },
+    "source_assembly.unsafe": {
+      "source_revision": "8cee6150c9e298417a3f",
+      "text": "이 구성은 호환되지 않거나 원본 모델의 경계를 넘습니다."
+    },
+    "source_assembly.blocked": {
+      "source_revision": "4a764e20be10c4e9fc42",
+      "text": "이 이동은 원본 모델의 경계에 닿습니다. 위치나 경로를 바꾸세요."
+    },
+    "source_assembly.error": {
+      "source_revision": "4e1bfb54bb319f7df70b",
+      "text": "모델을 불러오지 못했습니다. 다시 시도하세요."
+    },
+    "source_assembly.head_note": {
+      "source_revision": "eab72ae12fdde10b3ac8",
+      "text": "현재 헤드와 원본 관련 부품을 표시합니다. 이동 조작은 전체 프린터 보기에서 사용할 수 있습니다."
+    },
+    "source_assembly.revision": {
+      "source_revision": "60f3b00fe05338ffdc49",
+      "text": "출처 버전"
+    },
+    "source_assembly.unknown_license": {
+      "source_revision": "848ea247701b360459dc",
+      "text": "공개 CAD 다운로드에 라이선스가 명시되어 있지 않습니다."
+    },
+    "source_assembly.stl_e3ng": {
+      "source_revision": "f1ab09b13c1a0953446b",
+      "text": "RH3D가 공개한 STL과 별도로 출처를 표시한 공개 하드웨어 CAD로 조립했습니다. 유료 E3NG 조립 CAD는 사용하지 않았습니다."
+    },
+    "source_assembly.stl_virtu": {
+      "source_revision": "c7eac43a31e2b3abf2f6",
+      "text": "RH3D가 공개한 VIRTU STL과 별도로 출처를 표시한 공개 하드웨어 CAD로 조립했습니다. 저자의 유료 STEP 조립 데이터는 사용하지 않았습니다."
+    },
+    "source_assembly.controller_bores": {
+      "source_revision": "c79b4b1b4e823e6442b9",
+      "text": "제어 보드 장착 구멍 5개를 공식 치수 도면으로 재구성했습니다. 나머지 부품과 색상은 원본을 유지합니다."
+    },
+    "source_assembly.incomplete_e3": {
+      "source_revision": "e52cf6afe0545e709762",
+      "text": "미리보기에는 전자 장치 냉각용 6015 팬 2개와 헤드 인서트 6개가 아직 포함되지 않았습니다. 프로브 고정 나사의 결합을 검토 중입니다."
+    },
+    "source_assembly.incomplete_v": {
+      "source_revision": "cf292804e3c03279ec24",
+      "text": "미리보기에는 전자 장치 냉각 팬 3개가 아직 포함되지 않았습니다."
+    },
+    "source_assembly.fixed_body_route": {
+      "source_revision": "9da8f5a3df77589c08f7",
+      "text": "이 이동은 고정 부품과 닿습니다. 다른 경로를 선택하세요."
+    },
+    "source_assembly.head_fixed_body": {
+      "source_revision": "94b2b653428f6b05afaf",
+      "text": "헤드가 고정 부품과 닿습니다."
+    },
+    "source_identity.ws2812_p412": {
+      "source_revision": "adf56ba405ddd75361bd",
+      "text": "P412__WS2812 RGB LED"
+    },
+    "source_identity.ws2812_p413": {
+      "source_revision": "6ee34983920e818a2446",
+      "text": "P413__WS2812 RGB LED"
+    },
+    "source_identity.ws2812_p416": {
+      "source_revision": "ede3c8f2014e49b38361",
+      "text": "P416__WS2812 RGB LED"
+    },
+    "source_identity.voron_led_p414": {
+      "source_revision": "a706c1038b89d9eb3441",
+      "text": "P414__Voron LED 투명 커버"
+    },
+    "source_assembly.reference_title": {
+      "source_revision": "11b1be3c5e40bcba5f75",
+      "text": "참고 자료"
+    },
+    "source_assembly.electronics_cooling6015": {
+      "source_revision": "90f980a3e6947bea2878",
+      "text": "전자 장치 냉각: 6015 팬 × 3."
+    },
+    "source_assembly.source_capture6015": {
+      "source_revision": "09f57432199b823acf68",
+      "text": "팬 고정부는 원본의 공칭 겹침을 유지합니다. 탄성 변형을 포함한 실제 결합은 검증하지 않았습니다."
+    },
+    "source_assembly.unknown_revision": {
+      "source_revision": "e4f3604b0e822412175f",
+      "text": "버전 미지정"
+    },
+    "source_assembly.repository_license": {
+      "source_revision": "74025eb9e274f41770e9",
+      "text": "저장소 라이선스"
+    },
+    "source_assembly.component_license": {
+      "source_revision": "0362f4d05dcc539cdc9c",
+      "text": "부품에 명시된 조건"
     }
   }
 }

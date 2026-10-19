@@ -1,6 +1,7 @@
+import {prepareOpticalGuideResponse,pairedOpticalEmitter} from './optical-guide-response.mjs';
 import * as THREE from 'three';
 import {prepareLedSurface,restoreLedSurface} from './led-emission-surface.mjs?v=af40a3200e128a08c940';
-import * as identities from './toolhead-led-identities.mjs?v=2b3de1e42ae985776b37';
+import * as identities from './toolhead-led-identities.mjs?v=eb05026e88ef185682e8';
 import {ledSample,createLedAnimator} from './lighting-animation.mjs';
 
 export const TOOLHEAD_LED_MAX_LEVEL=300;
@@ -13,13 +14,13 @@ const visible=object=>object.visible&&(!object.parent||visible(object.parent));
 const belongs=(object,scene)=>object===scene||Boolean(object.parent&&belongs(object.parent,scene));
 export function createToolheadLedRig(scene,{identify=identities.sourceLedIdentity,apertureFor=identities.sourceLedAperture,guideFor=identities.sourceOpticalGuide||(()=>null),own=()=>{}}={}){
  const seen=new WeakSet(),emitters=[],guides=[],color=new THREE.Color();
- function restoreGuide(e){for(const m of e.materials)m.dispose();e.mesh.material=e.originalMaterial;delete e.mesh.userData.ledGuide;}
+ function restoreGuide(e){e.optical?.dispose();for(const m of e.materials)m.dispose();e.mesh.material=e.originalMaterial;delete e.mesh.userData.ledGuide;}
  function discover(){
   for(let i=emitters.length-1;i>=0;i--){const e=emitters[i];if(!belongs(e.mesh,scene)){e.mesh.remove(e.light);restoreLedSurface(e.mesh);seen.delete(e.mesh);emitters.splice(i,1);}}
   for(let i=guides.length-1;i>=0;i--){const e=guides[i];if(!belongs(e.mesh,scene)){restoreGuide(e);seen.delete(e.mesh);guides.splice(i,1);}}
   scene.traverse(mesh=>{
   if(!mesh.isMesh||seen.has(mesh))return;seen.add(mesh);
-  const identity=identify(mesh);if(!identity){const guide=guideFor(mesh);if(guide){const originalMaterial=mesh.material,materials=[].concat(originalMaterial).map(m=>m.clone());for(const m of [].concat(originalMaterial))own(m);mesh.material=Array.isArray(originalMaterial)?materials:materials[0];const e={mesh,guide,materials,originalMaterial};mesh.userData.ledGuide={originalMaterial};guides.push(e);}return;}
+  const identity=identify(mesh);if(!identity){const guide=guideFor(mesh);if(guide){const originalMaterial=mesh.material,materials=[].concat(originalMaterial).map(m=>m.clone());for(const m of [].concat(originalMaterial))own(m);mesh.material=Array.isArray(originalMaterial)?materials:materials[0];const e={mesh,guide,materials,originalMaterial};mesh.userData.ledGuide={originalMaterial};try{e.optical=prepareOpticalGuideResponse(e,{guideFor,scene});guides.push(e);}catch(error){restoreGuide(e);seen.delete(mesh);throw error;}}return;}
   const aperture=apertureFor(mesh),surface=prepareLedSurface(mesh,{...identity,aperture});own(surface.originalGeometry);for(const m of [].concat(surface.originalMaterial))own(m);
   const p=mesh.geometry.attributes.position,n=new THREE.Vector3(...identity.normal),center=new THREE.Vector3(),v=new THREE.Vector3();let front=-Infinity;
   if(aperture)center.fromArray(aperture.center).addScaledVector(n,.00015);
@@ -39,11 +40,9 @@ export function createToolheadLedRig(scene,{identify=identities.sourceLedIdentit
    entry.light.color.copy(color);entry.light.intensity=(nozzle?.004:.0015)*gain;
   }
   for(const e of guides){
-   // These guarded source exports place the guide and PCB in the same native
-   // asset root. Never ascend to the bank/machine and borrow another head's PCB.
-   const root=e.mesh.parent,paired=root&&root!==scene?emitters.filter(p=>(e.guide.led_ids||[e.guide.emitter_id]).includes(p.identity.id)&&belongs(p.mesh,root)):[];
-   const emitter=paired.find(p=>visible(p.mesh)),gain=emitter&&visible(e.mesh)?emitter.surface.materials[0].emissiveIntensity:0;
-   for(const [i,m]of e.materials.entries()){const original=[].concat(e.originalMaterial)[i];m.color.copy(original.color);m.metalness=original.metalness;m.roughness=original.roughness;m.emissiveIntensity=gain;if(emitter)m.emissive.copy(emitter.surface.materials[0].emissive);}
+   const emitter=pairedOpticalEmitter(e,emitters,scene),gain=emitter&&visible(e.mesh)?emitter.surface.materials[0].emissiveIntensity:0;
+   for(const [i,m]of e.materials.entries()){const original=[].concat(e.originalMaterial)[i];m.color.copy(original.color);m.metalness=original.metalness;m.roughness=original.roughness;if(gain>0){m.emissiveIntensity=gain;m.emissive.copy(emitter.surface.materials[0].emissive);}else{m.emissive.copy(original.emissive);m.emissiveIntensity=original.emissiveIntensity;}}
+   e.optical.update(gain>0?emitter:null);
   }
   return {installed:count,lit:power&&brightness>0?count:0,registered:emitters.length};
  }

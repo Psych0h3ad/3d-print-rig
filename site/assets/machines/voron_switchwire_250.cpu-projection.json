@@ -1,0 +1,114 @@
+{
+  "schema": "actual-source-machine-thumbnail-CPU-projection-v1",
+  "machine_id": "voron_switchwire_250",
+  "model_sha256": "9db6a07660da8a4042121c3bec4fd7e6dcd8abcd750682dd9595c3a580d194e7",
+  "stored_model_sha256": "3d1ef523129cf74ac823dd7e2549c3735f9da8a228f77552e203305e5197b456",
+  "source_inputs": {
+    "model.glb": {
+      "path": "switchwire/624391d3398f2aa0/model.glb.gz",
+      "bytes": 26398174,
+      "sha256": "3d1ef523129cf74ac823dd7e2549c3735f9da8a228f77552e203305e5197b456",
+      "encoding": "gzip",
+      "decoded_bytes": 55141356,
+      "decoded_sha256": "624391d3398f2aa04ca31d9802833df3804f7aa8cee127e5a4c3511403e43613"
+    },
+    "assembly_manifest.json": {
+      "path": "switchwire/624391d3398f2aa0/assembly_manifest.json",
+      "bytes": 3734671,
+      "sha256": "c19c7706d0c3bb2d65453afc5494cf1c08828c043400759d73132cc7a92828a2"
+    },
+    "machine_profile.json": {
+      "path": "switchwire/624391d3398f2aa0/machine_profile.json",
+      "bytes": 152631,
+      "sha256": "3af2addc520a3a0e7bd8b639b7b7c16f09201f45fb11514e4f1a0fb5a5ae69e6"
+    }
+  },
+  "thumbnail": {
+    "path": "voron_switchwire_250.webp",
+    "width": 320,
+    "height": 240,
+    "bytes": 6336,
+    "sha256": "5fdc1273065daff22a98285a1f42298b6004fc01b01567cf963e834b3d2a2726"
+  },
+  "method": "Orthographic CPU triangle painter, four-times supersampling; all provided source triangles and material/part palette inputs; no GPU reflections or browser screenshot.",
+  "all_part_identities": 718,
+  "default_visible_identities": 712,
+  "rendered_mesh_identities": 712,
+  "default_without_mesh": [],
+  "excluded_source_reference_identities": [
+    "sw_04d76cfa7edd57a0",
+    "sw_1d2df0b0033a6d25",
+    "sw_45ae7c85a2c66fb0",
+    "sw_546f9c91e0ec0314",
+    "sw_8cec8c5985c97dbf",
+    "sw_cf656f6f419db1d1"
+  ],
+  "source_triangles_submitted": 3319200,
+  "front_facing_or_double_sided_triangles_drawn": 1647822,
+  "source_geometry_or_material_assets_modified": false,
+  "world_bounds_m": [
+    [
+      -0.19337999779216286,
+      -0.01799999887870728,
+      -0.19499996187322471
+    ],
+    [
+      0.19337999778270923,
+      0.645991967270432,
+      0.3727860943758532
+    ]
+  ],
+  "camera_direction": [
+    0.49147318718299043,
+    0.24573659359149522,
+    0.8355044182110838
+  ],
+  "orthographic_projected_bounds_m": [
+    [
+      -0.33564733893146276,
+      -0.09596688064727206,
+      -0.24828777673242478
+    ],
+    [
+      0.25406776464773617,
+      0.6474726046772173,
+      0.49014620868036857
+    ]
+  ],
+  "orthographic_pixels_per_m": 290.54146875952165,
+  "palette": {
+    "base": "#24272c",
+    "accent": "#e32636",
+    "frame": "#25292c"
+  },
+  "browser_review": false,
+  "browser_screenshot": false,
+  "native_chain_anchor_fit_verified": false,
+  "native_full_machine_fit_verified": false,
+  "published": false,
+  "six_source_root_corrections_applied": true,
+  "source_rendered_model_sha256": "624391d3398f2aa04ca31d9802833df3804f7aa8cee127e5a4c3511403e43613",
+  "geometry_preserving_transport_rebind": {
+    "source_complete_projected_model_sha256": "0b6e62e6336d4ddc3e2051d6a9b00fdd2aa456d42544d0a14fcf19e10ac4afe0",
+    "original_source_corrected_model_sha256": "624391d3398f2aa04ca31d9802833df3804f7aa8cee127e5a4c3511403e43613",
+    "geometry_source_BIN_sha256": "fd934530ca13f9ea4ea2dbd052eeac5756fee9a8f7faeb52a41c198b37b4eaf4",
+    "delivery": "complete-source-definition-GLBs; checked community additional_models",
+    "complete_physical_occurrences": 718,
+    "original_source_occurrences": 712,
+    "same_source_added_chain_copies": 6,
+    "component_decoded_sha256": {
+      "model.glb": "9db6a07660da8a4042121c3bec4fd7e6dcd8abcd750682dd9595c3a580d194e7",
+      "source-chunk-01.glb": "074d1e0d0c88cf4b7f9e1729ab1e65b4d70a631df89a4a8d68da620644658686",
+      "source-chunk-02.glb": "5a748352eea86ebc472d16ca53aafd9eda29d1d126009462d40923fadd7c12d2",
+      "source-chunk-03.glb": "8b2e6053472e23bdac0f128d041d87a4d2912a11953c3a9c549a6ee8a4c00ab1",
+      "source-chunk-04.glb": "828ff52839c004962441556de44820f754481f6bb684670ad781ed6029e5092d",
+      "source-chunk-05.glb": "68d32724d9aaa4fac99984b7c6486385b8ee77f2422387de3ec7a804d4aa50c0",
+      "source-chunk-06.glb": "4ee16a1b7f449b217baf20dc25570f0d5610a11c5e2d4a8b003c4815529e1a9c",
+      "source-chunk-07.glb": "875c9a6054acff421627e9e1d328d373a296181a2d83ccb506027288bb8f989b",
+      "source-chunk-08.glb": "c2de16e68cf40adcd59ee47f50a27300742ade6a9bedccd05c03d53eb41ae58d",
+      "source-chunk-09.glb": "c8539739695512f25e53a44533228d5822ac5ab33da5922cb413279dc1466816",
+      "source-chunk-10.glb": "ef91931e9d599f07037410538bc989836e3cd78b3e9adcff74fee868f3416d58"
+    },
+    "geometry_changed": false
+  }
+}

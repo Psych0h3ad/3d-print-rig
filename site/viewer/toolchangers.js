@@ -1,16 +1,16 @@
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
-import {setupSceneDisplay} from './display-preferences.mjs?v=5fd25f289942c501706d';
-import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=a8e49b4993efdc7bac52';
+import {setupSceneDisplay} from './display-preferences.mjs?v=ab531b33fbcb36317429';
+import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=742c8844997b5856a728';
 import {setResponsiveAspect} from './responsive-camera.mjs?v=workspace-belts-1';
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=ea010e8ec91e63b1dc78';
-import {setupPublicInfo} from './public-info.js?v=c7e65c6912faa5cf0bb8';
-import {setupRenderExport} from './render-export.js?v=1383105a90d0fa4a63bd';
+import {loadModel} from './model-loader.js?v=34020540905242580aa6';
+import {setupPublicInfo} from './public-info.js?v=dec4a2afe766c1788684';
+import {setupRenderExport} from './render-export.js?v=743ea37fb4e25b58aa57';
 import {changerDimensions,changerChoice,changerChoices,changerPlacement} from './toolchanger-model.js?v=workspace-belts-1';
 export async function mount(scope){
 const $=s=>document.querySelector(s),stage=$('#stage'),scene=scope.scene(new THREE.Scene()),bench=new THREE.Group();scene.add(bench);scene.background=new THREE.Color('#edf1f5');

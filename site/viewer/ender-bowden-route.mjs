@@ -11,9 +11,17 @@ export const enderBowdenSpec={
  belted_key:'belted_565',belted:[-85.06495622543252,229.247694852173,-28.323526418304]
 };
 const add=(a,b)=>a.map((v,i)=>v+b[i]);
+function usesBowden(configuration){
+ const mode=configuration.filament_path??'bowden';
+ if(!['bowden','direct'].includes(mode))throw Error('Unknown Ender-3 filament path');
+ return mode==='bowden';
+}
 export function enderBowdenRoute(axes,profile,configuration='stock'){
  if(profile.machine_id!=='ender3_stock_220'||!['x','y','z'].every(k=>Number.isFinite(axes[k])))throw Error('Invalid Ender-3 tube pose');
  const c=communityConfiguration(profile,configuration),belted=c.selection?.z==='belted',s=enderBowdenSpec;
+ // A direct-drive installation replaces this stock extruder-to-hotend route.
+ // Its own inlet/short liner belongs to the installed source assembly.
+ if(!usesBowden(c))return null;
  const head=add(add(s.head,[axes.x,axes.z,0]),c.rest_offsets_mm?.[s.head_key]||[0,0,0]);
  const extruder=add(add(belted?s.belted:s.stock,[0,axes.z,0]),c.rest_offsets_mm?.[belted?s.belted_key:s.stock_key]||[0,0,0]);
  const point=p=>new Vector3(...profile.basis.map(row=>row.reduce((v,n,i)=>v+n*(p[i]-profile.origin_mm[i]),0)/1000));
@@ -48,6 +56,9 @@ export function createEnderBowden(root,profile){
  let shapeKey=null,route;
  function update(axes,configuration){
   if(!['x','y','z'].every(k=>Number.isFinite(axes[k])))throw Error('Invalid Ender-3 tube pose');
+  if(!usesBowden(communityConfiguration(profile,configuration))){
+   mesh.visible=false;delete mesh.userData.endpoints_mm;delete mesh.userData.length_mm;return;
+  }
   const key=JSON.stringify([axes.x,configuration]);
   if(key!==shapeKey){
    route=enderBowdenRoute({...axes,z:0},profile,configuration);
@@ -58,6 +69,7 @@ export function createEnderBowden(root,profile){
   // translate the existing tube instead of repeatedly rebuilding its mesh.
   mesh.position.set(...profile.basis.map(row=>row[1]*axes.z/1000||0));
   mesh.userData.endpoints_mm=route.endpoints_mm.map(p=>add(p,[0,axes.z,0]));mesh.userData.length_mm=route.length_mm;
+  mesh.visible=true;
  }
  return {update,meshes:[mesh]};
 }

@@ -1,4 +1,4 @@
-import {machineChoices, machineFamilies, machineVendors} from './machines.js?v=7d90ace65109ee54e1d2';
+import {machineChoices, machineFamilies, machineVendors} from './machines.js?v=ab543d6b01637bc5083f';
 import {normalizeLanguage, languageURL} from './languages.mjs?v=ba6a5cd8e1d86849ca34';
 
 export const gallerySchema = 'machine-thumbnails/113';
@@ -96,7 +96,7 @@ export function createMachineCard(row, {document, current, language, translate, 
 
 export async function mountGallery({document = globalThis.document, window = globalThis.window, fetcher = globalThis.fetch, services} = {}) {
   const [{setupLanguage, translate, formatMessage}, {setupHeaderThemeToggle, applyDisplay, displayKey}] = services || await Promise.all([
-    import('./i18n.mjs?v=db391db0c6d1562c776b'), import('./display-preferences.mjs?v=5fd25f289942c501706d'),
+    import('./i18n.mjs?v=0cbc88406dc455da6bf4'), import('./display-preferences.mjs?v=ab531b33fbcb36317429'),
   ]);
   const $ = id => document.getElementById(id), lang = setupLanguage({document, window});
   const theme = setupHeaderThemeToggle(document.querySelector('.header-actions'));

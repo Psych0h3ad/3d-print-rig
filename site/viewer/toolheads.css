@@ -5,3 +5,9 @@
 .toolhead-viewer .builder-step{border:0;border-top:1px solid var(--line);padding:12px 0 0;margin:22px 0 0;min-width:0}.builder-step legend{font-size:12px;font-weight:600;padding:0 10px 0 0}.builder-search>button{width:100%;margin-top:12px}.build-selection{display:grid;grid-template-columns:86px minmax(0,1fr);gap:7px 10px;font-size:11px;line-height:1.5}.build-selection dt{color:var(--muted)}.build-selection dd{margin:0;overflow-wrap:anywhere}.build-sheet code{font:10px ui-monospace,Consolas,monospace}.build-sheet details>summary{font-size:11px;overflow-wrap:anywhere;gap:10px}.build-sheet details p{font-size:10px;overflow-wrap:anywhere}.build-parts{padding-left:16px;font-size:10px;color:var(--muted);max-height:180px;overflow:auto;overflow-wrap:anywhere;line-height:1.6}#buildShareURL{width:100%;font-size:11px;padding:7px;border:1px solid var(--line);background:var(--paper);color:inherit}.toolhead-viewer .builder-search{margin-top:12px}.toolhead-viewer .builder-search summary{font-size:13px}
 
 .toolhead-viewer [hidden]{display:none!important}
+
+@media(max-width:680px){
+ .toolhead-viewer.ui-workspace .view-tools{flex-wrap:nowrap;overflow-x:auto;max-width:calc(100% - 112px);min-width:0;scrollbar-width:none}
+ .toolhead-viewer.ui-workspace .view-tools::-webkit-scrollbar{display:none}
+ .toolhead-viewer.ui-workspace .view-tools button{flex:0 0 auto;white-space:nowrap}
+}

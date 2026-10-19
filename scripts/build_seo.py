@@ -10,36 +10,87 @@ import re
 ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / 'site'
 BASE = 'https://psych0h3ad.github.io/3d-print-rig/'
-GENERAL = 'Explore 3D printer, toolhead and gantry configurations in your browser. Compare registered CAD combinations, customize colors and download available standard STEP assemblies.'
-PAGES = {
-    'viewer/machines.html': ('3D printer gallery · 3D Print Rig', 'Choose a 3D printer from the CAD thumbnail gallery. Browse registered models by family and size, then open their interactive configuration viewers.'),
-    'index.html': ('3D Print Rig · 3D printer CAD configurator', GENERAL),
-    'viewer/index.html': ('3D Print Rig · 3D printer CAD configurator', GENERAL),
-    'viewer/trident.html': ('VORON Trident configurator · 3D Print Rig', 'Explore VORON Trident CAD, registered toolheads, gantries and mods. Compare colors and motion previews, and find available standard STEP assemblies.'),
-    'viewer/v24.html': ('VORON V2.4 configurator · 3D Print Rig', 'Explore VORON V2.4 CAD, registered toolheads, gantries and mods. Compare colors and motion previews, and find available standard STEP assemblies.'),
-    'viewer/v24-reference.html': ('VORON V2.4 CAD assemblies · 3D Print Rig', 'Inspect VORON V2.4 assemblies by vendor and size, with registered toolhead combinations, colors, motion previews and original source notices.'),
-    'viewer/v0.html': ('VORON V0 configurator · 3D Print Rig', 'Inspect VORON V0 CAD, registered mods, colors and motion previews. Review original versions, assembly scope and available standard downloads.'),
-    'viewer/toolheads.html': ('3D printer toolhead builder · 3D Print Rig', 'Compare registered toolheads, hotends, extruders, probes and mounting options in 3D. Review companion parts and installation limitations before choosing a configuration.'),
-    'viewer/gantries.html': ('3D printer gantries · 3D Print Rig', 'Inspect registered gantry CAD assemblies, belt widths and mounting options. Compare original sources and the scope of each configuration.'),
-    'viewer/toolchangers.html': ('3D printer toolchangers · 3D Print Rig', 'Explore registered toolchanger heads, shuttles and dock assemblies in 3D. Review their source versions, included components and installation limitations.'),
-    'viewer/cleaning.html': ('Nozzle cleaning mods · 3D Print Rig', 'Explore nozzle wiper and cleaning mod CAD. Inspect source parts and registered installations, with original versions, licenses and review scope.'),
-    'viewer/components.html': ('3D printer component CAD · 3D Print Rig', 'Browse original 3D printer component CAD, inspect individual parts and find source versions and licenses. Component previews have separate installation review scopes.'),
-    'viewer/community.html': ('Community 3D printer CAD · 3D Print Rig', 'Explore community printer assemblies in 3D, compare colors and inspect registered motion previews. Original versions, missing parts and review limitations remain visible.'),
-    'viewer/annex.html': ('Annex printer CAD · 3D Print Rig', 'Explore registered Annex printer CAD assemblies, colors and available motion previews, with original source versions and review limitations.'),
-    'viewer/crossant.html': ('Crossant-235 printer CAD · 3D Print Rig', 'Explore Crossant-235 CAD, covers, colors and registered motion previews. Review original source data and the scope of unfinished installations.'),
-    'viewer/custom-voron.html': ('Custom VORON sizes · 3D Print Rig', 'Inspect enlarged and reduced-height VORON CAD references. Compare sizes, colors and registered motion previews, with scaling and mechanism upgrade notices.'),
-    'viewer/e3ng.html': ('E3NG printer CAD · 3D Print Rig', 'Inspect E3NG printer assemblies and registered changer configurations in 3D, with original source versions, included components and review scope.'),
-    'viewer/kit-reference.html': ('FYSETC kit CAD references · 3D Print Rig', 'Browse registered FYSETC printer kit CAD references and source information. Unavailable CAD and unverified installations are identified separately.'),
-    'viewer/micron.html': ('Micron and Micron Plus CAD · 3D Print Rig', 'Explore Micron and Micron Plus printer CAD, colors, registered motion previews and available standard STEP assemblies, with original source notices.'),
-    'viewer/positron.html': ('Positron folding printer CAD · 3D Print Rig', 'Inspect Positron printer CAD, colors and the registered folding preview. Review original source versions, component notices and motion limitations.'),
-    'viewer/ratrig.html': ('Rat Rig V-Core CAD · 3D Print Rig', 'Explore registered Rat Rig V-Core printer assemblies, colors and motion previews in 3D, with original CAD versions, licenses and review scope.'),
-    'viewer/remorph.html': ('Remorph printer CAD · 3D Print Rig', 'Inspect the registered Remorph printer CAD assembly, colors and motion preview, with original source information and installation limitations.'),
-    'support/index.html': ('Combination support · 3D Print Rig', 'Find registered printer and toolhead combinations, filter their component options and open matching 3D configurations. Check installation limitations and unavailable CAD.'),
-    'fun/index.html': ('CAD drawing wallpapers · 3D Print Rig', 'Download technical drawing wallpapers derived from actual printer CAD. Explore phone and desktop artwork, original authors, source versions and credits.'),
-    'fun/credits.html': ('Original CAD and artwork credits · 3D Print Rig', 'Find original authors, CAD versions and licenses for the 3D Print Rig technical drawing collection. Individual designs retain their original terms.'),
-    'viewer/art/credits.html': ('CAD background drawing credits · 3D Print Rig', 'Find original CAD sources, versions, licenses and reproduction details for the technical drawings used in the 3D Print Rig viewer background.'),
-    'embed/index.html': ('Embedded CAD viewer · 3D Print Rig', 'Alpha test of the embedded 3D Print Rig CAD viewer. Open the full viewer to inspect registered configurations, sources and review limitations.'),
-}
+GENERAL = 'Choose a printer, combine toolheads, hotends, extruders and Mods, and compare the assembled model in 3D. Save and share configurations, export images and download available STEP assemblies.'
+PAGES = {'viewer/machines.html': ('3D printer gallery · 3D Print Rig',
+                          'Choose a 3D printer by model and size. Open its 3D viewer from the thumbnail gallery.'),
+ 'index.html': ('3D Print Rig · 3D printer CAD configurator',
+                'Choose a printer, combine toolheads, hotends, extruders and Mods, and compare the assembled model in '
+                '3D. Save and share configurations, export images and download available STEP assemblies.'),
+ 'viewer/index.html': ('3D Print Rig · 3D printer CAD configurator',
+                       'Choose a printer, combine toolheads, hotends, extruders and Mods, and compare the assembled '
+                       'model in 3D. Save and share configurations, export images and download available STEP '
+                       'assemblies.'),
+ 'viewer/trident.html': ('VORON Trident configurator · 3D Print Rig',
+                         'Choose a VORON Trident size, gantry and toolhead. Compare part combinations in 3D, change '
+                         'colors and find available STEP assemblies.'),
+ 'viewer/v24.html': ('VORON V2.4 configurator · 3D Print Rig',
+                     'Choose a VORON V2.4 size, gantry and toolhead. Compare part combinations in 3D, change colors '
+                     'and find available STEP assemblies.'),
+ 'viewer/v24-reference.html': ('VORON V2.4 CAD assemblies · 3D Print Rig',
+                               'View VORON V2.4 assemblies by vendor and size. Choose a toolhead, change colors and '
+                               'compare the model in 3D.'),
+ 'viewer/v0.html': ('VORON V0 configurator · 3D Print Rig',
+                    'View VORON V0 printers and Mods in 3D. Change colors, preview movement and follow the official '
+                    'V0.2 and V0.2r1 assembly steps.'),
+ 'viewer/toolheads.html': ('3D printer toolhead builder · 3D Print Rig',
+                           'Choose a toolhead, hotend, extruder, probe and mounting option. Compare the assembled head '
+                           'in 3D and find options for your printer.'),
+ 'viewer/stealthburner-cutaway.html': ('Inside Stealthburner · 3D Print Rig',
+                                     'Cut through the filament path of Stealthburner and Clockwork 2. See how the V6 heater, nozzle, heatbreak, heatsink and 4010 cooling fan work together.'),
+ 'viewer/gantries.html': ('3D printer gantries · 3D Print Rig',
+                          'Compare printer gantries in 3D. Choose a printer family, size, belt width and toolhead.'),
+ 'viewer/toolchangers.html': ('3D printer toolchangers · 3D Print Rig',
+                              'View toolchanger heads, shuttles and docks in 3D. Compare their parts and mounting '
+                              'options.'),
+ 'viewer/cleaning.html': ('Nozzle cleaning mods · 3D Print Rig',
+                          'View nozzle wipers and cleaning Mods in 3D. Compare parts and find their original project '
+                          'files.'),
+ 'viewer/components.html': ('3D printer component CAD · 3D Print Rig',
+                            'View individual printer parts in 3D. Find the original CAD, project version and license '
+                            'for each component.'),
+ 'viewer/community.html': ('Community 3D printer CAD · 3D Print Rig',
+                           'View community 3D printer assemblies in your browser. Change colors, look around the model '
+                           'and preview movement where available.'),
+ 'viewer/annex.html': ('Annex printer CAD · 3D Print Rig',
+                       'View Annex 3D printer assemblies in your browser. Change colors, look around the model and use '
+                       'the available motion controls.'),
+ 'viewer/crossant.html': ('Crossant-235 printer CAD · 3D Print Rig',
+                          'View the Crossant-235 printer in 3D. Compare covers, change colors and preview movement.'),
+ 'viewer/custom-voron.html': ('Custom VORON sizes · 3D Print Rig',
+                              'Compare custom VORON sizes in 3D, including larger builds and reduced heights. See the '
+                              'dimensions and recommended frame and mechanism upgrades.'),
+ 'viewer/e3ng.html': ('E3NG printer CAD · 3D Print Rig',
+                      'View available E3NG printer CAD and toolchanger configurations in 3D. Find their original files '
+                      'and included components.'),
+ 'viewer/kit-reference.html': ('FYSETC kit CAD references · 3D Print Rig',
+                               'Find available FYSETC kit CAD and source files. Open the available printer models in '
+                               'the 3D viewer.'),
+ 'viewer/micron.html': ('Micron and Micron Plus CAD · 3D Print Rig',
+                        'View Micron and Micron Plus printers in 3D. Change colors, preview movement and download '
+                        'available standard STEP assemblies.'),
+ 'viewer/positron.html': ('Positron folding printer CAD · 3D Print Rig',
+                          'View the Positron printer in 3D. Try the folding preview, change colors and find the '
+                          'original project files.'),
+ 'viewer/ratrig.html': ('Rat Rig V-Core CAD · 3D Print Rig',
+                        'View Rat Rig V-Core printer assemblies in 3D. Change colors, preview movement and find the '
+                        'original CAD files.'),
+ 'viewer/remorph.html': ('Remorph printer CAD · 3D Print Rig',
+                         'View the Remorph printer in 3D. Change colors, preview movement and find the original '
+                         'project files.'),
+ 'support/index.html': ('Combination support · 3D Print Rig',
+                        'Find toolhead and part combinations for your printer. Filter by component and open a matching '
+                        '3D configuration.'),
+ 'fun/index.html': ('CAD drawing wallpapers · 3D Print Rig',
+                    'Download printer CAD wallpapers for phones and desktops. Browse assembly, exploded and section '
+                    'drawings.'),
+ 'fun/credits.html': ('Original CAD and artwork credits · 3D Print Rig',
+                      'Original authors, project versions and licenses for the printer CAD wallpapers.'),
+ 'viewer/art/credits.html': ('CAD background drawing credits · 3D Print Rig',
+                             'Original CAD sources and licenses for the printer drawings used in the viewer '
+                             'background.'),
+ 'embed/index.html': ('Embedded CAD viewer · 3D Print Rig',
+                      'Embed a 3D Print Rig viewer on your website. Alpha test; open the full viewer for configuration '
+                      'controls and source details.')}
 START = '<!-- Generated SEO: scripts/build_seo.py -->'
 END = '<!-- End generated SEO -->'
 IMAGE_ALT = '3D Print Rig, a browser CAD configurator, alongside original VORON Trident technical drawings.'

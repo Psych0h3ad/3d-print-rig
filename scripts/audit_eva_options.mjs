@@ -364,12 +364,18 @@ export function checkEvaOptionNativeReview(review,v,host,manifest,profile,source
 }
 const checkNativeReview=checkEvaOptionNativeReview;
 
-export async function auditEvaOptions(inputs,{onProgress=()=>{}}={}){
+export function evaAuditHostSelection(registry,hostIds){
+ const all=Object.keys(registry.hosts);assert(all.length,'Missing registered hosts');
+ const selected=hostIds??all;assert(Array.isArray(selected)&&selected.length&&new Set(selected).size===selected.length,'Empty/duplicate host shard');
+ assert(selected.every(id=>all.includes(id)),'Unregistered host shard');return selected;
+}
+export async function auditEvaOptions(inputs,{onProgress=()=>{},hostIds}={}){
  assert.equal(inputs.schema,'3d-print-rig-eva-options-audit-inputs-v1');
  const closure=evaOptionsCodeClosure();
  for(const name of ['scripts/check_eva_options_release.py','scripts/build_site.py'])closure[name]=sha(await fs.readFile(path.join(repo,name)));
  const local={},inputPins={};for(const key of ['registry','heads','community','installations','front']){const bytes=await checkedLocal(inputs[key]);local[key]=JSON.parse(bytes);inputPins[key]=inputs[key].sha256}
  const {registry,heads,community,installations,front}=local;validateEvaOptionsRegistry(registry,heads);
+ const selectedHosts=evaAuditHostSelection(registry,hostIds),expectedVariants=registry.variants.filter(v=>selectedHosts.includes(v.machine_id)).map(v=>v.id);
  const index=evaCommunityIndex(community,installations),routes=new Map(),artifacts=[];
  function addRoute(record,raw){const url=normalizeUrl(record.url);const old=routes.get(url);if(old)assert.equal(old.sha256,record.descriptor.sha256,'Conflicting cached artifact URL');routes.set(url,{bytes:raw,sha256:record.descriptor.sha256});artifacts.push(record)}
  for(const[id,host]of Object.entries(registry.hosts)){
@@ -411,12 +417,13 @@ export async function auditEvaOptions(inputs,{onProgress=()=>{}}={}){
  globalThis.fetch=async (value,options={})=>{if(options.signal?.aborted)throw options.signal.reason;const key=normalizeUrl(value.url??value),row=routes.get(key);assert(row,'Unpinned network dependency '+key);fetches++;
   let bytes=row.bytes;if(key===corruptUrl){bytes=Buffer.from(bytes);bytes[0]^=255}return new Response(bytes,{status:200,headers:{'content-length':String(bytes.length)}})};
  const output={schema:'3d-print-rig-eva-options-actual-review-v1',passed:false,input_sha256:inputPins,production_code_sha256:closure,
-  source_artifacts:artifacts.map(publicFile),hosts:[],coverage:{registered_hosts:Object.keys(registry.hosts),registered_variants:registry.variants.map(v=>v.id),reviewed_variants:[]},
+  source_artifacts:artifacts.map(publicFile),hosts:[],coverage:{registered_hosts:Object.keys(registry.hosts),registered_variants:registry.variants.map(v=>v.id),selected_hosts:selectedHosts,expected_shard_variants:expectedVariants,reviewed_variants:[]},
   scope:'Checksum-pinned real source-host and complete-head glTF assets using the production r180 loader, native adapter, surface patch and installed-option controller. Finite sampled movement, registered endpoint witnesses where present, unchanged native resources, companion inventory, palettes, selection/reset and save/load. Separate source-head/front/native-solid reviews remain required.',
   native_solids_audited:false,continuous_clearance_certified:false,full_physical_fit_certified:false};
  try{
   assert.equal(THREE.REVISION,'180','Wrong production Three runtime');
   for(const[machine,host]of Object.entries(registry.hosts)){
+   if(!selectedHosts.includes(machine))continue;
    onProgress('Reviewing '+machine+' native host and '+host.configurations.length+' configurations');
    const current=await loadCommunity(index,machine),baselineProfile=structuredSha(current.profile),loaderReceipt=structuredSha(current.replay_asset_identity),nativeParts=current.manifest.parts;
    applyEvaOptionsProfile(current,registry,heads);assert.equal(current.manifest.parts,nativeParts);assert.equal(structuredSha(current.replay_asset_identity),loaderReceipt,'Loader receipt modified by profile options');
@@ -495,7 +502,7 @@ export async function auditEvaOptions(inputs,{onProgress=()=>{}}={}){
    output.hosts.push(result);disposeRoot(current.root);
   }
  }finally{globalThis.fetch=nativeFetch}
- assert.deepEqual(output.coverage.reviewed_variants.slice().sort(),output.coverage.registered_variants.slice().sort(),'Missing actual installed option coverage');
+ assert.deepEqual(output.coverage.reviewed_variants.slice().sort(),expectedVariants.slice().sort(),'Missing actual installed option shard coverage');
  for(const[key,pin]of Object.entries(closure))assert.equal(sha(await fs.readFile(path.join(repo,key))),pin,'Production code changed during actual audit '+key);
  for(const key of Object.keys(inputPins))await checkedLocal(inputs[key]);for(const record of artifacts)await checkedArtifact(record);
  output.network_requests=fetches;output.passed=true;return output;
@@ -504,7 +511,8 @@ export async function auditEvaOptions(inputs,{onProgress=()=>{}}={}){
 async function cli(){
  const args=process.argv.slice(2),value=name=>{const i=args.indexOf(name);assert(i>=0&&args[i+1],'Missing '+name);return args[i+1]};
  const inputFile=value('--inputs'),reportFile=value('--report'),inputRaw=await fs.readFile(inputFile),inputs=JSON.parse(inputRaw);
- let report;try{report=await auditEvaOptions(inputs,{onProgress:message=>process.stdout.write(message+'\n')});assert.equal(sha(await fs.readFile(inputFile)),sha(inputRaw),'Actual input manifest changed during audit')}
+ const hostIndex=args.indexOf('--host'),hostIds=hostIndex<0?undefined:[value('--host')];
+ let report;try{report=await auditEvaOptions(inputs,{hostIds,onProgress:message=>process.stdout.write(message+'\n')});assert.equal(sha(await fs.readFile(inputFile)),sha(inputRaw),'Actual input manifest changed during audit')}
  catch(error){const message=String(error.message).replaceAll(repo,'[checkout]/').replaceAll(path.resolve(repo),'[checkout]');report={schema:'3d-print-rig-eva-options-actual-review-v1',passed:false,failure:message,full_physical_fit_certified:false};process.exitCode=1}
  await fs.mkdir(path.dirname(path.resolve(reportFile)),{recursive:true});await fs.writeFile(reportFile,JSON.stringify(report,null,2)+'\n');
  process.stdout.write(JSON.stringify({passed:report.passed,hosts:report.hosts?.length,variants:report.coverage?.reviewed_variants.length,failure:report.failure})+'\n');

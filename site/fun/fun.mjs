@@ -1,4 +1,4 @@
-import {applyDisplay,displayKey,setupHeaderThemeToggle} from '../viewer/display-preferences.mjs?v=5fd25f289942c501706d';
+import {applyDisplay,displayKey,setupHeaderThemeToggle} from '../viewer/display-preferences.mjs?v=ab531b33fbcb36317429';
 import {chooseLanguage,languageURL,supportedLanguages,languageNames} from '../viewer/languages.mjs?v=ba6a5cd8e1d86849ca34';
 const $=id=>document.getElementById(id),query=new URLSearchParams(location.search),form=$('filters');
 let stored;try{stored=window.localStorage.getItem('3d-print-rig-language')}catch{}

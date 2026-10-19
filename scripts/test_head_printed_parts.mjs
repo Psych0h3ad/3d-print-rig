@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {headPrintedCounts,printedInventoryRole} from '../site/viewer/head-printed-parts.mjs';
+import {headPrintedCounts,printedInventoryRole,visibleInAsset} from '../site/viewer/head-printed-parts.mjs';
 
 const root={visible:true,parent:null},group={visible:true,parent:root};
 const leaf=(key,role,component,parent=group)=>({key,role,component,mesh:{visible:true,parent}});
@@ -15,6 +15,7 @@ assert.deepEqual(headPrintedCounts([asset]),{base:2,accent:0,fixed:1,total:3});
 asset.meshes.push({...diffuser,mesh:{visible:true,parent:group}});
 assert.equal(headPrintedCounts([asset]).fixed,1,'A source leaf split into rendered surfaces is counted once');
 group.visible=false;
+assert(!visibleInAsset(carrier.mesh,root),'A hidden parent excludes its geometry from camera fitting too');
 assert.deepEqual(headPrintedCounts([asset]),{base:0,accent:0,fixed:0,total:0},'Hidden module ancestors exclude their descendants');
 group.visible=true;root.visible=false;
 assert.equal(headPrintedCounts([asset]).total,0,'Cached old assemblies must not contribute');
@@ -24,6 +25,7 @@ assert.equal(headPrintedCounts([asset]).total,2);
 diffuser.mesh.visible=true;
 assert.equal(headPrintedCounts([asset]).total,3,'A-to-B-to-A visibility restores fixed printed parts');
 const detached=leaf('detached','base','printed',{visible:true,parent:null});
+assert(!visibleInAsset(detached.mesh,root),'A detached object is outside the rendered assembly');
 assert.equal(headPrintedCounts([{root,meshes:[detached]}]).total,0,'A detached surface is not a visible part of the asset');
 assert.deepEqual(headPrintedCounts([undefined,asset]),{base:2,accent:0,fixed:1,total:3});
 const snapshot=JSON.stringify(asset);headPrintedCounts([asset]);assert.equal(JSON.stringify(asset),snapshot,'Counting must not change appearance or visibility');

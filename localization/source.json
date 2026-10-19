@@ -13060,6 +13060,536 @@
       "kind": "message",
       "ja": "カムロックを開けて自由な開閉を確認し、時計回り90度でロックします。r1は5 mm六角レンチを使います。静的表示は開閉の無干渉を保証しません。",
       "en": "Check free opening with cam locks open before a clockwise 90-degree lock turn. r1 uses a 5 mm hex key; static stages do not certify a clear opening sweep."
+    },
+    "machine.switchwire.label": {
+      "kind": "message",
+      "ja": "VORON Switchwire · 公式v1 CAD / Stealthburner / CW2 / Revo Voron",
+      "en": "VORON Switchwire · Official v1 CAD / Stealthburner / CW2 / Revo Voron"
+    },
+    "machine.switchwire.description": {
+      "kind": "message",
+      "ja": "Stealthburner、CW2、Revo Voronを含む公式Switchwire v1 CADアセンブリです。",
+      "en": "Official Switchwire v1 CAD assembly with Stealthburner, CW2 and Revo Voron."
+    },
+    "machine.switchwire.source_notice": {
+      "kind": "message",
+      "ja": "原本：VoronDesign/Voron-Switchwire、リビジョン92cc013ca2af94e6c09950dbe05c0973ee49aa00（GPL-3.0）。動作プレビューは部品のクリアランスを証明しません。",
+      "en": "Source: VoronDesign/Voron-Switchwire, revision 92cc013ca2af94e6c09950dbe05c0973ee49aa00 (GPL-3.0). Preview movement does not establish physical clearance."
+    },
+    "machine.switchwire.chain_notice": {
+      "kind": "message",
+      "en": "The original CAD has 18 Z chain links. The movement model uses 24 copies of the same native link geometry to reach the full Z travel. All three chains are assembled at their measured hinge axes.",
+      "ja": "原本CADのZチェーンは18リンクです。動作モデルではZ軸の全移動範囲に届くよう、同じ原本リンク形状を24個使用しています。3本のチェーンはいずれも測定したヒンジ軸で組み立てています。"
+    },
+    "cutaway.skip": {
+      "kind": "message",
+      "en": "Skip to explanation",
+      "ja": "構造の説明へ移動"
+    },
+    "cutaway.stage_label": {
+      "kind": "message",
+      "en": "Stealthburner 3D cutaway",
+      "ja": "Stealthburnerの3D断面"
+    },
+    "cutaway.title": {
+      "kind": "message",
+      "en": "Inside Stealthburner",
+      "ja": "Stealthburnerの中を見る"
+    },
+    "cutaway.intro": {
+      "kind": "message",
+      "en": "Follow the filament from the drive gears to the nozzle.",
+      "ja": "送りギアからノズルまで、フィラメントの経路を見ていきます。"
+    },
+    "cutaway.section_view": {
+      "kind": "message",
+      "en": "Section view",
+      "ja": "断面から見る"
+    },
+    "cutaway.perspective": {
+      "kind": "message",
+      "en": "Perspective",
+      "ja": "斜めから見る"
+    },
+    "cutaway.front": {
+      "kind": "message",
+      "en": "Front",
+      "ja": "正面から見る"
+    },
+    "cutaway.loading": {
+      "kind": "message",
+      "en": "Loading Stealthburner…",
+      "ja": "Stealthburnerを読み込み中…"
+    },
+    "cutaway.load_error": {
+      "kind": "message",
+      "en": "The CAD could not be loaded. Try again.",
+      "ja": "CADを読み込めませんでした。再試行してください。"
+    },
+    "cutaway.retry": {
+      "kind": "message",
+      "en": "Retry",
+      "ja": "読み込みを再試行"
+    },
+    "cutaway.model_name": {
+      "kind": "message",
+      "en": "Stealthburner · CW2 · E3D V6",
+      "ja": "Stealthburner · CW2 · E3D V6"
+    },
+    "cutaway.orbit_hint": {
+      "kind": "message",
+      "en": "Drag to rotate · Pinch to zoom",
+      "ja": "ドラッグで回転 · ピンチで拡大縮小"
+    },
+    "cutaway.play": {
+      "kind": "message",
+      "en": "Play",
+      "ja": "説明を再生"
+    },
+    "cutaway.pause": {
+      "kind": "message",
+      "en": "Pause",
+      "ja": "説明を一時停止"
+    },
+    "cutaway.restart": {
+      "kind": "message",
+      "en": "Restart",
+      "ja": "説明を最初から"
+    },
+    "cutaway.timeline": {
+      "kind": "message",
+      "en": "Explanation timeline",
+      "ja": "説明の再生位置"
+    },
+    "cutaway.feed_title": {
+      "kind": "message",
+      "en": "Feed",
+      "ja": "フィラメントを送る"
+    },
+    "cutaway.heater_title": {
+      "kind": "message",
+      "en": "Heat",
+      "ja": "加熱する"
+    },
+    "cutaway.break_title": {
+      "kind": "message",
+      "en": "Separate hot and cold",
+      "ja": "熱い側と冷たい側を分ける"
+    },
+    "cutaway.fan_title": {
+      "kind": "message",
+      "en": "Cool",
+      "ja": "冷却する"
+    },
+    "cutaway.feed_text": {
+      "kind": "message",
+      "en": "Clockwork 2 grips the filament between two hobbed gears. It pushes solid filament down the guide and into the hotend.",
+      "ja": "Clockwork 2は2つの送りギアでフィラメントを挟み、固体のままガイドを通してホットエンドへ送ります。"
+    },
+    "cutaway.heater_text": {
+      "kind": "message",
+      "en": "The heater cartridge heats the block. The block transfers heat to the nozzle and filament. Once softened, the filament can flow through the nozzle.",
+      "ja": "ヒーターカートリッジがブロックを加熱し、ブロックからノズルとフィラメントへ熱が伝わります。軟化したフィラメントがノズルを通って出ます。"
+    },
+    "cutaway.break_text": {
+      "kind": "message",
+      "en": "The thin heatbreak limits heat travelling upward. The heatsink carries away the remaining heat, keeping the incoming filament solid above the melt zone.",
+      "ja": "薄いヒートブレークが上への熱の伝わりを抑えます。残った熱をヒートシンクが逃がし、溶融部より上のフィラメントを固体に保ちます。"
+    },
+    "cutaway.fan_text": {
+      "kind": "message",
+      "en": "The 4010 axial fan pushes air through the heatsink fins to carry heat away. The separate 5015 blower sends air through the side ducts to cool the printed plastic.",
+      "ja": "4010軸流ファンがヒートシンクのフィンに風を通し、熱を持ち去ります。別の5015ブロワーは左右のダクトを通して造形物を冷やします。"
+    },
+    "cutaway.section": {
+      "kind": "message",
+      "en": "Cut through the filament path",
+      "ja": "フィラメント経路で断面を切る"
+    },
+    "cutaway.complete": {
+      "kind": "message",
+      "en": "Complete model",
+      "ja": "断面なし"
+    },
+    "cutaway.filament_axis": {
+      "kind": "message",
+      "en": "Filament axis",
+      "ja": "フィラメントの中心軸"
+    },
+    "cutaway.try": {
+      "kind": "message",
+      "en": "Try the controls",
+      "ja": "加熱・冷却を切り替える"
+    },
+    "cutaway.heater": {
+      "kind": "message",
+      "en": "Heater",
+      "ja": "ヒーターを入れる"
+    },
+    "cutaway.fan": {
+      "kind": "message",
+      "en": "4010 hotend fan",
+      "ja": "4010ホットエンドファン"
+    },
+    "cutaway.filament": {
+      "kind": "message",
+      "en": "Filament flow",
+      "ja": "フィラメントの流れを表示"
+    },
+    "cutaway.heat_colors": {
+      "kind": "message",
+      "en": "Heat colors",
+      "ja": "熱の色分けを表示"
+    },
+    "cutaway.creep": {
+      "kind": "message",
+      "en": "With the hotend fan off, heat can climb into the cold end. Soft filament here can cause a jam (heat creep).",
+      "ja": "ホットエンドファンを止めると、熱が冷たい側へ上がることがあります。ここでフィラメントが軟化すると詰まりの原因になります（ヒートクリープ）。"
+    },
+    "cutaway.scope": {
+      "kind": "message",
+      "en": "Heat colors, filament flow and air trails explain the mechanism. They do not predict temperature, airflow or print performance. Fan blades in the source CAD remain fixed.",
+      "ja": "熱の色・フィラメント・風の動きは構造を説明する表示です。温度・風量・印刷性能を予測するものではありません。原本CADのファン羽根は固定したままです。"
+    },
+    "cutaway.sources": {
+      "kind": "message",
+      "en": "CAD sources",
+      "ja": "この断面のCAD出典"
+    },
+    "cutaway.source_note": {
+      "kind": "message",
+      "en": "Original public CAD, with its placements retained. The section is a viewing effect; it does not change the source parts.",
+      "ja": "公開された原本CADの配置を維持しています。断面は表示上の効果で、元の部品形状は変更しません。"
+    },
+    "cutaway.open_builder": {
+      "kind": "message",
+      "en": "Open the toolhead builder",
+      "ja": "ツールヘッドの構成ページへ"
+    },
+    "cutaway.link": {
+      "kind": "message",
+      "en": "How Stealthburner works",
+      "ja": "Stealthburnerの構造を見る"
+    },
+    "cutaway.pin_feed": {
+      "kind": "message",
+      "en": "Clockwork 2 filament drive",
+      "ja": "Clockwork 2の送り機構"
+    },
+    "cutaway.pin_heater": {
+      "kind": "message",
+      "en": "Heater block and nozzle",
+      "ja": "ヒーターブロックとノズル"
+    },
+    "cutaway.pin_break": {
+      "kind": "message",
+      "en": "Heatbreak and heatsink",
+      "ja": "ヒートブレークとヒートシンク"
+    },
+    "cutaway.pin_fan": {
+      "kind": "message",
+      "en": "4010 hotend cooling fan",
+      "ja": "ホットエンド冷却用4010ファン"
+    },
+    "component.micro_swiss_reference": {
+      "kind": "message",
+      "ja": "Micro Swissの参考CADです。冷却ファン本体は含まれていません。STEPはMicro Swissの公式ページから入手できます。",
+      "en": "Reference CAD from Micro Swiss. Cooling fans are not included. Get the STEP files from Micro Swiss."
+    },
+    "component.micro_swiss_universal_reference": {
+      "kind": "message",
+      "ja": "Universal版の参考CADです。取付プレート、ファンシュラウド、冷却ファンは含まれていません。STEPはMicro Swissの公式ページから入手できます。",
+      "en": "Universal reference CAD. Mounting plate, fan shroud and cooling fans are not included. Get the STEP files from Micro Swiss."
+    },
+    "component.solid_count": {
+      "kind": "template",
+      "ja": "ソリッド数：{0}",
+      "en": "Solids: {0}"
+    },
+    "source_assembly.head": {
+      "kind": "message",
+      "ja": "ヘッドのみ",
+      "en": "Head only"
+    },
+    "source_assembly.open": {
+      "kind": "message",
+      "ja": "モデルを開く",
+      "en": "Open model"
+    },
+    "source_assembly.cancel": {
+      "kind": "message",
+      "ja": "キャンセル",
+      "en": "Cancel"
+    },
+    "source_assembly.loading": {
+      "kind": "message",
+      "ja": "読み込み中",
+      "en": "Loading assembly"
+    },
+    "source_assembly.motion_note": {
+      "kind": "message",
+      "ja": "元の組立位置からの移動量です。表示範囲はファームウェア座標ではありません。",
+      "en": "Offsets from the source assembly. These preview limits are not firmware coordinates."
+    },
+    "source_assembly.reset": {
+      "kind": "message",
+      "ja": "元の組立位置",
+      "en": "Source assembly pose"
+    },
+    "source_assembly.colors": {
+      "kind": "message",
+      "ja": "プリント部品の色",
+      "en": "Printed colors"
+    },
+    "source_assembly.base": {
+      "kind": "message",
+      "ja": "基本色",
+      "en": "Printed base color"
+    },
+    "source_assembly.dark": {
+      "kind": "message",
+      "ja": "ダーク表示",
+      "en": "Dark interface"
+    },
+    "source_assembly.light": {
+      "kind": "message",
+      "ja": "照明",
+      "en": "Lighting"
+    },
+    "source_assembly.studio": {
+      "kind": "message",
+      "ja": "スタジオ",
+      "en": "Studio"
+    },
+    "source_assembly.rgb": {
+      "kind": "message",
+      "ja": "色の循環",
+      "en": "Color cycle"
+    },
+    "source_assembly.off": {
+      "kind": "message",
+      "ja": "オフ",
+      "en": "Lighting off"
+    },
+    "source_assembly.source": {
+      "kind": "message",
+      "ja": "出典とライセンス",
+      "en": "Sources and licenses"
+    },
+    "source_assembly.step": {
+      "kind": "message",
+      "ja": "STEPのダウンロードは利用できません。",
+      "en": "STEP download is unavailable."
+    },
+    "source_assembly.attached": {
+      "kind": "message",
+      "ja": "装着",
+      "en": "Attached"
+    },
+    "source_assembly.parked": {
+      "kind": "message",
+      "ja": "収納",
+      "en": "Parked"
+    },
+    "source_assembly.minimum": {
+      "kind": "message",
+      "ja": "ノズルをベッド面へ",
+      "en": "Nozzle at bed"
+    },
+    "source_assembly.minimum_attached": {
+      "kind": "message",
+      "ja": "ノズルをベッド面へ動かす前にプローブを収納してください。",
+      "en": "Park the probe before moving the nozzle to the bed."
+    },
+    "source_assembly.minimum_outside": {
+      "kind": "message",
+      "ja": "ノズルがベッド面の外にあります。",
+      "en": "The nozzle is outside the bed surface."
+    },
+    "source_assembly.memory": {
+      "kind": "message",
+      "ja": "大きなモデル",
+      "en": "Large model"
+    },
+    "source_assembly.memory_estimate": {
+      "kind": "message",
+      "ja": "推定最大メモリ使用量",
+      "en": "Estimated peak memory"
+    },
+    "source_assembly.memory_unknown": {
+      "kind": "message",
+      "ja": "ブラウザーで利用できるRAMは不明です。",
+      "en": "Available browser RAM is unknown."
+    },
+    "source_assembly.device_memory": {
+      "kind": "message",
+      "ja": "端末メモリの概算",
+      "en": "Approximate device memory"
+    },
+    "source_assembly.memory_note": {
+      "kind": "message",
+      "ja": "読み込みに時間がかかる場合や、ブラウザーのメモリを超える場合があります。ヘッドのみの表示はメモリ使用量を抑えられます。",
+      "en": "Loading may be slow or exceed your browser’s memory. The head-only view uses less memory."
+    },
+    "source_assembly.full_load": {
+      "kind": "message",
+      "ja": "全体を読み込む",
+      "en": "Load full model"
+    },
+    "source_assembly.under": {
+      "kind": "message",
+      "ja": "下面",
+      "en": "Underside"
+    },
+    "source_assembly.orbit": {
+      "kind": "message",
+      "ja": "ドラッグで回転 · スクロールやピンチで拡大",
+      "en": "Drag to orbit · Scroll or pinch to zoom"
+    },
+    "source_assembly.source_bounds": {
+      "kind": "message",
+      "ja": "元モデルから分かる境界で移動を止めます。全体の干渉はシミュレーションしていません。",
+      "en": "Movement stops at known source boundaries. Whole-machine clearance is not simulated."
+    },
+    "source_assembly.illustrative_loom": {
+      "kind": "message",
+      "ja": "配線スリーブは表示用です。径と余長は作者の指定値ではありません。",
+      "en": "The wire sleeve is illustrative; its diameter and slack are not specified by the author."
+    },
+    "source_assembly.support_notice": {
+      "kind": "message",
+      "ja": "埋め込まれた作業指示の形状を省いています。底面グリルの元の凹部と選択した印刷設定は保持しています。",
+      "en": "Embedded instruction geometry is omitted. The bottom grilles retain the source cavities and selected print profile."
+    },
+    "source_assembly.saved": {
+      "kind": "message",
+      "ja": "構成を保存しました。",
+      "en": "Configuration saved."
+    },
+    "source_assembly.loaded": {
+      "kind": "message",
+      "ja": "構成を読み込みました。",
+      "en": "Configuration loaded."
+    },
+    "source_assembly.migrated": {
+      "kind": "message",
+      "ja": "現在の出典版で構成を読み込みました。",
+      "en": "Configuration loaded with the current source revision."
+    },
+    "source_assembly.unsafe": {
+      "kind": "message",
+      "ja": "この構成は互換性がないか、元モデルの境界を越えています。",
+      "en": "This saved configuration is incompatible or crosses a source boundary."
+    },
+    "source_assembly.blocked": {
+      "kind": "message",
+      "ja": "この移動は元モデルの境界に当たります。位置や経路を変えてください。",
+      "en": "This move reaches a source boundary. Try a different position or path."
+    },
+    "source_assembly.error": {
+      "kind": "message",
+      "ja": "モデルを読み込めませんでした。再試行してください。",
+      "en": "The model could not be loaded. Try again."
+    },
+    "source_assembly.head_note": {
+      "kind": "message",
+      "ja": "現在のヘッドと関連部品を表示しています。移動はプリンター全体の表示で操作できます。",
+      "en": "This view contains the current head and its source companions. Movement controls are available in the full-printer view."
+    },
+    "source_assembly.revision": {
+      "kind": "message",
+      "ja": "出典の版",
+      "en": "Assembly source version"
+    },
+    "source_assembly.unknown_license": {
+      "kind": "message",
+      "ja": "公開CADのダウンロードにライセンスの記載がありません。",
+      "en": "No license stated in the public CAD download."
+    },
+    "source_assembly.stl_e3ng": {
+      "kind": "message",
+      "ja": "RH3Dが公開したSTLと、個別に出典を記した公開ハードウェアCADから組み立てています。有料のE3NG組立CADは使用していません。",
+      "en": "Assembled from RH3D’s publicly released STL files, with separately credited public hardware CAD. This model does not use the paid E3NG CAD assembly."
+    },
+    "source_assembly.stl_virtu": {
+      "kind": "message",
+      "ja": "RH3Dが公開したVIRTUのSTLと、個別に出典を記した公開ハードウェアCADから組み立てています。作者の有料STEP組立データは使用していません。",
+      "en": "Assembled from RH3D’s publicly released VIRTU STL files, with separately credited public hardware CAD. The author’s paid STEP assembly was not used."
+    },
+    "source_assembly.controller_bores": {
+      "kind": "message",
+      "ja": "制御基板の取付穴5か所は公式寸法図から再構成しています。その他の部品形状と色は元データを保持しています。",
+      "en": "Five controller mounting holes are reconstructed from the official size drawing. Other source components and colors are retained."
+    },
+    "source_assembly.incomplete_e3": {
+      "kind": "message",
+      "ja": "このプレビューには電子機器冷却用6015ファン2個とヘッド用インサート6個がまだ含まれていません。プローブ固定ねじの適合は確認中です。",
+      "en": "This preview is missing two 6015 electronics cooling fans and six head inserts. The probe fastener fit is under review."
+    },
+    "source_assembly.incomplete_v": {
+      "kind": "message",
+      "ja": "このプレビューには電子機器冷却用ファン3個がまだ含まれていません。",
+      "en": "The preview is still missing three electronics cooling fans."
+    },
+    "source_assembly.fixed_body_route": {
+      "kind": "message",
+      "ja": "この移動は固定部に当たります。別の経路を選んでください。",
+      "en": "This move meets a fixed component. Choose another path."
+    },
+    "source_assembly.head_fixed_body": {
+      "kind": "message",
+      "ja": "ヘッドが固定部に当たります。",
+      "en": "The head meets a fixed component."
+    },
+    "source_identity.ws2812_p412": {
+      "kind": "message",
+      "ja": "P412__WS2812-RGB灯珠",
+      "en": "P412__WS2812-RGB LED"
+    },
+    "source_identity.ws2812_p413": {
+      "kind": "message",
+      "ja": "P413__WS2812-RGB灯珠",
+      "en": "P413__WS2812-RGB LED"
+    },
+    "source_identity.ws2812_p416": {
+      "kind": "message",
+      "ja": "P416__WS2812-RGB灯珠",
+      "en": "P416__WS2812-RGB LED"
+    },
+    "source_identity.voron_led_p414": {
+      "kind": "message",
+      "ja": "P414__Voron-LED透明罩",
+      "en": "P414__Voron LED clear cover"
+    },
+    "source_assembly.reference_title": {
+      "kind": "message",
+      "ja": "参考資料",
+      "en": "Source references"
+    },
+    "source_assembly.electronics_cooling6015": {
+      "kind": "message",
+      "ja": "電子機器の冷却：6015ファン × 3。",
+      "en": "Electronics cooling: 3 × 6015."
+    },
+    "source_assembly.source_capture6015": {
+      "kind": "message",
+      "ja": "ファン固定部は元データの公称重なりを保持しています。弾性変形を伴う実物の嵌合は未確認です。",
+      "en": "The source fan captures retain their nominal overlap. Physical elastic fit has not been verified."
+    },
+    "source_assembly.unknown_revision": {
+      "kind": "message",
+      "ja": "版の指定なし",
+      "en": "Version not specified"
+    },
+    "source_assembly.repository_license": {
+      "kind": "message",
+      "ja": "リポジトリのライセンス",
+      "en": "Repository license"
+    },
+    "source_assembly.component_license": {
+      "kind": "message",
+      "ja": "部品に記載された条件",
+      "en": "Component terms as supplied"
     }
   }
 }
