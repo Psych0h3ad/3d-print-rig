@@ -350,6 +350,17 @@ def main():
     input_options, _ = inputs_arg.parse_known_args()
     input_map = json.loads(input_options.inputs.read_bytes()) if input_options.inputs else None
     validate_mounting_evidence(target)
+    # Dependency ledgers alone do not exercise the browser's composition of
+    # retained witnesses. Run the production loader against the built bytes.
+    (target/'review').mkdir(exist_ok=True)
+    subprocess.run(['node', '--max-old-space-size=256', '--expose-gc',
+                    str(ROOT/'scripts/test_native_baseline_bootstrap.mjs'),
+                    '--site', str(target), '--report',
+                    str(target/'review/native-baseline-bootstrap.json')], cwd=ROOT, check=True)
+    subprocess.run(['node', '--max-old-space-size=256', '--expose-gc',
+                    str(ROOT/'scripts/test_v24_exact_native_reset.mjs'),
+                    '--assets', str(target), '--report',
+                    str(target/'review/v24-native-reset.json')], cwd=ROOT, check=True)
     subprocess.run(['node', '--experimental-loader', './scripts/three-test-loader.mjs',
                     'scripts/build_support_catalog.mjs', str(target)], cwd=ROOT, check=True)
     # A native mounting/parts-inventory pass does not prove that front apertures

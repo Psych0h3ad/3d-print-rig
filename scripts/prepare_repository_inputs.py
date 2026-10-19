@@ -92,6 +92,11 @@ def mounting_dependencies(root, rows, materialize):
             raise ValueError('Invalid retained mounting proofs')
         pending.extend(retained)
     require('ASSET_BUNDLE.json')
+    # The production head loader reads both base metadata documents before
+    # returning its witness bindings, including native baseline startup.
+    catalog = json.loads(require('TOOLHEAD_CONFIGURATIONS.json').read_bytes())
+    for family in ['xol', 'stealthburner']:
+        require(catalog['base_assets'][family]['meta'])
     return sorted(required)
 
 

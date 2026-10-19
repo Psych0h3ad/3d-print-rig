@@ -11,8 +11,46 @@ const retained={
 };
 const hosts=['voron_trident_300','voron_trident_350'];
 const changed=hosts.flatMap(id=>[`machines/${id}/assembly_manifest.json`,`machines/${id}/model.glb.gz`]);
-export function nativeWitnessInputs(evidence,hashes,bundle,machine,name,proof){
- if(evidence?.model_bundle_sha256===bundle?.sha256)return {hashes,bundle,retained:false};
+export const nativeCatalogEvidenceSource={
+ file:'HEAD_CATALOG_DELTA_ACE_HF_20261020.json',sha256:'0995df8a20b9bcbd44856da8f1d5253a285a1f0dbee81222f32677cae7dc32ca',
+ catalog:'TOOLHEAD_CONFIGURATIONS.json',baseline:'910890df1868584a5aef27d39653d2cb124bbeef4cac576703df715a7052e463',
+ current:'c95523f09e893ed2b4a7603a3e3c74aa39aa0c97508f00b2d60202e26b33afbf'
+};
+function retainedCatalogInputs(evidence,hashes,machine,name,proof){
+ const source=nativeCatalogEvidenceSource,expected=evidence?.input_sha256?.[source.catalog];
+ // These are retained original witnesses, including on the equal-bundle path.
+ // A rewritten witness cannot authenticate its own new input expectations.
+ if(!retained[name]||hashes[name]!==retained[name])return null;
+ if(hashes[source.catalog]===expected)return {hashes,retained:false};
+ const target=evidence?.machines?.[machine],pilot='ace_hf__siboor_awd__stealthburner__cw2__fixed__none';
+ if(!target||!retained[name]||hashes[name]!==retained[name]
+  ||expected!==source.baseline||hashes[source.catalog]!==source.current||hashes[source.file]!==source.sha256
+  ||proof?.schema!=='ace-hf-append-only-mounting-catalog-delta-v1'
+  ||proof.baseline_catalog?.sha256!==source.baseline||proof.baseline_catalog.bytes!==8912023
+  ||proof.current_catalog?.sha256!==source.current||proof.current_catalog.bytes!==8916573
+  ||proof.original_native_witness_records_dates_and_scopes_unchanged!==true||proof.whole_machine_fit_certified!==false
+  ||Object.entries(retained).some(([key,sha])=>proof.retained_original_witnesses?.[key]!==sha)
+  ||JSON.stringify(Object.keys(proof.added_records||{}).sort())!==JSON.stringify(['assets','hotends','variants'])
+  ||proof.added_records.assets?.id!=='sb_rapido_ace_hf_complete'
+  ||proof.added_records.assets.canonical_sha256!=='898a8303cb8babe8483c381e803b80fec01d92514a470270a2b3a3b4c700aa38'
+  ||proof.added_records.hotends?.id!=='rapido_ace_hf'
+  ||proof.added_records.hotends.canonical_sha256!=='8a708f3cdc7311e1fa980bd93110a0cb08706eaefbdca1d0c8b6a6f4b63eab8e'
+  ||proof.added_records.variants?.id!==pilot
+  ||proof.added_records.variants.canonical_sha256!=='978f2c6ce6601086abaa1675135f7cddddcf94246ab9c73bf1f1e42a1da21488'
+  ||proof.retained_catalog_rows?.assets!==274||proof.retained_catalog_rows.hotends!==33||proof.retained_catalog_rows.variants!==1291
+  ||proof.new_pilot?.variant!==pilot||proof.new_pilot.historical_native_witness_scope_includes_new_variant!==false
+  ||proof.new_pilot.whole_head_fit_certified!==false||proof.new_pilot.whole_machine_fit_certified!==false||proof.new_pilot.printing_Z0_qualified!==false
+  ||Object.entries(target.input_sha256||{}).some(([key,sha])=>Object.hasOwn(evidence.input_sha256||{},key)&&evidence.input_sha256[key]!==sha)
+  ||target.records?.some(r=>r.source_configurations?.includes(pilot))
+  ||target.bank_records?.some(r=>r.source_configuration===pilot))return null;
+ // Both raw documents and the exact three-record projection proof are pinned.
+ // Only the historical input identity is presented to the old validator.
+ // The shipped catalog, records, placements and their qualifications stay intact.
+ return {hashes:{...hashes,[source.catalog]:source.baseline},retained:true};
+}
+export function nativeWitnessInputs(evidence,hashes,bundle,machine,name,proof,catalogProof=null){
+ const catalog=retainedCatalogInputs(evidence,hashes,machine,name,catalogProof);if(!catalog)return null;hashes=catalog.hashes;
+ if(evidence?.model_bundle_sha256===bundle?.sha256)return {hashes,bundle,retained:catalog.retained,catalog_delta_retained:catalog.retained};
  const source=nativeDeckEvidenceSource,target=evidence?.machines?.[machine];
  if(!target||!retained[name]||hashes[name]!==retained[name]
   ||hashes[source.file]!==source.sha256||bundle?.sha256!==source.current||bundle.bytes!==source.bytes
@@ -44,6 +82,6 @@ export function nativeWitnessInputs(evidence,hashes,bundle,machine,name,proof){
  const changedKeys=hosts.map(id=>id+'_base_1188');
  const refers=v=>typeof v==='string'?changedKeys.includes(v):Array.isArray(v)?v.some(refers):v&&typeof v==='object'?Object.entries(v).some(([k,value])=>changedKeys.includes(k)||refers(value)):false;
  if(refers(target.records)||refers(target.bank_records)||refers(evidence.intersection_witnesses))return null;
- return {hashes:verified,bundle:{...bundle,sha256:source.baseline},retained:true,
+ return {hashes:verified,bundle:{...bundle,sha256:source.baseline},retained:true,catalog_delta_retained:catalog.retained,
   scope:'Original named native witnesses and baseline datums retained through the exact deck-only delta. Changed deck clearance and whole-machine fit are unqualified.'};
 }
