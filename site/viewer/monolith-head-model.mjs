@@ -1,6 +1,6 @@
 import {installedHeadPlan} from './machine-head-model.mjs?v=47b748059eccd1c2d45e';
 import {translatedProbeFit} from './probe-checks.js?v=0f70f5c099338db857e7';
-import {sphinxBeltPreviewCut} from './sphinx-belt-interface.mjs?v=4c7644b34aecf95b77d8';
+import {sphinxBeltPreviewCut} from './sphinx-belt-interface.mjs?v=82539821284ce55535f1';
 const completeSphinx=v=>v.mount==='fixed'&&v.gantry==='sphinx_monolith'&&v.fit?.nozzle_mm?.every(Number.isFinite)&&['extruder','hotend'].every(k=>v.modules.some(m=>m.id===v.fit?.complete_head_native?.[k]));
 export function monolithHeadCatalog(heads,registry,gantries){
  if(!registry.sources.stealthchanger_monolith||!registry.monolith_target)throw Error('Monolithの取付基準が未登録です');

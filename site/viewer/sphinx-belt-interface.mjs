@@ -10,6 +10,10 @@ export const sphinxBeltInterface={
  },
  source_origin_mm:[0,-7.5,0],
  entrance_x_mm:[-25.201504661873933,25.2015046618742],
+ // Tricorn's four finite backing lands continue from the mouth to the
+ // literal plane/cylindrical-channel boundary. A cut at the mouth alone has
+ // zero supported area. These are source edges, not a whole-body extent.
+ tricorn_support_end_x_mm:[-22.7409998177714,22.7409998177714],
  backing_y_mm:-9.74,
  channel_z_mm:[[-12,-1.5],[1.5,12]]
 };
@@ -20,5 +24,10 @@ export function sphinxBeltPreviewCut(asset,registration,translation){
  if(!registration.origin_mm?.every((v,i)=>Math.abs(v-sphinxBeltInterface.source_origin_mm[i])<.001)
   ||!translation?.every(Number.isFinite)||translation.length!==3)
   throw Error('Sphinx belt interface datum changed');
- return {...original,x_mm:sphinxBeltInterface.entrance_x_mm.map(x=>x+translation[0]),y_mm:[-35,35]};
+ const finiteLand=asset==='head_sphinx_monolith_tricorn';
+ return {...original,x_mm:(finiteLand?sphinxBeltInterface.tricorn_support_end_x_mm:sphinxBeltInterface.entrance_x_mm).map(x=>x+translation[0]),y_mm:[-35,35],
+  ...(finiteLand?{source_attachment:{schema:'sphinx-tricorn-finite-belt-land-v1',source_body_sha256:sphinxBeltInterface.source_bodies_sha256[asset],
+   finite_support_faces:[7904,7908,8095,8099],mouth_x_mm:sphinxBeltInterface.entrance_x_mm.map(x=>x+translation[0]),
+   support_backing_y_mm:sphinxBeltInterface.backing_y_mm+translation[1],source_translation_mm:[...translation],
+   support_length_mm:25.201504661873933-22.7409998177714,internal_return_path_registered:false}}:{})};
 }

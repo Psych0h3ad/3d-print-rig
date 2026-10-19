@@ -1,4 +1,5 @@
 import * as THREE from './vendor/three.module.js';
+import {sphinxMovingBeltGeometry} from './sphinx-belt-attachment.mjs?v=bdb8120966adce0a6a64';
 
 const distance=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]);
 const placed=(p,size,dx,dy)=>[p[0]+(Math.abs(p[0])>75?Math.sign(p[0])*(size-250)/2:dx),p[1]+(Math.abs(p[1])>100?Math.sign(p[1])*(size-250)/2:dy)];
@@ -48,10 +49,12 @@ export function monolithBeltRoute(source,size,dx=0,dy=0,cut){
  // and keep one ring so joins remain watertight without zero-area quads.
  const clean=[],n=[];
  for(let i=0;i<points.length;i++)if(clean.length&&distance(clean.at(-1),points[i])<.00001){const a=n.at(-1),b=normals[i],l=Math.hypot(a[0]+b[0],a[1]+b[1]);if(l<1.9)throw Error('Monolithのベルト接線が連続していません');n[n.length-1]=[(a[0]+b[0])/l,(a[1]+b[1])/l]}else{clean.push(points[i]);n.push(normals[i])}
- return {points:clean,normals:n,length,segments,z:source.z,width:source.width,thickness:source.thickness};
+ return {points:clean,normals:n,length,segments,z:source.z,width:source.width,thickness:source.thickness,
+  ...(cut?.source_attachment?{source_attachment:cut.source_attachment,attachment_x_mm:cut.x_mm}:{} )};
 }
 
 export function monolithBeltGeometry(route){
+ if(route.source_attachment)return sphinxMovingBeltGeometry(route);
  const vertices=[],indices=[];
  // Routes may supply either a left or a right tangent normal. Both describe
  // the same belt, but their ring orders require opposite triangle winding.

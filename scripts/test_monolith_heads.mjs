@@ -62,7 +62,7 @@ for(const entry of nativeMouths.entries){
  const reg={...mountedRegistry,sources:{...mountedRegistry.sources,[entry.asset]:{origin_mm:[0,-7.5,0],compatible_belt_widths_mm:entry.widths_mm,belt_preview_cut:{x_mm:[-32.49075763926731,32.49075753926731],y_mm:[-35,35]}}}};
  const composed=monolithHeadCatalog({...expanded,variants:[source]},reg,gantries);
  assert.equal(composed.variants.length,entry.widths_mm.length*16);
- for(const v of composed.variants)assert.deepEqual(v.fit.machine_mount.belt_preview_cut.x_mm,sphinxBeltInterface.entrance_x_mm);
+ for(const v of composed.variants)assert.deepEqual(v.fit.machine_mount.belt_preview_cut.x_mm,entry.support_end_x_mm||sphinxBeltInterface.entrance_x_mm);
 }
 const sphinxSource={...fixed,base_asset:'head_sphinx_monolith_tricorn'};
 const nativeRegistry={...mountedRegistry,sources:{...mountedRegistry.sources,
@@ -71,7 +71,7 @@ const exact=monolithHeadCatalog({...expanded,variants:[sphinxSource]},nativeRegi
 assert.equal(exact.variants.length,32);
 for(const v of exact.variants){
  const cut=v.fit.machine_mount.belt_preview_cut;
- assert.deepEqual(cut.x_mm,sphinxBeltInterface.entrance_x_mm);
+ assert.deepEqual(cut.x_mm,sphinxBeltInterface.tricorn_support_end_x_mm);
  assert.deepEqual(nativeRegistry.sources[sphinxSource.base_asset].belt_preview_cut.x_mm,[-32.49075763926731,32.49075753926731]);
  const planes=monolithBeltClip(v),inside=p=>planes.every(([n,c])=>n[0]*p[0]*.001+n[1]*p[2]*.001-n[2]*p[1]*.001+c<0);
  for(const sources of Object.values(nativeRoutes.routes))for(const source of sources){
@@ -94,5 +94,38 @@ for(const v of exact.variants){
 }
 assert.deepEqual(sphinxBeltPreviewCut('unregistered',{},[0,8,0]),undefined);
 assert.throws(()=>sphinxBeltPreviewCut(sphinxSource.base_asset,{origin_mm:[0,-17.5,0]},[0,8,0]),/datum changed/);
-assert.deepEqual(sphinxBeltPreviewCut(sphinxSource.base_asset,nativeRegistry.sources[sphinxSource.base_asset],[2,8,0]).x_mm,sphinxBeltInterface.entrance_x_mm.map(x=>x+2));
+assert.deepEqual(sphinxBeltPreviewCut(sphinxSource.base_asset,nativeRegistry.sources[sphinxSource.base_asset],[2,8,0]).x_mm,sphinxBeltInterface.tricorn_support_end_x_mm.map(x=>x+2));
 console.log('Source-backed Sphinx mouths: static and moving ends, native 6/9 mm channels, reversed motion/reset, registration immutability and changed-datum rejection passed.');
+
+// The new defect requires finite support area, not just endpoint/box presence.
+const tricornLand=nativeMouths.entries.find(e=>e.asset==='head_sphinx_monolith_tricorn');
+assert.deepEqual(tricornLand.support_end_x_mm,sphinxBeltInterface.tricorn_support_end_x_mm);
+assert.deepEqual(tricornLand.finite_support_faces.map(f=>f.face),[7904,7908,8095,8099]);
+for(const width of [6,9])for(const face of tricornLand.finite_support_faces){
+ const points=Object.values(face.source_vertices),xs=points.map(p=>Math.abs(p[0]));
+ assert.equal(Math.min(...xs),Math.abs(tricornLand.support_end_x_mm[0]));
+ assert(Math.max(...xs)-Math.min(...xs)>2.46);
+ assert(tricornLand.supported_straight_run_mm*width>14.76);
+}
+
+// Exact-zero draw omission is source-bound; tiny positive source facets remain.
+import {sphinxSourceTriangleIsExactlyZero} from '../site/viewer/sphinx-belt-attachment.mjs';
+const integerCross=points=>{
+ const q=points.map(p=>p.map(v=>BigInt(v*2**149))),a=q[1].map((v,k)=>v-q[0][k]),b=q[2].map((v,k)=>v-q[0][k]);
+ return [a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
+};
+assert.equal(nativeMouths.draw_primitive_regression.cases.length,4);
+for(const source of nativeMouths.draw_primitive_regression.cases){
+ assert.match(source.source_packed_sha256,/^[a-f0-9]{64}$/);
+ assert.equal(source.zero_witnesses.length,source.expected_exact_zero_count);
+ for(const witness of source.zero_witnesses){
+  assert(witness.source_triangle_index<source.source_triangle_count);
+  assert.deepEqual(integerCross(witness.positions_m),[0n,0n,0n]);
+  assert.equal(sphinxSourceTriangleIsExactlyZero(witness.positions_m),true);
+ }
+ const positive=source.minimum_positive_source_witness.positions_m;
+ assert(integerCross(positive).some(v=>v!==0n));
+ assert.equal(sphinxSourceTriangleIsExactlyZero(positive),false);
+}
+assert.equal(sphinxSourceTriangleIsExactlyZero([[0,0,0],[2**-149,0,0],[0,2**-149,0]]),false);
+console.log('Exact source zero primitives are classified without an area threshold; smallest positive Float32 facets remain.');
