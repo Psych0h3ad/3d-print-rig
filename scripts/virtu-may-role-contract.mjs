@@ -3,8 +3,8 @@ import assert from 'node:assert/strict';
 export const mayRole={
  canonical:'vion_source__catalog-idler-NAUO-17379-solid-0',
  excluded:'vion_source__catalog-idler-pin-r6a-solid-0',
- model:'2f9c92fa1fb0253c755f81564309158263c6296f9444fd58ea5e12eea2b6e7aa',
- inventory:'45fe9828df27952ae4fa661eb3193992fffb7dfd91988d5f78d4050a52e82383',
+ model:'829ee70cc5635107ae7e5afb9730484fefbb41713c80460879dace12abe185de',
+ inventory:'0ad58249bc8c94ac7797c1f86c1a77f56aca03bf98e1180f1e751a7d5dbace32',
  identities:{
   'vion_source__catalog-idler-NAUO-17379-solid-0':'f6c8ef76fed717f1c96cb49634d1de2b5d22ca8341567dcf546a280bd4e69db6',
   'vion_source__catalog-idler-pin-r6a-solid-0':'8893c7f71c5129f1d023238f25bc5afcc893dde16eaf7ea5ee76c921d55b9a72',

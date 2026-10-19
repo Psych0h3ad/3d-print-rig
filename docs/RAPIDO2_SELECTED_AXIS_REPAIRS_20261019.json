@@ -1,0 +1,2063 @@
+{
+  "schema": "two-assets-selected-source-axis-repair-scope-v1",
+  "base_public_commit": "f56a8bb4d3268612a13d3684914bbd3d6f8cb39f",
+  "geometry_successors": [
+    {
+      "asset": "rh3d_virtu_may_230",
+      "previous_model_sha256": "2f9c92fa1fb0253c755f81564309158263c6296f9444fd58ea5e12eea2b6e7aa",
+      "current_model_sha256": "829ee70cc5635107ae7e5afb9730484fefbb41713c80460879dace12abe185de",
+      "packet_sha256": "549a8e4505fb58ce4de09a6720fc6fb56b4c494c3329330be26a37c04eb7a049",
+      "inventory_sha256": "0ad58249bc8c94ac7797c1f86c1a77f56aca03bf98e1180f1e751a7d5dbace32",
+      "manifest_sha256": "535be72adad5756568f911397d926df76fe52d068a4311d73b40220b263bce16",
+      "changed_source_owners": 6,
+      "unchanged_source_owners": 656,
+      "full_owners": 662,
+      "community_head_owners": 236,
+      "nozzle_probe_bed_origins_and_all_BIN_geometry_normals_materials_unchanged": true,
+      "source_review_scope": "Three original Rapido2 screws and three sleeves aligned to both source receiver axes. One selected native screw/heater joint and recorded actual full/head controller and browser review; no complete head or machine fit claim."
+    },
+    {
+      "asset": "filamatrix_rapido2_uhf",
+      "previous_model_sha256": "94e5affdfcde996c728958703b0d0de45b4625319d4e2b127e499a72635a2ee0",
+      "current_model_sha256": "7e265bcea873a1f0195869a2b8389e5784aadd98f4fba3964baa2a4c2daa99fe",
+      "metadata_sha256": "7548c58e313e004388ab618c1eb5c8ef6c38fe0c2723a8de42483dcb4a241c42",
+      "original_logical_source_parts": 7,
+      "source_hotend_triangles_partitioned_once": 90787,
+      "changed_rigid_triangle_sets": [
+        {
+          "component": "component-0",
+          "role": "screw",
+          "source_owner_key": "filamatrix_rapido2_uhf_246",
+          "source_component_triangle_indices_sha256": "d47f17056f88860689a0ba83031653ea47cfc1b639dcba533c5e7391550fedde",
+          "triangle_count": 4214,
+          "translation_CAD_mm": [
+            -0.08273473015143429,
+            -0.1794278398231164,
+            0.0
+          ],
+          "upper_lower_axis_residual_mm": 1.8527376738114352e-08,
+          "projected_finite_underhead_area_mm2": 4.219650589024508
+        },
+        {
+          "component": "component-10",
+          "role": "sleeve",
+          "source_owner_key": "filamatrix_rapido2_uhf_246",
+          "source_component_triangle_indices_sha256": "a2214f41a8633a553b4567556f7593e0604daf4e97485afab7f72c202ec3f89f",
+          "triangle_count": 288,
+          "translation_CAD_mm": [
+            -0.08015115978228193,
+            -0.17796691060262582,
+            0.0
+          ],
+          "upper_lower_axis_residual_mm": 1.8527376738114352e-08,
+          "projected_finite_underhead_area_mm2": 4.219650589024508
+        },
+        {
+          "component": "component-11",
+          "role": "screw",
+          "source_owner_key": "filamatrix_rapido2_uhf_246",
+          "source_component_triangle_indices_sha256": "4b4df2a251e26050c119310b31395e4f1c2e74a93743a0d41327d8708c94a849",
+          "triangle_count": 4168,
+          "translation_CAD_mm": [
+            -0.08015117619051004,
+            -0.17796683029090848,
+            0.0
+          ],
+          "upper_lower_axis_residual_mm": 7.34827849045092e-08,
+          "projected_finite_underhead_area_mm2": 4.219651004429927
+        },
+        {
+          "component": "component-14",
+          "role": "sleeve",
+          "source_owner_key": "filamatrix_rapido2_uhf_246",
+          "source_component_triangle_indices_sha256": "21ead5822e6f35bdf780a5dc2e2ef7ba28725e26534a6db6aa4532d2ebe39526",
+          "triangle_count": 288,
+          "translation_CAD_mm": [
+            -0.08015120311705104,
+            -0.1779668528253531,
+            0.0
+          ],
+          "upper_lower_axis_residual_mm": 7.34827849045092e-08,
+          "projected_finite_underhead_area_mm2": 4.219651004429927
+        },
+        {
+          "component": "component-29",
+          "role": "screw",
+          "source_owner_key": "filamatrix_rapido2_uhf_246",
+          "source_component_triangle_indices_sha256": "2a8e3b0c0aaf8a24cc22088e2ac15ee3602057746d7e17e02847b7c90d3fac08",
+          "triangle_count": 4174,
+          "translation_CAD_mm": [
+            -0.08015114712015103,
+            -0.1779669214029429,
+            0.0
+          ],
+          "upper_lower_axis_residual_mm": 5.363098659527012e-08,
+          "projected_finite_underhead_area_mm2": 4.219650345988728
+        },
+        {
+          "component": "component-21",
+          "role": "sleeve",
+          "source_owner_key": "filamatrix_rapido2_uhf_246",
+          "source_component_triangle_indices_sha256": "82403143d63a504608f21c38b0f766d612fb8389144577a9fe2accf78bdeec36",
+          "triangle_count": 288,
+          "translation_CAD_mm": [
+            -0.08015117572245423,
+            -0.17796687564174007,
+            0.0
+          ],
+          "upper_lower_axis_residual_mm": 5.363098659527012e-08,
+          "projected_finite_underhead_area_mm2": 4.219650345988728
+        }
+      ],
+      "current_derived_consumers": 26,
+      "original_BIN_and_all_oriented_source_triangles_normals_materials_unchanged": true,
+      "whole_hotend_nozzle_probe_origins_unchanged": true,
+      "source_review_scope": "Independent finite upper/lower receiver axes, thread-region axial witnesses, sleeve capture and projected finite underhead facets; no transferred whole native Boolean or thread-phase fit certificate."
+    }
+  ],
+  "FilamATrix_current_consumers": [
+    {
+      "scope": "standalone",
+      "machine": null,
+      "gantry": null,
+      "id": "v21__filamatrix__cw2__rapido2_uhf",
+      "source_head_configuration": "v21__filamatrix__cw2__rapido2_uhf",
+      "tuple": {
+        "toolhead": "stealthburner",
+        "hotend": "rapido2_uhf",
+        "extruder": "cw2",
+        "mount": "filamatrix",
+        "gantry": "filamatrix_6",
+        "carriage": "filamatrix",
+        "board": "none",
+        "cooling": "source",
+        "probe": "none"
+      },
+      "entries": [
+        {
+          "id": "filamatrix_sb_uhf",
+          "translation_mm": [
+            0,
+            0,
+            0
+          ],
+          "hidden_keys": []
+        },
+        {
+          "id": "filamatrix_cw2",
+          "translation_mm": [
+            0,
+            0,
+            0
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_rapido2_uhf",
+          "translation_mm": [
+            0,
+            0,
+            0
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_carriage",
+          "translation_mm": [
+            0,
+            0,
+            0
+          ],
+          "role": "shuttle"
+        }
+      ],
+      "actual_affected_entries": [
+        {
+          "asset": "filamatrix_rapido2_uhf",
+          "visible_selected_keys": [
+            "filamatrix_rapido2_uhf_246"
+          ],
+          "hidden_selected_keys": []
+        }
+      ],
+      "classification": "AFFECTED_CONFIRMED_VISIBLE_SOURCE_HARDWARE"
+    },
+    {
+      "scope": "standalone",
+      "machine": null,
+      "gantry": null,
+      "id": "v21__filamatrix__galileo2__rapido2_uhf",
+      "source_head_configuration": "v21__filamatrix__galileo2__rapido2_uhf",
+      "tuple": {
+        "toolhead": "stealthburner",
+        "hotend": "rapido2_uhf",
+        "extruder": "galileo2",
+        "mount": "filamatrix",
+        "gantry": "filamatrix_6",
+        "carriage": "filamatrix",
+        "board": "none",
+        "cooling": "source",
+        "probe": "none"
+      },
+      "entries": [
+        {
+          "id": "filamatrix_sb_uhf",
+          "translation_mm": [
+            0,
+            0,
+            0
+          ],
+          "hidden_keys": []
+        },
+        {
+          "id": "filamatrix_g2e",
+          "translation_mm": [
+            0,
+            0,
+            0
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_rapido2_uhf",
+          "translation_mm": [
+            0,
+            0,
+            0
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_carriage",
+          "translation_mm": [
+            0,
+            0,
+            0
+          ],
+          "role": "shuttle"
+        }
+      ],
+      "actual_affected_entries": [
+        {
+          "asset": "filamatrix_rapido2_uhf",
+          "visible_selected_keys": [
+            "filamatrix_rapido2_uhf_246"
+          ],
+          "hidden_selected_keys": []
+        }
+      ],
+      "classification": "AFFECTED_CONFIRMED_VISIBLE_SOURCE_HARDWARE"
+    },
+    {
+      "scope": "installed",
+      "machine": "voron_v24_250_printed",
+      "gantry": null,
+      "id": "installed__voron_v24_250_printed__v21__filamatrix__cw2__rapido2_uhf",
+      "source_head_configuration": "v21__filamatrix__cw2__rapido2_uhf",
+      "tuple": {
+        "toolhead": "stealthburner",
+        "hotend": "rapido2_uhf",
+        "extruder": "cw2",
+        "mount": "filamatrix",
+        "gantry": "machine_gantry",
+        "carriage": "filamatrix",
+        "board": "none",
+        "cooling": "source",
+        "probe": "none"
+      },
+      "entries": [
+        {
+          "id": "filamatrix_sb_uhf",
+          "translation_mm": [
+            -0.0004157659583350185,
+            -36.10021119771557,
+            85.10367919403933
+          ],
+          "hidden_keys": []
+        },
+        {
+          "id": "filamatrix_cw2",
+          "translation_mm": [
+            -0.0004157659583350185,
+            -36.10021119771557,
+            85.10367919403933
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_rapido2_uhf",
+          "translation_mm": [
+            -0.0004157659583350185,
+            -36.10021119771557,
+            85.10367919403933
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_carriage",
+          "translation_mm": [
+            -0.0004157659583350185,
+            -36.10021119771557,
+            85.10367919403933
+          ],
+          "role": "shuttle"
+        }
+      ],
+      "actual_affected_entries": [
+        {
+          "asset": "filamatrix_rapido2_uhf",
+          "visible_selected_keys": [
+            "filamatrix_rapido2_uhf_246"
+          ],
+          "hidden_selected_keys": []
+        }
+      ],
+      "classification": "AFFECTED_CONFIRMED_VISIBLE_SOURCE_HARDWARE"
+    },
+    {
+      "scope": "installed",
+      "machine": "voron_v24_250_printed",
+      "gantry": null,
+      "id": "installed__voron_v24_250_printed__v21__filamatrix__galileo2__rapido2_uhf",
+      "source_head_configuration": "v21__filamatrix__galileo2__rapido2_uhf",
+      "tuple": {
+        "toolhead": "stealthburner",
+        "hotend": "rapido2_uhf",
+        "extruder": "galileo2",
+        "mount": "filamatrix",
+        "gantry": "machine_gantry",
+        "carriage": "filamatrix",
+        "board": "none",
+        "cooling": "source",
+        "probe": "none"
+      },
+      "entries": [
+        {
+          "id": "filamatrix_sb_uhf",
+          "translation_mm": [
+            -0.0004157659583350185,
+            -36.10021119771557,
+            85.10367919403933
+          ],
+          "hidden_keys": []
+        },
+        {
+          "id": "filamatrix_g2e",
+          "translation_mm": [
+            -0.0004157659583350185,
+            -36.10021119771557,
+            85.10367919403933
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_rapido2_uhf",
+          "translation_mm": [
+            -0.0004157659583350185,
+            -36.10021119771557,
+            85.10367919403933
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_carriage",
+          "translation_mm": [
+            -0.0004157659583350185,
+            -36.10021119771557,
+            85.10367919403933
+          ],
+          "role": "shuttle"
+        }
+      ],
+      "actual_affected_entries": [
+        {
+          "asset": "filamatrix_rapido2_uhf",
+          "visible_selected_keys": [
+            "filamatrix_rapido2_uhf_246"
+          ],
+          "hidden_selected_keys": []
+        }
+      ],
+      "classification": "AFFECTED_CONFIRMED_VISIBLE_SOURCE_HARDWARE"
+    },
+    {
+      "scope": "installed",
+      "machine": "voron_v24_250_ldo_cnc",
+      "gantry": null,
+      "id": "installed__voron_v24_250_ldo_cnc__v21__filamatrix__cw2__rapido2_uhf",
+      "source_head_configuration": "v21__filamatrix__cw2__rapido2_uhf",
+      "tuple": {
+        "toolhead": "stealthburner",
+        "hotend": "rapido2_uhf",
+        "extruder": "cw2",
+        "mount": "filamatrix",
+        "gantry": "machine_gantry",
+        "carriage": "filamatrix",
+        "board": "none",
+        "cooling": "source",
+        "probe": "none"
+      },
+      "entries": [
+        {
+          "id": "filamatrix_sb_uhf",
+          "translation_mm": [
+            -0.0004157659583350185,
+            -36.10021119771557,
+            85.10367919403933
+          ],
+          "hidden_keys": []
+        },
+        {
+          "id": "filamatrix_cw2",
+          "translation_mm": [
+            -0.0004157659583350185,
+            -36.10021119771557,
+            85.10367919403933
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_rapido2_uhf",
+          "translation_mm": [
+            -0.0004157659583350185,
+            -36.10021119771557,
+            85.10367919403933
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_carriage",
+          "translation_mm": [
+            -0.0004157659583350185,
+            -36.10021119771557,
+            85.10367919403933
+          ],
+          "role": "shuttle"
+        }
+      ],
+      "actual_affected_entries": [
+        {
+          "asset": "filamatrix_rapido2_uhf",
+          "visible_selected_keys": [
+            "filamatrix_rapido2_uhf_246"
+          ],
+          "hidden_selected_keys": []
+        }
+      ],
+      "classification": "AFFECTED_CONFIRMED_VISIBLE_SOURCE_HARDWARE"
+    },
+    {
+      "scope": "installed",
+      "machine": "voron_v24_250_ldo_cnc",
+      "gantry": null,
+      "id": "installed__voron_v24_250_ldo_cnc__v21__filamatrix__galileo2__rapido2_uhf",
+      "source_head_configuration": "v21__filamatrix__galileo2__rapido2_uhf",
+      "tuple": {
+        "toolhead": "stealthburner",
+        "hotend": "rapido2_uhf",
+        "extruder": "galileo2",
+        "mount": "filamatrix",
+        "gantry": "machine_gantry",
+        "carriage": "filamatrix",
+        "board": "none",
+        "cooling": "source",
+        "probe": "none"
+      },
+      "entries": [
+        {
+          "id": "filamatrix_sb_uhf",
+          "translation_mm": [
+            -0.0004157659583350185,
+            -36.10021119771557,
+            85.10367919403933
+          ],
+          "hidden_keys": []
+        },
+        {
+          "id": "filamatrix_g2e",
+          "translation_mm": [
+            -0.0004157659583350185,
+            -36.10021119771557,
+            85.10367919403933
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_rapido2_uhf",
+          "translation_mm": [
+            -0.0004157659583350185,
+            -36.10021119771557,
+            85.10367919403933
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_carriage",
+          "translation_mm": [
+            -0.0004157659583350185,
+            -36.10021119771557,
+            85.10367919403933
+          ],
+          "role": "shuttle"
+        }
+      ],
+      "actual_affected_entries": [
+        {
+          "asset": "filamatrix_rapido2_uhf",
+          "visible_selected_keys": [
+            "filamatrix_rapido2_uhf_246"
+          ],
+          "hidden_selected_keys": []
+        }
+      ],
+      "classification": "AFFECTED_CONFIRMED_VISIBLE_SOURCE_HARDWARE"
+    },
+    {
+      "scope": "installed",
+      "machine": "voron_v24_300_printed",
+      "gantry": null,
+      "id": "installed__voron_v24_300_printed__v21__filamatrix__cw2__rapido2_uhf",
+      "source_head_configuration": "v21__filamatrix__cw2__rapido2_uhf",
+      "tuple": {
+        "toolhead": "stealthburner",
+        "hotend": "rapido2_uhf",
+        "extruder": "cw2",
+        "mount": "filamatrix",
+        "gantry": "machine_gantry",
+        "carriage": "filamatrix",
+        "board": "none",
+        "cooling": "source",
+        "probe": "none"
+      },
+      "entries": [
+        {
+          "id": "filamatrix_sb_uhf",
+          "translation_mm": [
+            -0.0004157659583350185,
+            -36.10021119771557,
+            85.10367919403933
+          ],
+          "hidden_keys": []
+        },
+        {
+          "id": "filamatrix_cw2",
+          "translation_mm": [
+            -0.0004157659583350185,
+            -36.10021119771557,
+            85.10367919403933
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_rapido2_uhf",
+          "translation_mm": [
+            -0.0004157659583350185,
+            -36.10021119771557,
+            85.10367919403933
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_carriage",
+          "translation_mm": [
+            -0.0004157659583350185,
+            -36.10021119771557,
+            85.10367919403933
+          ],
+          "role": "shuttle"
+        }
+      ],
+      "actual_affected_entries": [
+        {
+          "asset": "filamatrix_rapido2_uhf",
+          "visible_selected_keys": [
+            "filamatrix_rapido2_uhf_246"
+          ],
+          "hidden_selected_keys": []
+        }
+      ],
+      "classification": "AFFECTED_CONFIRMED_VISIBLE_SOURCE_HARDWARE"
+    },
+    {
+      "scope": "installed",
+      "machine": "voron_v24_300_printed",
+      "gantry": null,
+      "id": "installed__voron_v24_300_printed__v21__filamatrix__galileo2__rapido2_uhf",
+      "source_head_configuration": "v21__filamatrix__galileo2__rapido2_uhf",
+      "tuple": {
+        "toolhead": "stealthburner",
+        "hotend": "rapido2_uhf",
+        "extruder": "galileo2",
+        "mount": "filamatrix",
+        "gantry": "machine_gantry",
+        "carriage": "filamatrix",
+        "board": "none",
+        "cooling": "source",
+        "probe": "none"
+      },
+      "entries": [
+        {
+          "id": "filamatrix_sb_uhf",
+          "translation_mm": [
+            -0.0004157659583350185,
+            -36.10021119771557,
+            85.10367919403933
+          ],
+          "hidden_keys": []
+        },
+        {
+          "id": "filamatrix_g2e",
+          "translation_mm": [
+            -0.0004157659583350185,
+            -36.10021119771557,
+            85.10367919403933
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_rapido2_uhf",
+          "translation_mm": [
+            -0.0004157659583350185,
+            -36.10021119771557,
+            85.10367919403933
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_carriage",
+          "translation_mm": [
+            -0.0004157659583350185,
+            -36.10021119771557,
+            85.10367919403933
+          ],
+          "role": "shuttle"
+        }
+      ],
+      "actual_affected_entries": [
+        {
+          "asset": "filamatrix_rapido2_uhf",
+          "visible_selected_keys": [
+            "filamatrix_rapido2_uhf_246"
+          ],
+          "hidden_selected_keys": []
+        }
+      ],
+      "classification": "AFFECTED_CONFIRMED_VISIBLE_SOURCE_HARDWARE"
+    },
+    {
+      "scope": "installed",
+      "machine": "voron_v24_300_ldo_cnc",
+      "gantry": null,
+      "id": "installed__voron_v24_300_ldo_cnc__v21__filamatrix__cw2__rapido2_uhf",
+      "source_head_configuration": "v21__filamatrix__cw2__rapido2_uhf",
+      "tuple": {
+        "toolhead": "stealthburner",
+        "hotend": "rapido2_uhf",
+        "extruder": "cw2",
+        "mount": "filamatrix",
+        "gantry": "machine_gantry",
+        "carriage": "filamatrix",
+        "board": "none",
+        "cooling": "source",
+        "probe": "none"
+      },
+      "entries": [
+        {
+          "id": "filamatrix_sb_uhf",
+          "translation_mm": [
+            -0.0004157659583350185,
+            -36.10021119771557,
+            85.10367919403933
+          ],
+          "hidden_keys": []
+        },
+        {
+          "id": "filamatrix_cw2",
+          "translation_mm": [
+            -0.0004157659583350185,
+            -36.10021119771557,
+            85.10367919403933
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_rapido2_uhf",
+          "translation_mm": [
+            -0.0004157659583350185,
+            -36.10021119771557,
+            85.10367919403933
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_carriage",
+          "translation_mm": [
+            -0.0004157659583350185,
+            -36.10021119771557,
+            85.10367919403933
+          ],
+          "role": "shuttle"
+        }
+      ],
+      "actual_affected_entries": [
+        {
+          "asset": "filamatrix_rapido2_uhf",
+          "visible_selected_keys": [
+            "filamatrix_rapido2_uhf_246"
+          ],
+          "hidden_selected_keys": []
+        }
+      ],
+      "classification": "AFFECTED_CONFIRMED_VISIBLE_SOURCE_HARDWARE"
+    },
+    {
+      "scope": "installed",
+      "machine": "voron_v24_300_ldo_cnc",
+      "gantry": null,
+      "id": "installed__voron_v24_300_ldo_cnc__v21__filamatrix__galileo2__rapido2_uhf",
+      "source_head_configuration": "v21__filamatrix__galileo2__rapido2_uhf",
+      "tuple": {
+        "toolhead": "stealthburner",
+        "hotend": "rapido2_uhf",
+        "extruder": "galileo2",
+        "mount": "filamatrix",
+        "gantry": "machine_gantry",
+        "carriage": "filamatrix",
+        "board": "none",
+        "cooling": "source",
+        "probe": "none"
+      },
+      "entries": [
+        {
+          "id": "filamatrix_sb_uhf",
+          "translation_mm": [
+            -0.0004157659583350185,
+            -36.10021119771557,
+            85.10367919403933
+          ],
+          "hidden_keys": []
+        },
+        {
+          "id": "filamatrix_g2e",
+          "translation_mm": [
+            -0.0004157659583350185,
+            -36.10021119771557,
+            85.10367919403933
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_rapido2_uhf",
+          "translation_mm": [
+            -0.0004157659583350185,
+            -36.10021119771557,
+            85.10367919403933
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_carriage",
+          "translation_mm": [
+            -0.0004157659583350185,
+            -36.10021119771557,
+            85.10367919403933
+          ],
+          "role": "shuttle"
+        }
+      ],
+      "actual_affected_entries": [
+        {
+          "asset": "filamatrix_rapido2_uhf",
+          "visible_selected_keys": [
+            "filamatrix_rapido2_uhf_246"
+          ],
+          "hidden_selected_keys": []
+        }
+      ],
+      "classification": "AFFECTED_CONFIRMED_VISIBLE_SOURCE_HARDWARE"
+    },
+    {
+      "scope": "installed",
+      "machine": "voron_v24_350_printed",
+      "gantry": null,
+      "id": "installed__voron_v24_350_printed__v21__filamatrix__cw2__rapido2_uhf",
+      "source_head_configuration": "v21__filamatrix__cw2__rapido2_uhf",
+      "tuple": {
+        "toolhead": "stealthburner",
+        "hotend": "rapido2_uhf",
+        "extruder": "cw2",
+        "mount": "filamatrix",
+        "gantry": "machine_gantry",
+        "carriage": "filamatrix",
+        "board": "none",
+        "cooling": "source",
+        "probe": "none"
+      },
+      "entries": [
+        {
+          "id": "filamatrix_sb_uhf",
+          "translation_mm": [
+            -0.0004157659583634402,
+            -36.10021119771557,
+            85.1036791940393
+          ],
+          "hidden_keys": []
+        },
+        {
+          "id": "filamatrix_cw2",
+          "translation_mm": [
+            -0.0004157659583634402,
+            -36.10021119771557,
+            85.1036791940393
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_rapido2_uhf",
+          "translation_mm": [
+            -0.0004157659583634402,
+            -36.10021119771557,
+            85.1036791940393
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_carriage",
+          "translation_mm": [
+            -0.0004157659583634402,
+            -36.10021119771557,
+            85.1036791940393
+          ],
+          "role": "shuttle"
+        }
+      ],
+      "actual_affected_entries": [
+        {
+          "asset": "filamatrix_rapido2_uhf",
+          "visible_selected_keys": [
+            "filamatrix_rapido2_uhf_246"
+          ],
+          "hidden_selected_keys": []
+        }
+      ],
+      "classification": "AFFECTED_CONFIRMED_VISIBLE_SOURCE_HARDWARE"
+    },
+    {
+      "scope": "installed",
+      "machine": "voron_v24_350_printed",
+      "gantry": null,
+      "id": "installed__voron_v24_350_printed__v21__filamatrix__galileo2__rapido2_uhf",
+      "source_head_configuration": "v21__filamatrix__galileo2__rapido2_uhf",
+      "tuple": {
+        "toolhead": "stealthburner",
+        "hotend": "rapido2_uhf",
+        "extruder": "galileo2",
+        "mount": "filamatrix",
+        "gantry": "machine_gantry",
+        "carriage": "filamatrix",
+        "board": "none",
+        "cooling": "source",
+        "probe": "none"
+      },
+      "entries": [
+        {
+          "id": "filamatrix_sb_uhf",
+          "translation_mm": [
+            -0.0004157659583634402,
+            -36.10021119771557,
+            85.1036791940393
+          ],
+          "hidden_keys": []
+        },
+        {
+          "id": "filamatrix_g2e",
+          "translation_mm": [
+            -0.0004157659583634402,
+            -36.10021119771557,
+            85.1036791940393
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_rapido2_uhf",
+          "translation_mm": [
+            -0.0004157659583634402,
+            -36.10021119771557,
+            85.1036791940393
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_carriage",
+          "translation_mm": [
+            -0.0004157659583634402,
+            -36.10021119771557,
+            85.1036791940393
+          ],
+          "role": "shuttle"
+        }
+      ],
+      "actual_affected_entries": [
+        {
+          "asset": "filamatrix_rapido2_uhf",
+          "visible_selected_keys": [
+            "filamatrix_rapido2_uhf_246"
+          ],
+          "hidden_selected_keys": []
+        }
+      ],
+      "classification": "AFFECTED_CONFIRMED_VISIBLE_SOURCE_HARDWARE"
+    },
+    {
+      "scope": "installed",
+      "machine": "voron_v24_350_ldo_cnc",
+      "gantry": null,
+      "id": "installed__voron_v24_350_ldo_cnc__v21__filamatrix__cw2__rapido2_uhf",
+      "source_head_configuration": "v21__filamatrix__cw2__rapido2_uhf",
+      "tuple": {
+        "toolhead": "stealthburner",
+        "hotend": "rapido2_uhf",
+        "extruder": "cw2",
+        "mount": "filamatrix",
+        "gantry": "machine_gantry",
+        "carriage": "filamatrix",
+        "board": "none",
+        "cooling": "source",
+        "probe": "none"
+      },
+      "entries": [
+        {
+          "id": "filamatrix_sb_uhf",
+          "translation_mm": [
+            -0.0004157659583634402,
+            -36.10021119771557,
+            85.1036791940393
+          ],
+          "hidden_keys": []
+        },
+        {
+          "id": "filamatrix_cw2",
+          "translation_mm": [
+            -0.0004157659583634402,
+            -36.10021119771557,
+            85.1036791940393
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_rapido2_uhf",
+          "translation_mm": [
+            -0.0004157659583634402,
+            -36.10021119771557,
+            85.1036791940393
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_carriage",
+          "translation_mm": [
+            -0.0004157659583634402,
+            -36.10021119771557,
+            85.1036791940393
+          ],
+          "role": "shuttle"
+        }
+      ],
+      "actual_affected_entries": [
+        {
+          "asset": "filamatrix_rapido2_uhf",
+          "visible_selected_keys": [
+            "filamatrix_rapido2_uhf_246"
+          ],
+          "hidden_selected_keys": []
+        }
+      ],
+      "classification": "AFFECTED_CONFIRMED_VISIBLE_SOURCE_HARDWARE"
+    },
+    {
+      "scope": "installed",
+      "machine": "voron_v24_350_ldo_cnc",
+      "gantry": null,
+      "id": "installed__voron_v24_350_ldo_cnc__v21__filamatrix__galileo2__rapido2_uhf",
+      "source_head_configuration": "v21__filamatrix__galileo2__rapido2_uhf",
+      "tuple": {
+        "toolhead": "stealthburner",
+        "hotend": "rapido2_uhf",
+        "extruder": "galileo2",
+        "mount": "filamatrix",
+        "gantry": "machine_gantry",
+        "carriage": "filamatrix",
+        "board": "none",
+        "cooling": "source",
+        "probe": "none"
+      },
+      "entries": [
+        {
+          "id": "filamatrix_sb_uhf",
+          "translation_mm": [
+            -0.0004157659583634402,
+            -36.10021119771557,
+            85.1036791940393
+          ],
+          "hidden_keys": []
+        },
+        {
+          "id": "filamatrix_g2e",
+          "translation_mm": [
+            -0.0004157659583634402,
+            -36.10021119771557,
+            85.1036791940393
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_rapido2_uhf",
+          "translation_mm": [
+            -0.0004157659583634402,
+            -36.10021119771557,
+            85.1036791940393
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_carriage",
+          "translation_mm": [
+            -0.0004157659583634402,
+            -36.10021119771557,
+            85.1036791940393
+          ],
+          "role": "shuttle"
+        }
+      ],
+      "actual_affected_entries": [
+        {
+          "asset": "filamatrix_rapido2_uhf",
+          "visible_selected_keys": [
+            "filamatrix_rapido2_uhf_246"
+          ],
+          "hidden_selected_keys": []
+        }
+      ],
+      "classification": "AFFECTED_CONFIRMED_VISIBLE_SOURCE_HARDWARE"
+    },
+    {
+      "scope": "installed",
+      "machine": "voron_trident_350",
+      "gantry": "trident_r2",
+      "id": "installed__trident_r2__v21__filamatrix__cw2__rapido2_uhf",
+      "source_head_configuration": "v21__filamatrix__cw2__rapido2_uhf",
+      "tuple": {
+        "toolhead": "stealthburner",
+        "hotend": "rapido2_uhf",
+        "extruder": "cw2",
+        "mount": "filamatrix",
+        "gantry": "trident_r2",
+        "carriage": "filamatrix",
+        "board": "none",
+        "cooling": "source",
+        "probe": "none"
+      },
+      "entries": [
+        {
+          "id": "filamatrix_sb_uhf",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "hidden_keys": []
+        },
+        {
+          "id": "filamatrix_cw2",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_rapido2_uhf",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_carriage",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "role": "shuttle"
+        }
+      ],
+      "actual_affected_entries": [
+        {
+          "asset": "filamatrix_rapido2_uhf",
+          "visible_selected_keys": [
+            "filamatrix_rapido2_uhf_246"
+          ],
+          "hidden_selected_keys": []
+        }
+      ],
+      "classification": "AFFECTED_CONFIRMED_VISIBLE_SOURCE_HARDWARE"
+    },
+    {
+      "scope": "installed",
+      "machine": "voron_trident_350",
+      "gantry": "trident_r2",
+      "id": "installed__trident_r2__v21__filamatrix__galileo2__rapido2_uhf",
+      "source_head_configuration": "v21__filamatrix__galileo2__rapido2_uhf",
+      "tuple": {
+        "toolhead": "stealthburner",
+        "hotend": "rapido2_uhf",
+        "extruder": "galileo2",
+        "mount": "filamatrix",
+        "gantry": "trident_r2",
+        "carriage": "filamatrix",
+        "board": "none",
+        "cooling": "source",
+        "probe": "none"
+      },
+      "entries": [
+        {
+          "id": "filamatrix_sb_uhf",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "hidden_keys": []
+        },
+        {
+          "id": "filamatrix_g2e",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_rapido2_uhf",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_carriage",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "role": "shuttle"
+        }
+      ],
+      "actual_affected_entries": [
+        {
+          "asset": "filamatrix_rapido2_uhf",
+          "visible_selected_keys": [
+            "filamatrix_rapido2_uhf_246"
+          ],
+          "hidden_selected_keys": []
+        }
+      ],
+      "classification": "AFFECTED_CONFIRMED_VISIBLE_SOURCE_HARDWARE"
+    },
+    {
+      "scope": "installed",
+      "machine": "siboor_trident_350",
+      "gantry": "trident_r2",
+      "id": "installed__trident_r2__v21__filamatrix__cw2__rapido2_uhf",
+      "source_head_configuration": "v21__filamatrix__cw2__rapido2_uhf",
+      "tuple": {
+        "toolhead": "stealthburner",
+        "hotend": "rapido2_uhf",
+        "extruder": "cw2",
+        "mount": "filamatrix",
+        "gantry": "trident_r2",
+        "carriage": "filamatrix",
+        "board": "none",
+        "cooling": "source",
+        "probe": "none"
+      },
+      "entries": [
+        {
+          "id": "filamatrix_sb_uhf",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "hidden_keys": []
+        },
+        {
+          "id": "filamatrix_cw2",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_rapido2_uhf",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_carriage",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "role": "shuttle"
+        }
+      ],
+      "actual_affected_entries": [
+        {
+          "asset": "filamatrix_rapido2_uhf",
+          "visible_selected_keys": [
+            "filamatrix_rapido2_uhf_246"
+          ],
+          "hidden_selected_keys": []
+        }
+      ],
+      "classification": "AFFECTED_CONFIRMED_VISIBLE_SOURCE_HARDWARE"
+    },
+    {
+      "scope": "installed",
+      "machine": "siboor_trident_350",
+      "gantry": "trident_r2",
+      "id": "installed__trident_r2__v21__filamatrix__galileo2__rapido2_uhf",
+      "source_head_configuration": "v21__filamatrix__galileo2__rapido2_uhf",
+      "tuple": {
+        "toolhead": "stealthburner",
+        "hotend": "rapido2_uhf",
+        "extruder": "galileo2",
+        "mount": "filamatrix",
+        "gantry": "trident_r2",
+        "carriage": "filamatrix",
+        "board": "none",
+        "cooling": "source",
+        "probe": "none"
+      },
+      "entries": [
+        {
+          "id": "filamatrix_sb_uhf",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "hidden_keys": []
+        },
+        {
+          "id": "filamatrix_g2e",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_rapido2_uhf",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_carriage",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "role": "shuttle"
+        }
+      ],
+      "actual_affected_entries": [
+        {
+          "asset": "filamatrix_rapido2_uhf",
+          "visible_selected_keys": [
+            "filamatrix_rapido2_uhf_246"
+          ],
+          "hidden_selected_keys": []
+        }
+      ],
+      "classification": "AFFECTED_CONFIRMED_VISIBLE_SOURCE_HARDWARE"
+    },
+    {
+      "scope": "installed",
+      "machine": "siboor_v24_350",
+      "gantry": null,
+      "id": "installed__siboor_v24_350__v21__filamatrix__cw2__rapido2_uhf",
+      "source_head_configuration": "v21__filamatrix__cw2__rapido2_uhf",
+      "tuple": {
+        "toolhead": "stealthburner",
+        "hotend": "rapido2_uhf",
+        "extruder": "cw2",
+        "mount": "filamatrix",
+        "gantry": "machine_gantry",
+        "carriage": "filamatrix",
+        "board": "none",
+        "cooling": "source",
+        "probe": "none"
+      },
+      "entries": [
+        {
+          "id": "filamatrix_sb_uhf",
+          "translation_mm": [
+            -0.0004157659583634402,
+            -36.10021119771557,
+            85.1036791940393
+          ],
+          "hidden_keys": []
+        },
+        {
+          "id": "filamatrix_cw2",
+          "translation_mm": [
+            -0.0004157659583634402,
+            -36.10021119771557,
+            85.1036791940393
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_rapido2_uhf",
+          "translation_mm": [
+            -0.0004157659583634402,
+            -36.10021119771557,
+            85.1036791940393
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_carriage",
+          "translation_mm": [
+            -0.0004157659583634402,
+            -36.10021119771557,
+            85.1036791940393
+          ],
+          "role": "shuttle"
+        }
+      ],
+      "actual_affected_entries": [
+        {
+          "asset": "filamatrix_rapido2_uhf",
+          "visible_selected_keys": [
+            "filamatrix_rapido2_uhf_246"
+          ],
+          "hidden_selected_keys": []
+        }
+      ],
+      "classification": "AFFECTED_CONFIRMED_VISIBLE_SOURCE_HARDWARE"
+    },
+    {
+      "scope": "installed",
+      "machine": "siboor_v24_350",
+      "gantry": null,
+      "id": "installed__siboor_v24_350__v21__filamatrix__galileo2__rapido2_uhf",
+      "source_head_configuration": "v21__filamatrix__galileo2__rapido2_uhf",
+      "tuple": {
+        "toolhead": "stealthburner",
+        "hotend": "rapido2_uhf",
+        "extruder": "galileo2",
+        "mount": "filamatrix",
+        "gantry": "machine_gantry",
+        "carriage": "filamatrix",
+        "board": "none",
+        "cooling": "source",
+        "probe": "none"
+      },
+      "entries": [
+        {
+          "id": "filamatrix_sb_uhf",
+          "translation_mm": [
+            -0.0004157659583634402,
+            -36.10021119771557,
+            85.1036791940393
+          ],
+          "hidden_keys": []
+        },
+        {
+          "id": "filamatrix_g2e",
+          "translation_mm": [
+            -0.0004157659583634402,
+            -36.10021119771557,
+            85.1036791940393
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_rapido2_uhf",
+          "translation_mm": [
+            -0.0004157659583634402,
+            -36.10021119771557,
+            85.1036791940393
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_carriage",
+          "translation_mm": [
+            -0.0004157659583634402,
+            -36.10021119771557,
+            85.1036791940393
+          ],
+          "role": "shuttle"
+        }
+      ],
+      "actual_affected_entries": [
+        {
+          "asset": "filamatrix_rapido2_uhf",
+          "visible_selected_keys": [
+            "filamatrix_rapido2_uhf_246"
+          ],
+          "hidden_selected_keys": []
+        }
+      ],
+      "classification": "AFFECTED_CONFIRMED_VISIBLE_SOURCE_HARDWARE"
+    },
+    {
+      "scope": "installed",
+      "machine": "voron_trident_250",
+      "gantry": "trident_r2",
+      "id": "installed__trident_r2__v21__filamatrix__cw2__rapido2_uhf",
+      "source_head_configuration": "v21__filamatrix__cw2__rapido2_uhf",
+      "tuple": {
+        "toolhead": "stealthburner",
+        "hotend": "rapido2_uhf",
+        "extruder": "cw2",
+        "mount": "filamatrix",
+        "gantry": "trident_r2",
+        "carriage": "filamatrix",
+        "board": "none",
+        "cooling": "source",
+        "probe": "none"
+      },
+      "entries": [
+        {
+          "id": "filamatrix_sb_uhf",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "hidden_keys": []
+        },
+        {
+          "id": "filamatrix_cw2",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_rapido2_uhf",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_carriage",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "role": "shuttle"
+        }
+      ],
+      "actual_affected_entries": [
+        {
+          "asset": "filamatrix_rapido2_uhf",
+          "visible_selected_keys": [
+            "filamatrix_rapido2_uhf_246"
+          ],
+          "hidden_selected_keys": []
+        }
+      ],
+      "classification": "AFFECTED_CONFIRMED_VISIBLE_SOURCE_HARDWARE"
+    },
+    {
+      "scope": "installed",
+      "machine": "voron_trident_250",
+      "gantry": "trident_r2",
+      "id": "installed__trident_r2__v21__filamatrix__galileo2__rapido2_uhf",
+      "source_head_configuration": "v21__filamatrix__galileo2__rapido2_uhf",
+      "tuple": {
+        "toolhead": "stealthburner",
+        "hotend": "rapido2_uhf",
+        "extruder": "galileo2",
+        "mount": "filamatrix",
+        "gantry": "trident_r2",
+        "carriage": "filamatrix",
+        "board": "none",
+        "cooling": "source",
+        "probe": "none"
+      },
+      "entries": [
+        {
+          "id": "filamatrix_sb_uhf",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "hidden_keys": []
+        },
+        {
+          "id": "filamatrix_g2e",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_rapido2_uhf",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_carriage",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "role": "shuttle"
+        }
+      ],
+      "actual_affected_entries": [
+        {
+          "asset": "filamatrix_rapido2_uhf",
+          "visible_selected_keys": [
+            "filamatrix_rapido2_uhf_246"
+          ],
+          "hidden_selected_keys": []
+        }
+      ],
+      "classification": "AFFECTED_CONFIRMED_VISIBLE_SOURCE_HARDWARE"
+    },
+    {
+      "scope": "installed",
+      "machine": "voron_trident_300",
+      "gantry": "trident_r2",
+      "id": "installed__trident_r2__v21__filamatrix__cw2__rapido2_uhf",
+      "source_head_configuration": "v21__filamatrix__cw2__rapido2_uhf",
+      "tuple": {
+        "toolhead": "stealthburner",
+        "hotend": "rapido2_uhf",
+        "extruder": "cw2",
+        "mount": "filamatrix",
+        "gantry": "trident_r2",
+        "carriage": "filamatrix",
+        "board": "none",
+        "cooling": "source",
+        "probe": "none"
+      },
+      "entries": [
+        {
+          "id": "filamatrix_sb_uhf",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "hidden_keys": []
+        },
+        {
+          "id": "filamatrix_cw2",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_rapido2_uhf",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_carriage",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "role": "shuttle"
+        }
+      ],
+      "actual_affected_entries": [
+        {
+          "asset": "filamatrix_rapido2_uhf",
+          "visible_selected_keys": [
+            "filamatrix_rapido2_uhf_246"
+          ],
+          "hidden_selected_keys": []
+        }
+      ],
+      "classification": "AFFECTED_CONFIRMED_VISIBLE_SOURCE_HARDWARE"
+    },
+    {
+      "scope": "installed",
+      "machine": "voron_trident_300",
+      "gantry": "trident_r2",
+      "id": "installed__trident_r2__v21__filamatrix__galileo2__rapido2_uhf",
+      "source_head_configuration": "v21__filamatrix__galileo2__rapido2_uhf",
+      "tuple": {
+        "toolhead": "stealthburner",
+        "hotend": "rapido2_uhf",
+        "extruder": "galileo2",
+        "mount": "filamatrix",
+        "gantry": "trident_r2",
+        "carriage": "filamatrix",
+        "board": "none",
+        "cooling": "source",
+        "probe": "none"
+      },
+      "entries": [
+        {
+          "id": "filamatrix_sb_uhf",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "hidden_keys": []
+        },
+        {
+          "id": "filamatrix_g2e",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_rapido2_uhf",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_carriage",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "role": "shuttle"
+        }
+      ],
+      "actual_affected_entries": [
+        {
+          "asset": "filamatrix_rapido2_uhf",
+          "visible_selected_keys": [
+            "filamatrix_rapido2_uhf_246"
+          ],
+          "hidden_selected_keys": []
+        }
+      ],
+      "classification": "AFFECTED_CONFIRMED_VISIBLE_SOURCE_HARDWARE"
+    },
+    {
+      "scope": "installed",
+      "machine": "siboor_trident_300",
+      "gantry": "trident_r2",
+      "id": "installed__trident_r2__v21__filamatrix__cw2__rapido2_uhf",
+      "source_head_configuration": "v21__filamatrix__cw2__rapido2_uhf",
+      "tuple": {
+        "toolhead": "stealthburner",
+        "hotend": "rapido2_uhf",
+        "extruder": "cw2",
+        "mount": "filamatrix",
+        "gantry": "trident_r2",
+        "carriage": "filamatrix",
+        "board": "none",
+        "cooling": "source",
+        "probe": "none"
+      },
+      "entries": [
+        {
+          "id": "filamatrix_sb_uhf",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "hidden_keys": []
+        },
+        {
+          "id": "filamatrix_cw2",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_rapido2_uhf",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_carriage",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "role": "shuttle"
+        }
+      ],
+      "actual_affected_entries": [
+        {
+          "asset": "filamatrix_rapido2_uhf",
+          "visible_selected_keys": [
+            "filamatrix_rapido2_uhf_246"
+          ],
+          "hidden_selected_keys": []
+        }
+      ],
+      "classification": "AFFECTED_CONFIRMED_VISIBLE_SOURCE_HARDWARE"
+    },
+    {
+      "scope": "installed",
+      "machine": "siboor_trident_300",
+      "gantry": "trident_r2",
+      "id": "installed__trident_r2__v21__filamatrix__galileo2__rapido2_uhf",
+      "source_head_configuration": "v21__filamatrix__galileo2__rapido2_uhf",
+      "tuple": {
+        "toolhead": "stealthburner",
+        "hotend": "rapido2_uhf",
+        "extruder": "galileo2",
+        "mount": "filamatrix",
+        "gantry": "trident_r2",
+        "carriage": "filamatrix",
+        "board": "none",
+        "cooling": "source",
+        "probe": "none"
+      },
+      "entries": [
+        {
+          "id": "filamatrix_sb_uhf",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "hidden_keys": []
+        },
+        {
+          "id": "filamatrix_g2e",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_rapido2_uhf",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "role": "tool"
+        },
+        {
+          "id": "filamatrix_carriage",
+          "translation_mm": [
+            -0.0006344310030119542,
+            -36.099718725107884,
+            309.09425368029235
+          ],
+          "role": "shuttle"
+        }
+      ],
+      "actual_affected_entries": [
+        {
+          "asset": "filamatrix_rapido2_uhf",
+          "visible_selected_keys": [
+            "filamatrix_rapido2_uhf_246"
+          ],
+          "hidden_selected_keys": []
+        }
+      ],
+      "classification": "AFFECTED_CONFIRMED_VISIBLE_SOURCE_HARDWARE"
+    }
+  ],
+  "generic_VION_consumer_disposition": {
+    "status": "NO_CURRENT_GENERIC_STANDALONE_VION_REGISTRATION_FOUND",
+    "exact_catalog_revision": "f56a8bb4d3268612a13d3684914bbd3d6f8cb39f",
+    "standalone_registrations_enumerated": 1460,
+    "installed_registrations_enumerated": 7498,
+    "generic_component_library_contains_Rapido2UHF": false,
+    "community_sourceView_Head236_is_separate": true,
+    "generic_render_or_native_fit_claim": false,
+    "new_registration_added": false
+  },
+  "unchanged_open_source_families": [
+    {
+      "asset": "sphinx_rapido2_uhf",
+      "current_stored_model": {
+        "path": "modules/sphinx_rapido2_uhf.glb.gz",
+        "bytes": 965207,
+        "sha256": "5213fe70f8d031640d76e7a73d540c9bcdd715c7ea7f7f38fcdf7c6edcba10bc",
+        "url": "https://psych0h3ad.github.io/3d-print-rig/modules/sphinx_rapido2_uhf.glb.gz",
+        "approval_receipt_sha256": "bd6d1fc1543ec3bf2092eaad15268e17979408c08399b098a4fef9e3d4dafcff",
+        "origin": "https://psych0h3ad.github.io/3d-print-rig/modules/sphinx_rapido2_uhf.glb.gz",
+        "source_approval_receipt_sha256": "b43a1d650b283b562d67c3fc7decb0309d5c80310b9c8ef5dca8bbb7def912e0"
+      },
+      "current_decoded_model": {
+        "sha256": "5653b7f8e431dedce176ed94a3e6bb25702e39cba00c4391a8e50500d0f68657",
+        "bytes": 2291804
+      },
+      "current_metadata": {
+        "path": "modules/sphinx_rapido2_uhf.json",
+        "sha256": "45d8b39816d259cd3df0d9d5ddfa1b976209767e011d6f878baadc4e65ff023c",
+        "bytes": 16789,
+        "url": "https://psych0h3ad.github.io/3d-print-rig/modules/sphinx_rapido2_uhf.json"
+      },
+      "status": "OPEN_SOURCE_UPPER_LOWER_RECEIVERS_NONCOAXIAL_NO_REPAIR_APPLIED",
+      "upper_lower_axis_residuals_mm": [
+        0.13971291290851895,
+        0.13971302094249297,
+        0.13971306377014323
+      ],
+      "coldend_key": "sphinx_rapido2_uhf_461"
+    },
+    {
+      "asset": "sphinx45_rapido_uhf_sherpa_9290_hotend",
+      "current_stored_model": {
+        "path": "modules/sphinx45_rapido_uhf_sherpa_9290_hotend.glb.gz",
+        "bytes": 968152,
+        "sha256": "d2a8eacd2c5b05862f527194e1ec1975a4b9be2dfc725a0f12c13589661f6c0b",
+        "url": "https://psych0h3ad.github.io/3d-print-rig/modules/sphinx45_rapido_uhf_sherpa_9290_hotend.glb.gz",
+        "approval_receipt_sha256": "bd6d1fc1543ec3bf2092eaad15268e17979408c08399b098a4fef9e3d4dafcff",
+        "origin": "https://psych0h3ad.github.io/3d-print-rig/modules/sphinx45_rapido_uhf_sherpa_9290_hotend.glb.gz",
+        "source_approval_receipt_sha256": "b43a1d650b283b562d67c3fc7decb0309d5c80310b9c8ef5dca8bbb7def912e0"
+      },
+      "current_decoded_model": {
+        "sha256": "13e2c450be5010e6cb047d2dfd8578500ce531fc73fef33e48e49676525ca066",
+        "bytes": 2293060
+      },
+      "current_metadata": {
+        "path": "modules/sphinx45_rapido_uhf_sherpa_9290_hotend.json",
+        "sha256": "88cb704358631589450d053bd1cabc1522c46888065b7701f4b4beab26605802",
+        "bytes": 17089,
+        "url": "https://psych0h3ad.github.io/3d-print-rig/modules/sphinx45_rapido_uhf_sherpa_9290_hotend.json"
+      },
+      "status": "OPEN_SOURCE_UPPER_LOWER_RECEIVERS_NONCOAXIAL_NO_REPAIR_APPLIED",
+      "upper_lower_axis_residuals_mm": [
+        0.1397129432095569,
+        0.13971302031517507,
+        0.13971304010483676
+      ],
+      "coldend_key": "sphinx45_rapido_uhf_sherpa_9290_hotend_sphinx_rapido2_uhf_461"
+    },
+    {
+      "asset": "xol",
+      "current_stored_model": {
+        "path": "Xol_SherpaMini_Rapido2UHF_AWD9.glb.gz",
+        "bytes": 8584670,
+        "sha256": "cf49226851c76044c61b2f6215e0f940d0708a2e2e355dd656e2513be95828df",
+        "url": "https://psych0h3ad.github.io/3d-print-rig/Xol_SherpaMini_Rapido2UHF_AWD9.glb.gz",
+        "approval_receipt_sha256": "bd6d1fc1543ec3bf2092eaad15268e17979408c08399b098a4fef9e3d4dafcff",
+        "origin": "https://psych0h3ad.github.io/3d-print-rig/Xol_SherpaMini_Rapido2UHF_AWD9.glb.gz",
+        "source_approval_receipt_sha256": "b43a1d650b283b562d67c3fc7decb0309d5c80310b9c8ef5dca8bbb7def912e0"
+      },
+      "current_decoded_model": {
+        "sha256": "7d91de1ae7b0fba352210f2eb6307b19c13930b1c9ec5c4de30e57e60f61a081",
+        "bytes": 23313752
+      },
+      "current_metadata": {
+        "path": "XOL_MOD.json",
+        "sha256": "bc78d4c2ea028fedbacccbcf7f4607505ddfcc7dbb7511bb7186aaca74b53e32",
+        "bytes": 574032,
+        "url": "https://psych0h3ad.github.io/3d-print-rig/XOL_MOD.json"
+      },
+      "status": "OPEN_SOURCE_UPPER_LOWER_RECEIVERS_NONCOAXIAL_NO_REPAIR_APPLIED",
+      "upper_lower_axis_residuals_mm": [
+        0.13971277324569334,
+        0.1397130437643815,
+        0.13971296352677376
+      ],
+      "coldend_key": "xol_rapido_461"
+    },
+    {
+      "asset": "stealthburner",
+      "current_stored_model": {
+        "path": "toolheads/sb_stock.glb.gz",
+        "bytes": 7529592,
+        "sha256": "8e95ecf2e0e33ff14c4d6519f6bc18bc4e749f5f1a5aa6c7e9ec36b83b535b62",
+        "url": "https://psych0h3ad.github.io/3d-print-rig/toolheads/sb_stock.glb.gz",
+        "approval_receipt_sha256": "bd6d1fc1543ec3bf2092eaad15268e17979408c08399b098a4fef9e3d4dafcff",
+        "origin": "https://psych0h3ad.github.io/3d-print-rig/toolheads/sb_stock.glb.gz",
+        "source_approval_receipt_sha256": "b43a1d650b283b562d67c3fc7decb0309d5c80310b9c8ef5dca8bbb7def912e0"
+      },
+      "current_decoded_model": {
+        "sha256": "5b139696ecbd801076863c3c3e752a4c1630f6f39ca70e8f817a15a2ae0404d5",
+        "bytes": 22443592
+      },
+      "current_metadata": {
+        "path": "toolheads/sb_stock.json",
+        "sha256": "4a516030dd823a0bac1fb198005029f07540022325c7cad0ae9f59d0c490418b",
+        "bytes": 35208,
+        "url": "https://psych0h3ad.github.io/3d-print-rig/toolheads/sb_stock.json"
+      },
+      "status": "OPEN_SOURCE_UPPER_LOWER_RECEIVERS_NONCOAXIAL_NO_REPAIR_APPLIED",
+      "upper_lower_axis_residuals_mm": [
+        0.1397134175412337,
+        0.13971295923291682,
+        0.13971290850935417
+      ],
+      "coldend_key": "461"
+    },
+    {
+      "asset": "baseline_siboor_trident_350",
+      "current_stored_model": {
+        "path": "SIBOOR_Trident_350.glb.gz",
+        "bytes": 42888020,
+        "sha256": "a9160ed1716880d731c6e85037972a1dfd15388e10356217d5203ccc8e8b3938",
+        "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/approved-normal-inputs-20261019/a9160ed1716880d731c6e85037972a1dfd15388e10356217d5203ccc8e8b3938.glb.gz",
+        "approval_receipt_sha256": "e8571ad8c9ad286861c48e2d6ef0189248561fe1f13e56480cf5d0a74fc35c31",
+        "origin": "ALL68_ACTUAL_APPROVED_INPUT_BINDINGS_AND_MISSING.json"
+      },
+      "current_decoded_model": {
+        "sha256": "96309090e82efd59e214c403edf4716357a245e76a190038bea88abae315ff52",
+        "bytes": 130176992
+      },
+      "current_metadata": {
+        "path": "assembly_manifest.json",
+        "bytes": 1016432,
+        "sha256": "4fe7fed76a8c003aa652bed57608026dad7b1953ac7b4b589a990d47ff74dadf",
+        "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/approved-normal-inputs-20261019/4fe7fed76a8c003aa652bed57608026dad7b1953ac7b4b589a990d47ff74dadf.json",
+        "approval_receipt_sha256": "e8571ad8c9ad286861c48e2d6ef0189248561fe1f13e56480cf5d0a74fc35c31",
+        "origin": "https://psych0h3ad.github.io/3d-print-rig/assembly_manifest.json"
+      },
+      "status": "OPEN_SOURCE_UPPER_LOWER_RECEIVERS_NONCOAXIAL_NO_REPAIR_APPLIED",
+      "upper_lower_axis_residuals_mm": [
+        0.1397134175412337,
+        0.13971295923291682,
+        0.13971290850935417
+      ],
+      "coldend_key": "461"
+    }
+  ],
+  "unrepaired_confirmed_current_derived_consumers": 935,
+  "original_public_STEP_consumers": [
+    {
+      "machine": "siboor_trident_300",
+      "archive": {
+        "id": 602746893,
+        "name": "siboor-trident-june-300.step.zip",
+        "size": 72681021,
+        "digest": "sha256:105a804cfe647e826cfdc5a51cdf2851ee4b78d249799e2e0855a9f7c6b76cc7",
+        "browser_download_url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v1/siboor-trident-june-300.step.zip",
+        "created_at": "2026-10-01T08:00:39Z",
+        "updated_at": "2026-10-01T08:00:50Z",
+        "content_type": "application/zip"
+      },
+      "decoded_STEP_sha256": "fd83b556f22ab3fd5fc4d93365bc3b1b51a3aa58c3ee66482e03bd20334e1bcb",
+      "status": "OPEN_ORIGINAL_SOURCE_AXES_UNCHANGED_NO_STEP_REPAIR_APPLIED",
+      "scope": "Lexically resolved original source product placements and finite cylinder boundary witnesses. Separate from WebGLB changes; no whole CAD kernel import."
+    },
+    {
+      "machine": "siboor_trident_350",
+      "archive": {
+        "id": 604326159,
+        "name": "siboor-trident-june-350.step.zip",
+        "size": 293509681,
+        "digest": "sha256:9b3ebd1661645e40102626a9f3dc6710c48ed7a3cf05915bfff9ada8b0619f49",
+        "browser_download_url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/viewer-v10/siboor-trident-june-350.step.zip",
+        "created_at": "2026-10-01T23:13:59Z",
+        "updated_at": "2026-10-01T23:14:36Z",
+        "content_type": "application/zip"
+      },
+      "decoded_STEP_sha256": "a9b31da7b5a99993f15e03092b66a7b876f67024de02f45d4deb4ebc06de8aa5",
+      "status": "OPEN_ORIGINAL_SOURCE_AXES_UNCHANGED_NO_STEP_REPAIR_APPLIED",
+      "scope": "Lexically resolved original source product placements and finite cylinder boundary witnesses. Separate from WebGLB changes; no whole CAD kernel import."
+    }
+  ],
+  "source_axis_control_assets": [
+    {
+      "asset": "head_crowncooler",
+      "decoded_model": {
+        "sha256": "927dd2b4d35bb14ecf9f0f4daaea0550530d48e4c148913a573ec59127703ed6",
+        "bytes": 8596948
+      },
+      "scope": "Selected axis defect is absent or distinct; no whole fit claim."
+    },
+    {
+      "asset": "xol_rapido2_hf",
+      "decoded_model": {
+        "sha256": "67ed18c4465d2ea34d16d30a80646c7b200b033c29532e3012b553eb742f4b8b",
+        "bytes": 5366556
+      },
+      "scope": "HF source axes measured separately; no UHF exclusion by name and no whole fit claim."
+    },
+    {
+      "asset": "sb_rapido2_hf",
+      "decoded_model": {
+        "sha256": "25e119070ba874a84e2ab6325fb44e893576fb8e3cf77b241133c7ec7cc7e647",
+        "bytes": 7049048
+      },
+      "scope": "HF source axes measured separately; no UHF exclusion by name and no whole fit claim."
+    }
+  ],
+  "shared_Rapido_family_fixed": false,
+  "whole_machine_or_head_fit_claim": false,
+  "new_generic_geometry": false,
+  "supports_removed": false,
+  "new_native_jobs": 0,
+  "normal_release_gates_complete": false,
+  "publication_performed": false,
+  "notice": "Selected rigid source hardware placements corrected for VIRTU and FilamATrix only. Original source shapes and hardware materials are retained. Kit/Sphinx/SIBOOR source-axis findings remain open at their unchanged hashes."
+}

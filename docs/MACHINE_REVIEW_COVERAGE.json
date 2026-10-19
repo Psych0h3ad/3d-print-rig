@@ -254,6 +254,7 @@
     "scripts/test_v0_state.mjs": "0810a100f64ea1a1a698c45e43d1fb989ebea8a2a2a651d980d2cfff8b7be379",
     "scripts/test_v24_adapter.mjs": "213349652e00b5a8283764725d1cfea31a251a7df2a0eae7db6cf218b28b78f9",
     "scripts/test_v24_belts.mjs": "4c1c0f04e5689f001ef6a34f75d68d7dddde4d9a6b89d5545ec69c3c20436213",
+    "scripts/test_v24_head_retry_lifecycle.mjs": "cd617f4fad566c0043f533e5de04219ee15f12f0405bd58260e48ce7b31750ae",
     "scripts/test_v24_native_drive_metadata.mjs": "a49a4971c21185a9f9c2aab43a010ee79379350721db995e70ed93c86195918d",
     "scripts/test_v24_ptfe.mjs": "c229caa89723e4a15b288950b870458f8015ca83910e5cec418ce9971ac08160",
     "scripts/test_validation_bundle.mjs": "e63cbd081df31ada646dffaffdfb7dbb4e1c28e21a0877dd107a742e1748c89a",
@@ -281,9 +282,9 @@
     "scripts/v0-state-fixtures.mjs": "306efda0c0244a1986669a689fd061ca0508cd3c0aefd77750bb085eee3e98d8",
     "scripts/v0-state-test-runtime.mjs": "ec9b938de3ecb982c56917813a814512c173d0fd5862888008c4cac9b26fd6f2",
     "scripts/viewer_mesh_quality_scope.mjs": "2ea1e605c85fd04c6f901791a1b7da4b4d9e46c450d74ba817f2e375e4c7f19d",
-    "scripts/virtu-may-role-contract.mjs": "8a075e5c6b1c53e1396d28cb0fee808c550122c7954e939dc65b4a8db52f3edd",
+    "scripts/virtu-may-role-contract.mjs": "b8e39e35a41752ed922dfd74d399c3ae650f07c993ad87631a00785b56c3cc2d",
     "scripts/wallpaper_svg_parser.py": "7b209593182bc03ed758b21b869c5b852e03be05adbdaefeba2741683e513405",
-    "site/APPROVED_DELIVERY.json": "8b65f7d46f9d85c84caa3244fb4ad6448c159122cb1018dea72e5ff32198a8f8",
+    "site/APPROVED_DELIVERY.json": "2c374f2e1f717e6fd7066a82f0c9387173093af75ea8617d7c3be9ef1c15d9d0",
     "site/ASSEMBLY_CONFIGURATIONS.json": "2542f57d3ddeb63322057bbbf324b154f4e7b1f0c7edf7168fb4155ed042574a",
     "site/assembly_manifest.json": "4fe7fed76a8c003aa652bed57608026dad7b1953ac7b4b589a990d47ff74dadf",
     "site/ASSET_BUNDLE.json": "10c44725a05926348f9c25ec2f655fa08c2776f855a6f0e3d376e11e24698bca",
@@ -320,7 +321,7 @@
     "site/REAR_ENCLOSURE_QA.json": "6173dc68d5a22fd08fa179797698687e74e8afbe9680e8428053bca24f843f0f",
     "site/REQUESTED_MOD_INSTALLATIONS.json": "1891521be771c2ce0a358c8bdeffdb3f20335250a4ba5ca7252de915f862688a",
     "site/SIBOOR_TRIDENT_ASSETS.json": "9b10bebcaa3b326532fdac5ecc435c6414cf3d0402967ebc99944130b8a8f3b0",
-    "site/SOURCE_ASSEMBLIES.json": "fb6d48c36981b8adc0707a51e7abfa82fbb770daf5430ec93a8409c837bdd8a4",
+    "site/SOURCE_ASSEMBLIES.json": "e7187b346856f128666f9d3c62e824f0fb61ed53bd7e46365315c080b00d098e",
     "site/STOCK_SKIRT_RETENTION_QA_92.json": "470854bb0441c3eb419f9cb28d7684e99730bff55cc0f31ee92327696fb2e678",
     "site/TOOLCHANGER_BANK.json": "f1d3f62e1c5439586dcdf7a90e49b0b1f494dcafb8020ff78352905316fcfed7",
     "site/TOOLCHANGER_CONFIGURATIONS.json": "3893be3025352ec42572d57db1d194c51d4f7329595193d483efe672972df630",
@@ -340,7 +341,7 @@
     "site/viewer/annex-machines.mjs": "3a0e3f3d8e456bee4e5ac266d91c69ca3b6fbc6db8f5a40694f85428c6148c13",
     "site/viewer/annex.html": "332358c6ddd9299fc182dda9675625128a32455eec0ed6e98b443cb1d63b530b",
     "site/viewer/annex.js": "70c4d1f103e78a45ab65357f7c28ddc61291fa37301a3d611367320d05cb709a",
-    "site/viewer/app.js": "88dcf221db75bde0ad612818bf4494407930c44a1fc031ad639be1415cf625da",
+    "site/viewer/app.js": "7acc6aadb559d10d9ee5162e2c5c86d18045e1d1183c8e1039722558e41eb25c",
     "site/viewer/appearance-role.mjs": "6eb709afed84945151b895e97638b817f0fac071ab61c5a45de4cb6fb883e1ed",
     "site/viewer/appearance.js": "c50ecf4651c6ad0e68392df9eea9eb67e8bab6c9542106019c464682b45a01ab",
     "site/viewer/art/cad-background.json": "ebd23566959ec740ae479345ba5601478b53593693ff11466e4934474dd071e8",
@@ -350,7 +351,7 @@
     "site/viewer/baseline-native-datum.mjs": "b86b6ff7d71bab3c11174f8e0834dd181ac5a70d14077b8ff00fffa817e0ad58",
     "site/viewer/bed-chain-pins.mjs": "ea9c3d5f368a9509af7f99da784303eba92df5e316246c8a14942bc0f1bb3ae9",
     "site/viewer/bed-chain.mjs": "5c6ddd46ac13e6974c7352b944225966455ccb4a462a5315519428af3788d4d0",
-    "site/viewer/bootstrap.js": "bb52a76063f4a182939383771cb15d6d7a4f10c165c0b5d10c2cb7cc230c6757",
+    "site/viewer/bootstrap.js": "977a63f296d2ae9a1dcb7c8bc2cf4e92ef519e7f56361a8c0682807155ebe8fa",
     "site/viewer/bounded-sha256.mjs": "7b5cb05f2862b026fadc740607e6d9e5755e1dfc96b555ee88430f36fb684e51",
     "site/viewer/builder-ui.mjs": "68d10d05ef3169741c975fda9b386107aded6d52b6b84591027e7ca623526e7f",
     "site/viewer/changer-bank-model.mjs": "024cc52a5bbc61da75066a1822bca711fd6543b532a1c922e8ac0b44469a016c",
@@ -405,8 +406,8 @@
     "site/viewer/extra-machine-loader.mjs": "59a3413417b286024f59486aeb57592a33f21f26294e866f9f5b5116ecb5f261",
     "site/viewer/flexible.js": "37fd0f2d1bdfe5ac356f0c58bf4a658b8b97a8b5cd6126ecafb1d64f09b0d284",
     "site/viewer/frame-mods.js": "ae02396501c4910a28974b80d74d2d77a79a339c4629dbcf000f47b8e44f3647",
-    "site/viewer/gantries.html": "61e99791ae1928eacaec5704e782a33604d6e3684592d4c090b62d1d9980b72f",
-    "site/viewer/gantries.js": "3a2d06c33018298734616f06d438768e349134591d9dbd4bf8e70ed422bd7024",
+    "site/viewer/gantries.html": "b73bce56703bb067d149deade0850cf32fcec179b585a0fecc8662dabba4aac4",
+    "site/viewer/gantries.js": "719a23fdeb60d293dac8bccb7dfb157deb4e01b30a2087a36a835a8f9fa0c36a",
     "site/viewer/gantry-model.js": "77bee27ae99e3944fc901c733b7fa2450b2e36deb9b789c66328e8c979db2ec4",
     "site/viewer/gcode-loaded-asset-identity.mjs": "42ac134c2d9a8b8f8dfc31744744fb59abf735171ae6b928030371d5e7de8dec",
     "site/viewer/gcode-machine-bindings.mjs": "460777c3fc4d1a74bf27e66d6c4fcca7c4fdd09336412a3263a2b843be621ce1",
@@ -425,7 +426,7 @@
     "site/viewer/head-validation.mjs": "bba39d88e1b5b7f848c0447a93850abd4e8a3accbadfcd4db2e9ff772e855e9d",
     "site/viewer/i18n.mjs": "06116fb55be4a2c8759cdf5c912fee7eea60aba539ea42057882a2d440de4e9d",
     "site/viewer/inactive-head-cache.mjs": "6822e90a376bc578618589c2dfb804276ccc46d9ea257c20ca83b197a8049299",
-    "site/viewer/index.html": "0ba44759e8717b03c61cf168f2737e16c9f78e01345ac8be0b6042c3907dfdd8",
+    "site/viewer/index.html": "5a4933b50a5fd8f9a1c3b2de29e8fbf3ab0af052b4f3029e94165110bfc8903a",
     "site/viewer/internal-spool.mjs": "ca3a453f6bf2966e020830957f6ca3290d89dffebe02ec3aa1b82a45a31c5f99",
     "site/viewer/kit-reference-loader.mjs": "cd960356d2ed24adfde9b70ad0cf5ea777749e40370ec150a84c42e2416eb50a",
     "site/viewer/kit-reference.html": "b7d0797e8df3b7c33dd724f68e7cb5c6986d3f696b770c613cff8cc5c9ca1bf7",
@@ -441,7 +442,7 @@
     "site/viewer/machine-gallery.css": "7db93de9b790a189b26364d7a6835ff9f2252bb2ca18caea2b2b8cb7e530834a",
     "site/viewer/machine-gallery.mjs": "9971bfc91c02b8bef3511ec1214da74a6c0b06de61e59ea806fd7f4b57f6c3b7",
     "site/viewer/machine-head-model.mjs": "c169a439c465b1c90218a768a5f03c89e5729914d56bc16863ad58df79a42eb6",
-    "site/viewer/machine-heads.js": "f4bdba35e0f5182545eb256881e06e5edcd4782a3250404be3d1258eb1c6be6f",
+    "site/viewer/machine-heads.js": "8fb0d948a389001a05795519e17bf317104a95e81aaafea0091a0c41f6118898",
     "site/viewer/machines.html": "1cf828b90010e7eab07e9f4e41d5d0f86dbfc483490d8b96e70aff65057bcc96",
     "site/viewer/machines.js": "ab543d6b01637bc5083f27c3c3649efd6ca89415dd1b64bf86a3e8125d0cd112",
     "site/viewer/madmax-native-joint.mjs": "d39e974d7b782135b52a126b72a071d534bce4beb2acd82f6fe4f509cffd7b42",
@@ -565,15 +566,15 @@
     "site/viewer/toolhead-led-identities.mjs": "eb05026e88ef185682e851eb0b8cc238834a848778f6a9709d3cb5e4db681a7d",
     "site/viewer/toolhead-lighting.mjs": "ca578b1553dca9100db61751bcb560320aaf16672fe979af2a6a2c2bf39abe76",
     "site/viewer/toolheads.css": "5980047d16c1dadb3a63ea9d656c03261a3af30b2748d879158d97aea40a011f",
-    "site/viewer/toolheads.html": "03d85aca496746fe8266d236bdf34a5fff7de99572f80f4fbe9c72abdcd36c30",
-    "site/viewer/toolheads.js": "0d645d351e224a99ab50d432cc9de67ba595792f9344c195c19e5a22f4770f67",
+    "site/viewer/toolheads.html": "774d59aa79fcaf950248b7de972ba8e4014d48fb937714af6334267683067824",
+    "site/viewer/toolheads.js": "d56d2a209c982aa0339e495b33713b1566c3773d031e4ec16597aae538e363ec",
     "site/viewer/translation-engine.mjs": "ad5021536c774dab7b4dd6b7573dc507b06f1d54f5a71bc79809033e33ac8cff",
     "site/viewer/trident-bed-registration.mjs": "17201d090ac06e795be090c94f875e677d4e80054ed8ad16d57a25bb4eddd4fd",
     "site/viewer/trident-belts.mjs": "36cbfcd85e770a25e8220665ee8b44e47c202523f588b9dd2e8e8aa944146511",
     "site/viewer/trident-front-registration.mjs": "6ae818408f2a66ba416aa39b2ac83baed4271c891f885256f686d8e039043eed",
     "site/viewer/trident-motion.mjs": "77312c6bfbf6c7e7563dbf5548ed5600baf2ab2ec2f0f438aa1860af355059ec",
     "site/viewer/trident-roof-tube.mjs": "3c2b6b629363a92659ed04e7fa9d37a2d89c6ae3f008c0acf4ce2f296155ab97",
-    "site/viewer/trident.html": "9455a07860f2d25e1d24c02a3361da32300c5ebc45493c50b66e5fcb3ae410be",
+    "site/viewer/trident.html": "855b6cb0c67ccf3318ba4ba4ea98e7c956801567b9a9cdb8319a3a64c5415171",
     "site/viewer/trinity-alpha-host-extensions.mjs": "9914def3669788eb0d1c09f3ba4d29ad12be5f9c82e814f4c56832a56431bcd4",
     "site/viewer/trinity-alpha-installation.mjs": "3892f21d210f9344c3c8ba35ffd0a4ac66ff18a1d67fecf2edc25de8d0749f88",
     "site/viewer/trinity-alpha-siboor-r2.mjs": "4e43d9910b263febb7381cda334457fcd279d4c3420fa4a334d7857cc4924bdd",
@@ -593,16 +594,16 @@
     "site/viewer/v0.html": "37145958b09bad74cda8cf5c3b659fa29ac5e23eb573792615c3b99305f72ca9",
     "site/viewer/v24_adapter.mjs": "2c7e8b33fb449a513a483e754e501cde1e798970cf75e7f465437a81a2bd7ec2",
     "site/viewer/v24_matrix_adapter.mjs": "1f70f3be4ab4a0e745449c099b6224df7cab8bbccc1abc2a4c1008e8ba18038f",
-    "site/viewer/v24-app.js": "4fbdca8b7f423312054c6a08f95a1cc552951c6a77fe1f7c4fe82be509f1453e",
+    "site/viewer/v24-app.js": "b7159707e24ae8fa79a50bd42a1e3d2f0ae830633d0964e18283b3b16be27e74",
     "site/viewer/v24-belts.mjs": "ad0c97343617f3c11d0be3cebe666aa149794d56872cb3653c80b8c6d4857f72",
-    "site/viewer/v24-bootstrap.js": "ac4c5a318199d759c600c01cca64722a6b744b34e9ea5f14c40f893d54473690",
+    "site/viewer/v24-bootstrap.js": "6b4fe9d035a566c2a828444bd77efd39d142cd745058750bbdcbfbd562548d2d",
     "site/viewer/v24-drive-metadata.mjs": "dbdf9f37cb0849ffc262891895fa2f6f8580d6ec81b23c0821b0f0c00a512c43",
     "site/viewer/v24-flexible.mjs": "4de2768da445f9eef0d59ead19639302112d082c26084fa80d48b6f98635470b",
     "site/viewer/v24-ptfe.mjs": "c4b99bd80cb09e11b702a1da0dea62839204f7727962ecc17929734c9dc008a2",
-    "site/viewer/v24-reference.html": "8459aadf0376fc8622dd18342805b998c212e4099a06d23626d638d4232b0849",
-    "site/viewer/v24-reference.js": "dc2917732ba6f2026ebf1d74f6af27ac17194699e38123640235d3bdff365695",
-    "site/viewer/v24.html": "f8742bdb7e52834ab3a176128e39331456ae262730d5bf5c8a6546ff8df157bf",
-    "site/viewer/vanilla-trident.js": "39b2edb22f234f38c84a201882b64a207d471150d889b0b9b3cf5c29e673463f",
+    "site/viewer/v24-reference.html": "becb08ed40f75b249f5aae48cec3e3bf9d5801963e48ab791d2a52c0b4f5b6ba",
+    "site/viewer/v24-reference.js": "cf24ec0b691336dcb6606250c5f65484012ed41402376be0f2a3dfa0fb8504bd",
+    "site/viewer/v24.html": "5bb283351e523fa74d29a635e40dc90783f01c64e07dd0a6a5f9869ad1d4ddb0",
+    "site/viewer/vanilla-trident.js": "769a0dab52122b6b3128397e3ef3d1a12a4b3990def8d4c4609bd24d0972a046",
     "site/viewer/vendor-r180/BufferGeometryUtils.js": "fda7e946b8e0b5ab39b779206589e7a1079a22eb24efb89d7223e03fdfb1f751",
     "site/viewer/vendor-r180/GLTFLoader.js": "adbbafe8ce40416525b6be0ee5cac0d3782482bcf0122c8ca8ec1ffa77d3440b",
     "site/viewer/vendor-r180/OrbitControls.js": "1c5dfa7751d7ab320ac09b578638f08eecacdaaa68109d097158105f3fc6ad43",
@@ -6305,12 +6306,12 @@
     {
       "id": "rh3d_virtu_may_230",
       "family": "virtu",
-      "model_sha256": "2f9c92fa1fb0253c755f81564309158263c6296f9444fd58ea5e12eea2b6e7aa",
-      "stored_model_sha256": "2f9c92fa1fb0253c755f81564309158263c6296f9444fd58ea5e12eea2b6e7aa",
+      "model_sha256": "829ee70cc5635107ae7e5afb9730484fefbb41713c80460879dace12abe185de",
+      "stored_model_sha256": "829ee70cc5635107ae7e5afb9730484fefbb41713c80460879dace12abe185de",
       "companion_sha256": {
-        "packet-rh3d_virtu_may_230.json": "9e229f3412414e57d5f1ca8f51f4b2a12571350cb52735864811ca2f1540050d",
-        "manifest-2f9c92fa1fb0253c755f81564309158263c6296f9444fd58ea5e12eea2b6e7aa.json": "d2bcda429b001aacfdebe04f7aef501c5cb70da7dd8645fa172cb7b270a073c1",
-        "inventory-rh3d_virtu_may_230.json": "45fe9828df27952ae4fa661eb3193992fffb7dfd91988d5f78d4050a52e82383"
+        "packet-rh3d_virtu_may_230.json": "549a8e4505fb58ce4de09a6720fc6fb56b4c494c3329330be26a37c04eb7a049",
+        "manifest-829ee70cc5635107ae7e5afb9730484fefbb41713c80460879dace12abe185de.json": "535be72adad5756568f911397d926df76fe52d068a4311d73b40220b263bce16",
+        "inventory-rh3d_virtu_may_230.json": "0ad58249bc8c94ac7797c1f86c1a77f56aca03bf98e1180f1e751a7d5dbace32"
       },
       "adapter_sha256": {
         "scripts/render_geometry_qa.mjs": "85520f0fd54ed889e11f99e094d3bb99635cb43b9be74b5016868215a67d80fb"
@@ -6345,6 +6346,11 @@
           "report": "SCOPED69_AFFECTED_SOURCE_PROOF.v1.json",
           "sha256": "fefb2ddb8cc37e6bf6f2302cab36f9b9c66a48da8061be8e53a8101195d4ee7f",
           "scope": "Current actual registration, zero mount-only classification and old/new selector equivalence, plus streamed exact current approved model/companion bytes. Retained published pose/material/native report scopes; no new whole-model physical-fit qualification."
+        },
+        {
+          "report": "docs/RAPIDO2_SELECTED_AXIS_REPAIRS_20261019.json",
+          "sha256": "59c90e2368f8ae5e74098571bc85812112a0d20ad872a633f721e291c2fa2267",
+          "scope": "Current829 selected rigid hardware placements and unchanged shape/attribute proof. All older evidence retains its original model and limited role/geometry scope."
         }
       ],
       "current_review_status": "PASS_SCOPED_RENDER_AND_CONTROLLER",
@@ -6353,11 +6359,11 @@
         "Browser coverage is limited to separately recorded machine/viewport/language interactions."
       ],
       "historical_native_reference": null,
-      "companions_sha256": "8ab3c6bf848cb087e5b81c3d5b416423581b5c1038a147630bfb7c0afa0bb6f7",
+      "companions_sha256": "9e3672f158a7861234b1e99380a234b75dba4dc34ce8334e0ed176e1275bf5e2",
       "current_successor_review_pending": false,
       "viewer_mesh_quality": {
         "schema": "actual-viewer-mesh-quality-v1",
-        "model_sha256": "2f9c92fa1fb0253c755f81564309158263c6296f9444fd58ea5e12eea2b6e7aa",
+        "model_sha256": "829ee70cc5635107ae7e5afb9730484fefbb41713c80460879dace12abe185de",
         "actual_exported_input_identity_verified": true,
         "finite_positions_and_world_matrices": true,
         "meshes": 6027,
@@ -6371,22 +6377,22 @@
           "2104c71a544dac6853c8128b5a447375d31a9e6321f85754400afff68ea704b8",
           "23a4d9af63373be6e1e42c4caf37f4c0112a83de5301f4e434afa8092daad3c7",
           "a99d766621a7e66f188f622c6664e602002e4f7bc59eb7a6b99800c7141de8b1",
-          "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a"
+          "269ab67884f9160f5c31f7603834bbd680c83a6bf991d33b55f377d4fc66e65a",
+          "67f67963a3031b77e0e0e483a2a449ede1f890d96091efa2a4c86127b17bcfee"
         ],
         "source_face_orientation_unknown_not_promoted_to_verified": true,
-        "native_whole_fit_verified": false
+        "native_whole_fit_verified": false,
+        "current_six_rigid_placement_invariance_scope": "59c90e2368f8ae5e74098571bc85812112a0d20ad872a633f721e291c2fa2267"
       },
       "current_controller_review": {
-        "model_sha256": "2f9c92fa1fb0253c755f81564309158263c6296f9444fd58ea5e12eea2b6e7aa",
+        "model_sha256": "829ee70cc5635107ae7e5afb9730484fefbb41713c80460879dace12abe185de",
         "sampled_pose_reset_palette_passed": true,
-        "scope": "Only the actual production controller combinations/poses recorded in the hashed evidence; no whole-physical or all-browser certificate.",
+        "scope": "Exact current normal full/head exported model, selected source hardware repair, sampled actual production movement, reversed/reset/palette and recorded normal save/load. Generic standalone VION is not registered. No whole physical fit claim.",
         "observations": {
-          "sample_poses": 30,
-          "variants": 9,
-          "contrasting_palettes": 3,
-          "native_transform_reset": true,
-          "save_ID_roundtrip": true,
-          "actual_report_sha256": "55c6d227428c8c77a98bb98a660f29c7500384820122c93f41260df3e9999d36"
+          "sample_poses": 1059,
+          "actual_report_sha256": "36b92b44cdd9831065ac2fa07e85e040f406b5d56b42cab4b11265278c0d6622",
+          "parent_GPU_sha256": "d973e9f64f1db7273ff3f5f175d292635b8694115bc8fb909295f4bace9fc971",
+          "old_current_normalized_import_sha256": "fce4645aae3e0db4b5dfc345dfb31d73731fc921924eedf4e2ca0a360486a3b8"
         }
       },
       "known_required_companion_failures": []
@@ -6414,5 +6420,38 @@
     "machines": 69,
     "classified_mount_references": 0,
     "scope": "Fresh current actual catalog, selector equivalence and streamed stored/decoded model/companion identity. Existing pose/native evidence retains its original scope; initial resource check failures remain recorded separately."
+  },
+  "selected_source_axis_repair_scope": {
+    "report": "docs/RAPIDO2_SELECTED_AXIS_REPAIRS_20261019.json",
+    "sha256": "59c90e2368f8ae5e74098571bc85812112a0d20ad872a633f721e291c2fa2267",
+    "shared_family_fixed": false,
+    "all_other68_baseline_body_identities_unchanged": true,
+    "Kit_Sphinx_SIBOOR_findings_remain_open": true
+  },
+  "installed_head_retry_scope": {
+    "runtime_sources": {
+      "site/viewer/machine-heads.js": "8fb0d948a389001a05795519e17bf317104a95e81aaafea0091a0c41f6118898",
+      "site/viewer/v24-reference.js": "cf24ec0b691336dcb6606250c5f65484012ed41402376be0f2a3dfa0fb8504bd"
+    },
+    "regression_test": "scripts/test_v24_head_retry_lifecycle.mjs",
+    "actual_machine_ids": [
+      "voron_v24_250_printed",
+      "voron_v24_250_ldo_cnc",
+      "voron_v24_300_printed",
+      "voron_v24_300_ldo_cnc",
+      "voron_v24_350_printed",
+      "voron_v24_350_ldo_cnc"
+    ],
+    "actual_base_models": {
+      "voron_v24_250_printed": "c94f64fbf04fc48a2b1f5d474dc6c4f70f4d946d9cea2edddcd430be8ca7aebe",
+      "voron_v24_250_ldo_cnc": "7eb406d1350e3da483c8e1beade769b9571abe977c92e4b67ad4fae000c81065",
+      "voron_v24_300_printed": "6f16caedf58dd81149955d5c215aba46cea386bc3ded88bc18bd73722a8d2f5a",
+      "voron_v24_300_ldo_cnc": "451074148753e60129c619d915efa64c305b5a3397b0d9f822d713273702425c",
+      "voron_v24_350_printed": "255ba847abf4f7d862d6e5aaac3f284a860eedac08e5bac32534d75ef42f361f",
+      "voron_v24_350_ldo_cnc": "bd520951b97f06a98049ac29b4ba39d52ad0d6cfd491b2b621002bf612540ba6"
+    },
+    "actual_hotend_model_sha256": "7e265bcea873a1f0195869a2b8389e5784aadd98f4fba3964baa2a4c2daa99fe",
+    "evidence_sha256": "0fcd06a9dda7e4ae3520df2723474c8f4e50d26404dfa70ef19b5cd3b937133a",
+    "scope": "Actual exported V24 bases and complete G2/CW2 heads: failed initial installation, repeated failure, successful retry, XYZ bounds and reversals, native reset, A-B-A, unchanged source buffers and clean/recovered world-matrix equality. Original failure is a retained negative control. Browser GPU and native mating/clearance remain separate."
   }
 }
