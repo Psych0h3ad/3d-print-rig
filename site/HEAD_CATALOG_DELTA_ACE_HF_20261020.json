@@ -1,0 +1,83 @@
+{
+  "schema": "ace-hf-append-only-mounting-catalog-delta-v1",
+  "baseline_catalog": {
+    "bytes": 8912023,
+    "sha256": "910890df1868584a5aef27d39653d2cb124bbeef4cac576703df715a7052e463"
+  },
+  "current_catalog": {
+    "bytes": 8916573,
+    "sha256": "c95523f09e893ed2b4a7603a3e3c74aa39aa0c97508f00b2d60202e26b33afbf"
+  },
+  "retained_original_witnesses": {
+    "HEAD_VALIDATION.json": "307de76ad2fa77fd9f41c62269d8103aa760467f5651cc20a7a71438e99036ec",
+    "MOUNT_VALIDATION.json": "7abe5612128bafc9840587769556f26639b42334002da3906987cf5ec9d179d7"
+  },
+  "added_records": {
+    "assets": {
+      "id": "sb_rapido_ace_hf_complete",
+      "canonical_sha256": "898a8303cb8babe8483c381e803b80fec01d92514a470270a2b3a3b4c700aa38"
+    },
+    "hotends": {
+      "id": "rapido_ace_hf",
+      "canonical_sha256": "8a708f3cdc7311e1fa980bd93110a0cb08706eaefbdca1d0c8b6a6f4b63eab8e"
+    },
+    "variants": {
+      "id": "ace_hf__siboor_awd__stealthburner__cw2__fixed__none",
+      "canonical_sha256": "978f2c6ce6601086abaa1675135f7cddddcf94246ab9c73bf1f1e42a1da21488"
+    }
+  },
+  "retained_catalog_rows": {
+    "assets": 274,
+    "hotends": 33,
+    "variants": 1291
+  },
+  "projection": "Remove only the three identified additions. Compact insertion-order UTF-8 JSON plus the original final CRLF reconstructs the exact historical raw catalog SHA; every other root and value remains unchanged.",
+  "historical_scope": "Original HEAD positive-intersection witnesses and MOUNT selected probe-travel evidence retain only their original configurations and native-body scope. The new ACE pilot is excluded from those historical certificates.",
+  "new_pilot": {
+    "variant": "ace_hf__siboor_awd__stealthburner__cw2__fixed__none",
+    "machine": "siboor_trident_350",
+    "gantry": "siboor_awd",
+    "belt_width_mm": 9,
+    "extruder": "cw2",
+    "mount": "fixed",
+    "probe": "none",
+    "retained_board": "ebb2209_stock",
+    "parts": 40,
+    "decoded_model_sha256": "8c7810f878cb6e2e954cec6544fb6bdb20e54aa8d2e206beda4948c56f7197e9",
+    "parts_metadata_sha256": "81cf82a0f2cfb8739845c6f2a84927568f6dcb87c63761329fad31ed4640aedf",
+    "selected_native_cold_seat": {
+      "report_bytes": 14895,
+      "report_sha256": "4aaee7147fdf8a965f5a391372a3b2a907e2b64b683bbf16091bf46c796a411c",
+      "independent_circular_footprint_sha256": "093d7b5b4d80555db369ac1a09bd0b405276107fd1f821bedb79b43c2c963b44",
+      "faces": [
+        {
+          "source_key": "HF-cold-end",
+          "face": 311,
+          "source_BRep_sha256": "d43b46382b084cb82a533fab33e7da8e260f7597fe6189b7d410798291d45586"
+        },
+        {
+          "source_key": "genuine-3mm-spacer",
+          "face": 19,
+          "source_BRep_sha256": "4294220a765744597ceb5ca95ea20dbf447b717a808aa9768aaf59c541ed3c84"
+        }
+      ],
+      "common_area_mm2": 229.48548936309987,
+      "distance_mm": 0,
+      "fuzzy_value_mm": 0,
+      "result_topology_valid": true,
+      "scope": "Only finite HF cold-end face311 and genuine 3mm spacer underside face19; no whole-body or complete-travel certificate."
+    },
+    "historical_native_witness_scope_includes_new_variant": false,
+    "whole_head_fit_certified": false,
+    "whole_machine_fit_certified": false,
+    "printing_Z0_qualified": false,
+    "source_reference_nozzle_bed_gap_mm": 8.353361399188884,
+    "open_scope": [
+      "Whole hotend/head/machine and continuous native-solid travel clearance.",
+      "Printing Z0 and physical bed reach.",
+      "Physical PTFE/CAN lengths, endpoint pinning and bend limits."
+    ]
+  },
+  "original_native_witness_records_dates_and_scopes_unchanged": true,
+  "whole_machine_fit_certified": false
+}

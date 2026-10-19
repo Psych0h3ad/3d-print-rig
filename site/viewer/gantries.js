@@ -1,9 +1,9 @@
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
-import {setupSceneDisplay} from './display-preferences.mjs?v=ab531b33fbcb36317429';
-import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=742c8844997b5856a728';
-import {loadMonolithData} from './monolith-machine.js?v=49dae28464f9a72b469c';
+import {setupSceneDisplay} from './display-preferences.mjs?v=56b29930754451d8193c';
+import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=16928b39409c2ae378c6';
+import {loadMonolithData} from './monolith-machine.js?v=05b32dd846d4e28e35ac';
 import {machineChoices,machinePage} from './machines.js?v=ab543d6b01637bc5083f';
 import {monolithBeltClip} from './monolith-belt-clip.mjs?v=workspace-belts-1';
 import {setSphinxBeltAttachment} from './sphinx-belt-attachment.mjs?v=bdb8120966adce0a6a64';
@@ -12,11 +12,11 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=34020540905242580aa6';
-import {setupPublicInfo} from './public-info.js?v=04f16ac78c7633a2af39';
+import {setupPublicInfo} from './public-info.js?v=bf195f65383903d3395f';
 import {setupRenderExport} from './render-export.js?v=743ea37fb4e25b58aa57';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=b789e8ab42b105b5f17c';
-import {monolithHeadCatalog} from './monolith-head-model.mjs?v=f6ca1fedfbf7ef1f886b';
-import {setupConfigurations} from './configurations.js?v=ab54bf1336fbc21ae64c';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=1930f70c483bc5b9a8ab';
+import {monolithHeadCatalog} from './monolith-head-model.mjs?v=22cda46c338331493d73';
+import {setupConfigurations} from './configurations.js?v=cb409c061bb86177843f';
 import {gantryDimensions,gantryChoice,gantryAssets} from './gantry-model.js?v=workspace-belts-1';
 export async function mount(scope){
 const $=s=>document.querySelector(s),stage=$('#stage'),scene=scope.scene(new THREE.Scene()),bench=new THREE.Group();scene.add(bench);scene.background=new THREE.Color('#edf1f5');

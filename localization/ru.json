@@ -10837,6 +10837,50 @@
     "ui.support_development": {
       "source_revision": "3e380a9e64c7a433bf76",
       "text": "Поддержать разработку"
+    },
+    "ace_hf.mount": {
+      "source_revision": "d4ed4d13ca1bd830f2ad",
+      "text": "Используются оригинальная проставка 3 mm и крепление Rapido HF."
+    },
+    "ace_hf.pose_scope": {
+      "source_revision": "10342ebe87eef2031e7b",
+      "text": "Сохранены исходные формы деталей и источники; положение определено по исходным монтажным поверхностям. Полная физическая совместимость не подтверждена."
+    },
+    "ace_hf.upstream_routes": {
+      "source_revision": "591e0f0450dbf2cd3330",
+      "text": "Сохранены существующие отображаемые трассы PTFE и CAN. Физическая длина кабелей и пределы изгиба не проверены."
+    },
+    "ace_hf.chain_route_status": {
+      "source_revision": "65b191b583b3decabc09",
+      "text": "Сохранены 47 исходных звеньев и существующие отображаемые трассы PTFE и CAN. Физическая длина кабелей и пределы изгиба не проверены."
+    },
+    "ace_hf.scope3509": {
+      "source_revision": "6d66ebddce943c6caa65",
+      "text": "SIBOOR Trident 350;ремни9 mm;CW2;фиксированное крепление;без датчика."
+    },
+    "ace_hf.catalog_count": {
+      "source_revision": "a656702f735cf1e4300a",
+      "text": "Весь каталог:{0} конфигураций. Эта установка ACE ограничена SIBOOR Trident 350,9 mm,CW2 и фиксированным креплением."
+    },
+    "ace_hf.configuration_file_size": {
+      "source_revision": "bf0cb994770bc8834efe",
+      "text": "Файл конфигурации слишком большой."
+    },
+    "ace_hf.machine_cad_nozzle": {
+      "source_revision": "9896998dfe1395835407",
+      "text": "Сопло в опорной сборке CAD (координаты принтера): X {0} / Y {1} / Z {2} mm"
+    },
+    "ace_hf.z_reference": {
+      "source_revision": "d6b52a7118b8ddabf8ec",
+      "text": "Z=0 соответствует исходной опорной сборке CAD. Зазор между соплом и столом составляет 8.353361 mm; печатный ноль Z и полный ход стола не проверены."
+    },
+    "ace_hf.compatibility_compact": {
+      "source_revision": "8604d681d5b6acb6659a",
+      "text": "SIBOOR Trident 350; ремни 9 mm; CW2; неподвижное крепление; EBB2209; без датчика. Используются крепление Rapido HF и оригинальная проставка 3 mm."
+    },
+    "ace_hf.routing_compact": {
+      "source_revision": "9ea9da875ddd65dc43e2",
+      "text": "Показаны 47 звеньев, PTFE и CAN. Фактическая длина кабелей и пределы изгиба не проверены."
     }
   }
 }

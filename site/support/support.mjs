@@ -1,5 +1,5 @@
-import {setupLanguage,translate,formatMessage} from '../viewer/i18n.mjs?v=2b50474d1e3a055f1cda';
-import {setupHeaderThemeToggle} from '../viewer/display-preferences.mjs?v=ab531b33fbcb36317429';
+import {setupLanguage,translate,formatMessage} from '../viewer/i18n.mjs?v=fb2427de09deb3a9a84f';
+import {setupHeaderThemeToggle} from '../viewer/display-preferences.mjs?v=56b29930754451d8193c';
 import {matchingRows,supportSelection,supportURL} from './model.mjs?v=214df1edebca45b7172f';
 import {readSupportJSON,supportDownloadBlob} from './resource.mjs?v=deb6b9eca87c47bcc2e3';
 

@@ -1,7 +1,7 @@
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
-import {setupSceneDisplay} from './display-preferences.mjs?v=ab531b33fbcb36317429';
-import {workspaceFrame,WorkspaceResizeObserver,workspaceTask,workspaceListen} from './workspace-lifecycle.mjs?v=742c8844997b5856a728';
+import {setupSceneDisplay} from './display-preferences.mjs?v=56b29930754451d8193c';
+import {workspaceFrame,WorkspaceResizeObserver,workspaceTask,workspaceListen} from './workspace-lifecycle.mjs?v=16928b39409c2ae378c6';
 import {v0NativeModelHash,v0NativeDependencyHash,v0NativeByteHash,guardV0NativeInstallations,guardV0NativeAdapter,v0NativeDisplayLimits,v0NativeRangeText,v0NativeStateProfile,assertV0NativePlayback} from './v0-native-installed-gate.mjs?v=2801ee4ab692384c0d13';
 import {createV0Installations,v0Slots,v0TophatMaxAngle} from './v0-installations.mjs?v=055c471ab6122e9cb3fe';
 import {v0ConfigurationSchema,stockV0Mods,validateV0State,readV0ModsURL,v0ModsURL,createV0StateRestorer} from './v0-state.mjs?v=d07ccd54c3039984cc57';
@@ -17,9 +17,9 @@ import {loadModel} from './model-loader.js?v=34020540905242580aa6';
 import {createV0Adapter} from './v0_adapter.mjs?v=4ee2ec34955631397cf3';
 import {setupMachineNavigation} from './machines.js?v=ab543d6b01637bc5083f';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
-import {setupRenderExport} from './render-export.js?v=743ea37fb4e25b58aa57';
-import {setupPublicInfo} from './public-info.js?v=04f16ac78c7633a2af39';
-import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=2e8d1cc51fe9511c776c';
+import {setupRenderExport} from './render-export.js?v=52720bd5e5edde8246d8';
+import {setupPublicInfo} from './public-info.js?v=bf195f65383903d3395f';
+import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=a87a296186e146f91e0f';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
 export async function mount(scope){
 const $=s=>document.querySelector(s),ids=['voron_v02r1_120','voron_v02_120'];

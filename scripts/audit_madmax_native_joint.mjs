@@ -21,7 +21,7 @@ for(const size of [250,300]){
  const machine=`voron_trident_${size}`,raw=await read(`machines/${machine}/configurations.json`),catalog=expandedPrinterCatalog(raw,heads,registry,machine),v=catalog.variants.find(v=>v.id===madmaxJointScope.variant);
  assert(v,'Existing exact source context missing');assert.equal(madmaxJointApplies(machine,v),size===250);
  const scene=new THREE.Scene(),rig=createMachineHeads(scene,{...catalog,base_assets:heads.base_assets});await rig.install(v);
- const rows=[];for(const id of ['madmax_xol_carriage','madmax_mgn12_fasteners']){const a=rig.cache.get(id).loaded;assert.equal(a.nativeJoint?.length||0,size===250?a.entries.length:0);for(const e of a.entries){rows.push({id,entry:e,position:e.mesh.position.clone(),quaternion:e.mesh.quaternion.clone(),scale:e.mesh.scale.clone(),positions:e.mesh.geometry.attributes.position.array.slice(),colors:e.materials.map(m=>m.color.clone()),metalness:e.materials.map(m=>m.metalness),roughness:e.materials.map(m=>m.roughness)});}}
+ const rows=[];for(const id of ['madmax_xol_carriage','madmax_mgn12_fasteners']){const a=rig.cache.get(id).loaded;assert.equal(a.nativeJoint?.length||0,size===250?a.entries.length:0);for(const e of a.entries){rows.push({id,entry:e,position:e.mesh.position.clone(),quaternion:e.mesh.quaternion.clone(),scale:e.mesh.scale.clone(),worldMatrix:(e.mesh.updateWorldMatrix(true,false),e.mesh.matrixWorld.toArray()),positions:e.mesh.geometry.attributes.position.array.slice(),colors:e.materials.map(m=>m.color.clone()),metalness:e.materials.map(m=>m.metalness),roughness:e.materials.map(m=>m.roughness)});}}
  assert.equal(rows.length,5);
  if(size===250){for(const row of rows){const mesh=row.entry.mesh;mesh.updateMatrix();const expected=nativeMatrices.parts[row.entry.key];assert(expected);assert(mesh.matrix.elements.every((v,i)=>Math.abs(v-expected[i])<1e-14),'Production matrix differs from independently native-qualified original source matrix');if(row.id==='madmax_mgn12_fasteners')assert(Math.abs(mesh.position.z-.00020000009999711563)<1e-12);assert(Math.abs(mesh.quaternion.z)>1e-9,'Measured source rotation was discarded');}}
  for(const delta of [[0,0,0],[-125,-125,0],[125,125,250],[0,0,125],[37,-82,61],[-125,-125,0],[125,125,250],[0,0,0]]){
@@ -30,7 +30,27 @@ for(const size of [250,300]){
  for(const palette of [{base:'#00ffff',accent:'#ff00ff'},{base:'#ff00ff',accent:'#00ffff'},{base:'#24272c',accent:'#e32636'}]){rig.setPalette(palette);for(const row of rows)for(const [i,m]of row.entry.materials.entries()){if(['base','accent'].includes(row.entry.role))assert.equal(m.color.getHexString(),palette[row.entry.role].slice(1));else{assert(m.color.equals(row.colors[i]));assert.equal(m.metalness,row.metalness[i]);assert.equal(m.roughness,row.roughness[i]);}paletteChecks++;}}
  const stock=catalog.variants.find(v=>v.id===catalog.default_configuration)||catalog.variants.find(v=>!v.machine_head);assert(stock);await rig.install(stock);
  for(const row of rows){assert(row.entry.mesh.position.length()<1e-14);assert(row.entry.mesh.quaternion.angleTo(new THREE.Quaternion())<1e-14);resetChecks++;}
- for(let pass=0;pass<3;pass++){await rig.install(v);for(const row of rows){assert(row.entry.mesh.position.distanceTo(row.position)<1e-14);assert(row.entry.mesh.quaternion.angleTo(row.quaternion)<1e-14);}await rig.install(null);for(const row of rows)assert(row.entry.mesh.position.length()<1e-14);resetChecks++;}
+ // A purge disposes the old entry. Resolve the selected source key again.
+ for(let pass=0;pass<3;pass++){
+  await rig.install(v);assert.equal(rig.active.id,v.id);const activeRows=[];
+  for(const row of rows){
+   const asset=rig.cache.get(row.id)?.loaded;assert(asset,'Selected native asset missing');
+   assert(asset.root.parent===rig.rig,'Selected native asset root detached');assert(asset.root.visible);
+   const matches=asset.entries.filter(e=>e.key===row.entry.key);assert.equal(matches.length,1,'Selected source key missing or duplicated');
+   const entry=matches[0],mesh=entry.mesh;
+   for(let node=mesh;node!==rig.rig;node=node.parent)assert(node?.visible,'Selected native entry is detached or hidden');
+   mesh.updateWorldMatrix(true,false);
+   assert.deepEqual(mesh.position.toArray(),row.position.toArray());
+   assert.deepEqual(mesh.quaternion.toArray(),row.quaternion.toArray());
+   assert.deepEqual(mesh.scale.toArray(),row.scale.toArray());
+   assert.deepEqual(mesh.matrixWorld.toArray(),row.worldMatrix);
+   assert.deepEqual(mesh.geometry.attributes.position.array,row.positions);
+   activeRows.push(entry);
+  }
+  await rig.install(null);
+  for(const entry of activeRows){assert.deepEqual(entry.mesh.position.toArray(),[0,0,0]);assert.deepEqual(entry.mesh.quaternion.toArray(),[0,0,0,1]);assert.deepEqual(entry.mesh.scale.toArray(),[1,1,1]);}
+  resetChecks++;
+ }
  scene.traverse(o=>{if(o.isMesh){o.geometry.dispose();for(const m of Array.isArray(o.material)?o.material:[o.material])m.dispose()}});scene.clear();rig.cache.clear();globalThis.gc?.();
 }
 const report={passed:true,machines:['voron_trident_250','voron_trident_300'],corrected_host:'voron_trident_250',original_parts:5,poses,actual_vertex_world_checks:vertices,paletteChecks,resetChecks,input_assets:expectedJoint.actual_asset_pins,adapter_sha256:sha(await fs.readFile(new URL('../site/viewer/madmax-native-joint.mjs',import.meta.url))),native_report_sha256:expectedJoint.native_report_sha256,source_geometry_changed:false,browser_review:false,whole_machine_certified:false,scope:'Production installed-head consumer, exact native joint matrix, actual vertex world coordinates, extrema/midpoint/reversal/reset, printed palettes and original purchased materials. Existing 300 host remains unchanged. Full body/belt/dock clearance is not claimed.'};
