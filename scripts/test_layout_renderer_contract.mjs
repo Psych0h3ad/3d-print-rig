@@ -766,6 +766,86 @@ for(const ending of ['commit','cancel','round-trip']){
  api.canvas.emit('pointerdown',screen(new THREE.Vector3(.55,0,0),camera));api.canvas.emit('pointerup');assert.equal(selections.at(-1),'desk','Suppressing a label must not remove its furniture selection footprint');api.dispose();
  passed.push('Label rendering regression: occupied desk+centered child has one visible printer label plane/canvas text; empty desk label returns; A-B-A retains both footprints/IDs/picking; sRGB label canvas and toneMappedfalse preserve UI text color.');
 }
+// Keep pointer movement responsive immediately after contact in both projections.
+// Actual renderer/Three/OrbitControls code; CPU event/WebGL fixture only.
+for(const mode of ['top','perspective']){
+ const proposals=[],contexts=[];
+ const x=operationSetup(true,{constrainMove:(proposal,context)=>{
+  proposals.push({...proposal});contexts.push(structuredClone(context));
+  return proposals.length===1?{x:40,z:0,boundaryLimited:true}:{x:proposal.x,z:proposal.z};
+ }});
+ x.api.view(mode);await settled();const camera=x.renderer.lastCamera;
+ const point=new THREE.Vector3(.4,mode==='top'?0:.75,0),down=screen(point,camera);
+ const movement=screen(point.clone().add(new THREE.Vector3(.6,0,0)),camera);
+ const inward=screen(point.clone().add(new THREE.Vector3(.55,0,0)),camera);
+ x.api.canvas.emit('pointerdown',down);assert.equal(x.selections.at(-1),'desk');
+ x.api.canvas.emit('pointermove',movement);assert.equal(proposals.length,1);
+ x.api.canvas.emit('pointermove',inward);assert.equal(proposals.length,2);
+ const ray=new THREE.Raycaster(),plane=new THREE.Plane(new THREE.Vector3(0,1,0),0);
+ const onPlane=event=>{ray.setFromCamera(new THREE.Vector2(event.clientX/size.width*2-1,1-event.clientY/size.height*2),camera);return ray.ray.intersectPlane(plane,new THREE.Vector3());};
+ const delta=onPlane(inward).sub(onPlane(movement));
+ near(proposals[1].x,40+delta.x*1000,'Immediate inward pointer delta after blocked overshoot '+mode);
+ near(proposals[1].z,delta.z*1000,'Wall pullaway preserves projected tangent '+mode);
+ assert.ok(proposals[1].x<40&&proposals[1].x>-100,'Next inward movement must immediately leave contact, without consuming the old overshoot');
+ assert.deepEqual(contexts[1].origin,{x:0,z:0});assert.deepEqual(contexts[1].previous,{x:40,z:0});
+ x.api.canvas.emit('pointercancel');assert.equal(x.commits.length,0);x.api.dispose();
+ passed.push('Wall pointer anchor/'+mode+': blocked600mm overshoot discarded, next50mm inward pointer motion immediately leaves contact; original snap origin/accepted segment preserved; cancel commitsnothing.');
+}
+
+{
+ const proposals=[],x=operationSetup(false,{constrainMove:proposal=>{proposals.push({...proposal});return {x:0,z:0};}});
+ x.api.view('top');await settled();const camera=x.renderer.lastCamera;camera.zoom=20;camera.updateProjectionMatrix();
+ const point=new THREE.Vector3(.4,0,0),down=screen(point,camera);
+ x.api.canvas.emit('pointerdown',down);
+ for(const delta of [.006,.009,.014])x.api.canvas.emit('pointermove',screen(point.clone().add(new THREE.Vector3(delta,0,0)),camera));
+ assert.equal(proposals.length,3);near(proposals[2].x,14,'Free-space sub-grid movement still accumulates');
+ x.api.canvas.emit('pointercancel');x.api.dispose();passed.push('Unconstrained grid snap retains accumulated small pointer displacement; boundary-only rebasing does not freeze slow drags.');
+}
+
+// Lightweight placement symbols: no CAD/assets are loaded by this case.
+{
+ const file=path.join(A,'layout/layout-catalog.json'),catalog=JSON.parse(fs.readFileSync(file,'utf8'));
+ assert.equal(catalog.machines.length,69,'Every registered placement preview must be covered');
+ const helper=source.slice(source.indexOf('function printerPreviewParts(row) {'),source.indexOf('export function createLayoutRenderer('));
+ assert(helper.startsWith('function printerPreviewParts(row) {'));
+ const preview=new Function(helper+'\nreturn printerPreviewParts;')(),sourceCatalogJSON=JSON.stringify(catalog),results=[];
+ for(const original of catalog.machines){
+  const shape=preview(original),parts=original.proxy?.parts||[];
+  assert(shape.simplePreview&&shape.parts.length<=80,original.id+' preview cell budget');
+  assert(shape.parts.slice(0,parts.length).every((p,i)=>p===parts[i]),original.id+' original source bounds retained');
+  assert(shape.parts.some(p=>p.proxyRole==='bed'||p.proxyRole==='bed-cue'));
+  assert(shape.parts.some(p=>p.proxyRole==='base-cue'));
+  assert.equal(shape.parts.filter(p=>p.proxyRole==='contact-foot').length,4);
+  const extents=[original.dimensionsMm.width,original.dimensionsMm.height,original.dimensionsMm.depth].map(v=>v/1000);
+  for(const p of shape.parts){
+   assert(p.centerM.every(Number.isFinite)&&p.sizeM.every(v=>Number.isFinite(v)&&v>0));
+   if(p.previewCue)for(let axis=0;axis<3;axis++){
+    assert(p.centerM[axis]-p.sizeM[axis]/2>=(axis===1?0:-extents[axis]/2)-1e-10);
+    assert(p.centerM[axis]+p.sizeM[axis]/2<=(axis===1?extents[axis]:extents[axis]/2)+1e-10);
+   }
+  }
+  for(const offset of [original.baseOffsetMm||0,27.5]){
+   size={width:400,height:300};const row={...original,widthMm:original.dimensionsMm.width,depthMm:original.dimensionsMm.depth,heightMm:original.dimensionsMm.height,baseOffsetMm:offset},catalogRows=[row],raised=offset===27.5;
+   const desk=S.createDesk({id:'proxy-desk',widthMm:4000,depthMm:4000,heightMm:740,pose:{xMm:4000,zMm:4000,yawDeg:0}});
+   const printer={id:'proxy-printer',machineId:row.id,configurationId:null,attachment:{parentId:raised?desk.id:null,surfaceId:raised?'top':'floor',xMm:raised?0:4000,zMm:raised?0:4000,yawDeg:90}};
+   const state=S.createDefaultLayout({room:S.createRoomRect({widthMm:10000,depthMm:10000}),furniture:raised?[desk]:[],printers:[printer]},catalogRows);
+   const derived=S.deriveScene(state,catalogRows),api=factory({container:{getBoundingClientRect:()=>({...size}),append(){}},catalog:catalogRows});
+   api.setState(state,printer.id);api.view('front');await settled();
+   const renderer=renderers.at(-1);let group;renderer.lastScene.traverse(o=>{if(o.userData.entityId===printer.id&&o.userData.simplePreview)group=o});assert(group,original.id+' actual renderer preview');
+   const ground=derived.printers[0].supportYM,bounds=new THREE.Box3(),geometries=new Set();group.updateMatrixWorld(true);
+   group.traverse(o=>{if(o.isMesh){bounds.union(new THREE.Box3().setFromObject(o));geometries.add(o.geometry)}});
+   assert(Math.abs(bounds.min.y-ground)<1e-9,original.id+' supportYM contact, offset '+offset);
+   assert.equal(group.position.y,ground);assert.equal(geometries.size,1,'One shared box geometry for preview solids');
+   assert.equal(group.children.length,shape.parts.length);assert(group.userData.simplePreview);
+   api.dispose();await settled();
+  }
+  results.push({id:original.id,style:shape.style,cells:shape.parts.length,triangles:shape.parts.filter(p=>!p.wireframe).length*12});
+ }
+ assert.equal(JSON.stringify(catalog),sourceCatalogJSON,'Preview must not edit source catalog');
+ observations.push({case:'lightweight-printer-preview-all69',catalog:pin(file),machines:results,sourceAndPositiveBaseOffsetContact:true,fullCADLoaded:false});
+ passed.push('All69 catalog printers retain source bounds/colors, gain bounded bed/base/contact cues using one shared box geometry, and opaque feet meet actual deriveScene supportYM on floor and desk even with positive native baseOffset; final CAD remains separate.');
+}
+
 const ownerSourceStillMatchesSnapshot=sha(fs.readFileSync(input))===sha(Buffer.from(source));
 assert.equal(ownerSourceStillMatchesSnapshot,true,'Renderer changed during source regression');
 assert.deepEqual(findings,[],'Renderer contract regression findings');

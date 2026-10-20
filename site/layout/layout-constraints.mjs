@@ -47,3 +47,25 @@ export function rigidMotionStaysInside(outer,local,start,end){
   return true;
  });
 }
+
+// Contact tolerance selects candidate wall tangents only. It never waives a
+// containment test: the complete subsequent swept path must still be inside.
+export function boundaryTangents(outer,polygon){
+ const pointDistance=(p,a,b)=>{
+  const x=b[0]-a[0],z=b[1]-a[1],length=x*x+z*z;
+  const t=Math.max(0,Math.min(1,((p[0]-a[0])*x+(p[1]-a[1])*z)/length));
+  return Math.hypot(p[0]-a[0]-t*x,p[1]-a[1]-t*z);
+ };
+ const scale=Math.max(1,...outer.flat().map(Math.abs),...polygon.flat().map(Math.abs));
+ const tolerance=Math.max(1e-7,scale*Number.EPSILON*64),result=[];
+ for(let i=0;i<outer.length;i++){
+  const a=outer[i],b=outer[(i+1)%outer.length];
+  if(!polygon.some((p,j)=>{
+   const q=polygon[(j+1)%polygon.length];
+   return Math.min(pointDistance(p,a,b),pointDistance(q,a,b),pointDistance(a,p,q),pointDistance(b,p,q))<=tolerance;
+  }))continue;
+  const length=Math.hypot(b[0]-a[0],b[1]-a[1]);
+  result.push([(b[0]-a[0])/length,(b[1]-a[1])/length]);
+ }
+ return result;
+}

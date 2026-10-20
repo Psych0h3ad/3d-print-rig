@@ -16,7 +16,7 @@
     {
       "path": ".github/workflows/pages.yml",
       "bytes": 1017,
-      "sha256": "a677f6709c56d7312083b2cc31294348cdc411cea9d6230bb7eb5a4a22302f5a"
+      "sha256": "f65e60d4d695b4a5f08f74afe9f96c5140f343e2d1d74bd7c308b8c6d99c74c0"
     },
     {
       "path": ".github/workflows/source-check.yml",
@@ -215,8 +215,8 @@
     },
     {
       "path": "docs/LAYOUT_PLANNER.md",
-      "bytes": 5464,
-      "sha256": "305cc874a62bd1a6c52521bb8c822b7c3a63ad6dcd5f0de5aa5290bbddbc5a5c"
+      "bytes": 5617,
+      "sha256": "6ec3d381efb0f9a323b63c4e6dacd6cce747116d23923e114e47f4af220b183b"
     },
     {
       "path": "docs/MACHINE_REVIEW.md",
@@ -226,7 +226,7 @@
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
       "bytes": 422198,
-      "sha256": "2ebd75eb2ee08580866e9a2f4f1310dd1b02759acbdb7aba1e62e0b9dac114dd"
+      "sha256": "0806bcddbc0b2eda475c0c489c11ab580a2b1a23ea1d3f5734600356cd81a3b4"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -1455,8 +1455,8 @@
     },
     {
       "path": "scripts/test_layout_renderer_contract.mjs",
-      "bytes": 82474,
-      "sha256": "0833d6156416898d4e3b5725a51f75705fc845753c95eb81d1ed1d499e7419f5"
+      "bytes": 89342,
+      "sha256": "71329c81726e4ee110d7680d3201e780b44836786a5efcff3ecad0d5ad99965e"
     },
     {
       "path": "scripts/test_layout_room_height.mjs",
@@ -1480,8 +1480,8 @@
     },
     {
       "path": "scripts/test_layout_state_geometry.mjs",
-      "bytes": 34008,
-      "sha256": "0f5c28285e0a9dd123393d925f284c6b335c779ed8d57efb7828c90a95762759"
+      "bytes": 46052,
+      "sha256": "479fa0f8429aa76ba17e1ca1b38a7c8971c10566391f63e00299e8478431cf0e"
     },
     {
       "path": "scripts/test_layout_svg_room_editor.mjs",
@@ -4581,12 +4581,12 @@
     {
       "path": "site/layout/index.html",
       "bytes": 7559,
-      "sha256": "786af4da782ce5b91878e32f1aa542993614dc6f2f9dde336f56e64721e4692b"
+      "sha256": "e9b7859179cc12e154903e12fb23e885315ba1f59470f5980a4de0f7b629194d"
     },
     {
       "path": "site/layout/layout-app.mjs",
-      "bytes": 19182,
-      "sha256": "2af007edc256c7e7bd5ee010f908dd67b980967eb07622f48261e731ea1732a2"
+      "bytes": 19236,
+      "sha256": "c6dc5927dac6992839c478c8818f36f348d2283d365d273bda91ea6955b994d4"
     },
     {
       "path": "site/layout/layout-catalog.json",
@@ -4595,8 +4595,8 @@
     },
     {
       "path": "site/layout/layout-constraints.mjs",
-      "bytes": 2807,
-      "sha256": "041ba558083059e154a4cf61a2ddc90c77d62be3490a403bb3d8d778e1e2b73c"
+      "bytes": 3781,
+      "sha256": "e0fbda794064e531577f5b3a2ff66e1e4321e01de6d79062cd5bad3fdab4d341"
     },
     {
       "path": "site/layout/layout-geometry.mjs",
@@ -4625,8 +4625,8 @@
     },
     {
       "path": "site/layout/layout-renderer.mjs",
-      "bytes": 34959,
-      "sha256": "9a8b8619091c4ce2758eb729a847761ee9cc891dc1acce8f1b030580a658adfc"
+      "bytes": 38979,
+      "sha256": "7beb63b8d64af417fe71b866813d170dc58c7022491d81480408e3a123b4c3ce"
     },
     {
       "path": "site/layout/layout-room-editor.css",
@@ -4636,12 +4636,12 @@
     {
       "path": "site/layout/layout-room-editor.mjs",
       "bytes": 12901,
-      "sha256": "b0908e419ac38a9b1de2c76973f11bf621ad9259ee2b76c295ceb93f8fad4aed"
+      "sha256": "149899d5ad83a44fc5e9257133683c44a8bbf487eda55e5d4d2d2916199a6f7a"
     },
     {
       "path": "site/layout/layout-state.mjs",
-      "bytes": 34006,
-      "sha256": "f92965b9f4e1780b368a200a79a6cc1a4dd2fe0cc6676bc98d864999caf846a0"
+      "bytes": 35778,
+      "sha256": "1a995a044e74b64e926fee464a1b7f5fa51ce3129f7e86ab2ecfac1a7a332187"
     },
     {
       "path": "site/layout/layout-svg.mjs",
@@ -4651,7 +4651,7 @@
     {
       "path": "site/layout/layout-ui.mjs",
       "bytes": 31580,
-      "sha256": "51f1e00bfc14877677f116634d30634f728099026b4ad06570168a33d6b7aa73"
+      "sha256": "15d511444fdd6e05f627048e54ac1171bf785ce2b8a7f5f6f3bddded63d742bd"
     },
     {
       "path": "site/layout/layout-zero-face-admissions.mjs",
