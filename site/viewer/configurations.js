@@ -74,12 +74,12 @@ export async function setupConfigurations(catalog,install,{presentation='printer
   const headLink=$('#toolheadLink');if(presentation==='printer'&&headLink&&catalog.machine_id){const u=new URL(headLink.href,location.href);u.searchParams.set('return_machine',catalog.machine_id);u.searchParams.set('return_configuration',v.id);u.searchParams.set('return_head',u.searchParams.get('configuration'));headLink.href=u.href}
  }
  async function refresh(v,extraData,adjustment){return workspaceTask(async()=>{
-  if(busy||!v)return false;busy=true;updateEditor();const previousExtras=getExtras();let success=false;
+  if(busy||!v)return false;const targetData={...extraData,configuration:v.id};validateExtras(targetData);busy=true;updateEditor();const previousExtras=getExtras();let success=false;
   for(const k of ids)$('#'+k+'Config').disabled=true;
   for(const id of ['loadConfiguration','saveConfiguration'])$('#'+id).disabled=true;
   $('#configStatus').textContent='選択したCADを読み込み中…';
-  try{await install(v);if(extraData)await applyExtras(extraData);commit(v);success=true;if(adjustment){$('#configStatus').textContent+=' ／ 登録済みの組み合わせに合わせて変更：'+adjustment;$('#configStatus').classList.add('notice')}}catch(e){
-   let restored=false;if(actual){try{await install(actual);await applyExtras(previousExtras);restored=true}catch(restore){console.error(restore)}menus(draft.current||actual)}
+  try{await install(v);if(extraData)await applyExtras(targetData);commit(v);success=true;if(adjustment){$('#configStatus').textContent+=' ／ 登録済みの組み合わせに合わせて変更：'+adjustment;$('#configStatus').classList.add('notice')}}catch(e){
+   let restored=false;if(actual){try{const previousData={...previousExtras,configuration:actual.id};validateExtras(previousData);await install(actual);await applyExtras(previousData);restored=true}catch(restore){console.error(restore)}menus(draft.current||actual)}
    if(!restored){actual=null;draft.invalidateApplied();delete $('#configStatus').dataset.variant}
    $('#configStatus').textContent=restored?'切替に失敗しました。直前の構成を表示中。':'CADの読み込みに失敗しました。構成を選び直して再試行してください。';$('#configStatus').classList.add('notice');console.error(e);
   }finally{busy=false;for(const k of ids)$('#'+k+'Config').disabled=false;$('#loadConfiguration').disabled=false;$('#saveConfiguration').disabled=!actual;updateEditor();onSettled(actual)}
@@ -117,11 +117,11 @@ export async function setupConfigurations(catalog,install,{presentation='printer
  const input=$('#configurationFile');$('#loadConfiguration').onclick=()=>input.click();
  input.onchange=async()=>{return workspaceTask(async()=>{
   const file=input.files[0];input.value='';if(!file||busy)return;
-  try{if(file.size>16*1024*1024)throw Error('構成ファイルが大きすぎます。');const data=JSON.parse(await file.text());if(file.size>64*1024&&!data.source47_v15)throw Error('構成JSONは64 KB以下で指定してください。');const variant=importedVariant(catalog,data);validateExtras(data);if(await refresh(variant,data))undoState=null;updateEditor()}
+  try{if(file.size>16*1024*1024)throw Error('構成ファイルが大きすぎます。');const data=JSON.parse(await file.text());if(file.size>64*1024&&!data.source47_v15)throw Error('構成JSONは64 KB以下で指定してください。');const variant=importedVariant(catalog,data);if(await refresh(variant,data))undoState=null;updateEditor()}
   catch(e){$('#configStatus').textContent=e.message}
  });};
  menus(initial);await refresh(initial);
  if(actual&&catalog.machine_id!=='monolith_workbench'&&query.get('gantry')&&!requestedId&&!gantryRequest){$('#configStatus').textContent='指定されたガントリーはこの機体に未登録です。現在の表示：'+$('#configSummary').textContent;$('#configStatus').classList.add('notice')}
  if(actual&&requestedId&&!matched){$('#configStatus').textContent='指定された構成はこの機種に未登録です。現在の表示：'+$('#configSummary').textContent;$('#configStatus').classList.add('notice')}
- return {selectVariant:async(id,extras)=>{return workspaceTask(async()=>{const v=configurationById(catalog,id);if(!v)throw Error('構成のCADが未登録です。');if(extras)validateExtras({...extras,configuration:v.id});const success=await refresh(v,extras);if(success)undoState=null;updateEditor();return success});},applyDraft,discardDraft,undo,stageChoice,get draft(){return draft},get current(){return actual},get busy(){return busy}};
+ return {selectVariant:async(id,extras)=>{return workspaceTask(async()=>{const v=configurationById(catalog,id);if(!v)throw Error('構成のCADが未登録です。');const success=await refresh(v,extras);if(success)undoState=null;updateEditor();return success});},applyDraft,discardDraft,undo,stageChoice,get draft(){return draft},get current(){return actual},get busy(){return busy}};
 });}

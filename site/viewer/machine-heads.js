@@ -22,14 +22,14 @@ import {loadModel} from './model-loader.js?v=3a71971c97a749c16228';
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import {partKey} from './head-assembly.js';
 import {v24HeadCatalog} from './machine-head-model.mjs?v=b68ff87fef4b584fb459';
-import {setupConfigurations} from './configurations.js?v=ba98ca9f3633ae0e0f96';
+import {setupConfigurations} from './configurations.js?v=6b825fd0156ef46dedad';
 
 import {loadSiboorRegistration} from './siboor-catalog.mjs?v=efb2bb0f84ce0efe76d8';
 import {stockProbeFit} from './probe-mounts.js?v=a1329a1bc56ae518c00a';
 
 import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs';
 import {bankPlan} from './changer-bank-model.mjs?v=024cc52a5bbc61da7506';
-import {setupChangerBank} from './changer-bank.js?v=ca2d753d81d2570738f4';
+import {setupChangerBank} from './changer-bank.js?v=32830c5eaed32a666959';
 import {contentSHA256,acceptedMountValidation} from './mount-validation.mjs';
 import {acceptedHeadValidation}from './head-validation.mjs';
 import {withHeadAdditions} from './head-additions.mjs?v=28317048846d076205c3';
