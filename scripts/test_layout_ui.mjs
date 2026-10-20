@@ -154,8 +154,26 @@ test('legacy boundary repair remains editable with plan export and blocks detail
   }
   ui.setLocale(createLayoutTranslator('en'));mirror();
 });
+test('section shortcuts scroll only the sidebar and retain the current selection and source values',()=>{
+  selection='desk-1';mirror();const before=JSON.stringify(state),count=actions.length,scrolls=[];
+  const draft=field('widthMm');draft.value='1499.25';draft.dispatch('input');
+  container.scrollTop=200;container.getBoundingClientRect=()=>({top:20});container.scrollTo=options=>scrolls.push(options);
+  container.querySelector('[role=toolbar]').getBoundingClientRect=()=>({height:100});
+  for(const name of ['room','add','objects','selection']){
+    const target=container.querySelector(`#layout-nav-${name}`);target.getBoundingClientRect=()=>({top:500});target.scrollIntoView=()=>{throw Error('Must not scroll window or other ancestors');};
+    command(`layout.nav.${name}`).click();
+  }
+  assert.equal(scrolls.length,4);assert(scrolls.every(s=>s.top===580&&s.behavior==='instant'));
+  container.querySelector('#layout-nav-room').getBoundingClientRect=()=>({top:-1000});command('layout.nav.room').click();assert.equal(scrolls.at(-1).top,0);
+  assert.equal(draft.value,'1499.25');assert.equal(JSON.stringify(state),before);assert.equal(actions.length,count);
+  draft.blur();selection=null;mirror();assert.equal(command('layout.nav.selection').disabled,true);
+  selection='desk-1';mirror();assert.equal(command('layout.nav.selection').disabled,false);
+  ui.setStatus({busy:true});assert.equal(command('layout.nav.selection').disabled,true);ui.setStatus({busy:false});
+  for(const lang of ['en','ja','es','ko','ru']){const tr=createLayoutTranslator(lang);ui.setLocale(tr);for(const name of ['room','add','objects','selection'])assert.equal(command(`layout.nav.${name}`).getAttribute('aria-label'),tr(`layout.nav.${name}`));}
+  ui.setLocale(createLayoutTranslator('en'));mirror();
+});
 test('dispose removes own UI, listeners and later updates are inert',()=>{const n=command('layout.addDesk'),before=actions.length;ui.dispose();n.click();ui.update(state,'desk-1',[]);assert.equal(container.children.length,0);assert.equal(actions.length,before);ui.dispose();});
 const pin=p=>{const b=readFileSync(p);return {sha256:createHash('sha256').update(b).digest('hex'),bytes:b.length};};
-assert.equal(results.length,45,'Unexpected UI fixture count');
+assert.equal(results.length,46,'Unexpected UI fixture count');
 assert.deepEqual(results.filter(r=>!r.pass),[],'UI source/action/short-number regression failures');
 console.log(JSON.stringify({status:'PASS',scope:'Actual UI/state/language modules; DOM events and room are fixtures, not browser/model/native evidence.',cases:results.length,ui:pin(resolve(site,'layout/layout-ui.mjs')),state:pin(resolve(site,'layout/layout-state.mjs')),language:pin(resolve(site,'layout/layout-i18n.mjs')),roomFixture:pin(browserSavedPath)}));

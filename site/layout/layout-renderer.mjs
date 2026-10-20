@@ -76,8 +76,8 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   const objectTools=document.createElement('div');objectTools.className='layout-object-tools';objectTools.hidden=true;objectTools.setAttribute('role','group');objectTools.setAttribute('data-layout-i18n-aria-label','layout.rotationControls');container.append(objectTools);
   const toolListeners=[];
   const listen=(element,type,handler)=>{element.addEventListener(type,handler);toolListeners.push([element,type,handler]);};
-  function rotateButton(name,path){
-    const b=document.createElement('button');b.type='button';b.setAttribute('data-layout-rotation',name);
+  function rotateButton(name,path,attribute='data-layout-rotation'){
+    const b=document.createElement('button');b.type='button';b.setAttribute(attribute,name);
     const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 24 24');svg.setAttribute('aria-hidden','true');
     const p=document.createElementNS('http://www.w3.org/2000/svg','path');p.setAttribute('d',path);svg.append(p);b.append(svg);objectTools.append(b);return b;
   }
@@ -85,6 +85,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   const rotateHandle=rotateButton('handle','M4 8a8 8 0 0 1 14-2l3 3m0 0V3m0 6h-6M20 16a8 8 0 0 1-14 2l-3-3m0 0v6m0-6h6');rotateHandle.className='layout-rotation-handle';
   const rotationValue=document.createElement('output');rotationValue.setAttribute('aria-hidden','true');rotateHandle.append(rotationValue);
   const rotateRight=rotateButton('right','M21 10V4m0 0h-6m6 0-4 4a8 8 0 1 0 1 9');
+  const focusButton=rotateButton('focus-selected','M9 3H3v6m12-6h6v6M3 15v6h6m12-6v6h-6M9 12h6m-3-3v6','data-layout-action');
   const scene=new THREE.Scene();scene.background=new THREE.Color('#e9edef');
   const planCamera=new THREE.OrthographicCamera(-2,2,2,-2,.01,1000);planCamera.up.set(0,0,-1);
   const planControls=new OrbitControls(planCamera,canvas);planControls.enabled=false;planControls.enableRotate=false;planControls.enableDamping=false;planControls.screenSpacePanning=true;planControls.minZoom=.05;planControls.maxZoom=10000;
@@ -167,7 +168,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     const width=lastWidth||container.getBoundingClientRect().width,height=lastHeight||container.getBoundingClientRect().height;
     const half=Math.min(width/2,110);objectTools.style.left=`${Math.max(half,Math.min(width-half,(anchor.x+1)*width/2))}px`;objectTools.style.top=`${Math.max(Math.min(64,height),Math.min(height-12,(1-anchor.y)*height/2-12))}px`;
     objectTools.setAttribute('aria-label',t('layout.rotationControls'));objectTools.title=t('layout.rotationHint');
-    for(const [button,key]of [[rotateLeft,'layout.rotateLeft'],[rotateRight,'layout.rotateRight'],[rotateHandle,'layout.rotateHandle']]){button.setAttribute('aria-label',t(key));button.title=t(key);}
+    for(const [button,key]of [[rotateLeft,'layout.rotateLeft'],[rotateRight,'layout.rotateRight'],[rotateHandle,'layout.rotateHandle'],[focusButton,'layout.focusSelected']]){button.setAttribute('aria-label',t(key));button.title=t(key);}
     const yaw=drag?.kind==='rotate'?drag.accepted.yawDeg:g.rotation.y*180/Math.PI;
     const angle=((yaw%360)+360)%360;rotationValue.textContent=`${Math.abs(angle-360)<.05||Math.abs(angle)<.05?0:Math.round(angle*10)/10}°`;
   }
@@ -241,6 +242,30 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     camera.lookAt(controls.target);perspectiveReady=true;
     }
     if(refit)controls.update();camera.updateMatrixWorld(true);presentView();draw();onViewChange(getView());return getView();
+  }
+  // Camera-only framing: never changes the selected object's pose or history.
+  function focusSelected(){
+    if(disposed||exporting||drag||!current||!(isPlan()?planReady:perspectiveReady))return false;
+    const g=objects.get(selectedId),plan=planObjects.get(selectedId);if(!g||!plan)return false;
+    scene.updateMatrixWorld(true);
+    const ids=[selectedId,...(current.printers||[]).filter(p=>p.attachment.parentId===selectedId).map(p=>p.id)],bounds=new THREE.Box3();
+    for(const id of ids){
+      const flat=planObjects.get(id),solid=objects.get(id);
+      if(isPlan()&&flat)for(const [x,z]of flat.userData.planPoints)bounds.expandByPoint(new THREE.Vector3(x+flat.position.x,0,z+flat.position.z));
+      else if(!isPlan()&&solid)bounds.union(new THREE.Box3().setFromObject(solid));
+    }
+    if(bounds.isEmpty()||![...bounds.min.toArray(),...bounds.max.toArray()].every(Number.isFinite))return false;
+    const center=bounds.getCenter(new THREE.Vector3()),size=bounds.getSize(new THREE.Vector3());
+    if(isPlan()){
+      const aspect=lastWidth/Math.max(1,lastHeight);planHalfHeight=Math.max(size.z,size.x/aspect,.1)*.6;
+      planCamera.zoom=1;controls.target.set(center.x,0,center.z);planCamera.position.set(center.x,10,center.z);resize();
+    }else{
+      const direction=camera.position.clone().sub(controls.target);if(direction.lengthSq()===0)direction.set(1,.8,1);
+      const halfAngle=Math.atan(Math.tan(THREE.MathUtils.degToRad(camera.fov)/2)*Math.min(camera.aspect,1));
+      const distance=THREE.MathUtils.clamp(size.length()/2/Math.sin(halfAngle)*1.15,controls.minDistance,controls.maxDistance);
+      controls.target.copy(center);camera.position.copy(center).add(direction.normalize().multiplyScalar(distance));
+    }
+    camera.lookAt(controls.target);controls.update();camera.updateMatrixWorld(true);updateSelection();draw();return true;
   }
   function eventPoint(event){const r=canvas.getBoundingClientRect();pointer.set((event.clientX-r.left)/r.width*2-1,-(event.clientY-r.top)/r.height*2+1);raycaster.setFromCamera(pointer,camera);}
   function hit(event){scene.updateMatrixWorld(true);camera.updateMatrixWorld(true);eventPoint(event);const intersections=raycaster.intersectObjects(isPlan()?[...planObjects.values()]:[...furnitureGroup.children,...printersGroup.children],true);for(const h of intersections){if(h.object.userData.planLabel)continue;let o=h.object;while(o&&!o.userData.entityId)o=o.parent;if(o)return o.userData.entityId;}return null;}
@@ -334,6 +359,8 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   for(const [type,handler]of [['pointerdown',down],['pointermove',move],['pointerup',up],['pointercancel',cancel],['lostpointercapture',cancel]])canvas.addEventListener(type,handler,true);
   const eventWindow=canvas.ownerDocument?.defaultView;eventWindow?.addEventListener('blur',cancel);
   const keyCancel=event=>{if(event.key==='Escape'&&drag){event.preventDefault();cancel();}};eventWindow?.addEventListener('keydown',keyCancel);
+  listen(focusButton,'click',()=>focusSelected());
+  listen(canvas,'keydown',event=>{if(event.repeat||event.ctrlKey||event.metaKey||event.altKey||event.key.toLowerCase()!=='f')return;if(focusSelected())event.preventDefault();});
   listen(rotateLeft,'click',()=>turnBy(-90));listen(rotateRight,'click',()=>turnBy(90));
   for(const button of [rotateLeft,rotateHandle,rotateRight])listen(button,'keydown',event=>{if(drag||event.repeat||event.ctrlKey||event.metaKey||event.altKey)return;const delta=event.key==='ArrowLeft'?-(event.shiftKey?1:15):event.key==='ArrowRight'?(event.shiftKey?1:15):event.key.toLowerCase()==='r'?(event.shiftKey?-90:90):0;if(delta){event.preventDefault();turnBy(delta);}});
   for(const [type,handler]of [['pointerdown',rotationDown],['pointermove',rotationMove],['pointerup',up],['pointercancel',cancel],['lostpointercapture',cancel]])listen(rotateHandle,type,handler);
@@ -436,5 +463,5 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   }
   function releaseResources(){if(resourcesDisposed)return;resourcesDisposed=true;disposeTree(planGroup);planSelection.geometry.dispose();planSelection.material.dispose();for(const o of roomGroup.children)if(o.userData.roomOwned){o.geometry.dispose();o.material.dispose();}boxGeometry.dispose();wireGeometry.dispose();wireMaterial.dispose();wallMaterial.dispose();for(const m of palette.values())m.dispose();grid.geometry.dispose();grid.material.dispose();selectionBox.geometry.dispose();selectionBox.material.dispose();environment.dispose();renderer.dispose();canvas.remove();}
   function dispose(){if(disposed)return;cancel();disposed=true;exportAbort?.abort();if(frame)cancelAnimationFrame(frame);observer.disconnect();perspectiveControls.dispose();planControls.dispose();eventWindow?.removeEventListener('blur',cancel);eventWindow?.removeEventListener('keydown',keyCancel);for(const [element,type,handler]of toolListeners)element.removeEventListener(type,handler);objectTools.remove();for(const [type,handler]of [['pointerdown',down],['pointermove',move],['pointerup',up],['pointercancel',cancel],['lostpointercapture',cancel]])canvas.removeEventListener(type,handler,true);if(!exporting)releaseResources();}
-  resize();setTool();return {setState,setTool,setOptions,view,getView,exportImage,dispose,canvas};
+  resize();setTool();return {setState,setTool,setOptions,view,getView,focusSelected,exportImage,dispose,canvas};
 }

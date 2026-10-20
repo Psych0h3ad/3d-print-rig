@@ -39,6 +39,15 @@ for(const language of supportedLanguages){
   languageCases++;
 }
 const app=read('layout/layout-app.mjs'),start=app.indexOf('async function start()');
+// The desktop shell must not become a programmatic scroll container when a
+// sidebar control or scene canvas receives focus. overflow:hidden alone failed
+// the browser header-position regression; the mobile notice retains page scroll.
+const shellCSS=read('layout/layout.css');
+const desktopShell=shellCSS.match(/body\[data-layout-ready=["']true["']\]\s+\.layout-app\s*\{([^}]+)\}/u);
+assert(desktopShell,'Clip the desktop-ready shell without clipping the mobile notice');
+assert(/\bposition\s*:\s*fixed\b/u.test(desktopShell[1]));
+assert(/\binset\s*:\s*0\s*(?:;|$)/u.test(desktopShell[1]));
+assert(/\boverflow\s*:\s*clip\b/u.test(desktopShell[1]),'Hidden overflow still permits focus-induced shell scroll');
 const desktopReturn=app.indexOf("document.body.dataset.layoutReady='desktop-only';return;",start);
 function catalogFetchOffset(source){
   const matches=[...source.matchAll(/fetch\(new URL\('\.\/layout-catalog\.json(?:\?v=[a-f0-9]{20})?',/gu)];

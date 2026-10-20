@@ -42,10 +42,13 @@ function environment(){
  const doc={documentElement:{dataset:{theme:'light'}},body:new E('body'),title:'',createElement:tag=>{const n=new E(tag);all.push(n);return n},
   querySelector:q=>byId[q]||null,
   querySelectorAll:q=>q==='[data-layout-view]'?views:q==='[data-layout-link]'?all.filter(n=>Object.hasOwn(n.dataset,'layoutLink')):q.startsWith('[data-layout-i18n]')?[...new Set(all.flatMap(descendants))].filter(n=>Object.keys(n.dataset).some(k=>k.startsWith('layoutI18n'))):[]};
+ const documentListeners=new Map();
+ doc.addEventListener=(type,listener)=>{const listeners=documentListeners.get(type)||[];listeners.push(listener);documentListeners.set(type,listeners)};
+ doc.removeEventListener=(type,listener)=>documentListeners.set(type,(documentListeners.get(type)||[]).filter(value=>value!==listener));
  const store=new Map(),win={location:{href:'https://example.invalid/layout/?lang=en',origin:'https://example.invalid'},localStorage:{getItem:k=>store.get(k)??null,setItem:(k,v)=>store.set(k,v)},history:{state:null,replaceState(_s,_x,url){win.location.href=url}},
   addEventListener(){},removeEventListener(){},dispatchEvent(){},CustomEvent:class{constructor(type,value){this.type=type;Object.assign(this,value)}},
   matchMedia:q=>({matches:q==='(hover: none) and (pointer: coarse)'})};
- return {doc,win,canvas,hint,theme,workspace,appRoot,views};
+ return {doc,win,canvas,hint,theme,workspace,appRoot,views,documentListeners};
 }
 await test('canvas-aria-label-refreshes-five-languages-through-real-language-module',()=>{
  const e=environment(),source=unique(renderer,'const canvas=renderer.domElement;','container.append(canvas);')+'container.append(canvas);';
@@ -143,7 +146,7 @@ await test('deferred-layout-import-never-overwrites-newer-commands-or-disposed-p
  }
  {
   const r=make(),d=deferred(),pending=r.act({type:'import',file:d.file});d.resolve(text);await pending;
-  assert.equal(encoded(r),text);assert.deepEqual(r.messages,[['layout.loaded']]);assert.deepEqual(r.views,['perspective']);
+  assert.equal(encoded(r),text);assert.deepEqual(r.messages,[['layout.loaded']]);assert.deepEqual(r.views,['perspective','fit']);
   assert.equal(typeof r.statusNode._layoutMessage.format,'function');assert.equal(r.statusNode._layoutMessage.format(),'layout.loaded');assert.equal(r.statusNode.textContent,'layout.loaded');assert.equal(r.statusNode.hidden,false);assert.equal(r.uiStatuses.at(-1).message,'layout.loaded');assert.equal(r.uiStatuses.at(-1).error,false);
  }
  {
@@ -156,19 +159,21 @@ await test('desktop-bootstrap-reaches-ready-with-automatic-renderer-and-no-remov
  assert.equal([...bootstrap.matchAll(importPattern)].length,1);
  const source=bootstrap.replace(importPattern,'deps.rendererModule').replaceAll('import.meta.url',"'https://example.invalid/layout/layout-app.mjs'");
  const defaultSource=unique(app,'function makeDefault(){','\nlet pendingMove=');
+ const historySource=unique(app,'function historyKey(event){','\nasync function start(){');
  const e=environment(),catalogData=JSON.parse(read('layout/layout-catalog.json'));
  const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
  const run=new AsyncFunction('deps',`
   const {createDefaultLayout,createDesk,createCatalog,applyAction,parseLayout}=deps;
   const document=deps.doc,$=q=>document.querySelector(q),navigator={deviceMemory:8},localStorage={getItem:()=>null};
   const storageKey='test',maxFileBytes=2097152,fetch=async()=>({ok:true,json:async()=>deps.catalogData});
-  let state,catalog,rows,ui,view,selected=null,busy=false,roomEditing=false;
+  let state,catalog,rows,ui,view,selected=null,busy=false,roomEditing=false,disposed=false;const past=[],future=[];
   const language={t:key=>key},t=key=>key,act=()=>{},select=()=>{},worldMove=()=>{},constrainMove=()=>{},worldRotate=deps.rotationPorts.onRotate,constrainRotate=deps.rotationPorts.constrainRotate,message=()=>{},humanError=()=> 'error';
   const calls={sync:0,language:0,views:[],presentations:[],options:[]};
   const sync=()=>calls.sync++,updateLanguage=()=>calls.language++,dark=()=>false;
   const updateViewPresentation=value=>calls.presentations.push(value);
   const createLayoutUI=()=>({fixture:true});
   ${defaultSource}
+  ${historySource}
   ${source}
   return {ready:document.body.dataset.layoutReady,state,calls,view};`);
  const rotationPorts={onRotate:()=>{},constrainRotate:()=>false};
@@ -180,6 +185,7 @@ await test('desktop-bootstrap-reaches-ready-with-automatic-renderer-and-no-remov
  const result=await run({doc:e.doc,catalogData,createDefaultLayout,createDesk,createCatalog,applyAction,parseLayout,rendererModule,rotationPorts});
  assert.equal(result.ready,'true');assert.equal(result.state.furniture.length,1);assert.equal(result.state.printers.length,1);assert.equal(result.calls.sync,1);assert.equal(result.calls.language,1);
  assert.deepEqual(result.calls.presentations,[{mode:'perspective',projection:'perspective-3d'}]);
+ assert.equal(e.documentListeners.get('keydown')?.length,1,'Actual startup must bind the actual history callback');
 });
 
 await test('actual-app-failed-noop-and-successful-commit-status-lifecycle',async()=>{
@@ -227,6 +233,208 @@ await test('actual-app-failed-noop-and-successful-commit-status-lifecycle',async
  }
 });
 
+await test('planner-history-shortcuts-preserve-text-editing-and-busy-operations',async()=>{
+ const source=unique(app,'function historyKey(event){','\nasync function start(){');
+ const factory=new Function('deps',`let disposed=false,busy=false,roomEditing=false;const past=[1],future=[2],act=deps.act;${source};return {key:historyKey,flags:v=>{disposed=!!v.disposed;busy=!!v.busy;roomEditing=!!v.roomEditing;},past,future};`);
+ const commands=[],r=factory({act:a=>commands.push(a.type)});
+ const key=(value,extra={})=>{let prevented=false;r.key({key:value,ctrlKey:true,target:{closest:()=>null},preventDefault(){prevented=true;},...extra});return prevented;};
+ assert(key('z'));assert(key('z',{shiftKey:true}));assert(key('y'));assert(key('Z',{ctrlKey:false,metaKey:true}));
+ assert.deepEqual(commands,['undo','redo','redo','undo']);
+ for(const extra of [{repeat:true},{defaultPrevented:true},{altKey:true},{ctrlKey:false},{target:{closest:()=>({tagName:'INPUT'})}},{target:{closest:()=>({tagName:'TEXTAREA'})}},{target:{closest:()=>({tagName:'DIALOG'})}},{target:{closest:()=>({isContentEditable:true})}}])assert.equal(key('z',extra),false);
+ for(const flag of ['disposed','busy','roomEditing']){r.flags({[flag]:true});assert.equal(key('z'),false);r.flags({});}
+ assert.equal(key('y',{shiftKey:true}),false);assert.equal(key('x'),false);assert.equal(commands.length,4);
+ r.past.length=0;r.future.length=0;assert.equal(key('z'),false);assert.equal(key('y'),false);
+ assert(app.includes("document.addEventListener('keydown',historyKey)"));assert(app.includes("document.removeEventListener('keydown',historyKey)"));
+});
+// Replay the real action dispatcher, commit/sync and canvas callback together.
+// The catalog row is the shipped default envelope, not a replacement model.
+const catalogData=JSON.parse(read('layout/layout-catalog.json'));
+const shipped=catalogData.machines.find(row=>row.id==='siboor_trident_350');assert.ok(shipped);
+const productionRows=[{...shipped,widthMm:shipped.dimensionsMm.width,depthMm:shipped.dimensionsMm.depth,heightMm:shipped.dimensionsMm.height}];
+const productionCatalog=createCatalog(productionRows);
+const printer=(id,parentId=null,surfaceId='floor',xMm=0,zMm=0,yawDeg=0)=>({id,machineId:shipped.id,configurationId:null,attachment:{parentId,surfaceId,xMm,zMm,yawDeg}});
+const makePlan=(furniture=[],printers=[],size=8000)=>createDefaultLayout({room:createRoomRect({widthMm:size,depthMm:size}),furniture,printers},productionCatalog);
+function replayCommands(initial,selection){
+ const header=unique(app,'const id=prefix=>','function makeDefault(');
+ const moves=unique(app,'let pendingMove=','\nasync function render(');
+ const actions=unique(app,'async function act(action){','\nfunction updateViewPresentation(');
+ const keyStart="view.canvas.addEventListener('keydown',event=>{";
+ const keyboard=unique(app,keyStart,'\n  });').slice(keyStart.length);
+ const engine=new Function('S','initial','selection','rows','catalog',`
+  const {createDefaultLayout,createDesk,createShelf,applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,deriveScene,worldTransform,serializeLayout,parseLayout,validatePlacement}=S;
+  let state=initial,selected=selection,busy=false,roomEditing=false,disposed=false,interactionGeneration=0,operation=null,nextId=1;
+  const past=[],future=[],writes=[],updates=[],maxFileBytes=2097152,storageKey='fixture',document={body:{dataset:{}}};
+  const status={hidden:true,textContent:''},$=()=>status,language={t:key=>key},ui={setStatus(){},update(_state,id){updates.push(id)}};
+  const localStorage={setItem(_key,value){writes.push(value)}},view={setState(){},view(){}};
+  ${header}
+  ${moves}
+  ${actions}
+  function key(event){${keyboard}}
+  return {act,key,constrainMove,worldMove,read:()=>({state,selected,past:[...past],future:[...future],writes:[...writes],updates:[...updates],status:{...status}})};
+ `)(S,initial,selection,productionRows,productionCatalog);
+ return engine;
+}
+const encoded=engine=>serializeLayout(engine.read().state,productionCatalog);
+const closeTo=(actual,expected,message)=>assert.ok(Math.abs(actual-expected)<1e-9,`${message}: ${actual} versus ${expected}`);
+await test('failed-add-and-duplicate-preserve-selection-history-and-storage-atomically',async()=>{
+ const rightEdge=2000-productionRows[0].widthMm/2-50;
+ const cases=[
+  {state:makePlan([],[printer('original',null,'floor',rightEdge)],4000),selected:'original',action:{type:'duplicate',id:'original'}},
+  {state:makePlan([S.createDesk({id:'support',widthMm:400,depthMm:400})]),selected:'support',action:{type:'add',kind:'printer',machineId:shipped.id}},
+  {state:makePlan([S.createDesk({id:'original',pose:{xMm:1350,zMm:0,yawDeg:0}})],[],4000),selected:'original',action:{type:'duplicate',id:'original'}},
+  {state:makePlan([S.createDesk({id:'original',widthMm:100,depthMm:100})],[],200),selected:'original',action:{type:'add',kind:'desk'}},
+  {state:makePlan([S.createDesk({id:'original',widthMm:100,depthMm:100})],[],200),selected:'original',action:{type:'add',kind:'shelf'}}
+ ];
+ for(const item of cases){
+  const r=replayCommands(item.state,item.selected),before=encoded(r);
+  await r.act(item.action);const result=r.read();
+  assert.strictEqual(result.state,item.state);assert.equal(encoded(r),before);assert.equal(result.selected,item.selected);
+  assert.equal(result.past.length,0);assert.equal(result.future.length,0);assert.equal(result.writes.length,0);
+  assert.equal(result.updates.at(-1),item.selected,'Error sync must retain the existing selection');assert.equal(result.status.hidden,false);
+ }
+ // Rejection must also leave a real redo entry usable.
+ const r=replayCommands(cases[1].state,'support');
+ await r.act({type:'UPDATE_FURNITURE',id:'support',patch:{pose:{xMm:100}}});await r.act({type:'undo'});
+ const before=r.read();await r.act(cases[1].action);assert.deepEqual(r.read().past,before.past);assert.deepEqual(r.read().future,before.future);assert.equal(r.read().writes.length,before.writes.length);
+ await r.act({type:'redo'});assert.equal(r.read().state.furniture[0].pose.xMm,100);
+});
+await test('successful-add-and-duplicate-select-new-entity-once-with-real-undo-redo',async()=>{
+ for(const action of [{type:'add',kind:'desk'},{type:'add',kind:'shelf'},{type:'add',kind:'printer',machineId:shipped.id},{type:'duplicate',id:'support'}]){
+  const initial=makePlan([S.createDesk({id:'support',widthMm:1600,depthMm:1600})]),r=replayCommands(initial,'support');
+  await r.act(action);const after=r.read(),parts=[...after.state.furniture,...after.state.printers];
+  assert.equal(parts.length,2);assert.notEqual(after.selected,'support');assert.ok(parts.some(p=>p.id===after.selected));
+  assert.equal(after.past.length,1);assert.strictEqual(after.past[0],initial);assert.equal(after.writes.length,1);assert.equal(after.updates.at(-1),after.selected);
+  const result=encoded(r);await r.act({type:'undo'});assert.equal(encoded(r),serializeLayout(initial,productionCatalog));await r.act({type:'redo'});assert.equal(encoded(r),result);
+ }
+ const initial=makePlan([],[printer('original')]),r=replayCommands(initial,'original');await r.act({type:'duplicate',id:'original'});
+ assert.equal(r.read().state.printers.length,2);assert.notEqual(r.read().selected,'original');assert.equal(r.read().past.length,1);
+});
+await test('canvas-arrows-move-in-world-axes-with-rotated-support-reversal-and-boundary-guards',async()=>{
+ for(const yaw of [0,90,180,37.5]){
+  const desk=S.createDesk({id:'support',widthMm:1800,depthMm:1600,pose:{xMm:300,zMm:-500,yawDeg:yaw}});
+  const initial=makePlan([desk],[printer('child','support','top',100,-50)]),r=replayCommands(initial,'child');
+  const origin=S.worldTransform(initial,'child',productionCatalog);
+  for(const [key,shift,dx,dz]of [['ArrowRight',false,10,0],['ArrowLeft',false,-10,0],['ArrowDown',true,0,100],['ArrowUp',true,0,-100]]){
+   const before=r.read(),world=S.worldTransform(before.state,'child',productionCatalog);let prevented=0;
+   r.key({key,shiftKey:shift,preventDefault(){prevented++}});await Promise.resolve();const after=r.read(),next=S.worldTransform(after.state,'child',productionCatalog);
+   assert.equal(prevented,1);closeTo(next.xMm-world.xMm,dx,'World X delta');closeTo(next.zMm-world.zMm,dz,'World Z delta');
+   assert.equal(after.past.length,before.past.length+1);assert.deepEqual(after.state.furniture,initial.furniture);assert.equal(S.placementViolations(after.state,productionCatalog).length,0);
+  }
+  const restored=S.worldTransform(r.read().state,'child',productionCatalog);closeTo(restored.xMm,origin.xMm,'Reverse X');closeTo(restored.zMm,origin.zMm,'Reverse Z');
+  // Numeric attachment fields intentionally retain support-local semantics.
+  const before=S.worldTransform(r.read().state,'child',productionCatalog),local=r.read().state.printers[0].attachment;
+  await r.act({type:'UPDATE_PRINTER',id:'child',patch:{attachment:{xMm:local.xMm+10}}});
+  const after=S.worldTransform(r.read().state,'child',productionCatalog),angle=yaw*Math.PI/180;
+  closeTo(after.xMm-before.xMm,10*Math.cos(angle),'Numeric local X projected to world X');closeTo(after.zMm-before.zMm,-10*Math.sin(angle),'Numeric local X projected to world Z');
+ }
+ for(const extra of [{ctrlKey:true},{metaKey:true},{altKey:true}]){
+  const r=replayCommands(makePlan([],[printer('p')]),'p');let prevented=false;r.key({key:'ArrowRight',...extra,preventDefault(){prevented=true}});
+  assert.equal(prevented,false);assert.equal(r.read().past.length,0);
+ }
+ // A world arrow at a rotated support edge must reject, not leak past its surface.
+ const width=productionRows[0].widthMm,depth=productionRows[0].depthMm;
+ const support=S.createDesk({id:'support',widthMm:width+200,depthMm:depth+200,pose:{xMm:0,zMm:0,yawDeg:90}});
+ const initial=makePlan([support],[printer('child','support','top',0,100)]),r=replayCommands(initial,'child'),before=encoded(r);
+ r.key({key:'ArrowRight',preventDefault(){}});await Promise.resolve();assert.equal(encoded(r),before);assert.equal(r.read().past.length,0);assert.equal(r.read().selected,'child');assert.equal(r.read().status.hidden,false);
+ // Keyboard movement of furniture preserves all attached local datums.
+ const f=replayCommands(makePlan([S.createDesk({id:'desk',widthMm:1600,depthMm:1400,pose:{xMm:200,zMm:-300,yawDeg:37.5}})],[printer('follower','desk','top',100,-50)]),'desk');
+ const child=S.worldTransform(f.read().state,'follower',productionCatalog),attachment=f.read().state.printers[0].attachment;
+ f.key({key:'ArrowDown',preventDefault(){}});const moved=S.worldTransform(f.read().state,'follower',productionCatalog);
+ closeTo(moved.xMm,child.xMm,'Follower X');closeTo(moved.zMm-child.zMm,10,'Follower Z');assert.deepEqual(f.read().state.printers[0].attachment,attachment);
+ // Prepared pointer state is consumed exactly once with no new drop snap.
+ const p=replayCommands(makePlan([],[printer('pointer',null,'floor',0.25,-0.5)]),'pointer');
+ const preview=p.constrainMove({id:'pointer',x:10.25,z:-0.5},{previous:{x:0.25,z:-0.5},origin:{x:0.25,z:-0.5}});
+ assert.ok(preview);assert.equal(p.read().past.length,0);assert.equal(p.worldMove({id:'pointer',x:preview.x,z:preview.z}),true);assert.equal(p.read().past.length,1);assert.equal(S.worldTransform(p.read().state,'pointer',productionCatalog).xMm,preview.x);
+});
+await test('add-board-uses-upper-bay-thickness-and-occupied-envelope-with-stable-surfaces',async()=>{
+ const shelf=(options={})=>S.createShelf({id:'shelf',heightMm:1800,widthMm:1600,depthMm:1400,boardThicknessMm:20,levels:[{id:'level-1',topMm:20}],...options});
+ {
+  const initial=makePlan([shelf()]),r=replayCommands(initial,'shelf');await r.act({type:'add-level',id:'shelf'});
+  const result=r.read(),levels=result.state.furniture[0].levels;assert.equal(levels.length,2);assert.deepEqual(levels[0],initial.furniture[0].levels[0]);assert.deepEqual(levels[1],{id:'level-2',topMm:920});
+  assert.equal(result.selected,'shelf');assert.equal(result.past.length,1);assert.equal(result.writes.length,1);
+  const next=encoded(r);await r.act({type:'undo'});assert.equal(encoded(r),serializeLayout(initial,productionCatalog));await r.act({type:'redo'});assert.equal(encoded(r),next);
+ }
+ {
+  const initial=makePlan([shelf({heightMm:1000,levels:[{id:'level-1',topMm:20}]})],[printer('occupant','shelf','level-1')]);
+  const r=replayCommands(initial,'shelf');await r.act({type:'add-level',id:'shelf'});const next=r.read().state;
+  assert.equal(next.furniture[0].levels.length,2);const top=next.furniture[0].levels[1].topMm;
+  assert.ok(top-20>=20+productionRows[0].heightMm,'Board underside clears the existing catalog envelope');
+  assert.deepEqual(next.printers,initial.printers);assert.equal(S.validatePlacement(next,productionCatalog).filter(i=>i.code==='SHELF_BOARD_INTERSECTION').length,0);
+ }
+ {
+  const initial=makePlan([shelf({heightMm:60,levels:[{id:'level-1',topMm:20},{id:'level-3',topMm:60}]})]);
+  const r=replayCommands(initial,'shelf');await r.act({type:'add-level',id:'shelf'});
+  assert.deepEqual(r.read().state.furniture[0].levels,[{id:'level-1',topMm:20},{id:'level-2',topMm:40},{id:'level-3',topMm:60}]);
+ }
+ const blocked=[
+  makePlan([shelf({heightMm:30})]),
+  makePlan([shelf({heightMm:500})],[printer('occupant','shelf','level-1')]),
+  makePlan([shelf({heightMm:1000,levels:Array.from({length:32},(_,i)=>({id:`level-${i+1}`,topMm:20+i*20}))})])
+ ];
+ for(const initial of blocked){
+  const r=replayCommands(initial,'shelf'),before=encoded(r);await r.act({type:'add-level',id:'shelf'});
+  assert.equal(encoded(r),before);assert.strictEqual(r.read().state,initial);assert.equal(r.read().past.length,0);assert.equal(r.read().writes.length,0);assert.equal(r.read().selected,'shelf');assert.equal(r.read().status.hidden,false);
+ }
+});
+
+await test('translated-room-load-reset-and-applied-outline-refit-only-after-accepted-state',async()=>{
+ const header=unique(app,'const id=prefix=>','function makeDefault(');
+ const original=unique(app,'async function act(action){','\nfunction updateViewPresentation(');
+ const editorImport=/await import\('\.\/layout-room-editor\.mjs\?v=[a-f0-9]+'\)/g;
+ assert.equal([...original.matchAll(editorImport)].length,1);
+ const actions=original.replace(editorImport,'await deps.editorModule()');
+ const factory=new Function('deps',`
+  const {createDefaultLayout,createDesk,createShelf,applyAction,applyWorldMove,deriveScene,serializeLayout,parseLayout,validatePlacement}=deps.S;
+  const rows=deps.rows,catalog=deps.catalog,past=[],future=[],writes=[],views=[],document={body:{dataset:{}}};
+  let state=deps.initial,selected=null,busy=false,roomEditing=false,disposed=false,interactionGeneration=0,operation=null,nextId=1;
+  const maxFileBytes=2097152,storageKey='fixture',status={hidden:true,textContent:''},$=()=>status;
+  const language={t:key=>key},ui={setStatus(){},update(){}},localStorage={setItem(_key,value){writes.push(value)}};
+  const view={setState(){},view(mode){views.push({mode,state,stored:writes.at(-1)})}};
+  ${header}
+  ${actions}
+  return {act,read:()=>({state,selected,past:[...past],views:[...views],writes:[...writes],status:{...status}})};
+ `);
+ const translated={polygonMm:[[8000,9000],[18000,9000],[18000,17000],[8000,17000]],wallHeightMm:2400};
+ const saved=createDefaultLayout({room:translated,furniture:[S.createDesk({id:'translated-desk',pose:{xMm:13000,zMm:12000,yawDeg:0}})],printers:[printer('translated-printer',null,'floor',13000,14500)]},productionCatalog);
+ const text=serializeLayout(saved,productionCatalog);let draft=null;
+ const r=factory({S,rows:productionRows,catalog:productionCatalog,initial:makePlan(),editorModule:async()=>({openRoomEditor:async()=>draft})});
+ await r.act({type:'import',file:{size:text.length,text:async()=>text}});
+ let result=r.read();assert.equal(serializeLayout(result.state,productionCatalog),text);
+ assert.deepEqual(result.views.map(v=>v.mode),['perspective','fit']);
+ for(const event of result.views){assert.strictEqual(event.state,result.state);assert.equal(event.stored,text,'Sync/store the imported scene before requesting its fit');}
+ assert.equal(result.past.length,1);
+ await r.act({type:'select',id:'translated-desk'});assert.equal(r.read().views.length,2,'Mere selection must preserve the camera');
+ await r.act({type:'import',file:{size:1,text:async()=>'{'}});assert.equal(r.read().views.length,2,'Rejected load must preserve the camera');
+ for(const type of ['edit-room','import-svg']){
+  draft={polygonMm:[[7000,8000],[20000,8000],[20000,19000],[7000,19000]],wallHeightMm:2600};
+  const before=r.read().views.length;await r.act({type,file:type==='import-svg'?{name:'room.svg'}:undefined});
+  result=r.read();assert.deepEqual(result.state.room,draft);assert.deepEqual(result.views.slice(before).map(v=>v.mode),['perspective','fit']);
+  assert.ok(result.views.slice(before).every(event=>event.state===result.state));
+ }
+ const before=r.read();draft=null;await r.act({type:'edit-room'});assert.equal(r.read().views.length,before.views.length);assert.strictEqual(r.read().state,before.state);
+ draft={polygonMm:[[-100,-100],[100,-100],[100,100],[-100,100]],wallHeightMm:2400};
+ await r.act({type:'edit-room'});assert.equal(r.read().views.length,before.views.length);assert.strictEqual(r.read().state,before.state,'Rejected outline must preserve the plan and camera');
+ await r.act({type:'reset'});result=r.read();assert.deepEqual(result.state,createDefaultLayout());assert.deepEqual(result.views.slice(-2).map(v=>v.mode),['perspective','fit']);
+ // Replay the actual view-button callback: perspective/native-view switches
+ // remain explicit switches, with no automatic fit added to their lifecycle.
+ const toggle=unique(app,"for(const e of document.querySelectorAll('[data-layout-view]'))",'\n  for(const element of ');
+ const buttons=environment().views,calls=[];
+ new Function('document','view','busy','roomEditing',toggle)({querySelectorAll:()=>buttons},{view:mode=>calls.push(mode)},false,false);
+ buttons.find(button=>button.dataset.layoutView==='perspective').emit('click');
+ buttons.find(button=>button.dataset.layoutView==='top').emit('click');
+ assert.deepEqual(calls,['perspective','top']);
+});
+
+await test('identical-plan-import-keeps-selection-UI-and-controller-in-sync-without-history-or-storage-writes',async()=>{
+ const initial=makePlan([S.createDesk({id:'same-desk'})]),r=replayCommands(initial,'same-desk'),text=encoded(r);
+ await r.act({type:'import',file:{size:text.length,text:async()=>text}});
+ const loaded=r.read();assert.strictEqual(loaded.state,initial);assert.equal(loaded.selected,null);
+ assert.equal(loaded.updates.at(-1),null,'Even a byte-identical import must update the visible selection');
+ assert.equal(loaded.past.length,0);assert.equal(loaded.future.length,0);assert.equal(loaded.writes.length,0);assert.equal(encoded(r),text);
+ let prevented=false;r.key({key:'ArrowRight',preventDefault(){prevented=true;}});assert.equal(prevented,false);assert.equal(encoded(r),text);
+ await r.act({type:'select',id:'same-desk'});r.key({key:'ArrowRight',preventDefault(){prevented=true;}});
+ assert.equal(prevented,true);assert.equal(r.read().state.furniture[0].pose.xMm,10);assert.equal(r.read().updates.at(-1),'same-desk');
+});
 for(const [rel,h]of Object.entries(consumed))assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(site,rel))).digest('hex'),h,'Source changed: '+rel);
 const report={schema:'layout-frontend-consistency-source-v1',passed:true,tests,sourceInputs:consumed,languages:supportedLanguages,actualSourceBodies:true,actualLanguageModule:true,DOMInterfaceFixture:true,WebGL:false,modelsLoaded:0,native:false};
 if(option('--report'))fs.writeFileSync(option('--report'),JSON.stringify(report,null,2)+'\n',{flag:'wx'});
