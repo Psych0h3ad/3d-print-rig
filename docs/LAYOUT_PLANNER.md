@@ -30,8 +30,9 @@ Placement uses the registered static printer envelopes.
 A printer on furniture moves and rotates with that furniture. Its X, Z and
 rotation fields are local to the selected support surface. Changing its support
 centres it on the new surface. Resizing furniture preserves the printer's local
-position. Movement stays within the room and the selected support surface;
-changes that would push an object beyond those boundaries are not accepted.
+position. Movement stays within the room and the selected support surface.
+Drag along a wall to slide against it; pulling away responds immediately.
+Changes that would put an object beyond those boundaries are not accepted.
 
 **2D plan** shows flat furniture and printer footprints without perspective or
 height projection. Drag empty space to pan and scroll to zoom; the plan does
@@ -73,7 +74,8 @@ device; a PNG does not contain an editable plan.
 ## Preview and PNG
 
 Arranging the room uses lightweight proxies and does **not** download full
-printer models. The shown printer dimensions are static outer envelopes from
+printer models. Simple bed, base and foot shapes help show contact with the
+floor or furniture. The shown printer dimensions are static outer envelopes from
 the registered source models, **not build volumes** or complete motion/service
 envelopes.
 

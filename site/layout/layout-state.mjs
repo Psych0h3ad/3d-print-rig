@@ -1,5 +1,5 @@
 import {polygonProblems, polygonContains, polygonsOverlap, rectangle, rotateXZ, transformPolygon, bounds} from './layout-geometry.mjs?v=129e07e8d3e2b008fab6';
-import {rigidMotionStaysInside} from './layout-constraints.mjs?v=041ba558083059e154a4';
+import {rigidMotionStaysInside,boundaryTangents} from './layout-constraints.mjs?v=e0fbda794064e531577f';
 
 export const LIMITS = Object.freeze({maxFurniture: 64, maxPrinters: 128, maxRoomVertices: 32,
   maxFootprintVertices: 32, maxLevels: 32, maxCoordinateMm: 1000000, maxDimensionMm: 100000,
@@ -351,14 +351,40 @@ export function resolveWorldMove(state, {id, x, z}, catalog = [], {snapMm = 10, 
   // Full swept containment is a monotone prefix predicate. These are bounded
   // binary contact brackets, not sampled poses or endpoint-only collision tests.
   // Every accepted trial includes every intermediate translation. No EPS/gap.
-  let low = 0, high = 1, best = state;
-  for (let i = 0; i < 64; i++) {
-    const t = low + (high - low) / 2; if (t === low || t === high) break;
-    const xMm = origin.xMm + (target.x - origin.xMm) * t, zMm = origin.zMm + (target.z - origin.zMm) * t;
-    try { best = applyWorldMove(state, {id, xMm, zMm}, machines); low = t; }
-    catch (error) { if (!(error instanceof LayoutValidationError)) throw error; high = t; }
+  const sweptPrefix = (from,goal) => {
+    const start=worldTransform(from,id,machines);
+    try{return applyWorldMove(from,{id,xMm:goal.x,zMm:goal.z},machines);}
+    catch(error){if(!(error instanceof LayoutValidationError))throw error;}
+    let low=0,high=1,best=from;
+    for(let i=0;i<64;i++){
+      const t=low+(high-low)/2;if(t===low||t===high)break;
+      const xMm=start.xMm+(goal.x-start.xMm)*t,zMm=start.zMm+(goal.z-start.zMm)*t;
+      try{best=applyWorldMove(from,{id,xMm,zMm},machines);low=t;}
+      catch(error){if(!(error instanceof LayoutValidationError))throw error;high=t;}
+    }
+    return best;
+  };
+  // First reach the contact, then retain the component parallel to that wall.
+  // Each leg has the same complete swept-containment proof as a direct move;
+  // this is not a new origin-to-end chord through a concave room or a corner.
+  let best=sweptPrefix(state,target);
+  const contactState=best,scene=deriveScene(best,machines),contact=worldTransform(best,id,machines);
+  const domains=ids.map(entityId=>[best.room.polygonMm,[...scene.furniture,...scene.printers].find(e=>e.id===entityId).worldEnvelopeMm]);
+  if(printer?.attachment.parentId!==undefined&&printer.attachment.parentId!==null){
+    const a=printer.attachment,surface=scene.surfaces.find(s=>s.parentId===a.parentId&&s.surfaceId===a.surfaceId);
+    domains.push([surface.worldEnvelopeMm,scene.printers.find(e=>e.id===id).worldEnvelopeMm]);
   }
-  return result(best);
+  let score=(contact.xMm-target.x)**2+(contact.zMm-target.z)**2;
+  const remainder=[target.x-contact.xMm,target.z-contact.zMm],seen=[];
+  for(const [outer,polygon]of domains)for(const tangent of boundaryTangents(outer,polygon)){
+    if(seen.some(t=>Math.abs(t[0]*tangent[1]-t[1]*tangent[0])<1e-12))continue;seen.push(tangent);
+    const distance=remainder[0]*tangent[0]+remainder[1]*tangent[1];
+    if(Math.abs(distance)<1e-9)continue;
+    const next=sweptPrefix(contactState,{x:contact.xMm+tangent[0]*distance,z:contact.zMm+tangent[1]*distance});
+    const pose=worldTransform(next,id,machines),nextScore=(pose.xMm-target.x)**2+(pose.zMm-target.z)**2;
+    if(nextScore<score){score=nextScore;best=next;}
+  }
+  return Object.freeze({...result(best),boundaryLimited:true,pointerRemainder:Object.freeze({x:x-target.x,z:z-target.z})});
 }
 // Public renderer callback shape. The app uses resolveWorldMove to retain the
 // same transaction for its once-only commit; this convenience remains pure.

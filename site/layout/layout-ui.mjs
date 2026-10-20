@@ -1,5 +1,5 @@
 // Presentation only. The application owns state, history, files and model loading.
-import {createRoomRect,createRoomL,createRoomPolygon} from './layout-state.mjs?v=f92965b9f4e1780b368a';
+import {createRoomRect,createRoomL,createRoomPolygon} from './layout-state.mjs?v=d5be89c5876cc3bfab5c';
 const PRINTER_VIEWER_PAGES=new Set(['','index.html','annex.html','community.html','crossant.html','custom-voron.html','kit-reference.html','micron.html','positron.html','ratrig.html','remorph.html','trident.html','v0.html','v24-reference.html','v24.html']);
 // Only a registered catalog destination is eligible; saved plan fields never supply URLs.
 export function printerSourcesURL(row,href,language='en'){

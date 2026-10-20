@@ -371,6 +371,148 @@ await test('legacy-support-expands-fieldwise-but-cannot-worsen-other-room-domain
  const nearWall=S.createDefaultLayout({furniture:[S.createDesk({widthMm:1000,depthMm:600,pose:{xMm:1400,zMm:0,yawDeg:0}})],printers:[p('p1','large',{parentId:'desk-1',surfaceId:'top',xMm:0,zMm:0,yawDeg:0})]},c);
  throwsCode(()=>S.applyAction(nearWall,{type:'UPDATE_FURNITURE',id:'desk-1',patch:{widthMm:1400}},c),'ROOM_OUT_OF_BOUNDS');
 });
+// Independent synthetic planning-footprint cases; never loads actual models.
+// Numeric equality allowance below compares computed coordinates only. It is
+// not fed into any containment predicate or used to admit an outside footprint.
+const wallCat=S.createCatalog([{id:'wall-square',widthMm:200,depthMm:200,heightMm:300}]);
+const wallTimes=[],wallWarmTimings=[];
+const wallClose=(a,b,label='coordinate')=>assert.ok(Math.abs(a-b)<=1e-7,`${label}: expected ${b}, observed ${a}`);
+const wallPrinter=(x,z,attachment={})=>({id:'wall-printer',machineId:'wall-square',configurationId:null,attachment:{parentId:null,surfaceId:'floor',xMm:x,zMm:z,yawDeg:0,...attachment}});
+function wallState(x,z,room=S.createRoomRect()){
+ return S.createDefaultLayout({room,printers:[wallPrinter(x,z)]},wallCat);
+}
+function wallResolve(state,id,x,z,options={snapMm:0}){
+ const saved=S.serializeLayout(state,wallCat),start=S.worldTransform(state,id,wallCat),clock=performance.now();
+ const r=S.resolveWorldMove(state,{id,x,z},wallCat,options);wallTimes.push(performance.now()-clock);
+ assert.ok(r,'Resolver rejected a valid-start wall scenario');
+ assert.equal(S.serializeLayout(state,wallCat),saved,'Resolver mutated committed source state');
+ assert.deepEqual(S.placementViolations(r.state,wallCat),[],'Accepted state has a room/support boundary violation');
+ assert.equal(r.x,S.worldTransform(r.state,id,wallCat).xMm);assert.equal(r.z,S.worldTransform(r.state,id,wallCat).zMm);
+ assert.ok(Math.hypot(r.x-start.xMm,r.z-start.zMm)<=Math.hypot(x-start.xMm,z-start.zMm)+1e-7,'Movement was amplified beyond the requested displacement');
+ return r;
+}
+for(const axis of ['x','z'])for(const side of [-1,1])for(const direction of [-1,1])await test(`wall-axis-${axis}-${side}-tangent-${direction}-pressure-and-pullaway`,()=>{
+ const bound=axis==='x'?1900:1400,start=axis==='x'?[side*bound,0]:[0,side*bound];
+ const initial=wallState(...start),target=axis==='x'?[start[0],direction*200]:[direction*200,start[1]];
+ const tangent=wallResolve(initial,'wall-printer',...target);wallClose(tangent.x,target[0]);wallClose(tangent.z,target[1]);
+ const desired=target.slice();desired[axis==='x'?0:1]+=side*80;
+ const pressure=wallResolve(initial,'wall-printer',...desired);wallClose(pressure.x,target[0]);wallClose(pressure.z,target[1]);assert.equal(pressure.boundaryLimited,true);
+ const away=target.slice();away[axis==='x'?0:1]-=side*10;
+ const pull=wallResolve(pressure.state,'wall-printer',...away);wallClose(pull.x,away[0]);wallClose(pull.z,away[1]);
+});
+for(const nx of [-1,1])for(const nz of [-1,1])for(const direction of [-1,1])await test(`wall-diagonal-${nx}-${nz}-tangent-${direction}`,()=>{
+ const room=S.createRoomPolygon({polygonMm:[[0,-2000],[2000,0],[0,2000],[-2000,0]]});
+ const start=[nx*900,nz*900],tangent=[-nz*100*direction,nx*100*direction];
+ const ideal=[start[0]+tangent[0],start[1]+tangent[1]],goal=[ideal[0]+nx*10,ideal[1]+nz*10];
+ const r=wallResolve(wallState(...start,room),'wall-printer',...goal);
+ // Square support on each diamond edge is exactly200mm: |cxﾂｱcz|<=1800.
+ wallClose(nx*r.x+nz*r.z,1800,'contact normal');wallClose(r.x,ideal[0],'diagonal tangent x');wallClose(r.z,ideal[1],'diagonal tangent z');
+ const away=wallResolve(r.state,'wall-printer',r.x-nx*10,r.z-nz*10);wallClose(away.x,r.x-nx*10);wallClose(away.z,r.z-nz*10);
+});
+for(const sx of [-1,1])for(const sz of [-1,1])await test(`wall-corner-${sx}-${sz}-no-leak-or-jump`,()=>{
+ const initial=wallState(sx*1900,sz*1400),r=wallResolve(initial,'wall-printer',sx*2050,sz*1550);
+ wallClose(r.x,sx*1900);wallClose(r.z,sz*1400);
+ const slide=wallResolve(r.state,'wall-printer',sx*1800,sz*1500);wallClose(slide.x,sx*1800);wallClose(slide.z,sz*1400);
+ const away=wallResolve(slide.state,'wall-printer',sx*1790,sz*1390);wallClose(away.x,sx*1790);wallClose(away.z,sz*1390);
+});
+const wallLocalToWorld=(parent,x,z)=>{
+ const angle=parent.pose.yawDeg*Math.PI/180,c=Math.cos(angle),s=Math.sin(angle);
+ return {x:parent.pose.xMm+c*x+s*z,z:parent.pose.zMm-s*x+c*z};
+};
+for(const yaw of [0,90,37,-37])for(const side of [-1,1])await test(`wall-rotated-support-${yaw}-side-${side}`,()=>{
+ const parent=S.createDesk({id:'wall-desk',widthMm:1000,depthMm:600,pose:{xMm:1000,zMm:500,yawDeg:yaw}});
+ const state=S.createDefaultLayout({room:S.createRoomRect({widthMm:10000,depthMm:10000}),furniture:[parent],printers:[wallPrinter(side*400,0,{parentId:parent.id,surfaceId:'top'})]},wallCat);
+ assert.deepEqual(S.placementViolations(state,wallCat),[],'Fixture must begin inside its rotated support');
+ const target=wallLocalToWorld(parent,side*450,120),r=wallResolve(state,'wall-printer',target.x,target.z,{snapMm:10,snapOrigin:{xMm:side*400,zMm:0}});
+ const a=r.state.printers[0].attachment;wallClose(a.xMm,side*400,'support local normal');wallClose(a.zMm,120,'support local tangent');
+ assert.deepEqual(r.state.furniture[0],parent);
+ const targetAway=wallLocalToWorld(parent,side*390,120),away=wallResolve(r.state,'wall-printer',targetAway.x,targetAway.z,{snapMm:10,snapOrigin:{xMm:side*400,zMm:0}});
+ wallClose(away.state.printers[0].attachment.xMm,side*390,'support pullaway');wallClose(away.state.printers[0].attachment.zMm,120);
+});
+function wallFamily(side=1,yaw=0,children=2){
+ const extent=yaw===90?300:500,limit=2000-extent;
+ const parent=S.createDesk({id:'wall-desk',widthMm:1000,depthMm:600,pose:{xMm:side*limit,zMm:0,yawDeg:yaw}});
+ const printers=Array.from({length:children},(_,i)=>({...wallPrinter(children===2?(i?400:-400):[-300,-100,100,300][i%4],children===2?(i?200:-200):[-150,-50,50,150][Math.floor(i/4)],{parentId:parent.id,surfaceId:'top'}),id:'wall-child-'+i}));
+ return S.createDefaultLayout({furniture:[parent],printers},wallCat);
+}
+for(const yaw of [0,90])for(const side of [-1,1])await test(`wall-table-children-${yaw}-${side}-source-local-unchanged`,()=>{
+ const initial=wallFamily(side,yaw),before=S.deriveScene(initial,wallCat),x=initial.furniture[0].pose.xMm;
+ const r=wallResolve(initial,'wall-desk',x+side*80,100);wallClose(r.x,x);wallClose(r.z,100);
+ assert.deepEqual(r.state.printers,initial.printers,'Dragging a table must not edit child attachments');
+ const after=S.deriveScene(r.state,wallCat);
+ for(let i=0;i<after.printers.length;i++){wallClose(after.printers[i].xMm,before.printers[i].xMm);wallClose(after.printers[i].zMm,before.printers[i].zMm+100);assert.equal(after.printers[i].supportYM,before.printers[i].supportYM);assert.equal(after.printers[i].yawDeg,before.printers[i].yawDeg);}
+});
+await test('wall-concave-U-single-proposal-cannot-tunnel-between-valid-arms',()=>{
+ const initial=wallState(1000,4000,Uroom()),r=wallResolve(initial,'wall-printer',5000,4000);
+ assert.ok(r.x<=1900);wallClose(r.x,1900);wallClose(r.z,4000);
+ throwsCode(()=>S.applyWorldMove(initial,{id:'wall-printer',xMm:5000,zMm:4000},wallCat),'ROOM_OUT_OF_BOUNDS');
+});
+await test('wall-concave-U-accepted-segments-one-drop-original-undo',()=>{
+ const initial=wallState(1000,4000,Uroom()),a=actualAppTransaction(initial,wallCat),origin={x:1000,z:4000};let previous=origin;
+ for(const [x,z]of[[2500,3800],[1900,1000],[5000,1000],[5000,4000]]){
+  const r=a.preview({id:'wall-printer',x,z},{origin,previous});assert.ok(r);previous={x:r.x,z:r.z};assert.equal(a.get(),initial);assert.equal(a.history().length,0);
+ }
+ wallClose(previous.x,5000);wallClose(previous.z,4000);assert.equal(a.move({id:'wall-printer',...previous}),true);assert.equal(a.history().length,1);assert.equal(a.history()[0],initial);assert.equal(a.stored(),1);
+ assert.deepEqual(S.placementViolations(a.get(),wallCat),[]);
+});
+await test('wall-fractional-contact-pressure-reverse-no-quantized-normal-drift',()=>{
+ const wallFractionCat=S.createCatalog([{id:'wall-fraction',widthMm:725.328,depthMm:200,heightMm:300}]);
+ const initial=S.createDefaultLayout({printers:[{...wallPrinter(1637.336,0),machineId:'wall-fraction'}]},wallFractionCat),before=S.serializeLayout(initial,wallFractionCat);
+ let state=initial;
+ for(const z of [100,-100,200,-200,0]){
+  const r=S.resolveWorldMove(state,{id:'wall-printer',x:1800,z},wallFractionCat,{snapMm:10,snapOrigin:{xMm:1637.336,zMm:0}});assert.ok(r);assert.deepEqual(S.placementViolations(r.state,wallFractionCat),[]);wallClose(r.x,1637.336);wallClose(r.z,z);state=r.state;
+ }
+ assert.equal(S.serializeLayout(initial,wallFractionCat),before);
+});
+await test('wall-near-contact-tangent-candidate-does-not-waive-crossing',()=>{
+ const initial=wallState(1899.99999999,0),r=wallResolve(initial,'wall-printer',2000,200);
+ assert.ok(r.x<=1900);wallClose(r.z,200);assert.deepEqual(S.placementViolations(r.state,wallCat),[]);
+});
+await test('wall-warmed-repeated-contact-responsiveness-observed-not-fit',()=>{
+ for(const [name,state,id,goal,count]of[
+  ['printer',wallState(1900,0),'wall-printer',[1980,100],20],
+  ['table-plus-2',wallFamily(),'wall-desk',[1580,100],12],
+  ['table-plus-16',wallFamily(1,0,16),'wall-desk',[1580,100],6]]){
+  for(let i=0;i<4;i++)wallResolve(state,id,...goal);
+  const values=[];
+  for(let i=0;i<count;i++){const begin=performance.now(),r=wallResolve(state,id,...goal);values.push(performance.now()-begin);wallClose(r.z,100);}
+  const ordered=values.slice().sort((a,b)=>a-b);wallWarmTimings.push({scenario:name,samples:values.length,ms:values,medianMs:ordered[Math.floor(ordered.length/2)],maxMs:ordered.at(-1)});
+ }
+});
+
+// Integer vertices/corners on a3:4 wall; tangent normalization still exercises
+// non-dyadic0.6/0.8 arithmetic without starting from an approximate contact.
+for(const sx of [-1,1])for(const sz of [-1,1])for(const direction of [-1,1])await test(`wall-3-4-angle-${sx}-${sz}-tangent-${direction}`,()=>{
+ const points=[[-400,-2800],[2800,-400],[400,2800],[-2800,400]].map(([x,z])=>[sx*x,sz*z]);
+ const room=S.createRoomPolygon({polygonMm:points}),initial=wallState(sx*1500,sz*1100,room);
+ assert.deepEqual(S.placementViolations(initial,wallCat),[],'Exact integer contact must start contained');
+ const ideal=[sx*(1500-300*direction),sz*(1100+400*direction)];
+ const r=wallResolve(initial,'wall-printer',ideal[0]+sx*40,ideal[1]+sz*30);
+ wallClose(r.x,ideal[0],'3:4 wall tangent x');wallClose(r.z,ideal[1],'3:4 wall tangent z');
+ const away=wallResolve(r.state,'wall-printer',r.x-sx*8,r.z-sz*6);wallClose(away.x,r.x-sx*8);wallClose(away.z,r.z-sz*6);
+});
+
+for(const side of [-1,1])await test(`wall-adjacent-slanted-base-corner-${side}`,()=>{
+ const room=S.createRoomPolygon({polygonMm:[[0,0],[4000,0],[2000,4000]]});
+ const x=side<0?200:3800,initial=wallState(x,100,room),ideal=[x-side*100,300];
+ // At either slanted/base corner, one tangent blocks and the other is usable.
+ const r=wallResolve(initial,'wall-printer',ideal[0]+side*20,ideal[1]+10);
+ wallClose(r.x,ideal[0],'adjacent slanted tangent x');wallClose(r.z,ideal[1],'adjacent slanted tangent z');
+ const down=wallResolve(r.state,'wall-printer',r.x-side*10,r.z-10);assert.deepEqual(S.placementViolations(down.state,wallCat),[]);
+});
+await test('wall-3-4-repeated-tangential-pressure-no-numeric-stick-or-drift',()=>{
+ const room=S.createRoomPolygon({polygonMm:[[-400,-2800],[2800,-400],[400,2800],[-2800,400]]});
+ let state=wallState(1500,1100,room);
+ for(const direction of [1,1,1,1,1,1,1,1,-1,-1,-1,-1,-1,-1,-1,-1]){
+  const before=S.worldTransform(state,'wall-printer',wallCat),ideal=[before.xMm-30*direction,before.zMm+40*direction];
+  const r=wallResolve(state,'wall-printer',ideal[0]+4,ideal[1]+3);
+  wallClose(r.x,ideal[0],'repeated3:4tangent x');wallClose(r.z,ideal[1],'repeated3:4tangent z');
+  state=r.state;
+ }
+ wallClose(state.printers[0].attachment.xMm,1500);wallClose(state.printers[0].attachment.zMm,1100);
+});
+
 for(const p of inputPaths)assert.deepEqual(pin(p),before.get(p),'State test mutated actual source inputs');
+const wallReport={status:failures.length?'FAIL':'PASS',cases,failures,wallWarmTimings,wallCallCount:wallTimes.length,sourceInputs:Object.fromEntries(before),scope:'Independent synthetic source planning-footprint and actual app transaction regressions. No browser/models/native-fit claim.'};const wallReportArg=process.argv.indexOf('--report');if(wallReportArg>=0)fs.writeFileSync(process.argv[wallReportArg+1],JSON.stringify(wallReport,null,2)+'\n',{flag:'wx'});
 assert.deepEqual(failures,[],'State/geometry regressions');
 console.log(JSON.stringify({status:'PASS',scope:'State/math and actual registered catalog/index binding only; dimensions are planning inputs, not actual full-scene or native-fit evidence.',cases:cases.length,registeredMachines:machineCases.length,previewTimingMs:timings,stateSHA256:pin(inputPaths[0]).sha256,geometrySHA256:pin(inputPaths[1]).sha256,catalogSHA256:pin(catalogFile).sha256,indexSHA256:pin(indexFile).sha256}));

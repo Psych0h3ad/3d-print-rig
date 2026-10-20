@@ -1,5 +1,5 @@
-import {createDefaultLayout,createDesk,createShelf,createCatalog,applyAction,applyWorldMove,resolveWorldMove,placementViolations,deriveScene,worldTransform,validatePlacement,serializeLayout,parseLayout} from './layout-state.mjs?v=f92965b9f4e1780b368a';
-import {createLayoutUI} from './layout-ui.mjs?v=51f1e00bfc14877677f1';
+import {createDefaultLayout,createDesk,createShelf,createCatalog,applyAction,applyWorldMove,resolveWorldMove,placementViolations,deriveScene,worldTransform,validatePlacement,serializeLayout,parseLayout} from './layout-state.mjs?v=d5be89c5876cc3bfab5c';
+import {createLayoutUI} from './layout-ui.mjs?v=07b2a1ba91d2baa0db30';
 import {setupLayoutLanguage} from './layout-language.mjs?v=bf6d4bee08d3eb3b5eb7';
 import {readDisplay,saveDisplay,applyDisplay} from '../viewer/display-preferences.mjs?v=56b29930754451d8193c';
 
@@ -67,7 +67,7 @@ function constrainMove({id:entityId,x,z},context){
   // replace the safe dogleg by a new origin-to-end chord.
   if(!result)return false;
   pendingMove={...result,id:entityId,base:state,origin};
-  return {x:result.x,z:result.z};
+  return {x:result.x,z:result.z,...(result.boundaryLimited?{boundaryLimited:true,pointerRemainder:{...result.pointerRemainder}}:{})};
 }
 function worldMove({id:entityId,x,z}){
   if(busy||roomEditing||disposed)return false;
@@ -150,7 +150,7 @@ async function act(action){
       case 'render':await render();return;
       case 'edit-room':case 'import-svg':{
         roomEditing=true;
-        try{const {openRoomEditor}=await import('./layout-room-editor.mjs?v=b0908e419ac38a9b1de2'),nextRoom=await openRoomEditor({room:state.room,file:action.type==='import-svg'?action.file:undefined,t:language.t});
+        try{const {openRoomEditor}=await import('./layout-room-editor.mjs?v=621f7aada2920e96d009'),nextRoom=await openRoomEditor({room:state.room,file:action.type==='import-svg'?action.file:undefined,t:language.t});
           if(nextRoom&&!disposed){commit(applyAction(state,{type:'SET_ROOM',room:nextRoom},catalog));view.view('perspective');}
         }finally{roomEditing=false;}return;
       }
@@ -205,7 +205,7 @@ async function start(){
   rows=raw.machines.map(r=>({...r,widthMm:r.dimensionsMm.width,depthMm:r.dimensionsMm.depth,heightMm:r.dimensionsMm.height}));
   catalog=createCatalog(rows.map(r=>({id:r.id,widthMm:r.widthMm,depthMm:r.depthMm,heightMm:r.heightMm,baseOffsetMm:r.baseOffsetMm||0,...(r.footprintMm?{footprintMm:r.footprintMm}:{})})));
   state=makeDefault();try{const saved=localStorage.getItem(storageKey);if(saved&&saved.length<=maxFileBytes)state=parseLayout(saved,catalog);}catch{message(t('layout.error.savedPlan'),true);}
-  const {createLayoutRenderer}=await import('./layout-renderer.mjs?v=9a8b8619091c4ce2758e');
+  const {createLayoutRenderer}=await import('./layout-renderer.mjs?v=10e402be047cb4a06768');
   ui=createLayoutUI({container:$('#layout-sidebar'),onAction:act,t:language.t,catalog:rows});
   view=createLayoutRenderer({container:$('#layout-scene'),catalog:rows,t:language.t,onSelect:select,onMove:worldMove,constrainMove,onViewChange:updateViewPresentation,onError:error=>message(humanError(error),true)});
   sync();view.view('perspective');

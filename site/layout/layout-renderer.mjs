@@ -1,7 +1,7 @@
 import * as THREE from '../viewer/vendor-r180/three.module.js';
 import {OrbitControls} from '../viewer/vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from '../viewer/vendor-r180/RoomEnvironment.js';
-import {deriveScene} from './layout-state.mjs?v=f92965b9f4e1780b368a';
+import {deriveScene} from './layout-state.mjs?v=d5be89c5876cc3bfab5c';
 
 const MM = .001;
 const disposableMaterial = new THREE.MeshBasicMaterial({visible:false});
@@ -15,6 +15,58 @@ function visibleMaterial(m) { return m && m.visible!==false && m.opacity!==0; }
 function geometryBytes(g) { const a=new Set(Object.values(g.attributes).map(v=>v.array));if(g.index)a.add(g.index.array);return [...a].reduce((n,v)=>n+v.byteLength,0); }
 function aborted(signal) { if(signal?.aborted)throw new DOMException('Cancelled','AbortError'); }
 const tick=()=>new Promise(resolve=>requestAnimationFrame(resolve));
+
+// These are placement symbols, not additional CAD or hardware. Existing source
+// bounds stay intact; cues are kept inside the catalog's measured envelope.
+function printerPreviewParts(row) {
+  const d=row.dimensionsMm||{width:row.widthMm,depth:row.depthMm,height:row.heightMm};
+  const [w,h,z]=[d.width,d.height,d.depth].map(v=>v*.001);
+  if(![w,h,z].every(v=>Number.isFinite(v)&&v>0))throw Error('Invalid printer preview dimensions');
+  const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+  const style=['ender3','switchwire','sboom'].includes(row.family)?'moving-bed':
+    ['vminion','tictac','rook','lh_stinger','snakeoil_3s'].includes(row.family)?'cantilever':
+    row.family==='positron'?'inverted':'box-frame';
+  const original=row.proxy?.parts||[];
+  if(!Array.isArray(original)||original.length>128||original.some(p=>
+    !Array.isArray(p.sizeM)||p.sizeM.length!==3||!p.sizeM.every(v=>Number.isFinite(v)&&v>0)||
+    !Array.isArray(p.centerM)||p.centerM.length!==3||!p.centerM.every(Number.isFinite)))throw Error('Invalid printer preview parts');
+  const parts=original.length?[...original]:[{wireframe:true,sizeM:[w,h,z],centerM:[0,h/2,0],color:'#718096'}];
+  const solids=original.filter(p=>!p.wireframe),has=role=>solids.some(p=>p.proxyRole===role);
+  const frame=solids.filter(p=>!['bed','base','head'].includes(p.proxyRole)&&Math.max(...p.sizeM)>Math.min(w,h,z)*.3);
+  const span=(axis,extent)=>{
+    const lo=frame.length?Math.min(...frame.map(p=>p.centerM[axis]-p.sizeM[axis]/2)):-extent*.4;
+    const hi=frame.length?Math.max(...frame.map(p=>p.centerM[axis]+p.sizeM[axis]/2)):extent*.4;
+    const size=Math.min(extent,Math.max(hi-lo,extent*.72));
+    return [clamp((lo+hi)/2,-(extent-size)/2,(extent-size)/2),size];
+  };
+  const [cx,bw]=span(0,w),[cz,bz]=span(2,z),foot=Math.min(w,z,h)*.035;
+  const lower=frame.length?Math.min(...frame.map(p=>p.centerM[1]-p.sizeM[1]/2)):0;
+  const baseTop=clamp(Math.max(lower,h*.12),foot*2,h*.2);
+  const add=(role,size,center,color)=>{
+    parts.push({sizeM:size,centerM:center,color,previewCue:true,proxyRole:role});
+  };
+  const fw=Math.min(bw*.09,.04),fd=Math.min(bz*.09,.04);
+  for(const x of [-1,1])for(const q of [-1,1])
+    add('contact-foot',[fw,foot,fd],[cx+x*(bw-fw)/2,foot/2,cz+q*(bz-fd)/2],'#253640');
+  add('base-cue',[bw,baseTop-foot,bz],[cx,(baseTop+foot)/2,cz],'#536877');
+  if(!has('bed')){
+    const bh=Math.min(h*.016,.008),by=Math.max(baseTop+bh*2,h*(style==='inverted'?.75:.27));
+    const zw=bz*.68,xw=bw*.68,bzCenter=clamp(cz+(style==='moving-bed'?bz*.1:0),-(z-zw)/2,(z-zw)/2);
+    add('bed-cue',[xw,bh,zw],[cx,by,bzCenter],'#c5d8df');
+    const rise=by-bh/2-baseTop,thick=Math.min(bw,bz)*.045;
+    for(const side of [-1,1])add('bed-support-cue',[thick,rise,thick],
+      [cx+side*xw*.35,baseTop+rise/2,bzCenter-zw*.3],'#718794');
+  }
+  const gantries=solids.filter(p=>p.proxyRole==='gantry'),existing=gantries.sort((a,b)=>b.centerM[1]-a.centerM[1])[0];
+  const gy=existing?.centerM[1]??h*(style==='inverted'?.3:.72),gz=existing?.centerM[2]??cz;
+  if(!has('gantry'))add('gantry-cue',[bw*.78,h*.035,bz*.07],[cx,gy,gz],'#367b85');
+  if(!has('head')){
+    const hh=h*.075,hw=bw*.12,hd=bz*.14;
+    add('head-cue',[hw,hh,hd],[clamp(existing?.centerM[0]??cx,-(w-hw)/2,(w-hw)/2),
+      clamp(gy-hh/2,hh/2,h-hh/2),clamp(gz+bz*.035,-(z-hd)/2,(z-hd)/2)],'#2d9b9b');
+  }
+  return {style,parts,simplePreview:true};
+}
 
 export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>{},onMove=()=>{},constrainMove=({x,z})=>({x,z}),onError=()=>{},onViewChange=()=>{}}) {
   const renderer=new THREE.WebGLRenderer({antialias:true,alpha:false});
@@ -98,11 +150,15 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   function makePrinter(e){
     const g=new THREE.Group();printersGroup.add(g);record(e,g);
     const row=catalogMachine(e.machineId);if(!row)throw Error('Unknown layout printer');
-    const parts=row.proxy?.parts;
-    if(parts?.length){for(const p of parts){if(p.wireframe){const wire=new THREE.LineSegments(wireGeometry,wireMaterial);wire.scale.set(...p.sizeM);wire.position.set(...p.centerM);g.add(wire);}else box(g,p.sizeM,p.centerM,p.color||'#343e47');}}
-    else {
-      const dim=row.dimensionsMm;const w=dim.width*MM,h=dim.height*MM,d=dim.depth*MM;
-      box(g,[w,h,d],[0,h/2,0],'#7d8b96');
+    // Catalog proxy parts already use a normalized contact plane. The scene
+    // position may include a native base offset needed only by other recipes.
+    g.position.y=Number.isFinite(e.supportYM)?e.supportYM:e.positionM.y-(row.baseOffsetMm||0)*MM;
+    const preview=printerPreviewParts(row);g.userData.simplePreview=true;g.userData.previewStyle=preview.style;
+    for(const p of preview.parts){
+      let part;
+      if(p.wireframe){part=new THREE.LineSegments(wireGeometry,wireMaterial);part.scale.set(...p.sizeM);part.position.set(...p.centerM);g.add(part);}
+      else part=box(g,p.sizeM,p.centerM,p.color||'#343e47');
+      part.userData.previewCue=!!p.previewCue;part.userData.proxyRole=p.proxyRole||'source-bounds';
     }
     return g;
   }
@@ -172,7 +228,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
       const g=objects.get(id),planeY=isPlan()?0:g.position.y,point=planePoint(event,planeY);
       if(!point){drag=null;event.stopImmediatePropagation();return;}
       const entity=[...derived.furniture,...derived.printers].find(e=>e.id===id);
-      drag.origin=g.position.clone();drag.originMm={x:entity.xMm??g.position.x/MM,z:entity.zMm??g.position.z/MM};drag.point=point.clone();drag.planeY=planeY;drag.accepted={...drag.originMm};
+      drag.origin=g.position.clone();drag.originMm={x:entity.xMm??g.position.x/MM,z:entity.zMm??g.position.z/MM};drag.point=point.clone();drag.anchorMm={...drag.originMm};drag.anchorPoint=point.clone();drag.planeY=planeY;drag.accepted={...drag.originMm};
       drag.followers=(current.printers||[]).filter(p=>p.attachment.parentId===id).map(p=>({id:p.id,origin:objects.get(p.id).position.clone()}));
       selectedId=id;updateSelection();canvas.setPointerCapture(event.pointerId);enableControls();canvas.style.cursor='grabbing';event.stopImmediatePropagation();event.preventDefault();onSelect(id);
     }
@@ -181,13 +237,21 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     if(!drag||drag.pointerId!==event.pointerId)return;if(Math.hypot(event.clientX-drag.startX,event.clientY-drag.startY)>4)drag.moved=true;
     if(drag.kind!=='object')return;event.stopImmediatePropagation();event.preventDefault();if(!drag.moved)return;
     const p=planePoint(event,drag.planeY);if(!p)return;const g=objects.get(drag.id);if(!g)return;
-    const proposal={id:drag.id,x:drag.originMm.x+(p.x-drag.point.x)/MM,z:drag.originMm.z+(p.z-drag.point.z)/MM};
+    const proposal={id:drag.id,x:drag.anchorMm.x+(p.x-drag.anchorPoint.x)/MM,z:drag.anchorMm.z+(p.z-drag.anchorPoint.z)/MM};
     const gesture=drag,context={previous:{...drag.accepted},origin:{...drag.originMm}};
     let accepted;try{accepted=constrainMove(proposal,context);}catch(error){onError(error);return;}
     if(drag!==gesture||disposed)return;
     if(accepted===false)return;
     if(!accepted||!Number.isFinite(accepted.x)||!Number.isFinite(accepted.z)){onError(Object.assign(Error('Invalid constrained move'),{code:'INVALID_CONSTRAINED_MOVE'}));return;}
-    drag.accepted={x:accepted.x,z:accepted.z};g.position.x=accepted.x*MM;g.position.z=accepted.z*MM;
+    const remainder=accepted.boundaryLimited?(accepted.pointerRemainder??{x:0,z:0}):null;
+    if(remainder&&(!Number.isFinite(remainder.x)||!Number.isFinite(remainder.z))){onError(Object.assign(Error('Invalid pointer remainder'),{code:'INVALID_CONSTRAINED_MOVE'}));return;}
+    drag.accepted={x:accepted.x,z:accepted.z};
+    // Discard blocked displacement, retaining the unsnapped cursor remainder.
+    // Small wall-parallel moves must accumulate just like free-space moves.
+    if(remainder){
+      drag.anchorMm={x:accepted.x+remainder.x,z:accepted.z+remainder.z};drag.anchorPoint=p.clone();
+    }
+    g.position.x=accepted.x*MM;g.position.z=accepted.z*MM;
     const syncPlan=id=>{const a=objects.get(id),b=planObjects.get(id);if(a&&b){b.position.x=a.position.x;b.position.z=a.position.z;}};syncPlan(drag.id);
     for(const follower of drag.followers||[]){const child=objects.get(follower.id);if(child){child.position.x=follower.origin.x+g.position.x-drag.origin.x;child.position.z=follower.origin.z+g.position.z-drag.origin.z;syncPlan(follower.id);}}
     updateSelection();draw();
