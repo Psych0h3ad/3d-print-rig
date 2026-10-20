@@ -43,10 +43,12 @@ const engineFactory=new Function('deps',`
  const past=[],future=[],language={t:x=>x},view={view:x=>deps.views.push(x)};
  const applyAction=deps.applyAction,serializeLayout=deps.serialize,sync=()=>deps.syncs++,store=()=>deps.saved.push(deps.serialize(state,catalog));
  const humanError=e=>e.errors?.[0]?.code||e.code||e.message,message=(text,error)=>deps.errors.push({text,error});
+ const $=selector=>{if(selector!=='#layout-status')throw Error('Unexpected UI hook: '+selector);return deps.statusNode;};
+ const ui={setStatus:next=>deps.uiStatuses.push({...next})};
  ${commitSource}\n${actionSource}
  return {act,getState:()=>state,isEditing:()=>roomEditing,history:()=>({past:past.length,future:future.length}),dispose:()=>disposed=true};
 `);
-function engine(sourceState=initial){const trace={views:[],saved:[],errors:[],syncs:0,state:sourceState,catalog:cat,applyAction:S.applyAction,serialize:S.serializeLayout,editorModule:async()=>E};return {engine:engineFactory(trace),trace}}
+function engine(sourceState=initial){const trace={views:[],saved:[],errors:[],syncs:0,statusNode:{hidden:false,textContent:'Previous action error'},uiStatuses:[],state:sourceState,catalog:cat,applyAction:S.applyAction,serialize:S.serializeLayout,editorModule:async()=>E};return {engine:engineFactory(trace),trace}}
 async function dialogReady(){for(let i=0;i<30;i++){if(DOM.doc.body.children.some(e=>e.tagName==='dialog'))return DOM.editor();await Promise.resolve()}assert.fail('Editor dialog was not opened')}
 const rejectCode=fn=>{try{fn()}catch(e){assert.ok(e instanceof P.FloorplanSVGError);return e.code}assert.fail('Unsafe input accepted')};
 
@@ -84,6 +86,7 @@ await test('real-app-import-scaled-L-Apply-JSON-and-parent-history',async()=>{
   for(let i=0;i<expected.length;i++)for(let axis=0;axis<2;axis++)assert.ok(Math.abs(applied[i][axis]-expected[i][axis])<=16*Number.EPSILON*Math.max(1,Math.abs(expected[i][axis])),'Uniform scaling arithmetic mismatch');
   assert.deepEqual(a.getState().printers[0],originalPrinter);assert.equal(a.getState().room.wallHeightMm,2400);
   assert.equal(a.history().past,1);assert.equal(a.isEditing(),false);assert.equal(trace.errors.length,0);
+  assert.equal(trace.statusNode.hidden,true);assert.equal(trace.statusNode.textContent,'');assert.deepEqual(trace.uiStatuses,[{message:'',error:false}]);
   const saved=S.serializeLayout(a.getState(),cat);assert.deepEqual(S.parseLayout(saved,cat).room.polygonMm,applied);
   await a.act({type:'undo'});assert.equal(a.getState(),initial);await a.act({type:'redo'});assert.equal(S.serializeLayout(a.getState(),cat),saved);
   assert.equal(S.serializeLayout(initial,cat),initialJSON);
@@ -94,10 +97,12 @@ await test('real-app-valid-SVG-cannot-move-room-boundary-through-retained-printe
   e.change(key('width'),6000);assert.equal(e.button(key('apply')).disabled,false);e.button(key('apply')).click();await pending;
   assert.equal(a.getState(),outside);assert.equal(S.serializeLayout(a.getState(),cat),before);assert.equal(a.history().past,0);assert.deepEqual(trace.saved,[]);
   assert.equal(a.isEditing(),false);assert.equal(trace.errors.length,1);assert.equal(trace.errors[0].text,'ROOM_OUT_OF_BOUNDS');
+  assert.equal(trace.statusNode.hidden,false);assert.equal(trace.statusNode.textContent,'Previous action error');assert.deepEqual(trace.uiStatuses,[]);
 });
 await test('real-app-editor-same-room-is-noop-not-extra-history-or-storage',async()=>{
   const {engine:a,trace}=engine(),pending=a.act({type:'edit-room'}),e=await dialogReady();e.button(key('apply')).click();await pending;
   assert.equal(a.getState(),initial);assert.equal(a.history().past,0);assert.deepEqual(trace.saved,[]);assert.deepEqual(trace.errors,[]);
+  assert.equal(trace.statusNode.hidden,false);assert.deepEqual(trace.uiStatuses,[]);
 });
 await test('real-app-cancelled-draft-is-atomic-and-editing-blocks-other-actions',async()=>{
   const {engine:a}=engine(),pending=a.act({type:'edit-room'}),editor=await dialogReady();editor.change(key('width'),8000);
@@ -170,6 +175,7 @@ await test('renderer-live-parent-followers-intermediate-reverse-cancel-and-commi
   const factory=new Function('deps',`
     const MM=.001,objects=new Map(),planObjects=new Map(),current=deps.state,derived=deps.derive(current,deps.catalog);let selectedId=null,drag=null,exporting=false,disposed=false;
     const canvas={style:{},setPointerCapture(){},hasPointerCapture(){return true},releasePointerCapture(){}},draw=()=>{},hit=()=>deps.hit;
+    const rotateHandle={dataset:{}},objectTools={dataset:{}};
     const isPlan=()=>false,updateSelection=()=>{},enableControls=()=>{},onError=e=>{throw e};
     const constrainMove=(proposal,context)=>deps.constrain?deps.constrain(proposal,context,objects):proposal;
     const planePoint=event=>new deps.V(event.worldX,0,event.worldZ);

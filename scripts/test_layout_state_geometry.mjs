@@ -218,7 +218,7 @@ await test('actual-app-worldMove-uses-authoritative-rejection-noop-history-and-p
  const app=fs.readFileSync(path.join(src,'layout-app.mjs'),'utf8');
  const commit=app.slice(app.indexOf('function commit('),app.indexOf('function select('));
  const move=app.slice(app.indexOf('let pendingMove='),app.indexOf('async function render('));
- const factory=Function('initial','catalog','applyWorldMove','resolveWorldMove','serializeLayout',`let state=initial,busy=false,roomEditing=false,disposed=false;const past=[],future=[];let synced=0,stored=0,errors=0;const sync=()=>synced++,store=()=>stored++,message=()=>errors++,humanError=e=>e;${commit}\n${move}\nreturn {move:worldMove,preview:constrainMove,get:()=>state,counts:()=>({synced,stored,errors,history:past.length})};`);
+ const factory=Function('initial','catalog','applyWorldMove','resolveWorldMove','serializeLayout',`let state=initial,busy=false,roomEditing=false,disposed=false;const past=[],future=[];let synced=0,stored=0,errors=0;const sync=()=>synced++,store=()=>stored++,message=()=>errors++,humanError=e=>e;const statusNode={hidden:false,textContent:''},$=()=>statusNode,ui={setStatus(){}};${commit}\n${move}\nreturn {move:worldMove,preview:constrainMove,get:()=>state,counts:()=>({synced,stored,errors,history:past.length})};`);
  const state=S.createDefaultLayout({printers:[p('p1','fixture200')]},fixture),a=factory(state,fixture,S.applyWorldMove,S.resolveWorldMove,S.serializeLayout);
  assert.equal(a.move({id:'p1',x:100,z:0}),true);const valid=a.get();
  assert.equal(a.move({id:'p1',x:5000,z:0}),false);assert.equal(a.get(),valid);assert.equal(a.counts().history,1);
@@ -280,7 +280,7 @@ await test('live-preview-snap-first-fractional-contact-and-exact-single-drop',()
  const state=S.createDefaultLayout({printers:[p('p1','fractional')]},c),text=S.serializeLayout(state,c);
  const app=fs.readFileSync(path.join(src,'layout-app.mjs'),'utf8'),commit=app.slice(app.indexOf('function commit('),app.indexOf('function select('));
  const move=app.slice(app.indexOf('let pendingMove='),app.indexOf('async function render('));
- const factory=Function('initial','catalog','applyWorldMove','resolveWorldMove','serializeLayout',`let state=initial,busy=false,roomEditing=false,disposed=false;const past=[],future=[];let stored=0;const sync=()=>{},store=()=>stored++,message=()=>{},humanError=e=>e;${commit}\n${move}\nreturn {preview:constrainMove,move:worldMove,get:()=>state,history:()=>past.length,stored:()=>stored};`);
+ const factory=Function('initial','catalog','applyWorldMove','resolveWorldMove','serializeLayout',`let state=initial,busy=false,roomEditing=false,disposed=false;const past=[],future=[];let stored=0;const sync=()=>{},store=()=>stored++,message=()=>{},humanError=e=>e;const statusNode={hidden:false,textContent:''},$=()=>statusNode,ui={setStatus(){}};${commit}\n${move}\nreturn {preview:constrainMove,move:worldMove,get:()=>state,history:()=>past.length,stored:()=>stored};`);
  const a=factory(state,c,S.applyWorldMove,S.resolveWorldMove,S.serializeLayout);
  let shown;for(const x of [100,1000,1800,2000])shown=a.preview({id:'p1',x,z:0});
  assert.equal(a.get(),state);assert.equal(a.history(),0);assert.equal(a.stored(),0);
@@ -307,7 +307,7 @@ function actualAppTransaction(initial,sourceCatalog){
  const app=fs.readFileSync(path.join(src,'layout-app.mjs'),'utf8');
  const commit=app.slice(app.indexOf('function commit('),app.indexOf('function select('));
  const moves=app.slice(app.indexOf('let pendingMove='),app.indexOf('async function render('));
- return Function('initial','catalog','applyWorldMove','resolveWorldMove','serializeLayout',`let state=initial,busy=false,roomEditing=false,disposed=false;const past=[],future=[];let stored=0;const sync=()=>{},store=()=>stored++,message=()=>{},humanError=e=>e;${commit}\n${moves}\nreturn {preview:constrainMove,move:worldMove,get:()=>state,history:()=>past,stored:()=>stored};`)(initial,sourceCatalog,S.applyWorldMove,S.resolveWorldMove,S.serializeLayout);
+ return Function('initial','catalog','applyWorldMove','resolveWorldMove','serializeLayout',`let state=initial,busy=false,roomEditing=false,disposed=false;const past=[],future=[];let stored=0;const sync=()=>{},store=()=>stored++,message=()=>{},humanError=e=>e;const statusNode={hidden:false,textContent:''},$=()=>statusNode,ui={setStatus(){}};${commit}\n${moves}\nreturn {preview:constrainMove,move:worldMove,get:()=>state,history:()=>past,stored:()=>stored};`)(initial,sourceCatalog,S.applyWorldMove,S.resolveWorldMove,S.serializeLayout);
 }
 await test('actual-app-one-gesture-dogleg-concave-room-segments-one-undo',()=>{
  const state=S.createDefaultLayout({room:Uroom(),printers:[p('p1','fixture200',{parentId:null,surfaceId:'floor',xMm:1000,zMm:4000,yawDeg:0})]},fixture);
@@ -510,6 +510,149 @@ await test('wall-3-4-repeated-tangential-pressure-no-numeric-stick-or-drift',()=
   state=r.state;
  }
  wallClose(state.printers[0].attachment.xMm,1500);wallClose(state.printers[0].attachment.zMm,1100);
+});
+
+// Directed, continuous in-scene rotations. These are footprint constraints,
+// separate from printer meshes, native mounting and inter-item fit warnings.
+const rotationCat=S.createCatalog([{id:'rotation-long',widthMm:600,depthMm:100,heightMm:300},
+ {id:'rotation-wide',widthMm:600,depthMm:400,heightMm:300},
+ {id:'rotation-square',widthMm:400,depthMm:400,heightMm:300},
+ {id:'rotation-small',widthMm:200,depthMm:100,heightMm:300}]);
+const rotationPrinter=(machineId='rotation-long',attachment={})=>({id:'rot-p',machineId,configurationId:null,
+ attachment:{parentId:null,surfaceId:'floor',xMm:0,zMm:0,yawDeg:0,...attachment}});
+const rotationState=(machineId='rotation-long',yawDeg=0,room=S.createRoomRect())=>
+ S.createDefaultLayout({room,printers:[rotationPrinter(machineId,{yawDeg})]},rotationCat);
+function rotateResolved(state,id,yawDeg,options={snapDeg:0},cat=rotationCat){
+ const saved=S.serializeLayout(state,cat),start=S.worldTransform(state,id,cat),r=S.resolveWorldRotation(state,{id,yawDeg},cat,options);
+ assert.ok(r,'Expected a contained continuous rotation transaction');
+ assert.equal(S.serializeLayout(state,cat),saved,'Rotation mutated the committed source state');
+ const end=S.worldTransform(r.state,id,cat);
+ assert.equal(r.yawDeg,end.yawDeg);assert.equal(end.xMm,start.xMm);assert.equal(end.zMm,start.zMm);
+ assert.equal(end.positionM.y,start.positionM.y);assert.deepEqual(S.placementViolations(r.state,cat),[]);
+ assert.ok(Object.isFrozen(r));assert.ok(Object.isFrozen(r.state));
+ return r;
+}
+await test('rotation-world-unwrapped-signed-free-full-turns-reversal-and-native-reset',()=>{
+ const initial=rotationState(),saved=S.serializeLayout(initial,rotationCat);let state=initial;
+ for(const yaw of [90,360,720,450,-270,-720,0]){
+  const r=rotateResolved(state,'rot-p',yaw);assert.equal(r.yawDeg,yaw);assert.equal(r.boundaryLimited,undefined);state=r.state;
+ }
+ assert.equal(S.serializeLayout(state,rotationCat),saved);
+});
+await test('rotation-original-numeric-world-snap-anchor-retained-across-accepted-segments',()=>{
+ const initial=rotationState('rotation-long',12.25);let state=initial;
+ for(const [raw,target]of[[13,12.25],[20,27.25],[34,27.25],[50,57.25],[-8,-2.75],[12.25,12.25]]){
+  const r=rotateResolved(state,'rot-p',raw,{snapDeg:15,snapOrigin:12.25});
+  assert.equal(r.yawDeg,target);assert.equal(r.pointerRemainderDeg,raw-target);state=r.state;
+ }
+ assert.deepEqual(state,initial);
+});
+for(const snapDeg of [0,1,.1,15])await test(`rotation-fine-and-no-snap-${snapDeg}`,()=>{
+ const initial=rotationState('rotation-long',12.25),raw=16.123;
+ const expected=snapDeg===0?raw:12.25+Math.round((raw-12.25)/snapDeg)*snapDeg;
+ const r=rotateResolved(initial,'rot-p',raw,{snapDeg,snapOrigin:12.25});assert.equal(r.yawDeg,expected);assert.equal(r.pointerRemainderDeg,raw-expected);
+});
+await test('rotation-default15-and-explicit-global-zero-anchor',()=>{
+ const initial=rotationState('rotation-long',12.25);
+ assert.equal(rotateResolved(initial,'rot-p',20,{}).yawDeg,27.25);
+ assert.equal(rotateResolved(initial,'rot-p',20,{snapOrigin:0}).yawDeg,15);
+});
+for(const parentYaw of [90,37.5,-37.5,450])await test(`rotation-attached-printer-world-to-local-${parentYaw}`,()=>{
+ const desk=S.createDesk({id:'rot-desk',widthMm:1600,depthMm:1600,pose:{xMm:300,zMm:-400,yawDeg:parentYaw}});
+ const initial=S.createDefaultLayout({room:S.createRoomRect({widthMm:10000,depthMm:10000}),furniture:[desk],printers:[rotationPrinter('rotation-small',{parentId:desk.id,surfaceId:'top',xMm:120,zMm:-70,yawDeg:15.25})]},rotationCat);
+ const origin=S.worldTransform(initial,'rot-p',rotationCat).yawDeg;
+ const r=rotateResolved(initial,'rot-p',origin+30.2,{snapDeg:15,snapOrigin:origin});
+ assert.equal(r.yawDeg,origin+30);assert.equal(r.state.printers[0].attachment.yawDeg,45.25);
+ assert.equal(r.state.printers[0].attachment.xMm,120);assert.equal(r.state.printers[0].attachment.zMm,-70);
+ assert.deepEqual(r.state.furniture,initial.furniture);
+ const back=rotateResolved(r.state,'rot-p',origin,{snapDeg:0});assert.deepEqual(back.state,initial);
+});
+for(const type of ['desk','shelf'])await test(`rotation-${type}-followers-preserve-local-attachments-and-orbit`,()=>{
+ const parent=(type==='desk'?S.createDesk:S.createShelf)({id:'rot-parent',widthMm:1600,depthMm:1400,pose:{xMm:100,zMm:200,yawDeg:0}});
+ const initial=S.createDefaultLayout({room:S.createRoomRect({widthMm:10000,depthMm:10000}),furniture:[parent],printers:[
+  rotationPrinter('rotation-small',{parentId:parent.id,surfaceId:type==='desk'?'top':'level-1',xMm:300,zMm:-200,yawDeg:15})]},rotationCat);
+ const r=rotateResolved(initial,parent.id,450);
+ assert.deepEqual(r.state.printers,initial.printers);
+ const child=S.worldTransform(r.state,'rot-p',rotationCat),q=G.rotateXZ([300,-200],450);
+ assert.equal(child.xMm,100+q[0]);assert.equal(child.zMm,200+q[1]);assert.equal(child.yawDeg,465);
+ assert.equal(child.supportYM,S.worldTransform(initial,'rot-p',rotationCat).supportYM);
+ assert.deepEqual(rotateResolved(r.state,parent.id,0).state,initial);
+});
+for(const direction of [-1,1])await test(`rotation-narrow-gap-endpoints-fit-mid-sweep-blocked-${direction}`,()=>{
+ const initial=rotationState('rotation-wide',0,S.createRoomRect({widthMm:660,depthMm:660}));
+ const m=rotationCat.byId['rotation-wide'];assert.ok(G.polygonContains(initial.room.polygonMm,G.transformPolygon(m.footprintMm,{xMm:0,zMm:0,yawDeg:direction*90})));
+ assert.equal(G.polygonContains(initial.room.polygonMm,G.transformPolygon(m.footprintMm,{xMm:0,zMm:0,yawDeg:direction*45})),false);
+ const r=rotateResolved(initial,'rot-p',direction*90);
+ assert.equal(r.boundaryLimited,true);assert.ok(direction*r.yawDeg>0&&direction*r.yawDeg<45);
+ const analyticFirst=(Math.atan2(200,300)-Math.acos(330/Math.hypot(300,200)))*180/Math.PI;
+ assert.ok(Math.abs(r.yawDeg)<=analyticFirst,'Accepted prefix must not exceed the exact rectangular first wall contact');
+ assert.equal(r.state.printers[0].attachment.xMm,0);assert.equal(r.state.printers[0].attachment.zMm,0);
+ assert.equal(rotateResolved(r.state,'rot-p',0).yawDeg,0);
+});
+await test('rotation-360-must-not-use-equal-endpoint-shortcut-or-snap-over-obstacle',()=>{
+ const initial=rotationState('rotation-square',0,S.createRoomRect({widthMm:500,depthMm:500}));
+ assert.deepEqual(G.transformPolygon(rotationCat.byId['rotation-square'].footprintMm,{xMm:0,zMm:0,yawDeg:360}),rotationCat.byId['rotation-square'].footprintMm);
+ // Negative control: an endpoint-only full-turn transaction is accepted by
+ // the old shortest-yaw API; the new directed resolver must stop before45deg.
+ assert.equal(S.applyAction(initial,{type:'UPDATE_PRINTER',id:'rot-p',patch:{attachment:{yawDeg:360}}},rotationCat).printers[0].attachment.yawDeg,360);
+ const r=rotateResolved(initial,'rot-p',360,{snapDeg:15,snapOrigin:0});assert.equal(r.boundaryLimited,true);assert.ok(r.yawDeg>0&&r.yawDeg<45);
+ assert.notEqual(r.yawDeg%15,0,'Boundary contact is not rounded through a wall to the next snap');
+});
+await test('rotation-negative270-and-positive90-have-different-swept-paths',()=>{
+ const initial=rotationState('rotation-long',45,S.createRoomRect({widthMm:550,depthMm:1000}));
+ const short=rotateResolved(initial,'rot-p',135);assert.equal(short.yawDeg,135);assert.equal(short.boundaryLimited,undefined);
+ assert.equal(S.applyAction(initial,{type:'UPDATE_PRINTER',id:'rot-p',patch:{attachment:{yawDeg:-225}}},rotationCat).printers[0].attachment.yawDeg,-225);
+ const directed=rotateResolved(initial,'rot-p',-225);assert.equal(directed.boundaryLimited,true);assert.ok(directed.yawDeg<45&&directed.yawDeg>0);
+ assert.equal(rotateResolved(directed.state,'rot-p',45).yawDeg,45);
+});
+for(const corner of [false,true])await test(`rotation-exact-wall-contact-${corner?'corner':'wall'}-cannot-leak`,()=>{
+ const initial=S.createDefaultLayout({room:S.createRoomRect({widthMm:2000,depthMm:2000}),printers:[rotationPrinter('rotation-small',{xMm:900,zMm:corner?950:0})]},rotationCat);
+ const r=rotateResolved(initial,'rot-p',30);assert.equal(r.boundaryLimited,true);assert.ok(r.yawDeg>=0&&r.yawDeg<1e-9,'Only representable zero-contact motion is possible');
+});
+for(const parentYaw of [0,37.5,90])await test(`rotation-support-sweep-not-only-room-${parentYaw}`,()=>{
+ const desk=S.createDesk({id:'rot-desk',widthMm:660,depthMm:660,pose:{xMm:400,zMm:300,yawDeg:parentYaw}});
+ const initial=S.createDefaultLayout({furniture:[desk],printers:[rotationPrinter('rotation-wide',{parentId:desk.id,surfaceId:'top'})]},rotationCat);
+ const r=rotateResolved(initial,'rot-p',parentYaw+90);assert.equal(r.boundaryLimited,true);assert.ok(r.yawDeg>parentYaw&&r.yawDeg<parentYaw+45);
+ assert.deepEqual(r.state.furniture,initial.furniture);
+});
+await test('rotation-concave-reflex-notch-has-safe-endpoints-but-unsafe-interior',()=>{
+ const room=S.createRoomL(),initial=S.createDefaultLayout({room,printers:[rotationPrinter('rotation-long',{xMm:-200,zMm:-200})]},rotationCat);
+ const poly=rotationCat.byId['rotation-long'].footprintMm;
+ assert.ok(G.polygonContains(room.polygonMm,G.transformPolygon(poly,{xMm:-200,zMm:-200,yawDeg:-90})));
+ assert.equal(G.polygonContains(room.polygonMm,G.transformPolygon(poly,{xMm:-200,zMm:-200,yawDeg:-45})),false);
+ const r=rotateResolved(initial,'rot-p',-90);assert.equal(r.boundaryLimited,true);assert.ok(r.yawDeg<0&&r.yawDeg>-45);
+ assert.equal(rotateResolved(r.state,'rot-p',0).yawDeg,0);
+});
+await test('rotation-uses-catalog-footprint-not-inflated-width-depth-box',()=>{
+ const cat=S.createCatalog([{id:'tri',widthMm:200,depthMm:200,heightMm:300,footprintMm:[[-50,-50],[50,-50],[-50,50]]}]);
+ const initial=S.createDefaultLayout({room:S.createRoomRect({widthMm:150,depthMm:150}),printers:[rotationPrinter('tri')]},cat);
+ const r=rotateResolved(initial,'rot-p',360,{snapDeg:0},cat);assert.equal(r.yawDeg,360);assert.equal(r.boundaryLimited,undefined);
+});
+await test('rotation-pending-accepted-state-roundtrip-retains-turn-count-and-exact-reset',()=>{
+ const initial=rotationState('rotation-long',12.25);let r=rotateResolved(initial,'rot-p',402.25,{snapDeg:15,snapOrigin:12.25});
+ const loaded=S.parseLayout(S.serializeLayout(r.state,rotationCat),rotationCat);assert.deepEqual(loaded,r.state);
+ r=rotateResolved(loaded,'rot-p',12.25,{snapDeg:15,snapOrigin:12.25});assert.deepEqual(r.state,initial);
+});
+await test('rotation-off-grid-wall-contact-continued-pressure-does-not-snap-backward',()=>{
+ const initial=rotationState('rotation-wide',0,S.createRoomRect({widthMm:700,depthMm:1000}));
+ const contact=rotateResolved(initial,'rot-p',90,{snapDeg:15,snapOrigin:0});assert.equal(contact.boundaryLimited,true);
+ assert.equal(contact.pointerRemainderDeg,undefined,'Do not re-add a signed snap residual at an off-grid boundary');
+ assert.ok(contact.yawDeg>15&&contact.yawDeg<22.5,'Fixture must stop between grid15 and the22.5 midpoint');
+ let state=contact.state;
+ for(const raw of [contact.yawDeg+.5,contact.yawDeg+1,contact.yawDeg+2,contact.yawDeg+6]){
+  const r=rotateResolved(state,'rot-p',raw,{snapDeg:15,snapOrigin:0});
+  assert.ok(r.yawDeg>=contact.yawDeg,'Outward pointer pressure must not turn backward to the previous snap');state=r.state;
+ }
+ const reverse=rotateResolved(state,'rot-p',contact.yawDeg-.5,{snapDeg:15,snapOrigin:0});assert.equal(reverse.yawDeg,15);
+});
+await test('rotation-invalid-inputs-and-legacy-overhang-reject-without-source-mutation',()=>{
+ const initial=rotationState(),saved=S.serializeLayout(initial,rotationCat);
+ for(const input of [null,[],{}, {id:'missing',yawDeg:90},{id:'rot-p',yawDeg:NaN},{id:'rot-p',yawDeg:Infinity},{id:'rot-p',yawDeg:'90'}, {id:'rot-p',yawDeg:90,other:1}])
+  assert.equal(S.resolveWorldRotation(initial,input,rotationCat),false);
+ for(const options of [null,[],{snapDeg:-1},{snapDeg:NaN},{snapDeg:361},{snapOrigin:{yawDeg:0}},{snapOrigin:Infinity},{unknown:1}])
+  assert.equal(S.resolveWorldRotation(initial,{id:'rot-p',yawDeg:90},rotationCat,options),false);
+ const bad=clone(initial);bad.printers[0].attachment.xMm=5000;assert.equal(S.resolveWorldRotation(bad,{id:'rot-p',yawDeg:90},rotationCat),false);
+ assert.equal(S.serializeLayout(initial,rotationCat),saved);
 });
 
 for(const p of inputPaths)assert.deepEqual(pin(p),before.get(p),'State test mutated actual source inputs');

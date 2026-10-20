@@ -38,10 +38,14 @@ Changes that would put an object beyond those boundaries are not accepted.
 height projection. Drag empty space to pan and scroll to zoom; the plan does
 not rotate. Switching back to 3D restores the three-dimensional scene.
 
+Select an object to show its rotation controls. Drag the angle handle left or
+right to rotate in 15° steps. Hold **Shift** for 1° steps, or use the arrow
+buttons for 90° turns. **Esc** cancels a drag. Printers on a desk or shelf rotate with it.
+
 With the scene focused and an object selected, arrow keys move it by 10 mm
-or 100 mm with Shift; **R** rotates it by 90°. Numeric fields also support precise
-placement. Objects can be duplicated or deleted. Before deleting occupied
-furniture, explicitly choose to move its printers to the floor. Move printers
+or 100 mm with Shift. **R** turns it by 90°; **Shift+R** turns it by −90°.
+Numeric fields also support precise placement. Objects can be duplicated or
+deleted. Before deleting occupied furniture, explicitly choose to move its printers to the floor. Move printers
 off a shelf board before removing that board.
 
 ## Draw or import an outline

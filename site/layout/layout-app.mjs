@@ -1,6 +1,6 @@
-import {createDefaultLayout,createDesk,createShelf,createCatalog,applyAction,applyWorldMove,resolveWorldMove,placementViolations,deriveScene,worldTransform,validatePlacement,serializeLayout,parseLayout} from './layout-state.mjs?v=d5be89c5876cc3bfab5c';
-import {createLayoutUI} from './layout-ui.mjs?v=07b2a1ba91d2baa0db30';
-import {setupLayoutLanguage} from './layout-language.mjs?v=bf6d4bee08d3eb3b5eb7';
+import {createDefaultLayout,createDesk,createShelf,createCatalog,applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,placementViolations,deriveScene,worldTransform,validatePlacement,serializeLayout,parseLayout} from './layout-state.mjs?v=958a4aac45cc6c68d570';
+import {createLayoutUI} from './layout-ui.mjs?v=a86a8dcf9285885fd08e';
+import {setupLayoutLanguage} from './layout-language.mjs?v=c43bccbacd5e78ac1ba5';
 import {readDisplay,saveDisplay,applyDisplay} from '../viewer/display-preferences.mjs?v=56b29930754451d8193c';
 
 const storageKey='3d-print-rig-layout-v1',maxFileBytes=2*1024*1024;
@@ -29,7 +29,7 @@ function sync(){
 }
 function commit(next,{history=true}={}){
   if(busy||next===state||serializeLayout(next,catalog)===serializeLayout(state,catalog))return;if(history){past.push(state);if(past.length>80)past.shift();future.length=0;}
-  state=next;sync();store();
+  state=next;$('#layout-status').hidden=true;$('#layout-status').textContent='';ui.setStatus({message:'',error:false});sync();store();
 }
 function select(value){if(busy)return;interactionGeneration++;selected=value;sync();}
 function download(blob,name){const url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download=name;link.click();setTimeout(()=>URL.revokeObjectURL(url),30000);}
@@ -79,6 +79,41 @@ function worldMove({id:entityId,x,z}){
     commit(next);return true;
   }
   catch(error){message(humanError(error),true);sync();return false;}
+}
+let pendingRotation=null,discreteRotation=null;
+function constrainRotate({id:entityId,yawDeg},context){
+  if(busy||roomEditing||disposed)return false;
+  const finite=p=>p&&Number.isFinite(p.yawDeg);
+  if(!finite(context?.origin)||!finite(context?.previous)||![1,15].includes(context.snapDeg))return false;
+  const origin=context.origin.yawDeg;let previousState=state;
+  if(context.previous.yawDeg!==origin){
+    if(!pendingRotation||pendingRotation.base!==state||pendingRotation.id!==entityId||pendingRotation.origin!==origin||pendingRotation.yawDeg!==context.previous.yawDeg)return false;
+    previousState=pendingRotation.state;
+  }else pendingRotation=null;
+  const result=resolveWorldRotation(previousState,{id:entityId,yawDeg},catalog,{snapDeg:context.snapDeg,snapOrigin:origin});if(!result)return false;
+  pendingRotation={...result,id:entityId,base:state,origin};
+  return {yawDeg:result.yawDeg,...(result.boundaryLimited?{boundaryLimited:true,pointerRemainderDeg:result.pointerRemainderDeg??0}:{})};
+}
+function worldRotate({id:entityId,yawDeg,deltaDeg}){
+  if(busy||roomEditing||disposed)return false;
+  interactionGeneration++;
+  try{
+    const prepared=pendingRotation;pendingRotation=null;
+    if(deltaDeg===undefined&&prepared&&prepared.base===state&&prepared.id===entityId&&prepared.yawDeg===yawDeg){discreteRotation=null;commit(prepared.state);return true;}
+    const furniture=state.furniture.find(e=>e.id===entityId),printer=state.printers.find(e=>e.id===entityId);
+    if(!furniture&&!printer)return false;
+    const parent=printer&&state.furniture.find(e=>e.id===printer.attachment.parentId);
+    if(deltaDeg!==undefined&&![-90,-15,-1,1,15,90].includes(deltaDeg))return false;
+    // Keep consecutive integer turns relative to their exact source angle.
+    // Adding then subtracting 90 from a binary64 fraction can otherwise drift.
+    const sourceYaw=furniture?.pose.yawDeg??printer.attachment.yawDeg;
+    const chain=deltaDeg===undefined?null:discreteRotation?.last===state&&discreteRotation.id===entityId?discreteRotation:{base:state,id:entityId,originYaw:sourceYaw,total:0};
+    const total=chain?chain.total+deltaDeg:null,localYaw=chain?(total===0?chain.originYaw:chain.originYaw+total):yawDeg-(parent?.pose.yawDeg||0);
+    const validated=applyAction(state,furniture?{type:'UPDATE_FURNITURE',id:entityId,patch:{pose:{yawDeg:localYaw}}}:{type:'UPDATE_PRINTER',id:entityId,patch:{attachment:{yawDeg:localYaw}}},catalog);
+    const next=chain&&total===0?chain.base:validated;
+    discreteRotation=chain?{...chain,total,last:next}:null;
+    commit(next);return true;
+  }catch(error){message(humanError(error),true);sync();return false;}
 }
 async function render(){
   if(busy)return;const floorplan=view.getView().projection==='orthographic-floorplan';
@@ -150,7 +185,7 @@ async function act(action){
       case 'render':await render();return;
       case 'edit-room':case 'import-svg':{
         roomEditing=true;
-        try{const {openRoomEditor}=await import('./layout-room-editor.mjs?v=621f7aada2920e96d009'),nextRoom=await openRoomEditor({room:state.room,file:action.type==='import-svg'?action.file:undefined,t:language.t});
+        try{const {openRoomEditor}=await import('./layout-room-editor.mjs?v=ae5813e1162b65ba92fa'),nextRoom=await openRoomEditor({room:state.room,file:action.type==='import-svg'?action.file:undefined,t:language.t});
           if(nextRoom&&!disposed){commit(applyAction(state,{type:'SET_ROOM',room:nextRoom},catalog));view.view('perspective');}
         }finally{roomEditing=false;}return;
       }
@@ -205,19 +240,19 @@ async function start(){
   rows=raw.machines.map(r=>({...r,widthMm:r.dimensionsMm.width,depthMm:r.dimensionsMm.depth,heightMm:r.dimensionsMm.height}));
   catalog=createCatalog(rows.map(r=>({id:r.id,widthMm:r.widthMm,depthMm:r.depthMm,heightMm:r.heightMm,baseOffsetMm:r.baseOffsetMm||0,...(r.footprintMm?{footprintMm:r.footprintMm}:{})})));
   state=makeDefault();try{const saved=localStorage.getItem(storageKey);if(saved&&saved.length<=maxFileBytes)state=parseLayout(saved,catalog);}catch{message(t('layout.error.savedPlan'),true);}
-  const {createLayoutRenderer}=await import('./layout-renderer.mjs?v=10e402be047cb4a06768');
+  const {createLayoutRenderer}=await import('./layout-renderer.mjs?v=bf8b155f6f95e41242bf');
   ui=createLayoutUI({container:$('#layout-sidebar'),onAction:act,t:language.t,catalog:rows});
-  view=createLayoutRenderer({container:$('#layout-scene'),catalog:rows,t:language.t,onSelect:select,onMove:worldMove,constrainMove,onViewChange:updateViewPresentation,onError:error=>message(humanError(error),true)});
+  view=createLayoutRenderer({container:$('#layout-scene'),catalog:rows,t:language.t,onSelect:select,onMove:worldMove,constrainMove,onRotate:worldRotate,constrainRotate,onViewChange:updateViewPresentation,onError:error=>message(humanError(error),true)});
   sync();view.view('perspective');
   updateViewPresentation(view.getView());
   for(const e of document.querySelectorAll('[data-layout-view]'))e.addEventListener('click',()=>{if(!busy&&!roomEditing)view.view(e.dataset.layoutView);});
   for(const element of [$('#layout-grid'),$('#layout-walls')].filter(Boolean))element.addEventListener('change',()=>view.setOptions({grid:$('#layout-grid')?.checked??true,walls:$('#layout-walls')?.checked??true,dark:dark()}));
   view.canvas.addEventListener('keydown',event=>{
-    if(busy||!selected)return;
+    if(busy||!selected||event.ctrlKey||event.metaKey||event.altKey)return;
     const e=state.furniture.find(e=>e.id===selected)||state.printers.find(e=>e.id===selected);if(!e)return;
     const attachment=e.pose||e.attachment;let patch=null;
     const amount=event.shiftKey?100:10;
-    if(event.key==='ArrowLeft')patch={xMm:attachment.xMm-amount};if(event.key==='ArrowRight')patch={xMm:attachment.xMm+amount};if(event.key==='ArrowUp')patch={zMm:attachment.zMm-amount};if(event.key==='ArrowDown')patch={zMm:attachment.zMm+amount};if(event.key.toLowerCase()==='r')patch={yawDeg:attachment.yawDeg+90};
+    if(event.key==='ArrowLeft')patch={xMm:attachment.xMm-amount};if(event.key==='ArrowRight')patch={xMm:attachment.xMm+amount};if(event.key==='ArrowUp')patch={zMm:attachment.zMm-amount};if(event.key==='ArrowDown')patch={zMm:attachment.zMm+amount};if(event.key.toLowerCase()==='r'&&!event.repeat)patch={yawDeg:attachment.yawDeg+(event.shiftKey?-90:90)};
     if(patch){event.preventDefault();act(e.pose?{type:'UPDATE_FURNITURE',id:e.id,patch:{pose:patch}}:{type:'UPDATE_PRINTER',id:e.id,patch:{attachment:patch}});}
   });
   view.setOptions({dark:dark(),walls:$('#layout-walls')?.checked??true,grid:$('#layout-grid')?.checked??true});updateLanguage();document.body.dataset.layoutReady='true';

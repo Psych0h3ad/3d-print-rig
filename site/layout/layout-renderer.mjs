@@ -1,7 +1,7 @@
 import * as THREE from '../viewer/vendor-r180/three.module.js';
 import {OrbitControls} from '../viewer/vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from '../viewer/vendor-r180/RoomEnvironment.js';
-import {deriveScene} from './layout-state.mjs?v=d5be89c5876cc3bfab5c';
+import {deriveScene} from './layout-state.mjs?v=958a4aac45cc6c68d570';
 
 const MM = .001;
 const disposableMaterial = new THREE.MeshBasicMaterial({visible:false});
@@ -68,11 +68,23 @@ function printerPreviewParts(row) {
   return {style,parts,simplePreview:true};
 }
 
-export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>{},onMove=()=>{},constrainMove=({x,z})=>({x,z}),onError=()=>{},onViewChange=()=>{}}) {
+export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>{},onMove=()=>{},constrainMove=({x,z})=>({x,z}),onRotate=()=>{},constrainRotate=({yawDeg})=>({yawDeg}),onError=()=>{},onViewChange=()=>{}}) {
   const renderer=new THREE.WebGLRenderer({antialias:true,alpha:false});
   renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.5));renderer.toneMapping=THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure=1.1;renderer.outputColorSpace=THREE.SRGBColorSpace;
   const canvas=renderer.domElement;canvas.tabIndex=0;canvas.setAttribute('aria-label',t('sceneLabel'));canvas.setAttribute('data-layout-i18n-aria-label','layout.sceneLabel');container.append(canvas);
+  const objectTools=document.createElement('div');objectTools.className='layout-object-tools';objectTools.hidden=true;objectTools.setAttribute('role','group');objectTools.setAttribute('data-layout-i18n-aria-label','layout.rotationControls');container.append(objectTools);
+  const toolListeners=[];
+  const listen=(element,type,handler)=>{element.addEventListener(type,handler);toolListeners.push([element,type,handler]);};
+  function rotateButton(name,path){
+    const b=document.createElement('button');b.type='button';b.setAttribute('data-layout-rotation',name);
+    const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 24 24');svg.setAttribute('aria-hidden','true');
+    const p=document.createElementNS('http://www.w3.org/2000/svg','path');p.setAttribute('d',path);svg.append(p);b.append(svg);objectTools.append(b);return b;
+  }
+  const rotateLeft=rotateButton('left','M3 10V4m0 0h6M3 4l4 4a8 8 0 1 1-1 9');
+  const rotateHandle=rotateButton('handle','M4 8a8 8 0 0 1 14-2l3 3m0 0V3m0 6h-6M20 16a8 8 0 0 1-14 2l-3-3m0 0v6m0-6h6');rotateHandle.className='layout-rotation-handle';
+  const rotationValue=document.createElement('output');rotationValue.setAttribute('aria-hidden','true');rotateHandle.append(rotationValue);
+  const rotateRight=rotateButton('right','M21 10V4m0 0h-6m6 0-4 4a8 8 0 1 0 1 9');
   const scene=new THREE.Scene();scene.background=new THREE.Color('#e9edef');
   const planCamera=new THREE.OrthographicCamera(-2,2,2,-2,.01,1000);planCamera.up.set(0,0,-1);
   const planControls=new OrbitControls(planCamera,canvas);planControls.enabled=false;planControls.enableRotate=false;planControls.enableDamping=false;planControls.screenSpacePanning=true;planControls.minZoom=.05;planControls.maxZoom=10000;
@@ -97,7 +109,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   function box(parent,size,position,color){const m=new THREE.Mesh(boxGeometry,material(color));m.scale.set(...size);m.position.set(...position);parent.add(m);return m;}
   function isPlan(){return viewMode==='top';}
   function getView(){return {mode:viewMode,projection:isPlan()?'orthographic-floorplan':'perspective-3d'};}
-  function enableControls(){perspectiveControls.enabled=!exporting&&!disposed&&!isPlan()&&drag?.kind!=='object';planControls.enabled=!exporting&&!disposed&&isPlan()&&drag?.kind!=='object';}
+  function enableControls(){const manipulating=drag?.kind==='object'||drag?.kind==='rotate';perspectiveControls.enabled=!exporting&&!disposed&&!isPlan()&&!manipulating;planControls.enabled=!exporting&&!disposed&&isPlan()&&!manipulating;if(exporting||disposed)objectTools.hidden=true;}
   function refreshWalls(forCamera=camera){for(const o of roomGroup.children)if(o.userData.wall){const n=o.userData.inward;o.visible=!isPlan()&&wallsVisible&&(n[0]*(forCamera.position.x-o.position.x)+n[1]*(forCamera.position.z-o.position.z)>=0);}}
   function planLabelLayout(g,forCamera=planCamera,pixelHeight=lastHeight){
     const unit=(forCamera.top-forCamera.bottom)/forCamera.zoom/Math.max(1,pixelHeight),points=g.userData.planPoints,xs=points.map(p=>p[0]),zs=points.map(p=>p[1]);
@@ -105,7 +117,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     return {width,height,screenWidth,visible:!g.userData.planLabelSuppressed&&Number.isFinite(screenWidth)&&screenWidth>=48};
   }
   function updatePlanLabels(){for(const g of planObjects.values()){const layout=planLabelLayout(g);for(const o of g.children)if(o.userData.planLabel){o.scale.set(layout.width,layout.height,1);o.visible=layout.visible;}}}
-  function draw(){if(disposed||frame||exporting)return;frame=requestAnimationFrame(()=>{frame=0;if(disposed||exporting)return;refreshWalls();if(isPlan())updatePlanLabels();renderer.render(scene,camera);});}
+  function draw(){if(disposed||frame||exporting)return;frame=requestAnimationFrame(()=>{frame=0;if(disposed||exporting)return;refreshWalls();if(isPlan())updatePlanLabels();updateObjectTools();renderer.render(scene,camera);});}
   perspectiveControls.addEventListener('change',draw);planControls.addEventListener('change',draw);
   function resize(){if(disposed||exporting)return;const r=container.getBoundingClientRect();if(!r.width||!r.height)return;lastWidth=r.width;lastHeight=r.height;renderer.setSize(r.width,r.height,false);perspectiveCamera.aspect=r.width/r.height;perspectiveCamera.updateProjectionMatrix();planCamera.left=-planHalfHeight*r.width/r.height;planCamera.right=-planCamera.left;planCamera.top=planHalfHeight;planCamera.bottom=-planHalfHeight;planCamera.updateProjectionMatrix();draw();}
   const observer=new ResizeObserver(resize);observer.observe(container);
@@ -144,7 +156,20 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   }
   function updateSelection(){
     const selected=objects.get(selectedId),plan=planObjects.get(selectedId);selectionBox.visible=!isPlan()&&!!selected;if(selected)selectionBox.setFromObject(selected);
-    planSelection.visible=isPlan()&&!!plan;if(plan){planSelection.geometry.setFromPoints(plan.userData.planPoints.map(([x,z])=>new THREE.Vector3(x,.003,z)));planSelection.position.copy(plan.position);}
+    planSelection.visible=isPlan()&&!!plan;if(plan){planSelection.geometry.setFromPoints(plan.userData.planPoints.map(([x,z])=>new THREE.Vector3(x,.003,z)));planSelection.position.copy(plan.position);planSelection.rotation.y=plan.rotation.y;}
+    updateObjectTools();
+  }
+  function updateObjectTools(){
+    const g=objects.get(selectedId);objectTools.hidden=exporting||disposed||!g;if(objectTools.hidden)return;
+    camera.updateMatrixWorld(true);g.updateMatrixWorld(true);
+    const box=new THREE.Box3().setFromObject(g),anchor=new THREE.Vector3(g.position.x,isPlan()?0:box.max.y+.08,g.position.z).project(camera);
+    if(!Number.isFinite(anchor.x+anchor.y+anchor.z)||anchor.z< -1||anchor.z>1||Math.abs(anchor.x)>1.4||Math.abs(anchor.y)>1.4){objectTools.hidden=true;return;}
+    const width=lastWidth||container.getBoundingClientRect().width,height=lastHeight||container.getBoundingClientRect().height;
+    const half=Math.min(width/2,110);objectTools.style.left=`${Math.max(half,Math.min(width-half,(anchor.x+1)*width/2))}px`;objectTools.style.top=`${Math.max(Math.min(64,height),Math.min(height-12,(1-anchor.y)*height/2-12))}px`;
+    objectTools.setAttribute('aria-label',t('layout.rotationControls'));objectTools.title=t('layout.rotationHint');
+    for(const [button,key]of [[rotateLeft,'layout.rotateLeft'],[rotateRight,'layout.rotateRight'],[rotateHandle,'layout.rotateHandle']]){button.setAttribute('aria-label',t(key));button.title=t(key);}
+    const yaw=drag?.kind==='rotate'?drag.accepted.yawDeg:g.rotation.y*180/Math.PI;
+    const angle=((yaw%360)+360)%360;rotationValue.textContent=`${Math.abs(angle-360)<.05||Math.abs(angle)<.05?0:Math.round(angle*10)/10}°`;
   }
   function presentView(){furnitureGroup.visible=!isPlan();printersGroup.visible=!isPlan();planGroup.visible=isPlan();enableControls();refreshWalls();updateSelection();}
   function makePrinter(e){
@@ -185,7 +210,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   }
   function setState(state,id,issues=[]){
     if(exporting)throw Error('Layout is rendering');
-    if(drag&&state!==current)cancel();
+    if(drag&&(state!==current||id!==selectedId))cancel();
     current=state;selectedId=id;derived=deriveScene(state,catalog);
     for(const o of roomGroup.children)if(o.userData.roomOwned){o.geometry.dispose();o.material.dispose();}
     resetGroup(furnitureGroup);resetGroup(printersGroup);objects.clear();makeRoom(state.room);
@@ -220,6 +245,37 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   function eventPoint(event){const r=canvas.getBoundingClientRect();pointer.set((event.clientX-r.left)/r.width*2-1,-(event.clientY-r.top)/r.height*2+1);raycaster.setFromCamera(pointer,camera);}
   function hit(event){scene.updateMatrixWorld(true);camera.updateMatrixWorld(true);eventPoint(event);const intersections=raycaster.intersectObjects(isPlan()?[...planObjects.values()]:[...furnitureGroup.children,...printersGroup.children],true);for(const h of intersections){if(h.object.userData.planLabel)continue;let o=h.object;while(o&&!o.userData.entityId)o=o.parent;if(o)return o.userData.entityId;}return null;}
   function planePoint(event,y){eventPoint(event);return raycaster.ray.intersectPlane(new THREE.Plane(new THREE.Vector3(0,1,0),-y),new THREE.Vector3());}
+  function turnBy(delta){
+    if(disposed||exporting||drag||!selectedId)return;
+    const e=[...derived.furniture,...derived.printers].find(e=>e.id===selectedId);if(!e)return;
+    const before=current;try{onRotate({id:e.id,yawDeg:e.yawDeg+delta,deltaDeg:delta});}catch(error){onError(error);}finally{if(current===before&&!disposed)setState(current,selectedId);}
+  }
+  function rotationDown(event){
+    if(disposed||exporting||event.button!==0||event.isPrimary===false||drag)return;
+    const g=objects.get(selectedId),e=[...derived.furniture,...derived.printers].find(e=>e.id===selectedId);if(!g||!e)return;
+    event.stopImmediatePropagation();event.preventDefault();rotateHandle.focus({preventScroll:true});
+    const yawDeg=e.yawDeg;
+    drag={id:selectedId,kind:'rotate',pointerId:event.pointerId,captureTarget:rotateHandle,startX:event.clientX,startY:event.clientY,lastX:event.clientX,moved:false,origin:g.position.clone(),originYawRad:g.rotation.y,originYawDeg:yawDeg,rawYawDeg:yawDeg,accepted:{yawDeg},followers:(current.printers||[]).filter(p=>p.attachment.parentId===selectedId).map(p=>{const child=objects.get(p.id);return {id:p.id,origin:child.position.clone(),originYawRad:child.rotation.y};})};
+    rotateHandle.setPointerCapture(event.pointerId);rotateHandle.dataset.dragging='true';delete objectTools.dataset.boundaryLimited;enableControls();onSelect(selectedId);
+  }
+  function rotationMove(event){
+    if(drag?.kind!=='rotate'||drag.pointerId!==event.pointerId)return;
+    event.stopImmediatePropagation();event.preventDefault();
+    if(!Number.isFinite(event.clientX))return;
+    const gesture=drag,dx=event.clientX-drag.lastX;drag.lastX=event.clientX;drag.rawYawDeg+=dx*(event.shiftKey ? .1 : .5);
+    if(Math.abs(event.clientX-drag.startX)>3)drag.moved=true;if(!drag.moved)return;
+    let accepted;try{accepted=constrainRotate({id:drag.id,yawDeg:drag.rawYawDeg},{previous:{...drag.accepted},origin:{yawDeg:drag.originYawDeg},snapDeg:event.shiftKey?1:15});}catch(error){onError(error);return;}
+    if(drag!==gesture||disposed||accepted===false)return;
+    if(!accepted||!Number.isFinite(accepted.yawDeg)){onError(Object.assign(Error('Invalid constrained rotation'),{code:'INVALID_CONSTRAINED_ROTATION'}));return;}
+    if(accepted.boundaryLimited&&accepted.pointerRemainderDeg!==undefined&&!Number.isFinite(accepted.pointerRemainderDeg)){onError(Object.assign(Error('Invalid rotation remainder'),{code:'INVALID_CONSTRAINED_ROTATION'}));return;}
+    drag.accepted={yawDeg:accepted.yawDeg};
+    if(accepted.boundaryLimited)drag.rawYawDeg=accepted.yawDeg+(accepted.pointerRemainderDeg||0);
+    objectTools.dataset.boundaryLimited=String(!!accepted.boundaryLimited);
+    const g=objects.get(drag.id);if(!g)return;const delta=(accepted.yawDeg-drag.originYawDeg)*Math.PI/180;
+    g.rotation.y=drag.originYawRad+delta;const plan=planObjects.get(drag.id);if(plan)plan.rotation.y=delta;
+    for(const follower of drag.followers){const child=objects.get(follower.id),flat=planObjects.get(follower.id);if(!child)continue;child.position.copy(follower.origin).sub(drag.origin).applyAxisAngle(new THREE.Vector3(0,1,0),delta).add(drag.origin);child.rotation.y=follower.originYawRad+delta;if(flat){flat.position.x=child.position.x;flat.position.z=child.position.z;flat.rotation.y=delta;}}
+    updateSelection();draw();
+  }
   function down(event){
     if(disposed||exporting||event.button!==0||event.isPrimary===false)return;
     if(drag){event.stopImmediatePropagation();event.preventDefault();return;}
@@ -258,7 +314,11 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   }
   function up(event){
     if(!drag||drag.pointerId!==event.pointerId)return;const d=drag;drag=null;
-    if(d.kind==='object'){
+    if(d.kind==='rotate'){
+      event.stopImmediatePropagation();event.preventDefault();
+      if(d.captureTarget.hasPointerCapture(event.pointerId))d.captureTarget.releasePointerCapture(event.pointerId);delete rotateHandle.dataset.dragging;delete objectTools.dataset.boundaryLimited;enableControls();
+      const before=current;try{if(d.moved&&d.accepted.yawDeg!==d.originYawDeg)onRotate({id:d.id,...d.accepted});}catch(error){onError(error);}finally{if(current===before&&!disposed)setState(current,selectedId);}
+    }else if(d.kind==='object'){
       event.stopImmediatePropagation();event.preventDefault();
       if(canvas.hasPointerCapture(event.pointerId))canvas.releasePointerCapture(event.pointerId);enableControls();canvas.style.cursor='grab';
       if(d.moved&&(d.accepted.x!==d.originMm.x||d.accepted.z!==d.originMm.z)){const before=current;try{onMove({id:d.id,...d.accepted});}catch(error){onError(error);}finally{if(current===before&&!disposed)setState(current,selectedId);}}
@@ -267,12 +327,16 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   function cancel(event){
     if(!drag||event?.pointerId!==undefined&&event.pointerId!==drag.pointerId)return;
     const d=drag;drag=null;
-    if(d.kind==='object')for(const item of [{id:d.id,origin:d.origin},...(d.followers||[])]){const a=objects.get(item.id),b=planObjects.get(item.id);if(a)a.position.copy(item.origin);if(b){b.position.x=item.origin.x;b.position.z=item.origin.z;}}
-    if(canvas.hasPointerCapture(d.pointerId))canvas.releasePointerCapture(d.pointerId);enableControls();canvas.style.cursor='grab';updateSelection();draw();
+    if(d.kind==='object'||d.kind==='rotate')for(const item of [{id:d.id,origin:d.origin,originYawRad:d.originYawRad},...(d.followers||[])]){const a=objects.get(item.id),b=planObjects.get(item.id);if(a){a.position.copy(item.origin);if(d.kind==='rotate')a.rotation.y=item.originYawRad;}if(b){b.position.x=item.origin.x;b.position.z=item.origin.z;if(d.kind==='rotate')b.rotation.y=0;}}
+    const target=d.captureTarget||canvas;if(target.hasPointerCapture(d.pointerId))target.releasePointerCapture(d.pointerId);delete rotateHandle.dataset.dragging;delete objectTools.dataset.boundaryLimited;enableControls();canvas.style.cursor='grab';updateSelection();draw();
   }
   // Capture phase chooses object manipulation before either OrbitControls listener.
   for(const [type,handler]of [['pointerdown',down],['pointermove',move],['pointerup',up],['pointercancel',cancel],['lostpointercapture',cancel]])canvas.addEventListener(type,handler,true);
   const eventWindow=canvas.ownerDocument?.defaultView;eventWindow?.addEventListener('blur',cancel);
+  const keyCancel=event=>{if(event.key==='Escape'&&drag){event.preventDefault();cancel();}};eventWindow?.addEventListener('keydown',keyCancel);
+  listen(rotateLeft,'click',()=>turnBy(-90));listen(rotateRight,'click',()=>turnBy(90));
+  for(const button of [rotateLeft,rotateHandle,rotateRight])listen(button,'keydown',event=>{if(drag||event.repeat||event.ctrlKey||event.metaKey||event.altKey)return;const delta=event.key==='ArrowLeft'?-(event.shiftKey?1:15):event.key==='ArrowRight'?(event.shiftKey?1:15):event.key.toLowerCase()==='r'?(event.shiftKey?-90:90):0;if(delta){event.preventDefault();turnBy(delta);}});
+  for(const [type,handler]of [['pointerdown',rotationDown],['pointermove',rotationMove],['pointerup',up],['pointercancel',cancel],['lostpointercapture',cancel]])listen(rotateHandle,type,handler);
   function setTool(){enableControls();canvas.style.cursor='grab';return 'auto';}
   function setOptions({grid:showGrid=true,walls=wallsVisible,dark=false}={}){if(exporting||disposed)return;grid.visible=showGrid;wallsVisible=walls;for(const o of roomGroup.children)if(o.userData.wall)o.visible=walls;scene.background.set(dark?'#14222a':'#e9edef');draw();}
 
@@ -371,6 +435,6 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     }
   }
   function releaseResources(){if(resourcesDisposed)return;resourcesDisposed=true;disposeTree(planGroup);planSelection.geometry.dispose();planSelection.material.dispose();for(const o of roomGroup.children)if(o.userData.roomOwned){o.geometry.dispose();o.material.dispose();}boxGeometry.dispose();wireGeometry.dispose();wireMaterial.dispose();wallMaterial.dispose();for(const m of palette.values())m.dispose();grid.geometry.dispose();grid.material.dispose();selectionBox.geometry.dispose();selectionBox.material.dispose();environment.dispose();renderer.dispose();canvas.remove();}
-  function dispose(){if(disposed)return;cancel();disposed=true;exportAbort?.abort();if(frame)cancelAnimationFrame(frame);observer.disconnect();perspectiveControls.dispose();planControls.dispose();eventWindow?.removeEventListener('blur',cancel);for(const [type,handler]of [['pointerdown',down],['pointermove',move],['pointerup',up],['pointercancel',cancel],['lostpointercapture',cancel]])canvas.removeEventListener(type,handler,true);if(!exporting)releaseResources();}
+  function dispose(){if(disposed)return;cancel();disposed=true;exportAbort?.abort();if(frame)cancelAnimationFrame(frame);observer.disconnect();perspectiveControls.dispose();planControls.dispose();eventWindow?.removeEventListener('blur',cancel);eventWindow?.removeEventListener('keydown',keyCancel);for(const [element,type,handler]of toolListeners)element.removeEventListener(type,handler);objectTools.remove();for(const [type,handler]of [['pointerdown',down],['pointermove',move],['pointerup',up],['pointercancel',cancel],['lostpointercapture',cancel]])canvas.removeEventListener(type,handler,true);if(!exporting)releaseResources();}
   resize();setTool();return {setState,setTool,setOptions,view,getView,exportImage,dispose,canvas};
 }
