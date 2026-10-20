@@ -23,6 +23,7 @@ export function machineReviewInputs(reviewRoot=root){
   }
  }
  visit('site/viewer');
+ visit('site/layout');
  for(const name of fs.readdirSync(path.join(reviewRoot,'site')).filter(n=>n.endsWith('.json'))){
   pin('site/'+name);
  }

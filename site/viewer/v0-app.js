@@ -6,14 +6,14 @@ import {v0NativeModelHash,v0NativeDependencyHash,v0NativeByteHash,guardV0NativeI
 import {createV0Installations,v0Slots,v0TophatMaxAngle} from './v0-installations.mjs?v=055c471ab6122e9cb3fe';
 import {v0ConfigurationSchema,stockV0Mods,validateV0State,readV0ModsURL,v0ModsURL,createV0StateRestorer} from './v0-state.mjs?v=d07ccd54c3039984cc57';
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
-import {loadExternalComponent} from './component-assets.mjs?v=963445da64a2f4de7cc5';
+import {loadExternalComponent} from './component-assets.mjs?v=2dbda26b309fbe6c35c8';
 import {v0ModCategories,componentCategory} from './v0-mod-library.mjs?v=ddeeafeb04155ab0838b';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=workspace-belts-1';
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=34020540905242580aa6';
+import {loadModel} from './model-loader.js?v=3a71971c97a749c16228';
 import {createV0Adapter} from './v0_adapter.mjs?v=4ee2ec34955631397cf3';
 import {setupMachineNavigation} from './machines.js?v=ab543d6b01637bc5083f';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';

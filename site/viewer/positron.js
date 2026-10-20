@@ -6,7 +6,7 @@ ensureWorkspaceEntry(import.meta.url);
 import * as THREE from './vendor-r180/three.module.js';
 import {OrbitControls} from './vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
-import {loadPositron} from './positron-loader.mjs?v=2a3105a5404159f02ff4';
+import {loadPositron} from './positron-loader.mjs?v=b64f79151c6cb05dc1d7';
 import {positronSchema,validatePositronState} from './positron-state.mjs?v=8296d1b775fbca04462f';
 import {setupMachineNavigation} from './machines.js?v=ab543d6b01637bc5083f';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';

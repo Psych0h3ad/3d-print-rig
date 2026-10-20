@@ -12,11 +12,11 @@ export function disposeRatRig(root,adapter){
  root.traverse(n=>{if(n.isMesh){geometries.add(n.geometry);for(const m of [].concat(n.material)){materials.add(m);for(const v of Object.values(m))if(v?.isTexture)textures.add(v)}}});
  for(const v of [...geometries,...materials,...textures])v.dispose();root.removeFromParent();
 }
-export async function loadRatRigMachine(index,id,{onProgress=()=>{},signal}={}){
+export async function loadRatRigMachine(index,id,{onProgress=()=>{},signal,progressOptions}={}){
  const row=index.machines.find(r=>r.id===id);if(!row||!index.stock_only)throw Error('RatRigの標準構成が未登録です。');
- const names=['machine_profile.json','assembly_manifest.json','flexible_routes.json','model.glb'],progress=beginModelLoading(Object.fromEntries(names.map(n=>[n,row.files[n]])));
+ const names=['machine_profile.json','assembly_manifest.json','flexible_routes.json','model.glb'],progress=beginModelLoading(Object.fromEntries(names.map(n=>[n,row.files[n]])),progressOptions);
  try{
- const local=['127.0.0.1','localhost'].includes(location.hostname),base=local?new URL('../'+index.local_directory+'/',import.meta.url):new URL(index.base_url);
+ const local=progressOptions?.preferPublicAssets!==true&&['127.0.0.1','localhost'].includes(location.hostname),base=local?new URL('../'+index.local_directory+'/',import.meta.url):new URL(index.base_url);
  async function checked(name){
   const spec=row.files[name];if(!spec)throw Error('構成ファイルが不足しています。');
   const url=new URL(spec.path,base);url.searchParams.set('sha',spec.sha256.slice(0,16));const response=await fetch(url,{cache:'no-cache',signal});if(!response.ok)throw Error('CADを取得できませんでした ('+response.status+')');

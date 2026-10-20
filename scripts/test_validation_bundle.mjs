@@ -22,9 +22,10 @@ console.log('Pinned original mounting witnesses retained; exact deck-only repair
 const root=mkdtempSync(path.join(os.tmpdir(),'rig-review-inputs-'));
 assert.equal(path.dirname(path.resolve(root)),path.resolve(os.tmpdir()));
 try{
- for(const directory of ['site/viewer/vendor','scripts/fixtures','.github/workflows'])mkdirSync(path.join(root,directory),{recursive:true});
+ for(const directory of ['site/viewer/vendor','site/layout','scripts/fixtures','.github/workflows'])mkdirSync(path.join(root,directory),{recursive:true});
  const files={
   'site/viewer/adapter.mjs':'export const axis="Z";\n',
+  'site/layout/layout-state.mjs':'export const format="layout-fixture";\n',
   'site/viewer/vendor/three.module.js':'export const rendererRevision="fixture";\n',
   'site/MACHINES.json':'{"machines":["fixture"]}\n',
   'scripts/audit_actual.mjs':'inspectNativeParts();\n',

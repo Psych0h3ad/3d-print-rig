@@ -7,19 +7,19 @@ import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import * as THREE from 'three';
 import {loadFrameMods,withFrameMods} from './frame-mods.js?v=bd184b22738347191957';
-import {setupLighting} from './lighting.js?v=3b3263006a62aec5418d';
+import {setupLighting} from './lighting.js?v=02f875ee3a8109017b8e';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=a87a296186e146f91e0f';
 import {setupAccessories} from './accessories.js?v=ec966c0acf9ab2a2a80c';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupProbeMounts} from './probe-mounts.js?v=a1329a1bc56ae518c00a';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=34020540905242580aa6';
+import {loadModel} from './model-loader.js?v=3a71971c97a749c16228';
 import {createV24Adapter} from './v24_adapter.mjs?v=2c7e8b33fb449a513a48';
 import {setupMachineNavigation} from './machines.js?v=ab543d6b01637bc5083f';
 import {setupRenderExport} from './render-export.js?v=52720bd5e5edde8246d8';
 import {setupPublicInfo} from './public-info.js?v=bf195f65383903d3395f';
-import {setupV24MachineHeads} from './machine-heads.js?v=292907bc3d16b48cad9c';
+import {setupV24MachineHeads} from './machine-heads.js?v=536f3742e795d435ffc2';
 export async function mount(scope){
 setupMachineNavigation('siboor_v24_350');
 setupPublicInfo();

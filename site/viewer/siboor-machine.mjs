@@ -1,23 +1,23 @@
 import {siboorAlphaModelOptions,assertSiboorRawInput} from './trinity-alpha-siboor-r2.mjs?v=44c0d7b4659c7a8f68f0';
 import {contentSHA256} from './mount-validation.mjs';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=34020540905242580aa6';
-import {extraAssetBase,checkedExtraAsset} from './extra-asset-integrity.mjs?v=019170d7f31b55da1667';
+import {loadModel} from './model-loader.js?v=3a71971c97a749c16228';
+import {extraAssetBase,checkedExtraAsset} from './extra-asset-integrity.mjs?v=7483c3e6dfe211e4d6b5';
 import {beginModelLoading} from './model-progress.mjs?v=beaef781095b6f56b290';
 import {loadSiboorRegistration} from './siboor-catalog.mjs?v=617a4f783c56c113083e';
 export {siboorMachine,loadSiboorRegistration} from './siboor-catalog.mjs?v=617a4f783c56c113083e';
-export async function loadSiboorAssembly(machine){
+export async function loadSiboorAssembly(machine,{signal,progressOptions,onProgress}={}){
  const loader=new GLTFLoader();
  if(machine==='siboor_trident_350'){
-  const read=async file=>{const r=await fetch('../'+file,{cache:'no-cache'});if(!r.ok)throw Error(file);const text=await r.text();assertSiboorRawInput(machine,file,await contentSHA256(text));return JSON.parse(text)};
-  return Promise.all([read('assembly_manifest.json'),read('flexible_routes.json'),loadModel(loader,'../SIBOOR_Trident_350.glb',undefined,siboorAlphaModelOptions(machine)),loadModel(loader,'../Endstop_Mechanisms.glb'),read('COLOR_OPTIONS.json'),read('ASSEMBLY_CONFIGURATIONS.json'),read('R2_ENDSTOP_REGISTRATION.json')]);
+  const read=async file=>{const r=await fetch('../'+file,{cache:'no-cache',signal});if(!r.ok)throw Error(file);const text=await r.text();assertSiboorRawInput(machine,file,await contentSHA256(text));return JSON.parse(text)};
+  return Promise.all([read('assembly_manifest.json'),read('flexible_routes.json'),loadModel(loader,'../SIBOOR_Trident_350.glb',undefined,{...siboorAlphaModelOptions(machine),signal,progressOptions}),loadModel(loader,'../Endstop_Mechanisms.glb',onProgress,{signal,progressOptions}),read('COLOR_OPTIONS.json'),read('ASSEMBLY_CONFIGURATIONS.json'),read('R2_ENDSTOP_REGISTRATION.json')]);
  }
  if(machine!=='siboor_trident_300')throw Error('Unknown SIBOOR Trident');
  const index=await loadSiboorRegistration(),row=index.machines[machine];if(!row||row.machine_id!==machine)throw Error('Missing native 300 mm assembly');
  const names=['assembly_manifest.json','flexible_routes.json','model.glb','endstops.glb','COLOR_OPTIONS.json','configurations.json','R2_ENDSTOP_REGISTRATION.json'];
- const progress=beginModelLoading(Object.fromEntries(names.map(n=>[n,row.files[n]])));
+ const progress=beginModelLoading(Object.fromEntries(names.map(n=>[n,row.files[n]])),progressOptions);
  try{
- const base=extraAssetBase(index,import.meta.url),checked=name=>checkedExtraAsset(base,row.files[name],{onProgress:e=>progress.update(name,e)});
+ const base=extraAssetBase(index,import.meta.url,{publicOnly:progressOptions?.preferPublicAssets===true}),checked=name=>checkedExtraAsset(base,row.files[name],{signal,onProgress:e=>progress.update(name,e)});
  const data=await Promise.all(names.map(checked)),decode=bytes=>JSON.parse(new TextDecoder().decode(bytes));
  if(row.files['model.glb'].decoded_sha256!==siboorAlphaModelOptions(machine).verifySha256)throw Error('Trinity SIBOOR actual decoded host model identity mismatch');
  assertSiboorRawInput(machine,'assembly_manifest.json',await contentSHA256(new TextDecoder().decode(data[0])));assertSiboorRawInput(machine,'configurations.json',await contentSHA256(new TextDecoder().decode(data[5])));

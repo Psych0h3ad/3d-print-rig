@@ -1,7 +1,7 @@
 import * as THREE from './vendor-r180/three.module.js';
-import {loadExternalComponent} from './component-assets.mjs?v=963445da64a2f4de7cc5';
+import {loadExternalComponent} from './component-assets.mjs?v=2dbda26b309fbe6c35c8';
 import {validateEvaVariant,validateEvaMetadata,bindEvaMeshIdentities} from './eva-heads.mjs?v=b53ce6925a6fec3b5b10';
-import {loadEvaFrontSurfaces,applyEvaFrontSurfaces} from './eva-front-surfaces.mjs?v=b186419d84a7566d8e22';
+import {loadEvaFrontSurfaces,applyEvaFrontSurfaces} from './eva-front-surfaces.mjs?v=2f482f31b2c5c8b35897';
 import {nativeMotion,displayMotion,validateAxes} from './community-state.mjs?v=460b3fa78cc503ddb6e6';
 import {createPaletteController} from './palette-controller.mjs?v=af9daf5ae29080e4cbff';
 

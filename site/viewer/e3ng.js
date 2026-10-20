@@ -6,7 +6,7 @@ import {WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=16928b39409c2
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=34020540905242580aa6';
+import {loadModel} from './model-loader.js?v=3a71971c97a749c16228';
 import {setupPublicInfo} from './public-info.js?v=bf195f65383903d3395f';
 import {setupRenderExport} from './render-export.js?v=52720bd5e5edde8246d8';
 import {e3ngSelection,e3ngPartVisible,e3ngURL} from './e3ng-model.mjs?v=workspace-belts-1';

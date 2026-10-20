@@ -1,4 +1,5 @@
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
+import {setupLayoutNavigation} from './layout-nav.mjs?v=bf8b7f5a9f50cfed4c52';
 ensureWorkspaceEntry(import.meta.url);
 import {setupDisplayPreferences,setupHeaderThemeToggle} from './display-preferences.mjs?v=56b29930754451d8193c';
 import {WorkspaceMutationObserver,workspaceListen} from './workspace-lifecycle.mjs?v=16928b39409c2ae378c6';
@@ -428,5 +429,6 @@ export function setupWorkspace() {
   setupDisplayPreferences();
   setupHeaderThemeToggle(actions);
   setupLanguage();
+  setupLayoutNavigation(navigation, {listen: workspaceListen});
   setupWorkspaceDestinationLanguages([...navigation.querySelectorAll('a'), ...menu.querySelectorAll('a'), credits]);
 }

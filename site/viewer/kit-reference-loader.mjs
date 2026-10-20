@@ -1,13 +1,13 @@
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=34020540905242580aa6';
+import {loadModel} from './model-loader.js?v=3a71971c97a749c16228';
 import {applyNativeMotionProfile,loadNativeMotionProfile} from './native-motion-profile.mjs?v=91532eb992519143f437';
 import {loadedFamilyAssetIdentity} from './gcode-loaded-asset-identity.mjs?v=42ac134c2d9a8b8f8dfc';
 const digest=async bytes=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');
-export async function loadKitReference(id){
+export async function loadKitReference(id,{signal,onProgress,progressOptions}={}){
  if(id!=='fysetc_v24_250_pro')throw Error('Loaded printer asset identity is incomplete');
- const base='../machines/'+id+'/',rig=await loadNativeMotionProfile(id),files={};
+ const base='../machines/'+id+'/',rig=await loadNativeMotionProfile(id,{signal}),files={};
  const read=async(name,error)=>{
-  const response=await fetch(base+name,{cache:'no-cache'});if(!response.ok)throw Error(error);
+  const response=await fetch(base+name,{cache:'no-cache',signal});if(!response.ok)throw Error(error);
   const bytes=new Uint8Array(await response.arrayBuffer());
   // This bundle supplies no per-file expected JSON pins. Bind the bytes actually
   // read, without presenting their observed hash as independent verification.
@@ -22,7 +22,7 @@ export async function loadKitReference(id){
  }};
  const [sourceManifest,sourceProfile,g]=await Promise.all([
   read('assembly_manifest.json','部品表'),read('machine_profile.json','Native machine profile unavailable'),
-  loadModel(checkedLoader,base+'model.glb',null,{verifySha256:rig.model_sha256})
+  loadModel(checkedLoader,base+'model.glb',onProgress,{verifySha256:rig.model_sha256,signal,progressOptions})
  ]);
  const {manifest,profile}=applyNativeMotionProfile(sourceManifest,sourceProfile,rig,rig.model_sha256);
  const names=['assembly_manifest.json','machine_profile.json','model.glb'];

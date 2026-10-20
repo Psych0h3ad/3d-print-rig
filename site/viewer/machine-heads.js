@@ -2,9 +2,9 @@ import {createInactiveHeadCache,canRestoreInactiveHeadIndices} from './inactive-
 import {bindLedSource} from './led-source-binding.mjs';
 import {cloneNativeLedTree} from './led-emission-surface.mjs?v=af40a3200e128a08c940';
 import {validateEvaMetadata,bindEvaSourceMachines,bindEvaMeshIdentities} from './eva-heads.mjs?v=b53ce6925a6fec3b5b10';
-import {loadEvaFrontSurfaces,applyEvaFrontSurfaces} from './eva-front-surfaces.mjs?v=b186419d84a7566d8e22';
+import {loadEvaFrontSurfaces,applyEvaFrontSurfaces} from './eva-front-surfaces.mjs?v=2f482f31b2c5c8b35897';
 import {evaCommunityIndex} from './eva-installations.mjs?v=4dfad49e1f98d4b5b9f2';
-import {validateEvaOptionsRegistry} from './eva-options.mjs?v=f1c031a90a6055d5091f';
+import {validateEvaOptionsRegistry} from './eva-options.mjs?v=cca14d57aef804d9411d';
 import {madmaxJointAssetSpec,madmaxJointApplies,captureMadmaxJoint,setMadmaxJointPose} from './madmax-native-joint.mjs?v=d39e974d7b782135b52a';
 import {madmaxPtfeAssetSpec} from './madmax-ptfe.mjs?v=c0df5309f697af621506';
 import {withRapidoXUhfCover,setRapidoXUhfSurface} from './rapido-x-uhf-cover.mjs?v=8b458475dac84cfcd8c7';
@@ -15,10 +15,10 @@ import {augmentTrinitySiboorR2,TRINITY_SIBOOR_SOURCE} from './trinity-alpha-sibo
 import {augmentTrinityAlpha,TRINITY_ALPHA_SOURCE} from './trinity-alpha-installation.mjs?v=890c0978f9bf425bd5cc';
 import {workspaceTask} from './workspace-lifecycle.mjs?v=16928b39409c2ae378c6';
 import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=f4e2dffb01eb9cd903c9';
-import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=05b32dd846d4e28e35ac';
+import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=7b066a5c0bb3dd24277d';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=34020540905242580aa6';
+import {loadModel} from './model-loader.js?v=3a71971c97a749c16228';
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import {partKey} from './head-assembly.js';
 import {v24HeadCatalog} from './machine-head-model.mjs?v=2b413bed5e7c812d50ac';
@@ -34,7 +34,7 @@ import {contentSHA256,acceptedMountValidation} from './mount-validation.mjs';
 import {acceptedHeadValidation}from './head-validation.mjs';
 import {withHeadAdditions} from './head-additions.mjs?v=28317048846d076205c3';
 import {nativeDeckEvidenceSource,nativeCatalogEvidenceSource,nativeWitnessInputs} from './native-evidence-bridge.mjs?v=5bf756b0b363fe86538c';
-import {loadExternalComponent} from './component-assets.mjs?v=963445da64a2f4de7cc5';
+import {loadExternalComponent} from './component-assets.mjs?v=2dbda26b309fbe6c35c8';
 
 const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);
 export async function loadMachineHeadCatalog(machine){return workspaceTask(async()=>{

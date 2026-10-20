@@ -19,7 +19,7 @@ def main():
     before=regression_inputs(ROOT)
     started_at=datetime.datetime.now(datetime.timezone.utc).isoformat()
     tasks=[['node',*(['--max-old-space-size=256','--expose-gc']
-                    if p.name in {'test_native_baseline_bootstrap.mjs','test_v24_exact_native_reset.mjs','test_machine_head_global_inputs.mjs'} else []),str(p)]
+                    if p.name in {'test_native_baseline_bootstrap.mjs','test_v24_exact_native_reset.mjs','test_machine_head_global_inputs.mjs'} else []),*(['--experimental-vm-modules'] if p.name=='test_layout_source_zero_face_binding.mjs' else []),str(p)]
            for p in sorted((ROOT/'scripts').glob('test_*.mjs'))]
     tasks.append(['node',str(ROOT/'scripts/check_machine_coverage.mjs')])
     tasks.extend([[sys.executable,str(p)]for p in sorted((ROOT/'scripts').glob('test_*.py'))])

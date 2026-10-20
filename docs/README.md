@@ -10,6 +10,7 @@ Guides for using and contributing to 3D Print Rig.
 | --- | --- |
 | Find the combinations offered for a printer, head or gantry | [Live combination support](https://psych0h3ad.github.io/3d-print-rig/support/) · [How support is listed](COMBINATION_SUPPORT.md) |
 | Choose parts, apply or undo changes, use the mobile layout, save a configuration and export an image | [Viewer controls](UI_WORKSPACE.md) |
+| Plan a room on desktop, draw or import its outline, place furniture and printers, and render a PNG | [Layout planner](LAYOUT_PLANNER.md) |
 | Change printers, use browser Back/Forward, and keep theme and language preferences | [Navigation](WORKSPACE_NAVIGATION.md) |
 | Try the supported G-code and macro preview commands | [Virtual printer preview](VIRTUAL_FIRMWARE.md) |
 | Follow the V0.2 / V0.2r1 assembly sequence | [Assembly steps](V0_ASSEMBLY.md) |

@@ -1,3 +1,4 @@
+import {setupLayoutNavigation} from './layout-nav.mjs?v=bf8b7f5a9f50cfed4c52';
 import {machineChoices, machineFamilies, machineVendors} from './machines.js?v=ab543d6b01637bc5083f';
 import {normalizeLanguage, languageURL} from './languages.mjs?v=ba6a5cd8e1d86849ca34';
 
@@ -99,6 +100,7 @@ export async function mountGallery({document = globalThis.document, window = glo
     import('./i18n.mjs?v=fb2427de09deb3a9a84f'), import('./display-preferences.mjs?v=56b29930754451d8193c'),
   ]);
   const $ = id => document.getElementById(id), lang = setupLanguage({document, window});
+  setupLayoutNavigation(document.querySelector('[data-gallery-nav]'), {document, window});
   const theme = setupHeaderThemeToggle(document.querySelector('.header-actions'));
   const message = (id, values = {}) => formatMessage(id, values, lang.language);
   const query = new URL(window.location.href).searchParams;

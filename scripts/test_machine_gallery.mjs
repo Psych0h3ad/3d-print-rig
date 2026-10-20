@@ -139,6 +139,15 @@ class Element extends EventTarget {
   get textContent() { return this._text + this.children.map(child => child.textContent || '').join(''); }
   setAttribute(key, value) { this.attrs.set(key, String(value)); }
   getAttribute(key) { return this.attrs.get(key) ?? null; }
+  removeAttribute(key) { this.attrs.delete(key); }
+  querySelector(selector) {
+    const match = /^\[([\w-]+)\]$/u.exec(selector); assert(match, 'Fixture selector contract: ' + selector);
+    return descendants(this).slice(1).find(child => child.attrs.has(match[1])) ?? null;
+  }
+  insertBefore(child, reference) {
+    const index = reference === null ? this.children.length : this.children.indexOf(reference);
+    assert(index >= 0, 'Reference must be a child'); this.children.splice(index, 0, child); return child;
+  }
   focus() { this.focused = true; }
 }
 const descendants = node => [node, ...node.children.flatMap(descendants)];
@@ -150,7 +159,8 @@ function environment(search = '') {
     'galleryRetry', 'galleryEmptyReset', 'galleryFilters', 'workspacePrinterLink'].map(id => [id, new Element(id === 'machineGrid' ? 'ul' : 'div')]));
   const header = new Element('div'), nav = new Element('nav');
   const links = ['./machines.html', './toolheads.html', './gantries.html', '../fun/', '../support/', './art/credits.html'].map(href => {const link = new Element('a'); link.href = new URL(href, window.location.href).href; return link;});
-  const document = {getElementById: id => ids[id], createElement: tag => new Element(tag), createDocumentFragment: () => new Element('fragment'),
+  nav.append(...links);
+  const document = {documentElement: {lang: 'en'}, getElementById: id => ids[id], createElement: tag => new Element(tag), createDocumentFragment: () => new Element('fragment'),
     querySelector: selector => selector === '.header-actions' ? header : nav, querySelectorAll: () => links, title: ''};
   let language = chooseLanguage({query: new URL(window.location.href).searchParams.get('lang')});
   const lang = {get language() { return language; }, ready: Promise.resolve(),
