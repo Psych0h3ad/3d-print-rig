@@ -1,4 +1,5 @@
 import {polygonProblems, polygonContains, polygonsOverlap, rectangle, rotateXZ, transformPolygon, bounds} from './layout-geometry.mjs?v=129e07e8d3e2b008fab6';
+import {rigidMotionStaysInside} from './layout-constraints.mjs?v=041ba558083059e154a4';
 
 export const LIMITS = Object.freeze({maxFurniture: 64, maxPrinters: 128, maxRoomVertices: 32,
   maxFootprintVertices: 32, maxLevels: 32, maxCoordinateMm: 1000000, maxDimensionMm: 100000,
@@ -167,7 +168,7 @@ function fail(code, path, params = {}) { throw new LayoutValidationError([{code,
 function requireEntity(list, id, path) { const item = list.find(v => v.id === id); if (!item) fail('UNKNOWN_ENTITY', path, {id}); return item; }
 function patchCheck(patch, allowed) { const errors = []; keys(patch, allowed, 'action.patch', errors); if (errors.length) throw new LayoutValidationError(errors); }
 export function applyAction(state, action, catalog = []) {
-  assertState(state, catalog);
+  const machines = catalogOf(catalog); assertState(state, machines);
   if (!plain(action) || typeof action.type !== 'string') fail('INVALID_ACTION', 'action');
   const next = copy(state);
   const fields = {
@@ -209,7 +210,161 @@ export function applyAction(state, action, catalog = []) {
     case 'SET_ATTACHMENT': requireEntity(next.printers, action.id, 'action.id').attachment = copy(action.attachment); break;
     case 'REMOVE_PRINTER': requireEntity(next.printers, action.id, 'action.id'); next.printers = next.printers.filter(p => p.id !== action.id); break;
   }
-  assertState(next, catalog); return freeze(next);
+  assertState(next, machines);
+  if (JSON.stringify(next) === JSON.stringify(state)) return state;
+  restrictPlacementChange(state, next, action, machines);
+  return freeze(next);
+}
+function affectedEntities(state, next, action) {
+  if (action.type === 'SET_ROOM') return [...next.furniture, ...next.printers].map(e => e.id);
+  if (action.type === 'ADD_FURNITURE') return [action.furniture.id];
+  if (action.type === 'ADD_PRINTER') return [action.printer.id];
+  if (action.type === 'UPDATE_FURNITURE') return [action.id, ...next.printers.filter(p => p.attachment.parentId === action.id).map(p => p.id)];
+  if (action.type === 'UPDATE_PRINTER' || action.type === 'SET_ATTACHMENT') return [action.id];
+  return []; // Deletion/detach does not silently repair an imported invalid placement.
+}
+function localPrinterPolygon(p, machines) { return transformPolygon(machines.byId[p.machineId].footprintMm, p.attachment); }
+function containmentIssues(state, scene, machines, ids) {
+  const result = [], wanted = new Set(ids);
+  for (const e of [...scene.furniture, ...scene.printers]) if (wanted.has(e.id) && !polygonContains(state.room.polygonMm, e.worldEnvelopeMm))
+    result.push({code: 'ROOM_OUT_OF_BOUNDS', path: 'action', params: {entityIds: [e.id]}});
+  for (const p of state.printers) if (wanted.has(p.id) && p.attachment.parentId !== null) {
+    const parent = state.furniture.find(f => f.id === p.attachment.parentId);
+    // Compare in parent-local coordinates: a rotated shared edge is still a shared edge.
+    if (!polygonContains(rectangle(parent.widthMm, parent.depthMm), localPrinterPolygon(p, machines)))
+      result.push({code: 'SURFACE_OVERHANG', path: 'action', params: {entityIds: [p.id, parent.id]}});
+  }
+  return result;
+}
+export const PLACEMENT_BOUNDARY_CODES = Object.freeze(['ROOM_OUT_OF_BOUNDS', 'SURFACE_OVERHANG']);
+// Parsing preserves legacy plans. These two boundary warnings define explicit
+// repair mode; height, board and inter-item envelope warnings keep their meaning.
+export function placementViolations(state, catalog = []) {
+  const machines = catalogOf(catalog), scene = deriveScene(state, machines);
+  return freeze(containmentIssues(state, scene, machines, [...state.furniture, ...state.printers].map(e => e.id))
+    .map(({code, params}) => ({code, entityIds: params.entityIds, params: {}})));
+}
+const samePolygon = (a, b) => a.length === b.length && a.every((p, i) => p[0] === b[i][0] && p[1] === b[i][1]);
+function restrictPlacementChange(state, next, action, machines) {
+  const ids = new Set(affectedEntities(state, next, action)); if (!ids.size) return;
+  const before = deriveScene(state, machines), after = deriveScene(next, machines);
+  const previous = new Map([...before.furniture, ...before.printers].map(e => [e.id, e]));
+  const reject = (code, id, reason) => fail(code, 'action', {entityIds: [id], reason});
+  const boundary = (code, id, oldOuter, oldPolygon, outer, polygon, path) => {
+    const unchanged = oldPolygon && samePolygon(oldOuter, outer) && samePolygon(oldPolygon, polygon);
+    if (unchanged) return; // An unrelated legacy violation is retained, never hidden or worsened.
+    if (!polygonContains(outer, polygon)) {
+      const wasInvalid = oldPolygon && !polygonContains(oldOuter, oldPolygon);
+      // A one-field-at-a-time repair can remain outside on another axis. Permit
+      // only set inclusion: shrink inside the old footprint under an unchanged
+      // boundary, or expand the boundary around an unchanged footprint. Every
+      // other affected room/surface domain is still checked independently.
+      const shrinks = wasInvalid && samePolygon(oldOuter, outer) && polygonContains(oldPolygon, polygon);
+      const expands = wasInvalid && samePolygon(oldPolygon, polygon) && polygonContains(outer, oldOuter);
+      if (shrinks || expands) return;
+      reject(code, id, 'TARGET_FOOTPRINT_NOT_CONTAINED');
+    }
+    // An invalid start may explicitly recover to a fully contained endpoint.
+    // Other partial outside targets reject; loading never moves or discards it.
+    if (oldPolygon && polygonContains(oldOuter, oldPolygon) && path && !path())
+      reject(code, id, 'CONTINUOUS_FOOTPRINT_PATH_NOT_CONTAINED');
+  };
+  for (const end of [...after.furniture, ...after.printers]) if (ids.has(end.id)) {
+    const start = previous.get(end.id);
+    let local, from = start, to = end, roomPath;
+    if (start && action.type !== 'SET_ROOM' && end.widthMm === start.widthMm && end.depthMm === start.depthMm) {
+      if (end.type !== 'printer') local = rectangle(start.widthMm, start.depthMm);
+      else {
+        const old = state.printers.find(p => p.id === end.id), current = next.printers.find(p => p.id === end.id);
+        if (old.machineId === current.machineId && old.attachment.parentId === current.attachment.parentId && old.attachment.surfaceId === current.attachment.surfaceId) {
+          local = machines.byId[current.machineId].footprintMm;
+          if (action.type === 'UPDATE_FURNITURE' && current.attachment.parentId === action.id) {
+            local = localPrinterPolygon(old, machines);
+            from = state.furniture.find(f => f.id === action.id).pose; to = next.furniture.find(f => f.id === action.id).pose;
+          }
+        }
+      }
+      if (local) roomPath = () => rigidMotionStaysInside(next.room.polygonMm, local, from, to);
+    }
+    boundary('ROOM_OUT_OF_BOUNDS', end.id, state.room.polygonMm, start?.worldEnvelopeMm,
+      next.room.polygonMm, end.worldEnvelopeMm, roomPath);
+    if (end.type !== 'printer') continue;
+    const current = next.printers.find(p => p.id === end.id), old = state.printers.find(p => p.id === end.id);
+    if (current.attachment.parentId === null) continue;
+    const parent = next.furniture.find(f => f.id === current.attachment.parentId);
+    const oldParent = old && state.furniture.find(f => f.id === old.attachment.parentId);
+    const sameSurface = oldParent && old.attachment.parentId === current.attachment.parentId && old.attachment.surfaceId === current.attachment.surfaceId;
+    const outer = rectangle(parent.widthMm, parent.depthMm), polygon = localPrinterPolygon(current, machines);
+    const oldOuter = sameSurface ? rectangle(oldParent.widthMm, oldParent.depthMm) : null;
+    const oldPolygon = sameSurface ? localPrinterPolygon(old, machines) : null;
+    const surfacePath = sameSurface && old.machineId === current.machineId && samePolygon(oldOuter, outer)
+      ? () => rigidMotionStaysInside(outer, machines.byId[current.machineId].footprintMm, old.attachment, current.attachment) : null;
+    boundary('SURFACE_OVERHANG', end.id, oldOuter, oldPolygon, outer, polygon, surfacePath);
+  }
+}
+export function applyWorldMove(state, {id, xMm, zMm}, catalog = [], {snapMm = 0, snapOrigin = null} = {}) {
+  const machines = catalogOf(catalog); assertState(state, machines);
+  if (!numberOK(xMm, -LIMITS.maxCoordinateMm, LIMITS.maxCoordinateMm) || !numberOK(zMm, -LIMITS.maxCoordinateMm, LIMITS.maxCoordinateMm)
+    || !numberOK(snapMm, 0, LIMITS.maxDimensionMm)) fail('NUMBER_OUT_OF_RANGE', 'worldMove');
+  const furniture = state.furniture.find(f => f.id === id), printer = state.printers.find(p => p.id === id);
+  if (!furniture && !printer) fail('UNKNOWN_ENTITY', 'worldMove.id');
+  if (snapOrigin !== null && (!numberOK(snapOrigin?.xMm, -LIMITS.maxCoordinateMm, LIMITS.maxCoordinateMm) || !numberOK(snapOrigin?.zMm, -LIMITS.maxCoordinateMm, LIMITS.maxCoordinateMm))) fail('NUMBER_OUT_OF_RANGE', 'snapOrigin');
+  // Quantize against the original gesture's source pose, not each preview segment.
+  // A fractional imported pose therefore survives a no-op, cancel and A-B-A.
+  const snap = (n, origin) => snapMm === 0 ? n : origin + Math.round((n - origin) / snapMm) * snapMm;
+  if (furniture) return applyAction(state, {type: 'UPDATE_FURNITURE', id, patch: {pose: {xMm: snap(xMm, snapOrigin?.xMm ?? furniture.pose.xMm), zMm: snap(zMm, snapOrigin?.zMm ?? furniture.pose.zMm)}}}, machines);
+  const parent = state.furniture.find(f => f.id === printer.attachment.parentId);
+  const local = parent ? rotateXZ([xMm - parent.pose.xMm, zMm - parent.pose.zMm], -parent.pose.yawDeg) : [xMm, zMm];
+  return applyAction(state, {type: 'UPDATE_PRINTER', id, patch: {attachment: {
+    xMm: snap(local[0], snapOrigin?.xMm ?? printer.attachment.xMm), zMm: snap(local[1], snapOrigin?.zMm ?? printer.attachment.zMm)}}}, machines);
+}
+// A resolved transaction stays private to the app until pointerup. Retaining its
+// exact frozen state avoids re-snapping or a second world/local roundtrip at drop.
+export function resolveWorldMove(state, {id, x, z}, catalog = [], {snapMm = 10, snapOrigin = null} = {}) {
+  const machines = catalogOf(catalog);
+  const result = next => {
+    const world = worldTransform(next, id, machines);
+    return Object.freeze({x: world.xMm, z: world.zMm, state: next});
+  };
+  let target;
+  try {
+    return result(applyWorldMove(state, {id, xMm: x, zMm: z}, machines, {snapMm, snapOrigin}));
+  } catch (error) {
+    if (!(error instanceof LayoutValidationError)) throw error;
+    if (error.errors.some(e => !PLACEMENT_BOUNDARY_CODES.includes(e.code))) return false;
+  }
+  const furniture = state.furniture.find(f => f.id === id), printer = state.printers.find(p => p.id === id);
+  const ids = furniture ? [id, ...state.printers.filter(p => p.attachment.parentId === id).map(p => p.id)] : [id];
+  // A legacy outside start recovers only to a fully contained endpoint. It is not
+  // swept/clamped through outside space; partial outside targets keep repair mode.
+  if (placementViolations(state, machines).some(e => ids.includes(e.entityIds[0]))) return false;
+  const origin = worldTransform(state, id, machines);
+  const snap = (n, base) => snapMm === 0 ? n : base + Math.round((n - base) / snapMm) * snapMm;
+  if (furniture) target = {x: snap(x, snapOrigin?.xMm ?? furniture.pose.xMm), z: snap(z, snapOrigin?.zMm ?? furniture.pose.zMm)};
+  else {
+    const a = printer.attachment, parent = state.furniture.find(f => f.id === a.parentId);
+    const local = parent ? rotateXZ([x - parent.pose.xMm, z - parent.pose.zMm], -parent.pose.yawDeg) : [x, z];
+    const point = [snap(local[0], snapOrigin?.xMm ?? a.xMm), snap(local[1], snapOrigin?.zMm ?? a.zMm)];
+    const world = parent ? rotateXZ(point, parent.pose.yawDeg) : point;
+    target = {x: world[0] + (parent?.pose.xMm ?? 0), z: world[1] + (parent?.pose.zMm ?? 0)};
+  }
+  // Full swept containment is a monotone prefix predicate. These are bounded
+  // binary contact brackets, not sampled poses or endpoint-only collision tests.
+  // Every accepted trial includes every intermediate translation. No EPS/gap.
+  let low = 0, high = 1, best = state;
+  for (let i = 0; i < 64; i++) {
+    const t = low + (high - low) / 2; if (t === low || t === high) break;
+    const xMm = origin.xMm + (target.x - origin.xMm) * t, zMm = origin.zMm + (target.z - origin.zMm) * t;
+    try { best = applyWorldMove(state, {id, xMm, zMm}, machines); low = t; }
+    catch (error) { if (!(error instanceof LayoutValidationError)) throw error; high = t; }
+  }
+  return result(best);
+}
+// Public renderer callback shape. The app uses resolveWorldMove to retain the
+// same transaction for its once-only commit; this convenience remains pure.
+export function previewWorldMove(state, input, catalog = [], options = {}) {
+  const result = resolveWorldMove(state, input, catalog, options);
+  return result && Object.freeze({x: result.x, z: result.z});
 }
 function surfaceUnchecked(state, parentId, surfaceId) {
   if (parentId === null) {
@@ -271,8 +426,9 @@ export function validatePlacement(state, catalog = []) {
     warn('ROOM_HEIGHT_EXCEEDED', [e.id], {topMm: e.verticalRangeMm[1], roomHeightMm: state.room.wallHeightMm});
   for (const p of scene.printers) if (p.parentId !== null) {
     const s = scene.surfaces.find(s => s.parentId === p.parentId && s.surfaceId === p.surfaceId);
-    if (!polygonContains(s.worldEnvelopeMm, p.worldEnvelopeMm)) warn('SURFACE_OVERHANG', [p.id, p.parentId], {surfaceId: p.surfaceId});
     const parent = state.furniture.find(f => f.id === p.parentId);
+    const source = state.printers.find(e => e.id === p.id), machines = catalogOf(catalog);
+    if (!polygonContains(rectangle(parent.widthMm, parent.depthMm), localPrinterPolygon(source, machines))) warn('SURFACE_OVERHANG', [p.id, p.parentId], {surfaceId: p.surfaceId});
     if (parent.type === 'shelf') for (const level of parent.levels) {
       const bottom = level.topMm - parent.boardThicknessMm;
       if (level.topMm > s.heightMm && p.verticalRangeMm[1] > bottom && p.verticalRangeMm[0] < level.topMm

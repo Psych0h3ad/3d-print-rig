@@ -4,9 +4,11 @@
 printers, desks and shelves in a room.
 
 Use a computer with a mouse or trackpad. Narrow desktop windows are supported.
-Touch-only devices show a desktop-use notice and a link to the printer viewer;
-they do not load the planner catalog or printer models. The existing printer
-viewers retain their mobile controls.
+Phones and touch-only devices show a popup explaining that the planner supports
+computers only and has not been tested on phones. Closing it leaves the notice
+and a link to the printer viewer. The planner catalog, 3D engine and printer
+models are not loaded on that path. The existing printer viewers retain their
+mobile controls.
 
 The planner is an alpha. Full-model PNG rendering uses registered defaults.
 Placement uses the registered static printer envelopes.
@@ -21,13 +23,19 @@ Placement uses the registered static printer envelopes.
 2. Add a desk or shelf and set its width, depth and height. Desks have a 30 mm
    top. Shelves have an adjustable board thickness and individual board heights.
 3. Add a printer, select it and choose **Floor**, a desk top or a shelf board.
-4. Choose **Move** to drag an object, or enter its X, Z and rotation values.
-   Use **Orbit**, **Top**, **Front** and the fit control to inspect the layout.
+4. Drag an object to move it. In 3D, drag empty space to look around, or use the
+   right mouse button to pan. Scroll to zoom. No move/view mode switch is needed.
+   Use **2D plan**, **3D**, **Front** and the fit control to inspect the layout.
 
 A printer on furniture moves and rotates with that furniture. Its X, Z and
 rotation fields are local to the selected support surface. Changing its support
 centres it on the new surface. Resizing furniture preserves the printer's local
-position; it can leave an overhang, which appears as a placement note.
+position. Movement stays within the room and the selected support surface;
+changes that would push an object beyond those boundaries are not accepted.
+
+**2D plan** shows flat furniture and printer footprints without perspective or
+height projection. Drag empty space to pan and scroll to zoom; the plan does
+not rotate. Switching back to 3D restores the three-dimensional scene.
 
 With the scene focused and an object selected, arrow keys move it by 10 mm
 or 100 mm with Shift; **R** rotates it by 90°. Numeric fields also support precise
@@ -53,6 +61,11 @@ layout JSON** downloads a portable plan; **Import** restores a saved plan with
 its object IDs, placements and furniture attachments. Invalid files or unknown
 printer IDs are rejected without replacing the current plan.
 
+An older plan with objects outside the room or their support opens with a
+repair notice. Move those objects inside. Editing, JSON saving and flat-plan
+images remain available; detailed 3D image export stays disabled until the
+boundary problems are fixed. Existing placements are not silently relocated.
+
 Undo and redo apply to edits in the current session. Reset clears the room's
 objects. Export a JSON copy before clearing browser data or moving to another
 device; a PNG does not contain an editable plan.
@@ -68,7 +81,9 @@ Press **Render full models** when ready. The browser loads, draws and releases
 one printer model in its registered default configuration at a time, then
 offers a PNG from the **current camera angle**, with a **1920 px long edge**
 subject to the browser's GPU limit.
-The full models are used for this image; the editable scene stays lightweight.
+In **2D plan**, **Create plan image** exports the flat plan without loading full
+printer models. In 3D, the full models are used for the image; the editable scene
+stays lightweight.
 **Cancel** stops the operation and retains the plan.
 
 Transparent model geometry and textures may need to remain until the last

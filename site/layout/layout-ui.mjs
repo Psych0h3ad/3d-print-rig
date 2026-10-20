@@ -1,5 +1,5 @@
 // Presentation only. The application owns state, history, files and model loading.
-import {createRoomRect,createRoomL,createRoomPolygon} from './layout-state.mjs?v=3eb0d016bfa22bdbbcfd';
+import {createRoomRect,createRoomL,createRoomPolygon} from './layout-state.mjs?v=f92965b9f4e1780b368a';
 const PRINTER_VIEWER_PAGES=new Set(['','index.html','annex.html','community.html','crossant.html','custom-voron.html','kit-reference.html','micron.html','positron.html','ratrig.html','remorph.html','trident.html','v0.html','v24-reference.html','v24.html']);
 // Only a registered catalog destination is eligible; saved plan fields never supply URLs.
 export function printerSourcesURL(row,href,language='en'){
@@ -36,7 +36,7 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
     throw new TypeError('createLayoutUI requires container, onAction and t');
   }
   const doc = container.ownerDocument;
-  let translate = t, state = null, selectedId = null, disposed = false;
+  let translate = t, state = null, selectedId = null, disposed = false, floorplan = false;
   let status = {canUndo: false, canRedo: false, busy: false};
   let currentIssues = [], editorKey = null, listKey = '';
   let roomMode='rectangle', roomAcceptedMode='rectangle', roomDraft=false, roomSignature=null;
@@ -93,6 +93,7 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
   }
   const root = el('div', 'layout-ui');
   root.append(feedback);
+  const boundsNotice=copy(el('p','layout-feedback layout-bounds-notice'),'layout.repairBounds');boundsNotice.id='layout-bounds-notice';boundsNotice.hidden=true;boundsNotice.setAttribute('role','status');root.append(boundsNotice);
   const actions = el('div', 'layout-plan-actions');
   actions.setAttribute('role', 'toolbar'); actions.setAttribute('aria-label', tr('layout.planActions'));
   const undo = button('layout.undo', 'undo', 'undo', {titleOnly: true});
@@ -392,7 +393,9 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
     undo.disabled=status.busy||!status.canUndo;redo.disabled=status.busy||!status.canRedo;
     addMachine.disabled=status.busy||!byMachine.has(machineSelect.value);
     const needsDetach=editor.querySelector('[data-requires-detach]');if(needsDetach)needsDetach.disabled=status.busy||!editor.querySelector('#layout-detach')?.checked;
-    renderButton.disabled=status.busy||!state?.printers?.length;
+    const boundaryInvalid=currentIssues.some(issue=>issue.code==='ROOM_OUT_OF_BOUNDS'||issue.code==='SURFACE_OVERHANG');
+    boundsNotice.hidden=!boundaryInvalid;
+    renderButton.disabled=status.busy||!state||(!floorplan&&(boundaryInvalid||!state.printers?.length));
     cancel.hidden=!status.busy;cancel.disabled=false;
     progress.hidden=!status.busy;
     const p=status.renderProgress;
@@ -411,6 +414,12 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
     for(const remove of cleanups)if(!root.contains(remove.node)){remove();cleanups.delete(remove);}
   }
   function setStatus(next={}){if(disposed)return;status={...status,...next};if(Object.hasOwn(next,'error')&&!next.error){feedback.hidden=true;feedback.dataset.error='false';}refreshStatus();}
+  function setProjection(projection){
+    if(disposed)return;floorplan=projection==='orthographic-floorplan';
+    const key=floorplan?'layout.render.plan':'layout.render';
+    copy(renderButton.querySelector('[data-layout-i18n]'),key);renderButton.dataset.layoutLabel=key;renderButton.setAttribute('aria-label',tr(key));
+    copy(renderHelp,floorplan?'layout.render.planHelp':'layout.renderHelp');refreshStatus();
+  }
   function setLocale(next){
     if(disposed)return;if(typeof next!=='function')throw new TypeError('setLocale requires translator');
     translate=next;
@@ -421,5 +430,5 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
   }
   function dispose(){if(disposed)return;disposed=true;for(const remove of cleanups)remove();fields.clear();root.remove();state=null;}
   populateMachines();refreshStatus();
-  return Object.freeze({update,setStatus,setLocale,dispose});
+  return Object.freeze({update,setStatus,setProjection,setLocale,dispose});
 }

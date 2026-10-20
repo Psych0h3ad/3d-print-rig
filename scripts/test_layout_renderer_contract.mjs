@@ -11,23 +11,29 @@ const option=process.argv.indexOf('--site');
 const A=option>=0?path.resolve(process.argv[option+1]):path.resolve(R,'../site');
 const input=path.join(A,'layout/layout-renderer.mjs');
 const source=fs.readFileSync(input,'utf8');
-const intake=fs.mkdtempSync(path.join(os.tmpdir(),'layout-renderer-regression-'));
+const tmpOption=process.argv.indexOf('--tmp-root'),fixtureTempRoot=tmpOption<0?os.tmpdir():path.resolve(process.argv[tmpOption+1]);fs.mkdirSync(fixtureTempRoot,{recursive:true});
+const intake=fs.mkdtempSync(path.join(fixtureTempRoot,'layout-renderer-regression-'));
 const snapshot=path.join(intake,'layout-renderer.snapshot.mjs');fs.writeFileSync(snapshot,source,{flag:'wx'});
 try {
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 const pin=p=>({path:p,bytes:fs.statSync(p).size,sha256:sha(fs.readFileSync(p))});
 const imports=[],renderers=[],observers=[],canvases=[],allControls=[];
-let size={width:400,height:300},textureCopyBytes=0,pngRequests=0;
+let size={width:400,height:300},textureCopyBytes=0,pngRequests=0,deferPNG=false,pendingPNG=[];
 function makeCanvas(){
- const handlers=new Map();
+ const handlers=new Map(),captured=new Set(),draws=[],windowHandlers=new Map();const context={
+  drawImage(){textureCopyBytes+=c.width*c.height*4},createImageData(w,h){return {data:new Uint8ClampedArray(w*h*4)}},putImageData(){},
+  fillRect(...a){draws.push(['fillRect',...a])},fillText(...a){draws.push(['fillText',...a])},beginPath(){draws.push(['beginPath'])},closePath(){draws.push(['closePath'])},moveTo(...a){draws.push(['moveTo',...a])},lineTo(...a){draws.push(['lineTo',...a])},fill(){draws.push(['fill'])},stroke(){draws.push(['stroke'])},save(){},restore(){},clip(){}};
+ const capture=o=>o===true||!!o?.capture;
  const c={width:0,height:0,tabIndex:0,style:{},removed:false,setAttribute(){},
-  addEventListener(k,f){handlers.set(k,f)},removeEventListener(k){handlers.delete(k)},
+  addEventListener(k,f,o){const list=handlers.get(k)||[];if(!list.some(r=>r.f===f&&r.capture===capture(o)))list.push({f,capture:capture(o)});handlers.set(k,list)},removeEventListener(k,f,o){handlers.set(k,(handlers.get(k)||[]).filter(r=>r.f!==f||r.capture!==capture(o)))},
   getBoundingClientRect(){return {...size,left:0,top:0}},
-  emit(type,event){handlers.get(type)?.({button:0,pointerId:71,preventDefault(){},...event})},
-  setPointerCapture(){},hasPointerCapture(){return false},releasePointerCapture(){},remove(){this.removed=true},
-  toBlob(f){pngRequests++;f(new Blob(['CPU fixture PNG placeholder'],{type:'image/png'}))},
-  getContext(){return {drawImage(){textureCopyBytes+=c.width*c.height*4},
-    createImageData(w,h){return {data:new Uint8ClampedArray(w*h*4)}},putImageData(){}}}};
+  get clientWidth(){return size.width},get clientHeight(){return size.height},getRootNode(){return {addEventListener(){},removeEventListener(){}}},
+  emit(type,event={}){let stopped=false;const e={type,button:0,buttons:1,pointerId:71,pointerType:'mouse',isPrimary:true,preventDefault(){},stopPropagation(){},stopImmediatePropagation(){stopped=true},...event};e.pageX??=e.clientX;e.pageY??=e.clientY;for(const r of [...(handlers.get(type)||[])].sort((a,b)=>Number(b.capture)-Number(a.capture))){if(stopped)break;r.f(e)}return e},
+  setPointerCapture(id){captured.add(id)},hasPointerCapture(id){return captured.has(id)},releasePointerCapture(id){if(captured.delete(id))c.emit('lostpointercapture',{pointerId:id})},remove(){this.removed=true},
+  reviewDraws:draws,reviewHandlers:handlers,
+  ownerDocument:{defaultView:{addEventListener(k,f){windowHandlers.set(k,f)},removeEventListener(k,f){if(windowHandlers.get(k)===f)windowHandlers.delete(k)}}},reviewBlur(){windowHandlers.get('blur')?.({type:'blur'})},reviewWindowHandlers:windowHandlers,
+  toBlob(f){pngRequests++;const done=()=>f(new Blob(['CPU fixture PNG placeholder'],{type:'image/png'}));if(deferPNG)pendingPNG.push(done);else done()},
+  getContext(){return context}};
  canvases.push(c);return c;
 }
 const fixtureDocument={createElement:tag=>{assert.equal(tag,'canvas');return makeCanvas()}};
@@ -60,7 +66,7 @@ class RendererFixture{
  getRenderTarget(){return this.target}
  setRenderTarget(t){this.target=t;if(t)this.viewport=[0,0,t.width,t.height]}
  render(scene,camera){
-  this.lastScene=scene;
+  this.lastScene=scene;this.lastCamera=camera;
   scene.updateMatrixWorld(true);camera.updateMatrixWorld(true);let transparentDraws=0,fixtureDraws=0;
   scene.traverseVisible(o=>{if(!o.isMesh)return;
    const rows=Array.isArray(o.material)?o.geometry.groups.map(g=>o.material[g.materialIndex]):[o.material];
@@ -511,7 +517,7 @@ for(const rebuildOnSelect of [false,true])for(const ending of ['pointercancel','
   onMove:move=>{commits.push(move);const old=current.furniture.find(f=>f.id===move.id);current=S.applyAction(current,{type:'UPDATE_FURNITURE',id:move.id,patch:{pose:{...old.pose,xMm:move.x,zMm:move.z}}},catalog);api.setState(current,move.id)}});
  api.setState(current,null);api.setTool('move');const renderer=renderers.at(-1),controls=allControls.at(-1);
  controls.camera.position.set(4,5,6);controls.camera.lookAt(0,.5,0);controls.change();await new Promise(r=>setTimeout(r,5));
- const active=()=>{const map=new Map();renderer.lastScene.traverse(o=>{if(o.userData.entityId)map.set(o.userData.entityId,o)});return map};
+ const active=()=>{const map=new Map();renderer.lastScene.traverse(o=>{if(o.userData.entityId&&!o.userData.planProjection)map.set(o.userData.entityId,o)});return map};
  const old=active(),origins=new Map([...old].map(([id,o])=>[id,{position:o.position.toArray(),yaw:o.rotation.y}]));
  const point=new THREE.Vector3(.4,.75,-.8).project(controls.camera);
  const down={clientX:(point.x+1)/2*800,clientY:(1-point.y)/2*600};
@@ -556,12 +562,218 @@ for(const [kind,detail,expected]of [['ratio',{ratio:.25,total:999,index:999,phas
  const e=events[1];assert.equal(e.ratio,expected);assert.equal(e.total,1);assert.equal(e.index,0);assert.equal(e.phase,'loading');assert.equal(e.machineId,'test-machine');passed.push('Progress '+kind+' normalization preserves reserved printer identity fields.');api.dispose();
 }
 
+// New direct-operation cases use the same source body and actual vendored controls.
+const orbitPath=path.join(A,'viewer/vendor-r180/OrbitControls.js'),orbitRaw=fs.readFileSync(orbitPath,'utf8');imports.push(pin(orbitPath));
+const orbitToken="from 'three';";assert.equal(orbitRaw.split(orbitToken).length,2,'Vendored controls import-map boundary changed');
+// Browser import maps bind bare `three` to this exact vendored module. Apply
+// that one module-specifier mapping in Node; all control function bodies remain exact.
+const orbitSnapshot=path.join(intake,'OrbitControls.import-map.snapshot.mjs');
+fs.writeFileSync(orbitSnapshot,orbitRaw.replace(orbitToken,`from '${pathToFileURL(path.join(A,'viewer/vendor-r180/three.module.js')).href}';`),{flag:'wx'});
+const orbitModule=await import(pathToFileURL(orbitSnapshot));
+const factoryRealOrbit=new Function('THREE','OrbitControls','RoomEnvironment','deriveScene','document','devicePixelRatio','requestAnimationFrame','cancelAnimationFrame','ResizeObserver',body+'\nreturn createLayoutRenderer;')(
+ replacement,orbitModule.OrbitControls,EnvironmentFixture,(state,catalog)=>state.derived??S.deriveScene(state,catalog),fixtureDocument,1,raf,clearTimeout,ObserverFixture);
+const settled=()=>new Promise(resolve=>setTimeout(resolve,5));
+function operationSetup(realOrbit=false,options={}){
+ size={width:800,height:600};const catalog=[{id:'test-machine',label:'Test printer',widthMm:200,depthMm:180,heightMm:300,dimensionsMm:{width:200,depth:180,height:300}}];
+ let state=S.createDefaultLayout({furniture:[S.createDesk({id:'desk',widthMm:1200,depthMm:700,heightMm:750})],printers:[{id:'child',machineId:'test-machine',configurationId:null,attachment:{parentId:'desk',surfaceId:'top',xMm:0,zMm:0,yawDeg:0}}]},catalog);
+ const commits=[],selections=[],views=[],errors=[];let api;
+ api=(realOrbit?factoryRealOrbit:factory)({container:{getBoundingClientRect:()=>({...size}),append(){}},catalog,
+  onSelect:id=>{selections.push(id);api.setState(state,id)},onViewChange:e=>views.push(e),onError:e=>errors.push(e),constrainMove:options.constrainMove,
+  onMove:m=>{commits.push(m);if(options.rejectMove)return false;if(m.id==='desk')state=S.applyAction(state,{type:'UPDATE_FURNITURE',id:m.id,patch:{pose:{xMm:m.x,zMm:m.z}}},catalog);api.setState(state,m.id)}});
+ const renderer=renderers.at(-1),observer=observers.at(-1);api.setState(state,null);
+ const nodes=plan=>{const out=new Map();renderer.lastScene.traverse(o=>{if(o.userData.entityId&&!!o.userData.planProjection===plan)out.set(o.userData.entityId,o)});return out};
+ return {api,renderer,observer,catalog,commits,selections,views,errors,nodes,state:()=>state};
+}
+const screen=(v,camera)=>{camera.updateMatrixWorld(true);const p=v.clone().project(camera);return {clientX:(p.x+1)*size.width/2,clientY:(1-p.y)*size.height/2}};
+const cameraSnapshot=c=>({position:c.position.toArray(),quaternion:c.quaternion.toArray(),zoom:c.zoom});
+{
+ const x=operationSetup();assert.deepEqual(x.views,[],'No callback during constructor');assert.deepEqual(x.api.getView(),{mode:'perspective',projection:'perspective-3d'});
+ const stateJSON=S.serializeLayout(x.state(),x.catalog);x.api.view('perspective');await settled();const c3=x.renderer.lastCamera;
+ c3.position.set(5,4,7);c3.lookAt(0,.6,0);const before=cameraSnapshot(c3);
+ x.api.view('top');await settled();const camera=x.renderer.lastCamera;assert.equal(camera.isOrthographicCamera,true);assert.equal(camera.isPerspectiveCamera,undefined);
+ assert.deepEqual(x.views.at(-1),{mode:'top',projection:'orthographic-floorplan'});
+ const center=screen(new THREE.Vector3(0,0,0),camera),right=screen(new THREE.Vector3(.1,0,0),camera),down=screen(new THREE.Vector3(0,0,.1),camera);
+ assert.ok(right.clientX>center.clientX);near(right.clientY,center.clientY,'+X no screenY');assert.ok(down.clientY>center.clientY);near(down.clientX,center.clientX,'+Z no screenX');
+ for(const height of [0,.75,1.8]){const p=screen(new THREE.Vector3(.2,height,.3),camera),floor=screen(new THREE.Vector3(.2,0,.3),camera);near(p.clientX,floor.clientX,'height-invariantX');near(p.clientY,floor.clientY,'height-invariantZ')}
+ for(const g of x.nodes(true).values()){assert.ok(g.position.y<.01);assert.equal(g.rotation.y,0);assert.ok(g.children.some(o=>o.userData.planLabel));}
+ assert.ok([...x.nodes(false).values()].every(g=>g.parent.visible===false));assert.ok([...x.nodes(true).values()].every(g=>g.parent.visible===true));
+ const planControls=allControls.at(-2);assert.equal(planControls.enableRotate,false);assert.equal(planControls.mouseButtons.LEFT,THREE.MOUSE.PAN);assert.equal(planControls.mouseButtons.RIGHT,THREE.MOUSE.PAN);
+ camera.zoom=2;planControls.target.x=1;camera.position.x=1;camera.lookAt(planControls.target);const planBefore=cameraSnapshot(camera);
+ size={width:500,height:900};x.observer.fn();await settled();near((camera.right-camera.left)/(camera.top-camera.bottom),500/900,'orthographic resize aspect');assert.equal(camera.zoom,2);
+ x.api.view('perspective');await settled();assert.equal(x.renderer.lastCamera,c3);assert.deepEqual(cameraSnapshot(c3),before);assert.ok([...x.nodes(false).values()].every(g=>g.parent.visible));assert.ok([...x.nodes(true).values()].every(g=>!g.parent.visible));
+ x.api.view('top');await settled();assert.deepEqual(cameraSnapshot(camera),planBefore);x.api.view('fit');await settled();assert.equal(x.api.getView().mode,'top');assert.equal(camera.zoom,1);
+ assert.equal(S.serializeLayout(x.state(),x.catalog),stateJSON);assert.equal(x.errors.length,0);x.api.dispose();
+ passed.push('Orthographic floorplan +Xright/+Zdown independent of height; flat labeled footprints; resize/fit stay plan; independent3D camera and plan pan/zoom restored with unchanged serialized state.');
+}
+for(const mode of ['perspective','top']){
+ const x=operationSetup();x.api.view(mode);await settled();const c=x.renderer.lastCamera,g=x.nodes(false).get('desk'),origin=g.position.clone();
+ const down=screen(new THREE.Vector3(.4,mode==='top'?0:.75,0),c);
+ x.api.canvas.emit('pointerdown',down);assert.equal(x.selections.at(-1),'desk');assert.equal(x.api.canvas.hasPointerCapture(71),true);
+ x.api.canvas.emit('pointermove',down);x.api.canvas.emit('pointermove',{clientX:down.clientX+2,clientY:down.clientY+1});await settled();assert.deepEqual(x.nodes(false).get('desk').position.toArray(),origin.toArray());
+ x.api.canvas.emit('pointerdown',{...down,pointerId:72});x.api.canvas.emit('pointercancel',{pointerId:72});x.api.canvas.emit('pointermove',{pointerId:72,clientX:0,clientY:0});
+ assert.deepEqual(x.nodes(false).get('desk').position.toArray(),origin.toArray());assert.equal(x.commits.length,0);
+ x.api.canvas.emit('pointermove',{clientX:down.clientX+60,clientY:down.clientY+10});await settled();assert.ok(x.nodes(false).get('desk').position.distanceTo(origin)>.01);
+ x.api.canvas.emit('pointercancel');await settled();assert.deepEqual(x.nodes(false).get('desk').position.toArray(),origin.toArray());assert.equal(x.commits.length,0);assert.equal(x.api.canvas.hasPointerCapture(71),false);
+ x.api.canvas.emit('pointerdown',down);x.api.canvas.emit('pointermove',{clientX:down.clientX+60,clientY:down.clientY+10});x.api.canvas.emit('pointerup');x.api.canvas.emit('lostpointercapture');await settled();
+ assert.equal(x.commits.length,1);const after=S.deriveScene(x.state(),x.catalog);for(const e of [...after.furniture,...after.printers]){const node=x.nodes(false).get(e.id);near(node.position.x,e.positionM.x,'committed '+e.id);near(node.position.z,e.positionM.z,'committed '+e.id)}
+ // State replacement during a preview discards stale delta rather than applying it later.
+ const before=S.serializeLayout(x.state(),x.catalog),now=x.nodes(false).get('desk').position;
+ const newDown=screen(new THREE.Vector3(now.x+.4,mode==='top'?0:.75,now.z),x.renderer.lastCamera);
+ x.api.canvas.emit('pointerdown',newDown);x.api.canvas.emit('pointermove',{clientX:newDown.clientX+30,clientY:newDown.clientY});
+ x.api.setState(S.parseLayout(before,x.catalog),null);x.api.canvas.emit('pointerup');assert.equal(x.commits.length,1);assert.equal(S.serializeLayout(x.state(),x.catalog),before);
+ x.api.dispose();passed.push(mode+' automatic drag: no first-move teleport,4px threshold, exclusivepointer,matching cancellation, one commit, post-upcaptureloss, state-replacement rollback and native support retained.');
+}
+{
+ const x=operationSetup(true);x.api.view('perspective');await settled();let camera=x.renderer.lastCamera;
+ const down=screen(new THREE.Vector3(.4,.75,0),camera),start=cameraSnapshot(camera);
+ x.api.canvas.emit('pointerdown',down);x.api.canvas.emit('pointermove',{clientX:down.clientX+55,clientY:down.clientY+12});x.api.canvas.emit('pointerup');await settled();assert.equal(x.commits.length,1);assert.deepEqual(cameraSnapshot(camera),start,'Object gesture reached OrbitControls');
+ const background={clientX:5,clientY:5};x.api.canvas.emit('pointerdown',background);x.api.canvas.emit('pointermove',{clientX:75,clientY:35});x.api.canvas.emit('pointerup');await settled();assert.notDeepEqual(cameraSnapshot(camera),start,'Background3D orbit absent');assert.equal(x.commits.length,1);
+ const rightStart=cameraSnapshot(camera);x.api.canvas.emit('pointerdown',{button:2,buttons:2,clientX:400,clientY:300});x.api.canvas.emit('pointermove',{button:2,buttons:2,clientX:430,clientY:320});x.api.canvas.emit('pointerup',{button:2});await settled();assert.notDeepEqual(camera.position.toArray(),rightStart.position,'Rightpan absent');assert.equal(x.commits.length,1);
+ const wheelStart=camera.position.clone();x.api.canvas.emit('wheel',{deltaY:-100,deltaMode:0,clientX:400,clientY:300});await settled();assert.ok(camera.position.distanceTo(wheelStart)>0,'3D wheelzoom absent');
+ const saved3D=cameraSnapshot(camera);x.api.view('top');await settled();camera=x.renderer.lastCamera;const basis=camera.quaternion.toArray(),planPos=camera.position.toArray();
+ x.api.canvas.emit('pointerdown',background);x.api.canvas.emit('pointermove',{clientX:85,clientY:45});x.api.canvas.emit('pointerup');await settled();assert.notDeepEqual(camera.position.toArray(),planPos);assert.deepEqual(camera.quaternion.toArray(),basis,'Plan background tilted');
+ const zoom=camera.zoom;x.api.canvas.emit('wheel',{deltaY:-100,deltaMode:0,clientX:400,clientY:300});await settled();assert.ok(camera.zoom>zoom);assert.deepEqual(camera.quaternion.toArray(),basis);
+ const planRight=camera.position.clone();x.api.canvas.emit('pointerdown',{button:2,buttons:2,clientX:400,clientY:300});x.api.canvas.emit('pointermove',{button:2,buttons:2,clientX:430,clientY:310});x.api.canvas.emit('pointerup',{button:2});await settled();assert.ok(camera.position.distanceTo(planRight)>0);assert.deepEqual(camera.quaternion.toArray(),basis);
+ x.api.view('perspective');await settled();assert.ok(x.renderer.lastCamera.position.distanceTo(new THREE.Vector3(...saved3D.position))<1e-12);assert.equal(x.commits.length,1);x.api.dispose();
+ passed.push('ACTUAL vendored OrbitControls: capture-phase object drag never orbits; background3D orbit/rightpan/wheelzoom; top background/rightpan/wheelzoom keep exact northup basis;3D restore.');
+}
+{
+ const x=operationSetup();x.api.view('top');await settled();let loads=0;const expectedView=x.api.getView(),startTargets=targets.length,events=[];
+ const pending=x.api.exportImage({width:320,loadMachine:()=>{loads++;throw Error('Plan requested full model')},onProgress:e=>events.push(e)});
+ x.api.view('perspective');assert.deepEqual(x.api.getView(),expectedView,'View changed during plan export');const result=await pending;
+ assert.equal(loads,0);assert.equal(targets.length,startTargets);assert.equal(result.projection,'orthographic-floorplan');assert.equal(result.rendering,'flat-floorplan');assert.equal(result.modelDetail,'footprints');assert.ok(result.width<=512&&result.height<=512);assert.deepEqual(events.map(e=>e.mode),['floorplan']);
+ const output=canvases.at(-1),labels=output.reviewDraws.filter(r=>r[0]==='fillText');assert.equal(labels.length,0,'Occupied furniture label is suppressed and tiny printer label is hidden at320px output');assert.ok(output.reviewDraws.filter(r=>r[0]==='moveTo'||r[0]==='lineTo').every(r=>r.slice(1).every(Number.isFinite)));
+ const abort=new AbortController();abort.abort();await assert.rejects(x.api.exportImage({signal:abort.signal}),e=>e.name==='AbortError');assert.deepEqual(x.api.getView(),expectedView);
+ x.api.view('perspective');const r=resource();let finish;const full=x.api.exportImage({loadMachine:()=>new Promise(resolve=>finish=resolve)});await Promise.resolve();x.api.view('top');assert.equal(x.api.getView().projection,'perspective-3d');finish(r);const three=await full;assert.equal(three.projection,'perspective-3d');assert.equal(three.rendering,'streamed-browser-raster');assert.equal(r.disposes,1);x.api.dispose();
+ passed.push('Plan export is labeled flat current-camera PNG with zero full-model/HDR-target requests, finite drawing/labels, abort cleanup; direct view switch refused in both2D/3D exports;3D streaming retained.');
+}
+{
+ const x=operationSetup();x.api.view('top');await settled();deferPNG=true;const output=x.api.exportImage();assert.equal(pendingPNG.length,1);x.api.dispose();pendingPNG.shift()();deferPNG=false;await assert.rejects(output,e=>e.name==='AbortError');assert.equal(x.renderer.disposed,true);
+ passed.push('Disposal while flat-plan PNG callback is pending aborts output and releases renderer resources once.');
+}
+for(const ending of ['pointerup','pointercancel']){
+ const proposals=[],x=operationSetup(false,{constrainMove:p=>{proposals.push({...p});return {x:Math.min(p.x,150),z:p.z}}});x.api.view('top');await settled();const c=x.renderer.lastCamera;
+ const down=screen(new THREE.Vector3(.4,0,0),c),before=S.serializeLayout(x.state(),x.catalog),childOrigin=x.nodes(false).get('child').position.clone();
+ x.api.canvas.emit('pointerdown',down);
+ for(const dx of [100,160,220]){x.api.canvas.emit('pointermove',{clientX:down.clientX+dx,clientY:down.clientY});await settled();near(x.nodes(false).get('desk').position.x,.15,'constrained live parent');near(x.nodes(false).get('child').position.x-childOrigin.x,.15,'constrained live child');assert.equal(x.commits.length,0);assert.equal(S.serializeLayout(x.state(),x.catalog),before)}
+ x.api.canvas.emit(ending);await settled();assert.equal(x.commits.length,ending==='pointerup'?1:0);assert.ok(proposals.length===3&&proposals.every(p=>p.x>150));if(ending==='pointerup')assert.deepEqual(x.commits[0],{id:'desk',x:150,z:0});else assert.equal(S.serializeLayout(x.state(),x.catalog),before);
+ x.api.dispose();passed.push('Synchronous constrainMove applies before each parent/child preview; '+ending+' uses accepted boundary pose once or restores all without state/history mutation.');
+}
+for(const response of [false,{x:NaN,z:0},{x:Infinity,z:0}]){
+ const x=operationSetup(false,{constrainMove:()=>response});x.api.view('top');await settled();const before=S.serializeLayout(x.state(),x.catalog),origin=x.nodes(false).get('desk').position.toArray(),down=screen(new THREE.Vector3(.4,0,0),x.renderer.lastCamera);
+ x.api.canvas.emit('pointerdown',down);x.api.canvas.emit('pointermove',{clientX:down.clientX+100,clientY:down.clientY});x.api.canvas.emit('pointerup');assert.deepEqual(x.nodes(false).get('desk').position.toArray(),origin);assert.equal(x.commits.length,0);assert.equal(S.serializeLayout(x.state(),x.catalog),before);if(response!==false)assert.equal(x.errors.at(-1).code,'INVALID_CONSTRAINED_MOVE');x.api.dispose();
+ passed.push('constrainMove false/nonfinite cannot move root, commit history or leak rejected coordinates.');
+}
+{
+ const x=operationSetup(false,{rejectMove:true});x.api.view('top');await settled();const down=screen(new THREE.Vector3(.4,0,0),x.renderer.lastCamera),before=S.serializeLayout(x.state(),x.catalog),origin=x.nodes(false).get('desk').position.toArray();
+ x.api.canvas.emit('pointerdown',down);x.api.canvas.emit('pointermove',{clientX:down.clientX+70,clientY:down.clientY});x.api.canvas.emit('pointerup');await settled();assert.equal(x.commits.length,1);assert.equal(S.serializeLayout(x.state(),x.catalog),before);assert.deepEqual(x.nodes(false).get('desk').position.toArray(),origin);near(x.nodes(false).get('child').position.x,0,'rejected child restored');x.api.dispose();
+ passed.push('onMove false restores transient parent and child to unchanged canonical state; no stale preview after rejected drop.');
+}
+for(const dimensions of [{width:1200,height:400},{width:400,height:900}]){
+ const x=operationSetup();x.api.view('top');await settled();size=dimensions;x.observer.fn();await settled();const camera=x.renderer.lastCamera,before=cameraSnapshot(camera),result=await x.api.exportImage({width:320});
+ const projected=camera.clone(),middle=(projected.left+projected.right)/2,half=(projected.top-projected.bottom)*result.width/result.height/2;projected.left=middle-half;projected.right=middle+half;projected.updateProjectionMatrix();projected.updateMatrixWorld(true);
+ const p=v=>{const n=v.clone().project(projected);return [(n.x+1)*result.width/2,(1-n.y)*result.height/2]};const base=p(new THREE.Vector3()),dx=p(new THREE.Vector3(.1,0,0)),dz=p(new THREE.Vector3(0,0,.1));near(dx[0]-base[0],dz[1]-base[1],'isometric output pixel scale');
+ const first=canvases.at(-1).reviewDraws.find(r=>r[0]==='moveTo'),expected=p(new THREE.Vector3(-2,0,-1.5));near(first[1],expected[0],'current plan exportX');near(first[2],expected[1],'current plan exportZ');assert.deepEqual(cameraSnapshot(camera),before);assert.ok(result.width<=512&&result.height<=512);x.api.dispose();
+ passed.push('Flat-plan '+dimensions.width+'x'+dimensions.height+' viewport exports same center/zoom/northup, finite capped PNG with exact uniform X/Z pixel scale after integer-size aspect adjustment.');
+}
+for(const ending of ['blur','view-change','return-to-grab-point']){
+ const x=operationSetup(true);x.api.view('top');await settled();const c=x.renderer.lastCamera,down=screen(new THREE.Vector3(.4,0,0),c),before=S.serializeLayout(x.state(),x.catalog),origin=x.nodes(false).get('desk').position.toArray();
+ x.api.canvas.emit('pointerdown',down);x.api.canvas.emit('pointermove',{clientX:down.clientX+60,clientY:down.clientY+10});
+ if(ending==='blur')x.api.canvas.reviewBlur();else if(ending==='view-change')x.api.view('perspective');else x.api.canvas.emit('pointermove',down);
+ x.api.canvas.emit('pointerup',down);await settled();assert.equal(x.commits.length,0);assert.equal(S.serializeLayout(x.state(),x.catalog),before);assert.deepEqual(x.nodes(false).get('desk').position.toArray(),origin);near(x.nodes(false).get('child').position.x,0,'cancel child');
+ x.api.dispose();assert.equal(x.api.canvas.reviewWindowHandlers.size,0);passed.push(ending+' restores exact parent/child canonical positions with no commit and cleans up blur listener; actualOrbit route.');
+}
+async function labelSetup({roomWidth=6000,depth=800,zoom=1}={}){
+ size={width:900,height:600};const catalog=[{id:'label-machine',label:'Printer label',widthMm:800,depthMm:depth,heightMm:1000,dimensionsMm:{width:800,depth,height:1000}}];
+ const state=S.createDefaultLayout({room:S.createRoomRect({widthMm:roomWidth,depthMm:roomWidth*2/3}),printers:[-550,550].map((x,i)=>({id:'label-'+i,machineId:'label-machine',configurationId:null,attachment:{parentId:null,surfaceId:'floor',xMm:x,zMm:0,yawDeg:0}}))},catalog);
+ const api=factory({container:{getBoundingClientRect:()=>({...size}),append(){}},catalog});api.setState(state,'label-0');api.view('top');await settled();const renderer=renderers.at(-1),camera=renderer.lastCamera;
+ if(zoom!==1){camera.zoom=zoom;camera.updateProjectionMatrix();allControls.at(-2).change();await settled()}
+ const groups=[];renderer.lastScene.traverse(g=>{if(g.userData.planProjection)groups.push(g)});
+ return {api,renderer,camera,groups,state,catalog};
+}
+{
+ const x=await labelSetup(),intervals=[];
+ for(const g of x.groups){const label=g.children.find(o=>o.userData.planLabel),points=g.userData.planPoints,xs=points.map(p=>p[0]),zs=points.map(p=>p[1]);
+  assert.equal(label.visible,true);assert.ok(label.scale.x<=(Math.max(...xs)-Math.min(...xs))*.9);assert.ok(label.scale.y<=(Math.max(...zs)-Math.min(...zs))*.9);near(label.scale.x/label.scale.y,8,'Font canvas aspect preserved');
+  const a=screen(new THREE.Vector3(-.5,-.5,0).applyMatrix4(label.matrixWorld),x.camera),b=screen(new THREE.Vector3(.5,.5,0).applyMatrix4(label.matrixWorld),x.camera),width=Math.abs(b.clientX-a.clientX);assert.ok(width>=48&&width<192);intervals.push([Math.min(a.clientX,b.clientX),Math.max(a.clientX,b.clientX)]);
+ }
+ intervals.sort((a,b)=>a[0]-b[0]);assert.ok(intervals[0][1]<intervals[1][0],'Neighbor printer labels overlap atroomfit');
+ const stateBefore=S.serializeLayout(x.state,x.catalog);await x.api.exportImage({width:900});const output=canvases.at(-1),text=output.reviewDraws.filter(r=>r[0]==='fillText');assert.equal(text.length,2);
+ for(const row of text)assert.ok(row[4]>=48*496/512&&row[4]<192);near(parseFloat(output.getContext('2d').font),text.at(-1)[4]*512/496/16,'Export font scales uniformly with bounded label');
+ assert.equal(S.serializeLayout(x.state,x.catalog),stateBefore);x.api.dispose();passed.push('6m room/900px: two800mm printers1100mm apart have footprint-bounded90% labels with original8:1 canvas aspect, no overlap; exported text width/font use identical policy.');
+}
+{
+ const x=await labelSetup({roomWidth:20000});for(const g of x.groups){assert.equal(g.children.find(o=>o.userData.planLabel).visible,false);assert.equal(g.children.find(o=>o.userData.planFootprint).visible,true)}
+ assert.equal(x.renderer.lastScene.children.find(o=>o.renderOrder===30).visible,true,'Selection remains visible when label hides');await x.api.exportImage({width:900});assert.equal(canvases.at(-1).reviewDraws.filter(r=>r[0]==='fillText').length,0);
+ x.camera.zoom=4;x.camera.updateProjectionMatrix();allControls.at(-2).change();await settled();assert.ok(x.groups.every(g=>g.children.find(o=>o.userData.planLabel).visible));
+ x.camera.zoom=1;x.camera.updateProjectionMatrix();allControls.at(-2).change();await settled();assert.ok(x.groups.every(g=>!g.children.find(o=>o.userData.planLabel).visible));x.api.dispose();
+ passed.push('Labels below48screenpx hide in preview/export while footprint/selection remain; zoom A-B-A shows/hides without stale visibility.');
+}
+{
+ const x=await labelSetup({depth:30,zoom:8});for(const g of x.groups){const label=g.children.find(o=>o.userData.planLabel);assert.equal(label.visible,true);assert.ok(label.scale.y<=.03*.9);near(label.scale.x/label.scale.y,8,'Shallow footprint label aspect')};x.api.dispose();
+ passed.push('Shallow footprint additionally bounds label height within90% depth without stretching its32px-font canvas aspect.');
+}
+const segmentGeometry=await realModule(path.join(A,'layout/layout-geometry.mjs'));
+for(const ending of ['commit','cancel','round-trip']){
+ size={width:900,height:600};const room=[[0,0],[6000,0],[6000,6000],[4000,6000],[4000,2000],[2000,2000],[2000,6000],[0,6000]],catalog=[{id:'path-machine',widthMm:400,depthMm:400,heightMm:300,dimensionsMm:{width:400,depth:400,height:300}}];
+ let state=S.createDefaultLayout({room:S.createRoomPolygon({polygonMm:room}),printers:[{id:'path-printer',machineId:'path-machine',configurationId:null,attachment:{parentId:null,surfaceId:'floor',xMm:1005,zMm:4005,yawDeg:0}}]},catalog),api;
+ const original=S.serializeLayout(state,catalog),calls=[],commits=[];
+ const swept=(a,b)=>[[Math.min(a.x,b.x)-200,Math.min(a.z,b.z)-200],[Math.max(a.x,b.x)+200,Math.min(a.z,b.z)-200],[Math.max(a.x,b.x)+200,Math.max(a.z,b.z)+200],[Math.min(a.x,b.x)-200,Math.max(a.z,b.z)+200]];
+ const origin={x:1005,z:4005};
+ api=factoryRealOrbit({container:{getBoundingClientRect:()=>({...size}),append(){}},catalog,
+  onSelect:id=>api.setState(state,id),
+  constrainMove:(proposal,context)=>{
+   const snapped={x:context.origin.x+Math.round((proposal.x-context.origin.x)/10)*10,z:context.origin.z+Math.round((proposal.z-context.origin.z)/10)*10};
+   const accepted=segmentGeometry.namespace.polygonContains(room,swept(context.previous,snapped));
+   calls.push({proposal:{...proposal},context:structuredClone(context),snapped,accepted});return accepted?snapped:false;
+  },
+  onMove:m=>{commits.push(m);state=S.applyAction(state,{type:'UPDATE_PRINTER',id:m.id,patch:{attachment:{xMm:m.x,zMm:m.z}}},catalog);api.setState(state,m.id)}});
+ api.setState(state,null);api.view('top');await settled();const renderer=renderers.at(-1),camera=renderer.lastCamera,grab=target=>screen(new THREE.Vector3((target.x+50)*.001,0,(target.z+30)*.001),camera);
+ api.canvas.emit('pointerdown',grab(origin));
+ // These accepted segments are axis-aligned: their swept400mm square is exactly
+ // this rectangle. The rejected endpoint lies in the notch. This is a renderer
+ // callback fixture, not acceptance of A's final preview/cache/commit helper.
+ for(const target of [{x:1005,z:1005},{x:3005,z:4005},{x:5005,z:1005}]){api.canvas.emit('pointermove',grab(target));await settled();assert.equal(S.serializeLayout(state,catalog),original);assert.equal(commits.length,0)}
+ assert.deepEqual(calls.map(r=>r.context.previous),[origin,{x:1005,z:1005},{x:1005,z:1005}]);assert.deepEqual(calls.map(r=>r.accepted),[true,false,true]);assert.ok(calls.every(r=>r.context.origin.x===1005&&r.context.origin.z===4005));
+ assert.equal(segmentGeometry.namespace.polygonContains(room,swept(origin,{x:5005,z:1005})),false,'Origin chord counterexample disappeared');
+ if(ending==='round-trip')for(const target of [{x:1005,z:1005},origin])api.canvas.emit('pointermove',grab(target));
+ api.canvas.emit(ending==='cancel'?'pointercancel':'pointerup');await settled();assert.equal(commits.length,ending==='commit'?1:0);
+ if(ending==='commit')assert.deepEqual(commits[0],{id:'path-printer',x:5005,z:1005});else assert.equal(S.serializeLayout(state,catalog),original);
+ const current=S.deriveScene(state,catalog).printers[0],newOrigin={x:current.xMm,z:current.zMm};
+ const countBeforeNewGesture=calls.length;api.canvas.emit('pointerdown',grab(newOrigin));api.canvas.emit('pointermove',grab({x:newOrigin.x+80,z:newOrigin.z}));assert.equal(calls.length,countBeforeNewGesture+1);assert.deepEqual(calls.at(-1).context.previous,newOrigin);assert.deepEqual(calls.at(-1).context.origin,newOrigin);api.canvas.emit('pointercancel');api.dispose();
+ passed.push('Incremental constrainMove metadata/'+ending+': safe U-room dogleg uses last accepted segment, false leavesprevious unchanged, original5mm snap anchor retained, one/no commit, next gesture resets origin.');
+}
+{
+ const contexts=[],x=operationSetup(false,{constrainMove:(proposal,context)=>{contexts.push(structuredClone(context));context.previous.x=99999;context.origin.x=88888;return {x:proposal.x,z:proposal.z}}});x.api.view('top');await settled();const down=screen(new THREE.Vector3(.4,0,0),x.renderer.lastCamera);
+ x.api.canvas.emit('pointerdown',down);x.api.canvas.emit('pointermove',{clientX:down.clientX+30,clientY:down.clientY});x.api.canvas.emit('pointermove',{clientX:down.clientX+60,clientY:down.clientY});
+ assert.deepEqual(contexts.map(r=>r.origin),[{x:0,z:0},{x:0,z:0}]);assert.ok(contexts[1].previous.x>0&&contexts[1].previous.x<99999);x.api.canvas.emit('pointercancel');assert.equal(x.commits.length,0);x.api.dispose();
+ passed.push('Preview context objects are copies: hook mutation cannot overwrite internal previous/original snap anchor.');
+}
+{
+ size={width:900,height:675};const catalog=[{id:'label-stack-machine',label:'Printer name',widthMm:800,depthMm:600,heightMm:500,dimensionsMm:{width:800,depth:600,height:500}}],selections=[];
+ const desk=S.createDesk({id:'desk',widthMm:1200,depthMm:900,heightMm:750}),printer={id:'stack-printer',machineId:'label-stack-machine',configurationId:null,attachment:{parentId:'desk',surfaceId:'top',xMm:0,zMm:0,yawDeg:0}};
+ const occupied=S.createDefaultLayout({furniture:[desk],printers:[printer]},catalog),empty=S.applyAction(occupied,{type:'REMOVE_PRINTER',id:'stack-printer'},catalog),api=factory({container:{getBoundingClientRect:()=>({...size}),append(){}},catalog,onSelect:id=>selections.push(id)});
+ const renderer=renderers.at(-1),groups=()=>{const m=new Map();renderer.lastScene.traverse(g=>{if(g.userData.planProjection)m.set(g.userData.entityId,g)});return m},visibleLabels=()=>{const a=[];renderer.lastScene.traverseVisible(o=>{if(o.isMesh&&o.userData.planLabel===true)a.push(o)});return a};
+ for(const [name,state,count,expectedText]of [['occupied',occupied,2,'Printer name'],['empty',empty,1,'desk'],['occupied-again',occupied,2,'Printer name']]){
+  const jsonBefore=S.serializeLayout(state,catalog);api.setState(state,'desk');api.view('top');await settled();const map=groups(),labels=visibleLabels();assert.equal(map.size,count);assert.equal(labels.length,1,'Duplicate centered white label planes: '+name);
+  assert.equal(map.get('desk').children.find(o=>o.userData.planLabel).visible,name==='empty');
+  if(name!=='empty')assert.equal(map.get('stack-printer').children.find(o=>o.userData.planLabel).visible,true);
+  for(const [id,g]of map){assert.equal(g.userData.entityId,id);assert.equal(g.children.find(o=>o.userData.planFootprint).visible,true)}
+  assert.equal(labels[0].material.map.colorSpace,THREE.SRGBColorSpace);assert.equal(labels[0].material.toneMapped,false,'UI label should not be altered by scene exposure/tone mapping');
+  await api.exportImage({width:900});const text=canvases.at(-1).reviewDraws.filter(r=>r[0]==='fillText');assert.equal(text.length,1,'Canvas export duplicates label: '+name);assert.equal(text[0][1],expectedText);assert.equal(S.serializeLayout(state,catalog),jsonBefore);
+ }
+ const camera=renderer.lastCamera;api.canvas.emit('pointerdown',screen(new THREE.Vector3(0,0,0),camera));api.canvas.emit('pointerup');assert.equal(selections.at(-1),'stack-printer');
+ api.canvas.emit('pointerdown',screen(new THREE.Vector3(.55,0,0),camera));api.canvas.emit('pointerup');assert.equal(selections.at(-1),'desk','Suppressing a label must not remove its furniture selection footprint');api.dispose();
+ passed.push('Label rendering regression: occupied desk+centered child has one visible printer label plane/canvas text; empty desk label returns; A-B-A retains both footprints/IDs/picking; sRGB label canvas and toneMappedfalse preserve UI text color.');
+}
 const ownerSourceStillMatchesSnapshot=sha(fs.readFileSync(input))===sha(Buffer.from(source));
 assert.equal(ownerSourceStillMatchesSnapshot,true,'Renderer changed during source regression');
 assert.deepEqual(findings,[],'Renderer contract regression findings');
+const reportOption=process.argv.indexOf('--report');
+if(reportOption>=0)fs.writeFileSync(path.resolve(process.argv[reportOption+1]),JSON.stringify({status:'PASS',cases:passed.length,passed,observations,renderer:pin(input),test:pin(fileURLToPath(import.meta.url)),imports,scope:'Actual private renderer source, actual Three math and vendored OrbitControls; DOM/WebGL/PNG bytes are CPU fixtures. No full models, GPU, trusted browser event or native fit claim.'},null,2)+'\n',{flag:'wx'});
 console.log(JSON.stringify({status:'PASS',scope:'Real Three geometry/raycast and unchanged renderer bodies; DOM/WebGL/loaders are fixtures. No models, trusted browser events, GPU pixels or native fit.',cases:passed.length,rendererSHA256:sha(Buffer.from(source)),stateSHA256:pin(statePath).sha256,findings:0}));
 } finally {
- const resolvedIntake=path.resolve(intake),resolvedTemp=path.resolve(os.tmpdir());
+ const resolvedIntake=path.resolve(intake),resolvedTemp=path.resolve(fixtureTempRoot);
  assert.ok(resolvedIntake.startsWith(resolvedTemp+path.sep)&&path.basename(resolvedIntake).startsWith('layout-renderer-regression-'),'Temporary fixture path escaped its intended directory');
  fs.rmSync(resolvedIntake,{recursive:true,force:true});
 }

@@ -61,6 +61,7 @@ for (const code of warnings) for (const prefix of ['layout.warning.','layout.iss
 for (const key of ['layout.tool.orbit','layout.tool.move','layout.hint.orbit','layout.hint.move',
   'layout.view.perspective','layout.view.top','layout.view.front','layout.view.fit',
   'layout.desktopOnlyTitle','layout.desktopOnlyText','layout.openViewer',
+  'layout.error.ROOM_OUT_OF_BOUNDS','layout.error.SURFACE_OVERHANG','layout.repairBounds',
   'layout.error.RENDER_UNSUPPORTED','layout.error.RENDER_SHADER_FAILED','layout.error.SVG_NO_OUTLINE']) assert(hasMessage(key), key);
 assert.deepEqual(missing, [], JSON.stringify(missing));
 assert.equal(chooseLanguage({query:'ja',stored:'ko'}),'ja');
