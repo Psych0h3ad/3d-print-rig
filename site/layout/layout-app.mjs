@@ -157,8 +157,8 @@ async function act(action){
   try{
     switch(action.type){
       case 'select':select(action.id);return;
-      case 'undo':if(past.length){future.push(state);state=past.pop();sync();store();}return;
-      case 'redo':if(future.length){past.push(state);state=future.pop();sync();store();}return;
+      case 'undo':if(past.length){future.push(state);commit(past.pop(),{history:false});}return;
+      case 'redo':if(future.length){past.push(state);commit(future.pop(),{history:false});}return;
       case 'reset':selected=null;commit(createDefaultLayout());view.view('perspective');return;
       case 'add':{
         if(action.kind==='printer'){

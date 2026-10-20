@@ -1,5 +1,6 @@
 import {workspaceTask,workspaceListen} from './workspace-lifecycle.mjs?v=16928b39409c2ae378c6';
 import {formatMessage} from './i18n.mjs?v=271dfe88c90dacc7bad4';
+import {importedVariant} from './configuration-model.js?v=9eba2c08e7c5a8c18e16';
 export function accessoryIds(catalog,data={}){
  const ids=data.accessories??[];
  if(!Array.isArray(ids)||ids.some(id=>typeof id!=='string'||!catalog.accessories?.some(a=>a.id===id)))throw Error('未登録の追加Modが含まれています。');
@@ -40,8 +41,9 @@ export function setupAccessories(catalog,{load,update,stockNodes,getVariant=()=>
  function selectedStatus(){return [...state.selected].map(id=>{const row=catalog.accessories.find(row=>row.id===id);return row.label_id?formatMessage(row.label_id,{},document.documentElement.lang):row.label}).join(' ／ ')}
  function showStatus(){status.textContent=companionChanged?formatMessage('ui.mod_companion_changed',{},document.documentElement.lang):(state.selected.size?selectedStatus():'追加Modなし')}
  if(globalThis.window)workspaceListen(window,'rig-language-change',()=>{if(!busy)showStatus()});
+ function validateExtras(data){const ids=accessoryIds(catalog,data),variant=Object.hasOwn(data,'configuration')||Object.hasOwn(data,'id')?importedVariant(catalog,data):getVariant();for(const id of ids)if(!accessoryAvailable(catalog.accessories.find(row=>row.id===id),variant))throw Error(formatMessage('ui.mod_configuration_saved',{},document.documentElement.lang));return ids}
  async function apply(data){return workspaceTask(async()=>{
-  if(busy)throw Error('追加Modを読み込み中です。');busy=true;sync();status.textContent='追加Modを読み込み中…';
+  if(busy)throw Error('追加Modを読み込み中です。');validateExtras(data);busy=true;sync();status.textContent='追加Modを読み込み中…';
   const previous=[...state.selected];
   try{await state.apply(data);companionChanged=previous.some(id=>{const row=catalog.accessories.find(r=>r.id===id);return !state.selected.has(id)&&row.exclusive_group&&[...state.selected].some(next=>catalog.accessories.find(r=>r.id===next).exclusive_group===row.exclusive_group)});showStatus()}
   catch(e){status.textContent='追加Modを読み込めませんでした。';throw e}
@@ -55,5 +57,5 @@ export function setupAccessories(catalog,{load,update,stockNodes,getVariant=()=>
  const note=document.createElement('p');note.className='foot';note.textContent=row.notes;container.append(note);
   if(row.notice_id)note.setAttribute('data-i18n-id',row.notice_id);
  }
- return {refresh:()=>{if(state.refresh().length)companionChanged=true;sync();if(!busy)showStatus()},getExtras:()=>state.saved(),applyExtras:apply,validateExtras:data=>{const ids=accessoryIds(catalog,data),variant=catalog.variants?.find(row=>row.id===data.configuration)||getVariant();for(const id of ids)if(!accessoryAvailable(catalog.accessories.find(row=>row.id===id),variant))throw Error(formatMessage('ui.mod_configuration_saved',{},document.documentElement.lang));return ids}};
+ return {refresh:()=>{if(state.refresh().length)companionChanged=true;sync();if(!busy)showStatus()},getExtras:()=>state.saved(),applyExtras:apply,validateExtras};
 }
