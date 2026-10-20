@@ -218,7 +218,7 @@ await test('actual-app-worldMove-uses-authoritative-rejection-noop-history-and-p
  const app=fs.readFileSync(path.join(src,'layout-app.mjs'),'utf8');
  const commit=app.slice(app.indexOf('function commit('),app.indexOf('function select('));
  const move=app.slice(app.indexOf('let pendingMove='),app.indexOf('async function render('));
- const factory=Function('initial','catalog','applyWorldMove','resolveWorldMove','serializeLayout',`let state=initial,busy=false,roomEditing=false,disposed=false;const past=[],future=[];let synced=0,stored=0,errors=0;const sync=()=>synced++,store=()=>stored++,message=()=>errors++,humanError=e=>e;const statusNode={hidden:false,textContent:''},$=()=>statusNode,ui={setStatus(){}};${commit}\n${move}\nreturn {move:worldMove,preview:constrainMove,get:()=>state,counts:()=>({synced,stored,errors,history:past.length})};`);
+ const factory=Function('initial','catalog','applyWorldMove','resolveWorldMove','serializeLayout',`let state=initial,selected=null,busy=false,roomEditing=false,disposed=false;const past=[],future=[];let synced=0,stored=0,errors=0;const sync=()=>synced++,store=()=>stored++,message=()=>errors++,humanError=e=>e;const statusNode={hidden:false,textContent:''},$=()=>statusNode,ui={setStatus(){}};${commit}\n${move}\nreturn {move:worldMove,preview:constrainMove,get:()=>state,counts:()=>({synced,stored,errors,history:past.length})};`);
  const state=S.createDefaultLayout({printers:[p('p1','fixture200')]},fixture),a=factory(state,fixture,S.applyWorldMove,S.resolveWorldMove,S.serializeLayout);
  assert.equal(a.move({id:'p1',x:100,z:0}),true);const valid=a.get();
  assert.equal(a.move({id:'p1',x:5000,z:0}),false);assert.equal(a.get(),valid);assert.equal(a.counts().history,1);
@@ -280,7 +280,7 @@ await test('live-preview-snap-first-fractional-contact-and-exact-single-drop',()
  const state=S.createDefaultLayout({printers:[p('p1','fractional')]},c),text=S.serializeLayout(state,c);
  const app=fs.readFileSync(path.join(src,'layout-app.mjs'),'utf8'),commit=app.slice(app.indexOf('function commit('),app.indexOf('function select('));
  const move=app.slice(app.indexOf('let pendingMove='),app.indexOf('async function render('));
- const factory=Function('initial','catalog','applyWorldMove','resolveWorldMove','serializeLayout',`let state=initial,busy=false,roomEditing=false,disposed=false;const past=[],future=[];let stored=0;const sync=()=>{},store=()=>stored++,message=()=>{},humanError=e=>e;const statusNode={hidden:false,textContent:''},$=()=>statusNode,ui={setStatus(){}};${commit}\n${move}\nreturn {preview:constrainMove,move:worldMove,get:()=>state,history:()=>past.length,stored:()=>stored};`);
+ const factory=Function('initial','catalog','applyWorldMove','resolveWorldMove','serializeLayout',`let state=initial,selected=null,busy=false,roomEditing=false,disposed=false;const past=[],future=[];let stored=0;const sync=()=>{},store=()=>stored++,message=()=>{},humanError=e=>e;const statusNode={hidden:false,textContent:''},$=()=>statusNode,ui={setStatus(){}};${commit}\n${move}\nreturn {preview:constrainMove,move:worldMove,get:()=>state,history:()=>past.length,stored:()=>stored};`);
  const a=factory(state,c,S.applyWorldMove,S.resolveWorldMove,S.serializeLayout);
  let shown;for(const x of [100,1000,1800,2000])shown=a.preview({id:'p1',x,z:0});
  assert.equal(a.get(),state);assert.equal(a.history(),0);assert.equal(a.stored(),0);
@@ -307,7 +307,7 @@ function actualAppTransaction(initial,sourceCatalog){
  const app=fs.readFileSync(path.join(src,'layout-app.mjs'),'utf8');
  const commit=app.slice(app.indexOf('function commit('),app.indexOf('function select('));
  const moves=app.slice(app.indexOf('let pendingMove='),app.indexOf('async function render('));
- return Function('initial','catalog','applyWorldMove','resolveWorldMove','serializeLayout',`let state=initial,busy=false,roomEditing=false,disposed=false;const past=[],future=[];let stored=0;const sync=()=>{},store=()=>stored++,message=()=>{},humanError=e=>e;const statusNode={hidden:false,textContent:''},$=()=>statusNode,ui={setStatus(){}};${commit}\n${moves}\nreturn {preview:constrainMove,move:worldMove,get:()=>state,history:()=>past,stored:()=>stored};`)(initial,sourceCatalog,S.applyWorldMove,S.resolveWorldMove,S.serializeLayout);
+ return Function('initial','catalog','applyWorldMove','resolveWorldMove','serializeLayout',`let state=initial,selected=null,busy=false,roomEditing=false,disposed=false;const past=[],future=[];let stored=0;const sync=()=>{},store=()=>stored++,message=()=>{},humanError=e=>e;const statusNode={hidden:false,textContent:''},$=()=>statusNode,ui={setStatus(){}};${commit}\n${moves}\nreturn {preview:constrainMove,move:worldMove,get:()=>state,history:()=>past,stored:()=>stored};`)(initial,sourceCatalog,S.applyWorldMove,S.resolveWorldMove,S.serializeLayout);
 }
 await test('actual-app-one-gesture-dogleg-concave-room-segments-one-undo',()=>{
  const state=S.createDefaultLayout({room:Uroom(),printers:[p('p1','fixture200',{parentId:null,surfaceId:'floor',xMm:1000,zMm:4000,yawDeg:0})]},fixture);

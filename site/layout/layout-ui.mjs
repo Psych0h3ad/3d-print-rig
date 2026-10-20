@@ -274,6 +274,21 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
   const cancel=button('layout.cancel','cancel');cancel.classList.add('layout-cancel');cancel.hidden=true;
   renderSection.append(renderButton,renderHelp,progress,renderMessage,cancel);
   const scope=section('layout.about');scope.append(copy(el('p','layout-scope'),'layout.scope'));
+  const shortcuts=el('div','layout-section-shortcuts');
+  shortcuts.setAttribute('role','group');shortcuts.dataset.layoutLabel='layout.settings';shortcuts.setAttribute('aria-label',tr('layout.settings'));
+  const jumps=[['layout.nav.room',roomSection],['layout.nav.add',addSection],['layout.nav.objects',objectSection],['layout.nav.selection',editorSection]];
+  let selectionJump;
+  for(const [key,target]of jumps){
+    target.id=key.replaceAll('.','-');
+    const jump=button(key,()=>{
+      const top=container.scrollTop+target.getBoundingClientRect().top-container.getBoundingClientRect().top-actions.getBoundingClientRect().height;
+      container.scrollTo({top:Math.max(0,top),behavior:'instant'});
+    });
+    jump.dataset.layoutJump=target.id;jump.setAttribute('aria-controls',target.id);
+    if(target===editorSection)selectionJump=jump;
+    shortcuts.append(jump);
+  }
+  actions.append(shortcuts);
   container.replaceChildren(root);
 
   function machineLabel(m) { return String(m?.label || m?.name || m?.title || m?.id || ''); }
@@ -391,6 +406,7 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
   function refreshStatus(){
     for(const n of root.querySelectorAll('button,input,select,textarea'))n.disabled=!!status.busy;
     undo.disabled=status.busy||!status.canUndo;redo.disabled=status.busy||!status.canRedo;
+    selectionJump.disabled=status.busy||!selected();
     addMachine.disabled=status.busy||!byMachine.has(machineSelect.value);
     const needsDetach=editor.querySelector('[data-requires-detach]');if(needsDetach)needsDetach.disabled=status.busy||!editor.querySelector('#layout-detach')?.checked;
     const boundaryInvalid=currentIssues.some(issue=>issue.code==='ROOM_OUT_OF_BOUNDS'||issue.code==='SURFACE_OVERHANG');

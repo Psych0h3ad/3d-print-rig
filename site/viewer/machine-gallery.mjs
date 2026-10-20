@@ -1,4 +1,4 @@
-import {setupLayoutNavigation} from './layout-nav.mjs?v=d933189b217a0e0332fa';
+import {setupLayoutNavigation} from './layout-nav.mjs?v=45364d6bf24028600b68';
 import {machineChoices, machineFamilies, machineVendors} from './machines.js?v=ab543d6b01637bc5083f';
 import {normalizeLanguage, languageURL} from './languages.mjs?v=ba6a5cd8e1d86849ca34';
 

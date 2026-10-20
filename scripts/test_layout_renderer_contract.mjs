@@ -961,11 +961,11 @@ function checkRotationPreview(x,before,id,yaw){
  assert.equal(x.engine.read().past.length,0,'Preview wrote undo');assert.equal(x.engine.read().writes.length,0,'Preview saved state');
 }
 {
- const x=await rotationSetup();assert.equal(x.toolbar.getAttribute('role'),'group');assert.equal(x.toolbar.hidden,false);assert.equal(x.toolbar.querySelectorAll('button').length,3);assert.equal(x.toolbar.querySelectorAll('svg').length,3);assert.equal(x.toolbar.querySelectorAll('output').length,1);
+ const x=await rotationSetup();assert.equal(x.toolbar.getAttribute('role'),'group');assert.equal(x.toolbar.hidden,false);assert.equal(x.toolbar.querySelectorAll('button').length,4);assert.equal(x.toolbar.querySelectorAll('svg').length,4);assert.equal(x.toolbar.querySelectorAll('[data-layout-rotation]').length,3);assert.equal(x.toolbar.querySelectorAll('output').length,1);
  for(const name of ['left','handle','right'])assert(x.button(name).getAttribute('aria-label'));
  for(const mode of ['top','perspective']){x.api.view(mode);await settled();const left=parseFloat(x.toolbar.style.left),top=parseFloat(x.toolbar.style.top);assert(Number.isFinite(left)&&left>=0&&left<=size.width);assert(Number.isFinite(top)&&top>=0&&top<=size.height)}
  x.engine.select(null);assert.equal(x.toolbar.hidden,true);x.engine.select('rotate-desk');assert.equal(x.toolbar.hidden,false);x.api.dispose();assert.equal(x.toolbar.parentNode,null);assert(x.toolbar.querySelectorAll('button').every(b=>[...b.reviewHandlers.values()].every(v=>v.length===0)));
- passed.push('Selected-only rotation group has three SVG buttons/angle output, accessible labels, finite in-canvas source anchor in2D/3D, hides on deselect, removes controls/listeners on disposal.');
+ passed.push('Selected-only tool group keeps three rotation SVG buttons/angle output plus focus button, accessible labels, finite in-canvas source anchor in2D/3D, hides on deselect, removes controls/listeners on disposal.');
 }
 {
  const x=await rotationSetup(),original=S.serializeLayout(x.initial,x.catalog);
@@ -1062,6 +1062,66 @@ for(const keyboardTarget of ['left','handle','right','canvas']){
  }
  for(const [key,shiftKey,yaw]of [['r',false,120],['R',true,30]]){let prevented=0;node.emit('keydown',{key,shiftKey,preventDefault(){prevented++}});assert.equal(prevented,1,'Plain rotation shortcut missing');angleNear(x.engine.read().state.furniture[0].pose.yawDeg,yaw,'Plain R/ShiftR after modified browser shortcut');}
  assert.equal(x.engine.read().past.length,2);assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),before);x.api.dispose();passed.push('Actual '+keyboardTarget+' keyboard callback leaves Ctrl/Meta/Alt+R/ShiftR browser actions uncancelled with no rotation/history; plainR/ShiftR still rotate.');
+}
+// Focus is an explicit camera operation. Selection, placement and other views stay independent.
+for(const mode of ['perspective','top']){
+ const x=operationSetup(true);x.api.view(mode);await settled();
+ assert.equal(typeof x.api.focusSelected,'function','Selected camera focus API missing');
+ const camera=x.renderer.lastCamera,initialCamera=cameraSnapshot(camera),serialized=S.serializeLayout(x.state(),x.catalog);
+ assert.equal(x.api.focusSelected(),false,'No selection must not move camera');assert.deepEqual(cameraSnapshot(camera),initialCamera);
+ x.api.setState(x.state(),'child');await settled();assert.deepEqual(cameraSnapshot(camera),initialCamera,'Selection alone must preserve camera');
+ // A sidebar can select an object after the camera has panned away. F must find it.
+ const controls=mode==='top'?allControls.at(-2):allControls.at(-1);camera.position.x+=30;controls.target.x+=30;camera.updateMatrixWorld(true);
+ const panned=cameraSnapshot(camera);let prevented=0;
+ for(const modifier of ['ctrlKey','metaKey','altKey'])x.api.canvas.emit('keydown',{key:'f',[modifier]:true,preventDefault(){prevented++}});
+ x.api.canvas.emit('keydown',{key:'f',repeat:true,preventDefault(){prevented++}});
+ assert.equal(prevented,0);assert.deepEqual(cameraSnapshot(camera),panned,'Modified browser shortcuts and repeats remain untouched');
+ x.api.canvas.emit('keydown',{key:'f',preventDefault(){prevented++}});await settled();assert.equal(prevented,1);
+ const selected=x.nodes(false).get('child'),bounds=new THREE.Box3().setFromObject(selected),center=bounds.getCenter(new THREE.Vector3());
+ if(mode==='top')center.y=0;
+ const projected=center.clone().project(camera);near(projected.x,0,'Selected center X');near(projected.y,0,'Selected center Y');
+ const corners=mode==='top'?x.nodes(true).get('child').userData.planPoints.map(([a,b])=>new THREE.Vector3(a+selected.position.x,0,b+selected.position.z)):
+  [0,1,2,3,4,5,6,7].map(i=>new THREE.Vector3(i&1?bounds.max.x:bounds.min.x,i&2?bounds.max.y:bounds.min.y,i&4?bounds.max.z:bounds.min.z));
+ for(const corner of corners){const p=corner.project(camera);assert.ok(Math.abs(p.x)<1&&Math.abs(p.y)<1&&Math.abs(p.z)<=1,'Selected bounds must fit active projection')}
+ assert.equal(S.serializeLayout(x.state(),x.catalog),serialized);assert.equal(x.commits.length,0);assert.equal(x.rotationCommits.length,0);
+ const focused=cameraSnapshot(camera);x.api.view(mode==='top'?'perspective':'top');await settled();x.api.view(mode);await settled();assert.deepEqual(cameraSnapshot(camera),focused,'Other view must preserve focused camera');
+ x.api.setState(x.state(),'missing');assert.equal(x.api.focusSelected(),false);assert.deepEqual(cameraSnapshot(camera),focused);
+ x.api.dispose();assert.equal(x.api.focusSelected(),false);assert.equal(x.errors.length,0);
+ passed.push('Selected focus '+mode+': real OrbitControls, offscreenF, complete bounds in frame, modified keys ignored, selection alone inert, independent camera roundtrip, no model pose/history or disposal side effects.');
+}
+{
+ const x=operationSetup(true);x.api.view('perspective');await settled();x.api.setState(x.state(),'desk');await settled();
+ const button=x.container.querySelector('[data-layout-action=focus-selected]');assert.ok(button,'Focusable selection tool missing');
+ assert.equal(button.getAttribute('aria-label'),'layout.focusSelected');
+ const camera=x.renderer.lastCamera,controls=allControls.at(-1);camera.position.x+=20;controls.target.x+=20;
+ button.click();await settled();const bounds=new THREE.Box3().setFromObject(x.nodes(false).get('desk')).union(new THREE.Box3().setFromObject(x.nodes(false).get('child'))),p=bounds.getCenter(new THREE.Vector3()).project(camera);near(p.x,0,'Button cameraX');near(p.y,0,'Button cameraY');
+ const at=screen(new THREE.Vector3(.4,.75,0),camera),before=cameraSnapshot(camera);x.api.canvas.emit('pointerdown',at);assert.equal(x.api.canvas.hasPointerCapture(71),true);
+ assert.equal(x.api.focusSelected(),false,'Focus must not interrupt live move');assert.deepEqual(cameraSnapshot(camera),before);
+ x.api.canvas.emit('pointercancel');assert.equal(x.commits.length,0);assert.equal(x.rotationCommits.length,0);
+ const handlers=x.api.canvas.reviewHandlers;assert.ok((handlers.get('keydown')||[]).length>0);x.api.dispose();assert.equal((handlers.get('keydown')||[]).length,0,'Focus keyboard listener leaked after dispose');
+ passed.push('Selected focus toolbar: accessible label, real event handler frames object, live pointer/capture cannot be interrupted and focus keyboard listener disposes.');
+}
+for(const dimensions of [{width:360,height:900},{width:1200,height:400}]){
+ const x=operationSetup(true);size={...dimensions};x.observer.fn();x.api.view('perspective');await settled();x.api.setState(x.state(),'desk');
+ const serialized=S.serializeLayout(x.state(),x.catalog);assert.equal(x.api.focusSelected(),true);await settled();const camera=x.renderer.lastCamera,b=new THREE.Box3().setFromObject(x.nodes(false).get('desk')).union(new THREE.Box3().setFromObject(x.nodes(false).get('child')));
+ for(let i=0;i<8;i++){const p=new THREE.Vector3(i&1?b.max.x:b.min.x,i&2?b.max.y:b.min.y,i&4?b.max.z:b.min.z).project(camera);assert.ok(Math.abs(p.x)<1&&Math.abs(p.y)<1,'Focus clips selected object in non-square viewport')}
+ assert.equal(S.serializeLayout(x.state(),x.catalog),serialized);x.api.dispose();passed.push('Selected focus aspect '+dimensions.width+'x'+dimensions.height+': all eight object bounds corners fit; source plan unchanged.');
+}
+
+for(const mode of ['perspective','top']){
+ const x=operationSetup(true),base=x.state(),child=base.printers[0];
+ // A retained imported placement may overhang its desk. Frame actual complete
+ // footprints, rather than assuming that the parent bounds contain its children.
+ const state=S.createDefaultLayout({...base,printers:[{...child,attachment:{...child.attachment,xMm:750,zMm:500}}]},x.catalog),serialized=S.serializeLayout(state,x.catalog);
+ x.api.setState(state,'desk');x.api.view(mode);await settled();assert.equal(x.api.focusSelected(),true);await settled();
+ const camera=x.renderer.lastCamera,points=[];
+ for(const id of ['desk','child'])if(mode==='top'){
+  const flat=x.nodes(true).get(id);for(const [a,b]of flat.userData.planPoints)points.push(new THREE.Vector3(a+flat.position.x,0,b+flat.position.z));
+ }else{const b=new THREE.Box3().setFromObject(x.nodes(false).get(id));for(let i=0;i<8;i++)points.push(new THREE.Vector3(i&1?b.max.x:b.min.x,i&2?b.max.y:b.min.y,i&4?b.max.z:b.min.z))}
+ const union=new THREE.Box3().setFromPoints(points),center=union.getCenter(new THREE.Vector3()).project(camera);near(center.x,0,'Furniture+child union centerX');near(center.y,0,'Furniture+child union centerY');
+ for(const p of points){p.project(camera);assert.ok(Math.abs(p.x)<1&&Math.abs(p.y)<1,'Focus must include attached printer outside parent footprint')}
+ assert.equal(S.serializeLayout(state,x.catalog),serialized);assert.equal(x.commits.length,0);assert.equal(x.rotationCommits.length,0);x.api.dispose();
+ passed.push('Furniture focus '+mode+' includes separate attached printer height and extended footprints in actual source-derived imported placement; no automatic repair or pose/history change.');
 }
 const ownerSourceStillMatchesSnapshot=sha(fs.readFileSync(input))===sha(Buffer.from(source));
 assert.equal(ownerSourceStillMatchesSnapshot,true,'Renderer changed during source regression');

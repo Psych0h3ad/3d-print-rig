@@ -1,5 +1,5 @@
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
-import {setupLayoutNavigation} from './layout-nav.mjs?v=d933189b217a0e0332fa';
+import {setupLayoutNavigation} from './layout-nav.mjs?v=45364d6bf24028600b68';
 ensureWorkspaceEntry(import.meta.url);
 import {setupDisplayPreferences,setupHeaderThemeToggle} from './display-preferences.mjs?v=56b29930754451d8193c';
 import {WorkspaceMutationObserver,workspaceListen} from './workspace-lifecycle.mjs?v=16928b39409c2ae378c6';

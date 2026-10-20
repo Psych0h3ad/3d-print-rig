@@ -34,6 +34,15 @@ position. Movement stays within the room and the selected support surface.
 Drag along a wall to slide against it; pulling away responds immediately.
 Changes that would put an object beyond those boundaries are not accepted.
 
+The fixed **Room**, **Add**, **Objects** and **Selected** shortcuts in the
+settings panel jump directly to the relevant controls without changing the
+current selection.
+
+Press **F** with the scene focused, or use the focus button beside the selected
+object's rotation controls, to frame the selected object. A selected desk or
+shelf includes its attached printers. This adjusts the camera without changing
+the plan. The room-fit button still frames the whole room.
+
 **2D plan** shows flat furniture and printer footprints without perspective or
 height projection. Drag empty space to pan and scroll to zoom; the plan does
 not rotate. Switching back to 3D restores the three-dimensional scene.
@@ -43,7 +52,8 @@ right to rotate in 15° steps. Hold **Shift** for 1° steps, or use the arrow
 buttons for 90° turns. **Esc** cancels a drag. Printers on a desk or shelf rotate with it.
 
 With the scene focused and an object selected, arrow keys move it by 10 mm
-or 100 mm with Shift. **R** turns it by 90°; **Shift+R** turns it by −90°.
+or 100 mm with Shift along the room's X/Z axes, including on rotated furniture.
+**R** turns it by 90°; **Shift+R** turns it by −90°.
 Numeric fields also support precise placement. Objects can be duplicated or
 deleted. Before deleting occupied furniture, explicitly choose to move its printers to the floor. Move printers
 off a shelf board before removing that board.
@@ -71,8 +81,12 @@ repair notice. Move those objects inside. Editing, JSON saving and flat-plan
 images remain available; detailed 3D image export stays disabled until the
 boundary problems are fixed. Existing placements are not silently relocated.
 
-Undo and redo apply to edits in the current session. Reset clears the room's
-objects. Export a JSON copy before clearing browser data or moving to another
+Undo and redo apply to edits in the current session.
+**Ctrl+Z** (or **Cmd+Z**) undoes an edit; **Ctrl+Shift+Z** /
+**Cmd+Shift+Z** or **Ctrl+Y** redoes it. In text and number fields, the browser's
+own text undo is retained. These shortcuts pause during image rendering and
+room-outline editing.
+Reset clears the room's objects. Export a JSON copy before clearing browser data or moving to another
 device; a PNG does not contain an editable plan.
 
 ## Preview and PNG

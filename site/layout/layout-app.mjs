@@ -1,6 +1,6 @@
 import {createDefaultLayout,createDesk,createShelf,createCatalog,applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,placementViolations,deriveScene,worldTransform,validatePlacement,serializeLayout,parseLayout} from './layout-state.mjs?v=958a4aac45cc6c68d570';
-import {createLayoutUI} from './layout-ui.mjs?v=a86a8dcf9285885fd08e';
-import {setupLayoutLanguage} from './layout-language.mjs?v=c43bccbacd5e78ac1ba5';
+import {createLayoutUI} from './layout-ui.mjs?v=3187b2200b0b2007dae5';
+import {setupLayoutLanguage} from './layout-language.mjs?v=fd6cd27da04c1ae90b86';
 import {readDisplay,saveDisplay,applyDisplay} from '../viewer/display-preferences.mjs?v=56b29930754451d8193c';
 
 const storageKey='3d-print-rig-layout-v1',maxFileBytes=2*1024*1024;
@@ -31,9 +31,13 @@ function sync(){
   ui.setStatus({canUndo:past.length>0,canRedo:future.length>0,busy});
   document.body.dataset.layoutObjects=String(state.furniture.length+state.printers.length);document.body.dataset.layoutPrinters=String(state.printers.length);
 }
-function commit(next,{history=true}={}){
-  if(busy||next===state||serializeLayout(next,catalog)===serializeLayout(state,catalog))return;if(history){past.push(state);if(past.length>80)past.shift();future.length=0;}
-  state=next;delete $('#layout-status')._layoutMessage;$('#layout-status').hidden=true;$('#layout-status').textContent='';ui.setStatus({message:'',error:false});sync();store();
+function commit(next,{history=true,selection=selected}={}){
+  if(busy)return;
+  if(next===state||serializeLayout(next,catalog)===serializeLayout(state,catalog)){
+    if(selected!==selection){selected=selection;sync();}return;
+  }
+  if(history){past.push(state);if(past.length>80)past.shift();future.length=0;}
+  state=next;selected=selection;delete $('#layout-status')._layoutMessage;$('#layout-status').hidden=true;$('#layout-status').textContent='';ui.setStatus({message:'',error:false});sync();store();
 }
 function select(value){if(busy)return;interactionGeneration++;selected=value;sync();}
 function download(blob,name){const url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download=name;link.click();setTimeout(()=>URL.revokeObjectURL(url),30000);}
@@ -159,46 +163,61 @@ async function act(action){
       case 'select':select(action.id);return;
       case 'undo':if(past.length){future.push(state);commit(past.pop(),{history:false});}return;
       case 'redo':if(future.length){past.push(state);commit(future.pop(),{history:false});}return;
-      case 'reset':selected=null;commit(createDefaultLayout());view.view('perspective');return;
+      case 'reset':commit(createDefaultLayout(),{selection:null});view.view('perspective');view.view('fit');return;
       case 'add':{
         if(action.kind==='printer'){
           const machine=rows.find(r=>r.id===action.machineId);if(!machine)throw Error('Unknown printer');
           const furniture=state.furniture.find(e=>e.id===selected),parentId=furniture?.id||null,surfaceId=furniture?(furniture.type==='desk'?'top':furniture.levels[0].id):'floor';
           const entityId=id('printer');const printer={id:entityId,machineId:machine.id,configurationId:null,attachment:{parentId,surfaceId,xMm:0,zMm:0,yawDeg:0}};
-          selected=entityId;commit(applyAction(state,{type:'ADD_PRINTER',printer},catalog));
+          commit(applyAction(state,{type:'ADD_PRINTER',printer},catalog),{selection:entityId});
         }else{
-          const entityId=id(action.kind),furniture=action.kind==='desk'?createDesk({id:entityId}):createShelf({id:entityId});selected=entityId;commit(applyAction(state,{type:'ADD_FURNITURE',furniture},catalog));
+          const entityId=id(action.kind),furniture=action.kind==='desk'?createDesk({id:entityId}):createShelf({id:entityId});commit(applyAction(state,{type:'ADD_FURNITURE',furniture},catalog),{selection:entityId});
         }
         return;
       }
+      case 'move-world':commit(applyWorldMove(state,{id:action.id,xMm:action.xMm,zMm:action.zMm},catalog));return;
       case 'delete':{
         const isFurniture=state.furniture.some(e=>e.id===action.id);commit(applyAction(state,isFurniture?{type:'REMOVE_FURNITURE',id:action.id,detachChildren:action.detachChildren===true}:{type:'REMOVE_PRINTER',id:action.id},catalog));return;
       }
       case 'duplicate':{
         const furniture=state.furniture.find(e=>e.id===action.id);
-        if(furniture){const copy=clone(furniture);copy.id=id(copy.type);copy.pose.xMm+=100;copy.pose.zMm+=100;selected=copy.id;commit(applyAction(state,{type:'ADD_FURNITURE',furniture:copy},catalog));}
-        else {const printer=clone(state.printers.find(e=>e.id===action.id));if(!printer)return;printer.id=id('printer');printer.attachment.xMm+=100;printer.attachment.zMm+=100;selected=printer.id;commit(applyAction(state,{type:'ADD_PRINTER',printer},catalog));}return;
+        if(furniture){const copy=clone(furniture);copy.id=id(copy.type);copy.pose.xMm+=100;copy.pose.zMm+=100;commit(applyAction(state,{type:'ADD_FURNITURE',furniture:copy},catalog),{selection:copy.id});}
+        else {const printer=clone(state.printers.find(e=>e.id===action.id));if(!printer)return;printer.id=id('printer');printer.attachment.xMm+=100;printer.attachment.zMm+=100;commit(applyAction(state,{type:'ADD_PRINTER',printer},catalog),{selection:printer.id});}return;
       }
       case 'export':download(new Blob([serializeLayout(state,catalog)],{type:'application/json'}),'3d-print-rig-layout.json');message(()=>t('layout.saved'));return;
       case 'import':{
         if(!action.file||action.file.size>maxFileBytes)throw Object.assign(Error('Layout file too large'),{code:'FILE_TOO_LARGE'});
         const source=state,text=await action.file.text();
         if(disposed||generation!==interactionGeneration||state!==source||busy||roomEditing)return;
-        const next=parseLayout(text,catalog);selected=null;importCommitted=true;commit(next);view.view('perspective');message(()=>t('layout.loaded'));return;
+        const next=parseLayout(text,catalog);importCommitted=true;commit(next,{selection:null});view.view('perspective');view.view('fit');message(()=>t('layout.loaded'));return;
       }
       case 'render':await render();return;
       case 'edit-room':case 'import-svg':{
         roomEditing=true;
         try{const {openRoomEditor}=await import('./layout-room-editor.mjs?v=ae5813e1162b65ba92fa'),nextRoom=await openRoomEditor({room:state.room,file:action.type==='import-svg'?action.file:undefined,t:language.t});
-          if(nextRoom&&!disposed){commit(applyAction(state,{type:'SET_ROOM',room:nextRoom},catalog));view.view('perspective');}
+          if(nextRoom&&!disposed){commit(applyAction(state,{type:'SET_ROOM',room:nextRoom},catalog));view.view('perspective');view.view('fit');}
         }finally{roomEditing=false;}return;
       }
       case 'add-level':{
         const shelf=state.furniture.find(e=>e.id===action.id&&e.type==='shelf');if(!shelf)return;
-        const tops=[0,...shelf.levels.map(l=>l.topMm)].sort((a,b)=>a-b);let low=0,high=shelf.heightMm;
-        for(let i=1;i<tops.length;i++)if(tops[i]-tops[i-1]>high-low||i===1){low=tops[i-1];high=tops[i];}
+        const thickness=shelf.boardThicknessMm,tops=shelf.levels.map(l=>l.topMm);
+        // Feasible board-top intervals include the bay above the highest board.
+        // Existing boards and their stable surface IDs remain unchanged.
+        let ranges=tops.map((top,i)=>[i?tops[i-1]+thickness:thickness,top-thickness]);
+        ranges.push([tops.at(-1)+thickness,shelf.heightMm]);
+        ranges=ranges.filter(([low,high])=>low<=high);
+        // A new full-width board must not cut through an attached printer's
+        // catalog envelope. This is a planning constraint, not a body-fit proof.
+        for(const printer of deriveScene(state,catalog).printers.filter(p=>p.parentId===shelf.id)){
+          const [bottom,top]=printer.verticalRangeMm,upper=top+thickness;
+          ranges=ranges.flatMap(([low,high])=>high<=bottom||low>=upper?[[low,high]]:
+            [[low,Math.min(high,bottom)],[Math.max(low,upper),high]].filter(([a,b])=>a<=b));
+        }
+        ranges.sort((a,b)=>(b[1]-b[0])-(a[1]-a[0])||a[0]-b[0]);
+        if(!ranges.length)throw Object.assign(Error('No free shelf interval'),{code:'SHELF_BOARDS_OVERLAP_OR_UNORDERED'});
+        const [low,high]=ranges[0];
         let levelId;let n=1;do levelId=`level-${n++}`;while(shelf.levels.some(l=>l.id===levelId));
-        commit(applyAction(state,{type:'UPDATE_FURNITURE',id:shelf.id,patch:{levels:[...shelf.levels,{id:levelId,topMm:(low+high)/2}].sort((a,b)=>a.topMm-b.topMm)}},catalog));return;
+        commit(applyAction(state,{type:'UPDATE_FURNITURE',id:shelf.id,patch:{levels:[...shelf.levels,{id:levelId,topMm:low+(high-low)/2}].sort((a,b)=>a.topMm-b.topMm)}},catalog));return;
       }
       case 'remove-level':{
         const shelf=state.furniture.find(e=>e.id===action.id);if(!shelf)return;commit(applyAction(state,{type:'UPDATE_FURNITURE',id:shelf.id,patch:{levels:shelf.levels.filter(l=>l.id!==action.levelId)}},catalog));return;
@@ -216,6 +235,14 @@ function updateLanguage(){
   ui?.setLocale(language.t);if(ui)sync();
   const node=$('#layout-status');if(node?._layoutMessage&&!node.hidden){const text=String(node._layoutMessage.format());node.textContent=text;ui?.setStatus({message:text,error:node._layoutMessage.error});}
   language.refresh();
+}
+function historyKey(event){
+  if(disposed||busy||roomEditing||event.defaultPrevented||event.repeat||event.altKey||!(event.ctrlKey||event.metaKey))return;
+  if(event.target?.closest?.('input,textarea,select,[contenteditable]:not([contenteditable="false"]),dialog'))return;
+  const key=event.key.toLowerCase();
+  const command=key==='z'?(event.shiftKey?'redo':'undo'):key==='y'&&!event.shiftKey?'redo':null;
+  if(!command||!(command==='undo'?past:future).length)return;
+  event.preventDefault();act({type:command});
 }
 async function start(){
   language=setupLayoutLanguage({document,window,onChange:updateLanguage});
@@ -245,10 +272,10 @@ async function start(){
   rows=raw.machines.map(r=>({...r,widthMm:r.dimensionsMm.width,depthMm:r.dimensionsMm.depth,heightMm:r.dimensionsMm.height}));
   catalog=createCatalog(rows.map(r=>({id:r.id,widthMm:r.widthMm,depthMm:r.depthMm,heightMm:r.heightMm,baseOffsetMm:r.baseOffsetMm||0,...(r.footprintMm?{footprintMm:r.footprintMm}:{})})));
   state=makeDefault();try{const saved=localStorage.getItem(storageKey);if(saved&&saved.length<=maxFileBytes)state=parseLayout(saved,catalog);}catch{message(()=>t('layout.error.savedPlan'),true);}
-  const {createLayoutRenderer}=await import('./layout-renderer.mjs?v=bf8b155f6f95e41242bf');
+  const {createLayoutRenderer}=await import('./layout-renderer.mjs?v=2b4995b173287b6b32a7');
   ui=createLayoutUI({container:$('#layout-sidebar'),onAction:act,t:language.t,catalog:rows});
   view=createLayoutRenderer({container:$('#layout-scene'),catalog:rows,t:language.t,onSelect:select,onMove:worldMove,constrainMove,onRotate:worldRotate,constrainRotate,onViewChange:updateViewPresentation,onError:error=>message(()=>humanError(error),true)});
-  sync();view.view('perspective');
+  sync();view.view('perspective');document.addEventListener('keydown',historyKey);
   updateViewPresentation(view.getView());
   for(const e of document.querySelectorAll('[data-layout-view]'))e.addEventListener('click',()=>{if(!busy&&!roomEditing)view.view(e.dataset.layoutView);});
   for(const element of [$('#layout-grid'),$('#layout-walls')].filter(Boolean))element.addEventListener('change',()=>view.setOptions({grid:$('#layout-grid')?.checked??true,walls:$('#layout-walls')?.checked??true,dark:dark()}));
@@ -256,12 +283,16 @@ async function start(){
     if(busy||!selected||event.ctrlKey||event.metaKey||event.altKey)return;
     const e=state.furniture.find(e=>e.id===selected)||state.printers.find(e=>e.id===selected);if(!e)return;
     const attachment=e.pose||e.attachment;let patch=null;
-    const amount=event.shiftKey?100:10;
-    if(event.key==='ArrowLeft')patch={xMm:attachment.xMm-amount};if(event.key==='ArrowRight')patch={xMm:attachment.xMm+amount};if(event.key==='ArrowUp')patch={zMm:attachment.zMm-amount};if(event.key==='ArrowDown')patch={zMm:attachment.zMm+amount};if(event.key.toLowerCase()==='r'&&!event.repeat)patch={yawDeg:attachment.yawDeg+(event.shiftKey?-90:90)};
+    const amount=event.shiftKey?100:10,direction={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]}[event.key];
+    if(direction){
+      const world=worldTransform(state,e.id,catalog);event.preventDefault();
+      act({type:'move-world',id:e.id,xMm:world.xMm+direction[0]*amount,zMm:world.zMm+direction[1]*amount});return;
+    }
+    if(event.key.toLowerCase()==='r'&&!event.repeat)patch={yawDeg:attachment.yawDeg+(event.shiftKey?-90:90)};
     if(patch){event.preventDefault();act(e.pose?{type:'UPDATE_FURNITURE',id:e.id,patch:{pose:patch}}:{type:'UPDATE_PRINTER',id:e.id,patch:{attachment:patch}});}
   });
   view.setOptions({dark:dark(),walls:$('#layout-walls')?.checked??true,grid:$('#layout-grid')?.checked??true});updateLanguage();document.body.dataset.layoutReady='true';
   if(Number.isFinite(navigator.deviceMemory)&&navigator.deviceMemory<=4)message(()=>t('layout.memoryHint'));
 }
-window.addEventListener('pagehide',()=>{disposed=true;operation?.abort();view?.dispose();ui?.dispose();language?.disconnect();if(renderURL)URL.revokeObjectURL(renderURL);},{once:true});
+window.addEventListener('pagehide',()=>{disposed=true;document.removeEventListener('keydown',historyKey);operation?.abort();view?.dispose();ui?.dispose();language?.disconnect();if(renderURL)URL.revokeObjectURL(renderURL);},{once:true});
 start().catch(error=>{document.body.dataset.layoutReady='failed';message(()=>t('layout.error.start'),true);console.error(error);});
