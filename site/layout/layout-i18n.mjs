@@ -123,7 +123,7 @@ const rows = [
   ['layout.move_to_floor', 'Move printers to floor', 'プリンターを床へ移動', 'Mover impresoras al suelo', '프린터를 바닥으로 이동', 'Переместить принтеры на пол'],
   ['layout.remove_occupied_level', 'Move the printers off this level before removing it.', 'この段のプリンターを移してから削除してください。', 'Mueve las impresoras de esta balda antes de eliminarla.', '이 단의 프린터를 옮긴 뒤 삭제해 주세요.', 'Перед удалением полки уберите с неё принтеры.'],
   ['layout.view', 'View', '表示', 'Vista', '보기', 'Вид'],
-  ['layout.top_view', 'Top view', '上から', 'Desde arriba', '위에서 보기', 'Сверху'],
+  ['layout.top_view', '2D plan', '平面図', 'Plano 2D', '평면도', 'План 2D'],
   ['layout.perspective', '3D view', '3D表示', 'Vista 3D', '3D 보기', 'Вид 3D'],
   ['layout.front_view', 'Front view', '正面から', 'De frente', '앞에서 보기', 'Спереди'],
   ['layout.fit_view', 'Show whole layout', '全体を表示', 'Ver toda la distribución', '전체 배치 보기', 'Показать всю планировку'],
@@ -146,6 +146,7 @@ const rows = [
   ['layout.light_theme', 'Light theme', 'ライトモード', 'Tema claro', '밝은 테마', 'Светлая тема'],
   ['layout.dark_theme', 'Dark theme', 'ダークモード', 'Tema oscuro', '어두운 테마', 'Тёмная тема'],
   ['layout.checks', 'Space checks', '配置の確認', 'Revisión del espacio', '배치 확인', 'Проверка размещения'],
+  ['layout.repairBounds', 'Some items extend beyond the room or their support. Move them inside before creating a 3D image. You can still edit and export the 2D plan.', '部屋や天板からはみ出したものがあります。位置を直すと3D画像を作成できます。平面図の編集と画像出力は引き続き使えます。', 'Algunos objetos sobresalen de la habitación o de su soporte. Colócalos dentro antes de crear una imagen 3D. Puedes seguir editando y exportando el plano 2D.', '방이나 받침면 밖으로 나간 물체가 있습니다. 위치를 수정하면 3D 이미지를 만들 수 있습니다. 평면도 편집과 이미지 출력은 계속 사용할 수 있습니다.', 'Некоторые объекты выходят за границы комнаты или опоры. Переместите их внутрь перед созданием 3D-изображения. План 2D можно редактировать и сохранять как изображение.'],
   ['layout.outside_room', '{name} extends outside the room.', '{name} が部屋の外にはみ出しています。', '{name} sobresale de la habitación.', '{name}이(가) 방 밖으로 나와 있습니다.', '{name} выходит за пределы комнаты.'],
   ['layout.outside_surface', '{name} extends beyond its desk or shelf.', '{name} が机や棚からはみ出しています。', '{name} sobresale de su mesa o balda.', '{name}이(가) 책상이나 선반 밖으로 나와 있습니다.', '{name} выступает за край стола или полки.'],
   ['layout.overlap', 'The space shown for {first} overlaps {second}.', '{first} と {second} の表示範囲が重なっています。', 'El espacio mostrado para {first} se solapa con {second}.', '{first}과(와) {second}의 표시 영역이 겹칩니다.', 'Показанное пространство для {first} пересекается с {second}.'],
@@ -189,10 +190,14 @@ rows.push(
   ['layout.previewBadge', 'Simple preview', 'シンプルプレビュー', 'Vista previa sencilla', '간단한 미리보기', 'Упрощённый просмотр'],
   ['layout.hint.orbit', 'Drag to look around. Scroll or pinch to zoom.', 'ドラッグで見回す。スクロールやピンチで拡大・縮小できます。', 'Arrastra para mirar alrededor. Usa la rueda o pellizca para acercar.', '드래그해 둘러보세요. 스크롤하거나 두 손가락으로 확대·축소하세요.', 'Перетаскивайте для осмотра. Колесо или жест пальцами меняют масштаб.'],
   ['layout.hint.move', 'Select an item and drag to move it. Use the position fields for precise placement.', '選んでドラッグすると移動できます。位置の入力欄で正確に配置できます。', 'Selecciona un elemento y arrástralo. Usa los campos de posición para colocarlo con precisión.', '항목을 선택해 드래그하세요. 위치 입력란에서 정확하게 배치할 수 있습니다.', 'Выберите объект и перетащите его. Для точного размещения используйте поля положения.'],
+  ['layout.hint.auto', 'Drag objects to move them. Drag empty space to look around. Right-drag to pan.', '置いたものをドラッグして移動。何もない場所をドラッグすると見回せます。右ドラッグで表示を移動します。', 'Arrastra los objetos para moverlos y un espacio vacío para girar la vista. Arrastra con el botón derecho para desplazarla.', '물체를 드래그하면 이동하고 빈 곳을 드래그하면 시점이 회전합니다. 오른쪽 버튼으로 드래그하면 화면이 이동합니다.', 'Перетаскивайте объекты для перемещения, пустую область для поворота вида. Правой кнопкой перемещайте вид.'],
+  ['layout.hint.plan', 'Drag objects to move them. Drag empty space to pan. Scroll to zoom.', '置いたものをドラッグして移動。何もない場所をドラッグすると表示が移動します。スクロールで拡大・縮小できます。', 'Arrastra los objetos para moverlos y un espacio vacío para desplazar el plano. Usa la rueda para acercar o alejar.', '물체를 드래그하면 이동하고 빈 곳을 드래그하면 화면이 이동합니다. 스크롤로 확대·축소할 수 있습니다.', 'Перетаскивайте объекты для перемещения, пустую область для сдвига плана. Колесо меняет масштаб.'],
   ['layout.theme', 'Switch theme', '表示モードを切り替え', 'Cambiar tema', '테마 전환', 'Сменить тему'],
   ['layout.skipToSettings', 'Skip to settings', '設定へスキップ', 'Ir a los ajustes', '설정으로 건너뛰기', 'Перейти к настройкам'],
   ['layout.memoryHint', 'Simple preview uses less memory. Load full models when you are ready to make an image.', 'シンプルプレビューはメモリ使用量を抑えます。画像を作るときに詳細モデルを読み込めます。', 'La vista sencilla usa menos memoria. Carga los modelos completos cuando quieras crear una imagen.', '간단한 미리보기는 메모리를 적게 사용합니다. 이미지를 만들 때 전체 모델을 불러올 수 있습니다.', 'Упрощённый просмотр использует меньше памяти. Загрузите полные модели, когда будете создавать изображение.'],
   ['layout.render.loading', 'Preparing printer models…', 'プリンターモデルを準備中…', 'Preparando modelos de impresora…', '프린터 모델 준비 중…', 'Подготовка моделей принтеров…'],
+  ['layout.render.planLoading', 'Creating plan image…', '平面図を画像にしています…', 'Creando la imagen del plano…', '평면도 이미지 생성 중…', 'Создание изображения плана…'],
+  ['layout.render.planAlt', '2D room plan with furniture and printer footprints', '家具とプリンターの設置面を示す平面図', 'Plano 2D de la habitación con muebles y huellas de las impresoras', '가구와 프린터의 설치 면적이 표시된 평면도', 'План комнаты с мебелью и контурами принтеров'],
   ['layout.render.progress', 'Printer {current} of {total} · {percent}%', 'プリンター {current} / {total} · {percent}%', 'Impresora {current} de {total} · {percent}%', '프린터 {current} / {total} · {percent}%', 'Принтер {current} из {total} · {percent}%'],
   ['layout.render.result', 'Your layout image', 'レイアウトの画像', 'Imagen de tu distribución', '배치 이미지', 'Изображение планировки'],
   ['layout.render.alt', 'Room layout with furniture and printer models', '家具とプリンターモデルを配置した部屋', 'Habitación con muebles y modelos de impresora', '가구와 프린터 모델이 배치된 방', 'Комната с мебелью и моделями принтеров'],
@@ -236,6 +241,8 @@ rows.push(
   ['layout.error.POLYGON_ZERO_AREA', 'The room has no floor area. Spread its corners apart.', '部屋の面積がありません。角の位置を広げてください。', 'La habitación no tiene superficie. Separa las esquinas.', '방의 면적이 없습니다. 모서리를 벌려 주세요.', 'У комнаты нет площади. Разнесите углы.'],
   ['layout.warning.ROOM_OUT_OF_BOUNDS', 'An item extends outside the room.', '部屋の外にはみ出しているものがあります。', 'Un elemento sobresale de la habitación.', '방 밖으로 나와 있는 항목이 있습니다.', 'Объект выходит за пределы комнаты.'],
   ['layout.warning.SURFACE_OVERHANG', 'A printer extends beyond its desk or shelf.', 'プリンターが机や棚からはみ出しています。', 'Una impresora sobresale de su mesa o balda.', '프린터가 책상이나 선반 밖으로 나와 있습니다.', 'Принтер выступает за край стола или полки.'],
+  ['layout.error.ROOM_OUT_OF_BOUNDS', 'Choose a position and size that fit inside the room.', '部屋の内側に収まる位置・サイズにしてください。', 'Elige una posición y un tamaño que quepan dentro de la habitación.', '방 안에 들어가는 위치와 크기로 설정해 주세요.', 'Выберите положение и размер, которые помещаются внутри комнаты.'],
+  ['layout.error.SURFACE_OVERHANG', 'Keep the printer footprint within its desk or shelf.', 'プリンターが机や棚の天板に収まる位置・サイズにしてください。', 'Coloca la impresora de modo que su huella quepa en la mesa o balda.', '프린터가 책상이나 선반 위에 들어가는 위치와 크기로 설정해 주세요.', 'Расположите принтер так, чтобы его контур помещался на столе или полке.'],
   ['layout.warning.SHELF_BOARD_INTERSECTION', 'The space shown for a printer reaches a shelf board above it.', 'プリンターの表示範囲が上の棚板に届いています。', 'El espacio mostrado para una impresora alcanza una balda superior.', '프린터의 표시 영역이 위쪽 선반판에 닿습니다.', 'Показанное пространство принтера достигает полки сверху.'],
   ['layout.warning.ENVELOPE_OVERLAP', 'The space shown for two items overlaps.', '2つのものの表示範囲が重なっています。', 'El espacio mostrado para dos elementos se solapa.', '두 항목의 표시 영역이 겹칩니다.', 'Показанное пространство двух объектов пересекается.'],
 );
@@ -250,6 +257,8 @@ rows.push(
   ['layout.render', 'Create image', '画像を作成', 'Crear imagen', '이미지 만들기', 'Создать изображение'],
   ['layout.finalRender', 'Layout image', 'レイアウトの画像', 'Imagen de la distribución', '배치 이미지', 'Изображение планировки'],
   ['layout.renderHelp', 'Create an image with the full printer models from your current view.', '現在の視点から、詳細なプリンターモデルを使った画像を作成します。', 'Crea una imagen desde la vista actual con los modelos completos de las impresoras.', '현재 시점에서 전체 프린터 모델로 이미지를 만듭니다.', 'Создайте изображение с текущего ракурса с полными моделями принтеров.'],
+  ['layout.render.plan', 'Create plan image', '平面図を画像にする', 'Crear imagen del plano', '평면도 이미지 만들기', 'Создать изображение плана'],
+  ['layout.render.planHelp', 'Save the flat plan as an image without loading full printer models.', '詳細なプリンターモデルを読み込まず、平面図を画像にします。', 'Guarda el plano como imagen sin cargar los modelos completos de las impresoras.', '상세 프린터 모델을 불러오지 않고 평면도를 이미지로 만듭니다.', 'Сохраните плоский план без загрузки полных моделей принтеров.'],
   ['layout.about', 'About this view', '表示について', 'Acerca de esta vista', '이 화면 안내', 'Об этом виде'],
   ['layout.scope', 'The preview uses simple shapes. Space checks use those shapes; leave room for moving parts, cables and access.', 'プレビューはシンプルな形で表示し、その範囲で配置を確認します。可動部・配線・作業に必要な余裕も確保してください。', 'La vista previa usa formas sencillas y comprueba ese espacio. Deja sitio para piezas móviles, cables y acceso.', '미리보기는 간단한 모양과 그 범위로 배치를 확인합니다. 움직이는 부품, 케이블, 작업 공간도 확보해 주세요.', 'В просмотре используются простые формы, по ним проверяется размещение. Оставьте место для движения, кабелей и доступа.'],
   ['layout.selectObject', 'Select item', '選択', 'Seleccionar elemento', '항목 선택', 'Выбрать объект'],
@@ -267,8 +276,8 @@ rows.push(
 );
 
 rows.push(
-  ['layout.desktopOnlyTitle', 'Open the planner on a computer', 'パソコンでご利用ください', 'Abre el planificador en un ordenador', '컴퓨터에서 열어 주세요', 'Откройте планировщик на компьютере'],
-  ['layout.desktopOnlyText', 'Use a computer with a mouse or trackpad to plan your space. You can still explore printers in the viewer.', 'レイアウトの作成には、マウスやトラックパッドを備えたパソコンをご利用ください。プリンターのビューアーは引き続き利用できます。', 'Usa un ordenador con ratón o panel táctil para planificar tu espacio. Puedes seguir explorando impresoras en el visor.', '마우스나 트랙패드가 있는 컴퓨터에서 공간을 배치해 주세요. 프린터 뷰어는 계속 이용할 수 있습니다.', 'Для планировки используйте компьютер с мышью или трекпадом. Просмотр принтеров по-прежнему доступен.'],
+  ['layout.desktopOnlyTitle', 'Supported on computers only', 'パソコンのみサポートしています', 'Solo compatible con ordenadores', 'PC에서만 지원합니다', 'Поддерживается только на компьютерах'],
+  ['layout.desktopOnlyText', 'This planner has not been tested on phones.', 'スマホでの動作は確認していません。', 'Este planificador no se ha probado en móviles.', '스마트폰에서의 작동은 확인하지 않았습니다.', 'Работа планировщика на смартфонах не проверялась.'],
   ['layout.openViewer', 'Open printer viewer', 'プリンターを見る', 'Abrir visor de impresoras', '프린터 뷰어 열기', 'Открыть просмотр принтеров'],
 );
 

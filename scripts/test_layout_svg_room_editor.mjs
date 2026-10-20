@@ -22,7 +22,8 @@ const E=await import(pathToFileURL(path.join(site,'layout/layout-room-editor.mjs
 const key=n=>'layout.roomEditor.'+n;
 const L=[[0,0],[600,0],[600,150],[250,150],[250,400],[0,400]];
 const cat=S.createCatalog([{id:'fixture-machine',widthMm:200,depthMm:150,heightMm:300}]);
-const initial=S.createDefaultLayout({room:S.createRoomRect({widthMm:4000,depthMm:3000}),printers:[{id:'p',machineId:'fixture-machine',configurationId:'preserved-id',attachment:{parentId:null,surfaceId:'floor',xMm:100,zMm:-50,yawDeg:30}}]},cat);
+const initial=S.createDefaultLayout({room:S.createRoomRect({widthMm:4000,depthMm:3000}),printers:[{id:'p',machineId:'fixture-machine',configurationId:'preserved-id',attachment:{parentId:null,surfaceId:'floor',xMm:-1000,zMm:-500,yawDeg:30}}]},cat);
+const emptyInitial=S.createDefaultLayout({room:initial.room},cat);
 const initialJSON=S.serializeLayout(initial,cat),originalPrinter=structuredClone(initial.printers[0]);
 const makeL=()=>DOM.setXML([DOM.element('polygon',{id:'room-L',points:L.map(p=>p.join(',')).join(' ')})]);
 const svgFile={size:140,text:async()=>'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400"><polygon points="0,0 600,0 600,150 250,150 250,400 0,400"/></svg>'};
@@ -38,14 +39,14 @@ const editorMatch=editorMatches[0],actionSource=actionOriginal.slice(0,editorMat
 // Replay the ACTUAL source action/commit bodies with only the import boundary
 // and ambient UI/storage hooks injected. No app startup/model renderer runs.
 const engineFactory=new Function('deps',`
- let state=deps.state,catalog=deps.catalog,busy=false,roomEditing=false,disposed=false,selected=null,operation=null;
+ let state=deps.state,catalog=deps.catalog,busy=false,roomEditing=false,disposed=false,selected=null,operation=null,interactionGeneration=0;
  const past=[],future=[],language={t:x=>x},view={view:x=>deps.views.push(x)};
- const applyAction=deps.applyAction,sync=()=>deps.syncs++,store=()=>deps.saved.push(deps.serialize(state,catalog));
+ const applyAction=deps.applyAction,serializeLayout=deps.serialize,sync=()=>deps.syncs++,store=()=>deps.saved.push(deps.serialize(state,catalog));
  const humanError=e=>e.errors?.[0]?.code||e.code||e.message,message=(text,error)=>deps.errors.push({text,error});
  ${commitSource}\n${actionSource}
  return {act,getState:()=>state,isEditing:()=>roomEditing,history:()=>({past:past.length,future:future.length}),dispose:()=>disposed=true};
 `);
-function engine(){const trace={views:[],saved:[],errors:[],syncs:0,state:initial,catalog:cat,applyAction:S.applyAction,serialize:S.serializeLayout,editorModule:async()=>E};return {engine:engineFactory(trace),trace}}
+function engine(sourceState=initial){const trace={views:[],saved:[],errors:[],syncs:0,state:sourceState,catalog:cat,applyAction:S.applyAction,serialize:S.serializeLayout,editorModule:async()=>E};return {engine:engineFactory(trace),trace}}
 async function dialogReady(){for(let i=0;i<30;i++){if(DOM.doc.body.children.some(e=>e.tagName==='dialog'))return DOM.editor();await Promise.resolve()}assert.fail('Editor dialog was not opened')}
 const rejectCode=fn=>{try{fn()}catch(e){assert.ok(e instanceof P.FloorplanSVGError);return e.code}assert.fail('Unsafe input accepted')};
 
@@ -87,6 +88,17 @@ await test('real-app-import-scaled-L-Apply-JSON-and-parent-history',async()=>{
   await a.act({type:'undo'});assert.equal(a.getState(),initial);await a.act({type:'redo'});assert.equal(S.serializeLayout(a.getState(),cat),saved);
   assert.equal(S.serializeLayout(initial,cat),initialJSON);
 });
+await test('real-app-valid-SVG-cannot-move-room-boundary-through-retained-printer',async()=>{
+  const outside=S.createDefaultLayout({room:initial.room,printers:[{...originalPrinter,attachment:{...originalPrinter.attachment,xMm:100,zMm:-50}}]},cat);
+  const before=S.serializeLayout(outside,cat);makeL();const {engine:a,trace}=engine(outside),pending=a.act({type:'import-svg',file:svgFile}),e=await dialogReady();
+  e.change(key('width'),6000);assert.equal(e.button(key('apply')).disabled,false);e.button(key('apply')).click();await pending;
+  assert.equal(a.getState(),outside);assert.equal(S.serializeLayout(a.getState(),cat),before);assert.equal(a.history().past,0);assert.deepEqual(trace.saved,[]);
+  assert.equal(a.isEditing(),false);assert.equal(trace.errors.length,1);assert.equal(trace.errors[0].text,'ROOM_OUT_OF_BOUNDS');
+});
+await test('real-app-editor-same-room-is-noop-not-extra-history-or-storage',async()=>{
+  const {engine:a,trace}=engine(),pending=a.act({type:'edit-room'}),e=await dialogReady();e.button(key('apply')).click();await pending;
+  assert.equal(a.getState(),initial);assert.equal(a.history().past,0);assert.deepEqual(trace.saved,[]);assert.deepEqual(trace.errors,[]);
+});
 await test('real-app-cancelled-draft-is-atomic-and-editing-blocks-other-actions',async()=>{
   const {engine:a}=engine(),pending=a.act({type:'edit-room'}),editor=await dialogReady();editor.change(key('width'),8000);
   await a.act({type:'REMOVE_PRINTER',id:'p'});assert.equal(a.getState(),initial);editor.button('common.close').click();await pending;
@@ -117,8 +129,8 @@ await test('invalid-width-checkbox-never-enables-Apply-and-valid-bounds-remain-u
     e.button(key('apply')).emit('click');assert.equal(e.dialog.open,true);assert.equal(a.getState(),initial);e.button('common.close').click();await pending;
   }
   for(const width of [30,100000]){
-    makeL();const {engine:a}=engine(),pending=a.act({type:'import-svg',file:svgFile}),e=await dialogReady();e.change(key('width'),width);assert.equal(e.button(key('apply')).disabled,false);e.button(key('apply')).click();await pending;
-    const xs=a.getState().room.polygonMm.map(p=>p[0]);assert.equal(Math.max(...xs)-Math.min(...xs),width);assert.deepEqual(a.getState().printers[0],originalPrinter);
+    makeL();const {engine:a}=engine(emptyInitial),pending=a.act({type:'import-svg',file:svgFile}),e=await dialogReady();e.change(key('width'),width);assert.equal(e.button(key('apply')).disabled,false);e.button(key('apply')).click();await pending;
+    const xs=a.getState().room.polygonMm.map(p=>p[0]);assert.equal(Math.max(...xs)-Math.min(...xs),width);assert.deepEqual(a.getState().printers,[]);
   }
 });
 await test('self-crossing-edit-and-empty-number-cannot-commit',async()=>{
@@ -147,26 +159,28 @@ await test('renderer-loader-progress-cannot-replace-reserved-outer-identity',()=
   const cases=[[{phase:'poison',index:999,total:999,machineId:'wrong',ratio:.3},.3],[{phase:'wrong',index:-1,total:0,machineId:'wrong',percent:25},.25],[{phase:'wrong',index:-1,total:40,machineId:'wrong',loaded:10},.25],[{total:Infinity,loaded:3,ratio:NaN},0],[undefined,0],[null,0]];
   for(const [detail,ratio]of cases){const event=callback(detail,1,[{},{}],{machineId:'fixture-machine'});assert.equal(event.phase,'loading');assert.equal(event.index,1);assert.equal(event.total,2);assert.equal(event.machineId,'fixture-machine');assert.equal(event.ratio,ratio);}
 });
-await test('renderer-live-parent-followers-intermediate-reverse-cancel-and-commit-units',()=>{
-  const down=extract(rendererSource,'  function down(event){','\n  function move(event){'),move=extract(rendererSource,'  function move(event){','\n  function up(event){'),up=extract(rendererSource,'  function up(event){','\n  function cancel()'),cancel=extract(rendererSource,'  function cancel()','\n  canvas.addEventListener');
-  class V{constructor(x,y,z){this.x=x;this.y=y;this.z=z}clone(){return new V(this.x,this.y,this.z)}}
+await test('renderer-live-parent-followers-intermediate-reverse-cancel-and-commit-units',async()=>{
+  const down=extract(rendererSource,'  function down(event){','\n  function move(event){'),move=extract(rendererSource,'  function move(event){','\n  function up(event){'),up=extract(rendererSource,'  function up(event){','\n  function cancel(event)'),cancel=extract(rendererSource,'  function cancel(event)','\n  // Capture phase chooses object manipulation');
+  class V{constructor(x,y,z){this.x=x;this.y=y;this.z=z}clone(){return new V(this.x,this.y,this.z)}copy(v){this.x=v.x;this.y=v.y;this.z=v.z;return this}}
   const state=S.createDefaultLayout({furniture:[S.createDesk({id:'desk',pose:{xMm:400,zMm:200,yawDeg:37}}),S.createShelf({id:'shelf',pose:{xMm:-1000,zMm:-100,yawDeg:90}})],printers:[
     {id:'desk-child',machineId:'fixture-machine',configurationId:null,attachment:{parentId:'desk',surfaceId:'top',xMm:50,zMm:20,yawDeg:15}},
     {id:'shelf-low',machineId:'fixture-machine',configurationId:null,attachment:{parentId:'shelf',surfaceId:'level-1',xMm:-40,zMm:30,yawDeg:-15}},
     {id:'shelf-high',machineId:'fixture-machine',configurationId:null,attachment:{parentId:'shelf',surfaceId:'level-4',xMm:40,zMm:-30,yawDeg:45}},
     {id:'floor',machineId:'fixture-machine',configurationId:null,attachment:{parentId:null,surfaceId:'floor',xMm:1000,zMm:500,yawDeg:0}}]},cat);
   const factory=new Function('deps',`
-    const MM=.001,objects=new Map(),current=deps.state,selectedId=null;let drag=null,exporting=false,tool='move';
-    const canvas={setPointerCapture(){},hasPointerCapture(){return true},releasePointerCapture(){}},selectionBox={setFromObject(){}},draw=()=>{},hit=()=>deps.hit;
-    const planePoint=event=>({x:event.worldX,z:event.worldZ});
-    function setState(){objects.clear();for(const e of [...deps.derive(current,deps.catalog).furniture,...deps.derive(current,deps.catalog).printers])objects.set(e.id,{position:new deps.V(e.positionM.x,e.positionM.y,e.positionM.z),yaw:e.yawRad});}
+    const MM=.001,objects=new Map(),planObjects=new Map(),current=deps.state,derived=deps.derive(current,deps.catalog);let selectedId=null,drag=null,exporting=false,disposed=false;
+    const canvas={style:{},setPointerCapture(){},hasPointerCapture(){return true},releasePointerCapture(){}},draw=()=>{},hit=()=>deps.hit;
+    const isPlan=()=>false,updateSelection=()=>{},enableControls=()=>{},onError=e=>{throw e};
+    const constrainMove=(proposal,context)=>deps.constrain?deps.constrain(proposal,context,objects):proposal;
+    const planePoint=event=>new deps.V(event.worldX,0,event.worldZ);
+    function setState(){objects.clear();planObjects.clear();for(const e of [...derived.furniture,...derived.printers]){objects.set(e.id,{position:new deps.V(e.positionM.x,e.positionM.y,e.positionM.z),yaw:e.yawRad});planObjects.set(e.id,{position:new deps.V(e.positionM.x,0,e.positionM.z)});}}
     const onSelect=()=>setState(),onMove=e=>deps.moves.push(e);setState();
     ${down}\n${move}\n${up}\n${cancel}
-    return {down,move,up,cancel,objects};`);
+    return {down,move,up,cancel,objects,planObjects};`);
   const reference=S.deriveScene(state,cat),ref=new Map([...reference.furniture,...reference.printers].map(e=>[e.id,e]));
   const near=(a,b)=>assert.ok(Math.abs(a-b)<=32*Number.EPSILON*Math.max(1,Math.abs(a),Math.abs(b)),'Parent-follow arithmetic');
   for(const parentId of ['desk','shelf']){
-    const deps={state,catalog:cat,derive:S.deriveScene,V,hit:parentId,moves:[]},r=factory(deps),event={button:0,pointerId:1,clientX:0,clientY:0,worldX:0,worldZ:0,preventDefault(){}};r.down(event);
+    const deps={state,catalog:cat,derive:S.deriveScene,V,hit:parentId,moves:[]},r=factory(deps),event={button:0,pointerId:1,clientX:0,clientY:0,worldX:0,worldZ:0,preventDefault(){},stopImmediatePropagation(){}};r.down(event);
     for(const [dx,dz]of [[.1,-.2],[.35,.4],[-.15,-.25]]){
       r.move({...event,clientX:20,worldX:dx,worldZ:dz});
       for(const p of state.printers){const actual=r.objects.get(p.id),old=ref.get(p.id),follows=p.attachment.parentId===parentId;near(actual.position.x,old.positionM.x+(follows?dx:0));near(actual.position.z,old.positionM.z+(follows?dz:0));assert.equal(actual.position.y,old.positionM.y);assert.equal(actual.yaw,old.yawRad);}
@@ -176,6 +190,30 @@ await test('renderer-live-parent-followers-intermediate-reverse-cancel-and-commi
     near(deps.moves[0].x,(ref.get(parentId).positionM.x+.2)*1000);near(deps.moves[0].z,(ref.get(parentId).positionM.z+.3)*1000);
     const committed=S.applyAction(state,{type:'UPDATE_FURNITURE',id:parentId,patch:{pose:{xMm:deps.moves[0].x,zMm:deps.moves[0].z}}},cat);assert.deepEqual(committed.printers,state.printers);
   }
+  const pointer={button:0,pointerId:1,clientX:0,clientY:0,worldX:0,worldZ:0,preventDefault(){},stopImmediatePropagation(){}};
+  await test('renderer-rejected-preview-does-not-move-roots-or-commit',()=>{
+    let calls=0;const deps={state,catalog:cat,derive:S.deriveScene,V,hit:'desk',moves:[],constrain(proposal,context,objects){
+      calls++;assert.equal(proposal.id,'desk');assert.deepEqual(context.origin,{x:400,z:200});assert.deepEqual(context.previous,context.origin);
+      assert.equal(objects.get('desk').position.x,ref.get('desk').positionM.x);return false;
+    }},r=factory(deps);r.down(pointer);r.move({...pointer,clientX:20,worldX:.25,worldZ:.15});
+    for(const [id,o]of r.objects){const old=ref.get(id);assert.deepEqual([o.position.x,o.position.y,o.position.z],[old.positionM.x,old.positionM.y,old.positionM.z]);}
+    r.up({...pointer,clientX:20});assert.equal(calls,1);assert.deepEqual(deps.moves,[]);
+  });
+  await test('renderer-cancel-matches-pointer-and-restores-world-and-plan-followers',()=>{
+    const deps={state,catalog:cat,derive:S.deriveScene,V,hit:'shelf',moves:[]},r=factory(deps);r.down(pointer);r.move({...pointer,clientX:20,worldX:.2,worldZ:.3});
+    const moved=r.objects.get('shelf').position.clone();r.cancel({pointerId:2});assert.deepEqual(r.objects.get('shelf').position,moved);
+    r.cancel({pointerId:1});assert.deepEqual(deps.moves,[]);
+    for(const [id,o]of r.objects){const old=ref.get(id),plan=r.planObjects.get(id);assert.deepEqual([o.position.x,o.position.y,o.position.z],[old.positionM.x,old.positionM.y,old.positionM.z]);assert.deepEqual([plan.position.x,plan.position.z],[old.positionM.x,old.positionM.z]);}
+  });
+  await test('renderer-accepted-segment-context-keeps-exact-origin-and-previous',()=>{
+    const contexts=[];const deps={state,catalog:cat,derive:S.deriveScene,V,hit:'desk',moves:[],constrain(proposal,context,objects){
+      contexts.push(structuredClone(context));near(objects.get('desk').position.x,context.previous.x*.001);near(objects.get('desk').position.z,context.previous.z*.001);return {x:proposal.x,z:proposal.z};
+    }},r=factory(deps);r.down(pointer);
+    for(const [x,z]of[[.1,-.2],[.35,.4],[-.15,-.25]])r.move({...pointer,clientX:20,worldX:x,worldZ:z});
+    assert.equal(contexts.length,3);for(const c of contexts)assert.deepEqual(c.origin,{x:400,z:200});
+    assert.deepEqual(contexts[0].previous,{x:400,z:200});near(contexts[1].previous.x,500);near(contexts[1].previous.z,0);near(contexts[2].previous.x,750);near(contexts[2].previous.z,600);
+    r.up({...pointer,clientX:20});assert.equal(deps.moves.length,1);near(deps.moves[0].x,250);near(deps.moves[0].z,-50);
+  });
 });
 
 await test('extreme-aspect-import-grid-bounded-before-Apply-zoom-and-cancel-atomic',async()=>{
@@ -192,14 +230,14 @@ await test('extreme-aspect-import-grid-bounded-before-Apply-zoom-and-cancel-atom
       const xml=DOM.element('polygon',{id:'extreme-room',points});DOM.setXML([xml],{viewBox:`0 0 ${w} ${h}`});
       const xmlBefore=JSON.stringify(xml.data),fileText=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}"><polygon points="${points}"/></svg>`;
       const file=Object.freeze({size:fileText.length,text:async()=>fileText});
-      const {engine:a,trace}=engine(),pending=a.act({type:'import-svg',file}),e=await dialogReady(),draft=e.points();
+      const {engine:a,trace}=engine(emptyInitial),pending=a.act({type:'import-svg',file}),e=await dialogReady(),draft=e.points();
       assert.equal(draft.length,4);assert.equal(e.button(key('apply')).disabled,true);
       const maxZ=Math.max(...draft.map(p=>p[1])),minZ=Math.min(...draft.map(p=>p[1]));
       if(h>w)assert.ok(maxZ-minZ>=1e9,'Counterexample must exercise the actual tall scaled draft');
       for(const deltaY of [1,1,1,1,-1,-1,-1,-1]){e.svg.emit('wheel',{deltaY});assert.ok(currentLines<=600);assert.deepEqual(e.points(),draft,'Grid/zoom changed imported coordinates');}
       e.button(key('fit')).click();assert.ok(currentLines<=600);assert.deepEqual(e.points(),draft);
       e.button('common.close').click();await pending;
-      assert.equal(a.getState(),initial);assert.equal(a.history().past,0);assert.equal(trace.errors.length,0);assert.equal(JSON.stringify(xml.data),xmlBefore);assert.equal(await file.text(),fileText);
+      assert.equal(a.getState(),emptyInitial);assert.equal(a.history().past,0);assert.equal(trace.errors.length,0);assert.equal(JSON.stringify(xml.data),xmlBefore);assert.equal(await file.text(),fileText);
     }
     assert.ok(frames>=40);assert.ok(peakLines>0&&peakLines<=600);
   }finally{DOM.doc.createElementNS=originalCreate;}

@@ -102,6 +102,9 @@ button[aria-pressed="true"] { background: var(--layout-selected); border-color: 
 .layout-desktop-notice h2 { margin: 0 0 10px; font-size: 20px; }
 .layout-desktop-notice p { line-height: 1.65; color: var(--muted); }
 .layout-desktop-notice a { color: var(--ink); }
+.layout-desktop-popup { margin: auto; max-height: calc(100dvh - 32px); overflow: auto; color: var(--ink); }
+.layout-desktop-popup::backdrop { background: #10202a88; }
+.layout-desktop-popup button { display: block; margin: 24px 0 0 auto; }
 .layout-field input, .layout-field select, .layout-field textarea { width: 100%; min-width: 0; padding: 8px; color: var(--ink); }
 .layout-input-unit { position: relative; }
 .layout-input-unit input { padding-right: 28px; }

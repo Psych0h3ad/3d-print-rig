@@ -1,7 +1,7 @@
 import * as THREE from '../viewer/vendor-r180/three.module.js';
 import {OrbitControls} from '../viewer/vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from '../viewer/vendor-r180/RoomEnvironment.js';
-import {deriveScene} from './layout-state.mjs?v=3eb0d016bfa22bdbbcfd';
+import {deriveScene} from './layout-state.mjs?v=f92965b9f4e1780b368a';
 
 const MM = .001;
 const disposableMaterial = new THREE.MeshBasicMaterial({visible:false});
@@ -16,31 +16,46 @@ function geometryBytes(g) { const a=new Set(Object.values(g.attributes).map(v=>v
 function aborted(signal) { if(signal?.aborted)throw new DOMException('Cancelled','AbortError'); }
 const tick=()=>new Promise(resolve=>requestAnimationFrame(resolve));
 
-export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>{},onMove=()=>{},onError=()=>{}}) {
+export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>{},onMove=()=>{},constrainMove=({x,z})=>({x,z}),onError=()=>{},onViewChange=()=>{}}) {
   const renderer=new THREE.WebGLRenderer({antialias:true,alpha:false});
   renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.5));renderer.toneMapping=THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure=1.1;renderer.outputColorSpace=THREE.SRGBColorSpace;
   const canvas=renderer.domElement;canvas.tabIndex=0;canvas.setAttribute('aria-label',t('sceneLabel'));canvas.setAttribute('data-layout-i18n-aria-label','layout.sceneLabel');container.append(canvas);
   const scene=new THREE.Scene();scene.background=new THREE.Color('#e9edef');
-  const camera=new THREE.PerspectiveCamera(38,1,.01,10000);
-  const controls=new OrbitControls(camera,canvas);controls.enableDamping=true;controls.maxPolarAngle=Math.PI*.495;controls.minDistance=.15;controls.maxDistance=10000;
+  const planCamera=new THREE.OrthographicCamera(-2,2,2,-2,.01,1000);planCamera.up.set(0,0,-1);
+  const planControls=new OrbitControls(planCamera,canvas);planControls.enabled=false;planControls.enableRotate=false;planControls.enableDamping=false;planControls.screenSpacePanning=true;planControls.minZoom=.05;planControls.maxZoom=10000;
+  planControls.mouseButtons={LEFT:THREE.MOUSE.PAN,MIDDLE:THREE.MOUSE.DOLLY,RIGHT:THREE.MOUSE.PAN};
+  const perspectiveCamera=new THREE.PerspectiveCamera(38,1,.01,10000);
+  const perspectiveControls=new OrbitControls(perspectiveCamera,canvas);perspectiveControls.enableDamping=false;perspectiveControls.maxPolarAngle=Math.PI*.495;perspectiveControls.minDistance=.15;perspectiveControls.maxDistance=10000;
+  let camera=perspectiveCamera,controls=perspectiveControls;
   const pmrem=new THREE.PMREMGenerator(renderer),room=new RoomEnvironment(),environment=pmrem.fromScene(room,.04);room.dispose();pmrem.dispose();scene.environment=environment.texture;
   const hemi=new THREE.HemisphereLight(0xffffff,0x718394,1.1);scene.add(hemi);
   for(const [position,intensity] of [[[3,6,4],2],[[-4,3,-2],1.1]]){const l=new THREE.DirectionalLight(0xffffff,intensity);l.position.set(...position);scene.add(l);}
   const content=new THREE.Group(),furnitureGroup=new THREE.Group(),printersGroup=new THREE.Group(),roomGroup=new THREE.Group();
   content.add(roomGroup,furnitureGroup,printersGroup);scene.add(content);
+  const planGroup=new THREE.Group(),planObjects=new Map();planGroup.visible=false;scene.add(planGroup);
   const grid=new THREE.LineSegments(new THREE.BufferGeometry(),new THREE.LineBasicMaterial({color:0x8b9da8,transparent:true,opacity:.35,depthWrite:false}));grid.position.y=.0002;scene.add(grid);
   const selectionBox=new THREE.BoxHelper(new THREE.Object3D(),0xc35734);selectionBox.visible=false;scene.add(selectionBox);
+  const planSelection=new THREE.LineLoop(new THREE.BufferGeometry(),new THREE.LineBasicMaterial({color:0xc35734,depthTest:false,depthWrite:false}));planSelection.visible=false;planSelection.renderOrder=30;scene.add(planSelection);
   const boxGeometry=new THREE.BoxGeometry(1,1,1),wireGeometry=new THREE.EdgesGeometry(boxGeometry),wireMaterial=new THREE.LineBasicMaterial({color:0x4d7186,transparent:true,opacity:.75}),palette=new Map(),objects=new Map(),raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();
   raycaster.params.Line.threshold=.01;
-  let current,derived,selectedId=null,tool='orbit',drag=null,disposed=false,resourcesDisposed=false,exporting=false,exportAbort=null,frame=0,lastWidth=0,lastHeight=0,wallsVisible=true;
+  let current,derived,selectedId=null,viewMode='perspective',planHalfHeight=2,perspectiveReady=false,planReady=false,drag=null,disposed=false,resourcesDisposed=false,exporting=false,exportAbort=null,frame=0,lastWidth=0,lastHeight=0,wallsVisible=true;
   const wallMaterial=new THREE.MeshStandardMaterial({color:'#a4b5c0',roughness:.9,transparent:true,opacity:.45,depthWrite:false});
   const material=color=>{if(!palette.has(color))palette.set(color,new THREE.MeshStandardMaterial({color,roughness:.77,metalness:.05}));return palette.get(color);};
   function box(parent,size,position,color){const m=new THREE.Mesh(boxGeometry,material(color));m.scale.set(...size);m.position.set(...position);parent.add(m);return m;}
-  function refreshWalls(forCamera=camera){for(const o of roomGroup.children)if(o.userData.wall){const n=o.userData.inward;o.visible=wallsVisible&&(n[0]*(forCamera.position.x-o.position.x)+n[1]*(forCamera.position.z-o.position.z)>=0);}}
-  function draw(){if(disposed||frame||exporting)return;frame=requestAnimationFrame(()=>{frame=0;if(disposed||exporting)return;controls.update();refreshWalls();renderer.render(scene,camera);});}
-  controls.addEventListener('change',draw);
-  function resize(){if(disposed||exporting)return;const r=container.getBoundingClientRect();if(!r.width||!r.height)return;lastWidth=r.width;lastHeight=r.height;renderer.setSize(r.width,r.height,false);camera.aspect=r.width/r.height;camera.updateProjectionMatrix();draw();}
+  function isPlan(){return viewMode==='top';}
+  function getView(){return {mode:viewMode,projection:isPlan()?'orthographic-floorplan':'perspective-3d'};}
+  function enableControls(){perspectiveControls.enabled=!exporting&&!disposed&&!isPlan()&&drag?.kind!=='object';planControls.enabled=!exporting&&!disposed&&isPlan()&&drag?.kind!=='object';}
+  function refreshWalls(forCamera=camera){for(const o of roomGroup.children)if(o.userData.wall){const n=o.userData.inward;o.visible=!isPlan()&&wallsVisible&&(n[0]*(forCamera.position.x-o.position.x)+n[1]*(forCamera.position.z-o.position.z)>=0);}}
+  function planLabelLayout(g,forCamera=planCamera,pixelHeight=lastHeight){
+    const unit=(forCamera.top-forCamera.bottom)/forCamera.zoom/Math.max(1,pixelHeight),points=g.userData.planPoints,xs=points.map(p=>p[0]),zs=points.map(p=>p[1]);
+    const width=Math.min(unit*192,(Math.max(...xs)-Math.min(...xs))*.9,(Math.max(...zs)-Math.min(...zs))*.9*8),height=width/8,screenWidth=width/unit;
+    return {width,height,screenWidth,visible:!g.userData.planLabelSuppressed&&Number.isFinite(screenWidth)&&screenWidth>=48};
+  }
+  function updatePlanLabels(){for(const g of planObjects.values()){const layout=planLabelLayout(g);for(const o of g.children)if(o.userData.planLabel){o.scale.set(layout.width,layout.height,1);o.visible=layout.visible;}}}
+  function draw(){if(disposed||frame||exporting)return;frame=requestAnimationFrame(()=>{frame=0;if(disposed||exporting)return;refreshWalls();if(isPlan())updatePlanLabels();renderer.render(scene,camera);});}
+  perspectiveControls.addEventListener('change',draw);planControls.addEventListener('change',draw);
+  function resize(){if(disposed||exporting)return;const r=container.getBoundingClientRect();if(!r.width||!r.height)return;lastWidth=r.width;lastHeight=r.height;renderer.setSize(r.width,r.height,false);perspectiveCamera.aspect=r.width/r.height;perspectiveCamera.updateProjectionMatrix();planCamera.left=-planHalfHeight*r.width/r.height;planCamera.right=-planCamera.left;planCamera.top=planHalfHeight;planCamera.bottom=-planHalfHeight;planCamera.updateProjectionMatrix();draw();}
   const observer=new ResizeObserver(resize);observer.observe(container);
   function resetGroup(g){for(const o of [...g.children])g.remove(o);}
   function record(e,g){g.userData.entityId=e.id;g.position.set(e.positionM.x,e.positionM.y,e.positionM.z);g.rotation.y=e.yawRad;objects.set(e.id,g);}
@@ -53,6 +68,33 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     return g;
   }
   function catalogMachine(id){const rows=Array.isArray(catalog)?catalog:catalog.machines;return rows.find(m=>(m.id||m.machineId)===id);}
+  function footprint(e){
+    const x=e.positionM.x,z=e.positionM.z;
+    if(e.worldEnvelopeMm)return e.worldEnvelopeMm.map(([px,pz])=>[px*MM-x,pz*MM-z]);
+    const row=e.machineId?catalogMachine(e.machineId):null,w=(e.widthMm??row?.widthMm??row?.dimensionsMm?.width)*MM,d=(e.depthMm??row?.depthMm??row?.dimensionsMm?.depth)*MM;
+    const c=Math.cos(e.yawRad||0),s=Math.sin(e.yawRad||0);
+    return [[-w/2,-d/2],[w/2,-d/2],[w/2,d/2],[-w/2,d/2]].map(([px,pz])=>[c*px+s*pz,-s*px+c*pz]);
+  }
+  function planLabel(e){const row=e.machineId?catalogMachine(e.machineId):null;return typeof row?.label==='string'?row.label:e.id;}
+  function makePlan(e,warning){
+    const points=footprint(e),g=new THREE.Group();g.userData.entityId=e.id;g.userData.planProjection=true;g.userData.planPoints=points;g.userData.planLabel=planLabel(e);g.userData.planColor=warning?'#bf6d48':e.type==='printer'?'#6489a3':'#c2a379';
+    g.userData.planLabelSuppressed=derived.printers.some(p=>p.parentId===e.id);
+    // These are drawing layers, independent of the real support/board/printer heights.
+    g.position.set(e.positionM.x,e.type==='printer'?.008:.004,e.positionM.z);planObjects.set(e.id,g);planGroup.add(g);
+    const geometry=new THREE.ShapeGeometry(new THREE.Shape(points.map(([x,z])=>new THREE.Vector2(x,-z)))),fill=new THREE.MeshBasicMaterial({color:g.userData.planColor,side:THREE.DoubleSide,transparent:true,opacity:.8});
+    const face=new THREE.Mesh(geometry,fill);face.rotation.x=-Math.PI/2;face.userData.planFootprint=true;g.add(face);
+    const outline=new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(points.map(([x,z])=>new THREE.Vector3(x,.0001,z))),new THREE.LineBasicMaterial({color:'#344c5a'}));g.add(outline);
+    const labelCanvas=document.createElement('canvas');labelCanvas.width=512;labelCanvas.height=64;const ctx=labelCanvas.getContext('2d');
+    ctx.fillStyle='rgba(255,255,255,.9)';ctx.fillRect(0,0,512,64);ctx.fillStyle='#1f3542';ctx.font='32px sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(g.userData.planLabel,256,32,496);
+    const texture=new THREE.CanvasTexture(labelCanvas);texture.colorSpace=THREE.SRGBColorSpace;
+    const label=new THREE.Mesh(new THREE.PlaneGeometry(1,1),new THREE.MeshBasicMaterial({map:texture,toneMapped:false,transparent:true,depthTest:false,depthWrite:false,side:THREE.DoubleSide}));label.visible=!g.userData.planLabelSuppressed;
+    const xs=points.map(p=>p[0]),zs=points.map(p=>p[1]);label.position.set((Math.min(...xs)+Math.max(...xs))/2,.002,(Math.min(...zs)+Math.max(...zs))/2);label.rotation.x=-Math.PI/2;label.renderOrder=20;label.userData.planLabel=true;g.add(label);
+  }
+  function updateSelection(){
+    const selected=objects.get(selectedId),plan=planObjects.get(selectedId);selectionBox.visible=!isPlan()&&!!selected;if(selected)selectionBox.setFromObject(selected);
+    planSelection.visible=isPlan()&&!!plan;if(plan){planSelection.geometry.setFromPoints(plan.userData.planPoints.map(([x,z])=>new THREE.Vector3(x,.003,z)));planSelection.position.copy(plan.position);}
+  }
+  function presentView(){furnitureGroup.visible=!isPlan();printersGroup.visible=!isPlan();planGroup.visible=isPlan();enableControls();refreshWalls();updateSelection();}
   function makePrinter(e){
     const g=new THREE.Group();printersGroup.add(g);record(e,g);
     const row=catalogMachine(e.machineId);if(!row)throw Error('Unknown layout printer');
@@ -87,53 +129,114 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   }
   function setState(state,id,issues=[]){
     if(exporting)throw Error('Layout is rendering');
+    if(drag&&state!==current)cancel();
     current=state;selectedId=id;derived=deriveScene(state,catalog);
     for(const o of roomGroup.children)if(o.userData.roomOwned){o.geometry.dispose();o.material.dispose();}
     resetGroup(furnitureGroup);resetGroup(printersGroup);objects.clear();makeRoom(state.room);
     for(const e of derived.furniture)makeFurniture(e);for(const e of derived.printers)makePrinter(e);
-    const selected=objects.get(selectedId);selectionBox.visible=!!selected;if(selected)selectionBox.setFromObject(selected);
+    disposeTree(planGroup);resetGroup(planGroup);planObjects.clear();
     const warned=new Set(issues.flatMap(i=>i.entityIds||[i.entityId||i.id]).filter(Boolean));
     for(const [entityId,g]of objects){g.userData.warning=warned.has(entityId);}
+    for(const e of [...derived.furniture,...derived.printers])makePlan(e,warned.has(e.id));
+    presentView();
     scene.updateMatrixWorld(true);draw();
   }
   function view(mode='perspective'){
-    if(exporting||disposed)return;
+    if(exporting||disposed||!current)return;
+    cancel();const fit=mode==='fit';viewMode=fit?viewMode:mode==='top'?'top':mode==='front'?'front':'perspective';
+    camera=isPlan()?planCamera:perspectiveCamera;controls=isPlan()?planControls:perspectiveControls;
+    const refit=fit||(isPlan()?!planReady:!perspectiveReady||mode==='front');
+    if(isPlan()&&refit){
+      const points=[...current.room.polygonMm.map(([x,z])=>[x*MM,z*MM]),...[...planObjects.values()].flatMap(g=>g.userData.planPoints.map(([x,z])=>[x+g.position.x,z+g.position.z]))];
+      const xs=points.map(p=>p[0]),zs=points.map(p=>p[1]),minX=Math.min(...xs),maxX=Math.max(...xs),minZ=Math.min(...zs),maxZ=Math.max(...zs),aspect=lastWidth/Math.max(1,lastHeight);
+      planHalfHeight=Math.max(maxZ-minZ,(maxX-minX)/aspect,.3)*.55;planCamera.zoom=1;controls.target.set((minX+maxX)/2,0,(minZ+maxZ)/2);planCamera.position.set(controls.target.x,10,controls.target.z);planCamera.lookAt(controls.target);planReady=true;resize();
+    }else if(!isPlan()&&refit){
     const bounds=new THREE.Box3().setFromObject(content),center=bounds.getCenter(new THREE.Vector3());
     if(bounds.isEmpty())center.set(0,0,0);
     const size=bounds.getSize(new THREE.Vector3()),span=Math.max(size.x,size.z,size.y,1),distance=span*1.45;
     controls.target.copy(center);controls.target.y=Math.min(center.y,.8);
-    if(mode==='top')camera.position.copy(controls.target).add(new THREE.Vector3(.00001,distance*1.25,0));
-    else if(mode==='front')camera.position.copy(controls.target).add(new THREE.Vector3(0,distance*.25,distance*1.1));
+    if(viewMode==='front')camera.position.copy(controls.target).add(new THREE.Vector3(0,distance*.25,distance*1.1));
     else camera.position.copy(controls.target).add(new THREE.Vector3(distance*.72,distance*.72,distance));
-    camera.lookAt(controls.target);controls.update();draw();
+    camera.lookAt(controls.target);perspectiveReady=true;
+    }
+    if(refit)controls.update();camera.updateMatrixWorld(true);presentView();draw();onViewChange(getView());return getView();
   }
   function eventPoint(event){const r=canvas.getBoundingClientRect();pointer.set((event.clientX-r.left)/r.width*2-1,-(event.clientY-r.top)/r.height*2+1);raycaster.setFromCamera(pointer,camera);}
-  function hit(event){eventPoint(event);const intersections=raycaster.intersectObjects([...furnitureGroup.children,...printersGroup.children],true);for(const h of intersections){let o=h.object;while(o&&!o.userData.entityId)o=o.parent;if(o)return o.userData.entityId;}return null;}
+  function hit(event){scene.updateMatrixWorld(true);camera.updateMatrixWorld(true);eventPoint(event);const intersections=raycaster.intersectObjects(isPlan()?[...planObjects.values()]:[...furnitureGroup.children,...printersGroup.children],true);for(const h of intersections){if(h.object.userData.planLabel)continue;let o=h.object;while(o&&!o.userData.entityId)o=o.parent;if(o)return o.userData.entityId;}return null;}
   function planePoint(event,y){eventPoint(event);return raycaster.ray.intersectPlane(new THREE.Plane(new THREE.Vector3(0,1,0),-y),new THREE.Vector3());}
   function down(event){
-    if(exporting||event.button!==0)return;const id=hit(event);drag={id,pointerId:event.pointerId,startX:event.clientX,startY:event.clientY,moved:false};
-    if(tool==='move'&&id){const g=objects.get(id),point=planePoint(event,g.position.y);drag.origin=g.position.clone();drag.point=point;canvas.setPointerCapture(event.pointerId);onSelect(id);drag.followers=current.printers.filter(p=>p.attachment.parentId===id).map(p=>({id:p.id,origin:objects.get(p.id).position.clone()}));event.preventDefault();}
+    if(disposed||exporting||event.button!==0||event.isPrimary===false)return;
+    if(drag){event.stopImmediatePropagation();event.preventDefault();return;}
+    const id=hit(event);drag={id,kind:id?'object':'background',pointerId:event.pointerId,startX:event.clientX,startY:event.clientY,moved:false};
+    if(id){
+      const g=objects.get(id),planeY=isPlan()?0:g.position.y,point=planePoint(event,planeY);
+      if(!point){drag=null;event.stopImmediatePropagation();return;}
+      const entity=[...derived.furniture,...derived.printers].find(e=>e.id===id);
+      drag.origin=g.position.clone();drag.originMm={x:entity.xMm??g.position.x/MM,z:entity.zMm??g.position.z/MM};drag.point=point.clone();drag.planeY=planeY;drag.accepted={...drag.originMm};
+      drag.followers=(current.printers||[]).filter(p=>p.attachment.parentId===id).map(p=>({id:p.id,origin:objects.get(p.id).position.clone()}));
+      selectedId=id;updateSelection();canvas.setPointerCapture(event.pointerId);enableControls();canvas.style.cursor='grabbing';event.stopImmediatePropagation();event.preventDefault();onSelect(id);
+    }
   }
   function move(event){
     if(!drag||drag.pointerId!==event.pointerId)return;if(Math.hypot(event.clientX-drag.startX,event.clientY-drag.startY)>4)drag.moved=true;
-    if(tool!=='move'||!drag.id||!drag.point)return;const p=planePoint(event,drag.origin.y);if(!p)return;const g=objects.get(drag.id);if(!g)return;
-    g.position.x=drag.origin.x+p.x-drag.point.x;g.position.z=drag.origin.z+p.z-drag.point.z;
-    for(const follower of drag.followers||[]){const child=objects.get(follower.id);if(child){child.position.x=follower.origin.x+g.position.x-drag.origin.x;child.position.z=follower.origin.z+g.position.z-drag.origin.z;}}
-    selectionBox.setFromObject(g);draw();
+    if(drag.kind!=='object')return;event.stopImmediatePropagation();event.preventDefault();if(!drag.moved)return;
+    const p=planePoint(event,drag.planeY);if(!p)return;const g=objects.get(drag.id);if(!g)return;
+    const proposal={id:drag.id,x:drag.originMm.x+(p.x-drag.point.x)/MM,z:drag.originMm.z+(p.z-drag.point.z)/MM};
+    const gesture=drag,context={previous:{...drag.accepted},origin:{...drag.originMm}};
+    let accepted;try{accepted=constrainMove(proposal,context);}catch(error){onError(error);return;}
+    if(drag!==gesture||disposed)return;
+    if(accepted===false)return;
+    if(!accepted||!Number.isFinite(accepted.x)||!Number.isFinite(accepted.z)){onError(Object.assign(Error('Invalid constrained move'),{code:'INVALID_CONSTRAINED_MOVE'}));return;}
+    drag.accepted={x:accepted.x,z:accepted.z};g.position.x=accepted.x*MM;g.position.z=accepted.z*MM;
+    const syncPlan=id=>{const a=objects.get(id),b=planObjects.get(id);if(a&&b){b.position.x=a.position.x;b.position.z=a.position.z;}};syncPlan(drag.id);
+    for(const follower of drag.followers||[]){const child=objects.get(follower.id);if(child){child.position.x=follower.origin.x+g.position.x-drag.origin.x;child.position.z=follower.origin.z+g.position.z-drag.origin.z;syncPlan(follower.id);}}
+    updateSelection();draw();
   }
   function up(event){
     if(!drag||drag.pointerId!==event.pointerId)return;const d=drag;drag=null;
-    if(canvas.hasPointerCapture(event.pointerId))canvas.releasePointerCapture(event.pointerId);
-    if(tool==='move'&&d.id&&d.point&&d.moved){const g=objects.get(d.id);onMove({id:d.id,x:g.position.x/MM,z:g.position.z/MM});}
-    else if(!d.moved)onSelect(d.id);
+    if(d.kind==='object'){
+      event.stopImmediatePropagation();event.preventDefault();
+      if(canvas.hasPointerCapture(event.pointerId))canvas.releasePointerCapture(event.pointerId);enableControls();canvas.style.cursor='grab';
+      if(d.moved&&(d.accepted.x!==d.originMm.x||d.accepted.z!==d.originMm.z)){const before=current;try{onMove({id:d.id,...d.accepted});}catch(error){onError(error);}finally{if(current===before&&!disposed)setState(current,selectedId);}}
+    }else if(!d.moved)onSelect(null);
   }
-  function cancel(){if(drag&&current){drag=null;setState(current,selectedId);}}
-  canvas.addEventListener('pointerdown',down);canvas.addEventListener('pointermove',move);canvas.addEventListener('pointerup',up);canvas.addEventListener('pointercancel',cancel);canvas.addEventListener('lostpointercapture',cancel);
-  function setTool(value){tool=value==='move'?'move':'orbit';controls.enabled=tool==='orbit';canvas.style.cursor=tool==='move'?'move':'grab';draw();}
+  function cancel(event){
+    if(!drag||event?.pointerId!==undefined&&event.pointerId!==drag.pointerId)return;
+    const d=drag;drag=null;
+    if(d.kind==='object')for(const item of [{id:d.id,origin:d.origin},...(d.followers||[])]){const a=objects.get(item.id),b=planObjects.get(item.id);if(a)a.position.copy(item.origin);if(b){b.position.x=item.origin.x;b.position.z=item.origin.z;}}
+    if(canvas.hasPointerCapture(d.pointerId))canvas.releasePointerCapture(d.pointerId);enableControls();canvas.style.cursor='grab';updateSelection();draw();
+  }
+  // Capture phase chooses object manipulation before either OrbitControls listener.
+  for(const [type,handler]of [['pointerdown',down],['pointermove',move],['pointerup',up],['pointercancel',cancel],['lostpointercapture',cancel]])canvas.addEventListener(type,handler,true);
+  const eventWindow=canvas.ownerDocument?.defaultView;eventWindow?.addEventListener('blur',cancel);
+  function setTool(){enableControls();canvas.style.cursor='grab';return 'auto';}
   function setOptions({grid:showGrid=true,walls=wallsVisible,dark=false}={}){if(exporting||disposed)return;grid.visible=showGrid;wallsVisible=walls;for(const o of roomGroup.children)if(o.userData.wall)o.visible=walls;scene.background.set(dark?'#14222a':'#e9edef');draw();}
 
-  async function exportImage({loadMachine,width=1920,signal,onProgress=()=>{}}){
+  async function exportPlanImage({width=1920,signal,onProgress=()=>{}}){
+    cancel();const externalSignal=signal,controller=new AbortController(),forward=()=>controller.abort();exportAbort=controller;
+    if(signal?.aborted)controller.abort();else signal?.addEventListener('abort',forward,{once:true});signal=controller.signal;exporting=true;enableControls();
+    const limit=Math.min(renderer.capabilities.maxTextureSize,2560),long=Math.max(320,Math.min(limit,Number.isFinite(width)?width:1920)),aspect=lastWidth/Math.max(1,lastHeight),w=Math.max(1,Math.round(aspect>=1?long:long*aspect)),h=Math.max(1,Math.round(aspect>=1?long/aspect:long));
+    try{
+      aborted(signal);const output=document.createElement('canvas');output.width=w;output.height=h;const ctx=output.getContext('2d'),exportCamera=planCamera.clone();
+      const middle=(exportCamera.left+exportCamera.right)/2,halfWidth=(exportCamera.top-exportCamera.bottom)*w/h/2;exportCamera.left=middle-halfWidth;exportCamera.right=middle+halfWidth;exportCamera.updateProjectionMatrix();exportCamera.updateMatrixWorld(true);
+      const project=(x,z)=>{const p=new THREE.Vector3(x,0,z).project(exportCamera);return [(p.x+1)*w/2,(1-p.y)*h/2];};
+      const polygon=points=>{ctx.beginPath();points.forEach(([x,z],i)=>{const p=project(x,z);i?ctx.lineTo(...p):ctx.moveTo(...p);});ctx.closePath();};
+      ctx.fillStyle='#'+scene.background.getHexString();ctx.fillRect(0,0,w,h);polygon(current.room.polygonMm.map(([x,z])=>[x*MM,z*MM]));ctx.fillStyle='#d9dfe1';ctx.fill();ctx.strokeStyle='#667d8b';ctx.lineWidth=1.5;ctx.stroke();
+      if(grid.visible){ctx.save();ctx.clip();ctx.strokeStyle='#a2afb7';ctx.lineWidth=.5;ctx.beginPath();const a=grid.geometry.getAttribute('position');for(let i=0;i<a.count;i+=2){ctx.moveTo(...project(a.getX(i),a.getZ(i)));ctx.lineTo(...project(a.getX(i+1),a.getZ(i+1)));}ctx.stroke();ctx.restore();}
+      for(const g of planObjects.values()){
+        polygon(g.userData.planPoints.map(([x,z])=>[x+g.position.x,z+g.position.z]));ctx.fillStyle=g.userData.planColor;ctx.globalAlpha=.8;ctx.fill();ctx.globalAlpha=1;ctx.strokeStyle='#344c5a';ctx.lineWidth=1;ctx.stroke();
+        const label=g.children.find(o=>o.userData.planLabel),layout=planLabelLayout(g,exportCamera,h),p=project(g.position.x+label.position.x,g.position.z+label.position.z);
+        if(layout.visible){ctx.font=`${layout.screenWidth/16}px sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle='#1f3542';ctx.fillText(g.userData.planLabel,...p,layout.screenWidth*496/512);}
+      }
+      onProgress({phase:'rendering',index:derived.printers.length,total:derived.printers.length,ratio:1,mode:'floorplan'});
+      const blob=await new Promise(resolve=>output.toBlob(resolve,'image/png'));aborted(signal);if(!blob)throw Error('Image export failed');
+      return {blob,width:w,height:h,machines:derived.printers.map(p=>p.machineId),projection:'orthographic-floorplan',camera:'current-camera',rendering:'flat-floorplan',modelDetail:'footprints'};
+    }finally{exporting=false;exportAbort=null;externalSignal?.removeEventListener('abort',forward);enableControls();if(disposed)releaseResources();else{resize();draw();}}
+  }
+  async function exportImage({loadMachine,width=1920,signal,onProgress=()=>{}}={}){
     if(exporting||disposed||!current)throw Error('Layout is not ready');
+    if(isPlan())return exportPlanImage({width,signal,onProgress});
+    cancel();
     if(!renderer.extensions.has('EXT_color_buffer_float'))throw Object.assign(Error('HDR image output is unavailable'),{code:'RENDER_UNSUPPORTED'});
     const externalSignal=signal,controller=new AbortController(),forwardAbort=()=>controller.abort();exportAbort=controller;
     if(signal?.aborted)controller.abort();else signal?.addEventListener('abort',forwardAbort,{once:true});signal=controller.signal;
@@ -197,13 +300,13 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
       const output=document.createElement('canvas');output.width=w;output.height=h;const context=output.getContext('2d'),image=context.createImageData(w,h),row=w*4;
       for(let y=0;y<h;y++)image.data.set(pixels.subarray((h-y-1)*row,(h-y)*row),y*row);context.putImageData(image,0,0);
       const blob=await new Promise(resolve=>output.toBlob(resolve,'image/png'));if(!blob)throw Error('Image export failed');aborted(signal);
-      return {blob,width:w,height:h,machines:snapshot.map(p=>p.machineId),projection:'current-camera',rendering:'streamed-browser-raster'};
+      return {blob,width:w,height:h,machines:snapshot.map(p=>p.machineId),projection:'perspective-3d',camera:'current-camera',rendering:'streamed-browser-raster'};
     }finally{
       active?.dispose();disposeTree(transparentRoot);target?.dispose();outputTarget?.dispose();outputGeometry?.dispose();outputMaterial?.dispose();renderer.setRenderTarget(oldTarget);renderer.autoClear=oldAuto;renderer.debug.onShaderError=oldShaderError;scene.background=oldBackground;printersGroup.visible=true;refreshWalls();
-      exporting=false;exportAbort=null;externalSignal?.removeEventListener('abort',forwardAbort);controls.enabled=tool==='orbit';const selected=objects.get(selectedId);selectionBox.visible=!!selected;if(selected)selectionBox.setFromObject(selected);if(disposed)releaseResources();else{resize();draw();}
+      exporting=false;exportAbort=null;externalSignal?.removeEventListener('abort',forwardAbort);presentView();if(disposed)releaseResources();else{resize();draw();}
     }
   }
-  function releaseResources(){if(resourcesDisposed)return;resourcesDisposed=true;for(const o of roomGroup.children)if(o.userData.roomOwned){o.geometry.dispose();o.material.dispose();}boxGeometry.dispose();wireGeometry.dispose();wireMaterial.dispose();wallMaterial.dispose();for(const m of palette.values())m.dispose();grid.geometry.dispose();grid.material.dispose();selectionBox.geometry.dispose();selectionBox.material.dispose();environment.dispose();renderer.dispose();canvas.remove();}
-  function dispose(){if(disposed)return;disposed=true;exportAbort?.abort();if(frame)cancelAnimationFrame(frame);observer.disconnect();controls.dispose();for(const [type,handler]of [['pointerdown',down],['pointermove',move],['pointerup',up],['pointercancel',cancel],['lostpointercapture',cancel]])canvas.removeEventListener(type,handler);if(!exporting)releaseResources();}
-  resize();return {setState,setTool,setOptions,view,exportImage,dispose,canvas};
+  function releaseResources(){if(resourcesDisposed)return;resourcesDisposed=true;disposeTree(planGroup);planSelection.geometry.dispose();planSelection.material.dispose();for(const o of roomGroup.children)if(o.userData.roomOwned){o.geometry.dispose();o.material.dispose();}boxGeometry.dispose();wireGeometry.dispose();wireMaterial.dispose();wallMaterial.dispose();for(const m of palette.values())m.dispose();grid.geometry.dispose();grid.material.dispose();selectionBox.geometry.dispose();selectionBox.material.dispose();environment.dispose();renderer.dispose();canvas.remove();}
+  function dispose(){if(disposed)return;cancel();disposed=true;exportAbort?.abort();if(frame)cancelAnimationFrame(frame);observer.disconnect();perspectiveControls.dispose();planControls.dispose();eventWindow?.removeEventListener('blur',cancel);for(const [type,handler]of [['pointerdown',down],['pointermove',move],['pointerup',up],['pointercancel',cancel],['lostpointercapture',cancel]])canvas.removeEventListener(type,handler,true);if(!exporting)releaseResources();}
+  resize();setTool();return {setState,setTool,setOptions,view,getView,exportImage,dispose,canvas};
 }
