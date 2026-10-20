@@ -1,5 +1,5 @@
 import {workspaceTask,workspaceListen} from './workspace-lifecycle.mjs?v=16928b39409c2ae378c6';
-import {formatMessage} from './i18n.mjs?v=fb2427de09deb3a9a84f';
+import {formatMessage} from './i18n.mjs?v=271dfe88c90dacc7bad4';
 export function accessoryIds(catalog,data={}){
  const ids=data.accessories??[];
  if(!Array.isArray(ids)||ids.some(id=>typeof id!=='string'||!catalog.accessories?.some(a=>a.id===id)))throw Error('未登録の追加Modが含まれています。');
@@ -20,12 +20,14 @@ export class AccessorySelection{
   this.selected=new Set(ids);this.refresh();this.update();
  });}
  refresh(){
-  for(const id of this.selected)if(!accessoryAvailable(this.catalog.accessories.find(row=>row.id===id),this.getVariant()))this.selected.delete(id);
+  const removed=[];
+  for(const id of this.selected)if(!accessoryAvailable(this.catalog.accessories.find(row=>row.id===id),this.getVariant())){this.selected.delete(id);removed.push(id)}
   const active=new Set();
   for(const id of this.selected){const row=this.catalog.accessories.find(r=>r.id===id);for(const key of row.hidden_stock_keys||[])active.add(key);for(const asset of this.loaded.get(id)||[])active.add(asset)}
   for(const [id,assets] of this.loaded){const p=this.catalog.accessories.find(row=>row.id===id).translation_mm||[0,0,0];for(const asset of assets){asset.root.userData.headModule=false;asset.root.position.set(p[0]/1000,p[2]/1000,-p[1]/1000||0);asset.root.visible=active.has(asset)}}
   for(const [key,visible] of this.stockVisibility)if(!active.has(key)){this.stockNodes.get(key).visible=visible;this.stockVisibility.delete(key)}
   for(const key of active)if(typeof key==='string'){const mesh=this.stockNodes.get(key);if(!this.stockVisibility.has(key))this.stockVisibility.set(key,mesh.visible);mesh.visible=false}
+  return removed;
  }
  saved(){return {accessories:[...this.selected]}}
 }
@@ -33,13 +35,15 @@ export class AccessorySelection{
 export function setupAccessories(catalog,{load,update,stockNodes,getVariant=()=>null}){
  const container=document.querySelector('#accessoryOptions'),status=document.querySelector('#accessoryStatus');
  const state=new AccessorySelection(catalog,load,update,stockNodes,getVariant),inputs=new Map();
- let busy=false;
+ let busy=false,companionChanged=false;
  function sync(){for(const [id,input] of inputs){input.checked=state.selected.has(id);input.disabled=busy||!accessoryAvailable(catalog.accessories.find(row=>row.id===id),getVariant())}}
  function selectedStatus(){return [...state.selected].map(id=>{const row=catalog.accessories.find(row=>row.id===id);return row.label_id?formatMessage(row.label_id,{},document.documentElement.lang):row.label}).join(' ／ ')}
- if(globalThis.window)workspaceListen(window,'rig-language-change',()=>{if(!busy&&state.selected.size)status.textContent=selectedStatus()});
+ function showStatus(){status.textContent=companionChanged?formatMessage('ui.mod_companion_changed',{},document.documentElement.lang):(state.selected.size?selectedStatus():'追加Modなし')}
+ if(globalThis.window)workspaceListen(window,'rig-language-change',()=>{if(!busy)showStatus()});
  async function apply(data){return workspaceTask(async()=>{
   if(busy)throw Error('追加Modを読み込み中です。');busy=true;sync();status.textContent='追加Modを読み込み中…';
-  try{await state.apply(data);status.textContent=state.selected.size?selectedStatus():'追加Modなし'}
+  const previous=[...state.selected];
+  try{await state.apply(data);companionChanged=previous.some(id=>{const row=catalog.accessories.find(r=>r.id===id);return !state.selected.has(id)&&row.exclusive_group&&[...state.selected].some(next=>catalog.accessories.find(r=>r.id===next).exclusive_group===row.exclusive_group)});showStatus()}
   catch(e){status.textContent='追加Modを読み込めませんでした。';throw e}
   finally{busy=false;sync()}
  });}
@@ -51,5 +55,5 @@ export function setupAccessories(catalog,{load,update,stockNodes,getVariant=()=>
  const note=document.createElement('p');note.className='foot';note.textContent=row.notes;container.append(note);
   if(row.notice_id)note.setAttribute('data-i18n-id',row.notice_id);
  }
- return {refresh:()=>{state.refresh();sync();if(!busy)status.textContent=state.selected.size?selectedStatus():'追加Modなし'},getExtras:()=>state.saved(),applyExtras:apply,validateExtras:data=>{const ids=accessoryIds(catalog,data),variant=catalog.variants?.find(row=>row.id===data.configuration)||getVariant();for(const id of ids)if(!accessoryAvailable(catalog.accessories.find(row=>row.id===id),variant))throw Error('この追加Modは指定された構成に未登録です。');return ids}};
+ return {refresh:()=>{if(state.refresh().length)companionChanged=true;sync();if(!busy)showStatus()},getExtras:()=>state.saved(),applyExtras:apply,validateExtras:data=>{const ids=accessoryIds(catalog,data),variant=catalog.variants?.find(row=>row.id===data.configuration)||getVariant();for(const id of ids)if(!accessoryAvailable(catalog.accessories.find(row=>row.id===id),variant))throw Error(formatMessage('ui.mod_configuration_saved',{},document.documentElement.lang));return ids}};
 }

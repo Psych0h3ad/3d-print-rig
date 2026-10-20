@@ -399,6 +399,10 @@ def main():
     subprocess.run(['node', '--max-old-space-size=128',
                     str(ROOT/'scripts/test_switchwire_catalog.mjs'),
                     '--site', str(target)], cwd=ROOT, check=True)
+    # Require the selected FOX V1 exported topology and original hardware.
+    subprocess.run(['node', '--max-old-space-size=256',
+                    str(ROOT/'scripts/audit_fox_ab_fan_assets.mjs'),
+                    str(target), str(target/'review/fox-ab-fan-assets.json')], cwd=ROOT, check=True)
     # Check the complete page graph after generated inputs (including support
     # data) exist, before the artifact can be uploaded.
     print(json.dumps(verify_entrypoints(target, input_map)))

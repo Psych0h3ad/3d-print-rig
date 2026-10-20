@@ -14,12 +14,12 @@ import {communitySchema,validateCommunityState,communityMotionEnabled,communityC
 import {installationFor,installationOptionAvailable} from './ender-mods.mjs?v=5f07c69c7c42ba3f3936';
 import {setupMachineNavigation} from './machines.js?v=ab543d6b01637bc5083f';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
-import {translate,loadLanguage} from './i18n.mjs?v=fb2427de09deb3a9a84f';
+import {translate,loadLanguage,messageIdFor} from './i18n.mjs?v=271dfe88c90dacc7bad4';
 import {rememberDisplayControl} from './display-preferences.mjs?v=56b29930754451d8193c';
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=16928b39409c2ae378c6';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {setupRenderExport} from './render-export.js?v=52720bd5e5edde8246d8';
-import {setupPublicInfo} from './public-info.js?v=bf195f65383903d3395f';
+import {setupPublicInfo} from './public-info.js?v=96fbc2218efdeb81fbdc';
 const descriptions={
  voron_switchwire_250:'Official Switchwire v1 CAD assembly with Stealthburner, CW2 and Revo Voron.',
  '247zero_beta2_120':'247zero BETA2 · 120 mm / ULW carbon gantry / Crazy Volcano / M4 Bowden',
@@ -47,9 +47,22 @@ const sourceNotices={ '247zero_beta2_120':"BETA2 CAD v43 with original V0.2 skir
 sourceNotices.voron_switchwire_250='Source: VoronDesign/Voron-Switchwire, revision 92cc013ca2af94e6c09950dbe05c0973ee49aa00 (GPL-3.0). Preview movement does not establish physical clearance.';
 import {isSourceAssemblyMachine} from './source-assembly-registry.mjs';
 export async function mount(scope){
- if(isSourceAssemblyMachine(new URLSearchParams(location.search).get('machine')))return (await import('./source-assembly.mjs?v=34c4ca07890ac487147a')).mount(scope);
+ if(isSourceAssemblyMachine(new URLSearchParams(location.search).get('machine')))return (await import('./source-assembly.mjs?v=fb4da6d9d571dd30d9ea')).mount(scope);
  await loadLanguage(document.documentElement.lang);if(scope.disposed)return;
  const $=id=>document.getElementById(id),stage=$('stage'),machine=new URLSearchParams(location.search).get('machine')||'ender3_stock_220',t=v=>translate(v,document.documentElement.lang);
+ const status=$('status'),modelNotice=$('sourceModelNotice');
+ function statusText(source=''){
+  if(scope.disposed)return;
+  const id=source&&messageIdFor(source);if(id)status.setAttribute('data-i18n-id',id);else status.removeAttribute('data-i18n-id');
+  status.textContent=source?t(source):'';status.hidden=!source;
+ }
+ // This template placeholder is not a model notice. Its translation binding
+ // would otherwise restore "Loading assembly" after the model is already ready.
+ if(modelNotice.getAttribute('data-i18n-id')==='source_assembly.loading'){
+  modelNotice.removeAttribute('data-i18n-id');modelNotice.textContent='';modelNotice.hidden=true;
+ }
+ document.body.dataset.ready='false';delete document.body.dataset.error;$('openRender').disabled=true;statusText('Loading CAD…');
+ try{
  if(!Object.hasOwn(descriptions,machine))throw Error('Unknown community printer');
  const renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);
  const scene=scope.scene(new THREE.Scene()),camera=new THREE.PerspectiveCamera(35,1,.005,30),controls=scope.resource(new OrbitControls(camera,renderer.domElement));controls.enableDamping=true;
@@ -90,7 +103,7 @@ export async function mount(scope){
  for(const[id,kind]of [['iso','iso'],['front','front'],['top','top'],['focusHead','head']])$(id).onclick=()=>view(kind);
  $('night').oninput=$('night').onchange=()=>{if(state)state.night=$('night').checked;lighting()};lighting();setupMachineNavigation(machine);
  function describe(){
-  if(!current)return;const selected=communityConfiguration(current.profile,state.configuration??'stock');$('installationNotice').textContent=(selected.notices||[selected.notice]).filter(Boolean).map(t).join(' ');
+  if(!current||!state)return;const selected=communityConfiguration(current.profile,state.configuration??'stock');$('installationNotice').textContent=(selected.notices||[selected.notice]).filter(Boolean).map(t).join(' ');
   document.querySelector('label[for="headInstallation"]').textContent=t(current.profile.configuration_label||'Toolhead installation');
   const sources=selected.sources||[selected.source].filter(Boolean);$('installationSource').hidden=!sources.length;$('installationSource').replaceChildren();
   for(const source of sources){const link=document.createElement('a'),p=document.createElement('p');link.target='_blank';link.rel='noopener';link.href=source.url;link.textContent=[source.author||source.name,source.version||source.revision||source.source_revision||source.commit].filter(Boolean).join(' · ')||new URL(source.url).hostname;p.textContent=source.license||'';$('installationSource').append(link,p)}
@@ -102,7 +115,7 @@ export async function mount(scope){
   }}
   else choices($('headInstallation'),Object.fromEntries(Object.entries(current.profile.configurations||{}).filter(([id])=>!current.profile.eva_installation||id!=='stock')),state.configuration??'stock');
   const eva=current.profile.eva_installation;$('evaHeadLink').hidden=!eva;
-  $('sourceModelNotice').hidden=!!eva;
+  modelNotice.hidden=!!eva||!modelNotice.textContent.trim();
   if(eva){const url=new URL('./toolheads.html',location.href);url.searchParams.set('configuration',state.configuration==='stock'?eva.configuration:state.configuration);url.searchParams.set('return_machine',machine);url.searchParams.set('lang',document.documentElement.lang);$('evaHeadLink').href=url.href;}
   const nativeReview=evaOptions?.entries.find(v=>v.id===state.configuration)?.installation.native_review
    ||(['stock',eva?.configuration].includes(state.configuration)?eva?.native_review:null);
@@ -111,7 +124,6 @@ export async function mount(scope){
   $('machineDescription').textContent=t(selected.machine_description||descriptions[machine]);const notices=selected.motion_notices||[sourceNotices[machine],...(current.profile.motion_registration?.notices||[])].filter(Boolean);$('sourceNotice').hidden=!notices.length;$('sourceNotice').textContent=notices.map(t).join(' ')
  }
  workspaceListen(window,'rig-language-change',async()=>{const language=document.documentElement.lang;await loadLanguage(language);if(language===document.documentElement.lang&&!scope.disposed)describe()});
- try{
   const responses=await Promise.all(['COMMUNITY_MACHINES_ASSETS.json','EVA_INSTALLATIONS.json'].map(name=>fetch('../'+name,{cache:'no-cache'})));if(responses.some(r=>!r.ok))throw Error('Native catalog unavailable');const [nativeIndex,evaRegistry]=await Promise.all(responses.map(r=>r.json()));current=await loadCommunity(evaCommunityIndex(nativeIndex,evaRegistry),machine);scene.add(current.root);axisKeys=Object.keys(current.profile.axes);const zeroAxes=()=>Object.fromEntries(axisKeys.map(k=>{const [lo,hi]=(state?ranges():current.profile.axes)[k];return [k,Math.max(lo,Math.min(0,hi))]}));
   if(current.profile.eva_installation){
    const responses=await Promise.all(['EVA_OPTIONS.json','TOOLHEAD_CONFIGURATIONS.json','HEAD_ADDITIONS.json'].map(name=>fetch('../'+name,{cache:'no-cache'})));
@@ -140,11 +152,11 @@ export async function mount(scope){
    getPose:()=>movable?['x','y','z'].map(a=>current.adapter.getAxes()[a]):[0,0,0],getLimits:()=>displacementGcodeSettings(current.profile,current.adapter.getAxes(),ranges()).limits,
    getContext:()=>({machine,configuration:state.configuration,asset_identity:current.replay_asset_identity,secondary:Object.fromEntries(Object.entries(current.adapter.getAxes()).filter(([a])=>!['x','y','z'].includes(a)))}),
    beforePlayback:()=>{animation=null},setPose:xyz=>{if(movable)setAxes({...current.adapter.getAxes(),...Object.fromEntries(['x','y','z'].map((a,i)=>[a,xyz[i]]))})}});
-  $('motionPlay').disabled=$('motionPause').disabled=!movable;setPalette(state.palette);setAxes(state.axes);view();resize();await setupPublicInfo({includeDownloads:false});setupRenderExport({three:THREE,renderer,scene,camera,controls,name:machine});$('openRender').disabled=false;
+  $('motionPlay').disabled=$('motionPause').disabled=!movable;setPalette(state.palette);setAxes(state.axes);view();resize();await setupPublicInfo({includeDownloads:false});if(scope.disposed)return;setupRenderExport({three:THREE,renderer,scene,camera,controls,name:machine});
   if(requestedInstallation&&requestedInstallation!==state.configuration&&requestedInstallation!=='stock'){
    try{if(await setInstallation(requestedInstallation))view()}
    catch(e){describe();$('configurationStatus').textContent=e.message}
   }
-  document.body.dataset.ready='true';document.body.dataset.parts=String(current.manifest.native_leaf_count);$('status').hidden=true;
- }catch(e){$('status').textContent=t('モデルの読込に失敗しました。機種を選び直してください。');document.body.dataset.error=e.message;throw e}
+  if(scope.disposed)return;document.body.dataset.ready='true';document.body.dataset.parts=String(current.manifest.native_leaf_count);$('openRender').disabled=false;statusText();
+ }catch(e){if(!scope.disposed){document.body.dataset.ready='false';$('openRender').disabled=true;statusText('モデルの読込に失敗しました。機種を選び直してください。');document.body.dataset.error=e.message;}throw e}
 }

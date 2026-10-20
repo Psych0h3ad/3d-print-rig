@@ -1,0 +1,86 @@
+{
+  "schema": "fox-ab-fan-selected-source-installation-v1",
+  "machine_id": "voron_trident_350",
+  "configuration_id": "trident_r2__stealthburner__revo_voron__cw2",
+  "model_sha256": "cc1922bd8657130f5bbe7fbed20e7d371c40a6cfb6b7f80728354b42feba228e",
+  "metadata_sha256": "2cf7ea666773365ecc44ce17023526c8cf7252de8493cf3c4ef34dd731276087",
+  "host_assets": [
+    {
+      "path": "machines/voron_trident_350/model.glb.gz",
+      "bytes": 11228608,
+      "sha256": "9238ff722d469f6748fb5263212f42e4564e7fa17e9047c32e1d3a831f5bb62e"
+    },
+    {
+      "path": "modules/trident_r2_gantry_350.glb.gz",
+      "bytes": 5532806,
+      "sha256": "4a85b10cb235adf9c490474e22d0bca46f34659d4846b09f6c965a09c98625d4"
+    },
+    {
+      "path": "toolheads/sb_stock.glb.gz",
+      "bytes": 7529592,
+      "sha256": "8e95ecf2e0e33ff14c4d6519f6bc18bc4e749f5f1a5aa6c7e9ec36b83b535b62"
+    },
+    {
+      "path": "modules/sb_revo_voron.glb.gz",
+      "bytes": 1479155,
+      "sha256": "83a89541124060982708c814493933b082c9089c1a7dbf77ec476611bd6db8c3"
+    },
+    {
+      "path": "modules/trident_r2_sb_carriage.glb.gz",
+      "bytes": 305491,
+      "sha256": "5b783a2e59d58787fc11d72ca3df381bdb883d12965bf9d8ecb41be1a7b9b292"
+    }
+  ],
+  "physical_parts": 28,
+  "purchased_parts_unchanged": 26,
+  "printed_brackets": 2,
+  "source": {
+    "author": "FOX",
+    "url": "https://www.printables.com/model/491404-voron-trident-ab-stepper-fan",
+    "file": "AB_Stepper_Fan.3mf",
+    "sha256": "34ad0f68b8acef21254ffa81183200d9dede73164953ba0adbce2fb27322d6e3",
+    "license": "CC-BY-NC-4.0"
+  },
+  "hardware_source": {
+    "url": "https://github.com/VoronDesign/Voron-Stealthburner/tree/8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b",
+    "revision": "8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b",
+    "license": "GPL-3.0",
+    "manufacturer_SKU_asserted": false
+  },
+  "representation": {
+    "derived_web_interface": true,
+    "original_analytic_bracket_CAD": false,
+    "maximum_measured_source_deviation_mm": 0.0076465954708395435,
+    "source_CAD_tolerances_or_poses_changed": false,
+    "source_holes_seats_and_26_hardware_preserved": true,
+    "removed_built_in_supports": 0,
+    "draw_only_exact_zero_omissions": 8
+  },
+  "selected_finite_host_checks": [
+    {
+      "host": "machine-base::voron_trident_350_base_1026::node_472",
+      "part": "fox491404_v1_voron4010_reference_v12_right_bracket",
+      "finite_cells": 188,
+      "inside_or_unknown": 0,
+      "actual_triangle_cache_sha256": "b56b5d08c41245b4d4b1b4d6cfccc4dc271d8e37e5f1439a3870f4247740aced",
+      "classification_digest": "391802e2bdb8beab856d7d7af9a00617d4c7569db2166f6b2bb98b2e188bfced"
+    },
+    {
+      "host": "machine-base::voron_trident_350_base_1027::node_473",
+      "part": "fox491404_v1_voron4010_reference_v12_left_bracket",
+      "finite_cells": 207,
+      "inside_or_unknown": 0,
+      "actual_triangle_cache_sha256": "bc538bb6c56594927ceebf3b25d22d6fa42f7d09e8adfbbbf17252e84296de3b",
+      "classification_digest": "4b451a59d96355878e83a194ca126139299661fc1d4d68be0dfcbbe9cee4b5a1"
+    },
+    {
+      "host": "machine-base::voron_trident_350_base_1258::node_704",
+      "part": "fox491404_v1_voron4010_reference_v12_right_bracket",
+      "finite_cells": 19,
+      "inside_or_unknown": 0,
+      "actual_triangle_cache_sha256": "437dd5dcf385ef7386c497b89da59615f16002ea72ac25bf8ccd01a8153678e6",
+      "classification_digest": "e70b05d94cb39dc07c863015bc292ac190c7a36380bd3a740712a244a96f7249"
+    }
+  ],
+  "scope": "Selected static exported source attachment and source-derived motion envelopes. No electrical, thermal, operating, whole-machine or native-exact-fit certification. Other sizes, heads, boards and changers are not registered for this V1."
+}

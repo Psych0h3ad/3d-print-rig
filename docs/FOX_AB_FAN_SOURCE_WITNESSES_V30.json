@@ -1,0 +1,2265 @@
+{
+  "schema": "fox-ab-fan-original-public-source-witness-v1",
+  "originalReferenceModelSha256": "982c7895f6a431c33a947e46c813c5b8975cba4f51c98bf75cd7bb887423f901",
+  "originalReferenceMetadataSha256": "e534f34faad0bef94bbb7978fe17926ee30b2b727d68f94e87554fb7e84aad9f",
+  "originalAuthor3MFSha256": "34ad0f68b8acef21254ffa81183200d9dede73164953ba0adbce2fb27322d6e3",
+  "hardware": [
+    {
+      "key": "fox491404_v1_voron4010_reference_v12_left_fan",
+      "metadata": {
+        "source": {
+          "source_key": "sb_revo_voron_15",
+          "repository": "https://github.com/VoronDesign/Voron-Stealthburner",
+          "commit": "8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b",
+          "source_asset": "modules/sb_revo_voron.glb.gz",
+          "identity": "Original CAD 4010 Axial Fan, chosen reference; no manufacturer SKU asserted",
+          "license": "GPL-3.0",
+          "original_step_sha256": "526fe18bd11c046deba0a2b193fa3874e8f6d6e5a282fbdc25f06fe5acb3021d"
+        },
+        "rigid_rotation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            -1
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ],
+        "rigid_translation_mm": [
+          -196.08427173927953,
+          585.7472655824065,
+          316.3691042348423
+        ],
+        "motion": "fixed",
+        "color": [
+          0.035,
+          0.04,
+          0.048,
+          1
+        ],
+        "appearance_role": null
+      },
+      "primitives": [
+        {
+          "position": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 27540,
+            "bytes": 330480,
+            "sha256": "89972f4f17c63ae56dc8305ea6fc784cf0f33a7ad120c1ccd47d800b5f5ae8c5"
+          },
+          "normal": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 27540,
+            "bytes": 330480,
+            "sha256": "5869cc8c23fd000f2dd0a197619c4ba77b4e273b66c9a521188bf2b59211c7cb"
+          },
+          "indices": null,
+          "materialSha256": "2d7977afea1035a485420cbf71d455f65f35f20e33119d567f5d231cda54edda",
+          "matrix": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            -0.19608427173927953,
+            0.3163691042348423,
+            -0.5857472655824065,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fox491404_v1_voron4010_reference_v12_left_fan_bolt_0",
+      "metadata": {
+        "source": {
+          "source_key": "sb_revo_voron_92",
+          "repository": "https://github.com/VoronDesign/Voron-Stealthburner",
+          "commit": "8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b",
+          "source_asset": "modules/sb_revo_voron.glb.gz",
+          "identity": "Original M3x16 SHCS",
+          "license": "GPL-3.0",
+          "original_step_sha256": "526fe18bd11c046deba0a2b193fa3874e8f6d6e5a282fbdc25f06fe5acb3021d"
+        },
+        "rigid_rotation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            -1,
+            0
+          ]
+        ],
+        "rigid_translation_mm": [
+          -199.3844032092445,
+          -152.97772347418072,
+          231.14909328368094
+        ],
+        "motion": "fixed",
+        "color": [
+          0.35153260827064514,
+          0.35153260827064514,
+          0.35153260827064514,
+          1
+        ],
+        "appearance_role": null
+      },
+      "primitives": [
+        {
+          "position": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 5370,
+            "bytes": 64440,
+            "sha256": "030215ec0390b54d1b6117f70ae9151d1968159d6a998f8cea231c28cc7d74ef"
+          },
+          "normal": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 5370,
+            "bytes": 64440,
+            "sha256": "d90684ae4fa800d30ec778a97f8b34e7a8ee4c74ef1cc8b9bc5c65cd2bbd4570"
+          },
+          "indices": null,
+          "materialSha256": "6d94f915236213af58c7e366be5c69e84a1890b62ab0328ce80a6c1acf162dcc",
+          "matrix": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            -0.1993844032092445,
+            0.23114909328368094,
+            0.15297772347418073,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fox491404_v1_voron4010_reference_v12_left_fan_insert_0",
+      "metadata": {
+        "source": {
+          "source_key": "sb_revo_voron_94",
+          "repository": "https://github.com/VoronDesign/Voron-Stealthburner",
+          "commit": "8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b",
+          "source_asset": "modules/sb_revo_voron.glb.gz",
+          "identity": "Original M3 Threaded Insert, chosen heat-set reference",
+          "license": "GPL-3.0",
+          "original_step_sha256": "526fe18bd11c046deba0a2b193fa3874e8f6d6e5a282fbdc25f06fe5acb3021d"
+        },
+        "rigid_rotation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            -1,
+            0
+          ]
+        ],
+        "rigid_translation_mm": [
+          -224.7843139609747,
+          -152.97763406721356,
+          231.14910073426154
+        ],
+        "motion": "fixed",
+        "color": [
+          0.8962693810462952,
+          0.5972017645835876,
+          0.2015562504529953,
+          1
+        ],
+        "appearance_role": null
+      },
+      "primitives": [
+        {
+          "position": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 7602,
+            "bytes": 91224,
+            "sha256": "6d1da1517d74fd393da49f68119225eb6072528e7748eafc979a6eb2c11e270e"
+          },
+          "normal": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 7602,
+            "bytes": 91224,
+            "sha256": "1e266b01c2b6af11228b5afdd95a550ce53b63ac13b84cec9b816b414096a2ff"
+          },
+          "indices": null,
+          "materialSha256": "ff5a46bb7162c2324533d3ea9e087af85ca3a57a005dfed5651d9518d130e1b1",
+          "matrix": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            -0.2247843139609747,
+            0.23114910073426154,
+            0.15297763406721357,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fox491404_v1_voron4010_reference_v12_left_fan_bolt_1",
+      "metadata": {
+        "source": {
+          "source_key": "sb_revo_voron_92",
+          "repository": "https://github.com/VoronDesign/Voron-Stealthburner",
+          "commit": "8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b",
+          "source_asset": "modules/sb_revo_voron.glb.gz",
+          "identity": "Original M3x16 SHCS",
+          "license": "GPL-3.0",
+          "original_step_sha256": "526fe18bd11c046deba0a2b193fa3874e8f6d6e5a282fbdc25f06fe5acb3021d"
+        },
+        "rigid_rotation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            -1,
+            0
+          ]
+        ],
+        "rigid_translation_mm": [
+          -199.3844032092445,
+          -120.97772347418072,
+          231.14909328368094
+        ],
+        "motion": "fixed",
+        "color": [
+          0.35153260827064514,
+          0.35153260827064514,
+          0.35153260827064514,
+          1
+        ],
+        "appearance_role": null
+      },
+      "primitives": [
+        {
+          "position": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 5370,
+            "bytes": 64440,
+            "sha256": "030215ec0390b54d1b6117f70ae9151d1968159d6a998f8cea231c28cc7d74ef"
+          },
+          "normal": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 5370,
+            "bytes": 64440,
+            "sha256": "d90684ae4fa800d30ec778a97f8b34e7a8ee4c74ef1cc8b9bc5c65cd2bbd4570"
+          },
+          "indices": null,
+          "materialSha256": "6d94f915236213af58c7e366be5c69e84a1890b62ab0328ce80a6c1acf162dcc",
+          "matrix": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            -0.1993844032092445,
+            0.23114909328368094,
+            0.12097772347418072,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fox491404_v1_voron4010_reference_v12_left_fan_insert_1",
+      "metadata": {
+        "source": {
+          "source_key": "sb_revo_voron_94",
+          "repository": "https://github.com/VoronDesign/Voron-Stealthburner",
+          "commit": "8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b",
+          "source_asset": "modules/sb_revo_voron.glb.gz",
+          "identity": "Original M3 Threaded Insert, chosen heat-set reference",
+          "license": "GPL-3.0",
+          "original_step_sha256": "526fe18bd11c046deba0a2b193fa3874e8f6d6e5a282fbdc25f06fe5acb3021d"
+        },
+        "rigid_rotation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            -1,
+            0
+          ]
+        ],
+        "rigid_translation_mm": [
+          -224.7843139609747,
+          -120.97763406721356,
+          231.14910073426154
+        ],
+        "motion": "fixed",
+        "color": [
+          0.8962693810462952,
+          0.5972017645835876,
+          0.2015562504529953,
+          1
+        ],
+        "appearance_role": null
+      },
+      "primitives": [
+        {
+          "position": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 7602,
+            "bytes": 91224,
+            "sha256": "6d1da1517d74fd393da49f68119225eb6072528e7748eafc979a6eb2c11e270e"
+          },
+          "normal": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 7602,
+            "bytes": 91224,
+            "sha256": "1e266b01c2b6af11228b5afdd95a550ce53b63ac13b84cec9b816b414096a2ff"
+          },
+          "indices": null,
+          "materialSha256": "ff5a46bb7162c2324533d3ea9e087af85ca3a57a005dfed5651d9518d130e1b1",
+          "matrix": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            -0.2247843139609747,
+            0.23114910073426154,
+            0.12097763406721355,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fox491404_v1_voron4010_reference_v12_left_fan_bolt_2",
+      "metadata": {
+        "source": {
+          "source_key": "sb_revo_voron_92",
+          "repository": "https://github.com/VoronDesign/Voron-Stealthburner",
+          "commit": "8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b",
+          "source_asset": "modules/sb_revo_voron.glb.gz",
+          "identity": "Original M3x16 SHCS",
+          "license": "GPL-3.0",
+          "original_step_sha256": "526fe18bd11c046deba0a2b193fa3874e8f6d6e5a282fbdc25f06fe5acb3021d"
+        },
+        "rigid_rotation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            -1,
+            0
+          ]
+        ],
+        "rigid_translation_mm": [
+          -167.3844032092445,
+          -152.97772347418072,
+          231.14909328368094
+        ],
+        "motion": "fixed",
+        "color": [
+          0.35153260827064514,
+          0.35153260827064514,
+          0.35153260827064514,
+          1
+        ],
+        "appearance_role": null
+      },
+      "primitives": [
+        {
+          "position": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 5370,
+            "bytes": 64440,
+            "sha256": "030215ec0390b54d1b6117f70ae9151d1968159d6a998f8cea231c28cc7d74ef"
+          },
+          "normal": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 5370,
+            "bytes": 64440,
+            "sha256": "d90684ae4fa800d30ec778a97f8b34e7a8ee4c74ef1cc8b9bc5c65cd2bbd4570"
+          },
+          "indices": null,
+          "materialSha256": "6d94f915236213af58c7e366be5c69e84a1890b62ab0328ce80a6c1acf162dcc",
+          "matrix": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            -0.1673844032092445,
+            0.23114909328368094,
+            0.15297772347418073,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fox491404_v1_voron4010_reference_v12_left_fan_insert_2",
+      "metadata": {
+        "source": {
+          "source_key": "sb_revo_voron_94",
+          "repository": "https://github.com/VoronDesign/Voron-Stealthburner",
+          "commit": "8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b",
+          "source_asset": "modules/sb_revo_voron.glb.gz",
+          "identity": "Original M3 Threaded Insert, chosen heat-set reference",
+          "license": "GPL-3.0",
+          "original_step_sha256": "526fe18bd11c046deba0a2b193fa3874e8f6d6e5a282fbdc25f06fe5acb3021d"
+        },
+        "rigid_rotation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            -1,
+            0
+          ]
+        ],
+        "rigid_translation_mm": [
+          -192.7843139609747,
+          -152.97763406721356,
+          231.14910073426154
+        ],
+        "motion": "fixed",
+        "color": [
+          0.8962693810462952,
+          0.5972017645835876,
+          0.2015562504529953,
+          1
+        ],
+        "appearance_role": null
+      },
+      "primitives": [
+        {
+          "position": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 7602,
+            "bytes": 91224,
+            "sha256": "6d1da1517d74fd393da49f68119225eb6072528e7748eafc979a6eb2c11e270e"
+          },
+          "normal": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 7602,
+            "bytes": 91224,
+            "sha256": "1e266b01c2b6af11228b5afdd95a550ce53b63ac13b84cec9b816b414096a2ff"
+          },
+          "indices": null,
+          "materialSha256": "ff5a46bb7162c2324533d3ea9e087af85ca3a57a005dfed5651d9518d130e1b1",
+          "matrix": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            -0.1927843139609747,
+            0.23114910073426154,
+            0.15297763406721357,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fox491404_v1_voron4010_reference_v12_left_fan_bolt_3",
+      "metadata": {
+        "source": {
+          "source_key": "sb_revo_voron_92",
+          "repository": "https://github.com/VoronDesign/Voron-Stealthburner",
+          "commit": "8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b",
+          "source_asset": "modules/sb_revo_voron.glb.gz",
+          "identity": "Original M3x16 SHCS",
+          "license": "GPL-3.0",
+          "original_step_sha256": "526fe18bd11c046deba0a2b193fa3874e8f6d6e5a282fbdc25f06fe5acb3021d"
+        },
+        "rigid_rotation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            -1,
+            0
+          ]
+        ],
+        "rigid_translation_mm": [
+          -167.3844032092445,
+          -120.97772347418072,
+          231.14909328368094
+        ],
+        "motion": "fixed",
+        "color": [
+          0.35153260827064514,
+          0.35153260827064514,
+          0.35153260827064514,
+          1
+        ],
+        "appearance_role": null
+      },
+      "primitives": [
+        {
+          "position": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 5370,
+            "bytes": 64440,
+            "sha256": "030215ec0390b54d1b6117f70ae9151d1968159d6a998f8cea231c28cc7d74ef"
+          },
+          "normal": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 5370,
+            "bytes": 64440,
+            "sha256": "d90684ae4fa800d30ec778a97f8b34e7a8ee4c74ef1cc8b9bc5c65cd2bbd4570"
+          },
+          "indices": null,
+          "materialSha256": "6d94f915236213af58c7e366be5c69e84a1890b62ab0328ce80a6c1acf162dcc",
+          "matrix": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            -0.1673844032092445,
+            0.23114909328368094,
+            0.12097772347418072,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fox491404_v1_voron4010_reference_v12_left_fan_insert_3",
+      "metadata": {
+        "source": {
+          "source_key": "sb_revo_voron_94",
+          "repository": "https://github.com/VoronDesign/Voron-Stealthburner",
+          "commit": "8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b",
+          "source_asset": "modules/sb_revo_voron.glb.gz",
+          "identity": "Original M3 Threaded Insert, chosen heat-set reference",
+          "license": "GPL-3.0",
+          "original_step_sha256": "526fe18bd11c046deba0a2b193fa3874e8f6d6e5a282fbdc25f06fe5acb3021d"
+        },
+        "rigid_rotation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            -1,
+            0
+          ]
+        ],
+        "rigid_translation_mm": [
+          -192.7843139609747,
+          -120.97763406721356,
+          231.14910073426154
+        ],
+        "motion": "fixed",
+        "color": [
+          0.8962693810462952,
+          0.5972017645835876,
+          0.2015562504529953,
+          1
+        ],
+        "appearance_role": null
+      },
+      "primitives": [
+        {
+          "position": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 7602,
+            "bytes": 91224,
+            "sha256": "6d1da1517d74fd393da49f68119225eb6072528e7748eafc979a6eb2c11e270e"
+          },
+          "normal": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 7602,
+            "bytes": 91224,
+            "sha256": "1e266b01c2b6af11228b5afdd95a550ce53b63ac13b84cec9b816b414096a2ff"
+          },
+          "indices": null,
+          "materialSha256": "ff5a46bb7162c2324533d3ea9e087af85ca3a57a005dfed5651d9518d130e1b1",
+          "matrix": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            -0.1927843139609747,
+            0.23114910073426154,
+            0.12097763406721355,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fox491404_v1_voron4010_reference_v12_left_frame_bolt_0",
+      "metadata": {
+        "source": {
+          "source_key": "trident_r2_gantry_350_80",
+          "repository": "https://github.com/VoronDesign/Voron-Trident",
+          "commit": "a8628f48546948ce1fc15511b7765b7f31f80722",
+          "source_asset": "modules/trident_r2_gantry_350.glb.gz",
+          "identity": "Original M3x12 SHCS",
+          "license": "GPL-3.0",
+          "original_step_sha256": null
+        },
+        "rigid_rotation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "rigid_translation_mm": [
+          -494.99988555908203,
+          20.89389516220095,
+          -60.41041120608986
+        ],
+        "motion": "fixed",
+        "color": [
+          0.35153260827064514,
+          0.35153260827064514,
+          0.35153260827064514,
+          1
+        ],
+        "appearance_role": null
+      },
+      "primitives": [
+        {
+          "position": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 2076,
+            "bytes": 24912,
+            "sha256": "d3ea20e168a50df958b75f281ef816e477b2fc124d3db8162e7d1e6fad433a19"
+          },
+          "normal": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 2076,
+            "bytes": 24912,
+            "sha256": "bb44649d435c4585f6f3af39f906b916430146123b4ddbaf9ef0968eff88e13a"
+          },
+          "indices": null,
+          "materialSha256": "6d94f915236213af58c7e366be5c69e84a1890b62ab0328ce80a6c1acf162dcc",
+          "matrix": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            -0.49499988555908203,
+            -0.060410411206089865,
+            -0.02089389516220095,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fox491404_v1_voron4010_reference_v12_left_frame_nut_0",
+      "metadata": {
+        "source": {
+          "source_key": "voron_trident_350_base_1190",
+          "repository": "https://github.com/VoronDesign/Voron-Trident",
+          "commit": "a8628f48546948ce1fc15511b7765b7f31f80722",
+          "source_asset": "machines/voron_trident_350/model.glb.gz",
+          "identity": "Original M3 Hammerhead T-Nut",
+          "license": "GPL-3.0",
+          "original_step_sha256": null
+        },
+        "rigid_rotation": [
+          [
+            -1,
+            0,
+            0
+          ],
+          [
+            0,
+            -1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "rigid_translation_mm": [
+          0.0002980232238769531,
+          489.9996966123581,
+          -209.41040023883522
+        ],
+        "motion": "fixed",
+        "color": [
+          0.12477181851863861,
+          0.13286831974983215,
+          0.1441284716129303,
+          1
+        ],
+        "appearance_role": null
+      },
+      "primitives": [
+        {
+          "position": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 3222,
+            "bytes": 38664,
+            "sha256": "8b9eed79b9c551187c605356f74e976ccde6c893af9ab8e886848c9cded14e7a"
+          },
+          "normal": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 3222,
+            "bytes": 38664,
+            "sha256": "701e01f78b935e547729ba6c7c8ab9022a447ec83ffc5c298ee9256afe96c5c8"
+          },
+          "indices": null,
+          "materialSha256": "04ebdcc63bd4cecfda2d4aa77f363cb2352243eb65a2e7afa0188e39aa20afa4",
+          "matrix": [
+            -1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            2.980232238769531e-7,
+            -0.20941040023883523,
+            -0.4899996966123581,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fox491404_v1_voron4010_reference_v12_left_frame_bolt_1",
+      "metadata": {
+        "source": {
+          "source_key": "trident_r2_gantry_350_80",
+          "repository": "https://github.com/VoronDesign/Voron-Trident",
+          "commit": "a8628f48546948ce1fc15511b7765b7f31f80722",
+          "source_asset": "modules/trident_r2_gantry_350.glb.gz",
+          "identity": "Original M3x12 SHCS",
+          "license": "GPL-3.0",
+          "original_step_sha256": null
+        },
+        "rigid_rotation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "rigid_translation_mm": [
+          -494.99988555908203,
+          20.89389516220095,
+          -50.41041380760214
+        ],
+        "motion": "fixed",
+        "color": [
+          0.35153260827064514,
+          0.35153260827064514,
+          0.35153260827064514,
+          1
+        ],
+        "appearance_role": null
+      },
+      "primitives": [
+        {
+          "position": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 2076,
+            "bytes": 24912,
+            "sha256": "d3ea20e168a50df958b75f281ef816e477b2fc124d3db8162e7d1e6fad433a19"
+          },
+          "normal": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 2076,
+            "bytes": 24912,
+            "sha256": "bb44649d435c4585f6f3af39f906b916430146123b4ddbaf9ef0968eff88e13a"
+          },
+          "indices": null,
+          "materialSha256": "6d94f915236213af58c7e366be5c69e84a1890b62ab0328ce80a6c1acf162dcc",
+          "matrix": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            -0.49499988555908203,
+            -0.05041041380760214,
+            -0.02089389516220095,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fox491404_v1_voron4010_reference_v12_left_frame_nut_1",
+      "metadata": {
+        "source": {
+          "source_key": "voron_trident_350_base_1190",
+          "repository": "https://github.com/VoronDesign/Voron-Trident",
+          "commit": "a8628f48546948ce1fc15511b7765b7f31f80722",
+          "source_asset": "machines/voron_trident_350/model.glb.gz",
+          "identity": "Original M3 Hammerhead T-Nut",
+          "license": "GPL-3.0",
+          "original_step_sha256": null
+        },
+        "rigid_rotation": [
+          [
+            -1,
+            0,
+            0
+          ],
+          [
+            0,
+            -1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "rigid_translation_mm": [
+          0.0002980232238769531,
+          489.9996966123581,
+          -199.4104028403475
+        ],
+        "motion": "fixed",
+        "color": [
+          0.12477181851863861,
+          0.13286831974983215,
+          0.1441284716129303,
+          1
+        ],
+        "appearance_role": null
+      },
+      "primitives": [
+        {
+          "position": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 3222,
+            "bytes": 38664,
+            "sha256": "8b9eed79b9c551187c605356f74e976ccde6c893af9ab8e886848c9cded14e7a"
+          },
+          "normal": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 3222,
+            "bytes": 38664,
+            "sha256": "701e01f78b935e547729ba6c7c8ab9022a447ec83ffc5c298ee9256afe96c5c8"
+          },
+          "indices": null,
+          "materialSha256": "04ebdcc63bd4cecfda2d4aa77f363cb2352243eb65a2e7afa0188e39aa20afa4",
+          "matrix": [
+            -1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            2.980232238769531e-7,
+            -0.1994104028403475,
+            -0.4899996966123581,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fox491404_v1_voron4010_reference_v12_right_fan",
+      "metadata": {
+        "source": {
+          "source_key": "sb_revo_voron_15",
+          "repository": "https://github.com/VoronDesign/Voron-Stealthburner",
+          "commit": "8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b",
+          "source_asset": "modules/sb_revo_voron.glb.gz",
+          "identity": "Original CAD 4010 Axial Fan, chosen reference; no manufacturer SKU asserted",
+          "license": "GPL-3.0",
+          "original_step_sha256": "526fe18bd11c046deba0a2b193fa3874e8f6d6e5a282fbdc25f06fe5acb3021d"
+        },
+        "rigid_rotation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            -1
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ],
+        "rigid_translation_mm": [
+          196.08455376250333,
+          585.7469675591826,
+          316.3691042348423
+        ],
+        "motion": "fixed",
+        "color": [
+          0.035,
+          0.04,
+          0.048,
+          1
+        ],
+        "appearance_role": null
+      },
+      "primitives": [
+        {
+          "position": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 27540,
+            "bytes": 330480,
+            "sha256": "89972f4f17c63ae56dc8305ea6fc784cf0f33a7ad120c1ccd47d800b5f5ae8c5"
+          },
+          "normal": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 27540,
+            "bytes": 330480,
+            "sha256": "5869cc8c23fd000f2dd0a197619c4ba77b4e273b66c9a521188bf2b59211c7cb"
+          },
+          "indices": null,
+          "materialSha256": "2d7977afea1035a485420cbf71d455f65f35f20e33119d567f5d231cda54edda",
+          "matrix": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0.19608455376250333,
+            0.3163691042348423,
+            -0.5857469675591827,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fox491404_v1_voron4010_reference_v12_right_fan_bolt_0",
+      "metadata": {
+        "source": {
+          "source_key": "sb_revo_voron_92",
+          "repository": "https://github.com/VoronDesign/Voron-Stealthburner",
+          "commit": "8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b",
+          "source_asset": "modules/sb_revo_voron.glb.gz",
+          "identity": "Original M3x16 SHCS",
+          "license": "GPL-3.0",
+          "original_step_sha256": "526fe18bd11c046deba0a2b193fa3874e8f6d6e5a282fbdc25f06fe5acb3021d"
+        },
+        "rigid_rotation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            -1,
+            0
+          ]
+        ],
+        "rigid_translation_mm": [
+          192.78442229253835,
+          -152.9780214974046,
+          231.14909328368094
+        ],
+        "motion": "fixed",
+        "color": [
+          0.35153260827064514,
+          0.35153260827064514,
+          0.35153260827064514,
+          1
+        ],
+        "appearance_role": null
+      },
+      "primitives": [
+        {
+          "position": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 5370,
+            "bytes": 64440,
+            "sha256": "030215ec0390b54d1b6117f70ae9151d1968159d6a998f8cea231c28cc7d74ef"
+          },
+          "normal": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 5370,
+            "bytes": 64440,
+            "sha256": "d90684ae4fa800d30ec778a97f8b34e7a8ee4c74ef1cc8b9bc5c65cd2bbd4570"
+          },
+          "indices": null,
+          "materialSha256": "6d94f915236213af58c7e366be5c69e84a1890b62ab0328ce80a6c1acf162dcc",
+          "matrix": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0.19278442229253837,
+            0.23114909328368094,
+            0.1529780214974046,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fox491404_v1_voron4010_reference_v12_right_fan_insert_0",
+      "metadata": {
+        "source": {
+          "source_key": "sb_revo_voron_94",
+          "repository": "https://github.com/VoronDesign/Voron-Stealthburner",
+          "commit": "8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b",
+          "source_asset": "modules/sb_revo_voron.glb.gz",
+          "identity": "Original M3 Threaded Insert, chosen heat-set reference",
+          "license": "GPL-3.0",
+          "original_step_sha256": "526fe18bd11c046deba0a2b193fa3874e8f6d6e5a282fbdc25f06fe5acb3021d"
+        },
+        "rigid_rotation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            -1,
+            0
+          ]
+        ],
+        "rigid_translation_mm": [
+          167.38451154080815,
+          -152.97793209043743,
+          231.14910073426154
+        ],
+        "motion": "fixed",
+        "color": [
+          0.8962693810462952,
+          0.5972017645835876,
+          0.2015562504529953,
+          1
+        ],
+        "appearance_role": null
+      },
+      "primitives": [
+        {
+          "position": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 7602,
+            "bytes": 91224,
+            "sha256": "6d1da1517d74fd393da49f68119225eb6072528e7748eafc979a6eb2c11e270e"
+          },
+          "normal": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 7602,
+            "bytes": 91224,
+            "sha256": "1e266b01c2b6af11228b5afdd95a550ce53b63ac13b84cec9b816b414096a2ff"
+          },
+          "indices": null,
+          "materialSha256": "ff5a46bb7162c2324533d3ea9e087af85ca3a57a005dfed5651d9518d130e1b1",
+          "matrix": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0.16738451154080816,
+            0.23114910073426154,
+            0.15297793209043745,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fox491404_v1_voron4010_reference_v12_right_fan_bolt_1",
+      "metadata": {
+        "source": {
+          "source_key": "sb_revo_voron_92",
+          "repository": "https://github.com/VoronDesign/Voron-Stealthburner",
+          "commit": "8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b",
+          "source_asset": "modules/sb_revo_voron.glb.gz",
+          "identity": "Original M3x16 SHCS",
+          "license": "GPL-3.0",
+          "original_step_sha256": "526fe18bd11c046deba0a2b193fa3874e8f6d6e5a282fbdc25f06fe5acb3021d"
+        },
+        "rigid_rotation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            -1,
+            0
+          ]
+        ],
+        "rigid_translation_mm": [
+          192.78442229253835,
+          -120.9780214974046,
+          231.14909328368094
+        ],
+        "motion": "fixed",
+        "color": [
+          0.35153260827064514,
+          0.35153260827064514,
+          0.35153260827064514,
+          1
+        ],
+        "appearance_role": null
+      },
+      "primitives": [
+        {
+          "position": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 5370,
+            "bytes": 64440,
+            "sha256": "030215ec0390b54d1b6117f70ae9151d1968159d6a998f8cea231c28cc7d74ef"
+          },
+          "normal": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 5370,
+            "bytes": 64440,
+            "sha256": "d90684ae4fa800d30ec778a97f8b34e7a8ee4c74ef1cc8b9bc5c65cd2bbd4570"
+          },
+          "indices": null,
+          "materialSha256": "6d94f915236213af58c7e366be5c69e84a1890b62ab0328ce80a6c1acf162dcc",
+          "matrix": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0.19278442229253837,
+            0.23114909328368094,
+            0.1209780214974046,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fox491404_v1_voron4010_reference_v12_right_fan_insert_1",
+      "metadata": {
+        "source": {
+          "source_key": "sb_revo_voron_94",
+          "repository": "https://github.com/VoronDesign/Voron-Stealthburner",
+          "commit": "8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b",
+          "source_asset": "modules/sb_revo_voron.glb.gz",
+          "identity": "Original M3 Threaded Insert, chosen heat-set reference",
+          "license": "GPL-3.0",
+          "original_step_sha256": "526fe18bd11c046deba0a2b193fa3874e8f6d6e5a282fbdc25f06fe5acb3021d"
+        },
+        "rigid_rotation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            -1,
+            0
+          ]
+        ],
+        "rigid_translation_mm": [
+          167.38451154080815,
+          -120.97793209043743,
+          231.14910073426154
+        ],
+        "motion": "fixed",
+        "color": [
+          0.8962693810462952,
+          0.5972017645835876,
+          0.2015562504529953,
+          1
+        ],
+        "appearance_role": null
+      },
+      "primitives": [
+        {
+          "position": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 7602,
+            "bytes": 91224,
+            "sha256": "6d1da1517d74fd393da49f68119225eb6072528e7748eafc979a6eb2c11e270e"
+          },
+          "normal": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 7602,
+            "bytes": 91224,
+            "sha256": "1e266b01c2b6af11228b5afdd95a550ce53b63ac13b84cec9b816b414096a2ff"
+          },
+          "indices": null,
+          "materialSha256": "ff5a46bb7162c2324533d3ea9e087af85ca3a57a005dfed5651d9518d130e1b1",
+          "matrix": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0.16738451154080816,
+            0.23114910073426154,
+            0.12097793209043743,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fox491404_v1_voron4010_reference_v12_right_fan_bolt_2",
+      "metadata": {
+        "source": {
+          "source_key": "sb_revo_voron_92",
+          "repository": "https://github.com/VoronDesign/Voron-Stealthburner",
+          "commit": "8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b",
+          "source_asset": "modules/sb_revo_voron.glb.gz",
+          "identity": "Original M3x16 SHCS",
+          "license": "GPL-3.0",
+          "original_step_sha256": "526fe18bd11c046deba0a2b193fa3874e8f6d6e5a282fbdc25f06fe5acb3021d"
+        },
+        "rigid_rotation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            -1,
+            0
+          ]
+        ],
+        "rigid_translation_mm": [
+          224.78442229253835,
+          -152.9780214974046,
+          231.14909328368094
+        ],
+        "motion": "fixed",
+        "color": [
+          0.35153260827064514,
+          0.35153260827064514,
+          0.35153260827064514,
+          1
+        ],
+        "appearance_role": null
+      },
+      "primitives": [
+        {
+          "position": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 5370,
+            "bytes": 64440,
+            "sha256": "030215ec0390b54d1b6117f70ae9151d1968159d6a998f8cea231c28cc7d74ef"
+          },
+          "normal": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 5370,
+            "bytes": 64440,
+            "sha256": "d90684ae4fa800d30ec778a97f8b34e7a8ee4c74ef1cc8b9bc5c65cd2bbd4570"
+          },
+          "indices": null,
+          "materialSha256": "6d94f915236213af58c7e366be5c69e84a1890b62ab0328ce80a6c1acf162dcc",
+          "matrix": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0.22478442229253834,
+            0.23114909328368094,
+            0.1529780214974046,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fox491404_v1_voron4010_reference_v12_right_fan_insert_2",
+      "metadata": {
+        "source": {
+          "source_key": "sb_revo_voron_94",
+          "repository": "https://github.com/VoronDesign/Voron-Stealthburner",
+          "commit": "8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b",
+          "source_asset": "modules/sb_revo_voron.glb.gz",
+          "identity": "Original M3 Threaded Insert, chosen heat-set reference",
+          "license": "GPL-3.0",
+          "original_step_sha256": "526fe18bd11c046deba0a2b193fa3874e8f6d6e5a282fbdc25f06fe5acb3021d"
+        },
+        "rigid_rotation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            -1,
+            0
+          ]
+        ],
+        "rigid_translation_mm": [
+          199.38451154080815,
+          -152.97793209043743,
+          231.14910073426154
+        ],
+        "motion": "fixed",
+        "color": [
+          0.8962693810462952,
+          0.5972017645835876,
+          0.2015562504529953,
+          1
+        ],
+        "appearance_role": null
+      },
+      "primitives": [
+        {
+          "position": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 7602,
+            "bytes": 91224,
+            "sha256": "6d1da1517d74fd393da49f68119225eb6072528e7748eafc979a6eb2c11e270e"
+          },
+          "normal": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 7602,
+            "bytes": 91224,
+            "sha256": "1e266b01c2b6af11228b5afdd95a550ce53b63ac13b84cec9b816b414096a2ff"
+          },
+          "indices": null,
+          "materialSha256": "ff5a46bb7162c2324533d3ea9e087af85ca3a57a005dfed5651d9518d130e1b1",
+          "matrix": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0.19938451154080813,
+            0.23114910073426154,
+            0.15297793209043745,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fox491404_v1_voron4010_reference_v12_right_fan_bolt_3",
+      "metadata": {
+        "source": {
+          "source_key": "sb_revo_voron_92",
+          "repository": "https://github.com/VoronDesign/Voron-Stealthburner",
+          "commit": "8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b",
+          "source_asset": "modules/sb_revo_voron.glb.gz",
+          "identity": "Original M3x16 SHCS",
+          "license": "GPL-3.0",
+          "original_step_sha256": "526fe18bd11c046deba0a2b193fa3874e8f6d6e5a282fbdc25f06fe5acb3021d"
+        },
+        "rigid_rotation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            -1,
+            0
+          ]
+        ],
+        "rigid_translation_mm": [
+          224.78442229253835,
+          -120.9780214974046,
+          231.14909328368094
+        ],
+        "motion": "fixed",
+        "color": [
+          0.35153260827064514,
+          0.35153260827064514,
+          0.35153260827064514,
+          1
+        ],
+        "appearance_role": null
+      },
+      "primitives": [
+        {
+          "position": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 5370,
+            "bytes": 64440,
+            "sha256": "030215ec0390b54d1b6117f70ae9151d1968159d6a998f8cea231c28cc7d74ef"
+          },
+          "normal": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 5370,
+            "bytes": 64440,
+            "sha256": "d90684ae4fa800d30ec778a97f8b34e7a8ee4c74ef1cc8b9bc5c65cd2bbd4570"
+          },
+          "indices": null,
+          "materialSha256": "6d94f915236213af58c7e366be5c69e84a1890b62ab0328ce80a6c1acf162dcc",
+          "matrix": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0.22478442229253834,
+            0.23114909328368094,
+            0.1209780214974046,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fox491404_v1_voron4010_reference_v12_right_fan_insert_3",
+      "metadata": {
+        "source": {
+          "source_key": "sb_revo_voron_94",
+          "repository": "https://github.com/VoronDesign/Voron-Stealthburner",
+          "commit": "8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b",
+          "source_asset": "modules/sb_revo_voron.glb.gz",
+          "identity": "Original M3 Threaded Insert, chosen heat-set reference",
+          "license": "GPL-3.0",
+          "original_step_sha256": "526fe18bd11c046deba0a2b193fa3874e8f6d6e5a282fbdc25f06fe5acb3021d"
+        },
+        "rigid_rotation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            -1,
+            0
+          ]
+        ],
+        "rigid_translation_mm": [
+          199.38451154080815,
+          -120.97793209043743,
+          231.14910073426154
+        ],
+        "motion": "fixed",
+        "color": [
+          0.8962693810462952,
+          0.5972017645835876,
+          0.2015562504529953,
+          1
+        ],
+        "appearance_role": null
+      },
+      "primitives": [
+        {
+          "position": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 7602,
+            "bytes": 91224,
+            "sha256": "6d1da1517d74fd393da49f68119225eb6072528e7748eafc979a6eb2c11e270e"
+          },
+          "normal": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 7602,
+            "bytes": 91224,
+            "sha256": "1e266b01c2b6af11228b5afdd95a550ce53b63ac13b84cec9b816b414096a2ff"
+          },
+          "indices": null,
+          "materialSha256": "ff5a46bb7162c2324533d3ea9e087af85ca3a57a005dfed5651d9518d130e1b1",
+          "matrix": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0.19938451154080813,
+            0.23114910073426154,
+            0.12097793209043743,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fox491404_v1_voron4010_reference_v12_right_frame_bolt_0",
+      "metadata": {
+        "source": {
+          "source_key": "trident_r2_gantry_350_80",
+          "repository": "https://github.com/VoronDesign/Voron-Trident",
+          "commit": "a8628f48546948ce1fc15511b7765b7f31f80722",
+          "source_asset": "modules/trident_r2_gantry_350.glb.gz",
+          "identity": "Original M3x12 SHCS",
+          "license": "GPL-3.0",
+          "original_step_sha256": null
+        },
+        "rigid_rotation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "rigid_translation_mm": [
+          -5.000188946723938,
+          20.89359713897707,
+          -60.410411330229465
+        ],
+        "motion": "fixed",
+        "color": [
+          0.35153260827064514,
+          0.35153260827064514,
+          0.35153260827064514,
+          1
+        ],
+        "appearance_role": null
+      },
+      "primitives": [
+        {
+          "position": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 2076,
+            "bytes": 24912,
+            "sha256": "d3ea20e168a50df958b75f281ef816e477b2fc124d3db8162e7d1e6fad433a19"
+          },
+          "normal": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 2076,
+            "bytes": 24912,
+            "sha256": "bb44649d435c4585f6f3af39f906b916430146123b4ddbaf9ef0968eff88e13a"
+          },
+          "indices": null,
+          "materialSha256": "6d94f915236213af58c7e366be5c69e84a1890b62ab0328ce80a6c1acf162dcc",
+          "matrix": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            -0.005000188946723938,
+            -0.060410411330229466,
+            -0.020893597138977073,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fox491404_v1_voron4010_reference_v12_right_frame_nut_0",
+      "metadata": {
+        "source": {
+          "source_key": "voron_trident_350_base_1190",
+          "repository": "https://github.com/VoronDesign/Voron-Trident",
+          "commit": "a8628f48546948ce1fc15511b7765b7f31f80722",
+          "source_asset": "machines/voron_trident_350/model.glb.gz",
+          "identity": "Original M3 Hammerhead T-Nut",
+          "license": "GPL-3.0",
+          "original_step_sha256": null
+        },
+        "rigid_rotation": [
+          [
+            -1,
+            0,
+            0
+          ],
+          [
+            0,
+            -1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "rigid_translation_mm": [
+          489.99999463558197,
+          489.9993985891342,
+          -209.41040036297483
+        ],
+        "motion": "fixed",
+        "color": [
+          0.12477181851863861,
+          0.13286831974983215,
+          0.1441284716129303,
+          1
+        ],
+        "appearance_role": null
+      },
+      "primitives": [
+        {
+          "position": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 3222,
+            "bytes": 38664,
+            "sha256": "8b9eed79b9c551187c605356f74e976ccde6c893af9ab8e886848c9cded14e7a"
+          },
+          "normal": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 3222,
+            "bytes": 38664,
+            "sha256": "701e01f78b935e547729ba6c7c8ab9022a447ec83ffc5c298ee9256afe96c5c8"
+          },
+          "indices": null,
+          "materialSha256": "04ebdcc63bd4cecfda2d4aa77f363cb2352243eb65a2e7afa0188e39aa20afa4",
+          "matrix": [
+            -1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0.48999999463558197,
+            -0.2094104003629748,
+            -0.4899993985891342,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fox491404_v1_voron4010_reference_v12_right_frame_bolt_1",
+      "metadata": {
+        "source": {
+          "source_key": "trident_r2_gantry_350_80",
+          "repository": "https://github.com/VoronDesign/Voron-Trident",
+          "commit": "a8628f48546948ce1fc15511b7765b7f31f80722",
+          "source_asset": "modules/trident_r2_gantry_350.glb.gz",
+          "identity": "Original M3x12 SHCS",
+          "license": "GPL-3.0",
+          "original_step_sha256": null
+        },
+        "rigid_rotation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "rigid_translation_mm": [
+          -5.000188946723938,
+          20.89359713897707,
+          -50.410413688250685
+        ],
+        "motion": "fixed",
+        "color": [
+          0.35153260827064514,
+          0.35153260827064514,
+          0.35153260827064514,
+          1
+        ],
+        "appearance_role": null
+      },
+      "primitives": [
+        {
+          "position": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 2076,
+            "bytes": 24912,
+            "sha256": "d3ea20e168a50df958b75f281ef816e477b2fc124d3db8162e7d1e6fad433a19"
+          },
+          "normal": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 2076,
+            "bytes": 24912,
+            "sha256": "bb44649d435c4585f6f3af39f906b916430146123b4ddbaf9ef0968eff88e13a"
+          },
+          "indices": null,
+          "materialSha256": "6d94f915236213af58c7e366be5c69e84a1890b62ab0328ce80a6c1acf162dcc",
+          "matrix": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            -0.005000188946723938,
+            -0.05041041368825069,
+            -0.020893597138977073,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fox491404_v1_voron4010_reference_v12_right_frame_nut_1",
+      "metadata": {
+        "source": {
+          "source_key": "voron_trident_350_base_1190",
+          "repository": "https://github.com/VoronDesign/Voron-Trident",
+          "commit": "a8628f48546948ce1fc15511b7765b7f31f80722",
+          "source_asset": "machines/voron_trident_350/model.glb.gz",
+          "identity": "Original M3 Hammerhead T-Nut",
+          "license": "GPL-3.0",
+          "original_step_sha256": null
+        },
+        "rigid_rotation": [
+          [
+            -1,
+            0,
+            0
+          ],
+          [
+            0,
+            -1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "rigid_translation_mm": [
+          489.99999463558197,
+          489.9993985891342,
+          -199.41040272099605
+        ],
+        "motion": "fixed",
+        "color": [
+          0.12477181851863861,
+          0.13286831974983215,
+          0.1441284716129303,
+          1
+        ],
+        "appearance_role": null
+      },
+      "primitives": [
+        {
+          "position": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 3222,
+            "bytes": 38664,
+            "sha256": "8b9eed79b9c551187c605356f74e976ccde6c893af9ab8e886848c9cded14e7a"
+          },
+          "normal": {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 3222,
+            "bytes": 38664,
+            "sha256": "701e01f78b935e547729ba6c7c8ab9022a447ec83ffc5c298ee9256afe96c5c8"
+          },
+          "indices": null,
+          "materialSha256": "04ebdcc63bd4cecfda2d4aa77f363cb2352243eb65a2e7afa0188e39aa20afa4",
+          "matrix": [
+            -1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0.48999999463558197,
+            -0.19941040272099606,
+            -0.4899993985891342,
+            1
+          ]
+        }
+      ]
+    }
+  ],
+  "printed": [
+    {
+      "key": "fox491404_v1_voron4010_reference_v12_left_bracket",
+      "metadata": {
+        "source": {
+          "author": "FOX",
+          "url": "https://www.printables.com/model/491404-voron-trident-ab-stepper-fan",
+          "source_file": "AB_Stepper_Fan.3mf",
+          "source_object": "3",
+          "source_sha256": "34ad0f68b8acef21254ffa81183200d9dede73164953ba0adbce2fb27322d6e3",
+          "license": "CC-BY-NC-4.0"
+        },
+        "rigid_rotation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "rigid_translation_mm": [
+          145.00029861927032,
+          -145.00000059604645,
+          520
+        ],
+        "motion": "fixed",
+        "color": [
+          0.2,
+          0.35,
+          0.7,
+          1
+        ],
+        "appearance_role": "base"
+      },
+      "matrix": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0.14500029861927033,
+        0.52,
+        0.14500000059604645,
+        1
+      ]
+    },
+    {
+      "key": "fox491404_v1_voron4010_reference_v12_right_bracket",
+      "metadata": {
+        "source": {
+          "author": "FOX",
+          "url": "https://www.printables.com/model/491404-voron-trident-ab-stepper-fan",
+          "source_file": "AB_Stepper_Fan.3mf",
+          "source_object": "1",
+          "source_sha256": "34ad0f68b8acef21254ffa81183200d9dede73164953ba0adbce2fb27322d6e3",
+          "license": "CC-BY-NC-4.0"
+        },
+        "rigid_rotation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "rigid_translation_mm": [
+          493.16913540395353,
+          -145.00029861927032,
+          520
+        ],
+        "motion": "fixed",
+        "color": [
+          0.2,
+          0.35,
+          0.7,
+          1
+        ],
+        "appearance_role": "base"
+      },
+      "matrix": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0.4931691354039535,
+        0.52,
+        0.14500029861927033,
+        1
+      ]
+    }
+  ],
+  "scope": "Original FOX V1 public3MF and separately credited Voron reference hardware. Exact exported array/material/pose witnesses; not original analytic bracket CAD, manufacturer SKU or native-solid fit evidence."
+}

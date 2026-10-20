@@ -12,7 +12,11 @@ const id=prefix=>{let value;do value=`${prefix}-${nextId++}`;while([...state.fur
 const clone=value=>JSON.parse(JSON.stringify(value));
 const t=(key,params)=>language?.t(key,params)||key;
 function store(){try{localStorage.setItem(storageKey,serializeLayout(state,catalog));}catch{}}
-function message(text,error=false){$('#layout-status').hidden=false;$('#layout-status').textContent=text;ui?.setStatus({canUndo:past.length>0,canRedo:future.length>0,busy,message:text,error});}
+function message(value,error=false,details={}){
+ const node=$('#layout-status'),format=typeof value==='function'?value:()=>value,text=String(format());
+ node._layoutMessage={format,error};node.hidden=false;node.textContent=text;
+ ui?.setStatus({canUndo:past.length>0,canRedo:future.length>0,busy,...details,message:text,error});
+}
 function humanError(error){
   const boundary=error?.errors?.find(e=>e.code==='ROOM_OUT_OF_BOUNDS'||e.code==='SURFACE_OVERHANG');
   if(boundary)return t(`layout.error.${boundary.code}`);
@@ -29,7 +33,7 @@ function sync(){
 }
 function commit(next,{history=true}={}){
   if(busy||next===state||serializeLayout(next,catalog)===serializeLayout(state,catalog))return;if(history){past.push(state);if(past.length>80)past.shift();future.length=0;}
-  state=next;$('#layout-status').hidden=true;$('#layout-status').textContent='';ui.setStatus({message:'',error:false});sync();store();
+  state=next;delete $('#layout-status')._layoutMessage;$('#layout-status').hidden=true;$('#layout-status').textContent='';ui.setStatus({message:'',error:false});sync();store();
 }
 function select(value){if(busy)return;interactionGeneration++;selected=value;sync();}
 function download(blob,name){const url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download=name;link.click();setTimeout(()=>URL.revokeObjectURL(url),30000);}
@@ -78,7 +82,7 @@ function worldMove({id:entityId,x,z}){
       ?prepared.state:applyWorldMove(state,{id:entityId,xMm:x,zMm:z},catalog);
     commit(next);return true;
   }
-  catch(error){message(humanError(error),true);sync();return false;}
+  catch(error){message(()=>humanError(error),true);sync();return false;}
 }
 let pendingRotation=null,discreteRotation=null;
 function constrainRotate({id:entityId,yawDeg},context){
@@ -113,24 +117,24 @@ function worldRotate({id:entityId,yawDeg,deltaDeg}){
     const next=chain&&total===0?chain.base:validated;
     discreteRotation=chain?{...chain,total,last:next}:null;
     commit(next);return true;
-  }catch(error){message(humanError(error),true);sync();return false;}
+  }catch(error){message(()=>humanError(error),true);sync();return false;}
 }
 async function render(){
   if(busy)return;const floorplan=view.getView().projection==='orthographic-floorplan';
-  if(!floorplan&&validatePlacement(state,catalog).some(issue=>issue.code==='ROOM_OUT_OF_BOUNDS'||issue.code==='SURFACE_OVERHANG')){message(t('layout.repairBounds'),true);return;}
+  if(!floorplan&&validatePlacement(state,catalog).some(issue=>issue.code==='ROOM_OUT_OF_BOUNDS'||issue.code==='SURFACE_OVERHANG')){message(()=>t('layout.repairBounds'),true);return;}
   busy=true;operation=new AbortController();ui.setStatus({busy:true,canUndo:false,canRedo:false,renderProgress:null});
-  document.body.dataset.layoutRendering='loading';$('#layout-status').hidden=false;$('#layout-status').textContent=t(floorplan?'layout.render.planLoading':'layout.render.loading');
+  document.body.dataset.layoutRendering='loading';message(()=>t(floorplan?'layout.render.planLoading':'layout.render.loading'));
   try{
     // Genuine CAD and its loaders are intentionally absent from the placement path.
-    const loadLayoutMachine=floorplan?undefined:(await import('./layout-machine-loader.mjs?v=3fd62efd6ba4e7939969')).loadLayoutMachine;
+    const loadLayoutMachine=floorplan?undefined:(await import('./layout-machine-loader.mjs?v=6c1108d97658d86c4342')).loadLayoutMachine;
     let lastPercent=0;
     const result=await view.exportImage({loadMachine:loadLayoutMachine,width:1920,signal:operation.signal,onProgress:p=>{
-      if(floorplan){ui.setStatus({busy:true,renderProgress:null,message:t('layout.render.planLoading')});return;}
+      if(floorplan){message(()=>t('layout.render.planLoading'),false,{renderProgress:null});return;}
       const complete=p.index||0,total=p.total||state.printers.length;
       const count=complete+(p.phase==='rendering'?0:Math.max(0,Math.min(.95,Number(p.ratio)||0)));
       const percent=lastPercent=Math.max(lastPercent,Math.max(0,Math.min(100,Math.floor(100*count/Math.max(1,total)))));
-      ui.setStatus({busy:true,renderProgress:{phase:p.phase,loaded:percent,total:100},message:t('layout.render.progress',{current:Math.min(complete+1,total),total,percent})});
-      $('#layout-status').textContent=t('layout.render.progress',{current:Math.min(complete+1,total),total,percent});
+      const values={current:Math.min(complete+1,total),total,percent};
+      message(()=>t('layout.render.progress',values),false,{renderProgress:{phase:p.phase,loaded:percent,total:100}});
     }});
     if(operation.signal.aborted)return;
     if(renderURL)URL.revokeObjectURL(renderURL);renderURL=URL.createObjectURL(result.blob);
@@ -141,9 +145,9 @@ async function render(){
     const save=document.createElement('a');save.className='layout-button';save.href=renderURL;save.download='3d-print-rig-layout.png';save.textContent=t('layout.render.download');
     const close=document.createElement('button');close.type='button';close.textContent=t('common.close');close.addEventListener('click',()=>dialog.close());
     const note=document.createElement('p');note.textContent=t('layout.render.currentView');dialog.append(heading,image,note,save,close);dialog.showModal();
-    document.body.dataset.layoutRendering='complete';message(t('layout.render.complete',{width:result.width,height:result.height}));
+    document.body.dataset.layoutRendering='complete';message(()=>t('layout.render.complete',{width:result.width,height:result.height}));
   }catch(error){
-    document.body.dataset.layoutRendering=error.name==='AbortError'?'cancelled':'failed';message(error.name==='AbortError'?t('layout.render.cancelled'):humanError(error),error.name!=='AbortError');
+    document.body.dataset.layoutRendering=error.name==='AbortError'?'cancelled':'failed';message(()=>error.name==='AbortError'?t('layout.render.cancelled'):humanError(error),error.name!=='AbortError');
   }finally{busy=false;operation=null;ui.setStatus({busy:false,canUndo:past.length>0,canRedo:future.length>0});}
 }
 async function act(action){
@@ -175,12 +179,12 @@ async function act(action){
         if(furniture){const copy=clone(furniture);copy.id=id(copy.type);copy.pose.xMm+=100;copy.pose.zMm+=100;selected=copy.id;commit(applyAction(state,{type:'ADD_FURNITURE',furniture:copy},catalog));}
         else {const printer=clone(state.printers.find(e=>e.id===action.id));if(!printer)return;printer.id=id('printer');printer.attachment.xMm+=100;printer.attachment.zMm+=100;selected=printer.id;commit(applyAction(state,{type:'ADD_PRINTER',printer},catalog));}return;
       }
-      case 'export':download(new Blob([serializeLayout(state,catalog)],{type:'application/json'}),'3d-print-rig-layout.json');message(t('layout.saved'));return;
+      case 'export':download(new Blob([serializeLayout(state,catalog)],{type:'application/json'}),'3d-print-rig-layout.json');message(()=>t('layout.saved'));return;
       case 'import':{
         if(!action.file||action.file.size>maxFileBytes)throw Object.assign(Error('Layout file too large'),{code:'FILE_TOO_LARGE'});
         const source=state,text=await action.file.text();
         if(disposed||generation!==interactionGeneration||state!==source||busy||roomEditing)return;
-        const next=parseLayout(text,catalog);selected=null;importCommitted=true;commit(next);view.view('perspective');message(t('layout.loaded'));return;
+        const next=parseLayout(text,catalog);selected=null;importCommitted=true;commit(next);view.view('perspective');message(()=>t('layout.loaded'));return;
       }
       case 'render':await render();return;
       case 'edit-room':case 'import-svg':{
@@ -201,7 +205,7 @@ async function act(action){
       }
       default:commit(applyAction(state,action,catalog));
     }
-  }catch(error){if(disposed||(action.type==='import'&&!importCommitted&&generation!==interactionGeneration))return;message(humanError(error),true);sync();}
+  }catch(error){if(disposed||(action.type==='import'&&!importCommitted&&generation!==interactionGeneration))return;message(()=>humanError(error),true);sync();}
 }
 function updateViewPresentation({mode='perspective',projection='perspective-3d'}={}){
   const hint=$('#layout-scene-hint'),key=projection==='orthographic-floorplan'?'layout.hint.plan':'layout.hint.auto';
@@ -210,6 +214,7 @@ function updateViewPresentation({mode='perspective',projection='perspective-3d'}
 }
 function updateLanguage(){
   ui?.setLocale(language.t);if(ui)sync();
+  const node=$('#layout-status');if(node?._layoutMessage&&!node.hidden){const text=String(node._layoutMessage.format());node.textContent=text;ui?.setStatus({message:text,error:node._layoutMessage.error});}
   language.refresh();
 }
 async function start(){
@@ -239,10 +244,10 @@ async function start(){
   if(raw.schema!=='3d-print-rig-layout-catalog'||!Array.isArray(raw.machines)||!raw.machines.length)throw Error('Invalid catalog');
   rows=raw.machines.map(r=>({...r,widthMm:r.dimensionsMm.width,depthMm:r.dimensionsMm.depth,heightMm:r.dimensionsMm.height}));
   catalog=createCatalog(rows.map(r=>({id:r.id,widthMm:r.widthMm,depthMm:r.depthMm,heightMm:r.heightMm,baseOffsetMm:r.baseOffsetMm||0,...(r.footprintMm?{footprintMm:r.footprintMm}:{})})));
-  state=makeDefault();try{const saved=localStorage.getItem(storageKey);if(saved&&saved.length<=maxFileBytes)state=parseLayout(saved,catalog);}catch{message(t('layout.error.savedPlan'),true);}
+  state=makeDefault();try{const saved=localStorage.getItem(storageKey);if(saved&&saved.length<=maxFileBytes)state=parseLayout(saved,catalog);}catch{message(()=>t('layout.error.savedPlan'),true);}
   const {createLayoutRenderer}=await import('./layout-renderer.mjs?v=bf8b155f6f95e41242bf');
   ui=createLayoutUI({container:$('#layout-sidebar'),onAction:act,t:language.t,catalog:rows});
-  view=createLayoutRenderer({container:$('#layout-scene'),catalog:rows,t:language.t,onSelect:select,onMove:worldMove,constrainMove,onRotate:worldRotate,constrainRotate,onViewChange:updateViewPresentation,onError:error=>message(humanError(error),true)});
+  view=createLayoutRenderer({container:$('#layout-scene'),catalog:rows,t:language.t,onSelect:select,onMove:worldMove,constrainMove,onRotate:worldRotate,constrainRotate,onViewChange:updateViewPresentation,onError:error=>message(()=>humanError(error),true)});
   sync();view.view('perspective');
   updateViewPresentation(view.getView());
   for(const e of document.querySelectorAll('[data-layout-view]'))e.addEventListener('click',()=>{if(!busy&&!roomEditing)view.view(e.dataset.layoutView);});
@@ -256,7 +261,7 @@ async function start(){
     if(patch){event.preventDefault();act(e.pose?{type:'UPDATE_FURNITURE',id:e.id,patch:{pose:patch}}:{type:'UPDATE_PRINTER',id:e.id,patch:{attachment:patch}});}
   });
   view.setOptions({dark:dark(),walls:$('#layout-walls')?.checked??true,grid:$('#layout-grid')?.checked??true});updateLanguage();document.body.dataset.layoutReady='true';
-  if(Number.isFinite(navigator.deviceMemory)&&navigator.deviceMemory<=4)message(t('layout.memoryHint'));
+  if(Number.isFinite(navigator.deviceMemory)&&navigator.deviceMemory<=4)message(()=>t('layout.memoryHint'));
 }
 window.addEventListener('pagehide',()=>{disposed=true;operation?.abort();view?.dispose();ui?.dispose();language?.disconnect();if(renderURL)URL.revokeObjectURL(renderURL);},{once:true});
-start().catch(error=>{document.body.dataset.layoutReady='failed';$('#layout-status').hidden=false;$('#layout-status').textContent=t('layout.error.start');console.error(error);});
+start().catch(error=>{document.body.dataset.layoutReady='failed';message(()=>t('layout.error.start'),true);console.error(error);});

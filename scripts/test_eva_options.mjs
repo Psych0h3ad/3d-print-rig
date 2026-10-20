@@ -5,6 +5,7 @@ import fs from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {register} from 'node:module';
 import {spawnSync} from 'node:child_process';
+import {messageIdFor} from '../site/viewer/i18n.mjs';
 import * as THREE from '../site/viewer/vendor-r180/three.module.js';
 import {displayMotion,nativeMotion,communityConfiguration,validateCommunityState,communitySchema} from '../site/viewer/community-state.mjs';
 import {createCommunityAdapter} from '../site/viewer/community-adapter.mjs';
@@ -686,7 +687,7 @@ const closure=evaOptionsCodeClosure();
 check(()=>{for(const file of ['site/viewer/vendor/three.module.js','site/viewer/vendor-r180/three.module.js','site/viewer/community-state.mjs',
  'site/viewer/native-motion-flex.mjs','site/viewer/component-assets.mjs','site/viewer/eva-options.mjs','site/viewer/community-loader.mjs'])assert(/^[a-f0-9]{64}$/.test(closure[file]),'Missing release code pin '+file)});
 async function parentIntegrationReview(){
- const files={};for(const name of ['community.js','toolheads.js','machine-heads.js','eva-front-surfaces.mjs','inactive-head-cache.mjs'])files[name]=await fs.readFile(new URL('../site/viewer/'+name,import.meta.url),'utf8');
+ const files={};for(const name of ['community.js','toolheads.js','machine-heads.js','eva-front-surfaces.mjs','inactive-head-cache.mjs','render-export.js'])files[name]=await fs.readFile(new URL('../site/viewer/'+name,import.meta.url),'utf8');
  const findings=[],checks=[];let standaloneBankAdapterReview=null,communityStartupReview=null;
  const range=(text,start,end)=>{const a=text.indexOf(start),b=text.indexOf(end,a+start.length);assert(a>=0&&b>a,'Parent source fixture anchor changed');return text.slice(a,b)};
  const line=(file,fragment)=>files[file].slice(0,files[file].indexOf(fragment)).split('\n').length;
@@ -735,12 +736,14 @@ async function parentIntegrationReview(){
   const proofVariants=clone(f.registry.variants);proofVariants[1].installation.native_review={url:'https://example.invalid/alternative-review.json'};
   c.profile.eva_installation.native_review={url:'https://example.invalid/default-review.json'};
   const describeState={configuration:f.a.id};
+  const modelNotice={textContent:'Original model reference',hidden:false};
   c.profile.configurations[f.a.id].sources=[{url:'https://example.invalid/public-author-cad',author:'Public source author',revision:'exact-variant-revision'}];
-  const callDescribe=new Function('env',`const {current,state,evaOptions,$,document,t,machine,descriptions,sourceNotices,communityConfiguration,location}=env;
+  const callDescribe=new Function('env',`const {current,state,evaOptions,$,document,t,machine,descriptions,sourceNotices,communityConfiguration,location,modelNotice}=env;
    ${describeSource};return describe;`)({current:c,state:describeState,evaOptions:{entries:proofVariants},$:get,
     document:{documentElement:{lang:'en'},querySelector:()=>makeElement(),createElement:()=>makeElement()},t:v=>v,
-    machine:f.host.machine_id,descriptions:{},sourceNotices:{},communityConfiguration,location:environment.location});
+    machine:f.host.machine_id,descriptions:{},sourceNotices:{},communityConfiguration,location:environment.location,modelNotice});
   callDescribe();let links=get('installationSource').children.filter(n=>n.href);
+  assert.equal(modelNotice.hidden,true,'EVA chooser must not display a phantom original-model notice');assert.equal(modelNotice.textContent,'Original model reference','Hiding the notice must retain its original source text');
   assert(links.some(n=>n.href===proofVariants[1].installation.native_review.url));assert(!links.some(n=>n.href===c.profile.eva_installation.native_review.url));
   assert(!links.some(n=>(n.textContent||'').includes('undefined')));
   delete proofVariants[1].installation.native_review;callDescribe();links=get('installationSource').children.filter(n=>n.href);
@@ -766,7 +769,10 @@ async function parentIntegrationReview(){
  // The production controller and native adapter retain their own guards.
  {
   const source=files['community.js'].replaceAll('\r\n','\n');
-  const startupSource=range(source,' try{\n  const responses=','\n}\n');
+  const startupBody=range(source,"  const responses=await Promise.all(['COMMUNITY_MACHINES_ASSETS.json'",'\n }catch(e){');
+  const startupCatch=range(source,' }catch(e){','\n}\n');
+  const statusSource=range(source,' function statusText(',' // This template placeholder');
+  const startupSource=' try{\n'+startupBody+'\n'+startupCatch;
   const nested=range(source,' function setAxes(next){',' function visibleBounds(')+
    range(source,' async function setInstallation(id){',' for(const[id,kind]of ')+
    range(source,' function describe(){',' workspaceListen(window,');
@@ -775,15 +781,17 @@ async function parentIntegrationReview(){
     createEvaOptionsController,GLTFLoader,scene,scope,machine,communityConfiguration,communityMotionEnabled,
     workspaceTask,history,location,render,view,resize,setupPublicInfo,setupRenderExport,setupGcodePanel,
     displacementGcodeSettings,displacementCoordinateNote,unavailableCoordinateNote,t,grid,communitySchema,
-    THREE,renderer,camera,controls,descriptions,sourceNotices,validateCommunityState,lighting,rememberDisplayControl}=env;
+    THREE,renderer,camera,controls,descriptions,sourceNotices,validateCommunityState,lighting,rememberDisplayControl,messageIdFor}=env;
+   const status=$('status'),modelNotice=$('sourceModelNotice');
    let current,state,evaOptions,axisKeys=[],installationRequest=0,animation=null;
+   ${statusSource}
    const ranges=()=>({...current.profile.axes,...communityConfiguration(current.profile,state?.configuration??'stock').axes});
    ${nested}
    return {async start(){${initialization}},capture,
     snapshot(){return {configuration:state?.configuration,axes:state&&{...state.axes},
      selector:$('headInstallation').value,url_configuration:new URL(location.href).searchParams.get('configuration'),
      ready:document.body.dataset.ready==='true',page_error:document.body.dataset.error??null,
-     status:$('configurationStatus').textContent,status_hidden:$('status').hidden,
+     status:$('configurationStatus').textContent,status_hidden:$('status').hidden,model_notice_hidden:modelNotice.hidden,
      selector_connected:typeof $('headInstallation').onchange==='function',
      axes_connected:axisKeys.every(k=>!$(k).disabled&&typeof $(k).oninput==='function'),
      palette_connected:['base','accent','frame'].every(k=>!$(k).disabled&&typeof $(k).oninput==='function'),
@@ -794,6 +802,7 @@ async function parentIntegrationReview(){
      native_root_visible:current?.root.visible}},
     retry(id){$('headInstallation').value=id;return $('headInstallation').onchange()},dispose(){evaOptions?.dispose()}};
   `)}
+  assert.ok(files['render-export.js'].includes("$('#openRender').disabled=false;$('#openRender').onclick="),'Render-export DOM setup contract changed');
   const runStartup=startupFactory(startupSource),rows=[],legacy=[];
   const eager="await setInstallation('stock');";assert.equal(startupSource.split(eager).length,2,'Startup default initialization anchor changed');
   const oldStartup=startupFactory(startupSource.replace(eager,"await setInstallation(requestedInstallation||'stock');"));
@@ -803,6 +812,7 @@ async function parentIntegrationReview(){
    c.profile.source={version:'Fixture source '+generation,revision:f.stock.source_version,repository:'https://example.invalid/public-source',license:'Fixture source terms'};
    c.profile.palette_defaults={base:'#111111',accent:'#ee2222',frame:'#aaaaaa'};c.manifest.reference_leaves=[];
    const element=tag=>({tag,checked:false,disabled:true,hidden:false,value:'',textContent:'',children:[],
+    setAttribute(k,v){this[k]=String(v)},removeAttribute(k){delete this[k]},getAttribute(k){return this[k]??null},
     append(...items){this.children.push(...items)},replaceChildren(...items){this.children=items}});
    const elements=new Map(),$=id=>{if(!elements.has(id))elements.set(id,element(id));return elements.get(id)};
    const document={body:{dataset:{},append(){}},documentElement:{lang:'en'},createElement:element,
@@ -819,16 +829,16 @@ async function parentIntegrationReview(){
     createEvaOptionsController:(current,options)=>controller=createEvaOptionsController(current,{...options,...io}),
     GLTFLoader:class{},scene:new THREE.Scene(),scope:{disposed:false,cleanup(){}},machine:f.host.machine_id,
     communityConfiguration,communityMotionEnabled:()=>true,workspaceTask:run=>run(),history:{replaceState(a,b,url){location.href=url}},location,
-    render:noop,view:noop,resize:noop,setupPublicInfo:async()=>{},setupRenderExport(){exports++},setupGcodePanel:noop,
+    render:noop,view:noop,resize:noop,setupPublicInfo:async()=>{},setupRenderExport(){exports++;$('openRender').disabled=false},setupGcodePanel:noop,
     displacementGcodeSettings:noop,displacementCoordinateNote:'',unavailableCoordinateNote:'',t:v=>v,grid:{visible:false},
     communitySchema,THREE,renderer:{},camera:{position:new THREE.Vector3(1,1,1),up:new THREE.Vector3(0,1,0),lookAt(){}},
     controls:{target:new THREE.Vector3(),update(){}},descriptions:{},sourceNotices:{},validateCommunityState,
-    lighting:noop,rememberDisplayControl:noop,exportSetups:()=>exports};
+    lighting:noop,rememberDisplayControl:noop,messageIdFor,exportSetups:()=>exports};
    return {f,c,ui:factory(env),attempts,timing,allowDownloads(){broken=false},get controller(){return controller}};
   }
   function usable(row){
    assert.equal(row.page_error,null,'Selected head failure aborted native startup');
-   for(const key of ['ready','status_hidden','selector_connected','axes_connected','palette_connected','save_load_connected','render_export_connected','native_root_visible'])
+   for(const key of ['ready','status_hidden','model_notice_hidden','selector_connected','axes_connected','palette_connected','save_load_connected','render_export_connected','native_root_visible'])
     assert.equal(row[key],true,'Native startup controls unavailable: '+key);
   }
   function selection(test,row,id){

@@ -1,6 +1,11 @@
 import assert from 'node:assert/strict';
-import {AccessorySelection,accessoryIds,accessoryAvailable} from '../site/viewer/accessories.js';
+import {AccessorySelection,accessoryIds,accessoryAvailable,setupAccessories} from '../site/viewer/accessories.js';
 import {mergeRequestedMods} from '../site/viewer/requested-mods.mjs';
+import fs from 'node:fs';
+// Load dictionaries into the same queried module instance used by the controller.
+const localeImport=fs.readFileSync(new URL('../site/viewer/accessories.js',import.meta.url),'utf8').match(/from '(\.\/i18n\.mjs(?:\?v=[^']+)?)'/u)?.[1];
+assert.ok(localeImport);
+const {formatMessage,loadLanguage}=await import(new URL('../site/viewer/'+localeImport.slice(2),import.meta.url));
 const catalog={accessories:[{id:'bedfans',module:'bedfans'},{id:'other',module:'other'}]};
 const fan={root:{visible:false,userData:{},position:{set(...p){this.value=p}}}};
 let updates=0;
@@ -51,4 +56,42 @@ assert.throws(()=>mergeRequestedMods({assets:{},accessories:constrained.accessor
 assert.throws(()=>mergeRequestedMods({assets:{},accessories:[]},{...additions,assets:{}},'host'));
 const rejected=structuredClone(additions);rejected.machines.host.accessories[0].geometry_review.unintended_body_interference_passed=false;
 assert.throws(()=>mergeRequestedMods({assets:{},accessories:[]},rejected,'host'));
+// The FOX V1 source attachment is registered only for this exact mechanical tuple.
+const requested=JSON.parse(fs.readFileSync(new URL('../site/REQUESTED_MOD_INSTALLATIONS.json',import.meta.url),'utf8'));
+const releaseBuilder=fs.readFileSync(new URL('./build_site.py',import.meta.url),'utf8');
+assert.match(releaseBuilder,/subprocess\.run\(\['node', '--max-old-space-size=256',\s+str\(ROOT\/'scripts\/audit_fox_ab_fan_assets\.mjs'\),\s+str\(target\), str\(target\/'review\/fox-ab-fan-assets\.json'\)\], cwd=ROOT, check=True\)/u);
+assert.ok(releaseBuilder.indexOf("str(ROOT/'scripts/audit_fox_ab_fan_assets.mjs')")>releaseBuilder.indexOf("str(ROOT/'scripts/test_switchwire_catalog.mjs')"));
+assert.ok(releaseBuilder.indexOf("str(ROOT/'scripts/audit_fox_ab_fan_assets.mjs')")<releaseBuilder.indexOf('verify_entrypoints(target, input_map)'));
+const FOX='fox491404_v1_voron4010_reference_closed_v30',V2='trident_ab_stepper_fan_491404_v2';
+const pilot=requested.machines.voron_trident_350.accessories.find(r=>r.id===FOX);
+assert.ok(pilot);assert.deepEqual(pilot.compatible_selection,{id:'trident_r2__stealthburner__revo_voron__cw2',gantry:'trident_r2',toolhead:'stealthburner',extruder:'cw2',hotend:'revo_voron',probe:'none'});
+const reviewed={...pilot.compatible_selection,mount:'fixed',carriage:'standard',board:'none',cooling:'source'};
+assert.ok(accessoryAvailable(pilot,reviewed));
+for(const [field,value]of Object.entries({id:'installed__alternate',gantry:'siboor_awd',toolhead:'xol',extruder:'sherpa',hotend:'rapido2_hf',probe:'klicky'}))assert.equal(accessoryAvailable(pilot,{...reviewed,[field]:value}),false,field);
+// Board/carriage/changer derivatives have distinct IDs, even with the same hotend.
+for(const suffix of ['__board','__carriage','__stealthchanger'])assert.equal(accessoryAvailable(pilot,{...reviewed,id:reviewed.id+suffix}),false);
+for(const [id,row]of Object.entries(requested.machines))if(id!=='voron_trident_350')assert.ok(!row.accessories.some(a=>a.id===FOX));
+assert.equal(requested.machines.voron_trident_350.accessories.find(r=>r.id===V2).exclusive_group,pilot.exclusive_group);
+assert.equal(requested.assets[FOX].parts,28);assert.equal(requested.assets[FOX].files['model.glb'].decoded_sha256,'cc1922bd8657130f5bbe7fbed20e7d371c40a6cfb6b7f80728354b42feba228e');
+const variants=[reviewed,{...reviewed,id:'unreviewed',toolhead:'xol'}],pilotCatalog={variants,accessories:requested.machines.voron_trident_350.accessories};
+let selected=reviewed,loads=0;const roots=new Map(pilotCatalog.accessories.map(r=>[r.module,{root:{visible:false,userData:{},position:{set(){}}}}]));
+const container={append(){}},status={textContent:''},listeners=new EventTarget();
+const previousDocument=globalThis.document,previousWindow=globalThis.window;
+try{
+ globalThis.document={documentElement:{lang:'en'},querySelector:q=>q==='#accessoryOptions'?container:status,createTextNode:text=>({textContent:text}),createElement:()=>({dataset:{},setAttribute(){},append(){}})};
+ globalThis.window=listeners;
+ const ui=setupAccessories(pilotCatalog,{load:async id=>{loads++;return roots.get(id)},update(){},stockNodes:new Map(),getVariant:()=>selected});
+ await ui.applyExtras({configuration:reviewed.id,accessories:[FOX]});assert.deepEqual(ui.getExtras().accessories,[FOX]);
+ const before=loads;assert.throws(()=>ui.validateExtras({configuration:'unreviewed',accessories:[FOX]}));assert.equal(loads,before);
+ assert.throws(()=>ui.validateExtras({configuration:reviewed.id,accessories:[FOX,V2]}));
+ await ui.applyExtras({configuration:reviewed.id,accessories:[V2]});assert.deepEqual(ui.getExtras().accessories,[V2]);assert.equal(roots.get(FOX).root.visible,false);
+ const warning=()=>formatMessage('ui.mod_companion_changed',{},document.documentElement.lang);
+ assert.equal(status.textContent,warning());ui.refresh();assert.equal(status.textContent,warning());
+ await ui.applyExtras({configuration:reviewed.id,accessories:[FOX]});assert.equal(status.textContent,warning());
+ selected=variants[1];ui.refresh();assert.deepEqual(ui.getExtras().accessories,[]);assert.equal(roots.get(FOX).root.visible,false);assert.equal(status.textContent,warning());
+ await assert.rejects(ui.applyExtras({accessories:[FOX]}));assert.equal(roots.get(FOX).root.visible,false);
+ selected=reviewed;await ui.applyExtras({accessories:[FOX]});selected=variants[1];ui.refresh();
+ const translations=new Set();for(const lang of ['ja','en','es','ko','ru']){await loadLanguage(lang);document.documentElement.lang=lang;window.dispatchEvent(new Event('rig-language-change'));assert.equal(status.textContent,warning());assert.notEqual(status.textContent,'ui.mod_companion_changed');translations.add(status.textContent)}assert.equal(translations.size,5);
+ selected=reviewed;await ui.applyExtras({accessories:[FOX]});const saved=JSON.parse(JSON.stringify({configuration:reviewed.id,...ui.getExtras()}));await ui.applyExtras({accessories:[]});assert.deepEqual(ui.getExtras().accessories,[]);ui.validateExtras(saved);await ui.applyExtras(saved);assert.deepEqual(ui.getExtras().accessories,[FOX]);
+}finally{globalThis.document=previousDocument;globalThis.window=previousWindow}
 console.log('Accessory selection passed: toggle, failed asset rollback, stock restoration, scoped gantry switching and native registry failures.');

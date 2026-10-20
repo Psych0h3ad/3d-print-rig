@@ -42,7 +42,7 @@ const engineFactory=new Function('deps',`
  let state=deps.state,catalog=deps.catalog,busy=false,roomEditing=false,disposed=false,selected=null,operation=null,interactionGeneration=0;
  const past=[],future=[],language={t:x=>x},view={view:x=>deps.views.push(x)};
  const applyAction=deps.applyAction,serializeLayout=deps.serialize,sync=()=>deps.syncs++,store=()=>deps.saved.push(deps.serialize(state,catalog));
- const humanError=e=>e.errors?.[0]?.code||e.code||e.message,message=(text,error)=>deps.errors.push({text,error});
+ const humanError=e=>e.errors?.[0]?.code||e.code||e.message,message=(value,error)=>deps.errors.push({text:typeof value==='function'?value():value,error});
  const $=selector=>{if(selector!=='#layout-status')throw Error('Unexpected UI hook: '+selector);return deps.statusNode;};
  const ui={setStatus:next=>deps.uiStatuses.push({...next})};
  ${commitSource}\n${actionSource}

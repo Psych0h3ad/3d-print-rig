@@ -93,6 +93,7 @@ await test('coarse-only-notice-theme-header-live-with-no-renderer-catalog-or-mod
  }
 });
 await test('deferred-layout-import-never-overwrites-newer-commands-or-disposed-page',async()=>{
+ const messageSource=unique(app,'function message(','\nfunction humanError(');
  const commitSource=unique(app,'function commit(next','\nfunction select(');
  const selectSource=unique(app,'function select(value)','\nfunction download(');
  const actSource=unique(app,'async function act(action){','\nfunction updateViewPresentation(');
@@ -100,11 +101,11 @@ await test('deferred-layout-import-never-overwrites-newer-commands-or-disposed-p
   const {createDefaultLayout,applyAction,serializeLayout,parseLayout}=deps,catalog=[];
   let state=deps.initial,selected=null,busy=false,roomEditing=false,disposed=false,interactionGeneration=0;
   const past=[],future=[],maxFileBytes=2097152,messages=[],views=[];
-  const sync=()=>{},store=()=>{},message=(...args)=>messages.push(args),humanError=()=> 'error',t=k=>k;
+  const sync=()=>{},store=()=>{},humanError=()=> 'error',t=k=>k;
   const view={view:v=>views.push(v)};
-  const statusNode={hidden:false,textContent:''},$=()=>statusNode,ui={setStatus(){}};
-  ${commitSource}\n${selectSource}\n${actSource}
-  return {act,select,get:()=>state,dispose:()=>disposed=true,messages,views};`);
+  const uiStatuses=[],statusNode={hidden:false,textContent:''},$=()=>statusNode,ui={setStatus(value){uiStatuses.push(value);if(statusNode._layoutMessage)messages.push([value.message,...(value.error?[true]:[])])}};
+  ${messageSource}\n${commitSource}\n${selectSource}\n${actSource}
+  return {act,select,get:()=>state,dispose:()=>disposed=true,messages,views,statusNode,uiStatuses};`);
  const room=width=>applyAction(createDefaultLayout(),{type:'SET_ROOM',room:createRoomRect({widthMm:width,depthMm:4000})},[]);
  const make=(initial=room(6000))=>factory({initial,createDefaultLayout,applyAction,serializeLayout,parseLayout});
  const deferred=()=>{let resolve,reject;const promise=new Promise((a,b)=>{resolve=a;reject=b});return {file:{size:100,text:()=>promise},resolve,reject}};
@@ -143,6 +144,7 @@ await test('deferred-layout-import-never-overwrites-newer-commands-or-disposed-p
  {
   const r=make(),d=deferred(),pending=r.act({type:'import',file:d.file});d.resolve(text);await pending;
   assert.equal(encoded(r),text);assert.deepEqual(r.messages,[['layout.loaded']]);assert.deepEqual(r.views,['perspective']);
+  assert.equal(typeof r.statusNode._layoutMessage.format,'function');assert.equal(r.statusNode._layoutMessage.format(),'layout.loaded');assert.equal(r.statusNode.textContent,'layout.loaded');assert.equal(r.statusNode.hidden,false);assert.equal(r.uiStatuses.at(-1).message,'layout.loaded');assert.equal(r.uiStatuses.at(-1).error,false);
  }
  {
   const r=make(),d=deferred(),pending=r.act({type:'import',file:d.file});d.reject(Error('current read'));await pending;assert.deepEqual(r.messages,[['error',true]]);
