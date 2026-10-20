@@ -1,7 +1,7 @@
 import * as THREE from '../viewer/vendor-r180/three.module.js';
 import {OrbitControls} from '../viewer/vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from '../viewer/vendor-r180/RoomEnvironment.js';
-import {deriveScene} from './layout-state.mjs?v=1a995a044e74b64e926f';
+import {deriveScene} from './layout-state.mjs?v=d5be89c5876cc3bfab5c';
 
 const MM = .001;
 const disposableMaterial = new THREE.MeshBasicMaterial({visible:false});
@@ -243,10 +243,14 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     if(drag!==gesture||disposed)return;
     if(accepted===false)return;
     if(!accepted||!Number.isFinite(accepted.x)||!Number.isFinite(accepted.z)){onError(Object.assign(Error('Invalid constrained move'),{code:'INVALID_CONSTRAINED_MOVE'}));return;}
+    const remainder=accepted.boundaryLimited?(accepted.pointerRemainder??{x:0,z:0}):null;
+    if(remainder&&(!Number.isFinite(remainder.x)||!Number.isFinite(remainder.z))){onError(Object.assign(Error('Invalid pointer remainder'),{code:'INVALID_CONSTRAINED_MOVE'}));return;}
     drag.accepted={x:accepted.x,z:accepted.z};
-    // Discard only the blocked pointer displacement. Keeping the original
-    // gesture/snap origin preserves undo and free-space sub-grid accumulation.
-    if(accepted.boundaryLimited){drag.anchorMm={...drag.accepted};drag.anchorPoint=p.clone();}
+    // Discard blocked displacement, retaining the unsnapped cursor remainder.
+    // Small wall-parallel moves must accumulate just like free-space moves.
+    if(remainder){
+      drag.anchorMm={x:accepted.x+remainder.x,z:accepted.z+remainder.z};drag.anchorPoint=p.clone();
+    }
     g.position.x=accepted.x*MM;g.position.z=accepted.z*MM;
     const syncPlan=id=>{const a=objects.get(id),b=planObjects.get(id);if(a&&b){b.position.x=a.position.x;b.position.z=a.position.z;}};syncPlan(drag.id);
     for(const follower of drag.followers||[]){const child=objects.get(follower.id);if(child){child.position.x=follower.origin.x+g.position.x-drag.origin.x;child.position.z=follower.origin.z+g.position.z-drag.origin.z;syncPlan(follower.id);}}

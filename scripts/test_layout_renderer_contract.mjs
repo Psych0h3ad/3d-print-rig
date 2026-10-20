@@ -659,10 +659,10 @@ for(const ending of ['pointerup','pointercancel']){
  x.api.canvas.emit(ending);await settled();assert.equal(x.commits.length,ending==='pointerup'?1:0);assert.ok(proposals.length===3&&proposals.every(p=>p.x>150));if(ending==='pointerup')assert.deepEqual(x.commits[0],{id:'desk',x:150,z:0});else assert.equal(S.serializeLayout(x.state(),x.catalog),before);
  x.api.dispose();passed.push('Synchronous constrainMove applies before each parent/child preview; '+ending+' uses accepted boundary pose once or restores all without state/history mutation.');
 }
-for(const response of [false,{x:NaN,z:0},{x:Infinity,z:0}]){
+for(const response of [false,{x:NaN,z:0},{x:Infinity,z:0},{x:100,z:0,boundaryLimited:true,pointerRemainder:{x:NaN,z:0}},{x:100,z:0,boundaryLimited:true,pointerRemainder:{x:0,z:Infinity}}]){
  const x=operationSetup(false,{constrainMove:()=>response});x.api.view('top');await settled();const before=S.serializeLayout(x.state(),x.catalog),origin=x.nodes(false).get('desk').position.toArray(),down=screen(new THREE.Vector3(.4,0,0),x.renderer.lastCamera);
  x.api.canvas.emit('pointerdown',down);x.api.canvas.emit('pointermove',{clientX:down.clientX+100,clientY:down.clientY});x.api.canvas.emit('pointerup');assert.deepEqual(x.nodes(false).get('desk').position.toArray(),origin);assert.equal(x.commits.length,0);assert.equal(S.serializeLayout(x.state(),x.catalog),before);if(response!==false)assert.equal(x.errors.at(-1).code,'INVALID_CONSTRAINED_MOVE');x.api.dispose();
- passed.push('constrainMove false/nonfinite cannot move root, commit history or leak rejected coordinates.');
+ passed.push('constrainMove false/nonfinite position or pointer remainder cannot move root, commit history or leak rejected coordinates.');
 }
 {
  const x=operationSetup(false,{rejectMove:true});x.api.view('top');await settled();const down=screen(new THREE.Vector3(.4,0,0),x.renderer.lastCamera),before=S.serializeLayout(x.state(),x.catalog),origin=x.nodes(false).get('desk').position.toArray();
@@ -844,6 +844,31 @@ for(const mode of ['top','perspective']){
  assert.equal(JSON.stringify(catalog),sourceCatalogJSON,'Preview must not edit source catalog');
  observations.push({case:'lightweight-printer-preview-all69',catalog:pin(file),machines:results,sourceAndPositiveBaseOffsetContact:true,fullCADLoaded:false});
  passed.push('All69 catalog printers retain source bounds/colors, gain bounded bed/base/contact cues using one shared box geometry, and opaque feet meet actual deriveScene supportYM on floor and desk even with positive native baseOffset; final CAD remains separate.');
+}
+
+// Source-backed recurrence: small tangent deltas must survive repeated wall
+// pressure, just as they do in free space. Execute the actual app callback.
+{
+ size={width:900,height:675};
+ const catalog=[{id:'slow-wall-machine',widthMm:200,depthMm:180,heightMm:300,dimensionsMm:{width:200,depth:180,height:300}}];
+ const desk=S.createDesk({id:'slow-desk',widthMm:1200,depthMm:700,heightMm:750,pose:{xMm:0,zMm:-500,yawDeg:0}});
+ const state=S.createDefaultLayout({room:S.createRoomRect({widthMm:4000,depthMm:1700}),furniture:[desk],printers:[]},catalog),before=S.serializeLayout(state,catalog);
+ const appFile=path.join(A,'layout/layout-app.mjs'),app=fs.readFileSync(appFile,'utf8');imports.push(pin(appFile));
+ const sourceMove=app.slice(app.indexOf('let pendingMove='),app.indexOf('async function render('));
+ const constrain=new Function('initial','catalog','resolveWorldMove','applyWorldMove',`let state=initial,busy=false,roomEditing=false,disposed=false;${sourceMove}\nreturn constrainMove;`)(state,catalog,S.resolveWorldMove,S.applyWorldMove);
+ const accepted=[],commits=[],api=factoryRealOrbit({container:{getBoundingClientRect:()=>({...size}),append(){}},catalog,
+  constrainMove:(proposal,context)=>{const value=constrain(proposal,context);accepted.push(value);return value;},onMove:m=>commits.push(m)});
+ api.setState(state,null);api.view('top');await settled();const renderer=renderers.at(-1),camera=renderer.lastCamera;
+ camera.zoom=5;camera.updateProjectionMatrix();const point=new THREE.Vector3(.45,0,-.5),at=(x,z)=>screen(point.clone().add(new THREE.Vector3(x/1000,0,z/1000)),camera);
+ api.canvas.emit('pointerdown',at(0,0));
+ for(let i=1;i<=20;i++)api.canvas.emit('pointermove',at(i*2,-i*20));
+ assert.equal(accepted.length,20);near(accepted.at(-1).x,40,'Slow2mm wall tangent accumulates under20mm outward pressure');near(accepted.at(-1).z,-500,'Wall pressure stays clamped');
+ for(let i=1;i<=20;i++)api.canvas.emit('pointermove',at(40-i*2,-400-i*20));
+ near(accepted.at(-1).x,0,'Slow reversed wall tangent A-B-A');near(accepted.at(-1).z,-500,'Reversed tangent stays on wall');
+ api.canvas.emit('pointermove',at(0,-780));near(accepted.at(-1).z,-480,'Immediate inward move drops old normal overshoot');
+ assert.equal(commits.length,0);api.canvas.emit('pointercancel');assert.equal(commits.length,0);assert.equal(S.serializeLayout(state,catalog),before);api.dispose();
+ observations.push({case:'slow-wall-tangent-grid-residual',frames:41,tangentStepMm:2,outwardStepMm:20,forwardMm:40,reverseMm:0,normalPullawayMm:20,actualAppCallback:true,trustedBrowserEvent:false});
+ passed.push('Actual app+renderer callback: repeated2mm wall-parallel deltas survive20mm outward pressure; slowA-B-A and immediate normal pullaway; cancel preserves original state.');
 }
 
 const ownerSourceStillMatchesSnapshot=sha(fs.readFileSync(input))===sha(Buffer.from(source));

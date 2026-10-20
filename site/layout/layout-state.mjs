@@ -384,7 +384,7 @@ export function resolveWorldMove(state, {id, x, z}, catalog = [], {snapMm = 10, 
     const pose=worldTransform(next,id,machines),nextScore=(pose.xMm-target.x)**2+(pose.zMm-target.z)**2;
     if(nextScore<score){score=nextScore;best=next;}
   }
-  return Object.freeze({...result(best),boundaryLimited:true});
+  return Object.freeze({...result(best),boundaryLimited:true,pointerRemainder:Object.freeze({x:x-target.x,z:z-target.z})});
 }
 // Public renderer callback shape. The app uses resolveWorldMove to retain the
 // same transaction for its once-only commit; this convenience remains pure.
