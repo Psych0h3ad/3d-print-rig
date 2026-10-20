@@ -5,7 +5,7 @@ ensureWorkspaceEntry(import.meta.url);
 import * as THREE from './vendor-r180/three.module.js';
 import {OrbitControls} from './vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
-import {loadCommunity} from './community-loader.mjs?v=52e76c5c1ffbaa1cc7dd';
+import {loadCommunity} from './community-loader.mjs?v=c69507eb079fc34e7997';
 import {evaCommunityIndex} from './eva-installations.mjs?v=4dfad49e1f98d4b5b9f2';
 import {applyEvaOptionsProfile,createEvaOptionsController} from './eva-options.mjs?v=cca14d57aef804d9411d';
 import {withHeadAdditions} from './head-additions.mjs?v=28317048846d076205c3';

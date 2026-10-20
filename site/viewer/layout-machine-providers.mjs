@@ -32,7 +32,7 @@ export async function loadLayoutRecipe(recipe,{signal,onProgress}) {
  return prepare(async own=>{
   let loaded;
   if(recipe.category==='community') {
-   const [{loadCommunity},{evaCommunityIndex}]=await Promise.all([import('./community-loader.mjs?v=52e76c5c1ffbaa1cc7dd'),import('./eva-installations.mjs?v=4dfad49e1f98d4b5b9f2')]);
+   const [{loadCommunity},{evaCommunityIndex}]=await Promise.all([import('./community-loader.mjs?v=c69507eb079fc34e7997'),import('./eva-installations.mjs?v=4dfad49e1f98d4b5b9f2')]);
    const index=evaCommunityIndex(await json('COMMUNITY_MACHINES_ASSETS.json',signal),await json('EVA_INSTALLATIONS.json',signal));
    loaded=await loadCommunity(index,id,options);own(loaded);
    const configuration=loaded.profile.eva_installation?.configuration??'stock';

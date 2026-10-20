@@ -225,8 +225,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 417596,
-      "sha256": "56bb999d267e5dfce8a7c7e2c7064c45e483627cb8dbca9cb0ee8b010bc0d2f8"
+      "bytes": 422198,
+      "sha256": "2ebd75eb2ee08580866e9a2f4f1310dd1b02759acbdb7aba1e62e0b9dac114dd"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -590,8 +590,8 @@
     },
     {
       "path": "scripts/audit_community_installations.mjs",
-      "bytes": 7688,
-      "sha256": "1f9cc8dc8a4ed510bb0b8fadf477fbb00bff06e3f3974b1e67bea55845d9b76f"
+      "bytes": 7863,
+      "sha256": "c3075e442313b1b8249b545bcdeedd02880a3920685af0de07626cc4fc83710c"
     },
     {
       "path": "scripts/audit_custom_ptfe.mjs",
@@ -755,8 +755,8 @@
     },
     {
       "path": "scripts/build_site.py",
-      "bytes": 25859,
-      "sha256": "51096190d8ce168dacd2c19f58e150466610ea5d4cbd6a969fc573bbec649387"
+      "bytes": 26207,
+      "sha256": "80809a2aec4f0a3887a0aed54c94487b30ae472a04f3ac8f93513de7ece721c7"
     },
     {
       "path": "scripts/build_support_catalog.mjs",
@@ -1825,8 +1825,8 @@
     },
     {
       "path": "scripts/test_switchwire_catalog.mjs",
-      "bytes": 14114,
-      "sha256": "29be59ae97a9c4e933629c4c10eda457dbcfb794a77714154bf33829abb12005"
+      "bytes": 17327,
+      "sha256": "35f8f03bdf4468afac161ae920a4e20d135f6ac4479601a97c3d966ce619f0db"
     },
     {
       "path": "scripts/test_toolchangers.mjs",
@@ -4581,12 +4581,12 @@
     {
       "path": "site/layout/index.html",
       "bytes": 7559,
-      "sha256": "bfe155ef8d9c7d1bd7cd7d8cecd360190d465633691b4a055ce0de92c876a579"
+      "sha256": "786af4da782ce5b91878e32f1aa542993614dc6f2f9dde336f56e64721e4692b"
     },
     {
       "path": "site/layout/layout-app.mjs",
       "bytes": 19182,
-      "sha256": "9ca01216010b37c5f3e2793b7a0199c0d7f941005d4d1671c21010af185f00a9"
+      "sha256": "2af007edc256c7e7bd5ee010f908dd67b980967eb07622f48261e731ea1732a2"
     },
     {
       "path": "site/layout/layout-catalog.json",
@@ -4616,7 +4616,7 @@
     {
       "path": "site/layout/layout-machine-loader.mjs",
       "bytes": 183,
-      "sha256": "d7fdb38dad0b7dc3259d3b5652d2bb235f7ceb24403bf5469ad910301c12828b"
+      "sha256": "3fd62efd6ba4e7939969e9f76974844fce04d864a65cffbf9f29d0ecc267b83c"
     },
     {
       "path": "site/layout/layout-provenance.json",
@@ -5660,8 +5660,8 @@
     },
     {
       "path": "site/viewer/community-loader.mjs",
-      "bytes": 3209,
-      "sha256": "52e76c5c1ffbaa1cc7dddf61a6acaa4edc8bf204bc14f5e831c3dd22bbcb2050"
+      "bytes": 3394,
+      "sha256": "c69507eb079fc34e79974088005027fd998eec1462ec99e2282a6e44c46fad73"
     },
     {
       "path": "site/viewer/community-state.mjs",
@@ -5671,12 +5671,12 @@
     {
       "path": "site/viewer/community.html",
       "bytes": 7864,
-      "sha256": "8c2b2f585b25165fd34af2f6b06581ecfd789cba80769e7963e6aee36b4861e1"
+      "sha256": "d8381713e90377be922145ba7a35cc9605a4dfadae98b9bc8bd864c4e3e4b97a"
     },
     {
       "path": "site/viewer/community.js",
       "bytes": 23222,
-      "sha256": "8467f272c55c3f93c5615815d65f54a1d4cd08c8507f9bffef6a0c582c2fc05f"
+      "sha256": "54a9b2a2d2de7e231752352f99dfff2ae24abb1637a7ef39918dacf14d7e437c"
     },
     {
       "path": "site/viewer/component-assets.mjs",
@@ -6096,12 +6096,12 @@
     {
       "path": "site/viewer/layout-machine-loader.mjs",
       "bytes": 2470,
-      "sha256": "22a120d85604aab1b2e2f2839f97457360a1f203b135b52f9e5195932fb4bc86"
+      "sha256": "1bc7ef624cb897f62f74692f88f123455ad843bee5f571f85a8d00a7ce567903"
     },
     {
       "path": "site/viewer/layout-machine-providers.mjs",
       "bytes": 12294,
-      "sha256": "72c937231f9a072a8c742038f7ecfd910a2bd384848f02d4a3fe486dd6fd638f"
+      "sha256": "3f688956010c32eb19b86671dd9590a612ea1d3a89aa3e88e38c4ee392cce853"
     },
     {
       "path": "site/viewer/layout-machine-recipes.mjs",
@@ -6827,6 +6827,11 @@
       "path": "site/viewer/stinger-tube-route.mjs",
       "bytes": 2829,
       "sha256": "064491780dfb942086bf643996507894fb90cf527b90cd7764c121cf12385127"
+    },
+    {
+      "path": "site/viewer/switchwire-display-default.mjs",
+      "bytes": 2806,
+      "sha256": "1a8f0c90e092e48729af607205f11dfbafc0375a974161fbda3cdd39bfb7ccd5"
     },
     {
       "path": "site/viewer/theme-toggle.css",

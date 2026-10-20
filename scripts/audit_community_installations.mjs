@@ -10,6 +10,7 @@ import {communitySchema,validateCommunityState,displayMotion,nativeMotion} from 
 import {communityAuditDirectory} from './community-audit-root.mjs';
 import {evaCommunityIndex,applyEvaInstallation} from '../site/viewer/eva-installations.mjs';
 import {applyNativeMotionProfile} from '../site/viewer/native-motion-profile.mjs';
+import {applySwitchwireDisplayDefault} from '../site/viewer/switchwire-display-default.mjs';
 export async function auditCommunityInstallations(directory,{output,indexPath=new URL('../site/COMMUNITY_MACHINES_ASSETS.json',import.meta.url)}={}){
 assert.ok(directory,'Supply the actual community asset directory');
 const index=evaCommunityIndex(JSON.parse(await fs.readFile(indexPath,'utf8')),JSON.parse(await fs.readFile(new URL('../site/EVA_INSTALLATIONS.json',import.meta.url),'utf8'))),results=[];
@@ -19,7 +20,8 @@ for(const spec of Object.values(index.machines)){
  let profile=JSON.parse(await checked('machine_profile.json'));if(!profile.configurations&&!spec.eva_installation)continue;
  let manifest=JSON.parse(await checked('assembly_manifest.json'));
  ({manifest,profile}=applyNativeMotionProfile(manifest,profile,profile.motion_registration?.model_sha256?profile.motion_registration:null,spec.files['model.glb'].decoded_sha256));
- ({manifest,profile}=applyEvaInstallation(manifest,profile,spec.eva_installation));let root;
+ ({manifest,profile}=applyEvaInstallation(manifest,profile,spec.eva_installation));
+ ({manifest,profile}=applySwitchwireDisplayDefault(manifest,profile,spec.files));let root;
  for(const name of ['model.glb',...(spec.additional_models||[])]){const raw=await checked(name),scene=(await new GLTFLoader().parseAsync(raw.buffer.slice(raw.byteOffset,raw.byteOffset+raw.byteLength),'')).scene;if(root)root.add(scene);else root=scene}
  const adapter=createCommunityAdapter(root,manifest,profile);assert.equal(adapter.nodes.size,spec.parts);
  const initial=new Map([...adapter.nodes].map(([k,n])=>[k,n.matrixWorld.clone()])),hardware=new Map();let vertices=0;
