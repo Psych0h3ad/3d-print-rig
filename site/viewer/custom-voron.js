@@ -2,7 +2,7 @@ import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
-import {loadCustomVoron} from './custom-voron-loader.mjs?v=c70fe94885239ff9b572';
+import {loadCustomVoron} from './custom-voron-loader.mjs?v=96c2a05646e84785faf5';
 import {createV24Adapter} from './v24_matrix_adapter.mjs?v=1f70f3be4ab4a0e74544';
 import {createTridentMotion} from './trident-motion.mjs?v=77312c6bfbf6c7e7563d';
 import {setupMachineNavigation} from './machines.js?v=ab543d6b01637bc5083f';

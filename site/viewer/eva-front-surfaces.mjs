@@ -1,4 +1,4 @@
-import {loadExternalComponent} from './component-assets.mjs?v=963445da64a2f4de7cc5';
+import {loadExternalComponent} from './component-assets.mjs?v=2dbda26b309fbe6c35c8';
 
 const sha=/^[a-f0-9]{64}$/;
 const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
@@ -50,13 +50,13 @@ export function validateEvaFrontRegistry(registry){
   }
  }
 }
-export async function loadEvaFrontSurfaces(loader,pageUrl){
+export async function loadEvaFrontSurfaces(loader,pageUrl,options={}){
  const url=new URL('../EVA_FRONT_SURFACES.json?v=5a7cb46eed288ef3189a',pageUrl).href;
  let cache=loads.get(loader);if(!cache){cache=new Map();loads.set(loader,cache)}
  if(!cache.has(url))cache.set(url,(async()=>{
-  const response=await fetch(url,{cache:'no-cache'});if(!response.ok)throw Error('EVA front surfaces unavailable');
+  const response=await fetch(url,{cache:'no-cache',signal:options.signal});if(!response.ok)throw Error('EVA front surfaces unavailable');
   const registry=await response.json();validateEvaFrontRegistry(registry);
-  const {meta,gltf}=await loadExternalComponent(loader,registry.asset,pageUrl);
+  const {meta,gltf}=await loadExternalComponent(loader,registry.asset,pageUrl,options);
   if(meta.id!==registry.asset.component_id||meta.source_solids_modified!==false||meta.supports_removed!==false)
    throw Error('EVA front surface provenance changed');
   return {registry,patchRoot:gltf.scene,patchMeta:meta};

@@ -8,7 +8,7 @@ import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
-import {loadKitReference} from './kit-reference-loader.mjs?v=cd960356d2ed24adfde9';
+import {loadKitReference} from './kit-reference-loader.mjs?v=ab4c504dc9c9698eb8e2';
 import {setupMachineNavigation} from './machines.js?v=ab543d6b01637bc5083f';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=52720bd5e5edde8246d8';

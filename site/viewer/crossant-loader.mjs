@@ -11,13 +11,13 @@ export function disposeCrossant(root){
  root.traverse(n=>{if(n.isMesh){geometry.add(n.geometry);for(const m of [].concat(n.material))materials.add(m)}});
  for(const v of [...geometry,...materials])v.dispose();root.removeFromParent();
 }
-export async function loadCrossant(index,{signal,onProgress=()=>{}}={}){
+export async function loadCrossant(index,{signal,onProgress=()=>{},progressOptions}={}){
  if(index.machine_id!=='crossant_235_v06_leadscrew'||index.parts!==2177)throw Error('Crossantの構成情報が一致しません。');
  const names=['assembly_manifest.json','machine_profile.json','belt_bindings.json','chain_bindings.json','KNOWN_CONTACTS.json'];
  const files=[...names,'model.gltf',...Array.from({length:7},(_,i)=>'geometry_'+String(i).padStart(2,'0')+'.bin'),'covers_manifest.json','covers.glb'];
- const progress=beginModelLoading(Object.fromEntries(files.map(n=>[n,index.files[n]])));
+ const progress=beginModelLoading(Object.fromEntries(files.map(n=>[n,index.files[n]])),progressOptions);
  try{
- const local=['127.0.0.1','localhost'].includes(location.hostname),base=local?new URL('../'+index.local_directory+'/',import.meta.url):new URL(index.base_url);
+ const local=progressOptions?.preferPublicAssets!==true&&['127.0.0.1','localhost'].includes(location.hostname),base=local?new URL('../'+index.local_directory+'/',import.meta.url):new URL(index.base_url);
  async function checked(name){
   const s=index.files[name];if(!s||s.path.includes('..')||s.path.startsWith('/')||s.bytes>20*1024*1024)throw Error('Crossantの構成ファイルが不正です。');
   const url=new URL(s.path,base);url.searchParams.set('sha',s.sha256.slice(0,16));const res=await fetch(url,{signal});if(!res.ok)throw Error('Crossantのモデルを取得できません。');

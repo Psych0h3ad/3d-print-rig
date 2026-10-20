@@ -19,7 +19,7 @@ const funSource=args.length?await fs.readFile(args[1],'utf8'):shippedFun;
 const lifecycleReference=workspaceSource.match(/from '(\.\/workspace-lifecycle\.mjs\?v=[^']+)'/);
 assert(lifecycleReference,'Workspace imports its versioned lifecycle module');
 const {activateScope,WorkspaceScope}=await import(new URL(lifecycleReference[1],new URL('../site/viewer/workspace-ui.mjs',import.meta.url)));
-assert.match(workspaceSource,/setupLanguage\(\);\s*setupWorkspaceDestinationLanguages\(\[\.\.\.navigation\.querySelectorAll\('a'\),\s*\.\.\.menu\.querySelectorAll\('a'\),\s*credits\]\)/,
+assert.match(workspaceSource,/setupLanguage\(\);\s*setupLayoutNavigation\(navigation,\s*\{listen:\s*workspaceListen\}\);\s*setupWorkspaceDestinationLanguages\(\[\.\.\.navigation\.querySelectorAll\('a'\),\s*\.\.\.menu\.querySelectorAll\('a'\),\s*credits\]\)/,
   'Bind every navigation/menu destination and credits after the initial language is chosen');
 
 const pending=[];
@@ -51,7 +51,7 @@ const destinations=[
   ['printer','./trident.html?machine=siboor_trident_350&configuration=installed&lang=ja#assembly'],
   ['toolhead','./toolheads.html?configuration=xol_rapido&return_machine=siboor_trident_350&return_configuration=installed#head'],
   ['gantry','./gantries.html'],['fun','../fun/'],['support','../support/?machine=siboor_trident_350'],
-  ['components','./components.html'],['changers','./toolchangers.html'],['e3ng','./e3ng.html'],['credits','./art/credits.html'],
+  ['layout','../layout/'],['components','./components.html'],['changers','./toolchangers.html'],['e3ng','./e3ng.html'],['credits','./art/credits.html'],
 ];
 let destinationChecks=0;
 for(const language of supportedLanguages){

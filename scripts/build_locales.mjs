@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
-import {resolve,dirname,relative,extname} from 'node:path';
+import {resolve,dirname,relative,extname,sep} from 'node:path';
 import {supportedLanguages} from '../site/viewer/languages.mjs';
 
 const root=new URL('../site/viewer/locales/',import.meta.url);
@@ -66,7 +66,11 @@ async function cacheReferences(outputs){
  const viewer=fileURLToPath(new URL('../site/viewer/',import.meta.url)),files=new Map();
  async function scan(directory){for(const item of await fs.readdir(directory,{withFileTypes:true})){const path=resolve(directory,item.name);if(item.isDirectory())await scan(path);else if(['.mjs','.js','.html','.css'].includes(extname(path)))files.set(path,await fs.readFile(path,'utf8'))}}
  await scan(viewer);await scan(resolve(viewer,'../fun'));await scan(resolve(viewer,'../support'));
+ // Layout owns its five-language dictionary; include its source importers in cache propagation.
+ await scan(resolve(viewer,'../layout'));
  const changed=new Map(Object.entries(outputs).map(([name,text])=>[fileURLToPath(new URL(name,root)),text]));
+ const layoutRoot=resolve(viewer,'../layout');
+ for(const [path,text]of files)if(path.startsWith(layoutRoot+sep)||path===resolve(viewer,'layout-nav.mjs'))changed.set(path,text);
  for(const name of ['source-assembly.mjs','source-assembly-messages.mjs','source-assembly-ui-text.mjs','source-assembly-configuration-ui.mjs','source-assembly-runtime/loading.mjs']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}
  for(const name of ['../support/resource.mjs','../support/support.mjs']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}
  for(const name of ['../fun/fun.mjs','machine-gallery.mjs','machine-gallery.css']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}

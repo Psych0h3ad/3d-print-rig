@@ -9,7 +9,7 @@ import {workspaceFrame,WorkspaceResizeObserver,workspaceTask,workspaceListen} fr
 import * as THREE from './vendor-r180/three.module.js';
 import {OrbitControls} from './vendor-r180/OrbitControls.js?v=workspace-belts-1';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
-import {loadRatRigMachine,disposeRatRig} from './ratrig-loader.mjs?v=d2d4bc48e4482f7bf4dd';
+import {loadRatRigMachine,disposeRatRig} from './ratrig-loader.mjs?v=cb2508ebf98d2b8e2bde';
 import {createRatRigGcodePreview} from './ratrig_gcode_preview.mjs';
 import {ratRigSchema,validateRatRigConfiguration,ratRigAxisRanges} from './ratrig-ui-state.mjs?v=workspace-belts-1';
 import {setupMachineNavigation} from './machines.js?v=ab543d6b01637bc5083f';

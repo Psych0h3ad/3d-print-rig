@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<!-- Generated SEO: scripts/build_seo.py -->
+<title>Layout planner · 3D Print Rig</title>
+<meta name="description" content="Plan a room for your 3D printers. Import an SVG outline or draw the room, add desks and shelves, then arrange printers and export an image.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Layout planner · 3D Print Rig">
+<meta name="twitter:description" content="Plan a room for your 3D printers. Import an SVG outline or draw the room, add desks and shelves, then arrange printers and export an image.">
+<meta name="twitter:image" content="https://psych0h3ad.github.io/3d-print-rig/assets/social/3d-print-rig-preview.png?v=b6a888d891052e2d01a6">
+<meta name="twitter:image:alt" content="3D Print Rig, a browser CAD configurator, alongside original VORON Trident technical drawings.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="3D Print Rig">
+<meta property="og:title" content="Layout planner · 3D Print Rig">
+<meta property="og:description" content="Plan a room for your 3D printers. Import an SVG outline or draw the room, add desks and shelves, then arrange printers and export an image.">
+<meta property="og:url" content="https://psych0h3ad.github.io/3d-print-rig/layout/">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://psych0h3ad.github.io/3d-print-rig/assets/social/3d-print-rig-preview.png?v=b6a888d891052e2d01a6">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="3D Print Rig, a browser CAD configurator, alongside original VORON Trident technical drawings.">
+<link rel="canonical" href="https://psych0h3ad.github.io/3d-print-rig/layout/">
+<link rel="sitemap" type="application/xml" href="https://psych0h3ad.github.io/3d-print-rig/sitemap.xml">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","@id":"https://psych0h3ad.github.io/3d-print-rig/layout/#page","name":"Layout planner \u00b7 3D Print Rig","description":"Plan a room for your 3D printers. Import an SVG outline or draw the room, add desks and shelves, then arrange printers and export an image.","url":"https://psych0h3ad.github.io/3d-print-rig/layout/","inLanguage":"en","isPartOf":{"@type":"WebSite","@id":"https://psych0h3ad.github.io/3d-print-rig/#website","name":"3D Print Rig","url":"https://psych0h3ad.github.io/3d-print-rig/"}}</script>
+<!-- End generated SEO -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  
+  
+  <link rel="icon" href="../assets/brand/rig-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/brand/brand.css">
+  <link rel="stylesheet" href="./layout.css?v=bbbd77e43ab60f594c18">
+<script type="importmap">{"imports":{"three":"../viewer/vendor/three.module.js"},"scopes":{"../viewer/source-assembly-runtime/":{"three":"../viewer/vendor-r180/three.module.js"},"../viewer/vendor-r180/":{"three":"../viewer/vendor-r180/three.module.js"}}}</script>
+
+</head>
+<body class="layout-page">
+  <a class="layout-skip" href="#layout-sidebar" data-layout-i18n="layout.skipToSettings">Skip to settings</a>
+  <div id="layout-app" class="layout-app">
+    <header id="layout-header" class="layout-header">
+      <a class="brand" href="../viewer/machines.html" data-layout-link>
+        <span class="brand-mark"><img src="../assets/brand/rig-mark.svg" alt="" width="34" height="34"></span>
+        <span class="brand-copy">3D Print Rig</span>
+      </a>
+      <span class="layout-header-divider" aria-hidden="true"></span>
+      <h1 data-layout-i18n="layout.title">Layout planner</h1>
+      <nav id="layout-navigation" class="layout-navigation" aria-label="Main" data-layout-i18n-aria-label="layout.navigation">
+        <a href="../viewer/machines.html" data-layout-link data-layout-i18n="layout.machines">Printers</a>
+      </nav>
+      <div class="layout-header-controls">
+        <label class="layout-sr-only" for="layoutLanguage" data-layout-i18n="layout.language">Language</label>
+        <select id="layoutLanguage" aria-label="Language" data-layout-i18n-aria-label="layout.language">
+          <option value="en" lang="en">English</option>
+          <option value="ja" lang="ja">日本語</option>
+          <option value="es" lang="es">Español</option>
+          <option value="ko" lang="ko">한국어</option>
+          <option value="ru" lang="ru">Русский</option>
+        </select>
+        <button id="layout-theme" type="button" class="layout-icon-button" aria-label="Switch theme" data-layout-i18n-aria-label="layout.theme" title="Switch theme" data-layout-i18n-title="layout.theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 13A8.5 8.5 0 0 1 11 3.5 8.5 8.5 0 1 0 20.5 13Z"/></svg>
+        </button>
+      </div>
+    </header>
+    <main class="layout-workspace">
+      <section class="layout-stage" aria-label="Room preview" data-layout-i18n-aria-label="layout.sceneLabel">
+        <div id="layout-scene-toolbar" class="layout-scene-toolbar" role="toolbar" aria-label="Scene controls" data-layout-i18n-aria-label="layout.sceneControls">
+          <div class="layout-tool-group" role="group" aria-label="Tool" data-layout-i18n-aria-label="layout.tool">
+            <button type="button" data-layout-tool="orbit" aria-pressed="true" title="Orbit" data-layout-i18n-title="layout.orbit"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(-30 12 12)"/><path d="m5 3 1 5-5-1"/><circle cx="12" cy="12" r="2"/></svg><span data-layout-i18n="layout.orbit">Orbit</span></button>
+            <button type="button" data-layout-tool="move" aria-pressed="false" title="Move" data-layout-i18n-title="layout.move"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M3 12h18m-12-6 3-3 3 3m-6 12 3 3 3-3M6 9l-3 3 3 3m12-6 3 3-3 3"/></svg><span data-layout-i18n="layout.move">Move</span></button>
+          </div>
+          <div class="layout-tool-group layout-view-group" role="group" aria-label="View" data-layout-i18n-aria-label="layout.view">
+            <button type="button" data-layout-view="perspective" data-layout-i18n="layout.perspective">3D</button>
+            <button type="button" data-layout-view="top" data-layout-i18n="layout.topView">Top</button>
+            <button type="button" data-layout-view="front" data-layout-i18n="layout.frontView">Front</button>
+            <button type="button" data-layout-view="fit" class="layout-icon-button" aria-label="Fit room" title="Fit room" data-layout-i18n-aria-label="layout.fit" data-layout-i18n-title="layout.fit"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5M8 8h8v8H8Z"/></svg></button>
+          </div>
+        </div>
+        <div id="layout-scene" class="layout-scene" tabindex="0" aria-label="Interactive room preview" data-layout-i18n-aria-label="layout.interactiveScene" aria-describedby="layout-scene-hint"></div>
+        <div class="layout-stage-caption">
+          <span class="layout-preview-badge" data-layout-i18n="layout.previewBadge">Lightweight preview</span>
+          <p id="layout-scene-hint" data-layout-i18n="layout.sceneHint">Choose Move to place an object, or edit its position in settings.</p>
+          <div class="layout-scene-toggles">
+            <label><input id="layout-grid" type="checkbox" checked><span data-layout-i18n="layout.grid">Grid</span></label>
+            <label><input id="layout-walls" type="checkbox" checked><span data-layout-i18n="layout.walls">Walls</span></label>
+          </div>
+        </div>
+        <p id="layout-status" class="layout-scene-status" role="status" aria-live="polite"></p>
+      </section>
+      <aside id="layout-sidebar" class="layout-sidebar" tabindex="-1" aria-label="Layout settings" data-layout-i18n-aria-label="layout.settings"></aside>
+    </main>
+  </div>
+  <noscript>This planner needs JavaScript. No printer models are downloaded until you request a full render.</noscript>
+  <script type="module" src="./layout-app.mjs?v=5d80c5cf240841e36b28"></script>
+</body>
+</html>

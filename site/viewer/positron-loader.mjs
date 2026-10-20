@@ -1,13 +1,13 @@
 import {loadedFamilyAssetIdentity} from './gcode-loaded-asset-identity.mjs?v=42ac134c2d9a8b8f8dfc';
 import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
-import {extraAssetBase,checkedExtraAsset} from './extra-asset-integrity.mjs?v=019170d7f31b55da1667';
+import {extraAssetBase,checkedExtraAsset} from './extra-asset-integrity.mjs?v=7483c3e6dfe211e4d6b5';
 import {beginModelLoading} from './model-progress.mjs?v=beaef781095b6f56b290';
 import {createPositronAdapter} from './positron-fold.mjs?v=7368d3dd6e38e237f6ff';
-export async function loadPositron(index,{signal}={}){
+export async function loadPositron(index,{signal,progressOptions}={}){
  if(index.machine_id!=='positron_v322'||index.parts!==1314)throw Error('Invalid Positron catalog');
- const names=['assembly_manifest.json','machine_profile.json','model.glb'],progress=beginModelLoading(Object.fromEntries(names.map(n=>[n,index.files[n]])));
+ const names=['assembly_manifest.json','machine_profile.json','model.glb'],progress=beginModelLoading(Object.fromEntries(names.map(n=>[n,index.files[n]])),progressOptions);
  try{
- const base=extraAssetBase(index,import.meta.url),checked=name=>checkedExtraAsset(base,index.files[name],{signal,onProgress:e=>progress.update(name,e)}),read=async name=>JSON.parse(new TextDecoder().decode(await checked(name)));
+ const base=extraAssetBase(index,import.meta.url,{publicOnly:progressOptions?.preferPublicAssets===true}),checked=name=>checkedExtraAsset(base,index.files[name],{signal,onProgress:e=>progress.update(name,e)}),read=async name=>JSON.parse(new TextDecoder().decode(await checked(name)));
  const [manifest,profile,bytes]=await Promise.all([read('assembly_manifest.json'),read('machine_profile.json'),checked('model.glb')]);
  if(manifest.machine_id!==index.machine_id||profile.machine_id!==index.machine_id)throw Error('Positron identity mismatch');
  progress.assembling();const root=(await new GLTFLoader().parseAsync(bytes.buffer,base.href)).scene;

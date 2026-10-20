@@ -1,16 +1,16 @@
 import {verifyLedModelBytes} from './led-source-binding.mjs';
-import {checkedExtraAsset,extraAssetBase} from './extra-asset-integrity.mjs?v=019170d7f31b55da1667';
+import {checkedExtraAsset,extraAssetBase} from './extra-asset-integrity.mjs?v=7483c3e6dfe211e4d6b5';
 import {beginModelLoading} from './model-progress.mjs?v=beaef781095b6f56b290';
-import {loadChunkedTrinity} from './chunked-component-glb.mjs?v=d8db4ff82a409942c85b';
+import {loadChunkedTrinity} from './chunked-component-glb.mjs?v=3639cc45ea38ec9c56d3';
 
 // External component CAD has the same byte/hash contract as machine assets.
-export async function loadExternalComponent(loader,spec,href){
+export async function loadExternalComponent(loader,spec,href,{signal,progressOptions}={}){
  if(spec.component_id==='trinity_v13_current105_alpha_92')return loadChunkedTrinity(loader,spec,href);
- const base=extraAssetBase(spec.external,href),progress=beginModelLoading({model:spec.files['model.glb']});
+ const base=extraAssetBase(spec.external,href,{publicOnly:progressOptions?.preferPublicAssets===true}),progress=beginModelLoading({model:spec.files['model.glb']},progressOptions);
  try{
   const [model,bytes]=await Promise.all([
-   checkedExtraAsset(base,spec.files['model.glb'],{onProgress:event=>progress.update('model',event)}),
-   checkedExtraAsset(base,spec.files['parts.json']),
+   checkedExtraAsset(base,spec.files['model.glb'],{signal,onProgress:event=>progress.update('model',event)}),
+   checkedExtraAsset(base,spec.files['parts.json'],{signal}),
   ]);
   const meta=JSON.parse(new TextDecoder().decode(bytes));
   if(meta.id!==spec.component_id||meta.parts?.length!==spec.parts||new Set(meta.parts.map(p=>p.key)).size!==spec.parts)throw Error('Component part manifest mismatch');

@@ -5,7 +5,7 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {createRemorphAdapter} from './remorph-adapter.mjs';
 import {createRemorphEnvironment} from './remorph-environment.mjs?v=67b979de18933d30ccfd';
-import {loadExtraMachine} from './extra-machine-loader.mjs?v=59a3413417b286024f59';
+import {loadExtraMachine} from './extra-machine-loader.mjs?v=c57003e05d00c49566e3';
 import {setupMachineNavigation} from './machines.js?v=ab543d6b01637bc5083f';
 import {workspaceFrame,WorkspaceResizeObserver,workspaceListen} from './workspace-lifecycle.mjs?v=16928b39409c2ae378c6';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';

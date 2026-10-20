@@ -1,8 +1,8 @@
 const digest=async bytes=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');
 import {readModelBytes} from './model-progress.mjs?v=beaef781095b6f56b290';
-export function extraAssetBase(index,href){
+export function extraAssetBase(index,href,{publicOnly=false}={}){
  const here=new URL(href);
- return ['127.0.0.1','localhost','[::1]'].includes(here.hostname)?new URL('../'+index.local_directory+'/',here):new URL(index.base_url);
+ return !publicOnly&&['127.0.0.1','localhost','[::1]'].includes(here.hostname)?new URL('../'+index.local_directory+'/',here):new URL(index.base_url);
 }
 export async function checkedExtraAsset(base,spec,{signal,onProgress}={}){
  if(!spec||!Number.isSafeInteger(spec.bytes)||spec.bytes<0||spec.bytes>180_000_000||!/^[a-f0-9]{64}$/.test(spec.sha256)||typeof spec.path!=='string'||spec.path.includes('..')||/[\\:]/.test(spec.path)||spec.path.startsWith('/'))throw Error('Invalid asset record');

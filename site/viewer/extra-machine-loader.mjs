@@ -1,13 +1,13 @@
 import {loadedFamilyAssetIdentity} from './gcode-loaded-asset-identity.mjs?v=42ac134c2d9a8b8f8dfc';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {extraAssetBase,checkedExtraAsset} from './extra-asset-integrity.mjs?v=019170d7f31b55da1667';
+import {extraAssetBase,checkedExtraAsset} from './extra-asset-integrity.mjs?v=7483c3e6dfe211e4d6b5';
 import {beginModelLoading} from './model-progress.mjs?v=beaef781095b6f56b290';
-export async function loadExtraMachine(id){
- const response=await fetch('../EXTRA_MACHINE_ASSETS.json?v=extra-machines-55');if(!response.ok)throw Error('Machine catalog unavailable');
+export async function loadExtraMachine(id,{signal,progressOptions}={}){
+ const response=await fetch('../EXTRA_MACHINE_ASSETS.json?v=extra-machines-55',{signal});if(!response.ok)throw Error('Machine catalog unavailable');
  const index=await response.json(),row=index.machines.find(r=>r.id===id);if(!row)throw Error('Machine unavailable');
- const names=['assembly_manifest.json','machine_profile.json','model.glb',...(row.files['belt_bindings.json']?['belt_bindings.json']:[])],progress=beginModelLoading(Object.fromEntries(names.map(n=>[n,row.files[n]])));
+ const names=['assembly_manifest.json','machine_profile.json','model.glb',...(row.files['belt_bindings.json']?['belt_bindings.json']:[])],progress=beginModelLoading(Object.fromEntries(names.map(n=>[n,row.files[n]])),progressOptions);
  try{
- const base=extraAssetBase(index,import.meta.url),checked=name=>checkedExtraAsset(base,row.files[name],{onProgress:e=>progress.update(name,e)});
+ const base=extraAssetBase(index,import.meta.url,{publicOnly:progressOptions?.preferPublicAssets===true}),checked=name=>checkedExtraAsset(base,row.files[name],{signal,onProgress:e=>progress.update(name,e)});
  const read=async name=>JSON.parse(new TextDecoder().decode(await checked(name)));
  const [manifest,profile,bytes,bindings]=await Promise.all([read('assembly_manifest.json'),read('machine_profile.json'),checked('model.glb'),row.files['belt_bindings.json']?read('belt_bindings.json'):null]);
  if(manifest.machine_id!==id||profile.machine_id!==id)throw Error('Machine identity mismatch');

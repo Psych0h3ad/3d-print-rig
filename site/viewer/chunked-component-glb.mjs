@@ -1,5 +1,5 @@
 import {verifyTrinityLedModelBytes} from './led-source-binding.mjs';
-import {checkedExtraAsset,extraAssetBase} from './extra-asset-integrity.mjs?v=019170d7f31b55da1667';
+import {checkedExtraAsset,extraAssetBase} from './extra-asset-integrity.mjs?v=7483c3e6dfe211e4d6b5';
 import {beginModelLoading} from './model-progress.mjs?v=beaef781095b6f56b290';
 import {parseSharedComponentGlb,sharedGlbDocument} from './shared-component-glb.mjs?v=a21b698822731b57dea6';
 import {TRINITY_RENDER_DELIVERY as delivery} from './trinity-render-delivery.mjs?v=a21b698822731b57dea6';
