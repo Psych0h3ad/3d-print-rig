@@ -13710,6 +13710,21 @@
       "kind": "message",
       "ja": "47リンクとPTFE・CANを表示。実配線の長さ・曲げ限界は未検証です。",
       "en": "Displays 47 links, PTFE and CAN. Physical cable lengths and bend limits remain unverified."
+    },
+    "ui.mod_trident_motor_fans_v1": {
+      "kind": "message",
+      "ja": "Trident350 A/Bモーターファン · FOX V1",
+      "en": "Trident350 A/B fans · FOX V1"
+    },
+    "ui.mod_trident_motor_fans_v1_scope": {
+      "kind": "message",
+      "ja": "Trident350の標準R2 / Stealthburner / CW2 / Revo Voron専用です。Voron原本のファンと固定具を含みます。ブラケットの取付面は原形に基づく表示用メッシュです。実機動作は再現しません。",
+      "en": "Trident350 R2 / Stealthburner / CW2 / Revo Voron only. Includes Voron reference fans and fasteners. The printed mating surfaces use a source-derived web mesh; this is a geometry preview."
+    },
+    "ui.mod_companion_changed": {
+      "kind": "message",
+      "ja": "構成に合わせて追加部品の選択を変更しました。使用する部品を確認してください。",
+      "en": "The companion parts selection changed with the configuration. Check the parts you want to use."
     }
   }
 }

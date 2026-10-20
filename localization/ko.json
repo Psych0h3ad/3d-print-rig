@@ -10881,6 +10881,18 @@
     "ace_hf.routing_compact": {
       "source_revision": "9ea9da875ddd65dc43e2",
       "text": "47개 링크와 PTFE·CAN 경로를 표시합니다. 실제 배선 길이와 굽힘 한계는 미검증입니다."
+    },
+    "ui.mod_trident_motor_fans_v1": {
+      "source_revision": "692f60d72210cf1de101",
+      "text": "Trident350 A/B 모터 팬 · FOX V1"
+    },
+    "ui.mod_trident_motor_fans_v1_scope": {
+      "source_revision": "11db879544bc490b36d0",
+      "text": "Trident350 표준 R2 / Stealthburner / CW2 / Revo Voron 전용입니다. Voron 원본 팬과 고정 부품을 포함합니다. 브래킷 장착면은 원본 기반 표시용 메시이며 실제 작동을 재현하지 않습니다."
+    },
+    "ui.mod_companion_changed": {
+      "source_revision": "9ef0dd2766b4bcc60c46",
+      "text": "구성에 맞춰 추가 부품 선택이 변경되었습니다. 사용할 부품을 확인하세요."
     }
   }
 }

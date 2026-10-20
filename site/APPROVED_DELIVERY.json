@@ -9497,6 +9497,24 @@
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/approved-normal-inputs-20261019/93895bcb222bf2c892d46f4f21507bf82b6ae42d08e2c139311313a551de2f46.json",
       "approval_receipt_sha256": "8ac83a9bc62d49d54d39f77afc8566c289182ea066a9f98e24ec9e4f3927fc15",
       "origin": "Exact source-preserving VIRTU geometry delivery; primary source identities are retained in the packet."
+    },
+    {
+      "path": "modules/fox491404_v1_voron4010_reference_closed_v30.glb.gz",
+      "bytes": 1537188,
+      "sha256": "fa0f84eec94ccdead1d43daf25e85c8ca4943a616fada8f8f1828682da7c0fa4",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig-large-voron-models/releases/download/fox-v1-v30-20261021/fox491404_v1_voron4010_reference_closed_v30.glb.gz",
+      "approval_receipt_sha256": "97386db54e7f7cd9c80ee4c9334cdf399f133893cbfdcca531f781874cc9b886",
+      "origin": "https://www.printables.com/model/491404-voron-trident-ab-stepper-fan",
+      "source_approval_receipt_sha256": "97386db54e7f7cd9c80ee4c9334cdf399f133893cbfdcca531f781874cc9b886"
+    },
+    {
+      "path": "modules/fox491404_v1_voron4010_reference_closed_v30.json.gz",
+      "bytes": 56783,
+      "sha256": "3940cb19bbeea06976a2858f26174c1dbb09dba838cdfcc3fb1ab5a1d24d34b0",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig-large-voron-models/releases/download/fox-v1-v30-20261021/fox491404_v1_voron4010_reference_closed_v30.json.gz",
+      "approval_receipt_sha256": "97386db54e7f7cd9c80ee4c9334cdf399f133893cbfdcca531f781874cc9b886",
+      "origin": "https://www.printables.com/model/491404-voron-trident-ab-stepper-fan",
+      "source_approval_receipt_sha256": "97386db54e7f7cd9c80ee4c9334cdf399f133893cbfdcca531f781874cc9b886"
     }
   ],
   "external_original_transports_retained": [

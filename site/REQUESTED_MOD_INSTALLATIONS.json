@@ -92,7 +92,57 @@
             "probe": "none"
           },
           "label_id": "ui.mod_trident_motor_fans",
-          "notice_id": "ui.mod_trident_motor_fans_scope"
+          "notice_id": "ui.mod_trident_motor_fans_scope",
+          "exclusive_group": "fox_trident_ab_stepper_fans"
+        },
+        {
+          "id": "fox491404_v1_voron4010_reference_closed_v30",
+          "label": "Trident350 A/B fans · FOX V1",
+          "module": "fox491404_v1_voron4010_reference_closed_v30",
+          "gantry_ids": [
+            "trident_r2"
+          ],
+          "translation_mm": [
+            0,
+            0,
+            0
+          ],
+          "exclusive_group": "fox_trident_ab_stepper_fans",
+          "compatible_selection": {
+            "id": "trident_r2__stealthburner__revo_voron__cw2",
+            "gantry": "trident_r2",
+            "toolhead": "stealthburner",
+            "extruder": "cw2",
+            "hotend": "revo_voron",
+            "probe": "none"
+          },
+          "notes": "Trident350 R2 / Stealthburner / CW2 / Revo Voron only. Includes Voron reference fans and fasteners. The printed mating surfaces use a source-derived web mesh; this is a geometry preview.",
+          "label_id": "ui.mod_trident_motor_fans_v1",
+          "notice_id": "ui.mod_trident_motor_fans_v1_scope",
+          "stock_replacement_keys": [],
+          "requires": [],
+          "conflicts": [
+            "trident_stepper_decoupler_430168"
+          ],
+          "geometry_review": {
+            "finite_mating_passed": true,
+            "unintended_body_interference_passed": true,
+            "whole_machine_certified": false,
+            "native_exact_fit_certified": false,
+            "scope": "Selected static exported source attachment and source-derived motion envelopes. No electrical, thermal, operating, whole-machine or native-exact-fit certification. Other sizes, heads, boards and changers are not registered for this V1.",
+            "inputs": [
+              {
+                "path": "docs/FOX_AB_FAN_SELECTED_INSTALLATION.json",
+                "bytes": 3716,
+                "sha256": "45aa874ddb44e0dc9705712be9949fa8e97002ffec0f6082cfdd64cea6dfe132"
+              },
+              {
+                "path": "docs/FOX_AB_FAN_SOURCE_WITNESSES_V30.json",
+                "bytes": 58300,
+                "sha256": "a7ace85a0cb9784e5f274bc2a7ea2d3856be0440c65bf3808bb48c89f74c1777"
+              }
+            ]
+          }
         }
       ]
     },
@@ -354,6 +404,32 @@
           "encoding": "gzip",
           "decoded_bytes": 13399656,
           "decoded_sha256": "5c240e78fd5b54a3a07c8849597cec251307310bc1159b85da08f85e35cb5351"
+        }
+      }
+    },
+    "fox491404_v1_voron4010_reference_closed_v30": {
+      "component_id": "fox491404_v1_voron4010_reference_closed_v30",
+      "parts": 28,
+      "external": {
+        "base_url": "https://psych0h3ad.github.io/3d-print-rig/modules/",
+        "local_directory": "modules"
+      },
+      "files": {
+        "model.glb": {
+          "path": "fox491404_v1_voron4010_reference_closed_v30.glb.gz",
+          "bytes": 1537188,
+          "sha256": "fa0f84eec94ccdead1d43daf25e85c8ca4943a616fada8f8f1828682da7c0fa4",
+          "encoding": "gzip",
+          "decoded_bytes": 6244352,
+          "decoded_sha256": "cc1922bd8657130f5bbe7fbed20e7d371c40a6cfb6b7f80728354b42feba228e"
+        },
+        "parts.json": {
+          "path": "fox491404_v1_voron4010_reference_closed_v30.json.gz",
+          "bytes": 56783,
+          "sha256": "3940cb19bbeea06976a2858f26174c1dbb09dba838cdfcc3fb1ab5a1d24d34b0",
+          "encoding": "gzip",
+          "decoded_bytes": 389200,
+          "decoded_sha256": "2cf7ea666773365ecc44ce17023526c8cf7252de8493cf3c4ef34dd731276087"
         }
       }
     }

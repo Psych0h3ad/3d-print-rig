@@ -10881,6 +10881,18 @@
     "ace_hf.routing_compact": {
       "source_revision": "9ea9da875ddd65dc43e2",
       "text": "Muestra 47 eslabones, PTFE y CAN. Las longitudes físicas y los límites de curvatura siguen sin verificar."
+    },
+    "ui.mod_trident_motor_fans_v1": {
+      "source_revision": "692f60d72210cf1de101",
+      "text": "Ventiladores A/B de Trident350 · FOX V1"
+    },
+    "ui.mod_trident_motor_fans_v1_scope": {
+      "source_revision": "11db879544bc490b36d0",
+      "text": "Solo Trident350 R2 / Stealthburner / CW2 / Revo Voron. Incluye ventiladores y fijaciones de referencia Voron. Las superficies de montaje impresas usan una malla derivada de la fuente; es una vista previa geométrica."
+    },
+    "ui.mod_companion_changed": {
+      "source_revision": "9ef0dd2766b4bcc60c46",
+      "text": "La selección de piezas complementarias cambió con la configuración. Revisa las piezas que deseas usar."
     }
   }
 }
