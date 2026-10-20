@@ -4,6 +4,7 @@ import {extraAssetBase,checkedExtraAsset} from './extra-asset-integrity.mjs?v=74
 import {beginModelLoading} from './model-progress.mjs?v=beaef781095b6f56b290';
 import {createCommunityAdapter} from './community-adapter.mjs?v=b0cc85230bdd2fc9c369';
 import {applyNativeMotionProfile,loadNativeMotionProfile} from './native-motion-profile.mjs?v=91532eb992519143f437';
+import {applySwitchwireDisplayDefault} from './switchwire-display-default.mjs?v=1a8f0c90e092e48729af';
 import {applyEvaInstallation} from './eva-installations.mjs?v=4dfad49e1f98d4b5b9f2';
 import {loadEvaFrontSurfaces,applyEvaFrontSurfaces} from './eva-front-surfaces.mjs?v=2f482f31b2c5c8b35897';
 export async function loadCommunity(index,machine,{signal,progressOptions}={}){
@@ -18,6 +19,7 @@ export async function loadCommunity(index,machine,{signal,progressOptions}={}){
  const registration=await loadNativeMotionProfile(machine,{signal})??(profile.motion_registration?.model_sha256?profile.motion_registration:null);
  ({manifest,profile}=applyNativeMotionProfile(manifest,profile,registration,spec.files['model.glb'].decoded_sha256));
  ({manifest,profile}=applyEvaInstallation(manifest,profile,spec.eva_installation));
+ ({manifest,profile}=applySwitchwireDisplayDefault(manifest,profile,spec.files));
  progress.assembling();const loader=new GLTFLoader(),root=(await loader.parseAsync(bytes.buffer,base.href)).scene;
  for(const data of extraBytes)root.add((await new GLTFLoader().parseAsync(data.buffer,base.href)).scene);
  if(spec.eva_installation)applyEvaFrontSurfaces(root,manifest,spec.files['model.glb'].decoded_sha256,{...await loadEvaFrontSurfaces(loader,import.meta.url,{signal,progressOptions}),sourceOriginMm:profile.origin_mm,metadataSha256:spec.files['assembly_manifest.json'].sha256});

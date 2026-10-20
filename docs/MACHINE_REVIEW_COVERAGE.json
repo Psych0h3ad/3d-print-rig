@@ -7,7 +7,7 @@
     ".github/workflows/source-check.yml": "9ab5cc2c1c44c12fe566ba251292eefa5854371d38e92a0637b0f6a4ea16a2b3",
     "scripts/audit_a4t_printed_companions.mjs": "770c4e5da4eba20f0141952ac2afd961f70ca26fb3d6925abfd9361c8ac7287a",
     "scripts/audit_changer_banks.mjs": "5ef5e7bbbbfdaf135e2751f97883fd80f18e3f80a6cb1d1414bfb73d31864a96",
-    "scripts/audit_community_installations.mjs": "1f9cc8dc8a4ed510bb0b8fadf477fbb00bff06e3f3974b1e67bea55845d9b76f",
+    "scripts/audit_community_installations.mjs": "c3075e442313b1b8249b545bcdeedd02880a3920685af0de07626cc4fc83710c",
     "scripts/audit_custom_ptfe.mjs": "392ae069463a52717b3636828cef7f6add66ac582fe43d2daeb8dc2313771c5a",
     "scripts/audit_eva_front_surfaces.mjs": "ab87b90f6ac46bf14903e0d97ad692dec29b78c7d9c9e869d0d6a54d4b39d996",
     "scripts/audit_eva_heads.mjs": "a0bec26898933fe012b33bb7ad206660fabc783c2970c7b923b76209687579ef",
@@ -40,7 +40,7 @@
     "scripts/build_configuration_catalog.py": "cb128a25a44434b63c62b30a33001c11ab7bd20e95dba90fa8bfa2139fe392ab",
     "scripts/build_locales.mjs": "f93e9a4b70a7c9df6ee3968ae9d8885cd9a3ceccb31f8f7e65b0c87cc0aba78b",
     "scripts/build_seo.py": "d873af5441776885059bd588b57b5cb586c45335674854767f553910fa37e41d",
-    "scripts/build_site.py": "51096190d8ce168dacd2c19f58e150466610ea5d4cbd6a969fc573bbec649387",
+    "scripts/build_site.py": "80809a2aec4f0a3887a0aed54c94487b30ae472a04f3ac8f93513de7ece721c7",
     "scripts/build_support_catalog.mjs": "edd4890a71380e17b9c8df4b2838d3c0cfb2443e894c326cfb6fc5a5d99fb99e",
     "scripts/build_toolhead_catalog.py": "e7391d2cc7748db94033069dc44b8365260d169176ee73a31cef249da5023e1a",
     "scripts/cad_section_insert.py": "a590e2fb4045cb3d835901aee33521d63e96e37133979187b0b8503bf16ceefa",
@@ -254,7 +254,7 @@
     "scripts/test_stinger.mjs": "a99aed69b14375787bccbe64ba6b67f9a73bca80c32ccf1cfb5926adff038cfe",
     "scripts/test_support_catalog.mjs": "e798975d79d926188bbcc6ce24d5124fbc0ec1c5971af580b61786e81e951122",
     "scripts/test_support_delivery.mjs": "2f782c6f7c664bec415b0619f60dc7b12c215871d9f87e1a9fb3db07b8c19d2e",
-    "scripts/test_switchwire_catalog.mjs": "29be59ae97a9c4e933629c4c10eda457dbcfb794a77714154bf33829abb12005",
+    "scripts/test_switchwire_catalog.mjs": "35f8f03bdf4468afac161ae920a4e20d135f6ac4479601a97c3d966ce619f0db",
     "scripts/test_toolchangers.mjs": "2ed1a0225b1d422085dafde93cf3ac6195ac0836c9631ef4453f04f0320ed65d",
     "scripts/test_toolhead_lighting.mjs": "c00fb6dce7e3f2c15975302cd97c7cb3fff513cb430a34c21892a2e221e374b6",
     "scripts/test_trident_bed_registration.mjs": "477dc31348f85029c87e4fce8b7daa8db328846da35c85048a3d0c1d83ecde5d",
@@ -333,14 +333,14 @@
     "site/HEAD_ADDITIONS.json": "c752983c1a054ee7b4d000e458d6839cf5176b2d0b143ca1f6727683a4bed405",
     "site/HEAD_CATALOG_DELTA_ACE_HF_20261020.json": "0995df8a20b9bcbd44856da8f1d5253a285a1f0dbee81222f32677cae7dc32ca",
     "site/HEAD_VALIDATION.json": "307de76ad2fa77fd9f41c62269d8103aa760467f5651cc20a7a71438e99036ec",
-    "site/layout/index.html": "bfe155ef8d9c7d1bd7cd7d8cecd360190d465633691b4a055ce0de92c876a579",
-    "site/layout/layout-app.mjs": "9ca01216010b37c5f3e2793b7a0199c0d7f941005d4d1671c21010af185f00a9",
+    "site/layout/index.html": "786af4da782ce5b91878e32f1aa542993614dc6f2f9dde336f56e64721e4692b",
+    "site/layout/layout-app.mjs": "2af007edc256c7e7bd5ee010f908dd67b980967eb07622f48261e731ea1732a2",
     "site/layout/layout-catalog.json": "b5389602751893d9cb66061d22e0fa829e6d9b20ec3eaaf0617a233c10bf2c05",
     "site/layout/layout-constraints.mjs": "041ba558083059e154a4cf61a2ddc90c77d62be3490a403bb3d8d778e1e2b73c",
     "site/layout/layout-geometry.mjs": "129e07e8d3e2b008fab6937c2fa93d6d90fdbed122be43c7e48a3b00902cccf6",
     "site/layout/layout-i18n.mjs": "54ae63ad48e87535a067c372005cbf271b487b7fd94ee8efe86c621863c73b70",
     "site/layout/layout-language.mjs": "bf6d4bee08d3eb3b5eb790203c76ae521f893db1548d3ecb8e2a489bb82813d0",
-    "site/layout/layout-machine-loader.mjs": "d7fdb38dad0b7dc3259d3b5652d2bb235f7ceb24403bf5469ad910301c12828b",
+    "site/layout/layout-machine-loader.mjs": "3fd62efd6ba4e7939969e9f76974844fce04d864a65cffbf9f29d0ecc267b83c",
     "site/layout/layout-provenance.json": "0e927b59b080ceb3e20ba8a3d686ef8b05084c12a4abdf175f3c2004de8ee585",
     "site/layout/layout-renderer.mjs": "9a8b8619091c4ce2758eb729a847761ee9cc891dc1acce8f1b030580a658adfc",
     "site/layout/layout-room-editor.css": "7b7738d2be8d22a9e1a46686bbd0c8e281616791e30c8ca069465c5a34e2755a",
@@ -406,10 +406,10 @@
     "site/viewer/chunked-component-glb.mjs": "3639cc45ea38ec9c56d37b1a214b2c03f377afb41eef083999a7e9d20ca4cd40",
     "site/viewer/cleaning.html": "484fca76e0b743055e277ab40e38f50ad2255719b6bd18b21d99f6e6aa6afc5c",
     "site/viewer/community-adapter.mjs": "b0cc85230bdd2fc9c369a836e7881880c5002ab7b9d1cffd6c9b519ff83678c3",
-    "site/viewer/community-loader.mjs": "52e76c5c1ffbaa1cc7dddf61a6acaa4edc8bf204bc14f5e831c3dd22bbcb2050",
+    "site/viewer/community-loader.mjs": "c69507eb079fc34e79974088005027fd998eec1462ec99e2282a6e44c46fad73",
     "site/viewer/community-state.mjs": "460b3fa78cc503ddb6e631766efe780433e4efa286db5d9388a67d73cd4fce3d",
-    "site/viewer/community.html": "8c2b2f585b25165fd34af2f6b06581ecfd789cba80769e7963e6aee36b4861e1",
-    "site/viewer/community.js": "8467f272c55c3f93c5615815d65f54a1d4cd08c8507f9bffef6a0c582c2fc05f",
+    "site/viewer/community.html": "d8381713e90377be922145ba7a35cc9605a4dfadae98b9bc8bd864c4e3e4b97a",
+    "site/viewer/community.js": "54a9b2a2d2de7e231752352f99dfff2ae24abb1637a7ef39918dacf14d7e437c",
     "site/viewer/component-assets.mjs": "2dbda26b309fbe6c35c869bf63a9da9d8ee73b32f9741b2dec6421678b411b7d",
     "site/viewer/component-selection.js": "51826e4eeaa0dd803b109d2ba7261d86e40fa509e63ffe7ce2f087efd0ee6e04",
     "site/viewer/components.html": "849d36318983d4426eb6dfecef65248c1b0f6409d88eb4b63305b171a85f8d71",
@@ -483,8 +483,8 @@
     "site/viewer/layout-custom-source.mjs": "2a491ec6cfb8d905ee10cbbcfe7bf2526e0d59fbf3571e625b6f66ea0458522b",
     "site/viewer/layout-default-source-pins.mjs": "40ec0e1e7e69deb4b586ba2eaa54db2caea97bb0695a46aba6e736583131f374",
     "site/viewer/layout-machine-loader-core.mjs": "4b1f6a033f5d522d06ba267872fb392171c671413a35a69f7c5459a84eec3d5d",
-    "site/viewer/layout-machine-loader.mjs": "22a120d85604aab1b2e2f2839f97457360a1f203b135b52f9e5195932fb4bc86",
-    "site/viewer/layout-machine-providers.mjs": "72c937231f9a072a8c742038f7ecfd910a2bd384848f02d4a3fe486dd6fd638f",
+    "site/viewer/layout-machine-loader.mjs": "1bc7ef624cb897f62f74692f88f123455ad843bee5f571f85a8d00a7ce567903",
+    "site/viewer/layout-machine-providers.mjs": "3f688956010c32eb19b86671dd9590a612ea1d3a89aa3e88e38c4ee392cce853",
     "site/viewer/layout-machine-recipes.mjs": "f5726d36341700aa2eae23df44575632e237018763b3cc991689074cc6e39896",
     "site/viewer/layout-material-ownership.mjs": "9c2148661b8089152e3d082b9d6aaa33f5ad41147743b5a0678c10e8daec054f",
     "site/viewer/layout-nav.mjs": "cffaaecb75077163c5212b9e4335b953a7c9bba4f9a11f2a260a96bda3169f81",
@@ -624,6 +624,7 @@
     "site/viewer/step-downloads.mjs": "7e5376d016ae1f18d425ca1f072d46c3556ee401426323dd8c08dfd238a3d7d3",
     "site/viewer/stinger-flex.mjs": "0ab64709177d49ba0fec080323bba543679b548b09c55deaa4a06c665e9d247e",
     "site/viewer/stinger-tube-route.mjs": "064491780dfb942086bf643996507894fb90cf527b90cd7764c121cf12385127",
+    "site/viewer/switchwire-display-default.mjs": "1a8f0c90e092e48729af607205f11dfbafc0375a974161fbda3cdd39bfb7ccd5",
     "site/viewer/theme-toggle.css": "4e62a8462e0b9ed5c6653d7dcb43cf66a36893b1be13b5b267e4e0af3f85613b",
     "site/viewer/toolchanger-model.js": "0688c022fbab64a87c2e33d823880ec90afaa05223f3d4a3f2f454a258e7c443",
     "site/viewer/toolchangers.css": "aeb1af01008eeb68e8915ccf6a73a4944f2d70ad906feccca6da2579b4dba488",
@@ -6303,7 +6304,9 @@
         "machine_profile.json": "4045df6338cb419a7bba1eb5b28c34e9ccdb88ae19fa5aa9c0b55be65b20b074"
       },
       "adapter_sha256": {
-        "scripts/render_geometry_qa.mjs": "85520f0fd54ed889e11f99e094d3bb99635cb43b9be74b5016868215a67d80fb"
+        "scripts/render_geometry_qa.mjs": "85520f0fd54ed889e11f99e094d3bb99635cb43b9be74b5016868215a67d80fb",
+        "site/viewer/community-loader.mjs": "c69507eb079fc34e79974088005027fd998eec1462ec99e2282a6e44c46fad73",
+        "site/viewer/switchwire-display-default.mjs": "1a8f0c90e092e48729af607205f11dfbafc0375a974161fbda3cdd39bfb7ccd5"
       },
       "container_parsed": true,
       "catalog_hash_checked": true,
@@ -6368,7 +6371,39 @@
           "actual_report_sha256": "26c09a744781d4aafcdbe2fdcaf973e66f995acb007158a29b3c3b2e5b6a75fc"
         }
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "current_display_selection_review": {
+        "source_revision": "92cc013ca2af94e6c09950dbe05c0973ee49aa00",
+        "model_sha256": "9db6a07660da8a4042121c3bec4fd7e6dcd8abcd750682dd9595c3a580d194e7",
+        "manifest_sha256": "703f4a92ee026b6e1c4ef5603691e394aa8919b0755330d07a94775b09ca0dfc",
+        "profile_sha256": "4045df6338cb419a7bba1eb5b28c34e9ccdb88ae19fa5aa9c0b55be65b20b074",
+        "native_source_occurrences": 718,
+        "selected_default_visible": 703,
+        "references_visible": 708,
+        "Mini12864_kept": 11,
+        "LCD2004_hidden": 9,
+        "blank_hidden": 1,
+        "shared_front_kept": 22,
+        "source_input_sha256": {
+          "site/viewer/community-loader.mjs": "c69507eb079fc34e79974088005027fd998eec1462ec99e2282a6e44c46fad73",
+          "scripts/audit_community_installations.mjs": "c3075e442313b1b8249b545bcdeedd02880a3920685af0de07626cc4fc83710c",
+          "scripts/test_switchwire_catalog.mjs": "35f8f03bdf4468afac161ae920a4e20d135f6ac4479601a97c3d966ce619f0db",
+          "scripts/build_site.py": "80809a2aec4f0a3887a0aed54c94487b30ae472a04f3ac8f93513de7ece721c7",
+          "site/viewer/switchwire-display-default.mjs": "1a8f0c90e092e48729af607205f11dfbafc0375a974161fbda3cdd39bfb7ccd5"
+        },
+        "sampled_axis_poses": 28,
+        "actual_checks": 68,
+        "geometry_matrices_materials_unchanged": true,
+        "inspection": "Exact exported source identities and complete display companions; sampled controller axes, references, reset, save/load and palette/material regressions.",
+        "evidence_sha256": [
+          "da7057eaf29d9e4051b0a94c57e91358a6cafcac4e0d9ba6c7898937dc9e02f8",
+          "6657f7be58b0ff4e0fd28a28c1b429e8698679befe5cde1a9c1046358fb6b803"
+        ],
+        "native_mating_verified": false,
+        "whole_machine_fit_certified": false,
+        "browser_proof_scope": "Separate current-source browser review.",
+        "original_thumbnail_scope": "Historical original-source CPU projection; not corrected runtime display-selection proof."
+      }
     },
     {
       "id": "rh3d_virtu_may_230",
@@ -6755,5 +6790,40 @@
     "profile_references_changed": false,
     "model_or_geometry_buffers_changed": false,
     "whole_machine_fit_certified": false
+  },
+  "switchwire_display_selection_scope": {
+    "machine_id": "voron_switchwire_250",
+    "source_revision": "92cc013ca2af94e6c09950dbe05c0973ee49aa00",
+    "model_sha256": "9db6a07660da8a4042121c3bec4fd7e6dcd8abcd750682dd9595c3a580d194e7",
+    "manifest_sha256": "703f4a92ee026b6e1c4ef5603691e394aa8919b0755330d07a94775b09ca0dfc",
+    "profile_sha256": "4045df6338cb419a7bba1eb5b28c34e9ccdb88ae19fa5aa9c0b55be65b20b074",
+    "native_source_occurrences": 718,
+    "selected_default_visible": 703,
+    "references_visible": 708,
+    "Mini12864_kept": 11,
+    "LCD2004_hidden": 9,
+    "blank_hidden": 1,
+    "shared_front_kept": 22,
+    "source_input_sha256": {
+      "site/viewer/community-loader.mjs": "c69507eb079fc34e79974088005027fd998eec1462ec99e2282a6e44c46fad73",
+      "scripts/audit_community_installations.mjs": "c3075e442313b1b8249b545bcdeedd02880a3920685af0de07626cc4fc83710c",
+      "scripts/test_switchwire_catalog.mjs": "35f8f03bdf4468afac161ae920a4e20d135f6ac4479601a97c3d966ce619f0db",
+      "scripts/build_site.py": "80809a2aec4f0a3887a0aed54c94487b30ae472a04f3ac8f93513de7ece721c7",
+      "site/viewer/switchwire-display-default.mjs": "1a8f0c90e092e48729af607205f11dfbafc0375a974161fbda3cdd39bfb7ccd5"
+    },
+    "sampled_axis_poses": 28,
+    "actual_checks": 68,
+    "geometry_matrices_materials_unchanged": true,
+    "inspection": "Exact exported source identities and complete display companions; sampled controller axes, references, reset, save/load and palette/material regressions.",
+    "evidence_sha256": [
+      "da7057eaf29d9e4051b0a94c57e91358a6cafcac4e0d9ba6c7898937dc9e02f8",
+      "6657f7be58b0ff4e0fd28a28c1b429e8698679befe5cde1a9c1046358fb6b803"
+    ],
+    "native_mating_verified": false,
+    "whole_machine_fit_certified": false,
+    "browser_proof_scope": "Separate current-source browser review.",
+    "original_thumbnail_scope": "Historical original-source CPU projection; not corrected runtime display-selection proof.",
+    "other_machine_rows_retained": 68,
+    "other_machine_scope": "Same exported bodies and retained inspection scopes; current shared-loader branch equivalence is reviewed separately. No new all-machine decode or native-fit certificate."
   }
 }

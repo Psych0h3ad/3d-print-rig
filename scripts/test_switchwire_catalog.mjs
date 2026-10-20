@@ -11,6 +11,7 @@ import {supportedLanguages} from '../site/viewer/languages.mjs';
 import {createTranslator} from '../site/viewer/translation-engine.mjs';
 import {definitions} from '../site/viewer/locales/catalog.mjs';
 import {sourceRevision} from './build_locales.mjs';
+import {applySwitchwireDisplayDefault} from '../site/viewer/switchwire-display-default.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const ID = 'voron_switchwire_250';
@@ -46,6 +47,26 @@ assert.match(descriptions[ID], /Stealthburner, CW2 and Revo Voron/u);
 assert(notice.includes(revision) && notice.includes('GPL-3.0'));
 assert.match(community, /\['COMMUNITY_MACHINES_ASSETS\.json','EVA_INSTALLATIONS\.json'\]/u);
 assert(!/EXTRA_MACHINE_ASSETS/u.test(community), 'The community loader uses the object-keyed community index');
+// A complete display mask is ineffective if either production entrypoint
+// stops composing it. These assertions run in source-only and actual-site jobs.
+const displayLoader = await fs.readFile(path.join(root, 'site/viewer/community-loader.mjs'), 'utf8');
+const displayAuditor = await fs.readFile(path.join(root, 'scripts/audit_community_installations.mjs'), 'utf8');
+function assertDisplayComposition(loader, auditor) {
+  const call = '({manifest,profile}=applySwitchwireDisplayDefault(manifest,profile,spec.files))';
+  for (const [text, next] of [[loader, 'progress.assembling()'], [auditor, 'const adapter=createCommunityAdapter(']]) {
+    assert.match(text, /import \{applySwitchwireDisplayDefault\} from ['"][^'"]*switchwire-display-default\.mjs(?:\?[^'"]*)?['"]/u,
+      'Switchwire display default must be imported by both production entrypoints');
+    const start=text.indexOf(call), after=text.indexOf(next);
+    assert.equal(text.split(call).length-1, 1, 'Switchwire display default must be composed exactly once');
+    assert(start>text.indexOf('applyEvaInstallation(manifest,profile,spec.eva_installation)')&&after>start,
+      'Switchwire display default must follow source registration and precede assembly/adapter creation');
+  }
+}
+assertDisplayComposition(displayLoader, displayAuditor);
+assert.throws(() => assertDisplayComposition(displayLoader.replace('({manifest,profile}=applySwitchwireDisplayDefault(manifest,profile,spec.files))', ''), displayAuditor),
+  /Switchwire display default/u, 'Missing GUI/layout overlay must fail source-only checks');
+assert.throws(() => assertDisplayComposition(displayLoader, displayAuditor.replace('({manifest,profile}=applySwitchwireDisplayDefault(manifest,profile,spec.files))', '')),
+  /Switchwire display default/u, 'Missing actual-installation audit overlay must fail source-only checks');
 const indexIDs = ['machine.switchwire.label', 'machine.switchwire.description', 'machine.switchwire.source_notice', 'machine.switchwire.chain_notice'];
 const source = JSON.parse(await fs.readFile(path.join(root, 'localization/source.json'), 'utf8'));
 const dictionaries = new Map();
@@ -88,6 +109,7 @@ for (const language of supportedLanguages) {
 const consumers = [
   ['community-adapter.mjs', 'native-motion-flex.mjs'],
   ['community-loader.mjs', 'community-adapter.mjs'],
+  ['community-loader.mjs', 'switchwire-display-default.mjs'],
   ['community.js', 'community-loader.mjs'],
   ['community.html', 'community.js'],
 ];
@@ -138,6 +160,22 @@ if (args[0] === '--source-only') {
   const [model, manifestBytes, profileBytes] = await Promise.all(['model.glb', 'assembly_manifest.json', 'machine_profile.json'].map(checked));
   const manifest = JSON.parse(manifestBytes), profile = JSON.parse(profileBytes);
   assert.equal(manifest.machine_id, ID); assert.equal(profile.machine_id, ID);
+  // The immutable asset still contains both alternatives. Audit the effective
+  // production default separately from the raw profile and thumbnail receipt.
+  const rawProfileJSON=JSON.stringify(profile);
+  const selected=applySwitchwireDisplayDefault(manifest,profile,spec.files);
+  assert.equal(JSON.stringify(profile),rawProfileJSON,'Do not rewrite source metadata');
+  assert.equal(selected.manifest,manifest);
+  const hidden=new Set(selected.profile.configurations.stock.hidden_keys);
+  const branch=name=>manifest.parts.filter(p=>p.path[1]==='Front Grill:1'&&p.path[2]===name);
+  assert.equal(hidden.size,10);
+  assert.equal(branch('2004 LCD Case:1').length,9);
+  assert(branch('2004 LCD Case:1').every(p=>hidden.has(p.key)));
+  assert.equal(branch('Mini12864 Case Assembly v2 v1:1').length,11);
+  assert(branch('Mini12864 Case Assembly v2 v1:1').every(p=>!hidden.has(p.key)));
+  assert(hidden.has('sw_087266894303ada5'));
+  assert.equal(manifest.parts.filter(p=>!hidden.has(p.key)&&p.group!=='reference').length,703);
+  assert.equal(manifest.parts.filter(p=>!hidden.has(p.key)).length,708);
   assert(profile.motion_registration?.notices?.includes(chainNotice), 'The actual profile must disclose its 24-link preview derivative');
   if (profile.configurations?.stock?.motion_notices) assert(profile.configurations.stock.motion_notices.includes(chainNotice), 'The stock description override must retain the chain notice');
   assert.equal(manifest.native_leaf_count, spec.parts); assert.equal(manifest.parts.length, spec.parts);
@@ -180,5 +218,6 @@ if (args[0] === '--source-only') {
   console.log(JSON.stringify({machine: ID, source_registration_passed: true, actual_asset_delivery_passed: true,
     model_sha256: hash(model), manifest_sha256: hash(manifestBytes), profile_sha256: hash(profileBytes),
     thumbnail_sha256: hash(thumbnail), thumbnail_bytes: thumbnail.length, source_occurrences: spec.parts,
+    production_display_default_verified: true, display_default_visible: 703, display_reference_visible: 708,
     CPU_projection_verified: true, browser_review: false, motion_or_native_fit_tested: false}));
 }
