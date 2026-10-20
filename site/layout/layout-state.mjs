@@ -386,6 +386,87 @@ export function resolveWorldMove(state, {id, x, z}, catalog = [], {snapMm = 10, 
   }
   return Object.freeze({...result(best),boundaryLimited:true,pointerRemainder:Object.freeze({x:x-target.x,z:z-target.z})});
 }
+// World angles remain unwrapped: +360 and -270 describe directed paths, not
+// equivalent endpoints or a shortest turn. Each preview starts at the previous
+// accepted state; the app alone commits that frozen transaction on pointerup.
+export function resolveWorldRotation(state, input, catalog = [], options = {}) {
+  try {
+    if (!plain(input) || Object.keys(input).some(k => !['id', 'yawDeg'].includes(k)) || !idOK(input.id)
+      || !plain(options) || Object.keys(options).some(k => !['snapDeg', 'snapOrigin'].includes(k))) return false;
+    const {id, yawDeg} = input, {snapDeg = 15, snapOrigin = null} = options;
+    if (!numberOK(yawDeg, -2 * LIMITS.maxYawDeg, 2 * LIMITS.maxYawDeg)
+      || !numberOK(snapDeg, 0, 360)
+      || snapOrigin !== null && !numberOK(snapOrigin, -2 * LIMITS.maxYawDeg, 2 * LIMITS.maxYawDeg)) return false;
+    const machines = catalogOf(catalog); assertState(state, machines);
+    const furniture = state.furniture.find(f => f.id === id), printer = state.printers.find(p => p.id === id);
+    if (!furniture && !printer) return false;
+    const origin = worldTransform(state, id, machines), anchor = snapOrigin ?? origin.yawDeg;
+    const snapped = snapDeg === 0 ? yawDeg : anchor + Math.round((yawDeg - anchor) / snapDeg) * snapDeg;
+    // A finite wall contact can lie between snap angles. Continued pressure or
+    // a stationary pointer must not reverse to the grid point behind it.
+    const target = yawDeg === origin.yawDeg || (yawDeg - origin.yawDeg) * (snapped - origin.yawDeg) < 0 ? origin.yawDeg : snapped;
+    const parent = printer && state.furniture.find(f => f.id === printer.attachment.parentId);
+    const parentYaw = parent?.pose.yawDeg ?? 0;
+    if (!numberOK(target - parentYaw, -LIMITS.maxYawDeg, LIMITS.maxYawDeg)) return false;
+    const ids = furniture ? [id, ...state.printers.filter(p => p.attachment.parentId === id).map(p => p.id)] : [id];
+    // Rotation is not an implicit repair of an imported overhang/outside pose.
+    if (placementViolations(state, machines).some(e => ids.includes(e.entityIds[0]))) return false;
+    const local = furniture ? rectangle(furniture.widthMm, furniture.depthMm) : machines.byId[printer.machineId].footprintMm;
+    const followers = furniture ? state.printers.filter(p => p.attachment.parentId === id).map(p => localPrinterPolygon(p, machines)) : [];
+    const surface = parent && rectangle(parent.widthMm, parent.depthMm);
+    const trial = goal => {
+      const delta = goal - origin.yawDeg, segments = Math.max(1, Math.ceil(Math.abs(delta) / 90));
+      let next = state, previousWorld = origin;
+      for (let i = 1; i <= segments; i++) {
+        const worldYaw = i === segments ? goal : origin.yawDeg + delta * (i / segments);
+        // Preserve the exact source local angle on a no-op; avoid a needless
+        // parent-world-parent floating-point roundtrip at a gesture's origin.
+        const localYaw = worldYaw === origin.yawDeg ? (furniture?.pose.yawDeg ?? printer.attachment.yawDeg) : worldYaw - parentYaw;
+        const before = next;
+        next = applyAction(before, furniture
+          ? {type: 'UPDATE_FURNITURE', id, patch: {pose: {yawDeg: localYaw}}}
+          : {type: 'UPDATE_PRINTER', id, patch: {attachment: {yawDeg: localYaw}}}, machines);
+        const world = worldTransform(next, id, machines);
+        // applyAction validates each transaction. Explicit sweeps also cover
+        // symmetric/equal footprints that its unchanged-polygon fast path skips.
+        if (!rigidMotionStaysInside(state.room.polygonMm, local, previousWorld, world)
+          || followers.some(poly => !rigidMotionStaysInside(state.room.polygonMm, poly, previousWorld, world))) return false;
+        if (surface && !rigidMotionStaysInside(surface, local,
+          before.printers.find(p => p.id === id).attachment, next.printers.find(p => p.id === id).attachment)) return false;
+        previousWorld = world;
+      }
+      return next;
+    };
+    const accepted = goal => {
+      try { return trial(goal); }
+      catch (error) {
+        if (!(error instanceof LayoutValidationError)) throw error;
+        if (error.errors.some(e => !PLACEMENT_BOUNDARY_CODES.includes(e.code))) throw error;
+        return false;
+      }
+    };
+    const result = (next, limited = false) => Object.freeze({state: next,
+      yawDeg: worldTransform(next, id, machines).yawDeg,
+      ...(limited ? {boundaryLimited: true} : {}),
+      // A clipped arc consumes blocked overshoot. Re-adding a signed grid
+      // remainder at an off-grid contact could incorrectly reverse the drag.
+      ...(!limited && target === snapped ? {pointerRemainderDeg: yawDeg - snapped} : {})});
+    const complete = accepted(target);
+    if (complete) return result(complete);
+    // Every predicate trial proves the entire signed interval prefix, split
+    // into <=90deg sweeps. A valid endpoint beyond a blocked arc cannot jump it.
+    let low = 0, high = 1, best = state;
+    for (let i = 0; i < 64; i++) {
+      const t = low + (high - low) / 2; if (t === low || t === high) break;
+      const candidate = accepted(origin.yawDeg + (target - origin.yawDeg) * t);
+      if (candidate) { low = t; best = candidate; } else high = t;
+    }
+    return result(best, true);
+  } catch (error) {
+    if (error instanceof LayoutValidationError) return false;
+    throw error;
+  }
+}
 // Public renderer callback shape. The app uses resolveWorldMove to retain the
 // same transaction for its once-only commit; this convenience remains pure.
 export function previewWorldMove(state, input, catalog = [], options = {}) {

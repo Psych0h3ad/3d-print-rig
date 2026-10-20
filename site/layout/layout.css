@@ -64,6 +64,23 @@ button[aria-pressed="true"] { background: var(--layout-selected); border-color: 
 .layout-stage { min-width: 0; min-height: 0; position: relative; display: flex; flex-direction: column; background: var(--layout-scene); }
 .layout-scene { flex: 1; min-width: 0; min-height: 0; position: relative; overflow: hidden; outline-offset: -3px !important; }
 .layout-scene canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+.layout-object-tools {
+  position: absolute; transform: translate(-50%, -100%); z-index: 2;
+  display: flex; align-items: center; gap: 3px; padding: 4px;
+  max-width: calc(100% - 16px); border: 1px solid var(--line); border-radius: 9px;
+  background: var(--paper); box-shadow: var(--layout-shadow);
+}
+.layout-object-tools > button {
+  display: inline-flex; align-items: center; justify-content: center;
+  flex: 0 0 34px; width: 34px; height: 34px; min-height: 34px; padding: 6px;
+}
+.layout-object-tools > .layout-rotation-handle {
+  flex: 1 0 86px; width: auto; min-width: 86px; gap: 6px;
+  cursor: ew-resize; user-select: none; touch-action: none;
+}
+.layout-rotation-handle output { font-variant-numeric: tabular-nums; text-align: right; }
+.layout-rotation-handle[data-dragging="true"] { background: var(--layout-selected); border-color: var(--accent); }
+.layout-object-tools[data-boundary-limited="true"] { border-color: var(--layout-warn); }
 .layout-scene-toolbar { display: flex; justify-content: space-between; gap: 10px; padding: 14px 16px 0; flex-wrap: wrap; z-index: 1; }
 .layout-tool-group { display: flex; align-items: center; gap: 3px; padding: 3px; border: 1px solid var(--line); border-radius: 9px; background: var(--paper); box-shadow: var(--layout-shadow); }
 .layout-tool-group button { display: flex; align-items: center; gap: 6px; background: transparent; border-color: transparent; min-height: 34px; }

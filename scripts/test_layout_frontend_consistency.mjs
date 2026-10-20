@@ -12,7 +12,8 @@ const read=rel=>{const b=fs.readFileSync(path.join(site,rel));consumed[rel]=cryp
 const app=read('layout/layout-app.mjs'),renderer=read('layout/layout-renderer.mjs');
 read('layout/layout-language.mjs');read('layout/layout-i18n.mjs');
 read('layout/layout-state.mjs');read('layout/layout-constraints.mjs');read('layout/layout-geometry.mjs');
-const {createDefaultLayout,createRoomRect,createDesk,createCatalog,applyAction,serializeLayout,parseLayout}=await import(pathToFileURL(path.join(site,'layout/layout-state.mjs')));
+const S=await import(pathToFileURL(path.join(site,'layout/layout-state.mjs')));
+const {createDefaultLayout,createRoomRect,createDesk,createCatalog,applyAction,serializeLayout,parseLayout}=S;
 const {setupLayoutLanguage}=await import(pathToFileURL(path.join(site,'layout/layout-language.mjs')));
 const {supportedLanguages,t}=await import(pathToFileURL(path.join(site,'layout/layout-i18n.mjs')));
 const tests=[];async function test(id,fn){await fn();tests.push({id,status:'PASS'})}
@@ -101,6 +102,7 @@ await test('deferred-layout-import-never-overwrites-newer-commands-or-disposed-p
   const past=[],future=[],maxFileBytes=2097152,messages=[],views=[];
   const sync=()=>{},store=()=>{},message=(...args)=>messages.push(args),humanError=()=> 'error',t=k=>k;
   const view={view:v=>views.push(v)};
+  const statusNode={hidden:false,textContent:''},$=()=>statusNode,ui={setStatus(){}};
   ${commitSource}\n${selectSource}\n${actSource}
   return {act,select,get:()=>state,dispose:()=>disposed=true,messages,views};`);
  const room=width=>applyAction(createDefaultLayout(),{type:'SET_ROOM',room:createRoomRect({widthMm:width,depthMm:4000})},[]);
@@ -159,7 +161,7 @@ await test('desktop-bootstrap-reaches-ready-with-automatic-renderer-and-no-remov
   const document=deps.doc,$=q=>document.querySelector(q),navigator={deviceMemory:8},localStorage={getItem:()=>null};
   const storageKey='test',maxFileBytes=2097152,fetch=async()=>({ok:true,json:async()=>deps.catalogData});
   let state,catalog,rows,ui,view,selected=null,busy=false,roomEditing=false;
-  const language={t:key=>key},t=key=>key,act=()=>{},select=()=>{},worldMove=()=>{},constrainMove=()=>{},message=()=>{},humanError=()=> 'error';
+  const language={t:key=>key},t=key=>key,act=()=>{},select=()=>{},worldMove=()=>{},constrainMove=()=>{},worldRotate=deps.rotationPorts.onRotate,constrainRotate=deps.rotationPorts.constrainRotate,message=()=>{},humanError=()=> 'error';
   const calls={sync:0,language:0,views:[],presentations:[],options:[]};
   const sync=()=>calls.sync++,updateLanguage=()=>calls.language++,dark=()=>false;
   const updateViewPresentation=value=>calls.presentations.push(value);
@@ -167,14 +169,62 @@ await test('desktop-bootstrap-reaches-ready-with-automatic-renderer-and-no-remov
   ${defaultSource}
   ${source}
   return {ready:document.body.dataset.layoutReady,state,calls,view};`);
+ const rotationPorts={onRotate:()=>{},constrainRotate:()=>false};
  const rendererModule={createLayoutRenderer:options=>{
+  assert.equal(options.onRotate,rotationPorts.onRotate);assert.equal(options.constrainRotate,rotationPorts.constrainRotate);
   assert.equal(typeof options.onMove,'function');assert.equal(typeof options.constrainMove,'function');assert.equal(typeof options.onViewChange,'function');
   return {canvas:new E('canvas'),view:()=>{},getView:()=>({mode:'perspective',projection:'perspective-3d'}),setOptions:()=>{}};
  }};
- const result=await run({doc:e.doc,catalogData,createDefaultLayout,createDesk,createCatalog,applyAction,parseLayout,rendererModule});
+ const result=await run({doc:e.doc,catalogData,createDefaultLayout,createDesk,createCatalog,applyAction,parseLayout,rendererModule,rotationPorts});
  assert.equal(result.ready,'true');assert.equal(result.state.furniture.length,1);assert.equal(result.state.printers.length,1);assert.equal(result.calls.sync,1);assert.equal(result.calls.language,1);
  assert.deepEqual(result.calls.presentations,[{mode:'perspective',projection:'perspective-3d'}]);
 });
+
+await test('actual-app-failed-noop-and-successful-commit-status-lifecycle',async()=>{
+ const lifecycle=unique(app,'function message(','\nfunction select(');
+ const selectSource=unique(app,'function select(value)','\nfunction download(');
+ const moves=unique(app,'let pendingMove=','\nasync function render(');
+ const actions=unique(app,'async function act(action){','\nfunction updateViewPresentation(');
+ const factory=new Function('deps',`
+  const {applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,serializeLayout,parseLayout,createDefaultLayout,validatePlacement}=deps.S;
+  const catalog=[],past=[],future=[],writes=[],updates=[],maxFileBytes=2097152,document={body:{dataset:{}}};
+  let state=deps.initial,selected='status-desk',busy=false,roomEditing=false,disposed=false,interactionGeneration=0,operation=null;
+  const status={hidden:true,textContent:''},uiState={message:'',error:false},$=selector=>{if(selector!=='#layout-status')throw Error('Unexpected status selector');return status};
+  const ui={setStatus(value){Object.assign(uiState,value)},update(){updates.push({dom:{...status},ui:{...uiState}})}};
+  const view={setState(){},view(){}},t=(key,params)=>deps.translate(key,params);
+  const store=()=>writes.push({state:serializeLayout(state,catalog),dom:{...status},ui:{...uiState}});
+  ${lifecycle}
+  ${selectSource}
+  ${moves}
+  ${actions}
+  return {worldMove,worldRotate,act,commit,message,read:()=>({state,status:{...status},ui:{...uiState},writes:[...writes],updates:[...updates]})};`);
+ for(const language of supportedLanguages){
+  const translate=(key,params)=>t(key,params,language);
+  const initial=createDefaultLayout({room:createRoomRect({widthMm:4000,depthMm:4000}),furniture:[createDesk({id:'status-desk',widthMm:1000,depthMm:1600,heightMm:750,pose:{xMm:1500,zMm:0,yawDeg:0}})]},[]);
+  const r=factory({S,initial,translate}),encoded=()=>serializeLayout(r.read().state,[]);
+  const before=encoded();assert.equal(r.worldRotate({id:'status-desk',yawDeg:90,deltaDeg:90}),false);
+  assert.equal(encoded(),before);assert.equal(r.read().status.hidden,false);
+  assert.equal(r.read().status.textContent,translate('layout.error.ROOM_OUT_OF_BOUNDS'));assert.equal(r.read().ui.error,true);
+  assert.equal(r.worldMove({id:'status-desk',x:0,z:0}),true);
+  assert.equal(r.read().state.furniture[0].pose.xMm,0);assert.equal(r.read().status.hidden,true);
+  assert.equal(r.read().status.textContent,'');assert.equal(r.read().ui.message,'');assert.equal(r.read().ui.error,false);
+  r.message('preserve-current-error',true);let saved=r.read();
+  r.commit(saved.state);r.commit(parseLayout(serializeLayout(saved.state,[]),[]));
+  assert.deepEqual(r.read().status,saved.status);assert.deepEqual(r.read().ui,saved.ui);assert.equal(r.read().writes.length,saved.writes.length);
+  assert.equal(r.worldMove({id:'status-desk',x:0,z:0}),true);assert.deepEqual(r.read().status,saved.status);
+  const count=r.read().writes.length;
+  await r.act({type:'UPDATE_FURNITURE',id:'status-desk',patch:{pose:{xMm:5000}}});
+  assert.equal(r.read().writes.length,count);assert.equal(r.read().status.hidden,false);assert.equal(r.read().ui.error,true);
+  assert.equal(r.worldRotate({id:'status-desk',yawDeg:90,deltaDeg:90}),true);
+  assert.equal(r.read().state.furniture[0].pose.yawDeg,90);assert.deepEqual(r.read().status,{hidden:true,textContent:''});assert.equal(r.read().ui.error,false);
+  assert.ok(r.read().writes.every(w=>w.dom.hidden&&w.dom.textContent===''&&w.ui.message===''&&w.ui.error===false),'Clear status before sync/store');
+  const next=applyAction(r.read().state,{type:'SET_ROOM',room:createRoomRect({widthMm:6000,depthMm:4000})},[]);
+  const text=serializeLayout(next,[]);await r.act({type:'import',file:{size:text.length,text:async()=>text}});
+  assert.equal(encoded(),text);assert.equal(r.read().status.hidden,false);
+  assert.equal(r.read().status.textContent,translate('layout.loaded'));assert.equal(r.read().ui.message,translate('layout.loaded'));assert.equal(r.read().ui.error,false);
+ }
+});
+
 for(const [rel,h]of Object.entries(consumed))assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(site,rel))).digest('hex'),h,'Source changed: '+rel);
 const report={schema:'layout-frontend-consistency-source-v1',passed:true,tests,sourceInputs:consumed,languages:supportedLanguages,actualSourceBodies:true,actualLanguageModule:true,DOMInterfaceFixture:true,WebGL:false,modelsLoaded:0,native:false};
 if(option('--report'))fs.writeFileSync(option('--report'),JSON.stringify(report,null,2)+'\n',{flag:'wx'});

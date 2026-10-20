@@ -36,7 +36,45 @@ function makeCanvas(){
   getContext(){return context}};
  canvases.push(c);return c;
 }
-const fixtureDocument={createElement:tag=>{assert.equal(tag,'canvas');return makeCanvas()}};
+// Contextual controls use normal DOM nodes. Measurements are controlled fixture
+// inputs, never a claim about browser CSS layout, SVG pixels or trusted events.
+function makeDOMNode(tag){
+ const handlers=new Map(),attrs=new Map(),captured=new Set();
+ const n={tagName:String(tag).toUpperCase(),style:{},dataset:{},children:[],parentNode:null,hidden:false,disabled:false,className:'',id:'',textContent:'',innerHTML:'',reviewHandlers:handlers,reviewRect:null,
+  append(...items){for(const item of items){item.remove?.();item.parentNode=this;this.children.push(item)}},appendChild(item){this.append(item);return item},
+  replaceChildren(...items){for(const child of this.children)child.parentNode=null;this.children=[];this.append(...items)},
+  remove(){if(this.parentNode){this.parentNode.children=this.parentNode.children.filter(c=>c!==this);this.parentNode=null}this.removed=true},
+  setAttribute(key,value){value=String(value);attrs.set(key,value);if(key==='id')this.id=value;if(key==='class')this.className=value;if(key.startsWith('data-'))this.dataset[key.slice(5).replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]=value},
+  getAttribute(key){if(key==='id')return this.id||null;if(key==='class')return this.className||null;if(key.startsWith('data-'))return this.dataset[key.slice(5).replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]??null;return attrs.get(key)??null},
+  removeAttribute(key){attrs.delete(key);if(key==='id')this.id='';if(key==='class')this.className='';if(key.startsWith('data-'))delete this.dataset[key.slice(5).replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]},
+  addEventListener(type,fn,option){const capture=option===true||!!option?.capture,list=handlers.get(type)||[];if(!list.some(r=>r.fn===fn&&r.capture===capture))list.push({fn,capture,once:!!option?.once});handlers.set(type,list)},
+  removeEventListener(type,fn,option){const capture=option===true||!!option?.capture;handlers.set(type,(handlers.get(type)||[]).filter(r=>r.fn!==fn||r.capture!==capture))},
+  emit(type,detail={}){
+   let stopped=false,immediate=false;const event={type,target:this,currentTarget:null,bubbles:true,button:0,buttons:1,pointerId:71,pointerType:'mouse',isPrimary:true,shiftKey:false,ctrlKey:false,altKey:false,metaKey:false,defaultPrevented:false,
+    preventDefault(){this.defaultPrevented=true},stopPropagation(){stopped=true},stopImmediatePropagation(){stopped=true;immediate=true},...detail};
+   const ancestors=[];for(let p=this.parentNode;p;p=p.parentNode)ancestors.push(p);
+   const invoke=(node,capture)=>{event.currentTarget=node;for(const row of [...(node.reviewHandlers?.get(type)||[])]){if(row.capture!==capture)continue;row.fn(event);if(row.once)node.removeEventListener(type,row.fn,capture);if(immediate)break}};
+   for(const p of [...ancestors].reverse()){invoke(p,true);if(stopped)return event}invoke(this,true);if(!immediate)invoke(this,false);
+   if(event.bubbles&&!stopped)for(const p of ancestors){invoke(p,false);if(stopped)break}event.currentTarget=null;return event;
+  },
+  click(){if(!this.disabled)this.emit('click')},focus(){fixtureDocument.activeElement=this},blur(){if(fixtureDocument.activeElement===this)fixtureDocument.activeElement=null;this.emit('blur',{bubbles:false})},
+  setPointerCapture(id){captured.add(id)},hasPointerCapture(id){return captured.has(id)},releasePointerCapture(id){if(captured.delete(id))this.emit('lostpointercapture',{pointerId:id})},
+  contains(other){return this===other||this.children.some(c=>c.contains?.(other))},
+  matches(selector){
+   if(selector.startsWith('#'))return this.id===selector.slice(1);
+   if(selector.startsWith('.'))return this.className.split(/\s+/).includes(selector.slice(1));
+   const attr=selector.match(/^(?:([\w-]+))?\[([^=\]]+)(?:=['"]?([^'"\]]+)['"]?)?\]$/);if(attr)return (!attr[1]||this.tagName===attr[1].toUpperCase())&&(attr[3]===undefined?this.getAttribute(attr[2])!==null:this.getAttribute(attr[2])===attr[3]);
+   return this.tagName===selector.toUpperCase();
+  },
+  querySelectorAll(selector){const result=[],selectors=selector.split(',').map(x=>x.trim()),walk=node=>{for(const child of node.children||[]){if(selectors.some(s=>child.matches?.(s)))result.push(child);walk(child)}};walk(this);return result},querySelector(selector){return this.querySelectorAll(selector)[0]||null},
+  getBoundingClientRect(){const r=this.reviewRect||{left:0,top:0,width:0,height:0};return {...r,right:r.left+r.width,bottom:r.top+r.height}},
+  get offsetWidth(){return this.getBoundingClientRect().width},get offsetHeight(){return this.getBoundingClientRect().height},get clientWidth(){return this.offsetWidth},get clientHeight(){return this.offsetHeight}
+ };
+ n.classList={contains:name=>n.className.split(/\s+/).includes(name),add:(...names)=>{n.className=[...new Set([...n.className.split(/\s+/).filter(Boolean),...names])].join(' ')},remove:(...names)=>{n.className=n.className.split(/\s+/).filter(x=>!names.includes(x)).join(' ')},toggle:(name,force)=>{const enabled=force??!n.classList.contains(name);n.classList[enabled?'add':'remove'](name);return enabled}};
+ Object.defineProperty(n,'ownerDocument',{get:()=>fixtureDocument});return n;
+}
+const fixtureDocument={activeElement:null,createElement:tag=>tag==='canvas'?makeCanvas():makeDOMNode(tag),createElementNS:(namespace,tag)=>makeDOMNode(tag)};
+function makeContainer(){const n=makeDOMNode('div');n.getBoundingClientRect=()=>({...size,left:0,top:0,right:size.width,bottom:size.height});return n;}
 const raf=f=>setTimeout(()=>f(performance.now()),0);
 class ObserverFixture {constructor(fn){this.fn=fn;observers.push(this)}observe(){}disconnect(){this.disconnected=true}}
 async function realModule(file){imports.push(pin(file));return {namespace:await import(pathToFileURL(file)),evaluate:async()=>{}}}
@@ -109,7 +147,7 @@ const replacement={...THREE,WebGLRenderer:RendererFixture,PMREMGenerator:PMREMFi
 const factory=new Function('THREE','OrbitControls','RoomEnvironment','deriveScene','document','devicePixelRatio','requestAnimationFrame','cancelAnimationFrame','ResizeObserver',body+'\nreturn createLayoutRenderer;')(
  replacement,ControlsFixture,EnvironmentFixture,(state,catalog)=>state.derived??S.deriveScene(state,catalog),fixtureDocument,1,raf,clearTimeout,ObserverFixture);
 function setup(dimensions={width:400,height:300}){
- size={...dimensions};const container={getBoundingClientRect:()=>({...size}),append(){}};
+ size={...dimensions};const container=makeContainer();
  const catalog=[{id:'test-machine',dimensionsMm:{width:200,depth:200,height:300}}];
  const api=factory({container,catalog});
  const p={id:'p1',machineId:'test-machine',positionM:{x:1,y:.75,z:2},supportYM:.75,yawRad:Math.PI/2};
@@ -512,7 +550,7 @@ for(const rebuildOnSelect of [false,true])for(const ending of ['pointercancel','
  const printer=(id,parentId,surfaceId,xMm,zMm)=>({id,machineId:'test-machine',configurationId:null,attachment:{parentId,surfaceId,xMm,zMm,yawDeg:15}});
  let current=S.createDefaultLayout({furniture:[desk,shelf],printers:[printer('child1','desk','top',100,50),printer('child2','desk','top',-200,100),printer('free',null,'floor',2000,1000),printer('shelfchild','shelf','level-1',0,0)]},catalog);
  const initial=S.serializeLayout(current,catalog),commits=[],selections=[];
- let api;api=factory({container:{getBoundingClientRect:()=>({...size}),append(){}},catalog,
+ let api;api=factory({container:makeContainer(),catalog,
   onSelect:id=>{selections.push(id);if(rebuildOnSelect)api.setState(current,id)},
   onMove:move=>{commits.push(move);const old=current.furniture.find(f=>f.id===move.id);current=S.applyAction(current,{type:'UPDATE_FURNITURE',id:move.id,patch:{pose:{...old.pose,xMm:move.x,zMm:move.z}}},catalog);api.setState(current,move.id)}});
  api.setState(current,null);api.setTool('move');const renderer=renderers.at(-1),controls=allControls.at(-1);
@@ -576,13 +614,14 @@ const settled=()=>new Promise(resolve=>setTimeout(resolve,5));
 function operationSetup(realOrbit=false,options={}){
  size={width:800,height:600};const catalog=[{id:'test-machine',label:'Test printer',widthMm:200,depthMm:180,heightMm:300,dimensionsMm:{width:200,depth:180,height:300}}];
  let state=S.createDefaultLayout({furniture:[S.createDesk({id:'desk',widthMm:1200,depthMm:700,heightMm:750})],printers:[{id:'child',machineId:'test-machine',configurationId:null,attachment:{parentId:'desk',surfaceId:'top',xMm:0,zMm:0,yawDeg:0}}]},catalog);
- const commits=[],selections=[],views=[],errors=[];let api;
- api=(realOrbit?factoryRealOrbit:factory)({container:{getBoundingClientRect:()=>({...size}),append(){}},catalog,
-  onSelect:id=>{selections.push(id);api.setState(state,id)},onViewChange:e=>views.push(e),onError:e=>errors.push(e),constrainMove:options.constrainMove,
+ const commits=[],rotationCommits=[],selections=[],views=[],errors=[];let api;const container=makeContainer();
+ api=(realOrbit?factoryRealOrbit:factory)({container,catalog,
+  onSelect:id=>{selections.push(id);api.setState(state,id)},onViewChange:e=>views.push(e),onError:e=>errors.push(e),constrainMove:options.constrainMove,constrainRotate:options.constrainRotate,
+   onRotate:r=>{rotationCommits.push({...r});if(options.rejectRotate)return false;const furniture=state.furniture.find(f=>f.id===r.id),printer=state.printers.find(p=>p.id===r.id);if(furniture)state=S.applyAction(state,{type:'UPDATE_FURNITURE',id:r.id,patch:{pose:{yawDeg:r.yawDeg}}},catalog);else if(printer){const parent=state.furniture.find(f=>f.id===printer.attachment.parentId);state=S.applyAction(state,{type:'UPDATE_PRINTER',id:r.id,patch:{attachment:{yawDeg:r.yawDeg-(parent?.pose.yawDeg||0)}}},catalog)}else assert.fail('Unknown rotation callback entity');api.setState(state,r.id);return true;},
   onMove:m=>{commits.push(m);if(options.rejectMove)return false;if(m.id==='desk')state=S.applyAction(state,{type:'UPDATE_FURNITURE',id:m.id,patch:{pose:{xMm:m.x,zMm:m.z}}},catalog);api.setState(state,m.id)}});
  const renderer=renderers.at(-1),observer=observers.at(-1);api.setState(state,null);
  const nodes=plan=>{const out=new Map();renderer.lastScene.traverse(o=>{if(o.userData.entityId&&!!o.userData.planProjection===plan)out.set(o.userData.entityId,o)});return out};
- return {api,renderer,observer,catalog,commits,selections,views,errors,nodes,state:()=>state};
+ return {api,renderer,observer,container,catalog,commits,rotationCommits,selections,views,errors,nodes,state:()=>state};
 }
 const screen=(v,camera)=>{camera.updateMatrixWorld(true);const p=v.clone().project(camera);return {clientX:(p.x+1)*size.width/2,clientY:(1-p.y)*size.height/2}};
 const cameraSnapshot=c=>({position:c.position.toArray(),quaternion:c.quaternion.toArray(),zoom:c.zoom});
@@ -686,7 +725,7 @@ for(const ending of ['blur','view-change','return-to-grab-point']){
 async function labelSetup({roomWidth=6000,depth=800,zoom=1}={}){
  size={width:900,height:600};const catalog=[{id:'label-machine',label:'Printer label',widthMm:800,depthMm:depth,heightMm:1000,dimensionsMm:{width:800,depth,height:1000}}];
  const state=S.createDefaultLayout({room:S.createRoomRect({widthMm:roomWidth,depthMm:roomWidth*2/3}),printers:[-550,550].map((x,i)=>({id:'label-'+i,machineId:'label-machine',configurationId:null,attachment:{parentId:null,surfaceId:'floor',xMm:x,zMm:0,yawDeg:0}}))},catalog);
- const api=factory({container:{getBoundingClientRect:()=>({...size}),append(){}},catalog});api.setState(state,'label-0');api.view('top');await settled();const renderer=renderers.at(-1),camera=renderer.lastCamera;
+ const api=factory({container:makeContainer(),catalog});api.setState(state,'label-0');api.view('top');await settled();const renderer=renderers.at(-1),camera=renderer.lastCamera;
  if(zoom!==1){camera.zoom=zoom;camera.updateProjectionMatrix();allControls.at(-2).change();await settled()}
  const groups=[];renderer.lastScene.traverse(g=>{if(g.userData.planProjection)groups.push(g)});
  return {api,renderer,camera,groups,state,catalog};
@@ -720,7 +759,7 @@ for(const ending of ['commit','cancel','round-trip']){
  const original=S.serializeLayout(state,catalog),calls=[],commits=[];
  const swept=(a,b)=>[[Math.min(a.x,b.x)-200,Math.min(a.z,b.z)-200],[Math.max(a.x,b.x)+200,Math.min(a.z,b.z)-200],[Math.max(a.x,b.x)+200,Math.max(a.z,b.z)+200],[Math.min(a.x,b.x)-200,Math.max(a.z,b.z)+200]];
  const origin={x:1005,z:4005};
- api=factoryRealOrbit({container:{getBoundingClientRect:()=>({...size}),append(){}},catalog,
+ api=factoryRealOrbit({container:makeContainer(),catalog,
   onSelect:id=>api.setState(state,id),
   constrainMove:(proposal,context)=>{
    const snapped={x:context.origin.x+Math.round((proposal.x-context.origin.x)/10)*10,z:context.origin.z+Math.round((proposal.z-context.origin.z)/10)*10};
@@ -752,7 +791,7 @@ for(const ending of ['commit','cancel','round-trip']){
 {
  size={width:900,height:675};const catalog=[{id:'label-stack-machine',label:'Printer name',widthMm:800,depthMm:600,heightMm:500,dimensionsMm:{width:800,depth:600,height:500}}],selections=[];
  const desk=S.createDesk({id:'desk',widthMm:1200,depthMm:900,heightMm:750}),printer={id:'stack-printer',machineId:'label-stack-machine',configurationId:null,attachment:{parentId:'desk',surfaceId:'top',xMm:0,zMm:0,yawDeg:0}};
- const occupied=S.createDefaultLayout({furniture:[desk],printers:[printer]},catalog),empty=S.applyAction(occupied,{type:'REMOVE_PRINTER',id:'stack-printer'},catalog),api=factory({container:{getBoundingClientRect:()=>({...size}),append(){}},catalog,onSelect:id=>selections.push(id)});
+ const occupied=S.createDefaultLayout({furniture:[desk],printers:[printer]},catalog),empty=S.applyAction(occupied,{type:'REMOVE_PRINTER',id:'stack-printer'},catalog),api=factory({container:makeContainer(),catalog,onSelect:id=>selections.push(id)});
  const renderer=renderers.at(-1),groups=()=>{const m=new Map();renderer.lastScene.traverse(g=>{if(g.userData.planProjection)m.set(g.userData.entityId,g)});return m},visibleLabels=()=>{const a=[];renderer.lastScene.traverseVisible(o=>{if(o.isMesh&&o.userData.planLabel===true)a.push(o)});return a};
  for(const [name,state,count,expectedText]of [['occupied',occupied,2,'Printer name'],['empty',empty,1,'desk'],['occupied-again',occupied,2,'Printer name']]){
   const jsonBefore=S.serializeLayout(state,catalog);api.setState(state,'desk');api.view('top');await settled();const map=groups(),labels=visibleLabels();assert.equal(map.size,count);assert.equal(labels.length,1,'Duplicate centered white label planes: '+name);
@@ -829,7 +868,7 @@ for(const mode of ['top','perspective']){
    const desk=S.createDesk({id:'proxy-desk',widthMm:4000,depthMm:4000,heightMm:740,pose:{xMm:4000,zMm:4000,yawDeg:0}});
    const printer={id:'proxy-printer',machineId:row.id,configurationId:null,attachment:{parentId:raised?desk.id:null,surfaceId:raised?'top':'floor',xMm:raised?0:4000,zMm:raised?0:4000,yawDeg:90}};
    const state=S.createDefaultLayout({room:S.createRoomRect({widthMm:10000,depthMm:10000}),furniture:raised?[desk]:[],printers:[printer]},catalogRows);
-   const derived=S.deriveScene(state,catalogRows),api=factory({container:{getBoundingClientRect:()=>({...size}),append(){}},catalog:catalogRows});
+   const derived=S.deriveScene(state,catalogRows),api=factory({container:makeContainer(),catalog:catalogRows});
    api.setState(state,printer.id);api.view('front');await settled();
    const renderer=renderers.at(-1);let group;renderer.lastScene.traverse(o=>{if(o.userData.entityId===printer.id&&o.userData.simplePreview)group=o});assert(group,original.id+' actual renderer preview');
    const ground=derived.printers[0].supportYM,bounds=new THREE.Box3(),geometries=new Set();group.updateMatrixWorld(true);
@@ -856,7 +895,7 @@ for(const mode of ['top','perspective']){
  const appFile=path.join(A,'layout/layout-app.mjs'),app=fs.readFileSync(appFile,'utf8');imports.push(pin(appFile));
  const sourceMove=app.slice(app.indexOf('let pendingMove='),app.indexOf('async function render('));
  const constrain=new Function('initial','catalog','resolveWorldMove','applyWorldMove',`let state=initial,busy=false,roomEditing=false,disposed=false;${sourceMove}\nreturn constrainMove;`)(state,catalog,S.resolveWorldMove,S.applyWorldMove);
- const accepted=[],commits=[],api=factoryRealOrbit({container:{getBoundingClientRect:()=>({...size}),append(){}},catalog,
+ const accepted=[],commits=[],api=factoryRealOrbit({container:makeContainer(),catalog,
   constrainMove:(proposal,context)=>{const value=constrain(proposal,context);accepted.push(value);return value;},onMove:m=>commits.push(m)});
  api.setState(state,null);api.view('top');await settled();const renderer=renderers.at(-1),camera=renderer.lastCamera;
  camera.zoom=5;camera.updateProjectionMatrix();const point=new THREE.Vector3(.45,0,-.5),at=(x,z)=>screen(point.clone().add(new THREE.Vector3(x/1000,0,z/1000)),camera);
@@ -871,6 +910,159 @@ for(const mode of ['top','perspective']){
  passed.push('Actual app+renderer callback: repeated2mm wall-parallel deltas survive20mm outward pressure; slowA-B-A and immediate normal pullaway; cancel preserves original state.');
 }
 
+// Exercise exact app transaction bodies and actual renderer DOM handlers. The
+// ports for sync/storage/status are fixtures; math, commit, selection, rotation,
+// JSON import generation guards and undo/redo action bodies are product source.
+function rotationApp(initial,catalog){
+ const appFile=path.join(A,'layout/layout-app.mjs'),app=fs.readFileSync(appFile,'utf8');imports.push(pin(appFile));
+ const section=(start,end)=>{const a=app.indexOf(start),b=app.indexOf(end,a+start.length);assert(a>=0&&b>a,'Actual app section missing: '+start);return app.slice(a,b)};
+ const methods=section('function commit(','function download(')+section('let pendingMove=','async function render(')+section('async function act(','function updateViewPresentation(');
+ const keyboardStart="view.canvas.addEventListener('keydown',event=>{";
+ const canvasKeyboard=section(keyboardStart,'\n  });').slice(keyboardStart.length);
+ return new Function('initial','catalog','S',`const {applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,serializeLayout,parseLayout,createDefaultLayout,createDesk,createShelf}=S;
+  let state=initial,selected=null,busy=false,roomEditing=false,disposed=false,interactionGeneration=0,view=null,operation=null;const past=[],future=[],writes=[],errors=[],maxFileBytes=2000000;
+  function sync(){view?.setState(state,selected)}function store(){writes.push(serializeLayout(state,catalog))}function humanError(e){return e.code||e.message}function message(text,error){if(error)errors.push(text)}const t=k=>k;
+  const statusNode={hidden:false,textContent:''},$=()=>statusNode,ui={setStatus(){}};
+  ${methods}
+  function canvasKey(event){${canvasKeyboard}}
+  return {constrainRotate,worldRotate,worldMove,constrainMove,select,act,bind(v){view=v;view.canvas.addEventListener('keydown',canvasKey);sync()},replace(next,id=selected){state=next;selected=id;sync()},read:()=>({state,selected,past:[...past],future:[...future],writes:[...writes],errors:[...errors],interactionGeneration})};`)(initial,catalog,S);
+}
+function rotationSeed(yaw=30){
+ const catalog=[{id:'rotation-printer',label:'Rotation source fixture',widthMm:200,depthMm:180,heightMm:300,dimensionsMm:{width:200,depth:180,height:300}}];
+ const desk=S.createDesk({id:'rotate-desk',widthMm:1600,depthMm:1000,heightMm:750,pose:{xMm:100,zMm:-100,yawDeg:yaw}});
+ const printer=(id,parentId,xMm,zMm,yawDeg)=>({id,machineId:catalog[0].id,configurationId:null,attachment:{parentId,surfaceId:parentId?'top':'floor',xMm,zMm,yawDeg}});
+ return {catalog,state:S.createDefaultLayout({room:S.createRoomRect({widthMm:10000,depthMm:8000}),furniture:[desk],printers:[printer('orbit-1',desk.id,250,120,15),printer('orbit-2',desk.id,-300,-100,-10),printer('unrelated',null,2500,0,0)]},catalog)};
+}
+async function rotationSetup({mode='top',seed=rotationSeed(),selected='rotate-desk',constrain,rejectCommit=false,defaultRotate=false}={}){
+ size={width:900,height:675};const container=makeContainer(),engine=rotationApp(seed.state,seed.catalog),moves=[],rotations=[],proposals=[],errors=[];let api;
+ api=factoryRealOrbit({container,catalog:seed.catalog,onSelect:engine.select,onMove:move=>{moves.push({...move});return engine.worldMove(move)},
+  constrainMove:engine.constrainMove,onRotate:defaultRotate?undefined:r=>{rotations.push({...r});return rejectCommit?false:engine.worldRotate(r)},
+  constrainRotate:(p,c)=>{proposals.push({proposal:structuredClone(p),context:structuredClone(c)});return constrain?constrain(p,c):engine.constrainRotate(p,c)},onError:e=>errors.push(e)});
+ engine.bind(api);engine.select(selected);api.view(mode);await settled();
+ const nodes=plan=>{const out=new Map();renderers.at(-1).lastScene.traverse(o=>{if(o.userData.entityId&&!!o.userData.planProjection===plan)out.set(o.userData.entityId,o)});return out};
+ const toolbar=container.querySelector('.layout-object-tools'),button=name=>toolbar?.querySelector('[data-layout-rotation='+name+']');
+ assert(toolbar&&button('left')&&button('handle')&&button('right'),'Actual contextual rotation controls missing');
+ return {api,engine,container,toolbar,button,nodes,rotations,moves,proposals,errors,catalog:seed.catalog,initial:seed.state,renderer:renderers.at(-1)};
+}
+const angleNear=(actual,expected,label)=>assert.ok(Math.abs(actual-expected)<1e-9,label+': '+actual+' != '+expected);
+const rotationSnapshot=x=>new Map([...x.nodes(false)].map(([id,n])=>[id,{position:n.position.clone(),yaw:n.rotation.y}]));
+function checkRotationPreview(x,before,id,yaw){
+ const own=before.get(id),rad=yaw*Math.PI/180,delta=rad-own.yaw,root=x.nodes(false).get(id),flat=x.nodes(true).get(id);
+ angleNear(root.rotation.y,rad,'world rotation');assert.deepEqual(root.position.toArray(),own.position.toArray(),'Own center moved');angleNear(flat.rotation.y,delta,'Flat pre-rotated footprint must apply delta once');
+ for(const source of x.initial.printers){
+  const prior=before.get(source.id),node=x.nodes(false).get(source.id),plan=x.nodes(true).get(source.id);
+  if(source.attachment.parentId===id){
+   const dx=prior.position.x-own.position.x,dz=prior.position.z-own.position.z,c=Math.cos(delta),s=Math.sin(delta);
+   angleNear(node.position.x,own.position.x+c*dx+s*dz,'Follower center X');angleNear(node.position.z,own.position.z-s*dx+c*dz,'Follower center Z');
+   assert.equal(node.position.y,prior.position.y,'Follower support height changed');angleNear(node.rotation.y,prior.yaw+delta,'Follower orientation');
+   angleNear(plan.position.x,node.position.x,'Flat follower X');angleNear(plan.position.z,node.position.z,'Flat follower Z');angleNear(plan.rotation.y,delta,'Flat follower delta');
+  }else if(source.id!==id){assert.deepEqual(node.position.toArray(),prior.position.toArray(),'Other parent/free root moved');assert.equal(node.rotation.y,prior.yaw)}
+ }
+ assert.equal(x.engine.read().past.length,0,'Preview wrote undo');assert.equal(x.engine.read().writes.length,0,'Preview saved state');
+}
+{
+ const x=await rotationSetup();assert.equal(x.toolbar.getAttribute('role'),'group');assert.equal(x.toolbar.hidden,false);assert.equal(x.toolbar.querySelectorAll('button').length,3);assert.equal(x.toolbar.querySelectorAll('svg').length,3);assert.equal(x.toolbar.querySelectorAll('output').length,1);
+ for(const name of ['left','handle','right'])assert(x.button(name).getAttribute('aria-label'));
+ for(const mode of ['top','perspective']){x.api.view(mode);await settled();const left=parseFloat(x.toolbar.style.left),top=parseFloat(x.toolbar.style.top);assert(Number.isFinite(left)&&left>=0&&left<=size.width);assert(Number.isFinite(top)&&top>=0&&top<=size.height)}
+ x.engine.select(null);assert.equal(x.toolbar.hidden,true);x.engine.select('rotate-desk');assert.equal(x.toolbar.hidden,false);x.api.dispose();assert.equal(x.toolbar.parentNode,null);assert(x.toolbar.querySelectorAll('button').every(b=>[...b.reviewHandlers.values()].every(v=>v.length===0)));
+ passed.push('Selected-only rotation group has three SVG buttons/angle output, accessible labels, finite in-canvas source anchor in2D/3D, hides on deselect, removes controls/listeners on disposal.');
+}
+{
+ const x=await rotationSetup(),original=S.serializeLayout(x.initial,x.catalog);
+ x.button('right').click();assert.equal(x.rotations.length,1);assert.deepEqual(x.rotations[0],{id:'rotate-desk',yawDeg:120,deltaDeg:90});angleNear(S.worldTransform(x.engine.read().state,'rotate-desk',x.catalog).yawDeg,120,'Right90');assert.equal(x.engine.read().past.length,1);
+ x.button('left').click();assert.equal(x.rotations.length,2);assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),original,'Button A-B-A changes local source attachment');
+ await x.engine.act({type:'undo'});angleNear(x.engine.read().state.furniture[0].pose.yawDeg,120,'Actual app undo');await x.engine.act({type:'redo'});assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),original);
+ x.api.dispose();passed.push('Right/left90 call actual app worldRotate once each, preserve local companion attachments; actual app undo/redo restores exact A-B-A JSON.');
+}
+for(const keyboardControl of ['left','handle','right']){
+ const x=await rotationSetup(),h=x.button(keyboardControl);let yaw=30;
+ for(const [key,shift,delta]of [['ArrowRight',false,15],['ArrowLeft',false,-15],['ArrowRight',true,1],['ArrowLeft',true,-1],['r',false,90],['R',true,-90]]){h.emit('keydown',{key,shiftKey:shift});yaw+=delta;assert.deepEqual(x.rotations.at(-1),{id:'rotate-desk',yawDeg:yaw,deltaDeg:delta});angleNear(x.engine.read().state.furniture[0].pose.yawDeg,yaw,'Handle keyboard '+key)}
+ const count=x.rotations.length;h.emit('keydown',{key:'r',repeat:true});assert.equal(x.rotations.length,count);assert.equal(x.engine.read().past.length,6);x.api.dispose();passed.push('Contextual '+keyboardControl+' button arrows15/Shift1 and R90/ShiftR-90 use actual commit path; repeated keydown does not duplicate undo.');
+}
+for(const mode of ['top','perspective'])for(const sign of [-1,1]){
+ const x=await rotationSetup({mode}),before=rotationSnapshot(x),saved=S.serializeLayout(x.initial,x.catalog),cameraBefore=cameraSnapshot(x.renderer.lastCamera),h=x.button('handle');
+ h.emit('pointerdown',{clientX:300,clientY:200});assert.equal(h.hasPointerCapture(71),true);assert.equal(fixtureDocument.activeElement,h);
+ h.emit('pointermove',{clientX:300+62*sign,clientY:200});const expected=30+30*sign;checkRotationPreview(x,before,'rotate-desk',expected);assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),saved);assert.deepEqual(cameraSnapshot(x.renderer.lastCamera),cameraBefore,'Toolbar gesture reached orbit controls');
+ const c=x.proposals.at(-1).context;assert.deepEqual(c.origin,{yawDeg:30});assert.deepEqual(c.previous,{yawDeg:30});assert.equal(c.snapDeg,15);
+ h.emit('pointerup');assert.equal(x.rotations.length,1);assert.equal(x.engine.read().past.length,1);assert.equal(x.engine.read().writes.length,1);angleNear(x.engine.read().state.furniture[0].pose.yawDeg,expected,'Committed preview yaw');assert.equal(h.hasPointerCapture(71),false);
+ assert.deepEqual(x.engine.read().state.printers,x.initial.printers,'Parent rotation changed stored follower attachments');const text=S.serializeLayout(x.engine.read().state,x.catalog);assert.equal(S.serializeLayout(S.parseLayout(text,x.catalog),x.catalog),text);
+ await x.engine.act({type:'undo'});assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),saved);await x.engine.act({type:'redo'});assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),text);x.api.dispose();
+ passed.push('Actual app/renderer '+mode+' signed rotation '+sign+': center fixed, two followers orbit/orient, flat delta once, no camera drift/history before drop, one exact commit, save/undo/redo.');
+}
+{
+ const x=await rotationSetup(),h=x.button('handle');h.emit('pointerdown',{clientX:300,clientY:200});h.emit('pointermove',{clientX:325,clientY:200,shiftKey:true});assert.equal(x.proposals.at(-1).context.snapDeg,1);angleNear(x.nodes(false).get('rotate-desk').rotation.y*180/Math.PI,33,'Fine .1deg/px and1deg snap');h.emit('pointerup');angleNear(x.engine.read().state.furniture[0].pose.yawDeg,33,'Fine committed yaw');x.api.dispose();passed.push('Shift drag uses .1deg/px with1deg snap through actual app constraint and exact drop.');
+}
+{
+ const x=await rotationSetup({seed:rotationSeed(350)}),h=x.button('handle');h.emit('pointerdown',{clientX:300,clientY:200});h.emit('pointermove',{clientX:360,clientY:200});angleNear(x.nodes(false).get('rotate-desk').rotation.y*180/Math.PI,380,'Unwrapped world yaw');assert.equal(h.querySelector('output').textContent,'20°');h.emit('pointerup');angleNear(x.rotations[0].yawDeg,380,'Do not normalize callback yaw');x.api.dispose();passed.push('350→380deg stays unwrapped in callback/state while contextual display shows20deg.');
+}
+for(const ending of ['pointercancel','lostpointercapture','blur','Escape','view-change','state-replace','dispose']){
+ const x=await rotationSetup(),before=rotationSnapshot(x),saved=S.serializeLayout(x.initial,x.catalog),h=x.button('handle');h.emit('pointerdown',{clientX:300,clientY:200});h.emit('pointermove',{clientX:360,clientY:200});checkRotationPreview(x,before,'rotate-desk',60);
+ if(ending==='blur')x.api.canvas.reviewBlur();else if(ending==='Escape')x.api.canvas.reviewWindowHandlers.get('keydown')({key:'Escape',preventDefault(){}});else if(ending==='view-change')x.api.view('perspective');else if(ending==='state-replace')x.engine.replace(S.parseLayout(saved,x.catalog));else if(ending==='dispose')x.api.dispose();else h.emit(ending);
+ h.emit('pointerup');assert.equal(x.rotations.length,0);assert.equal(x.engine.read().past.length,0);assert.equal(x.engine.read().writes.length,0);assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),saved);assert.equal(h.hasPointerCapture(71),false);
+ if(ending!=='dispose'){for(const [id,prior]of before){const n=x.nodes(false).get(id);assert.deepEqual(n.position.toArray(),prior.position.toArray());angleNear(n.rotation.y,prior.yaw,'Cancel restored orientation')}h.emit('pointerdown',{clientX:300,clientY:200});h.emit('pointermove',{clientX:330,clientY:200});h.emit('pointerup');assert.equal(x.rotations.length,1,'Canceled pending rotation blocks next gesture');x.api.dispose()}
+ passed.push('Rotation '+ending+' restores parent/followers and orientation with zero history/save, releases capture; fresh gesture remains usable.');
+}
+for(const response of [false,{yawDeg:NaN},{yawDeg:Infinity},{yawDeg:90,boundaryLimited:true,pointerRemainderDeg:NaN}]){
+ const x=await rotationSetup({constrain:()=>response}),before=rotationSnapshot(x),h=x.button('handle');h.emit('pointerdown',{clientX:300,clientY:200});h.emit('pointermove',{clientX:400,clientY:200});h.emit('pointerup');assert.equal(x.rotations.length,0);assert.equal(x.engine.read().past.length,0);for(const [id,prior]of before){assert.deepEqual(x.nodes(false).get(id).position.toArray(),prior.position.toArray());assert.equal(x.nodes(false).get(id).rotation.y,prior.yaw)}if(response!==false)assert.equal(x.errors.at(-1).code,'INVALID_CONSTRAINED_ROTATION');x.api.dispose();passed.push('Rejected/nonfinite rotation or nonfinite angular remainder cannot alter preview, accepted drop or history.');
+}
+{
+ const x=await rotationSetup(),h=x.button('handle');h.emit('pointerdown',{clientX:300,clientY:200});h.emit('pointermove',{clientX:450,clientY:200,pointerId:72});h.emit('pointercancel',{pointerId:72});assert.equal(h.hasPointerCapture(71),true);assert.equal(x.proposals.length,0);h.emit('pointermove',{clientX:360,clientY:200});h.emit('pointermove',{clientX:300,clientY:200});h.emit('pointerup');assert.equal(x.rotations.length,0);assert.equal(x.engine.read().past.length,0);x.api.dispose();passed.push('Foreign pointer cannot move/cancel captured rotation; exact A-B-A gesture commits no history.');
+}
+{
+ const seed=rotationSeed(37),x=await rotationSetup({seed,selected:'orbit-1'}),h=x.button('handle'),parent=structuredClone(seed.state.furniture),other=seed.state.printers.filter(p=>p.id!=='orbit-1');
+ h.emit('pointerdown',{clientX:300,clientY:200});h.emit('pointermove',{clientX:330,clientY:200});h.emit('pointerup');angleNear(x.rotations[0].yawDeg,67,'Attached printer world callback');angleNear(x.engine.read().state.printers[0].attachment.yawDeg,30,'Attached printer world-parent local conversion');assert.deepEqual(x.engine.read().state.furniture,parent);assert.deepEqual(x.engine.read().state.printers.filter(p=>p.id!=='orbit-1'),other);x.api.dispose();passed.push('Printer on37deg desk starts52deg world, commits67deg world/30deg local; parent and other companions stay unchanged.');
+}
+{
+ const base=rotationSeed(),seed={catalog:base.catalog,state:S.createDefaultLayout({room:S.createRoomRect({widthMm:2000,depthMm:1000}),furniture:[S.createDesk({id:'rotate-desk',widthMm:1600,depthMm:700,heightMm:750})],printers:[]},base.catalog)};
+ const x=await rotationSetup({seed}),h=x.button('handle');h.emit('pointerdown',{clientX:300,clientY:200});h.emit('pointermove',{clientX:390,clientY:200});const yaw=x.nodes(false).get('rotate-desk').rotation.y*180/Math.PI;
+ assert(yaw>0&&yaw<45,'Wall constraint failed to stop rotated footprint');assert.equal(x.toolbar.dataset.boundaryLimited,'true');assert.equal(x.engine.read().past.length,0);h.emit('pointerup');
+ angleNear(x.engine.read().state.furniture[0].pose.yawDeg,yaw,'Drop must not resnap constrained boundary');assert.equal(x.engine.read().past.length,1);assert.deepEqual(S.placementViolations(x.engine.read().state,x.catalog),[]);
+ h.emit('pointerdown',{clientX:300,clientY:200});h.emit('pointermove',{clientX:270,clientY:200});assert(x.nodes(false).get('rotate-desk').rotation.y*180/Math.PI<yaw-5,'Immediate rotation away from wall stuck');h.emit('pointercancel');x.api.dispose();passed.push('Actual state angular boundary clamps before preview, marks limitation, commits exact fractional contact once without resnap; next gesture pulls away immediately.');
+}
+for(const option of [{rejectCommit:true},{defaultRotate:true}]){
+ const x=await rotationSetup(option),saved=S.serializeLayout(x.initial,x.catalog),before=rotationSnapshot(x),h=x.button('handle');h.emit('pointerdown',{clientX:300,clientY:200});h.emit('pointermove',{clientX:360,clientY:200});h.emit('pointerup');assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),saved);assert.equal(x.engine.read().past.length,0);for(const [id,prior]of before){assert.deepEqual(x.nodes(false).get(id).position.toArray(),prior.position.toArray());assert.equal(x.nodes(false).get(id).rotation.y,prior.yaw)}x.api.dispose();passed.push('Rejected/default-noop onRotate restores original parent/followers/flat preview without retaining uncommitted rotation.');
+}
+for(const gesture of ['pointer','keyboard']){
+ const x=await rotationSetup(),saved=S.serializeLayout(x.initial,x.catalog),importState=S.applyAction(x.initial,{type:'UPDATE_FURNITURE',id:'rotate-desk',patch:{pose:{xMm:500}}},x.catalog),text=S.serializeLayout(importState,x.catalog);let finish;
+ const pending=x.engine.act({type:'import',file:{size:text.length,text:()=>new Promise(r=>{finish=r})}}),h=x.button('handle');assert.equal(typeof finish,'function');
+ if(gesture==='pointer'){h.emit('pointerdown',{clientX:300,clientY:200});h.emit('pointercancel');}else h.emit('keydown',{key:'ArrowRight'});
+ const afterGesture=S.serializeLayout(x.engine.read().state,x.catalog);finish(text);await pending;assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),afterGesture,'Stale async import replaced rotation');if(gesture==='pointer')assert.equal(afterGesture,saved);else assert.equal(x.engine.read().past.length,1);x.api.dispose();passed.push('Actual app async JSON import generation: '+gesture+' rotation invalidates delayed older import without losing current plan.');
+}
+for(const control of ['buttons','keyboard']){
+ const base=rotationSeed(29.3),state=S.applyAction(base.state,{type:'UPDATE_PRINTER',id:'orbit-1',patch:{attachment:{yawDeg:10.2}}},base.catalog),x=await rotationSetup({seed:{catalog:base.catalog,state},selected:'orbit-1'}),before=S.serializeLayout(state,base.catalog),h=x.button('handle');
+ if(control==='buttons')x.button('right').click();else h.emit('keydown',{key:'r'});
+ assert.deepEqual(x.rotations.at(-1),{id:'orbit-1',yawDeg:129.5,deltaDeg:90});assert.equal(x.engine.read().state.printers[0].attachment.yawDeg,100.2);
+ if(control==='buttons')x.button('left').click();else h.emit('keydown',{key:'R',shiftKey:true});
+ assert.deepEqual(x.rotations.at(-1),{id:'orbit-1',yawDeg:39.5,deltaDeg:-90});assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),before,'Fractional parent/local discrete A-B-A must preserve exact original serialization');
+ assert.equal(x.engine.read().past.length,2);x.api.dispose();passed.push('Actual app '+control+' fractional29.3deg parent/10.2deg attachment: discrete delta payload preserves exact local A-B-A serialization.');
+}
+{
+ const base=rotationSeed(29.3),state=S.applyAction(base.state,{type:'UPDATE_PRINTER',id:'orbit-1',patch:{attachment:{yawDeg:10.2}}},base.catalog),x=await rotationSetup({seed:{catalog:base.catalog,state},selected:'orbit-1'}),before=S.serializeLayout(state,base.catalog),h=x.button('handle');
+ for(const [key,shift]of [['r',false],['r',false],['ArrowRight',false],['ArrowRight',true],['ArrowLeft',true],['ArrowLeft',false],['R',true],['R',true]])h.emit('keydown',{key,shiftKey:shift});
+ assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),before,'Mixed integer turns/inverses drift original attachment');assert.equal(x.engine.read().past.length,8);assert.equal(x.rotations.length,8);x.api.dispose();passed.push('Fractional attached source survives eight mixed90/15/1 integer turns and inverses with exact original serialization and one history per turn.');
+}
+{
+ const base=rotationSeed(29.3),state=S.applyAction(base.state,{type:'UPDATE_PRINTER',id:'orbit-1',patch:{attachment:{yawDeg:10.2}}},base.catalog),x=await rotationSetup({seed:{catalog:base.catalog,state},selected:'orbit-1'}),h=x.button('handle');
+ h.emit('keydown',{key:'r'});await x.engine.act({type:'UPDATE_FURNITURE',id:'rotate-desk',patch:{pose:{xMm:600}}});const edited=S.serializeLayout(x.engine.read().state,x.catalog);
+ h.emit('keydown',{key:'ArrowRight'});h.emit('keydown',{key:'ArrowLeft'});assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),edited,'Discrete chain restored pre-edit plan');
+ await x.engine.act({type:'undo'});const undone=S.serializeLayout(x.engine.read().state,x.catalog);assert.equal(x.engine.read().state.furniture[0].pose.xMm,600);h.emit('keydown',{key:'r'});h.emit('keydown',{key:'R',shiftKey:true});assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),undone,'Discrete chain restored stale pre-undo plan');
+ h.emit('pointerdown',{clientX:300,clientY:200});h.emit('pointermove',{clientX:330,clientY:200});h.emit('pointerup');const dragged=S.serializeLayout(x.engine.read().state,x.catalog);h.emit('keydown',{key:'r'});h.emit('keydown',{key:'R',shiftKey:true});assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),dragged,'Integer chain crossed committed drag');x.api.dispose();passed.push('Other edit, actual undo and committed drag each invalidate old discrete chain; next inverse pair restores current source plan, never stale base.');
+}
+{
+ const x=await rotationSetup(),e=x.engine,initial=S.serializeLayout(e.read().state,x.catalog),context={previous:{yawDeg:30},origin:{yawDeg:30},snapDeg:15};
+ assert.equal(e.constrainRotate({id:'rotate-desk',yawDeg:60},{...context,previous:{yawDeg:22}}),false);const accepted=e.constrainRotate({id:'rotate-desk',yawDeg:60},context);assert.equal(accepted.yawDeg,60);assert.equal(S.serializeLayout(e.read().state,x.catalog),initial);
+ assert.equal(e.constrainRotate({id:'rotate-desk',yawDeg:75},{...context,origin:{yawDeg:31},previous:{yawDeg:60}}),false);assert.equal(e.worldRotate({id:'rotate-desk',yawDeg:60}),true);assert.equal(e.read().past.length,1);const once=S.serializeLayout(e.read().state,x.catalog);e.worldRotate({id:'rotate-desk',yawDeg:60});assert.equal(e.read().past.length,1);assert.equal(S.serializeLayout(e.read().state,x.catalog),once);
+ const next=e.constrainRotate({id:'rotate-desk',yawDeg:75},{previous:{yawDeg:60},origin:{yawDeg:60},snapDeg:15});assert(next);await e.act({type:'UPDATE_FURNITURE',id:'rotate-desk',patch:{pose:{xMm:600}}});assert.equal(e.constrainRotate({id:'rotate-desk',yawDeg:90},{previous:{yawDeg:75},origin:{yawDeg:60},snapDeg:15}),false);assert.equal(e.read().state.furniture[0].pose.xMm,600);x.api.dispose();passed.push('Actual app pending rotation binds base/id/origin/previous, rejects stale contexts without losing safe state, consumes drop once and cannot resurrect pre-edit transaction.');
+}
+for(const keyboardTarget of ['left','handle','right','canvas']){
+ const x=await rotationSetup(),node=keyboardTarget==='canvas'?x.api.canvas:x.button(keyboardTarget),before=S.serializeLayout(x.engine.read().state,x.catalog),origin=rotationSnapshot(x);
+ for(const modifier of ['ctrlKey','metaKey','altKey'])for(const [key,shiftKey]of [['r',false],['R',true]]){
+  let prevented=0;node.emit('keydown',{key,shiftKey,[modifier]:true,preventDefault(){prevented++}});assert.equal(prevented,0,keyboardTarget+' must not intercept '+modifier+'+'+key);assert.equal(x.rotations.length,0);assert.equal(x.engine.read().past.length,0);assert.equal(x.engine.read().writes.length,0);assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),before);
+  for(const [id,prior]of origin){assert.deepEqual(x.nodes(false).get(id).position.toArray(),prior.position.toArray());assert.equal(x.nodes(false).get(id).rotation.y,prior.yaw)}
+ }
+ for(const [key,shiftKey,yaw]of [['r',false,120],['R',true,30]]){let prevented=0;node.emit('keydown',{key,shiftKey,preventDefault(){prevented++}});assert.equal(prevented,1,'Plain rotation shortcut missing');angleNear(x.engine.read().state.furniture[0].pose.yawDeg,yaw,'Plain R/ShiftR after modified browser shortcut');}
+ assert.equal(x.engine.read().past.length,2);assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),before);x.api.dispose();passed.push('Actual '+keyboardTarget+' keyboard callback leaves Ctrl/Meta/Alt+R/ShiftR browser actions uncancelled with no rotation/history; plainR/ShiftR still rotate.');
+}
 const ownerSourceStillMatchesSnapshot=sha(fs.readFileSync(input))===sha(Buffer.from(source));
 assert.equal(ownerSourceStillMatchesSnapshot,true,'Renderer changed during source regression');
 assert.deepEqual(findings,[],'Renderer contract regression findings');
