@@ -9,7 +9,6 @@ import gzip
 import hashlib
 import json
 import math
-import os
 from pathlib import Path
 
 # These source receipts bind the measured pneumatic-joint faces. Updating them
@@ -27,7 +26,7 @@ Z = list(range(-50, 191, 10))
 HARMONICS = 6
 
 
-def combine_receipts(stock, belted, *, newline=os.linesep):
+def combine_receipts(stock, belted, *, newline='\n'):
     """Validate fit receipts and return JS, without IO or scientific dependencies.
 
     Pins attest to the recorded inputs, not physical fit. Legacy receipts with

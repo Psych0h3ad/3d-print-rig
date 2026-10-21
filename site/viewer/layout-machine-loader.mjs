@@ -1,7 +1,8 @@
 import * as THREE from './vendor-r180/three.module.js';
+import {machineChoices} from './machines.js?v=5503ac507978b3d4e928';
 import {layoutMachineRecipes} from './layout-machine-recipes.mjs?v=f5726d36341700aa2eae';
 import {createLayoutMachineLoader} from './layout-machine-loader-core.mjs?v=4b1f6a033f5d522d06ba';
-import {loadLayoutRecipe} from './layout-machine-providers.mjs?v=eb832aa366fe67fe5f2d';
+import {loadLayoutRecipe} from './layout-machine-providers.mjs?v=cd2155c6c9beea83e406';
 
 // Measure the active default scene, excluding hidden reference/alternate roots.
 // These are rendered geometry bounds, never a native-solid clearance proof.
@@ -28,5 +29,5 @@ export function normalizeLayoutRoot(sourceRoot) {
  const after=visibleLayoutBounds(root);
  return {root,dimensions:{width:size.x,height:size.y,depth:size.z,xyz:size.toArray(),unit:'m',basis:'visible-world-geometry-bounds',min:after.min.toArray(),max:after.max.toArray()},normalization:{unit:'m',up:'+Y',front:'+Z',translation:offset,source_bounds:{min:before.min.toArray(),max:before.max.toArray()},individual_source_matrices_unchanged:true}};
 }
-export const loadLayoutMachine=createLayoutMachineLoader({recipes:layoutMachineRecipes,loadRecipe:loadLayoutRecipe,normalize:normalizeLayoutRoot});
+export const loadLayoutMachine=createLayoutMachineLoader({recipes:layoutMachineRecipes,expectedMachineIds:machineChoices.filter(row=>row.available!==false).map(row=>row.id),loadRecipe:loadLayoutRecipe,normalize:normalizeLayoutRoot});
 export {layoutMachineRecipes};

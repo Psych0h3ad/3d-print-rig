@@ -1,7 +1,8 @@
 // No DOM, renderer, storage, network or model side effects on module import.
-export function createLayoutMachineLoader({recipes,loadRecipe,normalize}) {
+export function createLayoutMachineLoader({recipes,expectedMachineIds,loadRecipe,normalize}) {
  const byId=new Map(recipes.map(r=>[r.machine_id,r]));
- if(byId.size!==69||recipes.length!==69)throw Error('Layout catalog must bind all 69 available machines');
+ const expected=new Set(expectedMachineIds);
+ if(!expected.size||expected.size!==expectedMachineIds.length||byId.size!==recipes.length||byId.size!==expected.size||[...expected].some(id=>!byId.has(id)))throw Error('Layout catalog must bind every available machine exactly once');
  let owned=null;
  return async function loadLayoutMachine(machineId,{signal,onProgress=()=>{}}={}) {
   const recipe=byId.get(machineId);

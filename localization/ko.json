@@ -10941,6 +10941,42 @@
     "layout.appearance.invalid": {
       "source_revision": "9bba169636f83fc8dd23",
       "text": "지원되는 벽과 바닥 마감을 선택해 주세요."
+    },
+    "elegoo.static_notice": {
+      "source_revision": "a0d531d75263a96174d6",
+      "text": "원본의 정적 참조 모델입니다. 축 이동과 실제 조립 적합성은 검증되지 않았습니다."
+    },
+    "elegoo.appearance_notice": {
+      "source_revision": "267f053e1d12bda29c67",
+      "text": "원본의 색상과 부품 배치를 표시합니다. 비트맵 데칼과 CAD 투명도는 생략됩니다."
+    },
+    "elegoo.nominal_size": {
+      "source_revision": "8e4ad4d012211ecece11",
+      "text": "제품 공칭 출력 크기: {0} mm."
+    },
+    "elegoo.memory_warning": {
+      "source_revision": "953951ec37b87cdfe3d7",
+      "text": "대용량 조립 모델입니다. 이 기기에서는 로딩이 느리거나 실패할 수 있습니다. 브라우저에서 사용할 수 있는 RAM은 알 수 없습니다."
+    },
+    "elegoo.canceled": {
+      "source_revision": "2852c00047b5785b3881",
+      "text": "로딩이 취소되었습니다. 모델을 열어 다시 시도하세요."
+    },
+    "elegoo.download": {
+      "source_revision": "88a68de3e5f835d41001",
+      "text": "모델 데이터 다운로드 중 · {0}"
+    },
+    "elegoo.side": {
+      "source_revision": "e0c4b81ec0664c631dbf",
+      "text": "측면 보기"
+    },
+    "elegoo.rear": {
+      "source_revision": "1b9581679bcea2237aa5",
+      "text": "후면 보기"
+    },
+    "elegoo.corresponding_source": {
+      "source_revision": "1f44beb0c5d5f2795a34",
+      "text": "원본 데이터 및 변환 도구"
     }
   }
 }

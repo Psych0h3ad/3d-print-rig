@@ -10941,6 +10941,42 @@
     "layout.appearance.invalid": {
       "source_revision": "9bba169636f83fc8dd23",
       "text": "Elige acabados de pared y suelo disponibles."
+    },
+    "elegoo.static_notice": {
+      "source_revision": "a0d531d75263a96174d6",
+      "text": "Referencia estática del modelo fuente. El movimiento de los ejes y el ajuste físico no están verificados."
+    },
+    "elegoo.appearance_notice": {
+      "source_revision": "267f053e1d12bda29c67",
+      "text": "Colores y posiciones de las piezas del modelo fuente. Se omiten las calcomanías de mapa de bits y la transparencia CAD."
+    },
+    "elegoo.nominal_size": {
+      "source_revision": "8e4ad4d012211ecece11",
+      "text": "Volumen nominal de impresión: {0} mm."
+    },
+    "elegoo.memory_warning": {
+      "source_revision": "953951ec37b87cdfe3d7",
+      "text": "Conjunto de gran tamaño. La carga puede ser lenta o fallar en este dispositivo. Se desconoce la RAM disponible para el navegador."
+    },
+    "elegoo.canceled": {
+      "source_revision": "2852c00047b5785b3881",
+      "text": "Carga cancelada. Abra el modelo para volver a intentarlo."
+    },
+    "elegoo.download": {
+      "source_revision": "88a68de3e5f835d41001",
+      "text": "Descargando datos del modelo · {0}"
+    },
+    "elegoo.side": {
+      "source_revision": "e0c4b81ec0664c631dbf",
+      "text": "Vista lateral"
+    },
+    "elegoo.rear": {
+      "source_revision": "1b9581679bcea2237aa5",
+      "text": "Vista posterior"
+    },
+    "elegoo.corresponding_source": {
+      "source_revision": "1f44beb0c5d5f2795a34",
+      "text": "Fuentes y herramientas de conversión"
     }
   }
 }

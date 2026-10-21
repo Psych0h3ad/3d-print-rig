@@ -9,8 +9,8 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=3a71971c97a749c16228';
-import {setupPublicInfo} from './public-info.js?v=34f95d331d60622a95f3';
-import {setupRenderExport} from './render-export.js?v=d1a1fe1ccce6fd167256';
+import {setupPublicInfo} from './public-info.js?v=f1c40e394d7c64490c76';
+import {setupRenderExport} from './render-export.js?v=736862a3013dbfd9f9ea';
 import {changerDimensions,changerChoice,changerChoices,changerPlacement} from './toolchanger-model.js?v=workspace-belts-1';
 export async function mount(scope){
 const $=s=>document.querySelector(s),stage=$('#stage'),scene=scope.scene(new THREE.Scene()),bench=new THREE.Group();scene.add(bench);scene.background=new THREE.Color('#edf1f5');

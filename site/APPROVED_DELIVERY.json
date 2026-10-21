@@ -69,7 +69,10 @@
     "247zero_beta2_120",
     "ratrig_vcore31_300",
     "voron_switchwire_250",
-    "rh3d_virtu_may_230"
+    "rh3d_virtu_may_230",
+    "elegoo_neptune3_reference",
+    "elegoo_neptune3pro_reference",
+    "elegoo_neptune3plus_reference"
   ],
   "files": [
     {
@@ -11134,13 +11137,77 @@
       "sha256": "204ade40da178faad23ed06f86fcfce555a0867ec4e7a2bc5a2e4a984000c297",
       "bytes": 62211637,
       "actual_body_receipt_sha256": "e8571ad8c9ad286861c48e2d6ef0189248561fe1f13e56480cf5d0a74fc35c31"
+    },
+    {
+      "local_review_path": "elegoo-assets/neptune3/assembly_manifest.json",
+      "url": "https://psych0h3ad.github.io/3d-print-rig-extra-models/elegoo-assets/neptune3/assembly_manifest.json",
+      "sha256": "583f2a9f16062871989b2933c8148048a2c4fd3996eae2c1246d5aadb3cc86d7",
+      "bytes": 876355,
+      "actual_body_receipt_sha256": "5719cbc21510e5ecf230a9065a53038129b6326564f91784d76b03926f654081"
+    },
+    {
+      "local_review_path": "elegoo-assets/neptune3/machine_profile.json",
+      "url": "https://psych0h3ad.github.io/3d-print-rig-extra-models/elegoo-assets/neptune3/machine_profile.json",
+      "sha256": "9f91ab5a3b9a555ea24005ea571b6cde2efd93db3ea36e06e899aeabdce8a804",
+      "bytes": 2786,
+      "actual_body_receipt_sha256": "5719cbc21510e5ecf230a9065a53038129b6326564f91784d76b03926f654081"
+    },
+    {
+      "local_review_path": "elegoo-assets/neptune3/model.glb.gz",
+      "url": "https://psych0h3ad.github.io/3d-print-rig-extra-models/elegoo-assets/neptune3/model.glb.gz",
+      "sha256": "ce65142a933aecc7a7c64563bad006713d36a8b0fc15b00e518982fa8230f806",
+      "bytes": 16193308,
+      "actual_body_receipt_sha256": "5719cbc21510e5ecf230a9065a53038129b6326564f91784d76b03926f654081"
+    },
+    {
+      "local_review_path": "elegoo-assets/neptune3pro/assembly_manifest.json",
+      "url": "https://psych0h3ad.github.io/3d-print-rig-extra-models/elegoo-assets/neptune3pro/assembly_manifest.json",
+      "sha256": "27dda1bc4f5fff4c13f157ccd1786ee18090e4d5f3b09bc978161247dd1be61b",
+      "bytes": 958643,
+      "actual_body_receipt_sha256": "618f2f1a0457a3b3e6d9d8840b23c3831ffaf2d7aca40a5c6adc76ab763a78d4"
+    },
+    {
+      "local_review_path": "elegoo-assets/neptune3pro/machine_profile.json",
+      "url": "https://psych0h3ad.github.io/3d-print-rig-extra-models/elegoo-assets/neptune3pro/machine_profile.json",
+      "sha256": "eee6dfbb13cc3a58dbcaf577723f698adf5e24ab41ccf3826099e633481d77a6",
+      "bytes": 2813,
+      "actual_body_receipt_sha256": "618f2f1a0457a3b3e6d9d8840b23c3831ffaf2d7aca40a5c6adc76ab763a78d4"
+    },
+    {
+      "local_review_path": "elegoo-assets/neptune3pro/model.glb.gz",
+      "url": "https://psych0h3ad.github.io/3d-print-rig-extra-models/elegoo-assets/neptune3pro/model.glb.gz",
+      "sha256": "9fe1333b7ab51150a4b0af07e42941a22b66d64d14083944e97d55d191b47c7c",
+      "bytes": 17085779,
+      "actual_body_receipt_sha256": "618f2f1a0457a3b3e6d9d8840b23c3831ffaf2d7aca40a5c6adc76ab763a78d4"
+    },
+    {
+      "local_review_path": "elegoo-assets/neptune3plus/assembly_manifest.json",
+      "url": "https://psych0h3ad.github.io/3d-print-rig-extra-models/elegoo-assets/neptune3plus/assembly_manifest.json",
+      "sha256": "9c46cc042718efb9009e8a79fad215709671a6fc9c28a9c0164af01b2b6ef6ba",
+      "bytes": 1132420,
+      "actual_body_receipt_sha256": "ceecff29e65fedafa024168304d81b129599343a67f97806071d2317ae73d111"
+    },
+    {
+      "local_review_path": "elegoo-assets/neptune3plus/machine_profile.json",
+      "url": "https://psych0h3ad.github.io/3d-print-rig-extra-models/elegoo-assets/neptune3plus/machine_profile.json",
+      "sha256": "26748cc9a37941505123310676e48f0774090058477c6d6b99cf31af6c02a4a0",
+      "bytes": 2825,
+      "actual_body_receipt_sha256": "ceecff29e65fedafa024168304d81b129599343a67f97806071d2317ae73d111"
+    },
+    {
+      "local_review_path": "elegoo-assets/neptune3plus/model.glb.gz",
+      "url": "https://psych0h3ad.github.io/3d-print-rig-extra-models/elegoo-assets/neptune3plus/model.glb.gz",
+      "sha256": "0822031956294a8049e777cbbae4e01e57982822e191025593a8060ec4f34a11",
+      "bytes": 16189493,
+      "actual_body_receipt_sha256": "ceecff29e65fedafa024168304d81b129599343a67f97806071d2317ae73d111"
     }
   ],
   "source_catalog_sha256": {
     "SOURCE_ASSEMBLIES.json": "9c121090002706fb03dade7891cfbc64b68bb2efaa7d98ac4155c412250920e6",
     "HEAD_ADDITIONS.json": "c752983c1a054ee7b4d000e458d6839cf5176b2d0b143ca1f6727683a4bed405",
     "COMPONENT_ADDITIONS.json": "65d3ef345bcd5031b266fef5e8863568379304943651c03fb5bb6f9503f73b59",
-    "COMPONENT_LIBRARY.json": "9b27754925eda73f81c8b9a9298cfd480c0dc2d3af7eefe58b2c12bf6206de06"
+    "COMPONENT_LIBRARY.json": "9b27754925eda73f81c8b9a9298cfd480c0dc2d3af7eefe58b2c12bf6206de06",
+    "viewer/elegoo-catalog.mjs": "048f866b21f8d3cfdf73cef35b94f47030dbc37b9358773d744c521a6521312d"
   },
   "unresolved_release_findings": [],
   "source_projection_primary_URLs_preserved": true,

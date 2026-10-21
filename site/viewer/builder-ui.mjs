@@ -1,6 +1,6 @@
 import {workspaceTask} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 import {builderGroups,builderManifest,builderURL} from './toolhead-builder.mjs?v=13cf054a719c8bc09f8d';
-import {monolithCompanion} from './monolith-head-model.mjs?v=23272b4e2c03073e7a1e';
+import {monolithCompanion} from './monolith-head-model.mjs?v=1f9c1f997d4b3492ef61';
 
 export function setupHeadBuilder(catalog,{getVariant,getMetadata,getExtras,pins,selectVariant,isBusy}){
  const $=id=>document.getElementById(id);

@@ -13785,6 +13785,51 @@
       "kind": "message",
       "ja": "対応している壁と床の仕上げを選んでください。",
       "en": "Choose a supported wall and floor finish."
+    },
+    "elegoo.static_notice": {
+      "kind": "message",
+      "ja": "原本の静止参照モデルです。軸の動作と実機の適合は未検証です。",
+      "en": "Static source reference. Axis movement and physical fit are unverified."
+    },
+    "elegoo.appearance_notice": {
+      "kind": "message",
+      "ja": "原本の色と部品配置を表示します。ビットマップのデカールとCADの透明度は省略しています。",
+      "en": "Source colors and part placements. Bitmap decals and CAD transparency are omitted."
+    },
+    "elegoo.nominal_size": {
+      "kind": "template",
+      "ja": "製品公称造形サイズ：{0} mm。",
+      "en": "Nominal build size: {0} mm."
+    },
+    "elegoo.memory_warning": {
+      "kind": "message",
+      "ja": "大きなモデルです。この端末では読み込みに時間がかかったり失敗したりする場合があります。ブラウザーの空きRAMは不明です。",
+      "en": "Large assembly. Loading may be slow or fail on this device. Available browser RAM is unknown."
+    },
+    "elegoo.canceled": {
+      "kind": "message",
+      "ja": "読み込みを中止しました。モデルを開いて再試行できます。",
+      "en": "Loading canceled. Open the model to retry."
+    },
+    "elegoo.download": {
+      "kind": "template",
+      "ja": "モデルデータをダウンロード中 · {0}",
+      "en": "Downloading model data · {0}"
+    },
+    "elegoo.side": {
+      "kind": "message",
+      "ja": "側面表示",
+      "en": "Side view"
+    },
+    "elegoo.rear": {
+      "kind": "message",
+      "ja": "背面表示",
+      "en": "Rear view"
+    },
+    "elegoo.corresponding_source": {
+      "kind": "message",
+      "en": "Source and conversion tools",
+      "ja": "元データと変換ツール"
     }
   }
 }

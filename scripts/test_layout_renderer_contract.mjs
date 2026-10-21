@@ -5,6 +5,7 @@ import path from 'node:path';
 import os from 'node:os';
 import crypto from 'node:crypto';
 import assert from 'node:assert/strict';
+import {machineChoices} from '../site/viewer/machines.js';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 const R=path.dirname(fileURLToPath(import.meta.url));
 const option=process.argv.indexOf('--site');
@@ -853,7 +854,7 @@ for(const mode of ['top','perspective']){
 // Lightweight placement symbols: no CAD/assets are loaded by this case.
 {
  const file=path.join(A,'layout/layout-catalog.json'),catalog=JSON.parse(fs.readFileSync(file,'utf8'));
- assert.equal(catalog.machines.length,69,'Every registered placement preview must be covered');
+ assert.deepEqual(catalog.machines.map(row=>row.id).sort(),machineChoices.filter(row=>row.available!==false).map(row=>row.id).sort(),'Every registered placement preview must be covered');
  const helper=source.slice(source.indexOf('function printerPreviewParts(row) {'),source.indexOf('export function createLayoutRenderer('));
  assert(helper.startsWith('function printerPreviewParts(row) {'));
  const preview=new Function(helper+'\nreturn printerPreviewParts;')(),sourceCatalogJSON=JSON.stringify(catalog),results=[];
@@ -890,8 +891,8 @@ for(const mode of ['top','perspective']){
   results.push({id:original.id,style:shape.style,cells:shape.parts.length,triangles:shape.parts.filter(p=>!p.wireframe).length*12});
  }
  assert.equal(JSON.stringify(catalog),sourceCatalogJSON,'Preview must not edit source catalog');
- observations.push({case:'lightweight-printer-preview-all69',catalog:pin(file),machines:results,sourceAndPositiveBaseOffsetContact:true,fullCADLoaded:false});
- passed.push('All69 catalog printers retain source bounds/colors, gain bounded bed/base/contact cues using one shared box geometry, and opaque feet meet actual deriveScene supportYM on floor and desk even with positive native baseOffset; final CAD remains separate.');
+ observations.push({case:'lightweight-printer-preview-all-registered',catalog:pin(file),machines:results,sourceAndPositiveBaseOffsetContact:true,fullCADLoaded:false});
+ passed.push('All registered catalog printers retain source bounds/colors, gain bounded bed/base/contact cues using one shared box geometry, and opaque feet meet actual deriveScene supportYM on floor and desk even with positive native baseOffset; final CAD remains separate.');
 }
 
 // Source-backed recurrence: small tangent deltas must survive repeated wall

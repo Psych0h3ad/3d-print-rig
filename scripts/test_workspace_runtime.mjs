@@ -84,6 +84,7 @@ const uiI18n=await uiModule('viewer/i18n.mjs'),uiThree=await uiModule('viewer/ve
 const uiGcode=await uiModule('viewer/gcode-machine-bindings.mjs');
 const uiProgress=await uiModule('viewer/model-progress.mjs'),uiCommunity=await uiModule('viewer/community-state.mjs');
 const uiRegistry=await uiModule('viewer/source-assembly-registry.mjs'),uiSourceText=await uiModule('viewer/source-assembly-ui-text.mjs');
+const uiElegoo=await uiModule('viewer/elegoo-catalog.mjs');
 const uiSourceCopy=await uiModule('viewer/source-assembly-messages.mjs'),uiLayoutText=await uiModule('layout/layout-i18n.mjs');
 const uiLayoutState=await uiModule('layout/layout-state.mjs'),uiLayout=await uiModule('layout/layout-ui.mjs');
 for(const lang of ['en','ja','es','ko','ru'])await uiI18n.loadLanguage(lang);
@@ -131,7 +132,7 @@ async function communityStatusFixture({lang='en',machine='voron_switchwire_250',
   return {root,profile,manifest:{native_leaf_count:1,reference_leaves:[]},adapter:{nodes:new Map([['fixture',mesh]]),records:new Map([['fixture',{group:'head'}]]),setPalette(){},setReferences(){},setConfiguration:id=>id,getAxes:()=>({...axes}),setAxes:next=>(axes={...next})}};
  }
  const dependencies={displacementGcodeSettings:uiGcode.displacementGcodeSettings,displacementCoordinateNote:uiGcode.displacementCoordinateNote,unavailableCoordinateNote:uiGcode.unavailableCoordinateNote,THREE:{...uiThree,WebGLRenderer:StatusRenderer,PMREMGenerator:StatusPMREM},OrbitControls:StatusControls,RoomEnvironment:class extends uiThree.Scene{},document:doc,window:win,location:loc,history:win.history,devicePixelRatio:1,
-  translate:uiI18n.translate,loadLanguage:uiI18n.loadLanguage,messageIdFor:uiI18n.messageIdFor,isSourceAssemblyMachine:uiRegistry.isSourceAssemblyMachine,communitySchema:uiCommunity.communitySchema,communityConfiguration:uiCommunity.communityConfiguration,communityMotionEnabled:uiCommunity.communityMotionEnabled,
+  translate:uiI18n.translate,loadLanguage:uiI18n.loadLanguage,messageIdFor:uiI18n.messageIdFor,isSourceAssemblyMachine:uiRegistry.isSourceAssemblyMachine,isElegooMachine:uiElegoo.isElegooMachine,communitySchema:uiCommunity.communitySchema,communityConfiguration:uiCommunity.communityConfiguration,communityMotionEnabled:uiCommunity.communityMotionEnabled,
   sceneLightingState:()=>({background:'#eeeeee',environmentIntensity:1,exposure:1,ambientIntensity:.3}),setResponsiveAspect(){},frameResponsiveView(){},setupMachineNavigation(){},setupGcodePanel(){},setupRenderExport(){stats.exports++},
   workspaceFrame:fn=>{const owner=currentScope;queueMicrotask(()=>{if(!owner.disposed)fn(performance.now())});return 1},WorkspaceResizeObserver:class{observe(){}},workspaceTask:fn=>fn(),workspaceListen:(target,type,fn)=>{target.addEventListener(type,fn);currentScope.cleanup(()=>target.removeEventListener(type,fn))},
   evaCommunityIndex:index=>index,applyEvaOptionsProfile(){},withHeadAdditions:x=>x,GLTFLoader:class{},createEvaOptionsController:()=>({entries:[],install:async()=>({stale:false}),update(){},setPalette(){},dispose(){}}),

@@ -20,17 +20,22 @@ async function prepare(run) {
 }
 export async function loadLayoutRecipe(recipe,{signal,onProgress}) {
  const id=recipe.machine_id,progressOptions=headless(onProgress),options={signal,progressOptions,onProgress};
- if(recipe.category==='v24-reference'){const {loadV24ReferenceLayout}=await import('./layout-v24-reference-provider.mjs?v=d4ad37bbf96e20639439');return loadV24ReferenceLayout(id,{signal,onProgress})}
+ if(recipe.category==='v24-reference'){const {loadV24ReferenceLayout}=await import('./layout-v24-reference-provider.mjs?v=736a64026f37e1d2eeeb');return loadV24ReferenceLayout(id,{signal,onProgress})}
  if(recipe.category==='v0'){const {loadV0DefaultLayout}=await import('./layout-v0-provider.mjs?v=c919367e2cb9be4e3b11');return loadV0DefaultLayout(id,{signal,onProgress})}
- if(['siboor','trident','v24'].includes(recipe.category)){const {loadVoronDefaultLayout}=await import('./layout-voron-defaults.mjs?v=005bc12b9781149a3f75');return loadVoronDefaultLayout(id,{signal,onProgress})}
+ if(['siboor','trident','v24'].includes(recipe.category)){const {loadVoronDefaultLayout}=await import('./layout-voron-defaults.mjs?v=98a454fef1cfd9ab88b7');return loadVoronDefaultLayout(id,{signal,onProgress})}
  if(recipe.category==='source') {
-  const m=await import('./source-assembly-loader.mjs?v=58984dfc1ff719e6cef3'),{releaseRoot}=await import('./source-assembly-runtime/resources.mjs?v=e42678a5314a2d6c0676');
+  const m=await import('./source-assembly-loader.mjs?v=8a2c4fd3ef3a0e7fce27'),{releaseRoot}=await import('./source-assembly-runtime/resources.mjs?v=e42678a5314a2d6c0676');
   const index=await m.loadSourceIndex(signal),record=index.models.find(r=>r.id===id);if(!record)throw Error('Missing layout source record');
   const packet=await m.loadSourcePacket(record,signal),assembly=await m.loadSourceAssembly(packet,{signal,onProgress,mode:'full'});
   return {root:assembly.root,manifest:packet,profile:packet,source:{normalSourceRevision:'182cf109acf3fa867927bb017b9705e8b7dac68143e322197a4e3cf517d42391',record,credits:packet.source??packet.sources,mode:'full',variant:assembly.snapshot().variant},dispose:()=>{releaseRoot(assembly.root,assembly);assembly.root.removeFromParent();assembly.root.clear()}};
  }
  return prepare(async own=>{
   let loaded;
+  if(recipe.category==='elegoo') {
+   const [{loadElegooReference,disposeElegooRoot},{elegooAssetIndex}]=await Promise.all([import('./elegoo-loader.mjs?v=5448c02746feee6db82a'),import('./elegoo-catalog.mjs')]);
+   const row=elegooAssetIndex.machines.find(r=>r.id===id);if(!row)throw Error('Missing ELEGOO layout registration');
+   loaded=await loadElegooReference(row,{signal,onProgress});own(loaded);return finish(loaded,{catalog:'viewer/elegoo-catalog.mjs',asset:row,static_reference:true},()=>disposeElegooRoot(loaded.root));
+  }
   if(recipe.category==='community') {
    const [{loadCommunity},{evaCommunityIndex}]=await Promise.all([import('./community-loader.mjs?v=798965bb5aaf49d60eac'),import('./eva-installations.mjs?v=4dfad49e1f98d4b5b9f2')]);
    const index=evaCommunityIndex(await json('COMMUNITY_MACHINES_ASSETS.json',signal),await json('EVA_INSTALLATIONS.json',signal));

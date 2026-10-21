@@ -5,6 +5,7 @@ import {sourceAssemblyMachines} from '../site/viewer/source-assembly-registry.mj
 import {communitySchema,validateAxes,nativeMotion,displayMotion,validateCommunityState} from '../site/viewer/community-state.mjs';
 import {machineChoices,machineFamilies,machineVendors} from '../site/viewer/machines.js';
 import {evaCommunityIndex} from '../site/viewer/eva-installations.mjs';
+import {elegooMachines} from '../site/viewer/elegoo-catalog.mjs';
 const axes={x:[-100,100],y:[-90,90],z:[-95,150]},profile={machine_id:'siboor_sboom_220',axes,motions:{head:['x',0,'z'],beam:[0,0,'z'],bed:[0,'y',0]},basis:[[1,0,0],[0,0,1],[0,-1,0]]};
 assert.deepEqual(displayMotion(nativeMotion('head',{x:100,y:90,z:150},profile),profile),[.1,.15,0]);
 assert.deepEqual(displayMotion(nativeMotion('bed',{x:100,y:90,z:150},profile),profile),[0,0,-.09]);
@@ -27,7 +28,7 @@ for(const source of sourceIndex.models){
  const choice=machineChoices.find(r=>r.id===source.id);assert(choice&&choice.page==='./community.html'&&choice.available!==false);
  assert.equal(choice.family,source.family);assert(machineFamilies[choice.family]&&machineVendors[choice.vendor]);
 }
-assert.deepEqual([...Object.keys(catalog.machines),...sourceIndex.models.map(r=>r.id)].sort(),machineChoices.filter(m=>m.available!==false&&m.page==='./community.html').map(m=>m.id).sort());
+assert.deepEqual([...Object.keys(catalog.machines),...sourceIndex.models.map(r=>r.id),...elegooMachines.map(r=>r.id)].sort(),machineChoices.filter(m=>m.available!==false&&m.page==='./community.html').map(m=>m.id).sort());
 for(const [id,spec] of Object.entries(catalog.machines)){
  const choice=machineChoices.find(x=>x.id===id);assert.ok(choice);assert.ok(choice.page.includes('community.html'));assert.ok(machineFamilies[choice.family]);assert.ok(machineVendors[choice.vendor]);
  assert.equal(spec.machine_id,id);assert.ok(spec.parts>200);for(const file of Object.values(spec.files)){assert.ok(file.bytes>0);assert.match(file.sha256,/^[a-f0-9]{64}$/);assert.ok(!file.path.includes('..'))}

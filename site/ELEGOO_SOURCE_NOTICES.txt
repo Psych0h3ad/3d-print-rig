@@ -1,0 +1,28 @@
+ELEGOO Neptune assemblies: source and license notice
+
+Source publisher: ELEGOO / elegooofficial. Source format: 3DXML.
+The following pinned repositories provide GNU General Public License version 3 as their root LICENSE. Retain the original notices and include the complete applicable license with distributed covered assets and source.
+
+ELEGOO Neptune 3
+Revision: eb98eee6a65d593a61109f51261ead01116d2cb5
+3DXML source: https://github.com/elegooofficial/Neptune3/blob/eb98eee6a65d593a61109f51261ead01116d2cb5/3D/Neptune%203.3DXML
+Source SHA-256: 13df2d1e535c8e1bde689511d96693f2ae3229b6d295a7b27b18df0891cba58a
+Source README: https://github.com/elegooofficial/Neptune3/blob/eb98eee6a65d593a61109f51261ead01116d2cb5/README.md
+License: https://github.com/elegooofficial/Neptune3/blob/eb98eee6a65d593a61109f51261ead01116d2cb5/LICENSE
+
+ELEGOO Neptune 3 Pro
+Revision: fc671ca3b85bf8169609a75ed0e1e3e2695b82d4
+3DXML source: https://github.com/elegooofficial/neptune3pro/blob/fc671ca3b85bf8169609a75ed0e1e3e2695b82d4/3D/Neptune%203%20Pro.3DXML
+Source SHA-256: 5293a146f9059b03a9e2d9837fc8bd75c534646752e90592bbd414e334e0f8c8
+Source README: https://github.com/elegooofficial/neptune3pro/blob/fc671ca3b85bf8169609a75ed0e1e3e2695b82d4/README.md
+License: https://github.com/elegooofficial/neptune3pro/blob/fc671ca3b85bf8169609a75ed0e1e3e2695b82d4/LICENSE
+
+ELEGOO Neptune 3 Plus
+Revision: 1ec2c2d9e62a54743b0eda5639b273b30d6a595b
+3DXML source: https://github.com/elegooofficial/neptune3plus/blob/1ec2c2d9e62a54743b0eda5639b273b30d6a595b/3D/Neptune%203%20Plus.3DXML
+Source SHA-256: a83902f5354349e717a153bfc05bc884bb84f1664608e655546c1c2d5b6a5b94
+Source README: https://github.com/elegooofficial/neptune3plus/blob/1ec2c2d9e62a54743b0eda5639b273b30d6a595b/README.md
+License: https://github.com/elegooofficial/neptune3plus/blob/1ec2c2d9e62a54743b0eda5639b273b30d6a595b/LICENSE
+
+Conversion and source package: https://psych0h3ad.github.io/3d-print-rig-extra-models/elegoo-sources/README.md
+The supplied original public 3DXML assemblies and conversion scripts accompany the GLB meshes under the applicable GPL-3.0 terms. Coordinates, tessellated source facets and source part colors are retained. Bitmap decals and CAD transparency are omitted. The viewer applies only the recorded display rotation. These static references do not implement axis motion or interchangeable parts.

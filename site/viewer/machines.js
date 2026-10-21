@@ -1,12 +1,14 @@
 import {normalizeLanguage} from './languages.mjs?v=ba6a5cd8e1d86849ca34';
-import {annexMachines} from './annex-machines.mjs?v=a21b698822731b57dea6';
+import {annexMachines} from './annex-machines.mjs';
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
 import {navigateWorkspace} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
-import {ratRigMachines} from './ratrig-machines.mjs?v=a21b698822731b57dea6';
+import {ratRigMachines} from './ratrig-machines.mjs';
 import {sourceAssemblyMachines} from './source-assembly-registry.mjs';
+import {elegooMachines} from './elegoo-catalog.mjs';
 export const machineChoices=[
  ...sourceAssemblyMachines,
+ ...elegooMachines,
  {id:'247zero_beta2_120',label:'247zero BETA2 · 120 / Crazy Volcano / M4 Bowden',page:'./community.html',family:'247zero',vendor:'247printing',size:120},
  {id:'doomcube2_350_reference',label:'DoomCube 2 · 350 / Native CAD',page:'./community.html',family:'doomcube',vendor:'frankenvoron',size:350},
  {id:'tictac_21_120',label:'TicTac 2.1 · 120 / Native CAD',page:'./community.html',family:'tictac',vendor:'squirrelbrain',size:120},
@@ -66,6 +68,7 @@ for(const row of machineChoices){
  row.size=Number(row.id.match(/(?:^|_)(120|180|250|300|350)(?:_|$)/)?.[1]);
 }
 families.switchwire='VORON Switchwire';
+families.elegoo_neptune3='ELEGOO Neptune 3';vendors.elegoo='ELEGOO';
 families.virtu='VIRTU';families.e3ng='E3NG';vendors.rh3d='RH3D';
 export const machineFamilies=families;
 export const machineVendors=vendors;

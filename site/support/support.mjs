@@ -1,4 +1,4 @@
-import {setupLanguage,translate,formatMessage} from '../viewer/i18n.mjs?v=68d05a1da1d7da96185d';
+import {setupLanguage,translate,formatMessage} from '../viewer/i18n.mjs?v=026ed350b8da81434067';
 import {setupHeaderThemeToggle} from '../viewer/display-preferences.mjs?v=8f347468def25922153c';
 import {matchingRows,supportSelection,supportURL} from './model.mjs?v=214df1edebca45b7172f';
 import {readSupportJSON,supportDownloadBlob} from './resource.mjs?v=deb6b9eca87c47bcc2e3';
@@ -46,7 +46,7 @@ function renderResults(){
 async function choose(id,{restore=false}={}){
  if(downloadURL){URL.revokeObjectURL(downloadURL);downloadURL=undefined}$('download').removeAttribute('href');
  const n=++request;target=index.targets.find(x=>x.id===id)||index.targets.find(x=>x.id==='voron_trident_350');$('target').value=target.id;catalog=null;limit=12;selection={};$('catalog').hidden=true;$('error').hidden=true;
- $('targetSummary').replaceChildren(badge(statusLabels[target.status],target.status));if(target.status==='stock')$('targetSummary').append(el('p','元CADの標準構成を表示。部品の交換・組み合わせは未対応です。'));if(target.status==='missing')$('targetSummary').append(el('p',target.reason||'この仕様の組立CADは未登録です。'));renderHeads();
+ $('targetSummary').replaceChildren(badge(statusLabels[target.status],target.status));if(target.status==='stock')$('targetSummary').append(el('p',target.static_reference?target.reason:'元CADの標準構成を表示。部品の交換・組み合わせは未対応です。'));if(target.status==='missing')$('targetSummary').append(el('p',target.reason||'この仕様の組立CADは未登録です。'));renderHeads();
  if(!target.file){if(target.page){const a=el('a','ビュワーを開く');a.href=supportURL(target,null,null,location.href,language.language);$('targetSummary').append(a)}setURL();return}
  try{if(!cache.has(target.id))cache.set(target.id,await json('./data/'+target.file));if(n!==request)return;catalog=cache.get(target.id);if(restore)selection=supportSelection(catalog,location.search);
   setURL();$('catalog').hidden=false;downloadURL=URL.createObjectURL(supportDownloadBlob(catalog));$('download').href=downloadURL;$('download').download=target.file;renderFilters();renderResults();renderExtras();

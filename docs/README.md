@@ -28,6 +28,7 @@ Use **STEP** in the viewer header to choose a standard printer assembly. Each do
 | VORON sizes, panels and skirts | [Custom sizes](CUSTOM_VORON.md) · [Rear panels and exhausts](REAR_ENCLOSURES.md) · [Stealth Skirts](STEALTH_SKIRTS.md) |
 | VORON V0.2 / V0.2r1 Mods | [Installed Mods and dependencies](V0_INSTALLATIONS.md) |
 | VIRTU May / V-ION | [Public-STL assembly, source credits and model notes](https://psych0h3ad.github.io/3d-print-rig/viewer/community.html?machine=rh3d_virtu_may_230) |
+| ELEGOO Neptune 3 / Pro / Plus | [Static source assemblies and limits](ELEGOO.md) |
 | SOVOL SV08 | [Source assembly and controls](SOVOL.md) |
 | Micron / Micron Plus and Rat Rig | [Micron](MICRON.md) · [Rat Rig](RATRIG.md) |
 | CocobustorZero and Ducky0 | [CocobustorZero](COCOBUSTORZERO.md) · [Ducky0](DUCKY0.md) |

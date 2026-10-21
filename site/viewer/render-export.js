@@ -4,7 +4,7 @@ import {cameraAngles,createExportCamera} from './export-camera.mjs?v=trident-cle
 
 // Render the existing scene to an offscreen target: no server, no screenshot
 // of HTML controls, and no change to the interactive canvas resolution.
-export function setupRenderExport({renderer,scene,camera,controls,beforeRender=()=>{},afterRender=()=>{},name='VORON',three:THREE=DefaultTHREE}){
+export function setupRenderExport({renderer,scene,camera,controls,beforeRender=()=>{},afterRender=()=>{},prepareCamera=()=>{},name='VORON',three:THREE=DefaultTHREE}){
  const $=s=>document.querySelector(s);
  const dialog=document.createElement('dialog');dialog.id='renderDialog';
  dialog.innerHTML=`<div class="dialog-head"><h2>画像を書き出す</h2><button class="close" aria-label="閉じる"></button></div><div class="dialog-body"><p>現在の視点・構成・配色・照明をPNGに保存します。</p><div class="render-options"><div><label for="renderResolution">長辺の解像度</label><select id="renderResolution"><option value="1920">1920 px</option><option value="2560" selected>2560 px</option><option value="3840">3840 px</option></select></div><div><label for="renderBackground">背景</label><select id="renderBackground"><option value="scene">現在の背景</option><option value="transparent">透明</option></select></div></div><p class="foot">画面と同じ縦横比。ブラウザーの3D描画を高解像度化します。光線追跡・実写レンダリングは含みません。</p><button id="saveRender" class="primary">PNGを保存</button><p id="renderStatus" aria-live="polite"></p></div>`;
@@ -29,6 +29,7 @@ export function setupRenderExport({renderer,scene,camera,controls,beforeRender=(
    target=new THREE.WebGLRenderTarget(width,height,{format:THREE.RGBAFormat,type:THREE.UnsignedByteType,samples:Math.min(4,renderer.capabilities.maxSamples)});
    target.texture.colorSpace=THREE.SRGBColorSpace;
    const exportCamera=createExportCamera(camera,{mode:$('#renderView').value,target:getTarget(),azimuth:Number($('#renderAzimuth').value),elevation:Number($('#renderElevation').value),roll:Number($('#renderRoll').value),distanceMm:Number($('#renderDistance').value),aspect:ratio});
+   prepareCamera(exportCamera);
    if($('#renderBackground').value==='transparent'){scene.background=null;renderer.setClearColor(0x000000,0)}
    renderer.setRenderTarget(target);renderer.clear();renderer.render(scene,exportCamera);
    const pixels=new Uint8Array(width*height*4);renderer.readRenderTargetPixels(target,0,0,width,height,pixels);

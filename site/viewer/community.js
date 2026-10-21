@@ -11,15 +11,15 @@ import {applyEvaOptionsProfile,createEvaOptionsController} from './eva-options.m
 import {withHeadAdditions} from './head-additions.mjs?v=526ae5fd744c374d8537';
 import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
 import {communitySchema,validateCommunityState,communityMotionEnabled,communityConfiguration} from './community-state.mjs?v=460b3fa78cc503ddb6e6';
-import {installationFor,installationOptionAvailable} from './ender-mods.mjs?v=5f07c69c7c42ba3f3936';
-import {setupMachineNavigation} from './machines.js?v=ab543d6b01637bc5083f';
+import {installationFor,installationOptionAvailable} from './ender-mods.mjs';
+import {setupMachineNavigation} from './machines.js?v=5503ac507978b3d4e928';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
-import {translate,loadLanguage,messageIdFor} from './i18n.mjs?v=68d05a1da1d7da96185d';
+import {translate,loadLanguage,messageIdFor} from './i18n.mjs?v=026ed350b8da81434067';
 import {rememberDisplayControl} from './display-preferences.mjs?v=8f347468def25922153c';
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
-import {setupRenderExport} from './render-export.js?v=d1a1fe1ccce6fd167256';
-import {setupPublicInfo} from './public-info.js?v=34f95d331d60622a95f3';
+import {setupRenderExport} from './render-export.js?v=736862a3013dbfd9f9ea';
+import {setupPublicInfo} from './public-info.js?v=f1c40e394d7c64490c76';
 const descriptions={
  voron_switchwire_250:'Official Switchwire v1 CAD assembly with Stealthburner, CW2 and Revo Voron.',
  '247zero_beta2_120':'247zero BETA2 · 120 mm / ULW carbon gantry / Crazy Volcano / M4 Bowden',
@@ -46,8 +46,10 @@ const descriptions={
 const sourceNotices={ '247zero_beta2_120':"BETA2 CAD v43 with original V0.2 skirts. Motion and Bowden routing are previews; firmware limits and whole-machine clearance remain unverified.", tictac_21_120:"Native XYZ movement preview. The floor, calibration cubes and duplicate parts are separated as references.", rook_mk2_120:"Rook MK2 beta with Galileo 2 G2SA and native XYZ movement. Mounting holes and seats were compared; omitted source screws are not synthesized.", the100_v11_165:"Native XYZ movement preview. The duplicate mount is separated as a reference. The source omits belts and the complete Bowden route.", satsuma180_v10:"Native XYZ movement preview with moving XY belts and bed cable.",sovol_sv08_350:'Native XYZ movement preview with moving XY belt envelopes and seated Z carriages. Duplicate parts and disconnected source PTFE/wires are separated as references.',lh_stinger_200:'元CADの延長ノズル構成です。組立治具と短いノズルは参考表示に分けています。電子ボックスはこのCADに含まれていません。',vzbot_330_printed:'公式プリントAWD v1.2を表示しています。元CADのXYベルトは一部のみで、CPAPホースは含まれていません。',ender3_stock_220:'Bowden経路は原本のD4チューブ断面と継手位置を使用した450 mmの表示プレビューです。原CADに全長の配管は含まれません。',antithesis_aether_mk11:'公式CADのアルミ仕様です。組立治具・重複部品・MJF向け代替部品を標準表示から分けています。',snakeoil_xy_idex:'左右のヘッドをX・X2で個別に動かせます。元CADに重複したSherpa Miniを標準表示から分けています。XYベルトは一部のみ含まれます。',snakeoil_3s_kp3s_180:'元CADにはXYベルトと全体の配線経路が含まれていません。',snakeoil_proosaxy:'元CADにはXYベルトと全体の配線経路が含まれていません。'};
 sourceNotices.voron_switchwire_250='Source: VoronDesign/Voron-Switchwire, revision 92cc013ca2af94e6c09950dbe05c0973ee49aa00 (GPL-3.0). Preview movement does not establish physical clearance.';
 import {isSourceAssemblyMachine} from './source-assembly-registry.mjs';
+import {isElegooMachine} from './elegoo-catalog.mjs';
 export async function mount(scope){
- if(isSourceAssemblyMachine(new URLSearchParams(location.search).get('machine')))return (await import('./source-assembly.mjs?v=c0e2abd4f6401f25b7a2')).mount(scope);
+ if(isElegooMachine(new URLSearchParams(location.search).get('machine')))return (await import('./elegoo.mjs?v=9fcb4b27519ec6d3ff47')).mount(scope);
+ if(isSourceAssemblyMachine(new URLSearchParams(location.search).get('machine')))return (await import('./source-assembly.mjs?v=4a33e47a0fe822b6cb83')).mount(scope);
  await loadLanguage(document.documentElement.lang);if(scope.disposed)return;
  const $=id=>document.getElementById(id),stage=$('stage'),machine=new URLSearchParams(location.search).get('machine')||'ender3_stock_220',t=v=>translate(v,document.documentElement.lang);
  const status=$('status'),modelNotice=$('sourceModelNotice');

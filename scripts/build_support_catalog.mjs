@@ -8,6 +8,7 @@ import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {gzipSync} from 'node:zlib';
 import {pathToFileURL} from 'node:url';
+import {elegooAssetIndex} from '../site/viewer/elegoo-catalog.mjs';
 import {machineChoices} from '../site/viewer/machines.js';
 import {collections,headBuilderDimensions,catalogDimensions} from '../site/viewer/configuration-model.js';
 import {expandedPrinterCatalog,v24HeadCatalog} from '../site/viewer/machine-head-model.mjs';
@@ -62,7 +63,10 @@ export function buildSupport(root){
   const target={id:m.id,label:m.label,family:m.family,size:m.size,page:m.page,kind:'machine',status:m.available===false?'missing':'stock',reason:m.unavailable_reason||null,count:0};targets.push(target);
   let catalog;
   if(m.available===false)continue;
-  if(registry.machines[m.id]){
+  if(m.static_reference && m.family==='elegoo_neptune3'){
+   const row=elegooAssetIndex.machines.find(r=>r.id===m.id);if(!row)throw Error('Missing ELEGOO source registration');
+   target.static_reference=true;target.capabilities={motion:false,part_replacement:false,source_colors:true};target.source=row.source;target.reason='Static source reference. Axis movement and physical fit are unverified.';
+  }else if(registry.machines[m.id]){
    if(m.family==='trident')catalog=expandedPrinterCatalog(m.id.startsWith('siboor_trident_')?sizedSiboorCatalog(read('ASSEMBLY_CONFIGURATIONS.json'),siboor,m.id):read(`machines/${m.id}/configurations.json`),heads,registry,m.id);
    else if(m.family==='v24')catalog={...v24HeadCatalog(heads,registry,m.id,read(`machines/${m.id}/machine_profile.json`)),accessories:[]};
    else throw Error('Unclassified registered printer '+m.id);

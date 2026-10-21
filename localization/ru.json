@@ -10941,6 +10941,42 @@
     "layout.appearance.invalid": {
       "source_revision": "9bba169636f83fc8dd23",
       "text": "Выберите доступную отделку стен и пола."
+    },
+    "elegoo.static_notice": {
+      "source_revision": "a0d531d75263a96174d6",
+      "text": "Статическая модель по исходным данным. Движение осей и физическая совместимость не проверены."
+    },
+    "elegoo.appearance_notice": {
+      "source_revision": "267f053e1d12bda29c67",
+      "text": "Сохранены исходные цвета и расположение деталей. Растровые декали и прозрачность CAD отсутствуют."
+    },
+    "elegoo.nominal_size": {
+      "source_revision": "8e4ad4d012211ecece11",
+      "text": "Номинальная область печати: {0} mm."
+    },
+    "elegoo.memory_warning": {
+      "source_revision": "953951ec37b87cdfe3d7",
+      "text": "Большая сборка. На этом устройстве загрузка может быть медленной или завершиться ошибкой. Доступный браузеру объём RAM неизвестен."
+    },
+    "elegoo.canceled": {
+      "source_revision": "2852c00047b5785b3881",
+      "text": "Загрузка отменена. Откройте модель, чтобы повторить попытку."
+    },
+    "elegoo.download": {
+      "source_revision": "88a68de3e5f835d41001",
+      "text": "Загрузка данных модели · {0}"
+    },
+    "elegoo.side": {
+      "source_revision": "e0c4b81ec0664c631dbf",
+      "text": "Вид сбоку"
+    },
+    "elegoo.rear": {
+      "source_revision": "1b9581679bcea2237aa5",
+      "text": "Вид сзади"
+    },
+    "elegoo.corresponding_source": {
+      "source_revision": "1f44beb0c5d5f2795a34",
+      "text": "Исходные данные и инструменты преобразования"
     }
   }
 }

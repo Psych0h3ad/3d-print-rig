@@ -4,6 +4,7 @@ import {machineChoices} from '../site/viewer/machines.js';
 import {machineReviewInputs} from './machine_review_inputs.mjs';
 import {assertViewerMeshQuality} from './viewer_mesh_quality_scope.mjs';
 const suites={
+ elegoo_neptune3:['elegoo_reference'],
  virtu:['source_assembly_assets','source_gallery_bindings'],e3ng:['source_assembly_assets','source_gallery_bindings'],
  '247zero':['community_state','247zero'],
  doomcube:['community_state','doomcube'],

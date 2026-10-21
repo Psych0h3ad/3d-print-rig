@@ -407,6 +407,11 @@ def main():
                     '--experimental-loader', './scripts/source-assembly-test-loader.mjs',
                     str(ROOT/'scripts/audit_ender_bowden.mjs'), '--site', str(target),
                     '--report', str(target/'review/ender-bowden.json')], cwd=ROOT, check=True)
+    # Static ELEGOO assemblies retain source geometry; no motion/palette claim.
+    # Keep detailed inspection artifacts outside the public site.
+    with tempfile.TemporaryDirectory(prefix='elegoo-review-') as folder:
+        subprocess.run([sys.executable, str(ROOT/'scripts/check_elegoo_assets_release.py'),
+                        '--site', str(target), '--output', folder], cwd=ROOT, check=True)
     # Check the complete page graph after generated inputs (including support
     # data) exist, before the artifact can be uploaded.
     print(json.dumps(verify_entrypoints(target, input_map)))
