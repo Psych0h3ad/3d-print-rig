@@ -275,6 +275,31 @@ function replayCommands(initial,selection){
  return engine;
 }
 const encoded=engine=>serializeLayout(engine.read().state,productionCatalog);
+await test('room-finishes-real-dispatch-history-storage-import-reset-and-shape-persistence',async()=>{
+ const initial=makePlan([S.createDesk({id:'finish-desk'})],[printer('finish-printer','finish-desk','top')]);
+ const r=replayCommands(initial,'finish-printer'),original=encoded(r);
+ const edit=async appearance=>r.act({type:'SET_ROOM',room:{...r.read().state.room,appearance}});
+ await edit({wall:'linen',floor:'concrete'});const changed=encoded(r);
+ assert.notEqual(changed,original);assert.equal(r.read().selected,'finish-printer');assert.equal(r.read().past.length,1);
+ assert.equal(r.read().writes.at(-1),changed);assert.deepEqual(r.read().state.printers,initial.printers);
+ await edit({wall:'linen',floor:'concrete'});assert.equal(r.read().past.length,1);assert.equal(r.read().writes.length,1);
+ await r.act({type:'undo'});assert.equal(encoded(r),original);assert.equal(r.read().writes.at(-1),original);
+ await r.act({type:'redo'});assert.equal(encoded(r),changed);assert.equal(r.read().writes.at(-1),changed);
+ await edit({wall:'stripe',floor:'tile'});await edit({wall:'linen',floor:'concrete'});assert.equal(encoded(r),changed);
+ const beforeInvalid=r.read();await edit({wall:'linen',floor:'unsupported'});
+ assert.strictEqual(r.read().state,beforeInvalid.state);assert.deepEqual(r.read().past,beforeInvalid.past);
+ assert.deepEqual(r.read().future,beforeInvalid.future);assert.deepEqual(r.read().writes,beforeInvalid.writes);
+ await r.act({type:'SET_ROOM',room:createRoomRect({widthMm:10000,depthMm:9000})});
+ assert.deepEqual(r.read().state.room.appearance,{wall:'linen',floor:'concrete'});
+ await r.act({type:'import',file:{size:changed.length,text:async()=>changed}});assert.equal(encoded(r),changed);
+ assert.equal(r.read().selected,null);assert.deepEqual(r.read().state.furniture,initial.furniture);
+ const legacy=JSON.parse(original);delete legacy.room.appearance;const legacyText=JSON.stringify(legacy);
+ await r.act({type:'import',file:{size:legacyText.length,text:async()=>legacyText}});assert.equal(encoded(r),original);
+ await r.act({type:'undo'});assert.equal(encoded(r),changed);
+ await r.act({type:'reset'});assert.deepEqual(r.read().state,createDefaultLayout());
+ await r.act({type:'undo'});assert.equal(encoded(r),changed);
+ await r.act({type:'redo'});assert.deepEqual(r.read().state.room.appearance,{wall:'paint',floor:'oak'});
+});
 const closeTo=(actual,expected,message)=>assert.ok(Math.abs(actual-expected)<1e-9,`${message}: ${actual} versus ${expected}`);
 await test('failed-add-and-duplicate-preserve-selection-history-and-storage-atomically',async()=>{
  const rightEdge=2000-productionRows[0].widthMm/2-50;
@@ -394,7 +419,7 @@ await test('translated-room-load-reset-and-applied-outline-refit-only-after-acce
   ${actions}
   return {act,read:()=>({state,selected,past:[...past],views:[...views],writes:[...writes],status:{...status}})};
  `);
- const translated={polygonMm:[[8000,9000],[18000,9000],[18000,17000],[8000,17000]],wallHeightMm:2400};
+ const translated={polygonMm:[[8000,9000],[18000,9000],[18000,17000],[8000,17000]],wallHeightMm:2400,appearance:{wall:'stripe',floor:'tile'}};
  const saved=createDefaultLayout({room:translated,furniture:[S.createDesk({id:'translated-desk',pose:{xMm:13000,zMm:12000,yawDeg:0}})],printers:[printer('translated-printer',null,'floor',13000,14500)]},productionCatalog);
  const text=serializeLayout(saved,productionCatalog);let draft=null;
  const r=factory({S,rows:productionRows,catalog:productionCatalog,initial:makePlan(),editorModule:async()=>({openRoomEditor:async()=>draft})});
@@ -408,7 +433,7 @@ await test('translated-room-load-reset-and-applied-outline-refit-only-after-acce
  for(const type of ['edit-room','import-svg']){
   draft={polygonMm:[[7000,8000],[20000,8000],[20000,19000],[7000,19000]],wallHeightMm:2600};
   const before=r.read().views.length;await r.act({type,file:type==='import-svg'?{name:'room.svg'}:undefined});
-  result=r.read();assert.deepEqual(result.state.room,draft);assert.deepEqual(result.views.slice(before).map(v=>v.mode),['perspective','fit']);
+  result=r.read();assert.deepEqual(result.state.room,{...draft,appearance:translated.appearance});assert.deepEqual(result.views.slice(before).map(v=>v.mode),['perspective','fit']);
   assert.ok(result.views.slice(before).every(event=>event.state===result.state));
  }
  const before=r.read();draft=null;await r.act({type:'edit-room'});assert.equal(r.read().views.length,before.views.length);assert.strictEqual(r.read().state,before.state);

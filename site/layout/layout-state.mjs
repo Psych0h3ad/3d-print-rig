@@ -1,5 +1,6 @@
 import {polygonProblems, polygonContains, polygonsOverlap, rectangle, rotateXZ, transformPolygon, bounds} from './layout-geometry.mjs?v=129e07e8d3e2b008fab6';
 import {rigidMotionStaysInside,boundaryTangents} from './layout-constraints.mjs?v=e0fbda794064e531577f';
+import {WALL_FINISHES, FLOOR_FINISHES, DEFAULT_ROOM_APPEARANCE} from './layout-finishes.mjs?v=001b62f9728770a12303';
 
 export const LIMITS = Object.freeze({maxFurniture: 64, maxPrinters: 128, maxRoomVertices: 32,
   maxFootprintVertices: 32, maxLevels: 32, maxCoordinateMm: 1000000, maxDimensionMm: 100000,
@@ -38,7 +39,11 @@ function polygonCheck(polygon, path, errors) {
   for (const code of polygonProblems(polygon, {maxVertices: 32, maxCoordinateMm: LIMITS.maxCoordinateMm})) issue(errors, code, path);
 }
 function roomCheck(room, errors) {
-  if (!keys(room, ['polygonMm', 'wallHeightMm'], 'room', errors)) return;
+  if (!keys(room, ['polygonMm', 'wallHeightMm', 'appearance'], 'room', errors)) return;
+  if (Object.hasOwn(room, 'appearance') && keys(room.appearance, ['wall', 'floor'], 'room.appearance', errors)) {
+    if (!WALL_FINISHES.includes(room.appearance.wall)) issue(errors, 'INVALID_ROOM_FINISH', 'room.appearance.wall');
+    if (!FLOOR_FINISHES.includes(room.appearance.floor)) issue(errors, 'INVALID_ROOM_FINISH', 'room.appearance.floor');
+  }
   polygonCheck(room.polygonMm, 'room.polygonMm', errors);
   num(room.wallHeightMm, 100, LIMITS.maxWallHeightMm, 'room.wallHeightMm', errors);
   if (!errors.some(e => e.path === 'room.polygonMm')) {
@@ -134,20 +139,25 @@ export function validateState(state, catalog = []) {
 }
 function assertState(state, catalog) { const result = validateState(state, catalog); if (!result.ok) throw new LayoutValidationError(result.errors); }
 function assertRoom(room) { const errors = []; roomCheck(room, errors); if (errors.length) throw new LayoutValidationError(errors); return freeze(copy(room)); }
+function roomWithAppearance(room, fallback = DEFAULT_ROOM_APPEARANCE) {
+  return plain(room) && !Object.hasOwn(room, 'appearance') ? {...room, appearance: copy(fallback)} : room;
+}
 function assertFurniture(f) { const errors = []; furnitureCheck(f, 'furniture', errors); if (errors.length) throw new LayoutValidationError(errors); return freeze(copy(f)); }
 function dimensions(widthMm, depthMm, errors) {
   num(widthMm, 30, LIMITS.maxDimensionMm, 'widthMm', errors); num(depthMm, 30, LIMITS.maxDimensionMm, 'depthMm', errors);
   if (errors.length) throw new LayoutValidationError(errors);
 }
-export function createRoomPolygon({polygonMm, wallHeightMm = 2400}) { return assertRoom({polygonMm, wallHeightMm}); }
-export function createRoomRect({widthMm = 4000, depthMm = 3000, wallHeightMm = 2400} = {}) {
-  dimensions(widthMm, depthMm, []); return createRoomPolygon({polygonMm: rectangle(widthMm, depthMm), wallHeightMm});
+// Shape-only constructors deliberately omit appearance unless supplied. SET_ROOM
+// can therefore retain existing finishes after outline editing or SVG import.
+export function createRoomPolygon({polygonMm, wallHeightMm = 2400, appearance}) { return assertRoom({polygonMm, wallHeightMm, ...(appearance === undefined ? {} : {appearance})}); }
+export function createRoomRect({widthMm = 4000, depthMm = 3000, wallHeightMm = 2400, appearance} = {}) {
+  dimensions(widthMm, depthMm, []); return createRoomPolygon({polygonMm: rectangle(widthMm, depthMm), wallHeightMm, appearance});
 }
-export function createRoomL({widthMm = 4000, depthMm = 4000, cutWidthMm = 2000, cutDepthMm = 2000, wallHeightMm = 2400} = {}) {
+export function createRoomL({widthMm = 4000, depthMm = 4000, cutWidthMm = 2000, cutDepthMm = 2000, wallHeightMm = 2400, appearance} = {}) {
   const errors = []; dimensions(widthMm, depthMm, errors);
   if (!numberOK(cutWidthMm, 1, widthMm - 1) || !numberOK(cutDepthMm, 1, depthMm - 1)) throw new LayoutValidationError([{code: 'L_CUT_MUST_BE_INTERIOR', path: 'room', params: {}}]);
   const x = widthMm / 2, z = depthMm / 2;
-  return createRoomPolygon({polygonMm: [[-x,-z],[x,-z],[x,z-cutDepthMm],[x-cutWidthMm,z-cutDepthMm],[x-cutWidthMm,z],[-x,z]], wallHeightMm});
+  return createRoomPolygon({polygonMm: [[-x,-z],[x,-z],[x,z-cutDepthMm],[x-cutWidthMm,z-cutDepthMm],[x-cutWidthMm,z],[-x,z]], wallHeightMm, appearance});
 }
 const defaultPose = () => ({xMm: 0, zMm: 0, yawDeg: 0});
 export function createDesk({id = 'desk-1', widthMm = 1200, depthMm = 600, heightMm = 750, pose = defaultPose()} = {}) {
@@ -162,7 +172,7 @@ export function createShelf({id = 'shelf-1', widthMm = 900, depthMm = 450, heigh
 }
 export function createDefaultLayout({room = createRoomRect(), furniture = [], printers = []} = {}, catalog = []) {
   const state = {format: '3d-print-rig-layout', version: 1, units: 'mm', room, furniture, printers};
-  assertState(state, catalog); return freeze(copy(state));
+  assertState(state, catalog); return freeze(copy({...state, room: roomWithAppearance(room)}));
 }
 function fail(code, path, params = {}) { throw new LayoutValidationError([{code, path, params}]); }
 function requireEntity(list, id, path) { const item = list.find(v => v.id === id); if (!item) fail('UNKNOWN_ENTITY', path, {id}); return item; }
@@ -171,6 +181,7 @@ export function applyAction(state, action, catalog = []) {
   const machines = catalogOf(catalog); assertState(state, machines);
   if (!plain(action) || typeof action.type !== 'string') fail('INVALID_ACTION', 'action');
   const next = copy(state);
+  next.room = roomWithAppearance(next.room);
   const fields = {
     SET_ROOM: ['room'], ADD_FURNITURE: ['furniture'], UPDATE_FURNITURE: ['id', 'patch'], REMOVE_FURNITURE: ['id', 'detachChildren'],
     ADD_PRINTER: ['printer'], UPDATE_PRINTER: ['id', 'patch'], SET_ATTACHMENT: ['id', 'attachment'], REMOVE_PRINTER: ['id'],
@@ -178,7 +189,7 @@ export function applyAction(state, action, catalog = []) {
   if (!Object.hasOwn(fields, action.type)) fail('UNKNOWN_ACTION', 'action.type');
   const errors = []; keys(action, ['type', ...fields[action.type]], 'action', errors); if (errors.length) throw new LayoutValidationError(errors);
   switch (action.type) {
-    case 'SET_ROOM': next.room = copy(action.room); break;
+    case 'SET_ROOM': next.room = copy(roomWithAppearance(action.room, next.room.appearance)); break;
     case 'ADD_FURNITURE': next.furniture.push(copy(action.furniture)); break;
     case 'ADD_PRINTER': next.printers.push(copy(action.printer)); break;
     case 'UPDATE_FURNITURE': {
@@ -551,11 +562,11 @@ export function validatePlacement(state, catalog = []) {
   return freeze(warnings);
 }
 export function serializeLayout(state, catalog = []) {
-  assertState(state, catalog); const text = JSON.stringify(state, null, 2);
+  assertState(state, catalog); const text = JSON.stringify({...state, room: roomWithAppearance(state.room)}, null, 2);
   if (text.length > LIMITS.maxJsonChars) fail('JSON_SIZE_LIMIT', 'json'); return text;
 }
 export function parseLayout(text, catalog = []) {
   if (typeof text !== 'string' || text.length > LIMITS.maxJsonChars) fail('JSON_SIZE_LIMIT', 'json');
   let state; try { state = JSON.parse(text); } catch { fail('JSON_PARSE_ERROR', 'json'); }
-  assertState(state, catalog); return freeze(state);
+  assertState(state, catalog); return freeze({...state, room: roomWithAppearance(state.room)});
 }

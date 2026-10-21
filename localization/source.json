@@ -13735,6 +13735,56 @@
       "kind": "message",
       "ja": "Kerry Stevensonさん、Fabbalooで3D Print Rigをご紹介いただきありがとうございます！",
       "en": "Thank you to Kerry Stevenson and Fabbaloo for featuring 3D Print Rig."
+    },
+    "layout.room_appearance": {
+      "kind": "message",
+      "ja": "部屋の外観",
+      "en": "Room appearance"
+    },
+    "layout.appearance.wall": {
+      "kind": "message",
+      "ja": "壁の仕上げ",
+      "en": "Wall finish"
+    },
+    "layout.appearance.floor": {
+      "kind": "message",
+      "ja": "床の仕上げ",
+      "en": "Floor finish"
+    },
+    "layout.appearance.wall.paint": {
+      "kind": "message",
+      "ja": "塗装・塗り壁",
+      "en": "Painted plaster"
+    },
+    "layout.appearance.wall.linen": {
+      "kind": "message",
+      "ja": "リネン調の壁紙",
+      "en": "Linen wallpaper"
+    },
+    "layout.appearance.wall.stripe": {
+      "kind": "message",
+      "ja": "細い縦縞の壁紙",
+      "en": "Fine vertical stripe wallpaper"
+    },
+    "layout.appearance.floor.oak": {
+      "kind": "message",
+      "ja": "オークの板張り",
+      "en": "Oak planks"
+    },
+    "layout.appearance.floor.concrete": {
+      "kind": "message",
+      "ja": "明るいコンクリート",
+      "en": "Light concrete"
+    },
+    "layout.appearance.floor.tile": {
+      "kind": "message",
+      "ja": "ニュートラルなタイル",
+      "en": "Neutral tile"
+    },
+    "layout.appearance.invalid": {
+      "kind": "message",
+      "ja": "対応している壁と床の仕上げを選んでください。",
+      "en": "Choose a supported wall and floor finish."
     }
   }
 }

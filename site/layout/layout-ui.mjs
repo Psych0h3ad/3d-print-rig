@@ -1,5 +1,6 @@
 // Presentation only. The application owns state, history, files and model loading.
-import {createRoomRect,createRoomL,createRoomPolygon} from './layout-state.mjs?v=958a4aac45cc6c68d570';
+import {createRoomRect,createRoomL,createRoomPolygon} from './layout-state.mjs?v=a29e8e61e4bbad0af014';
+import {WALL_FINISHES,FLOOR_FINISHES,DEFAULT_ROOM_APPEARANCE} from './layout-finishes.mjs?v=001b62f9728770a12303';
 const PRINTER_VIEWER_PAGES=new Set(['','index.html','annex.html','community.html','crossant.html','custom-voron.html','kit-reference.html','micron.html','positron.html','ratrig.html','remorph.html','trident.html','v0.html','v24-reference.html','v24.html']);
 // Only a registered catalog destination is eligible; saved plan fields never supply URLs.
 export function printerSourcesURL(row,href,language='en'){
@@ -203,11 +204,29 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
         const cx=(b.minX+b.maxX)/2,cz=(b.minZ+b.maxZ)/2;
         room=createRoomPolygon({polygonMm:centered.polygonMm.map(([x,z])=>[x+cx,z+cz]),wallHeightMm});
       }
+      room={...room,appearance:state.room.appearance??DEFAULT_ROOM_APPEARANCE};
       points.removeAttribute('aria-invalid');roomDraft=false;roomSignature=null;
       if(JSON.stringify(room)===JSON.stringify(state.room)){syncRoom();return;}
       emit({type:'SET_ROOM',room});
     }catch(error){points.setAttribute('aria-invalid','true');const problem=error?.errors?.[0];showError(problem?tr(`layout.error.${problem.code}`,problem.params||{}):tr('layout.actionFailed'));}
   });applyRoom.id='layout-room-apply';roomSection.append(applyRoom);
+  const appearance=el('fieldset','layout-room-appearance');
+  appearance.append(copy(el('legend'),'layout.room_appearance'));
+  const finishSelects=new Map();
+  for(const [surface,finishes]of [['wall',WALL_FINISHES],['floor',FLOOR_FINISHES]]){
+    const label=el('label','layout-field'),select=el('select');
+    label.append(copy(el('span'),`layout.appearance.${surface}`));
+    select.id=`layout-room-${surface}-finish`;select.dataset.layoutField=`room-${surface}-finish`;
+    for(const finish of finishes){const option=copy(el('option'),`layout.appearance.${surface}.${finish}`);option.value=finish;select.append(option);}
+    listen(select,'change',()=>{
+      if(!state)return;
+      const current=state.room.appearance??DEFAULT_ROOM_APPEARANCE;
+      if(select.value===current[surface])return;
+      emit({type:'SET_ROOM',room:{...state.room,appearance:{...current,[surface]:select.value}}});
+    });
+    label.append(select);appearance.append(label);finishSelects.set(surface,select);
+  }
+  roomSection.append(appearance);
   const shapeVisibility=()=>{
     cutFields.hidden=roomMode!=='l';custom.hidden=roomMode!=='custom';
     for(const key of ['room-width','room-depth'])fields.get(key).readOnly=roomMode==='custom';
@@ -216,7 +235,9 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
   listen(shapeSelect,'change',()=>{roomMode=shapeSelect.value;roomDraft=true;shapeVisibility();});
   listen(points,'input',()=>{roomDraft=true;points.removeAttribute('aria-invalid');});
   function syncRoom(){
-    const signature=JSON.stringify(state.room),b=roomBounds();
+    // Appearance edits must not discard uncommitted shape/outline drafts.
+    const signature=JSON.stringify([state.room.polygonMm,state.room.wallHeightMm]),b=roomBounds();
+    for(const [surface,select]of finishSelects)select.value=(state.room.appearance??DEFAULT_ROOM_APPEARANCE)[surface];
     if(signature!==roomSignature){
       roomSignature=signature;roomDraft=false;
       const xs=[...new Set(state.room.polygonMm.map(p=>p[0]))].sort((a,b)=>a-b),zs=[...new Set(state.room.polygonMm.map(p=>p[1]))].sort((a,b)=>a-b);

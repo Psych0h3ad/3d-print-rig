@@ -58,6 +58,27 @@ Numeric fields also support precise placement. Objects can be duplicated or
 deleted. Before deleting occupied furniture, explicitly choose to move its printers to the floor. Move printers
 off a shelf board before removing that board.
 
+## Room appearance
+
+Under **Room → Appearance**, choose painted plaster, linen wallpaper or fine
+vertical stripe wallpaper for the walls, and oak planks, light concrete or
+neutral tile for the floor. Each choice applies immediately and supports undo
+and redo. Changing the outline, importing SVG or updating room dimensions keeps
+the chosen finishes. Appearance changes also keep an unfinished outline draft.
+
+Finish choices are included in browser saves and exported layout JSON. Older
+plans without appearance settings open with painted plaster and oak planks.
+Reset restores those defaults along with the empty room.
+
+The version-1 JSON contract is `room.appearance: {wall, floor}`. Wall values are
+`paint`, `linen` and `stripe`; floor values are `oak`, `concrete` and `tile`.
+Loading or saving a plan with no appearance object adds `{wall: "paint", floor:
+"oak"}`. When present, the object requires both fields and accepts no extra
+fields. Unknown finish values are rejected without replacing the current plan.
+A shape-only `SET_ROOM` retains the existing appearance; an explicit appearance
+object replaces it. The enum contract is defined in
+[`layout-finishes.mjs`](../site/layout/layout-finishes.mjs).
+
 ## Draw or import an outline
 
 Use **Edit outline** to draw room corners, drag them, or add and remove points.
@@ -97,13 +118,17 @@ floor or furniture. The shown printer dimensions are static outer envelopes from
 the registered source models, **not build volumes** or complete motion/service
 envelopes.
 
-Press **Render full models** when ready. The browser loads, draws and releases
+Press **Create image** when ready. The browser loads, draws and releases
 one printer model in its registered default configuration at a time, then
 offers a PNG from the **current camera angle**, with a **1920 px long edge**
 subject to the browser's GPU limit.
 In **2D plan**, **Create plan image** exports the flat plan without loading full
 printer models. In 3D, the full models are used for the image; the editable scene
-stays lightweight.
+stays lightweight. Walls and floors use the selected finishes. The 3D grid is
+off by default and is omitted from detailed images. Room lighting stays the
+same when switching the site theme. Furniture casts soft shadows; the soft
+contact beneath a printer follows its planning envelope, not its individual
+CAD feet.
 **Cancel** stops the operation and retains the plan.
 
 Transparent model geometry and textures may need to remain until the last

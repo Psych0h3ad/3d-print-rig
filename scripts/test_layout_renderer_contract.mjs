@@ -95,6 +95,7 @@ class TrackedInstancedMesh extends THREE.InstancedMesh {
 }
 class RendererFixture{
  constructor(){this.domElement=makeCanvas();this.capabilities={maxTextureSize:512};this.autoClear=true;this.target=null;
+  this.shadowMap={enabled:false,type:THREE.PCFShadowMap};
   this.debug={checkShaderErrors:true,onShaderError:null};
   this.supportedExtensions=new Set(['EXT_color_buffer_float']);this.extensionQueries=[];
   this.extensions={has:name=>{this.extensionQueries.push(name);return this.supportedExtensions.has(name)}};
@@ -126,7 +127,10 @@ class RendererFixture{
     camera:{position:camera.position.toArray(),quaternion:camera.quaternion.toArray(),projection:camera.projectionMatrix.toArray(),matrixWorld:camera.matrixWorld.toArray()},
     walls:(()=>{const a=[];scene.traverse(o=>{if(o.userData.wall)a.push({position:o.position.toArray(),scale:o.scale.toArray(),inward:[...o.userData.inward],visible:o.visible,opacity:o.material.opacity})});return a})(),
     floors:(()=>{const a=[];scene.traverse(o=>{if(o.userData.roomOwned){const p=o.geometry.attributes.position,n=o.geometry.attributes.normal,normal=new THREE.Matrix3().getNormalMatrix(o.matrixWorld);a.push({position:Array.from({length:p.count},(_,i)=>new THREE.Vector3().fromBufferAttribute(p,i).applyMatrix4(o.matrixWorld).toArray()),normal:Array.from({length:n.count},(_,i)=>new THREE.Vector3().fromBufferAttribute(n,i).applyNormalMatrix(normal).toArray()),index:o.geometry.index?Array.from(o.geometry.index.array):Array.from({length:p.count},(_,i)=>i)})}});return a})(),
-    wallCopies:(()=>{const a=[];scene.traverseVisible(o=>{if(o.isMesh&&o.geometry.type==='BoxGeometry'&&o.material?.opacity===.45){const p=new THREE.Vector3().setFromMatrixPosition(o.matrixWorld);a.push({position:p.toArray(),matrixWorld:o.matrixWorld.toArray(),opacity:o.material.opacity,sourceWall:!!o.userData.wall})}});return a})(),
+    roomWalls:(()=>{const a=[];scene.traverseVisible(o=>{if(o.userData.wall){const p=new THREE.Vector3().setFromMatrixPosition(o.matrixWorld);a.push({position:p.toArray(),matrixWorld:o.matrixWorld.toArray(),opacity:o.material.opacity,transparent:o.material.transparent,depthWrite:o.material.depthWrite})}});return a})(),
+    contacts:(()=>{const a=[];scene.traverseVisible(o=>{if(o.userData.contactEntityId)a.push({id:o.userData.contactEntityId,position:o.position.toArray(),yaw:o.rotation.y,scope:o.userData.contactScope})});return a})(),
+    shadows:{enabled:this.shadowMap.enabled,type:this.shadowMap.type,lights:scene.children.filter(o=>o.isLight&&o.castShadow).map(o=>({mapSize:o.shadow.mapSize.toArray(),target:o.target?.position.toArray()})),casters:(()=>{const a=[];scene.traverseVisible(o=>{if(o.isMesh&&o.castShadow){let n=o;while(n&&!n.userData.entityId)n=n.parent;a.push(n?.userData.entityId??null)}});return a})()},
+    environmentIntensity:scene.environmentIntensity,
     afterDispose:this.disposed,transparentDraws,fixtureDraws,autoClear:this.autoClear,depthBuffer:this.target?.depthBuffer??null,targetType:this.target?.texture.type??null,targetColorSpace:this.target?.texture.colorSpace??null,instances:(()=>{const a=[];scene.traverseVisible(o=>{if(o.isInstancedMesh)a.push({count:o.count,matrixBytes:o.instanceMatrix.array.byteLength,matrixFirst:Array.from(o.instanceMatrix.array.slice(0,16))})});return a})()});
  }
  readRenderTargetPixels(){this.readbacks++}dispose(){this.disposed=true}
@@ -138,14 +142,16 @@ class ControlsFixture {
 }
 class EnvironmentFixture extends THREE.Scene {dispose(){}}
 const statePath=path.join(A,'layout/layout-state.mjs'),S=await import(pathToFileURL(statePath));imports.push(pin(statePath));
-const importLines=source.match(/^import [^\n]+;\r?$/gm);assert.equal(importLines?.length,4,'Renderer dependency boundary changed');
-for(const line of importLines)assert(/(?:three\.module\.js|OrbitControls\.js|RoomEnvironment\.js|layout-state\.mjs)(?:\?v=[a-f0-9]{20})?['"];$/u.test(line));
+const surfacesPath=path.join(A,'layout/layout-surfaces.mjs'),surfaceModule=(await realModule(surfacesPath)).namespace;imports.push(pin(path.join(A,'layout/layout-finishes.mjs')));
+const {createLayoutSurfaces,resolveSurfaceAppearance,wallSurfaceGeometry}=surfaceModule;
+const importLines=source.match(/^import [^\n]+;\r?$/gm);assert.equal(importLines?.length,5,'Renderer dependency boundary changed');
+for(const line of importLines)assert(/(?:three\.module\.js|OrbitControls\.js|RoomEnvironment\.js|layout-state\.mjs|layout-surfaces\.mjs)(?:\?v=[a-f0-9]{20})?['"];$/u.test(line.trimEnd()));
 assert.equal(source.split('export function createLayoutRenderer(').length,2);
 // Replace imports with controlled API boundaries; execute every product function body unchanged.
 const body=source.replace(/^import [^\n]+;\r?\n/gm,'').replace('export function createLayoutRenderer(','function createLayoutRenderer(');
 const replacement={...THREE,WebGLRenderer:RendererFixture,PMREMGenerator:PMREMFixture,InstancedMesh:TrackedInstancedMesh,WebGLRenderTarget:TrackedRenderTarget,ShaderMaterial:TrackedShaderMaterial,PlaneGeometry:TrackedPlaneGeometry};
-const factory=new Function('THREE','OrbitControls','RoomEnvironment','deriveScene','document','devicePixelRatio','requestAnimationFrame','cancelAnimationFrame','ResizeObserver',body+'\nreturn createLayoutRenderer;')(
- replacement,ControlsFixture,EnvironmentFixture,(state,catalog)=>state.derived??S.deriveScene(state,catalog),fixtureDocument,1,raf,clearTimeout,ObserverFixture);
+const factory=new Function('THREE','OrbitControls','RoomEnvironment','deriveScene','document','devicePixelRatio','requestAnimationFrame','cancelAnimationFrame','ResizeObserver','createLayoutSurfaces','resolveSurfaceAppearance','wallSurfaceGeometry',body+'\nreturn createLayoutRenderer;')(
+ replacement,ControlsFixture,EnvironmentFixture,(state,catalog)=>state.derived??S.deriveScene(state,catalog),fixtureDocument,1,raf,clearTimeout,ObserverFixture,createLayoutSurfaces,resolveSurfaceAppearance,wallSurfaceGeometry);
 function setup(dimensions={width:400,height:300}){
  size={...dimensions};const container=makeContainer();
  const catalog=[{id:'test-machine',dimensionsMm:{width:200,depth:200,height:300}}];
@@ -351,7 +357,7 @@ const findings=[],passed=[],observations=[];
  const room={polygonMm:polygon,wallHeightMm:2400};
  api.setState({room,derived:{furniture:[],printers:[],surfaces:[]}},null);
  await new Promise(resolve=>setTimeout(resolve,5));
- let grid;renderer.lastScene.traverse(o=>{if(o.isLineSegments&&o.material.opacity===.35)grid=o});
+ let grid;renderer.lastScene.traverse(o=>{if(o.userData.layoutGrid)grid=o});
  assert.ok(grid);const a=grid.geometry.attributes.position.array;
  // Same encoded room coordinates as real ShapeGeometry; no arbitrary widened epsilon.
  const encodedPolygon=polygon.map(p=>p.map(v=>Math.fround(v*.001)*1000));
@@ -454,16 +460,17 @@ for(const [shape,original]of [
    await new Promise(resolve=>setTimeout(resolve,5));
    const preview=renderer.calls.filter(c=>c.target===null&&c.walls.length).at(-1);assert.ok(preview);
    const expected=expectedVisibleWalls(poly,viewpoint.mm),actual=actualWallMask(preview.walls);
-   assert.deepEqual(actual,expected);assert.ok(preview.walls.every(w=>w.opacity===.45&&w.inward.every(Number.isFinite)));
+   assert.deepEqual(actual,expected);assert.ok(preview.walls.every(w=>w.opacity===1&&w.inward.every(Number.isFinite)));
    const start=renderer.calls.length,r=resource();
    await api.exportImage({width:320,loadMachine:async()=>r});assert.equal(r.disposes,1);
    const hdr=renderer.calls.slice(start).filter(c=>c.target&&c.targetType===THREE.HalfFloatType);
    assert.ok(hdr.length>=3);for(const call of hdr)assert.deepEqual(call.camera,preview.camera);
-   const outputWalls=hdr.at(-1).wallCopies;
+   const outputWalls=hdr[0].roomWalls;
    const selected=expected.filter(e=>e.visible).map(e=>e.key).sort();
    const outputKeys=outputWalls.map(w=>{const sourceWall=preview.walls.find(v=>Math.round(v.position[0]*1000)===Math.round(w.position[0]*1000)&&Math.round(v.position[2]*1000)===Math.round(w.position[2]*1000));assert.ok(sourceWall,'Exported wall has no matching actual preview source pose');return actualWallMask([sourceWall])[0].key}).sort();
    assert.deepEqual(outputKeys,selected);
-   assert.ok(outputWalls.every(w=>w.opacity===.45&&!w.sourceWall));
+   assert.ok(outputWalls.every(w=>w.opacity===1&&!w.transparent&&w.depthWrite));
+   assert.ok(hdr.slice(1).every(c=>c.roomWalls.length===0),'Opaque room must render once before streamed models');
    masks.push({view:viewpoint.name,mask:actual,exportedWallCount:outputWalls.length,cameraExact:true});
    observations.push({case:'cutaway-'+shape+'-'+(reversed?'CW':'CCW')+'-'+viewpoint.name,oracle:'Exact integer oriented-edge half-plane',expected,actual,exportedWallCount:outputWalls.length,cameraExact:true});
    passed.push('Cutaway '+shape+'/'+(reversed?'reversed':'original')+'/'+viewpoint.name+' agrees with exact source-edge oracle; preview/export camera arrays and visible wall set match.');
@@ -480,7 +487,7 @@ for(const [shape,original]of [
  api.setOptions({walls:false});await new Promise(resolve=>setTimeout(resolve,5));
  const off=renderer.calls.filter(c=>c.target===null&&c.walls.length).at(-1);assert.ok(off.walls.every(w=>!w.visible));
  const start=renderer.calls.length,r=resource();await api.exportImage({width:320,loadMachine:async()=>r});
- const hdr=renderer.calls.slice(start).filter(c=>c.target&&c.targetType===THREE.HalfFloatType);assert.ok(hdr.every(c=>c.wallCopies.length===0));
+ const hdr=renderer.calls.slice(start).filter(c=>c.target&&c.targetType===THREE.HalfFloatType);assert.ok(hdr.every(c=>c.roomWalls.length===0));
  await new Promise(resolve=>setTimeout(resolve,5));assert.ok(renderer.calls.filter(c=>c.target===null&&c.walls.length).at(-1).walls.every(w=>!w.visible));
  api.setOptions({walls:true});await new Promise(resolve=>setTimeout(resolve,5));
  assert.deepEqual(actualWallMask(renderer.calls.filter(c=>c.target===null&&c.walls.length).at(-1).walls),mask);
@@ -556,13 +563,15 @@ for(const rebuildOnSelect of [false,true])for(const ending of ['pointercancel','
  api.setState(current,null);api.setTool('move');const renderer=renderers.at(-1),controls=allControls.at(-1);
  controls.camera.position.set(4,5,6);controls.camera.lookAt(0,.5,0);controls.change();await new Promise(r=>setTimeout(r,5));
  const active=()=>{const map=new Map();renderer.lastScene.traverse(o=>{if(o.userData.entityId&&!o.userData.planProjection)map.set(o.userData.entityId,o)});return map};
- const old=active(),origins=new Map([...old].map(([id,o])=>[id,{position:o.position.toArray(),yaw:o.rotation.y}]));
+ const old=active(),origins=new Map([...old].map(([id,o])=>[id,{position:o.position.toArray(),yaw:o.rotation.y}])),dragMaps=new Map();
+ renderer.lastScene.traverse(o=>{if(o.material?.userData.layoutSurfaceOwned&&o.material.map)dragMaps.set(o.material.map,o.material.map.version)});
  const point=new THREE.Vector3(.4,.75,-.8).project(controls.camera);
  const down={clientX:(point.x+1)/2*800,clientY:(1-point.y)/2*600};
  api.canvas.emit('pointerdown',down);assert.deepEqual(selections,['desk']);
  const now=active();for(const id of origins.keys())assert.equal(now.get(id)===old.get(id),!rebuildOnSelect);
  api.canvas.emit('pointermove',{clientX:down.clientX+100,clientY:down.clientY-25});await new Promise(r=>setTimeout(r,5));
  const moved=active(),delta=[moved.get('desk').position.x-origins.get('desk').position[0],moved.get('desk').position.z-origins.get('desk').position[2]];
+ renderer.lastScene.traverse(o=>{if(o.userData.contactEntityId){const entity=moved.get(o.userData.contactEntityId);assert.deepEqual(o.position.toArray(),entity.position.toArray());assert.equal(o.rotation.y,entity.rotation.y);}if(o.material?.userData.layoutSurfaceOwned&&o.material.map)assert.equal(o.material.map.version,dragMaps.get(o.material.map),'Live drag rebuilt or reuploaded cached texture');});
  assert.ok(Math.hypot(...delta)>.01);assert.equal(commits.length,0);
  for(const id of ['child1','child2']){const a=moved.get(id),b=origins.get(id);near(a.position.x-b.position[0],delta[0],id+' mid-drag X');near(a.position.z-b.position[2],delta[1],id+' mid-drag Z');assert.equal(a.position.y,b.position[1]);assert.equal(a.rotation.y,b.yaw)}
  for(const id of ['free','shelfchild','shelf'])assert.deepEqual(moved.get(id).position.toArray(),origins.get(id).position);
@@ -608,8 +617,8 @@ const orbitToken="from 'three';";assert.equal(orbitRaw.split(orbitToken).length,
 const orbitSnapshot=path.join(intake,'OrbitControls.import-map.snapshot.mjs');
 fs.writeFileSync(orbitSnapshot,orbitRaw.replace(orbitToken,`from '${pathToFileURL(path.join(A,'viewer/vendor-r180/three.module.js')).href}';`),{flag:'wx'});
 const orbitModule=await import(pathToFileURL(orbitSnapshot));
-const factoryRealOrbit=new Function('THREE','OrbitControls','RoomEnvironment','deriveScene','document','devicePixelRatio','requestAnimationFrame','cancelAnimationFrame','ResizeObserver',body+'\nreturn createLayoutRenderer;')(
- replacement,orbitModule.OrbitControls,EnvironmentFixture,(state,catalog)=>state.derived??S.deriveScene(state,catalog),fixtureDocument,1,raf,clearTimeout,ObserverFixture);
+const factoryRealOrbit=new Function('THREE','OrbitControls','RoomEnvironment','deriveScene','document','devicePixelRatio','requestAnimationFrame','cancelAnimationFrame','ResizeObserver','createLayoutSurfaces','resolveSurfaceAppearance','wallSurfaceGeometry',body+'\nreturn createLayoutRenderer;')(
+ replacement,orbitModule.OrbitControls,EnvironmentFixture,(state,catalog)=>state.derived??S.deriveScene(state,catalog),fixtureDocument,1,raf,clearTimeout,ObserverFixture,createLayoutSurfaces,resolveSurfaceAppearance,wallSurfaceGeometry);
 const settled=()=>new Promise(resolve=>setTimeout(resolve,5));
 function operationSetup(realOrbit=false,options={}){
  size={width:800,height:600};const catalog=[{id:'test-machine',label:'Test printer',widthMm:200,depthMm:180,heightMm:300,dimensionsMm:{width:200,depth:180,height:300}}];
@@ -1122,6 +1131,90 @@ for(const mode of ['perspective','top']){
  for(const p of points){p.project(camera);assert.ok(Math.abs(p.x)<1&&Math.abs(p.y)<1,'Focus must include attached printer outside parent footprint')}
  assert.equal(S.serializeLayout(state,x.catalog),serialized);assert.equal(x.commits.length,0);assert.equal(x.rotationCommits.length,0);x.api.dispose();
  passed.push('Furniture focus '+mode+' includes separate attached printer height and extended footprints in actual source-derived imported placement; no automatic repair or pose/history change.');
+}
+// Exercise the agreed finishes using actual cached DataTextures and geometry.
+// These assertions cover resource lifetime and render admission, not GPU pixels.
+{
+ const x=operationSetup(true),base=x.state(),seen=new Map(),owned=new Set(),counts=new Map();
+ const collect=()=>{const result={walls:[],contacts:[],trims:[],floor:null};x.renderer.lastScene.traverse(o=>{
+  if(o.userData.wall)result.walls.push(o);if(o.userData.contactEntityId)result.contacts.push(o);
+  if(o.userData.baseboard)result.trims.push(o);if(o.userData.roomOwned)result.floor=o;
+  for(const m of o.material?Array.isArray(o.material)?o.material:[o.material]:[])if(m.userData.layoutSurfaceOwned){
+   for(const r of [m,...Object.values(m).filter(v=>v?.isTexture)])if(!owned.has(r)){owned.add(r);counts.set(r,0);r.addEventListener('dispose',()=>counts.set(r,counts.get(r)+1));}
+  }
+ });return result;};
+ for(const wall of ['paint','linen','stripe'])for(const floor of ['oak','concrete','tile']){
+  const state=S.applyAction(base,{type:'SET_ROOM',room:{...base.room,appearance:{wall,floor}}},x.catalog);
+  x.api.setState(state,null);x.api.view('perspective');await settled();const a=collect();
+  assert.equal(a.floor.material.name,`layout-finish-${floor}`);assert.equal(a.walls.length,base.room.polygonMm.length);
+  assert.equal(a.trims.length,a.walls.length);for(const trim of a.trims){assert.ok(trim.parent.userData.wall);assert.equal(trim.material.opacity,1);}
+  for(const o of [a.floor,...a.walls]){
+   assert.equal(o.material.opacity,1);assert.equal(o.material.transparent,false);assert.equal(o.material.depthWrite,true);
+   const old=seen.get(o.material.name);if(old)assert.equal(o.material,old);seen.set(o.material.name,o.material);
+  }
+  const geometry=a.floor.geometry,maps=[a.floor,...a.walls].map(o=>o.material.map),versions=maps.map(m=>m.version);
+  const moved=S.applyAction(state,{type:'UPDATE_FURNITURE',id:'desk',patch:{pose:{xMm:100}}},x.catalog);
+  x.api.setState(moved,null);await settled();const b=collect();assert.equal(b.floor.geometry,geometry,'Move rebuilt room');
+  assert.deepEqual([b.floor,...b.walls].map(o=>o.material.map),maps);assert.deepEqual(maps.map(m=>m.version),versions,'Move reuploaded texture');
+  assert.equal(b.contacts.length,2);for(const g of b.contacts){const o=x.nodes(false).get(g.userData.contactEntityId);assert.deepEqual(g.position.toArray(),o.position.toArray());assert.equal(g.rotation.y,o.rotation.y);}
+  const environment=x.renderer.lastScene.environment,lights=x.renderer.lastScene.children.filter(o=>o.isLight).map(o=>[o.color.getHex(),o.intensity]),exposure=x.renderer.toneMappingExposure;
+  x.api.setOptions({dark:true});await settled();assert.equal(x.renderer.lastScene.environment,environment);
+  assert.deepEqual(x.renderer.lastScene.children.filter(o=>o.isLight).map(o=>[o.color.getHex(),o.intensity]),lights);assert.equal(x.renderer.toneMappingExposure,exposure);
+  x.api.setOptions({dark:false});x.api.view('top');await settled();const plan=collect();
+  assert.equal(plan.floor.material.map,null);assert.equal(plan.floor.material.color.getHexString(),'d9dfe1');
+  assert.ok(x.renderer.calls.at(-1).roomWalls.length===0&&x.renderer.calls.at(-1).contacts.length===0);
+  let loads=0;const output=await x.api.exportImage({width:320,loadMachine:async()=>{loads++;throw Error('Flat plan loaded a model')}});
+  assert.equal(output.rendering,'flat-floorplan');assert.equal(loads,0);
+  x.api.view('perspective');await settled();assert.equal(collect().floor.material.name,`layout-finish-${floor}`);
+ }
+ assert.ok([...counts.values()].every(n=>n===0),'Shared finish resources disposed by a state/plan switch');
+ const start=x.renderer.calls.length,r=resource();await x.api.exportImage({width:320,loadMachine:async()=>r});
+ const hdr=x.renderer.calls.slice(start).filter(c=>c.targetType===THREE.HalfFloatType);
+ assert.equal(hdr[0].contacts.length,2,'Export dropped floor/board contacts with proxies');assert.ok(hdr.slice(1).every(c=>c.contacts.length===0),'Contact rendered more than once');
+ assert.ok([...counts.values()].every(n=>n===0),'Streamed export disposed live cached maps');
+ x.api.dispose();x.api.dispose();for(const count of counts.values())assert.equal(count,1);
+ passed.push('All nine finish pairs: opaque walls/trim, shared textures across A-B-A, move without room rebuild/reupload, independent theme lighting, unchanged flat plan and first-pass export contacts; owned resources dispose once.');
+}
+{
+ const x=operationSetup(true);x.api.view('perspective');await settled();const maps=new Set(),counts=new Map();
+ x.renderer.lastScene.traverse(o=>{for(const m of o.material?Array.isArray(o.material)?o.material:[o.material]:[])if(m.userData.layoutSurfaceOwned)for(const v of Object.values(m))if(v?.isTexture)maps.add(v)});
+ for(const map of maps){counts.set(map,0);map.addEventListener('dispose',()=>counts.set(map,counts.get(map)+1));}
+ let finish;const promise=x.api.exportImage({loadMachine:()=>new Promise(resolve=>{finish=resolve})});
+ x.api.dispose();assert.ok([...counts.values()].every(n=>n===0),'Disposed shared room resources before export unwound');
+ finish(resource());await assert.rejects(promise,e=>e.name==='AbortError');for(const count of counts.values())assert.equal(count,1);
+ passed.push('Dispose during awaited native load defers shared finish map cleanup until export abort unwinds, then disposes each map once.');
+}
+{
+ const x=operationSetup(true);x.api.view('perspective');await settled();const scene=x.renderer.lastScene;
+ const lights=scene.children.filter(o=>o.isLight&&o.castShadow);assert.equal(lights.length,1);const light=lights[0];
+ assert.equal(x.renderer.shadowMap.enabled,true);assert.equal(x.renderer.shadowMap.type,THREE.PCFSoftShadowMap);
+ assert.deepEqual(light.shadow.mapSize.toArray(),[1024,1024]);assert.ok(scene.children.includes(light.target));
+ for(const g of x.nodes(false).values())g.traverse(o=>{if(o.isMesh){assert.equal(o.castShadow,true);assert.equal(o.receiveShadow,true);}});
+ scene.traverse(o=>{if(o.userData.wall||o.userData.baseboard||o.userData.roomOwned){assert.equal(o.castShadow,false);assert.equal(o.receiveShadow,true);}});
+ const start=x.renderer.calls.length,r=resource();await x.api.exportImage({width:320,loadMachine:async()=>r});
+ const hdr=x.renderer.calls.slice(start).filter(c=>c.targetType===THREE.HalfFloatType);
+ assert.equal(hdr[0].shadows.lights.length,1);assert.deepEqual([...new Set(hdr[0].shadows.casters)],['desk'],'Initial export shadow must use furniture with printer proxies hidden');
+ assert.ok(hdr.slice(1).every(c=>c.shadows.lights.length===0),'Streamed model pass allocated an additional shadow map');
+ assert.ok(hdr.every(c=>c.environmentIntensity===scene.environmentIntensity),'Streamed native environment intensity differs from room');
+ const shadowTarget=new THREE.WebGLRenderTarget(16,16);let disposed=0;shadowTarget.addEventListener('dispose',()=>disposed++);light.shadow.map=shadowTarget;
+ x.api.dispose();x.api.dispose();assert.equal(disposed,1);
+ passed.push('One1024 soft directional map, furniture/proxy cast+receive, room receives without casting; only furniture casts in initial streamed room pass, later native passes allocate no shadow maps; map disposes once. CPU admission, no GPU shadow claim.');
+}
+{
+ const {api,renderer}=operationSetup(true);
+ const polygons=[[[0,0],[5000,0],[5000,4000],[0,4000]],[[10000,9000],[18000,10000],[16000,16000],[11000,15000]],[[0,0],[7000,0],[7000,3000],[3000,3000],[3000,8000],[0,8000]]];
+ for(const original of polygons)for(const reversed of [false,true]){
+  const polygon=reversed?[...original].reverse():original;
+  const room=S.createRoomPolygon({polygonMm:polygon,wallHeightMm:3100});api.setState(S.createDefaultLayout({room}),null);api.view('perspective');await settled();
+  const light=renderer.lastScene.children.find(o=>o.isLight&&o.castShadow),shadowCamera=light.shadow.camera;
+  assert.ok(light.target.position.distanceTo(new THREE.Vector3((Math.min(...polygon.map(p=>p[0]))+Math.max(...polygon.map(p=>p[0])))/2000,0,(Math.min(...polygon.map(p=>p[1]))+Math.max(...polygon.map(p=>p[1])))/2000))<1e-12);
+  for(const [x,z]of polygon)for(const y of [-.003,3.1]){const p=new THREE.Vector3(x/1000,y,z/1000).project(shadowCamera);assert.ok(Math.abs(p.x)<1&&Math.abs(p.y)<1&&Math.abs(p.z)<1,'Room corner escapes fitted shadow frustum');}
+  const position=light.position.toArray(),projection=shadowCamera.projectionMatrix.toArray();
+  api.setState(S.createDefaultLayout({room:{...room,appearance:{wall:'stripe',floor:'tile'}}}),null);await settled();
+  assert.deepEqual(light.position.toArray(),position);assert.deepEqual(shadowCamera.projectionMatrix.toArray(),projection,'Finish edit refit the light');
+  api.view('top');await settled();assert.equal(renderer.shadowMap.enabled,false,'Flat plan received 3D shadows');
+ }
+ api.dispose();passed.push('Shadow light target/frustum fits all floor/ceiling vertices after rectangle, translated oblique and concave shape changes in both windings; finishes preserve fit; flat plan disables map.');
 }
 const ownerSourceStillMatchesSnapshot=sha(fs.readFileSync(input))===sha(Buffer.from(source));
 assert.equal(ownerSourceStillMatchesSnapshot,true,'Renderer changed during source regression');

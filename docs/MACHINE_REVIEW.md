@@ -159,6 +159,10 @@ For PTFE, inspect the complete centerline between the fittings at axis limits,
 intermediate and reversed poses, and during configuration changes and reset.
 Check the curve and the exported tube, including every segment join. A finite
 curve of the right length can still contain a kink, a hairpin or a self-contact.
+Compare the complete bow with source assembly photos or instructions as well:
+passing a radius threshold does not justify unsupported straight legs, elbows
+or repeated S bends in a freely suspended hose. Check curvature changes, not
+just tangent continuity at joins, and record a visual review of the whole route.
 Record the minimum measured bend radius and its location, the review threshold
 and its source or declared preview assumption. A review threshold is not a
 manufacturer's mechanical rating. Check actual model triangles for route/body

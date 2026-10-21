@@ -120,6 +120,8 @@ button[aria-pressed="true"] { background: var(--layout-selected); border-color: 
 .layout-room-cuts, .layout-room-custom { margin: 12px 0; }
 .layout-room-custom textarea { resize: vertical; min-height: 112px; max-height: 270px; font-family: ui-monospace, Consolas, monospace; line-height: 1.5; }
 #layout-room-apply { margin-top: 12px; width: 100%; }
+.layout-room-appearance { display: grid; gap: 12px; min-width: 0; margin: 20px 0 0; padding: 14px 0 0; border: 0; border-top: 1px solid var(--line); }
+.layout-room-appearance legend { padding: 0 8px 0 0; font-size: 12px; font-weight: 650; color: var(--ink); }
 .layout-desktop-notice { width: min(620px, calc(100% - 32px)); margin: 40px auto; padding: 24px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; }
 .layout-desktop-notice h2 { margin: 0 0 10px; font-size: 20px; }
 .layout-desktop-notice p { line-height: 1.65; color: var(--muted); }

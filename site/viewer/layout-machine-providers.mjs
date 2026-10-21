@@ -20,11 +20,11 @@ async function prepare(run) {
 }
 export async function loadLayoutRecipe(recipe,{signal,onProgress}) {
  const id=recipe.machine_id,progressOptions=headless(onProgress),options={signal,progressOptions,onProgress};
- if(recipe.category==='v24-reference'){const {loadV24ReferenceLayout}=await import('./layout-v24-reference-provider.mjs?v=7cf08a2d8ac64a692569');return loadV24ReferenceLayout(id,{signal,onProgress})}
+ if(recipe.category==='v24-reference'){const {loadV24ReferenceLayout}=await import('./layout-v24-reference-provider.mjs?v=4e40268f1dcf1c6f0738');return loadV24ReferenceLayout(id,{signal,onProgress})}
  if(recipe.category==='v0'){const {loadV0DefaultLayout}=await import('./layout-v0-provider.mjs?v=c919367e2cb9be4e3b11');return loadV0DefaultLayout(id,{signal,onProgress})}
- if(['siboor','trident','v24'].includes(recipe.category)){const {loadVoronDefaultLayout}=await import('./layout-voron-defaults.mjs?v=ae9a8d0d37bbc84251b1');return loadVoronDefaultLayout(id,{signal,onProgress})}
+ if(['siboor','trident','v24'].includes(recipe.category)){const {loadVoronDefaultLayout}=await import('./layout-voron-defaults.mjs?v=c62bee018a2c060e8799');return loadVoronDefaultLayout(id,{signal,onProgress})}
  if(recipe.category==='source') {
-  const m=await import('./source-assembly-loader.mjs?v=0ca0d8c2784c7988261f'),{releaseRoot}=await import('./source-assembly-runtime/resources.mjs?v=e42678a5314a2d6c0676');
+  const m=await import('./source-assembly-loader.mjs?v=eb1faaad719ac2f18b3d'),{releaseRoot}=await import('./source-assembly-runtime/resources.mjs?v=e42678a5314a2d6c0676');
   const index=await m.loadSourceIndex(signal),record=index.models.find(r=>r.id===id);if(!record)throw Error('Missing layout source record');
   const packet=await m.loadSourcePacket(record,signal),assembly=await m.loadSourceAssembly(packet,{signal,onProgress,mode:'full'});
   return {root:assembly.root,manifest:packet,profile:packet,source:{normalSourceRevision:'182cf109acf3fa867927bb017b9705e8b7dac68143e322197a4e3cf517d42391',record,credits:packet.source??packet.sources,mode:'full',variant:assembly.snapshot().variant},dispose:()=>{releaseRoot(assembly.root,assembly);assembly.root.removeFromParent();assembly.root.clear()}};

@@ -1,7 +1,8 @@
 import * as THREE from '../viewer/vendor-r180/three.module.js';
 import {OrbitControls} from '../viewer/vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from '../viewer/vendor-r180/RoomEnvironment.js';
-import {deriveScene} from './layout-state.mjs?v=958a4aac45cc6c68d570';
+import {deriveScene} from './layout-state.mjs?v=a29e8e61e4bbad0af014';
+import {createLayoutSurfaces, resolveSurfaceAppearance, wallSurfaceGeometry} from './layout-surfaces.mjs?v=0e7f271c883eb7ec8844';
 
 const MM = .001;
 const disposableMaterial = new THREE.MeshBasicMaterial({visible:false});
@@ -70,8 +71,9 @@ function printerPreviewParts(row) {
 
 export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>{},onMove=()=>{},constrainMove=({x,z})=>({x,z}),onRotate=()=>{},constrainRotate=({yawDeg})=>({yawDeg}),onError=()=>{},onViewChange=()=>{}}) {
   const renderer=new THREE.WebGLRenderer({antialias:true,alpha:false});
+  renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
   renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.5));renderer.toneMapping=THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure=1.1;renderer.outputColorSpace=THREE.SRGBColorSpace;
+  renderer.toneMappingExposure=.85;renderer.outputColorSpace=THREE.SRGBColorSpace;
   const canvas=renderer.domElement;canvas.tabIndex=0;canvas.setAttribute('aria-label',t('sceneLabel'));canvas.setAttribute('data-layout-i18n-aria-label','layout.sceneLabel');container.append(canvas);
   const objectTools=document.createElement('div');objectTools.className='layout-object-tools';objectTools.hidden=true;objectTools.setAttribute('role','group');objectTools.setAttribute('data-layout-i18n-aria-label','layout.rotationControls');container.append(objectTools);
   const toolListeners=[];
@@ -93,21 +95,28 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   const perspectiveCamera=new THREE.PerspectiveCamera(38,1,.01,10000);
   const perspectiveControls=new OrbitControls(perspectiveCamera,canvas);perspectiveControls.enableDamping=false;perspectiveControls.maxPolarAngle=Math.PI*.495;perspectiveControls.minDistance=.15;perspectiveControls.maxDistance=10000;
   let camera=perspectiveCamera,controls=perspectiveControls;
-  const pmrem=new THREE.PMREMGenerator(renderer),room=new RoomEnvironment(),environment=pmrem.fromScene(room,.04);room.dispose();pmrem.dispose();scene.environment=environment.texture;
-  const hemi=new THREE.HemisphereLight(0xffffff,0x718394,1.1);scene.add(hemi);
-  for(const [position,intensity] of [[[3,6,4],2],[[-4,3,-2],1.1]]){const l=new THREE.DirectionalLight(0xffffff,intensity);l.position.set(...position);scene.add(l);}
-  const content=new THREE.Group(),furnitureGroup=new THREE.Group(),printersGroup=new THREE.Group(),roomGroup=new THREE.Group();
-  content.add(roomGroup,furnitureGroup,printersGroup);scene.add(content);
+  const pmrem=new THREE.PMREMGenerator(renderer),room=new RoomEnvironment(),environment=pmrem.fromScene(room,.04);room.dispose();pmrem.dispose();scene.environment=environment.texture;scene.environmentIntensity=.7;
+  const hemi=new THREE.HemisphereLight(0xffffff,0x879195,.85);scene.add(hemi);
+  const keyLight=new THREE.DirectionalLight(0xffffff,1.4),fillLight=new THREE.DirectionalLight(0xffffff,.7);
+  keyLight.position.set(3,6,4);fillLight.position.set(-4,3,-2);keyLight.castShadow=true;
+  keyLight.shadow.mapSize.set(1024,1024);keyLight.shadow.bias=-.00015;keyLight.shadow.normalBias=.002;keyLight.shadow.radius=3;
+  scene.add(keyLight,keyLight.target,fillLight);
+  const content=new THREE.Group(),furnitureGroup=new THREE.Group(),printersGroup=new THREE.Group(),roomGroup=new THREE.Group(),contactGroup=new THREE.Group();
+  content.add(roomGroup,furnitureGroup,printersGroup,contactGroup);scene.add(content);
   const planGroup=new THREE.Group(),planObjects=new Map();planGroup.visible=false;scene.add(planGroup);
   const grid=new THREE.LineSegments(new THREE.BufferGeometry(),new THREE.LineBasicMaterial({color:0x8b9da8,transparent:true,opacity:.35,depthWrite:false}));grid.position.y=.0002;scene.add(grid);
+  grid.userData.layoutGrid=true;
   const selectionBox=new THREE.BoxHelper(new THREE.Object3D(),0xc35734);selectionBox.visible=false;scene.add(selectionBox);
   const planSelection=new THREE.LineLoop(new THREE.BufferGeometry(),new THREE.LineBasicMaterial({color:0xc35734,depthTest:false,depthWrite:false}));planSelection.visible=false;planSelection.renderOrder=30;scene.add(planSelection);
   const boxGeometry=new THREE.BoxGeometry(1,1,1),wireGeometry=new THREE.EdgesGeometry(boxGeometry),wireMaterial=new THREE.LineBasicMaterial({color:0x4d7186,transparent:true,opacity:.75}),palette=new Map(),objects=new Map(),raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();
   raycaster.params.Line.threshold=.01;
   let current,derived,selectedId=null,viewMode='perspective',planHalfHeight=2,perspectiveReady=false,planReady=false,drag=null,disposed=false,resourcesDisposed=false,exporting=false,exportAbort=null,frame=0,lastWidth=0,lastHeight=0,wallsVisible=true;
-  const wallMaterial=new THREE.MeshStandardMaterial({color:'#a4b5c0',roughness:.9,transparent:true,opacity:.45,depthWrite:false});
-  const material=color=>{if(!palette.has(color))palette.set(color,new THREE.MeshStandardMaterial({color,roughness:.77,metalness:.05}));return palette.get(color);};
-  function box(parent,size,position,color){const m=new THREE.Mesh(boxGeometry,material(color));m.scale.set(...size);m.position.set(...position);parent.add(m);return m;}
+  const surfaces=createLayoutSurfaces({anisotropy:Math.min(4,renderer.capabilities.getMaxAnisotropy?.()||1)});
+  const planFloorMaterial=new THREE.MeshStandardMaterial({color:'#d9dfe1',roughness:.94,side:THREE.DoubleSide});
+  const roomGeometries=new Set(),contactGeometries=new Set(),contacts=new Map(),contactPlaneGeometry=new THREE.PlaneGeometry(1,1);
+  let roomKey=null,shadowRoomKey=null;
+  const material=color=>{if(!palette.has(color))palette.set(color,new THREE.MeshStandardMaterial({color,roughness:.82,metalness:.02}));return palette.get(color);};
+  function box(parent,size,position,color){const m=new THREE.Mesh(boxGeometry,material(color));m.scale.set(...size);m.position.set(...position);m.castShadow=m.receiveShadow=true;parent.add(m);return m;}
   function isPlan(){return viewMode==='top';}
   function getView(){return {mode:viewMode,projection:isPlan()?'orthographic-floorplan':'perspective-3d'};}
   function enableControls(){const manipulating=drag?.kind==='object'||drag?.kind==='rotate';perspectiveControls.enabled=!exporting&&!disposed&&!isPlan()&&!manipulating;planControls.enabled=!exporting&&!disposed&&isPlan()&&!manipulating;if(exporting||disposed)objectTools.hidden=true;}
@@ -118,7 +127,8 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     return {width,height,screenWidth,visible:!g.userData.planLabelSuppressed&&Number.isFinite(screenWidth)&&screenWidth>=48};
   }
   function updatePlanLabels(){for(const g of planObjects.values()){const layout=planLabelLayout(g);for(const o of g.children)if(o.userData.planLabel){o.scale.set(layout.width,layout.height,1);o.visible=layout.visible;}}}
-  function draw(){if(disposed||frame||exporting)return;frame=requestAnimationFrame(()=>{frame=0;if(disposed||exporting)return;refreshWalls();if(isPlan())updatePlanLabels();updateObjectTools();renderer.render(scene,camera);});}
+  function syncContacts(){for(const [id,g]of contacts){const o=objects.get(id);if(o){g.position.copy(o.position);g.rotation.y=o.rotation.y;}}}
+  function draw(){if(disposed||frame||exporting)return;frame=requestAnimationFrame(()=>{frame=0;if(disposed||exporting)return;refreshWalls();syncContacts();if(isPlan())updatePlanLabels();updateObjectTools();renderer.render(scene,camera);});}
   perspectiveControls.addEventListener('change',draw);planControls.addEventListener('change',draw);
   function resize(){if(disposed||exporting)return;const r=container.getBoundingClientRect();if(!r.width||!r.height)return;lastWidth=r.width;lastHeight=r.height;renderer.setSize(r.width,r.height,false);perspectiveCamera.aspect=r.width/r.height;perspectiveCamera.updateProjectionMatrix();planCamera.left=-planHalfHeight*r.width/r.height;planCamera.right=-planCamera.left;planCamera.top=planHalfHeight;planCamera.bottom=-planHalfHeight;planCamera.updateProjectionMatrix();draw();}
   const observer=new ResizeObserver(resize);observer.observe(container);
@@ -127,9 +137,9 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   function makeFurniture(e){
     const g=new THREE.Group();furnitureGroup.add(g);record(e,g);
     const w=e.widthMm*MM,d=e.depthMm*MM,h=e.heightMm*MM;
-    for(const b of e.boards)box(g,[b.widthM,b.thicknessM,b.depthM],[0,b.localCenterYM,0],'#c2a379');
+    for(const b of e.boards)box(g,[b.widthM,b.thicknessM,b.depthM],[0,b.localCenterYM,0],'#c7bda9');
     const leg=e.type==='desk'?.045:.035;
-    for(const x of [-1,1])for(const z of [-1,1])box(g,[leg,h,leg],[x*(w-leg)/2,h/2,z*(d-leg)/2],'#495760');
+    for(const x of [-1,1])for(const z of [-1,1])box(g,[leg,h,leg],[x*(w-leg)/2,h/2,z*(d-leg)/2],'#535d61');
     return g;
   }
   function catalogMachine(id){const rows=Array.isArray(catalog)?catalog:catalog.machines;return rows.find(m=>(m.id||m.machineId)===id);}
@@ -172,7 +182,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     const yaw=drag?.kind==='rotate'?drag.accepted.yawDeg:g.rotation.y*180/Math.PI;
     const angle=((yaw%360)+360)%360;rotationValue.textContent=`${Math.abs(angle-360)<.05||Math.abs(angle)<.05?0:Math.round(angle*10)/10}°`;
   }
-  function presentView(){furnitureGroup.visible=!isPlan();printersGroup.visible=!isPlan();planGroup.visible=isPlan();enableControls();refreshWalls();updateSelection();}
+  function presentView(){furnitureGroup.visible=!isPlan();printersGroup.visible=!isPlan();contactGroup.visible=!isPlan();planGroup.visible=isPlan();renderer.shadowMap.enabled=!isPlan();grid.material.opacity=isPlan()?.35:.12;for(const o of roomGroup.children)if(o.userData.roomOwned)o.material=isPlan()?planFloorMaterial:o.userData.finishMaterial;enableControls();refreshWalls();updateSelection();}
   function makePrinter(e){
     const g=new THREE.Group();printersGroup.add(g);record(e,g);
     const row=catalogMachine(e.machineId);if(!row)throw Error('Unknown layout printer');
@@ -183,13 +193,53 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     for(const p of preview.parts){
       let part;
       if(p.wireframe){part=new THREE.LineSegments(wireGeometry,wireMaterial);part.scale.set(...p.sizeM);part.position.set(...p.centerM);g.add(part);}
-      else part=box(g,p.sizeM,p.centerM,p.color||'#343e47');
+      else {const role=p.proxyRole||'',color=role.includes('head')?'#36818b':role.includes('bed')&&!role.includes('support')?'#b7bfbb':role.includes('gantry')?'#647981':role==='contact-foot'?'#343d41':role.includes('base')?'#59666d':p.color||'#465258';part=box(g,p.sizeM,p.centerM,color);}
       part.userData.previewCue=!!p.previewCue;part.userData.proxyRole=p.proxyRole||'source-bounds';
     }
     return g;
   }
+  // Soft envelope occlusion only: no native-footprint or CAD shadow claim. It
+  // lives outside the proxy group so hiding proxies for streamed export keeps
+  // the same cheap contact cues without retaining any full printer geometry.
+  function makeContact(e){
+    const object=objects.get(e.id),g=new THREE.Group(),yaw=e.yawRad||0,c=Math.cos(yaw),s=Math.sin(yaw);
+    const points=footprint(e).map(([x,z])=>[c*x-s*z,s*x+c*z]);
+    const xs=points.map(p=>p[0]),zs=points.map(p=>p[1]),minX=Math.min(...xs),minZ=Math.min(...zs),w=Math.max(...xs)-minX,d=Math.max(...zs)-minZ;
+    if(!(w>0&&d>0))return;
+    const geometry=new THREE.ShapeGeometry(new THREE.Shape(points.map(([x,z])=>new THREE.Vector2(x,-z)))),uv=geometry.attributes.uv,p=geometry.attributes.position;
+    for(let i=0;i<uv.count;i++)uv.setXY(i,(p.getX(i)-minX)/w,(-p.getY(i)-minZ)/d);
+    contactGeometries.add(geometry);
+    const mesh=new THREE.Mesh(geometry,surfaces.occlusion(e.type==='printer'?'printer':'furniture'));
+    mesh.rotation.x=-Math.PI/2;mesh.position.y=.0006;mesh.renderOrder=2;g.add(mesh);
+    if(e.type!=='printer'){
+      const leg=e.type==='desk'?.045:.035;
+      for(const x of [-1,1])for(const z of [-1,1]){
+        const foot=new THREE.Mesh(contactPlaneGeometry,surfaces.occlusion('foot'));
+        foot.rotation.x=-Math.PI/2;foot.scale.set(leg*1.5,leg*1.5,1);
+        foot.position.set(x*(w-leg*1.5)/2,.0008,z*(d-leg*1.5)/2);foot.renderOrder=3;g.add(foot);
+      }
+    }
+    g.userData.contactEntityId=e.id;g.userData.contactScope='envelope-occlusion';
+    g.position.copy(object.position);g.rotation.y=object.rotation.y;contacts.set(e.id,g);contactGroup.add(g);
+  }
+  function clearContacts(){for(const geometry of contactGeometries)geometry.dispose();contactGeometries.clear();contacts.clear();resetGroup(contactGroup);}
+  function clearRoom(){for(const geometry of roomGeometries)geometry.dispose();roomGeometries.clear();resetGroup(roomGroup);}
+  function fitFurnitureShadow(roomState){
+    const key=JSON.stringify([roomState.polygonMm,roomState.wallHeightMm]);if(key===shadowRoomKey)return;shadowRoomKey=key;
+    const xs=roomState.polygonMm.map(p=>p[0]*MM),zs=roomState.polygonMm.map(p=>p[1]*MM);
+    const minX=Math.min(...xs),maxX=Math.max(...xs),minZ=Math.min(...zs),maxZ=Math.max(...zs),height=roomState.wallHeightMm*MM;
+    const span=Math.max(maxX-minX,maxZ-minZ,height,1),pad=.15+span*.04;
+    keyLight.target.position.set((minX+maxX)/2,0,(minZ+maxZ)/2);keyLight.position.copy(keyLight.target.position).add(new THREE.Vector3(span*.6,span*1.2,span*.8));
+    keyLight.updateMatrixWorld(true);keyLight.target.updateMatrixWorld(true);keyLight.shadow.updateMatrices(keyLight);
+    const camera=keyLight.shadow.camera,bounds=new THREE.Box3();
+    for(const x of [minX,maxX])for(const y of [-.003,height])for(const z of [minZ,maxZ])bounds.expandByPoint(new THREE.Vector3(x,y,z).applyMatrix4(camera.matrixWorldInverse));
+    camera.left=bounds.min.x-pad;camera.right=bounds.max.x+pad;camera.bottom=bounds.min.y-pad;camera.top=bounds.max.y+pad;
+    camera.near=Math.max(.01,-bounds.max.z-pad);camera.far=Math.max(camera.near+.1,-bounds.min.z+pad);camera.updateProjectionMatrix();
+    keyLight.shadow.needsUpdate=true;
+  }
   function makeRoom(roomState){
-    resetGroup(roomGroup);const polygon=roomState.polygonMm;
+    const appearance=resolveSurfaceAppearance(roomState.appearance),key=JSON.stringify([roomState.polygonMm,roomState.wallHeightMm,appearance]);
+    if(key===roomKey)return;roomKey=key;clearRoom();fitFurnitureShadow(roomState);const polygon=roomState.polygonMm;
     const lines=[],xs=polygon.map(p=>p[0]),zs=polygon.map(p=>p[1]),minX=Math.min(...xs),maxX=Math.max(...xs),minZ=Math.min(...zs),maxZ=Math.max(...zs),step=Math.max(100,Math.ceil(Math.max(maxX-minX,maxZ-minZ)/10000)*100);
     for(const axis of [0,1]){
       const min=axis===0?minX:minZ,max=axis===0?maxX:maxZ;
@@ -201,21 +251,28 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     }
     grid.geometry.dispose();grid.geometry=new THREE.BufferGeometry();grid.geometry.setAttribute('position',new THREE.Float32BufferAttribute(lines,3));
     const shape=new THREE.Shape(polygon.map(([x,z])=>new THREE.Vector2(x*MM,-z*MM)));
-    const geometry=new THREE.ShapeGeometry(shape);const floor=new THREE.Mesh(geometry,new THREE.MeshStandardMaterial({color:'#d9dfe1',roughness:.94,side:THREE.DoubleSide}));
-    floor.rotation.x=-Math.PI/2;floor.position.y=-.003;floor.userData.roomOwned=true;roomGroup.add(floor);
+    const geometry=new THREE.ShapeGeometry(shape);roomGeometries.add(geometry);const floor=new THREE.Mesh(geometry,surfaces.finish(appearance.floor));
+    floor.rotation.x=-Math.PI/2;floor.position.y=-.003;floor.receiveShadow=true;floor.userData.roomOwned=true;floor.userData.finishMaterial=floor.material;roomGroup.add(floor);
     const height=roomState.wallHeightMm*MM,area=polygon.reduce((sum,a,i)=>{const b=polygon[(i+1)%polygon.length];return sum+a[0]*b[1]-b[0]*a[1];},0),sign=Math.sign(area);
     for(let i=0;i<polygon.length;i++){
       const a=polygon[i],b=polygon[(i+1)%polygon.length],dx=(b[0]-a[0])*MM,dz=(b[1]-a[1])*MM,len=Math.hypot(dx,dz);
-      const inward=[-dz*sign,dx*sign],wall=box(roomGroup,[len,height,.05],[(a[0]+b[0])*MM/2-inward[0]/len*.025,height/2,(a[1]+b[1])*MM/2-inward[1]/len*.025],'#c2cbd1');wall.material=wallMaterial;wall.rotation.y=-Math.atan2(dz,dx);wall.visible=wallsVisible;wall.userData.wall=true;wall.userData.inward=inward;
+      const inward=[-dz*sign,dx*sign],wallGeometry=wallSurfaceGeometry(len,height,.05),wall=new THREE.Mesh(wallGeometry,surfaces.finish(appearance.wall));roomGeometries.add(wallGeometry);
+      wall.scale.set(len,height,.05);wall.position.set((a[0]+b[0])*MM/2-inward[0]/len*.025,height/2,(a[1]+b[1])*MM/2-inward[1]/len*.025);roomGroup.add(wall);
+      wall.rotation.y=-Math.atan2(dz,dx);wall.visible=wallsVisible;wall.userData.wall=true;wall.userData.inward=inward;
+      wall.receiveShadow=true;wall.castShadow=false;
+      // A shallow painted trim follows its wall's cutaway mask. Almost all of
+      // its thickness stays inside the existing wall, preserving usable space.
+      const trimHeight=Math.min(.075,height*.2),trim=new THREE.Mesh(boxGeometry,surfaces.trim());
+      trim.scale.set(1,trimHeight/height,.012/.05);trim.position.set(0,-.5+trimHeight/(2*height),sign*(.5-.006/.05+.0002/.05));trim.receiveShadow=true;trim.userData.baseboard=true;wall.add(trim);
     }
   }
   function setState(state,id,issues=[]){
     if(exporting)throw Error('Layout is rendering');
     if(drag&&(state!==current||id!==selectedId))cancel();
     current=state;selectedId=id;derived=deriveScene(state,catalog);
-    for(const o of roomGroup.children)if(o.userData.roomOwned){o.geometry.dispose();o.material.dispose();}
-    resetGroup(furnitureGroup);resetGroup(printersGroup);objects.clear();makeRoom(state.room);
+    clearContacts();resetGroup(furnitureGroup);resetGroup(printersGroup);objects.clear();makeRoom(state.room);
     for(const e of derived.furniture)makeFurniture(e);for(const e of derived.printers)makePrinter(e);
+    for(const e of [...derived.furniture,...derived.printers])makeContact(e);
     disposeTree(planGroup);resetGroup(planGroup);planObjects.clear();
     const warned=new Set(issues.flatMap(i=>i.entityIds||[i.entityId||i.id]).filter(Boolean));
     for(const [entityId,g]of objects){g.userData.warning=warned.has(entityId);}
@@ -398,15 +455,18 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     const snapshot=derived.printers.map(p=>({...p,positionM:{...p.positionM}}));
     const limit=Math.min(renderer.capabilities.maxTextureSize,2560),long=Math.max(320,Math.min(limit,width)),aspect=lastWidth/Math.max(1,lastHeight),w=Math.max(1,Math.round(aspect>=1?long:long*aspect)),h=Math.max(1,Math.round(aspect>=1?long/aspect:long));
     let target,outputTarget,outputGeometry,outputMaterial;const oldTarget=renderer.getRenderTarget(),oldAuto=renderer.autoClear,oldBackground=scene.background,oldShaderError=renderer.debug.onShaderError,transparentRoot=new THREE.Group();
-    const opaqueScene=new THREE.Scene();opaqueScene.environment=scene.environment;
-    for(const l of scene.children.filter(c=>c.isLight))opaqueScene.add(l.clone());
-    let transparentBytes=0,active=null;const hiddenWalls=[];
+    const opaqueScene=new THREE.Scene();opaqueScene.environment=scene.environment;opaqueScene.environmentIntensity=scene.environmentIntensity;
+    // Only the initial room pass projects furniture shadows. Streamed native
+    // models use ordinary lighting; no additional maps or CAD floor projection.
+    for(const l of scene.children.filter(c=>c.isLight)){const copy=l.clone();copy.castShadow=false;opaqueScene.add(copy);if(copy.target)opaqueScene.add(copy.target);}
+    let transparentBytes=0,active=null;
     exporting=true;renderer.debug.onShaderError=()=>{throw Object.assign(Error('Image shader compilation failed'),{code:'RENDER_SHADER_FAILED'});};if(frame){cancelAnimationFrame(frame);frame=0;}controls.enabled=false;selectionBox.visible=false;printersGroup.visible=false;
     const exportCamera=camera.clone();exportCamera.aspect=w/h;exportCamera.updateProjectionMatrix();
     try{
       aborted(signal);target=new THREE.WebGLRenderTarget(w,h,{samples:0,format:THREE.RGBAFormat,type:THREE.HalfFloatType});target.texture.colorSpace=THREE.LinearSRGBColorSpace;
-      scene.updateMatrixWorld(true);refreshWalls(exportCamera);
-      for(const wall of roomGroup.children.filter(o=>o.userData.wall&&o.visible)){const copy=new THREE.Mesh(wall.geometry.clone(),wall.material.clone());copy.matrixAutoUpdate=false;copy.matrix.copy(wall.matrixWorld);transparentRoot.add(copy);hiddenWalls.push(wall);wall.visible=false;}
+      syncContacts();scene.updateMatrixWorld(true);refreshWalls(exportCamera);
+      // Opaque room surfaces and approximate envelope contacts write the base
+      // image once. Its depth buffer then correctly occludes streamed models.
       renderer.setRenderTarget(target);renderer.autoClear=true;renderer.render(scene,exportCamera);renderer.autoClear=false;
       for(let i=0;i<snapshot.length;i++){
         aborted(signal);const p=snapshot[i];onProgress({phase:'loading',index:i,total:snapshot.length,machineId:p.machineId,ratio:0});
@@ -461,7 +521,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
       exporting=false;exportAbort=null;externalSignal?.removeEventListener('abort',forwardAbort);presentView();if(disposed)releaseResources();else{resize();draw();}
     }
   }
-  function releaseResources(){if(resourcesDisposed)return;resourcesDisposed=true;disposeTree(planGroup);planSelection.geometry.dispose();planSelection.material.dispose();for(const o of roomGroup.children)if(o.userData.roomOwned){o.geometry.dispose();o.material.dispose();}boxGeometry.dispose();wireGeometry.dispose();wireMaterial.dispose();wallMaterial.dispose();for(const m of palette.values())m.dispose();grid.geometry.dispose();grid.material.dispose();selectionBox.geometry.dispose();selectionBox.material.dispose();environment.dispose();renderer.dispose();canvas.remove();}
+  function releaseResources(){if(resourcesDisposed)return;resourcesDisposed=true;disposeTree(planGroup);planSelection.geometry.dispose();planSelection.material.dispose();clearRoom();clearContacts();surfaces.dispose();planFloorMaterial.dispose();contactPlaneGeometry.dispose();boxGeometry.dispose();wireGeometry.dispose();wireMaterial.dispose();for(const m of palette.values())m.dispose();grid.geometry.dispose();grid.material.dispose();selectionBox.geometry.dispose();selectionBox.material.dispose();keyLight.shadow.dispose();environment.dispose();renderer.dispose();canvas.remove();}
   function dispose(){if(disposed)return;cancel();disposed=true;exportAbort?.abort();if(frame)cancelAnimationFrame(frame);observer.disconnect();perspectiveControls.dispose();planControls.dispose();eventWindow?.removeEventListener('blur',cancel);eventWindow?.removeEventListener('keydown',keyCancel);for(const [element,type,handler]of toolListeners)element.removeEventListener(type,handler);objectTools.remove();for(const [type,handler]of [['pointerdown',down],['pointermove',move],['pointerup',up],['pointercancel',cancel],['lostpointercapture',cancel]])canvas.removeEventListener(type,handler,true);if(!exporting)releaseResources();}
   resize();setTool();return {setState,setTool,setOptions,view,getView,focusSelected,exportImage,dispose,canvas};
 }

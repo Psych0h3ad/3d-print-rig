@@ -66,6 +66,16 @@ const rows = [
   ['layout.instructions', 'Drag to move. Select an item to change its size or position.', 'ドラッグして移動。選ぶとサイズや位置を変更できます。', 'Arrastra para mover. Selecciona un elemento para cambiar su tamaño o posición.', '드래그해 이동하세요. 항목을 선택하면 크기나 위치를 바꿀 수 있습니다.', 'Перетаскивайте объекты. Выберите объект, чтобы изменить размер или положение.'],
   ['layout.keyboard_help', 'Use the position fields to place items precisely.', '位置の入力欄で正確に配置できます。', 'Usa los campos de posición para colocar los elementos con precisión.', '위치 입력란에서 항목을 정확하게 배치할 수 있습니다.', 'Для точного размещения используйте поля положения.'],
   ['layout.room', 'Room', '部屋', 'Habitación', '방', 'Комната'],
+  ['layout.room_appearance', 'Room appearance', '部屋の外観', 'Aspecto', '방 마감', 'Отделка'],
+  ['layout.appearance.wall', 'Wall finish', '壁の仕上げ', 'Acabado de paredes', '벽 마감', 'Отделка стен'],
+  ['layout.appearance.floor', 'Floor finish', '床の仕上げ', 'Acabado del piso', '바닥 마감', 'Отделка пола'],
+  ['layout.appearance.wall.paint', 'Painted plaster', '塗装・塗り壁', 'Enlucido pintado', '도장한 미장 벽', 'Окрашенная штукатурка'],
+  ['layout.appearance.wall.linen', 'Linen wallpaper', 'リネン調の壁紙', 'Papel pintado de lino', '리넨 질감 벽지', 'Льняные обои'],
+  ['layout.appearance.wall.stripe', 'Fine vertical stripe wallpaper', '細い縦縞の壁紙', 'Papel de rayas verticales finas', '가는 세로 줄무늬 벽지', 'Обои в тонкую вертикальную полоску'],
+  ['layout.appearance.floor.oak', 'Oak planks', 'オークの板張り', 'Tablas de roble', '오크 마루', 'Дубовые доски'],
+  ['layout.appearance.floor.concrete', 'Light concrete', '明るいコンクリート', 'Hormigón claro', '밝은 콘크리트', 'Светлый бетон'],
+  ['layout.appearance.floor.tile', 'Neutral tile', 'ニュートラルなタイル', 'Baldosas neutras', '중성색 타일', 'Плитка нейтрального оттенка'],
+  ['layout.appearance.invalid', 'Choose a supported wall and floor finish.', '対応している壁と床の仕上げを選んでください。', 'Elige acabados de pared y suelo disponibles.', '지원되는 벽과 바닥 마감을 선택해 주세요.', 'Выберите доступную отделку стен и пола.'],
   ['layout.room_shape', 'Room shape', '部屋の形', 'Forma de la habitación', '방 모양', 'Форма комнаты'],
   ['layout.rectangle', 'Rectangle', '長方形', 'Rectángulo', '직사각형', 'Прямоугольник'],
   ['layout.l_shape', 'L shape', 'L字形', 'Forma de L', 'L자형', 'Г-образная'],
@@ -336,6 +346,7 @@ rows.push(
 );
 
 const aliases = {
+  'layout.error.INVALID_ROOM_FINISH': 'layout.appearance.invalid',
   'layout.issue.ROOM_HEIGHT_EXCEEDED': 'layout.warning.ROOM_HEIGHT_EXCEEDED',
   'layout.roomEditor.undo': 'layout.undo', 'layout.roomEditor.redo': 'layout.redo',
   'layout.customPointsHelp': 'layout.customRoomHelp',

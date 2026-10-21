@@ -1,6 +1,6 @@
-import {createDefaultLayout,createDesk,createShelf,createCatalog,applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,placementViolations,deriveScene,worldTransform,validatePlacement,serializeLayout,parseLayout} from './layout-state.mjs?v=958a4aac45cc6c68d570';
-import {createLayoutUI} from './layout-ui.mjs?v=3187b2200b0b2007dae5';
-import {setupLayoutLanguage} from './layout-language.mjs?v=fd6cd27da04c1ae90b86';
+import {createDefaultLayout,createDesk,createShelf,createCatalog,applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,placementViolations,deriveScene,worldTransform,validatePlacement,serializeLayout,parseLayout} from './layout-state.mjs?v=a29e8e61e4bbad0af014';
+import {createLayoutUI} from './layout-ui.mjs?v=57acfdfd7c587e171242';
+import {setupLayoutLanguage} from './layout-language.mjs?v=50f61a6a8580afc62796';
 import {readDisplay,saveDisplay,applyDisplay} from '../viewer/display-preferences.mjs?v=8f347468def25922153c';
 
 const storageKey='3d-print-rig-layout-v1',maxFileBytes=2*1024*1024;
@@ -130,7 +130,7 @@ async function render(){
   document.body.dataset.layoutRendering='loading';message(()=>t(floorplan?'layout.render.planLoading':'layout.render.loading'));
   try{
     // Genuine CAD and its loaders are intentionally absent from the placement path.
-    const loadLayoutMachine=floorplan?undefined:(await import('./layout-machine-loader.mjs?v=2b30ec78cad8c1b29145')).loadLayoutMachine;
+    const loadLayoutMachine=floorplan?undefined:(await import('./layout-machine-loader.mjs?v=7c450481db75cd7ee4b0')).loadLayoutMachine;
     let lastPercent=0;
     const result=await view.exportImage({loadMachine:loadLayoutMachine,width:1920,signal:operation.signal,onProgress:p=>{
       if(floorplan){message(()=>t('layout.render.planLoading'),false,{renderProgress:null});return;}
@@ -194,7 +194,7 @@ async function act(action){
       case 'render':await render();return;
       case 'edit-room':case 'import-svg':{
         roomEditing=true;
-        try{const {openRoomEditor}=await import('./layout-room-editor.mjs?v=ae5813e1162b65ba92fa'),nextRoom=await openRoomEditor({room:state.room,file:action.type==='import-svg'?action.file:undefined,t:language.t});
+        try{const {openRoomEditor}=await import('./layout-room-editor.mjs?v=0d2ca2b8f9981aaa6000'),nextRoom=await openRoomEditor({room:state.room,file:action.type==='import-svg'?action.file:undefined,t:language.t});
           if(nextRoom&&!disposed){commit(applyAction(state,{type:'SET_ROOM',room:nextRoom},catalog));view.view('perspective');view.view('fit');}
         }finally{roomEditing=false;}return;
       }
@@ -272,7 +272,7 @@ async function start(){
   rows=raw.machines.map(r=>({...r,widthMm:r.dimensionsMm.width,depthMm:r.dimensionsMm.depth,heightMm:r.dimensionsMm.height}));
   catalog=createCatalog(rows.map(r=>({id:r.id,widthMm:r.widthMm,depthMm:r.depthMm,heightMm:r.heightMm,baseOffsetMm:r.baseOffsetMm||0,...(r.footprintMm?{footprintMm:r.footprintMm}:{})})));
   state=makeDefault();try{const saved=localStorage.getItem(storageKey);if(saved&&saved.length<=maxFileBytes)state=parseLayout(saved,catalog);}catch{message(()=>t('layout.error.savedPlan'),true);}
-  const {createLayoutRenderer}=await import('./layout-renderer.mjs?v=2b4995b173287b6b32a7');
+  const {createLayoutRenderer}=await import('./layout-renderer.mjs?v=2d8fe1df576a30077bbc');
   ui=createLayoutUI({container:$('#layout-sidebar'),onAction:act,t:language.t,catalog:rows});
   view=createLayoutRenderer({container:$('#layout-scene'),catalog:rows,t:language.t,onSelect:select,onMove:worldMove,constrainMove,onRotate:worldRotate,constrainRotate,onViewChange:updateViewPresentation,onError:error=>message(()=>humanError(error),true)});
   sync();view.view('perspective');document.addEventListener('keydown',historyKey);

@@ -68,7 +68,7 @@ test('exact room binary64 values show short depth and inset without state edits'
   const xs=saved.room.polygonMm.map(p=>p[0]),zs=saved.room.polygonMm.map(p=>p[1]);
   assert.equal(Math.max(...xs)-Math.min(...xs),6000);assert.equal(Math.max(...zs)-Math.min(...zs),4000.0000000000005);
   assert.equal(Math.max(...zs)-saved.room.polygonMm[2][1],2000.0000000000002);
-  const before=JSON.stringify(saved.room);
+  const before=JSON.stringify({...saved.room,appearance:state.room.appearance});
   state=applyAction(state,{type:'SET_ROOM',room:createRoomPolygon(saved.room)},catalog);mirror();assert.equal(JSON.stringify(state.room),before);
   assert.equal(container.querySelector('#layout-room-shape').value,'l');
   assert.equal(field('room-width').value,'6000.0');assert.equal(field('room-depth').value,'4000.0');assert.equal(field('room-cut-depth').value,'2000.0');assert.equal(field('room-height').value,'2400.0');

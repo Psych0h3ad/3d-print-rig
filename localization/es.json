@@ -10901,6 +10901,46 @@
     "ui.press_fabbaloo_thanks": {
       "source_revision": "d78693a4d9798f6891cf",
       "text": "Gracias a Kerry Stevenson y a Fabbaloo por presentar 3D Print Rig."
+    },
+    "layout.room_appearance": {
+      "source_revision": "9f7a7b8ac459ca371a6e",
+      "text": "Aspecto"
+    },
+    "layout.appearance.wall": {
+      "source_revision": "849cd35c8237f99cf7de",
+      "text": "Acabado de paredes"
+    },
+    "layout.appearance.floor": {
+      "source_revision": "4f5c759003c276c7d034",
+      "text": "Acabado del piso"
+    },
+    "layout.appearance.wall.paint": {
+      "source_revision": "8bd7965354b78a6c5998",
+      "text": "Enlucido pintado"
+    },
+    "layout.appearance.wall.linen": {
+      "source_revision": "b70b1b150d762ea39022",
+      "text": "Papel pintado de lino"
+    },
+    "layout.appearance.wall.stripe": {
+      "source_revision": "52cbc8b1dd03198c611a",
+      "text": "Papel de rayas verticales finas"
+    },
+    "layout.appearance.floor.oak": {
+      "source_revision": "a2e858168d42a90e8e99",
+      "text": "Tablas de roble"
+    },
+    "layout.appearance.floor.concrete": {
+      "source_revision": "36bf9c2846fc24a8c7f9",
+      "text": "Hormigón claro"
+    },
+    "layout.appearance.floor.tile": {
+      "source_revision": "8ca44482bb4333bb0fa5",
+      "text": "Baldosas neutras"
+    },
+    "layout.appearance.invalid": {
+      "source_revision": "9bba169636f83fc8dd23",
+      "text": "Elige acabados de pared y suelo disponibles."
     }
   }
 }
