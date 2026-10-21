@@ -687,15 +687,15 @@ const closure=evaOptionsCodeClosure();
 check(()=>{for(const file of ['site/viewer/vendor/three.module.js','site/viewer/vendor-r180/three.module.js','site/viewer/community-state.mjs',
  'site/viewer/native-motion-flex.mjs','site/viewer/component-assets.mjs','site/viewer/eva-options.mjs','site/viewer/community-loader.mjs'])assert(/^[a-f0-9]{64}$/.test(closure[file]),'Missing release code pin '+file)});
 async function parentIntegrationReview(){
- const files={};for(const name of ['community.js','toolheads.js','machine-heads.js','eva-front-surfaces.mjs','inactive-head-cache.mjs','render-export.js'])files[name]=await fs.readFile(new URL('../site/viewer/'+name,import.meta.url),'utf8');
+ const files={};for(const name of ['community-renderer.mjs','toolheads.js','machine-heads.js','eva-front-surfaces.mjs','inactive-head-cache.mjs','render-export.js'])files[name]=await fs.readFile(new URL('../site/viewer/'+name,import.meta.url),'utf8');
  const findings=[],checks=[];let standaloneBankAdapterReview=null,communityStartupReview=null;
  const range=(text,start,end)=>{const a=text.indexOf(start),b=text.indexOf(end,a+start.length);assert(a>=0&&b>a,'Parent source fixture anchor changed');return text.slice(a,b)};
  const line=(file,fragment)=>files[file].slice(0,files[file].indexOf(fragment)).split('\n').length;
  // Execute exact nested production functions with synthetic DOM/frame/load
  // adapters. No rewritten install/render algorithm and no CAD/GPU claim.
- const communityFunctions=range(files['community.js'],' const ranges=()',' function resize(){')+
-  range(files['community.js'],' function setAxes(next){',' function setPalette(value){')+
-  range(files['community.js'],' async function setInstallation(id){',' for(const[id,kind]of ');
+ const communityFunctions=range(files['community-renderer.mjs'],' const ranges=()',' function resize(){')+
+  range(files['community-renderer.mjs'],' function setAxes(next){',' function setPalette(value){')+
+  range(files['community-renderer.mjs'],' async function setInstallation(id){',' for(const[id,kind]of ');
  const makeCommunity=new Function('env',`
   const {current,evaOptions,scope,axisKeys,$,document,history,location,describe,workspaceFrame,controls,renderer,scene,camera,
    communityConfiguration,validateCommunityState,communitySchema,setPalette,grid,lighting,rememberDisplayControl,performance}=env;
@@ -730,7 +730,7 @@ async function parentIntegrationReview(){
   assert.deepEqual(JSON.parse(JSON.stringify(ui.capture())).axes,saved.axes);checks.push('EVA'+generation+' source-limited restore/save');
   // Execute the source chooser too: alternatives must link their own reviewed
   // assembly, and an absent alternative proof must not link the native default.
-  const describeSource=range(files['community.js'],' function describe(){',' workspaceListen(window,');
+  const describeSource=range(files['community-renderer.mjs'],' function describe(){',' workspaceListen(window,');
   const makeElement=()=>({children:[],hidden:false,append(...rows){this.children.push(...rows)},replaceChildren(...rows){this.children=rows}}),dom=new Map();
   const get=id=>{if(!dom.has(id))dom.set(id,makeElement());return dom.get(id)};
   const proofVariants=clone(f.registry.variants);proofVariants[1].installation.native_review={url:'https://example.invalid/alternative-review.json'};
@@ -756,7 +756,7 @@ async function parentIntegrationReview(){
   // new head with Z0 excluded must cancel or clamp that existing animation.
   hold=true;const switching=ui.setInstallation(f.a.id);await started.promise;ui.startMotion();gate.resolve();await switching;
   let error=null;try{frames.shift()(300)}catch(e){error=e.message}
-  if(error)findings.push({priority:'P2',file:'site/viewer/community.js',line:line('community.js',' async function setInstallation(id){'),
+  if(error)findings.push({priority:'P2',file:'site/viewer/community-renderer.mjs',line:line('community-renderer.mjs',' async function setInstallation(id){'),
    title:'Animation started during head loading keeps the previous zero-based starting pose',generation,
    evidence:error,trigger:'Start lazy alternate-head load from Z0, press Play before completion, commit a head with Z range [2,20], then render the next frame',
    effect:'Production render requests a Z value below the selected range and throws; motion preview stops',
@@ -768,7 +768,7 @@ async function parentIntegrationReview(){
  // retry handler. Only DOM, scene/render setup and source I/O are synthetic.
  // The production controller and native adapter retain their own guards.
  {
-  const source=files['community.js'].replaceAll('\r\n','\n');
+  const source=files['community-renderer.mjs'].replaceAll('\r\n','\n');
   const startupBody=range(source,"  const responses=await Promise.all(['COMMUNITY_MACHINES_ASSETS.json'",'\n }catch(e){');
   const startupCatch=range(source,' }catch(e){','\n}\n');
   const statusSource=range(source,' function statusText(',' // This template placeholder');

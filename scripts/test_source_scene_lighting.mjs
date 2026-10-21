@@ -14,7 +14,7 @@ for(const[entry,target]of [
  ['source-assembly.mjs','source-assembly-messages.mjs'],
  ['source-assembly.mjs','source-assembly-ui-text.mjs'],
  ['source-assembly-ui-text.mjs','source-assembly-messages.mjs'],
- ['community.js','source-assembly.mjs'],
+ ['community-renderer.mjs','source-assembly.mjs'],
 ]){
  const parent=new URL('../site/viewer/'+entry,import.meta.url),child=new URL('./'+target,parent);
  const code=await fs.readFile(parent,'utf8'),expected=revision(await fs.readFile(child,'utf8'));

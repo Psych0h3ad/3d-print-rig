@@ -44,7 +44,7 @@ assert.deepEqual(validateTranslations(subset, Object.fromEntries(Object.entries(
 const definitions = Object.fromEntries(Object.entries(subset.entries).map(([key, entry]) => [key, {...entry, revision: sourceRevision(entry)}]));
 const translator = createTranslator(definitions, {dictionaries: new Map(Object.entries(dictionaries).map(([lang, locale]) => [lang,
   Object.fromEntries(messageIDs.map(key => [key, [locale.messages[key].source_revision, locale.messages[key].text]]))]))});
-const community = fs.readFileSync(new URL('../site/viewer/community.js', import.meta.url), 'utf8');
+const community = fs.readFileSync(new URL('../site/viewer/community-renderer.mjs', import.meta.url), 'utf8');
 const table = name => vm.runInNewContext('(' + community.match(new RegExp('const ' + name + '=(' + '\x7b' + '[\\s\\S]*?' + '\x7d' + ');'))[1] + ')', {}, {timeout: 100});
 const description = table('descriptions')[id], notice = table('sourceNotices')[id];
 assert.equal(description, subset.entries['machine.247zero.description'].en); assert.equal(notice, subset.entries['machine.247zero.source_notice'].en);

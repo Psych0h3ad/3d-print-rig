@@ -1,10 +1,9 @@
 import {workspaceTask,onWorkspaceDispose} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
-import * as DefaultTHREE from 'three';
-import {cameraAngles,createExportCamera} from './export-camera.mjs?v=trident-clearance-35';
+import {cameraAngles,createExportCamera} from './export-camera.mjs?v=6e7da2af5cf233f94364';
 
 // Render the existing scene to an offscreen target: no server, no screenshot
 // of HTML controls, and no change to the interactive canvas resolution.
-export function setupRenderExport({renderer,scene,camera,controls,beforeRender=()=>{},afterRender=()=>{},prepareCamera=()=>{},name='VORON',three:THREE=DefaultTHREE}){
+export function setupRenderExport({renderer,scene,camera,controls,beforeRender=()=>{},afterRender=()=>{},prepareCamera=()=>{},name='VORON',three:THREE}){
  const $=s=>document.querySelector(s);
  const dialog=document.createElement('dialog');dialog.id='renderDialog';
  dialog.innerHTML=`<div class="dialog-head"><h2>画像を書き出す</h2><button class="close" aria-label="閉じる"></button></div><div class="dialog-body"><p>現在の視点・構成・配色・照明をPNGに保存します。</p><div class="render-options"><div><label for="renderResolution">長辺の解像度</label><select id="renderResolution"><option value="1920">1920 px</option><option value="2560" selected>2560 px</option><option value="3840">3840 px</option></select></div><div><label for="renderBackground">背景</label><select id="renderBackground"><option value="scene">現在の背景</option><option value="transparent">透明</option></select></div></div><p class="foot">画面と同じ縦横比。ブラウザーの3D描画を高解像度化します。光線追跡・実写レンダリングは含みません。</p><button id="saveRender" class="primary">PNGを保存</button><p id="renderStatus" aria-live="polite"></p></div>`;
@@ -14,10 +13,12 @@ export function setupRenderExport({renderer,scene,camera,controls,beforeRender=(
  const download=document.createElement('a');download.id='downloadRender';download.textContent='PNGをダウンロード';download.hidden=true;dialog.querySelector('.dialog-body').append(preview,download);
  let imageUrl;document.body.append(dialog);dialog.querySelector('.close').onclick=()=>dialog.close();
  onWorkspaceDispose(()=>{if(imageUrl)URL.revokeObjectURL(imageUrl)});
- const getTarget=()=>controls?.target?.clone()||camera.position.clone().add(camera.getWorldDirection(new THREE.Vector3()));
+ const getTarget=()=>controls?.target?.clone()||camera.position.clone().add(camera.getWorldDirection(camera.position.clone()));
  $('#renderView').onchange=()=>{$('#renderAngles').hidden=$('#renderView').value!=='custom'};
  $('#openRender').disabled=false;$('#openRender').onclick=()=>{const angles=cameraAngles(camera,getTarget());$('#renderAzimuth').value=angles.azimuth.toFixed(2);$('#renderElevation').value=angles.elevation.toFixed(2);$('#renderRoll').value=0;$('#renderDistance').value=angles.distanceMm.toFixed(2);dialog.showModal()};
  const exportImage=async()=>{return workspaceTask(async()=>{
+  // Explicit renderer namespaces need no fallback bundle; legacy callers load it on export.
+  THREE??=await import('three');
   const button=$('#saveRender'),status=$('#renderStatus');button.disabled=true;status.textContent='描画中…';
   let target;const oldTarget=renderer.getRenderTarget(),background=scene.background,oldAlpha=renderer.getClearAlpha(),oldColor=renderer.getClearColor(new THREE.Color());
   try{

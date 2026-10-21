@@ -36,7 +36,7 @@ assert.equal(row.source.cad_path, 'CAD/Switchwire_Assembly_v1_STEP.zip');
 assert.equal(row.source.cad_archive_sha256, '488329f43b3df1881cef0c433430f20b14709f36c973dc805e62412aa271207d');
 assert(!/Afterburner|250\s*[×x]\s*250/u.test(row.label), 'Do not infer old toolhead or cubic build volume from the v1 filename or ID');
 
-const community = await fs.readFile(path.join(root, 'site/viewer/community.js'), 'utf8');
+const community = await fs.readFile(path.join(root, 'site/viewer/community-renderer.mjs'), 'utf8');
 const descriptionsText = community.match(/const descriptions=(\{[\s\S]*?^\});/mu)?.[1];
 assert(descriptionsText, 'Community descriptions must remain inspectable');
 const descriptions = vm.runInNewContext('(' + descriptionsText + ')');
@@ -110,7 +110,8 @@ const consumers = [
   ['community-adapter.mjs', 'native-motion-flex.mjs'],
   ['community-loader.mjs', 'community-adapter.mjs'],
   ['community-loader.mjs', 'switchwire-display-default.mjs'],
-  ['community.js', 'community-loader.mjs'],
+  ['community-renderer.mjs', 'community-loader.mjs'],
+  ['community.js', 'community-renderer.mjs'],
   ['community.html', 'community.js'],
 ];
 for (const [consumer, dependency] of consumers) {

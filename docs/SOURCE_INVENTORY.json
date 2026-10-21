@@ -245,8 +245,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 612685,
-      "sha256": "c359c099ebab07205e63fb8fc09fe0d83bd75f82b33e4d882c37b4f84ba6dfaf"
+      "bytes": 614181,
+      "sha256": "6e9985ea3c038173a78403186245fd76a2fdfb18758886dd664ae82c74bfbf8f"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -1135,8 +1135,8 @@
     },
     {
       "path": "scripts/test_247zero.mjs",
-      "bytes": 26372,
-      "sha256": "9f2414ed12c18d0bea2f8da580f52a0ee39507d6d9dea2ffa11efd7eb126a99c"
+      "bytes": 26382,
+      "sha256": "6bb01787a9fcdc66bab83a0d5991a38b6e119a803c3801acce585f952e1d4708"
     },
     {
       "path": "scripts/test_a4t_printed_companions.mjs",
@@ -1207,6 +1207,11 @@
       "path": "scripts/test_cocobustor_components.mjs",
       "bytes": 5546,
       "sha256": "47cafdbfe6be461c09720d5aa5d75cc7360cf19bb0775ad0ac5d9067e440069f"
+    },
+    {
+      "path": "scripts/test_community_import_boundary.mjs",
+      "bytes": 11966,
+      "sha256": "d18a49ad3342e4dec5369dff2b5ae4c689b9aef7f156a7802738ccf3fdfb5908"
     },
     {
       "path": "scripts/test_community_state.mjs",
@@ -1290,8 +1295,8 @@
     },
     {
       "path": "scripts/test_elegoo_reference.mjs",
-      "bytes": 11664,
-      "sha256": "1ae4c8daefcbd48f1f097f3a82c12b83d46a66f14ca80f74672abc9e1c74be5f"
+      "bytes": 11689,
+      "sha256": "e590ba739e88048b2af819cf065d3050500ec19527606f9132e950f5f966cdd4"
     },
     {
       "path": "scripts/test_embed_contract.mjs",
@@ -1350,8 +1355,8 @@
     },
     {
       "path": "scripts/test_eva_options.mjs",
-      "bytes": 97602,
-      "sha256": "5ee5c2c7b5dd00fd8a2795c6245be2a1b380b7a0c899e3665b035c4659f7c82a"
+      "bytes": 97682,
+      "sha256": "7b754bf2ac3db8b74679e63a12ccdd1bfb82c78b07da6786633d8164243d0f8b"
     },
     {
       "path": "scripts/test_export_camera.mjs",
@@ -1885,8 +1890,8 @@
     },
     {
       "path": "scripts/test_source_scene_lighting.mjs",
-      "bytes": 9175,
-      "sha256": "a9dda2089f1151220be0bd87360845e8ffccc4c57f798a910e64bbcbf43a766c"
+      "bytes": 9185,
+      "sha256": "afff12631efadae7ad969c828e29efae89f07c41c05794e728b798dcd3ac59bf"
     },
     {
       "path": "scripts/test_source_view_appearance.mjs",
@@ -1925,8 +1930,8 @@
     },
     {
       "path": "scripts/test_switchwire_catalog.mjs",
-      "bytes": 17327,
-      "sha256": "35f8f03bdf4468afac161ae920a4e20d135f6ac4479601a97c3d966ce619f0db"
+      "bytes": 17393,
+      "sha256": "d105ffd4da77fea7c9d4b3ab42ca7db3db365e71a97fb1fe61ce398f0b1c8768"
     },
     {
       "path": "scripts/test_toolchangers.mjs",
@@ -2130,8 +2135,8 @@
     },
     {
       "path": "scripts/test_workspace_runtime.mjs",
-      "bytes": 36092,
-      "sha256": "615bbcf7d8aae00471895627c8e6b68255f5fd19a95ee1d51223818a6727ea7a"
+      "bytes": 36102,
+      "sha256": "a97c7086b1a0921b4d4a2fd0a5b509f49d1dce027db1706f3605d19ddbc6a7e4"
     },
     {
       "path": "scripts/test_workspace_scroll.mjs",
@@ -5804,19 +5809,24 @@
       "sha256": "798965bb5aaf49d60eacbe20b14b8e48b8ccc10889d797b36cd1132bbbf7269b"
     },
     {
+      "path": "site/viewer/community-renderer.mjs",
+      "bytes": 24040,
+      "sha256": "31a5bcbac200338ee3df4937995d04ca3fa1fa416f69498dcf2e0fee0f97df29"
+    },
+    {
       "path": "site/viewer/community-state.mjs",
       "bytes": 2399,
       "sha256": "460b3fa78cc503ddb6e631766efe780433e4efa286db5d9388a67d73cd4fce3d"
     },
     {
       "path": "site/viewer/community.html",
-      "bytes": 7908,
-      "sha256": "5643df1f886a5a337a04c7fa8bcd979f4ce7a6e6fc4930e1054195c42c1530de"
+      "bytes": 7913,
+      "sha256": "832118fbf132325590d8c395592601f69ce1a360ba950e60788f0684a6ff401a"
     },
     {
       "path": "site/viewer/community.js",
-      "bytes": 24341,
-      "sha256": "9f5abffdde611d57cbff8de7f879ef251470a3250f946edaeda049acfaba66aa"
+      "bytes": 539,
+      "sha256": "5ad6867bf021d66a3138e48bea32de1229536e9082bb863bdb5d429d9096763c"
     },
     {
       "path": "site/viewer/component-assets.mjs",
@@ -6001,7 +6011,7 @@
     {
       "path": "site/viewer/elegoo.mjs",
       "bytes": 18158,
-      "sha256": "0154fdb915113356a61360bee872ebe19f75d5446c8f31497ad7ecb2029a3009"
+      "sha256": "fe22d068cd2d5e0cd19e53cd41f69a02109a062d0f20a9b67d7a18ad6052d7d2"
     },
     {
       "path": "site/viewer/embed-contract.mjs",
@@ -6055,8 +6065,8 @@
     },
     {
       "path": "site/viewer/export-camera.mjs",
-      "bytes": 1418,
-      "sha256": "9b7cb2c53ed30506e01c79eafd2ee4c72fa4305806a316acdf5cc3985d0ce628"
+      "bytes": 1327,
+      "sha256": "6e7da2af5cf233f94364c4880410616e4798777690355da9fd8455278c33c203"
     },
     {
       "path": "site/viewer/extra-asset-integrity.mjs",
@@ -6720,8 +6730,8 @@
     },
     {
       "path": "site/viewer/render-export.js",
-      "bytes": 7041,
-      "sha256": "736862a3013dbfd9f9ea45c4747d82e071186ec64cf38d5e65ccaa5e4f757c9d"
+      "bytes": 7119,
+      "sha256": "92d6e71ee392361a4f7d5558f3648790bd5ac0672a4a9828bee47c2a8e53974a"
     },
     {
       "path": "site/viewer/requested-mods.mjs",

@@ -88,7 +88,7 @@ const uiElegoo=await uiModule('viewer/elegoo-catalog.mjs');
 const uiSourceCopy=await uiModule('viewer/source-assembly-messages.mjs'),uiLayoutText=await uiModule('layout/layout-i18n.mjs');
 const uiLayoutState=await uiModule('layout/layout-state.mjs'),uiLayout=await uiModule('layout/layout-ui.mjs');
 for(const lang of ['en','ja','es','ko','ru'])await uiI18n.loadLanguage(lang);
-const uiHTML=uiRead('viewer/community.html'),uiController=uiRead('viewer/community.js'),uiApp=uiRead('layout/layout-app.mjs');
+const uiHTML=uiRead('viewer/community.html'),uiController=uiRead('viewer/community-renderer.mjs'),uiApp=uiRead('layout/layout-app.mjs');
 function statusDocument(){
  const doc=new TestDocument(),create=doc.createElement.bind(doc),decorate=n=>{
   n.nodeType=1;n.checked=false;const oldSet=n.setAttribute.bind(n),oldRemove=n.removeAttribute.bind(n),oldGet=n.getAttribute.bind(n),oldMatches=n.matches.bind(n);

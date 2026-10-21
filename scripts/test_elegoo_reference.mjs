@@ -136,7 +136,7 @@ orbit.dispatchEvent(new Event('start')); assert.deepEqual(selected(),['elegooUnd
 assert(renderer.includes('presets.select(kind)')); assert(renderer.includes('presets.clear();')); pass();
 let syntaxModules=0;
 if (vm.SourceTextModule) {
-  const modules=['community.js','machines.js','render-export.js','elegoo.mjs','elegoo-loader.mjs',
+  const modules=['community.js','community-renderer.mjs','machines.js','render-export.js','elegoo.mjs','elegoo-loader.mjs',
     'elegoo-catalog.mjs','elegoo-contract.mjs','elegoo-load-task.mjs','elegoo-depth-range.mjs','elegoo-view-state.mjs',
     'locales/catalog.mjs','locales/manifest.mjs','locales/es.mjs','locales/ko.mjs','locales/ru.mjs'];
   for(const name of modules) {

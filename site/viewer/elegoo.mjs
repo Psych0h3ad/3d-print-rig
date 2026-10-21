@@ -7,7 +7,7 @@ import {workspaceFrame, workspaceListen, WorkspaceResizeObserver, WorkspaceMutat
 import {setResponsiveAspect, frameResponsiveView} from './responsive-camera.mjs';
 import {rememberDisplayControl, readDisplay} from './display-preferences.mjs?v=8f347468def25922153c';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
-import {setupRenderExport} from './render-export.js?v=736862a3013dbfd9f9ea';
+import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
 import {sourceReferencePanel} from './source-assembly-references.mjs';
 import {sourceCreditPresentation} from './source-credit-format.mjs';
 import {createModelProgress} from './model-progress.mjs?v=beaef781095b6f56b290';
