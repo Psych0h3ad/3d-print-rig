@@ -8917,8 +8917,8 @@
     },
     "ui.community.ender_source": {
       "kind": "message",
-      "ja": "Bowden経路は原本のD4チューブ断面と継手位置を使用した550 mmの表示プレビューです。原CADに全長の配管は含まれません。",
-      "en": "The Bowden route uses the native D4 tube section and fitting positions with a 550 mm viewer service length. The source CAD omits the complete hose."
+      "ja": "Bowden経路は原本のD4チューブ断面と継手位置を使用した450 mmの表示プレビューです。原CADに全長の配管は含まれません。",
+      "en": "The Bowden route uses the native D4 tube section and fitting positions with a 450 mm viewer service length. The source CAD omits the complete hose."
     },
     "fixed_sc.system": {
       "kind": "message",

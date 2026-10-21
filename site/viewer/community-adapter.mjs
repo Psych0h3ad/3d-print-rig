@@ -5,7 +5,7 @@ import {stingerFlexWeights} from './stinger-flex.mjs?v=0ab64709177d49ba0fec';
 import {stingerTubeRoute} from './stinger-tube-route.mjs';
 import {registeredFlexWeights,registeredFlexDelta,createRegisteredChains} from './native-motion-flex.mjs?v=8d28d1651911d0d8b84e';
 import {beltedZWeight,createBeltedZTeeth} from './ender-mods.mjs?v=5f07c69c7c42ba3f3936';
-import {createEnderBowden} from './ender-bowden-route.mjs?v=3a7793b90bb66cc6c28a';
+import {createEnderBowden} from './ender-bowden-route.mjs?v=599e2b920a7afee891df';
 import {createOriginalEnderXBelt} from './ender-original-x-belt.mjs';
 import {createZeroBowden} from './247zero-bowden.mjs?v=315a9fa6d2f032a56dbe';
 const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));

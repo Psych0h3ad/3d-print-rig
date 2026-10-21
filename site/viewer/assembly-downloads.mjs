@@ -1,4 +1,4 @@
-import {formatMessage} from './i18n.mjs?v=7569796acbdf7c0318a2';
+import {formatMessage} from './i18n.mjs?v=68d05a1da1d7da96185d';
 
 /** Mount the catalog assembly, independently of selected viewer Mods. */
 export function mountAssemblyDownload(container, machineId, catalog, {baseUrl = document.baseURI, noticeId = container.dataset?.assemblyDownloadNoticeId} = {}) {

@@ -1,9 +1,35 @@
-import hashlib,json,pathlib,tempfile,unittest,sys
+import hashlib,json,pathlib,tempfile,unittest,sys,io,urllib.error
 from unittest.mock import patch
 import build_site,build_approved_site
 from build_approved_site import run,validate_contract,safe_path
 
 class ApprovedBuild(unittest.TestCase):
+    def test_transient_acquisition_retries_same_pinned_body(self):
+        data = b'approved body'
+        row = {'url': 'https://psych0h3ad.github.io/model.bin', 'path': 'model.bin', 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()}
+        response = io.BytesIO(data);response.url = row['url']
+        failures = [urllib.error.HTTPError(row['url'], 503, 'Unavailable', {}, None), TimeoutError('read timeout'), response]
+        with tempfile.TemporaryDirectory() as folder, patch.object(build_approved_site.urllib.request, 'urlopen', side_effect=failures) as opened, patch.object(build_approved_site.time, 'sleep') as slept:
+            dest = pathlib.Path(folder)/'model.bin'
+            build_approved_site.fetch_pinned_body(row, dest)
+            self.assertEqual(dest.read_bytes(), data)
+            self.assertEqual(opened.call_count, 3)
+            self.assertEqual([call.args[0] for call in slept.call_args_list], [1, 3])
+            self.assertEqual({call.args[0].full_url for call in opened.call_args_list}, {row['url']})
+
+    def test_acquisition_does_not_retry_bad_pins_redirects_or_permanent_errors(self):
+        row = {'url': 'https://psych0h3ad.github.io/model.bin', 'path': 'model.bin', 'bytes': 4, 'sha256': hashlib.sha256(b'good').hexdigest()}
+        for data, url in [(b'evil', row['url']), (b'too long', row['url']), (b'good', 'https://unapproved.example/model.bin')]:
+            response = io.BytesIO(data);response.url = url
+            with tempfile.TemporaryDirectory() as folder, patch.object(build_approved_site.urllib.request, 'urlopen', return_value=response) as opened, patch.object(build_approved_site.time, 'sleep') as slept:
+                with self.assertRaises(ValueError):build_approved_site.fetch_pinned_body(row, pathlib.Path(folder)/'model.bin')
+                self.assertEqual(opened.call_count, 1);slept.assert_not_called()
+        for code, attempts in [(404, 1), (503, 3)]:
+            error = urllib.error.HTTPError(row['url'], code, 'Unavailable', {}, None)
+            with tempfile.TemporaryDirectory() as folder, patch.object(build_approved_site.urllib.request, 'urlopen', side_effect=error) as opened, patch.object(build_approved_site.time, 'sleep'):
+                with self.assertRaises(urllib.error.HTTPError):build_approved_site.fetch_pinned_body(row, pathlib.Path(folder)/'model.bin')
+                self.assertEqual(opened.call_count, attempts)
+
     def test_actual_file_transport_and_fail_closed(self):
         with tempfile.TemporaryDirectory() as folder:
             root=pathlib.Path(folder);(root/'site').mkdir();(root/'docs').mkdir()

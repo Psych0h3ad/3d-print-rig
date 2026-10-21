@@ -7123,8 +7123,8 @@
       "text": "Se muestra el AWD oficial con piezas impresas v1.2. El CAD de origen contiene correas XY parciales y no incluye la manguera CPAP."
     },
     "ui.community.ender_source": {
-      "source_revision": "651e5c0f161b6333fa53",
-      "text": "La ruta Bowden utiliza la sección original del tubo D4 y las posiciones de los racores con una longitud de servicio de 550 mm para el visor. El CAD original no incluye la manguera completa."
+      "source_revision": "d60111b1d84b9f4754b0",
+      "text": "La ruta Bowden utiliza la sección original del tubo D4 y las posiciones de los racores con una longitud de servicio de 450 mm para el visor. El CAD original no incluye la manguera completa."
     },
     "fixed_sc.system": {
       "source_revision": "1b835c0348c171bed09d",

@@ -10,6 +10,7 @@ import {Vector3} from '../site/viewer/vendor-r180/three.module.js';
 import {createCommunityAdapter} from '../site/viewer/community-adapter.mjs';
 import {nativeMotion,displayMotion} from '../site/viewer/community-state.mjs';
 import {enderBowdenRoute,enderBowdenSpec} from '../site/viewer/ender-bowden-route.mjs';
+import {enderBowdenShapes} from '../site/viewer/ender-bowden-shapes.mjs';
 import {auditFlexRoute,segmentTriangleDistance} from './flex-route-quality.mjs';
 
 const hash=b=>createHash('sha256').update(b).digest('hex');
@@ -17,6 +18,10 @@ const repo=fileURLToPath(new URL('../',import.meta.url));
 export async function auditEnderBowden({site,assets,report:reportPath}={}){
  const index=JSON.parse(fs.readFileSync(path.join(site,'COMMUNITY_MACHINES_ASSETS.json'))),spec=index.machines.ender3_stock_220;
  assert.equal(spec.machine_id,'ender3_stock_220');
+ assert.equal(enderBowdenShapes.source_manifest_sha256,spec.files['assembly_manifest.json'].sha256);
+ assert.equal(enderBowdenShapes.source_profile_sha256,spec.files['machine_profile.json'].sha256);
+ assert.equal(enderBowdenShapes.source_model_sha256,spec.files['model.glb'].decoded_sha256);
+ assert.equal(enderBowdenShapes.length_mm,enderBowdenSpec.length_mm);
  const pins={},checked=async name=>{
   const pin=spec.files[name];assert(pin,'Missing exact Ender-3 input '+name);
   const file=assets&&path.join(assets,pin.path);
@@ -33,7 +38,7 @@ export async function auditEnderBowden({site,assets,report:reportPath}={}){
   if(root)root.add(scene);else root=scene;
  }
  const adapter=createCommunityAdapter(root,manifest,profile);assert.equal(adapter.nodes.size,spec.parts);
- const sources=['site/viewer/ender-bowden-route.mjs','site/viewer/community-adapter.mjs','site/viewer/community-state.mjs','scripts/flex-route-quality.mjs','scripts/audit_ender_bowden.mjs'];
+ const sources=['site/viewer/ender-bowden-route.mjs','site/viewer/ender-bowden-shapes.mjs','site/viewer/community-adapter.mjs','site/viewer/community-state.mjs','scripts/flex-route-quality.mjs','scripts/audit_ender_bowden.mjs'];
  const sourceHashes=Object.fromEntries(sources.map(p=>[p,hash(fs.readFileSync(path.join(repo,p)))]));
  global.gc?.();const bodies=[],point=new Vector3(),omitted=[];
  for(const [key,node]of adapter.nodes){const row=adapter.records.get(key);
@@ -53,19 +58,19 @@ export async function auditEnderBowden({site,assets,report:reportPath}={}){
   if((c.filament_path??'bowden')!=='bowden')continue;
   adapter.setConfiguration(configuration);const ranges={...profile.axes,...c.axes};
   const xs=Array.from({length:9},(_,i)=>ranges.x[0]+(ranges.x[1]-ranges.x[0])*i/8);
-  const poses=[];for(const x of xs)for(const y of [ranges.y[0],0,ranges.y[1]])for(const z of [ranges.z[0],0,ranges.z[1]])poses.push({x,y,z});
+  const poses=[];for(const x of xs)for(const z of [...new Set([ranges.z[0],-20,0,40,80,100,120,140,160,180,ranges.z[1]].filter(z=>z>=ranges.z[0]&&z<=ranges.z[1]))])for(const y of [ranges.y[0],0,ranges.y[1]])poses.push({x,y,z});
   poses.push(...poses.slice().reverse(),{x:0,y:0,z:0});
   let configurationGap=Infinity;
   for(const axes of poses){adapter.setAxes(axes);const route=enderBowdenRoute(axes,profile,configuration),belted=c.selection?.z==='belted';
-   const cacheKey=JSON.stringify([axes.x,belted,c.rest_offsets_mm?.[enderBowdenSpec.head_key]??null,c.rest_offsets_mm?.[belted?enderBowdenSpec.belted_key:enderBowdenSpec.stock_key]??null]);
+   const cacheKey=JSON.stringify([axes.x,axes.z,belted,c.rest_offsets_mm?.[enderBowdenSpec.head_key]??null,c.rest_offsets_mm?.[belted?enderBowdenSpec.belted_key:enderBowdenSpec.stock_key]??null]);
    if(!shapeCache.has(cacheKey)){
-    const flat=enderBowdenRoute({...axes,z:0},profile,configuration);
+    const flat=enderBowdenRoute(axes,profile,configuration);
     const quality=auditFlexRoute(flat.curve,{units:'m',tubeRadiusMm:2,minBendRadiusMm:30,maxSegmentLengthMm:8,chordToleranceMm:.04,
      start:{positionMm:vector(flat.endpoints_mm[0]),axis:vector([1,0,0])},end:{positionMm:vector(flat.endpoints_mm[1]),axis:vector([0,-1,0])}});
     assert(quality.ok,JSON.stringify({configuration,axes,findings:quality.findings}));
     assert(Math.abs(quality.metrics.lengthMm-enderBowdenSpec.length_mm)<.1);shapeCache.set(cacheKey,quality);
    }
-   const quality=shapeCache.get(cacheKey),shift=vector([0,axes.z,0]),samples=quality.samples.map(s=>({...s,positionMm:s.positionMm.map((v,i)=>v+shift[i])}));
+   const quality=shapeCache.get(cacheKey),shift=vector([0,0,0]),samples=quality.samples.map(s=>({...s,positionMm:s.positionMm.map((v,i)=>v+shift[i])}));
    const margin=2+quality.sampling.observedChordDeviationMm+.005;
    const tube=adapter.bowden.meshes[0];assert(tube.visible&&tube.geometry.attributes.position.array.every(Number.isFinite));
    assert.deepEqual(tube.userData.endpoints_mm,route.endpoints_mm);

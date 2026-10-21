@@ -6,14 +6,20 @@ const profile={machine_id:'ender3_stock_220',origin_mm:[0,0,0],basis:[[1,0,0],[0
 profile.configurations.ng={filament_path:'direct'};
 profile.configurations.ng_revo={filament_path:'direct'};
 profile.configurations.invalid_path={filament_path:'unknown'};
-// Curvature is independent of Z translation. Check the circular bend radii
-// throughout X, rather than accepting a connected, finite tube of the right length.
-for(const configuration of ['stock','belted'])for(let x=-100;x<=100;x++){
- const r=enderBowdenRoute({x,y:0,z:0},profile,configuration);
- for(const c of r.curve.curves.filter(c=>c.radial))assert(c.radial.length()*1000>=enderBowdenSpec.minimum_bend_radius_mm);
- if(x%50===0){const quality=auditFlexRoute(r.curve,{units:'m',tubeRadiusMm:2,minBendRadiusMm:30,maxSegmentLengthMm:8,chordToleranceMm:.04,
+// A smooth free bow must not turn into straight uprights and joined elbows.
+// Test actual interpolated curves as well as table nodes, including the narrow
+// clearance near the top beam during intermediate Z movement.
+for(const configuration of ['stock','belted'])for(let x=-100;x<=100;x+=25)for(const z of [-50,0,80,100,120,140,150,155,160,165,170,180,190]){
+ const r=enderBowdenRoute({x,y:0,z},profile,configuration);
+ assert(r.curve.getSecondDerivative(1).length()<1e-6,'Hose bends into the source plate at its fitting neck');
+ const quality=auditFlexRoute(r.curve,{units:'m',tubeRadiusMm:2,minBendRadiusMm:30,maxSegmentLengthMm:8,chordToleranceMm:.04,
   start:{positionMm:r.endpoints_mm[0],axis:[1,0,0]},end:{positionMm:r.endpoints_mm[1],axis:[0,-1,0]}});
-  assert(quality.ok,JSON.stringify(quality.findings));assert(Math.abs(quality.metrics.lengthMm-enderBowdenSpec.length_mm)<.1);}
+ assert(quality.ok,JSON.stringify({configuration,x,z,findings:quality.findings}));
+ assert(Math.abs(quality.metrics.lengthMm-enderBowdenSpec.length_mm)<.1);
+ for(const t of [.125,.25,.5,.75,.875]){
+  const e=1e-5,finite=r.curve.getPoint(t+e).sub(r.curve.getPoint(t-e)).multiplyScalar(1/(2*e));
+  assert(finite.distanceTo(r.curve.getDerivative(t))<2e-6,'Integrated bow has a derivative discontinuity');
+ }
 }
 let samples=0;
 for(const configuration of ['stock','belted','shifted'])for(const z of [-50,0,190])for(const direction of [1,-1])for(let k=0;k<=100;k++){
@@ -34,13 +40,18 @@ enderBowdenRoute({x:100,y:-100,z:190},profile,'belted');
 assert.deepEqual(enderBowdenRoute({x:0,y:0,z:0},profile).curve.getPoints(64).map(v=>v.toArray()),before);
 const root=new Group(),adapter=createEnderBowden(root,profile);adapter.update({x:0,y:0,z:0},'stock');
 const tube=adapter.meshes[0],nativeGeometry=tube.geometry;
+for(const y of [-100,100,50,0]){
+ adapter.update({x:0,y,z:0},'stock');assert.equal(tube.geometry,nativeGeometry);
+ assert.equal(root.children.length,1);assert.deepEqual(tube.position.toArray(),[0,0,0]);
+}
 for(const z of [-50,190,95,0,-50,0]){
- adapter.update({x:0,y:100,z},'stock');assert.equal(tube.geometry,nativeGeometry);assert.equal(root.children.length,1);
- assert.deepEqual(tube.position.toArray(),[0,z/1000,0]);
+ adapter.update({x:0,y:100,z},'stock');assert.equal(root.children.length,1);
+ assert.deepEqual(tube.position.toArray(),[0,0,0]);
  assert.deepEqual(tube.userData.endpoints_mm,enderBowdenRoute({x:0,y:100,z},profile).endpoints_mm);
  assert(tube.visible&&!tube.frustumCulled);
 }
-let disposed=0;nativeGeometry.addEventListener('dispose',()=>disposed++);
+const currentGeometry=tube.geometry;
+let disposed=0;currentGeometry.addEventListener('dispose',()=>disposed++);
 adapter.update({x:100,y:0,z:190},'belted');assert.equal(disposed,1);assert.notEqual(tube.geometry,nativeGeometry);assert.equal(root.children.length,1);
 adapter.update({x:0,y:0,z:0},'stock');assert.deepEqual(tube.position.toArray(),[0,0,0]);
 assert.deepEqual(Array.from(tube.geometry.attributes.position.array),Array.from(nativeGeometry.attributes.position.array));

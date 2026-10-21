@@ -20,11 +20,11 @@ async function prepare(run) {
 }
 export async function loadLayoutRecipe(recipe,{signal,onProgress}) {
  const id=recipe.machine_id,progressOptions=headless(onProgress),options={signal,progressOptions,onProgress};
- if(recipe.category==='v24-reference'){const {loadV24ReferenceLayout}=await import('./layout-v24-reference-provider.mjs?v=4e40268f1dcf1c6f0738');return loadV24ReferenceLayout(id,{signal,onProgress})}
+ if(recipe.category==='v24-reference'){const {loadV24ReferenceLayout}=await import('./layout-v24-reference-provider.mjs?v=d4ad37bbf96e20639439');return loadV24ReferenceLayout(id,{signal,onProgress})}
  if(recipe.category==='v0'){const {loadV0DefaultLayout}=await import('./layout-v0-provider.mjs?v=c919367e2cb9be4e3b11');return loadV0DefaultLayout(id,{signal,onProgress})}
- if(['siboor','trident','v24'].includes(recipe.category)){const {loadVoronDefaultLayout}=await import('./layout-voron-defaults.mjs?v=c62bee018a2c060e8799');return loadVoronDefaultLayout(id,{signal,onProgress})}
+ if(['siboor','trident','v24'].includes(recipe.category)){const {loadVoronDefaultLayout}=await import('./layout-voron-defaults.mjs?v=005bc12b9781149a3f75');return loadVoronDefaultLayout(id,{signal,onProgress})}
  if(recipe.category==='source') {
-  const m=await import('./source-assembly-loader.mjs?v=eb1faaad719ac2f18b3d'),{releaseRoot}=await import('./source-assembly-runtime/resources.mjs?v=e42678a5314a2d6c0676');
+  const m=await import('./source-assembly-loader.mjs?v=58984dfc1ff719e6cef3'),{releaseRoot}=await import('./source-assembly-runtime/resources.mjs?v=e42678a5314a2d6c0676');
   const index=await m.loadSourceIndex(signal),record=index.models.find(r=>r.id===id);if(!record)throw Error('Missing layout source record');
   const packet=await m.loadSourcePacket(record,signal),assembly=await m.loadSourceAssembly(packet,{signal,onProgress,mode:'full'});
   return {root:assembly.root,manifest:packet,profile:packet,source:{normalSourceRevision:'182cf109acf3fa867927bb017b9705e8b7dac68143e322197a4e3cf517d42391',record,credits:packet.source??packet.sources,mode:'full',variant:assembly.snapshot().variant},dispose:()=>{releaseRoot(assembly.root,assembly);assembly.root.removeFromParent();assembly.root.clear()}};
@@ -32,7 +32,7 @@ export async function loadLayoutRecipe(recipe,{signal,onProgress}) {
  return prepare(async own=>{
   let loaded;
   if(recipe.category==='community') {
-   const [{loadCommunity},{evaCommunityIndex}]=await Promise.all([import('./community-loader.mjs?v=568b27c049a1810b8fe1'),import('./eva-installations.mjs?v=4dfad49e1f98d4b5b9f2')]);
+   const [{loadCommunity},{evaCommunityIndex}]=await Promise.all([import('./community-loader.mjs?v=798965bb5aaf49d60eac'),import('./eva-installations.mjs?v=4dfad49e1f98d4b5b9f2')]);
    const index=evaCommunityIndex(await json('COMMUNITY_MACHINES_ASSETS.json',signal),await json('EVA_INSTALLATIONS.json',signal));
    loaded=await loadCommunity(index,id,options);own(loaded);
    const configuration=loaded.profile.eva_installation?.configuration??'stock';
@@ -71,7 +71,7 @@ export async function loadLayoutRecipe(recipe,{signal,onProgress}) {
     const {createRemorphAdapter}=await import('./remorph-adapter.mjs');loaded.adapter=createRemorphAdapter(loaded.root,loaded.manifest,loaded.profile,loaded.bindings);
     loaded.adapter.setEnclosureVisible(true);loaded.adapter.setFlexibleVisible(true);loaded.adapter.setPose(pose(loaded.profile));
    }else {
-    const THREE=await import('./vendor-r180/three.module.js'),{applyNativeMotionProfile,loadNativeMotionProfile}=await import('./native-motion-profile.mjs?v=91532eb992519143f437'),{createCommunityAdapter}=await import('./community-adapter.mjs?v=2882ddb38011da50caca');
+    const THREE=await import('./vendor-r180/three.module.js'),{applyNativeMotionProfile,loadNativeMotionProfile}=await import('./native-motion-profile.mjs?v=91532eb992519143f437'),{createCommunityAdapter}=await import('./community-adapter.mjs?v=61b77f5cd77eabb0120d');
     const rig=await loadNativeMotionProfile(id,{signal});Object.assign(loaded,applyNativeMotionProfile(loaded.manifest,loaded.profile,rig,loaded.row.files['model.glb'].decoded_sha256));
     loaded.root.rotation.x=loaded.profile.viewer_orientation.viewer_root_rotation_x_radians;
     loaded.root.traverse(n=>{if(!n.isMesh)return;const match=n.name.match(/^(p\d+)__/);if(!match)throw Error('Annex part identity');n.userData.part_key=match[1];for(const m of [].concat(n.material))m.side=THREE.DoubleSide});
@@ -82,7 +82,7 @@ export async function loadLayoutRecipe(recipe,{signal,onProgress}) {
    return finish(loaded,{catalog:'EXTRA_MACHINE_ASSETS.json',asset:loaded.row});
   }
   if(recipe.category==='kit') {
-   const {loadKitReference}=await import('./kit-reference-loader.mjs?v=ab4c504dc9c9698eb8e2'),{createCommunityAdapter}=await import('./community-adapter.mjs?v=2882ddb38011da50caca');
+   const {loadKitReference}=await import('./kit-reference-loader.mjs?v=ab4c504dc9c9698eb8e2'),{createCommunityAdapter}=await import('./community-adapter.mjs?v=61b77f5cd77eabb0120d');
    const raw=await loadKitReference(id,options);loaded={...raw,root:raw.g.scene};own(loaded);loaded.adapter=createCommunityAdapter(loaded.root,loaded.manifest,loaded.profile);loaded.adapter.setAxes(Object.fromEntries(Object.keys(loaded.profile.axes).map(a=>[a,0])));
    return finish(loaded,{catalog:'machines/'+id,defaultPalette:'source-native'});
   }

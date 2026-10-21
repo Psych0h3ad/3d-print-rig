@@ -6,9 +6,39 @@ import pathlib
 import shutil
 import urllib.request
 import urllib.parse
+import urllib.error
+import time
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 MAX_SITE_BYTES = 990_000_000
+
+
+def fetch_pinned_body(row, dest):
+    """Retry transient transport failures at the same approved URL only."""
+    request = urllib.request.Request(row['url'], headers={'User-Agent': '3D-Print-Rig', 'Accept-Encoding': 'identity'})
+    for attempt in range(3):
+        try:
+            h = hashlib.sha256()
+            received = 0
+            with urllib.request.urlopen(request, timeout=60) as response, dest.open('wb') as target:
+                final = urllib.parse.urlparse(response.url)
+                if final.scheme != 'https' or final.hostname not in {'github.com', 'objects.githubusercontent.com', 'release-assets.githubusercontent.com', 'psych0h3ad.github.io'}:
+                    raise ValueError('Unapproved delivery redirect: '+row['path'])
+                for b in iter(lambda: response.read(1024*1024), b''):
+                    received += len(b)
+                    if received > row['bytes']:
+                        raise ValueError('Delivery exceeds pinned bytes')
+                    h.update(b)
+                    target.write(b)
+            if received != row['bytes'] or h.hexdigest() != row['sha256']:
+                raise ValueError('Delivery checksum changed: '+row['path'])
+            return
+        except (urllib.error.HTTPError, TimeoutError, ConnectionError) as error:
+            if isinstance(error, urllib.error.HTTPError) and error.code not in {408, 425, 429, 500, 502, 503, 504}:
+                raise
+            if attempt == 2:
+                raise
+            time.sleep((1, 3)[attempt])
 
 def digest(path):
     h = hashlib.sha256()
@@ -96,16 +126,7 @@ def run(root, contract, output, inputs=None, plan_only=False, verify_inputs=Fals
         else:
             if plan_only: continue
             dest=output/row['path'];dest.parent.mkdir(parents=True,exist_ok=True)
-            request=urllib.request.Request(row['url'],headers={'User-Agent':'3D-Print-Rig','Accept-Encoding':'identity'})
-            h=hashlib.sha256();received=0
-            with urllib.request.urlopen(request,timeout=60) as response,dest.open('wb') as target:
-                final=urllib.parse.urlparse(response.url)
-                if (final.scheme!='https' or final.hostname not in {'github.com','objects.githubusercontent.com','release-assets.githubusercontent.com','psych0h3ad.github.io'}): raise ValueError('Unapproved delivery redirect: '+row['path'])
-                for b in iter(lambda: response.read(1024*1024),b''):
-                    received+=len(b)
-                    if received>row['bytes']: raise ValueError('Delivery exceeds pinned bytes')
-                    h.update(b);target.write(b)
-            if received!=row['bytes'] or h.hexdigest()!=row['sha256']: raise ValueError('Delivery checksum changed: '+row['path'])
+            fetch_pinned_body(row, dest)
         verified.append(row['path'])
     if missing: raise ValueError('Missing exact approved inputs: '+json.dumps(missing))
     if not plan_only: (output/'.nojekyll').touch()
