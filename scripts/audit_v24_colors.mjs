@@ -12,11 +12,14 @@ const root=path.resolve(process.argv[2]);
 const read=async f=>JSON.parse(await fs.readFile(path.join(root,f),'utf8'));
 const report=[];
 globalThis.ProgressEvent=class {constructor(type,fields){Object.assign(this,{type},fields)}};
-for(const size of [250,300,350])for(const structure of ['printed','ldo_cnc']){
+async function auditMachine(size,structure){
  const machine=`voron_v24_${size}_${structure}`,dir=`machines/${machine}`;
  const manifest=await read(`${dir}/assembly_manifest.json`),profile=await read(`${dir}/machine_profile.json`);
  let raw;try{raw=await fs.readFile(path.join(root,dir,'model.glb'))}catch{raw=gunzipSync(await fs.readFile(path.join(root,dir,'model.glb.gz')))}
- const {scene}=await new GLTFLoader().parseAsync(raw.buffer.slice(raw.byteOffset,raw.byteOffset+raw.byteLength),'');
+ // A full-buffer slice needlessly duplicates the decoded assembly.
+ const buffer=raw.byteOffset===0&&raw.byteLength===raw.buffer.byteLength?raw.buffer:raw.buffer.slice(raw.byteOffset,raw.byteOffset+raw.byteLength);
+ raw=null;globalThis.gc?.();
+ const {scene}=await new GLTFLoader().parseAsync(buffer,'');
  const records=new Map(manifest.parts.map(p=>[p.key,p])),materials=[];
  scene.traverse(o=>{if(!o.isMesh)return;o.material=Array.isArray(o.material)?o.material.map(m=>m.clone()):o.material.clone();let parent=o,key;while(parent&&!key){key=parent.userData.part_key;parent=parent.parent}assert(records.has(key));for(const material of Array.isArray(o.material)?o.material:[o.material])materials.push({material,row:records.get(key),original:material.color.clone()})});
  const adapter=createV24Adapter(scene,manifest,profile);
@@ -31,5 +34,8 @@ for(const size of [250,300,350])for(const structure of ['printed','ldo_cnc']){
  const counts={};for(const p of manifest.parts){const role=appearanceRole(p)||'protected';counts[role]=(counts[role]||0)+1}
  report.push({machine,parts:manifest.parts.length,materials:materials.length,counts});
  scene.traverse(o=>{if(o.isMesh){o.geometry.dispose();for(const m of Array.isArray(o.material)?o.material:[o.material])m.dispose()}});
+}
+for(const size of [250,300,350])for(const structure of ['printed','ldo_cnc']){
+ await auditMachine(size,structure);globalThis.gc?.();
 }
 console.log(JSON.stringify({passed:true,machines:report},null,2));

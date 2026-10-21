@@ -1,7 +1,7 @@
 import {createDefaultLayout,createDesk,createShelf,createCatalog,applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,placementViolations,deriveScene,worldTransform,validatePlacement,serializeLayout,parseLayout} from './layout-state.mjs?v=958a4aac45cc6c68d570';
 import {createLayoutUI} from './layout-ui.mjs?v=3187b2200b0b2007dae5';
 import {setupLayoutLanguage} from './layout-language.mjs?v=fd6cd27da04c1ae90b86';
-import {readDisplay,saveDisplay,applyDisplay} from '../viewer/display-preferences.mjs?v=56b29930754451d8193c';
+import {readDisplay,saveDisplay,applyDisplay} from '../viewer/display-preferences.mjs?v=8f347468def25922153c';
 
 const storageKey='3d-print-rig-layout-v1',maxFileBytes=2*1024*1024;
 const $=selector=>document.querySelector(selector);
@@ -130,7 +130,7 @@ async function render(){
   document.body.dataset.layoutRendering='loading';message(()=>t(floorplan?'layout.render.planLoading':'layout.render.loading'));
   try{
     // Genuine CAD and its loaders are intentionally absent from the placement path.
-    const loadLayoutMachine=floorplan?undefined:(await import('./layout-machine-loader.mjs?v=ddfcb590e84d86b05d49')).loadLayoutMachine;
+    const loadLayoutMachine=floorplan?undefined:(await import('./layout-machine-loader.mjs?v=4204544ee02bf40cf238')).loadLayoutMachine;
     let lastPercent=0;
     const result=await view.exportImage({loadMachine:loadLayoutMachine,width:1920,signal:operation.signal,onProgress:p=>{
       if(floorplan){message(()=>t('layout.render.planLoading'),false,{renderProgress:null});return;}

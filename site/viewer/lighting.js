@@ -1,6 +1,6 @@
 import {sceneLightingState,discoLightLuminance} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
-import {readDisplay} from './display-preferences.mjs?v=56b29930754451d8193c';
-import {workspaceTask,workspaceListen,onWorkspaceDispose} from './workspace-lifecycle.mjs?v=16928b39409c2ae378c6';
+import {readDisplay} from './display-preferences.mjs?v=8f347468def25922153c';
+import {workspaceTask,workspaceListen,onWorkspaceDispose} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=3a71971c97a749c16228';

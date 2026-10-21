@@ -1,2 +1,2 @@
 // Stable layout integration entry. Family modules stay in viewer/.
-export {loadLayoutMachine,layoutMachineRecipes} from '../viewer/layout-machine-loader.mjs?v=c0d6f383e6b8c174d957';
+export {loadLayoutMachine,layoutMachineRecipes} from '../viewer/layout-machine-loader.mjs?v=f05d98beaf9c66a85944';

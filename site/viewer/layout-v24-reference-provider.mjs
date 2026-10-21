@@ -4,7 +4,7 @@ import {modelURL} from './model-loader.js?v=3a71971c97a749c16228';
 import {readModelBytes} from './model-progress.mjs?v=beaef781095b6f56b290';
 import {externalModelDelivery} from './model-delivery.mjs';
 import {registeredModelDelivery,verifyDeliveredModel} from './model-delivery-policy.mjs';
-import {alphaNativeHostModelOptions} from './trinity-alpha-host-extensions.mjs?v=3cc20f0e75b9053f5464';
+import {alphaNativeHostModelOptions} from './trinity-alpha-host-extensions.mjs?v=49912319e91a0d8752b7';
 import {createV24Adapter} from './v24_matrix_adapter.mjs?v=1f70f3be4ab4a0e74544';
 const siteRoot=new URL('../',import.meta.url);
 const ids=new Set([250,300,350].flatMap(n=>['printed','ldo_cnc'].map(s=>`voron_v24_${n}_${s}`)));

@@ -1,5 +1,5 @@
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
-import {workspaceTask} from './workspace-lifecycle.mjs?v=16928b39409c2ae378c6';
+import {workspaceTask} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 import {probeCheck,probeOptionSuffix} from './probe-checks.js?v=0f70f5c099338db857e7';
 export function stockProbeFit(row){return row.module?{...row,id:row.id,physical_passed:row.physical_passed??null,height_passed:row.height_passed??null,metal_keepout_verified:row.metal_keepout_verified??false}:null}
 export function probeMountSummary(row){

@@ -9,37 +9,37 @@ import {madmaxJointAssetSpec,madmaxJointApplies,captureMadmaxJoint,setMadmaxJoin
 import {madmaxPtfeAssetSpec} from './madmax-ptfe.mjs?v=c0df5309f697af621506';
 import {withRapidoXUhfCover,setRapidoXUhfSurface} from './rapido-x-uhf-cover.mjs?v=8b458475dac84cfcd8c7';
 import {v24NativeDriveMetadata} from './v24-drive-metadata.mjs?v=dbdf9f37cb0849ffc262';
-import {augmentTrinityAlphaHosts,TRINITY_ALPHA_HOST_SOURCE,alphaResetPose,alphaRangeNotice,alphaResetLabel} from './trinity-alpha-host-extensions.mjs?v=3cc20f0e75b9053f5464';
-import {alphaReference,alphaLimits} from './trinity-alpha-installation.mjs?v=cecb6511b5c9120917c3';
-import {augmentTrinitySiboorR2,TRINITY_SIBOOR_SOURCE} from './trinity-alpha-siboor-r2.mjs?v=09fdbb0db91d450f86f7';
-import {augmentTrinityAlpha,TRINITY_ALPHA_SOURCE} from './trinity-alpha-installation.mjs?v=cecb6511b5c9120917c3';
-import {workspaceTask} from './workspace-lifecycle.mjs?v=16928b39409c2ae378c6';
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=90e9c2c7e83e335faacf';
-import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=9e0d9be5b165f7f970db';
+import {augmentTrinityAlphaHosts,TRINITY_ALPHA_HOST_SOURCE,alphaResetPose,alphaRangeNotice,alphaResetLabel} from './trinity-alpha-host-extensions.mjs?v=49912319e91a0d8752b7';
+import {alphaReference,alphaLimits} from './trinity-alpha-installation.mjs?v=81d7619d5b142a88f28f';
+import {augmentTrinitySiboorR2,TRINITY_SIBOOR_SOURCE} from './trinity-alpha-siboor-r2.mjs?v=49ae66cab4bd7ddc6ca3';
+import {augmentTrinityAlpha,TRINITY_ALPHA_SOURCE} from './trinity-alpha-installation.mjs?v=81d7619d5b142a88f28f';
+import {workspaceTask} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
+import {createCatalogRequests} from './catalog-requests.mjs?v=e08161a1108d8bf2b5b3';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=6b7d2db8b256a72e7afe';
+import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=e70b86ad5a29092f3bc9';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=3a71971c97a749c16228';
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import {partKey} from './head-assembly.js';
-import {v24HeadCatalog} from './machine-head-model.mjs?v=5a6a135c0bb89ac5165f';
-import {setupConfigurations} from './configurations.js?v=d71a9eeded484a837216';
+import {v24HeadCatalog} from './machine-head-model.mjs?v=1379ea6c6368036de280';
+import {setupConfigurations} from './configurations.js?v=fd15e80fd15b9974dd8c';
 
-import {loadSiboorRegistration} from './siboor-catalog.mjs?v=04a8283332c2cfe631e3';
-import {stockProbeFit} from './probe-mounts.js?v=a1329a1bc56ae518c00a';
+import {loadSiboorRegistration} from './siboor-catalog.mjs?v=1f7e8c3461137d235afe';
+import {stockProbeFit} from './probe-mounts.js?v=517d139912b21c017b1b';
 
 import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs';
 import {bankPlan} from './changer-bank-model.mjs?v=024cc52a5bbc61da7506';
-import {setupChangerBank} from './changer-bank.js?v=32830c5eaed32a666959';
+import {setupChangerBank} from './changer-bank.js?v=a211c45f87d7c0ed06e3';
 import {contentSHA256,acceptedMountValidation} from './mount-validation.mjs';
 import {acceptedHeadValidation}from './head-validation.mjs';
-import {withHeadAdditions} from './head-additions.mjs?v=28317048846d076205c3';
+import {withHeadAdditions} from './head-additions.mjs?v=526ae5fd744c374d8537';
 import {nativeDeckEvidenceSource,nativeCatalogEvidenceSource,nativeWitnessInputs} from './native-evidence-bridge.mjs?v=5bf756b0b363fe86538c';
 import {loadExternalComponent} from './component-assets.mjs?v=2dbda26b309fbe6c35c8';
 
 const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);
 export async function loadMachineHeadCatalog(machine){return workspaceTask(async()=>{
- const hashes={};
- const get=async name=>{return workspaceTask(async()=>{const r=await fetch('../'+name,{cache:'no-cache'});if(!r.ok)throw Error('ヘッドの取付データを取得できません');const text=await r.text();try{hashes[name]=await contentSHA256(text)}catch{/* Unsupported hashing leaves mounting evidence unverified. */}return JSON.parse(text)});};
+ const {get,pin,hashes}=createCatalogRequests();
  const [rawHeads,additions,registry,bank]=await Promise.all([get('TOOLHEAD_CONFIGURATIONS.json'),get('HEAD_ADDITIONS.json'),get('MACHINE_HEAD_REGISTRATIONS.json'),get('TOOLCHANGER_BANK.json')]);
  const heads=withRapidoXUhfCover(withHeadAdditions(rawHeads,additions));
  if(heads.variants.some(v=>v.eva?.source_machine)){const [community,eva,options]=await Promise.all([get('COMMUNITY_MACHINES_ASSETS.json'),get('EVA_INSTALLATIONS.json'),get('EVA_OPTIONS.json')]);validateEvaOptionsRegistry(options,heads);bindEvaSourceMachines(heads,registry,evaCommunityIndex(community,eva),options);}
@@ -47,11 +47,11 @@ export async function loadMachineHeadCatalog(machine){return workspaceTask(async
  if(machine){
   try{
    const evidence=await get('MOUNT_VALIDATION.json'),target=evidence.machines?.[machine];
-   if(target){registry.probe_travel_validation=null;const [bundle]=await Promise.all([get('ASSET_BUNDLE.json'),...Object.keys({...evidence.input_sha256,...target.input_sha256}).map(get)]);const proof=evidence.model_bundle_sha256===bundle.sha256?null:await get(nativeDeckEvidenceSource.file),catalogProof=hashes[nativeCatalogEvidenceSource.catalog]===evidence.input_sha256?.[nativeCatalogEvidenceSource.catalog]?null:await get(nativeCatalogEvidenceSource.file),inputs=nativeWitnessInputs(evidence,hashes,bundle,machine,'MOUNT_VALIDATION.json',proof,catalogProof);if(inputs)registry.probe_travel_validation=acceptedMountValidation(evidence,inputs.hashes,inputs.bundle,machine)}
+   if(target){registry.probe_travel_validation=null;const [bundle]=await Promise.all([get('ASSET_BUNDLE.json'),...Object.keys({...evidence.input_sha256,...target.input_sha256}).map(pin)]);const proof=evidence.model_bundle_sha256===bundle.sha256?null:await get(nativeDeckEvidenceSource.file),catalogProof=hashes[nativeCatalogEvidenceSource.catalog]===evidence.input_sha256?.[nativeCatalogEvidenceSource.catalog]?null:await get(nativeCatalogEvidenceSource.file),inputs=nativeWitnessInputs(evidence,hashes,bundle,machine,'MOUNT_VALIDATION.json',proof,catalogProof);if(inputs)registry.probe_travel_validation=acceptedMountValidation(evidence,inputs.hashes,inputs.bundle,machine)}
   }catch{/* Missing or stale evidence leaves the original unverified state. */}
   try{
    const evidence=await get('HEAD_VALIDATION.json'),target=evidence.machines?.[machine];
-   if(target){registry.head_witness_validation=null;const[bundle]=await Promise.all([get('ASSET_BUNDLE.json'),...Object.keys({...evidence.input_sha256,...target.input_sha256}).map(get)]);const proof=evidence.model_bundle_sha256===bundle.sha256?null:await get(nativeDeckEvidenceSource.file),catalogProof=hashes[nativeCatalogEvidenceSource.catalog]===evidence.input_sha256?.[nativeCatalogEvidenceSource.catalog]?null:await get(nativeCatalogEvidenceSource.file),inputs=nativeWitnessInputs(evidence,hashes,bundle,machine,'HEAD_VALIDATION.json',proof,catalogProof);if(inputs)registry.head_witness_validation=acceptedHeadValidation(evidence,inputs.hashes,inputs.bundle,machine)}
+   if(target){registry.head_witness_validation=null;const[bundle]=await Promise.all([get('ASSET_BUNDLE.json'),...Object.keys({...evidence.input_sha256,...target.input_sha256}).map(pin)]);const proof=evidence.model_bundle_sha256===bundle.sha256?null:await get(nativeDeckEvidenceSource.file),catalogProof=hashes[nativeCatalogEvidenceSource.catalog]===evidence.input_sha256?.[nativeCatalogEvidenceSource.catalog]?null:await get(nativeCatalogEvidenceSource.file),inputs=nativeWitnessInputs(evidence,hashes,bundle,machine,'HEAD_VALIDATION.json',proof,catalogProof);if(inputs)registry.head_witness_validation=acceptedHeadValidation(evidence,inputs.hashes,inputs.bundle,machine)}
   }catch{/* Missing or stale body findings do not prevent loading the catalog. */}
  }
  heads.assets={...heads.assets,...bank.assets};const board=[xolEmbeddedBoard(await get(heads.base_assets.xol.meta)),sbEmbeddedBoard(await get(heads.base_assets.stealthburner.meta))];

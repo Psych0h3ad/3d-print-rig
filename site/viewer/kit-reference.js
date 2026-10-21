@@ -1,9 +1,9 @@
 import {displacementGcodeSettings,displacementCoordinateNote} from './gcode-machine-bindings.mjs?v=460777c3fc4d1a74bf27';
-import {setupGcodePanel} from './gcode-panel.js?v=a87a296186e146f91e0f';
+import {setupGcodePanel} from './gcode-panel.js?v=66041e969f9190a81416';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
-import {setupSceneDisplay} from './display-preferences.mjs?v=56b29930754451d8193c';
-import {workspaceFrame,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=16928b39409c2ae378c6';
+import {setupSceneDisplay} from './display-preferences.mjs?v=8f347468def25922153c';
+import {workspaceFrame,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=workspace-belts-1';
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import * as THREE from 'three';
@@ -11,10 +11,10 @@ import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {loadKitReference} from './kit-reference-loader.mjs?v=ab4c504dc9c9698eb8e2';
 import {setupMachineNavigation} from './machines.js?v=ab543d6b01637bc5083f';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
-import {setupRenderExport} from './render-export.js?v=52720bd5e5edde8246d8';
-import {setupPublicInfo} from './public-info.js?v=21b8e99a6c39f314de2c';
+import {setupRenderExport} from './render-export.js?v=d1a1fe1ccce6fd167256';
+import {setupPublicInfo} from './public-info.js?v=8144bae1d3b01c089ea7';
 import {createCommunityAdapter} from './community-adapter.mjs?v=b0cc85230bdd2fc9c369';
-import {setupNativeMotionControls} from './native-motion-controls.mjs?v=4dbaf75f2e8d7484973a';
+import {setupNativeMotionControls} from './native-motion-controls.mjs?v=a8a1a3c1d1925a173e3e';
 export async function mount(scope){
 const $=s=>document.querySelector(s),id='fysetc_v24_250_pro',stage=$('#stage');
 setupMachineNavigation(id);setupPublicInfo({includeDownloads:false});

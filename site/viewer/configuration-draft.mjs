@@ -1,4 +1,4 @@
-import {catalogDimensions,collections,resolveVariant} from './configuration-model.js?v=9eba2c08e7c5a8c18e16';
+import {catalogDimensions,collections,resolveVariant} from './configuration-model.js?v=9342ad570006d09f521e';
 
 export const configurationLabels={gantry:'ガントリー',mount:'取付・交換方式',toolhead:'ツールヘッド',extruder:'押出機',hotend:'ホットエンド',probe:'ベッドプローブ',carriage:'キャリッジ',board:'基板',cooling:'冷却'};
 export function configurationLabel(catalog,key,value){

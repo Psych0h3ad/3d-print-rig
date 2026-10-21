@@ -1,11 +1,11 @@
-import {alphaProductNotice} from './trinity-alpha-installation.mjs?v=cecb6511b5c9120917c3';
-import {createConfigurationDraft,configurationLabels,configurationLabel} from './configuration-draft.mjs?v=cb42180e023026a13b45';
-import {setupConfigurationEditor} from './configuration-editor.mjs?v=dc9f2589b0a7347b95ed';
+import {alphaProductNotice} from './trinity-alpha-installation.mjs?v=81d7619d5b142a88f28f';
+import {createConfigurationDraft,configurationLabels,configurationLabel} from './configuration-draft.mjs?v=23ce9b8920289ad38e21';
+import {setupConfigurationEditor} from './configuration-editor.mjs?v=af13b4236d9e9e702a78';
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
-import {workspaceTask,workspaceListen} from './workspace-lifecycle.mjs?v=16928b39409c2ae378c6';
-import {translate} from './i18n.mjs?v=46f8b89371cafe1808a3';
-import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=90e9c2c7e83e335faacf';
-import {catalogDimensions,collections,resolveVariant,choicesFor,choiceChanges,importedVariant,configurationById} from './configuration-model.js?v=9eba2c08e7c5a8c18e16';
+import {workspaceTask,workspaceListen} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
+import {translate} from './i18n.mjs?v=6ae8dc6fda4e382e4f61';
+import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=6b7d2db8b256a72e7afe';
+import {catalogDimensions,collections,resolveVariant,configurationOptions,importedVariant,configurationById} from './configuration-model.js?v=9342ad570006d09f521e';
 import {probeCheck,probeOptionSuffix,headBodyCollisionNotes,headInspectionState} from './probe-checks.js?v=0f70f5c099338db857e7';
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
 import {headWitnessCheck}from './head-validation.mjs?v=bba39d88e1b5b7f848c0';
@@ -27,11 +27,12 @@ export async function setupConfigurations(catalog,install,{presentation='printer
  const updateEditor=()=>{editor?.update({actual,draft,busy,canUndo:!!undoState});onDraft(draft.current)};
  const t=text=>translate(text,document.documentElement?.lang||'ja');
  function menus(v){
+  const options=configurationOptions(catalog,v,ids);
   for(const id of ids){
    const select=$('#'+id+'Config'),direct=document.createElement('optgroup'),linked=document.createElement('optgroup');
    direct.label=t('他の部品を維持');linked.label=t('関連部品も変更');
-   for(const row of choicesFor(catalog,v,id)){
-    const option=document.createElement('option'),candidate=resolveVariant(catalog,{...v,[id]:row.id},id),changes=choiceChanges(catalog,v,id,row.id);
+   for(const {row,candidate,changes} of options.get(id)){
+    const option=document.createElement('option');
     option.value=row.id;option.textContent=configurationLabel(catalog,id,row.id)+(id==='probe'?probeOptionSuffix(candidate):'');
     option.dataset.changes=JSON.stringify(changes);
     option.title=changes.map(k=>t(configurationLabels[k]||k)+': '+t(configurationLabel(catalog,k,candidate[k]))).join(' ／ ');

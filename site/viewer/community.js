@@ -1,4 +1,4 @@
-import {setupGcodePanel} from './gcode-panel.js?v=a87a296186e146f91e0f';
+import {setupGcodePanel} from './gcode-panel.js?v=66041e969f9190a81416';
 import {displacementGcodeSettings,displacementCoordinateNote,unavailableCoordinateNote} from './gcode-machine-bindings.mjs?v=460777c3fc4d1a74bf27';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
@@ -8,18 +8,18 @@ import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
 import {loadCommunity} from './community-loader.mjs?v=c69507eb079fc34e7997';
 import {evaCommunityIndex} from './eva-installations.mjs?v=4dfad49e1f98d4b5b9f2';
 import {applyEvaOptionsProfile,createEvaOptionsController} from './eva-options.mjs?v=cca14d57aef804d9411d';
-import {withHeadAdditions} from './head-additions.mjs?v=28317048846d076205c3';
+import {withHeadAdditions} from './head-additions.mjs?v=526ae5fd744c374d8537';
 import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
 import {communitySchema,validateCommunityState,communityMotionEnabled,communityConfiguration} from './community-state.mjs?v=460b3fa78cc503ddb6e6';
 import {installationFor,installationOptionAvailable} from './ender-mods.mjs?v=5f07c69c7c42ba3f3936';
 import {setupMachineNavigation} from './machines.js?v=ab543d6b01637bc5083f';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
-import {translate,loadLanguage,messageIdFor} from './i18n.mjs?v=46f8b89371cafe1808a3';
-import {rememberDisplayControl} from './display-preferences.mjs?v=56b29930754451d8193c';
-import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=16928b39409c2ae378c6';
+import {translate,loadLanguage,messageIdFor} from './i18n.mjs?v=6ae8dc6fda4e382e4f61';
+import {rememberDisplayControl} from './display-preferences.mjs?v=8f347468def25922153c';
+import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
-import {setupRenderExport} from './render-export.js?v=52720bd5e5edde8246d8';
-import {setupPublicInfo} from './public-info.js?v=21b8e99a6c39f314de2c';
+import {setupRenderExport} from './render-export.js?v=d1a1fe1ccce6fd167256';
+import {setupPublicInfo} from './public-info.js?v=8144bae1d3b01c089ea7';
 const descriptions={
  voron_switchwire_250:'Official Switchwire v1 CAD assembly with Stealthburner, CW2 and Revo Voron.',
  '247zero_beta2_120':'247zero BETA2 · 120 mm / ULW carbon gantry / Crazy Volcano / M4 Bowden',
@@ -47,7 +47,7 @@ const sourceNotices={ '247zero_beta2_120':"BETA2 CAD v43 with original V0.2 skir
 sourceNotices.voron_switchwire_250='Source: VoronDesign/Voron-Switchwire, revision 92cc013ca2af94e6c09950dbe05c0973ee49aa00 (GPL-3.0). Preview movement does not establish physical clearance.';
 import {isSourceAssemblyMachine} from './source-assembly-registry.mjs';
 export async function mount(scope){
- if(isSourceAssemblyMachine(new URLSearchParams(location.search).get('machine')))return (await import('./source-assembly.mjs?v=5de7de554bbe459df425')).mount(scope);
+ if(isSourceAssemblyMachine(new URLSearchParams(location.search).get('machine')))return (await import('./source-assembly.mjs?v=5b3d2c65860df290e9fe')).mount(scope);
  await loadLanguage(document.documentElement.lang);if(scope.disposed)return;
  const $=id=>document.getElementById(id),stage=$('stage'),machine=new URLSearchParams(location.search).get('machine')||'ender3_stock_220',t=v=>translate(v,document.documentElement.lang);
  const status=$('status'),modelNotice=$('sourceModelNotice');

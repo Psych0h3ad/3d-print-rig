@@ -14,11 +14,24 @@ const visible=object=>object.visible&&(!object.parent||visible(object.parent));
 const belongs=(object,scene)=>object===scene||Boolean(object.parent&&belongs(object.parent,scene));
 export function createToolheadLedRig(scene,{identify=identities.sourceLedIdentity,apertureFor=identities.sourceLedAperture,guideFor=identities.sourceOpticalGuide||(()=>null),own=()=>{}}={}){
  const seen=new WeakSet(),emitters=[],guides=[],color=new THREE.Color();
+ const watched=new Set();let discoveryDirty=true;
+ // Orbit, axis motion and RGB samples change transforms/materials, not membership.
+ // Observe each attached node because Object3D child events do not bubble.
+ function watch(object){
+  if(watched.has(object))return;watched.add(object);
+  object.addEventListener('childadded',added);object.addEventListener('childremoved',removed);
+ }
+ function unwatch(object){
+  object.removeEventListener('childadded',added);object.removeEventListener('childremoved',removed);watched.delete(object);
+ }
+ function added(event){discoveryDirty=true;event.child.traverse(watch);}
+ function removed(event){discoveryDirty=true;event.child.traverse(unwatch);}
  function restoreGuide(e){e.optical?.dispose();for(const m of e.materials)m.dispose();e.mesh.material=e.originalMaterial;delete e.mesh.userData.ledGuide;}
  function discover(){
   for(let i=emitters.length-1;i>=0;i--){const e=emitters[i];if(!belongs(e.mesh,scene)){e.mesh.remove(e.light);restoreLedSurface(e.mesh);seen.delete(e.mesh);emitters.splice(i,1);}}
   for(let i=guides.length-1;i>=0;i--){const e=guides[i];if(!belongs(e.mesh,scene)){restoreGuide(e);seen.delete(e.mesh);guides.splice(i,1);}}
   scene.traverse(mesh=>{
+  watch(mesh);
   if(!mesh.isMesh||seen.has(mesh))return;seen.add(mesh);
   const identity=identify(mesh);if(!identity){const guide=guideFor(mesh);if(guide){const originalMaterial=mesh.material,materials=[].concat(originalMaterial).map(m=>m.clone());for(const m of [].concat(originalMaterial))own(m);mesh.material=Array.isArray(originalMaterial)?materials:materials[0];const e={mesh,guide,materials,originalMaterial};mesh.userData.ledGuide={originalMaterial};try{e.optical=prepareOpticalGuideResponse(e,{guideFor,scene});guides.push(e);}catch(error){restoreGuide(e);seen.delete(mesh);throw error;}}return;}
   const aperture=apertureFor(mesh),surface=prepareLedSurface(mesh,{...identity,aperture});own(surface.originalGeometry);for(const m of [].concat(surface.originalMaterial))own(m);
@@ -27,10 +40,10 @@ export function createToolheadLedRig(scene,{identify=identities.sourceLedIdentit
   else{for(let i=0;i<p.count;i++){v.fromBufferAttribute(p,i);center.add(v);front=Math.max(front,v.dot(n));}center.multiplyScalar(1/p.count);center.addScaledVector(n,front-center.dot(n)+.00015);}
   const light=new THREE.PointLight(0xffffff,0,.07,2);light.position.copy(center);light.name='Native_toolhead_LED_'+identity.id;mesh.add(light);light.updateWorldMatrix(true,false);
   emitters.push({mesh,identity,surface,light});
-  });return emitters;
+  });discoveryDirty=false;return emitters;
  }
  function update({power=true,level=TOOLHEAD_LED_DEFAULT_LEVEL,color:mode='white',effect='static',seconds=0}={}){
-  discover();let count=0;const brightness=normalizeToolheadLedLevel(level);
+  if(discoveryDirty)discover();let count=0;const brightness=normalizeToolheadLedLevel(level);
   for(const [i,entry]of emitters.entries()){
    const on=power&&visible(entry.mesh)&&brightness>0;if(visible(entry.mesh))count++;
    const nozzle=entry.identity.kind==='nozzle',sample=ledSample({color:nozzle?'white':mode,effect:nozzle?'static':effect,position:(i%3)/2,seconds});
@@ -46,7 +59,7 @@ export function createToolheadLedRig(scene,{identify=identities.sourceLedIdentit
   }
   return {installed:count,lit:power&&brightness>0?count:0,registered:emitters.length};
  }
- function dispose(){for(const e of emitters){e.mesh.remove(e.light);restoreLedSurface(e.mesh);seen.delete(e.mesh);}for(const e of guides){restoreGuide(e);seen.delete(e.mesh);}emitters.length=0;guides.length=0;}
+ function dispose(){for(const object of watched)unwatch(object);discoveryDirty=true;for(const e of emitters){e.mesh.remove(e.light);restoreLedSurface(e.mesh);seen.delete(e.mesh);}for(const e of guides){restoreGuide(e);seen.delete(e.mesh);}emitters.length=0;guides.length=0;}
  return {discover,update,dispose,emitters,guides};
 }
 
