@@ -34,6 +34,12 @@ Support ongoing maintenance and new features through [GitHub Sponsors](https://g
 
 [Watchtower](https://watchtower3d.com) · [Kickstarter](https://www.kickstarter.com/projects/watchtower3d/watchtower-3d-printer-dashboard-and-farm-management) · [YGK3D on YouTube](https://youtube.com/@ygk3d) · [Introduction video](https://youtu.be/sXo3FI5NJ7Y)
 
+## In the press
+
+Thank you to Kerry Stevenson and Fabbaloo for featuring 3D Print Rig.
+
+[Build Your Own 3D Printer with 3D Print Rig](https://www.fabbaloo.com/news/build-your-own-3d-printer-with-3d-print-rig) — Kerry Stevenson, Fabbaloo, October 20, 2026.
+
 ## More
 
 [CAD wallpapers](https://psych0h3ad.github.io/3d-print-rig/fun/) · [Embed the viewer — alpha test](docs/EMBEDDING.md) · [Documentation](docs/README.md) · [Development](docs/MAINTENANCE.md)

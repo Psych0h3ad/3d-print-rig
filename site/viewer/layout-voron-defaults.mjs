@@ -32,7 +32,7 @@ export async function loadVoronDefaultLayout(id,{signal,onProgress=()=>{}}={}){
  }
  try{
   if(id==='siboor_v24_350'){
-   const {createV24Adapter}=await import('./v24_adapter.mjs?v=2c7e8b33fb449a513a48'),{alphaNativeHostModelOptions}=await import('./trinity-alpha-host-extensions.mjs?v=1fd018793ccac7ad1091'),{ProbeMountSelection}=await import('./probe-mounts.js?v=a1329a1bc56ae518c00a');
+   const {createV24Adapter}=await import('./v24_adapter.mjs?v=2c7e8b33fb449a513a48'),{alphaNativeHostModelOptions}=await import('./trinity-alpha-host-extensions.mjs?v=3cc20f0e75b9053f5464'),{ProbeMountSelection}=await import('./probe-mounts.js?v=a1329a1bc56ae518c00a');
    manifest=await json('machines/'+id+'/assembly_manifest.json');profile=await json('machines/'+id+'/machine_profile.json');
    const base=await asset({meta:'machines/'+id+'/assembly_manifest.json',glb:'machines/'+id+'/model.glb',modelOptions:alphaNativeHostModelOptions(id)}),adapter=createV24Adapter(base.root,manifest,profile),probes=await json('V24_PROBES.json');
    if(probes.probes[0].id!=='stock_panasonic'||probes.probes[0].module)throw Error('V24 native default probe changed');
@@ -40,7 +40,7 @@ export async function loadVoronDefaultLayout(id,{signal,onProgress=()=>{}}={}){
    adapter.setFlexibleVisible(true);adapter.setEnclosureVisible(true);adapter.setPalette({});const out=adapter.setPose(Object.fromEntries(['x','y','z'].map((a,i)=>[a,profile.display_reference_xyz_mm[i]])));
    if(!out.atReference)throw Error('V24 native reference mismatch');configuration=(profile.available_configurations?.[0]?.id||'stock')+'__stock_panasonic';details={reference:profile.display_reference_xyz_mm,nativeHead:true,defaultDiscoInstalled:false};
   } else if(/^voron_trident_(250|300|350)$/.test(id)){
-   const {createTridentMotion}=await import('./trident-motion.mjs?v=77312c6bfbf6c7e7563d'),{headPlan}=await import('./head-assembly.js?v=workspace-belts-1'),{baselineReference,baselineLimits,baselineResetPose,NATIVE_BASELINE_SOURCE}=await import('./baseline-native-datum.mjs?v=b86b6ff7d71bab3c1117'),{stockGantryVisibility}=await import('./monolith-machine.js?v=67e382fd92f20ba2ff0c');
+   const {createTridentMotion}=await import('./trident-motion.mjs?v=77312c6bfbf6c7e7563d'),{headPlan}=await import('./head-assembly.js?v=workspace-belts-1'),{baselineReference,baselineLimits,baselineResetPose,NATIVE_BASELINE_SOURCE}=await import('./baseline-native-datum.mjs?v=b86b6ff7d71bab3c1117'),{stockGantryVisibility}=await import('./monolith-machine.js?v=9e0d9be5b165f7f970db');
    profile=await json('machines/'+id+'/machine_profile.json');const catalog=await json('machines/'+id+'/configurations.json'),heads=await json('TOOLHEAD_CONFIGURATIONS.json'),datum=await json(NATIVE_BASELINE_SOURCE.file),v=structuredClone(catalog.variants[0]);
    const binding=datum.baselines.find(r=>r.machine===id&&r.source_variant===v.id);if(!binding)throw Error('Missing accepted native default head datum');v.native_reference_92=binding;v.fit={...v.fit,nozzle_mm:[...binding.nozzle_native_machine_mm]};configuration=v.id;
    const motion=createTridentMotion(profile),base=await asset(profile.base_assets);manifest=base.meta;motion.register(base.root,base.meta);
@@ -56,7 +56,7 @@ export async function loadVoronDefaultLayout(id,{signal,onProgress=()=>{}}={}){
    const reset=baselineResetPose(reference,drop),out=motion.setPose(Object.fromEntries(['x','y','z'].map((a,i)=>[a,reset[i]])),{flexibleVisible:true,toolheadReference:true});visibility.update();
    details={reference,reset,bedReferenceDrop:drop,pose:out,headPlan:{base:plan.base,translation:plan.translation,hidden:[...plan.hidden],modules:plan.modules},nativeDatum:binding,defaultDiscoInstalled:false};
   } else if(/^siboor_trident_(300|350)$/.test(id)){
-   const {loadSiboorAssembly}=await import('./siboor-machine.mjs?v=ec402bd370a16cbe6909'),{createBedChain}=await import('./bed-chain.mjs?v=5c6ddd46ac13e6974c73'),{setupFlexible}=await import('./flexible.js?v=37fd0f2d1bdfe5ac356f'),{createPrinterBelts}=await import('./printer-gantry.mjs');
+   const {loadSiboorAssembly}=await import('./siboor-machine.mjs?v=133ef77e656fc6f08f8a'),{createBedChain}=await import('./bed-chain.mjs?v=5c6ddd46ac13e6974c73'),{setupFlexible}=await import('./flexible.js?v=37fd0f2d1bdfe5ac356f'),{createPrinterBelts}=await import('./printer-gantry.mjs');
    const [meta,routes,g,endstops,colors,catalog]=await loadSiboorAssembly(id,options);manifest=meta;root.add(g.scene);g.scene.add(endstops.scene);cloneMaterials(g.scene);profile={machine_id:id,source:meta.source};
    const v=catalog.variants[0];if(v.gantry!=='siboor_awd'||v.toolhead!=='stealthburner'||v.hotend!=='rapido2_uhf'||v.extruder!=='cw2'||v.modules.length||v.head_translation_mm.some(x=>x!==0))throw Error('SIBOOR native default recipe changed');configuration=v.id;
    const rows=new Map(meta.parts.map(p=>[String(p.key),p])),parts=new Map(),meshes=[];const removed=new Set(v.removed_stock_keys);

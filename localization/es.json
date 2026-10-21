@@ -10893,6 +10893,14 @@
     "ui.mod_companion_changed": {
       "source_revision": "9ef0dd2766b4bcc60c46",
       "text": "La selección de piezas complementarias cambió con la configuración. Revisa las piezas que deseas usar."
+    },
+    "ui.press_coverage": {
+      "source_revision": "6302d14780b313895ef3",
+      "text": "En los medios"
+    },
+    "ui.press_fabbaloo_thanks": {
+      "source_revision": "d78693a4d9798f6891cf",
+      "text": "Gracias a Kerry Stevenson y a Fabbaloo por presentar 3D Print Rig."
     }
   }
 }

@@ -1,11 +1,19 @@
 import {workspaceTask,workspaceListen,WorkspaceMutationObserver} from './workspace-lifecycle.mjs?v=16928b39409c2ae378c6';
 import {setupProductDirectory} from './product-links.js?v=ba0e9d9c9326819ea0fb';
-import {assemblyDownloadEntries,mountStepDownloadLibrary} from './step-downloads.mjs?v=019565642321a2857cfa';
-import {messageSource} from './i18n.mjs?v=271dfe88c90dacc7bad4';
+import {assemblyDownloadEntries,mountStepDownloadLibrary} from './step-downloads.mjs?v=9aa5d386a205e14fdc67';
+import {messageSource} from './i18n.mjs?v=46f8b89371cafe1808a3';
 const $=s=>document.querySelector(s);
 function dialog(id,title){const d=document.createElement('dialog');d.id=id;d.innerHTML=`<div class="dialog-head"><h2>${title}</h2><button class="close" aria-label="閉じる"></button></div><div class="dialog-body"></div>`;document.body.append(d);d.querySelector('.close').onclick=()=>d.close();return d}
 const node=(tag,text)=>{const n=document.createElement(tag);n.textContent=text;return n};
 const link=(text,url)=>{const a=node('a',text);a.href=url;a.target='_blank';a.rel='noopener';return a};
+export function appendPressThanks(container){
+ const section=node('section','');section.className='source-item press-reference';
+ const heading=node('h3',messageSource('ui.press_coverage'));heading.dataset.i18nId='ui.press_coverage';
+ const thanks=node('p',messageSource('ui.press_fabbaloo_thanks'));thanks.dataset.i18nId='ui.press_fabbaloo_thanks';
+ const article=link('Build Your Own 3D Printer with 3D Print Rig','https://www.fabbaloo.com/news/build-your-own-3d-printer-with-3d-print-rig');article.setAttribute('data-i18n','off');
+ const byline=node('p','Kerry Stevenson · Fabbaloo · 2026-10-20');byline.setAttribute('data-i18n','off');
+ section.append(heading,thanks,article,byline);container.append(section);return section;
+}
 export async function setupPublicInfo({includeDownloads=true,machineId=null}={}){return workspaceTask(async()=>{
  setupProductDirectory();
  const sources=dialog('sourcesDialog','出典・ライセンス'),downloads=dialog('downloadsDialog',messageSource('ui.step_downloads'));
@@ -15,6 +23,7 @@ export async function setupPublicInfo({includeDownloads=true,machineId=null}={})
  downloadButton.hidden=false;downloadButton.disabled=true;downloadButton.textContent='STEP';downloadButton.setAttribute('aria-label',messageSource('ui.step_downloads'));downloadButton.setAttribute('title',messageSource('ui.step_downloads'));downloadButton.setAttribute('aria-haspopup','dialog');
  const sb=sources.querySelector('.dialog-body'),db=downloads.querySelector('.dialog-body');
  sb.append(node('p','コミュニティCADを組み合わせた非公式ビューアーです。各データの作者・ライセンスは個別に適用されます。'));
+ appendPressThanks(sb);
  let entries=[];
  const currentMachine=()=>document.body.dataset.workspaceKind==='printer'?(document.body.dataset.machineId||machineId):null;
  const openDownloads=()=>{mountStepDownloadLibrary(db,entries,currentMachine());const credits=node('button','出典・ライセンス');credits.onclick=()=>{downloads.close();sources.showModal()};db.append(credits);downloads.showModal()};
