@@ -1,4 +1,9 @@
 // Source-CAD browsing only. These choices do not register mounts on the machine.
+export function resolveComponentItem(items,id){
+ const item=id===null||id===undefined?items[0]:items.find(item=>item.id===id);
+ if(!item)throw Error('未登録の部品です');
+ return item;
+}
 export const v0ModCategories = [
   {id:'v0-head',label:'V0 · ツールヘッド',mods:['dragon_burner_v8','rapid_burner_v8','mailbox_v5','official_bowden']},
   {id:'v0-mount',label:'V0 · マウント・センサー',mods:['official_hotend_mounts','official_adxl_mounts','xcarriage_inserts','zeroclick']},

@@ -8,11 +8,11 @@ import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=3a71971c97a749c16228';
 import {loadExternalComponent} from './component-assets.mjs?v=2dbda26b309fbe6c35c8';
-import {setupPublicInfo} from './public-info.js?v=96fbc2218efdeb81fbdc';
+import {setupPublicInfo} from './public-info.js?v=21b8e99a6c39f314de2c';
 import {setupRenderExport} from './render-export.js?v=52720bd5e5edde8246d8';
 import {partNodes,selectParts,visibleBounds} from './component-selection.js?v=workspace-belts-1';
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
-import {componentCategories,componentCategory,componentViews,resolveComponentView,componentViewKeys} from './v0-mod-library.mjs?v=ddeeafeb04155ab0838b';
+import {componentCategories,componentCategory,componentViews,resolveComponentView,componentViewKeys,resolveComponentItem} from './v0-mod-library.mjs?v=abb4fafb1e86da0d3633';
 import {frameHeadBounds} from './head-camera.mjs';
 import {partKey} from './head-assembly.js';
 import {hasMicroSwissSourceShroud,createSourceShroudPalette,mountSourceShroudPalette} from './microswiss-source-shroud-palette.mjs?v=f014e574106d0f8792bc';
@@ -78,9 +78,10 @@ function componentOptions(category,selected){
 }
 async function install(id,initial=false){return workspaceTask(async()=>{
  if(busy)return;
- const item=catalog.items.find(p=>p.id===id);if(!item)throw Error('未登録の部品です');
+ const item=resolveComponentItem(catalog.items,id);
  const previous=currentItem;busy=true;
  for(const selector of ['#component','#componentCategory','#componentView','#componentPart'])$(selector).disabled=true;
+ $('#openRender').disabled=true;
  $('#loading').textContent='CADを読み込み中…';$('#loading').hidden=false;document.body.dataset.ready='false';
  try{
   const selectable=item.id.startsWith('v0mod_')||item.select_parts;
@@ -115,17 +116,22 @@ async function install(id,initial=false){return workspaceTask(async()=>{
   document.body.dataset.ready='true';dirty=true;
  }catch(e){
   if(previous){sourcePalette.select(cached.get(previous.module).sourceShroudPalette);currentItem=previous;current=cached.get(previous.module).root;current.visible=true;componentOptions(componentCategory(previous),previous.id);document.body.dataset.ready='true'}
+  else document.body.dataset.ready='error';
   $('#loading').textContent=e.message;$('#componentStatus').textContent=previous?'読込に失敗しました。直前の部品を表示中。':'読込に失敗しました';console.error(e);
- }finally{busy=false;for(const selector of ['#component','#componentCategory','#componentView','#componentPart'])$(selector).disabled=false}
+ }finally{busy=false;$('#openRender').disabled=!current;for(const selector of ['#component','#componentCategory','#componentView','#componentPart'])$(selector).disabled=false}
 });}
 for(const id of ['iso','front','side'])$('#'+id).onclick=()=>{view=id;fit()};$('#fit').onclick=fit;
-setupPublicInfo({includeDownloads:false});setupRenderExport({renderer,scene,camera,controls,name:'3D_Print_Rig_Component',afterRender:()=>{dirty=true}});
+setupPublicInfo({includeDownloads:false});setupRenderExport({renderer,scene,camera,controls,name:'3D_Print_Rig_Component',beforeRender:()=>{if(!current||busy)throw Error('原本の部品がありません')},afterRender:()=>{dirty=true}});
+$('#openRender').disabled=true;
 try{const r=await fetch('../COMPONENT_LIBRARY.json?v=trident-clearance-35',{cache:'no-cache'});if(!r.ok)throw Error('部品カタログを取得できません');catalog=await r.json();
  for(const category of componentCategories.filter(c=>catalog.items.some(p=>componentCategory(p)===c.id)))$('#componentCategory').append(option(category.id,category.label));
  $('#component').onchange=e=>install(e.target.value);
  $('#componentCategory').onchange=e=>{const next=catalog.items.find(p=>componentCategory(p)===e.target.value);install(categoryHistory.get(e.target.value)||next.id)};
- const wanted=new URLSearchParams(location.search).get('component');await install(catalog.items.some(p=>p.id===wanted)?wanted:catalog.items[0].id,true);
-}catch(e){$('#loading').textContent=e.message;console.error(e)}resize();
+ // Keep explicit shared-link identities: an unknown ID must never show another CAD.
+ // Populate recovery controls before validating, without selecting or loading a model.
+ const first=catalog.items[0];if(first){componentOptions(componentCategory(first),first.id);const empty=option('','—');empty.disabled=true;empty.selected=true;$('#component').prepend(empty);$('#component').value='';$('#component').disabled=false;$('#componentCategory').disabled=false}
+ const wanted=new URLSearchParams(location.search).get('component');await install(resolveComponentItem(catalog.items,wanted).id,true);
+}catch(e){$('#loading').textContent=e.message;$('#componentStatus').textContent=e.message;document.body.dataset.ready='error';console.error(e)}resize();
 
 setupSceneDisplay(scene,renderer,camera,scope,THREE);
 }

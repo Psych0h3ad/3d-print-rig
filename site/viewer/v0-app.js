@@ -7,7 +7,7 @@ import {createV0Installations,v0Slots,v0TophatMaxAngle} from './v0-installations
 import {v0ConfigurationSchema,stockV0Mods,validateV0State,readV0ModsURL,v0ModsURL,createV0StateRestorer} from './v0-state.mjs?v=d07ccd54c3039984cc57';
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
 import {loadExternalComponent} from './component-assets.mjs?v=2dbda26b309fbe6c35c8';
-import {v0ModCategories,componentCategory} from './v0-mod-library.mjs?v=ddeeafeb04155ab0838b';
+import {v0ModCategories,componentCategory} from './v0-mod-library.mjs?v=abb4fafb1e86da0d3633';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=workspace-belts-1';
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import * as THREE from 'three';
@@ -18,7 +18,7 @@ import {createV0Adapter} from './v0_adapter.mjs?v=4ee2ec34955631397cf3';
 import {setupMachineNavigation} from './machines.js?v=ab543d6b01637bc5083f';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=52720bd5e5edde8246d8';
-import {setupPublicInfo} from './public-info.js?v=96fbc2218efdeb81fbdc';
+import {setupPublicInfo} from './public-info.js?v=21b8e99a6c39f314de2c';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=a87a296186e146f91e0f';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
 export async function mount(scope){
