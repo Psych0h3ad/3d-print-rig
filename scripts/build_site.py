@@ -403,6 +403,10 @@ def main():
     subprocess.run(['node', '--max-old-space-size=256',
                     str(ROOT/'scripts/audit_fox_ab_fan_assets.mjs'),
                     str(target), str(target/'review/fox-ab-fan-assets.json')], cwd=ROOT, check=True)
+    subprocess.run(['node', '--max-old-space-size=384', '--expose-gc',
+                    '--experimental-loader', './scripts/source-assembly-test-loader.mjs',
+                    str(ROOT/'scripts/audit_ender_bowden.mjs'), '--site', str(target),
+                    '--report', str(target/'review/ender-bowden.json')], cwd=ROOT, check=True)
     # Check the complete page graph after generated inputs (including support
     # data) exist, before the artifact can be uploaded.
     print(json.dumps(verify_entrypoints(target, input_map)))

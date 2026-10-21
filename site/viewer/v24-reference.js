@@ -1,5 +1,5 @@
 import {contentSHA256} from './mount-validation.mjs';
-import {alphaResetPose,alphaHostContext,alphaNozzlePosition,alphaNativeHostModelOptions} from './trinity-alpha-host-extensions.mjs?v=49912319e91a0d8752b7';
+import {alphaResetPose,alphaHostContext,alphaNozzlePosition,alphaNativeHostModelOptions} from './trinity-alpha-host-extensions.mjs?v=1ffc3b1415e5c514eb26';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {setupSceneDisplay} from './display-preferences.mjs?v=8f347468def25922153c';
@@ -14,9 +14,9 @@ import {createV24Adapter} from './v24_matrix_adapter.mjs?v=1f70f3be4ab4a0e74544'
 import {setupMachineNavigation} from './machines.js?v=ab543d6b01637bc5083f';
 import {setupGrid} from './grid-control.js';
 import {setupRenderExport} from './render-export.js?v=d1a1fe1ccce6fd167256';
-import {setupPublicInfo} from './public-info.js?v=8144bae1d3b01c089ea7';
+import {setupPublicInfo} from './public-info.js?v=f5f7c5666c87b63ecfe8';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=66041e969f9190a81416';
-import {setupV24MachineHeads} from './machine-heads.js?v=39687545a8d8e6576d4e';
+import {setupV24MachineHeads} from './machine-heads.js?v=05dd5923ad4839f795b8';
 export async function mount(scope){
 const $=s=>document.querySelector(s),ids=[250,300,350].flatMap(size=>['printed','ldo_cnc'].map(structure=>`voron_v24_${size}_${structure}`));
 const wanted=new URLSearchParams(location.search).get('machine'),id=ids.includes(wanted)?wanted:ids[0];

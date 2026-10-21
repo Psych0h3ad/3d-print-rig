@@ -1,4 +1,4 @@
-import {formatMessage} from '../i18n.mjs?v=6ae8dc6fda4e382e4f61';
+import {formatMessage} from '../i18n.mjs?v=8365995d704abe3ced99';
 export async function fetchPinned(url,expected,signal,onProgress=()=>{}){
  if(!Number.isSafeInteger(expected.bytes)||expected.bytes<=0||expected.bytes>128*1024*1024)throw Error('Asset exceeds the 128 MiB transfer budget');
  if(signal?.aborted)throw new DOMException('Canceled','AbortError');

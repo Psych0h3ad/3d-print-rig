@@ -7123,8 +7123,8 @@
       "text": "공식 출력 부품 AWD v1.2를 표시합니다. 원본 CAD에는 XY 벨트 일부만 있으며 CPAP 호스는 포함되지 않습니다."
     },
     "ui.community.ender_source": {
-      "source_revision": "d60111b1d84b9f4754b0",
-      "text": "Bowden 경로는 원본 D4 튜브 단면과 피팅 위치를 사용한 450 mm 표시용 경로입니다. 원본 CAD에는 전체 튜브가 포함되지 않습니다."
+      "source_revision": "651e5c0f161b6333fa53",
+      "text": "Bowden 경로는 원본 D4 튜브 단면과 피팅 위치를 사용한 550 mm 표시용 경로입니다. 원본 CAD에는 전체 튜브가 포함되지 않습니다."
     },
     "fixed_sc.system": {
       "source_revision": "1b835c0348c171bed09d",

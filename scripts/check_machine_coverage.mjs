@@ -9,12 +9,12 @@ const suites={
  doomcube:['community_state','doomcube'],
  tictac:['community_state','requested_assemblies','native_motion_profiles'],the100:['community_state','requested_assemblies','native_motion_profiles'],rook:['community_state','requested_assemblies','native_motion_profiles'],satsuma:['community_state','requested_assemblies','native_motion_profiles'],
  sovol_sv08:['community_state','sovol_reference','native_motion_profiles'],
- lh_stinger:['stinger'],aether:['community_state'],vminion:['community_state','eva_options'],snakeoil_xy:['community_state'],snakeoil_3s:['community_state'],proosaxy:['community_state'],mercury:['community_state','mercury_tubes'],vzbot:['community_state'],ender3:['community_state'],sboom:['community_state'],
+ lh_stinger:['stinger'],aether:['community_state'],vminion:['community_state','eva_options'],snakeoil_xy:['community_state'],snakeoil_3s:['community_state'],proosaxy:['community_state'],mercury:['community_state','mercury_tubes'],vzbot:['community_state'],ender3:['community_state','ender_bowden','ender_installation_selection'],sboom:['community_state'],
  switchwire:['community_state','switchwire_catalog','chain_moving_anchor'],
  positron:['positron_state','positron_storage'],annex_k1:['machine_navigation','native_motion_profiles'],annex_k2:['machine_navigation','native_motion_profiles'],annex_k3:['machine_navigation','native_motion_profiles'],remorph:['machine_navigation'],crossant:['crossant_state'],vcore4:['ratrig'],vcore3:['community_state','eva_installations','eva_options'],
  trident:['rear_enclosures','trident_motion','bed_chain','printer_gantry','machine_heads','changer_bank','probe_clearance'],v24:['rear_enclosures','v24_adapter','v24_belts','printer_gantry','machine_heads','changer_bank','probe_clearance'],v0:['v0_belts','v0_installations','v0_mod_selection','v0_native_installed_gate','v0_assembly','v0_assembly_app'],micron:['micron_adapter','micron_belts','micron_tubes']
 };
-const required=['viewer_mesh_quality_scope','appearance_roles','palette_controller','scene_lighting','lighting_animation','export_camera','orbit_touch','responsive_camera','selection_regressions','workspace_runtime','multilingual','machine_selection','model_progress','device_memory','siboor_sizes'];
+const required=['flex_route_quality','viewer_mesh_quality_scope','appearance_roles','palette_controller','scene_lighting','lighting_animation','export_camera','orbit_touch','responsive_camera','selection_regressions','workspace_runtime','multilingual','machine_selection','model_progress','device_memory','siboor_sizes'];
 const machines=machineChoices.filter(m=>m.available!==false);
 assert.equal(new Set(machines.map(m=>m.id)).size,machines.length);
 for(const machine of machines){

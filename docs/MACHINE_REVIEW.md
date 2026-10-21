@@ -142,7 +142,7 @@ generated support index.
 | Fasteners and mounting | Nuts inside frame slots; correct screw axis and engagement; rail screws, rail blocks, changer receivers and docks registered to their mating features. |
 | Head companion parts | Source-specific cover length, mounts/spacers, ducts/fans, LEDs, nozzle/probe and fasteners form the correct complete variant; no obsolete, duplicate or detached companions through switching, reset and save/load. Review actual standalone and installed assets and native mating features. |
 | Motion | Min/max/intermediate positions, reverse motion and exact reset; correct bed/gantry/rail/sensor groups; all supported gantries and changer modes. |
-| Flexible parts | Belts, chain links, PTFE and CAN remain visible and finite; endpoints stay in actual fittings; frame/bed clearance; belt widths, teeth and clamp cuts checked separately. |
+| Flexible parts | Belts, chain links, PTFE and CAN remain visible and finite; endpoints stay in actual fittings; frame/bed clearance; belt widths, teeth and clamp cuts checked separately. PTFE also requires fitting-axis tangency, a declared bend-radius threshold, continuous joins, no tight fold or nonadjacent tube contact, and a consistent service length. |
 | Clearance | Nozzle versus bed; probe versus nozzle/hotend/mount; fans and ducts; parked tools versus bed travel; folding and hand-carried parts through every transition. |
 | Mesh quality | Finite vertices, valid normals and bounds; no lost geometry or rendering glitches; built-in supports removed only with documented evidence and notice. |
 | Materials | Every printed base/accent role responds to palettes; hardware materials stay correct; aluminum/CNC options and transparent panels. Test distinct contrasting palettes, reverse changes, native reset and movement after recoloring on every applicable size. Check anonymous source leaves against the printed-part library. A printed parent assembly does not classify its purchased descendants. Shared GLB materials must be isolated. Record actual model and material coverage, not only role fixtures. |
@@ -154,6 +154,19 @@ Fixed endpoints and final poses are insufficient. Adaptively sample fast
 transitions, using mesh or solid movement to choose the step size. Separate
 authored contacts and intended threaded engagement from new body interference.
 Use native solids for physical clearance; boxes are candidate filters only.
+
+For PTFE, inspect the complete centerline between the fittings at axis limits,
+intermediate and reversed poses, and during configuration changes and reset.
+Check the curve and the exported tube, including every segment join. A finite
+curve of the right length can still contain a kink, a hairpin or a self-contact.
+Record the minimum measured bend radius and its location, the review threshold
+and its source or declared preview assumption. A review threshold is not a
+manufacturer's mechanical rating. Check actual model triangles for route/body
+contact after broad-phase filtering, with only named fitting engagement regions
+excluded. Record discretization error, tested poses and unresolved native-solid
+clearance separately; sampled triangle clearance does not prove continuous
+physical clearance. `audit_ender_bowden.mjs` applies these checks to the Ender-3
+Stock/HYDRA and leadscrew/Belted Z installations during release builds.
 
 Purchased CAD may use construction colors that differ from the product. Check
 the exact manufacturer's appearance before treating white, green or other CAD

@@ -37,9 +37,15 @@ Printed mounting lips and pilot seats have recorded clearance adaptations;
 purchased hardware retains its native dimensions. Its native-solid mating and
 continuous added-body travel checks are recorded in [the installation review](HYDRA_ENDER3_QA.json).
 Stock/Belted Z and attached KlackEnder combinations are recorded separately in
-[the Ender-3 Mod review](ENDER3_MODS_QA.json). The viewer adds a 450 mm Bowden route assumption,
-attached to the measured source connector ports and checked separately during
-Stock/Belted Z movement. The route does not model tube strain or connector internals.
+[the Ender-3 Mod review](ENDER3_MODS_QA.json). The viewer adds a 550 mm Bowden route assumption,
+attached to the measured source connector ports. Round bends and separated
+upright legs keep the service loop open when the head moves; the preview is checked
+against a declared 30 mm minimum bend-radius threshold. Release checks include
+fitting directions, length, joins, self-contact and sampled clearance from the
+actual Stock/HYDRA and Belted Z meshes. The threshold is a display assumption,
+not a tube manufacturer's rating. The route does not model tube strain or
+connector internals, and sampled mesh clearance is not continuous native-solid
+clearance.
 Other HYDRA plates, hotends, blower sizes and the author's WIP BLTouch
 plate remain individual-part references until their assemblies are registered.
 Airflow, print strength, manufacturing tolerances and automatic tool changing

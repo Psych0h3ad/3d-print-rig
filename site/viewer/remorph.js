@@ -10,7 +10,7 @@ import {setupMachineNavigation} from './machines.js?v=ab543d6b01637bc5083f';
 import {workspaceFrame,WorkspaceResizeObserver,workspaceListen} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {setupRenderExport} from './render-export.js?v=d1a1fe1ccce6fd167256';
-import {setupPublicInfo} from './public-info.js?v=8144bae1d3b01c089ea7';
+import {setupPublicInfo} from './public-info.js?v=f5f7c5666c87b63ecfe8';
 export async function mount(scope){
  const $=id=>document.getElementById(id),id='remorph_beta1_307',stage=$('stage');
  const renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));stage.append(renderer.domElement);

@@ -1,16 +1,30 @@
-import {Vector3,CurvePath,LineCurve3,CubicBezierCurve3,TubeGeometry,Mesh,MeshStandardMaterial} from './vendor-r180/three.module.js';
+import {Vector3,Curve,CurvePath,LineCurve3,TubeGeometry,Mesh,MeshStandardMaterial} from './vendor-r180/three.module.js';
 import {communityConfiguration} from './community-state.mjs?v=460b3fa78cc503ddb6e6';
 
 // Centers and directions of the actual native pneumatic-joint end faces.
 // Native Creality D4 tube STEP supplies OD4/ID2, but its 50 mm sample is not
-// an installed hose. The viewer uses an explicit 450 mm service-length preview.
+// an installed hose. The viewer uses an explicit 550 mm service-length preview.
 export const enderBowdenSpec={
- length_mm:450,radius_mm:2,
+ length_mm:550,radius_mm:2,minimum_bend_radius_mm:30,lead_bend_radius_mm:34,minimum_loop_width_mm:80,
  head_key:'00131',head:[6.112061443398004,211.388931744161,63.6999999999979],
  stock_key:'00090',stock:[-84.17249999999962,241.91036372880058,-30.29700000000281],
  belted_key:'belted_565',belted:[-85.06495622543252,229.247694852173,-28.323526418304]
 };
 const add=(a,b)=>a.map((v,i)=>v+b[i]);
+// A round crown keeps the same bend radius when the service loop gets taller.
+// Raising a narrow Bezier loop instead would pinch its crown into a hairpin.
+class ServiceLoopCrown extends Curve{
+ constructor(center,radial,up,angle=Math.PI){super();this.center=center;this.radial=radial;this.up=up;this.angle=angle;}
+ getPoint(t,target=new Vector3()){return target.copy(this.center).addScaledVector(this.radial,Math.cos(this.angle*t)).addScaledVector(this.up,Math.sin(this.angle*t));}
+ getTangent(t,target=new Vector3()){return target.copy(this.radial).multiplyScalar(-Math.sin(this.angle*t)).addScaledVector(this.up,Math.cos(this.angle*t)).normalize();}
+ getLength(){return this.angle*this.radial.length();}
+}
+class ReversedBend extends Curve{
+ constructor(curve){super();this.curve=curve;}
+ getPoint(t,target=new Vector3()){return this.curve.getPoint(1-t,target);}
+ getTangent(t,target=new Vector3()){return this.curve.getTangent(1-t,target).negate();}
+ getLength(){return this.curve.getLength();}
+}
 function usesBowden(configuration){
  const mode=configuration.filament_path??'bowden';
  if(!['bowden','direct'].includes(mode))throw Error('Unknown Ender-3 filament path');
@@ -25,28 +39,46 @@ export function enderBowdenRoute(axes,profile,configuration='stock'){
  const head=add(add(s.head,[axes.x,axes.z,0]),c.rest_offsets_mm?.[s.head_key]||[0,0,0]);
  const extruder=add(add(belted?s.belted:s.stock,[0,axes.z,0]),c.rest_offsets_mm?.[belted?s.belted_key:s.stock_key]||[0,0,0]);
  const point=p=>new Vector3(...profile.basis.map(row=>row.reduce((v,n,i)=>v+n*(p[i]-profile.origin_mm[i]),0)/1000));
- const exit=add(extruder,[25,0,0]),entry=add(head,[0,25,0]);
- const crossing=[exit[0]+20,exit[1],32],lift=[exit[0]+20,260+axes.z,32];
- function make(height){
-  const high=[entry[0],Math.max(exit[1],entry[1])+height,entry[2]+40];
-  const path=new CurvePath();
-  path.add(new LineCurve3(point(extruder),point(exit)));
-  // Cross the top-frame plane below its lower face, then rise in front
-  // of it while still behind the HYDRA mounting plate. These two distinct
-  // turns keep the moving cable clip out of the tube's swept volume.
-  path.add(new CubicBezierCurve3(point(exit),point(add(exit,[20,0,0])),point(add(crossing,[0,-8,0])),point(crossing)));
-  path.add(new CubicBezierCurve3(point(crossing),point(add(crossing,[0,8,0])),point(add(lift,[0,-8,0])),point(lift)));
-  path.add(new CubicBezierCurve3(point(lift),point(add(lift,[0,30,0])),point(add(high,[0,-20,0])),point(high)));
-  // Return along the actual hotend fitting's X coordinate, through the
-  // plate's tube opening, instead of crossing the clip on its right side.
-  path.add(new CubicBezierCurve3(point(high),point(add(high,[0,20,0])),point(add(entry,[0,40,0])),point(entry)));
-  path.add(new LineCurve3(point(entry),point(head)));return path;
+ const bend=s.lead_bend_radius_mm,entry=add(head,[0,55,0]),exit=add(extruder,[8,0,0]);
+ // Cross the frame at a fixed interior X, then rise in front of it. The return
+ // enters the real tube opening vertically above HYDRA's plate and fasteners.
+ const corner=add(exit,[bend,0,bend]),rise=add(corner,[0,bend,bend]);
+ const arc=(center,radial,up,angle)=>new ServiceLoopCrown(point(center),point(add(center,radial)).sub(point(center)),point(add(center,up)).sub(point(center)),angle);
+ const leadA=arc(add(exit,[0,0,bend]),[0,0,-bend],[bend,0,0],Math.PI/2);
+ const leadB=arc(add(corner,[0,bend,0]),[0,-bend,0],[0,0,bend],Math.PI/2);
+ // Splay the two upright legs in X with equal-radius S bends. This leaves the
+ // depth of both legs clear of the frame, and prevents a hairpin when the head
+ // is directly over the extruder. No short Bezier handles or sharp corners.
+ const dz=entry[2]-rise[2],requiredX=Math.sqrt(Math.max(0,s.minimum_loop_width_mm**2-dz**2));
+ const splay=Math.max(0,(requiredX-(entry[0]-rise[0]))/2);
+ if(splay>4*bend)throw Error('Ender-3 tube leg separation is insufficient');
+ const angle=Math.acos(1-splay/(2*bend)),height=2*bend*Math.sin(angle);
+ function dogleg(start,sign){
+  if(angle<1e-10)return {end:start,curves:[]};
+  const center=add(start,[sign*bend,0,0]);
+  const first=arc(center,[-sign*bend,0,0],[0,bend,0],angle);
+  const joint=add(start,[sign*bend*(1-Math.cos(angle)),bend*Math.sin(angle),0]);
+  const secondCenter=add(joint,[-sign*bend*Math.cos(angle),bend*Math.sin(angle),0]);
+  const second=arc(secondCenter,[sign*bend*Math.cos(angle),-bend*Math.sin(angle),0],[sign*bend*Math.sin(angle),bend*Math.cos(angle),0],angle);
+  return {end:add(start,[sign*splay,height,0]),curves:[first,second]};
  }
- let lo=lift[1]-Math.max(exit[1],entry[1])+20,hi=1000;const target=s.length_mm/1000;
- if(make(lo).getLength()>target)throw Error('Ender-3 tube service length is insufficient');
- for(let i=0;i<27;i++){const mid=(lo+hi)/2;if(make(mid).getLength()<target)lo=mid;else hi=mid}
- const curve=make((lo+hi)/2);
- return {curve,endpoints_mm:[extruder,head],straight_sections_mm:[[extruder,exit],[entry,head]],radius_mm:s.radius_mm,length_mm:curve.getLength()*1000,service_length_mm:s.length_mm};
+ const outward=dogleg(rise,-1),returning=dogleg(entry,1);
+ const radius=Math.hypot(returning.end[0]-outward.end[0],dz)/2;
+ const leadLength=8+Math.PI*bend+4*bend*angle;
+ const crownY=(s.length_mm-leadLength-55-Math.PI*radius+outward.end[1]+returning.end[1])/2;
+ if(crownY<Math.max(outward.end[1],returning.end[1]))throw Error('Ender-3 tube service length is insufficient');
+ const topA=[outward.end[0],crownY,outward.end[2]],topB=[returning.end[0],crownY,returning.end[2]];
+ const center=topA.map((v,i)=>(v+topB[i])/2),radial=point(topA).sub(point(center));
+ const up=new Vector3(...profile.basis.map(row=>row[1]*radius/1000));
+ const curve=new CurvePath();
+ curve.add(new LineCurve3(point(extruder),point(exit)));curve.add(leadA);curve.add(leadB);
+ for(const c of outward.curves)curve.add(c);
+ curve.add(new LineCurve3(point(outward.end),point(topA)));
+ curve.add(new ServiceLoopCrown(point(center),radial,up));
+ curve.add(new LineCurve3(point(topB),point(returning.end)));
+ for(const c of returning.curves.slice().reverse())curve.add(new ReversedBend(c));
+ curve.add(new LineCurve3(point(entry),point(head)));
+ return {curve,endpoints_mm:[extruder,head],straight_sections_mm:[[extruder,exit],[entry,head]],radius_mm:s.radius_mm,length_mm:curve.getLength()*1000,service_length_mm:s.length_mm,minimum_bend_radius_mm:s.minimum_bend_radius_mm};
 }
 export function createEnderBowden(root,profile){
  if(profile.machine_id!=='ender3_stock_220')return {update(){},meshes:[]};

@@ -87,7 +87,7 @@ async function cacheReferences(outputs){
  for(const name of ['eva-front-surfaces.mjs','../EVA_FRONT_SURFACES.json']){
   const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));
  }
- for(const name of ['eva-options.mjs','../EVA_OPTIONS.json','community-adapter.mjs','community-state.mjs']){
+ for(const name of ['eva-options.mjs','../EVA_OPTIONS.json','community-adapter.mjs','community-state.mjs','ender-bowden-route.mjs']){
   const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));
  }
  for(const name of ['v0-native-installed-gate.mjs','v0-installations.mjs','v0-state.mjs','../V0_INSTALLATIONS.json']){

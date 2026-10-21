@@ -1,10 +1,20 @@
 import assert from 'node:assert/strict';
 import {enderBowdenRoute,enderBowdenSpec,createEnderBowden} from '../site/viewer/ender-bowden-route.mjs';
 import {Group} from '../site/viewer/vendor-r180/three.module.js';
+import {auditFlexRoute} from './flex-route-quality.mjs';
 const profile={machine_id:'ender3_stock_220',origin_mm:[0,0,0],basis:[[1,0,0],[0,1,0],[0,0,1]],configurations:{stock:{},belted:{selection:{z:'belted'}},shifted:{rest_offsets_mm:{'00131':[1,2,3]}}}};
 profile.configurations.ng={filament_path:'direct'};
 profile.configurations.ng_revo={filament_path:'direct'};
 profile.configurations.invalid_path={filament_path:'unknown'};
+// Curvature is independent of Z translation. Check the circular bend radii
+// throughout X, rather than accepting a connected, finite tube of the right length.
+for(const configuration of ['stock','belted'])for(let x=-100;x<=100;x++){
+ const r=enderBowdenRoute({x,y:0,z:0},profile,configuration);
+ for(const c of r.curve.curves.filter(c=>c.radial))assert(c.radial.length()*1000>=enderBowdenSpec.minimum_bend_radius_mm);
+ if(x%50===0){const quality=auditFlexRoute(r.curve,{units:'m',tubeRadiusMm:2,minBendRadiusMm:30,maxSegmentLengthMm:8,chordToleranceMm:.04,
+  start:{positionMm:r.endpoints_mm[0],axis:[1,0,0]},end:{positionMm:r.endpoints_mm[1],axis:[0,-1,0]}});
+  assert(quality.ok,JSON.stringify(quality.findings));assert(Math.abs(quality.metrics.lengthMm-enderBowdenSpec.length_mm)<.1);}
+}
 let samples=0;
 for(const configuration of ['stock','belted','shifted'])for(const z of [-50,0,190])for(const direction of [1,-1])for(let k=0;k<=100;k++){
  const x=direction*(-100+2*k),axes={x,y:100,z},r=enderBowdenRoute(axes,profile,configuration);
