@@ -5,7 +5,8 @@ import gzip
 import hashlib
 import json
 import subprocess
-import urllib.request
+import tempfile
+from fetch_pinned_source import fetch_pinned_source
 from pathlib import Path, PurePosixPath
 from urllib.parse import urljoin, urlsplit
 
@@ -43,6 +44,32 @@ def checked_url(url):
     if parsed.scheme != 'https' or parsed.hostname not in ALLOWED or parsed.username or parsed.password or parsed.fragment:
         raise ValueError('Unexpected public EVA artifact origin')
     return url
+
+
+def acquire(record):
+    descriptor = record['descriptor']
+    checked_descriptor(descriptor)
+    checked_url(record['url'])
+    file = Path(record['path'])
+    raw = file.read_bytes() if file.is_file() else None
+    seed = record.get('seed')
+    if raw is None and seed is not None and seed.is_file():
+        raw = seed.read_bytes()
+    if raw is None or len(raw) != descriptor['bytes'] or digest(raw) != descriptor['sha256']:
+        # Stage the raw download separately; cache replacement still requires
+        # both raw and decoded pins to pass below.
+        with tempfile.TemporaryDirectory(prefix='eva-options-fetch-', dir=file.parent) as staging:
+            staged = Path(staging) / 'body.asset'
+            fetch_pinned_source(dict(descriptor, url=record['url']), staged,
+                                allowed_hosts=ALLOWED,
+                                user_agent='3D-Print-Rig-EVA-Options-Release-Audit')
+            raw = staged.read_bytes()
+    decoded = gzip.decompress(raw) if descriptor.get('encoding') == 'gzip' else raw
+    if len(decoded) != descriptor.get('decoded_bytes', descriptor['bytes']) or digest(decoded) != descriptor.get('decoded_sha256', descriptor['sha256']):
+        raise ValueError('Decoded public EVA option artifact checksum mismatch')
+    file.write_bytes(raw)
+    record.pop('seed', None)
+
 
 
 def identity_bridge_descriptors(metadata):
@@ -193,26 +220,6 @@ def main():
             variant['id'] == registry['hosts'][variant['machine_id']]['default_configuration'] else None
         reviews[variant['id']] = schedule(urljoin(url, './'), descriptor, seed)
     patch = {name: schedule(front['asset']['external']['base_url'], descriptor) for name, descriptor in front['asset']['files'].items()}
-
-    def acquire(record):
-        descriptor = record['descriptor']
-        file = Path(record['path'])
-        raw = file.read_bytes() if file.is_file() else None
-        seed = record.get('seed')
-        if raw is None and seed is not None and seed.is_file():
-            raw = seed.read_bytes()
-        if raw is None or len(raw) != descriptor['bytes'] or digest(raw) != descriptor['sha256']:
-            request = urllib.request.Request(record['url'], headers={'User-Agent': '3D-Print-Rig-EVA-Options-Release-Audit'})
-            with urllib.request.urlopen(request, timeout=60) as response:
-                checked_url(response.geturl())
-                raw = response.read(descriptor['bytes'] + 1)
-            if len(raw) != descriptor['bytes'] or digest(raw) != descriptor['sha256']:
-                raise ValueError('Public EVA option artifact checksum mismatch')
-        decoded = gzip.decompress(raw) if descriptor.get('encoding') == 'gzip' else raw
-        if len(decoded) != descriptor.get('decoded_bytes', descriptor['bytes']) or digest(decoded) != descriptor.get('decoded_sha256', descriptor['sha256']):
-            raise ValueError('Decoded public EVA option artifact checksum mismatch')
-        file.write_bytes(raw)
-        record.pop('seed', None)
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
         list(pool.map(acquire, requests.values()))

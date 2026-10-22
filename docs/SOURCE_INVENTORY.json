@@ -245,8 +245,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 645791,
-      "sha256": "9cb1bfd024b301835def46499bd88782b1a7d76a0c9de2b6fe0e2f5f06771e3c"
+      "bytes": 646338,
+      "sha256": "c23cdbd7c77182b5e41d050bc8d4eca2e11601892d4e8c1d1789c4c23586f98c"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -630,8 +630,8 @@
     },
     {
       "path": "scripts/audit_ender_bowden.mjs",
-      "bytes": 13224,
-      "sha256": "ba4d2433ac473abb6aca853a2508812e33a0761f8a082712de8a209caeb70a13"
+      "bytes": 13156,
+      "sha256": "dfa0409eb0a95fe51f3e991b5f385ff73df2460f2a3fc95d6e6431bfd18a282c"
     },
     {
       "path": "scripts/audit_eva_front_surfaces.mjs",
@@ -645,8 +645,8 @@
     },
     {
       "path": "scripts/audit_eva_options.mjs",
-      "bytes": 54109,
-      "sha256": "41f6a1fbb879b0527256ab23c125e31a9ec935611bf9f69d067e75bc1b80c603"
+      "bytes": 54142,
+      "sha256": "3fabf2fd27a6f81d6a6f0d45a1110a938212fc41060ff25eba9f9f0fdb5d6b60"
     },
     {
       "path": "scripts/audit_fox_ab_fan_assets.mjs",
@@ -835,8 +835,8 @@
     },
     {
       "path": "scripts/check_eva_options_release.py",
-      "bytes": 14932,
-      "sha256": "87c52dfdd6c75985487a25e3e6038c3a55d005809910e4efcd02ac7522fd67cc"
+      "bytes": 15051,
+      "sha256": "75bdc98a884ed3d6107d3a71bf462519772444a413004e69e8856a6dc61e9233"
     },
     {
       "path": "scripts/check_machine_coverage.mjs",
@@ -922,6 +922,16 @@
       "path": "scripts/extract_eva_heads.py",
       "bytes": 18903,
       "sha256": "3477bcb1aafa0988cc58cc1da5aaf389edb0f97ae95e48132670ab3e44b031af"
+    },
+    {
+      "path": "scripts/fetch_pinned_source.mjs",
+      "bytes": 3007,
+      "sha256": "01e823f32546ebd4a881c21a0c363aa2bc542a7c35b98c3944f68689967bb0a7"
+    },
+    {
+      "path": "scripts/fetch_pinned_source.py",
+      "bytes": 4118,
+      "sha256": "247af5eac4ff605e66dde84e593817c29a5e23c8fb54bca21b82f435699be8b8"
     },
     {
       "path": "scripts/fixtures/a4t-printed-reference.json",
@@ -1095,8 +1105,8 @@
     },
     {
       "path": "scripts/prepare_repository_inputs.py",
-      "bytes": 7377,
-      "sha256": "4978d793fa9e5ce75e0e353ad94cc3630356c9421c31841b22d00dfb41f3c7ca"
+      "bytes": 6493,
+      "sha256": "d3228b6e1a24af70a0ac19db82e2996b6a9bff9314162d44a9dc899652eabcb7"
     },
     {
       "path": "scripts/prepare_trident_size_assets.py",
@@ -1349,6 +1359,11 @@
       "sha256": "ce9da6e5ea269a1ae020af1c11a6a28693441feeaa13c64da3ed0f81977b6e8b"
     },
     {
+      "path": "scripts/test_eva_code_receipt.mjs",
+      "bytes": 2226,
+      "sha256": "5554f455898de26cddd7b1aa28476555ee4a355806f72b0d23d56b2b832b41c8"
+    },
+    {
       "path": "scripts/test_eva_extraction.py",
       "bytes": 10658,
       "sha256": "5ce9b5221d4a29581d35d592d436715aab265e72273b4bd137ffe36ab6a5bfb1"
@@ -1375,8 +1390,13 @@
     },
     {
       "path": "scripts/test_eva_options.mjs",
-      "bytes": 97682,
-      "sha256": "7b754bf2ac3db8b74679e63a12ccdd1bfb82c78b07da6786633d8164243d0f8b"
+      "bytes": 97747,
+      "sha256": "7fddb273f12c916dcf19fc5604febcebf91caa45314e676424bf19fb094b847f"
+    },
+    {
+      "path": "scripts/test_eva_options_transport.py",
+      "bytes": 8531,
+      "sha256": "77a79e0cab1dd9fea2019376e479dc47e7aa0da46a71d3fdffe0408474acb617"
     },
     {
       "path": "scripts/test_export_camera.mjs",
@@ -1392,6 +1412,11 @@
       "path": "scripts/test_extra_assets.mjs",
       "bytes": 2205,
       "sha256": "5fae8e4e1259a79f6f47144d61c1a9ff3c4f4bf39feefdb10e2d760e4041b6df"
+    },
+    {
+      "path": "scripts/test_fetch_pinned_source.mjs",
+      "bytes": 8063,
+      "sha256": "4c18dcc22942ab24a2eb9fdb5555741491833e1c7a0086602ef595d53440e488"
     },
     {
       "path": "scripts/test_flex_route_quality.mjs",
@@ -1810,8 +1835,8 @@
     },
     {
       "path": "scripts/test_repository_inputs.py",
-      "bytes": 9186,
-      "sha256": "28979075a52f71a72b0668a1acf703e005b7813148af3a2ee97a1d29a9c0d019"
+      "bytes": 16583,
+      "sha256": "2b7d491dda9b152c7bf25af5badcb8a118a49d33b35d00de26eb5d2e252fa6f0"
     },
     {
       "path": "scripts/test_requested_assemblies.mjs",

@@ -12,6 +12,7 @@ import {nativeMotion,displayMotion} from '../site/viewer/community-state.mjs';
 import {enderBowdenRoute,enderBowdenSpec} from '../site/viewer/ender-bowden-route.mjs';
 import {enderBowdenShapes} from '../site/viewer/ender-bowden-shapes.mjs';
 import {auditFlexRoute,segmentTriangleDistance} from './flex-route-quality.mjs';
+import {fetchPinnedSource} from './fetch_pinned_source.mjs';
 
 const hash=b=>createHash('sha256').update(b).digest('hex');
 const repo=fileURLToPath(new URL('../',import.meta.url));
@@ -25,8 +26,7 @@ export async function auditEnderBowden({site,assets,report:reportPath}={}){
  const pins={},checked=async name=>{
   const pin=spec.files[name];assert(pin,'Missing exact Ender-3 input '+name);
   const file=assets&&path.join(assets,pin.path);
-  const raw=file&&fs.existsSync(file)?fs.readFileSync(file):Buffer.from(await (async()=>{
-   const response=await fetch(new URL(pin.path,spec.base_url??index.base_url),{signal:AbortSignal.timeout(45000)});assert(response.ok,'Ender-3 source HTTP '+response.status);return response.arrayBuffer();})());
+  const raw=file&&fs.existsSync(file)?fs.readFileSync(file):await fetchPinnedSource(new URL(pin.path,spec.base_url??index.base_url),pin);
   assert.equal(raw.length,pin.bytes);assert.equal(hash(raw),pin.sha256);
   const decoded=pin.encoding==='gzip'?gunzipSync(raw):raw;
   if(pin.encoding==='gzip'){assert.equal(decoded.length,pin.decoded_bytes);assert.equal(hash(decoded),pin.decoded_sha256);}
@@ -38,7 +38,7 @@ export async function auditEnderBowden({site,assets,report:reportPath}={}){
   if(root)root.add(scene);else root=scene;
  }
  const adapter=createCommunityAdapter(root,manifest,profile);assert.equal(adapter.nodes.size,spec.parts);
- const sources=['site/viewer/ender-bowden-route.mjs','site/viewer/ender-bowden-shapes.mjs','site/viewer/community-adapter.mjs','site/viewer/community-state.mjs','scripts/flex-route-quality.mjs','scripts/audit_ender_bowden.mjs'];
+ const sources=['site/viewer/ender-bowden-route.mjs','site/viewer/ender-bowden-shapes.mjs','site/viewer/community-adapter.mjs','site/viewer/community-state.mjs','scripts/flex-route-quality.mjs','scripts/fetch_pinned_source.mjs','scripts/audit_ender_bowden.mjs'];
  const sourceHashes=Object.fromEntries(sources.map(p=>[p,hash(fs.readFileSync(path.join(repo,p)))]));
  global.gc?.();const bodies=[],point=new Vector3(),omitted=[];
  for(const [key,node]of adapter.nodes){const row=adapter.records.get(key);

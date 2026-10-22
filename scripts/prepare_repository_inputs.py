@@ -4,11 +4,18 @@ import hashlib
 import json
 from pathlib import Path
 import shutil
-import urllib.request
-from urllib.parse import urlsplit
+from fetch_pinned_source import fetch_pinned_source
 from build_approved_site import safe_path, validate_contract
 
 ROOT = Path(__file__).resolve().parents[1]
+SOURCE_HOSTS = {'github.com', 'objects.githubusercontent.com',
+                'release-assets.githubusercontent.com', 'psych0h3ad.github.io'}
+
+
+def fetch_registered_input(row, target, *, timeout=60):
+    fetch_pinned_source(row, target, allowed_hosts=SOURCE_HOSTS, timeout=timeout,
+                        user_agent='3D-Print-Rig-Repository-Inputs')
+
 
 def selected(row):
     name = row['path']
@@ -121,23 +128,7 @@ def prepare(root, contract, mapping=None):
             elif mapping is not None:
                 raise ValueError('Missing source-check input mapping: '+row['path'])
             else:
-                request=urllib.request.Request(row['url'],headers={'Accept-Encoding':'identity','User-Agent':'3D-Print-Rig-Repository-Inputs'})
-                temporary=target.with_name(target.name+'.download')
-                try:
-                    with urllib.request.urlopen(request,timeout=60) as response,temporary.open('wb') as output:
-                        final=urlsplit(response.url)
-                        if final.scheme!='https' or final.hostname not in {'github.com','objects.githubusercontent.com','release-assets.githubusercontent.com','psych0h3ad.github.io'}:
-                            raise ValueError('Unexpected registered input origin')
-                        total=0
-                        for block in iter(lambda:response.read(1024*1024),b''):
-                            total+=len(block)
-                            if total>row['bytes']: raise ValueError('Registered body exceeded its size')
-                            output.write(block)
-                    if temporary.stat().st_size!=row['bytes'] or digest(temporary)!=row['sha256']:
-                        raise ValueError('Registered body checksum mismatch')
-                    temporary.replace(target)
-                finally:
-                    if temporary.exists():temporary.unlink()
+                fetch_registered_input(row, target)
         verified.append(row['path'])
     for row in rows:
         if selected(row):

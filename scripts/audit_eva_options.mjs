@@ -372,7 +372,7 @@ export function evaAuditHostSelection(registry,hostIds){
 export async function auditEvaOptions(inputs,{onProgress=()=>{},hostIds}={}){
  assert.equal(inputs.schema,'3d-print-rig-eva-options-audit-inputs-v1');
  const closure=evaOptionsCodeClosure();
- for(const name of ['scripts/check_eva_options_release.py','scripts/build_site.py'])closure[name]=sha(await fs.readFile(path.join(repo,name)));
+ for(const name of ['scripts/check_eva_options_release.py','scripts/fetch_pinned_source.py','scripts/build_site.py'])closure[name]=sha(await fs.readFile(path.join(repo,name)));
  const local={},inputPins={};for(const key of ['registry','heads','community','installations','front']){const bytes=await checkedLocal(inputs[key]);local[key]=JSON.parse(bytes);inputPins[key]=inputs[key].sha256}
  const {registry,heads,community,installations,front}=local;validateEvaOptionsRegistry(registry,heads);
  const selectedHosts=evaAuditHostSelection(registry,hostIds),expectedVariants=registry.variants.filter(v=>selectedHosts.includes(v.machine_id)).map(v=>v.id);

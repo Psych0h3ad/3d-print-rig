@@ -4,8 +4,9 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+import urllib.error
 from unittest.mock import patch
-from prepare_repository_inputs import prepare,selected
+from prepare_repository_inputs import fetch_registered_input,prepare,selected
 
 class RepositoryInputs(unittest.TestCase):
     def test_source_checks_receive_only_exact_registered_inputs(self):
@@ -102,7 +103,7 @@ class FreshMountingInputs(unittest.TestCase):
             return response
         # Exercise the real no-mapping download path; transport bodies are small
         # unit fixtures. The source-owner clean-checkout audit uses real assets.
-        with patch('prepare_repository_inputs.urllib.request.urlopen', side_effect=fetch):
+        with patch('fetch_pinned_source.urllib.request.urlopen', side_effect=fetch):
             result = prepare(self.root, self.contract)
         self.assertEqual(set(requested), set(self.gz + self.nested + [self.bootstrap_meta]))
         self.assertEqual(result['verified_source_check_inputs'], 13)
@@ -149,5 +150,136 @@ class FreshMountingInputs(unittest.TestCase):
         self.save_inventory()
         with self.assertRaisesRegex(ValueError, 'Invalid static delivery path'):
             prepare(self.root, self.contract, {'files': {}})
+
+class SourceFetchTransport(unittest.TestCase):
+    def setUp(self):
+        folder = tempfile.TemporaryDirectory()
+        self.addCleanup(folder.cleanup)
+        self.target = Path(folder.name) / 'SOURCE.json'
+        self.body = b'{"source":"exact public fixture"}\n'
+        self.row = {'path': 'SOURCE.json', 'url': 'https://psych0h3ad.github.io/source.json',
+                    'bytes': len(self.body), 'sha256': hashlib.sha256(self.body).hexdigest()}
+
+    def response(self, body=None, *, url=None, headers=None):
+        response = io.BytesIO(self.body if body is None else body)
+        response.url = url or self.row['url']
+        response.headers = headers or {}
+        return response
+
+    def http_error(self, status):
+        return urllib.error.HTTPError(self.row['url'], status, 'source status', {}, io.BytesIO())
+
+    def exercise(self, sequence, *, row=None, timeout=60):
+        self.urlopen = patch('fetch_pinned_source.urllib.request.urlopen', side_effect=sequence).start()
+        self.sleep = patch('fetch_pinned_source.time.sleep').start()
+        self.addCleanup(patch.stopall)
+        fetch_registered_input(row or self.row, self.target, timeout=timeout)
+
+    def assert_no_install(self):
+        self.assertFalse(self.target.exists())
+        self.assertFalse(self.target.with_name(self.target.name + '.download').exists())
+
+    def test_first_attempt_preserves_exact_body(self):
+        self.exercise([self.response(headers={'Content-Length': str(len(self.body))})])
+        self.assertEqual(self.target.read_bytes(), self.body)
+        self.assertEqual(self.urlopen.call_count, 1)
+        self.sleep.assert_not_called()
+
+    def test_each_allowed_status_and_timeout_recovers_at_same_url_on_third_attempt(self):
+        errors = [lambda s=s: self.http_error(s) for s in (429, 502, 503, 504)]
+        errors += [lambda: TimeoutError('response timeout'),
+                   lambda: urllib.error.URLError(TimeoutError('connect timeout'))]
+        for make_error in errors:
+            with self.subTest(error=type(make_error()).__name__):
+                self.exercise([make_error(), make_error(), self.response()])
+                self.assertEqual(self.target.read_bytes(), self.body)
+                self.assertEqual(self.urlopen.call_count, 3)
+                self.assertEqual([call.args for call in self.sleep.call_args_list], [(1,), (3,)])
+                for call in self.urlopen.call_args_list:
+                    self.assertEqual(call.args[0].full_url, self.row['url'])
+                    self.assertEqual(call.kwargs, {'timeout': 60})
+                self.target.unlink()
+                patch.stopall()
+
+    def test_persistent_transient_stops_after_three_and_cleans_partial_output(self):
+        for status in (429, 502, 503, 504):
+            with self.subTest(status=status):
+                with self.assertRaises(urllib.error.HTTPError):
+                    self.exercise([self.http_error(status) for _ in range(3)] + [self.response()])
+                self.assertEqual(self.urlopen.call_count, 3)
+                self.assertEqual(self.sleep.call_count, 2)
+                self.assert_no_install()
+                patch.stopall()
+
+    def test_invalid_bodies_origins_and_nontransient_errors_never_retry(self):
+        cases = [self.response(b'x' * len(self.body)), self.response(self.body[:-1]),
+                 self.response(self.body + b'x'), self.response(headers={'Content-Length': 'NaN'}),
+                 self.response(headers={'Content-Length': str(len(self.body) + 1)}),
+                 self.response(url='https://unapproved.example/source.json')]
+        cases += [self.http_error(status) for status in (404, 408, 425, 500)]
+        cases += [urllib.error.URLError('unclassified transport failure')]
+        for result in cases:
+            with self.subTest(result=type(result).__name__):
+                with self.assertRaises((ValueError, urllib.error.URLError)):
+                    self.exercise([result, self.response()])
+                self.assertEqual(self.urlopen.call_count, 1)
+                self.sleep.assert_not_called()
+                self.assert_no_install()
+                patch.stopall()
+
+    def test_midbody_timeout_restarts_from_zero_not_partial_append(self):
+        first = self.response()
+        reads = iter([self.body[:5], TimeoutError('body timeout')])
+        def read1(size):
+            value = next(reads)
+            if isinstance(value, Exception):
+                raise value
+            return value
+        first.read1 = read1
+        self.exercise([first, self.http_error(503), self.response()])
+        self.assertEqual(self.urlopen.call_count, 3)
+        self.assertEqual(self.target.read_bytes(), self.body)
+        self.assertFalse(self.target.with_name(self.target.name + '.download').exists())
+
+    def test_elapsed_attempt_budget_exhausts_after_three(self):
+        clock = iter(range(0, 1000, 31))
+        with patch('fetch_pinned_source.time.monotonic', side_effect=lambda: next(clock)):
+            with self.assertRaises(TimeoutError):
+                self.exercise([self.response() for _ in range(4)])
+        self.assertEqual(self.urlopen.call_count, 3)
+        self.assert_no_install()
+
+    def test_nonfinite_and_invalid_pins_or_timeouts_reject_before_transport(self):
+        for size in (float('nan'), float('inf'), -float('inf'), 0, -1, 2.5, True):
+            with self.subTest(size=size), patch('fetch_pinned_source.urllib.request.urlopen') as fetch:
+                with self.assertRaises(ValueError):
+                    fetch_registered_input(dict(self.row, bytes=size), self.target)
+                fetch.assert_not_called()
+                self.assert_no_install()
+        for timeout in (float('nan'), float('inf'), 0, -1, 61, True):
+            with self.subTest(timeout=timeout), patch('fetch_pinned_source.urllib.request.urlopen') as fetch:
+                with self.assertRaises(ValueError):
+                    fetch_registered_input(self.row, self.target, timeout=timeout)
+                fetch.assert_not_called()
+        for checksum in (None, 'x' * 64, 'A' * 64, '0' * 63):
+            with self.subTest(checksum=checksum), patch('fetch_pinned_source.urllib.request.urlopen') as fetch:
+                with self.assertRaises(ValueError):
+                    fetch_registered_input(dict(self.row, sha256=checksum), self.target)
+                fetch.assert_not_called()
+
+    def test_existing_target_or_unapproved_source_has_no_fetch_or_overwrite(self):
+        for url in ('http://psych0h3ad.github.io/source.json', 'https://unapproved.example/source.json',
+                    'https://user:password@github.com/source.json', 'https://github.com/source.json#fragment'):
+            with patch('fetch_pinned_source.urllib.request.urlopen') as fetch:
+                with self.assertRaisesRegex(ValueError, 'origin'):
+                    fetch_registered_input(dict(self.row, url=url), self.target)
+                fetch.assert_not_called()
+        self.target.write_bytes(b'existing source must stay')
+        with patch('fetch_pinned_source.urllib.request.urlopen') as fetch:
+            with self.assertRaisesRegex(ValueError, 'no overwrite'):
+                fetch_registered_input(self.row, self.target)
+            fetch.assert_not_called()
+        self.assertEqual(self.target.read_bytes(), b'existing source must stay')
+
 
 if __name__=='__main__':unittest.main()
