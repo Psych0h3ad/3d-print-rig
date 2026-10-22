@@ -10977,6 +10977,150 @@
     "elegoo.corresponding_source": {
       "source_revision": "1f44beb0c5d5f2795a34",
       "text": "Fuentes y herramientas de conversión"
+    },
+    "statistics.title": {
+      "source_revision": "0e4b242bab4a8f441b47",
+      "text": "Estadísticas de uso"
+    },
+    "statistics.description": {
+      "source_revision": "7505666a56d0e80703c9",
+      "text": "Google Analytics (Google LLC, Estados Unidos) utiliza cookies para medir las visitas y los países aproximados de origen. Puedes rechazarlo y seguir usando el visor. Los informes públicos muestran datos agregados."
+    },
+    "statistics.public_report": {
+      "source_revision": "5825a0088dacb174871f",
+      "text": "Abrir informe público"
+    },
+    "statistics.report_pending": {
+      "source_revision": "629140767c0b8c200518",
+      "text": "El informe público aún no se ha publicado."
+    },
+    "statistics.allow": {
+      "source_revision": "1f05786e5389e7530b0a",
+      "text": "Permitir estadísticas"
+    },
+    "statistics.deny": {
+      "source_revision": "0072e015094030889011",
+      "text": "Rechazar estadísticas"
+    },
+    "statistics.google_privacy": {
+      "source_revision": "122f2f1014941fdd5f9e",
+      "text": "Política de privacidad de Google"
+    },
+    "statistics.enabled": {
+      "source_revision": "9d74b51b54510565b97a",
+      "text": "La medición está permitida en este navegador."
+    },
+    "statistics.disabled": {
+      "source_revision": "06ed8b81013683d34c24",
+      "text": "La medición está desactivada en este navegador."
+    },
+    "statistics.privacy_signal": {
+      "source_revision": "0d5563cde232ed6b1295",
+      "text": "La preferencia de privacidad de tu navegador desactiva la medición."
+    },
+    "statistics.excluded": {
+      "source_revision": "461c5a4f77a774d00577",
+      "text": "Esta pestaña está excluida de las estadísticas de uso."
+    },
+    "privacy.title": {
+      "source_revision": "99a8559fd80eea21dd47",
+      "text": "Privacidad y cookies"
+    },
+    "privacy.updated": {
+      "source_revision": "b9c27bbd748aba29af66",
+      "text": "Actualizado: 23 de octubre de 2026"
+    },
+    "privacy.operator": {
+      "source_revision": "0a96e4beb1dc9d7bc7e7",
+      "text": "Psych0h3ad gestiona 3D Print Rig. Para preguntas y solicitudes sobre privacidad, escribe a:"
+    },
+    "privacy.choice_heading": {
+      "source_revision": "d13da3df2e0918a995bc",
+      "text": "Tu elección"
+    },
+    "privacy.choice": {
+      "source_revision": "99272fb03436ea2fcb27",
+      "text": "El análisis es opcional y se basa en tu consentimiento. No cargamos la etiqueta de Google ni enviamos solicitudes de análisis hasta que elijas Permitir estadísticas. Rechazarlo no limita el visor. Puedes cambiar o retirar tu elección en Estadísticas de uso; al retirarla, cesa la medición futura y se eliminan las cookies de análisis de este proyecto. No se deshace el tratamiento anterior."
+    },
+    "privacy.signals": {
+      "source_revision": "f506a5fdd56c21cca24a",
+      "text": "Las señales Global Privacy Control y Do Not Track desactivan la medición. También se excluyen los visores integrados, las vistas previas locales y las visitas de revisión excluidas explícitamente."
+    },
+    "privacy.data_heading": {
+      "source_revision": "5623a8094ba596ca6ed1",
+      "text": "Información que recibe el análisis"
+    },
+    "privacy.data": {
+      "source_revision": "9f21c7f0203732bf0759",
+      "text": "Tras aceptar, Google Analytics 4 recibe rutas del visor, un título fijo, identificadores de cookies e información técnica del navegador, dispositivo e idioma. Las solicitudes también comunican una dirección IP a Google, que puede estimar la ubicación aproximada. Nuestros eventos no incluyen consultas ni fragmentos de URL, detalles del referente, configuraciones guardadas ni archivos de modelos importados."
+    },
+    "privacy.purpose": {
+      "source_revision": "06c1b5e11d92a60b6d2a",
+      "text": "Usamos estas mediciones para entender el uso y mejorar el visor. La integración desactiva Google Signals y la personalización de anuncios. No las usamos para vender información personal, dirigir anuncios ni tomar decisiones con efectos legales o de importancia similar."
+    },
+    "privacy.public_heading": {
+      "source_revision": "3d6bc5b8dae9d56c412d",
+      "text": "Estadísticas públicas"
+    },
+    "privacy.public": {
+      "source_revision": "e17bdde698cdfae6296e",
+      "text": "Cuando exista, el informe público mostrará datos agregados de visitas, usuarios, tendencias diarias y países. No publicamos direcciones IP, identificadores de cookies ni historiales individuales. La estimación de países puede fallar, especialmente con VPN. Los rechazos, bloqueos y retrasos hacen que los totales no sean un recuento exacto de todas las visitas."
+    },
+    "privacy.storage_heading": {
+      "source_revision": "37ea4a5fddb013abcf54",
+      "text": "Almacenamiento y conservación"
+    },
+    "privacy.storage": {
+      "source_revision": "24271d8e45ae848fe179",
+      "text": "Las cookies _ga y _ga_SEV0T0PFTB identifican un navegador y su sesión dentro del proyecto. Caducan como máximo en 180 días sin renovación automática. La elección versionada de aceptar o rechazar se guarda localmente durante 180 días. Los ajustes necesarios de idioma, visualización y configuraciones guardadas son independientes del análisis y no se envían a Google mediante esta integración."
+    },
+    "privacy.retention": {
+      "source_revision": "64ea7484ac68c0ae3490",
+      "text": "La propiedad GA4 utiliza una conservación de datos de usuarios y eventos de dos meses, sin reiniciarla con nueva actividad. Google elimina los datos correspondientes en su proceso mensual. Los informes agregados estándar no se rigen por ese ajuste y pueden permanecer como historial estadístico del proyecto. Contacta para solicitar información o eliminación; no envíes contraseñas ni documentos sensibles."
+    },
+    "privacy.recipients_heading": {
+      "source_revision": "6baa7bd2d277200361f3",
+      "text": "Proveedores y tratamiento internacional"
+    },
+    "privacy.recipients": {
+      "source_revision": "19136ed03e9f479947f9",
+      "text": "Google LLC, en Estados Unidos, proporciona el análisis y GitHub distribuye el sitio y los modelos. Estos servicios reciben la información de red necesaria para responder. Tras el consentimiento, los datos se transmiten en línea a Google y pueden tratarse en Estados Unidos y otros países donde opera, cuyas protecciones pueden diferir de las de tu país. A continuación se enlaza su información sobre privacidad y transferencias."
+    },
+    "privacy.google_data": {
+      "source_revision": "ed821e84607726149bb3",
+      "text": "Cómo utiliza Google los datos de sitios asociados"
+    },
+    "privacy.google_transfers": {
+      "source_revision": "99d10ffc6e066ad5f36b",
+      "text": "Marcos de transferencias internacionales de Google"
+    },
+    "privacy.github": {
+      "source_revision": "9de87ff02924a3d7900c",
+      "text": "Declaración de privacidad de GitHub"
+    },
+    "privacy.rights_heading": {
+      "source_revision": "e9f4e8d3c5d32963025d",
+      "text": "Tus derechos de privacidad"
+    },
+    "privacy.rights": {
+      "source_revision": "e9ddd5c0741fd8520796",
+      "text": "Según la ley aplicable, puedes solicitar acceso, rectificación, eliminación, limitación o portabilidad, oponerte al tratamiento, retirar el consentimiento o reclamar ante tu autoridad local. Esto incluye los derechos pertinentes de las leyes europeas y británicas, la APPI de Japón y las leyes estatales aplicables de EE. UU. No discriminamos a quienes rechazan el análisis. Podemos necesitar información proporcionada para localizar datos o verificar una solicitud, y explicaremos si no podemos vincular un agregado contigo."
+    },
+    "privacy.children": {
+      "source_revision": "8117a597af75b3aa1d95",
+      "text": "Si no tienes la edad para consentir donde resides, deja el análisis desactivado salvo que lo autorice tu madre, padre o tutor."
+    },
+    "privacy.links_heading": {
+      "source_revision": "345fa7daecc0771a8980",
+      "text": "Otros sitios y cambios"
+    },
+    "privacy.links": {
+      "source_revision": "2511fcf1ebabc3dbcb8a",
+      "text": "Los sitios enlazados de patrocinadores, afiliados y fuentes tienen sus propias prácticas de privacidad, al igual que los proveedores de informes públicos. Si cambian sustancialmente los fines o proveedores del análisis, pediremos una nueva elección antes de reanudarlo. La fecha y versión identifican la política aceptada."
+    },
+    "privacy.back": {
+      "source_revision": "c553908ad0cb9dd91e67",
+      "text": "Volver a las impresoras"
     }
   }
 }

@@ -13,6 +13,8 @@ BASE = 'https://psych0h3ad.github.io/3d-print-rig/'
 GENERAL = 'Choose a printer, combine toolheads, hotends, extruders and Mods, and compare the assembled model in 3D. Save and share configurations, export images and download available STEP assemblies.'
 PAGES = {'layout/index.html': ('Layout planner · 3D Print Rig',
                           'Plan a room for your 3D printers. Import an SVG outline or draw the room, add desks and shelves, then arrange printers and export an image.'),
+ 'viewer/privacy.html': ('Privacy and cookies · 3D Print Rig',
+                         'How 3D Print Rig handles optional analytics, cookies, public usage statistics and privacy requests.'),
  'viewer/machines.html': ('3D printer gallery · 3D Print Rig',
                           'Choose a 3D printer by model and size. Open its 3D viewer from the thumbnail gallery.'),
  'index.html': ('3D Print Rig · 3D printer CAD configurator',

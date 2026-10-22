@@ -13830,6 +13830,186 @@
       "kind": "message",
       "en": "Source and conversion tools",
       "ja": "元データと変換ツール"
+    },
+    "statistics.title": {
+      "kind": "message",
+      "ja": "アクセス統計",
+      "en": "Usage statistics"
+    },
+    "statistics.description": {
+      "kind": "message",
+      "ja": "Google Analytics（Google LLC、米国）はCookieを使って閲覧数とおおよそのアクセス元の国を集計します。拒否してもビューアーは使えます。公開レポートには集計データを表示します。",
+      "en": "Google Analytics (Google LLC, United States) uses cookies to measure page views and approximate visitor countries. You can decline and keep using the viewer. Public reports show aggregate data."
+    },
+    "statistics.public_report": {
+      "kind": "message",
+      "ja": "公開レポートを開く",
+      "en": "Open public report"
+    },
+    "statistics.report_pending": {
+      "kind": "message",
+      "ja": "公開レポートはまだ公開されていません。",
+      "en": "The public report has not been published yet."
+    },
+    "statistics.allow": {
+      "kind": "message",
+      "ja": "統計の計測を許可",
+      "en": "Allow statistics"
+    },
+    "statistics.deny": {
+      "kind": "message",
+      "ja": "統計の計測を拒否",
+      "en": "Decline statistics"
+    },
+    "statistics.google_privacy": {
+      "kind": "message",
+      "ja": "Googleのプライバシーポリシー",
+      "en": "Google privacy policy"
+    },
+    "statistics.enabled": {
+      "kind": "message",
+      "ja": "このブラウザーでの計測を許可しています。",
+      "en": "Measurement is allowed on this browser."
+    },
+    "statistics.disabled": {
+      "kind": "message",
+      "ja": "このブラウザーでは計測しません。",
+      "en": "Measurement is off on this browser."
+    },
+    "statistics.privacy_signal": {
+      "kind": "message",
+      "ja": "ブラウザーのプライバシー設定に従い、計測を無効にしています。",
+      "en": "Your browser’s privacy preference disables measurement."
+    },
+    "statistics.excluded": {
+      "kind": "message",
+      "ja": "このタブはアクセス統計の対象外です。",
+      "en": "This tab is excluded from usage statistics."
+    },
+    "privacy.title": {
+      "kind": "message",
+      "ja": "プライバシーとCookie",
+      "en": "Privacy & cookies"
+    },
+    "privacy.updated": {
+      "kind": "message",
+      "ja": "更新日：2026年10月23日",
+      "en": "Updated: 23 October 2026"
+    },
+    "privacy.operator": {
+      "kind": "message",
+      "ja": "3D Print Rigの運営者はPsych0h3adです。プライバシーに関するご質問・ご請求の連絡先：",
+      "en": "3D Print Rig is operated by Psych0h3ad. For privacy questions and requests, contact:"
+    },
+    "privacy.choice_heading": {
+      "kind": "message",
+      "ja": "利用者の選択",
+      "en": "Your choice"
+    },
+    "privacy.choice": {
+      "kind": "message",
+      "ja": "アクセス解析は任意で、利用者の同意に基づきます。「統計の計測を許可」を選ぶまでGoogleタグは読み込まず、解析リクエストも送信しません。拒否してもビューアーの機能は制限されません。「アクセス統計」からいつでも選択を変更・撤回できます。撤回すると以降の計測を止め、このプロジェクトの解析Cookieを削除します。撤回前の処理を取り消すものではありません。",
+      "en": "Analytics is optional and based on your consent. The Google tag is not loaded and no analytics request is sent before you choose Allow statistics. Declining does not limit the viewer. Open Usage statistics to change or withdraw your choice at any time; withdrawal stops future measurement and removes this project's analytics cookies. It does not undo processing that took place before withdrawal."
+    },
+    "privacy.signals": {
+      "kind": "message",
+      "ja": "Global Privacy ControlおよびDo Not Trackの指定がある場合は計測しません。埋め込みビューアー、ローカルプレビュー、明示的に除外した検証アクセスも対象外です。",
+      "en": "Global Privacy Control and Do Not Track signals disable measurement. Embedded viewers, local previews and explicitly excluded review visits are not measured."
+    },
+    "privacy.data_heading": {
+      "kind": "message",
+      "ja": "解析で送信される情報",
+      "en": "What analytics receives"
+    },
+    "privacy.data": {
+      "kind": "message",
+      "ja": "同意後、Google Analytics 4にはビューアーのページパス、固定のページタイトル、Cookieによる識別子、ブラウザー・端末・言語などの技術情報が送信されます。通信時にはGoogleにIPアドレスも伝わり、おおよその位置情報の推定に利用されることがあります。URLのクエリ文字列・フラグメント、参照元の詳細、保存した構成、取り込んだモデルファイルは当サイトの解析イベントに含めません。",
+      "en": "After opt-in, Google Analytics 4 receives viewer page paths, a fixed page title, cookie-based identifiers and technical information such as browser, device and language. Network requests also disclose an IP address to Google, which can derive approximate location. Query strings, fragments, referrer details, saved configurations and imported model files are not included in our analytics events."
+    },
+    "privacy.purpose": {
+      "kind": "message",
+      "ja": "利用状況の把握とビューアーの改善に使用します。この連携ではGoogle Signalsと広告のパーソナライズを無効にしています。解析結果を個人情報の販売、ターゲティング広告、法的または同程度に重大な影響のある判断に使用しません。",
+      "en": "We use these measurements to understand usage and improve the viewer. Our integration disables Google Signals and advertising personalization. We do not use these measurements to sell personal information, target advertisements or make decisions with legal or similarly significant effects."
+    },
+    "privacy.public_heading": {
+      "kind": "message",
+      "ja": "公開統計",
+      "en": "Public statistics"
+    },
+    "privacy.public": {
+      "kind": "message",
+      "ja": "公開レポートを用意した場合は、閲覧数・利用者数・日別推移・国別の集計を表示します。IPアドレス、Cookie識別子、個別の閲覧履歴は公開しません。国の推定はVPNなどにより不正確になることがあります。拒否、ブロック機能、集計の遅延があるため、全アクセスの厳密な総数ではありません。",
+      "en": "A public report, when available, shows aggregated page views, users, daily trends and countries. We do not publish IP addresses, cookie identifiers or individual browsing records. Country estimates may be inaccurate, especially with VPNs. Refusals, blockers and reporting delays mean the totals are not an exact count of all visits."
+    },
+    "privacy.storage_heading": {
+      "kind": "message",
+      "ja": "保存と保持期間",
+      "en": "Storage and retention"
+    },
+    "privacy.storage": {
+      "kind": "message",
+      "ja": "解析Cookieの_gaと_ga_SEV0T0PFTBは、このプロジェクト内でブラウザーとセッションを識別します。有効期間は最大180日で、自動延長しません。同意・拒否の選択はポリシーのバージョンとともに端末内へ180日間保存します。言語・表示設定・保存構成などの必要な設定は解析とは別で、この連携からGoogleには送信しません。",
+      "en": "The analytics cookies _ga and _ga_SEV0T0PFTB identify a browser and its session within this project. Their expiry is limited to 180 days without automatic renewal. Your versioned allow or decline preference is stored locally for 180 days. Essential preferences, such as language, display settings and saved configurations, are separate from analytics and are not sent to Google by this integration."
+    },
+    "privacy.retention": {
+      "kind": "message",
+      "ja": "GA4プロパティのユーザー・イベントデータ保持は2か月とし、新しいアクティビティによるユーザー保持期間のリセットを無効にします。対象データはGoogleの月次削除処理で削除されます。標準の集計レポートにはこの設定が適用されず、プロジェクトの統計履歴として残る場合があります。削除などのご請求は連絡先へお知らせください。パスワードや機微な書類は送らないでください。",
+      "en": "The GA4 property uses a two-month user and event data retention setting, without resetting user retention on new activity. Eligible data is removed in Google's monthly deletion process. Standard aggregate reports are not governed by that setting and may remain for the project's statistical history. Contact us about deletion requests and available information; do not send passwords or sensitive documents."
+    },
+    "privacy.recipients_heading": {
+      "kind": "message",
+      "ja": "提供先と国外での処理",
+      "en": "Providers and international processing"
+    },
+    "privacy.recipients": {
+      "kind": "message",
+      "ja": "アクセス解析は米国のGoogle LLCが、サイト・モデルの配信はGitHubが提供します。これらのサービスには、リクエストへの応答に必要な通信情報が伝わります。解析への同意後、データはオンラインでGoogleへ送信され、米国やGoogleの事業拠点がある他の国で処理される場合があります。現地の保護制度はお住まいの国と異なる場合があります。Googleのプライバシー・国外移転に関する説明は以下で確認できます。",
+      "en": "Google LLC in the United States provides analytics, and GitHub provides site and model delivery. These services receive network information needed to respond to requests. After analytics consent, data is transmitted online to Google and may be processed in the United States and other countries where Google operates. Those countries' protections may differ from your own. Google's privacy and transfer information is linked below."
+    },
+    "privacy.google_data": {
+      "kind": "message",
+      "ja": "Googleによるパートナーサイトのデータ利用",
+      "en": "How Google uses data from partner sites"
+    },
+    "privacy.google_transfers": {
+      "kind": "message",
+      "ja": "Googleの国際データ移転の枠組み",
+      "en": "Google international transfer frameworks"
+    },
+    "privacy.github": {
+      "kind": "message",
+      "ja": "GitHubのプライバシーに関する声明",
+      "en": "GitHub privacy statement"
+    },
+    "privacy.rights_heading": {
+      "kind": "message",
+      "ja": "利用者の権利",
+      "en": "Your privacy rights"
+    },
+    "privacy.rights": {
+      "kind": "message",
+      "ja": "適用される法令に応じて、データへのアクセス、訂正、削除、処理の制限、データの移転、処理への異議申立て、同意の撤回、所在地の監督機関への苦情申立てを請求できます。欧州・英国のデータ保護法、日本の個人情報保護法（APPI）、適用される米国州法などの権利を含みます。解析を拒否した利用者を不利益に扱いません。データの特定や本人確認のため、必要に応じた情報をお願いする場合があります。集計情報を利用者個人に結び付けられない場合は、その旨を説明します。",
+      "en": "Depending on applicable law, you may request access, correction, deletion, restriction or portability of your data, object to processing, withdraw consent, or complain to your local data protection authority. This includes relevant rights under European and UK data protection law, Japan's APPI and applicable US state laws. We do not discriminate against visitors who decline analytics. We may need proportionate information to locate data or verify a request, and will explain if we cannot associate an aggregate with you."
+    },
+    "privacy.children": {
+      "kind": "message",
+      "ja": "お住まいの地域で自ら同意できる年齢に達していない場合は、保護者の許可がない限り解析を無効のままにしてください。",
+      "en": "If you are below the age at which you may consent where you live, leave analytics disabled unless your parent or guardian authorizes it."
+    },
+    "privacy.links_heading": {
+      "kind": "message",
+      "ja": "外部サイトと変更",
+      "en": "Other websites and changes"
+    },
+    "privacy.links": {
+      "kind": "message",
+      "ja": "スポンサー・アフィリエイト・出典のリンク先には各サイトのプライバシー方針が適用されます。公開レポートにも提供元の方針が適用されます。解析目的や提供先を大きく変更する場合は、計測を再開する前に改めて選択を求めます。更新日と同意のバージョンにより、同意対象のポリシーを示します。",
+      "en": "Sponsor, affiliate and source links lead to other websites with their own privacy practices. Public reports also have their provider's policies. Material changes to our analytics purposes or providers require a new choice before measurement resumes; the updated date and consent version identify the policy you accepted."
+    },
+    "privacy.back": {
+      "kind": "message",
+      "ja": "プリンター一覧へ戻る",
+      "en": "Back to printers"
     }
   }
 }

@@ -1,3 +1,4 @@
+import {setupUsageStatistics} from './usage-statistics.mjs?v=e11e5f17f9fb34440ebf';
 import {setupLayoutNavigation} from './layout-nav.mjs?v=0d0504a7073c4f0f1bae';
 import {machineChoices, machineFamilies, machineVendors} from './machines.js?v=5503ac507978b3d4e928';
 import {normalizeLanguage, languageURL} from './languages.mjs?v=ba6a5cd8e1d86849ca34';
@@ -97,10 +98,11 @@ export function createMachineCard(row, {document, current, language, translate, 
 
 export async function mountGallery({document = globalThis.document, window = globalThis.window, fetcher = globalThis.fetch, services} = {}) {
   const [{setupLanguage, translate, formatMessage}, {setupHeaderThemeToggle, applyDisplay, displayKey}] = services || await Promise.all([
-    import('./i18n.mjs?v=026ed350b8da81434067'), import('./display-preferences.mjs?v=8f347468def25922153c'),
+    import('./i18n.mjs?v=535a15826b80b7dcc2f6'), import('./display-preferences.mjs?v=8f347468def25922153c'),
   ]);
   const $ = id => document.getElementById(id), lang = setupLanguage({document, window});
   setupLayoutNavigation(document.querySelector('[data-gallery-nav]'), {document, window});
+  setupUsageStatistics(document.querySelector('footer > div'), {document, window});
   const theme = setupHeaderThemeToggle(document.querySelector('.header-actions'));
   const message = (id, values = {}) => formatMessage(id, values, lang.language);
   const query = new URL(window.location.href).searchParams;
