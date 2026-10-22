@@ -3897,21 +3897,23 @@
     },
     {
       "path": "modules/head_print_yavoth_orbiter2_rapido2_uhf_rear5.glb.gz",
-      "bytes": 70942,
-      "sha256": "68758e04c097dd8a908c286cb28beda213bdf195b43f4457ae5e68251a813880",
-      "url": "https://psych0h3ad.github.io/3d-print-rig/modules/head_print_yavoth_orbiter2_rapido2_uhf_rear5.glb.gz",
-      "approval_receipt_sha256": "bd6d1fc1543ec3bf2092eaad15268e17979408c08399b098a4fef9e3d4dafcff",
+      "bytes": 228419,
+      "sha256": "37ecbc875af6000c435971ef846d695f41d503b3a8b9c1bebe608d0ab8245ec2",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/yavoth-cowls-20261023/37ecbc875af6000c435971ef846d695f41d503b3a8b9c1bebe608d0ab8245ec2.glb.gz",
+      "approval_receipt_sha256": "6541f6258eaccebfbb8d3245a28ef722c83bb7a52d5b5426febea4be8f7ebe50",
       "origin": "https://psych0h3ad.github.io/3d-print-rig/modules/head_print_yavoth_orbiter2_rapido2_uhf_rear5.glb.gz",
-      "source_approval_receipt_sha256": "b43a1d650b283b562d67c3fc7decb0309d5c80310b9c8ef5dca8bbb7def912e0"
+      "source_approval_receipt_sha256": "b43a1d650b283b562d67c3fc7decb0309d5c80310b9c8ef5dca8bbb7def912e0",
+      "previous_delivery_sha256": "68758e04c097dd8a908c286cb28beda213bdf195b43f4457ae5e68251a813880"
     },
     {
       "path": "modules/head_print_yavoth_orbiter2_rapido2_uhf_rear5.json",
-      "bytes": 2272,
-      "sha256": "8b53fcad200717128933ab1046d20af8922019a14c153f98ad119e289aa7bc78",
-      "url": "https://psych0h3ad.github.io/3d-print-rig/modules/head_print_yavoth_orbiter2_rapido2_uhf_rear5.json",
-      "approval_receipt_sha256": "bd6d1fc1543ec3bf2092eaad15268e17979408c08399b098a4fef9e3d4dafcff",
+      "bytes": 8610,
+      "sha256": "78951ed0eae5b86aba36e9a1931243a3365649c5a4d6f18fb6d912fa812bd400",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/yavoth-cowls-20261023/78951ed0eae5b86aba36e9a1931243a3365649c5a4d6f18fb6d912fa812bd400.json",
+      "approval_receipt_sha256": "6541f6258eaccebfbb8d3245a28ef722c83bb7a52d5b5426febea4be8f7ebe50",
       "origin": "https://psych0h3ad.github.io/3d-print-rig/modules/head_print_yavoth_orbiter2_rapido2_uhf_rear5.json",
-      "source_approval_receipt_sha256": "b43a1d650b283b562d67c3fc7decb0309d5c80310b9c8ef5dca8bbb7def912e0"
+      "source_approval_receipt_sha256": "b43a1d650b283b562d67c3fc7decb0309d5c80310b9c8ef5dca8bbb7def912e0",
+      "previous_delivery_sha256": "8b53fcad200717128933ab1046d20af8922019a14c153f98ad119e289aa7bc78"
     },
     {
       "path": "modules/head_print_yavoth_orbiter2_rapido2_uhf_standard.glb.gz",
@@ -4005,21 +4007,23 @@
     },
     {
       "path": "modules/head_print_yavoth_sherpa_micro_rapido2_uhf_rear5.glb.gz",
-      "bytes": 71070,
-      "sha256": "82fbbcd8018c51bbecf87200c1bef201afba20302e9f84a0ba60de1d203b71b5",
-      "url": "https://psych0h3ad.github.io/3d-print-rig/modules/head_print_yavoth_sherpa_micro_rapido2_uhf_rear5.glb.gz",
-      "approval_receipt_sha256": "bd6d1fc1543ec3bf2092eaad15268e17979408c08399b098a4fef9e3d4dafcff",
+      "bytes": 222566,
+      "sha256": "5516f29cc2fc761750db1d34e1274b5bc0452fc57d47bc4c7b7c8d03e6d2adf0",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/yavoth-cowls-20261023/5516f29cc2fc761750db1d34e1274b5bc0452fc57d47bc4c7b7c8d03e6d2adf0.glb.gz",
+      "approval_receipt_sha256": "6541f6258eaccebfbb8d3245a28ef722c83bb7a52d5b5426febea4be8f7ebe50",
       "origin": "https://psych0h3ad.github.io/3d-print-rig/modules/head_print_yavoth_sherpa_micro_rapido2_uhf_rear5.glb.gz",
-      "source_approval_receipt_sha256": "b43a1d650b283b562d67c3fc7decb0309d5c80310b9c8ef5dca8bbb7def912e0"
+      "source_approval_receipt_sha256": "b43a1d650b283b562d67c3fc7decb0309d5c80310b9c8ef5dca8bbb7def912e0",
+      "previous_delivery_sha256": "82fbbcd8018c51bbecf87200c1bef201afba20302e9f84a0ba60de1d203b71b5"
     },
     {
       "path": "modules/head_print_yavoth_sherpa_micro_rapido2_uhf_rear5.json",
-      "bytes": 2320,
-      "sha256": "90e5ddbc5b0edb53294dfb78000696fea13fe9b0b71e238a89254f02ee49a328",
-      "url": "https://psych0h3ad.github.io/3d-print-rig/modules/head_print_yavoth_sherpa_micro_rapido2_uhf_rear5.json",
-      "approval_receipt_sha256": "bd6d1fc1543ec3bf2092eaad15268e17979408c08399b098a4fef9e3d4dafcff",
+      "bytes": 8684,
+      "sha256": "b37e8206a7e5e651f9c78d72bbaf73b1d5a4af0386de79132237cd1e0bff0e7b",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/yavoth-cowls-20261023/b37e8206a7e5e651f9c78d72bbaf73b1d5a4af0386de79132237cd1e0bff0e7b.json",
+      "approval_receipt_sha256": "6541f6258eaccebfbb8d3245a28ef722c83bb7a52d5b5426febea4be8f7ebe50",
       "origin": "https://psych0h3ad.github.io/3d-print-rig/modules/head_print_yavoth_sherpa_micro_rapido2_uhf_rear5.json",
-      "source_approval_receipt_sha256": "b43a1d650b283b562d67c3fc7decb0309d5c80310b9c8ef5dca8bbb7def912e0"
+      "source_approval_receipt_sha256": "b43a1d650b283b562d67c3fc7decb0309d5c80310b9c8ef5dca8bbb7def912e0",
+      "previous_delivery_sha256": "90e5ddbc5b0edb53294dfb78000696fea13fe9b0b71e238a89254f02ee49a328"
     },
     {
       "path": "modules/head_print_yavoth_sherpa_micro_rapido2_uhf_standard.glb.gz",
@@ -4113,21 +4117,23 @@
     },
     {
       "path": "modules/head_print_yavoth_sherpa_mini_rapido2_uhf_rear5.glb.gz",
-      "bytes": 71241,
-      "sha256": "0c3b2bd324cf47e87e35dc371c4798b46ac3aea57440fd5a1fb451fb522dd3da",
-      "url": "https://psych0h3ad.github.io/3d-print-rig/modules/head_print_yavoth_sherpa_mini_rapido2_uhf_rear5.glb.gz",
-      "approval_receipt_sha256": "bd6d1fc1543ec3bf2092eaad15268e17979408c08399b098a4fef9e3d4dafcff",
+      "bytes": 211344,
+      "sha256": "bf5dbbd24b284f5053b3cb23d769f14d9fcc7ca5c58c0aa217f30c09e9ca43c3",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/yavoth-cowls-20261023/bf5dbbd24b284f5053b3cb23d769f14d9fcc7ca5c58c0aa217f30c09e9ca43c3.glb.gz",
+      "approval_receipt_sha256": "6541f6258eaccebfbb8d3245a28ef722c83bb7a52d5b5426febea4be8f7ebe50",
       "origin": "https://psych0h3ad.github.io/3d-print-rig/modules/head_print_yavoth_sherpa_mini_rapido2_uhf_rear5.glb.gz",
-      "source_approval_receipt_sha256": "b43a1d650b283b562d67c3fc7decb0309d5c80310b9c8ef5dca8bbb7def912e0"
+      "source_approval_receipt_sha256": "b43a1d650b283b562d67c3fc7decb0309d5c80310b9c8ef5dca8bbb7def912e0",
+      "previous_delivery_sha256": "0c3b2bd324cf47e87e35dc371c4798b46ac3aea57440fd5a1fb451fb522dd3da"
     },
     {
       "path": "modules/head_print_yavoth_sherpa_mini_rapido2_uhf_rear5.json",
-      "bytes": 2308,
-      "sha256": "a0a7e1ca2926da3d6f1b4bafe807965aa3c744082ca3138411b71b12e62f9809",
-      "url": "https://psych0h3ad.github.io/3d-print-rig/modules/head_print_yavoth_sherpa_mini_rapido2_uhf_rear5.json",
-      "approval_receipt_sha256": "bd6d1fc1543ec3bf2092eaad15268e17979408c08399b098a4fef9e3d4dafcff",
+      "bytes": 8653,
+      "sha256": "8250ad504b7b1ec78625b38e308ff51da6c50047071a535b27d21ce3938c92d7",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/yavoth-cowls-20261023/8250ad504b7b1ec78625b38e308ff51da6c50047071a535b27d21ce3938c92d7.json",
+      "approval_receipt_sha256": "6541f6258eaccebfbb8d3245a28ef722c83bb7a52d5b5426febea4be8f7ebe50",
       "origin": "https://psych0h3ad.github.io/3d-print-rig/modules/head_print_yavoth_sherpa_mini_rapido2_uhf_rear5.json",
-      "source_approval_receipt_sha256": "b43a1d650b283b562d67c3fc7decb0309d5c80310b9c8ef5dca8bbb7def912e0"
+      "source_approval_receipt_sha256": "b43a1d650b283b562d67c3fc7decb0309d5c80310b9c8ef5dca8bbb7def912e0",
+      "previous_delivery_sha256": "a0a7e1ca2926da3d6f1b4bafe807965aa3c744082ca3138411b71b12e62f9809"
     },
     {
       "path": "modules/head_print_yavoth_sherpa_mini_rapido2_uhf_standard.glb.gz",

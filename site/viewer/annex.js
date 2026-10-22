@@ -12,7 +12,7 @@ import {loadExtraMachine} from './extra-machine-loader.mjs?v=c57003e05d00c49566e
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
 import {setupRenderExport} from './render-export.js?v=736862a3013dbfd9f9ea';
-import {setupPublicInfo} from './public-info.js?v=82ae2cba60aa044932c5';
+import {setupPublicInfo} from './public-info.js?v=9a36586e255c2266cea5';
 import {applyNativeMotionProfile,loadNativeMotionProfile} from './native-motion-profile.mjs?v=91532eb992519143f437';
 import {createCommunityAdapter} from './community-adapter.mjs?v=61b77f5cd77eabb0120d';
 import {setupNativeMotionControls} from './native-motion-controls.mjs?v=2c08202d5c81304dd19e';

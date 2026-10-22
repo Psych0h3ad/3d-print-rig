@@ -1268,10 +1268,10 @@
       "commit": "cc2e749d09d7f24418f9f8c73c90bcefb1e29584",
       "version": "Yavoth v1; Alternative Voron Mounts at the same pinned revision",
       "scope": "16 fixed-carriage static previews. Contacts and omitted components are documented. No toolchanging or full-travel certification.",
-      "changes": "Rigid native placements, separate 6/9 mm carriages, source manufacturing support omitted for 6 mm. No cowl/carriage body material removed.",
+      "changes": "Rigid native placements, separate 6/9 mm carriages, source manufacturing support omitted for 6 mm. No cowl/carriage body material removed. UHF 5 mm rear-offset cowls use complete author STL geometry; original LED holders/inserts retained. Source occurrence identities are distinguished from stable viewer aliases.",
       "license": "Component-specific licenses and hardware terms retained",
       "license_url": "../licenses/yavoth_assembly/NOTICE.md",
-      "license_sha256": "0977793ed1cf83b6a0b4ea77603a1ea1e0c270d609b2a643cc6381e3e36a2ecc"
+      "license_sha256": "65088969045a20676065b65d29c532be8372dfb1aa9d5eeed5c587b8ee0d8be1"
     },
     {
       "id": "positron_v322",
@@ -2327,6 +2327,12 @@
       "includes": "Pinned original 250 mm CAD; five corrected native deck solids; exact deck-only reproduction recipe for existing 300 / 350 / 500 mm STEP assemblies. Original component terms and unchanged front/electronics fixes are preserved.",
       "label": "VORON Trident rear deck editable source",
       "license": "GPL-3.0 for Trident CAD and deck delta recipe; other assembly components retain their original terms"
+    },
+    {
+      "label": "Yavoth UHF rear-offset cowls \u00b7 printed source and converter",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/yavoth-cowls-20261023/yavoth-uhf5-printed-source-v2.zip",
+      "bytes": 2166078,
+      "sha256": "3c9ed89fba7b981709a957c7d7990eb13f87cfc47ff719784bd47e2a7a54e0f8"
     }
   ]
 }

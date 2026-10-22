@@ -344,6 +344,15 @@ def main():
     args, _ = parser.parse_known_args()
     target = args.output.resolve()
     build_approved()
+    # Require genuine UHF rear5 author geometry and every current Yavoth
+    # consumer. Internal diagnostic reports are temporary, never site payload.
+    with tempfile.TemporaryDirectory(prefix='yavoth-source-release-') as folder:
+        subprocess.run(['node', '--max-old-space-size=384', '--expose-gc',
+                        '--experimental-loader', './scripts/three-test-loader.mjs',
+                        str(ROOT/'scripts/audit_yavoth_source_assets.mjs'),
+                        '--site', str(target), '--source-cache', folder,
+                        '--report', str(Path(folder)/'yavoth-source-assets.json')],
+                       cwd=ROOT, check=True)
     from check_entrypoint_delivery import verify as verify_entrypoints
     inputs_arg = argparse.ArgumentParser(add_help=False)
     inputs_arg.add_argument('--inputs', type=Path)

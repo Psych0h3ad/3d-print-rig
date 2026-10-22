@@ -37,6 +37,16 @@ AND SOFTWARE EULA. The Release 2 Rev1 standard housing/short idler
 source assembly is used, including original internal vitamins and motor.
 No single license is assigned to the combined preview.
 
+UHF 5 mm rear-offset cowl display correction, 2026-10-23: complete original
+Orbiter V2, Sherpa Mini and Sherpa Micro author STLs at the same pinned
+revision replace the standard/Revo-pattern cowl in those three printed
+modules. All 9,214 triangles per cowl and the source dimensions are retained.
+The original printed LED holder/insert geometry is unchanged. Public node
+aliases remain stable; module metadata records the distinct genuine source
+occurrence identities. No analytic STEP representation is claimed for these
+STL-derived display cowls. The separate printed-source kit includes the
+author meshes, conversion recipe, exact versions and GPL-3.0 license.
+
 Preferred author CAD, selected native placed BREP bodies, placement records,
 the native intersection report and individual license texts accompany the
 source archive. Viewer code licensing does not relicense these CAD parts.
