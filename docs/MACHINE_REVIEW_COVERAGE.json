@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "review_revision": "ga-ui-actual-72-current-controller-20261023",
+  "review_revision": "reference-menu-only-current-72-binding-20261023",
   "reviewed_on": "2026-10-23",
   "input_sha256": {
     ".github/workflows/pages.yml": "808d6da6325507943a5373df1217bfa2ba0803c345504aed1890d80b9b4848ee",
@@ -418,7 +418,7 @@
     "site/viewer/a4t-printed-companions.mjs": "e7443f72d21fc964b2cf7db83d1d38d9918a31ddc2ca90c04653153a7b4dc2cf",
     "site/viewer/accessories.js": "8b7ff402b18889ebf3db4e9a696fc427eead8d29429470ac23721e46bc610238",
     "site/viewer/annex-machines.mjs": "3a0e3f3d8e456bee4e5ac266d91c69ca3b6fbc6db8f5a40694f85428c6148c13",
-    "site/viewer/annex.html": "58ed43939a7b2320c2c3443ec59fd7d09e6a4103328a058529abcf4247dcc08e",
+    "site/viewer/annex.html": "f0eb7fa9724471b6c62a49838b7cc022eefccd8ad26956ce44a781518a0ffdf0",
     "site/viewer/annex.js": "a76750f1c1e51a3195c8077e8ee49e53702b0ce61888ff16112fe1f1bba9cbe9",
     "site/viewer/app.js": "ed8d0b110d9a5adef14aeb95d9776afb91c226b5af35b883bfc074cdea2effa6",
     "site/viewer/appearance-role.mjs": "6eb709afed84945151b895e97638b817f0fac071ab61c5a45de4cb6fb883e1ed",
@@ -442,11 +442,11 @@
     "site/viewer/community-loader.mjs": "798965bb5aaf49d60eacbe20b14b8e48b8ccc10889d797b36cd1132bbbf7269b",
     "site/viewer/community-renderer.mjs": "5b5d7748e5574a2afc397c65a5c17029d0ad8e4d9231acb25ef6edd62f54b258",
     "site/viewer/community-state.mjs": "460b3fa78cc503ddb6e631766efe780433e4efa286db5d9388a67d73cd4fce3d",
-    "site/viewer/community.html": "46ac04d3d20778e06b669a1491375a74f92c8fcc9baf52552d0e2d15488dff98",
+    "site/viewer/community.html": "d1d89cab07ca763a098ed5bf73d3317eab191c26ab60e8fd802e4aad83d9f1d4",
     "site/viewer/community.js": "1dd796ba773823810e56627d735d573d209cb526accae3407f20b01571670cec",
     "site/viewer/component-assets.mjs": "2dbda26b309fbe6c35c869bf63a9da9d8ee73b32f9741b2dec6421678b411b7d",
     "site/viewer/component-selection.js": "51826e4eeaa0dd803b109d2ba7261d86e40fa509e63ffe7ce2f087efd0ee6e04",
-    "site/viewer/components.html": "60005bf381364b0df65b095b62527b04d3ab9812e3dd157d0d8d3f65a7ff6b2c",
+    "site/viewer/components.html": "72edb0e9e14bd4f7d7d1730514508ada6b5fc441a4b6eaff9ea6085628c0438a",
     "site/viewer/components.js": "481f38ae5eadb17909fb6c90bed4b1449b0d72aa8a4d4dd7bf41687ddbfc4d1e",
     "site/viewer/configuration-draft.mjs": "23ce9b8920289ad38e21aa9293faeefaf5a48a3609ee669b29767bf00d7a6c02",
     "site/viewer/configuration-editor.css": "1ce65fe33b2c2f92e5b2eab845b196a6db3175a7ec858902ec9e23e8c2f3a3f4",
@@ -459,19 +459,19 @@
     "site/viewer/crossant-covers.mjs": "c0781087f44545d6025de5f5084595cf5bbd6e92ce6ec0c7d555406d5ab01b3b",
     "site/viewer/crossant-loader.mjs": "d7e43ff732dafce0657e0491a002942fbbf40b5230c83a9a85c6109fb7aa8d98",
     "site/viewer/crossant-state.mjs": "534dc62f2c6545f556f7a19791302d04f9c06e364c67d29bf6428bd81a5c7a9f",
-    "site/viewer/crossant.html": "689ce1310d47d7cd65cec2569e3d1c25e07921aef7065ce8df8b47fe81bfcac1",
+    "site/viewer/crossant.html": "dee0a0bb25e976b3dc0cd66c604e9ab60a427198a5602e5f5c086c699bfc299d",
     "site/viewer/crossant.js": "b14d30607cbadc7696d5fc9cd175f3d5f7f533019551559e56d06e9dfb114533",
     "site/viewer/custom-voron-loader.mjs": "96c2a05646e84785faf5c8a4d83a8fc9d035563493b52f116d623a45b6b03f13",
     "site/viewer/custom-voron-state.mjs": "4b6132fe80a74098a8bade2347c6e581bb39bcf3b8dc9459cf8298b7e7938949",
     "site/viewer/custom-voron-tube.mjs": "be16dba6afffddec260f1e181165c73371d0bbefe73d3c663006da032c11a631",
-    "site/viewer/custom-voron.html": "fa45af5bc8b978b85089a3bb3b9820c72c04736b6f56da09a252a4a2cfbd5229",
+    "site/viewer/custom-voron.html": "2ddf4250e8fc73b27aeb7e93c381d5653808a92f8e67f7d02d6cb26d6ba558d8",
     "site/viewer/custom-voron.js": "b9d4342a5dae7c32ff903bc2d84c76a217df65f33606eb377231ec2e66773ee5",
     "site/viewer/device-memory.mjs": "c2fd3c5387d359dca8a774e70e34a3de595fa64cb59331c82c9b4555b7831d8b",
     "site/viewer/disco-led-apertures.mjs": "50208fba4e6d3cbe5cf2df14e45078e37fb5470b52b0f26a038c5b6ec5c8b87b",
     "site/viewer/display-preferences.mjs": "8f347468def25922153cf887dae6642b898018510ce025ed675872e8a305af19",
     "site/viewer/display-start.js": "2ccf9c125fa0c4f73dc1a238a9b5070c779ef1b45d8301a11acd804528ccbad6",
     "site/viewer/e3ng-model.mjs": "7d5da880bcd1c29e4fd7f25a58afeafe5bd2e6839778821da65faa6614a1495a",
-    "site/viewer/e3ng.html": "006a738f9fc8d60b798189466a60bc078315127ef80fb145b7c528058191bd76",
+    "site/viewer/e3ng.html": "9c23f221815a43c0f0199050104888fb63aad00f9300a3321a5b7613dd70da9a",
     "site/viewer/e3ng.js": "8bf045af2b84f79e1c80c05c1df45ce37707b2d16fb616ea9b7c5a03a8245490",
     "site/viewer/elegoo-catalog.mjs": "048f866b21f8d3cfdf73cef35b94f47030dbc37b9358773d744c521a6521312d",
     "site/viewer/elegoo-contract.mjs": "66697cb2ce3ba4ee90147a190862ee51a2c5b74992eabf04efc76b0ec2dd9676",
@@ -496,7 +496,7 @@
     "site/viewer/extra-machine-loader.mjs": "c57003e05d00c49566e3e73c54ded8c4a4e37bd5c2d78cfe015a4ae103fd112e",
     "site/viewer/flexible.js": "37fd0f2d1bdfe5ac356f0c58bf4a658b8b97a8b5cd6126ecafb1d64f09b0d284",
     "site/viewer/frame-mods.js": "82c788414a1d3c1f638e91dd14469a27c8bda0d009baf68544b45a864a279f0e",
-    "site/viewer/gantries.html": "72888ec0e65c5918e1099d286e3052c6b45c0e97f9af2ed5f84888687a30f912",
+    "site/viewer/gantries.html": "19acf2224394de7c9e0d8d150a2c7ff2927ebd3306bd4b83b5bd8959d42e0580",
     "site/viewer/gantries.js": "77e5204eaa75800307754d7bcdb25f943d87bf8559029dd125c17daf07e24362",
     "site/viewer/gantry-model.js": "77bee27ae99e3944fc901c733b7fa2450b2e36deb9b789c66328e8c979db2ec4",
     "site/viewer/gcode-loaded-asset-identity.mjs": "42ac134c2d9a8b8f8dfc31744744fb59abf735171ae6b928030371d5e7de8dec",
@@ -516,10 +516,10 @@
     "site/viewer/head-validation.mjs": "bba39d88e1b5b7f848c0447a93850abd4e8a3accbadfcd4db2e9ff772e855e9d",
     "site/viewer/i18n.mjs": "535a15826b80b7dcc2f6350abf71ced89449e3799d7805be82bf7d149c9adddb",
     "site/viewer/inactive-head-cache.mjs": "6822e90a376bc578618589c2dfb804276ccc46d9ea257c20ca83b197a8049299",
-    "site/viewer/index.html": "76e496868c7dfd6e09c035f81ca1f328ca60e4ea8f980ad290fb45f71425e398",
+    "site/viewer/index.html": "255ca70070be428ce47b39adbed0a161354e30e9de4ef34213578b25dbcfdf01",
     "site/viewer/internal-spool.mjs": "ca3a453f6bf2966e020830957f6ca3290d89dffebe02ec3aa1b82a45a31c5f99",
     "site/viewer/kit-reference-loader.mjs": "ab4c504dc9c9698eb8e290962e9a2d1c474b0c3272fbf39f6b8fa4edbd236e5b",
-    "site/viewer/kit-reference.html": "5fb7a91e3b6fd1a4e0c00ded7642f6b96e07b0c038ea60fcff18c1a78d77494e",
+    "site/viewer/kit-reference.html": "0fa5a121c109a1cc5729cd0425a09f0b63e2fc4c057b2410425cab14a6a4e425",
     "site/viewer/kit-reference.js": "71c1c7817bbc860485ebed86d7ec68c243e54d6d62600238cf638ccfd373e45c",
     "site/viewer/klipper-macro-subset.mjs": "99f089a84c395186fe576a9f5fbf1e35e2da121e5cfaf5b00b4e85d2280a4a1b",
     "site/viewer/languages.mjs": "ba6a5cd8e1d86849ca3405b62a9b4f3757b10bb6f195f9990b68d12e15a86424",
@@ -556,7 +556,7 @@
     "site/viewer/micron-flexible.mjs": "1baf6905062383defaca8d7ae7803d736db2a427f03d16a7137b12c54c0ce6a2",
     "site/viewer/micron-native-materials.mjs": "55b8c3644415d202fa4af8bac672b52803fde6b2c1d1278acbb38afac75e2e2c",
     "site/viewer/micron-tube-routes.mjs": "c69d79d6fdbfee5338fe365ca9542323714add2a834e34aafec37395d19614b1",
-    "site/viewer/micron.html": "d906828f5582d461cd9422e0f23222df7b669166c7e34f3d9142e039bd95c62e",
+    "site/viewer/micron.html": "5df7c17cc86fdb7bd1083502853f1976aa249318777ede443c027f57ad7701c2",
     "site/viewer/micron.js": "7e3015deb748fd8994638e8e4581b6308097b7dffd906a1be447331e94b92553",
     "site/viewer/microswiss-source-shroud-palette.mjs": "f014e574106d0f8792bc77f2ab67a95ad58f2c70022a99f3a4d22698b4cfc24c",
     "site/viewer/model-delivery-policy.mjs": "7677e1f8ddfa3d5cc6acce428a2be49204c9b69622e4e65fd6a723d0b12130f2",
@@ -587,7 +587,7 @@
     "site/viewer/positron-fold.mjs": "7368d3dd6e38e237f6ff9e9c66de9f167096c6a72c867238bb8d21027b37d067",
     "site/viewer/positron-loader.mjs": "b64f79151c6cb05dc1d7a2d7249188280098d99be873fe4afa36e4a221af8735",
     "site/viewer/positron-state.mjs": "8296d1b775fbca04462f5518a3126d25a53d372ddebadb0c2adff67968fee9ea",
-    "site/viewer/positron.html": "a943bd294da19d40c30b6de47352bccdac7fee80f56d27bad056fdde92e9ec1e",
+    "site/viewer/positron.html": "d724138805a85f7bca91f2b1aacc05b7a453458d8e8f17e8534b219b45409285",
     "site/viewer/positron.js": "e5b96093b2a3d5f3780411690212a141135781ec2eb8e72dfe5094e86d56611c",
     "site/viewer/printer-gantry.mjs": "f2f8aca7cc040f3911ab2b31b982d914df930c58cb5c63d2db4374e0b9b1cff5",
     "site/viewer/privacy.css": "d6f9aa797830cbc876e98d02cf25181d0696873adabd5957e7c74e231a2a92e4",
@@ -604,12 +604,12 @@
     "site/viewer/ratrig-loader.mjs": "cb2508ebf98d2b8e2bde4c37a4a382a5fd240dff2792b57e4cc8f70cdbb963cd",
     "site/viewer/ratrig-machines.mjs": "6f5c7fbad04c29c3827deaea5ed6a556bcd927ab7c3d9505beff4200a0392ba0",
     "site/viewer/ratrig-ui-state.mjs": "58e9d9727047d366ffe400325f8381b047b3aa29ddc49a1a3b68c811cfd3ad08",
-    "site/viewer/ratrig.html": "ef0c2762a8af6bba5d8c082dfcb32456943ffae79bcd931d77d9fc8c0eb56769",
+    "site/viewer/ratrig.html": "b1cbcd3156bf057da0a425109af6c1ee98327a12584b0ed3bc157ee34476a26d",
     "site/viewer/ratrig.js": "c1068e95ad8da99f42a76bc949cb061e75bfba239e2d6212ec8a557f53c6ebf3",
     "site/viewer/remorph-adapter.mjs": "5bb6f83844e91238bd2a73d57185ec378eb70862f1284935304aaad8ec0209be",
     "site/viewer/remorph-belts.mjs": "c75ae005bf795485430cc1188bb51fc647244585f5e0407c9b9586cf79dd082f",
     "site/viewer/remorph-environment.mjs": "67b979de18933d30ccfdf258b4f8067face45fcbe045492ff273e29ce7767d0f",
-    "site/viewer/remorph.html": "6146a6e0652a40db5e73886437d38efec270c8849e2812eacaaf128720f74dd4",
+    "site/viewer/remorph.html": "b40467ad57657beee98c5a953372f950ed3c1b87ab0b30fa22b2f81f7cece55e",
     "site/viewer/remorph.js": "df84915799a78db0e82e74943c9e99504b90b80e7c7d931adcb6390994647fdd",
     "site/viewer/render-export.js": "92d6e71ee392361a4f7d5558f3648790bd5ac0672a4a9828bee47c2a8e53974a",
     "site/viewer/requested-mods.mjs": "165580239f7428aeab513975bd06d8f1bb8155568a2001ece44609ae687c5d94",
@@ -675,13 +675,13 @@
     "site/viewer/theme-toggle.css": "4e62a8462e0b9ed5c6653d7dcb43cf66a36893b1be13b5b267e4e0af3f85613b",
     "site/viewer/toolchanger-model.js": "0688c022fbab64a87c2e33d823880ec90afaa05223f3d4a3f2f454a258e7c443",
     "site/viewer/toolchangers.css": "aeb1af01008eeb68e8915ccf6a73a4944f2d70ad906feccca6da2579b4dba488",
-    "site/viewer/toolchangers.html": "4a798b9bb366e19c128475dc77e959ab6255f323d3e9157369214219d851f53c",
+    "site/viewer/toolchangers.html": "bfabffee4c2723e8ce0189e9d619c9507ecfb527018d2a636bb8ffcb910973bd",
     "site/viewer/toolchangers.js": "fe1c8ea22d6674b3ad841e71ce4bcd56d8fb01da64aa297a6c7f789256498b81",
     "site/viewer/toolhead-builder.mjs": "13cf054a719c8bc09f8d592ecfc9f28d5074d080f0e28b9faeb79303f73ff0e2",
     "site/viewer/toolhead-led-identities.mjs": "5cd13006c9b761a9594ff10aa66c1b32e64ed5b45807ca377bb67be184c29808",
     "site/viewer/toolhead-lighting.mjs": "b1b7fd7dbb41511786d5cee80bfbe9edffd0d5ad5c0e57927985acf51841992b",
     "site/viewer/toolheads.css": "5980047d16c1dadb3a63ea9d656c03261a3af30b2748d879158d97aea40a011f",
-    "site/viewer/toolheads.html": "6d331ccf5fb5bd0661dc2a3b47b302ea113957bbec85e6167194cd632d95e1f0",
+    "site/viewer/toolheads.html": "3a4a47853c466f306c32b0064b507b9cf3d2203d87688e2b6c4abdf5634df51b",
     "site/viewer/toolheads.js": "81de7ac5a10e1a43a594ca227f8c5346cb9f8c3dfd0babc2813b5a5e17b8cc59",
     "site/viewer/translation-engine.mjs": "ad5021536c774dab7b4dd6b7573dc507b06f1d54f5a71bc79809033e33ac8cff",
     "site/viewer/trident-bed-registration.mjs": "17201d090ac06e795be090c94f875e677d4e80054ed8ad16d57a25bb4eddd4fd",
@@ -689,7 +689,7 @@
     "site/viewer/trident-front-registration.mjs": "6ae818408f2a66ba416aa39b2ac83baed4271c891f885256f686d8e039043eed",
     "site/viewer/trident-motion.mjs": "77312c6bfbf6c7e7563dbf5548ed5600baf2ab2ec2f0f438aa1860af355059ec",
     "site/viewer/trident-roof-tube.mjs": "3c2b6b629363a92659ed04e7fa9d37a2d89c6ae3f008c0acf4ce2f296155ab97",
-    "site/viewer/trident.html": "54c3c76491bc0463165ed8ce3139cb4494d5e085dbbad61c5fb7012470c87327",
+    "site/viewer/trident.html": "6c0d427071b256da5ae96a0e3089e8557982c127d83655a18d3b36b5d2645e41",
     "site/viewer/trinity-alpha-host-extensions.mjs": "6cf4c4cd0bff082d77721b458ee96feecd26402f66ae95de4abc3084ba2a1a94",
     "site/viewer/trinity-alpha-installation.mjs": "d29cac20a00b0b7af075c7c25c6d38a1ed1a7de38d0c0ba7761633e13d5ddd75",
     "site/viewer/trinity-alpha-siboor-r2.mjs": "dd3d63e7d890c425c98b14f45a1c8680a7ac8ed8ef316ccd42947cc8e8e731a5",
@@ -710,7 +710,7 @@
     "site/viewer/v0-native-installed-gate.mjs": "2801ee4ab692384c0d13083bede9a7428f7f47516bf81ea7310f5616dce47084",
     "site/viewer/v0-state.mjs": "d07ccd54c3039984cc5735ff4f7238996f37f3e97dc37fead9c164be371d95b3",
     "site/viewer/v0-tophat.mjs": "1c65737cefc844de5ab72663dc4c38ba929f98dec76fe8b318298142305bfd2f",
-    "site/viewer/v0.html": "57d9d92ab9dd7b50aa95bfc24dfc52dd37909d49cccfc8b62899c479367b655e",
+    "site/viewer/v0.html": "95387bcbb5c4f04c5e97c691bce9fbd1473d2a3f639976cfb7e6a1555e5eb81f",
     "site/viewer/v24_adapter.mjs": "5fd30bae8e14f7b02f002ce61a0f4bc2a375c97db7e95101ed783a4013ffd942",
     "site/viewer/v24_matrix_adapter.mjs": "e37eb12226f5cb0111fc2121d36a9de498d4b2498b74da5a91e7a163a31f28da",
     "site/viewer/v24-app.js": "23cdba0e5df7683fec7b0edeb8b7a44d3664a4856655dc4b09e2e030fd8333be",
@@ -719,9 +719,9 @@
     "site/viewer/v24-drive-metadata.mjs": "dbdf9f37cb0849ffc262891895fa2f6f8580d6ec81b23c0821b0f0c00a512c43",
     "site/viewer/v24-flexible.mjs": "4de2768da445f9eef0d59ead19639302112d082c26084fa80d48b6f98635470b",
     "site/viewer/v24-ptfe.mjs": "c4b99bd80cb09e11b702a1da0dea62839204f7727962ecc17929734c9dc008a2",
-    "site/viewer/v24-reference.html": "1ce0b9accfc039e9459e886748f60fbdb0504524ee218f9add80818c53cfdfc5",
+    "site/viewer/v24-reference.html": "f1451c8c2f0cba64e9b4b12eaedc00c068998b2121d951df2d31de14de0c9062",
     "site/viewer/v24-reference.js": "44d175298c12850324fcc8eb4edcc2f4cb9d6f25efa6ead9ff10ee8bb29fbb93",
-    "site/viewer/v24.html": "a035187a024c10f546884175da979beb6d9fe6e8fb9eadcf0893a00be631fd23",
+    "site/viewer/v24.html": "d712d4da361d604ab4558bb309718c814c41cc2720e5af0f3c40229c91981b60",
     "site/viewer/vanilla-trident.js": "9dddfb54b5655cb11f9b56f76e092575e245245c95b7ce871d8050c81dcebc1b",
     "site/viewer/vendor-r180/BufferGeometryUtils.js": "fda7e946b8e0b5ab39b779206589e7a1079a22eb24efb89d7223e03fdfb1f751",
     "site/viewer/vendor-r180/GLTFLoader.js": "adbbafe8ce40416525b6be0ee5cac0d3782482bcf0122c8ca8ec1ffa77d3440b",
@@ -748,11 +748,11 @@
     "site/viewer/workspace-lifecycle.mjs": "515fc62bbb4b109d92c0895c2707c29d8a96f1f6740a1d23640fdf45d51d2c3e",
     "site/viewer/workspace-navigation.mjs": "424451cc1e036690fee71ad97f27205d59c84100d55ad75f81f9f5db320718d4",
     "site/viewer/workspace-return.mjs": "36cfa54829b71fc71aa7a3b9705ed7a8e94d547ee2ddacca6645516b29799b81",
-    "site/viewer/workspace-router.mjs": "d7e34076ddca9e70433b0434837714dffc25bb1c5f84201fcbf555ae212666b2",
+    "site/viewer/workspace-router.mjs": "a0f3b2e02891db0a60a4ada644ecc9921650e9df36f854d0c5052ff91c2a8ab0",
     "site/viewer/workspace-scroll.mjs": "048fe4a04b0a52b9cc23358733fc87529ac6bc46b0bd7309b96ea8e944874418",
     "site/viewer/workspace-sections.mjs": "409a9e91714842e888ee5c7f213f0fda80546e9547c509d9b93631d9baff1ab1",
     "site/viewer/workspace-share.mjs": "36f449afd7a9a77737434ac9890b70220faa4d82205035f74ae3ab93e70b23c5",
-    "site/viewer/workspace-ui.mjs": "236881e5cd7684beefc2007a6fabf1069ea84c20d40958222126c2ec09971fec",
+    "site/viewer/workspace-ui.mjs": "f87569187074160298a55a6a17b9c76c425a6033c590162e536af845b64dd27e",
     "site/viewer/workspace.css": "7fd916f08df39083d23f57f01ae769d1e78948a2c2eabda405658e0a56b27952",
     "site/XOL_MOD.json": "bc78d4c2ea028fedbacccbcf7f4607505ddfcc7dbb7511bb7186aaca74b53e32"
   },
@@ -820,6 +820,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED_STATIC_SOURCE_RESET",
@@ -2241,6 +2246,14 @@
         "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
         "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
         "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -2386,6 +2399,11 @@
           "report": "elegoo-neptune3-actual-static-20261023",
           "sha256": "e1592cf625dd2faf797c981cb07d35beae16cc52e85e1c1058c0e40a98721d2a",
           "scope": "Fresh actual static source-state/lighting helper; no motion, printed palette or browser/GPU claim."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_STATIC_REFERENCE",
@@ -2401,7 +2419,15 @@
       "adapter_sha256": {
         "site/viewer/elegoo.mjs": "16d275e7c029054153f82ea89595a5eba4a36e70909c8ef267e795f30a819c25"
       },
-      "model_identity_basis": "Current exact approved public delivery bytes, actual production loader/parser and current controller receipts; unchanged historical scopes remain separate."
+      "model_identity_basis": "Current exact approved public delivery bytes, actual production loader/parser and current controller receipts; unchanged historical scopes remain separate.",
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
+      }
     },
     {
       "id": "elegoo_neptune3pro_reference",
@@ -2450,7 +2476,7 @@
           "proper_rigid_basis": true,
           "precise_source_bounds_verified": true,
           "source_bound_tolerance_mm": 0.01,
-          "max_source_bound_error_mm": 1.0728836041806744e-05,
+          "max_source_bound_error_mm": 0.000010728836041806744,
           "material_identity_preserved": true,
           "native_vertex_colors_preserved": true,
           "native_reference_reset_passed": true,
@@ -2546,6 +2572,11 @@
           "report": "elegoo-neptune3pro-actual-static-20261023",
           "sha256": "82f0b7011b2a8425cdda0c59fd9bba3fc21ac80d9bb624f3f8b92d974390af02",
           "scope": "Fresh actual static source-state/lighting helper; no motion, printed palette or browser/GPU claim."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_STATIC_REFERENCE",
@@ -2561,7 +2592,15 @@
       "adapter_sha256": {
         "site/viewer/elegoo.mjs": "16d275e7c029054153f82ea89595a5eba4a36e70909c8ef267e795f30a819c25"
       },
-      "model_identity_basis": "Current exact approved public delivery bytes, actual production loader/parser and current controller receipts; unchanged historical scopes remain separate."
+      "model_identity_basis": "Current exact approved public delivery bytes, actual production loader/parser and current controller receipts; unchanged historical scopes remain separate.",
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
+      }
     },
     {
       "id": "elegoo_neptune3plus_reference",
@@ -2610,7 +2649,7 @@
           "proper_rigid_basis": true,
           "precise_source_bounds_verified": true,
           "source_bound_tolerance_mm": 0.01,
-          "max_source_bound_error_mm": 9.860684191398406e-05,
+          "max_source_bound_error_mm": 0.00009860684191398406,
           "material_identity_preserved": true,
           "native_vertex_colors_preserved": true,
           "native_reference_reset_passed": true,
@@ -2706,6 +2745,11 @@
           "report": "elegoo-neptune3plus-actual-static-20261023",
           "sha256": "fb16e1040553f350716fd51093537fbc6e671689167d701115050713ce4acff4",
           "scope": "Fresh actual static source-state/lighting helper; no motion, printed palette or browser/GPU claim."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_STATIC_REFERENCE",
@@ -2721,7 +2765,15 @@
       "adapter_sha256": {
         "site/viewer/elegoo.mjs": "16d275e7c029054153f82ea89595a5eba4a36e70909c8ef267e795f30a819c25"
       },
-      "model_identity_basis": "Current exact approved public delivery bytes, actual production loader/parser and current controller receipts; unchanged historical scopes remain separate."
+      "model_identity_basis": "Current exact approved public delivery bytes, actual production loader/parser and current controller receipts; unchanged historical scopes remain separate.",
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
+      }
     },
     {
       "id": "247zero_beta2_120",
@@ -2770,6 +2822,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -2847,6 +2904,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -2896,6 +2961,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -2974,6 +3044,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -3023,6 +3101,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -3100,6 +3183,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -3149,6 +3240,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -3226,6 +3322,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -3275,6 +3379,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -3352,6 +3461,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -3401,6 +3518,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -3478,6 +3600,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -3527,6 +3657,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -3604,6 +3739,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -3653,6 +3796,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -3730,6 +3878,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -3779,6 +3935,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -3856,6 +4017,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -3905,6 +4074,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -3983,6 +4157,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -4032,6 +4214,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -4110,6 +4297,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -4159,6 +4354,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -4236,6 +4436,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -4285,6 +4493,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -4362,6 +4575,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -4411,6 +4632,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -4488,6 +4714,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -4537,6 +4771,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -4614,6 +4853,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -4663,6 +4910,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -4740,6 +4992,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -4789,6 +5049,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -4866,6 +5131,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -4915,6 +5188,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -4992,6 +5270,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -5051,6 +5337,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -5174,6 +5465,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -5223,6 +5522,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -5300,6 +5604,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -5359,6 +5671,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -5457,6 +5774,14 @@
         "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
         "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
         "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -5506,6 +5831,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -5576,6 +5906,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -5625,6 +5963,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -5703,6 +6046,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -5752,6 +6103,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -5830,6 +6186,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -5879,6 +6243,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -5957,6 +6326,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -6006,6 +6383,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -6101,6 +6483,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -6149,6 +6539,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED_PRODUCTION_INTEGRATED_MOTION_RESET",
@@ -6262,6 +6657,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -6310,6 +6713,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED_PRODUCTION_INTEGRATED_MOTION_RESET",
@@ -6423,6 +6831,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -6472,6 +6888,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -6579,6 +7000,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -6628,6 +7057,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -6735,6 +7169,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -6784,6 +7226,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -6907,6 +7354,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -6956,6 +7411,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -7050,6 +7510,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -7099,6 +7567,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -7191,6 +7664,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -7240,6 +7721,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -7334,6 +7820,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -7383,6 +7877,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -7477,6 +7976,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -7526,6 +8033,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -7620,6 +8132,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -7669,6 +8189,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -7763,6 +8288,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -7812,6 +8345,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -7906,6 +8444,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -7955,6 +8501,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -8049,6 +8600,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -8098,6 +8657,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -8192,6 +8756,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -8241,6 +8813,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -8336,6 +8913,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -8385,6 +8970,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -8479,6 +9069,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -8528,6 +9126,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -8622,6 +9225,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -8671,6 +9282,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -8765,6 +9381,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -8814,6 +9438,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -8908,6 +9537,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -8957,6 +9594,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -9051,6 +9693,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -9100,6 +9750,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -9194,6 +9849,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -9243,6 +9906,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -9337,6 +10005,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -9386,6 +10062,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -9463,6 +10144,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -9512,6 +10201,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -9607,6 +10301,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -9656,6 +10358,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -9738,6 +10445,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -9787,6 +10502,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -9869,6 +10589,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -9918,6 +10646,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -10051,6 +10784,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -10100,6 +10841,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -10181,6 +10927,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -10230,6 +10984,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -10311,6 +11070,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -10360,6 +11127,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -10493,6 +11265,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -10542,6 +11322,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -10623,6 +11408,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -10672,6 +11465,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -10754,6 +11552,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -10803,6 +11609,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -10937,6 +11748,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -10986,6 +11805,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -11067,6 +11891,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -11116,6 +11948,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -11198,6 +12035,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -11247,6 +12092,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -11381,6 +12231,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -11430,6 +12288,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -11511,6 +12374,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -11560,6 +12431,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -11642,6 +12518,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -11691,6 +12575,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -11825,6 +12714,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -11874,6 +12771,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -11955,6 +12857,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -12004,6 +12914,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -12085,6 +13000,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     },
     {
@@ -12134,6 +13057,11 @@
           "report": "actual-exported-controllers-20261023",
           "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
           "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+        },
+        {
+          "report": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
         }
       ],
       "current_review_status": "PASS_SCOPED",
@@ -12268,6 +13196,14 @@
         "original_dates_and_report_pins_unchanged": true,
         "relative_placements_newly_certified": false,
         "native_scope_renewed": false
+      },
+      "current_navigation_binding": {
+        "receipt_id": "reference-menu-common-navigation-20261023",
+        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+        "actual_model_receipt_reused": true,
+        "controller_bytes_identical": true,
+        "model_evidence_date": "2026-10-23",
+        "new_native_clearance": false
       }
     }
   ],
@@ -12705,14 +13641,16 @@
   },
   "release_publication_ready_scope": "Existing whole-project native and physical review. Scoped published-download runtime guard gates and browser evidence are recorded separately.",
   "source_binding": {
-    "canonical_input_map_sha256": "d0577c3c8860788d87f22ffbde08be71bbcd4b4cb8f3c06b5f5408b67d0eb856",
-    "raw_input_map_sha256": "31b3c823b11712a5b1dbd45741e37f5867b0d717b6f8a453d54285f210df49ed",
+    "canonical_input_map_sha256": "d3e7ebaa58a87d42166079dfa007fc5eff42e829cad4f4c44e2ccade2faa742e",
+    "raw_input_map_sha256": "e49bc7d7164143cb8bac522d1fa5107104ba894532262d8970c9ee7049db09dd",
     "source_stable_after_freeze": true,
     "earlier_model_jobs_only_excluded_title_delta": [
       "site/viewer/privacy.mjs",
       "site/viewer/privacy.html"
     ],
-    "all_model_controller_inputs_stable": true
+    "all_model_controller_inputs_stable": true,
+    "current_review_scope": "Common reference-menu-only semantic delta plus immutable cache-reference propagation.",
+    "model_controller_receipts_reused_without_redating": true
   },
   "component_review": {
     "report": "actual-head-component-controllers-20261023",
@@ -12727,5 +13665,24 @@
     "included_in_machine_count": false
   },
   "live_ingestion_verified": false,
-  "public_counts_live": false
+  "public_counts_live": false,
+  "current_navigation_review": {
+    "receipt_id": "reference-menu-common-navigation-20261023",
+    "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+    "reviewed_on": "2026-10-23",
+    "semantic_change": "Remove the E3NG-specific anchor from the shared References menu; preserve generic entries, legacy routes, registered controllers and generic toolchanger-page access.",
+    "exact_unchanged_models": 72,
+    "exact_unchanged_controller_files": 72,
+    "verified_cached_public_files": 1098,
+    "available_route_DOM_fixtures": 72,
+    "menu_language_cases": 450,
+    "actual_component_configurations": 2,
+    "all_machine_geometry_rerun": false,
+    "prior_actual_model_evidence_date": "2026-10-23",
+    "model_evidence_dates_unchanged": true,
+    "independent_browser_GPU_review": false,
+    "supplied_browser_review_scope": "Separate loaded SIBOOR default menu review in five languages; no all-machine GPU extension.",
+    "new_native_or_placement_certification": false,
+    "full_physical_fit_certified": false
+  }
 }

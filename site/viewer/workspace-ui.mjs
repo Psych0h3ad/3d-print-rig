@@ -162,7 +162,7 @@ export function setupWorkspace() {
   const menu = node('div', 'workspace-menu');
   more.append(menu);
   actions.append(more);
-  for (const [label, href] of [['部品CAD','./components.html'],['交換機構','./toolchangers.html'],['E3NG · 交換機構','./e3ng.html']]) {
+  for (const [label, href] of [['部品CAD','./components.html'],['交換機構','./toolchangers.html']]) {
     const link = node('a', '', label); link.href = href;
     if (href.endsWith(page)) link.setAttribute('aria-current', 'page');
     menu.append(link);
