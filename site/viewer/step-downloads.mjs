@@ -1,10 +1,14 @@
 import {formatMessage} from './i18n.mjs?v=026ed350b8da81434067';
+import {publishedStepBaseline} from './step-download-admission.mjs?v=d51b2ba268db74ed7124';
 // Only published baseline assemblies; a selected head or Mod never changes a URL.
 export function assemblyDownloadEntries(catalog) {
 const entries=[],seen=new Set();
-for (const item of catalog.defaults || []) {
-const id=item.machine_id || item.id;
-if (!id || seen.has(id) || item.release_verified !== true) continue;
+const defaults=Array.isArray(catalog?.defaults) ? catalog.defaults : [];
+// Conflicting rows cannot silently choose one archive by catalog order.
+const rejected=new Set(defaults.filter(item=>!publishedStepBaseline(item)).flatMap(item=>[item?.id,item?.machine_id]).filter(Boolean));
+for (const item of defaults) {
+const id=item?.machine_id || item?.id;
+if (!id || seen.has(id) || rejected.has(id) || !publishedStepBaseline(item)) continue;
 let url;
 try { url=new URL(item.step_zip?.path || item.url); } catch { continue; }
 if (url.protocol !== 'https:' || url.username || url.password || !/\.(?:zip|step|stp)$/i.test(url.pathname)) continue;
@@ -12,7 +16,7 @@ seen.add(id);
 entries.push({id,url:url.href,name:item.display_name || `${item.brand} ${item.model} / ${item.size} mm`,
 configuration:item.configuration,revision:item.revision,custom:item.custom_reference === true,
 filename:item.step_zip?.filename || decodeURIComponent(url.pathname.split('/').pop()),
-bytes:item.step_zip?.bytes,upstream:item.upstream_url});
+bytes:item.step_zip?.bytes,upstream:item.upstream_url,scope:'published-baseline',sha256:item.step_zip?.sha256 ?? null});
 }
 return entries;
 }

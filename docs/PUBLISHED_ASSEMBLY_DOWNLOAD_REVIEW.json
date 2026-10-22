@@ -1,0 +1,96 @@
+{
+  "schema": "published-assembly-download-review-v1",
+  "scope": "Published-archive download guard: exact archive binding and local Ender-3 stock dialog review. Existing geometry, native motion and physical-fit evidence retain their original scope.",
+  "published_assembly_bindings": 12,
+  "unreviewed_or_changed_binding_negative_controls": 233,
+  "new_assets_admitted": 0,
+  "loaded_model_identities": 72,
+  "exact_identity_transport_files": 256,
+  "registered_rows": 78,
+  "explicit_registered_nonloaded_rows": 6,
+  "production_build_passed": true,
+  "approved_delivery_bodies_verified": 1098,
+  "exact_external_transport_bodies_verified": 168,
+  "native_geometry_changed": false,
+  "native_jobs": 0,
+  "archive_contents_revalidated": false,
+  "browser_reviewed_for_this_change": true,
+  "full_physical_fit_certified": false,
+  "source_sha256": {
+    "site/viewer/step-download-admission.mjs": "d51b2ba268db74ed7124144eee1265007a9d5597cca0988a728ea3cb6ff14f29",
+    "site/viewer/step-downloads.mjs": "4d872df3c2a11733b9e6b4a2211a9314253b2ac4f85a10c2ce36cdcc8eab61e3",
+    "scripts/test_step_download_admission.mjs": "dfc1547c5017463913210deb4c9290bb4d95901da748cd559a767defb9d37677",
+    "scripts/build_locales.mjs": "da5077d2d37a64311af5c4da222c50f022da0838bf9378dabbd013e3d41f43b6",
+    "scripts/audit_changer_banks.mjs": "cbbbe6833a7c8becaf47e74ac875d9f6759591956144d6733646b27131dee839",
+    "scripts/test_changer_bank_visibility_binding.mjs": "a112ec14aea54654d21ae0a6e11e8797ff4744d975ac849911c48963cd1983a2",
+    "scripts/audit_community_installations.mjs": "bd13672658d950cff2a7b7b5690183fa7d7bd7b433271952949d227eee66c053",
+    "scripts/community_chain_pose.mjs": "f045323ecb05f3abf4a096445775637215d0ae2adda19b6f3dbb96d565dd79bb",
+    "scripts/test_community_chain_pose.mjs": "89da1f20347c07dc6938c0c734da02f80a647e35973f67a54621430689401911"
+  },
+  "evidence_sha256": {
+    "unchanged_model_identity": "67fb8e0d5f22b0b8090805030e309193984d744e7e4afffa8389e1bd46cd8099",
+    "published_download_selection": "4880b34be8d3398898fa0eb14fdf434e59028092fc016a4ef78e17ecb5d89529",
+    "production_build_output": "34a4f77f0b4aff1eba96c4913b22c6059a733af468a5385f263e1ef477636468",
+    "cache_reference_equivalence": "4c5b44f38d1fce0a48fb1b8d0de1a59b07795aba71cb45eb9c7de5486487e9c1",
+    "scoped_local_browser_review": "ca23f3b90791e425d2d77327434c25474e2a1be42f39fb19e6c941ab70de67d6"
+  },
+  "automated_actual_asset_gates_passed": true,
+  "articulated_chain_negative_controls": 54,
+  "scope_limit": "Local download-dialog observations do not certify CAD repair, archive contents, native mounting, every machine/head combination, cross-browser behavior or physical fit. Browser engine/version is unrecorded.",
+  "download_guard_automated_gates_passed": true,
+  "download_guard_browser_evidence_status": "scoped_local_review_passed",
+  "download_guard_release_status": "scoped_release_gates_passed_awaiting_publication",
+  "download_guard_local_release_gates_passed": true,
+  "served_public_revision_verified": false,
+  "publication_performed": false,
+  "browser_review": {
+    "scope": "Local Ender-3 stock viewer and published-archive dialog only; no browser review of other machines or physical fit.",
+    "machine": "ender3_stock_220",
+    "configuration": "stock",
+    "model_parts_observed": 300,
+    "published_archive_links": 12,
+    "archive_destinations_unchanged": true,
+    "current_machine_assembled_step_available": false,
+    "current_machine_unavailable_notice_visible": true,
+    "search_results": [
+      {
+        "query": "Trident 300",
+        "rows": 2
+      },
+      {
+        "query": "Micro Swiss",
+        "rows": 0
+      }
+    ],
+    "visible_dialog_languages": [
+      "en",
+      "ja",
+      "es",
+      "ko",
+      "ru"
+    ],
+    "dialogs_reopened_after_language_layout": true,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "readable_cards_and_search": true,
+    "evidence_sha256": "ca23f3b90791e425d2d77327434c25474e2a1be42f39fb19e6c941ab70de67d6",
+    "screenshot_sha256": {
+      "english": "e70b472fd547211909225540d3729f627fb76f2eb842d9bebb053331b75ce95b",
+      "russian": "b4299f4436613b34c8df339a19690af2e6ee8e19c14d2de835faecff7d819669",
+      "dark_theme": "62ab27a62eeddd79f32ae85addc1924ef2e611d30b8daf5db60d9f3416f5c601"
+    },
+    "browser_engine_version_recorded": false,
+    "cross_browser_reviewed": false,
+    "native_mount_or_clearance_proof": false,
+    "archive_contents_revalidated": false,
+    "served_public_revision_verified": false
+  },
+  "remaining_publication_steps": [
+    "Publish the reviewed source and verify the served public revision before claiming public delivery."
+  ],
+  "separate_native_scope_limits": [
+    "Native mounting, source contours, packaged archive contents and whole-machine physical fit retain their explicit existing open findings and limited scopes."
+  ]
+}

@@ -6,8 +6,8 @@
     ".github/workflows/pages.yml": "d3bac0b138297ae1e2548295a3b5b9e774ff2fe7d40396773fd59d75119ff193",
     ".github/workflows/source-check.yml": "9ab5cc2c1c44c12fe566ba251292eefa5854371d38e92a0637b0f6a4ea16a2b3",
     "scripts/audit_a4t_printed_companions.mjs": "770c4e5da4eba20f0141952ac2afd961f70ca26fb3d6925abfd9361c8ac7287a",
-    "scripts/audit_changer_banks.mjs": "5ef5e7bbbbfdaf135e2751f97883fd80f18e3f80a6cb1d1414bfb73d31864a96",
-    "scripts/audit_community_installations.mjs": "c3075e442313b1b8249b545bcdeedd02880a3920685af0de07626cc4fc83710c",
+    "scripts/audit_changer_banks.mjs": "cbbbe6833a7c8becaf47e74ac875d9f6759591956144d6733646b27131dee839",
+    "scripts/audit_community_installations.mjs": "bd13672658d950cff2a7b7b5690183fa7d7bd7b433271952949d227eee66c053",
     "scripts/audit_custom_ptfe.mjs": "392ae069463a52717b3636828cef7f6add66ac582fe43d2daeb8dc2313771c5a",
     "scripts/audit_elegoo_assets.mjs": "24d1d305f4a17cfd95b93ca7743d2bb96665de2ef698cc00f74c6de10681eb56",
     "scripts/audit_ender_bowden.mjs": "ba4d2433ac473abb6aca853a2508812e33a0761f8a082712de8a209caeb70a13",
@@ -41,7 +41,7 @@
     "scripts/audit_virtu_may_role.mjs": "7ac8c21e4a5829abf989a980146deb8b5964cb3224e886a50b616ee326071712",
     "scripts/build_approved_site.py": "f8dc7e04b2c2b31e5f397dc701b87c5e9e944981489e6d22169e2f0cb70e0b3a",
     "scripts/build_configuration_catalog.py": "cb128a25a44434b63c62b30a33001c11ab7bd20e95dba90fa8bfa2139fe392ab",
-    "scripts/build_locales.mjs": "5b1c6e530b18411dfcf7d52d4473fa67a0afd8f7e55b17006a75317dce16ce15",
+    "scripts/build_locales.mjs": "da5077d2d37a64311af5c4da222c50f022da0838bf9378dabbd013e3d41f43b6",
     "scripts/build_seo.py": "d873af5441776885059bd588b57b5cb586c45335674854767f553910fa37e41d",
     "scripts/build_site.py": "f4f94b4b71c74551d10eae5b9f7df67e7848deb5b0b94b8f3051c7f1d62a5229",
     "scripts/build_support_catalog.mjs": "49dbbf7d24ddbff864a8b231fb73bb91398348fe46bb136bfab86fb052974a3c",
@@ -60,6 +60,7 @@
     "scripts/check_v0_native_assets_release.py": "fe7574b11fc88610535c7844581b4fe988bab1d4e10d0782d5d46644d26e0ed7",
     "scripts/check_wallpaper_compositions.py": "a52f3c47ebc94c09a8376aee6413065dda38395898671e9a7420db5c4062f5cb",
     "scripts/check_workbench_assets.mjs": "c8a614c4c310989573edf4af7be32a91cdcc307dd14e39f8d8a571c47df25187",
+    "scripts/community_chain_pose.mjs": "f045323ecb05f3abf4a096445775637215d0ae2adda19b6f3dbb96d565dd79bb",
     "scripts/community-audit-root.mjs": "a01788743feffb13445c54c692468e553dcee89d28873e9b8ec07a501d2c854e",
     "scripts/compose_eva_options.py": "e74c7bb522372d086d61cf837a075625e0cd81c95aee32f8878577ea658158be",
     "scripts/compose_wallpaper_collections.py": "3aacd71c2e1f1260fae9ab3f3008d5cdc9622336926596c5c5e181624eff3679",
@@ -124,9 +125,11 @@
     "scripts/test_catalog_requests.mjs": "fd2c6638432081326355d52c70220a6eaf1c3a4fd6b6aebeb6c6a857973100fa",
     "scripts/test_chain_moving_anchor.mjs": "99a5c47af7c22e8700907b249bbf66921728258a54483fe99d14cb429b6ba861",
     "scripts/test_changer_bank_ui.mjs": "14634767da377cc322b798ca9d6d41f8e147ea39324082c61f1e5c3ce86bea46",
+    "scripts/test_changer_bank_visibility_binding.mjs": "a112ec14aea54654d21ae0a6e11e8797ff4744d975ac849911c48963cd1983a2",
     "scripts/test_changer_bank.mjs": "53aac323ba040819b484e4b0d2f3b46148421803dc0a092a895d52348a825feb",
     "scripts/test_chunked_component_glb.mjs": "54c49775aa84b3742fd95b15d68a3e4378e9a734cec61aa83aed99a5acf067ed",
     "scripts/test_cocobustor_components.mjs": "47cafdbfe6be461c09720d5aa5d75cc7360cf19bb0775ad0ac5d9067e440069f",
+    "scripts/test_community_chain_pose.mjs": "89da1f20347c07dc6938c0c734da02f80a647e35973f67a54621430689401911",
     "scripts/test_community_import_boundary.mjs": "d18a49ad3342e4dec5369dff2b5ae4c689b9aef7f156a7802738ccf3fdfb5908",
     "scripts/test_community_state.mjs": "0f13cfa64439f8acc000b61b461e6f1b97a3b7b49c00e0f80aef7f9e9e4bdb07",
     "scripts/test_component_choices.mjs": "f34a52541621349dd79c3cccc5255fa43d28cece5bd335bd344a581f8b7ca78e",
@@ -268,6 +271,7 @@
     "scripts/test_sovol_reference.mjs": "1e7713c4b442e2d5b8690c73e164e79bd6d08311d13e1418332bc86f4270e4fe",
     "scripts/test_sponsor_banner.mjs": "6c07adba071219d83424042387d8b209e3d2653ceb0f1ca48394950d19e8e07b",
     "scripts/test_stealthburner_cutaway.mjs": "73c7ca1baf79c5eb74aede59d5be6954a60017430e2f26a50784f3fc03c5e6b0",
+    "scripts/test_step_download_admission.mjs": "dfc1547c5017463913210deb4c9290bb4d95901da748cd559a767defb9d37677",
     "scripts/test_stinger.mjs": "a99aed69b14375787bccbe64ba6b67f9a73bca80c32ccf1cfb5926adff038cfe",
     "scripts/test_support_catalog.mjs": "e798975d79d926188bbcc6ce24d5124fbc0ec1c5971af580b61786e81e951122",
     "scripts/test_support_delivery.mjs": "2f782c6f7c664bec415b0619f60dc7b12c215871d9f87e1a9fb3db07b8c19d2e",
@@ -406,19 +410,19 @@
     "site/viewer/a4t-printed-companions.mjs": "e7443f72d21fc964b2cf7db83d1d38d9918a31ddc2ca90c04653153a7b4dc2cf",
     "site/viewer/accessories.js": "d38d2c3a5ab8151a0ffa7d1188e74413551dd1b1e379acab8ce4dca7bdad170d",
     "site/viewer/annex-machines.mjs": "3a0e3f3d8e456bee4e5ac266d91c69ca3b6fbc6db8f5a40694f85428c6148c13",
-    "site/viewer/annex.html": "2ed8c0bd6afed924ffd99feed68941d5ed385a77b49c1aeb5b0bc6f3b660961a",
-    "site/viewer/annex.js": "ff023dfdc33375b65f391939973b43b2fd07b77c46b1378efe05134b6faa7fb8",
-    "site/viewer/app.js": "10f6bf87da5120bc0e5da6b157041e60bbdb8e9eb1c66b5970114d7da5655291",
+    "site/viewer/annex.html": "24db3dc9b30619e5b26c129fc72279220304eec936a1c0799e0c864da82a03e0",
+    "site/viewer/annex.js": "a4495d69a7a534e888a9364b092ecac37e87b07b4cfdd138057cc50dc2a8198e",
+    "site/viewer/app.js": "e88d711dcf6bafd30bf0f6d3e6ae9588c0b2deffddd9b52e9d74ff090c9a7d20",
     "site/viewer/appearance-role.mjs": "6eb709afed84945151b895e97638b817f0fac071ab61c5a45de4cb6fb883e1ed",
     "site/viewer/appearance.js": "c50ecf4651c6ad0e68392df9eea9eb67e8bab6c9542106019c464682b45a01ab",
     "site/viewer/art/cad-background.json": "ebd23566959ec740ae479345ba5601478b53593693ff11466e4934474dd071e8",
     "site/viewer/art/credits.html": "f0cde9da5ca3b35adcefdb4f055fa11aa86c4aa389fdfa8dbfeb109971afd547",
     "site/viewer/assembly-downloads.mjs": "1c9fffbd9508cc8b01243098aa3018d329d0446c0548fbd5bb944c19f0d5044e",
-    "site/viewer/asset-availability.js": "c4d4fd575516b3ecf8b3f5bf59338c58347cee91a067cee2f5cac43347b80a41",
+    "site/viewer/asset-availability.js": "01393451ff6fb7b16735a18308f51b2d14d9beb98853fcac843739ceabfb95cc",
     "site/viewer/baseline-native-datum.mjs": "b86b6ff7d71bab3c11174f8e0834dd181ac5a70d14077b8ff00fffa817e0ad58",
     "site/viewer/bed-chain-pins.mjs": "ea9c3d5f368a9509af7f99da784303eba92df5e316246c8a14942bc0f1bb3ae9",
     "site/viewer/bed-chain.mjs": "5c6ddd46ac13e6974c7352b944225966455ccb4a462a5315519428af3788d4d0",
-    "site/viewer/bootstrap.js": "e4a70e74bc11b0bc0e06eec2dcf7bf60454cf15cec56cebc0e8e6f2ed9c4bd48",
+    "site/viewer/bootstrap.js": "e619d749bf1fe81d8694b185e23619962039e4d5fc8f5ae57120378da8459b3c",
     "site/viewer/bounded-sha256.mjs": "7b5cb05f2862b026fadc740607e6d9e5755e1dfc96b555ee88430f36fb684e51",
     "site/viewer/builder-ui.mjs": "f8b3d0eb12d16be30f2803ca6189c3edf88d6cd5ea3f4616b598a0746af0df1f",
     "site/viewer/catalog-requests.mjs": "e08161a1108d8bf2b5b35fe10dbb7d1e3ba6818b900179fa1da762749bf2abd5",
@@ -428,14 +432,14 @@
     "site/viewer/cleaning.html": "e1ac90e10f629bb0f2bb1d0b5aaf95b2f7d39a70187a94182f28fce87286a46f",
     "site/viewer/community-adapter.mjs": "61b77f5cd77eabb0120d469a9393d9df4361e4be1b4b16cb3765b9acd2c8996a",
     "site/viewer/community-loader.mjs": "798965bb5aaf49d60eacbe20b14b8e48b8ccc10889d797b36cd1132bbbf7269b",
-    "site/viewer/community-renderer.mjs": "31a5bcbac200338ee3df4937995d04ca3fa1fa416f69498dcf2e0fee0f97df29",
+    "site/viewer/community-renderer.mjs": "2bc3ded0b8258f44121b8b6ec13db6de6fc800e2273aa944eafe828cf5ce9cfd",
     "site/viewer/community-state.mjs": "460b3fa78cc503ddb6e631766efe780433e4efa286db5d9388a67d73cd4fce3d",
-    "site/viewer/community.html": "832118fbf132325590d8c395592601f69ce1a360ba950e60788f0684a6ff401a",
-    "site/viewer/community.js": "5ad6867bf021d66a3138e48bea32de1229536e9082bb863bdb5d429d9096763c",
+    "site/viewer/community.html": "a78e9628e036313924a2d8278985293a79108103289999681fa5f528b24961f2",
+    "site/viewer/community.js": "df03c99a1d2e96dfef334f51989f10ef82f0b9865d148c38cab975451ff02641",
     "site/viewer/component-assets.mjs": "2dbda26b309fbe6c35c869bf63a9da9d8ee73b32f9741b2dec6421678b411b7d",
     "site/viewer/component-selection.js": "51826e4eeaa0dd803b109d2ba7261d86e40fa509e63ffe7ce2f087efd0ee6e04",
-    "site/viewer/components.html": "6c9fac628e6beb8b574a1b0918b03201a366b93fe3df706485a19e1ae982b941",
-    "site/viewer/components.js": "805a749c6c2e485ad3649f8b9deaf5a9642d4807ccb7021b40b9ff4b0dde6eba",
+    "site/viewer/components.html": "ad74cd33d24c328374b0907b494b3e9776c85c8f24e9a1c08e92fe9fb6153838",
+    "site/viewer/components.js": "7e5e7fd1ea26fde47202c294a401e63a8f6b67cd02b050a14a32b5998b52c602",
     "site/viewer/configuration-draft.mjs": "23ce9b8920289ad38e21aa9293faeefaf5a48a3609ee669b29767bf00d7a6c02",
     "site/viewer/configuration-editor.css": "1ce65fe33b2c2f92e5b2eab845b196a6db3175a7ec858902ec9e23e8c2f3a3f4",
     "site/viewer/configuration-editor.mjs": "a28598873dae2d647e363be2b468de62e3f575d576bd5fd77d15499d3e598cd8",
@@ -447,20 +451,20 @@
     "site/viewer/crossant-covers.mjs": "c0781087f44545d6025de5f5084595cf5bbd6e92ce6ec0c7d555406d5ab01b3b",
     "site/viewer/crossant-loader.mjs": "d7e43ff732dafce0657e0491a002942fbbf40b5230c83a9a85c6109fb7aa8d98",
     "site/viewer/crossant-state.mjs": "534dc62f2c6545f556f7a19791302d04f9c06e364c67d29bf6428bd81a5c7a9f",
-    "site/viewer/crossant.html": "e4970df9912cc7b0afeaa17b41e9da4ba92e004b0c391e41ee4588545715c7cf",
-    "site/viewer/crossant.js": "b72969d1e30e93c6efb14a501d37e3c89340c83e730e86c68d10d188f08c8553",
+    "site/viewer/crossant.html": "0f0853c68a3bef7eb0b9baac5f4ce55cdc9a8268a5529856bc45f38c453c9380",
+    "site/viewer/crossant.js": "4f4db3ff919f012238fa1b6491d6cdabb4f01083001dcf92c1fe17c6fe252781",
     "site/viewer/custom-voron-loader.mjs": "96c2a05646e84785faf5c8a4d83a8fc9d035563493b52f116d623a45b6b03f13",
     "site/viewer/custom-voron-state.mjs": "4b6132fe80a74098a8bade2347c6e581bb39bcf3b8dc9459cf8298b7e7938949",
     "site/viewer/custom-voron-tube.mjs": "be16dba6afffddec260f1e181165c73371d0bbefe73d3c663006da032c11a631",
-    "site/viewer/custom-voron.html": "1e376c6715601a46e1ad277423d3c8286b3cbb48392a1412b008205302891063",
-    "site/viewer/custom-voron.js": "ff386e835c0545747b9fdd53198b208caa634e2adb7ccf5114edfb48bc5e6c69",
+    "site/viewer/custom-voron.html": "d9a7baef81750d61baf4b394521aced5d6eba483e1e811c96dd410cf690012f0",
+    "site/viewer/custom-voron.js": "a1900b729484586c66c64365c35a1c802201aa7c7a7e05b20e0ae9cc834ef73c",
     "site/viewer/device-memory.mjs": "c2fd3c5387d359dca8a774e70e34a3de595fa64cb59331c82c9b4555b7831d8b",
     "site/viewer/disco-led-apertures.mjs": "50208fba4e6d3cbe5cf2df14e45078e37fb5470b52b0f26a038c5b6ec5c8b87b",
     "site/viewer/display-preferences.mjs": "8f347468def25922153cf887dae6642b898018510ce025ed675872e8a305af19",
     "site/viewer/display-start.js": "2ccf9c125fa0c4f73dc1a238a9b5070c779ef1b45d8301a11acd804528ccbad6",
     "site/viewer/e3ng-model.mjs": "7d5da880bcd1c29e4fd7f25a58afeafe5bd2e6839778821da65faa6614a1495a",
-    "site/viewer/e3ng.html": "cc94723a78103cddd5e20224b9518981acae8f1aca02c105f6a8c663b0bf1df8",
-    "site/viewer/e3ng.js": "933fa490ff9bc2ee311fbc8cd6317e06ae1fd2b9d2518d64c4fdac6f3c907ba6",
+    "site/viewer/e3ng.html": "26dbf1f6eb703f21bc30e89686e0fcf1f2e52778da347b2ecb9e4c457a47ce26",
+    "site/viewer/e3ng.js": "3f8280eb23fd93956bf839a1630f6d1fec9d29f0ef559b3bef113f8acaf6b693",
     "site/viewer/elegoo-catalog.mjs": "048f866b21f8d3cfdf73cef35b94f47030dbc37b9358773d744c521a6521312d",
     "site/viewer/elegoo-contract.mjs": "66697cb2ce3ba4ee90147a190862ee51a2c5b74992eabf04efc76b0ec2dd9676",
     "site/viewer/elegoo-depth-range.mjs": "98f3cf55dee30aa6f7b2e866638a8a368d29346f88bf891a56b8353730b08e64",
@@ -484,8 +488,8 @@
     "site/viewer/extra-machine-loader.mjs": "c57003e05d00c49566e3e73c54ded8c4a4e37bd5c2d78cfe015a4ae103fd112e",
     "site/viewer/flexible.js": "37fd0f2d1bdfe5ac356f0c58bf4a658b8b97a8b5cd6126ecafb1d64f09b0d284",
     "site/viewer/frame-mods.js": "1a124e39534fb2cde6a936be6e12bd5dcc9e0f9f1b0f6dc1eabb64f7faee4b8f",
-    "site/viewer/gantries.html": "10618713e0b67d7f2276dd990aae0c11b42d132f6bed6a6478af53e6c40db13c",
-    "site/viewer/gantries.js": "178b180ad9a6aac53b4584e0d14e2a02803bb7a0af0535c7738f61f97be06d45",
+    "site/viewer/gantries.html": "048b7d5cea5bddd0c98909c940eab004bea1c9c0c300056d0440ee44a5e6eaf2",
+    "site/viewer/gantries.js": "51d683090484bce44835c73a133381adf61e203eb594b11668a40d6984c5664d",
     "site/viewer/gantry-model.js": "77bee27ae99e3944fc901c733b7fa2450b2e36deb9b789c66328e8c979db2ec4",
     "site/viewer/gcode-loaded-asset-identity.mjs": "42ac134c2d9a8b8f8dfc31744744fb59abf735171ae6b928030371d5e7de8dec",
     "site/viewer/gcode-machine-bindings.mjs": "460777c3fc4d1a74bf27e66d6c4fcca7c4fdd09336412a3263a2b843be621ce1",
@@ -504,11 +508,11 @@
     "site/viewer/head-validation.mjs": "bba39d88e1b5b7f848c0447a93850abd4e8a3accbadfcd4db2e9ff772e855e9d",
     "site/viewer/i18n.mjs": "026ed350b8da814340679ae95d7625e0d33bb295a0008791972b61d361707b35",
     "site/viewer/inactive-head-cache.mjs": "6822e90a376bc578618589c2dfb804276ccc46d9ea257c20ca83b197a8049299",
-    "site/viewer/index.html": "f92a4080f3e307fb0ab41519b17eafc7c5d93330233ba857fc0b74a825553077",
+    "site/viewer/index.html": "bcf24c53bcb6627482ca83078caee881face7a6683d94b991b2e8b9691118370",
     "site/viewer/internal-spool.mjs": "ca3a453f6bf2966e020830957f6ca3290d89dffebe02ec3aa1b82a45a31c5f99",
     "site/viewer/kit-reference-loader.mjs": "ab4c504dc9c9698eb8e290962e9a2d1c474b0c3272fbf39f6b8fa4edbd236e5b",
-    "site/viewer/kit-reference.html": "8b0512d75d16d7c72ef25bbb34325e7d63e8479e88fc733e31e302cadf48d210",
-    "site/viewer/kit-reference.js": "246dc740f0ae1999b2537851ffbabd1485a90e1edec8ab548e8e49d614f2be92",
+    "site/viewer/kit-reference.html": "6b0e087c998157df027bfeb16335e375ca73d7481589c1e0bb4168ef79897bb3",
+    "site/viewer/kit-reference.js": "e0ca6dbb1e930facc6f8c6d36453adf6ec821440c63eb7c70a216a3054d941de",
     "site/viewer/klipper-macro-subset.mjs": "99f089a84c395186fe576a9f5fbf1e35e2da121e5cfaf5b00b4e85d2280a4a1b",
     "site/viewer/languages.mjs": "ba6a5cd8e1d86849ca3405b62a9b4f3757b10bb6f195f9990b68d12e15a86424",
     "site/viewer/layout-custom-source.mjs": "2a491ec6cfb8d905ee10cbbcfe7bf2526e0d59fbf3571e625b6f66ea0458522b",
@@ -544,8 +548,8 @@
     "site/viewer/micron-flexible.mjs": "1baf6905062383defaca8d7ae7803d736db2a427f03d16a7137b12c54c0ce6a2",
     "site/viewer/micron-native-materials.mjs": "55b8c3644415d202fa4af8bac672b52803fde6b2c1d1278acbb38afac75e2e2c",
     "site/viewer/micron-tube-routes.mjs": "c69d79d6fdbfee5338fe365ca9542323714add2a834e34aafec37395d19614b1",
-    "site/viewer/micron.html": "bfd70a81c3fb13a767135a0ef91271abac440bc986343af5d8ced7dab861e635",
-    "site/viewer/micron.js": "3d6aee68df78964b29ee542c504b09a29349ffc044c6b0234a247241c4d8fcf6",
+    "site/viewer/micron.html": "5e44bce49c36b0bc33d82c44f096c638e7cc178c99f7993a0131cffd2f1aec8b",
+    "site/viewer/micron.js": "9af254e53207bee84b35fe96f15af5365bb039bb8827f114365cd814243d0b64",
     "site/viewer/microswiss-source-shroud-palette.mjs": "f014e574106d0f8792bc77f2ab67a95ad58f2c70022a99f3a4d22698b4cfc24c",
     "site/viewer/model-delivery-policy.mjs": "7677e1f8ddfa3d5cc6acce428a2be49204c9b69622e4e65fd6a723d0b12130f2",
     "site/viewer/model-delivery.mjs": "7f46579d616549dce0605f04ebfffb4173cee2995b8b027f20b4840f3140af65",
@@ -575,13 +579,13 @@
     "site/viewer/positron-fold.mjs": "7368d3dd6e38e237f6ff9e9c66de9f167096c6a72c867238bb8d21027b37d067",
     "site/viewer/positron-loader.mjs": "b64f79151c6cb05dc1d7a2d7249188280098d99be873fe4afa36e4a221af8735",
     "site/viewer/positron-state.mjs": "8296d1b775fbca04462f5518a3126d25a53d372ddebadb0c2adff67968fee9ea",
-    "site/viewer/positron.html": "31a8ad1aa880bf0915b8ae81f21dac29550c89f9d10b4cb13e613e5cc98f9c9e",
-    "site/viewer/positron.js": "f38c5b037f85d6512cfee32457c0b7ed28dfccd4d5633dfb24e4d640d55d7b7e",
+    "site/viewer/positron.html": "def8952aad3b655ff0dd8c11e71e2923af841ac0178343ac36a15b2201c7f4d6",
+    "site/viewer/positron.js": "21c5213d5dc207a246557aa2abd92846c86c5e0fe42936790121c03323de0c0e",
     "site/viewer/printer-gantry.mjs": "f2f8aca7cc040f3911ab2b31b982d914df930c58cb5c63d2db4374e0b9b1cff5",
     "site/viewer/probe-checks.js": "0f70f5c099338db857e7cf6f8b711ce7a439322433d341c1f49e1770f0af2503",
     "site/viewer/probe-mounts.js": "517d139912b21c017b1b6222502cfacead29aff5824c4a94427ef70bae2c3733",
     "site/viewer/product-links.js": "ba0e9d9c9326819ea0fbc227dedd6cc9ddbff72447ddf0ab4868c918e1588ffa",
-    "site/viewer/public-info.js": "f1c40e394d7c64490c7685088d686ae3adebee9f883de902ea134c7bc2430d35",
+    "site/viewer/public-info.js": "8cba69e8eb0fe767017d50859f33ab89c42fff5bd3145c07545e2e704ffbc9b5",
     "site/viewer/rapido-x-uhf-cover.mjs": "8b458475dac84cfcd8c7f22a517f537034c6c16d09ba981610af8a40b5bc6894",
     "site/viewer/ratrig_adapter.mjs": "a4648c4988c02ca82726b413a8011142c31502c513e395c8b4665a4720f7542a",
     "site/viewer/ratrig_gcode_preview.mjs": "d8c60b04d15d4417dfa5c4dd4ba9590645e4a1b27116aafa8e821c2c7ac50e88",
@@ -589,13 +593,13 @@
     "site/viewer/ratrig-loader.mjs": "cb2508ebf98d2b8e2bde4c37a4a382a5fd240dff2792b57e4cc8f70cdbb963cd",
     "site/viewer/ratrig-machines.mjs": "6f5c7fbad04c29c3827deaea5ed6a556bcd927ab7c3d9505beff4200a0392ba0",
     "site/viewer/ratrig-ui-state.mjs": "58e9d9727047d366ffe400325f8381b047b3aa29ddc49a1a3b68c811cfd3ad08",
-    "site/viewer/ratrig.html": "69bcfdad7487ab22593282c2cda2c9592b220a43021a66353093b91867c4ee80",
-    "site/viewer/ratrig.js": "1f94d61f5b8d55de99d54db09757060279f45661aceacb322fabe81eaf36d068",
+    "site/viewer/ratrig.html": "8b3da28d1ac78d40d5698ddd28d087b4e67466be2db5faebcc79dbb3c92d0220",
+    "site/viewer/ratrig.js": "b9a182a75b72ee1a7bef57ef9175d78be20f30bac169f5c700fbbbfaaf0af15c",
     "site/viewer/remorph-adapter.mjs": "5bb6f83844e91238bd2a73d57185ec378eb70862f1284935304aaad8ec0209be",
     "site/viewer/remorph-belts.mjs": "c75ae005bf795485430cc1188bb51fc647244585f5e0407c9b9586cf79dd082f",
     "site/viewer/remorph-environment.mjs": "67b979de18933d30ccfdf258b4f8067face45fcbe045492ff273e29ce7767d0f",
-    "site/viewer/remorph.html": "729d07b7a2a51970438dd18c6ad57f18d459691861e090458a67793a8c87ee0c",
-    "site/viewer/remorph.js": "b030ab5e7b7154d343d4531674675015985bd2f1d68213878e6248c4dbd92304",
+    "site/viewer/remorph.html": "c0920cacf496d48fdca6a263b3d332ff78788f8ac4edf59b29b89274eb4db68f",
+    "site/viewer/remorph.js": "0754e7999c22077621d7f9a1f82371501d9228d8245f890878d5c627237b416d",
     "site/viewer/render-export.js": "92d6e71ee392361a4f7d5558f3648790bd5ac0672a4a9828bee47c2a8e53974a",
     "site/viewer/requested-mods.mjs": "165580239f7428aeab513975bd06d8f1bb8155568a2001ece44609ae687c5d94",
     "site/viewer/responsive-camera.mjs": "a5087f024910f351f1deca2caa00f8e26ffbffaec6ece167c0120b59036ca1b8",
@@ -652,34 +656,35 @@
     "site/viewer/stealthburner-lesson.mjs": "ae2ba9fca1145282348d7aeac75356bc1fd91d2ef53cbeb8506db244d6b4393c",
     "site/viewer/stealthburner-nozzle-source.mjs": "f07a68e7a4bb5eba7ac28ba8f0d9bd16a80d1ffba9ce41da18bd8a1a0bd3cded",
     "site/viewer/stealthburner-v6-nozzle.json": "a3238197ff45621d546e4f412b6252bee376a5aaadb4774fd2868867918a1f3f",
-    "site/viewer/step-downloads.mjs": "8c561bd8c2f5a8acd824768f6ba6878a2bd4792466405ecf1523a3a8056c26d5",
+    "site/viewer/step-download-admission.mjs": "d51b2ba268db74ed7124144eee1265007a9d5597cca0988a728ea3cb6ff14f29",
+    "site/viewer/step-downloads.mjs": "4d872df3c2a11733b9e6b4a2211a9314253b2ac4f85a10c2ce36cdcc8eab61e3",
     "site/viewer/stinger-flex.mjs": "0ab64709177d49ba0fec080323bba543679b548b09c55deaa4a06c665e9d247e",
     "site/viewer/stinger-tube-route.mjs": "064491780dfb942086bf643996507894fb90cf527b90cd7764c121cf12385127",
     "site/viewer/switchwire-display-default.mjs": "1a8f0c90e092e48729af607205f11dfbafc0375a974161fbda3cdd39bfb7ccd5",
     "site/viewer/theme-toggle.css": "4e62a8462e0b9ed5c6653d7dcb43cf66a36893b1be13b5b267e4e0af3f85613b",
     "site/viewer/toolchanger-model.js": "0688c022fbab64a87c2e33d823880ec90afaa05223f3d4a3f2f454a258e7c443",
     "site/viewer/toolchangers.css": "aeb1af01008eeb68e8915ccf6a73a4944f2d70ad906feccca6da2579b4dba488",
-    "site/viewer/toolchangers.html": "6288e5c5501588d498e3bb9328c72520bfc28376aaa39f730764bc32693b7454",
-    "site/viewer/toolchangers.js": "ca27f804067d3259661814e06dce5fc3f8d8dc45c560643dcd21ef5387e4566a",
+    "site/viewer/toolchangers.html": "2ec64a8d429174f7b738ae2bbf1f4ea0fb67a1f821cbd9989b8702789be9357d",
+    "site/viewer/toolchangers.js": "3ba719710140eb4efca615b5e0197c2862bad699f1d25f79f4d51bcdee9c4534",
     "site/viewer/toolhead-builder.mjs": "13cf054a719c8bc09f8d592ecfc9f28d5074d080f0e28b9faeb79303f73ff0e2",
     "site/viewer/toolhead-led-identities.mjs": "5cd13006c9b761a9594ff10aa66c1b32e64ed5b45807ca377bb67be184c29808",
     "site/viewer/toolhead-lighting.mjs": "b1b7fd7dbb41511786d5cee80bfbe9edffd0d5ad5c0e57927985acf51841992b",
     "site/viewer/toolheads.css": "5980047d16c1dadb3a63ea9d656c03261a3af30b2748d879158d97aea40a011f",
-    "site/viewer/toolheads.html": "e024653a08a42e6d11ed6804a9519724cf0c324fb5bf4de8d0d51907d26c214c",
-    "site/viewer/toolheads.js": "3e3ebc8d4aee5e51fed81401aeed35e18506e23a4bda4670d1d159ba9d60ca64",
+    "site/viewer/toolheads.html": "219e163da3220e4d9899e153aeb90a0a43ca80878e419a36298db3f6364fd57c",
+    "site/viewer/toolheads.js": "da7d45aa324ef61d79625c84d118dcdef8e3849b6e5a883627862d7ae2a2590c",
     "site/viewer/translation-engine.mjs": "ad5021536c774dab7b4dd6b7573dc507b06f1d54f5a71bc79809033e33ac8cff",
     "site/viewer/trident-bed-registration.mjs": "17201d090ac06e795be090c94f875e677d4e80054ed8ad16d57a25bb4eddd4fd",
     "site/viewer/trident-belts.mjs": "36cbfcd85e770a25e8220665ee8b44e47c202523f588b9dd2e8e8aa944146511",
     "site/viewer/trident-front-registration.mjs": "6ae818408f2a66ba416aa39b2ac83baed4271c891f885256f686d8e039043eed",
     "site/viewer/trident-motion.mjs": "77312c6bfbf6c7e7563dbf5548ed5600baf2ab2ec2f0f438aa1860af355059ec",
     "site/viewer/trident-roof-tube.mjs": "3c2b6b629363a92659ed04e7fa9d37a2d89c6ae3f008c0acf4ce2f296155ab97",
-    "site/viewer/trident.html": "7fbed702a770759f86cb88089a7ee41467aa62279788e5430a7f3ec223abde41",
+    "site/viewer/trident.html": "034144eb70a2990802085d61ca5dde18819309b17a461e0e8a2f06ef2204c207",
     "site/viewer/trinity-alpha-host-extensions.mjs": "b29542290b7e50c95f2f94fa625e9b3025ec2a5142fd5a5ec7039e71a03f87b0",
     "site/viewer/trinity-alpha-installation.mjs": "259c296468ac2b76281d8634971a18d092f301189b97332a9c529d1a9c9cbe80",
     "site/viewer/trinity-alpha-siboor-r2.mjs": "8cff10fdb541bdba15cc95d100d7a8adf1d59d6bd4fc09d39f45d0ec5ef4abab",
     "site/viewer/trinity-render-delivery.mjs": "f2044876578730ca3839d79a684f03cdc61246768519bdf1a8659339cfb615b5",
     "site/viewer/v0_adapter.mjs": "4ee2ec34955631397cf3f550f9a31920c31d9ca962d42b4a728f9018b867732b",
-    "site/viewer/v0-app.js": "a83a8b92283e90f7c8d0a41ed428173d4d97ca3eb0d16d68a7ae838add612f63",
+    "site/viewer/v0-app.js": "07a7229372fb6a2fb2a5f46c5b91814bab22b67591bd27a0d3c8e663c0283595",
     "site/viewer/v0-assembly.mjs": "ac576b8eed02781734ab3f322d381d32942991f058a7460f35d0c99478bfeb9c",
     "site/viewer/v0-belts.mjs": "948e42567a0013aa58217f9a877c9387159934bf848215d8d5a1d9515f911e5d",
     "site/viewer/v0-chain-pins.mjs": "6d41fb943c5b19ea28ac78025bcd1559ddccbb4baab4872a28816fe5c4c81136",
@@ -690,19 +695,19 @@
     "site/viewer/v0-native-installed-gate.mjs": "2801ee4ab692384c0d13083bede9a7428f7f47516bf81ea7310f5616dce47084",
     "site/viewer/v0-state.mjs": "d07ccd54c3039984cc5735ff4f7238996f37f3e97dc37fead9c164be371d95b3",
     "site/viewer/v0-tophat.mjs": "1c65737cefc844de5ab72663dc4c38ba929f98dec76fe8b318298142305bfd2f",
-    "site/viewer/v0.html": "180cdb55349cb408bae7c06d76737c8e7b5b598b01754f39a30217df281494b0",
+    "site/viewer/v0.html": "cefa475e723ee40638acad434f6d52368ba306ad95eea9169ada23b5d6f07636",
     "site/viewer/v24_adapter.mjs": "5fd30bae8e14f7b02f002ce61a0f4bc2a375c97db7e95101ed783a4013ffd942",
     "site/viewer/v24_matrix_adapter.mjs": "e37eb12226f5cb0111fc2121d36a9de498d4b2498b74da5a91e7a163a31f28da",
-    "site/viewer/v24-app.js": "205628ab66fbebafc86652e57a38c5790690c5f9bba8f9a276537c5a5c9f7fdb",
+    "site/viewer/v24-app.js": "2e1a3ba2e0f5e3ed754072727954ebb821d8b47819d007eee711667f00139afe",
     "site/viewer/v24-belts.mjs": "20e70ae28d622a3cb07b6412459e91edf1755e487b8eb860c3be0aebdc9bd415",
-    "site/viewer/v24-bootstrap.js": "5269c4c1a0bd297e36517d8c6791e0e3250a166c19b94a3b0797f9ef4f8d9b2f",
+    "site/viewer/v24-bootstrap.js": "7e0e7b7aa52f272071b803c22ee8549e59bf99b738c98f63c10ede8deed1142b",
     "site/viewer/v24-drive-metadata.mjs": "dbdf9f37cb0849ffc262891895fa2f6f8580d6ec81b23c0821b0f0c00a512c43",
     "site/viewer/v24-flexible.mjs": "4de2768da445f9eef0d59ead19639302112d082c26084fa80d48b6f98635470b",
     "site/viewer/v24-ptfe.mjs": "c4b99bd80cb09e11b702a1da0dea62839204f7727962ecc17929734c9dc008a2",
-    "site/viewer/v24-reference.html": "3025510436d9fd988210bc2f63440eaf5c3e766b67584845cd1764cd2f1df7e8",
-    "site/viewer/v24-reference.js": "068e0ff7f6ba65339aa0580d779394e5bbfdc256ceaffbfdff8c8617ebf17bb8",
-    "site/viewer/v24.html": "a0fd539fbf39ff7c06904c68d133af9265142d75f8aeedf591a3c23a183db375",
-    "site/viewer/vanilla-trident.js": "298964e13d99e1bc928118a25da76c9dca52516731414e56e64984bc22155e1e",
+    "site/viewer/v24-reference.html": "539249ff6da109b4f15fce9be38271610f46405cfbf9bc94d78e9bdea6c3273d",
+    "site/viewer/v24-reference.js": "91f793b68756f3f216d0ccb27657dc9522c0720311337276fc914a2466af4b61",
+    "site/viewer/v24.html": "97a98fe06b8db57b539aa458c34bcd9ddd21c11d0ae0bf3d4900bdbd300a53b8",
+    "site/viewer/vanilla-trident.js": "b4f0d9a13d567c8455a575b72069114cd95fc64ddfd9538c7c6d0bf8e00d55c6",
     "site/viewer/vendor-r180/BufferGeometryUtils.js": "fda7e946b8e0b5ab39b779206589e7a1079a22eb24efb89d7223e03fdfb1f751",
     "site/viewer/vendor-r180/GLTFLoader.js": "adbbafe8ce40416525b6be0ee5cac0d3782482bcf0122c8ca8ec1ffa77d3440b",
     "site/viewer/vendor-r180/OrbitControls.js": "1c5dfa7751d7ab320ac09b578638f08eecacdaaa68109d097158105f3fc6ad43",
@@ -843,7 +848,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "tictac_21_120",
@@ -950,7 +960,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "the100_v11_165",
@@ -1057,7 +1072,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "rook_mk2_120",
@@ -1164,7 +1184,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "satsuma180_v10",
@@ -1271,7 +1296,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "sovol_sv08_350",
@@ -1378,7 +1408,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "lh_stinger_200",
@@ -1485,7 +1520,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "antithesis_aether_mk11",
@@ -1592,7 +1632,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "ratrig_vminion_180",
@@ -1700,7 +1745,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "snakeoil_xy_180",
@@ -1807,7 +1857,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "snakeoil_xy_idex",
@@ -1914,7 +1969,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "snakeoil_3s_kp3s_180",
@@ -2021,7 +2081,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "snakeoil_proosaxy",
@@ -2128,7 +2193,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "mercury_one1_235",
@@ -2235,7 +2305,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "mercury_one1_370",
@@ -2342,7 +2417,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "vzbot_330_printed",
@@ -2449,7 +2529,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "ender3_stock_220",
@@ -2605,6 +2690,18 @@
         "native_solid_clearance_verified": false,
         "continuous_swept_clearance_verified": false,
         "all_machine_routes_qualified": false
+      },
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      },
+      "published_download_ui_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Local Ender-3 stock viewer and published-archive dialog only; no browser review of other machines or physical fit.",
+        "browser_evidence_sha256": "ca23f3b90791e425d2d77327434c25474e2a1be42f39fb19e6c941ab70de67d6",
+        "physical_fit_certified": false
       }
     },
     {
@@ -2712,7 +2809,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "positron_v322",
@@ -2812,7 +2914,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "annex_k1_assembly",
@@ -2920,7 +3027,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "annex_k2_assembly",
@@ -3028,7 +3140,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "annex_k3_assembly",
@@ -3136,7 +3253,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "remorph_beta1_307",
@@ -3261,7 +3383,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "siboor_trident_300",
@@ -3403,7 +3530,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "siboor_trident_350",
@@ -3545,7 +3677,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "voron_trident_250",
@@ -3682,7 +3819,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "voron_trident_300",
@@ -3819,7 +3961,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "voron_trident_350",
@@ -3972,7 +4119,12 @@
           "full_physical_fit_certified": false,
           "scope": "Only the exact registered standard350/R2/SB/CW2/Revo source configuration; no other size/head/board/changer qualification."
         }
-      ]
+      ],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "voron_trident_500_custom",
@@ -4096,7 +4248,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "voron_trident_1000_custom",
@@ -4218,7 +4375,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "voron_trident_350_half_z",
@@ -4342,7 +4504,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "siboor_v24_350",
@@ -4466,7 +4633,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "voron_v24_250_printed",
@@ -4590,7 +4762,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "voron_v24_250_ldo_cnc",
@@ -4714,7 +4891,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "voron_v24_300_printed",
@@ -4838,7 +5020,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "voron_v24_300_ldo_cnc",
@@ -4962,7 +5149,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "voron_v24_350_printed",
@@ -5086,7 +5278,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "voron_v24_500_custom",
@@ -5211,7 +5408,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "voron_v24_1000_custom",
@@ -5335,7 +5537,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "voron_v24_350_half_z",
@@ -5459,7 +5666,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "voron_v24_350_ldo_cnc",
@@ -5583,7 +5795,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "voron_v02r1_120",
@@ -5707,7 +5924,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "voron_v02_120",
@@ -5831,7 +6053,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "micron_r1_120",
@@ -5955,7 +6182,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "micron_plus_r1_180",
@@ -6079,7 +6311,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "fysetc_v24_250_pro",
@@ -6186,7 +6423,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "crossant_235_v06_leadscrew",
@@ -6311,7 +6553,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "ratrig_vcore_40_300_corexy",
@@ -6423,7 +6670,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "ratrig_vcore_40_300_hybrid",
@@ -6535,7 +6787,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "ratrig_vcore_40_300_idex",
@@ -6698,7 +6955,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "ratrig_vcore_40_400_corexy",
@@ -6809,7 +7071,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "ratrig_vcore_40_400_hybrid",
@@ -6920,7 +7187,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "ratrig_vcore_40_400_idex",
@@ -7083,7 +7355,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "ratrig_vcore_40_500_corexy",
@@ -7194,7 +7471,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "ratrig_vcore_40_500_hybrid",
@@ -7306,7 +7588,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "ratrig_vcore_40_500_idex",
@@ -7470,7 +7757,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "ratrig_vcore_41_300_corexy",
@@ -7581,7 +7873,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "ratrig_vcore_41_300_hybrid",
@@ -7693,7 +7990,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "ratrig_vcore_41_300_idex",
@@ -7857,7 +8159,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "ratrig_vcore_41_400_corexy",
@@ -7968,7 +8275,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "ratrig_vcore_41_400_hybrid",
@@ -8080,7 +8392,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "ratrig_vcore_41_400_idex",
@@ -8244,7 +8561,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "ratrig_vcore_41_500_corexy",
@@ -8355,7 +8677,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "ratrig_vcore_41_500_hybrid",
@@ -8466,7 +8793,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "ratrig_vcore_41_500_idex",
@@ -8630,7 +8962,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "247zero_beta2_120",
@@ -8737,7 +9074,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "ratrig_vcore31_300",
@@ -8845,7 +9187,12 @@
         },
         "reviewed_on": "2026-10-21"
       },
-      "known_required_companion_failures": []
+      "known_required_companion_failures": [],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "voron_switchwire_250",
@@ -8868,7 +9215,7 @@
       },
       "adapter_sha256": {
         "scripts/render_geometry_qa.mjs": "85520f0fd54ed889e11f99e094d3bb99635cb43b9be74b5016868215a67d80fb",
-        "site/viewer/community-loader.mjs": "c69507eb079fc34e79974088005027fd998eec1462ec99e2282a6e44c46fad73",
+        "site/viewer/community-loader.mjs": "798965bb5aaf49d60eacbe20b14b8e48b8ccc10889d797b36cd1132bbbf7269b",
         "site/viewer/switchwire-display-default.mjs": "1a8f0c90e092e48729af607205f11dfbafc0375a974161fbda3cdd39bfb7ccd5"
       },
       "container_parsed": true,
@@ -8990,6 +9337,11 @@
         "whole_machine_fit_certified": false,
         "browser_proof_scope": "Separate current-source browser review.",
         "original_thumbnail_scope": "Historical original-source CPU projection; not corrected runtime display-selection proof."
+      },
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
       }
     },
     {
@@ -10456,7 +10808,12 @@
           "status": "OPEN",
           "evidence_sha256": "8ac83a9bc62d49d54d39f77afc8566c289182ea066a9f98e24ec9e4f3927fc15"
         }
-      ]
+      ],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      }
     },
     {
       "id": "elegoo_neptune3_reference",
@@ -10596,7 +10953,17 @@
       "current_review_status": "PASS_STATIC_SOURCE_REFERENCE",
       "unresolved_scope": [
         "Axis movement and physical fit are unverified. Original source facet diagnostics are retained; bitmap decals and CAD transparency are omitted."
-      ]
+      ],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      },
+      "adapter_sha256": {
+        "site/viewer/elegoo-loader.mjs": "1bc405c6f2c0733e4049e490a9a7122cb4b6d00f6b923b98a6667eb3364a3fc9",
+        "site/viewer/elegoo-view-state.mjs": "c476f5652c710d7814421a0f2d689388a7ce53b17c0879cf196b1b837717022f",
+        "site/viewer/elegoo.mjs": "fe22d068cd2d5e0cd19e53cd41f69a02109a062d0f20a9b67d7a18ad6052d7d2"
+      }
     },
     {
       "id": "elegoo_neptune3pro_reference",
@@ -10736,7 +11103,17 @@
       "current_review_status": "PASS_STATIC_SOURCE_REFERENCE",
       "unresolved_scope": [
         "Axis movement and physical fit are unverified. Original source facet diagnostics are retained; bitmap decals and CAD transparency are omitted."
-      ]
+      ],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      },
+      "adapter_sha256": {
+        "site/viewer/elegoo-loader.mjs": "1bc405c6f2c0733e4049e490a9a7122cb4b6d00f6b923b98a6667eb3364a3fc9",
+        "site/viewer/elegoo-view-state.mjs": "c476f5652c710d7814421a0f2d689388a7ce53b17c0879cf196b1b837717022f",
+        "site/viewer/elegoo.mjs": "fe22d068cd2d5e0cd19e53cd41f69a02109a062d0f20a9b67d7a18ad6052d7d2"
+      }
     },
     {
       "id": "elegoo_neptune3plus_reference",
@@ -10876,7 +11253,17 @@
       "current_review_status": "PASS_STATIC_SOURCE_REFERENCE",
       "unresolved_scope": [
         "Axis movement and physical fit are unverified. Original source facet diagnostics are retained; bitmap decals and CAD transparency are omitted."
-      ]
+      ],
+      "published_download_identity_review": {
+        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      },
+      "adapter_sha256": {
+        "site/viewer/elegoo-loader.mjs": "1bc405c6f2c0733e4049e490a9a7122cb4b6d00f6b923b98a6667eb3364a3fc9",
+        "site/viewer/elegoo-view-state.mjs": "c476f5652c710d7814421a0f2d689388a7ce53b17c0879cf196b1b837717022f",
+        "site/viewer/elegoo.mjs": "fe22d068cd2d5e0cd19e53cd41f69a02109a062d0f20a9b67d7a18ad6052d7d2"
+      }
     }
   ],
   "scope": "All 69 selectable machines. Exact original model and companion tuples retain their scoped native history; current exported-model integrity and sampled controller evidence are recorded separately. No full physical-fit or continuous-clearance certificate.",
@@ -11290,5 +11677,24 @@
     "mobile_browser_qualified": false,
     "native_geometry_changed": false,
     "all_combinations_or_physical_fit_certified": false
-  }
+  },
+  "published_assembly_download_review": {
+    "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+    "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+    "scope": "Published-archive download guard: exact archive binding and local Ender-3 stock dialog review. Existing geometry, native motion and physical-fit evidence retain their original scope.",
+    "automated_download_binding_qualified": true,
+    "model_geometry_changed": false,
+    "download_guard_automated_gates_passed": true,
+    "download_guard_browser_evidence_status": "scoped_local_review_passed",
+    "native_and_physical_scope": "Unchanged source geometry and existing review findings; no new CAD or physical-fit certificate.",
+    "browser_reviewed_for_this_change": true,
+    "browser_review_scope": "Local Ender-3 stock viewer and published-archive dialog only; no browser review of other machines or physical fit.",
+    "browser_evidence_sha256": "ca23f3b90791e425d2d77327434c25474e2a1be42f39fb19e6c941ab70de67d6",
+    "cross_browser_reviewed": false,
+    "new_native_certificate": false,
+    "download_guard_local_release_gates_passed": true,
+    "download_guard_release_status": "scoped_release_gates_passed_awaiting_publication",
+    "served_public_revision_verified": false
+  },
+  "release_publication_ready_scope": "Existing whole-project native and physical review. Scoped published-download runtime guard gates and browser evidence are recorded separately."
 }

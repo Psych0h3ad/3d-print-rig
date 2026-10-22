@@ -7,6 +7,14 @@ import {tridentChainPins} from '../site/viewer/bed-chain-pins.mjs';
 import {createTridentMotion} from '../site/viewer/trident-motion.mjs';
 import {GLTFLoader} from '../site/viewer/vendor/GLTFLoader.js';
 
+export function bindShowHeadConsumer(app,bindings){
+ const begin=app.indexOf('function showHead(){'),end=app.indexOf('function showBelts(){',begin);
+ assert(begin>=0&&end>begin,'SIBOOR visibility consumer not located');
+ const names=['activeConfig','$','allMeshes','groups','stockHeadGroup','installed','installedHeads','xolScene','panes','assetRoots','moving','parts','showBelts','source47'];
+ for(const name of names)assert(Object.hasOwn(bindings,name),`Missing visibility fixture binding: ${name}`);
+ return new Function(...names,app.slice(begin,end)+';return showHead;')(...names.map(name=>bindings[name]));
+}
+
 // These are missing whole-installation proofs, not declarations that a source
 // design is physically incompatible. Reference previews retain their scope.
 export const dockProofGaps=Object.freeze({
@@ -56,6 +64,7 @@ function dispose(scene,rig){
 }
 async function audit(){
  assert(process.argv[2],'Usage: audit_changer_banks.mjs ASSEMBLED_SITE REPORT [--docks-only]');
+ const {createFullMachineSource47}=await import('../site/viewer/source47/source47-full-machine.mjs');
  const root=path.resolve(process.argv[2]),pins=new Map(),codePins=new Map(),sha=b=>createHash('sha256').update(b).digest('hex');
  const bytes=async n=>{const file=path.resolve(root,n);assert(file.startsWith(root+path.sep),'Asset path outside assembled site');const b=await fs.readFile(file);pins.set(n,{sha256:sha(b),bytes:b.length,...(n.endsWith('.glb.gz')?{decoded_sha256:sha(gunzipSync(b))}:{})});return b};
  const read=async n=>JSON.parse((await bytes(n)).toString('utf8'));
@@ -125,14 +134,17 @@ for(const [machine,binding]of Object.entries(registry.machines))for(const gantry
  async function model(file){let b;try{b=await bytes(file)}catch(e){if(e.code!=='ENOENT')throw e;b=gunzipSync(await bytes(file+'.gz'))}return (await new GLTFLoader().parseAsync(b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength),'')).scene;}
  // Run the real SIBOOR visibility consumer without a GPU or browser. This
  // exercises its present source, rather than duplicating its visibility rule.
- const app=await fs.readFile(new URL('../site/viewer/app.js',import.meta.url),'utf8'),begin=app.indexOf('function showHead(){'),end=app.indexOf('function showBelts(){',begin);
- assert(begin>=0&&end>begin,'SIBOOR visibility consumer not located');
- const showHeadFactory=new Function('activeConfig','$','allMeshes','groups','stockHeadGroup','installed','installedHeads','xolScene','panes','assetRoots','moving','parts','showBelts',app.slice(begin,end)+';return showHead;');
+ const app=await fs.readFile(new URL('../site/viewer/app.js',import.meta.url),'utf8');
  for(const machine of ['voron_trident_250','voron_trident_300','voron_trident_350','siboor_trident_300','siboor_trident_350']){
   const isSiboor=machine.startsWith('siboor'),size=Number(machine.split('_').at(-1)),scene=new THREE.Scene();
   const metaFile=isSiboor?(size===300?`${siboor.local_directory}/${siboor.machines[machine].files['assembly_manifest.json'].path}`:'assembly_manifest.json'):`machines/${machine}/assembly_manifest.json`;
   const modelFile=isSiboor?(size===300?`${siboor.local_directory}/${siboor.machines[machine].files['model.glb'].path.replace(/\.gz$/,'')}`:'SIBOOR_Trident_350.glb'):null;
   const profile=isSiboor?null:await read(`machines/${machine}/machine_profile.json`),metadata=await read(metaFile),base=await model(modelFile||profile.base_assets.glb);scene.add(base);
+  let source47;
+  if(machine==='siboor_trident_350'){
+   const meshes=[];base.traverse(o=>{if(!o.isMesh)return;const key=o.userData.part_key||o.name.slice(1).split('__')[0];Object.assign(o.userData,{partKey:key,originalKey:key,stock:true});meshes.push(o)});
+   source47=createFullMachineSource47({model:base,meshes,manifest:metadata,input:await read('viewer/source47/data/ROUTE350_CAPTURE_BINDINGS_V2.json'),reference:await read('viewer/source47/data/FULL350_SOURCE_REFERENCE.json'),serviceInput:await read('viewer/source47/data/SOURCE_SERVICE_ROUTE_BINDINGS.json'),getHead:()=>rig.cache.get('stealthburner')?.loaded,onPose:()=>{throw Error('Inactive source route unexpectedly requested a pose')}});
+  }
   if(isSiboor&&size===300){assert.equal(pins.get(metaFile).sha256,siboor.machines[machine].files['assembly_manifest.json'].sha256);const actual=pins.get(modelFile+'.gz');assert.equal(actual?.sha256,siboor.machines[machine].files['model.glb'].sha256);assert.equal(actual?.decoded_sha256,siboor.machines[machine].files['model.glb'].decoded_sha256);}
   const motion=profile?createTridentMotion(profile):null;if(motion)motion.register(base,metadata);
   const chain=motion?motion.bedChains[0]:createBedChain(base,metadata);assert(chain,`${machine}: actual chain missing`);
@@ -147,7 +159,8 @@ for(const [machine,binding]of Object.entries(registry.machines))for(const gantry
   const apply=(drop,z,v,visible=true)=>{
    const down=z+drop,state=chain.update(down,visible);
    if(isSiboor){const meshes=chain.entries.map(e=>e.mesh);for(const m of meshes){m.userData.stock=true;m.userData.stockGroup='04_Z_Motion';}
-    showHeadFactory({...v,modules:[],removed_stock_keys:[]},()=>({checked:visible}),meshes,{stock:{visible:true}},'stock','custom',rig,null,[],new Map(),{reference_flexible:meshes},new Map(),()=>{})();
+    assert(!source47?.active,'Bank fixture unexpectedly activated a different source route');
+    bindShowHeadConsumer(app,{activeConfig:{...v,modules:[],removed_stock_keys:[]},$:()=>({checked:visible}),allMeshes:meshes,groups:{stock:{visible:true}},stockHeadGroup:'stock',installed:'custom',installedHeads:rig,xolScene:null,panes:[],assetRoots:new Map(),moving:{reference_flexible:meshes},parts:new Map(),showBelts:()=>{},source47})();
    }
    if(visible){assertChainPresent(chain);assert(state.endpoint_error_mm<1e-5);}
    else for(const e of all)assert.equal(e.mesh.visible,false);

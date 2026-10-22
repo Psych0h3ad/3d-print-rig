@@ -17,7 +17,7 @@ import {rememberDisplayControl} from './display-preferences.mjs?v=8f347468def259
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
-import {setupPublicInfo} from './public-info.js?v=f1c40e394d7c64490c76';
+import {setupPublicInfo} from './public-info.js?v=8cba69e8eb0fe767017d';
 const descriptions={
  voron_switchwire_250:'Official Switchwire v1 CAD assembly with Stealthburner, CW2 and Revo Voron.',
  '247zero_beta2_120':'247zero BETA2 · 120 mm / ULW carbon gantry / Crazy Volcano / M4 Bowden',

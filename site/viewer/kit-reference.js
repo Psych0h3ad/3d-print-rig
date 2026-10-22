@@ -12,7 +12,7 @@ import {loadKitReference} from './kit-reference-loader.mjs?v=ab4c504dc9c9698eb8e
 import {setupMachineNavigation} from './machines.js?v=5503ac507978b3d4e928';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=736862a3013dbfd9f9ea';
-import {setupPublicInfo} from './public-info.js?v=f1c40e394d7c64490c76';
+import {setupPublicInfo} from './public-info.js?v=8cba69e8eb0fe767017d';
 import {createCommunityAdapter} from './community-adapter.mjs?v=61b77f5cd77eabb0120d';
 import {setupNativeMotionControls} from './native-motion-controls.mjs?v=18d7c0fb482b7fe50e2a';
 export async function mount(scope){

@@ -17,7 +17,7 @@ import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=3a71971c97a749c16228';
 import {setupConfigurations} from './configurations.js?v=5e2d5202ca339070f0b6';
-import {setupPublicInfo} from './public-info.js?v=f1c40e394d7c64490c76';
+import {setupPublicInfo} from './public-info.js?v=8cba69e8eb0fe767017d';
 import {setupRenderExport} from './render-export.js?v=736862a3013dbfd9f9ea';
 import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=workspace-belts-1';
 import {validateEvaMetadata,bindEvaMeshIdentities} from './eva-heads.mjs?v=b53ce6925a6fec3b5b10';

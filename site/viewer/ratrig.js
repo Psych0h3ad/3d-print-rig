@@ -15,7 +15,7 @@ import {ratRigSchema,validateRatRigConfiguration,ratRigAxisRanges} from './ratri
 import {setupMachineNavigation} from './machines.js?v=5503ac507978b3d4e928';
 import {setupRenderExport} from './render-export.js?v=736862a3013dbfd9f9ea';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
-import {setupPublicInfo} from './public-info.js?v=f1c40e394d7c64490c76';
+import {setupPublicInfo} from './public-info.js?v=8cba69e8eb0fe767017d';
 export async function mount(scope){
 const $=id=>document.getElementById(id),stage=$('stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=.9;stage.append(renderer.domElement);
