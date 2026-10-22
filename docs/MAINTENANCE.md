@@ -26,6 +26,7 @@ the model bundle are addressed relative to the assembled site root.
 | Desktop room / furniture planner | `site/layout/` state, UI, renderer and loader entry; `layout-catalog.json` from approved machine/source metadata | Keep mm static envelopes separate from build volume; test room shapes, browser-only SVG parsing with explicit mm scaling, support-local parenting, save/load and preview without full-model fetches. Preserve narrow desktop windows and the touch-only notice before catalog/model requests; existing viewers retain mobile behavior. Check cancellable sequential PNG export and its 24 MiB retained-transparency cap; [planner](LAYOUT_PLANNER.md). |
 | Public support report | `scripts/build_support_catalog.mjs`; `site/support/` | Production composition, strict filter intersections, unsupported reasons, exact links and JSON output; [support maintenance](COMBINATION_SUPPORT.md) |
 | Text, sharing or artwork | `localization/`, share/embed modules, `site/fun/`, `site/viewer/art/` | [Translations](TRANSLATING.md), [embed contract](EMBEDDING.md), [wallpapers](WALLPAPERS.md), [background](CAD_BACKGROUND.md) |
+| Optional usage statistics | `site/viewer/usage-analytics-config.mjs`, `usage-analytics.mjs`, `usage-statistics.mjs`, `privacy.html`; `localization/` | [Analytics](ANALYTICS.md): explicit consent, policy-version/expiry, refusal and withdrawal, excluded review traffic, no duplicate page views, and verified public aggregate report sharing |
 
 ## Adding a combination
 

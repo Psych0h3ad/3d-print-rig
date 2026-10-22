@@ -1,0 +1,23 @@
+.usage-statistics-open { font: inherit; color: inherit; background: transparent; border: 0; padding: 0; cursor: pointer; }
+.usage-statistics-dialog {
+  box-sizing: border-box; position: fixed; inset: auto 16px 16px auto;
+  margin: 0; width: min(420px, calc(100vw - 32px)); max-height: calc(100dvh - 32px);
+  overflow: auto; padding: 20px; border: 1px solid #b6c4c9; border-radius: 10px;
+  background: #fff; color: #24343c; box-shadow: 0 8px 30px #10232c30;
+  font: 14px/1.55 system-ui, sans-serif; z-index: 30;
+}
+.usage-statistics-dialog:modal { inset: 0; margin: auto; }
+.usage-statistics-dialog::backdrop { background: #10232c65; }
+.usage-statistics-dialog h2 { margin: 0 0 10px; font-size: 18px; }
+.usage-statistics-dialog p { margin: 10px 0; }
+.usage-statistics-dialog a { color: #285e78; }
+.usage-statistics-policy { display: block; margin: 12px 0 6px; }
+.usage-statistics-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+.usage-statistics-actions button {
+  font: inherit; color: inherit; background: #f3f6f7; border: 1px solid #b6c4c9;
+  border-radius: 6px; min-height: 40px; padding: 7px 11px; cursor: pointer;
+}
+.usage-statistics-actions button:disabled { opacity: .55; cursor: default; }
+[data-theme=dark] .usage-statistics-dialog { background: #1b3039; color: #e2ebee; border-color: #526771; }
+[data-theme=dark] .usage-statistics-dialog a { color: #9dd4ec; }
+[data-theme=dark] .usage-statistics-actions button { color: #e2ebee; background: #293f49; border-color: #526771; }

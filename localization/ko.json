@@ -10977,6 +10977,150 @@
     "elegoo.corresponding_source": {
       "source_revision": "1f44beb0c5d5f2795a34",
       "text": "원본 데이터 및 변환 도구"
+    },
+    "statistics.title": {
+      "source_revision": "0e4b242bab4a8f441b47",
+      "text": "이용 통계"
+    },
+    "statistics.description": {
+      "source_revision": "7505666a56d0e80703c9",
+      "text": "Google Analytics(Google LLC, 미국)는 쿠키를 사용하여 조회수와 대략적인 방문 국가를 집계합니다. 거부해도 뷰어를 사용할 수 있습니다. 공개 보고서에는 집계 데이터가 표시됩니다."
+    },
+    "statistics.public_report": {
+      "source_revision": "5825a0088dacb174871f",
+      "text": "공개 보고서 열기"
+    },
+    "statistics.report_pending": {
+      "source_revision": "629140767c0b8c200518",
+      "text": "공개 보고서는 아직 게시되지 않았습니다."
+    },
+    "statistics.allow": {
+      "source_revision": "1f05786e5389e7530b0a",
+      "text": "통계 측정 허용"
+    },
+    "statistics.deny": {
+      "source_revision": "0072e015094030889011",
+      "text": "통계 측정 거부"
+    },
+    "statistics.google_privacy": {
+      "source_revision": "122f2f1014941fdd5f9e",
+      "text": "Google 개인정보처리방침"
+    },
+    "statistics.enabled": {
+      "source_revision": "9d74b51b54510565b97a",
+      "text": "이 브라우저에서 측정이 허용되어 있습니다."
+    },
+    "statistics.disabled": {
+      "source_revision": "06ed8b81013683d34c24",
+      "text": "이 브라우저에서는 측정하지 않습니다."
+    },
+    "statistics.privacy_signal": {
+      "source_revision": "0d5563cde232ed6b1295",
+      "text": "브라우저의 개인정보 보호 설정에 따라 측정이 비활성화됩니다."
+    },
+    "statistics.excluded": {
+      "source_revision": "461c5a4f77a774d00577",
+      "text": "이 탭은 이용 통계에서 제외됩니다."
+    },
+    "privacy.title": {
+      "source_revision": "99a8559fd80eea21dd47",
+      "text": "개인정보 및 쿠키"
+    },
+    "privacy.updated": {
+      "source_revision": "b9c27bbd748aba29af66",
+      "text": "업데이트: 2026년 10월 23일"
+    },
+    "privacy.operator": {
+      "source_revision": "0a96e4beb1dc9d7bc7e7",
+      "text": "3D Print Rig는 Psych0h3ad가 운영합니다. 개인정보 관련 질문 및 요청 문의처:"
+    },
+    "privacy.choice_heading": {
+      "source_revision": "d13da3df2e0918a995bc",
+      "text": "이용자의 선택"
+    },
+    "privacy.choice": {
+      "source_revision": "99272fb03436ea2fcb27",
+      "text": "분석은 선택 사항이며 이용자의 동의를 바탕으로 합니다. 통계 측정 허용을 선택하기 전에는 Google 태그를 로드하거나 분석 요청을 보내지 않습니다. 거부해도 뷰어 기능은 제한되지 않습니다. 이용 통계에서 언제든 선택을 변경하거나 철회할 수 있습니다. 철회하면 이후 측정이 중단되고 이 프로젝트의 분석 쿠키가 삭제됩니다. 철회 이전의 처리가 취소되는 것은 아닙니다."
+    },
+    "privacy.signals": {
+      "source_revision": "f506a5fdd56c21cca24a",
+      "text": "Global Privacy Control 및 Do Not Track 신호가 있으면 측정하지 않습니다. 임베드 뷰어, 로컬 미리보기, 명시적으로 제외한 검토 방문도 측정 대상이 아닙니다."
+    },
+    "privacy.data_heading": {
+      "source_revision": "5623a8094ba596ca6ed1",
+      "text": "분석으로 전송되는 정보"
+    },
+    "privacy.data": {
+      "source_revision": "9f21c7f0203732bf0759",
+      "text": "동의 후 Google Analytics 4로 뷰어 페이지 경로, 고정된 페이지 제목, 쿠키 식별자, 브라우저·기기·언어 등의 기술 정보가 전송됩니다. 통신 시 IP 주소도 Google에 전달되며 대략적인 위치 추정에 사용될 수 있습니다. URL 쿼리 문자열·프래그먼트, 유입 경로의 상세 정보, 저장된 구성 및 가져온 모델 파일은 당사 분석 이벤트에 포함하지 않습니다."
+    },
+    "privacy.purpose": {
+      "source_revision": "06c1b5e11d92a60b6d2a",
+      "text": "이 측정 정보는 이용 현황 파악 및 뷰어 개선에 사용합니다. 이 연동에서는 Google Signals 및 광고 개인 최적화를 비활성화합니다. 개인정보 판매, 타겟 광고 또는 법적·이에 준하는 중대한 영향을 미치는 결정에는 사용하지 않습니다."
+    },
+    "privacy.public_heading": {
+      "source_revision": "3d6bc5b8dae9d56c412d",
+      "text": "공개 통계"
+    },
+    "privacy.public": {
+      "source_revision": "e17bdde698cdfae6296e",
+      "text": "공개 보고서가 제공되면 조회수, 이용자 수, 일별 추이 및 국가별 집계를 표시합니다. IP 주소, 쿠키 식별자 또는 개별 방문 기록은 공개하지 않습니다. VPN 등의 영향으로 국가 추정이 부정확할 수 있습니다. 거부, 차단 및 보고 지연으로 인해 모든 방문의 정확한 총계는 아닙니다."
+    },
+    "privacy.storage_heading": {
+      "source_revision": "37ea4a5fddb013abcf54",
+      "text": "저장 및 보관 기간"
+    },
+    "privacy.storage": {
+      "source_revision": "24271d8e45ae848fe179",
+      "text": "분석 쿠키 _ga 및 _ga_SEV0T0PFTB는 이 프로젝트 내에서 브라우저와 세션을 식별합니다. 만료 기간은 최대 180일이며 자동 갱신하지 않습니다. 동의 또는 거부 선택은 정책 버전과 함께 기기에 180일 동안 저장됩니다. 언어, 표시 설정 및 저장된 구성 등 필요한 설정은 분석과 별개이며 이 연동을 통해 Google로 전송되지 않습니다."
+    },
+    "privacy.retention": {
+      "source_revision": "64ea7484ac68c0ae3490",
+      "text": "GA4 속성의 이용자 및 이벤트 데이터 보관 기간은 2개월이며 새 활동에 따른 이용자 보관 기간 재설정을 사용하지 않습니다. 해당 데이터는 Google의 월별 삭제 절차에서 제거됩니다. 표준 집계 보고서에는 이 설정이 적용되지 않으며 프로젝트의 통계 이력으로 남을 수 있습니다. 삭제 요청 및 정보 문의는 위 이메일로 보내 주세요. 비밀번호나 민감한 문서는 보내지 마세요."
+    },
+    "privacy.recipients_heading": {
+      "source_revision": "6baa7bd2d277200361f3",
+      "text": "제공받는 자 및 국외 처리"
+    },
+    "privacy.recipients": {
+      "source_revision": "19136ed03e9f479947f9",
+      "text": "분석은 미국 Google LLC가, 사이트 및 모델 배포는 GitHub가 제공합니다. 이들 서비스는 요청에 응답하는 데 필요한 네트워크 정보를 받습니다. 분석에 동의한 후 데이터는 온라인으로 Google에 전송되며 미국 및 Google이 운영하는 다른 국가에서 처리될 수 있습니다. 해당 국가의 보호 제도는 거주 국가와 다를 수 있습니다. 아래에서 Google의 개인정보 및 국외 이전 정보를 확인할 수 있습니다."
+    },
+    "privacy.google_data": {
+      "source_revision": "ed821e84607726149bb3",
+      "text": "Google의 파트너 사이트 데이터 이용"
+    },
+    "privacy.google_transfers": {
+      "source_revision": "99d10ffc6e066ad5f36b",
+      "text": "Google 국제 데이터 이전 체계"
+    },
+    "privacy.github": {
+      "source_revision": "9de87ff02924a3d7900c",
+      "text": "GitHub 개인정보처리방침"
+    },
+    "privacy.rights_heading": {
+      "source_revision": "e9f4e8d3c5d32963025d",
+      "text": "이용자의 개인정보 권리"
+    },
+    "privacy.rights": {
+      "source_revision": "e9ddd5c0741fd8520796",
+      "text": "적용 법률에 따라 데이터 접근, 정정, 삭제, 처리 제한 또는 이동을 요청하거나 처리에 이의를 제기하고, 동의를 철회하거나 관할 감독기관에 민원을 제기할 수 있습니다. 여기에는 유럽·영국의 데이터 보호법, 일본 APPI 및 적용되는 미국 주법에 따른 관련 권리가 포함됩니다. 분석을 거부한 이용자를 차별하지 않습니다. 데이터 확인이나 요청 검증에 필요한 적정한 정보를 요청할 수 있으며 집계 데이터를 개인과 연결할 수 없다면 설명해 드립니다."
+    },
+    "privacy.children": {
+      "source_revision": "8117a597af75b3aa1d95",
+      "text": "거주 지역에서 스스로 동의할 수 있는 연령에 미달한다면 부모 또는 보호자가 허용하지 않는 한 분석을 비활성화한 상태로 두세요."
+    },
+    "privacy.links_heading": {
+      "source_revision": "345fa7daecc0771a8980",
+      "text": "외부 사이트 및 변경"
+    },
+    "privacy.links": {
+      "source_revision": "2511fcf1ebabc3dbcb8a",
+      "text": "스폰서, 제휴 및 출처 링크의 외부 사이트에는 각 사이트의 개인정보 방침이 적용됩니다. 공개 보고서에도 제공자의 방침이 적용됩니다. 분석 목적이나 제공자가 실질적으로 변경되면 측정을 재개하기 전에 다시 선택을 요청합니다. 업데이트 날짜와 동의 버전으로 동의한 정책을 식별합니다."
+    },
+    "privacy.back": {
+      "source_revision": "c553908ad0cb9dd91e67",
+      "text": "프린터 목록으로 돌아가기"
     }
   }
 }

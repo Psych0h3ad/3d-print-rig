@@ -18,7 +18,7 @@ import {createV0Adapter} from './v0_adapter.mjs?v=4ee2ec34955631397cf3';
 import {setupMachineNavigation} from './machines.js?v=5503ac507978b3d4e928';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=736862a3013dbfd9f9ea';
-import {setupPublicInfo} from './public-info.js?v=8cba69e8eb0fe767017d';
+import {setupPublicInfo} from './public-info.js?v=82ae2cba60aa044932c5';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=66041e969f9190a81416';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
 export async function mount(scope){

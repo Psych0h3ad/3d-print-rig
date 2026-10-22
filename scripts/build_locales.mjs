@@ -69,6 +69,7 @@ async function cacheReferences(outputs){
  // Layout owns its five-language dictionary; include its source importers in cache propagation.
  await scan(resolve(viewer,'../layout'));
  const changed=new Map(Object.entries(outputs).map(([name,text])=>[fileURLToPath(new URL(name,root)),text]));
+ for(const name of ['usage-analytics.mjs','usage-analytics-config.mjs','usage-statistics.mjs','usage-statistics.css','privacy.mjs','privacy.css']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}
  const layoutRoot=resolve(viewer,'../layout');
  for(const [path,text]of files)if(path.startsWith(layoutRoot+sep)||path===resolve(viewer,'layout-nav.mjs'))changed.set(path,text);
  for(const name of ['source-assembly.mjs','source-assembly-messages.mjs','source-assembly-ui-text.mjs','source-assembly-configuration-ui.mjs','source-assembly-runtime/loading.mjs']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}

@@ -1,7 +1,8 @@
+import {setupUsageStatistics} from './usage-statistics.mjs?v=e11e5f17f9fb34440ebf';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {setupLanguage,formatMessage} from './i18n.mjs?v=026ed350b8da81434067';
+import {setupLanguage,formatMessage} from './i18n.mjs?v=535a15826b80b7dcc2f6';
 import {setupHeaderThemeToggle} from './display-preferences.mjs?v=8f347468def25922153c';
 import {createModelProgress,readModelBytes} from './model-progress.mjs?v=beaef781095b6f56b290';
 import {cutawaySource} from './stealthburner-cutaway-source.mjs';
@@ -10,6 +11,7 @@ import {lessonDuration,lessonChapters,lessonState,advanceLesson} from './stealth
 
 const $=selector=>document.querySelector(selector),stage=$('#stage');
 setupLanguage();setupHeaderThemeToggle($('.header-actions'));
+setupUsageStatistics($('.header-actions'));
 const language=()=>document.documentElement.lang||'en';
 const t=id=>formatMessage(id,{},language());
 const controller=new AbortController(),signal=controller.signal;
