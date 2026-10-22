@@ -5,6 +5,7 @@ import path from 'node:path';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import crypto from 'node:crypto';
 import assert from 'node:assert/strict';
+import {assertYavothExactExportedCompanions} from './yavoth-exact-companions.mjs';
 import * as THREE from 'three';
 import {headPlan} from '../site/viewer/head-assembly.js';
 import {machineHeadVariants} from '../site/viewer/machine-head-model.mjs';
@@ -77,6 +78,7 @@ export function assertHeadCompanions(v){
 // V0/Yavoth/README.md, BOM and Assembly sections.
 export function assertYavothHardware(v,assets){
  if(v.toolhead!=='yavoth')return;
+ assertYavothExactExportedCompanions(v,assets);
  const present={hotend:new Set(),extruder:new Set(),fan:new Set()};
  for(const [id,asset]of assets){
   if(!asset.root.visible)continue;

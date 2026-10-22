@@ -5,12 +5,12 @@ import {workspaceFrame,WorkspaceResizeObserver,workspaceTask} from './workspace-
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=3a71971c97a749c16228';
+import {loadModel} from './model-loader.js?v=b0197506280e28221880';
 import {createMicronAdapter} from './micron-adapter.mjs?v=f476eef2731027bc0959';
 import {setupMachineNavigation} from './machines.js?v=5503ac507978b3d4e928';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=736862a3013dbfd9f9ea';
-import {setupPublicInfo} from './public-info.js?v=82ae2cba60aa044932c5';
+import {setupPublicInfo} from './public-info.js?v=9a36586e255c2266cea5';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=workspace-belts-1';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=66041e969f9190a81416';
 export async function mount(scope){

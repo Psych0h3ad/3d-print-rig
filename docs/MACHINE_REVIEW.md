@@ -100,6 +100,23 @@ and native-solid clearance retain their separate review scopes.
 
 Record the inspected part identities/hashes, expected companions, actual
 combinations and transitions, screenshots, native measurements and failures.
+
+Yavoth has an equivalent required source-identity regression:
+`test_yavoth_source_gate.mjs` is discovered by `check_repository.py`, and
+`build_site.py` invokes `audit_yavoth_source_assets.mjs` against the built bytes.
+The latter verifies the checksum/Git-blob-pinned original author UHF rear5 STLs
+against every oriented exported triangle, with complete position/index buffers
+and an explicit rigid export transform. Stable public leaf IDs remain separate
+from original source occurrence IDs. Relabeling a standard/Revo cowl, matching
+bounds, or replacing transport hashes cannot satisfy the author geometry proof.
+The gate derives all 6/9 mm machine/vendor/size and standalone/archive consumers
+and exercises companion ownership, LED holder/insert uniqueness, A-to-B-to-A,
+reference reset and configuration save/load using the production controller.
+Detailed audit output is private. Source LED holder/insert presence is not proof
+of a manufacturer-specific physical Neopixel. Probe/board `none` requires no
+optional carrier, and an unavailable lower attachment is not itself a required
+brace. Physical mounting, native-solid clearance and GPU review remain separate.
+
 Inherited source contacts and incomplete cartridge/fastener/cooling verification
 retain their stated limits. A correct cover selection does not certify the
 whole head or every machine's physical fit.

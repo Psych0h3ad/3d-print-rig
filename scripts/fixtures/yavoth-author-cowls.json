@@ -1,0 +1,185 @@
+{
+  "schema": "yavoth-reviewed-author-cowls-v2",
+  "source_revision": "cc2e749d09d7f24418f9f8c73c90bcefb1e29584",
+  "scope": "Complete author-STL cowl surfaces, exact reviewed source registration and exported buffers. Retained 9mm carriage bytes are unchanged, without any new support-removal claim. No complete mount or physical LED claim",
+  "retained_input_sha256": {
+    "modules/yavoth59_carriage_9.json": "50f6cdcf832259201defc2d156a8ef8568d663b06377708b3e09013e9a9118f0",
+    "modules/yavoth59_carriage_9.glb.gz": "08a0bf39639f70ad5d962902356f32a373edda64caab34e5672f8dbb54e76c32"
+  },
+  "modules": {
+    "head_print_yavoth_orbiter2_rapido2_uhf_rear5": {
+      "author_stl_path": "V0/Yavoth/STLs/Orbiter_v2_Spacing/Cowl_Dragon_OB2_UHF_5mm.stl",
+      "author_git_blob": "81c778cfcd04b4d6c02e99b51b712f48480a735d",
+      "source_occurrence": "12",
+      "public_alias": "13",
+      "source_print_mm_to_native_mm": {
+        "rotation": [
+          [
+            0.9999999967371396,
+            0.0000807705238050813,
+            -0.0000013576803856008793
+          ],
+          [
+            0.0000013598254836609314,
+            -0.000026557882778670174,
+            0.999999999646415
+          ],
+          [
+            0.00008077048771940551,
+            -0.9999999963854007,
+            -0.000026557992525832108
+          ]
+        ],
+        "translation": [
+          0.011053496161082421,
+          -154.39909984918796,
+          -52.10098405397248
+        ],
+        "scale": 1
+      },
+      "author_stl_sha256": "b4256d38e842f315bea70d9c69ec3dfee2984d7a6234208a9a1894e64b250cea",
+      "triangles": 9214,
+      "oriented_triangles_sha256": "65f0717312c66f5a53139452176357912037c0e61ac8d5d7d193355dad238142",
+      "complete_buffers": {
+        "draw_range": {
+          "start": 0,
+          "count": "full"
+        },
+        "groups": [],
+        "normal": {
+          "type": "Float32Array",
+          "itemSize": 3,
+          "count": 27642,
+          "sha256": "751498ca65882d1958281f30ec690743440a5fb39b4e6d21d7d1f853ad610340"
+        },
+        "position": {
+          "type": "Float32Array",
+          "itemSize": 3,
+          "count": 27642,
+          "sha256": "d7726541576df0f00e7e6790fd8f9a9b9ba34c78ac0a912388879da8fc0a84cd"
+        },
+        "index": {
+          "type": "Uint32Array",
+          "count": 27642,
+          "sha256": "a493679e04f27da9aa00a7905382523acd6293e96a4073668d82cbeab9979413"
+        }
+      }
+    },
+    "head_print_yavoth_sherpa_mini_rapido2_uhf_rear5": {
+      "author_stl_path": "V0/Yavoth/STLs/Sherpa_Mini_Spacing/Cowl_Dragon_SM_UHF_5mm.stl",
+      "author_git_blob": "b367b71feee39583746b94c65e36f0cfc51491ee",
+      "source_occurrence": "22",
+      "public_alias": "23",
+      "source_print_mm_to_native_mm": {
+        "rotation": [
+          [
+            0.9999999999999996,
+            2.539738584233178e-8,
+            1.1793643248401268e-8
+          ],
+          [
+            -1.1793632145577058e-8,
+            -4.371640118346136e-7,
+            0.9999999999999044
+          ],
+          [
+            2.539739099808575e-8,
+            -0.9999999999999041,
+            -4.37164011535086e-7
+          ]
+        ],
+        "translation": [
+          0.000004536011459777001,
+          -154.3945513615131,
+          -52.08964658178422
+        ],
+        "scale": 1
+      },
+      "author_stl_sha256": "60d914e3a333b8a0843d7c4738cd61d5d7bd70243e501e9c465da1571fa0c6b9",
+      "triangles": 9214,
+      "oriented_triangles_sha256": "c3b154903d3907c1dad9350b09d954ca8c0423e1e9f8c233581e4ad2756489a7",
+      "complete_buffers": {
+        "draw_range": {
+          "start": 0,
+          "count": "full"
+        },
+        "groups": [],
+        "normal": {
+          "type": "Float32Array",
+          "itemSize": 3,
+          "count": 27642,
+          "sha256": "1d74c7d555511d957bcb2821b10494a291d0f011d9fb45928714c9b10fa66383"
+        },
+        "position": {
+          "type": "Float32Array",
+          "itemSize": 3,
+          "count": 27642,
+          "sha256": "dd7901a8a14d5f138b5a573534faed2040cf4f6d5071c94957d3bfb800032cb8"
+        },
+        "index": {
+          "type": "Uint32Array",
+          "count": 27642,
+          "sha256": "a493679e04f27da9aa00a7905382523acd6293e96a4073668d82cbeab9979413"
+        }
+      }
+    },
+    "head_print_yavoth_sherpa_micro_rapido2_uhf_rear5": {
+      "author_stl_path": "V0/Yavoth/STLs/Sherpa_Micro_Spacing/Cowl_Dragon_Micro_UHF_5mm.stl",
+      "author_git_blob": "03e23a1cb289d0bb3d3c82bbca609a2cf11a6203",
+      "source_occurrence": "32",
+      "public_alias": "33",
+      "source_print_mm_to_native_mm": {
+        "rotation": [
+          [
+            0.9999999993672981,
+            0.000035435075570715256,
+            -0.0000031240164543023034
+          ],
+          [
+            0.000003124014643469229,
+            5.115819190370765e-8,
+            0.999999999995119
+          ],
+          [
+            0.00003543507573036133,
+            -0.9999999993721767,
+            5.1047492176364414e-8
+          ]
+        ],
+        "translation": [
+          0.0017053518961063219,
+          -154.39500662851688,
+          -52.09552830895828
+        ],
+        "scale": 1
+      },
+      "author_stl_sha256": "9951840e8815f0ca24af51306571d50f211834122b0f215598fc3563917dbd31",
+      "triangles": 9214,
+      "oriented_triangles_sha256": "f6439aad1fa69c506fb940ef564f475beb462529b9ab10322a4bd1027b331fdf",
+      "complete_buffers": {
+        "draw_range": {
+          "start": 0,
+          "count": "full"
+        },
+        "groups": [],
+        "normal": {
+          "type": "Float32Array",
+          "itemSize": 3,
+          "count": 27642,
+          "sha256": "84d9ff7c5abbbd2c3887801c529a9155dc9cea021722022dd6afe9c254d20464"
+        },
+        "position": {
+          "type": "Float32Array",
+          "itemSize": 3,
+          "count": 27642,
+          "sha256": "11b045ef12cb612f1e4bc6d9235a2b4cfa086c44b2d9e476a711ef34948917fe"
+        },
+        "index": {
+          "type": "Uint32Array",
+          "count": 27642,
+          "sha256": "a493679e04f27da9aa00a7905382523acd6293e96a4073668d82cbeab9979413"
+        }
+      }
+    }
+  }
+}

@@ -4,9 +4,9 @@ import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {setupSceneDisplay} from './display-preferences.mjs?v=8f347468def25922153c';
 import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
-import {loadMonolithData} from './monolith-machine.js?v=398ef15b51f7aad6c860';
+import {loadMonolithData} from './monolith-machine.js?v=7545a368d9ac0772da01';
 import {setupChangerBank} from './changer-bank.js?v=a211c45f87d7c0ed06e3';
-import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=aca200b803ad63dda37c';
+import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=fb2500669abed09f016d';
 import {headPrinterLink} from './head-navigation.mjs?v=9b677859774b4eafeb9e';
 import {headBuilderDimensions} from './configuration-model.js?v=9342ad570006d09f521e';
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
@@ -15,9 +15,9 @@ import {frameHeadBounds} from './head-camera.mjs';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=3a71971c97a749c16228';
+import {loadModel} from './model-loader.js?v=b0197506280e28221880';
 import {setupConfigurations} from './configurations.js?v=985e6b0fe7e0d6e3db9c';
-import {setupPublicInfo} from './public-info.js?v=82ae2cba60aa044932c5';
+import {setupPublicInfo} from './public-info.js?v=9a36586e255c2266cea5';
 import {setupRenderExport} from './render-export.js?v=736862a3013dbfd9f9ea';
 import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=workspace-belts-1';
 import {validateEvaMetadata,bindEvaMeshIdentities} from './eva-heads.mjs?v=b53ce6925a6fec3b5b10';
@@ -232,7 +232,7 @@ try{
  toolBank=setupChangerBank({before:$('#assemblyScope'),catalog:bankCatalog,rig:bankAdapter,data:headData.bank,extras:{presentation:'toolhead',getExtras:extras,applyExtras:restoreExtras,validateExtras:validateBuilderExtras,onSettled:()=>{builder?.update();if(ready){appearance();visibleBounds();fit()}}}});
  const controller=await setupConfigurations(catalog,install,toolBank.options);await toolBank.bind(controller);
  if(!ready)throw Error('ヘッドのCADを表示できませんでした');
- let pins=[];try{const r=await fetch('../PUBLIC_CATALOG.json?v=40ca60057d6d2779fbde');if(r.ok)pins=(await r.json()).sources||[]}catch{}
+ let pins=[];try{const r=await fetch('../PUBLIC_CATALOG.json?v=21e24d47d296bb7005da');if(r.ok)pins=(await r.json()).sources||[]}catch{}
  builder=setupHeadBuilder(catalog,{getVariant:()=>currentVariant,getMetadata:()=>new Map([...cached].filter(([,p])=>p.loaded).map(([id,p])=>[id,p.loaded.meta])),getExtras:()=>toolBank.options.getExtras(),pins,selectVariant:id=>controller.selectVariant(id),isBusy:()=>controller.busy});
 }catch(e){$('#loading').hidden=false;$('#loading').textContent=e.message;document.body.dataset.assetStatus='error';console.error(e)}
 

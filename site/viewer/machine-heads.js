@@ -16,10 +16,10 @@ import {augmentTrinityAlpha,TRINITY_ALPHA_SOURCE} from './trinity-alpha-installa
 import {workspaceTask} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 import {createCatalogRequests} from './catalog-requests.mjs?v=e08161a1108d8bf2b5b3';
 import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=b17b3a4f670f432492cf';
-import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=398ef15b51f7aad6c860';
+import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=7545a368d9ac0772da01';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=3a71971c97a749c16228';
+import {loadModel} from './model-loader.js?v=b0197506280e28221880';
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import {partKey} from './head-assembly.js';
 import {v24HeadCatalog} from './machine-head-model.mjs?v=1dab5126e376ecd7f60c';
