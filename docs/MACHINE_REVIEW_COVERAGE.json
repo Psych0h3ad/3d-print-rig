@@ -3,7 +3,7 @@
   "review_revision": "Current approved input and scoped audit attempts; ELEGOO three static source assemblies 20261022",
   "reviewed_on": "2026-10-22",
   "input_sha256": {
-    ".github/workflows/pages.yml": "d3bac0b138297ae1e2548295a3b5b9e774ff2fe7d40396773fd59d75119ff193",
+    ".github/workflows/pages.yml": "808d6da6325507943a5373df1217bfa2ba0803c345504aed1890d80b9b4848ee",
     ".github/workflows/source-check.yml": "9ab5cc2c1c44c12fe566ba251292eefa5854371d38e92a0637b0f6a4ea16a2b3",
     "scripts/audit_a4t_printed_companions.mjs": "770c4e5da4eba20f0141952ac2afd961f70ca26fb3d6925abfd9361c8ac7287a",
     "scripts/audit_changer_banks.mjs": "cbbbe6833a7c8becaf47e74ac875d9f6759591956144d6733646b27131dee839",
