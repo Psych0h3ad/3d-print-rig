@@ -1,5 +1,5 @@
 import {polygonProblems, polygonContains, polygonsOverlap, rectangle, rotateXZ, transformPolygon, bounds} from './layout-geometry.mjs?v=129e07e8d3e2b008fab6';
-import {rigidMotionStaysInside,boundaryTangents} from './layout-constraints.mjs?v=e0fbda794064e531577f';
+import {rigidMotionStaysInside,boundaryTangents} from './layout-constraints.mjs?v=53e33561b2e7ce324016';
 import {WALL_FINISHES, FLOOR_FINISHES, DEFAULT_ROOM_APPEARANCE} from './layout-finishes.mjs?v=001b62f9728770a12303';
 
 export const LIMITS = Object.freeze({maxFurniture: 64, maxPrinters: 128, maxRoomVertices: 32,
@@ -313,6 +313,37 @@ function restrictPlacementChange(state, next, action, machines) {
     boundary('SURFACE_OVERHANG', end.id, oldOuter, oldPolygon, outer, polygon, surfacePath);
   }
 }
+function worldMoveLocalPoint(parent, attachment, xMm, zMm, snapOrigin) {
+  if (!parent) return [xMm, zMm];
+  // Exact forward-image matches retain stored coordinates for a no-op or an
+  // anchored A-B-A. No rounding/tolerance is applied to other pointer targets.
+  for (const reference of [attachment, snapOrigin]) if (reference) {
+    const q = rotateXZ([reference.xMm, reference.zMm], parent.pose.yawDeg);
+    if (q[0] + parent.pose.xMm === xMm && q[1] + parent.pose.zMm === zMm) return [reference.xMm, reference.zMm];
+  }
+  return rotateXZ([xMm - parent.pose.xMm, zMm - parent.pose.zMm], -parent.pose.yawDeg);
+}
+function sumAtMost(a, b, limit) {
+  const sum = a + b;
+  if (sum !== limit) return sum < limit;
+  // TwoSum retains the exact residual when a translated vertex rounds onto
+  // the support edge. A one-ULP centre overhang must not disappear on addition.
+  const roundedB = sum - a;
+  return (a - (sum - roundedB)) + (b - roundedB) <= 0;
+}
+function applyPrinterMove(state, printer, xMm, zMm, machines, parent) {
+  const a = printer.attachment;
+  if (parent && numberOK(xMm, -LIMITS.maxCoordinateMm, LIMITS.maxCoordinateMm)
+    && numberOK(zMm, -LIMITS.maxCoordinateMm, LIMITS.maxCoordinateMm) && (xMm !== a.xMm || zMm !== a.zMm)) {
+    const inside = machines.byId[printer.machineId].footprintMm.every(p => {
+      const [x, z] = rotateXZ(p, a.yawDeg);
+      return sumAtMost(xMm, x, parent.widthMm / 2) && sumAtMost(-xMm, -x, parent.widthMm / 2)
+        && sumAtMost(zMm, z, parent.depthMm / 2) && sumAtMost(-zMm, -z, parent.depthMm / 2);
+    });
+    if (!inside) fail('SURFACE_OVERHANG', 'action', {entityIds: [printer.id, parent.id], reason: 'SUPPORT_LOCAL_TRANSLATION_NOT_CONTAINED'});
+  }
+  return applyAction(state, {type: 'UPDATE_PRINTER', id: printer.id, patch: {attachment: {xMm, zMm}}}, machines);
+}
 export function applyWorldMove(state, {id, xMm, zMm}, catalog = [], {snapMm = 0, snapOrigin = null} = {}) {
   const machines = catalogOf(catalog); assertState(state, machines);
   if (!numberOK(xMm, -LIMITS.maxCoordinateMm, LIMITS.maxCoordinateMm) || !numberOK(zMm, -LIMITS.maxCoordinateMm, LIMITS.maxCoordinateMm)
@@ -325,9 +356,9 @@ export function applyWorldMove(state, {id, xMm, zMm}, catalog = [], {snapMm = 0,
   const snap = (n, origin) => snapMm === 0 ? n : origin + Math.round((n - origin) / snapMm) * snapMm;
   if (furniture) return applyAction(state, {type: 'UPDATE_FURNITURE', id, patch: {pose: {xMm: snap(xMm, snapOrigin?.xMm ?? furniture.pose.xMm), zMm: snap(zMm, snapOrigin?.zMm ?? furniture.pose.zMm)}}}, machines);
   const parent = state.furniture.find(f => f.id === printer.attachment.parentId);
-  const local = parent ? rotateXZ([xMm - parent.pose.xMm, zMm - parent.pose.zMm], -parent.pose.yawDeg) : [xMm, zMm];
-  return applyAction(state, {type: 'UPDATE_PRINTER', id, patch: {attachment: {
-    xMm: snap(local[0], snapOrigin?.xMm ?? printer.attachment.xMm), zMm: snap(local[1], snapOrigin?.zMm ?? printer.attachment.zMm)}}}, machines);
+  const local = worldMoveLocalPoint(parent, printer.attachment, xMm, zMm, snapOrigin);
+  return applyPrinterMove(state, printer, snap(local[0], snapOrigin?.xMm ?? printer.attachment.xMm),
+    snap(local[1], snapOrigin?.zMm ?? printer.attachment.zMm), machines, parent);
 }
 // A resolved transaction stays private to the app until pointerup. Retaining its
 // exact frozen state avoids re-snapping or a second world/local roundtrip at drop.
@@ -349,28 +380,37 @@ export function resolveWorldMove(state, {id, x, z}, catalog = [], {snapMm = 10, 
   // A legacy outside start recovers only to a fully contained endpoint. It is not
   // swept/clamped through outside space; partial outside targets keep repair mode.
   if (placementViolations(state, machines).some(e => ids.includes(e.entityIds[0]))) return false;
-  const origin = worldTransform(state, id, machines);
+  const parent = printer && state.furniture.find(f => f.id === printer.attachment.parentId);
+  const pointOf = from => parent ? from.printers.find(p => p.id === id).attachment : worldTransform(from, id, machines);
+  // Keep attached-printer trials in their stored support-local frame. Repeated
+  // world/local roundtrips can turn an exact contact into a one-ULP overhang
+  // and make the prefix predicate numerically nonmonotone along a valid slide.
+  // applyAction still proves the complete room and support paths for each leg.
+  const applyPoint = (from, point) => parent
+    ? applyPrinterMove(from, from.printers.find(p => p.id === id), point.x, point.z, machines, parent)
+    : applyWorldMove(from, {id, xMm: point.x, zMm: point.z}, machines);
   const snap = (n, base) => snapMm === 0 ? n : base + Math.round((n - base) / snapMm) * snapMm;
   if (furniture) target = {x: snap(x, snapOrigin?.xMm ?? furniture.pose.xMm), z: snap(z, snapOrigin?.zMm ?? furniture.pose.zMm)};
   else {
-    const a = printer.attachment, parent = state.furniture.find(f => f.id === a.parentId);
-    const local = parent ? rotateXZ([x - parent.pose.xMm, z - parent.pose.zMm], -parent.pose.yawDeg) : [x, z];
+    const a = printer.attachment;
+    const local = worldMoveLocalPoint(parent, a, x, z, snapOrigin);
     const point = [snap(local[0], snapOrigin?.xMm ?? a.xMm), snap(local[1], snapOrigin?.zMm ?? a.zMm)];
-    const world = parent ? rotateXZ(point, parent.pose.yawDeg) : point;
-    target = {x: world[0] + (parent?.pose.xMm ?? 0), z: world[1] + (parent?.pose.zMm ?? 0)};
+    target = {x: point[0], z: point[1]};
   }
+  const worldPoint = parent ? rotateXZ([target.x, target.z], parent.pose.yawDeg) : null;
+  const worldTarget = parent ? {x: worldPoint[0] + parent.pose.xMm, z: worldPoint[1] + parent.pose.zMm} : target;
   // Full swept containment is a monotone prefix predicate. These are bounded
   // binary contact brackets, not sampled poses or endpoint-only collision tests.
   // Every accepted trial includes every intermediate translation. No EPS/gap.
   const sweptPrefix = (from,goal) => {
-    const start=worldTransform(from,id,machines);
-    try{return applyWorldMove(from,{id,xMm:goal.x,zMm:goal.z},machines);}
+    const start=pointOf(from);
+    try{return applyPoint(from,goal);}
     catch(error){if(!(error instanceof LayoutValidationError))throw error;}
     let low=0,high=1,best=from;
     for(let i=0;i<64;i++){
       const t=low+(high-low)/2;if(t===low||t===high)break;
       const xMm=start.xMm+(goal.x-start.xMm)*t,zMm=start.zMm+(goal.z-start.zMm)*t;
-      try{best=applyWorldMove(from,{id,xMm,zMm},machines);low=t;}
+      try{best=applyPoint(from,{x:xMm,z:zMm});low=t;}
       catch(error){if(!(error instanceof LayoutValidationError))throw error;high=t;}
     }
     return best;
@@ -379,23 +419,25 @@ export function resolveWorldMove(state, {id, x, z}, catalog = [], {snapMm = 10, 
   // Each leg has the same complete swept-containment proof as a direct move;
   // this is not a new origin-to-end chord through a concave room or a corner.
   let best=sweptPrefix(state,target);
-  const contactState=best,scene=deriveScene(best,machines),contact=worldTransform(best,id,machines);
+  const contactState=best,scene=deriveScene(best,machines),contact=pointOf(best);
   const domains=ids.map(entityId=>[best.room.polygonMm,[...scene.furniture,...scene.printers].find(e=>e.id===entityId).worldEnvelopeMm]);
-  if(printer?.attachment.parentId!==undefined&&printer.attachment.parentId!==null){
-    const a=printer.attachment,surface=scene.surfaces.find(s=>s.parentId===a.parentId&&s.surfaceId===a.surfaceId);
-    domains.push([surface.worldEnvelopeMm,scene.printers.find(e=>e.id===id).worldEnvelopeMm]);
+  if(parent){
+    // Prefer exact support-local tangents before any parallel room tangent;
+    // converting a shared rotated edge back to local can add a false normal.
+    domains.unshift([rectangle(parent.widthMm,parent.depthMm),localPrinterPolygon(best.printers.find(p=>p.id===id),machines),true]);
   }
   let score=(contact.xMm-target.x)**2+(contact.zMm-target.z)**2;
   const remainder=[target.x-contact.xMm,target.z-contact.zMm],seen=[];
-  for(const [outer,polygon]of domains)for(const tangent of boundaryTangents(outer,polygon)){
+  for(const [outer,polygon,local]of domains)for(const direction of boundaryTangents(outer,polygon)){
+    const tangent=parent&&!local?rotateXZ(direction,-parent.pose.yawDeg):direction;
     if(seen.some(t=>Math.abs(t[0]*tangent[1]-t[1]*tangent[0])<1e-12))continue;seen.push(tangent);
     const distance=remainder[0]*tangent[0]+remainder[1]*tangent[1];
     if(Math.abs(distance)<1e-9)continue;
     const next=sweptPrefix(contactState,{x:contact.xMm+tangent[0]*distance,z:contact.zMm+tangent[1]*distance});
-    const pose=worldTransform(next,id,machines),nextScore=(pose.xMm-target.x)**2+(pose.zMm-target.z)**2;
+    const pose=pointOf(next),nextScore=(pose.xMm-target.x)**2+(pose.zMm-target.z)**2;
     if(nextScore<score){score=nextScore;best=next;}
   }
-  return Object.freeze({...result(best),boundaryLimited:true,pointerRemainder:Object.freeze({x:x-target.x,z:z-target.z})});
+  return Object.freeze({...result(best),boundaryLimited:true,pointerRemainder:Object.freeze({x:x-worldTarget.x,z:z-worldTarget.z})});
 }
 // World angles remain unwrapped: +360 and -270 describe directed paths, not
 // equivalent endpoints or a shortest turn. Each preview starts at the previous

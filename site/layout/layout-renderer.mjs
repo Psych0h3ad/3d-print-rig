@@ -1,8 +1,9 @@
 import * as THREE from '../viewer/vendor-r180/three.module.js';
 import {OrbitControls} from '../viewer/vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from '../viewer/vendor-r180/RoomEnvironment.js';
-import {deriveScene} from './layout-state.mjs?v=a29e8e61e4bbad0af014';
+import {deriveScene} from './layout-state.mjs?v=3d146613e1e87a433cac';
 import {createLayoutSurfaces, resolveSurfaceAppearance, wallSurfaceGeometry} from './layout-surfaces.mjs?v=0e7f271c883eb7ec8844';
+import {drawPlanMeasurements} from './layout-plan-measurements.mjs?v=ccb8d47a212b4279e38a';
 
 const MM = .001;
 const disposableMaterial = new THREE.MeshBasicMaterial({visible:false});
@@ -75,7 +76,10 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.5));renderer.toneMapping=THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure=.85;renderer.outputColorSpace=THREE.SRGBColorSpace;
   const canvas=renderer.domElement;canvas.tabIndex=0;canvas.setAttribute('aria-label',t('sceneLabel'));canvas.setAttribute('data-layout-i18n-aria-label','layout.sceneLabel');container.append(canvas);
+  const measurementsCanvas=document.createElement('canvas');measurementsCanvas.className='layout-plan-measurements';measurementsCanvas.setAttribute('aria-hidden','true');measurementsCanvas.hidden=true;container.append(measurementsCanvas);
   const objectTools=document.createElement('div');objectTools.className='layout-object-tools';objectTools.hidden=true;objectTools.setAttribute('role','group');objectTools.setAttribute('data-layout-i18n-aria-label','layout.rotationControls');container.append(objectTools);
+  const selectedSummary=document.createElement('div');selectedSummary.className='layout-selected-summary';
+  const selectedName=document.createElement('strong'),selectedSize=document.createElement('span');selectedSummary.append(selectedName,selectedSize);objectTools.append(selectedSummary);
   const toolListeners=[];
   const listen=(element,type,handler)=>{element.addEventListener(type,handler);toolListeners.push([element,type,handler]);};
   function rotateButton(name,path,attribute='data-layout-rotation'){
@@ -110,7 +114,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   const planSelection=new THREE.LineLoop(new THREE.BufferGeometry(),new THREE.LineBasicMaterial({color:0xc35734,depthTest:false,depthWrite:false}));planSelection.visible=false;planSelection.renderOrder=30;scene.add(planSelection);
   const boxGeometry=new THREE.BoxGeometry(1,1,1),wireGeometry=new THREE.EdgesGeometry(boxGeometry),wireMaterial=new THREE.LineBasicMaterial({color:0x4d7186,transparent:true,opacity:.75}),palette=new Map(),objects=new Map(),raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();
   raycaster.params.Line.threshold=.01;
-  let current,derived,selectedId=null,viewMode='perspective',planHalfHeight=2,perspectiveReady=false,planReady=false,drag=null,disposed=false,resourcesDisposed=false,exporting=false,exportAbort=null,frame=0,lastWidth=0,lastHeight=0,wallsVisible=true;
+  let current,derived,selectedId=null,viewMode='perspective',planHalfHeight=2,perspectiveReady=false,planReady=false,drag=null,disposed=false,resourcesDisposed=false,exporting=false,exportAbort=null,frame=0,lastWidth=0,lastHeight=0,wallsVisible=true,measurementsVisible=false;
   const surfaces=createLayoutSurfaces({anisotropy:Math.min(4,renderer.capabilities.getMaxAnisotropy?.()||1)});
   const planFloorMaterial=new THREE.MeshStandardMaterial({color:'#d9dfe1',roughness:.94,side:THREE.DoubleSide});
   const roomGeometries=new Set(),contactGeometries=new Set(),contacts=new Map(),contactPlaneGeometry=new THREE.PlaneGeometry(1,1);
@@ -128,7 +132,18 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   }
   function updatePlanLabels(){for(const g of planObjects.values()){const layout=planLabelLayout(g);for(const o of g.children)if(o.userData.planLabel){o.scale.set(layout.width,layout.height,1);o.visible=layout.visible;}}}
   function syncContacts(){for(const [id,g]of contacts){const o=objects.get(id);if(o){g.position.copy(o.position);g.rotation.y=o.rotation.y;}}}
-  function draw(){if(disposed||frame||exporting)return;frame=requestAnimationFrame(()=>{frame=0;if(disposed||exporting)return;refreshWalls();syncContacts();if(isPlan())updatePlanLabels();updateObjectTools();renderer.render(scene,camera);});}
+  function measurementOptions(forCamera,width,height){
+    const selected=planObjects.get(selectedId),c=Math.cos(selected?.rotation.y||0),s=Math.sin(selected?.rotation.y||0);
+    const selectedPolygonMm=selected?.userData.planPoints.map(([x,z])=>[(c*x+s*z+selected.position.x)/MM,(-s*x+c*z+selected.position.z)/MM]);
+    return {polygonMm:current.room.polygonMm,selectedPolygonMm,width,height,project:(x,z)=>{const p=new THREE.Vector3(x*MM,0,z*MM).project(forCamera);return [(p.x+1)*width/2,(1-p.y)*height/2];},formatLength:n=>`${Math.round(n*10)/10} ${t('common.mm')}`};
+  }
+  function updateMeasurements(){
+    measurementsCanvas.hidden=!isPlan()||!measurementsVisible||exporting||!current;if(measurementsCanvas.hidden)return;
+    const ratio=Math.min(devicePixelRatio||1,2),width=Math.max(1,Math.round(lastWidth*ratio)),height=Math.max(1,Math.round(lastHeight*ratio));
+    if(measurementsCanvas.width!==width)measurementsCanvas.width=width;if(measurementsCanvas.height!==height)measurementsCanvas.height=height;
+    const ctx=measurementsCanvas.getContext('2d');ctx.setTransform?.(ratio,0,0,ratio,0,0);ctx.clearRect?.(0,0,lastWidth,lastHeight);camera.updateMatrixWorld(true);drawPlanMeasurements(ctx,measurementOptions(camera,lastWidth,lastHeight));
+  }
+  function draw(){if(disposed||frame||exporting)return;frame=requestAnimationFrame(()=>{frame=0;if(disposed||exporting)return;refreshWalls();syncContacts();if(isPlan())updatePlanLabels();updateObjectTools();renderer.render(scene,camera);updateMeasurements();});}
   perspectiveControls.addEventListener('change',draw);planControls.addEventListener('change',draw);
   function resize(){if(disposed||exporting)return;const r=container.getBoundingClientRect();if(!r.width||!r.height)return;lastWidth=r.width;lastHeight=r.height;renderer.setSize(r.width,r.height,false);perspectiveCamera.aspect=r.width/r.height;perspectiveCamera.updateProjectionMatrix();planCamera.left=-planHalfHeight*r.width/r.height;planCamera.right=-planCamera.left;planCamera.top=planHalfHeight;planCamera.bottom=-planHalfHeight;planCamera.updateProjectionMatrix();draw();}
   const observer=new ResizeObserver(resize);observer.observe(container);
@@ -151,6 +166,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     return [[-w/2,-d/2],[w/2,-d/2],[w/2,d/2],[-w/2,d/2]].map(([px,pz])=>[c*px+s*pz,-s*px+c*pz]);
   }
   function planLabel(e){const row=e.machineId?catalogMachine(e.machineId):null;return typeof row?.label==='string'?row.label:e.id;}
+  function selectedLabel(e){if(e.machineId)return planLabel(e);const same=(current.furniture||derived.furniture||[]).filter(f=>f.type===e.type);return t(e.type==='desk'?'layout.deskName':'layout.shelfName',{number:same.findIndex(f=>f.id===e.id)+1});}
   function makePlan(e,warning){
     const points=footprint(e),g=new THREE.Group();g.userData.entityId=e.id;g.userData.planProjection=true;g.userData.planPoints=points;g.userData.planLabel=planLabel(e);g.userData.planColor=warning?'#bf6d48':e.type==='printer'?'#6489a3':'#c2a379';
     g.userData.planLabelSuppressed=derived.printers.some(p=>p.parentId===e.id);
@@ -173,10 +189,22 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   function updateObjectTools(){
     const g=objects.get(selectedId);objectTools.hidden=exporting||disposed||!g;if(objectTools.hidden)return;
     camera.updateMatrixWorld(true);g.updateMatrixWorld(true);
-    const box=new THREE.Box3().setFromObject(g),anchor=new THREE.Vector3(g.position.x,isPlan()?0:box.max.y+.08,g.position.z).project(camera);
+    const box=new THREE.Box3().setFromObject(g);
+    for(const child of derived.printers.filter(p=>p.parentId===selectedId)){const node=objects.get(child.id);if(node)box.union(new THREE.Box3().setFromObject(node));}
+    const anchor=new THREE.Vector3(g.position.x,isPlan()?0:box.max.y+.08,g.position.z).project(camera);
     if(!Number.isFinite(anchor.x+anchor.y+anchor.z)||anchor.z< -1||anchor.z>1||Math.abs(anchor.x)>1.4||Math.abs(anchor.y)>1.4){objectTools.hidden=true;return;}
     const width=lastWidth||container.getBoundingClientRect().width,height=lastHeight||container.getBoundingClientRect().height;
-    const half=Math.min(width/2,110);objectTools.style.left=`${Math.max(half,Math.min(width-half,(anchor.x+1)*width/2))}px`;objectTools.style.top=`${Math.max(Math.min(64,height),Math.min(height-12,(1-anchor.y)*height/2-12))}px`;
+    const half=Math.min(width/2,120);objectTools.style.left=`${Math.max(half,Math.min(width-half,(anchor.x+1)*width/2))}px`;
+    let bottom=(1-anchor.y)*height/2-12;
+    const plan=planObjects.get(selectedId);
+    if(isPlan()&&plan){
+      plan.updateMatrixWorld(true);const pixels=plan.userData.planPoints.map(([x,z])=>{const p=new THREE.Vector3(x,0,z).applyMatrix4(plan.matrixWorld).project(camera);return (1-p.y)*height/2;});
+      const toolHeight=objectTools.offsetHeight||96;bottom=Math.min(...pixels)-36;
+      if(bottom<toolHeight+8)bottom=Math.max(...pixels)+36+toolHeight;
+    }
+    objectTools.style.top=`${Math.max(Math.min(100,height),Math.min(height-12,bottom))}px`;
+    const entity=[...derived.furniture,...derived.printers].find(e=>e.id===selectedId),row=entity?.machineId?catalogMachine(entity.machineId):null,dimensions=row?.dimensionsMm;
+    if(entity){selectedName.textContent=selectedLabel(entity);selectedName.title=selectedName.textContent;selectedSize.textContent=[entity.widthMm??row?.widthMm??dimensions?.width,entity.depthMm??row?.depthMm??dimensions?.depth,entity.heightMm??row?.heightMm??dimensions?.height].map(n=>Math.round(n)).join(' × ')+` ${t('common.mm')}`;selectedSize.title=t('layout.dimensions');}
     objectTools.setAttribute('aria-label',t('layout.rotationControls'));objectTools.title=t('layout.rotationHint');
     for(const [button,key]of [[rotateLeft,'layout.rotateLeft'],[rotateRight,'layout.rotateRight'],[rotateHandle,'layout.rotateHandle'],[focusButton,'layout.focusSelected']]){button.setAttribute('aria-label',t(key));button.title=t(key);}
     const yaw=drag?.kind==='rotate'?drag.accepted.yawDeg:g.rotation.y*180/Math.PI;
@@ -422,7 +450,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   for(const button of [rotateLeft,rotateHandle,rotateRight])listen(button,'keydown',event=>{if(drag||event.repeat||event.ctrlKey||event.metaKey||event.altKey)return;const delta=event.key==='ArrowLeft'?-(event.shiftKey?1:15):event.key==='ArrowRight'?(event.shiftKey?1:15):event.key.toLowerCase()==='r'?(event.shiftKey?-90:90):0;if(delta){event.preventDefault();turnBy(delta);}});
   for(const [type,handler]of [['pointerdown',rotationDown],['pointermove',rotationMove],['pointerup',up],['pointercancel',cancel],['lostpointercapture',cancel]])listen(rotateHandle,type,handler);
   function setTool(){enableControls();canvas.style.cursor='grab';return 'auto';}
-  function setOptions({grid:showGrid=true,walls=wallsVisible,dark=false}={}){if(exporting||disposed)return;grid.visible=showGrid;wallsVisible=walls;for(const o of roomGroup.children)if(o.userData.wall)o.visible=walls;scene.background.set(dark?'#14222a':'#e9edef');draw();}
+  function setOptions({grid:showGrid=true,walls=wallsVisible,dark=false,measurements=measurementsVisible}={}){if(exporting||disposed)return;grid.visible=showGrid;wallsVisible=walls;measurementsVisible=measurements;for(const o of roomGroup.children)if(o.userData.wall)o.visible=walls;scene.background.set(dark?'#14222a':'#e9edef');draw();}
 
   async function exportPlanImage({width=1920,signal,onProgress=()=>{}}){
     cancel();const externalSignal=signal,controller=new AbortController(),forward=()=>controller.abort();exportAbort=controller;
@@ -440,6 +468,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
         const label=g.children.find(o=>o.userData.planLabel),layout=planLabelLayout(g,exportCamera,h),p=project(g.position.x+label.position.x,g.position.z+label.position.z);
         if(layout.visible){ctx.font=`${layout.screenWidth/16}px sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle='#1f3542';ctx.fillText(g.userData.planLabel,...p,layout.screenWidth*496/512);}
       }
+      if(measurementsVisible)drawPlanMeasurements(ctx,{...measurementOptions(exportCamera,w,h),pixelScale:Math.max(1,w/Math.max(1,lastWidth))});
       onProgress({phase:'rendering',index:derived.printers.length,total:derived.printers.length,ratio:1,mode:'floorplan'});
       const blob=await new Promise(resolve=>output.toBlob(resolve,'image/png'));aborted(signal);if(!blob)throw Error('Image export failed');
       return {blob,width:w,height:h,machines:derived.printers.map(p=>p.machineId),projection:'orthographic-floorplan',camera:'current-camera',rendering:'flat-floorplan',modelDetail:'footprints'};
@@ -522,6 +551,6 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     }
   }
   function releaseResources(){if(resourcesDisposed)return;resourcesDisposed=true;disposeTree(planGroup);planSelection.geometry.dispose();planSelection.material.dispose();clearRoom();clearContacts();surfaces.dispose();planFloorMaterial.dispose();contactPlaneGeometry.dispose();boxGeometry.dispose();wireGeometry.dispose();wireMaterial.dispose();for(const m of palette.values())m.dispose();grid.geometry.dispose();grid.material.dispose();selectionBox.geometry.dispose();selectionBox.material.dispose();keyLight.shadow.dispose();environment.dispose();renderer.dispose();canvas.remove();}
-  function dispose(){if(disposed)return;cancel();disposed=true;exportAbort?.abort();if(frame)cancelAnimationFrame(frame);observer.disconnect();perspectiveControls.dispose();planControls.dispose();eventWindow?.removeEventListener('blur',cancel);eventWindow?.removeEventListener('keydown',keyCancel);for(const [element,type,handler]of toolListeners)element.removeEventListener(type,handler);objectTools.remove();for(const [type,handler]of [['pointerdown',down],['pointermove',move],['pointerup',up],['pointercancel',cancel],['lostpointercapture',cancel]])canvas.removeEventListener(type,handler,true);if(!exporting)releaseResources();}
+  function dispose(){if(disposed)return;cancel();disposed=true;exportAbort?.abort();if(frame)cancelAnimationFrame(frame);observer.disconnect();perspectiveControls.dispose();planControls.dispose();eventWindow?.removeEventListener('blur',cancel);eventWindow?.removeEventListener('keydown',keyCancel);for(const [element,type,handler]of toolListeners)element.removeEventListener(type,handler);objectTools.remove();measurementsCanvas.remove();for(const [type,handler]of [['pointerdown',down],['pointermove',move],['pointerup',up],['pointercancel',cancel],['lostpointercapture',cancel]])canvas.removeEventListener(type,handler,true);if(!exporting)releaseResources();}
   resize();setTool();return {setState,setTool,setOptions,view,getView,focusSelected,exportImage,dispose,canvas};
 }
