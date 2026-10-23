@@ -56,6 +56,12 @@ for (const [i,row] of elegooAssetIndex.machines.entries()) {
     assert.throws(()=>validateElegooView({...saved,...patch},row)); pass();
 }
 assert.deepEqual(elegooAssetIndex.machines[1].basis,[[0,0,-1],[1,0,0],[0,-1,0]]); pass();
+for(const row of elegooAssetIndex.machines.slice(1)){
+ assert(row.files['model.glb'].path.includes('/zero-facets-v1/'));
+ assert.deepEqual(Object.keys(row.zero_facet_source).sort(),['assembly_manifest.json','machine_profile.json','model.glb']);
+ assert(row.zero_facet_source['model.glb'].decoded_sha256!==row.files['model.glb'].decoded_sha256);
+ assert(!row.zero_facet_source['model.glb'].path.includes('/zero-facets-v1/'));
+} pass();
 const row=elegooAssetIndex.machines[0], f=fixture(row);
 const fixtureFetch=async spec=>spec===row.files['assembly_manifest.json']?bytes(f.manifest):spec===row.files['machine_profile.json']?bytes(f.profile):glb(f.json);
 let disposed=0, assembled=0;

@@ -10,6 +10,7 @@ import {createHash} from 'node:crypto';
 import {gunzipSync} from 'node:zlib';
 import {registerHooks} from 'node:module';
 import {staticElegooCoverageFields} from './viewer_mesh_quality_scope.mjs';
+import {assertZeroOmission} from './elegoo_zero_omission.mjs';
 
 const repo = fileURLToPath(new URL('../', import.meta.url));
 export const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -18,7 +19,7 @@ const jsonBytes = value => Buffer.from(JSON.stringify(value, null, 2) + '\n');
 const finite = values => values.every(Number.isFinite);
 const sourcePin = file => {const bytes=fs.readFileSync(file);return {bytes:bytes.length,sha256:sha256(bytes)};};
 const relative = file => path.relative(repo,file).replaceAll('\\','/');
-const geometryPins = row => ({id:row.id,slug:row.slug,parts:row.parts,basis:row.basis,files:row.files,
+const geometryPins = row => ({id:row.id,slug:row.slug,parts:row.parts,basis:row.basis,files:row.files,zero_facet_source:row.zero_facet_source,
   source:Object.fromEntries(['repository','revision','url','sha256','format','license','license_url','license_sha256'].map(k=>[k,row.source[k]]))});
 
 export function publicAuditFailure(error,id=null){
@@ -147,6 +148,14 @@ async function inspectMachine(row,api,{assets,comparison,out,sourceHashes}) {
   }
   const manifest=metadata['assembly_manifest.json'],profile=metadata['machine_profile.json'];
   const keys=validateMetadata(row,manifest,profile),json=validateGLB(bytes,keys),bin=binaryChunk(bytes,json);
+  let zeroOmission=null;
+  if(row.zero_facet_source){
+    const sourceModel=checkedFile(assets,row.zero_facet_source['model.glb']),sourceManifest=checkedFile(assets,row.zero_facet_source['assembly_manifest.json']);
+    const sourceJSON=JSON.parse(sourceModel.bytes.subarray(20,20+sourceModel.bytes.readUInt32LE(12)));
+    assert.equal(manifest.mesh_export_filter.source_model_sha256,sha256(sourceModel.bytes));
+    zeroOmission=assertZeroOmission({json,bin,manifest,sourceJSON,sourceBIN:binaryChunk(sourceModel.bytes,sourceJSON),
+      sourceManifest:JSON.parse(sourceManifest.bytes),accessor,sha256});
+  }else assert(!manifest.mesh_export_filter,'Missing unfiltered source pins');
   assert.equal(manifest.native_leaf_count,row.parts);assert.equal(manifest.motion_preview,false);
   assert.equal(manifest.invalid_reference_leaves.length,0);assert.equal(manifest.reference_leaves.length,0);
   for(const s of [manifest.source,profile.source]) {
@@ -279,8 +288,8 @@ async function inspectMachine(row,api,{assets,comparison,out,sourceHashes}) {
       model_sha256:q.model_sha256,source:row.source,files,sourceHashes,basis:row.basis,properRigidBasis:true,basisRoundoff,
       all_source_parts_present:true,parts:parts.length,uniqueGeometries:geometries.size,exportedMaterialCount:json.materials?.length??0,
       loadedMaterialCount:materials.length,...totals,viewer_mesh_quality:q,identity_evidence:{file:row.slug+'.identities.json',bytes:detailBytes.length,sha256:detailHash},
-      displayReview:display,comparisonEvidence:comparisons,inspection_scope:'static/native_reference_assembly',
-      sourceIssues:{retained:true,repaired:false,strictDegenerateTriangles:totals.strict_zero_area_triangles,opposedMeanNormals:totals.opposed_mean_normals,
+      displayReview:display,comparisonEvidence:comparisons,zeroOmission,inspection_scope:'static/native_reference_assembly',
+      sourceIssues:{retained:true,repaired:false,exactZeroIndexOmission:zeroOmission,strictDegenerateTriangles:totals.strict_zero_area_triangles,opposedMeanNormals:totals.opposed_mean_normals,
         definition:'Exact zero cross product and negative cross dot summed vertex normals, occurrence-weighted, on unchanged exported Float32 local positions.',
         appearance:'Original vertex RGBA retained with opaque GLTFLoader material. Original bitmap textures are omitted by the source export. No new material or alpha fix.'},
       physicalFitVerified:false,nativeSolidClearanceVerified:false,continuousMotionVerified:false,motionExercised:false,paletteExercised:false,
@@ -312,7 +321,7 @@ export async function auditElegooAssets({site=path.join(repo,'site'),assets=null
       validateMetadata:validateElegooMetadata,validateGLB:validateElegooGLB,validateView:validateElegooView,lighting:sceneLightingState};
   } finally {hooks.deregister();}
   const sourceFile=name=>name.startsWith('site/')?path.join(site,name.slice(5)):path.join(repo,name);
-  for(const name of ['scripts/audit_elegoo_assets.mjs','scripts/viewer_mesh_quality_scope.mjs','site/viewer/elegoo.mjs'])sourceHashes[name]=sourcePin(sourceFile(name));
+  for(const name of ['scripts/audit_elegoo_assets.mjs','scripts/elegoo_zero_omission.mjs','scripts/viewer_mesh_quality_scope.mjs','site/viewer/elegoo.mjs'])sourceHashes[name]=sourcePin(sourceFile(name));
   assert.equal(index.machines.length,3,'Missing/extra ELEGOO catalog row');
   assert.equal(new Set(index.machines.map(r=>r.id)).size,3);assert.equal(new Set(index.machines.map(r=>r.slug)).size,3);
   const pinScope=JSON.stringify(index.machines.map(geometryPins));
@@ -342,7 +351,7 @@ export async function auditElegooAssets({site=path.join(repo,'site'),assets=null
       sourceIssues:r.sourceIssues,report:r.slug+'.actual-assets.json',reportSHA256:sha256(jsonBytes(r)),
       coverage_fields:staticElegooCoverageFields(r,sha256(jsonBytes(r)))})),
     limitations:['No native-solid, mounting, travel, flexible-route, DOM or GPU certification.',
-      'Original degenerate/opposing facets and opaque source vertex-color appearance are retained and labeled.',
+      'Exactly zero-area omissions require pinned unfiltered-source replay; other source issues and opaque vertex-color appearance remain labeled.',
       'Static ELEGOO CPU source-state coverage is distinct from the legacy motion/palette controller assertion; that legacy flag remains false.']};
   if(out)fs.writeFileSync(path.join(out,'AUDIT_SUMMARY.json'),jsonBytes(summary));
   assert.equal(reports.length,index.machines.length,'Every actual catalog row must pass; missing/failed models are failures');
