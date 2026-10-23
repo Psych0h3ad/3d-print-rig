@@ -145,14 +145,15 @@ class EnvironmentFixture extends THREE.Scene {dispose(){}}
 const statePath=path.join(A,'layout/layout-state.mjs'),S=await import(pathToFileURL(statePath));imports.push(pin(statePath));
 const surfacesPath=path.join(A,'layout/layout-surfaces.mjs'),surfaceModule=(await realModule(surfacesPath)).namespace;imports.push(pin(path.join(A,'layout/layout-finishes.mjs')));
 const {createLayoutSurfaces,resolveSurfaceAppearance,wallSurfaceGeometry}=surfaceModule;
-const importLines=source.match(/^import [^\n]+;\r?$/gm);assert.equal(importLines?.length,5,'Renderer dependency boundary changed');
-for(const line of importLines)assert(/(?:three\.module\.js|OrbitControls\.js|RoomEnvironment\.js|layout-state\.mjs|layout-surfaces\.mjs)(?:\?v=[a-f0-9]{20})?['"];$/u.test(line.trimEnd()));
+const {drawPlanMeasurements}=(await realModule(path.join(A,'layout/layout-plan-measurements.mjs'))).namespace;
+const importLines=source.match(/^import [^\n]+;\r?$/gm);assert.equal(importLines?.length,6,'Renderer dependency boundary changed');
+for(const line of importLines)assert(/(?:three\.module\.js|OrbitControls\.js|RoomEnvironment\.js|layout-state\.mjs|layout-surfaces\.mjs|layout-plan-measurements\.mjs)(?:\?v=[a-f0-9]{20})?['"];$/u.test(line.trimEnd()));
 assert.equal(source.split('export function createLayoutRenderer(').length,2);
 // Replace imports with controlled API boundaries; execute every product function body unchanged.
 const body=source.replace(/^import [^\n]+;\r?\n/gm,'').replace('export function createLayoutRenderer(','function createLayoutRenderer(');
 const replacement={...THREE,WebGLRenderer:RendererFixture,PMREMGenerator:PMREMFixture,InstancedMesh:TrackedInstancedMesh,WebGLRenderTarget:TrackedRenderTarget,ShaderMaterial:TrackedShaderMaterial,PlaneGeometry:TrackedPlaneGeometry};
-const factory=new Function('THREE','OrbitControls','RoomEnvironment','deriveScene','document','devicePixelRatio','requestAnimationFrame','cancelAnimationFrame','ResizeObserver','createLayoutSurfaces','resolveSurfaceAppearance','wallSurfaceGeometry',body+'\nreturn createLayoutRenderer;')(
- replacement,ControlsFixture,EnvironmentFixture,(state,catalog)=>state.derived??S.deriveScene(state,catalog),fixtureDocument,1,raf,clearTimeout,ObserverFixture,createLayoutSurfaces,resolveSurfaceAppearance,wallSurfaceGeometry);
+const factory=new Function('THREE','OrbitControls','RoomEnvironment','deriveScene','document','devicePixelRatio','requestAnimationFrame','cancelAnimationFrame','ResizeObserver','createLayoutSurfaces','resolveSurfaceAppearance','wallSurfaceGeometry','drawPlanMeasurements',body+'\nreturn createLayoutRenderer;')(
+ replacement,ControlsFixture,EnvironmentFixture,(state,catalog)=>state.derived??S.deriveScene(state,catalog),fixtureDocument,1,raf,clearTimeout,ObserverFixture,createLayoutSurfaces,resolveSurfaceAppearance,wallSurfaceGeometry,drawPlanMeasurements);
 function setup(dimensions={width:400,height:300}){
  size={...dimensions};const container=makeContainer();
  const catalog=[{id:'test-machine',dimensionsMm:{width:200,depth:200,height:300}}];
@@ -878,7 +879,7 @@ for(const mode of ['top','perspective']){
    const desk=S.createDesk({id:'proxy-desk',widthMm:4000,depthMm:4000,heightMm:740,pose:{xMm:4000,zMm:4000,yawDeg:0}});
    const printer={id:'proxy-printer',machineId:row.id,configurationId:null,attachment:{parentId:raised?desk.id:null,surfaceId:raised?'top':'floor',xMm:raised?0:4000,zMm:raised?0:4000,yawDeg:90}};
    const state=S.createDefaultLayout({room:S.createRoomRect({widthMm:10000,depthMm:10000}),furniture:raised?[desk]:[],printers:[printer]},catalogRows);
-   const derived=S.deriveScene(state,catalogRows),api=factory({container:makeContainer(),catalog:catalogRows});
+   const derived=S.deriveScene(state,catalogRows),container=makeContainer(),api=factory({container,catalog:catalogRows});
    api.setState(state,printer.id);api.view('front');await settled();
    const renderer=renderers.at(-1);let group;renderer.lastScene.traverse(o=>{if(o.userData.entityId===printer.id&&o.userData.simplePreview)group=o});assert(group,original.id+' actual renderer preview');
    const ground=derived.printers[0].supportYM,bounds=new THREE.Box3(),geometries=new Set();group.updateMatrixWorld(true);
@@ -886,6 +887,9 @@ for(const mode of ['top','perspective']){
    assert(Math.abs(bounds.min.y-ground)<1e-9,original.id+' supportYM contact, offset '+offset);
    assert.equal(group.position.y,ground);assert.equal(geometries.size,1,'One shared box geometry for preview solids');
    assert.equal(group.children.length,shape.parts.length);assert(group.userData.simplePreview);
+   const sizeSummary=container.querySelector('.layout-selected-summary').children[1].textContent;
+   assert.equal(sizeSummary,[row.widthMm,row.depthMm,row.heightMm].map(Math.round).join(' × ')+' common.mm',row.id+' selected dimensions come from registered source envelope');
+   api.setOptions({measurements:true});api.view('top');await settled();assert.equal(container.children.find(n=>n.className==='layout-plan-measurements').hidden,false);
    api.dispose();await settled();
   }
   results.push({id:original.id,style:shape.style,cells:shape.parts.length,triangles:shape.parts.filter(p=>!p.wireframe).length*12});
@@ -1220,6 +1224,17 @@ for(const mode of ['perspective','top']){
 const ownerSourceStillMatchesSnapshot=sha(fs.readFileSync(input))===sha(Buffer.from(source));
 assert.equal(ownerSourceStillMatchesSnapshot,true,'Renderer changed during source regression');
 assert.deepEqual(findings,[],'Renderer contract regression findings');
+{
+ const container=makeContainer(),catalog=[{id:'dimensions-machine',label:'Printer',widthMm:800,depthMm:600,heightMm:1000}],state=S.createDefaultLayout({room:S.createRoomRect({widthMm:6000,depthMm:4000}),printers:[{id:'dimensions-printer',machineId:'dimensions-machine',configurationId:null,attachment:{parentId:null,surfaceId:'floor',xMm:0,zMm:0,yawDeg:0}}]},catalog);
+ size={width:900,height:600};const api=factory({container,catalog,t:key=>key==='common.mm'?'mm':key});api.setState(state,'dimensions-printer');api.setOptions({measurements:true});api.view('top');await settled();
+ const overlay=container.children.find(n=>n.className==='layout-plan-measurements');assert.ok(overlay&&!overlay.hidden);assert.ok(overlay.reviewDraws.some(x=>x[0]==='fillText'&&x[1]==='6000 mm'),'Room dimensions remain readable at room fit');
+ const summary=container.querySelector('.layout-selected-summary');assert.equal(summary.children[1].textContent,'800 × 600 × 1000 mm');
+ let loads=0;const before=S.serializeLayout(state,catalog);await api.exportImage({width:900,loadMachine:async()=>{loads++;throw Error('Unexpected CAD load')}});assert.equal(loads,0);
+ const text=canvases.at(-1).reviewDraws.filter(x=>x[0]==='fillText').map(x=>x[1]);assert.ok(text.includes('6000 mm')&&text.includes('4000 mm'),'PNG carries the same saved-mm dimensions as preview');assert.equal(S.serializeLayout(state,catalog),before);
+ api.setOptions({measurements:false});await settled();assert.ok(overlay.hidden);await api.exportImage({width:900});assert.ok(!canvases.at(-1).reviewDraws.some(x=>x[0]==='fillText'&&x[1].endsWith(' mm')),'Measurement toggle also removes annotations from exported PNG');
+ api.view('perspective');await settled();assert.ok(overlay.hidden);api.dispose();assert.equal(overlay.removed,true,'Measurement overlay cleaned up with renderer');
+ passed.push('Saved-mm room/selected footprint annotations and scale use identical preview/export projection, toggle and disposal; no CAD fetch or state mutation.');
+}
 const reportOption=process.argv.indexOf('--report');
 if(reportOption>=0)fs.writeFileSync(path.resolve(process.argv[reportOption+1]),JSON.stringify({status:'PASS',cases:passed.length,passed,observations,renderer:pin(input),test:pin(fileURLToPath(import.meta.url)),imports,scope:'Actual private renderer source, actual Three math and vendored OrbitControls; DOM/WebGL/PNG bytes are CPU fixtures. No full models, GPU, trusted browser event or native fit claim.'},null,2)+'\n',{flag:'wx'});
 console.log(JSON.stringify({status:'PASS',scope:'Real Three geometry/raycast and unchanged renderer bodies; DOM/WebGL/loaders are fixtures. No models, trusted browser events, GPU pixels or native fit.',cases:passed.length,rendererSHA256:sha(Buffer.from(source)),stateSHA256:pin(statePath).sha256,findings:0}));

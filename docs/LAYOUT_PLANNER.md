@@ -47,6 +47,14 @@ the plan. The room-fit button still frames the whole room.
 height projection. Drag empty space to pan and scroll to zoom; the plan does
 not rotate. Switching back to 3D restores the three-dimensional scene.
 
+**Dimensions** adds room-edge measurements and a scale bar to the flat plan.
+Selecting a rectangular object also shows its two footprint dimensions. These
+annotations stay readable as you zoom and are included in the plan PNG; turn
+off **Dimensions** for an image without them. Measurements use the saved room
+outline and static placement envelopes. They do not include moving-part or
+maintenance clearances. The selected-object controls show its name and width ×
+depth × height in both 2D and 3D.
+
 Select an object to show its rotation controls. Drag the angle handle left or
 right to rotate in 15° steps. Hold **Shift** for 1° steps, or use the arrow
 buttons for 90° turns. **Esc** cancels a drag. Printers on a desk or shelf rotate with it.

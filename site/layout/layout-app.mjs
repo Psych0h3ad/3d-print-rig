@@ -1,5 +1,5 @@
-import {createDefaultLayout,createDesk,createShelf,createCatalog,applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,placementViolations,deriveScene,worldTransform,validatePlacement,serializeLayout,parseLayout} from './layout-state.mjs?v=a29e8e61e4bbad0af014';
-import {createLayoutUI} from './layout-ui.mjs?v=57acfdfd7c587e171242';
+import {createDefaultLayout,createDesk,createShelf,createCatalog,applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,placementViolations,deriveScene,worldTransform,validatePlacement,serializeLayout,parseLayout} from './layout-state.mjs?v=3d146613e1e87a433cac';
+import {createLayoutUI} from './layout-ui.mjs?v=9546fdae8c5dbe32e657';
 import {setupLayoutLanguage} from './layout-language.mjs?v=50f61a6a8580afc62796';
 import {readDisplay,saveDisplay,applyDisplay} from '../viewer/display-preferences.mjs?v=8f347468def25922153c';
 
@@ -194,7 +194,7 @@ async function act(action){
       case 'render':await render();return;
       case 'edit-room':case 'import-svg':{
         roomEditing=true;
-        try{const {openRoomEditor}=await import('./layout-room-editor.mjs?v=0d2ca2b8f9981aaa6000'),nextRoom=await openRoomEditor({room:state.room,file:action.type==='import-svg'?action.file:undefined,t:language.t});
+        try{const {openRoomEditor}=await import('./layout-room-editor.mjs?v=0e5a842031f500307e50'),nextRoom=await openRoomEditor({room:state.room,file:action.type==='import-svg'?action.file:undefined,t:language.t});
           if(nextRoom&&!disposed){commit(applyAction(state,{type:'SET_ROOM',room:nextRoom},catalog));view.view('perspective');view.view('fit');}
         }finally{roomEditing=false;}return;
       }
@@ -229,6 +229,7 @@ async function act(action){
 function updateViewPresentation({mode='perspective',projection='perspective-3d'}={}){
   const hint=$('#layout-scene-hint'),key=projection==='orthographic-floorplan'?'layout.hint.plan':'layout.hint.auto';
   hint.dataset.layoutI18n=key;hint.textContent=t(key);ui?.setProjection(projection);
+  const measurements=$('#layout-measurements-control');if(measurements)measurements.hidden=projection!=='orthographic-floorplan';
   for(const element of document.querySelectorAll('[data-layout-view]'))if(element.dataset.layoutView!=='fit')element.setAttribute('aria-pressed',String(element.dataset.layoutView===mode));
 }
 function updateLanguage(){
@@ -272,13 +273,13 @@ async function start(){
   rows=raw.machines.map(r=>({...r,widthMm:r.dimensionsMm.width,depthMm:r.dimensionsMm.depth,heightMm:r.dimensionsMm.height}));
   catalog=createCatalog(rows.map(r=>({id:r.id,widthMm:r.widthMm,depthMm:r.depthMm,heightMm:r.heightMm,baseOffsetMm:r.baseOffsetMm||0,...(r.footprintMm?{footprintMm:r.footprintMm}:{})})));
   state=makeDefault();try{const saved=localStorage.getItem(storageKey);if(saved&&saved.length<=maxFileBytes)state=parseLayout(saved,catalog);}catch{message(()=>t('layout.error.savedPlan'),true);}
-  const {createLayoutRenderer}=await import('./layout-renderer.mjs?v=2d8fe1df576a30077bbc');
+  const {createLayoutRenderer}=await import('./layout-renderer.mjs?v=fe946cc11bfb09a15326');
   ui=createLayoutUI({container:$('#layout-sidebar'),onAction:act,t:language.t,catalog:rows});
   view=createLayoutRenderer({container:$('#layout-scene'),catalog:rows,t:language.t,onSelect:select,onMove:worldMove,constrainMove,onRotate:worldRotate,constrainRotate,onViewChange:updateViewPresentation,onError:error=>message(()=>humanError(error),true)});
   sync();view.view('perspective');document.addEventListener('keydown',historyKey);
   updateViewPresentation(view.getView());
   for(const e of document.querySelectorAll('[data-layout-view]'))e.addEventListener('click',()=>{if(!busy&&!roomEditing)view.view(e.dataset.layoutView);});
-  for(const element of [$('#layout-grid'),$('#layout-walls')].filter(Boolean))element.addEventListener('change',()=>view.setOptions({grid:$('#layout-grid')?.checked??true,walls:$('#layout-walls')?.checked??true,dark:dark()}));
+  for(const element of [$('#layout-grid'),$('#layout-walls'),$('#layout-measurements')].filter(Boolean))element.addEventListener('change',()=>view.setOptions({grid:$('#layout-grid')?.checked??true,walls:$('#layout-walls')?.checked??true,measurements:$('#layout-measurements')?.checked??true,dark:dark()}));
   view.canvas.addEventListener('keydown',event=>{
     if(busy||!selected||event.ctrlKey||event.metaKey||event.altKey)return;
     const e=state.furniture.find(e=>e.id===selected)||state.printers.find(e=>e.id===selected);if(!e)return;
@@ -291,7 +292,7 @@ async function start(){
     if(event.key.toLowerCase()==='r'&&!event.repeat)patch={yawDeg:attachment.yawDeg+(event.shiftKey?-90:90)};
     if(patch){event.preventDefault();act(e.pose?{type:'UPDATE_FURNITURE',id:e.id,patch:{pose:patch}}:{type:'UPDATE_PRINTER',id:e.id,patch:{attachment:patch}});}
   });
-  view.setOptions({dark:dark(),walls:$('#layout-walls')?.checked??true,grid:$('#layout-grid')?.checked??true});updateLanguage();document.body.dataset.layoutReady='true';
+  view.setOptions({dark:dark(),walls:$('#layout-walls')?.checked??true,grid:$('#layout-grid')?.checked??true,measurements:$('#layout-measurements')?.checked??true});updateLanguage();document.body.dataset.layoutReady='true';
   if(Number.isFinite(navigator.deviceMemory)&&navigator.deviceMemory<=4)message(()=>t('layout.memoryHint'));
 }
 window.addEventListener('pagehide',()=>{disposed=true;document.removeEventListener('keydown',historyKey);operation?.abort();view?.dispose();ui?.dispose();language?.disconnect();if(renderURL)URL.revokeObjectURL(renderURL);},{once:true});

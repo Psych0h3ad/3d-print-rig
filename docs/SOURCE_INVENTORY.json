@@ -245,8 +245,8 @@
     },
     {
       "path": "docs/LAYOUT_PLANNER.md",
-      "bytes": 8163,
-      "sha256": "4d9318d5c47f1f7a1e81f869b12d019822634abb6ab8d68b5b933da347ceb57b"
+      "bytes": 8664,
+      "sha256": "295cc1a778623c05072d80e7552eb72366618abb4e72fafcd596a49c920b74b1"
     },
     {
       "path": "docs/MACHINE_REVIEW.md",
@@ -255,8 +255,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 1097986,
-      "sha256": "89144c65133625f20e0471f95c03c8e58df49e4fea4a37630e1826054afffdfe"
+      "bytes": 1100883,
+      "sha256": "2693270395666b43b5bc97b732c33c43c6339b23e23b721ddaef666322f20c02"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -1604,6 +1604,11 @@
       "sha256": "32a2663e23d6ef2614e8a0841a01a7c91f924f5bed6b6b86dd113e1b5dead022"
     },
     {
+      "path": "scripts/test_layout_drag_boundaries.mjs",
+      "bytes": 22568,
+      "sha256": "cdcbe3057eefcffcfc1b197dbffe3541d4095163a04711aa8def428f8a632005"
+    },
+    {
       "path": "scripts/test_layout_finishes.mjs",
       "bytes": 11112,
       "sha256": "c73e8149513dc8ee3d1b3938371fb2657f0266ea328723def6fbcb9deaad7ccb"
@@ -1629,14 +1634,19 @@
       "sha256": "49847546feda8c007de3b1ef92cca3928e8690f02a3692b65fb34cbf1f1efb84"
     },
     {
+      "path": "scripts/test_layout_plan_measurements.mjs",
+      "bytes": 29491,
+      "sha256": "f4587d0738c14951a0d3d9000c27f5efbcbd8e39c3249f8b713c4d83506a98ec"
+    },
+    {
       "path": "scripts/test_layout_ratrig_procedural_cleanup.mjs",
       "bytes": 11574,
       "sha256": "6a253531a9b3139479d8afb8a0d9713f29d5b3d0061005bcbdb3f0a1011a464f"
     },
     {
       "path": "scripts/test_layout_renderer_contract.mjs",
-      "bytes": 141630,
-      "sha256": "ddc78261f0acc17a8a9a47af474727e18d554733ce631cd076a5bbdf27e6d327"
+      "bytes": 144270,
+      "sha256": "5d83b317e6efe554b644292ddf0583a3e44d569b4d745c165d64b201e7137118"
     },
     {
       "path": "scripts/test_layout_room_height.mjs",
@@ -4845,13 +4855,13 @@
     },
     {
       "path": "site/layout/index.html",
-      "bytes": 7551,
-      "sha256": "27a26020467ae9d0979435c3d1f7e43216852bf3be4c65f854d8dfefcbed756d"
+      "bytes": 7735,
+      "sha256": "2a8b084ac53a5081308dd667f5ab0ec9ab4a4ada5e46d15ef62122e9cc6b0d8c"
     },
     {
       "path": "site/layout/layout-app.mjs",
-      "bytes": 24361,
-      "sha256": "d9fbc018295274522edad0e27f9ad2864b98a180bb71bc307a22f316c6c6b823"
+      "bytes": 24625,
+      "sha256": "9fe1a422c490bc2b8c1ce9da68289e8622c416d145b82ac8f618509a34893f0e"
     },
     {
       "path": "site/layout/layout-catalog.json",
@@ -4860,8 +4870,8 @@
     },
     {
       "path": "site/layout/layout-constraints.mjs",
-      "bytes": 3781,
-      "sha256": "e0fbda794064e531577f5b3a2ff66e1e4321e01de6d79062cd5bad3fdab4d341"
+      "bytes": 5759,
+      "sha256": "53e33561b2e7ce3240166cd739d0a0db06d76acbb889431329c8d6f92bee321e"
     },
     {
       "path": "site/layout/layout-finishes.mjs",
@@ -4889,14 +4899,19 @@
       "sha256": "0ff56bd27df3edea77584098b5705c6b2471cc654a0b37dd7de209380d54363f"
     },
     {
+      "path": "site/layout/layout-plan-measurements.mjs",
+      "bytes": 4634,
+      "sha256": "ccb8d47a212b4279e38a4db6ced2ffc424b1f57cc0ed58361d206f923011e3b9"
+    },
+    {
       "path": "site/layout/layout-provenance.json",
       "bytes": 677834,
       "sha256": "0e927b59b080ceb3e20ba8a3d686ef8b05084c12a4abdf175f3c2004de8ee585"
     },
     {
       "path": "site/layout/layout-renderer.mjs",
-      "bytes": 55397,
-      "sha256": "2d8fe1df576a30077bbc2bf4f10ade5a10ca8cc08cff6cecf946db45ff345f8d"
+      "bytes": 59001,
+      "sha256": "fe946cc11bfb09a15326984e0905df4db59de766f7f35202ae22f3335b5ef6ab"
     },
     {
       "path": "site/layout/layout-room-editor.css",
@@ -4906,12 +4921,12 @@
     {
       "path": "site/layout/layout-room-editor.mjs",
       "bytes": 12901,
-      "sha256": "0d2ca2b8f9981aaa60007d23feeefcbc44f6f79888d70e694896353eaf4f1b37"
+      "sha256": "0e5a842031f500307e506db493fa9aa59d7e24579792057fe225491d25d4aaf4"
     },
     {
       "path": "site/layout/layout-state.mjs",
-      "bytes": 42330,
-      "sha256": "a29e8e61e4bbad0af01483acc226b3bc1bbe828fa40e75f93fc56e45dff4036f"
+      "bytes": 44765,
+      "sha256": "3d146613e1e87a433cacaab99e58b9d8eab88853a5dc7d6a6aa37762ece7c29b"
     },
     {
       "path": "site/layout/layout-surfaces.mjs",
@@ -4926,7 +4941,7 @@
     {
       "path": "site/layout/layout-ui.mjs",
       "bytes": 33994,
-      "sha256": "57acfdfd7c587e1712423e868b974ba1adcdc576752d9faba9f54338dcbf40e7"
+      "sha256": "9546fdae8c5dbe32e65709352bcde2417b5f6d539b8997aeb497c7feae0fe2c6"
     },
     {
       "path": "site/layout/layout-zero-face-admissions.mjs",
@@ -4955,8 +4970,8 @@
     },
     {
       "path": "site/layout/layout.css",
-      "bytes": 17177,
-      "sha256": "64dac36ef58607a9080aa35f504de8c0155395e65767e5d2d8ff787f640ee0c8"
+      "bytes": 17825,
+      "sha256": "994f4722fd697b77b4bf02d471ae95641502f7be44cc25918ddf58bda8281679"
     },
     {
       "path": "site/licenses/a4t_machine/LICENSE",

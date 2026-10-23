@@ -17,6 +17,42 @@ export function translationStaysInside(outer,polygon,dx,dz){
 }
 
 const shortYaw=(a,b)=>{const d=b-a;let value=((d+180)%360+360)%360-180;if(value===-180&&d>0)value=180;return value;};
+// A finite tangent-triangle subdivision cannot prove an interior arc that
+// touches a wall exactly. A disk enclosing the local footprint supplies an
+// independent continuous proof when its swept capsule fits a convex room.
+// Compare squared half-plane distances as exact binary64 dyadics: rounding a
+// radius/distance or adding a tolerance could accept a genuinely smaller room.
+const diskScratch=new DataView(new ArrayBuffer(8));
+function diskCoordinate(value){
+ if(value===0)return [0n,0];
+ diskScratch.setFloat64(0,value,false);
+ const bits=diskScratch.getBigUint64(0,false),exponent=Number((bits>>52n)&2047n);
+ return [(bits>>63n?-1n:1n)*((bits&((1n<<52n)-1n))+(exponent?1n<<52n:0n)),exponent?exponent-1075:-1074];
+}
+function sweptDiskStaysInside(outer,local,start,end){
+ const turns=outer.map((p,i)=>orient(p,outer[(i+1)%outer.length],outer[(i+2)%outer.length]));
+ const winding=turns.find(Boolean);
+ if(!winding||turns.some(turn=>turn&&turn!==winding))return false;
+ const exact=[...outer,...local,[start.xMm,start.zMm],[end.xMm,end.zMm]].map(p=>p.map(diskCoordinate));
+ const power=Math.min(0,...exact.flat().map(([,exponent])=>exponent));
+ const points=exact.map(p=>p.map(([n,exponent])=>n<<BigInt(exponent-power)));
+ const walls=points.slice(0,outer.length),centres=points.slice(-2);
+ let radiusSquared=0n;
+ for(const [x,z]of points.slice(outer.length,-2)){
+  const squared=x*x+z*z;if(squared>radiusSquared)radiusSquared=squared;
+ }
+ for(let i=0;i<walls.length;i++){
+  const a=walls[i],b=walls[(i+1)%walls.length],dx=b[0]-a[0],dz=b[1]-a[1];
+  const required=radiusSquared*(dx*dx+dz*dz);
+  for(const p of centres){
+   const cross=dx*(p[1]-a[1])-dz*(p[0]-a[0]);
+   if(cross*BigInt(winding)<0n||cross*cross<required)return false;
+  }
+ }
+ // A disk is convex, so it covers every footprint triangle; each wall's
+ // signed distance is linear along the centre's translation segment.
+ return true;
+}
 // A circular arc shorter than 180deg lies inside its endpoint/tangent triangle.
 // Minkowski addition of the translation segment encloses the entire rigid path.
 // Subdivision tightens that enclosure. An unproved cell is rejected, never waived.
@@ -42,10 +78,11 @@ export function rigidMotionStaysInside(outer,local,start,end){
   const middle=(a+b)/2;return inside(triangle,a,middle,depth+1)&&inside(triangle,middle,b,depth+1);
  };
  const parts=Math.ceil(Math.abs(yaw)/90);
- return triangulatePolygon(local).every(triangle=>{
+ const enclosed=triangulatePolygon(local).every(triangle=>{
   for(let i=0;i<parts;i++)if(!inside(triangle,i/parts,(i+1)/parts,0))return false;
   return true;
  });
+ return enclosed||sweptDiskStaysInside(outer,local,start,end);
 }
 
 // Contact tolerance selects candidate wall tangents only. It never waives a
