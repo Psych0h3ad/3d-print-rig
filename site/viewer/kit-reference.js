@@ -8,11 +8,11 @@ import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v
 import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
-import {loadKitReference} from './kit-reference-loader.mjs?v=3b4eec9a8c08f50d03d9';
+import {loadKitReference} from './kit-reference-loader.mjs?v=1e4ea653a75783c74b41';
 import {setupMachineNavigation} from './machines.js?v=5503ac507978b3d4e928';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=736862a3013dbfd9f9ea';
-import {setupPublicInfo} from './public-info.js?v=9a36586e255c2266cea5';
+import {setupPublicInfo} from './public-info.js?v=07313fc4151911a54f23';
 import {createCommunityAdapter} from './community-adapter.mjs?v=61b77f5cd77eabb0120d';
 import {setupNativeMotionControls} from './native-motion-controls.mjs?v=2c08202d5c81304dd19e';
 export async function mount(scope){

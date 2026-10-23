@@ -9,14 +9,14 @@ import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {loadModel} from './model-loader.js?v=b0197506280e28221880';
+import {loadModel} from './model-loader.js?v=319442cce47f582793a9';
 import {createV24Adapter} from './v24_matrix_adapter.mjs?v=1f70f3be4ab4a0e74544';
 import {setupMachineNavigation} from './machines.js?v=5503ac507978b3d4e928';
 import {setupGrid} from './grid-control.js';
 import {setupRenderExport} from './render-export.js?v=736862a3013dbfd9f9ea';
-import {setupPublicInfo} from './public-info.js?v=9a36586e255c2266cea5';
+import {setupPublicInfo} from './public-info.js?v=07313fc4151911a54f23';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=66041e969f9190a81416';
-import {setupV24MachineHeads} from './machine-heads.js?v=fb2500669abed09f016d';
+import {setupV24MachineHeads} from './machine-heads.js?v=61449068bd51b23df07f';
 export async function mount(scope){
 const $=s=>document.querySelector(s),ids=[250,300,350].flatMap(size=>['printed','ldo_cnc'].map(structure=>`voron_v24_${size}_${structure}`));
 const wanted=new URLSearchParams(location.search).get('machine'),id=ids.includes(wanted)?wanted:ids[0];

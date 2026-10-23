@@ -14,10 +14,14 @@ board, rail block and belt tails are not included in the standalone assembly.
 The machine supplies its existing rail block. No toolchanger fit is implied.
 
 The 6 mm carriage's separate manufacturing support, native key 26, is omitted.
-No cowl/carriage body material is removed. Native dimensions are retained.
+The 9 mm display also omits the separate author manufacturing Support body #809
+from source representation #970. Its structural Carriage_Mount #810 is retained
+at the original placement with all 6,176 triangles and original attributes.
+No structural cowl/carriage body material is removed. Native dimensions are retained.
 Upper lateral axes differ by 0.04025 mm; the central axis differs by
-0.17077 mm. Native cowl/carriage contacts are retained: 3.078 mm3 for
-6 mm and 110.456 mm3 for 9 mm. Standard Sherpa configurations retain
+0.17077 mm. Structural cowl/carriage contacts remain. The original 9 mm total of
+110.456 mm3 included the now-omitted manufacturing helper; the display
+omission does not resolve structural contact. Standard Sherpa configurations retain
 rear-housing/carriage intersections of 1.590 mm3 (6 mm) or 3.372 mm3
 (9 mm); rear-offset cowls remove those extruder-body intersections.
 All these contacts are displayed as comparison conditions. They do not

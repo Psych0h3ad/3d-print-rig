@@ -1268,10 +1268,10 @@
       "commit": "cc2e749d09d7f24418f9f8c73c90bcefb1e29584",
       "version": "Yavoth v1; Alternative Voron Mounts at the same pinned revision",
       "scope": "16 fixed-carriage static previews. Contacts and omitted components are documented. No toolchanging or full-travel certification.",
-      "changes": "Rigid native placements, separate 6/9 mm carriages, source manufacturing support omitted for 6 mm. No cowl/carriage body material removed. UHF 5 mm rear-offset cowls use complete author STL geometry; original LED holders/inserts retained. Source occurrence identities are distinguished from stable viewer aliases.",
+      "changes": "Rigid native placements, separate 6/9 mm carriages, separate source manufacturing supports omitted for 6/9 mm. No cowl/carriage body material removed. UHF 5 mm rear-offset cowls use complete author STL geometry; original LED holders/inserts retained. Source occurrence identities are distinguished from stable viewer aliases. The 9 mm display retains the exact structural main-body triangle subsequence; its original unfiltered native export is not advertised as the selected display.",
       "license": "Component-specific licenses and hardware terms retained",
       "license_url": "../licenses/yavoth_assembly/NOTICE.md",
-      "license_sha256": "65088969045a20676065b65d29c532be8372dfb1aa9d5eeed5c587b8ee0d8be1"
+      "license_sha256": "c67a430d3335993eb33a90397082cb9ec3f071895de9cb4ebb463b76dee62c23"
     },
     {
       "id": "positron_v322",
@@ -2333,6 +2333,12 @@
       "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/yavoth-cowls-20261023/yavoth-uhf5-printed-source-v2.zip",
       "bytes": 2166078,
       "sha256": "3c9ed89fba7b981709a957c7d7990eb13f87cfc47ff719784bd47e2a7a54e0f8"
+    },
+    {
+      "label": "Yavoth 9 mm carriage \u00b7 printed source and display converter",
+      "url": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/yavoth-carriage-20261023/yavoth9-printed-source.zip",
+      "bytes": 162920,
+      "sha256": "8c957a3ee7668fead434ab180cba89e5c74b4d82d930cc73c0af591027c1216a"
     }
   ]
 }

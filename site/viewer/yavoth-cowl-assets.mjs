@@ -22,6 +22,13 @@ const cowls = {
 };
 for (const pin of Object.values(cowls)) Object.freeze(pin);
 export const yavothCowlAssets = Object.freeze(cowls);
+export const yavothCarriageAsset=Object.freeze({bytes:69734,sha256:'0302e84c88b33b9aca8b92ffd477ba33a8864f7247e02a5423c9bdcf1827e2b7',decoded_bytes:232908,decoded_sha256:'b13853310f19da814cb4ec9e97ae4d88bda34d7a27a7e094043d1fd1f7077eed'});
+export function currentYavothCorrection(input,base,siteRoot){
+ const cowl=currentYavothCowl(input,base,siteRoot);if(cowl)return cowl;
+ const url=new URL(input,base),root=new URL(siteRoot);
+ if(url.origin!==root.origin||!url.pathname.startsWith(root.pathname))return null;
+ return decodeURIComponent(url.pathname.slice(root.pathname.length))==='modules/yavoth59_carriage_9.glb'?yavothCarriageAsset:null;
+}
 export function currentYavothCowl(input, base, siteRoot) {
  const url=new URL(input,base),root=new URL(siteRoot);
  if(url.origin!==root.origin||!url.pathname.startsWith(root.pathname))return null;
