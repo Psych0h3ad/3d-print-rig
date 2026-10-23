@@ -11215,7 +11215,7 @@
     "HEAD_ADDITIONS.json": "c752983c1a054ee7b4d000e458d6839cf5176b2d0b143ca1f6727683a4bed405",
     "COMPONENT_ADDITIONS.json": "65d3ef345bcd5031b266fef5e8863568379304943651c03fb5bb6f9503f73b59",
     "COMPONENT_LIBRARY.json": "9b27754925eda73f81c8b9a9298cfd480c0dc2d3af7eefe58b2c12bf6206de06",
-    "viewer/elegoo-catalog.mjs": "048f866b21f8d3cfdf73cef35b94f47030dbc37b9358773d744c521a6521312d"
+    "viewer/elegoo-catalog.mjs": "3309535203a88f622ae017a49e0d6b9c3b92a24926f2e7be8a98c255c74c05f5"
   },
   "unresolved_release_findings": [],
   "source_projection_primary_URLs_preserved": true,

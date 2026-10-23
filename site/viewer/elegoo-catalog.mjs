@@ -118,6 +118,34 @@ export const elegooAssetIndex = freeze({
       ],
       "files": {
         "assembly_manifest.json": {
+          "path": "neptune3pro/zero-facets-v1/assembly_manifest.json",
+          "bytes": 973943,
+          "sha256": "a90fb280a1f4f737bc1a2aa7ca5976f7dc86804cc9f224b37126c729a52c2680"
+        },
+        "machine_profile.json": {
+          "path": "neptune3pro/zero-facets-v1/machine_profile.json",
+          "bytes": 2903,
+          "sha256": "152e3ab016dc83e0d2a4c1b1d456e15165b9de3bd895da27fb4395ac35ac2c68"
+        },
+        "model.glb": {
+          "path": "neptune3pro/zero-facets-v1/model.glb.gz",
+          "bytes": 17114503,
+          "sha256": "73276b3136aca254eb3865e823987c51beb10fd421cb4196c2ee1c6e9596c755",
+          "encoding": "gzip",
+          "decoded_bytes": 63145980,
+          "decoded_sha256": "6be641a22300381949c194ce6bfc59def4d00c7f80184edbc4bf2300c037c382"
+        }
+      },
+      "static_reference": true,
+      "motionVerified": false,
+      "printedPalette": false,
+      "appearance": "source-vertex-colors-opaque",
+      "textures": false,
+      "cadTransparency": false,
+      "source_package_url": "https://psych0h3ad.github.io/3d-print-rig-extra-models/elegoo-sources/README.md",
+      "license_text_url": "https://psych0h3ad.github.io/3d-print-rig-extra-models/elegoo-sources/neptune3pro/LICENSE",
+      "zero_facet_source": {
+        "assembly_manifest.json": {
           "path": "neptune3pro/assembly_manifest.json",
           "bytes": 958643,
           "sha256": "27dda1bc4f5fff4c13f157ccd1786ee18090e4d5f3b09bc978161247dd1be61b"
@@ -135,15 +163,7 @@ export const elegooAssetIndex = freeze({
           "decoded_bytes": 63154048,
           "decoded_sha256": "25d01ba76a518eede9a9888c2fbb5b045b4438e29ed2aeba9c20ecc71cf406ff"
         }
-      },
-      "static_reference": true,
-      "motionVerified": false,
-      "printedPalette": false,
-      "appearance": "source-vertex-colors-opaque",
-      "textures": false,
-      "cadTransparency": false,
-      "source_package_url": "https://psych0h3ad.github.io/3d-print-rig-extra-models/elegoo-sources/README.md",
-      "license_text_url": "https://psych0h3ad.github.io/3d-print-rig-extra-models/elegoo-sources/neptune3pro/LICENSE"
+      }
     },
     {
       "id": "elegoo_neptune3plus_reference",
@@ -188,6 +208,34 @@ export const elegooAssetIndex = freeze({
       ],
       "files": {
         "assembly_manifest.json": {
+          "path": "neptune3plus/zero-facets-v1/assembly_manifest.json",
+          "bytes": 1149755,
+          "sha256": "cd38dfb11cea1d47f4e32405c500ed1312baa939fc873dc6eebda96ca68f79a8"
+        },
+        "machine_profile.json": {
+          "path": "neptune3plus/zero-facets-v1/machine_profile.json",
+          "bytes": 2915,
+          "sha256": "bcc1ae859360ac42cd86dc6fa22e93580c0a5d0715cf35b1aa9221a1ac80a385"
+        },
+        "model.glb": {
+          "path": "neptune3plus/zero-facets-v1/model.glb.gz",
+          "bytes": 16204882,
+          "sha256": "0a85b7e7133b31be4608903461dc65558a34052dd98f7890b99fa1a2ab456c40",
+          "encoding": "gzip",
+          "decoded_bytes": 60201108,
+          "decoded_sha256": "d0a48e5b1f792a34ea23afe571ffd8b22523706a15568166678ced6ae161b464"
+        }
+      },
+      "static_reference": true,
+      "motionVerified": false,
+      "printedPalette": false,
+      "appearance": "source-vertex-colors-opaque",
+      "textures": false,
+      "cadTransparency": false,
+      "source_package_url": "https://psych0h3ad.github.io/3d-print-rig-extra-models/elegoo-sources/README.md",
+      "license_text_url": "https://psych0h3ad.github.io/3d-print-rig-extra-models/elegoo-sources/neptune3plus/LICENSE",
+      "zero_facet_source": {
+        "assembly_manifest.json": {
           "path": "neptune3plus/assembly_manifest.json",
           "bytes": 1132420,
           "sha256": "9c46cc042718efb9009e8a79fad215709671a6fc9c28a9c0164af01b2b6ef6ba"
@@ -205,15 +253,7 @@ export const elegooAssetIndex = freeze({
           "decoded_bytes": 60209680,
           "decoded_sha256": "05c603b2900fd9a949c8a362154fc41ec929210477fa87565b4bad92b714b572"
         }
-      },
-      "static_reference": true,
-      "motionVerified": false,
-      "printedPalette": false,
-      "appearance": "source-vertex-colors-opaque",
-      "textures": false,
-      "cadTransparency": false,
-      "source_package_url": "https://psych0h3ad.github.io/3d-print-rig-extra-models/elegoo-sources/README.md",
-      "license_text_url": "https://psych0h3ad.github.io/3d-print-rig-extra-models/elegoo-sources/neptune3plus/LICENSE"
+      }
     }
   ]
 });

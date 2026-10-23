@@ -10,6 +10,10 @@ are retained; bitmap decals and CAD transparency are omitted. Image export and
 camera save/load are available. Build sizes are product specifications from
 the official manuals, not measured travel limits or clearance certificates.
 
+Pro and Plus display meshes omit only mathematically zero-area source
+triangles. See [mesh filtering and reproduction](ELEGOO_SOURCE_MESH.md) for
+original counts, retained data and the pinned unfiltered exports.
+
 | Model | Source revision | License |
 | --- | --- | --- |
 | [Neptune 3](https://github.com/elegooofficial/Neptune3/tree/eb98eee6a65d593a61109f51261ead01116d2cb5) | `eb98eee6a65d593a61109f51261ead01116d2cb5` | GPL-3.0 |

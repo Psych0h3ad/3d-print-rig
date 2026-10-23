@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
-  "review_revision": "yavoth9-manufacturing-support-current72-scoped-20261023",
+  "review_revision": "neptune-factory-zero-v6-scoped-current72-20261023",
   "reviewed_on": "2026-10-23",
   "input_sha256": {
-    ".github/workflows/pages.yml": "808d6da6325507943a5373df1217bfa2ba0803c345504aed1890d80b9b4848ee",
-    ".github/workflows/source-check.yml": "9ab5cc2c1c44c12fe566ba251292eefa5854371d38e92a0637b0f6a4ea16a2b3",
+    ".github/workflows/pages.yml": "b9b6d0c7068a553c378f275aa6be6f363b41b74e68ca352f1618ae973ec5cb5b",
+    ".github/workflows/source-check.yml": "c06591ae7325e6a74118ffbddbcc197b0c1d245296266aa6ec5de9d0cceae241",
     "scripts/audit_a4t_printed_companions.mjs": "770c4e5da4eba20f0141952ac2afd961f70ca26fb3d6925abfd9361c8ac7287a",
     "scripts/audit_changer_banks.mjs": "cbbbe6833a7c8becaf47e74ac875d9f6759591956144d6733646b27131dee839",
     "scripts/audit_community_installations.mjs": "bd13672658d950cff2a7b7b5690183fa7d7bd7b433271952949d227eee66c053",
     "scripts/audit_custom_ptfe.mjs": "392ae069463a52717b3636828cef7f6add66ac582fe43d2daeb8dc2313771c5a",
-    "scripts/audit_elegoo_assets.mjs": "24d1d305f4a17cfd95b93ca7743d2bb96665de2ef698cc00f74c6de10681eb56",
+    "scripts/audit_elegoo_assets.mjs": "6aadc6dd1c7abedbc5af8c04c76056a06056455e2f4a78037890a78739159ee0",
     "scripts/audit_ender_bowden.mjs": "dfa0409eb0a95fe51f3e991b5f385ff73df2460f2a3fc95d6e6431bfd18a282c",
     "scripts/audit_eva_front_surfaces.mjs": "ab87b90f6ac46bf14903e0d97ad692dec29b78c7d9c9e869d0d6a54d4b39d996",
     "scripts/audit_eva_heads.mjs": "a0bec26898933fe012b33bb7ad206660fabc783c2970c7b923b76209687579ef",
@@ -49,7 +49,7 @@
     "scripts/build_toolhead_catalog.py": "e7391d2cc7748db94033069dc44b8365260d169176ee73a31cef249da5023e1a",
     "scripts/cad_section_insert.py": "a590e2fb4045cb3d835901aee33521d63e96e37133979187b0b8503bf16ceefa",
     "scripts/check_approved_site_size.py": "00961d3c028614b470121899ae4bb785bf8059b5f2408b5b92db2ebb31ecec5b",
-    "scripts/check_elegoo_assets_release.py": "a632dc0f4190968e9973662f27a92da78f5229df9e583567e01832e404dcdb8e",
+    "scripts/check_elegoo_assets_release.py": "fe458f2447461e56f15ab1ae05bba31c9a67d47d7e91d587a1b4142d395cd4ff",
     "scripts/check_entrypoint_delivery.py": "65432fe33fa6669dec5a9746378ff18b54762d36bf042d0f72b7f5528ddd8dcb",
     "scripts/check_eva_front_release.py": "cbbefaae96061b08e5063c8ac98b7e920083b43dd5aa0b0b91e1588ceb1317f8",
     "scripts/check_eva_options_release.py": "75bdc98a884ed3d6107d3a71bf462519772444a413004e69e8856a6dc61e9233",
@@ -67,11 +67,13 @@
     "scripts/compose_wallpaper_collections.py": "3aacd71c2e1f1260fae9ab3f3008d5cdc9622336926596c5c5e181624eff3679",
     "scripts/convert_cocobustor_sources.py": "1644a9a6646850b6d27b5027377a500ff1c182c81de1b0604c6373bead0fff8f",
     "scripts/convert_ducky0_sources.py": "a48f6ddf3d70adf9e83834ff43c08f7938f4d6d8d3c270d3f79946c070c4cc92",
+    "scripts/elegoo_zero_omission.mjs": "4500e5a8bf913df07e047030d819272985110de9873de622e73eec9b0473cb79",
     "scripts/export_monolith_belt_routes.py": "6c8d9170d38ad1b3de41c9e923e95ca5b9e36a53ec2553352548f4fdd8fcac7d",
     "scripts/extend_wallpaper_release.py": "3aad72481e09a62a2c0f1224777c07691dd63bc9355e7baa3ba3c039a14b8178",
     "scripts/extract_eva_heads.py": "3477bcb1aafa0988cc58cc1da5aaf389edb0f97ae95e48132670ab3e44b031af",
     "scripts/fetch_pinned_source.mjs": "01e823f32546ebd4a881c21a0c363aa2bc542a7c35b98c3944f68689967bb0a7",
     "scripts/fetch_pinned_source.py": "247af5eac4ff605e66dde84e593817c29a5e23c8fb54bca21b82f435699be8b8",
+    "scripts/filter_elegoo_zero_facets.py": "fff58978b6a7b3ebd7fc1fb3112ac72ae610659c6be412ae57a90c7ae0a72116",
     "scripts/fixtures/a4t-printed-reference.json": "2f76b0d9ac2381773783449e995ef5633116ca77399c53995a0376aa8559e3c6",
     "scripts/fixtures/layout_ratrig_belts.json": "14f7ac91dd6aadc528626578f0a2c5b14ca838e086167d8fee53fcd00590fbfd",
     "scripts/fixtures/layout_room_dom.mjs": "33f263b862639bb38583b98cc29178e641ade667d18898a9a320d59ebeaff41b",
@@ -152,7 +154,8 @@
     "scripts/test_doomcube.mjs": "e973a308fa164f292f637b0c1d63567a721f64c72b0dede665315856c8839998",
     "scripts/test_ducky0_components.mjs": "cb451989bbd774d8bfde840ae02a0fc577f68a5fb77e745b8bf42a5e222c0e4b",
     "scripts/test_e3ng.mjs": "f9029550383c6ca1d69143ef1a0af2669e0e3fe13c086f26cd776da281ccfc58",
-    "scripts/test_elegoo_reference.mjs": "e590ba739e88048b2af819cf065d3050500ec19527606f9132e950f5f966cdd4",
+    "scripts/test_elegoo_reference.mjs": "52ea1ce4cfa5ce273c3cba40fcfff1955cdb3859d955bf6545f46b2252a37edb",
+    "scripts/test_elegoo_zero_facets.py": "4bed1cf9b08d7d7d488418c75869a6fd7350ce9c9fb072298db37aa01d5129b8",
     "scripts/test_embed_contract.mjs": "cdfcd67d60617e9963ebe85b35fbfe6e25652b39b2833c4b3cb934a3a8371db4",
     "scripts/test_ender_bowden_provenance.py": "837517c2c439296f177e2dedff0d660d77d580e731208eca8ede56f4096314bb",
     "scripts/test_ender_bowden.mjs": "a75dbb2d61fe7ee0be8e3b32f64b03b5f74741d6b75496b676b9e3a830befc99",
@@ -348,7 +351,7 @@
     "scripts/yavoth-cowl-identity.mjs": "1d992c3631d0d17e56719eb6b089c2cd1ec2baae318cbbb08171fdfd3de758c1",
     "scripts/yavoth-exact-companions.mjs": "7c7deb5d3657dbc5de9caf1c9f4ae66d0a1a834981df04b84ab552151f4186bb",
     "scripts/yavoth-support-omission.mjs": "4aeaf567cf322c5b08e5a4734e6ef0e7dd4671d9c088e7ae8234108e941009f8",
-    "site/APPROVED_DELIVERY.json": "dde6f0313116c353b8c44e361cc7ba0516e707d437b0a63fe716422a57121256",
+    "site/APPROVED_DELIVERY.json": "e51f15b4b6e916159486743f3f076a2eda1392e923b0c9eb7089593a64dd82d2",
     "site/ASSEMBLY_CONFIGURATIONS.json": "2542f57d3ddeb63322057bbbf324b154f4e7b1f0c7edf7168fb4155ed042574a",
     "site/assembly_manifest.json": "4fe7fed76a8c003aa652bed57608026dad7b1953ac7b4b589a990d47ff74dadf",
     "site/ASSET_BUNDLE.json": "10c44725a05926348f9c25ec2f655fa08c2776f855a6f0e3d376e11e24698bca",
@@ -482,7 +485,7 @@
     "site/viewer/e3ng-model.mjs": "7d5da880bcd1c29e4fd7f25a58afeafe5bd2e6839778821da65faa6614a1495a",
     "site/viewer/e3ng.html": "daac4aecd4c58bfe6b81e211fb9118028f36576a90684dc22e7f325bfe2e2648",
     "site/viewer/e3ng.js": "5d46d668931607c9b6702d66e8c892501bb365c5355b7b20bb10799464956558",
-    "site/viewer/elegoo-catalog.mjs": "048f866b21f8d3cfdf73cef35b94f47030dbc37b9358773d744c521a6521312d",
+    "site/viewer/elegoo-catalog.mjs": "3309535203a88f622ae017a49e0d6b9c3b92a24926f2e7be8a98c255c74c05f5",
     "site/viewer/elegoo-contract.mjs": "66697cb2ce3ba4ee90147a190862ee51a2c5b74992eabf04efc76b0ec2dd9676",
     "site/viewer/elegoo-depth-range.mjs": "98f3cf55dee30aa6f7b2e866638a8a368d29346f88bf891a56b8353730b08e64",
     "site/viewer/elegoo-load-task.mjs": "7bd8b829b5e642062008e21a9b6e714429fcdf8b5bb33b0ce3bab849b8d73e1b",
@@ -2520,41 +2523,41 @@
       "family": "elegoo_neptune3",
       "motion_scope": "native_reference_assembly",
       "static_reference": true,
-      "model_sha256": "25d01ba76a518eede9a9888c2fbb5b045b4438e29ed2aeba9c20ecc71cf406ff",
+      "model_sha256": "6be641a22300381949c194ce6bfc59def4d00c7f80184edbc4bf2300c037c382",
       "mesh_quality_verified": true,
       "motionVerified": false,
       "printedPalette": false,
       "viewer_mesh_quality": {
         "schema": "actual-viewer-mesh-quality-v1",
-        "model_sha256": "25d01ba76a518eede9a9888c2fbb5b045b4438e29ed2aeba9c20ecc71cf406ff",
+        "model_sha256": "6be641a22300381949c194ce6bfc59def4d00c7f80184edbc4bf2300c037c382",
         "actual_exported_input_identity_verified": true,
         "finite_positions_and_world_matrices": true,
         "meshes": 455,
-        "triangles": 4928549,
+        "triangles": 4927889,
         "nonunit_consumed_vertex_normals": 0,
         "zero_normals_on_drawn_nondegenerate_smooth_faces": 0,
         "missing_NORMAL_requiring_shader_input": 0,
         "actual_normal_method": "unit-vertex-normals",
         "evidence_sha256": [
-          "68a23e13b8d970d92b33eddd804c5be5fe52b1c85d278b100bf358e13d74cb3d"
+          "d90b767437a5c85080a00f87326fb8edc68b8c11b91c2631810bb0690ed19275"
         ],
         "scope": "static/native_reference_assembly",
         "source_face_orientation_verified": false,
-        "exact_zero_area_source_primitives_retained": 660,
+        "exact_zero_area_source_primitives_retained": 0,
         "negative_average_vertex_dot_diagnostic": 84
       },
       "known_required_companion_failures": [],
       "full_physical_fit_certified": false,
       "current_controller_review": {
-        "model_sha256": "25d01ba76a518eede9a9888c2fbb5b045b4438e29ed2aeba9c20ecc71cf406ff",
+        "model_sha256": "6be641a22300381949c194ce6bfc59def4d00c7f80184edbc4bf2300c037c382",
         "sampled_pose_reset_palette_passed": false,
-        "report_evidence_sha256": "82f0b7011b2a8425cdda0c59fd9bba3fc21ac80d9bb624f3f8b92d974390af02",
+        "report_evidence_sha256": "3147cc640189204cbe27366d1192cd8db0460bf14dd13a23d36e701221f43d3c",
         "static_reference_review": {
           "schema": "elegoo-static-source-state-v1",
           "scope": "static/native_reference_assembly",
           "evidence_kind": "cpu-scene-state",
-          "model_sha256": "25d01ba76a518eede9a9888c2fbb5b045b4438e29ed2aeba9c20ecc71cf406ff",
-          "identity_evidence_sha256": "68a23e13b8d970d92b33eddd804c5be5fe52b1c85d278b100bf358e13d74cb3d",
+          "model_sha256": "6be641a22300381949c194ce6bfc59def4d00c7f80184edbc4bf2300c037c382",
+          "identity_evidence_sha256": "d90b767437a5c85080a00f87326fb8edc68b8c11b91c2631810bb0690ed19275",
           "source_state_preserved": true,
           "actual_exported_input_identity_verified": true,
           "finite_positions_and_world_matrices": true,
@@ -2581,7 +2584,7 @@
                   "daylightScale": 1,
                   "exposure": 0.9
                 },
-                "sourceAssemblyFingerprint": "2f30be657458078ff7e6759845a7841e297d0e36dc7b351dbf32b3ecf9663ece",
+                "sourceAssemblyFingerprint": "19cc3e78fe3b3ade68a1b89aa96546c219520dbc2a2e18188cd0ed68ae92d1de",
                 "savedViewRoundtrip": true
               },
               {
@@ -2595,7 +2598,7 @@
                   "daylightScale": 1,
                   "exposure": 0.9
                 },
-                "sourceAssemblyFingerprint": "2f30be657458078ff7e6759845a7841e297d0e36dc7b351dbf32b3ecf9663ece",
+                "sourceAssemblyFingerprint": "19cc3e78fe3b3ade68a1b89aa96546c219520dbc2a2e18188cd0ed68ae92d1de",
                 "savedViewRoundtrip": true
               },
               {
@@ -2609,7 +2612,7 @@
                   "daylightScale": 1,
                   "exposure": 0.9
                 },
-                "sourceAssemblyFingerprint": "2f30be657458078ff7e6759845a7841e297d0e36dc7b351dbf32b3ecf9663ece",
+                "sourceAssemblyFingerprint": "19cc3e78fe3b3ade68a1b89aa96546c219520dbc2a2e18188cd0ed68ae92d1de",
                 "savedViewRoundtrip": true
               }
             ],
@@ -2627,103 +2630,273 @@
           "source_issues": {
             "retained": true,
             "repaired": false,
-            "strictDegenerateTriangles": 660,
+            "exactZeroIndexOmission": {
+              "schema": "exact-zero-index-omission-v1",
+              "source_model_sha256": "25d01ba76a518eede9a9888c2fbb5b045b4438e29ed2aeba9c20ecc71cf406ff",
+              "omitted_triangles": 660,
+              "exact_nonzero_triangle_subsequence": true,
+              "all_attributes_nodes_materials_transforms_exact": true,
+              "native_CAD_repaired": false
+            },
+            "strictDegenerateTriangles": 0,
             "opposedMeanNormals": 84,
             "definition": "Exact zero cross product and negative cross dot summed vertex normals, occurrence-weighted, on unchanged exported Float32 local positions.",
             "appearance": "Original vertex RGBA retained with opaque GLTFLoader material. Original bitmap textures are omitted by the source export. No new material or alpha fix."
           }
         }
       },
-      "stored_model_sha256": "9fe1333b7ab51150a4b0af07e42941a22b66d64d14083944e97d55d191b47c7c",
+      "stored_model_sha256": "73276b3136aca254eb3865e823987c51beb10fd421cb4196c2ee1c6e9596c755",
       "companion_sha256": {
-        "assembly_manifest.json": "27dda1bc4f5fff4c13f157ccd1786ee18090e4d5f3b09bc978161247dd1be61b",
-        "machine_profile.json": "eee6dfbb13cc3a58dbcaf577723f698adf5e24ab41ccf3826099e633481d77a6"
+        "assembly_manifest.json": "a90fb280a1f4f737bc1a2aa7ca5976f7dc86804cc9f224b37126c729a52c2680",
+        "machine_profile.json": "152e3ab016dc83e0d2a4c1b1d456e15165b9de3bd895da27fb4395ac35ac2c68"
+      },
+      "adapter_sha256": {
+        "site/viewer/elegoo.mjs": "16d275e7c029054153f82ea89595a5eba4a36e70909c8ef267e795f30a819c25"
       },
       "container_parsed": true,
       "catalog_hash_checked": true,
       "native_mating_verified": false,
       "whole_machine_certified": false,
+      "model_identity_basis": "Exact corrected public factory model/manifest/profile and current production static asset/normal/scene-state report. Exact-zero indexed facets only; no native repair, motion, palette, DOM/GPU or fit qualification.",
       "evidence": [
         {
-          "report": "elegoo-actual-static-release-v1",
-          "sha256": "618f2f1a0457a3b3e6d9d8840b23c3831ffaf2d7aca40a5c6adc76ab763a78d4",
-          "scope": "Pinned full static source assembly through production parser and renderer scene state. No axis movement, palette replacement, browser/GPU or physical-fit certification."
-        },
-        {
-          "report": "actual-exported-controllers-20261023",
-          "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
-          "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
-        },
-        {
-          "report": "elegoo-neptune3pro-actual-static-20261023",
-          "sha256": "82f0b7011b2a8425cdda0c59fd9bba3fc21ac80d9bb624f3f8b92d974390af02",
-          "scope": "Fresh actual static source-state/lighting helper; no motion, printed palette or browser/GPU claim."
-        },
-        {
-          "report": "reference-menu-common-navigation-20261023",
-          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
-          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
-        },
-        {
-          "report": "yavoth-three-cowls-current72-20261023",
-          "sha256": "c26e2fbde29a572668ca3467fac5dfb9dea99db7f6a4fcee1f69a3470cf490b8",
-          "scope": "Exact unchanged base model and query-normalized controller semantics reuse dated actual receipts. Fresh three-cowl source/loaded-component review has explicit contact/support/PTFE endpoint holds; no new native or all-machine GPU qualification."
-        },
-        {
-          "report": "yavoth9-manufacturing-support-current72-20261023",
-          "sha256": "c59b3daa28afa71ccb911d57e12d310115ae16714e63907bfb03fcc0b9274fa0",
-          "scope": "Exact unchanged base model/controller identity reuses its dated actual receipt. Fresh nine-mm support-omission and affected loaded-component checks exclude changed geometry from historical native evidence and retain existing main-contact/PTFE/whole-fit holds."
+          "report": "elegoo-factory-zero-neptune3pro-static-20261023",
+          "sha256": "3147cc640189204cbe27366d1192cd8db0460bf14dd13a23d36e701221f43d3c",
+          "scope": "Fresh actual production static assembly and consumed normals; exact-zero omission replay. No native fit or movement claim."
         }
       ],
-      "current_review_status": "PASS_STATIC_REFERENCE",
+      "current_review_status": "PASS_SCOPED_FACTORY_ZERO_STATIC_SOURCE",
       "unresolved_scope": [
         "No new native mating, whole-machine physical fit, continuous body clearance or browser/GPU certificate.",
         "Configuration coverage is the explicitly sampled production default/safe domain; no full configuration Cartesian product."
       ],
-      "published_download_identity_review": {
-        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
-        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
-        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      "prior_model_evidence_retained": {
+        "id": "elegoo_neptune3pro_reference",
+        "family": "elegoo_neptune3",
+        "motion_scope": "native_reference_assembly",
+        "static_reference": true,
+        "model_sha256": "25d01ba76a518eede9a9888c2fbb5b045b4438e29ed2aeba9c20ecc71cf406ff",
+        "mesh_quality_verified": true,
+        "motionVerified": false,
+        "printedPalette": false,
+        "viewer_mesh_quality": {
+          "schema": "actual-viewer-mesh-quality-v1",
+          "model_sha256": "25d01ba76a518eede9a9888c2fbb5b045b4438e29ed2aeba9c20ecc71cf406ff",
+          "actual_exported_input_identity_verified": true,
+          "finite_positions_and_world_matrices": true,
+          "meshes": 455,
+          "triangles": 4928549,
+          "nonunit_consumed_vertex_normals": 0,
+          "zero_normals_on_drawn_nondegenerate_smooth_faces": 0,
+          "missing_NORMAL_requiring_shader_input": 0,
+          "actual_normal_method": "unit-vertex-normals",
+          "evidence_sha256": [
+            "68a23e13b8d970d92b33eddd804c5be5fe52b1c85d278b100bf358e13d74cb3d"
+          ],
+          "scope": "static/native_reference_assembly",
+          "source_face_orientation_verified": false,
+          "exact_zero_area_source_primitives_retained": 660,
+          "negative_average_vertex_dot_diagnostic": 84
+        },
+        "known_required_companion_failures": [],
+        "full_physical_fit_certified": false,
+        "current_controller_review": {
+          "model_sha256": "25d01ba76a518eede9a9888c2fbb5b045b4438e29ed2aeba9c20ecc71cf406ff",
+          "sampled_pose_reset_palette_passed": false,
+          "report_evidence_sha256": "82f0b7011b2a8425cdda0c59fd9bba3fc21ac80d9bb624f3f8b92d974390af02",
+          "static_reference_review": {
+            "schema": "elegoo-static-source-state-v1",
+            "scope": "static/native_reference_assembly",
+            "evidence_kind": "cpu-scene-state",
+            "model_sha256": "25d01ba76a518eede9a9888c2fbb5b045b4438e29ed2aeba9c20ecc71cf406ff",
+            "identity_evidence_sha256": "68a23e13b8d970d92b33eddd804c5be5fe52b1c85d278b100bf358e13d74cb3d",
+            "source_state_preserved": true,
+            "actual_exported_input_identity_verified": true,
+            "finite_positions_and_world_matrices": true,
+            "all_source_parts_present": true,
+            "proper_rigid_basis": true,
+            "precise_source_bounds_verified": true,
+            "source_bound_tolerance_mm": 0.01,
+            "max_source_bound_error_mm": 0.000010728836041806744,
+            "material_identity_preserved": true,
+            "native_vertex_colors_preserved": true,
+            "native_reference_reset_passed": true,
+            "browser_or_gpu_reviewed": false,
+            "displayReview": {
+              "passed": true,
+              "stages": [
+                {
+                  "dark": false,
+                  "grid": false,
+                  "lighting": {
+                    "darkRoom": false,
+                    "background": "#edf1f5",
+                    "environmentIntensity": 0.16,
+                    "ambientIntensity": 0.25,
+                    "daylightScale": 1,
+                    "exposure": 0.9
+                  },
+                  "sourceAssemblyFingerprint": "2f30be657458078ff7e6759845a7841e297d0e36dc7b351dbf32b3ecf9663ece",
+                  "savedViewRoundtrip": true
+                },
+                {
+                  "dark": true,
+                  "grid": true,
+                  "lighting": {
+                    "darkRoom": false,
+                    "background": "#101820",
+                    "environmentIntensity": 0.16,
+                    "ambientIntensity": 0.25,
+                    "daylightScale": 1,
+                    "exposure": 0.9
+                  },
+                  "sourceAssemblyFingerprint": "2f30be657458078ff7e6759845a7841e297d0e36dc7b351dbf32b3ecf9663ece",
+                  "savedViewRoundtrip": true
+                },
+                {
+                  "dark": false,
+                  "grid": false,
+                  "lighting": {
+                    "darkRoom": false,
+                    "background": "#edf1f5",
+                    "environmentIntensity": 0.16,
+                    "ambientIntensity": 0.25,
+                    "daylightScale": 1,
+                    "exposure": 0.9
+                  },
+                  "sourceAssemblyFingerprint": "2f30be657458078ff7e6759845a7841e297d0e36dc7b351dbf32b3ecf9663ece",
+                  "savedViewRoundtrip": true
+                }
+              ],
+              "cameraReferenceReset": true,
+              "sourceAssemblyUnchanged": true,
+              "productionAssembler": true,
+              "productionLightingHelper": true,
+              "savedViewContractRoundtrip": true,
+              "scope": "CPU scene-state/production lighting helper A-B-A and static camera reference reset; no DOM/GPU/UI handler claim",
+              "motionExercised": false,
+              "paletteExercised": false,
+              "motionSupported": false,
+              "printedPaletteSupported": false
+            },
+            "source_issues": {
+              "retained": true,
+              "repaired": false,
+              "strictDegenerateTriangles": 660,
+              "opposedMeanNormals": 84,
+              "definition": "Exact zero cross product and negative cross dot summed vertex normals, occurrence-weighted, on unchanged exported Float32 local positions.",
+              "appearance": "Original vertex RGBA retained with opaque GLTFLoader material. Original bitmap textures are omitted by the source export. No new material or alpha fix."
+            }
+          }
+        },
+        "stored_model_sha256": "9fe1333b7ab51150a4b0af07e42941a22b66d64d14083944e97d55d191b47c7c",
+        "companion_sha256": {
+          "assembly_manifest.json": "27dda1bc4f5fff4c13f157ccd1786ee18090e4d5f3b09bc978161247dd1be61b",
+          "machine_profile.json": "eee6dfbb13cc3a58dbcaf577723f698adf5e24ab41ccf3826099e633481d77a6"
+        },
+        "container_parsed": true,
+        "catalog_hash_checked": true,
+        "native_mating_verified": false,
+        "whole_machine_certified": false,
+        "evidence": [
+          {
+            "report": "elegoo-actual-static-release-v1",
+            "sha256": "618f2f1a0457a3b3e6d9d8840b23c3831ffaf2d7aca40a5c6adc76ab763a78d4",
+            "scope": "Pinned full static source assembly through production parser and renderer scene state. No axis movement, palette replacement, browser/GPU or physical-fit certification."
+          },
+          {
+            "report": "actual-exported-controllers-20261023",
+            "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
+            "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+          },
+          {
+            "report": "elegoo-neptune3pro-actual-static-20261023",
+            "sha256": "82f0b7011b2a8425cdda0c59fd9bba3fc21ac80d9bb624f3f8b92d974390af02",
+            "scope": "Fresh actual static source-state/lighting helper; no motion, printed palette or browser/GPU claim."
+          },
+          {
+            "report": "reference-menu-common-navigation-20261023",
+            "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+            "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
+          },
+          {
+            "report": "yavoth-three-cowls-current72-20261023",
+            "sha256": "c26e2fbde29a572668ca3467fac5dfb9dea99db7f6a4fcee1f69a3470cf490b8",
+            "scope": "Exact unchanged base model and query-normalized controller semantics reuse dated actual receipts. Fresh three-cowl source/loaded-component review has explicit contact/support/PTFE endpoint holds; no new native or all-machine GPU qualification."
+          },
+          {
+            "report": "yavoth9-manufacturing-support-current72-20261023",
+            "sha256": "c59b3daa28afa71ccb911d57e12d310115ae16714e63907bfb03fcc0b9274fa0",
+            "scope": "Exact unchanged base model/controller identity reuses its dated actual receipt. Fresh nine-mm support-omission and affected loaded-component checks exclude changed geometry from historical native evidence and retain existing main-contact/PTFE/whole-fit holds."
+          }
+        ],
+        "current_review_status": "PASS_STATIC_REFERENCE",
+        "unresolved_scope": [
+          "No new native mating, whole-machine physical fit, continuous body clearance or browser/GPU certificate.",
+          "Configuration coverage is the explicitly sampled production default/safe domain; no full configuration Cartesian product."
+        ],
+        "published_download_identity_review": {
+          "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+          "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+          "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+        },
+        "adapter_sha256": {
+          "site/viewer/elegoo.mjs": "16d275e7c029054153f82ea89595a5eba4a36e70909c8ef267e795f30a819c25"
+        },
+        "model_identity_basis": "Current exact approved public delivery bytes, actual production loader/parser and current controller receipts; unchanged historical scopes remain separate.",
+        "current_navigation_binding": {
+          "receipt_id": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "actual_model_receipt_reused": true,
+          "controller_bytes_identical": true,
+          "model_evidence_date": "2026-10-23",
+          "new_native_clearance": false
+        },
+        "prior_adapter_sha256": {
+          "site/viewer/elegoo.mjs": "16d275e7c029054153f82ea89595a5eba4a36e70909c8ef267e795f30a819c25"
+        },
+        "current_three_cowl_binding": {
+          "receipt_id": "yavoth-three-cowls-current72-20261023",
+          "sha256": "c26e2fbde29a572668ca3467fac5dfb9dea99db7f6a4fcee1f69a3470cf490b8",
+          "base_model_bytes_unchanged": true,
+          "query_normalized_controller_semantics_unchanged": true,
+          "original_model_evidence_date": "2026-10-23",
+          "actual_model_receipt_reused": true,
+          "historical_native_excludes_changed_cowls": true,
+          "new_native_clearance": false,
+          "affected_registrations": 0
+        },
+        "yavoth9_previous_adapter_sha256": {
+          "site/viewer/elegoo.mjs": "16d275e7c029054153f82ea89595a5eba4a36e70909c8ef267e795f30a819c25"
+        },
+        "current_yavoth9_binding": {
+          "receipt_id": "yavoth9-manufacturing-support-current72-20261023",
+          "sha256": "c59b3daa28afa71ccb911d57e12d310115ae16714e63907bfb03fcc0b9274fa0",
+          "base_model_bytes_unchanged": true,
+          "controller_query_normalized_semantics_unchanged": true,
+          "original_model_evidence_date": "2026-10-23",
+          "actual_model_receipt_reused_without_redating": true,
+          "new_native_clearance": false,
+          "historical_native_excludes_changed_carriage": true,
+          "affected_registrations": 0
+        }
       },
-      "adapter_sha256": {
-        "site/viewer/elegoo.mjs": "16d275e7c029054153f82ea89595a5eba4a36e70909c8ef267e795f30a819c25"
-      },
-      "model_identity_basis": "Current exact approved public delivery bytes, actual production loader/parser and current controller receipts; unchanged historical scopes remain separate.",
-      "current_navigation_binding": {
-        "receipt_id": "reference-menu-common-navigation-20261023",
-        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
-        "actual_model_receipt_reused": true,
-        "controller_bytes_identical": true,
-        "model_evidence_date": "2026-10-23",
-        "new_native_clearance": false
-      },
-      "prior_adapter_sha256": {
-        "site/viewer/elegoo.mjs": "16d275e7c029054153f82ea89595a5eba4a36e70909c8ef267e795f30a819c25"
-      },
-      "current_three_cowl_binding": {
-        "receipt_id": "yavoth-three-cowls-current72-20261023",
-        "sha256": "c26e2fbde29a572668ca3467fac5dfb9dea99db7f6a4fcee1f69a3470cf490b8",
-        "base_model_bytes_unchanged": true,
-        "query_normalized_controller_semantics_unchanged": true,
-        "original_model_evidence_date": "2026-10-23",
-        "actual_model_receipt_reused": true,
-        "historical_native_excludes_changed_cowls": true,
-        "new_native_clearance": false,
-        "affected_registrations": 0
-      },
-      "yavoth9_previous_adapter_sha256": {
-        "site/viewer/elegoo.mjs": "16d275e7c029054153f82ea89595a5eba4a36e70909c8ef267e795f30a819c25"
-      },
-      "current_yavoth9_binding": {
-        "receipt_id": "yavoth9-manufacturing-support-current72-20261023",
-        "sha256": "c59b3daa28afa71ccb911d57e12d310115ae16714e63907bfb03fcc0b9274fa0",
-        "base_model_bytes_unchanged": true,
-        "controller_query_normalized_semantics_unchanged": true,
-        "original_model_evidence_date": "2026-10-23",
-        "actual_model_receipt_reused_without_redating": true,
-        "new_native_clearance": false,
-        "historical_native_excludes_changed_carriage": true,
-        "affected_registrations": 0
+      "factory_zero_cleanup_scope": {
+        "report_sha256": "3147cc640189204cbe27366d1192cd8db0460bf14dd13a23d36e701221f43d3c",
+        "identity_evidence_sha256": "d90b767437a5c85080a00f87326fb8edc68b8c11b91c2631810bb0690ed19275",
+        "zero_omission": {
+          "schema": "exact-zero-index-omission-v1",
+          "source_model_sha256": "25d01ba76a518eede9a9888c2fbb5b045b4438e29ed2aeba9c20ecc71cf406ff",
+          "omitted_triangles": 660,
+          "exact_nonzero_triangle_subsequence": true,
+          "all_attributes_nodes_materials_transforms_exact": true,
+          "native_CAD_repaired": false
+        },
+        "physical_fit_verified": false,
+        "native_solid_clearance_verified": false,
+        "motion_exercised": false,
+        "browser_or_gpu_reviewed": false,
+        "model_host_publication_pending": true
       }
     },
     {
@@ -2731,41 +2904,41 @@
       "family": "elegoo_neptune3",
       "motion_scope": "native_reference_assembly",
       "static_reference": true,
-      "model_sha256": "05c603b2900fd9a949c8a362154fc41ec929210477fa87565b4bad92b714b572",
+      "model_sha256": "d0a48e5b1f792a34ea23afe571ffd8b22523706a15568166678ced6ae161b464",
       "mesh_quality_verified": true,
       "motionVerified": false,
       "printedPalette": false,
       "viewer_mesh_quality": {
         "schema": "actual-viewer-mesh-quality-v1",
-        "model_sha256": "05c603b2900fd9a949c8a362154fc41ec929210477fa87565b4bad92b714b572",
+        "model_sha256": "d0a48e5b1f792a34ea23afe571ffd8b22523706a15568166678ced6ae161b464",
         "actual_exported_input_identity_verified": true,
         "finite_positions_and_world_matrices": true,
         "meshes": 536,
-        "triangles": 4806158,
+        "triangles": 4805382,
         "nonunit_consumed_vertex_normals": 0,
         "zero_normals_on_drawn_nondegenerate_smooth_faces": 0,
         "missing_NORMAL_requiring_shader_input": 0,
         "actual_normal_method": "unit-vertex-normals",
         "evidence_sha256": [
-          "da8fab520582f525b83d3c2b3d05de13f971bb47ed3f6faa994cd0c67cb8c9aa"
+          "db92f63a55000d545f7a65284336a5e478e3d17b42aad5155689072fe94fcbe7"
         ],
         "scope": "static/native_reference_assembly",
         "source_face_orientation_verified": false,
-        "exact_zero_area_source_primitives_retained": 776,
+        "exact_zero_area_source_primitives_retained": 0,
         "negative_average_vertex_dot_diagnostic": 63
       },
       "known_required_companion_failures": [],
       "full_physical_fit_certified": false,
       "current_controller_review": {
-        "model_sha256": "05c603b2900fd9a949c8a362154fc41ec929210477fa87565b4bad92b714b572",
+        "model_sha256": "d0a48e5b1f792a34ea23afe571ffd8b22523706a15568166678ced6ae161b464",
         "sampled_pose_reset_palette_passed": false,
-        "report_evidence_sha256": "fb16e1040553f350716fd51093537fbc6e671689167d701115050713ce4acff4",
+        "report_evidence_sha256": "83c1b3d56f9b9831a015d120044ea707ddd4dbcb2b35b554592d4b3b00f338db",
         "static_reference_review": {
           "schema": "elegoo-static-source-state-v1",
           "scope": "static/native_reference_assembly",
           "evidence_kind": "cpu-scene-state",
-          "model_sha256": "05c603b2900fd9a949c8a362154fc41ec929210477fa87565b4bad92b714b572",
-          "identity_evidence_sha256": "da8fab520582f525b83d3c2b3d05de13f971bb47ed3f6faa994cd0c67cb8c9aa",
+          "model_sha256": "d0a48e5b1f792a34ea23afe571ffd8b22523706a15568166678ced6ae161b464",
+          "identity_evidence_sha256": "db92f63a55000d545f7a65284336a5e478e3d17b42aad5155689072fe94fcbe7",
           "source_state_preserved": true,
           "actual_exported_input_identity_verified": true,
           "finite_positions_and_world_matrices": true,
@@ -2792,7 +2965,7 @@
                   "daylightScale": 1,
                   "exposure": 0.9
                 },
-                "sourceAssemblyFingerprint": "05c7a977198d1402bea71a9cb482e6820f9eeae5e4774f7ef35518998be12b72",
+                "sourceAssemblyFingerprint": "d459efc9ff5b335e5553a774c36662a01a121ef6ad1e8653ac960c62841a1635",
                 "savedViewRoundtrip": true
               },
               {
@@ -2806,7 +2979,7 @@
                   "daylightScale": 1,
                   "exposure": 0.9
                 },
-                "sourceAssemblyFingerprint": "05c7a977198d1402bea71a9cb482e6820f9eeae5e4774f7ef35518998be12b72",
+                "sourceAssemblyFingerprint": "d459efc9ff5b335e5553a774c36662a01a121ef6ad1e8653ac960c62841a1635",
                 "savedViewRoundtrip": true
               },
               {
@@ -2820,7 +2993,7 @@
                   "daylightScale": 1,
                   "exposure": 0.9
                 },
-                "sourceAssemblyFingerprint": "05c7a977198d1402bea71a9cb482e6820f9eeae5e4774f7ef35518998be12b72",
+                "sourceAssemblyFingerprint": "d459efc9ff5b335e5553a774c36662a01a121ef6ad1e8653ac960c62841a1635",
                 "savedViewRoundtrip": true
               }
             ],
@@ -2838,103 +3011,273 @@
           "source_issues": {
             "retained": true,
             "repaired": false,
-            "strictDegenerateTriangles": 776,
+            "exactZeroIndexOmission": {
+              "schema": "exact-zero-index-omission-v1",
+              "source_model_sha256": "05c603b2900fd9a949c8a362154fc41ec929210477fa87565b4bad92b714b572",
+              "omitted_triangles": 776,
+              "exact_nonzero_triangle_subsequence": true,
+              "all_attributes_nodes_materials_transforms_exact": true,
+              "native_CAD_repaired": false
+            },
+            "strictDegenerateTriangles": 0,
             "opposedMeanNormals": 63,
             "definition": "Exact zero cross product and negative cross dot summed vertex normals, occurrence-weighted, on unchanged exported Float32 local positions.",
             "appearance": "Original vertex RGBA retained with opaque GLTFLoader material. Original bitmap textures are omitted by the source export. No new material or alpha fix."
           }
         }
       },
-      "stored_model_sha256": "0822031956294a8049e777cbbae4e01e57982822e191025593a8060ec4f34a11",
+      "stored_model_sha256": "0a85b7e7133b31be4608903461dc65558a34052dd98f7890b99fa1a2ab456c40",
       "companion_sha256": {
-        "assembly_manifest.json": "9c46cc042718efb9009e8a79fad215709671a6fc9c28a9c0164af01b2b6ef6ba",
-        "machine_profile.json": "26748cc9a37941505123310676e48f0774090058477c6d6b99cf31af6c02a4a0"
+        "assembly_manifest.json": "cd38dfb11cea1d47f4e32405c500ed1312baa939fc873dc6eebda96ca68f79a8",
+        "machine_profile.json": "bcc1ae859360ac42cd86dc6fa22e93580c0a5d0715cf35b1aa9221a1ac80a385"
+      },
+      "adapter_sha256": {
+        "site/viewer/elegoo.mjs": "16d275e7c029054153f82ea89595a5eba4a36e70909c8ef267e795f30a819c25"
       },
       "container_parsed": true,
       "catalog_hash_checked": true,
       "native_mating_verified": false,
       "whole_machine_certified": false,
+      "model_identity_basis": "Exact corrected public factory model/manifest/profile and current production static asset/normal/scene-state report. Exact-zero indexed facets only; no native repair, motion, palette, DOM/GPU or fit qualification.",
       "evidence": [
         {
-          "report": "elegoo-actual-static-release-v1",
-          "sha256": "ceecff29e65fedafa024168304d81b129599343a67f97806071d2317ae73d111",
-          "scope": "Pinned full static source assembly through production parser and renderer scene state. No axis movement, palette replacement, browser/GPU or physical-fit certification."
-        },
-        {
-          "report": "actual-exported-controllers-20261023",
-          "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
-          "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
-        },
-        {
-          "report": "elegoo-neptune3plus-actual-static-20261023",
-          "sha256": "fb16e1040553f350716fd51093537fbc6e671689167d701115050713ce4acff4",
-          "scope": "Fresh actual static source-state/lighting helper; no motion, printed palette or browser/GPU claim."
-        },
-        {
-          "report": "reference-menu-common-navigation-20261023",
-          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
-          "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
-        },
-        {
-          "report": "yavoth-three-cowls-current72-20261023",
-          "sha256": "c26e2fbde29a572668ca3467fac5dfb9dea99db7f6a4fcee1f69a3470cf490b8",
-          "scope": "Exact unchanged base model and query-normalized controller semantics reuse dated actual receipts. Fresh three-cowl source/loaded-component review has explicit contact/support/PTFE endpoint holds; no new native or all-machine GPU qualification."
-        },
-        {
-          "report": "yavoth9-manufacturing-support-current72-20261023",
-          "sha256": "c59b3daa28afa71ccb911d57e12d310115ae16714e63907bfb03fcc0b9274fa0",
-          "scope": "Exact unchanged base model/controller identity reuses its dated actual receipt. Fresh nine-mm support-omission and affected loaded-component checks exclude changed geometry from historical native evidence and retain existing main-contact/PTFE/whole-fit holds."
+          "report": "elegoo-factory-zero-neptune3plus-static-20261023",
+          "sha256": "83c1b3d56f9b9831a015d120044ea707ddd4dbcb2b35b554592d4b3b00f338db",
+          "scope": "Fresh actual production static assembly and consumed normals; exact-zero omission replay. No native fit or movement claim."
         }
       ],
-      "current_review_status": "PASS_STATIC_REFERENCE",
+      "current_review_status": "PASS_SCOPED_FACTORY_ZERO_STATIC_SOURCE",
       "unresolved_scope": [
         "No new native mating, whole-machine physical fit, continuous body clearance or browser/GPU certificate.",
         "Configuration coverage is the explicitly sampled production default/safe domain; no full configuration Cartesian product."
       ],
-      "published_download_identity_review": {
-        "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
-        "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
-        "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+      "prior_model_evidence_retained": {
+        "id": "elegoo_neptune3plus_reference",
+        "family": "elegoo_neptune3",
+        "motion_scope": "native_reference_assembly",
+        "static_reference": true,
+        "model_sha256": "05c603b2900fd9a949c8a362154fc41ec929210477fa87565b4bad92b714b572",
+        "mesh_quality_verified": true,
+        "motionVerified": false,
+        "printedPalette": false,
+        "viewer_mesh_quality": {
+          "schema": "actual-viewer-mesh-quality-v1",
+          "model_sha256": "05c603b2900fd9a949c8a362154fc41ec929210477fa87565b4bad92b714b572",
+          "actual_exported_input_identity_verified": true,
+          "finite_positions_and_world_matrices": true,
+          "meshes": 536,
+          "triangles": 4806158,
+          "nonunit_consumed_vertex_normals": 0,
+          "zero_normals_on_drawn_nondegenerate_smooth_faces": 0,
+          "missing_NORMAL_requiring_shader_input": 0,
+          "actual_normal_method": "unit-vertex-normals",
+          "evidence_sha256": [
+            "da8fab520582f525b83d3c2b3d05de13f971bb47ed3f6faa994cd0c67cb8c9aa"
+          ],
+          "scope": "static/native_reference_assembly",
+          "source_face_orientation_verified": false,
+          "exact_zero_area_source_primitives_retained": 776,
+          "negative_average_vertex_dot_diagnostic": 63
+        },
+        "known_required_companion_failures": [],
+        "full_physical_fit_certified": false,
+        "current_controller_review": {
+          "model_sha256": "05c603b2900fd9a949c8a362154fc41ec929210477fa87565b4bad92b714b572",
+          "sampled_pose_reset_palette_passed": false,
+          "report_evidence_sha256": "fb16e1040553f350716fd51093537fbc6e671689167d701115050713ce4acff4",
+          "static_reference_review": {
+            "schema": "elegoo-static-source-state-v1",
+            "scope": "static/native_reference_assembly",
+            "evidence_kind": "cpu-scene-state",
+            "model_sha256": "05c603b2900fd9a949c8a362154fc41ec929210477fa87565b4bad92b714b572",
+            "identity_evidence_sha256": "da8fab520582f525b83d3c2b3d05de13f971bb47ed3f6faa994cd0c67cb8c9aa",
+            "source_state_preserved": true,
+            "actual_exported_input_identity_verified": true,
+            "finite_positions_and_world_matrices": true,
+            "all_source_parts_present": true,
+            "proper_rigid_basis": true,
+            "precise_source_bounds_verified": true,
+            "source_bound_tolerance_mm": 0.01,
+            "max_source_bound_error_mm": 0.00009860684191398406,
+            "material_identity_preserved": true,
+            "native_vertex_colors_preserved": true,
+            "native_reference_reset_passed": true,
+            "browser_or_gpu_reviewed": false,
+            "displayReview": {
+              "passed": true,
+              "stages": [
+                {
+                  "dark": false,
+                  "grid": false,
+                  "lighting": {
+                    "darkRoom": false,
+                    "background": "#edf1f5",
+                    "environmentIntensity": 0.16,
+                    "ambientIntensity": 0.25,
+                    "daylightScale": 1,
+                    "exposure": 0.9
+                  },
+                  "sourceAssemblyFingerprint": "05c7a977198d1402bea71a9cb482e6820f9eeae5e4774f7ef35518998be12b72",
+                  "savedViewRoundtrip": true
+                },
+                {
+                  "dark": true,
+                  "grid": true,
+                  "lighting": {
+                    "darkRoom": false,
+                    "background": "#101820",
+                    "environmentIntensity": 0.16,
+                    "ambientIntensity": 0.25,
+                    "daylightScale": 1,
+                    "exposure": 0.9
+                  },
+                  "sourceAssemblyFingerprint": "05c7a977198d1402bea71a9cb482e6820f9eeae5e4774f7ef35518998be12b72",
+                  "savedViewRoundtrip": true
+                },
+                {
+                  "dark": false,
+                  "grid": false,
+                  "lighting": {
+                    "darkRoom": false,
+                    "background": "#edf1f5",
+                    "environmentIntensity": 0.16,
+                    "ambientIntensity": 0.25,
+                    "daylightScale": 1,
+                    "exposure": 0.9
+                  },
+                  "sourceAssemblyFingerprint": "05c7a977198d1402bea71a9cb482e6820f9eeae5e4774f7ef35518998be12b72",
+                  "savedViewRoundtrip": true
+                }
+              ],
+              "cameraReferenceReset": true,
+              "sourceAssemblyUnchanged": true,
+              "productionAssembler": true,
+              "productionLightingHelper": true,
+              "savedViewContractRoundtrip": true,
+              "scope": "CPU scene-state/production lighting helper A-B-A and static camera reference reset; no DOM/GPU/UI handler claim",
+              "motionExercised": false,
+              "paletteExercised": false,
+              "motionSupported": false,
+              "printedPaletteSupported": false
+            },
+            "source_issues": {
+              "retained": true,
+              "repaired": false,
+              "strictDegenerateTriangles": 776,
+              "opposedMeanNormals": 63,
+              "definition": "Exact zero cross product and negative cross dot summed vertex normals, occurrence-weighted, on unchanged exported Float32 local positions.",
+              "appearance": "Original vertex RGBA retained with opaque GLTFLoader material. Original bitmap textures are omitted by the source export. No new material or alpha fix."
+            }
+          }
+        },
+        "stored_model_sha256": "0822031956294a8049e777cbbae4e01e57982822e191025593a8060ec4f34a11",
+        "companion_sha256": {
+          "assembly_manifest.json": "9c46cc042718efb9009e8a79fad215709671a6fc9c28a9c0164af01b2b6ef6ba",
+          "machine_profile.json": "26748cc9a37941505123310676e48f0774090058477c6d6b99cf31af6c02a4a0"
+        },
+        "container_parsed": true,
+        "catalog_hash_checked": true,
+        "native_mating_verified": false,
+        "whole_machine_certified": false,
+        "evidence": [
+          {
+            "report": "elegoo-actual-static-release-v1",
+            "sha256": "ceecff29e65fedafa024168304d81b129599343a67f97806071d2317ae73d111",
+            "scope": "Pinned full static source assembly through production parser and renderer scene state. No axis movement, palette replacement, browser/GPU or physical-fit certification."
+          },
+          {
+            "report": "actual-exported-controllers-20261023",
+            "sha256": "3f9fca752eaf9aaabfcc5a1d6a4fc2c1e4de26bdb912d1a3828a25467c866b73",
+            "scope": "Fresh exported-model and current CPU controller/static-state checks, with exact model/source binding. No new native, manufacturing, continuous clearance or browser/GPU certificate."
+          },
+          {
+            "report": "elegoo-neptune3plus-actual-static-20261023",
+            "sha256": "fb16e1040553f350716fd51093537fbc6e671689167d701115050713ce4acff4",
+            "scope": "Fresh actual static source-state/lighting helper; no motion, printed palette or browser/GPU claim."
+          },
+          {
+            "report": "reference-menu-common-navigation-20261023",
+            "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+            "scope": "Current source/navigation-only rebind. Exact unchanged models/controllers reuse their completed actual receipts; no new native or all-machine GPU qualification."
+          },
+          {
+            "report": "yavoth-three-cowls-current72-20261023",
+            "sha256": "c26e2fbde29a572668ca3467fac5dfb9dea99db7f6a4fcee1f69a3470cf490b8",
+            "scope": "Exact unchanged base model and query-normalized controller semantics reuse dated actual receipts. Fresh three-cowl source/loaded-component review has explicit contact/support/PTFE endpoint holds; no new native or all-machine GPU qualification."
+          },
+          {
+            "report": "yavoth9-manufacturing-support-current72-20261023",
+            "sha256": "c59b3daa28afa71ccb911d57e12d310115ae16714e63907bfb03fcc0b9274fa0",
+            "scope": "Exact unchanged base model/controller identity reuses its dated actual receipt. Fresh nine-mm support-omission and affected loaded-component checks exclude changed geometry from historical native evidence and retain existing main-contact/PTFE/whole-fit holds."
+          }
+        ],
+        "current_review_status": "PASS_STATIC_REFERENCE",
+        "unresolved_scope": [
+          "No new native mating, whole-machine physical fit, continuous body clearance or browser/GPU certificate.",
+          "Configuration coverage is the explicitly sampled production default/safe domain; no full configuration Cartesian product."
+        ],
+        "published_download_identity_review": {
+          "report": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
+          "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5",
+          "scope": "Current adapter bytes and unchanged loaded model identity; published download selection only. Retained native and controller reports are not reissued or expanded."
+        },
+        "adapter_sha256": {
+          "site/viewer/elegoo.mjs": "16d275e7c029054153f82ea89595a5eba4a36e70909c8ef267e795f30a819c25"
+        },
+        "model_identity_basis": "Current exact approved public delivery bytes, actual production loader/parser and current controller receipts; unchanged historical scopes remain separate.",
+        "current_navigation_binding": {
+          "receipt_id": "reference-menu-common-navigation-20261023",
+          "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
+          "actual_model_receipt_reused": true,
+          "controller_bytes_identical": true,
+          "model_evidence_date": "2026-10-23",
+          "new_native_clearance": false
+        },
+        "prior_adapter_sha256": {
+          "site/viewer/elegoo.mjs": "16d275e7c029054153f82ea89595a5eba4a36e70909c8ef267e795f30a819c25"
+        },
+        "current_three_cowl_binding": {
+          "receipt_id": "yavoth-three-cowls-current72-20261023",
+          "sha256": "c26e2fbde29a572668ca3467fac5dfb9dea99db7f6a4fcee1f69a3470cf490b8",
+          "base_model_bytes_unchanged": true,
+          "query_normalized_controller_semantics_unchanged": true,
+          "original_model_evidence_date": "2026-10-23",
+          "actual_model_receipt_reused": true,
+          "historical_native_excludes_changed_cowls": true,
+          "new_native_clearance": false,
+          "affected_registrations": 0
+        },
+        "yavoth9_previous_adapter_sha256": {
+          "site/viewer/elegoo.mjs": "16d275e7c029054153f82ea89595a5eba4a36e70909c8ef267e795f30a819c25"
+        },
+        "current_yavoth9_binding": {
+          "receipt_id": "yavoth9-manufacturing-support-current72-20261023",
+          "sha256": "c59b3daa28afa71ccb911d57e12d310115ae16714e63907bfb03fcc0b9274fa0",
+          "base_model_bytes_unchanged": true,
+          "controller_query_normalized_semantics_unchanged": true,
+          "original_model_evidence_date": "2026-10-23",
+          "actual_model_receipt_reused_without_redating": true,
+          "new_native_clearance": false,
+          "historical_native_excludes_changed_carriage": true,
+          "affected_registrations": 0
+        }
       },
-      "adapter_sha256": {
-        "site/viewer/elegoo.mjs": "16d275e7c029054153f82ea89595a5eba4a36e70909c8ef267e795f30a819c25"
-      },
-      "model_identity_basis": "Current exact approved public delivery bytes, actual production loader/parser and current controller receipts; unchanged historical scopes remain separate.",
-      "current_navigation_binding": {
-        "receipt_id": "reference-menu-common-navigation-20261023",
-        "sha256": "2ade46026badb6b62d32e08d74f3d0b65e11f2a564e3096c40627760ffc4bc57",
-        "actual_model_receipt_reused": true,
-        "controller_bytes_identical": true,
-        "model_evidence_date": "2026-10-23",
-        "new_native_clearance": false
-      },
-      "prior_adapter_sha256": {
-        "site/viewer/elegoo.mjs": "16d275e7c029054153f82ea89595a5eba4a36e70909c8ef267e795f30a819c25"
-      },
-      "current_three_cowl_binding": {
-        "receipt_id": "yavoth-three-cowls-current72-20261023",
-        "sha256": "c26e2fbde29a572668ca3467fac5dfb9dea99db7f6a4fcee1f69a3470cf490b8",
-        "base_model_bytes_unchanged": true,
-        "query_normalized_controller_semantics_unchanged": true,
-        "original_model_evidence_date": "2026-10-23",
-        "actual_model_receipt_reused": true,
-        "historical_native_excludes_changed_cowls": true,
-        "new_native_clearance": false,
-        "affected_registrations": 0
-      },
-      "yavoth9_previous_adapter_sha256": {
-        "site/viewer/elegoo.mjs": "16d275e7c029054153f82ea89595a5eba4a36e70909c8ef267e795f30a819c25"
-      },
-      "current_yavoth9_binding": {
-        "receipt_id": "yavoth9-manufacturing-support-current72-20261023",
-        "sha256": "c59b3daa28afa71ccb911d57e12d310115ae16714e63907bfb03fcc0b9274fa0",
-        "base_model_bytes_unchanged": true,
-        "controller_query_normalized_semantics_unchanged": true,
-        "original_model_evidence_date": "2026-10-23",
-        "actual_model_receipt_reused_without_redating": true,
-        "new_native_clearance": false,
-        "historical_native_excludes_changed_carriage": true,
-        "affected_registrations": 0
+      "factory_zero_cleanup_scope": {
+        "report_sha256": "83c1b3d56f9b9831a015d120044ea707ddd4dbcb2b35b554592d4b3b00f338db",
+        "identity_evidence_sha256": "db92f63a55000d545f7a65284336a5e478e3d17b42aad5155689072fe94fcbe7",
+        "zero_omission": {
+          "schema": "exact-zero-index-omission-v1",
+          "source_model_sha256": "05c603b2900fd9a949c8a362154fc41ec929210477fa87565b4bad92b714b572",
+          "omitted_triangles": 776,
+          "exact_nonzero_triangle_subsequence": true,
+          "all_attributes_nodes_materials_transforms_exact": true,
+          "native_CAD_repaired": false
+        },
+        "physical_fit_verified": false,
+        "native_solid_clearance_verified": false,
+        "motion_exercised": false,
+        "browser_or_gpu_reviewed": false,
+        "model_host_publication_pending": true
       }
     },
     {
@@ -18138,5 +18481,49 @@
       }
     ],
     "scope": "Actual exported leaf completeness, strict retained-triangle/attribute identity, source/mask checks, contrasting and reversed palettes with purchased materials preserved, sampled rigid adapter movement, A-to-B-to-A, teardown/native reference and saved-ID restoration. No new full-machine movement, swept clearance, native mating, all-combination fit or GPU qualification."
+  },
+  "current_neptune_factory_zero_review": {
+    "schema": "current72-factory-zero-identity-v1",
+    "reviewed_on": "2026-10-23",
+    "available_machines": 72,
+    "standard_runtime_identities": 1266,
+    "extra_elegoo_runtime_identities": 15,
+    "missing_or_skipped": [],
+    "changed_machine_rows": [
+      {
+        "id": "elegoo_neptune3pro_reference",
+        "previous_model_sha256": "25d01ba76a518eede9a9888c2fbb5b045b4438e29ed2aeba9c20ecc71cf406ff",
+        "model_sha256": "6be641a22300381949c194ce6bfc59def4d00c7f80184edbc4bf2300c037c382",
+        "report_sha256": "3147cc640189204cbe27366d1192cd8db0460bf14dd13a23d36e701221f43d3c",
+        "identity_sha256": "d90b767437a5c85080a00f87326fb8edc68b8c11b91c2631810bb0690ed19275",
+        "companion_sha256": {
+          "assembly_manifest.json": "a90fb280a1f4f737bc1a2aa7ca5976f7dc86804cc9f224b37126c729a52c2680",
+          "machine_profile.json": "152e3ab016dc83e0d2a4c1b1d456e15165b9de3bd895da27fb4395ac35ac2c68"
+        },
+        "scope": "static/native_reference_assembly",
+        "new_native_fit": false
+      },
+      {
+        "id": "elegoo_neptune3plus_reference",
+        "previous_model_sha256": "05c603b2900fd9a949c8a362154fc41ec929210477fa87565b4bad92b714b572",
+        "model_sha256": "d0a48e5b1f792a34ea23afe571ffd8b22523706a15568166678ced6ae161b464",
+        "report_sha256": "83c1b3d56f9b9831a015d120044ea707ddd4dbcb2b35b554592d4b3b00f338db",
+        "identity_sha256": "db92f63a55000d545f7a65284336a5e478e3d17b42aad5155689072fe94fcbe7",
+        "companion_sha256": {
+          "assembly_manifest.json": "cd38dfb11cea1d47f4e32405c500ed1312baa939fc873dc6eebda96ca68f79a8",
+          "machine_profile.json": "bcc1ae859360ac42cd86dc6fa22e93580c0a5d0715cf35b1aa9221a1ac80a385"
+        },
+        "scope": "static/native_reference_assembly",
+        "new_native_fit": false
+      }
+    ],
+    "other_machine_rows": 70,
+    "other_model_adapter_rows_exact": true,
+    "other_dated_scopes_preserved": true,
+    "new_yavoth_fixture_or_geometry_runs": 0,
+    "new_native_jobs": 0,
+    "new_whole_machine_fit_claims": 0,
+    "production_audit_summary_sha256": "45597bc6f8da1629dd3e5850091311c7c640c0ff9d54e997deb2c52169e0fe05",
+    "scope": "Complete actual runtime identity and fresh two-machine production static reports only. Other70 retain exact prior models/adapters and dated scopes; this is not a fresh all-machine fit test. Extra-model host upload and publication remain pending."
   }
 }

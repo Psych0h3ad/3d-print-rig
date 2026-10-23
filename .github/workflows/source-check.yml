@@ -15,4 +15,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: python3 scripts/prepare_repository_inputs.py
+      - run: python3 -m pip install numpy==2.4.4
       - run: python3 scripts/check_repository.py --regression-workers 2

@@ -15,13 +15,13 @@
     },
     {
       "path": ".github/workflows/pages.yml",
-      "bytes": 1017,
-      "sha256": "808d6da6325507943a5373df1217bfa2ba0803c345504aed1890d80b9b4848ee"
+      "bytes": 1066,
+      "sha256": "b9b6d0c7068a553c378f275aa6be6f363b41b74e68ca352f1618ae973ec5cb5b"
     },
     {
       "path": ".github/workflows/source-check.yml",
-      "bytes": 419,
-      "sha256": "9ab5cc2c1c44c12fe566ba251292eefa5854371d38e92a0637b0f6a4ea16a2b3"
+      "bytes": 468,
+      "sha256": "c06591ae7325e6a74118ffbddbcc197b0c1d245296266aa6ec5de9d0cceae241"
     },
     {
       "path": ".gitignore",
@@ -150,8 +150,13 @@
     },
     {
       "path": "docs/ELEGOO.md",
-      "bytes": 1573,
-      "sha256": "c4a993d1947233c1ef5d9d2ca4430797c8dd7d0a06c1eccc19c4d62c1df154c1"
+      "bytes": 1786,
+      "sha256": "04a75a486d1879a22767b4f941704ea0528424612d6a2d45226bb4b986f93b7f"
+    },
+    {
+      "path": "docs/ELEGOO_SOURCE_MESH.md",
+      "bytes": 1546,
+      "sha256": "71008a6feddc271f3331196c26bb2c8fd13a13f2034c802cf9b46d1dd777d888"
     },
     {
       "path": "docs/EMBEDDING.md",
@@ -250,8 +255,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 1077768,
-      "sha256": "ef61ace1b3bffd5e7bcef44bcdfa5d211504fcd456c2113ecba5bb6b8104543a"
+      "bytes": 1097986,
+      "sha256": "89144c65133625f20e0471f95c03c8e58df49e4fea4a37630e1826054afffdfe"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -630,8 +635,8 @@
     },
     {
       "path": "scripts/audit_elegoo_assets.mjs",
-      "bytes": 30635,
-      "sha256": "24d1d305f4a17cfd95b93ca7743d2bb96665de2ef698cc00f74c6de10681eb56"
+      "bytes": 31540,
+      "sha256": "6aadc6dd1c7abedbc5af8c04c76056a06056455e2f4a78037890a78739159ee0"
     },
     {
       "path": "scripts/audit_ender_bowden.mjs",
@@ -830,8 +835,8 @@
     },
     {
       "path": "scripts/check_elegoo_assets_release.py",
-      "bytes": 2639,
-      "sha256": "a632dc0f4190968e9973662f27a92da78f5229df9e583567e01832e404dcdb8e"
+      "bytes": 2741,
+      "sha256": "fe458f2447461e56f15ab1ae05bba31c9a67d47d7e91d587a1b4142d395cd4ff"
     },
     {
       "path": "scripts/check_entrypoint_delivery.py",
@@ -919,6 +924,11 @@
       "sha256": "a48f6ddf3d70adf9e83834ff43c08f7938f4d6d8d3c270d3f79946c070c4cc92"
     },
     {
+      "path": "scripts/elegoo_zero_omission.mjs",
+      "bytes": 3934,
+      "sha256": "4500e5a8bf913df07e047030d819272985110de9873de622e73eec9b0473cb79"
+    },
+    {
       "path": "scripts/export_monolith_belt_routes.py",
       "bytes": 3103,
       "sha256": "6c8d9170d38ad1b3de41c9e923e95ca5b9e36a53ec2553352548f4fdd8fcac7d"
@@ -942,6 +952,11 @@
       "path": "scripts/fetch_pinned_source.py",
       "bytes": 4118,
       "sha256": "247af5eac4ff605e66dde84e593817c29a5e23c8fb54bca21b82f435699be8b8"
+    },
+    {
+      "path": "scripts/filter_elegoo_zero_facets.py",
+      "bytes": 10882,
+      "sha256": "fff58978b6a7b3ebd7fc1fb3112ac72ae610659c6be412ae57a90c7ae0a72116"
     },
     {
       "path": "scripts/fixtures/a4t-printed-reference.json",
@@ -1345,8 +1360,13 @@
     },
     {
       "path": "scripts/test_elegoo_reference.mjs",
-      "bytes": 11689,
-      "sha256": "e590ba739e88048b2af819cf065d3050500ec19527606f9132e950f5f966cdd4"
+      "bytes": 12124,
+      "sha256": "52ea1ce4cfa5ce273c3cba40fcfff1955cdb3859d955bf6545f46b2252a37edb"
+    },
+    {
+      "path": "scripts/test_elegoo_zero_facets.py",
+      "bytes": 3343,
+      "sha256": "4bed1cf9b08d7d7d488418c75869a6fd7350ce9c9fb072298db37aa01d5129b8"
     },
     {
       "path": "scripts/test_embed_contract.mjs",
@@ -2326,7 +2346,7 @@
     {
       "path": "site/APPROVED_DELIVERY.json",
       "bytes": 725266,
-      "sha256": "dde6f0313116c353b8c44e361cc7ba0516e707d437b0a63fe716422a57121256"
+      "sha256": "e51f15b4b6e916159486743f3f076a2eda1392e923b0c9eb7089593a64dd82d2"
     },
     {
       "path": "site/ASSET_BUNDLE.json",
@@ -2580,8 +2600,8 @@
     },
     {
       "path": "site/assets/machines/index.json",
-      "bytes": 58711,
-      "sha256": "308eec0439105f5af800ae11de9c9dcb5e7954e6925d8a5ad3bc17cd6948ad06"
+      "bytes": 74452,
+      "sha256": "c3bb7010c6fb98bdfec14d957ba0bcc466537cd6b2579837f034c8d10988bd9c"
     },
     {
       "path": "site/assets/machines/lh_stinger_200.webp",
@@ -6090,8 +6110,8 @@
     },
     {
       "path": "site/viewer/elegoo-catalog.mjs",
-      "bytes": 9001,
-      "sha256": "048f866b21f8d3cfdf73cef35b94f47030dbc37b9358773d744c521a6521312d"
+      "bytes": 10743,
+      "sha256": "3309535203a88f622ae017a49e0d6b9c3b92a24926f2e7be8a98c255c74c05f5"
     },
     {
       "path": "site/viewer/elegoo-contract.mjs",

@@ -29,7 +29,8 @@ def main():
         for machine in catalog['machines']:
             if set(machine['files']) != {'assembly_manifest.json', 'machine_profile.json', 'model.glb'}:
                 raise ValueError('Incomplete ELEGOO body registration')
-            for spec in machine['files'].values():
+            specs = list(machine['files'].values())+list(machine.get('zero_facet_source', {}).values())
+            for spec in specs:
                 relative = safe_path(spec['path'])
                 if relative.as_posix() in seen:
                     raise ValueError('Duplicate ELEGOO body')
@@ -44,7 +45,7 @@ def main():
             str(ROOT/'scripts/audit_elegoo_assets.mjs'), '--site', str(site),
             '--assets', str(assets), '--out', str(out)], cwd=ROOT, check=True,
             stdout=subprocess.DEVNULL)
-    print('ELEGOO release actual-asset check passed: three static assemblies, nine pinned bodies; no motion or physical-fit certification.')
+    print('ELEGOO release actual-asset check passed: three static assemblies and all pinned original/filter inputs; no motion or physical-fit certification.')
 
 
 if __name__ == '__main__':
