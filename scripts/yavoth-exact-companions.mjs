@@ -2,6 +2,7 @@
 // BOM, fastening, snap retention, source contact or physical fit.
 import assert from 'node:assert/strict';
 import {assertCowlMetadata,geometryBufferIdentity} from './yavoth-cowl-identity.mjs';
+import {assertYavothSupportOmission} from './yavoth-support-omission.mjs';
 const sourceExports={
   "head_print_yavoth_orbiter2_rapido2_hf_rear5": {
     "keys": [
@@ -236,6 +237,7 @@ export function assertYavothExactExportedCompanions(v,assets,{validatedGeometry}
  assert.deepEqual(visible.map(([id])=>id).sort(),[...expected].sort(),'Yavoth missing/obsolete module');
  for(const id of expected){
   const asset=visible.find(([key])=>key===id)[1],required=sourceExports[id]?.keys;
+  assertYavothSupportOmission(id,asset);
   assert(required,'Yavoth unreviewed companion export '+id);
   assert.deepEqual(asset.entries.map(e=>String(e.key)).sort(),[...required].sort(),'Yavoth missing/duplicate source leaf '+id);
   for(const row of asset.entries){

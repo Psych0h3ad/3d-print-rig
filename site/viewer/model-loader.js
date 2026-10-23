@@ -1,6 +1,6 @@
 import {verifyLedModelBytes} from './led-source-binding.mjs';
 import {externalModelDelivery} from './model-delivery.mjs';
-import {currentYavothCowl} from './yavoth-cowl-assets.mjs?v=83fc99d4d3e8f26f74c9';
+import {currentYavothCorrection} from './yavoth-cowl-assets.mjs?v=7724876b5059647c957b';
 import {registeredModelDelivery,verifyDeliveredModel} from './model-delivery-policy.mjs';
 import {beginModelLoading,readModelBytes} from './model-progress.mjs?v=beaef781095b6f56b290';
 let bundleInfo;
@@ -9,7 +9,7 @@ const siteRoot=new URL('../',import.meta.url);
 const deliveredModel=path=>registeredModelDelivery(path,location.href,siteRoot,externalModelDelivery);
 
 export async function modelURL(path){
- const correction=currentYavothCowl(path,location.href,siteRoot);
+ const correction=currentYavothCorrection(path,location.href,siteRoot);
  if(correction){const url=new URL(path,location.href);url.pathname+='.gz';url.searchParams.set('model',correction.sha256.slice(0,20));return url.href;}
  const delivery=deliveredModel(path);if(delivery)return delivery.url;
  const url=new URL(path,location.href),info=await getBundleInfo();
@@ -20,7 +20,7 @@ export async function modelURL(path){
 export async function loadModel(loader,path,onProgress,options={}){
  const progress=beginModelLoading({model:{}},options.progressOptions);
  try{
-  const original=new URL(path,location.href),delivery=deliveredModel(path),correction=currentYavothCowl(path,location.href,siteRoot),url=await modelURL(path);let gzip=url!==original.href;
+  const original=new URL(path,location.href),delivery=deliveredModel(path),correction=currentYavothCorrection(path,location.href,siteRoot),url=await modelURL(path);let gzip=url!==original.href;
   if(delivery&&correction)throw Error('Conflicting model delivery identities');
   const pin=delivery || correction;
   let response=await fetch(url,{signal:options.signal});

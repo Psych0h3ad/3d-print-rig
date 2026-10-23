@@ -20,9 +20,9 @@ async function prepare(run) {
 }
 export async function loadLayoutRecipe(recipe,{signal,onProgress}) {
  const id=recipe.machine_id,progressOptions=headless(onProgress),options={signal,progressOptions,onProgress};
- if(recipe.category==='v24-reference'){const {loadV24ReferenceLayout}=await import('./layout-v24-reference-provider.mjs?v=9caf82697657259d11b9');return loadV24ReferenceLayout(id,{signal,onProgress})}
- if(recipe.category==='v0'){const {loadV0DefaultLayout}=await import('./layout-v0-provider.mjs?v=bea712ab08172a792d3d');return loadV0DefaultLayout(id,{signal,onProgress})}
- if(['siboor','trident','v24'].includes(recipe.category)){const {loadVoronDefaultLayout}=await import('./layout-voron-defaults.mjs?v=e04b9377c94d9d4b4168');return loadVoronDefaultLayout(id,{signal,onProgress})}
+ if(recipe.category==='v24-reference'){const {loadV24ReferenceLayout}=await import('./layout-v24-reference-provider.mjs?v=af2362104f87acc85052');return loadV24ReferenceLayout(id,{signal,onProgress})}
+ if(recipe.category==='v0'){const {loadV0DefaultLayout}=await import('./layout-v0-provider.mjs?v=83dfa7cbbde0f37304d4');return loadV0DefaultLayout(id,{signal,onProgress})}
+ if(['siboor','trident','v24'].includes(recipe.category)){const {loadVoronDefaultLayout}=await import('./layout-voron-defaults.mjs?v=cfb3dbe95885e41dbe25');return loadVoronDefaultLayout(id,{signal,onProgress})}
  if(recipe.category==='source') {
   const m=await import('./source-assembly-loader.mjs?v=1563c3822bd506aa83d5'),{releaseRoot}=await import('./source-assembly-runtime/resources.mjs?v=e42678a5314a2d6c0676');
   const index=await m.loadSourceIndex(signal),record=index.models.find(r=>r.id===id);if(!record)throw Error('Missing layout source record');
@@ -87,14 +87,14 @@ export async function loadLayoutRecipe(recipe,{signal,onProgress}) {
    return finish(loaded,{catalog:'EXTRA_MACHINE_ASSETS.json',asset:loaded.row});
   }
   if(recipe.category==='kit') {
-   const {loadKitReference}=await import('./kit-reference-loader.mjs?v=3b4eec9a8c08f50d03d9'),{createCommunityAdapter}=await import('./community-adapter.mjs?v=61b77f5cd77eabb0120d');
+   const {loadKitReference}=await import('./kit-reference-loader.mjs?v=1e4ea653a75783c74b41'),{createCommunityAdapter}=await import('./community-adapter.mjs?v=61b77f5cd77eabb0120d');
    const raw=await loadKitReference(id,options);loaded={...raw,root:raw.g.scene};own(loaded);loaded.adapter=createCommunityAdapter(loaded.root,loaded.manifest,loaded.profile);loaded.adapter.setAxes(Object.fromEntries(Object.keys(loaded.profile.axes).map(a=>[a,0])));
    return finish(loaded,{catalog:'machines/'+id,defaultPalette:'source-native'});
   }
   if(['micron','custom'].includes(recipe.category)) {
    const THREE=await import('./vendor-r180/three.module.js');let auxiliaries=[];
    if(recipe.category==='micron'){
-    const {GLTFLoader}=await import('./vendor/GLTFLoader.js'),{loadModel}=await import('./model-loader.js?v=b0197506280e28221880');
+    const {GLTFLoader}=await import('./vendor/GLTFLoader.js'),{loadModel}=await import('./model-loader.js?v=319442cce47f582793a9');
     const manifest=await json('machines/'+id+'/assembly_manifest.json',signal),profile=await json('machines/'+id+'/machine_profile.json',signal);
     const g=await loadModel(new GLTFLoader(),url('machines/'+id+'/model.glb'),onProgress,{signal,progressOptions});loaded={root:g.scene,manifest,profile};own(loaded);
     const {createMicronAdapter}=await import('./micron-adapter.mjs?v=f476eef2731027bc0959');loaded.adapter=createMicronAdapter(loaded.root,manifest,profile);

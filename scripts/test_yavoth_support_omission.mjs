@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {assertYavothSupportMetadata,assertYavothSupportOmission} from './yavoth-support-omission.mjs';
+const meta={manufacturing_support_omission:{source_repository:'chirpy2605/voron',source_revision:'cc2e749d09d7f24418f9f8c73c90bcefb1e29584',source_step_sha256:'7da3374030a760d7b2629a2953bb8c3726bccc95f18e153dfce6d5ba2624d305',source_entity:809,source_body_name:'Support',retained_entity:810,source_occurrence:30,removed_triangles:256,retained_triangles:6176,all_vertex_attributes_unchanged:true,retained_triangle_indices_original_subsequence:true,native_mounting_qualified:false},omitted_separate_support_keys:['alternative_mounts_30/Support#809'],support_removal_notice:'Separate author manufacturing support omitted.',prepared_step_available:false};
+meta.native_export_available=false;meta.parts=[{native_export_available:false,source_native_solids:2}];
+assertYavothSupportMetadata(meta);
+for(const [key,value]of Object.entries({source_entity:807,source_body_name:'Carriage_Mount',retained_entity:809,source_occurrence:27,removed_triangles:257,retained_triangles:6175,native_mounting_qualified:true,source_revision:'new'}))assert.throws(()=>assertYavothSupportMetadata({...meta,manufacturing_support_omission:{...meta.manufacturing_support_omission,[key]:value}}),/identity or scope/);
+assert.throws(()=>assertYavothSupportMetadata({...meta,step:'unfiltered.step'}),/Unfiltered STEP/);
+assert.throws(()=>assertYavothSupportMetadata({...meta,parts:[{...meta.parts[0],file:'unfiltered.brep'}]}),/current export/);
+assert.throws(()=>assertYavothSupportMetadata({...meta,omitted_separate_support_keys:[]}),/support identity/);
+assert.throws(()=>assertYavothSupportMetadata({...meta,support_removal_notice:''}),/visible support notice/);
+assert.throws(()=>assertYavothSupportOmission('yavoth59_carriage_9',{meta,entries:[]}),/leaf/);
+assert.equal(assertYavothSupportOmission('yavoth59_carriage_6',{}),null);
+const source=readFileSync(new URL('./yavoth-exact-companions.mjs',import.meta.url),'utf8');
+assert.match(source,/assertYavothSupportOmission\(id,asset\)/,'Actual companion inspection must reject reintroduced manufacturing helper');
+console.log(JSON.stringify({passed:true,scope:'Source identity and omission boundaries. Actual model buffers run separately in the required release gate.'}));

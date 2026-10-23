@@ -1,10 +1,10 @@
 {
   "schema": "yavoth-reviewed-author-cowls-v2",
   "source_revision": "cc2e749d09d7f24418f9f8c73c90bcefb1e29584",
-  "scope": "Complete author-STL cowl surfaces, exact reviewed source registration and exported buffers. Retained 9mm carriage bytes are unchanged, without any new support-removal claim. No complete mount or physical LED claim",
+  "scope": "Complete author-STL cowl surfaces, exact reviewed source registration and exported buffers. The 9 mm carriage is separately pinned to its source-backed manufacturing-support omission. No complete mount or physical LED claim",
   "retained_input_sha256": {
-    "modules/yavoth59_carriage_9.json": "50f6cdcf832259201defc2d156a8ef8568d663b06377708b3e09013e9a9118f0",
-    "modules/yavoth59_carriage_9.glb.gz": "08a0bf39639f70ad5d962902356f32a373edda64caab34e5672f8dbb54e76c32"
+    "modules/yavoth59_carriage_9.json": "1e06d1cbd8d61c5fada3c4bb7b45127de6b521e8df78b2e1a0380a15875065b0",
+    "modules/yavoth59_carriage_9.glb.gz": "0302e84c88b33b9aca8b92ffd477ba33a8864f7247e02a5423c9bdcf1827e2b7"
   },
   "modules": {
     "head_print_yavoth_orbiter2_rapido2_uhf_rear5": {

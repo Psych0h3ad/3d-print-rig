@@ -1,0 +1,38 @@
+{
+  "schema": "yavoth9-author-manufacturing-support-v1",
+  "module": "yavoth59_carriage_9",
+  "key": "yavoth59_carriage_9_0",
+  "source_repository": "chirpy2605/voron",
+  "source_revision": "cc2e749d09d7f24418f9f8c73c90bcefb1e29584",
+  "source_path": "general/Alternative_Voron_Mounts/CAD/Alternative_Voron_Mounts.step",
+  "source_step_sha256": "7da3374030a760d7b2629a2953bb8c3726bccc95f18e153dfce6d5ba2624d305",
+  "source_entity": 809,
+  "source_body": "Support",
+  "retained_entity": 810,
+  "source_occurrence": 30,
+  "source_representation": 970,
+  "public_producer_translation_mm": [
+    147.659305898,
+    -133.0175847,
+    46.842822149
+  ],
+  "source_native_sha256": "6a0263b71aa66b9de16b7d4df56281c1d0ee4ba0b2d29bc60653b3359e9e98ac",
+  "source_glb_gzip_sha256": "08a0bf39639f70ad5d962902356f32a373edda64caab34e5672f8dbb54e76c32",
+  "source_index_sha256": "a1b603e9a742c3626b8055df64af4bfa88cfe1f4727564b4f689096edce32b72",
+  "omitted_triangle_intervals": [
+    [
+      0,
+      256
+    ]
+  ],
+  "source_triangles": 6432,
+  "removed_triangles": 256,
+  "retained_triangles": 6176,
+  "position_count": 6698,
+  "position_sha256": "6217f15d5e68a314970aeee57ff39ab361eee922526f82b8ae172492260d72d6",
+  "retained_index_sha256": "93567f3d3c254f893955ed2cdc6c604ceaa9b27fd7dc3a807621d5bf377a2afc",
+  "glb_sha256": "b13853310f19da814cb4ec9e97ae4d88bda34d7a27a7e094043d1fd1f7077eed",
+  "glb_gzip_sha256": "0302e84c88b33b9aca8b92ffd477ba33a8864f7247e02a5423c9bdcf1827e2b7",
+  "metadata_sha256": "1e06d1cbd8d61c5fada3c4bb7b45127de6b521e8df78b2e1a0380a15875065b0",
+  "scope": "Only separate author manufacturing Support #809 is omitted. Main-body triangle subsequence, attributes, nodes, materials and placement are retained. This is not mechanical mounting or whole-machine clearance verification."
+}

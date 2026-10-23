@@ -1,6 +1,6 @@
 import * as THREE from './vendor-r180/three.module.js';
 import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
-import {modelURL} from './model-loader.js?v=b0197506280e28221880';
+import {modelURL} from './model-loader.js?v=319442cce47f582793a9';
 import {readModelBytes} from './model-progress.mjs?v=beaef781095b6f56b290';
 import {externalModelDelivery} from './model-delivery.mjs';
 import {registeredModelDelivery,verifyDeliveredModel} from './model-delivery-policy.mjs';
