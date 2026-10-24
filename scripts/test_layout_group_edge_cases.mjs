@@ -2,6 +2,7 @@
 // function bodies; UI/storage are observation doubles, never mirrored reducers.
 // Passing planning-envelope checks are not browser, CAD or clearance proof.
 import assert from 'node:assert/strict';
+import {needsEquipmentPreview} from '../site/layout/layout-equipment-preview.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
@@ -50,6 +51,8 @@ function replay(initial,{library=[],storageFailure=false}={}){
   // All group/state/placement decisions below come from the exact product
   // bodies above. Only browser services and observable sinks are doubles.
   const factory=new Function('deps',`
+ const needsEquipmentPreview=${needsEquipmentPreview.toString()},isLayoutEquipmentPreviewPrepared=()=>false,prepareLayoutEquipmentPreview=()=>{throw Error('Unexpected equipment request in native-only fixture');};const equipmentRows=[];
+
     const {createDefaultLayout,createDesk,createShelf,createCatalog,applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,placementViolations,deriveScene,worldTransform,validatePlacement,serializeLayout,parseLayout}=deps.S;
     const {createGroup,renameGroup,ungroup,removeGroup,groupInfo,transformGroup,resolveGroupMove,resolveGroupRotation,captureGroupTemplate,groupTemplateInfo,proposeGroupPlacement,parseGroupLibrary,GROUP_LIBRARY_LIMIT}=deps.G;
     const {proposePlacement}=deps.P;

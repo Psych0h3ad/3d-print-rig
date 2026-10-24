@@ -6,6 +6,7 @@ from pathlib import Path
 import shutil
 from fetch_pinned_source import fetch_pinned_source
 from build_approved_site import safe_path, validate_contract
+from layout_equipment_inputs import prepare_equipment_inputs, load_exact_input_map
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_HOSTS = {'github.com', 'objects.githubusercontent.com',
@@ -107,8 +108,12 @@ def mounting_dependencies(root, rows, materialize):
     return sorted(required)
 
 
-def prepare(root, contract, mapping=None):
+def prepare(root, contract, mapping=None, *, equipment_input_map=None):
     rows=validate_contract(contract)
+    if (mapping is not None and equipment_input_map is None
+            and (root/'site/layout/layout-equipment.mjs').exists()):
+        raise ValueError('Offline source inputs require --equipment-input-map for equipment bodies')
+    equipment = prepare_equipment_inputs(root, exact_input_map=equipment_input_map)
     verified=[]
     def materialize(row):
         if row['path'] in verified:
@@ -134,17 +139,24 @@ def prepare(root, contract, mapping=None):
         if selected(row):
             materialize(row)
     mounting = mounting_dependencies(root, rows, materialize)
-    return {'passed':True,'verified_source_check_inputs':len(verified),'paths':verified,
+    result = {'passed':True,'verified_source_check_inputs':len(verified),'paths':verified,
             'mounting_dependency_paths':mounting,
             'archive_accessed':False,'scope':'Exact source-regression input preparation; no geometry result.'}
+    if equipment is not None:
+        result['layout_equipment_inputs'] = equipment
+    return result
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--inputs',type=Path)
+    parser.add_argument('--equipment-input-map',type=Path,
+                        help='Offline exact ten-body equipment map; no implicit body search or network fallback')
     parser.add_argument('--report',type=Path)
     args=parser.parse_args()
     contract=json.loads((ROOT/'site/APPROVED_DELIVERY.json').read_bytes())
-    result=prepare(ROOT,contract,json.loads(args.inputs.read_bytes()) if args.inputs else None)
+    result=prepare(ROOT,contract,json.loads(args.inputs.read_bytes()) if args.inputs else None,
+                   equipment_input_map=load_exact_input_map(args.equipment_input_map)
+                   if args.equipment_input_map else None)
     if args.report:args.report.write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
     print(json.dumps({'passed':True,'verified_source_check_inputs':result['verified_source_check_inputs'],'archive_accessed':False}))
 

@@ -1,6 +1,6 @@
 """Run all independent source regressions with bounded parallel workers."""
 from pathlib import Path
-import concurrent.futures,datetime,hashlib,json,subprocess,sys,argparse,time
+import concurrent.futures,datetime,hashlib,json,subprocess,sys,argparse,time,os
 ROOT=Path(__file__).resolve().parents[1]
 
 def regression_inputs(root):
@@ -18,13 +18,17 @@ def main():
     if not 1<=args.workers<=8:raise SystemExit('workers must be between 1 and 8')
     before=regression_inputs(ROOT)
     started_at=datetime.datetime.now(datetime.timezone.utc).isoformat()
-    tasks=[['node',*(['--max-old-space-size=256','--expose-gc']
+    tasks=[['node',*(['--max-old-space-size=224','--max-semi-space-size=4','--v8-pool-size=1']
+                    if p.name in {'test_layout_equipment_input_preparation.mjs','test_layout_equipment_preview.mjs'} else []),*(['--max-old-space-size=256','--expose-gc']
                     if p.name in {'test_native_baseline_bootstrap.mjs','test_v24_exact_native_reset.mjs','test_machine_head_global_inputs.mjs'} else []),*(['--experimental-vm-modules'] if p.name=='test_layout_source_zero_face_binding.mjs' else []),str(p)]
            for p in sorted((ROOT/'scripts').glob('test_*.mjs'))]
     tasks.append(['node',str(ROOT/'scripts/check_machine_coverage.mjs')])
     tasks.extend([[sys.executable,str(p)]for p in sorted((ROOT/'scripts').glob('test_*.py'))])
     def run(command):
-        start=time.monotonic();result=subprocess.run(command,cwd=ROOT,capture_output=True,text=True,encoding='utf8',errors='replace')
+        env=os.environ.copy()
+        if Path(command[-1]).name in {'test_layout_equipment_input_preparation.mjs','test_layout_equipment_preview.mjs'}:
+            env['UV_THREADPOOL_SIZE']='1'
+        start=time.monotonic();result=subprocess.run(command,cwd=ROOT,env=env,capture_output=True,text=True,encoding='utf8',errors='replace')
         return dict(test=Path(command[-1]).name,passed=result.returncode==0,seconds=round(time.monotonic()-start,3),output=(result.stdout+result.stderr).strip())
     rows=[]
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers)as pool:

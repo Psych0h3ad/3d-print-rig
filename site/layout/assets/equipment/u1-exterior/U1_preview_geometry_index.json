@@ -1,0 +1,373 @@
+{
+  "kind": "layout-preview-geometry",
+  "units": "m",
+  "up": "+Y",
+  "front": "+Z",
+  "rootPivotM": [
+    0,
+    0,
+    0
+  ],
+  "geometry": {
+    "u1-exterior-exterior-1cca0b38086e4f": {
+      "vertices": 2688,
+      "triangles": 3014,
+      "positionsF32": {
+        "bytes": 32256,
+        "sha256": "7e24c091945c53a3d98c5c0d22617ee1b16c2644870df5b43c07f48c64e59c58"
+      },
+      "normalsF32": {
+        "bytes": 32256,
+        "sha256": "4d1e03842194fc776d06d90a06ed574e5e97c84d32b6f78054028facdcbab89c"
+      },
+      "indicesU32": {
+        "bytes": 36168,
+        "sha256": "524533a1aa39359aa4b55bb230cff0be49f1919d943ce5524d1fb3e9bb604114"
+      }
+    },
+    "u1-exterior-exterior-a112ef85a92159": {
+      "vertices": 196,
+      "triangles": 164,
+      "positionsF32": {
+        "bytes": 2352,
+        "sha256": "83ac6c693f1ab3773e7b78fab284ed5007cd05f1f4651e82b2f7df8ad13e13cd"
+      },
+      "normalsF32": {
+        "bytes": 2352,
+        "sha256": "0d7a076891da2f20c69902491f11106179eaacc1c755359bb6026f05aeda441a"
+      },
+      "indicesU32": {
+        "bytes": 1968,
+        "sha256": "17ce526fb065e760f5b40b23e2db8dad840aa286e2b3b46eda532ee38a1b78e8"
+      }
+    },
+    "u1-exterior-exterior-9c5aa700906a4c": {
+      "vertices": 288,
+      "triangles": 256,
+      "positionsF32": {
+        "bytes": 3456,
+        "sha256": "3648322e0942e433f143e321f039c6bd642eeb4ab411545ed73d40c2b0dd446d"
+      },
+      "normalsF32": {
+        "bytes": 3456,
+        "sha256": "dc8d2cba0752c167ecd75a1acba5860d8864c498f3c58eab8645cb5fb3fa4478"
+      },
+      "indicesU32": {
+        "bytes": 3072,
+        "sha256": "a244e70c6debe377966a42282ee1120c8deaffab725896eb12704b2c30e2ae3f"
+      }
+    },
+    "u1-exterior-exterior-8339958f103303": {
+      "vertices": 288,
+      "triangles": 256,
+      "positionsF32": {
+        "bytes": 3456,
+        "sha256": "80c1cedce2b853aa9948e3a850a4c88f01579ec1592b742361131c0e195a21f1"
+      },
+      "normalsF32": {
+        "bytes": 3456,
+        "sha256": "a02222e04c94359cd907d56dd887e8f4ef50143e86dc5b00506dbaaea4c13265"
+      },
+      "indicesU32": {
+        "bytes": 3072,
+        "sha256": "c36f6bfcd010f267f571fab42761f0a9f8c7f9fd056f0bf295c06942c536b2ea"
+      }
+    },
+    "u1-exterior-exterior-c9299a688f7d4d": {
+      "vertices": 498,
+      "triangles": 344,
+      "positionsF32": {
+        "bytes": 5976,
+        "sha256": "f65b4e74a077cbc2000e3b5eba860eb24ccf9aac19a2555e95b080b2f4b20fdd"
+      },
+      "normalsF32": {
+        "bytes": 5976,
+        "sha256": "33d51ad6fb00d3648091554d37d976992a0cf2a18f3b15fe9f8611bd5901e6fd"
+      },
+      "indicesU32": {
+        "bytes": 4128,
+        "sha256": "62daf1fc607f1f3a4028b077aeb388cea46ba8aabd8c28b8841d7b70412b2145"
+      }
+    },
+    "u1-exterior-exterior-51bd80aa24ba55": {
+      "vertices": 46782,
+      "triangles": 76111,
+      "positionsF32": {
+        "bytes": 561384,
+        "sha256": "9ce3df32994626dbacd76338cf5dee1a79a10d13ad22472f136474c9fc8ba617"
+      },
+      "normalsF32": {
+        "bytes": 561384,
+        "sha256": "683706858dfe8d9a52787885037ebbefa66128e918a54e0375d8568ae1839dd2"
+      },
+      "indicesU32": {
+        "bytes": 913332,
+        "sha256": "23ea51aed052d73d33712515c658875c3de33325a40c51a365e54fe66e810665"
+      }
+    },
+    "u1-exterior-exterior-762a2e2f2e2f2a": {
+      "vertices": 588,
+      "triangles": 388,
+      "positionsF32": {
+        "bytes": 7056,
+        "sha256": "5fdf0fe2ecfd41b01f6b281ea6a32a26a7397aea14ff90bbb29fcc695033e30f"
+      },
+      "normalsF32": {
+        "bytes": 7056,
+        "sha256": "6733ba7c1e24f360a5d6b06af85ff2b957c56f2c7eb50d4c6ecc5529daf3f476"
+      },
+      "indicesU32": {
+        "bytes": 4656,
+        "sha256": "cac0c21fc4d75ea7609914e6c6ffe42045684b894c1ca08d729e585459f44964"
+      }
+    },
+    "u1-exterior-exterior-a74f0bc2915a0e": {
+      "vertices": 2744,
+      "triangles": 1568,
+      "positionsF32": {
+        "bytes": 32928,
+        "sha256": "d5caf20b6f9c8dd1e658a9aaa0dbb47a55df107b6bc815831e19cc822bf18d28"
+      },
+      "normalsF32": {
+        "bytes": 32928,
+        "sha256": "a4c405503c5c5810567f75309ff1bd92ebc15fc4c17124c65675e33df6237316"
+      },
+      "indicesU32": {
+        "bytes": 18816,
+        "sha256": "8272c37cc1f2942ef46d2ec450f608f9626f322af6fa651e957e4e13923b37cf"
+      }
+    },
+    "u1-exterior-exterior-c75a5ab3656942": {
+      "vertices": 228,
+      "triangles": 224,
+      "positionsF32": {
+        "bytes": 2736,
+        "sha256": "d80e8992e14fe0182e02eaf98399e2c1b31a89a58b504b4272246ca77f950d69"
+      },
+      "normalsF32": {
+        "bytes": 2736,
+        "sha256": "176e39f8d4325970c48eec833de14f8f3b82f9444d48ab33e47991053f4007c9"
+      },
+      "indicesU32": {
+        "bytes": 2688,
+        "sha256": "438cb32e4864d2cceb138d12efd9b7163ad7f51d35d16e3c81c0c23cb125767d"
+      }
+    },
+    "u1-exterior-exterior-24c299afbdd1e9": {
+      "vertices": 114,
+      "triangles": 108,
+      "positionsF32": {
+        "bytes": 1368,
+        "sha256": "d42efbcc457a06bfc079d06b5870090cd6fd9c8ab0fedff63d8b91c7355e7a55"
+      },
+      "normalsF32": {
+        "bytes": 1368,
+        "sha256": "bc41d094178e9c50780de43db5c741e8f5fb11be9fe7c22734896457475ce2fd"
+      },
+      "indicesU32": {
+        "bytes": 1296,
+        "sha256": "bf5d353a69007b5c2bd523d012ca4bc12f05bfc0c23bd5978762e7fe116e869e"
+      }
+    },
+    "u1-exterior-exterior-b0fcf5252f136e": {
+      "vertices": 228,
+      "triangles": 224,
+      "positionsF32": {
+        "bytes": 2736,
+        "sha256": "3dc97b88eca0db36a040919b122aab4003f5070544bcbcf4e4ee395884d1f5d2"
+      },
+      "normalsF32": {
+        "bytes": 2736,
+        "sha256": "02314159b614289196199579e84d420a4e4d40ac2ee02c6195b0ac390a34b713"
+      },
+      "indicesU32": {
+        "bytes": 2688,
+        "sha256": "e1448c3478a4037a6d35c2077b68f0c3df0eaace0bb690edf9cbdc30a2698cda"
+      }
+    },
+    "u1-exterior-exterior-8a1fa753b78972": {
+      "vertices": 114,
+      "triangles": 108,
+      "positionsF32": {
+        "bytes": 1368,
+        "sha256": "2c4a6283be9aebe1bdcfe0c959a30dadce76c6653c22d28f8c2a642106aae44c"
+      },
+      "normalsF32": {
+        "bytes": 1368,
+        "sha256": "bc41d094178e9c50780de43db5c741e8f5fb11be9fe7c22734896457475ce2fd"
+      },
+      "indicesU32": {
+        "bytes": 1296,
+        "sha256": "a2cb76dc9b813692ba847c14ea624928b6a223636c38bfe9e23f3ef03eb7169d"
+      }
+    },
+    "u1-exterior-exterior-681f68d6b86eb2": {
+      "vertices": 588,
+      "triangles": 388,
+      "positionsF32": {
+        "bytes": 7056,
+        "sha256": "2e92ad58b891908ba4ed0d8fd7c46c5938eb0f56518b6a51974de4f9796e2aff"
+      },
+      "normalsF32": {
+        "bytes": 7056,
+        "sha256": "b1cb0b3e6dbf97ef57a9aeeb8fdc8fe26f2188ca8ee68edeee34bc813ef099f2"
+      },
+      "indicesU32": {
+        "bytes": 4656,
+        "sha256": "92b39778539c984fe50ddf80ff021561042bf1194adbb2cc20726d0b2eadd5d6"
+      }
+    },
+    "u1-exterior-exterior-847d6b0cfe8c30": {
+      "vertices": 2744,
+      "triangles": 1568,
+      "positionsF32": {
+        "bytes": 32928,
+        "sha256": "0297b913f6c7dcc295096fcb932730197f77cdb8dc89014b4078e68a1d478d3d"
+      },
+      "normalsF32": {
+        "bytes": 32928,
+        "sha256": "68f179cee3a951e5cc45c9989c0c4516a7607de5c72d37575bd13aedcae5d5ae"
+      },
+      "indicesU32": {
+        "bytes": 18816,
+        "sha256": "6f1c4b322c443808e9d2d804b12dd9870c2683f4f54bcba9a3a1babf305b34e2"
+      }
+    },
+    "u1-exterior-exterior-9eea7c6af82e96": {
+      "vertices": 228,
+      "triangles": 224,
+      "positionsF32": {
+        "bytes": 2736,
+        "sha256": "d0f3badcf1558ae31b8ed0ef9fdb84052e4423c4743e8d52e0d497db91b649b4"
+      },
+      "normalsF32": {
+        "bytes": 2736,
+        "sha256": "20f9dca54137a87f7460ff0fba552ce2d5448b4b9e42f242dc5bbb2836fee506"
+      },
+      "indicesU32": {
+        "bytes": 2688,
+        "sha256": "f0f9339538e7058ad8ced9e520a658b196398b93fef5327b346306690da6a2c5"
+      }
+    },
+    "u1-exterior-exterior-150c3b33478cda": {
+      "vertices": 114,
+      "triangles": 108,
+      "positionsF32": {
+        "bytes": 1368,
+        "sha256": "fbda32c5621b39d43436d77d1055986fafbcef46f04aa3ba835993c05cfb9270"
+      },
+      "normalsF32": {
+        "bytes": 1368,
+        "sha256": "d5db98c588311fa51f0223ac748e7b813defb4f6358d42312177d06c789cd448"
+      },
+      "indicesU32": {
+        "bytes": 1296,
+        "sha256": "d75a271ca17b7b5dabdc5bab44140f023d12333a8b6f21e3a52e9cb160a5ff97"
+      }
+    },
+    "u1-exterior-exterior-b829c8ddb8d525": {
+      "vertices": 228,
+      "triangles": 224,
+      "positionsF32": {
+        "bytes": 2736,
+        "sha256": "682621eb4ee5dc3879e61b3d157986413d1c16f054e2c64b0c2ff766fa0ef661"
+      },
+      "normalsF32": {
+        "bytes": 2736,
+        "sha256": "20f9dca54137a87f7460ff0fba552ce2d5448b4b9e42f242dc5bbb2836fee506"
+      },
+      "indicesU32": {
+        "bytes": 2688,
+        "sha256": "90430f78beff6cc2e9cb868d7312085167d8f728e00afb4e48768f769ddbe372"
+      }
+    },
+    "u1-exterior-exterior-849a31cbe9c957": {
+      "vertices": 114,
+      "triangles": 108,
+      "positionsF32": {
+        "bytes": 1368,
+        "sha256": "91a4586b228e8833983efd7e8ce95583c6bbc194da1eb760c23ace6d13ecb39e"
+      },
+      "normalsF32": {
+        "bytes": 1368,
+        "sha256": "d5db98c588311fa51f0223ac748e7b813defb4f6358d42312177d06c789cd448"
+      },
+      "indicesU32": {
+        "bytes": 1296,
+        "sha256": "4785f99dfb529cd6a4bf53355b314ade79ffc8e60b7bb3210b1d110abfe51803"
+      }
+    },
+    "u1-exterior-exterior-875c198b84a36e": {
+      "vertices": 208,
+      "triangles": 180,
+      "positionsF32": {
+        "bytes": 2496,
+        "sha256": "2f93b0e5f6a3bbee8bc925dd4c8c8a0216b309fb424cd84a1b5f397c0ce11a73"
+      },
+      "normalsF32": {
+        "bytes": 2496,
+        "sha256": "cb4df610556dec7f04fb613e78a68789434f9c942a13e7fc32652947eaf374c8"
+      },
+      "indicesU32": {
+        "bytes": 2160,
+        "sha256": "183b97e4aef7d98b5e10053bb42a9f3948fa62c6f3efedd642fe557ae3deaae6"
+      }
+    },
+    "u1-exterior-exterior-9ed4855f3cfd81": {
+      "vertices": 318,
+      "triangles": 208,
+      "positionsF32": {
+        "bytes": 3816,
+        "sha256": "e4ebf50c8e4d5f1844b29008d018b008f2880b83d8fbbb0e9aa904c6e296589a"
+      },
+      "normalsF32": {
+        "bytes": 3816,
+        "sha256": "7bcb61df1f5b0b47f32b46317b4e642fb1a862d6b671791d03996584a150f517"
+      },
+      "indicesU32": {
+        "bytes": 2496,
+        "sha256": "96afaf5590166542b98b03918134d669372530d44ce1c36a3fdf0206fdc25010"
+      }
+    },
+    "u1-exterior-exterior-173e19ec5807ca": {
+      "vertices": 392,
+      "triangles": 220,
+      "positionsF32": {
+        "bytes": 4704,
+        "sha256": "bd13910dcde48785b05ef97924c6777d0f80acebe328ae30e337227a1976bf89"
+      },
+      "normalsF32": {
+        "bytes": 4704,
+        "sha256": "0c61f6ae2f506f4adfc9303dcba3da5d915a01d2dc1f60aac66767c12a628019"
+      },
+      "indicesU32": {
+        "bytes": 2640,
+        "sha256": "bbdfdc53450ea7302d4257d60d8a48aad7ec2d6fff686658a347657ae004d4af"
+      }
+    },
+    "u1-exterior-exterior-17684dec7ee3e9": {
+      "vertices": 392,
+      "triangles": 220,
+      "positionsF32": {
+        "bytes": 4704,
+        "sha256": "6544c7880fa6199c3a2125c8264832929ec9437befd46211d24d9da80a506837"
+      },
+      "normalsF32": {
+        "bytes": 4704,
+        "sha256": "073fc3b0a3917c673c6339ffe900360266c204d672e1221eeb0c013c2197bb47"
+      },
+      "indicesU32": {
+        "bytes": 2640,
+        "sha256": "ac4d0572999e71edf17b0db8c3cba0b7b1fdcc41b6fc2199c647fe7b8e6d59f2"
+      }
+    }
+  },
+  "body": {
+    "bytes": 4776355,
+    "sha256": "3963e49ff68e19254a2c38ddddf56f411c8885886b2ce425ad9c84d904203b38"
+  },
+  "gzip": {
+    "bytes": 1530121,
+    "sha256": "80789adad7ef30467d91943c45987c48538e024ace7d17a687a663abd2902b6d"
+  }
+}

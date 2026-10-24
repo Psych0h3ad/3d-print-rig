@@ -1,0 +1,34 @@
+[
+  {
+    "index": 2,
+    "path": "official_manual_image_02.webp",
+    "source_page": "https://neo.bttwiki.com/en/docs/more-series/pop-module/popstation-mini/",
+    "source_embedding": "inline image base64, original image bytes decoded",
+    "bytes": 6386,
+    "sha256": "c5b1ef63b4445ac1da8d60aa71d327075c0c8357479065f61aabe3320e903471"
+  },
+  {
+    "index": 13,
+    "path": "official_manual_image_13.webp",
+    "source_page": "https://neo.bttwiki.com/en/docs/more-series/pop-module/popstation-mini/",
+    "source_embedding": "inline image base64, original image bytes decoded",
+    "bytes": 8186,
+    "sha256": "cc08cc38e7edf1139eddfe737d61494e8d47aba7a51125169782b5bf2e60ef00"
+  },
+  {
+    "index": 15,
+    "path": "official_manual_image_15.webp",
+    "source_page": "https://neo.bttwiki.com/en/docs/more-series/pop-module/popstation-mini/",
+    "source_embedding": "inline image base64, original image bytes decoded",
+    "bytes": 8738,
+    "sha256": "7edd5e277162883aa974e08903d511f45f16f37ecc9bde5df40d5f6ab80f02c7"
+  },
+  {
+    "index": 30,
+    "path": "official_manual_image_30.webp",
+    "source_page": "https://neo.bttwiki.com/en/docs/more-series/pop-module/popstation-mini/",
+    "source_embedding": "inline image base64, original image bytes decoded",
+    "bytes": 1604,
+    "sha256": "b26656d67659c1f81d3e095ea9b10b7329258f281fd0bee6a4940e127bad5846"
+  }
+]

@@ -1,10 +1,12 @@
 import * as THREE from '../viewer/vendor-r180/three.module.js';
 import {OrbitControls} from '../viewer/vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from '../viewer/vendor-r180/RoomEnvironment.js';
-import {deriveScene} from './layout-state.mjs?v=178f9d7e9634806cb173';
+import {deriveScene} from './layout-state.mjs?v=156b82f412caf708ab4e';
 import {createLayoutSurfaces, resolveSurfaceAppearance, wallSurfaceGeometry} from './layout-surfaces.mjs?v=0e7f271c883eb7ec8844';
 import {drawPlanMeasurements} from './layout-plan-measurements.mjs?v=ccb8d47a212b4279e38a';
-import {groupInfo, groupingForEntity} from './layout-groups.mjs?v=bd219ffd44e6d20acdde';
+import {groupInfo, groupingForEntity} from './layout-groups.mjs?v=2c185c4987d6e2ff8d5a';
+import {getLayoutEquipment,resolveLayoutEquipment} from './layout-equipment.mjs?v=6046ce679bd80e50ee2d';
+import {createEquipmentMeshCache} from './layout-equipment-mesh.mjs?v=7a5e3b4ba2a7bd972995';
 
 const MM = .001;
 const disposableMaterial = new THREE.MeshBasicMaterial({visible:false});
@@ -34,6 +36,7 @@ function printerPreviewParts(row) {
     !Array.isArray(p.sizeM)||p.sizeM.length!==3||!p.sizeM.every(v=>Number.isFinite(v)&&v>0)||
     !Array.isArray(p.centerM)||p.centerM.length!==3||!p.centerM.every(Number.isFinite)))throw Error('Invalid printer preview parts');
   const parts=original.length?[...original]:[{wireframe:true,sizeM:[w,h,z],centerM:[0,h/2,0],color:'#718096'}];
+  if(row.proxy?.appendGenericPrinterCues===false)return {style:'exterior',parts,simplePreview:true};
   const solids=original.filter(p=>!p.wireframe),has=role=>solids.some(p=>p.proxyRole===role);
   const frame=solids.filter(p=>!['bed','base','head'].includes(p.proxyRole)&&Math.max(...p.sizeM)>Math.min(w,h,z)*.3);
   const span=(axis,extent)=>{
@@ -115,13 +118,16 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   const selectionBox=new THREE.Box3Helper(new THREE.Box3(),0xc35734);selectionBox.visible=false;scene.add(selectionBox);
   const planSelection=new THREE.LineLoop(new THREE.BufferGeometry(),new THREE.LineBasicMaterial({color:0xc35734,depthTest:false,depthWrite:false}));planSelection.visible=false;planSelection.renderOrder=30;scene.add(planSelection);
   const boxGeometry=new THREE.BoxGeometry(1,1,1),wireGeometry=new THREE.EdgesGeometry(boxGeometry),wireMaterial=new THREE.LineBasicMaterial({color:0x4d7186,transparent:true,opacity:.75}),palette=new Map(),objects=new Map(),raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();
+  const cylinderGeometry=new THREE.CylinderGeometry(.5,.5,1,24);
+  const equipmentTubeGeometries=new Map();
+  const equipmentMeshCache=createEquipmentMeshCache(THREE);
   const placementGroup=new THREE.Group(),placementBody=new THREE.Group();placementGroup.userData.layoutPlacementPreview=true;placementGroup.add(placementBody);scene.add(placementGroup);placementGroup.visible=false;
   const ghostMaterial=new THREE.MeshBasicMaterial({color:0x21a795,transparent:true,opacity:.4,depthWrite:false});
   const ghostLineMaterial=new THREE.LineBasicMaterial({color:0x21a795,transparent:true,opacity:.95,depthTest:false,depthWrite:false});
   const ghostOutline=new THREE.LineSegments(wireGeometry,ghostLineMaterial);placementBody.add(ghostOutline);
   const ghostFootprint=new THREE.Mesh(new THREE.PlaneGeometry(1,1),new THREE.MeshBasicMaterial({color:0x21a795,transparent:true,opacity:.2,depthWrite:false,side:THREE.DoubleSide}));ghostFootprint.rotation.x=-Math.PI/2;ghostFootprint.position.y=.002;placementGroup.add(ghostFootprint);
   const placementGuides=new THREE.LineSegments(new THREE.BufferGeometry(),ghostLineMaterial);placementGuides.renderOrder=40;scene.add(placementGuides);placementGuides.visible=false;
-  let placing=null,placementEvent=null,placementProposal=null,placementFrame=0,placementBounds=null;
+  let placing=null,placementEvent=null,placementProposal=null,placementFrame=0,placementBounds=null,placementEquipmentVariant=null;
   const groupEntities=new Map();
   raycaster.params.Line.threshold=.01;
   let current,derived,selectedId=null,viewMode='perspective',planHalfHeight=2,perspectiveReady=false,planReady=false,drag=null,disposed=false,resourcesDisposed=false,exporting=false,exportAbort=null,frame=0,lastWidth=0,lastHeight=0,wallsVisible=true,measurementsVisible=false;
@@ -129,8 +135,25 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   const planFloorMaterial=new THREE.MeshStandardMaterial({color:'#d9dfe1',roughness:.94,side:THREE.DoubleSide});
   const roomGeometries=new Set(),contactGeometries=new Set(),contacts=new Map(),contactPlaneGeometry=new THREE.PlaneGeometry(1,1);
   let roomKey=null,shadowRoomKey=null;
-  const material=color=>{if(!palette.has(color))palette.set(color,new THREE.MeshStandardMaterial({color,roughness:.82,metalness:.02}));return palette.get(color);};
+  const material=(color,opacity=1)=>{const key=opacity===1?color:`${color}:${opacity}`;if(!palette.has(key))palette.set(key,new THREE.MeshStandardMaterial({color,roughness:.82,metalness:.02,opacity,transparent:opacity<1,depthWrite:opacity===1}));return palette.get(key);};
   function box(parent,size,position,color){const m=new THREE.Mesh(boxGeometry,material(color));m.scale.set(...size);m.position.set(...position);m.castShadow=m.receiveShadow=true;parent.add(m);return m;}
+  function previewPart(parent,p,override){
+    const mat=override||material(p.color||'#465258',p.opacity??1);
+    let part;
+    if(p.shape==='mesh')part=new THREE.Mesh(equipmentMeshCache.get(p),mat);
+    else if(p.wireframe){part=new THREE.LineSegments(wireGeometry,override?ghostLineMaterial:wireMaterial);part.scale.set(...p.sizeM);}
+    else if(p.shape==='tube'){
+      const key=JSON.stringify([p.pointsM,p.radiusM]);
+      if(!equipmentTubeGeometries.has(key))equipmentTubeGeometries.set(key,new THREE.TubeGeometry(new THREE.CatmullRomCurve3(p.pointsM.map(v=>new THREE.Vector3(...v))),Math.min(64,p.pointsM.length*3),p.radiusM,6,false));
+      part=new THREE.Mesh(equipmentTubeGeometries.get(key),mat);
+    }else if(p.shape==='cylinder'){
+      part=new THREE.Mesh(cylinderGeometry,mat);
+      if(p.axis==='x'){part.rotation.z=Math.PI/2;part.scale.set(p.sizeM[1],p.sizeM[0],p.sizeM[2]);}
+      else if(p.axis==='z'){part.rotation.x=Math.PI/2;part.scale.set(p.sizeM[0],p.sizeM[2],p.sizeM[1]);}
+      else part.scale.set(...p.sizeM);
+    }else{part=new THREE.Mesh(boxGeometry,mat);part.scale.set(...p.sizeM);}
+    if(p.shape!=='tube'&&p.shape!=='mesh')part.position.set(...p.centerM);part.castShadow=part.receiveShadow=!p.wireframe;part.userData.previewCue=!!p.previewCue;part.userData.proxyRole=p.proxyRole||'source-bounds';parent.add(part);return part;
+  }
   function isPlan(){return viewMode==='top';}
   function getView(){return {mode:viewMode,projection:isPlan()?'orthographic-floorplan':'perspective-3d'};}
   function enableControls(){const manipulating=drag?.kind==='object'||drag?.kind==='rotate';perspectiveControls.enabled=!exporting&&!disposed&&!isPlan()&&!manipulating;planControls.enabled=!exporting&&!disposed&&isPlan()&&!manipulating;if(exporting||disposed)objectTools.hidden=true;}
@@ -161,6 +184,11 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   function record(e,g){g.userData.entityId=e.id;g.position.set(e.positionM.x,e.positionM.y,e.positionM.z);g.rotation.y=e.yawRad;objects.set(e.id,g);}
   function makeFurniture(e){
     const g=new THREE.Group();furnitureGroup.add(g);record(e,g);
+    if(e.type==='popstation_mini'){
+      const row=getLayoutEquipment('biqu_pop_station_mini_layout_reference',e.equipmentVariant||'empty');
+      for(const p of row.proxy.parts)previewPart(g,p);
+      g.userData.equipment=true;return g;
+    }
     const w=e.widthMm*MM,d=e.depthMm*MM,h=e.heightMm*MM;
     for(const b of e.boards)box(g,[b.widthM,b.thicknessM,b.depthM],[0,b.localCenterYM,0],'#c7bda9');
     const leg=e.type==='desk'?.045:.035;
@@ -175,8 +203,8 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     const c=Math.cos(e.yawRad||0),s=Math.sin(e.yawRad||0);
     return [[-w/2,-d/2],[w/2,-d/2],[w/2,d/2],[-w/2,d/2]].map(([px,pz])=>[c*px+s*pz,-s*px+c*pz]);
   }
-  function planLabel(e){const row=e.machineId?catalogMachine(e.machineId):null;return typeof row?.label==='string'?row.label:e.id;}
-  function selectedLabel(e){if(e.type==='group')return e.name||e.id;if(e.machineId)return planLabel(e);const same=(current.furniture||derived.furniture||[]).filter(f=>f.type===e.type);return t(e.type==='desk'?'layout.deskName':'layout.shelfName',{number:same.findIndex(f=>f.id===e.id)+1});}
+  function planLabel(e){const row=e.machineId?catalogMachine(e.machineId):null;return typeof row?.label==='string'?row.label:e.type==='popstation_mini'?'BIQU PopStation Mini':e.id;}
+  function selectedLabel(e){if(e.type==='group')return e.name||e.id;if(e.machineId||e.type==='popstation_mini')return planLabel(e);const same=(current.furniture||derived.furniture||[]).filter(f=>f.type===e.type);return t(e.type==='desk'?'layout.deskName':'layout.shelfName',{number:same.findIndex(f=>f.id===e.id)+1});}
   function makePlan(e,warning){
     const points=footprint(e),g=new THREE.Group();g.userData.entityId=e.id;g.userData.planProjection=true;g.userData.planPoints=points;g.userData.planLabel=planLabel(e);g.userData.planColor=warning?'#bf6d48':e.type==='printer'?'#6489a3':'#c2a379';
     g.userData.planLabelSuppressed=derived.printers.some(p=>p.parentId===e.id);
@@ -230,6 +258,8 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     }
     objectTools.style.top=`${Math.max(Math.min(100,height),Math.min(height-12,bottom))}px`;
     const entity=entityInfo(selectedId),row=entity?.machineId?catalogMachine(entity.machineId):null,dimensions=row?.dimensionsMm;
+    const mountLocked=entity?.type==='printer'&&derived.furniture.some(f=>f.id===entity.parentId&&f.type==='popstation_mini');
+    for(const button of [rotateLeft,rotateRight,rotateHandle])button.disabled=!!mountLocked;
     if(entity){selectedName.textContent=selectedLabel(entity);selectedName.title=selectedName.textContent;selectedSize.textContent=[entity.widthMm??row?.widthMm??dimensions?.width,entity.depthMm??row?.depthMm??dimensions?.depth,entity.heightMm??row?.heightMm??dimensions?.height].map(n=>Math.round(n)).join(' × ')+` ${t('common.mm')}`;selectedSize.title=t('layout.dimensions');}
     objectTools.setAttribute('aria-label',t('layout.rotationControls'));objectTools.title=t('layout.rotationHint');
     for(const [button,key]of [[rotateLeft,'layout.rotateLeft'],[rotateRight,'layout.rotateRight'],[rotateHandle,'layout.rotateHandle'],[focusButton,'layout.focusSelected']]){button.setAttribute('aria-label',t(key));button.title=t(key);}
@@ -239,7 +269,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   function presentView(){furnitureGroup.visible=!isPlan();printersGroup.visible=!isPlan();contactGroup.visible=!isPlan();planGroup.visible=isPlan();placementBody.visible=!isPlan();renderer.shadowMap.enabled=!isPlan();grid.material.opacity=isPlan()?.35:.12;for(const o of roomGroup.children)if(o.userData.roomOwned)o.material=isPlan()?planFloorMaterial:o.userData.finishMaterial;enableControls();refreshWalls();updateSelection();}
   function makePrinter(e){
     const g=new THREE.Group();printersGroup.add(g);record(e,g);
-    const row=catalogMachine(e.machineId);if(!row)throw Error('Unknown layout printer');
+    const row=resolveLayoutEquipment(catalogMachine(e.machineId),e.equipmentVariant);if(!row)throw Error('Unknown layout printer');
     // Catalog proxy parts already use a normalized contact plane. The scene
     // position may include a native base offset needed only by other recipes.
     g.position.y=Number.isFinite(e.supportYM)?e.supportYM:e.positionM.y-(row.baseOffsetMm||0)*MM;
@@ -247,7 +277,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     for(const p of preview.parts){
       let part;
       if(p.wireframe){part=new THREE.LineSegments(wireGeometry,wireMaterial);part.scale.set(...p.sizeM);part.position.set(...p.centerM);g.add(part);}
-      else {const role=p.proxyRole||'',color=role.includes('head')?'#36818b':role.includes('bed')&&!role.includes('support')?'#b7bfbb':role.includes('gantry')?'#647981':role==='contact-foot'?'#343d41':role.includes('base')?'#59666d':p.color||'#465258';part=box(g,p.sizeM,p.centerM,color);}
+      else {const role=p.proxyRole||'',color=row.proxy?.appendGenericPrinterCues===false?p.color:role.includes('head')?'#36818b':role.includes('bed')&&!role.includes('support')?'#b7bfbb':role.includes('gantry')?'#647981':role==='contact-foot'?'#343d41':role.includes('base')?'#59666d':p.color||'#465258';part=previewPart(g,{...p,color});}
       part.userData.previewCue=!!p.previewCue;part.userData.proxyRole=p.proxyRole||'source-bounds';
     }
     return g;
@@ -265,7 +295,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     contactGeometries.add(geometry);
     const mesh=new THREE.Mesh(geometry,surfaces.occlusion(e.type==='printer'?'printer':'furniture'));
     mesh.rotation.x=-Math.PI/2;mesh.position.y=.0006;mesh.renderOrder=2;g.add(mesh);
-    if(e.type!=='printer'){
+    if(e.type!=='printer'&&e.type!=='popstation_mini'){
       const leg=e.type==='desk'?.045:.035;
       for(const x of [-1,1])for(const z of [-1,1]){
         const foot=new THREE.Mesh(contactPlaneGeometry,surfaces.occlusion('foot'));
@@ -407,6 +437,14 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     let proposal;try{proposal=onPlacementMove({xMm:target.point.x/MM,zMm:target.point.z/MM,parentId:target.parentId,surfaceId:target.surfaceId,altKey:!!event.altKey});}catch(error){onError(error);return null;}
     if(!proposal?.world||!proposal.sizeMm||!Object.values(proposal.world).every(Number.isFinite)){placementGroup.visible=placementGuides.visible=false;placementProposal=null;draw();return null;}
     placementProposal=proposal;const {world:w,sizeMm:d}=proposal;
+    if(placing.kind==='printer'&&placing.machineId==='snapmaker_u1_layout_reference'){
+      const variant=derived.furniture.some(f=>f.id===target.parentId&&f.type==='popstation_mini')?'docked':'standalone';
+      if(placementEquipmentVariant!==variant){
+        for(const child of [...placementBody.children])if(child!==ghostOutline)placementBody.remove(child);
+        for(const part of getLayoutEquipment(placing.machineId,variant).proxy.parts)previewPart(placementBody,part,ghostMaterial);
+        placementEquipmentVariant=variant;
+      }
+    }
     placementGroup.position.set(w.xMm*MM,w.yMm*MM,w.zMm*MM);placementGroup.rotation.y=w.yawDeg*Math.PI/180;
     placementGroup.visible=true;placementBody.visible=!isPlan();
     const bounds=placementBounds||{minX:-d.width/2,maxX:d.width/2,minZ:-d.depth/2,maxZ:d.depth/2,minY:0,maxY:d.height};
@@ -424,7 +462,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   }
   function setPlacement(value){
     if(exporting||disposed)return false;
-    cancel();if(placementFrame){cancelAnimationFrame(placementFrame);placementFrame=0;}placing=value;placementProposal=null;placementBounds=null;
+    cancel();if(placementFrame){cancelAnimationFrame(placementFrame);placementFrame=0;}placing=value;placementProposal=null;placementBounds=null;placementEquipmentVariant=null;
     for(const child of [...placementBody.children])if(child!==ghostOutline)placementBody.remove(child);
     if(value){
       const dims=value.sizeMm||{width:1200,depth:600,height:750},add=(size,center)=>{const m=new THREE.Mesh(boxGeometry,ghostMaterial);m.scale.set(...size);m.position.set(...center);placementBody.add(m);};
@@ -442,8 +480,10 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
           for(const e of all){
             const node=new THREE.Group();node.position.set(e.positionM.x,e.supportYM??e.positionM.y,e.positionM.z);node.rotation.y=e.yawRad;placementBody.add(node);
             if(e.type==='printer'){
-              const row=catalogMachine(e.machineId);if(!row)throw Error('Unknown group placement printer');
-              for(const part of printerPreviewParts(row).parts)addPart(node,part.sizeM,part.centerM,!!part.wireframe);
+              const row=resolveLayoutEquipment(catalogMachine(e.machineId),e.equipmentVariant);if(!row)throw Error('Unknown group placement printer');
+              for(const part of printerPreviewParts(row).parts)previewPart(node,part,ghostMaterial);
+            }else if(e.type==='popstation_mini'){
+              for(const part of getLayoutEquipment('biqu_pop_station_mini_layout_reference',e.equipmentVariant||'empty').proxy.parts)previewPart(node,part,ghostMaterial);
             }else{
               for(const board of e.boards)addPart(node,[board.widthM,board.thicknessM,board.depthM],[0,board.localCenterYM,0]);
               const leg=e.type==='desk'?.045:.035;
@@ -452,7 +492,9 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
           }
         }catch(error){for(const child of [...placementBody.children])if(child!==ghostOutline)placementBody.remove(child);placing=null;placementBounds=null;value=null;onError(error);}
       }else if(value.kind==='printer'){
-        const row=catalogMachine(value.machineId);if(row)for(const part of printerPreviewParts(row).parts)if(!part.wireframe)add(part.sizeM,part.centerM);
+        const row=catalogMachine(value.machineId);if(row)for(const part of printerPreviewParts(row).parts)if(!part.wireframe)previewPart(placementBody,part,ghostMaterial);
+      }else if(value.kind==='popstation_mini'){
+        for(const part of getLayoutEquipment('biqu_pop_station_mini_layout_reference','empty').proxy.parts)previewPart(placementBody,part,ghostMaterial);
       }else{
         const w=dims.width*MM,h=dims.height*MM,d=dims.depth*MM;
         const levels=value.kind==='shelf'?(value.copy?.levels?.map(l=>l.topMm*MM)||[.1,.65,1.2,h]):[h];
@@ -595,7 +637,8 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     if(!renderer.extensions.has('EXT_color_buffer_float'))throw Object.assign(Error('HDR image output is unavailable'),{code:'RENDER_UNSUPPORTED'});
     const externalSignal=signal,controller=new AbortController(),forwardAbort=()=>controller.abort();exportAbort=controller;
     if(signal?.aborted)controller.abort();else signal?.addEventListener('abort',forwardAbort,{once:true});signal=controller.signal;
-    const snapshot=derived.printers.map(p=>({...p,positionM:{...p.positionM}}));
+    const snapshot=[...derived.printers,...derived.furniture.filter(e=>e.type==='popstation_mini').map(e=>({...e,machineId:'biqu_pop_station_mini_layout_reference'}))].map(p=>({...p,positionM:{...p.positionM}}));
+    const streamedFurniture=[...furnitureGroup.children].filter(g=>g.userData.equipment),furnitureVisibility=streamedFurniture.map(g=>g.visible);
     const limit=Math.min(renderer.capabilities.maxTextureSize,2560),long=Math.max(320,Math.min(limit,width)),aspect=lastWidth/Math.max(1,lastHeight),w=Math.max(1,Math.round(aspect>=1?long:long*aspect)),h=Math.max(1,Math.round(aspect>=1?long/aspect:long));
     let target,outputTarget,outputGeometry,outputMaterial;const oldTarget=renderer.getRenderTarget(),oldAuto=renderer.autoClear,oldBackground=scene.background,oldShaderError=renderer.debug.onShaderError,transparentRoot=new THREE.Group(),previewVisible=placementGroup.visible,guidesVisible=placementGuides.visible;
     const opaqueScene=new THREE.Scene();opaqueScene.environment=scene.environment;opaqueScene.environmentIntensity=scene.environmentIntensity;
@@ -603,7 +646,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     // models use ordinary lighting; no additional maps or CAD floor projection.
     for(const l of scene.children.filter(c=>c.isLight)){const copy=l.clone();copy.castShadow=false;opaqueScene.add(copy);if(copy.target)opaqueScene.add(copy.target);}
     let transparentBytes=0,active=null;
-    exporting=true;renderer.debug.onShaderError=()=>{throw Object.assign(Error('Image shader compilation failed'),{code:'RENDER_SHADER_FAILED'});};if(frame){cancelAnimationFrame(frame);frame=0;}controls.enabled=false;selectionBox.visible=false;printersGroup.visible=false;placementGroup.visible=placementGuides.visible=false;
+    exporting=true;renderer.debug.onShaderError=()=>{throw Object.assign(Error('Image shader compilation failed'),{code:'RENDER_SHADER_FAILED'});};if(frame){cancelAnimationFrame(frame);frame=0;}controls.enabled=false;selectionBox.visible=false;printersGroup.visible=false;for(const g of streamedFurniture)g.visible=false;placementGroup.visible=placementGuides.visible=false;
     const exportCamera=camera.clone();exportCamera.aspect=w/h;exportCamera.updateProjectionMatrix();
     try{
       aborted(signal);target=new THREE.WebGLRenderTarget(w,h,{samples:0,format:THREE.RGBAFormat,type:THREE.HalfFloatType});target.texture.colorSpace=THREE.LinearSRGBColorSpace;
@@ -613,7 +656,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
       renderer.setRenderTarget(target);renderer.autoClear=true;renderer.render(scene,exportCamera);renderer.autoClear=false;
       for(let i=0;i<snapshot.length;i++){
         aborted(signal);const p=snapshot[i];onProgress({phase:'loading',index:i,total:snapshot.length,machineId:p.machineId,ratio:0});
-        active=await loadMachine(p.machineId,{signal,onProgress:detail=>onProgress({...detail,phase:'loading',index:i,total:snapshot.length,machineId:p.machineId,ratio:Number.isFinite(detail?.ratio)?detail.ratio:Number.isFinite(detail?.percent)?detail.percent/100:Number.isFinite(detail?.total)&&detail.total>0&&Number.isFinite(detail?.loaded)?detail.loaded/detail.total:0})});
+        active=await loadMachine(p.machineId,{...(p.equipmentVariant?{equipmentVariant:p.equipmentVariant}:{}),signal,onProgress:detail=>onProgress({...detail,phase:'loading',index:i,total:snapshot.length,machineId:p.machineId,ratio:Number.isFinite(detail?.ratio)?detail.ratio:Number.isFinite(detail?.percent)?detail.percent/100:Number.isFinite(detail?.total)&&detail.total>0&&Number.isFinite(detail?.loaded)?detail.loaded/detail.total:0})});
         aborted(signal);const root=active.root;root.position.set(p.positionM.x,p.supportYM??p.positionM.y,p.positionM.z);root.rotation.y=p.yawRad;root.updateMatrixWorld(true);
         const saved=[];
         try{root.traverseVisible(o=>{
@@ -660,11 +703,11 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
       const blob=await new Promise(resolve=>output.toBlob(resolve,'image/png'));if(!blob)throw Error('Image export failed');aborted(signal);
       return {blob,width:w,height:h,machines:snapshot.map(p=>p.machineId),projection:'perspective-3d',camera:'current-camera',rendering:'streamed-browser-raster'};
     }finally{
-      active?.dispose();disposeTree(transparentRoot);target?.dispose();outputTarget?.dispose();outputGeometry?.dispose();outputMaterial?.dispose();renderer.setRenderTarget(oldTarget);renderer.autoClear=oldAuto;renderer.debug.onShaderError=oldShaderError;scene.background=oldBackground;printersGroup.visible=true;placementGroup.visible=previewVisible;placementGuides.visible=guidesVisible;refreshWalls();
+      active?.dispose();disposeTree(transparentRoot);target?.dispose();outputTarget?.dispose();outputGeometry?.dispose();outputMaterial?.dispose();renderer.setRenderTarget(oldTarget);renderer.autoClear=oldAuto;renderer.debug.onShaderError=oldShaderError;scene.background=oldBackground;printersGroup.visible=true;streamedFurniture.forEach((g,i)=>g.visible=furnitureVisibility[i]);placementGroup.visible=previewVisible;placementGuides.visible=guidesVisible;refreshWalls();
       exporting=false;exportAbort=null;externalSignal?.removeEventListener('abort',forwardAbort);presentView();if(disposed)releaseResources();else{resize();draw();}
     }
   }
-  function releaseResources(){if(resourcesDisposed)return;resourcesDisposed=true;ghostMaterial.dispose();ghostLineMaterial.dispose();ghostFootprint.geometry.dispose();ghostFootprint.material.dispose();placementGuides.geometry.dispose();disposeTree(planGroup);planSelection.geometry.dispose();planSelection.material.dispose();clearRoom();clearContacts();surfaces.dispose();planFloorMaterial.dispose();contactPlaneGeometry.dispose();boxGeometry.dispose();wireGeometry.dispose();wireMaterial.dispose();for(const m of palette.values())m.dispose();grid.geometry.dispose();grid.material.dispose();selectionBox.geometry.dispose();selectionBox.material.dispose();keyLight.shadow.dispose();environment.dispose();renderer.dispose();canvas.remove();}
+  function releaseResources(){if(resourcesDisposed)return;resourcesDisposed=true;ghostMaterial.dispose();ghostLineMaterial.dispose();ghostFootprint.geometry.dispose();ghostFootprint.material.dispose();placementGuides.geometry.dispose();disposeTree(planGroup);planSelection.geometry.dispose();planSelection.material.dispose();clearRoom();clearContacts();surfaces.dispose();planFloorMaterial.dispose();contactPlaneGeometry.dispose();boxGeometry.dispose();cylinderGeometry.dispose();for(const g of equipmentTubeGeometries.values())g.dispose();equipmentTubeGeometries.clear();equipmentMeshCache.dispose();wireGeometry.dispose();wireMaterial.dispose();for(const m of palette.values())m.dispose();grid.geometry.dispose();grid.material.dispose();selectionBox.geometry.dispose();selectionBox.material.dispose();keyLight.shadow.dispose();environment.dispose();renderer.dispose();canvas.remove();}
   function dispose(){if(disposed)return;cancel();disposed=true;exportAbort?.abort();if(frame)cancelAnimationFrame(frame);if(placementFrame)cancelAnimationFrame(placementFrame);observer.disconnect();perspectiveControls.dispose();planControls.dispose();eventWindow?.removeEventListener('blur',cancel);eventWindow?.removeEventListener('keydown',keyCancel);for(const [element,type,handler]of toolListeners)element.removeEventListener(type,handler);objectTools.remove();measurementsCanvas.remove();for(const [type,handler]of [['pointerdown',down],['pointermove',move],['pointerup',up],['pointercancel',cancel],['lostpointercapture',cancel]])canvas.removeEventListener(type,handler,true);if(!exporting)releaseResources();}
   resize();setTool();return {setState,setTool,setOptions,setPlacement,refreshPlacement:()=>updatePlacement(),view,getView,focusSelected,exportImage,dispose,canvas};
 }

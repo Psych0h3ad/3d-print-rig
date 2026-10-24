@@ -1,5 +1,5 @@
 // Presentation only. The application owns state, history, files and model loading.
-import {createRoomRect,createRoomL,createRoomPolygon} from './layout-state.mjs?v=178f9d7e9634806cb173';
+import {createRoomRect,createRoomL,createRoomPolygon,resolvePrinterEquipment} from './layout-state.mjs?v=156b82f412caf708ab4e';
 import {WALL_FINISHES,FLOOR_FINISHES,DEFAULT_ROOM_APPEARANCE} from './layout-finishes.mjs?v=001b62f9728770a12303';
 const PRINTER_VIEWER_PAGES=new Set(['','index.html','annex.html','community.html','crossant.html','custom-voron.html','kit-reference.html','micron.html','positron.html','ratrig.html','remorph.html','trident.html','v0.html','v24-reference.html','v24.html']);
 // Only a registered catalog destination is eligible; saved plan fields never supply URLs.
@@ -22,6 +22,7 @@ const PATHS = {
   reset: 'M4 4v6h6M4 10a8 8 0 1 1 1 8',
   desk: 'M3 9h18M4 9V6h16v3M5 9v12M19 9v12',
   shelf: 'M4 3h16v18H4ZM4 9h16M4 15h16',
+  popstation_mini: 'M4 4h16v17H4ZM4 7h16M7 10v7m10-7v7M12 7v14',
   printer: 'M5 3h14v18H5ZM5 7h14M8 17h8M12 7v6m-2 0h4l-2 3Z',
   plus: 'M12 5v14M5 12h14',
   duplicate: 'M8 8h13v13H8ZM4 16H3V3h13v1',
@@ -270,6 +271,7 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
   const addSection = section('layout.add');
   const furnitureAdd = el('div', 'layout-add-furniture');
   furnitureAdd.append(button('layout.addDesk',()=>emit({type:'add',kind:'desk'}),'desk'),button('layout.addShelf',()=>emit({type:'add',kind:'shelf'}),'shelf'));
+  furnitureAdd.append(button('layout.addPopStation',()=>emit({type:'add',kind:'popstation_mini'}),'popstation_mini'));
   addSection.append(furnitureAdd);
   const search = el('input', 'layout-catalog-search'); search.type = 'search';
   search.placeholder = tr('layout.searchPrinters'); search.setAttribute('aria-label', tr('layout.searchPrinters'));
@@ -388,6 +390,7 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
   function title(e) {
     if(isGroup(e))return String(e.name);
     if ('machineId' in e) return machineLabel(byMachine.get(e.machineId)) || e.machineId;
+    if(e.type==='popstation_mini')return 'BIQU PopStation Mini';
     const same=(state.furniture||[]).filter(v=>v.type===e.type), number=same.findIndex(v=>v.id===e.id)+1;
     return tr(e.type==='desk'?'layout.deskName':'layout.shelfName',{number});
   }
@@ -461,7 +464,7 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
   function patchEntity(e, patch) { emit({type:'machineId' in e?'UPDATE_PRINTER':'UPDATE_FURNITURE',id:e.id,patch}); }
   function buildEditor() {
     const e=selected(), group=e&&isGroup(e);
-    const nextKey=group?JSON.stringify(['group',e.id,members(e.memberIds).map(m=>[m.id,title(m)])]):e?`${e.id}:${e.type||'printer'}:${JSON.stringify(e.levels?.map(l=>l.id)||[])}:${JSON.stringify(state.furniture.map(f=>[f.id,f.type,f.levels?.map(l=>l.id)]))}`:'';
+    const nextKey=group?JSON.stringify(['group',e.id,members(e.memberIds).map(m=>[m.id,title(m)])]):e?`${e.id}:${e.type||'printer'}:${e.attachment?.parentId||''}:${JSON.stringify(e.levels?.map(l=>l.id)||[])}:${JSON.stringify(state.furniture.map(f=>[f.id,f.type,f.levels?.map(l=>l.id)]))}:${JSON.stringify(state.printers.map(p=>[p.id,p.machineId,p.attachment.parentId]))}`:'';
     if(nextKey===editorKey)return;
     editorKey=nextKey;
     for(const name of [...fields.keys()])if(!name.startsWith('room-'))fields.delete(name);
@@ -470,40 +473,50 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
     if(group){buildGroupEditor(e);return;}
     editor.append(el('p','layout-editor-subtitle',title(e)));
     const isPrinter='machineId' in e;
-    if(!isPrinter){
+    if(!isPrinter&&e.type!=='popstation_mini'){
       const dims=el('div','layout-fields');editor.append(dims);
       for(const [key,prop] of [['layout.width','widthMm'],['layout.depth','depthMm'],['layout.height','heightMm']])numberField(dims,key,prop,{min:1,action:v=>patchEntity(e,{[prop]:v})});
       const thick=el('div','layout-fields layout-two');editor.append(thick);
       const prop=e.type==='desk'?'topThicknessMm':'boardThicknessMm';
       const thicknessField=numberField(thick,'layout.thickness',prop,{min:e.type==='desk'?30:5,max:e.type==='desk'?30:100,action:v=>patchEntity(e,{[prop]:v})});
       if(e.type==='desk')thicknessField.readOnly=true;
-    }else{
+    }else if(isPrinter){
       const supportLabel=el('label','layout-field');supportLabel.append(copy(el('span'),'layout.support'));
       const supports=el('select');supports.dataset.layoutField='support';supports.id='layout-support';
       const addOption=(parentId,surfaceId,label)=>{const o=el('option','',label);o.value=JSON.stringify([parentId,surfaceId]);supports.append(o);};
       addOption(null,'floor',tr('layout.floor'));
       for(const f of state.furniture){
         if(f.type==='desk')addOption(f.id,'top',tr('layout.deskTop',{name:title(f)}));
-        else for(const [index,l]of f.levels.entries())addOption(f.id,l.id,tr('layout.shelfBoard',{name:title(f),number:index+1}));
+        else if(f.type==='popstation_mini'){
+          if(e.machineId==='snapmaker_u1_layout_reference'&&!state.printers.some(p=>p.id!==e.id&&p.attachment.parentId===f.id))addOption(f.id,'top',title(f));
+        }else for(const [index,l]of f.levels.entries())addOption(f.id,l.id,tr('layout.shelfBoard',{name:title(f),number:index+1}));
       }
       supportLabel.append(supports);editor.append(supportLabel);
       listen(supports,'change',()=>{const [parentId,surfaceId]=JSON.parse(supports.value);emit({type:'SET_ATTACHMENT',id:e.id,attachment:{parentId,surfaceId,xMm:0,zMm:0,yawDeg:0}});});
       editor.append(copy(el('p','layout-help'),'layout.supportHelp'));
       const m=byMachine.get(e.machineId);
-      if(m)editor.append(el('p','layout-help',tr('layout.machineSize',{width:fixedOne(m.widthMm),depth:fixedOne(m.depthMm),height:fixedOne(m.heightMm)})));
+      const mounted=state.furniture.some(f=>f.id===e.attachment.parentId&&f.type==='popstation_mini');
+      if(m){const profile=resolvePrinterEquipment(state,e,catalog);editor.append(el('p','layout-help',tr('layout.machineSize',{width:fixedOne(profile.widthMm),depth:fixedOne(profile.depthMm),height:fixedOne(profile.heightMm)})));}
+      if(m?.id==='snapmaker_u1_layout_reference')editor.append(copy(el('p','layout-help'),mounted?'layout.u1Mounted':'layout.u1Standalone'),copy(el('p','layout-help'),'layout.u1OperatingHeight'));
       const href=selectedSourceURL(m);
       if(href){
         const link=el('a','layout-printer-source-link');link.href=href;link.target='_blank';link.rel='noopener noreferrer';
         link.dataset.layoutSourceLink='';link.dataset.layoutLink='';link.append(icon('source'),copy(el('span'),'layout.openPrinterSources'));editor.append(link);
       }
     }
+    if(e.type==='popstation_mini')editor.append(el('p','layout-help','422 × 456 × 428 mm'),copy(el('p','layout-help'),'layout.popStationHelp'));
+    if(e.machineId==='snapmaker_u1_layout_reference'||e.type==='popstation_mini'){
+      const link=el('a','layout-printer-source-link');link.href='https://github.com/Psych0h3ad/3d-print-rig/blob/main/docs/LAYOUT_EQUIPMENT.md';link.target='_blank';link.rel='noopener noreferrer';
+      link.append(icon('source'),copy(el('span'),'layout.equipmentSources'));editor.append(link);
+    }
     const position=el('div');position.append(copy(el('p','layout-position-label'),isPrinter?'layout.surfacePosition':'layout.floorPosition'));
     const pose=el('div','layout-fields');position.append(pose);editor.append(position);
     for(const [key,prop,unit]of [['layout.positionX','xMm','mm'],['layout.positionZ','zMm','mm'],['layout.rotation','yawDeg','°']]){
-      numberField(pose,key,prop,{unit,action:v=>patchEntity(e,{[isPrinter?'attachment':'pose']:{[prop]:v}})});
+      const field=numberField(pose,key,prop,{unit,action:v=>patchEntity(e,{[isPrinter?'attachment':'pose']:{[prop]:v}})});
+      field.readOnly=!!(isPrinter&&state.furniture.some(f=>f.id===e.attachment.parentId&&f.type==='popstation_mini'));
     }
     const rotate=el('div','layout-row layout-rotate');
-    for(const delta of [-90,90])rotate.append(button(delta<0?'layout.rotateLeft':'layout.rotateRight',()=>{const current=selected();if(current)patchEntity(current,{[isPrinter?'attachment':'pose']:{yawDeg:(current[isPrinter?'attachment':'pose'].yawDeg+delta)}});}));
+    for(const delta of [-90,90]){const control=button(delta<0?'layout.rotateLeft':'layout.rotateRight',()=>{const current=selected();if(current)patchEntity(current,{[isPrinter?'attachment':'pose']:{yawDeg:(current[isPrinter?'attachment':'pose'].yawDeg+delta)}});});if(isPrinter&&state.furniture.some(f=>f.id===e.attachment.parentId&&f.type==='popstation_mini'))control.dataset.mountLocked='true';rotate.append(control);}
     position.append(rotate);
     if(e.type==='shelf'){
       const boards=el('div');boards.append(copy(el('h3'),'layout.boards'));
@@ -581,6 +594,7 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
   }
   function refreshStatus(){
     for(const n of root.querySelectorAll('button,input,select,textarea'))n.disabled=!!status.busy;
+    for(const n of root.querySelectorAll('[data-mount-locked]'))n.disabled=true;
     for(const [id,check]of memberChecks){check.disabled=!!status.busy;check.checked=pickedRoots.has(id);}
     refreshGroupDraft();
     undo.disabled=status.busy||!status.canUndo;redo.disabled=status.busy||!status.canRedo;
@@ -589,7 +603,7 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
     const needsDetach=editor.querySelector('[data-requires-detach]');if(needsDetach)needsDetach.disabled=status.busy||!editor.querySelector('#layout-detach')?.checked;
     const boundaryInvalid=currentIssues.some(issue=>issue.code==='ROOM_OUT_OF_BOUNDS'||issue.code==='SURFACE_OVERHANG');
     boundsNotice.hidden=!boundaryInvalid;
-    renderButton.disabled=status.busy||!state||(!floorplan&&(boundaryInvalid||!state.printers?.length));
+    renderButton.disabled=status.busy||!state||(!floorplan&&(boundaryInvalid||(!state.printers?.length&&!state.furniture?.some(f=>f.type==='popstation_mini'))));
     cancel.hidden=!status.busy;cancel.disabled=false;
     progress.hidden=!status.busy;
     const p=status.renderProgress;

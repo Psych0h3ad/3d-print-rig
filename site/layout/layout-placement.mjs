@@ -1,6 +1,6 @@
 // Pure placement transactions for static planning envelopes, never CAD fit proofs.
-import {LIMITS, createCatalog, createDesk, createShelf, applyAction, validateState,
-  validatePlacement, deriveScene, getSurface} from './layout-state.mjs?v=178f9d7e9634806cb173';
+import {LIMITS, createCatalog, createDesk, createShelf, createPopStation, resolvePrinterEquipment, applyAction, validateState,
+  validatePlacement, deriveScene, getSurface} from './layout-state.mjs?v=156b82f412caf708ab4e';
 import {rectangle, rotateXZ, transformPolygon, bounds} from './layout-geometry.mjs?v=129e07e8d3e2b008fab6';
 
 const MAGNET_MM = 14;
@@ -47,18 +47,18 @@ export function proposePlacement(state, input, catalog) {
   const world = {xMm: previewNumber(request.xMm, LIMITS.maxCoordinateMm), yMm: 0,
     zMm: previewNumber(request.zMm, LIMITS.maxCoordinateMm), yawDeg: previewNumber(request.yawDeg, LIMITS.maxYawDeg)};
   const issues = [];
-  let sizeMm = {width: 0, depth: 0, height: 0}, furniture, machines, surface;
+  let sizeMm = {width: 0, depth: 0, height: 0}, furniture, machines, surface, equipment;
   const rejected = (problems = issues, pose = world) => ({valid: false, state: null, id, world: {...pose}, sizeMm, issues: problems, guides: []});
-  if (!['desk', 'shelf', 'printer'].includes(kind)) issues.push(error('UNKNOWN_PLACEMENT_KIND', 'placement.kind'));
+  if (!['desk', 'shelf', 'popstation_mini', 'printer'].includes(kind)) issues.push(error('UNKNOWN_PLACEMENT_KIND', 'placement.kind'));
   for (const key of ['xMm', 'zMm', 'yawDeg']) if (!finite(request[key], key === 'yawDeg' ? LIMITS.maxYawDeg : LIMITS.maxCoordinateMm))
     issues.push(error('NUMBER_OUT_OF_RANGE', `placement.${key}`));
   if (snapMm !== 0 && snapMm !== 10) issues.push(error('NUMBER_OUT_OF_RANGE', 'placement.snapMm'));
   if (template !== undefined && (!template || typeof template !== 'object' || Array.isArray(template)
     || (kind === 'printer' ? !Object.hasOwn(template, 'machineId') : template.type !== kind)))
     issues.push(error('COPY_KIND_MISMATCH', 'placement.copy'));
-  if (kind === 'desk' || kind === 'shelf') {
+  if (kind === 'desk' || kind === 'shelf' || kind==='popstation_mini') {
     try {
-      furniture = template === undefined ? (kind === 'desk' ? createDesk({id}) : createShelf({id})) : {...template, id};
+      furniture = template === undefined ? (kind === 'desk' ? createDesk({id}) : kind==='shelf'?createShelf({id}):createPopStation({id})) : {...template, id};
       sizeMm = sizeOf(furniture);
     } catch (e) { issues.push(...errorsOf(e)); }
     if (parentId !== null || surfaceId !== 'floor') issues.push(error('FLOOR_SURFACE_REQUIRED', 'placement.surfaceId'));
@@ -71,7 +71,10 @@ export function proposePlacement(state, input, catalog) {
     // Rebuild the small numerical contract. Prepared catalogs may come from a
     // versioned module URL with a different private catalog WeakSet identity.
     machines = createCatalog(Array.isArray(catalog) ? catalog : catalog?.entries ?? catalog ?? []);
-    if (kind === 'printer') sizeMm = sizeOf(machines.byId[machineId]);
+    if (kind === 'printer'&&Object.hasOwn(machines.byId,machineId)) {
+      equipment=resolvePrinterEquipment(state,{machineId,attachment:{parentId}},machines);
+      sizeMm=sizeOf(equipment);
+    }
   } catch (e) { issues.push(...errorsOf(e)); }
   if (!machines) return rejected();
   try {
@@ -85,16 +88,18 @@ export function proposePlacement(state, input, catalog) {
   if (state[collection].length >= (kind === 'printer' ? LIMITS.maxPrinters : LIMITS.maxFurniture))
     return rejected([error(kind === 'printer' ? 'PRINTER_COUNT' : 'FURNITURE_COUNT', collection)]);
 
-  const polygon = kind === 'printer' ? machines.byId[machineId].footprintMm : rectangle(furniture.widthMm, furniture.depthMm);
+  const polygon = kind === 'printer' ? equipment.footprintMm : rectangle(furniture.widthMm, furniture.depthMm);
   const grid = {...world};
-  if (snapMm) for (const key of ['xMm', 'zMm']) grid[key] = Math.round(world[key] / snapMm) * snapMm || 0;
+  const fixedMount=kind==='printer'&&surface.fixedMount===true;
+  if(fixedMount)Object.assign(grid,{xMm:surface.xMm,zMm:surface.zMm,yawDeg:surface.yawDeg});
+  else if (snapMm) for (const key of ['xMm', 'zMm']) grid[key] = Math.round(world[key] / snapMm) * snapMm || 0;
   function trial(pose, alignments = []) {
     try {
       let action;
       if (kind === 'printer') {
         const local = rotateXZ([pose.xMm - surface.xMm, pose.zMm - surface.zMm], -surface.yawDeg);
         action = {type: 'ADD_PRINTER', printer: {id, machineId, configurationId: template?.configurationId ?? null,
-          attachment: {parentId, surfaceId, xMm: local[0], zMm: local[1], yawDeg: pose.yawDeg - surface.yawDeg}}};
+          attachment: {parentId, surfaceId, xMm: fixedMount?0:local[0], zMm: fixedMount?0:local[1], yawDeg: fixedMount?0:pose.yawDeg - surface.yawDeg}}};
       } else action = {type: 'ADD_FURNITURE', furniture: {...furniture, pose: {xMm: pose.xMm, zMm: pose.zMm, yawDeg: pose.yawDeg}}};
       const next = applyAction(state, action, machines);
       const problems = validatePlacement(next, machines).filter(warning => warning.entityIds.includes(id));
@@ -103,9 +108,10 @@ export function proposePlacement(state, input, catalog) {
       const guides = alignments.map(a => ({axis: a.axis, valueMm: a.value,
         minMm: a.axis === 'x' ? Math.min(box.minZ, a.box.minZ) : Math.min(box.minX, a.box.minX),
         maxMm: a.axis === 'x' ? Math.max(box.maxZ, a.box.maxZ) : Math.max(box.maxX, a.box.maxX)}));
-      return {valid: true, state: next, id, world: {...pose}, sizeMm, issues: [], guides};
+      return {valid: true, state: next, id, world: {...pose}, sizeMm, ...(equipment?.equipmentVariant?{equipmentVariant:equipment.equipmentVariant}:{}),issues: [], guides};
     } catch (e) { return rejected(errorsOf(e), pose); }
   }
+  if(fixedMount)return trial(grid);
   if (snapMm) {
     const scene = deriveScene(state, machines);
     const peers = [...scene.furniture, ...scene.printers].filter(e => e.id !== id

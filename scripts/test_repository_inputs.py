@@ -1,12 +1,20 @@
 import hashlib
+import gzip
 import io
 import json
 from pathlib import Path
+import shutil
+import struct
+import subprocess
+import sys
 import tempfile
 import unittest
 import urllib.error
 from unittest.mock import patch
 from prepare_repository_inputs import fetch_registered_input,prepare,selected
+import prepare_repository_inputs
+from layout_equipment_inputs import (CACHE_RELATIVE, PAYLOAD_NAME, EQUIPMENT_PREFIX,
+                                     prepare_equipment_inputs, load_exact_input_map, run_node)
 
 class RepositoryInputs(unittest.TestCase):
     def test_source_checks_receive_only_exact_registered_inputs(self):
@@ -31,6 +39,245 @@ class RepositoryInputs(unittest.TestCase):
             root=Path(folder);(root/'site').mkdir()
             row={'path':'SOURCE.json','url':'https://psych0h3ad.github.io/3d-print-rig/SOURCE.json','bytes':1,'sha256':'a'*64,'approval_receipt_sha256':'b'*64}
             with self.assertRaisesRegex(ValueError,'Missing source-check input mapping'):prepare(root,{'schema':'approved-static-delivery-v1','files':[row]},{'files':{}})
+
+
+class EquipmentInputOrchestration(unittest.TestCase):
+    """Tiny synthetic bodies only. No actual model fetch or source/geometry pass."""
+    def setUp(self):
+        # Keep every fixture within this checkout's ignored private area.
+        self.source_root = Path(__file__).resolve().parents[1]
+        fixture_parent = self.source_root / '__pycache__'
+        fixture_parent.mkdir(exist_ok=True)
+        folder = tempfile.TemporaryDirectory(prefix='equipment-ci-fixture-', dir=fixture_parent)
+        self.addCleanup(folder.cleanup)
+        self.root = Path(folder.name)
+        (self.root / 'scripts').mkdir()
+        (self.root / 'site/layout').mkdir(parents=True)
+        for name in ['scripts/prepare_layout_equipment_inputs.mjs',
+                     'site/layout/layout-equipment-transfer.mjs']:
+            shutil.copyfile(self.source_root / name, self.root / name)
+        self.names = [str(EQUIPMENT_PREFIX / name).replace('\\', '/') for name in [
+            'U1_exterior_standalone_loaded.glb', 'U1_exterior_docked.glb',
+            'PopStationMini_empty.glb', 'PopStationMini_loaded.glb', 'U1_preview_geometry.json']]
+        self.pins, self.mapping = [], {'files': {}}
+        for index, name in enumerate(self.names):
+            text = json.dumps({'asset': {'version': '2.0'}, 'scenes': [{'nodes': []}],
+                               'fixtureOnly': True, 'case': index}).encode()
+            text += b' ' * (-len(text) % 4)
+            raw = (struct.pack('<4sIIII', b'glTF', 2, 20 + len(text), len(text), 0x4e4f534a)
+                   + text) if index < 4 else b' {"fixtureOnly": true, "noActualGeometry": true}\n'
+            wire = gzip.compress(raw, mtime=123 + index)
+            self.pins.append({'path': name, 'bytes': len(raw), 'sha256': hashlib.sha256(raw).hexdigest(),
+                              'transfer': {'path': name + '.gz', 'bytes': len(wire),
+                                           'sha256': hashlib.sha256(wire).hexdigest(), 'encoding': 'gzip',
+                                           'baseURL': 'https://psych0h3ad.github.io/3d-print-rig-extra-models/'}})
+            for key, body in [(name, raw), (name + '.gz', wire)]:
+                file = self.root / 'exact-prepared-fixtures' / Path(key).name
+                file.parent.mkdir(exist_ok=True)
+                file.write_bytes(body)
+                self.mapping['files'][key] = str(file)
+        self.write_catalog()
+        source = self.root / 'exact-source.json'
+        source.write_bytes(b'{"syntheticSourceFixture":true}\n')
+        self.contract = {'schema': 'approved-static-delivery-v1', 'files': [{
+            'path': 'SOURCE.json', 'url': 'https://psych0h3ad.github.io/3d-print-rig/SOURCE.json',
+            'bytes': source.stat().st_size, 'sha256': hashlib.sha256(source.read_bytes()).hexdigest(),
+            'approval_receipt_sha256': 'a' * 64}]}
+        self.source_mapping = {'files': {'SOURCE.json': str(source)}}
+        self.cache = self.root / CACHE_RELATIVE
+        self.payload = self.cache / PAYLOAD_NAME
+        # No Python download may escape any orchestration case.
+        self.addCleanup(patch.stopall)
+        patch('fetch_pinned_source.urllib.request.urlopen',
+              side_effect=AssertionError('Fixture attempted live source request')).start()
+
+    def write_catalog(self):
+        rows = [('snapmaker_u1_layout_reference', 'standalone'),
+                ('snapmaker_u1_layout_reference', 'docked'),
+                ('biqu_pop_station_mini_layout_reference', 'empty'),
+                ('biqu_pop_station_mini_layout_reference', 'loaded')]
+        code = 'const pins=' + json.dumps(self.pins) + ';\nconst rows=' + json.dumps(rows) + ';\n'
+        code += ('export const LAYOUT_EQUIPMENT_PREVIEW_MODEL=pins[4];\n'
+                 'export const getLayoutEquipment=(id,variant)=>{const i=rows.findIndex(r=>r[0]===id&&r[1]===variant);'
+                 'return i<0?null:{id,equipmentVariant:variant,model:pins[i]};};\n')
+        (self.root / 'site/layout/layout-equipment.mjs').write_text(code, encoding='utf-8')
+
+    def prepare(self):
+        return prepare(self.root, self.contract, self.source_mapping, equipment_input_map=self.mapping)
+
+    def test_explicit_ten_body_map_drives_unchanged_cli_and_retains_four_model_map(self):
+        result = self.prepare()['layout_equipment_inputs']
+        report = json.loads(Path(result['report_path']).read_bytes())
+        self.assertEqual((result['requests'], result['cached_body_count']), (0, 10))
+        self.assertEqual(result['mode'], 'exact-input-map')
+        self.assertEqual(set(result['files']), set(self.names[:4]))
+        self.assertEqual(Path(result['prepared_dir']), self.payload / EQUIPMENT_PREFIX)
+        self.assertEqual(report['limits']['concurrency'], 1)
+        self.assertLessEqual(report['limits']['timeoutMs'], 120000)
+        self.assertFalse(report['actualSourceGateRun'])
+        self.assertFalse(report['metadataCopied'])
+        for name, original in self.mapping['files'].items():
+            self.assertEqual((self.payload / name).read_bytes(), Path(original).read_bytes())
+        self.assertFalse((self.root / 'site' / EQUIPMENT_PREFIX).exists())
+        self.assertEqual(list((self.root / 'site').glob('*.json')), [self.root / 'site/SOURCE.json'])
+
+    def test_normal_source_preparation_automatically_invokes_cli_using_private_cache(self):
+        self.prepare()
+        with patch('layout_equipment_inputs.run_node', wraps=run_node) as child:
+            result = prepare(self.root, self.contract)['layout_equipment_inputs']
+        self.assertEqual(child.call_count, 1)
+        self.assertEqual(child.call_args.args[1][0], 'scripts/prepare_layout_equipment_inputs.mjs')
+        self.assertEqual(result['mode'], 'cache-or-fetch')
+        self.assertEqual(result['requests'], 0)  # Fixture cache hit, never a real host fetch.
+
+    def test_offline_source_map_requires_explicit_equipment_map(self):
+        with patch('layout_equipment_inputs.run_node') as child:
+            with self.assertRaisesRegex(ValueError, '--equipment-input-map'):
+                prepare(self.root, self.contract, self.source_mapping)
+            child.assert_not_called()
+
+    def test_missing_unused_and_wrong_map_shapes_fail_before_cache_creation(self):
+        missing = {'files': {k: v for k, v in self.mapping['files'].items() if k != self.names[4] + '.gz'}}
+        unused = {'files': dict(self.mapping['files'], **{'other.glb': 'must never be read'})}
+        for value in [None, [], {}, {'files': []}, {'files': {}, 'extra': True}, missing, unused]:
+            with self.subTest(value=value):
+                # None denotes normal fetching in the API, so use a malformed
+                # files value to exercise the explicit map's null form.
+                value = {'files': None} if value is None else value
+                with self.assertRaisesRegex(ValueError, '(Invalid exact|missing or unused)'):
+                    prepare_equipment_inputs(self.root, exact_input_map=value)
+                self.assertFalse(self.cache.exists())
+
+    def test_missing_changed_and_relative_mapped_bodies_do_not_fetch_or_install(self):
+        name = self.names[0]
+        for file in [str(self.root / 'absent.glb'), 'relative.glb', 42, '']:
+            mapping = {'files': dict(self.mapping['files'], **{name: file})}
+            with self.subTest(file=file), self.assertRaises(ValueError):
+                prepare_equipment_inputs(self.root, exact_input_map=mapping)
+        source = Path(self.mapping['files'][name])
+        source.write_bytes(b'x' * source.stat().st_size)
+        with self.assertRaisesRegex(ValueError, 'Changed exact equipment body'):
+            self.prepare()
+        self.assertFalse(self.cache.exists())
+
+    def test_supplied_bad_map_is_not_hidden_by_valid_cache(self):
+        self.prepare()
+        self.mapping['files']['unused.json'] = str(self.root / 'never-read.json')
+        with self.assertRaisesRegex(ValueError, 'unused'):
+            self.prepare()
+
+    def test_offline_mode_cannot_fetch_if_seeded_cache_is_absent_at_cli_start(self):
+        # Simulate a cache disappearing before the unchanged CLI starts. Its
+        # default fetch must be replaced by the explicit offline hard failure.
+        with patch('layout_equipment_inputs.import_exact_map'):
+            with self.assertRaises(subprocess.CalledProcessError) as caught:
+                self.prepare()
+        self.assertIn('Offline equipment transport forbidden', caught.exception.stderr)
+        self.assertFalse((self.cache.parent / 'inputs.private.json').exists())
+        self.assertFalse(self.payload.exists())
+
+    def test_public_site_and_parent_traversal_map_paths_are_rejected(self):
+        name = self.names[0]
+        for file in [self.root / 'site/forbidden.glb', self.root / 'site/../escape.glb']:
+            mapping = {'files': dict(self.mapping['files'], **{name: str(file)})}
+            with self.subTest(file=file), self.assertRaisesRegex(ValueError, 'outside site'):
+                prepare_equipment_inputs(self.root, exact_input_map=mapping)
+        self.assertFalse(self.cache.exists())
+
+    def test_incomplete_changed_and_extra_cached_bodies_fail_not_skip_or_repair(self):
+        result = self.prepare()['layout_equipment_inputs']
+        cached = self.payload / self.names[0]
+        original = cached.read_bytes()
+        cached.unlink()
+        with self.assertRaises(subprocess.CalledProcessError):
+            self.prepare()
+        self.assertFalse(cached.exists())
+        cached.write_bytes(b'x' * len(original))
+        with self.assertRaises(subprocess.CalledProcessError):
+            self.prepare()
+        self.assertEqual(cached.read_bytes(), b'x' * len(original))
+        cached.write_bytes(original)
+        extra = self.payload / 'unregistered.json'
+        extra.write_bytes(b'{}')
+        with self.assertRaises(subprocess.CalledProcessError):
+            self.prepare()
+        self.assertTrue(extra.is_file())
+        self.assertEqual(result['requests'], 0)
+
+    def test_individually_pinned_but_inconsistent_gzip_pair_is_rejected_by_original_cli(self):
+        # Tiny intentionally inconsistent catalog: valid individual hashes do
+        # not prove the decoded gzip matches its companion raw body.
+        name = self.names[4] + '.gz'
+        wire = gzip.compress(b'{"differentFixture":true}', mtime=999)
+        Path(self.mapping['files'][name]).write_bytes(wire)
+        self.pins[4]['transfer'].update(bytes=len(wire), sha256=hashlib.sha256(wire).hexdigest())
+        self.write_catalog()
+        with self.assertRaises(subprocess.CalledProcessError):
+            self.prepare()
+        self.assertFalse((self.cache.parent / 'inputs.private.json').exists())
+        self.assertFalse((self.cache.parent / 'preparation.private.json').exists())
+
+    def test_cache_reservation_is_preserved(self):
+        self.cache.mkdir(parents=True)
+        lock = self.cache / '.layout-equipment-input-preparation.lock'
+        lock.mkdir()
+        with self.assertRaises(FileExistsError):
+            self.prepare()
+        self.assertTrue(lock.is_dir())
+        self.assertFalse(self.payload.exists())
+
+    def test_map_duplicate_keys_and_explicit_missing_file_fail(self):
+        file = self.root / 'map.private.json'
+        file.write_text('{"files":{},"files":{}}')
+        with self.assertRaisesRegex(ValueError, 'Duplicate'):
+            load_exact_input_map(file)
+        file.write_text('{"files":{"duplicate":"a","duplicate":"b"}}')
+        with self.assertRaisesRegex(ValueError, 'Duplicate'):
+            load_exact_input_map(file)
+        with self.assertRaises(FileNotFoundError):
+            load_exact_input_map(self.root / 'missing.private.json')
+        for invalid in ['null', '[]', '{}', '{"files":null}', '{"files":{},"extra":true}']:
+            file.write_text(invalid)
+            with self.subTest(invalid=invalid), self.assertRaisesRegex(ValueError, 'Invalid exact'):
+                load_exact_input_map(file)
+
+    def test_main_explicit_map_option_writes_private_preparation_report(self):
+        files = {'source.private.json': self.source_mapping, 'equipment.private.json': self.mapping}
+        for name, value in files.items():
+            (self.root / name).write_text(json.dumps(value), encoding='utf-8')
+        (self.root / 'site/APPROVED_DELIVERY.json').write_text(json.dumps(self.contract), encoding='utf-8')
+        report = self.root / 'result.private.json'
+        arguments = ['prepare_repository_inputs.py', '--inputs', str(self.root / 'source.private.json'),
+                     '--equipment-input-map', str(self.root / 'equipment.private.json'), '--report', str(report)]
+        with patch.object(prepare_repository_inputs, 'ROOT', self.root), patch.object(sys, 'argv', arguments), \
+                patch('sys.stdout', new_callable=io.StringIO):
+            prepare_repository_inputs.main()
+        self.assertEqual(json.loads(report.read_bytes())['layout_equipment_inputs']['cached_body_count'], 10)
+
+    def test_legacy_root_with_no_feature_needs_no_node_and_rejects_unused_equipment_map(self):
+        (self.root / 'site/layout/layout-equipment.mjs').unlink()
+        with patch('layout_equipment_inputs.run_node') as child:
+            result = prepare(self.root, self.contract, self.source_mapping)
+            self.assertNotIn('layout_equipment_inputs', result)
+            self.assertEqual(result['verified_source_check_inputs'], 1)
+            with self.assertRaisesRegex(ValueError, 'Unused exact equipment input map'):
+                self.prepare()
+            child.assert_not_called()
+
+    def test_preview_default_missing_private_body_fails_and_explicit_folder_is_exact(self):
+        # Actual metadata-only registration, but no actual bodies. Both runs
+        # must fail; this is not an actual preview/mesh/host success certificate.
+        shutil.copyfile(self.source_root / 'scripts/test_layout_equipment_preview.mjs',
+                        self.root / 'scripts/test_layout_equipment_preview.mjs')
+        for name in ['layout-equipment.mjs', 'layout-equipment-preview.mjs']:
+            shutil.copyfile(self.source_root / 'site/layout' / name, self.root / 'site/layout' / name)
+        for arguments, folder in [([], self.payload / EQUIPMENT_PREFIX),
+                                  (['--prepared-dir', str(self.root / 'explicit-prepared')],
+                                   self.root / 'explicit-prepared')]:
+            with self.subTest(arguments=arguments), self.assertRaises(subprocess.CalledProcessError) as caught:
+                run_node(self.root, ['scripts/test_layout_equipment_preview.mjs', *arguments])
+            self.assertIn('Required prepared asset missing: ' + str(folder / 'U1_preview_geometry.json'),
+                          caught.exception.stderr)
 
 
 class FreshMountingInputs(unittest.TestCase):

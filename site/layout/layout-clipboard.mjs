@@ -1,7 +1,7 @@
 // Pure selection transactions. The caller owns clipboard I/O and instantiation.
-import {LIMITS, LayoutValidationError, createDefaultLayout, deriveScene,
-  parseLayout, serializeLayout} from './layout-state.mjs?v=178f9d7e9634806cb173';
-import {createGroup, captureGroupTemplate, validateGroupTemplate} from './layout-groups.mjs?v=bd219ffd44e6d20acdde';
+import {LIMITS, LayoutValidationError, createDefaultLayout, deriveScene, validatePlacement,
+  parseLayout, serializeLayout} from './layout-state.mjs?v=156b82f412caf708ab4e';
+import {createGroup, captureGroupTemplate, validateGroupTemplate} from './layout-groups.mjs?v=2c185c4987d6e2ff8d5a';
 
 const MAX_BYTES = 2 * 1024 * 1024;
 const MAX_SELECTION = LIMITS.maxFurniture + LIMITS.maxPrinters + LIMITS.maxGroups;
@@ -115,7 +115,19 @@ export function captureLayoutClipboard(state, selectionIds, catalog = [], option
   });
   // Exclude the original groups and unselected objects. captureGroupTemplate's
   // native placement audit must not turn unrelated legacy overlaps into failure.
-  const isolated = createDefaultLayout({room: source.room, furniture, printers}, catalog);
+  let isolated = createDefaultLayout({room: source.room, furniture, printers}, catalog);
+  if (!furniture.length && printers.length === 1
+    && world.get(printers[0].id).equipmentVariant !== deriveScene(isolated, catalog).printers[0].equipmentVariant) {
+    const printer = printers[0], issues = validatePlacement(source, catalog).filter(issue =>
+      issue.entityIds[0] === printer.id && ['ROOM_OUT_OF_BOUNDS', 'ROOM_HEIGHT_EXCEEDED'].includes(issue.code));
+    if (issues.length) throw new LayoutValidationError(issues.map(issue => ({code: issue.code, path: 'group', params: issue.params})));
+    // Detaching can widen an equipment root. Validate that copy at the
+    // isolated origin, not its former mounted position beside a wall.
+    // Keep the source ceiling limit; destination placement checks are unchanged.
+    const room = {...createDefaultLayout().room, wallHeightMm: source.room.wallHeightMm};
+    isolated = createDefaultLayout({room, printers: [{...printer,
+      attachment: {...printer.attachment, xMm: 0, zMm: 0}}]}, catalog);
+  }
   const memberIds = [...furniture, ...printers.filter(p => p.attachment.parentId === null)].map(e => e.id);
   let id = 'clipboard-set', suffix = 0;
   while (ids.has(id)) id = `clipboard-set:${++suffix}`;

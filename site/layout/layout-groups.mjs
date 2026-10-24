@@ -1,7 +1,7 @@
 // Farm units use the same static planning envelopes as individual objects.
 // A group never duplicates source CAD or changes printer/support attachments.
-import {LIMITS,LayoutValidationError,createDefaultLayout,createCatalog,deriveScene,
-  validatePlacement,parseLayout,serializeLayout} from './layout-state.mjs?v=178f9d7e9634806cb173';
+import {LIMITS,LayoutValidationError,createDefaultLayout,deriveScene,resolvePrinterEquipment,
+  validatePlacement,parseLayout,serializeLayout} from './layout-state.mjs?v=156b82f412caf708ab4e';
 import {rootPose,groupRootPose} from './layout-group-data.mjs?v=298837e53f6daea54c7c';
 import {bounds,rectangle,rotateXZ,transformPolygon,polygonContains,orient} from './layout-geometry.mjs?v=129e07e8d3e2b008fab6';
 import {rigidMotionStaysInside,boundaryTangents} from './layout-constraints.mjs?v=53e33561b2e7ce324016';
@@ -76,7 +76,6 @@ function movedState(state,group,pose,catalog){
 function prepareMotion(state,id,catalog){
   catalog=catalogRows(catalog);
   const g=requireGroup(state,id),ids=new Set(groupEntityIds(state,id)),scene=deriveScene(state,catalog);
-  const machines=createCatalog(catalog).byId;
   const entities=[...scene.furniture,...scene.printers].filter(e=>ids.has(e.id));
   const polygons=entities.map(e=>e.worldEnvelopeMm.map(([x,z])=>rotateXZ([x-g.pose.xMm,z-g.pose.zMm],-g.pose.yawDeg)));
   const contained=entities.every(e=>polygonContains(state.room.polygonMm,e.worldEnvelopeMm));
@@ -94,7 +93,8 @@ function prepareMotion(state,id,catalog){
       const a=p.attachment,parent=a.parentId===null?null:poses.get(a.parentId);
       const local=parent&&rotateXZ([a.xMm,a.zMm],parent.yawDeg);
       const world=parent?{xMm:parent.xMm+local[0],zMm:parent.zMm+local[1],yawDeg:parent.yawDeg+a.yawDeg}:poses.get(p.id);
-      const polygon=transformPolygon(machines[p.machineId].footprintMm,world);endpoints.set(p.id,polygon);
+      const profile=resolvePrinterEquipment(state,p,catalog);
+      const polygon=transformPolygon(profile.footprintMm,world);endpoints.set(p.id,polygon);
       if(!polygonContains(state.room.polygonMm,polygon))return false;
     }
     return true;

@@ -1,0 +1,205 @@
+{
+  "schema": "3dprig-popstation-mount-v1",
+  "dateJst": "2026-10-25",
+  "units": "m",
+  "frame": {
+    "up": "+Y",
+    "front": "+Z",
+    "origin": "XZ centre, minY=0",
+    "normal": [
+      0,
+      1,
+      0
+    ]
+  },
+  "nominalDimensionsMm": {
+    "width": 422,
+    "depth": 456,
+    "height": 428
+  },
+  "nominalHeightBasis": "Official current manual explicitly includes standard rubber feet. Casters489mm are not this default model.",
+  "support": {
+    "topYM": 0.4174,
+    "topHeightStatus": "Derived exactly from authored geometry; lip inset/thickness visually estimated, not manufacturer mounting dimension.",
+    "contactPatch": {
+      "centerM": [
+        0,
+        0.4174,
+        0
+      ],
+      "sizeM": [
+        0.394,
+        0,
+        0.43
+      ],
+      "cornerRadiusM": 0.012,
+      "boundsXZ_M": [
+        [
+          -0.197,
+          -0.215
+        ],
+        [
+          0.197,
+          0.215
+        ]
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ]
+    },
+    "refinementBasis": "Deck stays inside the authored 398x432mm inner shell, meeting the estimated inner stacking-lip edge X+/-197mm; no printer scaling or foot relocation.",
+    "rimMaxYM": 0.428,
+    "sameFront": true,
+    "yawRad": 0
+  },
+  "mountPose": {
+    "printerFloorAnchorM": [
+      0,
+      0,
+      0
+    ],
+    "printerTranslationM": [
+      0,
+      0.4174,
+      0
+    ],
+    "matrix4x4RowMajor": [
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0.4174,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "recenterPrinterOnVariantChange": false
+  },
+  "dockedConfiguration": {
+    "u1Variant": "docked",
+    "stationVariant": "loaded",
+    "filamentState": "loaded",
+    "removeFromU1Groups": [
+      "holder_left_1",
+      "holder_left_2",
+      "holder_right_1",
+      "holder_right_2",
+      "feeder_left",
+      "feeder_right",
+      "spool_1",
+      "spool_2",
+      "spool_3",
+      "spool_4"
+    ],
+    "relocateIntoStationGroups": [
+      "holder_left_1",
+      "holder_left_2",
+      "holder_right_1",
+      "holder_right_2",
+      "feeder_left",
+      "feeder_right",
+      "spool_1",
+      "spool_2",
+      "spool_3",
+      "spool_4"
+    ],
+    "totalSpoolInventory": 4,
+    "inventoryIds": [
+      "spool_1",
+      "spool_2",
+      "spool_3",
+      "spool_4"
+    ],
+    "meaning": "Feeders and holders are transferred into the cabinet as official assembly instructions describe; not deleted from the physical setup."
+  },
+  "interiorPlacementMm": {
+    "drawers": "left/right parallel tall perforated side boards; earlier upper/lower interpretation superseded",
+    "sideBoardX": [
+      -181.2,
+      181.2
+    ],
+    "holderAxis": "left +X / right -X",
+    "spoolCenters": [
+      [
+        -143,
+        211,
+        -105.0
+      ],
+      [
+        -143,
+        211,
+        105.0
+      ],
+      [
+        143,
+        211,
+        -105.0
+      ],
+      [
+        143,
+        211,
+        105.0
+      ]
+    ],
+    "spoolAssumedDimensions": {
+      "diameter": 200,
+      "axialWidth": 66,
+      "bore": 60
+    },
+    "feederHousingCenters": [
+      [
+        -163,
+        355,
+        -110
+      ],
+      [
+        163,
+        355,
+        -110
+      ]
+    ],
+    "rearPtfeExitCenters": [
+      [
+        -24,
+        379,
+        -228
+      ],
+      [
+        -8,
+        379,
+        -228
+      ],
+      [
+        8,
+        379,
+        -228
+      ],
+      [
+        24,
+        379,
+        -228
+      ]
+    ]
+  },
+  "sources": [
+    "https://neo.bttwiki.com/en/docs/more-series/pop-module/popstation-mini/",
+    "https://biqu.equipment/products/biqu-popstation-mini-sealed-dual-drawer-storage-cabinet-for-4-filament-spools"
+  ],
+  "limits": [
+    "Cabinet local details, contacts, tray and feeder positions are authored visual approximations.",
+    "No native cabinet CAD, fit testing, load certification or operating clearances represented.",
+    "No casters, heater, RGB, printed adapter fit or live printer setup applied."
+  ],
+  "referenceRenderStackHeightM": 0.8593218897819519,
+  "referenceRenderStackHeightStatus": "Current registered exterior geometry only; operating clearance is separate."
+}
