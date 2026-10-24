@@ -298,3 +298,9 @@ input[aria-invalid="true"] { border-color: var(--layout-error); }
   .layout-view-group button { padding: 6px; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; } }
+
+.layout-manufacturer-note { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); }
+.layout-manufacturer-note h3 { margin: 0 0 8px; font-size: 13px; }
+.layout-manufacturer-note p { font-size: 12px; line-height: 1.6; color: var(--muted); }
+.layout-manufacturer-contacts { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+.layout-manufacturer-contacts a { color: var(--ink); text-underline-offset: 3px; overflow-wrap: anywhere; }
