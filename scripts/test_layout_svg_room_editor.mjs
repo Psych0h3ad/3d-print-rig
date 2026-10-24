@@ -175,7 +175,7 @@ await test('renderer-live-parent-followers-intermediate-reverse-cancel-and-commi
     {id:'desk-child',machineId:'fixture-machine',configurationId:null,attachment:{parentId:'desk',surfaceId:'top',xMm:50,zMm:20,yawDeg:15}},
     {id:'shelf-low',machineId:'fixture-machine',configurationId:null,attachment:{parentId:'shelf',surfaceId:'level-1',xMm:-40,zMm:30,yawDeg:-15}},
     {id:'shelf-high',machineId:'fixture-machine',configurationId:null,attachment:{parentId:'shelf',surfaceId:'level-4',xMm:40,zMm:-30,yawDeg:45}},
-    {id:'floor',machineId:'fixture-machine',configurationId:null,attachment:{parentId:null,surfaceId:'floor',xMm:1000,zMm:500,yawDeg:0}}]},cat);
+    {id:'floor',machineId:'fixture-machine',configurationId:null,attachment:{parentId:null,surfaceId:'floor',xMm:1800,zMm:-800,yawDeg:0}}]},cat);
   const factory=new Function('groupInfo','groupingForEntity','deps',`
     const MM=.001,objects=new Map(),planObjects=new Map(),groupEntities=new Map(),current=deps.state,derived=deps.derive(current,deps.catalog);let selectedId=null,drag=null,exporting=false,disposed=false,placing=null;
     const canvas={style:{},setPointerCapture(){},hasPointerCapture(){return true},releasePointerCapture(){}},draw=()=>{},hit=()=>deps.hit;

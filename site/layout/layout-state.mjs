@@ -2,6 +2,7 @@ import {polygonProblems, polygonContains, polygonsOverlap, rectangle, rotateXZ, 
 import {rigidMotionStaysInside,boundaryTangents} from './layout-constraints.mjs?v=53e33561b2e7ce324016';
 import {WALL_FINISHES, FLOOR_FINISHES, DEFAULT_ROOM_APPEARANCE} from './layout-finishes.mjs?v=001b62f9728770a12303';
 import {rootPose,groupRootPose,rebaseLayoutGroups} from './layout-group-data.mjs?v=298837e53f6daea54c7c';
+import {envelopeOverlaps,envelopeChange,prepareCollisionMotion} from './layout-collision.mjs?v=1a7a6f204f8ed66b33ed';
 
 export const LIMITS = Object.freeze({maxFurniture: 64, maxPrinters: 128, maxRoomVertices: 32,
   maxFootprintVertices: 32, maxLevels: 32, maxCoordinateMm: 1000000, maxDimensionMm: 100000,
@@ -26,8 +27,9 @@ function copy(value) {
   if (plain(value)) return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, copy(v)]));
   return value;
 }
+const frozenValues=new WeakSet();
 function freeze(value) {
-  if (value && typeof value === 'object' && !Object.isFrozen(value)) { for (const child of Object.values(value)) freeze(child); Object.freeze(value); }
+  if (value && typeof value === 'object' && !Object.isFrozen(value)) { for (const child of Object.values(value)) freeze(child); Object.freeze(value); frozenValues.add(value); }
   return value;
 }
 function poseCheck(pose, path, errors) {
@@ -286,6 +288,7 @@ function containmentIssues(state, scene, machines, ids) {
   return result;
 }
 export const PLACEMENT_BOUNDARY_CODES = Object.freeze(['ROOM_OUT_OF_BOUNDS', 'SURFACE_OVERHANG']);
+const MOTION_REJECTION_CODES=[...PLACEMENT_BOUNDARY_CODES,'ENVELOPE_OVERLAP'];
 // Parsing preserves legacy plans. These two boundary warnings define explicit
 // repair mode; height, board and inter-item envelope warnings keep their meaning.
 export function placementViolations(state, catalog = []) {
@@ -350,6 +353,25 @@ function restrictPlacementChange(state, next, action, machines) {
       ? () => rigidMotionStaysInside(outer, machines.byId[current.machineId].footprintMm, old.attachment, current.attachment) : null;
     boundary('SURFACE_OVERHANG', end.id, oldOuter, oldPolygon, outer, polygon, surfacePath);
   }
+  const moving=[...ids],oldFurniture=state.furniture.find(f=>f.id===action.id),newFurniture=next.furniture.find(f=>f.id===action.id);
+  const oldPrinter=state.printers.find(p=>p.id===action.id),newPrinter=next.printers.find(p=>p.id===action.id);
+  let origin,target,locals;
+  if(action.type==='UPDATE_FURNITURE'&&oldFurniture&&newFurniture){
+    origin=oldFurniture.pose;target=newFurniture.pose;
+    locals=new Map([[action.id,rectangle(oldFurniture.widthMm,oldFurniture.depthMm)],
+      ...state.printers.filter(p=>p.attachment.parentId===action.id).map(p=>[p.id,localPrinterPolygon(p,machines)])]);
+  }else if(oldPrinter&&newPrinter&&oldPrinter.machineId===newPrinter.machineId
+    &&oldPrinter.attachment.parentId===newPrinter.attachment.parentId&&oldPrinter.attachment.surfaceId===newPrinter.attachment.surfaceId){
+    origin=previous.get(action.id);target=after.printers.find(p=>p.id===action.id);
+    locals=new Map([[action.id,machines.byId[oldPrinter.machineId].footprintMm]]);
+  }
+  const rigid=!!origin&&oldFurniture?.widthMm===newFurniture?.widthMm&&oldFurniture?.depthMm===newFurniture?.depthMm
+    &&oldFurniture?.heightMm===newFurniture?.heightMm&&JSON.stringify(oldFurniture?.levels)===JSON.stringify(newFurniture?.levels);
+  const pair=envelopeChange(before,after,moving,{rigid});
+  if(pair)fail('ENVELOPE_OVERLAP','action',{entityIds:pair,reason:'TARGET_ENVELOPES_INTERSECT'});
+  if(origin&&['xMm','zMm','yawDeg'].some(k=>origin[k]!==target[k])
+    &&!prepareCollisionMotion(before,moving,origin,locals).accepts(target))
+    fail('ENVELOPE_OVERLAP','action',{entityIds:moving,reason:'CONTINUOUS_ENVELOPE_PATH_BLOCKED'});
 }
 function worldMoveLocalPoint(parent, attachment, xMm, zMm, snapOrigin) {
   if (!parent) return [xMm, zMm];
@@ -411,7 +433,7 @@ export function resolveWorldMove(state, {id, x, z}, catalog = [], {snapMm = 10, 
     return result(applyWorldMove(state, {id, xMm: x, zMm: z}, machines, {snapMm, snapOrigin}));
   } catch (error) {
     if (!(error instanceof LayoutValidationError)) throw error;
-    if (error.errors.some(e => !PLACEMENT_BOUNDARY_CODES.includes(e.code))) return false;
+    if (error.errors.some(e => !MOTION_REJECTION_CODES.includes(e.code))) return false;
   }
   const furniture = state.furniture.find(f => f.id === id), printer = state.printers.find(p => p.id === id);
   const ids = furniture ? [id, ...state.printers.filter(p => p.attachment.parentId === id).map(p => p.id)] : [id];
@@ -440,9 +462,56 @@ export function resolveWorldMove(state, {id, x, z}, catalog = [], {snapMm = 10, 
   // Full swept containment is a monotone prefix predicate. These are bounded
   // binary contact brackets, not sampled poses or endpoint-only collision tests.
   // Every accepted trial includes every intermediate translation. No EPS/gap.
+  const prepareLeg=from=>{
+    const scene=deriveScene(from,machines),all=[...scene.furniture,...scene.printers],root=all.find(e=>e.id===id);
+    const support=parent&&from.furniture.find(f=>f.id===parent.id),source=from.printers.find(p=>p.id===id);
+    const followers=furniture?from.printers.filter(p=>p.attachment.parentId===id):[];
+    const locals=new Map([[id,furniture?rectangle(root.widthMm,root.depthMm):machines.byId[source.machineId].footprintMm],
+      ...followers.map(p=>[p.id,localPrinterPolygon(p,machines)])]);
+    const collision=prepareCollisionMotion(scene,ids,root,locals);
+    return goal=>{
+      if(!numberOK(goal.x,-LIMITS.maxCoordinateMm,LIMITS.maxCoordinateMm)||!numberOK(goal.z,-LIMITS.maxCoordinateMm,LIMITS.maxCoordinateMm))return false;
+      const q=support?rotateXZ([goal.x,goal.z],support.pose.yawDeg):[goal.x,goal.z];
+      const end={xMm:q[0]+(support?.pose.xMm??0),zMm:q[1]+(support?.pose.zMm??0),yawDeg:root.yawDeg};
+      if(support){
+        const a=source.attachment;
+        if(!machines.byId[source.machineId].footprintMm.every(p=>{
+          const [x,z]=rotateXZ(p,a.yawDeg);
+          return sumAtMost(goal.x,x,support.widthMm/2)&&sumAtMost(-goal.x,-x,support.widthMm/2)
+            &&sumAtMost(goal.z,z,support.depthMm/2)&&sumAtMost(-goal.z,-z,support.depthMm/2);
+        }))return false;
+        if(!rigidMotionStaysInside(rectangle(support.widthMm,support.depthMm),locals.get(id),a,{...a,xMm:goal.x,zMm:goal.z}))return false;
+      }
+      const endpoints=new Map();
+      for(const [entityId,local]of locals){
+        if(!rigidMotionStaysInside(from.room.polygonMm,local,root,end))return false;
+        let polygon;
+        const child=followers.find(p=>p.id===entityId);
+        if(child){
+          const a=child.attachment,[x,z]=rotateXZ([a.xMm,a.zMm],end.yawDeg);
+          polygon=transformPolygon(machines.byId[child.machineId].footprintMm,{xMm:end.xMm+x,zMm:end.zMm+z,yawDeg:end.yawDeg+a.yawDeg});
+        }else polygon=transformPolygon(local,end);
+        if(!polygonContains(from.room.polygonMm,polygon))return false;
+        endpoints.set(entityId,polygon);
+      }
+      return collision.accepts(end,endpoints);
+    };
+  };
   const sweptPrefix = (from,goal) => {
     const start=pointOf(from);
-    try{return applyPoint(from,goal);}
+    const accepts=prepareLeg(from);
+    // Search on cached numerical entities, then allocate/validate the complete
+    // immutable transaction once. The authoritative action remains the commit
+    // gate; a rare numerical disagreement falls back to its bounded predicate.
+    let cheapLow=0,cheapHigh=1,point=null;
+    if(accepts(goal))point=goal;
+    else for(let i=0;i<64;i++){
+      const t=cheapLow+(cheapHigh-cheapLow)/2;if(t===cheapLow||t===cheapHigh)break;
+      const candidate={x:start.xMm+(goal.x-start.xMm)*t,z:start.zMm+(goal.z-start.zMm)*t};
+      if(accepts(candidate)){cheapLow=t;point=candidate;}else cheapHigh=t;
+    }
+    if(!point)return from;
+    try{return applyPoint(from,point);}
     catch(error){if(!(error instanceof LayoutValidationError))throw error;}
     let low=0,high=1,best=from;
     for(let i=0;i<64;i++){
@@ -464,9 +533,13 @@ export function resolveWorldMove(state, {id, x, z}, catalog = [], {snapMm = 10, 
     // converting a shared rotated edge back to local can add a false normal.
     domains.unshift([rectangle(parent.widthMm,parent.depthMm),localPrinterPolygon(best.printers.find(p=>p.id===id),machines),true]);
   }
+  const obstacleMotion=prepareCollisionMotion(scene,ids,worldTransform(best,id,machines));
+  const obstacleTangents=obstacleMotion.tangents(worldTransform(best,id,machines));
   let score=(contact.xMm-target.x)**2+(contact.zMm-target.z)**2;
   const remainder=[target.x-contact.xMm,target.z-contact.zMm],seen=[];
-  for(const [outer,polygon,local]of domains)for(const direction of boundaryTangents(outer,polygon)){
+  const candidates=domains.flatMap(([outer,polygon,local])=>boundaryTangents(outer,polygon).map(direction=>({direction,local})));
+  candidates.push(...obstacleTangents.map(direction=>({direction,local:false})));
+  for(const {direction,local}of candidates){
     const tangent=parent&&!local?rotateXZ(direction,-parent.pose.yawDeg):direction;
     if(seen.some(t=>Math.abs(t[0]*tangent[1]-t[1]*tangent[0])<1e-12))continue;seen.push(tangent);
     const distance=remainder[0]*tangent[0]+remainder[1]*tangent[1];
@@ -532,7 +605,7 @@ export function resolveWorldRotation(state, input, catalog = [], options = {}) {
       try { return trial(goal); }
       catch (error) {
         if (!(error instanceof LayoutValidationError)) throw error;
-        if (error.errors.some(e => !PLACEMENT_BOUNDARY_CODES.includes(e.code))) throw error;
+        if (error.errors.some(e => !MOTION_REJECTION_CODES.includes(e.code))) throw error;
         return false;
       }
     };
@@ -564,6 +637,7 @@ export function previewWorldMove(state, input, catalog = [], options = {}) {
   const result = resolveWorldMove(state, input, catalog, options);
   return result && Object.freeze({x: result.x, z: result.z});
 }
+const sceneCache=new WeakMap();
 function surfaceUnchecked(state, parentId, surfaceId) {
   if (parentId === null) {
     if (surfaceId !== 'floor') fail('FLOOR_SURFACE_REQUIRED', 'surfaceId');
@@ -586,7 +660,9 @@ export function getSurface(state, parentId = null, surfaceId = 'floor') {
   return freeze(surfaceUnchecked(state, parentId, surfaceId));
 }
 export function deriveScene(state, catalog = []) {
-  const machines = catalogOf(catalog); assertState(state, machines);
+  const machines = catalogOf(catalog);
+  const cached=frozenValues.has(state)&&sceneCache.get(state)?.get(machines);if(cached)return cached;
+  assertState(state, machines);
   const surfaces = [surfaceUnchecked(state, null, 'floor')];
   const furniture = state.furniture.map(f => {
     const boards = (f.type === 'desk' ? [{id: 'top', topMm: f.heightMm}] : f.levels).map(l => {
@@ -610,7 +686,11 @@ export function deriveScene(state, catalog = []) {
       widthMm: m.widthMm, depthMm: m.depthMm, heightMm: m.heightMm,
       widthM: m.widthMm / 1000, depthM: m.depthMm / 1000, heightM: m.heightMm / 1000};
   });
-  return freeze({furniture, printers, surfaces});
+  const scene=freeze({furniture, printers, surfaces});
+  if(frozenValues.has(state)){
+    let cache=sceneCache.get(state);if(!cache){cache=new WeakMap();sceneCache.set(state,cache);}cache.set(machines,scene);
+  }
+  return scene;
 }
 export function worldTransform(state, entityId, catalog = []) {
   const scene = deriveScene(state, catalog), entity = [...scene.furniture, ...scene.printers].find(e => e.id === entityId);
@@ -633,12 +713,7 @@ export function validatePlacement(state, catalog = []) {
         && polygonsOverlap(p.worldEnvelopeMm, s.worldEnvelopeMm)) warn('SHELF_BOARD_INTERSECTION', [p.id, parent.id], {levelId: level.id, boardBottomMm: bottom, printerTopMm: p.verticalRangeMm[1]});
     }
   }
-  for (let i = 0; i < all.length; i++) for (let j = i + 1; j < all.length; j++) {
-    const a = all[i], b = all[j];
-    if (a.parentId === b.id || b.parentId === a.id) continue;
-    const heightOverlapMm = Math.min(a.verticalRangeMm[1], b.verticalRangeMm[1]) - Math.max(a.verticalRangeMm[0], b.verticalRangeMm[0]);
-    if (heightOverlapMm > 0 && polygonsOverlap(a.worldEnvelopeMm, b.worldEnvelopeMm)) warn('ENVELOPE_OVERLAP', [a.id, b.id], {heightOverlapMm});
-  }
+  warnings.push(...envelopeOverlaps(scene));
   return freeze(warnings);
 }
 export function serializeLayout(state, catalog = []) {

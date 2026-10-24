@@ -14,6 +14,8 @@ read('layout/layout-language.mjs');read('layout/layout-i18n.mjs');
 read('layout/layout-state.mjs');read('layout/layout-constraints.mjs');read('layout/layout-geometry.mjs');
 const S=await import(pathToFileURL(path.join(site,'layout/layout-state.mjs')));
 const G=await import(pathToFileURL(path.join(site,'layout/layout-groups.mjs')));
+const H=await import(pathToFileURL(path.join(site,'layout/layout-clipboard.mjs')));
+read('layout/layout-clipboard.mjs');read('layout/layout-collision.mjs');
 read('layout/layout-groups.mjs');read('layout/layout-group-data.mjs');
 const {proposePlacement}=await import(pathToFileURL(path.join(site,'layout/layout-placement.mjs')));
 consumed['layout/layout-placement.mjs']=crypto.createHash('sha256').update(fs.readFileSync(path.join(site,'layout/layout-placement.mjs'))).digest('hex');
@@ -173,7 +175,7 @@ await test('desktop-bootstrap-reaches-ready-with-automatic-renderer-and-no-remov
   const document=deps.doc,$=q=>document.querySelector(q),navigator={deviceMemory:8},localStorage={getItem:()=>null};
   const storageKey='test',groupLibraryKey='sets-test',maxFileBytes=2097152,fetch=async()=>({ok:true,json:async()=>deps.catalogData});let groupLibrary=[];
   let state,catalog,rows,ui,view,selected=null,busy=false,roomEditing=false,disposed=false,placement=null;const past=[],future=[];
-  const language={t:key=>key},t=key=>key,act=()=>{},select=()=>{},worldMove=()=>{},constrainMove=()=>{},worldRotate=deps.rotationPorts.onRotate,constrainRotate=deps.rotationPorts.constrainRotate,previewPlacement=()=>null,placeProposal=()=>{},placementKey=()=>{},message=()=>{},humanError=()=> 'error';
+  const language={t:key=>key},t=key=>key,act=()=>{},select=()=>{},worldMove=()=>{},constrainMove=()=>{},worldRotate=deps.rotationPorts.onRotate,constrainRotate=deps.rotationPorts.constrainRotate,previewPlacement=()=>null,placeProposal=()=>{},placementKey=()=>{},copyEvent=()=>{},pasteEvent=()=>{},message=()=>{},humanError=()=> 'error';
   const calls={sync:0,language:0,views:[],presentations:[],options:[],libraries:[]};
   const sync=()=>calls.sync++,updateLanguage=()=>calls.language++,dark=()=>false;
   const updateViewPresentation=value=>calls.presentations.push(value);
@@ -194,6 +196,7 @@ await test('desktop-bootstrap-reaches-ready-with-automatic-renderer-and-no-remov
  assert.deepEqual(result.calls.presentations,[{mode:'perspective',projection:'perspective-3d'}]);
  assert.deepEqual(result.calls.libraries,[[]],'Actual startup initializes saved-set controls without fetching printer models');
  assert.equal(e.documentListeners.get('keydown')?.length,2,'Actual startup binds history and placement shortcuts');
+ assert.equal(e.documentListeners.get('copy')?.length,1);assert.equal(e.documentListeners.get('paste')?.length,1);
 });
 
 await test('actual-app-failed-noop-and-successful-commit-status-lifecycle',async()=>{
@@ -269,10 +272,11 @@ function replayCommands(initial,selection){
  const keyStart="view.canvas.addEventListener('keydown',event=>{";
  const keyboard=unique(app,keyStart,'\n  });').slice(keyStart.length);
  const shortcuts=unique(app,'function placementKey(event){','\nfunction historyKey(');
- const engine=new Function('S','G','initial','selection','rows','catalog','proposePlacement',`
+ const engine=new Function('S','G','H','initial','selection','rows','catalog','proposePlacement',`
   const {createDefaultLayout,createDesk,createShelf,applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,deriveScene,worldTransform,serializeLayout,parseLayout,validatePlacement}=S;
   const {createGroup,renameGroup,ungroup,removeGroup,groupInfo,transformGroup,resolveGroupMove,resolveGroupRotation,captureGroupTemplate,groupTemplateInfo,proposeGroupPlacement,parseGroupLibrary,GROUP_LIBRARY_LIMIT}=G;
-  let state=initial,selected=selection,busy=false,roomEditing=false,disposed=false,interactionGeneration=0,operation=null,nextId=1,placement=null,lastPlacementTarget=null;
+  const {captureLayoutClipboard,encodeLayoutClipboard,decodeLayoutClipboard,regroupLayoutSelection}=H;
+  let state=initial,selected=selection,busy=false,roomEditing=false,disposed=false,interactionGeneration=0,operation=null,nextId=1,placement=null,lastPlacementTarget=null,clipboardText='';
   const past=[],future=[],writes=[],updates=[],maxFileBytes=2097152,storageKey='fixture',groupLibraryKey='fixture-sets',document={body:{dataset:{}}};let groupLibrary=[];
   const status={hidden:true,textContent:'',dataset:{}},$=selector=>selector.startsWith('#layout-placement')?null:status,language={t:key=>key},ui={setStatus(){},update(_state,id){updates.push(id)}};
   const localStorage={setItem(_key,value){writes.push(value)}},view={setState(){},view(){},setPlacement(){},refreshPlacement(){},canvas:{focus(){}}};
@@ -282,7 +286,7 @@ function replayCommands(initial,selection){
   ${shortcuts}
   function key(event){${keyboard}}
   return {act,key,shortcut:placementKey,constrainMove,worldMove,preview:previewPlacement,place:(target,options={})=>{const result=previewPlacement(target);placeProposal(result,options);return result;},cancel:cancelPlacement,read:()=>({state,selected,past:[...past],future:[...future],writes:[...writes],updates:[...updates],status:{...status},placement})};
- `)(S,G,initial,selection,productionRows,productionCatalog,proposePlacement);
+ `)(S,G,H,initial,selection,productionRows,productionCatalog,proposePlacement);
  return engine;
 }
 const encoded=engine=>serializeLayout(engine.read().state,productionCatalog);
@@ -539,9 +543,9 @@ await test('active-placement-name-and-status-switch-five-languages-without-repea
 });
 await test('back-forward-cache-preserves-live-controls-and-real-unload-disposes',()=>{
  const source=unique(app,'function pageHide(event){',"\nwindow.addEventListener('pagehide'");
- const effects=[],factory=new Function('effects',`let disposed=false,renderURL='blob:fixture';const cancelPlacement=()=>effects.push('cancel'),operation={abort:()=>effects.push('abort')},historyKey=()=>{},placementKey=()=>{},document={removeEventListener:()=>effects.push('remove')},view={dispose:()=>effects.push('view')},ui={dispose:()=>effects.push('ui')},language={disconnect:()=>effects.push('language')},URL={revokeObjectURL:()=>effects.push('url')};${source};return {pageHide,isDisposed:()=>disposed};`);
+ const effects=[],factory=new Function('effects',`let disposed=false,renderURL='blob:fixture';const cancelPlacement=()=>effects.push('cancel'),operation={abort:()=>effects.push('abort')},historyKey=()=>{},placementKey=()=>{},copyEvent=()=>{},pasteEvent=()=>{},document={removeEventListener:()=>effects.push('remove')},view={dispose:()=>effects.push('view')},ui={dispose:()=>effects.push('ui')},language={disconnect:()=>effects.push('language')},URL={revokeObjectURL:()=>effects.push('url')};${source};return {pageHide,isDisposed:()=>disposed};`);
  const r=factory(effects);r.pageHide({persisted:true});r.pageHide({persisted:true});assert.equal(r.isDisposed(),false);assert.deepEqual(effects,['cancel','abort','cancel','abort']);
- r.pageHide({persisted:false});assert.equal(r.isDisposed(),true);assert.deepEqual(effects.slice(4),['cancel','abort','remove','remove','view','ui','language','url']);
+ r.pageHide({persisted:false});assert.equal(r.isDisposed(),true);assert.deepEqual(effects.slice(4),['cancel','abort','remove','remove','remove','remove','view','ui','language','url']);
  assert(app.includes("window.addEventListener('pagehide',pageHide)"));
 });
 for(const [rel,h]of Object.entries(consumed))assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(site,rel))).digest('hex'),h,'Source changed: '+rel);

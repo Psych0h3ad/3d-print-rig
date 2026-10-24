@@ -1,10 +1,11 @@
 // Farm units use the same static planning envelopes as individual objects.
 // A group never duplicates source CAD or changes printer/support attachments.
 import {LIMITS,LayoutValidationError,createDefaultLayout,createCatalog,deriveScene,
-  validatePlacement,parseLayout,serializeLayout} from './layout-state.mjs?v=cd4dd024f3faa663dbf9';
+  validatePlacement,parseLayout,serializeLayout} from './layout-state.mjs?v=178f9d7e9634806cb173';
 import {rootPose,groupRootPose} from './layout-group-data.mjs?v=298837e53f6daea54c7c';
 import {bounds,rectangle,rotateXZ,transformPolygon,polygonContains,orient} from './layout-geometry.mjs?v=129e07e8d3e2b008fab6';
 import {rigidMotionStaysInside,boundaryTangents} from './layout-constraints.mjs?v=53e33561b2e7ce324016';
+import {prepareCollisionMotion,envelopeChange} from './layout-collision.mjs?v=1a7a6f204f8ed66b33ed';
 
 const clone=x=>JSON.parse(JSON.stringify(x));
 const problem=(code,path='group',params={})=>new LayoutValidationError([{code,path,params}]);
@@ -81,18 +82,24 @@ function prepareMotion(state,id,catalog){
   const contained=entities.every(e=>polygonContains(state.room.polygonMm,e.worldEnvelopeMm));
   const room=state.room.polygonMm,turns=room.map((p,i)=>orient(p,room[(i+1)%room.length],room[(i+2)%room.length])).filter(Boolean);
   const convex=turns.length>0&&turns.every(t=>t===turns[0]);
+  let endpoints;
   const actualEndpointInside=pose=>{
+    endpoints=new Map();
     const poses=new Map(g.memberIds.map(id=>[id,groupRootPose(g,id,pose)]));
-    for(const f of state.furniture)if(ids.has(f.id)&&!polygonContains(state.room.polygonMm,transformPolygon(rectangle(f.widthMm,f.depthMm),poses.get(f.id))))return false;
+    for(const f of state.furniture)if(ids.has(f.id)){
+      const polygon=transformPolygon(rectangle(f.widthMm,f.depthMm),poses.get(f.id));endpoints.set(f.id,polygon);
+      if(!polygonContains(state.room.polygonMm,polygon))return false;
+    }
     for(const p of state.printers)if(ids.has(p.id)){
       const a=p.attachment,parent=a.parentId===null?null:poses.get(a.parentId);
       const local=parent&&rotateXZ([a.xMm,a.zMm],parent.yawDeg);
       const world=parent?{xMm:parent.xMm+local[0],zMm:parent.zMm+local[1],yawDeg:parent.yawDeg+a.yawDeg}:poses.get(p.id);
-      if(!polygonContains(state.room.polygonMm,transformPolygon(machines[p.machineId].footprintMm,world)))return false;
+      const polygon=transformPolygon(machines[p.machineId].footprintMm,world);endpoints.set(p.id,polygon);
+      if(!polygonContains(state.room.polygonMm,polygon))return false;
     }
     return true;
   };
-  const accepts=pose=>{
+  const inside=pose=>{
     if(!['xMm','zMm','yawDeg'].every(k=>finite(pose[k],k==='yawDeg'?LIMITS.maxYawDeg:LIMITS.maxCoordinateMm)))return false;
     if(!actualEndpointInside(pose))return false;
     const delta=pose.yawDeg-g.pose.yawDeg;
@@ -114,15 +121,18 @@ function prepareMotion(state,id,catalog){
     }
     return true;
   };
-  return {g,polygons,contained,accepts};
+  const collision=prepareCollisionMotion(scene,ids,g.pose,new Map(entities.map((e,i)=>[e.id,polygons[i]])));
+  const accepts=pose=>inside(pose)&&collision.accepts(pose,endpoints);
+  return {g,polygons,contained,accepts,inside,collision,scene,ids};
 }
 export function transformGroup(state,id,patch,catalog=[]){
   catalog=catalogRows(catalog);
   checked(state,catalog);
   if(!patch||typeof patch!=='object'||Array.isArray(patch)||Object.keys(patch).some(k=>!['xMm','zMm','yawDeg'].includes(k)))fail('INVALID_ACTION');
   const motion=prepareMotion(state,id,catalog),pose={...motion.g.pose,...patch};
-  if(!motion.accepts(pose))fail('ROOM_OUT_OF_BOUNDS');
+  if(!motion.accepts(pose))fail(motion.inside(pose)?'ENVELOPE_OVERLAP':'ROOM_OUT_OF_BOUNDS');
   const next=movedState(state,motion.g,pose,catalog);
+  if(envelopeChange(motion.scene,deriveScene(next,catalog),motion.ids,{rigid:true}))fail('ENVELOPE_OVERLAP');
   if(validatePlacement(next,catalog).some(e=>e.code==='ROOM_OUT_OF_BOUNDS'&&groupEntityIds(next,id).includes(e.entityIds[0])))fail('ROOM_OUT_OF_BOUNDS');
   return next;
 }
@@ -148,7 +158,8 @@ export function resolveGroupMove(state,{id,x,z},catalog=[],{snapMm=10,snapOrigin
     const contact=best,contactState=movedState(state,m.g,contact,catalog),slide=prepareMotion(contactState,id,catalog);
     let score=(best.xMm-target.xMm)**2+(best.zMm-target.zMm)**2;
     const seen=[];
-    for(const local of m.polygons)for(const direction of boundaryTangents(state.room.polygonMm,transformPolygon(local,contact))){
+    const directions=[...m.polygons.flatMap(local=>boundaryTangents(state.room.polygonMm,transformPolygon(local,contact))),...m.collision.tangents(contact)];
+    for(const direction of directions){
       if(seen.some(t=>Math.abs(t[0]*direction[1]-t[1]*direction[0])<1e-12))continue;seen.push(direction);
       const distance=(target.xMm-contact.xMm)*direction[0]+(target.zMm-contact.zMm)*direction[1];
       const end=prefix(slide,contact,{...contact,xMm:contact.xMm+direction[0]*distance,zMm:contact.zMm+direction[1]*distance});
