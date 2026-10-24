@@ -12,7 +12,8 @@ const site=path.resolve(option('--site')||fileURLToPath(new URL('../site/',impor
 const resources=new Map();
 function read(relative){const file=path.join(site,relative),bytes=fs.readFileSync(file);resources.set(relative,{file,sha256:createHash('sha256').update(bytes).digest('hex'),bytes:bytes.length});return bytes.toString('utf8');}
 const sources=Object.fromEntries(['layout/layout-state.mjs','layout/layout-groups.mjs','layout/layout-group-data.mjs',
-  'layout/layout-app.mjs','layout/layout-geometry.mjs','layout/layout-constraints.mjs','layout/layout-placement.mjs','layout/layout-i18n.mjs'].map(file=>[file,read(file)]));
+  'layout/layout-app.mjs','layout/layout-geometry.mjs','layout/layout-constraints.mjs','layout/layout-placement.mjs','layout/layout-i18n.mjs',
+  'layout/layout-clipboard.mjs','layout/layout-collision.mjs'].map(file=>[file,read(file)]));
 const groupsURL=pathToFileURL(path.join(site,'layout/layout-groups.mjs'));
 // Match the production dependency identity, including its cache query. Error
 // constructors from separate ESM URLs are distinct even with identical bytes.
@@ -24,6 +25,7 @@ const G=await import(groupsURL);
 const D=await import(pathToFileURL(path.join(site,'layout/layout-group-data.mjs')));
 const P=await import(pathToFileURL(path.join(site,'layout/layout-placement.mjs')));
 const I=await import(pathToFileURL(path.join(site,'layout/layout-i18n.mjs')));
+const H=await import(pathToFileURL(path.join(site,'layout/layout-clipboard.mjs')));
 const app=sources['layout/layout-app.mjs'];
 const pose=(xMm=0,zMm=0,yawDeg=0)=>({xMm,zMm,yawDeg});
 // Deliberately small, asymmetric envelopes make independent numerical witnesses
@@ -51,8 +53,9 @@ function replay(initial,{library=[],storageFailure=false}={}){
     const {createDefaultLayout,createDesk,createShelf,createCatalog,applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,placementViolations,deriveScene,worldTransform,validatePlacement,serializeLayout,parseLayout}=deps.S;
     const {createGroup,renameGroup,ungroup,removeGroup,groupInfo,transformGroup,resolveGroupMove,resolveGroupRotation,captureGroupTemplate,groupTemplateInfo,proposeGroupPlacement,parseGroupLibrary,GROUP_LIBRARY_LIMIT}=deps.G;
     const {proposePlacement}=deps.P;
+    const {captureLayoutClipboard,encodeLayoutClipboard,decodeLayoutClipboard,regroupLayoutSelection}=deps.H;
     let state=deps.initial,catalog=deps.catalog,rows=deps.rows,selected=null,busy=false,roomEditing=false,disposed=false,operation=null,renderURL=null;
-    let placement=null,lastPlacementTarget=null,interactionGeneration=0,nextId=1,groupLibrary=deps.library,storageFailure=deps.storageFailure;
+    let placement=null,lastPlacementTarget=null,interactionGeneration=0,nextId=1,groupLibrary=deps.library,storageFailure=deps.storageFailure,clipboardText='';
     const past=[],future=[],writes=[],updates=[],libraries=[],views=[],errors=[],status={hidden:true,textContent:'',dataset:{}};
     const maxFileBytes=2*1024*1024,storageKey='3d-print-rig-layout-v1',groupLibraryKey='3d-print-rig-layout-sets-v1';
     const document={body:{dataset:{}}},$=selector=>selector==='#layout-status'?status:null;
@@ -67,7 +70,7 @@ function replay(initial,{library=[],storageFailure=false}={}){
       flags:patch=>{if('busy'in patch)busy=patch.busy;if('roomEditing'in patch)roomEditing=patch.roomEditing;if('disposed'in patch)disposed=patch.disposed;if('storageFailure'in patch)storageFailure=patch.storageFailure;},
       read:()=>({state,selected,placement,lastPlacementTarget,groupLibrary,past:[...past],future:[...future],writes:[...writes],updates:[...updates],libraries:[...libraries],views:[...views],errors:[...errors],status:{...status}})};
   `);
-  return factory({S,G,P,initial,catalog:C,rows,library:clone(library),storageFailure,translate:I.createLayoutTranslator('en')});
+  return factory({S,G,P,H,initial,catalog:C,rows,library:clone(library),storageFailure,translate:I.createLayoutTranslator('en')});
 }
 
 const tests=[];
@@ -176,7 +179,7 @@ await test('delayed import cannot replace a newer group edit, selection, reset o
     await r.act(action);const before=r.read();finish(encode(empty()));await pending;const after=r.read();assert.strictEqual(after.state,before.state);assert.deepEqual(after.writes,before.writes);assert.deepEqual(after.past,before.past);assert.equal(after.selected,before.selected);assert.deepEqual(after.groupLibrary,before.groupLibrary);
   }
 });
-await test('queued placement callbacks after undo, import and reset cannot resurrect canceled groups',[ref('app','function placeProposal('),ref('app',"if(placement&&!['add','duplicate','group-place']")],async()=>{
+await test('queued placement callbacks after undo, import and reset cannot resurrect canceled groups',[ref('app','function placeProposal('),ref('app',"if(placement&&!['add','duplicate','group-place','copy','paste']")],async()=>{
   for(const action of [{type:'undo'},{type:'reset'},{type:'import',file:{size:encode(empty()).length,text:async()=>encode(empty())}}]){
     const r=replay(farm());await r.act({type:'group-rename',id:'farm',name:'Before preview'});await r.act({type:'duplicate',id:'farm'});const old=r.previewPlacement({xMm:2500,zMm:2000,yawDeg:0,altKey:true});assert(old.valid,JSON.stringify(old.issues));
     await r.act(action);const before=r.read();assert.equal(before.placement,null);r.placeProposal(old,{repeat:true});assert.strictEqual(r.read().state,before.state);assert.deepEqual(r.read().writes,before.writes);

@@ -56,8 +56,9 @@ await test('create emits a descriptive name and distinct roots, including attach
   assert.deepEqual(r.actions,[{type:'group-create',name:'West printers',memberIds:['desk-1','floor-1']}]);
   assert.equal(JSON.stringify(state),before);assert.equal(r.find('#layout-groups').children.length,0,'Application must provide the committed state');r.ui.dispose();
 });
-await test('empty names and no selected roots disable creation; unchecking removes a root',()=>{
-  const r=setup();r.change(r.find('#layout-group-name'),'   ');r.pick('desk-1');assert.equal(r.command('layout.group.create').disabled,true);
+await test('unnamed selections use a default name; no selected roots disable creation',()=>{
+  const r=setup();r.change(r.find('#layout-group-name'),'   ');r.pick('desk-1');assert.equal(r.command('layout.group.create').disabled,false);
+  r.command('layout.group.create').click();assert.deepEqual(r.actions.pop(),{type:'group-create',name:'Printer cell',memberIds:['desk-1']});
   r.change(r.find('#layout-group-name'),'Bench');assert.equal(r.command('layout.group.create').disabled,false);
   r.pick('desk-1',false);assert.equal(r.command('layout.group.create').disabled,true);r.command('layout.group.create').click();assert.equal(r.actions.length,0);r.ui.dispose();
 });
@@ -70,20 +71,20 @@ await test('Enter and form submission delegate the same create action once',()=>
   for(const listener of form.listeners.get('submit'))listener({preventDefault(){prevented++;}});
   assert.equal(prevented,2);assert.equal(r.actions.length,2);r.ui.dispose();
 });
-await test('assigned roots stay disabled with named help after busy and locale changes',()=>{
+await test('assigned roots can be copied or regrouped after busy and locale changes',()=>{
   const state=freeze(plan([unit()])),r=setup(state),desk=r.find('[data-layout-group-member="desk-1"]');
-  assert.equal(desk.disabled,true);assert.equal(r.find('[data-layout-group-member="floor-1"]').disabled,true);
-  const help=desk.getAttribute('aria-describedby').split(' ').map(id=>r.find(`#${id}`).textContent).join(' ');assert(help.includes('North bench'));assert(help.includes('Ungroup'));
-  r.ui.setStatus({busy:true});r.ui.setStatus({busy:false});assert.equal(desk.disabled,true);assert.equal(r.find('[data-layout-group-member="floor-2"]').disabled,false);
-  for(const language of supportedLanguages){r.ui.setLocale(createLayoutTranslator(language));assert.equal(r.find('[data-layout-group-member="desk-1"]').disabled,true);}
+  assert.equal(desk.disabled,false);assert.equal(r.find('[data-layout-group-member="floor-1"]').disabled,false);
+  const help=desk.getAttribute('aria-describedby').split(' ').map(id=>r.find(`#${id}`).textContent).join(' ');assert(help.includes('North bench'));assert(help.includes('new group'));
+  r.ui.setStatus({busy:true});assert.equal(desk.disabled,true);r.ui.setStatus({busy:false});assert.equal(desk.disabled,false);assert.equal(r.find('[data-layout-group-member="floor-2"]').disabled,false);
+  for(const language of supportedLanguages){r.ui.setLocale(createLayoutTranslator(language));assert.equal(r.find('[data-layout-group-member="desk-1"]').disabled,false);}
   assert.equal(r.actions.length,0);r.ui.dispose();
 });
-await test('externally grouped, removed and attached roots are pruned from a create draft',()=>{
+await test('grouped roots stay selected; removed and newly attached roots are pruned',()=>{
   const state=plan(),r=setup(state);r.change(r.find('#layout-group-name'),'Draft');r.pick('desk-1');r.pick('floor-1');r.pick('floor-2');
   const next={...state,groups:[{...unit(),memberIds:['desk-1']}],printers:state.printers.filter(p=>p.id!=='floor-2').map(p=>p.id==='floor-1'?printer(p.id,'shelf-1'):p)};
-  r.ui.update(next);assert.equal(r.command('layout.group.create').disabled,true);assert.equal(r.find('#layout-group-picked').textContent,'Selected: 0 · Printers: 0 · Furniture: 0');
+  r.ui.update(next);assert.equal(r.command('layout.group.create').disabled,false);assert.equal(r.find('#layout-group-picked').textContent,'Selected: 1 · Printers: 2 · Furniture: 1');
   assert.equal(r.container.querySelector('[data-layout-group-member="floor-1"]'),null);r.pick('shelf-1');r.command('layout.group.create').click();
-  assert.deepEqual(r.actions.at(-1),{type:'group-create',name:'Draft',memberIds:['shelf-1']});r.ui.dispose();
+  assert.deepEqual(r.actions.at(-1),{type:'group-create',name:'Draft',memberIds:['desk-1','shelf-1']});r.ui.dispose();
 });
 await test('group rows select their own IDs and count attached printers once',()=>{
   const r=setup(plan([unit()]),'unit-1'),row=r.find('[data-layout-group="unit-1"]');
@@ -152,7 +153,7 @@ await test('busy freezes new group controls, draft and library while cancel stay
   assert.equal(r.find('#layout-group-name').disabled,true);assert.equal(r.find('#layout-group-edit-name').disabled,true);assert.equal(r.field('xMm').disabled,true);assert.equal(r.command('layout.nav.selection').disabled,true);assert.equal(r.actions.length,0);
   r.ui.setGroupLibrary([{id:'new-saved',name:'New saved',printerCount:1,furnitureCount:0}]);assert.equal(r.command('layout.group.place').disabled,true);
   r.ui.setLocale(createLayoutTranslator('ko'));assert.equal(r.command('layout.group.save').disabled,true);r.command('cancel').click();assert.deepEqual(r.actions,[{type:'cancel'}]);r.ui.setStatus({busy:false});
-  assert.equal(r.command('layout.group.create').disabled,false);assert.equal(r.find('#layout-group-name').value,'Draft');assert.equal(r.find('[data-layout-group-member="shelf-1"]').checked,true);assert.equal(r.find('[data-layout-group-member="desk-1"]').disabled,true);r.ui.dispose();
+  assert.equal(r.command('layout.group.create').disabled,false);assert.equal(r.find('#layout-group-name').value,'Draft');assert.equal(r.find('[data-layout-group-member="shelf-1"]').checked,true);assert.equal(r.find('[data-layout-group-member="desk-1"]').disabled,false);r.ui.dispose();
 });
 await test('all five languages retranslate dynamic group text and library while keeping user names and exact state',()=>{
   const state=freeze(plan([unit()])),before=JSON.stringify(state),r=setup(state,'unit-1');r.ui.setGroupLibrary([{id:'saved',name:'Literal saved name',printerCount:3,furnitureCount:1}]);
@@ -187,6 +188,30 @@ await test('dispose disables retained controls and later library or locale updat
   save.click();place.click();r.ui.setGroupLibrary([{id:'late',name:'Late',printerCount:0,furnitureCount:0}]);r.ui.setLocale(createLayoutTranslator('ru'));r.ui.update(plan([unit()]),'unit-1');assert.equal(r.actions.length,0);assert.equal(r.container.children.length,0);
 });
 
+await test('bulk selection includes assigned roots and supported printers once, then clears',()=>{
+  const r=setup(plan([unit()]));r.command('layout.selection.all').click();
+  assert.deepEqual(r.ui.getPickedRootIds(),['desk-1','shelf-1','floor-1','floor-2']);
+  assert.equal(r.find('#layout-group-picked').textContent,'Selected: 4 · Printers: 5 · Furniture: 2');
+  r.command('layout.selection.copy').click();assert.deepEqual(r.actions.pop(),{type:'copy',selectionIds:r.ui.getPickedRootIds()});
+  r.command('layout.selection.clear').click();assert.deepEqual(r.ui.getPickedRootIds(),[]);assert.equal(r.command('layout.selection.copy').disabled,true);r.ui.dispose();
+});
+await test('copy and paste controls reflect current selection, buffer and busy state',()=>{
+  const r=setup();assert.equal(r.command('copy').disabled,true);assert.equal(r.command('paste').disabled,true);
+  r.ui.update(plan(),'desk-1');assert.equal(r.command('copy').disabled,false);r.command('copy').click();assert.deepEqual(r.actions.pop(),{type:'copy'});
+  r.ui.setStatus({canPaste:true});r.command('paste').click();assert.deepEqual(r.actions.pop(),{type:'paste'});
+  r.ui.setStatus({busy:true});assert.equal(r.command('copy').disabled,true);assert.equal(r.command('paste').disabled,true);
+  r.command('layout.selection.all').click();assert.deepEqual(r.ui.getPickedRootIds(),[]);
+  r.ui.setStatus({busy:false});assert.equal(r.command('paste').disabled,false);r.ui.dispose();
+});
+await test('clipboard and bulk controls translate without emoji and retain SVG labels',()=>{
+  const r=setup(plan(),'desk-1');r.ui.setStatus({canPaste:true});
+  for(const language of supportedLanguages){const translate=createLayoutTranslator(language);r.ui.setLocale(translate);
+    for(const [command,key]of [['copy','layout.clipboard.copy'],['paste','layout.clipboard.paste'],['layout.selection.all','layout.selection.all'],['layout.selection.clear','layout.selection.clear']]){
+      const b=r.command(command);assert.equal(b.getAttribute('aria-label'),translate(key));assert.equal(b.querySelector('svg').getAttribute('aria-hidden'),'true');
+    }
+    assert.equal(r.find('#layout-group-name').placeholder,translate('layout.group.defaultName'));
+  }r.ui.dispose();
+});
 assert.deepEqual(results.filter(r=>!r.pass),[],'Farm grouping DOM regressions');
 for(const [path,sha256]of Object.entries(inputs))assert.equal(hash(path),sha256,'UI input changed during the run: '+path);
 console.log(JSON.stringify({status:'PASS',cases:results.length,languages:supportedLanguages,sourceInputs:inputs,

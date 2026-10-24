@@ -203,14 +203,14 @@ await test('room-shrink-and-shelf-resize-reject-new-protrusion',()=>{
  throwsCode(()=>S.applyAction(state,{type:'UPDATE_FURNITURE',id:'shelf-1',patch:{widthMm:500}},fixture),'SURFACE_OVERHANG');
 });
 await test('legacy-invalid-import-warns-no-auto-move-valid-other-edit-and-explicit-repair',()=>{
- const imported=S.createDefaultLayout({printers:[p('old','fixture200',{parentId:null,surfaceId:'floor',xMm:3000,zMm:0,yawDeg:0}),p('valid','fixture200')]},fixture);
+ const imported=S.createDefaultLayout({printers:[p('old','fixture200',{parentId:null,surfaceId:'floor',xMm:3000,zMm:0,yawDeg:0}),p('valid','fixture200',{parentId:null,surfaceId:'floor',xMm:0,zMm:1000,yawDeg:0})]},fixture);
  const text=S.serializeLayout(imported,fixture),state=S.parseLayout(text,fixture);
  assert.equal(S.serializeLayout(state,fixture),text);assert.ok(S.validatePlacement(state,fixture).some(i=>i.entityIds.includes('old')));
  const dragFixed=S.applyWorldMove(state,{id:'old',xMm:0,zMm:0},fixture);
  assert.deepEqual(S.placementViolations(dragFixed,fixture),[]);
  assert.deepEqual(S.previewWorldMove(state,{id:'old',x:0,z:0},fixture),{x:0,z:0});
  assert.equal(S.previewWorldMove(state,{id:'old',x:2900,z:0},fixture),false);
- const next=S.applyWorldMove(state,{id:'valid',xMm:100,zMm:0},fixture);assert.deepEqual(next.printers[0],state.printers[0]);
+ const next=S.applyWorldMove(state,{id:'valid',xMm:100,zMm:1000},fixture);assert.deepEqual(next.printers[0],state.printers[0]);
  const fixed=S.applyAction(next,{type:'UPDATE_PRINTER',id:'old',patch:{attachment:{xMm:-500}}},fixture);
  assert.equal(S.validatePlacement(fixed,fixture).some(i=>i.code==='ROOM_OUT_OF_BOUNDS'),false);
 });

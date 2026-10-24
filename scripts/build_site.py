@@ -421,6 +421,13 @@ def main():
     with tempfile.TemporaryDirectory(prefix='elegoo-review-') as folder:
         subprocess.run([sys.executable, str(ROOT/'scripts/check_elegoo_assets_release.py'),
                         '--site', str(target), '--output', folder], cwd=ROOT, check=True)
+    # Recheck every offered planner machine with its exact delivered footprint.
+    # Keep detailed transaction evidence outside the served site.
+    with tempfile.TemporaryDirectory(prefix='layout-farm-review-') as folder:
+        subprocess.run(['node', '--max-old-space-size=256',
+                        str(ROOT/'scripts/test_layout_clipboard.mjs'), '--suite', 'catalog',
+                        '--site', str(target), '--report', str(Path(folder)/'planner-transactions.json')],
+                       cwd=ROOT, check=True)
     # Check the complete page graph after generated inputs (including support
     # data) exist, before the artifact can be uploaded.
     print(json.dumps(verify_entrypoints(target, input_map)))

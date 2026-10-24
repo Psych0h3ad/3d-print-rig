@@ -1,5 +1,5 @@
 // Presentation only. The application owns state, history, files and model loading.
-import {createRoomRect,createRoomL,createRoomPolygon} from './layout-state.mjs?v=cd4dd024f3faa663dbf9';
+import {createRoomRect,createRoomL,createRoomPolygon} from './layout-state.mjs?v=178f9d7e9634806cb173';
 import {WALL_FINISHES,FLOOR_FINISHES,DEFAULT_ROOM_APPEARANCE} from './layout-finishes.mjs?v=001b62f9728770a12303';
 const PRINTER_VIEWER_PAGES=new Set(['','index.html','annex.html','community.html','crossant.html','custom-voron.html','kit-reference.html','micron.html','positron.html','ratrig.html','remorph.html','trident.html','v0.html','v24-reference.html','v24.html']);
 // Only a registered catalog destination is eligible; saved plan fields never supply URLs.
@@ -25,6 +25,7 @@ const PATHS = {
   printer: 'M5 3h14v18H5ZM5 7h14M8 17h8M12 7v6m-2 0h4l-2 3Z',
   plus: 'M12 5v14M5 12h14',
   duplicate: 'M8 8h13v13H8ZM4 16H3V3h13v1',
+  paste: 'M9 4h6v4H9ZM9 6H5v15h14V6h-4M8 12h8M8 16h8',
   trash: 'M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7m4-7v7',
   render: 'M4 5h16v14H4ZM4 15l5-5 4 4 3-3 4 4M16 8h.01',
   minus: 'M5 12h14',
@@ -93,6 +94,7 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
     if (image) b.append(icon(image));
     b.append(copy(el('span', titleOnly ? 'layout-sr-only' : ''), key));
     b.setAttribute('aria-label', tr(key)); b.dataset.layoutLabel = key;
+    if(titleOnly){b.title=tr(key);b.dataset.layoutTooltip=key;}
     if (small) b.classList.add('layout-small');
     listen(b, 'click', () => typeof action === 'function' ? action() : emit({type: action}));
     return b;
@@ -105,12 +107,15 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
   const undo = button('layout.undo', 'undo', 'undo', {titleOnly: true});
   const redo = button('layout.redo', 'redo', 'redo', {titleOnly: true});
   const file = el('input'); file.type = 'file'; file.accept = '.json,application/json'; file.hidden = true;
-  const importButton = button('layout.import', () => { if (!status.busy) file.click(); }, 'import');
+  const importButton = button('layout.import', () => { if (!status.busy) file.click(); }, 'import',{titleOnly:true});
   listen(file, 'change', () => {
     const chosen = file.files?.[0]; file.value = '';
     if (chosen) emit({type: 'import', file: chosen});
   });
-  actions.append(undo, redo, el('span', 'layout-action-spacer'), importButton,
+  const copySelectionButton=button('layout.clipboard.copy','copy','duplicate',{titleOnly:true});
+  const pasteSelectionButton=button('layout.clipboard.paste','paste','paste',{titleOnly:true});
+  copySelectionButton.setAttribute('aria-keyshortcuts','Control+C Meta+C');pasteSelectionButton.setAttribute('aria-keyshortcuts','Control+V Meta+V');
+  actions.append(undo, redo, copySelectionButton, pasteSelectionButton, el('span', 'layout-action-spacer'), importButton,
     button('layout.exportPlan', 'export', 'export', {titleOnly: true}),
     button('layout.reset', 'reset', 'reset', {titleOnly: true}), file);
   root.append(actions);
@@ -302,12 +307,13 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
   const createForm=el('form','layout-group-create'), nameLabel=el('label','layout-field');
   nameLabel.append(copy(el('span'),'layout.group.name'));
   const groupName=el('input');groupName.type='text';groupName.id='layout-group-name';groupName.required=true;groupName.maxLength=80;
+  groupName.required=false;groupName.placeholder=tr('layout.group.defaultName');
   groupName.setAttribute('aria-describedby',farmHelp.id);nameLabel.append(groupName);
   const pickedSummary=el('p','layout-count');pickedSummary.id='layout-group-picked';
   const createGroup=button('layout.group.create',()=>{
     prunePickedRoots();
-    if(status.busy||!groupName.value.trim()||!pickedRoots.size)return;
-    emit({type:'group-create',name:groupName.value.trim(),memberIds:[...pickedRoots]});
+    if(status.busy||!pickedRoots.size)return;
+    emit({type:'group-create',name:groupName.value.trim()||tr('layout.group.defaultName'),memberIds:[...pickedRoots]});
   },'group');
   createGroup.setAttribute('aria-describedby',pickedSummary.id);
   listen(createForm,'submit',event=>{event.preventDefault();if(!createGroup.disabled)createGroup.click();});
@@ -319,7 +325,10 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
   const libraryHeading=copy(el('h3'),'layout.group.library'), libraryList=el('ul','layout-group-library');
   libraryList.id='layout-group-library';
   const noTemplates=copy(el('p','layout-help'),'layout.group.libraryEmpty');
-  farmSection.append(farmSummary,farmHelp,createForm,groupList,noGroups,libraryHeading,libraryList,noTemplates);
+  const bulkTools=el('div','layout-row layout-bulk-tools');
+  bulkTools.append(button('layout.selection.all',()=>setPickedRootIds(roots().map(e=>e.id)),'group'),button('layout.selection.clear',()=>setPickedRootIds([]),'minus'),button('layout.selection.copy',()=>emit({type:'copy',selectionIds:[...pickedRoots]}),'duplicate'));
+  const clipboardHelp=copy(el('p','layout-help'),'layout.clipboard.help');
+  farmSection.append(farmSummary,farmHelp,bulkTools,createForm,clipboardHelp,groupList,noGroups,libraryHeading,libraryList,noTemplates);
   const editorSection=section('layout.selection'), editor=el('div','layout-editor'); editorSection.append(editor);
   const warningSection=section('layout.checks'), issueList=el('ul','layout-issues'); warningSection.append(issueList);
   const renderSection=section('layout.finalRender');
@@ -362,12 +371,16 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
   }
   function counts(all) { return {furniture:all.filter(e=>!('machineId' in e)).length,printers:all.filter(e=>'machineId' in e).length}; }
   function prunePickedRoots() {
-    const available=new Set(roots().filter(e=>!assignedGroup(e.id)).map(e=>e.id));
+    const available=new Set(roots().map(e=>e.id));
     for(const id of pickedRoots)if(!available.has(id))pickedRoots.delete(id);
   }
   function refreshGroupDraft() {
     copy(pickedSummary,'layout.group.selection',{roots:pickedRoots.size,...counts(members(pickedRoots))});
-    createGroup.disabled=!!status.busy||!state||!pickedRoots.size||!groupName.value.trim();
+    createGroup.disabled=!!status.busy||!state||!pickedRoots.size;
+    copySelectionButton.disabled=!!status.busy||(!pickedRoots.size&&!selected());
+    pasteSelectionButton.disabled=!!status.busy||!status.canPaste;
+    const bulkCopy=bulkTools.querySelector('[data-layout-command="layout.selection.copy"]');if(bulkCopy)bulkCopy.disabled=!!status.busy||!pickedRoots.size;
+    for(const check of memberChecks.values())check.checked=pickedRoots.has(check.dataset.layoutGroupMember);
   }
   function releaseDetachedControls() {
     for(const remove of cleanups)if(!root.contains(remove.node)){remove();cleanups.delete(remove);}
@@ -395,7 +408,7 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
           const text=copy(el('span','layout-sr-only'),'layout.group.selectMember',{name:title(e)});label.append(check,text);li.append(label);memberChecks.set(e.id,check);
           check.setAttribute('aria-describedby',farmHelp.id);
           listen(check,'change',()=>{
-            if(status.busy||assignedGroup(e.id))return;
+            if(status.busy)return;
             if(check.checked)pickedRoots.add(e.id);else pickedRoots.delete(e.id);
             prunePickedRoots();refreshGroupDraft();
           });
@@ -568,7 +581,7 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
   }
   function refreshStatus(){
     for(const n of root.querySelectorAll('button,input,select,textarea'))n.disabled=!!status.busy;
-    for(const [id,check]of memberChecks){check.disabled=!!status.busy||!!assignedGroup(id);check.checked=pickedRoots.has(id);}
+    for(const [id,check]of memberChecks){check.disabled=!!status.busy;check.checked=pickedRoots.has(id);}
     refreshGroupDraft();
     undo.disabled=status.busy||!status.canUndo;redo.disabled=status.busy||!status.canRedo;
     selectionJump.disabled=status.busy||!selected();
@@ -604,13 +617,21 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
   function setLocale(next){
     if(disposed)return;if(typeof next!=='function')throw new TypeError('setLocale requires translator');
     translate=next;
+    groupName.placeholder=tr('layout.group.defaultName');
     for(const n of root.querySelectorAll('[data-layout-i18n]'))n.textContent=tr(n.dataset.layoutI18n,n._layoutValues||{});
     for(const n of root.querySelectorAll('[data-layout-label]'))n.setAttribute('aria-label',tr(n.dataset.layoutLabel));
+    for(const n of root.querySelectorAll('[data-layout-tooltip]'))n.title=tr(n.dataset.layoutTooltip);
     search.placeholder=tr('layout.searchPrinters');search.setAttribute('aria-label',tr('layout.searchPrinters'));machineSelect.setAttribute('aria-label',tr('layout.choosePrinter'));actions.setAttribute('aria-label',tr('layout.planActions'));
     listKey='';farmKey='';libraryKey='';editorKey=null;populateMachines();refreshLibrary();if(state)update(state,selectedId,currentIssues);else refreshStatus();
     releaseDetachedControls();
   }
   function dispose(){if(disposed)return;disposed=true;for(const remove of cleanups)remove();fields.clear();root.remove();state=null;}
   populateMachines();refreshStatus();
-  return Object.freeze({update,setStatus,setProjection,setLocale,setGroupLibrary,dispose});
+  function setPickedRootIds(ids){
+    if(disposed||status.busy)return;
+    pickedRoots.clear();for(const id of ids)if(typeof id==='string')pickedRoots.add(id);
+    prunePickedRoots();refreshGroupDraft();
+  }
+  return Object.freeze({update,setStatus,setProjection,setLocale,setGroupLibrary,
+    getPickedRootIds:()=>[...pickedRoots],setPickedRootIds,dispose});
 }

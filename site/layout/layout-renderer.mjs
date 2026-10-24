@@ -1,10 +1,10 @@
 import * as THREE from '../viewer/vendor-r180/three.module.js';
 import {OrbitControls} from '../viewer/vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from '../viewer/vendor-r180/RoomEnvironment.js';
-import {deriveScene} from './layout-state.mjs?v=cd4dd024f3faa663dbf9';
+import {deriveScene} from './layout-state.mjs?v=178f9d7e9634806cb173';
 import {createLayoutSurfaces, resolveSurfaceAppearance, wallSurfaceGeometry} from './layout-surfaces.mjs?v=0e7f271c883eb7ec8844';
 import {drawPlanMeasurements} from './layout-plan-measurements.mjs?v=ccb8d47a212b4279e38a';
-import {groupInfo, groupingForEntity} from './layout-groups.mjs?v=9af3020d0015c5b25830';
+import {groupInfo, groupingForEntity} from './layout-groups.mjs?v=bd219ffd44e6d20acdde';
 
 const MM = .001;
 const disposableMaterial = new THREE.MeshBasicMaterial({visible:false});

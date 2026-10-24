@@ -39,6 +39,14 @@ position. Movement stays within the room and the selected support surface.
 Drag along a wall to slide against it; pulling away responds immediately.
 Changes that would put an object beyond those boundaries are not accepted.
 
+Furniture and printer envelopes also block one another when their footprints
+and heights overlap. Dragging stops at contact and can slide along the other
+object. Touching edges are allowed. A printer may sit on its own desk or shelf;
+printers on different shelf boards remain separate when their heights allow it.
+These are outside-dimension planning envelopes, so allow extra working space.
+Older plans with overlaps still open and show the affected objects; move them
+apart before rotating or arranging them further.
+
 The fixed **Room**, **Add**, **Farm**, **Objects** and **Selected** shortcuts in the
 settings panel jump directly to the relevant controls without changing the
 current selection.
@@ -46,9 +54,11 @@ current selection.
 ## Printer farms and reusable sets
 
 Use the checkboxes in **Objects** to choose desks, shelves or floor printers,
-then open **Farm**, name the set and select **Create group**. Printers on a chosen
-desk or shelf are included automatically. A root object belongs to one group;
-ungroup it before assigning it to another set.
+then open **Farm** and select **Create group**. The name is optional and can be
+changed later. **Select all** and **Clear selection** speed up larger plans.
+Printers on a chosen desk or shelf are included automatically. Selected roots
+can be regrouped directly: they move out of their previous groups, while the
+unselected members of those groups stay together in place.
 
 Click a grouped object in 2D or 3D to select the whole set. Drag to move it,
 use the rotation handle or **R** to turn it, and press **F** to frame all its
@@ -67,10 +77,20 @@ the final render.
 
 Groups are included in the normal layout JSON and survive save/load and
 undo/redo. Saved sets are stored separately in the current browser, with up to
-24 sets. To transfer a set to another browser, export a layout containing it,
-open that layout there and save the group again. Existing layout files without
+24 sets. **Copy** and **Paste** work on an object, a group or the checked roots.
+Furniture copies include their printers, board attachments and saved machine
+configuration IDs. Copying only a supported printer copies that printer alone.
+Use **Ctrl/Cmd+C** and **Ctrl/Cmd+V** to transfer a set between Layout tabs or
+browsers. The toolbar also provides Copy and Paste within the current plan.
+Pasting starts a preview: place it with a click, use Shift to place more copies,
+or press Esc to cancel. The source objects stay unchanged.
+Existing layout files without
 groups still open. Planning envelopes do not include moving-part or service
 clearances; leave access space around each row of printers.
+
+With the scene focused, **Ctrl/Cmd+A** checks all roots, **Ctrl/Cmd+G** groups
+the selection, and **Shift+Ctrl/Cmd+G** ungroups the current group. Text fields
+retain their normal selection and clipboard shortcuts.
 
 Press **F** with the scene focused, or use the focus button beside the selected
 object's rotation controls, to frame the selected object. A selected desk or
