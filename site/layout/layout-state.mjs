@@ -1,10 +1,11 @@
 import {polygonProblems, polygonContains, polygonsOverlap, rectangle, rotateXZ, transformPolygon, bounds} from './layout-geometry.mjs?v=129e07e8d3e2b008fab6';
 import {rigidMotionStaysInside,boundaryTangents} from './layout-constraints.mjs?v=53e33561b2e7ce324016';
 import {WALL_FINISHES, FLOOR_FINISHES, DEFAULT_ROOM_APPEARANCE} from './layout-finishes.mjs?v=001b62f9728770a12303';
+import {rootPose,groupRootPose,rebaseLayoutGroups} from './layout-group-data.mjs?v=298837e53f6daea54c7c';
 
 export const LIMITS = Object.freeze({maxFurniture: 64, maxPrinters: 128, maxRoomVertices: 32,
   maxFootprintVertices: 32, maxLevels: 32, maxCoordinateMm: 1000000, maxDimensionMm: 100000,
-  maxWallHeightMm: 20000, maxYawDeg: 360000, maxJsonChars: 2000000, maxCatalogEntries: 10000});
+  maxWallHeightMm: 20000, maxYawDeg: 360000, maxJsonChars: 2000000, maxCatalogEntries: 10000, maxGroups: 64});
 export class LayoutValidationError extends Error {
   constructor(errors) { super(errors.map(e => `${e.code} (${e.path})`).join('; ')); this.name = 'LayoutValidationError'; this.errors = errors; }
 }
@@ -113,7 +114,7 @@ function catalogOf(catalog = []) { return catalogs.has(catalog) ? catalog : crea
 export function validateState(state, catalog = []) {
   const errors = []; let machines;
   try { machines = catalogOf(catalog); } catch (error) { if (error instanceof LayoutValidationError) return {ok: false, errors: error.errors}; throw error; }
-  if (!keys(state, ['format', 'version', 'units', 'room', 'furniture', 'printers'], 'state', errors)) return {ok: false, errors};
+  if (!keys(state, ['format', 'version', 'units', 'room', 'furniture', 'printers', 'groups'], 'state', errors)) return {ok: false, errors};
   if (state.format !== '3d-print-rig-layout') issue(errors, 'FORMAT_UNSUPPORTED', 'state.format');
   if (state.version !== 1) issue(errors, 'VERSION_UNSUPPORTED', 'state.version', {version: state.version});
   if (state.units !== 'mm') issue(errors, 'UNITS_MUST_BE_MM', 'state.units');
@@ -135,6 +136,42 @@ export function validateState(state, catalog = []) {
     if (p.configurationId !== null && (typeof p.configurationId !== 'string' || p.configurationId.length < 1 || p.configurationId.length > 512)) issue(errors, 'INVALID_CONFIGURATION_ID', `${loc}.configurationId`);
     attachmentCheck(p.attachment, `${loc}.attachment`, furniture, errors);
   });
+  if (state.groups !== undefined) {
+    if (!Array.isArray(state.groups) || state.groups.length > LIMITS.maxGroups) issue(errors, 'GROUP_LIMIT', 'groups');
+    else {
+      const assigned = new Set();
+      state.groups.forEach((g, i) => {
+        const path = `groups[${i}]`;
+        if (!keys(g, ['id','name','pose','originPose','memberIds','memberPoses'], path, errors)) return;
+        identifier(g.id, `${path}.id`, errors);
+        if (ids.has(g.id)) issue(errors, 'DUPLICATE_ENTITY_ID', `${path}.id`); ids.add(g.id);
+        if (typeof g.name !== 'string' || !g.name.trim() || g.name.length > 80 || /[\u0000-\u001f\u007f]/.test(g.name)) issue(errors, 'GROUP_NAME', `${path}.name`);
+        poseCheck(g.pose, `${path}.pose`, errors); poseCheck(g.originPose, `${path}.originPose`, errors);
+        if (!Array.isArray(g.memberIds) || !g.memberIds.length || g.memberIds.length > LIMITS.maxFurniture + LIMITS.maxPrinters) { issue(errors, 'GROUP_MEMBERS', `${path}.memberIds`); return; }
+        if (!Array.isArray(g.memberPoses) || g.memberPoses.length !== g.memberIds.length) { issue(errors, 'GROUP_MEMBERS', `${path}.memberPoses`); return; }
+        const local = new Set();
+        g.memberIds.forEach((id, j) => {
+          identifier(id, `${path}.memberIds[${j}]`, errors);
+          if (assigned.has(id) || local.has(id)) issue(errors, 'GROUP_MEMBER_ASSIGNED', `${path}.memberIds[${j}]`);
+          assigned.add(id);local.add(id);
+          if (!furniture.some(f=>f?.id===id) && !printers.some(p=>p?.id===id && p.attachment?.parentId===null)) issue(errors, 'GROUP_ROOT_REQUIRED', `${path}.memberIds[${j}]`);
+        });
+        const references = new Set();
+        g.memberPoses.forEach((entry,j)=>{
+          const p=`${path}.memberPoses[${j}]`;
+          if(!keys(entry,['id','pose'],p,errors))return;
+          if(!local.has(entry.id)||references.has(entry.id))issue(errors,'GROUP_MEMBERS',`${p}.id`);
+          references.add(entry.id);poseCheck(entry.pose,`${p}.pose`,errors);
+        });
+        if (!errors.some(e=>e.path.startsWith(path)) && !errors.some(e=>e.path.startsWith('furniture')||e.path.startsWith('printers'))) {
+          for(const id of g.memberIds){
+            const expected=groupRootPose(g,id),actual=rootPose(state,id);
+            if(!actual||!['xMm','zMm','yawDeg'].every(k=>actual[k]===expected[k]))issue(errors,'GROUP_POSE_MISMATCH',path);
+          }
+        }
+      });
+    }
+  }
   return {ok: errors.length === 0, errors};
 }
 function assertState(state, catalog) { const result = validateState(state, catalog); if (!result.ok) throw new LayoutValidationError(result.errors); }
@@ -170,8 +207,8 @@ export function createShelf({id = 'shelf-1', widthMm = 900, depthMm = 450, heigh
   }
   return assertFurniture({id, type: 'shelf', widthMm, depthMm, heightMm, boardThicknessMm, levels, pose});
 }
-export function createDefaultLayout({room = createRoomRect(), furniture = [], printers = []} = {}, catalog = []) {
-  const state = {format: '3d-print-rig-layout', version: 1, units: 'mm', room, furniture, printers};
+export function createDefaultLayout({room = createRoomRect(), furniture = [], printers = [], groups} = {}, catalog = []) {
+  const state = {format: '3d-print-rig-layout', version: 1, units: 'mm', room, furniture, printers, ...(groups===undefined?{}:{groups})};
   assertState(state, catalog); return freeze(copy({...state, room: roomWithAppearance(room)}));
 }
 function fail(code, path, params = {}) { throw new LayoutValidationError([{code, path, params}]); }
@@ -221,6 +258,7 @@ export function applyAction(state, action, catalog = []) {
     case 'SET_ATTACHMENT': requireEntity(next.printers, action.id, 'action.id').attachment = copy(action.attachment); break;
     case 'REMOVE_PRINTER': requireEntity(next.printers, action.id, 'action.id'); next.printers = next.printers.filter(p => p.id !== action.id); break;
   }
+  if(state.groups)next.groups=rebaseLayoutGroups(state,next);
   assertState(next, machines);
   if (JSON.stringify(next) === JSON.stringify(state)) return state;
   restrictPlacementChange(state, next, action, machines);

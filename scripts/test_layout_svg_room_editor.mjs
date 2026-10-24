@@ -17,6 +17,8 @@ const checks=[];async function test(id,run){await run();checks.push({id,status:'
 const DOM=fixtureDOM();DOM.install();let networkCalls=0;
 globalThis.fetch=()=>{networkCalls++;throw Error('Preview/editor source regression must not fetch models or URLs')};
 const S=await import(pathToFileURL(path.join(site,'layout/layout-state.mjs')));
+const G=await import(pathToFileURL(path.join(site,'layout/layout-groups.mjs')));
+consume('layout/layout-groups.mjs');consume('layout/layout-group-data.mjs');
 const P=await import(pathToFileURL(path.join(site,'layout/layout-svg.mjs')));
 const E=await import(pathToFileURL(path.join(site,'layout/layout-room-editor.mjs')));
 const key=n=>'layout.roomEditor.'+n;
@@ -42,18 +44,19 @@ const engineFactory=new Function('deps',`
  let state=deps.state,catalog=deps.catalog,busy=false,roomEditing=false,disposed=false,selected=null,operation=null,interactionGeneration=0,placement=null;
  const past=[],future=[],language={t:x=>x},view={view:x=>deps.views.push(x)};
  const applyAction=deps.applyAction,serializeLayout=deps.serialize,sync=()=>deps.syncs++,store=()=>deps.saved.push(deps.serialize(state,catalog));
+ const {createGroup,renameGroup,ungroup,removeGroup,groupInfo,transformGroup,resolveGroupMove,resolveGroupRotation,captureGroupTemplate,groupTemplateInfo,proposeGroupPlacement,parseGroupLibrary,GROUP_LIBRARY_LIMIT}=deps.groups;
  const humanError=e=>e.errors?.[0]?.code||e.code||e.message,message=(value,error)=>deps.errors.push({text:typeof value==='function'?value():value,error});
  const $=selector=>{if(selector!=='#layout-status')throw Error('Unexpected UI hook: '+selector);return deps.statusNode;};
  const ui={setStatus:next=>deps.uiStatuses.push({...next})};
  ${commitSource}\n${actionSource}
  return {act,getState:()=>state,isEditing:()=>roomEditing,history:()=>({past:past.length,future:future.length}),dispose:()=>disposed=true};
 `);
-function engine(sourceState=initial){const trace={views:[],saved:[],errors:[],syncs:0,statusNode:{hidden:false,textContent:'Previous action error'},uiStatuses:[],state:sourceState,catalog:cat,applyAction:S.applyAction,serialize:S.serializeLayout,editorModule:async()=>E};return {engine:engineFactory(trace),trace}}
+function engine(sourceState=initial){const trace={views:[],saved:[],errors:[],syncs:0,statusNode:{hidden:false,textContent:'Previous action error'},uiStatuses:[],state:sourceState,catalog:cat,applyAction:S.applyAction,serialize:S.serializeLayout,groups:G,editorModule:async()=>E};return {engine:engineFactory(trace),trace}}
 async function dialogReady(){for(let i=0;i<30;i++){if(DOM.doc.body.children.some(e=>e.tagName==='dialog'))return DOM.editor();await Promise.resolve()}assert.fail('Editor dialog was not opened')}
 const rejectCode=fn=>{try{fn()}catch(e){assert.ok(e instanceof P.FloorplanSVGError);return e.code}assert.fail('Unsafe input accepted')};
 
 await test('normal-source-resources-and-lazy-full-model-boundary',async()=>{
-  const required=['index.html','layout.css','layout-app.mjs','layout-ui.mjs','layout-renderer.mjs','layout-state.mjs','layout-geometry.mjs','layout-svg.mjs','layout-room-editor.mjs','layout-room-editor.css','layout-language.mjs','layout-i18n.mjs','layout-machine-loader.mjs','layout-catalog.json'];
+  const required=['index.html','layout.css','layout-app.mjs','layout-ui.mjs','layout-renderer.mjs','layout-state.mjs','layout-groups.mjs','layout-group-data.mjs','layout-geometry.mjs','layout-svg.mjs','layout-room-editor.mjs','layout-room-editor.css','layout-language.mjs','layout-i18n.mjs','layout-machine-loader.mjs','layout-catalog.json'];
   for(const name of required)consume('layout/'+name);
   const html=read('layout/index.html');assert.match(html,/<script\b[^>]*type="module"[^>]*src="\.\/layout-app\.mjs(?:\?[^"\s#]*)?"/);
   assert.match(html,/layoutLanguage/);assert.match(html,/id="layout-sidebar"/);assert.match(html,/id="layout-scene"/);
@@ -166,23 +169,24 @@ await test('renderer-loader-progress-cannot-replace-reserved-outer-identity',()=
 });
 await test('renderer-live-parent-followers-intermediate-reverse-cancel-and-commit-units',async()=>{
   const down=extract(rendererSource,'  function down(event){','\n  function move(event){'),move=extract(rendererSource,'  function move(event){','\n  function up(event){'),up=extract(rendererSource,'  function up(event){','\n  function cancel(event)'),cancel=extract(rendererSource,'  function cancel(event)','\n  // Capture phase chooses object manipulation');
+  const entityLookup=extract(rendererSource,'  function entityInfo(id){','\n  function selectionBounds('),poseSnapshots=extract(rendererSource,'  function followers(id){','\n  function updateSelection(){');
   class V{constructor(x,y,z){this.x=x;this.y=y;this.z=z}clone(){return new V(this.x,this.y,this.z)}copy(v){this.x=v.x;this.y=v.y;this.z=v.z;return this}}
   const state=S.createDefaultLayout({furniture:[S.createDesk({id:'desk',pose:{xMm:400,zMm:200,yawDeg:37}}),S.createShelf({id:'shelf',pose:{xMm:-1000,zMm:-100,yawDeg:90}})],printers:[
     {id:'desk-child',machineId:'fixture-machine',configurationId:null,attachment:{parentId:'desk',surfaceId:'top',xMm:50,zMm:20,yawDeg:15}},
     {id:'shelf-low',machineId:'fixture-machine',configurationId:null,attachment:{parentId:'shelf',surfaceId:'level-1',xMm:-40,zMm:30,yawDeg:-15}},
     {id:'shelf-high',machineId:'fixture-machine',configurationId:null,attachment:{parentId:'shelf',surfaceId:'level-4',xMm:40,zMm:-30,yawDeg:45}},
     {id:'floor',machineId:'fixture-machine',configurationId:null,attachment:{parentId:null,surfaceId:'floor',xMm:1000,zMm:500,yawDeg:0}}]},cat);
-  const factory=new Function('deps',`
-    const MM=.001,objects=new Map(),planObjects=new Map(),current=deps.state,derived=deps.derive(current,deps.catalog);let selectedId=null,drag=null,exporting=false,disposed=false,placing=null;
+  const factory=new Function('groupInfo','groupingForEntity','deps',`
+    const MM=.001,objects=new Map(),planObjects=new Map(),groupEntities=new Map(),current=deps.state,derived=deps.derive(current,deps.catalog);let selectedId=null,drag=null,exporting=false,disposed=false,placing=null;
     const canvas={style:{},setPointerCapture(){},hasPointerCapture(){return true},releasePointerCapture(){}},draw=()=>{},hit=()=>deps.hit;
     const rotateHandle={dataset:{}},objectTools={dataset:{}};
     const isPlan=()=>false,updateSelection=()=>{},enableControls=()=>{},onError=e=>{throw e};
     const constrainMove=(proposal,context)=>deps.constrain?deps.constrain(proposal,context,objects):proposal;
     const planePoint=event=>new deps.V(event.worldX,0,event.worldZ);
-    function setState(){objects.clear();planObjects.clear();for(const e of [...derived.furniture,...derived.printers]){objects.set(e.id,{position:new deps.V(e.positionM.x,e.positionM.y,e.positionM.z),yaw:e.yawRad});planObjects.set(e.id,{position:new deps.V(e.positionM.x,0,e.positionM.z)});}}
+    function setState(){objects.clear();planObjects.clear();for(const e of [...derived.furniture,...derived.printers]){objects.set(e.id,{position:new deps.V(e.positionM.x,e.positionM.y,e.positionM.z),rotation:{y:e.yawRad},get yaw(){return this.rotation.y}});planObjects.set(e.id,{position:new deps.V(e.positionM.x,0,e.positionM.z),rotation:{y:0}});}}
     const onSelect=()=>setState(),onMove=e=>deps.moves.push(e);setState();
-    ${down}\n${move}\n${up}\n${cancel}
-    return {down,move,up,cancel,objects,planObjects};`);
+    ${entityLookup}\n${poseSnapshots}\n${down}\n${move}\n${up}\n${cancel}
+    return {down,move,up,cancel,objects,planObjects};`).bind(null,G.groupInfo,G.groupingForEntity);
   const reference=S.deriveScene(state,cat),ref=new Map([...reference.furniture,...reference.printers].map(e=>[e.id,e]));
   const near=(a,b)=>assert.ok(Math.abs(a-b)<=32*Number.EPSILON*Math.max(1,Math.abs(a),Math.abs(b)),'Parent-follow arithmetic');
   for(const parentId of ['desk','shelf']){

@@ -146,14 +146,16 @@ const statePath=path.join(A,'layout/layout-state.mjs'),S=await import(pathToFile
 const surfacesPath=path.join(A,'layout/layout-surfaces.mjs'),surfaceModule=(await realModule(surfacesPath)).namespace;imports.push(pin(path.join(A,'layout/layout-finishes.mjs')));
 const {createLayoutSurfaces,resolveSurfaceAppearance,wallSurfaceGeometry}=surfaceModule;
 const {drawPlanMeasurements}=(await realModule(path.join(A,'layout/layout-plan-measurements.mjs'))).namespace;
-const importLines=source.match(/^import [^\n]+;\r?$/gm);assert.equal(importLines?.length,6,'Renderer dependency boundary changed');
-for(const line of importLines)assert(/(?:three\.module\.js|OrbitControls\.js|RoomEnvironment\.js|layout-state\.mjs|layout-surfaces\.mjs|layout-plan-measurements\.mjs)(?:\?v=[a-f0-9]{20})?['"];$/u.test(line.trimEnd()));
+const G=(await realModule(path.join(A,'layout/layout-groups.mjs'))).namespace;
+const {groupInfo,groupingForEntity}=G;imports.push(pin(path.join(A,'layout/layout-group-data.mjs')));
+const importLines=source.match(/^import [^\n]+;\r?$/gm);assert.equal(importLines?.length,7,'Renderer dependency boundary changed');
+for(const line of importLines)assert(/(?:three\.module\.js|OrbitControls\.js|RoomEnvironment\.js|layout-state\.mjs|layout-surfaces\.mjs|layout-plan-measurements\.mjs|layout-groups\.mjs)(?:\?v=[a-f0-9]{20})?['"];$/u.test(line.trimEnd()));
 assert.equal(source.split('export function createLayoutRenderer(').length,2);
 // Replace imports with controlled API boundaries; execute every product function body unchanged.
 const body=source.replace(/^import [^\n]+;\r?\n/gm,'').replace('export function createLayoutRenderer(','function createLayoutRenderer(');
 const replacement={...THREE,WebGLRenderer:RendererFixture,PMREMGenerator:PMREMFixture,InstancedMesh:TrackedInstancedMesh,WebGLRenderTarget:TrackedRenderTarget,ShaderMaterial:TrackedShaderMaterial,PlaneGeometry:TrackedPlaneGeometry};
-const factory=new Function('THREE','OrbitControls','RoomEnvironment','deriveScene','document','devicePixelRatio','requestAnimationFrame','cancelAnimationFrame','ResizeObserver','createLayoutSurfaces','resolveSurfaceAppearance','wallSurfaceGeometry','drawPlanMeasurements',body+'\nreturn createLayoutRenderer;')(
- replacement,ControlsFixture,EnvironmentFixture,(state,catalog)=>state.derived??S.deriveScene(state,catalog),fixtureDocument,1,raf,clearTimeout,ObserverFixture,createLayoutSurfaces,resolveSurfaceAppearance,wallSurfaceGeometry,drawPlanMeasurements);
+const factory=new Function('groupInfo','groupingForEntity','THREE','OrbitControls','RoomEnvironment','deriveScene','document','devicePixelRatio','requestAnimationFrame','cancelAnimationFrame','ResizeObserver','createLayoutSurfaces','resolveSurfaceAppearance','wallSurfaceGeometry','drawPlanMeasurements',body+'\nreturn createLayoutRenderer;')(
+ groupInfo,groupingForEntity,replacement,ControlsFixture,EnvironmentFixture,(state,catalog)=>state.derived??S.deriveScene(state,catalog),fixtureDocument,1,raf,clearTimeout,ObserverFixture,createLayoutSurfaces,resolveSurfaceAppearance,wallSurfaceGeometry,drawPlanMeasurements);
 function setup(dimensions={width:400,height:300}){
  size={...dimensions};const container=makeContainer();
  const catalog=[{id:'test-machine',dimensionsMm:{width:200,depth:200,height:300}}];
@@ -619,8 +621,8 @@ const orbitToken="from 'three';";assert.equal(orbitRaw.split(orbitToken).length,
 const orbitSnapshot=path.join(intake,'OrbitControls.import-map.snapshot.mjs');
 fs.writeFileSync(orbitSnapshot,orbitRaw.replace(orbitToken,`from '${pathToFileURL(path.join(A,'viewer/vendor-r180/three.module.js')).href}';`),{flag:'wx'});
 const orbitModule=await import(pathToFileURL(orbitSnapshot));
-const factoryRealOrbit=new Function('THREE','OrbitControls','RoomEnvironment','deriveScene','document','devicePixelRatio','requestAnimationFrame','cancelAnimationFrame','ResizeObserver','createLayoutSurfaces','resolveSurfaceAppearance','wallSurfaceGeometry',body+'\nreturn createLayoutRenderer;')(
- replacement,orbitModule.OrbitControls,EnvironmentFixture,(state,catalog)=>state.derived??S.deriveScene(state,catalog),fixtureDocument,1,raf,clearTimeout,ObserverFixture,createLayoutSurfaces,resolveSurfaceAppearance,wallSurfaceGeometry);
+const factoryRealOrbit=new Function('groupInfo','groupingForEntity','THREE','OrbitControls','RoomEnvironment','deriveScene','document','devicePixelRatio','requestAnimationFrame','cancelAnimationFrame','ResizeObserver','createLayoutSurfaces','resolveSurfaceAppearance','wallSurfaceGeometry','drawPlanMeasurements',body+'\nreturn createLayoutRenderer;')(
+ groupInfo,groupingForEntity,replacement,orbitModule.OrbitControls,EnvironmentFixture,(state,catalog)=>state.derived??S.deriveScene(state,catalog),fixtureDocument,1,raf,clearTimeout,ObserverFixture,createLayoutSurfaces,resolveSurfaceAppearance,wallSurfaceGeometry,drawPlanMeasurements);
 const settled=()=>new Promise(resolve=>setTimeout(resolve,5));
 function operationSetup(realOrbit=false,options={}){
  size={width:800,height:600};const catalog=[{id:'test-machine',label:'Test printer',widthMm:200,depthMm:180,heightMm:300,dimensionsMm:{width:200,depth:180,height:300}}];
@@ -909,7 +911,7 @@ for(const mode of ['top','perspective']){
  const state=S.createDefaultLayout({room:S.createRoomRect({widthMm:4000,depthMm:1700}),furniture:[desk],printers:[]},catalog),before=S.serializeLayout(state,catalog);
  const appFile=path.join(A,'layout/layout-app.mjs'),app=fs.readFileSync(appFile,'utf8');imports.push(pin(appFile));
  const sourceMove=app.slice(app.indexOf('let pendingMove='),app.indexOf('async function render('));
- const constrain=new Function('initial','catalog','resolveWorldMove','applyWorldMove',`let state=initial,busy=false,roomEditing=false,disposed=false;${sourceMove}\nreturn constrainMove;`)(state,catalog,S.resolveWorldMove,S.applyWorldMove);
+ const constrain=new Function('initial','catalog','resolveWorldMove','applyWorldMove','G',`const {resolveGroupMove,resolveGroupRotation,transformGroup}=G;let state=initial,busy=false,roomEditing=false,disposed=false;${sourceMove}\nreturn constrainMove;`)(state,catalog,S.resolveWorldMove,S.applyWorldMove,G);
  const accepted=[],commits=[],api=factoryRealOrbit({container:makeContainer(),catalog,
   constrainMove:(proposal,context)=>{const value=constrain(proposal,context);accepted.push(value);return value;},onMove:m=>commits.push(m)});
  api.setState(state,null);api.view('top');await settled();const renderer=renderers.at(-1),camera=renderer.lastCamera;
@@ -934,13 +936,14 @@ function rotationApp(initial,catalog){
  const methods=section('function commit(','function download(')+section('let pendingMove=','async function render(')+section('async function act(','function updateViewPresentation(')+section('function placementKey(','function historyKey(');
  const keyboardStart="view.canvas.addEventListener('keydown',event=>{";
  const canvasKeyboard=section(keyboardStart,'\n  });').slice(keyboardStart.length);
- return new Function('initial','catalog','S',`const {applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,serializeLayout,parseLayout,createDefaultLayout,createDesk,createShelf}=S;
+ return new Function('initial','catalog','S','G',`const {applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,serializeLayout,parseLayout,createDefaultLayout,createDesk,createShelf}=S;
+  const {createGroup,renameGroup,ungroup,removeGroup,groupInfo,transformGroup,resolveGroupMove,resolveGroupRotation,captureGroupTemplate,groupTemplateInfo,proposeGroupPlacement,parseGroupLibrary,GROUP_LIBRARY_LIMIT}=G;
   let state=initial,selected=null,busy=false,roomEditing=false,disposed=false,interactionGeneration=0,view=null,operation=null,placement=null,lastPlacementTarget=null;const past=[],future=[],writes=[],errors=[],maxFileBytes=2000000;
   function sync(){view?.setState(state,selected)}function store(){writes.push(serializeLayout(state,catalog))}function humanError(e){return e.code||e.message}function message(text,error){if(error)errors.push(text)}const t=k=>k;
   const statusNode={hidden:false,textContent:''},$=()=>statusNode,ui={setStatus(){}};
   ${methods}
   function canvasKey(event){${canvasKeyboard}}
-  return {constrainRotate,worldRotate,worldMove,constrainMove,select,act,bind(v){view=v;view.canvas.addEventListener('keydown',canvasKey);view.canvas.addEventListener('keydown',placementKey);sync()},replace(next,id=selected){state=next;selected=id;sync()},read:()=>({state,selected,past:[...past],future:[...future],writes:[...writes],errors:[...errors],interactionGeneration})};`)(initial,catalog,S);
+  return {constrainRotate,worldRotate,worldMove,constrainMove,select,act,bind(v){view=v;view.canvas.addEventListener('keydown',canvasKey);view.canvas.addEventListener('keydown',placementKey);sync()},replace(next,id=selected){state=next;selected=id;sync()},read:()=>({state,selected,past:[...past],future:[...future],writes:[...writes],errors:[...errors],interactionGeneration})};`)(initial,catalog,S,G);
 }
 function rotationSeed(yaw=30){
  const catalog=[{id:'rotation-printer',label:'Rotation source fixture',widthMm:200,depthMm:180,heightMm:300,dimensionsMm:{width:200,depth:180,height:300}}];

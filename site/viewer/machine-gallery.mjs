@@ -1,5 +1,5 @@
 import {setupUsageStatistics} from './usage-statistics.mjs?v=e11e5f17f9fb34440ebf';
-import {setupLayoutNavigation} from './layout-nav.mjs?v=3bc11faea5d9e7250083';
+import {setupLayoutNavigation} from './layout-nav.mjs?v=dc614620c4833602fbd9';
 import {machineChoices, machineFamilies, machineVendors} from './machines.js?v=5503ac507978b3d4e928';
 import {normalizeLanguage, languageURL} from './languages.mjs?v=ba6a5cd8e1d86849ca34';
 
