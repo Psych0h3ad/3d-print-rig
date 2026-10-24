@@ -3,10 +3,23 @@ import {rigidMotionStaysInside,boundaryTangents} from './layout-constraints.mjs?
 import {WALL_FINISHES, FLOOR_FINISHES, DEFAULT_ROOM_APPEARANCE} from './layout-finishes.mjs?v=001b62f9728770a12303';
 import {rootPose,groupRootPose,rebaseLayoutGroups} from './layout-group-data.mjs?v=298837e53f6daea54c7c';
 import {envelopeOverlaps,envelopeChange,prepareCollisionMotion} from './layout-collision.mjs?v=1a7a6f204f8ed66b33ed';
+import {getLayoutEquipment} from './layout-equipment.mjs?v=6046ce679bd80e50ee2d';
 
 export const LIMITS = Object.freeze({maxFurniture: 64, maxPrinters: 128, maxRoomVertices: 32,
   maxFootprintVertices: 32, maxLevels: 32, maxCoordinateMm: 1000000, maxDimensionMm: 100000,
   maxWallHeightMm: 20000, maxYawDeg: 360000, maxJsonChars: 2000000, maxCatalogEntries: 10000, maxGroups: 64});
+// Authored layout datums, not a manufacturer mounting or load-rating certificate.
+export const U1_LAYOUT_MACHINE_ID = 'snapmaker_u1_layout_reference';
+// Snapmaker's published total height includes cables above the reference body.
+// https://www.snapmaker.com/en-EU/snapmaker-u1/specs
+export const U1_OPERATING_HEIGHT_MM = 730;
+const cabinet=getLayoutEquipment('biqu_pop_station_mini_layout_reference','empty'),mount=cabinet.mount;
+const [[deckMinX,deckMinZ],[deckMaxX,deckMaxZ]]=mount.support.contactPatch.boundsXZ_M;
+export const POPSTATION_MINI = Object.freeze({type:'popstation_mini',
+  widthMm:mount.nominalDimensionsMm.width,depthMm:mount.nominalDimensionsMm.depth,heightMm:mount.nominalDimensionsMm.height,
+  surfaceId:'top',topMm:mount.support.topYM*1000,mountMachineId:U1_LAYOUT_MACHINE_ID,
+  supportPolygonMm:Object.freeze([[deckMinX,deckMinZ],[deckMaxX,deckMinZ],[deckMaxX,deckMaxZ],[deckMinX,deckMaxZ]].map(p=>Object.freeze(p.map(v=>v*1000)))),
+  u1SupportFootprintMm:Object.freeze(getLayoutEquipment(U1_LAYOUT_MACHINE_ID,'docked').supportFootprintMm.map(p=>Object.freeze([...p])))});
 export class LayoutValidationError extends Error {
   constructor(errors) { super(errors.map(e => `${e.code} (${e.path})`).join('; ')); this.name = 'LayoutValidationError'; this.errors = errors; }
 }
@@ -56,11 +69,13 @@ function roomCheck(room, errors) {
 }
 function furnitureCheck(f, path, errors) {
   if (!plain(f)) { issue(errors, 'EXPECTED_OBJECT', path); return; }
-  const allowed = ['id', 'type', 'widthMm', 'depthMm', 'heightMm', 'pose', ...(f.type === 'desk' ? ['topThicknessMm'] : ['boardThicknessMm', 'levels'])];
+  const allowed = ['id', 'type', 'widthMm', 'depthMm', 'heightMm', 'pose', ...(f.type === 'desk' ? ['topThicknessMm'] : f.type === 'shelf' ? ['boardThicknessMm', 'levels'] : [])];
   keys(f, allowed, path, errors); identifier(f.id, `${path}.id`, errors);
-  if (!['desk', 'shelf'].includes(f.type)) issue(errors, 'UNKNOWN_FURNITURE_TYPE', `${path}.type`);
+  if (!['desk', 'shelf', 'popstation_mini'].includes(f.type)) issue(errors, 'UNKNOWN_FURNITURE_TYPE', `${path}.type`);
   for (const axis of ['widthMm', 'depthMm', 'heightMm']) num(f[axis], 30, LIMITS.maxDimensionMm, `${path}.${axis}`, errors);
   poseCheck(f.pose, `${path}.pose`, errors);
+  if (f.type === 'popstation_mini' && ['widthMm','depthMm','heightMm'].some(key=>f[key]!==POPSTATION_MINI[key]))
+    issue(errors,'POPSTATION_FIXED_DIMENSIONS',path);
   if (f.type === 'desk' && f.topThicknessMm !== 30) issue(errors, 'DESK_TOP_FIXED_30_MM', `${path}.topThicknessMm`);
   if (f.type === 'shelf') {
     num(f.boardThicknessMm, 5, 100, `${path}.boardThicknessMm`, errors);
@@ -78,13 +93,19 @@ function furnitureCheck(f, path, errors) {
     });
   }
 }
-function attachmentCheck(a, path, furniture, errors) {
+function attachmentCheck(a, path, furniture, errors, machineId) {
   if (!keys(a, ['parentId', 'surfaceId', 'xMm', 'zMm', 'yawDeg'], path, errors)) return;
   poseCheck({xMm: a.xMm, zMm: a.zMm, yawDeg: a.yawDeg}, path, errors);
   if (a.parentId === null) { if (a.surfaceId !== 'floor') issue(errors, 'FLOOR_SURFACE_REQUIRED', `${path}.surfaceId`); return; }
   identifier(a.parentId, `${path}.parentId`, errors); identifier(a.surfaceId, `${path}.surfaceId`, errors);
   const parent = furniture.find(f => f?.id === a.parentId);
   if (!parent) { issue(errors, 'UNKNOWN_PARENT', `${path}.parentId`, {parentId: a.parentId}); return; }
+  if (parent.type === 'popstation_mini') {
+    if(a.surfaceId!=='top')issue(errors,'UNKNOWN_SURFACE',`${path}.surfaceId`,{surfaceId:a.surfaceId});
+    if(machineId!==U1_LAYOUT_MACHINE_ID)issue(errors,'POPSTATION_U1_ONLY',path);
+    if(a.xMm!==0||a.zMm!==0||a.yawDeg!==0)issue(errors,'POPSTATION_MOUNT_FIXED',path);
+    return;
+  }
   if (parent.type === 'desk' ? a.surfaceId !== 'top' : !Array.isArray(parent.levels) || !parent.levels.some(l => l?.id === a.surfaceId)) issue(errors, 'UNKNOWN_SURFACE', `${path}.surfaceId`, {surfaceId: a.surfaceId});
 }
 function catalogCheck(entries) {
@@ -101,6 +122,7 @@ function catalogCheck(entries) {
     for (const axis of ['widthMm', 'depthMm', 'heightMm']) num(m[axis], 0.001, LIMITS.maxDimensionMm, `${p}.${axis}`, errors);
     if (m.baseOffsetMm !== undefined) num(m.baseOffsetMm, -LIMITS.maxDimensionMm, LIMITS.maxDimensionMm, `${p}.baseOffsetMm`, errors);
     if (m.footprintMm !== undefined) polygonCheck(m.footprintMm, `${p}.footprintMm`, errors);
+    if (m.supportFootprintMm !== undefined) polygonCheck(m.supportFootprintMm, `${p}.supportFootprintMm`, errors);
   });
   if (errors.length) throw new LayoutValidationError(errors);
 }
@@ -108,11 +130,26 @@ const catalogs = new WeakSet();
 export function createCatalog(entries) {
   catalogCheck(entries);
   const list = entries.map(m => ({id: m.id, widthMm: m.widthMm, depthMm: m.depthMm, heightMm: m.heightMm,
-    baseOffsetMm: m.baseOffsetMm ?? 0, footprintMm: copy(m.footprintMm ?? rectangle(m.widthMm, m.depthMm))}));
+    baseOffsetMm: m.baseOffsetMm ?? 0, footprintMm: copy(m.footprintMm ?? rectangle(m.widthMm, m.depthMm)),
+    ...(m.supportFootprintMm!==undefined||m.id===U1_LAYOUT_MACHINE_ID?{supportFootprintMm:copy(m.supportFootprintMm??POPSTATION_MINI.u1SupportFootprintMm)}:{})}));
   const catalog = freeze({entries: list, byId: Object.assign(Object.create(null), Object.fromEntries(list.map(m => [m.id, m])))});
   catalogs.add(catalog); return catalog;
 }
 function catalogOf(catalog = []) { return catalogs.has(catalog) ? catalog : createCatalog(catalog); }
+function printerEquipment(state, printer, machines) {
+  const machine=machines.byId[printer.machineId];
+  if(!machine)fail('UNKNOWN_MACHINE','machineId',{machineId:printer.machineId});
+  if(printer.machineId!==U1_LAYOUT_MACHINE_ID)return machine;
+  const docked=state.furniture.some(f=>f.id===printer.attachment.parentId&&f.type==='popstation_mini');
+  const variant=docked?'docked':'standalone',profile=getLayoutEquipment(U1_LAYOUT_MACHINE_ID,variant);
+  return {...machine,widthMm:profile.dimensionsMm.width,depthMm:profile.dimensionsMm.depth,heightMm:profile.dimensionsMm.height,
+    footprintMm:copy(profile.footprintMm),supportFootprintMm:copy(profile.supportFootprintMm),equipmentVariant:variant};
+}
+// The parent attachment is the only saved choice. Variant switches cannot go stale.
+export function resolvePrinterEquipment(state, printerOrId, catalog = []) {
+  const printer=typeof printerOrId==='string'?requireEntity(state.printers,printerOrId,'printerId'):printerOrId;
+  return freeze(copy(printerEquipment(state,printer,catalogOf(catalog))));
+}
 export function validateState(state, catalog = []) {
   const errors = []; let machines;
   try { machines = catalogOf(catalog); } catch (error) { if (error instanceof LayoutValidationError) return {ok: false, errors: error.errors}; throw error; }
@@ -136,8 +173,12 @@ export function validateState(state, catalog = []) {
     identifier(p.id, `${loc}.id`, errors); identifier(p.machineId, `${loc}.machineId`, errors);
     if (!Object.hasOwn(machines.byId, p.machineId)) issue(errors, 'UNKNOWN_MACHINE', `${loc}.machineId`, {machineId: p.machineId});
     if (p.configurationId !== null && (typeof p.configurationId !== 'string' || p.configurationId.length < 1 || p.configurationId.length > 512)) issue(errors, 'INVALID_CONFIGURATION_ID', `${loc}.configurationId`);
-    attachmentCheck(p.attachment, `${loc}.attachment`, furniture, errors);
+    attachmentCheck(p.attachment, `${loc}.attachment`, furniture, errors, p.machineId);
   });
+  for(const parent of furniture.filter(f=>f?.type==='popstation_mini')){
+    const children=printers.filter(p=>p?.attachment?.parentId===parent.id);
+    if(children.length>1)issue(errors,'POPSTATION_CAPACITY','printers',{parentId:parent.id,capacity:1});
+  }
   if (state.groups !== undefined) {
     if (!Array.isArray(state.groups) || state.groups.length > LIMITS.maxGroups) issue(errors, 'GROUP_LIMIT', 'groups');
     else {
@@ -202,6 +243,10 @@ const defaultPose = () => ({xMm: 0, zMm: 0, yawDeg: 0});
 export function createDesk({id = 'desk-1', widthMm = 1200, depthMm = 600, heightMm = 750, pose = defaultPose()} = {}) {
   return assertFurniture({id, type: 'desk', widthMm, depthMm, heightMm, topThicknessMm: 30, pose});
 }
+export function createPopStation({id='popstation-1',pose=defaultPose()}={}) {
+  return assertFurniture({id,type:'popstation_mini',widthMm:POPSTATION_MINI.widthMm,
+    depthMm:POPSTATION_MINI.depthMm,heightMm:POPSTATION_MINI.heightMm,pose});
+}
 export function createShelf({id = 'shelf-1', widthMm = 900, depthMm = 450, heightMm = 1800, boardThicknessMm = 20, levelCount = 4, levels, pose = defaultPose()} = {}) {
   if (levels === undefined) {
     if (!Number.isInteger(levelCount) || levelCount < 1 || levelCount > LIMITS.maxLevels) throw new LayoutValidationError([{code: 'SHELF_LEVEL_COUNT', path: 'levelCount', params: {}}]);
@@ -234,6 +279,7 @@ export function applyAction(state, action, catalog = []) {
     case 'UPDATE_FURNITURE': {
       const f = requireEntity(next.furniture, action.id, 'action.id');
       patchCheck(action.patch, ['widthMm', 'depthMm', 'heightMm', 'pose', ...(f.type === 'shelf' ? ['boardThicknessMm', 'levels'] : [])]);
+      if(f.type==='popstation_mini'&&['widthMm','depthMm','heightMm'].some(key=>Object.hasOwn(action.patch,key)&&action.patch[key]!==POPSTATION_MINI[key]))fail('POPSTATION_FIXED_DIMENSIONS','action.patch');
       const oldHeight = f.heightMm, oldThickness = f.boardThicknessMm, oldPose = f.pose;
       Object.assign(f, copy(action.patch));
       if (Object.hasOwn(action.patch, 'pose')) { patchCheck(action.patch.pose, ['xMm', 'zMm', 'yawDeg']); f.pose = {...oldPose, ...action.patch.pose}; }
@@ -274,7 +320,10 @@ function affectedEntities(state, next, action) {
   if (action.type === 'UPDATE_PRINTER' || action.type === 'SET_ATTACHMENT') return [action.id];
   return []; // Deletion/detach does not silently repair an imported invalid placement.
 }
-function localPrinterPolygon(p, machines) { return transformPolygon(machines.byId[p.machineId].footprintMm, p.attachment); }
+function localPrinterPolygon(p, machines, state) { return transformPolygon(printerEquipment(state,p,machines).footprintMm, p.attachment); }
+function supportPolygon(parent) { return parent.type==='popstation_mini'?POPSTATION_MINI.supportPolygonMm:rectangle(parent.widthMm,parent.depthMm); }
+function printerSupportPolygon(p,machines,state) {const m=printerEquipment(state,p,machines);return m.supportFootprintMm??m.footprintMm;}
+function localPrinterSupportPolygon(p,machines,state) {return transformPolygon(printerSupportPolygon(p,machines,state),p.attachment);}
 function containmentIssues(state, scene, machines, ids) {
   const result = [], wanted = new Set(ids);
   for (const e of [...scene.furniture, ...scene.printers]) if (wanted.has(e.id) && !polygonContains(state.room.polygonMm, e.worldEnvelopeMm))
@@ -282,7 +331,7 @@ function containmentIssues(state, scene, machines, ids) {
   for (const p of state.printers) if (wanted.has(p.id) && p.attachment.parentId !== null) {
     const parent = state.furniture.find(f => f.id === p.attachment.parentId);
     // Compare in parent-local coordinates: a rotated shared edge is still a shared edge.
-    if (!polygonContains(rectangle(parent.widthMm, parent.depthMm), localPrinterPolygon(p, machines)))
+    if (!polygonContains(supportPolygon(parent), localPrinterSupportPolygon(p, machines, state)))
       result.push({code: 'SURFACE_OVERHANG', path: 'action', params: {entityIds: [p.id, parent.id]}});
   }
   return result;
@@ -329,9 +378,9 @@ function restrictPlacementChange(state, next, action, machines) {
       else {
         const old = state.printers.find(p => p.id === end.id), current = next.printers.find(p => p.id === end.id);
         if (old.machineId === current.machineId && old.attachment.parentId === current.attachment.parentId && old.attachment.surfaceId === current.attachment.surfaceId) {
-          local = machines.byId[current.machineId].footprintMm;
+          local = printerEquipment(next,current,machines).footprintMm;
           if (action.type === 'UPDATE_FURNITURE' && current.attachment.parentId === action.id) {
-            local = localPrinterPolygon(old, machines);
+            local = localPrinterPolygon(old, machines, state);
             from = state.furniture.find(f => f.id === action.id).pose; to = next.furniture.find(f => f.id === action.id).pose;
           }
         }
@@ -346,11 +395,11 @@ function restrictPlacementChange(state, next, action, machines) {
     const parent = next.furniture.find(f => f.id === current.attachment.parentId);
     const oldParent = old && state.furniture.find(f => f.id === old.attachment.parentId);
     const sameSurface = oldParent && old.attachment.parentId === current.attachment.parentId && old.attachment.surfaceId === current.attachment.surfaceId;
-    const outer = rectangle(parent.widthMm, parent.depthMm), polygon = localPrinterPolygon(current, machines);
-    const oldOuter = sameSurface ? rectangle(oldParent.widthMm, oldParent.depthMm) : null;
-    const oldPolygon = sameSurface ? localPrinterPolygon(old, machines) : null;
+    const outer = supportPolygon(parent), polygon = localPrinterSupportPolygon(current, machines, next);
+    const oldOuter = sameSurface ? supportPolygon(oldParent) : null;
+    const oldPolygon = sameSurface ? localPrinterSupportPolygon(old, machines, state) : null;
     const surfacePath = sameSurface && old.machineId === current.machineId && samePolygon(oldOuter, outer)
-      ? () => rigidMotionStaysInside(outer, machines.byId[current.machineId].footprintMm, old.attachment, current.attachment) : null;
+      ? () => rigidMotionStaysInside(outer, printerSupportPolygon(current,machines,next), old.attachment, current.attachment) : null;
     boundary('SURFACE_OVERHANG', end.id, oldOuter, oldPolygon, outer, polygon, surfacePath);
   }
   const moving=[...ids],oldFurniture=state.furniture.find(f=>f.id===action.id),newFurniture=next.furniture.find(f=>f.id===action.id);
@@ -359,11 +408,11 @@ function restrictPlacementChange(state, next, action, machines) {
   if(action.type==='UPDATE_FURNITURE'&&oldFurniture&&newFurniture){
     origin=oldFurniture.pose;target=newFurniture.pose;
     locals=new Map([[action.id,rectangle(oldFurniture.widthMm,oldFurniture.depthMm)],
-      ...state.printers.filter(p=>p.attachment.parentId===action.id).map(p=>[p.id,localPrinterPolygon(p,machines)])]);
+      ...state.printers.filter(p=>p.attachment.parentId===action.id).map(p=>[p.id,localPrinterPolygon(p,machines,state)])]);
   }else if(oldPrinter&&newPrinter&&oldPrinter.machineId===newPrinter.machineId
     &&oldPrinter.attachment.parentId===newPrinter.attachment.parentId&&oldPrinter.attachment.surfaceId===newPrinter.attachment.surfaceId){
     origin=previous.get(action.id);target=after.printers.find(p=>p.id===action.id);
-    locals=new Map([[action.id,machines.byId[oldPrinter.machineId].footprintMm]]);
+    locals=new Map([[action.id,printerEquipment(state,oldPrinter,machines).footprintMm]]);
   }
   const rigid=!!origin&&oldFurniture?.widthMm===newFurniture?.widthMm&&oldFurniture?.depthMm===newFurniture?.depthMm
     &&oldFurniture?.heightMm===newFurniture?.heightMm&&JSON.stringify(oldFurniture?.levels)===JSON.stringify(newFurniture?.levels);
@@ -393,9 +442,10 @@ function sumAtMost(a, b, limit) {
 }
 function applyPrinterMove(state, printer, xMm, zMm, machines, parent) {
   const a = printer.attachment;
+  if(parent?.type==='popstation_mini'&&(xMm!==0||zMm!==0))fail('POPSTATION_MOUNT_FIXED','action',{entityIds:[printer.id,parent.id]});
   if (parent && numberOK(xMm, -LIMITS.maxCoordinateMm, LIMITS.maxCoordinateMm)
     && numberOK(zMm, -LIMITS.maxCoordinateMm, LIMITS.maxCoordinateMm) && (xMm !== a.xMm || zMm !== a.zMm)) {
-    const inside = machines.byId[printer.machineId].footprintMm.every(p => {
+    const inside = printerSupportPolygon(printer,machines,state).every(p => {
       const [x, z] = rotateXZ(p, a.yawDeg);
       return sumAtMost(xMm, x, parent.widthMm / 2) && sumAtMost(-xMm, -x, parent.widthMm / 2)
         && sumAtMost(zMm, z, parent.depthMm / 2) && sumAtMost(-zMm, -z, parent.depthMm / 2);
@@ -466,8 +516,8 @@ export function resolveWorldMove(state, {id, x, z}, catalog = [], {snapMm = 10, 
     const scene=deriveScene(from,machines),all=[...scene.furniture,...scene.printers],root=all.find(e=>e.id===id);
     const support=parent&&from.furniture.find(f=>f.id===parent.id),source=from.printers.find(p=>p.id===id);
     const followers=furniture?from.printers.filter(p=>p.attachment.parentId===id):[];
-    const locals=new Map([[id,furniture?rectangle(root.widthMm,root.depthMm):machines.byId[source.machineId].footprintMm],
-      ...followers.map(p=>[p.id,localPrinterPolygon(p,machines)])]);
+    const locals=new Map([[id,furniture?rectangle(root.widthMm,root.depthMm):printerEquipment(from,source,machines).footprintMm],
+      ...followers.map(p=>[p.id,localPrinterPolygon(p,machines,from)])]);
     const collision=prepareCollisionMotion(scene,ids,root,locals);
     return goal=>{
       if(!numberOK(goal.x,-LIMITS.maxCoordinateMm,LIMITS.maxCoordinateMm)||!numberOK(goal.z,-LIMITS.maxCoordinateMm,LIMITS.maxCoordinateMm))return false;
@@ -475,12 +525,13 @@ export function resolveWorldMove(state, {id, x, z}, catalog = [], {snapMm = 10, 
       const end={xMm:q[0]+(support?.pose.xMm??0),zMm:q[1]+(support?.pose.zMm??0),yawDeg:root.yawDeg};
       if(support){
         const a=source.attachment;
-        if(!machines.byId[source.machineId].footprintMm.every(p=>{
+        const contact=printerSupportPolygon(source,machines,from);
+        if(!contact.every(p=>{
           const [x,z]=rotateXZ(p,a.yawDeg);
           return sumAtMost(goal.x,x,support.widthMm/2)&&sumAtMost(-goal.x,-x,support.widthMm/2)
             &&sumAtMost(goal.z,z,support.depthMm/2)&&sumAtMost(-goal.z,-z,support.depthMm/2);
         }))return false;
-        if(!rigidMotionStaysInside(rectangle(support.widthMm,support.depthMm),locals.get(id),a,{...a,xMm:goal.x,zMm:goal.z}))return false;
+        if(!rigidMotionStaysInside(supportPolygon(support),contact,a,{...a,xMm:goal.x,zMm:goal.z}))return false;
       }
       const endpoints=new Map();
       for(const [entityId,local]of locals){
@@ -489,7 +540,7 @@ export function resolveWorldMove(state, {id, x, z}, catalog = [], {snapMm = 10, 
         const child=followers.find(p=>p.id===entityId);
         if(child){
           const a=child.attachment,[x,z]=rotateXZ([a.xMm,a.zMm],end.yawDeg);
-          polygon=transformPolygon(machines.byId[child.machineId].footprintMm,{xMm:end.xMm+x,zMm:end.zMm+z,yawDeg:end.yawDeg+a.yawDeg});
+          polygon=transformPolygon(printerEquipment(from,child,machines).footprintMm,{xMm:end.xMm+x,zMm:end.zMm+z,yawDeg:end.yawDeg+a.yawDeg});
         }else polygon=transformPolygon(local,end);
         if(!polygonContains(from.room.polygonMm,polygon))return false;
         endpoints.set(entityId,polygon);
@@ -531,7 +582,7 @@ export function resolveWorldMove(state, {id, x, z}, catalog = [], {snapMm = 10, 
   if(parent){
     // Prefer exact support-local tangents before any parallel room tangent;
     // converting a shared rotated edge back to local can add a false normal.
-    domains.unshift([rectangle(parent.widthMm,parent.depthMm),localPrinterPolygon(best.printers.find(p=>p.id===id),machines),true]);
+    domains.unshift([supportPolygon(parent),localPrinterSupportPolygon(best.printers.find(p=>p.id===id),machines,best),true]);
   }
   const obstacleMotion=prepareCollisionMotion(scene,ids,worldTransform(best,id,machines));
   const obstacleTangents=obstacleMotion.tangents(worldTransform(best,id,machines));
@@ -575,9 +626,9 @@ export function resolveWorldRotation(state, input, catalog = [], options = {}) {
     const ids = furniture ? [id, ...state.printers.filter(p => p.attachment.parentId === id).map(p => p.id)] : [id];
     // Rotation is not an implicit repair of an imported overhang/outside pose.
     if (placementViolations(state, machines).some(e => ids.includes(e.entityIds[0]))) return false;
-    const local = furniture ? rectangle(furniture.widthMm, furniture.depthMm) : machines.byId[printer.machineId].footprintMm;
-    const followers = furniture ? state.printers.filter(p => p.attachment.parentId === id).map(p => localPrinterPolygon(p, machines)) : [];
-    const surface = parent && rectangle(parent.widthMm, parent.depthMm);
+    const local = furniture ? rectangle(furniture.widthMm, furniture.depthMm) : printerEquipment(state,printer,machines).footprintMm;
+    const followers = furniture ? state.printers.filter(p => p.attachment.parentId === id).map(p => localPrinterPolygon(p, machines, state)) : [];
+    const surface = parent && supportPolygon(parent), supportLocal=printer&&printerSupportPolygon(printer,machines,state);
     const trial = goal => {
       const delta = goal - origin.yawDeg, segments = Math.max(1, Math.ceil(Math.abs(delta) / 90));
       let next = state, previousWorld = origin;
@@ -595,7 +646,7 @@ export function resolveWorldRotation(state, input, catalog = [], options = {}) {
         // symmetric/equal footprints that its unchanged-polygon fast path skips.
         if (!rigidMotionStaysInside(state.room.polygonMm, local, previousWorld, world)
           || followers.some(poly => !rigidMotionStaysInside(state.room.polygonMm, poly, previousWorld, world))) return false;
-        if (surface && !rigidMotionStaysInside(surface, local,
+        if (surface && !rigidMotionStaysInside(surface, supportLocal,
           before.printers.find(p => p.id === id).attachment, next.printers.find(p => p.id === id).attachment)) return false;
         previousWorld = world;
       }
@@ -645,6 +696,13 @@ function surfaceUnchecked(state, parentId, surfaceId) {
       positionM: {x: 0, y: 0, z: 0}, yawRad: 0, polygonMm: copy(state.room.polygonMm), worldEnvelopeMm: copy(state.room.polygonMm)};
   }
   const f = requireEntity(state.furniture, parentId, 'parentId');
+  if(f.type==='popstation_mini'){
+    if(surfaceId!=='top')fail('UNKNOWN_SURFACE','surfaceId',{surfaceId});
+    const polygonMm=copy(POPSTATION_MINI.supportPolygonMm),heightMm=POPSTATION_MINI.topMm;
+    return {parentId,surfaceId,heightMm,...f.pose,positionM:{x:f.pose.xMm/1000,y:heightMm/1000,z:f.pose.zMm/1000},
+      yawRad:f.pose.yawDeg*Math.PI/180,polygonMm,worldEnvelopeMm:transformPolygon(polygonMm,f.pose),
+      furnitureType:f.type,mountMachineId:U1_LAYOUT_MACHINE_ID,fixedMount:true,capacity:1};
+  }
   const heightMm = f.type === 'desk' && surfaceId === 'top' ? f.heightMm : f.type === 'shelf' ? f.levels.find(l => l.id === surfaceId)?.topMm : undefined;
   if (heightMm === undefined) fail('UNKNOWN_SURFACE', 'surfaceId', {surfaceId});
   const polygonMm = rectangle(f.widthMm, f.depthMm);
@@ -665,24 +723,32 @@ export function deriveScene(state, catalog = []) {
   assertState(state, machines);
   const surfaces = [surfaceUnchecked(state, null, 'floor')];
   const furniture = state.furniture.map(f => {
-    const boards = (f.type === 'desk' ? [{id: 'top', topMm: f.heightMm}] : f.levels).map(l => {
+    const boards = (f.type === 'desk' ? [{id: 'top', topMm: f.heightMm}] : f.type==='popstation_mini'?[{id:'top',topMm:POPSTATION_MINI.topMm}]:f.levels).map(l => {
+      if(f.type==='popstation_mini'){
+        surfaces.push(surfaceUnchecked(state,f.id,'top'));
+        // A zero-thickness picking surface, not a procedural furniture board.
+        return {id:'top',widthM:.382,depthM:.426,thicknessM:0,localCenterXM:0,localCenterYM:.4174,localCenterZM:-.002,topYM:.4174};
+      }
       const thicknessMm = f.type === 'desk' ? 30 : f.boardThicknessMm;
       surfaces.push(surfaceUnchecked(state, f.id, l.id));
       return {id: l.id, widthM: f.widthMm / 1000, depthM: f.depthMm / 1000, thicknessM: thicknessMm / 1000,
         localCenterYM: (l.topMm - thicknessMm / 2) / 1000, topYM: l.topMm / 1000};
     });
     return {id: f.id, type: f.type, ...f.pose, widthMm: f.widthMm, depthMm: f.depthMm, heightMm: f.heightMm,
+      ...(f.type==='popstation_mini'?{equipmentVariant:state.printers.some(p=>p.machineId===U1_LAYOUT_MACHINE_ID&&p.attachment.parentId===f.id)?'loaded':'empty'}:{}),
       widthM: f.widthMm / 1000, depthM: f.depthMm / 1000, heightM: f.heightMm / 1000,
       positionM: {x: f.pose.xMm / 1000, y: 0, z: f.pose.zMm / 1000}, yawRad: f.pose.yawDeg * Math.PI / 180,
       worldEnvelopeMm: transformPolygon(rectangle(f.widthMm, f.depthMm), f.pose), verticalRangeMm: [0, f.heightMm], boards};
   });
   const printers = state.printers.map(p => {
-    const a = p.attachment, s = surfaceUnchecked(state, a.parentId, a.surfaceId), m = machines.byId[p.machineId];
+    const a = p.attachment, s = surfaceUnchecked(state, a.parentId, a.surfaceId), m = printerEquipment(state,p,machines);
     const local = rotateXZ([a.xMm, a.zMm], s.yawDeg), pose = {xMm: s.xMm + local[0], zMm: s.zMm + local[1], yawDeg: s.yawDeg + a.yawDeg};
     return {id: p.id, type: 'printer', machineId: p.machineId, configurationId: p.configurationId, ...pose,
+      ...(m.equipmentVariant?{equipmentVariant:m.equipmentVariant}:{}),
       parentId: a.parentId, surfaceId: a.surfaceId, supportYM: s.heightMm / 1000,
       positionM: {x: pose.xMm / 1000, y: (s.heightMm + m.baseOffsetMm) / 1000, z: pose.zMm / 1000}, yawRad: pose.yawDeg * Math.PI / 180,
-      worldEnvelopeMm: transformPolygon(m.footprintMm, pose), verticalRangeMm: [s.heightMm, s.heightMm + m.heightMm],
+      worldEnvelopeMm: transformPolygon(m.footprintMm, pose),
+      verticalRangeMm: [s.heightMm, s.heightMm + Math.max(m.heightMm,p.machineId===U1_LAYOUT_MACHINE_ID?U1_OPERATING_HEIGHT_MM:0)],
       widthMm: m.widthMm, depthMm: m.depthMm, heightMm: m.heightMm,
       widthM: m.widthMm / 1000, depthM: m.depthMm / 1000, heightM: m.heightMm / 1000};
   });
@@ -706,7 +772,7 @@ export function validatePlacement(state, catalog = []) {
     const s = scene.surfaces.find(s => s.parentId === p.parentId && s.surfaceId === p.surfaceId);
     const parent = state.furniture.find(f => f.id === p.parentId);
     const source = state.printers.find(e => e.id === p.id), machines = catalogOf(catalog);
-    if (!polygonContains(rectangle(parent.widthMm, parent.depthMm), localPrinterPolygon(source, machines))) warn('SURFACE_OVERHANG', [p.id, p.parentId], {surfaceId: p.surfaceId});
+    if (!polygonContains(supportPolygon(parent), localPrinterSupportPolygon(source, machines, state))) warn('SURFACE_OVERHANG', [p.id, p.parentId], {surfaceId: p.surfaceId});
     if (parent.type === 'shelf') for (const level of parent.levels) {
       const bottom = level.topMm - parent.boardThicknessMm;
       if (level.topMm > s.heightMm && p.verticalRangeMm[1] > bottom && p.verticalRangeMm[0] < level.topMm

@@ -1,4 +1,5 @@
-import hashlib,json,pathlib,tempfile,unittest,sys,io,urllib.error
+import hashlib,json,pathlib,tempfile,unittest,sys,io,urllib.error,subprocess
+import contextlib
 from unittest.mock import patch
 import build_site,build_approved_site
 from build_approved_site import run,validate_contract,safe_path
@@ -61,4 +62,482 @@ class ApprovedBuild(unittest.TestCase):
         row['url']='https://psych0h3ad.github.io/model.bin'
         with self.assertRaisesRegex(ValueError,'Duplicate'):validate_contract({'schema':'approved-static-delivery-v1','files':[row,row]})
 
-if __name__=='__main__':unittest.main()
+class ApprovedEquipmentBuildGates(unittest.TestCase):
+    """Tiny exact-body fixtures only: mocked plan, preparer and audit subprocess.
+
+    These tests exercise orchestration/evidence rejection, never certify actual
+    exported geometry or turn a synthetic catalog into release evidence.
+    """
+
+    def setUp(self):
+        self.plans = {}; self.prepared = {}
+        for obj, name, kwargs in [
+            (build_approved_site.shutil, 'which', {'return_value': 'node'}),
+            (build_approved_site.layout_equipment_inputs, 'checked_plan',
+             {'side_effect': lambda root: self.plans[root]}),
+            (build_approved_site.layout_equipment_inputs, 'prepare_equipment_inputs',
+             {'side_effect': lambda root: self.prepared[root]}),
+            (build_approved_site.urllib.request, 'urlopen',
+             {'side_effect': AssertionError('No live fixture requests')}),
+        ]:
+            mock = patch.object(obj, name, **kwargs)
+            setattr(self, name, mock.start()); self.addCleanup(mock.stop)
+
+    def fixture(self, equipment=True, external=False):
+        import gzip
+        folder = tempfile.TemporaryDirectory(); self.addCleanup(folder.cleanup)
+        root = pathlib.Path(folder.name)
+        for name in ['docs', 'site', 'scripts']: (root/name).mkdir()
+        source = root/'site/index.html'; source.write_bytes(b'<html>Tiny build fixture</html>')
+        sources = [source]
+        if equipment:
+            names = set().union(*map(set, build_approved_site.EQUIPMENT_AUDIT_SOURCES.values()))
+            for name in sorted(names):
+                source = root/'site'/name; source.parent.mkdir(parents=True, exist_ok=True)
+                source.write_bytes(('Tiny source fixture, not a release: '+name).encode()); sources.append(source)
+        inventory = [{'path': p.relative_to(root).as_posix(), 'sha256': build_approved_site.digest(p)} for p in sources]
+        (root/'docs/SOURCE_INVENTORY.json').write_text(json.dumps({'files': inventory}))
+        (root/'docs/MACHINE_REVIEW_COVERAGE.json').write_text(json.dumps({'machines': [{'id': 'fixture'}]}))
+        for name in build_approved_site.LAYOUT_EQUIPMENT_AUDITS:
+            (root/'scripts'/name).write_text('// Mocked audit boundary: '+name)
+        runtime = root/'runtime-input'; runtime.write_bytes(b'Ordinary approved runtime fixture')
+        row = {'path': 'runtime/fixture.bin', 'bytes': runtime.stat().st_size,
+               'sha256': build_approved_site.digest(runtime), 'url': 'https://psych0h3ad.github.io/runtime/fixture.bin',
+               'approval_receipt_sha256': '1'*64}
+        contract = {'schema': 'approved-static-delivery-v1', 'machine_ids': ['fixture'], 'files': [row]}
+        if external:
+            external_folder = tempfile.TemporaryDirectory(); self.addCleanup(external_folder.cleanup)
+            cache = pathlib.Path(external_folder.name)/'private-prepared'
+        else:
+            cache = root/'private-tiny-fixture-cache'
+        cache.mkdir(); entries = []; mapping = {}; decoded = {}
+        for i, name in enumerate((*build_approved_site.EQUIPMENT_MODELS, build_approved_site.EQUIPMENT_PREVIEW)):
+            raw = ('Tiny decoded fixture '+str(i)).encode()
+            wire = gzip.compress(raw, mtime=0)
+            file = cache/pathlib.PurePosixPath(name).name; file.write_bytes(raw)
+            pathlib.Path(str(file)+'.gz').write_bytes(wire)
+            transfer = {'path': name+'.gz', 'bytes': len(wire), 'sha256': hashlib.sha256(wire).hexdigest(),
+                        'encoding': 'gzip', 'baseURL': 'https://psych0h3ad.github.io/3d-print-rig-extra-models/'}
+            pin = {'path': name, 'bytes': len(raw), 'sha256': hashlib.sha256(raw).hexdigest(), 'transfer': transfer}
+            kind = 'model' if name in build_approved_site.EQUIPMENT_MODELS else 'preview'
+            entries.append({'kind': kind, 'pin': pin})
+            if kind == 'model':
+                mapping[name] = str(file.resolve()); decoded[name] = {'bytes': len(raw), 'sha256': pin['sha256']}
+        self.plans[root] = {'entries': entries, 'fixtureOnly': False,
+                            'totalBytes': sum(e['pin']['bytes']+e['pin']['transfer']['bytes'] for e in entries)}
+        # Only the checked_plan boundary is mocked. Production rejects a plan
+        # marked fixtureOnly; these deliberately tiny pins are not real models.
+        map_file = root/'four-models.private.json'; map_file.write_text(json.dumps({'files': mapping}))
+        self.prepared[root] = {'passed': True, 'cached_body_count': 10, 'files': mapping,
+                               'map_path': str(map_file), 'prepared_dir': str(cache.resolve())}
+        return root, root/'assembled', contract, {'files': {row['path']: str(runtime)}}, decoded
+
+    def external_fixture(self):
+        values = self.fixture(external=True)
+        return (*values, {'files': dict(self.prepared[values[0]]['files'])})
+
+    def runner(self, root, output, contract, decoded, mutate=None, equipment_inputs=None, prepared_dir=None):
+        calls = []
+        def invoke(command, **kwargs):
+            calls.append(command)
+            script = pathlib.Path(command[4]); self.assertEqual(script.parent, root/'scripts')
+            self.assertEqual(command[1:4], ['--max-old-space-size=384', '--max-semi-space-size=4', '--v8-pool-size=1'])
+            opts = dict(zip(command[5::2], command[6::2]))
+            self.assertEqual(set(opts), {'--site', '--report', '--equipment-inputs', '--prepared-dir'})
+            self.assertEqual(opts['--site'], str(output.resolve())); self.assertNotIn('--raw', command)
+            mapping = equipment_inputs or {'files': self.prepared[root]['files']}
+            snapshot = pathlib.Path(opts['--equipment-inputs']); self.assertFalse(snapshot.is_relative_to(output))
+            self.assertEqual(json.loads(snapshot.read_text()), mapping)
+            expected_dir = prepared_dir or self.prepared[root]['prepared_dir']
+            self.assertEqual(pathlib.Path(opts['--prepared-dir']), pathlib.Path(expected_dir).resolve())
+            self.assertFalse((output/'.nojekyll').exists(), 'No readiness marker before both audit passes')
+            self.assertEqual(kwargs['cwd'], root); self.assertEqual(kwargs['timeout'], 120)
+            self.assertEqual(kwargs['env']['UV_THREADPOOL_SIZE'], '1'); self.assertFalse(kwargs['shell'])
+            self.assertEqual(kwargs['stdin'], subprocess.DEVNULL)
+            if hasattr(__import__('os'), 'sched_getaffinity'):
+                self.assertLessEqual(len(__import__('os').sched_getaffinity(0)), 2)
+            for row in contract['files']:
+                self.assertEqual(build_approved_site.digest(output/row['path']), row['sha256'])
+            report_path = pathlib.Path(opts['--report']); self.assertFalse(report_path.is_relative_to(output))
+            self.assertFalse(report_path.exists(), 'Reports must be newly generated')
+            kwargs['stdout'].write(b'Complete private audit stdout\n'); kwargs['stderr'].write(b'Private stderr fixture\n')
+            report = {'passed': True, 'transportMode': 'registered-exact-body', 'auditInputFiles': {},
+                      'sourceInputs': {name: build_approved_site.digest(output/name)
+                                       for name in build_approved_site.EQUIPMENT_AUDIT_SOURCES[script.name]},
+                      'auditScriptSHA256': build_approved_site.digest(script)}
+            receipts = {}
+            for entry in self.plans[root]['entries']:
+                pin = entry['pin']; name = pin['path']
+                if entry['kind'] == 'model':
+                    file = pathlib.Path(mapping['files'][name]); receipts[name] = dict(pin)
+                else:
+                    file = pathlib.Path(opts['--prepared-dir'])/pathlib.PurePosixPath(name).name
+                    report['preview'] = {'model': dict(pin),
+                        'body': {key: pin[key] for key in ['bytes', 'sha256']},
+                        'gzip': {key: pin['transfer'][key] for key in ['bytes', 'sha256']}}
+                for key, body, body_file in [(name, pin, file), (name+'.gz', pin['transfer'], pathlib.Path(str(file)+'.gz'))]:
+                    report['auditInputFiles'][key] = {'file': str(body_file.resolve()), 'bytes': body['bytes'], 'sha256': body['sha256']}
+            if script.name == build_approved_site.LAYOUT_EQUIPMENT_AUDITS[0]:
+                report.update(schema='layout-equipment-geometry-audit-v2', status='PASS', assets=list(receipts.values()))
+            else:
+                report.update(schema='layout-equipment-actual-asset-audit-v2', assets=receipts,
+                              auditDependencies={'scripts/'+build_approved_site.LAYOUT_EQUIPMENT_AUDITS[0]:
+                                                 build_approved_site.digest(root/'scripts'/build_approved_site.LAYOUT_EQUIPMENT_AUDITS[0])})
+            if mutate:
+                special = mutate(script.name, report, report_path)
+                if special is not None: return special
+            report_path.write_text(json.dumps(report))
+            return subprocess.CompletedProcess(command, 0)
+        return invoke, calls
+
+    def test_normal_preparation_runs_before_sequential_audits_without_public_cache_copy(self):
+        root, output, contract, inputs, decoded = self.fixture()
+        invoke, calls = self.runner(root, output, contract, decoded)
+        def prepared_before_audit(command, **kwargs):
+            self.prepare_equipment_inputs.assert_called_once_with(root)
+            return invoke(command, **kwargs)
+        with patch.object(build_approved_site.subprocess, 'run', side_effect=prepared_before_audit):
+            result = run(root, contract, output, inputs)
+        self.assertEqual([pathlib.Path(c[4]).name for c in calls], list(build_approved_site.LAYOUT_EQUIPMENT_AUDITS))
+        self.assertTrue(result['deployment_ready']); self.assertTrue((output/'.nojekyll').exists())
+        gate = result['layout_equipment_audits']; self.assertTrue(gate['passed'])
+        self.assertEqual(gate['decoded_assets'], decoded); self.assertEqual(len(gate['audit_input_files']), 10)
+        for name in build_approved_site.EQUIPMENT_BODIES: self.assertFalse((output/name).exists())
+        self.assertFalse((output/'__pycache__').exists())
+        self.assertEqual(result['planned_site_bytes'], sum(p.stat().st_size for p in output.rglob('*') if p.is_file()))
+        for audit in gate['audits']:
+            self.assertEqual(audit['report_sha256'], build_approved_site.digest(audit['report']))
+            self.assertEqual(pathlib.Path(audit['stdout']).read_bytes(), b'Complete private audit stdout\n')
+            self.assertFalse(pathlib.Path(audit['report']).is_relative_to(output))
+
+    def test_normal_without_runtime_input_flag_reuses_exact_prepared_runtime(self):
+        root, output, contract, inputs, decoded = self.fixture()
+        row = contract['files'][0]; dest = root/'site'/row['path']; dest.parent.mkdir(parents=True)
+        dest.write_bytes(pathlib.Path(inputs['files'][row['path']]).read_bytes())
+        invoke, _ = self.runner(root, output, contract, decoded)
+        with patch.object(build_approved_site.subprocess, 'run', side_effect=invoke):
+            self.assertTrue(run(root, contract, output)['deployment_ready'])
+        self.prepare_equipment_inputs.assert_called_once_with(root); self.urlopen.assert_not_called()
+
+    def test_external_four_map_infers_all_ten_private_siblings(self):
+        root, output, contract, inputs, decoded, mapping = self.external_fixture()
+        invoke, calls = self.runner(root, output, contract, decoded, equipment_inputs=mapping)
+        with patch.object(build_approved_site.subprocess, 'run', side_effect=invoke):
+            result = run(root, contract, output, inputs, equipment_inputs=mapping)
+        self.prepare_equipment_inputs.assert_not_called(); self.assertEqual(len(calls), 2)
+        self.assertEqual(len(result['layout_equipment_audits']['audit_input_files']), 10)
+        snapshot = pathlib.Path(result['layout_equipment_audits']['input_map'])
+        self.assertEqual(json.loads(snapshot.read_text()), mapping)
+        for name in build_approved_site.EQUIPMENT_BODIES: self.assertFalse((output/name).exists())
+
+    def test_explicit_preview_directory_does_not_override_model_gzip_siblings(self):
+        import shutil
+        root, output, contract, inputs, decoded, mapping = self.external_fixture()
+        preview_dir = root/'preview-only'; preview_dir.mkdir()
+        for name in [build_approved_site.EQUIPMENT_PREVIEW, build_approved_site.EQUIPMENT_PREVIEW+'.gz']:
+            file = pathlib.Path(self.prepared[root]['prepared_dir'])/pathlib.PurePosixPath(name).name
+            shutil.move(str(file), preview_dir/file.name)
+        invoke, _ = self.runner(root, output, contract, decoded, equipment_inputs=mapping, prepared_dir=preview_dir)
+        with patch.object(build_approved_site.subprocess, 'run', side_effect=invoke):
+            result = run(root, contract, output, inputs, equipment_inputs=mapping, equipment_prepared_dir=preview_dir)
+        self.assertEqual(result['layout_equipment_audits']['prepared_dir'], str(preview_dir.resolve()))
+
+    def test_inventory_absence_keeps_legacy_behavior_even_with_untracked_module(self):
+        root, output, contract, inputs, _ = self.fixture(equipment=False)
+        untracked = root/'site'/build_approved_site.LAYOUT_EQUIPMENT_SOURCE
+        untracked.parent.mkdir(parents=True); untracked.write_text('// Not inventoried')
+        with patch.object(build_approved_site.subprocess, 'run') as audit:
+            result = run(root, contract, output, inputs)
+        self.assertTrue(result['deployment_ready']); self.assertNotIn('layout_equipment_audits', result)
+        audit.assert_not_called(); self.which.assert_not_called(); self.prepare_equipment_inputs.assert_not_called()
+        self.checked_plan.assert_not_called()
+
+    def test_plan_only_never_prepares_checks_catalog_or_certifies_bodies(self):
+        for explicit in [False, True]:
+            for verify in [False, True]:
+                with self.subTest(explicit=explicit, verify=verify):
+                    root, output, contract, inputs, _, mapping = self.external_fixture()
+                    with patch.object(build_approved_site.subprocess, 'run') as audit:
+                        result = run(root, contract, output, inputs, plan_only=True, verify_inputs=verify,
+                                     equipment_inputs=mapping if explicit else None)
+                    self.assertFalse(output.exists()); self.assertFalse(result['deployment_ready'])
+                    self.assertFalse(result['layout_equipment_audits']['passed'])
+                    self.assertEqual(result['layout_equipment_audits']['status'], 'not-run-plan-only')
+                    audit.assert_not_called(); self.checked_plan.assert_not_called()
+                    self.prepare_equipment_inputs.assert_not_called()
+
+    def test_failed_or_incomplete_producer_cannot_reuse_passing_audits(self):
+        for case in ['raises', 'none', 'failed', 'eight-bodies', 'missing-map', 'wrong-map', 'wrong-dir']:
+            with self.subTest(case=case):
+                root, output, contract, inputs, _ = self.fixture(); prepared = self.prepared[root]
+                if case == 'raises': self.prepare_equipment_inputs.side_effect = ValueError('Producer failed')
+                if case == 'none': self.prepared[root] = None
+                if case == 'failed': prepared['passed'] = False
+                if case == 'eight-bodies': prepared['cached_body_count'] = 8
+                if case == 'missing-map': pathlib.Path(prepared['map_path']).unlink()
+                if case == 'wrong-map': prepared['files'] = {}
+                if case == 'wrong-dir': prepared['prepared_dir'] = str(root/'other-private')
+                with patch.object(build_approved_site.subprocess, 'run') as audit:
+                    with self.assertRaises((ValueError, OSError)): run(root, contract, output, inputs)
+                audit.assert_not_called(); self.assertFalse((output/'.nojekyll').exists())
+                self.prepare_equipment_inputs.side_effect = lambda root: self.prepared[root]
+
+    def test_input_map_rejects_old_eight_entry_contract_extra_json_and_bad_paths(self):
+        for case in ['empty', 'list', 'extra-key', 'eight', 'preview', 'relative', 'renamed', 'split-dir']:
+            with self.subTest(case=case):
+                root, output, contract, inputs, _, mapping = self.external_fixture()
+                first = next(iter(mapping['files']))
+                if case == 'empty': mapping = {'files': {}}
+                if case == 'list': mapping = {'files': []}
+                if case == 'extra-key': mapping['baseURL'] = 'https://outside.invalid/'
+                if case == 'eight': mapping['files'].update({k+'.gz': v+'.gz' for k, v in list(mapping['files'].items())})
+                if case == 'preview': mapping['files'][build_approved_site.EQUIPMENT_PREVIEW] = str(root/'preview')
+                if case == 'relative': mapping['files'][first] = 'relative.glb'
+                if case == 'renamed': mapping['files'][first] = str(root/'renamed.glb')
+                if case == 'split-dir': mapping['files'][first] = str(root/pathlib.PurePosixPath(first).name)
+                with patch.object(build_approved_site.subprocess, 'run') as audit:
+                    with self.assertRaises(ValueError): run(root, contract, output, inputs, equipment_inputs=mapping)
+                audit.assert_not_called(); self.assertFalse(output.exists())
+        root, output, contract, inputs, _ = self.fixture(equipment=False)
+        with self.assertRaisesRegex(ValueError, 'inventoried equipment registration'):
+            run(root, contract, output, inputs, equipment_inputs={'files': {}})
+
+    def test_all_ten_actual_files_checked_against_plan_before_audits(self):
+        for name in sorted(build_approved_site.EQUIPMENT_BODIES):
+            for missing in [False, True]:
+                with self.subTest(name=name, missing=missing):
+                    root, output, contract, inputs, _, mapping = self.external_fixture()
+                    file = pathlib.Path(self.prepared[root]['prepared_dir'])/pathlib.PurePosixPath(name).name
+                    if missing: file.unlink()
+                    else: file.write_bytes(b'X'*file.stat().st_size)
+                    with patch.object(build_approved_site.subprocess, 'run') as audit:
+                        with self.assertRaisesRegex(ValueError, 'exact equipment body'):
+                            run(root, contract, output, inputs, equipment_inputs=mapping)
+                    audit.assert_not_called(); self.assertFalse((output/'.nojekyll').exists())
+
+    def test_public_bodies_rejected_in_delivery_and_inventory(self):
+        for source in [False, True]:
+            root, output, contract, inputs, _ = self.fixture()
+            name = build_approved_site.EQUIPMENT_PREVIEW
+            if source:
+                file = root/'site'/name; file.write_bytes(b'Public cache fixture')
+                inventory = root/'docs/SOURCE_INVENTORY.json'; data = json.loads(inventory.read_text())
+                data['files'].append({'path': 'site/'+name, 'sha256': build_approved_site.digest(file)})
+                inventory.write_text(json.dumps(data))
+            else: contract['files'][0]['path'] = name
+            with self.assertRaisesRegex(ValueError, 'cache bodies must not be copied'):
+                run(root, contract, output, inputs)
+            self.assertFalse(output.exists())
+
+    def test_public_input_files_and_nonabsolute_preview_dir_rejected(self):
+        import shutil
+        for case in ['source-site', 'output-site', 'relative-preview', 'no-map-preview']:
+            root, output, contract, inputs, _, mapping = self.external_fixture()
+            kwargs = {'equipment_inputs': mapping}
+            if case in ['relative-preview', 'no-map-preview']:
+                kwargs['equipment_prepared_dir'] = 'relative' if case == 'relative-preview' else str(root/'preview')
+                if case == 'no-map-preview': kwargs.pop('equipment_inputs')
+            else:
+                directory = (root/'site' if case == 'source-site' else output)/'private-cache'
+                directory.mkdir(parents=True)
+                for name, old in list(mapping['files'].items()):
+                    new = directory/pathlib.Path(old).name; shutil.copyfile(old, new); mapping['files'][name] = str(new)
+                # Existing output is also rejected before attempting an audit.
+            with patch.object(build_approved_site.subprocess, 'run') as audit:
+                with self.assertRaises(ValueError): run(root, contract, output, inputs, **kwargs)
+            audit.assert_not_called(); self.assertFalse((output/'.nojekyll').exists())
+
+    def test_zero_exit_requires_current_complete_evidence(self):
+        cases = ['missing-report', 'malformed-json', 'wrong-schema', 'failed-geometry', 'geometry-passed-false',
+                 'missing-model', 'duplicate-model', 'stale-source', 'omitted-source', 'stale-script',
+                 'failed-loader', 'missing-dependencies', 'wrong-dependency', 'extra-dependency',
+                 'mutated-dependency', 'mutated-source', 'raw-mode', 'eight-bodies', 'extra-body',
+                 'wrong-body-pin', 'wrong-cache-path', 'relative-cache-path', 'wrong-model-pin',
+                 'wrong-wire-pin', 'preview-body', 'preview-gzip', 'preview-model', 'changed-cache',
+                 'self-consistent-forgery']
+        for case in cases:
+            with self.subTest(case=case):
+                root, output, contract, inputs, decoded = self.fixture()
+                def mutate(name, report, target):
+                    geometry = name == build_approved_site.LAYOUT_EQUIPMENT_AUDITS[0]
+                    if geometry:
+                        if case == 'missing-report': return subprocess.CompletedProcess([], 0)
+                        if case == 'malformed-json': target.write_text('{broken'); return subprocess.CompletedProcess([], 0)
+                        if case == 'wrong-schema': report['schema'] = 'old'
+                        if case == 'failed-geometry': report['status'] = 'FAIL'
+                        if case == 'geometry-passed-false': report['passed'] = False
+                        if case == 'missing-model': report['assets'].pop()
+                        if case == 'duplicate-model': report['assets'][-1] = report['assets'][0]
+                        return
+                    key = next(iter(report['auditInputFiles']))
+                    row = report['assets'][next(iter(decoded))]
+                    dependency = 'scripts/'+build_approved_site.LAYOUT_EQUIPMENT_AUDITS[0]
+                    if case == 'stale-source': report['sourceInputs'][build_approved_site.LAYOUT_EQUIPMENT_SOURCE] = '0'*64
+                    if case == 'omitted-source': report['sourceInputs'].pop('layout/layout-renderer.mjs')
+                    if case == 'stale-script': report['auditScriptSHA256'] = '0'*64
+                    if case == 'failed-loader': report['passed'] = False
+                    if case == 'missing-dependencies': report.pop('auditDependencies')
+                    if case == 'wrong-dependency': report['auditDependencies'][dependency] = '0'*64
+                    if case == 'extra-dependency': report['auditDependencies']['scripts/extra.mjs'] = '0'*64
+                    if case == 'mutated-dependency':
+                        (root/dependency).write_text('// Changed helper during assets audit')
+                        report['auditDependencies'][dependency] = build_approved_site.digest(root/dependency)
+                    if case == 'mutated-source':
+                        path = output/'layout/layout-renderer.mjs'; path.write_text('// Changed renderer')
+                        report['sourceInputs']['layout/layout-renderer.mjs'] = build_approved_site.digest(path)
+                    if case == 'raw-mode': report['transportMode'] = 'explicit-original-raw'
+                    if case == 'eight-bodies':
+                        report['auditInputFiles'].pop(build_approved_site.EQUIPMENT_PREVIEW)
+                        report['auditInputFiles'].pop(build_approved_site.EQUIPMENT_PREVIEW+'.gz')
+                    if case == 'extra-body': report['auditInputFiles']['extra.glb'] = dict(report['auditInputFiles'][key])
+                    if case == 'wrong-body-pin': report['auditInputFiles'][key]['sha256'] = '0'*64
+                    if case == 'wrong-cache-path': report['auditInputFiles'][key]['file'] = str(root/'other-cache')
+                    if case == 'relative-cache-path': report['auditInputFiles'][key]['file'] = 'relative'
+                    if case == 'wrong-model-pin': row['sha256'] = '0'*64
+                    if case == 'wrong-wire-pin': row['transfer'] = dict(row['transfer'], sha256='0'*64)
+                    if case == 'preview-body': report['preview']['body']['sha256'] = '0'*64
+                    if case == 'preview-gzip': report['preview']['gzip']['sha256'] = '0'*64
+                    if case == 'preview-model': report['preview']['model'] = dict(report['preview']['model'], bytes=1)
+                    if case == 'changed-cache': pathlib.Path(report['auditInputFiles'][key]['file']).write_bytes(b'Changed')
+                    if case == 'self-consistent-forgery':
+                        name = next(iter(decoded)); body = report['auditInputFiles'][name]
+                        file = pathlib.Path(body['file']); file.write_bytes(b'F'*body['bytes'])
+                        fake = build_approved_site.digest(file); body['sha256'] = fake; report['assets'][name]['sha256'] = fake
+                invoke, _ = self.runner(root, output, contract, decoded, mutate=mutate)
+                with patch.object(build_approved_site.subprocess, 'run', side_effect=invoke):
+                    with self.assertRaisesRegex(ValueError, 'Invalid layout equipment audit evidence'):
+                        run(root, contract, output, inputs)
+                self.assertFalse((output/'.nojekyll').exists())
+
+    def test_either_nonzero_audit_aborts_with_private_diagnostics(self):
+        for failed in build_approved_site.LAYOUT_EQUIPMENT_AUDITS:
+            root, output, contract, inputs, decoded = self.fixture()
+            def fail(name, report, target):
+                if name == failed: return subprocess.CompletedProcess([], 7)
+            invoke, calls = self.runner(root, output, contract, decoded, mutate=fail)
+            with patch.object(build_approved_site.subprocess, 'run', side_effect=invoke):
+                with self.assertRaisesRegex(ValueError, 'Layout equipment audit failed.*private diagnostics:'):
+                    run(root, contract, output, inputs)
+            self.assertEqual(len(calls), list(build_approved_site.LAYOUT_EQUIPMENT_AUDITS).index(failed)+1)
+            self.assertFalse((output/'.nojekyll').exists())
+
+    def test_missing_node_timeout_spawn_or_affinity_failure_never_marks_ready(self):
+        for case in ['node', 'timeout', 'spawn', 'affinity']:
+            root, output, contract, inputs, _ = self.fixture()
+            self.which.return_value = None if case == 'node' else 'node'
+            error = subprocess.TimeoutExpired('node', 120) if case == 'timeout' else OSError('Cannot spawn')
+            affinity = patch.object(build_approved_site, 'equipment_audit_affinity', side_effect=OSError('Cannot bound affinity')) if case == 'affinity' else contextlib.nullcontext()
+            with affinity, patch.object(build_approved_site.subprocess, 'run', side_effect=error) as audit:
+                with self.assertRaisesRegex(ValueError, 'Node is required|could not complete'):
+                    run(root, contract, output, inputs)
+            if case in ['node', 'affinity']: audit.assert_not_called()
+            else: self.assertEqual(audit.call_args.kwargs['timeout'], 120)
+            self.assertFalse((output/'.nojekyll').exists())
+
+    def test_missing_audit_script_and_runtime_fail_before_preparation(self):
+        for case in [*build_approved_site.LAYOUT_EQUIPMENT_AUDITS, 'runtime']:
+            root, output, contract, inputs, _ = self.fixture()
+            if case == 'runtime': inputs['files'].clear()
+            else: (root/'scripts'/case).unlink()
+            with patch.object(build_approved_site.subprocess, 'run') as audit:
+                with self.assertRaises(ValueError): run(root, contract, output, inputs)
+            audit.assert_not_called(); self.prepare_equipment_inputs.assert_not_called()
+            self.assertFalse((output/'.nojekyll').exists())
+
+    def test_plan_only_still_checks_source_snapshot(self):
+        root, output, contract, inputs, _ = self.fixture()
+        (root/'site'/build_approved_site.LAYOUT_EQUIPMENT_SOURCE).write_text('// Changed registration')
+        with self.assertRaisesRegex(ValueError, 'Changed source snapshot'):
+            run(root, contract, output, inputs, plan_only=True)
+        self.prepare_equipment_inputs.assert_not_called(); self.assertFalse(output.exists())
+
+    def test_each_report_body_requires_its_exact_path_and_unchanged_current_bytes(self):
+        for key in sorted(build_approved_site.EQUIPMENT_BODIES):
+            for case in ['identical-other-file', 'changed-after-audit', 'omitted-receipt']:
+                with self.subTest(body=key, case=case):
+                    root, output, contract, inputs, decoded = self.fixture()
+                    def mutate(name, report, target):
+                        if name != build_approved_site.LAYOUT_EQUIPMENT_AUDITS[1]: return
+                        body = report['auditInputFiles'][key]; file = pathlib.Path(body['file'])
+                        if case == 'identical-other-file':
+                            other = root/'identical-private-copy'; other.write_bytes(file.read_bytes())
+                            body['file'] = str(other.resolve())
+                        if case == 'changed-after-audit': file.write_bytes(b'X'*file.stat().st_size)
+                        if case == 'omitted-receipt': report['auditInputFiles'].pop(key)
+                    invoke, _ = self.runner(root, output, contract, decoded, mutate=mutate)
+                    with patch.object(build_approved_site.subprocess, 'run', side_effect=invoke):
+                        with self.assertRaisesRegex(ValueError, 'Invalid layout equipment audit evidence'):
+                            run(root, contract, output, inputs)
+                    self.assertFalse((output/'.nojekyll').exists())
+
+    def test_checked_plan_rejects_fixture_unregistered_missing_and_unpinned_catalogs(self):
+        for case in ['fixture', 'missing-preview', 'duplicate-model', 'host', 'encoded-path', 'boolean-budget', 'total']:
+            with self.subTest(case=case):
+                root, output, contract, inputs, _ = self.fixture(); plan = self.plans[root]
+                if case == 'fixture': plan['fixtureOnly'] = True
+                if case == 'missing-preview': plan['entries'].pop()
+                if case == 'duplicate-model': plan['entries'][1] = plan['entries'][0]
+                if case == 'host': plan['entries'][0]['pin']['transfer']['baseURL'] = 'https://outside.invalid/'
+                if case == 'encoded-path': plan['entries'][0]['pin']['transfer']['path'] += '.other'
+                if case == 'boolean-budget': plan['entries'][0]['pin']['bytes'] = True
+                if case == 'total': plan['totalBytes'] += 1
+                with patch.object(build_approved_site.subprocess, 'run') as audit:
+                    with self.assertRaises(ValueError): run(root, contract, output, inputs)
+                audit.assert_not_called(); self.assertFalse((output/'.nojekyll').exists())
+
+    def test_earlier_geometry_source_and_private_map_cannot_change_during_assets_audit(self):
+        for case in ['geometry-source', 'input-map']:
+            root, output, contract, inputs, decoded = self.fixture()
+            def mutate(name, report, target):
+                if name != build_approved_site.LAYOUT_EQUIPMENT_AUDITS[1]: return
+                if case == 'geometry-source': (output/'layout/layout-geometry.mjs').write_text('// Late change')
+                else: (target.parent/'equipment-inputs.json').write_text('{"files": {}}')
+            invoke, _ = self.runner(root, output, contract, decoded, mutate=mutate)
+            with patch.object(build_approved_site.subprocess, 'run', side_effect=invoke):
+                with self.assertRaisesRegex(ValueError, 'changed during inspection|Invalid layout equipment audit evidence'):
+                    run(root, contract, output, inputs)
+            self.assertFalse((output/'.nojekyll').exists())
+
+    def test_audit_cpu_limit_restores_parent_affinity_on_success_and_error(self):
+        import os
+        if os.name == 'nt':
+            import ctypes
+            from ctypes import wintypes
+            api = ctypes.WinDLL('kernel32', use_last_error=True)
+            api.GetCurrentProcess.restype = wintypes.HANDLE
+            api.GetProcessAffinityMask.argtypes = [wintypes.HANDLE, ctypes.POINTER(ctypes.c_size_t), ctypes.POINTER(ctypes.c_size_t)]
+            def affinity():
+                mask = ctypes.c_size_t(); system = ctypes.c_size_t()
+                self.assertTrue(api.GetProcessAffinityMask(api.GetCurrentProcess(), ctypes.byref(mask), ctypes.byref(system)))
+                return mask.value
+            cpu_count = lambda mask: mask.bit_count()
+        elif hasattr(os, 'sched_getaffinity'):
+            affinity = lambda: os.sched_getaffinity(0)
+            cpu_count = len
+        else: self.skipTest('Platform cannot bound audit affinity')
+        original = affinity()
+        for fail in [False, True]:
+            try:
+                with build_approved_site.equipment_audit_affinity():
+                    self.assertLessEqual(cpu_count(affinity()), 2)
+                    if fail: raise OSError('Fixture child failure')
+            except OSError:
+                if not fail: raise
+            self.assertEqual(affinity(), original)
+
+    def test_cli_keeps_explicit_four_map_and_prepared_directory_private(self):
+        root, output, contract, inputs, decoded, mapping = self.external_fixture()
+        paths = {'--delivery': contract, '--inputs': inputs, '--equipment-inputs': mapping}
+        argv = ['build_approved_site.py', '--output', str(output)]
+        for option, data in paths.items():
+            file = root/(option[2:]+'.json'); file.write_text(json.dumps(data)); argv += [option, str(file)]
+        prepared_dir = self.prepared[root]['prepared_dir']
+        argv += ['--equipment-prepared-dir', prepared_dir]
+        invoke, _ = self.runner(root, output, contract, decoded, equipment_inputs=mapping)
+        with patch.object(sys, 'argv', argv), patch.object(build_approved_site, 'ROOT', root), patch.object(build_approved_site.subprocess, 'run', side_effect=invoke), patch('sys.stdout', new_callable=io.StringIO):
+            result = build_approved_site.main()
+        self.assertTrue(result['deployment_ready']); self.prepare_equipment_inputs.assert_not_called()
+        self.assertEqual(len(result['layout_equipment_audits']['audit_input_files']), 10)
+
+
+if __name__ == '__main__': unittest.main()

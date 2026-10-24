@@ -148,14 +148,16 @@ const {createLayoutSurfaces,resolveSurfaceAppearance,wallSurfaceGeometry}=surfac
 const {drawPlanMeasurements}=(await realModule(path.join(A,'layout/layout-plan-measurements.mjs'))).namespace;
 const G=(await realModule(path.join(A,'layout/layout-groups.mjs'))).namespace;
 const {groupInfo,groupingForEntity}=G;imports.push(pin(path.join(A,'layout/layout-group-data.mjs')));
-const importLines=source.match(/^import [^\n]+;\r?$/gm);assert.equal(importLines?.length,7,'Renderer dependency boundary changed');
-for(const line of importLines)assert(/(?:three\.module\.js|OrbitControls\.js|RoomEnvironment\.js|layout-state\.mjs|layout-surfaces\.mjs|layout-plan-measurements\.mjs|layout-groups\.mjs)(?:\?v=[a-f0-9]{20})?['"];$/u.test(line.trimEnd()));
+const {getLayoutEquipment,resolveLayoutEquipment}=(await realModule(path.join(A,'layout/layout-equipment.mjs'))).namespace;
+const {createEquipmentMeshCache}=(await realModule(path.join(A,'layout/layout-equipment-mesh.mjs'))).namespace;
+const importLines=source.match(/^import [^\n]+;\r?$/gm);assert.equal(importLines?.length,9,'Renderer dependency boundary changed');
+for(const line of importLines)assert(/(?:three\.module\.js|OrbitControls\.js|RoomEnvironment\.js|layout-state\.mjs|layout-surfaces\.mjs|layout-plan-measurements\.mjs|layout-groups\.mjs|layout-equipment\.mjs|layout-equipment-mesh\.mjs)(?:\?v=[a-f0-9]{20})?['"];$/u.test(line.trimEnd()));
 assert.equal(source.split('export function createLayoutRenderer(').length,2);
 // Replace imports with controlled API boundaries; execute every product function body unchanged.
 const body=source.replace(/^import [^\n]+;\r?\n/gm,'').replace('export function createLayoutRenderer(','function createLayoutRenderer(');
 const replacement={...THREE,WebGLRenderer:RendererFixture,PMREMGenerator:PMREMFixture,InstancedMesh:TrackedInstancedMesh,WebGLRenderTarget:TrackedRenderTarget,ShaderMaterial:TrackedShaderMaterial,PlaneGeometry:TrackedPlaneGeometry};
-const factory=new Function('groupInfo','groupingForEntity','THREE','OrbitControls','RoomEnvironment','deriveScene','document','devicePixelRatio','requestAnimationFrame','cancelAnimationFrame','ResizeObserver','createLayoutSurfaces','resolveSurfaceAppearance','wallSurfaceGeometry','drawPlanMeasurements',body+'\nreturn createLayoutRenderer;')(
- groupInfo,groupingForEntity,replacement,ControlsFixture,EnvironmentFixture,(state,catalog)=>state.derived??S.deriveScene(state,catalog),fixtureDocument,1,raf,clearTimeout,ObserverFixture,createLayoutSurfaces,resolveSurfaceAppearance,wallSurfaceGeometry,drawPlanMeasurements);
+const factory=new Function('groupInfo','groupingForEntity','THREE','OrbitControls','RoomEnvironment','deriveScene','document','devicePixelRatio','requestAnimationFrame','cancelAnimationFrame','ResizeObserver','createLayoutSurfaces','resolveSurfaceAppearance','wallSurfaceGeometry','drawPlanMeasurements','getLayoutEquipment','resolveLayoutEquipment','createEquipmentMeshCache',body+'\nreturn createLayoutRenderer;')(
+ groupInfo,groupingForEntity,replacement,ControlsFixture,EnvironmentFixture,(state,catalog)=>state.derived??S.deriveScene(state,catalog),fixtureDocument,1,raf,clearTimeout,ObserverFixture,createLayoutSurfaces,resolveSurfaceAppearance,wallSurfaceGeometry,drawPlanMeasurements,getLayoutEquipment,resolveLayoutEquipment,createEquipmentMeshCache);
 function setup(dimensions={width:400,height:300}){
  size={...dimensions};const container=makeContainer();
  const catalog=[{id:'test-machine',dimensionsMm:{width:200,depth:200,height:300}}];
@@ -621,8 +623,8 @@ const orbitToken="from 'three';";assert.equal(orbitRaw.split(orbitToken).length,
 const orbitSnapshot=path.join(intake,'OrbitControls.import-map.snapshot.mjs');
 fs.writeFileSync(orbitSnapshot,orbitRaw.replace(orbitToken,`from '${pathToFileURL(path.join(A,'viewer/vendor-r180/three.module.js')).href}';`),{flag:'wx'});
 const orbitModule=await import(pathToFileURL(orbitSnapshot));
-const factoryRealOrbit=new Function('groupInfo','groupingForEntity','THREE','OrbitControls','RoomEnvironment','deriveScene','document','devicePixelRatio','requestAnimationFrame','cancelAnimationFrame','ResizeObserver','createLayoutSurfaces','resolveSurfaceAppearance','wallSurfaceGeometry','drawPlanMeasurements',body+'\nreturn createLayoutRenderer;')(
- groupInfo,groupingForEntity,replacement,orbitModule.OrbitControls,EnvironmentFixture,(state,catalog)=>state.derived??S.deriveScene(state,catalog),fixtureDocument,1,raf,clearTimeout,ObserverFixture,createLayoutSurfaces,resolveSurfaceAppearance,wallSurfaceGeometry,drawPlanMeasurements);
+const factoryRealOrbit=new Function('groupInfo','groupingForEntity','THREE','OrbitControls','RoomEnvironment','deriveScene','document','devicePixelRatio','requestAnimationFrame','cancelAnimationFrame','ResizeObserver','createLayoutSurfaces','resolveSurfaceAppearance','wallSurfaceGeometry','drawPlanMeasurements','getLayoutEquipment','resolveLayoutEquipment','createEquipmentMeshCache',body+'\nreturn createLayoutRenderer;')(
+ groupInfo,groupingForEntity,replacement,orbitModule.OrbitControls,EnvironmentFixture,(state,catalog)=>state.derived??S.deriveScene(state,catalog),fixtureDocument,1,raf,clearTimeout,ObserverFixture,createLayoutSurfaces,resolveSurfaceAppearance,wallSurfaceGeometry,drawPlanMeasurements,getLayoutEquipment,resolveLayoutEquipment,createEquipmentMeshCache);
 const settled=()=>new Promise(resolve=>setTimeout(resolve,5));
 function operationSetup(realOrbit=false,options={}){
  size={width:800,height:600};const catalog=[{id:'test-machine',label:'Test printer',widthMm:200,depthMm:180,heightMm:300,dimensionsMm:{width:200,depth:180,height:300}}];

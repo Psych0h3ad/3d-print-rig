@@ -1,6 +1,7 @@
 // Actual source-body replay and actual localization module; DOM-interface
 // fixtures only. Browser rendering and full model loading are separate gates.
 import assert from 'node:assert/strict';
+import {needsEquipmentPreview} from '../site/layout/layout-equipment-preview.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
@@ -8,7 +9,7 @@ import {fileURLToPath,pathToFileURL} from 'node:url';
 const option=n=>{const i=process.argv.indexOf(n);return i<0?null:process.argv[i+1]};
 const site=path.resolve(option('--site')||fileURLToPath(new URL('../site/',import.meta.url)));
 const consumed={};
-const read=rel=>{const b=fs.readFileSync(path.join(site,rel));consumed[rel]=crypto.createHash('sha256').update(b).digest('hex');return b.toString('utf8')};
+const read=rel=>{const b=fs.readFileSync(path.join(site,rel));consumed[rel]=crypto.createHash('sha256').update(b).digest('hex');return b.toString('utf8').replaceAll('\r\n','\n')};
 const app=read('layout/layout-app.mjs'),renderer=read('layout/layout-renderer.mjs');
 read('layout/layout-language.mjs');read('layout/layout-i18n.mjs');
 read('layout/layout-state.mjs');read('layout/layout-constraints.mjs');read('layout/layout-geometry.mjs');
@@ -82,6 +83,8 @@ await test('coarse-only-notice-theme-header-live-with-no-renderer-catalog-or-mod
  assert.ok(app.indexOf('view=createLayoutRenderer(')>app.indexOf("document.body.dataset.layoutReady='desktop-only';return;"));
  assert.ok(app.indexOf("await import('./layout-renderer.mjs")>app.indexOf("document.body.dataset.layoutReady='desktop-only';return;"));
  const factory=new Function('deps',`
+ const needsEquipmentPreview=${needsEquipmentPreview.toString()},isLayoutEquipmentPreviewPrepared=()=>false,prepareLayoutEquipmentPreview=()=>{throw Error('Unexpected equipment request in native-only fixture');};const equipmentRows=[];
+
   let language,view,busy=false;const document=deps.doc,window=deps.win,$=s=>document.querySelector(s),updateLanguage=()=>language?.refresh();
   const setupLayoutLanguage=deps.setupLayoutLanguage,readDisplay=deps.readDisplay,saveDisplay=deps.saveDisplay,applyDisplay=deps.applyDisplay;
   const fetch=()=>{deps.onFetch();throw Error('Desktop notice must not request catalog/model')},createLayoutRenderer=()=>deps.onRenderer();
@@ -107,6 +110,8 @@ await test('deferred-layout-import-never-overwrites-newer-commands-or-disposed-p
  const selectSource=unique(app,'function select(value)','\nfunction download(');
  const actSource=unique(app,'async function act(action){','\nfunction updateViewPresentation(');
  const factory=new Function('deps',`
+ const needsEquipmentPreview=${needsEquipmentPreview.toString()},isLayoutEquipmentPreviewPrepared=()=>false,prepareLayoutEquipmentPreview=()=>{throw Error('Unexpected equipment request in native-only fixture');};const equipmentRows=[];
+
   const {createDefaultLayout,applyAction,serializeLayout,parseLayout}=deps,catalog=[];
   let state=deps.initial,selected=null,busy=false,roomEditing=false,disposed=false,interactionGeneration=0,placement=null,lastPlacementTarget=null;
   const past=[],future=[],maxFileBytes=2097152,messages=[],views=[];
@@ -161,7 +166,7 @@ await test('deferred-layout-import-never-overwrites-newer-commands-or-disposed-p
 });
 await test('desktop-bootstrap-reaches-ready-with-automatic-renderer-and-no-removed-tool-binding',async()=>{
  const bootstrap=unique(app,'  const response=await fetch(','\n}\nfunction pageHide(');
- const importPattern=/await import\('\.\/layout-renderer\.mjs\?v=[a-f0-9]+'\)/g;
+ const importPattern=/await import\('\.\/layout-renderer\.mjs(?:\?v=[a-f0-9]+)?'\)/g;
  assert.equal([...bootstrap.matchAll(importPattern)].length,1);
  const source=bootstrap.replace(importPattern,'deps.rendererModule').replaceAll('import.meta.url',"'https://example.invalid/layout/layout-app.mjs'");
  const defaultSource=unique(app,'function makeDefault(){','\nlet pendingMove=');
@@ -170,11 +175,13 @@ await test('desktop-bootstrap-reaches-ready-with-automatic-renderer-and-no-remov
  const e=environment(),catalogData=JSON.parse(read('layout/layout-catalog.json'));
  const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
  const run=new AsyncFunction('deps',`
+ const needsEquipmentPreview=${needsEquipmentPreview.toString()},isLayoutEquipmentPreviewPrepared=()=>false,ensureEquipmentPreview=async v=>{if(needsEquipmentPreview(v))throw Error('Unexpected equipment in native-only bootstrap fixture');return true;};const equipmentRows=[];
+
   const {createDefaultLayout,createDesk,createCatalog,applyAction,parseLayout}=deps;
   const {groupTemplateInfo,parseGroupLibrary}=deps.G;
   const document=deps.doc,$=q=>document.querySelector(q),navigator={deviceMemory:8},localStorage={getItem:()=>null};
   const storageKey='test',groupLibraryKey='sets-test',maxFileBytes=2097152,fetch=async()=>({ok:true,json:async()=>deps.catalogData});let groupLibrary=[];
-  let state,catalog,rows,ui,view,selected=null,busy=false,roomEditing=false,disposed=false,placement=null;const past=[],future=[];
+  let state,catalog,rows,ui,view,selected=null,busy=false,roomEditing=false,disposed=false,placement=null,startEmpty=false;const past=[],future=[];
   const language={t:key=>key},t=key=>key,act=()=>{},select=()=>{},worldMove=()=>{},constrainMove=()=>{},worldRotate=deps.rotationPorts.onRotate,constrainRotate=deps.rotationPorts.constrainRotate,previewPlacement=()=>null,placeProposal=()=>{},placementKey=()=>{},copyEvent=()=>{},pasteEvent=()=>{},message=()=>{},humanError=()=> 'error';
   const calls={sync:0,language:0,views:[],presentations:[],options:[],libraries:[]};
   const sync=()=>calls.sync++,updateLanguage=()=>calls.language++,dark=()=>false;
@@ -205,6 +212,8 @@ await test('actual-app-failed-noop-and-successful-commit-status-lifecycle',async
  const moves=unique(app,'let pendingMove=','\nasync function render(');
  const actions=unique(app,'async function act(action){','\nfunction updateViewPresentation(');
  const factory=new Function('deps',`
+ const needsEquipmentPreview=${needsEquipmentPreview.toString()},isLayoutEquipmentPreviewPrepared=()=>false,prepareLayoutEquipmentPreview=()=>{throw Error('Unexpected equipment request in native-only fixture');};const equipmentRows=[];
+
   const {applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,serializeLayout,parseLayout,createDefaultLayout,validatePlacement}=deps.S;
   const catalog=[],past=[],future=[],writes=[],updates=[],maxFileBytes=2097152,document={body:{dataset:{}}};
   let state=deps.initial,selected='status-desk',busy=false,roomEditing=false,disposed=false,interactionGeneration=0,operation=null,placement=null,lastPlacementTarget=null;
@@ -246,7 +255,9 @@ await test('actual-app-failed-noop-and-successful-commit-status-lifecycle',async
 
 await test('planner-history-shortcuts-preserve-text-editing-and-busy-operations',async()=>{
  const source=unique(app,'function historyKey(event){','\nasync function start(){');
- const factory=new Function('deps',`let disposed=false,busy=false,roomEditing=false;const past=[1],future=[2],act=deps.act;${source};return {key:historyKey,flags:v=>{disposed=!!v.disposed;busy=!!v.busy;roomEditing=!!v.roomEditing;},past,future};`);
+ const factory=new Function('deps',`
+ const needsEquipmentPreview=${needsEquipmentPreview.toString()},isLayoutEquipmentPreviewPrepared=()=>false,prepareLayoutEquipmentPreview=()=>{throw Error('Unexpected equipment request in native-only fixture');};const equipmentRows=[];
+let disposed=false,busy=false,roomEditing=false;const past=[1],future=[2],act=deps.act;${source};return {key:historyKey,flags:v=>{disposed=!!v.disposed;busy=!!v.busy;roomEditing=!!v.roomEditing;},past,future};`);
  const commands=[],r=factory({act:a=>commands.push(a.type)});
  const key=(value,extra={})=>{let prevented=false;r.key({key:value,ctrlKey:true,target:{closest:()=>null},preventDefault(){prevented=true;},...extra});return prevented;};
  assert(key('z'));assert(key('z',{shiftKey:true}));assert(key('y'));assert(key('Z',{ctrlKey:false,metaKey:true}));
@@ -273,6 +284,8 @@ function replayCommands(initial,selection){
  const keyboard=unique(app,keyStart,'\n  });').slice(keyStart.length);
  const shortcuts=unique(app,'function placementKey(event){','\nfunction historyKey(');
  const engine=new Function('S','G','H','initial','selection','rows','catalog','proposePlacement',`
+ const needsEquipmentPreview=${needsEquipmentPreview.toString()},isLayoutEquipmentPreviewPrepared=()=>false,prepareLayoutEquipmentPreview=()=>{throw Error('Unexpected equipment request in native-only fixture');};const equipmentRows=[];
+
   const {createDefaultLayout,createDesk,createShelf,applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,deriveScene,worldTransform,serializeLayout,parseLayout,validatePlacement}=S;
   const {createGroup,renameGroup,ungroup,removeGroup,groupInfo,transformGroup,resolveGroupMove,resolveGroupRotation,captureGroupTemplate,groupTemplateInfo,proposeGroupPlacement,parseGroupLibrary,GROUP_LIBRARY_LIMIT}=G;
   const {captureLayoutClipboard,encodeLayoutClipboard,decodeLayoutClipboard,regroupLayoutSelection}=H;
@@ -477,10 +490,12 @@ await test('add-board-uses-upper-bay-thickness-and-occupied-envelope-with-stable
 await test('translated-room-load-reset-and-applied-outline-refit-only-after-accepted-state',async()=>{
  const header=unique(app,'const id=prefix=>','function makeDefault(');
  const original=unique(app,'async function act(action){','\nfunction updateViewPresentation(');
- const editorImport=/await import\('\.\/layout-room-editor\.mjs\?v=[a-f0-9]+'\)/g;
+ const editorImport=/await import\('\.\/layout-room-editor\.mjs(?:\?v=[a-f0-9]+)?'\)/g;
  assert.equal([...original.matchAll(editorImport)].length,1);
  const actions=original.replace(editorImport,'await deps.editorModule()');
  const factory=new Function('deps',`
+ const needsEquipmentPreview=${needsEquipmentPreview.toString()},isLayoutEquipmentPreviewPrepared=()=>false,prepareLayoutEquipmentPreview=()=>{throw Error('Unexpected equipment request in native-only fixture');};const equipmentRows=[];
+
   const {createDefaultLayout,createDesk,createShelf,applyAction,applyWorldMove,deriveScene,serializeLayout,parseLayout,validatePlacement}=deps.S;
   const rows=deps.rows,catalog=deps.catalog,past=[],future=[],writes=[],views=[],document={body:{dataset:{}}};
   let state=deps.initial,selected=null,busy=false,roomEditing=false,disposed=false,interactionGeneration=0,operation=null,nextId=1,placement=null,lastPlacementTarget=null;
@@ -535,7 +550,9 @@ await test('identical-plan-import-keeps-selection-UI-and-controller-in-sync-with
 await test('active-placement-name-and-status-switch-five-languages-without-repeated-announcements',()=>{
  const source=unique(app,'function updatePlacementBar(proposal){','\nfunction cancelPlacement(');
  const rotation=unique(app,'function rotatePlacement(reverse=false){','\nfunction download(');
- const factory=new Function('deps',`let placement={kind:'desk',name:'Desk',yawDeg:0};const $=s=>deps.nodes[s],t=(k,v)=>deps.translate(k,v),view={refreshPlacement(){const result={valid:true};updatePlacementBar(result);return result;}};${source}${rotation};return {update:updatePlacementBar,rotate:rotatePlacement,kind:value=>placement.kind=value};`);
+ const factory=new Function('deps',`
+ const needsEquipmentPreview=${needsEquipmentPreview.toString()},isLayoutEquipmentPreviewPrepared=()=>false,prepareLayoutEquipmentPreview=()=>{throw Error('Unexpected equipment request in native-only fixture');};const equipmentRows=[];
+let placement={kind:'desk',name:'Desk',yawDeg:0};const $=s=>deps.nodes[s],t=(k,v)=>deps.translate(k,v),view={refreshPlacement(){const result={valid:true};updatePlacementBar(result);return result;}};${source}${rotation};return {update:updatePlacementBar,rotate:rotatePlacement,kind:value=>placement.kind=value};`);
  const bar={dataset:{}},name={textContent:''};let writes=0,text='';const status={dataset:{},get textContent(){return text},set textContent(v){text=v;writes++}};
  let language='en';const nodes={'#layout-placement-bar':bar,'#layout-placement-name':name,'#layout-placement-status':status};
  const r=factory({nodes,translate:(k,v)=>t(k,v,language)});

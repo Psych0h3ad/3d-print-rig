@@ -1,0 +1,137 @@
+[
+  {
+    "index": 3,
+    "path": "official_manual_image_03.webp",
+    "source": "https://neo.bttwiki.com/en/assets/images/popstation-mini-dimension-drawing-d16b9a937fd8163486d9e122287ffa63.webp",
+    "bytes": 18364,
+    "sha256": "c8bfd8f8a0cb1fc5ceca3159131460af7e724701f4bfe281a1b364dc83624618",
+    "sourcePage": "https://neo.bttwiki.com/en/docs/more-series/pop-module/popstation-mini/",
+    "publicUrl": "https://neo.bttwiki.com/en/assets/images/popstation-mini-dimension-drawing-d16b9a937fd8163486d9e122287ffa63.webp"
+  },
+  {
+    "index": 11,
+    "path": "official_manual_image_11.webp",
+    "source": "https://neo.bttwiki.com/en/assets/images/popstation-mini-installation-07-da538c85c6f15ec4b898c26881c74a40.webp",
+    "bytes": 33700,
+    "sha256": "75d8904e801773e1d8d7af3c3790da28b2f7a14178f13e1c21a3f13e6f17f10f",
+    "sourcePage": "https://neo.bttwiki.com/en/docs/more-series/pop-module/popstation-mini/",
+    "publicUrl": "https://neo.bttwiki.com/en/assets/images/popstation-mini-installation-07-da538c85c6f15ec4b898c26881c74a40.webp"
+  },
+  {
+    "index": 12,
+    "path": "official_manual_image_12.webp",
+    "source": "https://neo.bttwiki.com/en/assets/images/popstation-mini-installation-08-6557269a70a47f394798e7843cc1e5af.webp",
+    "bytes": 23040,
+    "sha256": "6fe0071153a810788258527e93a084a21d3b679e65dfe0556d91f39a8e15bfb4",
+    "sourcePage": "https://neo.bttwiki.com/en/docs/more-series/pop-module/popstation-mini/",
+    "publicUrl": "https://neo.bttwiki.com/en/assets/images/popstation-mini-installation-08-6557269a70a47f394798e7843cc1e5af.webp"
+  },
+  {
+    "index": 14,
+    "path": "official_manual_image_14.webp",
+    "source": "https://neo.bttwiki.com/en/assets/images/popstation-mini-installation-009-b0cb836275c51f435db815c62dcca810.webp",
+    "bytes": 22268,
+    "sha256": "07948cd7d81d1639fd19c00eaa423a0041ade5e75a2998dae022673879845113",
+    "sourcePage": "https://neo.bttwiki.com/en/docs/more-series/pop-module/popstation-mini/",
+    "publicUrl": "https://neo.bttwiki.com/en/assets/images/popstation-mini-installation-009-b0cb836275c51f435db815c62dcca810.webp"
+  },
+  {
+    "index": 16,
+    "path": "official_manual_image_16.webp",
+    "source": "inline original image in official manual HTML",
+    "bytes": 4542,
+    "sha256": "cd13668d6dc176ceb373e4ea2349b7e950c9bbddae28519a9c56ac5c6c53d14d",
+    "sourcePage": "https://neo.bttwiki.com/en/docs/more-series/pop-module/popstation-mini/",
+    "publicUrl": "https://neo.bttwiki.com/en/docs/more-series/pop-module/popstation-mini/"
+  },
+  {
+    "index": 17,
+    "path": "official_manual_image_17.webp",
+    "source": "https://neo.bttwiki.com/en/assets/images/popstation-mini-installation-12-ff52b8e0ca5cb9f2ab1b4950effbb3e1.webp",
+    "bytes": 28262,
+    "sha256": "4c499d4246168a8e1e2ba90838520dfb9f0660be628aabebfcffb70c645cb7e0",
+    "sourcePage": "https://neo.bttwiki.com/en/docs/more-series/pop-module/popstation-mini/",
+    "publicUrl": "https://neo.bttwiki.com/en/assets/images/popstation-mini-installation-12-ff52b8e0ca5cb9f2ab1b4950effbb3e1.webp"
+  },
+  {
+    "index": 18,
+    "path": "official_manual_image_18.webp",
+    "source": "https://neo.bttwiki.com/en/assets/images/popstation-mini-installation-13-ff37bae9fdfc678444603fc6b04e0e98.webp",
+    "bytes": 18490,
+    "sha256": "e0582f6e457c1be77e8430e30a023b1886c9af728752a9b1ff429a4b6bce52ab",
+    "sourcePage": "https://neo.bttwiki.com/en/docs/more-series/pop-module/popstation-mini/",
+    "publicUrl": "https://neo.bttwiki.com/en/assets/images/popstation-mini-installation-13-ff37bae9fdfc678444603fc6b04e0e98.webp"
+  },
+  {
+    "index": 19,
+    "path": "official_manual_image_19.webp",
+    "source": "https://neo.bttwiki.com/en/assets/images/popstation-mini-installation-14-276cc9366ec02854f98d50db065c3a56.webp",
+    "bytes": 32080,
+    "sha256": "62e9e003bd34dae02d82865aa4778119fc1433ba091c937635b9461e322dfae3",
+    "sourcePage": "https://neo.bttwiki.com/en/docs/more-series/pop-module/popstation-mini/",
+    "publicUrl": "https://neo.bttwiki.com/en/assets/images/popstation-mini-installation-14-276cc9366ec02854f98d50db065c3a56.webp"
+  },
+  {
+    "index": 20,
+    "path": "official_manual_image_20.webp",
+    "source": "https://neo.bttwiki.com/en/assets/images/popstation-mini-installation-15-697f283364aa2b3b32bd048b2c346b8f.webp",
+    "bytes": 41350,
+    "sha256": "1409e98dd5c98823deb79f67bd85e8b6d0e03d516f201e6709fb05a978f615c8",
+    "sourcePage": "https://neo.bttwiki.com/en/docs/more-series/pop-module/popstation-mini/",
+    "publicUrl": "https://neo.bttwiki.com/en/assets/images/popstation-mini-installation-15-697f283364aa2b3b32bd048b2c346b8f.webp"
+  },
+  {
+    "index": 21,
+    "path": "official_manual_image_21.webp",
+    "source": "https://neo.bttwiki.com/en/assets/images/popstation-mini-installation-16-6099f20e91bdab71341330729a7d7845.webp",
+    "bytes": 33524,
+    "sha256": "10cb530594ff4bd711ffd177fea3ee4cff4909e7542dd4d198291b63dc6f96d0",
+    "sourcePage": "https://neo.bttwiki.com/en/docs/more-series/pop-module/popstation-mini/",
+    "publicUrl": "https://neo.bttwiki.com/en/assets/images/popstation-mini-installation-16-6099f20e91bdab71341330729a7d7845.webp"
+  },
+  {
+    "index": 22,
+    "path": "official_manual_image_22.webp",
+    "source": "https://neo.bttwiki.com/en/assets/images/popstation-mini-installation-17-6d8fc5f5512f5820ea5e4b3b091da1af.webp",
+    "bytes": 37514,
+    "sha256": "03d10dfe4dc6cdb92c65945f3972a05f720ba2990be66186962e5d2952048b68",
+    "sourcePage": "https://neo.bttwiki.com/en/docs/more-series/pop-module/popstation-mini/",
+    "publicUrl": "https://neo.bttwiki.com/en/assets/images/popstation-mini-installation-17-6d8fc5f5512f5820ea5e4b3b091da1af.webp"
+  },
+  {
+    "index": 23,
+    "path": "official_manual_image_23.webp",
+    "source": "https://neo.bttwiki.com/en/assets/images/popstation-mini-installation-18-9d5d510c4b94bc88d28aabbd376e45a7.webp",
+    "bytes": 41636,
+    "sha256": "5c194f23091293ad783b076b7410b43977460780ce34af01dffa72b5774b5432",
+    "sourcePage": "https://neo.bttwiki.com/en/docs/more-series/pop-module/popstation-mini/",
+    "publicUrl": "https://neo.bttwiki.com/en/assets/images/popstation-mini-installation-18-9d5d510c4b94bc88d28aabbd376e45a7.webp"
+  },
+  {
+    "index": 24,
+    "path": "official_manual_image_24.webp",
+    "source": "https://neo.bttwiki.com/en/assets/images/popstation-mini-installation-19-f45cfa5140f3422626662ba1490ce493.webp",
+    "bytes": 44156,
+    "sha256": "6351a7053a734b41704f051c4b46277440bba2272ccc176528a8b13ed9a948ea",
+    "sourcePage": "https://neo.bttwiki.com/en/docs/more-series/pop-module/popstation-mini/",
+    "publicUrl": "https://neo.bttwiki.com/en/assets/images/popstation-mini-installation-19-f45cfa5140f3422626662ba1490ce493.webp"
+  },
+  {
+    "index": 25,
+    "path": "official_manual_image_25.webp",
+    "source": "https://neo.bttwiki.com/en/assets/images/popstation-mini-installation-20-1cc85fab9720e0f8aedb9cc6b071b23d.webp",
+    "bytes": 13520,
+    "sha256": "2557d715d9a6c9c73ec26ef4bdec84832fc6308db54b08917fbf9bbb3f712c37",
+    "sourcePage": "https://neo.bttwiki.com/en/docs/more-series/pop-module/popstation-mini/",
+    "publicUrl": "https://neo.bttwiki.com/en/assets/images/popstation-mini-installation-20-1cc85fab9720e0f8aedb9cc6b071b23d.webp"
+  },
+  {
+    "index": 26,
+    "path": "official_manual_image_26.webp",
+    "source": "https://neo.bttwiki.com/en/assets/images/popstation-mini-installation-21-7cf5eaab5f3e7fe8c8fcfb0267aa8444.webp",
+    "bytes": 20574,
+    "sha256": "8f5d5aa3f03b415f91e9df34ed94841760043630076b4f258bb7132f2edc73da",
+    "sourcePage": "https://neo.bttwiki.com/en/docs/more-series/pop-module/popstation-mini/",
+    "publicUrl": "https://neo.bttwiki.com/en/assets/images/popstation-mini-installation-21-7cf5eaab5f3e7fe8c8fcfb0267aa8444.webp"
+  }
+]

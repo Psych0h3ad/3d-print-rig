@@ -1,0 +1,65 @@
+{
+  "schema": "3dprig-u1-bed-reference-attribution-v1",
+  "component": "Fixed PEI build plate",
+  "models": [
+    {
+      "variant": "standalone",
+      "path": "layout/assets/equipment/u1-exterior/U1_exterior_standalone_loaded.glb",
+      "bytes": 3631984,
+      "sha256": "f68bf8498a9a2d3114a6f8fff7af45c495208ac5098616426f3bc835e9089bd7",
+      "referencedComponent": {
+        "nodeIndex": 28,
+        "nodeName": "fixed_bed / PEI build plate - build plate",
+        "meshIndex": 28
+      }
+    },
+    {
+      "variant": "docked",
+      "path": "layout/assets/equipment/u1-exterior/U1_exterior_docked.glb",
+      "bytes": 3143064,
+      "sha256": "de89610a4bdfb1b108498f345effe92109022d641d882c5ff113f01f57acc369",
+      "referencedComponent": {
+        "nodeIndex": 28,
+        "nodeName": "fixed_bed / PEI build plate - build plate",
+        "meshIndex": 28
+      }
+    }
+  ],
+  "sourceRepository": "https://github.com/Snapmaker/OrcaSlicer",
+  "sourceCommit": "229efa64b8ed6093aa2d99ab1fb422182a05a63e",
+  "sourceAsset": {
+    "path": "resources/profiles/Snapmaker/Snapmaker U1_bed.stl",
+    "url": "https://raw.githubusercontent.com/Snapmaker/OrcaSlicer/229efa64b8ed6093aa2d99ab1fb422182a05a63e/resources/profiles/Snapmaker/Snapmaker%20U1_bed.stl",
+    "bytes": 17284,
+    "sha256": "954c6d156ce3b08ff5b1cddcdf37596c3e8121cabeb18a450a206cdfb61dda68",
+    "git_blob_sha": "f1c58f2e1eb7cb18332cc12b75b130c009af8c88"
+  },
+  "repositoryLicense": {
+    "recordedSpdx": "AGPL-3.0",
+    "file": "Snapmaker_OrcaSlicer_LICENSE.txt",
+    "bytes": 34520,
+    "sha256": "57c8ff33c9c0cfc3ef00e650a1cc910d7ee479a8bc509f6c9209a7c2a11399d6",
+    "upstreamPath": "LICENSE.txt",
+    "immutableReferenceUrl": "https://github.com/Snapmaker/OrcaSlicer/blob/229efa64b8ed6093aa2d99ab1fb422182a05a63e/LICENSE.txt",
+    "urlBasis": "Repository, commit and licence path from the prepared reference record; no live refetch in this addendum.",
+    "assetSpecificLicenseHeaderFound": false,
+    "scope": "Repository-level AGPL-3.0 notice retained; not a separate OEM manufacturing-CAD license claim."
+  },
+  "modifications": [
+    "Reconstructed the supplied outer contour and four closed slots as a planar extrusion, retaining the three open rear notches.",
+    "Retained the reference 276 x 293 mm silhouette and approximately 0.5 mm thickness, with rigid placement and uniform scale 1.",
+    "Assigned a plain presentation colour and exported the fixed component in the layout GLB."
+  ],
+  "otherPreparedReference": {
+    "sourceSvg": {
+      "path": "resources/profiles/Snapmaker/Snapmaker U1_texture.svg",
+      "url": "https://raw.githubusercontent.com/Snapmaker/OrcaSlicer/229efa64b8ed6093aa2d99ab1fb422182a05a63e/resources/profiles/Snapmaker/Snapmaker%20U1_texture.svg",
+      "bytes": 6547,
+      "sha256": "c4e8c980499318cff6dd3d3d1776483555b0b229454f37d201bf1aa39b9eca98",
+      "git_blob_sha": "b12ad10a5e4bee1f6464543edb67c39883f65f4e"
+    },
+    "usage": "Inspected as a reference only; no SVG artwork or texture is embedded in either final GLB."
+  },
+  "scope": "This record identifies the upstream input used for the fixed plate component and preserves its repository-level notice. It does not assign that licence to all unrelated authored model parts or determine combined-work licensing obligations.",
+  "manufacturerCAD": false
+}
