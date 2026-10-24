@@ -39,7 +39,7 @@ const editorMatch=editorMatches[0],actionSource=actionOriginal.slice(0,editorMat
 // Replay the ACTUAL source action/commit bodies with only the import boundary
 // and ambient UI/storage hooks injected. No app startup/model renderer runs.
 const engineFactory=new Function('deps',`
- let state=deps.state,catalog=deps.catalog,busy=false,roomEditing=false,disposed=false,selected=null,operation=null,interactionGeneration=0;
+ let state=deps.state,catalog=deps.catalog,busy=false,roomEditing=false,disposed=false,selected=null,operation=null,interactionGeneration=0,placement=null;
  const past=[],future=[],language={t:x=>x},view={view:x=>deps.views.push(x)};
  const applyAction=deps.applyAction,serializeLayout=deps.serialize,sync=()=>deps.syncs++,store=()=>deps.saved.push(deps.serialize(state,catalog));
  const humanError=e=>e.errors?.[0]?.code||e.code||e.message,message=(value,error)=>deps.errors.push({text:typeof value==='function'?value():value,error});
@@ -173,7 +173,7 @@ await test('renderer-live-parent-followers-intermediate-reverse-cancel-and-commi
     {id:'shelf-high',machineId:'fixture-machine',configurationId:null,attachment:{parentId:'shelf',surfaceId:'level-4',xMm:40,zMm:-30,yawDeg:45}},
     {id:'floor',machineId:'fixture-machine',configurationId:null,attachment:{parentId:null,surfaceId:'floor',xMm:1000,zMm:500,yawDeg:0}}]},cat);
   const factory=new Function('deps',`
-    const MM=.001,objects=new Map(),planObjects=new Map(),current=deps.state,derived=deps.derive(current,deps.catalog);let selectedId=null,drag=null,exporting=false,disposed=false;
+    const MM=.001,objects=new Map(),planObjects=new Map(),current=deps.state,derived=deps.derive(current,deps.catalog);let selectedId=null,drag=null,exporting=false,disposed=false,placing=null;
     const canvas={style:{},setPointerCapture(){},hasPointerCapture(){return true},releasePointerCapture(){}},draw=()=>{},hit=()=>deps.hit;
     const rotateHandle={dataset:{}},objectTools={dataset:{}};
     const isPlan=()=>false,updateSelection=()=>{},enableControls=()=>{},onError=e=>{throw e};

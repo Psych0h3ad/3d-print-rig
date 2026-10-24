@@ -32,7 +32,7 @@
   
   <link rel="icon" href="../assets/brand/rig-mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../assets/brand/brand.css">
-  <link rel="stylesheet" href="./layout.css?v=994f4722fd697b77b4bf">
+  <link rel="stylesheet" href="./layout.css?v=30b1c78cfa214d199225">
 <script type="importmap">{"imports":{"three":"../viewer/vendor/three.module.js"},"scopes":{"../viewer/source-assembly-runtime/":{"three":"../viewer/vendor-r180/three.module.js"},"../viewer/vendor-r180/":{"three":"../viewer/vendor-r180/three.module.js"}}}</script>
 
 </head>
@@ -72,11 +72,42 @@
             <button type="button" data-layout-view="front" data-layout-i18n="layout.frontView">Front</button>
             <button type="button" data-layout-view="fit" class="layout-icon-button" aria-label="Fit room" title="Fit room" data-layout-i18n-aria-label="layout.fit" data-layout-i18n-title="layout.fit"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5M8 8h8v8H8Z"/></svg></button>
           </div>
+          <details class="layout-shortcuts">
+            <summary title="Keyboard shortcuts" data-layout-i18n-title="layout.shortcuts">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M6 9h.01M10 9h.01M14 9h.01M18 9h.01M6 12h.01M10 12h.01M14 12h.01M18 12h.01M7 15h10"/></svg>
+              <span data-layout-i18n="layout.shortcuts">Keyboard shortcuts</span>
+            </summary>
+            <div class="layout-shortcuts-panel">
+              <p data-layout-i18n="layout.shortcuts.body">R / Shift+R: rotate; Ctrl/Cmd+D: duplicate; Delete: remove; F: focus; Escape: cancel; arrow keys: move.</p>
+              <p class="layout-shortcuts-navigation" data-layout-i18n="layout.place.reorient">Right drag: orbit · Middle drag: pan</p>
+            </div>
+          </details>
+        </div>
+        <div id="layout-placement-bar" class="layout-placement-bar" role="group" aria-labelledby="layout-placement-name" hidden>
+          <div class="layout-placement-copy">
+            <div class="layout-placement-heading">
+              <span id="layout-placement-name" class="layout-placement-name"></span>
+              <span id="layout-placement-status" class="layout-placement-status" role="status" aria-live="polite" aria-atomic="true" hidden></span>
+            </div>
+            <span class="layout-placement-hint" data-layout-i18n="layout.place.instructions">Click to place · Shift: place more · R: rotate · Esc: cancel</span>
+          </div>
+          <div class="layout-placement-actions">
+            <button type="button" data-layout-placement="rotate" title="Rotate" data-layout-i18n-title="layout.place.rotate">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M20 12a8 8 0 1 0-2 5"/></svg>
+              <span data-layout-i18n="layout.place.rotate">Rotate</span>
+              <kbd aria-hidden="true">R</kbd>
+            </button>
+            <button type="button" data-layout-placement="cancel" title="Cancel" data-layout-i18n-title="common.cancel">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg>
+              <span data-layout-i18n="common.cancel">Cancel</span>
+              <kbd aria-hidden="true">Esc</kbd>
+            </button>
+          </div>
         </div>
         <div id="layout-scene" class="layout-scene" tabindex="0" aria-label="Interactive room preview" data-layout-i18n-aria-label="layout.interactiveScene" aria-describedby="layout-scene-hint"></div>
         <div class="layout-stage-caption">
           <span class="layout-preview-badge" data-layout-i18n="layout.previewBadge">Lightweight preview</span>
-          <p id="layout-scene-hint" data-layout-i18n="layout.hint.auto">Drag objects to move them. Drag empty space to look around.</p>
+          <p id="layout-scene-hint" data-layout-i18n="layout.hint.auto">Drag objects to move · Right drag: orbit · Middle drag: pan</p>
           <div class="layout-scene-toggles">
             <label id="layout-measurements-control" hidden><input id="layout-measurements" type="checkbox" checked><span data-layout-i18n="layout.dimensions">Dimensions</span></label>
             <label><input id="layout-grid" type="checkbox"><span data-layout-i18n="layout.grid">Grid</span></label>
@@ -89,6 +120,6 @@
     </main>
   </div>
   <noscript>This planner needs JavaScript. No printer models are downloaded until you request a full render.</noscript>
-  <script type="module" src="./layout-app.mjs?v=9fe1a422c490bc2b8c1c"></script>
+  <script type="module" src="./layout-app.mjs?v=74f3525b04b2518fff8d"></script>
 </body>
 </html>

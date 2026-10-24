@@ -13,6 +13,8 @@ const app=read('layout/layout-app.mjs'),renderer=read('layout/layout-renderer.mj
 read('layout/layout-language.mjs');read('layout/layout-i18n.mjs');
 read('layout/layout-state.mjs');read('layout/layout-constraints.mjs');read('layout/layout-geometry.mjs');
 const S=await import(pathToFileURL(path.join(site,'layout/layout-state.mjs')));
+const {proposePlacement}=await import(pathToFileURL(path.join(site,'layout/layout-placement.mjs')));
+consumed['layout/layout-placement.mjs']=crypto.createHash('sha256').update(fs.readFileSync(path.join(site,'layout/layout-placement.mjs'))).digest('hex');
 const {createDefaultLayout,createRoomRect,createDesk,createCatalog,applyAction,serializeLayout,parseLayout}=S;
 const {setupLayoutLanguage}=await import(pathToFileURL(path.join(site,'layout/layout-language.mjs')));
 const {supportedLanguages,t}=await import(pathToFileURL(path.join(site,'layout/layout-i18n.mjs')));
@@ -102,7 +104,7 @@ await test('deferred-layout-import-never-overwrites-newer-commands-or-disposed-p
  const actSource=unique(app,'async function act(action){','\nfunction updateViewPresentation(');
  const factory=new Function('deps',`
   const {createDefaultLayout,applyAction,serializeLayout,parseLayout}=deps,catalog=[];
-  let state=deps.initial,selected=null,busy=false,roomEditing=false,disposed=false,interactionGeneration=0;
+  let state=deps.initial,selected=null,busy=false,roomEditing=false,disposed=false,interactionGeneration=0,placement=null,lastPlacementTarget=null;
   const past=[],future=[],maxFileBytes=2097152,messages=[],views=[];
   const sync=()=>{},store=()=>{},humanError=()=> 'error',t=k=>k;
   const view={view:v=>views.push(v)};
@@ -154,7 +156,7 @@ await test('deferred-layout-import-never-overwrites-newer-commands-or-disposed-p
  }
 });
 await test('desktop-bootstrap-reaches-ready-with-automatic-renderer-and-no-removed-tool-binding',async()=>{
- const bootstrap=unique(app,'  const response=await fetch(','\n}\nwindow.addEventListener(');
+ const bootstrap=unique(app,'  const response=await fetch(','\n}\nfunction pageHide(');
  const importPattern=/await import\('\.\/layout-renderer\.mjs\?v=[a-f0-9]+'\)/g;
  assert.equal([...bootstrap.matchAll(importPattern)].length,1);
  const source=bootstrap.replace(importPattern,'deps.rendererModule').replaceAll('import.meta.url',"'https://example.invalid/layout/layout-app.mjs'");
@@ -166,8 +168,8 @@ await test('desktop-bootstrap-reaches-ready-with-automatic-renderer-and-no-remov
   const {createDefaultLayout,createDesk,createCatalog,applyAction,parseLayout}=deps;
   const document=deps.doc,$=q=>document.querySelector(q),navigator={deviceMemory:8},localStorage={getItem:()=>null};
   const storageKey='test',maxFileBytes=2097152,fetch=async()=>({ok:true,json:async()=>deps.catalogData});
-  let state,catalog,rows,ui,view,selected=null,busy=false,roomEditing=false,disposed=false;const past=[],future=[];
-  const language={t:key=>key},t=key=>key,act=()=>{},select=()=>{},worldMove=()=>{},constrainMove=()=>{},worldRotate=deps.rotationPorts.onRotate,constrainRotate=deps.rotationPorts.constrainRotate,message=()=>{},humanError=()=> 'error';
+  let state,catalog,rows,ui,view,selected=null,busy=false,roomEditing=false,disposed=false,placement=null;const past=[],future=[];
+  const language={t:key=>key},t=key=>key,act=()=>{},select=()=>{},worldMove=()=>{},constrainMove=()=>{},worldRotate=deps.rotationPorts.onRotate,constrainRotate=deps.rotationPorts.constrainRotate,previewPlacement=()=>null,placeProposal=()=>{},placementKey=()=>{},message=()=>{},humanError=()=> 'error';
   const calls={sync:0,language:0,views:[],presentations:[],options:[]};
   const sync=()=>calls.sync++,updateLanguage=()=>calls.language++,dark=()=>false;
   const updateViewPresentation=value=>calls.presentations.push(value);
@@ -185,7 +187,7 @@ await test('desktop-bootstrap-reaches-ready-with-automatic-renderer-and-no-remov
  const result=await run({doc:e.doc,catalogData,createDefaultLayout,createDesk,createCatalog,applyAction,parseLayout,rendererModule,rotationPorts});
  assert.equal(result.ready,'true');assert.equal(result.state.furniture.length,1);assert.equal(result.state.printers.length,1);assert.equal(result.calls.sync,1);assert.equal(result.calls.language,1);
  assert.deepEqual(result.calls.presentations,[{mode:'perspective',projection:'perspective-3d'}]);
- assert.equal(e.documentListeners.get('keydown')?.length,1,'Actual startup must bind the actual history callback');
+ assert.equal(e.documentListeners.get('keydown')?.length,2,'Actual startup binds history and placement shortcuts');
 });
 
 await test('actual-app-failed-noop-and-successful-commit-status-lifecycle',async()=>{
@@ -196,7 +198,7 @@ await test('actual-app-failed-noop-and-successful-commit-status-lifecycle',async
  const factory=new Function('deps',`
   const {applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,serializeLayout,parseLayout,createDefaultLayout,validatePlacement}=deps.S;
   const catalog=[],past=[],future=[],writes=[],updates=[],maxFileBytes=2097152,document={body:{dataset:{}}};
-  let state=deps.initial,selected='status-desk',busy=false,roomEditing=false,disposed=false,interactionGeneration=0,operation=null;
+  let state=deps.initial,selected='status-desk',busy=false,roomEditing=false,disposed=false,interactionGeneration=0,operation=null,placement=null,lastPlacementTarget=null;
   const status={hidden:true,textContent:''},uiState={message:'',error:false},$=selector=>{if(selector!=='#layout-status')throw Error('Unexpected status selector');return status};
   const ui={setStatus(value){Object.assign(uiState,value)},update(){updates.push({dom:{...status},ui:{...uiState}})}};
   const view={setState(){},view(){}},t=(key,params)=>deps.translate(key,params);
@@ -260,18 +262,20 @@ function replayCommands(initial,selection){
  const actions=unique(app,'async function act(action){','\nfunction updateViewPresentation(');
  const keyStart="view.canvas.addEventListener('keydown',event=>{";
  const keyboard=unique(app,keyStart,'\n  });').slice(keyStart.length);
- const engine=new Function('S','initial','selection','rows','catalog',`
+ const shortcuts=unique(app,'function placementKey(event){','\nfunction historyKey(');
+ const engine=new Function('S','initial','selection','rows','catalog','proposePlacement',`
   const {createDefaultLayout,createDesk,createShelf,applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,deriveScene,worldTransform,serializeLayout,parseLayout,validatePlacement}=S;
-  let state=initial,selected=selection,busy=false,roomEditing=false,disposed=false,interactionGeneration=0,operation=null,nextId=1;
+  let state=initial,selected=selection,busy=false,roomEditing=false,disposed=false,interactionGeneration=0,operation=null,nextId=1,placement=null,lastPlacementTarget=null;
   const past=[],future=[],writes=[],updates=[],maxFileBytes=2097152,storageKey='fixture',document={body:{dataset:{}}};
-  const status={hidden:true,textContent:''},$=()=>status,language={t:key=>key},ui={setStatus(){},update(_state,id){updates.push(id)}};
-  const localStorage={setItem(_key,value){writes.push(value)}},view={setState(){},view(){}};
+  const status={hidden:true,textContent:'',dataset:{}},$=selector=>selector.startsWith('#layout-placement')?null:status,language={t:key=>key},ui={setStatus(){},update(_state,id){updates.push(id)}};
+  const localStorage={setItem(_key,value){writes.push(value)}},view={setState(){},view(){},setPlacement(){},refreshPlacement(){},canvas:{focus(){}}};
   ${header}
   ${moves}
   ${actions}
+  ${shortcuts}
   function key(event){${keyboard}}
-  return {act,key,constrainMove,worldMove,read:()=>({state,selected,past:[...past],future:[...future],writes:[...writes],updates:[...updates],status:{...status}})};
- `)(S,initial,selection,productionRows,productionCatalog);
+  return {act,key,shortcut:placementKey,constrainMove,worldMove,preview:previewPlacement,place:(target,options={})=>{const result=previewPlacement(target);placeProposal(result,options);return result;},cancel:cancelPlacement,read:()=>({state,selected,past:[...past],future:[...future],writes:[...writes],updates:[...updates],status:{...status},placement})};
+ `)(S,initial,selection,productionRows,productionCatalog,proposePlacement);
  return engine;
 }
 const encoded=engine=>serializeLayout(engine.read().state,productionCatalog);
@@ -315,7 +319,8 @@ await test('failed-add-and-duplicate-preserve-selection-history-and-storage-atom
   await r.act(item.action);const result=r.read();
   assert.strictEqual(result.state,item.state);assert.equal(encoded(r),before);assert.equal(result.selected,item.selected);
   assert.equal(result.past.length,0);assert.equal(result.future.length,0);assert.equal(result.writes.length,0);
-  assert.equal(result.updates.at(-1),item.selected,'Error sync must retain the existing selection');assert.equal(result.status.hidden,false);
+  assert.ok(result.placement,'Add and duplicate begin a preview without editing history');
+  const rejected=r.place({xMm:10000,zMm:10000,parentId:null,surfaceId:'floor'});assert.equal(rejected.valid,false);assert.equal(encoded(r),before);assert.equal(r.read().writes.length,0);r.cancel();assert.equal(r.read().placement,null);
  }
  // Rejection must also leave a real redo entry usable.
  const r=replayCommands(cases[1].state,'support');
@@ -326,13 +331,69 @@ await test('failed-add-and-duplicate-preserve-selection-history-and-storage-atom
 await test('successful-add-and-duplicate-select-new-entity-once-with-real-undo-redo',async()=>{
  for(const action of [{type:'add',kind:'desk'},{type:'add',kind:'shelf'},{type:'add',kind:'printer',machineId:shipped.id},{type:'duplicate',id:'support'}]){
   const initial=makePlan([S.createDesk({id:'support',widthMm:1600,depthMm:1600})]),r=replayCommands(initial,'support');
-  await r.act(action);const after=r.read(),parts=[...after.state.furniture,...after.state.printers];
+  await r.act(action);assert.strictEqual(r.read().state,initial);assert.equal(r.read().past.length,0);
+  const resultPlacement=r.place({xMm:action.kind==='printer'?0:2500,zMm:0,parentId:action.kind==='printer'?'support':null,surfaceId:action.kind==='printer'?'top':'floor'});assert.equal(resultPlacement.valid,true);
+  const after=r.read(),parts=[...after.state.furniture,...after.state.printers];
   assert.equal(parts.length,2);assert.notEqual(after.selected,'support');assert.ok(parts.some(p=>p.id===after.selected));
   assert.equal(after.past.length,1);assert.strictEqual(after.past[0],initial);assert.equal(after.writes.length,1);assert.equal(after.updates.at(-1),after.selected);
   const result=encoded(r);await r.act({type:'undo'});assert.equal(encoded(r),serializeLayout(initial,productionCatalog));await r.act({type:'redo'});assert.equal(encoded(r),result);
  }
  const initial=makePlan([],[printer('original')]),r=replayCommands(initial,'original');await r.act({type:'duplicate',id:'original'});
+ assert.equal(r.read().state.printers.length,1);assert.equal(r.place({xMm:2000,zMm:0,parentId:null,surfaceId:'floor'}).valid,true);
  assert.equal(r.read().state.printers.length,2);assert.notEqual(r.read().selected,'original');assert.equal(r.read().past.length,1);
+});
+await test('placement-repeat-cancel-shortcuts-and-undo-are-atomic',async()=>{
+ const initial=makePlan(),r=replayCommands(initial,null),original=encoded(r);
+ const key=(key,extra={})=>{let prevented=false;r.shortcut({key,target:{closest:()=>null},preventDefault(){prevented=true;},...extra});return prevented;};
+ await r.act({type:'add',kind:'desk'});assert.equal(encoded(r),original);
+ const firstId=r.read().placement.id;
+ assert(key('r'));assert.equal(r.read().placement.yawDeg,90);assert(key('R',{shiftKey:true}));assert.equal(r.read().placement.yawDeg,0);
+ const draft=r.place({xMm:-1500,zMm:0,parentId:null,surfaceId:'floor'},{repeat:true});assert(draft.valid);assert.equal(r.read().state.furniture.length,1);assert.equal(r.read().past.length,1);assert.notEqual(r.read().placement.id,firstId);
+ const first=encoded(r);assert.equal(r.place({xMm:-1500,zMm:0,parentId:null,surfaceId:'floor'}).valid,false);assert.equal(encoded(r),first);assert.equal(r.read().past.length,1);
+ assert(r.place({xMm:1500,zMm:0,parentId:null,surfaceId:'floor'}).valid);assert.equal(r.read().state.furniture.length,2);assert.equal(r.read().past.length,2);assert.equal(r.read().placement,null);
+ await r.act({type:'undo'});assert.equal(encoded(r),first);await r.act({type:'redo'});assert.equal(r.read().state.furniture.length,2);
+ const selected=r.read().state.furniture[1].id;await r.act({type:'select',id:selected});
+ assert(key('d',{ctrlKey:true}));assert(r.read().placement);assert.equal(r.read().past.length,2);
+ assert.equal(key('r',{target:{closest:()=>({tagName:'INPUT'})}}),false);assert.equal(r.read().placement.yawDeg,0);
+ assert(key('Escape'));assert.equal(r.read().placement,null);assert.equal(r.read().past.length,2);
+ const beforeDelete=encoded(r);assert(key('Delete'));assert.equal(r.read().state.furniture.length,1);await r.act({type:'undo'});assert.equal(encoded(r),beforeDelete);
+});
+await test('shift-repeat-retains-world-angle-for-new-and-copied-furniture-and-printers',async()=>{
+ const shortcut=(r,reverse)=>r.shortcut({key:'r',shiftKey:reverse,target:{closest:()=>null},preventDefault(){}});
+ const support=S.createDesk({id:'support',widthMm:1600,depthMm:1400,pose:{xMm:-2500,zMm:0,yawDeg:90}});
+ for(const reverse of [false,true])for(const [initial,selection,action]of [
+  [makePlan(),null,{type:'add',kind:'desk'}],
+  [makePlan(),null,{type:'add',kind:'printer',machineId:shipped.id}],
+  [makePlan([S.createDesk({id:'original',pose:{xMm:-2500,zMm:0,yawDeg:30}})]),'original',{type:'duplicate',id:'original'}],
+  [makePlan([support],[printer('original','support','top',0,0,30)]),'original',{type:'duplicate',id:'original'}]
+ ]){
+  const r=replayCommands(initial,selection);await r.act(action);const originalYaw=r.read().placement.yawDeg;
+  shortcut(r,reverse);const expected=originalYaw+(reverse?-90:90),firstId=r.read().placement.id;
+  assert.equal(r.place({xMm:0,zMm:0,parentId:null,surfaceId:'floor'},{repeat:true}).valid,true);
+  assert.equal(r.read().placement.yawDeg,expected);assert.notEqual(r.read().placement.id,firstId);
+  assert.equal(S.worldTransform(r.read().state,firstId,productionCatalog).yawDeg,expected);
+  const nextId=r.read().placement.id;assert.equal(r.place({xMm:2500,zMm:0,parentId:null,surfaceId:'floor'}).valid,true);
+  assert.equal(S.worldTransform(r.read().state,nextId,productionCatalog).yawDeg,expected);
+ }
+});
+await test('shift-repeat-flat-plan-board-picker-retains-confirmed-support-including-support-changes',async()=>{
+ const THREE=await import(pathToFileURL(path.join(site,'viewer/vendor-r180/three.module.js')));
+ const source=unique(renderer,'  function placementPoint(event){','  function updatePlacement(');
+ const pick=new Function('THREE','placing','derived','x',`const scene={updateMatrixWorld(){}},camera={updateMatrixWorld(){}},eventPoint=()=>{},isPlan=()=>true;
+  const raycaster={ray:new THREE.Ray(new THREE.Vector3(x,10,0),new THREE.Vector3(0,-1,0))};${source};return placementPoint({});`);
+ const shelf=(id,x)=>S.createShelf({id,widthMm:2000,depthMm:1200,heightMm:1800,pose:{xMm:x,zMm:0,yawDeg:0},levels:[{id:'low',topMm:100},{id:'high',topMm:1800}]});
+ for(const changedSupport of [false,true]){
+  const initial=makePlan([shelf('selected',-2000),shelf('target',2000)]),r=replayCommands(initial,'selected');
+  await r.act({type:'add',kind:'printer',machineId:shipped.id});const support=changedSupport?'target':'selected',center=changedSupport?2000:-2000,board=changedSupport?'low':'high';
+  const first=pick(THREE,r.read().placement,S.deriveScene(r.read().state,productionCatalog),(center-450)/1000);
+  assert.equal(first.parentId,support);assert.equal(first.surfaceId,board);
+  assert.equal(r.place({xMm:center-450,zMm:0,parentId:first.parentId,surfaceId:first.surfaceId},{repeat:true}).valid,true);
+  assert.equal(r.read().placement.parentId,support);assert.equal(r.read().placement.surfaceId,board);
+  const second=pick(THREE,r.read().placement,S.deriveScene(r.read().state,productionCatalog),(center+450)/1000);
+  assert.equal(second.parentId,support);assert.equal(second.surfaceId,board);
+  assert.equal(r.place({xMm:center+450,zMm:0,parentId:second.parentId,surfaceId:second.surfaceId}).valid,true);
+  assert(r.read().state.printers.every(p=>p.attachment.parentId===support&&p.attachment.surfaceId===board));
+ }
 });
 await test('canvas-arrows-move-in-world-axes-with-rotated-support-reversal-and-boundary-guards',async()=>{
  for(const yaw of [0,90,180,37.5]){
@@ -411,7 +472,7 @@ await test('translated-room-load-reset-and-applied-outline-refit-only-after-acce
  const factory=new Function('deps',`
   const {createDefaultLayout,createDesk,createShelf,applyAction,applyWorldMove,deriveScene,serializeLayout,parseLayout,validatePlacement}=deps.S;
   const rows=deps.rows,catalog=deps.catalog,past=[],future=[],writes=[],views=[],document={body:{dataset:{}}};
-  let state=deps.initial,selected=null,busy=false,roomEditing=false,disposed=false,interactionGeneration=0,operation=null,nextId=1;
+  let state=deps.initial,selected=null,busy=false,roomEditing=false,disposed=false,interactionGeneration=0,operation=null,nextId=1,placement=null,lastPlacementTarget=null;
   const maxFileBytes=2097152,storageKey='fixture',status={hidden:true,textContent:''},$=()=>status;
   const language={t:key=>key},ui={setStatus(){},update(){}},localStorage={setItem(_key,value){writes.push(value)}};
   const view={setState(){},view(mode){views.push({mode,state,stored:writes.at(-1)})}};
@@ -459,6 +520,22 @@ await test('identical-plan-import-keeps-selection-UI-and-controller-in-sync-with
  let prevented=false;r.key({key:'ArrowRight',preventDefault(){prevented=true;}});assert.equal(prevented,false);assert.equal(encoded(r),text);
  await r.act({type:'select',id:'same-desk'});r.key({key:'ArrowRight',preventDefault(){prevented=true;}});
  assert.equal(prevented,true);assert.equal(r.read().state.furniture[0].pose.xMm,10);assert.equal(r.read().updates.at(-1),'same-desk');
+});
+await test('active-placement-name-and-status-switch-five-languages-without-repeated-announcements',()=>{
+ const source=unique(app,'function updatePlacementBar(proposal){','\nfunction cancelPlacement(');
+ const rotation=unique(app,'function rotatePlacement(reverse=false){','\nfunction download(');
+ const factory=new Function('deps',`let placement={kind:'desk',name:'Desk',yawDeg:0};const $=s=>deps.nodes[s],t=(k,v)=>deps.translate(k,v),view={refreshPlacement(){const result={valid:true};updatePlacementBar(result);return result;}};${source}${rotation};return {update:updatePlacementBar,rotate:rotatePlacement,kind:value=>placement.kind=value};`);
+ const bar={dataset:{}},name={textContent:''};let writes=0,text='';const status={dataset:{},get textContent(){return text},set textContent(v){text=v;writes++}};
+ let language='en';const nodes={'#layout-placement-bar':bar,'#layout-placement-name':name,'#layout-placement-status':status};
+ const r=factory({nodes,translate:(k,v)=>t(k,v,language)});
+ for(const code of supportedLanguages){language=code;r.update({valid:true});assert.equal(name.textContent,t('layout.place.active',{name:t('layout.desk',{},code)},code));assert.equal(status.textContent,t('layout.place.ready',{},code));const before=writes;r.update({valid:true});assert.equal(writes,before,'Identical status must not repeat aria-live writes');r.rotate();assert.equal(status.hidden,false,'Rotation must retain the refreshed placement status');assert.equal(bar.dataset.valid,'true');r.kind('shelf');r.update({valid:false});assert.equal(name.textContent,t('layout.place.active',{name:t('layout.shelf',{},code)},code));assert.equal(status.textContent,t('layout.place.blocked',{},code));r.kind('desk');}
+});
+await test('back-forward-cache-preserves-live-controls-and-real-unload-disposes',()=>{
+ const source=unique(app,'function pageHide(event){',"\nwindow.addEventListener('pagehide'");
+ const effects=[],factory=new Function('effects',`let disposed=false,renderURL='blob:fixture';const cancelPlacement=()=>effects.push('cancel'),operation={abort:()=>effects.push('abort')},historyKey=()=>{},placementKey=()=>{},document={removeEventListener:()=>effects.push('remove')},view={dispose:()=>effects.push('view')},ui={dispose:()=>effects.push('ui')},language={disconnect:()=>effects.push('language')},URL={revokeObjectURL:()=>effects.push('url')};${source};return {pageHide,isDisposed:()=>disposed};`);
+ const r=factory(effects);r.pageHide({persisted:true});r.pageHide({persisted:true});assert.equal(r.isDisposed(),false);assert.deepEqual(effects,['cancel','abort','cancel','abort']);
+ r.pageHide({persisted:false});assert.equal(r.isDisposed(),true);assert.deepEqual(effects.slice(4),['cancel','abort','remove','remove','view','ui','language','url']);
+ assert(app.includes("window.addEventListener('pagehide',pageHide)"));
 });
 for(const [rel,h]of Object.entries(consumed))assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(site,rel))).digest('hex'),h,'Source changed: '+rel);
 const report={schema:'layout-frontend-consistency-source-v1',passed:true,tests,sourceInputs:consumed,languages:supportedLanguages,actualSourceBodies:true,actualLanguageModule:true,DOMInterfaceFixture:true,WebGL:false,modelsLoaded:0,native:false};
