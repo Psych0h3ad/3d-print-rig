@@ -20,11 +20,16 @@ Placement uses the registered static printer envelopes.
    custom outline, enter one `X, Z` corner per line. Press **Update room** to
    apply a shape change. Invalid or crossing outlines leave the current room
    unchanged. Custom width and depth show its bounds without changing its shape.
-2. Add a desk or shelf and set its width, depth and height. Desks have a 30 mm
+2. Choose a desk or shelf, move the preview to the desired position and click to
+   place it. Set its width, depth and height. Desks have a 30 mm
    top. Shelves have an adjustable board thickness and individual board heights.
-3. Add a printer, select it and choose **Floor**, a desk top or a shelf board.
+3. Choose a printer and point at the floor, a desk top or a shelf board to place
+   it there. A green preview can be placed; a red preview cannot. Hold **Shift**
+   when clicking to place more copies. **R / Shift+R** rotate the preview;
+   **Esc** or **Cancel** leave the plan unchanged.
 4. Drag an object to move it. In 3D, drag empty space to look around, or use the
-   right mouse button to pan. Scroll to zoom. No move/view mode switch is needed.
+   right mouse button to orbit and the middle mouse button to pan. Scroll to
+   zoom. No move/view mode switch is needed.
    Use **2D plan**, **3D**, **Front** and the fit control to inspect the layout.
 
 A printer on furniture moves and rotates with that furniture. Its X, Z and
@@ -63,7 +68,11 @@ With the scene focused and an object selected, arrow keys move it by 10 mm
 or 100 mm with Shift along the room's X/Z axes, including on rotated furniture.
 **R** turns it by 90°; **Shift+R** turns it by −90°.
 Numeric fields also support precise placement. Objects can be duplicated or
-deleted. Before deleting occupied furniture, explicitly choose to move its printers to the floor. Move printers
+deleted. **Ctrl/Cmd+D** starts a duplicate preview and **Delete** removes the
+selection. New objects and duplicates enter history only after placement;
+cancelled previews do not affect undo or saved plans. Nearby edges and centres
+align within 14 mm when a valid position exists; hold **Alt** to disable grid
+and alignment snapping. Before deleting occupied furniture, explicitly choose to move its printers to the floor. Move printers
 off a shelf board before removing that board.
 
 ## Room appearance

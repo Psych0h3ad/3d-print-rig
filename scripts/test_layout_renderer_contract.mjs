@@ -678,14 +678,15 @@ for(const mode of ['perspective','top']){
  const down=screen(new THREE.Vector3(.4,.75,0),camera),start=cameraSnapshot(camera);
  x.api.canvas.emit('pointerdown',down);x.api.canvas.emit('pointermove',{clientX:down.clientX+55,clientY:down.clientY+12});x.api.canvas.emit('pointerup');await settled();assert.equal(x.commits.length,1);assert.deepEqual(cameraSnapshot(camera),start,'Object gesture reached OrbitControls');
  const background={clientX:5,clientY:5};x.api.canvas.emit('pointerdown',background);x.api.canvas.emit('pointermove',{clientX:75,clientY:35});x.api.canvas.emit('pointerup');await settled();assert.notDeepEqual(cameraSnapshot(camera),start,'Background3D orbit absent');assert.equal(x.commits.length,1);
- const rightStart=cameraSnapshot(camera);x.api.canvas.emit('pointerdown',{button:2,buttons:2,clientX:400,clientY:300});x.api.canvas.emit('pointermove',{button:2,buttons:2,clientX:430,clientY:320});x.api.canvas.emit('pointerup',{button:2});await settled();assert.notDeepEqual(camera.position.toArray(),rightStart.position,'Rightpan absent');assert.equal(x.commits.length,1);
+ const rightStart=cameraSnapshot(camera);x.api.canvas.emit('pointerdown',{button:2,buttons:2,clientX:400,clientY:300});x.api.canvas.emit('pointermove',{button:2,buttons:2,clientX:430,clientY:320});x.api.canvas.emit('pointerup',{button:2});await settled();assert.notDeepEqual(camera.position.toArray(),rightStart.position,'Right orbit absent');assert.notDeepEqual(camera.quaternion.toArray(),rightStart.quaternion,'Right drag must orbit, not pan');assert.equal(x.commits.length,1);
+ const middleStart=cameraSnapshot(camera);x.api.canvas.emit('pointerdown',{button:1,buttons:4,clientX:400,clientY:300});x.api.canvas.emit('pointermove',{button:1,buttons:4,clientX:425,clientY:310});x.api.canvas.emit('pointerup',{button:1});await settled();assert.notDeepEqual(camera.position.toArray(),middleStart.position,'Middle pan absent');camera.quaternion.toArray().forEach((n,i)=>near(n,middleStart.quaternion[i],'Middle pan viewing direction'));assert.equal(x.commits.length,1);
  const wheelStart=camera.position.clone();x.api.canvas.emit('wheel',{deltaY:-100,deltaMode:0,clientX:400,clientY:300});await settled();assert.ok(camera.position.distanceTo(wheelStart)>0,'3D wheelzoom absent');
  const saved3D=cameraSnapshot(camera);x.api.view('top');await settled();camera=x.renderer.lastCamera;const basis=camera.quaternion.toArray(),planPos=camera.position.toArray();
  x.api.canvas.emit('pointerdown',background);x.api.canvas.emit('pointermove',{clientX:85,clientY:45});x.api.canvas.emit('pointerup');await settled();assert.notDeepEqual(camera.position.toArray(),planPos);assert.deepEqual(camera.quaternion.toArray(),basis,'Plan background tilted');
  const zoom=camera.zoom;x.api.canvas.emit('wheel',{deltaY:-100,deltaMode:0,clientX:400,clientY:300});await settled();assert.ok(camera.zoom>zoom);assert.deepEqual(camera.quaternion.toArray(),basis);
  const planRight=camera.position.clone();x.api.canvas.emit('pointerdown',{button:2,buttons:2,clientX:400,clientY:300});x.api.canvas.emit('pointermove',{button:2,buttons:2,clientX:430,clientY:310});x.api.canvas.emit('pointerup',{button:2});await settled();assert.ok(camera.position.distanceTo(planRight)>0);assert.deepEqual(camera.quaternion.toArray(),basis);
  x.api.view('perspective');await settled();assert.ok(x.renderer.lastCamera.position.distanceTo(new THREE.Vector3(...saved3D.position))<1e-12);assert.equal(x.commits.length,1);x.api.dispose();
- passed.push('ACTUAL vendored OrbitControls: capture-phase object drag never orbits; background3D orbit/rightpan/wheelzoom; top background/rightpan/wheelzoom keep exact northup basis;3D restore.');
+ passed.push('ACTUAL vendored OrbitControls: capture-phase object drag never orbits; background/right3D orbit, middlepan and wheelzoom; top background/rightpan/wheelzoom keep exact northup basis;3D restore.');
 }
 {
  const x=operationSetup();x.api.view('top');await settled();let loads=0;const expectedView=x.api.getView(),startTargets=targets.length,events=[];
@@ -930,16 +931,16 @@ for(const mode of ['top','perspective']){
 function rotationApp(initial,catalog){
  const appFile=path.join(A,'layout/layout-app.mjs'),app=fs.readFileSync(appFile,'utf8');imports.push(pin(appFile));
  const section=(start,end)=>{const a=app.indexOf(start),b=app.indexOf(end,a+start.length);assert(a>=0&&b>a,'Actual app section missing: '+start);return app.slice(a,b)};
- const methods=section('function commit(','function download(')+section('let pendingMove=','async function render(')+section('async function act(','function updateViewPresentation(');
+ const methods=section('function commit(','function download(')+section('let pendingMove=','async function render(')+section('async function act(','function updateViewPresentation(')+section('function placementKey(','function historyKey(');
  const keyboardStart="view.canvas.addEventListener('keydown',event=>{";
  const canvasKeyboard=section(keyboardStart,'\n  });').slice(keyboardStart.length);
  return new Function('initial','catalog','S',`const {applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,serializeLayout,parseLayout,createDefaultLayout,createDesk,createShelf}=S;
-  let state=initial,selected=null,busy=false,roomEditing=false,disposed=false,interactionGeneration=0,view=null,operation=null;const past=[],future=[],writes=[],errors=[],maxFileBytes=2000000;
+  let state=initial,selected=null,busy=false,roomEditing=false,disposed=false,interactionGeneration=0,view=null,operation=null,placement=null,lastPlacementTarget=null;const past=[],future=[],writes=[],errors=[],maxFileBytes=2000000;
   function sync(){view?.setState(state,selected)}function store(){writes.push(serializeLayout(state,catalog))}function humanError(e){return e.code||e.message}function message(text,error){if(error)errors.push(text)}const t=k=>k;
   const statusNode={hidden:false,textContent:''},$=()=>statusNode,ui={setStatus(){}};
   ${methods}
   function canvasKey(event){${canvasKeyboard}}
-  return {constrainRotate,worldRotate,worldMove,constrainMove,select,act,bind(v){view=v;view.canvas.addEventListener('keydown',canvasKey);sync()},replace(next,id=selected){state=next;selected=id;sync()},read:()=>({state,selected,past:[...past],future:[...future],writes:[...writes],errors:[...errors],interactionGeneration})};`)(initial,catalog,S);
+  return {constrainRotate,worldRotate,worldMove,constrainMove,select,act,bind(v){view=v;view.canvas.addEventListener('keydown',canvasKey);view.canvas.addEventListener('keydown',placementKey);sync()},replace(next,id=selected){state=next;selected=id;sync()},read:()=>({state,selected,past:[...past],future:[...future],writes:[...writes],errors:[...errors],interactionGeneration})};`)(initial,catalog,S);
 }
 function rotationSeed(yaw=30){
  const catalog=[{id:'rotation-printer',label:'Rotation source fixture',widthMm:200,depthMm:180,heightMm:300,dimensionsMm:{width:200,depth:180,height:300}}];
@@ -1220,6 +1221,36 @@ for(const mode of ['perspective','top']){
   api.view('top');await settled();assert.equal(renderer.shadowMap.enabled,false,'Flat plan received 3D shadows');
  }
  api.dispose();passed.push('Shadow light target/frustum fits all floor/ceiling vertices after rectangle, translated oblique and concave shape changes in both windings; finishes preserve fit; flat plan disables map.');
+}
+// Pointer placement uses the actual proposal engine and raycast support planes.
+// Preview meshes are symbols, not CAD. Only pointerup commits accepted state.
+{
+ const placementFile=path.join(A,'layout/layout-placement.mjs');imports.push(pin(placementFile));
+ const {proposePlacement}=await import(pathToFileURL(placementFile));
+ for(const mode of ['top','perspective']){
+  size={width:1000,height:750};const container=makeContainer(),commits=[],previews=[];
+  const catalog=[{id:'placing-printer',widthMm:300,depthMm:200,heightMm:400,dimensionsMm:{width:300,depth:200,height:400}}];
+  const desk=S.createDesk({id:'placing-desk',widthMm:1600,depthMm:1000,heightMm:750,pose:{xMm:700,zMm:-600,yawDeg:90}});
+  let state=S.createDefaultLayout({room:S.createRoomRect({widthMm:6000,depthMm:5000}),furniture:[desk]},catalog),api;
+  const original=S.serializeLayout(state,catalog);
+  api=factoryRealOrbit({container,catalog,onPlacementMove:input=>{const result=proposePlacement(state,{kind:'printer',id:'placed-printer',machineId:'placing-printer',yawDeg:90,snapMm:0,...input},catalog);previews.push(result);return result;},
+   onPlacementCommit:(result,options)=>{commits.push({result,options});state=result.state;api.setPlacement(null);api.setState(state,result.id);}});
+  api.setState(state,null);api.view(mode);await settled();const renderer=renderers.at(-1);
+  api.setPlacement({kind:'printer',machineId:'placing-printer',parentId:'placing-desk',surfaceId:'top',sizeMm:{width:300,depth:200,height:400}});
+  const point=screen(new THREE.Vector3(.7,mode==='top'?0:.75,-.6),renderer.lastCamera);
+  // Many pointer events before one frame resolve once, and never write history.
+  for(let i=0;i<20;i++)api.canvas.emit('pointermove',point);
+  await settled();assert.equal(previews.length,1,'Placement resolver must run at most once per animation frame');assert.equal(commits.length,0);assert.equal(S.serializeLayout(state,catalog),original);
+  const preview=previews.at(-1);assert.equal(preview.valid,true);near(preview.world.yMm,750,'Support top');assert.ok(Math.abs(preview.world.xMm-700)<1e-8,'Raycast support world X');assert.ok(Math.abs(preview.world.zMm+600)<1e-8,'Raycast support world Z');
+  const ghost=renderer.lastScene.children.find(n=>n.userData.layoutPlacementPreview);assert(ghost?.visible);near(ghost.position.y,.75,'Ghost contacts board');assert.equal(container.dataset.placing,'true');
+  api.canvas.emit('pointerdown',point);api.canvas.emit('pointerup',{...point,shiftKey:true});await settled();assert.equal(commits.length,1);assert.equal(commits[0].options.repeat,true);assert.equal(state.printers[0].attachment.parentId,'placing-desk');assert.equal(state.printers[0].attachment.surfaceId,'top');near(state.printers[0].attachment.yawDeg,0,'World yaw converted once to rotated parent local yaw');assert.equal(container.dataset.placing,'false');assert.equal(ghost.visible,false);
+  const accepted=S.serializeLayout(state,catalog);
+  api.setPlacement({kind:'printer',machineId:'placing-printer',sizeMm:{width:300,depth:200,height:400}});
+  const outside=screen(new THREE.Vector3(10,0,10),renderer.lastCamera);api.canvas.emit('pointerdown',outside);api.canvas.emit('pointerup',outside);await settled();assert.equal(previews.at(-1).valid,false);assert.equal(commits.length,1);assert.equal(S.serializeLayout(state,catalog),accepted);
+  // Cancel pending pointer work before disposal; no late candidate can return.
+  const count=previews.length;api.canvas.emit('pointermove',point);api.setPlacement(null);await settled();assert.equal(previews.length,count);assert.equal(ghost.visible,false);api.dispose();
+  passed.push(mode+' actual raycast placement: frame-coalesced preview, rotated board contact, one accepted commit, repeat modifier, rejected outside proposal, cancelled pending frame and no CAD loading.');
+ }
 }
 const ownerSourceStillMatchesSnapshot=sha(fs.readFileSync(input))===sha(Buffer.from(source));
 assert.equal(ownerSourceStillMatchesSnapshot,true,'Renderer changed during source regression');
