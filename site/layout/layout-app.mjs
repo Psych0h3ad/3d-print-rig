@@ -1,6 +1,6 @@
 import {createDefaultLayout,createDesk,createShelf,createCatalog,applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,placementViolations,deriveScene,worldTransform,validatePlacement,serializeLayout,parseLayout} from './layout-state.mjs?v=cd4dd024f3faa663dbf9';
-import {createLayoutUI} from './layout-ui.mjs?v=68fcf38655eb64090c25';
-import {setupLayoutLanguage} from './layout-language.mjs?v=e9411a7e76f48c786d74';
+import {createLayoutUI} from './layout-ui.mjs?v=2cd93abdb10e35dbdd63';
+import {setupLayoutLanguage} from './layout-language.mjs?v=72b68c3331c3cd22db98';
 import {proposePlacement} from './layout-placement.mjs?v=3b6b3fc236902b931937';
 import {createGroup,renameGroup,ungroup,removeGroup,groupInfo,transformGroup,resolveGroupMove,resolveGroupRotation,
   captureGroupTemplate,groupTemplateInfo,proposeGroupPlacement,parseGroupLibrary,GROUP_LIBRARY_LIMIT} from './layout-groups.mjs?v=9af3020d0015c5b25830';

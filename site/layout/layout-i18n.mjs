@@ -25,6 +25,8 @@ export function resolveLayoutLanguage({href, stored} = {}) {
 // Each row is [id, English, Japanese, Spanish, Korean, Russian].
 // Names and dimensions supplied by the catalog are values, never translated IDs.
 const rows = [
+  ['layout.manufacturer.title', 'Printer manufacturers', 'プリンターメーカーの方へ', 'Fabricantes de impresoras', '프린터 제조사 안내', 'Производителям принтеров'],
+  ['layout.manufacturer.message', 'Share a simple 3D model of your printer’s exterior and I can add it to Layout. If you don’t have a simplified model, I can prepare one. Contact me by email, WeChat or X.', 'プリンターの外装が分かる簡易3Dモデルをご提供いただければ、Layoutに取り込みます。簡易モデルがない場合はこちらで加工しますので、メール・WeChat・Xからご連絡ください。', 'Si comparte un modelo 3D sencillo del exterior de su impresora, puedo añadirlo a Layout. Si no tiene un modelo simplificado, puedo prepararlo. Contacte conmigo por correo electrónico, WeChat o X.', '프린터 외관을 보여 주는 간단한 3D 모델을 제공해 주시면 Layout에 추가하겠습니다. 단순화된 모델이 없다면 제가 가공할 수 있습니다. 이메일, WeChat 또는 X로 연락해 주세요.', 'Предоставьте простую 3D-модель внешнего вида принтера, и я добавлю её в Layout. Если упрощённой модели нет, я могу её подготовить. Свяжитесь со мной по электронной почте, WeChat или X.'],
   ['nav.layout', 'Layout', 'レイアウト', 'Distribución', '배치', 'Планировка'],
   ['nav.machines', 'Machines', '機種一覧', 'Impresoras', '프린터 목록', 'Принтеры'],
   ['nav.printer', 'Printer', 'プリンター', 'Impresora', '프린터', 'Принтер'],

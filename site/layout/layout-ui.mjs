@@ -286,6 +286,12 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
   }
   listen(search,'input',populateMachines); printerAdd.append(machineSelect,addMachine);
   addSection.append(search,printerAdd);
+  const manufacturerNote=el('aside','layout-manufacturer-note');
+  manufacturerNote.append(copy(el('h3'),'layout.manufacturer.title'),copy(el('p'),'layout.manufacturer.message'));
+  const manufacturerContacts=el('p','layout-manufacturer-contacts');
+  const manufacturerEmail=el('a','','info@psych0h3ad.tech');manufacturerEmail.href='mailto:info@psych0h3ad.tech';
+  const manufacturerX=el('a','','X (@Psych0h3ad)');manufacturerX.href='https://x.com/Psych0h3ad';manufacturerX.target='_blank';manufacturerX.rel='noopener noreferrer';
+  manufacturerContacts.append(manufacturerEmail,manufacturerX);manufacturerNote.append(manufacturerContacts);addSection.append(manufacturerNote);
   const objectSection = section('layout.objects'), objectCount = el('span','layout-count');
   const objectHeading=el('div','layout-section-heading');objectHeading.append(objectSection.firstChild,objectCount);objectSection.append(objectHeading);
   const list=el('ul','layout-object-list'), empty=copy(el('p','layout-empty'),'layout.empty');
