@@ -358,6 +358,43 @@ await test('placement-repeat-cancel-shortcuts-and-undo-are-atomic',async()=>{
  assert(key('Escape'));assert.equal(r.read().placement,null);assert.equal(r.read().past.length,2);
  const beforeDelete=encoded(r);assert(key('Delete'));assert.equal(r.read().state.furniture.length,1);await r.act({type:'undo'});assert.equal(encoded(r),beforeDelete);
 });
+await test('shift-repeat-retains-world-angle-for-new-and-copied-furniture-and-printers',async()=>{
+ const shortcut=(r,reverse)=>r.shortcut({key:'r',shiftKey:reverse,target:{closest:()=>null},preventDefault(){}});
+ const support=S.createDesk({id:'support',widthMm:1600,depthMm:1400,pose:{xMm:-2500,zMm:0,yawDeg:90}});
+ for(const reverse of [false,true])for(const [initial,selection,action]of [
+  [makePlan(),null,{type:'add',kind:'desk'}],
+  [makePlan(),null,{type:'add',kind:'printer',machineId:shipped.id}],
+  [makePlan([S.createDesk({id:'original',pose:{xMm:-2500,zMm:0,yawDeg:30}})]),'original',{type:'duplicate',id:'original'}],
+  [makePlan([support],[printer('original','support','top',0,0,30)]),'original',{type:'duplicate',id:'original'}]
+ ]){
+  const r=replayCommands(initial,selection);await r.act(action);const originalYaw=r.read().placement.yawDeg;
+  shortcut(r,reverse);const expected=originalYaw+(reverse?-90:90),firstId=r.read().placement.id;
+  assert.equal(r.place({xMm:0,zMm:0,parentId:null,surfaceId:'floor'},{repeat:true}).valid,true);
+  assert.equal(r.read().placement.yawDeg,expected);assert.notEqual(r.read().placement.id,firstId);
+  assert.equal(S.worldTransform(r.read().state,firstId,productionCatalog).yawDeg,expected);
+  const nextId=r.read().placement.id;assert.equal(r.place({xMm:2500,zMm:0,parentId:null,surfaceId:'floor'}).valid,true);
+  assert.equal(S.worldTransform(r.read().state,nextId,productionCatalog).yawDeg,expected);
+ }
+});
+await test('shift-repeat-flat-plan-board-picker-retains-confirmed-support-including-support-changes',async()=>{
+ const THREE=await import(pathToFileURL(path.join(site,'viewer/vendor-r180/three.module.js')));
+ const source=unique(renderer,'  function placementPoint(event){','  function updatePlacement(');
+ const pick=new Function('THREE','placing','derived','x',`const scene={updateMatrixWorld(){}},camera={updateMatrixWorld(){}},eventPoint=()=>{},isPlan=()=>true;
+  const raycaster={ray:new THREE.Ray(new THREE.Vector3(x,10,0),new THREE.Vector3(0,-1,0))};${source};return placementPoint({});`);
+ const shelf=(id,x)=>S.createShelf({id,widthMm:2000,depthMm:1200,heightMm:1800,pose:{xMm:x,zMm:0,yawDeg:0},levels:[{id:'low',topMm:100},{id:'high',topMm:1800}]});
+ for(const changedSupport of [false,true]){
+  const initial=makePlan([shelf('selected',-2000),shelf('target',2000)]),r=replayCommands(initial,'selected');
+  await r.act({type:'add',kind:'printer',machineId:shipped.id});const support=changedSupport?'target':'selected',center=changedSupport?2000:-2000,board=changedSupport?'low':'high';
+  const first=pick(THREE,r.read().placement,S.deriveScene(r.read().state,productionCatalog),(center-450)/1000);
+  assert.equal(first.parentId,support);assert.equal(first.surfaceId,board);
+  assert.equal(r.place({xMm:center-450,zMm:0,parentId:first.parentId,surfaceId:first.surfaceId},{repeat:true}).valid,true);
+  assert.equal(r.read().placement.parentId,support);assert.equal(r.read().placement.surfaceId,board);
+  const second=pick(THREE,r.read().placement,S.deriveScene(r.read().state,productionCatalog),(center+450)/1000);
+  assert.equal(second.parentId,support);assert.equal(second.surfaceId,board);
+  assert.equal(r.place({xMm:center+450,zMm:0,parentId:second.parentId,surfaceId:second.surfaceId}).valid,true);
+  assert(r.read().state.printers.every(p=>p.attachment.parentId===support&&p.attachment.surfaceId===board));
+ }
+});
 await test('canvas-arrows-move-in-world-axes-with-rotated-support-reversal-and-boundary-guards',async()=>{
  for(const yaw of [0,90,180,37.5]){
   const desk=S.createDesk({id:'support',widthMm:1800,depthMm:1600,pose:{xMm:300,zMm:-500,yawDeg:yaw}});

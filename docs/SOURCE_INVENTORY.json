@@ -255,8 +255,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 1100672,
-      "sha256": "3e08acacbf965ca6847fe0b0976b9485dce16bbe03d374e9e4b677295be86cfc"
+      "bytes": 1101343,
+      "sha256": "859eeaa21503ec52d02b578cc45eaf91f45227825c7a8289b0f0f6f9a5c8e94f"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -1615,8 +1615,8 @@
     },
     {
       "path": "scripts/test_layout_frontend_consistency.mjs",
-      "bytes": 50425,
-      "sha256": "8c5bfbede1a0e3228e1d6c732c959e57d8734a8ba333ea88e93c133baba86944"
+      "bytes": 53818,
+      "sha256": "8fe5127f296d70b8e980aa2a5182b42888cc536067bb2aba9fbc2ba88f97132a"
     },
     {
       "path": "scripts/test_layout_i18n.mjs",
@@ -4861,12 +4861,12 @@
     {
       "path": "site/layout/index.html",
       "bytes": 10045,
-      "sha256": "ca42e0908cdd159d1e8c03a23de238d099eb5d7a207cd18740f870a1a40c1eba"
+      "sha256": "ec086f43b21236e06b5f03d2e88af2555152c11ad0777450156918f5ad0671a1"
     },
     {
       "path": "site/layout/layout-app.mjs",
-      "bytes": 28081,
-      "sha256": "1c165e0b3baf51f23123f54575d3d2c2eb3ba75e20df3249f9f2d865fdd22aaa"
+      "bytes": 28387,
+      "sha256": "74f3525b04b2518fff8d9ec282707b01ae68dafdbe1fb1df9c9a76d6fb95176b"
     },
     {
       "path": "site/layout/layout-catalog.json",

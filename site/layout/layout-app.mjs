@@ -51,17 +51,17 @@ function updatePlacementBar(proposal){
   const status=$('#layout-placement-status');if(status){const label=t(proposal?.valid?'layout.place.ready':'layout.place.blocked');if(status.textContent!==label)status.textContent=label;status.dataset.valid=String(!!proposal?.valid);status.hidden=!proposal;}
 }
 function cancelPlacement(){placement=null;lastPlacementTarget=null;view?.setPlacement(null);updatePlacementBar();}
-function beginPlacement({kind,machineId,copy}){
+function beginPlacement({kind,machineId,copy,yawDeg,parentId,surfaceId}){
   cancelPlacement();
   const machine=kind==='printer'?rows.find(r=>r.id===machineId):null;
   if(kind==='printer'&&!machine)return;
   const entity=kind==='desk'?copy||createDesk():kind==='shelf'?copy||createShelf():null;
-  const support=state.furniture.find(e=>e.id===selected)||state.furniture.find(e=>e.id===copy?.attachment?.parentId);
-  placement={kind,machineId,copy,id:id(kind),yawDeg:entity?.pose.yawDeg??copy?.attachment?.yawDeg??0,
+  const support=parentId!==undefined?state.furniture.find(e=>e.id===parentId):state.furniture.find(e=>e.id===selected)||state.furniture.find(e=>e.id===copy?.attachment?.parentId);
+  placement={kind,machineId,copy,id:id(kind),yawDeg:yawDeg??entity?.pose.yawDeg??copy?.attachment?.yawDeg??0,
     name:machine?.label||t(kind==='desk'?'layout.desk':'layout.shelf'),
-    parentId:support?.id||null,surfaceId:copy?.attachment?.surfaceId||(support?.type==='desk'?'top':support?.levels?.at(-1)?.id)||'floor',
+    parentId:support?.id||null,surfaceId:support?(surfaceId??copy?.attachment?.surfaceId??(support.type==='desk'?'top':support.levels.at(-1).id)):'floor',
     sizeMm:{width:entity?.widthMm??machine?.widthMm,depth:entity?.depthMm??machine?.depthMm,height:entity?.heightMm??machine?.heightMm}};
-  if(copy?.attachment?.parentId){const p=state.furniture.find(f=>f.id===copy.attachment.parentId);placement.yawDeg+=(p?.pose.yawDeg||0);}
+  if(yawDeg===undefined&&copy?.attachment?.parentId){const p=state.furniture.find(f=>f.id===copy.attachment.parentId);placement.yawDeg+=(p?.pose.yawDeg||0);}
   view.setPlacement(placement);updatePlacementBar();view.canvas.focus?.({preventScroll:true});
 }
 function previewPlacement(target){
@@ -75,7 +75,10 @@ function placeProposal(proposal,{repeat=false}={}){
   // commit a stale preview after undo, a room edit or another placement.
   const fresh=previewPlacement(lastPlacementTarget);if(!fresh?.valid||!fresh.state)return;
   const template=placement,target=lastPlacementTarget;cancelPlacement();commit(fresh.state,{selection:fresh.id});
-  if(repeat){beginPlacement(template);lastPlacementTarget=target;view.refreshPlacement();}
+  if(repeat){
+    const attachment=fresh.state.printers.find(p=>p.id===fresh.id)?.attachment;
+    beginPlacement({...template,...(attachment?{parentId:attachment.parentId,surfaceId:attachment.surfaceId}:{})});lastPlacementTarget=target;view.refreshPlacement();
+  }
 }
 function rotatePlacement(reverse=false){if(!placement)return;placement.yawDeg+=(reverse?-90:90);if(!view.refreshPlacement())updatePlacementBar();}
 function download(blob,name){const url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download=name;link.click();setTimeout(()=>URL.revokeObjectURL(url),30000);}

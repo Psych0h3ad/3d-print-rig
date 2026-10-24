@@ -205,7 +205,7 @@
     "scripts/test_language_storage.mjs": "32a2663e23d6ef2614e8a0841a01a7c91f924f5bed6b6b86dd113e1b5dead022",
     "scripts/test_layout_drag_boundaries.mjs": "cdcbe3057eefcffcfc1b197dbffe3541d4095163a04711aa8def428f8a632005",
     "scripts/test_layout_finishes.mjs": "c73e8149513dc8ee3d1b3938371fb2657f0266ea328723def6fbcb9deaad7ccb",
-    "scripts/test_layout_frontend_consistency.mjs": "8c5bfbede1a0e3228e1d6c732c959e57d8734a8ba333ea88e93c133baba86944",
+    "scripts/test_layout_frontend_consistency.mjs": "8fe5127f296d70b8e980aa2a5182b42888cc536067bb2aba9fbc2ba88f97132a",
     "scripts/test_layout_i18n.mjs": "58a46b15f9a2ee2a1633bae7cbaf44776038781d5e89b5d17a35fb62e4dae36f",
     "scripts/test_layout_machine_registry.mjs": "b6a5eedd542b20c002a73223a167b876a037591d54045d683faf8949c792bfcc",
     "scripts/test_layout_navigation.mjs": "49847546feda8c007de3b1ef92cca3928e8690f02a3692b65fb34cbf1f1efb84",
@@ -378,8 +378,8 @@
     "site/HEAD_ADDITIONS.json": "c752983c1a054ee7b4d000e458d6839cf5176b2d0b143ca1f6727683a4bed405",
     "site/HEAD_CATALOG_DELTA_ACE_HF_20261020.json": "0995df8a20b9bcbd44856da8f1d5253a285a1f0dbee81222f32677cae7dc32ca",
     "site/HEAD_VALIDATION.json": "307de76ad2fa77fd9f41c62269d8103aa760467f5651cc20a7a71438e99036ec",
-    "site/layout/index.html": "ca42e0908cdd159d1e8c03a23de238d099eb5d7a207cd18740f870a1a40c1eba",
-    "site/layout/layout-app.mjs": "1c165e0b3baf51f23123f54575d3d2c2eb3ba75e20df3249f9f2d865fdd22aaa",
+    "site/layout/index.html": "ec086f43b21236e06b5f03d2e88af2555152c11ad0777450156918f5ad0671a1",
+    "site/layout/layout-app.mjs": "74f3525b04b2518fff8d9ec282707b01ae68dafdbe1fb1df9c9a76d6fb95176b",
     "site/layout/layout-catalog.json": "c415fd4a423c34e43ac1e24a3d92386085a656e9c928dfef92da031a12951a0c",
     "site/layout/layout-constraints.mjs": "53e33561b2e7ce3240166cd739d0a0db06d76acbb889431329c8d6f92bee321e",
     "site/layout/layout-finishes.mjs": "001b62f9728770a12303265fb81e141d40280b298b8a742bc1acf45591f4c468",
@@ -18535,12 +18535,12 @@
     "reviewed_on": "2026-10-24",
     "scope": "Cursor placement, valid/invalid preview, support attachment, repeat placement, alignment guides, keyboard operations and planner presentation. Static envelopes only; CAD geometry and retained per-machine mounting evidence are unchanged.",
     "inputs": {
-      "site/layout/layout-app.mjs": "1c165e0b3baf51f23123f54575d3d2c2eb3ba75e20df3249f9f2d865fdd22aaa",
+      "site/layout/layout-app.mjs": "74f3525b04b2518fff8d9ec282707b01ae68dafdbe1fb1df9c9a76d6fb95176b",
       "site/layout/layout-renderer.mjs": "e90d81542570c7616658f4a253209472cf1450042b948ff8f4bf0e0a8580360c",
       "site/layout/layout-placement.mjs": "e46be414e43ccd25dc47b4c6a97b5a30f4539e46fb38eb355da3dcd7d3d91f88",
       "site/layout/layout.css": "30b1c78cfa214d19922500119596abf0fc29ee46e8864d3aa0889e1ba1f79d84",
       "site/layout/layout-i18n.mjs": "b03efd1fab433e5ade6a8669573730349f8589f73379f890fc75d13f016d6e39",
-      "scripts/test_layout_frontend_consistency.mjs": "8c5bfbede1a0e3228e1d6c732c959e57d8734a8ba333ea88e93c133baba86944",
+      "scripts/test_layout_frontend_consistency.mjs": "8fe5127f296d70b8e980aa2a5182b42888cc536067bb2aba9fbc2ba88f97132a",
       "scripts/test_layout_placement.mjs": "bd3a1efa5be7087351dd135a081dd8e803b91858c87d186b9f5e89fec061243f",
       "scripts/test_layout_renderer_contract.mjs": "55cf70c29e694a25a14f2fefb3da02cb7a0019b0adbb1d7dd24ddc04e0c2fef5"
     },
@@ -18548,16 +18548,32 @@
       "renderer_cases": 140,
       "registered_proxy_machines": 72,
       "placement_test_groups": 13,
-      "frontend_source_replay_cases": 17,
+      "frontend_source_replay_cases": 19,
       "ui_cases": 46,
       "languages": 5,
       "scope": "Actual source and vendored Three/OrbitControls math with controlled DOM/WebGL interfaces. Static planning envelopes, not new native-solid clearance or browser-rendered pixels."
     },
     "actual_asset_identity_scope": "Separate current machine/component exported-input audit retains all72 registered machine identities,1098 approved runtime bodies and required Rapido X cover/LED evidence. No model or adapter geometry changed.",
     "browser_visual_review": {
-      "status": "PENDING",
-      "scope": "New placement workflow and presentation have not yet received trusted browser interaction and visual review."
+      "status": "PASS_SELECTED_DESKTOP_WORKFLOWS",
+      "browser": "Desktop Chromium",
+      "viewport_css_px": [
+        1280,
+        720
+      ],
+      "languages": [
+        "en",
+        "ja",
+        "es",
+        "ko",
+        "ru"
+      ],
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "scope": "Trusted browser interaction and screenshots: blocked wall placement; rotated repeated desks retain 90 degrees; upper shelf preference retained for two printers; keyboard dimension edit; support attachment; duplicate-preview cancellation; undo/redo; JSON save/delete/import; back navigation; five live languages; both themes; 1920px plan and detailed default SIBOOR Trident PNGs. This is selected desktop UI review, not every room/layout, GPU/browser, printer configuration or native-solid clearance."
     },
-    "publication_ready": false
+    "publication_ready": true
   }
 }
