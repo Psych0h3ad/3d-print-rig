@@ -1,5 +1,5 @@
 // Presentation only. The application owns state, history, files and model loading.
-import {createRoomRect,createRoomL,createRoomPolygon} from './layout-state.mjs?v=3d146613e1e87a433cac';
+import {createRoomRect,createRoomL,createRoomPolygon} from './layout-state.mjs?v=cd4dd024f3faa663dbf9';
 import {WALL_FINISHES,FLOOR_FINISHES,DEFAULT_ROOM_APPEARANCE} from './layout-finishes.mjs?v=001b62f9728770a12303';
 const PRINTER_VIEWER_PAGES=new Set(['','index.html','annex.html','community.html','crossant.html','custom-voron.html','kit-reference.html','micron.html','positron.html','ratrig.html','remorph.html','trident.html','v0.html','v24-reference.html','v24.html']);
 // Only a registered catalog destination is eligible; saved plan fields never supply URLs.
@@ -29,7 +29,10 @@ const PATHS = {
   render: 'M4 5h16v14H4ZM4 15l5-5 4 4 3-3 4 4M16 8h.01',
   minus: 'M5 12h14',
   source:'M14 3h7v7M21 3l-9 9M10 3H3v18h18v-7',
-  edit:'m15 4 5 5M4 15l-1 6 6-1L21 8l-5-5Z'
+  edit:'m15 4 5 5M4 15l-1 6 6-1L21 8l-5-5Z',
+  group:'M3 3h7v7H3Zm11 0h7v7h-7ZM3 14h7v7H3Zm11 0h7v7h-7Z',
+  save:'M4 3h13l4 4v14H3V3Zm3 0v7h10V3M7 21v-7h10v7',
+  ungroup:'M3 8V3h5m8 0h5v5M3 16v5h5m8 0h5v-5M8 8h8v8H8Z'
 };
 
 export function createLayoutUI({container, onAction, t, catalog = []}) {
@@ -41,6 +44,8 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
   let status = {canUndo: false, canRedo: false, busy: false};
   let currentIssues = [], editorKey = null, listKey = '';
   let roomMode='rectangle', roomAcceptedMode='rectangle', roomDraft=false, roomSignature=null;
+  let farmKey='', libraryKey='', groupLibrary=[];
+  const pickedRoots=new Set(), memberChecks=new Map();
   const cleanups = new Set(), fields = new Map();
   const entries = Array.isArray(catalog) ? catalog : catalog instanceof Map ? [...catalog.values()] : Array.isArray(catalog.entries) ? catalog.entries : Object.values(catalog);
   const machines = entries.filter(e => e && typeof e.id === 'string');
@@ -285,6 +290,30 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
   const objectHeading=el('div','layout-section-heading');objectHeading.append(objectSection.firstChild,objectCount);objectSection.append(objectHeading);
   const list=el('ul','layout-object-list'), empty=copy(el('p','layout-empty'),'layout.empty');
   list.id='layout-objects'; objectSection.append(list,empty);
+  const farmSection=section('layout.farm'), farmSummary=el('p','layout-count');
+  farmSection.id='layout-farm';
+  const farmHelp=copy(el('p','layout-help'),'layout.group.help');farmHelp.id='layout-group-help';
+  const createForm=el('form','layout-group-create'), nameLabel=el('label','layout-field');
+  nameLabel.append(copy(el('span'),'layout.group.name'));
+  const groupName=el('input');groupName.type='text';groupName.id='layout-group-name';groupName.required=true;groupName.maxLength=80;
+  groupName.setAttribute('aria-describedby',farmHelp.id);nameLabel.append(groupName);
+  const pickedSummary=el('p','layout-count');pickedSummary.id='layout-group-picked';
+  const createGroup=button('layout.group.create',()=>{
+    prunePickedRoots();
+    if(status.busy||!groupName.value.trim()||!pickedRoots.size)return;
+    emit({type:'group-create',name:groupName.value.trim(),memberIds:[...pickedRoots]});
+  },'group');
+  createGroup.setAttribute('aria-describedby',pickedSummary.id);
+  listen(createForm,'submit',event=>{event.preventDefault();if(!createGroup.disabled)createGroup.click();});
+  listen(groupName,'keydown',event=>{if(event.key==='Enter'){event.preventDefault();if(!createGroup.disabled)createGroup.click();}});
+  listen(groupName,'input',refreshGroupDraft);
+  createForm.append(nameLabel,pickedSummary,createGroup);
+  const groupList=el('ul','layout-object-list layout-group-list'), noGroups=copy(el('p','layout-help'),'layout.group.empty');
+  groupList.id='layout-groups';
+  const libraryHeading=copy(el('h3'),'layout.group.library'), libraryList=el('ul','layout-group-library');
+  libraryList.id='layout-group-library';
+  const noTemplates=copy(el('p','layout-help'),'layout.group.libraryEmpty');
+  farmSection.append(farmSummary,farmHelp,createForm,groupList,noGroups,libraryHeading,libraryList,noTemplates);
   const editorSection=section('layout.selection'), editor=el('div','layout-editor'); editorSection.append(editor);
   const warningSection=section('layout.checks'), issueList=el('ul','layout-issues'); warningSection.append(issueList);
   const renderSection=section('layout.finalRender');
@@ -297,7 +326,7 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
   const scope=section('layout.about');scope.append(copy(el('p','layout-scope'),'layout.scope'));
   const shortcuts=el('div','layout-section-shortcuts');
   shortcuts.setAttribute('role','group');shortcuts.dataset.layoutLabel='layout.settings';shortcuts.setAttribute('aria-label',tr('layout.settings'));
-  const jumps=[['layout.nav.room',roomSection],['layout.nav.add',addSection],['layout.nav.objects',objectSection],['layout.nav.selection',editorSection]];
+  const jumps=[['layout.nav.room',roomSection],['layout.nav.add',addSection],['layout.nav.farm',farmSection],['layout.nav.objects',objectSection],['layout.nav.selection',editorSection]];
   let selectionJump;
   for(const [key,target]of jumps){
     target.id=key.replaceAll('.','-');
@@ -315,34 +344,111 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
   function machineLabel(m) { return String(m?.label || m?.name || m?.title || m?.id || ''); }
   function selectedSourceURL(m){return printerSourcesURL(m,doc.location?.href||doc.defaultView?.location?.href,doc.documentElement?.lang||'en');}
   function entities() { return [...(state?.furniture||[]),...(state?.printers||[])]; }
-  function selected() { return entities().find(e=>e.id===selectedId); }
+  function groups() { return Array.isArray(state?.groups)?state.groups:[]; }
+  function isGroup(e) { return groups().some(g=>g.id===e.id); }
+  function selected() { return groups().find(e=>e.id===selectedId)||entities().find(e=>e.id===selectedId); }
+  function roots() { return [...(state?.furniture||[]),...(state?.printers||[]).filter(p=>p.attachment?.parentId===null&&p.attachment.surfaceId==='floor')]; }
+  function assignedGroup(id) { return groups().find(g=>g.memberIds?.includes(id)); }
+  function members(ids) {
+    const rootIds=new Set(ids), furniture=(state?.furniture||[]).filter(f=>rootIds.has(f.id)), furnitureIds=new Set(furniture.map(f=>f.id));
+    const printers=(state?.printers||[]).filter(p=>furnitureIds.has(p.attachment?.parentId)||(p.attachment?.parentId===null&&p.attachment.surfaceId==='floor'&&rootIds.has(p.id)));
+    return [...furniture,...printers];
+  }
+  function counts(all) { return {furniture:all.filter(e=>!('machineId' in e)).length,printers:all.filter(e=>'machineId' in e).length}; }
+  function prunePickedRoots() {
+    const available=new Set(roots().filter(e=>!assignedGroup(e.id)).map(e=>e.id));
+    for(const id of pickedRoots)if(!available.has(id))pickedRoots.delete(id);
+  }
+  function refreshGroupDraft() {
+    copy(pickedSummary,'layout.group.selection',{roots:pickedRoots.size,...counts(members(pickedRoots))});
+    createGroup.disabled=!!status.busy||!state||!pickedRoots.size||!groupName.value.trim();
+  }
+  function releaseDetachedControls() {
+    for(const remove of cleanups)if(!root.contains(remove.node)){remove();cleanups.delete(remove);}
+  }
   function title(e) {
+    if(isGroup(e))return String(e.name);
     if ('machineId' in e) return machineLabel(byMachine.get(e.machineId)) || e.machineId;
     const same=(state.furniture||[]).filter(v=>v.type===e.type), number=same.findIndex(v=>v.id===e.id)+1;
     return tr(e.type==='desk'?'layout.deskName':'layout.shelfName',{number});
   }
   function refreshList() {
-    const all=entities(), key=JSON.stringify(all.map(e=>[e.id,title(e),e.type||'printer']));
+    prunePickedRoots();
+    const all=entities(), rootIds=new Set(roots().map(e=>e.id));
+    const key=JSON.stringify(all.map(e=>[e.id,title(e),e.type||'printer',rootIds.has(e.id),assignedGroup(e.id)?.id,assignedGroup(e.id)?.name]));
     objectCount.textContent=String(all.length); empty.hidden=all.length>0;
     if(key!==listKey){
-      listKey=key; list.replaceChildren();
+      listKey=key; list.replaceChildren();memberChecks.clear();
       for(const e of all){
-        const li=el('li'), b=button('layout.selectObject',()=>emit({type:'select',id:e.id}),e.type||'printer');
+        const li=el('li','layout-object-row'), b=button('layout.selectObject',()=>emit({type:'select',id:e.id}),e.type||'printer');
         b.className='layout-object-button'; b.dataset.layoutEntity=e.id;b.replaceChildren(icon(e.type||'printer'));
         const c=el('span','layout-object-copy');c.append(el('span','layout-object-name',title(e)));b.append(c);
-        b.setAttribute('aria-label',title(e));li.append(b);list.append(li);
+        b.setAttribute('aria-label',title(e));
+        if(rootIds.has(e.id)){
+          const label=el('label','layout-group-pick'), check=el('input');check.type='checkbox';check.dataset.layoutGroupMember=e.id;
+          const text=copy(el('span','layout-sr-only'),'layout.group.selectMember',{name:title(e)});label.append(check,text);li.append(label);memberChecks.set(e.id,check);
+          check.setAttribute('aria-describedby',farmHelp.id);
+          listen(check,'change',()=>{
+            if(status.busy||assignedGroup(e.id))return;
+            if(check.checked)pickedRoots.add(e.id);else pickedRoots.delete(e.id);
+            prunePickedRoots();refreshGroupDraft();
+          });
+          const assigned=assignedGroup(e.id);
+          if(assigned){
+            const note=copy(el('span','layout-object-detail'),'layout.group.assigned',{name:assigned.name});
+            note.id=`layout-group-assigned-${memberChecks.size}`;c.append(note);check.setAttribute('aria-describedby',`${farmHelp.id} ${note.id}`);
+          }
+        }else li.classList.add('layout-object-child');
+        li.append(b);list.append(li);
       }
     }
     for(const b of list.querySelectorAll('[data-layout-entity]'))b.setAttribute('aria-pressed',String(b.dataset.layoutEntity===selectedId));
   }
+  function refreshFarm() {
+    const all=groups(), key=JSON.stringify(all.map(g=>[g.id,g.name,counts(members(g.memberIds))]));
+    copy(farmSummary,'layout.group.summary',{groups:all.length,...counts(entities())});
+    noGroups.hidden=all.length>0;
+    if(key!==farmKey){
+      farmKey=key;groupList.replaceChildren();
+      for(const group of all){
+        const row=el('li'), b=button('layout.selectObject',()=>emit({type:'select',id:group.id}),'group');
+        b.className='layout-object-button';b.dataset.layoutGroup=group.id;b.replaceChildren(icon('group'));
+        const c=el('span','layout-object-copy');c.append(el('span','layout-object-name',group.name),copy(el('span','layout-object-detail'),'layout.group.counts',counts(members(group.memberIds))));
+        b.append(c);b.setAttribute('aria-label',group.name);row.append(b);groupList.append(row);
+      }
+    }
+    for(const b of groupList.querySelectorAll('[data-layout-group]'))b.setAttribute('aria-pressed',String(b.dataset.layoutGroup===selectedId));
+    refreshGroupDraft();
+  }
+  function refreshLibrary() {
+    const key=JSON.stringify(groupLibrary);noTemplates.hidden=groupLibrary.length>0;
+    if(key===libraryKey)return;
+    libraryKey=key;libraryList.replaceChildren();
+    for(const [index,item]of groupLibrary.entries()){
+      const row=el('li','layout-group-template');row.dataset.layoutTemplate=item.id;
+      const c=el('div','layout-object-copy');c.append(el('span','layout-object-name',item.name),copy(el('span','layout-object-detail'),'layout.group.counts',{printers:item.printerCount,furniture:item.furnitureCount}));
+      c.id=`layout-group-template-summary-${index+1}`;
+      const controls=el('div','layout-row');
+      controls.append(button('layout.group.place',()=>emit({type:'group-place',templateId:item.id}),'plus'),button('layout.group.removeTemplate',()=>emit({type:'group-template-remove',templateId:item.id}),'trash',{titleOnly:true}));
+      for(const b of controls.children)b.setAttribute('aria-describedby',c.id);
+      row.append(c,controls);libraryList.append(row);
+    }
+  }
+  function setGroupLibrary(items) {
+    if(disposed)return;
+    groupLibrary=Array.isArray(items)?items.map(({id,name,printerCount,furnitureCount})=>({id,name,printerCount,furnitureCount})):[];
+    refreshLibrary();refreshStatus();releaseDetachedControls();
+  }
   function patchEntity(e, patch) { emit({type:'machineId' in e?'UPDATE_PRINTER':'UPDATE_FURNITURE',id:e.id,patch}); }
   function buildEditor() {
-    const e=selected();const nextKey=e?`${e.id}:${e.type||'printer'}:${JSON.stringify(e.levels?.map(l=>l.id)||[])}:${JSON.stringify(state.furniture.map(f=>[f.id,f.type,f.levels?.map(l=>l.id)]))}`:'';
+    const e=selected(), group=e&&isGroup(e);
+    const nextKey=group?JSON.stringify(['group',e.id,members(e.memberIds).map(m=>[m.id,title(m)])]):e?`${e.id}:${e.type||'printer'}:${JSON.stringify(e.levels?.map(l=>l.id)||[])}:${JSON.stringify(state.furniture.map(f=>[f.id,f.type,f.levels?.map(l=>l.id)]))}`:'';
     if(nextKey===editorKey)return;
     editorKey=nextKey;
     for(const name of [...fields.keys()])if(!name.startsWith('room-'))fields.delete(name);
     editor.replaceChildren();
     if(!e){editor.append(copy(el('p','layout-empty'),'layout.selectHint'));return;}
+    if(group){buildGroupEditor(e);return;}
     editor.append(el('p','layout-editor-subtitle',title(e)));
     const isPrinter='machineId' in e;
     if(!isPrinter){
@@ -401,14 +507,44 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
     if(detach){remove.disabled=true;listen(detach,'change',()=>{remove.disabled=status.busy||!detach.checked;});remove.dataset.requiresDetach='true';}
     bottom.append(remove);editor.append(bottom);
   }
+  function buildGroupEditor(group) {
+    const label=el('label','layout-field');label.append(copy(el('span'),'layout.group.name'));
+    const name=el('input');name.type='text';name.required=true;name.maxLength=80;name.id='layout-group-edit-name';label.append(name);editor.append(label);
+    listen(name,'input',()=>{name._dirty=true;name.removeAttribute('aria-invalid');});
+    listen(name,'change',()=>{
+      if(status.busy)return;
+      const next=name.value.trim();
+      if(!next){name.setAttribute('aria-invalid','true');showError(tr('layout.group.nameRequired'));return;}
+      name._dirty=false;
+      const current=selected();if(current&&isGroup(current)&&next!==current.name)emit({type:'group-rename',id:group.id,name:next});
+    });
+    listen(name,'blur',()=>{name._dirty=false;refreshValues();});
+    editor.append(copy(el('p','layout-count'),'layout.group.counts',counts(members(group.memberIds))),copy(el('p','layout-position-label'),'layout.group.worldPosition'));
+    const pose=el('div','layout-fields');editor.append(pose);
+    for(const [key,prop,unit]of [['layout.positionX','xMm','mm'],['layout.positionZ','zMm','mm'],['layout.rotation','yawDeg','°']])numberField(pose,key,prop,{unit,action:v=>emit({type:'group-transform',id:group.id,patch:{[prop]:v}})});
+    const bottom=el('div','layout-editor-actions layout-group-actions');
+    bottom.append(button('layout.group.save',()=>emit({type:'group-save',id:group.id}),'save'),button('layout.duplicate',()=>emit({type:'duplicate',id:group.id}),'duplicate'),button('layout.group.ungroup',()=>emit({type:'group-ungroup',id:group.id}),'ungroup'));
+    const remove=button('layout.delete',()=>emit({type:'delete',id:group.id}),'trash');remove.classList.add('layout-delete');bottom.append(remove);editor.append(bottom);
+    editor.append(copy(el('h3'),'layout.group.members'));
+    const list=el('ul','layout-object-list layout-group-members');
+    for(const member of members(group.memberIds)){
+      const row=el('li'), b=button('layout.selectObject',()=>emit({type:'select',id:member.id}),member.type||'printer');
+      b.className='layout-object-button';b.dataset.layoutGroupObject=member.id;b.replaceChildren(icon(member.type||'printer'),el('span','layout-object-name',title(member)));b.setAttribute('aria-label',title(member));row.append(b);list.append(row);
+    }
+    editor.append(list);
+  }
   function fixedOne(v){if(!Number.isFinite(v))return '';const text=v.toFixed(1);return text==='-0.0'?'0.0':text;}
   function value(name,v){const n=fields.get(name);if(n){n._sourceValue=v;if(!(doc.activeElement===n&&n._dirty)){delete n._draftValue;n.value=fixedOne(v);}}}
   function refreshValues(){
     if(!state)return;
     syncRoom();
     const e=selected();if(!e)return;
-    const p=e.attachment||e.pose;
+    const p=isGroup(e)?e.pose:e.attachment||e.pose;
     for(const key of ['xMm','zMm','yawDeg'])value(key,p[key]);
+    if(isGroup(e)){
+      const name=editor.querySelector('#layout-group-edit-name');if(name&&!(doc.activeElement===name&&name._dirty))name.value=e.name;
+      return;
+    }
     for(const key of ['widthMm','depthMm','heightMm','topThicknessMm','boardThicknessMm'])value(key,e[key]);
     for(const l of e.levels||[])value(`board-${l.id}`,l.topMm);
     const support=editor.querySelector('#layout-support');if(support)support.value=JSON.stringify([e.attachment.parentId,e.attachment.surfaceId]);
@@ -426,6 +562,8 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
   }
   function refreshStatus(){
     for(const n of root.querySelectorAll('button,input,select,textarea'))n.disabled=!!status.busy;
+    for(const [id,check]of memberChecks){check.disabled=!!status.busy||!!assignedGroup(id);check.checked=pickedRoots.has(id);}
+    refreshGroupDraft();
     undo.disabled=status.busy||!status.canUndo;redo.disabled=status.busy||!status.canRedo;
     selectionJump.disabled=status.busy||!selected();
     addMachine.disabled=status.busy||!byMachine.has(machineSelect.value);
@@ -446,9 +584,9 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
   function update(next,selection=null,issues=[]){
     if(disposed)return;
     state=next;selectedId=typeof selection==='object'?selection?.id:selection;currentIssues=Array.isArray(issues)?issues:[];
-    refreshList();buildEditor();refreshValues();refreshIssues();refreshStatus();
+    refreshList();refreshFarm();buildEditor();refreshValues();refreshIssues();refreshStatus();
     // Rebuilt lists/editors must not retain detached controls or their closures.
-    for(const remove of cleanups)if(!root.contains(remove.node)){remove();cleanups.delete(remove);}
+    releaseDetachedControls();
   }
   function setStatus(next={}){if(disposed)return;status={...status,...next};if(Object.hasOwn(next,'error')&&!next.error){feedback.hidden=true;feedback.dataset.error='false';}refreshStatus();}
   function setProjection(projection){
@@ -463,9 +601,10 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
     for(const n of root.querySelectorAll('[data-layout-i18n]'))n.textContent=tr(n.dataset.layoutI18n,n._layoutValues||{});
     for(const n of root.querySelectorAll('[data-layout-label]'))n.setAttribute('aria-label',tr(n.dataset.layoutLabel));
     search.placeholder=tr('layout.searchPrinters');search.setAttribute('aria-label',tr('layout.searchPrinters'));machineSelect.setAttribute('aria-label',tr('layout.choosePrinter'));actions.setAttribute('aria-label',tr('layout.planActions'));
-    listKey='';editorKey=null;populateMachines();if(state)update(state,selectedId,currentIssues);
+    listKey='';farmKey='';libraryKey='';editorKey=null;populateMachines();refreshLibrary();if(state)update(state,selectedId,currentIssues);else refreshStatus();
+    releaseDetachedControls();
   }
   function dispose(){if(disposed)return;disposed=true;for(const remove of cleanups)remove();fields.clear();root.remove();state=null;}
   populateMachines();refreshStatus();
-  return Object.freeze({update,setStatus,setProjection,setLocale,dispose});
+  return Object.freeze({update,setStatus,setProjection,setLocale,setGroupLibrary,dispose});
 }

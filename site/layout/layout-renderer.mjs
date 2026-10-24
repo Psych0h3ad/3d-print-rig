@@ -1,9 +1,10 @@
 import * as THREE from '../viewer/vendor-r180/three.module.js';
 import {OrbitControls} from '../viewer/vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from '../viewer/vendor-r180/RoomEnvironment.js';
-import {deriveScene} from './layout-state.mjs?v=3d146613e1e87a433cac';
+import {deriveScene} from './layout-state.mjs?v=cd4dd024f3faa663dbf9';
 import {createLayoutSurfaces, resolveSurfaceAppearance, wallSurfaceGeometry} from './layout-surfaces.mjs?v=0e7f271c883eb7ec8844';
 import {drawPlanMeasurements} from './layout-plan-measurements.mjs?v=ccb8d47a212b4279e38a';
+import {groupInfo, groupingForEntity} from './layout-groups.mjs?v=9af3020d0015c5b25830';
 
 const MM = .001;
 const disposableMaterial = new THREE.MeshBasicMaterial({visible:false});
@@ -111,7 +112,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   const planGroup=new THREE.Group(),planObjects=new Map();planGroup.visible=false;scene.add(planGroup);
   const grid=new THREE.LineSegments(new THREE.BufferGeometry(),new THREE.LineBasicMaterial({color:0x8b9da8,transparent:true,opacity:.35,depthWrite:false}));grid.position.y=.0002;scene.add(grid);
   grid.userData.layoutGrid=true;
-  const selectionBox=new THREE.BoxHelper(new THREE.Object3D(),0xc35734);selectionBox.visible=false;scene.add(selectionBox);
+  const selectionBox=new THREE.Box3Helper(new THREE.Box3(),0xc35734);selectionBox.visible=false;scene.add(selectionBox);
   const planSelection=new THREE.LineLoop(new THREE.BufferGeometry(),new THREE.LineBasicMaterial({color:0xc35734,depthTest:false,depthWrite:false}));planSelection.visible=false;planSelection.renderOrder=30;scene.add(planSelection);
   const boxGeometry=new THREE.BoxGeometry(1,1,1),wireGeometry=new THREE.EdgesGeometry(boxGeometry),wireMaterial=new THREE.LineBasicMaterial({color:0x4d7186,transparent:true,opacity:.75}),palette=new Map(),objects=new Map(),raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();
   const placementGroup=new THREE.Group(),placementBody=new THREE.Group();placementGroup.userData.layoutPlacementPreview=true;placementGroup.add(placementBody);scene.add(placementGroup);placementGroup.visible=false;
@@ -120,7 +121,8 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   const ghostOutline=new THREE.LineSegments(wireGeometry,ghostLineMaterial);placementBody.add(ghostOutline);
   const ghostFootprint=new THREE.Mesh(new THREE.PlaneGeometry(1,1),new THREE.MeshBasicMaterial({color:0x21a795,transparent:true,opacity:.2,depthWrite:false,side:THREE.DoubleSide}));ghostFootprint.rotation.x=-Math.PI/2;ghostFootprint.position.y=.002;placementGroup.add(ghostFootprint);
   const placementGuides=new THREE.LineSegments(new THREE.BufferGeometry(),ghostLineMaterial);placementGuides.renderOrder=40;scene.add(placementGuides);placementGuides.visible=false;
-  let placing=null,placementEvent=null,placementProposal=null,placementFrame=0;
+  let placing=null,placementEvent=null,placementProposal=null,placementFrame=0,placementBounds=null;
+  const groupEntities=new Map();
   raycaster.params.Line.threshold=.01;
   let current,derived,selectedId=null,viewMode='perspective',planHalfHeight=2,perspectiveReady=false,planReady=false,drag=null,disposed=false,resourcesDisposed=false,exporting=false,exportAbort=null,frame=0,lastWidth=0,lastHeight=0,wallsVisible=true,measurementsVisible=false;
   const surfaces=createLayoutSurfaces({anisotropy:Math.min(4,renderer.capabilities.getMaxAnisotropy?.()||1)});
@@ -141,8 +143,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   function updatePlanLabels(){for(const g of planObjects.values()){const layout=planLabelLayout(g);for(const o of g.children)if(o.userData.planLabel){o.scale.set(layout.width,layout.height,1);o.visible=layout.visible;}}}
   function syncContacts(){for(const [id,g]of contacts){const o=objects.get(id);if(o){g.position.copy(o.position);g.rotation.y=o.rotation.y;}}}
   function measurementOptions(forCamera,width,height){
-    const selected=planObjects.get(selectedId),c=Math.cos(selected?.rotation.y||0),s=Math.sin(selected?.rotation.y||0);
-    const selectedPolygonMm=selected?.userData.planPoints.map(([x,z])=>[(c*x+s*z+selected.position.x)/MM,(-s*x+c*z+selected.position.z)/MM]);
+    const selectedPolygonMm=selectionPolygon().map(([x,z])=>[x/MM,z/MM]);
     return {polygonMm:current.room.polygonMm,selectedPolygonMm,width,height,project:(x,z)=>{const p=new THREE.Vector3(x*MM,0,z*MM).project(forCamera);return [(p.x+1)*width/2,(1-p.y)*height/2];},formatLength:n=>`${Math.round(n*10)/10} ${t('common.mm')}`};
   }
   function updateMeasurements(){
@@ -175,7 +176,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     return [[-w/2,-d/2],[w/2,-d/2],[w/2,d/2],[-w/2,d/2]].map(([px,pz])=>[c*px+s*pz,-s*px+c*pz]);
   }
   function planLabel(e){const row=e.machineId?catalogMachine(e.machineId):null;return typeof row?.label==='string'?row.label:e.id;}
-  function selectedLabel(e){if(e.machineId)return planLabel(e);const same=(current.furniture||derived.furniture||[]).filter(f=>f.type===e.type);return t(e.type==='desk'?'layout.deskName':'layout.shelfName',{number:same.findIndex(f=>f.id===e.id)+1});}
+  function selectedLabel(e){if(e.type==='group')return e.name||e.id;if(e.machineId)return planLabel(e);const same=(current.furniture||derived.furniture||[]).filter(f=>f.type===e.type);return t(e.type==='desk'?'layout.deskName':'layout.shelfName',{number:same.findIndex(f=>f.id===e.id)+1});}
   function makePlan(e,warning){
     const points=footprint(e),g=new THREE.Group();g.userData.entityId=e.id;g.userData.planProjection=true;g.userData.planPoints=points;g.userData.planLabel=planLabel(e);g.userData.planColor=warning?'#bf6d48':e.type==='printer'?'#6489a3':'#c2a379';
     g.userData.planLabelSuppressed=derived.printers.some(p=>p.parentId===e.id);
@@ -190,29 +191,45 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     const label=new THREE.Mesh(new THREE.PlaneGeometry(1,1),new THREE.MeshBasicMaterial({map:texture,toneMapped:false,transparent:true,depthTest:false,depthWrite:false,side:THREE.DoubleSide}));label.visible=!g.userData.planLabelSuppressed;
     const xs=points.map(p=>p[0]),zs=points.map(p=>p[1]);label.position.set((Math.min(...xs)+Math.max(...xs))/2,.002,(Math.min(...zs)+Math.max(...zs))/2);label.rotation.x=-Math.PI/2;label.renderOrder=20;label.userData.planLabel=true;g.add(label);
   }
+  function entityInfo(id){return groupEntities.get(id)||[...derived.furniture,...derived.printers].find(e=>e.id===id);}
+  function selectionIds(id=selectedId){
+    if(!id||!derived)return [];
+    const group=groupEntities.get(id);
+    return group?[...new Set(group.entityIds)]:[id,...derived.printers.filter(p=>p.parentId===id).map(p=>p.id)].filter(id=>objects.has(id));
+  }
+  function selectionBounds(id=selectedId){const bounds=new THREE.Box3();for(const key of selectionIds(id)){const node=objects.get(key);if(node)bounds.union(new THREE.Box3().setFromObject(node));}return bounds;}
+  function selectionPolygon(){
+    const ids=groupEntities.has(selectedId)?selectionIds():objects.has(selectedId)?[selectedId]:[],points=[];
+    for(const id of ids){const flat=planObjects.get(id);if(!flat)continue;flat.updateMatrixWorld(true);for(const [x,z]of flat.userData.planPoints){const p=new THREE.Vector3(x,0,z).applyMatrix4(flat.matrixWorld);points.push([p.x,p.z]);}}
+    if(ids.length<=1||!points.length)return points;
+    const xs=points.map(p=>p[0]),zs=points.map(p=>p[1]),a=Math.min(...xs),b=Math.max(...xs),c=Math.min(...zs),d=Math.max(...zs);
+    return [[a,c],[b,c],[b,d],[a,d]];
+  }
+  function followers(id){return selectionIds(id).filter(key=>key!==id).map(snapshotPose);}
+  function snapshotPose(id){const solid=objects.get(id),flat=planObjects.get(id);return {id,origin:solid.position.clone(),originYawRad:solid.rotation.y,planOrigin:flat?.position.clone(),planYawRad:flat?.rotation.y};}
   function updateSelection(){
-    const selected=objects.get(selectedId),plan=planObjects.get(selectedId);selectionBox.visible=!isPlan()&&!!selected;if(selected)selectionBox.setFromObject(selected);
-    planSelection.visible=isPlan()&&!!plan;if(plan){planSelection.geometry.setFromPoints(plan.userData.planPoints.map(([x,z])=>new THREE.Vector3(x,.003,z)));planSelection.position.copy(plan.position);planSelection.rotation.y=plan.rotation.y;}
+    const selected=objects.get(selectedId),bounds=groupEntities.has(selectedId)?selectionBounds():selected?new THREE.Box3().setFromObject(selected):new THREE.Box3();selectionBox.visible=!isPlan()&&!bounds.isEmpty();selectionBox.box.copy(bounds);
+    const polygon=selectionPolygon();planSelection.visible=isPlan()&&polygon.length>0;if(polygon.length)planSelection.geometry.setFromPoints(polygon.map(([x,z])=>new THREE.Vector3(x,.03,z)));
     updateObjectTools();
   }
   function updateObjectTools(){
     const g=objects.get(selectedId);objectTools.hidden=exporting||disposed||!!placing||!g;if(objectTools.hidden)return;
     camera.updateMatrixWorld(true);g.updateMatrixWorld(true);
-    const box=new THREE.Box3().setFromObject(g);
-    for(const child of derived.printers.filter(p=>p.parentId===selectedId)){const node=objects.get(child.id);if(node)box.union(new THREE.Box3().setFromObject(node));}
-    const anchor=new THREE.Vector3(g.position.x,isPlan()?0:box.max.y+.08,g.position.z).project(camera);
+    const box=selectionBounds();if(box.isEmpty()){objectTools.hidden=true;return;}
+    const center=groupEntities.has(selectedId)?box.getCenter(new THREE.Vector3()):g.position;
+    const anchor=new THREE.Vector3(center.x,isPlan()?0:box.max.y+.08,center.z).project(camera);
     if(!Number.isFinite(anchor.x+anchor.y+anchor.z)||anchor.z< -1||anchor.z>1||Math.abs(anchor.x)>1.4||Math.abs(anchor.y)>1.4){objectTools.hidden=true;return;}
     const width=lastWidth||container.getBoundingClientRect().width,height=lastHeight||container.getBoundingClientRect().height;
     const half=Math.min(width/2,120);objectTools.style.left=`${Math.max(half,Math.min(width-half,(anchor.x+1)*width/2))}px`;
     let bottom=(1-anchor.y)*height/2-12;
-    const plan=planObjects.get(selectedId);
-    if(isPlan()&&plan){
-      plan.updateMatrixWorld(true);const pixels=plan.userData.planPoints.map(([x,z])=>{const p=new THREE.Vector3(x,0,z).applyMatrix4(plan.matrixWorld).project(camera);return (1-p.y)*height/2;});
+    const polygon=selectionPolygon();
+    if(isPlan()&&polygon.length){
+      const pixels=polygon.map(([x,z])=>{const p=new THREE.Vector3(x,0,z).project(camera);return (1-p.y)*height/2;});
       const toolHeight=objectTools.offsetHeight||96;bottom=Math.min(...pixels)-36;
       if(bottom<toolHeight+8)bottom=Math.max(...pixels)+36+toolHeight;
     }
     objectTools.style.top=`${Math.max(Math.min(100,height),Math.min(height-12,bottom))}px`;
-    const entity=[...derived.furniture,...derived.printers].find(e=>e.id===selectedId),row=entity?.machineId?catalogMachine(entity.machineId):null,dimensions=row?.dimensionsMm;
+    const entity=entityInfo(selectedId),row=entity?.machineId?catalogMachine(entity.machineId):null,dimensions=row?.dimensionsMm;
     if(entity){selectedName.textContent=selectedLabel(entity);selectedName.title=selectedName.textContent;selectedSize.textContent=[entity.widthMm??row?.widthMm??dimensions?.width,entity.depthMm??row?.depthMm??dimensions?.depth,entity.heightMm??row?.heightMm??dimensions?.height].map(n=>Math.round(n)).join(' × ')+` ${t('common.mm')}`;selectedSize.title=t('layout.dimensions');}
     objectTools.setAttribute('aria-label',t('layout.rotationControls'));objectTools.title=t('layout.rotationHint');
     for(const [button,key]of [[rotateLeft,'layout.rotateLeft'],[rotateRight,'layout.rotateRight'],[rotateHandle,'layout.rotateHandle'],[focusButton,'layout.focusSelected']]){button.setAttribute('aria-label',t(key));button.title=t(key);}
@@ -305,11 +322,17 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   }
   function setState(state,id,issues=[]){
     if(exporting)throw Error('Layout is rendering');
+    // Selection callbacks can synchronously echo the same state during a gesture.
+    // Keep the transient physical transforms and the original rollback snapshot.
+    if(drag&&groupEntities.has(drag.id)&&state===current&&id===selectedId){updateSelection();draw();return;}
     if(drag&&(state!==current||id!==selectedId))cancel();
     current=state;selectedId=id;derived=deriveScene(state,catalog);
-    clearContacts();resetGroup(furnitureGroup);resetGroup(printersGroup);objects.clear();makeRoom(state.room);
+    clearContacts();resetGroup(furnitureGroup);resetGroup(printersGroup);objects.clear();groupEntities.clear();makeRoom(state.room);
     for(const e of derived.furniture)makeFurniture(e);for(const e of derived.printers)makePrinter(e);
     for(const e of [...derived.furniture,...derived.printers])makeContact(e);
+    // Detached anchors carry only the pivot. They never enter the scene, plan,
+    // contacts, raycast targets or streamed-model/export inventories.
+    for(const record of state.groups||[]){const e=groupInfo(state,record.id,catalog);if(!e)continue;groupEntities.set(e.id,e);const anchor=new THREE.Object3D();anchor.position.set(e.xMm*MM,0,e.zMm*MM);anchor.rotation.y=e.yawDeg*Math.PI/180;objects.set(e.id,anchor);}
     disposeTree(planGroup);resetGroup(planGroup);planObjects.clear();
     const warned=new Set(issues.flatMap(i=>i.entityIds||[i.entityId||i.id]).filter(Boolean));
     for(const [entityId,g]of objects){g.userData.warning=warned.has(entityId);}
@@ -340,12 +363,12 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   // Camera-only framing: never changes the selected object's pose or history.
   function focusSelected(){
     if(disposed||exporting||drag||!current||!(isPlan()?planReady:perspectiveReady))return false;
-    const g=objects.get(selectedId),plan=planObjects.get(selectedId);if(!g||!plan)return false;
+    const g=objects.get(selectedId);if(!g)return false;
     scene.updateMatrixWorld(true);
-    const ids=[selectedId,...(current.printers||[]).filter(p=>p.attachment.parentId===selectedId).map(p=>p.id)],bounds=new THREE.Box3();
+    const ids=selectionIds(),bounds=new THREE.Box3();
     for(const id of ids){
       const flat=planObjects.get(id),solid=objects.get(id);
-      if(isPlan()&&flat)for(const [x,z]of flat.userData.planPoints)bounds.expandByPoint(new THREE.Vector3(x+flat.position.x,0,z+flat.position.z));
+      if(isPlan()&&flat){flat.updateMatrixWorld(true);for(const [x,z]of flat.userData.planPoints)bounds.expandByPoint(new THREE.Vector3(x,0,z).applyMatrix4(flat.matrixWorld));}
       else if(!isPlan()&&solid)bounds.union(new THREE.Box3().setFromObject(solid));
     }
     if(bounds.isEmpty()||![...bounds.min.toArray(),...bounds.max.toArray()].every(Number.isFinite))return false;
@@ -385,8 +408,11 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     if(!proposal?.world||!proposal.sizeMm||!Object.values(proposal.world).every(Number.isFinite)){placementGroup.visible=placementGuides.visible=false;placementProposal=null;draw();return null;}
     placementProposal=proposal;const {world:w,sizeMm:d}=proposal;
     placementGroup.position.set(w.xMm*MM,w.yMm*MM,w.zMm*MM);placementGroup.rotation.y=w.yawDeg*Math.PI/180;
-    placementGroup.visible=true;placementBody.visible=!isPlan();ghostOutline.scale.set(d.width*MM,d.height*MM,d.depth*MM);ghostOutline.position.y=d.height*MM/2;
-    ghostFootprint.scale.set(d.width*MM,d.depth*MM,1);
+    placementGroup.visible=true;placementBody.visible=!isPlan();
+    const bounds=placementBounds||{minX:-d.width/2,maxX:d.width/2,minZ:-d.depth/2,maxZ:d.depth/2,minY:0,maxY:d.height};
+    const cx=(bounds.minX+bounds.maxX)*MM/2,cz=(bounds.minZ+bounds.maxZ)*MM/2;
+    ghostOutline.scale.set((bounds.maxX-bounds.minX)*MM,(bounds.maxY-bounds.minY)*MM,(bounds.maxZ-bounds.minZ)*MM);ghostOutline.position.set(cx,(bounds.minY+bounds.maxY)*MM/2,cz);
+    ghostFootprint.scale.set((bounds.maxX-bounds.minX)*MM,(bounds.maxZ-bounds.minZ)*MM,1);ghostFootprint.position.set(cx,.002,cz);
     const color=proposal.valid?0x21a795:0xe16c56;ghostMaterial.color.setHex(color);ghostLineMaterial.color.setHex(color);ghostFootprint.material.color.setHex(color);
     const lines=[];if(proposal.valid)for(const g of proposal.guides||[]){if(g.axis==='x')lines.push(g.valueMm*MM,w.yMm*MM+.004,g.minMm*MM,g.valueMm*MM,w.yMm*MM+.004,g.maxMm*MM);else lines.push(g.minMm*MM,w.yMm*MM+.004,g.valueMm*MM,g.maxMm*MM,w.yMm*MM+.004,g.valueMm*MM);}
     placementGuides.geometry.dispose();placementGuides.geometry=new THREE.BufferGeometry().setAttribute('position',new THREE.Float32BufferAttribute(lines,3));placementGuides.visible=lines.length>0;
@@ -398,11 +424,34 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   }
   function setPlacement(value){
     if(exporting||disposed)return false;
-    cancel();if(placementFrame){cancelAnimationFrame(placementFrame);placementFrame=0;}placing=value;placementProposal=null;
+    cancel();if(placementFrame){cancelAnimationFrame(placementFrame);placementFrame=0;}placing=value;placementProposal=null;placementBounds=null;
     for(const child of [...placementBody.children])if(child!==ghostOutline)placementBody.remove(child);
     if(value){
       const dims=value.sizeMm||{width:1200,depth:600,height:750},add=(size,center)=>{const m=new THREE.Mesh(boxGeometry,ghostMaterial);m.scale.set(...size);m.position.set(...center);placementBody.add(m);};
-      if(value.kind==='printer'){
+      if(value.kind==='group'){
+        try{
+          // Template roots are group-local; attached printers are still support-
+          // local. Reuse the numerical scene recipe exactly once, with no CAD.
+          const template=value.template;
+          const preview=deriveScene({...current,furniture:template.furniture,printers:template.printers,groups:[]},catalog);
+          const all=[...preview.furniture,...preview.printers],points=all.flatMap(e=>e.worldEnvelopeMm);
+          if(!points.length)throw Error('Empty group placement template');
+          const xs=points.map(p=>p[0]),zs=points.map(p=>p[1]);
+          placementBounds={minX:Math.min(...xs),maxX:Math.max(...xs),minZ:Math.min(...zs),maxZ:Math.max(...zs),minY:0,maxY:Math.max(...all.map(e=>e.verticalRangeMm[1]))};
+          const addPart=(parent,size,center,wire=false)=>{const part=wire?new THREE.LineSegments(wireGeometry,ghostLineMaterial):new THREE.Mesh(boxGeometry,ghostMaterial);part.scale.set(...size);part.position.set(...center);parent.add(part);};
+          for(const e of all){
+            const node=new THREE.Group();node.position.set(e.positionM.x,e.supportYM??e.positionM.y,e.positionM.z);node.rotation.y=e.yawRad;placementBody.add(node);
+            if(e.type==='printer'){
+              const row=catalogMachine(e.machineId);if(!row)throw Error('Unknown group placement printer');
+              for(const part of printerPreviewParts(row).parts)addPart(node,part.sizeM,part.centerM,!!part.wireframe);
+            }else{
+              for(const board of e.boards)addPart(node,[board.widthM,board.thicknessM,board.depthM],[0,board.localCenterYM,0]);
+              const leg=e.type==='desk'?.045:.035;
+              for(const x of [-1,1])for(const z of [-1,1])addPart(node,[leg,e.heightM,leg],[x*(e.widthM-leg)/2,e.heightM/2,z*(e.depthM-leg)/2]);
+            }
+          }
+        }catch(error){for(const child of [...placementBody.children])if(child!==ghostOutline)placementBody.remove(child);placing=null;placementBounds=null;value=null;onError(error);}
+      }else if(value.kind==='printer'){
         const row=catalogMachine(value.machineId);if(row)for(const part of printerPreviewParts(row).parts)if(!part.wireframe)add(part.sizeM,part.centerM);
       }else{
         const w=dims.width*MM,h=dims.height*MM,d=dims.depth*MM;
@@ -416,15 +465,15 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   }
   function turnBy(delta){
     if(disposed||exporting||drag||!selectedId)return;
-    const e=[...derived.furniture,...derived.printers].find(e=>e.id===selectedId);if(!e)return;
+    const e=entityInfo(selectedId);if(!e)return;
     const before=current;try{onRotate({id:e.id,yawDeg:e.yawDeg+delta,deltaDeg:delta});}catch(error){onError(error);}finally{if(current===before&&!disposed)setState(current,selectedId);}
   }
   function rotationDown(event){
     if(disposed||exporting||event.button!==0||event.isPrimary===false||drag)return;
-    const g=objects.get(selectedId),e=[...derived.furniture,...derived.printers].find(e=>e.id===selectedId);if(!g||!e)return;
+    const g=objects.get(selectedId),e=entityInfo(selectedId);if(!g||!e)return;
     event.stopImmediatePropagation();event.preventDefault();rotateHandle.focus({preventScroll:true});
     const yawDeg=e.yawDeg;
-    drag={id:selectedId,kind:'rotate',pointerId:event.pointerId,captureTarget:rotateHandle,startX:event.clientX,startY:event.clientY,lastX:event.clientX,moved:false,origin:g.position.clone(),originYawRad:g.rotation.y,originYawDeg:yawDeg,rawYawDeg:yawDeg,accepted:{yawDeg},followers:(current.printers||[]).filter(p=>p.attachment.parentId===selectedId).map(p=>{const child=objects.get(p.id);return {id:p.id,origin:child.position.clone(),originYawRad:child.rotation.y};})};
+    drag={...snapshotPose(selectedId),kind:'rotate',pointerId:event.pointerId,captureTarget:rotateHandle,startX:event.clientX,startY:event.clientY,lastX:event.clientX,moved:false,originYawDeg:yawDeg,rawYawDeg:yawDeg,accepted:{yawDeg},followers:followers(selectedId)};
     rotateHandle.setPointerCapture(event.pointerId);rotateHandle.dataset.dragging='true';delete objectTools.dataset.boundaryLimited;enableControls();onSelect(selectedId);
   }
   function rotationMove(event){
@@ -441,21 +490,21 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     if(accepted.boundaryLimited)drag.rawYawDeg=accepted.yawDeg+(accepted.pointerRemainderDeg||0);
     objectTools.dataset.boundaryLimited=String(!!accepted.boundaryLimited);
     const g=objects.get(drag.id);if(!g)return;const delta=(accepted.yawDeg-drag.originYawDeg)*Math.PI/180;
-    g.rotation.y=drag.originYawRad+delta;const plan=planObjects.get(drag.id);if(plan)plan.rotation.y=delta;
-    for(const follower of drag.followers){const child=objects.get(follower.id),flat=planObjects.get(follower.id);if(!child)continue;child.position.copy(follower.origin).sub(drag.origin).applyAxisAngle(new THREE.Vector3(0,1,0),delta).add(drag.origin);child.rotation.y=follower.originYawRad+delta;if(flat){flat.position.x=child.position.x;flat.position.z=child.position.z;flat.rotation.y=delta;}}
+    g.rotation.y=drag.originYawRad+delta;const plan=planObjects.get(drag.id);if(plan)plan.rotation.y=drag.planYawRad+delta;
+    for(const follower of drag.followers){const child=objects.get(follower.id),flat=planObjects.get(follower.id);if(!child)continue;child.position.copy(follower.origin).sub(drag.origin).applyAxisAngle(new THREE.Vector3(0,1,0),delta).add(drag.origin);child.rotation.y=follower.originYawRad+delta;if(flat){flat.position.x=child.position.x;flat.position.z=child.position.z;flat.rotation.y=follower.planYawRad+delta;}}
     updateSelection();draw();
   }
   function down(event){
     if(disposed||exporting||event.button!==0||event.isPrimary===false)return;
     if(drag){event.stopImmediatePropagation();event.preventDefault();return;}
     if(placing){drag={kind:'placement',pointerId:event.pointerId,startX:event.clientX,startY:event.clientY,moved:false};canvas.setPointerCapture(event.pointerId);canvas.focus?.({preventScroll:true});event.stopImmediatePropagation();event.preventDefault();updatePlacement(event);return;}
-    const id=hit(event);drag={id,kind:id?'object':'background',pointerId:event.pointerId,startX:event.clientX,startY:event.clientY,moved:false};
+    const physicalId=hit(event),id=physicalId&&!event.altKey?(groupingForEntity(current,physicalId)?.id||physicalId):physicalId;drag={id,kind:id?'object':'background',pointerId:event.pointerId,startX:event.clientX,startY:event.clientY,moved:false};
     if(id){
       const g=objects.get(id),planeY=isPlan()?0:g.position.y,point=planePoint(event,planeY);
       if(!point){drag=null;event.stopImmediatePropagation();return;}
-      const entity=[...derived.furniture,...derived.printers].find(e=>e.id===id);
-      drag.origin=g.position.clone();drag.originMm={x:entity.xMm??g.position.x/MM,z:entity.zMm??g.position.z/MM};drag.point=point.clone();drag.anchorMm={...drag.originMm};drag.anchorPoint=point.clone();drag.planeY=planeY;drag.accepted={...drag.originMm};
-      drag.followers=(current.printers||[]).filter(p=>p.attachment.parentId===id).map(p=>({id:p.id,origin:objects.get(p.id).position.clone()}));
+      const entity=entityInfo(id);
+      Object.assign(drag,snapshotPose(id));drag.originMm={x:entity.xMm??g.position.x/MM,z:entity.zMm??g.position.z/MM};drag.point=point.clone();drag.anchorMm={...drag.originMm};drag.anchorPoint=point.clone();drag.planeY=planeY;drag.accepted={...drag.originMm};
+      drag.followers=followers(id);
       selectedId=id;updateSelection();canvas.setPointerCapture(event.pointerId);enableControls();canvas.style.cursor='grabbing';event.stopImmediatePropagation();event.preventDefault();onSelect(id);
     }
   }
@@ -481,7 +530,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     }
     g.position.x=accepted.x*MM;g.position.z=accepted.z*MM;
     const syncPlan=id=>{const a=objects.get(id),b=planObjects.get(id);if(a&&b){b.position.x=a.position.x;b.position.z=a.position.z;}};syncPlan(drag.id);
-    for(const follower of drag.followers||[]){const child=objects.get(follower.id);if(child){child.position.x=follower.origin.x+g.position.x-drag.origin.x;child.position.z=follower.origin.z+g.position.z-drag.origin.z;syncPlan(follower.id);}}
+    for(const follower of drag.followers||[]){const child=objects.get(follower.id);if(child){child.position.x=follower.origin.x+(g.position.x-drag.origin.x);child.position.z=follower.origin.z+(g.position.z-drag.origin.z);syncPlan(follower.id);}}
     updateSelection();draw();
   }
   function up(event){
@@ -502,7 +551,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   function cancel(event){
     if(!drag||event?.pointerId!==undefined&&event.pointerId!==drag.pointerId)return;
     const d=drag;drag=null;
-    if(d.kind==='object'||d.kind==='rotate')for(const item of [{id:d.id,origin:d.origin,originYawRad:d.originYawRad},...(d.followers||[])]){const a=objects.get(item.id),b=planObjects.get(item.id);if(a){a.position.copy(item.origin);if(d.kind==='rotate')a.rotation.y=item.originYawRad;}if(b){b.position.x=item.origin.x;b.position.z=item.origin.z;if(d.kind==='rotate')b.rotation.y=0;}}
+    if(d.kind==='object'||d.kind==='rotate')for(const item of [d,...(d.followers||[])]){const a=objects.get(item.id),b=planObjects.get(item.id);if(a){a.position.copy(item.origin);a.rotation.y=item.originYawRad;}if(b&&item.planOrigin){b.position.copy(item.planOrigin);b.rotation.y=item.planYawRad;}}
     const target=d.captureTarget||canvas;if(target.hasPointerCapture(d.pointerId))target.releasePointerCapture(d.pointerId);delete rotateHandle.dataset.dragging;delete objectTools.dataset.boundaryLimited;enableControls();canvas.style.cursor='grab';updateSelection();draw();
   }
   // Capture phase chooses object manipulation before either OrbitControls listener.
@@ -548,13 +597,13 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     if(signal?.aborted)controller.abort();else signal?.addEventListener('abort',forwardAbort,{once:true});signal=controller.signal;
     const snapshot=derived.printers.map(p=>({...p,positionM:{...p.positionM}}));
     const limit=Math.min(renderer.capabilities.maxTextureSize,2560),long=Math.max(320,Math.min(limit,width)),aspect=lastWidth/Math.max(1,lastHeight),w=Math.max(1,Math.round(aspect>=1?long:long*aspect)),h=Math.max(1,Math.round(aspect>=1?long/aspect:long));
-    let target,outputTarget,outputGeometry,outputMaterial;const oldTarget=renderer.getRenderTarget(),oldAuto=renderer.autoClear,oldBackground=scene.background,oldShaderError=renderer.debug.onShaderError,transparentRoot=new THREE.Group();
+    let target,outputTarget,outputGeometry,outputMaterial;const oldTarget=renderer.getRenderTarget(),oldAuto=renderer.autoClear,oldBackground=scene.background,oldShaderError=renderer.debug.onShaderError,transparentRoot=new THREE.Group(),previewVisible=placementGroup.visible,guidesVisible=placementGuides.visible;
     const opaqueScene=new THREE.Scene();opaqueScene.environment=scene.environment;opaqueScene.environmentIntensity=scene.environmentIntensity;
     // Only the initial room pass projects furniture shadows. Streamed native
     // models use ordinary lighting; no additional maps or CAD floor projection.
     for(const l of scene.children.filter(c=>c.isLight)){const copy=l.clone();copy.castShadow=false;opaqueScene.add(copy);if(copy.target)opaqueScene.add(copy.target);}
     let transparentBytes=0,active=null;
-    exporting=true;renderer.debug.onShaderError=()=>{throw Object.assign(Error('Image shader compilation failed'),{code:'RENDER_SHADER_FAILED'});};if(frame){cancelAnimationFrame(frame);frame=0;}controls.enabled=false;selectionBox.visible=false;printersGroup.visible=false;
+    exporting=true;renderer.debug.onShaderError=()=>{throw Object.assign(Error('Image shader compilation failed'),{code:'RENDER_SHADER_FAILED'});};if(frame){cancelAnimationFrame(frame);frame=0;}controls.enabled=false;selectionBox.visible=false;printersGroup.visible=false;placementGroup.visible=placementGuides.visible=false;
     const exportCamera=camera.clone();exportCamera.aspect=w/h;exportCamera.updateProjectionMatrix();
     try{
       aborted(signal);target=new THREE.WebGLRenderTarget(w,h,{samples:0,format:THREE.RGBAFormat,type:THREE.HalfFloatType});target.texture.colorSpace=THREE.LinearSRGBColorSpace;
@@ -611,7 +660,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
       const blob=await new Promise(resolve=>output.toBlob(resolve,'image/png'));if(!blob)throw Error('Image export failed');aborted(signal);
       return {blob,width:w,height:h,machines:snapshot.map(p=>p.machineId),projection:'perspective-3d',camera:'current-camera',rendering:'streamed-browser-raster'};
     }finally{
-      active?.dispose();disposeTree(transparentRoot);target?.dispose();outputTarget?.dispose();outputGeometry?.dispose();outputMaterial?.dispose();renderer.setRenderTarget(oldTarget);renderer.autoClear=oldAuto;renderer.debug.onShaderError=oldShaderError;scene.background=oldBackground;printersGroup.visible=true;refreshWalls();
+      active?.dispose();disposeTree(transparentRoot);target?.dispose();outputTarget?.dispose();outputGeometry?.dispose();outputMaterial?.dispose();renderer.setRenderTarget(oldTarget);renderer.autoClear=oldAuto;renderer.debug.onShaderError=oldShaderError;scene.background=oldBackground;printersGroup.visible=true;placementGroup.visible=previewVisible;placementGuides.visible=guidesVisible;refreshWalls();
       exporting=false;exportAbort=null;externalSignal?.removeEventListener('abort',forwardAbort);presentView();if(disposed)releaseResources();else{resize();draw();}
     }
   }

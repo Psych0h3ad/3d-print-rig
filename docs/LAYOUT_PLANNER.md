@@ -39,9 +39,38 @@ position. Movement stays within the room and the selected support surface.
 Drag along a wall to slide against it; pulling away responds immediately.
 Changes that would put an object beyond those boundaries are not accepted.
 
-The fixed **Room**, **Add**, **Objects** and **Selected** shortcuts in the
+The fixed **Room**, **Add**, **Farm**, **Objects** and **Selected** shortcuts in the
 settings panel jump directly to the relevant controls without changing the
 current selection.
+
+## Printer farms and reusable sets
+
+Use the checkboxes in **Objects** to choose desks, shelves or floor printers,
+then open **Farm**, name the set and select **Create group**. Printers on a chosen
+desk or shelf are included automatically. A root object belongs to one group;
+ungroup it before assigning it to another set.
+
+Click a grouped object in 2D or 3D to select the whole set. Drag to move it,
+use the rotation handle or **R** to turn it, and press **F** to frame all its
+members. The printers keep their positions on their original shelf boards or
+desk tops. **Alt-click** or a member button in the group editor selects an
+individual object. **Ungroup** keeps every object in place; deleting a selected
+group removes its furniture and printers together. Both actions support undo.
+
+**Duplicate** starts a preview of the complete set. **Save set** adds it to
+**Saved sets** in this browser; choose **Place** to reuse it in another plan.
+Click to place, hold **Shift** to place more copies, and press **R** to rotate
+the preview. Red previews reject room, support, height or envelope conflicts
+without adding part of the set. Each copy gets its own object IDs and support
+references. Placement stays lightweight; full printer CAD is loaded only for
+the final render.
+
+Groups are included in the normal layout JSON and survive save/load and
+undo/redo. Saved sets are stored separately in the current browser, with up to
+24 sets. To transfer a set to another browser, export a layout containing it,
+open that layout there and save the group again. Existing layout files without
+groups still open. Planning envelopes do not include moving-part or service
+clearances; leave access space around each row of printers.
 
 Press **F** with the scene focused, or use the focus button beside the selected
 object's rotation controls, to frame the selected object. A selected desk or

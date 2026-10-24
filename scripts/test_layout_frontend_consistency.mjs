@@ -13,6 +13,8 @@ const app=read('layout/layout-app.mjs'),renderer=read('layout/layout-renderer.mj
 read('layout/layout-language.mjs');read('layout/layout-i18n.mjs');
 read('layout/layout-state.mjs');read('layout/layout-constraints.mjs');read('layout/layout-geometry.mjs');
 const S=await import(pathToFileURL(path.join(site,'layout/layout-state.mjs')));
+const G=await import(pathToFileURL(path.join(site,'layout/layout-groups.mjs')));
+read('layout/layout-groups.mjs');read('layout/layout-group-data.mjs');
 const {proposePlacement}=await import(pathToFileURL(path.join(site,'layout/layout-placement.mjs')));
 consumed['layout/layout-placement.mjs']=crypto.createHash('sha256').update(fs.readFileSync(path.join(site,'layout/layout-placement.mjs'))).digest('hex');
 const {createDefaultLayout,createRoomRect,createDesk,createCatalog,applyAction,serializeLayout,parseLayout}=S;
@@ -161,19 +163,22 @@ await test('desktop-bootstrap-reaches-ready-with-automatic-renderer-and-no-remov
  assert.equal([...bootstrap.matchAll(importPattern)].length,1);
  const source=bootstrap.replace(importPattern,'deps.rendererModule').replaceAll('import.meta.url',"'https://example.invalid/layout/layout-app.mjs'");
  const defaultSource=unique(app,'function makeDefault(){','\nlet pendingMove=');
+ const librarySource=unique(app,'function refreshGroupLibrary(){','\nfunction updatePlacementBar(');
  const historySource=unique(app,'function historyKey(event){','\nasync function start(){');
  const e=environment(),catalogData=JSON.parse(read('layout/layout-catalog.json'));
  const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
  const run=new AsyncFunction('deps',`
   const {createDefaultLayout,createDesk,createCatalog,applyAction,parseLayout}=deps;
+  const {groupTemplateInfo,parseGroupLibrary}=deps.G;
   const document=deps.doc,$=q=>document.querySelector(q),navigator={deviceMemory:8},localStorage={getItem:()=>null};
-  const storageKey='test',maxFileBytes=2097152,fetch=async()=>({ok:true,json:async()=>deps.catalogData});
+  const storageKey='test',groupLibraryKey='sets-test',maxFileBytes=2097152,fetch=async()=>({ok:true,json:async()=>deps.catalogData});let groupLibrary=[];
   let state,catalog,rows,ui,view,selected=null,busy=false,roomEditing=false,disposed=false,placement=null;const past=[],future=[];
   const language={t:key=>key},t=key=>key,act=()=>{},select=()=>{},worldMove=()=>{},constrainMove=()=>{},worldRotate=deps.rotationPorts.onRotate,constrainRotate=deps.rotationPorts.constrainRotate,previewPlacement=()=>null,placeProposal=()=>{},placementKey=()=>{},message=()=>{},humanError=()=> 'error';
-  const calls={sync:0,language:0,views:[],presentations:[],options:[]};
+  const calls={sync:0,language:0,views:[],presentations:[],options:[],libraries:[]};
   const sync=()=>calls.sync++,updateLanguage=()=>calls.language++,dark=()=>false;
   const updateViewPresentation=value=>calls.presentations.push(value);
-  const createLayoutUI=()=>({fixture:true});
+  const createLayoutUI=()=>({fixture:true,setGroupLibrary:items=>calls.libraries.push(items)});
+  ${librarySource}
   ${defaultSource}
   ${historySource}
   ${source}
@@ -184,9 +189,10 @@ await test('desktop-bootstrap-reaches-ready-with-automatic-renderer-and-no-remov
   assert.equal(typeof options.onMove,'function');assert.equal(typeof options.constrainMove,'function');assert.equal(typeof options.onViewChange,'function');
   return {canvas:new E('canvas'),view:()=>{},getView:()=>({mode:'perspective',projection:'perspective-3d'}),setOptions:()=>{}};
  }};
- const result=await run({doc:e.doc,catalogData,createDefaultLayout,createDesk,createCatalog,applyAction,parseLayout,rendererModule,rotationPorts});
+ const result=await run({doc:e.doc,catalogData,createDefaultLayout,createDesk,createCatalog,applyAction,parseLayout,rendererModule,rotationPorts,G});
  assert.equal(result.ready,'true');assert.equal(result.state.furniture.length,1);assert.equal(result.state.printers.length,1);assert.equal(result.calls.sync,1);assert.equal(result.calls.language,1);
  assert.deepEqual(result.calls.presentations,[{mode:'perspective',projection:'perspective-3d'}]);
+ assert.deepEqual(result.calls.libraries,[[]],'Actual startup initializes saved-set controls without fetching printer models');
  assert.equal(e.documentListeners.get('keydown')?.length,2,'Actual startup binds history and placement shortcuts');
 });
 
@@ -263,10 +269,11 @@ function replayCommands(initial,selection){
  const keyStart="view.canvas.addEventListener('keydown',event=>{";
  const keyboard=unique(app,keyStart,'\n  });').slice(keyStart.length);
  const shortcuts=unique(app,'function placementKey(event){','\nfunction historyKey(');
- const engine=new Function('S','initial','selection','rows','catalog','proposePlacement',`
+ const engine=new Function('S','G','initial','selection','rows','catalog','proposePlacement',`
   const {createDefaultLayout,createDesk,createShelf,applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,deriveScene,worldTransform,serializeLayout,parseLayout,validatePlacement}=S;
+  const {createGroup,renameGroup,ungroup,removeGroup,groupInfo,transformGroup,resolveGroupMove,resolveGroupRotation,captureGroupTemplate,groupTemplateInfo,proposeGroupPlacement,parseGroupLibrary,GROUP_LIBRARY_LIMIT}=G;
   let state=initial,selected=selection,busy=false,roomEditing=false,disposed=false,interactionGeneration=0,operation=null,nextId=1,placement=null,lastPlacementTarget=null;
-  const past=[],future=[],writes=[],updates=[],maxFileBytes=2097152,storageKey='fixture',document={body:{dataset:{}}};
+  const past=[],future=[],writes=[],updates=[],maxFileBytes=2097152,storageKey='fixture',groupLibraryKey='fixture-sets',document={body:{dataset:{}}};let groupLibrary=[];
   const status={hidden:true,textContent:'',dataset:{}},$=selector=>selector.startsWith('#layout-placement')?null:status,language={t:key=>key},ui={setStatus(){},update(_state,id){updates.push(id)}};
   const localStorage={setItem(_key,value){writes.push(value)}},view={setState(){},view(){},setPlacement(){},refreshPlacement(){},canvas:{focus(){}}};
   ${header}
@@ -275,7 +282,7 @@ function replayCommands(initial,selection){
   ${shortcuts}
   function key(event){${keyboard}}
   return {act,key,shortcut:placementKey,constrainMove,worldMove,preview:previewPlacement,place:(target,options={})=>{const result=previewPlacement(target);placeProposal(result,options);return result;},cancel:cancelPlacement,read:()=>({state,selected,past:[...past],future:[...future],writes:[...writes],updates:[...updates],status:{...status},placement})};
- `)(S,initial,selection,productionRows,productionCatalog,proposePlacement);
+ `)(S,G,initial,selection,productionRows,productionCatalog,proposePlacement);
  return engine;
 }
 const encoded=engine=>serializeLayout(engine.read().state,productionCatalog);
