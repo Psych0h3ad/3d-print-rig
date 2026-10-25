@@ -24,8 +24,10 @@ Placement uses the registered static printer envelopes.
    place it. Set its width, depth and height. Desks have a 30 mm
    top. Shelves have an adjustable board thickness and individual board heights.
 3. Choose a printer and point at the floor, a desk top or a shelf board to place
-   it there. A green preview can be placed; a red preview cannot. Hold **Shift**
-   when clicking to place more copies. **R / Shift+R** rotate the preview;
+   it there. A green preview can be placed; a red preview cannot. Enable
+   **Keep placing** to place several copies, or hold **Shift** when clicking.
+   The preview explains room, support and overlap conflicts.
+   **R / Shift+R** rotate the preview;
    **Esc** or **Cancel** leave the plan unchanged.
 4. Drag an object to move it. In 3D, drag empty space to look around, or use the
    right mouse button to orbit and the middle mouse button to pan. Scroll to
@@ -76,9 +78,9 @@ group removes its furniture and printers together. Both actions support undo.
 
 **Duplicate** starts a preview of the complete set. **Save set** adds it to
 **Saved units** under **Add** in this browser; choose **Place** to reuse it in another plan.
-Click to place, hold **Shift** to place more copies, and press **R** to rotate
-the preview. Red previews reject room, support, height or envelope conflicts
-without adding part of the set. Each copy gets its own object IDs and support
+Click to place, enable **Keep placing** or hold **Shift** for more copies, and
+press **R** to rotate the preview. Red previews reject room, support, height or
+envelope conflicts without adding part of the set. Each copy gets its own object IDs and support
 references. Units also receive a letter code: **A**, **B**, **C**, through **Z**,
 then **AA**, **AB** and so on. The code appears in the list, beside the unit in
 the scene and in exported 2D plans. It stays separate from the name and survives
@@ -93,9 +95,11 @@ undo/redo. Saved sets are stored separately in the current browser, with up to
 Furniture copies include their printers, board attachments and saved machine
 configuration IDs. Copying only a supported printer copies that printer alone.
 Use **Ctrl/Cmd+C** and **Ctrl/Cmd+V** to transfer a set between Layout tabs or
-browsers. The toolbar also provides Copy and Paste within the current plan.
-Pasting starts a preview: place it with a click, use Shift to place more copies,
-or press Esc to cancel. The source objects stay unchanged.
+browsers. The toolbar Copy and Paste use the system clipboard, including copies
+from another tab. Your browser may request clipboard permission. If access is
+unavailable, use the keyboard shortcut; an older in-tab copy is not substituted.
+Pasting starts a preview: click to place, use **Keep placing** or Shift for more
+copies, or press Esc to cancel. The source objects stay unchanged.
 Existing layout files without
 groups still open. Planning envelopes do not include moving-part or service
 clearances; leave access space around each row of printers.
@@ -128,7 +132,10 @@ buttons for 90° turns. **Esc** cancels a drag. Printers on a desk or shelf rota
 With the scene focused and an object selected, arrow keys move it by 10 mm
 or 100 mm with Shift along the room's X/Z axes, including on rotated furniture.
 **R** turns it by 90°; **Shift+R** turns it by −90°.
-Numeric fields also support precise placement. Objects can be duplicated or
+Numeric fields apply on Enter or when leaving the field. Clicking an object
+finishes the numeric edit and returns arrow-key control to the scene. Invalid
+or conflicting edits keep the previous position. Room dimensions remain a
+draft until **Update room** is pressed. Objects can be duplicated or
 deleted. **Ctrl/Cmd+D** starts a duplicate preview and **Delete** removes the
 selection. New objects and duplicates enter history only after placement;
 cancelled previews do not affect undo or saved plans. Nearby edges and centres

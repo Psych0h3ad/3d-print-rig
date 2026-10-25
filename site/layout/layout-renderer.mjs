@@ -251,7 +251,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     for(const [id,group]of groupEntities){
       const button=document.createElement('button'),label=groupLabel(current,id);button.type='button';button.className='layout-unit-marker';
       button.dataset.layoutUnitId=id;button.textContent=label;button.title=`${label} · ${group.name}`;button.setAttribute('aria-label',button.title);
-      const click=()=>{if(!disposed&&!exporting&&!placing&&!drag)onSelect(id);};button.addEventListener('click',click);unitLabels.append(button);
+      const click=()=>{if(!disposed&&!exporting&&!placing&&!drag){onSelect(id);if(!disposed)canvas.focus?.({preventScroll:true});}};button.addEventListener('click',click);unitLabels.append(button);
       unitMarkers.set(id,{button,click,label,ids:selectionIds(id),bounds:selectionBounds(id)});
     }
     if(focused)unitMarkers.get(focused)?.button.focus({preventScroll:true});
@@ -570,8 +570,10 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   }
   function rotationDown(event){
     if(disposed||exporting||event.button!==0||event.isPrimary===false||drag)return;
-    const g=objects.get(selectedId),e=entityInfo(selectedId);if(!g||!e)return;
     event.stopImmediatePropagation();event.preventDefault();rotateHandle.focus({preventScroll:true});
+    // A numeric blur may rebuild the scene; capture one current gesture origin.
+    if(disposed||exporting||drag)return;
+    const g=objects.get(selectedId),e=entityInfo(selectedId);if(!g||!e)return;
     const yawDeg=e.yawDeg;
     const originMm={x:e.xMm,z:e.zMm};
     drag={...snapshotPose(selectedId),kind:'rotate',pointerId:event.pointerId,captureTarget:rotateHandle,startX:event.clientX,startY:event.clientY,lastX:event.clientX,moved:false,originMm,originYawDeg:yawDeg,rawYawDeg:yawDeg,accepted:{yawDeg,...originMm},followers:followers(selectedId)};
@@ -600,6 +602,9 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     if(disposed||exporting||event.button!==0||event.isPrimary===false)return;
     if(drag){event.stopImmediatePropagation();event.preventDefault();return;}
     if(placing){drag={kind:'placement',pointerId:event.pointerId,startX:event.clientX,startY:event.clientY,moved:false};canvas.setPointerCapture(event.pointerId);canvas.focus?.({preventScroll:true});event.stopImmediatePropagation();event.preventDefault();updatePlacement(event);return;}
+    // Finish any inspector draft before hit testing the current scene.
+    canvas.focus?.({preventScroll:true});
+    if(disposed||exporting||drag)return;
     const physicalId=hit(event),id=physicalId&&!event.altKey?(groupingForEntity(current,physicalId)?.id||physicalId):physicalId;drag={id,kind:id?'object':'background',pointerId:event.pointerId,startX:event.clientX,startY:event.clientY,moved:false};
     if(id){
       const g=objects.get(id),planeY=isPlan()?0:g.position.y,point=planePoint(event,planeY);

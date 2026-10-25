@@ -28,6 +28,7 @@ function makeCanvas(){
  const c={width:0,height:0,tabIndex:0,style:{},removed:false,setAttribute(){},
   addEventListener(k,f,o){const list=handlers.get(k)||[];if(!list.some(r=>r.f===f&&r.capture===capture(o)))list.push({f,capture:capture(o)});handlers.set(k,list)},removeEventListener(k,f,o){handlers.set(k,(handlers.get(k)||[]).filter(r=>r.f!==f||r.capture!==capture(o)))},
   getBoundingClientRect(){return {...size,left:0,top:0}},
+  focus(){const previous=fixtureDocument.activeElement;if(previous!==this){previous?.blur?.();fixtureDocument.activeElement=this;}},
   get clientWidth(){return size.width},get clientHeight(){return size.height},getRootNode(){return {addEventListener(){},removeEventListener(){}}},
   emit(type,event={}){let stopped=false;const e={type,button:0,buttons:1,pointerId:71,pointerType:'mouse',isPrimary:true,preventDefault(){},stopPropagation(){},stopImmediatePropagation(){stopped=true},...event};e.pageX??=e.clientX;e.pageY??=e.clientY;for(const r of [...(handlers.get(type)||[])].sort((a,b)=>Number(b.capture)-Number(a.capture))){if(stopped)break;r.f(e)}return e},
   setPointerCapture(id){captured.add(id)},hasPointerCapture(id){return captured.has(id)},releasePointerCapture(id){if(captured.delete(id))c.emit('lostpointercapture',{pointerId:id})},remove(){this.removed=true},
@@ -58,7 +59,7 @@ function makeDOMNode(tag){
    for(const p of [...ancestors].reverse()){invoke(p,true);if(stopped)return event}invoke(this,true);if(!immediate)invoke(this,false);
    if(event.bubbles&&!stopped)for(const p of ancestors){invoke(p,false);if(stopped)break}event.currentTarget=null;return event;
   },
-  click(){if(!this.disabled)this.emit('click')},focus(){fixtureDocument.activeElement=this},blur(){if(fixtureDocument.activeElement===this)fixtureDocument.activeElement=null;this.emit('blur',{bubbles:false})},
+  click(){if(!this.disabled)this.emit('click')},focus(){const previous=fixtureDocument.activeElement;if(previous!==this){previous?.blur?.();fixtureDocument.activeElement=this;}},blur(){if(fixtureDocument.activeElement===this)fixtureDocument.activeElement=null;this.emit('blur',{bubbles:false})},
   setPointerCapture(id){captured.add(id)},hasPointerCapture(id){return captured.has(id)},releasePointerCapture(id){if(captured.delete(id))this.emit('lostpointercapture',{pointerId:id})},
   contains(other){return this===other||this.children.some(c=>c.contains?.(other))},
   matches(selector){
@@ -1406,6 +1407,63 @@ for(const mode of ['perspective','top']){
  }
 }
 
+// Rotation focus must flush numeric drafts before any entity/origin snapshot.
+for(const mode of ['perspective','top'])for(const [prop,value]of [['xMm',450.25],['zMm',250.5],['yawDeg',65.5]])for(const ending of ['commit','cancel']){
+ const x=await rotationSetup({mode}),draft=makeDOMNode('input');draft.id='layout-field-'+prop;draft.value=String(value);x.container.append(draft);
+ let edits=0;draft.addEventListener('blur',()=>{edits++;void x.engine.act({type:'UPDATE_FURNITURE',id:'rotate-desk',patch:{pose:{[prop]:Number(draft.value)}}});});draft.focus();
+ const h=x.button('handle');h.emit('pointerdown',{clientX:300,clientY:200});
+ assert.equal(edits,1,'Rotation focus did not commit numeric draft');assert.equal(fixtureDocument.activeElement,h);
+ const fresh=x.engine.read().state.furniture.find(f=>f.id==='rotate-desk').pose,afterEdit=S.serializeLayout(x.engine.read().state,x.catalog);
+ assert.equal(fresh[prop],value);assert.equal(x.engine.read().past.length,1);assert.equal(h.hasPointerCapture(71),true);
+ h.emit('pointermove',{clientX:360,clientY:200});assert.ok(x.proposals.length,'First post-blur gesture never reached constraint');
+ assert.deepEqual(x.proposals.at(-1).context.origin,{yawDeg:fresh.yawDeg,x:fresh.xMm,z:fresh.zMm},'Rotation captured a stale pre-blur origin');
+ const node=x.nodes(false).get('rotate-desk');angleNear(node.rotation.y,(fresh.yawDeg+30)*Math.PI/180,'First rotation gesture must be accepted after numeric blur');
+ angleNear(node.position.x,fresh.xMm/1000,'Fresh rotation X');angleNear(node.position.z,fresh.zMm/1000,'Fresh rotation Z');
+ assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),afterEdit,'Preview unexpectedly committed state');
+ h.emit(ending==='commit'?'pointerup':'pointercancel');await settled();
+ if(ending==='cancel'){
+  assert.equal(x.rotations.length,0);assert.equal(x.engine.read().past.length,1);assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),afterEdit,'Cancel lost the numeric edit');
+  angleNear(x.nodes(false).get('rotate-desk').rotation.y,fresh.yawDeg*Math.PI/180,'Cancel must restore post-edit yaw');
+ }else{
+  assert.equal(x.rotations.length,1);assert.equal(x.engine.read().past.length,2,'Numeric edit plus one gesture must own exactly two history entries');
+  angleNear(x.engine.read().state.furniture.find(f=>f.id==='rotate-desk').pose.yawDeg,fresh.yawDeg+30,'Committed fresh-origin yaw');
+  const committed=S.serializeLayout(x.engine.read().state,x.catalog);await x.engine.act({type:'undo'});assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),afterEdit);await x.engine.act({type:'redo'});assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),committed);
+ }
+ assert.equal(edits,1);assert.deepEqual(x.engine.read().errors,[]);assert.deepEqual(x.errors,[]);x.api.dispose();
+ passed.push(mode+' rotation pointer focus commits '+prop+' first, uses fresh constraint origin, and '+ending+' preserves one-gesture history/post-edit source pose.');
+}
+for(const invalidation of ['selection','dispose']){
+ const x=await rotationSetup(),draft=makeDOMNode('input'),h=x.button('handle');x.container.append(draft);
+ draft.addEventListener('blur',()=>{if(invalidation==='selection')x.engine.select(null);else x.api.dispose();});draft.focus();
+ h.emit('pointerdown',{clientX:300,clientY:200});h.emit('pointermove',{clientX:360,clientY:200});h.emit('pointerup');
+ assert.equal(h.hasPointerCapture(71),false,'Invalidated rotation captured a pointer');assert.equal(x.proposals.length,0);assert.equal(x.rotations.length,0);assert.equal(x.engine.read().past.length,0);
+ if(invalidation!=='dispose')x.api.dispose();passed.push('Rotation revalidates '+invalidation+' changed by focus/blur before snapshot or pointer capture.');
+}
+
+// Canvas focus must commit an inspector draft before the renderer raycasts.
+// The next hit exists only at the committed position, so focusing after hit
+// cannot pass this regression. Native input arrows are a sibling DOM path.
+for(const mode of ['perspective','top']){
+ const x=await rotationSetup({mode}),draft=makeDOMNode('input');draft.id='layout-field-xMm';draft.value='-2200';x.container.append(draft);
+ const saved=S.serializeLayout(x.engine.read().state,x.catalog);draft.focus();
+ const inputArrow=draft.emit('keydown',{key:'ArrowRight'});
+ assert.equal(inputArrow.defaultPrevented,false,'Native input arrow must remain uncancelled');
+ assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),saved,'Input arrow reached canvas movement handler');
+ let commits=0;draft.addEventListener('blur',()=>{commits++;void x.engine.act({type:'UPDATE_FURNITURE',id:'rotate-desk',patch:{pose:{xMm:Number(draft.value)}}});});
+ const desk=x.nodes(false).get('rotate-desk'),point=desk.position.clone();point.x=-2.2;point.y=mode==='top'?0:.75;
+ const at=screen(point,x.renderer.lastCamera);x.api.canvas.emit('pointerdown',at);
+ assert.equal(commits,1,'Canvas focus must commit the existing draft exactly once');
+ assert.equal(fixtureDocument.activeElement,x.api.canvas,'Object selection must hand keyboard focus to canvas');
+ assert.equal(x.engine.read().state.furniture.find(f=>f.id==='rotate-desk').pose.xMm,-2200);
+ assert.equal(x.engine.read().selected,'rotate-desk','Hit used stale pre-blur geometry rather than the newly committed desk');
+ x.api.canvas.emit('pointercancel');await settled();
+ const before=x.engine.read().state.furniture.find(f=>f.id==='rotate-desk').pose.xMm;
+ x.api.canvas.emit('keydown',{key:'ArrowRight'});
+ assert.equal(x.engine.read().state.furniture.find(f=>f.id==='rotate-desk').pose.xMm,before+10,'Focused scene selection must receive actual app nudges');
+ assert.equal(commits,1);assert.equal(x.engine.read().past.length,2,'Draft commit and canvas nudge each own one history step');
+ x.api.dispose();passed.push(mode+' inspector input arrows remain native; object pointerdown focuses canvas and commits draft before current-geometry hit; subsequent app canvas arrow moves10mm.');
+}
+
 // Unit codes are planning annotations: source identities, listener lifetime,
 // live movement and 2D output are checked separately from actual model fit.
 for(const mode of ['perspective','top']){
@@ -1420,7 +1478,11 @@ for(const mode of ['perspective','top']){
  const old=markers()[1];old.focus();old.click();await settled();
  assert.equal(x.engine.read().selected,'other-unit');assert.equal(markers()[1].getAttribute('aria-pressed'),'true');
  assert.equal(old.reviewHandlers.get('click').length,0,'Old marker listener retained on rebuild');
- assert.equal(fixtureDocument.activeElement,markers()[1],'Selected marker loses focus on state rebuild');
+ assert.equal(fixtureDocument.activeElement,x.api.canvas,'Unit marker selection must transfer focus to canvas after state rebuild');
+ const selectedPose=x.engine.read().state.groups.find(g=>g.id==='other-unit').pose;
+ x.api.canvas.emit('keydown',{key:'ArrowRight'});
+ assert.equal(x.engine.read().state.groups.find(g=>g.id==='other-unit').pose.xMm,selectedPose.xMm+10,'Unit marker click must enable the real app canvas nudge handler');
+ await x.engine.act({type:'undo'});assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),saved,'One undo restores the marker-selected unit nudge');
  x.engine.select('wall-group');await settled();
  const m=markers()[0],before=[m.style.left,m.style.top];
  const entity=x.nodes(false).get('rotate-desk'),at=screen(entity.position.clone().add(new THREE.Vector3(.4,.75,.2)),x.renderer.lastCamera);

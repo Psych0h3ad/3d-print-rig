@@ -19,6 +19,8 @@ const H=await import(pathToFileURL(path.join(site,'layout/layout-clipboard.mjs')
 read('layout/layout-clipboard.mjs');read('layout/layout-collision.mjs');
 read('layout/layout-groups.mjs');read('layout/layout-group-data.mjs');
 const {proposePlacement}=await import(pathToFileURL(path.join(site,'layout/layout-placement.mjs')));
+read('layout/layout-placement-feedback.mjs');
+const {placementStatus}=await import(pathToFileURL(path.join(site,'layout/layout-placement-feedback.mjs')));
 consumed['layout/layout-placement.mjs']=crypto.createHash('sha256').update(fs.readFileSync(path.join(site,'layout/layout-placement.mjs'))).digest('hex');
 const {createDefaultLayout,createRoomRect,createDesk,createCatalog,applyAction,serializeLayout,parseLayout}=S;
 const {setupLayoutLanguage}=await import(pathToFileURL(path.join(site,'layout/layout-language.mjs')));
@@ -186,7 +188,7 @@ await test('desktop-bootstrap-reaches-ready-with-automatic-renderer-and-no-remov
   const calls={sync:0,language:0,views:[],presentations:[],options:[],libraries:[]};
   const sync=()=>calls.sync++,updateLanguage=()=>calls.language++,dark=()=>false;
   const updateViewPresentation=value=>calls.presentations.push(value);
-  const createLayoutUI=()=>({fixture:true,setGroupLibrary:items=>calls.libraries.push(items)});
+  const createLayoutUI=()=>({fixture:true,setStatus:value=>calls.status=value,setGroupLibrary:items=>calls.libraries.push(items)});
   ${unique(app,'function readSavedLayout(){','\nfunction message(')}
   ${librarySource}
   ${defaultSource}
@@ -203,6 +205,7 @@ await test('desktop-bootstrap-reaches-ready-with-automatic-renderer-and-no-remov
  assert.equal(result.ready,'true');assert.equal(result.state.furniture.length,1);assert.equal(result.state.printers.length,1);assert.equal(result.calls.sync,1);assert.equal(result.calls.language,1);
  assert.deepEqual(result.calls.presentations,[{mode:'perspective',projection:'perspective-3d'}]);
  assert.deepEqual(result.calls.libraries,[[]],'Actual startup initializes saved-set controls without fetching printer models');
+ assert.equal(result.calls.status.canPaste,true,'Fresh tabs can request the system clipboard');
  assert.equal(e.documentListeners.get('keydown')?.length,2,'Actual startup binds history and placement shortcuts');
  assert.equal(e.documentListeners.get('copy')?.length,1);assert.equal(e.documentListeners.get('paste')?.length,1);
 });
@@ -562,10 +565,10 @@ await test('active-placement-name-and-status-switch-five-languages-without-repea
  const rotation=unique(app,'function rotatePlacement(reverse=false){','\nfunction download(');
  const factory=new Function('deps',`
  const needsEquipmentPreview=${needsEquipmentPreview.toString()},isLayoutEquipmentPreviewPrepared=()=>false,prepareLayoutEquipmentPreview=()=>{throw Error('Unexpected equipment request in native-only fixture');};const equipmentRows=[];
-let placement={kind:'desk',name:'Desk',yawDeg:0};const $=s=>deps.nodes[s],t=(k,v)=>deps.translate(k,v),view={refreshPlacement(){const result={valid:true};updatePlacementBar(result);return result;}};${source}${rotation};return {update:updatePlacementBar,rotate:rotatePlacement,kind:value=>placement.kind=value};`);
+const {placementStatus}=deps;let placement={kind:'desk',name:'Desk',yawDeg:0};const $=s=>deps.nodes[s],t=(k,v)=>deps.translate(k,v),view={refreshPlacement(){const result={valid:true};updatePlacementBar(result);return result;}};${source}${rotation};return {update:updatePlacementBar,rotate:rotatePlacement,kind:value=>placement.kind=value};`);
  const bar={dataset:{}},name={textContent:''};let writes=0,text='';const status={dataset:{},get textContent(){return text},set textContent(v){text=v;writes++}};
  let language='en';const nodes={'#layout-placement-bar':bar,'#layout-placement-name':name,'#layout-placement-status':status};
- const r=factory({nodes,translate:(k,v)=>t(k,v,language)});
+ const r=factory({nodes,placementStatus,translate:(k,v)=>t(k,v,language)});
  for(const code of supportedLanguages){language=code;r.update({valid:true});assert.equal(name.textContent,t('layout.place.active',{name:t('layout.desk',{},code)},code));assert.equal(status.textContent,t('layout.place.ready',{},code));const before=writes;r.update({valid:true});assert.equal(writes,before,'Identical status must not repeat aria-live writes');r.rotate();assert.equal(status.hidden,false,'Rotation must retain the refreshed placement status');assert.equal(bar.dataset.valid,'true');r.kind('shelf');r.update({valid:false});assert.equal(name.textContent,t('layout.place.active',{name:t('layout.shelf',{},code)},code));assert.equal(status.textContent,t('layout.place.blocked',{},code));r.kind('desk');}
 });
 await test('back-forward-cache-preserves-live-controls-and-real-unload-disposes',()=>{

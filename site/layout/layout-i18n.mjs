@@ -25,6 +25,10 @@ export function resolveLayoutLanguage({href, stored} = {}) {
 // Each row is [id, English, Japanese, Spanish, Korean, Russian].
 // Names and dimensions supplied by the catalog are values, never translated IDs.
 const rows = [
+  ["layout.place.repeat", "Keep placing", "連続配置", "Colocación continua", "연속 배치", "Размещать ещё"],
+  ["layout.place.repeatHelp", "Keep placing copies until cancelled. Shift also places another copy.", "キャンセルするまで続けて配置します。Shiftキーでも連続配置できます。", "Sigue colocando copias hasta cancelar. Mayús también permite colocar otra copia.", "취소할 때까지 복사본을 계속 배치합니다. Shift로도 추가 배치할 수 있습니다.", "Размещайте копии до отмены. Shift также позволяет разместить ещё одну копию."],
+  ["layout.clipboard.pasteShortcut", "Press Ctrl+V or Cmd+V to paste from the clipboard.", "Ctrl+V / Cmd+Vでクリップボードから貼り付けてください。", "Pulsa Ctrl+V o Cmd+V para pegar desde el portapapeles.", "Ctrl+V 또는 Cmd+V로 클립보드에서 붙여넣으세요.", "Нажмите Ctrl+V или Cmd+V для вставки из буфера обмена."],
+  ["layout.clipboard.copyShortcut", "Press Ctrl+C or Cmd+C to copy the selection.", "Ctrl+C / Cmd+Cで選択したものをコピーしてください。", "Pulsa Ctrl+C o Cmd+C para copiar la selección.", "Ctrl+C 또는 Cmd+C로 선택 항목을 복사하세요.", "Нажмите Ctrl+C или Cmd+C, чтобы скопировать выбранное."],
   ['layout.nav.output','Output','出力','Salida','출력','Вывод'],
   ['layout.browser.search','Find objects or unit codes','名前・ユニット記号で検索','Buscar objetos o códigos de unidad','개체 또는 유닛 코드 검색','Поиск объектов или кодов блоков'],
   ['layout.browser.filters','Object types','種類','Tipos de objeto','개체 유형','Типы объектов'],

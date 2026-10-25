@@ -347,3 +347,8 @@ input[aria-invalid="true"] { border-color: var(--layout-error); }
 .layout-manufacturer-contacts { display: flex; flex-wrap: wrap; gap: 8px 16px; }
 .layout-manufacturer-contacts a { color: var(--ink); text-underline-offset: 3px; overflow-wrap: anywhere; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; } }
+
+.layout-placement-repeat { display: inline-flex; align-items: center; gap: 6px; padding: 6px 8px; min-height: 34px; border: 1px solid var(--line); border-radius: 6px; color: var(--ink); font-size: 12px; cursor: pointer; }
+.layout-placement-repeat:has(input:checked) { background: var(--layout-selected); color: var(--accent); }
+.layout-placement-repeat input { margin: 0; accent-color: var(--accent); }
+.layout-placement-status { max-width: 100%; overflow-wrap: anywhere; }
