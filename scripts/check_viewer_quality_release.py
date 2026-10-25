@@ -25,6 +25,10 @@ HOSTS = {'psych0h3ad.github.io', 'github.com', 'objects.githubusercontent.com',
          'release-assets.githubusercontent.com', 'raw.githubusercontent.com'}
 SITE_URL = 'https://psych0h3ad.github.io/3d-print-rig/'
 COLORS = ('crossant_235_v06_leadscrew', 'vzbot_330_printed')
+SOURCE_PRINTED_KEYS = {
+    COLORS[0]: {'crossant_01030', 'crossant_01040', 'crossant_01042', 'crossant_01043', 'crossant_01044'},
+    COLORS[1]: {'00229', '00230', '00231', '00232', '00233', '00234', '00235', '00236', '00250', '00253'},
+}
 HALF = 'voron_trident_350_half_z'
 ROUTES = ('mercury_one1_235', 'mercury_one1_370', 'lh_stinger_200')
 CATALOGS = ('CROSSANT_ASSETS.json', 'COMMUNITY_MACHINES_ASSETS.json', 'CUSTOM_VORON_ASSETS.json')
@@ -360,12 +364,22 @@ def validate_report(kind, report, plan, bindings, machine=None):
             if row.get('passed') is not True or row.get('classification_misses') or row.get('material_slots', 0) <= 0 or row.get('attached_color_checks', 0) <= 0:
                 raise ValueError('Incomplete actual color evidence: ' + mid)
             if mid in COLORS:
-                count = 5 if mid == COLORS[0] else 8
-                if row.get('independently_expected_printed_leaves') != count or len(row.get('reviewed_printed_palette_checks', [])) < count * 7:
+                expected_keys = SOURCE_PRINTED_KEYS[mid]
+                checks = row.get('reviewed_printed_palette_checks', [])
+                if (row.get('independently_expected_printed_leaves') != len(expected_keys)
+                        or {c.get('key') for c in checks} != expected_keys
+                        or any(sum(c.get('key') == key for c in checks) < 7 for key in expected_keys)):
                     raise ValueError('Missing source-bound printed leaf/palette evidence')
-                for check in row['reviewed_printed_palette_checks']:
+                for check in checks:
                     if not check.get('slots') or any(s['expected_color'] != s['actual_color'] for s in check['slots']):
                         raise ValueError('Actual printed material slot failed')
+        handles = report.get('source_handle_materials', {})
+        if (report.get('source_printed_leaf_count') != 15 or handles.get('passed') is not True
+                or set(handles.get('printed_keys', [])) != {'00250', '00253'}
+                or set(handles.get('purchased_keys', [])) != {'00251', '00252'}
+                or handles.get('negative_assertions', 0) < 4 or handles.get('attached_material_checks', 0) <= 0
+                or handles.get('purchased_PBR_preserved') is not True or handles.get('exact_source_color_reset') is not True):
+            raise ValueError('Missing actual purchased-bolt negative assertions for the 15-leaf color gate')
     elif kind == 'half-z':
         if (not report.get('rows') or report.get('triangle_tests', 0) <= 0 or report.get('findings')
                 or report.get('inputs_stable_during_audit') is not True
@@ -456,7 +470,7 @@ def run(site, output, inputs=None):
     finally:
         summary['seconds'] = round(time.monotonic() - start, 3)
         write(output / 'viewer-quality-release.json', summary)
-    print('Viewer quality release passed: 13 source color leaves, 17 baseline color models, half-Z and all three changed family routes.', flush=True)
+    print('Viewer quality release passed: 15 source color leaves, 17 baseline color models, half-Z and all three changed family routes.', flush=True)
     return summary
 
 

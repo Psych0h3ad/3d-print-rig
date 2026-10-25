@@ -16,8 +16,11 @@ export const printedColorSourceContracts={
   manifest_sha256:'c287d2108da5ee2e7c99d906faf28be264e433f2d99b10bb3dd7dea4ea771cb5',
   model_sha256:'04ca850e7ce000b44db73a35058d036e4c537a7b715486172d527a926f93756c',parts:2872,
   source_repository:'https://github.com/VzBoT3D/VzBoT-Vz330',source_revision:'a7b1cdc7121c1d36c73704aa3c7d74c42bc0c959',
-  printed:{'00229':'endcap [printed]','00230':'endcap [printed] (2)','00231':'endcap [printed] (7)','00232':'endcap [printed] (5)','00233':'endcap [printed] (1)','00234':'endcap [printed] (3)','00235':'endcap [printed] (4)','00236':'endcap [printed] (6)'},
-  author_stls:[{path:'Assemblies BOM and STL/Frame/STLs/2020 Endcap.stl',git_blob_sha1:'22005c77467a9deeafe2f655e23a11c90859e139'}],
+  printed:{'00229':'endcap [printed]','00230':'endcap [printed] (2)','00231':'endcap [printed] (7)','00232':'endcap [printed] (5)','00233':'endcap [printed] (1)','00234':'endcap [printed] (3)','00235':'endcap [printed] (4)','00236':'endcap [printed] (6)','00250':'Handle (3)','00253':'SOLID'},
+  purchased:{'00251':{name:'m4 10mm bolt',role:'metal'},'00252':{name:'m4 10mm bolt',role:'metal'}},
+  author_stls:[{path:'Assemblies BOM and STL/Frame/STLs/2020 Endcap.stl',git_blob_sha1:'22005c77467a9deeafe2f655e23a11c90859e139'},
+   {path:'Assemblies BOM and STL/Frame/STLs/handle.stl',git_blob_sha1:'d18ee7f06afd2c1d69817c106af2ca8cbd573bb1',sha256:'d7ae6b29d13b9e74271c2d5646786591be9373033cbaa769e0c8f058c8685dfa'}],
+  author_instructions:{path:'Build guide-manual/Mellow Kit/README.md',git_blob_sha1:'32ca7b098d87a493de13870ad76a7495d4115d4e',section:'What do I need to print? / Frame'},
  },
 };
 export function assertPrintedColorSourceRegistrations(machines){
@@ -37,5 +40,9 @@ export function assertPrintedColorSourceAsset(id,manifestHash,modelHash,manifest
  const parts=new Map(manifest.parts.map(p=>[p.key,p]));
  assert.equal(parts.size,contract.parts,id+' duplicate source leaf');
  for(const [key,name]of Object.entries(contract.printed))assert.equal(parts.get(key)?.name,name,id+' missing original printed leaf '+key);
+ for(const [key,expected]of Object.entries(contract.purchased||{})){
+  assert.equal(parts.get(key)?.name,expected.name,id+' missing original purchased leaf '+key);
+  assert.equal(parts.get(key)?.appearance_role,expected.role,id+' purchased source role changed '+key);
+ }
  return contract;
 }

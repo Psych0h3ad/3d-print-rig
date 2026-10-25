@@ -1,7 +1,7 @@
 import {loadedFamilyAssetIdentity} from './gcode-loaded-asset-identity.mjs?v=42ac134c2d9a8b8f8dfc';
 import * as THREE from './vendor-r180/three.module.js';
 import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
-import {createCrossantAdapter} from './crossant-adapter.mjs?v=c72051570963f8dd2107';
+import {createCrossantAdapter} from './crossant-adapter.mjs?v=11787c79fb973bbd8d72';
 import {createChainPreview} from './crossant-chain_preview.mjs';
 import {createCrossantCovers} from './crossant-covers.mjs?v=c0781087f44545d6025d';
 import {beginModelLoading,readModelBytes} from './model-progress.mjs?v=beaef781095b6f56b290';

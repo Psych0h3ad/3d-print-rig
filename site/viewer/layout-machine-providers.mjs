@@ -37,7 +37,7 @@ export async function loadLayoutRecipe(recipe,{signal,onProgress}) {
    loaded=await loadElegooReference(row,{signal,onProgress});own(loaded);return finish(loaded,{catalog:'viewer/elegoo-catalog.mjs',asset:row,static_reference:true},()=>disposeElegooRoot(loaded.root));
   }
   if(recipe.category==='community') {
-   const [{loadCommunity},{evaCommunityIndex}]=await Promise.all([import('./community-loader.mjs?v=a5be7a1661fae0019ab7'),import('./eva-installations.mjs?v=4dfad49e1f98d4b5b9f2')]);
+   const [{loadCommunity},{evaCommunityIndex}]=await Promise.all([import('./community-loader.mjs?v=33dd8490957aa2b1a7b0'),import('./eva-installations.mjs?v=4dfad49e1f98d4b5b9f2')]);
    const index=evaCommunityIndex(await json('COMMUNITY_MACHINES_ASSETS.json',signal),await json('EVA_INSTALLATIONS.json',signal));
    loaded=await loadCommunity(index,id,options);own(loaded);
    const configuration=loaded.profile.eva_installation?.configuration??'stock';
@@ -66,7 +66,7 @@ export async function loadLayoutRecipe(recipe,{signal,onProgress}) {
    return finish(loaded,{catalog:'POSITRON_ASSETS.json',asset:index,fold:0,accessories:true});
   }
   if(recipe.category==='crossant') {
-   const {loadCrossant}=await import('./crossant-loader.mjs?v=d71ed46b89d47fb4d938');const index=await json('CROSSANT_ASSETS.json',signal);
+   const {loadCrossant}=await import('./crossant-loader.mjs?v=2f9fde96818e445ca184');const index=await json('CROSSANT_ASSETS.json',signal);
    loaded=await loadCrossant(index,options);own(loaded);loaded.covers.setVisible(true);loaded.covers.setThickness(3);loaded.adapter.setPalette(loaded.profile.appearance.palette_defaults);
    return finish(loaded,{catalog:'CROSSANT_ASSETS.json',asset:index,covers:true,coverThickness:3});
   }
@@ -76,7 +76,7 @@ export async function loadLayoutRecipe(recipe,{signal,onProgress}) {
     const {createRemorphAdapter}=await import('./remorph-adapter.mjs');loaded.adapter=createRemorphAdapter(loaded.root,loaded.manifest,loaded.profile,loaded.bindings);
     loaded.adapter.setEnclosureVisible(true);loaded.adapter.setFlexibleVisible(true);loaded.adapter.setPose(pose(loaded.profile));
    }else {
-    const THREE=await import('./vendor-r180/three.module.js'),{applyNativeMotionProfile,loadNativeMotionProfile}=await import('./native-motion-profile.mjs?v=91532eb992519143f437'),{createCommunityAdapter}=await import('./community-adapter.mjs?v=318e9cce1803a037cb42');
+    const THREE=await import('./vendor-r180/three.module.js'),{applyNativeMotionProfile,loadNativeMotionProfile}=await import('./native-motion-profile.mjs?v=91532eb992519143f437'),{createCommunityAdapter}=await import('./community-adapter.mjs?v=611339ada395324d092b');
     const rig=await loadNativeMotionProfile(id,{signal});Object.assign(loaded,applyNativeMotionProfile(loaded.manifest,loaded.profile,rig,loaded.row.files['model.glb'].decoded_sha256));
     loaded.root.rotation.x=loaded.profile.viewer_orientation.viewer_root_rotation_x_radians;
     loaded.root.traverse(n=>{if(!n.isMesh)return;const match=n.name.match(/^(p\d+)__/);if(!match)throw Error('Annex part identity');n.userData.part_key=match[1];for(const m of [].concat(n.material))m.side=THREE.DoubleSide});
@@ -87,7 +87,7 @@ export async function loadLayoutRecipe(recipe,{signal,onProgress}) {
    return finish(loaded,{catalog:'EXTRA_MACHINE_ASSETS.json',asset:loaded.row});
   }
   if(recipe.category==='kit') {
-   const {loadKitReference}=await import('./kit-reference-loader.mjs?v=1e4ea653a75783c74b41'),{createCommunityAdapter}=await import('./community-adapter.mjs?v=318e9cce1803a037cb42');
+   const {loadKitReference}=await import('./kit-reference-loader.mjs?v=1e4ea653a75783c74b41'),{createCommunityAdapter}=await import('./community-adapter.mjs?v=611339ada395324d092b');
    const raw=await loadKitReference(id,options);loaded={...raw,root:raw.g.scene};own(loaded);loaded.adapter=createCommunityAdapter(loaded.root,loaded.manifest,loaded.profile);loaded.adapter.setAxes(Object.fromEntries(Object.keys(loaded.profile.axes).map(a=>[a,0])));
    return finish(loaded,{catalog:'machines/'+id,defaultPalette:'source-native'});
   }
