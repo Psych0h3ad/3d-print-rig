@@ -1,5 +1,26 @@
 // Prepared mesh coordinates already use the shared floor datum. Bounding-box
 // centerM/sizeM describe the part; they are not a second object transform.
+import {LAYOUT_EQUIPMENT_PREVIEW} from './layout-equipment.mjs?v=bd8e2772cabd6fd2564b';
+// Exact prepared intrinsic closure; this branch never constructs a second cap.
+export const U1_INTRINSIC_BOTTOM_SOURCE=Object.freeze({
+  name:'bottom_closure / closed bottom display plate',
+  previewGeometryId:'u1-exterior-exterior-dbbb9777ea5b4d',
+  previewBodySHA256:'2d550ca3761fbdde8cf57a396ac816cf70efc8b7965e92396f727322e5f7779e',
+  models:Object.freeze({
+    standalone:Object.freeze({path:'layout/assets/equipment/u1-exterior/U1_exterior_standalone_loaded.glb',bytes:5751820,sha256:'10fea968e60fd90fe3ac7652a71a35795b949584477d32c9c514c6b325e67768'}),
+    docked:Object.freeze({path:'layout/assets/equipment/u1-exterior/U1_exterior_docked.glb',bytes:5262896,sha256:'ab0aaaa9adc6aabaca1a45000902a97f1a9a9fc80db8f3807d3a7cf3c3880fe5'})
+  })
+});
+function deriveLegacyPreviewBottom(){
+  const hash=LAYOUT_EQUIPMENT_PREVIEW.body.sha256;
+  if(hash===U1_INTRINSIC_BOTTOM_SOURCE.previewBodySHA256){
+    if(!Object.hasOwn(LAYOUT_EQUIPMENT_PREVIEW.geometry,U1_INTRINSIC_BOTTOM_SOURCE.previewGeometryId))
+      throw bottomFail('intrinsic preview closure receipt missing');
+    return false;
+  }
+  if(hash==='3963e49ff68e19254a2c38ddddf56f411c8885886b2ce425ad9c84d904203b38')return true;
+  throw bottomFail('unreviewed preview body');
+}
 export const U1_BOTTOM_SOURCE=Object.freeze({
   id:'snapmaker_u1_layout_reference',name:'casing / lower casing perimeter rim',
   previewGeometryId:'u1-exterior-exterior-9c5aa700906a4c',
@@ -103,6 +124,27 @@ function bufferGeometry(THREE,positions,normals,indices){
  */
 export function addU1BottomClosure(THREE,root,row){
   if(row.id!==U1_BOTTOM_SOURCE.id)return null;
+  const intrinsic=U1_INTRINSIC_BOTTOM_SOURCE.models[row.equipmentVariant];
+  if(intrinsic&&Object.entries(intrinsic).every(([k,v])=>row.model?.[k]===v)){
+    const matches=[];let derivative=false;
+    root.updateMatrixWorld(true);
+    root.traverse(node=>{
+      if(node.isMesh&&((node.userData.name??node.name)===U1_INTRINSIC_BOTTOM_SOURCE.name
+        ||node.userData.groupId==='bottom_closure'||node.userData.groupKind==='bottom_closure'))matches.push(node);
+      if((node.userData.name??node.name)===U1_BOTTOM_SOURCE.derivativeName
+        ||node.userData.layoutEquipmentDerivative||node.geometry?.userData.layoutEquipmentDerivative)derivative=true;
+    });
+    if(matches.length!==1||(matches[0].userData.name??matches[0].name)!==U1_INTRINSIC_BOTTOM_SOURCE.name
+      ||matches[0].userData.groupId!=='bottom_closure'
+      ||matches[0].userData.groupKind!=='bottom_closure'||!matches[0].material?.isMeshStandardMaterial
+      ||matches[0].material.transparent||matches[0].material.opacity!==1||derivative
+      ||!matches[0].matrixWorld.equals(new THREE.Matrix4())
+      ||!matches[0].geometry?.getAttribute('position')?.count
+      ||matches[0].geometry.getAttribute('normal')?.count!==matches[0].geometry.getAttribute('position').count
+      ||!matches[0].geometry.index?.count)
+      throw bottomFail('intrinsic bottom occurrence missing, duplicated or changed');
+    return null;
+  }
   const pin=U1_BOTTOM_SOURCE.models[row.equipmentVariant];
   if(!pin||Object.entries(pin).some(([k,v])=>row.model?.[k]!==v))throw bottomFail('unreviewed source model');
   root.updateMatrixWorld(true);const matches=[];
@@ -140,7 +182,7 @@ export function createEquipmentMeshCache(THREE) {
         ||!positionsM.every(Number.isFinite)||!normals.every(Number.isFinite)
         ||!indices.every(i=>Number.isSafeInteger(i)&&i>=0&&i<positionsM.length/3))throw fail('Invalid equipment mesh arrays');
       let geometry;
-      if(geometryId===U1_BOTTOM_SOURCE.previewGeometryId){
+      if(geometryId===U1_BOTTOM_SOURCE.previewGeometryId&&deriveLegacyPreviewBottom()){
         if(positionsM.length!==288*3||indices.length!==256*3)throw bottomFail('preview rim source contract changed');
         const cap=deriveU1Bottom(THREE,positionsM,indices),offset=positionsM.length/3;
         geometry=bufferGeometry(THREE,[...positionsM,...cap.positionsM],[...normals,...cap.normals],

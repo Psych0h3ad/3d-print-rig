@@ -5,8 +5,8 @@
     {
       "variant": "standalone",
       "path": "layout/assets/equipment/u1-exterior/U1_exterior_standalone_loaded.glb",
-      "bytes": 3631984,
-      "sha256": "f68bf8498a9a2d3114a6f8fff7af45c495208ac5098616426f3bc835e9089bd7",
+      "bytes": 5751820,
+      "sha256": "10fea968e60fd90fe3ac7652a71a35795b949584477d32c9c514c6b325e67768",
       "referencedComponent": {
         "nodeIndex": 28,
         "nodeName": "fixed_bed / PEI build plate - build plate",
@@ -16,8 +16,8 @@
     {
       "variant": "docked",
       "path": "layout/assets/equipment/u1-exterior/U1_exterior_docked.glb",
-      "bytes": 3143064,
-      "sha256": "de89610a4bdfb1b108498f345effe92109022d641d882c5ff113f01f57acc369",
+      "bytes": 5262896,
+      "sha256": "ab0aaaa9adc6aabaca1a45000902a97f1a9a9fc80db8f3807d3a7cf3c3880fe5",
       "referencedComponent": {
         "nodeIndex": 28,
         "nodeName": "fixed_bed / PEI build plate - build plate",

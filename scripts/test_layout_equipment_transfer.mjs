@@ -49,10 +49,10 @@ await test('hosted-exact-four-paths-and-both-pins-without-changing-raw-identity'
 
 await test('external-base-and-path-rejection-is-literal-before-any-fetch',async()=>{
  let requests=0;const opts={fetchImpl:async()=>{requests++;throw new Error('Unexpected fetch')}};
- for(const base of [null,'','http://psych0h3ad.github.io/3d-print-rig-extra-models/',
-  'https://PSYCH0H3AD.github.io/3d-print-rig-extra-models/',
-  'https://psych0h3ad.github.io:443/3d-print-rig-extra-models/',
-  'https://user@psych0h3ad.github.io/3d-print-rig-extra-models/',
+ for(const base of ['https://psych0h3ad.github.io/3d-print-rig-extra-models/',null,'','http://psych0h3ad.github.io/3d-print-rig-extra-models/layout-references/da1f857f0c48606ed818/',
+  'https://PSYCH0H3AD.github.io/3d-print-rig-extra-models/layout-references/da1f857f0c48606ed818/',
+  'https://psych0h3ad.github.io:443/3d-print-rig-extra-models/layout-references/da1f857f0c48606ed818/',
+  'https://user@psych0h3ad.github.io/3d-print-rig-extra-models/layout-references/da1f857f0c48606ed818/',
   LAYOUT_EQUIPMENT_TRANSFER_BASE.slice(0,-1),LAYOUT_EQUIPMENT_TRANSFER_BASE+'../3d-print-rig/',
   LAYOUT_EQUIPMENT_TRANSFER_BASE+'?x=1',LAYOUT_EQUIPMENT_TRANSFER_BASE+'#x',
   LAYOUT_EQUIPMENT_TRANSFER_BASE.replace('github.io','github.io.evil.invalid')]){
@@ -398,9 +398,9 @@ await test('both-real-audit-entrypoints-require-exact-cache-bodies-before-geomet
   fs.writeFileSync(path.join(metadataDir,'U1_BED_SOURCE_RECEIPT.json'),JSON.stringify(receipt));
 
   // The real gates prepare preview geometry before inspecting the GLB. Use a
-  // tiny, independently pinned 22-geometry fixture and the production strict
+  // tiny, independently pinned 29-geometry fixture and the production strict
   // cache implementation, so those prerequisites cannot mask corruption guards.
-  const geometries=Object.fromEntries(Array.from({length:22},(_,i)=>['fixture-'+i,{
+  const geometries=Object.fromEntries(Array.from({length:29},(_,i)=>['fixture-'+i,{
    positionsM:[0,0,0,1,0,0,0,1,0],normals:[0,0,1,0,0,1,0,0,1],indices:[0,1,2]}]));
   const arrayPin=(values,integer=false)=>{
    const a=integer?new Uint32Array(values):new Float32Array(values),b=Buffer.from(a.buffer,a.byteOffset,a.byteLength);

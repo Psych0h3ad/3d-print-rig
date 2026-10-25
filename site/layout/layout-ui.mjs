@@ -1,5 +1,5 @@
 // Presentation only. The application owns state, history, files and model loading.
-import {createRoomRect,createRoomL,createRoomPolygon,resolvePrinterEquipment} from './layout-state.mjs?v=0119a2ef6745811fe1cb';
+import {createRoomRect,createRoomL,createRoomPolygon,resolvePrinterEquipment} from './layout-state.mjs?v=38da7e9cd1bcecf14474';
 import {WALL_FINISHES,FLOOR_FINISHES,DEFAULT_ROOM_APPEARANCE} from './layout-finishes.mjs?v=001b62f9728770a12303';
 import {groupLabel} from './layout-group-labels.mjs?v=1ff84a0cf5540fd3184b';
 const PRINTER_VIEWER_PAGES=new Set(['','index.html','annex.html','community.html','crossant.html','custom-voron.html','kit-reference.html','micron.html','positron.html','ratrig.html','remorph.html','trident.html','v0.html','v24-reference.html','v24.html']);

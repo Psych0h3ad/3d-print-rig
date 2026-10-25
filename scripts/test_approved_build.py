@@ -118,7 +118,7 @@ class ApprovedEquipmentBuildGates(unittest.TestCase):
             file = cache/pathlib.PurePosixPath(name).name; file.write_bytes(raw)
             pathlib.Path(str(file)+'.gz').write_bytes(wire)
             transfer = {'path': name+'.gz', 'bytes': len(wire), 'sha256': hashlib.sha256(wire).hexdigest(),
-                        'encoding': 'gzip', 'baseURL': 'https://psych0h3ad.github.io/3d-print-rig-extra-models/'}
+                        'encoding': 'gzip', 'baseURL': 'https://psych0h3ad.github.io/3d-print-rig-extra-models/layout-references/da1f857f0c48606ed818/'}
             pin = {'path': name, 'bytes': len(raw), 'sha256': hashlib.sha256(raw).hexdigest(), 'transfer': transfer}
             kind = 'model' if name in build_approved_site.EQUIPMENT_MODELS else 'preview'
             entries.append({'kind': kind, 'pin': pin})
@@ -136,6 +136,39 @@ class ApprovedEquipmentBuildGates(unittest.TestCase):
     def external_fixture(self):
         values = self.fixture(external=True)
         return (*values, {'files': dict(self.prepared[values[0]]['files'])})
+
+    def test_normalized_current_u1_model_and_wire_pins_are_frozen(self):
+        # Read metadata only. Tiny orchestration bodies above keep their own
+        # honest hashes; they never masquerade as these real exported models.
+        import re
+        source = (pathlib.Path(__file__).resolve().parents[1]/'site/layout/layout-equipment.mjs').read_text(encoding='utf-8')
+        match = re.search(r'^const U1 = freeze\(([^\r\n]+)\);', source, re.MULTILINE)
+        self.assertIsNotNone(match, 'Current U1 metadata declaration missing')
+        variants = json.loads(match.group(1))['variants']
+        expected = {
+            'standalone': (5751820, '10fea968e60fd90fe3ac7652a71a35795b949584477d32c9c514c6b325e67768',
+                           2502888, 'bed023a588dd32d046666b395268c05e191d21cf2601431c54e8dbb3a3e0ecb5'),
+            'docked': (5262896, 'ab0aaaa9adc6aabaca1a45000902a97f1a9a9fc80db8f3807d3a7cf3c3880fe5',
+                       2371206, '81b3fc16f87b82d2c5b9a2d94a7958e0f6f2dd87280d286cc9c122224ade4934'),
+        }
+        for variant, identity in expected.items():
+            model = variants[variant]['model']; transfer = model['transfer']
+            self.assertEqual((model['bytes'], model['sha256'], transfer['bytes'], transfer['sha256']), identity)
+            self.assertEqual(transfer['path'], model['path']+'.gz')
+            self.assertEqual(transfer['encoding'], 'gzip')
+            self.assertEqual(transfer['baseURL'], 'https://psych0h3ad.github.io/3d-print-rig-extra-models/layout-references/da1f857f0c48606ed818/')
+
+    def test_equipment_catalog_rejects_legacy_other_prefix_and_unknown_host(self):
+        for base in ['https://psych0h3ad.github.io/3d-print-rig-extra-models/',
+                     'https://psych0h3ad.github.io/3d-print-rig-extra-models/layout-references/00000000000000000000/',
+                     'https://psych0h3ad.github.io/3d-print-rig-extra-models/layout-references/other/',
+                     'https://unapproved.example/layout-references/da1f857f0c48606ed818/']:
+            with self.subTest(base=base):
+                root, output, _, _, _ = self.fixture()
+                self.plans[root]['entries'][0]['pin']['transfer']['baseURL'] = base
+                with self.assertRaisesRegex(ValueError, 'canonical exact gzip transfers'):
+                    build_approved_site.equipment_catalog_plan(root)
+                self.assertFalse(output.exists())
 
     def runner(self, root, output, contract, decoded, mutate=None, equipment_inputs=None, prepared_dir=None):
         calls = []
@@ -184,21 +217,35 @@ class ApprovedEquipmentBuildGates(unittest.TestCase):
                 report.update(schema='layout-equipment-geometry-audit-v2', status='PASS', assets=list(receipts.values()))
             else:
                 report.update(schema='layout-equipment-actual-asset-audit-v2', assets=receipts)
-                witness = {'onlyMeasuredLowerRimPlanes': True, 'independentBoundaryAndAreaWitnesses': True}
+                # Synthetic closed-box report shape only. The current real
+                # helper/source hashes and all body pins remain mandatory.
+                witness = {'kind': 'intrinsic-bottom-closure', 'vertices': 24, 'triangles': 12,
+                           'closedManifoldEdges': 18, 'signedVolumeM3': 0.000238,
+                           'measuredOpeningContained': True, 'sourceArraysUnchanged': True,
+                           'topologyUsesWeldedIdsOnly': True, 'geometryUsesRawSourceVertices': True,
+                           'topologyWeldToleranceM': 1e-7,
+                           'rayMethod': ('Raw triangle XZ barycentric vertical intersection, including interpolated raw Y; '
+                                         'no welded/flattened triangle coordinates'),
+                           'rimPlanesM': [0.0056, 0.0124], 'verticalRayChecks': 800,
+                           'planes': [{'yM': y, 'areaM2': 0.14, 'boundaryVertices': 4,
+                                       'triangles': 2, 'verticalRayChecks': 400}
+                                      for y in [0.006, 0.0077]]}
                 variants = ['standalone', 'docked', 'standalone']
                 names = (*build_approved_site.EQUIPMENT_MODELS[:2], build_approved_site.EQUIPMENT_PREVIEW)
                 nested_bodies = {name+suffix: report['auditInputFiles'][name+suffix]
                                  for name in names for suffix in ('', '.gz')}
                 nested = {'schema': 'u1-measured-lower-shell-closure-audit-v1', 'passed': True,
+                          'closureMode': 'intrinsic-v6', 'originalAssetsModified': False,
                           'auditScriptSHA256': build_approved_site.digest(root/build_approved_site.U1_BOTTOM_AUDIT),
                           'auditDependencies': {'scripts/'+build_approved_site.LAYOUT_EQUIPMENT_AUDITS[0]:
                               build_approved_site.digest(root/'scripts'/build_approved_site.LAYOUT_EQUIPMENT_AUDITS[0])},
                           'sourceInputs': {name: report['sourceInputs'][name] for name in build_approved_site.U1_BOTTOM_SOURCES},
-                          'auditInputFiles': nested_bodies, 'sourcePreviewGeometries': 22, 'sourcePreviewReceipts': 66,
+                          'auditInputFiles': nested_bodies, 'sourcePreviewGeometries': 29, 'sourcePreviewReceipts': 87,
                           'loads': [{'variant': variant, 'model': dict(receipts[build_approved_site.EQUIPMENT_MODELS[1 if i == 1 else 0]], unit='m', up='+Y', front='+Z'),
                                      'serializedClosurePreserved': True, 'transformedPlacements': 5,
+                                     'runtimeDerivedCaps': 0, 'unchangedSourceMeshes': 8, 'disposedGeometries': 8,
                                      'closure': dict(witness), 'sourceResetHash': '1'*64} for i, variant in enumerate(variants)],
-                          'preview': [dict(witness, variant=variant) for variant in variants]}
+                          'preview': [dict(witness, variant=variant, runtimeDerivedCaps=0) for variant in variants]}
                 report['u1Bottom'] = json.loads(json.dumps(nested))
             if mutate:
                 special = mutate(script.name, report, report_path)
@@ -464,7 +511,11 @@ class ApprovedEquipmentBuildGates(unittest.TestCase):
                  'omitted-source', 'missing-body', 'extra-body', 'wrong-body-hash', 'wrong-body-path',
                  'missing-variant', 'wrong-order', 'changed-model', 'wrong-model-datum', 'missing-serialization',
                  'missing-transform', 'missing-boundary-witness', 'missing-preview-witness',
-                 'missing-receipts', 'wrong-reset']
+                 'missing-receipts', 'wrong-reset', 'missing-mode', 'unknown-mode', 'legacy-mode',
+                 'legacy-witness-only', 'legacy-receipt-count', 'assets-modified', 'changed-transfer',
+                 'missing-source-reset', 'invalid-source-reset', 'missing-disposal', 'missing-unchanged-source',
+                 'reset-count-changed', 'missing-full-cap-count', 'missing-preview-cap-count',
+                 'full-runtime-cap', 'preview-runtime-cap', 'boolean-cap-count']
         for case in cases:
             with self.subTest(case=case):
                 root, output, contract, inputs, decoded = self.fixture()
@@ -475,6 +526,15 @@ class ApprovedEquipmentBuildGates(unittest.TestCase):
                     if case == 'passed-stub': report['u1Bottom'] = {'passed': True}; return
                     if case == 'failed': nested['passed'] = False
                     if case == 'schema': nested['schema'] = 'old'
+                    if case == 'missing-mode': nested.pop('closureMode')
+                    if case == 'unknown-mode': nested['closureMode'] = 'unknown'
+                    if case == 'legacy-mode': nested['closureMode'] = 'derived-v4'
+                    if case == 'legacy-witness-only':
+                        nested['loads'][0]['closure'] = {'onlyMeasuredLowerRimPlanes': True,
+                                                         'independentBoundaryAndAreaWitnesses': True}
+                    if case == 'legacy-receipt-count':
+                        nested['sourcePreviewGeometries'], nested['sourcePreviewReceipts'] = 22, 66
+                    if case == 'assets-modified': nested['originalAssetsModified'] = True
                     if case == 'omitted-helper-hash': nested.pop('auditScriptSHA256')
                     if case == 'changed-helper-hash': nested['auditScriptSHA256'] = '0'*64
                     geometry = 'scripts/'+build_approved_site.LAYOUT_EQUIPMENT_AUDITS[0]
@@ -492,18 +552,110 @@ class ApprovedEquipmentBuildGates(unittest.TestCase):
                     if case == 'missing-variant': nested['loads'].pop()
                     if case == 'wrong-order': nested['preview'].reverse(); nested['preview'][0]['variant'] = 'docked'
                     if case == 'changed-model': nested['loads'][0]['model']['sha256'] = '0'*64
+                    if case == 'changed-transfer': nested['loads'][0]['model']['transfer']['sha256'] = '0'*64
                     if case == 'wrong-model-datum': nested['loads'][0]['model']['up'] = '+Z'
                     if case == 'missing-serialization': nested['loads'][0].pop('serializedClosurePreserved')
                     if case == 'missing-transform': nested['loads'][0].pop('transformedPlacements')
-                    if case == 'missing-boundary-witness': nested['loads'][0]['closure'].pop('independentBoundaryAndAreaWitnesses')
-                    if case == 'missing-preview-witness': nested['preview'][0].pop('onlyMeasuredLowerRimPlanes')
+                    if case == 'missing-boundary-witness': nested['loads'][0]['closure'].pop('measuredOpeningContained')
+                    if case == 'missing-preview-witness': nested['preview'][0].pop('sourceArraysUnchanged')
                     if case == 'missing-receipts': nested.pop('sourcePreviewReceipts')
                     if case == 'wrong-reset': nested['loads'][2]['sourceResetHash'] = '2'*64
+                    if case == 'missing-source-reset': nested['loads'][1].pop('sourceResetHash')
+                    if case == 'invalid-source-reset': nested['loads'][1]['sourceResetHash'] = 'q'*64
+                    if case == 'missing-disposal': nested['loads'][0].pop('disposedGeometries')
+                    if case == 'missing-unchanged-source': nested['loads'][0].pop('unchangedSourceMeshes')
+                    if case == 'reset-count-changed': nested['loads'][2]['unchangedSourceMeshes'] += 1
+                    if case == 'missing-full-cap-count': nested['loads'][0].pop('runtimeDerivedCaps')
+                    if case == 'missing-preview-cap-count': nested['preview'][0].pop('runtimeDerivedCaps')
+                    if case == 'full-runtime-cap': nested['loads'][0]['runtimeDerivedCaps'] = 1
+                    if case == 'preview-runtime-cap': nested['preview'][0]['runtimeDerivedCaps'] = 1
+                    if case == 'boolean-cap-count': nested['loads'][0]['runtimeDerivedCaps'] = False
                 invoke, _ = self.runner(root, output, contract, decoded, mutate=mutate)
                 with patch.object(build_approved_site.subprocess, 'run', side_effect=invoke):
                     with self.assertRaisesRegex(ValueError, 'Invalid layout equipment audit evidence'):
                         run(root, contract, output, inputs)
                 self.assertFalse((output/'.nojekyll').exists())
+
+    def test_intrinsic_geometry_witness_is_required_for_every_load_and_preview(self):
+        cases = ['missing-kind', 'wrong-kind', 'missing-topology', 'zero-topology', 'fractional-topology',
+                 'boolean-topology', 'inconsistent-topology', 'missing-volume', 'zero-volume',
+                 'negative-volume', 'nan-volume', 'infinite-volume', 'boolean-volume', 'missing-opening',
+                 'changed-arrays', 'missing-rays', 'zero-rays', 'boolean-rays', 'missing-planes',
+                 'missing-plane-ray', 'zero-plane-ray', 'ray-total-mismatch', 'zero-face-area',
+                 'nonfinite-face-area', 'nonfinite-plate-plane', 'reversed-planes', 'outside-rim',
+                 'missing-rim', 'missing-side-topology', 'missing-raw-geometry', 'welded-geometry',
+                 'missing-topology-basis', 'wrong-ray-method', 'missing-ray-method',
+                 'missing-topology-tolerance', 'expanded-topology-tolerance']
+        for section in ['loads', 'preview']:
+            for index in range(3):
+                for case in cases:
+                    with self.subTest(section=section, index=index, case=case):
+                        root, output, contract, inputs, decoded = self.fixture()
+                        def mutate(name, report, target):
+                            if name != build_approved_site.LAYOUT_EQUIPMENT_AUDITS[1]: return
+                            row = report['u1Bottom'][section][index]
+                            witness = row['closure'] if section == 'loads' else row
+                            if case == 'missing-kind': witness.pop('kind')
+                            if case == 'wrong-kind': witness['kind'] = 'derived-cap'
+                            if case == 'missing-topology': witness.pop('closedManifoldEdges')
+                            if case == 'zero-topology': witness['closedManifoldEdges'] = 0
+                            if case == 'fractional-topology': witness['closedManifoldEdges'] = 18.0
+                            if case == 'boolean-topology': witness['closedManifoldEdges'] = True
+                            if case == 'inconsistent-topology': witness['closedManifoldEdges'] += 1
+                            if case == 'missing-volume': witness.pop('signedVolumeM3')
+                            if case == 'zero-volume': witness['signedVolumeM3'] = 0
+                            if case == 'negative-volume': witness['signedVolumeM3'] = -0.000238
+                            if case == 'nan-volume': witness['signedVolumeM3'] = float('nan')
+                            if case == 'infinite-volume': witness['signedVolumeM3'] = float('inf')
+                            if case == 'boolean-volume': witness['signedVolumeM3'] = True
+                            if case == 'missing-opening': witness.pop('measuredOpeningContained')
+                            if case == 'changed-arrays': witness['sourceArraysUnchanged'] = False
+                            if case == 'missing-rays': witness.pop('verticalRayChecks')
+                            if case == 'zero-rays': witness['verticalRayChecks'] = 0
+                            if case == 'boolean-rays': witness['verticalRayChecks'] = True
+                            if case == 'missing-planes': witness.pop('planes')
+                            if case == 'missing-plane-ray': witness['planes'][0].pop('verticalRayChecks')
+                            if case == 'zero-plane-ray': witness['planes'][0]['verticalRayChecks'] = 0
+                            if case == 'ray-total-mismatch': witness['verticalRayChecks'] += 1
+                            if case == 'zero-face-area': witness['planes'][0]['areaM2'] = 0
+                            if case == 'nonfinite-face-area': witness['planes'][0]['areaM2'] = float('nan')
+                            if case == 'nonfinite-plate-plane': witness['planes'][0]['yM'] = float('inf')
+                            if case == 'reversed-planes': witness['planes'].reverse()
+                            if case == 'outside-rim': witness['planes'][1]['yM'] = 0.2
+                            if case == 'missing-rim': witness.pop('rimPlanesM')
+                            if case == 'missing-side-topology':
+                                witness['planes'][0]['triangles'] = witness['triangles']
+                            if case == 'missing-raw-geometry': witness.pop('geometryUsesRawSourceVertices')
+                            if case == 'welded-geometry': witness['geometryUsesRawSourceVertices'] = False
+                            if case == 'missing-topology-basis': witness.pop('topologyUsesWeldedIdsOnly')
+                            if case == 'wrong-ray-method': witness['rayMethod'] = 'welded vertices'
+                            if case == 'missing-ray-method': witness.pop('rayMethod')
+                            if case == 'missing-topology-tolerance': witness.pop('topologyWeldToleranceM')
+                            if case == 'expanded-topology-tolerance': witness['topologyWeldToleranceM'] = 0.01
+                        invoke, _ = self.runner(root, output, contract, decoded, mutate=mutate)
+                        with patch.object(build_approved_site.subprocess, 'run', side_effect=invoke):
+                            with self.assertRaisesRegex(ValueError, 'Invalid layout equipment audit evidence'):
+                                run(root, contract, output, inputs)
+                        self.assertFalse((output/'.nojekyll').exists())
+
+    def test_nested_u1_authenticates_each_of_six_raw_and_gzip_receipts(self):
+        names = (*build_approved_site.EQUIPMENT_MODELS[:2], build_approved_site.EQUIPMENT_PREVIEW)
+        for body in [name+suffix for name in names for suffix in ('', '.gz')]:
+            for case in ['missing', 'hash', 'bytes', 'path']:
+                with self.subTest(body=body, case=case):
+                    root, output, contract, inputs, decoded = self.fixture()
+                    def mutate(name, report, target):
+                        if name != build_approved_site.LAYOUT_EQUIPMENT_AUDITS[1]: return
+                        receipts = report['u1Bottom']['auditInputFiles']
+                        if case == 'missing': receipts.pop(body)
+                        if case == 'hash': receipts[body]['sha256'] = '0'*64
+                        if case == 'bytes': receipts[body]['bytes'] += 1
+                        if case == 'path': receipts[body]['file'] = str(root/'other-private-body')
+                    invoke, _ = self.runner(root, output, contract, decoded, mutate=mutate)
+                    with patch.object(build_approved_site.subprocess, 'run', side_effect=invoke):
+                        with self.assertRaisesRegex(ValueError, 'Invalid layout equipment audit evidence'):
+                            run(root, contract, output, inputs)
+                    self.assertFalse((output/'.nojekyll').exists())
 
     def test_missing_node_timeout_spawn_or_affinity_failure_never_marks_ready(self):
         for case in ['node', 'timeout', 'spawn', 'affinity']:

@@ -1,13 +1,13 @@
 import * as THREE from '../viewer/vendor-r180/three.module.js';
 import {OrbitControls} from '../viewer/vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from '../viewer/vendor-r180/RoomEnvironment.js';
-import {deriveScene} from './layout-state.mjs?v=0119a2ef6745811fe1cb';
+import {deriveScene} from './layout-state.mjs?v=38da7e9cd1bcecf14474';
 import {createLayoutSurfaces, resolveSurfaceAppearance, wallSurfaceGeometry} from './layout-surfaces.mjs?v=0e7f271c883eb7ec8844';
 import {drawPlanMeasurements} from './layout-plan-measurements.mjs?v=ccb8d47a212b4279e38a';
-import {groupInfo, groupingForEntity} from './layout-groups.mjs?v=77c6db8faf1377201463';
+import {groupInfo, groupingForEntity} from './layout-groups.mjs?v=0a9d77d6e07530349aa3';
 import {groupLabel} from './layout-group-labels.mjs?v=1ff84a0cf5540fd3184b';
-import {getLayoutEquipment,resolveLayoutEquipment} from './layout-equipment.mjs?v=6046ce679bd80e50ee2d';
-import {createEquipmentMeshCache} from './layout-equipment-mesh.mjs?v=dea73c8f212949571cf6';
+import {getLayoutEquipment,resolveLayoutEquipment} from './layout-equipment.mjs?v=bd8e2772cabd6fd2564b';
+import {createEquipmentMeshCache} from './layout-equipment-mesh.mjs?v=81ae2cf27403863696cc';
 
 const MM = .001;
 const disposableMaterial = new THREE.MeshBasicMaterial({visible:false});

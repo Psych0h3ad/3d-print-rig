@@ -1,7 +1,7 @@
 import * as THREE from '../viewer/vendor-r180/three.module.js';
-import {getLayoutEquipment} from './layout-equipment.mjs?v=6046ce679bd80e50ee2d';
-import {downloadEquipmentModel,verifyEquipmentModelBytes,equipmentTransferIdentity} from './layout-equipment-transfer.mjs?v=6a62cba60f932d4aa468';
-import {addU1BottomClosure} from './layout-equipment-mesh.mjs?v=dea73c8f212949571cf6';
+import {getLayoutEquipment} from './layout-equipment.mjs?v=bd8e2772cabd6fd2564b';
+import {downloadEquipmentModel,verifyEquipmentModelBytes,equipmentTransferIdentity} from './layout-equipment-transfer.mjs?v=de9f49cd911bf7a2e5e5';
+import {addU1BottomClosure} from './layout-equipment-mesh.mjs?v=81ae2cf27403863696cc';
 export {layoutMachineRecipes} from '../viewer/layout-machine-recipes.mjs';
 
 const abort = signal => signal?.throwIfAborted();

@@ -17,7 +17,7 @@ import {
 } from '../site/layout/layout-equipment-transfer.mjs';
 
 export const MAX_EQUIPMENT_INPUT_TOTAL_BYTES=64*1024*1024;
-const BASE='https://psych0h3ad.github.io/3d-print-rig-extra-models/';
+const BASE='https://psych0h3ad.github.io/3d-print-rig-extra-models/layout-references/da1f857f0c48606ed818/';
 const PREFIX='layout/assets/equipment/u1-exterior/';
 const CACHE_NAME='layout-equipment-inputs-v1';
 const ROOT=fileURLToPath(new URL('../',import.meta.url));

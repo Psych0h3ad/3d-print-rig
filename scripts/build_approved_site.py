@@ -3,6 +3,7 @@ import argparse
 import contextlib
 import hashlib
 import json
+import math
 import os
 import pathlib
 import shutil
@@ -115,7 +116,7 @@ def equipment_catalog_plan(root):
             raise ValueError('Unexpected equipment catalog identity')
         transfer = pin['transfer']
         if (transfer.get('path') != name+'.gz' or transfer.get('encoding') != 'gzip'
-                or transfer.get('baseURL') != 'https://psych0h3ad.github.io/3d-print-rig-extra-models/'):
+                or transfer.get('baseURL') != 'https://psych0h3ad.github.io/3d-print-rig-extra-models/layout-references/da1f857f0c48606ed818/'):
             raise ValueError('Equipment catalog requires canonical exact gzip transfers')
         for body in (pin, transfer):
             if (type(body.get('bytes')) is not int or not 0 < body['bytes'] <= 16*1024*1024
@@ -165,10 +166,65 @@ def layout_equipment_scripts(root):
 
 
 def validate_u1_bottom_report(report, models, expected_bodies, source_hashes, dependency_hashes):
-    """Require the nested actual placement/serialization job, not a passed stub."""
+    """Require current intrinsic geometry and raw-triangle ray evidence.
+
+    The exact current audit/helper hashes bind the geometric algorithm; topology
+    welding is not a replacement for its raw triangle/area/volume/ray checks.
+    Legacy derived-cap witnesses remain separate from this V6 release gate.
+    """
     if (not isinstance(report, dict) or report.get('schema') != 'u1-measured-lower-shell-closure-audit-v1'
-            or report.get('passed') is not True):
+            or report.get('passed') is not True or report.get('closureMode') != 'intrinsic-v6'
+            or report.get('originalAssetsModified') is not False):
         raise ValueError('Missing or failed nested U1 bottom audit')
+
+    def positive_int(value):
+        return type(value) is int and value > 0
+
+    def finite_number(value):
+        return type(value) is int or (type(value) is float and math.isfinite(value))
+
+    def positive_number(value):
+        return finite_number(value) and value > 0
+
+    def source_digest(value):
+        return isinstance(value, str) and len(value) == 64 and all(c in '0123456789abcdef' for c in value)
+
+    def intrinsic_witness(witness):
+        raw_ray_method = ('Raw triangle XZ barycentric vertical intersection, including interpolated raw Y; '
+                          'no welded/flattened triangle coordinates')
+        if (not isinstance(witness, dict) or witness.get('kind') != 'intrinsic-bottom-closure'
+                or witness.get('measuredOpeningContained') is not True
+                or witness.get('sourceArraysUnchanged') is not True
+                or witness.get('topologyUsesWeldedIdsOnly') is not True
+                or witness.get('geometryUsesRawSourceVertices') is not True
+                or witness.get('rayMethod') != raw_ray_method
+                or not positive_number(witness.get('topologyWeldToleranceM'))
+                or witness['topologyWeldToleranceM'] > 1e-7
+                or not positive_number(witness.get('signedVolumeM3'))
+                or not all(positive_int(witness.get(key)) for key in
+                           ('vertices', 'triangles', 'closedManifoldEdges', 'verticalRayChecks'))
+                or 2*witness['closedManifoldEdges'] != 3*witness['triangles']):
+            raise ValueError('Nested U1 intrinsic topology/volume/opening evidence incomplete')
+        # Both raw horizontal triangle surfaces must cover the measured opening.
+        # V6 plate faces are within the rim thickness, not its legacy cap planes.
+        rim, planes = witness.get('rimPlanesM'), witness.get('planes')
+        if (not isinstance(rim, list) or len(rim) != 2 or not all(finite_number(y) for y in rim)
+                or not rim[0] < rim[1] or not isinstance(planes, list) or len(planes) != 2):
+            raise ValueError('Nested U1 intrinsic rim/plate planes missing')
+        rays = 0
+        for plane in planes:
+            if (not isinstance(plane, dict) or not finite_number(plane.get('yM'))
+                    or not positive_number(plane.get('areaM2'))
+                    or not positive_int(plane.get('boundaryVertices')) or plane['boundaryVertices'] < 3
+                    or not positive_int(plane.get('triangles'))
+                    or not positive_int(plane.get('verticalRayChecks'))
+                    or not rim[0]-1e-7 <= plane['yM'] <= rim[1]+1e-7):
+                raise ValueError('Nested U1 raw triangle face/ray evidence incomplete')
+            rays += plane['verticalRayChecks']
+        if (not planes[0]['yM'] < planes[1]['yM'] or rays != witness['verticalRayChecks']
+                or sum(plane['triangles'] for plane in planes) >= witness['triangles']):
+            raise ValueError('Nested U1 intrinsic face/ray totals differ or side topology missing')
+
     geometry = 'scripts/'+LAYOUT_EQUIPMENT_AUDITS[0]
     if (report.get('auditScriptSHA256') != dependency_hashes[U1_BOTTOM_AUDIT]
             or report.get('auditDependencies') != {geometry: dependency_hashes[geometry]}):
@@ -177,13 +233,23 @@ def validate_u1_bottom_report(report, models, expected_bodies, source_hashes, de
         raise ValueError('Nested U1 source inputs differ from assembled output')
     names = (*EQUIPMENT_MODELS[:2], EQUIPMENT_PREVIEW)
     required = {name+suffix: expected_bodies[name+suffix] for name in names for suffix in ('', '.gz')}
-    if report.get('auditInputFiles') != required:
+    actual_bodies = report.get('auditInputFiles')
+    if not isinstance(actual_bodies, dict) or actual_bodies != required:
         raise ValueError('Nested U1 actual bodies differ from registered exact inputs')
-    if report.get('sourcePreviewGeometries') != 22 or report.get('sourcePreviewReceipts') != 66:
+    for name, pin in required.items():
+        body = actual_bodies[name]
+        if (not isinstance(body, dict) or set(body) != {'file', 'bytes', 'sha256'}
+                or type(body['bytes']) is not int or body['bytes'] != pin['bytes']
+                or not source_digest(body['sha256']) or body['sha256'] != pin['sha256']
+                or not isinstance(body['file'], str) or not pathlib.Path(body['file']).is_absolute()):
+            raise ValueError('Nested U1 exact raw/gzip input receipt invalid')
+    if (type(report.get('sourcePreviewGeometries')) is not int or report['sourcePreviewGeometries'] != 29
+            or type(report.get('sourcePreviewReceipts')) is not int or report['sourcePreviewReceipts'] != 87):
         raise ValueError('Nested U1 prepared source receipts missing')
     loads, previews = report.get('loads'), report.get('preview')
     variants = ['standalone', 'docked', 'standalone']
     if (not isinstance(loads, list) or not isinstance(previews, list) or len(loads) != 3 or len(previews) != 3
+            or not all(isinstance(row, dict) for row in loads+previews)
             or [row.get('variant') for row in loads] != variants
             or [row.get('variant') for row in previews] != variants):
         raise ValueError('Nested U1 requires standalone/docked/standalone evidence')
@@ -192,17 +258,22 @@ def validate_u1_bottom_report(report, models, expected_bodies, source_hashes, de
         actual_model = load.get('model', {})
         identity = ('path', 'bytes', 'sha256', 'transfer')
         closure = load.get('closure', {})
-        if ({key: actual_model.get(key) for key in identity} != {key: model[key] for key in identity}
+        if (not isinstance(actual_model, dict)
+                or {key: actual_model.get(key) for key in identity} != {key: model[key] for key in identity}
                 or [actual_model.get(key) for key in ('unit', 'up', 'front')] != ['m', '+Y', '+Z']
                 or load.get('serializedClosurePreserved') is not True
-                or load.get('transformedPlacements') != 5
-                or closure.get('onlyMeasuredLowerRimPlanes') is not True
-                or closure.get('independentBoundaryAndAreaWitnesses') is not True
-                or previews[i].get('onlyMeasuredLowerRimPlanes') is not True
-                or previews[i].get('independentBoundaryAndAreaWitnesses') is not True):
+                or type(load.get('transformedPlacements')) is not int or load['transformedPlacements'] != 5
+                or not source_digest(load.get('sourceResetHash'))
+                or not positive_int(load.get('unchangedSourceMeshes'))
+                or not positive_int(load.get('disposedGeometries'))
+                or type(load.get('runtimeDerivedCaps')) is not int or load['runtimeDerivedCaps'] != 0
+                or type(previews[i].get('runtimeDerivedCaps')) is not int or previews[i]['runtimeDerivedCaps'] != 0):
             raise ValueError('Nested U1 source/closure/placement/serialization evidence incomplete')
-    if (not isinstance(loads[0].get('sourceResetHash'), str) or len(loads[0]['sourceResetHash']) != 64
-            or loads[0]['sourceResetHash'] != loads[2].get('sourceResetHash')):
+        intrinsic_witness(closure)
+        intrinsic_witness(previews[i])
+    if (loads[0]['sourceResetHash'] != loads[2]['sourceResetHash']
+            or loads[0]['unchangedSourceMeshes'] != loads[2]['unchangedSourceMeshes']
+            or loads[0]['disposedGeometries'] != loads[2]['disposedGeometries']):
         raise ValueError('Nested U1 A-B-A source reset evidence differs')
 
 

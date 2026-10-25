@@ -104,7 +104,7 @@ try {
     assert.equal(unexpectedNetwork,0);assert.equal(isLayoutEquipmentPreviewPrepared(),false);
     assert.equal(getLayoutEquipmentPreviewGeometry(first),null);
     assert.equal(getLayoutEquipmentPreviewGeometry('__proto__'),null);
-    assert.equal(ids.length,22);assert(Object.isFrozen(descriptor.geometry));
+    assert.equal(ids.length,29);assert(Object.isFrozen(descriptor.geometry));
     assert.deepEqual([descriptor.kind,descriptor.units,descriptor.up,descriptor.front,descriptor.rootPivotM],
       ['layout-preview-geometry','m','+Y','+Z',[0,0,0]]);
     const source = fs.readFileSync(equipmentURL,'utf8');
@@ -130,8 +130,7 @@ try {
     const unknown = {id:'unknown'};assert.equal(resolveLayoutEquipment(unknown),unknown);
   });
 
-  // The folder is explicitly bounded: no scan, purchase, provenance or other
-  // directories are searched. Test only the prepared release copies.
+  // Read only the explicitly supplied prepared release directory.
   const readExact = (directory,name) => {
     const file = path.join(directory,name);
     assert(fs.existsSync(file),'Required prepared asset missing: '+file);
@@ -142,8 +141,8 @@ try {
   let body, gzip, data;
   await test('exact-prepared-json-gzip-index-and-neutral-notices',()=>{
     body = read('U1_preview_geometry.json');gzip = read('U1_preview_geometry.json.gz');
-    assert.equal(body.length,4776355);assert.equal(sha(body),'3963e49ff68e19254a2c38ddddf56f411c8885886b2ce425ad9c84d904203b38');
-    assert.equal(gzip.length,1530121);assert.equal(sha(gzip),'80789adad7ef30467d91943c45987c48538e024ace7d17a687a663abd2902b6d');
+    assert.equal(body.length,7200460);assert.equal(sha(body),'2d550ca3761fbdde8cf57a396ac816cf70efc8b7965e92396f727322e5f7779e');
+    assert.equal(gzip.length,1714202);assert.equal(sha(gzip),'a2409e4d9965e569fe235f6d461d50df02bb5a2c790955ac6c4cc44d21a3b94d');
     assert.deepEqual(gunzipSync(gzip),body);
     assert.deepEqual(JSON.parse(readMetadata('U1_preview_geometry_index.json')),descriptor);
     assert.deepEqual(JSON.parse(readMetadata('MOUNT_SPEC.json')),getLayoutEquipment(POP).mount);
@@ -179,8 +178,8 @@ try {
 
   await test('all-four-final-glbs-decoded-gzip-pins-and-common-root',async()=>{
     const expected = [
-      [3631984,'f68bf8498a9a2d3114a6f8fff7af45c495208ac5098616426f3bc835e9089bd7'],
-      [3143064,'de89610a4bdfb1b108498f345effe92109022d641d882c5ff113f01f57acc369'],
+      [5751820,'10fea968e60fd90fe3ac7652a71a35795b949584477d32c9c514c6b325e67768'],
+      [5262896,'ab0aaaa9adc6aabaca1a45000902a97f1a9a9fc80db8f3807d3a7cf3c3880fe5'],
       [1189304,'23849c9c59f8dafccedcfb3d3557e521ea784a5be27f29ec25943acf348a909a'],
       [2116204,'1e9c8b3da39e9056c89ffd47e313a7ab87f84c822f38d68ff6c6e154c5c8f76f']
     ];
@@ -249,7 +248,7 @@ try {
     }
   });
 
-  await test('all-22-exact-F32-U32-receipts-reject-position-normal-index-mutations',async()=>{
+  await test('all-29-exact-F32-U32-receipts-reject-position-normal-index-mutations',async()=>{
     // Mutate each geometry independently; all three attribute families must
     // fail a receipt check while still passing dimensions/normal/index bounds.
     for(const id of ids) for(const field of ['positionsM','normals','indices']) {
@@ -446,7 +445,7 @@ try {
   const report={passed:true,checks:checks.length,cases:checks,workerCount:1,liveNetworkRequests:unexpectedNetwork,
     heapLimitBytes:v8.getHeapStatistics().heap_size_limit,memoryUsage:process.memoryUsage(),geometryCount:ids.length,
     assets,sourceInputs,preparedDir,metadataDir,sourceEquivalence:options['--source-module']?{sha256:sha(fs.readFileSync(options['--source-module']))}:null,
-    scope:'Exact prepared JSON/gzip and four GLBs; strict schema, all 66 F32/U32 receipts, common identity datum, immutable atomic cache, transport and async abort/retry/concurrency. Catalog ABA/default reset and minimal metadata roundtrip only.',
+    scope:'Exact prepared JSON/gzip and four GLBs; strict schema, all 87 F32/U32 receipts, common identity datum, immutable atomic cache, transport and async abort/retry/concurrency. Catalog ABA/default reset and minimal metadata roundtrip only.',
     openIntegrations:['App preload/lazy hooks and renderer','Population state/UI integration with farm release','Inventory/cache coverage and full repository/actual-asset release orchestration','Browser screenshots, cross-browser visuals and served revision','Native-solid mounting/operating clearance; no native-source inputs read'],
     noPublication:true};
   if(options['--report'])fs.writeFileSync(options['--report'],JSON.stringify(report,null,2)+'\n');

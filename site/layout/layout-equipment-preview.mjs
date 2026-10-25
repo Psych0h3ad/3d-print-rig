@@ -1,8 +1,8 @@
 // Explicit, fixed-host preparation of JSON data only. Import performs no I/O.
-import {downloadEquipmentPreviewGeometry} from './layout-equipment-transfer.mjs?v=6a62cba60f932d4aa468';
+import {downloadEquipmentPreviewGeometry} from './layout-equipment-transfer.mjs?v=de9f49cd911bf7a2e5e5';
 import {LAYOUT_EQUIPMENT_PREVIEW,LAYOUT_EQUIPMENT_PREVIEW_MODEL,createLayoutEquipmentPreviewCache,
   getLayoutEquipmentPreviewGeometry,isLayoutEquipmentPreviewPrepared,
-  installLayoutEquipmentPreviewGeometry} from './layout-equipment.mjs?v=6046ce679bd80e50ee2d';
+  installLayoutEquipmentPreviewGeometry} from './layout-equipment.mjs?v=bd8e2772cabd6fd2564b';
 
 function preparer(download,cache) {
   let active = null;

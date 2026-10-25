@@ -1,4 +1,4 @@
-// Offline V4 actual-asset gate. Build contract: pass the exact four-decoded-GLB
+// Offline prepared-exterior actual-asset gate. Build contract: exact four GLBs.
 // --equipment-inputs map produced by prepare_layout_equipment_inputs.mjs. Gzip
 // siblings MUST be in the same cache as each mapped GLB. Preview JSON/gzip come
 // from that common prepared directory, or explicit --prepared-dir for offline
@@ -15,9 +15,11 @@ import {Readable} from 'node:stream';
 import assert from 'node:assert/strict';
 import v8 from 'node:v8';
 import {fileURLToPath,pathToFileURL} from 'node:url';
+import {validateU1IntrinsicBottomGeometry as validateU1IntrinsicBottomRaw} from './audit_u1_bottom.mjs';
 
 const RIM='casing / lower casing perimeter rim';
 export const U1_CLOSURE_NAME='derived / U1 lower shell closure';
+export const U1_INTRINSIC_CLOSURE_NAME='bottom_closure / closed bottom display plate';
 const key=p=>p.join(','),edgeKey=(a,b)=>a<b?a+'|'+b:b+'|'+a;
 const signedArea=points=>points.reduce((s,a,i)=>{const b=points[(i+1)%points.length];return s+a[0]*b[2]-b[0]*a[2];},0)/2;
 const near=(a,b,message)=>assert.ok(Math.abs(a-b)<1e-8,message+': '+a+' / '+b);
@@ -110,6 +112,32 @@ export function validateU1BottomGeometry(sourcePositions,sourceIndices,geometry,
  for(let i=0;i<2;i++){near(receipt.planes[i].yM,planes[i].yM,'Recorded closure plane');near(receipt.planes[i].areaM2,planes[i].areaM2,'Recorded closure area');assert.equal(receipt.planes[i].boundaryVertices,planes[i].boundaryVertices);}
  return {vertices:p.length/3,triangles:ix.length/3,planes,verticalRayChecks:rayChecks,
   sourceGeometryDisposition:merged?'unchanged source prefix plus labeled closure':'unchanged separate source mesh',onlyMeasuredLowerRimPlanes:true,independentBoundaryAndAreaWitnesses:true};
+}
+
+function boundaryLoops(edges){
+ const remaining=new Map(edges),loops=[];
+ while(remaining.size){
+  const next=new Map();for(const e of remaining.values()){assert.ok(!next.has(e.aKey),'Branching boundary');next.set(e.aKey,e);}
+  const start=next.keys().next().value,points=[];let current=start;
+  do{const e=next.get(current);assert.ok(e,'Broken boundary');points.push(e.a);next.delete(current);remaining.delete(edgeKey(e.aKey,e.bKey));current=e.bKey;}while(current!==start);
+  assert.ok(points.length>=3,'Short boundary');loops.push(points);
+ }
+ return loops;
+}
+function crossing(a,b,c,d){
+ const turn=(p,q,r)=>(q[0]-p[0])*(r[2]-p[2])-(q[2]-p[2])*(r[0]-p[0]);
+ const on=(p,q,r)=>Math.abs(turn(p,q,r))<1e-14&&r[0]>=Math.min(p[0],q[0])-1e-12&&r[0]<=Math.max(p[0],q[0])+1e-12&&r[2]>=Math.min(p[2],q[2])-1e-12&&r[2]<=Math.max(p[2],q[2])+1e-12;
+ const u=turn(a,b,c),v=turn(a,b,d),w=turn(c,d,a),x=turn(c,d,b);
+ return (u*v<0&&w*x<0)||on(a,b,c)||on(a,b,d)||on(c,d,a)||on(c,d,b);
+}
+
+/** Independent intrinsic-plate witness. Authenticated source buffers remain
+ * unchanged; coordinate welding (0.1 micrometre) only joins duplicated hard
+ * face/seam vertices for topology. Rays use the actual planar triangles.
+ * This checks an exported exterior, not a physical enclosure or machine fit.
+ */
+export function validateU1IntrinsicBottomGeometry(sourcePositions,sourceIndices,geometry){
+ return validateU1IntrinsicBottomRaw(sourcePositions,sourceIndices,geometry);
 }
 
 export const PREFIX='layout/assets/equipment/u1-exterior/';
@@ -296,7 +324,7 @@ export async function createAuditContext(opts) {
    const data=await readPair(pin,{preview:true});
    const cache=equipment.createLayoutEquipmentPreviewCache();await cache.install(data);
    assert.deepEqual(Object.keys(data).sort(),Object.keys(descriptor.geometry).sort());
-   assert.equal(Object.keys(data).length,22,'Final prepared geometry count');
+   assert.equal(Object.keys(data).length,29,'Final prepared geometry count');
    const arrays=new Map(),triangleFindings=[];let previewTriangles=0;
    for(const [id,pin]of Object.entries(descriptor.geometry)){
     const d=cache.getGeometry(id),positions=new Float32Array(d.positionsM),normals=new Float32Array(d.normals),indices=new Uint32Array(d.indices);
@@ -472,7 +500,7 @@ export async function auditPreviewRenderer(context,prepared){
   const key=color+':'+opacity;if(!materials.has(key))materials.set(key,new THREE.MeshStandardMaterial({color,opacity,transparent:opacity<1}));return materials.get(key);
  };
  const draw=new Function('THREE','material','equipmentMeshCache',source.slice(start,end)+';return previewPart;')(THREE,material,cache);
- const geometries=new Set(),used=new Set(),derivedClosures=[];let occurrences=0,disposed=0;
+ const geometries=new Set(),used=new Set(),intrinsicClosures=[];let occurrences=0,disposed=0;
  try{
   for(const [,id,variant]of DEFINITIONS){
    const row=context.equipment.getLayoutEquipment(id,variant);
@@ -481,13 +509,15 @@ export async function auditPreviewRenderer(context,prepared){
     const root=new THREE.Group(),mesh=draw(root,part),pin=prepared.descriptor.geometry[part.geometryId];assert.ok(pin);
     mesh.updateMatrixWorld(true);
     assert.deepEqual(mesh.matrixWorld.toArray(),[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],part.name+' preview common datum applied twice');
-    const derived=part.geometryId==='u1-exterior-exterior-9c5aa700906a4c';
     const p=mesh.geometry.attributes.position.array,n=mesh.geometry.attributes.normal.array,ix=mesh.geometry.index.array;
-    assert.deepEqual(arrayReceipt(derived?p.subarray(0,pin.positionsF32.bytes/4):p),pin.positionsF32,part.name+' complete production preview positions');
-    assert.deepEqual(arrayReceipt(derived?n.subarray(0,pin.normalsF32.bytes/4):n),pin.normalsF32,part.name+' complete production preview normals');
-    assert.deepEqual(arrayReceipt(derived?ix.subarray(0,pin.indicesU32.bytes/4):ix),pin.indicesU32,part.name+' complete production preview indices');
-    if(derived){const raw=prepared.arrays.get(part.geometryId);derivedClosures.push({variant,...validateU1BottomGeometry(raw.positions,raw.indices,mesh.geometry,{merged:true})});}
-    else assert.equal(mesh.geometry.userData.layoutEquipmentDerivative,undefined,'Unexpected preview derivative');
+    assert.deepEqual(arrayReceipt(p),pin.positionsF32,part.name+' complete production preview positions');
+    assert.deepEqual(arrayReceipt(n),pin.normalsF32,part.name+' complete production preview normals');
+    assert.deepEqual(arrayReceipt(ix),pin.indicesU32,part.name+' complete production preview indices');
+    assert.equal(mesh.geometry.userData.layoutEquipmentDerivative,undefined,'Unexpected preview derivative');
+    if(part.name===U1_INTRINSIC_CLOSURE_NAME){
+     const rim=row.proxy.parts.find(p=>p.name===RIM);assert.ok(rim,'Preview rim missing');
+     const raw=prepared.arrays.get(rim.geometryId);intrinsicClosures.push({variant,...validateU1IntrinsicBottomGeometry(raw.positions,raw.indices,mesh.geometry)});
+    }
     assert.equal(mesh.material,material(part.color||'#465258',part.opacity??1));
     const ghostMesh=draw(root,part,ghost);assert.equal(ghostMesh.material,ghost);assert.equal(ghostMesh.geometry,mesh.geometry);
     assert.equal(mesh.geometry,cache.get(part));geometries.add(mesh.geometry);used.add(part.geometryId);occurrences++;
@@ -497,14 +527,14 @@ export async function auditPreviewRenderer(context,prepared){
   assert.deepEqual([...used].sort(),Object.keys(prepared.descriptor.geometry).sort());
   for(const geometry of geometries)geometry.addEventListener('dispose',()=>disposed++);
   cache.dispose();cache.dispose();assert.equal(disposed,geometries.size);
-  assert.equal(derivedClosures.length,2,'Both U1 variants require a measured closure');
-  return {meshOccurrences:occurrences,geometries:used.size,arrayReceipts:used.size*3,rootPivotM:[0,0,0],exactSourceArrays:true,derivedClosures,
+  assert.equal(intrinsicClosures.length,2,'Both U1 variants require an intrinsic closure');
+  return {meshOccurrences:occurrences,geometries:used.size,arrayReceipts:used.size*3,rootPivotM:[0,0,0],exactSourceArrays:true,intrinsicClosures,derivedClosures:[],
    ghostMaterialOwnership:true,disposedGeometries:disposed,scope:'Production previewPart mesh branch and geometry cache without browser/GPU'};
  }finally{cache.dispose();for(const m of materials.values())m.dispose();ghost.dispose();}
 }
 
 export function compareLoadedToGLB(root,actual) {
- root.updateMatrixWorld(true);const found=new Set(),closures=[];
+ root.updateMatrixWorld(true);const found=new Set(),closures=[],intrinsic=[];
  root.traverse(node=>{
   if(!node.isMesh)return;
   if(node.name===U1_CLOSURE_NAME){closures.push(node);return;}
@@ -512,6 +542,7 @@ export function compareLoadedToGLB(root,actual) {
   // GLTFLoader sanitizes Object3D names; its retained source name identifies
   // the exact authored occurrence without lossy name matching.
   const sourceName=node.userData.name??node.name;
+  if(sourceName===U1_INTRINSIC_CLOSURE_NAME)intrinsic.push(node);
   assert.ok(!found.has(sourceName),'Duplicate production mesh: '+sourceName);found.add(sourceName);
   const source=actual.meshes.get(sourceName);assert.ok(source,'Unexpected production mesh: '+sourceName);
   const p=node.geometry.attributes.position,n=node.geometry.attributes.normal,ix=node.geometry.index;
@@ -532,7 +563,15 @@ export function compareLoadedToGLB(root,actual) {
  });
  assert.equal(found.size,actual.meshes.size,'Production loader lost actual meshes');
  const rim=actual.meshes.get('casing / lower casing perimeter rim');
- assert.equal(closures.length,rim?1:0,'Exactly one measured closure required for U1; none for other equipment');
+ const hasIntrinsic=actual.meshes.has(U1_INTRINSIC_CLOSURE_NAME);
+ assert.equal(closures.length,rim&&!hasIntrinsic?1:0,'Legacy derived cap required only for legacy U1');
+ assert.equal(intrinsic.length,hasIntrinsic?1:0,'Intrinsic plate missing or duplicated');
+ for(const plate of intrinsic){
+  assert.ok(rim,'Intrinsic plate has no source rim');
+  assert.equal(plate.userData.groupId,'bottom_closure');assert.equal(plate.userData.groupKind,'bottom_closure');
+  assert.equal(plate.material.transparent,false);assert.equal(plate.material.opacity,1);
+  validateU1IntrinsicBottomGeometry(rim.positions,rim.indices,plate.geometry);
+ }
  for(const cap of closures){
   assert.equal(cap.parent.userData.name??cap.parent.name,'casing / lower casing perimeter rim','Closure must follow exact source rim');
   assert.equal(cap.material,cap.parent.material,'Closure must inherit the unchanged rim PBR material');
@@ -548,6 +587,11 @@ export async function auditGeometry(opts) {
  const {polygonContains}=await import(pathToFileURL(path.join(context.site,'layout/layout-geometry.mjs')));
  for(const [i,row]of context.rows.entries()){
   const actual=inspectGLB(await context.readActual(row),row),equivalence=compareRepresentations(row,actual,prepared);
+  if(row.id===DEFINITIONS[0][1]){
+   const bottom=actual.meshes.get(U1_INTRINSIC_CLOSURE_NAME),rim=actual.meshes.get(RIM);assert.ok(bottom&&rim,'V6 intrinsic plate/rim missing');
+   assert.equal(actual.kinds.get('bottom_closure')?.size,1,'Intrinsic bottom group missing or duplicated');
+   actual.result.intrinsicBottom=validateU1IntrinsicBottomGeometry(rim.positions,rim.indices,{attributes:{position:{array:bottom.positions},normal:{array:bottom.normals}},index:{array:bottom.indices}});
+  }
   actual.result.plateAttribution=validatePlateOccurrence(row,actual,prepared);
   previewOccurrences+=equivalence.occurrences;for(const id of equivalence.used)used.add(id);representationDifferences.push(...equivalence.findings);
   if(row.layoutVariants){
@@ -601,14 +645,14 @@ export async function auditGeometry(opts) {
  return {schema:'layout-equipment-geometry-audit-v2',status:prepared.triangleFindings.length?'FAIL':'PASS',passed:prepared.triangleFindings.length===0,findings:prepared.triangleFindings,assets:[...audited.values()].map(a=>a.result),sourceInputs,
   auditInputFiles:context.auditInputFiles,auditScriptSHA256:sha(fs.readFileSync(fileURLToPath(import.meta.url))),
   auditDependencies:{'scripts/audit_u1_bottom.mjs':sha(fs.readFileSync(new URL('./audit_u1_bottom.mjs',import.meta.url)))},
-  source:{basis:'Current exact V4 prepared bodies and tracked metadata; no original sources read',plateAttribution:prepared.plateAttribution,rootPivotM:[0,0,0],uniformScale:1,feet:footChecks},
+  source:{basis:'Current exact V6 prepared bodies and tracked metadata; no original sources read',plateAttribution:prepared.plateAttribution,rootPivotM:[0,0,0],uniformScale:1,feet:footChecks},
   preview:{model:context.equipment.LAYOUT_EQUIPMENT_PREVIEW_MODEL,geometries:used.size,arrayReceipts:prepared.arrayReceipts,triangles:prepared.previewTriangles,comparedMeshOccurrences:previewOccurrences,productionRenderer:rendererPreview,body:prepared.descriptor.body,gzip:prepared.descriptor.gzip},
   representationComparison:{basis:'Catalog-declared simplified exterior preview versus full GLB; these are distinct prepared representations, not an exact-equivalence claim',differences:representationDifferences},
   composition:{standaloneSpools:4,mountedSpools:4,duplicatedSpools:0,transferredHolders:4,transferredFeeders:2,
    retainedU1MeshesAtIdenticalDatum:commonMeshes,retainedStationMeshesAtIdenticalDatum:commonStationMeshes,
    authoredSupportTopYM:top,footContactSamples,actualDeckTopTriangles:topTriangles.length,minRoundedPatchMarginM},
   transportMode:'registered-exact-body',preparedDir:context.preparedDir,...limits(),
-  scope:'All actual GLB position/normal/index buffers, triangle winding, materials and hierarchy; exact four raw/gzip pairs and preview JSON/gzip; all 66 tracked preview-array receipts; complete production preview source arrays are unchanged. Separately labeled U1 lower-rim closures are checked against exact inner boundary edges, winding, area conservation and sampled vertical rays. Full GLB/preview differences are recorded for the declared simplified representation; shared datum, inventory and current prepared foot outlines against actual authored deck triangles. Other proxy primitives remain illustrative. No original/native solids read; physical mounting/load/operating clearance, browser/GPU and full machine coverage are separate.'};
+  scope:'All actual GLB position/normal/index buffers, triangle winding, materials and hierarchy; exact four raw/gzip pairs and preview JSON/gzip; all 87 tracked preview-array receipts; complete production preview source arrays are unchanged. Intrinsic U1 plates are checked for closed topology, winding, measured-opening containment, horizontal area and actual triangle vertical rays; no preview runtime cap is appended. Full GLB/preview differences are recorded for the declared simplified representation; shared datum, inventory and current prepared foot outlines against actual authored deck triangles. Other proxy primitives remain illustrative. No original/native solids read; physical mounting/load/operating clearance, browser/GPU and full machine coverage are separate.'};
 }
 export function writeReport(opts,report){if(opts['--report'])fs.writeFileSync(path.resolve(opts['--report']),JSON.stringify(report,null,2)+'\n');}
 if(process.argv[1]&&pathToFileURL(path.resolve(process.argv[1])).href===import.meta.url){

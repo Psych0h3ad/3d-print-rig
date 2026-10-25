@@ -200,6 +200,6 @@
     "No native cabinet CAD, fit testing, load certification or operating clearances represented.",
     "No casters, heater, RGB, printed adapter fit or live printer setup applied."
   ],
-  "referenceRenderStackHeightM": 0.8593218897819519,
+  "referenceRenderStackHeightM": 0.8587329660892487,
   "referenceRenderStackHeightStatus": "Current registered exterior geometry only; operating clearance is separate."
 }
