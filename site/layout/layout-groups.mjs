@@ -1,12 +1,13 @@
 // Farm units use the same static planning envelopes as individual objects.
 // A group never duplicates source CAD or changes printer/support attachments.
 import {LIMITS,LayoutValidationError,createDefaultLayout,deriveScene,resolvePrinterEquipment,
-  validatePlacement,parseLayout,serializeLayout} from './layout-state.mjs?v=fa98d98dcf1a407e6752';
-import {rootPose,groupRootPose} from './layout-group-data.mjs?v=298837e53f6daea54c7c';
+  validatePlacement,parseLayout,serializeLayout} from './layout-state.mjs?v=0119a2ef6745811fe1cb';
+import {rootPose,groupRootPose} from './layout-group-data.mjs?v=402a86c4c0754fb6e10f';
 import {bounds,rectangle,rotateXZ,transformPolygon,polygonContains,orient} from './layout-geometry.mjs?v=129e07e8d3e2b008fab6';
 import {rigidMotionStaysInside,boundaryTangents} from './layout-constraints.mjs?v=53e33561b2e7ce324016';
 import {prepareCollisionMotion,envelopeChange} from './layout-collision.mjs?v=1a7a6f204f8ed66b33ed';
 import {wallRotationCenters} from './layout-wall-rotation.mjs?v=7ae98b15139f328512eb';
+import {materializeGroupLabels,nextGroupLabel} from './layout-group-labels.mjs?v=1ff84a0cf5540fd3184b';
 
 const clone=x=>JSON.parse(JSON.stringify(x));
 const problem=(code,path='group',params={})=>new LayoutValidationError([{code,path,params}]);
@@ -42,6 +43,7 @@ export function groupInfo(state,id,catalog=[]){
 export function createGroup(state,{id,name,memberIds},catalog=[]){
   catalog=catalogRows(catalog);
   checked(state,catalog);
+  state=materializeGroupLabels(state);
   if(!named(name))fail('GROUP_NAME');
   if(!Array.isArray(memberIds)||!memberIds.length||new Set(memberIds).size!==memberIds.length)fail('GROUP_MEMBERS');
   if((state.groups?.length??0)>=LIMITS.maxGroups)fail('GROUP_LIMIT');
@@ -52,17 +54,20 @@ export function createGroup(state,{id,name,memberIds},catalog=[]){
   const ids=new Set([...memberIds,...state.printers.filter(p=>memberIds.includes(p.attachment.parentId)).map(p=>p.id)]);
   const scene=deriveScene(state,catalog),points=[...scene.furniture,...scene.printers].filter(e=>ids.has(e.id)).flatMap(e=>e.worldEnvelopeMm),b=bounds(points);
   const pose={xMm:(b.minX+b.maxX)/2,zMm:(b.minZ+b.maxZ)/2,yawDeg:0};
-  const group={id,name:name.trim(),memberIds:[...memberIds],pose,originPose:{...pose},memberPoses:memberIds.map(id=>({id,pose:{...rootPose(state,id)}}))};
+  const group={id,name:name.trim(),label:nextGroupLabel(state),memberIds:[...memberIds],pose,originPose:{...pose},memberPoses:memberIds.map(id=>({id,pose:{...rootPose(state,id)}}))};
   return checked({...state,groups:[...(state.groups??[]),group]},catalog);
 }
 export function renameGroup(state,id,name,catalog=[]){
   requireGroup(state,id);if(!named(name))fail('GROUP_NAME');
+  checked(state,catalog);state=materializeGroupLabels(state);
   return checked({...state,groups:state.groups.map(g=>g.id===id?{...g,name:name.trim()}:g)},catalog);
 }
 export function ungroup(state,id,catalog=[]){
-  requireGroup(state,id);return checked({...state,groups:state.groups.filter(g=>g.id!==id)},catalog);
+  requireGroup(state,id);checked(state,catalog);state=materializeGroupLabels(state);
+  return checked({...state,groups:state.groups.filter(g=>g.id!==id)},catalog);
 }
 export function removeGroup(state,id,catalog=[]){
+  checked(state,catalog);state=materializeGroupLabels(state);
   const ids=new Set(groupEntityIds(state,requireGroup(state,id).id));
   return checked({...state,furniture:state.furniture.filter(e=>!ids.has(e.id)),printers:state.printers.filter(e=>!ids.has(e.id)),groups:state.groups.filter(g=>g.id!==id)},catalog);
 }
@@ -242,7 +247,8 @@ export function captureGroupTemplate(state,id,catalog=[]){
 }
 export function instantiateGroupTemplate(state,template,{id,xMm,zMm,yawDeg=0},catalog=[]){
   catalog=catalogRows(catalog);
-  checked(state,catalog);const source=validateGroupTemplate(template,catalog),names=new Map();
+  checked(state,catalog);state=materializeGroupLabels(state);
+  const source=validateGroupTemplate(template,catalog),names=new Map();
   source.furniture.forEach((f,i)=>names.set(f.id,`${id}:f${i+1}`));source.printers.forEach((p,i)=>names.set(p.id,`${id}:p${i+1}`));
   const world=pose=>{const [x,z]=rotateXZ([pose.xMm,pose.zMm],yawDeg);return {xMm:xMm+x,zMm:zMm+z,yawDeg:pose.yawDeg+yawDeg};};
   const furniture=source.furniture.map(f=>({...clone(f),id:names.get(f.id),pose:world(f.pose)}));
@@ -250,7 +256,7 @@ export function instantiateGroupTemplate(state,template,{id,xMm,zMm,yawDeg=0},ca
     ...(p.attachment.parentId===null?world(p.attachment):{parentId:names.get(p.attachment.parentId)})}}));
   const memberIds=[...furniture.map(f=>f.id),...printers.filter(p=>p.attachment.parentId===null).map(p=>p.id)];
   const pose={xMm,zMm,yawDeg},assembled={...state,furniture:[...state.furniture,...furniture],printers:[...state.printers,...printers]};
-  const group={id,name:template.name,memberIds,pose,originPose:{...pose},memberPoses:memberIds.map(id=>({id,pose:{...rootPose(assembled,id)}}))};
+  const group={id,name:template.name,label:nextGroupLabel(state),memberIds,pose,originPose:{...pose},memberPoses:memberIds.map(id=>({id,pose:{...rootPose(assembled,id)}}))};
   const next=checked({...assembled,groups:[...(state.groups??[]),group]},catalog),ids=new Set([...furniture,...printers].map(e=>e.id));
   const issues=validatePlacement(next,catalog).filter(e=>e.entityIds.some(id=>ids.has(id)));
   if(issues.length)throw new LayoutValidationError(issues.map(e=>({code:e.code,path:'placement',params:e.params})));

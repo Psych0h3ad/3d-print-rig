@@ -36,15 +36,15 @@ test('explicit add command without fetching geometry',()=>{command('layout.addDe
 state=applyAction(state,{type:'ADD_FURNITURE',furniture:createDesk({id:'desk-1',depthMm:900})},catalog);
 state=applyAction(state,{type:'ADD_FURNITURE',furniture:createShelf({id:'shelf-1',pose:{xMm:1200,zMm:700,yawDeg:0}})},catalog);
 state=applyAction(state,{type:'ADD_PRINTER',printer:{id:'printer-1',machineId:'approved-1',configurationId:null,attachment:{parentId:null,surfaceId:'floor',xMm:-1100,zMm:800,yawDeg:0}}},catalog);
-test('selection follows actual list and one selected ID',()=>{mirror();container.querySelector('[data-layout-entity=desk-1]').click();assert.equal(selection,'desk-1');assert.equal(container.querySelectorAll('[aria-pressed=true]').length,1);});
+test('selection follows actual list and one selected ID',()=>{mirror();container.querySelector('[data-layout-entity=desk-1]').click();assert.equal(selection,'desk-1');assert.equal(container.querySelectorAll('[data-layout-entity]').filter(n=>n.getAttribute('aria-pressed')==='true').length,1);});
 test('furniture numeric width and signed pose delegate exact reducer action',()=>{change(field('widthMm'),1432.75);assert.equal(state.furniture[0].widthMm,1432.75);change(field('xMm'),-155.125);assert.equal(state.furniture[0].pose.xMm,-155.125);});
 test('empty and nonfinite numeric fields never dispatch; blur restores short display without state rounding',()=>{const count=actions.length;change(field('widthMm'),'');change(field('widthMm'),'Infinity');assert.equal(actions.length,count);assert.equal(field('widthMm').getAttribute('aria-invalid'),'true');field('widthMm').blur();assert.equal(field('widthMm').value,'1432.8');assert.equal(state.furniture[0].widthMm,1432.75);});
-test('room resize preserves center and finite rectangular state',()=>{change(field('room-width'),5000);assert.deepEqual(state.room.polygonMm,[[-2500,-1500],[2500,-1500],[2500,1500],[-2500,1500]]);});
+test('room numeric draft applies explicitly while preserving center and finite rectangular state',()=>{const before=state;change(field('room-width'),5000);assert.strictEqual(state,before);container.querySelector('#layout-room-apply').click();assert.deepEqual(state.room.polygonMm,[[-2500,-1500],[2500,-1500],[2500,1500],[-2500,1500]]);});
 test('printer attachment change is explicit local surface origin',()=>{selection='printer-1';mirror();const s=container.querySelector('#layout-support');s.value=JSON.stringify(['desk-1','top']);s.dispatch('change');assert.deepEqual(state.printers[0].attachment,{parentId:'desk-1',surfaceId:'top',xMm:0,zMm:0,yawDeg:0});change(field('xMm'),-47.8);assert.equal(state.printers[0].attachment.xMm,-47.8);});
 test('rotate world deltas, reverse and reset external state preserve exact fields',()=>{const before=state;command('layout.rotateRight').click();assert.deepEqual(actions.at(-1),{type:'rotate-world',id:'printer-1',deltaDeg:90});assert.equal(state.printers[0].attachment.yawDeg,90);command('layout.rotateLeft').click();assert.deepEqual(actions.at(-1),{type:'rotate-world',id:'printer-1',deltaDeg:-90});assert.equal(state.printers[0].attachment.yawDeg,0);state=before;mirror();assert.equal(Number(field('xMm').value),-47.8);});
 test('occupied furniture removal is disabled until explicit floor-detach choice',()=>{selection='desk-1';mirror();assert.equal(command('layout.delete').disabled,true);const c=container.querySelector('#layout-detach');c.checked=true;c.dispatch('change');command('layout.delete').click();assert.deepEqual(actions.at(-1),{type:'delete',id:'desk-1',detachChildren:true});});
 test('shelf board height delegates full stable level IDs',()=>{selection='shelf-1';mirror();const l=state.furniture[1].levels[1];change(field(`board-${l.id}`),650);assert.equal(state.furniture[1].levels[1].topMm,650);assert.deepEqual(state.furniture[1].levels.map(l=>l.id),['level-1','level-2','level-3','level-4']);});
-test('unknown catalog search never creates guessed machine',()=>{const s=container.querySelector('input[type=search]')||container.querySelectorAll('input').find(n=>n.type==='search');s.value='<unknown>';s.dispatch('input');assert.equal(command('layout.addPrinter').disabled,true);s.value='';s.dispatch('input');assert.equal(command('layout.addPrinter').disabled,false);});
+test('unknown catalog search never creates guessed machine',()=>{const s=container.querySelector('#layout-catalog-search');s.value='<unknown>';s.dispatch('input');assert.equal(command('layout.addPrinter').disabled,true);s.value='';s.dispatch('input');assert.equal(command('layout.addPrinter').disabled,false);});
 test('busy render cancels but never dispatches disabled mutations',()=>{ui.setStatus({busy:true,canUndo:true,renderProgress:{loaded:1,total:4,phase:'internal_decode_id',message:'Loading real models'}});const count=actions.length;command('layout.addDesk').click();assert.equal(actions.length,count);assert.equal(Number(container.querySelector('progress').value),1);command('cancel').click();assert.deepEqual(actions.at(-1),{type:'cancel'});assert.ok(container.textContent.includes('Loading real models'));assert.ok(!container.textContent.includes('internal_decode_id'));ui.setStatus({busy:false});});
 test('explicit full render emits exactly render command from a contained placement',()=>{state=applyAction(state,{type:'UPDATE_FURNITURE',id:'desk-1',patch:{depthMm:800}},catalog);mirror();assert.equal(validatePlacement(state,catalog).filter(issue=>issue.code==='ROOM_OUT_OF_BOUNDS'||issue.code==='SURFACE_OVERHANG').length,0);container.querySelector('#layout-render').click();assert.deepEqual(actions.at(-1),{type:'render'});});
 test('actual five-language central engine accepts all UI keys and warnings',()=>{for(const language of ['en','ja','es','ko','ru']){doc.documentElement.lang=language;ui.setLocale(createLayoutTranslator(language));ui.update(state,'printer-1',[{code:'ROOM_OUT_OF_BOUNDS',entityIds:['printer-1'],params:{}}]);assert.ok(container.textContent.length>100);}});
@@ -162,22 +162,19 @@ test('legacy boundary repair remains editable with plan export and blocks detail
   }
   ui.setLocale(createLayoutTranslator('en'));mirror();
 });
-test('section shortcuts scroll only the sidebar and retain the current selection and source values',()=>{
-  selection='desk-1';mirror();const before=JSON.stringify(state),count=actions.length,scrolls=[];
+test('workspace tabs hide inactive panels and preserve native drafts without scrolling or edits',()=>{
+  selection='desk-1';mirror();const before=JSON.stringify(state),count=actions.length;
   const draft=field('widthMm');draft.value='1499.25';draft.dispatch('input');
-  container.scrollTop=200;container.getBoundingClientRect=()=>({top:20});container.scrollTo=options=>scrolls.push(options);
-  container.querySelector('[role=toolbar]').getBoundingClientRect=()=>({height:100});
-  for(const name of ['room','add','objects','selection']){
-    const target=container.querySelector(`#layout-nav-${name}`);target.getBoundingClientRect=()=>({top:500});target.scrollIntoView=()=>{throw Error('Must not scroll window or other ancestors');};
+  container.scrollTo=()=>{throw Error('Workspace tabs must not scroll the document/sidebar');};
+  for(const name of ['room','add','output','selection']){
     command(`layout.nav.${name}`).click();
+    for(const other of ['room','add','output','selection'])assert.equal(container.querySelector(`#layout-nav-${other}`).hidden,other!==name);
+    assert.equal(command(`layout.nav.${name}`).getAttribute('aria-selected'),'true');
   }
-  assert.equal(scrolls.length,4);assert(scrolls.every(s=>s.top===580&&s.behavior==='instant'));
-  container.querySelector('#layout-nav-room').getBoundingClientRect=()=>({top:-1000});command('layout.nav.room').click();assert.equal(scrolls.at(-1).top,0);
-  assert.equal(draft.value,'1499.25');assert.equal(JSON.stringify(state),before);assert.equal(actions.length,count);
-  draft.blur();selection=null;mirror();assert.equal(command('layout.nav.selection').disabled,true);
-  selection='desk-1';mirror();assert.equal(command('layout.nav.selection').disabled,false);
-  ui.setStatus({busy:true});assert.equal(command('layout.nav.selection').disabled,true);ui.setStatus({busy:false});
-  for(const lang of ['en','ja','es','ko','ru']){const tr=createLayoutTranslator(lang);ui.setLocale(tr);for(const name of ['room','add','objects','selection'])assert.equal(command(`layout.nav.${name}`).getAttribute('aria-label'),tr(`layout.nav.${name}`));}
+  assert.strictEqual(field('widthMm'),draft);assert.equal(draft.value,'1499.25');assert.equal(JSON.stringify(state),before);assert.equal(actions.length,count);
+  draft.blur();selection=null;mirror();assert.equal(command('layout.nav.selection').disabled,false);
+  selection='desk-1';mirror();ui.setStatus({busy:true});assert.equal(command('layout.nav.selection').disabled,true);ui.setStatus({busy:false});
+  for(const lang of ['en','ja','es','ko','ru']){const tr=createLayoutTranslator(lang);ui.setLocale(tr);for(const name of ['room','add','output','selection'])assert.equal(command(`layout.nav.${name}`).getAttribute('aria-label'),tr(`layout.nav.${name}`));}
   ui.setLocale(createLayoutTranslator('en'));mirror();
 });
 test('dispose removes own UI, listeners and later updates are inert',()=>{const n=command('layout.addDesk'),before=actions.length;ui.dispose();n.click();ui.update(state,'desk-1',[]);assert.equal(container.children.length,0);assert.equal(actions.length,before);ui.dispose();});

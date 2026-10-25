@@ -148,16 +148,17 @@ const {createLayoutSurfaces,resolveSurfaceAppearance,wallSurfaceGeometry}=surfac
 const {drawPlanMeasurements}=(await realModule(path.join(A,'layout/layout-plan-measurements.mjs'))).namespace;
 const G=(await realModule(path.join(A,'layout/layout-groups.mjs'))).namespace;
 const {groupInfo,groupingForEntity}=G;imports.push(pin(path.join(A,'layout/layout-group-data.mjs')));
+const {groupLabel}=(await realModule(path.join(A,'layout/layout-group-labels.mjs'))).namespace;
 const {getLayoutEquipment,resolveLayoutEquipment}=(await realModule(path.join(A,'layout/layout-equipment.mjs'))).namespace;
 const {createEquipmentMeshCache}=(await realModule(path.join(A,'layout/layout-equipment-mesh.mjs'))).namespace;
-const importLines=source.match(/^import [^\n]+;\r?$/gm);assert.equal(importLines?.length,9,'Renderer dependency boundary changed');
-for(const line of importLines)assert(/(?:three\.module\.js|OrbitControls\.js|RoomEnvironment\.js|layout-state\.mjs|layout-surfaces\.mjs|layout-plan-measurements\.mjs|layout-groups\.mjs|layout-equipment\.mjs|layout-equipment-mesh\.mjs)(?:\?v=[a-f0-9]{20})?['"];$/u.test(line.trimEnd()));
+const importLines=source.match(/^import [^\n]+;\r?$/gm);assert.equal(importLines?.length,10,'Renderer dependency boundary changed');
+for(const line of importLines)assert(/(?:three\.module\.js|OrbitControls\.js|RoomEnvironment\.js|layout-state\.mjs|layout-surfaces\.mjs|layout-plan-measurements\.mjs|layout-groups\.mjs|layout-group-labels\.mjs|layout-equipment\.mjs|layout-equipment-mesh\.mjs)(?:\?v=[a-f0-9]{20})?['"];$/u.test(line.trimEnd()));
 assert.equal(source.split('export function createLayoutRenderer(').length,2);
 // Replace imports with controlled API boundaries; execute every product function body unchanged.
 const body=source.replace(/^import [^\n]+;\r?\n/gm,'').replace('export function createLayoutRenderer(','function createLayoutRenderer(');
 const replacement={...THREE,WebGLRenderer:RendererFixture,PMREMGenerator:PMREMFixture,InstancedMesh:TrackedInstancedMesh,WebGLRenderTarget:TrackedRenderTarget,ShaderMaterial:TrackedShaderMaterial,PlaneGeometry:TrackedPlaneGeometry};
-const factory=new Function('groupInfo','groupingForEntity','THREE','OrbitControls','RoomEnvironment','deriveScene','document','devicePixelRatio','requestAnimationFrame','cancelAnimationFrame','ResizeObserver','createLayoutSurfaces','resolveSurfaceAppearance','wallSurfaceGeometry','drawPlanMeasurements','getLayoutEquipment','resolveLayoutEquipment','createEquipmentMeshCache',body+'\nreturn createLayoutRenderer;')(
- groupInfo,groupingForEntity,replacement,ControlsFixture,EnvironmentFixture,(state,catalog)=>state.derived??S.deriveScene(state,catalog),fixtureDocument,1,raf,clearTimeout,ObserverFixture,createLayoutSurfaces,resolveSurfaceAppearance,wallSurfaceGeometry,drawPlanMeasurements,getLayoutEquipment,resolveLayoutEquipment,createEquipmentMeshCache);
+const factory=new Function('groupInfo','groupingForEntity','THREE','OrbitControls','RoomEnvironment','deriveScene','document','devicePixelRatio','requestAnimationFrame','cancelAnimationFrame','ResizeObserver','createLayoutSurfaces','resolveSurfaceAppearance','wallSurfaceGeometry','drawPlanMeasurements','getLayoutEquipment','resolveLayoutEquipment','createEquipmentMeshCache','groupLabel',body+'\nreturn createLayoutRenderer;')(
+ groupInfo,groupingForEntity,replacement,ControlsFixture,EnvironmentFixture,(state,catalog)=>state.derived??S.deriveScene(state,catalog),fixtureDocument,1,raf,clearTimeout,ObserverFixture,createLayoutSurfaces,resolveSurfaceAppearance,wallSurfaceGeometry,drawPlanMeasurements,getLayoutEquipment,resolveLayoutEquipment,createEquipmentMeshCache,groupLabel);
 function setup(dimensions={width:400,height:300}){
  size={...dimensions};const container=makeContainer();
  const catalog=[{id:'test-machine',dimensionsMm:{width:200,depth:200,height:300}}];
@@ -449,6 +450,23 @@ function expectedVisibleWalls(poly,camMm){
   return {key:JSON.stringify([(a[0]+b[0])/2,(a[1]+b[1])/2]),visible:cross*sign>=0n};
  }).sort((a,b)=>a.key.localeCompare(b.key));
 }
+// Analytic near-plane rectangle, independent of product unprojection. Integer
+// oriented-edge tests use nanometre quantization, including reflex-edge cases.
+function expectedCameraWalls(poly,camera){
+ camera.updateMatrixWorld(true);
+ const forward=camera.getWorldDirection(new THREE.Vector3()),e=camera.matrixWorld.elements;
+ const right=new THREE.Vector3(e[0],e[1],e[2]),up=new THREE.Vector3(e[4],e[5],e[6]);
+ const height=camera.near*Math.tan(camera.fov*Math.PI/360),width=height*camera.aspect;
+ const scaled=poly.map(p=>p.map(v=>v*1000000));
+ const masks=[-1,1].flatMap(x=>[-1,1].map(y=>{
+  const p=camera.position.clone().addScaledVector(forward,camera.near).addScaledVector(right,x*width).addScaledVector(up,y*height);
+  return expectedVisibleWalls(scaled,[Math.round(p.x*1e9),Math.round(p.z*1e9)]);
+ }));
+ return expectedVisibleWalls(poly,[0,0]).map(row=>{
+  const key=JSON.stringify(JSON.parse(row.key).map(v=>v*1000000));
+  return {...row,visible:masks.every(mask=>mask.find(v=>v.key===key).visible)};
+ });
+}
 function actualWallMask(walls){return walls.map(w=>{const len=Math.hypot(...w.inward);return {key:JSON.stringify([Math.round((w.position[0]+w.inward[0]/len*.025)*1000),Math.round((w.position[2]+w.inward[1]/len*.025)*1000)]),visible:w.visible}}).sort((a,b)=>a.key.localeCompare(b.key))}
 const cardinalViews=[{name:'east',mm:[6000,0]},{name:'west',mm:[-6000,0]},{name:'south',mm:[0,6000]},{name:'north',mm:[0,-6000]}];
 for(const [shape,original]of [
@@ -465,7 +483,7 @@ for(const [shape,original]of [
    controls.camera.position.set(viewpoint.mm[0]/1000,3,viewpoint.mm[1]/1000);controls.camera.lookAt(0,1,0);controls.change();
    await new Promise(resolve=>setTimeout(resolve,5));
    const preview=renderer.calls.filter(c=>c.target===null&&c.walls.length).at(-1);assert.ok(preview);
-   const expected=expectedVisibleWalls(poly,viewpoint.mm),actual=actualWallMask(preview.walls);
+   const expected=expectedCameraWalls(poly,controls.camera),actual=actualWallMask(preview.walls);
    assert.deepEqual(actual,expected);assert.ok(preview.walls.every(w=>w.opacity===1&&w.inward.every(Number.isFinite)));
    const start=renderer.calls.length,r=resource();
    await api.exportImage({width:320,loadMachine:async()=>r});assert.equal(r.disposes,1);
@@ -478,7 +496,7 @@ for(const [shape,original]of [
    assert.ok(outputWalls.every(w=>w.opacity===1&&!w.transparent&&w.depthWrite));
    assert.ok(hdr.slice(1).every(c=>c.roomWalls.length===0),'Opaque room must render once before streamed models');
    masks.push({view:viewpoint.name,mask:actual,exportedWallCount:outputWalls.length,cameraExact:true});
-   observations.push({case:'cutaway-'+shape+'-'+(reversed?'CW':'CCW')+'-'+viewpoint.name,oracle:'Exact integer oriented-edge half-plane',expected,actual,exportedWallCount:outputWalls.length,cameraExact:true});
+   observations.push({case:'cutaway-'+shape+'-'+(reversed?'CW':'CCW')+'-'+viewpoint.name,oracle:'Analytic near-plane rectangle; exact integer oriented-edge half-planes',expected,actual,exportedWallCount:outputWalls.length,cameraExact:true});
    passed.push('Cutaway '+shape+'/'+(reversed?'reversed':'original')+'/'+viewpoint.name+' agrees with exact source-edge oracle; preview/export camera arrays and visible wall set match.');
   }
   byWinding.push(masks);api.dispose();
@@ -623,8 +641,8 @@ const orbitToken="from 'three';";assert.equal(orbitRaw.split(orbitToken).length,
 const orbitSnapshot=path.join(intake,'OrbitControls.import-map.snapshot.mjs');
 fs.writeFileSync(orbitSnapshot,orbitRaw.replace(orbitToken,`from '${pathToFileURL(path.join(A,'viewer/vendor-r180/three.module.js')).href}';`),{flag:'wx'});
 const orbitModule=await import(pathToFileURL(orbitSnapshot));
-const factoryRealOrbit=new Function('groupInfo','groupingForEntity','THREE','OrbitControls','RoomEnvironment','deriveScene','document','devicePixelRatio','requestAnimationFrame','cancelAnimationFrame','ResizeObserver','createLayoutSurfaces','resolveSurfaceAppearance','wallSurfaceGeometry','drawPlanMeasurements','getLayoutEquipment','resolveLayoutEquipment','createEquipmentMeshCache',body+'\nreturn createLayoutRenderer;')(
- groupInfo,groupingForEntity,replacement,orbitModule.OrbitControls,EnvironmentFixture,(state,catalog)=>state.derived??S.deriveScene(state,catalog),fixtureDocument,1,raf,clearTimeout,ObserverFixture,createLayoutSurfaces,resolveSurfaceAppearance,wallSurfaceGeometry,drawPlanMeasurements,getLayoutEquipment,resolveLayoutEquipment,createEquipmentMeshCache);
+const factoryRealOrbit=new Function('groupInfo','groupingForEntity','THREE','OrbitControls','RoomEnvironment','deriveScene','document','devicePixelRatio','requestAnimationFrame','cancelAnimationFrame','ResizeObserver','createLayoutSurfaces','resolveSurfaceAppearance','wallSurfaceGeometry','drawPlanMeasurements','getLayoutEquipment','resolveLayoutEquipment','createEquipmentMeshCache','groupLabel',body+'\nreturn createLayoutRenderer;')(
+ groupInfo,groupingForEntity,replacement,orbitModule.OrbitControls,EnvironmentFixture,(state,catalog)=>state.derived??S.deriveScene(state,catalog),fixtureDocument,1,raf,clearTimeout,ObserverFixture,createLayoutSurfaces,resolveSurfaceAppearance,wallSurfaceGeometry,drawPlanMeasurements,getLayoutEquipment,resolveLayoutEquipment,createEquipmentMeshCache,groupLabel);
 const settled=()=>new Promise(resolve=>setTimeout(resolve,5));
 function operationSetup(realOrbit=false,options={}){
  size={width:800,height:600};const catalog=[{id:'test-machine',label:'Test printer',widthMm:200,depthMm:180,heightMm:300,dimensionsMm:{width:200,depth:180,height:300}}];
@@ -1385,6 +1403,94 @@ for(const mode of ['perspective','top']){
   // Cancel pending pointer work before disposal; no late candidate can return.
   const count=previews.length;api.canvas.emit('pointermove',point);api.setPlacement(null);await settled();assert.equal(previews.length,count);assert.equal(ghost.visible,false);api.dispose();
   passed.push(mode+' actual raycast placement: frame-coalesced preview, rotated board contact, one accepted commit, repeat modifier, rejected outside proposal, cancelled pending frame and no CAD loading.');
+ }
+}
+
+// Unit codes are planning annotations: source identities, listener lifetime,
+// live movement and 2D output are checked separately from actual model fit.
+for(const mode of ['perspective','top']){
+ const base=wallRotationGroupSeed(),seed={...base,state:G.createGroup(base.state,{id:'other-unit',name:'Second station',memberIds:['group-unrelated']},base.catalog)};
+ const x=await rotationSetup({seed,mode,selected:'wall-group'}),saved=S.serializeLayout(seed.state,seed.catalog);
+ const markers=()=>x.container.querySelectorAll('.layout-unit-marker');
+ assert.deepEqual(markers().map(b=>b.textContent),['A','B']);
+ assert.equal(markers()[0].getAttribute('aria-label'),'A · Wall source group');
+ assert.equal(markers()[0].getAttribute('aria-pressed'),'true');
+ assert.equal(x.container.querySelector('.layout-selected-summary').children[0].textContent,'A · Wall source group');
+ for(const m of markers())assert.ok(Number.isFinite(parseFloat(m.style.left))&&Number.isFinite(parseFloat(m.style.top)));
+ const old=markers()[1];old.focus();old.click();await settled();
+ assert.equal(x.engine.read().selected,'other-unit');assert.equal(markers()[1].getAttribute('aria-pressed'),'true');
+ assert.equal(old.reviewHandlers.get('click').length,0,'Old marker listener retained on rebuild');
+ assert.equal(fixtureDocument.activeElement,markers()[1],'Selected marker loses focus on state rebuild');
+ x.engine.select('wall-group');await settled();
+ const m=markers()[0],before=[m.style.left,m.style.top];
+ const entity=x.nodes(false).get('rotate-desk'),at=screen(entity.position.clone().add(new THREE.Vector3(.4,.75,.2)),x.renderer.lastCamera);
+ x.api.canvas.emit('pointerdown',at);x.api.canvas.emit('pointermove',{clientX:at.clientX+70,clientY:at.clientY+20});await settled();
+ assert.notDeepEqual([markers()[0].style.left,markers()[0].style.top],before,'Unit marker must follow live group movement');
+ x.api.canvas.emit('pointercancel');await settled();
+ assert.deepEqual([markers()[0].style.left,markers()[0].style.top],before,'Cancel returns marker to exact group position');
+ assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),saved);
+ if(mode==='top'){
+  const rotationHandle=x.button('handle'),atRest=[markers()[0].style.left,markers()[0].style.top];
+  rotationHandle.emit('pointerdown',{clientX:300,clientY:200});rotationHandle.emit('pointermove',{clientX:345,clientY:200});await settled();
+  assert.notDeepEqual([markers()[0].style.left,markers()[0].style.top],atRest,'Unit badge must track live rotated bounds');
+  rotationHandle.emit('pointercancel');await settled();assert.deepEqual([markers()[0].style.left,markers()[0].style.top],atRest);
+  x.engine.select('group-unrelated');await settled();const marker=markers()[1],rest=[marker.style.left,marker.style.top];
+  const point=screen(x.nodes(false).get('group-unrelated').position.clone(),x.renderer.lastCamera);
+  x.api.canvas.emit('pointerdown',{...point,altKey:true});x.api.canvas.emit('pointermove',{clientX:point.clientX+35,clientY:point.clientY+15,altKey:true});await settled();
+  assert.notDeepEqual([markers()[1].style.left,markers()[1].style.top],rest,'Member-only drag must move its unit badge');
+  x.api.canvas.emit('pointercancel');await settled();assert.deepEqual([markers()[1].style.left,markers()[1].style.top],rest);
+  assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),saved);x.engine.select('wall-group');await settled();
+  let loads=0;await x.api.exportImage({width:800,loadMachine:async()=>{loads++;throw Error('Plan must not load CAD')}});
+  assert.equal(loads,0);const codes=canvases.at(-1).reviewDraws.filter(d=>d[0]==='fillText').map(d=>d[1]);
+  assert.ok(codes.includes('A')&&codes.includes('B'),'Plan PNG lost unit identifiers');
+ }
+ x.engine.replace(G.renameGroup(seed.state,'wall-group','Print bank',seed.catalog),'wall-group');await settled();
+ assert.equal(markers()[0].textContent,'A');assert.equal(markers()[0].title,'A · Print bank');
+ const handles=markers();x.api.dispose();for(const m of handles)assert.equal(m.reviewHandlers.get('click').length,0);
+ assert.equal(x.container.querySelector('.layout-unit-labels'),null);
+ passed.push(mode+' unit badges keep stable code/custom name, selection/focus, finite live group anchor, exact cancel, renamed identity and listener cleanup; plan PNG carries both codes without loading CAD.');
+}
+// Imported explicit codes can be longer than allocator output. Measured DOM
+// dimensions, rather than a fixed single-letter margin, must protect both edges.
+{
+ const base=wallRotationGroupSeed(),state={...base.state,groups:base.state.groups.map(g=>({...g,label:'ZZZZZZ'}))};
+ const x=await rotationSetup({seed:{...base,state},mode:'top',selected:'wall-group'}),marker=x.container.querySelector('.layout-unit-marker');
+ marker.reviewRect={left:0,top:0,width:96,height:32};const camera=x.renderer.lastCamera;
+ const box=new THREE.Box3();for(const id of G.groupEntityIds(state,'wall-group'))box.union(new THREE.Box3().setFromObject(x.nodes(false).get(id)));
+ const half=(camera.right-camera.left)/(2*camera.zoom);
+ for(const sign of [-1,1]){
+  camera.position.x=box.min.x+sign*half*.99;camera.updateMatrixWorld(true);x.api.setOptions({grid:sign===1});await settled();
+  const left=parseFloat(marker.style.left);assert.equal(marker.hidden,false);assert.ok(left>=52&&left<=size.width-52,'Long unit code clipped at viewport edge');assert.equal(marker.textContent,'ZZZZZZ');
+ }
+ x.api.dispose();passed.push('Imported six-letter code uses actual marker dimensions at both viewport edges; identity stays intact.');
+}
+// Reproduce the wall-slab focus defect with the shipped planning proxy, actual
+// vendored controls and unchanged model/support positions.
+{
+ const file=path.join(A,'layout/layout-catalog.json'),catalog=JSON.parse(fs.readFileSync(file,'utf8')).machines.map(r=>({...r,widthMm:r.dimensionsMm.width,depthMm:r.dimensionsMm.depth,heightMm:r.dimensionsMm.height}));
+ const row=catalog.find(m=>m.id==='elegoo_neptune3plus_reference');assert(row);
+ for(const reversed of [false,true]){
+  size={width:800,height:600};const container=makeContainer(),api=factoryRealOrbit({container,catalog}),renderer=renderers.at(-1);
+  const originalRoom=S.createRoomRect({widthMm:4000,depthMm:3000,wallHeightMm:2400}),room={...originalRoom,polygonMm:reversed?[...originalRoom.polygonMm].reverse():originalRoom.polygonMm};
+  const state=S.createDefaultLayout({room,furniture:[S.createDesk({id:'wall-desk',widthMm:1200,depthMm:800,heightMm:750,pose:{xMm:1000,zMm:0,yawDeg:0}})],printers:[{id:'focus-neptune',machineId:row.id,configurationId:null,attachment:{parentId:'wall-desk',surfaceId:'top',xMm:0,zMm:0,yawDeg:0}}]},catalog);
+  const saved=S.serializeLayout(state,catalog);api.setState(state,'focus-neptune');api.view('perspective');await settled();assert.equal(api.focusSelected(),true);await settled();
+  const camera=renderer.lastCamera,preview=renderer.calls.filter(c=>!c.target&&c.walls.length).at(-1);
+  assert.ok(camera.position.x>2&&camera.position.x<2.025,'Reproduction must focus camera inside old visible wall slab');
+  const right=preview.walls.find(w=>w.inward[0]<-.9);assert(right);assert.equal(right.visible,false);
+  assert.ok(right.inward[0]*(camera.position.x-right.position[0])+right.inward[1]*(camera.position.z-right.position[2])>0,'Old centre-plane predicate would leave the slab visible');
+  assert.deepEqual(actualWallMask(preview.walls),expectedCameraWalls(room.polygonMm,camera));
+  const start=renderer.calls.length;await api.exportImage({width:320,loadMachine:async()=>resource()});
+  const hdr=renderer.calls.slice(start).find(c=>c.target&&c.targetType===THREE.HalfFloatType);
+  assert.equal(hdr.roomWalls.some(w=>Math.abs(w.position[0]-right.position[0])<1e-10),false,'PNG room pass must cut away the same slab');
+  assert.ok(hdr.roomWalls.every(w=>w.opacity===1&&!w.transparent));
+  camera.position.set(1.999,1.5,.5);camera.lookAt(1.999,1.5,0);camera.updateMatrixWorld(true);api.setOptions({grid:true});await settled();
+  const near=renderer.calls.filter(c=>!c.target&&c.walls.length).at(-1);assert.deepEqual(actualWallMask(near.walls),expectedCameraWalls(room.polygonMm,camera));
+  assert.equal(near.walls.find(w=>w.inward[0]<-.9).visible,false,'Near plane crosses wall even when camera centre is inside clear room');
+  api.setOptions({walls:false});await settled();assert.ok(renderer.calls.at(-1).walls.every(w=>!w.visible));
+  api.setOptions({walls:true});await settled();assert.deepEqual(actualWallMask(renderer.calls.at(-1).walls),actualWallMask(near.walls));
+  api.view('top');await settled();assert.ok(renderer.calls.at(-1).walls.every(w=>!w.visible));
+  assert.equal(S.serializeLayout(state,catalog),saved);api.dispose();
+  passed.push('Shipped Neptune3Plus proxy focus/'+(reversed?'CW':'CCW')+': old centre-plane fails; actual near-frustum/clear-face cutaway fixes slab in preview+PNG, opaque remaining walls and unchanged source/support, near-plane crossing, Walls A-B-A and plan gate.');
  }
 }
 const ownerSourceStillMatchesSnapshot=sha(fs.readFileSync(input))===sha(Buffer.from(source));

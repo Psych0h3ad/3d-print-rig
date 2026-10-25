@@ -1,5 +1,6 @@
 // Persisted group anchors keep repeated turns and A-to-B-to-A moves from drifting.
 import {rotateXZ} from './layout-geometry.mjs?v=129e07e8d3e2b008fab6';
+import {materializeGroupLabels} from './layout-group-labels.mjs?v=1ff84a0cf5540fd3184b';
 
 const samePose=(a,b)=>['xMm','zMm','yawDeg'].every(k=>a?.[k]===b?.[k]);
 export function rootPose(state,id){
@@ -20,7 +21,11 @@ export function groupRootPose(group,id,pose=group.pose){
 // changed; resizing a desk or adding a child does not discard its exact anchor.
 export function rebaseLayoutGroups(previous,next){
   if(!previous.groups)return undefined;
-  return previous.groups.flatMap(group=>{
+  // Persist legacy identities before a root deletion/detachment can remove a
+  // group or change membership. Ordinary pose edits keep v1 records untouched.
+  const membershipChanged=previous.groups.some(group=>group.memberIds.some(id=>!rootPose(next,id)));
+  const source=membershipChanged?materializeGroupLabels(previous):previous;
+  return source.groups.flatMap(group=>{
     const memberIds=group.memberIds.filter(id=>rootPose(next,id));
     if(!memberIds.length)return [];
     const changed=memberIds.some(id=>!samePose(rootPose(previous,id),rootPose(next,id)));

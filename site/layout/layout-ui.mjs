@@ -1,6 +1,7 @@
 // Presentation only. The application owns state, history, files and model loading.
-import {createRoomRect,createRoomL,createRoomPolygon,resolvePrinterEquipment} from './layout-state.mjs?v=fa98d98dcf1a407e6752';
+import {createRoomRect,createRoomL,createRoomPolygon,resolvePrinterEquipment} from './layout-state.mjs?v=0119a2ef6745811fe1cb';
 import {WALL_FINISHES,FLOOR_FINISHES,DEFAULT_ROOM_APPEARANCE} from './layout-finishes.mjs?v=001b62f9728770a12303';
+import {groupLabel} from './layout-group-labels.mjs?v=1ff84a0cf5540fd3184b';
 const PRINTER_VIEWER_PAGES=new Set(['','index.html','annex.html','community.html','crossant.html','custom-voron.html','kit-reference.html','micron.html','positron.html','ratrig.html','remorph.html','trident.html','v0.html','v24-reference.html','v24.html']);
 // Only a registered catalog destination is eligible; saved plan fields never supply URLs.
 export function printerSourcesURL(row,href,language='en'){
@@ -37,7 +38,7 @@ const PATHS = {
   ungroup:'M3 8V3h5m8 0h5v5M3 16v5h5m8 0h5v-5M8 8h8v8H8Z'
 };
 
-export function createLayoutUI({container, onAction, t, catalog = []}) {
+export function createLayoutUI({container, onAction, t, catalog = [], onObjectSearchEscape = () => {}}) {
   if (!container?.ownerDocument || typeof onAction !== 'function' || typeof t !== 'function') {
     throw new TypeError('createLayoutUI requires container, onAction and t');
   }
@@ -47,6 +48,8 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
   let currentIssues = [], editorKey = null, listKey = '';
   let roomMode='rectangle', roomAcceptedMode='rectangle', roomDraft=false, roomSignature=null;
   let farmKey='', libraryKey='', groupLibrary=[];
+  let activePanel='selection', objectType='all', pendingSelectionPanel=false;
+  const browserRows=new Map(), filterButtons=new Map(), panels=new Map(), tabButtons=new Map(), panelScrolls=new Map();
   const pickedRoots=new Set(), memberChecks=new Map();
   const cleanups = new Set(), fields = new Map();
   const entries = Array.isArray(catalog) ? catalog : catalog instanceof Map ? [...catalog.values()] : Array.isArray(catalog.entries) ? catalog.entries : Object.values(catalog);
@@ -147,7 +150,7 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
     const u = el('span', 'layout-unit', unit); u.setAttribute('aria-hidden', 'true');
     wrap.append(n, u); label.append(wrap); parent.append(label);
     fields.set(name, n);
-    listen(n, 'input', () => { n._dirty = true; n.removeAttribute('aria-invalid'); });
+    listen(n, 'input', () => { if(n.readOnly)return;n._dirty = true;if(name.startsWith('room-'))roomDraft=true; n.removeAttribute('aria-invalid'); });
     listen(n, 'change', () => {
       if(n.readOnly || (n.dataset.rounded==='true'&&!n._dirty))return;
       const value = n.valueAsNumber;
@@ -162,6 +165,14 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
       action(value);
     });
     listen(n, 'blur', () => {
+      if(name.startsWith('room-')&&roomDraft){
+        // Switching workspace panels blurs native inputs. A room draft belongs
+        // to Update room, so do not replace it with the committed room here.
+        const pending=n.valueAsNumber;
+        if(n._dirty&&Number.isFinite(pending)&&n.checkValidity())n._draftValue=pending;
+        if(Object.hasOwn(n,'_draftValue')&&Number.isFinite(pending)&&n.checkValidity()){n._dirty=false;n.value=fixedOne(n._draftValue);}
+        return;
+      }
       n._dirty = false;
       if (state) refreshValues();
       const exact=Object.hasOwn(n,'_draftValue')?n._draftValue:n._sourceValue;
@@ -177,19 +188,13 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
     const rectangle = p.length === 4 && p.every(([x,z]) => (x === minX || x === maxX) && (z === minZ || z === maxZ));
     return {minX,maxX,minZ,maxZ,rectangle,widthMm:maxX-minX,depthMm:maxZ-minZ};
   }
-  const resizeRoom = (axis, value) => {
-    const b = roomBounds(); if(roomMode!=='rectangle'||!b?.rectangle||roomDraft){roomDraft=true;return;}
-    if (value <= 0) return;
-    const width = axis === 'width' ? value : b.widthMm, depth = axis === 'depth' ? value : b.depthMm;
-    const x = (b.minX+b.maxX)/2, z = (b.minZ+b.maxZ)/2;
-    emit({type:'SET_ROOM',room:{...state.room,polygonMm:[[x-width/2,z-depth/2],[x+width/2,z-depth/2],[x+width/2,z+depth/2],[x-width/2,z+depth/2]]}});
-  };
-  numberField(roomFields, 'layout.width', 'room-width', {min:1,action:v=>resizeRoom('width',v)});
-  numberField(roomFields, 'layout.depth', 'room-depth', {min:1,action:v=>resizeRoom('depth',v)});
-  numberField(roomFields, 'layout.height', 'room-height', {min:100,max:20000,action:v=>{if(roomDraft||roomMode!=='rectangle'){roomDraft=true;return;}emit({type:'SET_ROOM',room:{...state.room,wallHeightMm:v}});}});
+  const editRoomNumber=()=>{roomDraft=true;};
+  numberField(roomFields, 'layout.width', 'room-width', {min:1,action:editRoomNumber});
+  numberField(roomFields, 'layout.depth', 'room-depth', {min:1,action:editRoomNumber});
+  numberField(roomFields, 'layout.height', 'room-height', {min:100,max:20000,action:editRoomNumber});
   const cutFields=el('div','layout-fields layout-two layout-room-cuts');roomSection.append(cutFields);
-  numberField(cutFields,'layout.cut_width','room-cut-width',{min:1,action:()=>{roomDraft=true;}});
-  numberField(cutFields,'layout.cut_depth','room-cut-depth',{min:1,action:()=>{roomDraft=true;}});
+  numberField(cutFields,'layout.cut_width','room-cut-width',{min:1,action:editRoomNumber});
+  numberField(cutFields,'layout.cut_depth','room-cut-depth',{min:1,action:editRoomNumber});
   const custom=el('div','layout-room-custom'),pointsLabel=el('label','layout-field');pointsLabel.append(copy(el('span'),'layout.room_points'));
   const points=el('textarea');points.id='layout-room-points';points.rows=6;points.spellcheck=false;points.maxLength=8192;points.placeholder='-2000, -1500\n2000, -1500\n2000, 1500\n-2000, 1500';points.setAttribute('aria-describedby','layout-room-points-help');
   pointsLabel.append(el('span','layout-coordinate-format','X, Z · mm'),points);const pointsHelp=copy(el('p','layout-help'),'layout.invalid_room');pointsHelp.id='layout-room-points-help';custom.append(pointsLabel,pointsHelp);roomSection.append(custom);
@@ -273,7 +278,7 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
   furnitureAdd.append(button('layout.addDesk',()=>emit({type:'add',kind:'desk'}),'desk'),button('layout.addShelf',()=>emit({type:'add',kind:'shelf'}),'shelf'));
   furnitureAdd.append(button('layout.addPopStation',()=>emit({type:'add',kind:'popstation_mini'}),'popstation_mini'));
   addSection.append(furnitureAdd);
-  const search = el('input', 'layout-catalog-search'); search.type = 'search';
+  const search = el('input', 'layout-catalog-search'); search.type = 'search';search.id='layout-catalog-search';
   search.placeholder = tr('layout.searchPrinters'); search.setAttribute('aria-label', tr('layout.searchPrinters'));
   search.dataset.layoutPlaceholder = 'layout.searchPrinters';
   const printerAdd = el('div', 'layout-add-printer'), machineSelect = el('select');
@@ -300,9 +305,30 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
   const manufacturerX=el('a','','X (@Psych0h3ad)');manufacturerX.href='https://x.com/Psych0h3ad';manufacturerX.target='_blank';manufacturerX.rel='noopener noreferrer';
   manufacturerContacts.append(manufacturerEmail,manufacturerX);manufacturerNote.append(manufacturerContacts);addSection.append(manufacturerNote);
   const objectSection = section('layout.objects'), objectCount = el('span','layout-count');
+  objectSection.id='layout-nav-objects';objectSection.classList.add('layout-browser');
   const objectHeading=el('div','layout-section-heading');objectHeading.append(objectSection.firstChild,objectCount);objectSection.append(objectHeading);
+  const objectSearch=el('input','layout-object-search');objectSearch.type='search';objectSearch.id='layout-object-search';
+  objectSearch.placeholder=tr('layout.browser.search');objectSearch.setAttribute('aria-label',tr('layout.browser.search'));
+  objectSearch.setAttribute('aria-controls','layout-objects layout-groups');objectSection.append(objectSearch);
+  const filters=el('div','layout-object-filters');filters.setAttribute('role','group');filters.dataset.layoutLabel='layout.browser.filters';filters.setAttribute('aria-label',tr('layout.browser.filters'));
+  for(const type of ['all','printers','furniture','units']){
+    const b=button(`layout.browser.${type}`,()=>{objectType=type;filterObjects();});b.dataset.layoutFilter=type;
+    filterButtons.set(type,b);filters.append(b);
+  }
+  objectSection.append(filters);
   const list=el('ul','layout-object-list'), empty=copy(el('p','layout-empty'),'layout.empty');
-  list.id='layout-objects'; objectSection.append(list,empty);
+  list.id='layout-objects';
+  const browserScroll=el('div','layout-browser-scroll');browserScroll.append(list);objectSection.append(browserScroll,empty);
+  const noMatches=copy(el('p','layout-empty'),'layout.browser.noMatches');noMatches.id='layout-object-no-matches';noMatches.hidden=true;objectSection.append(noMatches);
+  const reveal=button('layout.browser.reveal',()=>{objectSearch.value='';objectType='all';filterObjects();browserRows.get(selectedId)?.node.scrollIntoView?.({block:'nearest'});});
+  reveal.id='layout-reveal-selected';reveal.hidden=true;objectSection.append(reveal);
+  listen(objectSearch,'input',filterObjects);
+  listen(objectSearch,'keydown',event=>{
+    if(event.key!=='Escape'||event.isComposing)return;
+    event.preventDefault();event.stopPropagation?.();
+    if(objectSearch.value){objectSearch.value='';filterObjects();}
+    else if(typeof onObjectSearchEscape==='function')onObjectSearchEscape();
+  });
   const farmSection=section('layout.farm'), farmSummary=el('p','layout-count');
   farmSection.id='layout-farm';
   const farmHelp=copy(el('p','layout-help'),'layout.group.help');farmHelp.id='layout-group-help';
@@ -323,14 +349,18 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
   listen(groupName,'input',refreshGroupDraft);
   createForm.append(nameLabel,pickedSummary,createGroup);
   const groupList=el('ul','layout-object-list layout-group-list'), noGroups=copy(el('p','layout-help'),'layout.group.empty');
-  groupList.id='layout-groups';
+  groupList.id='layout-groups';browserScroll.append(groupList);
   const libraryHeading=copy(el('h3'),'layout.group.library'), libraryList=el('ul','layout-group-library');
   libraryList.id='layout-group-library';
   const noTemplates=copy(el('p','layout-help'),'layout.group.libraryEmpty');
   const bulkTools=el('div','layout-row layout-bulk-tools');
   bulkTools.append(button('layout.selection.all',()=>setPickedRootIds(roots().map(e=>e.id)),'group'),button('layout.selection.clear',()=>setPickedRootIds([]),'minus'),button('layout.selection.copy',()=>emit({type:'copy',selectionIds:[...pickedRoots]}),'duplicate'));
   const clipboardHelp=copy(el('p','layout-help'),'layout.clipboard.help');
-  farmSection.append(farmSummary,farmHelp,bulkTools,createForm,clipboardHelp,groupList,noGroups,libraryHeading,libraryList,noTemplates);
+  farmSection.id='layout-nav-farm';
+  farmSection.append(farmSummary,farmHelp,bulkTools,createForm,clipboardHelp,noGroups);
+  const unitTools=el('details','layout-unit-tools'),unitSummary=copy(el('summary'),'layout.browser.unitTools',{count:0});
+  unitTools.append(unitSummary,farmSection);objectSection.append(unitTools);
+  const savedUnits=el('details','layout-saved-units');savedUnits.append(copy(el('summary'),'layout.group.library'),libraryHeading,libraryList,noTemplates);addSection.append(savedUnits);
   const editorSection=section('layout.selection'), editor=el('div','layout-editor'); editorSection.append(editor);
   const warningSection=section('layout.checks'), issueList=el('ul','layout-issues'); warningSection.append(issueList);
   const renderSection=section('layout.finalRender');
@@ -339,24 +369,35 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
   const progress=el('progress','layout-render-progress');progress.hidden=true;
   const renderMessage=el('p','layout-render-message');renderMessage.setAttribute('role','status');renderMessage.setAttribute('aria-live','polite');
   const cancel=button('layout.cancel','cancel');cancel.classList.add('layout-cancel');cancel.hidden=true;
-  renderSection.append(renderButton,renderHelp,progress,renderMessage,cancel);
+  renderSection.append(renderButton,renderHelp);
   const scope=section('layout.about');scope.append(copy(el('p','layout-scope'),'layout.scope'));
-  const shortcuts=el('div','layout-section-shortcuts');
-  shortcuts.setAttribute('role','group');shortcuts.dataset.layoutLabel='layout.settings';shortcuts.setAttribute('aria-label',tr('layout.settings'));
-  const jumps=[['layout.nav.room',roomSection],['layout.nav.add',addSection],['layout.nav.farm',farmSection],['layout.nav.objects',objectSection],['layout.nav.selection',editorSection]];
-  let selectionJump;
-  for(const [key,target]of jumps){
-    target.id=key.replaceAll('.','-');
-    const jump=button(key,()=>{
-      const top=container.scrollTop+target.getBoundingClientRect().top-container.getBoundingClientRect().top-actions.getBoundingClientRect().height;
-      container.scrollTo({top:Math.max(0,top),behavior:'instant'});
+  const manufacturerDetails=el('details','layout-add-help');manufacturerDetails.append(copy(el('summary'),'layout.manufacturer.title'),manufacturerNote);addSection.append(manufacturerDetails);
+  const tabs=el('div','layout-workspace-tabs');tabs.setAttribute('role','tablist');tabs.dataset.layoutLabel='layout.settings';tabs.setAttribute('aria-label',tr('layout.settings'));
+  const panelHost=el('div','layout-workspace-panels'),outputPanel=el('div','layout-output-panel');outputPanel.append(renderSection,warningSection,scope);
+  for(const [name,target]of [['selection',editorSection],['add',addSection],['room',roomSection],['output',outputPanel]]){
+    target.id=`layout-nav-${name}`;target.setAttribute('role','tabpanel');target.setAttribute('aria-labelledby',`layout-tab-${name}`);panels.set(name,target);
+    const tab=button(`layout.nav.${name}`,()=>showPanel(name));tab.id=`layout-tab-${name}`;tab.dataset.layoutTab=name;tab.setAttribute('role','tab');tab.setAttribute('aria-controls',target.id);
+    listen(tab,'keydown',event=>{
+      if(event.altKey||event.ctrlKey||event.metaKey||event.isComposing)return;
+      const names=[...panels.keys()],index=names.indexOf(name);let next;
+      if(event.key==='ArrowRight')next=names[(index+1)%names.length];else if(event.key==='ArrowLeft')next=names[(index+names.length-1)%names.length];
+      else if(event.key==='Home')next=names[0];else if(event.key==='End')next=names.at(-1);else return;
+      event.preventDefault();showPanel(next);tabButtons.get(next).focus();
     });
-    jump.dataset.layoutJump=target.id;jump.setAttribute('aria-controls',target.id);
-    if(target===editorSection)selectionJump=jump;
-    shortcuts.append(jump);
+    tabButtons.set(name,tab);tabs.append(tab);panelHost.append(target);
   }
-  actions.append(shortcuts);
+  const notices=el('div','layout-workspace-notices');notices.append(feedback,boundsNotice);
+  const busyArea=el('div','layout-workspace-progress');busyArea.id='layout-workspace-progress';busyArea.hidden=true;busyArea.append(progress,renderMessage,cancel);
+  root.replaceChildren(actions,notices,objectSection,tabs,panelHost,busyArea);
+  showPanel('selection');
   container.replaceChildren(root);
+
+  function showPanel(name){
+    if(disposed||status.busy||!panels.has(name))return;
+    if(name!==activePanel){panelScrolls.set(activePanel,panelHost.scrollTop||0);panelHost.scrollTop=panelScrolls.get(name)||0;}
+    activePanel=name;
+    for(const [key,panel]of panels){panel.hidden=key!==name;const tab=tabButtons.get(key);tab.setAttribute('aria-selected',String(key===name));tab.tabIndex=key===name?0:-1;}
+  }
 
   function machineLabel(m) { return String(m?.label || m?.name || m?.title || m?.id || ''); }
   function selectedSourceURL(m){return printerSourcesURL(m,doc.location?.href||doc.defaultView?.location?.href,doc.documentElement?.lang||'en');}
@@ -365,7 +406,9 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
   function isGroup(e) { return groups().some(g=>g.id===e.id); }
   function selected() { return groups().find(e=>e.id===selectedId)||entities().find(e=>e.id===selectedId); }
   function roots() { return [...(state?.furniture||[]),...(state?.printers||[]).filter(p=>p.attachment?.parentId===null&&p.attachment.surfaceId==='floor')]; }
-  function assignedGroup(id) { return groups().find(g=>g.memberIds?.includes(id)); }
+  function assignedGroup(id) { const parent=state?.printers?.find(p=>p.id===id)?.attachment.parentId;return groups().find(g=>g.memberIds?.includes(id)||(parent&&g.memberIds?.includes(parent))); }
+  function unitTitle(group){const code=groupLabel(state,group.id);return code?`${code} · ${group.name}`:String(group.name);}
+  function unitBadge(group){const badge=el('span','layout-unit-badge',groupLabel(state,group.id));badge.dataset.layoutUnitCode='';return badge;}
   function members(ids) {
     const rootIds=new Set(ids), furniture=(state?.furniture||[]).filter(f=>rootIds.has(f.id)), furnitureIds=new Set(furniture.map(f=>f.id));
     const printers=(state?.printers||[]).filter(p=>furnitureIds.has(p.attachment?.parentId)||(p.attachment?.parentId===null&&p.attachment.surfaceId==='floor'&&rootIds.has(p.id)));
@@ -378,6 +421,7 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
   }
   function refreshGroupDraft() {
     copy(pickedSummary,'layout.group.selection',{roots:pickedRoots.size,...counts(members(pickedRoots))});
+    copy(unitSummary,'layout.browser.unitTools',{count:pickedRoots.size});
     createGroup.disabled=!!status.busy||!state||!pickedRoots.size;
     copySelectionButton.disabled=!!status.busy||(!pickedRoots.size&&!selected());
     pasteSelectionButton.disabled=!!status.busy||!status.canPaste;
@@ -397,10 +441,10 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
   function refreshList() {
     prunePickedRoots();
     const all=entities(), rootIds=new Set(roots().map(e=>e.id));
-    const key=JSON.stringify(all.map(e=>[e.id,title(e),e.type||'printer',rootIds.has(e.id),assignedGroup(e.id)?.id,assignedGroup(e.id)?.name]));
-    objectCount.textContent=String(all.length); empty.hidden=all.length>0;
+    const key=JSON.stringify(all.map(e=>[e.id,title(e),e.type||'printer',rootIds.has(e.id),e.attachment?.parentId,assignedGroup(e.id)?.id,assignedGroup(e.id)&&unitTitle(assignedGroup(e.id))]));
     if(key!==listKey){
       listKey=key; list.replaceChildren();memberChecks.clear();
+      for(const [id,row]of browserRows)if(row.type!=='units')browserRows.delete(id);
       for(const e of all){
         const li=el('li','layout-object-row'), b=button('layout.selectObject',()=>emit({type:'select',id:e.id}),e.type||'printer');
         b.className='layout-object-button'; b.dataset.layoutEntity=e.id;b.replaceChildren(icon(e.type||'printer'));
@@ -417,30 +461,56 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
           });
           const assigned=assignedGroup(e.id);
           if(assigned){
-            const note=copy(el('span','layout-object-detail'),'layout.group.assigned',{name:assigned.name});
+            const note=copy(el('span','layout-object-detail'),'layout.group.assigned',{name:unitTitle(assigned)});
             note.id=`layout-group-assigned-${memberChecks.size}`;c.append(note);check.setAttribute('aria-describedby',`${farmHelp.id} ${note.id}`);
           }
         }else li.classList.add('layout-object-child');
+        const parent=state.furniture?.find(f=>f.id===e.attachment?.parentId),unit=assignedGroup(e.id);
+        if(parent)c.append(el('span','layout-object-detail',`${title(parent)}${unit?` · ${unitTitle(unit)}`:''}`));
+        browserRows.set(e.id,{node:li,type:'machineId'in e?'printers':'furniture',entity:e});
         li.append(b);list.append(li);
       }
     }
     for(const b of list.querySelectorAll('[data-layout-entity]'))b.setAttribute('aria-pressed',String(b.dataset.layoutEntity===selectedId));
   }
   function refreshFarm() {
-    const all=groups(), key=JSON.stringify(all.map(g=>[g.id,g.name,counts(members(g.memberIds))]));
+    const all=groups(), key=JSON.stringify(all.map(g=>[g.id,unitTitle(g),counts(members(g.memberIds))]));
     copy(farmSummary,'layout.group.summary',{groups:all.length,...counts(entities())});
     noGroups.hidden=all.length>0;
     if(key!==farmKey){
       farmKey=key;groupList.replaceChildren();
+      for(const [id,row]of browserRows)if(row.type==='units')browserRows.delete(id);
       for(const group of all){
         const row=el('li'), b=button('layout.selectObject',()=>emit({type:'select',id:group.id}),'group');
         b.className='layout-object-button';b.dataset.layoutGroup=group.id;b.replaceChildren(icon('group'));
         const c=el('span','layout-object-copy');c.append(el('span','layout-object-name',group.name),copy(el('span','layout-object-detail'),'layout.group.counts',counts(members(group.memberIds))));
-        b.append(c);b.setAttribute('aria-label',group.name);row.append(b);groupList.append(row);
+        b.append(unitBadge(group),c);b.setAttribute('aria-label',unitTitle(group));row.append(b);groupList.append(row);
+        browserRows.set(group.id,{node:row,type:'units',entity:group});
       }
     }
     for(const b of groupList.querySelectorAll('[data-layout-group]'))b.setAttribute('aria-pressed',String(b.dataset.layoutGroup===selectedId));
     refreshGroupDraft();
+  }
+  function filterObjects(){
+    const query=objectSearch.value.trim().toLocaleLowerCase(),terms=query.split(/\s+/).filter(Boolean);
+    const exactUnit=query&&groups().find(g=>groupLabel(state,g.id).toLocaleLowerCase()===query);
+    const totals={all:0,printers:0,furniture:0,units:0};let shown=0;
+    for(const [id,row]of browserRows){
+      const e=row.entity,unit=row.type==='units'?e:assignedGroup(id),parent=state?.furniture?.find(f=>f.id===e.attachment?.parentId);
+      const text=[title(e),unit&&unitTitle(unit),parent&&title(parent),'machineId'in e&&e.machineId].filter(Boolean).join(' ').toLocaleLowerCase();
+      const matches=exactUnit?unit?.id===exactUnit.id:terms.every(term=>text.includes(term));
+      if(matches){totals.all++;totals[row.type]++;}
+      row.node.hidden=!matches||(objectType!=='all'&&objectType!==row.type);if(!row.node.hidden)shown++;
+    }
+    for(const [type,b]of filterButtons){
+      b.setAttribute('aria-pressed',String(type===objectType));
+      copy(b.querySelector('[data-layout-i18n]'),`layout.browser.${type}`);
+      const label=`${tr(`layout.browser.${type}`)} (${totals[type]})`;b.setAttribute('aria-label',label);
+      let count=b.querySelector('[data-layout-filter-count]');if(!count){count=el('span','layout-count');count.dataset.layoutFilterCount='';b.append(count);}count.textContent=String(totals[type]);
+    }
+    copy(objectCount,'layout.browser.showing',{shown,total:browserRows.size});
+    empty.hidden=browserRows.size>0;noMatches.hidden=browserRows.size===0||shown>0;
+    reveal.hidden=!selected()||!browserRows.get(selectedId)?.node.hidden;
   }
   function refreshLibrary() {
     const key=JSON.stringify(groupLibrary);noTemplates.hidden=groupLibrary.length>0;
@@ -467,6 +537,7 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
     const nextKey=group?JSON.stringify(['group',e.id,members(e.memberIds).map(m=>[m.id,title(m)])]):e?`${e.id}:${e.type||'printer'}:${e.attachment?.parentId||''}:${JSON.stringify(e.levels?.map(l=>l.id)||[])}:${JSON.stringify(state.furniture.map(f=>[f.id,f.type,f.levels?.map(l=>l.id)]))}:${JSON.stringify(state.printers.map(p=>[p.id,p.machineId,p.attachment.parentId]))}`:'';
     if(nextKey===editorKey)return;
     editorKey=nextKey;
+    editor.className=group?'layout-editor layout-group-editor':'layout-editor';
     for(const name of [...fields.keys()])if(!name.startsWith('room-'))fields.delete(name);
     editor.replaceChildren();
     if(!e){editor.append(copy(el('p','layout-empty'),'layout.selectHint'));return;}
@@ -481,7 +552,7 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
       const thicknessField=numberField(thick,'layout.thickness',prop,{min:e.type==='desk'?30:5,max:e.type==='desk'?30:100,action:v=>patchEntity(e,{[prop]:v})});
       if(e.type==='desk')thicknessField.readOnly=true;
     }else if(isPrinter){
-      const supportLabel=el('label','layout-field');supportLabel.append(copy(el('span'),'layout.support'));
+      const supportLabel=el('label','layout-field layout-support-field');supportLabel.append(copy(el('span'),'layout.support'));
       const supports=el('select');supports.dataset.layoutField='support';supports.id='layout-support';
       const addOption=(parentId,surfaceId,label)=>{const o=el('option','',label);o.value=JSON.stringify([parentId,surfaceId]);supports.append(o);};
       addOption(null,'floor',tr('layout.floor'));
@@ -523,6 +594,9 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
     const rotate=el('div','layout-row layout-rotate');
     for(const delta of [-90,90]){const control=button(delta<0?'layout.rotateLeft':'layout.rotateRight',()=>{const current=selected();if(current)emit({type:'rotate-world',id:current.id,deltaDeg:delta});});if(isPrinter&&state.furniture.some(f=>f.id===e.attachment.parentId&&f.type==='popstation_mini'))control.dataset.mountLocked='true';rotate.append(control);}
     position.append(rotate);
+    // Keep the primary editing controls ahead of dimensions and source/help text.
+    const primary=[...editor.children].filter(n=>n.className==='layout-editor-subtitle'||n.className?.includes('layout-support-field'));
+    const secondary=[...editor.children].filter(n=>n!==position&&!primary.includes(n));editor.replaceChildren(...primary,position,...secondary);
     if(e.type==='shelf'){
       const boards=el('div');boards.append(copy(el('h3'),'layout.boards'));
       const rows=el('div','layout-board-list');
@@ -545,8 +619,9 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
     bottom.append(remove);editor.append(bottom);
   }
   function buildGroupEditor(group) {
-    const label=el('label','layout-field');label.append(copy(el('span'),'layout.group.name'));
-    const name=el('input');name.type='text';name.required=true;name.maxLength=80;name.id='layout-group-edit-name';label.append(name);editor.append(label);
+    const identity=el('div','layout-unit-identity layout-group-heading');identity.id='layout-selected-unit';identity.setAttribute('role','group');identity.setAttribute('aria-label',unitTitle(group));identity.title=unitTitle(group);
+    const label=el('label','layout-field layout-group-name-field');label.append(copy(el('span','layout-sr-only'),'layout.group.name'));
+    const name=el('input');name.type='text';name.required=true;name.maxLength=80;name.id='layout-group-edit-name';label.append(name);identity.append(unitBadge(group),label);editor.append(identity);
     listen(name,'input',()=>{name._dirty=true;name.removeAttribute('aria-invalid');});
     listen(name,'change',()=>{
       if(status.busy)return;
@@ -556,8 +631,8 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
       const current=selected();if(current&&isGroup(current)&&next!==current.name)emit({type:'group-rename',id:group.id,name:next});
     });
     listen(name,'blur',()=>{name._dirty=false;refreshValues();});
-    editor.append(copy(el('p','layout-count'),'layout.group.counts',counts(members(group.memberIds))),copy(el('p','layout-position-label'),'layout.group.worldPosition'));
-    const pose=el('div','layout-fields');editor.append(pose);
+    editor.append(copy(el('p','layout-count layout-group-counts'),'layout.group.counts',counts(members(group.memberIds))),copy(el('p','layout-sr-only'),'layout.group.worldPosition'));
+    const pose=el('div','layout-fields');pose.setAttribute('role','group');pose.dataset.layoutLabel='layout.group.worldPosition';pose.setAttribute('aria-label',tr('layout.group.worldPosition'));editor.append(pose);
     for(const [key,prop,unit]of [['layout.positionX','xMm','mm'],['layout.positionZ','zMm','mm'],['layout.rotation','yawDeg','°']])numberField(pose,key,prop,{unit,action:v=>emit({type:'group-transform',id:group.id,patch:{[prop]:v}})});
     const bottom=el('div','layout-editor-actions layout-group-actions');
     bottom.append(button('layout.group.save',()=>emit({type:'group-save',id:group.id}),'save'),button('layout.duplicate',()=>emit({type:'duplicate',id:group.id}),'duplicate'),button('layout.group.ungroup',()=>emit({type:'group-ungroup',id:group.id}),'ungroup'));
@@ -580,6 +655,7 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
     for(const key of ['xMm','zMm','yawDeg'])value(key,p[key]);
     if(isGroup(e)){
       const name=editor.querySelector('#layout-group-edit-name');if(name&&!(doc.activeElement===name&&name._dirty))name.value=e.name;
+      const identity=editor.querySelector('#layout-selected-unit');if(identity){identity.querySelector('[data-layout-unit-code]').textContent=groupLabel(state,e.id);identity.setAttribute('aria-label',unitTitle(e));identity.title=unitTitle(e);}
       return;
     }
     for(const key of ['widthMm','depthMm','heightMm','topThicknessMm','boardThicknessMm'])value(key,e[key]);
@@ -598,18 +674,19 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
     }
   }
   function refreshStatus(){
+    if(pendingSelectionPanel&&!status.busy){pendingSelectionPanel=false;if(selected()){showPanel('selection');panelHost.scrollTop=0;}}
     for(const n of root.querySelectorAll('button,input,select,textarea'))n.disabled=!!status.busy;
     for(const n of root.querySelectorAll('[data-mount-locked]'))n.disabled=true;
     for(const [id,check]of memberChecks){check.disabled=!!status.busy;check.checked=pickedRoots.has(id);}
     refreshGroupDraft();
     undo.disabled=status.busy||!status.canUndo;redo.disabled=status.busy||!status.canRedo;
-    selectionJump.disabled=status.busy||!selected();
     addMachine.disabled=status.busy||!byMachine.has(machineSelect.value);
     const needsDetach=editor.querySelector('[data-requires-detach]');if(needsDetach)needsDetach.disabled=status.busy||!editor.querySelector('#layout-detach')?.checked;
     const boundaryInvalid=currentIssues.some(issue=>issue.code==='ROOM_OUT_OF_BOUNDS'||issue.code==='SURFACE_OVERHANG');
     boundsNotice.hidden=!boundaryInvalid;
     renderButton.disabled=status.busy||!state||(!floorplan&&(boundaryInvalid||(!state.printers?.length&&!state.furniture?.some(f=>f.type==='popstation_mini'))));
     cancel.hidden=!status.busy;cancel.disabled=false;
+    busyArea.hidden=!status.busy;
     progress.hidden=!status.busy;
     const p=status.renderProgress;
     if(p&&Number.isFinite(p.total)&&p.total>0&&Number.isFinite(p.loaded)){
@@ -621,8 +698,10 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
   }
   function update(next,selection=null,issues=[]){
     if(disposed)return;
+    const previousSelection=selectedId;
     state=next;selectedId=typeof selection==='object'?selection?.id:selection;currentIssues=Array.isArray(issues)?issues:[];
-    refreshList();refreshFarm();buildEditor();refreshValues();refreshIssues();refreshStatus();
+    if(selectedId!==previousSelection&&selected()){if(status.busy)pendingSelectionPanel=true;else{showPanel('selection');panelHost.scrollTop=0;}}
+    refreshList();refreshFarm();filterObjects();buildEditor();refreshValues();refreshIssues();refreshStatus();
     // Rebuilt lists/editors must not retain detached controls or their closures.
     releaseDetachedControls();
   }
@@ -635,16 +714,21 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
   }
   function setLocale(next){
     if(disposed)return;if(typeof next!=='function')throw new TypeError('setLocale requires translator');
+    const focused=doc.activeElement,draft=focused&&root.contains(focused)&&focused._dirty?{id:focused.id,value:focused.value}:null;
     translate=next;
     groupName.placeholder=tr('layout.group.defaultName');
     for(const n of root.querySelectorAll('[data-layout-i18n]'))n.textContent=tr(n.dataset.layoutI18n,n._layoutValues||{});
     for(const n of root.querySelectorAll('[data-layout-label]'))n.setAttribute('aria-label',tr(n.dataset.layoutLabel));
     for(const n of root.querySelectorAll('[data-layout-tooltip]'))n.title=tr(n.dataset.layoutTooltip);
     search.placeholder=tr('layout.searchPrinters');search.setAttribute('aria-label',tr('layout.searchPrinters'));machineSelect.setAttribute('aria-label',tr('layout.choosePrinter'));actions.setAttribute('aria-label',tr('layout.planActions'));
+    objectSearch.placeholder=tr('layout.browser.search');objectSearch.setAttribute('aria-label',tr('layout.browser.search'));
     listKey='';farmKey='';libraryKey='';editorKey=null;populateMachines();refreshLibrary();if(state)update(state,selectedId,currentIssues);else refreshStatus();
+    if(draft){const replacement=[...root.querySelectorAll('input,textarea')].find(n=>n.id===draft.id);if(replacement){replacement.value=draft.value;replacement._dirty=true;replacement.focus({preventScroll:true});}}
     releaseDetachedControls();
   }
   function dispose(){if(disposed)return;disposed=true;for(const remove of cleanups)remove();fields.clear();root.remove();state=null;}
+  function focusObjectSearch(){if(disposed||status.busy)return false;objectSearch.focus();objectSearch.select?.();return true;}
+  function focusSelection(){if(disposed||status.busy||!selected())return false;showPanel('selection');panelHost.scrollTop=0;return true;}
   populateMachines();refreshStatus();
   function setPickedRootIds(ids){
     if(disposed||status.busy)return;
@@ -652,5 +736,5 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
     prunePickedRoots();refreshGroupDraft();
   }
   return Object.freeze({update,setStatus,setProjection,setLocale,setGroupLibrary,
-    getPickedRootIds:()=>[...pickedRoots],setPickedRootIds,dispose});
+    getPickedRootIds:()=>[...pickedRoots],setPickedRootIds,focusObjectSearch,focusSelection,dispose});
 }

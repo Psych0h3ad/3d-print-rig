@@ -50,14 +50,17 @@ These are outside-dimension planning envelopes, so allow extra working space.
 Older plans with overlaps still open and show the affected objects; move them
 apart before rotating or arranging them further.
 
-The fixed **Room**, **Add**, **Farm**, **Objects** and **Selected** shortcuts in the
-settings panel jump directly to the relevant controls without changing the
-current selection.
+The settings panel keeps the object list visible above four tabs: **Selected**,
+**Add**, **Room** and **Output**. Select an object to open its position and
+rotation controls. Filter the list to printers, furniture or units, or search
+by name or unit letter. Press **/** outside a text field to focus the search.
+Tab changes preserve unfinished form entries; selecting another object opens
+**Selected**.
 
 ## Printer farms and reusable sets
 
-Use the checkboxes in **Objects** to choose desks, shelves or floor printers,
-then open **Farm** and select **Create group**. The name is optional and can be
+Use the checkboxes in **Items** to choose desks, shelves or floor printers,
+then open **Unit tools** and select **Create group**. The name is optional and can be
 changed later. **Select all** and **Clear selection** speed up larger plans.
 Printers on a chosen desk or shelf are included automatically. Selected roots
 can be regrouped directly: they move out of their previous groups, while the
@@ -71,11 +74,16 @@ individual object. **Ungroup** keeps every object in place; deleting a selected
 group removes its furniture and printers together. Both actions support undo.
 
 **Duplicate** starts a preview of the complete set. **Save set** adds it to
-**Saved sets** in this browser; choose **Place** to reuse it in another plan.
+**Saved units** under **Add** in this browser; choose **Place** to reuse it in another plan.
 Click to place, hold **Shift** to place more copies, and press **R** to rotate
 the preview. Red previews reject room, support, height or envelope conflicts
 without adding part of the set. Each copy gets its own object IDs and support
-references. Placement stays lightweight; full printer CAD is loaded only for
+references. Units also receive a letter code: **A**, **B**, **C**, through **Z**,
+then **AA**, **AB** and so on. The code appears in the list, beside the unit in
+the scene and in exported 2D plans. It stays separate from the name and survives
+renaming, save/load and undo/redo. Deleting another unit does not renumber the
+remaining ones. A newly placed copy receives a new code in the destination
+plan. Placement stays lightweight; full printer CAD is loaded only for
 the final render.
 
 Groups are included in the normal layout JSON and survive save/load and
