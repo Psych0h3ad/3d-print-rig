@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "review_revision": "layout-unit-identities-desktop-20261025",
+  "review_revision": "layout-unit-name-desk-joints-20261025",
   "reviewed_on": "2026-10-25",
   "input_sha256": {
     ".github/workflows/pages.yml": "b9b6d0c7068a553c378f275aa6be6f363b41b74e68ca352f1618ae973ec5cb5b",
@@ -223,6 +223,7 @@
     "scripts/test_layout_clipboard.mjs": "205f56a8bc25c1701c81044fad0af7f54425914e1899403ba9217dad96f6f620",
     "scripts/test_layout_collision_sweep.mjs": "8675289d1f7240f108c394d2260b7c304b1f90d26280f3a6d8b0d08c898c871d",
     "scripts/test_layout_collision.mjs": "2733b6b430bac93c39098ff33843b21d80c57c39fa76d9b8cc17525d2a360dfe",
+    "scripts/test_layout_desk_geometry.mjs": "fa456835c1a7197d3936d7cada6de94a367ec8357b63db464f8c5de403fd95f2",
     "scripts/test_layout_desktop_workspace.mjs": "5abdd6a4ecffbbe51bc7940a4ea24019700265237278387bd9961acf83794bbb",
     "scripts/test_layout_drag_boundaries.mjs": "7cb3b23ee1a8f95d98d95d680b6c0a9f187748b9d0c49a67866f4f6b3eaf9940",
     "scripts/test_layout_edit_commands.mjs": "ffadb8cb9432e911e88e46ff49ef472e81785fb8a5f3069edcaff5c1ffef4114",
@@ -239,7 +240,7 @@
     "scripts/test_layout_group_labels.mjs": "59b283ec61bd8159e2405886fa7b8583af2f9486b346cbcdb7d50ba087a0b7c7",
     "scripts/test_layout_group_renderer.mjs": "cbdf2bcfc953bad715c7095b07207c245fb00a641610ff6e6b2fe359cbda41a5",
     "scripts/test_layout_group_wall_rotation.mjs": "01e9f24d3fb725254beb0ffc32458bb4feb8613977e10b52a59e2d03aa296fa8",
-    "scripts/test_layout_groups_ui.mjs": "be0e48654960f521c46fa2f27d6d62157c981da46e147d2e34860b0b90e067e4",
+    "scripts/test_layout_groups_ui.mjs": "01b24a5eeb6b8a38baf72aebf1144095bc5c36344b3c3040e6f12c5fce52be98",
     "scripts/test_layout_groups.mjs": "91e9fd94369274b7458919d0e1b04bfaa5fd74b422b0eb5f8eb8e7cb78c65620",
     "scripts/test_layout_i18n.mjs": "58a46b15f9a2ee2a1633bae7cbaf44776038781d5e89b5d17a35fb62e4dae36f",
     "scripts/test_layout_machine_registry.mjs": "b6a5eedd542b20c002a73223a167b876a037591d54045d683faf8949c792bfcc",
@@ -257,6 +258,7 @@
     "scripts/test_layout_surfaces.mjs": "6dcf60e79211dc95aca19bc15c76ee2945cc1fb41f3ba1ad3dafe8a795f6e108",
     "scripts/test_layout_svg_room_editor.mjs": "757d98a3e006f3f8c224e6994790c09790f83142a97beb2b6752358c86566ecf",
     "scripts/test_layout_ui.mjs": "e393a1038cae2d6e862ccfe055565a7942066005ca8578a8d97485bf45826034",
+    "scripts/test_layout_unit_name_commit.mjs": "fc01af3b572d6e8014b44a99c5d4c1d436dac7c6af4b2af41d92f2875155db6b",
     "scripts/test_layout_wall_rotation_candidates.mjs": "fab815778744f19db075a62773b4b3edc48b2cf5ab0eb207ccfa58398978cc44",
     "scripts/test_led_brightness.mjs": "381abf3110bbcabae18cdc9c411241128da0f3540f5df4862feb61013935bf3a",
     "scripts/test_led_surfaces.mjs": "6bf5cbf4cfe0592988ac989524e2f979197a4505721d68324daaaeeb582a73f5",
@@ -430,8 +432,8 @@
     "site/layout/assets/equipment/u1-exterior/U1_BED_SOURCE_RECEIPT.json": "3896808a01347e9d5688f6bb24c94fe14eba50eb68c7060419c77e238910938c",
     "site/layout/assets/equipment/u1-exterior/U1_exterior_notices.json": "810fbfe12e4b0e994a5243eb7d638b8eebd952b2131c12d59bc238a9714e2e72",
     "site/layout/assets/equipment/u1-exterior/U1_preview_geometry_index.json": "2f09841eca64798110d83bcd7d07f265a827395304c9524f001cd9793c7dc51b",
-    "site/layout/index.html": "3f97c3bca95bfacc792c0bdfaed6675f53cab628103a1725f85733b0102dbd3c",
-    "site/layout/layout-app.mjs": "5b279ebc25cd6b18578d77d04bc9bca38d513a25f5f90eb9d0cb4f9307edeea7",
+    "site/layout/index.html": "0a63d03bee954e6b74926d9bcb39b896ba1e32de21783892bd681de41d33387d",
+    "site/layout/layout-app.mjs": "dafd6a5291d050aeac3196be4f3bb7b8ea1bd1bfe0f477006e491cb0f8625245",
     "site/layout/layout-catalog.json": "c415fd4a423c34e43ac1e24a3d92386085a656e9c928dfef92da031a12951a0c",
     "site/layout/layout-clipboard.mjs": "439752446a41d53b017c66f2b0bdacdac31c9c902127dc3bf1ff5c1894d0483e",
     "site/layout/layout-collision.mjs": "1a7a6f204f8ed66b33ed6371ab453b3180491a2bc883a1bb4bd6309705e118eb",
@@ -451,13 +453,13 @@
     "site/layout/layout-placement.mjs": "60498bf8c4e88ee23e235d1f7b043a92bc894d7b81f00e0d865593009cd0cd66",
     "site/layout/layout-plan-measurements.mjs": "ccb8d47a212b4279e38a4db6ced2ffc424b1f57cc0ed58361d206f923011e3b9",
     "site/layout/layout-provenance.json": "0e927b59b080ceb3e20ba8a3d686ef8b05084c12a4abdf175f3c2004de8ee585",
-    "site/layout/layout-renderer.mjs": "df755b432524dff3c86ad359909481f823bae2a56e89e9db21401b2ccc7e6d25",
+    "site/layout/layout-renderer.mjs": "58039be654d6c8470d89f6cb9f7ede36c67ac738e78ada1320e067574c5d4084",
     "site/layout/layout-room-editor.css": "7b7738d2be8d22a9e1a46686bbd0c8e281616791e30c8ca069465c5a34e2755a",
     "site/layout/layout-room-editor.mjs": "85b3743d7b7aeb985d1e869864593b579b2860a19e0b40b365180f18ca999919",
     "site/layout/layout-state.mjs": "0119a2ef6745811fe1cb8c2d4e9399155539b494b5aab3c3b80235ba4d846671",
     "site/layout/layout-surfaces.mjs": "0e7f271c883eb7ec8844f4b1bc6926f534f8f0c7f61418b9dab244469254cdf0",
     "site/layout/layout-svg.mjs": "3adfeddb419a789e2fe4d0dd2aa6e07789c321a419fce3d60bf9699fb3154066",
-    "site/layout/layout-ui.mjs": "c3a6d477e8939ef4bc84b6af77c1e9a79152d7af2ddf2a43588b5a3bcbd71310",
+    "site/layout/layout-ui.mjs": "4d24467ce35d9f061c5f0b847fa71d70ba9b1cd755fbeefc1eeaf7a0a422052a",
     "site/layout/layout-wall-rotation.mjs": "7ae98b15139f328512ebabb8b6ae88e4d8b29c8ca71f3e70b63edb4b0156176e",
     "site/layout/layout-zero-face-admissions.mjs": "a095fefcd4cff89fc560265a861ee5bcb83f632ece06885dc2923520690d69d3",
     "site/layout/layout-zero-face-cleanup.mjs": "e907ed0d63e2d996b702604d1d37128001f3f3a32eb8d3ba93a0a5e81a2f3499",
@@ -19655,7 +19657,7 @@
     "reviewed_on": "2026-10-25",
     "registered_machine_exports": 72,
     "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
-    "required_equipment_gate_report_sha256": "a436aa5d77aea6cc2aff887fa695914a005e384ff950fa1a4da8ff72be91480f",
+    "required_equipment_gate_report_sha256": "6000b61c112da37920731b95f62dcf3de5b46078146df6ee40860c85e8d0860b",
     "equipment_actual_models": 4,
     "source_regressions": {
       "unit_identity": 14,
@@ -19663,6 +19665,16 @@
       "renderer_contract": 172
     },
     "scope": "Stable unit codes, destination copy identities, strict optional-v1 labels, isolated legacy storage, searchable desktop browser/inspector and near-frustum wall cutaway. Current model/controller bytes unchanged. Planning envelopes and UI behavior only; no new mounting or operating-clearance qualification.",
-    "full_physical_fit_certified": false
+    "full_physical_fit_certified": false,
+    "unit_name_commit_regression": {
+      "cases": 19,
+      "scope": "Production UI/app replay, change-first and blur-first delivery, invalid drafts, five languages, one undo entry and unchanged code."
+    },
+    "desk_geometry_review": {
+      "cases": 243,
+      "legs": 972,
+      "controls": 3,
+      "scope": "Actual procedural box geometry: desk legs meet the board underside; tabletop/support, shelves and PopStation retained. No printer native-fit claim."
+    }
   }
 }

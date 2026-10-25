@@ -250,8 +250,8 @@
     },
     {
       "path": "docs/LAYOUT_PLANNER.md",
-      "bytes": 13208,
-      "sha256": "02c7ce4b7ee7eef1e7fb758290c2bd31a0cc19d472f4427897305762a568abbd"
+      "bytes": 13290,
+      "sha256": "657ffd4a2fbe0ce7b5376b2d0823fe162be813f5f3cf9b126a2131b7c2151081"
     },
     {
       "path": "docs/MACHINE_REVIEW.md",
@@ -260,8 +260,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 1188630,
-      "sha256": "99bda245284d9b0ad278e4c95fdda6b5d8addffb67214ead1199916c36333be1"
+      "bytes": 1189330,
+      "sha256": "560688c42e47a1fd94bcbcdcac0feb40b906c4b03aa3c8168924df528fca7996"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -1709,6 +1709,11 @@
       "sha256": "8675289d1f7240f108c394d2260b7c304b1f90d26280f3a6d8b0d08c898c871d"
     },
     {
+      "path": "scripts/test_layout_desk_geometry.mjs",
+      "bytes": 8274,
+      "sha256": "fa456835c1a7197d3936d7cada6de94a367ec8357b63db464f8c5de403fd95f2"
+    },
+    {
       "path": "scripts/test_layout_desktop_workspace.mjs",
       "bytes": 18547,
       "sha256": "5abdd6a4ecffbbe51bc7940a4ea24019700265237278387bd9961acf83794bbb"
@@ -1795,8 +1800,8 @@
     },
     {
       "path": "scripts/test_layout_groups_ui.mjs",
-      "bytes": 24522,
-      "sha256": "be0e48654960f521c46fa2f27d6d62157c981da46e147d2e34860b0b90e067e4"
+      "bytes": 24596,
+      "sha256": "01b24a5eeb6b8a38baf72aebf1144095bc5c36344b3c3040e6f12c5fce52be98"
     },
     {
       "path": "scripts/test_layout_i18n.mjs",
@@ -1877,6 +1882,11 @@
       "path": "scripts/test_layout_ui.mjs",
       "bytes": 28861,
       "sha256": "e393a1038cae2d6e862ccfe055565a7942066005ca8578a8d97485bf45826034"
+    },
+    {
+      "path": "scripts/test_layout_unit_name_commit.mjs",
+      "bytes": 7641,
+      "sha256": "fc01af3b572d6e8014b44a99c5d4c1d436dac7c6af4b2af41d92f2875155db6b"
     },
     {
       "path": "scripts/test_layout_wall_rotation_candidates.mjs",
@@ -5131,12 +5141,12 @@
     {
       "path": "site/layout/index.html",
       "bytes": 10030,
-      "sha256": "3f97c3bca95bfacc792c0bdfaed6675f53cab628103a1725f85733b0102dbd3c"
+      "sha256": "0a63d03bee954e6b74926d9bcb39b896ba1e32de21783892bd681de41d33387d"
     },
     {
       "path": "site/layout/layout-app.mjs",
       "bytes": 43044,
-      "sha256": "5b279ebc25cd6b18578d77d04bc9bca38d513a25f5f90eb9d0cb4f9307edeea7"
+      "sha256": "dafd6a5291d050aeac3196be4f3bb7b8ea1bd1bfe0f477006e491cb0f8625245"
     },
     {
       "path": "site/layout/layout-catalog.json",
@@ -5235,8 +5245,8 @@
     },
     {
       "path": "site/layout/layout-renderer.mjs",
-      "bytes": 78794,
-      "sha256": "df755b432524dff3c86ad359909481f823bae2a56e89e9db21401b2ccc7e6d25"
+      "bytes": 78900,
+      "sha256": "58039be654d6c8470d89f6cb9f7ede36c67ac738e78ada1320e067574c5d4084"
     },
     {
       "path": "site/layout/layout-room-editor.css",
@@ -5265,8 +5275,8 @@
     },
     {
       "path": "site/layout/layout-ui.mjs",
-      "bytes": 57630,
-      "sha256": "c3a6d477e8939ef4bc84b6af77c1e9a79152d7af2ddf2a43588b5a3bcbd71310"
+      "bytes": 58082,
+      "sha256": "4d24467ce35d9f061c5f0b847fa71d70ba9b1cd755fbeefc1eeaf7a0a422052a"
     },
     {
       "path": "site/layout/layout-wall-rotation.mjs",
