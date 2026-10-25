@@ -6,5 +6,5 @@ ensureWorkspaceEntry(import.meta.url);
 export async function mount(scope) {
   const machine = new URLSearchParams(location.search).get('machine');
   if (isElegooMachine(machine)) return (await import('./elegoo.mjs?v=16d275e7c029054153f8')).mount(scope);
-  return (await import('./community-renderer.mjs?v=1c0c6d6aa0fa8db85927')).mount(scope);
+  return (await import('./community-renderer.mjs?v=bd40c762a56daed36604')).mount(scope);
 }

@@ -1,6 +1,6 @@
 import {installedHeadPlan} from './machine-head-model.mjs?v=1dab5126e376ecd7f60c';
 import {translatedProbeFit} from './probe-checks.js?v=0f70f5c099338db857e7';
-import {sphinxBeltPreviewCut} from './sphinx-belt-interface.mjs?v=4c7644b34aecf95b77d8';
+import {sphinxBeltPreviewCut} from './sphinx-belt-interface.mjs?v=82539821284ce55535f1';
 const completeSphinx=v=>v.mount==='fixed'&&v.gantry==='sphinx_monolith'&&v.fit?.nozzle_mm?.every(Number.isFinite)&&['extruder','hotend'].every(k=>v.modules.some(m=>m.id===v.fit?.complete_head_native?.[k]));
 export function monolithHeadCatalog(heads,registry,gantries){
  if(!registry.sources.stealthchanger_monolith||!registry.monolith_target)throw Error('Monolithの取付基準が未登録です');
@@ -23,6 +23,14 @@ export function monolithHeadCatalog(heads,registry,gantries){
  return {...heads,machine_id:'monolith_workbench',dimensions:['gantry','mount','toolhead','extruder','hotend','carriage','probe','board','cooling'],gantries:gantries.variants.map(g=>({id:g.id,label:`${g.machine} / ${g.size_mm} · ${g.build} · ${g.belt_width_mm} mm · ${g.xy_motors===4?'AWD':'2WD'}`})),variants,assets:{...heads.assets,...heads.base_assets,...registry.assets}};
 }
 export function monolithCompanion(heads,variant){
+ if(variant.source_head_configuration){
+  const source=heads.variants.find(v=>v.id===variant.source_head_configuration);
+  // Installed rows have a composed gantry ID. Recover their actual source
+  // before testing the source-only Sphinx gantry or SC carriage, and reject a
+  // stale explicit source instead of substituting a different assembly.
+  return source&&['mount','toolhead','extruder','hotend','carriage','board','cooling','probe'].every(k=>source[k]===variant[k])
+   &&(completeSphinx(source)||source.mount==='stealthchanger'&&source.gantry==='sc_monolith_'+variant.belt_width_mm)?source:undefined;
+ }
  if(completeSphinx(variant))return heads.variants.find(v=>v.id===variant.id);
- return heads.variants.find(v=>v.mount==='stealthchanger'&&v.gantry==='sc_monolith_'+variant.belt_width_mm&&['toolhead','extruder','hotend','board','cooling','probe'].every(k=>v[k]===variant[k]));
+ return heads.variants.find(v=>v.mount==='stealthchanger'&&v.gantry==='sc_monolith_'+variant.belt_width_mm&&['toolhead','extruder','hotend','carriage','board','cooling','probe'].every(k=>v[k]===variant[k]));
 }

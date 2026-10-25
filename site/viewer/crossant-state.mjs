@@ -1,4 +1,4 @@
-import {poseDelta} from './crossant-adapter.mjs?v=53736f33178907042969';
+import {poseDelta} from './crossant-adapter.mjs?v=c72051570963f8dd2107';
 export const crossantSchema='3d-print-rig-crossant-v1';
 export const crossantGroups=['Crossant_Electronics','Crossant_Skirts','Crossant_CPAP Housing','Crossant_Filter'];
 export function validateCrossantState(profile,s){

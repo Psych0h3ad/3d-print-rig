@@ -1,0 +1,86 @@
+{
+  "machine_id": "voron_trident_350_half_z",
+  "manifest_sha256": "8704526653a8308dc542b34f27fbb6eae94407be1671c296ad9d2225e669c5ff",
+  "custom_ptfe": {
+    "part_key": "voron_trident_350_base_1409",
+    "controls_mm": [
+      [
+        0.0,
+        -35.880961,
+        347.660258
+      ],
+      [
+        0.0,
+        -35.880961,
+        377.660258
+      ],
+      [
+        0,
+        185.0,
+        315
+      ],
+      [
+        0,
+        185.0,
+        345
+      ],
+      [
+        0,
+        185.0,
+        435
+      ],
+      [
+        0,
+        185.0,
+        465
+      ],
+      [
+        270.16252954107694,
+        243.39839201394472,
+        364.90646910724536
+      ],
+      [
+        270.16252954107665,
+        187.0168347667902,
+        385.42767770678546
+      ]
+    ],
+    "radius_mm": 2,
+    "inner_radius_mm": 1.5,
+    "moving_axes": [
+      "X",
+      "Y"
+    ],
+    "start_mm": [
+      0.0,
+      -35.880961,
+      307.660258
+    ],
+    "end_mm": [
+      270.1625295410766,
+      171.98175283421565,
+      390.89999999999617
+    ],
+    "holder_part_key": "voron_trident_350_base_1393",
+    "holder_bore_axis": [
+      4.977943102828792e-15,
+      0.9396926207859085,
+      -0.3420201433256684
+    ],
+    "holder_bore_point_mm": [
+      270.16252954107654,
+      162.34642462299354,
+      394.4069726662664
+    ],
+    "route_revision": 2
+  },
+  "native_mate_guards": {
+    "voron_trident_350_base_1409": "475e455d0124dc07f3119c14ce739dc8bee486bed3c40e7920983b8962f5279d",
+    "voron_trident_350_base_1359": "7e5c6cd90e2c58a5d8670d1819d4a799a3b8cc6dd378c5e2764d9e5ef2b3594a",
+    "voron_trident_350_base_1393": "ad7f0f8a2368567a1a7d32c2c6c09d4f6ceff502d917ce8c5049f3eab65bc576",
+    "578": "e4f73068790c6c312305ca6201b1db0af25fa5bdf2d34816875bb12351c1a4cc",
+    "voron_trident_350_base_1347": "d6d834c7cc653dcf2c9eb2c010a423f6d30927508d08e12fcf955c8eae5ce46d",
+    "voron_trident_350_base_1346": "b0388a8912c735d57bbe7a4ad2080314995c4edb265c5263a07b19592920841f"
+  },
+  "roof_bottom_z_mm": 377.9938482537978
+}

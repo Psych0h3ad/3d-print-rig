@@ -4,9 +4,9 @@ import {cloneNativeLedTree} from './led-emission-surface.mjs?v=af40a3200e128a08c
 import {validateEvaMetadata,bindEvaSourceMachines,bindEvaMeshIdentities} from './eva-heads.mjs?v=b53ce6925a6fec3b5b10';
 import {loadEvaFrontSurfaces,applyEvaFrontSurfaces} from './eva-front-surfaces.mjs?v=2f482f31b2c5c8b35897';
 import {evaCommunityIndex} from './eva-installations.mjs?v=4dfad49e1f98d4b5b9f2';
-import {validateEvaOptionsRegistry} from './eva-options.mjs?v=cca14d57aef804d9411d';
+import {validateEvaOptionsRegistry} from './eva-options.mjs?v=ee81f6eb2a14e77e65fd';
 import {madmaxJointAssetSpec,madmaxJointApplies,captureMadmaxJoint,setMadmaxJointPose} from './madmax-native-joint.mjs?v=d39e974d7b782135b52a';
-import {madmaxPtfeAssetSpec} from './madmax-ptfe.mjs?v=c0df5309f697af621506';
+import {madmaxPtfeAssetSpec} from './madmax-ptfe.mjs?v=5c6deded33e560c6e7b6';
 import {withRapidoXUhfCover,setRapidoXUhfSurface} from './rapido-x-uhf-cover.mjs?v=8b458475dac84cfcd8c7';
 import {v24NativeDriveMetadata} from './v24-drive-metadata.mjs?v=dbdf9f37cb0849ffc262';
 import {augmentTrinityAlphaHosts,TRINITY_ALPHA_HOST_SOURCE,alphaResetPose,alphaRangeNotice,alphaResetLabel} from './trinity-alpha-host-extensions.mjs?v=6cf4c4cd0bff082d7772';
@@ -15,25 +15,25 @@ import {augmentTrinitySiboorR2,TRINITY_SIBOOR_SOURCE} from './trinity-alpha-sibo
 import {augmentTrinityAlpha,TRINITY_ALPHA_SOURCE} from './trinity-alpha-installation.mjs?v=d29cac20a00b0b7af075';
 import {workspaceTask} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 import {createCatalogRequests} from './catalog-requests.mjs?v=e08161a1108d8bf2b5b3';
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=b17b3a4f670f432492cf';
-import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=a21c22fc433c75185e0f';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=cadd3e4147c0f12e211a';
+import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=be63db4d1ae3f6a618a0';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=319442cce47f582793a9';
-import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
+import {appearanceRole} from './appearance-role.mjs?v=977c4d1e134e7fe27a0e';
 import {partKey} from './head-assembly.js';
 import {v24HeadCatalog} from './machine-head-model.mjs?v=1dab5126e376ecd7f60c';
-import {setupConfigurations} from './configurations.js?v=985e6b0fe7e0d6e3db9c';
+import {setupConfigurations} from './configurations.js?v=a740e1aeb4d88e392801';
 
 import {loadSiboorRegistration} from './siboor-catalog.mjs?v=a643c367a3a7167f9135';
 import {stockProbeFit} from './probe-mounts.js?v=517d139912b21c017b1b';
 
 import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs';
 import {bankPlan} from './changer-bank-model.mjs?v=024cc52a5bbc61da7506';
-import {setupChangerBank} from './changer-bank.js?v=a211c45f87d7c0ed06e3';
+import {setupChangerBank} from './changer-bank.js?v=4f60a00257eaed971296';
 import {contentSHA256,acceptedMountValidation} from './mount-validation.mjs';
 import {acceptedHeadValidation}from './head-validation.mjs';
-import {withHeadAdditions} from './head-additions.mjs?v=526ae5fd744c374d8537';
+import {withHeadAdditions} from './head-additions.mjs?v=02ffe538ac437613b79f';
 import {nativeDeckEvidenceSource,nativeCatalogEvidenceSource,nativeWitnessInputs} from './native-evidence-bridge.mjs?v=5bf756b0b363fe86538c';
 import {loadExternalComponent} from './component-assets.mjs?v=2dbda26b309fbe6c35c8';
 

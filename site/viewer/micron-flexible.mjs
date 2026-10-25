@@ -1,7 +1,7 @@
 import {Vector3,TubeGeometry} from './vendor/three.module.js';
 import {bedChainRoute} from './bed-chain.mjs?v=5c6ddd46ac13e6974c73';
 import {micronChainPins} from './micron-flexible-pins.mjs?v=motion-colors-41';
-import {micronTubeSpecs,micronTubeRoute} from './micron-tube-routes.mjs?v=c69d79d6fdbfee5338fe';
+import {micronTubeSpecs,micronTubeRoute} from './micron-tube-routes.mjs?v=7d2e3d67679db40ea5f1';
 
 const point=([x,y,z])=>new Vector3(x/1000,z/1000,-y/1000);
 // Endpoint bores and straight insertion sections follow their owning parts.

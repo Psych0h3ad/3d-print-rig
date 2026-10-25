@@ -4,13 +4,13 @@ import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690
 import {setupSceneDisplay} from './display-preferences.mjs?v=8f347468def25922153c';
 import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 import {setResponsiveAspect} from './responsive-camera.mjs?v=workspace-belts-1';
-import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
+import {appearanceRole} from './appearance-role.mjs?v=977c4d1e134e7fe27a0e';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=319442cce47f582793a9';
 import {setupPublicInfo} from './public-info.js?v=07313fc4151911a54f23';
-import {setupRenderExport} from './render-export.js?v=736862a3013dbfd9f9ea';
+import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
 import {changerDimensions,changerChoice,changerChoices,changerPlacement} from './toolchanger-model.js?v=workspace-belts-1';
 export async function mount(scope){
 const $=s=>document.querySelector(s),stage=$('#stage'),scene=scope.scene(new THREE.Scene()),bench=new THREE.Group();scene.add(bench);scene.background=new THREE.Color('#edf1f5');

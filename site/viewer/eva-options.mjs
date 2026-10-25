@@ -3,7 +3,7 @@ import {loadExternalComponent} from './component-assets.mjs?v=2dbda26b309fbe6c35
 import {validateEvaVariant,validateEvaMetadata,bindEvaMeshIdentities} from './eva-heads.mjs?v=b53ce6925a6fec3b5b10';
 import {loadEvaFrontSurfaces,applyEvaFrontSurfaces} from './eva-front-surfaces.mjs?v=2f482f31b2c5c8b35897';
 import {nativeMotion,displayMotion,validateAxes} from './community-state.mjs?v=460b3fa78cc503ddb6e6';
-import {createPaletteController} from './palette-controller.mjs?v=af9daf5ae29080e4cbff';
+import {createPaletteController} from './palette-controller.mjs?v=ee8e97d84186af0fe8a0';
 
 const HASH=/^[a-f0-9]{64}$/;
 const printable=new Set(['base','accent']);

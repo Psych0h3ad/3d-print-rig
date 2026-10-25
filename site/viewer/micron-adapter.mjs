@@ -1,9 +1,9 @@
 /** Micron: fixed bed, Z gantry, Y X-beam, XYZ toolhead. Baked CAD placement. */
-import {appearanceRole} from './appearance-role.mjs?v=6eb709afed84945151b8';
-import {createPaletteController} from './palette-controller.mjs?v=af9daf5ae29080e4cbff';
+import {appearanceRole} from './appearance-role.mjs?v=977c4d1e134e7fe27a0e';
+import {createPaletteController} from './palette-controller.mjs?v=ee8e97d84186af0fe8a0';
 import {micronHardwareColors} from './micron-native-materials.mjs?v=55b8c3644415d202fa4a';
 import {createMicronBelts} from './micron-belts.mjs?v=public-v25';
-import {createMicronFlexible} from './micron-flexible.mjs?v=1baf6905062383defaca';
+import {createMicronFlexible} from './micron-flexible.mjs?v=5dca2bfdbe5e84a15f74';
 export const cadToGlb = ([x,y,z]) => [x / 1000, z / 1000, -y / 1000];
 export const corexyDelta = ([x,y]) => ({a_mm: x + y, b_mm: x - y});
 export const corexyInverse = (a,b) => [(a + b) / 2, (a - b) / 2];

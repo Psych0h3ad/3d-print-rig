@@ -1,10 +1,12 @@
 import * as THREE from './vendor-r180/three.module.js';
+import {sourcePrintedRecords} from './source-printed-roles.mjs?v=7f1562b44e4853bf41dd';
+import {createPaletteController} from './palette-controller.mjs?v=ee8e97d84186af0fe8a0';
 import {validateAxes,nativeMotion,displayMotion,communityConfiguration} from './community-state.mjs?v=460b3fa78cc503ddb6e6';
-import {mercuryTubeSpecs,mercuryTubeRoute} from './mercury-tube-routes.mjs?v=d27d615757ad1f732409';
+import {mercuryTubeSpecs,mercuryTubeRoute} from './mercury-tube-routes.mjs?v=7348939ff4da3f0dba7c';
 import {stingerFlexWeights} from './stinger-flex.mjs?v=0ab64709177d49ba0fec';
-import {stingerTubeRoute} from './stinger-tube-route.mjs';
+import {stingerTubeRoute} from './stinger-tube-route.mjs?v=1e344831072ed8073062';
 import {registeredFlexWeights,registeredFlexDelta,createRegisteredChains} from './native-motion-flex.mjs?v=8d28d1651911d0d8b84e';
-import {beltedZWeight,createBeltedZTeeth} from './ender-mods.mjs?v=5f07c69c7c42ba3f3936';
+import {beltedZWeight,createBeltedZTeeth} from './ender-mods.mjs?v=a65a045a6b182f59b1b9';
 import {createEnderBowden} from './ender-bowden-route.mjs?v=599e2b920a7afee891df';
 import {createOriginalEnderXBelt} from './ender-original-x-belt.mjs';
 import {createZeroBowden} from './247zero-bowden.mjs?v=315a9fa6d2f032a56dbe';
@@ -39,7 +41,7 @@ function flexWeights(p,r,profile){
  return {custom:[0,0,0]};
 }
 export function createCommunityAdapter(root,manifest,profile){
- const records=new Map(manifest.parts.map(r=>[r.key,r])),nodes=new Map(),initial=new Map(),flex=[];let axes=Object.fromEntries(Object.keys(profile.axes).map(k=>[k,0])),references=false,configuration='stock',hiddenKeys=new Set();
+ const records=sourcePrintedRecords(manifest),nodes=new Map(),initial=new Map(),flex=[];let axes=Object.fromEntries(Object.keys(profile.axes).map(k=>[k,0])),references=false,configuration='stock',hiddenKeys=new Set();
  root.traverse(n=>{if(n.userData?.part_key){if(nodes.has(n.userData.part_key))throw Error('Duplicate native part');nodes.set(n.userData.part_key,n)}});
  if(nodes.size!==records.size||nodes.size!==manifest.native_leaf_count)throw Error('Incomplete native assembly');root.updateMatrixWorld(true);
  for(const[key,node]of nodes){
@@ -62,6 +64,7 @@ export function createCommunityAdapter(root,manifest,profile){
   });
  }
  const chains=createRegisteredChains(nodes,initial,profile),teeth=createBeltedZTeeth(root,profile),bowden=createEnderBowden(root,profile),zeroBowden=createZeroBowden(root,profile);const originalXBelt=createOriginalEnderXBelt(root,profile);let restOffsets={},flexEndpoints={};
+ const paletteController=createPaletteController(nodes,records,{printedFinish:false});
  function setAxes(next){
   validateAxes(next,profile,configuration);axes={...next};
   const motions=new Map([...new Set([...records.values()].map(r=>r.group))].map(group=>[group,displayMotion(nativeMotion(group,axes,profile),profile)])),head=displayMotion(nativeMotion('head',axes,profile),profile),axisNames=['x','y','z'];
@@ -93,7 +96,7 @@ export function createCommunityAdapter(root,manifest,profile){
    e.mesh.geometry.computeBoundingBox();e.mesh.geometry.computeBoundingSphere();
   }root.updateMatrixWorld(true);return {...axes};
  }
- function setPalette(palette){for(const[key,node]of nodes){const role=records.get(key).appearance_role;if(!palette[role])continue;node.traverse(m=>{if(m.isMesh)for(const material of [].concat(m.material))material.color.set(palette[role])})}}
+ function setPalette(palette){paletteController.setPalette(palette);}
  function setReferences(value){references=Boolean(value);for(const[key,node]of nodes)if(records.get(key).group==='reference')node.visible=references&&!hiddenKeys.has(key)}
  function setConfiguration(id){
   const spec=communityConfiguration(profile,id),keys=spec.hidden_keys||[],rest=spec.rest_offsets_mm||{},endpoints=spec.flex_endpoints_mm||{};

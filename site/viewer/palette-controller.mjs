@@ -1,6 +1,7 @@
 // Own materials per mesh: source GLBs often share one material between many
 // printed and purchased parts. A palette must never recolor that shared source.
-export function createPaletteController(nodes,records,{roughness=.72,materialOverrides=new Map()}={}){
+// Color-only adapter migrations can retain their existing source PBR finish.
+export function createPaletteController(nodes,records,{roughness=.72,materialOverrides=new Map(),printedFinish=true}={}){
  const rows=[];
  for(const [key,node]of nodes)node.traverse(mesh=>{
   if(!mesh.isMesh)return;
@@ -10,7 +11,7 @@ export function createPaletteController(nodes,records,{roughness=.72,materialOve
    const native=materialOverrides.get(key);
    if(native){if(role)throw Error('Native hardware override on a printed part');material.color.fromArray(native.color_linear);material.metalness=.65;material.roughness=.45;}
    rows.push({key,role,material,original:material.color.clone(),metalness:material.metalness,roughness:material.roughness});
-   if(['base','accent'].includes(role)){material.metalness=0;material.roughness=roughness;}
+   if(printedFinish&&['base','accent'].includes(role)){material.metalness=0;material.roughness=roughness;}
    if(material.transparent)material.depthWrite=false;
   }
  });

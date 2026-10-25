@@ -1,4 +1,4 @@
-import {configurationLabel} from './configuration-draft.mjs?v=23ce9b8920289ad38e21';
+import {configurationLabel} from './configuration-draft.mjs?v=2adb099f7bd21f859330';
 import {workspaceListen} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 import {translate} from './i18n.mjs?v=535a15826b80b7dcc2f6';
 
