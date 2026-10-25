@@ -3,7 +3,7 @@ import {displacementGcodeSettings,displacementCoordinateNote,unavailableCoordina
 import * as THREE from './vendor-r180/three.module.js';
 import {OrbitControls} from './vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
-import {loadCommunity} from './community-loader.mjs?v=a5be7a1661fae0019ab7';
+import {loadCommunity} from './community-loader.mjs?v=33dd8490957aa2b1a7b0';
 import {evaCommunityIndex} from './eva-installations.mjs?v=4dfad49e1f98d4b5b9f2';
 import {applyEvaOptionsProfile,createEvaOptionsController} from './eva-options.mjs?v=ee81f6eb2a14e77e65fd';
 import {withHeadAdditions} from './head-additions.mjs?v=02ffe538ac437613b79f';

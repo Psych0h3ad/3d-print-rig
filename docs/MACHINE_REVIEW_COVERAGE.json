@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "review_revision": "viewer-material-routes-composition-current72-20261025",
+  "review_revision": "viewer-material-routes-composition-handles-current72-20261025",
   "reviewed_on": "2026-10-25",
   "input_sha256": {
     ".github/workflows/pages.yml": "b9b6d0c7068a553c378f275aa6be6f363b41b74e68ca352f1618ae973ec5cb5b",
@@ -35,7 +35,7 @@
     "scripts/audit_rear_enclosures.mjs": "8a831e9b5f798cd8bd325495a95dfbc325346f74686c28145b7850155b887d20",
     "scripts/audit_selection_catalogs.mjs": "91a0f126bdebfc12dd658ec6b3d1fba88c5d62941bb814f86fde83e8410e04b9",
     "scripts/audit_source_backed_combinations.mjs": "74073319f28501e2f28e73601339354a56a94a30068aa0d91008fa79cf7741b8",
-    "scripts/audit_source_printed_colors.mjs": "9c970544566dffa031ac66b31b0e368b1507a12bbf6ffa2ee779ef8b41da9850",
+    "scripts/audit_source_printed_colors.mjs": "0886207d2db88a28157cba94e8c2d4bc01cf70677a10a44d4d7c2d21f2adcba0",
     "scripts/audit_source47_service_hosts.mjs": "4aafb8f88e57e18ce8fbdc7e953436619e3d4da946ed256de6fe9450c4742997",
     "scripts/audit_stealthburner_cutaway.mjs": "d9b327b8a550f4b27aecdf875d04698dfb1df25c082d200bfde137f04153e49b",
     "scripts/audit_toolchanger_assets.mjs": "c278ec88d02ff7e5fbd5fbe970fc8298a7c8a1015213948cd691a17d9fb435d9",
@@ -67,7 +67,7 @@
     "scripts/check_repository.py": "d5669f36fd930af3c03b061b949ec745935b30358b40e596e2b6ed423c643de0",
     "scripts/check_ui_catalog.mjs": "d1b8fb54df58c2bb57295c72736a12b71720240e381c1c2be889419f4bcbaca7",
     "scripts/check_v0_native_assets_release.py": "fe7574b11fc88610535c7844581b4fe988bab1d4e10d0782d5d46644d26e0ed7",
-    "scripts/check_viewer_quality_release.py": "ba756aad33031d5be12916f5a920f36cab90e0306a380bb1416091bee68ee25c",
+    "scripts/check_viewer_quality_release.py": "4eac63421d2e930781c1865076ef2f7b630a39691787d1bf1347c0ea46920ae8",
     "scripts/check_wallpaper_compositions.py": "a52f3c47ebc94c09a8376aee6413065dda38395898671e9a7420db5c4062f5cb",
     "scripts/check_workbench_assets.mjs": "4a3b05e6aa0313ca2992cbbc1caf1d028a3c35fcb93c5360951859d4f52ce27b",
     "scripts/community_chain_pose.mjs": "f045323ecb05f3abf4a096445775637215d0ae2adda19b6f3dbb96d565dd79bb",
@@ -127,7 +127,7 @@
     "scripts/prepare_trident_size_assets.py": "957256f48e3c5653df9f5dae54d6013506a93080d969bc3eb9a33424b464e4c3",
     "scripts/prepare_trident_size_catalogs.py": "390251beb152887f5fb6c3be1b0173509dcca2d28d8765ef88e224200ff98a74",
     "scripts/prepare_wallpapers.py": "40c4cf12336379a7a2e3d8dbf24342a80de54eb44ebfc0ee95c9967b01abfdae",
-    "scripts/printed-color-source-contracts.mjs": "3d87a72fdd5581232fe02694dac069ddbd2f8acc9a9cdf2741444a64f1e31eb6",
+    "scripts/printed-color-source-contracts.mjs": "bfa40a989ab995f9a98d5af1f31899fde89aff31fada0b2990eaab55024aa417",
     "scripts/probe_configurations.py": "798e19cabf87236847034e9327790d9bd928ed23f89b25c406c15ff4e2547ff3",
     "scripts/public_source_paths.py": "ee52bb84c4b4e43c3e7950047727ae516337336f741b5031340a5d72074f6371",
     "scripts/render_cad_background.py": "01218aae1d68e321e78baad7b3bb992ba07a52fd3b53249b42edabd5d16ca78a",
@@ -311,7 +311,7 @@
     "scripts/test_source_index_runtime.mjs": "996b26b5a9b23436656ec15c60fda761007cc924aec6ed3fc8cebc3c5475389b",
     "scripts/test_source_loading_progress.mjs": "b62dac0068ca12945b5acce0910e7d53bc35108c869ce64055f621777b0a1d90",
     "scripts/test_source_plain_ui.mjs": "76778d7c37128faa3798380e1d0e35d3ce7c39885357f53fea2eaa7347f3ad9b",
-    "scripts/test_source_printed_color_roles.mjs": "fea557020cbc33ffe13fbadf604bba1f4a0014cfe343e7af1536d776d91d7236",
+    "scripts/test_source_printed_color_roles.mjs": "2bdadd3de24190da22bb961c9abcbb6c539f5283a1752e7ab3d7dc278d508e40",
     "scripts/test_source_scene_lighting.mjs": "afff12631efadae7ad969c828e29efae89f07c41c05794e728b798dcd3ac59bf",
     "scripts/test_source_view_appearance.mjs": "93e14c3d3f6a80da2f11623436a7c0bfbf16744dad652d568fbc3f28b6f9143b",
     "scripts/test_source47_requested_inputs.mjs": "c39b33494384106c35240157c995b23402c4d2fb064a51eeb0e08afcb2b0597f",
@@ -355,7 +355,7 @@
     "scripts/test_v24_ptfe.mjs": "c229caa89723e4a15b288950b870458f8015ca83910e5cec418ce9971ac08160",
     "scripts/test_validation_bundle.mjs": "8fcb928eabd9386107c6393edb0701007ee303ce712b676d84ba4d6a98aaad6a",
     "scripts/test_viewer_mesh_quality_scope.mjs": "c66354a59faf658d580e2585ebf75e79eb3d2ee42c1c7613ed52f87c7b6c6f11",
-    "scripts/test_viewer_quality_release.py": "69f5e856dfea55e47fc1da2a81b9f4ede98dd800a1dd74aa1d36bcd0b5f6d0a3",
+    "scripts/test_viewer_quality_release.py": "f958648dfcb24967034c8c0c871526cf6b9c0dc4273d58adbfec0e5a9aa25704",
     "scripts/test_virtu_may_role.mjs": "9231a735a99ed4420603e60a0f8a27313693982de0f3685d3abadafb630454fb",
     "scripts/test_virtu_selected_geometry_contract.mjs": "8610d6f8047be5ac41afcd39984991b019aa38846d0fbb5ee2f5c49afdc270f6",
     "scripts/test_virtual_printer_adapter.mjs": "b25320b19d87b8181df8684b30ef4fa42e4eba2fe729f17426e08456d2d3aa7c",
@@ -422,8 +422,8 @@
     "site/layout/assets/equipment/u1-exterior/U1_BED_SOURCE_RECEIPT.json": "3896808a01347e9d5688f6bb24c94fe14eba50eb68c7060419c77e238910938c",
     "site/layout/assets/equipment/u1-exterior/U1_exterior_notices.json": "810fbfe12e4b0e994a5243eb7d638b8eebd952b2131c12d59bc238a9714e2e72",
     "site/layout/assets/equipment/u1-exterior/U1_preview_geometry_index.json": "2f09841eca64798110d83bcd7d07f265a827395304c9524f001cd9793c7dc51b",
-    "site/layout/index.html": "5a402f0499f206776923fb11aad141548196750c9a537788101403f4498bd424",
-    "site/layout/layout-app.mjs": "4b72c08baf5f38e4e06c63faf522a5d66eaa83810f0ae0406bdca486b1b3249c",
+    "site/layout/index.html": "45a867b4ec94c90fe80e92687ad4e9ccdacae3e5d70f4d6e3a0f9f57a8d7a370",
+    "site/layout/layout-app.mjs": "e685b680d1f0cee4326c52d249aa6d09b7f457a2bbbafcacc9395c197a7f219e",
     "site/layout/layout-catalog.json": "c415fd4a423c34e43ac1e24a3d92386085a656e9c928dfef92da031a12951a0c",
     "site/layout/layout-clipboard.mjs": "a3800631a60423702673dafc8fda2c22b3498b7cb59cf84d7a8b0c451231c06a",
     "site/layout/layout-collision.mjs": "1a7a6f204f8ed66b33ed6371ab453b3180491a2bc883a1bb4bd6309705e118eb",
@@ -438,7 +438,7 @@
     "site/layout/layout-groups.mjs": "2c185c4987d6e2ff8d5a980012f3f7e034b089a2d470c5b3b569614c72506398",
     "site/layout/layout-i18n.mjs": "8c14ec0ea842971d4ce7980da08d2421e4aa5d2164efa3e6814dd54d831285fe",
     "site/layout/layout-language.mjs": "334eb48b4037bc86a64ff34701baf82ab8154741b36a56e52ba8167f06edcd3e",
-    "site/layout/layout-machine-loader.mjs": "8aea5f7aa8ab98e3d42458b47c583e70f6c94c17be1baa8e00b3298813e169a2",
+    "site/layout/layout-machine-loader.mjs": "69976c93147f8fc2adbf2e4748555f283a47a0155da1f8c4391ee040eb4b1540",
     "site/layout/layout-placement.mjs": "2deff430a5e11d01fa9e1e9ce97268202eabd306cdecc955b03f19e24a5d2ae8",
     "site/layout/layout-plan-measurements.mjs": "ccb8d47a212b4279e38a4db6ced2ffc424b1f57cc0ed58361d206f923011e3b9",
     "site/layout/layout-provenance.json": "0e927b59b080ceb3e20ba8a3d686ef8b05084c12a4abdf175f3c2004de8ee585",
@@ -487,8 +487,8 @@
     "site/viewer/a4t-printed-companions.mjs": "e7443f72d21fc964b2cf7db83d1d38d9918a31ddc2ca90c04653153a7b4dc2cf",
     "site/viewer/accessories.js": "0fd90d889b6b0bc0bd15166cbf94ca1e09bd828941d2505f26e0c6b2992aa638",
     "site/viewer/annex-machines.mjs": "3a0e3f3d8e456bee4e5ac266d91c69ca3b6fbc6db8f5a40694f85428c6148c13",
-    "site/viewer/annex.html": "c4bd4ab739dccd95bf13c2c9943206526a01cb1397c04607217505b1ff4fd6d1",
-    "site/viewer/annex.js": "ad8fa0e2402abe88c18c6979a39754f6fb9cf638b124ec8b2e94e70cd9ac71de",
+    "site/viewer/annex.html": "2d8224be4c48527311c41236e02829f8fab6bebd6bfbfa036aeb83959194732c",
+    "site/viewer/annex.js": "4648b8ae56274395b002ec56f8e097ef0a4346eb92ec2d233a6f4f477b054d3f",
     "site/viewer/app.js": "a0fb1dfc2677454568e176e480fdb8501123dd95b190ae39e40b56bdba127c3c",
     "site/viewer/appearance-role.mjs": "977c4d1e134e7fe27a0ed8c73ecb3f81592822c9e25b94f9fe80d0444c336b5a",
     "site/viewer/appearance.js": "c50ecf4651c6ad0e68392df9eea9eb67e8bab6c9542106019c464682b45a01ab",
@@ -507,12 +507,12 @@
     "site/viewer/changer-bank.js": "4f60a00257eaed971296e42b7ed41c7bf996c3f2b0d9831948e98dfe3e885344",
     "site/viewer/chunked-component-glb.mjs": "3639cc45ea38ec9c56d37b1a214b2c03f377afb41eef083999a7e9d20ca4cd40",
     "site/viewer/cleaning.html": "e1ac90e10f629bb0f2bb1d0b5aaf95b2f7d39a70187a94182f28fce87286a46f",
-    "site/viewer/community-adapter.mjs": "318e9cce1803a037cb42bf004031a3a2d94c60bbd7d4dfe2bc321c436dbd20ca",
-    "site/viewer/community-loader.mjs": "a5be7a1661fae0019ab744f61f6b02ccf730b53c589084c75728ae1f3c3d1c6e",
-    "site/viewer/community-renderer.mjs": "bd40c762a56daed366041e1b00105f000d9bda3ba863b7104b1aac11fd8fbb12",
+    "site/viewer/community-adapter.mjs": "611339ada395324d092b85bdea82801d91cb3653b59cc0bd8834ed6f23335355",
+    "site/viewer/community-loader.mjs": "33dd8490957aa2b1a7b00baa2ae0f7f6df82a258f1fb1e9878d96404e3354610",
+    "site/viewer/community-renderer.mjs": "147d12a3ff1a95b1e2ed409deaeadb802a588851ae4de95d0dd484238f8b87b0",
     "site/viewer/community-state.mjs": "460b3fa78cc503ddb6e631766efe780433e4efa286db5d9388a67d73cd4fce3d",
-    "site/viewer/community.html": "58abc61dfc2f60e4540f19c5a48166390f1d39fa040f1d9a6d1c6c024bd2a1dd",
-    "site/viewer/community.js": "49a812286c420ef7b3ff85d5acfd2529773b1b11b1d5cd40419677ebc5b8e011",
+    "site/viewer/community.html": "5d20e7d1af17f5de29f2d6655a90756ec008d46f0e98f1bf58a4cff871489255",
+    "site/viewer/community.js": "c2ebcec9c85f0e411c6715fdaf9113f1b5d6dc352ad261587cc69ed36dc722a3",
     "site/viewer/component-assets.mjs": "2dbda26b309fbe6c35c869bf63a9da9d8ee73b32f9741b2dec6421678b411b7d",
     "site/viewer/component-selection.js": "51826e4eeaa0dd803b109d2ba7261d86e40fa509e63ffe7ce2f087efd0ee6e04",
     "site/viewer/components.html": "db734f0c1a97e747bd5edabf21ecc616a03a6023e25960ef7e47a97c0d53e773",
@@ -522,14 +522,14 @@
     "site/viewer/configuration-editor.mjs": "fe4a792686ad9a69cdacc85a9ec11107c28d5b8c1cf113f96eb7024c2e6c82c9",
     "site/viewer/configuration-model.js": "72ab51af36beab3eb0cfd3ff66246ab7545968e37d52a11c1c4bb794aa1d0e86",
     "site/viewer/configurations.js": "a740e1aeb4d88e392801a9f99bfc869338cdc7f033d19b88e0d3564128581ed9",
-    "site/viewer/crossant-adapter.mjs": "c72051570963f8dd21072f4ec43cb4dfc2bd367f78ef63bf16936aad59197807",
+    "site/viewer/crossant-adapter.mjs": "11787c79fb973bbd8d72bc5eff23fbb29e18965183182a55042659452b9722a1",
     "site/viewer/crossant-belt_deform.mjs": "76401db9a4923512ae72c83fda6dd210ccf0b1d19be8a16326dfac48950df531",
     "site/viewer/crossant-chain_preview.mjs": "43c664f7c35cbb1638214efc3d77ad1acf8a47c33b4a22a50ad70c20778c4bc3",
     "site/viewer/crossant-covers.mjs": "c0781087f44545d6025de5f5084595cf5bbd6e92ce6ec0c7d555406d5ab01b3b",
-    "site/viewer/crossant-loader.mjs": "d71ed46b89d47fb4d938025c938380cc7f1880453875e71969ebb62912703f91",
-    "site/viewer/crossant-state.mjs": "3e52f4f3f6867bc9ae7d69806349f88933435febfd0fe91f929527e5861a54f3",
-    "site/viewer/crossant.html": "3c27b46dc8b353e7f60e8871aee8d8bbe0647424d8702e963edfecea103a191c",
-    "site/viewer/crossant.js": "608a3585cdbd0ee7bc380805bf7d401d690b31bd746299c09faa5103f5abb4b6",
+    "site/viewer/crossant-loader.mjs": "2f9fde96818e445ca184955b6322f9f650bfe7d1691b2219e017ce264b25ed24",
+    "site/viewer/crossant-state.mjs": "92bcc54e0fa49212ee0890c11682a5b91eb1374cc6de49e42311c7d70e75a0c3",
+    "site/viewer/crossant.html": "5eb28877b73072af3cee388ef09da7573e450be992602871b6b1c9ac4d38abaa",
+    "site/viewer/crossant.js": "bc1d0eadb81632b5743c3ccde5e0f6aa0f65a1ce9bf46609a6437878bd158167",
     "site/viewer/custom-voron-loader.mjs": "96c2a05646e84785faf5c8a4d83a8fc9d035563493b52f116d623a45b6b03f13",
     "site/viewer/custom-voron-state.mjs": "4b6132fe80a74098a8bade2347c6e581bb39bcf3b8dc9459cf8298b7e7938949",
     "site/viewer/custom-voron-tube.mjs": "f28049ddc0e0358894a762abfa88df4b25ecfcee5f225ee7b96e27b919563652",
@@ -588,15 +588,15 @@
     "site/viewer/index.html": "aaab61a56431c921a03117349e7ce3795c35914e7cc173e75b7c2babc889a536",
     "site/viewer/internal-spool.mjs": "ca3a453f6bf2966e020830957f6ca3290d89dffebe02ec3aa1b82a45a31c5f99",
     "site/viewer/kit-reference-loader.mjs": "1e4ea653a75783c74b414c0dece9a16f70221eaa579b25382caa8162f3d000cc",
-    "site/viewer/kit-reference.html": "d23bc6e36286fcfaa1bf1612b6e9505202ad244f97d1d1b6a61814dd5c76049b",
-    "site/viewer/kit-reference.js": "7db0f46f2a27bf3ebbbd56baf31ac1e6cac2d21736844ac34c84df57da6be6ba",
+    "site/viewer/kit-reference.html": "a44fb9907dc3d912519a464be0e9fc3c6eaf7c022f73fbdcf01f654d3128ab5b",
+    "site/viewer/kit-reference.js": "ec890bcf35a405b962d7305269e9eb3f47cc7c159907866479995ca7c990c935",
     "site/viewer/klipper-macro-subset.mjs": "99f089a84c395186fe576a9f5fbf1e35e2da121e5cfaf5b00b4e85d2280a4a1b",
     "site/viewer/languages.mjs": "ba6a5cd8e1d86849ca3405b62a9b4f3757b10bb6f195f9990b68d12e15a86424",
     "site/viewer/layout-custom-source.mjs": "2a491ec6cfb8d905ee10cbbcfe7bf2526e0d59fbf3571e625b6f66ea0458522b",
     "site/viewer/layout-default-source-pins.mjs": "40ec0e1e7e69deb4b586ba2eaa54db2caea97bb0695a46aba6e736583131f374",
     "site/viewer/layout-machine-loader-core.mjs": "b403e94f8eef056e9e2d699742b47b766416f88a0792993e9231a2b20b541508",
-    "site/viewer/layout-machine-loader.mjs": "dc6c063109d86337ac39afa6c3318740bef0e4db8588c9fc8241c96c6d1852c0",
-    "site/viewer/layout-machine-providers.mjs": "87003015a05f5be172acc659dcfc8f667564b83aff80ea05c8431615fed5e212",
+    "site/viewer/layout-machine-loader.mjs": "66846f9e2a49156dc3843de4f2115e5f8a71e855ae8c7755102786990d6273de",
+    "site/viewer/layout-machine-providers.mjs": "28aa4a59eba836896f21b3051a3b5b8b56776c0d4d517737fd4cbfc5758076ba",
     "site/viewer/layout-machine-recipes.mjs": "bf6dce56459de5daa8242ca2d101dee91948cadaad7e730805d0b2c2d9175595",
     "site/viewer/layout-material-ownership.mjs": "9c2148661b8089152e3d082b9d6aaa33f5ad41147743b5a0678c10e8daec054f",
     "site/viewer/layout-nav.mjs": "41461d3b504b615edb8f84ab5b739c59064ce99294fa97adf1cbb815492e3955",
@@ -719,7 +719,7 @@
     "site/viewer/source-control-bounds.mjs": "baf630d6f957ab6678232bc84f40c808ea2a69f6a56d1dc7630c5ed7eadcc9e2",
     "site/viewer/source-credit-format.mjs": "5f0524475081b0c7357655fe3b79692476591f709d4385f4d89924cf98bab430",
     "site/viewer/source-operating-bounds6.mjs": "1e6289b77e9233488baff1e8d1f265d09e754f22f15be3ca1808967c3e58d8e1",
-    "site/viewer/source-printed-roles.mjs": "7f1562b44e4853bf41dd354239c59ecaccbd8692f2229929c43e957671e6b31d",
+    "site/viewer/source-printed-roles.mjs": "729c01c91b461298dcb0484b60c988a7a278e4266671089e5ad68632d8d50d94",
     "site/viewer/source47/active-joint-step.mjs": "716838e3b200ad3714e8c4cb9349298816cfaccda6977c619cfc201a23f0d104",
     "site/viewer/source47/captured47-state-v14-fixed-terminal.mjs": "152d83040b0fb0fd9ef820aee5dd486587537a4620e274462b298ada14d51766",
     "site/viewer/source47/data/FULL350_SOURCE_REFERENCE.json": "ea14947ccb960450fb91dd430bb36e7884040d1eca35ab1e445c2eff52513db0",
@@ -2369,7 +2369,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "59e6f343f5e3fb9784b7ab5c9b585c961f384a01aa1017a390630b2cedee6972",
         "controller_sha256": "b1f3a59017cab531031cb7572dd9ab675982d77ef241c250038b9edbf43c16d0",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "37f90f24392377009ab22aeeea353329ada1d62ed0e4f3d0e9c632b0e64e06b8",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -2589,7 +2589,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "c831f5158a7671e7567f2785b1cb2325745eacae5d422c255d88ff78300eac6e",
         "controller_sha256": "16d275e7c029054153f82ea89595a5eba4a36e70909c8ef267e795f30a819c25",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "e3f4f9fee676345ade5025d34b651885f0375118f77292510dd69e3b6534e073",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -2979,7 +2979,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "6be641a22300381949c194ce6bfc59def4d00c7f80184edbc4bf2300c037c382",
         "controller_sha256": "16d275e7c029054153f82ea89595a5eba4a36e70909c8ef267e795f30a819c25",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "5bd39042ec326a6cb38e0ec0225adfb89169e3c0177e4bbfc29faf79943cc8fe",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -3369,7 +3369,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "d0a48e5b1f792a34ea23afe571ffd8b22523706a15568166678ced6ae161b464",
         "controller_sha256": "16d275e7c029054153f82ea89595a5eba4a36e70909c8ef267e795f30a819c25",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "2ee9e0f746dd09962a407b68845148ce1511f24441d14b300b4340cc09c42244",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -3555,7 +3555,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "6fa5a0e87a38f24334177d96405e834debc8776f17a063be7d6cc89fd99613d7",
         "controller_sha256": "b1f3a59017cab531031cb7572dd9ab675982d77ef241c250038b9edbf43c16d0",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "96841c85ebe418b6158404d44938038288ae99c7360d5efbc99f0cbd899ecf03",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -3742,7 +3742,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "7a8d958a198ffabd374314c95a9d49e8b0f0f64fc51a488cdb3a1b973c8e95ad",
         "controller_sha256": "b1f3a59017cab531031cb7572dd9ab675982d77ef241c250038b9edbf43c16d0",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "a012cd9e59393e22f9f2d0ce10ce3a430f3c58d5249591594165f4dc9bddfb26",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -3928,7 +3928,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "73755c5b4f0cdd134554c68d9b37102348af2d71c2e9a31e761c492856939f9b",
         "controller_sha256": "b1f3a59017cab531031cb7572dd9ab675982d77ef241c250038b9edbf43c16d0",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "b1fe73bcf0af86c41764eef208520316f1256dae2088f098ed273acda30ffa6e",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -4114,7 +4114,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "0a3088eb107137530b22e2b4a9ee41b52d0aff3ebd531e68f35d7c825256f8b5",
         "controller_sha256": "b1f3a59017cab531031cb7572dd9ab675982d77ef241c250038b9edbf43c16d0",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "7dc51671fd425bb5485d83a47ff93b881870080a7a75ccd79405fd5288b27440",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -4300,7 +4300,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "16d278caa466868340ad8c97d91b80d96bfbc2af2d871565ab8d1e3559faf861",
         "controller_sha256": "b1f3a59017cab531031cb7572dd9ab675982d77ef241c250038b9edbf43c16d0",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "82fc640a56fe4196e1f437f8cf5ac12e1e459899ab77fb0843de2d611162f7b7",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -4486,7 +4486,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "8c6a1a7d0118ee2bda8ff2278a60e9150324af9f24be59fee4efbe93007cf952",
         "controller_sha256": "b1f3a59017cab531031cb7572dd9ab675982d77ef241c250038b9edbf43c16d0",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "ce3c7e0de438451cd35d0212403ce67c7869288f5a40250fc0d76be4c00ef7fe",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -4672,7 +4672,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "95af277a4543096620b30f64d2d3fb6403fa6f07ca624719734d1c3a35c51ea3",
         "controller_sha256": "b1f3a59017cab531031cb7572dd9ab675982d77ef241c250038b9edbf43c16d0",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "7414107925e87b7d2555ec5d4fa4f7a130072de67d5283a289b142627d43adc3",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -4858,7 +4858,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "3f9545ec42868cd09d43fa4700feee2b8c105b651f8fd1ec2f67d6831ff060da",
         "controller_sha256": "b1f3a59017cab531031cb7572dd9ab675982d77ef241c250038b9edbf43c16d0",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "036d3cd981512b14ca4ad84bd9423abb579a73fd369b6885188f13c59117e034",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -5044,7 +5044,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "9737ca06af3e3a51a9a185a85bfaeadf5741c9d4f7cad9206ff6d37b77165ee3",
         "controller_sha256": "b1f3a59017cab531031cb7572dd9ab675982d77ef241c250038b9edbf43c16d0",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "1c1379b31a8755c4a5f5a4dd6ed23702c16390dbe15a78422101aa1bb672b3d1",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -5231,7 +5231,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "b394124d0ef44519aa24cd005d1433305f35a545c3b8d5f9c8cccb8268fb0175",
         "controller_sha256": "b1f3a59017cab531031cb7572dd9ab675982d77ef241c250038b9edbf43c16d0",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "a8feb9be32eab7f560210849449476114b3d9305f56a5cb6c868e7f37d2e1b53",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -5418,7 +5418,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "6a375f65c81f6cd993313257bab4fe8cae0345ad1b8ee500dece3dc890014a16",
         "controller_sha256": "b1f3a59017cab531031cb7572dd9ab675982d77ef241c250038b9edbf43c16d0",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "8045a1188a6eb46f92a90c17e7cce8546e8f068f51b12ac76af80739c764a26c",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -5604,7 +5604,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "1361302b4008deb1267eb8db72ad1b108e1de0e7159b28ab0088fc2dda8486c4",
         "controller_sha256": "b1f3a59017cab531031cb7572dd9ab675982d77ef241c250038b9edbf43c16d0",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "df2f6d7368931814afb9f1d0727e49730837b0e51b6dde738ca97636ff97d692",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -5790,7 +5790,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "798136042b99c6a206a662b4e113b0ec7b08532d2235f496b573b5aa47468181",
         "controller_sha256": "b1f3a59017cab531031cb7572dd9ab675982d77ef241c250038b9edbf43c16d0",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "47bbf9a75272fd1198e9451fb363ee3ec1b8ddd832686cd8015a9649bba90ed4",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -5976,7 +5976,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "12ae8ee0e81dc89b04fc762d030fb72465692f8009159a4564086985d6774935",
         "controller_sha256": "b1f3a59017cab531031cb7572dd9ab675982d77ef241c250038b9edbf43c16d0",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "7cbd8c61a8bbe320be7fbfdb8d046503bdeccc582c1b7543b8bb3eb41763ec6d",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -6162,7 +6162,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "99018bcd4ca8fd9a0fdd2b13f764dea7e2de9471979db8766b947e876c977e87",
         "controller_sha256": "b1f3a59017cab531031cb7572dd9ab675982d77ef241c250038b9edbf43c16d0",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "91eea80af0dbb4f092b8db9745a670eb7cefb6afaf08ea31756d34c00a2fd89e",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -6348,7 +6348,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "73b00f8d5714a6974837608f6f0ffd66fb540e116741862ce296199acb0fdf72",
         "controller_sha256": "b1f3a59017cab531031cb7572dd9ab675982d77ef241c250038b9edbf43c16d0",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "82fdc24cf7dfe25c0df155e7b30f1675b6fd803adb907c8ef47a058ce60fa84f",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -6534,7 +6534,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "479f7840e1fdd1790ecd797dc8ba0ef7021316f88755566bd113a22f7c9c286e",
         "controller_sha256": "b1f3a59017cab531031cb7572dd9ab675982d77ef241c250038b9edbf43c16d0",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "21b5b12b8915efb531252030884d9f2ef2c38f79ecdc643e39dbc64f4ffde608",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -6720,7 +6720,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "04ca850e7ce000b44db73a35058d036e4c537a7b715486172d527a926f93756c",
         "controller_sha256": "b1f3a59017cab531031cb7572dd9ab675982d77ef241c250038b9edbf43c16d0",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "79951b50b7cfa1c0b92b0e4342384697d05989dec32354814a4fbd1a7226ca56",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -6962,7 +6962,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "ef494370b069a5e8bdbdb45640aab791a822106c0f1636807342ebefe1ecc1cd",
         "controller_sha256": "b1f3a59017cab531031cb7572dd9ab675982d77ef241c250038b9edbf43c16d0",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "4eddfb0ff1cc5b5cb4ccdcdb0b079cb857e61a9b9d05ad30b8cb0cc297d3559b",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -7148,7 +7148,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "14be46c56724a3f954a0ab2dac8a64647b4618d913a0e3eb0c2658f619f7c77d",
         "controller_sha256": "b1f3a59017cab531031cb7572dd9ab675982d77ef241c250038b9edbf43c16d0",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "1a7f351102bcdb1ad87598d990a91a72c0afebc01e427d0381f63de766a45586",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -7365,7 +7365,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "9db6a07660da8a4042121c3bec4fd7e6dcd8abcd750682dd9595c3a580d194e7",
         "controller_sha256": "b1f3a59017cab531031cb7572dd9ab675982d77ef241c250038b9edbf43c16d0",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "f8af2a789df54af72c2b1b304f92e79ecea5dd17aa3b3e05def7849a26c24ecb",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -7544,7 +7544,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "bf2eee971286dabebd8ae0f4149eb76657036c21e2df31aef6f1e32c28158f25",
         "controller_sha256": "f563f5dcb9fe6f06e5322f685dd6f2b609fb31f839031ea75907a67e4765b5ea",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "cbdf7ec6f4646a5ec295cc8074d7e8782087b6419ae51ae4d940b8567fc68607",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -7731,7 +7731,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "03f3c99734f20f9b4af1b17d1f31443e0c05f534e163ad03b8a88e5f8ea92240",
         "controller_sha256": "158cc414a8ca399d5f3e721c9860a8100702f8b299cd355e85e49bf931af2005",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "b6e41f20bca7e0c470ea0b76f42e416bafe984000cb15264b163829f874de28e",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -7918,7 +7918,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "0efe6df3f44824d2431cd514fb31b3c135cc9cd81cf232d07ec9ac3f3ccdc450",
         "controller_sha256": "158cc414a8ca399d5f3e721c9860a8100702f8b299cd355e85e49bf931af2005",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "b7050c96e8693a56717e2fd4367351759a6f045cd2860d5b06f54daf093e3e40",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -8105,7 +8105,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "aa9cea21120eef1d395d02800c179d169169d40321c8b480b672d9b841f8f1cf",
         "controller_sha256": "158cc414a8ca399d5f3e721c9860a8100702f8b299cd355e85e49bf931af2005",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "4601d4cbb7afedc6eca42b739da806a207f0a5ffe3801146853f145b078db258",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -8309,7 +8309,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "bc2dac0dbcdb191f6ae1391a538f3deed28ec3deb0fdc7597f6adde8379c841c",
         "controller_sha256": "ce31b6b1e475189abdc6ee2eec0e5e807b4385cd2eac9a710064c6cfb8b7d560",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "fa0d0fc4727e4996d61f43116a407a2b3c6c6edb24b7059bb12db297936d1ecd",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -8531,7 +8531,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "ca956d3d7b27526e8f21b7d8cbbc5783ce461b6ae450f9609a6f5847cc814672",
         "controller_sha256": "6623d5925a53fc94edc2a6fe753d372a2d4dbeb18209abce7f102f5fb2b74f5a",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "64351d3e846892efe21db553cdab5381cbfe1a115d6e9f18a9a04743c493b50a",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -8753,7 +8753,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "96309090e82efd59e214c403edf4716357a245e76a190038bea88abae315ff52",
         "controller_sha256": "6623d5925a53fc94edc2a6fe753d372a2d4dbeb18209abce7f102f5fb2b74f5a",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "b825b53f8c1c38d9c1dddbc71ceb4b1e19b2f2fdf7cc4a712127ce0b95d4e359",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -8970,7 +8970,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "8cad57cf1550f8827ffdfd34cc4d7ab28edfe94b65c99a0fc7b9b28fad7f60ce",
         "controller_sha256": "4d7fcd44d1c2dcfbfc8dcfcbcb0f3d439c782d0dc64440e840a60bb5a6775f58",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "6cfe09afa0565b8b7475c9504a37cfcab3fd807dc281b8d5701eadec434bca67",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -9187,7 +9187,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "d927d9e14276901cdfcd2d433a16e67ae461ec0bc67ea1912715881a64181b16",
         "controller_sha256": "4d7fcd44d1c2dcfbfc8dcfcbcb0f3d439c782d0dc64440e840a60bb5a6775f58",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "ffa5bc7749ac32996dfb9f9e344f8a60a0735550ebe52919649ec9153be54057",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -9420,7 +9420,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "e619e8944eba1a45ff7f72f28f808d4c475a0d0fb95d08a5eacf4fe2cffa97f4",
         "controller_sha256": "4d7fcd44d1c2dcfbfc8dcfcbcb0f3d439c782d0dc64440e840a60bb5a6775f58",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "2e2091f881afb22120a61e03145053d121c5eeb00af2f481899c3c95b5b3dfd7",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -9623,7 +9623,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "4aa9673623c73d1090227efe2d522e68ee99b210c4704ae7bd15f5f7d09866b2",
         "controller_sha256": "6c6c7bb240cfbaa801d348281bb41e178088fc4a196e9794f782ce58e02d3e00",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "ce61b2aa74203bf7d386b056e53e567ab25adc92464b44290db0b38e5724803b",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -9824,7 +9824,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "094d657422da5f74965a164e02c9e95824d5e0670fdaed9ffedd0590d4369ede",
         "controller_sha256": "6c6c7bb240cfbaa801d348281bb41e178088fc4a196e9794f782ce58e02d3e00",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "14f33d15bd84a98d3a62013bd549689b88c95aac7c1821d632b9c0e3f7fbb19e",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -10027,7 +10027,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "c7964f897e5d1be6450c3adeb699d20ad375583a4989afb705ed9ee481a346a3",
         "controller_sha256": "6c6c7bb240cfbaa801d348281bb41e178088fc4a196e9794f782ce58e02d3e00",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "182932b68608ebaa7ebd62c6e2a3435c91fc3efec920c553cec00efdb38ffd10",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -10231,7 +10231,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "679d362a57c5512213f19c5a4c2eef6b38719dbd5ce0a0a0e395dfd32e7e1bf2",
         "controller_sha256": "20a24252fae8ddeefc6c0b522281b64bb5623ed1266d7aae5f998decc52402bc",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "ad045ac2f9bb6b11d352739c71bd940d17251f742ef55faa54ac2c997334f62f",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -10435,7 +10435,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "c94f64fbf04fc48a2b1f5d474dc6c4f70f4d946d9cea2edddcd430be8ca7aebe",
         "controller_sha256": "2a456d37f7e58bf31e3c7b99ba4f96e66fe2a48bee41b7f2c11a389533a07298",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "ad1f34f46a080171042a8b3057ee8c69c412d3ac612dd11646784a4d06411db1",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -10639,7 +10639,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "7eb406d1350e3da483c8e1beade769b9571abe977c92e4b67ad4fae000c81065",
         "controller_sha256": "2a456d37f7e58bf31e3c7b99ba4f96e66fe2a48bee41b7f2c11a389533a07298",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "06d103bebc31fef893386a29c3fd3d6edc87b2e23176bf2f62ffaaf5af57ddb0",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -10843,7 +10843,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "6f16caedf58dd81149955d5c215aba46cea386bc3ded88bc18bd73722a8d2f5a",
         "controller_sha256": "2a456d37f7e58bf31e3c7b99ba4f96e66fe2a48bee41b7f2c11a389533a07298",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "f616e0ebd8998c2bb720ffa879d1117b729bb53a7dfc98d37820a85332adbadd",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -11047,7 +11047,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "451074148753e60129c619d915efa64c305b5a3397b0d9f822d713273702425c",
         "controller_sha256": "2a456d37f7e58bf31e3c7b99ba4f96e66fe2a48bee41b7f2c11a389533a07298",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "b74c6b4c52563b6ece8ff29b96815cae77e5aab245f0b11846dd40b6a53a7dd8",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -11251,7 +11251,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "255ba847abf4f7d862d6e5aaac3f284a860eedac08e5bac32534d75ef42f361f",
         "controller_sha256": "2a456d37f7e58bf31e3c7b99ba4f96e66fe2a48bee41b7f2c11a389533a07298",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "906b1b7e28cc20586d179edef20e401156c89bb52a2dbcf9be242ffbbfce7d5f",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -11455,7 +11455,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "5696e6097763134ee47e6453b023245a237f9272f6eddac76e554fd79655f632",
         "controller_sha256": "6c6c7bb240cfbaa801d348281bb41e178088fc4a196e9794f782ce58e02d3e00",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "deb43991ff08d19475aea8694d3fbf90e0318d06bcc5056f145695a380969a37",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -11658,7 +11658,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "aacca629d947491958eab426727f9b5653c3aa00bd8fa2b5ab53c5b4c9c1a6cd",
         "controller_sha256": "6c6c7bb240cfbaa801d348281bb41e178088fc4a196e9794f782ce58e02d3e00",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "f450b208612662a1034925e4b1dd0147541e7f7893305300a315eabd54c23941",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -11861,7 +11861,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "b6622e56f991fdf68b58ea8c2b51c157fc48eb5f3e01b05e953ed7e2ab3df298",
         "controller_sha256": "6c6c7bb240cfbaa801d348281bb41e178088fc4a196e9794f782ce58e02d3e00",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "adfef6c962ce0dc38d302ad6941843992725d34b894f67e81b704138f4942eb9",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -12065,7 +12065,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "bd520951b97f06a98049ac29b4ba39d52ad0d6cfd491b2b621002bf612540ba6",
         "controller_sha256": "2a456d37f7e58bf31e3c7b99ba4f96e66fe2a48bee41b7f2c11a389533a07298",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "a6bf1ab6837033a87673d8756016f22c584d518985de4161643ce323dcd240e9",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -12268,7 +12268,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "d89064824fa67ed6e7c78e90c642620afe62c3b4520255f6c626181754b7d29d",
         "controller_sha256": "b907834e2d9c8e4186d02699837e24c724475f2e907ce905eda5ce4310f7dfd8",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "a78ccca6a979d65aee09ede55f729411fe2e463a235a19526d8c5fbd55b54d38",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -12471,7 +12471,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "da642150957fa38289499bd1c1586737f4f970968c3b32b3f7b81d76bef05ea9",
         "controller_sha256": "b907834e2d9c8e4186d02699837e24c724475f2e907ce905eda5ce4310f7dfd8",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "9a9eee2273dedb1408e13345c0dab924807d240dce14a683fda94b5c1594cd3c",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -12674,7 +12674,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "9cf6f791159e5d15471d0147edee3fc29762468cbe2692a93ef5ffbc1527c2be",
         "controller_sha256": "f8f64194d1b403479034143f4fd5ab5d96b0e1b375a9396a6521a7f1650c5fdd",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "4498866277f600f3b39c99aa62a982cb2ba3536d09edb08c04c91bf9747f918f",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -12877,7 +12877,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "c28985823dbeb5534405509dac351e0f54fc46e77b0887edd562249b0dbb501a",
         "controller_sha256": "f8f64194d1b403479034143f4fd5ab5d96b0e1b375a9396a6521a7f1650c5fdd",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "8ca138de91ead131b7f9d323c8e17b926c93523cbde94c38a498214163bd2e58",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -13063,7 +13063,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "4ee4c9612380f007a9c5f107d1d7a2f59e2d89bc7ebabe802bf272eb7c53faff",
         "controller_sha256": "3b2d4519c454664faa6ebde0e9398bac1db468fa2b5ca9ffd5a28a067a2b94f5",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "ec997f03251976305b8ef991ac2a483423514007c442d172e46843ea647bd92a",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -13267,7 +13267,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "f4e560da3b9f8274b508dfc6d9e846ebc5c9e147fccbd16a63c771fba3c13de5",
         "controller_sha256": "207694cffdbf3da058793a8757641f7591c4ab443bb446c57d19ed149aa55644",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "42350cda068c0ef9c9e27b85969bcfd88780d70d1228abbde5e262553e59b48b",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -13458,7 +13458,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "dfb5aaeca2cb274932ae4a9f8c59a7a76114f3d6c6c41dc9c814223b33d2a8b6",
         "controller_sha256": "bfd34666b9e8db83f22b986d2187a00294fe0049cf308fdbcd5f82113d7445f1",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "00184d228f32ad6fa2ba2ce8acc65c9667f1fc921bd2649108eb084731d0f4d8",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -13649,7 +13649,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "125705129bc1fe73416d661df8dc928291f2a090a03ef662459bf6275f53031b",
         "controller_sha256": "bfd34666b9e8db83f22b986d2187a00294fe0049cf308fdbcd5f82113d7445f1",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "71a7976993a34942dfbb660abdc128f13d75674f8790ae34ca7e5c68e34391b6",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -13891,7 +13891,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "16f57d28b27602be3effa8b5c797b3d59f4ce07025aa59c9e84de91a08b10427",
         "controller_sha256": "bfd34666b9e8db83f22b986d2187a00294fe0049cf308fdbcd5f82113d7445f1",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "017c744758b6371d826a028e4ea6c7dced7e68784c0994c25eaec6ef0dfe84a9",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -14081,7 +14081,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "cedf78d3a15e5bcfbbdebef6a3b48d2aafc2f516ac701177472c6eb504bff2b7",
         "controller_sha256": "bfd34666b9e8db83f22b986d2187a00294fe0049cf308fdbcd5f82113d7445f1",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "45fdf3fa815d70ff40d95b6e3d66c888922585ee0d6bd07f43c887285f9330da",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -14271,7 +14271,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "b2ca97bc05ef65eff019d886a8069b89f1f7958a6a5fa4ec5f27598459e9ed06",
         "controller_sha256": "bfd34666b9e8db83f22b986d2187a00294fe0049cf308fdbcd5f82113d7445f1",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "75a3c96e2f968d08a2923003a859de6a02e762de0136d523a444f858155f302e",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -14513,7 +14513,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "b41565379c61be88ff04988bd7c3742318129da04620ca5aa264c441a2a19bde",
         "controller_sha256": "bfd34666b9e8db83f22b986d2187a00294fe0049cf308fdbcd5f82113d7445f1",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "7a34a96e72031dfcbddec5759e355f2e4346f14c47af34b5aa8179e70354d126",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -14703,7 +14703,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "1b90e0423e78a64a26c5ecc2c91f51616d8d060fbd34431af0b53f15ed5886fc",
         "controller_sha256": "bfd34666b9e8db83f22b986d2187a00294fe0049cf308fdbcd5f82113d7445f1",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "d29864947ce7c91095a4b143017fb194a52ae771c2cf92112bf1786d1d25d760",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -14894,7 +14894,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "c352ee0188f76528d9bc3ddf8ca8da341206ac91ea4080bc62bbcbd5f9fbd297",
         "controller_sha256": "bfd34666b9e8db83f22b986d2187a00294fe0049cf308fdbcd5f82113d7445f1",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "f14b4c512a25d2753b813bf3625938773fce1c1f37cfc8cdd6fedcc4f2380d18",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -15137,7 +15137,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "5667d489ad6a27f61e2e5bfd5418582745aac3faae62248dc1d320104cec0bca",
         "controller_sha256": "bfd34666b9e8db83f22b986d2187a00294fe0049cf308fdbcd5f82113d7445f1",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "25867f235179d5aacfdc338bec3cf26b2a7da50ef772855f0058d9d12a835bda",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -15327,7 +15327,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "aac48dc8f9ec3c57653f243ba1b7fda102e556f2d2a3e8a8167aa21f3e443be8",
         "controller_sha256": "bfd34666b9e8db83f22b986d2187a00294fe0049cf308fdbcd5f82113d7445f1",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "9f6a9691f921221c82dbc7d9955dc3403b209dca2c9f859c240b6d7be669b9a7",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -15518,7 +15518,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "9642e9a716271296176c5a11d7da26ea65f768cdd5fee282609fab41065ccddb",
         "controller_sha256": "bfd34666b9e8db83f22b986d2187a00294fe0049cf308fdbcd5f82113d7445f1",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "200294be7a9d9128c2b9bb4ec1e19d594b5242ef9a9629c8683fd75f287d6d34",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -15761,7 +15761,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "4328f885ab485f25157d4e25cb2c6d921a2843a0ddce85e619b2f3b1b01f1caa",
         "controller_sha256": "bfd34666b9e8db83f22b986d2187a00294fe0049cf308fdbcd5f82113d7445f1",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "6b64b576f25db6d69f3549b9291d23126fd49b97590a2e469ab9cb22e59997c3",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -15951,7 +15951,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "1797f6a03cdf2a051ee94f1cbe91e5d9d4e78bf068979f4ef182ef518f9734e9",
         "controller_sha256": "bfd34666b9e8db83f22b986d2187a00294fe0049cf308fdbcd5f82113d7445f1",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "82b94de8b3df4273ced37e12fd78f107ac8cdc905d2e29318e71b4d98a0ecb3f",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -16142,7 +16142,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "9ee09292ad7f5a1cd22ecc70b4dc351d2f42b88353fca26b0266326fc0195e39",
         "controller_sha256": "bfd34666b9e8db83f22b986d2187a00294fe0049cf308fdbcd5f82113d7445f1",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "3d38a3550c0579e3ff91cd58ce2ac60805e8ee7afab71bac6eb6b5fe94d1ba0c",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -16385,7 +16385,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "b1d9ce88b7c1e8d94b84081dda180b734f404a6d7c49a3834682ea62fe5f4eb6",
         "controller_sha256": "bfd34666b9e8db83f22b986d2187a00294fe0049cf308fdbcd5f82113d7445f1",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "7e62cb3bccf2c74442007820d3f867d1e6c7b4e80d4f4a36fd63bfce89bd9d24",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -16575,7 +16575,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "856eed23ee1a8f56dd2d242808cbbfd9fef8abb83f9f4a8afb905709c76f55ce",
         "controller_sha256": "bfd34666b9e8db83f22b986d2187a00294fe0049cf308fdbcd5f82113d7445f1",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "9bfbd9ea61889611c36c46aee870e97009640236e2499ab59773e09f45ca30f8",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -16765,7 +16765,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "f2de1ea8733e099f302340ad660dc505baa07627215c7d9839d3e1ebeb670dd4",
         "controller_sha256": "bfd34666b9e8db83f22b986d2187a00294fe0049cf308fdbcd5f82113d7445f1",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "8ca80c430047ee1dc75d0cee8b52f0922921c1ee7d7c4a7ca80353351f36ffb1",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -17008,7 +17008,7 @@
         "reviewed_on": "2026-10-25",
         "model_sha256": "e199087d12dee961f1c2e08b7f96e4dfd95adf52ef5210536f5d6ec0e5904a07",
         "controller_sha256": "bfd34666b9e8db83f22b986d2187a00294fe0049cf308fdbcd5f82113d7445f1",
-        "workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+        "workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "20c5a08a1cbb2f651186b06afd577e9e3d935731c439d53d3d3c4903b889c14c",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
@@ -19536,22 +19536,22 @@
     "reviewed_on": "2026-10-25",
     "actual_registered_models": 72,
     "complete_exported_binary_scans": 72,
-    "current_workbench_report_sha256": "ab226f04f9469cdc90bc9d124a20c802b7f9e36f94433414639f5f518e2695fd",
+    "current_workbench_report_sha256": "e7d82f0440ddce9f85dbf5d1d2cc4b813115aa2b70e261e243f9d4e9f303a205",
     "targeted_audit_reports": {
-      "colors-0": "ea5252138eed6aeb7f70fae79d76cf4e3def9396eba7b2cf8b11242426cac84c",
-      "colors-1": "9f4e673a31bc8c1d30fe4dc97a7939c817f7ed941d78b4a1ad65ba77ac5e65b9",
-      "colors-2": "964d11581be3cc5cd8a2bc4895fbc0484ae302ebbdddf1f0d41da004ff73f591",
-      "combinations": "a458432e0ce3e20bf1953bade7b19b3aa95761101711d8236e0a51440d14ee43",
-      "mercury_one1_235": "7894ee3f98af66b818408e4c1c50b0dd9accf9726b1e8d06db4660254e5145a0",
-      "mercury_one1_370": "3dc4a44f51f8a7abd9c835dbf240a8d296d873aa9db7d9467b7e984ec721d858",
-      "lh_stinger_200": "89e5110aaa18f49a8eb4882be49f1c5529fb5c99fde7ed1f1711892f0350904f",
+      "colors-0": "d2743bd68316af68d24b1b0e59eec19377e847c0cfcf17ebc3e448770d21e559",
+      "colors-1": "cda75a1478d2aac4ebf80ffdb0ddb90565e89511e26b234a9db7d77b2d0cf73e",
+      "colors-2": "32c1b1aa8e90a0f752abc817cc1e28c996a3d05af97a265d71b52f4e2d12a088",
+      "combinations": "e763da280195fb0aa702e2592a448ae7bd63547cef120a2b23625d66802b1922",
+      "mercury_one1_235": "1a6632ec963ad244e97a0dc33e06fd9ea1233ad2323fda5942b9f01e88977923",
+      "mercury_one1_370": "5580b9e42ce2256d81b3b7e7464249b7aa46fb0f3ebdb6c9e3a6ecbda5681ac3",
+      "lh_stinger_200": "2d22d43c762e38e980034ba45fd2449dbdd7100fc311fc1cce00bbdbf44fd6ed",
       "source47-hosts": "410d278d6882b79f877c7a4d0804dcaa3a9235b772640ef20545ec05e4aad021",
       "half-z": "36ff55f446123bd226f26393d8b0e50dbe19a9246cba0a96b83ff7c78d1d092f"
     },
     "source_printed_instances_corrected": 483,
     "additional_source_printed_leaves_corrected": {
       "crossant_235_v06_leadscrew": 5,
-      "vzbot_330_printed": 8
+      "vzbot_330_printed": 10
     },
     "legacy_monolith_saved_id_restorations": 204,
     "composition_scope": "Existing registered source recipes restored under exact host/gantry IDs; no new speculative mounting registrations.",
@@ -19563,7 +19563,7 @@
       "source47_installed_cw2": "Retained fitting host selection corrected. Full path shape remains open."
     },
     "normal_release_gate": "scripts/check_viewer_quality_release.py",
-    "normal_release_gate_report_sha256": "ed5764f5943f6fd6d19a60095c01595d8b9963772db608ae5618f3875cb3bf70",
+    "normal_release_gate_report_sha256": "7293f2c9572db3321661182f7053e5ccafd49bd438fd65169d9fcc529a0c3189",
     "browser_scope": "Desktop Chromium and a 390x844 Chromium viewport: named palette, configuration restoration and route cases, reversed movement/reset, light/dark display. Not an iPhone Safari or Firefox qualification.",
     "open_findings": [
       {

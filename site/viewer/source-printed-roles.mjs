@@ -10,12 +10,15 @@ const crossantLeaves=new Map([
 ]);
 // Crossant STLs/CPAP/WS7040/ws7040_housing_cover_x1.stl and spacer_x4.stl.
 // VzBoT a7b1cdc7: Assemblies BOM and STL/Frame/STLs/2020 Endcap.stl.
+// Frame/STLs/handle.stl and the author's frame-print instructions identify
+// 00250 and anonymous 00253 as printed handles; 00251/00252 stay metal bolts.
 // Generic numeric keys are meaningful only in this exact source assembly.
 const vzbotLeaves=new Map([
  ['00229','endcap [printed]'],['00230','endcap [printed] (2)'],
  ['00231','endcap [printed] (7)'],['00232','endcap [printed] (5)'],
  ['00233','endcap [printed] (1)'],['00234','endcap [printed] (3)'],
  ['00235','endcap [printed] (4)'],['00236','endcap [printed] (6)'],
+ ['00250','Handle (3)'],['00253','SOLID'],
 ]);
 export function sourcePrintedRole(manifest,part){
  if(!manifest||!part)return null;

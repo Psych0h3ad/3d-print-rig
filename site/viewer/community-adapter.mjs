@@ -1,5 +1,5 @@
 import * as THREE from './vendor-r180/three.module.js';
-import {sourcePrintedRecords} from './source-printed-roles.mjs?v=7f1562b44e4853bf41dd';
+import {sourcePrintedRecords} from './source-printed-roles.mjs?v=729c01c91b461298dcb0';
 import {createPaletteController} from './palette-controller.mjs?v=ee8e97d84186af0fe8a0';
 import {validateAxes,nativeMotion,displayMotion,communityConfiguration} from './community-state.mjs?v=460b3fa78cc503ddb6e6';
 import {mercuryTubeSpecs,mercuryTubeRoute} from './mercury-tube-routes.mjs?v=7348939ff4da3f0dba7c';

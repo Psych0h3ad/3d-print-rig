@@ -95,11 +95,16 @@ class ViewerQualityRelease(unittest.TestCase):
             plan = gate.read(Path(command[-2]))
             rows = []
             for spec in plan['assets']:
-                count = 5 if spec['id'] == gate.COLORS[0] else 8 if spec['id'] == gate.COLORS[1] else 0
+                keys = gate.SOURCE_PRINTED_KEYS.get(spec['id'], set())
+                count = len(keys)
                 rows.append({'id': spec['id'], 'passed': True, 'material_slots': 1, 'attached_color_checks': 1,
                              'independently_expected_printed_leaves': count,
-                             'reviewed_printed_palette_checks': [{'slots': [{'expected_color': '#112233', 'actual_color': '#112233'}]}] * (count * 7)})
-            report, destination = {'passed': True, 'results': rows}, Path(command[-1])
+                             'reviewed_printed_palette_checks': [{'key': key, 'slots': [{'expected_color': '#112233', 'actual_color': '#112233'}]} for key in keys for _ in range(7)]})
+            report = {'passed': True, 'results': rows, 'source_printed_leaf_count': 15,
+                      'source_handle_materials': {'passed': True, 'printed_keys': ['00250', '00253'], 'purchased_keys': ['00251', '00252'],
+                                                 'negative_assertions': 4, 'attached_material_checks': 588,
+                                                 'purchased_PBR_preserved': True, 'exact_source_color_reset': True}}
+            destination = Path(command[-1])
         else:
             mid = command[command.index('--machine') + 1] if '--machine' in command else gate.HALF
             bindings = gate.read(Path(command[command.index('--bindings' if '--machine' in command else '--pins') + 1]))
@@ -182,6 +187,28 @@ class ViewerQualityRelease(unittest.TestCase):
             gate.write(Path(command[-1]), {'passed': True, 'results': []})
         with self.assertRaisesRegex(ValueError, 'actual color result'):
             self.invoke(incomplete)
+
+    def test_old_thirteen_leaf_report_is_rejected(self):
+        def old_report(command, **kwargs):
+            self.fake_node(command, **kwargs)
+            p = Path(command[-1])
+            r = gate.read(p)
+            row = next(x for x in r['results'] if x['id'] == gate.COLORS[1])
+            row['independently_expected_printed_leaves'] = 8
+            row['reviewed_printed_palette_checks'] = [c for c in row['reviewed_printed_palette_checks'] if c['key'] not in ('00250', '00253')]
+            gate.write(p, r)
+        with self.assertRaisesRegex(ValueError, 'source-bound printed leaf'):
+            self.invoke(old_report)
+
+    def test_actual_bolt_negative_witness_is_required(self):
+        def no_bolts(command, **kwargs):
+            self.fake_node(command, **kwargs)
+            p = Path(command[-1])
+            r = gate.read(p)
+            r['source_handle_materials']['negative_assertions'] = 0
+            gate.write(p, r)
+        with self.assertRaisesRegex(ValueError, 'purchased-bolt negative assertions'):
+            self.invoke(no_bolts)
 
     def test_nonzero_child_cannot_reuse_prior_success(self):
         gate.write(self.out / 'colors.json', {'passed': True, 'results': []})

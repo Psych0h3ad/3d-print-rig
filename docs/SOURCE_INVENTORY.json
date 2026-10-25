@@ -260,8 +260,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 1183226,
-      "sha256": "7a4188853ade53c46c4837ebca5a8c35974e2fea608750379061d5f3a267cba3"
+      "bytes": 1183235,
+      "sha256": "9173faaf73f10cbfd9db663fc3332e14016e951ad5b449f64520079fdce93993"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -775,8 +775,8 @@
     },
     {
       "path": "scripts/audit_source_printed_colors.mjs",
-      "bytes": 829,
-      "sha256": "9c970544566dffa031ac66b31b0e368b1507a12bbf6ffa2ee779ef8b41da9850"
+      "bytes": 7061,
+      "sha256": "0886207d2db88a28157cba94e8c2d4bc01cf70677a10a44d4d7c2d21f2adcba0"
     },
     {
       "path": "scripts/audit_stealthburner_cutaway.mjs",
@@ -930,8 +930,8 @@
     },
     {
       "path": "scripts/check_viewer_quality_release.py",
-      "bytes": 25657,
-      "sha256": "ba756aad33031d5be12916f5a920f36cab90e0306a380bb1416091bee68ee25c"
+      "bytes": 26727,
+      "sha256": "4eac63421d2e930781c1865076ef2f7b630a39691787d1bf1347c0ea46920ae8"
     },
     {
       "path": "scripts/check_wallpaper_compositions.py",
@@ -1230,8 +1230,8 @@
     },
     {
       "path": "scripts/printed-color-source-contracts.mjs",
-      "bytes": 3109,
-      "sha256": "3d87a72fdd5581232fe02694dac069ddbd2f8acc9a9cdf2741444a64f1e31eb6"
+      "bytes": 3879,
+      "sha256": "bfa40a989ab995f9a98d5af1f31899fde89aff31fada0b2990eaab55024aa417"
     },
     {
       "path": "scripts/probe_configurations.py",
@@ -2160,8 +2160,8 @@
     },
     {
       "path": "scripts/test_source_printed_color_roles.mjs",
-      "bytes": 5965,
-      "sha256": "fea557020cbc33ffe13fbadf604bba1f4a0014cfe343e7af1536d776d91d7236"
+      "bytes": 6943,
+      "sha256": "2bdadd3de24190da22bb961c9abcbb6c539f5283a1752e7ab3d7dc278d508e40"
     },
     {
       "path": "scripts/test_source_scene_lighting.mjs",
@@ -2370,8 +2370,8 @@
     },
     {
       "path": "scripts/test_viewer_quality_release.py",
-      "bytes": 14957,
-      "sha256": "69f5e856dfea55e47fc1da2a81b9f4ede98dd800a1dd74aa1d36bcd0b5f6d0a3"
+      "bytes": 16464,
+      "sha256": "f958648dfcb24967034c8c0c871526cf6b9c0dc4273d58adbfec0e5a9aa25704"
     },
     {
       "path": "scripts/test_virtu_may_role.mjs",
@@ -5091,12 +5091,12 @@
     {
       "path": "site/layout/index.html",
       "bytes": 10030,
-      "sha256": "5a402f0499f206776923fb11aad141548196750c9a537788101403f4498bd424"
+      "sha256": "45a867b4ec94c90fe80e92687ad4e9ccdacae3e5d70f4d6e3a0f9f57a8d7a370"
     },
     {
       "path": "site/layout/layout-app.mjs",
       "bytes": 40437,
-      "sha256": "4b72c08baf5f38e4e06c63faf522a5d66eaa83810f0ae0406bdca486b1b3249c"
+      "sha256": "e685b680d1f0cee4326c52d249aa6d09b7f457a2bbbafcacc9395c197a7f219e"
     },
     {
       "path": "site/layout/layout-catalog.json",
@@ -5171,7 +5171,7 @@
     {
       "path": "site/layout/layout-machine-loader.mjs",
       "bytes": 5624,
-      "sha256": "8aea5f7aa8ab98e3d42458b47c583e70f6c94c17be1baa8e00b3298813e169a2"
+      "sha256": "69976c93147f8fc2adbf2e4748555f283a47a0155da1f8c4391ee040eb4b1540"
     },
     {
       "path": "site/layout/layout-placement.mjs",
@@ -6126,12 +6126,12 @@
     {
       "path": "site/viewer/annex.html",
       "bytes": 6939,
-      "sha256": "c4bd4ab739dccd95bf13c2c9943206526a01cb1397c04607217505b1ff4fd6d1"
+      "sha256": "2d8224be4c48527311c41236e02829f8fab6bebd6bfbfa036aeb83959194732c"
     },
     {
       "path": "site/viewer/annex.js",
       "bytes": 8718,
-      "sha256": "ad8fa0e2402abe88c18c6979a39754f6fb9cf638b124ec8b2e94e70cd9ac71de"
+      "sha256": "4648b8ae56274395b002ec56f8e097ef0a4346eb92ec2d233a6f4f477b054d3f"
     },
     {
       "path": "site/viewer/app.js",
@@ -6231,17 +6231,17 @@
     {
       "path": "site/viewer/community-adapter.mjs",
       "bytes": 10823,
-      "sha256": "318e9cce1803a037cb42bf004031a3a2d94c60bbd7d4dfe2bc321c436dbd20ca"
+      "sha256": "611339ada395324d092b85bdea82801d91cb3653b59cc0bd8834ed6f23335355"
     },
     {
       "path": "site/viewer/community-loader.mjs",
       "bytes": 3394,
-      "sha256": "a5be7a1661fae0019ab744f61f6b02ccf730b53c589084c75728ae1f3c3d1c6e"
+      "sha256": "33dd8490957aa2b1a7b00baa2ae0f7f6df82a258f1fb1e9878d96404e3354610"
     },
     {
       "path": "site/viewer/community-renderer.mjs",
       "bytes": 24040,
-      "sha256": "bd40c762a56daed366041e1b00105f000d9bda3ba863b7104b1aac11fd8fbb12"
+      "sha256": "147d12a3ff1a95b1e2ed409deaeadb802a588851ae4de95d0dd484238f8b87b0"
     },
     {
       "path": "site/viewer/community-state.mjs",
@@ -6251,12 +6251,12 @@
     {
       "path": "site/viewer/community.html",
       "bytes": 7913,
-      "sha256": "58abc61dfc2f60e4540f19c5a48166390f1d39fa040f1d9a6d1c6c024bd2a1dd"
+      "sha256": "5d20e7d1af17f5de29f2d6655a90756ec008d46f0e98f1bf58a4cff871489255"
     },
     {
       "path": "site/viewer/community.js",
       "bytes": 539,
-      "sha256": "49a812286c420ef7b3ff85d5acfd2529773b1b11b1d5cd40419677ebc5b8e011"
+      "sha256": "c2ebcec9c85f0e411c6715fdaf9113f1b5d6dc352ad261587cc69ed36dc722a3"
     },
     {
       "path": "site/viewer/component-assets.mjs",
@@ -6306,7 +6306,7 @@
     {
       "path": "site/viewer/crossant-adapter.mjs",
       "bytes": 3846,
-      "sha256": "c72051570963f8dd21072f4ec43cb4dfc2bd367f78ef63bf16936aad59197807"
+      "sha256": "11787c79fb973bbd8d72bc5eff23fbb29e18965183182a55042659452b9722a1"
     },
     {
       "path": "site/viewer/crossant-belt_deform.mjs",
@@ -6326,22 +6326,22 @@
     {
       "path": "site/viewer/crossant-loader.mjs",
       "bytes": 5229,
-      "sha256": "d71ed46b89d47fb4d938025c938380cc7f1880453875e71969ebb62912703f91"
+      "sha256": "2f9fde96818e445ca184955b6322f9f650bfe7d1691b2219e017ce264b25ed24"
     },
     {
       "path": "site/viewer/crossant-state.mjs",
       "bytes": 1925,
-      "sha256": "3e52f4f3f6867bc9ae7d69806349f88933435febfd0fe91f929527e5861a54f3"
+      "sha256": "92bcc54e0fa49212ee0890c11682a5b91eb1374cc6de49e42311c7d70e75a0c3"
     },
     {
       "path": "site/viewer/crossant.html",
       "bytes": 8959,
-      "sha256": "3c27b46dc8b353e7f60e8871aee8d8bbe0647424d8702e963edfecea103a191c"
+      "sha256": "5eb28877b73072af3cee388ef09da7573e450be992602871b6b1c9ac4d38abaa"
     },
     {
       "path": "site/viewer/crossant.js",
       "bytes": 14674,
-      "sha256": "608a3585cdbd0ee7bc380805bf7d401d690b31bd746299c09faa5103f5abb4b6"
+      "sha256": "bc1d0eadb81632b5743c3ccde5e0f6aa0f65a1ce9bf46609a6437878bd158167"
     },
     {
       "path": "site/viewer/custom-voron-loader.mjs",
@@ -6686,12 +6686,12 @@
     {
       "path": "site/viewer/kit-reference.html",
       "bytes": 6697,
-      "sha256": "d23bc6e36286fcfaa1bf1612b6e9505202ad244f97d1d1b6a61814dd5c76049b"
+      "sha256": "a44fb9907dc3d912519a464be0e9fc3c6eaf7c022f73fbdcf01f654d3128ab5b"
     },
     {
       "path": "site/viewer/kit-reference.js",
       "bytes": 6648,
-      "sha256": "7db0f46f2a27bf3ebbbd56baf31ac1e6cac2d21736844ac34c84df57da6be6ba"
+      "sha256": "ec890bcf35a405b962d7305269e9eb3f47cc7c159907866479995ca7c990c935"
     },
     {
       "path": "site/viewer/klipper-macro-subset.mjs",
@@ -6721,12 +6721,12 @@
     {
       "path": "site/viewer/layout-machine-loader.mjs",
       "bytes": 2625,
-      "sha256": "dc6c063109d86337ac39afa6c3318740bef0e4db8588c9fc8241c96c6d1852c0"
+      "sha256": "66846f9e2a49156dc3843de4f2115e5f8a71e855ae8c7755102786990d6273de"
     },
     {
       "path": "site/viewer/layout-machine-providers.mjs",
       "bytes": 12827,
-      "sha256": "87003015a05f5be172acc659dcfc8f667564b83aff80ea05c8431615fed5e212"
+      "sha256": "28aa4a59eba836896f21b3051a3b5b8b56776c0d4d517737fd4cbfc5758076ba"
     },
     {
       "path": "site/viewer/layout-machine-recipes.mjs",
@@ -7370,8 +7370,8 @@
     },
     {
       "path": "site/viewer/source-printed-roles.mjs",
-      "bytes": 2646,
-      "sha256": "7f1562b44e4853bf41dd354239c59ecaccbd8692f2229929c43e957671e6b31d"
+      "bytes": 2844,
+      "sha256": "729c01c91b461298dcb0484b60c988a7a278e4266671089e5ad68632d8d50d94"
     },
     {
       "path": "site/viewer/source47/active-joint-step.mjs",
