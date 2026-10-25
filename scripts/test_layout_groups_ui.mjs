@@ -114,7 +114,7 @@ await test('group rename, exact world transforms and lifecycle buttons emit only
 });
 await test('invalid numeric and blank rename commits do not emit; rounded no-op fields remain exact',()=>{
   const r=setup(plan([unit()]),'unit-1');r.change(r.find('#layout-group-edit-name'),' ');assert.equal(r.find('#layout-group-edit-name').getAttribute('aria-invalid'),'true');
-  r.find('#layout-group-edit-name').blur();assert.equal(r.find('#layout-group-edit-name').value,'North bench');
+  r.find('#layout-group-edit-name').blur();assert.equal(r.find('#layout-group-edit-name').value,' ');assert.equal(r.find('#layout-group-edit-name').getAttribute('aria-invalid'),'true');
   r.change(r.field('xMm'),'');r.change(r.field('zMm'),'Infinity');r.field('yawDeg').focus();r.field('yawDeg').blur();r.field('yawDeg').dispatch('change');assert.equal(r.actions.length,0);r.ui.dispose();
 });
 await test('external transforms, rename, membership, A-to-B-to-A and reset refresh the editor',()=>{

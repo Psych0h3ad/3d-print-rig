@@ -206,7 +206,8 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     const w=e.widthMm*MM,d=e.depthMm*MM,h=e.heightMm*MM;
     for(const b of e.boards)box(g,[b.widthM,b.thicknessM,b.depthM],[0,b.localCenterYM,0],'#c7bda9');
     const leg=e.type==='desk'?.045:.035;
-    for(const x of [-1,1])for(const z of [-1,1])box(g,[leg,h,leg],[x*(w-leg)/2,h/2,z*(d-leg)/2],'#535d61');
+    const legHeight=e.type==='desk'?e.boards[0].localCenterYM-e.boards[0].thicknessM/2:h;
+    for(const x of [-1,1])for(const z of [-1,1])box(g,[leg,legHeight,leg],[x*(w-leg)/2,legHeight/2,z*(d-leg)/2],'#535d61');
     return g;
   }
   function catalogMachine(id){const rows=Array.isArray(catalog)?catalog:catalog.machines;return rows.find(m=>(m.id||m.machineId)===id);}

@@ -61,7 +61,8 @@ Tab changes preserve unfinished form entries; selecting another object opens
 
 Use the checkboxes in **Items** to choose desks, shelves or floor printers,
 then open **Unit tools** and select **Create group**. The name is optional and can be
-changed later. **Select all** and **Clear selection** speed up larger plans.
+changed later. Leaving the name field applies a valid name once; the unit
+keeps its letter code. **Select all** and **Clear selection** speed up larger plans.
 Printers on a chosen desk or shelf are included automatically. Selected roots
 can be regrouped directly: they move out of their previous groups, while the
 unselected members of those groups stay together in place.

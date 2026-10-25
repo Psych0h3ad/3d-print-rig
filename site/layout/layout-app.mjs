@@ -1,7 +1,7 @@
 import {createDefaultLayout,createDesk,createShelf,createPopStation,createCatalog,applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,placementViolations,deriveScene,worldTransform,validatePlacement,serializeLayout,parseLayout} from './layout-state.mjs?v=0119a2ef6745811fe1cb';
 import {equipmentRows,isLayoutEquipmentPreviewPrepared} from './layout-equipment.mjs?v=6046ce679bd80e50ee2d';
 import {prepareLayoutEquipmentPreview,needsEquipmentPreview} from './layout-equipment-preview.mjs?v=ad1157a41ddd8e624ef3';
-import {createLayoutUI} from './layout-ui.mjs?v=c3a6d477e8939ef4bc84';
+import {createLayoutUI} from './layout-ui.mjs?v=4d24467ce35d9f061c5f';
 import {setupLayoutLanguage} from './layout-language.mjs?v=650f4f06bda68a7a6ed7';
 import {proposePlacement} from './layout-placement.mjs?v=60498bf8c4e88ee23e23';
 import {renameGroup,ungroup,removeGroup,groupInfo,transformGroup,resolveGroupMove,resolveGroupRotation,
@@ -480,7 +480,7 @@ async function start(){
   if(!startEmpty)try{const saved=readSavedLayout();if(saved&&saved.length<=maxFileBytes){state=parseLayout(saved,catalog);store();}}catch{message(()=>t('layout.error.savedPlan'),true);}
   try{const saved=localStorage.getItem(groupLibraryKey);if(saved)groupLibrary=parseGroupLibrary(saved,catalog);}catch{message(()=>t('layout.group.libraryUnavailable'),true);}
   if(!await ensureEquipmentPreview(state)||disposed)return;
-  const {createLayoutRenderer}=await import('./layout-renderer.mjs?v=df755b432524dff3c86a');
+  const {createLayoutRenderer}=await import('./layout-renderer.mjs?v=58039be654d6c8470d89');
   ui=createLayoutUI({container:$('#layout-sidebar'),onAction:act,t:language.t,catalog:rows,onObjectSearchEscape:()=>view?.canvas.focus()});
   refreshGroupLibrary();
   view=createLayoutRenderer({container:$('#layout-scene'),catalog:rows,t:language.t,onSelect:select,onMove:worldMove,constrainMove,onRotate:worldRotate,constrainRotate,onPlacementMove:previewPlacement,onPlacementCommit:placeProposal,onViewChange:updateViewPresentation,onError:error=>message(()=>humanError(error),true)});

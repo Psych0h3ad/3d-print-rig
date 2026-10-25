@@ -622,15 +622,23 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
     const identity=el('div','layout-unit-identity layout-group-heading');identity.id='layout-selected-unit';identity.setAttribute('role','group');identity.setAttribute('aria-label',unitTitle(group));identity.title=unitTitle(group);
     const label=el('label','layout-field layout-group-name-field');label.append(copy(el('span','layout-sr-only'),'layout.group.name'));
     const name=el('input');name.type='text';name.required=true;name.maxLength=80;name.id='layout-group-edit-name';label.append(name);identity.append(unitBadge(group),label);editor.append(identity);
-    listen(name,'input',()=>{name._dirty=true;name.removeAttribute('aria-invalid');});
-    listen(name,'change',()=>{
-      if(status.busy)return;
+    let submittedName=null;
+    listen(name,'input',()=>{name._dirty=true;submittedName=null;name.removeAttribute('aria-invalid');});
+    const commitName=()=>{
+      if(disposed||status.busy)return;
+      const current=selected();if(!current||!isGroup(current)||current.id!==group.id)return;
       const next=name.value.trim();
-      if(!next){name.setAttribute('aria-invalid','true');showError(tr('layout.group.nameRequired'));return;}
-      name._dirty=false;
-      const current=selected();if(current&&isGroup(current)&&next!==current.name)emit({type:'group-rename',id:group.id,name:next});
-    });
-    listen(name,'blur',()=>{name._dirty=false;refreshValues();});
+      if(!next||next.length>80||/[\u0000-\u001f\u007f]/.test(next)){
+        name._dirty=true;name.setAttribute('aria-invalid','true');showError(tr(!next?'layout.group.nameRequired':'layout.error.GROUP_NAME'));return;
+      }
+      name._dirty=false;name.removeAttribute('aria-invalid');name.value=next;
+      // Native focus changes can deliver blur before a deferred change event.
+      // Commit the same validated draft once regardless of their order.
+      if(next===current.name||next===submittedName)return;
+      submittedName=next;emit({type:'group-rename',id:current.id,name:next});
+    };
+    listen(name,'change',commitName);
+    listen(name,'blur',commitName);
     editor.append(copy(el('p','layout-count layout-group-counts'),'layout.group.counts',counts(members(group.memberIds))),copy(el('p','layout-sr-only'),'layout.group.worldPosition'));
     const pose=el('div','layout-fields');pose.setAttribute('role','group');pose.dataset.layoutLabel='layout.group.worldPosition';pose.setAttribute('aria-label',tr('layout.group.worldPosition'));editor.append(pose);
     for(const [key,prop,unit]of [['layout.positionX','xMm','mm'],['layout.positionZ','zMm','mm'],['layout.rotation','yawDeg','°']])numberField(pose,key,prop,{unit,action:v=>emit({type:'group-transform',id:group.id,patch:{[prop]:v}})});
@@ -654,7 +662,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
     const p=isGroup(e)?e.pose:e.attachment||e.pose;
     for(const key of ['xMm','zMm','yawDeg'])value(key,p[key]);
     if(isGroup(e)){
-      const name=editor.querySelector('#layout-group-edit-name');if(name&&!(doc.activeElement===name&&name._dirty))name.value=e.name;
+      const name=editor.querySelector('#layout-group-edit-name');if(name&&!name._dirty)name.value=e.name;
       const identity=editor.querySelector('#layout-selected-unit');if(identity){identity.querySelector('[data-layout-unit-code]').textContent=groupLabel(state,e.id);identity.setAttribute('aria-label',unitTitle(e));identity.title=unitTitle(e);}
       return;
     }
