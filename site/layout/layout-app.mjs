@@ -1,12 +1,12 @@
-import {createDefaultLayout,createDesk,createShelf,createPopStation,createCatalog,applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,placementViolations,deriveScene,worldTransform,validatePlacement,serializeLayout,parseLayout} from './layout-state.mjs?v=156b82f412caf708ab4e';
+import {createDefaultLayout,createDesk,createShelf,createPopStation,createCatalog,applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,placementViolations,deriveScene,worldTransform,validatePlacement,serializeLayout,parseLayout} from './layout-state.mjs?v=fa98d98dcf1a407e6752';
 import {equipmentRows,isLayoutEquipmentPreviewPrepared} from './layout-equipment.mjs?v=6046ce679bd80e50ee2d';
 import {prepareLayoutEquipmentPreview,needsEquipmentPreview} from './layout-equipment-preview.mjs?v=ad1157a41ddd8e624ef3';
-import {createLayoutUI} from './layout-ui.mjs?v=505ee3c845d73643eb7a';
+import {createLayoutUI} from './layout-ui.mjs?v=5b8df8a97137f99c2707';
 import {setupLayoutLanguage} from './layout-language.mjs?v=334eb48b4037bc86a64f';
-import {proposePlacement} from './layout-placement.mjs?v=2deff430a5e11d01fa9e';
+import {proposePlacement} from './layout-placement.mjs?v=ac447dbda3852a6999c7';
 import {renameGroup,ungroup,removeGroup,groupInfo,transformGroup,resolveGroupMove,resolveGroupRotation,
-  captureGroupTemplate,groupTemplateInfo,proposeGroupPlacement,parseGroupLibrary,GROUP_LIBRARY_LIMIT} from './layout-groups.mjs?v=2c185c4987d6e2ff8d5a';
-import {captureLayoutClipboard,encodeLayoutClipboard,decodeLayoutClipboard,regroupLayoutSelection} from './layout-clipboard.mjs?v=a3800631a60423702673';
+  captureGroupTemplate,groupTemplateInfo,proposeGroupPlacement,parseGroupLibrary,GROUP_LIBRARY_LIMIT} from './layout-groups.mjs?v=bac543d950a319989131';
+import {captureLayoutClipboard,encodeLayoutClipboard,decodeLayoutClipboard,regroupLayoutSelection} from './layout-clipboard.mjs?v=6d00dc3167fc69dde393';
 import {readDisplay,saveDisplay,applyDisplay} from '../viewer/display-preferences.mjs?v=8f347468def25922153c';
 
 const storageKey='3d-print-rig-layout-v1',maxFileBytes=2*1024*1024;
@@ -223,24 +223,34 @@ function worldMove({id:entityId,x,z}){
 let pendingRotation=null,discreteRotation=null;
 function constrainRotate({id:entityId,yawDeg},context){
   if(busy||roomEditing||disposed)return false;
-  const finite=p=>p&&Number.isFinite(p.yawDeg);
+  const finite=p=>p&&Number.isFinite(p.yawDeg)&&((p.x===undefined&&p.z===undefined)||(Number.isFinite(p.x)&&Number.isFinite(p.z)));
   if(!finite(context?.origin)||!finite(context?.previous)||![1,15].includes(context.snapDeg))return false;
   const origin=context.origin.yawDeg;let previousState=state;
-  if(context.previous.yawDeg!==origin){
-    if(!pendingRotation||pendingRotation.base!==state||pendingRotation.id!==entityId||pendingRotation.origin!==origin||pendingRotation.yawDeg!==context.previous.yawDeg)return false;
+  const same=(a,b)=>a.yawDeg===b.yawDeg&&(a.x===undefined||b.x===undefined||a.x===b.x&&a.z===b.z);
+  if(!same(context.previous,context.origin)){
+    if(!pendingRotation||pendingRotation.base!==state||pendingRotation.id!==entityId||pendingRotation.origin!==origin||!same(pendingRotation,context.previous))return false;
     previousState=pendingRotation.state;
   }else pendingRotation=null;
-  const resolve=state.groups?.some(e=>e.id===entityId)?resolveGroupRotation:resolveWorldRotation;
-  const result=resolve(previousState,{id:entityId,yawDeg},catalog,{snapDeg:context.snapDeg,snapOrigin:origin});if(!result)return false;
+  const group=state.groups?.find(e=>e.id===entityId),source=state.furniture.find(e=>e.id===entityId)?.pose||state.printers.find(e=>e.id===entityId)?.attachment;
+  if(!group&&!source)return false;
+  const world=group?.pose??worldTransform(state,entityId,catalog);
+  if(origin!==world.yawDeg||context.origin.x!==undefined&&(context.origin.x!==world.xMm||context.origin.z!==world.zMm))return false;
+  const resolve=group?resolveGroupRotation:resolveWorldRotation;
+  const snapsToOrigin=origin+Math.round((yawDeg-origin)/context.snapDeg)*context.snapDeg===origin;
+  const result=resolve(previousState,{id:entityId,yawDeg},catalog,{snapDeg:context.snapDeg,snapOrigin:origin,
+    anchorPointMm:{xMm:context.origin.x??world.xMm,zMm:context.origin.z??world.zMm},
+    ...(!group&&source.parentId!==undefined&&source.parentId!==null?{anchorLocalPointMm:{xMm:source.xMm,zMm:source.zMm}}:{}),
+    ...(!group&&snapsToOrigin?{targetLocalYawDeg:source.yawDeg}:{})});if(!result)return false;
   pendingRotation={...result,id:entityId,base:state,origin};
-  return {yawDeg:result.yawDeg,...(result.boundaryLimited?{boundaryLimited:true,pointerRemainderDeg:result.pointerRemainderDeg??0}:{})};
+  return {yawDeg:result.yawDeg,x:result.x,z:result.z,...(result.boundaryLimited?{boundaryLimited:true,pointerRemainderDeg:result.pointerRemainderDeg??0}:{})};
 }
-function worldRotate({id:entityId,yawDeg,deltaDeg}){
+function worldRotate({id:entityId,yawDeg,deltaDeg,x,z}){
   if(busy||roomEditing||disposed)return false;
   interactionGeneration++;
   try{
     const prepared=pendingRotation;pendingRotation=null;
-    if(deltaDeg===undefined&&prepared&&prepared.base===state&&prepared.id===entityId&&prepared.yawDeg===yawDeg){discreteRotation=null;commit(prepared.state);return true;}
+    if((x!==undefined||z!==undefined)&&(!Number.isFinite(x)||!Number.isFinite(z)))return false;
+    if(deltaDeg===undefined&&prepared&&prepared.base===state&&prepared.id===entityId&&prepared.yawDeg===yawDeg&&(x===undefined||prepared.x===x&&prepared.z===z)){discreteRotation=null;commit(prepared.state);return true;}
     const group=state.groups?.find(e=>e.id===entityId),furniture=state.furniture.find(e=>e.id===entityId),printer=state.printers.find(e=>e.id===entityId);
     if(!group&&!furniture&&!printer)return false;
     const parent=printer&&state.furniture.find(e=>e.id===printer.attachment.parentId);
@@ -248,11 +258,23 @@ function worldRotate({id:entityId,yawDeg,deltaDeg}){
     // Keep consecutive integer turns relative to their exact source angle.
     // Adding then subtracting 90 from a binary64 fraction can otherwise drift.
     const sourceYaw=group?.pose.yawDeg??furniture?.pose.yawDeg??printer.attachment.yawDeg;
-    const chain=deltaDeg===undefined?null:discreteRotation?.last===state&&discreteRotation.id===entityId?discreteRotation:{base:state,id:entityId,originYaw:sourceYaw,total:0};
+    const world=group?.pose??worldTransform(state,entityId,catalog);
+    const chain=deltaDeg===undefined?null:discreteRotation?.last===state&&discreteRotation.id===entityId?discreteRotation:{base:state,id:entityId,originYaw:sourceYaw,anchor:{xMm:world.xMm,zMm:world.zMm},localAnchor:parent?{xMm:printer.attachment.xMm,zMm:printer.attachment.zMm}:null,total:0};
     const total=chain?chain.total+deltaDeg:null,localYaw=chain?(total===0?chain.originYaw:chain.originYaw+total):yawDeg-(parent?.pose.yawDeg||0);
-    const validated=group?transformGroup(state,entityId,{yawDeg:localYaw},catalog):applyAction(state,furniture?{type:'UPDATE_FURNITURE',id:entityId,patch:{pose:{yawDeg:localYaw}}}:{type:'UPDATE_PRINTER',id:entityId,patch:{attachment:{yawDeg:localYaw}}},catalog);
-    const next=chain&&total===0?chain.base:validated;
-    discreteRotation=chain?{...chain,total,last:next}:null;
+    const target=localYaw+(parent?.pose.yawDeg||0),resolve=group?resolveGroupRotation:resolveWorldRotation;
+    const result=resolve(state,{id:entityId,yawDeg:target},catalog,{snapDeg:0,...(chain?{anchorPointMm:chain.anchor}:{}),...(chain?.localAnchor?{anchorLocalPointMm:chain.localAnchor}:{}),...(!group?{targetLocalYawDeg:localYaw}:{})});
+    if(!result)return false;
+    let next=result.state;
+    if(chain&&total===0&&result.yawDeg===target){
+      // Validate the exact native datum after the accepted retreat/turn/return.
+      // This also removes binary64 world/local round-trip drift on reversal.
+      const original=chain.base.groups?.find(e=>e.id===entityId)?.pose||chain.base.furniture.find(e=>e.id===entityId)?.pose||chain.base.printers.find(e=>e.id===entityId)?.attachment;
+      try{
+        const restored=group?transformGroup(next,entityId,original,catalog):applyAction(next,furniture?{type:'UPDATE_FURNITURE',id:entityId,patch:{pose:original}}:{type:'UPDATE_PRINTER',id:entityId,patch:{attachment:original}},catalog);
+        if(serializeLayout(restored,catalog)===serializeLayout(chain.base,catalog))next=chain.base;
+      }catch{/* A changed contact may prevent exact return; retain the proven pose. */}
+    }
+    discreteRotation=chain&&result.yawDeg===target?{...chain,total,last:next}:null;
     commit(next);return true;
   }catch(error){message(()=>humanError(error),true);sync();return false;}
 }
@@ -263,7 +285,7 @@ async function render(){
   document.body.dataset.layoutRendering='loading';message(()=>t(floorplan?'layout.render.planLoading':'layout.render.loading'));
   try{
     // Genuine CAD and its loaders are intentionally absent from the placement path.
-    const loadLayoutMachine=floorplan?undefined:(await import('./layout-machine-loader.mjs?v=69976c93147f8fc2adbf')).loadLayoutMachine;
+    const loadLayoutMachine=floorplan?undefined:(await import('./layout-machine-loader.mjs?v=7cdc14160fa5b61cd309')).loadLayoutMachine;
     let lastPercent=0;
     const result=await view.exportImage({loadMachine:loadLayoutMachine,width:1920,signal:operation.signal,onProgress:p=>{
       if(floorplan){message(()=>t('layout.render.planLoading'),false,{renderProgress:null});return;}
@@ -324,6 +346,7 @@ async function act(action){
       }
       case 'group-template-remove':saveGroupLibrary(groupLibrary.filter(e=>e.id!==action.templateId));return;
       case 'move-world':commit(state.groups?.some(e=>e.id===action.id)?transformGroup(state,action.id,{xMm:action.xMm,zMm:action.zMm},catalog):applyWorldMove(state,{id:action.id,xMm:action.xMm,zMm:action.zMm},catalog));return;
+      case 'rotate-world':worldRotate({id:action.id,deltaDeg:action.deltaDeg});return;
       case 'delete':{
         if(state.groups?.some(e=>e.id===action.id)){commit(removeGroup(state,action.id,catalog),{selection:null});return;}
         const isFurniture=state.furniture.some(e=>e.id===action.id);commit(applyAction(state,isFurniture?{type:'REMOVE_FURNITURE',id:action.id,detachChildren:action.detachChildren===true}:{type:'REMOVE_PRINTER',id:action.id},catalog));return;
@@ -349,7 +372,7 @@ async function act(action){
       case 'render':await render();return;
       case 'edit-room':case 'import-svg':{
         roomEditing=true;
-        try{const {openRoomEditor}=await import('./layout-room-editor.mjs?v=ea8b70bb09b2cbd6f29d'),nextRoom=await openRoomEditor({room:state.room,file:action.type==='import-svg'?action.file:undefined,t:language.t});
+        try{const {openRoomEditor}=await import('./layout-room-editor.mjs?v=5fec66645572f78eaa16'),nextRoom=await openRoomEditor({room:state.room,file:action.type==='import-svg'?action.file:undefined,t:language.t});
           if(nextRoom&&!disposed){commit(applyAction(state,{type:'SET_ROOM',room:nextRoom},catalog));view.view('perspective');view.view('fit');}
         }finally{roomEditing=false;}return;
       }
@@ -455,7 +478,7 @@ async function start(){
   if(!startEmpty)try{const saved=localStorage.getItem(storageKey);if(saved&&saved.length<=maxFileBytes)state=parseLayout(saved,catalog);}catch{message(()=>t('layout.error.savedPlan'),true);}
   try{const saved=localStorage.getItem(groupLibraryKey);if(saved)groupLibrary=parseGroupLibrary(saved,catalog);}catch{message(()=>t('layout.group.libraryUnavailable'),true);}
   if(!await ensureEquipmentPreview(state)||disposed)return;
-  const {createLayoutRenderer}=await import('./layout-renderer.mjs?v=5093799a2146372c7baa');
+  const {createLayoutRenderer}=await import('./layout-renderer.mjs?v=cf094b9ac3bbb80f558b');
   ui=createLayoutUI({container:$('#layout-sidebar'),onAction:act,t:language.t,catalog:rows});
   refreshGroupLibrary();
   view=createLayoutRenderer({container:$('#layout-scene'),catalog:rows,t:language.t,onSelect:select,onMove:worldMove,constrainMove,onRotate:worldRotate,constrainRotate,onPlacementMove:previewPlacement,onPlacementCommit:placeProposal,onViewChange:updateViewPresentation,onError:error=>message(()=>humanError(error),true)});

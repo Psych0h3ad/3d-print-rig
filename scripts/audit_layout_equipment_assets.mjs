@@ -10,6 +10,7 @@ import {register} from 'node:module';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import {DEFINITIONS,sha,options,sourceHashes,limits,createAuditContext,inspectGLB,
  compareRepresentations,auditPreviewRenderer,compareLoadedToGLB,validatePlateOccurrence,writeReport} from './audit_layout_equipment_geometry.mjs';
+import {auditU1Bottom} from './audit_u1_bottom.mjs';
 
 function commonSnapshot(root,kinds){
  const out=[];root.updateMatrixWorld(true);
@@ -26,7 +27,7 @@ function commonSnapshot(root,kinds){
 }
 
 export async function auditAssets(opts){
- const context=await createAuditContext(opts),prepared=await context.readPrepared(),rendererPreview=await auditPreviewRenderer(context,prepared);
+ const context=await createAuditContext(opts),prepared=await context.readPrepared();
  const {site,equipment}=context,threeURL=pathToFileURL(path.join(site,'viewer/vendor-r180/three.module.js')).href;
  register('data:text/javascript,'+encodeURIComponent(`export function resolve(s,c,n){if(s==='three')return {url:${JSON.stringify(threeURL)},shortCircuit:true};return n(s,c)}`),import.meta.url);
  const {createLayoutEquipmentLoader}=await import(pathToFileURL(path.join(site,'layout/layout-machine-loader.mjs')));
@@ -71,16 +72,20 @@ export async function auditAssets(opts){
    }finally{value.dispose();currentBytes=null;currentRow=null;}
   }
  }
+ const rendererPreview=await auditPreviewRenderer(context,prepared);
  assert.deepEqual([...used].sort(),Object.keys(prepared.descriptor.geometry).sort(),'Unconsumed preview geometry');
+ // All original production loads and the preview cache have been disposed.
+ // Run the extra placement/serialization witnesses sequentially in this job.
+ const u1Bottom=await auditU1Bottom(opts);assert.equal(u1Bottom.passed,true,'U1 bottom audit failed');
  const sourceInputs={...prepared.sourceInputs,...sourceHashes(site,['layout/layout-equipment.mjs','layout/layout-machine-loader.mjs',
   'layout/layout-equipment-transfer.mjs','layout/layout-equipment-mesh.mjs','layout/layout-renderer.mjs','viewer/vendor-r180/GLTFLoader.js','viewer/vendor-r180/three.module.js','viewer/vendor-r180/three.core.js'])};
  return {schema:'layout-equipment-actual-asset-audit-v2',passed:prepared.triangleFindings.length===0,findings:prepared.triangleFindings,checks,assets:receipts,sourceInputs,
-  auditInputFiles:context.auditInputFiles,plateAttribution:prepared.plateAttribution,loads:reports,preview:{model:equipment.LAYOUT_EQUIPMENT_PREVIEW_MODEL,geometries:used.size,arrayReceipts:prepared.arrayReceipts,triangles:prepared.previewTriangles,productionRenderer:rendererPreview,body:prepared.descriptor.body,gzip:prepared.descriptor.gzip},
+  auditInputFiles:context.auditInputFiles,plateAttribution:prepared.plateAttribution,loads:reports,u1Bottom,preview:{model:equipment.LAYOUT_EQUIPMENT_PREVIEW_MODEL,geometries:used.size,arrayReceipts:prepared.arrayReceipts,triangles:prepared.previewTriangles,productionRenderer:rendererPreview,body:prepared.descriptor.body,gzip:prepared.descriptor.gzip},
   representationComparison:{basis:'Catalog-declared simplified exterior preview versus full GLB; distinct prepared representations',differences:representationDifferences},
   transportMode:'registered-exact-body',preparedDir:context.preparedDir,
   auditScriptSHA256:sha(fs.readFileSync(fileURLToPath(import.meta.url))),
-  auditDependencies:{'scripts/audit_layout_equipment_geometry.mjs':sha(fs.readFileSync(new URL('./audit_layout_equipment_geometry.mjs',import.meta.url)))},...limits(),
-  scope:'Exact four GLB/gzip pairs and preview JSON/gzip, tracked metadata, source-backed plate contour receipt and full plate-specific license and all 66 preview-array receipts. Every production GLTFLoader mesh has complete position/normal/index and material equivalence to actual GLB; unchanged common matrices/geometry/materials through A-to-B-to-A, identity root and exact disposal. Every production preview mesh buffer exactly equals its independently pinned prepared array. Differences between full GLB and catalog-declared simplified previews are recorded without an equivalence claim. Other proxy primitives remain illustrative. No native solids or physical mounting/load/operating clearance certification; browser/GPU, state save/load and full machine coverage remain separate.'};
+  auditDependencies:Object.fromEntries(['audit_layout_equipment_geometry.mjs','audit_u1_bottom.mjs'].map(name=>['scripts/'+name,sha(fs.readFileSync(new URL('./'+name,import.meta.url)))])),...limits(),
+  scope:'Exact four GLB/gzip pairs and preview JSON/gzip, tracked metadata, source-backed plate contour receipt and full plate-specific license and all 66 preview-array receipts. Every source GLTFLoader mesh has complete position/normal/index and material equivalence to actual GLB; unchanged common matrices/geometry/materials through A-to-B-to-A, identity root and exact disposal. Every production preview source array remains independently pinned and unchanged. Separately labeled full/preview U1 lower-rim closures have exact source-boundary, winding, area and vertical-ray checks; full closures inherit the original rim PBR. Differences between full GLB and catalog-declared simplified previews are recorded without an equivalence claim. Other proxy primitives remain illustrative. No native solids or physical mounting/load/operating clearance certification; browser/GPU, state save/load and full machine coverage remain separate.'};
 }
 if(process.argv[1]&&pathToFileURL(path.resolve(process.argv[1])).href===import.meta.url){
  const originalFetch=globalThis.fetch;globalThis.fetch=async()=>{throw new Error('Live network forbidden in equipment audit');};

@@ -7,7 +7,7 @@ import {TestDocument} from './fixtures/layout_ui_dom.mjs';
 const root=dirname(fileURLToPath(import.meta.url)),results=[];
 const option=process.argv.indexOf('--site'),site=option>=0?resolve(process.argv[option+1]):resolve(root,'../site');
 const {createLayoutUI}=await import(pathToFileURL(resolve(site,'layout/layout-ui.mjs')));
-const {createDefaultLayout,createDesk,createShelf,createRoomL,createRoomRect,createRoomPolygon,applyAction,validatePlacement}=await import(pathToFileURL(resolve(site,'layout/layout-state.mjs')));
+const {createDefaultLayout,createDesk,createShelf,createRoomL,createRoomRect,createRoomPolygon,applyAction,validatePlacement,resolveWorldRotation,worldTransform}=await import(pathToFileURL(resolve(site,'layout/layout-state.mjs')));
 const {createLayoutTranslator}=await import(pathToFileURL(resolve(site,'layout/layout-i18n.mjs')));
 const doc=new TestDocument(),container=doc.createElement('aside');doc.body.append(container);doc.location={href:'https://example.test/rig/layout/index.html'};doc.documentElement={lang:'en'};
 const catalog=[{id:'approved-1',label:'Exact approved printer',widthMm:543.700000000003,depthMm:681.900000000001,heightMm:593.0000000000001,fullScene:{page:'./community.html',machineId:'approved-1'}}];
@@ -16,6 +16,12 @@ const mirror=()=>ui.update(state,selection,validatePlacement(state,catalog));
 ui=createLayoutUI({container,catalog,t:createLayoutTranslator('en'),onAction:action=>{
   actions.push(action);
   if(['UPDATE_FURNITURE','UPDATE_PRINTER','SET_ATTACHMENT','SET_ROOM'].includes(action.type)){state=applyAction(state,action,catalog);mirror();}
+  if(action.type==='rotate-world'){
+    const entity=state.furniture.find(f=>f.id===action.id)||state.printers.find(p=>p.id===action.id),source=entity.pose||entity.attachment;
+    const world=worldTransform(state,action.id,catalog),localYaw=source.yawDeg+action.deltaDeg;
+    const resolved=resolveWorldRotation(state,{id:action.id,yawDeg:world.yawDeg+action.deltaDeg},catalog,{snapDeg:0,targetLocalYawDeg:localYaw});
+    assert(resolved,'The fixture controller must resolve the safe world-delta action');state=resolved.state;mirror();
+  }
   if(action.type==='select'){selection=action.id;mirror();}
 }});
 const test=(name,fn)=>{try{fn();results.push({name,pass:true});}catch(error){results.push({name,pass:false,error:error.stack});}};
@@ -35,7 +41,7 @@ test('furniture numeric width and signed pose delegate exact reducer action',()=
 test('empty and nonfinite numeric fields never dispatch; blur restores short display without state rounding',()=>{const count=actions.length;change(field('widthMm'),'');change(field('widthMm'),'Infinity');assert.equal(actions.length,count);assert.equal(field('widthMm').getAttribute('aria-invalid'),'true');field('widthMm').blur();assert.equal(field('widthMm').value,'1432.8');assert.equal(state.furniture[0].widthMm,1432.75);});
 test('room resize preserves center and finite rectangular state',()=>{change(field('room-width'),5000);assert.deepEqual(state.room.polygonMm,[[-2500,-1500],[2500,-1500],[2500,1500],[-2500,1500]]);});
 test('printer attachment change is explicit local surface origin',()=>{selection='printer-1';mirror();const s=container.querySelector('#layout-support');s.value=JSON.stringify(['desk-1','top']);s.dispatch('change');assert.deepEqual(state.printers[0].attachment,{parentId:'desk-1',surfaceId:'top',xMm:0,zMm:0,yawDeg:0});change(field('xMm'),-47.8);assert.equal(state.printers[0].attachment.xMm,-47.8);});
-test('rotate, reverse and reset external state preserve exact fields',()=>{const before=state;command('layout.rotateRight').click();assert.equal(state.printers[0].attachment.yawDeg,90);command('layout.rotateLeft').click();assert.equal(state.printers[0].attachment.yawDeg,0);state=before;mirror();assert.equal(Number(field('xMm').value),-47.8);});
+test('rotate world deltas, reverse and reset external state preserve exact fields',()=>{const before=state;command('layout.rotateRight').click();assert.deepEqual(actions.at(-1),{type:'rotate-world',id:'printer-1',deltaDeg:90});assert.equal(state.printers[0].attachment.yawDeg,90);command('layout.rotateLeft').click();assert.deepEqual(actions.at(-1),{type:'rotate-world',id:'printer-1',deltaDeg:-90});assert.equal(state.printers[0].attachment.yawDeg,0);state=before;mirror();assert.equal(Number(field('xMm').value),-47.8);});
 test('occupied furniture removal is disabled until explicit floor-detach choice',()=>{selection='desk-1';mirror();assert.equal(command('layout.delete').disabled,true);const c=container.querySelector('#layout-detach');c.checked=true;c.dispatch('change');command('layout.delete').click();assert.deepEqual(actions.at(-1),{type:'delete',id:'desk-1',detachChildren:true});});
 test('shelf board height delegates full stable level IDs',()=>{selection='shelf-1';mirror();const l=state.furniture[1].levels[1];change(field(`board-${l.id}`),650);assert.equal(state.furniture[1].levels[1].topMm,650);assert.deepEqual(state.furniture[1].levels.map(l=>l.id),['level-1','level-2','level-3','level-4']);});
 test('unknown catalog search never creates guessed machine',()=>{const s=container.querySelector('input[type=search]')||container.querySelectorAll('input').find(n=>n.type==='search');s.value='<unknown>';s.dispatch('input');assert.equal(command('layout.addPrinter').disabled,true);s.value='';s.dispatch('input');assert.equal(command('layout.addPrinter').disabled,false);});

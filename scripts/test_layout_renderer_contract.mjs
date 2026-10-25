@@ -938,7 +938,7 @@ function rotationApp(initial,catalog){
  const methods=section('function commit(','function download(')+section('let pendingMove=','async function render(')+section('async function act(','function updateViewPresentation(')+section('function placementKey(','function historyKey(');
  const keyboardStart="view.canvas.addEventListener('keydown',event=>{";
  const canvasKeyboard=section(keyboardStart,'\n  });').slice(keyboardStart.length);
- return new Function('initial','catalog','S','G',`const {applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,serializeLayout,parseLayout,createDefaultLayout,createDesk,createShelf}=S;
+ return new Function('initial','catalog','S','G',`const {applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,worldTransform,serializeLayout,parseLayout,createDefaultLayout,createDesk,createShelf}=S;
   const {createGroup,renameGroup,ungroup,removeGroup,groupInfo,transformGroup,resolveGroupMove,resolveGroupRotation,captureGroupTemplate,groupTemplateInfo,proposeGroupPlacement,parseGroupLibrary,GROUP_LIBRARY_LIMIT}=G;
   let state=initial,selected=null,busy=false,roomEditing=false,disposed=false,interactionGeneration=0,view=null,operation=null,placement=null,lastPlacementTarget=null;const past=[],future=[],writes=[],errors=[],maxFileBytes=2000000;
   function sync(){view?.setState(state,selected)}function store(){writes.push(serializeLayout(state,catalog))}function humanError(e){return e.code||e.message}function message(text,error){if(error)errors.push(text)}const t=k=>k;
@@ -980,6 +980,93 @@ function checkRotationPreview(x,before,id,yaw){
  }
  assert.equal(x.engine.read().past.length,0,'Preview wrote undo');assert.equal(x.engine.read().writes.length,0,'Preview saved state');
 }
+// Reproduce flush-wall manipulation through the product's actual UI handlers.
+function wallRotationSeed(corner=false){
+ const base=rotationSeed(0),desk={...base.state.furniture[0],pose:{xMm:1200,zMm:corner?1500:0,yawDeg:0}};
+ return {catalog:base.catalog,state:S.createDefaultLayout({room:S.createRoomRect({widthMm:4000,depthMm:4000}),furniture:[desk],printers:base.state.printers.filter(p=>p.attachment.parentId===desk.id)},base.catalog)};
+}
+for(const mode of ['top','perspective'])for(const corner of [false,true]){
+ const seed=wallRotationSeed(corner),x=await rotationSetup({seed,mode}),h=x.button('handle'),saved=S.serializeLayout(seed.state,seed.catalog),before=rotationSnapshot(x);
+ const expected=S.resolveWorldRotation(seed.state,{id:'rotate-desk',yawDeg:30},seed.catalog,{snapDeg:15,snapOrigin:0,anchorPointMm:{xMm:1200,zMm:corner?1500:0}});
+ assert.equal(expected.yawDeg,30);assert(expected.wallAdjusted);
+ h.emit('pointerdown',{clientX:300,clientY:200});h.emit('pointermove',{clientX:360,clientY:200});
+ const root=x.nodes(false).get('rotate-desk'),flat=x.nodes(true).get('rotate-desk');
+ angleNear(root.position.x,expected.x/1000,'Wall preview X');angleNear(root.position.z,expected.z/1000,'Wall preview Z');angleNear(root.rotation.y,Math.PI/6,'Full wall angle');
+ angleNear(flat.position.x,root.position.x,'Flat wall X');angleNear(flat.position.z,root.position.z,'Flat wall Z');
+ for(const printer of seed.state.printers){const p=x.nodes(false).get(printer.id),q=before.get(printer.id).position.clone().sub(before.get('rotate-desk').position).applyAxisAngle(new THREE.Vector3(0,1,0),Math.PI/6).add(root.position);assert(p.position.distanceTo(q)<1e-10,'Follower receives retreat and turn exactly once');}
+ assert.equal(x.engine.read().past.length,0);assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),saved);
+ h.emit('pointercancel');for(const [id,p]of before){assert.deepEqual(x.nodes(false).get(id).position.toArray(),p.position.toArray());angleNear(x.nodes(false).get(id).rotation.y,p.yaw,'Wall cancellation yaw');}
+ h.emit('pointerdown',{clientX:300,clientY:200});h.emit('pointermove',{clientX:360,clientY:200});h.emit('pointerup');
+ assert.equal(x.engine.read().past.length,1);assert.equal(x.engine.read().writes.length,1);assert.deepEqual(x.engine.read().state,expected.state);assert.deepEqual(S.validatePlacement(x.engine.read().state,x.catalog),[]);
+ await x.engine.act({type:'undo'});assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),saved);await x.engine.act({type:'redo'});assert.deepEqual(x.engine.read().state,expected.state);x.api.dispose();
+ passed.push('Flush '+(corner?'corner':'wall')+' '+mode+': full rotation with safe inward movement, attached followers and2D preview, cancel restores pose, one exact commit/undo/redo.');
+}
+for(const corner of [false,true]){
+ const seed=wallRotationSeed(corner),x=await rotationSetup({seed}),saved=S.serializeLayout(seed.state,seed.catalog);
+ x.button('right').click();assert.equal(x.engine.read().state.furniture[0].pose.yawDeg,90);assert.deepEqual(S.validatePlacement(x.engine.read().state,x.catalog),[]);
+ x.button('left').click();assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),saved,'Inverse button restores exact wall anchor');assert.equal(x.engine.read().past.length,2);x.api.dispose();
+ passed.push('Flush wall/corner buttons use the same safe resolver and exact A-B-A anchor with one history entry per turn.');
+}
+function wallRotationGroupSeed(corner=false){
+ const base=wallRotationSeed(corner),zMm=corner?1500:0;
+ const printer=(id,xMm,zMm)=>({id,machineId:base.catalog[0].id,configurationId:null,attachment:{parentId:null,surfaceId:'floor',xMm,zMm,yawDeg:0}});
+ const state=S.createDefaultLayout({room:base.state.room,furniture:base.state.furniture,
+  printers:[...base.state.printers,printer('group-floor',100,zMm),printer('group-unrelated',-1500,-1200)]},base.catalog);
+ return {catalog:base.catalog,state:G.createGroup(state,{id:'wall-group',name:'Wall source group',memberIds:['rotate-desk','group-floor']},base.catalog)};
+}
+for(const mode of ['top','perspective'])for(const corner of [false,true]){
+ const seed=wallRotationGroupSeed(corner),x=await rotationSetup({seed,mode,selected:'wall-group'}),h=x.button('handle');
+ const saved=S.serializeLayout(seed.state,seed.catalog),before=rotationSnapshot(x),flatBefore=new Map([...x.nodes(true)].map(([id,n])=>[id,{position:n.position.clone(),yaw:n.rotation.y}]));
+ const group=seed.state.groups.find(g=>g.id==='wall-group'),anchorPointMm={xMm:group.pose.xMm,zMm:group.pose.zMm};
+ const ids=new Set(G.groupEntityIds(seed.state,group.id));
+ assert.deepEqual([...ids].sort(),['rotate-desk','group-floor','orbit-1','orbit-2'].sort(),'Fixture must include roots and attached descendants');
+ const expected=G.resolveGroupRotation(seed.state,{id:group.id,yawDeg:30},seed.catalog,{snapDeg:15,snapOrigin:0,anchorPointMm});
+ assert.equal(expected.yawDeg,30);assert.equal(expected.boundaryLimited,undefined);assert.equal(expected.wallAdjusted,true);
+ assert.ok(expected.x<group.pose.xMm,'Flush group must actually retreat inward');
+ if(corner)assert.ok(expected.z<group.pose.zMm,'Corner group needs both boundary corrections');
+ const checkPreview=()=>{
+  const delta=Math.PI/6,oldPivot=new THREE.Vector3(group.pose.xMm/1000,0,group.pose.zMm/1000),newPivot=new THREE.Vector3(expected.x/1000,0,expected.z/1000);
+  for(const [id,prior]of before){
+   const node=x.nodes(false).get(id),flat=x.nodes(true).get(id),fp=flatBefore.get(id);assert(node&&flat,'Missing actual group/peer node '+id);
+   if(ids.has(id)){
+    const point=prior.position.clone().sub(oldPivot).applyAxisAngle(new THREE.Vector3(0,1,0),delta).add(newPivot);
+    assert(node.position.distanceTo(point)<1e-10,id+' must receive accepted pivot translation and rotation once');
+    assert.equal(node.position.y,prior.position.y,id+' source support/base height changed');angleNear(node.rotation.y,prior.yaw+delta,id+' accepted yaw');
+    angleNear(flat.position.x,node.position.x,id+' flat X');angleNear(flat.position.z,node.position.z,id+' flat Z');angleNear(flat.rotation.y,fp.yaw+delta,id+' flat yaw');
+   }else{assert.deepEqual(node.position.toArray(),prior.position.toArray(),'Unrelated solid moved');assert.equal(node.rotation.y,prior.yaw);assert.deepEqual(flat.position.toArray(),fp.position.toArray(),'Unrelated plan moved');assert.equal(flat.rotation.y,fp.yaw);}
+  }
+  assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),saved,'Group preview committed state');
+  assert.equal(x.engine.read().past.length,0);assert.equal(x.engine.read().writes.length,0);
+ };
+ const checkOriginal=()=>{for(const [id,p]of before){const node=x.nodes(false).get(id),flat=x.nodes(true).get(id),fp=flatBefore.get(id);assert.deepEqual(node.position.toArray(),p.position.toArray(),id+' source position');angleNear(node.rotation.y,p.yaw,id+' source yaw');assert.deepEqual(flat.position.toArray(),fp.position.toArray(),id+' source plan position');angleNear(flat.rotation.y,fp.yaw,id+' source plan yaw');}};
+ // A-B-A within one capture must return the whole accepted pose and write
+ // no history, even though the intermediate result has translated the group.
+ h.emit('pointerdown',{clientX:300,clientY:200});h.emit('pointermove',{clientX:360,clientY:200});checkPreview();
+ h.emit('pointermove',{clientX:300,clientY:200});h.emit('pointerup');checkOriginal();
+ assert.equal(x.rotations.length,0);assert.equal(x.engine.read().past.length,0);assert.equal(x.engine.read().writes.length,0);assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),saved);
+ // Cancellation restores both solid and plan roots/followers, not only yaw.
+ h.emit('pointerdown',{clientX:300,clientY:200});h.emit('pointermove',{clientX:360,clientY:200});checkPreview();h.emit('pointercancel');checkOriginal();
+ assert.equal(x.engine.read().past.length,0);assert.equal(x.engine.read().writes.length,0);
+ // A complete new gesture commits the exact three-leg transaction once.
+ h.emit('pointerdown',{clientX:300,clientY:200});h.emit('pointermove',{clientX:360,clientY:200});checkPreview();h.emit('pointerup');
+ assert.equal(x.rotations.length,1);assert.deepEqual(x.rotations[0],{id:group.id,yawDeg:expected.yawDeg,x:expected.x,z:expected.z});
+ assert.equal(x.engine.read().past.length,1);assert.equal(x.engine.read().writes.length,1);assert.deepEqual(x.engine.read().state,expected.state);
+ assert.deepEqual(x.engine.read().state.printers.filter(p=>p.attachment.parentId==='rotate-desk'),seed.state.printers.filter(p=>p.attachment.parentId==='rotate-desk'),'Group rotation rewrote source child attachments');
+ assert.deepEqual(S.validatePlacement(x.engine.read().state,x.catalog),[]);const committed=S.serializeLayout(x.engine.read().state,x.catalog);
+ assert.equal(S.serializeLayout(S.parseLayout(committed,x.catalog),x.catalog),committed);
+ await x.engine.act({type:'undo'});assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),saved);checkOriginal();
+ await x.engine.act({type:'redo'});assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),committed);
+ assert.deepEqual(x.errors,[]);assert.deepEqual(x.engine.read().errors,[]);x.api.dispose();
+ observations.push({case:'wall-assisted-group-'+(corner?'corner':'wall')+'-'+mode,groupId:group.id,memberIds:[...ids],acceptedWorldPose:{x:expected.x,z:expected.z,yawDeg:expected.yawDeg},sourceChildAttachmentsPreserved:true,cancelAndABAHistoryEntries:0,acceptedHistoryEntries:1,actualAppTransaction:true,scope:'CPU renderer/app fixtures only; no GPU, actual model or native fit claim.'});
+ passed.push('Flush '+(corner?'corner':'wall')+' group '+mode+': full accepted x/z/yaw reaches every root/follower and plan once; A-B-A/cancel preserve exact source state; one accepted transaction with exact undo/redo.');
+}
+for(const corner of [false,true]){
+ const seed=wallRotationGroupSeed(corner),x=await rotationSetup({seed,selected:'wall-group'}),saved=S.serializeLayout(seed.state,seed.catalog);
+ x.button('right').click();assert.equal(x.engine.read().state.groups[0].pose.yawDeg,90);assert.deepEqual(S.validatePlacement(x.engine.read().state,x.catalog),[]);
+ x.button('left').click();assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),saved,'Group inverse button must restore full source roots, followers and pivot');
+ assert.equal(x.engine.read().past.length,2);assert.equal(x.rotations.length,2);assert.deepEqual(x.engine.read().errors,[]);x.api.dispose();
+ passed.push('Flush '+(corner?'corner':'wall')+' group buttons: accepted signed turn and inverse preserve exact source group/member serialization, with one history per operation.');
+}
 {
  const x=await rotationSetup();assert.equal(x.toolbar.getAttribute('role'),'group');assert.equal(x.toolbar.hidden,false);assert.equal(x.toolbar.querySelectorAll('button').length,4);assert.equal(x.toolbar.querySelectorAll('svg').length,4);assert.equal(x.toolbar.querySelectorAll('[data-layout-rotation]').length,3);assert.equal(x.toolbar.querySelectorAll('output').length,1);
  for(const name of ['left','handle','right'])assert(x.button(name).getAttribute('aria-label'));
@@ -1003,7 +1090,7 @@ for(const mode of ['top','perspective'])for(const sign of [-1,1]){
  const x=await rotationSetup({mode}),before=rotationSnapshot(x),saved=S.serializeLayout(x.initial,x.catalog),cameraBefore=cameraSnapshot(x.renderer.lastCamera),h=x.button('handle');
  h.emit('pointerdown',{clientX:300,clientY:200});assert.equal(h.hasPointerCapture(71),true);assert.equal(fixtureDocument.activeElement,h);
  h.emit('pointermove',{clientX:300+62*sign,clientY:200});const expected=30+30*sign;checkRotationPreview(x,before,'rotate-desk',expected);assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),saved);assert.deepEqual(cameraSnapshot(x.renderer.lastCamera),cameraBefore,'Toolbar gesture reached orbit controls');
- const c=x.proposals.at(-1).context;assert.deepEqual(c.origin,{yawDeg:30});assert.deepEqual(c.previous,{yawDeg:30});assert.equal(c.snapDeg,15);
+ const c=x.proposals.at(-1).context;assert.deepEqual(c.origin,{yawDeg:30,x:100,z:-100});assert.deepEqual(c.previous,c.origin);assert.equal(c.snapDeg,15);
  h.emit('pointerup');assert.equal(x.rotations.length,1);assert.equal(x.engine.read().past.length,1);assert.equal(x.engine.read().writes.length,1);angleNear(x.engine.read().state.furniture[0].pose.yawDeg,expected,'Committed preview yaw');assert.equal(h.hasPointerCapture(71),false);
  assert.deepEqual(x.engine.read().state.printers,x.initial.printers,'Parent rotation changed stored follower attachments');const text=S.serializeLayout(x.engine.read().state,x.catalog);assert.equal(S.serializeLayout(S.parseLayout(text,x.catalog),x.catalog),text);
  await x.engine.act({type:'undo'});assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),saved);await x.engine.act({type:'redo'});assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),text);x.api.dispose();
@@ -1073,6 +1160,49 @@ for(const control of ['buttons','keyboard']){
  assert.equal(e.constrainRotate({id:'rotate-desk',yawDeg:60},{...context,previous:{yawDeg:22}}),false);const accepted=e.constrainRotate({id:'rotate-desk',yawDeg:60},context);assert.equal(accepted.yawDeg,60);assert.equal(S.serializeLayout(e.read().state,x.catalog),initial);
  assert.equal(e.constrainRotate({id:'rotate-desk',yawDeg:75},{...context,origin:{yawDeg:31},previous:{yawDeg:60}}),false);assert.equal(e.worldRotate({id:'rotate-desk',yawDeg:60}),true);assert.equal(e.read().past.length,1);const once=S.serializeLayout(e.read().state,x.catalog);e.worldRotate({id:'rotate-desk',yawDeg:60});assert.equal(e.read().past.length,1);assert.equal(S.serializeLayout(e.read().state,x.catalog),once);
  const next=e.constrainRotate({id:'rotate-desk',yawDeg:75},{previous:{yawDeg:60},origin:{yawDeg:60},snapDeg:15});assert(next);await e.act({type:'UPDATE_FURNITURE',id:'rotate-desk',patch:{pose:{xMm:600}}});assert.equal(e.constrainRotate({id:'rotate-desk',yawDeg:90},{previous:{yawDeg:75},origin:{yawDeg:60},snapDeg:15}),false);assert.equal(e.read().state.furniture[0].pose.xMm,600);x.api.dispose();passed.push('Actual app pending rotation binds base/id/origin/previous, rejects stale contexts without losing safe state, consumes drop once and cannot resurrect pre-edit transaction.');
+}
+for(const kind of ['furniture','supported','group']){
+ const seed=kind==='group'?wallRotationGroupSeed(true):rotationSeed(37.5),selected=kind==='group'?'wall-group':kind==='supported'?'orbit-1':'rotate-desk';
+ const x=await rotationSetup({seed,selected}),e=x.engine,saved=S.serializeLayout(seed.state,seed.catalog);
+ const world=kind==='group'?seed.state.groups[0].pose:S.worldTransform(seed.state,selected,seed.catalog),origin={x:world.xMm,z:world.zMm,yawDeg:world.yawDeg};
+ const accepted=e.constrainRotate({id:selected,yawDeg:origin.yawDeg+30},{previous:origin,origin,snapDeg:15});assert(accepted);
+ for(const axis of ['x','z']){
+  const forged={...origin,[axis]:origin[axis]+0.5};
+  assert.equal(e.constrainRotate({id:selected,yawDeg:origin.yawDeg+45},{previous:accepted,origin:forged,snapDeg:15}),false,'Pending original '+axis+' tamper must reject for '+kind);
+ }
+ assert.equal(S.serializeLayout(e.read().state,x.catalog),saved);assert.equal(e.read().past.length,0);assert.equal(e.read().writes.length,0);
+ assert.equal(e.worldRotate({id:selected,...accepted}),true,'Rejected origin tamper must retain the safe pending transaction');
+ assert.equal(e.read().past.length,1);assert.equal(e.read().writes.length,1);assert.deepEqual(S.validatePlacement(e.read().state,x.catalog),[]);assert.deepEqual(e.read().errors,[]);x.api.dispose();
+ passed.push('Actual app '+kind+': pending origin x/z tamper rejects against exact committed world base while preserving the safe transaction for one commit.');
+}
+for(const snapDeg of [1,15])for(const direction of [-1,1]){
+ const base=rotationSeed(37.5),state=S.applyAction(base.state,{type:'UPDATE_PRINTER',id:'orbit-1',patch:{attachment:{yawDeg:0.1}}},base.catalog);
+ const x=await rotationSetup({seed:{catalog:base.catalog,state},selected:'orbit-1'}),e=x.engine,world=S.worldTransform(state,'orbit-1',base.catalog),origin={x:world.xMm,z:world.zMm,yawDeg:world.yawDeg},saved=S.serializeLayout(state,base.catalog);
+ assert.notEqual(world.yawDeg-state.furniture[0].pose.yawDeg,state.printers[0].attachment.yawDeg,'Fixture must expose lossy native yaw subtraction');
+ const away=e.constrainRotate({id:'orbit-1',yawDeg:origin.yawDeg+30},{previous:origin,origin,snapDeg});assert(away);
+ const raw=origin.yawDeg+direction*snapDeg/4;assert.notEqual(raw,origin.yawDeg);
+ const back=e.constrainRotate({id:'orbit-1',yawDeg:raw},{previous:away,origin,snapDeg});assert(back);assert.equal(back.yawDeg,origin.yawDeg);
+ // Consume the actual prepared state even though the displayed world pose is
+ // unchanged. This catches invisible native-yaw drift that a no-op DOM drop
+ // alone would not expose.
+ assert.equal(e.worldRotate({id:'orbit-1',...back}),true);
+ assert.equal(e.read().state.printers[0].attachment.yawDeg,0.1);assert.equal(S.serializeLayout(e.read().state,x.catalog),saved);
+ assert.equal(e.read().past.length,0);assert.equal(e.read().writes.length,0);assert.deepEqual(e.read().errors,[]);x.api.dispose();
+ passed.push('Actual app snap'+snapDeg+'/'+direction+': raw angle snaps to origin while exact0.1deg native source yaw/x/z and no-op history survive prepared-state consumption.');
+}
+for(const mode of ['top','perspective'])for(const turns of [-1080,-720,720,1080]){
+ const seed=wallRotationSeed(true),x=await rotationSetup({seed,mode}),h=x.button('handle'),saved=S.serializeLayout(seed.state,seed.catalog),original=rotationSnapshot(x);
+ const expected=S.resolveWorldRotation(seed.state,{id:'rotate-desk',yawDeg:turns},seed.catalog,{snapDeg:0,anchorPointMm:{xMm:1200,zMm:1500}});
+ assert.equal(expected.yawDeg,turns);assert.equal(expected.wallAdjusted,true);assert.equal(expected.boundaryLimited,undefined);
+ h.emit('pointerdown',{clientX:300,clientY:200});h.emit('pointermove',{clientX:300+turns/.5,clientY:200});
+ const node=x.nodes(false).get('rotate-desk');angleNear(node.rotation.y,turns*Math.PI/180,'Unwrapped multi-turn preview');angleNear(node.position.x,expected.x/1000,'Multi-turn accepted X');angleNear(node.position.z,expected.z/1000,'Multi-turn accepted Z');
+ assert.equal(x.engine.read().past.length,0);h.emit('pointerup');assert.equal(x.engine.read().state.furniture[0].pose.yawDeg,turns);assert.equal(x.engine.read().past.length,1);assert.deepEqual(S.validatePlacement(x.engine.read().state,x.catalog),[]);
+ assert.deepEqual(x.engine.read().state.printers,seed.state.printers,'Multi-turn did not preserve exact source-local followers');
+ h.emit('pointerdown',{clientX:300,clientY:200});h.emit('pointermove',{clientX:300-turns/.5,clientY:200});h.emit('pointerup');
+ assert.equal(S.serializeLayout(x.engine.read().state,x.catalog),saved);assert.equal(x.engine.read().past.length,2);
+ for(const [id,p]of original){assert.deepEqual(x.nodes(false).get(id).position.toArray(),p.position.toArray());angleNear(x.nodes(false).get(id).rotation.y,p.yaw,'Signed repeated-turn inverse source yaw');}
+ assert.deepEqual(x.engine.read().errors,[]);assert.deepEqual(x.errors,[]);x.api.dispose();
+ passed.push('Wall/corner '+mode+' signed'+turns+': one-circle proposal permits complete unwrapped actual turn and exact inverse, with all followers and one commit per operation.');
 }
 for(const keyboardTarget of ['left','handle','right','canvas']){
  const x=await rotationSetup(),node=keyboardTarget==='canvas'?x.api.canvas:x.button(keyboardTarget),before=S.serializeLayout(x.engine.read().state,x.catalog),origin=rotationSnapshot(x);

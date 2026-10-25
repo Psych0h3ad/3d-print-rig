@@ -1,6 +1,7 @@
 import * as THREE from '../viewer/vendor-r180/three.module.js';
 import {getLayoutEquipment} from './layout-equipment.mjs?v=6046ce679bd80e50ee2d';
 import {downloadEquipmentModel,verifyEquipmentModelBytes,equipmentTransferIdentity} from './layout-equipment-transfer.mjs?v=6a62cba60f932d4aa468';
+import {addU1BottomClosure} from './layout-equipment-mesh.mjs?v=dea73c8f212949571cf6';
 export {layoutMachineRecipes} from '../viewer/layout-machine-recipes.mjs';
 
 const abort = signal => signal?.throwIfAborted();
@@ -86,14 +87,15 @@ export function createLayoutEquipmentLoader({getEquipment=getLayoutEquipment,
       if(!root?.isObject3D)throw fail('Equipment model has no scene','LAYOUT_EQUIPMENT_GEOMETRY');
       abort(signal);
       const dimensions=actualDimensions(root,row);
+      const closure=addU1BottomClosure(THREE,root,row);
       const provenance={};
       for(const key of ['publicSourcesOnly','manufacturerCAD','privateSourceDerived','purchasedSourceDerived'])
         if(typeof row[key]==='boolean')provenance[key]=row[key];
-      root.userData.layoutEquipment={id,equipmentVariant:row.equipmentVariant,...provenance};
+      root.userData.layoutEquipment={id,equipmentVariant:row.equipmentVariant,...provenance,...(closure?{derivatives:[closure]}:{})};
       // Geometry already has the common variant/floor datum. Do not normalize,
       // recenter, rescale, reorient or replace any component matrix here.
       const source={machineId:id,category:row.privateSourceDerived?'scan-derived-layout-equipment':'public-layout-equipment',equipmentVariant:row.equipmentVariant,
-        assetPath:row.model.path,sha256:hash,...provenance,
+        assetPath:row.model.path,sha256:hash,...provenance,...(closure?{derivatives:[closure]}:{}),
         normalization:{unit:'m',up:'+Y',front:'+Z',translation:[0,0,0],
           individual_source_matrices_unchanged:true,shared_authored_variant_datum:true}};
       emit({phase:'ready',percent:100});

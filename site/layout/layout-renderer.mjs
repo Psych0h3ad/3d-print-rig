@@ -1,12 +1,12 @@
 import * as THREE from '../viewer/vendor-r180/three.module.js';
 import {OrbitControls} from '../viewer/vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from '../viewer/vendor-r180/RoomEnvironment.js';
-import {deriveScene} from './layout-state.mjs?v=156b82f412caf708ab4e';
+import {deriveScene} from './layout-state.mjs?v=fa98d98dcf1a407e6752';
 import {createLayoutSurfaces, resolveSurfaceAppearance, wallSurfaceGeometry} from './layout-surfaces.mjs?v=0e7f271c883eb7ec8844';
 import {drawPlanMeasurements} from './layout-plan-measurements.mjs?v=ccb8d47a212b4279e38a';
-import {groupInfo, groupingForEntity} from './layout-groups.mjs?v=2c185c4987d6e2ff8d5a';
+import {groupInfo, groupingForEntity} from './layout-groups.mjs?v=bac543d950a319989131';
 import {getLayoutEquipment,resolveLayoutEquipment} from './layout-equipment.mjs?v=6046ce679bd80e50ee2d';
-import {createEquipmentMeshCache} from './layout-equipment-mesh.mjs?v=7a5e3b4ba2a7bd972995';
+import {createEquipmentMeshCache} from './layout-equipment-mesh.mjs?v=dea73c8f212949571cf6';
 
 const MM = .001;
 const disposableMaterial = new THREE.MeshBasicMaterial({visible:false});
@@ -515,7 +515,8 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     const g=objects.get(selectedId),e=entityInfo(selectedId);if(!g||!e)return;
     event.stopImmediatePropagation();event.preventDefault();rotateHandle.focus({preventScroll:true});
     const yawDeg=e.yawDeg;
-    drag={...snapshotPose(selectedId),kind:'rotate',pointerId:event.pointerId,captureTarget:rotateHandle,startX:event.clientX,startY:event.clientY,lastX:event.clientX,moved:false,originYawDeg:yawDeg,rawYawDeg:yawDeg,accepted:{yawDeg},followers:followers(selectedId)};
+    const originMm={x:e.xMm,z:e.zMm};
+    drag={...snapshotPose(selectedId),kind:'rotate',pointerId:event.pointerId,captureTarget:rotateHandle,startX:event.clientX,startY:event.clientY,lastX:event.clientX,moved:false,originMm,originYawDeg:yawDeg,rawYawDeg:yawDeg,accepted:{yawDeg,...originMm},followers:followers(selectedId)};
     rotateHandle.setPointerCapture(event.pointerId);rotateHandle.dataset.dragging='true';delete objectTools.dataset.boundaryLimited;enableControls();onSelect(selectedId);
   }
   function rotationMove(event){
@@ -524,16 +525,17 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     if(!Number.isFinite(event.clientX))return;
     const gesture=drag,dx=event.clientX-drag.lastX;drag.lastX=event.clientX;drag.rawYawDeg+=dx*(event.shiftKey ? .1 : .5);
     if(Math.abs(event.clientX-drag.startX)>3)drag.moved=true;if(!drag.moved)return;
-    let accepted;try{accepted=constrainRotate({id:drag.id,yawDeg:drag.rawYawDeg},{previous:{...drag.accepted},origin:{yawDeg:drag.originYawDeg},snapDeg:event.shiftKey?1:15});}catch(error){onError(error);return;}
+    let accepted;try{accepted=constrainRotate({id:drag.id,yawDeg:drag.rawYawDeg},{previous:{...drag.accepted},origin:{yawDeg:drag.originYawDeg,...drag.originMm},snapDeg:event.shiftKey?1:15});}catch(error){onError(error);return;}
     if(drag!==gesture||disposed||accepted===false)return;
-    if(!accepted||!Number.isFinite(accepted.yawDeg)){onError(Object.assign(Error('Invalid constrained rotation'),{code:'INVALID_CONSTRAINED_ROTATION'}));return;}
+    if(!accepted||!Number.isFinite(accepted.yawDeg)||((accepted.x!==undefined||accepted.z!==undefined)&&(!Number.isFinite(accepted.x)||!Number.isFinite(accepted.z)))){onError(Object.assign(Error('Invalid constrained rotation'),{code:'INVALID_CONSTRAINED_ROTATION'}));return;}
     if(accepted.boundaryLimited&&accepted.pointerRemainderDeg!==undefined&&!Number.isFinite(accepted.pointerRemainderDeg)){onError(Object.assign(Error('Invalid rotation remainder'),{code:'INVALID_CONSTRAINED_ROTATION'}));return;}
-    drag.accepted={yawDeg:accepted.yawDeg};
+    drag.accepted={yawDeg:accepted.yawDeg,x:accepted.x??drag.originMm.x,z:accepted.z??drag.originMm.z};
     if(accepted.boundaryLimited)drag.rawYawDeg=accepted.yawDeg+(accepted.pointerRemainderDeg||0);
     objectTools.dataset.boundaryLimited=String(!!accepted.boundaryLimited);
     const g=objects.get(drag.id);if(!g)return;const delta=(accepted.yawDeg-drag.originYawDeg)*Math.PI/180;
-    g.rotation.y=drag.originYawRad+delta;const plan=planObjects.get(drag.id);if(plan)plan.rotation.y=drag.planYawRad+delta;
-    for(const follower of drag.followers){const child=objects.get(follower.id),flat=planObjects.get(follower.id);if(!child)continue;child.position.copy(follower.origin).sub(drag.origin).applyAxisAngle(new THREE.Vector3(0,1,0),delta).add(drag.origin);child.rotation.y=follower.originYawRad+delta;if(flat){flat.position.x=child.position.x;flat.position.z=child.position.z;flat.rotation.y=follower.planYawRad+delta;}}
+    g.position.x=drag.accepted.x*MM;g.position.z=drag.accepted.z*MM;
+    g.rotation.y=drag.originYawRad+delta;const plan=planObjects.get(drag.id);if(plan){plan.rotation.y=drag.planYawRad+delta;plan.position.x=g.position.x;plan.position.z=g.position.z;}
+    for(const follower of drag.followers){const child=objects.get(follower.id),flat=planObjects.get(follower.id);if(!child)continue;child.position.copy(follower.origin).sub(drag.origin).applyAxisAngle(new THREE.Vector3(0,1,0),delta).add(g.position);child.rotation.y=follower.originYawRad+delta;if(flat){flat.position.x=child.position.x;flat.position.z=child.position.z;flat.rotation.y=follower.planYawRad+delta;}}
     updateSelection();draw();
   }
   function down(event){
@@ -583,7 +585,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     }else if(d.kind==='rotate'){
       event.stopImmediatePropagation();event.preventDefault();
       if(d.captureTarget.hasPointerCapture(event.pointerId))d.captureTarget.releasePointerCapture(event.pointerId);delete rotateHandle.dataset.dragging;delete objectTools.dataset.boundaryLimited;enableControls();
-      const before=current;try{if(d.moved&&d.accepted.yawDeg!==d.originYawDeg)onRotate({id:d.id,...d.accepted});}catch(error){onError(error);}finally{if(current===before&&!disposed)setState(current,selectedId);}
+      const before=current;try{if(d.moved&&(d.accepted.yawDeg!==d.originYawDeg||d.accepted.x!==d.originMm.x||d.accepted.z!==d.originMm.z))onRotate({id:d.id,...d.accepted});}catch(error){onError(error);}finally{if(current===before&&!disposed)setState(current,selectedId);}
     }else if(d.kind==='object'){
       event.stopImmediatePropagation();event.preventDefault();
       if(canvas.hasPointerCapture(event.pointerId))canvas.releasePointerCapture(event.pointerId);enableControls();canvas.style.cursor='grab';

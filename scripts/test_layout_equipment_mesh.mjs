@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import crypto from 'node:crypto';
 import * as THREE from '../site/viewer/vendor-r180/three.module.js';
 import {createEquipmentMeshCache} from '../site/layout/layout-equipment-mesh.mjs';
+import {validateU1BottomGeometry} from './audit_layout_equipment_geometry.mjs';
 const cache=createEquipmentMeshCache(THREE),material=new THREE.MeshStandardMaterial();
 const p={shape:'mesh',geometryId:'fixture',centerM:[12,34,56],sizeM:[2,3,4],
   positionsM:Object.freeze([1,2,3,2,2,3,1,3,3]),normals:Object.freeze([0,0,1,0,0,1,0,0,1]),indices:Object.freeze([0,1,2])};
@@ -39,10 +40,13 @@ if(process.argv.length>2){
     for(const variant of variants)for(const part of getLayoutEquipment(id,variant).proxy.parts.filter(p=>p.shape==='mesh')){
       const node=draw(new THREE.Group(),part);assert.deepEqual(node.position.toArray(),[0,0,0]);assert.deepEqual(node.scale.toArray(),[1,1,1]);
       const pin=LAYOUT_EQUIPMENT_PREVIEW.geometry[part.geometryId];
+      const derived=part.geometryId==='u1-exterior-exterior-9c5aa700906a4c';
       for(const [array,receipt]of [[node.geometry.attributes.position.array,pin.positionsF32],[node.geometry.attributes.normal.array,pin.normalsF32],[node.geometry.index.array,pin.indicesU32]]){
-        const bytes=Buffer.from(array.buffer,array.byteOffset,array.byteLength);assert.equal(bytes.length,receipt.bytes);
+        const bytes=Buffer.from(array.buffer,array.byteOffset,derived?receipt.bytes:array.byteLength);assert.equal(bytes.length,receipt.bytes);
         assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'),receipt.sha256);
       }
+      if(derived)validateU1BottomGeometry(new Float32Array(part.positionsM),new Uint32Array(part.indices),node.geometry,{merged:true});
+      else assert.equal(node.geometry.userData.layoutEquipmentDerivative,undefined);
       seen.add(part.geometryId);parts++;
     }
   assert.equal(seen.size,22);real.dispose();mat.dispose();actual={registeredVariants:4,meshedParts:parts,exactGeometries:seen.size};
