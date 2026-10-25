@@ -6,7 +6,7 @@ import {setupSceneDisplay} from './display-preferences.mjs?v=8f347468def25922153
 import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 import {loadMonolithData} from './monolith-machine.js?v=be63db4d1ae3f6a618a0';
 import {setupChangerBank} from './changer-bank.js?v=f5029fbbdd962cbe2c85';
-import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=eb58033537a41e78211d';
+import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=0cc513701f45e71cb84a';
 import {headPrinterLink} from './head-navigation.mjs?v=3f5dc435f939f2ef57cf';
 import {headBuilderDimensions} from './configuration-model.js?v=ffcb5378701b391d2cab';
 import {appearanceRole} from './appearance-role.mjs?v=977c4d1e134e7fe27a0e';
@@ -21,14 +21,14 @@ import {setupPublicInfo} from './public-info.js?v=07313fc4151911a54f23';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
 import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=workspace-belts-1';
 import {validateEvaMetadata,bindEvaMeshIdentities} from './eva-heads.mjs?v=b53ce6925a6fec3b5b10';
-import {loadEvaFrontSurfaces,applyEvaFrontSurfaces} from './eva-front-surfaces.mjs?v=2f482f31b2c5c8b35897';
+import {loadEvaFrontSurfaces,applyEvaFrontSurfaces} from './eva-front-surfaces.mjs?v=1fa86c2370423eacafe2';
 import {setRapidoXUhfSurface} from './rapido-x-uhf-cover.mjs?v=8b458475dac84cfcd8c7';
 import {contentSHA256} from './mount-validation.mjs';
 import {probeCheck,probeMetrics,probeGuide,headInspectionState,headBodyCollisionNotes} from './probe-checks.js?v=0f70f5c099338db857e7';
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
 import {setupHeadBuilder} from './builder-ui.mjs?v=1667886a5f8dc2decba7';
 import {validateBuilderExtras} from './toolhead-builder.mjs?v=7177100fadcc7fdc8975';
-import {loadExternalComponent} from './component-assets.mjs?v=2dbda26b309fbe6c35c8';
+import {loadExternalComponent} from './component-assets.mjs?v=a912f0a87d5f3993e9ad';
 export async function mount(scope){
 let machineRegistry,toolBank,bankRig;
 

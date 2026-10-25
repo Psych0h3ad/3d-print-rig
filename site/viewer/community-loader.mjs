@@ -6,7 +6,7 @@ import {createCommunityAdapter} from './community-adapter.mjs?v=611339ada395324d
 import {applyNativeMotionProfile,loadNativeMotionProfile} from './native-motion-profile.mjs?v=91532eb992519143f437';
 import {applySwitchwireDisplayDefault} from './switchwire-display-default.mjs?v=1a8f0c90e092e48729af';
 import {applyEvaInstallation} from './eva-installations.mjs?v=4dfad49e1f98d4b5b9f2';
-import {loadEvaFrontSurfaces,applyEvaFrontSurfaces} from './eva-front-surfaces.mjs?v=2f482f31b2c5c8b35897';
+import {loadEvaFrontSurfaces,applyEvaFrontSurfaces} from './eva-front-surfaces.mjs?v=1fa86c2370423eacafe2';
 export async function loadCommunity(index,machine,{signal,progressOptions}={}){
  const spec=index.machines[machine];if(!spec||spec.machine_id!==machine)throw Error('Unknown community printer');
  const extraModels=spec.additional_models||[];

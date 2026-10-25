@@ -389,17 +389,22 @@
       },
       "files": {
         "parts.json": {
-          "path": "trinity-native/n19/parts.json",
-          "bytes": 118757,
-          "sha256": "6b1f9843de8b21fb885706796f316c7efaea1583928bc08863e008374661048f"
+          "path": "trinity-native-20261026/n19/parts.json",
+          "bytes": 120082,
+          "sha256": "2fec6108738d9a8455d7c1e930464a02a129eb7030b79227f6136c51d63dd9cc"
         },
         "model.glb": {
-          "path": "trinity-native/n19/model.glb.gz",
-          "bytes": 19354642,
-          "sha256": "47a1be0387268417eb5f473167a02056f08b97c2c58a782a674b031928bc83c3",
+          "path": "trinity-native-20261026/n19/model.glb.gz",
+          "bytes": 22075866,
+          "sha256": "e2df7b2078f78e515f55cd326453981a57206a3dbf5b5ed70d16799c1c1cc309",
           "encoding": "gzip",
-          "decoded_bytes": 74905984,
-          "decoded_sha256": "c710231cf441831b34f3b0d72ba213336cb7861d86739d7bd1d91c30873d8f85"
+          "decoded_bytes": 74765088,
+          "decoded_sha256": "8e3e211998cfadac2515b07003c612e479bcdcaf832d497cb2c7ff2eb129d4ab"
+        },
+        "source-supplement.zip": {
+          "path": "trinity-native-20261026/n19/source-supplement.zip",
+          "bytes": 34519,
+          "sha256": "f6a2d77f5a7909df5da243ca954f7157a0c91f13523f90bd4f8e331c232eb1ba"
         }
       }
     },
@@ -1201,7 +1206,8 @@
       "head_only": true,
       "hardware_assembled": true,
       "notes": [
-        "Native Trinity source assembly with Sherpa Mini R2 standard/short, Dragon ACE Volcano, dual 3628 fans, a 2510 hotend fan, nozzle and source Beacon RevD. Overlapping source alternatives and construction negatives are omitted and recorded. Printer installation and full probe clearance remain unverified."
+        "Native Trinity source assembly with Sherpa Mini R2 standard/short, Dragon ACE Volcano, dual 3628 fans, a 2510 hotend fan, nozzle and source Beacon RevD. Overlapping source alternatives and construction negatives are omitted and recorded. Printer installation and full probe clearance remain unverified.",
+        "Beacon CAD keepout cone and bed-spacing disc omitted; the physical sensor stays at its source position."
       ],
       "display_scope": "Native Trinity source assembly with Sherpa Mini R2 standard/short, Dragon ACE Volcano, dual 3628 fans, a 2510 hotend fan, nozzle and source Beacon RevD. Overlapping source alternatives and construction negatives are omitted and recorded. Printer installation and full probe clearance remain unverified.",
       "fit": {
@@ -1213,7 +1219,9 @@
         "complete_head_native": {
           "state": "reference",
           "scope": "Native extruder mating and export checks; printer installation and complete probe clearance are unverified.",
-          "notes": []
+          "notes": [
+            "Beacon CAD keepout cone and bed-spacing disc omitted; the physical sensor stays at its source position."
+          ]
         }
       },
       "source_version": "d17a5c9fad6f21fd4a3a9869d498656b4b03d1dc",

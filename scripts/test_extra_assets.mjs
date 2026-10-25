@@ -2,12 +2,17 @@ import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {gzipSync} from 'node:zlib';
 import {checkedExtraAsset,extraAssetBase} from '../site/viewer/extra-asset-integrity.mjs';
+import {componentModelBuffer} from '../site/viewer/component-assets.mjs';
 import {machineChoices,machinePage,machineOptions} from '../site/viewer/machines.js';
 import {workspacePages} from '../site/viewer/workspace-navigation.mjs';
 const index={base_url:'https://psych0h3ad.github.io/3d-print-rig-extra-models/',local_directory:'extra-assets'};
 assert.equal(extraAssetBase(index,'http://127.0.0.1:8873/viewer/a.js').href,'http://127.0.0.1:8873/extra-assets/');
 assert.equal(extraAssetBase(index,'https://psych0h3ad.github.io/3d-print-rig/viewer/a.js').href,index.base_url);
 const bytes=new TextEncoder().encode('native geometry'),gzip=gzipSync(bytes),sha=data=>createHash('sha256').update(data).digest('hex'),base=new URL(index.base_url);
+assert.equal(componentModelBuffer(bytes),bytes.buffer,'A complete authenticated model must not be duplicated');
+const padded=new Uint8Array([99,1,2,3,88]),span=padded.subarray(1,4),bounded=componentModelBuffer(span);
+assert.notEqual(bounded,padded.buffer);assert.deepEqual([...new Uint8Array(bounded)],[1,2,3]);assert.deepEqual([...padded],[99,1,2,3,88]);
+for(const invalid of [new Uint8Array(),new DataView(new ArrayBuffer(8)),null])assert.throws(()=>componentModelBuffer(invalid));
 const spec={path:'machines/test/model.glb.gz',bytes:gzip.length,sha256:sha(gzip),encoding:'gzip',decoded_bytes:bytes.length,decoded_sha256:sha(bytes)},original=globalThis.fetch;
 try{
  for(const data of [gzip,bytes]){globalThis.fetch=async()=>new Response(data);assert.deepEqual(await checkedExtraAsset(base,spec),bytes)}
