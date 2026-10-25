@@ -9,10 +9,11 @@ const R=path.dirname(fileURLToPath(import.meta.url));
 const option=process.argv.indexOf('--site'),site=option>=0?path.resolve(process.argv[option+1]):path.resolve(R,'../site');
 const src=path.join(site,'layout'),catalogFile=path.join(src,'layout-catalog.json');
 const pin=p=>({bytes:fs.statSync(p).size,sha256:crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex')});
-const inputPaths=['layout-state.mjs','layout-geometry.mjs','layout-catalog.json','layout-constraints.mjs','layout-app.mjs'].map(n=>path.join(src,n));
+const inputPaths=['layout-state.mjs','layout-geometry.mjs','layout-catalog.json','layout-constraints.mjs','layout-collision.mjs','layout-wall-rotation.mjs','layout-app.mjs'].map(n=>path.join(src,n));
 const indexFile=path.join(site,'assets/machines/index.json');inputPaths.push(indexFile);
 const before=new Map(inputPaths.map(p=>[p,pin(p)]));
 const S=await import(pathToFileURL(path.join(src,'layout-state.mjs'))),G=await import(pathToFileURL(path.join(src,'layout-geometry.mjs')));
+const C=await import(pathToFileURL(path.join(src,'layout-constraints.mjs')));
 const registered=JSON.parse(fs.readFileSync(indexFile,'utf8'));
 const raw=JSON.parse(fs.readFileSync(catalogFile,'utf8'));
 const entries=raw.machines.map(m=>({...m,widthMm:m.dimensionsMm.width,depthMm:m.dimensionsMm.depth,heightMm:m.dimensionsMm.height}));
@@ -527,11 +528,40 @@ function rotateResolved(state,id,yawDeg,options={snapDeg:0},cat=rotationCat){
  assert.ok(r,'Expected a contained continuous rotation transaction');
  assert.equal(S.serializeLayout(state,cat),saved,'Rotation mutated the committed source state');
  const end=S.worldTransform(r.state,id,cat);
- assert.equal(r.yawDeg,end.yawDeg);assert.equal(end.xMm,start.xMm);assert.equal(end.zMm,start.zMm);
+ assert.equal(r.yawDeg,end.yawDeg);assert.equal(r.x,end.xMm);assert.equal(r.z,end.zMm);
+ assert.ok([r.x,r.z,r.yawDeg].every(Number.isFinite),'Resolved world pose must be finite');
+ if(r.wallAdjusted!==true){assert.equal(end.xMm,start.xMm);assert.equal(end.zMm,start.zMm);}
+ else assert.equal(r.wallAdjusted,true,'Translation is an explicit wall-assisted result');
  assert.equal(end.positionM.y,start.positionM.y);assert.deepEqual(S.placementViolations(r.state,cat),[]);
  assert.ok(Object.isFrozen(r));assert.ok(Object.isFrozen(r.state));
  return r;
 }
+function actualRotationPreview(initial,sourceCatalog){
+ const app=fs.readFileSync(path.join(src,'layout-app.mjs'),'utf8'),start=app.indexOf('let pendingRotation='),end=app.indexOf('function worldRotate(',start);
+ assert.ok(start>=0&&end>start,'Actual app rotation-preview section missing');
+ return Function('initial','catalog','S',`const {resolveWorldRotation,worldTransform}=S;let state=initial,busy=false,roomEditing=false,disposed=false;
+  const resolveGroupRotation=()=>{throw Error('Group is not part of this independent state fixture')};
+  ${app.slice(start,end)}\nreturn {preview:constrainRotate,pending:()=>pendingRotation,state:()=>state};`)(initial,sourceCatalog,S);
+}
+for(const kind of ['floor','supported'])await test(`rotation-actual-app-rejects-tampered-origin-world-xz-${kind}`,()=>{
+ const desk=S.createDesk({id:'origin-desk',widthMm:1200,depthMm:900,pose:{xMm:100.25,zMm:-200.125,yawDeg:37.5}});
+ const initial=S.createDefaultLayout({room:S.createRoomRect({widthMm:10000,depthMm:10000}),furniture:kind==='supported'?[desk]:[],
+  printers:[rotationPrinter('rotation-small',kind==='supported'?{parentId:desk.id,surfaceId:'top',xMm:123.125,zMm:-23.75,yawDeg:0.1}:{xMm:900.125,zMm:-0.375,yawDeg:0.1})]},rotationCat);
+ const engine=actualRotationPreview(initial,rotationCat),world=S.worldTransform(initial,'rot-p',rotationCat),origin={x:world.xMm,z:world.zMm,yawDeg:world.yawDeg};
+ const accepted=engine.preview({id:'rot-p',yawDeg:origin.yawDeg+30},{origin,previous:origin,snapDeg:15});assert.ok(accepted);
+ const pending=engine.pending();
+ for(const axis of ['x','z']){
+  const forged={...origin,[axis]:origin[axis]+0.5};
+  assert.equal(engine.preview({id:'rot-p',yawDeg:origin.yawDeg+45},{origin:forged,previous:accepted,snapDeg:15}),false,'Pending gesture must reject a changed original world '+axis);
+  assert.equal(engine.pending(),pending,'Origin tamper must not replace the last proven transaction');
+ }
+ const continued=engine.preview({id:'rot-p',yawDeg:origin.yawDeg+45},{origin,previous:accepted,snapDeg:15});assert.ok(continued);assert.equal(continued.yawDeg,origin.yawDeg+45);
+ for(const axis of ['x','z']){
+  const fresh=actualRotationPreview(initial,rotationCat),forged={...origin,[axis]:origin[axis]+0.5};
+  assert.equal(fresh.preview({id:'rot-p',yawDeg:origin.yawDeg+30},{origin:forged,previous:forged,snapDeg:15}),false,'A forged first-event origin is not the committed source pose');
+ }
+ assert.equal(engine.state(),initial);
+});
 await test('rotation-world-unwrapped-signed-free-full-turns-reversal-and-native-reset',()=>{
  const initial=rotationState(),saved=S.serializeLayout(initial,rotationCat);let state=initial;
  for(const yaw of [90,360,720,450,-270,-720,0]){
@@ -607,7 +637,80 @@ await test('rotation-negative270-and-positive90-have-different-swept-paths',()=>
 });
 for(const corner of [false,true])await test(`rotation-exact-wall-contact-${corner?'corner':'wall'}-cannot-leak`,()=>{
  const initial=S.createDefaultLayout({room:S.createRoomRect({widthMm:2000,depthMm:2000}),printers:[rotationPrinter('rotation-small',{xMm:900,zMm:corner?950:0})]},rotationCat);
- const r=rotateResolved(initial,'rot-p',30);assert.equal(r.boundaryLimited,true);assert.ok(r.yawDeg>=0&&r.yawDeg<1e-9,'Only representable zero-contact motion is possible');
+ const anchor=S.worldTransform(initial,'rot-p',rotationCat),anchorPointMm={xMm:anchor.xMm,zMm:anchor.zMm};
+ const r=rotateResolved(initial,'rot-p',30);
+ assert.equal(r.yawDeg,30);assert.equal(r.boundaryLimited,undefined);assert.equal(r.wallAdjusted,true);
+ assert.ok(r.x<anchor.xMm,'Right-wall rotation requires actual inward movement');
+ if(corner)assert.ok(r.z<anchor.zMm,'Corner rotation must also retreat from the second wall');
+ const back=rotateResolved(r.state,'rot-p',anchor.yawDeg,{snapDeg:0,anchorPointMm,targetLocalYawDeg:initial.printers[0].attachment.yawDeg});
+ assert.equal(S.serializeLayout(back.state,rotationCat),S.serializeLayout(initial,rotationCat),'Inverse anchored turn must restore exact x/z/yaw');
+});
+for(const parentYaw of [0,37.5,90])for(const corner of [false,true])await test(`rotation-support-${corner?'corner':'edge'}-wall-assist-and-anchored-return-${parentYaw}`,()=>{
+ const desk=S.createDesk({id:'rot-desk',widthMm:1000.25,depthMm:600.25,pose:{xMm:100.25,zMm:-200.125,yawDeg:parentYaw}});
+ const attachment={parentId:desk.id,surfaceId:'top',xMm:400.125,zMm:corner?250.125:0.375,yawDeg:0};
+ const initial=S.createDefaultLayout({room:S.createRoomRect({widthMm:10000,depthMm:10000}),furniture:[desk],printers:[rotationPrinter('rotation-small',attachment)]},rotationCat);
+ const origin=S.worldTransform(initial,'rot-p',rotationCat),anchorPointMm={xMm:origin.xMm,zMm:origin.zMm};
+ const r=rotateResolved(initial,'rot-p',parentYaw+30,{snapDeg:0,targetLocalYawDeg:30});
+ assert.equal(r.yawDeg,parentYaw+30);assert.equal(r.boundaryLimited,undefined);assert.equal(r.wallAdjusted,true);
+ assert.deepEqual(r.state.furniture,initial.furniture,'Supported rotation cannot move the parent');
+ const a=r.state.printers[0].attachment;
+ assert.equal(a.parentId,attachment.parentId);assert.equal(a.surfaceId,attachment.surfaceId);assert.equal(a.yawDeg,30);
+ assert.ok(a.xMm<attachment.xMm);if(corner)assert.ok(a.zMm<attachment.zMm);
+ assert.ok(G.polygonContains(G.rectangle(desk.widthMm,desk.depthMm),G.transformPolygon(rotationCat.byId['rotation-small'].footprintMm,a)),'Actual parent-local footprint must remain contained');
+ const back=rotateResolved(r.state,'rot-p',origin.yawDeg,{snapDeg:0,anchorPointMm,anchorLocalPointMm:{xMm:attachment.xMm,zMm:attachment.zMm},targetLocalYawDeg:0});
+ assert.equal(back.yawDeg,origin.yawDeg);assert.deepEqual(back.state.furniture,initial.furniture);
+ // Exact local restoration is an independent check, not an allowance for an
+ // outside contact. World/parent roundtrips must not erase a true overhang.
+ assert.deepEqual(back.state.printers[0].attachment,attachment,'Anchored support reversal must retain fractional source attachment');
+});
+for(const xMm of [0,1690])await test(`rotation-peer-only-block-never-causes-room-retreat-${xMm}`,()=>{
+ const peer={...rotationPrinter('rotation-small',{xMm,zMm:-250}),id:'peer'};
+ const initial=S.createDefaultLayout({printers:[rotationPrinter('rotation-long',{xMm}),peer]},rotationCat);
+ const origin=S.worldTransform(initial,'rot-p',rotationCat),poly=rotationCat.byId['rotation-long'].footprintMm;
+ assert.equal(C.rigidMotionStaysInside(initial.room.polygonMm,poly,origin,{...origin,yawDeg:90}),true,'Independent room-only sweep is clear');
+ const r=rotateResolved(initial,'rot-p',90);
+ assert.equal(r.boundaryLimited,true);assert.equal(r.wallAdjusted,undefined);assert.equal(r.x,xMm);assert.equal(r.z,0);
+ assert.ok(r.yawDeg>0&&r.yawDeg<90);assert.deepEqual(r.state.printers.find(p=>p.id==='peer'),peer);
+ const end=S.worldTransform(r.state,'rot-p',rotationCat),obstacle=S.worldTransform(r.state,'peer',rotationCat);
+ assert.equal(G.polygonsOverlap(end.worldEnvelopeMm,obstacle.worldEnvelopeMm),false,'Clipped turn cannot overlap the actual peer footprint');
+ assert.deepEqual(rotateResolved(r.state,'rot-p',0).state,initial);
+});
+for(const signedTurn of [90,-720,720,-1080,1080])await test(`rotation-required-inward-retreat-blocked-by-peer-stays-atomic-${signedTurn}`,()=>{
+ const cat=S.createCatalog([{id:'moving',widthMm:200,depthMm:100,heightMm:300},{id:'stop',widthMm:10,depthMm:400,heightMm:300}]);
+ const peer={...rotationPrinter('stop',{xMm:795}),id:'peer'};
+ const initial=S.createDefaultLayout({room:S.createRoomRect({widthMm:2000,depthMm:2000}),printers:[rotationPrinter('moving',{xMm:900}),peer]},cat);
+ assert.deepEqual(S.validatePlacement(initial,cat),[],'Peer touches the left source edge without initial overlap');
+ throwsCode(()=>S.applyWorldMove(initial,{id:'rot-p',xMm:899,zMm:0},cat),'ENVELOPE_OVERLAP');
+ const r=rotateResolved(initial,'rot-p',signedTurn,{snapDeg:0},cat);
+ assert.equal(r.boundaryLimited,true);assert.equal(r.wallAdjusted,undefined);assert.equal(r.x,900);assert.equal(r.z,0);
+ assert.ok(Math.sign(signedTurn)*r.yawDeg>=0&&Math.abs(r.yawDeg)<1e-9,'Blocked retreat cannot unlock an unproved signed turn even when a repeated-turn endpoint fits');
+ assert.deepEqual(r.state.printers.find(p=>p.id==='peer'),peer);
+});
+for(const signedTurn of [-1080,-720,-360,-90,90,360,720,1080])await test(`rotation-wall-assist-fractional-signed-anchored-ABA-${signedTurn}`,()=>{
+ const initial=S.createDefaultLayout({room:S.createRoomRect({widthMm:2000.25,depthMm:2000}),printers:[rotationPrinter('rotation-small',{xMm:890.125,zMm:-0.375,yawDeg:0.1})]},rotationCat);
+ const saved=S.serializeLayout(initial,rotationCat),origin=S.worldTransform(initial,'rot-p',rotationCat),anchorPointMm={xMm:origin.xMm,zMm:origin.zMm};
+ let state=initial;
+ for(let repeat=0;repeat<3;repeat++){
+  const target=origin.yawDeg+signedTurn;
+  const r=rotateResolved(state,'rot-p',target,{snapDeg:0,anchorPointMm,targetLocalYawDeg:target});
+  assert.equal(r.yawDeg,target);assert.equal(r.boundaryLimited,undefined);assert.equal(r.wallAdjusted,true);
+  const loaded=S.parseLayout(S.serializeLayout(r.state,rotationCat),rotationCat);
+  const back=rotateResolved(loaded,'rot-p',origin.yawDeg,{snapDeg:0,anchorPointMm,targetLocalYawDeg:0.1});
+  assert.equal(S.serializeLayout(back.state,rotationCat),saved,'Signed inverse must restore the full fractional source pose without drift');state=back.state;
+ }
+});
+for(const snapDeg of [1,15])for(const direction of [-1,1])await test(`rotation-snapped-origin-restores-exact-native-fraction-${snapDeg}-${direction}`,()=>{
+ const desk=S.createDesk({id:'snap-desk',widthMm:1200,depthMm:900,pose:{xMm:100.25,zMm:-200.125,yawDeg:37.5}});
+ const attachment={parentId:desk.id,surfaceId:'top',xMm:123.456,zMm:-23.75,yawDeg:0.1};
+ const initial=S.createDefaultLayout({room:S.createRoomRect({widthMm:10000,depthMm:10000}),furniture:[desk],printers:[rotationPrinter('rotation-small',attachment)]},rotationCat);
+ const origin=S.worldTransform(initial,'rot-p',rotationCat),saved=S.serializeLayout(initial,rotationCat);
+ assert.notEqual(origin.yawDeg-desk.pose.yawDeg,attachment.yawDeg,'Fixture must expose loss of native yaw bits in world-parent subtraction');
+ const options={snapDeg,snapOrigin:origin.yawDeg,anchorPointMm:{xMm:origin.xMm,zMm:origin.zMm},anchorLocalPointMm:{xMm:attachment.xMm,zMm:attachment.zMm}};
+ const away=rotateResolved(initial,'rot-p',origin.yawDeg+30,{...options,targetLocalYawDeg:30.1});
+ const raw=origin.yawDeg+direction*snapDeg/4;assert.notEqual(raw,origin.yawDeg);
+ const back=rotateResolved(away.state,'rot-p',raw,{...options,targetLocalYawDeg:attachment.yawDeg});
+ assert.equal(back.yawDeg,origin.yawDeg);assert.equal(back.state.printers[0].attachment.yawDeg,attachment.yawDeg);
+ assert.equal(S.serializeLayout(back.state,rotationCat),saved,'A raw angle snapping to the origin must restore exact native x/z/yaw');
 });
 for(const parentYaw of [0,37.5,90])await test(`rotation-support-sweep-not-only-room-${parentYaw}`,()=>{
  const desk=S.createDesk({id:'rot-desk',widthMm:660,depthMm:660,pose:{xMm:400,zMm:300,yawDeg:parentYaw}});
@@ -620,8 +723,12 @@ await test('rotation-concave-reflex-notch-has-safe-endpoints-but-unsafe-interior
  const poly=rotationCat.byId['rotation-long'].footprintMm;
  assert.ok(G.polygonContains(room.polygonMm,G.transformPolygon(poly,{xMm:-200,zMm:-200,yawDeg:-90})));
  assert.equal(G.polygonContains(room.polygonMm,G.transformPolygon(poly,{xMm:-200,zMm:-200,yawDeg:-45})),false);
- const r=rotateResolved(initial,'rot-p',-90);assert.equal(r.boundaryLimited,true);assert.ok(r.yawDeg<0&&r.yawDeg>-45);
- assert.equal(rotateResolved(r.state,'rot-p',0).yawDeg,0);
+ // An independently chosen bottom-left retreat has a complete valid path;
+ // the unsafe fixed-centre arc must not imply that every assisted turn fails.
+ const from={xMm:-200,zMm:-200,yawDeg:0},away={xMm:-400,zMm:-400,yawDeg:0},turned={...away,yawDeg:-90},end={...from,yawDeg:-90};
+ for(const [a,b]of[[from,away],[away,turned],[turned,end]])assert.equal(C.rigidMotionStaysInside(room.polygonMm,poly,a,b),true,'Independent concave three-leg witness must be continuously contained');
+ const r=rotateResolved(initial,'rot-p',-90);assert.equal(r.yawDeg,-90);assert.equal(r.boundaryLimited,undefined);assert.equal(r.wallAdjusted,true);
+ assert.deepEqual(rotateResolved(r.state,'rot-p',0,{snapDeg:0,anchorPointMm:{xMm:-200,zMm:-200},targetLocalYawDeg:0}).state,initial);
 });
 await test('rotation-uses-catalog-footprint-not-inflated-width-depth-box',()=>{
  const cat=S.createCatalog([{id:'tri',widthMm:200,depthMm:200,heightMm:300,footprintMm:[[-50,-50],[50,-50],[-50,50]]}]);
@@ -649,9 +756,36 @@ await test('rotation-invalid-inputs-and-legacy-overhang-reject-without-source-mu
  const initial=rotationState(),saved=S.serializeLayout(initial,rotationCat);
  for(const input of [null,[],{}, {id:'missing',yawDeg:90},{id:'rot-p',yawDeg:NaN},{id:'rot-p',yawDeg:Infinity},{id:'rot-p',yawDeg:'90'}, {id:'rot-p',yawDeg:90,other:1}])
   assert.equal(S.resolveWorldRotation(initial,input,rotationCat),false);
- for(const options of [null,[],{snapDeg:-1},{snapDeg:NaN},{snapDeg:361},{snapOrigin:{yawDeg:0}},{snapOrigin:Infinity},{unknown:1}])
+ for(const options of [null,[],{snapDeg:-1},{snapDeg:NaN},{snapDeg:361},{snapOrigin:{yawDeg:0}},{snapOrigin:Infinity},{unknown:1},
+  {anchorPointMm:[]},{anchorPointMm:{xMm:0}},{anchorPointMm:{zMm:0}},{anchorPointMm:{xMm:'0',zMm:0}},
+  {anchorPointMm:{xMm:NaN,zMm:0}},{anchorPointMm:{xMm:0,zMm:Infinity}},
+  {anchorPointMm:{xMm:S.LIMITS.maxCoordinateMm+1,zMm:0}},{anchorPointMm:{xMm:0,zMm:-S.LIMITS.maxCoordinateMm-1}},
+  {anchorPointMm:{xMm:0,zMm:0,unexpected:1}},{anchorPointMm:new Date(0)},
+  {targetLocalYawDeg:'90'},{targetLocalYawDeg:NaN},{targetLocalYawDeg:Infinity},{targetLocalYawDeg:{}},
+  {targetLocalYawDeg:S.LIMITS.maxYawDeg+1},{targetLocalYawDeg:-S.LIMITS.maxYawDeg-1},{targetLocalYawDeg:89}])
   assert.equal(S.resolveWorldRotation(initial,{id:'rot-p',yawDeg:90},rotationCat,options),false);
+ const explicitNulls=rotateResolved(initial,'rot-p',90,{snapDeg:0,anchorPointMm:null,targetLocalYawDeg:null});assert.equal(explicitNulls.yawDeg,90);
+ const valid=rotateResolved(initial,'rot-p',90,{snapDeg:0,anchorPointMm:{xMm:0,zMm:0},targetLocalYawDeg:90});assert.equal(valid.yawDeg,90);
  const bad=clone(initial);bad.printers[0].attachment.xMm=5000;assert.equal(S.resolveWorldRotation(bad,{id:'rot-p',yawDeg:90},rotationCat),false);
+ assert.equal(S.serializeLayout(initial,rotationCat),saved);
+});
+await test('rotation-native-anchor-requires-valid-shape-parent-and-exact-world-forward-image',()=>{
+ const desk=S.createDesk({id:'anchor-desk',widthMm:1000,depthMm:600,pose:{xMm:100.25,zMm:-200.125,yawDeg:37.5}});
+ const attachment={parentId:desk.id,surfaceId:'top',xMm:23.125,zMm:-7.375,yawDeg:0};
+ const initial=S.createDefaultLayout({room:S.createRoomRect({widthMm:10000,depthMm:10000}),furniture:[desk],printers:[rotationPrinter('rotation-small',attachment)]},rotationCat);
+ const saved=S.serializeLayout(initial,rotationCat),origin=S.worldTransform(initial,'rot-p',rotationCat);
+ const anchorPointMm={xMm:origin.xMm,zMm:origin.zMm},anchorLocalPointMm={xMm:attachment.xMm,zMm:attachment.zMm};
+ const input={id:'rot-p',yawDeg:67.5},valid={snapDeg:0,anchorPointMm,anchorLocalPointMm,targetLocalYawDeg:30};
+ assert.equal(rotateResolved(initial,'rot-p',input.yawDeg,valid).yawDeg,input.yawDeg);
+ for(const native of [[],{},new Date(0),{xMm:23.125},{zMm:-7.375},{xMm:'23.125',zMm:-7.375},
+  {xMm:NaN,zMm:-7.375},{xMm:23.125,zMm:Infinity},{xMm:S.LIMITS.maxCoordinateMm+1,zMm:0},
+  {xMm:23.125,zMm:-S.LIMITS.maxCoordinateMm-1},{...anchorLocalPointMm,unexpected:true},
+  {...anchorLocalPointMm,xMm:attachment.xMm+1},{...anchorLocalPointMm,zMm:attachment.zMm-1}])
+  assert.equal(S.resolveWorldRotation(initial,input,rotationCat,{...valid,anchorLocalPointMm:native}),false,'Invalid/mismatched native anchor must reject');
+ assert.equal(S.resolveWorldRotation(initial,input,rotationCat,{...valid,anchorPointMm:null}),false,'Native anchor requires its world image');
+ assert.equal(S.resolveWorldRotation(initial,input,rotationCat,{...valid,anchorPointMm:{...anchorPointMm,xMm:origin.xMm+1e-9}}),false,'World/native mismatch is not waived by a tolerance');
+ const floor=rotationState();
+ assert.equal(S.resolveWorldRotation(floor,{id:'rot-p',yawDeg:30},rotationCat,{snapDeg:0,anchorPointMm:{xMm:0,zMm:0},anchorLocalPointMm:{xMm:0,zMm:0}}),false,'Floor printer cannot claim an unrelated support-local anchor');
  assert.equal(S.serializeLayout(initial,rotationCat),saved);
 });
 

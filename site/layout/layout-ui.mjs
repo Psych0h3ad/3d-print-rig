@@ -1,5 +1,5 @@
 // Presentation only. The application owns state, history, files and model loading.
-import {createRoomRect,createRoomL,createRoomPolygon,resolvePrinterEquipment} from './layout-state.mjs?v=156b82f412caf708ab4e';
+import {createRoomRect,createRoomL,createRoomPolygon,resolvePrinterEquipment} from './layout-state.mjs?v=fa98d98dcf1a407e6752';
 import {WALL_FINISHES,FLOOR_FINISHES,DEFAULT_ROOM_APPEARANCE} from './layout-finishes.mjs?v=001b62f9728770a12303';
 const PRINTER_VIEWER_PAGES=new Set(['','index.html','annex.html','community.html','crossant.html','custom-voron.html','kit-reference.html','micron.html','positron.html','ratrig.html','remorph.html','trident.html','v0.html','v24-reference.html','v24.html']);
 // Only a registered catalog destination is eligible; saved plan fields never supply URLs.
@@ -492,7 +492,12 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
         }else for(const [index,l]of f.levels.entries())addOption(f.id,l.id,tr('layout.shelfBoard',{name:title(f),number:index+1}));
       }
       supportLabel.append(supports);editor.append(supportLabel);
-      listen(supports,'change',()=>{const [parentId,surfaceId]=JSON.parse(supports.value);emit({type:'SET_ATTACHMENT',id:e.id,attachment:{parentId,surfaceId,xMm:0,zMm:0,yawDeg:0}});});
+      listen(supports,'change',()=>{
+        const current=selected();if(!current||!('machineId'in current)){refreshValues();return;}
+        const [parentId,surfaceId]=JSON.parse(supports.value);
+        if(current.attachment.parentId===parentId&&current.attachment.surfaceId===surfaceId){refreshValues();return;}
+        emit({type:'SET_ATTACHMENT',id:current.id,attachment:{parentId,surfaceId,xMm:0,zMm:0,yawDeg:0}});
+      });
       editor.append(copy(el('p','layout-help'),'layout.supportHelp'));
       const m=byMachine.get(e.machineId);
       const mounted=state.furniture.some(f=>f.id===e.attachment.parentId&&f.type==='popstation_mini');
@@ -509,14 +514,14 @@ export function createLayoutUI({container, onAction, t, catalog = []}) {
       const link=el('a','layout-printer-source-link');link.href='https://github.com/Psych0h3ad/3d-print-rig/blob/main/docs/LAYOUT_EQUIPMENT.md';link.target='_blank';link.rel='noopener noreferrer';
       link.append(icon('source'),copy(el('span'),'layout.equipmentSources'));editor.append(link);
     }
-    const position=el('div');position.append(copy(el('p','layout-position-label'),isPrinter?'layout.surfacePosition':'layout.floorPosition'));
+    const position=el('div');position.append(copy(el('p','layout-position-label'),isPrinter&&e.attachment.parentId!==null?'layout.surfacePosition':'layout.floorPosition'));
     const pose=el('div','layout-fields');position.append(pose);editor.append(position);
     for(const [key,prop,unit]of [['layout.positionX','xMm','mm'],['layout.positionZ','zMm','mm'],['layout.rotation','yawDeg','°']]){
       const field=numberField(pose,key,prop,{unit,action:v=>patchEntity(e,{[isPrinter?'attachment':'pose']:{[prop]:v}})});
       field.readOnly=!!(isPrinter&&state.furniture.some(f=>f.id===e.attachment.parentId&&f.type==='popstation_mini'));
     }
     const rotate=el('div','layout-row layout-rotate');
-    for(const delta of [-90,90]){const control=button(delta<0?'layout.rotateLeft':'layout.rotateRight',()=>{const current=selected();if(current)patchEntity(current,{[isPrinter?'attachment':'pose']:{yawDeg:(current[isPrinter?'attachment':'pose'].yawDeg+delta)}});});if(isPrinter&&state.furniture.some(f=>f.id===e.attachment.parentId&&f.type==='popstation_mini'))control.dataset.mountLocked='true';rotate.append(control);}
+    for(const delta of [-90,90]){const control=button(delta<0?'layout.rotateLeft':'layout.rotateRight',()=>{const current=selected();if(current)emit({type:'rotate-world',id:current.id,deltaDeg:delta});});if(isPrinter&&state.furniture.some(f=>f.id===e.attachment.parentId&&f.type==='popstation_mini'))control.dataset.mountLocked='true';rotate.append(control);}
     position.append(rotate);
     if(e.type==='shelf'){
       const boards=el('div');boards.append(copy(el('h3'),'layout.boards'));

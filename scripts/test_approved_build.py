@@ -100,6 +100,7 @@ class ApprovedEquipmentBuildGates(unittest.TestCase):
         (root/'docs/MACHINE_REVIEW_COVERAGE.json').write_text(json.dumps({'machines': [{'id': 'fixture'}]}))
         for name in build_approved_site.LAYOUT_EQUIPMENT_AUDITS:
             (root/'scripts'/name).write_text('// Mocked audit boundary: '+name)
+        (root/build_approved_site.U1_BOTTOM_AUDIT).write_text('// Mocked nested actual U1 audit boundary')
         runtime = root/'runtime-input'; runtime.write_bytes(b'Ordinary approved runtime fixture')
         row = {'path': 'runtime/fixture.bin', 'bytes': runtime.stat().st_size,
                'sha256': build_approved_site.digest(runtime), 'url': 'https://psych0h3ad.github.io/runtime/fixture.bin',
@@ -164,7 +165,9 @@ class ApprovedEquipmentBuildGates(unittest.TestCase):
             report = {'passed': True, 'transportMode': 'registered-exact-body', 'auditInputFiles': {},
                       'sourceInputs': {name: build_approved_site.digest(output/name)
                                        for name in build_approved_site.EQUIPMENT_AUDIT_SOURCES[script.name]},
-                      'auditScriptSHA256': build_approved_site.digest(script)}
+                      'auditScriptSHA256': build_approved_site.digest(script),
+                      'auditDependencies': {name: build_approved_site.digest(root/name)
+                                            for name in build_approved_site.EQUIPMENT_AUDIT_DEPENDENCIES[script.name]}}
             receipts = {}
             for entry in self.plans[root]['entries']:
                 pin = entry['pin']; name = pin['path']
@@ -180,9 +183,23 @@ class ApprovedEquipmentBuildGates(unittest.TestCase):
             if script.name == build_approved_site.LAYOUT_EQUIPMENT_AUDITS[0]:
                 report.update(schema='layout-equipment-geometry-audit-v2', status='PASS', assets=list(receipts.values()))
             else:
-                report.update(schema='layout-equipment-actual-asset-audit-v2', assets=receipts,
-                              auditDependencies={'scripts/'+build_approved_site.LAYOUT_EQUIPMENT_AUDITS[0]:
-                                                 build_approved_site.digest(root/'scripts'/build_approved_site.LAYOUT_EQUIPMENT_AUDITS[0])})
+                report.update(schema='layout-equipment-actual-asset-audit-v2', assets=receipts)
+                witness = {'onlyMeasuredLowerRimPlanes': True, 'independentBoundaryAndAreaWitnesses': True}
+                variants = ['standalone', 'docked', 'standalone']
+                names = (*build_approved_site.EQUIPMENT_MODELS[:2], build_approved_site.EQUIPMENT_PREVIEW)
+                nested_bodies = {name+suffix: report['auditInputFiles'][name+suffix]
+                                 for name in names for suffix in ('', '.gz')}
+                nested = {'schema': 'u1-measured-lower-shell-closure-audit-v1', 'passed': True,
+                          'auditScriptSHA256': build_approved_site.digest(root/build_approved_site.U1_BOTTOM_AUDIT),
+                          'auditDependencies': {'scripts/'+build_approved_site.LAYOUT_EQUIPMENT_AUDITS[0]:
+                              build_approved_site.digest(root/'scripts'/build_approved_site.LAYOUT_EQUIPMENT_AUDITS[0])},
+                          'sourceInputs': {name: report['sourceInputs'][name] for name in build_approved_site.U1_BOTTOM_SOURCES},
+                          'auditInputFiles': nested_bodies, 'sourcePreviewGeometries': 22, 'sourcePreviewReceipts': 66,
+                          'loads': [{'variant': variant, 'model': dict(receipts[build_approved_site.EQUIPMENT_MODELS[1 if i == 1 else 0]], unit='m', up='+Y', front='+Z'),
+                                     'serializedClosurePreserved': True, 'transformedPlacements': 5,
+                                     'closure': dict(witness), 'sourceResetHash': '1'*64} for i, variant in enumerate(variants)],
+                          'preview': [dict(witness, variant=variant) for variant in variants]}
+                report['u1Bottom'] = json.loads(json.dumps(nested))
             if mutate:
                 special = mutate(script.name, report, report_path)
                 if special is not None: return special
@@ -421,6 +438,73 @@ class ApprovedEquipmentBuildGates(unittest.TestCase):
             self.assertEqual(len(calls), list(build_approved_site.LAYOUT_EQUIPMENT_AUDITS).index(failed)+1)
             self.assertFalse((output/'.nojekyll').exists())
 
+    def test_helper_pin_required_in_each_report_and_unchanged_during_each_child(self):
+        for script in build_approved_site.LAYOUT_EQUIPMENT_AUDITS:
+            for case in ['omitted-hash', 'changed-hash', 'changed-file', 'changed-file-and-reported-hash']:
+                with self.subTest(script=script, case=case):
+                    root, output, contract, inputs, decoded = self.fixture()
+                    helper = build_approved_site.U1_BOTTOM_AUDIT
+                    def mutate(name, report, target):
+                        if name != script: return
+                        if case == 'omitted-hash': report['auditDependencies'].pop(helper)
+                        if case == 'changed-hash': report['auditDependencies'][helper] = '0'*64
+                        if case.startswith('changed-file'):
+                            (root/helper).write_text('// Helper changed during current child')
+                        if case == 'changed-file-and-reported-hash':
+                            report['auditDependencies'][helper] = build_approved_site.digest(root/helper)
+                    invoke, _ = self.runner(root, output, contract, decoded, mutate=mutate)
+                    with patch.object(build_approved_site.subprocess, 'run', side_effect=invoke):
+                        with self.assertRaisesRegex(ValueError, 'Invalid layout equipment audit evidence'):
+                            run(root, contract, output, inputs)
+                    self.assertFalse((output/'.nojekyll').exists())
+
+    def test_nested_u1_report_cannot_be_missing_stale_or_partial(self):
+        cases = ['missing', 'passed-stub', 'failed', 'schema', 'omitted-helper-hash', 'changed-helper-hash',
+                 'omitted-geometry-hash', 'changed-geometry-hash', 'extra-dependency', 'stale-source',
+                 'omitted-source', 'missing-body', 'extra-body', 'wrong-body-hash', 'wrong-body-path',
+                 'missing-variant', 'wrong-order', 'changed-model', 'wrong-model-datum', 'missing-serialization',
+                 'missing-transform', 'missing-boundary-witness', 'missing-preview-witness',
+                 'missing-receipts', 'wrong-reset']
+        for case in cases:
+            with self.subTest(case=case):
+                root, output, contract, inputs, decoded = self.fixture()
+                def mutate(name, report, target):
+                    if name != build_approved_site.LAYOUT_EQUIPMENT_AUDITS[1]: return
+                    nested = report['u1Bottom']
+                    if case == 'missing': report.pop('u1Bottom'); return
+                    if case == 'passed-stub': report['u1Bottom'] = {'passed': True}; return
+                    if case == 'failed': nested['passed'] = False
+                    if case == 'schema': nested['schema'] = 'old'
+                    if case == 'omitted-helper-hash': nested.pop('auditScriptSHA256')
+                    if case == 'changed-helper-hash': nested['auditScriptSHA256'] = '0'*64
+                    geometry = 'scripts/'+build_approved_site.LAYOUT_EQUIPMENT_AUDITS[0]
+                    if case == 'omitted-geometry-hash': nested['auditDependencies'].pop(geometry)
+                    if case == 'changed-geometry-hash': nested['auditDependencies'][geometry] = '0'*64
+                    if case == 'extra-dependency': nested['auditDependencies']['scripts/other.mjs'] = '0'*64
+                    source = build_approved_site.U1_BOTTOM_SOURCES[0]
+                    if case == 'stale-source': nested['sourceInputs'][source] = '0'*64
+                    if case == 'omitted-source': nested['sourceInputs'].pop(source)
+                    key = next(iter(nested['auditInputFiles']))
+                    if case == 'missing-body': nested['auditInputFiles'].pop(key)
+                    if case == 'extra-body': nested['auditInputFiles']['other.glb'] = dict(nested['auditInputFiles'][key])
+                    if case == 'wrong-body-hash': nested['auditInputFiles'][key]['sha256'] = '0'*64
+                    if case == 'wrong-body-path': nested['auditInputFiles'][key]['file'] = str(root/'other-cache')
+                    if case == 'missing-variant': nested['loads'].pop()
+                    if case == 'wrong-order': nested['preview'].reverse(); nested['preview'][0]['variant'] = 'docked'
+                    if case == 'changed-model': nested['loads'][0]['model']['sha256'] = '0'*64
+                    if case == 'wrong-model-datum': nested['loads'][0]['model']['up'] = '+Z'
+                    if case == 'missing-serialization': nested['loads'][0].pop('serializedClosurePreserved')
+                    if case == 'missing-transform': nested['loads'][0].pop('transformedPlacements')
+                    if case == 'missing-boundary-witness': nested['loads'][0]['closure'].pop('independentBoundaryAndAreaWitnesses')
+                    if case == 'missing-preview-witness': nested['preview'][0].pop('onlyMeasuredLowerRimPlanes')
+                    if case == 'missing-receipts': nested.pop('sourcePreviewReceipts')
+                    if case == 'wrong-reset': nested['loads'][2]['sourceResetHash'] = '2'*64
+                invoke, _ = self.runner(root, output, contract, decoded, mutate=mutate)
+                with patch.object(build_approved_site.subprocess, 'run', side_effect=invoke):
+                    with self.assertRaisesRegex(ValueError, 'Invalid layout equipment audit evidence'):
+                        run(root, contract, output, inputs)
+                self.assertFalse((output/'.nojekyll').exists())
+
     def test_missing_node_timeout_spawn_or_affinity_failure_never_marks_ready(self):
         for case in ['node', 'timeout', 'spawn', 'affinity']:
             root, output, contract, inputs, _ = self.fixture()
@@ -435,10 +519,10 @@ class ApprovedEquipmentBuildGates(unittest.TestCase):
             self.assertFalse((output/'.nojekyll').exists())
 
     def test_missing_audit_script_and_runtime_fail_before_preparation(self):
-        for case in [*build_approved_site.LAYOUT_EQUIPMENT_AUDITS, 'runtime']:
+        for case in [*build_approved_site.LAYOUT_EQUIPMENT_AUDITS, build_approved_site.U1_BOTTOM_AUDIT, 'runtime']:
             root, output, contract, inputs, _ = self.fixture()
             if case == 'runtime': inputs['files'].clear()
-            else: (root/'scripts'/case).unlink()
+            else: (root/case if case.startswith('scripts/') else root/'scripts'/case).unlink()
             with patch.object(build_approved_site.subprocess, 'run') as audit:
                 with self.assertRaises(ValueError): run(root, contract, output, inputs)
             audit.assert_not_called(); self.prepare_equipment_inputs.assert_not_called()

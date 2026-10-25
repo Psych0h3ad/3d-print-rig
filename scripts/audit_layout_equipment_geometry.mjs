@@ -16,6 +16,102 @@ import assert from 'node:assert/strict';
 import v8 from 'node:v8';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 
+const RIM='casing / lower casing perimeter rim';
+export const U1_CLOSURE_NAME='derived / U1 lower shell closure';
+const key=p=>p.join(','),edgeKey=(a,b)=>a<b?a+'|'+b:b+'|'+a;
+const signedArea=points=>points.reduce((s,a,i)=>{const b=points[(i+1)%points.length];return s+a[0]*b[2]-b[0]*a[2];},0)/2;
+const near=(a,b,message)=>assert.ok(Math.abs(a-b)<1e-8,message+': '+a+' / '+b);
+function boundary(positions,indices,y){
+ const edges=new Map();let area=0,triangles=0;
+ for(let i=0;i<indices.length;i+=3){
+  const p=Array.from(indices.slice(i,i+3),j=>Array.from(positions.slice(j*3,j*3+3)));
+  if(!p.every(a=>Math.abs(a[1]-y)<1e-7))continue;
+  area+=Math.abs(signedArea(p));triangles++;
+  for(let j=0;j<3;j++){
+   const a=p[j],b=p[(j+1)%3],aKey=key(a),bKey=key(b),k=edgeKey(aKey,bKey),old=edges.get(k);
+   if(old){assert.equal(old.count,1,'Nonmanifold horizontal edge');assert.equal(old.aKey,bKey,'Inconsistent shared-edge winding');old.count++;}
+   else edges.set(k,{a,b,aKey,bKey,count:1});
+  }
+ }
+ return {edges:new Map([...edges].filter(([,e])=>e.count===1)),area,triangles};
+}
+function loop(edges){
+ assert.ok(edges.size>=3,'Missing closed boundary');
+ const next=new Map();for(const e of edges.values()){assert.ok(!next.has(e.aKey),'Branching boundary');next.set(e.aKey,e);}
+ const first=next.keys().next().value,points=[];let current=first;
+ do{const e=next.get(current);assert.ok(e,'Broken boundary');points.push(e.a);next.delete(current);current=e.bKey;}while(current!==first);
+ assert.equal(next.size,0,'Multiple boundary loops');return points;
+}
+function contains(p,polygon){
+ let n=0;
+ for(let j=polygon.length-1,i=0;i<polygon.length;j=i++){
+  const a=polygon[j],b=polygon[i];
+  if((a[2]>p[2])!==(b[2]>p[2])&&p[0]<(b[0]-a[0])*(p[2]-a[2])/(b[2]-a[2])+a[0])n++;
+ }
+ return n%2===1;
+}
+function triangleCovers(p,a,b,c){
+ const v=[a,b,c].map((q,i,points)=>{const r=points[(i+1)%3];return (r[0]-q[0])*(p[2]-q[2])-(r[2]-q[2])*(p[0]-q[0]);});
+ return v.every(n=>n>=-1e-12)||v.every(n=>n<=1e-12);
+}
+
+/** Validate only the extra closure against independently authenticated source
+ * buffers. Source-prefix hashes are checked separately by the equipment gates.
+ * Boundary edge equality, opposite shared winding and planar area conservation
+ * prove that the added faces fill the inner rim, rather than an AABB rectangle.
+ */
+export function validateU1BottomGeometry(sourcePositions,sourceIndices,geometry,{merged=false}={}){
+ const position=geometry.attributes.position.array,normal=geometry.attributes.normal.array,index=geometry.index.array;
+ const sourceVertices=sourcePositions.length/3,offset=merged?sourceVertices:0;
+ if(merged){assert.deepEqual(position.subarray(0,sourcePositions.length),sourcePositions,'Preview source positions changed');assert.deepEqual(Uint32Array.from(index.subarray(0,sourceIndices.length)),sourceIndices,'Preview source indices changed');}
+ const p=position.subarray(offset*3),n=normal.subarray(offset*3),ix=Uint32Array.from(index.subarray(merged?sourceIndices.length:0),i=>i-offset);
+ assert.ok(p.length>0&&p.length%3===0&&ix.length>0&&ix.length%3===0,'Missing U1 closure');
+ assert.equal(n.length,p.length);assert.ok([...p,...n].every(Number.isFinite),'Nonfinite closure');
+ assert.ok([...ix].every(i=>Number.isSafeInteger(i)&&i>=0&&i<p.length/3),'Closure index out of range');
+ let low=Infinity,high=-Infinity;const originalVertices=new Set();
+ for(let i=0;i<sourcePositions.length;i+=3){low=Math.min(low,sourcePositions[i+1]);high=Math.max(high,sourcePositions[i+1]);originalVertices.add(key(Array.from(sourcePositions.slice(i,i+3))));}
+ for(let i=0;i<p.length;i+=3){
+  assert.ok(originalVertices.has(key(Array.from(p.slice(i,i+3)))),'Closure invented a boundary vertex');
+  assert.ok(p[i+1]===low||p[i+1]===high,'Closure leaves measured lower-rim planes');
+  assert.deepEqual(Array.from(n.slice(i,i+3)),[0,p[i+1]===low?-1:1,0],'Closure unit normal');
+ }
+ const triangles=[];
+ for(let i=0;i<ix.length;i+=3){
+  const t=Array.from(ix.slice(i,i+3),j=>Array.from(p.slice(j*3,j*3+3)));
+  assert.ok(t.every(v=>v[1]===t[0][1]),'Closure covers a vertical/front aperture');
+  assert.ok(signedArea(t)*(t[0][1]===low?1:-1)>1e-14,'Closure triangle winding or area');triangles.push(t);
+ }
+ const planes=[];let rayChecks=0;
+ for(const y of [low,high]){
+  const raw=boundary(sourcePositions,sourceIndices,y),cap=boundary(p,ix,y),outer=new Map(raw.edges);
+  assert.ok(raw.triangles>0&&cap.triangles>0,'Missing measured rim/closure face');
+  for(const [k,e]of cap.edges){
+   const original=outer.get(k);assert.ok(original,'Closure boundary does not match original inner rim');
+   assert.equal(e.aKey,original.bKey,'Closure boundary winding does not oppose rim');outer.delete(k);
+  }
+  const holeLoop=loop(cap.edges),outerLoop=loop(outer);
+  near(cap.area,Math.abs(signedArea(holeLoop)),'Complete closure area');
+  near(cap.area+raw.area,Math.abs(signedArea(outerLoop)),'Annulus plus cap must equal measured exterior');
+  assert.ok(holeLoop.every(v=>contains(v,outerLoop)),'Closure encloses exterior instead of hole');
+  const xs=holeLoop.map(v=>v[0]),zs=holeLoop.map(v=>v[2]),loX=Math.min(...xs),hiX=Math.max(...xs),loZ=Math.min(...zs),hiZ=Math.max(...zs);
+  let samples=0;
+  for(let x=0;x<21;x++)for(let z=0;z<21;z++){
+   const witness=[loX+(hiX-loX)*(x+.37)/21,y,loZ+(hiZ-loZ)*(z+.61)/21];
+   if(!contains(witness,holeLoop))continue;
+   assert.ok(triangles.some(t=>t[0][1]===y&&triangleCovers(witness,...t)),'Vertical floor ray escapes closure');samples++;
+  }
+  assert.ok(samples>0,'No interior floor witnesses');rayChecks+=samples;
+  planes.push({yM:y,areaM2:cap.area,boundaryVertices:holeLoop.length,triangles:cap.triangles,verticalRayChecks:samples});
+ }
+ const receipt=geometry.userData.layoutEquipmentDerivative;
+ assert.equal(receipt?.kind,'u1-lower-shell-closure-v1');assert.equal(receipt.sourceName,RIM);
+ assert.equal(receipt.sourceVertices,sourceVertices);assert.equal(receipt.sourceIndices,sourceIndices.length);
+ assert.equal(receipt.vertices,p.length/3);assert.equal(receipt.triangles,ix.length/3);
+ for(let i=0;i<2;i++){near(receipt.planes[i].yM,planes[i].yM,'Recorded closure plane');near(receipt.planes[i].areaM2,planes[i].areaM2,'Recorded closure area');assert.equal(receipt.planes[i].boundaryVertices,planes[i].boundaryVertices);}
+ return {vertices:p.length/3,triangles:ix.length/3,planes,verticalRayChecks:rayChecks,
+  sourceGeometryDisposition:merged?'unchanged source prefix plus labeled closure':'unchanged separate source mesh',onlyMeasuredLowerRimPlanes:true,independentBoundaryAndAreaWitnesses:true};
+}
+
 export const PREFIX='layout/assets/equipment/u1-exterior/';
 export const DEFINITIONS=Object.freeze([
  ['u1Standalone','snapmaker_u1_layout_reference','standalone','U1_exterior_standalone_loaded.glb',4,4,2],
@@ -376,7 +472,7 @@ export async function auditPreviewRenderer(context,prepared){
   const key=color+':'+opacity;if(!materials.has(key))materials.set(key,new THREE.MeshStandardMaterial({color,opacity,transparent:opacity<1}));return materials.get(key);
  };
  const draw=new Function('THREE','material','equipmentMeshCache',source.slice(start,end)+';return previewPart;')(THREE,material,cache);
- const geometries=new Set(),used=new Set();let occurrences=0,disposed=0;
+ const geometries=new Set(),used=new Set(),derivedClosures=[];let occurrences=0,disposed=0;
  try{
   for(const [,id,variant]of DEFINITIONS){
    const row=context.equipment.getLayoutEquipment(id,variant);
@@ -385,9 +481,13 @@ export async function auditPreviewRenderer(context,prepared){
     const root=new THREE.Group(),mesh=draw(root,part),pin=prepared.descriptor.geometry[part.geometryId];assert.ok(pin);
     mesh.updateMatrixWorld(true);
     assert.deepEqual(mesh.matrixWorld.toArray(),[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],part.name+' preview common datum applied twice');
-    assert.deepEqual(arrayReceipt(mesh.geometry.attributes.position.array),pin.positionsF32,part.name+' complete production preview positions');
-    assert.deepEqual(arrayReceipt(mesh.geometry.attributes.normal.array),pin.normalsF32,part.name+' complete production preview normals');
-    assert.deepEqual(arrayReceipt(mesh.geometry.index.array),pin.indicesU32,part.name+' complete production preview indices');
+    const derived=part.geometryId==='u1-exterior-exterior-9c5aa700906a4c';
+    const p=mesh.geometry.attributes.position.array,n=mesh.geometry.attributes.normal.array,ix=mesh.geometry.index.array;
+    assert.deepEqual(arrayReceipt(derived?p.subarray(0,pin.positionsF32.bytes/4):p),pin.positionsF32,part.name+' complete production preview positions');
+    assert.deepEqual(arrayReceipt(derived?n.subarray(0,pin.normalsF32.bytes/4):n),pin.normalsF32,part.name+' complete production preview normals');
+    assert.deepEqual(arrayReceipt(derived?ix.subarray(0,pin.indicesU32.bytes/4):ix),pin.indicesU32,part.name+' complete production preview indices');
+    if(derived){const raw=prepared.arrays.get(part.geometryId);derivedClosures.push({variant,...validateU1BottomGeometry(raw.positions,raw.indices,mesh.geometry,{merged:true})});}
+    else assert.equal(mesh.geometry.userData.layoutEquipmentDerivative,undefined,'Unexpected preview derivative');
     assert.equal(mesh.material,material(part.color||'#465258',part.opacity??1));
     const ghostMesh=draw(root,part,ghost);assert.equal(ghostMesh.material,ghost);assert.equal(ghostMesh.geometry,mesh.geometry);
     assert.equal(mesh.geometry,cache.get(part));geometries.add(mesh.geometry);used.add(part.geometryId);occurrences++;
@@ -397,15 +497,18 @@ export async function auditPreviewRenderer(context,prepared){
   assert.deepEqual([...used].sort(),Object.keys(prepared.descriptor.geometry).sort());
   for(const geometry of geometries)geometry.addEventListener('dispose',()=>disposed++);
   cache.dispose();cache.dispose();assert.equal(disposed,geometries.size);
-  return {meshOccurrences:occurrences,geometries:used.size,arrayReceipts:used.size*3,rootPivotM:[0,0,0],exactSourceArrays:true,
+  assert.equal(derivedClosures.length,2,'Both U1 variants require a measured closure');
+  return {meshOccurrences:occurrences,geometries:used.size,arrayReceipts:used.size*3,rootPivotM:[0,0,0],exactSourceArrays:true,derivedClosures,
    ghostMaterialOwnership:true,disposedGeometries:disposed,scope:'Production previewPart mesh branch and geometry cache without browser/GPU'};
  }finally{cache.dispose();for(const m of materials.values())m.dispose();ghost.dispose();}
 }
 
 export function compareLoadedToGLB(root,actual) {
- root.updateMatrixWorld(true);const found=new Set();
+ root.updateMatrixWorld(true);const found=new Set(),closures=[];
  root.traverse(node=>{
   if(!node.isMesh)return;
+  if(node.name===U1_CLOSURE_NAME){closures.push(node);return;}
+  assert.equal(node.userData.layoutEquipmentDerivative,undefined,'Unexpected production derivative');
   // GLTFLoader sanitizes Object3D names; its retained source name identifies
   // the exact authored occurrence without lossy name matching.
   const sourceName=node.userData.name??node.name;
@@ -427,11 +530,21 @@ export function compareLoadedToGLB(root,actual) {
    [material.opacity,pbr.baseColorFactor[3]],[material.metalness,pbr.metallicFactor],[material.roughness,pbr.roughnessFactor]])close(a,b,node.name+' production material',1e-7);
   assert.equal(material.transparent,source.material.alphaMode==='BLEND');
  });
- assert.equal(found.size,actual.meshes.size,'Production loader lost actual meshes');return found.size;
+ assert.equal(found.size,actual.meshes.size,'Production loader lost actual meshes');
+ const rim=actual.meshes.get('casing / lower casing perimeter rim');
+ assert.equal(closures.length,rim?1:0,'Exactly one measured closure required for U1; none for other equipment');
+ for(const cap of closures){
+  assert.equal(cap.parent.userData.name??cap.parent.name,'casing / lower casing perimeter rim','Closure must follow exact source rim');
+  assert.equal(cap.material,cap.parent.material,'Closure must inherit the unchanged rim PBR material');
+  assert.deepEqual(cap.matrixWorld.toArray(),[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],'Closure changes source datum');
+  assert.deepEqual(cap.userData.layoutEquipmentDerivative,cap.geometry.userData.layoutEquipmentDerivative,'Closure labeling differs');
+  validateU1BottomGeometry(rim.positions,rim.indices,cap.geometry);
+ }
+ return found.size;
 }
 
 export async function auditGeometry(opts) {
- const context=await createAuditContext(opts),prepared=await context.readPrepared(),rendererPreview=await auditPreviewRenderer(context,prepared),audited=new Map(),used=new Set(),representationDifferences=[];let previewOccurrences=0;
+ const context=await createAuditContext(opts),prepared=await context.readPrepared(),audited=new Map(),used=new Set(),representationDifferences=[];let previewOccurrences=0;
  const {polygonContains}=await import(pathToFileURL(path.join(context.site,'layout/layout-geometry.mjs')));
  for(const [i,row]of context.rows.entries()){
   const actual=inspectGLB(await context.readActual(row),row),equivalence=compareRepresentations(row,actual,prepared);
@@ -445,6 +558,7 @@ export async function auditGeometry(opts) {
   }
   audited.set(DEFINITIONS[i][0],{...actual,row});
  }
+ const rendererPreview=await auditPreviewRenderer(context,prepared);
  assert.deepEqual([...used].sort(),Object.keys(prepared.descriptor.geometry).sort(),'Unconsumed prepared geometry');
  const a=audited.get('u1Standalone'),b=audited.get('u1Docked'),station=audited.get('stationLoaded'),empty=audited.get('stationEmpty');
  function unchanged(from,to){let count=0;for(const [name,mesh]of to.meshes){const original=from.meshes.get(name);assert.ok(original,'Retained mesh disappeared: '+name);assert.equal(mesh.groupId,original.groupId);for(const field of ['positionHash','normalHash','indexHash'])assert.equal(mesh[field],original[field],'Variant changed retained '+field+': '+name);assert.deepEqual(mesh.material,original.material);count++;}return count;}
@@ -486,6 +600,7 @@ export async function auditGeometry(opts) {
  const sourceInputs={...prepared.sourceInputs,...sourceHashes(context.site,['layout/layout-equipment.mjs','layout/layout-equipment-transfer.mjs','layout/layout-geometry.mjs','layout/layout-equipment-mesh.mjs','layout/layout-renderer.mjs','viewer/vendor-r180/three.module.js','viewer/vendor-r180/three.core.js'])};
  return {schema:'layout-equipment-geometry-audit-v2',status:prepared.triangleFindings.length?'FAIL':'PASS',passed:prepared.triangleFindings.length===0,findings:prepared.triangleFindings,assets:[...audited.values()].map(a=>a.result),sourceInputs,
   auditInputFiles:context.auditInputFiles,auditScriptSHA256:sha(fs.readFileSync(fileURLToPath(import.meta.url))),
+  auditDependencies:{'scripts/audit_u1_bottom.mjs':sha(fs.readFileSync(new URL('./audit_u1_bottom.mjs',import.meta.url)))},
   source:{basis:'Current exact V4 prepared bodies and tracked metadata; no original sources read',plateAttribution:prepared.plateAttribution,rootPivotM:[0,0,0],uniformScale:1,feet:footChecks},
   preview:{model:context.equipment.LAYOUT_EQUIPMENT_PREVIEW_MODEL,geometries:used.size,arrayReceipts:prepared.arrayReceipts,triangles:prepared.previewTriangles,comparedMeshOccurrences:previewOccurrences,productionRenderer:rendererPreview,body:prepared.descriptor.body,gzip:prepared.descriptor.gzip},
   representationComparison:{basis:'Catalog-declared simplified exterior preview versus full GLB; these are distinct prepared representations, not an exact-equivalence claim',differences:representationDifferences},
@@ -493,7 +608,7 @@ export async function auditGeometry(opts) {
    retainedU1MeshesAtIdenticalDatum:commonMeshes,retainedStationMeshesAtIdenticalDatum:commonStationMeshes,
    authoredSupportTopYM:top,footContactSamples,actualDeckTopTriangles:topTriangles.length,minRoundedPatchMarginM},
   transportMode:'registered-exact-body',preparedDir:context.preparedDir,...limits(),
-  scope:'All actual GLB position/normal/index buffers, triangle winding, materials and hierarchy; exact four raw/gzip pairs and preview JSON/gzip; all 66 tracked preview-array receipts; complete production preview mesh buffers equal their prepared arrays; full GLB/preview differences are recorded for the declared simplified representation; shared datum, inventory and current prepared foot outlines against actual authored deck triangles. Other proxy primitives remain illustrative. No original/native solids read; physical mounting/load/operating clearance, browser/GPU and full machine coverage are separate.'};
+  scope:'All actual GLB position/normal/index buffers, triangle winding, materials and hierarchy; exact four raw/gzip pairs and preview JSON/gzip; all 66 tracked preview-array receipts; complete production preview source arrays are unchanged. Separately labeled U1 lower-rim closures are checked against exact inner boundary edges, winding, area conservation and sampled vertical rays. Full GLB/preview differences are recorded for the declared simplified representation; shared datum, inventory and current prepared foot outlines against actual authored deck triangles. Other proxy primitives remain illustrative. No original/native solids read; physical mounting/load/operating clearance, browser/GPU and full machine coverage are separate.'};
 }
 export function writeReport(opts,report){if(opts['--report'])fs.writeFileSync(path.resolve(opts['--report']),JSON.stringify(report,null,2)+'\n');}
 if(process.argv[1]&&pathToFileURL(path.resolve(process.argv[1])).href===import.meta.url){

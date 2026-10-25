@@ -1,11 +1,12 @@
 // Farm units use the same static planning envelopes as individual objects.
 // A group never duplicates source CAD or changes printer/support attachments.
 import {LIMITS,LayoutValidationError,createDefaultLayout,deriveScene,resolvePrinterEquipment,
-  validatePlacement,parseLayout,serializeLayout} from './layout-state.mjs?v=156b82f412caf708ab4e';
+  validatePlacement,parseLayout,serializeLayout} from './layout-state.mjs?v=fa98d98dcf1a407e6752';
 import {rootPose,groupRootPose} from './layout-group-data.mjs?v=298837e53f6daea54c7c';
 import {bounds,rectangle,rotateXZ,transformPolygon,polygonContains,orient} from './layout-geometry.mjs?v=129e07e8d3e2b008fab6';
 import {rigidMotionStaysInside,boundaryTangents} from './layout-constraints.mjs?v=53e33561b2e7ce324016';
 import {prepareCollisionMotion,envelopeChange} from './layout-collision.mjs?v=1a7a6f204f8ed66b33ed';
+import {wallRotationCenters} from './layout-wall-rotation.mjs?v=7ae98b15139f328512eb';
 
 const clone=x=>JSON.parse(JSON.stringify(x));
 const problem=(code,path='group',params={})=>new LayoutValidationError([{code,path,params}]);
@@ -172,16 +173,44 @@ export function resolveGroupMove(state,{id,x,z},catalog=[],{snapMm=10,snapOrigin
   }
   return Object.freeze({x:best.xMm,z:best.zMm,state:movedState(state,m.g,best,catalog)});
 }
-export function resolveGroupRotation(state,{id,yawDeg},catalog=[],{snapDeg=15,snapOrigin=null}={}){
-  if(!finite(yawDeg,2*LIMITS.maxYawDeg)||![0,1,15].includes(snapDeg))return false;
+export function resolveGroupRotation(state,input,catalog=[],options={}){
+  const plain=value=>value!==null&&typeof value==='object'&&(Object.getPrototypeOf(value)===Object.prototype||Object.getPrototypeOf(value)===null);
+  if(!plain(input)||Object.keys(input).some(k=>!['id','yawDeg'].includes(k))||!plain(options)
+    ||Object.keys(options).some(k=>!['snapDeg','snapOrigin','anchorPointMm'].includes(k)))return false;
+  const {id,yawDeg}=input,{snapDeg=15,snapOrigin=null,anchorPointMm=null}=options;
+  if(!finite(yawDeg,2*LIMITS.maxYawDeg)||![0,1,15].includes(snapDeg)
+    ||snapOrigin!==null&&!finite(snapOrigin,2*LIMITS.maxYawDeg)
+    ||anchorPointMm!==null&&(!plain(anchorPointMm)||Object.keys(anchorPointMm).some(k=>!['xMm','zMm'].includes(k))
+      ||!finite(anchorPointMm.xMm)||!finite(anchorPointMm.zMm)))return false;
   const m=prepareMotion(state,id,catalog);if(!m.contained)return false;
   const from=m.g.pose,origin=snapOrigin??from.yawDeg;
   const snapped=snapDeg?origin+Math.round((yawDeg-origin)/snapDeg)*snapDeg:yawDeg;
   const yaw=yawDeg===from.yawDeg||(yawDeg-from.yawDeg)*(snapped-from.yawDeg)<0?from.yawDeg:snapped;
   if(Math.abs(yaw-from.yawDeg)>360)return false;
-  const target={...from,yawDeg:yaw},best=prefix(m,from,target),limited=!samePose(best,target);
-  return Object.freeze({yawDeg:best.yawDeg,state:movedState(state,m.g,best,catalog),
-    ...(limited?{boundaryLimited:true}:{pointerRemainderDeg:yawDeg-snapped})});
+  const target={...from,yawDeg:yaw};
+  const result=(next,limited=false,assisted=false)=>{
+    if(anchorPointMm&&!assisted)next=resolveGroupMove(next,{id,x:anchorPointMm.xMm,z:anchorPointMm.zMm},catalog,{snapMm:0})?.state??next;
+    const pose=requireGroup(next,id).pose;
+    return Object.freeze({yawDeg:pose.yawDeg,x:pose.xMm,z:pose.zMm,state:next,
+      ...(assisted||pose.xMm!==from.xMm||pose.zMm!==from.zMm?{wallAdjusted:true}:{}),
+      ...(limited?{boundaryLimited:true}:{pointerRemainderDeg:yawDeg-snapped})});
+  };
+  // Try the unchanged centre first. A peer-only block produces no helper
+  // proposal: the unpadded room-wall requirement must actually be positive.
+  if(m.accepts(target))return result(movedState(state,m.g,target,catalog));
+  for(const center of wallRotationCenters([{outer:state.room.polygonMm,locals:m.polygons}],from,yaw)){
+    try{
+      // Each leg is a new strict continuous motion, including peer collision.
+      // Never validate this accepted dogleg as a direct diagonal/chord.
+      const away=transformGroup(state,id,{xMm:center.xMm,zMm:center.zMm},catalog);
+      const turned=transformGroup(away,id,{yawDeg:yaw},catalog);
+      const anchor=anchorPointMm??from;
+      const back=resolveGroupMove(turned,{id,x:anchor.xMm,z:anchor.zMm},catalog,{snapMm:0});
+      return result(back?.state??turned,false,true);
+    }catch(error){if(!(error instanceof LayoutValidationError))throw error;}
+  }
+  const best=prefix(m,from,target),limited=!samePose(best,target);
+  return result(movedState(state,m.g,best,catalog),limited);
 }
 
 export const GROUP_LIBRARY_LIMIT=24;

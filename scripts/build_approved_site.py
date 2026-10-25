@@ -19,6 +19,13 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 MAX_SITE_BYTES = 990_000_000
 LAYOUT_EQUIPMENT_SOURCE = 'layout/layout-equipment.mjs'
 LAYOUT_EQUIPMENT_AUDITS = ('audit_layout_equipment_geometry.mjs', 'audit_layout_equipment_assets.mjs')
+U1_BOTTOM_AUDIT = 'scripts/audit_u1_bottom.mjs'
+EQUIPMENT_AUDIT_DEPENDENCIES = {
+    LAYOUT_EQUIPMENT_AUDITS[0]: (U1_BOTTOM_AUDIT,),
+    LAYOUT_EQUIPMENT_AUDITS[1]: ('scripts/'+LAYOUT_EQUIPMENT_AUDITS[0], U1_BOTTOM_AUDIT),
+}
+U1_BOTTOM_SOURCES = ('layout/layout-equipment.mjs', 'layout/layout-equipment-mesh.mjs',
+                     'layout/layout-machine-loader.mjs')
 EQUIPMENT_PREFIX = 'layout/assets/equipment/u1-exterior/'
 EQUIPMENT_MODELS = tuple(EQUIPMENT_PREFIX + name for name in (
     'U1_exterior_standalone_loaded.glb', 'U1_exterior_docked.glb',
@@ -152,7 +159,51 @@ def layout_equipment_scripts(root):
     for script in scripts:
         if not script.is_file():
             raise ValueError('Required layout equipment audit missing: '+str(script))
+    if not (root/U1_BOTTOM_AUDIT).is_file():
+        raise ValueError('Required layout equipment audit helper missing: '+U1_BOTTOM_AUDIT)
     return scripts
+
+
+def validate_u1_bottom_report(report, models, expected_bodies, source_hashes, dependency_hashes):
+    """Require the nested actual placement/serialization job, not a passed stub."""
+    if (not isinstance(report, dict) or report.get('schema') != 'u1-measured-lower-shell-closure-audit-v1'
+            or report.get('passed') is not True):
+        raise ValueError('Missing or failed nested U1 bottom audit')
+    geometry = 'scripts/'+LAYOUT_EQUIPMENT_AUDITS[0]
+    if (report.get('auditScriptSHA256') != dependency_hashes[U1_BOTTOM_AUDIT]
+            or report.get('auditDependencies') != {geometry: dependency_hashes[geometry]}):
+        raise ValueError('Nested U1 audit/helper dependency revision differs')
+    if report.get('sourceInputs') != {name: source_hashes[name] for name in U1_BOTTOM_SOURCES}:
+        raise ValueError('Nested U1 source inputs differ from assembled output')
+    names = (*EQUIPMENT_MODELS[:2], EQUIPMENT_PREVIEW)
+    required = {name+suffix: expected_bodies[name+suffix] for name in names for suffix in ('', '.gz')}
+    if report.get('auditInputFiles') != required:
+        raise ValueError('Nested U1 actual bodies differ from registered exact inputs')
+    if report.get('sourcePreviewGeometries') != 22 or report.get('sourcePreviewReceipts') != 66:
+        raise ValueError('Nested U1 prepared source receipts missing')
+    loads, previews = report.get('loads'), report.get('preview')
+    variants = ['standalone', 'docked', 'standalone']
+    if (not isinstance(loads, list) or not isinstance(previews, list) or len(loads) != 3 or len(previews) != 3
+            or [row.get('variant') for row in loads] != variants
+            or [row.get('variant') for row in previews] != variants):
+        raise ValueError('Nested U1 requires standalone/docked/standalone evidence')
+    for i, load in enumerate(loads):
+        model = models[EQUIPMENT_MODELS[1 if i == 1 else 0]]
+        actual_model = load.get('model', {})
+        identity = ('path', 'bytes', 'sha256', 'transfer')
+        closure = load.get('closure', {})
+        if ({key: actual_model.get(key) for key in identity} != {key: model[key] for key in identity}
+                or [actual_model.get(key) for key in ('unit', 'up', 'front')] != ['m', '+Y', '+Z']
+                or load.get('serializedClosurePreserved') is not True
+                or load.get('transformedPlacements') != 5
+                or closure.get('onlyMeasuredLowerRimPlanes') is not True
+                or closure.get('independentBoundaryAndAreaWitnesses') is not True
+                or previews[i].get('onlyMeasuredLowerRimPlanes') is not True
+                or previews[i].get('independentBoundaryAndAreaWitnesses') is not True):
+            raise ValueError('Nested U1 source/closure/placement/serialization evidence incomplete')
+    if (not isinstance(loads[0].get('sourceResetHash'), str) or len(loads[0]['sourceResetHash']) != 64
+            or loads[0]['sourceResetHash'] != loads[2].get('sourceResetHash')):
+        raise ValueError('Nested U1 A-B-A source reset evidence differs')
 
 
 def audit_layout_equipment(root, output, scripts, equipment_inputs, prepared_dir=None):
@@ -165,7 +216,9 @@ def audit_layout_equipment(root, output, scripts, equipment_inputs, prepared_dir
     script_hashes = {script.name: digest(script) for script in scripts}
     source_hashes = {script.name: {name: digest(output/name) for name in EQUIPMENT_AUDIT_SOURCES[script.name]}
                      for script in scripts}
-    dependencies = {'scripts/'+LAYOUT_EQUIPMENT_AUDITS[0]: script_hashes[LAYOUT_EQUIPMENT_AUDITS[0]]}
+    dependency_hashes = {name: digest(root/name) for names in EQUIPMENT_AUDIT_DEPENDENCIES.values() for name in names}
+    dependencies = {script.name: {name: dependency_hashes[name] for name in EQUIPMENT_AUDIT_DEPENDENCIES[script.name]}
+                    for script in scripts}
     # Keep complete diagnostics outside the served output, including on failure.
     private = pathlib.Path(tempfile.mkdtemp(prefix='layout-equipment-audits-', dir=output.parent))
     input_path = private/'equipment-inputs.json'
@@ -174,6 +227,8 @@ def audit_layout_equipment(root, output, scripts, equipment_inputs, prepared_dir
     env = dict(os.environ, UV_THREADPOOL_SIZE='1')
     audited = []; identities = None; bodies = None
     for script in scripts:  # Deliberately sequential, at most one Node audit.
+        for name, pin in dependency_hashes.items():
+            if digest(root/name) != pin: raise ValueError('Audit dependency changed before inspection')
         report_path = private/(script.stem+'.json')
         stdout_path = private/(script.stem+'.stdout.log')
         stderr_path = private/(script.stem+'.stderr.log')
@@ -223,10 +278,13 @@ def audit_layout_equipment(root, output, scripts, equipment_inputs, prepared_dir
             if (report['auditScriptSHA256'] != script_hashes[script.name]
                     or digest(script) != script_hashes[script.name]):
                 raise ValueError('Audit script revision differs from its report')
-            if script.name == LAYOUT_EQUIPMENT_AUDITS[1] and report.get('auditDependencies') != dependencies:
+            if report.get('auditDependencies') != dependencies[script.name]:
                 raise ValueError('Audit dependency revisions differ from required current scripts')
-            for name, pin in dependencies.items():
+            for name, pin in dependency_hashes.items():
                 if digest(root/name) != pin: raise ValueError('Audit dependency changed during inspection')
+            if script.name == LAYOUT_EQUIPMENT_AUDITS[1]:
+                validate_u1_bottom_report(report.get('u1Bottom'), models, expected_bodies,
+                                         source_hashes[script.name], dependency_hashes)
             for name, pin in source_hashes[script.name].items():
                 if digest(output/name) != pin: raise ValueError('Assembled source changed during inspection')
             if (report['preview']['model'] != preview or report['preview']['body'] != pins[EQUIPMENT_PREVIEW]
@@ -261,6 +319,8 @@ def audit_layout_equipment(root, output, scripts, equipment_inputs, prepared_dir
     # A later child must not invalidate the earlier child's inspected revision.
     for name, pin in script_hashes.items():
         if digest(root/'scripts'/name) != pin: raise ValueError('Equipment audit script changed during inspection')
+    for name, pin in dependency_hashes.items():
+        if digest(root/name) != pin: raise ValueError('Audit dependency changed during inspection')
     for hashes in source_hashes.values():
         for name, pin in hashes.items():
             if digest(output/name) != pin: raise ValueError('Assembled audit source changed during inspection')

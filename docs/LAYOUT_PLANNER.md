@@ -38,6 +38,9 @@ centres it on the new surface. Resizing furniture preserves the printer's local
 position. Movement stays within the room and the selected support surface.
 Drag along a wall to slide against it; pulling away responds immediately.
 Changes that would put an object beyond those boundaries are not accepted.
+When turning beside a wall, the object moves inward as needed, turns and returns
+toward its starting position. This also works for groups and supported printers;
+other objects and the edges of the support surface still limit the movement.
 
 Furniture and printer envelopes also block one another when their footprints
 and heights overlap. Dragging stops at contact and can slide along the other

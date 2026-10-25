@@ -214,7 +214,7 @@ await test('actual-app-failed-noop-and-successful-commit-status-lifecycle',async
  const factory=new Function('deps',`
  const needsEquipmentPreview=${needsEquipmentPreview.toString()},isLayoutEquipmentPreviewPrepared=()=>false,prepareLayoutEquipmentPreview=()=>{throw Error('Unexpected equipment request in native-only fixture');};const equipmentRows=[];
 
-  const {applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,serializeLayout,parseLayout,createDefaultLayout,validatePlacement}=deps.S;
+  const {applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,worldTransform,serializeLayout,parseLayout,createDefaultLayout,validatePlacement}=deps.S;
   const catalog=[],past=[],future=[],writes=[],updates=[],maxFileBytes=2097152,document={body:{dataset:{}}};
   let state=deps.initial,selected='status-desk',busy=false,roomEditing=false,disposed=false,interactionGeneration=0,operation=null,placement=null,lastPlacementTarget=null;
   const status={hidden:true,textContent:''},uiState={message:'',error:false},$=selector=>{if(selector!=='#layout-status')throw Error('Unexpected status selector');return status};
@@ -229,9 +229,17 @@ await test('actual-app-failed-noop-and-successful-commit-status-lifecycle',async
  for(const language of supportedLanguages){
   const translate=(key,params)=>t(key,params,language);
   const initial=createDefaultLayout({room:createRoomRect({widthMm:4000,depthMm:4000}),furniture:[createDesk({id:'status-desk',widthMm:1000,depthMm:1600,heightMm:750,pose:{xMm:1500,zMm:0,yawDeg:0}})]},[]);
+  const assisted=factory({S,initial,translate});
+  assert.equal(assisted.worldRotate({id:'status-desk',yawDeg:90,deltaDeg:90}),true,'The flush desk now accepts a wall-assisted quarter turn');
+  assert.equal(assisted.read().state.furniture[0].pose.yawDeg,90);
+  assert.ok(assisted.read().state.furniture[0].pose.xMm<1500);
+  assert.deepEqual(S.placementViolations(assisted.read().state,[]),[]);
+  assert.deepEqual(assisted.read().status,{hidden:true,textContent:''});
   const r=factory({S,initial,translate}),encoded=()=>serializeLayout(r.read().state,[]);
-  const before=encoded();assert.equal(r.worldRotate({id:'status-desk',yawDeg:90,deltaDeg:90}),false);
+  // An outside-room move supplies a genuine failure; flush rotation succeeds.
+  const before=encoded();assert.equal(r.worldMove({id:'status-desk',x:3000,z:0}),false);
   assert.equal(encoded(),before);assert.equal(r.read().status.hidden,false);
+  assert.equal(r.read().writes.length,0,'Rejected movement must not store a state');
   assert.equal(r.read().status.textContent,translate('layout.error.ROOM_OUT_OF_BOUNDS'));assert.equal(r.read().ui.error,true);
   assert.equal(r.worldMove({id:'status-desk',x:0,z:0}),true);
   assert.equal(r.read().state.furniture[0].pose.xMm,0);assert.equal(r.read().status.hidden,true);
@@ -243,6 +251,7 @@ await test('actual-app-failed-noop-and-successful-commit-status-lifecycle',async
   const count=r.read().writes.length;
   await r.act({type:'UPDATE_FURNITURE',id:'status-desk',patch:{pose:{xMm:5000}}});
   assert.equal(r.read().writes.length,count);assert.equal(r.read().status.hidden,false);assert.equal(r.read().ui.error,true);
+  assert.equal(r.read().status.textContent,translate('layout.error.ROOM_OUT_OF_BOUNDS'));
   assert.equal(r.worldRotate({id:'status-desk',yawDeg:90,deltaDeg:90}),true);
   assert.equal(r.read().state.furniture[0].pose.yawDeg,90);assert.deepEqual(r.read().status,{hidden:true,textContent:''});assert.equal(r.read().ui.error,false);
   assert.ok(r.read().writes.every(w=>w.dom.hidden&&w.dom.textContent===''&&w.ui.message===''&&w.ui.error===false),'Clear status before sync/store');

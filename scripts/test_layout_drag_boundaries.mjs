@@ -130,14 +130,25 @@ test('narrow room valid endpoints still reject an unsafe intermediate rotation',
     assert.equal(r.boundaryLimited, true); assert.equal(turn(r.state, 'p', 0).yawDeg, 0);
   }
 });
-test('concave L reflex edge rejects unsafe arcs between contained endpoints', () => {
+test('concave L reflex edge rejects the fixed-center arc but permits a proven assisted turn', () => {
   const state = stateFor('long', pose(-200, -200), S.createRoomL());
   const local = catalog.byId.long.footprintMm;
   assert.ok(G.polygonContains(state.room.polygonMm, G.transformPolygon(local, pose(-200, -200, -90))));
   assert.equal(G.polygonContains(state.room.polygonMm, G.transformPolygon(local, pose(-200, -200, -45))), false);
   assert.equal(C.rigidMotionStaysInside(state.room.polygonMm, local, pose(-200, -200), pose(-200, -200, -90)), false);
-  const r = turn(state, 'p', -90); assert.ok(r.yawDeg > -45 && r.yawDeg < 0);
-  assert.equal(turn(r.state, 'p', 0).yawDeg, 0);
+  // Choose a retreat independently of the resolver's proposal. Prove every
+  // continuous leg, including the return past the reflex corner.
+  const from = pose(-200, -200), away = pose(-400, -400);
+  const turned = pose(-400, -400, -90), end = pose(-200, -200, -90);
+  for (const [a, b] of [[from, away], [away, turned], [turned, end]])
+    assert.equal(C.rigidMotionStaysInside(state.room.polygonMm, local, a, b), true,
+      'Independent retreat/rotation/return must remain continuously contained');
+  const r = turn(state, 'p', -90);
+  assert.equal(r.yawDeg, -90); assert.equal(r.wallAdjusted, true); assert.equal(r.boundaryLimited, undefined);
+  assert.ok(G.polygonContains(state.room.polygonMm, G.transformPolygon(local, r.state.printers[0].attachment)));
+  const back = checked(r.state, () => S.resolveWorldRotation(r.state, {id: 'p', yawDeg: 0}, catalog,
+    {snapDeg: 0, anchorPointMm: {xMm: -200, zMm: -200}, targetLocalYawDeg: 0}));
+  assert.equal(S.serializeLayout(back.state, catalog), S.serializeLayout(state, catalog));
 });
 test('catalog polygon can fit where its declared width-depth box does not', () => {
   const state = stateFor('triangle', {}, S.createRoomRect({widthMm: 150, depthMm: 150}));
