@@ -151,18 +151,22 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
     wrap.append(n, u); label.append(wrap); parent.append(label);
     fields.set(name, n);
     listen(n, 'input', () => { if(n.readOnly)return;n._dirty = true;if(name.startsWith('room-'))roomDraft=true; n.removeAttribute('aria-invalid'); });
-    listen(n, 'change', () => {
-      if(n.readOnly || (n.dataset.rounded==='true'&&!n._dirty))return;
+    const commitNumber = () => {
+      if(disposed || n.readOnly || status.busy || !n._dirty)return;
       const value = n.valueAsNumber;
       if (!Number.isFinite(value) || !n.checkValidity()) {
         n.setAttribute('aria-invalid', 'true'); showError(tr('layout.validNumber')); return;
       }
       n._dirty = false;
-      if (status.busy) return;
       if(Object.is(value,n._sourceValue))return;
       n._draftValue=value;
       if(!status.error){feedback.hidden=true;feedback.dataset.error='false';}
       action(value);
+    };
+    listen(n, 'change', commitNumber);
+    listen(n, 'keydown', event => {
+      if(event.key!=='Enter'||event.repeat||event.isComposing||event.ctrlKey||event.metaKey||event.altKey)return;
+      event.preventDefault();commitNumber();
     });
     listen(n, 'blur', () => {
       if(name.startsWith('room-')&&roomDraft){
@@ -173,6 +177,9 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
         if(Object.hasOwn(n,'_draftValue')&&Number.isFinite(pending)&&n.checkValidity()){n._dirty=false;n.value=fixedOne(n._draftValue);}
         return;
       }
+      // Commit before refreshing: native focus changes can deliver blur before
+      // change. Clearing the dirty flag here deduplicates either event order.
+      commitNumber();
       n._dirty = false;
       if (state) refreshValues();
       const exact=Object.hasOwn(n,'_draftValue')?n._draftValue:n._sourceValue;

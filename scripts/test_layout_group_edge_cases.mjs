@@ -200,7 +200,7 @@ await test('accepted old gesture callbacks cannot recreate groups removed by res
     await r.act(action);const before=r.read();assert.equal(r.worldMove({id:'farm',x:move.x,z:move.z}),false);assert.equal(r.worldRotate({id:'farm',yawDeg:rotation.yawDeg}),false);assert.strictEqual(r.read().state,before.state);assert.deepEqual(r.read().past,before.past);assert.deepEqual(r.read().writes,before.writes);
   }
 });
-await test('repeated placement, undo and redo keep remapped parents and do not mutate saved templates',[ref('app','if(repeat){'),ref('app',"case 'undo':")],async()=>{
+await test('repeated placement, undo and redo keep remapped parents and do not mutate saved templates',[ref('app','if(keepPlacing){'),ref('app',"case 'undo':")],async()=>{
   const original=farm(),template=G.captureGroupTemplate(original,'farm',C),saved=JSON.stringify(template),r=replay(empty(),{library:[{id:'saved',template}]});await r.act({type:'group-place',templateId:'saved'});
   let p=r.previewPlacement({xMm:-2500,zMm:0,yawDeg:90,altKey:true});assert(p.valid);r.placeProposal(p,{repeat:true});p=r.previewPlacement({xMm:2500,zMm:0,yawDeg:-90,altKey:true});assert(p.valid);r.placeProposal(p);
   const placed=r.read().state;assert.equal(placed.groups.length,2);assert.equal(new Set([...placed.furniture,...placed.printers,...placed.groups].map(e=>e.id)).size,10);
