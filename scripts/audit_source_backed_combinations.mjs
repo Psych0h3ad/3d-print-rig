@@ -188,6 +188,19 @@ try{
  }
  const sourcePlan=v=>{const p=headPlan(v);return {...v,machine_head:{...p,hidden:[...p.hidden],modules:p.modules.filter(m=>m.role!=='dock')}};};
  const standalone={...heads,variants:heads.variants.map(sourcePlan)};
+ // Integrated A4T hardware lives inside its source base. Entering the family
+ // must not replace Chube with the separate Rapido LED-housing preset.
+ const sbChube=standalone.variants.find(v=>v.id==='hot18__siboor_awd__stealthburner__chube_compact__cw2');assert(sbChube);
+ for(const board of ['none','ebb2209_stock']){
+  const selected=resolveVariant(standalone,{...sbChube,board,toolhead:'a4t'},'toolhead');
+  assert.equal(selected.hotend,'chube_compact','A4T family entry discarded existing Chube hardware');
+ }
+ const a4tIds=['a4t57__rapido1_hf__xol_6','a4t57__chube_compact__xol_6','a4t57__rapido1_hf__xol_9','a4t57__chube_compact__xol_9','ahi17__a4t_rapido_prints','hot18__a4t__chube_compact__xol_prints'];
+ for(const id of a4tIds){
+  const a=standalone.variants.find(v=>v.id===id);assert(a);
+  const b=resolveVariant(standalone,{...a,hotend:a.hotend==='chube_compact'?'rapido1_hf':'chube_compact'},'hotend');assert(b);
+  await exercise(standalone,a,b,'A4T integrated source hardware '+id);
+ }
  const targets=sphinxCompanionPresets.filter(p=>p.gantry==='sphinx_monolith').map(p=>p.to);
  for(const id of targets){
   const a=standalone.variants.find(v=>v.id===id),b=standalone.variants.find(v=>v.id===targets.find(s=>s!==id));await exercise(standalone,a,b,'standalone migrated Sphinx');
@@ -203,6 +216,11 @@ try{
   assert(!c.variants.some(v=>v.toolhead==='sphinx'&&v.gantry==='siboor_awd'),'Unregistered 9 mm Sphinx mount escaped');
   const a=c.variants.find(v=>v.source_head_configuration==='sphinx19__voron__tricorn__short'),b=c.variants.find(v=>v.source_head_configuration==='sphinx44__voron__goliath_air__short__none');assert(a&&b);
   await exercise(c,a,b,'SIBOOR Sphinx exact registered R2');
+  for(const width of [6,9])for(const hotend of ['rapido1_hf','chube_compact']){
+   const first=c.variants.find(v=>v.source_head_configuration===`a4t57__${hotend}__xol_${width}`),other=c.variants.find(v=>v.gantry===first?.gantry&&v.source_head_configuration===`a4t57__${hotend==='chube_compact'?'rapido1_hf':'chube_compact'}__xol_${width}`);
+   assert(first&&other,'Existing installed A4T source recipe missing');
+   await exercise(c,first,other,'SIBOOR A4T integrated source hardware '+width+'/'+hotend);
+  }
  }
  const options=await catalog('EVA_OPTIONS.json'),installations=await catalog('EVA_INSTALLATIONS.json');validateEvaOptionsRegistry(options,heads);
  const front=await catalog('EVA_FRONT_SURFACES.json');await assetSpec(front.asset.component_id,front.asset);

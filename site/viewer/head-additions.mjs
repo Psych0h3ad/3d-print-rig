@@ -1,5 +1,5 @@
-import {collections} from './configuration-model.js?v=72ab51af36beab3eb0cf';
-import {withSphinxCompanionPresets} from './head-companion-presets.mjs?v=82ec6a996e9e1661b811';
+import {collections} from './configuration-model.js?v=ffcb5378701b391d2cab';
+import {withSphinxCompanionPresets} from './head-companion-presets.mjs?v=142ddcf204a96d847c30';
 import {withA4TPrintedReference} from './a4t-printed-companions.mjs?v=e7443f72d21fc964b2cf';
 import {validateEvaVariant} from './eva-heads.mjs?v=b53ce6925a6fec3b5b10';
 

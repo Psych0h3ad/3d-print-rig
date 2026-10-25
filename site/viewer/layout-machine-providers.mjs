@@ -42,7 +42,7 @@ export async function loadLayoutRecipe(recipe,{signal,onProgress}) {
    loaded=await loadCommunity(index,id,options);own(loaded);
    const configuration=loaded.profile.eva_installation?.configuration??'stock';
    if(loaded.profile.eva_installation){
-    const [{applyEvaOptionsProfile},{withHeadAdditions}]=await Promise.all([import('./eva-options.mjs?v=ee81f6eb2a14e77e65fd'),import('./head-additions.mjs?v=02ffe538ac437613b79f')]);
+    const [{applyEvaOptionsProfile},{withHeadAdditions}]=await Promise.all([import('./eva-options.mjs?v=ee81f6eb2a14e77e65fd'),import('./head-additions.mjs?v=a1cfc8aca74dc421ee1a')]);
     const opts=await json('EVA_OPTIONS.json',signal),heads=withHeadAdditions(await json('TOOLHEAD_CONFIGURATIONS.json',signal),await json('HEAD_ADDITIONS.json',signal));
     applyEvaOptionsProfile(loaded,opts,heads);
     if(opts.hosts[id].default_configuration!==configuration)throw Error('EVA default recipe mismatch');

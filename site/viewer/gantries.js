@@ -14,9 +14,9 @@ import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=319442cce47f582793a9';
 import {setupPublicInfo} from './public-info.js?v=07313fc4151911a54f23';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=25ed571fc2e2584e0e1f';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=eb58033537a41e78211d';
 import {monolithHeadCatalog} from './monolith-head-model.mjs?v=e8f1018fc486a70e7b46';
-import {setupConfigurations} from './configurations.js?v=a740e1aeb4d88e392801';
+import {setupConfigurations} from './configurations.js?v=f407f5f3413507f23101';
 import {gantryDimensions,gantryChoice,gantryAssets} from './gantry-model.js?v=workspace-belts-1';
 export async function mount(scope){
 const $=s=>document.querySelector(s),stage=$('#stage'),scene=scope.scene(new THREE.Scene()),bench=new THREE.Group();scene.add(bench);scene.background=new THREE.Color('#edf1f5');
