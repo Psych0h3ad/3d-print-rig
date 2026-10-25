@@ -5,7 +5,7 @@ import {readModelBytes} from './model-progress.mjs?v=beaef781095b6f56b290';
 import {externalModelDelivery} from './model-delivery.mjs';
 import {registeredModelDelivery,verifyDeliveredModel} from './model-delivery-policy.mjs';
 import {alphaNativeHostModelOptions} from './trinity-alpha-host-extensions.mjs?v=6cf4c4cd0bff082d7772';
-import {createV24Adapter} from './v24_matrix_adapter.mjs?v=1f70f3be4ab4a0e74544';
+import {createV24Adapter} from './v24_matrix_adapter.mjs?v=c71e052633de09bc592d';
 const siteRoot=new URL('../',import.meta.url);
 const ids=new Set([250,300,350].flatMap(n=>['printed','ldo_cnc'].map(s=>`voron_v24_${n}_${s}`)));
 const hash=async bytes=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(n=>n.toString(16).padStart(2,'0')).join('');

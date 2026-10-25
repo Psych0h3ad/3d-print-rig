@@ -1,4 +1,4 @@
-import {collections} from './configuration-model.js?v=9342ad570006d09f521e';
+import {collections} from './configuration-model.js?v=72ab51af36beab3eb0cf';
 import {withSphinxCompanionPresets} from './head-companion-presets.mjs?v=82ec6a996e9e1661b811';
 import {withA4TPrintedReference} from './a4t-printed-companions.mjs?v=e7443f72d21fc964b2cf';
 import {validateEvaVariant} from './eva-heads.mjs?v=b53ce6925a6fec3b5b10';

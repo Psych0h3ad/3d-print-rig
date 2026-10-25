@@ -189,6 +189,15 @@ clearance separately; sampled triangle clearance does not prove continuous
 physical clearance. `audit_ender_bowden.mjs` applies these checks to the Ender-3
 Stock/HYDRA and leadscrew/Belted Z installations during release builds.
 
+For cubic bows, also check derivative-based curvature and intermediate poses
+near its minima; corner poses alone can miss the tightest bend.
+`audit_flexible_family_routes.mjs` checks Mercury One.1 and LH Stinger routes;
+`audit_trident_half_ptfe.mjs` checks the half-height Trident against the exported
+roof, clips, screws and other rigid parts. Pin fitting coordinates, axes,
+passage geometry and routing controls, as well as model and controller hashes.
+Only named finite fitting engagements may be excluded from triangle tests.
+Keep open route findings separate from endpoint, visibility and reset passes.
+
 Purchased CAD may use construction colors that differ from the product. Check
 the exact manufacturer's appearance before treating white, green or other CAD
 colors as physical materials. Bind any display override to the purchased source

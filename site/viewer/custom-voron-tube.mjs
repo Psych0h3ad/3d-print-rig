@@ -43,6 +43,7 @@ function constantTubeCurve(spec,dx,dy){
  path.add(tail);line(spec.tail_controls_mm.at(-1),spec.end_mm);return path;
 }
 export function customTubeCurve(spec,dx=0,dy=0){
+ if(isHalfZTube(spec))return halfZTubeCurve(spec,dx,dy);
  if(isRoofTubeSource(spec)){if(spec.route_type)constantCustomTubeRoute(spec,dx,dy);return roofCustomTubeCurve(spec,dx,dy)}
  if(spec.route_type)return constantTubeCurve(spec,dx,dy);
  const points=spec.controls_mm.map((p,i)=>world([p[0]+(i<2?dx:0),p[1]+(i<2?dy:0),p[2]]));
@@ -96,6 +97,7 @@ export function hollowTubeGeometry(curve,spec,segments=256,sides=16){
 }
 export function createCustomTube(root,manifest){
  const spec=manifest.custom_ptfe;if(!spec)return null;
+ if(manifest.machine_id==='voron_trident_350_half_z')guardHalfZTube(manifest);
  if(isRoofTubeSource(spec)){
   const roofs={'voron_trident_500_custom':'5c3afbfe96c2d0dbeff9fe2846b32876f860443e68ad4811c387ffcb00f65068','voron_trident_1000_custom':'1b505b511c69e5ff4fb91a22c387a7c71232008f753855f812b5fc6ee7fe18c9'};
   if(manifest.parts.find(p=>p.key==='voron_trident_350_base_1359')?.native_sha256!==roofs[manifest.machine_id])throw Error('Native PTFE roof identity changed');
@@ -122,3 +124,4 @@ export function createCustomTube(root,manifest){
   preview?.dispose();preview=next;mesh.geometry=preview;last=[dx,dy];
  },dispose(){mesh.geometry=native;preview?.dispose();preview=null}};
 }
+import {isHalfZTube,guardHalfZTube,halfZTubeCurve} from './trident-half-z-tube.mjs?v=453d72966be4feedbe9a';

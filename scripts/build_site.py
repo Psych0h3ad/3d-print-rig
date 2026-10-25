@@ -358,6 +358,12 @@ def main():
     inputs_arg.add_argument('--inputs', type=Path)
     input_options, _ = inputs_arg.parse_known_args()
     input_map = json.loads(input_options.inputs.read_bytes()) if input_options.inputs else None
+    # Mandatory actual color/route checks; maps and detailed evidence are temporary.
+    with tempfile.TemporaryDirectory(prefix='viewer-quality-release-') as folder:
+        subprocess.run([sys.executable, str(ROOT/'scripts/check_viewer_quality_release.py'),
+                        '--site', str(target), '--output', folder,
+                        *(['--inputs', str(input_options.inputs)] if input_options.inputs else [])],
+                       cwd=ROOT, check=True)
     validate_mounting_evidence(target)
     # Dependency ledgers alone do not exercise the browser's composition of
     # retained witnesses. Run the production loader against the built bytes.

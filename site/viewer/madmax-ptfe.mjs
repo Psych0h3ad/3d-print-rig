@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import {hollowTubeGeometry} from './custom-voron-tube.mjs?v=be16dba6afffddec260f';
+import {hollowTubeGeometry} from './custom-voron-tube.mjs?v=f28049ddc0e0358894a7';
 
 // Native Xol r16 ECAS bore and upper lip; millimetres in the original Xol export.
 // Only the flexible viewer route changes. Purchased fittings and STEP stay native.

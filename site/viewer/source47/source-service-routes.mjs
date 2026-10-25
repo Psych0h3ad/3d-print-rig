@@ -14,7 +14,9 @@ export function createSourceServiceRoutes({model,meshes,input,getHead}){
   return {kind,key,mesh,definition:input[kind],last:null,points:[],world:[],bindings:input[kind].bindings.map(b=>({...b,inverse:b.host==='fixed_model'?null:new THREE.Matrix4().fromArray(input.source_reference_matrices[b.host]).invert()}))};
  });
  let latest=null;
- const host=key=>stock.get(key)||getHead()?.entries.find(e=>String(e.key)===key)?.mesh;
+ // The retained CW2 endpoints belong to the installed head. Removed stock
+ // leaves can share these keys while retaining a different placement/frame.
+ const host=key=>['556','578'].includes(key)?getHead()?.entries.find(e=>String(e.key)===key)?.mesh||stock.get(key):stock.get(key)||getHead()?.entries.find(e=>String(e.key)===key)?.mesh;
  function update(enabled){
   group.visible=!!enabled;if(!enabled){latest={ptfe:false,can:false,service_route_scope:'Existing SIBOOR display routes; hidden by user.'};return latest}
   model.updateWorldMatrix(true,true);const inverse=model.matrixWorld.clone().invert(),rows=[];
@@ -26,7 +28,8 @@ export function createSourceServiceRoutes({model,meshes,input,getHead}){
    });
    row.points=row.world.map(p=>p.clone().applyMatrix4(inverse));const signature=row.points.flatMap(p=>p.toArray()).join(',');
    if(signature!==row.last){
-    const geometry=new THREE.TubeGeometry(new THREE.CatmullRomCurve3(row.points,false,'centripetal'),160,row.definition.radius_mm/1000,8,false);
+    row.curve=new THREE.CatmullRomCurve3(row.points,false,'centripetal');
+    const geometry=new THREE.TubeGeometry(row.curve,160,row.definition.radius_mm/1000,8,false);
     const positions=geometry.getAttribute('position'),normals=geometry.getAttribute('normal');
     if(!positions||!normals||![...positions.array,...normals.array].every(Number.isFinite))throw Error('Nonfinite original service-route sweep');
     row.mesh.geometry.dispose();row.mesh.geometry=geometry;row.last=signature;

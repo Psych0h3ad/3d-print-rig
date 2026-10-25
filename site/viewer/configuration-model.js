@@ -3,11 +3,25 @@ import {hasDeclaredHeadHardware,registeredConfigurationId} from './head-companio
 export const dimensions=['gantry','toolhead','carriage','hotend','extruder','probe'];
 export const collections={gantry:'gantries',toolhead:'toolheads',mount:'mounts',carriage:'carriages',hotend:'hotends',extruder:'extruders',probe:'probes',board:'boards',cooling:'cooling_options'};
 export const catalogDimensions=catalog=>catalog.dimensions||dimensions;
+function restoredConfigurationId(catalog,id,index){
+ const resolved=registeredConfigurationId(catalog,id);
+ if(resolved!==id||typeof id!=='string')return resolved;
+ // Monolith composes the same source presets under two additional ID prefixes.
+ // A migration must retain the complete host/gantry prefix and land on an
+ // existing row with the exact source identity; never choose another mount.
+ if(!id.startsWith('monolith_installed__')&&!id.startsWith('monolith_machine__'))return id;
+ for(const [from,to]of Object.entries(catalog.configuration_aliases||{})){
+  const suffix='__'+from;if(!id.endsWith(suffix))continue;
+  const target=id.slice(0,-suffix.length)+'__'+to,row=index.byId.get(target);
+  if(row?.source_head_configuration===to)return target;
+ }
+ return id;
+}
 // Match registered source IDs used by standalone head links; never guess an ID.
 export function configurationById(catalog,id){
- const resolved=registeredConfigurationId(catalog,id);
- if(resolved!==resolved)return undefined;
  const index=variantIndex(catalog);
+ const resolved=restoredConfigurationId(catalog,id,index);
+ if(resolved!==resolved)return undefined;
  return index.byId.get(resolved)||index.bySource.get(resolved);
 }
 export const headBuilderDimensions=['toolhead','extruder','hotend','cooling','mount','gantry','carriage','probe','board'];
@@ -78,6 +92,9 @@ function resolveIndexedVariant(catalog,selection,changed,index){
  const order=catalogDimensions(catalog);
  const exact=narrowestRows(index,selection,order).find(v=>order.every(k=>v[k]===selection[k]));
  if(exact&&(!changed||exact.id===selection.id))return exact;
+ // Companion adjustment belongs to a named menu change. An explicit tuple
+ // without that intent must not silently install the nearest available head.
+ if(!changed)return null;
  let candidates=changed?candidatesFor(catalog,selection,changed,index):catalog.variants;
  // Prefer a hardware assembly when entering a head family that also retains
  // archived print-only references. Explicit component/reference choices still work.
@@ -135,8 +152,9 @@ export function choiceChanges(catalog,variant,dimension,value){
 export function importedVariant(catalog,data){
  if(data.machine&&data.machine!==(catalog.machine_id||'siboor_trident_350')&&!catalog.import_machine_ids?.includes(data.machine))throw Error('この構成は別のマシン用です。');
  const id=data.configuration||data.id;
- const resolved=registeredConfigurationId(catalog,id);
- const variant=resolved===resolved?variantIndex(catalog).byId.get(resolved):undefined;
+ const index=variantIndex(catalog),resolved=restoredConfigurationId(catalog,id,index);
+ const variant=resolved===resolved?index.byId.get(resolved):undefined;
  if(!variant)throw Error('この構成のCADは登録されていません。');
+ for(const key of catalogDimensions(catalog))if(Object.hasOwn(data,key)&&data[key]!==variant[key])throw Error('この構成のCADは登録されていません。');
  return variant;
 }

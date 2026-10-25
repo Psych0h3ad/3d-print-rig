@@ -1,5 +1,5 @@
 import {normalizeLanguage} from './languages.mjs?v=ba6a5cd8e1d86849ca34';
-import {monolithHeadCatalog} from './monolith-head-model.mjs?v=7a24beaf2a20d8f31774';
+import {monolithHeadCatalog} from './monolith-head-model.mjs?v=e8f1018fc486a70e7b46';
 import {machinePage} from './machines.js?v=5503ac507978b3d4e928';
 import {machineHeadVariants} from './machine-head-model.mjs?v=1dab5126e376ecd7f60c';
 

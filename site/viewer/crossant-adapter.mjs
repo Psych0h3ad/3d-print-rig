@@ -1,4 +1,6 @@
 import {cadToGlb,createNativeBelts} from './crossant-belt_deform.mjs';
+import {sourcePrintedRecords} from './source-printed-roles.mjs?v=7f1562b44e4853bf41dd';
+import {createPaletteController} from './palette-controller.mjs?v=ee8e97d84186af0fe8a0';
 export function poseDelta(profile,pose){
  const p=['x','y','z'].map(a=>Number(pose[a]));
  if(p.some(x=>!Number.isFinite(x)))throw Error('Non-finite pose');
@@ -9,7 +11,7 @@ export function partTranslation(row,delta){return delta.map((x,i)=>row.motion_ax
 export function driveTravel(delta){return {x_pair_mm:[delta[0],delta[0]],y_pair_mm:[delta[1],delta[1]],z_leadscrew_turns:[-delta[2]/8,-delta[2]/8,-delta[2]/8],motor_direction_status:'mechanical paired-axis travel; firmware motor polarity uncalibrated'};}
 export function createCrossantAdapter(root,manifest,profile,bindings,{chainPreview=null,placementCorrections={}}={}){
  if(profile.machine_id!=='crossant_235_v06_leadscrew'||manifest.machine_id!==profile.machine_id||bindings.machine_id!==profile.machine_id)throw Error('Crossant profile mismatch');
- const records=new Map(manifest.parts.map(p=>[p.key,p])),nodes=new Map();
+ const records=sourcePrintedRecords(manifest),nodes=new Map();
  if(records.size!==manifest.parts.length)throw Error('Duplicate Crossant key');
  root.traverse(o=>{const k=o.userData?.part_key;if(records.has(k)&&o.parent?.userData?.part_key!==k){if(nodes.has(k))throw Error('Duplicate node '+k);nodes.set(k,o);}});
  if(nodes.size!==records.size)throw Error('Crossant node coverage mismatch');
@@ -19,6 +21,7 @@ export function createCrossantAdapter(root,manifest,profile,bindings,{chainPrevi
  }
  const origins=new Map([...nodes].map(([k,o])=>[k,o.position.clone()]));
  const belts=createNativeBelts(nodes,bindings);
+ const paletteController=createPaletteController(nodes,records,{printedFinish:false});
  if(chainPreview)for(const [k,o] of nodes)if(records.get(k).motion==='chain_reference')o.visible=false;
  let last;
  function setPose(pose){
@@ -29,7 +32,7 @@ export function createCrossantAdapter(root,manifest,profile,bindings,{chainPrevi
   belts.update(d);if(chainPreview)chainPreview.update(-delta[2]);
   last={...pose};return {pose_mm:['x','y','z'].map(a=>pose[a]),delta_mm:delta,drive:driveTravel(delta),visible_belts:belts.entries.filter(e=>e.node.visible&&e.mesh.visible).length,chain_status:chainPreview?'dynamic routing preview':'native reference pose only',within_sampled_clearance_envelope:profile.sampled_clearance_limits_mm?['x','y','z'].every((a,i)=>pose[a]>=profile.sampled_clearance_limits_mm['XYZ'[i]][0]&&pose[a]<=profile.sampled_clearance_limits_mm['XYZ'[i]][1]):null};
  }
- function setPalette(palette){for(const [k,o] of nodes){const c=palette[records.get(k).appearance_role];if(!c)continue;o.traverse(n=>{if(n.isMesh)for(const m of Array.isArray(n.material)?n.material:[n.material])m.color.set(c);});}}
+ function setPalette(palette){paletteController.setPalette(palette);}
  // Variant/auxiliary visibility can never modify the driven belt nodes.
  function setGroupVisible(group,value){for(const [k,o] of nodes)if(records.get(k).group===group&&!belts.keys.has(k)&&records.get(k).motion!=='chain_reference')o.visible=Boolean(value);}
  return {nodes,records,belts,setPose,setPalette,setGroupVisible,setBeltsVisible:belts.setVisible,getPose:()=>last};

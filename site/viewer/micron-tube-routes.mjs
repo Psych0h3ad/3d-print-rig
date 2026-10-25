@@ -1,4 +1,38 @@
-import {Vector3,CurvePath,LineCurve3,CubicBezierCurve3} from './vendor/three.module.js';
+import {Vector3,Curve,CurvePath,LineCurve3,CubicBezierCurve3} from './vendor/three.module.js';
+
+// One smooth free span, with zero curvature at the straight fitting sections.
+// The bell and its antisymmetric spread both vanish through second order at
+// either end. Spread lets a compressed hose open into a broad bow instead of
+// sharpening the crest of a tall, narrow arch. Only the free span changes.
+export function serviceBow(point,a,b,u,v,length,shape){
+ const [r0,r1,dx,dy,spread]=shape,span=b.map((n,i)=>n-a[i]);
+ const horizontal=Math.hypot(span[0],span[1]);
+ if(!(length>Math.hypot(...span))||horizontal<1e-6)throw Error('Insufficient service bow length or horizontal span');
+ const direction=new Vector3(dx,dy,1).normalize().toArray();
+ const width=Math.max(0,length*spread-horizontal*.5),side=[span[0]/horizontal,span[1]/horizontal,0];
+ const base=a.map((n,i)=>{const d0=5*length*r0*u[i],d1=5*length*r1*v[i],d=span[i],w=side[i]*width;
+  return [n,d0,0,10*d-6*d0-4*d1-64*w,-15*d+8*d0+7*d1+320*w,6*d-3*d0-3*d1-576*w,448*w,-128*w];});
+ const lift=direction.map(n=>[0,0,0,64*n,-192*n,192*n,-64*n,0]);
+ const evaluate=(row,t,derivative=0)=>{let n=0;for(let i=7;i>=derivative;i--)n=n*t+row[i]*(derivative===2?i*(i-1):derivative===1?i:1);return n;};
+ const coefficients=height=>base.map((row,i)=>row.map((n,j)=>n+height*lift[i][j]));
+ // Use the same bounded chord integration for the solve and Three's arc map.
+ const divisions=384;
+ function measure(c){let total=0,previous=a;for(let i=1;i<=divisions;i++){const p=c.map(row=>evaluate(row,i/divisions));total+=Math.hypot(...p.map((n,j)=>n-previous[j]));previous=p;}return total;}
+ if(measure(base)>length)throw Error('Insufficient service bow length for fitting tangents');
+ let lo=0,hi=length*2;
+ if(measure(coefficients(hi))<length)throw Error('Service bow length solve is unbracketed');
+ for(let i=0;i<25;i++){const mid=(lo+hi)/2;if(measure(coefficients(mid))<length)lo=mid;else hi=mid;}
+ const c=coefficients((lo+hi)/2),zero=point([0,0,0]);
+ const display=c[0].map((_,j)=>j?point(c.map(row=>row[j])).sub(zero):point(c.map(row=>row[j])));
+ class Bow extends Curve{
+  constructor(){super();this.arcLengthDivisions=divisions;}
+  getPoint(t,target=new Vector3()){target.set(0,0,0);for(let i=7;i>=0;i--)target.multiplyScalar(t).add(display[i]);return target;}
+  getDerivative(t,target=new Vector3()){target.set(0,0,0);for(let i=7;i>=1;i--)target.multiplyScalar(t).addScaledVector(display[i],i);return target;}
+  getSecondDerivative(t,target=new Vector3()){target.set(0,0,0);for(let i=7;i>=2;i--)target.multiplyScalar(t).addScaledVector(display[i],i*(i-1));return target;}
+  getTangent(t,target=new Vector3()){return this.getDerivative(t,target).normalize();}
+ }
+ return new Bow();
+}
 
 // RC8 native fitting bore/plane datums, in CAD millimetres. Only the display
 // routing is rebuilt; the downloadable author assembly is unchanged.
