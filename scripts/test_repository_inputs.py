@@ -16,6 +16,31 @@ import prepare_repository_inputs
 from layout_equipment_inputs import (CACHE_RELATIVE, PAYLOAD_NAME, EQUIPMENT_PREFIX,
                                      prepare_equipment_inputs, load_exact_input_map, run_node)
 
+class SourceCatalogCheckout(unittest.TestCase):
+    def test_git_text_conversion_cannot_leave_a_windows_only_approval(self):
+        from check_repository import validate_source_catalog_checkout
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder);(root/'site').mkdir()
+            subprocess.run(['git','init','--quiet',str(root)],check=True)
+            (root/'.gitattributes').write_bytes(b'*.json text eol=lf\n')
+            file=root/'site/HEAD_ADDITIONS.json';windows=b'{"asset":"same model"}\r\n'
+            file.write_bytes(windows)
+            subprocess.run(['git','add','.gitattributes','site/HEAD_ADDITIONS.json'],cwd=root,check=True,capture_output=True)
+            published=subprocess.check_output(['git','show',':site/HEAD_ADDITIONS.json'],cwd=root)
+            self.assertNotEqual(published,windows)
+            contract={'source_catalog_sha256':{'HEAD_ADDITIONS.json':hashlib.sha256(windows).hexdigest()}}
+            with self.assertRaisesRegex(ValueError,'LF bytes'):
+                validate_source_catalog_checkout(root,contract)
+            file.write_bytes(published)
+            with self.assertRaisesRegex(ValueError,'pin differs'):
+                validate_source_catalog_checkout(root,contract)
+            contract['source_catalog_sha256']['HEAD_ADDITIONS.json']=hashlib.sha256(published).hexdigest()
+            validate_source_catalog_checkout(root,contract)
+            file.write_bytes(published+b' ')
+            with self.assertRaisesRegex(ValueError,'pin differs'):
+                validate_source_catalog_checkout(root,contract)
+
+
 class RepositoryInputs(unittest.TestCase):
     def test_source_checks_receive_only_exact_registered_inputs(self):
         with tempfile.TemporaryDirectory() as folder:

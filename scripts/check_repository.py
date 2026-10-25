@@ -20,6 +20,23 @@ def private_values(data):
 def canonical(data):
     return data.replace(b'\r\n', b'\n')
 
+def validate_source_catalog_checkout(root, contract):
+    """Source catalogs are LF text; retain exact raw-byte pins for the build."""
+    site = (root/'site').resolve()
+    for name, expected in contract.get('source_catalog_sha256', {}).items():
+        relative = Path(name)
+        if relative.is_absolute() or '..' in relative.parts or '\\' in name:
+            raise ValueError('Unsafe delivery source catalog path')
+        file = (site/relative).resolve()
+        if not file.is_relative_to(site):
+            raise ValueError('Delivery source catalog escapes the site')
+        data = file.read_bytes()
+        if data != canonical(data):
+            raise ValueError('Delivery source catalog must use LF bytes: '+name)
+        if hashlib.sha256(data).hexdigest() != expected:
+            raise ValueError('Delivery source catalog pin differs: '+name)
+
+
 def history_blob_records(root, objects, size_limit=10 * 1024 * 1024):
     """Read exact Git blob bytes through one process, including binary/newlines."""
     with subprocess.Popen(['git', 'cat-file', '--batch'], cwd=root,
@@ -61,6 +78,10 @@ def main():
         raise SystemExit('No tracked files. Stage the source files before checking.')
     before = {p.as_posix(): hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
     errors = []
+    try:
+        validate_source_catalog_checkout(ROOT, json.loads((ROOT/'site/APPROVED_DELIVERY.json').read_bytes()))
+    except (ValueError, OSError) as error:
+        errors.append(str(error))
     for path in paths:
         if path.suffix.lower() in BLOCKED or path.name.startswith('.env'):
             errors.append(f'Excluded publication file is tracked: {path.as_posix()}')

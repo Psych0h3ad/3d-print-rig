@@ -261,7 +261,7 @@
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
       "bytes": 1191619,
-      "sha256": "3352cd382d7f6192caf1cf56d627a9252c3dc623847e4fe102839867c6c2b6b6"
+      "sha256": "4dfd448acb4274f963d15eb34d82fba5721f3bdbb462834a10351f1cf1747bcb"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -935,8 +935,8 @@
     },
     {
       "path": "scripts/check_repository.py",
-      "bytes": 7201,
-      "sha256": "d5669f36fd930af3c03b061b949ec745935b30358b40e596e2b6ed423c643de0"
+      "bytes": 8259,
+      "sha256": "a75185832174573fe2d5124656315401cce828aaa805c34e767a7d45f2f66224"
     },
     {
       "path": "scripts/check_trinity_beacon_release.py",
@@ -2125,8 +2125,8 @@
     },
     {
       "path": "scripts/test_repository_inputs.py",
-      "bytes": 31693,
-      "sha256": "9d1723b8400b4d95c21fb5256b6200b0dd8a01078e972cea956eb666471f3a41"
+      "bytes": 33293,
+      "sha256": "32761da75efb54042cbc3554a9b568ec3a0b64e2813396a430ff8c9db3e7b7a3"
     },
     {
       "path": "scripts/test_requested_assemblies.mjs",
@@ -2641,7 +2641,7 @@
     {
       "path": "site/APPROVED_DELIVERY.json",
       "bytes": 725266,
-      "sha256": "5c8d8dccf341a3779eb9648b1645d182d0e6e8ae9044a70fadb683ab9059521b"
+      "sha256": "fd0b0976d9fb297d410d11a2993129460032c42d98bc9454a0a5d28452853fbb"
     },
     {
       "path": "site/ASSET_BUNDLE.json",
