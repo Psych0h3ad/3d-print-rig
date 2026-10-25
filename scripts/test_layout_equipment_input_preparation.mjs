@@ -139,10 +139,10 @@ try {
     assert.deepEqual(production.entries.map(e=>path.basename(e.pin.path)),[
       'U1_exterior_standalone_loaded.glb','U1_exterior_docked.glb','PopStationMini_empty.glb','PopStationMini_loaded.glb','U1_preview_geometry.json']);
     assert.deepEqual(production.entries.map(e=>[e.pin.bytes,e.pin.transfer.bytes]),[
-      [3631984,1883323],[3143064,1751173],[1189304,104124],[2116204,199439],[4776355,1530121]]);
+      [5751820,2502888],[5262896,2371206],[1189304,104124],[2116204,199439],[7200460,1714202]]);
     assert.equal(production.totalBytes,production.entries.reduce((n,e)=>n+e.pin.bytes+e.pin.transfer.bytes,0));
     assert(production.totalBytes<preparer.MAX_EQUIPMENT_INPUT_TOTAL_BYTES);assert(Object.isFrozen(production.entries[0].pin.transfer));
-    for(const entry of production.entries)assert.equal(entry.url,'https://psych0h3ad.github.io/3d-print-rig-extra-models/'+entry.pin.transfer.path);
+    for(const entry of production.entries)assert.equal(entry.url,'https://psych0h3ad.github.io/3d-print-rig-extra-models/layout-references/da1f857f0c48606ed818/'+entry.pin.transfer.path);
   });
 
   let cached;
@@ -195,10 +195,10 @@ try {
   });
 
   await run('canonical-host-rejects-private-alternate-credential-port-path-and-query-URLs',async()=>{
-    const bases=['http://psych0h3ad.github.io/3d-print-rig-extra-models/','https://127.0.0.1/','https://[::1]/',
-      'https://192.168.1.1/','https://localhost/','https://invalid.example/','https://user@psych0h3ad.github.io/3d-print-rig-extra-models/',
-      'https://psych0h3ad.github.io:443/3d-print-rig-extra-models/','https://psych0h3ad.github.io/other/',
-      'https://psych0h3ad.github.io/3d-print-rig-extra-models/?x=1'];
+    const bases=['http://psych0h3ad.github.io/3d-print-rig-extra-models/layout-references/da1f857f0c48606ed818/','https://127.0.0.1/','https://[::1]/',
+      'https://192.168.1.1/','https://localhost/','https://invalid.example/','https://user@psych0h3ad.github.io/3d-print-rig-extra-models/layout-references/da1f857f0c48606ed818/',
+      'https://psych0h3ad.github.io:443/3d-print-rig-extra-models/layout-references/da1f857f0c48606ed818/','https://psych0h3ad.github.io/other/',
+      'https://psych0h3ad.github.io/3d-print-rig-extra-models/layout-references/da1f857f0c48606ed818/?x=1'];
     for(const base of bases)for(const index of [0,4]) {
       const data=fixture(),options=destinations(),net=network(data);data.pins[index].transfer.baseURL=base;
       await mustFail(()=>prepare(options,data,net),integrity);assert.equal(net.calls.length,0);await assertNoOutput(options);

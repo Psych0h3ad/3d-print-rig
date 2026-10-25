@@ -51,7 +51,7 @@ try{
  fs.copyFileSync(path.join(root,'site/layout/layout-equipment-transfer.mjs'),path.join(fixtureSite,'layout/layout-equipment-transfer.mjs'));
  const raw=Buffer.from('glTF synthetic transport fixture, deliberately not a valid model'),wire=gzipSync(raw);
  const models=DEFINITIONS.map(([,id,variant,name])=>({id,equipmentVariant:variant,model:{path:PREFIX+name,bytes:raw.length,sha256:sha(raw),
-  transfer:{path:PREFIX+name+'.gz',bytes:wire.length,sha256:sha(wire),encoding:'gzip',baseURL:'https://psych0h3ad.github.io/3d-print-rig-extra-models/'}}}));
+  transfer:{path:PREFIX+name+'.gz',bytes:wire.length,sha256:sha(wire),encoding:'gzip',baseURL:'https://psych0h3ad.github.io/3d-print-rig-extra-models/layout-references/da1f857f0c48606ed818/'}}}));
  fs.writeFileSync(path.join(fixtureSite,'layout/layout-equipment.mjs'),`const rows=${JSON.stringify(models)};export const getLayoutEquipment=(id,v)=>rows.find(r=>r.id===id&&r.equipmentVariant===v);`);
  const fixtureMap=path.join(temporary,'fixture-inputs.json');fs.writeFileSync(fixtureMap,JSON.stringify({files:Object.fromEntries(models.map(r=>[r.model.path,path.join(cache,path.basename(r.model.path))]))}));
  for(const row of models){const file=path.join(cache,path.basename(row.model.path));fs.writeFileSync(file,raw);fs.writeFileSync(file+'.gz',wire);}

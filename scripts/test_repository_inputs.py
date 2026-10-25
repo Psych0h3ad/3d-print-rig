@@ -70,7 +70,7 @@ class EquipmentInputOrchestration(unittest.TestCase):
             self.pins.append({'path': name, 'bytes': len(raw), 'sha256': hashlib.sha256(raw).hexdigest(),
                               'transfer': {'path': name + '.gz', 'bytes': len(wire),
                                            'sha256': hashlib.sha256(wire).hexdigest(), 'encoding': 'gzip',
-                                           'baseURL': 'https://psych0h3ad.github.io/3d-print-rig-extra-models/'}})
+                                           'baseURL': 'https://psych0h3ad.github.io/3d-print-rig-extra-models/layout-references/da1f857f0c48606ed818/'}})
             for key, body in [(name, raw), (name + '.gz', wire)]:
                 file = self.root / 'exact-prepared-fixtures' / Path(key).name
                 file.parent.mkdir(exist_ok=True)

@@ -38,7 +38,7 @@ export async function auditAssets(opts){
   assert.deepEqual(row.model,currentRow.model,'Production lease changed pinned identity');
   return currentBytes.buffer.slice(currentBytes.byteOffset,currentBytes.byteOffset+currentBytes.byteLength);
  }});
- for(const [id,variants,common]of [[DEFINITIONS[0][1],['standalone','docked','standalone'],['casing']],
+ for(const [id,variants,common]of [[DEFINITIONS[0][1],['standalone','docked','standalone'],['casing','bottom_closure']],
   [DEFINITIONS[2][1],['empty','loaded','empty'],['cabinet','drawer']]]){
   let previousCommon=null;
   for(const variant of variants){
@@ -85,7 +85,7 @@ export async function auditAssets(opts){
   transportMode:'registered-exact-body',preparedDir:context.preparedDir,
   auditScriptSHA256:sha(fs.readFileSync(fileURLToPath(import.meta.url))),
   auditDependencies:Object.fromEntries(['audit_layout_equipment_geometry.mjs','audit_u1_bottom.mjs'].map(name=>['scripts/'+name,sha(fs.readFileSync(new URL('./'+name,import.meta.url)))])),...limits(),
-  scope:'Exact four GLB/gzip pairs and preview JSON/gzip, tracked metadata, source-backed plate contour receipt and full plate-specific license and all 66 preview-array receipts. Every source GLTFLoader mesh has complete position/normal/index and material equivalence to actual GLB; unchanged common matrices/geometry/materials through A-to-B-to-A, identity root and exact disposal. Every production preview source array remains independently pinned and unchanged. Separately labeled full/preview U1 lower-rim closures have exact source-boundary, winding, area and vertical-ray checks; full closures inherit the original rim PBR. Differences between full GLB and catalog-declared simplified previews are recorded without an equivalence claim. Other proxy primitives remain illustrative. No native solids or physical mounting/load/operating clearance certification; browser/GPU, state save/load and full machine coverage remain separate.'};
+  scope:'Exact four GLB/gzip pairs and preview JSON/gzip, tracked metadata, source-backed plate contour receipt and full plate-specific license and all 87 preview-array receipts. Every source GLTFLoader mesh has complete position/normal/index and material equivalence to actual GLB; unchanged common matrices/geometry/materials through A-to-B-to-A, identity root and exact disposal. Every production preview source array remains independently pinned and unchanged. Intrinsic full/preview U1 plates have closed-topology, winding, measured-opening containment, area and actual triangle vertical-ray checks, without runtime derivatives. Differences between full GLB and catalog-declared simplified previews are recorded without an equivalence claim. Other proxy primitives remain illustrative. No native solids or physical mounting/load/operating clearance certification; browser/GPU, state save/load and full machine coverage remain separate.'};
 }
 if(process.argv[1]&&pathToFileURL(path.resolve(process.argv[1])).href===import.meta.url){
  const originalFetch=globalThis.fetch;globalThis.fetch=async()=>{throw new Error('Live network forbidden in equipment audit');};

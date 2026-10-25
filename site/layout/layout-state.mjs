@@ -3,7 +3,7 @@ import {rigidMotionStaysInside,boundaryTangents} from './layout-constraints.mjs?
 import {WALL_FINISHES, FLOOR_FINISHES, DEFAULT_ROOM_APPEARANCE} from './layout-finishes.mjs?v=001b62f9728770a12303';
 import {rootPose,groupRootPose,rebaseLayoutGroups} from './layout-group-data.mjs?v=402a86c4c0754fb6e10f';
 import {envelopeOverlaps,envelopeChange,prepareCollisionMotion} from './layout-collision.mjs?v=1a7a6f204f8ed66b33ed';
-import {getLayoutEquipment} from './layout-equipment.mjs?v=6046ce679bd80e50ee2d';
+import {getLayoutEquipment} from './layout-equipment.mjs?v=bd8e2772cabd6fd2564b';
 import {wallRotationCenters} from './layout-wall-rotation.mjs?v=7ae98b15139f328512eb';
 import {isGroupLabel} from './layout-group-labels.mjs?v=1ff84a0cf5540fd3184b';
 

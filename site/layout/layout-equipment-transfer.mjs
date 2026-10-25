@@ -1,7 +1,7 @@
 // Exact file transport only; decoded model identities and geometry stay unchanged.
 // Shared by the browser loader and actual-body CLI audits. No work on import.
 export const MAX_LAYOUT_EQUIPMENT_BYTES=16*1024*1024;
-export const LAYOUT_EQUIPMENT_TRANSFER_BASE='https://psych0h3ad.github.io/3d-print-rig-extra-models/';
+export const LAYOUT_EQUIPMENT_TRANSFER_BASE='https://psych0h3ad.github.io/3d-print-rig-extra-models/layout-references/da1f857f0c48606ed818/';
 const HASH=/^[a-f0-9]{64}$/;
 const EXTERNAL_MODELS=new Set([
   'layout/assets/equipment/u1-exterior/U1_exterior_standalone_loaded.glb',
