@@ -54,7 +54,7 @@ async function groupCases(){
     const before=JSON.stringify(x.state()),ids=G.groupEntityIds(x.state(),'farm');
     assert.equal(x.nodes(false).has('farm'),false,'Virtual pivot leaked into scene');assert.equal(x.nodes(true).has('farm'),false,'Virtual pivot leaked into plan');
     assert.deepEqual([...x.nodes(false).keys()].sort(),['desk-a','shelf-b','child-a1','child-a2','child-b','floor-c','unrelated'].sort());
-    const summary=x.container.querySelector('.layout-selected-summary');assert.equal(summary.children[0].textContent,'Farm A');
+    const summary=x.container.querySelector('.layout-selected-summary');assert.equal(summary.children[0].textContent,'A · Farm A');
     const info=G.groupInfo(x.state(),'farm',x.catalog);assert.equal(summary.children[1].textContent,[info.widthMm,info.depthMm,info.heightMm].map(Math.round).join(' × ')+' mm');
     // An elevated support printer with a native base offset participates in the
     // same focus/selection union as floor roots and furniture.

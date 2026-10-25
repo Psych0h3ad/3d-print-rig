@@ -1,10 +1,11 @@
 import {polygonProblems, polygonContains, polygonsOverlap, rectangle, rotateXZ, transformPolygon, bounds} from './layout-geometry.mjs?v=129e07e8d3e2b008fab6';
 import {rigidMotionStaysInside,boundaryTangents} from './layout-constraints.mjs?v=53e33561b2e7ce324016';
 import {WALL_FINISHES, FLOOR_FINISHES, DEFAULT_ROOM_APPEARANCE} from './layout-finishes.mjs?v=001b62f9728770a12303';
-import {rootPose,groupRootPose,rebaseLayoutGroups} from './layout-group-data.mjs?v=298837e53f6daea54c7c';
+import {rootPose,groupRootPose,rebaseLayoutGroups} from './layout-group-data.mjs?v=402a86c4c0754fb6e10f';
 import {envelopeOverlaps,envelopeChange,prepareCollisionMotion} from './layout-collision.mjs?v=1a7a6f204f8ed66b33ed';
 import {getLayoutEquipment} from './layout-equipment.mjs?v=6046ce679bd80e50ee2d';
 import {wallRotationCenters} from './layout-wall-rotation.mjs?v=7ae98b15139f328512eb';
+import {isGroupLabel} from './layout-group-labels.mjs?v=1ff84a0cf5540fd3184b';
 
 export const LIMITS = Object.freeze({maxFurniture: 64, maxPrinters: 128, maxRoomVertices: 32,
   maxFootprintVertices: 32, maxLevels: 32, maxCoordinateMm: 1000000, maxDimensionMm: 100000,
@@ -183,13 +184,18 @@ export function validateState(state, catalog = []) {
   if (state.groups !== undefined) {
     if (!Array.isArray(state.groups) || state.groups.length > LIMITS.maxGroups) issue(errors, 'GROUP_LIMIT', 'groups');
     else {
-      const assigned = new Set();
+      const assigned = new Set(), labels = new Set();
       state.groups.forEach((g, i) => {
         const path = `groups[${i}]`;
-        if (!keys(g, ['id','name','pose','originPose','memberIds','memberPoses'], path, errors)) return;
+        if (!keys(g, ['id','name','label','pose','originPose','memberIds','memberPoses'], path, errors)) return;
         identifier(g.id, `${path}.id`, errors);
         if (ids.has(g.id)) issue(errors, 'DUPLICATE_ENTITY_ID', `${path}.id`); ids.add(g.id);
         if (typeof g.name !== 'string' || !g.name.trim() || g.name.length > 80 || /[\u0000-\u001f\u007f]/.test(g.name)) issue(errors, 'GROUP_NAME', `${path}.name`);
+        if (Object.hasOwn(g, 'label')) {
+          if (!isGroupLabel(g.label)) issue(errors, 'GROUP_LABEL', `${path}.label`);
+          else if (labels.has(g.label)) issue(errors, 'GROUP_LABEL_DUPLICATE', `${path}.label`);
+          else labels.add(g.label);
+        }
         poseCheck(g.pose, `${path}.pose`, errors); poseCheck(g.originPose, `${path}.originPose`, errors);
         if (!Array.isArray(g.memberIds) || !g.memberIds.length || g.memberIds.length > LIMITS.maxFurniture + LIMITS.maxPrinters) { issue(errors, 'GROUP_MEMBERS', `${path}.memberIds`); return; }
         if (!Array.isArray(g.memberPoses) || g.memberPoses.length !== g.memberIds.length) { issue(errors, 'GROUP_MEMBERS', `${path}.memberPoses`); return; }

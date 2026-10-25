@@ -40,7 +40,7 @@ await test('optional groups preserve normal object editing and native empty rese
   const r=setup(plan(),'desk-1');assert.equal(r.field('widthMm').value,'1200.0');
   assert.equal(r.find('#layout-groups').children.length,0);assert.equal(r.command('layout.group.create').disabled,true);
   r.ui.update(createDefaultLayout());assert.equal(r.container.querySelectorAll('[data-layout-group-member]').length,0);
-  assert.equal(r.command('layout.nav.selection').disabled,true);r.ui.dispose();
+  assert.equal(r.command('layout.nav.selection').disabled,false);r.ui.dispose();
 });
 await test('only furniture and floor printer rows have labelled native checkboxes',()=>{
   const r=setup(),checks=r.container.querySelectorAll('[data-layout-group-member]');
@@ -88,15 +88,16 @@ await test('grouped roots stay selected; removed and newly attached roots are pr
 });
 await test('group rows select their own IDs and count attached printers once',()=>{
   const r=setup(plan([unit()]),'unit-1'),row=r.find('[data-layout-group="unit-1"]');
-  assert.equal(row.getAttribute('aria-label'),'North bench');assert.equal(row.getAttribute('aria-pressed'),'true');
+  assert.equal(row.getAttribute('aria-label'),'A · North bench');assert.equal(row.getAttribute('aria-pressed'),'true');
   assert(row.textContent.includes('Printers: 3 · Furniture: 1'));row.click();assert.deepEqual(r.actions,[{type:'select',id:'unit-1'}]);
-  assert.equal(r.container.querySelectorAll('[aria-pressed="true"]').length,1);r.ui.dispose();
+  assert.equal(r.container.querySelectorAll('[data-layout-group]').filter(n=>n.getAttribute('aria-pressed')==='true').length,1);r.ui.dispose();
 });
-await test('group selection enables sidebar jump without changing state or dispatching an edit',()=>{
-  const r=setup(plan([unit()]),{id:'unit-1'}),scrolls=[];
-  r.container.scrollTop=100;r.container.getBoundingClientRect=()=>({top:20});r.container.scrollTo=options=>scrolls.push(options);
-  r.find('[role="toolbar"]').getBoundingClientRect=()=>({height:90});r.find('#layout-nav-selection').getBoundingClientRect=()=>({top:200});
-  assert.equal(r.command('layout.nav.selection').disabled,false);r.command('layout.nav.selection').click();assert.deepEqual(scrolls,[{top:190,behavior:'instant'}]);assert.equal(r.actions.length,0);r.ui.dispose();
+await test('group selection remains available in real workspace panels without editing state',()=>{
+  const state=plan([unit()]),r=setup(state,{id:'unit-1'}),before=JSON.stringify(state);
+  r.container.scrollTo=()=>{throw Error('Tabs must not scroll the page');};
+  r.command('layout.nav.room').click();assert.equal(r.find('#layout-nav-selection').hidden,true);
+  r.command('layout.nav.selection').click();assert.equal(r.find('#layout-nav-selection').hidden,false);
+  assert.equal(r.command('layout.nav.selection').getAttribute('aria-selected'),'true');assert.equal(JSON.stringify(state),before);assert.equal(r.actions.length,0);r.ui.dispose();
 });
 await test('group editor ignores internal fields and exposes world pose without furniture controls',()=>{
   const group={...unit(),originPose:{xMm:999,zMm:999,yawDeg:999},memberPoses:[{id:'desk-1',xMm:999,zMm:999,yawDeg:999}],type:'desk',machineId:'ignored-internal',attachment:{xMm:999,zMm:999,yawDeg:999},levels:[{id:'ignored'}]},r=setup(freeze(plan([group])),'unit-1');
@@ -123,7 +124,7 @@ await test('external transforms, rename, membership, A-to-B-to-A and reset refre
   r.ui.update(state,'unit-2');assert.equal(r.find('#layout-group-edit-name').value,'Shelf bank');assert.equal(r.field('xMm').value,'800.0');
   r.ui.update(JSON.parse(JSON.stringify(state)),'unit-1');assert.equal(r.find('#layout-group-edit-name').value,'North bench');assert.equal(r.field('xMm').value,'123.5');
   r.ui.update({...state,groups:[{...unit(),memberIds:['floor-2']}]},'unit-1');assert.deepEqual(r.container.querySelectorAll('[data-layout-group-object]').map(n=>n.dataset.layoutGroupObject),['floor-2']);
-  r.ui.update(createDefaultLayout(),null);assert.equal(r.container.querySelector('#layout-group-edit-name'),null);assert.equal(r.command('layout.nav.selection').disabled,true);assert.equal(r.actions.length,0);r.ui.dispose();
+  r.ui.update(createDefaultLayout(),null);assert.equal(r.container.querySelector('#layout-group-edit-name'),null);assert.equal(r.command('layout.nav.selection').disabled,false);assert.equal(r.actions.length,0);r.ui.dispose();
 });
 await test('group members individually select furniture, implicit attached printers and floor printers',()=>{
   const r=setup(plan([unit()]),'unit-1'),members=r.container.querySelectorAll('[data-layout-group-object]');
@@ -169,7 +170,7 @@ await test('all five languages retranslate dynamic group text and library while 
 });
 await test('untrusted unit names are literal text; new icons are hidden vector SVG paths',()=>{
   const name='<img src=x onerror=alert(1)>',r=setup(plan([{...unit(),name}]),'unit-1');r.ui.setGroupLibrary([{id:'literal',name,printerCount:1,furnitureCount:0}]);
-  assert.equal(r.find('[data-layout-group="unit-1"]').getAttribute('aria-label'),name);assert.equal(r.find('#layout-group-edit-name').value,name);assert(r.find('#layout-group-library').textContent.includes(name));assert.equal(r.container.querySelector('img'),null);assert.equal(r.container.querySelector('script'),null);
+  assert.equal(r.find('[data-layout-group="unit-1"]').getAttribute('aria-label'),`A · ${name}`);assert.equal(r.find('#layout-group-edit-name').value,name);assert(r.find('#layout-group-library').textContent.includes(name));assert.equal(r.container.querySelector('img'),null);assert.equal(r.container.querySelector('script'),null);
   for(const key of ['layout.group.create','layout.group.save','layout.group.ungroup','layout.group.place']){const svg=r.command(key).querySelector('svg');assert(svg);assert.equal(svg.getAttribute('aria-hidden'),'true');assert(svg.querySelector('path').getAttribute('d'));}r.ui.dispose();
 });
 await test('app group names, browser-local save status and validation codes have explicit translations',()=>{

@@ -180,13 +180,14 @@ await test('desktop-bootstrap-reaches-ready-with-automatic-renderer-and-no-remov
   const {createDefaultLayout,createDesk,createCatalog,applyAction,parseLayout}=deps;
   const {groupTemplateInfo,parseGroupLibrary}=deps.G;
   const document=deps.doc,$=q=>document.querySelector(q),navigator={deviceMemory:8},localStorage={getItem:()=>null};
-  const storageKey='test',groupLibraryKey='sets-test',maxFileBytes=2097152,fetch=async()=>({ok:true,json:async()=>deps.catalogData});let groupLibrary=[];
+  const storageKey='test',legacyStorageKey='legacy-test',groupLibraryKey='sets-test',maxFileBytes=2097152,fetch=async()=>({ok:true,json:async()=>deps.catalogData});let groupLibrary=[];
   let state,catalog,rows,ui,view,selected=null,busy=false,roomEditing=false,disposed=false,placement=null,startEmpty=false;const past=[],future=[];
   const language={t:key=>key},t=key=>key,act=()=>{},select=()=>{},worldMove=()=>{},constrainMove=()=>{},worldRotate=deps.rotationPorts.onRotate,constrainRotate=deps.rotationPorts.constrainRotate,previewPlacement=()=>null,placeProposal=()=>{},placementKey=()=>{},copyEvent=()=>{},pasteEvent=()=>{},message=()=>{},humanError=()=> 'error';
   const calls={sync:0,language:0,views:[],presentations:[],options:[],libraries:[]};
   const sync=()=>calls.sync++,updateLanguage=()=>calls.language++,dark=()=>false;
   const updateViewPresentation=value=>calls.presentations.push(value);
   const createLayoutUI=()=>({fixture:true,setGroupLibrary:items=>calls.libraries.push(items)});
+  ${unique(app,'function readSavedLayout(){','\nfunction message(')}
   ${librarySource}
   ${defaultSource}
   ${historySource}

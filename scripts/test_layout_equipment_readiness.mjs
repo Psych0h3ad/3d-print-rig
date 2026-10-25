@@ -64,7 +64,7 @@ await test('failed startup exposes retry, saved-plan export and empty-layout rec
   const recovery=source.slice(source.indexOf('function startupFailed(error){'),source.indexOf('\nstart().catch(startupFailed);'));
   assert(recovery.startsWith('function startupFailed'));
   const f=new Function('deps',`
-    const document=deps.doc,localStorage={getItem:()=>deps.saved},storageKey='fixture',console={error(){}},disposed=false,ui=null,view=null;
+    const document=deps.doc,localStorage={getItem:()=>deps.saved},storageKey='fixture',legacyStorageKey='legacy-fixture',console={error(){}},disposed=false,ui=null,view=null;
     const $=s=>document.body.querySelector(s),t=k=>k,message=(f)=>{const node=$('#layout-status');node.hidden=false;node.textContent=f();node._layoutMessage={error:true};deps.messages.push(f());},download=(b,n)=>deps.downloads.push({b,n});
     const language={refresh(){for(const n of document.body.querySelectorAll('[data-layout-i18n]')){
       for(const lang of deps.languages)deps.translate(n.dataset.layoutI18n,{},lang);
@@ -72,6 +72,7 @@ await test('failed startup exposes retry, saved-plan export and empty-layout rec
     }}};
     let startEmpty=false,rejectRetry=true;
     async function start(){deps.calls.push(startEmpty);if(rejectRetry)throw Error('Fixture retry failed');}
+    ${source.slice(source.indexOf('function readSavedLayout(){'),source.indexOf('\nfunction message('))}
     ${recovery}
     return {fail:startupFailed,accept:()=>{rejectRetry=false;}};
   `)({doc,saved,calls,downloads,messages,translate,languages:supportedLanguages});
@@ -86,7 +87,7 @@ await test('failed startup exposes retry, saved-plan export and empty-layout rec
   assert.equal(status.hidden,true);assert.equal(status.textContent,'');assert.equal(Object.hasOwn(status,'_layoutMessage'),false);
 });
 assert.match(source,/state=startEmpty\?createDefaultLayout\(\):makeDefault\(\);/);
-assert.match(source,/if\(!startEmpty\)try\{const saved=localStorage.getItem\(storageKey\)/);
+assert.match(source,/if\(!startEmpty\)try\{const saved=readSavedLayout\(\)/);
 assert.match(source,/if\(!await ensureEquipmentPreview\(state\)\|\|disposed\)return;/);
 assert.match(source,/if\(!await ensureEquipmentPreview\(next\)/);
 assert.match(source,/if\(needsEquipmentPreview\(spec\)&&!isLayoutEquipmentPreviewPrepared\(\)\)/);

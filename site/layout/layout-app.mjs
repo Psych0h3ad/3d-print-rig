@@ -1,15 +1,15 @@
-import {createDefaultLayout,createDesk,createShelf,createPopStation,createCatalog,applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,placementViolations,deriveScene,worldTransform,validatePlacement,serializeLayout,parseLayout} from './layout-state.mjs?v=fa98d98dcf1a407e6752';
+import {createDefaultLayout,createDesk,createShelf,createPopStation,createCatalog,applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,placementViolations,deriveScene,worldTransform,validatePlacement,serializeLayout,parseLayout} from './layout-state.mjs?v=0119a2ef6745811fe1cb';
 import {equipmentRows,isLayoutEquipmentPreviewPrepared} from './layout-equipment.mjs?v=6046ce679bd80e50ee2d';
 import {prepareLayoutEquipmentPreview,needsEquipmentPreview} from './layout-equipment-preview.mjs?v=ad1157a41ddd8e624ef3';
-import {createLayoutUI} from './layout-ui.mjs?v=5b8df8a97137f99c2707';
-import {setupLayoutLanguage} from './layout-language.mjs?v=334eb48b4037bc86a64f';
-import {proposePlacement} from './layout-placement.mjs?v=ac447dbda3852a6999c7';
+import {createLayoutUI} from './layout-ui.mjs?v=c3a6d477e8939ef4bc84';
+import {setupLayoutLanguage} from './layout-language.mjs?v=650f4f06bda68a7a6ed7';
+import {proposePlacement} from './layout-placement.mjs?v=60498bf8c4e88ee23e23';
 import {renameGroup,ungroup,removeGroup,groupInfo,transformGroup,resolveGroupMove,resolveGroupRotation,
-  captureGroupTemplate,groupTemplateInfo,proposeGroupPlacement,parseGroupLibrary,GROUP_LIBRARY_LIMIT} from './layout-groups.mjs?v=bac543d950a319989131';
-import {captureLayoutClipboard,encodeLayoutClipboard,decodeLayoutClipboard,regroupLayoutSelection} from './layout-clipboard.mjs?v=6d00dc3167fc69dde393';
+  captureGroupTemplate,groupTemplateInfo,proposeGroupPlacement,parseGroupLibrary,GROUP_LIBRARY_LIMIT} from './layout-groups.mjs?v=77c6db8faf1377201463';
+import {captureLayoutClipboard,encodeLayoutClipboard,decodeLayoutClipboard,regroupLayoutSelection} from './layout-clipboard.mjs?v=439752446a41d53b017c';
 import {readDisplay,saveDisplay,applyDisplay} from '../viewer/display-preferences.mjs?v=8f347468def25922153c';
 
-const storageKey='3d-print-rig-layout-v1',maxFileBytes=2*1024*1024;
+const storageKey='3d-print-rig-layout-v2',legacyStorageKey='3d-print-rig-layout-v1',maxFileBytes=2*1024*1024;
 const groupLibraryKey='3d-print-rig-layout-sets-v1';let groupLibrary=[];
 const $=selector=>document.querySelector(selector);
 let state,catalog,rows,ui,view,language,selected=null,busy=false,roomEditing=false,operation=null,disposed=false,renderURL=null;
@@ -22,6 +22,7 @@ const id=prefix=>{let value;do value=`${prefix}-${nextId++}`;while([...state.fur
 const clone=value=>JSON.parse(JSON.stringify(value));
 const t=(key,params)=>language?.t(key,params)||key;
 function store(){try{localStorage.setItem(storageKey,serializeLayout(state,catalog));}catch{}}
+function readSavedLayout(){const saved=localStorage.getItem(storageKey);return saved===null?localStorage.getItem(legacyStorageKey):saved;}
 function message(value,error=false,details={}){
  const node=$('#layout-status'),format=typeof value==='function'?value:()=>value,text=String(format());
  node._layoutMessage={format,error};node.hidden=false;node.textContent=text;
@@ -49,7 +50,7 @@ function commit(next,{history=true,selection=selected}={}){
   if(history){past.push(state);if(past.length>80)past.shift();future.length=0;}
   state=next;selected=selection;delete $('#layout-status')._layoutMessage;$('#layout-status').hidden=true;$('#layout-status').textContent='';ui.setStatus({message:'',error:false});sync();store();
 }
-function select(value){if(busy)return;if(placement)cancelPlacement();interactionGeneration++;selected=value;sync();}
+function select(value){if(busy)return;if(placement)cancelPlacement();interactionGeneration++;selected=value;sync();ui?.focusSelection?.();}
 async function ensureEquipmentPreview(value){
   if(!needsEquipmentPreview(value)||isLayoutEquipmentPreviewPrepared())return true;
   if(disposed||busy||roomEditing)return false;
@@ -372,7 +373,7 @@ async function act(action){
       case 'render':await render();return;
       case 'edit-room':case 'import-svg':{
         roomEditing=true;
-        try{const {openRoomEditor}=await import('./layout-room-editor.mjs?v=5fec66645572f78eaa16'),nextRoom=await openRoomEditor({room:state.room,file:action.type==='import-svg'?action.file:undefined,t:language.t});
+        try{const {openRoomEditor}=await import('./layout-room-editor.mjs?v=85b3743d7b7aeb985d1e'),nextRoom=await openRoomEditor({room:state.room,file:action.type==='import-svg'?action.file:undefined,t:language.t});
           if(nextRoom&&!disposed){commit(applyAction(state,{type:'SET_ROOM',room:nextRoom},catalog));view.view('perspective');view.view('fit');}
         }finally{roomEditing=false;}return;
       }
@@ -431,7 +432,8 @@ function placementKey(event){
     return;
   }
   if(event.ctrlKey||event.metaKey)return;
-  if((key==='delete'||key==='backspace')&&selected){event.preventDefault();act({type:'delete',id:selected});}
+  if(key==='/'&&ui.focusObjectSearch?.()){event.preventDefault();}
+  else if((key==='delete'||key==='backspace')&&selected){event.preventDefault();act({type:'delete',id:selected});}
   else if(key==='r'&&selected){event.preventDefault();worldRotate({id:selected,deltaDeg:event.shiftKey?-90:90});}
   else if(key==='f'&&selected){if(view.focusSelected())event.preventDefault();}
 }
@@ -475,11 +477,11 @@ async function start(){
   rows=[...raw.machines,...equipmentRows].map(r=>({...r,widthMm:r.dimensionsMm.width,depthMm:r.dimensionsMm.depth,heightMm:r.dimensionsMm.height}));
   catalog=createCatalog(rows.map(r=>({id:r.id,widthMm:r.widthMm,depthMm:r.depthMm,heightMm:r.heightMm,baseOffsetMm:r.baseOffsetMm||0,...(r.footprintMm?{footprintMm:r.footprintMm}:{}),...(r.supportFootprintMm?{supportFootprintMm:r.supportFootprintMm}:{})})));
   state=startEmpty?createDefaultLayout():makeDefault();
-  if(!startEmpty)try{const saved=localStorage.getItem(storageKey);if(saved&&saved.length<=maxFileBytes)state=parseLayout(saved,catalog);}catch{message(()=>t('layout.error.savedPlan'),true);}
+  if(!startEmpty)try{const saved=readSavedLayout();if(saved&&saved.length<=maxFileBytes){state=parseLayout(saved,catalog);store();}}catch{message(()=>t('layout.error.savedPlan'),true);}
   try{const saved=localStorage.getItem(groupLibraryKey);if(saved)groupLibrary=parseGroupLibrary(saved,catalog);}catch{message(()=>t('layout.group.libraryUnavailable'),true);}
   if(!await ensureEquipmentPreview(state)||disposed)return;
-  const {createLayoutRenderer}=await import('./layout-renderer.mjs?v=cf094b9ac3bbb80f558b');
-  ui=createLayoutUI({container:$('#layout-sidebar'),onAction:act,t:language.t,catalog:rows});
+  const {createLayoutRenderer}=await import('./layout-renderer.mjs?v=df755b432524dff3c86a');
+  ui=createLayoutUI({container:$('#layout-sidebar'),onAction:act,t:language.t,catalog:rows,onObjectSearchEscape:()=>view?.canvas.focus()});
   refreshGroupLibrary();
   view=createLayoutRenderer({container:$('#layout-scene'),catalog:rows,t:language.t,onSelect:select,onMove:worldMove,constrainMove,onRotate:worldRotate,constrainRotate,onPlacementMove:previewPlacement,onPlacementCommit:placeProposal,onViewChange:updateViewPresentation,onError:error=>message(()=>humanError(error),true)});
   sync();view.view('perspective');document.addEventListener('keydown',historyKey);document.addEventListener('keydown',placementKey);document.addEventListener('copy',copyEvent);document.addEventListener('paste',pasteEvent);
@@ -522,7 +524,7 @@ function startupFailed(error){
     button.dataset.layoutRecovery=command;button.dataset.layoutI18n=key;
     button.addEventListener('click',()=>{
       if(command==='save'){
-        try{const saved=localStorage.getItem(storageKey);if(saved)download(new Blob([saved],{type:'application/json'}),'3d-print-rig-layout.json');}catch{}
+        try{const saved=readSavedLayout();if(saved)download(new Blob([saved],{type:'application/json'}),'3d-print-rig-layout.json');}catch{}
         return;
       }
       for(const control of panel.querySelectorAll('button'))control.disabled=true;

@@ -25,6 +25,17 @@ export function resolveLayoutLanguage({href, stored} = {}) {
 // Each row is [id, English, Japanese, Spanish, Korean, Russian].
 // Names and dimensions supplied by the catalog are values, never translated IDs.
 const rows = [
+  ['layout.nav.output','Output','出力','Salida','출력','Вывод'],
+  ['layout.browser.search','Find objects or unit codes','名前・ユニット記号で検索','Buscar objetos o códigos de unidad','개체 또는 유닛 코드 검색','Поиск объектов или кодов блоков'],
+  ['layout.browser.filters','Object types','種類','Tipos de objeto','개체 유형','Типы объектов'],
+  ['layout.browser.all','All','すべて','Todo','전체','Все'],
+  ['layout.browser.printers','Printers','プリンター','Impresoras','프린터','Принтеры'],
+  ['layout.browser.furniture','Furniture','家具','Muebles','가구','Мебель'],
+  ['layout.browser.units','Units','ユニット','Unidades','유닛','Блоки'],
+  ['layout.browser.showing','{shown} of {total} entries','{total}件中{shown}件','{shown} de {total} entradas','{total}개 중 {shown}개','{shown} из {total} записей'],
+  ['layout.browser.noMatches','No matches. Change the search or type filter.','一致する項目がありません。検索語や種類を変更してください。','Sin resultados. Cambia la búsqueda o el tipo.','일치하는 항목이 없습니다. 검색어나 유형을 바꾸세요.','Совпадений нет. Измените запрос или тип.'],
+  ['layout.browser.reveal','Show selected object','選択中の項目を表示','Mostrar el objeto seleccionado','선택한 개체 표시','Показать выбранный объект'],
+  ['layout.browser.unitTools','Unit tools · {count} selected','ユニット操作 · {count}件選択','Unidades · {count} seleccionados','유닛 도구 · {count}개 선택','Блоки · выбрано: {count}'],
   ['layout.startup.recovery','You can retry, save your stored layout, or open an empty layout. The stored layout stays unchanged until you edit the new one.','再試行・保存済みレイアウトの書き出し・空のレイアウトを開く操作ができます。新たに編集するまで保存内容は変わりません。','Puedes reintentar, guardar la distribución almacenada o abrir una vacía. La guardada no cambia hasta que edites la nueva.','다시 시도하거나 저장된 배치를 내보내거나 빈 배치를 열 수 있습니다. 새 배치를 편집하기 전까지 저장 내용은 유지됩니다.','Можно повторить попытку, сохранить текущую планировку в файл или открыть пустую. Сохранённая планировка не изменится до редактирования новой.'],
   ['layout.startup.retry','Retry','再試行','Reintentar','다시 시도','Повторить'],
   ['layout.startup.empty','Open empty layout','空のレイアウトを開く','Abrir distribución vacía','빈 배치 열기','Открыть пустую планировку'],
@@ -407,6 +418,8 @@ rows.push(
   ['layout.group.removeTemplate', 'Remove saved unit', '保存済みユニットを削除', 'Eliminar unidad guardada', '저장된 유닛 삭제', 'Удалить сохранённый блок'],
   ['layout.error.GROUP_LIMIT', 'Too many units in this layout.', 'ユニット数が上限を超えています。', 'Hay demasiadas unidades en esta distribución.', '배치의 유닛 수가 한도를 넘습니다.', 'Слишком много блоков в планировке.'],
   ['layout.error.GROUP_NAME', 'Use a unit name of 1–80 characters without control characters.', '制御文字を含まない1～80文字のユニット名を入力してください。', 'Usa un nombre de 1 a 80 caracteres sin caracteres de control.', '제어 문자 없이 1~80자로 유닛 이름을 입력하세요.', 'Название блока должно содержать от 1 до 80 символов без управляющих знаков.'],
+  ['layout.error.GROUP_LABEL', 'Unit codes must contain 1–6 uppercase letters (A–Z).', 'ユニット記号は半角英大文字（A～Z）の1～6文字で指定してください。', 'Los códigos de unidad deben tener de 1 a 6 letras mayúsculas (A–Z).', '유닛 코드는 영문 대문자 A–Z 1~6자여야 합니다.', 'Код блока должен содержать от 1 до 6 заглавных латинских букв A–Z.'],
+  ['layout.error.GROUP_LABEL_DUPLICATE', 'Each unit must have a unique code.', 'ユニット記号は重複しないようにしてください。', 'Cada unidad debe tener un código único.', '유닛 코드는 서로 달라야 합니다.', 'У каждого блока должен быть уникальный код.'],
   ['layout.error.GROUP_MEMBERS', 'Check the objects included in this unit.', 'ユニットに含めるものを確認してください。', 'Revisa los objetos incluidos en esta unidad.', '유닛에 포함된 항목을 확인하세요.', 'Проверьте объекты в этом блоке.'],
   ['layout.error.GROUP_MEMBER_ASSIGNED', 'An object can belong to only one unit. Ungroup it first.', '同じものを複数のユニットには含められません。先にグループを解除してください。', 'Un objeto solo puede pertenecer a una unidad. Desagrupa primero.', '항목은 하나의 유닛에만 속할 수 있습니다. 먼저 그룹을 해제하세요.', 'Объект может входить только в один блок. Сначала разгруппируйте его.'],
   ['layout.error.GROUP_ROOT_REQUIRED', 'Select furniture or floor printers. Attached printers are included with their furniture.', '家具か床のプリンターを選択してください。家具の上のプリンターは家具と一緒に含まれます。', 'Selecciona muebles o impresoras del suelo. Las impresoras sobre muebles se incluyen con ellos.', '가구나 바닥의 프린터를 선택하세요. 가구 위의 프린터는 가구와 함께 포함됩니다.', 'Выберите мебель или принтеры на полу. Принтеры на мебели входят в блок вместе с ней.'],

@@ -1,7 +1,8 @@
 // Pure selection transactions. The caller owns clipboard I/O and instantiation.
 import {LIMITS, LayoutValidationError, createDefaultLayout, deriveScene, validatePlacement,
-  parseLayout, serializeLayout} from './layout-state.mjs?v=fa98d98dcf1a407e6752';
-import {createGroup, captureGroupTemplate, validateGroupTemplate} from './layout-groups.mjs?v=bac543d950a319989131';
+  parseLayout, serializeLayout} from './layout-state.mjs?v=0119a2ef6745811fe1cb';
+import {createGroup, captureGroupTemplate, validateGroupTemplate} from './layout-groups.mjs?v=77c6db8faf1377201463';
+import {materializeGroupLabels} from './layout-group-labels.mjs?v=1ff84a0cf5540fd3184b';
 
 const MAX_BYTES = 2 * 1024 * 1024;
 const MAX_SELECTION = LIMITS.maxFurniture + LIMITS.maxPrinters + LIMITS.maxGroups;
@@ -156,7 +157,7 @@ export function decodeLayoutClipboard(text, catalog = []) {
 export function regroupLayoutSelection(state, input, catalog = []) {
   catalog = catalogRows(catalog);
   fields(input, ['id', 'name', 'selectionIds'], 'group');
-  const source = checkedState(state, catalog), ids = selection(source, input.selectionIds);
+  const source = materializeGroupLabels(checkedState(state, catalog)), ids = selection(source, input.selectionIds);
   for (const p of source.printers) if (ids.has(p.id) && p.attachment.parentId !== null && !ids.has(p.attachment.parentId))
     fail('GROUP_ROOT_REQUIRED', 'selectionIds', {id: p.id, parentId: p.attachment.parentId});
   const memberIds = [...source.furniture, ...source.printers.filter(p => p.attachment.parentId === null)]
@@ -168,5 +169,9 @@ export function regroupLayoutSelection(state, input, catalog = []) {
     if (memberIds.length === group.memberIds.length) return [group];
     return [{...group, memberIds, memberPoses: group.memberPoses.filter(entry => !roots.has(entry.id))}];
   });
-  return createGroup({...source, groups}, {id: input.id, name: input.name, memberIds}, catalog);
+  const created = createGroup({...source, groups}, {id: input.id, name: input.name, memberIds}, catalog);
+  // Existing supported ID reuse is a rebase/rename of that identity, not a
+  // clipboard copy. New IDs and template instances always allocate afresh.
+  const original = source.groups?.find(group => group.id === input.id);
+  return original ? checkedState({...created, groups: created.groups.map(group => group.id === input.id ? {...group, label: original.label} : group)}, catalog) : created;
 }
