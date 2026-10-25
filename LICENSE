@@ -24,3 +24,10 @@ Scope: this license applies to the original viewer and repository helper code.
 Third-party code retains its own notices and licenses. It does not apply to
 third-party CAD, meshes, printer designs, logos, or other externally authored
 assets. See docs/THIRD_PARTY_NOTICES.md and site/viewer/vendor/THREE_LICENSE.txt.
+
+Sponsorship request (optional): If your company uses 3D Print Rig on its
+website or in its products or services, please support development through
+GitHub Sponsors: https://github.com/sponsors/Psych0h3ad
+
+Sponsorship is voluntary and does not change the software license or the
+separate terms for third-party assets.

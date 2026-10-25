@@ -35,13 +35,13 @@
     },
     {
       "path": "LICENSE",
-      "bytes": 1383,
-      "sha256": "66bc96b6a28ec2ed78f01912136d38fd9f6946fcacc89176c08e9c3fdd019d6c"
+      "bytes": 1701,
+      "sha256": "12dd5d3bbb23bc59961188775f7ffe0df63acb168f065edcf68d9d8ab5a3697e"
     },
     {
       "path": "README.md",
-      "bytes": 3484,
-      "sha256": "5843f1883e434561fa0f8431827677bb4f98f9382c9d0b297960aec5f60fffba"
+      "bytes": 3836,
+      "sha256": "8ec2986eaba15baaa1e51a3c5394b371add003232cd01f69789fec39014a17e3"
     },
     {
       "path": "docs/ANALYTICS.md",
@@ -160,8 +160,8 @@
     },
     {
       "path": "docs/EMBEDDING.md",
-      "bytes": 2292,
-      "sha256": "a9ad31ddabcdbc083e0045b1084ad62b324f47607fde4c4939ae61327f63427e"
+      "bytes": 2727,
+      "sha256": "d3b4a6f6dc5a6c16e7b6e2af843b088350de60302ded2a85b572001d302e9d9f"
     },
     {
       "path": "docs/ENDER3_MODS_QA.json",

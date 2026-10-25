@@ -37,3 +37,13 @@ The site must not expose a fixed-version option that still requests live models.
 Dark/light/automatic background is explicit in the embed URL. Embedded theme
 choices do not replace the visitor's full-viewer theme preference. The embed
 does not read its parent's DOM or accept arbitrary parent-origin commands.
+
+## Licenses and sponsorship
+
+If your company embeds 3D Print Rig on its website or uses it in its products
+or services, please support development through
+[GitHub Sponsors](https://github.com/sponsors/Psych0h3ad).
+
+Sponsorship is voluntary and does not change the [software license](../LICENSE)
+or the separate terms for third-party assets. Check the
+[third-party notices](THIRD_PARTY_NOTICES.md) for each model's source and license.
