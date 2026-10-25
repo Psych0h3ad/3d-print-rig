@@ -1,11 +1,11 @@
 import {alphaProductNotice} from './trinity-alpha-installation.mjs?v=d29cac20a00b0b7af075';
-import {createConfigurationDraft,configurationLabels,configurationLabel} from './configuration-draft.mjs?v=2adb099f7bd21f859330';
-import {setupConfigurationEditor} from './configuration-editor.mjs?v=fe4a792686ad9a69cdac';
+import {createConfigurationDraft,configurationLabels,configurationLabel} from './configuration-draft.mjs?v=95b8e760f5163fd579da';
+import {setupConfigurationEditor} from './configuration-editor.mjs?v=e6767b115e350148f6e6';
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
 import {workspaceTask,workspaceListen} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 import {translate} from './i18n.mjs?v=535a15826b80b7dcc2f6';
 import {monolithConfigurationRequest} from './monolith-machine-model.mjs?v=cadd3e4147c0f12e211a';
-import {catalogDimensions,collections,resolveVariant,configurationOptions,importedVariant,configurationById} from './configuration-model.js?v=72ab51af36beab3eb0cf';
+import {catalogDimensions,collections,resolveVariant,configurationOptions,importedVariant,configurationById} from './configuration-model.js?v=ffcb5378701b391d2cab';
 import {probeCheck,probeOptionSuffix,headBodyCollisionNotes,headInspectionState} from './probe-checks.js?v=0f70f5c099338db857e7';
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
 import {headWitnessCheck}from './head-validation.mjs?v=bba39d88e1b5b7f848c0';

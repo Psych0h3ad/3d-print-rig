@@ -43,9 +43,19 @@ export function withSphinxCompanionPresets(catalog){
  return {...catalog,configuration_aliases:aliases,variants:catalog.variants.filter(v=>!removed.has(v.id))};
 }
 
+const integratedA4T={rapido1_hf:'head_a4t_rapido_hf_sherpa_assembled',chube_compact:'head_a4t_chube_compact_sherpa_assembled'};
 export function hasDeclaredHeadHardware(v){
  if(v.hardware_assembled)return true;
  const native=v.fit?.complete_head_native,ids=new Set((v.modules||[]).map(m=>m.id));
+ // These native A4T exports contain the hotend, extruder and three cooling
+ // fans in the base itself. A separate module for each item is not required.
+ // This recognizes existing mechanical hardware, without changing the source
+ // contact findings or declaring the optional LED/board/wiring complete.
+ const integratedBase=Object.hasOwn(integratedA4T,v.hotend)?integratedA4T[v.hotend]:null;
+ if(v.toolhead==='a4t'&&v.mount==='fixed'&&v.extruder==='ahi_sherpa_mini_a3'
+  &&v.cooling==='a4t_dual4010_2510'&&typeof integratedBase==='string'&&integratedBase===v.base_asset
+  &&native?.base===v.base_asset&&native.hotend===v.base_asset&&native.extruder===v.base_asset
+  &&native.geometry_revision==='a4t-native-hardware-20261004'&&native.state==='contact')return true;
  return native?.base===(v.base_asset||v.toolhead)&&native?.state!=='collision'
   &&[native?.hotend,native?.extruder,v.fit?.hotend_cooling?.module].every(id=>id&&ids.has(id));
 }

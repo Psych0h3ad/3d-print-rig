@@ -9,7 +9,7 @@ import * as THREE from 'three';
 import {loadFrameMods,withFrameMods} from './frame-mods.js?v=82c788414a1d3c1f638e';
 import {setupLighting} from './lighting.js?v=862e543a80e7bae14e03';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=66041e969f9190a81416';
-import {setupAccessories} from './accessories.js?v=0fd90d889b6b0bc0bd15';
+import {setupAccessories} from './accessories.js?v=9358dcdb995d38ddfbc7';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupProbeMounts} from './probe-mounts.js?v=517d139912b21c017b1b';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
@@ -19,7 +19,7 @@ import {createV24Adapter} from './v24_adapter.mjs?v=c1618d21979653eb97f2';
 import {setupMachineNavigation} from './machines.js?v=5503ac507978b3d4e928';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
 import {setupPublicInfo} from './public-info.js?v=07313fc4151911a54f23';
-import {setupV24MachineHeads} from './machine-heads.js?v=25ed571fc2e2584e0e1f';
+import {setupV24MachineHeads} from './machine-heads.js?v=eb58033537a41e78211d';
 export async function mount(scope){
 setupMachineNavigation('siboor_v24_350');
 setupPublicInfo();

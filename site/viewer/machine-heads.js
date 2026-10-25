@@ -23,17 +23,17 @@ import {loadModel} from './model-loader.js?v=319442cce47f582793a9';
 import {appearanceRole} from './appearance-role.mjs?v=977c4d1e134e7fe27a0e';
 import {partKey} from './head-assembly.js';
 import {v24HeadCatalog} from './machine-head-model.mjs?v=1dab5126e376ecd7f60c';
-import {setupConfigurations} from './configurations.js?v=a740e1aeb4d88e392801';
+import {setupConfigurations} from './configurations.js?v=f407f5f3413507f23101';
 
 import {loadSiboorRegistration} from './siboor-catalog.mjs?v=a643c367a3a7167f9135';
 import {stockProbeFit} from './probe-mounts.js?v=517d139912b21c017b1b';
 
 import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs';
 import {bankPlan} from './changer-bank-model.mjs?v=024cc52a5bbc61da7506';
-import {setupChangerBank} from './changer-bank.js?v=4f60a00257eaed971296';
+import {setupChangerBank} from './changer-bank.js?v=f5029fbbdd962cbe2c85';
 import {contentSHA256,acceptedMountValidation} from './mount-validation.mjs';
 import {acceptedHeadValidation}from './head-validation.mjs';
-import {withHeadAdditions} from './head-additions.mjs?v=02ffe538ac437613b79f';
+import {withHeadAdditions} from './head-additions.mjs?v=a1cfc8aca74dc421ee1a';
 import {nativeDeckEvidenceSource,nativeCatalogEvidenceSource,nativeWitnessInputs} from './native-evidence-bridge.mjs?v=5bf756b0b363fe86538c';
 import {loadExternalComponent} from './component-assets.mjs?v=2dbda26b309fbe6c35c8';
 
