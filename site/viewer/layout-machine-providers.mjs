@@ -22,7 +22,7 @@ export async function loadLayoutRecipe(recipe,{signal,onProgress}) {
  const id=recipe.machine_id,progressOptions=headless(onProgress),options={signal,progressOptions,onProgress};
  if(recipe.category==='v24-reference'){const {loadV24ReferenceLayout}=await import('./layout-v24-reference-provider.mjs?v=0267cef518702905653e');return loadV24ReferenceLayout(id,{signal,onProgress})}
  if(recipe.category==='v0'){const {loadV0DefaultLayout}=await import('./layout-v0-provider.mjs?v=ceba0226b6221074c089');return loadV0DefaultLayout(id,{signal,onProgress})}
- if(['siboor','trident','v24'].includes(recipe.category)){const {loadVoronDefaultLayout}=await import('./layout-voron-defaults.mjs?v=0f25d7206a9e7762eae5');return loadVoronDefaultLayout(id,{signal,onProgress})}
+ if(['siboor','trident','v24'].includes(recipe.category)){const {loadVoronDefaultLayout}=await import('./layout-voron-defaults.mjs?v=7cc783c23550d387561a');return loadVoronDefaultLayout(id,{signal,onProgress})}
  if(recipe.category==='source') {
   const m=await import('./source-assembly-loader.mjs?v=1563c3822bd506aa83d5'),{releaseRoot}=await import('./source-assembly-runtime/resources.mjs?v=53e0f29aff2fcb720ede');
   const index=await m.loadSourceIndex(signal),record=index.models.find(r=>r.id===id);if(!record)throw Error('Missing layout source record');
@@ -37,12 +37,12 @@ export async function loadLayoutRecipe(recipe,{signal,onProgress}) {
    loaded=await loadElegooReference(row,{signal,onProgress});own(loaded);return finish(loaded,{catalog:'viewer/elegoo-catalog.mjs',asset:row,static_reference:true},()=>disposeElegooRoot(loaded.root));
   }
   if(recipe.category==='community') {
-   const [{loadCommunity},{evaCommunityIndex}]=await Promise.all([import('./community-loader.mjs?v=33dd8490957aa2b1a7b0'),import('./eva-installations.mjs?v=4dfad49e1f98d4b5b9f2')]);
+   const [{loadCommunity},{evaCommunityIndex}]=await Promise.all([import('./community-loader.mjs?v=6e41c9830acdd43b2fa4'),import('./eva-installations.mjs?v=4dfad49e1f98d4b5b9f2')]);
    const index=evaCommunityIndex(await json('COMMUNITY_MACHINES_ASSETS.json',signal),await json('EVA_INSTALLATIONS.json',signal));
    loaded=await loadCommunity(index,id,options);own(loaded);
    const configuration=loaded.profile.eva_installation?.configuration??'stock';
    if(loaded.profile.eva_installation){
-    const [{applyEvaOptionsProfile},{withHeadAdditions}]=await Promise.all([import('./eva-options.mjs?v=ee81f6eb2a14e77e65fd'),import('./head-additions.mjs?v=a1cfc8aca74dc421ee1a')]);
+    const [{applyEvaOptionsProfile},{withHeadAdditions}]=await Promise.all([import('./eva-options.mjs?v=6bc7bfbdf9a9949767ac'),import('./head-additions.mjs?v=a1cfc8aca74dc421ee1a')]);
     const opts=await json('EVA_OPTIONS.json',signal),heads=withHeadAdditions(await json('TOOLHEAD_CONFIGURATIONS.json',signal),await json('HEAD_ADDITIONS.json',signal));
     applyEvaOptionsProfile(loaded,opts,heads);
     if(opts.hosts[id].default_configuration!==configuration)throw Error('EVA default recipe mismatch');

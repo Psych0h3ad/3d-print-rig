@@ -2,9 +2,9 @@ import {createInactiveHeadCache,canRestoreInactiveHeadIndices} from './inactive-
 import {bindLedSource} from './led-source-binding.mjs';
 import {cloneNativeLedTree} from './led-emission-surface.mjs?v=af40a3200e128a08c940';
 import {validateEvaMetadata,bindEvaSourceMachines,bindEvaMeshIdentities} from './eva-heads.mjs?v=b53ce6925a6fec3b5b10';
-import {loadEvaFrontSurfaces,applyEvaFrontSurfaces} from './eva-front-surfaces.mjs?v=2f482f31b2c5c8b35897';
+import {loadEvaFrontSurfaces,applyEvaFrontSurfaces} from './eva-front-surfaces.mjs?v=1fa86c2370423eacafe2';
 import {evaCommunityIndex} from './eva-installations.mjs?v=4dfad49e1f98d4b5b9f2';
-import {validateEvaOptionsRegistry} from './eva-options.mjs?v=ee81f6eb2a14e77e65fd';
+import {validateEvaOptionsRegistry} from './eva-options.mjs?v=6bc7bfbdf9a9949767ac';
 import {madmaxJointAssetSpec,madmaxJointApplies,captureMadmaxJoint,setMadmaxJointPose} from './madmax-native-joint.mjs?v=d39e974d7b782135b52a';
 import {madmaxPtfeAssetSpec} from './madmax-ptfe.mjs?v=5c6deded33e560c6e7b6';
 import {withRapidoXUhfCover,setRapidoXUhfSurface} from './rapido-x-uhf-cover.mjs?v=8b458475dac84cfcd8c7';
@@ -35,7 +35,7 @@ import {contentSHA256,acceptedMountValidation} from './mount-validation.mjs';
 import {acceptedHeadValidation}from './head-validation.mjs';
 import {withHeadAdditions} from './head-additions.mjs?v=a1cfc8aca74dc421ee1a';
 import {nativeDeckEvidenceSource,nativeCatalogEvidenceSource,nativeWitnessInputs} from './native-evidence-bridge.mjs?v=5bf756b0b363fe86538c';
-import {loadExternalComponent} from './component-assets.mjs?v=2dbda26b309fbe6c35c8';
+import {loadExternalComponent} from './component-assets.mjs?v=a912f0a87d5f3993e9ad';
 
 const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);
 export async function loadMachineHeadCatalog(machine){return workspaceTask(async()=>{

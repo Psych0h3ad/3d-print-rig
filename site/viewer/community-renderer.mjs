@@ -3,9 +3,9 @@ import {displacementGcodeSettings,displacementCoordinateNote,unavailableCoordina
 import * as THREE from './vendor-r180/three.module.js';
 import {OrbitControls} from './vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
-import {loadCommunity} from './community-loader.mjs?v=33dd8490957aa2b1a7b0';
+import {loadCommunity} from './community-loader.mjs?v=6e41c9830acdd43b2fa4';
 import {evaCommunityIndex} from './eva-installations.mjs?v=4dfad49e1f98d4b5b9f2';
-import {applyEvaOptionsProfile,createEvaOptionsController} from './eva-options.mjs?v=ee81f6eb2a14e77e65fd';
+import {applyEvaOptionsProfile,createEvaOptionsController} from './eva-options.mjs?v=6bc7bfbdf9a9949767ac';
 import {withHeadAdditions} from './head-additions.mjs?v=a1cfc8aca74dc421ee1a';
 import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
 import {communitySchema,validateCommunityState,communityMotionEnabled,communityConfiguration} from './community-state.mjs?v=460b3fa78cc503ddb6e6';

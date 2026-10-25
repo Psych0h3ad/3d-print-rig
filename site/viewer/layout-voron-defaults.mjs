@@ -3,7 +3,7 @@
 import * as THREE from './vendor-r180/three.module.js';
 import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=319442cce47f582793a9';
-import {loadExternalComponent} from './component-assets.mjs?v=2dbda26b309fbe6c35c8';
+import {loadExternalComponent} from './component-assets.mjs?v=a912f0a87d5f3993e9ad';
 import {appearanceRole} from './appearance-role.mjs?v=977c4d1e134e7fe27a0e';
 import {layoutDefaultSourcePins} from './layout-default-source-pins.mjs?v=40ec0e1e7e69deb4b586';
 const site=new URL('../',import.meta.url),point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);

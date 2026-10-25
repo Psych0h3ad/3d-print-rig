@@ -10,7 +10,7 @@ import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v
 import {appearanceRole} from './appearance-role.mjs?v=977c4d1e134e7fe27a0e';
 import * as THREE from 'three';
 import {loadFrameMods,withFrameMods} from './frame-mods.js?v=82c788414a1d3c1f638e';
-import {loadExternalComponent} from './component-assets.mjs?v=2dbda26b309fbe6c35c8';
+import {loadExternalComponent} from './component-assets.mjs?v=a912f0a87d5f3993e9ad';
 import {setupLighting} from './lighting.js?v=862e543a80e7bae14e03';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
@@ -23,7 +23,7 @@ import {setupPublicInfo} from './public-info.js?v=07313fc4151911a54f23';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
 import {createTridentMotion} from './trident-motion.mjs?v=77312c6bfbf6c7e7563d';
 import {headPlan,partKey} from './head-assembly.js?v=workspace-belts-1';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=eb58033537a41e78211d';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=0cc513701f45e71cb84a';
 import {setupChangerBank} from './changer-bank.js?v=f5029fbbdd962cbe2c85';
 import {expandedPrinterCatalog} from './machine-head-model.mjs?v=1dab5126e376ecd7f60c';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=66041e969f9190a81416';

@@ -358,6 +358,13 @@ def main():
     inputs_arg.add_argument('--inputs', type=Path)
     input_options, _ = inputs_arg.parse_known_args()
     input_map = json.loads(input_options.inputs.read_bytes()) if input_options.inputs else None
+    # Sensor CAD includes design reference volumes as well as physical parts.
+    # Audit the corrected actual export and retained source parts before deploy.
+    with tempfile.TemporaryDirectory(prefix='trinity-beacon-release-') as folder:
+        subprocess.run([sys.executable, str(ROOT/'scripts/check_trinity_beacon_release.py'),
+                        '--site', str(target), '--output', folder,
+                        *(['--inputs', str(input_options.inputs)] if input_options.inputs else [])],
+                       cwd=ROOT, check=True)
     # Mandatory actual color/route checks; maps and detailed evidence are temporary.
     with tempfile.TemporaryDirectory(prefix='viewer-quality-release-') as folder:
         subprocess.run([sys.executable, str(ROOT/'scripts/check_viewer_quality_release.py'),
