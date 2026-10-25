@@ -48,4 +48,8 @@ Thank you to Kerry Stevenson and Fabbaloo for featuring 3D Print Rig.
 
 [CAD wallpapers](https://psych0h3ad.github.io/3d-print-rig/fun/) · [Embed the viewer — alpha test](docs/EMBEDDING.md) · [Documentation](docs/README.md) · [Development](docs/MAINTENANCE.md)
 
-The viewer software and each source model have their own licenses. Original authors, source versions and model changes are listed in the viewer and [third-party notices](docs/THIRD_PARTY_NOTICES.md). [Software license](LICENSE).
+## License
+
+The original viewer and repository helper code use the [MIT License](LICENSE). Third-party models, code and other assets retain their own licenses. Original authors, source versions and model changes are listed in the viewer and [third-party notices](docs/THIRD_PARTY_NOTICES.md).
+
+If your company uses 3D Print Rig on its website or in its products or services, please support development through [GitHub Sponsors](https://github.com/sponsors/Psych0h3ad). Sponsorship is voluntary and does not change the software license or the separate terms for third-party assets.
