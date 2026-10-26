@@ -90,6 +90,19 @@ clearance assessment. Room containment remains the boundary for placement.
 
 ## Printer farms and reusable sets
 
+Hold **Shift** and click objects in the scene to select several at once. In
+**2D plan**, hold **Shift** and drag a box around complete footprints to add them
+to the selection. Selected objects have teal outlines; furniture includes its
+printers, and existing groups are selected together. **Alt+Shift-click** selects
+a single furniture or floor-printer member of a group. Selection does not move
+objects or change the saved plan. **Esc** cancels a box gesture; outside a gesture
+it clears the checked selection.
+
+The selection bar shows the count and provides **Group**, **Duplicate** and
+**Clear selection** without opening Unit tools. **F** frames all checked items.
+Group items before moving or rotating them together. A plain click returns to
+editing one object. Selection outlines are omitted from exported images.
+
 Use the checkboxes in **Items** to choose desks, shelves or floor printers,
 then open **Unit tools** and select **Create group**. The name is optional and can be
 changed later. Leaving the name field applies a valid name once; the unit

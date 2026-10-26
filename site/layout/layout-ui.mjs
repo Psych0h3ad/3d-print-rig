@@ -40,7 +40,7 @@ const PATHS = {
   ungroup:'M3 8V3h5m8 0h5v5M3 16v5h5m8 0h5v-5M8 8h8v8H8Z'
 };
 
-export function createLayoutUI({container, onAction, t, catalog = [], onObjectSearchEscape = () => {}}) {
+export function createLayoutUI({container, onAction, t, catalog = [], onObjectSearchEscape = () => {}, onPickedChange = (ids) => {}}) {
   if (!container?.ownerDocument || typeof onAction !== 'function' || typeof t !== 'function') {
     throw new TypeError('createLayoutUI requires container, onAction and t');
   }
@@ -55,6 +55,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
   let activePanel='selection', objectType='all', pendingSelectionPanel=false;
   const browserRows=new Map(), filterButtons=new Map(), panels=new Map(), tabButtons=new Map(), panelScrolls=new Map();
   const pickedRoots=new Set(), memberChecks=new Map();
+  let notifiedPickedRoots=new Set();
   const cleanups = new Set(), fields = new Map();
   const entries = Array.isArray(catalog) ? catalog : catalog instanceof Map ? [...catalog.values()] : Array.isArray(catalog.entries) ? catalog.entries : Object.values(catalog);
   const machines = entries.filter(e => e && typeof e.id === 'string');
@@ -424,6 +425,14 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
     filterButtons.set(type,b);filters.append(b);
   }
   objectSection.append(filters);
+  const selectionHint=copy(el('p','layout-help layout-selection-hint'),'layout.selection.hint');selectionHint.id='layout-selection-hint';
+  const selectionActions=el('div','layout-selection-actions');selectionActions.id='layout-selection-actions';selectionActions.hidden=true;
+  const selectionCount=copy(el('span','layout-count'),'layout.selection.count',{count:0});selectionCount.id='layout-selection-count';selectionCount.setAttribute('aria-live','polite');selectionCount.setAttribute('aria-atomic','true');
+  selectionActions.setAttribute('role','group');selectionActions.setAttribute('aria-labelledby',selectionCount.id);
+  const groupPicked=button('layout.selection.group',createPickedGroup,'group');
+  const duplicatePicked=button('layout.selection.duplicate',()=>{if(pickedRoots.size)emit({type:'duplicate',selectionIds:[...pickedRoots]});},'duplicate');
+  const clearPicked=button('layout.selection.clear',()=>setPickedRootIds([]),'minus');
+  selectionActions.append(selectionCount,groupPicked,duplicatePicked,clearPicked);objectSection.append(selectionHint,selectionActions);
   const list=el('ul','layout-object-list'), empty=copy(el('p','layout-empty'),'layout.empty');
   list.id='layout-objects';
   const browserScroll=el('div','layout-browser-scroll');browserScroll.append(list);objectSection.append(browserScroll,empty);
@@ -446,11 +455,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
   groupName.required=false;groupName.placeholder=tr('layout.group.defaultName');
   groupName.setAttribute('aria-describedby',farmHelp.id);nameLabel.append(groupName);
   const pickedSummary=el('p','layout-count');pickedSummary.id='layout-group-picked';
-  const createGroup=button('layout.group.create',()=>{
-    prunePickedRoots();
-    if(status.busy||!pickedRoots.size)return;
-    emit({type:'group-create',name:groupName.value.trim()||tr('layout.group.defaultName'),memberIds:[...pickedRoots]});
-  },'group');
+  const createGroup=button('layout.group.create',createPickedGroup,'group');
   createGroup.setAttribute('aria-describedby',pickedSummary.id);
   listen(createForm,'submit',event=>{event.preventDefault();if(!createGroup.disabled)createGroup.click();});
   listen(groupName,'keydown',event=>{if(event.key==='Enter'){event.preventDefault();if(!createGroup.disabled)createGroup.click();}});
@@ -527,9 +532,22 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
     const available=new Set(roots().map(e=>e.id));
     for(const id of pickedRoots)if(!available.has(id))pickedRoots.delete(id);
   }
+  function notifyPickedChange() {
+    if(disposed||(pickedRoots.size===notifiedPickedRoots.size&&[...pickedRoots].every(id=>notifiedPickedRoots.has(id))))return;
+    // Publish the snapshot before calling the app: update or a same-ID echo is a no-op.
+    notifiedPickedRoots=new Set(pickedRoots);
+    try{onPickedChange([...pickedRoots]);}catch(error){showError(error?.message);}
+  }
+  function createPickedGroup() {
+    if(disposed||status.busy||!pickedRoots.size)return;
+    emit({type:'group-create',name:groupName.value.trim()||tr('layout.group.defaultName'),memberIds:[...pickedRoots]});
+  }
   function refreshGroupDraft() {
     copy(pickedSummary,'layout.group.selection',{roots:pickedRoots.size,...counts(members(pickedRoots))});
     copy(unitSummary,'layout.browser.unitTools',{count:pickedRoots.size});
+    copy(selectionCount,'layout.selection.count',{count:pickedRoots.size});
+    selectionActions.hidden=!pickedRoots.size;
+    for(const b of [groupPicked,duplicatePicked,clearPicked])b.disabled=!!status.busy||!pickedRoots.size;
     createGroup.disabled=!!status.busy||!state||!pickedRoots.size;
     copySelectionButton.disabled=!!status.busy||(!pickedRoots.size&&!selected());
     pasteSelectionButton.disabled=!!status.busy||!status.canPaste;
@@ -563,9 +581,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
           const text=copy(el('span','layout-sr-only'),'layout.group.selectMember',{name:title(e)});label.append(check,text);li.append(label);memberChecks.set(e.id,check);
           check.setAttribute('aria-describedby',farmHelp.id);
           listen(check,'change',()=>{
-            if(status.busy)return;
-            if(check.checked)pickedRoots.add(e.id);else pickedRoots.delete(e.id);
-            prunePickedRoots();refreshGroupDraft();
+            setPickedRootIds(check.checked?[...pickedRoots,e.id]:[...pickedRoots].filter(id=>id!==e.id));
           });
           const assigned=assignedGroup(e.id);
           if(assigned){
@@ -822,6 +838,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
     refreshList();refreshFarm();filterObjects();buildEditor();refreshOpenings();refreshValues();refreshIssues();refreshStatus();
     // Rebuilt lists/editors must not retain detached controls or their closures.
     releaseDetachedControls();
+    notifyPickedChange();
   }
   function setStatus(next={}){if(disposed)return;status={...status,...next};if(Object.hasOwn(next,'error')&&!next.error){feedback.hidden=true;feedback.dataset.error='false';}refreshStatus();}
   function setProjection(projection){
@@ -844,14 +861,15 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
     if(draft){const replacement=[...root.querySelectorAll('input,textarea')].find(n=>n.id===draft.id);if(replacement){replacement.value=draft.value;replacement._dirty=true;replacement.focus({preventScroll:true});}}
     releaseDetachedControls();
   }
-  function dispose(){if(disposed)return;disposed=true;for(const remove of cleanups)remove();fields.clear();root.remove();state=null;}
+  function dispose(){if(disposed)return;disposed=true;for(const remove of cleanups)remove();fields.clear();pickedRoots.clear();root.remove();state=null;}
   function focusObjectSearch(){if(disposed||status.busy)return false;objectSearch.focus();objectSearch.select?.();return true;}
   function focusSelection(){if(disposed||status.busy||!selected())return false;showPanel('selection');panelHost.scrollTop=0;return true;}
   populateMachines();refreshStatus();
   function setPickedRootIds(ids){
     if(disposed||status.busy)return;
-    pickedRoots.clear();for(const id of ids)if(typeof id==='string')pickedRoots.add(id);
-    prunePickedRoots();refreshGroupDraft();
+    const requested=new Set(ids);
+    pickedRoots.clear();for(const e of roots())if(requested.has(e.id))pickedRoots.add(e.id);
+    refreshGroupDraft();notifyPickedChange();
   }
   return Object.freeze({update,setStatus,setProjection,setLocale,setGroupLibrary,
     getPickedRootIds:()=>[...pickedRoots],setPickedRootIds,focusObjectSearch,focusSelection,dispose});

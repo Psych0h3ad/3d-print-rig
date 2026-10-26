@@ -99,7 +99,7 @@ function printerPreviewParts(row) {
   return {style,parts,sourceRoles,simplePreview:true};
 }
 
-export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>{},onMove=()=>{},constrainMove=({x,z})=>({x,z}),onRotate=()=>{},constrainRotate=({yawDeg})=>({yawDeg}),onPlacementMove=()=>null,onPlacementCommit=()=>{},onError=()=>{},onViewChange=()=>{}}) {
+export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>{},onPick=()=>{},onMove=()=>{},constrainMove=({x,z})=>({x,z}),onRotate=()=>{},constrainRotate=({yawDeg})=>({yawDeg}),onPlacementMove=()=>null,onPlacementCommit=()=>{},onError=()=>{},onViewChange=()=>{}}) {
   const renderer=new THREE.WebGLRenderer({antialias:true,alpha:false});
   renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
   renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.5));renderer.toneMapping=THREE.ACESFilmicToneMapping;
@@ -108,6 +108,8 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   const measurementsCanvas=document.createElement('canvas');measurementsCanvas.className='layout-plan-measurements';measurementsCanvas.setAttribute('aria-hidden','true');measurementsCanvas.hidden=true;container.append(measurementsCanvas);
   const unitLabels=document.createElement('div');unitLabels.className='layout-unit-labels';container.append(unitLabels);
   const unitMarkers=new Map();
+  const marquee=document.createElement('div');marquee.className='layout-selection-marquee';marquee.hidden=true;marquee.setAttribute('aria-hidden','true');container.append(marquee);
+  let pickedRoots=[];
   const objectTools=document.createElement('div');objectTools.className='layout-object-tools';objectTools.hidden=true;objectTools.setAttribute('role','group');objectTools.setAttribute('data-layout-i18n-aria-label','layout.rotationControls');container.append(objectTools);
   const selectedSummary=document.createElement('div');selectedSummary.className='layout-selected-summary';
   const selectedName=document.createElement('strong'),selectedSize=document.createElement('span');selectedSummary.append(selectedName,selectedSize);objectTools.append(selectedSummary);
@@ -144,6 +146,9 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   grid.userData.layoutGrid=true;
   const selectionBox=new THREE.Box3Helper(new THREE.Box3(),0xc35734);selectionBox.visible=false;scene.add(selectionBox);
   const planSelection=new THREE.LineLoop(new THREE.BufferGeometry(),new THREE.LineBasicMaterial({color:0xc35734,depthTest:false,depthWrite:false}));planSelection.visible=false;planSelection.renderOrder=30;scene.add(planSelection);
+  const pickedMaterial=new THREE.LineBasicMaterial({color:0x2997ad,depthTest:false,depthWrite:false});
+  const pickedSolid=new THREE.LineSegments(new THREE.BufferGeometry(),pickedMaterial),pickedPlan=new THREE.LineSegments(new THREE.BufferGeometry(),pickedMaterial);
+  pickedSolid.userData.layoutPicked=true;pickedPlan.userData.layoutPicked=true;pickedPlan.renderOrder=pickedSolid.renderOrder=31;scene.add(pickedSolid,pickedPlan);
   const boxGeometry=new THREE.BoxGeometry(1,1,1),wireGeometry=new THREE.EdgesGeometry(boxGeometry),wireMaterial=new THREE.LineBasicMaterial({color:0x4d7186,transparent:true,opacity:.75}),palette=new Map(),objects=new Map(),raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();
   const cylinderGeometry=new THREE.CylinderGeometry(.5,.5,1,24);
   const equipmentTubeGeometries=new Map();
@@ -187,7 +192,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   }
   function isPlan(){return viewMode==='top';}
   function getView(){return {mode:viewMode,projection:isPlan()?'orthographic-floorplan':'perspective-3d'};}
-  function enableControls(){const manipulating=drag?.kind==='object'||drag?.kind==='rotate';perspectiveControls.enabled=!exporting&&!disposed&&!isPlan()&&!manipulating;planControls.enabled=!exporting&&!disposed&&isPlan()&&!manipulating;if(exporting||disposed){objectTools.hidden=true;unitLabels.hidden=true;}}
+  function enableControls(){const manipulating=['object','rotate','pick'].includes(drag?.kind);perspectiveControls.enabled=!exporting&&!disposed&&!isPlan()&&!manipulating;planControls.enabled=!exporting&&!disposed&&isPlan()&&!manipulating;if(exporting||disposed){objectTools.hidden=true;unitLabels.hidden=true;}}
   function refreshWalls(forCamera=camera){
     const show=!isPlan()&&wallsVisible;
     if(show)forCamera.updateMatrixWorld(true);
@@ -208,7 +213,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   function updatePlanLabels(){for(const g of planObjects.values()){const layout=planLabelLayout(g);for(const o of g.children)if(o.userData.planLabel){o.scale.set(layout.width,layout.height,1);o.visible=layout.visible;}}}
   function syncContacts(){for(const [id,g]of contacts){const o=objects.get(id);if(o){g.position.copy(o.position);g.rotation.y=o.rotation.y;}}}
   function measurementOptions(forCamera,width,height){
-    const selectedPolygonMm=selectionPolygon().map(([x,z])=>[x/MM,z/MM]);
+    const selectedPolygonMm=(pickedRoots.length?[]:selectionPolygon()).map(([x,z])=>[x/MM,z/MM]);
     return {polygonMm:current.room.polygonMm,selectedPolygonMm,width,height,project:(x,z)=>{const p=new THREE.Vector3(x*MM,0,z*MM).project(forCamera);return [(p.x+1)*width/2,(1-p.y)*height/2];},formatLength:n=>`${Math.round(n*10)/10} ${t('common.mm')}`};
   }
   function updateMeasurements(){
@@ -264,6 +269,28 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     const xs=points.map(p=>p[0]),zs=points.map(p=>p[1]);label.position.set((Math.min(...xs)+Math.max(...xs))/2,.002,(Math.min(...zs)+Math.max(...zs))/2);label.rotation.x=-Math.PI/2;label.renderOrder=20;label.userData.planLabel=true;g.add(label);
   }
   function entityInfo(id){return groupEntities.get(id)||[...derived.furniture,...derived.printers].find(e=>e.id===id);}
+  function rootIds(){return [...(current?.furniture||[]).map(e=>e.id),...(current?.printers||[]).filter(e=>!e.attachment.parentId).map(e=>e.id)];}
+  function pickRoots(id,individual=false){
+    if(!id)return [];
+    const group=groupEntities.has(id)?current.groups.find(g=>g.id===id):!individual?groupingForEntity(current,id):null;
+    if(group)return [...group.memberIds];
+    const parent=current.printers.find(p=>p.id===id)?.attachment.parentId;
+    const root=parent||id;return rootIds().includes(root)?[root]:[];
+  }
+  function setPickedRoots(ids=[]){
+    const available=new Set(rootIds());pickedRoots=[...new Set(ids)].filter(id=>available.has(id));
+    const solid=[],plan=[],edge=(out,a,b)=>out.push(...a,...b);
+    scene.updateMatrixWorld(true);
+    for(const id of pickedRoots){
+      const bounds=selectionBounds(id),a=bounds.min,b=bounds.max;
+      if(!bounds.isEmpty())for(let i=0;i<8;i++)for(const bit of [1,2,4])if(!(i&bit)){
+        const p=n=>[n&1?b.x:a.x,n&2?b.y:a.y,n&4?b.z:a.z];edge(solid,p(i),p(i|bit));
+      }
+      const flat=planObjects.get(id);if(flat){flat.updateMatrixWorld(true);const points=flat.userData.planPoints.map(([x,z])=>new THREE.Vector3(x,.032,z).applyMatrix4(flat.matrixWorld).toArray());for(let i=0;i<points.length;i++)edge(plan,points[i],points[(i+1)%points.length]);}
+    }
+    for(const [node,points]of [[pickedSolid,solid],[pickedPlan,plan]]){node.geometry.dispose();node.geometry=new THREE.BufferGeometry().setAttribute('position',new THREE.Float32BufferAttribute(points,3));}
+    container.dataset.layoutPicked=String(pickedRoots.length);updateSelection();draw();
+  }
   function selectionIds(id=selectedId){
     if(!id||!derived)return [];
     const group=groupEntities.get(id);
@@ -280,7 +307,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     for(const [id,group]of groupEntities){
       const button=document.createElement('button'),label=groupLabel(current,id);button.type='button';button.className='layout-unit-marker';
       button.dataset.layoutUnitId=id;button.textContent=label;button.title=`${label} · ${group.name}`;button.setAttribute('aria-label',button.title);
-      const click=()=>{if(!disposed&&!exporting&&!placing&&!drag){onSelect(id);if(!disposed)canvas.focus?.({preventScroll:true});}};button.addEventListener('click',click);unitLabels.append(button);
+      const click=event=>{if(!disposed&&!exporting&&!placing&&!drag){if(event.shiftKey)onPick({ids:pickRoots(id),mode:'toggle',seedIds:pickedRoots.length?[]:pickRoots(selectedId)});else onSelect(id);if(!disposed)canvas.focus?.({preventScroll:true});}};button.addEventListener('click',click);unitLabels.append(button);
       unitMarkers.set(id,{button,click,label,ids:selectionIds(id),bounds:selectionBounds(id)});
     }
     if(focused)unitMarkers.get(focused)?.button.focus({preventScroll:true});
@@ -321,12 +348,13 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   function followers(id){return selectionIds(id).filter(key=>key!==id).map(snapshotPose);}
   function snapshotPose(id){const solid=objects.get(id),flat=planObjects.get(id);return {id,origin:solid.position.clone(),originYawRad:solid.rotation.y,planOrigin:flat?.position.clone(),planYawRad:flat?.rotation.y};}
   function updateSelection(){
-    const selected=objects.get(selectedId),bounds=groupEntities.has(selectedId)?selectionBounds():selected?new THREE.Box3().setFromObject(selected):new THREE.Box3();selectionBox.visible=!isPlan()&&!bounds.isEmpty();selectionBox.box.copy(bounds);
-    const polygon=selectionPolygon();planSelection.visible=isPlan()&&polygon.length>0;if(polygon.length)planSelection.geometry.setFromPoints(polygon.map(([x,z])=>new THREE.Vector3(x,.03,z)));
+    const selected=objects.get(selectedId),bounds=groupEntities.has(selectedId)?selectionBounds():selected?new THREE.Box3().setFromObject(selected):new THREE.Box3();selectionBox.visible=!pickedRoots.length&&!isPlan()&&!bounds.isEmpty();selectionBox.box.copy(bounds);
+    const polygon=selectionPolygon();planSelection.visible=!pickedRoots.length&&isPlan()&&polygon.length>0;if(polygon.length)planSelection.geometry.setFromPoints(polygon.map(([x,z])=>new THREE.Vector3(x,.03,z)));
+    pickedSolid.visible=!exporting&&!placing&&!isPlan()&&pickedRoots.length>0;pickedPlan.visible=!exporting&&!placing&&isPlan()&&pickedRoots.length>0;
     updateObjectTools();
   }
   function updateObjectTools(){
-    const g=objects.get(selectedId);objectTools.hidden=exporting||disposed||!!placing||!g;if(objectTools.hidden)return;
+    const g=objects.get(selectedId);objectTools.hidden=exporting||disposed||!!placing||pickedRoots.length>0||!g;if(objectTools.hidden)return;
     camera.updateMatrixWorld(true);g.updateMatrixWorld(true);
     const box=selectionBounds();if(box.isEmpty()){objectTools.hidden=true;return;}
     const center=groupEntities.has(selectedId)?box.getCenter(new THREE.Vector3()):g.position;
@@ -476,7 +504,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     const warned=new Set(issues.flatMap(i=>i.entityIds||[i.entityId||i.id]).filter(Boolean));
     for(const [entityId,g]of objects){g.userData.warning=warned.has(entityId);}
     for(const e of [...derived.furniture,...derived.printers])makePlan(e,warned.has(e.id));
-    presentView();
+    setPickedRoots(pickedRoots);presentView();
     scene.updateMatrixWorld(true);draw();
   }
   function view(mode='perspective'){
@@ -502,9 +530,9 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   // Camera-only framing: never changes the selected object's pose or history.
   function focusSelected(){
     if(disposed||exporting||drag||!current||!(isPlan()?planReady:perspectiveReady))return false;
-    const g=objects.get(selectedId);if(!g)return false;
+    const g=objects.get(selectedId);if(!g&&!pickedRoots.length)return false;
     scene.updateMatrixWorld(true);
-    const ids=selectionIds(),bounds=new THREE.Box3();
+    const ids=pickedRoots.length?[...new Set(pickedRoots.flatMap(id=>selectionIds(id)))]:selectionIds(),bounds=new THREE.Box3();
     for(const id of ids){
       const flat=planObjects.get(id),solid=objects.get(id);
       if(isPlan()&&flat){flat.updateMatrixWorld(true);for(const [x,z]of flat.userData.planPoints)bounds.expandByPoint(new THREE.Vector3(x,0,z).applyMatrix4(flat.matrixWorld));}
@@ -615,12 +643,12 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     placementGroup.visible=placementGuides.visible=false;updateSelection();if(value)updatePlacement();else placementEvent=null;draw();return true;
   }
   function turnBy(delta){
-    if(disposed||exporting||drag||!selectedId)return;
+    if(disposed||exporting||drag||pickedRoots.length||!selectedId)return;
     const e=entityInfo(selectedId);if(!e)return;
     const before=current;try{onRotate({id:e.id,yawDeg:e.yawDeg+delta,deltaDeg:delta});}catch(error){onError(error);}finally{if(current===before&&!disposed)setState(current,selectedId);}
   }
   function rotationDown(event){
-    if(disposed||exporting||event.button!==0||event.isPrimary===false||drag)return;
+    if(disposed||exporting||event.button!==0||event.isPrimary===false||drag||pickedRoots.length)return;
     event.stopImmediatePropagation();event.preventDefault();rotateHandle.focus({preventScroll:true});
     // A numeric blur may rebuild the scene; capture one current gesture origin.
     if(disposed||exporting||drag)return;
@@ -656,6 +684,10 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     // Finish any inspector draft before hit testing the current scene.
     canvas.focus?.({preventScroll:true});
     if(disposed||exporting||drag)return;
+    if(event.shiftKey){
+      const id=hit(event);drag={kind:'pick',id,pointerId:event.pointerId,startX:event.clientX,startY:event.clientY,moved:false,individual:!!event.altKey};
+      canvas.setPointerCapture(event.pointerId);enableControls();event.stopImmediatePropagation();event.preventDefault();return;
+    }
     const physicalId=hit(event),id=physicalId&&!event.altKey?(groupingForEntity(current,physicalId)?.id||physicalId):physicalId;drag={id,kind:id?'object':'background',pointerId:event.pointerId,startX:event.clientX,startY:event.clientY,moved:false};
     if(id){
       const g=objects.get(id),planeY=isPlan()?0:g.position.y,point=planePoint(event,planeY);
@@ -670,6 +702,13 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     if(placing&&!drag){queuePlacement(event);return;}
     if(!drag||drag.pointerId!==event.pointerId)return;if(Math.hypot(event.clientX-drag.startX,event.clientY-drag.startY)>4)drag.moved=true;
     if(drag.kind==='placement'){event.stopImmediatePropagation();event.preventDefault();queuePlacement(event);return;}
+    if(drag.kind==='pick'){
+      event.stopImmediatePropagation();event.preventDefault();
+      if(isPlan()&&drag.moved){const r=canvas.getBoundingClientRect(),clamp=(v,max)=>Math.max(0,Math.min(max,v));
+        const x1=clamp(drag.startX-r.left,r.width),x2=clamp(event.clientX-r.left,r.width),y1=clamp(drag.startY-r.top,r.height),y2=clamp(event.clientY-r.top,r.height);
+        marquee.hidden=false;marquee.style.left=`${Math.min(x1,x2)}px`;marquee.style.top=`${Math.min(y1,y2)}px`;marquee.style.width=`${Math.abs(x2-x1)}px`;marquee.style.height=`${Math.abs(y2-y1)}px`;
+      }return;
+    }
     if(drag.kind!=='object')return;event.stopImmediatePropagation();event.preventDefault();if(!drag.moved)return;
     const p=planePoint(event,drag.planeY);if(!p)return;const g=objects.get(drag.id);if(!g)return;
     const proposal={id:drag.id,x:drag.anchorMm.x+(p.x-drag.anchorPoint.x)/MM,z:drag.anchorMm.z+(p.z-drag.anchorPoint.z)/MM};
@@ -693,7 +732,22 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   }
   function up(event){
     if(!drag||drag.pointerId!==event.pointerId)return;const d=drag;drag=null;
-    if(d.kind==='placement'){
+    if(d.kind==='pick'){
+      event.stopImmediatePropagation();event.preventDefault();marquee.hidden=true;
+      if(canvas.hasPointerCapture(event.pointerId))canvas.releasePointerCapture(event.pointerId);enableControls();
+      const seedIds=pickedRoots.length?[]:pickRoots(selectedId);let ids=[];
+      if(d.moved&&isPlan()){
+        const r=canvas.getBoundingClientRect(),left=Math.min(d.startX,event.clientX)-r.left,right=Math.max(d.startX,event.clientX)-r.left,top=Math.min(d.startY,event.clientY)-r.top,bottom=Math.max(d.startY,event.clientY)-r.top;
+        camera.updateMatrixWorld(true);
+        for(const id of rootIds()){
+          const flat=planObjects.get(id);if(!flat)continue;flat.updateMatrixWorld(true);
+          const inside=flat.userData.planPoints.every(([x,z])=>{const p=new THREE.Vector3(x,0,z).applyMatrix4(flat.matrixWorld).project(camera),sx=(p.x+1)*r.width/2,sy=(1-p.y)*r.height/2;return p.z>=-1&&p.z<=1&&sx>=Math.max(0,left)&&sx<=Math.min(r.width,right)&&sy>=Math.max(0,top)&&sy<=Math.min(r.height,bottom);});
+          if(inside)ids.push(...pickRoots(id,d.individual));
+        }
+        if(ids.length)onPick({ids:[...new Set(ids)],mode:'add',seedIds});
+      }else if(!d.moved&&d.id)onPick({ids:pickRoots(d.id,d.individual),mode:'toggle',seedIds});
+      return;
+    }else if(d.kind==='placement'){
       event.stopImmediatePropagation();event.preventDefault();if(canvas.hasPointerCapture(event.pointerId))canvas.releasePointerCapture(event.pointerId);
       const proposal=updatePlacement(event);if(!d.moved&&proposal?.valid){onPlacementCommit(proposal,{repeat:!!event.shiftKey});if(placing)queuePlacement(event);}return;
     }else if(d.kind==='rotate'){
@@ -709,6 +763,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   function cancel(event){
     if(!drag||event?.pointerId!==undefined&&event.pointerId!==drag.pointerId)return;
     const d=drag;drag=null;
+    marquee.hidden=true;
     if(d.kind==='object'||d.kind==='rotate')for(const item of [d,...(d.followers||[])]){const a=objects.get(item.id),b=planObjects.get(item.id);if(a){a.position.copy(item.origin);a.rotation.y=item.originYawRad;}if(b&&item.planOrigin){b.position.copy(item.planOrigin);b.rotation.y=item.planYawRad;}}
     const target=d.captureTarget||canvas;if(target.hasPointerCapture(d.pointerId))target.releasePointerCapture(d.pointerId);delete rotateHandle.dataset.dragging;delete objectTools.dataset.boundaryLimited;enableControls();canvas.style.cursor='grab';updateSelection();draw();
   }
@@ -764,7 +819,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     // models use ordinary lighting; no additional maps or CAD floor projection.
     for(const l of scene.children.filter(c=>c.isLight)){const copy=l.clone();copy.castShadow=false;opaqueScene.add(copy);if(copy.target)opaqueScene.add(copy.target);}
     let transparentBytes=0,active=null;const openingGlass=[];
-    exporting=true;renderer.debug.onShaderError=()=>{throw Object.assign(Error('Image shader compilation failed'),{code:'RENDER_SHADER_FAILED'});};if(frame){cancelAnimationFrame(frame);frame=0;}controls.enabled=false;selectionBox.visible=false;printersGroup.visible=false;for(const g of streamedFurniture)g.visible=false;placementGroup.visible=placementGuides.visible=false;
+    exporting=true;renderer.debug.onShaderError=()=>{throw Object.assign(Error('Image shader compilation failed'),{code:'RENDER_SHADER_FAILED'});};if(frame){cancelAnimationFrame(frame);frame=0;}controls.enabled=false;selectionBox.visible=false;pickedSolid.visible=pickedPlan.visible=false;printersGroup.visible=false;for(const g of streamedFurniture)g.visible=false;placementGroup.visible=placementGuides.visible=false;
     const exportCamera=camera.clone();exportCamera.aspect=w/h;exportCamera.updateProjectionMatrix();
     try{
       aborted(signal);target=new THREE.WebGLRenderTarget(w,h,{samples:0,format:THREE.RGBAFormat,type:THREE.HalfFloatType});target.texture.colorSpace=THREE.LinearSRGBColorSpace;
@@ -830,7 +885,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
       exporting=false;exportAbort=null;externalSignal?.removeEventListener('abort',forwardAbort);presentView();if(disposed)releaseResources();else{resize();draw();}
     }
   }
-  function releaseResources(){if(resourcesDisposed)return;resourcesDisposed=true;ghostMaterial.dispose();ghostLineMaterial.dispose();ghostFootprint.geometry.dispose();ghostFootprint.material.dispose();placementGuides.geometry.dispose();disposeTree(planGroup);planSelection.geometry.dispose();planSelection.material.dispose();clearRoom();openingRenderer.dispose();clearContacts();surfaces.dispose();planFloorMaterial.dispose();contactPlaneGeometry.dispose();boxGeometry.dispose();cylinderGeometry.dispose();for(const g of equipmentTubeGeometries.values())g.dispose();equipmentTubeGeometries.clear();equipmentMeshCache.dispose();printerMeshCache.dispose();printerPreviews.clear();printerMaterial.dispose();printerGlassMaterial.dispose();wireGeometry.dispose();wireMaterial.dispose();for(const m of palette.values())m.dispose();grid.geometry.dispose();grid.material.dispose();selectionBox.geometry.dispose();selectionBox.material.dispose();keyLight.shadow.dispose();environment.dispose();renderer.dispose();canvas.remove();}
-  function dispose(){if(disposed)return;cancel();disposed=true;exportAbort?.abort();if(frame)cancelAnimationFrame(frame);if(placementFrame)cancelAnimationFrame(placementFrame);observer.disconnect();perspectiveControls.dispose();planControls.dispose();eventWindow?.removeEventListener('blur',cancel);eventWindow?.removeEventListener('keydown',keyCancel);for(const [element,type,handler]of toolListeners)element.removeEventListener(type,handler);clearUnitMarkers();unitLabels.remove();objectTools.remove();measurementsCanvas.remove();for(const [type,handler]of [['pointerdown',down],['pointermove',move],['pointerup',up],['pointercancel',cancel],['lostpointercapture',cancel]])canvas.removeEventListener(type,handler,true);if(!exporting)releaseResources();}
-  resize();setTool();return {setState,setTool,setOptions,setPlacement,refreshPlacement:()=>updatePlacement(),view,getView,focusSelected,exportImage,dispose,canvas,getPreviewMetrics:()=>({cache:printerMeshCache.stats(),render:{...renderer.info?.render},memory:{...renderer.info?.memory}})};
+  function releaseResources(){if(resourcesDisposed)return;resourcesDisposed=true;ghostMaterial.dispose();ghostLineMaterial.dispose();ghostFootprint.geometry.dispose();ghostFootprint.material.dispose();placementGuides.geometry.dispose();disposeTree(planGroup);planSelection.geometry.dispose();planSelection.material.dispose();pickedSolid.geometry.dispose();pickedPlan.geometry.dispose();pickedMaterial.dispose();clearRoom();openingRenderer.dispose();clearContacts();surfaces.dispose();planFloorMaterial.dispose();contactPlaneGeometry.dispose();boxGeometry.dispose();cylinderGeometry.dispose();for(const g of equipmentTubeGeometries.values())g.dispose();equipmentTubeGeometries.clear();equipmentMeshCache.dispose();printerMeshCache.dispose();printerPreviews.clear();printerMaterial.dispose();printerGlassMaterial.dispose();wireGeometry.dispose();wireMaterial.dispose();for(const m of palette.values())m.dispose();grid.geometry.dispose();grid.material.dispose();selectionBox.geometry.dispose();selectionBox.material.dispose();keyLight.shadow.dispose();environment.dispose();renderer.dispose();canvas.remove();}
+  function dispose(){if(disposed)return;cancel();disposed=true;exportAbort?.abort();if(frame)cancelAnimationFrame(frame);if(placementFrame)cancelAnimationFrame(placementFrame);observer.disconnect();perspectiveControls.dispose();planControls.dispose();eventWindow?.removeEventListener('blur',cancel);eventWindow?.removeEventListener('keydown',keyCancel);for(const [element,type,handler]of toolListeners)element.removeEventListener(type,handler);clearUnitMarkers();unitLabels.remove();marquee.remove();objectTools.remove();measurementsCanvas.remove();for(const [type,handler]of [['pointerdown',down],['pointermove',move],['pointerup',up],['pointercancel',cancel],['lostpointercapture',cancel]])canvas.removeEventListener(type,handler,true);if(!exporting)releaseResources();}
+  resize();setTool();return {setState,setPickedRoots,cancelGesture:()=>{if(!drag)return false;cancel();return true;},setTool,setOptions,setPlacement,refreshPlacement:()=>updatePlacement(),view,getView,focusSelected,exportImage,dispose,canvas,getPreviewMetrics:()=>({cache:printerMeshCache.stats(),render:{...renderer.info?.render},memory:{...renderer.info?.memory}})};
 }

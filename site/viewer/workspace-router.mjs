@@ -1,7 +1,7 @@
 import {translate} from './i18n.mjs?v=37e548ac286080f2a1cc';
 import {WorkspaceScope, activateScope} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 import {bindWorkspaceNavigation, setWorkspaceLeaving, workspaceTarget, workspaceURL, replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
-import {setupWorkspace} from './workspace-ui.mjs?v=1b3faf33df1c07270e12';
+import {setupWorkspace} from './workspace-ui.mjs?v=cba2454fe91c94e179c5';
 import {applyDisplay} from './display-preferences.mjs?v=8f347468def25922153c';
 import {machinePage} from './machines.js?v=43bbf9d5e578ae5c1a5e';
 
