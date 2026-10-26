@@ -1,8 +1,9 @@
+import {validateActualCurrentSourceMates34} from './source_current_collision34.mjs?v=eb7f77c9b47abcc8b543';
 import * as THREE from 'three';
-import {initialState,validateState,validateReviewTransition,visibleKeys,worldDelta,reviewWorldDelta} from './state.mjs?v=621076790ccb2e79318a';
-import {createVirtuCompleteFlex,createVirtuCompleteFlex190,createSourceBelts191} from './motion_features.mjs?v=e42678a5314a2d6c0676';
-import {createSourceDriveController,createSourceCompanions} from './source_drive304.mjs?v=e42678a5314a2d6c0676';
-import {createHeadLoom306} from './source_loom306.mjs?v=e42678a5314a2d6c0676';
+import {initialState,validateState,validateReviewTransition,visibleKeys,worldDelta,reviewWorldDelta} from './state.mjs?v=b5247a9c87c6a42703d7';
+import {createVirtuCompleteFlex,createVirtuCompleteFlex190,createSourceBelts191} from './motion_features.mjs?v=0611345fe57584a0be70';
+import {createSourceDriveController,createSourceCompanions} from './source_drive304.mjs?v=579ad6e6384362d2d3fb';
+import {createHeadLoom306} from './source_loom306.mjs?v=99eb6785ca70b024911b';
 export const materialRole=record=>{if(record.kind!=='printed')return 'native';if(!['M','A'].includes(record.material_role))throw Error('Unclassified printed source material: '+record.source_identity);return record.material_role;};
 export function createAssembly(gltf,p){
  const root=gltf.scene,parts=new Map(),rest=new Map(),materials=[],routes=[],supersededGeometries=new Set(),supersededMaterials=new Set();
@@ -43,6 +44,7 @@ export function createAssembly(gltf,p){
   if(sourceCompanions)sourceCompanions.update(nativePose);
   if(sourceHeadLoom)sourceHeadLoom.update(nativePose);
   for(const r of materials){if(r.color)r.material.color.copy(r.color);r.material.opacity=r.opacity;r.material.transparent=r.transparent;r.material.depthWrite=r.transparent?false:r.depthWrite;if(['M','A'].includes(r.role))r.material.color.set(s.palette[r.role]);}
+  root.updateMatrixWorld(true);validateActualCurrentSourceMates34(view,s);
   state=structuredClone(s);return snapshot();
  }
  function reset(){const s=initialState(p);s.language=state.language;s.theme=state.theme;apply(s);for(const r of materials)if(r.color)r.material.color.copy(r.color);return snapshot();}

@@ -1,11 +1,11 @@
 import {normalizeLanguage} from './languages.mjs?v=2e376566920474c0f57c';
-import {annexMachines} from './annex-machines.mjs';
+import {annexMachines} from './annex-machines.mjs?v=3a0e3f3d8e456bee4e5a';
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
 import {navigateWorkspace} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
-import {ratRigMachines} from './ratrig-machines.mjs';
-import {sourceAssemblyMachines} from './source-assembly-registry.mjs';
-import {elegooMachines} from './elegoo-catalog.mjs';
+import {ratRigMachines} from './ratrig-machines.mjs?v=6f5c7fbad04c29c3827d';
+import {sourceAssemblyMachines} from './source-assembly-registry.mjs?v=626a5779c846d77e1ee8';
+import {elegooMachines} from './elegoo-catalog.mjs?v=3309535203a88f622ae0';
 export const machineChoices=[
  ...sourceAssemblyMachines,
  ...elegooMachines,

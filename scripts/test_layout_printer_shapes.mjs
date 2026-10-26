@@ -681,6 +681,7 @@ const expectedProfiles = new Map([
   ]
 ]);
 const fallbackIds = [
+  "rh3d_e3ng_v12_235",
   "the100_v11_165",
   "positron_v322",
   "voron_trident_500_custom",
@@ -1703,7 +1704,7 @@ const sourceWitnesses = [
 // END SOURCE EXPECTATIONS
 
 const registered = machineChoices.filter(r => r.available !== false).map(r => r.id).sort();
-assert.equal(registered.length, 72, 'Register a silhouette or explicit fallback for every available machine');
+assert.equal(registered.length, 73, 'Register a silhouette or explicit fallback for every available machine');
 assert.deepEqual(catalog.machines.map(r => r.id).sort(), registered);
 assert.deepEqual([...expectedProfiles.keys(), ...fallbackIds].sort(), registered);
 assert(Buffer.byteLength(source) <= 150 * 1024, 'Bounded preview module budget');

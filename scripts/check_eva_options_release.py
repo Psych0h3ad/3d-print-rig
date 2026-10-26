@@ -255,7 +255,7 @@ def main():
                         '--host', machine, '--report', str(report_file)], cwd=ROOT, check=True)
         reports.append(json.loads(report_file.read_bytes()))
     combined = merge_host_reports(registry, reports)
-    (out / 'actual-options.json').write_text(json.dumps(combined, indent=2) + '\n', encoding='utf8')
+    (out / 'actual-options.json').write_text(json.dumps(combined, separators=(',', ':')) + '\n', encoding='utf8')
     print(f"EVA options release gate passed: all {len(ids)} installed configurations on {len(hosts)} source hosts.")
 
 

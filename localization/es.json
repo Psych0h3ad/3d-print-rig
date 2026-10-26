@@ -11301,6 +11301,30 @@
     "fun.palette_graphite": {
       "source_revision": "fe71065adb5f8a625267",
       "text": "Grafito"
+    },
+    "source_assembly.e3ng.rear_latches_notice": {
+      "source_revision": "70b250a9a9dde7c68000",
+      "text": "Los pestillos traseros se muestran montados; no se simula su flexión."
+    },
+    "source_assembly.e3ng.shortened_spacers_notice": {
+      "source_revision": "bd8a4233b91c2797c177",
+      "text": "Los separadores se basan en el modelo de Fanta_r y se han acortado para mostrarlos."
+    },
+    "source_assembly.e3ng.thermistor_wiring_notice": {
+      "source_revision": "2b7c01cfb7b04655d5a0",
+      "text": "El termistor de la cama y el cableado interno no están completamente modelados."
+    },
+    "source_assembly.e3ng.probe_fastener_review": {
+      "source_revision": "a5e2e37e3103b99709ed",
+      "text": "El ajuste de los tornillos de la sonda está en revisión."
+    },
+    "source_assembly.e3ng.controller_board_omitted": {
+      "source_revision": "ce3195e22ebab44f138c",
+      "text": "Se omite la geometría de la placa controladora."
+    },
+    "source_assembly.source_colors": {
+      "source_revision": "a2449e09042e47a318f4",
+      "text": "Colores originales"
     }
   }
 }

@@ -1,3 +1,4 @@
+import {sourceMetadataURL} from './source-metadata-input.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {registerHooks} from 'node:module';
@@ -10,14 +11,14 @@ const base=new URL('../site/viewer/',import.meta.url),read=url=>JSON.parse(fs.re
 registerHooks({resolve(specifier,context,next){return specifier==='three'?{url:new URL('vendor-r180/three.module.js',base).href,shortCircuit:true}:next(specifier,context);}});
 const {selectedSourcePacket}=await import('../site/viewer/source-assembly-loader.mjs');
 for(const record of read(new URL('../SOURCE_ASSEMBLIES.json',base)).models){
- const packet=read(new URL(record.packet.url,base)),manifest=read(new URL(packet.chunk_delivery.manifest.url,base));
+ const packet=read(new URL(record.packet.url,base)),manifest=read(sourceMetadataURL(base,packet.chunk_delivery.manifest.url));
  const untouchedFull=JSON.stringify(packet);
  if(record.id==='rh3d_virtu_may_230')assertMayRolePacket(packet);
  const plan=headSubsetPlan(packet,manifest,packet.public_head_keys),head=selectedSourcePacket(packet,plan),state=initialState(head);
  assert(head.parts.length>100);assert.equal(head.parts.length,new Set(packet.public_head_keys).size);assert(head.head_only_subset);
  for(const key of ['source_preview_limits6','source_fixed_Z_anchors5','private_source_motion172','source_fixed_XY309','source_drive304','source_loom306'])assert.equal(head[key],undefined,key+' unavailable on a head-only view');
  validateState(state,head);for(const axis of 'xyz')assert.deepEqual(sourceControlBounds(head,state,axis),{min:0,max:0});
- assert.equal(packet.parts.length,record.id==='rh3d_virtu_may_230'?selectedGeometry.owners:416,'Exact source-bound Full packet owner count');
+ assert.equal(packet.parts.length,record.id==='rh3d_virtu_may_230'?selectedGeometry.owners:508,'Exact source-bound Full packet owner count');
  assert.equal(JSON.stringify(packet),untouchedFull,'Head selection must not mutate the Full packet');
  if(record.id==='rh3d_virtu_may_230')assert.equal(head.parts.length,selectedGeometry.public_head_keys.length,'Exact source-bound Head membership');
  if(packet.source_preview_limits6){

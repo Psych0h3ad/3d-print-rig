@@ -1,11 +1,23 @@
 import {BufferAttribute} from 'three';
-import {fetchPinned,createChunkProgress} from './loading.mjs?v=84eac858ca86737a50e3';
+import {fetchPinned,createChunkProgress} from './loading.mjs?v=c803b3642a0d2339782e';
 import {headSubsetPlan} from './head_subset.mjs?v=e42678a5314a2d6c0676';
 import {fetchExactChunk} from './exact_gzip_transport.mjs?v=e42678a5314a2d6c0676';
 
 const types={5121:Uint8Array,5123:Uint16Array,5125:Uint32Array,5126:Float32Array},sizes={SCALAR:1,VEC2:2,VEC3:3,VEC4:4};
+// One explicit board-only source revision. Every other model still requires
+// zero deleted source faces; neither zero nor another omission is valid here.
+const boardOmission508=Object.freeze({
+ model:'1dad2900f881eec60fa16255c98628489443ea453086c79b7d0d6ac0e3e6bf3f',
+ inventory:'1fb17bae60800458c27ba5ffcd57d4987508f0fda5cec757cade3af60ef7fcca',
+ owner:'BTT-original-full-controller-with-five-source-hole-derivative',faces:370328,owners:508
+});
+function sourceFacePolicy(m,p){
+ const b=boardOmission508;
+ if(m.model_sha256===b.model||p.model.sha256===b.model)return m.model_sha256===b.model&&p.model.sha256===b.model&&m.source_inventory_sha256===b.inventory&&p.inventory.sha256===b.inventory&&m.source_faces_deleted===b.faces&&m.omitted_owner===b.owner&&m.occurrences===b.owners&&p.parts.length===b.owners&&new Set(p.parts.map(r=>r.key)).size===b.owners&&!p.parts.some(r=>r.key===b.owner);
+ return m.source_faces_deleted===0;
+}
 export function validateChunkManifest(m,p){
- if(m.schema!=='priority-exact-source-chunks-134-v1'||m.model_sha256!==p.model.sha256||m.model_bytes!==p.model.bytes||m.source_inventory_sha256!==p.inventory.sha256||m.occurrences!==p.parts.length||m.chunks.length!==p.chunk_delivery.chunk_count||m.largest_chunk_bytes!==p.chunk_delivery.largest_chunk_bytes||m.source_faces_deleted!==0||m.normal_averaging!==false)throw Error('Chunk source identity mismatch');
+ if(m.schema!=='priority-exact-source-chunks-134-v1'||m.model_sha256!==p.model.sha256||m.model_bytes!==p.model.bytes||m.source_inventory_sha256!==p.inventory.sha256||m.occurrences!==p.parts.length||m.chunks.length!==p.chunk_delivery.chunk_count||m.largest_chunk_bytes!==p.chunk_delivery.largest_chunk_bytes||!sourceFacePolicy(m,p)||m.normal_averaging!==false)throw Error('Chunk source identity mismatch');
  const d=m.document;if(d.asset.version!=='2.0'||d.buffers.length!==1||d.buffers[0].uri||['images','textures','skins','animations'].some(k=>d[k]?.length)||[...(d.extensionsUsed||[]),...(d.extensionsRequired||[])].some(x=>x!=='EXT_mesh_gpu_instancing'))throw Error('Unsupported chunked source GLB');
  let end=0;for(const [i,c]of m.chunks.entries()){if(c.ordinal!==i||c.start!==end||!Number.isSafeInteger(c.bytes)||c.bytes<=0||c.bytes>m.largest_chunk_bytes)throw Error('Chunk coverage/order mismatch');end+=c.bytes;}if(end<m.geometry_bytes||end>d.buffers[0].byteLength+3)throw Error('Incomplete chunk coverage');
  for(const [i,a]of d.accessors.entries()){const v=d.bufferViews[a.bufferView],b=m.buffer_view_chunks[a.bufferView],c=m.chunks[b?.chunk],T=types[a.componentType],size=sizes[a.type],offset=(b?.offset??0)+(a.byteOffset??0),length=a.count*size;

@@ -62,3 +62,5 @@ For printers without a separate guide, open the viewer's **References** panel fo
 Review archives: [Trident size / V2.4 color review](TRIDENT_SIZE_COLOR_QA.md) · [Selection audit](SELECTION_AUDIT.md).
 
 [Back to the project](../README.md) · [Support development on GitHub Sponsors](https://github.com/sponsors/Psych0h3ad)
+
+- [E3NG](E3NG_SOURCE509.md): public-STL assembly, toolhead view, colors and motion previews.

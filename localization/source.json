@@ -14235,6 +14235,36 @@
       "kind": "message",
       "ja": "グラファイト",
       "en": "Graphite"
+    },
+    "source_assembly.e3ng.rear_latches_notice": {
+      "kind": "message",
+      "ja": "背面ラッチは装着した状態で表示します。曲がりはシミュレーションしていません。",
+      "en": "Rear latches are shown fitted; their bending is not simulated."
+    },
+    "source_assembly.e3ng.shortened_spacers_notice": {
+      "kind": "message",
+      "ja": "スペーサーはFanta_rのモデルを基に、表示用に短くしています。",
+      "en": "Spacers are based on Fanta_r’s model and shortened for display."
+    },
+    "source_assembly.e3ng.thermistor_wiring_notice": {
+      "kind": "message",
+      "ja": "ベッドのサーミスターと内部配線は完全にはモデル化されていません。",
+      "en": "The bed thermistor and internal wiring are not fully modeled."
+    },
+    "source_assembly.e3ng.probe_fastener_review": {
+      "kind": "message",
+      "ja": "プローブ固定ねじの適合は確認中です。",
+      "en": "Probe fastener fit is under review."
+    },
+    "source_assembly.e3ng.controller_board_omitted": {
+      "kind": "message",
+      "ja": "コントローラーボードの形状は省略しています。",
+      "en": "Controller board geometry is omitted."
+    },
+    "source_assembly.source_colors": {
+      "kind": "message",
+      "ja": "元の色",
+      "en": "Source colors"
     }
   }
 }

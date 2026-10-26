@@ -138,6 +138,14 @@ def prepare(root, contract, mapping=None, *, equipment_input_map=None):
     for row in rows:
         if selected(row):
             materialize(row)
+    external = root/'site/E3NG_SOURCE_INPUTS.json'
+    if external.exists():
+        for row in json.loads(external.read_text(encoding='utf-8'))['files']:
+            if not row['path'].startswith('source-assembly-assets/') or not row['path'].endswith('.json'):
+                raise ValueError('Only bounded external source JSON may be materialized')
+            safe_path(row['path'])
+            if row['bytes'] > 16*1024*1024: raise ValueError('Source JSON cap exceeded')
+            materialize(row)
     mounting = mounting_dependencies(root, rows, materialize)
     result = {'passed':True,'verified_source_check_inputs':len(verified),'paths':verified,
             'mounting_dependency_paths':mounting,

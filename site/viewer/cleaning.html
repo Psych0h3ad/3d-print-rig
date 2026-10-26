@@ -34,7 +34,7 @@
 <a href="./">Open printer</a>
 </p>
 <script type="module">
-import {printerWorkspaceURL,workspaceReturnKey} from './workspace-return.mjs?v=d119bc391d02f205adde';
+import {printerWorkspaceURL,workspaceReturnKey} from './workspace-return.mjs?v=ae42ffadba4c105fe02e';
 let remembered;try{remembered=sessionStorage.getItem(workspaceReturnKey)}catch{}
 location.replace(printerWorkspaceURL(location.href,remembered));
 </script>

@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
 import {e3ngSelection,e3ngPartVisible,e3ngURL} from '../site/viewer/e3ng-model.mjs';
 import {machineChoices,machinePage,machineOptions,machineFamilies,machineVendors} from '../site/viewer/machines.js';
 import {workspaceKindFor} from '../site/viewer/workspace-return.mjs';
@@ -7,13 +8,24 @@ const referenceURL=new URL(e3ngURL('https://example.test/viewer/e3ng.html?machin
 assert(!referenceURL.searchParams.has('machine'));assert.equal(referenceURL.searchParams.get('lang'),'en');
 assert.equal(machinePage('e3ng_toolchanger_230'),undefined);
 assert(!machineChoices.some(m=>m.id.startsWith('e3ng_')||m.page==='./e3ng.html'));
-assert(!machineOptions({},'family').includes('e3ng'));
+assert(machineOptions({},'family').includes('e3ng'));
 assert.equal(machineFamilies.e3ng,'E3NG');assert.equal(machineVendors.rh3d,'RH3D');
 assert.deepEqual(machineChoices.filter(m=>m.family==='e3ng').map(m=>({id:m.id,page:m.page,vendor:m.vendor})),
- []);
-assert.equal(machinePage('rh3d_e3ng_v12_235'),undefined);
+ [{id:'rh3d_e3ng_v12_235',page:'./community.html',vendor:'rh3d'}]);
+assert.equal(machinePage('rh3d_e3ng_v12_235'),'./community.html');
 assert.equal(workspaceKindFor('e3ng.html'),'toolchangers');
 assert.equal(machinePage('e3ng_v12_230'),undefined);
+assert.equal(selected.view,'head','The legacy reference remains head-only by default');
+assert.deepEqual(machineOptions({family:'e3ng',vendor:'rh3d',size:235},'id'),['rh3d_e3ng_v12_235']);
+assert.deepEqual(machineOptions({family:'e3ng',vendor:'rh3d',size:230},'id'),[]);
+const publicPacket=JSON.parse(readFileSync(new URL('../site/source-assembly-assets/packet-rh3d_e3ng_v12_235.json',import.meta.url),'utf8'));
+assert.equal(publicPacket.id,'e3ng_v12_revo_orbiter138_154R');
+assert.equal(publicPacket.machine,'e3ng');
+assert(publicPacket.public_notices.includes('stl-e3ng'));
+assert.equal(publicPacket.download_contract.STEP_enabled,false);
+assert.equal(publicPacket.download_contract.step.available,false);
+assert.match(publicPacket.download_contract.source_notice,/paid E3NG assembly was not used/);
+
 for(const invalid of [{tools:0},{tools:7},{tools:NaN},{board:'ebb42_gen2'},{gantry:'voron'},{extruder:'orbiter'},{view:'printer'},{wiper:'yes'}])assert.throws(()=>e3ngSelection(invalid));
 let selections=0;
 for(const board of ['ebb42','ebb36'])for(const extruder of ['pin','bolt'])for(const arm of ['arm','sleeve'])for(const gantry of ['v12','beta'])for(const tools of [1,2,3,4,5,6])for(const view of ['head','assembly','dock','gantry']){
