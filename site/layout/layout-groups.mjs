@@ -1,7 +1,7 @@
 // Farm units use the same static planning envelopes as individual objects.
 // A group never duplicates source CAD or changes printer/support attachments.
 import {LIMITS,LayoutValidationError,createDefaultLayout,deriveScene,resolvePrinterEquipment,
-  validatePlacement,parseLayout,serializeLayout} from './layout-state.mjs?v=38da7e9cd1bcecf14474';
+  validatePlacement,parseLayout,serializeLayout} from './layout-state.mjs?v=96541b55818081557a73';
 import {rootPose,groupRootPose} from './layout-group-data.mjs?v=402a86c4c0754fb6e10f';
 import {bounds,rectangle,rotateXZ,transformPolygon,polygonContains,orient} from './layout-geometry.mjs?v=129e07e8d3e2b008fab6';
 import {rigidMotionStaysInside,boundaryTangents} from './layout-constraints.mjs?v=53e33561b2e7ce324016';
@@ -237,7 +237,7 @@ export function groupTemplateInfo(template,catalog=[]){
 export function captureGroupTemplate(state,id,catalog=[]){
   catalog=catalogRows(catalog);
   checked(state,catalog);const g=requireGroup(state,id),ids=new Set(groupEntityIds(state,id));
-  const issues=validatePlacement(state,catalog).filter(e=>e.entityIds.some(id=>ids.has(id)));
+  const issues=validatePlacement(state,catalog).filter(e=>!['DOOR_SWING_OBSTRUCTED','DOOR_SWING_WALL'].includes(e.code)&&e.entityIds.some(id=>ids.has(id)));
   if(issues.length)throw new LayoutValidationError(issues.map(e=>({code:e.code,path:'group',params:e.params})));
   const local=pose=>{const [xMm,zMm]=rotateXZ([pose.xMm-g.pose.xMm,pose.zMm-g.pose.zMm],-g.pose.yawDeg);return {xMm,zMm,yawDeg:pose.yawDeg-g.pose.yawDeg};};
   const template={format:'3d-print-rig-layout-set',version:1,name:g.name,
@@ -258,7 +258,7 @@ export function instantiateGroupTemplate(state,template,{id,xMm,zMm,yawDeg=0},ca
   const pose={xMm,zMm,yawDeg},assembled={...state,furniture:[...state.furniture,...furniture],printers:[...state.printers,...printers]};
   const group={id,name:template.name,label:nextGroupLabel(state),memberIds,pose,originPose:{...pose},memberPoses:memberIds.map(id=>({id,pose:{...rootPose(assembled,id)}}))};
   const next=checked({...assembled,groups:[...(state.groups??[]),group]},catalog),ids=new Set([...furniture,...printers].map(e=>e.id));
-  const issues=validatePlacement(next,catalog).filter(e=>e.entityIds.some(id=>ids.has(id)));
+  const issues=validatePlacement(next,catalog).filter(e=>!['DOOR_SWING_OBSTRUCTED','DOOR_SWING_WALL'].includes(e.code)&&e.entityIds.some(id=>ids.has(id)));
   if(issues.length)throw new LayoutValidationError(issues.map(e=>({code:e.code,path:'placement',params:e.params})));
   return next;
 }

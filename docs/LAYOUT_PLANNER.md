@@ -59,6 +59,27 @@ by name or unit letter. Press **/** outside a text field to focus the search.
 Tab changes preserve unfinished form entries; selecting another object opens
 **Selected**.
 
+## Windows and doors
+
+Open **Room → Windows and doors**, choose a numbered wall and add a window or
+door. Set its width, height and distance from the start of that wall. Windows
+also have a sill height; doors have left/right hinges and an opening angle.
+The selected wall's length is shown in millimetres. Openings cut through the
+wall in 3D and have symbols in the 2D plan and exported images.
+
+An opening must fit within its wall and cannot overlap another opening.
+Changes that would remove its wall or make it too small are rejected; move or
+remove the opening first. Room resizing retains the wall attachment, and
+reversing or reordering the same outline preserves its physical location.
+Openings are included in layout JSON, undo and redo. Existing plans continue
+to work without them.
+
+A warning highlights furniture or printer envelopes in a door's swing area,
+and door swings that reach another wall. These warnings do not block placing
+or copying furniture and printers.
+This is a conservative planning envelope, not a construction or physical
+clearance assessment. Room containment remains the boundary for placement.
+
 ## Printer farms and reusable sets
 
 Use the checkboxes in **Items** to choose desks, shelves or floor printers,

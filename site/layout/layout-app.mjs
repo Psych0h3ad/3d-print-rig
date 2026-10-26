@@ -1,14 +1,15 @@
-import {createDefaultLayout,createDesk,createShelf,createPopStation,createCatalog,applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,placementViolations,deriveScene,worldTransform,validatePlacement,serializeLayout,parseLayout} from './layout-state.mjs?v=38da7e9cd1bcecf14474';
+import {createDefaultLayout,createDesk,createShelf,createPopStation,createCatalog,applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,placementViolations,deriveScene,worldTransform,validatePlacement,serializeLayout,parseLayout} from './layout-state.mjs?v=96541b55818081557a73';
 import {equipmentRows,isLayoutEquipmentPreviewPrepared} from './layout-equipment.mjs?v=bd8e2772cabd6fd2564b';
 import {prepareLayoutEquipmentPreview,needsEquipmentPreview} from './layout-equipment-preview.mjs?v=aface112775d91937ff3';
-import {createLayoutUI} from './layout-ui.mjs?v=ce20fd10d4695de768be';
-import {setupLayoutLanguage} from './layout-language.mjs?v=72767a41b1878944f72f';
-import {proposePlacement} from './layout-placement.mjs?v=9d0ce029d12a2a8de630';
+import {createLayoutUI} from './layout-ui.mjs?v=fe9b18b414d28a5d0a10';
+import {setupLayoutLanguage} from './layout-language.mjs?v=0fa9ac24b825577e4381';
+import {proposePlacement} from './layout-placement.mjs?v=0f8e9df3b66d284e3793';
 import {renameGroup,ungroup,removeGroup,groupInfo,transformGroup,resolveGroupMove,resolveGroupRotation,
-  captureGroupTemplate,groupTemplateInfo,proposeGroupPlacement,parseGroupLibrary,GROUP_LIBRARY_LIMIT} from './layout-groups.mjs?v=0a9d77d6e07530349aa3';
-import {captureLayoutClipboard,encodeLayoutClipboard,decodeLayoutClipboard,regroupLayoutSelection} from './layout-clipboard.mjs?v=43d00b350d4c1768234a';
-import {placementStatus} from './layout-placement-feedback.mjs?v=8b1bd13a9cd9637340bc';
+  captureGroupTemplate,groupTemplateInfo,proposeGroupPlacement,parseGroupLibrary,GROUP_LIBRARY_LIMIT} from './layout-groups.mjs?v=e984be9f62932f3b3d4e';
+import {captureLayoutClipboard,encodeLayoutClipboard,decodeLayoutClipboard,regroupLayoutSelection} from './layout-clipboard.mjs?v=9b38a0fdca1f784736e4';
+import {placementStatus} from './layout-placement-feedback.mjs?v=655e2cf179149bf6d282';
 import {readDisplay,saveDisplay,applyDisplay} from '../viewer/display-preferences.mjs?v=8f347468def25922153c';
+import {newRoomOpening} from './layout-openings.mjs?v=12c520553a219df31848';
 
 const storageKey='3d-print-rig-layout-v2',legacyStorageKey='3d-print-rig-layout-v1',maxFileBytes=2*1024*1024;
 const groupLibraryKey='3d-print-rig-layout-sets-v1';let groupLibrary=[];
@@ -19,7 +20,7 @@ let startEmpty=false;
 let placement=null,lastPlacementTarget=null;
 let clipboardText='';
 const past=[],future=[];let nextId=1;
-const id=prefix=>{let value;do value=`${prefix}-${nextId++}`;while([...state.furniture,...state.printers,...(state.groups??[]),...groupLibrary].some(e=>e.id===value||e.id.startsWith(value+':')));return value;};
+const id=prefix=>{let value;do value=`${prefix}-${nextId++}`;while([...state.furniture,...state.printers,...(state.groups??[]),...groupLibrary,...state.room.openings??[]].some(e=>e.id===value||e.id.startsWith(value+':')));return value;};
 const clone=value=>JSON.parse(JSON.stringify(value));
 const t=(key,params)=>language?.t(key,params)||key;
 function store(){try{localStorage.setItem(storageKey,serializeLayout(state,catalog));}catch{}}
@@ -339,6 +340,7 @@ async function act(action){
       case 'undo':if(past.length){future.push(state);commit(past.pop(),{history:false});}return;
       case 'redo':if(future.length){past.push(state);commit(future.pop(),{history:false});}return;
       case 'reset':commit(createDefaultLayout(),{selection:null});view.view('perspective');view.view('fit');return;
+      case 'room-opening-add':commit(applyAction(state,{type:'ADD_ROOM_OPENING',opening:newRoomOpening(state.room,{id:id(action.kind),type:action.kind,wallIndex:action.wallIndex})},catalog));return;
       case 'add':{
         beginPlacement(action);
         return;
@@ -391,7 +393,7 @@ async function act(action){
       case 'render':await render();return;
       case 'edit-room':case 'import-svg':{
         roomEditing=true;
-        try{const {openRoomEditor}=await import('./layout-room-editor.mjs?v=3075ce80829d1da5980a'),nextRoom=await openRoomEditor({room:state.room,file:action.type==='import-svg'?action.file:undefined,t:language.t});
+        try{const {openRoomEditor}=await import('./layout-room-editor.mjs?v=0b61f6979b92632cbaa8'),nextRoom=await openRoomEditor({room:state.room,file:action.type==='import-svg'?action.file:undefined,t:language.t});
           if(nextRoom&&!disposed){commit(applyAction(state,{type:'SET_ROOM',room:nextRoom},catalog));view.view('perspective');view.view('fit');}
         }finally{roomEditing=false;}return;
       }
@@ -498,7 +500,7 @@ async function start(){
   if(!startEmpty)try{const saved=readSavedLayout();if(saved&&saved.length<=maxFileBytes){state=parseLayout(saved,catalog);store();}}catch{message(()=>t('layout.error.savedPlan'),true);}
   try{const saved=localStorage.getItem(groupLibraryKey);if(saved)groupLibrary=parseGroupLibrary(saved,catalog);}catch{message(()=>t('layout.group.libraryUnavailable'),true);}
   if(!await ensureEquipmentPreview(state)||disposed)return;
-  const {createLayoutRenderer}=await import('./layout-renderer.mjs?v=904c8d51f0bec357d9ca');
+  const {createLayoutRenderer}=await import('./layout-renderer.mjs?v=1dbc909a55062c3b9d7d');
   ui=createLayoutUI({container:$('#layout-sidebar'),onAction:act,t:language.t,catalog:rows,onObjectSearchEscape:()=>view?.canvas.focus()});
   ui.setStatus({canPaste:true});
   refreshGroupLibrary();

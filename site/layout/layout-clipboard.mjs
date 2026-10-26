@@ -1,7 +1,7 @@
 // Pure selection transactions. The caller owns clipboard I/O and instantiation.
 import {LIMITS, LayoutValidationError, createDefaultLayout, deriveScene, validatePlacement,
-  parseLayout, serializeLayout} from './layout-state.mjs?v=38da7e9cd1bcecf14474';
-import {createGroup, captureGroupTemplate, validateGroupTemplate} from './layout-groups.mjs?v=0a9d77d6e07530349aa3';
+  parseLayout, serializeLayout} from './layout-state.mjs?v=96541b55818081557a73';
+import {createGroup, captureGroupTemplate, validateGroupTemplate} from './layout-groups.mjs?v=e984be9f62932f3b3d4e';
 import {materializeGroupLabels} from './layout-group-labels.mjs?v=1ff84a0cf5540fd3184b';
 
 const MAX_BYTES = 2 * 1024 * 1024;
@@ -116,7 +116,9 @@ export function captureLayoutClipboard(state, selectionIds, catalog = [], option
   });
   // Exclude the original groups and unselected objects. captureGroupTemplate's
   // native placement audit must not turn unrelated legacy overlaps into failure.
-  let isolated = createDefaultLayout({room: source.room, furniture, printers}, catalog);
+  // Room openings are not part of a copied farm unit or its identity namespace.
+  const {openings: roomOpenings, ...captureRoom} = source.room;
+  let isolated = createDefaultLayout({room: captureRoom, furniture, printers}, catalog);
   if (!furniture.length && printers.length === 1
     && world.get(printers[0].id).equipmentVariant !== deriveScene(isolated, catalog).printers[0].equipmentVariant) {
     const printer = printers[0], issues = validatePlacement(source, catalog).filter(issue =>
