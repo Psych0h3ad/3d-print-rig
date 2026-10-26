@@ -5,8 +5,8 @@
   "files": [
     {
       "path": ".gitattributes",
-      "bytes": 1081,
-      "sha256": "f21e57b4c6e2afccb89e61d6735764c7a07f3a06026c28635441e490e44353cb"
+      "bytes": 1214,
+      "sha256": "304962ad44cc2e9c8b3c4701cdf2bb3cbc208227909341b3aa8eb125f5214e26"
     },
     {
       "path": ".github/FUNDING.yml",
@@ -266,7 +266,7 @@
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
       "bytes": 1208610,
-      "sha256": "fd0f74518f8df7af3654a8f2fd90414d275bc98b3344383d8fb19fdeccb944e1"
+      "sha256": "2c22be8770e2fb978e315a93061a84fc457c26141429da72a9eac7a0f98b35da"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -1525,8 +1525,8 @@
     },
     {
       "path": "scripts/test_e3ng_installations.mjs",
-      "bytes": 5679,
-      "sha256": "a419c23fec206b050a3fcd7f287c294a95eaf6aa7088064e236a71c8d71118ec"
+      "bytes": 6366,
+      "sha256": "e0453f781d1c4ac7e71392abfcbc6edaab6d05b1cd912d971aa451355155874d"
     },
     {
       "path": "scripts/test_e3ng_loom_route.mjs",

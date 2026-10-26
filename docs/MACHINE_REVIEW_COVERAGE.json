@@ -181,7 +181,7 @@
     "scripts/test_device_memory.mjs": "ee6d581b9334ee8f23037a82c7f6973b263d2aadf2622dd4610b163360455ae4",
     "scripts/test_doomcube.mjs": "e973a308fa164f292f637b0c1d63567a721f64c72b0dede665315856c8839998",
     "scripts/test_ducky0_components.mjs": "cb451989bbd774d8bfde840ae02a0fc577f68a5fb77e745b8bf42a5e222c0e4b",
-    "scripts/test_e3ng_installations.mjs": "a419c23fec206b050a3fcd7f287c294a95eaf6aa7088064e236a71c8d71118ec",
+    "scripts/test_e3ng_installations.mjs": "e0453f781d1c4ac7e71392abfcbc6edaab6d05b1cd912d971aa451355155874d",
     "scripts/test_e3ng_loom_route.mjs": "d60508e5fa3c59e18abba4df2962c03d51564d354e59195bbf7968e6f9745b20",
     "scripts/test_e3ng_scene_integration.mjs": "d16ff7825380d722e0b508f4055316f1c2c9ab846c482beb1e140008e96b9e9f",
     "scripts/test_e3ng_source_colors.mjs": "fefd21d8cc0dc68cdac219ea39aac1c0ddccec0a92e391b85b525fca71dcfa9b",
