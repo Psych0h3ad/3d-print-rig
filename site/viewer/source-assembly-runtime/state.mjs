@@ -1,5 +1,5 @@
 import {validateSourceOperatingPreviewMotion} from '../source-operating-bounds6.mjs';
-import {validateFixedSourceXYMotion,validateFixedSourceXYTransition} from './source_XY309.mjs?v=e42678a5314a2d6c0676';
+import {validateFixedSourceXYMotion,validateFixedSourceXYTransition} from './source_XY309.mjs?v=9e7ad89598a23adcc9e0';
 import {finiteSourceContactCoverage,continuousSourceContactSegment} from './finite_contact_domain.mjs?v=e42678a5314a2d6c0676';
 import {validateSelectedSourceReceiverMotion,sourceReviewBounds} from './receiver_guard309.mjs?v=e42678a5314a2d6c0676';
 export const stateSchema='priority-private-state-v1';
@@ -25,7 +25,7 @@ export function validateState(s,p){
  const groupIds=new Set((p.visibility_groups||[]).map(g=>g.id));if(!s.groups||Object.entries(s.groups).some(([k,v])=>!groupIds.has(k)||typeof v!=='boolean'))throw Error('Invalid source visibility group');
  if(p.source_loom305?.blocked_group_id&&s.groups[p.source_loom305.blocked_group_id]===true)throw Error('Loom preview held: actual body crossings and folded triangles');
  for(const k of ['M','A'])if(!/^#[a-f\d]{6}$/i.test(s.palette?.[k]))throw Error('Invalid printed palette');
- if(!['light','dark'].includes(s.theme)||!['studio','white','rgb','off'].includes(s.lighting)||!['en','ja','es','ko','ru'].includes(s.language)||typeof s.grid!=='boolean'||!Number.isFinite(s.lightIntensity)||s.lightIntensity<0||s.lightIntensity>2)throw Error('Invalid display settings');
+ if(!['light','dark'].includes(s.theme)||!['studio','white','rgb','off'].includes(s.lighting)||!['en','ja','es','ko','ru','de'].includes(s.language)||typeof s.grid!=='boolean'||!Number.isFinite(s.lightIntensity)||s.lightIntensity<0||s.lightIntensity>2)throw Error('Invalid display settings');
  if(s.camera!==null){for(const k of ['position','target'])if(!Array.isArray(s.camera?.[k])||s.camera[k].length!==3||!s.camera[k].every(v=>Number.isFinite(v)&&Math.abs(v)<100))throw Error('Invalid camera');if(Math.hypot(...s.camera.position.map((v,i)=>v-s.camera.target[i]))<.001)throw Error('Invalid camera distance');}
  return s;
 }

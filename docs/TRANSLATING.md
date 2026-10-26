@@ -1,7 +1,7 @@
 # Viewer translations
 
 The viewer supports Japanese (`ja`), English (`en`), Spanish (`es`), Korean
-(`ko`) and Russian (`ru`). Dictionaries are served with the site; viewing a
+(`ko`), Russian (`ru`) and German (`de`). Dictionaries are served with the site; viewing a
 page makes no request to a translation service.
 
 New visitors start in English, independently of browser/OS language. An explicit
@@ -21,7 +21,7 @@ For a wording change:
    still contain its previous Japanese wording, add that wording to `aliases`.
 2. Run `node scripts/build_locales.mjs --report`. Missing or outdated entries
    include their ID, current review text and expected source revision.
-3. Review the same ID in `localization/es.json`, `ko.json` and `ru.json`.
+3. Review the same ID in `localization/es.json`, `ko.json`, `ru.json` and `de.json`.
    Update its `text` and `source_revision` after reviewing the changed source.
    A source revision is not a statement that a translation is correct.
 4. Run `node scripts/build_locales.mjs --write`, then
@@ -60,3 +60,9 @@ At runtime a missing or stale entry falls back to current English text.
 Legacy source aliases resolve revised Japanese wording as well.
 Language selection survives printer/head navigation, saved preference and
 shared URLs. Dictionaries for additional languages load only when selected.
+
+The wallpaper page uses `localization/fun.json` to bind its short UI keys to
+the same stable source IDs. `build_locales.mjs` generates its compact six-language
+subset; do not maintain a separate copy of those translations in the page.
+Shared labels reuse existing IDs, while wallpaper-specific copy has `fun.*`
+IDs. Source revisions and placeholder checks apply to both.

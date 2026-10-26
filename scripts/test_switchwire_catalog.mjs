@@ -70,7 +70,7 @@ assert.throws(() => assertDisplayComposition(displayLoader, displayAuditor.repla
 const indexIDs = ['machine.switchwire.label', 'machine.switchwire.description', 'machine.switchwire.source_notice', 'machine.switchwire.chain_notice'];
 const source = JSON.parse(await fs.readFile(path.join(root, 'localization/source.json'), 'utf8'));
 const dictionaries = new Map();
-for (const language of ['es', 'ko', 'ru']) {
+for (const language of ['es', 'ko', 'ru', 'de']) {
   const locale = JSON.parse(await fs.readFile(path.join(root, `localization/${language}.json`), 'utf8'));
   const compiled = (await import(`../site/viewer/locales/${language}.mjs`)).default;
   dictionaries.set(language, compiled);

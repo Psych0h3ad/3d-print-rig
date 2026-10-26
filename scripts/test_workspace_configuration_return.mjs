@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import vm from 'node:vm';
+import {supportedLanguages} from '../site/viewer/languages.mjs';
 
 // Execute the actual controller-owned callback and observer binding. The
 // observer fixture filters attribute notifications just as the DOM does.
@@ -17,7 +18,7 @@ const legacy=actual.replace(", 'data-configuration'",'').replace(",'data-configu
 assert.notEqual(actual,legacy,'The real binding observes configuration changes');
 let checks=0;
 function exercise(body,expectedRefresh){
- for(const lang of ['ja','en','es','ko','ru']){
+ for(const lang of supportedLanguages){
   const observers=[];
   class Observer{
    constructor(callback){this.callback=callback;observers.push(this)}
@@ -58,4 +59,4 @@ function exercise(body,expectedRefresh){
 exercise(legacy,false); // Negative control reproduces the initial-selection bug.
 exercise(actual,true);
 lifecycle.activateScope(undefined);
-console.log(JSON.stringify({passed:true,checks,languages:5,negative_control:'old observer retains stock',actual_callback:'configuration A-B-A refresh, session, Printer return and disposal'}));
+console.log(JSON.stringify({passed:true,checks,languages:supportedLanguages.length,negative_control:'old observer retains stock',actual_callback:'configuration A-B-A refresh, session, Printer return and disposal'}));

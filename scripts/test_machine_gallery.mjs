@@ -18,8 +18,8 @@ const sourceOnly = args[0] === '--source-only', site = args[0] === '--site' ? pa
 const read = async relative => JSON.parse(await fs.readFile(path.join(root, relative), 'utf8'));
 const digest = bytes => createHash('sha256').update(bytes).digest('hex');
 const canonicalHash = map => digest(JSON.stringify(Object.fromEntries(Object.entries(map).sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0))));
-const [coverage, source, es, ko, ru, html, css, moduleSource] = await Promise.all([
-  read('docs/MACHINE_REVIEW_COVERAGE.json'), read('localization/source.json'), read('localization/es.json'), read('localization/ko.json'), read('localization/ru.json'),
+const [coverage, source, html, css, moduleSource] = await Promise.all([
+  read('docs/MACHINE_REVIEW_COVERAGE.json'), read('localization/source.json'),
   fs.readFile(path.join(root, 'site/viewer/machines.html'), 'utf8'), fs.readFile(path.join(root, 'site/viewer/machine-gallery.css'), 'utf8'),
   fs.readFile(path.join(root, 'site/viewer/machine-gallery.mjs'), 'utf8'),
 ]);
@@ -30,7 +30,8 @@ assert.equal(records.size, available.length, 'Release coverage must include ever
 assert.deepEqual(available.map(row => row.id).sort(), [...records.keys()].sort(), 'Source registrations must equal current actual model coverage, including V0 and community printers');
 assert.equal(unavailable.length, 6, 'Six CAD-missing registrations stay outside the collection');
 
-const dictionaries = {es, ko, ru}, definitions = Object.fromEntries(Object.entries(source.entries).map(([id, entry]) => [id, {...entry, revision: sourceRevision(entry)}]));
+const dictionaries = Object.fromEntries(await Promise.all(supportedLanguages.filter(language=>!['en','ja'].includes(language)).map(async language=>[language,await read('localization/'+language+'.json')])));
+const definitions = Object.fromEntries(Object.entries(source.entries).map(([id, entry]) => [id, {...entry, revision: sourceRevision(entry)}]));
 const translator = createTranslator(definitions, {dictionaries: new Map(Object.entries(dictionaries).map(([language, locale]) => [language,
   Object.fromEntries(Object.entries(locale.messages).map(([id, record]) => [id, [record.source_revision, record.text]]))]))});
 const galleryIDs = Object.keys(source.entries).filter(id => id.startsWith('gallery.') || id === 'ui.machines');
@@ -73,7 +74,7 @@ async function imports(file) {
   }
 }
 await imports(path.join(root, 'site/viewer/machine-gallery.mjs'));
-for (const loaded of ['i18n.mjs', 'display-preferences.mjs', 'locales/es.mjs', 'locales/ko.mjs', 'locales/ru.mjs'])
+for (const loaded of ['i18n.mjs', 'display-preferences.mjs', ...supportedLanguages.filter(language=>!['en','ja'].includes(language)).map(language=>'locales/'+language+'.mjs')])
   await imports(path.join(root, 'site/viewer', loaded));
 
 // Fixture records isolate source behavior. They are never written as assets,
@@ -218,7 +219,7 @@ try {
 const hostile = createMachineCard({...trident, label: '<img src=x onerror=alert(1)>'}, {document: failed.document, current, language: 'en', translate: text => text, message: id => id});
 assert.equal(descendants(hostile).filter(node => node.tagName === 'IMG').length, 1, 'Hostile catalog text cannot create markup');
 assert(descendants(hostile).some(node => node.tagName === 'H3' && node.textContent === '<img src=x onerror=alert(1)>'));
-console.log('Gallery source checks passed: exact' + available.length + ' registrations, 5 languages, all card routes, filters, lazy images, safe URLs, loading/error/retry/empty states and A-to-B-to-A language changes.');
+console.log('Gallery source checks passed: exact' + available.length + ' registrations, 6 languages, all card routes, filters, lazy images, safe URLs, loading/error/retry/empty states and A-to-B-to-A language changes.');
 if (sourceOnly) { console.log('SOURCE ONLY: actual thumbnail/index/support delivery is not audited by this mode.'); process.exit(0); }
 
 // Current actual image/model evidence is mandatory for the asset phase. The
@@ -268,7 +269,7 @@ for (const row of actual) {
   assert((await fs.stat(registeredPage)).isFile(), row.id + ' registered viewer page exists');
 }
 const translationBytes = Buffer.byteLength(JSON.stringify(Object.fromEntries(galleryIDs.map(id => [id, source.entries[id]])))
-  + ['es', 'ko', 'ru'].map(language => JSON.stringify(Object.fromEntries(galleryIDs.map(id => [id, dictionaries[language].messages[id]])))).join(''));
+  + ['es', 'ko', 'ru', 'de'].map(language => JSON.stringify(Object.fromEntries(galleryIDs.map(id => [id, dictionaries[language].messages[id]])))).join(''));
 const sourceBytes = Buffer.byteLength(html + css + moduleSource), totalBytes = sourceBytes + translationBytes + imageBytes;
 assert(totalBytes < 1_300_000, 'Gallery source + new translations + actual registered thumbnails exceed 1.3 MB: ' + totalBytes);
 console.log('Actual gallery asset checks passed: current' + available.length + ' coverage model/stored/companion hashes, exact image hashes and registered routes; gallery payload ' + totalBytes + ' bytes.');

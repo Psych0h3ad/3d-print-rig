@@ -97,7 +97,7 @@ console.log(`Language checks passed: ${Object.keys(messages).length} messages, $
 
 // A delayed dictionary must not restore an earlier choice after the user
 // switches languages again, including labels added by a late CAD promise.
-await Promise.all(['es','ko','ru'].map(loadLanguage));
+await Promise.all(['es','ko','ru','de'].map(loadLanguage));
 const switchedBody=new LanguageElement('BODY');
 const switchLabel={nodeType:3,nodeValue:'構成'};switchedBody.append(switchLabel);
 const switchedDocument={...languageDocument,body:switchedBody,documentElement:{}};

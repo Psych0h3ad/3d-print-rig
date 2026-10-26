@@ -1,5 +1,6 @@
+import {funWords,formatFunMessage} from './fun-language.mjs?v=f8396e9bb7a5b7e9ccfe';
 import {applyDisplay,displayKey,setupHeaderThemeToggle} from '../viewer/display-preferences.mjs?v=8f347468def25922153c';
-import {chooseLanguage,languageURL,supportedLanguages,languageNames} from '../viewer/languages.mjs?v=ba6a5cd8e1d86849ca34';
+import {chooseLanguage,languageURL,supportedLanguages,languageNames} from '../viewer/languages.mjs?v=2e376566920474c0f57c';
 const $=id=>document.getElementById(id),query=new URLSearchParams(location.search),form=$('filters');
 let stored;try{stored=window.localStorage.getItem('3d-print-rig-language')}catch{}
 const language=chooseLanguage({query:query.get('lang'),stored}),ja=language==='ja';
@@ -8,16 +9,23 @@ for(const value of supportedLanguages)if(![...picker.options].some(option=>optio
   const option=document.createElement('option');option.value=value;option.textContent=languageNames[value];picker.append(option);
 }
 picker.value=language;
-// Gallery copy currently has English/Japanese variants; preserve the selected
-// viewer language independently of the English fallback used for other copy.
-document.documentElement.lang=ja?'ja':'en';
+const words=funWords(language),message=(key,values={})=>formatFunMessage(key,values,language);
+document.documentElement.lang=language;
+document.title=words.pageTitle;
+picker.setAttribute('aria-label',words.language);
 history.replaceState(null,'',languageURL(location.href,language));
-setupHeaderThemeToggle(document.querySelector('header nav'),ja?'ダークモード':'Dark mode');
+setupHeaderThemeToggle(document.querySelector('header nav'),words.dark);
 window.addEventListener('storage',event=>{if(event.key===displayKey)applyDisplay();});
-const words=ja?{experimental:'壁紙ダウンロードはテスト公開中、埋め込み機能はアルファテスト段階です。開発中のため、表示や操作が変わる場合があります。',back:'ビューアーを開く ↗',intro:'本物のマシンとCADを、いつもと違う見方で。',explore:'壁紙を見る ↓',collectionTitle:'ものづくりの、ひと休み。',about:'機体や部品を並べた図集、画面いっぱいに敷き詰める総柄、組立図・分解図・フィラメント経路の断面図。元CADの太い外形と、構造を伝える内部線。',packTitle:'まとめてダウンロード',formatLabel:'画面サイズ',paletteLabel:'配色',kindLabel:'図の種類',embedTitle:'あなたのサイトにも、3Dを。',embedInfo:'埋め込み機能はアルファテスト段階です。マシンを開いて「共有」から埋め込みコードをコピー。訪問者は、そのページでモデルを回転して見ることができます。',embedLink:'マシンを選ぶ ↗',credits:'元のCAD・作者・ライセンス',notice:'作品ごと・部品ごとの利用条件が適用されます。再配布時も元のクレジットを保持してください。',save:'PNGを保存',all:'すべて',collection:'一覧・図集',pattern:'総柄',pickCollection:'一覧・図集を見る',pickPattern:'総柄を見る',newNote:'12図柄・108枚を追加',new:'今回追加した壁紙',sourceLabel:'元CAD・作者',assembly:'組立図',exploded:'分解図',section:'断面図',phone:'スマホ',desktop:'デスクトップ',ultrawide:'ウルトラワイド',failure:'壁紙一覧を読み込めませんでした。ページを再読み込みしてください。'}:{save:'Download PNG',all:'All drawings',collection:'Collection sheets',pattern:'Repeating patterns',new:'New wallpapers',sourceLabel:'Original CAD / Authors',assembly:'Assembly',exploded:'Exploded',section:'Section',phone:'Phone',desktop:'Desktop',ultrawide:'Ultrawide',failure:'Could not load wallpapers. Please reload this page.'};
-// Translate only copy targets; a category name can also be a section ID.
-for(const id of ['experimental','back','intro','explore','collectionTitle','about','packTitle','formatLabel','paletteLabel','kindLabel','embedTitle','embedInfo','embedLink','credits','notice','pickCollection','pickPattern','newNote'])if(words[id])$(id).textContent=words[id];
+for(const id of ['experimental','back','intro','explore','collectionTitle','about','packTitle','formatLabel','paletteLabel','kindLabel','embedTitle','embedInfo','embedLink','credits','notice','pickCollection','pickPattern','newNote','heroEyebrow','collectionEyebrow','embedEyebrow','heroArtLabel','brandSection'])$(id).textContent=words[id];
+$('heroTitle').replaceChildren(document.createTextNode(words.heroFirst),document.createElement('br'),document.createTextNode(words.heroSecond),Object.assign(document.createElement('span'),{textContent:'.'}));
+document.querySelector('.collection-picks').setAttribute('aria-label',words.collectionAria);
+for(const meta of document.querySelectorAll('meta[name="description"],meta[property="og:description"],meta[name="twitter:description"]'))meta.content=words.description;
+for(const meta of document.querySelectorAll('meta[property="og:title"],meta[name="twitter:title"]'))meta.content=document.title;
+for(const meta of document.querySelectorAll('meta[property="og:locale"]'))meta.content={en:'en_US',ja:'ja_JP',es:'es_ES',ko:'ko_KR',ru:'ru_RU',de:'de_DE'}[language];
 for(const option of form.elements.kind.options)option.textContent=words[option.value];
+const dimensions={phone:'1440 × 3120',desktop:'3840 × 2160',ultrawide:'5120 × 2160'};
+for(const option of form.elements.format.options)option.textContent=words[option.value]+' · '+dimensions[option.value];
+for(const option of form.elements.palette.options)option.textContent=words[{paper:'palettePaper',blueprint:'paletteBlueprint',graphite:'paletteGraphite'}[option.value]];
 picker.onchange=()=>{
   const next=chooseLanguage({query:picker.value});
   try{window.localStorage.setItem('3d-print-rig-language',next)}catch{}
@@ -32,10 +40,10 @@ const size=bytes=>(bytes/1e6).toFixed(1)+' MB';
 try{
   const response=await fetch('./wallpapers.json',{cache:'no-cache'});if(!response.ok)throw Error('Catalog unavailable');const catalog=await response.json();
   const designs=new Set(catalog.wallpapers.map(r=>r.series)).size;
-  $('summary').textContent=ja?`${designs}図柄 · 3配色 · 3サイズ`:`${designs} drawings · 3 palettes · 3 sizes`;
+  $('summary').textContent=message('summary',{0:designs});
   const hero=catalog.wallpapers.find(r=>r.series==='toolhead-field'&&r.palette==='paper'&&r.format==='desktop');
   $('heroImage').src=hero.preview;
-  for(const pack of catalog.packs){const a=make('a','','pack');a.href=pack.download;a.append(make('span',(pack.format==='all'?(ja?'全図柄':'Complete collection'):words[pack.format])+' · '+pack.count),make('small','ZIP / '+size(pack.bytes)+' ↓'));$('packs').append(a);}
+  for(const pack of catalog.packs){const a=make('a','','pack');a.href=pack.download;a.append(make('span',(pack.format==='all'?words.completeCollection:words[pack.format])+' · '+pack.count),make('small','ZIP / '+size(pack.bytes)+' ↓'));$('packs').append(a);}
   function update(){
     const {format,palette,kind}=Object.fromEntries(new FormData(form));
     const rows=catalog.wallpapers.filter(r=>r.format===format&&r.palette===palette&&(kind==='all'||r.kind===kind)).sort((a,b)=>b.no-a.no);
@@ -44,13 +52,13 @@ try{
     for(const row of rows){
       const card=make('article'),preview=make('a','','preview');preview.href=row.download;preview.setAttribute('aria-label',row.title+' / '+words.save);
       const image=make('img');image.src=row.preview;image.alt=row.title+' / '+words[row.kind];image.loading='lazy';image.decoding='async';image.width=row.width;image.height=row.height;preview.append(image);
-      const info=make('div','','info');info.append(make('div',String(row.no).padStart(2,'0')+' / '+words[row.kind],'number'),make('h3',row.title),make('span',row.width+' × '+row.height+' · '+size(row.bytes)+(row.view_count?' · '+row.view_count+(ja?'図':' views'):''),'dimensions'));
+      const info=make('div','','info');info.append(make('div',String(row.no).padStart(2,'0')+' / '+words[row.kind],'number'),make('h3',row.title),make('span',row.width+' × '+row.height+' · '+size(row.bytes)+(row.view_count?' · '+message('views',{0:row.view_count}):''),'dimensions'));
       const download=make('a','','download');download.href=row.download;download.append(make('span',words.save),make('span','↓'));info.append(download);
       const source=make(row.sources.length>2?'details':'div','','source');
       source.append(make(row.sources.length>2?'summary':'span',words.sourceLabel+(row.sources.length>2?' ('+row.sources.length+')':'')));
       for(const[url,label]of row.sources){const a=make('a',label+' ↗');a.href=url;a.target='_blank';a.rel='noopener';source.append(a);}info.append(source);card.append(preview,info);fragment.append(card);
     }
-    $('grid').replaceChildren(fragment);$('grid').setAttribute('aria-busy','false');$('count').textContent=rows.length+(ja?' 図柄':' drawings');
+    $('grid').replaceChildren(fragment);$('grid').setAttribute('aria-busy','false');$('count').textContent=message('count',{0:rows.length});
     const url=new URL(location.href);for(const key of ['format','palette','kind'])url.searchParams.set(key,form.elements[key].value);history.replaceState(null,'',url);
   }
   for(const button of document.querySelectorAll('[data-kind]'))button.onclick=()=>{form.elements.kind.value=button.dataset.kind;update();};

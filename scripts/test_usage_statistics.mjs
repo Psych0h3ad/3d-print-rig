@@ -97,4 +97,4 @@ for(const language of supportedLanguages){
   if(!['ja'].includes(language))assert.doesNotMatch(value,/[\u3040-\u30ff]/u);
  }
 }
-console.log('Usage statistics UI: public URL boundaries, explicit consent/revoke, scoped cookies, privacy signals, embedding, blocked storage and five languages passed. No real telemetry sent.');
+console.log('Usage statistics UI: public URL boundaries, explicit consent/revoke, scoped cookies, privacy signals, embedding, blocked storage and supported languages passed. No real telemetry sent.');

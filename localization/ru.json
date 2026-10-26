@@ -11121,6 +11121,186 @@
     "privacy.back": {
       "source_revision": "c553908ad0cb9dd91e67",
       "text": "К списку принтеров"
+    },
+    "fun.collection": {
+      "source_revision": "296eeaa966b084b7ff2e",
+      "text": "Сводные листы"
+    },
+    "fun.pattern": {
+      "source_revision": "ab2a860bf4c0a0ad4edb",
+      "text": "Повторяющиеся узоры"
+    },
+    "fun.new": {
+      "source_revision": "099d398e28f3a9f96c76",
+      "text": "Новые обои"
+    },
+    "fun.source_label": {
+      "source_revision": "73f065c850beae2a23f3",
+      "text": "Исходные CAD-модели / Авторы"
+    },
+    "fun.assembly": {
+      "source_revision": "999b8e450230f5e016cb",
+      "text": "Сборочный чертёж"
+    },
+    "fun.exploded": {
+      "source_revision": "25f9300cef1a0a9e8c30",
+      "text": "Разнесённый вид"
+    },
+    "fun.section": {
+      "source_revision": "ec35395835442ecce0ab",
+      "text": "Разрез"
+    },
+    "fun.phone": {
+      "source_revision": "da12533845f6fe4433bc",
+      "text": "Телефон"
+    },
+    "fun.desktop": {
+      "source_revision": "cfa2efa68f8bc6388686",
+      "text": "Компьютер"
+    },
+    "fun.ultrawide": {
+      "source_revision": "7837876e45d7f6ebb6b8",
+      "text": "Сверхширокий экран"
+    },
+    "fun.failure": {
+      "source_revision": "7ed2f72da3b646403c61",
+      "text": "Не удалось загрузить обои. Обновите страницу."
+    },
+    "fun.experimental": {
+      "source_revision": "2153372e40f9de57dcf1",
+      "text": "Обои проходят тестирование. Встроенные просмотрщики проходят альфа-тестирование. Внешний вид и управление могут измениться."
+    },
+    "fun.back": {
+      "source_revision": "91263d4d92e7aaf3006b",
+      "text": "Открыть просмотрщик ↗"
+    },
+    "fun.intro": {
+      "source_revision": "c35c0a85193214a49cb7",
+      "text": "Настоящие машины. Настоящие CAD-модели. Новый взгляд на них."
+    },
+    "fun.explore": {
+      "source_revision": "1eee606b5445adbf6435",
+      "text": "Смотреть обои ↓"
+    },
+    "fun.collection_title": {
+      "source_revision": "caf992599e9fd6d01155",
+      "text": "Инженерия на отдыхе."
+    },
+    "fun.about": {
+      "source_revision": "df957b734baddd4914cb",
+      "text": "Подборки машин, повторяющиеся узоры, сборочные чертежи, разнесённые виды и разрезы тракта филамента. Выразительные контуры и непрерывные линии деталей из исходных CAD-моделей."
+    },
+    "fun.pack_title": {
+      "source_revision": "0c53a511f6dd2f64f265",
+      "text": "Скачать коллекцию"
+    },
+    "fun.format_label": {
+      "source_revision": "94aab841cdd2d7557f64",
+      "text": "Экран"
+    },
+    "fun.kind_label": {
+      "source_revision": "169468667fbf2dc0d62c",
+      "text": "Чертёж"
+    },
+    "fun.embed_title": {
+      "source_revision": "b6db269b15f5f4281257",
+      "text": "Немного 3D на вашем сайте."
+    },
+    "fun.embed_info": {
+      "source_revision": "93e4e17aacd57053b0b2",
+      "text": "Встроенные просмотрщики проходят альфа-тестирование. Откройте машину, выберите «Поделиться» и скопируйте код для встраивания. Посетители смогут рассмотреть модель, не покидая вашу страницу."
+    },
+    "fun.embed_link": {
+      "source_revision": "3a457747dd54eaecab5b",
+      "text": "Выбрать машину ↗"
+    },
+    "fun.credits": {
+      "source_revision": "bce0284413de33638b32",
+      "text": "Исходные CAD-модели и лицензии"
+    },
+    "fun.notice": {
+      "source_revision": "592104739f2a66048ff1",
+      "text": "Действуют условия отдельных авторов и компонентов. Сохраняйте исходные сведения об авторстве при распространении."
+    },
+    "fun.pick_collection": {
+      "source_revision": "ce943c5ca6b9defc40e9",
+      "text": "Сводные листы"
+    },
+    "fun.pick_pattern": {
+      "source_revision": "7bc23950311218469784",
+      "text": "Повторяющиеся узоры"
+    },
+    "fun.new_note": {
+      "source_revision": "db4d1cbd28bf9aec2b8d",
+      "text": "12 новых рисунков / 108 обоев"
+    },
+    "fun.page_title": {
+      "source_revision": "00cfc6b1a4089e7cd805",
+      "text": "Обои с CAD-чертежами · 3D Print Rig"
+    },
+    "fun.description": {
+      "source_revision": "7936775d782909001532",
+      "text": "Скачивайте обои с CAD-чертежами принтеров для телефонов и компьютеров. Смотрите сборочные чертежи, разнесённые виды и разрезы."
+    },
+    "fun.hero_first": {
+      "source_revision": "a6ffe1576c4ad4b48b7b",
+      "text": "Just"
+    },
+    "fun.hero_second": {
+      "source_revision": "e931d261da7db0763e4e",
+      "text": "for fun"
+    },
+    "fun.hero_eyebrow": {
+      "source_revision": "2807707b40f693dd566f",
+      "text": "С ПЕЧАТНОГО СТОЛА / НА ВАШ ЭКРАН"
+    },
+    "fun.collection_eyebrow": {
+      "source_revision": "4feacdad484db203be3a",
+      "text": "КОЛЛЕКЦИЯ ОБОЕВ"
+    },
+    "fun.embed_eyebrow": {
+      "source_revision": "65d5c7a7dff79126a13c",
+      "text": "ВОЗЬМИТЕ ПРОСМОТРЩИК С СОБОЙ"
+    },
+    "fun.hero_art_label": {
+      "source_revision": "9c4d91821acc89a9f2a7",
+      "text": "ПОДБОРКИ / ПОВТОРЯЮЩИЕСЯ УЗОРЫ"
+    },
+    "fun.brand_section": {
+      "source_revision": "fdaae94d5709821fe112",
+      "text": " / Just for fun"
+    },
+    "fun.collection_aria": {
+      "source_revision": "f825037abf8f6486193d",
+      "text": "Новые коллекции обоев"
+    },
+    "fun.summary": {
+      "source_revision": "2f9252c734742a999fba",
+      "text": "Чертежи: {0} · Палитры: 3 · Размеры: 3"
+    },
+    "fun.count": {
+      "source_revision": "05e13970511cdf5efd9c",
+      "text": "Чертежи: {0}"
+    },
+    "fun.views": {
+      "source_revision": "6293f37ce7046d0cefa2",
+      "text": "Виды: {0}"
+    },
+    "fun.complete_collection": {
+      "source_revision": "b2b560d84f095df66d37",
+      "text": "Полная коллекция"
+    },
+    "fun.palette_paper": {
+      "source_revision": "b52a6c2d86347d06226f",
+      "text": "Слоновая кость"
+    },
+    "fun.palette_blueprint": {
+      "source_revision": "ffa2059af71c0976695a",
+      "text": "Синька"
+    },
+    "fun.palette_graphite": {
+      "source_revision": "fe71065adb5f8a625267",
+      "text": "Графит"
     }
   }
 }

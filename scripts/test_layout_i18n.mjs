@@ -10,7 +10,7 @@ const site = argument >= 0 ? path.resolve(process.argv[argument + 1]) : fileURLT
 const directory = path.join(site, 'layout');
 const {messages, messageKeys, supportedLanguages, hasMessage, t, chooseLanguage, languageURL} =
   await import(pathToFileURL(path.join(directory, 'layout-i18n.mjs')).href);
-assert.deepEqual(supportedLanguages, ['en', 'ja', 'es', 'ko', 'ru']);
+assert.deepEqual(supportedLanguages, ['en', 'ja', 'es', 'ko', 'ru', 'de']);
 assert.equal(new Set(messageKeys).size, messageKeys.length, 'Duplicate message IDs');
 const placeholders = text => [...text.matchAll(/\{([a-zA-Z0-9_]+)\}/gu)].map(m => m[1]).sort();
 let rendered = 0;
@@ -69,6 +69,8 @@ for (const key of ['layout.tool.orbit','layout.tool.move','layout.hint.orbit','l
   'layout.error.RENDER_UNSUPPORTED','layout.error.RENDER_SHADER_FAILED','layout.error.SVG_NO_OUTLINE']) assert(hasMessage(key), key);
 assert.deepEqual(missing, [], JSON.stringify(missing));
 assert.equal(chooseLanguage({query:'ja',stored:'ko'}),'ja');
+assert.equal(chooseLanguage({query:'de-DE',stored:'ja'}),'de');
+assert.equal(chooseLanguage({stored:'de-CH'}),'de');
 assert.equal(chooseLanguage({query:'unsupported',stored:'ru-RU'}),'ru');
 assert.equal(chooseLanguage({}),'en');
 const link = new URL(languageURL('https://example.test/layout/?plan=x#room','es'));

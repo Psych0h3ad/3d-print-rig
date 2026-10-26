@@ -1,6 +1,6 @@
-import {setupLanguage, formatMessage} from './i18n.mjs?v=535a15826b80b7dcc2f6';
+import {setupLanguage, formatMessage} from './i18n.mjs?v=37e548ac286080f2a1cc';
 import {setupHeaderThemeToggle} from './display-preferences.mjs?v=8f347468def25922153c';
-import {setupUsageStatistics} from './usage-statistics.mjs?v=e11e5f17f9fb34440ebf';
+import {setupUsageStatistics} from './usage-statistics.mjs?v=650793a7593655006999';
 
 import {workspaceListen} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 

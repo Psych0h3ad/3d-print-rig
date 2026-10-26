@@ -1,18 +1,18 @@
-import {setupUsageStatistics} from './usage-statistics.mjs?v=e11e5f17f9fb34440ebf';
+import {setupUsageStatistics} from './usage-statistics.mjs?v=650793a7593655006999';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
-import {setupLayoutNavigation} from './layout-nav.mjs?v=b8dcfc1db2429ff92389';
+import {setupLayoutNavigation} from './layout-nav.mjs?v=e552674774cba94b113b';
 ensureWorkspaceEntry(import.meta.url);
 import {setupDisplayPreferences,setupHeaderThemeToggle} from './display-preferences.mjs?v=8f347468def25922153c';
 import {WorkspaceMutationObserver,workspaceListen} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 // Shared presentation layer. Existing controls, IDs and CAD controllers stay intact.
-import {setupLanguage,originalText,messageSource} from './i18n.mjs?v=535a15826b80b7dcc2f6';
-import {normalizeLanguage,languageURL} from './languages.mjs?v=ba6a5cd8e1d86849ca34';
-import {printerWorkspaceURL,workspaceReturnKey,workspaceKindFor} from './workspace-return.mjs?v=36cfa54829b71fc71aa7';
+import {setupLanguage,originalText,messageSource} from './i18n.mjs?v=37e548ac286080f2a1cc';
+import {normalizeLanguage,languageURL} from './languages.mjs?v=2e376566920474c0f57c';
+import {printerWorkspaceURL,workspaceReturnKey,workspaceKindFor} from './workspace-return.mjs?v=d119bc391d02f205adde';
 import {setupWorkspaceSharing} from './workspace-share.mjs?v=36f449afd7a9a7773743';
 import {lockInspectorHorizontalScroll} from './workspace-scroll.mjs?v=workspace-belts-1';
-import {setupChoiceSearch} from './workspace-choices.mjs?v=4f25e67697fbad7bf41d';
+import {setupChoiceSearch} from './workspace-choices.mjs?v=2ce9eff5c7e0c3c7dd38';
 import {setupMobileLayout} from './workspace-layout.mjs?v=738c040595ec99155ce2';
-import {workspaceSectionCategory,isPrimaryWorkspaceLink} from './workspace-sections.mjs?v=409a9e91714842e888ee';
+import {workspaceSectionCategory,isPrimaryWorkspaceLink} from './workspace-sections.mjs?v=fe40ce6c6a9c263b21fb';
 const $ = selector => document.querySelector(selector);
 const node = (tag, className, text) => {
   const element = document.createElement(tag);

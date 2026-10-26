@@ -11121,6 +11121,186 @@
     "privacy.back": {
       "source_revision": "c553908ad0cb9dd91e67",
       "text": "프린터 목록으로 돌아가기"
+    },
+    "fun.collection": {
+      "source_revision": "296eeaa966b084b7ff2e",
+      "text": "도면 모음"
+    },
+    "fun.pattern": {
+      "source_revision": "ab2a860bf4c0a0ad4edb",
+      "text": "반복 패턴"
+    },
+    "fun.new": {
+      "source_revision": "099d398e28f3a9f96c76",
+      "text": "새 배경화면"
+    },
+    "fun.source_label": {
+      "source_revision": "73f065c850beae2a23f3",
+      "text": "CAD 원본 / 제작자"
+    },
+    "fun.assembly": {
+      "source_revision": "999b8e450230f5e016cb",
+      "text": "조립도"
+    },
+    "fun.exploded": {
+      "source_revision": "25f9300cef1a0a9e8c30",
+      "text": "분해도"
+    },
+    "fun.section": {
+      "source_revision": "ec35395835442ecce0ab",
+      "text": "단면도"
+    },
+    "fun.phone": {
+      "source_revision": "da12533845f6fe4433bc",
+      "text": "스마트폰"
+    },
+    "fun.desktop": {
+      "source_revision": "cfa2efa68f8bc6388686",
+      "text": "데스크톱"
+    },
+    "fun.ultrawide": {
+      "source_revision": "7837876e45d7f6ebb6b8",
+      "text": "울트라와이드"
+    },
+    "fun.failure": {
+      "source_revision": "7ed2f72da3b646403c61",
+      "text": "배경화면을 불러오지 못했습니다. 이 페이지를 새로고침해 주세요."
+    },
+    "fun.experimental": {
+      "source_revision": "2153372e40f9de57dcf1",
+      "text": "배경화면은 테스트 중입니다. 임베드 뷰어는 알파 테스트 중입니다. 외관과 조작 방식은 변경될 수 있습니다."
+    },
+    "fun.back": {
+      "source_revision": "91263d4d92e7aaf3006b",
+      "text": "뷰어 열기 ↗"
+    },
+    "fun.intro": {
+      "source_revision": "c35c0a85193214a49cb7",
+      "text": "실제 머신. 실제 CAD. 새로운 시선으로 만나 보세요."
+    },
+    "fun.explore": {
+      "source_revision": "1eee606b5445adbf6435",
+      "text": "배경화면 둘러보기 ↓"
+    },
+    "fun.collection_title": {
+      "source_revision": "caf992599e9fd6d01155",
+      "text": "엔지니어링의 쉬는 시간."
+    },
+    "fun.about": {
+      "source_revision": "df957b734baddd4914cb",
+      "text": "머신 모음, 반복 패턴, 조립도, 분해도와 필라멘트 경로 단면도. CAD 원본에서 가져온 굵은 윤곽선과 끊김 없는 세부 묘사."
+    },
+    "fun.pack_title": {
+      "source_revision": "0c53a511f6dd2f64f265",
+      "text": "컬렉션 다운로드"
+    },
+    "fun.format_label": {
+      "source_revision": "94aab841cdd2d7557f64",
+      "text": "화면"
+    },
+    "fun.kind_label": {
+      "source_revision": "169468667fbf2dc0d62c",
+      "text": "도면"
+    },
+    "fun.embed_title": {
+      "source_revision": "b6db269b15f5f4281257",
+      "text": "사이트에 3D를 더해 보세요."
+    },
+    "fun.embed_info": {
+      "source_revision": "93e4e17aacd57053b0b2",
+      "text": "임베드 뷰어는 알파 테스트 중입니다. 머신을 열고 공유를 선택한 다음 임베드 코드를 복사하세요. 방문자는 페이지를 떠나지 않고 모델을 살펴볼 수 있습니다."
+    },
+    "fun.embed_link": {
+      "source_revision": "3a457747dd54eaecab5b",
+      "text": "머신 선택 ↗"
+    },
+    "fun.credits": {
+      "source_revision": "bce0284413de33638b32",
+      "text": "CAD 원본 및 라이선스"
+    },
+    "fun.notice": {
+      "source_revision": "592104739f2a66048ff1",
+      "text": "각 제작자와 부품의 이용 조건이 적용됩니다. 공유할 때 원본 출처 표기를 유지해 주세요."
+    },
+    "fun.pick_collection": {
+      "source_revision": "ce943c5ca6b9defc40e9",
+      "text": "도면 모음"
+    },
+    "fun.pick_pattern": {
+      "source_revision": "7bc23950311218469784",
+      "text": "반복 패턴"
+    },
+    "fun.new_note": {
+      "source_revision": "db4d1cbd28bf9aec2b8d",
+      "text": "새 디자인 12종 / 배경화면 108개"
+    },
+    "fun.page_title": {
+      "source_revision": "00cfc6b1a4089e7cd805",
+      "text": "CAD 도면 배경화면 · 3D Print Rig"
+    },
+    "fun.description": {
+      "source_revision": "7936775d782909001532",
+      "text": "스마트폰과 데스크톱용 프린터 CAD 배경화면을 다운로드하세요. 조립도, 분해도와 단면도를 둘러보세요."
+    },
+    "fun.hero_first": {
+      "source_revision": "a6ffe1576c4ad4b48b7b",
+      "text": "Just"
+    },
+    "fun.hero_second": {
+      "source_revision": "e931d261da7db0763e4e",
+      "text": "for fun"
+    },
+    "fun.hero_eyebrow": {
+      "source_revision": "2807707b40f693dd566f",
+      "text": "프린트 베드에서 / 내 화면으로"
+    },
+    "fun.collection_eyebrow": {
+      "source_revision": "4feacdad484db203be3a",
+      "text": "배경화면 컬렉션"
+    },
+    "fun.embed_eyebrow": {
+      "source_revision": "65d5c7a7dff79126a13c",
+      "text": "뷰어를 내 사이트로"
+    },
+    "fun.hero_art_label": {
+      "source_revision": "9c4d91821acc89a9f2a7",
+      "text": "컬렉션 / 반복 패턴"
+    },
+    "fun.brand_section": {
+      "source_revision": "fdaae94d5709821fe112",
+      "text": " / Just for fun"
+    },
+    "fun.collection_aria": {
+      "source_revision": "f825037abf8f6486193d",
+      "text": "새 배경화면 컬렉션"
+    },
+    "fun.summary": {
+      "source_revision": "2f9252c734742a999fba",
+      "text": "도면 {0}개 · 색상 팔레트 3종 · 크기 3종"
+    },
+    "fun.count": {
+      "source_revision": "05e13970511cdf5efd9c",
+      "text": "도면 {0}개"
+    },
+    "fun.views": {
+      "source_revision": "6293f37ce7046d0cefa2",
+      "text": "뷰 {0}개"
+    },
+    "fun.complete_collection": {
+      "source_revision": "b2b560d84f095df66d37",
+      "text": "전체 컬렉션"
+    },
+    "fun.palette_paper": {
+      "source_revision": "b52a6c2d86347d06226f",
+      "text": "아이보리"
+    },
+    "fun.palette_blueprint": {
+      "source_revision": "ffa2059af71c0976695a",
+      "text": "청사진"
+    },
+    "fun.palette_graphite": {
+      "source_revision": "fe71065adb5f8a625267",
+      "text": "그라파이트"
     }
   }
 }

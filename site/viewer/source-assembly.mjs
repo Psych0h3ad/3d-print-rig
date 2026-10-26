@@ -1,27 +1,27 @@
 import{captureViewAppearance,transferViewAppearance}from'./source-assembly-runtime/view_appearance.mjs?v=44d3ab76a2dc3dc8605f';
-import {sourceControlBounds} from './source-control-bounds.mjs';
+import {sourceControlBounds} from './source-control-bounds.mjs?v=58321c32017a253e7ca9';
 import * as THREE from './vendor-r180/three.module.js';
 import{OrbitControls}from'./vendor-r180/OrbitControls.js';
 import{RoomEnvironment}from'./vendor-r180/RoomEnvironment.js';
-import{loadLanguage}from'./i18n.mjs?v=535a15826b80b7dcc2f6';
-import{setupMachineNavigation}from'./machines.js?v=5503ac507978b3d4e928';
+import{loadLanguage}from'./i18n.mjs?v=37e548ac286080f2a1cc';
+import{setupMachineNavigation}from'./machines.js?v=43bbf9d5e578ae5c1a5e';
 import{sceneLightingState}from'./scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
 import{readDisplay,rememberDisplayControl}from'./display-preferences.mjs?v=8f347468def25922153c';
 import{workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver}from'./workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 import{setResponsiveAspect,frameResponsiveView}from'./responsive-camera.mjs';
 import{setupRenderExport}from'./render-export.js?v=736862a3013dbfd9f9ea';
-import{sourceText}from'./source-assembly-messages.mjs?v=d3b668baa24372e4bbd0';
-import{loadSourceIndex,loadSourcePacket,sourceHeadPlan,selectedSourcePacket,loadSourceAssembly}from'./source-assembly-loader.mjs?v=1563c3822bd506aa83d5';
+import{sourceText}from'./source-assembly-messages.mjs?v=ca9a1808a98c73d5824f';
+import{loadSourceIndex,loadSourcePacket,sourceHeadPlan,selectedSourcePacket,loadSourceAssembly}from'./source-assembly-loader.mjs?v=e56fb9a19155a8db13ec';
 import{sourceReviewBounds}from'./source-assembly-runtime/receiver_guard309.mjs?v=e42678a5314a2d6c0676';
-import{sourceMinimumContext,sourceMinimumState}from'./source-assembly-runtime/state.mjs?v=e42678a5314a2d6c0676';
-import{restoreCurrentAssemblyState}from'./source-assembly-runtime/restore_current_state.mjs?v=e42678a5314a2d6c0676';
+import{sourceMinimumContext,sourceMinimumState}from'./source-assembly-runtime/state.mjs?v=621076790ccb2e79318a';
+import{restoreCurrentAssemblyState}from'./source-assembly-runtime/restore_current_state.mjs?v=6815e3c28ce87b43e3c9';
 import{releaseRoot}from'./source-assembly-runtime/resources.mjs?v=e42678a5314a2d6c0676';
-import{createLoadCoordinator,sourceProgressStatus}from'./source-assembly-runtime/loading.mjs?v=a033b99395b90499d49c';
-import{requestModelChoice,createMemoryChoiceDialog}from'./source-assembly-runtime/large_model_warning.mjs?v=b171f3b2f1a2fed32499';
-import{sourceXYMessage}from'./source-assembly-runtime/source_XY309.mjs?v=e42678a5314a2d6c0676';
+import{createLoadCoordinator,sourceProgressStatus}from'./source-assembly-runtime/loading.mjs?v=84eac858ca86737a50e3';
+import{requestModelChoice,createMemoryChoiceDialog}from'./source-assembly-runtime/large_model_warning.mjs?v=6092348883a58121e473';
+import{sourceXYMessage}from'./source-assembly-runtime/source_XY309.mjs?v=9e7ad89598a23adcc9e0';
 import{captureCamera}from './source-assembly-view-state.mjs?v=e42678a5314a2d6c0676';
 import{bindSourceConfigurationLoad,selectSourceCameraPreset}from './source-assembly-configuration-ui.mjs?v=0db9c665fde5b4c30b36';
-import{createSourceUIText,sourceCreditNote,sourceCreditLabel}from './source-assembly-ui-text.mjs?v=01dad6d27511c601b6de';
+import{createSourceUIText,sourceCreditNote,sourceCreditLabel}from './source-assembly-ui-text.mjs?v=02957ea40a587daba0a1';
 import{sourceReferencePanel,sourceCreditRecords}from './source-assembly-references.mjs';
 export async function mount(scope){
  await loadLanguage(document.documentElement.lang);if(scope.disposed)return;
@@ -72,13 +72,13 @@ export async function mount(scope){
   let choice=requested;if(requested==='full')choice=await requestModelChoice(packet,{device:navigator,signal:job.signal,choose,headPeakBytes:headPlan.loading_budget.single_load_peak_bytes});if(choice==='cancel'||!job.current()){viewSelect.value=mode;return false;}
   const carriedAppearance=active&&!saved?captureViewAppearance(active.snapshot(),active.packet):null;release();cancelLoad.hidden=false;messages.set(status,'loading');$('openRender').disabled=true;
   next=await loadSourceAssembly(packet,{signal:job.signal,mode:choice,headPlan,onProgress:sourceProgressStatus({job,messages,node:status,language:lang})});if(!job.current()){releaseRoot(next.root,next);return false;}
-  const migration=saved?restoreCurrentAssemblyState(next,saved):null;if(!saved){const s=next.snapshot();s.theme=readDisplay().dark?'dark':'light';s.language=['en','ja','es','ko','ru'].includes(lang())?lang():'en';s.grid=false;next.apply(transferViewAppearance(s,next.packet,carriedAppearance));}
+  const migration=saved?restoreCurrentAssemblyState(next,saved):null;if(!saved){const s=next.snapshot();s.theme=readDisplay().dark?'dark':'light';s.language=['en','ja','es','ko','ru','de'].includes(lang())?lang():'en';s.grid=false;next.apply(transferViewAppearance(s,next.packet,carriedAppearance));}
   active=next;next=null;mode=choice;scene.add(active.root);const b=visibleBounds(),center=b.getCenter(new THREE.Vector3());grid.position.set(center.x,b.min.y-.0019,center.z);placeSceneFill(b);sync();view();messages.clear(status);cancelLoad.hidden=true;
   if(!renderExport)renderExport=setupRenderExport({renderer,scene,camera,controls,name:machine,three:THREE});$('openRender').disabled=false;return migration??true;
  }catch(e){if(next)releaseRoot(next.root,next);if(job.current()){release();for(const inputs of Object.values(axisControls))for(const input of inputs)input.disabled=true;for(const input of Object.values(colorControls))input.disabled=true;$('openRender').disabled=true;if(e.name==='AbortError')messages.clear(status);else{console.error('Source assembly load failed',e);messages.set(status,saved?'unsafe':'error');}cancelLoad.hidden=true;}return false;}});}
  open.onclick=()=>workspaceTask(()=>load(viewSelect.value));
  const save=$('saveConfiguration'),loadButton=$('loadConfiguration'),file=$('configurationFile');save.disabled=loadButton.disabled=false;text(save,'save');text(loadButton,'load');
- save.onclick=()=>{if(!active)return;const s=active.snapshot();s.camera=captureCamera(camera,controls);s.language=['en','ja','es','ko','ru'].includes(lang())?lang():'en';const blob=new Blob([JSON.stringify({schema:'source-assembly-view-v1',machine,view:mode,settings:s},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=owned('a',{href:url,download:machine+'.json'});a.click();setTimeout(()=>URL.revokeObjectURL(url),0);messages.set($('configurationStatus'),'saved');};loadButton.onclick=()=>file.click();
+ save.onclick=()=>{if(!active)return;const s=active.snapshot();s.camera=captureCamera(camera,controls);s.language=['en','ja','es','ko','ru','de'].includes(lang())?lang():'en';const blob=new Blob([JSON.stringify({schema:'source-assembly-view-v1',machine,view:mode,settings:s},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=owned('a',{href:url,download:machine+'.json'});a.click();setTimeout(()=>URL.revokeObjectURL(url),0);messages.set($('configurationStatus'),'saved');};loadButton.onclick=()=>file.click();
  bindSourceConfigurationLoad({file,machine,load,camera,controls,tools,render,messages,status:$('configurationStatus'),task:workspaceTask});
  const resize=()=>{const b=stage.getBoundingClientRect();renderer.setSize(Math.max(1,b.width),Math.max(1,b.height),false);setResponsiveAspect(camera,controls,b.width,b.height);render();};new WorkspaceResizeObserver(resize).observe(stage);controls.addEventListener('change',render);scope.cleanup(()=>{coordinator.cancel();release();});
  workspaceListen(window,'rig-language-change',()=>{messages.refresh();choose.refresh();if(active)sync();});

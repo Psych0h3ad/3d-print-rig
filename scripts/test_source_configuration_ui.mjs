@@ -25,7 +25,7 @@ const selectFile=(value,size)=>{const body=typeof value==='string'?value:JSON.st
 const pressed=()=>buttons.filter(button=>button.getAttribute('aria-pressed')==='true').map(button=>button.id);
 let cases=0;
 for(const id of ids){selectSourceCameraPreset(tools,id);assert.deepEqual(pressed(),[id]);cases++;}
-for(const lang of ['en','ja','es','ko','ru'])for(const view of ['head','full']){
+for(const lang of ['en','ja','es','ko','ru','de'])for(const view of ['head','full']){
  language=lang;mode=view==='head'?'full':'head';messages.set(status,'saved');selectSourceCameraPreset(tools,'iso');
  const value=structuredClone(saved);value.view=view;selectFile(value);await file.onchange();
  assert.equal(mode,view);assert.equal(status.textContent,sourceText('loaded',lang));assert.notEqual(status.textContent,sourceText('saved',lang));
@@ -48,4 +48,4 @@ const source=fs.readFileSync(new URL('../site/viewer/source-assembly.mjs',import
 assert.match(source,/bindSourceConfigurationLoad\(\{file,machine,load,camera,controls,tools,render,messages,status:\$\('configurationStatus'\),task:workspaceTask\}\)/);
 assert.match(source,/return migration;\}/);assert.match(source,/return migration\?\?true;/);
 assert.match(source,/selectSourceCameraPreset\(tools,kind\)/);
-console.log(JSON.stringify({passed:true,cases,languages:5,production_file_input_handler:true,camera_schema:'source-assembly-view-v1',scope:'File event handler, camera restoration, ARIA state and localized success/failure UI. Model/GPU/native checks are separate.'}));
+console.log(JSON.stringify({passed:true,cases,languages:6,production_file_input_handler:true,camera_schema:'source-assembly-view-v1',scope:'File event handler, camera restoration, ARIA state and localized success/failure UI. Model/GPU/native checks are separate.'}));

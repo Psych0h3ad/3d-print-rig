@@ -15,7 +15,7 @@ const expected='a8628f48546948ce1fc15511b7765b7f31f80722',url='https://raw.githu
 const records=groupedSourceCredits([{url,revision:'Exact executed143 source; postprocessed145 technical format',license:'GPL-3.0'},{url,revision:'Exact source-only approved packet',license:'No license stated in the public CAD download.'}]);
 assert.equal(records.length,1);assert.deepEqual(records[0].license_variants,['GPL-3.0','No license stated in the public CAD download.']);
 assert.equal(sourceCreditLabel(records[0]),'VoronDesign/Voron-Trident / trident_assembly.step.zip');assert.equal(sourceCreditPresentation(records[0]).revision,expected);
-for(const language of ['en','ja','es','ko','ru']){const note=sourceCreditNote(records[0],k=>sourceText(k,language));assert(note.includes(expected)&&note.includes('GPL-3.0'));assert(!/executed143|postprocessed145|approved packet/.test(note));assert(!/unknownRevision|repositoryLicense|componentLicense/.test(note));}
+for(const language of ['en','ja','es','ko','ru','de']){const note=sourceCreditNote(records[0],k=>sourceText(k,language));assert(note.includes(expected)&&note.includes('GPL-3.0'));assert(!/executed143|postprocessed145|approved packet/.test(note));assert(!/unknownRevision|repositoryLicense|componentLicense/.test(note));}
 assert.equal(sourceCreditPresentation({url:'https://example.test/component.step',revision:'Exact source-only approved packet'}).revision,null);
 assert.equal(sourceCreditPresentation({url:'https://www.aspenfasteners.com/',revision:'2026-10-12T14:53:37.122493+00:00'}).revision,null,'An acquisition timestamp is not a product version');
 for(const item of read(new URL('site/SOURCE_ASSEMBLIES.json',base)).models){

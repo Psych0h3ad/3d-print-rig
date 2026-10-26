@@ -2,12 +2,12 @@ import {createDefaultLayout,createDesk,createShelf,createPopStation,createCatalo
 import {equipmentRows,isLayoutEquipmentPreviewPrepared} from './layout-equipment.mjs?v=bd8e2772cabd6fd2564b';
 import {prepareLayoutEquipmentPreview,needsEquipmentPreview} from './layout-equipment-preview.mjs?v=aface112775d91937ff3';
 import {createLayoutUI} from './layout-ui.mjs?v=548cfe2389b65f8ca17a';
-import {setupLayoutLanguage} from './layout-language.mjs?v=b9384f916581beec34c7';
+import {setupLayoutLanguage} from './layout-language.mjs?v=d1b702603d2f400e705a';
 import {proposePlacement} from './layout-placement.mjs?v=43134d7c1c73410afad2';
 import {renameGroup,ungroup,removeGroup,groupInfo,transformGroup,resolveGroupMove,resolveGroupRotation,
   captureGroupTemplate,groupTemplateInfo,proposeGroupPlacement,parseGroupLibrary,GROUP_LIBRARY_LIMIT} from './layout-groups.mjs?v=bbbb370498717cf1bb2a';
 import {captureLayoutClipboard,encodeLayoutClipboard,decodeLayoutClipboard,regroupLayoutSelection} from './layout-clipboard.mjs?v=5c89f46deda9a7a49d67';
-import {placementStatus} from './layout-placement-feedback.mjs?v=8e82f0bf88117d1d1734';
+import {placementStatus} from './layout-placement-feedback.mjs?v=db2ab3e247a94448f1f4';
 import {readDisplay,saveDisplay,applyDisplay} from '../viewer/display-preferences.mjs?v=8f347468def25922153c';
 import {newRoomOpening} from './layout-openings.mjs?v=8fab3154ec519f37f666';
 
@@ -305,7 +305,7 @@ async function render(){
   document.body.dataset.layoutRendering='loading';message(()=>t(floorplan?'layout.render.planLoading':'layout.render.loading'));
   try{
     // Genuine CAD and its loaders are intentionally absent from the placement path.
-    const loadLayoutMachine=floorplan?undefined:(await import('./layout-machine-loader.mjs?v=10030c4baeb978728292')).loadLayoutMachine;
+    const loadLayoutMachine=floorplan?undefined:(await import('./layout-machine-loader.mjs?v=cb987449eb6d400e9572')).loadLayoutMachine;
     let lastPercent=0;
     const result=await view.exportImage({loadMachine:loadLayoutMachine,width:1920,signal:operation.signal,onProgress:p=>{
       if(floorplan){message(()=>t('layout.render.planLoading'),false,{renderProgress:null});return;}

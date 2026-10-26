@@ -119,7 +119,7 @@ await test('errors, progress and cancel remain visible while Output is inactive'
  assert.equal(x.find('#layout-workspace-progress').contains(x.command('cancel')),true);assert.equal(x.command('cancel').disabled,false);assert.equal(x.find('#layout-object-search').disabled,true);x.command('cancel').click();assert.deepEqual(x.actions,[{type:'cancel'}]);
  x.ui.setStatus({busy:false,error:false,message:''});assert.equal(x.find('#layout-workspace-progress').hidden,true);assert.equal(x.find('[role="status"]').hidden,true);x.ui.dispose();
 });
-await test('all five locales retain filter/query, active tab, unit identity and dirty native input',()=>{
+await test('all supported locales retain filter/query, active tab, unit identity and dirty native input',()=>{
  const x=fixture('unit-a');x.query('A');x.filter('units');x.command('layout.nav.room').click();let field=x.find('#layout-group-edit-name');field.focus();field.value='Uncommitted draft';field.dispatch('input');
  for(const locale of supportedLanguages){const t=createLayoutTranslator(locale);x.ui.setLocale(t);assert.equal(x.find('#layout-object-search').value,'A');assert.equal(x.find('#layout-nav-room').hidden,false);assert.equal(x.find('[data-layout-filter="units"]').getAttribute('aria-pressed'),'true');assert.equal(x.find('#layout-group-edit-name').value,'Uncommitted draft');assert.equal(x.find('#layout-selected-unit').getAttribute('aria-label'),'A · North bench');for(const tab of ['selection','room','add','output'])assert.equal(x.command(`layout.nav.${tab}`).getAttribute('aria-label'),t(`layout.nav.${tab}`));assert.equal(x.find('#layout-object-search').getAttribute('aria-label'),t('layout.browser.search'));}
  assert.deepEqual(x.actions,[]);x.ui.dispose();

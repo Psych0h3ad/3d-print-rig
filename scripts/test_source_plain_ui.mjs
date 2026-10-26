@@ -37,12 +37,12 @@ export async function auditPlainUI(packet,record,{code=source,language='en'}={})
   assert.equal(nodes.get('machineTitle').textContent,record.label);
   assert.equal(nodes.get('machineRevision').textContent,packet.public_author_source.source_revision);
  }
- for(const lang of ['en','ja','es','ko','ru']){currentLanguage=lang;messages.refresh();if(record.id==='rh3d_e3ng_v12_235')assert.equal(nodes.get('machineDescription').textContent,sourceText('installedE3Components',lang));}
+ for(const lang of ['en','ja','es','ko','ru','de']){currentLanguage=lang;messages.refresh();if(record.id==='rh3d_e3ng_v12_235')assert.equal(nodes.get('machineDescription').textContent,sourceText('installedE3Components',lang));}
  return {machine:record.id,language,credit_links_each_destination:expected.length,source_revision_exact:true,geometry_loaded:false};
 }
 const central=JSON.parse(await fs.readFile(new URL('../localization/source.json',import.meta.url),'utf8'));
 const id='source_assembly.installed_e3_components',entry=central.entries[id];assert(entry);
-for(const lang of ['en','ja','es','ko','ru']){
+for(const lang of ['en','ja','es','ko','ru','de']){
  assert.equal(sourceMessages[lang].installedE3Components,'Orbiter 2 · Revo Voron');
  if(['en','ja'].includes(lang))assert.equal(entry[lang],sourceText('installedE3Components',lang));
  else{const d=JSON.parse(await fs.readFile(new URL('../localization/'+lang+'.json',import.meta.url),'utf8'));assert.equal(d.messages[id].source_revision,sourceRevision(entry));assert.equal(d.messages[id].text,sourceText('installedE3Components',lang));}
@@ -54,7 +54,7 @@ const index=JSON.parse(await fs.readFile(new URL('../site/SOURCE_ASSEMBLIES.json
 const rows=[];
 for(const record of index.models){
  const packet=JSON.parse(await fs.readFile(new URL(record.packet.url,new URL('../site/viewer/',import.meta.url)),'utf8'));
- for(const language of ['en','ja','es','ko','ru'])rows.push(await auditPlainUI(packet,record,{language}));
+ for(const language of ['en','ja','es','ko','ru','de'])rows.push(await auditPlainUI(packet,record,{language}));
  // Fixture checks the unpublished E3NG display branch only; no model is registered or qualified.
  const fixtureRecord={...record,id:'rh3d_e3ng_v12_235',label:'Long fixture assembly label'};
  await auditPlainUI(packet,fixtureRecord);

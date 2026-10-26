@@ -156,7 +156,7 @@ await test('busy freezes new group controls, draft and library while cancel stay
   r.ui.setLocale(createLayoutTranslator('ko'));assert.equal(r.command('layout.group.save').disabled,true);r.command('cancel').click();assert.deepEqual(r.actions,[{type:'cancel'}]);r.ui.setStatus({busy:false});
   assert.equal(r.command('layout.group.create').disabled,false);assert.equal(r.find('#layout-group-name').value,'Draft');assert.equal(r.find('[data-layout-group-member="shelf-1"]').checked,true);assert.equal(r.find('[data-layout-group-member="desk-1"]').disabled,false);r.ui.dispose();
 });
-await test('all five languages retranslate dynamic group text and library while keeping user names and exact state',()=>{
+await test('all supported languages retranslate dynamic group text and library while keeping user names and exact state',()=>{
   const state=freeze(plan([unit()])),before=JSON.stringify(state),r=setup(state,'unit-1');r.ui.setGroupLibrary([{id:'saved',name:'Literal saved name',printerCount:3,furnitureCount:1}]);
   r.pick('floor-2');r.change(r.find('#layout-group-name'),'Draft name');
   for(const language of [...supportedLanguages].reverse().concat('en')){

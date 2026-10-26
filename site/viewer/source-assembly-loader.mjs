@@ -1,8 +1,8 @@
 import{GLTFLoader}from'./vendor-r180/GLTFLoader.js';
-import{fetchPinned,assertLoadingBudget}from'./source-assembly-runtime/loading.mjs?v=a033b99395b90499d49c';
-import{loadChunkedModel,validateChunkManifest}from'./source-assembly-runtime/chunk_loader.mjs?v=ffe0d2dd4bce827de579';
+import{fetchPinned,assertLoadingBudget}from'./source-assembly-runtime/loading.mjs?v=84eac858ca86737a50e3';
+import{loadChunkedModel,validateChunkManifest}from'./source-assembly-runtime/chunk_loader.mjs?v=60812fec6efe655004f2';
 import{headSubsetPlan,headSubsetPacket}from'./source-assembly-runtime/head_subset.mjs?v=e42678a5314a2d6c0676';
-import{createAssembly}from'./source-assembly-runtime/assembly.mjs?v=e42678a5314a2d6c0676';
+import{createAssembly}from'./source-assembly-runtime/assembly.mjs?v=0e2abbccf09ced3d142f';
 import{releaseRoot}from'./source-assembly-runtime/resources.mjs?v=e42678a5314a2d6c0676';
 import{sourceAssemblyMachines}from'./source-assembly-registry.mjs';
 const indexURL=new URL('../SOURCE_ASSEMBLIES.json',import.meta.url);

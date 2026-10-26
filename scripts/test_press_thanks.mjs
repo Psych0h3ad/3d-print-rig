@@ -33,6 +33,7 @@ const expected={
  es:['En los medios','Gracias a Kerry Stevenson y a Fabbaloo por presentar 3D Print Rig.'],
  ko:['언론 소개','3D Print Rig를 소개해 주신 Kerry Stevenson과 Fabbaloo에 감사드립니다.'],
  ru:['Публикации в СМИ','Спасибо Kerry Stevenson и Fabbaloo за рассказ о 3D Print Rig.'],
+ de:['In der Presse','Vielen Dank an Kerry Stevenson und Fabbaloo für den Beitrag über 3D Print Rig.'],
 };
 for(const language of [...supportedLanguages,'en','ja','en']){
  await loadLanguage(language);
@@ -45,4 +46,4 @@ const readme=await fs.readFile(new URL('../README.md',import.meta.url),'utf8');
 assert(readme.indexOf('## Project sponsor')<readme.indexOf('## In the press'),'Watchtower keeps its existing prominence');
 assert(readme.includes('['+article.textContent+']('+article.href+')'));
 assert(readme.includes('Kerry Stevenson, Fabbaloo, October 20, 2026.'));
-console.log('PASS actual press reference component, official article metadata, safe editorial link, no media reuse, all five languages and language reversal, README sponsor order.');
+console.log('PASS actual press reference component, official article metadata, safe editorial link, no media reuse, all supported languages and language reversal, README sponsor order.');

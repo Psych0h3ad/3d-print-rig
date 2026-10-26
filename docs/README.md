@@ -56,7 +56,7 @@ For printers without a separate guide, open the viewer's **References** panel fo
 | Check mounting, movement, materials, companion parts and release evidence | [Machine review requirements](MACHINE_REVIEW.md) · [Coverage record](MACHINE_REVIEW_COVERAGE.json) |
 | Review belts, chains, cables and moving parts | [Motion audit](MOTION_AUDIT.md) · [Source assembly motion](NATIVE_MOTION.md) |
 | Review nozzle, probe, bed and parked-tool clearance | [Probe clearance](PROBE_CLEARANCE.md) · [Probe travel](PROBE_TRAVEL.md) · [Head travel](HEAD_TRAVEL.md) |
-| Update the shared English, Japanese, Spanish, Korean and Russian text | [Translations](TRANSLATING.md) |
+| Update the shared English, Japanese, Spanish, Korean, Russian and German text | [Translations](TRANSLATING.md) |
 | Find original authors, licenses, source revisions and model changes | [Third-party notices](THIRD_PARTY_NOTICES.md) |
 
 Review archives: [Trident size / V2.4 color review](TRIDENT_SIZE_COLOR_QA.md) · [Selection audit](SELECTION_AUDIT.md).

@@ -89,7 +89,7 @@ for(const distance of [.01,.1,1,5,20]) {const clip=referenceDepthRange(distance,
 assert.throws(()=>referenceDepthRange(NaN,1)); pass();
 const source=JSON.parse(await read('localization/source.json')), seen=new Set();
 for(const entry of Object.values(source.entries)) {const signature=entry.kind+'\0'+entry.ja;assert(!seen.has(signature),'Duplicate Japanese source: '+entry.ja);seen.add(signature);}
-for(const lang of ['es','ko','ru']) {
+for(const lang of ['es','ko','ru','de']) {
   const dictionary=JSON.parse(await read('localization/'+lang+'.json'));
   for(const [id,entry] of Object.entries(source.entries).filter(([id])=>id.startsWith('elegoo.'))) {
     assert(dictionary.messages[id].text);assert.equal(dictionary.messages[id].source_revision,

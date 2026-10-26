@@ -95,12 +95,13 @@ const labels={
  es:{light:'Iluminación de escena',white:'Luz auxiliar blanca',rgb:'Ciclo de color auxiliar'},
  ko:{light:'장면 조명',white:'흰색 보조광',rgb:'보조광 색상 순환'},
  ru:{light:'Освещение сцены',white:'Белый заполняющий свет',rgb:'Смена цвета подсветки'},
+ de:{light:'Szenenbeleuchtung',white:'Weißes Fülllicht',rgb:'Farbwechsel (Fülllicht)'},
 };
 const central=JSON.parse(await fs.readFile(new URL('../localization/source.json',import.meta.url),'utf8'));
 const centralIDs={light:'source_assembly.scene_lighting',white:'source_assembly.white_fill',rgb:'source_assembly.color_fill'};
 for(const[key,id]of Object.entries(centralIDs)){
  assert.equal(central.entries[id].ja,labels.ja[key]);assert.equal(central.entries[id].en,labels.en[key]);
- for(const language of ['es','ko','ru']){
+ for(const language of ['es','ko','ru','de']){
   const d=JSON.parse(await fs.readFile(new URL('../localization/'+language+'.json',import.meta.url),'utf8'));
   assert.equal(d.messages[id].text,labels[language][key]);
   assert.equal(d.messages[id].source_revision,sourceRevision(central.entries[id]));
@@ -119,5 +120,5 @@ for(const[language,row]of Object.entries(labels))for(const[key,value]of Object.e
  assert.throws(()=>assert.equal(stale.sourceText(key,language),future),'stale appended translation override escaped');futureCases++;
 }
 console.log(JSON.stringify({passed:true,source_light_scale_cases:cases,display_events:displays,sync_bounds_walks:0,served_dependency_cache_checks:cacheChecks,
- stable_language_rows:15,future_revision_cases:futureCases,negative_controls:['point attenuation','1000 sync walks','15 stale language overrides'],
+ stable_language_rows:18,future_revision_cases:futureCases,negative_controls:['point attenuation','1000 sync walks','18 stale language overrides'],
  scope:'Exact production functions with actual Three light objects. Fixture scale/pose invariants, Studio state and stable message lookup only; actual model rendering and native fit are separate.'}));
