@@ -50,6 +50,16 @@ When turning beside a wall, the object moves inward as needed, turns and returns
 toward its starting position. This also works for groups and supported printers;
 other objects and the edges of the support surface still limit the movement.
 
+For a printer on a desk or shelf, typing an angle, using a rotation button or
+pressing **R / Shift+R** picks it up, reorients it and places it at the nearest
+valid final position on the same support. Intermediate diagonal clearance is
+not required for these discrete edits. The authored feet/support footprint must
+fit on that surface; the complete printer envelope must remain inside the room
+and clear of other envelopes. Valid bed/body overhang remains allowed when its
+feet are supported. If the requested final angle cannot be placed, the plan is
+unchanged. Continuous scene-handle drags, floor printers and furniture/group
+turns retain their swept-motion rules. Each completed edit is one undo step.
+
 Furniture and printer envelopes also block one another when their footprints
 and heights overlap. Dragging stops at contact and can slide along the other
 object. Touching edges are allowed. A printer may sit on its own desk or shelf;
@@ -67,8 +77,21 @@ Tab changes preserve unfinished form entries; selecting another object opens
 
 ## Windows and doors
 
-Open **Room → Windows and doors**, choose a numbered wall and add a window or
-door. Set its width, height and distance from the start of that wall. Windows
+Open **Room → Windows and doors** and choose **Window** or **Door**. The planner
+opens the 2D plan. Point near a wall to see a green preview and click to place;
+a red preview means that no free span fits. Corners and existing openings clamp
+the preview to an available span. Press **Esc** to cancel without changing the plan.
+
+Click an opening in the plan to select it and reveal its editor. Drag it along
+its wall to preview a new position, then release to apply one undoable edit.
+Dragging stops at corners and neighbouring openings; it cannot pass through
+another opening with overlapping height. **Esc** cancels the drag. In 3D, click
+or drag the visible frame, pane or door leaf to select or move that opening.
+The preview does not change the saved wall cutout until release.
+
+The numbered-wall **Add window** and **Add door** controls remain available for
+precise form-based placement. Set the width, height and distance from the start
+of the wall in the selected opening's editor. Windows
 also have a sill height. Choose a hinged or sliding door. Hinged doors have
 left/right hinges and an opening angle; single-panel sliding doors move along
 the wall with a chosen direction and opening percentage.

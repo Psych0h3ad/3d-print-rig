@@ -218,7 +218,7 @@ await test('actual-app-failed-noop-and-successful-commit-status-lifecycle',async
  const factory=new Function('deps',`
  const needsEquipmentPreview=${needsEquipmentPreview.toString()},isLayoutEquipmentPreviewPrepared=()=>false,prepareLayoutEquipmentPreview=()=>{throw Error('Unexpected equipment request in native-only fixture');};const equipmentRows=[];
 
-  const {applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,worldTransform,serializeLayout,parseLayout,createDefaultLayout,validatePlacement}=deps.S;
+  const {applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,worldTransform,serializeLayout,parseLayout,createDefaultLayout,validatePlacement,resolveSupportedPrinterRotation}=deps.S;
   const catalog=[],past=[],future=[],writes=[],updates=[],maxFileBytes=2097152,document={body:{dataset:{}}};
   let state=deps.initial,selected='status-desk',busy=false,roomEditing=false,disposed=false,interactionGeneration=0,operation=null,placement=null,lastPlacementTarget=null;
   const status={hidden:true,textContent:''},uiState={message:'',error:false},$=selector=>{if(selector!=='#layout-status')throw Error('Unexpected status selector');return status};
@@ -299,7 +299,7 @@ function replayCommands(initial,selection){
  const engine=new Function('S','G','H','initial','selection','rows','catalog','proposePlacement',`
  const needsEquipmentPreview=${needsEquipmentPreview.toString()},isLayoutEquipmentPreviewPrepared=()=>false,prepareLayoutEquipmentPreview=()=>{throw Error('Unexpected equipment request in native-only fixture');};const equipmentRows=[];
 
-  const {createDefaultLayout,createDesk,createShelf,applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,deriveScene,worldTransform,serializeLayout,parseLayout,validatePlacement}=S;
+  const {createDefaultLayout,createDesk,createShelf,applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,deriveScene,worldTransform,serializeLayout,parseLayout,validatePlacement,resolveSupportedPrinterRotation}=S;
   const {createGroup,renameGroup,ungroup,removeGroup,groupInfo,transformGroup,resolveGroupMove,resolveGroupRotation,captureGroupTemplate,groupTemplateInfo,proposeGroupPlacement,parseGroupLibrary,GROUP_LIBRARY_LIMIT}=G;
   const {captureLayoutClipboard,encodeLayoutClipboard,decodeLayoutClipboard,regroupLayoutSelection}=H;
   let state=initial,selected=selection,busy=false,roomEditing=false,disposed=false,interactionGeneration=0,operation=null,nextId=1,placement=null,lastPlacementTarget=null,clipboardText='';

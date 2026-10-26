@@ -7,11 +7,12 @@ import crypto from 'node:crypto';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const siteOption=process.argv.indexOf('--site'),site=siteOption<0?path.join(root,'site'):path.resolve(process.argv[siteOption+1]);
-const files=['layout/layout-printer-shapes.mjs','layout/layout-printer-preview-mesh.mjs','layout/layout-renderer.mjs','layout/layout-opening-renderer.mjs','layout/layout-openings.mjs','layout/layout-geometry.mjs','layout/layout-surfaces.mjs','layout/layout-finishes.mjs','layout/layout-plan-measurements.mjs','viewer/vendor-r180/three.module.js','viewer/vendor-r180/three.core.js'];
+const files=['layout/layout-opening-interaction.mjs','layout/layout-printer-shapes.mjs','layout/layout-printer-preview-mesh.mjs','layout/layout-renderer.mjs','layout/layout-opening-renderer.mjs','layout/layout-openings.mjs','layout/layout-geometry.mjs','layout/layout-surfaces.mjs','layout/layout-finishes.mjs','layout/layout-plan-measurements.mjs','viewer/vendor-r180/three.module.js','viewer/vendor-r180/three.core.js'];
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 const inputs=files.map(file=>{const b=fs.readFileSync(path.join(site,file));return {path:file,bytes:b.length,sha256:sha(b)};});
 const load=file=>import(pathToFileURL(path.join(site,file)));
 const THREE=await load('viewer/vendor-r180/three.module.js');
+const {createOpeningInteraction}=await load('layout/layout-opening-interaction.mjs');
 const {wallFrame,openingFrame,doorPlan,openingProblems}=await load('layout/layout-openings.mjs');
 const {createLayoutOpeningRenderer,openingPlanPrimitives,drawOpeningPlan}=await load('layout/layout-opening-renderer.mjs');
 const {createLayoutSurfaces,resolveSurfaceAppearance,wallSurfaceGeometry}=await load('layout/layout-surfaces.mjs');
@@ -168,7 +169,7 @@ class Renderer{
 }
 class PMREM{fromScene(){const texture=new THREE.Texture();return {texture,dispose(){texture.dispose();}};}dispose(){}}
 class Environment extends THREE.Scene{dispose(){}}
-const ports={printerSilhouetteParts,printerSilhouetteSourceRoles,createPrinterPreviewMeshCache,THREE:{...THREE,WebGLRenderer:Renderer,PMREMGenerator:PMREM},OrbitControls:Controls,RoomEnvironment:Environment,
+const ports={createOpeningInteraction,wallFrame,openingFrame,printerSilhouetteParts,printerSilhouetteSourceRoles,createPrinterPreviewMeshCache,THREE:{...THREE,WebGLRenderer:Renderer,PMREMGenerator:PMREM},OrbitControls:Controls,RoomEnvironment:Environment,
   deriveScene:()=>({furniture:[],printers:[],surfaces:[]}),document:{createElement:node,createElementNS:(_,tag)=>node(tag)},devicePixelRatio:1,
   requestAnimationFrame:f=>{frames.set(++rafId,f);return rafId;},cancelAnimationFrame:id=>frames.delete(id),ResizeObserver:class{observe(){}disconnect(){}},
   createLayoutSurfaces,resolveSurfaceAppearance,wallSurfaceGeometry,drawPlanMeasurements,groupInfo(){},groupingForEntity(){},groupLabel(){},getLayoutEquipment(){},resolveLayoutEquipment(){},createEquipmentMeshCache:()=>({dispose(){}}),createLayoutOpeningRenderer,

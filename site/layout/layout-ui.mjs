@@ -1,5 +1,5 @@
 // Presentation only. The application owns state, history, files and model loading.
-import {createRoomRect,createRoomL,createRoomPolygon,resolvePrinterEquipment} from './layout-state.mjs?v=751b8386c868c43eb57d';
+import {createRoomRect,createRoomL,createRoomPolygon,resolvePrinterEquipment} from './layout-state.mjs?v=aaf3e2a50f2b27f89723';
 import {WALL_FINISHES,FLOOR_FINISHES,DEFAULT_ROOM_APPEARANCE} from './layout-finishes.mjs?v=001b62f9728770a12303';
 import {groupLabel} from './layout-group-labels.mjs?v=1ff84a0cf5540fd3184b';
 const PRINTER_VIEWER_PAGES=new Set(['','index.html','annex.html','community.html','crossant.html','custom-voron.html','kit-reference.html','micron.html','positron.html','ratrig.html','remorph.html','trident.html','v0.html','v24-reference.html','v24.html']);
@@ -40,7 +40,7 @@ const PATHS = {
   ungroup:'M3 8V3h5m8 0h5v5M3 16v5h5m8 0h5v-5M8 8h8v8H8Z'
 };
 
-export function createLayoutUI({container, onAction, t, catalog = [], onObjectSearchEscape = () => {}, onPickedChange = (ids) => {}}) {
+export function createLayoutUI({container, onAction, t, catalog = [], onObjectSearchEscape = () => {}, onPickedChange = (ids) => {}, onOpeningSelect = () => {}}) {
   if (!container?.ownerDocument || typeof onAction !== 'function' || typeof t !== 'function') {
     throw new TypeError('createLayoutUI requires container, onAction and t');
   }
@@ -288,6 +288,9 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
   const openingSection=el('section','layout-room-openings');openingSection.id='layout-openings';
   const openingHeading=copy(el('h3'),'layout.openings.title');openingHeading.id='layout-openings-heading';
   openingSection.setAttribute('aria-labelledby',openingHeading.id);openingSection.append(openingHeading,copy(el('p','layout-help'),'layout.openings.help'));
+  const placeOpeningActions=el('div','layout-opening-actions');
+  for(const kind of ['window','door'])placeOpeningActions.append(button(`layout.openings.${kind}`,()=>{if(!status.busy)emit({type:'room-opening-place',kind});},kind));
+  openingSection.append(placeOpeningActions,copy(el('p','layout-help'),'layout.openings.placeHelp'));
   const openingWallLabel=el('label','layout-field');openingWallLabel.append(copy(el('span'),'layout.openings.addWall'));
   const openingWall=el('select');openingWall.id='layout-opening-add-wall';openingWallLabel.append(openingWall);openingSection.append(openingWallLabel);
   const openingWallHint=el('p','layout-help layout-opening-wall-coordinates');openingWallHint.id='layout-opening-add-wall-coordinates';openingWall.setAttribute('aria-describedby',openingWallHint.id);openingSection.append(openingWallHint);
@@ -376,7 +379,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
     const key=JSON.stringify(all.map(o=>[o.id,openingTitle(o)]));
     if(key!==openingListKey){
       openingListKey=key;openingList.replaceChildren();
-      for(const o of all){const row=el('li'),select=button('layout.openings.select',()=>{if(status.busy)return;openingId=o.id;refreshOpenings();refreshOpeningValues();refreshStatus();releaseDetachedControls();},o.type);select.className='layout-object-button layout-opening-button';select.dataset.layoutOpeningId=o.id;select.replaceChildren(icon(o.type),el('span','layout-object-name',openingTitle(o)));select.setAttribute('aria-label',openingTitle(o));row.append(select);openingList.append(row);}
+      for(const o of all){const row=el('li'),select=button('layout.openings.select',()=>{if(status.busy)return;openingId=o.id;onOpeningSelect(o.id);refreshOpenings();refreshOpeningValues();refreshStatus();releaseDetachedControls();},o.type);select.className='layout-object-button layout-opening-button';select.dataset.layoutOpeningId=o.id;select.replaceChildren(icon(o.type),el('span','layout-object-name',openingTitle(o)));select.setAttribute('aria-label',openingTitle(o));row.append(select);openingList.append(row);}
     }
     for(const b of openingList.querySelectorAll('[data-layout-opening-id]'))b.setAttribute('aria-pressed',String(b.dataset.layoutOpeningId===openingId));
     openingEmpty.hidden=all.length>0;openingList.hidden=!all.length;buildOpeningEditor();
@@ -809,7 +812,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
   function refreshStatus(){
     if(pendingSelectionPanel&&!status.busy){pendingSelectionPanel=false;if(selected()){showPanel('selection');panelHost.scrollTop=0;}}
     for(const n of root.querySelectorAll('button,input,select,textarea'))n.disabled=!!status.busy;
-    for(const n of [addWindow,addDoor])n.disabled=!!status.busy||!state||!openingWalls.length||roomOpenings().length>=64;
+    for(const n of [...placeOpeningActions.querySelectorAll('button'),addWindow,addDoor])n.disabled=!!status.busy||!state||!openingWalls.length||roomOpenings().length>=64;
     for(const n of root.querySelectorAll('[data-mount-locked]'))n.disabled=true;
     for(const [id,check]of memberChecks){check.disabled=!!status.busy;check.checked=pickedRoots.has(id);}
     refreshGroupDraft();
@@ -872,5 +875,6 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
     refreshGroupDraft();notifyPickedChange();
   }
   return Object.freeze({update,setStatus,setProjection,setLocale,setGroupLibrary,
+    setOpeningSelection(id){if(disposed||status.busy)return;openingId=id;refreshOpenings();refreshOpeningValues();refreshStatus();showPanel('room');openingEditor.scrollIntoView?.({block:'nearest'});},
     getPickedRootIds:()=>[...pickedRoots],setPickedRootIds,focusObjectSearch,focusSelection,dispose});
 }

@@ -1,13 +1,13 @@
-import {createDefaultLayout,createDesk,createShelf,createPopStation,createCatalog,applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,placementViolations,deriveScene,worldTransform,validatePlacement,serializeLayout,parseLayout} from './layout-state.mjs?v=751b8386c868c43eb57d';
+import {createDefaultLayout,createDesk,createShelf,createPopStation,createCatalog,applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,resolveSupportedPrinterRotation,placementViolations,deriveScene,worldTransform,validatePlacement,serializeLayout,parseLayout} from './layout-state.mjs?v=aaf3e2a50f2b27f89723';
 import {equipmentRows,isLayoutEquipmentPreviewPrepared} from './layout-equipment.mjs?v=bd8e2772cabd6fd2564b';
 import {prepareLayoutEquipmentPreview,needsEquipmentPreview} from './layout-equipment-preview.mjs?v=aface112775d91937ff3';
-import {createLayoutUI} from './layout-ui.mjs?v=aecb96021568a45432db';
-import {setupLayoutLanguage} from './layout-language.mjs?v=c6501a57a9fe55681155';
-import {proposePlacement} from './layout-placement.mjs?v=43134d7c1c73410afad2';
+import {createLayoutUI} from './layout-ui.mjs?v=88e5faccf904b8600abf';
+import {setupLayoutLanguage} from './layout-language.mjs?v=5264cfe5752e9c27c899';
+import {proposePlacement} from './layout-placement.mjs?v=3e7200eba3adada5fa7e';
 import {renameGroup,ungroup,removeGroup,groupInfo,transformGroup,resolveGroupMove,resolveGroupRotation,
-  captureGroupTemplate,groupTemplateInfo,proposeGroupPlacement,parseGroupLibrary,GROUP_LIBRARY_LIMIT} from './layout-groups.mjs?v=bbbb370498717cf1bb2a';
-import {captureLayoutClipboard,encodeLayoutClipboard,decodeLayoutClipboard,regroupLayoutSelection} from './layout-clipboard.mjs?v=5c89f46deda9a7a49d67';
-import {placementStatus} from './layout-placement-feedback.mjs?v=66b316485f3381f9a8a2';
+  captureGroupTemplate,groupTemplateInfo,proposeGroupPlacement,parseGroupLibrary,GROUP_LIBRARY_LIMIT} from './layout-groups.mjs?v=34c055f72b5b436bbb49';
+import {captureLayoutClipboard,encodeLayoutClipboard,decodeLayoutClipboard,regroupLayoutSelection} from './layout-clipboard.mjs?v=0a06dd9ca2c90b0ec46f';
+import {placementStatus} from './layout-placement-feedback.mjs?v=3315cf6ae1f42adaf8a8';
 import {readDisplay,saveDisplay,applyDisplay} from '../viewer/display-preferences.mjs?v=8f347468def25922153c';
 import {newRoomOpening} from './layout-openings.mjs?v=8fab3154ec519f37f666';
 
@@ -53,7 +53,7 @@ function commit(next,{history=true,selection=selected}={}){
   if(history){past.push(state);if(past.length>80)past.shift();future.length=0;}
   state=next;selected=selection;delete $('#layout-status')._layoutMessage;$('#layout-status').hidden=true;$('#layout-status').textContent='';ui.setStatus({message:'',error:false});sync();store();
 }
-function select(value){if(busy)return;if(placement)cancelPlacement();interactionGeneration++;ui?.setPickedRootIds?.([]);selected=value;sync();ui?.focusSelection?.();}
+function select(value){if(busy)return;view?.setOpeningSelection?.(null);if(placement)cancelPlacement();interactionGeneration++;ui?.setPickedRootIds?.([]);selected=value;sync();ui?.focusSelection?.();}
 function pick({ids,mode,seedIds=[]}){
   if(disposed||busy||roomEditing||placement)return;
   interactionGeneration++;
@@ -61,6 +61,18 @@ function pick({ids,mode,seedIds=[]}){
   const remove=mode==='toggle'&&ids.length&&ids.every(id=>next.has(id));
   for(const id of ids)if(remove)next.delete(id);else next.add(id);
   selected=null;ui.setPickedRootIds?.([...next]);sync();
+}
+function selectOpening(openingId){
+  if(busy||roomEditing)return;
+  select(null);ui.setOpeningSelection(openingId);view.setOpeningSelection(openingId);
+}
+function changeOpening({type,opening}){
+  if(busy||roomEditing)return;
+  try{
+    const o=type==='add'?{...opening,id:id(opening.type)}:opening;
+    commit(applyAction(state,type==='add'?{type:'ADD_ROOM_OPENING',opening:o}:{type:'UPDATE_ROOM_OPENING',id:o.id,patch:{offsetMm:o.offsetMm}},catalog),{selection:null});
+    selectOpening(o.id);
+  }catch(error){message(()=>humanError(error),true);}
 }
 async function ensureEquipmentPreview(value){
   if(!needsEquipmentPreview(value)||isLayoutEquipmentPreviewPrepared())return true;
@@ -157,7 +169,7 @@ function updatePlacementBar(proposal){
   bar.dataset.valid=String(proposal?.valid??false);
   const status=$('#layout-placement-status');if(status){const label=proposal?placementStatus(proposal,t):'';if(status.textContent!==label)status.textContent=label;status.dataset.valid=String(!!proposal?.valid);status.hidden=!proposal;}
 }
-function cancelPlacement(){interactionGeneration++;placement=null;lastPlacementTarget=null;view?.setPlacement(null);updatePlacementBar();}
+function cancelPlacement(){view?.cancelOpening?.();interactionGeneration++;placement=null;lastPlacementTarget=null;view?.setPlacement(null);updatePlacementBar();}
 function beginPlacement(spec){
   const {kind,machineId,copy,yawDeg,parentId,surfaceId,template}=spec;
   cancelPlacement();
@@ -273,7 +285,7 @@ function constrainRotate({id:entityId,yawDeg},context){
   pendingRotation={...result,id:entityId,base:state,origin};
   return {yawDeg:result.yawDeg,x:result.x,z:result.z,...(result.boundaryLimited?{boundaryLimited:true,pointerRemainderDeg:result.pointerRemainderDeg??0}:{})};
 }
-function worldRotate({id:entityId,yawDeg,deltaDeg,x,z}){
+function worldRotate({id:entityId,yawDeg,deltaDeg,x,z,localYawDeg}){
   if(busy||roomEditing||disposed)return false;
   interactionGeneration++;
   try{
@@ -289,9 +301,10 @@ function worldRotate({id:entityId,yawDeg,deltaDeg,x,z}){
     const sourceYaw=group?.pose.yawDeg??furniture?.pose.yawDeg??printer.attachment.yawDeg;
     const world=group?.pose??worldTransform(state,entityId,catalog);
     const chain=deltaDeg===undefined?null:discreteRotation?.last===state&&discreteRotation.id===entityId?discreteRotation:{base:state,id:entityId,originYaw:sourceYaw,anchor:{xMm:world.xMm,zMm:world.zMm},localAnchor:parent?{xMm:printer.attachment.xMm,zMm:printer.attachment.zMm}:null,total:0};
-    const total=chain?chain.total+deltaDeg:null,localYaw=chain?(total===0?chain.originYaw:chain.originYaw+total):yawDeg-(parent?.pose.yawDeg||0);
+    const total=chain?chain.total+deltaDeg:null,localYaw=chain?(total===0?chain.originYaw:chain.originYaw+total):localYawDeg??yawDeg-(parent?.pose.yawDeg||0);
     const target=localYaw+(parent?.pose.yawDeg||0),resolve=group?resolveGroupRotation:resolveWorldRotation;
-    const result=resolve(state,{id:entityId,yawDeg:target},catalog,{snapDeg:0,...(chain?{anchorPointMm:chain.anchor}:{}),...(chain?.localAnchor?{anchorLocalPointMm:chain.localAnchor}:{}),...(!group?{targetLocalYawDeg:localYaw}:{})});
+    const pickup=printer&&parent&&(deltaDeg!==undefined||localYawDeg!==undefined);
+    const result=pickup?resolveSupportedPrinterRotation(state,{id:entityId,yawDeg:localYaw,...(chain?.localAnchor?{anchorLocalPointMm:chain.localAnchor}:{})},catalog):resolve(state,{id:entityId,yawDeg:target},catalog,{snapDeg:0,...(chain?{anchorPointMm:chain.anchor}:{}),...(chain?.localAnchor?{anchorLocalPointMm:chain.localAnchor}:{}),...(!group?{targetLocalYawDeg:localYaw}:{})});
     if(!result)return false;
     let next=result.state;
     if(chain&&total===0&&result.yawDeg===target){
@@ -314,7 +327,7 @@ async function render(){
   document.body.dataset.layoutRendering='loading';message(()=>t(floorplan?'layout.render.planLoading':'layout.render.loading'));
   try{
     // Genuine CAD and its loaders are intentionally absent from the placement path.
-    const loadLayoutMachine=floorplan?undefined:(await import('./layout-machine-loader.mjs?v=14d7d32aeec54556ac08')).loadLayoutMachine;
+    const loadLayoutMachine=floorplan?undefined:(await import('./layout-machine-loader.mjs?v=7393f58a168d4fecf160')).loadLayoutMachine;
     let lastPercent=0;
     const result=await view.exportImage({loadMachine:loadLayoutMachine,width:1920,signal:operation.signal,onProgress:p=>{
       if(floorplan){message(()=>t('layout.render.planLoading'),false,{renderProgress:null});return;}
@@ -342,6 +355,7 @@ async function act(action){
   if(action.type==='cancel'){cancelPlacement();operation?.abort();return;}
   if(busy||roomEditing)return;
   if(placement&&!['add','duplicate','group-place','copy','paste'].includes(action.type))cancelPlacement();
+  if(action.type!=='room-opening-place')view?.cancelOpening?.();
   const generation=++interactionGeneration;let importCommitted=false;
   try{
     switch(action.type){
@@ -349,6 +363,7 @@ async function act(action){
       case 'undo':if(past.length){future.push(state);commit(past.pop(),{history:false});}return;
       case 'redo':if(future.length){past.push(state);commit(future.pop(),{history:false});}return;
       case 'reset':commit(createDefaultLayout(),{selection:null});view.view('perspective');view.view('fit');return;
+      case 'room-opening-place':cancelPlacement();selected=null;ui.setPickedRootIds?.([]);sync();view.beginOpening(action.kind);message(()=>t('layout.openings.placeHelp'));return;
       case 'room-opening-add':commit(applyAction(state,{type:'ADD_ROOM_OPENING',opening:newRoomOpening(state.room,{id:id(action.kind),type:action.kind,wallIndex:action.wallIndex})},catalog));return;
       case 'add':{
         beginPlacement(action);
@@ -364,7 +379,9 @@ async function act(action){
         const groupId=id('group');commit(regroupLayoutSelection(state,{id:groupId,name:action.name||t('layout.group.defaultName'),selectionIds:action.memberIds||selectionIds()},catalog),{selection:groupId});ui.setPickedRootIds?.([]);return;
       }
       case 'group-rename':commit(renameGroup(state,action.id,action.name,catalog));return;
-      case 'group-transform':commit(transformGroup(state,action.id,action.patch,catalog));return;
+      case 'group-transform':
+        if(action.patch&&Object.keys(action.patch).length===1&&Number.isFinite(action.patch.yawDeg)&&Math.abs(action.patch.yawDeg)<=360000){worldRotate({id:action.id,yawDeg:action.patch.yawDeg});sync();return;}
+        commit(transformGroup(state,action.id,action.patch,catalog));return;
       case 'group-ungroup':commit(ungroup(state,action.id,catalog),{selection:null});return;
       case 'group-save':{
         if(groupLibrary.length>=GROUP_LIBRARY_LIMIT)throw Object.assign(Error('Saved set limit'),{code:'GROUP_LIBRARY_LIMIT'});
@@ -376,6 +393,20 @@ async function act(action){
       }
       case 'group-template-remove':saveGroupLibrary(groupLibrary.filter(e=>e.id!==action.templateId));return;
       case 'move-world':commit(state.groups?.some(e=>e.id===action.id)?transformGroup(state,action.id,{xMm:action.xMm,zMm:action.zMm},catalog):applyWorldMove(state,{id:action.id,xMm:action.xMm,zMm:action.zMm},catalog));return;
+      case 'UPDATE_PRINTER':
+      case 'UPDATE_FURNITURE':{
+        const printer=action.type==='UPDATE_PRINTER'?state.printers.find(p=>p.id===action.id):null;
+        const furniture=action.type==='UPDATE_FURNITURE'?state.furniture.find(f=>f.id===action.id):null;
+        const key=printer?'attachment':'pose',pose=action.patch?.[key];
+        // Numeric angles are support-local for printers. Share the same safe
+        // retreat/turn/return transaction as scene handles and quarter turns.
+        // Mixed edits retain the strict general action contract.
+        if((printer||furniture)&&action.patch&&Object.keys(action.patch).length===1&&pose&&Object.keys(pose).length===1&&Number.isFinite(pose.yawDeg)&&Math.abs(pose.yawDeg)<=360000){
+          const parent=printer&&state.furniture.find(f=>f.id===printer.attachment.parentId);
+          worldRotate({id:action.id,yawDeg:pose.yawDeg+(parent?.pose.yawDeg??0),localYawDeg:pose.yawDeg});sync();return;
+        }
+        commit(applyAction(state,action,catalog));return;
+      }
       case 'rotate-world':worldRotate({id:action.id,deltaDeg:action.deltaDeg});return;
       case 'delete':{
         if(state.groups?.some(e=>e.id===action.id)){commit(removeGroup(state,action.id,catalog),{selection:null});return;}
@@ -402,7 +433,7 @@ async function act(action){
       case 'render':await render();return;
       case 'edit-room':case 'import-svg':{
         roomEditing=true;
-        try{const {openRoomEditor}=await import('./layout-room-editor.mjs?v=7e5a0a3f4486d9bf36a6'),nextRoom=await openRoomEditor({room:state.room,file:action.type==='import-svg'?action.file:undefined,t:language.t});
+        try{const {openRoomEditor}=await import('./layout-room-editor.mjs?v=5eeee3b12a669f19c237'),nextRoom=await openRoomEditor({room:state.room,file:action.type==='import-svg'?action.file:undefined,t:language.t});
           if(nextRoom&&!disposed){commit(applyAction(state,{type:'SET_ROOM',room:nextRoom},catalog));view.view('perspective');view.view('fit');}
         }finally{roomEditing=false;}return;
       }
@@ -510,20 +541,20 @@ async function start(){
   if(!startEmpty)try{const saved=readSavedLayout();if(saved&&saved.length<=maxFileBytes){state=parseLayout(saved,catalog);store();}}catch{message(()=>t('layout.error.savedPlan'),true);}
   try{const saved=localStorage.getItem(groupLibraryKey);if(saved)groupLibrary=parseGroupLibrary(saved,catalog);}catch{message(()=>t('layout.group.libraryUnavailable'),true);}
   if(!await ensureEquipmentPreview(state)||disposed)return;
-  const {createLayoutRenderer}=await import('./layout-renderer.mjs?v=79e1b552c26eff7de323');
+  const {createLayoutRenderer}=await import('./layout-renderer.mjs?v=3620c62396a03c28dbe2');
   ui=createLayoutUI({container:$('#layout-sidebar'),onAction:act,t:language.t,catalog:rows,onPickedChange:ids=>{
     interactionGeneration++;
     if(ids.length&&selected!==null){selected=null;sync();}
     view?.setPickedRoots?.(ids);
-  },onObjectSearchEscape:()=>view?.canvas.focus()});
+  },onOpeningSelect:id=>selectOpening(id),onObjectSearchEscape:()=>view?.canvas.focus()});
   ui.setStatus({canPaste:true});
   refreshGroupLibrary();
-  view=createLayoutRenderer({container:$('#layout-scene'),catalog:rows,t:language.t,onSelect:select,onPick:pick,onMove:worldMove,constrainMove,onRotate:worldRotate,constrainRotate,onPlacementMove:previewPlacement,onPlacementCommit:placeProposal,onViewChange:updateViewPresentation,onError:error=>message(()=>humanError(error),true)});
+  view=createLayoutRenderer({container:$('#layout-scene'),catalog:rows,t:language.t,onSelect:select,onPick:pick,onOpeningSelect:id=>selectOpening(id),onOpeningCommit:change=>changeOpening(change),onMove:worldMove,constrainMove,onRotate:worldRotate,constrainRotate,onPlacementMove:previewPlacement,onPlacementCommit:placeProposal,onViewChange:updateViewPresentation,onError:error=>message(()=>humanError(error),true)});
   sync();view.view('perspective');document.addEventListener('keydown',historyKey);document.addEventListener('keydown',placementKey);document.addEventListener('copy',copyEvent);document.addEventListener('paste',pasteEvent);
   for(const button of document.querySelectorAll('[data-layout-placement]'))button.addEventListener('click',()=>{if(button.dataset.layoutPlacement==='rotate')rotatePlacement();else cancelPlacement();view.canvas.focus?.({preventScroll:true});});
   $('#layout-repeat')?.addEventListener('change',()=>view?.canvas.focus?.({preventScroll:true}));
   updateViewPresentation(view.getView());
-  for(const e of document.querySelectorAll('[data-layout-view]'))e.addEventListener('click',()=>{if(!busy&&!roomEditing)view.view(e.dataset.layoutView);});
+  for(const e of document.querySelectorAll('[data-layout-view]'))e.addEventListener('click',()=>{if(!busy&&!roomEditing){view.cancelOpening?.();view.view(e.dataset.layoutView);}});
   for(const element of [$('#layout-grid'),$('#layout-walls'),$('#layout-measurements')].filter(Boolean))element.addEventListener('change',()=>view.setOptions({grid:$('#layout-grid')?.checked??true,walls:$('#layout-walls')?.checked??true,measurements:$('#layout-measurements')?.checked??true,dark:dark()}));
   view.canvas.addEventListener('keydown',event=>{
     if(busy||placement||!selected||ui.getPickedRootIds?.().length||event.ctrlKey||event.metaKey||event.altKey)return;
