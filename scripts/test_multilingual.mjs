@@ -7,13 +7,15 @@ import {definitions} from '../site/viewer/locales/manifest.mjs';
 import {printerWorkspaceURL} from '../site/viewer/workspace-return.mjs';
 
 const root=new URL('../localization/',import.meta.url),read=async name=>JSON.parse(await fs.readFile(new URL(name+'.json',root),'utf8'));
-const source=await read('source'),dictionaries=Object.fromEntries(await Promise.all(['es','ko','ru'].map(async language=>[language,await read(language)])));
+const source=await read('source'),dictionaries=Object.fromEntries(await Promise.all(['es','ko','ru','de'].map(async language=>[language,await read(language)])));
 const glossary=await read('glossary');
 assert.deepEqual(validateTranslations(source,dictionaries,glossary),[]);
 assert.equal(contentRevision('export const label="Yavoth";\r\n'),contentRevision('export const label="Yavoth";\n'));
 assert.notEqual(contentRevision('export const label="Yavoth";\n'),contentRevision('export const label="Xol";\n'));
-assert.deepEqual(supportedLanguages,['en','ja','es','ko','ru']);
+assert.deepEqual(supportedLanguages,['en','ja','es','ko','ru','de']);
 assert.equal(chooseLanguage({query:'es-MX',stored:'ko',languages:['ru-RU']}),'es');
+assert.equal(chooseLanguage({query:'de-DE',stored:'ja'}),'de');
+assert.equal(chooseLanguage({stored:'de-AT'}),'de');
 assert.equal(chooseLanguage({stored:'ko-KR',languages:['ru-RU']}),'ko');
 assert.equal(chooseLanguage({languages:['fr-FR','ru-RU','en']}),'en');
 assert.equal(chooseLanguage({stored:'ja',languages:['en-US']}),'ja');
@@ -32,9 +34,9 @@ const spaced=createTranslator({heater:{kind:'template',ja:' · {0}: {1} °C',en:
 assert.equal(spaced.translate(' · extruder: 200 °C','es'),' · calentador extruder: 200 °C');
 assert.equal(spaced.translate('  · extruder: 200 °C  ','es'),'  · calentador extruder: 200 °C  ');
 assert.equal(spaced.translate('macro:12 · ','es'),'macro:12 · ');
-await Promise.all(['es','ko','ru'].map(loadLanguage));
+await Promise.all(['es','ko','ru','de'].map(loadLanguage));
 let checked=0;
-for(const language of ['es','ko','ru']){
+for(const language of ['es','ko','ru','de']){
  for(const[id,e]of Object.entries(source.entries)){
   assert.equal(translate(e.ja,language),dictionaries[language].messages[id].text,language+':'+id);
   assert.equal(translate(e.en,language).trim(),dictionaries[language].messages[id].text.trim(),language+': English alias '+id);
@@ -70,6 +72,9 @@ assert.equal(translator.formatMessage('clearance',{0:'2.8'},'ko'),'Minimum gap 2
 assert(translator.diagnostics().fallbacks.includes('es:clearance'));
 const changed=structuredClone(source);changed.entries['ui.configuration'].en='Printer configuration';
 assert(validateTranslations(changed,dictionaries).some(e=>e.id==='ui.configuration'&&e.issue==='stale'));
+assert(validateTranslations(changed,dictionaries).some(e=>e.language==='de'&&e.id==='ui.configuration'&&e.issue==='stale'));
+const missingGerman=structuredClone(dictionaries);delete missingGerman.de.messages['ui.configuration'];
+assert(validateTranslations(source,missingGerman).some(e=>e.language==='de'&&e.issue==='missing'));
 const missing=structuredClone(dictionaries);delete missing.ko.messages['ui.configuration'];
 assert(validateTranslations(source,missing).some(e=>e.language==='ko'&&e.issue==='missing'));
 const placeholderId=Object.keys(source.entries).find(id=>source.entries[id].en.includes('{0}'));

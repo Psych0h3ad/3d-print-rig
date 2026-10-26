@@ -1,5 +1,5 @@
 import {supportedLanguages, languageNames, languageStorageKey, normalizeLanguage,
-  chooseLanguage, languageURL, t} from './layout-i18n.mjs?v=2e08d80a8b21c646d7f4';
+  chooseLanguage, languageURL, t} from './layout-i18n.mjs?v=414c9ea5605637c399b9';
 
 // Browser effects stay here; the message module can also be used in pure tests.
 export function setupLayoutLanguage({document = globalThis.document, window = globalThis.window,
@@ -54,7 +54,7 @@ export function setupLayoutLanguage({document = globalThis.document, window = gl
     const description = t('layout.description', {}, language);
     for (const meta of document.querySelectorAll('meta[name="description"], meta[property="og:description"], meta[name="twitter:description"]')) meta.content = description;
     for (const meta of document.querySelectorAll('meta[property="og:title"], meta[name="twitter:title"]')) meta.content = document.title;
-    const locale = {en: 'en_US', ja: 'ja_JP', es: 'es_ES', ko: 'ko_KR', ru: 'ru_RU'}[language];
+    const locale = {en: 'en_US', ja: 'ja_JP', es: 'es_ES', ko: 'ko_KR', ru: 'ru_RU', de: 'de_DE'}[language];
     const localeMeta = document.querySelector('meta[property="og:locale"]');
     if (localeMeta) localeMeta.content = locale;
   }

@@ -11,7 +11,7 @@ registerHooks({resolve(specifier,context,next){return specifier==='three'?{url:n
 const loadingURL=new URL('../site/viewer/source-assembly-runtime/loading.mjs',import.meta.url),loadingSource=fs.readFileSync(loadingURL,'utf8');
 const engineURL=new URL(loadingSource.match(/from '([^']+i18n\.mjs[^']*)'/u)[1],loadingURL);
 const {loadLanguage}=await import(engineURL.href);
-for(const language of ['es','ko','ru'])await loadLanguage(language);
+for(const language of ['es','ko','ru','de'])await loadLanguage(language);
 const {loadSourceAssembly}=await import('../site/viewer/source-assembly-loader.mjs');
 const {loadChunkedModel}=await import('../site/viewer/source-assembly-runtime/chunk_loader.mjs');
 const {GLTFLoader}=await import('../site/viewer/vendor-r180/GLTFLoader.js');
@@ -68,12 +68,12 @@ try{
  // callbacks and a queued replacement selection on the serialized coordinator.
  const coordinator=createLoadCoordinator(),node={dataset:{},textContent:''};let language='en';const messages=createSourceUIText(()=>language);
  const a=coordinator.start(),reportA=sourceProgressStatus({job:a,messages,node,language:()=>language});reportA({phase:'decode',downloadPercent:25,currentChunk:1,totalChunks:4});assert(node.textContent.includes('25.0% downloaded'));
- for(const lang of ['ja','es','ko','ru','en']){language=lang;messages.refresh();assert.equal(node.textContent,sourceLoadingText({phase:'decode',downloadPercent:25,currentChunk:1,totalChunks:4},lang));assert(!node.textContent.includes('undefined'));}
+ for(const lang of ['ja','es','ko','ru','de','en']){language=lang;messages.refresh();assert.equal(node.textContent,sourceLoadingText({phase:'decode',downloadPercent:25,currentChunk:1,totalChunks:4},lang));assert(!node.textContent.includes('undefined'));}
  const b=coordinator.start(),reportB=sourceProgressStatus({job:b,messages,node,language:()=>language});const before=node.textContent;reportA({phase:'decode',downloadPercent:100,currentChunk:4,totalChunks:4});assert.equal(node.textContent,before);
- reportB({phase:'manifest'});assert(!node.textContent.includes('%'));coordinator.cancel();messages.clear(node);reportB({phase:'ready'});assert.equal(node.textContent,'');record('five-language refresh and stale callback isolation');
+ reportB({phase:'manifest'});assert(!node.textContent.includes('%'));coordinator.cancel();messages.clear(node);reportB({phase:'ready'});assert.equal(node.textContent,'');record('supported-language refresh and stale callback isolation');
  let unlock;const busy=coordinator.start(),order=[];const first=coordinator.run(busy,async()=>{order.push('first');await new Promise(resolve=>unlock=resolve);});await Promise.resolve();const obsolete=coordinator.start(),skip=coordinator.run(obsolete,()=>order.push('obsolete')),last=coordinator.start(),run=coordinator.run(last,()=>order.push('last'));unlock();await Promise.all([first,skip,run]);assert.deepEqual(order,['first','last']);record('repeated selection serialized; superseded queued selection skipped');
  const invalid=createChunkProgress(chunks,()=>{});assert.throws(()=>invalid.assembly());const callback=invalid.begin(0);assert.throws(()=>invalid.begin(0));assert.throws(()=>callback({phase:'download',received:chunks[0].gzip.bytes+1}));record('invalid totals/order never become plausible percent');
- for(const lang of ['en','ja','es','ko','ru']){
+ for(const lang of ['en','ja','es','ko','ru','de']){
   for(const phase of ['manifest','assembly','ready'])assert(!sourceLoadingText({phase,downloadPercent:100},lang).includes('%'));
   assert(sourceLoadingText({phase:'verify',downloadPercent:99.999,currentChunk:1,totalChunks:2},lang).includes('99.9%'));
   assert(!sourceLoadingText({phase:'decode',downloadPercent:NaN},lang).includes('%'));

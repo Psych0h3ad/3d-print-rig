@@ -19,7 +19,7 @@ function fixture(load){
  const doc={body,documentElement:{lang:'en'},getElementById:()=>null,createElement:tag=>new Element(tag.toUpperCase()),querySelector:()=>null};
  const controller=setupLanguage({document:doc,window:win,load});return {controller,doc,events,nodes,canvas};
 }
-for(const language of ['es','ko','ru']){
+for(const language of ['es','ko','ru','de']){
  let release;const f=fixture(()=>new Promise(resolve=>{release=async()=>{await loadLanguage(language);resolve();};}));
  const before=f.nodes.map(n=>n.nodeValue),change=f.controller.setLanguage(language);
  assert.equal(f.doc.documentElement.lang,'en');assert.deepEqual(f.nodes.map(n=>n.nodeValue),before);
@@ -32,6 +32,6 @@ for(const language of ['es','ko','ru']){
 }
 let release;const disposed=fixture(()=>new Promise(resolve=>release=resolve));
 const waiting=disposed.controller.setLanguage('ru');disposed.controller.disconnect();release();await waiting;assert.equal(disposed.events.length,0);
-console.log(JSON.stringify({passed:true,shared_labels:labels.length,languages:['es','ko','ru'],pending_dictionary_keeps_committed_UI:true,
+console.log(JSON.stringify({passed:true,shared_labels:labels.length,languages:['es','ko','ru','de'],pending_dictionary_keeps_committed_UI:true,
  source_event_after_dictionary_only:true,existing_canvas_preserved:true,disposed_request_suppressed:true,
  scope:'Real shared language controller and central stable catalog with deliberately delayed dictionaries. Browser model/rendering evidence is separate.'}));

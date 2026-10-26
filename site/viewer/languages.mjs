@@ -1,6 +1,6 @@
 // One list for the picker, browser preferences, navigation and shared links.
-export const supportedLanguages=Object.freeze(['en','ja','es','ko','ru']);
-export const languageNames=Object.freeze({ja:'日本語',en:'English',es:'Español',ko:'한국어',ru:'Русский'});
+export const supportedLanguages=Object.freeze(['en','ja','es','ko','ru','de']);
+export const languageNames=Object.freeze({ja:'日本語',en:'English',es:'Español',ko:'한국어',ru:'Русский',de:'Deutsch'});
 export function normalizeLanguage(value){
  if(typeof value!=='string')return undefined;
  const base=value.trim().toLowerCase().split('-')[0];

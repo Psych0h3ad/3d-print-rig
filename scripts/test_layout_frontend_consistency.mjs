@@ -59,7 +59,7 @@ function environment(){
   matchMedia:q=>({matches:q==='(hover: none) and (pointer: coarse)'})};
  return {doc,win,canvas,hint,theme,workspace,appRoot,views,documentListeners};
 }
-await test('canvas-aria-label-refreshes-five-languages-through-real-language-module',()=>{
+await test('canvas-aria-label-refreshes-supported-languages-through-real-language-module',()=>{
  const e=environment(),source=unique(renderer,'const canvas=renderer.domElement;','container.append(canvas);')+'container.append(canvas);';
  const lang=setupLayoutLanguage({document:e.doc,window:e.win});
  new Function('renderer','container','t',source)({domElement:e.canvas},new E(),key=>lang.t('layout.'+key));
@@ -67,7 +67,7 @@ await test('canvas-aria-label-refreshes-five-languages-through-real-language-mod
  for(const code of supportedLanguages){lang.setLanguage(code);assert.equal(e.canvas.getAttribute('aria-label'),t('layout.sceneLabel',{},code));}
  lang.disconnect();
 });
-await test('automatic-3D-and-flat-plan-hints-follow-current-view-in-all-five-languages',()=>{
+await test('automatic-3D-and-flat-plan-hints-follow-current-view-in-all-supported-languages',()=>{
  const e=environment();let lang;
  const source=unique(app,'function updateViewPresentation(','\nfunction updateLanguage(){');
  const factory=new Function('document','$','ui','t',`${source}\nreturn updateViewPresentation;`);
@@ -97,7 +97,7 @@ await test('coarse-only-notice-theme-header-live-with-no-renderer-catalog-or-mod
  assert.equal(popup.getAttribute('aria-labelledby'),popup.children[0].id);assert.equal(popup.getAttribute('aria-describedby'),popup.children[1].id);
  for(const code of supportedLanguages){replay.language().setLanguage(code);e.theme.emit('click');assert.equal(e.doc.documentElement.dataset.theme,dark?'dark':'light');assert.equal(e.appRoot.children[0].children[0].textContent,t('layout.desktopOnlyTitle',{},code));assert.equal(popup.children[0].textContent,t('layout.desktopOnlyTitle',{},code));assert.equal(popup.children[1].textContent,t('layout.desktopOnlyText',{},code));assert.equal(popup.children[3].textContent,t('common.close',{},code));assert.equal(new URL(popup.children[2].href).searchParams.get('lang'),code);}
  popup.children[3].emit('click');assert.equal(popup.open,false);assert.equal(e.appRoot.children[0].children[2].focused,true);assert.equal(e.workspace.hidden,true);assert.equal(popup.modalCalls,1);
- assert.equal(saves,5);assert.equal(dark,true);replay.busy(true);e.theme.emit('click');assert.equal(saves,5);replay.busy(false);e.theme.emit('click');assert.equal(dark,false);assert.equal(saves,6);
+ assert.equal(saves,supportedLanguages.length);assert.equal(dark,supportedLanguages.length%2===1);replay.busy(true);e.theme.emit('click');assert.equal(saves,supportedLanguages.length);replay.busy(false);e.theme.emit('click');assert.equal(dark,supportedLanguages.length%2===0);assert.equal(saves,supportedLanguages.length+1);
  assert.equal(fetches,0);assert.equal(rendererCalls,0);replay.language().disconnect();
  for(const scenario of [{coarse:false,fine:true,mobile:false,shown:false},{coarse:true,fine:true,mobile:false,shown:false},{coarse:false,fine:true,mobile:true,shown:true}]){
   const c=environment();c.win.navigator={userAgentData:{mobile:scenario.mobile}};c.win.matchMedia=q=>({matches:q==='(any-pointer: fine)'?scenario.fine:scenario.coarse});
@@ -560,7 +560,7 @@ await test('identical-plan-import-keeps-selection-UI-and-controller-in-sync-with
  await r.act({type:'select',id:'same-desk'});r.key({key:'ArrowRight',preventDefault(){prevented=true;}});
  assert.equal(prevented,true);assert.equal(r.read().state.furniture[0].pose.xMm,10);assert.equal(r.read().updates.at(-1),'same-desk');
 });
-await test('active-placement-name-and-status-switch-five-languages-without-repeated-announcements',()=>{
+await test('active-placement-name-and-status-switch-supported-languages-without-repeated-announcements',()=>{
  const source=unique(app,'function updatePlacementBar(proposal){','\nfunction cancelPlacement(');
  const rotation=unique(app,'function rotatePlacement(reverse=false){','\nfunction download(');
  const factory=new Function('deps',`

@@ -14010,6 +14010,231 @@
       "kind": "message",
       "ja": "プリンター一覧へ戻る",
       "en": "Back to printers"
+    },
+    "fun.collection": {
+      "kind": "message",
+      "ja": "一覧・図集",
+      "en": "Collection sheets"
+    },
+    "fun.pattern": {
+      "kind": "message",
+      "ja": "総柄",
+      "en": "Repeating patterns"
+    },
+    "fun.new": {
+      "kind": "message",
+      "ja": "今回追加した壁紙",
+      "en": "New wallpapers"
+    },
+    "fun.source_label": {
+      "kind": "message",
+      "ja": "元CAD・作者",
+      "en": "Original CAD / Authors"
+    },
+    "fun.assembly": {
+      "kind": "message",
+      "ja": "組立図",
+      "en": "Assembly"
+    },
+    "fun.exploded": {
+      "kind": "message",
+      "ja": "分解図",
+      "en": "Exploded"
+    },
+    "fun.section": {
+      "kind": "message",
+      "ja": "断面図",
+      "en": "Section"
+    },
+    "fun.phone": {
+      "kind": "message",
+      "ja": "スマホ",
+      "en": "Phone"
+    },
+    "fun.desktop": {
+      "kind": "message",
+      "ja": "デスクトップ",
+      "en": "Desktop"
+    },
+    "fun.ultrawide": {
+      "kind": "message",
+      "ja": "ウルトラワイド",
+      "en": "Ultrawide"
+    },
+    "fun.failure": {
+      "kind": "message",
+      "ja": "壁紙一覧を読み込めませんでした。ページを再読み込みしてください。",
+      "en": "Could not load wallpapers. Please reload this page."
+    },
+    "fun.experimental": {
+      "kind": "message",
+      "ja": "壁紙ダウンロードはテスト公開中、埋め込み機能はアルファテスト段階です。開発中のため、表示や操作が変わる場合があります。",
+      "en": "Wallpapers are in testing. Embedded viewers are in alpha testing. Appearance and controls may change."
+    },
+    "fun.back": {
+      "kind": "message",
+      "ja": "ビューアーを開く ↗",
+      "en": "Open viewer ↗"
+    },
+    "fun.intro": {
+      "kind": "message",
+      "ja": "本物のマシンとCADを、いつもと違う見方で。",
+      "en": "Real machines. Real CAD. A different way to look at them."
+    },
+    "fun.explore": {
+      "kind": "message",
+      "ja": "壁紙を見る ↓",
+      "en": "Explore wallpapers ↓"
+    },
+    "fun.collection_title": {
+      "kind": "message",
+      "ja": "ものづくりの、ひと休み。",
+      "en": "Engineering, off duty."
+    },
+    "fun.about": {
+      "kind": "message",
+      "ja": "機体や部品を並べた図集、画面いっぱいに敷き詰める総柄、組立図・分解図・フィラメント経路の断面図。元CADの太い外形と、構造を伝える内部線。",
+      "en": "Machine collections, repeating patterns, assembly, exploded and filament-path section drawings. Bold outlines and continuous details, from the original CAD."
+    },
+    "fun.pack_title": {
+      "kind": "message",
+      "ja": "まとめてダウンロード",
+      "en": "Download a collection"
+    },
+    "fun.format_label": {
+      "kind": "message",
+      "ja": "画面サイズ",
+      "en": "Screen"
+    },
+    "fun.kind_label": {
+      "kind": "message",
+      "ja": "図の種類",
+      "en": "Drawing"
+    },
+    "fun.embed_title": {
+      "kind": "message",
+      "ja": "あなたのサイトにも、3Dを。",
+      "en": "A little 3D, on your site."
+    },
+    "fun.embed_info": {
+      "kind": "message",
+      "ja": "埋め込み機能はアルファテスト段階です。マシンを開いて「共有」から埋め込みコードをコピー。訪問者は、そのページでモデルを回転して見ることができます。",
+      "en": "Embedded viewers are in alpha testing. Open a machine, select Share, and copy its embed code. Visitors can explore the model without leaving your page."
+    },
+    "fun.embed_link": {
+      "kind": "message",
+      "ja": "マシンを選ぶ ↗",
+      "en": "Choose a machine ↗"
+    },
+    "fun.credits": {
+      "kind": "message",
+      "ja": "元のCAD・作者・ライセンス",
+      "en": "Original CAD & licenses"
+    },
+    "fun.notice": {
+      "kind": "message",
+      "ja": "作品ごと・部品ごとの利用条件が適用されます。再配布時も元のクレジットを保持してください。",
+      "en": "Individual author and component terms apply. Keep the original credits when sharing."
+    },
+    "fun.pick_collection": {
+      "kind": "message",
+      "ja": "一覧・図集を見る",
+      "en": "Collection sheets"
+    },
+    "fun.pick_pattern": {
+      "kind": "message",
+      "ja": "総柄を見る",
+      "en": "Repeating patterns"
+    },
+    "fun.new_note": {
+      "kind": "message",
+      "ja": "12図柄・108枚を追加",
+      "en": "12 new designs / 108 wallpapers"
+    },
+    "fun.page_title": {
+      "kind": "message",
+      "ja": "CAD図面の壁紙 · 3D Print Rig",
+      "en": "CAD drawing wallpapers · 3D Print Rig"
+    },
+    "fun.description": {
+      "kind": "message",
+      "ja": "スマートフォンやデスクトップ用のプリンターCAD壁紙をダウンロード。組立図・分解図・断面図を探せます。",
+      "en": "Download printer CAD wallpapers for phones and desktops. Browse assembly, exploded and section drawings."
+    },
+    "fun.hero_first": {
+      "kind": "message",
+      "ja": "Just",
+      "en": "Just"
+    },
+    "fun.hero_second": {
+      "kind": "message",
+      "ja": "for fun",
+      "en": "for fun"
+    },
+    "fun.hero_eyebrow": {
+      "kind": "message",
+      "ja": "プリントベッドから画面へ",
+      "en": "OFF THE PRINT BED / ON YOUR SCREEN"
+    },
+    "fun.collection_eyebrow": {
+      "kind": "message",
+      "ja": "壁紙コレクション",
+      "en": "THE WALLPAPER COLLECTION"
+    },
+    "fun.embed_eyebrow": {
+      "kind": "message",
+      "ja": "ビューアーをあなたのサイトへ",
+      "en": "TAKE THE VIEWER WITH YOU"
+    },
+    "fun.hero_art_label": {
+      "kind": "message",
+      "ja": "一覧・図集 / 総柄",
+      "en": "COLLECTIONS / REPEATING PATTERNS"
+    },
+    "fun.brand_section": {
+      "kind": "message",
+      "ja": " / Just for fun",
+      "en": " / Just for fun"
+    },
+    "fun.collection_aria": {
+      "kind": "message",
+      "ja": "新しい壁紙コレクション",
+      "en": "New wallpaper collections"
+    },
+    "fun.summary": {
+      "kind": "template",
+      "ja": "{0}図柄 · 3配色 · 3サイズ",
+      "en": "{0} drawings · 3 palettes · 3 sizes"
+    },
+    "fun.count": {
+      "kind": "template",
+      "ja": "{0} 図柄",
+      "en": "{0} drawings"
+    },
+    "fun.views": {
+      "kind": "template",
+      "ja": "{0}図",
+      "en": "{0} views"
+    },
+    "fun.complete_collection": {
+      "kind": "message",
+      "ja": "全図柄",
+      "en": "Complete collection"
+    },
+    "fun.palette_paper": {
+      "kind": "message",
+      "ja": "アイボリー",
+      "en": "Ivory"
+    },
+    "fun.palette_blueprint": {
+      "kind": "message",
+      "ja": "青図",
+      "en": "Blueprint"
+    },
+    "fun.palette_graphite": {
+      "kind": "message",
+      "ja": "グラファイト",
+      "en": "Graphite"
     }
   }
 }

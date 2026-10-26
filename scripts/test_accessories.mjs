@@ -91,7 +91,7 @@ try{
  selected=variants[1];ui.refresh();assert.deepEqual(ui.getExtras().accessories,[]);assert.equal(roots.get(FOX).root.visible,false);assert.equal(status.textContent,warning());
  await assert.rejects(ui.applyExtras({accessories:[FOX]}));assert.equal(roots.get(FOX).root.visible,false);
  selected=reviewed;await ui.applyExtras({accessories:[FOX]});selected=variants[1];ui.refresh();
- const translations=new Set();for(const lang of ['ja','en','es','ko','ru']){await loadLanguage(lang);document.documentElement.lang=lang;window.dispatchEvent(new Event('rig-language-change'));assert.equal(status.textContent,warning());assert.notEqual(status.textContent,'ui.mod_companion_changed');translations.add(status.textContent)}assert.equal(translations.size,5);
+ const translations=new Set();for(const lang of ['ja','en','es','ko','ru','de']){await loadLanguage(lang);document.documentElement.lang=lang;window.dispatchEvent(new Event('rig-language-change'));assert.equal(status.textContent,warning());assert.notEqual(status.textContent,'ui.mod_companion_changed');translations.add(status.textContent)}assert.equal(translations.size,6);
  selected=reviewed;await ui.applyExtras({accessories:[FOX]});const saved=JSON.parse(JSON.stringify({configuration:reviewed.id,...ui.getExtras()}));await ui.applyExtras({accessories:[]});assert.deepEqual(ui.getExtras().accessories,[]);ui.validateExtras(saved);await ui.applyExtras(saved);assert.deepEqual(ui.getExtras().accessories,[FOX]);
 }finally{globalThis.document=previousDocument;globalThis.window=previousWindow}
 console.log('Accessory selection passed: toggle, failed asset rollback, stock restoration, scoped gantry switching and native registry failures.');

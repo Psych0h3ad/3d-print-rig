@@ -88,7 +88,7 @@ const uiElegoo=await uiModule('viewer/elegoo-catalog.mjs');
 const uiSourceCopy=await uiModule('viewer/source-assembly-messages.mjs'),uiLayoutText=await uiModule('layout/layout-i18n.mjs');
 const uiLayoutState=await uiModule('layout/layout-state.mjs'),uiLayout=await uiModule('layout/layout-ui.mjs');
 const {needsEquipmentPreview:uiNeedsEquipmentPreview}=await uiModule('layout/layout-equipment-preview.mjs');
-for(const lang of ['en','ja','es','ko','ru'])await uiI18n.loadLanguage(lang);
+for(const lang of ['en','ja','es','ko','ru','de'])await uiI18n.loadLanguage(lang);
 const uiHTML=uiRead('viewer/community.html'),uiController=uiRead('viewer/community-renderer.mjs'),uiApp=uiRead('layout/layout-app.mjs');
 function statusDocument(){
  const doc=new TestDocument(),create=doc.createElement.bind(doc),decorate=n=>{
@@ -145,20 +145,20 @@ async function communityStatusFixture({lang='en',machine='voron_switchwire_250',
  const mount=new Function(...Object.keys(dependencies),body+'\nreturn mount;')(...Object.values(dependencies));
  return {doc,win,node,language,jobs,stats,makeScope,mount,setFailure:value=>{failure=value},releaseInfo:()=>infoResolve(),releaseEva:()=>evaResolve(),flushEvents:async()=>{const a=pendingEvents.splice(0);await Promise.all(a)},close(){for(const s of scopes)if(!s.disposed)s.dispose();language.disconnect()}};
 }
-for(const lang of ['en','ja','es','ko','ru']){
+for(const lang of ['en','ja','es','ko','ru','de']){
  const f=await communityStatusFixture({lang}),scope=f.makeScope(),mounting=f.mount(scope);await statusTick(()=>f.jobs.length===1);const j=f.jobs[0];
  assert.notEqual(f.doc.body.dataset.ready,'true');assert.equal(f.node('status').hidden,false);assert.equal(f.node('openRender').disabled,true);j.tracker.update('fixture',{loaded:25,total:100});assert.equal(f.doc.querySelector('output').textContent,'25%');j.tracker.assembling();j.resolve();await statusTick(()=>f.stats.publicInfo===1);
  assert.notEqual(f.doc.body.dataset.ready,'true');assert.equal(f.node('status').hidden,false);assert.equal(f.node('openRender').disabled,true);f.releaseInfo();await mounting;
  assert.equal(f.node('sourceModelNotice').hidden,true,'Completed native view retained inspector loading paragraph');assert.equal(f.node('sourceModelNotice').textContent,'');assert.equal(f.node('sourceModelNotice').getAttribute('data-i18n-id'),null);
  assert.equal(f.doc.body.dataset.ready,'true');assert.equal(f.node('status').hidden,true);assert.equal(f.node('status').textContent,'');assert.equal(f.node('status').getAttribute('data-i18n-id'),null);assert.equal(f.node('openRender').disabled,false);assert.equal(f.node('sourceNotice').hidden,false);assert(f.node('sourceNotice').textContent.includes('92cc013ca2af94e6c09950dbe05c0973ee49aa00'));assert.equal(f.node('sourceLicenseNotice').textContent,'GPL-3.0');
- for(const next of ['ru','ja','en','es','ko']){await f.language.setLanguage(next);await f.flushEvents();assert.equal(f.node('status').textContent,'');assert.equal(f.node('sourceModelNotice').textContent,'');assert.equal(f.node('sourceNotice').hidden,false)}
+ for(const next of ['ru','ja','en','es','ko','de']){await f.language.setLanguage(next);await f.flushEvents();assert.equal(f.node('status').textContent,'');assert.equal(f.node('sourceModelNotice').textContent,'');assert.equal(f.node('sourceNotice').hidden,false)}
  assert.equal(f.stats.loads,1,'Changing language reloaded the scene');f.close();uiCases.push({id:'community-ready-no-phantom-loading-'+lang,pass:true});
 }
 for(const failure of ['catalog','load','publicInfo']){
  const f=await communityStatusFixture({failure:failure==='load'?null:failure}),scope=f.makeScope(),mounting=f.mount(scope);mounting.catch(()=>{});
  if(failure==='load'){await statusTick(()=>f.jobs.length===1);f.jobs[0].reject(Error('Controlled transfer failure'))}else if(failure==='publicInfo'){await statusTick(()=>f.jobs.length===1);f.jobs[0].resolve();await statusTick(()=>f.stats.publicInfo===1);f.releaseInfo()}
  await assert.rejects(mounting);assert.equal(f.doc.body.dataset.ready,'false');assert.equal(f.node('status').hidden,false);assert.equal(f.node('openRender').disabled,true);
- for(const lang of ['en','ja','es','ko','ru']){await f.language.setLanguage(lang);await f.flushEvents();assert.equal(f.node('status').textContent,uiI18n.formatMessage('navigation.load_failed',{},lang));assert.equal(f.node('status').hidden,false)}
+ for(const lang of ['en','ja','es','ko','ru','de']){await f.language.setLanguage(lang);await f.flushEvents();assert.equal(f.node('status').textContent,uiI18n.formatMessage('navigation.load_failed',{},lang));assert.equal(f.node('status').hidden,false)}
  f.close();uiCases.push({id:'community-visible-failure-'+failure,pass:true});
 }
 {
@@ -172,7 +172,7 @@ for(const failure of ['catalog','load','publicInfo']){
 }
 {
  const f=await communityStatusFixture({legitimateNotice:true}),scope=f.makeScope(),mounting=f.mount(scope);await statusTick(()=>f.jobs.length===1);f.jobs[0].resolve();await statusTick(()=>f.stats.publicInfo===1);f.releaseInfo();await mounting;
- for(const lang of ['en','ja','es','ko','ru']){await f.language.setLanguage(lang);await f.flushEvents();assert.equal(f.node('sourceModelNotice').hidden,false);assert.equal(f.node('sourceModelNotice').textContent,uiI18n.formatMessage('machine.switchwire.chain_notice',{},lang))}f.close();uiCases.push({id:'legitimate-inspector-notice-is-not-loading',pass:true});
+ for(const lang of ['en','ja','es','ko','ru','de']){await f.language.setLanguage(lang);await f.flushEvents();assert.equal(f.node('sourceModelNotice').hidden,false);assert.equal(f.node('sourceModelNotice').textContent,uiI18n.formatMessage('machine.switchwire.chain_notice',{},lang))}f.close();uiCases.push({id:'legitimate-inspector-notice-is-not-loading',pass:true});
 }
 {
  const f=await communityStatusFixture();for(const machine of ['voron_switchwire_250','ender3_stock_220','voron_switchwire_250']){
@@ -184,7 +184,7 @@ for(const failure of ['catalog','load','publicInfo']){
 }
 {
  const f=await communityStatusFixture({machine:'rh3d_virtu_may_230'}),scope=f.makeScope();let language='en';const messages=uiSourceText.createSourceUIText(()=>language);scope.delegatedMount=()=>messages.set(f.node('sourceModelNotice'),'stl-virtu');await f.mount(scope);assert.equal(f.stats.loads,0);assert.equal(f.node('sourceModelNotice').hidden,false);
- for(const family of ['virtu','e3ng'])for(const lang of ['en','ja','es','ko','ru']){language=lang;messages.set(f.node('sourceModelNotice'),'stl-'+family);messages.refresh();assert.equal(f.node('sourceModelNotice').textContent,uiSourceCopy.sourceText('stl-'+family,lang));assert(f.node('sourceModelNotice').textContent);assert.equal(f.node('sourceModelNotice').dataset.i18n,'off')}
+ for(const family of ['virtu','e3ng'])for(const lang of ['en','ja','es','ko','ru','de']){language=lang;messages.set(f.node('sourceModelNotice'),'stl-'+family);messages.refresh();assert.equal(f.node('sourceModelNotice').textContent,uiSourceCopy.sourceText('stl-'+family,lang));assert(f.node('sourceModelNotice').textContent);assert.equal(f.node('sourceModelNotice').dataset.i18n,'off')}
  f.close();uiCases.push({id:'delegated-source-controller-and-both-source-notice-bindings-preserved',pass:true});
 }
 
@@ -202,17 +202,17 @@ for(const failure of ['catalog','load','publicInfo']){
  return {act,commit,message,onProgress,finish,failRender,bind(v){ui=v;sync()},language(next){locale=next;updateLanguage()},busy(v){busy=v},editing(v){roomEditing=v},read:()=>({state,past:[...past],future:[...future],writes,downloads,busy,interactionGeneration}),setRoomHeight(height){commit(applyAction(state,{type:'SET_ROOM',room:{...state.room,wallHeightMm:height}},catalog))}};`)(uiLayoutState,uiLayoutText,doc,status,uiNeedsEquipmentPreview);
  const component=uiLayout.createLayoutUI({container:sidebar,onAction:engine.act,t:(k,p)=>uiLayoutText.t(k,p,'en'),catalog:[]}),updates=[];engine.bind({...component,setStatus(next){updates.push(next);component.setStatus(next)}});
  const feedback=()=>sidebar.querySelector('.layout-feedback'),render=()=>sidebar.querySelector('.layout-render-message');
- await engine.act({type:'export'});for(const lang of ['en','ja','es','ko','ru']){engine.language(lang);assert.equal(status.textContent,uiLayoutText.t('layout.saved',{},lang));assert.equal(feedback().textContent,status.textContent);assert.equal(feedback().dataset.error,'false')}
- await engine.act({type:'import',file:{size:2,text:async()=>'{bad'}});for(const lang of ['en','ja','es','ko','ru']){engine.language(lang);assert.equal(status.textContent,uiLayoutText.t('layout.error.JSON_PARSE_ERROR',{},lang));assert.equal(feedback().dataset.error,'true');assert.equal(feedback().hidden,false)}
- engine.setRoomHeight(2500);assert.equal(status.hidden,true);assert.equal(status.textContent,'');for(const lang of ['ja','ru','en']){engine.language(lang);assert.equal(status.hidden,true);assert.equal(feedback().hidden,true)}
+ await engine.act({type:'export'});for(const lang of ['en','ja','es','ko','ru','de']){engine.language(lang);assert.equal(status.textContent,uiLayoutText.t('layout.saved',{},lang));assert.equal(feedback().textContent,status.textContent);assert.equal(feedback().dataset.error,'false')}
+ await engine.act({type:'import',file:{size:2,text:async()=>'{bad'}});for(const lang of ['en','ja','es','ko','ru','de']){engine.language(lang);assert.equal(status.textContent,uiLayoutText.t('layout.error.JSON_PARSE_ERROR',{},lang));assert.equal(feedback().dataset.error,'true');assert.equal(feedback().hidden,false)}
+ engine.setRoomHeight(2500);assert.equal(status.hidden,true);assert.equal(status.textContent,'');for(const lang of ['ja','ru','de','en']){engine.language(lang);assert.equal(status.hidden,true);assert.equal(feedback().hidden,true)}
  engine.busy(true);engine.onProgress({phase:'loading',index:0,total:2,ratio:.5});const before=engine.read();
- for(const lang of ['en','ja','es','ko','ru']){engine.language(lang);const expected=uiLayoutText.t('layout.render.progress',{current:1,total:2,percent:25},lang);assert.equal(status.textContent,expected);assert.equal(render().textContent,expected);const bar=sidebar.querySelector('progress');assert.equal(Number(bar.value),25);assert.equal(bar.max,100);assert.equal(bar.hidden,false);assert.equal(sidebar.querySelector('[data-layout-command="undo"]').disabled,true);assert.deepEqual(engine.read(),before)}
- engine.finish({width:1920,height:1080});for(const lang of ['en','ja','es','ko','ru']){engine.language(lang);assert.equal(status.textContent,uiLayoutText.t('layout.render.complete',{width:1920,height:1080},lang));assert.equal(feedback().textContent,status.textContent)}
- engine.failRender(Object.assign(Error('cancelled'),{name:'AbortError'}));for(const lang of ['en','ja','es','ko','ru']){engine.language(lang);assert.equal(status.textContent,uiLayoutText.t('layout.render.cancelled',{},lang));assert.equal(feedback().dataset.error,'false')}
- engine.failRender(Object.assign(Error('blocked'),{errors:[{code:'ROOM_OUT_OF_BOUNDS'}]}));for(const lang of ['en','ja','es','ko','ru']){engine.language(lang);assert.equal(status.textContent,uiLayoutText.t('layout.error.ROOM_OUT_OF_BOUNDS',{},lang));assert.equal(feedback().dataset.error,'true')}
+ for(const lang of ['en','ja','es','ko','ru','de']){engine.language(lang);const expected=uiLayoutText.t('layout.render.progress',{current:1,total:2,percent:25},lang);assert.equal(status.textContent,expected);assert.equal(render().textContent,expected);const bar=sidebar.querySelector('progress');assert.equal(Number(bar.value),25);assert.equal(bar.max,100);assert.equal(bar.hidden,false);assert.equal(sidebar.querySelector('[data-layout-command="undo"]').disabled,true);assert.deepEqual(engine.read(),before)}
+ engine.finish({width:1920,height:1080});for(const lang of ['en','ja','es','ko','ru','de']){engine.language(lang);assert.equal(status.textContent,uiLayoutText.t('layout.render.complete',{width:1920,height:1080},lang));assert.equal(feedback().textContent,status.textContent)}
+ engine.failRender(Object.assign(Error('cancelled'),{name:'AbortError'}));for(const lang of ['en','ja','es','ko','ru','de']){engine.language(lang);assert.equal(status.textContent,uiLayoutText.t('layout.render.cancelled',{},lang));assert.equal(feedback().dataset.error,'false')}
+ engine.failRender(Object.assign(Error('blocked'),{errors:[{code:'ROOM_OUT_OF_BOUNDS'}]}));for(const lang of ['en','ja','es','ko','ru','de']){engine.language(lang);assert.equal(status.textContent,uiLayoutText.t('layout.error.ROOM_OUT_OF_BOUNDS',{},lang));assert.equal(feedback().dataset.error,'true')}
 
  // Import/Undo/Redo must use the actual commit lifecycle, not just sync the scene.
- const localeNames=['en','ja','es','ko','ru'];
+ const localeNames=['en','ja','es','ko','ru','de'];
  const roomJSON=height=>uiLayoutState.serializeLayout(uiLayoutState.applyAction(engine.read().state,{type:'SET_ROOM',room:{...engine.read().state.room,wallHeightMm:height}},[]),[]);
  const clearInEveryLocale=()=>{const saved=engine.read();assert.equal(status.hidden,true);assert.equal(status.textContent,'');assert.equal(Object.hasOwn(status,'_layoutMessage'),false);assert.equal(feedback().hidden,true);assert.equal(feedback().dataset.error,'false');for(const lang of localeNames){engine.language(lang);assert.equal(status.hidden,true);assert.equal(status.textContent,'');assert.equal(feedback().hidden,true);assert.deepEqual(engine.read(),saved)}};
  const stateBeforeImport=engine.read().state,historyBeforeImport=engine.read();
@@ -237,7 +237,7 @@ for(const failure of ['catalog','load','publicInfo']){
  await engine.act({type:'undo'});const afterUndo=engine.read();clearInEveryLocale();resolveText(lateText);await lateImport;assert.deepEqual(engine.read(),afterUndo);clearInEveryLocale();uiCases.push({id:'planner-undo-invalidates-pending-import-without-stale-loaded-message',pass:true});
  let rejectText;const lateFailure=engine.act({type:'import',file:{size:2,text:()=>new Promise((resolve,reject)=>{rejectText=reject})}});
  await engine.act({type:'redo'});const afterRedo=engine.read();clearInEveryLocale();rejectText(Error('late read failure'));await lateFailure;assert.deepEqual(engine.read(),afterRedo);clearInEveryLocale();uiCases.push({id:'planner-redo-invalidates-pending-import-error-without-stale-error-message',pass:true});
- component.dispose();uiCases.push({id:'planner-five-locale-success-error-clear-live-progress-params-history',pass:true});
+ component.dispose();uiCases.push({id:'planner-supported-locale-success-error-clear-live-progress-params-history',pass:true});
 }
 const uiReport={status:'PASS',cases:uiCases,inputs:Object.fromEntries(uiInputs),scope:'Actual controller/app/translation/progress/UI source on controlled DOM, synthetic scene and deferred transport. No model files, native jobs, actual browser/GPU or physical-fit evidence.'};
 if(uiFlag('--report'))fs.writeFileSync(uiFlag('--report'),JSON.stringify(uiReport,null,2)+'\n',{flag:'wx'});console.log(JSON.stringify(uiReport));

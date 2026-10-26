@@ -24,7 +24,7 @@ assert.equal(cutawaySource.assets.reduce((n,s)=>n+s.compressed_bytes,0),2164912)
 for(const spec of cutawaySource.assets)for(const key of ['compressed_sha256','decoded_sha256','metadata_sha256'])assert.match(spec[key],/^[a-f0-9]{64}$/);
 const root=new URL('../',import.meta.url),source=JSON.parse(await fs.readFile(new URL('localization/source.json',root),'utf8'));
 const dictionaries=new Map();
-for(const lang of ['es','ko','ru']){
+for(const lang of ['es','ko','ru','de']){
   const locale=JSON.parse(await fs.readFile(new URL('localization/'+lang+'.json',root),'utf8'));
   dictionaries.set(lang,Object.fromEntries(Object.entries(locale.messages).map(([id,r])=>[id,[r.source_revision,r.text]])));
 }
@@ -33,7 +33,7 @@ const translator=createTranslator(definitions,{dictionaries});
 const html=await fs.readFile(new URL('site/viewer/stealthburner-cutaway.html',root),'utf8');
 const ids=new Set([...html.matchAll(/data-i18n-id="([^"]+)"/gu)].map(m=>m[1]));
 for(const c of lessonChapters){ids.add(c.title);ids.add(c.text);}ids.add('cutaway.play');ids.add('cutaway.link');
-for(const id of ids)for(const lang of ['en','ja','es','ko','ru'])assert.notEqual(translator.formatMessage(id,{},lang),id,id+' '+lang);
+for(const id of ids)for(const lang of ['en','ja','es','ko','ru','de'])assert.notEqual(translator.formatMessage(id,{},lang),id,id+' '+lang);
 assert.equal(translator.diagnostics().fallbacks.length,0);
 assert(!html.includes('data-controller'),'Educational page has independent lifecycle, not a printer controller');
 assert(html.includes('id="stage"')&&html.includes('id="lesson"'));
@@ -47,4 +47,4 @@ assert(css.includes('grid-template-rows:minmax(200px,46%) minmax(0,1fr)'), 'Keep
 assert(css.includes('touch-action:none'));
 const builder=await fs.readFile(new URL('site/viewer/toolheads.html',root),'utf8');
 assert(builder.includes('./stealthburner-cutaway.html'));
-console.log('PASS Stealthburner lesson stages, no cold extrusion, heat/fan toggles, bounded timeline, source pins, five languages and mobile/lifecycle contracts (source scope).');
+console.log('PASS Stealthburner lesson stages, no cold extrusion, heat/fan toggles, bounded timeline, source pins, supported languages and mobile/lifecycle contracts (source scope).');

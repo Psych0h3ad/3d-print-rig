@@ -8,7 +8,7 @@ import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=319442cce47f582793a9';
 import {loadExternalComponent} from './component-assets.mjs?v=a912f0a87d5f3993e9ad';
-import {setupPublicInfo} from './public-info.js?v=07313fc4151911a54f23';
+import {setupPublicInfo} from './public-info.js?v=7e37a12d678b346b5989';
 import {setupRenderExport} from './render-export.js?v=736862a3013dbfd9f9ea';
 import {partNodes,selectParts,visibleBounds} from './component-selection.js?v=workspace-belts-1';
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';

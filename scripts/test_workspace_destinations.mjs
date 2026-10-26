@@ -3,6 +3,7 @@ import fs from 'node:fs/promises';
 import vm from 'node:vm';
 import {setupWorkspaceDestinationLanguages} from '../site/viewer/workspace-ui.mjs';
 import {chooseLanguage,languageURL,supportedLanguages,languageNames} from '../site/viewer/languages.mjs';
+import {funWords,formatFunMessage} from '../site/fun/fun-language.mjs';
 
 // Optional candidate source keeps an out-of-scope gallery repair reviewable
 // before it is applied. Without it, test the actual shipped gallery module.
@@ -105,13 +106,13 @@ async function gallery(source,{href,stored,browser='ja-JP',blockedStorage=false}
   elements.set('language',picker);
   const form=new Element('form',base);form.elements={format:select(['phone','desktop','ultrawide'],base),palette:select(['paper','blueprint','graphite'],base),kind:select(['all','collection','pattern','assembly','exploded','section'],base)};elements.set('filters',form);
   const doc={documentElement:{lang:'en'},getElementById(id){if(!elements.has(id))elements.set(id,new Element('div',base));return elements.get(id)},
-    createElement:tag=>new Element(tag,base),createDocumentFragment:()=>new Element('fragment',base),querySelector:()=>new Element('nav',base),
+    createElement:tag=>new Element(tag,base),createTextNode:text=>({nodeType:3,textContent:text}),createDocumentFragment:()=>new Element('fragment',base),querySelector:()=>new Element('nav',base),
     querySelectorAll:selector=>selector==='a[href="../viewer/"]'?anchors.filter(link=>link.getAttribute('href')==='../viewer/'):[]};
   doc.getElementById('back').textContent='Open viewer ↗';doc.getElementById('error').hidden=true;
   let preference=stored;const writes=[];
   const win={localStorage:{getItem(){if(blockedStorage)throw Error('Storage blocked');return preference},setItem(key,value){if(blockedStorage)throw Error('Storage blocked');preference=value;writes.push([key,value])}},addEventListener(){}};
   const context={document:doc,window:win,location:loc,navigator:{language:browser},history:{replaceState(_state,_title,url){loc.href=String(url)}},
-    URL,URLSearchParams,chooseLanguage,languageURL,supportedLanguages,languageNames,applyDisplay(){},displayKey:'display',setupHeaderThemeToggle(){},matchMedia:()=>({matches:false}),
+    URL,URLSearchParams,chooseLanguage,languageURL,supportedLanguages,languageNames,funWords,formatFunMessage,applyDisplay(){},displayKey:'display',setupHeaderThemeToggle(){},matchMedia:()=>({matches:false}),
     FormData:class{constructor(value){this.values=Object.entries(value.elements).map(([key,input])=>[key,input.value])}[Symbol.iterator](){return this.values[Symbol.iterator]()}},
     fetch:async path=>{assert.equal(path,'./wallpapers.json');return {ok:true,json:async()=>({packs:[],wallpapers:[{series:'toolhead-field',palette:'paper',format:'desktop',kind:'collection',preview:'fixture.svg',sources:[],width:100,height:100,bytes:1,no:1,download:'fixture.png',title:'Fixture'}]})}}};
   const executable=source.replace(/^import .*;\r?\n/gm,'');
@@ -122,7 +123,7 @@ async function gallery(source,{href,stored,browser='ja-JP',blockedStorage=false}
 const baseline=[];
 if(args.length){
   const automatic=await gallery(shippedFun);baseline.push({query:null,browser:'ja-JP',selected:automatic.result.language});
-  for(const language of ['es','ko','ru']){
+  for(const language of ['es','ko','ru','de']){
     const page=await gallery(shippedFun,{href:root+'fun/?lang='+language});
     baseline.push({query:language,picker:page.picker.value,returnLanguage:new URL(page.anchors[0].href).searchParams.get('lang')});
   }
@@ -132,9 +133,13 @@ function checkGallery(page,language){
   assert.equal(page.result.language,language);assert.equal(page.picker.value,language,'The gallery picker keeps the viewer language');
   assert.equal(page.result.ja,language==='ja','A Japanese browser must not force non-Japanese links into Japanese');
   assert.equal(new URL(page.loc.href).searchParams.get('lang'),language);
-  // Copy is English for the three languages without a gallery dictionary.
-  assert.equal(page.doc.documentElement.lang,language==='ja'?'ja':'en');
-  if(language!=='ja')assert.equal(page.doc.getElementById('back').textContent,'Open viewer ↗');
+  assert.equal(page.doc.documentElement.lang,language);
+  const words=funWords(language);
+  assert.equal(page.doc.title,words.pageTitle);
+  for(const key of ['back','experimental','intro','embedInfo','formatLabel','paletteLabel','kindLabel','credits'])assert.equal(page.doc.getElementById(key).textContent,words[key],language+'/'+key);
+  const cards=page.doc.getElementById('grid').children.flatMap(node=>node.tagName==='FRAGMENT'?node.children:[node]);
+  assert.equal(page.doc.getElementById('count').textContent,formatFunMessage('count',{0:cards.length},language));
+  assert.equal(page.picker.getAttribute('aria-label'),words.language);
   for(const link of page.anchors){assert.equal(new URL(link.href).pathname,'/3d-print-rig/viewer/');assert.equal(new URL(link.href).searchParams.get('lang'),language);galleryChecks++}
 }
 for(const language of supportedLanguages){

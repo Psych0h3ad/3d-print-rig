@@ -35,7 +35,7 @@ for (const pin of pins) {
 assert.equal(catalog.sources.find(row => row.id === '247zero').version, '247zeroBETA2 / CAD v43');
 assert(!catalog.defaults.some(row => row.id === id), 'No new machine STEP download is authorized');
 
-const source = read('localization/source.json'), dictionaries = Object.fromEntries(['es', 'ko', 'ru'].map(lang => [lang, read('localization/' + lang + '.json')]));
+const source = read('localization/source.json'), dictionaries = Object.fromEntries(['es', 'ko', 'ru', 'de'].map(lang => [lang, read('localization/' + lang + '.json')]));
 const messageIDs = ['caption', 'description', 'source_notice', 'assembly_notice', 'motion_notice'].map(name => 'machine.247zero.' + name);
 const subset = {...source, entries: Object.fromEntries(messageIDs.map(key => [key, source.entries[key]]))};
 for (const entry of Object.values(subset.entries)) assert.equal(sourceRevision(entry), sha(JSON.stringify([entry.kind, entry.ja, entry.en, entry.aliases || []])).slice(0, 20));

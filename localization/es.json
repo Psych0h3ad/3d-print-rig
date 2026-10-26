@@ -11121,6 +11121,186 @@
     "privacy.back": {
       "source_revision": "c553908ad0cb9dd91e67",
       "text": "Volver a las impresoras"
+    },
+    "fun.collection": {
+      "source_revision": "296eeaa966b084b7ff2e",
+      "text": "Láminas de colección"
+    },
+    "fun.pattern": {
+      "source_revision": "ab2a860bf4c0a0ad4edb",
+      "text": "Patrones repetidos"
+    },
+    "fun.new": {
+      "source_revision": "099d398e28f3a9f96c76",
+      "text": "Nuevos fondos de pantalla"
+    },
+    "fun.source_label": {
+      "source_revision": "73f065c850beae2a23f3",
+      "text": "CAD original / Autores"
+    },
+    "fun.assembly": {
+      "source_revision": "999b8e450230f5e016cb",
+      "text": "Ensamblaje"
+    },
+    "fun.exploded": {
+      "source_revision": "25f9300cef1a0a9e8c30",
+      "text": "Vista explosionada"
+    },
+    "fun.section": {
+      "source_revision": "ec35395835442ecce0ab",
+      "text": "Sección"
+    },
+    "fun.phone": {
+      "source_revision": "da12533845f6fe4433bc",
+      "text": "Móvil"
+    },
+    "fun.desktop": {
+      "source_revision": "cfa2efa68f8bc6388686",
+      "text": "Escritorio"
+    },
+    "fun.ultrawide": {
+      "source_revision": "7837876e45d7f6ebb6b8",
+      "text": "Ultrapanorámico"
+    },
+    "fun.failure": {
+      "source_revision": "7ed2f72da3b646403c61",
+      "text": "No se pudieron cargar los fondos de pantalla. Recarga esta página."
+    },
+    "fun.experimental": {
+      "source_revision": "2153372e40f9de57dcf1",
+      "text": "Los fondos de pantalla están en fase de prueba. Los visores integrados están en fase alfa. La apariencia y los controles pueden cambiar."
+    },
+    "fun.back": {
+      "source_revision": "91263d4d92e7aaf3006b",
+      "text": "Abrir visor ↗"
+    },
+    "fun.intro": {
+      "source_revision": "c35c0a85193214a49cb7",
+      "text": "Máquinas reales. CAD real. Otra forma de verlos."
+    },
+    "fun.explore": {
+      "source_revision": "1eee606b5445adbf6435",
+      "text": "Explorar fondos de pantalla ↓"
+    },
+    "fun.collection_title": {
+      "source_revision": "caf992599e9fd6d01155",
+      "text": "La ingeniería se toma un descanso."
+    },
+    "fun.about": {
+      "source_revision": "df957b734baddd4914cb",
+      "text": "Colecciones de máquinas, patrones repetidos, dibujos de ensamblaje, vistas explosionadas y secciones del recorrido del filamento. Contornos marcados y detalles continuos, a partir del CAD original."
+    },
+    "fun.pack_title": {
+      "source_revision": "0c53a511f6dd2f64f265",
+      "text": "Descargar una colección"
+    },
+    "fun.format_label": {
+      "source_revision": "94aab841cdd2d7557f64",
+      "text": "Pantalla"
+    },
+    "fun.kind_label": {
+      "source_revision": "169468667fbf2dc0d62c",
+      "text": "Dibujo"
+    },
+    "fun.embed_title": {
+      "source_revision": "b6db269b15f5f4281257",
+      "text": "Un toque de 3D en tu sitio."
+    },
+    "fun.embed_info": {
+      "source_revision": "93e4e17aacd57053b0b2",
+      "text": "Los visores integrados están en fase alfa. Abre una máquina, selecciona Compartir y copia el código de inserción. Tus visitantes podrán explorar el modelo sin salir de tu página."
+    },
+    "fun.embed_link": {
+      "source_revision": "3a457747dd54eaecab5b",
+      "text": "Elegir una máquina ↗"
+    },
+    "fun.credits": {
+      "source_revision": "bce0284413de33638b32",
+      "text": "CAD original y licencias"
+    },
+    "fun.notice": {
+      "source_revision": "592104739f2a66048ff1",
+      "text": "Se aplican las condiciones de cada autor y componente. Conserva los créditos originales al compartir."
+    },
+    "fun.pick_collection": {
+      "source_revision": "ce943c5ca6b9defc40e9",
+      "text": "Láminas de colección"
+    },
+    "fun.pick_pattern": {
+      "source_revision": "7bc23950311218469784",
+      "text": "Patrones repetidos"
+    },
+    "fun.new_note": {
+      "source_revision": "db4d1cbd28bf9aec2b8d",
+      "text": "12 nuevos diseños / 108 fondos de pantalla"
+    },
+    "fun.page_title": {
+      "source_revision": "00cfc6b1a4089e7cd805",
+      "text": "Fondos de pantalla con dibujos CAD · 3D Print Rig"
+    },
+    "fun.description": {
+      "source_revision": "7936775d782909001532",
+      "text": "Descarga fondos de pantalla CAD de impresoras para móviles y ordenadores. Explora dibujos de ensamblaje, vistas explosionadas y secciones."
+    },
+    "fun.hero_first": {
+      "source_revision": "a6ffe1576c4ad4b48b7b",
+      "text": "Just"
+    },
+    "fun.hero_second": {
+      "source_revision": "e931d261da7db0763e4e",
+      "text": "for fun"
+    },
+    "fun.hero_eyebrow": {
+      "source_revision": "2807707b40f693dd566f",
+      "text": "DE LA CAMA DE IMPRESIÓN / A TU PANTALLA"
+    },
+    "fun.collection_eyebrow": {
+      "source_revision": "4feacdad484db203be3a",
+      "text": "LA COLECCIÓN DE FONDOS DE PANTALLA"
+    },
+    "fun.embed_eyebrow": {
+      "source_revision": "65d5c7a7dff79126a13c",
+      "text": "LLEVA EL VISOR CONTIGO"
+    },
+    "fun.hero_art_label": {
+      "source_revision": "9c4d91821acc89a9f2a7",
+      "text": "COLECCIONES / PATRONES REPETIDOS"
+    },
+    "fun.brand_section": {
+      "source_revision": "fdaae94d5709821fe112",
+      "text": " / Just for fun"
+    },
+    "fun.collection_aria": {
+      "source_revision": "f825037abf8f6486193d",
+      "text": "Nuevas colecciones de fondos de pantalla"
+    },
+    "fun.summary": {
+      "source_revision": "2f9252c734742a999fba",
+      "text": "{0} dibujos · 3 paletas · 3 tamaños"
+    },
+    "fun.count": {
+      "source_revision": "05e13970511cdf5efd9c",
+      "text": "{0} dibujos"
+    },
+    "fun.views": {
+      "source_revision": "6293f37ce7046d0cefa2",
+      "text": "{0} vistas"
+    },
+    "fun.complete_collection": {
+      "source_revision": "b2b560d84f095df66d37",
+      "text": "Colección completa"
+    },
+    "fun.palette_paper": {
+      "source_revision": "b52a6c2d86347d06226f",
+      "text": "Marfil"
+    },
+    "fun.palette_blueprint": {
+      "source_revision": "ffa2059af71c0976695a",
+      "text": "Cianotipo"
+    },
+    "fun.palette_graphite": {
+      "source_revision": "fe71065adb5f8a625267",
+      "text": "Grafito"
     }
   }
 }

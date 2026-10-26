@@ -36,10 +36,12 @@ async function flush(){
  let count=0;while(queue.length){assert(++count<=100,'Cross-tab language notifications must settle without an echo loop');queue.shift()();await Promise.resolve()}
  await Promise.resolve();return count;
 }
-await Promise.all(['es','ko','ru'].map(loadLanguage));
+await Promise.all(['es','ko','ru','de'].map(loadLanguage));
 values.set(key,'ja');
 const pinned=setup(makeWindow('lang=en')),linked=setup(makeWindow('lang=ru')),automatic=setup(makeWindow()),legacy=makeWindow();
-await Promise.all([pinned.controller.ready,linked.controller.ready,automatic.controller.ready]);
+const german=setup(makeWindow('lang=de-DE'));
+await Promise.all([pinned.controller.ready,linked.controller.ready,automatic.controller.ready,german.controller.ready]);
+assert.equal(german.controller.language,'de');assert.equal(german.text.nodeValue,'Konfiguration');
 assert.equal(writes.length,0,'Opening a translated/share URL must not overwrite the preference of other tabs');
 assert.equal(linked.text.nodeValue,'Конфигурация');assert.equal(automatic.controller.language,'ja');
 
@@ -49,6 +51,8 @@ const writesBefore=writes.length;await flush();
 assert.equal(writes.length,writesBefore,'Received preferences are applied without writing them back');
 assert.equal(automatic.controller.language,'en');assert.equal(automatic.text.nodeValue,'Configuration');
 assert.equal(pinned.controller.language,'en');assert.equal(linked.controller.language,'ru','An explicit URL language stays local to that tab');
+assert.equal(german.controller.language,'de','An explicit German URL stays local while other tabs change language');
+assert.equal(new URL(german.window.location.href).searchParams.get('lang'),'de');
 assert.equal(new URL(linked.window.location.href).searchParams.get('lang'),'ru');
 
 // A real dropdown choice saves the default once, and then stays pinned.
@@ -68,5 +72,5 @@ const invalid=new Event('storage');Object.assign(invalid,{key,newValue:'ja',stor
 assert.equal(delayed.controller.language,'es');
 delayed.controller.disconnect();legacy.localStorage.setItem(key,'en');await flush();
 assert.equal(delayed.controller.language,'es');await delayed.controller.setLanguage('ja');assert.equal(delayed.controller.language,'es');
-for(const item of [pinned,linked,automatic])item.controller.disconnect();
+for(const item of [pinned,linked,automatic,german])item.controller.disconnect();
 console.log('Queued language preferences settle without storage echoes; URL/user choices, delayed dictionaries and disposed viewers remain stable.');

@@ -73,7 +73,7 @@ export async function supportPageFixture(source,catalog,language,{toolhead='pere
 }
 const supportPage=fs.readFileSync(new URL('../site/support/support.mjs',import.meta.url),'utf8');
 const pageCatalog={...fixture,id:'toolheads',notes:[[]],options:Object.fromEntries(Object.entries(fixture.options).map(([key,rows])=>[key,rows.map(row=>({...row,label:row.id}))]))};
-for(const language of ['en','ja','es','ko','ru']){
+for(const language of ['en','ja','es','ko','ru','de']){
  await loadLanguage(language);const page=await supportPageFixture(supportPage,pageCatalog,language),ids=page.elements;
  assert.equal(new URL(page.href).searchParams.get('toolhead'),'peregrine','Page must not erase an unsupported request');
  assert.equal(ids.get('filter-toolhead').value,'peregrine');assert.equal(ids.get('results').children.length,0);assert.equal(ids.get('empty').hidden,false);

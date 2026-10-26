@@ -56,5 +56,5 @@ for(const initialFailure of [true,false]){
 }
 const legacy=fixture({initialFailure:true});await assert.rejects(legacy.setup({machine:'test',profile:legacy.profile,adapter:{nodes:new Map(),records:new Map()},scene:legacy.scene,render(){},applyPose(){}}),/ヘッド構成を表示できませんでした/);
 const {translate,loadLanguage}=await import(pathToFileURL(path.join(viewer,'i18n.mjs')));
-for(const language of ['ja','en','es','ko','ru']){await loadLanguage(language);const message=translate('読込エラー: ヘッド構成を表示できませんでした',language);assert(message.length);if(language!=='ja')assert(!/[\u3040-\u30ff\u3400-\u9fff]/u.test(message),'Untranslated retry error: '+language);}
+for(const language of ['ja','en','es','ko','ru','de']){await loadLanguage(language);const message=translate('読込エラー: ヘッド構成を表示できませんでした',language);assert(message.length);if(language!=='ja')assert(!/[\u3040-\u30ff\u3400-\u9fff]/u.test(message),'Untranslated retry error: '+language);}
 console.log('V24 initial failure/retry lifecycle: motion, reset, readiness, export, idempotence and default failure contract pass');

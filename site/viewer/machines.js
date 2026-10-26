@@ -1,4 +1,4 @@
-import {normalizeLanguage} from './languages.mjs?v=ba6a5cd8e1d86849ca34';
+import {normalizeLanguage} from './languages.mjs?v=2e376566920474c0f57c';
 import {annexMachines} from './annex-machines.mjs';
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
 import {navigateWorkspace} from './workspace-navigation.mjs?v=424451cc1e036690fee7';

@@ -43,7 +43,7 @@ function fixture(initial,{language='en',recordOnly=false}={}){
 }
 const label=x=>x.container.querySelector('[data-layout-i18n="layout.surfacePosition"]')||x.container.querySelector('[data-layout-i18n="layout.floorPosition"]');
 await test('floor-and-supported-position-labels-follow-actual-attachment-in-all-languages',async()=>{
- for(const language of ['en','ja','es','ko','ru']){
+ for(const language of ['en','ja','es','ko','ru','de']){
   const x=fixture(seed(),{language});
   assert.equal(label(x).dataset.layoutI18n,'layout.floorPosition');assert.equal(label(x).textContent,x.t('layout.floorPosition'));
   x.support().value=JSON.stringify(['desk','top']);x.support().dispatch('change');await x.settle();
