@@ -132,5 +132,41 @@ test('door corner wall conflict is a visible advisory, with winding and hinge pa
   const reverse=S.applyAction(s,{type:'SET_ROOM',room:{...r,polygonMm:[...r.polygonMm].reverse()}});
   assert.equal(O.doorWallConflicts(reverse.room,reverse.room.openings[0]).length,1);
 });
+test('sliding door schema and atomic style switch preserve legacy data and undo',()=>{
+  const original=valid([door]),sliding=S.applyAction(original,{type:'SET_ROOM_OPENING_MOTION',id:door.id,motion:'sliding'}),o=sliding.room.openings[0];
+  for(const motion of [null,undefined,'pocket'])assert.equal(S.validateState({...original,room:{...original.room,openings:[{...door,motion}]}}).ok,false,'Only an absent motion property defaults to hinged');
+  assert.equal(o.motion,'sliding');assert.equal(o.openPercent,0);assert.equal(o.slideDirection,'left');assert.equal(Object.hasOwn(o,'hinge'),false);assert.equal(Object.hasOwn(o,'openAngleDeg'),false);
+  assert.equal(S.applyAction(original,{type:'SET_ROOM_OPENING_MOTION',id:door.id,motion:'hinged'}),original);
+  for(const patch of [{openPercent:-1},{openPercent:101},{openPercent:NaN},{slideDirection:'up'},{motion:'pocket'},{hinge:'left'},{openAngleDeg:90}])assert.equal(S.validateState({...sliding,room:{...sliding.room,openings:[{...o,...patch}]}}).ok,false);
+  error(()=>S.applyAction(sliding,{type:'UPDATE_ROOM_OPENING',id:o.id,patch:{hinge:'left'}}),'UNKNOWN_FIELD');
+  error(()=>S.applyAction(valid([window]),{type:'SET_ROOM_OPENING_MOTION',id:window.id,motion:'sliding'}),'OPENING_INVALID');
+  const changed=S.applyAction(sliding,{type:'UPDATE_ROOM_OPENING',id:o.id,patch:{openPercent:65,slideDirection:'right'}}),back=S.applyAction(changed,{type:'SET_ROOM_OPENING_MOTION',id:o.id,motion:'hinged'});
+  assert.equal(back.room.openings[0].hinge,'left');assert.equal(Object.hasOwn(back.room.openings[0],'openPercent'),false);assert.equal(Object.hasOwn(back.room.openings[0],'slideDirection'),false);
+  for(const state of [original,sliding,changed,back,changed,sliding,original])assert.deepEqual(S.parseLayout(S.serializeLayout(state)),state);
+});
+test('sliding panels translate parallel to every wall and retain the finite wall gap',()=>{
+  for(const polygonMm of [room.polygonMm,[...room.polygonMm].reverse()])for(let wallIndex=0;wallIndex<4;wallIndex++)for(const slideDirection of ['left','right'])for(const openPercent of [0,25,50,100]){
+    const r={...room,polygonMm},o={...O.withDoorMotion({...door,wallIndex},'sliding'),slideDirection,openPercent},p=O.doorPlan(r,o),f=O.openingFrame(r,o),sign=slideDirection==='left'?-1:1;
+    near((p.startMm[0]-p.closedStartMm[0])*f.along[0]+(p.startMm[1]-p.closedStartMm[1])*f.along[1],sign*o.widthMm*openPercent/100);
+    near((p.startMm[0]-f.startMm[0])*f.inward[0]+(p.startMm[1]-f.startMm[1])*f.inward[1],27.5);
+    const area=poly=>Math.abs(poly.reduce((sum,a,i)=>{const b=poly[(i+1)%poly.length];return sum+a[0]*b[1]-b[0]*a[1];},0))/2;
+    near(area(p.leafPolygonMm),o.widthMm*35);near(area(p.sweepPolygonMm),o.widthMm*(1+openPercent/100)*35);near(area(p.railPolygonMm),o.widthMm*2*15);
+    assert.equal(p.arcMm.length,0);assert.equal(p.motion,'sliding');assert.ok(p.leafPolygonMm.flat().every(Number.isFinite));
+    const normals=p.leafPolygonMm.map(a=>(a[0]-f.startMm[0])*f.inward[0]+(a[1]-f.startMm[1])*f.inward[1]);near(Math.min(...normals),10);near(Math.max(...normals),45);
+  }
+});
+test('reversing the outline preserves physical sliding direction and panel pose',()=>{
+  const o={...O.withDoorMotion(door,'sliding'),openPercent:37.5,slideDirection:'right'},s=valid([o]),a=S.applyAction(s,{type:'SET_ROOM',room:{...room,polygonMm:[...room.polygonMm].reverse()}});
+  assert.equal(a.room.openings[0].slideDirection,'left');
+  const points=p=>p.map(v=>v.map(x=>Math.round(x*1e8)/1e8)).sort((a,b)=>a[0]-b[0]||a[1]-b[1]);
+  assert.deepEqual(points(O.doorPlan(s.room,o).leafPolygonMm),points(O.doorPlan(a.room,a.room.openings[0]).leafPolygonMm));
+});
+test('sliding track is checked at header height while floor furniture follows panel travel',()=>{
+  const o=O.withDoorMotion({...door,wallIndex:0,offsetMm:1500},'sliding'),pose={xMm:-1000,zMm:-1475,yawDeg:0},f=S.createDesk({id:'below-track',widthMm:100,depthMm:40,pose});
+  const state=S.createDefaultLayout({room:{...room,openings:[o]},furniture:[f]});assert.equal(S.validatePlacement(state).some(w=>w.code==='DOOR_SWING_OBSTRUCTED'),false);
+  const open=S.applyAction(state,{type:'UPDATE_ROOM_OPENING',id:o.id,patch:{openPercent:100}});assert.ok(S.validatePlacement(open).some(w=>w.code==='DOOR_SWING_OBSTRUCTED'));
+  const tall=S.createDefaultLayout({room:state.room,furniture:[S.createShelf({id:'tall',widthMm:100,depthMm:40,heightMm:2200,pose})]});assert.ok(S.validatePlacement(tall).some(w=>w.code==='DOOR_SWING_OBSTRUCTED'));
+  const corner={...o,offsetMm:0};assert.ok(O.doorWallConflicts(room,corner).length>0,'Full track must not silently pass through the adjacent wall when closed');
+});
 assert.deepEqual(files.map(hash),before,'Tests must not mutate source');
 console.log(JSON.stringify({status:'PASS',cases:checks,scope:'Room planning schema, geometry and immutable state only; no printer/native-solid qualification.',sourceSHA256:Object.fromEntries(files.map((f,i)=>[f.pathname.split('/').at(-1),before[i]]))}));

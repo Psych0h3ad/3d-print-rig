@@ -63,7 +63,9 @@ Tab changes preserve unfinished form entries; selecting another object opens
 
 Open **Room → Windows and doors**, choose a numbered wall and add a window or
 door. Set its width, height and distance from the start of that wall. Windows
-also have a sill height; doors have left/right hinges and an opening angle.
+also have a sill height. Choose a hinged or sliding door. Hinged doors have
+left/right hinges and an opening angle; single-panel sliding doors move along
+the wall with a chosen direction and opening percentage.
 The selected wall's length is shown in millimetres. Openings cut through the
 wall in 3D and have symbols in the 2D plan and exported images.
 

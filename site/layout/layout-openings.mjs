@@ -4,7 +4,7 @@ import {polygonAreaSign,orient,polygonsOverlap} from './layout-geometry.mjs?v=12
 // construction details or manufacturer door-clearance certificates.
 export const MAX_ROOM_OPENINGS=64;
 const common=['id','type','wallIndex','offsetMm','widthMm','heightMm','sillMm'];
-const doorFields=['hinge','openAngleDeg'];
+const hingedFields=['motion','hinge','openAngleDeg'],slidingFields=['motion','slideDirection','openPercent'];
 const plain=x=>x!==null&&typeof x==='object'&&(Object.getPrototypeOf(x)===Object.prototype||Object.getPrototypeOf(x)===null);
 const finite=x=>typeof x==='number'&&Number.isFinite(x);
 const safeId=x=>typeof x==='string'&&/^[A-Za-z0-9][A-Za-z0-9._:/-]{0,127}$/.test(x)&&!['__proto__','prototype','constructor'].includes(x);
@@ -22,7 +22,8 @@ export function openingFrame(room,opening){
   const frame=wallFrame(room,opening.wallIndex),startMm=point(frame.startMm,frame.along,opening.offsetMm);
   return {...frame,wallIndex:opening.wallIndex,startMm,endMm:point(startMm,frame.along,opening.widthMm),
     centerMm:point(startMm,frame.along,opening.widthMm/2),widthMm:opening.widthMm,heightMm:opening.heightMm,
-    sillMm:opening.sillMm,type:opening.type,hinge:opening.hinge,openAngleDeg:opening.openAngleDeg};
+    sillMm:opening.sillMm,type:opening.type,motion:opening.motion??'hinged',hinge:opening.hinge,openAngleDeg:opening.openAngleDeg,
+    slideDirection:opening.slideDirection,openPercent:opening.openPercent};
 }
 export function openingProblems(room){
   if(!Object.hasOwn(room,'openings'))return [];
@@ -32,11 +33,13 @@ export function openingProblems(room){
   room.openings.forEach((o,i)=>{
     const path=`room.openings[${i}]`;
     if(!plain(o)){add('OPENING_INVALID',path);return;}
-    const allowed=o.type==='door'?[...common,...doorFields]:common;
+    const motion=o.motion??'hinged',allowed=o.type==='door'?[...common,...(motion==='sliding'?slidingFields:hingedFields)]:common;
     if(!['window','door'].includes(o.type)||Object.keys(o).some(k=>!allowed.includes(k))||!safeId(o.id)
       ||!['offsetMm','widthMm','heightMm','sillMm'].every(k=>finite(o[k]))
       ||o.widthMm<1||o.heightMm<1||o.offsetMm<0||o.sillMm<0
-      ||(o.type==='door'&&(o.sillMm!==0||!['left','right'].includes(o.hinge)||!finite(o.openAngleDeg)||o.openAngleDeg<0||o.openAngleDeg>120))){add('OPENING_INVALID',path);return;}
+      ||(o.type==='door'&&(o.sillMm!==0||(Object.hasOwn(o,'motion')&&!['hinged','sliding'].includes(o.motion))||!['hinged','sliding'].includes(motion)
+        ||(motion==='sliding'?(!['left','right'].includes(o.slideDirection)||!finite(o.openPercent)||o.openPercent<0||o.openPercent>100)
+          :(!['left','right'].includes(o.hinge)||!finite(o.openAngleDeg)||o.openAngleDeg<0||o.openAngleDeg>120))))){add('OPENING_INVALID',path);return;}
     if(ids.has(o.id))add('DUPLICATE_ENTITY_ID',`${path}.id`);ids.add(o.id);
     if(!Number.isInteger(o.wallIndex)||o.wallIndex<0||o.wallIndex>=room.polygonMm.length){add('OPENING_WALL',`${path}.wallIndex`);return;}
     const frame=wallFrame(room,o.wallIndex);
@@ -77,6 +80,7 @@ function hull(points){
   const a=half(sorted),b=half([...sorted].reverse());return [...a.slice(0,-1),...b.slice(0,-1)];
 }
 export function doorPlan(room,opening){
+  if(opening.motion==='sliding')return slidingDoorPlan(room,opening);
   const f=openingFrame(room,opening),frameMm=Math.min(35,opening.widthMm*.1,opening.heightMm*.1),leafWidthMm=opening.widthMm-2*frameMm;
   const closedDir=f.along.map(v=>v*(opening.hinge==='right'?-1:1));
   const base=opening.hinge==='right'?point(f.endMm,f.along,-frameMm):point(f.startMm,f.along,frameMm);
@@ -89,7 +93,28 @@ export function doorPlan(room,opening){
   // half thickness. This is a conservative planning warning, not a fit test.
   const factor=1/Math.cos(angle/steps/2),sector=[hingeMm,...arcMm.map(p=>[hingeMm[0]+(p[0]-hingeMm[0])*factor,hingeMm[1]+(p[1]-hingeMm[1])*factor])];
   const sweepPolygonMm=hull(sector.flatMap(p=>[[-17.5,-17.5],[17.5,-17.5],[17.5,17.5],[-17.5,17.5]].map(d=>[p[0]+d[0],p[1]+d[1]])));
-  return {hingeMm,tipMm,closedTipMm,arcMm,leafPolygonMm,sweepPolygonMm,leafWidthMm,frameMm,thicknessMm};
+  return {motion:'hinged',hingeMm,tipMm,closedTipMm,arcMm,leafPolygonMm,sweepPolygonMm,leafWidthMm,frameMm,thicknessMm};
+}
+function slidingDoorPlan(room,opening){
+  const f=openingFrame(room,opening),frameMm=Math.min(35,opening.widthMm*.1,opening.heightMm*.1),leafWidthMm=opening.widthMm,thicknessMm=35;
+  // A single surface-mounted panel, with a 10mm gap to the clear wall face.
+  const closedStartMm=point(f.startMm,f.inward,27.5),closedEndMm=point(closedStartMm,f.along,leafWidthMm);
+  const direction=opening.slideDirection==='left'?-1:1,travelMm=direction*opening.widthMm*opening.openPercent/100;
+  const startMm=point(closedStartMm,f.along,travelMm),endMm=point(closedEndMm,f.along,travelMm);
+  const strip=(a,b,half)=>[point(a,f.inward,-half),point(b,f.inward,-half),point(b,f.inward,half),point(a,f.inward,half)];
+  const leafPolygonMm=strip(startMm,endMm,17.5),sweepPolygonMm=hull([...leafPolygonMm,...strip(closedStartMm,closedEndMm,17.5)]);
+  const railStartMm=direction<0?point(closedStartMm,f.along,-opening.widthMm):closedStartMm;
+  const railEndMm=direction>0?point(closedEndMm,f.along,opening.widthMm):closedEndMm,railPolygonMm=strip(railStartMm,railEndMm,7.5);
+  return {motion:'sliding',startMm,endMm,closedStartMm,closedEndMm,railStartMm,railEndMm,railPolygonMm,
+    leafPolygonMm,sweepPolygonMm,leafWidthMm,frameMm,thicknessMm,arcMm:[],slideDirection:opening.slideDirection,openPercent:opening.openPercent,
+    obstructionVolumes:[{polygonMm:sweepPolygonMm,bottomMm:0,topMm:opening.heightMm-frameMm},
+      {polygonMm:railPolygonMm,bottomMm:opening.heightMm-frameMm,topMm:opening.heightMm}]};
+}
+export function withDoorMotion(opening,motion){
+  if(opening.type!=='door'||!['hinged','sliding'].includes(motion))throw Object.assign(new Error('Invalid door motion'),{code:'OPENING_INVALID'});
+  if((opening.motion??'hinged')===motion)return opening;
+  const result=Object.fromEntries(common.map(k=>[k,opening[k]]));
+  return {...result,motion,...(motion==='sliding'?{slideDirection:'left',openPercent:0}:{hinge:'left',openAngleDeg:90})};
 }
 export function newRoomOpening(room,{id,type,wallIndex}){
   if(!['door','window'].includes(type)||!safeId(id))throw Object.assign(new Error('Invalid opening'),{code:'OPENING_INVALID'});
@@ -104,14 +129,14 @@ export function newRoomOpening(room,{id,type,wallIndex}){
   return {id,type,wallIndex,offsetMm:gap[0]+(gap[1]-gap[0]-widthMm)/2,widthMm,heightMm,sillMm,...(type==='door'?{hinge:'left',openAngleDeg:90}:{})};
 }
 export function doorWallConflicts(room,opening){
-  const sweep=doorPlan(room,opening).sweepPolygonMm,conflicts=[];
+  const plan=doorPlan(room,opening),volumes=plan.obstructionVolumes??[{polygonMm:plan.sweepPolygonMm,bottomMm:0,topMm:opening.heightMm}],conflicts=[];
   for(let index=0;index<room.polygonMm.length;index++){
     if(index===opening.wallIndex)continue; // The hinge belongs to its own jamb.
     const f=wallFrame(room,index);
     if(wallPanels(room,index).some(p=>{
-      if(p.bottomMm>=opening.heightMm)return false;
       const a=point(f.startMm,f.along,p.offsetMm),b=point(a,f.along,p.widthMm);
-      return polygonsOverlap(sweep,[a,b,point(b,f.inward,-50),point(a,f.inward,-50)]);
+      const polygon=[a,b,point(b,f.inward,-50),point(a,f.inward,-50)];
+      return volumes.some(v=>p.bottomMm<v.topMm&&p.bottomMm+p.heightMm>v.bottomMm&&polygonsOverlap(v.polygonMm,polygon));
     }))conflicts.push(index);
   }
   return conflicts;
@@ -141,7 +166,9 @@ export function retainRoomOpenings(previous,next){
       if(index<0)changed();
     }
     const result={...o,wallIndex:index};
-    if(reversed){result.offsetMm=wallFrame(previous,o.wallIndex).lengthMm-(o.offsetMm+o.widthMm);if(o.type==='door')result.hinge=o.hinge==='left'?'right':'left';}
+    if(reversed){result.offsetMm=wallFrame(previous,o.wallIndex).lengthMm-(o.offsetMm+o.widthMm);if(o.type==='door'){
+      if(o.motion==='sliding')result.slideDirection=o.slideDirection==='left'?'right':'left';else result.hinge=o.hinge==='left'?'right':'left';
+    }}
     return result;
   });
   return {...next,openings};
