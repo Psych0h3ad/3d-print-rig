@@ -13,6 +13,12 @@ mobile controls.
 The planner is an alpha. Full-model PNG rendering uses registered defaults.
 Placement uses the registered static printer envelopes.
 
+Placement shows simplified printer silhouettes: frames, beds, toolheads and
+major body panels. Geometry is shared between copies of the same printer, and
+small hardware and wiring are omitted. These shapes help identify machines;
+the registered outside dimensions still control placement. Full printer CAD
+is loaded separately for the final render.
+
 ## Arrange the room
 
 1. Choose a rectangular, L-shaped or custom room. Enter width, depth and wall
