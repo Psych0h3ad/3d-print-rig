@@ -1,5 +1,5 @@
 // Presentation only. The application owns state, history, files and model loading.
-import {createRoomRect,createRoomL,createRoomPolygon,resolvePrinterEquipment} from './layout-state.mjs?v=96541b55818081557a73';
+import {createRoomRect,createRoomL,createRoomPolygon,resolvePrinterEquipment} from './layout-state.mjs?v=751b8386c868c43eb57d';
 import {WALL_FINISHES,FLOOR_FINISHES,DEFAULT_ROOM_APPEARANCE} from './layout-finishes.mjs?v=001b62f9728770a12303';
 import {groupLabel} from './layout-group-labels.mjs?v=1ff84a0cf5540fd3184b';
 const PRINTER_VIEWER_PAGES=new Set(['','index.html','annex.html','community.html','crossant.html','custom-voron.html','kit-reference.html','micron.html','positron.html','ratrig.html','remorph.html','trident.html','v0.html','v24-reference.html','v24.html']);
@@ -304,6 +304,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
   const openingEditor=el('div','layout-opening-editor');openingSection.append(openingEmpty,openingList,openingEditor);roomSection.append(openingSection);
   function roomOpenings(){return state?.room?.openings||[];}
   function selectedOpening(){return roomOpenings().find(o=>o.id===openingId);}
+  function openingMotion(o){return o.motion??'hinged';}
   function openingTitle(o){return tr('layout.openings.item',{type:tr(`layout.openings.${o.type}`),number:roomOpenings().findIndex(v=>v.id===o.id)+1,wall:o.wallIndex+1});}
   function openingWallCoordinates(index){
     const poly=state?.room?.polygonMm||[],a=poly[index],b=poly[(index+1)%poly.length];
@@ -325,7 +326,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
   }
   function patchOpening(id,patch){if(selectedOpening()?.id===id)emit({type:'UPDATE_ROOM_OPENING',id,patch});}
   function buildOpeningEditor(){
-    const o=selectedOpening(),key=o?JSON.stringify([o.id,o.type]):'';if(key===openingEditorKey)return;
+    const o=selectedOpening(),key=o?JSON.stringify([o.id,o.type,o.type==='door'?openingMotion(o):null]):'';if(key===openingEditorKey)return;
     openingEditorKey=key;
     for(const name of [...fields.keys()])if(name.startsWith('opening-'))fields.delete(name);
     openingEditor.replaceChildren();openingEditor.hidden=!o;if(!o)return;
@@ -334,23 +335,36 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
     const wall=el('select');wall.id='layout-opening-wall';fillOpeningWalls(wall,o.wallIndex);wallLabel.append(wall);openingEditor.append(wallLabel);
     const wallHint=el('p','layout-help layout-opening-wall-coordinates');wallHint.id='layout-opening-edit-wall-coordinates';wall.setAttribute('aria-describedby',wallHint.id);openingEditor.append(wallHint);
     listen(wall,'change',()=>{const current=selectedOpening(),wallIndex=Number(wall.value);if(!status.busy&&current?.id===o.id&&openingWalls[wallIndex]&&wallIndex!==current.wallIndex)patchOpening(o.id,{wallIndex});});
+    if(o.type==='door'){
+      const motionLabel=el('label','layout-field');motionLabel.append(copy(el('span'),'layout.openings.motion'));
+      const motion=el('select');motion.id='layout-opening-motion';
+      for(const kind of ['hinged','sliding']){const option=copy(el('option'),`layout.openings.${kind}`);option.value=kind;motion.append(option);}
+      motionLabel.append(motion);openingEditor.append(motionLabel);
+      listen(motion,'change',()=>{const current=selectedOpening();if(!status.busy&&current?.id===o.id&&['hinged','sliding'].includes(motion.value)&&motion.value!==openingMotion(current))emit({type:'SET_ROOM_OPENING_MOTION',id:o.id,motion:motion.value});});
+    }
+    const sliding=o.type==='door'&&openingMotion(o)==='sliding';
     const dimensions=el('div','layout-opening-fields');openingEditor.append(dimensions);
-    for(const [prop,label,min,max,unit]of [['offsetMm','offset',0,undefined,'mm'],['widthMm','width',1,undefined,'mm'],['heightMm','height',1,undefined,'mm'],...(o.type==='window'?[['sillMm','sill',0,undefined,'mm']]:[['openAngleDeg','angle',0,120,'°']])]){
+    for(const [prop,label,min,max,unit]of [['offsetMm','offset',0,undefined,'mm'],['widthMm','width',1,undefined,'mm'],['heightMm','height',1,undefined,'mm'],...(o.type==='window'?[['sillMm','sill',0,undefined,'mm']]:sliding?[['openPercent','openPercent',0,100,'%']]:[['openAngleDeg','angle',0,120,'°']])]){
       numberField(dimensions,`layout.openings.${label}`,`opening-${prop}`,{min,max,unit,action:v=>patchOpening(o.id,{[prop]:v})});
     }
     if(o.type==='door'){
-      const hingeLabel=el('label','layout-field');hingeLabel.append(copy(el('span'),'layout.openings.hinge'));
-      const hinge=el('select');hinge.id='layout-opening-hinge';for(const side of ['left','right']){const option=copy(el('option'),`layout.openings.${side}`);option.value=side;hinge.append(option);}hingeLabel.append(hinge);openingEditor.append(hingeLabel);
-      listen(hinge,'change',()=>{const current=selectedOpening();if(!status.busy&&current?.id===o.id&&['left','right'].includes(hinge.value)&&hinge.value!==current.hinge)patchOpening(o.id,{hinge:hinge.value});});
+      const directionLabel=el('label','layout-field');directionLabel.append(copy(el('span'),sliding?'layout.openings.slideDirection':'layout.openings.hinge'));
+      const direction=el('select');direction.id=sliding?'layout-opening-slide-direction':'layout-opening-hinge';
+      for(const side of ['left','right']){const option=copy(el('option'),`layout.openings.${sliding?'slide'+(side==='left'?'Left':'Right'):side}`);option.value=side;direction.append(option);}
+      directionLabel.append(direction);openingEditor.append(directionLabel);
+      const prop=sliding?'slideDirection':'hinge';
+      listen(direction,'change',()=>{const current=selectedOpening();if(!status.busy&&current?.id===o.id&&['left','right'].includes(direction.value)&&direction.value!==current[prop])patchOpening(o.id,{[prop]:direction.value});});
     }
     const remove=button('layout.openings.remove',()=>{if(selectedOpening()?.id===o.id)emit({type:'REMOVE_ROOM_OPENING',id:o.id});},'trash');remove.classList.add('layout-delete');openingEditor.append(remove);
   }
   function refreshOpeningValues(){
     const o=selectedOpening();if(!o)return;
-    for(const prop of ['offsetMm','widthMm','heightMm',...(o.type==='window'?['sillMm']:['openAngleDeg'])])value(`opening-${prop}`,o[prop]);
+    for(const prop of ['offsetMm','widthMm','heightMm',...(o.type==='window'?['sillMm']:openingMotion(o)==='sliding'?['openPercent']:['openAngleDeg'])])value(`opening-${prop}`,o[prop]);
     const wall=openingEditor.querySelector('#layout-opening-wall');if(wall)wall.value=String(o.wallIndex);
     const hint=openingEditor.querySelector('#layout-opening-edit-wall-coordinates');if(hint)hint.textContent=openingWallCoordinates(o.wallIndex);
     const hinge=openingEditor.querySelector('#layout-opening-hinge');if(hinge)hinge.value=o.hinge;
+    const motion=openingEditor.querySelector('#layout-opening-motion');if(motion)motion.value=openingMotion(o);
+    const direction=openingEditor.querySelector('#layout-opening-slide-direction');if(direction)direction.value=o.slideDirection;
     const heading=openingEditor.querySelector('#layout-opening-title');if(heading)heading.textContent=openingTitle(o);
   }
   function refreshOpenings(){

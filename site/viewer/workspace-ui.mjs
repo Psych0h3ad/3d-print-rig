@@ -1,6 +1,6 @@
 import {setupUsageStatistics} from './usage-statistics.mjs?v=e11e5f17f9fb34440ebf';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
-import {setupLayoutNavigation} from './layout-nav.mjs?v=25f7d64754f36301f891';
+import {setupLayoutNavigation} from './layout-nav.mjs?v=b8dcfc1db2429ff92389';
 ensureWorkspaceEntry(import.meta.url);
 import {setupDisplayPreferences,setupHeaderThemeToggle} from './display-preferences.mjs?v=8f347468def25922153c';
 import {WorkspaceMutationObserver,workspaceListen} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';

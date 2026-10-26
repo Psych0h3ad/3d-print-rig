@@ -21,6 +21,7 @@ const near=(a,b,tol=1e-6)=>assert.ok(Number.isFinite(a)&&Number.isFinite(b)&&Mat
 const vecNear=(a,b,tol)=>{assert.equal(a.length,b.length);a.forEach((v,i)=>near(v,b[i],tol));};
 const windowOpening=(wallIndex=0)=>({id:'window-a',type:'window',wallIndex,offsetMm:700,widthMm:1200,heightMm:1000,sillMm:900});
 const doorOpening=(wallIndex=1,hinge='left',openAngleDeg=90)=>({id:'door-a',type:'door',wallIndex,offsetMm:550,widthMm:900,heightMm:2100,sillMm:0,hinge,openAngleDeg});
+const slidingOpening=(wallIndex=1,slideDirection='left',openPercent=50)=>({id:'door-a',type:'door',wallIndex,offsetMm:550,widthMm:900,heightMm:2100,sillMm:0,motion:'sliding',slideDirection,openPercent});
 const roomBase={polygonMm:[[0,0],[4000,0],[4000,3000],[0,3000]],wallHeightMm:2600};
 const withOpenings=(room=roomBase)=>({...room,openings:[windowOpening(),doorOpening()]});
 function meshes(root,role){const result=[];root.traverse(o=>{if(o.isMesh&&(!role||o.userData.openingRole===role))result.push(o);});return result;}
@@ -83,6 +84,32 @@ for(const reversed of [false,true])for(const wallIndex of [0,1,2,3])for(const hi
   if(angle)assert.ok(wallLocal(f,new THREE.Vector3(plan.tipMm[0]*.001,0,plan.tipMm[1]*.001))[2]>-25,'Leaf opens inward for either hinge and winding');
   const paths=openingPlanPrimitives(room);assert.deepEqual(paths.find(p=>p.role==='door-leaf').pointsMm,plan.leafPolygonMm);assert.deepEqual(paths.find(p=>p.role==='door-arc').pointsMm,plan.arcMm);
   owner.dispose();surfaces.dispose();passed.push(`Door pose ${reversed?'CW':'CCW'}/wall${wallIndex}/${hinge}/${angle}`);
+}
+// Independent local-wall datums: the whole-width panel translates along the
+// wall, remains10..45mm inward, and never rotates or shrinks to the jamb span.
+for(const reversed of [false,true])for(const wallIndex of [0,1,2,3])for(const direction of ['left','right'])for(const percent of [0,50,100]){
+  const polygon=roomBase.polygonMm.map(p=>[...p]);if(reversed)polygon.reverse();
+  const o=slidingOpening(wallIndex,direction,percent),room={...roomBase,polygonMm:polygon,openings:[o]},surfaces=createLayoutSurfaces(),owner=createLayoutOpeningRenderer({surfaces});assert.deepEqual(openingProblems(room),[]);
+  const wall=owner.makeWall(room,wallIndex,surfaces.finish('stripe')),f=wallFrame(room,wallIndex),plan=doorPlan(room,o),leaf=meshes(wall,'door-leaf')[0],rail=meshes(wall,'door-track')[0];checkNormals(wall);
+  assert.equal(leaf.userData.doorMotion,'sliding');assert.equal(Object.hasOwn(leaf.userData,'hingeMm'),false);assert.equal(meshes(wall,'door-leaf').length,1);assert.equal(meshes(wall,'door-track').length,1);
+  const sign=direction==='left'?-1:1,travel=sign*o.widthMm*percent/100,pts=triangles(leaf).flat().map(p=>wallLocal(f,p));
+  for(const [axis,lo,hi]of [[0,o.offsetMm+travel,o.offsetMm+travel+o.widthMm],[1,0,o.heightMm-plan.frameMm],[2,10,45]]){
+    near(Math.min(...pts.map(p=>p[axis])),lo,.0006);near(Math.max(...pts.map(p=>p[axis])),hi,.0006);
+  }
+  for(const v of triangles(leaf).flat())assert.ok(plan.leafPolygonMm.some(p=>Math.hypot(v.x*1000-p[0],v.z*1000-p[1])<.0006));
+  let volume=0;for(const [a,b,c]of triangles(leaf))volume+=a.dot(b.clone().cross(c))/6;near(volume,o.widthMm*35*(o.heightMm-plan.frameMm)*1e-9,1e-6);assert.ok(volume>0);
+  const trackPoints=triangles(rail).flat().map(p=>wallLocal(f,p)),trackStart=o.offsetMm+(direction==='left'?-o.widthMm:0),trackEnd=o.offsetMm+o.widthMm+(direction==='right'?o.widthMm:0);
+  for(const [axis,lo,hi]of [[0,trackStart,trackEnd],[1,o.heightMm-plan.frameMm,o.heightMm],[2,20,35]]){
+    near(Math.min(...trackPoints.map(p=>p[axis])),lo,.0006);near(Math.max(...trackPoints.map(p=>p[axis])),hi,.0006);
+  }
+  assert.equal(rail.material,meshes(wall,'frame-head')[0].material);assert.notEqual(rail.material,surfaces.finish('stripe'));
+  for(const u of [.2,.5,.8])assert.equal(rayHits(wall,f,o.offsetMm+o.widthMm*u,1000).length,0,'Sliding motion preserves the actual wall hole');
+  const paths=openingPlanPrimitives(room);assert.equal(paths.some(p=>p.role==='door-arc'),false);assert.deepEqual(paths.find(p=>p.role==='door-leaf').pointsMm,plan.leafPolygonMm);assert.deepEqual(paths.find(p=>p.role==='door-track').pointsMm,[plan.railStartMm,plan.railEndMm]);
+  const arrow=paths.find(p=>p.role==='door-slide-direction').pointsMm,delta=arrow[1].map((v,i)=>v-arrow[0][i]);assert.ok(sign*(delta[0]*f.along[0]+delta[1]*f.along[1])>0);near(delta[0]*f.inward[0]+delta[1]*f.inward[1],0,1e-8);
+  for(const dark of [false,true]){const ctx=context2D();assert.deepEqual(drawOpeningPlan(ctx,{room,project:(x,z)=>[x*.1,z*.1],dark}),paths);assert.ok(ctx.paths.every(p=>p.points.flat().every(v=>typeof v==='string'||Number.isFinite(v))));}
+  let railDisposals=0,leafDisposals=0,frameDisposals=0;rail.geometry.addEventListener('dispose',()=>railDisposals++);leaf.geometry.addEventListener('dispose',()=>leafDisposals++);rail.material.addEventListener('dispose',()=>frameDisposals++);
+  owner.clear();owner.clear();assert.equal(railDisposals,1);assert.equal(leafDisposals,1);assert.equal(frameDisposals,0);owner.dispose();owner.dispose();assert.equal(railDisposals,1);assert.equal(leafDisposals,1);assert.equal(frameDisposals,1);surfaces.dispose();
+  passed.push(`Sliding panel/track/plan/disposal ${reversed?'CW':'CCW'}/wall${wallIndex}/${direction}/${percent}`);
 }
 // Stacked and adjacent apertures cannot silently become one filled rectangle.
 {
@@ -148,9 +175,11 @@ const body=source.replace(/^import [^\n]+;\r?\n/gm,'').replace('export function 
 const createRenderer=new Function(...Object.keys(ports),body+'\nreturn createLayoutRenderer;')(...Object.values(ports));
 function flush(){for(let n=0;frames.size;n++){assert.ok(n<20,'Bounded draw queue');const callbacks=[...frames.values()];frames.clear();for(const f of callbacks)f();}}
 function setup(room){const container=node('div'),api=createRenderer({container,catalog:[]}),renderer=renderers.at(-1);api.setState({room,groups:[]},null);api.view('perspective');flush();return {container,api,renderer};}
-{
-  const room=withOpenings(),{api,renderer,container}=setup(room),scene=renderer.lastScene,wallGroups=scene.children.flatMap(o=>o.children).flatMap(o=>o.children).filter(o=>o.userData.openingWall);
+for(const motion of ['hinged','sliding']){
+  const room=withOpenings();if(motion==='sliding')room.openings[1]=slidingOpening();
+  const {api,renderer,container}=setup(room),scene=renderer.lastScene,wallGroups=scene.children.flatMap(o=>o.children).flatMap(o=>o.children).filter(o=>o.userData.openingWall);
   assert.equal(wallGroups.length,2);const pane=meshes(scene,'window-glass')[0],leaf=meshes(scene,'door-leaf')[0];assert.ok(pane&&leaf);const paneParent=pane.parent;
+  assert.equal(meshes(scene,'door-track').length,motion==='sliding'?1:0);
   const perspective=controls.at(-1),camera=perspective.object;camera.position.set(2,1.2,1.5);camera.lookAt(2,1.2,0);perspective.change();flush();assert.ok(wallGroups.every(w=>w.visible));
   api.setOptions({walls:false});flush();assert.ok(wallGroups.every(w=>!w.visible));assert.ok(!renderer.calls.at(-1).all.some(o=>o.id),'Frames, panes and leaves all follow wall toggle');
   api.view('top');flush();const overlay=container.children.find(n=>n.className==='layout-plan-measurements');assert.equal(overlay.hidden,false,'Plan symbols do not require measurements or 3D walls');
@@ -167,13 +196,29 @@ function setup(room){const container=node('div'),api=createRenderer({container,c
   camera.position.set(2,1.2,-1);camera.lookAt(2,1.2,0);perspective.change();flush();const windowWall=wallGroups.find(w=>w.userData.wallIndex===0);assert.equal(windowWall.visible,false);assert.ok(!renderer.calls.at(-1).all.some(o=>o.id==='window-a'),'Window frame and pane share the wall cutaway');
   api.setOptions({walls:false,dark:false});api.view('top');flush();assert.equal(overlay.hidden,false);assert.equal(planCalls.at(-1).options.dark,false);
   api.setState({room:{...room,openings:[]},groups:[]},null);flush();assert.equal(overlay.hidden,true);assert.equal(meshes(scene,'door-leaf').length,0);assert.equal(paneDisposals,0,'Shared geometry and material live until renderer teardown');
-  api.setState({room,groups:[]},null);flush();assert.equal(meshes(scene,'door-leaf').length,1,'A-to-empty-to-A does not duplicate openings');api.dispose();api.dispose();assert.equal(paneDisposals,2);assert.equal(frames.size,0);
-  passed.push('Actual renderer lifecycle: cutaway/toggle, top symbols, both PNG paths, transparent order/failure restoration, A-empty-A and disposal');
+  api.setState({room,groups:[]},null);flush();assert.equal(meshes(scene,'door-leaf').length,1,'A-to-empty-to-A does not duplicate openings');assert.equal(meshes(scene,'door-track').length,motion==='sliding'?1:0);api.dispose();api.dispose();assert.equal(paneDisposals,2);assert.equal(frames.size,0);
+  passed.push(`Actual ${motion} renderer lifecycle: cutaway/toggle, top symbols, both PNG paths, transparent order/failure restoration, A-empty-A and disposal`);
 }
 // Geometry edits invalidate makeRoom even when polygon and finishes are equal.
 {
   const room=withOpenings(),{api,renderer}=setup(room),scene=renderer.lastScene,old=meshes(scene,'door-leaf')[0];
   api.setState({room:{...room,openings:room.openings.map(o=>o.type==='door'?{...o,hinge:'right',openAngleDeg:120}:o)},groups:[]},null);flush();const fresh=meshes(scene,'door-leaf')[0];assert.notEqual(fresh,old);assert.notEqual(fresh.geometry.uuid,old.geometry.uuid);api.dispose();passed.push('Opening angle/hinge changes rebuild actual room geometry instead of reusing stale room key');
+}
+// Same source ID through motion changes: no stale rail, pivot, plan arc or
+// duplicate leaf. Opening changes alone must invalidate the actual room cache.
+{
+  const room=withOpenings(),{api,renderer}=setup(room),scene=renderer.lastScene,hinged=meshes(scene,'door-leaf')[0],originalPositions=Array.from(hinged.geometry.attributes.position.array);let oldLeafDisposals=0;hinged.geometry.addEventListener('dispose',()=>oldLeafDisposals++);
+  let lastRail=null,lastRailDisposals=0;
+  for(const direction of ['left','right'])for(const percent of [0,50,100]){
+    const next={...room,openings:[room.openings[0],slidingOpening(1,direction,percent)]};
+    api.setState({room:next,groups:[]},null);flush();const leaf=meshes(scene,'door-leaf')[0],rail=meshes(scene,'door-track')[0];
+    assert.equal(meshes(scene,'door-leaf').length,1);assert.equal(meshes(scene,'door-track').length,1);assert.equal(leaf.userData.doorMotion,'sliding');assert.equal(Object.hasOwn(leaf.userData,'hingeMm'),false);
+    if(lastRail){assert.notEqual(rail,lastRail);assert.equal(lastRailDisposals,1);}lastRail=rail;lastRailDisposals=0;rail.geometry.addEventListener('dispose',()=>lastRailDisposals++);
+    api.view('top');flush();assert.equal(planCalls.at(-1).paths.some(p=>p.role==='door-arc'),false);assert.equal(planCalls.at(-1).paths.filter(p=>p.role==='door-track').length,1);
+  }
+  assert.equal(oldLeafDisposals,1);api.setState({room,groups:[]},null);flush();assert.equal(lastRailDisposals,1);assert.equal(meshes(scene,'door-track').length,0);
+  const restored=meshes(scene,'door-leaf')[0];assert.equal(restored.userData.doorMotion,'hinged');assert.ok(restored.userData.hingeMm);assert.deepEqual(Array.from(restored.geometry.attributes.position.array),originalPositions);assert.equal(planCalls.at(-1).paths.filter(p=>p.role==='door-arc').length,1);assert.equal(planCalls.at(-1).paths.some(p=>p.role==='door-slide-direction'),false);
+  api.dispose();passed.push('Same-ID hinged-A/sliding left-right0-50-100/hinged-A preserves exact geometry and removes stale pivots, rails, symbols and buffers');
 }
 for(const input of inputs)assert.equal(sha(fs.readFileSync(path.join(site,input.path))),input.sha256,'Source changed during focused check: '+input.path);
 const report={schema:1,passed:true,cases:passed.length,scope:'Tiny architectural geometry and current production renderer with controlled CPU DOM/WebGL ports; no browser pixels, printer assets or native clearance certificate',inputs,tests:passed};

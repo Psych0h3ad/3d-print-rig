@@ -6,7 +6,7 @@ import {envelopeOverlaps,envelopeChange,prepareCollisionMotion} from './layout-c
 import {getLayoutEquipment} from './layout-equipment.mjs?v=bd8e2772cabd6fd2564b';
 import {wallRotationCenters} from './layout-wall-rotation.mjs?v=7ae98b15139f328512eb';
 import {isGroupLabel} from './layout-group-labels.mjs?v=1ff84a0cf5540fd3184b';
-import {openingProblems,retainRoomOpenings,doorPlan,doorWallConflicts} from './layout-openings.mjs?v=12c520553a219df31848';
+import {openingProblems,retainRoomOpenings,doorPlan,doorWallConflicts,withDoorMotion} from './layout-openings.mjs?v=8fab3154ec519f37f666';
 
 export const LIMITS = Object.freeze({maxFurniture: 64, maxPrinters: 128, maxRoomVertices: 32,
   maxFootprintVertices: 32, maxLevels: 32, maxCoordinateMm: 1000000, maxDimensionMm: 100000,
@@ -278,7 +278,7 @@ export function applyAction(state, action, catalog = []) {
   const fields = {
     SET_ROOM: ['room'], ADD_FURNITURE: ['furniture'], UPDATE_FURNITURE: ['id', 'patch'], REMOVE_FURNITURE: ['id', 'detachChildren'],
     ADD_PRINTER: ['printer'], UPDATE_PRINTER: ['id', 'patch'], SET_ATTACHMENT: ['id', 'attachment'], REMOVE_PRINTER: ['id'],
-    ADD_ROOM_OPENING:['opening'], UPDATE_ROOM_OPENING:['id','patch'], REMOVE_ROOM_OPENING:['id'],
+    ADD_ROOM_OPENING:['opening'], UPDATE_ROOM_OPENING:['id','patch'], REMOVE_ROOM_OPENING:['id'], SET_ROOM_OPENING_MOTION:['id','motion'],
   };
   if (!Object.hasOwn(fields, action.type)) fail('UNKNOWN_ACTION', 'action.type');
   const errors = []; keys(action, ['type', ...fields[action.type]], 'action', errors); if (errors.length) throw new LayoutValidationError(errors);
@@ -295,8 +295,15 @@ export function applyAction(state, action, catalog = []) {
     case 'UPDATE_ROOM_OPENING': {
       const opening=next.room.openings?.find(o=>o.id===action.id);
       if(!opening)fail('OPENING_NOT_FOUND','action.id');
-      patchCheck(action.patch,['wallIndex','offsetMm','widthMm','heightMm','sillMm',...(opening.type==='door'?['hinge','openAngleDeg']:[])]);
+      patchCheck(action.patch,['wallIndex','offsetMm','widthMm','heightMm','sillMm',...(opening.type==='door'?(opening.motion==='sliding'?['slideDirection','openPercent']:['hinge','openAngleDeg']):[])]);
       Object.assign(opening,copy(action.patch));break;
+    }
+    case 'SET_ROOM_OPENING_MOTION': {
+      const index=next.room.openings?.findIndex(o=>o.id===action.id)??-1;
+      if(index<0)fail('OPENING_NOT_FOUND','action.id');
+      try{next.room.openings[index]=withDoorMotion(next.room.openings[index],action.motion);}
+      catch(error){if(error.code)fail(error.code,'action.motion');throw error;}
+      break;
     }
     case 'REMOVE_ROOM_OPENING': {
       if(!next.room.openings?.some(o=>o.id===action.id))fail('OPENING_NOT_FOUND','action.id');
@@ -845,7 +852,8 @@ export function validatePlacement(state, catalog = []) {
   }
   warnings.push(...envelopeOverlaps(scene));
   for(const opening of state.room.openings??[])if(opening.type==='door'){
-    const plan=doorPlan(state.room,opening),blocked=all.filter(e=>e.verticalRangeMm[0]<opening.heightMm&&e.verticalRangeMm[1]>0&&polygonsOverlap(plan.sweepPolygonMm,e.worldEnvelopeMm));
+    const plan=doorPlan(state.room,opening),volumes=plan.obstructionVolumes??[{polygonMm:plan.sweepPolygonMm,bottomMm:0,topMm:opening.heightMm}],
+      blocked=all.filter(e=>volumes.some(v=>e.verticalRangeMm[0]<v.topMm&&e.verticalRangeMm[1]>v.bottomMm&&polygonsOverlap(v.polygonMm,e.worldEnvelopeMm)));
     if(blocked.length)warn('DOOR_SWING_OBSTRUCTED',blocked.map(e=>e.id),{openingId:opening.id,entityIds:blocked.map(e=>e.id)});
     const walls=doorWallConflicts(state.room,opening);if(walls.length)warn('DOOR_SWING_WALL',[],{openingId:opening.id,walls:walls.map(i=>i+1).join(', ')});
   }

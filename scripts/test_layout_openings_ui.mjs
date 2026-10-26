@@ -28,6 +28,7 @@ const engineFactory=new Function('initial','catalog','S','O','document','t',`
 const catalog=[{id:'fixture-printer',label:'Fixture printer',widthMm:200,depthMm:200,heightMm:300}];
 const windowOpening={id:'window-seed',type:'window',wallIndex:0,offsetMm:200.125,widthMm:800.375,heightMm:900.625,sillMm:1000.125};
 const doorOpening={id:'door-seed',type:'door',wallIndex:1,offsetMm:600.125,widthMm:900.375,heightMm:2100.625,sillMm:0,hinge:'left',openAngleDeg:90};
+const slidingDoorOpening={id:'door-seed',type:'door',wallIndex:1,offsetMm:600.125,widthMm:900.375,heightMm:2100.625,sillMm:0,motion:'sliding',slideDirection:'left',openPercent:0};
 function seed(openings=[windowOpening,doorOpening]){
  return S.createDefaultLayout({room:{...S.createRoomRect({widthMm:6000,depthMm:4000,wallHeightMm:2800}),...(openings===null?{}:{openings})},printers:[{id:'printer-1',machineId:'fixture-printer',configurationId:null,attachment:{parentId:null,surfaceId:'floor',xMm:0,zMm:0,yawDeg:0}}]},catalog);
 }
@@ -47,6 +48,16 @@ function input(n,v){n.focus();n.value=String(v);n.dispatch('input');}
 function finish(n,order){if(order==='enter')enter(n);if(order==='change-first'){n.dispatch('change');n.blur();}else{n.blur();n.dispatch('change');}}
 async function test(name,run){try{await run();results.push({name,pass:true});}catch(e){results.push({name,pass:false,error:e.stack});}}
 function noHistory(x,source){const r=x.engine.read();assert.equal(S.serializeLayout(r.state,catalog),source);assert.equal(r.past.length,0);assert.equal(r.writes.length,0);}
+function chooseMotion(x,motion){const n=x.find('#layout-opening-motion');n.value=motion;n.dispatch('change');}
+function assertMotion(x,motion){
+ const o=opening(x.engine.read().state,'door-seed');assert.equal(o.motion??'hinged',motion);assert.equal(x.find('#layout-opening-motion').value,motion);assert.equal(o.sillMm,0);
+ if(motion==='sliding'){
+  assert.equal(Object.hasOwn(o,'hinge'),false);assert.equal(Object.hasOwn(o,'openAngleDeg'),false);assert.equal(x.container.querySelector('#layout-opening-hinge'),null);assert.equal(x.container.querySelector('[data-layout-field=opening-openAngleDeg]'),null);
+  assert.equal(x.find('#layout-opening-slide-direction').value,o.slideDirection);assert.equal(x.field('openPercent').value,o.openPercent.toFixed(1));
+ }else{
+  assert.equal(Object.hasOwn(o,'slideDirection'),false);assert.equal(Object.hasOwn(o,'openPercent'),false);assert.equal(x.container.querySelector('#layout-opening-slide-direction'),null);assert.equal(x.container.querySelector('[data-layout-field=opening-openPercent]'),null);assert.equal(x.find('#layout-opening-hinge').value,o.hinge);assert.equal(x.field('openAngleDeg').value,o.openAngleDeg.toFixed(1));
+ }
+}
 
 for(const language of supportedLanguages)await test(`${language}: optional schema, wall labels/coordinates, add selection and delete undo`,async()=>{
  const x=fixture(language,seed(null));
@@ -119,6 +130,43 @@ for(const language of supportedLanguages)await test(`${language}: three-wall out
  const state=S.createDefaultLayout({room:S.createRoomPolygon({polygonMm:[[0,0],[3000,0],[3000,4000]],wallHeightMm:2800})},catalog),x=fixture(language,state);try{
   const options=x.find('#layout-opening-add-wall').options;assert.deepEqual(options.map(o=>o.textContent),[3000,4000,5000].map((length,i)=>x.t('layout.openings.wall',{index:i+1,length:length.toFixed(1)})));
   x.ui.update(state,null,[{code:'DOOR_SWING_OBSTRUCTED',params:{openingId:'door-safe',entityIds:[]}}]);assert(x.container.textContent.includes(x.t('layout.warning.DOOR_SWING_OBSTRUCTED')));assert.equal(x.container.querySelector('script'),null);
+ }finally{x.dispose();}
+});
+
+for(const language of supportedLanguages)await test(`${language}: legacy hinged, sliding, hinged, exact undo/redo and saved reload`,async()=>{
+ const x=fixture(language),original=S.serializeLayout(x.initial,catalog);try{
+  x.pick('door-seed');assertMotion(x,'hinged');chooseMotion(x,'hinged');await x.settle();assert.deepEqual(x.actions,[]);noHistory(x,original);assert.equal(Object.hasOwn(opening(x.engine.read().state,'door-seed'),'motion'),false);
+  const oldAngle=x.field('openAngleDeg'),oldHinge=x.find('#layout-opening-hinge');chooseMotion(x,'sliding');await x.settle();assertMotion(x,'sliding');assert.deepEqual(x.actions,[{type:'SET_ROOM_OPENING_MOTION',id:'door-seed',motion:'sliding'}]);assert.equal(x.engine.read().past.length,1);assert.equal(x.engine.read().writes.length,1);assert.equal(opening(x.engine.read().state,'door-seed').slideDirection,'left');assert.equal(opening(x.engine.read().state,'door-seed').openPercent,0);
+  input(oldAngle,30);finish(oldAngle,'blur-first');oldHinge.value='right';oldHinge.dispatch('change');await x.settle();assert.equal(x.actions.length,1,'Detached hinged controls cannot edit sliding state');
+  const savedSliding=S.serializeLayout(x.engine.read().state,catalog),loaded=fixture(language,S.parseLayout(savedSliding,catalog));try{loaded.pick('door-seed');assertMotion(loaded,'sliding');assert.equal(S.serializeLayout(loaded.engine.read().state,catalog),savedSliding);}finally{loaded.dispose();}
+  const oldPercent=x.field('openPercent'),oldDirection=x.find('#layout-opening-slide-direction');chooseMotion(x,'hinged');await x.settle();assertMotion(x,'hinged');assert.equal(opening(x.engine.read().state,'door-seed').hinge,'left');assert.equal(opening(x.engine.read().state,'door-seed').openAngleDeg,90);assert.equal(x.engine.read().past.length,2);assert.equal(x.engine.read().writes.length,2);assert.deepEqual(x.actions.at(-1),{type:'SET_ROOM_OPENING_MOTION',id:'door-seed',motion:'hinged'});
+  input(oldPercent,50);finish(oldPercent,'blur-first');oldDirection.value='right';oldDirection.dispatch('change');await x.settle();assert.equal(x.actions.length,2,'Detached sliding controls cannot edit hinged state');const savedHinged=S.serializeLayout(x.engine.read().state,catalog);
+  await x.engine.act({type:'undo'});assertMotion(x,'sliding');assert.equal(S.serializeLayout(x.engine.read().state,catalog),savedSliding);await x.engine.act({type:'undo'});assertMotion(x,'hinged');assert.equal(S.serializeLayout(x.engine.read().state,catalog),original);await x.engine.act({type:'redo'});assertMotion(x,'sliding');assert.equal(S.serializeLayout(x.engine.read().state,catalog),savedSliding);await x.engine.act({type:'redo'});assertMotion(x,'hinged');assert.equal(S.serializeLayout(x.engine.read().state,catalog),savedHinged);
+  const loadedHinged=fixture(language,S.parseLayout(savedHinged,catalog));try{loadedHinged.pick('door-seed');assertMotion(loadedHinged,'hinged');assert.equal(opening(loadedHinged.engine.read().state,'door-seed').motion,'hinged');}finally{loadedHinged.dispose();}
+  assert.equal(x.engine.read().selected,'printer-1');assert.equal(x.find('#layout-tab-room').getAttribute('aria-selected'),'true');x.pick('window-seed');assert.equal(x.container.querySelector('#layout-opening-motion'),null);assert.equal(x.container.querySelector('[data-layout-field=opening-openPercent]'),null);
+ }finally{x.dispose();}
+});
+
+for(const language of supportedLanguages)for(const value of [0,37.125,100])for(const order of ['blur-first','change-first','enter'])await test(`${language}/sliding/openPercent=${value}/${order}: exact numeric transaction or source no-op`,async()=>{
+ const x=fixture(language,seed([windowOpening,{...slidingDoorOpening,openPercent:50}])),original=S.serializeLayout(x.initial,catalog);try{
+  x.pick('door-seed');const n=x.field('openPercent');assert.equal(n.min,'0');assert.equal(n.max,'100');input(n,value);finish(n,order);await x.settle();assertMotion(x,'sliding');assert.deepEqual(x.actions,[{type:'UPDATE_ROOM_OPENING',id:'door-seed',patch:{openPercent:value}}]);assert.equal(x.engine.read().past.length,1);assert.equal(x.engine.read().writes.length,1);assert.equal(x.field('openPercent'),n);assert.equal(opening(x.engine.read().state,'door-seed').openPercent,value);
+  n.dispatch('change');n.blur();enter(n);await x.settle();assert.equal(x.actions.length,1);const saved=S.serializeLayout(x.engine.read().state,catalog);assert.equal(S.serializeLayout(S.parseLayout(saved,catalog),catalog),saved);await x.engine.act({type:'undo'});assert.equal(S.serializeLayout(x.engine.read().state,catalog),original);await x.engine.act({type:'redo'});assert.equal(S.serializeLayout(x.engine.read().state,catalog),saved);
+ }finally{x.dispose();}
+});
+
+for(const language of supportedLanguages)for(const invalid of [-1,101,''])await test(`${language}/sliding/openPercent=${invalid}: rejection retains localized error and no history`,async()=>{
+ const x=fixture(language,seed([windowOpening,{...slidingDoorOpening,openPercent:37.125}])),original=S.serializeLayout(x.initial,catalog);try{
+  x.pick('door-seed');const n=x.field('openPercent');input(n,invalid);finish(n,'enter');await x.settle();noHistory(x,original);assert.deepEqual(x.actions,[]);assert.equal(n.value,'37.1');assert.equal(x.feedback().textContent,x.t('layout.validNumber'));assert.equal(x.feedback().hidden,false);n.dispatch('change');n.blur();await x.settle();noHistory(x,original);assert.equal(x.feedback().hidden,false);assert.equal(x.feedback().textContent,x.t('layout.validNumber'));
+ }finally{x.dispose();}
+});
+
+for(const language of supportedLanguages)await test(`${language}: sliding direction, dirty percent locale rebuild and room draft independence`,async()=>{
+ const x=fixture(language,seed([windowOpening,{...slidingDoorOpening,openPercent:37.125}]));try{
+  x.pick('door-seed');const original=S.serializeLayout(x.initial,catalog),percent=x.field('openPercent');percent.focus();enter(percent);percent.blur();percent.dispatch('change');input(percent,37.125);finish(percent,'blur-first');await x.settle();noHistory(x,original);assert.deepEqual(x.actions,[]);
+  const direction=x.find('#layout-opening-slide-direction');assert.deepEqual(direction.options.map(o=>o.textContent),[x.t('layout.openings.slideLeft'),x.t('layout.openings.slideRight')]);direction.value='right';direction.dispatch('change');await x.settle();assert.deepEqual(x.actions.at(-1),{type:'UPDATE_ROOM_OPENING',id:'door-seed',patch:{slideDirection:'right'}});assertMotion(x,'sliding');
+  const roomWidth=x.find('[data-layout-field=room-width]');input(roomWidth,7000.375);roomWidth.blur();roomWidth.dispatch('change');const n=x.field('openPercent');input(n,61.875);x.locale(language);const replacement=x.field('openPercent');assert.notEqual(replacement,n);assert.equal(x.document.activeElement,replacement);assert.equal(replacement.value,'61.875');finish(replacement,'blur-first');await x.settle();assert.equal(opening(x.engine.read().state,'door-seed').openPercent,61.875);assert.equal(x.find('[data-layout-field=room-width]').value,'7000.4');assert.equal(x.engine.read().past.length,2);
+  const beforeActions=x.actions.length;x.ui.setStatus({busy:true});assert.equal(x.find('#layout-opening-motion').disabled,true);assert.equal(x.find('#layout-opening-slide-direction').disabled,true);chooseMotion(x,'hinged');direction.value='left';direction.dispatch('change');assert.equal(x.actions.length,beforeActions);x.ui.setStatus({busy:false});x.engine.sync();assertMotion(x,'sliding');
+  x.ui.update(x.engine.read().state,'printer-1',[{code:'DOOR_SWING_WALL',params:{walls:'1, 2',wallIndices:[0,1]}}]);assert(x.container.textContent.includes(x.t('layout.warning.DOOR_SWING_WALL',{walls:'1, 2'})));assertMotion(x,'sliding');
  }finally{x.dispose();}
 });
 

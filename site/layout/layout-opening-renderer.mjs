@@ -1,5 +1,5 @@
 import * as THREE from '../viewer/vendor-r180/three.module.js';
-import {wallFrame,openingFrame,wallPanels,doorPlan} from './layout-openings.mjs?v=12c520553a219df31848';
+import {wallFrame,openingFrame,wallPanels,doorPlan} from './layout-openings.mjs?v=8fab3154ec519f37f666';
 import {wallSurfaceGeometry} from './layout-surfaces.mjs?v=0e7f271c883eb7ec8844';
 
 // Architectural planning geometry, in metres. The room polygon is the clear
@@ -17,6 +17,11 @@ export function createLayoutOpeningRenderer({surfaces}){
     const mesh=new THREE.Mesh(boxGeometry,mat),p=point(f,offset+width/2,normal);
     mesh.position.set(p[0]*MM,(bottom+height/2)*MM,p[1]*MM);mesh.rotation.y=-Math.atan2(f.along[1],f.along[0]);mesh.scale.set(width*MM,height*MM,depth*MM);
     mesh.userData.openingRole=role;if(id)mesh.userData.openingId=id;mesh.receiveShadow=mat!==glass;root.add(mesh);return mesh;
+  }
+  function prism(root,polygon,bottom,height,mat,role,id){
+    const shape=new THREE.Shape(polygon.map(([x,z])=>new THREE.Vector2(x*MM,-z*MM)));
+    const geometry=new THREE.ExtrudeGeometry(shape,{depth:height*MM,bevelEnabled:false,steps:1,curveSegments:1});geometry.rotateX(-Math.PI/2);geometries.add(geometry);
+    const mesh=new THREE.Mesh(geometry,mat);mesh.position.y=bottom*MM;mesh.userData.openingId=id;mesh.userData.openingRole=role;mesh.receiveShadow=true;root.add(mesh);return mesh;
   }
   function makeWall(room,index,finish){
     if(disposed)throw Error('Layout opening renderer disposed');
@@ -41,9 +46,10 @@ export function createLayoutOpeningRenderer({surfaces}){
         box(root,f,w,s,o.widthMm-2*w,w,DEPTH,-25,frame,'frame-sill',o.id);
         box(root,f,w,s+w,o.widthMm-2*w,h-2*w,6,-25,glass,'window-glass',o.id);
       }else{
-        const plan=doorPlan(room,o),shape=new THREE.Shape(plan.leafPolygonMm.map(([x,z])=>new THREE.Vector2(x*MM,-z*MM)));
-        const geometry=new THREE.ExtrudeGeometry(shape,{depth:(h-plan.frameMm)*MM,bevelEnabled:false,steps:1,curveSegments:1});geometry.rotateX(-Math.PI/2);geometries.add(geometry);
-        const mesh=new THREE.Mesh(geometry,leaf);mesh.userData.openingId=o.id;mesh.userData.openingRole='door-leaf';mesh.userData.hingeMm=[...plan.hingeMm];mesh.receiveShadow=true;root.add(mesh);
+        const plan=doorPlan(room,o),mesh=prism(root,plan.leafPolygonMm,0,h-plan.frameMm,leaf,'door-leaf',o.id);
+        mesh.userData.doorMotion=plan.motion??'hinged';
+        if(plan.motion==='sliding')prism(root,plan.railPolygonMm,s+h-plan.frameMm,plan.frameMm,frame,'door-track',o.id);
+        else mesh.userData.hingeMm=[...plan.hingeMm];
       }
     }
     return root;
@@ -53,7 +59,8 @@ export function createLayoutOpeningRenderer({surfaces}){
 }
 
 // Both native top view and flat PNG use these same source-mm paths. Symbols
-// remain present with 3D walls disabled; door arcs are the helper's inward swing.
+// remain present with 3D walls disabled. Hinged doors use the inward swing;
+// sliding doors use their translated leaf, full track and direction arrow.
 export function openingPlanPrimitives(room){
   const paths=[];
   const add=(role,pointsMm,openingId,closed=false)=>paths.push({role,pointsMm,openingId,closed});
@@ -69,7 +76,15 @@ export function openingPlanPrimitives(room){
     if(o.type==='window'){
       for(const n of [-19,-31])add('window-line',[point(f,w,n),point(f,o.widthMm-w,n)],o.id);
     }else{
-      const p=doorPlan(room,o);add('door-leaf',p.leafPolygonMm,o.id,true);add('door-arc',p.arcMm,o.id);
+      const p=doorPlan(room,o);add('door-leaf',p.leafPolygonMm,o.id,true);
+      if(p.motion==='sliding'){
+        add('door-track',[p.railStartMm,p.railEndMm],o.id);
+        const center=p.closedStartMm.map((v,i)=>(v+p.closedEndMm[i])/2),direction=f.along.map(v=>v*(p.slideDirection==='left'?-1:1));
+        const length=Math.min(160,p.leafWidthMm*.25),head=length*.3;
+        const back=center.map((v,i)=>v-direction[i]*length/2),tip=center.map((v,i)=>v+direction[i]*length/2);
+        add('door-slide-direction',[back,tip],o.id);
+        add('door-slide-arrow',[tip.map((v,i)=>v-direction[i]*head+f.inward[i]*head*.5),tip,tip.map((v,i)=>v-direction[i]*head-f.inward[i]*head*.5)],o.id);
+      }else add('door-arc',p.arcMm,o.id);
     }
   }
   return paths;
