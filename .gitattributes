@@ -24,3 +24,5 @@ docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json -text
 
 # Preserve the registered SIBOOR catalog checksum in working and served bytes.
 site/SIBOOR_TRIDENT_ASSETS.json -text
+# Preserve exact source/native receipt bytes used by the E3NG fastener gate.
+scripts/fixtures/e3ng-skirt-fasteners-source.json -text

@@ -1,6 +1,7 @@
 // Source-bound pose and rejection checks. Actual selected triangles run separately.
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import {createHash} from 'node:crypto';
 import {registerHooks} from 'node:module';
 registerHooks({resolve(specifier,context,next){return specifier==='three'?{url:new URL('../site/viewer/vendor-r180/three.module.js',import.meta.url).href,shortCircuit:true}:next(specifier,context);}});
 const {correctedE3NGSourceWorlds,e3ngInstallationCorrections,e3ngInstallationModel}=await import('../site/viewer/source-assembly-runtime/e3ng-installation-corrections.mjs');
@@ -9,6 +10,13 @@ const {addE3NGSkirtFasteners}=await import('../site/viewer/source-assembly-runti
 const {e3ngSkirtFasteners}=await import('../site/viewer/source-assembly-runtime/e3ng-skirt-fastener-data.mjs');
 const packet=JSON.parse(fs.readFileSync(new URL('../site/source-assembly-assets/packet-rh3d_e3ng_v12_235.json',import.meta.url),'utf8'));
 const fixture=JSON.parse(fs.readFileSync(new URL('./fixtures/e3ng-installations-source.json',import.meta.url),'utf8'));
+// Check the release gate's exact receipt before the longer actual-asset build.
+// Native receipt bytes stay pinned; Git must not normalize its line endings.
+const fastenerAudit=fs.readFileSync(new URL('./audit_e3ng_skirt_fasteners.mjs',import.meta.url),'utf8');
+const fastenerPin=fastenerAudit.match(/^const fixtureSHA='([0-9a-f]{64})';$/m)?.[1];
+assert(fastenerPin,'Missing exact fastener receipt hash');
+const fastenerReceipt=fs.readFileSync(new URL('./fixtures/e3ng-skirt-fasteners-source.json',import.meta.url));
+assert.equal(createHash('sha256').update(fastenerReceipt).digest('hex'),fastenerPin,'Exact E3NG source/native receipt changed');
 const untouched=JSON.stringify(packet),sourceRecords=new Map(packet.parts.map(r=>[r.key,r]));
 assert.equal(packet.model.sha256,e3ngInstallationModel);assert.equal(fixture.model_sha256,e3ngInstallationModel);
 const installed=correctedE3NGSourceWorlds(packet);
