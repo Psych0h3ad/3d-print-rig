@@ -17,8 +17,10 @@ const binding=name=>{
 };
 const S=await import(binding('layout-state.mjs'));
 const G=await import(binding('layout-groups.mjs'));
+const H=await import(binding('layout-clipboard.mjs'));
 const {createLayoutUI}=await import(binding('layout-ui.mjs'));
-const files=['layout-app.mjs','layout-state.mjs','layout-groups.mjs','layout-group-data.mjs','layout-group-labels.mjs','layout-ui.mjs'];
+const {createLayoutTranslator}=await import(pathToFileURL(path.join(site,'layout/layout-i18n.mjs')));
+const files=['layout-app.mjs','layout-state.mjs','layout-groups.mjs','layout-clipboard.mjs','layout-group-data.mjs','layout-group-labels.mjs','layout-ui.mjs','layout-i18n.mjs'];
 const hashes=()=>Object.fromEntries(files.map(n=>['layout/'+n,createHash('sha256').update(fs.readFileSync(path.join(site,'layout',n))).digest('hex')]));
 const before=hashes(),results=[],apps=[];
 function section(start,end){
@@ -33,7 +35,13 @@ const loadBody=section('  if(!startEmpty)try{const saved=readSavedLayout();','  
 const syncSelect=section('function sync(){','async function ensureEquipmentPreview(');
 const shortcuts=section('function placementKey(event){','async function start(){');
 const selectionIds=section('function selectionIds(){','function copySelection(');
-const uiConstruction=onlyLine(l=>/^\s*ui=createLayoutUI\(/.test(l),'One actual UI construction');
+const actionBody=section('async function act(action){','function updateViewPresentation(');
+const idBody=section('const id=prefix=>','const t=');
+const canvasKeys=section("  view.canvas.addEventListener('keydown',event=>{","  view.setOptions({dark:dark()");
+// Bound complete constructor statements by their following startup statements;
+// callbacks may span lines and contain their own nested calls and semicolons.
+const uiConstruction=section('  ui=createLayoutUI(','  ui.setStatus({canPaste:true});');
+const rendererConstruction=section('  view=createLayoutRenderer(',"  sync();view.view('perspective');");
 const recovery=onlyLine(l=>l.includes('readSavedLayout()')&&l.includes('download(new Blob'),'One actual recovery download');
 const catalog=[{id:'app-unit-fixture',label:'Source test printer',widthMm:200,depthMm:180,heightMm:300}];
 const pose=(xMm=0,zMm=0,yawDeg=0)=>({xMm,zMm,yawDeg});
@@ -56,16 +64,26 @@ class StoragePort{
 }
 
 const factory=new Function('deps',`"use strict";
- const {localStorage,document,canvas,container,createLayoutUI,serializeLayout,parseLayout,validatePlacement}=deps;
+ const {localStorage,document,canvas,container,createLayoutUI,serializeLayout,parseLayout,validatePlacement,
+  createDefaultLayout,applyAction,applyWorldMove,worldTransform,renameGroup,ungroup,removeGroup,transformGroup,
+  captureLayoutClipboard,regroupLayoutSelection}=deps;
  ${keys}
  let state=deps.initial,catalog=deps.catalog,rows=deps.catalog,ui,view=deps.view,selected='unit-a';
- let disposed=false,busy=false,roomEditing=false,startEmpty=false,placement=null,interactionGeneration=0;
- const past=[],future=[],actions=[],rotations=[],messages=[],downloads=[],placementCommands=[];
- const $=selector=>document.body.querySelector(selector),t=key=>key,language={t};
+ let disposed=false,busy=false,roomEditing=false,startEmpty=false,placement=null,interactionGeneration=0,operation=null;
+ let groupLibrary=[],nextId=1,rendererOptions;
+ ${idBody}
+ const past=[],future=[],actions=[],rotations=[],messages=[],downloads=[],placementCommands=[],pending=[];
+ const $=selector=>document.body.querySelector(selector),t=deps.translate,language={t};
  const message=(value,error)=>messages.push({text:typeof value==='function'?value():value,error});
  const download=(blob,name)=>downloads.push({blob,name});
- const act=action=>{actions.push(action);if(action.type==='select')select(action.id);};
+ const runAction=(()=>{${actionBody};return act;})();
+ const act=action=>{actions.push(action);if(deps.transactions){const result=runAction(action);pending.push(result);return result;}if(action.type==='select')select(action.id);};
+ const humanError=error=>error?.code||error?.message||String(error);
+ const beginPlacement=spec=>{placementCommands.push(['begin',spec]);placement=spec;};
+ const ensureEquipmentPreview=async()=>true;
  const worldRotate=value=>{rotations.push(value);return true;};
+ const {worldMove,constrainMove,constrainRotate,previewPlacement,placeProposal,updateViewPresentation}=deps;
+ const createLayoutRenderer=options=>{rendererOptions=options;return deps.view;};
  const rotatePlacement=value=>placementCommands.push(['rotate',value]);
  const cancelPlacement=()=>{placementCommands.push(['cancel']);placement=null;};
  ${storeBody}
@@ -76,20 +94,27 @@ const factory=new Function('deps',`"use strict";
  function load(){${loadBody}}
  function recover(){${recovery}}
  ${uiConstruction}
+ ${rendererConstruction}
+ ${canvasKeys}
  ui.update(state,selected);
- return {ui,readSavedLayout,store,load,recover,placementKey,historyKey,select,sync,
+ return {ui,readSavedLayout,store,load,recover,placementKey,historyKey,select,pick,sync,commit,act,selectionIds,
   actions,rotations,messages,downloads,placementCommands,keys:{storageKey,legacyStorageKey,maxFileBytes},
+  rendererOptions:()=>rendererOptions,selected:()=>selected,generation:()=>interactionGeneration,
+  history:()=>({past:past.length,future:future.length}),settle:()=>Promise.all(pending),
   state:()=>state,setState:s=>{state=s;},setView:v=>{view=v;},
   flags:value=>{busy=!!value.busy;roomEditing=!!value.roomEditing;disposed=!!value.disposed;startEmpty=!!value.startEmpty;},
   setPlacement:value=>{placement=value;},getPlacement:()=>placement,
   seedHistory:()=>{past.push(state);future.push(state);},
   dispose:()=>ui.dispose()};`);
-function app(storage=new StoragePort(),initial=empty()){
+function app(storage=new StoragePort(),initial=empty(),transactions=false){
  const document=new TestDocument(),container=document.createElement('aside'),canvas=document.createElement('canvas'),status=document.createElement('p');
  container.id='layout-sidebar';status.id='layout-status';document.body.append(container,canvas,status);
- const view={canvas,setState(){},focusSelected(){return true;}};
+ const view={canvas,pickCalls:[],stateCalls:[],focusCalls:0,cancelCalls:0,gesture:false,
+  setPickedRoots(ids){this.pickCalls.push([...ids]);},setState(...args){this.stateCalls.push(args);},
+  cancelGesture(){this.cancelCalls++;const active=this.gesture;this.gesture=false;return active;},
+  focusSelected(){this.focusCalls++;return true;},view(){}};
  const a=factory({localStorage:storage,initial,catalog,document,canvas,container,view,createLayoutUI,
-  serializeLayout:S.serializeLayout,parseLayout:S.parseLayout,validatePlacement:S.validatePlacement});
+  ...S,...G,...H,transactions,translate:createLayoutTranslator('en')});
  apps.push(a);return {...a,document,container,canvas,storage,view};
 }
 // Legacy tabs execute the exact same unconditional production writer body,
@@ -233,9 +258,179 @@ await test('busy explicit selection cannot change the active Room panel or selec
  assert.equal(a.container.querySelector('#layout-nav-room').hidden,false);assert.equal(a.container.querySelector('#layout-selected-unit').getAttribute('aria-label'),'A · Custom bench');
 });
 
+// Replay actual app construction and action/shortcut bodies. The renderer is a
+// recording port, not a second implementation of pick/selection semantics.
+function integration(initial=labeled){return app(new StoragePort(),initial,true);}
+function checkRoot(a,id,checked=true){
+ const checkbox=a.container.querySelector(`[data-layout-group-member="${id}"]`);assert.ok(checkbox,id);
+ checkbox.checked=checked;checkbox.dispatch('change');
+}
+function command(a,name,parent=a.container){return parent.querySelector(`[data-layout-command="${name}"]`);}
+function usable(node){for(let n=node;n;n=n.parentNode)if(n.hidden)return false;return !!node&&!node.disabled;}
+function canvasPick(a,ids,extra={}){a.rendererOptions().onPick({ids,mode:'toggle',...extra});}
+function assertNoErrors(a){assert.deepEqual(a.messages.filter(m=>m.error),[]);assert.equal(a.container.querySelector('[role="status"]').dataset.error,'false');}
+
+await test('actual renderer onPick binding reaches pick, canonical UI checks and renderer callback once',()=>{
+ const a=integration(),original=encode(a.state());
+ assert.strictEqual(a.rendererOptions().onPick,a.pick);assert.strictEqual(a.rendererOptions().onSelect,a.select);
+ canvasPick(a,['bench-b'],{seedIds:['bench-a']});
+ assert.deepEqual(a.ui.getPickedRootIds(),['bench-a','bench-b']);assert.deepEqual(a.view.pickCalls,[['bench-a','bench-b']]);
+ assert.equal(a.selected(),null);assert.equal(a.view.stateCalls.at(-1)[1],null);
+ for(const id of ['bench-a','bench-b'])assert.equal(a.container.querySelector(`[data-layout-group-member="${id}"]`).checked,true);
+ assert.equal(a.container.querySelector('#layout-selection-count').textContent,'Selected: 2');
+ assert.equal(encode(a.state()),original);assert.deepEqual(a.history(),{past:0,future:0});assert.deepEqual(a.storage.writes,[]);
+ canvasPick(a,['bench-b','missing','printer-a'],{mode:'add',seedIds:['missing']});
+ assert.deepEqual(a.ui.getPickedRootIds(),['bench-a','bench-b']);assert.deepEqual(a.view.pickCalls,[['bench-a','bench-b']]);
+});
+await test('toggling the last canvas root off never revives the former primary or its destructive shortcuts',()=>{
+ const a=integration(),original=encode(a.state());canvasPick(a,['bench-b']);canvasPick(a,['bench-b']);
+ assert.deepEqual(a.ui.getPickedRootIds(),[]);assert.equal(a.selected(),null);assert.deepEqual(a.selectionIds(),[]);
+ assert.deepEqual(a.view.pickCalls,[['bench-b'],[]]);
+ for(const name of ['r','Delete','Backspace','ArrowLeft','ArrowDown','f'])key(a,a.canvas,name);
+ assert.deepEqual(a.actions,[]);assert.deepEqual(a.rotations,[]);assert.equal(a.view.focusCalls,0);assert.equal(encode(a.state()),original);
+});
+await test('actual UI checkbox/select-all/clear callbacks keep renderer roots synchronized without repeated notifications',()=>{
+ const a=integration();checkRoot(a,'bench-b');checkRoot(a,'bench-b');
+ assert.deepEqual(a.view.pickCalls,[['bench-b']]);key(a,a.canvas,'a',{ctrlKey:true});key(a,a.canvas,'a',{metaKey:true});
+ assert.deepEqual(a.view.pickCalls,[['bench-b'],['bench-a','bench-b']]);
+ command(a,'layout.selection.clear').click();command(a,'layout.selection.clear').click();
+ assert.deepEqual(a.view.pickCalls,[['bench-b'],['bench-a','bench-b'],[]]);assert.deepEqual(a.actions,[]);
+});
+await test('callback updates and same-ID echoes are finite through actual UI and app sync bindings',()=>{
+ const a=integration(),record=a.view.setPickedRoots;let depth=0,maxDepth=0;
+ a.view.setPickedRoots=function(ids){
+  depth++;maxDepth=Math.max(maxDepth,depth);assert(depth<3,'Recursive pick notification');
+  assert.deepEqual(a.ui.getPickedRootIds(),ids);record.call(this,ids);a.sync();a.ui.setPickedRootIds([...ids].reverse());depth--;
+ };
+ canvasPick(a,['bench-b']);a.sync();a.sync();assert.equal(maxDepth,1);assert.deepEqual(a.view.pickCalls,[['bench-b']]);
+ assert.equal(a.container.querySelector('[role="status"]').hidden,true);assert.deepEqual(a.messages,[]);
+});
+await test('Ctrl/Cmd+G and visible Group execute production regroup transactions on checked roots with companions',async()=>{
+ for(const source of ['canvas','checkbox','strip'])for(const modifier of ['ctrlKey','metaKey']){
+  const a=integration(),before=encode(a.state()),oldGroup=structuredClone(a.state().groups.find(g=>g.id==='unit-b'));
+  a.select('unit-b');
+  if(source==='checkbox')checkRoot(a,'bench-a');else canvasPick(a,['bench-a']);
+  if(source==='strip')command(a,'layout.selection.group').click();else assert.equal(key(a,a.canvas,'g',{[modifier]:true}).prevented,1);
+  await a.settle();
+  const created=a.state().groups.find(g=>!['unit-a','unit-b'].includes(g.id));assert.ok(created,a.messages.map(m=>m.text).join(','));
+  assert.deepEqual(created.memberIds,['bench-a']);assert.deepEqual(a.state().groups.find(g=>g.id==='unit-b'),oldGroup);
+  assert.deepEqual(a.state().printers,labeled.printers);assert.deepEqual(a.ui.getPickedRootIds(),[]);assert.deepEqual(a.view.pickCalls.at(-1),[]);
+  assert.equal(a.selected(),created.id);assert.deepEqual(a.history(),{past:1,future:0});assert.notEqual(encode(a.state()),before);
+  assert.equal(a.storage.writes.length,1);assertNoErrors(a);
+ }
+});
+await test('Ctrl/Cmd+D and visible Duplicate capture highlighted roots rather than a former primary',async()=>{
+ for(const source of ['canvas','checkbox','strip'])for(const modifier of ['ctrlKey','metaKey']){
+  const a=integration(),original=encode(a.state());a.select('unit-b');
+  if(source==='checkbox')checkRoot(a,'bench-a');else canvasPick(a,['bench-a']);
+  if(source==='strip')command(a,'layout.selection.duplicate').click();else assert.equal(key(a,a.canvas,'d',{[modifier]:true}).prevented,1);
+  await a.settle();const placed=a.getPlacement();assert.equal(placed?.kind,'group',a.messages.map(m=>m.text).join(','));
+  const expected=H.captureLayoutClipboard(a.state(),['bench-a'],catalog,{name:placed.template.name});assert.deepEqual(placed.template,expected);
+  assert.equal(placed.template.printers[0].configurationId,'exact-saved-configuration');
+  assert.equal(encode(a.state()),original);assert.deepEqual(a.history(),{past:0,future:0});assert.deepEqual(a.storage.writes,[]);
+  assert.deepEqual(a.ui.getPickedRootIds(),['bench-a']);assert.deepEqual(a.messages,[]);
+ }
+});
+await test('canvas and list selection clear checked roots; ordinary primary movement works again',async()=>{
+ for(const source of ['canvas','list']){
+  const a=integration();canvasPick(a,['bench-a']);a.setPlacement({kind:'group'});
+  if(source==='canvas')a.rendererOptions().onSelect('unit-b');else a.container.querySelector('[data-layout-group="unit-b"]').click();
+  await a.settle();assert.equal(a.selected(),'unit-b');assert.deepEqual(a.ui.getPickedRootIds(),[]);assert.deepEqual(a.view.pickCalls.at(-1),[]);assert.equal(a.getPlacement(),null);
+  const original=a.state().groups.find(g=>g.id==='unit-b').pose.xMm;key(a,a.canvas,'ArrowRight');await a.settle();
+  assert.equal(a.state().groups.find(g=>g.id==='unit-b').pose.xMm,original+10);assert.deepEqual(a.history(),{past:1,future:0});assertNoErrors(a);
+  canvasPick(a,['bench-a']);a.rendererOptions().onSelect(null);assert.equal(a.selected(),null);assert.deepEqual(a.ui.getPickedRootIds(),[]);
+ }
+});
+await test('Escape cancels an active marquee before clearing existing checked roots; the next Escape clears',()=>{
+ const a=integration();canvasPick(a,['bench-a','bench-b']);const generation=a.generation();a.view.gesture=true;
+ assert.equal(key(a,a.canvas,'Escape').prevented,1);assert.equal(a.view.cancelCalls,1);assert.equal(a.view.gesture,false);
+ assert.deepEqual(a.ui.getPickedRootIds(),['bench-a','bench-b']);assert.deepEqual(a.view.pickCalls,[['bench-a','bench-b']]);
+ assert.deepEqual(a.placementCommands,[]);assert.equal(a.generation(),generation);
+ assert.equal(key(a,a.canvas,'Escape').prevented,1);assert.equal(a.view.cancelCalls,2);
+ assert.deepEqual(a.ui.getPickedRootIds(),[]);assert.deepEqual(a.view.pickCalls,[['bench-a','bench-b'],[]]);assert.equal(a.selected(),null);
+});
+await test('Escape cancels duplicate placement and clears roots without modifying the source plan',async()=>{
+ const a=integration(),original=encode(a.state());canvasPick(a,['bench-a']);key(a,a.canvas,'d',{ctrlKey:true});await a.settle();
+ assert.ok(a.getPlacement());assert.equal(key(a,a.canvas,'Escape').defaultPrevented,true);
+ assert.equal(a.getPlacement(),null);assert.deepEqual(a.ui.getPickedRootIds(),[]);assert.equal(encode(a.state()),original);assert.deepEqual(a.history(),{past:0,future:0});
+});
+await test('busy, room editing, disposed and placement guards reject app picks and selection shortcuts',()=>{
+ for(const flag of ['busy','roomEditing','disposed','placement']){
+  const a=integration(),original=encode(a.state());canvasPick(a,['bench-a']);
+  if(flag==='placement')a.setPlacement({kind:'group'});else {a.flags({[flag]:true});if(flag==='busy')a.sync();}
+  const generation=a.generation(),notifications=a.view.pickCalls.length;
+  canvasPick(a,['bench-b']);
+  for(const [name,extra]of [['g',{ctrlKey:true}],['d',{metaKey:true}],['a',{ctrlKey:true}],['Delete',{}]])key(a,a.canvas,name,extra);
+  assert.deepEqual(a.ui.getPickedRootIds(),['bench-a']);assert.equal(a.view.pickCalls.length,notifications);assert.equal(a.generation(),generation);
+  assert.deepEqual(a.actions,[]);assert.equal(encode(a.state()),original);assert.deepEqual(a.storage.writes,[]);
+  if(flag==='busy'){command(a,'layout.selection.clear').click();a.ui.setPickedRootIds([]);assert.deepEqual(a.ui.getPickedRootIds(),['bench-a']);}
+ }
+});
+await test('highlighted checked roots block primary Delete, Backspace, R and arrow moves while F frames roots',()=>{
+ const a=integration(),original=encode(a.state());checkRoot(a,'bench-b');
+ for(const name of ['Delete','Backspace','r','ArrowLeft','ArrowRight','ArrowUp','ArrowDown'])for(const shiftKey of [false,true])key(a,a.canvas,name,{shiftKey});
+ assert.deepEqual(a.actions,[]);assert.deepEqual(a.rotations,[]);assert.equal(encode(a.state()),original);assert.deepEqual(a.history(),{past:0,future:0});
+ assert.equal(key(a,a.canvas,'f').prevented,1);assert.equal(a.view.focusCalls,1);assert.deepEqual(a.ui.getPickedRootIds(),['bench-b']);
+});
+await test('real commits, support reparenting and reset prune UI roots and notify once per change',()=>{
+ const floor={id:'floor-printer',machineId:catalog[0].id,configurationId:null,attachment:{parentId:null,surfaceId:'floor',...pose(0,2000)}};
+ const initial=S.createDefaultLayout({...labeled,printers:[...labeled.printers,floor]},catalog),a=integration(initial);
+ canvasPick(a,['bench-a','bench-b','floor-printer']);a.commit(S.applyAction(a.state(),{type:'SET_ATTACHMENT',id:floor.id,attachment:{parentId:'bench-b',surfaceId:'top',...pose()}},catalog));
+ assert.deepEqual(a.ui.getPickedRootIds(),['bench-a','bench-b']);assert.deepEqual(a.view.pickCalls,[['bench-a','bench-b','floor-printer'],['bench-a','bench-b']]);
+ a.commit(G.removeGroup(a.state(),'unit-a',catalog));a.sync();assert.deepEqual(a.ui.getPickedRootIds(),['bench-b']);
+ a.commit(empty(),{selection:null});a.sync();assert.deepEqual(a.view.pickCalls,[['bench-a','bench-b','floor-printer'],['bench-a','bench-b'],['bench-b'],[]]);
+ assert.deepEqual(a.ui.getPickedRootIds(),[]);assert.equal(a.container.querySelector('#layout-selection-actions').hidden,true);
+ assert.equal(a.view.stateCalls.at(-1)[0],a.state());assertNoErrors(a);
+});
+await test('canvas pick invalidates an in-flight import using the actual generation guard',async()=>{
+ const a=integration(),original=encode(a.state());let resolveText;const pending=a.act({type:'import',file:{size:100,text:()=>new Promise(resolve=>{resolveText=resolve;})}});
+ canvasPick(a,['bench-b']);resolveText(encode(empty()));await pending;
+ assert.equal(encode(a.state()),original);assert.deepEqual(a.ui.getPickedRootIds(),['bench-b']);assert.deepEqual(a.history(),{past:0,future:0});assert.deepEqual(a.storage.writes,[]);
+});
+
+// These regressions intentionally assert the user-facing selection contract;
+// failures identify production findings, not exceptions to that contract.
+await test('checked-root sidebar Delete cannot remove an unhighlighted former primary',async()=>{
+ const a=integration(),primary=structuredClone(a.state().groups.find(g=>g.id==='unit-a'));checkRoot(a,'bench-b');
+ const button=command(a,'layout.delete',a.container.querySelector('#layout-nav-selection'));if(usable(button))button.click();await a.settle();
+ assert.deepEqual(a.state().groups.find(g=>g.id===primary.id),primary,'Sidebar Delete removed the old unhighlighted group');
+ assert(a.state().furniture.some(f=>f.id==='bench-a'));assert(a.state().printers.some(p=>p.id==='printer-a'));
+});
+await test('checked-root sidebar pose edit cannot move an unhighlighted former primary',async()=>{
+ const a=integration(),original=encode(a.state());checkRoot(a,'bench-b');const field=a.container.querySelector('[data-layout-field="xMm"]');
+ if(usable(field)){field.value='-1400';field.dispatch('input');field.dispatch('change');}await a.settle();
+ assert.equal(encode(a.state()),original,'Sidebar pose edited the old unhighlighted group');
+});
+await test('checked-root sidebar Duplicate is disabled or captures the highlighted selection',async()=>{
+ const a=integration();checkRoot(a,'bench-b');const button=command(a,'layout.duplicate',a.container.querySelector('#layout-nav-selection'));
+ if(usable(button))button.click();await a.settle();const placed=a.getPlacement();
+ if(placed)assert.deepEqual(placed.template,H.captureLayoutClipboard(a.state(),['bench-b'],catalog,{name:placed.template.name}),'Sidebar duplicated the old primary');
+});
+await test('Ctrl/Cmd+Shift+G cannot ungroup an unhighlighted primary while roots are checked',async()=>{
+ for(const modifier of ['ctrlKey','metaKey']){
+  const a=integration(),oldGroup=structuredClone(a.state().groups.find(g=>g.id==='unit-a'));checkRoot(a,'bench-b');
+  key(a,a.canvas,'g',{[modifier]:true,shiftKey:true});await a.settle();
+  assert.deepEqual(a.state().groups.find(g=>g.id===oldGroup.id),oldGroup,'Ungroup targeted the old primary');
+ }
+});
+await test('checkbox selection supersedes an in-flight import just as canvas selection does',async()=>{
+ const a=integration(),original=encode(a.state());let resolveText;const pending=a.act({type:'import',file:{size:100,text:()=>new Promise(resolve=>{resolveText=resolve;})}});
+ checkRoot(a,'bench-b');resolveText(encode(empty()));await pending;
+ assert.equal(encode(a.state()),original,'Late import replaced the newly selected plan');assert.deepEqual(a.ui.getPickedRootIds(),['bench-b']);assert.deepEqual(a.storage.writes,[]);
+});
+
+await test('placing a copy makes its new primary selection replace the source checks',()=>{
+ const a=integration();checkRoot(a,'bench-a');checkRoot(a,'bench-b');
+ const next=structuredClone(a.state());next.furniture.push(S.createDesk({id:'placed-copy',pose:pose(0,2000)}));
+ a.commit(next,{selection:'placed-copy'});
+ assert.deepEqual(a.ui.getPickedRootIds(),[],'Original roots remained checked after placement');
+ assert.deepEqual(a.selectionIds(),['placed-copy'],'Commands must target the newly placed object');
+ assert(a.container.querySelector('#layout-field-xMm'),'The new primary has an editable pose');
+});
+
 assert.deepEqual(hashes(),before,'App/unit source changed during focused replay');
 const report={passed:results.every(r=>r.passed),checks:results.length,results,source_sha256:before,
- actualAppBindings:['store','readSavedLayout','saved-layout startup branch','recovery download callback','placementKey','historyKey','sync','select','createLayoutUI construction'],
- scope:'Actual source storage/read/migration/recovery and keyboard/select/UI bindings with shared Map tab views and DOM ports. Legacy writer reuses the production unconditional writer bound to its v1 key. No full startup/network, actual old-browser parser, simultaneous-new-tab conflict resolution, browser pixels, CAD/native or model validation claim.'};
+ actualAppBindings:['store','readSavedLayout','saved-layout startup branch','recovery download callback','placementKey','historyKey','canvas arrow listener','sync','commit','select','pick','selectionIds','act','createLayoutUI construction including onPickedChange','createLayoutRenderer construction including onPick/onSelect'],
+ scope:'Actual source storage/read/migration/recovery, pick/select/UI callback, action/commit and keyboard bindings. Integration cases execute production regroup and clipboard capture through real imported state/group/clipboard/UI modules. Renderer, placement preview, rotation, file text, storage and download are recording ports. Legacy writer reuses the production writer bound to v1. No renderer hit-testing/marquee geometry, full startup/network, browser pixels, CAD/native or model validation claim.'};
 const reportAt=process.argv.indexOf('--report');if(reportAt>=0)fs.writeFileSync(path.resolve(process.argv[reportAt+1]),JSON.stringify(report,null,2)+'\n');
 console.log(JSON.stringify(report));assert.equal(report.passed,true,'Layout app unit regressions');

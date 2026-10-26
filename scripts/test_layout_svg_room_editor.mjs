@@ -179,7 +179,7 @@ await test('renderer-live-parent-followers-intermediate-reverse-cancel-and-commi
   const factory=new Function('groupInfo','groupingForEntity','deps',`
     const MM=.001,objects=new Map(),planObjects=new Map(),groupEntities=new Map(),current=deps.state,derived=deps.derive(current,deps.catalog);let selectedId=null,drag=null,exporting=false,disposed=false,placing=null;
     const canvas={style:{},setPointerCapture(){},hasPointerCapture(){return true},releasePointerCapture(){}},draw=()=>{},hit=()=>deps.hit;
-    const rotateHandle={dataset:{}},objectTools={dataset:{}};
+    const rotateHandle={dataset:{}},objectTools={dataset:{}},marquee={hidden:true};
     const isPlan=()=>false,updateSelection=()=>{},enableControls=()=>{},onError=e=>{throw e};
     const constrainMove=(proposal,context)=>deps.constrain?deps.constrain(proposal,context,objects):proposal;
     const planePoint=event=>new deps.V(event.worldX,0,event.worldZ);
