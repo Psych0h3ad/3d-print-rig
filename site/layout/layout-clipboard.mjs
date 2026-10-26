@@ -1,7 +1,7 @@
 // Pure selection transactions. The caller owns clipboard I/O and instantiation.
 import {LIMITS, LayoutValidationError, createDefaultLayout, deriveScene, validatePlacement,
-  parseLayout, serializeLayout} from './layout-state.mjs?v=751b8386c868c43eb57d';
-import {createGroup, captureGroupTemplate, validateGroupTemplate} from './layout-groups.mjs?v=bbbb370498717cf1bb2a';
+  parseLayout, serializeLayout} from './layout-state.mjs?v=aaf3e2a50f2b27f89723';
+import {createGroup, captureGroupTemplate, validateGroupTemplate} from './layout-groups.mjs?v=34c055f72b5b436bbb49';
 import {materializeGroupLabels} from './layout-group-labels.mjs?v=1ff84a0cf5540fd3184b';
 
 const MAX_BYTES = 2 * 1024 * 1024;

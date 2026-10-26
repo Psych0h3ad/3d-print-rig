@@ -198,6 +198,17 @@ passage geometry and routing controls, as well as model and controller hashes.
 Only named finite fitting engagements may be excluded from triangle tests.
 Keep open route findings separate from endpoint, visibility and reset passes.
 
+For E3NG, reject the former squared head-loom arch and any reset that restores
+it. Check the whole free span, curvature at both exit joins, fixed display
+length, tube self-contact and actual body triangles. Preserve the distinction
+between the wire loom and the short internal extruder-to-hotend PTFE insert.
+The declared display bend threshold and slack are not measured cable ratings.
+Check the front skirt against the extrusion underside and front plane. Check
+bed-arm covers against the authored snap-in splits, and M3x20 head seats
+against the arm counterbores; a nut pocket or cover face is not the screw seat.
+Retain the original split-jaw gap and nut locations. Exercise movement, reset
+and saved-state restoration with the installed poses, not only source matrices.
+
 Purchased CAD may use construction colors that differ from the product. Check
 the exact manufacturer's appearance before treating white, green or other CAD
 colors as physical materials. Bind any display override to the purchased source

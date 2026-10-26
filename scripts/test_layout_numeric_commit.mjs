@@ -20,11 +20,12 @@ const section=(start,end)=>{const a=app.indexOf(start),b=app.indexOf(end,a+start
 // History, serialization, placement validation, errors and rollback are the real
 // application bodies. Only storage, renderer and DOM are controlled ports.
 const engineFactory=new Function('initial','selection','catalog','S','G','document','t',`
- const {applyAction,validatePlacement,serializeLayout}=S,{transformGroup,renameGroup}=G;
+ const {applyAction,validatePlacement,serializeLayout,worldTransform,resolveWorldRotation,resolveWorldMove,resolveSupportedPrinterRotation}=S,{transformGroup,renameGroup,resolveGroupRotation,resolveGroupMove}=G;
  const past=[],future=[],writes=[],view={setState(){}};
  let state=initial,selected=selection,ui=null,busy=false,disposed=false,roomEditing=false,placement=null,operation=null,interactionGeneration=0;
  const $=selector=>document.body.querySelector(selector),store=()=>writes.push(serializeLayout(state,catalog));
  ${section('function message(','async function ensureEquipmentPreview(')}
+ ${section('let pendingRotation=null,discreteRotation=null;','async function render(')}
  ${section('async function act(action){','function updateViewPresentation(')}
  return {act,select,sync,bind(value){ui=value;sync();},read:()=>({state,past:[...past],future:[...future],writes:[...writes]})};`);
 const catalog=[{id:'numeric-printer',label:'Synthetic numeric fixture',widthMm:240,depthMm:200,heightMm:300}];

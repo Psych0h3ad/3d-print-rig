@@ -753,6 +753,81 @@ export function resolveWorldRotation(state, input, catalog = [], options = {}) {
     throw error;
   }
 }
+// Discrete supported-printer edits are pick-up/reorient/place operations. Only
+// the final pose must fit; continuous scene handles still use resolveWorldRotation.
+// Candidate boundaries are vertex/edge contacts in support-local configuration
+// space. Their projections and pair intersections contain the nearest feasible
+// point of each polygonal cell. Bounds keep this source-only planner search small;
+// exhaustion rejects atomically, never accepts an unchecked fallback.
+export function resolveSupportedPrinterRotation(state,input,catalog=[]){
+  try{
+    if(!plain(input)||Object.keys(input).some(k=>!['id','yawDeg','anchorLocalPointMm'].includes(k))
+      ||!idOK(input.id)||!numberOK(input.yawDeg,-LIMITS.maxYawDeg,LIMITS.maxYawDeg))return false;
+    const machines=catalogOf(catalog);assertState(state,machines);
+    const printer=state.printers.find(p=>p.id===input.id),a=printer?.attachment;
+    const parent=a&&state.furniture.find(f=>f.id===a.parentId);if(!parent)return false;
+    const surface=surfaceUnchecked(state,a.parentId,a.surfaceId);
+    if(surface.fixedMount&&input.yawDeg!==a.yawDeg)return false;
+    if(placementViolations(state,machines).some(e=>e.entityIds[0]===printer.id))return false;
+    const anchor=input.anchorLocalPointMm??a;
+    if(!plain(anchor)||!numberOK(anchor.xMm,-LIMITS.maxCoordinateMm,LIMITS.maxCoordinateMm)||!numberOK(anchor.zMm,-LIMITS.maxCoordinateMm,LIMITS.maxCoordinateMm))return false;
+    const equipment=printerEquipment(state,printer,machines),body=equipment.footprintMm,contact=equipment.supportFootprintMm??body;
+    const rotated=contact.map(p=>rotateXZ(p,input.yawDeg)),box=bounds(rotated),outer=bounds(surface.polygonMm);
+    const loX=outer.minX-box.minX,hiX=outer.maxX-box.maxX,loZ=outer.minZ-box.minZ,hiZ=outer.maxZ-box.maxZ;
+    if(loX>hiX||loZ>hiZ)return false;
+    const clamp=p=>[Math.max(loX,Math.min(hiX,p[0])),Math.max(loZ,Math.min(hiZ,p[1]))];
+    const origin=[anchor.xMm,anchor.zMm],nearest=clamp(origin),yaw=parent.pose.yawDeg+input.yawDeg;
+    const worldPoint=p=>{const q=rotateXZ(p,parent.pose.yawDeg);return [q[0]+parent.pose.xMm,q[1]+parent.pose.zMm];};
+    const trial=p=>{
+      if(!p.every(Number.isFinite)||p[0]<loX||p[0]>hiX||p[1]<loZ||p[1]>hiZ)return false;
+      const next=freeze({...state,printers:state.printers.map(o=>o.id===printer.id?{...o,attachment:{...a,xMm:p[0],zMm:p[1],yawDeg:input.yawDeg}}:o)});
+      assertState(next,machines);
+      // Includes whole-body room/height, authored foot support, shelf boards,
+      // fixed mounts and all final peer envelopes. Door warnings remain warnings.
+      if(validatePlacement(next,machines).some(e=>e.entityIds.includes(printer.id)&&!['DOOR_SWING_OBSTRUCTED','DOOR_SWING_WALL'].includes(e.code)))return false;
+      const world=worldTransform(next,printer.id,machines);
+      return Object.freeze({state:next,yawDeg:world.yawDeg,x:world.xMm,z:world.zMm,pickupRotation:true});
+    };
+    const first=trial(nearest);if(first)return first;
+    if(surface.fixedMount)return false;
+    const lines=[],seen=new Set(),MAX_LINES=256,MAX_TRIALS=128;
+    const line=(nx,nz,c)=>{const length=Math.hypot(nx,nz);if(!length)return;
+      nx/=length;nz/=length;c/=length;if(nx<0||nx===0&&nz<0){nx=-nx;nz=-nz;c=-c;}
+      const key=[nx,nz,c].join(':');if(!seen.has(key)){seen.add(key);lines.push({nx,nz,c});}
+    };
+    line(1,0,loX);line(1,0,hiX);line(0,1,loZ);line(0,1,hiZ);
+    const localPoint=([x,z])=>rotateXZ([x-parent.pose.xMm,z-parent.pose.zMm],-parent.pose.yawDeg);
+    const turned=body.map(p=>rotateXZ(p,input.yawDeg));
+    const contacts=polygon=>{
+      for(let i=0;i<polygon.length;i++){const q=polygon[i],r=polygon[(i+1)%polygon.length],nx=r[1]-q[1],nz=q[0]-r[0];for(const v of turned)line(nx,nz,nx*(q[0]-v[0])+nz*(q[1]-v[1]));}
+      for(let i=0;i<turned.length;i++){const q=turned[i],r=turned[(i+1)%turned.length],nx=r[1]-q[1],nz=q[0]-r[0];for(const v of polygon)line(nx,nz,nx*(v[0]-q[0])+nz*(v[1]-q[1]));}
+    };
+    contacts(state.room.polygonMm.map(localPoint));
+    const scene=deriveScene(state,machines),own=scene.printers.find(p=>p.id===printer.id);
+    for(const peer of [...scene.furniture,...scene.printers]){
+      if(peer.id===printer.id||peer.id===parent.id||Math.min(own.verticalRangeMm[1],peer.verticalRangeMm[1])<=Math.max(own.verticalRangeMm[0],peer.verticalRangeMm[0]))continue;
+      contacts(peer.worldEnvelopeMm.map(localPoint));if(lines.length>MAX_LINES)return false;
+    }
+    if(lines.length>MAX_LINES)return false;
+    const points=[nearest],add=p=>{if(p.every(Number.isFinite)&&p[0]>=loX&&p[0]<=hiX&&p[1]>=loZ&&p[1]<=hiZ)points.push(p);};
+    for(const l of lines){const d=l.c-l.nx*origin[0]-l.nz*origin[1];add([origin[0]+l.nx*d,origin[1]+l.nz*d]);}
+    for(let i=0;i<lines.length;i++)for(let j=i+1;j<lines.length;j++){const a=lines[i],b=lines[j],det=a.nx*b.nz-a.nz*b.nx;if(det)add([(a.c*b.nz-a.nz*b.c)/det,(a.nx*b.c-a.c*b.nx)/det]);}
+    // These are actual inward/outward candidate displacements, not validation
+    // tolerances. Exact final predicates below still decide every acceptance.
+    const candidates=[],keys=new Set();
+    for(const p of points)for(const dx of [0,-1e-8,1e-8])for(const dz of [0,-1e-8,1e-8]){const q=[p[0]+dx,p[1]+dz],key=q.join(':');if(!keys.has(key)){keys.add(key);candidates.push(q);}}
+    candidates.sort((a,b)=>Math.hypot(a[0]-origin[0],a[1]-origin[1])-Math.hypot(b[0]-origin[0],b[1]-origin[1]));
+    let tries=0;
+    for(const p of candidates){
+      if(p[0]<loX||p[0]>hiX||p[1]<loZ||p[1]>hiZ||!polygonContains(surface.polygonMm,rotated.map(v=>[v[0]+p[0],v[1]+p[1]])))continue;
+      const w=worldPoint(p),polygon=transformPolygon(body,{xMm:w[0],zMm:w[1],yawDeg:yaw});
+      if(!polygonContains(state.room.polygonMm,polygon))continue;
+      if([...scene.furniture,...scene.printers].some(peer=>peer.id!==printer.id&&peer.id!==parent.id&&Math.min(own.verticalRangeMm[1],peer.verticalRangeMm[1])>Math.max(own.verticalRangeMm[0],peer.verticalRangeMm[0])&&polygonsOverlap(polygon,peer.worldEnvelopeMm)))continue;
+      if(++tries>MAX_TRIALS)return false;const result=trial(p);if(result)return result;
+    }
+    return false;
+  }catch(error){if(error instanceof LayoutValidationError)return false;throw error;}
+}
 // Public renderer callback shape. The app uses resolveWorldMove to retain the
 // same transaction for its once-only commit; this convenience remains pure.
 export function previewWorldMove(state, input, catalog = [], options = {}) {

@@ -178,6 +178,7 @@ await test('renderer-live-parent-followers-intermediate-reverse-cancel-and-commi
     {id:'floor',machineId:'fixture-machine',configurationId:null,attachment:{parentId:null,surfaceId:'floor',xMm:1800,zMm:-800,yawDeg:0}}]},cat);
   const factory=new Function('groupInfo','groupingForEntity','deps',`
     const MM=.001,objects=new Map(),planObjects=new Map(),groupEntities=new Map(),current=deps.state,derived=deps.derive(current,deps.catalog);let selectedId=null,drag=null,exporting=false,disposed=false,placing=null;
+    const openingInteraction=null,openingEvent=()=>false,setOpeningSelection=()=>{}; // This fixture has no room openings.
     const canvas={style:{},setPointerCapture(){},hasPointerCapture(){return true},releasePointerCapture(){}},draw=()=>{},hit=()=>deps.hit;
     const rotateHandle={dataset:{}},objectTools={dataset:{}},marquee={hidden:true};
     const isPlan=()=>false,updateSelection=()=>{},enableControls=()=>{},onError=e=>{throw e};

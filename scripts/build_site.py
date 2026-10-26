@@ -429,6 +429,16 @@ def main():
                     '--experimental-loader', './scripts/source-assembly-test-loader.mjs',
                     str(ROOT/'scripts/audit_ender_bowden.mjs'), '--site', str(target),
                     '--report', str(target/'review/ender-bowden.json')], cwd=ROOT, check=True)
+    # Verify E3NG installed interfaces from the actual checksum-pinned source
+    # triangles, not only the source ledger or a visibility fixture.
+    with tempfile.TemporaryDirectory(prefix='e3ng-installation-review-') as folder:
+        subprocess.run(['node', '--max-old-space-size=192',
+                        '--experimental-loader', './scripts/source-assembly-test-loader.mjs',
+                        str(ROOT/'scripts/audit_e3ng_routes.mjs'),
+                        str(target/'source-assembly-assets/packet-rh3d_e3ng_v12_235.json'),
+                        '--origin', 'https://psych0h3ad.github.io',
+                        '--out', str(Path(folder)/'actual-installed-interfaces.json')],
+                       cwd=ROOT, check=True, timeout=120)
     # Static ELEGOO assemblies retain source geometry; no motion/palette claim.
     # Keep detailed inspection artifacts outside the public site.
     with tempfile.TemporaryDirectory(prefix='elegoo-review-') as folder:

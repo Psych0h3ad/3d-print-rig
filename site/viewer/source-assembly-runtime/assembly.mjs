@@ -3,7 +3,9 @@ import * as THREE from 'three';
 import {initialState,validateState,validateReviewTransition,visibleKeys,worldDelta,reviewWorldDelta} from './state.mjs?v=b5247a9c87c6a42703d7';
 import {createVirtuCompleteFlex,createVirtuCompleteFlex190,createSourceBelts191} from './motion_features.mjs?v=0611345fe57584a0be70';
 import {createSourceDriveController,createSourceCompanions} from './source_drive304.mjs?v=579ad6e6384362d2d3fb';
-import {createHeadLoom306} from './source_loom306.mjs?v=99eb6785ca70b024911b';
+import {createHeadLoom306} from './source_loom306.mjs?v=a1931bc572bb4764774b';
+import {correctedE3NGSourceWorlds} from './e3ng-installation-corrections.mjs?v=137c54c767286c877a48';
+import {addE3NGSkirtFasteners} from './e3ng-skirt-fasteners.mjs?v=f1bc366716bacadf348b';
 export const materialRole=record=>{if(record.kind!=='printed')return 'native';if(!['M','A'].includes(record.material_role))throw Error('Unclassified printed source material: '+record.source_identity);return record.material_role;};
 export function createAssembly(gltf,p){
  const root=gltf.scene,parts=new Map(),rest=new Map(),materials=[],routes=[],supersededGeometries=new Set(),supersededMaterials=new Set();
@@ -13,6 +15,8 @@ export function createAssembly(gltf,p){
   const err=Math.max(...n.matrixWorld.elements.map((v,i)=>Math.abs(v-r.matrix[i])));if(err>1e-7)throw Error('Source matrix mismatch: '+r.key);
   parts.set(r.key,{node:n,record:r});rest.set(r.key,{matrix:n.matrix.clone(),world:n.matrixWorld.clone(),visible:n.visible});n.matrixAutoUpdate=false;
  }
+ const sourceInstallations=correctedE3NGSourceWorlds(p);
+ const installationCompanions=addE3NGSkirtFasteners({root,packet:p,parts,rest,all});
  const nodeOwners=new Map([...parts].map(([key,r])=>[r.node,key]));
  const ownerOf=n=>{for(let q=n;q;q=q.parent)if(nodeOwners.has(q))return nodeOwners.get(q);return null;};
  for(const n of all)if(n.isMesh&&!ownerOf(n))throw Error('Unregistered source mesh');
@@ -32,11 +36,11 @@ export function createAssembly(gltf,p){
  let flexState=null,state=initialState(p);
  const view={packet:p,parts,root},sourceDrive=p.source_drive304?.rotation?createSourceDriveController(view,p.source_drive304.rotation):null,sourceCompanions=p.source_drive304?.companions?createSourceCompanions(view,p.source_drive304.companions,ownedGeometries):null;
  const sourceHeadLoom=p.source_loom306?createHeadLoom306(view,p.source_loom306.route,ownedGeometries):null;
- function apply(s){if(p.source_probe_state303)s={...s,probe_state:s.probe_state??'attached'};validateState(s,p);validateReviewTransition(p,state,s);const visible=visibleKeys(p,s);
+ function apply(s){if(p.source_probe_state303)s={...s,probe_state:s.probe_state??'attached'};validateState(s,p);validateReviewTransition(p,state,s);const visible=visibleKeys(p,s);for(const instance of installationCompanions)if(visible.has(instance.parent_key))visible.add(instance.key);
   const variantOverrides=p.variants.find(v=>v.id===s.variant).matrix_overrides||{},probeOverrides=s.probe_state==='parked'?p.source_probe_state303.parked_world_by_key:{},overrides={...variantOverrides,...probeOverrides};
-  const desired=new Map();for(const [key,{record}]of parts){const r=rest.get(key),world=overrides[key]?new THREE.Matrix4().fromArray(overrides[key]):r.world.clone(),delta=worldDelta(s.axes,record.motion_axes,p);const reviewDelta=reviewWorldDelta(p,key,s.review_axes,s.probe_state);for(let i=0;i<3;i++)world.elements[12+i]+=delta[i]+reviewDelta[i];desired.set(key,world);}
+  const desired=new Map();for(const [key,{record}]of parts){const r=rest.get(key),world=overrides[key]?new THREE.Matrix4().fromArray(overrides[key]):(sourceInstallations.get(key)??r.world).clone(),delta=worldDelta(s.axes,record.motion_axes,p);const reviewDelta=reviewWorldDelta(p,key,s.review_axes,s.probe_state);for(let i=0;i<3;i++)world.elements[12+i]+=delta[i]+reviewDelta[i];desired.set(key,world);}
   // Resolve absolute source-world targets in parent-before-child order, applying motion once.
-  const nativePose=Object.values(s.axes).every(v=>v===0)&&Object.values(s.review_axes||{}).every(v=>v===0);for(const node of all){const key=nodeOwners.get(node);if(key){if(nativePose&&!overrides[key])node.matrix.copy(rest.get(key).matrix);else{const world=desired.get(key),inverse=node.parent?.matrixWorld.clone().invert()||new THREE.Matrix4();node.matrix.multiplyMatrices(inverse,world);}node.visible=rest.get(key).visible&&visible.has(key);}node.updateWorldMatrix(false,false);}
+  const nativePose=Object.values(s.axes).every(v=>v===0)&&Object.values(s.review_axes||{}).every(v=>v===0);for(const node of all){const key=nodeOwners.get(node);if(key){if(nativePose&&!overrides[key]&&!sourceInstallations.has(key))node.matrix.copy(rest.get(key).matrix);else{const world=desired.get(key),inverse=node.parent?.matrixWorld.clone().invert()||new THREE.Matrix4();node.matrix.multiplyMatrices(inverse,world);}node.visible=rest.get(key).visible&&visible.has(key);}node.updateWorldMatrix(false,false);}
   for(const r of routes){const position=r.mesh.geometry.attributes.position;position.array.set(r.source);const inverse=r.mesh.matrixWorld.clone().invert(),origin=new THREE.Vector3().setFromMatrixPosition(r.mesh.matrixWorld),localOrigin=origin.clone().applyMatrix4(inverse);for(const [a,w]of Object.entries(r.weights)){const delta=new THREE.Vector3(...worldDelta(s.axes,[a],p)),local=origin.clone().add(delta).applyMatrix4(inverse).sub(localOrigin);for(let i=0;i<w.length;i++){position.array[3*i]+=local.x*w[i];position.array[3*i+1]+=local.y*w[i];position.array[3*i+2]+=local.z*w[i];}}position.needsUpdate=true;r.mesh.geometry.computeBoundingBox();r.mesh.geometry.computeBoundingSphere();if(Object.values(s.axes).some(v=>v!==0))r.mesh.geometry.computeVertexNormals();else{r.mesh.geometry.attributes.normal.array.set(r.sourceNormals);r.mesh.geometry.attributes.normal.needsUpdate=true;}}
   if(flex){for(const key of flex.controlledKeys){if(parts.get(key).record.motion_axes.length||p.private_source_motion172.target_axes_by_key[key].length)throw Error('Flex would receive a duplicate rigid transform: '+key);}flexState=flex.update(s.review_axes);}
   if(sourceDrive)sourceDrive.update(s.review_axes?.z??0);
@@ -53,5 +57,5 @@ export function createAssembly(gltf,p){
   return findings;
  }
  function dispose(){for(const m of new Set([...materials.map(r=>r.material),...supersededMaterials]))m.dispose();for(const g of new Set([...ownedGeometries,...supersededGeometries]))g.dispose();for(const n of ownedInstances)n.dispose();}
- apply(state);return {root,packet:p,parts,rest,materials,routes,flex,sourceBelts,sourceDrive,sourceCompanions,sourceHeadLoom,get flexState(){return flexState},ownedGeometries,ownedInstances,reset,snapshot,apply,checkRoutes,dispose};
+ apply(state);return {root,packet:p,parts,rest,materials,routes,flex,sourceBelts,sourceDrive,sourceCompanions,sourceHeadLoom,sourceInstallations,installationCompanions,get flexState(){return flexState},ownedGeometries,ownedInstances,reset,snapshot,apply,checkRoutes,dispose};
 }
