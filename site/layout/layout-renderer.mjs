@@ -3,6 +3,8 @@ import {OrbitControls} from '../viewer/vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from '../viewer/vendor-r180/RoomEnvironment.js';
 import {deriveScene} from './layout-state.mjs?v=751b8386c868c43eb57d';
 import {createLayoutSurfaces, resolveSurfaceAppearance, wallSurfaceGeometry} from './layout-surfaces.mjs?v=0e7f271c883eb7ec8844';
+import {printerSilhouetteParts,printerSilhouetteSourceRoles} from './layout-printer-shapes.mjs?v=4908029ca70fd9b43559';
+import {createPrinterPreviewMeshCache} from './layout-printer-preview-mesh.mjs?v=13f907586c6d381eb6d4';
 import {drawPlanMeasurements} from './layout-plan-measurements.mjs?v=ccb8d47a212b4279e38a';
 import {groupInfo, groupingForEntity} from './layout-groups.mjs?v=bbbb370498717cf1bb2a';
 import {groupLabel} from './layout-group-labels.mjs?v=1ff84a0cf5540fd3184b';
@@ -30,8 +32,8 @@ function printerPreviewParts(row) {
   const [w,h,z]=[d.width,d.height,d.depth].map(v=>v*.001);
   if(![w,h,z].every(v=>Number.isFinite(v)&&v>0))throw Error('Invalid printer preview dimensions');
   const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
-  const style=['ender3','switchwire','sboom'].includes(row.family)?'moving-bed':
-    ['vminion','tictac','rook','lh_stinger','snakeoil_3s'].includes(row.family)?'cantilever':
+  const style=['ender3','switchwire','sboom','elegoo_neptune3','lh_stinger'].includes(row.family)?'moving-bed':
+    ['vminion','tictac','aether','snakeoil_3s'].includes(row.family)?'cantilever':
     row.family==='positron'?'inverted':'box-frame';
   const original=row.proxy?.parts||[];
   if(!Array.isArray(original)||original.length>128||original.some(p=>
@@ -39,8 +41,10 @@ function printerPreviewParts(row) {
     !Array.isArray(p.centerM)||p.centerM.length!==3||!p.centerM.every(Number.isFinite)))throw Error('Invalid printer preview parts');
   const parts=original.length?[...original]:[{wireframe:true,sizeM:[w,h,z],centerM:[0,h/2,0],color:'#718096'}];
   if(row.proxy?.appendGenericPrinterCues===false)return {style:'exterior',parts,simplePreview:true};
-  const solids=original.filter(p=>!p.wireframe),has=role=>solids.some(p=>p.proxyRole===role);
-  const frame=solids.filter(p=>!['bed','base','head'].includes(p.proxyRole)&&Math.max(...p.sizeM)>Math.min(w,h,z)*.3);
+  const detail=printerSilhouetteParts(row),sourceRoles=printerSilhouetteSourceRoles(row);
+  parts.push(...detail);
+  const solids=parts.filter(p=>!p.wireframe).map(p=>({...p,proxyRole:sourceRoles[p.sourcePartKey]??p.proxyRole})),has=role=>solids.some(p=>p.proxyRole===role);
+  const frame=solids.filter(p=>!['bed','head','panel','spool','display','motor'].includes(p.proxyRole)&&Math.max(...p.sizeM)>Math.min(w,h,z)*.3&&p.sizeM.toSorted((a,b)=>b-a)[0]>=p.sizeM.toSorted((a,b)=>b-a)[1]*2);
   const span=(axis,extent)=>{
     const lo=frame.length?Math.min(...frame.map(p=>p.centerM[axis]-p.sizeM[axis]/2)):-extent*.4;
     const hi=frame.length?Math.max(...frame.map(p=>p.centerM[axis]+p.sizeM[axis]/2)):extent*.4;
@@ -56,24 +60,43 @@ function printerPreviewParts(row) {
   const fw=Math.min(bw*.09,.04),fd=Math.min(bz*.09,.04);
   for(const x of [-1,1])for(const q of [-1,1])
     add('contact-foot',[fw,foot,fd],[cx+x*(bw-fw)/2,foot/2,cz+q*(bz-fd)/2],'#253640');
-  add('base-cue',[bw,baseTop-foot,bz],[cx,(baseTop+foot)/2,cz],'#536877');
+  if(!has('base'))add('base-cue',[bw,baseTop-foot,bz],[cx,(baseTop+foot)/2,cz],'#363f43');
   if(!has('bed')){
     const bh=Math.min(h*.016,.008),by=Math.max(baseTop+bh*2,h*(style==='inverted'?.75:.27));
     const zw=bz*.68,xw=bw*.68,bzCenter=clamp(cz+(style==='moving-bed'?bz*.1:0),-(z-zw)/2,(z-zw)/2);
-    add('bed-cue',[xw,bh,zw],[cx,by,bzCenter],'#c5d8df');
+    add('bed-cue',[xw,bh,zw],[cx,by,bzCenter],'#c9b778');
     const rise=by-bh/2-baseTop,thick=Math.min(bw,bz)*.045;
     for(const side of [-1,1])add('bed-support-cue',[thick,rise,thick],
       [cx+side*xw*.35,baseTop+rise/2,bzCenter-zw*.3],'#718794');
   }
-  const gantries=solids.filter(p=>p.proxyRole==='gantry'),existing=gantries.sort((a,b)=>b.centerM[1]-a.centerM[1])[0];
-  const gy=existing?.centerM[1]??h*(style==='inverted'?.3:.72),gz=existing?.centerM[2]??cz;
-  if(!has('gantry'))add('gantry-cue',[bw*.78,h*.035,bz*.07],[cx,gy,gz],'#367b85');
+  const topFrame=frame.length?Math.max(...frame.map(p=>p.centerM[1]+p.sizeM[1]/2)):h;
+  const sourceHeads=solids.filter(p=>p.proxyRole==='head');
+  const headTop=sourceHeads.length?Math.max(...sourceHeads.map(p=>p.centerM[1]+p.sizeM[1]/2)):null;
+  const crossbars=frame.filter(p=>p.sizeM[0]>bw*.45&&p.sizeM[0]>3*Math.max(p.sizeM[1],p.sizeM[2])&&p.centerM[1]>baseTop+.015&&p.centerM[1]<topFrame*.85);
+  const gantries=solids.filter(p=>p.proxyRole==='gantry');
+  const existing=(gantries.length?gantries:crossbars).sort((a,b)=>headTop===null?b.centerM[1]-a.centerM[1]:Math.abs(a.centerM[1]-headTop)-Math.abs(b.centerM[1]-headTop))[0];
+  const gy=existing?.centerM[1]??headTop??h*(style==='inverted'?.3:.72),gz=existing?.centerM[2]??cz;
+  if(!has('gantry')&&!crossbars.length)add('gantry-cue',[bw*.78,h*.035,bz*.07],[cx,gy,gz],'#647981');
   if(!has('head')){
     const hh=h*.075,hw=bw*.12,hd=bz*.14;
     add('head-cue',[hw,hh,hd],[clamp(existing?.centerM[0]??cx,-(w-hw)/2,(w-hw)/2),
       clamp(gy-hh/2,hh/2,h-hh/2),clamp(gz+bz*.035,-(z-hd)/2,(z-hd)/2)],'#2d9b9b');
   }
-  return {style,parts,simplePreview:true};
+  // Thin planning surfaces retain an open view of the machine. Their extents
+  // come from the existing frame envelope; these are not replacement CAD.
+  const enclosed=['v24','trident','micron','v0','vcore4','snakeoil_xy','vzbot','doomcube','satsuma','remorph','annex_k1','annex_k2','annex_k3','virtu','switchwire','crossant'].includes(row.family);
+  if(enclosed&&!has('panel')){
+    const top=frame.length?Math.min(h,Math.max(...frame.map(p=>p.centerM[1]+p.sizeM[1]/2))):h*.94;
+    const bottom=Math.max(baseTop,foot),ph=top-bottom,thick=Math.min(.0025,bw*.015,bz*.015);
+    const glass=(size,center)=>{add('panel-cue',size,center,'#779394');parts.at(-1).opacity=.16;};
+    if(ph>h*.2){
+      glass([thick,ph,bz*.9],[cx-(bw-thick)/2,bottom+ph/2,cz]);
+      glass([thick,ph,bz*.9],[cx+(bw-thick)/2,bottom+ph/2,cz]);
+      add('rear-panel-cue',[bw*.91,ph,thick],[cx,bottom+ph/2,cz-(bz-thick)/2],'#424c50');
+    }
+  }
+  if(parts.length>128)throw Error('Printer preview part budget exceeded');
+  return {style,parts,sourceRoles,simplePreview:true};
 }
 
 export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>{},onMove=()=>{},constrainMove=({x,z})=>({x,z}),onRotate=()=>{},constrainRotate=({yawDeg})=>({yawDeg}),onPlacementMove=()=>null,onPlacementCommit=()=>{},onError=()=>{},onViewChange=()=>{}}) {
@@ -125,6 +148,9 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   const cylinderGeometry=new THREE.CylinderGeometry(.5,.5,1,24);
   const equipmentTubeGeometries=new Map();
   const equipmentMeshCache=createEquipmentMeshCache(THREE);
+  const printerMeshCache=createPrinterPreviewMeshCache(THREE),printerPreviews=new Map();
+  const printerMaterial=new THREE.MeshStandardMaterial({vertexColors:true,roughness:.74,metalness:.04});
+  const printerGlassMaterial=new THREE.MeshStandardMaterial({vertexColors:true,roughness:.38,metalness:.03,transparent:true,opacity:.18,depthWrite:false});
   const placementGroup=new THREE.Group(),placementBody=new THREE.Group();placementGroup.userData.layoutPlacementPreview=true;placementGroup.add(placementBody);scene.add(placementGroup);placementGroup.visible=false;
   const ghostMaterial=new THREE.MeshBasicMaterial({color:0x21a795,transparent:true,opacity:.4,depthWrite:false});
   const ghostLineMaterial=new THREE.LineBasicMaterial({color:0x21a795,transparent:true,opacity:.95,depthTest:false,depthWrite:false});
@@ -326,19 +352,40 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     const angle=((yaw%360)+360)%360;rotationValue.textContent=`${Math.abs(angle-360)<.05||Math.abs(angle)<.05?0:Math.round(angle*10)/10}°`;
   }
   function presentView(){furnitureGroup.visible=!isPlan();printersGroup.visible=!isPlan();contactGroup.visible=!isPlan();planGroup.visible=isPlan();placementBody.visible=!isPlan();renderer.shadowMap.enabled=!isPlan();grid.material.opacity=isPlan()?.35:.12;for(const o of roomGroup.children)if(o.userData.roomOwned)o.material=isPlan()?planFloorMaterial:o.userData.finishMaterial;enableControls();refreshWalls();updateSelection();}
+  function previewFor(row){
+    if(row.proxy?.appendGenericPrinterCues===false)return printerPreviewParts(row);
+    if(!printerPreviews.has(row.id)){
+      const preview=printerPreviewParts(row);
+      const opaque=[],glass=[];
+      for(const part of preview.parts){
+        if(part.wireframe)continue;
+        const color=!part.previewCue&&['#495564','#405568'].includes(part.color)?'#303a40':part.color||'#465258';
+        (part.opacity<1?glass:opaque).push({...part,color});
+      }
+      printerPreviews.set(row.id,{...preview,opaque,glass});
+    }
+    return printerPreviews.get(row.id);
+  }
+  function addPrinterPreview(parent,row,ghost=false){
+    const preview=previewFor(row);
+    if(row.proxy?.appendGenericPrinterCues===false){
+      for(const p of preview.parts)if(!p.wireframe)previewPart(parent,p,ghost?ghostMaterial:undefined);
+    }else{
+      for(const [parts,mat]of [[preview.opaque,printerMaterial],[preview.glass,printerGlassMaterial]])if(parts.length){
+        const mesh=new THREE.Mesh(printerMeshCache.geometry(parts),ghost?ghostMaterial:mat);
+        mesh.castShadow=mesh.receiveShadow=!ghost&&parts===preview.opaque;
+        mesh.userData.proxyRole=parts===preview.opaque?'printer-silhouette':'printer-glazing';
+        mesh.userData.previewCue=true;mesh.userData.previewPartCount=parts.length;parent.add(mesh);
+      }
+    }
+    return preview;
+  }
   function makePrinter(e){
     const g=new THREE.Group();printersGroup.add(g);record(e,g);
     const row=resolveLayoutEquipment(catalogMachine(e.machineId),e.equipmentVariant);if(!row)throw Error('Unknown layout printer');
-    // Catalog proxy parts already use a normalized contact plane. The scene
-    // position may include a native base offset needed only by other recipes.
+    // Proxies use the catalog contact plane, independent of full-CAD offsets.
     g.position.y=Number.isFinite(e.supportYM)?e.supportYM:e.positionM.y-(row.baseOffsetMm||0)*MM;
-    const preview=printerPreviewParts(row);g.userData.simplePreview=true;g.userData.previewStyle=preview.style;
-    for(const p of preview.parts){
-      let part;
-      if(p.wireframe){part=new THREE.LineSegments(wireGeometry,wireMaterial);part.scale.set(...p.sizeM);part.position.set(...p.centerM);g.add(part);}
-      else {const role=p.proxyRole||'',color=row.proxy?.appendGenericPrinterCues===false?p.color:role.includes('head')?'#36818b':role.includes('bed')&&!role.includes('support')?'#b7bfbb':role.includes('gantry')?'#647981':role==='contact-foot'?'#343d41':role.includes('base')?'#59666d':p.color||'#465258';part=previewPart(g,{...p,color});}
-      part.userData.previewCue=!!p.previewCue;part.userData.proxyRole=p.proxyRole||'source-bounds';
-    }
+    const preview=addPrinterPreview(g,row);g.userData.simplePreview=true;g.userData.previewStyle=preview.style;g.userData.previewPartCount=preview.parts.filter(p=>!p.wireframe).length;
     return g;
   }
   // Soft envelope occlusion only: no native-footprint or CAD shadow claim. It
@@ -543,7 +590,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
             const node=new THREE.Group();node.position.set(e.positionM.x,e.supportYM??e.positionM.y,e.positionM.z);node.rotation.y=e.yawRad;placementBody.add(node);
             if(e.type==='printer'){
               const row=resolveLayoutEquipment(catalogMachine(e.machineId),e.equipmentVariant);if(!row)throw Error('Unknown group placement printer');
-              for(const part of printerPreviewParts(row).parts)previewPart(node,part,ghostMaterial);
+              addPrinterPreview(node,row,true);
             }else if(e.type==='popstation_mini'){
               for(const part of getLayoutEquipment('biqu_pop_station_mini_layout_reference',e.equipmentVariant||'empty').proxy.parts)previewPart(node,part,ghostMaterial);
             }else{
@@ -554,7 +601,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
           }
         }catch(error){for(const child of [...placementBody.children])if(child!==ghostOutline)placementBody.remove(child);placing=null;placementBounds=null;value=null;onError(error);}
       }else if(value.kind==='printer'){
-        const row=catalogMachine(value.machineId);if(row)for(const part of printerPreviewParts(row).parts)if(!part.wireframe)previewPart(placementBody,part,ghostMaterial);
+        const row=catalogMachine(value.machineId);if(row)addPrinterPreview(placementBody,row,true);
       }else if(value.kind==='popstation_mini'){
         for(const part of getLayoutEquipment('biqu_pop_station_mini_layout_reference','empty').proxy.parts)previewPart(placementBody,part,ghostMaterial);
       }else{
@@ -783,7 +830,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
       exporting=false;exportAbort=null;externalSignal?.removeEventListener('abort',forwardAbort);presentView();if(disposed)releaseResources();else{resize();draw();}
     }
   }
-  function releaseResources(){if(resourcesDisposed)return;resourcesDisposed=true;ghostMaterial.dispose();ghostLineMaterial.dispose();ghostFootprint.geometry.dispose();ghostFootprint.material.dispose();placementGuides.geometry.dispose();disposeTree(planGroup);planSelection.geometry.dispose();planSelection.material.dispose();clearRoom();openingRenderer.dispose();clearContacts();surfaces.dispose();planFloorMaterial.dispose();contactPlaneGeometry.dispose();boxGeometry.dispose();cylinderGeometry.dispose();for(const g of equipmentTubeGeometries.values())g.dispose();equipmentTubeGeometries.clear();equipmentMeshCache.dispose();wireGeometry.dispose();wireMaterial.dispose();for(const m of palette.values())m.dispose();grid.geometry.dispose();grid.material.dispose();selectionBox.geometry.dispose();selectionBox.material.dispose();keyLight.shadow.dispose();environment.dispose();renderer.dispose();canvas.remove();}
+  function releaseResources(){if(resourcesDisposed)return;resourcesDisposed=true;ghostMaterial.dispose();ghostLineMaterial.dispose();ghostFootprint.geometry.dispose();ghostFootprint.material.dispose();placementGuides.geometry.dispose();disposeTree(planGroup);planSelection.geometry.dispose();planSelection.material.dispose();clearRoom();openingRenderer.dispose();clearContacts();surfaces.dispose();planFloorMaterial.dispose();contactPlaneGeometry.dispose();boxGeometry.dispose();cylinderGeometry.dispose();for(const g of equipmentTubeGeometries.values())g.dispose();equipmentTubeGeometries.clear();equipmentMeshCache.dispose();printerMeshCache.dispose();printerPreviews.clear();printerMaterial.dispose();printerGlassMaterial.dispose();wireGeometry.dispose();wireMaterial.dispose();for(const m of palette.values())m.dispose();grid.geometry.dispose();grid.material.dispose();selectionBox.geometry.dispose();selectionBox.material.dispose();keyLight.shadow.dispose();environment.dispose();renderer.dispose();canvas.remove();}
   function dispose(){if(disposed)return;cancel();disposed=true;exportAbort?.abort();if(frame)cancelAnimationFrame(frame);if(placementFrame)cancelAnimationFrame(placementFrame);observer.disconnect();perspectiveControls.dispose();planControls.dispose();eventWindow?.removeEventListener('blur',cancel);eventWindow?.removeEventListener('keydown',keyCancel);for(const [element,type,handler]of toolListeners)element.removeEventListener(type,handler);clearUnitMarkers();unitLabels.remove();objectTools.remove();measurementsCanvas.remove();for(const [type,handler]of [['pointerdown',down],['pointermove',move],['pointerup',up],['pointercancel',cancel],['lostpointercapture',cancel]])canvas.removeEventListener(type,handler,true);if(!exporting)releaseResources();}
-  resize();setTool();return {setState,setTool,setOptions,setPlacement,refreshPlacement:()=>updatePlacement(),view,getView,focusSelected,exportImage,dispose,canvas};
+  resize();setTool();return {setState,setTool,setOptions,setPlacement,refreshPlacement:()=>updatePlacement(),view,getView,focusSelected,exportImage,dispose,canvas,getPreviewMetrics:()=>({cache:printerMeshCache.stats(),render:{...renderer.info?.render},memory:{...renderer.info?.memory}})};
 }

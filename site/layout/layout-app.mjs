@@ -500,7 +500,7 @@ async function start(){
   if(!startEmpty)try{const saved=readSavedLayout();if(saved&&saved.length<=maxFileBytes){state=parseLayout(saved,catalog);store();}}catch{message(()=>t('layout.error.savedPlan'),true);}
   try{const saved=localStorage.getItem(groupLibraryKey);if(saved)groupLibrary=parseGroupLibrary(saved,catalog);}catch{message(()=>t('layout.group.libraryUnavailable'),true);}
   if(!await ensureEquipmentPreview(state)||disposed)return;
-  const {createLayoutRenderer}=await import('./layout-renderer.mjs?v=70d97533254f31c566bf');
+  const {createLayoutRenderer}=await import('./layout-renderer.mjs?v=ea024c63ef5452c2860e');
   ui=createLayoutUI({container:$('#layout-sidebar'),onAction:act,t:language.t,catalog:rows,onObjectSearchEscape:()=>view?.canvas.focus()});
   ui.setStatus({canPaste:true});
   refreshGroupLibrary();

@@ -152,15 +152,17 @@ const {groupInfo,groupingForEntity}=G;imports.push(pin(path.join(A,'layout/layou
 const {groupLabel}=(await realModule(path.join(A,'layout/layout-group-labels.mjs'))).namespace;
 const {getLayoutEquipment,resolveLayoutEquipment}=(await realModule(path.join(A,'layout/layout-equipment.mjs'))).namespace;
 const {createEquipmentMeshCache}=(await realModule(path.join(A,'layout/layout-equipment-mesh.mjs'))).namespace;
+const {printerSilhouetteParts,printerSilhouetteSourceRoles}=(await realModule(path.join(A,'layout/layout-printer-shapes.mjs'))).namespace;
+const {createPrinterPreviewMeshCache}=(await realModule(path.join(A,'layout/layout-printer-preview-mesh.mjs'))).namespace;
 const openingPath=path.join(A,'layout/layout-opening-renderer.mjs'),{createLayoutOpeningRenderer,drawOpeningPlan}=(await realModule(openingPath)).namespace;imports.push(pin(openingPath));
-const importLines=source.match(/^import [^\n]+;\r?$/gm);assert.equal(importLines?.length,11,'Renderer dependency boundary changed');
-for(const line of importLines)assert(/(?:three\.module\.js|OrbitControls\.js|RoomEnvironment\.js|layout-state\.mjs|layout-surfaces\.mjs|layout-plan-measurements\.mjs|layout-groups\.mjs|layout-group-labels\.mjs|layout-equipment\.mjs|layout-equipment-mesh\.mjs|layout-opening-renderer\.mjs)(?:\?v=[a-f0-9]{20})?['"];$/u.test(line.trimEnd()));
+const importLines=source.match(/^import [^\n]+;\r?$/gm);assert.equal(importLines?.length,13,'Renderer dependency boundary changed');
+for(const line of importLines)assert(/(?:three\.module\.js|OrbitControls\.js|RoomEnvironment\.js|layout-state\.mjs|layout-surfaces\.mjs|layout-plan-measurements\.mjs|layout-groups\.mjs|layout-group-labels\.mjs|layout-equipment\.mjs|layout-equipment-mesh\.mjs|layout-opening-renderer\.mjs|layout-printer-shapes\.mjs|layout-printer-preview-mesh\.mjs)(?:\?v=[a-f0-9]{20})?['"];$/u.test(line.trimEnd()));
 assert.equal(source.split('export function createLayoutRenderer(').length,2);
 // Replace imports with controlled API boundaries; execute every product function body unchanged.
 const body=source.replace(/^import [^\n]+;\r?\n/gm,'').replace('export function createLayoutRenderer(','function createLayoutRenderer(');
 const replacement={...THREE,WebGLRenderer:RendererFixture,PMREMGenerator:PMREMFixture,InstancedMesh:TrackedInstancedMesh,WebGLRenderTarget:TrackedRenderTarget,ShaderMaterial:TrackedShaderMaterial,PlaneGeometry:TrackedPlaneGeometry};
-const factory=new Function('groupInfo','groupingForEntity','THREE','OrbitControls','RoomEnvironment','deriveScene','document','devicePixelRatio','requestAnimationFrame','cancelAnimationFrame','ResizeObserver','createLayoutSurfaces','resolveSurfaceAppearance','wallSurfaceGeometry','drawPlanMeasurements','getLayoutEquipment','resolveLayoutEquipment','createEquipmentMeshCache','groupLabel','createLayoutOpeningRenderer','drawOpeningPlan',body+'\nreturn createLayoutRenderer;')(
- groupInfo,groupingForEntity,replacement,ControlsFixture,EnvironmentFixture,(state,catalog)=>state.derived??S.deriveScene(state,catalog),fixtureDocument,1,raf,clearTimeout,ObserverFixture,createLayoutSurfaces,resolveSurfaceAppearance,wallSurfaceGeometry,drawPlanMeasurements,getLayoutEquipment,resolveLayoutEquipment,createEquipmentMeshCache,groupLabel,createLayoutOpeningRenderer,drawOpeningPlan);
+const factory=new Function('printerSilhouetteParts','printerSilhouetteSourceRoles','createPrinterPreviewMeshCache','groupInfo','groupingForEntity','THREE','OrbitControls','RoomEnvironment','deriveScene','document','devicePixelRatio','requestAnimationFrame','cancelAnimationFrame','ResizeObserver','createLayoutSurfaces','resolveSurfaceAppearance','wallSurfaceGeometry','drawPlanMeasurements','getLayoutEquipment','resolveLayoutEquipment','createEquipmentMeshCache','groupLabel','createLayoutOpeningRenderer','drawOpeningPlan',body+'\nreturn createLayoutRenderer;')(
+ printerSilhouetteParts,printerSilhouetteSourceRoles,createPrinterPreviewMeshCache,groupInfo,groupingForEntity,replacement,ControlsFixture,EnvironmentFixture,(state,catalog)=>state.derived??S.deriveScene(state,catalog),fixtureDocument,1,raf,clearTimeout,ObserverFixture,createLayoutSurfaces,resolveSurfaceAppearance,wallSurfaceGeometry,drawPlanMeasurements,getLayoutEquipment,resolveLayoutEquipment,createEquipmentMeshCache,groupLabel,createLayoutOpeningRenderer,drawOpeningPlan);
 function setup(dimensions={width:400,height:300}){
  size={...dimensions};const container=makeContainer();
  const catalog=[{id:'test-machine',dimensionsMm:{width:200,depth:200,height:300}}];
@@ -643,8 +645,8 @@ const orbitToken="from 'three';";assert.equal(orbitRaw.split(orbitToken).length,
 const orbitSnapshot=path.join(intake,'OrbitControls.import-map.snapshot.mjs');
 fs.writeFileSync(orbitSnapshot,orbitRaw.replace(orbitToken,`from '${pathToFileURL(path.join(A,'viewer/vendor-r180/three.module.js')).href}';`),{flag:'wx'});
 const orbitModule=await import(pathToFileURL(orbitSnapshot));
-const factoryRealOrbit=new Function('groupInfo','groupingForEntity','THREE','OrbitControls','RoomEnvironment','deriveScene','document','devicePixelRatio','requestAnimationFrame','cancelAnimationFrame','ResizeObserver','createLayoutSurfaces','resolveSurfaceAppearance','wallSurfaceGeometry','drawPlanMeasurements','getLayoutEquipment','resolveLayoutEquipment','createEquipmentMeshCache','groupLabel','createLayoutOpeningRenderer','drawOpeningPlan',body+'\nreturn createLayoutRenderer;')(
- groupInfo,groupingForEntity,replacement,orbitModule.OrbitControls,EnvironmentFixture,(state,catalog)=>state.derived??S.deriveScene(state,catalog),fixtureDocument,1,raf,clearTimeout,ObserverFixture,createLayoutSurfaces,resolveSurfaceAppearance,wallSurfaceGeometry,drawPlanMeasurements,getLayoutEquipment,resolveLayoutEquipment,createEquipmentMeshCache,groupLabel,createLayoutOpeningRenderer,drawOpeningPlan);
+const factoryRealOrbit=new Function('printerSilhouetteParts','printerSilhouetteSourceRoles','createPrinterPreviewMeshCache','groupInfo','groupingForEntity','THREE','OrbitControls','RoomEnvironment','deriveScene','document','devicePixelRatio','requestAnimationFrame','cancelAnimationFrame','ResizeObserver','createLayoutSurfaces','resolveSurfaceAppearance','wallSurfaceGeometry','drawPlanMeasurements','getLayoutEquipment','resolveLayoutEquipment','createEquipmentMeshCache','groupLabel','createLayoutOpeningRenderer','drawOpeningPlan',body+'\nreturn createLayoutRenderer;')(
+ printerSilhouetteParts,printerSilhouetteSourceRoles,createPrinterPreviewMeshCache,groupInfo,groupingForEntity,replacement,orbitModule.OrbitControls,EnvironmentFixture,(state,catalog)=>state.derived??S.deriveScene(state,catalog),fixtureDocument,1,raf,clearTimeout,ObserverFixture,createLayoutSurfaces,resolveSurfaceAppearance,wallSurfaceGeometry,drawPlanMeasurements,getLayoutEquipment,resolveLayoutEquipment,createEquipmentMeshCache,groupLabel,createLayoutOpeningRenderer,drawOpeningPlan);
 const settled=()=>new Promise(resolve=>setTimeout(resolve,5));
 function operationSetup(realOrbit=false,options={}){
  size={width:800,height:600};const catalog=[{id:'test-machine',label:'Test printer',widthMm:200,depthMm:180,heightMm:300,dimensionsMm:{width:200,depth:180,height:300}}];
@@ -883,13 +885,13 @@ for(const mode of ['top','perspective']){
  assert.deepEqual(catalog.machines.map(row=>row.id).sort(),machineChoices.filter(row=>row.available!==false).map(row=>row.id).sort(),'Every registered placement preview must be covered');
  const helper=source.slice(source.indexOf('function printerPreviewParts(row) {'),source.indexOf('export function createLayoutRenderer('));
  assert(helper.startsWith('function printerPreviewParts(row) {'));
- const preview=new Function(helper+'\nreturn printerPreviewParts;')(),sourceCatalogJSON=JSON.stringify(catalog),results=[];
+ const preview=new Function('printerSilhouetteParts','printerSilhouetteSourceRoles',helper+'\nreturn printerPreviewParts;')(printerSilhouetteParts,printerSilhouetteSourceRoles),sourceCatalogJSON=JSON.stringify(catalog),results=[];
  for(const original of catalog.machines){
   const shape=preview(original),parts=original.proxy?.parts||[];
-  assert(shape.simplePreview&&shape.parts.length<=80,original.id+' preview cell budget');
+  assert(shape.simplePreview&&shape.parts.length<=128,original.id+' preview cell budget');
   assert(shape.parts.slice(0,parts.length).every((p,i)=>p===parts[i]),original.id+' original source bounds retained');
-  assert(shape.parts.some(p=>p.proxyRole==='bed'||p.proxyRole==='bed-cue'));
-  assert(shape.parts.some(p=>p.proxyRole==='base-cue'));
+  assert(shape.parts.some(p=>p.proxyRole==='bed'||p.proxyRole==='bed-cue'||shape.sourceRoles?.[p.sourcePartKey]==='bed'));
+  assert(shape.parts.some(p=>p.proxyRole==='base'||p.proxyRole==='base-cue'||shape.sourceRoles?.[p.sourcePartKey]==='base'));
   assert.equal(shape.parts.filter(p=>p.proxyRole==='contact-foot').length,4);
   const extents=[original.dimensionsMm.width,original.dimensionsMm.height,original.dimensionsMm.depth].map(v=>v/1000);
   for(const p of shape.parts){
@@ -910,8 +912,10 @@ for(const mode of ['top','perspective']){
    const ground=derived.printers[0].supportYM,bounds=new THREE.Box3(),geometries=new Set();group.updateMatrixWorld(true);
    group.traverse(o=>{if(o.isMesh){bounds.union(new THREE.Box3().setFromObject(o));geometries.add(o.geometry)}});
    assert(Math.abs(bounds.min.y-ground)<1e-9,original.id+' supportYM contact, offset '+offset);
-   assert.equal(group.position.y,ground);assert.equal(geometries.size,1,'One shared box geometry for preview solids');
-   assert.equal(group.children.length,shape.parts.length);assert(group.userData.simplePreview);
+   assert.equal(group.position.y,ground);assert(geometries.size<=2,'At most opaque and glazing geometry for preview solids');
+   assert(group.children.every(o=>o.isMesh),'Unselected printers have no wire enclosure clutter');
+   assert([...geometries].reduce((n,g)=>n+(g.index?.count??g.attributes.position.count)/3,0)<=2500,'Bounded preview triangles');
+   assert(group.children.length<=2);assert.equal(group.userData.previewPartCount,shape.parts.filter(p=>!p.wireframe).length);assert(group.userData.simplePreview);
    const sizeSummary=container.querySelector('.layout-selected-summary').children[1].textContent;
    assert.equal(sizeSummary,[row.widthMm,row.depthMm,row.heightMm].map(Math.round).join(' × ')+' common.mm',row.id+' selected dimensions come from registered source envelope');
    api.setOptions({measurements:true});api.view('top');await settled();assert.equal(container.children.find(n=>n.className==='layout-plan-measurements').hidden,false);
@@ -921,7 +925,7 @@ for(const mode of ['top','perspective']){
  }
  assert.equal(JSON.stringify(catalog),sourceCatalogJSON,'Preview must not edit source catalog');
  observations.push({case:'lightweight-printer-preview-all-registered',catalog:pin(file),machines:results,sourceAndPositiveBaseOffsetContact:true,fullCADLoaded:false});
- passed.push('All registered catalog printers retain source bounds/colors, gain bounded bed/base/contact cues using one shared box geometry, and opaque feet meet actual deriveScene supportYM on floor and desk even with positive native baseOffset; final CAD remains separate.');
+ passed.push('All registered catalog printers retain source bounds/colors, gain bounded source silhouettes and bed/base/contact cues using shared merged geometry, and opaque feet meet actual deriveScene supportYM on floor and desk even with positive native baseOffset; final CAD remains separate.');
 }
 
 // Source-backed recurrence: small tangent deltas must survive repeated wall
@@ -1555,6 +1559,29 @@ for(const mode of ['perspective','top']){
   assert.equal(S.serializeLayout(state,catalog),saved);api.dispose();
   passed.push('Shipped Neptune3Plus proxy focus/'+(reversed?'CW':'CCW')+': old centre-plane fails; actual near-frustum/clear-face cutaway fixes slab in preview+PNG, opaque remaining walls and unchanged source/support, near-plane crossing, Walls A-B-A and plan gate.');
  }
+}
+// Repeated farm copies and placement ghosts share the same immutable buffers.
+{
+ const rows=JSON.parse(fs.readFileSync(path.join(A,'layout/layout-catalog.json'),'utf8')).machines;
+ const row=rows.find(r=>r.id==='voron_v24_350_printed');assert(row);
+ const catalogRows=[{...row,widthMm:row.dimensionsMm.width,depthMm:row.dimensionsMm.depth,heightMm:row.dimensionsMm.height}];
+ const printers=Array.from({length:100},(_,i)=>({id:'farm-preview-'+i,machineId:row.id,configurationId:null,attachment:{parentId:null,surfaceId:'floor',xMm:(i%10-4.5)*900,zMm:(Math.floor(i/10)-4.5)*900,yawDeg:i%4*90}}));
+ const state=S.createDefaultLayout({room:S.createRoomRect({widthMm:12000,depthMm:12000}),furniture:[],printers},catalogRows);
+ const container=makeContainer(),api=factory({container,catalog:catalogRows});api.setState(state,null);api.view('front');await settled();
+ const renderer=renderers.at(-1),groups=[];renderer.lastScene.traverse(o=>{if(o.userData.simplePreview&&o.userData.entityId)groups.push(o)});
+ assert.equal(groups.length,100);const geometries=new Set(groups.flatMap(g=>g.children.map(o=>o.geometry)));
+ assert(geometries.size<=2);assert(groups.every(g=>g.children.length<=2));
+ const before=api.getPreviewMetrics().cache;assert(before.bytes<256*1024,'One machine type has small retained buffers');
+ api.setPlacement({kind:'printer',machineId:row.id});await settled();
+ const ghost=[];renderer.lastScene.traverse(o=>{if(o.isMesh&&o.material.transparent&&o.material.opacity===.4&&geometries.has(o.geometry))ghost.push(o)});
+ assert(ghost.length>0,'Placement ghost reuses the selected printer buffers');
+ const during=api.getPreviewMetrics().cache;assert.equal(during.geometries,before.geometries);assert.equal(during.bytes,before.bytes);
+ api.setPlacement(null);api.setState(S.createDefaultLayout({room:state.room,furniture:[],printers:[printers[0]]},catalogRows),null);await settled();
+ api.setState(state,null);await settled();assert.equal(api.getPreviewMetrics().cache.bytes,before.bytes,'Repeated scene rebuilds reuse geometry');
+ const disposal=new Map([...geometries].map(g=>[g,0]));for(const g of geometries)g.addEventListener('dispose',()=>disposal.set(g,disposal.get(g)+1));
+ api.dispose();assert([...disposal.values()].every(n=>n===1));assert.equal(api.getPreviewMetrics().cache.bytes,0);assert.equal(api.getPreviewMetrics().cache.geometries,0);
+ observations.push({case:'100-copies-and-ghost-share-silhouette-buffers',copies:100,sharedGeometries:before.geometries,sharedBytes:before.bytes,source:pin(path.join(A,'layout/layout-printer-shapes.mjs')),cache:pin(path.join(A,'layout/layout-printer-preview-mesh.mjs'))});
+ passed.push('100 printer copies, reversed orientations, placement ghost and scene rebuilds share bounded buffers; disposal releases each once. CPU renderer fixture, not GPU timing.');
 }
 const ownerSourceStillMatchesSnapshot=sha(fs.readFileSync(input))===sha(Buffer.from(source));
 assert.equal(ownerSourceStillMatchesSnapshot,true,'Renderer changed during source regression');

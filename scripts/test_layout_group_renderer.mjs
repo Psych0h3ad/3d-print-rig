@@ -155,7 +155,7 @@ if(replay.includes("assert.equal(importLines?.length,6,'Renderer dependency boun
 if(!replay.includes('|layout-groups\\.mjs'))replaceOnce('layout-plan-measurements\\.mjs)(?:','layout-plan-measurements\\.mjs|layout-groups\\.mjs)(?:');
 if(!/const\s*\{\s*groupInfo\s*,\s*groupingForEntity\s*\}/.test(replay))
   replaceOnce("const importLines=source.match", "const {groupInfo,groupingForEntity}=await import(pathToFileURL(path.join(A,'layout/layout-groups.mjs')));\nconst importLines=source.match");
-if(!replay.includes("new Function('groupInfo','groupingForEntity','THREE','OrbitControls'")){
+if(!replay.includes("'groupInfo','groupingForEntity','THREE','OrbitControls'")){
   assert.equal(replay.split("new Function('THREE','OrbitControls'").length,3);
   replay=replay.replaceAll("new Function('THREE','OrbitControls'","new Function('groupInfo','groupingForEntity','THREE','OrbitControls'");
   assert.equal(replay.split(' replacement,').length,3);replay=replay.replaceAll(' replacement,',' groupInfo,groupingForEntity,replacement,');
