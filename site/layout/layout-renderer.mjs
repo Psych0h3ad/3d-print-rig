@@ -1,13 +1,14 @@
 import * as THREE from '../viewer/vendor-r180/three.module.js';
 import {OrbitControls} from '../viewer/vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from '../viewer/vendor-r180/RoomEnvironment.js';
-import {deriveScene} from './layout-state.mjs?v=38da7e9cd1bcecf14474';
+import {deriveScene} from './layout-state.mjs?v=96541b55818081557a73';
 import {createLayoutSurfaces, resolveSurfaceAppearance, wallSurfaceGeometry} from './layout-surfaces.mjs?v=0e7f271c883eb7ec8844';
 import {drawPlanMeasurements} from './layout-plan-measurements.mjs?v=ccb8d47a212b4279e38a';
-import {groupInfo, groupingForEntity} from './layout-groups.mjs?v=0a9d77d6e07530349aa3';
+import {groupInfo, groupingForEntity} from './layout-groups.mjs?v=e984be9f62932f3b3d4e';
 import {groupLabel} from './layout-group-labels.mjs?v=1ff84a0cf5540fd3184b';
 import {getLayoutEquipment,resolveLayoutEquipment} from './layout-equipment.mjs?v=bd8e2772cabd6fd2564b';
 import {createEquipmentMeshCache} from './layout-equipment-mesh.mjs?v=81ae2cf27403863696cc';
+import {createLayoutOpeningRenderer,drawOpeningPlan} from './layout-opening-renderer.mjs?v=5175483835803f47707c';
 
 const MM = .001;
 const disposableMaterial = new THREE.MeshBasicMaterial({visible:false});
@@ -133,8 +134,9 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   let placing=null,placementEvent=null,placementProposal=null,placementFrame=0,placementBounds=null,placementEquipmentVariant=null;
   const groupEntities=new Map();
   raycaster.params.Line.threshold=.01;
-  let current,derived,selectedId=null,viewMode='perspective',planHalfHeight=2,perspectiveReady=false,planReady=false,drag=null,disposed=false,resourcesDisposed=false,exporting=false,exportAbort=null,frame=0,lastWidth=0,lastHeight=0,wallsVisible=true,measurementsVisible=false;
+  let current,derived,selectedId=null,viewMode='perspective',planHalfHeight=2,perspectiveReady=false,planReady=false,drag=null,disposed=false,resourcesDisposed=false,exporting=false,exportAbort=null,frame=0,lastWidth=0,lastHeight=0,wallsVisible=true,measurementsVisible=false,darkTheme=false;
   const surfaces=createLayoutSurfaces({anisotropy:Math.min(4,renderer.capabilities.getMaxAnisotropy?.()||1)});
+  const openingRenderer=createLayoutOpeningRenderer({surfaces});
   const planFloorMaterial=new THREE.MeshStandardMaterial({color:'#d9dfe1',roughness:.94,side:THREE.DoubleSide});
   const roomGeometries=new Set(),contactGeometries=new Set(),contacts=new Map(),contactPlaneGeometry=new THREE.PlaneGeometry(1,1);
   let roomKey=null,shadowRoomKey=null;
@@ -164,7 +166,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     const show=!isPlan()&&wallsVisible;
     if(show)forCamera.updateMatrixWorld(true);
     const near=show?[-1,1].flatMap(x=>[-1,1].map(y=>new THREE.Vector3(x,y,-1).unproject(forCamera))):[];
-    for(const o of roomGroup.children)if(o.userData.wall){
+    for(const o of roomGroup.children)if(o.userData.wall||o.userData.openingWall){
       const n=o.userData.inward,p=o.userData.innerPoint;
       // The clear room ends at the inner face, not at the slab's centre.
       // A near-frustum corner crossing that face can expose the inside of an
@@ -184,10 +186,11 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     return {polygonMm:current.room.polygonMm,selectedPolygonMm,width,height,project:(x,z)=>{const p=new THREE.Vector3(x*MM,0,z*MM).project(forCamera);return [(p.x+1)*width/2,(1-p.y)*height/2];},formatLength:n=>`${Math.round(n*10)/10} ${t('common.mm')}`};
   }
   function updateMeasurements(){
-    measurementsCanvas.hidden=!isPlan()||!measurementsVisible||exporting||!current;if(measurementsCanvas.hidden)return;
+    measurementsCanvas.hidden=!isPlan()||(!measurementsVisible&&!current?.room.openings?.length)||exporting||!current;if(measurementsCanvas.hidden)return;
     const ratio=Math.min(devicePixelRatio||1,2),width=Math.max(1,Math.round(lastWidth*ratio)),height=Math.max(1,Math.round(lastHeight*ratio));
     if(measurementsCanvas.width!==width)measurementsCanvas.width=width;if(measurementsCanvas.height!==height)measurementsCanvas.height=height;
-    const ctx=measurementsCanvas.getContext('2d');ctx.setTransform?.(ratio,0,0,ratio,0,0);ctx.clearRect?.(0,0,lastWidth,lastHeight);camera.updateMatrixWorld(true);drawPlanMeasurements(ctx,measurementOptions(camera,lastWidth,lastHeight));
+    const ctx=measurementsCanvas.getContext('2d');ctx.setTransform?.(ratio,0,0,ratio,0,0);ctx.clearRect?.(0,0,lastWidth,lastHeight);camera.updateMatrixWorld(true);
+    const options=measurementOptions(camera,lastWidth,lastHeight);if(current.room.openings?.length)drawOpeningPlan(ctx,{room:current.room,project:options.project,dark:darkTheme});if(measurementsVisible)drawPlanMeasurements(ctx,options);
   }
   function draw(){if(disposed||frame||exporting)return;frame=requestAnimationFrame(()=>{frame=0;if(disposed||exporting)return;refreshWalls();syncContacts();if(isPlan())updatePlanLabels();updateObjectTools();updateUnitMarkers();renderer.render(scene,camera);updateMeasurements();});}
   const cameraChange=()=>{if(placing&&placementEvent)queuePlacement(placementEvent);draw();};
@@ -363,7 +366,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     g.position.copy(object.position);g.rotation.y=object.rotation.y;contacts.set(e.id,g);contactGroup.add(g);
   }
   function clearContacts(){for(const geometry of contactGeometries)geometry.dispose();contactGeometries.clear();contacts.clear();resetGroup(contactGroup);}
-  function clearRoom(){for(const geometry of roomGeometries)geometry.dispose();roomGeometries.clear();resetGroup(roomGroup);}
+  function clearRoom(){openingRenderer.clear();for(const geometry of roomGeometries)geometry.dispose();roomGeometries.clear();resetGroup(roomGroup);}
   function fitFurnitureShadow(roomState){
     const key=JSON.stringify([roomState.polygonMm,roomState.wallHeightMm]);if(key===shadowRoomKey)return;shadowRoomKey=key;
     const xs=roomState.polygonMm.map(p=>p[0]*MM),zs=roomState.polygonMm.map(p=>p[1]*MM);
@@ -378,7 +381,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     keyLight.shadow.needsUpdate=true;
   }
   function makeRoom(roomState){
-    const appearance=resolveSurfaceAppearance(roomState.appearance),key=JSON.stringify([roomState.polygonMm,roomState.wallHeightMm,appearance]);
+    const appearance=resolveSurfaceAppearance(roomState.appearance),key=JSON.stringify([roomState.polygonMm,roomState.wallHeightMm,appearance,roomState.openings]);
     if(key===roomKey)return;roomKey=key;clearRoom();fitFurnitureShadow(roomState);const polygon=roomState.polygonMm;
     const lines=[],xs=polygon.map(p=>p[0]),zs=polygon.map(p=>p[1]),minX=Math.min(...xs),maxX=Math.max(...xs),minZ=Math.min(...zs),maxZ=Math.max(...zs),step=Math.max(100,Math.ceil(Math.max(maxX-minX,maxZ-minZ)/10000)*100);
     for(const axis of [0,1]){
@@ -395,6 +398,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     floor.rotation.x=-Math.PI/2;floor.position.y=-.003;floor.receiveShadow=true;floor.userData.roomOwned=true;floor.userData.finishMaterial=floor.material;roomGroup.add(floor);
     const height=roomState.wallHeightMm*MM,area=polygon.reduce((sum,a,i)=>{const b=polygon[(i+1)%polygon.length];return sum+a[0]*b[1]-b[0]*a[1];},0),sign=Math.sign(area);
     for(let i=0;i<polygon.length;i++){
+      if(roomState.openings?.some(o=>o.wallIndex===i)){roomGroup.add(openingRenderer.makeWall(roomState,i,surfaces.finish(appearance.wall)));continue;}
       const a=polygon[i],b=polygon[(i+1)%polygon.length],dx=(b[0]-a[0])*MM,dz=(b[1]-a[1])*MM,len=Math.hypot(dx,dz);
       const inward=[-dz*sign,dx*sign],wallGeometry=wallSurfaceGeometry(len,height,.05),wall=new THREE.Mesh(wallGeometry,surfaces.finish(appearance.wall));roomGeometries.add(wallGeometry);
       wall.scale.set(len,height,.05);wall.position.set((a[0]+b[0])*MM/2-inward[0]/len*.025,height/2,(a[1]+b[1])*MM/2-inward[1]/len*.025);roomGroup.add(wall);
@@ -671,7 +675,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   for(const button of [rotateLeft,rotateHandle,rotateRight])listen(button,'keydown',event=>{if(drag||event.repeat||event.ctrlKey||event.metaKey||event.altKey)return;const delta=event.key==='ArrowLeft'?-(event.shiftKey?1:15):event.key==='ArrowRight'?(event.shiftKey?1:15):event.key.toLowerCase()==='r'?(event.shiftKey?-90:90):0;if(delta){event.preventDefault();turnBy(delta);}});
   for(const [type,handler]of [['pointerdown',rotationDown],['pointermove',rotationMove],['pointerup',up],['pointercancel',cancel],['lostpointercapture',cancel]])listen(rotateHandle,type,handler);
   function setTool(){enableControls();canvas.style.cursor=placing?'crosshair':'grab';return 'auto';}
-  function setOptions({grid:showGrid=true,walls=wallsVisible,dark=false,measurements=measurementsVisible}={}){if(exporting||disposed)return;grid.visible=showGrid;wallsVisible=walls;measurementsVisible=measurements;for(const o of roomGroup.children)if(o.userData.wall)o.visible=walls;scene.background.set(dark?'#14222a':'#e9edef');draw();}
+  function setOptions({grid:showGrid=true,walls=wallsVisible,dark=false,measurements=measurementsVisible}={}){if(exporting||disposed)return;grid.visible=showGrid;wallsVisible=walls;measurementsVisible=measurements;darkTheme=dark;for(const o of roomGroup.children)if(o.userData.wall||o.userData.openingWall)o.visible=walls;scene.background.set(dark?'#14222a':'#e9edef');draw();}
 
   async function exportPlanImage({width=1920,signal,onProgress=()=>{}}){
     cancel();const externalSignal=signal,controller=new AbortController(),forward=()=>controller.abort();exportAbort=controller;
@@ -682,8 +686,9 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
       const middle=(exportCamera.left+exportCamera.right)/2,halfWidth=(exportCamera.top-exportCamera.bottom)*w/h/2;exportCamera.left=middle-halfWidth;exportCamera.right=middle+halfWidth;exportCamera.updateProjectionMatrix();exportCamera.updateMatrixWorld(true);
       const project=(x,z)=>{const p=new THREE.Vector3(x,0,z).project(exportCamera);return [(p.x+1)*w/2,(1-p.y)*h/2];};
       const polygon=points=>{ctx.beginPath();points.forEach(([x,z],i)=>{const p=project(x,z);i?ctx.lineTo(...p):ctx.moveTo(...p);});ctx.closePath();};
-      ctx.fillStyle='#'+scene.background.getHexString();ctx.fillRect(0,0,w,h);polygon(current.room.polygonMm.map(([x,z])=>[x*MM,z*MM]));ctx.fillStyle='#d9dfe1';ctx.fill();ctx.strokeStyle='#667d8b';ctx.lineWidth=1.5;ctx.stroke();
+      ctx.fillStyle='#'+scene.background.getHexString();ctx.fillRect(0,0,w,h);polygon(current.room.polygonMm.map(([x,z])=>[x*MM,z*MM]));ctx.fillStyle='#d9dfe1';ctx.fill();
       if(grid.visible){ctx.save();ctx.clip();ctx.strokeStyle='#a2afb7';ctx.lineWidth=.5;ctx.beginPath();const a=grid.geometry.getAttribute('position');for(let i=0;i<a.count;i+=2){ctx.moveTo(...project(a.getX(i),a.getZ(i)));ctx.lineTo(...project(a.getX(i+1),a.getZ(i+1)));}ctx.stroke();ctx.restore();}
+      drawOpeningPlan(ctx,{room:current.room,project:(x,z)=>project(x*MM,z*MM),dark:darkTheme,pixelScale:Math.max(1,w/Math.max(1,lastWidth))});
       for(const g of planObjects.values()){
         polygon(g.userData.planPoints.map(([x,z])=>[x+g.position.x,z+g.position.z]));ctx.fillStyle=g.userData.planColor;ctx.globalAlpha=.8;ctx.fill();ctx.globalAlpha=1;ctx.strokeStyle='#344c5a';ctx.lineWidth=1;ctx.stroke();
         const label=g.children.find(o=>o.userData.planLabel),layout=planLabelLayout(g,exportCamera,h),p=project(g.position.x+label.position.x,g.position.z+label.position.z);
@@ -711,12 +716,17 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     // Only the initial room pass projects furniture shadows. Streamed native
     // models use ordinary lighting; no additional maps or CAD floor projection.
     for(const l of scene.children.filter(c=>c.isLight)){const copy=l.clone();copy.castShadow=false;opaqueScene.add(copy);if(copy.target)opaqueScene.add(copy.target);}
-    let transparentBytes=0,active=null;
+    let transparentBytes=0,active=null;const openingGlass=[];
     exporting=true;renderer.debug.onShaderError=()=>{throw Object.assign(Error('Image shader compilation failed'),{code:'RENDER_SHADER_FAILED'});};if(frame){cancelAnimationFrame(frame);frame=0;}controls.enabled=false;selectionBox.visible=false;printersGroup.visible=false;for(const g of streamedFurniture)g.visible=false;placementGroup.visible=placementGuides.visible=false;
     const exportCamera=camera.clone();exportCamera.aspect=w/h;exportCamera.updateProjectionMatrix();
     try{
       aborted(signal);target=new THREE.WebGLRenderTarget(w,h,{samples:0,format:THREE.RGBAFormat,type:THREE.HalfFloatType});target.texture.colorSpace=THREE.LinearSRGBColorSpace;
       syncContacts();scene.updateMatrixWorld(true);refreshWalls(exportCamera);
+      // Borrow the actual visible panes for the final transparent pass, after
+      // streamed opaque models. Restore their wall ownership even on failure;
+      // disposing the export's cloned materials must never dispose these panes.
+      roomGroup.traverseVisible(o=>{if(o.userData.openingRole==='window-glass')openingGlass.push([o,o.parent]);});
+      for(const [pane]of openingGlass)transparentRoot.attach(pane);
       // Opaque room surfaces and approximate envelope contacts write the base
       // image once. Its depth buffer then correctly occludes streamed models.
       renderer.setRenderTarget(target);renderer.autoClear=true;renderer.render(scene,exportCamera);renderer.autoClear=false;
@@ -769,11 +779,11 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
       const blob=await new Promise(resolve=>output.toBlob(resolve,'image/png'));if(!blob)throw Error('Image export failed');aborted(signal);
       return {blob,width:w,height:h,machines:snapshot.map(p=>p.machineId),projection:'perspective-3d',camera:'current-camera',rendering:'streamed-browser-raster'};
     }finally{
-      active?.dispose();disposeTree(transparentRoot);target?.dispose();outputTarget?.dispose();outputGeometry?.dispose();outputMaterial?.dispose();renderer.setRenderTarget(oldTarget);renderer.autoClear=oldAuto;renderer.debug.onShaderError=oldShaderError;scene.background=oldBackground;printersGroup.visible=true;streamedFurniture.forEach((g,i)=>g.visible=furnitureVisibility[i]);placementGroup.visible=previewVisible;placementGuides.visible=guidesVisible;refreshWalls();
+      active?.dispose();for(const [pane,parent]of openingGlass)parent.attach(pane);disposeTree(transparentRoot);target?.dispose();outputTarget?.dispose();outputGeometry?.dispose();outputMaterial?.dispose();renderer.setRenderTarget(oldTarget);renderer.autoClear=oldAuto;renderer.debug.onShaderError=oldShaderError;scene.background=oldBackground;printersGroup.visible=true;streamedFurniture.forEach((g,i)=>g.visible=furnitureVisibility[i]);placementGroup.visible=previewVisible;placementGuides.visible=guidesVisible;refreshWalls();
       exporting=false;exportAbort=null;externalSignal?.removeEventListener('abort',forwardAbort);presentView();if(disposed)releaseResources();else{resize();draw();}
     }
   }
-  function releaseResources(){if(resourcesDisposed)return;resourcesDisposed=true;ghostMaterial.dispose();ghostLineMaterial.dispose();ghostFootprint.geometry.dispose();ghostFootprint.material.dispose();placementGuides.geometry.dispose();disposeTree(planGroup);planSelection.geometry.dispose();planSelection.material.dispose();clearRoom();clearContacts();surfaces.dispose();planFloorMaterial.dispose();contactPlaneGeometry.dispose();boxGeometry.dispose();cylinderGeometry.dispose();for(const g of equipmentTubeGeometries.values())g.dispose();equipmentTubeGeometries.clear();equipmentMeshCache.dispose();wireGeometry.dispose();wireMaterial.dispose();for(const m of palette.values())m.dispose();grid.geometry.dispose();grid.material.dispose();selectionBox.geometry.dispose();selectionBox.material.dispose();keyLight.shadow.dispose();environment.dispose();renderer.dispose();canvas.remove();}
+  function releaseResources(){if(resourcesDisposed)return;resourcesDisposed=true;ghostMaterial.dispose();ghostLineMaterial.dispose();ghostFootprint.geometry.dispose();ghostFootprint.material.dispose();placementGuides.geometry.dispose();disposeTree(planGroup);planSelection.geometry.dispose();planSelection.material.dispose();clearRoom();openingRenderer.dispose();clearContacts();surfaces.dispose();planFloorMaterial.dispose();contactPlaneGeometry.dispose();boxGeometry.dispose();cylinderGeometry.dispose();for(const g of equipmentTubeGeometries.values())g.dispose();equipmentTubeGeometries.clear();equipmentMeshCache.dispose();wireGeometry.dispose();wireMaterial.dispose();for(const m of palette.values())m.dispose();grid.geometry.dispose();grid.material.dispose();selectionBox.geometry.dispose();selectionBox.material.dispose();keyLight.shadow.dispose();environment.dispose();renderer.dispose();canvas.remove();}
   function dispose(){if(disposed)return;cancel();disposed=true;exportAbort?.abort();if(frame)cancelAnimationFrame(frame);if(placementFrame)cancelAnimationFrame(placementFrame);observer.disconnect();perspectiveControls.dispose();planControls.dispose();eventWindow?.removeEventListener('blur',cancel);eventWindow?.removeEventListener('keydown',keyCancel);for(const [element,type,handler]of toolListeners)element.removeEventListener(type,handler);clearUnitMarkers();unitLabels.remove();objectTools.remove();measurementsCanvas.remove();for(const [type,handler]of [['pointerdown',down],['pointermove',move],['pointerup',up],['pointercancel',cancel],['lostpointercapture',cancel]])canvas.removeEventListener(type,handler,true);if(!exporting)releaseResources();}
   resize();setTool();return {setState,setTool,setOptions,setPlacement,refreshPlacement:()=>updatePlacement(),view,getView,focusSelected,exportImage,dispose,canvas};
 }

@@ -56,7 +56,10 @@ for (const code of errors) {
 for (const code of warnings) for (const prefix of ['layout.warning.','layout.issue.']) {
   const key = prefix + code;
   if (!hasMessage(key)) missing.push({key});
-  for (const language of supportedLanguages) assert.doesNotThrow(() => t(key,{},language));
+  for (const language of supportedLanguages) {
+    const values=Object.fromEntries(placeholders(messages.en[key]).map(name=>[name,'3']));
+    assert.doesNotThrow(() => t(key,values,language));
+  }
 }
 for (const key of ['layout.tool.orbit','layout.tool.move','layout.hint.orbit','layout.hint.move',
   'layout.view.perspective','layout.view.top','layout.view.front','layout.view.fit',

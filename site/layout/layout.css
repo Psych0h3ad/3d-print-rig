@@ -352,3 +352,21 @@ input[aria-invalid="true"] { border-color: var(--layout-error); }
 .layout-placement-repeat:has(input:checked) { background: var(--layout-selected); color: var(--accent); }
 .layout-placement-repeat input { margin: 0; accent-color: var(--accent); }
 .layout-placement-status { max-width: 100%; overflow-wrap: anywhere; }
+
+.layout-room-openings { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
+.layout-room-openings h3 { margin: 0 0 8px; font-size: 13px; }
+.layout-opening-actions, .layout-opening-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.layout-opening-actions { margin: 10px 0; }
+.layout-opening-actions button { justify-content: center; min-width: 0; }
+.layout-opening-list { list-style: none; padding: 0; margin: 10px 0; max-height: 160px; overflow: auto; }
+.layout-opening-list li + li { margin-top: 5px; }
+.layout-opening-button { width: 100%; border: 1px solid var(--line); background: var(--paper); }
+.layout-opening-button[aria-pressed="true"] { background: var(--layout-selected); border-color: var(--accent); color: var(--accent); }
+.layout-opening-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.layout-opening-editor { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); }
+.layout-opening-editor h4 { margin: 0 0 10px; color: var(--ink); font-size: 12px; }
+.layout-opening-editor > .layout-field { margin-bottom: 10px; }
+.layout-opening-fields { margin-bottom: 10px; }
+.layout-opening-fields > .layout-field { min-width: 0; }
+.layout-opening-wall-coordinates { margin-top: 5px; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.layout-opening-editor > .layout-delete { margin-top: 8px; }

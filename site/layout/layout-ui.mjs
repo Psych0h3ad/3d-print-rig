@@ -1,5 +1,5 @@
 // Presentation only. The application owns state, history, files and model loading.
-import {createRoomRect,createRoomL,createRoomPolygon,resolvePrinterEquipment} from './layout-state.mjs?v=38da7e9cd1bcecf14474';
+import {createRoomRect,createRoomL,createRoomPolygon,resolvePrinterEquipment} from './layout-state.mjs?v=96541b55818081557a73';
 import {WALL_FINISHES,FLOOR_FINISHES,DEFAULT_ROOM_APPEARANCE} from './layout-finishes.mjs?v=001b62f9728770a12303';
 import {groupLabel} from './layout-group-labels.mjs?v=1ff84a0cf5540fd3184b';
 const PRINTER_VIEWER_PAGES=new Set(['','index.html','annex.html','community.html','crossant.html','custom-voron.html','kit-reference.html','micron.html','positron.html','ratrig.html','remorph.html','trident.html','v0.html','v24-reference.html','v24.html']);
@@ -32,6 +32,8 @@ const PATHS = {
   render: 'M4 5h16v14H4ZM4 15l5-5 4 4 3-3 4 4M16 8h.01',
   minus: 'M5 12h14',
   source:'M14 3h7v7M21 3l-9 9M10 3H3v18h18v-7',
+  window:'M4 4h16v16H4ZM12 4v16M4 12h16',
+  door:'M5 21V3h14v18M5 3l10 3v15M11 12h1',
   edit:'m15 4 5 5M4 15l-1 6 6-1L21 8l-5-5Z',
   group:'M3 3h7v7H3Zm11 0h7v7h-7ZM3 14h7v7H3Zm11 0h7v7h-7Z',
   save:'M4 3h13l4 4v14H3V3Zm3 0v7h10V3M7 21v-7h10v7',
@@ -47,6 +49,8 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
   let status = {canUndo: false, canRedo: false, busy: false};
   let currentIssues = [], editorKey = null, listKey = '';
   let roomMode='rectangle', roomAcceptedMode='rectangle', roomDraft=false, roomSignature=null;
+  let openingId=null,openingListKey='',openingEditorKey=null,openingWallsKey='',pendingOpeningAdd=null;
+  let openingWalls=[];
   let farmKey='', libraryKey='', groupLibrary=[];
   let activePanel='selection', objectType='all', pendingSelectionPanel=false;
   const browserRows=new Map(), filterButtons=new Map(), panels=new Map(), tabButtons=new Map(), panelScrolls=new Map();
@@ -278,6 +282,89 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
       value('room-width',b.widthMm);value('room-depth',b.depthMm);value('room-height',state.room.wallHeightMm);
     }
     shapeVisibility();
+  }
+
+  const openingSection=el('section','layout-room-openings');openingSection.id='layout-openings';
+  const openingHeading=copy(el('h3'),'layout.openings.title');openingHeading.id='layout-openings-heading';
+  openingSection.setAttribute('aria-labelledby',openingHeading.id);openingSection.append(openingHeading,copy(el('p','layout-help'),'layout.openings.help'));
+  const openingWallLabel=el('label','layout-field');openingWallLabel.append(copy(el('span'),'layout.openings.addWall'));
+  const openingWall=el('select');openingWall.id='layout-opening-add-wall';openingWallLabel.append(openingWall);openingSection.append(openingWallLabel);
+  const openingWallHint=el('p','layout-help layout-opening-wall-coordinates');openingWallHint.id='layout-opening-add-wall-coordinates';openingWall.setAttribute('aria-describedby',openingWallHint.id);openingSection.append(openingWallHint);
+  listen(openingWall,'change',()=>{openingWallHint.textContent=openingWallCoordinates(Number(openingWall.value));});
+  const openingActions=el('div','layout-opening-actions');
+  const addOpening=kind=>{
+    if(status.busy||!state||roomOpenings().length>=64)return;
+    const wallIndex=Number(openingWall.value);if(!openingWalls[wallIndex])return;
+    pendingOpeningAdd={kind,wallIndex,ids:new Set(roomOpenings().map(o=>o.id))};
+    emit({type:'room-opening-add',kind,wallIndex});
+  };
+  const addWindow=button('layout.openings.addWindow',()=>addOpening('window'),'window');
+  const addDoor=button('layout.openings.addDoor',()=>addOpening('door'),'door');openingActions.append(addWindow,addDoor);openingSection.append(openingActions);
+  const openingEmpty=copy(el('p','layout-help'),'layout.openings.empty'),openingList=el('ul','layout-opening-list');openingList.id='layout-opening-list';
+  const openingEditor=el('div','layout-opening-editor');openingSection.append(openingEmpty,openingList,openingEditor);roomSection.append(openingSection);
+  function roomOpenings(){return state?.room?.openings||[];}
+  function selectedOpening(){return roomOpenings().find(o=>o.id===openingId);}
+  function openingTitle(o){return tr('layout.openings.item',{type:tr(`layout.openings.${o.type}`),number:roomOpenings().findIndex(v=>v.id===o.id)+1,wall:o.wallIndex+1});}
+  function openingWallCoordinates(index){
+    const poly=state?.room?.polygonMm||[],a=poly[index],b=poly[(index+1)%poly.length];
+    return a&&b?tr('layout.openings.wallCoordinates',{index:index+1,startX:fixedOne(a[0]),startZ:fixedOne(a[1]),endX:fixedOne(b[0]),endZ:fixedOne(b[1])}):'';
+  }
+  function fillOpeningWalls(select,index){
+    select.replaceChildren();
+    for(const row of openingWalls){const option=el('option','',row.label);option.value=String(row.index);select.append(option);}
+    select.value=String(openingWalls[index]?index:0);
+  }
+  function refreshOpeningWalls(){
+    const polygon=state?.room?.polygonMm||[],key=JSON.stringify([polygon,tr('layout.openings.wall',{index:1,length:''})]);
+    if(key===openingWallsKey)return;
+    openingWallsKey=key;
+    openingWalls=polygon.map((a,index)=>{const b=polygon[(index+1)%polygon.length];return {index,label:tr('layout.openings.wall',{index:index+1,length:fixedOne(Math.hypot(b[0]-a[0],b[1]-a[1]))})};});
+    const previous=Number(openingWall.value);fillOpeningWalls(openingWall,previous);
+    openingWallHint.textContent=openingWallCoordinates(Number(openingWall.value));
+    const editWall=openingEditor.querySelector('#layout-opening-wall');if(editWall)fillOpeningWalls(editWall,selectedOpening()?.wallIndex??0);
+  }
+  function patchOpening(id,patch){if(selectedOpening()?.id===id)emit({type:'UPDATE_ROOM_OPENING',id,patch});}
+  function buildOpeningEditor(){
+    const o=selectedOpening(),key=o?JSON.stringify([o.id,o.type]):'';if(key===openingEditorKey)return;
+    openingEditorKey=key;
+    for(const name of [...fields.keys()])if(name.startsWith('opening-'))fields.delete(name);
+    openingEditor.replaceChildren();openingEditor.hidden=!o;if(!o)return;
+    const heading=el('h4','',openingTitle(o));heading.id='layout-opening-title';openingEditor.setAttribute('role','group');openingEditor.setAttribute('aria-labelledby',heading.id);openingEditor.append(heading);
+    const wallLabel=el('label','layout-field');wallLabel.append(copy(el('span'),'layout.openings.wallLabel'));
+    const wall=el('select');wall.id='layout-opening-wall';fillOpeningWalls(wall,o.wallIndex);wallLabel.append(wall);openingEditor.append(wallLabel);
+    const wallHint=el('p','layout-help layout-opening-wall-coordinates');wallHint.id='layout-opening-edit-wall-coordinates';wall.setAttribute('aria-describedby',wallHint.id);openingEditor.append(wallHint);
+    listen(wall,'change',()=>{const current=selectedOpening(),wallIndex=Number(wall.value);if(!status.busy&&current?.id===o.id&&openingWalls[wallIndex]&&wallIndex!==current.wallIndex)patchOpening(o.id,{wallIndex});});
+    const dimensions=el('div','layout-opening-fields');openingEditor.append(dimensions);
+    for(const [prop,label,min,max,unit]of [['offsetMm','offset',0,undefined,'mm'],['widthMm','width',1,undefined,'mm'],['heightMm','height',1,undefined,'mm'],...(o.type==='window'?[['sillMm','sill',0,undefined,'mm']]:[['openAngleDeg','angle',0,120,'°']])]){
+      numberField(dimensions,`layout.openings.${label}`,`opening-${prop}`,{min,max,unit,action:v=>patchOpening(o.id,{[prop]:v})});
+    }
+    if(o.type==='door'){
+      const hingeLabel=el('label','layout-field');hingeLabel.append(copy(el('span'),'layout.openings.hinge'));
+      const hinge=el('select');hinge.id='layout-opening-hinge';for(const side of ['left','right']){const option=copy(el('option'),`layout.openings.${side}`);option.value=side;hinge.append(option);}hingeLabel.append(hinge);openingEditor.append(hingeLabel);
+      listen(hinge,'change',()=>{const current=selectedOpening();if(!status.busy&&current?.id===o.id&&['left','right'].includes(hinge.value)&&hinge.value!==current.hinge)patchOpening(o.id,{hinge:hinge.value});});
+    }
+    const remove=button('layout.openings.remove',()=>{if(selectedOpening()?.id===o.id)emit({type:'REMOVE_ROOM_OPENING',id:o.id});},'trash');remove.classList.add('layout-delete');openingEditor.append(remove);
+  }
+  function refreshOpeningValues(){
+    const o=selectedOpening();if(!o)return;
+    for(const prop of ['offsetMm','widthMm','heightMm',...(o.type==='window'?['sillMm']:['openAngleDeg'])])value(`opening-${prop}`,o[prop]);
+    const wall=openingEditor.querySelector('#layout-opening-wall');if(wall)wall.value=String(o.wallIndex);
+    const hint=openingEditor.querySelector('#layout-opening-edit-wall-coordinates');if(hint)hint.textContent=openingWallCoordinates(o.wallIndex);
+    const hinge=openingEditor.querySelector('#layout-opening-hinge');if(hinge)hinge.value=o.hinge;
+    const heading=openingEditor.querySelector('#layout-opening-title');if(heading)heading.textContent=openingTitle(o);
+  }
+  function refreshOpenings(){
+    refreshOpeningWalls();
+    const all=roomOpenings();
+    if(pendingOpeningAdd){const added=all.find(o=>!pendingOpeningAdd.ids.has(o.id)&&o.type===pendingOpeningAdd.kind&&o.wallIndex===pendingOpeningAdd.wallIndex);if(added)openingId=added.id;pendingOpeningAdd=null;}
+    if(!all.some(o=>o.id===openingId))openingId=all[0]?.id??null;
+    const key=JSON.stringify(all.map(o=>[o.id,openingTitle(o)]));
+    if(key!==openingListKey){
+      openingListKey=key;openingList.replaceChildren();
+      for(const o of all){const row=el('li'),select=button('layout.openings.select',()=>{if(status.busy)return;openingId=o.id;refreshOpenings();refreshOpeningValues();refreshStatus();releaseDetachedControls();},o.type);select.className='layout-object-button layout-opening-button';select.dataset.layoutOpeningId=o.id;select.replaceChildren(icon(o.type),el('span','layout-object-name',openingTitle(o)));select.setAttribute('aria-label',openingTitle(o));row.append(select);openingList.append(row);}
+    }
+    for(const b of openingList.querySelectorAll('[data-layout-opening-id]'))b.setAttribute('aria-pressed',String(b.dataset.layoutOpeningId===openingId));
+    openingEmpty.hidden=all.length>0;openingList.hidden=!all.length;buildOpeningEditor();
   }
 
   const addSection = section('layout.add');
@@ -545,7 +632,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
     if(nextKey===editorKey)return;
     editorKey=nextKey;
     editor.className=group?'layout-editor layout-group-editor':'layout-editor';
-    for(const name of [...fields.keys()])if(!name.startsWith('room-'))fields.delete(name);
+    for(const name of [...fields.keys()])if(!name.startsWith('room-')&&!name.startsWith('opening-'))fields.delete(name);
     editor.replaceChildren();
     if(!e){editor.append(copy(el('p','layout-empty'),'layout.selectHint'));return;}
     if(group){buildGroupEditor(e);return;}
@@ -665,6 +752,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
   function refreshValues(){
     if(!state)return;
     syncRoom();
+    refreshOpeningValues();
     const e=selected();if(!e)return;
     const p=isGroup(e)?e.pose:e.attachment||e.pose;
     for(const key of ['xMm','zMm','yawDeg'])value(key,p[key]);
@@ -681,7 +769,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
   function refreshIssues(){
     issueList.replaceChildren();warningSection.hidden=currentIssues.length===0;
     for(const issue of currentIssues){
-      const known=new Set(['ROOM_OUT_OF_BOUNDS','SURFACE_OVERHANG','SHELF_BOARD_INTERSECTION','ENVELOPE_OVERLAP']);
+      const known=new Set(['ROOM_OUT_OF_BOUNDS','SURFACE_OVERHANG','SHELF_BOARD_INTERSECTION','ENVELOPE_OVERLAP','DOOR_SWING_OBSTRUCTED','DOOR_SWING_WALL']);
       const message=issue.message||(known.has(issue.code)?tr(`layout.issue.${issue.code}`,issue.params||{}):null);
       const objects=(issue.entityIds||[]).map(id=>entities().find(e=>e.id===id)).filter(e=>e&&(!('machineId'in e)||byMachine.has(e.machineId))).map(title).join(', ');
       const fallback=tr('layout.placementWarning',{objects});
@@ -691,6 +779,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
   function refreshStatus(){
     if(pendingSelectionPanel&&!status.busy){pendingSelectionPanel=false;if(selected()){showPanel('selection');panelHost.scrollTop=0;}}
     for(const n of root.querySelectorAll('button,input,select,textarea'))n.disabled=!!status.busy;
+    for(const n of [addWindow,addDoor])n.disabled=!!status.busy||!state||!openingWalls.length||roomOpenings().length>=64;
     for(const n of root.querySelectorAll('[data-mount-locked]'))n.disabled=true;
     for(const [id,check]of memberChecks){check.disabled=!!status.busy;check.checked=pickedRoots.has(id);}
     refreshGroupDraft();
@@ -716,7 +805,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
     const previousSelection=selectedId;
     state=next;selectedId=typeof selection==='object'?selection?.id:selection;currentIssues=Array.isArray(issues)?issues:[];
     if(selectedId!==previousSelection&&selected()){if(status.busy)pendingSelectionPanel=true;else{showPanel('selection');panelHost.scrollTop=0;}}
-    refreshList();refreshFarm();filterObjects();buildEditor();refreshValues();refreshIssues();refreshStatus();
+    refreshList();refreshFarm();filterObjects();buildEditor();refreshOpenings();refreshValues();refreshIssues();refreshStatus();
     // Rebuilt lists/editors must not retain detached controls or their closures.
     releaseDetachedControls();
   }
@@ -737,7 +826,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
     for(const n of root.querySelectorAll('[data-layout-tooltip]'))n.title=tr(n.dataset.layoutTooltip);
     search.placeholder=tr('layout.searchPrinters');search.setAttribute('aria-label',tr('layout.searchPrinters'));machineSelect.setAttribute('aria-label',tr('layout.choosePrinter'));actions.setAttribute('aria-label',tr('layout.planActions'));
     objectSearch.placeholder=tr('layout.browser.search');objectSearch.setAttribute('aria-label',tr('layout.browser.search'));
-    listKey='';farmKey='';libraryKey='';editorKey=null;populateMachines();refreshLibrary();if(state)update(state,selectedId,currentIssues);else refreshStatus();
+    listKey='';farmKey='';libraryKey='';editorKey=null;openingListKey='';openingEditorKey=null;openingWallsKey='';populateMachines();refreshLibrary();if(state)update(state,selectedId,currentIssues);else refreshStatus();
     if(draft){const replacement=[...root.querySelectorAll('input,textarea')].find(n=>n.id===draft.id);if(replacement){replacement.value=draft.value;replacement._dirty=true;replacement.focus({preventScroll:true});}}
     releaseDetachedControls();
   }

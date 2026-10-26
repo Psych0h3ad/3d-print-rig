@@ -6,6 +6,7 @@ import {envelopeOverlaps,envelopeChange,prepareCollisionMotion} from './layout-c
 import {getLayoutEquipment} from './layout-equipment.mjs?v=bd8e2772cabd6fd2564b';
 import {wallRotationCenters} from './layout-wall-rotation.mjs?v=7ae98b15139f328512eb';
 import {isGroupLabel} from './layout-group-labels.mjs?v=1ff84a0cf5540fd3184b';
+import {openingProblems,retainRoomOpenings,doorPlan,doorWallConflicts} from './layout-openings.mjs?v=12c520553a219df31848';
 
 export const LIMITS = Object.freeze({maxFurniture: 64, maxPrinters: 128, maxRoomVertices: 32,
   maxFootprintVertices: 32, maxLevels: 32, maxCoordinateMm: 1000000, maxDimensionMm: 100000,
@@ -57,7 +58,7 @@ function polygonCheck(polygon, path, errors) {
   for (const code of polygonProblems(polygon, {maxVertices: 32, maxCoordinateMm: LIMITS.maxCoordinateMm})) issue(errors, code, path);
 }
 function roomCheck(room, errors) {
-  if (!keys(room, ['polygonMm', 'wallHeightMm', 'appearance'], 'room', errors)) return;
+  if (!keys(room, ['polygonMm', 'wallHeightMm', 'appearance', 'openings'], 'room', errors)) return;
   if (Object.hasOwn(room, 'appearance') && keys(room.appearance, ['wall', 'floor'], 'room.appearance', errors)) {
     if (!WALL_FINISHES.includes(room.appearance.wall)) issue(errors, 'INVALID_ROOM_FINISH', 'room.appearance.wall');
     if (!FLOOR_FINISHES.includes(room.appearance.floor)) issue(errors, 'INVALID_ROOM_FINISH', 'room.appearance.floor');
@@ -68,6 +69,7 @@ function roomCheck(room, errors) {
     const box = bounds(room.polygonMm);
     if (box.maxX - box.minX > LIMITS.maxDimensionMm || box.maxZ - box.minZ > LIMITS.maxDimensionMm) issue(errors, 'ROOM_EXTENT_LIMIT', 'room.polygonMm');
   }
+  if (!errors.some(e=>e.path==='room.polygonMm'||e.path==='room.wallHeightMm')) errors.push(...openingProblems(room));
 }
 function furnitureCheck(f, path, errors) {
   if (!plain(f)) { issue(errors, 'EXPECTED_OBJECT', path); return; }
@@ -164,7 +166,7 @@ export function validateState(state, catalog = []) {
   if (!Array.isArray(state.printers) || state.printers.length > LIMITS.maxPrinters) issue(errors, 'PRINTER_COUNT', 'printers');
   const furniture = Array.isArray(state.furniture) ? state.furniture.slice(0, LIMITS.maxFurniture) : [];
   const printers = Array.isArray(state.printers) ? state.printers.slice(0, LIMITS.maxPrinters) : [];
-  const ids = new Set();
+  const ids = new Set(Array.isArray(state.room?.openings)?state.room.openings.map(o=>o?.id):[]);
   for (const [collection, name] of [[furniture, 'furniture'], [printers, 'printers']]) collection.forEach((entity, i) => {
     if (ids.has(entity?.id)) issue(errors, 'DUPLICATE_ENTITY_ID', `${name}[${i}].id`); ids.add(entity?.id);
   });
@@ -236,15 +238,15 @@ function dimensions(widthMm, depthMm, errors) {
 }
 // Shape-only constructors deliberately omit appearance unless supplied. SET_ROOM
 // can therefore retain existing finishes after outline editing or SVG import.
-export function createRoomPolygon({polygonMm, wallHeightMm = 2400, appearance}) { return assertRoom({polygonMm, wallHeightMm, ...(appearance === undefined ? {} : {appearance})}); }
-export function createRoomRect({widthMm = 4000, depthMm = 3000, wallHeightMm = 2400, appearance} = {}) {
-  dimensions(widthMm, depthMm, []); return createRoomPolygon({polygonMm: rectangle(widthMm, depthMm), wallHeightMm, appearance});
+export function createRoomPolygon({polygonMm, wallHeightMm = 2400, appearance, openings}) { return assertRoom({polygonMm, wallHeightMm, ...(appearance === undefined ? {} : {appearance}), ...(openings === undefined ? {} : {openings})}); }
+export function createRoomRect({widthMm = 4000, depthMm = 3000, wallHeightMm = 2400, appearance, openings} = {}) {
+  dimensions(widthMm, depthMm, []); return createRoomPolygon({polygonMm: rectangle(widthMm, depthMm), wallHeightMm, appearance, openings});
 }
-export function createRoomL({widthMm = 4000, depthMm = 4000, cutWidthMm = 2000, cutDepthMm = 2000, wallHeightMm = 2400, appearance} = {}) {
+export function createRoomL({widthMm = 4000, depthMm = 4000, cutWidthMm = 2000, cutDepthMm = 2000, wallHeightMm = 2400, appearance, openings} = {}) {
   const errors = []; dimensions(widthMm, depthMm, errors);
   if (!numberOK(cutWidthMm, 1, widthMm - 1) || !numberOK(cutDepthMm, 1, depthMm - 1)) throw new LayoutValidationError([{code: 'L_CUT_MUST_BE_INTERIOR', path: 'room', params: {}}]);
   const x = widthMm / 2, z = depthMm / 2;
-  return createRoomPolygon({polygonMm: [[-x,-z],[x,-z],[x,z-cutDepthMm],[x-cutWidthMm,z-cutDepthMm],[x-cutWidthMm,z],[-x,z]], wallHeightMm, appearance});
+  return createRoomPolygon({polygonMm: [[-x,-z],[x,-z],[x,z-cutDepthMm],[x-cutWidthMm,z-cutDepthMm],[x-cutWidthMm,z],[-x,z]], wallHeightMm, appearance, openings});
 }
 const defaultPose = () => ({xMm: 0, zMm: 0, yawDeg: 0});
 export function createDesk({id = 'desk-1', widthMm = 1200, depthMm = 600, heightMm = 750, pose = defaultPose()} = {}) {
@@ -276,11 +278,30 @@ export function applyAction(state, action, catalog = []) {
   const fields = {
     SET_ROOM: ['room'], ADD_FURNITURE: ['furniture'], UPDATE_FURNITURE: ['id', 'patch'], REMOVE_FURNITURE: ['id', 'detachChildren'],
     ADD_PRINTER: ['printer'], UPDATE_PRINTER: ['id', 'patch'], SET_ATTACHMENT: ['id', 'attachment'], REMOVE_PRINTER: ['id'],
+    ADD_ROOM_OPENING:['opening'], UPDATE_ROOM_OPENING:['id','patch'], REMOVE_ROOM_OPENING:['id'],
   };
   if (!Object.hasOwn(fields, action.type)) fail('UNKNOWN_ACTION', 'action.type');
   const errors = []; keys(action, ['type', ...fields[action.type]], 'action', errors); if (errors.length) throw new LayoutValidationError(errors);
   switch (action.type) {
-    case 'SET_ROOM': next.room = copy(roomWithAppearance(action.room, next.room.appearance)); break;
+    case 'SET_ROOM': {
+      const room=roomWithAppearance(action.room,next.room.appearance);
+      // Validate the new outline before calculating wall correspondence.
+      assertRoom(room);
+      try{next.room=copy(retainRoomOpenings(next.room,room));}
+      catch(error){if(error.code)fail(error.code,'room.openings');throw error;}
+      break;
+    }
+    case 'ADD_ROOM_OPENING': next.room.openings=[...(next.room.openings??[]),copy(action.opening)];break;
+    case 'UPDATE_ROOM_OPENING': {
+      const opening=next.room.openings?.find(o=>o.id===action.id);
+      if(!opening)fail('OPENING_NOT_FOUND','action.id');
+      patchCheck(action.patch,['wallIndex','offsetMm','widthMm','heightMm','sillMm',...(opening.type==='door'?['hinge','openAngleDeg']:[])]);
+      Object.assign(opening,copy(action.patch));break;
+    }
+    case 'REMOVE_ROOM_OPENING': {
+      if(!next.room.openings?.some(o=>o.id===action.id))fail('OPENING_NOT_FOUND','action.id');
+      next.room.openings=next.room.openings.filter(o=>o.id!==action.id);break;
+    }
     case 'ADD_FURNITURE': next.furniture.push(copy(action.furniture)); break;
     case 'ADD_PRINTER': next.printers.push(copy(action.printer)); break;
     case 'UPDATE_FURNITURE': {
@@ -823,6 +844,11 @@ export function validatePlacement(state, catalog = []) {
     }
   }
   warnings.push(...envelopeOverlaps(scene));
+  for(const opening of state.room.openings??[])if(opening.type==='door'){
+    const plan=doorPlan(state.room,opening),blocked=all.filter(e=>e.verticalRangeMm[0]<opening.heightMm&&e.verticalRangeMm[1]>0&&polygonsOverlap(plan.sweepPolygonMm,e.worldEnvelopeMm));
+    if(blocked.length)warn('DOOR_SWING_OBSTRUCTED',blocked.map(e=>e.id),{openingId:opening.id,entityIds:blocked.map(e=>e.id)});
+    const walls=doorWallConflicts(state.room,opening);if(walls.length)warn('DOOR_SWING_WALL',[],{openingId:opening.id,walls:walls.map(i=>i+1).join(', ')});
+  }
   return freeze(warnings);
 }
 export function serializeLayout(state, catalog = []) {

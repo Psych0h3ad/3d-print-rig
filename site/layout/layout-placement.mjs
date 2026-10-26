@@ -1,6 +1,6 @@
 // Pure placement transactions for static planning envelopes, never CAD fit proofs.
 import {LIMITS, createCatalog, createDesk, createShelf, createPopStation, resolvePrinterEquipment, applyAction, validateState,
-  validatePlacement, deriveScene, getSurface} from './layout-state.mjs?v=38da7e9cd1bcecf14474';
+  validatePlacement, deriveScene, getSurface} from './layout-state.mjs?v=96541b55818081557a73';
 import {rectangle, rotateXZ, transformPolygon, bounds} from './layout-geometry.mjs?v=129e07e8d3e2b008fab6';
 
 const MAGNET_MM = 14;
@@ -102,7 +102,7 @@ export function proposePlacement(state, input, catalog) {
           attachment: {parentId, surfaceId, xMm: fixedMount?0:local[0], zMm: fixedMount?0:local[1], yawDeg: fixedMount?0:pose.yawDeg - surface.yawDeg}}};
       } else action = {type: 'ADD_FURNITURE', furniture: {...furniture, pose: {xMm: pose.xMm, zMm: pose.zMm, yawDeg: pose.yawDeg}}};
       const next = applyAction(state, action, machines);
-      const problems = validatePlacement(next, machines).filter(warning => warning.entityIds.includes(id));
+      const problems = validatePlacement(next, machines).filter(warning => !['DOOR_SWING_OBSTRUCTED','DOOR_SWING_WALL'].includes(warning.code)&&warning.entityIds.includes(id));
       if (problems.length) return rejected(problems, pose);
       const box = bounds(transformPolygon(polygon, pose));
       const guides = alignments.map(a => ({axis: a.axis, valueMm: a.value,
