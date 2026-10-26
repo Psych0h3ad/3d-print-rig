@@ -1,0 +1,71 @@
+{
+  "schema": "actual-source-assembly-thumbnail-cpu-v1",
+  "machine_id": "rh3d_e3ng_v12_235",
+  "model_sha256": "1dad2900f881eec60fa16255c98628489443ea453086c79b7d0d6ac0e3e6bf3f",
+  "source_geometry_model_sha256": "1dad2900f881eec60fa16255c98628489443ea453086c79b7d0d6ac0e3e6bf3f",
+  "physical_roots": 508,
+  "visible_roots": 508,
+  "rendered_roots": 508,
+  "excluded_default_roots": [],
+  "counts": {
+    "source_triangles_submitted": 7117188,
+    "front_or_double_sided_triangles": 3548451,
+    "exact_zero_area_omitted_from_painter": 0,
+    "primitive_occurrences": 2540,
+    "instanced_mesh_instances": 0,
+    "morphed_primitive_occurrences": 6,
+    "negative_determinant_occurrences": 0
+  },
+  "default_variant": "combined-candidate",
+  "morph_weight": 1,
+  "material_mode": "source",
+  "camera_direction": [
+    0.5179323973782373,
+    0.3984095364447979,
+    0.7569781192451159
+  ],
+  "world_bounds_m": [
+    [
+      -0.20360009529314615,
+      -5.8281070747234764e-08,
+      -0.23945377086591751
+    ],
+    [
+      0.22207520158160116,
+      0.5746934345319119,
+      0.22300004409579222
+    ]
+  ],
+  "render_method": "actual-exported-triangle-cpu-projection",
+  "browser_review": false,
+  "whole_machine_fit_verified": false,
+  "packet": {
+    "url": "../source-assembly-assets/packet-rh3d_e3ng_v12_235.json",
+    "bytes": 963376,
+    "sha256": "67703b976a5e3fb4c98453b99c12c56f81f6b6ab65ed949397930d8020c48ece"
+  },
+  "chunk_manifest": {
+    "url": "/3d-print-rig-extra-models/source-assemblies/1dad2900f881eec60fa16255c98628489443ea453086c79b7d0d6ac0e3e6bf3f/manifest-1dad2900f881eec60fa16255c98628489443ea453086c79b7d0d6ac0e3e6bf3f.json",
+    "bytes": 2303695,
+    "sha256": "19b833926978034c9861421287282a39b63c269cb6ce67c86e85c24cbde81925"
+  },
+  "thumbnail": {
+    "path": "rh3d_e3ng_v12_235.webp",
+    "bytes": 10146,
+    "sha256": "ec5255556749d8b6e96df8b6af1ab69c930dd6825dd8578006f290be2bab344f",
+    "width": 320,
+    "height": 240
+  },
+  "method": "Orthographic triangle projection of the exported source assembly; source colors and fitted latch display.",
+  "source_metadata_bridge": {
+    "projection_evidence_sha256": "0d6c89251aec7596f779953f182cbb09fe860ab11bd332750f7eede9bd2f7a0e",
+    "source_packet_sha256": "8daae73b8bece5e123f2560133e8c2a0d177805d678c3793a0db7cb141202b02",
+    "source_manifest_sha256": "ef477b95df0a65926b10c5c942f9eafa09dd922e01d4401c0bcf2218f529c10e",
+    "render_geometry_and_materials_equal": true,
+    "owner_placements_and_default_visibility_equal": true
+  },
+  "limitations": [
+    "A CPU triangle projection does not reproduce all browser reflections and transparency.",
+    "This image is not a physical-clearance validation."
+  ]
+}

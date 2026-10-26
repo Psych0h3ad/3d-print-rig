@@ -135,7 +135,7 @@ export async function auditEnderBowden({site,assets,report:reportPath}={}){
   scope:'All registered Bowden installations; named finite forward/reversed triangle-clearance poses; separately adaptive axis/diagonal transitions check actual generated tube visibility, finite geometry/normals and fitting attachment. Adaptive centerline shape, fitting axes, service length and self-distance are recorded. Broad-phase boxes only filter triangle tests. Flexible source bodies, source solid containment, manufacturing tolerances, strain and continuous swept/native-solid clearance are not certified.',
   native_solid_clearance_verified:false,browser_review:false};
  for(const [name,pin]of Object.entries(sourceHashes))assert.equal(hash(fs.readFileSync(path.join(repo,name))),pin,'Source changed during audit');
- if(reportPath)fs.writeFileSync(reportPath,JSON.stringify(report,null,2)+'\n');
+ if(reportPath)fs.writeFileSync(reportPath,JSON.stringify(report)+'\n');
  assert(report.passed,JSON.stringify(findings));return report;
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){

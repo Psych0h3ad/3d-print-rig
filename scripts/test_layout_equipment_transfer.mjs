@@ -383,7 +383,8 @@ await test('both-real-audit-entrypoints-require-exact-cache-bodies-before-geomet
  fs.mkdirSync(path.join(site,'layout'),{recursive:true});fs.mkdirSync(path.join(site,'viewer'),{recursive:true});fs.mkdirSync(cache);
  try{
   for(const name of ['layout/layout-machine-loader.mjs','layout/layout-equipment-transfer.mjs','layout/layout-geometry.mjs',
-   'layout/layout-equipment-mesh.mjs','layout/layout-renderer.mjs','viewer/layout-machine-recipes.mjs'])
+   'layout/layout-equipment-mesh.mjs','layout/layout-renderer.mjs','viewer/layout-machine-recipes.mjs',
+   'viewer/source-assembly-registry.mjs'])
    fs.copyFileSync(path.join(repo,'site',name),path.join(site,name));
   fs.cpSync(path.join(repo,'site/viewer/vendor-r180'),path.join(site,'viewer/vendor-r180'),{recursive:true});
   const models=exteriorNames.map(name=>hosted(name)),prefix='layout/assets/equipment/u1-exterior/';

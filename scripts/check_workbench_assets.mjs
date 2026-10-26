@@ -1,3 +1,4 @@
+import {validateSourceInputMap,sourceAssetLocation,auditSourceAssetReferences} from './source-asset-input.mjs';
 import assert from 'node:assert/strict';
 import {readFile,access,writeFile} from 'node:fs/promises';
 import {pathToFileURL} from 'node:url';
@@ -70,7 +71,8 @@ export function decodeRegisteredAsset(raw,spec,relative){
  if(spec.decoded_sha256){assert.equal(bytes.length,spec.decoded_bytes);assert.equal(digest(bytes),spec.decoded_sha256)}
  return bytes;
 }
-export async function auditCurrentMachineAssets(root,directories=[]){
+export async function auditCurrentMachineAssets(root,directories=[],sourceInputMap={files:{}}){
+ validateSourceInputMap(sourceInputMap);
  const read=async f=>JSON.parse(await readFile(path.join(root,safe(f)),'utf8'));
  const imported=async f=>import(pathToFileURL(path.join(root,safe(f))).href);
  const [{machineChoices:machines},{layoutMachineRecipes:recipes},{elegooAssetIndex:elegoo},{evaCommunityIndex}]=await Promise.all([
@@ -84,12 +86,12 @@ export async function auditCurrentMachineAssets(root,directories=[]){
  // rows. The delivery also retains approved source/library reference bodies;
  // their directory names are not additional machine registrations.
  const evidence=[],checked=new Map();
- async function checkedFile(relative,spec){
+ async function checkedFile(relative,spec,explicitFile=null){
   safe(relative);assert(spec&&/^[a-f0-9]{64}$/.test(spec.sha256)&&Number.isSafeInteger(spec.bytes)&&spec.bytes>0,'Unpinned model input: '+relative);
-  const candidates=[...new Set([root,...directories].map(d=>path.resolve(d,relative)))];let selected;
+  const candidates=explicitFile?[explicitFile]:[...new Set([root,...directories].map(d=>path.resolve(d,relative)))];let selected;
   for(const file of candidates)if(await exists(file)){selected=file;break}
   assert(selected,'Missing actual registered asset: '+relative+'; supply its explicit asset root');
-  const cacheKey=selected+':'+spec.sha256;if(checked.has(cacheKey))return checked.get(cacheKey);
+  const cacheKey=JSON.stringify([selected,spec.bytes,spec.sha256,spec.encoding,spec.decoded_bytes,spec.decoded_sha256]);if(checked.has(cacheKey))return checked.get(cacheKey);
   const raw=await readFile(selected),bytes=decodeRegisteredAsset(raw,spec,relative);
   const row={path:relative,resolved_path:selected,sha256:spec.sha256,bytes:raw.length,decoded_sha256:digest(bytes),decoded_bytes:bytes.length};evidence.push(row);
   // Retain small metadata only, never the complete fleet's decompressed models.
@@ -111,15 +113,12 @@ export async function auditCurrentMachineAssets(root,directories=[]){
    let meta,profile;
    if(recipe.category==='source'){
     const record=source.models.find(r=>r.id===machine.id);assert(record,'Missing registered source packet');
-    const relative=url=>{const file=path.resolve(root,'viewer',url),name=path.relative(root,file).split(path.sep).join('/');return safe(name)};
-    const packet=(await checkedFile(relative(record.packet.url),record.packet)).json;
-    assert.equal(packet.id,record.assembly_id);assert.equal(packet.model.sha256,record.model_sha256);assert.equal(packet.default_variant,record.configuration);
-    const manifest=(await checkedFile(relative(packet.chunk_delivery.manifest.url),packet.chunk_delivery.manifest)).json;
-    assert.equal(manifest.model_sha256,packet.model.sha256);assert.equal(manifest.occurrences,packet.parts.length);assert.equal(manifest.chunks.length,packet.chunk_delivery.chunk_count);
-    assert.equal(manifest.all_BIN_bytes_preserved,true);let end=0;
-    for(const [i,c]of manifest.chunks.entries()){assert.equal(c.ordinal,i);assert.equal(c.start,end);end+=c.bytes;assert(c.gzip,'Missing approved source chunk transport');await checkedFile(relative(c.gzip.url),{...c.gzip,encoding:'gzip',decoded_bytes:c.bytes,decoded_sha256:c.sha256})}
-    assert(end>=manifest.geometry_bytes&&end<=manifest.document.buffers[0].byteLength+3,'Incomplete source model chunks');
-    result.model_sha256=record.model_sha256;result.model_hash_basis='Pinned original model binding plus every exact exported chunk; original monolithic GLB not reconstructed';meta=packet;
+    const verified=await auditSourceAssetReferences(record,ref=>{
+     const location=sourceAssetLocation(root,ref.url,sourceInputMap);
+     return checkedFile(location.relative,ref,location.file);
+    });
+    result.model_sha256=verified.model_sha256;result.model_hash_basis=verified.model_hash_basis;
+    result.source_transport_counts=verified.transport_counts;meta=verified.packet;
    }else if(catalogs[recipe.category]&&!(recipe.category==='siboor'&&machine.id==='siboor_trident_350')){
     const index=catalogs[recipe.category],spec=registeredAssetRow(index,machine.id),local=safe(spec.local_directory??index.local_directory),files={};
     for(const [name,pin]of Object.entries(spec.files)){
@@ -162,7 +161,7 @@ export async function auditCurrentMachineAssets(root,directories=[]){
  assert.equal(results.length,ids.length);
  return report;
 }
-export async function checkWorkbenchAssets(root,directories=[],onMachineReport=()=>{},machineDirectories=[]){
+export async function checkWorkbenchAssets(root,directories=[],onMachineReport=()=>{},machineDirectories=[],sourceInputMap={files:{}}){
 const read=async f=>JSON.parse(await readFile(path.join(root,f),'utf8'));
 const gantries=await read('GANTRY_CONFIGURATIONS.json'),heads=withHeadAdditions(await read('TOOLHEAD_CONFIGURATIONS.json'),await read('HEAD_ADDITIONS.json')),library=await read('COMPONENT_LIBRARY.json'),changers=await read('TOOLCHANGER_CONFIGURATIONS.json');
 assert(gantries.variants.length>0&&heads.variants.length>0&&library.items.length>0&&changers.variants.length>0);
@@ -225,7 +224,7 @@ assert(heads.variants.some(v=>v.mount==='stealthchanger'));
 assert.equal(heads.variants.filter(v=>v.mount==='tapchanger').length,3);
 console.log(JSON.stringify({monolith_assemblies:32,toolchanger_assemblies:changers.variants.length,head_variants:heads.variants.length,complete_stealthchanger_heads:heads.variants.filter(v=>v.mount==='stealthchanger').length,complete_tapchanger_source_assemblies:3,library_items:library.items.length,gantry_choice_transitions:gantryTransitions,head_choice_transitions:transitions,toolchanger_choice_transitions:changerTransitions,unverified_source_interfaces:unverifiedReferences,browser_ui_review:false,physical_fit_certified:false}));
 
-const machineReport=await auditCurrentMachineAssets(root,[...machineDirectories,...directories]);
+const machineReport=await auditCurrentMachineAssets(root,[...machineDirectories,...directories],sourceInputMap);
 machineReport.component_checks={passed:true,head_variants:heads.variants.length,toolchanger_assemblies:changers.variants.length,library_items:library.items.length,gantry_choice_transitions:gantryTransitions,head_choice_transitions:transitions,toolchanger_choice_transitions:changerTransitions,gantry_ids:gantries.variants.map(v=>v.id),head_variant_ids:heads.variants.map(v=>v.id),changer_ids:changers.variants.map(v=>v.id),stealthchanger_probe_poses_mm:[0,1.5,3],explode_mm:20,unverified_source_interfaces:unverifiedReferences,complete_extruder_fit_verified:false};
 for(const f of ['GANTRY_CONFIGURATIONS.json','TOOLHEAD_CONFIGURATIONS.json','HEAD_ADDITIONS.json','COMPONENT_LIBRARY.json','TOOLCHANGER_CONFIGURATIONS.json'])machineReport.input_sha256[f]=digest(await readFile(path.join(root,f)));
 await onMachineReport(machineReport);
@@ -264,10 +263,12 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(path.resolve(process.argv[1]
  const args=process.argv.slice(2),reportAt=args.indexOf('--report');let output;
  if(reportAt!==-1){output=args[reportAt+1];assert(output,'Missing --report path');args.splice(reportAt,2)}
  const machineDirectories=[];let at;while((at=args.indexOf('--machine-assets'))!==-1){assert(args[at+1]&&!args[at+1].startsWith('--'),'Missing --machine-assets directory');machineDirectories.push(path.resolve(args[at+1]));args.splice(at,2)}
+ const sourceAt=args.indexOf('--source-input-map');let sourceInputMap={files:{}};
+ if(sourceAt!==-1){assert(args[sourceAt+1]&&!args[sourceAt+1].startsWith('--'),'Missing --source-input-map file');sourceInputMap=validateSourceInputMap(JSON.parse(await readFile(args[sourceAt+1],'utf8')));args.splice(sourceAt,2)}
  assert(!args.some(a=>a.startsWith('--')),'Unknown workbench audit option');
  const root=path.resolve(args.shift()??'site'),directories=args.map(d=>path.resolve(d));let machines;
  try{
-  const result=await checkWorkbenchAssets(root,directories,async value=>{machines=value;if(output)await writeFile(output,JSON.stringify({passed:false,phase:'machines-complete-community-pending',machines},null,2)+'\n')},machineDirectories);
+  const result=await checkWorkbenchAssets(root,directories,async value=>{machines=value;if(output)await writeFile(output,JSON.stringify({passed:false,phase:'machines-complete-community-pending',machines},null,2)+'\n')},machineDirectories,sourceInputMap);
   if(output)await writeFile(output,JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify({passed:true,available_machines:result.machines.registered_machines,physical_fit_certified:false}));
  }catch(error){machines??={passed:false,registered_machines:currentMachines.filter(m=>m.available!==false).length,machines:currentMachines.filter(m=>m.available!==false).map(m=>({id:m.id,passed:false,error:'Audit did not reach machine coverage: '+error.message,poses_tested:[],native_clearance_verified:false}))};if(output)await writeFile(output,JSON.stringify({passed:false,error:error.stack,machines},null,2)+'\n');throw error}
 }

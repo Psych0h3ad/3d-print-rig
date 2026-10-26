@@ -10,14 +10,14 @@ import {withHeadAdditions} from './head-additions.mjs?v=a1cfc8aca74dc421ee1a';
 import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
 import {communitySchema,validateCommunityState,communityMotionEnabled,communityConfiguration} from './community-state.mjs?v=460b3fa78cc503ddb6e6';
 import {installationFor,installationOptionAvailable} from './ender-mods.mjs';
-import {setupMachineNavigation} from './machines.js?v=43bbf9d5e578ae5c1a5e';
+import {setupMachineNavigation} from './machines.js?v=def15e6e5867393ab8db';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
-import {translate,loadLanguage,messageIdFor} from './i18n.mjs?v=37e548ac286080f2a1cc';
+import {translate,loadLanguage,messageIdFor} from './i18n.mjs?v=5640e02b07261eba72f1';
 import {rememberDisplayControl} from './display-preferences.mjs?v=8f347468def25922153c';
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
-import {setupPublicInfo} from './public-info.js?v=7e37a12d678b346b5989';
+import {setupPublicInfo} from './public-info.js?v=3b1176ccb89e63e0cd35';
 const descriptions={
  voron_switchwire_250:'Official Switchwire v1 CAD assembly with Stealthburner, CW2 and Revo Voron.',
  '247zero_beta2_120':'247zero BETA2 · 120 mm / ULW carbon gantry / Crazy Volcano / M4 Bowden',
@@ -45,7 +45,7 @@ const sourceNotices={ '247zero_beta2_120':"BETA2 CAD v43 with original V0.2 skir
 sourceNotices.voron_switchwire_250='Source: VoronDesign/Voron-Switchwire, revision 92cc013ca2af94e6c09950dbe05c0973ee49aa00 (GPL-3.0). Preview movement does not establish physical clearance.';
 import {isSourceAssemblyMachine} from './source-assembly-registry.mjs';
 export async function mount(scope){
- if(isSourceAssemblyMachine(new URLSearchParams(location.search).get('machine')))return (await import('./source-assembly.mjs?v=612fe6fe29f56a4672ce')).mount(scope);
+ if(isSourceAssemblyMachine(new URLSearchParams(location.search).get('machine')))return (await import('./source-assembly.mjs?v=f0c84e8ec9c6d3d74f43')).mount(scope);
  await loadLanguage(document.documentElement.lang);if(scope.disposed)return;
  const $=id=>document.getElementById(id),stage=$('stage'),machine=new URLSearchParams(location.search).get('machine')||'ender3_stock_220',t=v=>translate(v,document.documentElement.lang);
  const status=$('status'),modelNotice=$('sourceModelNotice');

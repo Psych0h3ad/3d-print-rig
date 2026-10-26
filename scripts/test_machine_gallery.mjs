@@ -229,6 +229,12 @@ let index;
 try { index = JSON.parse(await fs.readFile(indexPath, 'utf8')); }
 catch (error) { throw Error('Actual machine gallery index is required at ' + indexPath + '. Parent thumbnail generation remains pending; this is not an asset pass.', {cause: error}); }
 const actual = validateGallery(index);
+// Exercise the delivered index as well as the synthetic source fixture.
+const actualEnvironment = environment();
+await mountGallery({...actualEnvironment, fetcher: async () => ({ok: true, json: async () => index})});
+assert.equal(actualEnvironment.ids.galleryError.hidden, true, 'Actual gallery index must mount without an error');
+assert.equal(actualEnvironment.ids.machineGrid.children.length, available.length, 'Actual gallery must contain every registered card');
+assert(actualEnvironment.ids.machineGrid.children.some(card => new URL(card.children[0].href).searchParams.get('machine') === 'rh3d_e3ng_v12_235'), 'Actual gallery includes the E3NG card');
 assert.deepEqual(actual.map(row => row.id).sort(), [...records.keys()].sort());
 function webpSize(bytes) {
   assert.equal(bytes.readUInt32LE(4), bytes.length - 8, 'Complete WebP container');

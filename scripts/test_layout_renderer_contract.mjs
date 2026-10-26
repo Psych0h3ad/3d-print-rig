@@ -915,7 +915,23 @@ for(const mode of ['top','perspective']){
    assert.equal(group.position.y,ground);assert(geometries.size<=2,'At most opaque and glazing geometry for preview solids');
    assert(group.children.every(o=>o.isMesh),'Unselected printers have no wire enclosure clutter');
    assert([...geometries].reduce((n,g)=>n+(g.index?.count??g.attributes.position.count)/3,0)<=2500,'Bounded preview triangles');
-   assert(group.children.length<=2);assert.equal(group.userData.previewPartCount,shape.parts.filter(p=>!p.wireframe).length);assert(group.userData.simplePreview);
+   if(row.proxy?.appendGenericPrinterCues===false){
+    // Registered direct-box planning symbols are not the merged opaque/glass path.
+    // E3NG reuses the existing generic CoreXY cues, with no invented source parts.
+    assert.equal(original.id,'rh3d_e3ng_v12_235');
+    assert.equal(row.proxy.kind,'generic-source-packet-light-preview');
+    const expectedRoles={'contact-foot':4,'base-cue':1,'bed-cue':1,'bed-support-cue':2,'gantry-cue':1,'head-cue':1};
+    const counts=parts=>parts.reduce((out,p)=>{out[p.proxyRole]=(out[p.proxyRole]||0)+1;return out},{});
+    const solids=shape.parts.filter(p=>!p.wireframe);
+    assert.deepEqual(counts(solids),expectedRoles,'Exact registered lightweight cue composition');
+    assert(solids.every(p=>p.previewCue===true&&!p.sourcePartKey&&!p.shape),'Generic boxes must not impersonate source geometry');
+    assert.equal(solids.length,10);assert.equal(group.children.length,solids.length);
+    assert.deepEqual(counts(group.children.map(o=>o.userData)),expectedRoles,'Rendered cue roles match the registered composition');
+    assert.equal(geometries.size,1,'All ten placement boxes share one immutable geometry');
+    assert(group.children.every(o=>o.geometry.type==='BoxGeometry'));
+    assert.equal(group.children.reduce((n,o)=>n+(o.geometry.index?.count??o.geometry.attributes.position.count)/3,0),120,'Ten12-triangle boxes, not full CAD');
+   }else assert(group.children.length<=2,'Merged printer previews retain the opaque/glazing child bound');
+   assert.equal(group.userData.previewPartCount,shape.parts.filter(p=>!p.wireframe).length);assert(group.userData.simplePreview);
    const sizeSummary=container.querySelector('.layout-selected-summary').children[1].textContent;
    assert.equal(sizeSummary,[row.widthMm,row.depthMm,row.heightMm].map(Math.round).join(' × ')+' common.mm',row.id+' selected dimensions come from registered source envelope');
    api.setOptions({measurements:true});api.view('top');await settled();assert.equal(container.children.find(n=>n.className==='layout-plan-measurements').hidden,false);

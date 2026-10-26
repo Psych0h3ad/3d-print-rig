@@ -1,5 +1,5 @@
 import {normalizeLanguage} from './languages.mjs?v=2e376566920474c0f57c';
-import {machinePage} from './machines.js?v=43bbf9d5e578ae5c1a5e';
+import {machinePage} from './machines.js?v=def15e6e5867393ab8db';
 
 export const workspaceReturnKey='3d-print-rig-workspace-return';
 export function workspaceKindFor(page){

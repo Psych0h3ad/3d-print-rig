@@ -11301,6 +11301,30 @@
     "fun.palette_graphite": {
       "source_revision": "fe71065adb5f8a625267",
       "text": "그라파이트"
+    },
+    "source_assembly.e3ng.rear_latches_notice": {
+      "source_revision": "70b250a9a9dde7c68000",
+      "text": "뒤쪽 래치는 장착된 상태로 표시되며 휘어짐은 시뮬레이션하지 않습니다."
+    },
+    "source_assembly.e3ng.shortened_spacers_notice": {
+      "source_revision": "bd8a4233b91c2797c177",
+      "text": "스페이서는 Fanta_r 모델을 바탕으로 표시용으로 짧게 만들었습니다."
+    },
+    "source_assembly.e3ng.thermistor_wiring_notice": {
+      "source_revision": "2b7c01cfb7b04655d5a0",
+      "text": "베드 서미스터와 내부 배선은 완전히 모델링되지 않았습니다."
+    },
+    "source_assembly.e3ng.probe_fastener_review": {
+      "source_revision": "a5e2e37e3103b99709ed",
+      "text": "프로브 고정 나사의 결합을 검토 중입니다."
+    },
+    "source_assembly.e3ng.controller_board_omitted": {
+      "source_revision": "ce3195e22ebab44f138c",
+      "text": "컨트롤러 보드 형상은 생략되었습니다."
+    },
+    "source_assembly.source_colors": {
+      "source_revision": "a2449e09042e47a318f4",
+      "text": "원본 색상"
     }
   }
 }

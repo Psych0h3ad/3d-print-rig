@@ -1,0 +1,400 @@
+E3NG v1.2 public-source assembly
+
+Reconstructed from public RH3D E3NG v1.2 STL files, with separately credited component CAD. No paid E3NG assembly or assembled STEP download.
+
+Six rear latches have an illustrative fitted display state. Original base topology is retained; elastic behavior is not simulated.
+
+Four Fanta_r silicone-spacer source derivatives follow Z-bed. Declared plain-end shortening is a display adaptation, not a silicone-compression simulation or a factory Creality part.
+
+Source-specific bed thermistor bead/sleeve and bed wiring geometry remain incomplete. Selected mating and sampled movement evidence does not establish whole-machine or continuous clearance.
+
+Source POSITION bounds, normals, transforms and geometry arrays are retained. Printed source colors are the default; palette selection and native reset preserve purchased materials.
+
+Original support omissions and zero-area facet dispositions retain their source identities. Component licenses and source obligations remain separate; public download does not establish redistribution permission.
+
+Primary author: RH3D
+https://rh3d.xyz/E3NG_v1_2/standard/files
+CC-BY-NC-SA-4.0
+
+Component sources (terms remain distinct):
+
+Original source credited by its primary URL
+https://files.printables.com/media/prints/922401/stls/7281972_d0c00c31-3fc8-4a48-82b2-7e256e96b991_dd9c9df1-32c1-46a1-8358-4291d86ac900/frame_bottom_front_left_body.stl
+CC-BY-NC-SA-4.0
+E3NG v1.2 / public 922401
+
+Original source credited by its primary URL
+https://files.printables.com/media/prints/922401/stls/7281975_11100b0f-51c9-4194-bd9b-cd51087610e8_aa341211-4681-46b9-8216-22592f32ffdc/frame_bottom_front_right_body.stl
+CC-BY-NC-SA-4.0
+E3NG v1.2 / public 922401
+
+Original source credited by its primary URL
+https://files.printables.com/media/prints/922401/stls/7281973_9bf71012-a533-4834-abaf-1dfb26bfea78_e40e5893-0f68-4c38-b6d8-859d7346dc28/frame_bottom_front_left_cap.stl
+CC-BY-NC-SA-4.0
+E3NG v1.2 / public 922401
+
+Original source credited by its primary URL
+https://files.printables.com/media/prints/922401/stls/7281976_44f93adb-a145-4fe0-b490-2b3dc69d5ba1_bc113c87-24b2-4bc2-af67-a2272829b585/frame_bottom_front_right_cap.stl
+CC-BY-NC-SA-4.0
+E3NG v1.2 / public 922401
+
+Creality3DPrinting
+https://raw.githubusercontent.com/Creality3DPrinting/Ender-3/88c7758cea9d0d00a54fdb238bedb3b33425f409/Ender-3%20Mechanical/STP/Ender3.STEP
+GPL-3.0 (repository root LICENSE at 88c7758cea9d0d00a54fdb238bedb3b33425f409)
+Pinned original public component source
+
+Creality3DPrinting
+https://raw.githubusercontent.com/Creality3DPrinting/Ender-3/88c7758cea9d0d00a54fdb238bedb3b33425f409/Ender-3%20Mechanical/STP/Ender3.STEP
+GPL-3.0 (repository root LICENSE at 88c7758cea9d0d00a54fdb238bedb3b33425f409)
+Pinned original public component source
+
+Original source credited by its primary URL
+https://files.printables.com/media/prints/922401/stls/7281971_7e1e9023-79d5-4f8e-a6f9-5ba0071c5eb2_d3419c4f-3157-4e3d-a6fb-1114b857ffc7/frame_bottom_e3_fix_left.stl
+CC-BY-NC-SA-4.0
+E3NG v1.2 / public 922401
+
+Original source credited by its primary URL
+https://files.printables.com/media/prints/922401/stls/7281974_9066d6c7-7847-45d5-8e12-8d2c136c4f88_b6f5e8f4-e28c-4614-8b14-d0b665520598/frame_bottom_e3_fix_right.stl
+CC-BY-NC-SA-4.0
+E3NG v1.2 / public 922401
+
+Creality3DPrinting
+https://raw.githubusercontent.com/Creality3DPrinting/Ender-3/88c7758cea9d0d00a54fdb238bedb3b33425f409/Ender-3%20Mechanical/STP/Ender3.STEP
+GPL-3.0 (repository root LICENSE at 88c7758cea9d0d00a54fdb238bedb3b33425f409)
+Pinned original public component source
+
+Creality3DPrinting
+https://raw.githubusercontent.com/Creality3DPrinting/Ender-3/88c7758cea9d0d00a54fdb238bedb3b33425f409/Ender-3%20Mechanical/STP/Ender3.STEP
+GPL-3.0 (repository root LICENSE at 88c7758cea9d0d00a54fdb238bedb3b33425f409)
+Pinned original public component source
+
+Original source credited by its primary URL
+https://files.printables.com/media/prints/922401/stls/7282016_31c0812a-49e7-4853-b6a6-6a551244ff00_49cda8d1-8602-4256-9e5f-463aeced9f37/frame_top_front_left_body.stl
+CC-BY-NC-SA-4.0
+E3NG v1.2 / public 922401
+
+Original source credited by its primary URL
+https://files.printables.com/media/prints/922401/stls/7282015_f2f10bc9-b33b-4c2c-9b01-a449d7acecd5_19863b99-0794-4e38-b851-96b66af15c5c/frame_top_front_right_body.stl
+CC-BY-NC-SA-4.0
+E3NG v1.2 / public 922401
+
+Original source credited by its primary URL
+https://files.printables.com/media/prints/922401/stls/7282018_b9c7dd9e-3071-451d-9e46-c1509aeafcdb_a705d6c3-fc59-4438-b201-83f20fcb26e2/frame_top_rear_a_right_bottom.stl
+CC-BY-NC-SA-4.0
+E3NG v1.2 / public 922401
+
+Original source credited by its primary URL
+https://files.printables.com/media/prints/922401/stls/7282013_df596d2d-8851-422a-8565-7fce4939a6a8_8c5a20ae-fab2-4a82-967e-256aebf4df9c/frame_top_rear_a_right_middle.stl
+CC-BY-NC-SA-4.0
+E3NG v1.2 / public 922401
+
+Original source credited by its primary URL
+https://files.printables.com/media/prints/922401/stls/7282010_06dda04d-42be-4c64-990b-ee014275f117_648dc571-b9ed-4fe0-bf9d-30367132ad68/frame_top_rear_b_left_bottom.stl
+CC-BY-NC-SA-4.0
+E3NG v1.2 / public 922401
+
+Original source credited by its primary URL
+https://files.printables.com/media/prints/922401/stls/7282012_c11ee58e-791a-4b26-9906-982bfc08d310_c16f2a30-b567-4a96-bfe9-9333da86e8ce/frame_top_rear_b_left_middle.stl
+CC-BY-NC-SA-4.0
+E3NG v1.2 / public 922401
+
+Original source credited by its primary URL
+https://files.printables.com/media/prints/922401/stls/7282014_48b8f968-6d1a-43a2-b3fc-3da53ef679f2_d5ee7199-0e96-40b7-b321-f3d521c53d20/frame_top_rear_b_left_top.stl
+CC-BY-NC-SA-4.0
+E3NG v1.2 / public 922401
+
+Creality3DPrinting
+https://raw.githubusercontent.com/Creality3DPrinting/Ender-3/88c7758cea9d0d00a54fdb238bedb3b33425f409/Ender-3%20Mechanical/STP/Ender3.STEP
+GPL-3.0 (repository root LICENSE at 88c7758cea9d0d00a54fdb238bedb3b33425f409)
+Pinned original public component source
+
+Creality3DPrinting
+https://raw.githubusercontent.com/Creality3DPrinting/Ender-3/88c7758cea9d0d00a54fdb238bedb3b33425f409/Ender-3%20Mechanical/STP/Ender3.STEP
+GPL-3.0 (repository root LICENSE at 88c7758cea9d0d00a54fdb238bedb3b33425f409)
+Pinned original public component source
+
+Creality3DPrinting
+https://raw.githubusercontent.com/Creality3DPrinting/Ender-3/88c7758cea9d0d00a54fdb238bedb3b33425f409/Ender-3%20Mechanical/STP/Ender3.STEP
+GPL-3.0 (repository root LICENSE at 88c7758cea9d0d00a54fdb238bedb3b33425f409)
+Pinned original public component source
+
+Original source credited by its primary URL
+https://files.printables.com/media/prints/922401/stls/7282077_792dec57-abb4-448e-9194-2551e3b11e51_192d4890-5c8f-4e2f-aeb4-0ef22da1ce47/y_gantry_left.stl
+CC-BY-NC-SA-4.0
+E3NG v1.2 / public 922401
+
+Original source credited by its primary URL
+https://files.printables.com/media/prints/922401/stls/7282075_7b0fa6e0-318c-446e-ab70-7d0eebc32c7f_963548bf-c1a5-4aae-ab9f-5e6efc167063/y_gantry_right.stl
+CC-BY-NC-SA-4.0
+E3NG v1.2 / public 922401
+
+Original source credited by its primary URL
+https://files.printables.com/media/prints/922401/stls/7282074_3b1d6896-a62c-48fc-a99b-c0da05da4c94_62d66cb1-06b4-42a8-8ac5-321af17d51a0/toolhead_base.stl
+CC-BY-NC-SA-4.0
+E3NG v1.2 / public 922401
+
+Original source credited by its primary URL
+https://files.printables.com/media/prints/922401/stls/7282031_cdea756b-bf04-45e2-971b-89d2df7babd5_4f70c278-a305-4b4d-ae45-9b599a2ba544/bed_arm_left_flexi.stl
+CC-BY-NC-SA-4.0
+E3NG v1.2 / public 922401
+
+Original source credited by its primary URL
+https://files.printables.com/media/prints/922401/stls/7282033_6c5127cc-c75b-472b-8af2-a6e4fe0fbb09_2b2994ad-c3be-45d4-ac21-ade0c72ee364/bed_arm_rear_flexi_triple.stl
+CC-BY-NC-SA-4.0
+E3NG v1.2 / public 922401
+
+Original source credited by its primary URL
+https://files.printables.com/media/prints/922401/stls/7282035_07c3f7b9-1f7b-436f-b017-a57e1f470c47_9ae4c289-2eff-40a7-8090-44e64df21d87/bed_arm_right_flexi.stl
+CC-BY-NC-SA-4.0
+E3NG v1.2 / public 922401
+
+Creality3DPrinting
+https://raw.githubusercontent.com/Creality3DPrinting/Ender-3/88c7758cea9d0d00a54fdb238bedb3b33425f409/Ender-3%20Mechanical/STP/Y%20plate.step
+GPL-3.0 (repository root LICENSE at 88c7758cea9d0d00a54fdb238bedb3b33425f409)
+Pinned original public component source
+
+Original source credited by its primary URL
+https://files.printables.com/media/prints/b99c520f-eac7-4188-97df-cb6916a91670/stls/10027899_5c5172a4-c766-4359-9e70-6089564b10ef_229e13de-3c2c-4d24-9a49-c42f853b4bc2/frame_bottom_rear_z_lower_triple.stl
+CC-BY-NC-SA-4.0
+E3NG v1.2 / public 922401
+
+Original source credited by its primary URL
+https://files.printables.com/media/prints/922401/stls/7281988_dc6ccc8d-a952-4259-81d5-48b29f7d2881_4c4f4bcb-b5d3-456c-abcc-6904d181001c/frame_bottom_rear_z_upper_1140mm.stl
+CC-BY-NC-SA-4.0
+E3NG v1.2 / public 922401
+
+Original source credited by its primary URL
+https://files.printables.com/media/prints/922401/stls/7281987_9bc76241-78c0-4dd0-a3dd-fc345ba2770b_9140ca6a-31bc-4382-9eba-84d667379576/frame_bottom_z_stepper.stl
+CC-BY-NC-SA-4.0
+E3NG v1.2 / public 922401
+
+Creality3DPrinting
+https://raw.githubusercontent.com/Creality3DPrinting/Ender-3/88c7758cea9d0d00a54fdb238bedb3b33425f409/Ender-3%20Mechanical/STP/42-34%20motor.step
+GPL-3.0 (repository root LICENSE at 88c7758cea9d0d00a54fdb238bedb3b33425f409)
+Pinned original public component source
+
+Original source credited by its primary URL
+https://files.printables.com/media/prints/922401/stls/7281978_e0b283e3-98fe-43a1-a3f4-424d1ed6200a_c255f1c5-57b1-4e19-92dd-d0f5ab1e5c77/frame_bottom_rear_left_body.stl
+CC-BY-NC-SA-4.0
+E3NG v1.2 / public 922401
+
+Original source credited by its primary URL
+https://files.printables.com/media/prints/922401/stls/7281982_c31eb2b1-17ee-46c0-a0bd-71bba1869c88_cd7e2444-cd46-47c2-b751-6d14a55d652e/frame_bottom_rear_left_vertical.stl
+CC-BY-NC-SA-4.0
+E3NG v1.2 / public 922401
+
+Original source credited by its primary URL
+https://files.printables.com/media/prints/922401/stls/7281977_25f596c4-936f-492a-a87e-b67b77fb1ca4_9e5b8b16-5c10-4135-93f9-aa9d7855c5a8/frame_bottom_rear_right_body.stl
+CC-BY-NC-SA-4.0
+E3NG v1.2 / public 922401
+
+Original source credited by its primary URL
+https://files.printables.com/media/prints/922401/stls/7281986_f27b3f86-69a8-447a-87cf-e0095823bd57_26cda6b7-b2f9-47b7-a3b9-6ae2dd1fa71e/frame_bottom_rear_right_vertical.stl
+CC-BY-NC-SA-4.0
+E3NG v1.2 / public 922401
+
+Original source credited by its primary URL
+https://raw.githubusercontent.com/VoronDesign/Voron-1/1467af422f94ff1cb0bc13bc10f2ff64c94056b7/CAD/Voron%20V1.8%20Master%20Model%20v148.step
+GPL-3.0
+original official VoronDesign native hardware definition; supplier SKU unproven
+
+Original source credited by its primary URL
+https://files.printables.com/media/prints/922401/stls/7282021_92562c6d-e6bd-422c-a5a3-22132fa088ed_abfee066-3333-42dc-81af-ac70c0d53240/frame_top_rear_a_right_top.stl
+CC-BY-NC-SA-4.0
+E3NG v1.2 / public 922401
+
+Original source credited by its primary URL
+https://raw.githubusercontent.com/VoronDesign/VoronUsers/8e5067f4f6457da8a552983dd210ec48c40be2ca/printer_mods/eddie/V1.8_12mm_Z_Mod/CAD/Z_Shaft_Assembly_12mm_v8.step
+GPL-3.0
+8e5067f4f6457da8a552983dd210ec48c40be2ca
+
+Original source credited by its primary URL
+https://raw.githubusercontent.com/VoronDesign/Voron-1/1467af422f94ff1cb0bc13bc10f2ff64c94056b7/CAD/Voron%20V1.8%20Master%20Model%20v148.step
+GPL-3.0
+1467af422f94ff1cb0bc13bc10f2ff64c94056b7
+
+Original source credited by its primary URL
+https://raw.githubusercontent.com/VoronDesign/VoronUsers/8e5067f4f6457da8a552983dd210ec48c40be2ca/printer_mods/eddie/V1.8_12mm_Z_Mod/CAD/Z_Shaft_Assembly_12mm_v8.step
+GPL-3.0
+8e5067f4f6457da8a552983dd210ec48c40be2ca
+
+Creality3DPrinting
+https://raw.githubusercontent.com/Creality3DPrinting/Ender-3/88c7758cea9d0d00a54fdb238bedb3b33425f409/Ender-3%20Mechanical/STP/Hot%20bed.step
+GPL-3.0 (repository root LICENSE at 88c7758cea9d0d00a54fdb238bedb3b33425f409)
+Pinned original public component source
+
+LiMo
+https://drive.google.com/file/d/1wNwBIOd8enMdpsi3mC-utXG6zuAs-esu/view
+LicenseRef-LiMo-3D-Drawings-Agreement
+Pinned original public component source
+
+Original source credited by its primary URL
+https://raw.githubusercontent.com/VoronDesign/Voron-0/a53fc87562fd630c846af38d7de850c894dc3d85/CAD/V0.2R1_Master_Assembly_STEP.zip
+GPL-3.0
+a53fc87562fd630c846af38d7de850c894dc3d85
+
+Original source credited by its primary URL
+https://raw.githubusercontent.com/Armchair-Heavy-Industries/Xol-Toolhead/c00b13ef851d38fef6e295e18296650e1ca50d7e/CAD/assemblies/Xol%20Toolhead%20Assembly%20Guide%2020240615.zip
+CC-BY-NC-SA-4.0
+c00b13ef851d38fef6e295e18296650e1ca50d7e
+
+Original source credited by its primary URL
+https://raw.githubusercontent.com/Armchair-Heavy-Industries/Xol-Toolhead/c00b13ef851d38fef6e295e18296650e1ca50d7e/CAD/assemblies/Xol%20Toolhead%20Assembly%20Guide%2020240615.zip
+CC-BY-NC-SA-4.0
+c00b13ef851d38fef6e295e18296650e1ca50d7e
+
+Original source credited by its primary URL
+https://raw.githubusercontent.com/Creality3DPrinting/Ender-3/88c7758cea9d0d00a54fdb238bedb3b33425f409/Ender-3%20Mechanical/STP/Hand%20Twisted%20Nut.step
+GPL-3.0
+Original Creality donor source
+
+Original source credited by its primary URL
+https://raw.githubusercontent.com/Creality3DPrinting/Ender-3/88c7758cea9d0d00a54fdb238bedb3b33425f409/Ender-3%20Mechanical/STP/M4X30%20Flush%20Head%20Screw.step
+GPL-3.0
+Original Creality donor source
+
+Original source credited by its primary URL
+https://raw.githubusercontent.com/Enraged-Rabbit-Community/ERCF_v2/aa1e1c9cbf3d5f4104a77bf17d468486419d4613/Recommended_Options/Filamentalist_Rewinder/Filamentalist_FV3_Rewinder/CAD/Filamentalist_V3_608_Bearing_v1.1.1.step
+GPL-3.0
+aa1e1c9cbf3d5f4104a77bf17d468486419d4613
+
+Original source credited by its primary URL
+https://files.printables.com/media/prints/922401/stls/7281994_b3d7c742-b586-4bf7-a535-c0d7ebfb5aa1_d92f1a79-6529-4232-84b9-0958df31a33b/frame_bottom_z_40t_pulley.stl
+CC-BY-NC-SA-4.0
+v1.2
+
+Original source credited by its primary URL
+https://github.com/Creality3DPrinting/Ender-3/tree/88c7758cea9d0d00a54fdb238bedb3b33425f409
+GPL-3.0
+Creality097 public original source family / disclosed300 mm dimensional derivative
+
+Original source credited by its primary URL
+https://www.printables.com/model/922401-ender-3-ng-v12-corexy-conversion
+CC-BY-NC-SA-4.0
+v1.2
+
+Orbiter Projects
+https://www.orbiterprojects.com/orbiter-v2-0/
+CC BY-NC-SA; download-section link 3.0; global footer link 4.0; bundled LICENSE unversioned
+original official Orbiter v2.0 mockup v10
+
+Original source credited by its primary URL
+https://www.printables.com/model/922401-ender-3-ng-v12-corexy-conversion
+CC-BY-NC-SA-4.0
+v1.2
+
+Original source credited by its primary URL
+https://www.printables.com/model/922401-ender-3-ng-v12-corexy-conversion
+CC-BY-NC-SA-4.0
+v1.2
+
+E3D
+https://e3d-online.com/pages/revo-support-voron
+CC BY-NC-ND; version not returned by verified exact-model metadata
+Printables713137 file3026542 original reference
+
+Original source credited by its primary URL
+https://raw.githubusercontent.com/VoronDesign/Voron-Trident/a8628f48546948ce1fc15511b7765b7f31f80722/CAD/trident_assembly.step.zip
+GPL-3.0
+a8628f48546948ce1fc15511b7765b7f31f80722
+
+Original source credited by its primary URL
+https://github.com/VoronDesign/Voron-0
+GPL-3.0
+a53fc87562fd630c846af38d7de850c894dc3d85
+
+Original source credited by its primary URL
+https://raw.githubusercontent.com/CaZa3D/BMGZ/3d0ebee9494bd9b9dc5b171eb036e0c35cd29b5b/CAD/PandoraBMGZ_007.step
+GPL-3.0
+3d0ebee9494bd9b9dc5b171eb036e0c35cd29b5b
+
+Original source credited by its primary URL
+https://raw.githubusercontent.com/VoronDesign/Voron-Trident/a8628f48546948ce1fc15511b7765b7f31f80722/CAD/trident_assembly.step.zip
+GPL-3.0
+Exact source-only approved packet
+
+Original source credited by its primary URL
+https://raw.githubusercontent.com/VoronDesign/Voron-Trident/a8628f48546948ce1fc15511b7765b7f31f80722/CAD/trident_assembly.step.zip
+GPL-3.0
+a8628f48546948ce1fc15511b7765b7f31f80722
+
+Original source credited by its primary URL
+https://raw.githubusercontent.com/Creality3DPrinting/Ender-3/88c7758cea9d0d00a54fdb238bedb3b33425f409/Ender-3%20Mechanical/STP/M4X10%20Socket%20Head%20Screw.step
+GPL-3.0
+88c7758cea9d0d00a54fdb238bedb3b33425f409
+
+Original source credited by its primary URL
+https://raw.githubusercontent.com/CaZa3D/BMGZ/3d0ebee9494bd9b9dc5b171eb036e0c35cd29b5b/CAD/PandoraBMGZ_007.step
+GPL-3.0
+3d0ebee9494bd9b9dc5b171eb036e0c35cd29b5b
+
+Original source credited by its primary URL
+https://autode.sk/4AwHogK
+CC BY-NC-SA 4.0
+Exact source-only approved packet
+
+Original source credited by its primary URL
+https://raw.githubusercontent.com/VoronDesign/Voron-Cascade/6e6f5ed2d5fce77feb4d427c023c810bddde61ab/CAD/Voron_Cascade_Assembly_STEP.zip
+GPL-3.0
+6e6f5ed2d5fce77feb4d427c023c810bddde61ab
+
+Original source credited by its primary URL
+https://raw.githubusercontent.com/VoronDesign/Voron-Cascade/6e6f5ed2d5fce77feb4d427c023c810bddde61ab/CAD/Voron_Cascade_Assembly_STEP.zip
+GPL-3.0
+6e6f5ed2d5fce77feb4d427c023c810bddde61ab
+
+Original source credited by its primary URL
+https://raw.githubusercontent.com/dmcke5/ESP32_3Axis_CameraSlider/b1a583aed2c49a7706fc77c021c7d6c43ee80d18/3D%20Files/Camera%20Slider%20Complete%20Assy.STEP
+CERN-OHL-S-2.0
+b1a583aed2c49a7706fc77c021c7d6c43ee80d18
+
+Original source credited by its primary URL
+https://github.com/VoronDesign/Voron-1
+GPL-3.0
+6bb0f377960f8378d09eef18abbf1e4cbc7cdc1b
+
+Original source credited by its primary URL
+https://www.printables.com/model/922401-e3ng-v12-advanced-version/files
+CC-BY-NC-SA-4.0
+E3NG v1.2 / public922401 / SHA256 f4cebf9daeadb03d7fe6a754581796558016f58d25bcbc194ad46252d2c8a27c
+
+Original source credited by its primary URL
+https://www.printables.com/model/922401-e3ng-v12-advanced-version/files
+CC-BY-NC-SA-4.0
+E3NG v1.2 / public922401 / SHA256 0433a1b5f7236423d88e1064304810d2a323fd00eb7dc9d8cc2130d9e9a7e20c
+
+BIGTREETECH
+https://raw.githubusercontent.com/bigtreetech/BIGTREETECH-SKR-mini-E3/d7fd822006628143222d1c3c8cdea85ffee29e66/hardware/BTT%20SKR%20MINI%20E3%20V2.0/3D/BTT%20SKR%20MINI%20E3%20V2.0.step
+Hardware redistribution grant unresolved in inspected pinned repository sources
+d7fd822006628143222d1c3c8cdea85ffee29e66
+Board geometry omitted; not distributed.
+
+Original source credited by its primary URL
+https://www.printables.com/model/922401-e3ng-v12-advanced/files
+CC-BY-NC-SA-4.0
+E3NG v1.2 advanced922401 / file4005277
+
+Original source credited by its primary URL
+https://www.printables.com/model/922401-e3ng-v12-advanced/files
+CC-BY-NC-SA-4.0
+E3NG v1.2 advanced922401 / file4005285
+
+Original source credited by its primary URL
+https://raw.githubusercontent.com/jlas1/Klicky-Probe/ab86f91d47ac7353a0a7c7e0de26542dca00f63e/CAD/KlickyProbe_v2_v62.step
+GPL-3.0
+ab86f91d47ac7353a0a7c7e0de26542dca00f63e / PRODUCT720580
+
+VoronDesign
+https://github.com/VoronDesign/Voron-Trident/tree/a8628f48546948ce1fc15511b7765b7f31f80722
+GPL-3.0
+a8628f48546948ce1fc15511b7765b7f31f80722 / PRODUCT2550448, 2020 Drop-in T-nut M3
+
+Creality3DPrinting; nominal35 source reconstruction2026-10-19
+https://github.com/Creality3DPrinting/Ender-3/blob/88c7758cea9d0d00a54fdb238bedb3b33425f409/Ender-3%20Mechanical/STP/M4X30%20Flush%20Head%20Screw.step
+GPL-3.0 source-derived component; editable source/recipe/change record retained
+88c7758cea9d0d00a54fdb238bedb3b33425f409; derivedSTEP1737310db36d4cec902f50224cad0dccb523f713449d6214b2c12f0cb26fbf9c
+
+Fanta_r
+https://www.printables.com/model/1380804-silicone-bed-spacer
+Creative Commons Attribution ShareAlike (source version not returned)
+Public original18mm source with declared installed-STL adaptations

@@ -11301,6 +11301,30 @@
     "fun.palette_graphite": {
       "source_revision": "fe71065adb5f8a625267",
       "text": "Graphit"
+    },
+    "source_assembly.e3ng.rear_latches_notice": {
+      "source_revision": "70b250a9a9dde7c68000",
+      "text": "Die hinteren Riegel werden eingebaut dargestellt; ihre Biegung wird nicht simuliert."
+    },
+    "source_assembly.e3ng.shortened_spacers_notice": {
+      "source_revision": "bd8a4233b91c2797c177",
+      "text": "Die Abstandhalter basieren auf dem Modell von Fanta_r und sind für die Darstellung gekürzt."
+    },
+    "source_assembly.e3ng.thermistor_wiring_notice": {
+      "source_revision": "2b7c01cfb7b04655d5a0",
+      "text": "Bettthermistor und interne Verkabelung sind nicht vollständig modelliert."
+    },
+    "source_assembly.e3ng.probe_fastener_review": {
+      "source_revision": "a5e2e37e3103b99709ed",
+      "text": "Die Passung der Sensorbefestigung wird geprüft."
+    },
+    "source_assembly.e3ng.controller_board_omitted": {
+      "source_revision": "ce3195e22ebab44f138c",
+      "text": "Die Geometrie der Steuerplatine ist nicht enthalten."
+    },
+    "source_assembly.source_colors": {
+      "source_revision": "a2449e09042e47a318f4",
+      "text": "Originalfarben"
     }
   }
 }
