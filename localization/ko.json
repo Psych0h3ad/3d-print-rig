@@ -11341,6 +11341,14 @@
     "e3ng.mods.hole": {
       "source_revision": "69bbb8219558cd38dd7b",
       "text": "배선 구멍형"
+    },
+    "e3ng.mods.panels": {
+      "source_revision": "6ff916b1ffdccf77841d",
+      "text": "후면 패널"
+    },
+    "e3ng.mods.hex": {
+      "source_revision": "f55d2d7ba1e52d1c087f",
+      "text": "육각형 패턴"
     }
   }
 }
