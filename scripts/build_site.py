@@ -439,6 +439,11 @@ def main():
                         '--origin', 'https://psych0h3ad.github.io',
                         '--out', str(Path(folder)/'actual-installed-interfaces.json')],
                        cwd=ROOT, check=True, timeout=120)
+    # Public E3NG replacements keep their own source identities and original hosts.
+    with tempfile.TemporaryDirectory(prefix='e3ng-mod-review-') as folder:
+        subprocess.run(['node', str(ROOT/'scripts/audit_e3ng_mod_assets.mjs'),
+                        '--out', str(Path(folder)/'actual-e3ng-mods.json')],
+                       cwd=ROOT, check=True, timeout=120)
     # Static ELEGOO assemblies retain source geometry; no motion/palette claim.
     # Keep detailed inspection artifacts outside the public site.
     with tempfile.TemporaryDirectory(prefix='elegoo-review-') as folder:

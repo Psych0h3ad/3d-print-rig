@@ -83,6 +83,7 @@ async function cacheReferences(outputs){
  const layoutRoot=resolve(viewer,'../layout');
  for(const [path,text]of files)if(path.startsWith(layoutRoot+sep)||path===resolve(viewer,'layout-nav.mjs'))changed.set(path,text);
  for(const name of ['source-assembly.mjs','source-assembly-messages.mjs','source-assembly-ui-text.mjs','source-assembly-configuration-ui.mjs','source-assembly-runtime/loading.mjs','source-assembly-runtime/state.mjs','source-assembly-runtime/source_XY309.mjs']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}
+ for(const name of ['source-assembly-loader.mjs','e3ng-mod-controls.mjs','source-assembly-runtime/e3ng-mods.mjs','source-assembly-runtime/e3ng-mod-data.mjs','layout-machine-providers.mjs']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}
  for(const name of ['source-assembly-runtime/assembly.mjs','source-assembly-runtime/source_loom306.mjs','source-assembly-runtime/e3ng-installation-corrections.mjs','source-assembly-runtime/e3ng-skirt-fastener-data.mjs','source-assembly-runtime/e3ng-skirt-fasteners.mjs']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}
  for(const name of ['../support/resource.mjs','../support/support.mjs']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}
  for(const name of ['../fun/fun.mjs','machine-gallery.mjs','machine-gallery.css']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}

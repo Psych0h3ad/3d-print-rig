@@ -5,7 +5,7 @@ import {machineReviewInputs} from './machine_review_inputs.mjs';
 import {assertViewerMeshQuality} from './viewer_mesh_quality_scope.mjs';
 const suites={
  elegoo_neptune3:['elegoo_reference'],
- virtu:['source_assembly_assets','source_gallery_bindings'],e3ng:['source_assembly_assets','source_gallery_bindings','e3ng_loom_route','e3ng_installations','e3ng_scene_integration'],
+ virtu:['source_assembly_assets','source_gallery_bindings'],e3ng:['source_assembly_assets','source_gallery_bindings','e3ng_loom_route','e3ng_installations','e3ng_scene_integration','e3ng_mods','e3ng_mod_controls'],
  '247zero':['community_state','247zero'],
  doomcube:['community_state','doomcube'],
  tictac:['community_state','requested_assemblies','native_motion_profiles'],the100:['community_state','requested_assemblies','native_motion_profiles'],rook:['community_state','requested_assemblies','native_motion_profiles'],satsuma:['community_state','requested_assemblies','native_motion_profiles'],

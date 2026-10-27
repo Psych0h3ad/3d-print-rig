@@ -1,0 +1,217 @@
+{
+  "schema": "e3ng-public-mod-source-v1",
+  "model_sha256": "1dad2900f881eec60fa16255c98628489443ea453086c79b7d0d6ac0e3e6bf3f",
+  "asset_sha256": "9e4c35e44cbdeb41bc61871c336b76ed7fee317c17766ba57aa30e50f1169e15",
+  "parts": [
+    {
+      "id": "reinforced-base",
+      "source_sha256": "1791e7c7ee177b93f692a6ff0f8409204d7bc492fb45c06d4c827ede7b8ec052",
+      "triangles": 15188,
+      "local_bounds_mm": [
+        [
+          70.20037841796875,
+          -205.753662109375,
+          -19.0
+        ],
+        [
+          126.80000305175781,
+          -182.25,
+          26.0
+        ]
+      ],
+      "selected_cylinder_ids": [
+        124,
+        125,
+        126,
+        127
+      ],
+      "datum_scope": "Selected common native cylinders and planes against original public STL; no thread-engagement or whole-machine fit certification.",
+      "rotation": [
+        [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "translation_mm": [
+        117.49999974998383,
+        -194.24999999999946,
+        26.000000405535815
+      ],
+      "mounting_bores": [
+        {
+          "native_face": 124,
+          "radius_mm": 2.05,
+          "center_local_mm": [
+            112.49999983456517,
+            -184.94799999999964,
+            18.500000349148053
+          ],
+          "axis_local": [
+            2.36751140859921e-14,
+            -1.0,
+            5.67395290755012e-15
+          ],
+          "finite_axial_interval_mm": [
+            12.140573585447461,
+            20.80200000000001
+          ],
+          "axis_classified_void": true
+        },
+        {
+          "native_face": 125,
+          "radius_mm": 2.05,
+          "center_local_mm": [
+            112.5000001728914,
+            -184.9479999999998,
+            -11.499999650851983
+          ],
+          "axis_local": [
+            2.36751140859921e-14,
+            -1.0,
+            5.67395290755012e-15
+          ],
+          "finite_axial_interval_mm": [
+            12.140573585447482,
+            20.801999999999992
+          ],
+          "axis_classified_void": true
+        },
+        {
+          "native_face": 126,
+          "radius_mm": 2.05,
+          "center_local_mm": [
+            122.4999998345657,
+            -207.25199999999936,
+            18.500000461923594
+          ],
+          "axis_local": [
+            -2.36751140859921e-14,
+            1.0,
+            -5.67395290755012e-15
+          ],
+          "finite_axial_interval_mm": [
+            15.84057358544738,
+            24.502
+          ],
+          "axis_classified_void": true
+        },
+        {
+          "native_face": 127,
+          "radius_mm": 2.05,
+          "center_local_mm": [
+            122.50000017289194,
+            -207.25199999999955,
+            -11.499999538076388
+          ],
+          "axis_local": [
+            -2.36751140859921e-14,
+            1.0,
+            -5.67395290755012e-15
+          ],
+          "finite_axial_interval_mm": [
+            15.840573585447382,
+            24.502000000000002
+          ],
+          "axis_classified_void": true
+        }
+      ]
+    },
+    {
+      "id": "cable-hole",
+      "source_sha256": "613f8abcd7898ab9d258d4284c6eeda60a4e1e309955a3a10c22d266a56620c6",
+      "triangles": 4222,
+      "local_bounds_mm": [
+        [
+          -4.8689409595681354e-05,
+          0.00034002287429757416,
+          -4.924372660752852e-07
+        ],
+        [
+          36.29704666137695,
+          36.9955940246582,
+          9.999999046325684
+        ]
+      ],
+      "selected_cylinder_ids": [
+        80,
+        81
+      ],
+      "datum_scope": "Selected common native cylinders and planes against original public STL; no thread-engagement or whole-machine fit certification.",
+      "rotation": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "translation_mm": [
+        124.1563062147637,
+        390.4558911703472,
+        211.62707851757253
+      ],
+      "mounting_bores": [
+        {
+          "native_face": 80,
+          "radius_mm": 1.6,
+          "center_local_mm": [
+            32.79991683418462,
+            33.50033451405477,
+            4.000000000000483
+          ],
+          "axis_local": [
+            5.6739529075501184e-15,
+            2.3675114191871258e-14,
+            -1.0
+          ],
+          "finite_axial_interval_mm": [
+            0.0,
+            4.0
+          ],
+          "axis_classified_void": true
+        },
+        {
+          "native_face": 81,
+          "radius_mm": 1.6,
+          "center_local_mm": [
+            3.499916834184626,
+            33.5003348444867,
+            4.000000000000313
+          ],
+          "axis_local": [
+            5.6739529075501184e-15,
+            2.3675114191871258e-14,
+            -1.0
+          ],
+          "finite_axial_interval_mm": [
+            0.0,
+            4.0
+          ],
+          "axis_classified_void": true
+        }
+      ]
+    }
+  ],
+  "supports_omitted": [],
+  "whole_machine_physical_fit_certified": false
+}

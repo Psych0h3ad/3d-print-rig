@@ -11325,6 +11325,22 @@
     "source_assembly.source_colors": {
       "source_revision": "a2449e09042e47a318f4",
       "text": "Исходные цвета"
+    },
+    "e3ng.mods.base": {
+      "source_revision": "e096ff82e8f840598336",
+      "text": "Основание головки"
+    },
+    "e3ng.mods.reinforced": {
+      "source_revision": "a149ecfd2a30652e64bf",
+      "text": "Усиленное"
+    },
+    "e3ng.mods.cable": {
+      "source_revision": "9ae46d879f09a6e8300f",
+      "text": "Направляющая кабеля"
+    },
+    "e3ng.mods.hole": {
+      "source_revision": "69bbb8219558cd38dd7b",
+      "text": "С отверстием"
     }
   }
 }
