@@ -8791,8 +8791,8 @@
       "text": "Alpha-Vorschau; Montage-/Freiraumvalidierung unvollständig."
     },
     "custom_voron.external_ptfe": {
-      "source_revision": "b68b54ca12cdcdb38f21",
-      "text": "Externes PTFE ist eine flexible Vorschau; seine Länge variiert mit der Pose und es ist nicht in STEP enthalten. Der Z-Verfahrweg ist begrenzt, um Platz unter dem geschlossenen Dach zu lassen."
+      "source_revision": "705428feb28de62b4954",
+      "text": "Der äußere PTFE-Schlauch wird mit konstanter Anzeigelänge und einer Serviceschleife an der Rückseite dargestellt. Er ist nicht in STEP enthalten. Schlauchlänge, Befestigung und Freiräume am realen Drucker prüfen."
     },
     "custom_voron.large_scale": {
       "source_revision": "e7f99ab60aacc102ebab",

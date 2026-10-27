@@ -27,7 +27,7 @@ Trident 500 and 350 Half Z use the corrected `custom-voron-v2` models. The forme
 
 Trident 500 uses a constant 1410 mm cut-length route; the Half Z preview retains a variable length. Both preserve the measured head inlet and holder datums. Full swept clearance and material bending remain unqualified.
 
-V2.4 500 adds an external PTFE viewer preview from the measured CW2 inlet, through the native rear exhaust connector and along the spool-side holder's horizontal bore. Two tangent bends guide it away from the head; XYZ movement, reversal and reset regenerate the route. The closed-roof viewer Z limit is 469 mm; the native frame and reference assembly are unchanged. This external preview has variable length and is not included in the source-derived STEP assembly. It is not a physical hose simulation or a complete clearance certification.
+V2.4 500 and 1000 use an external PTFE preview with constant display length and a rear service loop. The tube rises past the CW2 body before turning towards the rear inlet, retaining the source inlet, connector and holder positions. The existing closed-roof Z limits remain 469 and 969 mm. This preview is not included in STEP; its display length is not a recommended physical cut length. Retention, material bending and complete machine clearance remain unverified.
 
 ## Trident internal spool holder
 

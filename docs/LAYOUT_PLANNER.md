@@ -68,8 +68,9 @@ These are outside-dimension planning envelopes, so allow extra working space.
 Older plans with overlaps still open and show the affected objects; move them
 apart before rotating or arranging them further.
 
-The settings panel keeps the object list visible above four tabs: **Selected**,
-**Add**, **Room** and **Output**. Select an object to open its position and
+The settings panel keeps four tabs at the top: **Selected**, **Add**, **Room**
+and **Output**. The object list collapses while editing the room or exporting;
+**Show items** opens it again. Select an object to open its position and
 rotation controls. Filter the list to printers, furniture or units, or search
 by name or unit letter. Press **/** outside a text field to focus the search.
 Tab changes preserve unfinished form entries; selecting another object opens
@@ -77,7 +78,7 @@ Tab changes preserve unfinished form entries; selecting another object opens
 
 ## Windows and doors
 
-Open **Room → Windows and doors** and choose **Window** or **Door**. The planner
+Open **Room → Windows and doors** and choose **Window**, **Hinged** or **Sliding**. The planner
 opens the 2D plan. Point near a wall to see a green preview and click to place;
 a red preview means that no free span fits. Corners and existing openings clamp
 the preview to an available span. Press **Esc** to cancel without changing the plan.
@@ -89,7 +90,11 @@ another opening with overlapping height. **Esc** cancels the drag. In 3D, click
 or drag the visible frame, pane or door leaf to select or move that opening.
 The preview does not change the saved wall cutout until release.
 
-The numbered-wall **Add window** and **Add door** controls remain available for
+The selected opening's editor includes dimension presets and immediate width,
+height and door-opening controls. Drag to position it, or expand **Position on
+wall** for a wall number and offset. **Center on wall** provides quick alignment.
+
+The numbered-wall **Add window** and **Add door** controls under **Place by wall number** remain available for
 precise form-based placement. Set the width, height and distance from the start
 of the wall in the selected opening's editor. Windows
 also have a sill height. Choose a hinged or sliding door. Hinged doors have

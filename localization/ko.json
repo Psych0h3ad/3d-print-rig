@@ -8791,8 +8791,8 @@
       "text": "알파 미리보기: 장착 및 간섭 검증이 완료되지 않았습니다."
     },
     "custom_voron.external_ptfe": {
-      "source_revision": "b68b54ca12cdcdb38f21",
-      "text": "외부 PTFE는 유연한 경로 미리보기이며 위치에 따라 길이가 달라지고 STEP에는 포함되지 않습니다. Z 이동 범위는 닫힌 상판 아래 공간을 확보하도록 제한됩니다."
+      "source_revision": "705428feb28de62b4954",
+      "text": "외부 PTFE는 표시 길이를 일정하게 유지하고 뒤쪽 루프로 여유 길이를 처리합니다. STEP에는 포함되지 않습니다. 실제 프린터의 튜브 길이, 고정 및 간섭을 별도로 확인하세요."
     },
     "custom_voron.large_scale": {
       "source_revision": "e7f99ab60aacc102ebab",

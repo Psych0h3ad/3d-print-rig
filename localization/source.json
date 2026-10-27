@@ -11043,8 +11043,8 @@
     },
     "custom_voron.external_ptfe": {
       "kind": "message",
-      "ja": "外部PTFEは表示用の柔軟な経路で、位置に応じて長さが変わり、STEPには含まれません。閉じた天板の下に余裕を残すため、Zの可動上限を制限しています。",
-      "en": "External PTFE is a flexible preview; its length varies with pose and it is not included in STEP. Z travel is limited to leave space below the closed roof."
+      "ja": "外側のPTFEは、背面に余長を逃がす長さ一定の表示用モデルです。STEPには含まれません。実機の管長・固定・干渉は別途確認してください。",
+      "en": "External PTFE uses a constant display length and a rear service loop. It is not included in STEP. Check tube length, attachment and clearances on your build."
     },
     "custom_voron.large_scale": {
       "kind": "message",

@@ -22,19 +22,31 @@ test('corners, occupied spans, reverse drag and vertical separation',()=>{
 });
 function fixture(initial=room){
  let state={...createDefaultLayout(),room:structuredClone(initial)},selected=null,shown=null,picked=null;
- const past=[],future=[],writes=[];
+ const past=[],future=[],writes=[],toolChanges=[];
  const c=createOpeningInteraction({room:()=>state.room,locate:(e,locked)=>e.off?null:{wallIndex:locked??e.wall??0,alongMm:e.at},pick:()=>picked,
- preview:value=>shown=value,select:id=>selected=id,commit:({type,opening})=>{
+ preview:value=>shown=value,select:id=>selected=id,changed:()=>toolChanges.push(c.tool),commit:({type,opening})=>{
   past.push(state);future.length=0;const o={...opening,id:type==='add'?'added-'+past.length:opening.id};
   state=applyAction(state,type==='add'?{type:'ADD_ROOM_OPENING',opening:o}:{type:'UPDATE_ROOM_OPENING',id:o.id,patch:{offsetMm:o.offsetMm}},catalog);writes.push(serializeLayout(state,catalog));
  }});
  const e=(at,extra={})=>({at,button:0,pointerId:1,clientX:at/10,clientY:0,...extra});
- return {c,e,past,future,writes,get state(){return state;},get shown(){return shown;},get selected(){return selected;},pick:id=>picked=id,
+ return {c,e,past,future,writes,toolChanges,get state(){return state;},get shown(){return shown;},get selected(){return selected;},pick:id=>picked=id,
  undo(){future.push(state);state=past.pop();c.refresh();},redo(){past.push(state);state=future.pop();c.refresh();}};
 }
 for(const kind of ['window','door'])test(kind+': preview/click, nonrectangular wall, undo/redo and roundtrip',()=>{
  const f=fixture(),original=serializeLayout(f.state,catalog);f.c.begin(kind);f.c.move(f.e(600,{wall:4}));assert(f.shown.valid);assert.equal(f.past.length,0);
  f.c.down(f.e(600,{wall:4}));f.c.up(f.e(600,{wall:4}));assert.equal(f.past.length,1);assert.equal(f.writes.length,1);assert.equal(f.state.room.openings[0].wallIndex,4);assert.equal(f.c.active,false);assert.deepEqual(openingProblems(f.state.room),[]);
+ const saved=serializeLayout(f.state,catalog);assert.equal(serializeLayout(parseLayout(saved,catalog),catalog),saved);f.undo();assert.equal(serializeLayout(f.state,catalog),original);f.redo();assert.equal(serializeLayout(f.state,catalog),saved);
+});
+test('Window / Hinged / Sliding tools switch A-B-A without history and clear mode on cancellation or placement',()=>{
+ const f=fixture(),original=serializeLayout(f.state,catalog);
+ for(const motion of ['hinged','sliding','hinged','sliding']){
+  f.c.begin('door',{motion});assert.deepEqual(f.c.tool,{kind:'door',motion});assert.deepEqual(f.toolChanges.at(-1),f.c.tool);
+  f.c.move(f.e(1600));assert.equal(f.shown.opening.motion??'hinged',motion);assert.equal(f.past.length,0);
+ }
+ f.c.cancel();assert.equal(f.c.tool,null);assert.equal(f.toolChanges.at(-1),null);assert.equal(serializeLayout(f.state,catalog),original);
+ f.c.begin('window');assert.deepEqual(f.c.tool,{kind:'window'});f.c.cancel();
+ f.c.begin('door',{motion:'sliding'});f.c.down(f.e(1600));f.c.up(f.e(1600));
+ const o=f.state.room.openings[0];assert.equal(o.motion,'sliding');assert.equal(o.slideDirection,'left');assert.equal(Object.hasOwn(o,'hinge'),false);assert.equal(Object.hasOwn(o,'openAngleDeg'),false);assert.equal(f.past.length,1);assert.equal(f.c.tool,null);assert.equal(f.toolChanges.at(-1),null);
  const saved=serializeLayout(f.state,catalog);assert.equal(serializeLayout(parseLayout(saved,catalog),catalog),saved);f.undo();assert.equal(serializeLayout(f.state,catalog),original);f.redo();assert.equal(serializeLayout(f.state,catalog),saved);
 });
 for(const motion of ['window','hinged','sliding'])test(motion+': select/drag, neighbour clamps, one transaction, grab anchor preserved',()=>{
@@ -62,8 +74,14 @@ for(const language of supportedLanguages)test(language+': direct tool actions an
  const document=new TestDocument(),container=document.createElement('aside'),actions=[],selections=[];document.body.append(container);
  const t=createLayoutTranslator(language),ui=createLayoutUI({container,t,catalog:[],onAction:a=>actions.push(a),onOpeningSelect:id=>selections.push(id)});
  ui.update({...createDefaultLayout(),room:{...room,openings:[win,obstacle]}});
- for(const kind of ['window','door']){const b=container.querySelector(`[data-layout-command="layout.openings.${kind}"]`);assert(b.querySelector('svg'));b.click();assert.deepEqual(actions.pop(),{type:'room-opening-place',kind});}
+ for(const [key,kind,motion]of [['window','window',null],['hinged','door','hinged'],['sliding','door','sliding']]){const b=container.querySelector(`[data-layout-command="layout.openings.${key}"]`);assert(b.querySelector('svg'));b.click();assert.deepEqual(actions.pop(),{type:'room-opening-place',kind,...(motion?{motion}:{})});}
+ const mode=container.querySelector('#layout-opening-mode'),card=container.querySelector('#layout-opening-editor'),host=container.querySelector('#layout-nav-room').parentNode;
+ host.scrollTop=600;ui.setOpeningTool({kind:'door',motion:'sliding'});assert.equal(host.scrollTop,0);assert.equal(card.hidden,true);assert.equal(mode.textContent,t('layout.openings.placing',{type:t('layout.openings.sliding')}));assert.equal(container.querySelector('[data-opening-tool="sliding"]').getAttribute('aria-pressed'),'true');assert.equal(container.querySelector('#layout-opening-select-mode').getAttribute('aria-pressed'),'false');
+ for(const locale of supportedLanguages){ui.setLocale(createLayoutTranslator(locale));assert.equal(container.querySelector('[data-opening-tool="sliding"]').getAttribute('aria-pressed'),'true');assert.equal(mode.textContent,createLayoutTranslator(locale)('layout.openings.placing',{type:createLayoutTranslator(locale)('layout.openings.sliding')}));}
+ ui.setLocale(t);ui.setOpeningTool(null);assert.equal(card.hidden,true,'Cancelling must not revive an unrelated inspector');assert.equal(mode.textContent,t('layout.openings.selectHelp'));assert.equal(container.querySelector('#layout-opening-select-mode').getAttribute('aria-pressed'),'true');
+ container.querySelector('#layout-opening-select-mode').click();assert.deepEqual(actions.pop(),{type:'room-opening-select'});
  ui.setOpeningSelection(obstacle.id);assert.equal(container.querySelector(`[data-layout-opening-id="${obstacle.id}"]`).getAttribute('aria-pressed'),'true');assert.equal(container.querySelector('[data-layout-field="opening-offsetMm"]').value,'1800.0');
+ assert.equal(card.hidden,false);ui.clearOpeningSelection();assert.equal(card.hidden,true);ui.update({...createDefaultLayout(),room:{...room,openings:[win,obstacle]}});assert.equal(card.hidden,true,'State mirrors keep an explicitly cleared opening selection cleared');
  container.querySelector(`[data-layout-opening-id="${win.id}"]`).click();assert.deepEqual(selections,[win.id]);assert(t('layout.openings.placeHelp').includes(language==='en'?'Esc':language==='ru'?'Esc':'Esc'));
  ui.setStatus({busy:true});container.querySelector('[data-layout-command="layout.openings.window"]').click();assert.deepEqual(actions,[]);ui.dispose();
 });

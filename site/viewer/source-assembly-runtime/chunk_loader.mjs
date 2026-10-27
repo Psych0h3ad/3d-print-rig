@@ -1,5 +1,5 @@
 import {BufferAttribute} from 'three';
-import {fetchPinned,createChunkProgress} from './loading.mjs?v=c803b3642a0d2339782e';
+import {fetchPinned,createChunkProgress} from './loading.mjs?v=59ca7254a5afb2484e9d';
 import {headSubsetPlan} from './head_subset.mjs?v=e42678a5314a2d6c0676';
 import {fetchExactChunk} from './exact_gzip_transport.mjs?v=e42678a5314a2d6c0676';
 

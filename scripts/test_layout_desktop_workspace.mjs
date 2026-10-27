@@ -39,6 +39,13 @@ await test('four real panels default to Selection; browser and unit tools remain
  for(const name of ['selection','add','room','output']){const tab=x.find(`#layout-tab-${name}`),panel=x.find(`#layout-nav-${name}`);assert.equal(panel.hidden,name!=='selection');assert.equal(tab.getAttribute('aria-selected'),String(name==='selection'));assert.equal(tab.tabIndex,name==='selection'?0:-1);assert.equal(tab.getAttribute('aria-controls'),panel.id);assert.equal(panel.getAttribute('aria-labelledby'),tab.id);assert.equal(panel.contains(x.find('#layout-nav-objects')),false);}
  assert.equal(x.find('#layout-nav-objects').hidden,false);assert.equal(x.container.querySelectorAll('[data-layout-jump]').length,0);x.ui.dispose();
 });
+await test('tabs precede a compact Items disclosure; Room/Output collapse it without losing queries or drafts',()=>{
+ const x=fixture(),tabs=x.find('[role="tablist"]'),browser=x.find('#layout-nav-objects'),body=x.find('#layout-browser-body'),toggle=x.find('#layout-browser-toggle'),root=browser.parentNode;
+ assert([...root.children].indexOf(tabs)<[...root.children].indexOf(browser));x.query('North');const draft=x.find('[data-layout-field="widthMm"]');draft.value='1234.56789';draft.dispatch('input');
+ x.command('layout.nav.room').click();assert.equal(body.hidden,true);assert.equal(toggle.getAttribute('aria-expanded'),'false');toggle.click();assert.equal(body.hidden,false);assert.equal(x.find('#layout-object-search').value,'North');
+ x.command('layout.nav.output').click();assert.equal(body.hidden,true);assert.equal(x.ui.focusObjectSearch(),true);assert.equal(body.hidden,false);assert.equal(x.document.activeElement,x.find('#layout-object-search'));
+ x.command('layout.nav.selection').click();assert.equal(body.hidden,false);assert.strictEqual(x.find('[data-layout-field="widthMm"]'),draft);assert.equal(draft.value,'1234.56789');assert.deepEqual(x.actions,[]);x.ui.dispose();
+});
 await test('object types and counts include each physical object and unit once',()=>{
  const x=fixture(),cases=[['all',7],['printers',3],['furniture',2],['units',2]];
  for(const [type,count]of cases){x.filter(type);assert.equal(x.visible().length,count);assert.equal(x.find(`[data-layout-filter="${type}"]`).getAttribute('aria-pressed'),'true');assert.ok(x.find(`[data-layout-filter="${type}"]`).getAttribute('aria-label').endsWith(`(${count})`));}
@@ -80,10 +87,10 @@ await test('genuine new selection opens inspector; busy selection is revealed af
  const x=fixture();x.command('layout.nav.room').click();x.ui.update(x.initial,'unit-a');assert.equal(x.find('#layout-nav-selection').hidden,false);
  x.command('layout.nav.add').click();x.ui.setStatus({busy:true});x.ui.update(x.initial,'unit-b');assert.equal(x.find('#layout-nav-add').hidden,false);x.ui.setStatus({busy:false});assert.equal(x.find('#layout-nav-selection').hidden,false);assert.equal(x.find('#layout-selected-unit').getAttribute('aria-label'),'B · South bench');x.ui.dispose();
 });
-await test('panels remember only their own scroll; a new selection starts at the inspector top',()=>{
+await test('Room always opens at its tools; other panels remember scroll and a new selection starts at the inspector top',()=>{
  const x=fixture(),host=x.find('#layout-nav-selection').parentNode;x.container.scrollTop=71;host.scrollTop=140;
  x.command('layout.nav.room').click();assert.equal(host.scrollTop,0);host.scrollTop=390;x.command('layout.nav.selection').click();assert.equal(host.scrollTop,140);
- x.command('layout.nav.room').click();assert.equal(host.scrollTop,390);x.ui.update(x.initial,'unit-b');assert.equal(host.scrollTop,0);assert.equal(x.container.scrollTop,71);assert.deepEqual(x.actions,[]);x.ui.dispose();
+ x.command('layout.nav.room').click();assert.equal(host.scrollTop,0);x.ui.update(x.initial,'unit-b');assert.equal(host.scrollTop,0);assert.equal(x.container.scrollTop,71);assert.deepEqual(x.actions,[]);x.ui.dispose();
 });
 await test('explicit reselection API opens the inspector even for the same ID without a state action',()=>{
  const x=fixture('unit-b');x.command('layout.nav.room').click();x.ui.update(x.initial,'unit-b');assert.equal(x.find('#layout-nav-room').hidden,false);

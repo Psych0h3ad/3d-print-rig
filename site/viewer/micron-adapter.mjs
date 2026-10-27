@@ -2,8 +2,8 @@
 import {appearanceRole} from './appearance-role.mjs?v=977c4d1e134e7fe27a0e';
 import {createPaletteController} from './palette-controller.mjs?v=ee8e97d84186af0fe8a0';
 import {micronHardwareColors} from './micron-native-materials.mjs?v=55b8c3644415d202fa4a';
-import {createMicronBelts} from './micron-belts.mjs?v=public-v25';
-import {createMicronFlexible} from './micron-flexible.mjs?v=5dca2bfdbe5e84a15f74';
+import {createMicronBelts} from './micron-belts.mjs?v=b786cde8a5ef24666fe2';
+import {createMicronFlexible} from './micron-flexible.mjs?v=c5bb8adda6d77818d988';
 export const cadToGlb = ([x,y,z]) => [x / 1000, z / 1000, -y / 1000];
 export const corexyDelta = ([x,y]) => ({a_mm: x + y, b_mm: x - y});
 export const corexyInverse = (a,b) => [(a + b) / 2, (a - b) / 2];

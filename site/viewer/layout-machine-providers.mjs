@@ -20,11 +20,11 @@ async function prepare(run) {
 }
 export async function loadLayoutRecipe(recipe,{signal,onProgress}) {
  const id=recipe.machine_id,progressOptions=headless(onProgress),options={signal,progressOptions,onProgress};
- if(recipe.category==='v24-reference'){const {loadV24ReferenceLayout}=await import('./layout-v24-reference-provider.mjs?v=a8da13ef228e5ea9bb9f');return loadV24ReferenceLayout(id,{signal,onProgress})}
+ if(recipe.category==='v24-reference'){const {loadV24ReferenceLayout}=await import('./layout-v24-reference-provider.mjs?v=3fc5135db383a1ed76d0');return loadV24ReferenceLayout(id,{signal,onProgress})}
  if(recipe.category==='v0'){const {loadV0DefaultLayout}=await import('./layout-v0-provider.mjs?v=ceba0226b6221074c089');return loadV0DefaultLayout(id,{signal,onProgress})}
- if(['siboor','trident','v24'].includes(recipe.category)){const {loadVoronDefaultLayout}=await import('./layout-voron-defaults.mjs?v=2e2f22248859c32a4a4d');return loadVoronDefaultLayout(id,{signal,onProgress})}
+ if(['siboor','trident','v24'].includes(recipe.category)){const {loadVoronDefaultLayout}=await import('./layout-voron-defaults.mjs?v=6da203ebcc65af35047d');return loadVoronDefaultLayout(id,{signal,onProgress})}
  if(recipe.category==='source') {
-  const m=await import('./source-assembly-loader.mjs?v=ff099905bed8876bf4db'),{releaseRoot}=await import('./source-assembly-runtime/resources.mjs?v=53e0f29aff2fcb720ede');
+  const m=await import('./source-assembly-loader.mjs?v=8a73e1355226ec2d8534'),{releaseRoot}=await import('./source-assembly-runtime/resources.mjs?v=53e0f29aff2fcb720ede');
   const index=await m.loadSourceIndex(signal),record=index.models.find(r=>r.id===id);if(!record)throw Error('Missing layout source record');
   const packet=await m.loadSourcePacket(record,signal),assembly=await m.loadSourceAssembly(packet,{signal,onProgress,mode:'full'});
   return {root:assembly.root,manifest:packet,profile:packet,source:{normalSourceRevision:'182cf109acf3fa867927bb017b9705e8b7dac68143e322197a4e3cf517d42391',record,credits:packet.source??packet.sources,mode:'full',variant:assembly.snapshot().variant},dispose:()=>{releaseRoot(assembly.root,assembly);assembly.root.removeFromParent();assembly.root.clear()}};
@@ -97,13 +97,13 @@ export async function loadLayoutRecipe(recipe,{signal,onProgress}) {
     const {GLTFLoader}=await import('./vendor/GLTFLoader.js'),{loadModel}=await import('./model-loader.js?v=319442cce47f582793a9');
     const manifest=await json('machines/'+id+'/assembly_manifest.json',signal),profile=await json('machines/'+id+'/machine_profile.json',signal);
     const g=await loadModel(new GLTFLoader(),url('machines/'+id+'/model.glb'),onProgress,{signal,progressOptions});loaded={root:g.scene,manifest,profile};own(loaded);
-    const {createMicronAdapter}=await import('./micron-adapter.mjs?v=cb8a104cf7e93b61d536');loaded.adapter=createMicronAdapter(loaded.root,manifest,profile);
+    const {createMicronAdapter}=await import('./micron-adapter.mjs?v=ec300b2b8946b751b247');loaded.adapter=createMicronAdapter(loaded.root,manifest,profile);
    }else{
     const {loadLayoutCustomVoron:loadCustomVoron}=await import('./layout-custom-source.mjs?v=2a491ec6cfb8d905ee10');loaded=await loadCustomVoron(id,options);own(loaded);
     if(loaded.profile.kinematics==='trident'){const {isolateLayoutPaletteMaterials}=await import('./layout-material-ownership.mjs?v=9c2148661b8089152e3d');loaded.layoutMaterialOwnership=isolateLayoutPaletteMaterials(loaded.root);}
     if(loaded.profile.kinematics==='trident'){const {createTridentMotion}=await import('./trident-motion.mjs?v=77312c6bfbf6c7e7563d');loaded.adapter=createTridentMotion(loaded.profile);loaded.adapter.register(loaded.root,loaded.manifest)}
     else {const {createV24Adapter}=await import('./v24_matrix_adapter.mjs?v=c71e052633de09bc592d');loaded.adapter=createV24Adapter(loaded.root,loaded.manifest,loaded.profile)}
-    const {createCustomTube}=await import('./custom-voron-tube.mjs?v=f28049ddc0e0358894a7'),{createV24PtfePreview,V24_PTFE_SPEC}=await import('./v24-ptfe.mjs?v=76b76c34363d30e662f2');
+    const {createCustomTube}=await import('./custom-voron-tube.mjs?v=f28049ddc0e0358894a7'),{createV24PtfePreview,V24_PTFE_SPEC}=await import('./v24-ptfe.mjs?v=9def2f0b771f25d14c14');
     const tube=createCustomTube(loaded.root,loaded.manifest);if(tube){tube.update(0,0,true);auxiliaries.push(tube)}
     const spec=id===V24_PTFE_SPEC.machine_id?V24_PTFE_SPEC:loaded.manifest.v24_ptfe_spec;if(spec)auxiliaries.push(createV24PtfePreview(THREE,loaded.root,loaded.manifest,loaded.profile,spec));
    }

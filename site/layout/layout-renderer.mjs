@@ -1,4 +1,4 @@
-import {createOpeningInteraction} from './layout-opening-interaction.mjs?v=256d7ad29237bee156a1';
+import {createOpeningInteraction} from './layout-opening-interaction.mjs?v=2558eb71adb781378cdc';
 import {wallFrame,openingFrame} from './layout-openings.mjs?v=8fab3154ec519f37f666';
 import * as THREE from '../viewer/vendor-r180/three.module.js';
 import {OrbitControls} from '../viewer/vendor-r180/OrbitControls.js';
@@ -101,7 +101,7 @@ function printerPreviewParts(row) {
   return {style,parts,sourceRoles,simplePreview:true};
 }
 
-export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>{},onOpeningSelect=()=>{},onOpeningCommit=()=>{},onPick=()=>{},onMove=()=>{},constrainMove=({x,z})=>({x,z}),onRotate=()=>{},constrainRotate=({yawDeg})=>({yawDeg}),onPlacementMove=()=>null,onPlacementCommit=()=>{},onError=()=>{},onViewChange=()=>{}}) {
+export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>{},onOpeningSelect=()=>{},onOpeningCommit=()=>{},onOpeningToolChange=()=>{},onPick=()=>{},onMove=()=>{},constrainMove=({x,z})=>({x,z}),onRotate=()=>{},constrainRotate=({yawDeg})=>({yawDeg}),onPlacementMove=()=>null,onPlacementCommit=()=>{},onError=()=>{},onViewChange=()=>{}}) {
   let openingInteraction=null,openingSelection=null;
   const renderer=new THREE.WebGLRenderer({antialias:true,alpha:false});
   renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
@@ -732,8 +732,8 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   }
   openingInteraction=createOpeningInteraction({room:()=>current.room,locate:locateOpeningWall,pick:pickOpening,
     preview(value,selected){openingFeedbackValue=value;openingSelection=selected;draw();},
-    select:onOpeningSelect,commit:onOpeningCommit,changed(){if(!openingInteraction.dragging&&openingPointer!==null){const pointer=openingPointer;openingPointer=null;if(canvas.hasPointerCapture(pointer))canvas.releasePointerCapture(pointer);}enableControls();canvas.style.cursor=openingInteraction.active?'crosshair':'grab';}});
-  function beginOpening(kind){if(disposed||exporting)return false;cancel();setPlacement(null);view('top');openingInteraction.begin(kind);canvas.focus({preventScroll:true});return true;}
+    select:onOpeningSelect,commit:onOpeningCommit,changed(){if(!openingInteraction.dragging&&openingPointer!==null){const pointer=openingPointer;openingPointer=null;if(canvas.hasPointerCapture(pointer))canvas.releasePointerCapture(pointer);}enableControls();canvas.style.cursor=openingInteraction.active?'crosshair':'grab';onOpeningToolChange(openingInteraction.tool);}});
+  function beginOpening(kind,options={}){if(disposed||exporting)return false;cancel();setPlacement(null);view('top');openingInteraction.begin(kind,options);canvas.focus({preventScroll:true});return true;}
   function setOpeningSelection(id){openingSelection=id;openingInteraction.selection(id);}
   function openingEvent(event,method){
     if(disposed||exporting||placing||drag)return false;

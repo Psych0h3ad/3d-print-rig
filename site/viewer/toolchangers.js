@@ -9,7 +9,7 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=319442cce47f582793a9';
-import {setupPublicInfo} from './public-info.js?v=3b1176ccb89e63e0cd35';
+import {setupPublicInfo} from './public-info.js?v=cdd0db06152d4c09b101';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
 import {changerDimensions,changerChoice,changerChoices,changerPlacement} from './toolchanger-model.js?v=workspace-belts-1';
 export async function mount(scope){

@@ -183,26 +183,43 @@ export async function auditMicronColors(root,outputPath){
   node_version:process.version,loader_arguments:process.execArgv,
   scope:'Current GLBs and exact reviewed census; attached materials, purchased PBR, anonymous printed roles, contrasting/reverse palettes, XYZ min/max/mid/reference and rigid native reset. Frozen role census is not a complete source STL/native-solid proof.',
   visual_review:false,cross_browser_rendering_verified:false,native_solid_review:false,full_physical_fit_certified:false,
-  remaining_gates:['Parent browser screenshots and rendering review on current integrated code.','Complete author STL-to-native-leaf identity proof beyond the named source-bound railstop fix.','The current adapter does not restore flexible native mesh geometry; rigid reset and printed color reset are checked separately.','Whole-machine/native-solid clearance and other configurations remain separate.']};
+  remaining_gates:['Parent browser screenshots and rendering review on current integrated code.','Complete author STL-to-native-leaf identity proof beyond the named source-bound railstop fix.','Moving flexible-route mounting and clearance remain separate from native reset.','Whole-machine/native-solid clearance and other configurations remain separate.']};
  const previousProgressEvent=globalThis.ProgressEvent;
  if(!previousProgressEvent)globalThis.ProgressEvent=class{constructor(type,fields){Object.assign(this,{type},fields)}};
  try{
   const registered=machineChoices.filter(m=>m.available!==false&&m.family==='micron').map(m=>m.id).sort();
   assert.deepEqual(registered,ids.toSorted(),'Every registered Micron needs an exact material contract');
-  const catalogBytes=await fs.readFile(path.join(root,'MICRON_MACHINES.json'));
-  report.catalog_sha256=sha(catalogBytes);const catalog=JSON.parse(catalogBytes);
-  assert.deepEqual(catalog.machines.map(m=>m.id).sort(),registered,'Missing or unregistered actual Micron model');
+  let deliveryPins=null;
+  const approved=await fs.access(path.join(root,'APPROVED_DELIVERY.json')).then(()=>true,error=>{if(error.code==='ENOENT')return false;throw error;});
+  if(approved){
+   const bytes=await fs.readFile(path.join(root,'APPROVED_DELIVERY.json'));
+   assert.equal(sha(bytes),sha(await fs.readFile(new URL('../site/APPROVED_DELIVERY.json',import.meta.url))),'Changed approved delivery contract');
+   const delivery=JSON.parse(bytes);deliveryPins=new Map(delivery.files.map(r=>[r.path,r]));
+   assert.equal(deliveryPins.size,delivery.files.length,'Duplicate delivered body');
+   assert.deepEqual(delivery.machine_ids.filter(id=>id.startsWith('micron_')).sort(),registered,'Missing or unregistered delivered Micron');
+   report.catalog_sha256=sha(bytes);report.catalog_kind='current_approved_delivery';
+  }else{
+   const bytes=await fs.readFile(path.join(root,'MICRON_MACHINES.json'));report.catalog_sha256=sha(bytes);report.catalog_kind='legacy_micron_catalog';
+   assert.deepEqual(JSON.parse(bytes).machines.map(m=>m.id).sort(),registered,'Missing or unregistered actual Micron model');
+  }
+  const verifyBody=(id,name,bytes)=>{if(deliveryPins){const pin=deliveryPins.get(`machines/${id}/${name}`);assert(pin,'Missing approved Micron body');assert.equal(bytes.length,pin.bytes);assert.equal(sha(bytes),pin.sha256);}};
   for(const id of ids){
    let scene;
    try{
     const dir=path.join(root,'machines',id),manifestBytes=await fs.readFile(path.join(dir,'assembly_manifest.json')),profileBytes=await fs.readFile(path.join(dir,'machine_profile.json'));
+    verifyBody(id,'assembly_manifest.json',manifestBytes);verifyBody(id,'machine_profile.json',profileBytes);
     const manifest=JSON.parse(manifestBytes),profile=JSON.parse(profileBytes),contract=micronRoleContract[id];
     const result={id,manifest_sha256:sha(manifestBytes),profile_sha256:sha(profileBytes),passed:false};report.results.push(result);
     assert.equal(manifest.machine_id,id);assert.equal(profile.machine_id,id);
     assert.equal(result.manifest_sha256,contract.manifest_sha256,`${id}: changed source identities need a fresh printed/purchased census, not an old receipt`);
     let modelPath=path.join(dir,'model.glb.gz'),stored;try{stored=await fs.readFile(modelPath)}catch(error){if(error.code!=='ENOENT')throw error;modelPath=path.join(dir,'model.glb');stored=await fs.readFile(modelPath)}
+    verifyBody(id,path.basename(modelPath),stored);
     const raw=modelPath.endsWith('.gz')?gunzipSync(stored):stored;Object.assign(result,{model_path:modelPath,model_stored_sha256:sha(stored),model_sha256:sha(raw)});
-    ({scene}=await new GLTFLoader().parseAsync(raw.buffer.slice(raw.byteOffset,raw.byteOffset+raw.byteLength),''));
+    // Gzip returns an exact owned buffer here. Avoid a second complete GLB
+    // allocation when it already spans its ArrayBuffer; retain a slice for
+    // pooled/subarray inputs so adjacent bytes can never reach the parser.
+    const buffer=raw.byteOffset===0&&raw.byteLength===raw.buffer.byteLength?raw.buffer:raw.buffer.slice(raw.byteOffset,raw.byteOffset+raw.byteLength);
+    ({scene}=await new GLTFLoader().parseAsync(buffer,''));
     const sourceMeshes=[],manifestKeys=new Set(manifest.parts.map(p=>p.key));
     scene.traverse(mesh=>{if(!mesh.isMesh)return;const key=meshKey(mesh);assert(manifestKeys.has(key),`Unregistered actual mesh ${key}`);for(const [slot,material]of [].concat(mesh.material).entries())sourceMeshes.push({key,mesh,slot,source:materialState(material),sourceMaterial:material,geometry:mesh.geometry});});
     const sourceNormalState=auditNormals(scene),adapter=createMicronAdapter(scene,manifest,profile),expected=expectedMicronRoles(id);
@@ -250,6 +267,7 @@ export async function auditMicronColors(root,outputPath){
       for(const [key,node]of adapter.nodes)assert(node.matrixWorld.elements.every(Number.isFinite),`${id}/${key} nonfinite pose`);
       const n=auditNormals(scene,seen);generatedNormalVertices+=n.vertices;generatedGeometries+=n.geometries;flatShadedWithoutVertexNormals+=n.flat_shaded_geometries_without_vertex_normals;maxGeneratedNormalError=Math.max(maxGeneratedNormalError,n.max_unit_error);
      }
+     globalThis.gc?.(); // disposed moving previews need not survive a palette.
     }
     const ref=profile.display_reference_xyz_mm;adapter.setPose({x:ref[0],y:ref[1],z:ref[2]});adapter.setPalette({});
     for(const [key,node]of adapter.nodes){
@@ -261,6 +279,7 @@ export async function auditMicronColors(root,outputPath){
      if(!flexibleKeys.has(r.key))assert.equal(r.mesh.geometry,r.geometry,`${id}/${r.key} rigid source geometry changed`);else if(r.mesh.geometry!==r.geometry)proceduralResetMeshes++;
      assertMaterialState(r.sourceMaterial,r.source,`${id}/${r.key} source shared PBR was mutated`);
     }
+    assert.equal(proceduralResetMeshes,0,`${id}: flexible source geometry must restore on native reset`);
     Object.assign(result,{passed:true,parts:manifest.parts.length,materials:sourceMeshes.length,native_hardware_materials_restored:Object.keys(native).length,
      printed_alias_leaves_checked:aliasPrinted,protected_material_slots_checked:hardware,transparent_material_slots_checked:transparent,
      palette_transitions:palettes.length,poses_per_palette:poses.length,poses_xyz_mm:poses,palettes,rendered_material_checks:renderedChecks,

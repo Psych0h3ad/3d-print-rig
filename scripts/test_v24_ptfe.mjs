@@ -12,7 +12,7 @@ const extremes=[spec.reference_xyz_mm,[0,0,0],[500,500,0],[500,500,469],[0,500,4
 for(const xyz of [...extremes,...extremes.toReversed(),spec.reference_xyz_mm]){
  const route=v24PtfeRoute(spec,xyz);preview.setPose(xyz);assert(preview.mesh.visible);assert.equal(root.children.length,sourceChildren);assert.equal(preview.mesh.material,nativeMaterial);
  assert.deepEqual(route.start_mm,spec.head_seat_reference_mm.map((v,i)=>v+(xyz[i]-spec.reference_xyz_mm[i])));
- assert.deepEqual(route.pointAt(1),spec.holder_right_mm);assert(route.moving_cubic_min_y_derivative_mm>0);assert(route.total_length_mm>0);
+ assert.deepEqual(route.pointAt(1),spec.holder_right_mm);assert.equal(route.length_mode,'constant_service_length_preview');assert(Math.abs(route.total_length_mm-route.service_length_mm)<1e-7);
  for(let i=0;i<route.segments.length-1;i++){
   assert(route.segments[i].end.every((v,j)=>Math.abs(v-route.segments[i+1].start[j])<1e-9));
   const a=route.segments[i].derivative(1),b=route.segments[i+1].derivative(0);assert(a.reduce((n,v,j)=>n+v*b[j],0)/Math.hypot(...a)/Math.hypot(...b)>1-1e-12);
@@ -22,10 +22,10 @@ for(const xyz of [...extremes,...extremes.toReversed(),spec.reference_xyz_mm]){
  assert(axis&&axis.type==='line');assert.equal(axis.length_mm,passage.approach_length_mm);
  assert.deepEqual(axis.end,spec.inner_feedthrough_mm);
  assert(axis.start[1]+spec.radius_mm<passage.inside_y_mm);
- // The moving cubic is monotone in Y and stops inside the panel. Only the
+ // The rear-directed free span stops inside the panel. Only the
  // source connector axis crosses its opening; full native fit is separate.
  for(const t of [0,.125,.25,.5,.75,.875,1]){
-  const p=route.segments.find(s=>s.id==='moving_monotone_Y').point(t);
+  const p=route.segments.find(s=>s.id==='moving_rear_approach').point(t);
   assert(p[1]+spec.radius_mm<passage.inside_y_mm);
  }
  assert(preview.mesh.geometry.attributes.position.array.every(Number.isFinite));verifyTubeGeometry(preview.mesh.geometry);

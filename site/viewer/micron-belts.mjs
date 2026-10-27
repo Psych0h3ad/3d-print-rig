@@ -19,17 +19,19 @@ export function createMicronBelts(nodes,records,profile){
   const node=nodes.get(row.key),meshes=[];node.traverse(m=>{if(m.isMesh)meshes.push(m)});if(meshes.length!==1)throw Error('Micron belt mesh count');
   return {row,node,mesh:meshes[0],index,z:(row.bounds_mm[0][2]+row.bounds_mm[1][2])/2,source:meshes[0].geometry,route:null};
  });
- const keys=new Set(rows.map(p=>p.key));let lastY;
+ const keys=new Set(rows.map(p=>p.key));let lastY,lastNative;
  function update(delta,visible){
+  if(delta.length!==3||!delta.every(Number.isFinite))throw Error('Invalid Micron belt pose');
+  const atReference=delta.every(v=>Math.abs(v)<1e-6);
   for(const row of rows)nodes.get(row.key).visible=Boolean(visible);
   for(const e of entries){
-   if(lastY!==delta[1]){
+   if(lastY!==delta[1]||lastNative!==atReference){
     e.route=circleBeltRoute(micronBeltCircles(e.index,delta[1]));
-    if(e.mesh.geometry!==e.source)e.mesh.geometry.dispose();e.mesh.geometry=beltGeometry(e.route,e.z);
+    if(e.mesh.geometry!==e.source)e.mesh.geometry.dispose();e.mesh.geometry=atReference?e.source:beltGeometry(e.route,e.z);
    }
    e.node.position.set(0,delta[2]/1000,0);
   }
-  lastY=delta[1];return {visible:Boolean(visible),fixed_z_belts:rows.length-entries.length,xy_belts:entries.length,lengths_mm:entries.map(e=>e.route.length)};
+  lastY=delta[1];lastNative=atReference;return {visible:Boolean(visible),fixed_z_belts:rows.length-entries.length,xy_belts:entries.length,lengths_mm:entries.map(e=>e.route.length)};
  }
  return {keys,entries,update};
 }
