@@ -251,17 +251,110 @@ class ViewerQualityRelease(unittest.TestCase):
         self.assertFalse((self.site / 'review/new-quality').exists())
 
     def test_normal_build_has_exactly_one_mandatory_hook_after_assembly(self):
+        import copy
         tree = ast.parse((Path(gate.__file__).parent / 'build_site.py').read_text(encoding='utf-8'))
-        main = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == 'main')
-        calls = [n for n in ast.walk(main) if isinstance(n, ast.Call)]
-        hooks = [n for n in calls if any(isinstance(x, ast.Constant) and x.value == 'scripts/check_viewer_quality_release.py' for x in ast.walk(n))]
-        runs = [n for n in hooks if isinstance(n.func, ast.Attribute) and n.func.attr == 'run']
-        self.assertEqual(len(runs), 1)
-        self.assertTrue(any(k.arg == 'check' and isinstance(k.value, ast.Constant) and k.value.value is True for k in runs[0].keywords))
-        assembled = next(n for n in calls if isinstance(n.func, ast.Name) and n.func.id == 'build_approved')
-        mounting = next(n for n in calls if isinstance(n.func, ast.Name) and n.func.id == 'validate_mounting_evidence')
-        self.assertLess(assembled.lineno, runs[0].lineno)
-        self.assertLess(runs[0].lineno, mounting.lineno)
+
+        def definitions(t, name):
+            return [n for n in t.body if isinstance(n, ast.FunctionDef) and n.name == name]
+
+        def named_calls(t, name):
+            return [n for n in ast.walk(t) if isinstance(n, ast.Call)
+                    and isinstance(n.func, ast.Name) and n.func.id == name]
+
+        def quality_calls(t):
+            return [n for n in ast.walk(t) if isinstance(n, ast.Call)
+                    and isinstance(n.func, ast.Attribute) and n.func.attr == 'run'
+                    and any(isinstance(x, ast.Constant) and x.value == 'scripts/check_viewer_quality_release.py'
+                            for x in ast.walk(n))]
+
+        def top_statement(t, call, owner):
+            parents = {child: n for n in ast.walk(t) for child in ast.iter_child_nodes(n)}
+            statement = parents[call]
+            self.assertIsInstance(statement, ast.Expr)
+            while parents.get(statement) is not owner:
+                context = parents.get(statement)
+                self.assertIsInstance(context, ast.With, 'Actual audit cannot be optional or exception-handled')
+                self.assertIn(statement, context.body)
+                for item in context.items:
+                    ctx = item.context_expr
+                    self.assertIsInstance(ctx, ast.Call)
+                    self.assertTrue(isinstance(ctx.func, ast.Name) and ctx.func.id == 'audit_delivery_contract'
+                                    or isinstance(ctx.func, ast.Attribute) and isinstance(ctx.func.value, ast.Name)
+                                    and ctx.func.value.id == 'tempfile' and ctx.func.attr == 'TemporaryDirectory')
+                statement = context
+            return statement
+
+        def verify(t):
+            self.assertEqual(len(definitions(t, 'main')), 1)
+            self.assertEqual(len(definitions(t, '_audit_built_runtime')), 1)
+            main = definitions(t, 'main')[0]
+            helper = definitions(t, '_audit_built_runtime')[0]
+            runs, assembled, invoked, mounting = (quality_calls(t), named_calls(t, 'build_approved'),
+                                                  named_calls(t, '_audit_built_runtime'),
+                                                  named_calls(t, 'validate_mounting_evidence'))
+            for calls in [runs, assembled, invoked, mounting]:
+                self.assertEqual(len(calls), 1)
+            run = runs[0]
+            self.assertIsInstance(run.func.value, ast.Name)
+            self.assertEqual(run.func.value.id, 'subprocess')
+            expected = ast.parse("[sys.executable, str(ROOT/'scripts/check_viewer_quality_release.py')]", mode='eval').body
+            self.assertEqual(len(run.args), 1)
+            self.assertIsInstance(run.args[0], ast.List)
+            self.assertEqual([ast.dump(n) for n in run.args[0].elts[:2]],
+                             [ast.dump(n) for n in expected.elts])
+            self.assertFalse(any(k.arg in [None, 'shell', 'executable'] for k in run.keywords))
+            checks = [k.value for k in run.keywords if k.arg == 'check']
+            self.assertEqual(len(checks), 1)
+            self.assertIsInstance(checks[0], ast.Constant)
+            self.assertIs(checks[0].value, True)
+            self.assertEqual(len(invoked[0].args), 1)
+            self.assertFalse(invoked[0].keywords)
+            self.assertEqual(ast.dump(invoked[0].args[0]), ast.dump(ast.Name(id='target', ctx=ast.Load())))
+            self.assertLess(main.body.index(top_statement(t, assembled[0], main)),
+                            main.body.index(top_statement(t, invoked[0], main)))
+            self.assertLess(helper.body.index(top_statement(t, run, helper)),
+                            helper.body.index(top_statement(t, mounting[0], helper)))
+
+        verify(tree)
+
+        def remove_caller(t):
+            call = named_calls(t, '_audit_built_runtime')[0]
+            parents = {c: n for n in ast.walk(t) for c in ast.iter_child_nodes(n)}
+            parents[parents[call]].body.remove(parents[call])
+
+        def optional_hook(t):
+            helper = definitions(t, '_audit_built_runtime')[0]
+            stmt = top_statement(t, quality_calls(t)[0], helper)
+            helper.body[helper.body.index(stmt)] = ast.If(test=ast.Constant(False), body=[stmt], orelse=[])
+
+        def reverse_order(t, owner_name, first, second):
+            owner = definitions(t, owner_name)[0]
+            a, b = top_statement(t, first(t)[0], owner), top_statement(t, second(t)[0], owner)
+            ia, ib = owner.body.index(a), owner.body.index(b)
+            owner.body[ia], owner.body[ib] = owner.body[ib], owner.body[ia]
+
+        def unused_marker(t):
+            command = quality_calls(t)[0].args[0]
+            command.elts[1] = ast.Constant('unrelated.py')
+            command.elts.append(ast.Constant('scripts/check_viewer_quality_release.py'))
+
+        mutations = {
+            'uncalled helper': remove_caller,
+            'optional hook': optional_hook,
+            'unchecked hook': lambda t: quality_calls(t)[0].keywords.clear(),
+            'unused script marker': unused_marker,
+            'wrong helper target': lambda t: named_calls(t, '_audit_built_runtime')[0].args.__setitem__(0, ast.Constant('other')),
+            'audit before assembly': lambda t: reverse_order(t, 'main', lambda x: named_calls(x, 'build_approved'),
+                                                            lambda x: named_calls(x, '_audit_built_runtime')),
+            'audit after mounting': lambda t: reverse_order(t, '_audit_built_runtime', quality_calls,
+                                                           lambda x: named_calls(x, 'validate_mounting_evidence')),
+        }
+        for name, mutate in mutations.items():
+            with self.subTest(name=name):
+                changed = copy.deepcopy(tree)
+                mutate(changed)
+                with self.assertRaises(AssertionError):
+                    verify(changed)
 
 
 if __name__ == '__main__':

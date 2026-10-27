@@ -265,8 +265,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 1221820,
-      "sha256": "edbf5626eb90d1a64c31a523f201258b05f3ab8dde118adcd05263f409caccef"
+      "bytes": 1223571,
+      "sha256": "afaeb92135ffea94e8ba5da2708d32960c9d419f18afd89b49faf0cd2015a0ca"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -285,8 +285,8 @@
     },
     {
       "path": "docs/MAINTENANCE.md",
-      "bytes": 11249,
-      "sha256": "44e302957b197f25bcf4a545ed2b2f0a593be7e1648e14090fc76cffe9c121bb"
+      "bytes": 12337,
+      "sha256": "628fee51bbd4d5f6a9bf90073bd58dda708db6ceca03168addee502b07e6a3f4"
     },
     {
       "path": "docs/MICRON.md",
@@ -890,8 +890,8 @@
     },
     {
       "path": "scripts/build_approved_site.py",
-      "bytes": 36592,
-      "sha256": "53edb859bbe2e1193c10177b2ab9a42802a9a9202449fd025b68942a1d268dbf"
+      "bytes": 37001,
+      "sha256": "84f55e624c383fd343218b7760d29363bf2563f2d5817d6631aa935382782f55"
     },
     {
       "path": "scripts/build_configuration_catalog.py",
@@ -910,8 +910,8 @@
     },
     {
       "path": "scripts/build_site.py",
-      "bytes": 30602,
-      "sha256": "3f3f3d0c2b5e5d9c114046e393486ab987ee6a53019f543cdd18b81188fb9ecb"
+      "bytes": 30982,
+      "sha256": "a93722db888f3c95f720d673b0cbdc4f7b75251f29f98318c9069c221086e8dd"
     },
     {
       "path": "scripts/build_support_catalog.mjs",
@@ -1037,6 +1037,11 @@
       "path": "scripts/convert_ducky0_sources.py",
       "bytes": 8706,
       "sha256": "a48f6ddf3d70adf9e83834ff43c08f7938f4d6d8d3c270d3f79946c070c4cc92"
+    },
+    {
+      "path": "scripts/delivery_audit_context.py",
+      "bytes": 1701,
+      "sha256": "aa28f5b8b33c38f2600b7d0bce27c8c5dafb5f712a14b5d7314cc5732c458db9"
     },
     {
       "path": "scripts/elegoo_zero_omission.mjs",
@@ -1400,8 +1405,8 @@
     },
     {
       "path": "scripts/test_approved_build.py",
-      "bytes": 61940,
-      "sha256": "bfc4a7b0740095fa18c9622be41a14e2b89b707f0a2d57ae1b755cef87a5ac3c"
+      "bytes": 79552,
+      "sha256": "6d8a8a4b7a18b808fa2c21a46ed6f896c0f8dcd7c65283de6f5bfc77ed925378"
     },
     {
       "path": "scripts/test_assembly_downloads.mjs",
@@ -1640,8 +1645,8 @@
     },
     {
       "path": "scripts/test_eva_front_surfaces.mjs",
-      "bytes": 31716,
-      "sha256": "6aa0a2d3290b01b2d989ab474760300a6211b01ac7fead81e7e40efa6e7c2564"
+      "bytes": 40756,
+      "sha256": "08e012bc150492ded9ac705c7e434d5cd204e7bae100b9db4fba054ef3f68956"
     },
     {
       "path": "scripts/test_eva_heads.mjs",
@@ -2705,8 +2710,8 @@
     },
     {
       "path": "scripts/test_viewer_quality_release.py",
-      "bytes": 16464,
-      "sha256": "f958648dfcb24967034c8c0c871526cf6b9c0dc4273d58adbfec0e5a9aa25704"
+      "bytes": 21490,
+      "sha256": "2b877d51b3f17b874de7834f5b0f3077a1bf7b7bef7e437dc68cad1754a32497"
     },
     {
       "path": "scripts/test_virtu_may_role.mjs",

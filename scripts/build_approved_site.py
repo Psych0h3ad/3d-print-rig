@@ -18,6 +18,9 @@ import layout_equipment_inputs
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 MAX_SITE_BYTES = 990_000_000
+# Keep this contract inventoried and checksum-checked for build authentication,
+# without shipping build-only metadata as a browser asset.
+BUILD_ONLY_SOURCE_PATHS = frozenset({'APPROVED_DELIVERY.json'})
 LAYOUT_EQUIPMENT_SOURCE = 'layout/layout-equipment.mjs'
 LAYOUT_EQUIPMENT_AUDITS = ('audit_layout_equipment_geometry.mjs', 'audit_layout_equipment_assets.mjs')
 U1_BOTTOM_AUDIT = 'scripts/audit_u1_bottom.mjs'
@@ -469,7 +472,8 @@ def source_files(root):
         name = row['path'][5:]; safe_path(name); p = root/row['path']; data = p.read_bytes()
         if hashlib.sha256(data.replace(b'\r\n',b'\n')).hexdigest() != row['sha256']:
             raise ValueError('Changed source snapshot: '+name)
-        files[name] = p
+        if name not in BUILD_ONLY_SOURCE_PATHS:
+            files[name] = p
     return files
 
 def release_failures(root, contract):
@@ -484,6 +488,8 @@ def release_failures(root, contract):
 def run(root, contract, output, inputs=None, plan_only=False, verify_inputs=False, equipment_inputs=None,
         equipment_prepared_dir=None):
     rows = validate_contract(contract); sources = source_files(root)
+    if any(row['path'] in BUILD_ONLY_SOURCE_PATHS for row in rows):
+        raise ValueError('Build-only source path cannot be an approved runtime body')
     equipment_scripts = layout_equipment_scripts(root) if LAYOUT_EQUIPMENT_SOURCE in sources else None
     if equipment_inputs is not None:
         if not equipment_scripts:
